@@ -14,15 +14,27 @@ final class UiModels {
         return c == null ? "已退出战场" : c.name;
     }
     static String status(World w, World.Officer o) {
-        if (w.domestic.busy(o.id)) return w.domestic.assignment(o.id);
-        if (o.unitId >= 0) return o.acted ? "出征 · 已行动" : "出征 · 待命";
-        if (o.cityId < 0) return "不可派遣";
-        return o.acted ? "本旬已行动" : "闲置";
+        Strategy.OfficerState state=w.strategy.officerState(o.id);
+        switch(state.activity){
+            case CONSTRUCTION: case TRANSFER: case TRANSPORT: return w.domestic.assignment(o.id);
+            case OTHER_TASK: return o.otherTask+" · 剩"+state.remainingTurns+"旬";
+            case DEPLOYED: {World.Unit unit=w.unit(o.unitId);return unit!=null&&unit.acted?"出征 · 已行动":"出征 · 待命";}
+            case UNAFFILIATED: return "在野 · 待登用";
+            case UNAVAILABLE: return "不可派遣";
+            case ACTED: return "本旬已行动";
+            default: return "闲置";
+        }
     }
+    static String governor(World w,int cityId){
+        World.City c=w.city(cityId);World.Officer o=c==null?null:w.officer(c.governorId);
+        return o==null?"未任命":o.name;
+    }
+    static String faction(World w,World.Officer o){return o.owner<0?"在野":w.faction(o.owner);}
+
     static List<World.Officer> officers(World w, String query, int owner, int city, int sort) {
         List<World.Officer> result = new ArrayList<>();
         for (World.Officer o : w.officers)
-            if ((owner < 0 || o.owner == owner) && (city < 0 || o.cityId == city) && o.name.contains(query.trim())) result.add(o);
+            if ((owner == -1 || (owner == -2 ? o.owner < 0 : o.owner == owner)) && (city < 0 || o.cityId == city) && o.name.contains(query.trim())) result.add(o);
         Comparator<World.Officer> order = sort == 0 ? Comparator.comparing(o -> o.name)
             : Comparator.comparingInt((World.Officer o) -> ability(o, sort)).reversed();
         result.sort(order.thenComparingInt(o -> o.id));
@@ -32,11 +44,11 @@ final class UiModels {
         switch (sort) { case 1: return o.leadership; case 2: return o.war; case 3: return o.intelligence; case 4: return o.politics; default: return o.charm; }
     }
     static int officerCount(World w, int city) {
-        int n = 0; for (World.Officer o : w.officers) if (o.cityId == city) n++; return n;
+        int n = 0; for (World.Officer o : w.officers) if (o.cityId == city && w.city(city)!=null && o.owner==w.city(city).owner && o.owner>=0) n++; return n;
     }
     static String coreOfficer(World w, int city) {
         World.Officer best = null;
-        for (World.Officer o : w.officers) if (o.cityId == city && (best == null || o.leadership > best.leadership)) best = o;
+        for (World.Officer o : w.officers) if (o.cityId == city && o.owner>=0 && o.owner==w.city(city).owner && (best == null || o.leadership > best.leadership)) best = o;
         return best == null ? "暂无驻将" : best.name;
     }
     static List<World.City> cities(World w, int sort) {

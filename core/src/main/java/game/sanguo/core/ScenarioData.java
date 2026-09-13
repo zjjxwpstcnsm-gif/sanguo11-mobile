@@ -53,7 +53,17 @@ public final class ScenarioData {
                 String[] o=fields(p,"officer."+i,9);
                 w.officers.add(new World.Officer(integer(o[0]),o[1],integer(o[2]),integer(o[3]),integer(o[4]),integer(o[5]),integer(o[6]),integer(o[7]),integer(o[8])));
             }
+            // Optional v0.4 personnel data; old format-1 packs remain valid and do not invent talent.
+            if(p.containsKey("talents")) {
+                int talents=number(p,"talents",0,10000);
+                for(int i=0;i<talents;i++) {
+                    String[] t=fields(p,"talent."+i,9);
+                    w.strategy.addHiddenTalent(new Strategy.Talent(integer(t[0]),t[1],integer(t[2]),
+                        integer(t[3]),integer(t[4]),integer(t[5]),integer(t[6]),integer(t[7]),integer(t[8])));
+                }
+            }
             if(!p.isEmpty())throw new IOException("未知剧本字段："+p.keySet().iterator().next());
+            w.strategy.initializeOffices();
             SaveCodec.validate(w);validateOpening(w);
             w.note(name+"：原创测试布局与数值，非原版历史剧本");
             w.note("当前执掌"+w.faction(player)+" · 点选己方城池开始经营");

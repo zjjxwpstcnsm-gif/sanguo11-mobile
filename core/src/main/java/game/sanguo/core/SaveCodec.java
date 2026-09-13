@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=3, MAX_BYTES=4*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=4, MAX_BYTES=4*1024*1024;
     private SaveCodec() {}
     public static byte[] encode(World w) throws IOException {
         validate(w);
@@ -35,6 +35,7 @@ public final class SaveCodec {
             d.writeInt(u.troops);d.writeInt(u.food);d.writeInt(u.energy);d.writeBoolean(u.acted);
         }
         w.domestic.write(d);
+        w.strategy.write(d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
@@ -85,6 +86,7 @@ public final class SaveCodec {
             u.energy=d.readInt();u.acted=d.readBoolean();w.units.add(u);
         }
         if(version>=3)w.domestic.read(d);
+        if(version>=4)w.strategy.read(d);else w.strategy.initializeOffices();
         count=bounded(d.readInt(),0,40);for(int i=0;i<count;i++)w.log.add(d.readUTF());
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         validate(w);return w;
@@ -113,10 +115,10 @@ public final class SaveCodec {
         }
         ids.clear();
         for(World.Officer o:w.officers) {
-            require(ids.add(o.id)&&o.id>=0,"武将ID重复或无效");require(o.name!=null&&!o.name.isEmpty()&&o.name.length()<=100,"武将名无效");bounded(o.owner,0,w.factions.length-1);
+            require(ids.add(o.id)&&o.id>=0,"武将ID重复或无效");require(o.name!=null&&!o.name.isEmpty()&&o.name.length()<=100,"武将名无效");bounded(o.owner,-1,w.factions.length-1);
             bounded(o.leadership,0,100);bounded(o.war,0,100);bounded(o.intelligence,0,100);bounded(o.politics,0,100);bounded(o.charm,0,100);
             require(o.cityId>=-1&&o.unitId>=-1,"武将驻地无效");
-            if(o.cityId>=0)require(o.unitId==-1&&w.city(o.cityId)!=null&&w.city(o.cityId).owner==o.owner,"武将城池归属错误");
+            if(o.cityId>=0)require(o.unitId==-1&&w.city(o.cityId)!=null&&(o.owner==-1||w.city(o.cityId).owner==o.owner),"武将城池归属错误");
             if(o.unitId>=0)require(o.cityId==-1&&w.unit(o.unitId)!=null&&w.unit(o.unitId).officerId==o.id,"武将部队引用错误");
         }
         ids.clear();Set<Integer> assigned=new HashSet<>();
@@ -128,6 +130,7 @@ public final class SaveCodec {
             bounded(u.troops,1,10000);bounded(u.food,0,1000000);bounded(u.energy,0,100);
         }
         w.domestic.validate();
+        w.strategy.validate();
         for(String line:w.log)label(line,2000);
         if(w.winner>=0) {
             require(w.alive(w.winner),"胜者势力不存在");

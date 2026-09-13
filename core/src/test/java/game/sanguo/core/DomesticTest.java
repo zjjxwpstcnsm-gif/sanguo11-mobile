@@ -23,7 +23,7 @@ public final class DomesticTest {
     private static void next(World w)throws Exception{ok(w.nextTurn());SaveCodec.validate(w);}
     public static void main(String[] args)throws Exception{
         building();economy();movement();capacity();capture();validation();legacy();campaigns();
-        System.out.println("PASS: "+checks+" domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3 continuity.");
+        System.out.println("PASS: "+checks+" domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.");
     }
     private static void building()throws Exception{
         World w=fixture();Hex site=w.domestic.buildSites(10).get(0);byte[] original=SaveCodec.encode(w);
@@ -64,7 +64,7 @@ public final class DomesticTest {
         check(w.city(10).troops==troops+2500&&w.city(10).equipment[0]==equipment+2500,"actual command yields use facilities");
         w.city(10).troops=99000;reject(w,()->w.recruit(10,3));w.city(10).equipment[0]=99000;reject(w,()->w.produce(10,3,World.Weapon.SPEAR));
         w.city(10).troops=0;int gold=w.city(10).gold,food=w.city(10).food;next(w);
-        check(w.city(10).gold==gold+1200&&w.city(10).food==food+7500,"monthly income uses completed facilities");
+        check(w.city(10).gold==gold+1140&&w.city(10).food==food+7125,"monthly income uses completed facilities and order 85");
         w.city(10).gold=999999;w.city(10).food=999999;next(w);next(w);next(w);
         check(w.city(10).gold==1000000&&w.city(10).food==1000000,"monthly caps prevent overflow");
     }
@@ -135,7 +135,7 @@ public final class DomesticTest {
         for(String file:new String[]{"/m0-v1.sg11.b64","/m1-v2.sg11.b64"}){
             byte[] original;try(InputStream in=DomesticTest.class.getResourceAsStream(file)){if(in==null)throw new IOException(file);original=Base64.getMimeDecoder().decode(in.readAllBytes());}
             check(original[7]==(file.contains("v1")?1:2),"fixture genuinely old version");World w=SaveCodec.decode(original);check(w.domestic.facilities.isEmpty()&&w.domestic.missions.isEmpty(),"legacy initializes empty strategic layer");
-            World clone=copy(w);check(SaveCodec.encode(w)[7]==3,"new writes use save v3");for(int i=0;i<5&&!w.gameOver();i++){next(w);next(clone);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(clone)),"legacy deterministic continuation");}
+            World clone=copy(w);check(SaveCodec.encode(w)[7]==4,"new writes use save v4");for(int i=0;i<5&&!w.gameOver();i++){next(w);next(clone);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(clone)),"legacy deterministic continuation");}
         }
     }
     private static void campaigns()throws Exception{

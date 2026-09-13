@@ -69,7 +69,7 @@ public final class ScenarioTest {
         check(w.unit(1).weapon==World.Weapon.CROSSBOW&&w.unit(1).food==5850,"v1 army and supply preserved");
         check(w.officer(0).unitId==1&&w.city(0).equipment[2]==9000,"v1 references and stocks preserved");
         check(w.dataHash.isEmpty()&&w.scenarioId.equals("m0-skirmish"),"legacy save has no fabricated data fingerprint");
-        byte[] migrated=SaveCodec.encode(w);check(migrated[7]==3,"new writes use save v3");
+        byte[] migrated=SaveCodec.encode(w);check(migrated[7]==4,"new writes use save v4");
         World restored=SaveCodec.decode(migrated);w.nextTurn();restored.nextTurn();
         check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(restored)),"migrated games continue identically");
         w=ScenarioCatalog.load("regional-sandbox",2);w.nextTurn();byte[] saved=SaveCodec.encode(w);restored=SaveCodec.decode(saved);
@@ -81,6 +81,8 @@ public final class ScenarioTest {
         w.scenarioId="retired-pack";w.scenarioName="旧数据包";
         check(SaveCodec.decode(SaveCodec.encode(w)).scenarioId.equals("retired-pack"),"saves do not require installed scenario data");
     }
+    // This fixture deletes cities outright; remove dependent unrevealed records as well.
+    private static void dropMissingTalents(World w) { w.strategy.talents.removeIf(t->w.city(t.cityId)==null); }
     private static void factions()throws Exception {
         for(int player=0;player<3;player++) {
             World w=ScenarioCatalog.load("regional-sandbox",player);World.City home=w.home();World.Officer o=w.idle(home).get(0);
@@ -95,16 +97,16 @@ public final class ScenarioTest {
             SaveCodec.validate(w);
         }
         World w=ScenarioCatalog.load("regional-sandbox",0);
-        w.cities.removeIf(c->c.owner==2);w.officers.removeIf(o->o.owner==2);w.checkVictory();
+        w.cities.removeIf(c->c.owner==2);w.officers.removeIf(o->o.owner==2);dropMissingTalents(w);w.checkVictory();
         check(w.winner==-1&&!w.gameOver(),"eliminating one of three forces is not victory");
         check(w.nextTurn().ok&&w.active==0,"eliminated force is skipped");
-        w=ScenarioCatalog.load("regional-sandbox",0);w.cities.removeIf(c->c.owner==0);w.officers.removeIf(o->o.owner==0);w.checkVictory();
+        w=ScenarioCatalog.load("regional-sandbox",0);w.cities.removeIf(c->c.owner==0);w.officers.removeIf(o->o.owner==0);dropMissingTalents(w);w.checkVictory();
         check(w.gameOver()&&w.winner==-1,"human loss with two AI forces remaining has no fabricated victor");
         byte[] before=SaveCodec.encode(w);check(!w.nextTurn().ok&&Arrays.equals(before,SaveCodec.encode(w)),"defeat freezes commands and state");
         w=ScenarioCatalog.load("regional-sandbox",0);w.deploy(100,1000,World.Weapon.SPEAR,3000);
-        w.cities.removeIf(c->c.owner==0);w.officers.removeIf(o->o.owner==0&&o.unitId<0);w.checkVictory();
+        w.cities.removeIf(c->c.owner==0);w.officers.removeIf(o->o.owner==0&&o.unitId<0);dropMissingTalents(w);w.checkVictory();
         check(!w.gameOver(),"landless army can continue fighting");SaveCodec.validate(w);
-        w=ScenarioCatalog.load("regional-sandbox",2);w.cities.removeIf(c->c.owner==0||c.owner==1);w.officers.removeIf(o->o.owner!=2);w.checkVictory();
+        w=ScenarioCatalog.load("regional-sandbox",2);w.cities.removeIf(c->c.owner==0||c.owner==1);w.officers.removeIf(o->o.owner!=2);dropMissingTalents(w);w.checkVictory();
         check(w.winner==2&&w.gameOver(),"third faction can win");SaveCodec.validate(w);
     }
     private static void routing()throws Exception {
