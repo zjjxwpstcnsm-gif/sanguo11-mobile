@@ -60,4 +60,20 @@
 - 原有写入版本断言由4更新到5；未删除旧测试或放宽资源、任务、迁移、运输断言。
 - Android全部源码和instrumentation已使用缓存的Android API编译依赖通过Java17编译；本地没有完整SDK或可运行模拟器，这不等于APK构建／安装验证。
 - 安装测试保留旧完整流程，并添加真实点击商人、取消交易、能力培养／任务筛选／完成、亲善、突刺位移、火计及Activity恢复。测试战斗局面只在instrumentation内构造，产品剧本不含测试作弊入口。
-- APK、Lint和三种横屏安装结果以本PR的GitHub Actions为准，完成后补记确切构建提交与下载链接。
+- 代码提交 `a411e8c77616c1576436684709afe5c338e5c8a4` 的 [CI运行34766310731](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34766310731) / job103747784512 已全部通过：Java17核心及UI回归、Android APK与测试APK构建、Lint、剧本资源、API29 x86_64安装操作、APK签名检查。
+- 三种实际横屏配置1920×1080、2340×1080、2400×1080（420dpi）各完成全流程并输出 `SMOKE PASS`。已取回66张截图（每种22张），目视核对商人余额、培养任务、亲善、突刺位移及火场标记；三份logcat未发现FATAL EXCEPTION或应用ANR。Activity恢复不等于操作系统杀进程；ARM真机、功耗和温控仍未验证。
+- [Lint报告](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34766310731/artifacts/10321082604) 无阻塞错误，仍有10条警告，涉及目标SDK、旧API、数据提取规则、自定义View构造/可访问性、文本国际化；未宣称零警告。
+
+### 可下载交付
+
+- [PR #5](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/5) 包含本轮代码和先前尚未合并的v0.5集成。
+- [APK归档](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34766310731/artifacts/10320344107)：`app-debug.apk` 与 `SHA256SUMS`；APK为204810字节，已取回并重新校验v2签名及SHA-256。
+- APK SHA-256：`21204f11b0dfb71d570f4451e426b2f51c8deee5e3ac5673cf79acb50170c1bb`。
+- [66张截图及完整安装日志](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34766310731/artifacts/10320723291)。
+- 本次APK签名证书SHA-256为 `c359cef4fa68270ce179c42364239948b26daa425c58e7b077e27d0db479e1a3`，与已交付v0.5的 `4629f2f28b1aa6414ad4ac66c5c69877c6c9bf487f03b870b34987df18241429` 不同，因此不能直接覆盖旧版。存档格式兼容不等于安装签名兼容；请保留存有重要进度的旧应用，不要为解决冲突直接卸载。持久签名与安全迁移流程仍待落实，私钥不能提交仓库。
+
+### 安装回归中发现的问题
+
+首次完整运行 `34765748072` 在新增商人断言处失败：测试把九月区域沙盘的买粮费用硬编码为一月的100金；实际界面显示每千粮140金，购买后的4860金和41000粮与报价一致。修复仅涉及测试：先核对九月报价为140，再验证余额按该报价扣除、粮食入库一次、每旬交易量准确记录；取消交易仍比较完整存档字节不变。未修改交易数值或移除断言。对应修复提交为 `a411e8c77616c1576436684709afe5c338e5c8a4`。
+
+本次构建的 [精确源码归档](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34766310731/artifacts/10320607421) 已取回，97份跟踪文件与该修复提交逐字节一致。后续仅更新交付文档时，不把文档提交当作重新构建过的APK。
