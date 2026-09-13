@@ -15,6 +15,8 @@
 
 最终要求仍包括全武将、全兵装/战法、全城关港、全国地图、剧本、内政、人事、外交、计略、单挑、舌战、技巧、能力研究、特技、事件、编辑器与完整胜负流程，详见 [功能覆盖表](docs/FEATURES.md)。
 
+[下载本轮APK（ZIP）](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34752984146/artifacts/10316298273) · [构建与安装验证](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34752984146)
+
 ## 本阶段试玩
 
 1. 首次启动选剧本与势力；之后可在「菜单 → 新游戏 / 选择势力」重新选择。
