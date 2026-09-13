@@ -37,11 +37,30 @@ Large cargo review: gold >= 1,000 OR food >= 10,000 OR troops/any equipment >= 3
 ## Validation and delivery
 
 - Local core regression: 189 core + 282 scenario + 725 domestic assertions passed.
-- Presentation tests: camera limits/pinch/resize over 1920, 2340, 2400 pixel widths; search/filter/sort; task identity/ETA/cargo; immutable projections; summary actual net changes/completion/arrival.
+- Presentation tests: 48 assertions passed for camera limits/pinch/resize over 1920, 2340, 2400 pixel widths; search/filter/sort; task identity/ETA/cargo; immutable projections; summary actual net changes/completion/arrival. Total: 1,244 assertions.
 - Full Android Java source and instrumentation source compilation against SDK 35 passed.
 - Added official Gradle 8.11.1 wrapper pinned to distribution SHA-256 `f397b287023acdba1e9f6fc5ea72d22dd63669d59ed4a289a29b1a76eee151c6`.
 - Instrumentation extends the previous actual-touch install flow with map hit/pinch/pan, filters/recreation, empty states, cancel turn, cancel overwrite, large cargo cancel/confirm. CI tests 1080×1920, 1080×2340 and 1080×2400 at density 420 on Android API 29 x86_64 (landscape); collects screenshots and crash/ANR logs per profile.
-- Local final `./gradlew test :core:check lint assembleDebug :app:assembleDebugAndroidTest` passed on the complete implementation. Lint: zero errors, nine non-blocking warnings (platform API/theme recommendations, programmatic View constructor, delegated click detection and text localization). Device-flow/CI artifact details follow below.
+- Local final `./gradlew test :core:check lint assembleDebug :app:assembleDebugAndroidTest` passed on the complete implementation. Lint: zero errors, nine non-blocking warnings (platform API/theme recommendations, programmatic View constructor, delegated click detection and text localization).
+- Final [CI run 34757476744](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34757476744) passed on code commit `795a1c01c8e1223ca3475aea9d214f57f950acaf`, 2026-09-13. Three independent clean-data installed-APK flows reported `SMOKE PASS`; all per-profile logcat checks passed without a fatal exception or application ANR. These are emulator display profiles, not three physical phones. No physical-device FPS/thermal benchmark was performed.
+
+| Landscape display | Ratio | Android / density | Result |
+| --- | --- | --- | --- |
+| 1920 × 1080 | 16:9 | API 29 x86_64 / 420 dpi | PASS |
+| 2340 × 1080 | 19.5:9 | API 29 x86_64 / 420 dpi | PASS |
+| 2400 × 1080 | 20:9 | API 29 x86_64 / 420 dpi | PASS |
+
+The final evidence artifact contains 14 screenshots per profile, instrumentation output and logcat. Reviewed map zoom/selection, city controls, task cargo, restored officer search and save metadata at these proportions. Pinch instrumentation respects Android's physical minimum span and uses timed real pointer events; production gesture detection remains the platform ScaleGestureDetector.
+
+APK build path: `app/build/outputs/apk/debug/app-debug.apk`. The delivered `sanguo11-mobile-ui-v04-debug.apk` is the exact APK installed in the successful CI run (artifact `sanguo11-mobile-m1-apk`), copied without modification. SHA-256:
+
+```text
+a6ae22dcff2c323128f36fdaab88c1ab2fed84ad6e854a4d36e3f9cb46d76389
+```
+
+Artifact checksum and `apksigner verify --verbose` both passed; APK Signature Scheme v2 is valid. Local builds use a different generated debug key and therefore have a different digest. Application version remains `0.3.0-strategy-dev` / code 3; the integration owner can coordinate the next release version with Agent 1/2. PR: [#1](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/1). The final documentation-only commit records these results without changing the tested source tree under `app`, `core` or build/test scripts.
+
+Reproduce with JDK 17 and Android SDK 35: `./gradlew test :core:check`, `./gradlew lint`, `./gradlew assembleDebug :app:assembleDebugAndroidTest`, then `bash scripts/smoke-android.sh` with a booted emulator. The smoke script installs both APKs, changes display dimensions and clears game data on its emulator; use a disposable test device.
 
 ## Merge guidance
 
