@@ -20,4 +20,4 @@ tasks.register('verifyPresentation', Exec) {
     commandLine 'bash', 'scripts/test-ui-models.sh'
 }
 tasks.named('check').configure { dependsOn 'verifyPresentation' }
-tasks.named('test').configure { dependsOn 'verifyPresentation' }
+tasks.matching { it.name == 'test' || it.name.endsWith('UnitTest') }.configureEach { dependsOn 'verifyPresentation' }
