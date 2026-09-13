@@ -1,0 +1,17 @@
+// Isolated Agent 2 test wiring; source code stays inside the existing pure-Java core module.
+tasks.register('verifyTacticalBattle', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.battle.TacticalBattleTest'
+}
+tasks.register('verifyTacticalBattlePerformance', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.battle.BattlePerformanceTest'
+}
+// Existing core suites are main-based runners, not JUnit tests. Make `test` really run them too.
+tasks.named('test') {
+    dependsOn 'verifyCore', 'verifyScenarios', 'verifyDomestic',
+            'verifyTacticalBattle', 'verifyTacticalBattlePerformance'
+}
+tasks.named('check') { dependsOn 'verifyTacticalBattle', 'verifyTacticalBattlePerformance' }
