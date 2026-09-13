@@ -72,6 +72,7 @@ final class DomesticUi {
     void overview(){
         List<String> labels=new ArrayList<>();List<Runnable> actions=new ArrayList<>();
         for(World.City c:w.cities)if(c.owner==w.player){labels.add(c.name+" · 设施"+w.domestic.count(c.id)+"/6 · 月金"+w.domestic.monthlyGold(c.id)+" / 月粮"+w.domestic.monthlyFood(c.id));actions.add(()->focus.accept(c.hex));}
+        for(World.City c:w.cities)if(c.owner==w.player){labels.add(c.name+" · 人事 / 城市治理 / 武将状态");actions.add(()->new StrategyUi(activity,w,apply).city(c));}
         for(Domestic.Facility f:w.domestic.facilities)if(w.city(f.cityId).owner==w.player){labels.add(w.city(f.cityId).name+" · "+f.kind.label+" · "+(f.remaining==0?"已建成":"剩"+f.remaining+"旬"));actions.add(()->facility(f));}
         for(Domestic.Mission m:w.domestic.missions)if(m.owner==w.player){labels.add((m.transport?"运输":"调动")+" · "+w.officer(m.officerId).name+" → "+w.city(m.targetCity).name+" · "+w.domestic.status(m));actions.add(()->mission(m));}
         new AlertDialog.Builder(activity).setTitle("政务与在途 · 点击详情").setItems(labels.toArray(new String[0]),(d,i)->actions.get(i).run()).setNegativeButton("返回",null).show();

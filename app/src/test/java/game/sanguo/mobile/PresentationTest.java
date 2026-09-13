@@ -17,6 +17,7 @@ public final class PresentationTest {
         check(UiModels.cities(w,0).get(0).owner==2,"friendly city first");
         check(UiModels.tasks(w,0).isEmpty(),"no phantom task");
         check(Arrays.equals(unchanged,SaveCodec.encode(w)),"projections never mutate world");
+        personnelProjection();
         check(w.domestic.build(300,3001,Domestic.Kind.MARKET,w.domestic.buildSites(300).get(0)).ok,"construction fixture");
         check(w.domestic.transfer(300,310,3000).ok,"travel fixture");
         check(w.domestic.transport(300,310,3002,1000,3000,1000,new int[]{1000,0,0,0}).ok,"cargo fixture");
@@ -45,5 +46,32 @@ public final class PresentationTest {
             c.focus(650,400);float fx=(width-300)/2f+30,fy=550;float wx=(fx-c.x)/c.scale,wy=(fy-c.y)/c.scale;c.zoom(c.scale*1.1f,fx,fy);near((fx-c.x)/c.scale,wx,"pinch focal x");near((fy-c.y)/c.scale,wy,"pinch focal y");
         }
         System.out.println("PASS: "+checks+" UI projection/camera assertions.");
+    }
+    private static void personnelProjection()throws Exception {
+        World w=ScenarioCatalog.load("regional-sandbox",2);
+        check(UiModels.governor(w,300).equals("未任命"),"no invented governor before appointment");
+        check(w.strategy.search(300,3002).ok,"discover seeded talent");
+        World.Officer talent=w.officer(910002);
+        check(talent!=null&&UiModels.status(w,talent).equals("在野 · 待登用"),"unaffiliated talent is not an idle officer");
+        check(UiModels.faction(w,talent).equals("在野"),"unaffiliated faction label");
+        check(UiModels.officerCount(w,300)==3,"talent does not inflate stationed officer count");
+        check(UiModels.officers(w,"",-2,-1,0).size()==1,"unaffiliated filter is separate from all forces");
+        byte[] before=SaveCodec.encode(w);
+        UiModels.officers(w,"",-1,-1,0);UiModels.status(w,talent);UiModels.governor(w,300);
+        check(Arrays.equals(before,SaveCodec.encode(w)),"personnel projections do not consume random state");
+        check(w.strategy.recruitOfficer(300,3000,talent.id).ok&&talent.owner==2,"seeded hire fixture");
+        check(UiModels.officers(w,"",-2,-1,0).isEmpty()&&UiModels.officerCount(w,300)==4,"hire updates filters and stationed count");
+        check(UiModels.status(w,talent).equals("本旬已行动"),"newly hired officer rests this turn");
+        check(w.strategy.appointGovernor(300,3001,3001).ok&&UiModels.governor(w,300).equals("周瑜"),"actual appointed governor displayed");
+        World restored=SaveCodec.decode(SaveCodec.encode(w));
+        check(UiModels.governor(restored,300).equals("周瑜")&&restored.officer(3001).role==Strategy.Role.GOVERNOR,"governor projection survives v4 round trip");
+        World deployed=ScenarioCatalog.load("regional-sandbox",2);
+        check(deployed.deploy(310,3003,World.Weapon.CROSSBOW,3000).ok,"deployed officer fixture");
+        World.Officer officer=deployed.officer(3003);World.Unit unit=deployed.unit(officer.unitId);
+        officer.acted=false;unit.acted=true;
+        check(UiModels.status(deployed,officer).equals("出征 · 已行动"),"deployed status follows army action flag");
+        World assigned=ScenarioCatalog.load("regional-sandbox",2);
+        check(assigned.strategy.beginAssignment(300,3002,"政务",2).ok,"long assignment fixture");
+        check(UiModels.status(assigned,assigned.officer(3002)).equals("政务 · 剩2旬"),"long assignment visible");
     }
 }

@@ -4,9 +4,11 @@
 
 ## 当前状态
 
-**v0.3.0 / 战略层开发：设施开发、人员调动和资源运输已接入原生Android。仍是开发试玩版，尚未完成原版完整复刻。**
+**v0.5.0 / 人事与治理集成：搜索、登用、褒奖、太守任命、有限兵源、战略 AI 已接入原生 Android。仍是开发试玩版，尚未完成原版完整复刻。**
 
-新增市场、农场、兵舍、锻冶所；建设占用武将并跨旬完成，实际影响收入、征兵和生产。支持城际人员调动、自定义金粮兵/兵装运输、满仓等待和失守改道。运输是非战斗战略任务，不是原版运输队，不支持战场拦截或水运。[规则与边界](docs/STRATEGY_LAYER.md)
+本轮将 PR #3 的编码补丁恢复为可审查源码，与已合并的手机 UI 和独立战术引擎集成。保留设施开发、城际调动、资源运输；新增真实身份/忠诚/任务状态、在野筛选、太守收入加成和按武将能力计算的征兵/训练/巡察。[本轮内容与验证](docs/INTEGRATION_V0_5.md)
+
+战术引擎已在 core 中实现并回归，但尚未接入手机战斗界面；当前地图交战仍使用已有 World 规则。
 
 | 剧本 | 地图 | 城池 / 武将 | 可选势力 |
 |---|---|---|---|
@@ -17,9 +19,7 @@
 
 最终要求仍包括全武将、全兵装/战法、全城关港、全国地图、剧本、内政、人事、外交、计略、单挑、舌战、技巧、能力研究、特技、事件、编辑器与完整胜负流程，详见 [功能覆盖表](docs/FEATURES.md)。
 
-[v0.3.0 APK（ZIP）](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34755189627/artifacts/10317745222) · [成功构建与安装验证](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34755189627)
-
-实际构建代码：`726de6369922f6e5934dbbcc4fcba6ce1128256f`。1196次内核断言、Android编译/Lint、API29 x86_64安装操作、签名检查通过。APK为80,141字节，SHA-256：`1fada126b7c68670c024ebff369c97bf593b8795159d32297347d8e707f57e99`。仓库成员登录可下载构建产物，保留至2026-10-13。
+[v0.5 APK（ZIP）](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34762588004/artifacts/10319757409) · [全绿构建与三种横屏安装验证](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34762588004) · [本轮交付记录](docs/INTEGRATION_V0_5.md)。
 
 ## 本阶段试玩
 
@@ -27,8 +27,10 @@
 2. 「菜单 → 城池一览 / 定位」优先列出己方城池，点击后放大定位。点己方城池即可征兵、训练、生产和出征。
 3. 点己方部队，再点高亮空地移动；点敌军普攻，点相邻非己方城池攻城，点相邻己方城池回城。弩兵可隔一格普攻，每支部队每旬一次完整行动。
 4. 「下一旬」执行其他存活势力的电脑行动，然后结算粮草、收入并恢复我方行动。结算在后台快照执行，期间阻止重复操作。
-5. 「菜单 → 保存局面 / 读取存档」支持3个手动槽。自动存档在成功操作和进入后台时更新；当前写入v3，能读取M0的v1与M1的v2存档，旧手动槽对应现在的槽1。
-6. 点己方城池，向下滑动右侧面板可进入「设施开发 / 人员调动 / 资源运输 / 政务与在途」。菜单也有「政务与在途」；点击任务查看改道/返回，点击设施查看取消/拆除。
+5. 「菜单 → 保存局面 / 读取存档」支持3个手动槽。自动存档在成功操作和进入后台时更新；当前写入v4，能读取v1/v2/v3旧存档，旧手动槽对应现在的槽1。
+6. 己方城池「内政」开发设施和巡察，「调动」派遣人员或运输，「任务」查看改道/返回，点击设施可取消/拆除。
+7. 城池「武将」可搜索、登用、褒奖、任命太守；概览「人事 / 城市治理」可查看本城状态。武将一览提供姓名、势力、城市、能力排序与在野筛选。
+8. 「军事」征兵时显示本城剩余兵源，选择武将后预览实际征兵/训练效果；太守、治安会影响真实月收入。
 
 ## 数据与存档
 
@@ -41,9 +43,9 @@
 - `docs/`：来源、版本边界、完整性标准、路线和当前差异。
 - `.github/workflows/android.yml`：核心测试、Android 编译、Lint、安装操作测试、APK 构建产物。
 
-本地验证：`bash scripts/test-core.sh`。
+本地验证：`bash scripts/test-core.sh && bash scripts/test-ui-models.sh`。
 
-Android 构建：安装 JDK 17、Android SDK 35、Build Tools 35.0.0、Gradle 8.11.1，然后运行 `gradle :core:check :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`。当前没有提交 Gradle Wrapper；CI 使用固定版本的 Gradle 安装步骤。
+Android 构建：安装 JDK 17、Android SDK 35、Build Tools 35.0.0、Gradle 8.11.1，然后运行 `./gradlew test :core:check :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`。已提交固定 Gradle 8.11.1 及 SHA-256 的 Wrapper。
 
 APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；CI 会保存名为 `sanguo11-mobile-m1-apk` 的产物。对应提交源码另存为 `sanguo11-mobile-source`。安装测试证据另存为 `android-smoke-evidence`，包含操作截图与日志。它是开发调试签名，正式发行和后续覆盖升级前需要配置持久签名密钥。不要把密钥提交进仓库。
 

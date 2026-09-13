@@ -46,8 +46,8 @@ public final class Domestic {
     }
     public int count(int city){int n=0;for(Facility f:facilities)if(f.cityId==city)n++;return n;}
     private int completed(int city,Kind kind){int n=0;for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&f.remaining==0)n++;return n;}
-    public int monthlyGold(int city){return 800+400*completed(city,Kind.MARKET);}
-    public int monthlyFood(int city){return 5000+2500*completed(city,Kind.FARM);}
+    public int monthlyGold(int city){return w.strategy.cityIncome(city,800+400*completed(city,Kind.MARKET));}
+    public int monthlyFood(int city){return w.strategy.cityIncome(city,5000+2500*completed(city,Kind.FARM));}
     public int recruitAmount(int city){return 2000+500*completed(city,Kind.BARRACKS);}
     public int produceAmount(int city){return 2000+500*completed(city,Kind.SMITH);}
     private boolean site(World.City city,Hex h){
@@ -108,7 +108,7 @@ public final class Domestic {
         if(route(c.hex,d.hex,w.active)==null)return w.fail("没有可用陆路，暂不支持水运");
         if(nextMissionId>=10000000)return w.fail("任务编号已达上限");
         w.spend(c,o,fee);c.gold-=gold;c.food-=food;c.troops-=troops;for(int i=0;i<4;i++)c.equipment[i]-=equipment[i];
-        o.cityId=-1;missions.add(new Mission(nextMissionId++,w.active,o.id,c.id,d.id,c.hex,cargo,gold,food,troops,equipment));
+        w.strategy.releaseGovernor(o.id);o.cityId=-1;missions.add(new Mission(nextMissionId++,w.active,o.id,c.id,d.id,c.hex,cargo,gold,food,troops,equipment));
         return w.success(o.name+(cargo?"运送资源":"调动")+"前往"+d.name);
     }
     private static boolean payload(int gold,int food,int troops,int[] equipment){

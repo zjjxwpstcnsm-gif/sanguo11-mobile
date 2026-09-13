@@ -46,7 +46,8 @@ public final class GameSmokeRunner extends Instrumentation {
             assertWorld(2,1,"regional-sandbox");screenshot("05-restored");
             strategicFlow();
             mobileFlow();
-            result.putString("stream","SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turns, three save slots, corrupt-load recovery, Activity recreation, construction, officer travel, editable cargo transport, task persistence and arrival, map tap/pan/pinch/bounds, filters, empty states, cancel/overwrite confirmation and navigation recreation verified.\n");
+            personnelFlow();
+            result.putString("stream","SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turns, three save slots, corrupt-load recovery, Activity recreation, construction, officer travel, editable cargo transport, task persistence and arrival, map tap/pan/pinch/bounds, filters, empty states, cancel/overwrite confirmation and navigation recreation, search/hire/governor/reward/patrol/recruit/train and save v4 restart verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -78,12 +79,46 @@ public final class GameSmokeRunner extends Instrumentation {
         require(w.domestic.facilities.stream().anyMatch(f->f.cityId==300&&f.kind==Domestic.Kind.MARKET&&f.remaining==0),"market completes");
         locateCity("建业");screenshot("09-arrival");locateCity("柴桑");click("内政",true);click("市场 · 已建成",false);screenshot("10-completed");click("返回",true);
     }
+    private void personnelMenu(String city){
+        locateCity(city);click("人事 / 城市治理",true);
+    }
+    private void personnelAction(String city,String action){locateCity(city);click("武将",true);click(action,true);}
+    private void personnelFlow()throws Exception {
+        click("菜单",true);click("新游戏 / 选择势力",true);click("区域争雄 ·",false);click("孙权军",true);click("执行",true);waitForIdleSync();
+        personnelMenu("柴桑");click("城市与武将状态",true);waitText("兵源 20000",false);screenshot("15-officer-state");click("返回",true);
+        byte[] cancelled=SaveCodec.encode(saved());
+        personnelAction("柴桑","搜索人才");click("鲁肃 ·",false);click("取消",true);
+        require(Arrays.equals(cancelled,SaveCodec.encode(saved())),"cancel search preserves resources and RNG");
+        personnelAction("柴桑","搜索人才");click("鲁肃 ·",false);click("执行",true);waitForIdleSync();
+        World w=saved();require(w.officer(3002).acted&&w.actionPoints[2]==50&&w.officer(910002)!=null&&w.officer(910002).owner==-1,"seeded UI search discovers unaffiliated talent");
+        clickNav("武将");click("全部势力",true);click("在野武将",true);waitText("陆苓 · 在野",true);
+        click("陆苓 · 在野",true);waitText("身份：在野 · 忠诚 0",false);click("返回",true);
+        runOnMainSync(current::recreate);waitText("在野武将",true);waitText("陆苓 · 在野",true);
+        personnelAction("柴桑","登用武将");click("孙权 ·",false);click("陆苓 ·",false);click("执行",true);waitForIdleSync();
+        w=saved();require(w.officer(910002).owner==2&&w.officer(910002).acted&&w.city(300).gold==4900,"UI hire uses core probability and persists ownership");
+        personnelAction("柴桑","任命太守");click("周瑜 ·",false);click("周瑜 ·",false);click("执行",true);waitForIdleSync();
+        w=saved();require(w.city(300).governorId==3001&&w.domestic.monthlyGold(300)>800,"UI appointment has actual income benefit");
+        screenshot("16-personnel-actions");endTurn();waitForTurn(1);
+        int loyalty=saved().officer(3001).loyalty;
+        personnelAction("柴桑","褒奖武将");click("孙权 ·",false);click("周瑜 ·",false);click("执行",true);waitForIdleSync();
+        require(saved().officer(3001).loyalty>loyalty,"UI reward persists loyalty");
+        locateCity("柴桑");click("内政",true);click("巡察 · 金100",true);click("鲁肃 ·",false);click("执行",true);waitForIdleSync();require(saved().city(300).order==100,"UI patrol caps order");
+        int readiness=saved().city(300).morale;
+        locateCity("柴桑");click("军事",true);click("训练 · 金100",true);click("周瑜 ·",false);click("执行",true);waitForIdleSync();require(saved().strategy.getArmyReadiness(300)>readiness,"UI training uses readiness interface");
+        int troops=saved().city(310).troops;
+        locateCity("建业");click("军事",true);click("征兵 ·",false);click("甘宁 ·",false);click("执行",true);waitForIdleSync();
+        w=saved();require(w.city(310).troops>troops&&w.city(310).troops-troops==20000-w.city(310).recruitReserve,"UI recruitment conserves finite manpower");
+        byte[] before=SaveCodec.encode(w);
+        startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        waitText("区域争雄  ·  孙权军",false);waitForIdleSync();require(Arrays.equals(before,SaveCodec.encode(saved())),"personnel v4 state survives Activity restart");
+        personnelMenu("柴桑");click("城市与武将状态",true);waitText("太守：周瑜",false);screenshot("17-v4-restored");click("返回",true);
+    }
     private void clickNav(String name){click("导航 · "+name,true);}
     private void endTurn(){click("下一旬  →",true);click("执行",true);waitText("旬结算摘要",true);click("返回",true);}
     private void mobileFlow() throws Exception {
         // Test actual hit targets on the canvas, including the enlarged city target at full-map zoom.
         click("菜单",true);click("新游戏 / 选择势力",true);click("区域争雄 ·",false);click("孙权军",true);click("执行",true);
-        click("全图",true);tapCity(310,20);waitText("建业",true);waitText("核心驻将",false);screenshot("11-city-hit-target");
+        click("全图",true);tapCity(310,20);waitText("建业",true);waitText("太守",false);screenshot("11-city-hit-target");
         MapView map=mapView();MapCamera camera=camera(map);float[] scale={0};runOnMainSync(()->scale[0]=camera.scale);
         pinch(map,1.7f);float[] afterScale={0};runOnMainSync(()->afterScale[0]=camera.scale);require(afterScale[0]>scale[0]&&afterScale[0]<=camera.maxScale,"pinch changes camera scale: before="+scale[0]+", after="+afterScale[0]);
         World unchanged=saved();byte[] snapshot=SaveCodec.encode(unchanged);

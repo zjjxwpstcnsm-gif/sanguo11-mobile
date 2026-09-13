@@ -118,7 +118,7 @@ public final class MainActivity extends Activity {
     }
     private void showCity(World.City c){
         boolean compact=!ui.group.equals("概览");
-        line(c.name,compact?21:25,gold);line(world.faction(c.owner)+" · 核心驻将 "+UiModels.coreOfficer(world,c.id),compact?12:13,paper);
+        line(c.name,compact?21:25,gold);line(world.faction(c.owner)+" · 太守 "+UiModels.governor(world,c.id),compact?12:13,paper);
         line(compact?"金 "+c.gold+" · 粮 "+c.food+" · 兵 "+c.troops:"金 "+c.gold+"    粮 "+c.food+"\n兵 "+c.troops+"    城防 "+c.defense,compact?13:15,paper);
         HorizontalScrollView tabs=new HorizontalScrollView(this);tabs.setHorizontalScrollBarEnabled(false);LinearLayout row=new LinearLayout(this);tabs.addView(row);
         for(String name:new String[]{"概览","内政","武将","军事","调动"}){Button b=button(name,v->{ui.group=name;refresh();revealPanel();});b.setTextColor(ui.group.equals(name)?gold:paper);row.addView(b,new LinearLayout.LayoutParams(dp(48),dp(48)));}panel.addView(tabs);tabs.post(()->{int index=Arrays.asList("概览","内政","武将","军事","调动").indexOf(ui.group);tabs.smoothScrollTo(Math.max(0,dp(index*48)-dp(90)),0);});
@@ -130,21 +130,28 @@ public final class MainActivity extends Activity {
                 for(Domestic.Facility f:world.domestic.facilities)if(f.cityId==c.id){construction|=f.remaining>0;action(f.kind.label+" · "+(f.remaining==0?"已建成":"剩"+f.remaining+"旬"),v->domesticUi().facility(f));}
                 if(!construction)line("当前没有建设中的设施",13,muted);
                 if(own)action("设施开发",v->domesticUi().build(c));
-                if(own)action("巡察  治安+10 · 金100",v->chooseOfficer(c,o->apply(world.patrol(c.id,o.id))));break;
+                if(own)action("巡察 · 金100",v->strategyUi().command(c,5));break;
             case "武将":
+                if(own){
+                    action("搜索人才",v->strategyUi().command(c,1));
+                    action("登用武将",v->strategyUi().command(c,2));
+                    action("褒奖武将",v->strategyUi().command(c,3));
+                    action("任命太守",v->strategyUi().command(c,4));
+                }
                 line("可用武将 "+world.idle(c).size()+" / 驻扎 "+UiModels.officerCount(world,c.id),14,paper);
-                for(World.Officer o:world.officers)if(o.cityId==c.id)action(o.name+" · "+UiModels.status(world,o),v->officerDetail(o));
+                for(World.Officer o:world.officers)if(o.cityId==c.id)action(o.name+" · "+o.role.label+" · "+UiModels.status(world,o),v->officerDetail(o));
                 if(UiModels.officerCount(world,c.id)==0)line("当前没有驻扎武将",14,muted);
                 action("筛选本城武将",v->{ui.city=c.id;ui.owner=-1;ui.query="";ui.page="officers";refresh();});break;
             case "军事":
-                line("治安 "+c.order+" · 气力 "+c.morale+" · 城防 "+c.defense,13,paper);
+                line("治安 "+c.order+" · 气力 "+c.morale+" · 兵源 "+c.recruitReserve,13,paper);
                 if(own)for(CityCommand command:militaryCommands(c))action(command.label,v->command.run.run());
                 else line("仅可在己方城池下达军令",14,muted);break;
             case "调动":
                 if(own){action("人员调动",v->domesticUi().transfer(c));action("资源运输",v->domesticUi().transport(c));}else line("仅可从己方城池派遣",14,muted);
                 action("查看任务 / 在途",v->{ui.page="tasks";refresh();});break;
             default:
-                line("治安 "+c.order+" · 气力 "+c.morale+"\n可用武将 "+world.idle(c).size()+" · 驻扎 "+UiModels.officerCount(world,c.id),14,paper);
+                line("治安 "+c.order+" · 气力 "+c.morale+" · 兵源 "+c.recruitReserve+"\n可用武将 "+world.idle(c).size()+" · 驻扎 "+UiModels.officerCount(world,c.id),14,paper);
+                if(own)action("人事 / 城市治理",v->strategyUi().city(c));
                 StringBuilder stocks=new StringBuilder("兵装库存\n");for(World.Weapon weapon:World.Weapon.values())stocks.append(weapon.label).append(" ").append(c.equipment[weapon.ordinal()]).append("  ");line(stocks.toString(),13,paper);
                 line("月收入 金 "+world.domestic.monthlyGold(c.id)+" / 粮 "+world.domestic.monthlyFood(c.id),13,muted);
                 if(own)action("设施开发",v->domesticUi().build(c));
@@ -156,8 +163,8 @@ public final class MainActivity extends Activity {
         new CityCommand("出征",()->chooseOfficer(c,o->chooseWeapon(weapon->new AlertDialog.Builder(this).setTitle("出征兵力").setItems(new String[]{"3000人","5000人","8000人"},(d,which)->{
             World.Result result=world.deploy(c.id,o.id,weapon,new int[]{3000,5000,8000}[which]);if(result.ok){World.Unit u=world.unit(o.unitId);selected=u.hex;moving=u.id;}apply(result);
         }).show()))),
-        new CityCommand("征兵  +"+world.domestic.recruitAmount(c.id)+" · 金300",()->chooseOfficer(c,o->apply(world.recruit(c.id,o.id)))),
-        new CityCommand("训练  气力+15 · 金100",()->chooseOfficer(c,o->apply(world.train(c.id,o.id)))),
+        new CityCommand("征兵 · 金300 · 兵源 "+c.recruitReserve,()->strategyUi().command(c,6)),
+        new CityCommand("训练 · 金100",()->strategyUi().command(c,7)),
         new CityCommand("生产兵装  +"+world.domestic.produceAmount(c.id)+" · 金400",()->chooseOfficer(c,o->chooseWeapon(weapon->apply(world.produce(c.id,o.id,weapon)))))
     );}
     private void showUnit(World.Unit u){
@@ -167,7 +174,7 @@ public final class MainActivity extends Activity {
     }
     void officerDetail(World.Officer o){
         String stats="统率 "+o.leadership+"    武力 "+o.war+"\n智力 "+o.intelligence+"    政治 "+o.politics+"\n魅力 "+o.charm;
-        AlertDialog.Builder d=new AlertDialog.Builder(this).setTitle(o.name+" · "+world.faction(o.owner)).setMessage(stats+"\n\n所在地："+UiModels.location(world,o)+"\n状态："+UiModels.status(world,o)).setNegativeButton("返回",null);
+        AlertDialog.Builder d=new AlertDialog.Builder(this).setTitle(o.name+" · "+UiModels.faction(world,o)).setMessage(stats+"\n身份："+o.role.label+" · 忠诚 "+o.loyalty+"\n\n所在地："+UiModels.location(world,o)+"\n状态："+UiModels.status(world,o)).setNegativeButton("返回",null);
         Hex h=o.cityId>=0?world.city(o.cityId).hex:o.unitId>=0&&world.unit(o.unitId)!=null?world.unit(o.unitId).hex:null;
         for(Domestic.Mission m:world.domestic.missions)if(m.officerId==o.id)h=m.hex;
         final Hex target=h;if(target!=null)d.setPositiveButton("地图定位",(dialog,n)->selectAndFocus(target));d.show();
@@ -182,12 +189,13 @@ public final class MainActivity extends Activity {
     private void chooseWeapon(WeaponChoice callback){String[] labels=new String[World.Weapon.values().length];for(int i=0;i<labels.length;i++)labels[i]=World.Weapon.values()[i].label;new AlertDialog.Builder(this).setTitle("选择兵种").setItems(labels,(d,index)->callback.choose(World.Weapon.values()[index])).setNegativeButton("取消",null).show();}
     private void revealPanel(){panelScroll.post(()->panelScroll.scrollTo(0,0));}
     void selectAndFocus(Hex h){if(h==null)return;moving=-1;selected=h;ui.page="map";ui.panelVisible=true;ui.group="概览";refresh();map.focus(h);revealPanel();}
+    private StrategyUi strategyUi(){return new StrategyUi(this,world,this::apply);}
     DomesticUi domesticUi(){return new DomesticUi(this,world,this::apply,this::selectAndFocus);}
     private void showMenu(){
         line("军政菜单",22,gold);action("保存局面（3个槽位）",v->saveSlots(false));action("读取存档",v->saveSlots(true));
         action("本旬结算摘要",v->message("旬结算摘要",ui.summary.isEmpty()?"结束一旬后将在这里显示结算摘要。":ui.summary));
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.4 · 手机交互开发","独立 Android 策略游戏 · 原创测试沙盘。\n本分支改进地图、城池、武将与任务操作。核心驻将为统率最高的驻城武将，尚非正式太守任命。\n\n全国地图、完整人物规则、战法和 3D 表现仍在开发。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.5 · 人事与治理整合","独立 Android 策略游戏 · 原创测试沙盘。\n可搜索、登用、褒奖、任命太守；治安与太守影响收入，征兵消耗有限兵源。\n存档 v4，兼容 v1～v3。\n\n全国地图、全量人物、战法界面和 3D 表现仍在开发。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}
