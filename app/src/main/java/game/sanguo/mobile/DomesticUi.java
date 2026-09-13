@@ -79,10 +79,11 @@ final class DomesticUi {
     }
     void facility(Domestic.Facility f){
         focus.accept(f.hex);World.City c=w.city(f.cityId);
-        AlertDialog.Builder dialog=new AlertDialog.Builder(activity).setTitle(c.name+" · "+f.kind.label).setMessage(f.kind.effect+"\n"+(f.remaining==0?"已建成":w.officer(f.builderId).name+"建设中，剩"+f.remaining+"旬")+"\n坐标 "+f.hex.q+", "+f.hex.r+"\n均为工程近似规则。").setNegativeButton("返回",null);
+        AlertDialog.Builder dialog=new AlertDialog.Builder(activity).setTitle(c.name+" · "+f.kind.label+" Lv"+f.level).setMessage(f.kind.effect+"\n等级倍率：Lv1 100% / Lv2 120% / Lv3 150%\n"+(f.remaining==0?"已建成":w.officer(f.builderId).name+(f.upgradeTo>0?"合并中":"建设中")+"，剩"+f.remaining+"旬")+"\n坐标 "+f.hex.q+", "+f.hex.r).setNegativeButton("返回",null);
         if(c.owner==w.player&&!w.gameOver()){
             if(f.remaining>0)dialog.setPositiveButton("取消建设",(d,n)->confirm("取消建设","不会退还建设费用，本旬不能重复使用武将。","确定取消",()->apply.accept(w.domestic.cancelBuild(f.id))));
             else dialog.setPositiveButton("拆除",(d,n)->officer(c,o->confirm("拆除设施","需要一名闲置武将与行动力10，不退还费用。","确定拆除",()->apply.accept(w.domestic.demolish(f.id,o.id)))));
+            if(f.remaining==0&&f.level<3&&Domestic.mergeable(f.kind))dialog.setNeutralButton("吸收合并",(d,n)->new CampaignUi(activity,w,apply).merge(f));
         }
         dialog.show();
     }

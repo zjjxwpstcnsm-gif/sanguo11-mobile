@@ -105,6 +105,13 @@ public final class MapView extends View {
             if(reachable.containsKey(h)){polygon(cx,cy,RADIUS-1);fill(canvas,Color.argb(55,197,227,158));stroke(canvas,Color.argb(110,229,235,182),1);}
         }
         if(selected!=null){polygon(x(selected),y(selected),RADIUS-2);stroke(canvas,GOLD,Math.max(2,2*density/scale));}
+        if(detail)for(game.sanguo.core.War.Fire f:world.war.fires()){
+            float cx=x(f.hex),cy=y(f.hex);polygon(cx,cy,RADIUS-2);fill(canvas,Color.argb(145,227,81,28));label(canvas,"火",cx,cy+5,18,PAPER);
+        }
+        if(detail)for(game.sanguo.core.War.Structure s:world.war.structures()){
+            float cx=x(s.hex),cy=y(s.hex);paint.setColor(factionColor(s.owner));canvas.drawRect(cx-14,cy-13,cx+14,cy+13,paint);
+            label(canvas,s.kind.label.substring(0,1),cx,cy+5,15,Color.rgb(18,34,34));label(canvas,Integer.toString(s.hp),cx,cy-17,10,PAPER);
+        }
         if(detail)for(Domestic.Facility f:world.domestic.facilities){float cx=x(f.hex),cy=y(f.hex);paint.setColor(factionColor(world.city(f.cityId).owner));canvas.drawRect(cx-12,cy-12,cx+12,cy+12,paint);label(canvas,f.kind.label.substring(0,1),cx,cy+5,15,Color.rgb(18,34,34));if(f.remaining>0)label(canvas,"剩"+f.remaining,cx,cy-16,10,PAPER);}
         for(World.City city:world.cities)drawCity(canvas,city);
         if(detail||moving>=0)for(World.Unit u:world.units)drawUnit(canvas,u);
@@ -128,6 +135,7 @@ public final class MapView extends View {
     private void drawUnit(Canvas c,World.Unit u){float scale=camera.scale;float cx=x(u.hex),cy=y(u.hex);paint.setColor(Color.rgb(24,38,37));c.drawCircle(cx+1,cy+2,15,paint);paint.setColor(factionColor(u.owner));c.drawCircle(cx,cy,14,paint);
         label(c,u.weapon.label.substring(0,1),cx,cy+5,16,Color.rgb(18,34,34));
         if(u.acted){paint.setColor(Color.argb(140,17,32,37));c.drawCircle(cx,cy,14,paint);label(c,"✓",cx,cy+4,14,PAPER);}
+        if(u.status!=game.sanguo.core.War.Status.NORMAL)label(c,u.status.label.substring(0,1),cx+16,cy+15,12,Color.rgb(255,194,100));
         float sz=10*density/scale;label(c,world.officer(u.officerId).name+" "+u.troops,cx,cy-19,sz,PAPER);
     }
 }

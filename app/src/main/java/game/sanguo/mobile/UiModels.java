@@ -65,6 +65,7 @@ final class UiModels {
     }
     static final class Task {
         final long id; final String title, detail; final Hex location; final Domestic.Facility facility; final Domestic.Mission mission;
+        Campaign.Project project;
         Task(long id, String title, String detail, Hex location, Domestic.Facility f, Domestic.Mission m) {
             this.id=id;this.title=title;this.detail=detail;this.location=location;facility=f;mission=m;
         }
@@ -81,6 +82,11 @@ final class UiModels {
             String status = eta < 0 ? "道路受阻 · 剩余旬数待定" : eta == 0 ? "等待入城 / 库存空间 · 剩余 0 旬（等待时间未定）" : "在途 · 预计剩余 "+eta+" 旬";
             result.add(new Task(10000000L+m.id, (m.transport?"运输":"调动")+" · "+w.officer(m.officerId).name,
                 w.city(m.sourceCity).name+" → "+w.city(m.targetCity).name+"\n"+status+(m.transport?"\n"+cargo(m):""), m.hex, null, m));
+        }
+        if(type==0||type==4)for(Campaign.Project p:w.campaign.projects())if(p.owner==w.player){
+            Task task=new Task(20000000L+p.officerId,p.label()+" · "+w.officer(p.officerId).name,
+                w.city(p.cityId).name+" · 剩余 "+w.officer(p.officerId).otherTaskTurns+" 旬\n"+(p.tech!=null?p.tech.effect:"培养期间武将不能执行其他命令"),w.city(p.cityId).hex,null,null);
+            task.project=p;result.add(task);
         }
         return result;
     }
@@ -109,7 +115,11 @@ final class UiModels {
             else s.append("任务终止");
             s.append('\n');
         }
-        if (!progress) s.append("本旬没有建设或在途任务\n");
+        for(Campaign.Project p:before.campaign.projects())if(p.owner==before.player){
+            progress=true;World.Officer o=after.officer(p.officerId);boolean running=after.campaign.projects().stream().anyMatch(next->next.officerId==p.officerId);
+            s.append(p.label()).append(" · ").append(before.officer(p.officerId).name).append(running?" · 剩余"+o.otherTaskTurns+"旬":o!=null&&o.owner==p.owner&&o.cityId==p.cityId?" · 已完成":" · 已中止").append('\n');
+        }
+        if (!progress) s.append("本旬没有建设、在途或研究任务\n");
         if (after.gameOver()) s.append(after.winner==after.player?"\n战场胜利":"\n战场战败");
         return s.toString();
     }

@@ -8,13 +8,15 @@ public final class Domestic {
     public static final int CITY_SLOTS=6, TRAVEL_SPEED=4;
     public enum Kind {
         MARKET("市场",1000,"每月金 +400"), FARM("农场",800,"每月粮 +2500"),
-        BARRACKS("兵舍",1200,"每次征兵 +500"), SMITH("锻冶所",1200,"每次兵装生产 +500");
+        BARRACKS("兵舍",1200,"每次征兵 +500"), SMITH("锻冶所",1200,"每次兵装生产 +500"),
+        MINT("造币",1500,"相邻市场产金 +50%，不重复叠加"), GRANARY("谷仓",1500,"相邻农场产粮 +50%，不重复叠加"),
+        STABLE("厩舍",1200,"骑兵兵装生产额外 +500"), BLACK_MARKET("黑市",500,"每月金 +200，不可合并");
         public final String label,effect;public final int cost;
         Kind(String label,int cost,String effect){this.label=label;this.cost=cost;this.effect=effect;}
     }
     public static final class Facility {
         public final int id,cityId;public final Kind kind;public final Hex hex;
-        public int builderId,remaining;
+        public int builderId,remaining,level=1,upgradeTo;
         Facility(int id,int city,Kind kind,Hex hex,int builder,int remaining){this.id=id;cityId=city;this.kind=kind;this.hex=hex;builderId=builder;this.remaining=remaining;}
     }
     public static final class Mission {
@@ -45,17 +47,36 @@ public final class Domestic {
         return "";
     }
     public int count(int city){int n=0;for(Facility f:facilities)if(f.cityId==city)n++;return n;}
-    private int completed(int city,Kind kind){int n=0;for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&f.remaining==0)n++;return n;}
-    public int monthlyGold(int city){return w.strategy.cityIncome(city,800+400*completed(city,Kind.MARKET));}
-    public int monthlyFood(int city){return w.strategy.cityIncome(city,5000+2500*completed(city,Kind.FARM));}
-    public int recruitAmount(int city){return 2000+500*completed(city,Kind.BARRACKS);}
-    public int produceAmount(int city){return 2000+500*completed(city,Kind.SMITH);}
+    private int yield(int city,Kind kind,int base){
+        int total=0;for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&(f.remaining==0||f.upgradeTo>0)){
+            int amount=base*(f.level==3?150:f.level==2?120:100)/100;
+            Kind support=kind==Kind.MARKET?Kind.MINT:kind==Kind.FARM?Kind.GRANARY:null;
+            if(support!=null)for(Facility n:facilities)if(n.cityId==city&&n.kind==support&&n.remaining==0&&n.hex.distance(f.hex)==1){amount=amount*3/2;break;}
+            total+=amount;
+        }return total;
+    }
+    public int monthlyGold(int city){return w.strategy.cityIncome(city,800+this.yield(city,Kind.MARKET,400)+this.yield(city,Kind.BLACK_MARKET,200));}
+    public int monthlyFood(int city){return w.strategy.cityIncome(city,5000+this.yield(city,Kind.FARM,2500));}
+    public int recruitAmount(int city){return 2000+this.yield(city,Kind.BARRACKS,500);}
+    public int produceAmount(int city){return 2000+this.yield(city,Kind.SMITH,500);}
+    public int produceAmount(int city,World.Weapon weapon){return produceAmount(city)+(weapon==World.Weapon.CAVALRY?this.yield(city,Kind.STABLE,500):0);}
+    public static boolean mergeable(Kind kind){return kind==Kind.MARKET||kind==Kind.FARM||kind==Kind.BARRACKS||kind==Kind.SMITH||kind==Kind.STABLE;}
+    public List<Facility> mergeCandidates(int target){
+        Facility f=facility(target);List<Facility> result=new ArrayList<>();if(f==null||f.remaining>0||f.level>=3||!mergeable(f.kind))return result;
+        for(Facility other:facilities)if(other.id!=f.id&&other.cityId==f.cityId&&other.kind==f.kind&&other.remaining==0&&other.level==1&&other.hex.distance(f.hex)==1)result.add(other);return result;
+    }
+    public World.Result merge(int target,int consumed,int officer){
+        Facility f=facility(target),material=facility(consumed);if(f==null||material==null||!mergeCandidates(target).contains(material))return w.fail("需要相邻同类Lv1设施，目标等级须低于Lv3");
+        World.City c=w.city(f.cityId);World.Officer o=w.officer(officer);String error=w.cityError(c,o,200);if(error!=null)return w.fail(error);
+        w.spend(c,o,200);facilities.remove(material);f.upgradeTo=f.level+1;f.builderId=o.id;f.remaining=2;
+        return w.success(f.kind.label+"开始吸收合并，2旬后达到Lv"+f.upgradeTo+"，原材料地块已腾空");
+    }
     private boolean site(World.City city,Hex h){
         if(city==null||h==null||!w.inside(h)||city.hex.distance(h)<1||city.hex.distance(h)>2)return false;
-        if(w.terrain[h.q][h.r]!=World.Terrain.PLAIN||w.cityAt(h)!=null||w.unitAt(h)!=null||at(h)!=null)return false;
+        if(w.terrain[h.q][h.r]!=World.Terrain.PLAIN||w.cityAt(h)!=null||w.unitAt(h)!=null||at(h)!=null||w.war.at(h)!=null||w.war.fireAt(h)!=null)return false;
         for(World.City c:w.cities)if(c.hex.distance(h)==1){
             boolean exit=false;
-            for(Hex n:c.hex.neighbors())if(!n.equals(h)&&w.cost(n,World.Weapon.SPEAR)>0&&w.cityAt(n)==null&&at(n)==null){exit=true;break;}
+            for(Hex n:c.hex.neighbors())if(!n.equals(h)&&w.cost(n,World.Weapon.SPEAR)>0&&w.cityAt(n)==null&&at(n)==null&&w.war.at(n)==null){exit=true;break;}
             if(!exit)return false;
         }
         return true;
@@ -82,7 +103,9 @@ public final class Domestic {
     public World.Result cancelBuild(int id){
         Facility f=facility(id);
         if(w.gameOver()||f==null||w.city(f.cityId).owner!=w.active||f.remaining==0)return w.fail("没有可取消的己方建设");
-        w.officer(f.builderId).acted=true;facilities.remove(f);return w.success("已取消"+f.kind.label+"建设，不退还费用");
+        w.officer(f.builderId).acted=true;
+        if(f.upgradeTo>0){f.upgradeTo=0;f.remaining=0;f.builderId=-1;return w.success("已取消合并，保留原等级；费用和已吸收设施不退还");}
+        facilities.remove(f);return w.success("已取消"+f.kind.label+"建设，不退还费用");
     }
     public World.Result demolish(int id,int officerId){
         Facility f=facility(id);if(f==null||f.remaining!=0)return w.fail("请选择已完成设施");
@@ -92,7 +115,8 @@ public final class Domestic {
     }
     void captured(int city){
         for(Facility f:new ArrayList<>(facilities))if(f.cityId==city&&f.remaining>0){
-            World.Officer o=w.officer(f.builderId);if(o!=null)o.acted=true;facilities.remove(f);w.note("城池失守，"+f.kind.label+"建设中止");
+            World.Officer o=w.officer(f.builderId);if(o!=null)o.acted=true;
+            if(f.upgradeTo>0){f.remaining=0;f.builderId=-1;f.upgradeTo=0;}else facilities.remove(f);w.note("城池失守，"+f.kind.label+"建设中止");
         }
     }
     public World.Result transfer(int source,int target,int officer){return dispatch(source,target,officer,false,0,0,0,new int[4]);}
@@ -124,7 +148,7 @@ public final class Domestic {
     }
     private static final class Step {final Hex h;final int cost;Step(Hex h,int c){this.h=h;cost=c;}}
     private int travelCost(Hex h,int owner){
-        int cost=w.cost(h,World.Weapon.SPEAR);if(cost<0||at(h)!=null)return -1;
+        int cost=w.cost(h,World.Weapon.SPEAR);if(cost<0||at(h)!=null||w.war.at(h)!=null)return -1;
         World.City c=w.cityAt(h);return c!=null&&c.owner!=owner?-1:cost;
     }
     /** Strategic movement: avoids hostile cities/facilities but ignores tactical unit occupancy. */
@@ -156,7 +180,7 @@ public final class Domestic {
     void tick(){
         cleanupDefeated();
         for(Facility f:facilities)if(f.remaining>0){
-            f.remaining--;if(f.remaining==0){World.Officer o=w.officer(f.builderId);o.acted=true;f.builderId=-1;w.note(w.city(f.cityId).name+"的"+f.kind.label+"建成");}
+            f.remaining--;if(f.remaining==0){World.Officer o=w.officer(f.builderId);o.acted=true;f.builderId=-1;if(f.upgradeTo>0){f.level=f.upgradeTo;f.upgradeTo=0;}w.note(w.city(f.cityId).name+"的"+f.kind.label+"建成 · Lv"+f.level);}
         }
         for(Mission m:new ArrayList<>(missions)){
             World.City c=w.city(m.targetCity);
@@ -192,7 +216,7 @@ public final class Domestic {
     }
     void read(DataInputStream d)throws IOException{
         nextFacilityId=d.readInt();nextMissionId=d.readInt();int n=bound(d.readInt(),0,6000);
-        for(int i=0;i<n;i++)facilities.add(new Facility(d.readInt(),d.readInt(),Kind.values()[bound(d.readUnsignedByte(),0,3)],new Hex(d.readInt(),d.readInt()),d.readInt(),d.readInt()));
+        for(int i=0;i<n;i++)facilities.add(new Facility(d.readInt(),d.readInt(),Kind.values()[bound(d.readUnsignedByte(),0,Kind.values().length-1)],new Hex(d.readInt(),d.readInt()),d.readInt(),d.readInt()));
         n=bound(d.readInt(),0,10000);for(int i=0;i<n;i++){
             int id=d.readInt(),owner=d.readInt(),officer=d.readInt(),source=d.readInt(),target=d.readInt();Hex h=new Hex(d.readInt(),d.readInt());boolean cargo=d.readBoolean();int gold=d.readInt(),food=d.readInt(),troops=d.readInt();int[] eq=new int[4];for(int j=0;j<4;j++)eq[j]=d.readInt();
             missions.add(new Mission(id,owner,officer,source,target,h,cargo,gold,food,troops,eq));

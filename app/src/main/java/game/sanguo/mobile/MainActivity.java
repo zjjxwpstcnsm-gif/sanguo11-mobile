@@ -76,7 +76,8 @@ public final class MainActivity extends Activity {
         if(h==null||aiRunning)return;
         World.Unit target=world.unitAt(h);World.City city=world.cityAt(h);World.Unit source=world.unit(moving);
         if(source!=null&&source.owner==world.player) {
-            if(target!=null&&target.owner!=world.player){confirm("攻击"+world.officer(target.officerId).name+"部队？",()->apply(world.attack(source.id,target.id)));return;}
+            if(target!=null&&target.owner!=world.player){warUi().attack(source,target);return;}
+            if(world.war.at(h)!=null){confirm("攻击军事设施？",()->apply(world.war.attackStructure(source.id,h)));return;}
             if(city!=null){
                 if(city.owner==world.player)confirm("进入"+city.name+"并归还兵装与粮草？",()->{World.Result result=world.enter(source.id,city.id);if(result.ok)moving=-1;apply(result);});
                 else confirm("攻击"+city.name+"？",()->apply(world.siege(source.id,city.id)));
@@ -91,6 +92,7 @@ public final class MainActivity extends Activity {
     private void confirm(String value,Runnable action){new AlertDialog.Builder(this).setMessage(value).setPositiveButton("执行",(d,w)->{if(!aiRunning)action.run();}).setNegativeButton("取消",null).show();}
     private void apply(World.Result result){
         if(!result.ok)message("命令未执行",result.message);
+        if(result.ok&&moving>=0&&world.unit(moving)!=null)selected=world.unit(moving).hex;
         refresh();if(result.ok)save("auto",false);
         if(result.ok&&world.gameOver())message(world.winner==world.player?"战场胜利":"战场战败","本局结束，可从菜单重新选择剧本。");
     }
@@ -108,20 +110,21 @@ public final class MainActivity extends Activity {
         log.setText(aiRunning?"正在结算电脑行动与本旬任务…":world.log.isEmpty()?"拖动地图 · 双指缩放 · 双击城池定位":world.log.get(world.log.size()-1));
         map.setWorld(world,selected,moving);map.setEnabled(!aiRunning);
     }
-    private int taskCount(){int n=0;for(Domestic.Facility f:world.domestic.facilities)if(f.remaining>0&&world.city(f.cityId).owner==world.player)n++;for(Domestic.Mission m:world.domestic.missions)if(m.owner==world.player)n++;return n;}
+    private int taskCount(){int n=0;for(Domestic.Facility f:world.domestic.facilities)if(f.remaining>0&&world.city(f.cityId).owner==world.player)n++;for(Domestic.Mission m:world.domestic.missions)if(m.owner==world.player)n++;for(Campaign.Project p:world.campaign.projects())if(p.owner==world.player)n++;return n;}
     private void showSelection(){
         World.Unit unit=selected==null?null:world.unitAt(selected);World.City city=selected==null?null:world.cityAt(selected);
         if(unit!=null)showUnit(unit);else if(city!=null)showCity(city);else if(selected!=null&&world.domestic.at(selected)!=null){
             Domestic.Facility f=world.domestic.at(selected);line(f.kind.label,24,gold);line(world.city(f.cityId).name,15,paper);line(f.remaining==0?f.kind.effect:"建设中 · 剩"+f.remaining+"旬",14,paper);
             action("设施详情 / 管理",v->domesticUi().facility(f));action("返回所属城池",v->selectAndFocus(world.city(f.cityId).hex));
-        }else {line("山河之间",23,gold);line("点选城池或部队",15,paper);line("单指拖动 · 双指缩放\n双击城池聚焦\n缩小时查看势力，放大查看设施与在途。",14,paper);action("定位本城",v->{if(world.home()!=null)selectAndFocus(world.home().hex);});}
+        }else if(selected!=null&&world.war.at(selected)!=null){War.Structure s=world.war.at(selected);line(s.kind.label,24,gold);line(world.faction(s.owner)+" · 耐久"+s.hp,15,paper);line(s.kind.effect,14,paper);}
+        else {line("山河之间",23,gold);if(selected!=null&&world.war.fireAt(selected)!=null)line("火场 · 剩"+world.war.fireAt(selected).remaining+"旬",16,gold);line("点选城池或部队",15,paper);line("单指拖动 · 双指缩放\n双击城池聚焦\n缩小时查看势力，放大查看设施与在途。",14,paper);action("定位本城",v->{if(world.home()!=null)selectAndFocus(world.home().hex);});}
     }
     private void showCity(World.City c){
         boolean compact=!ui.group.equals("概览");
         line(c.name,compact?21:25,gold);line(world.faction(c.owner)+" · 太守 "+UiModels.governor(world,c.id),compact?12:13,paper);
         line(compact?"金 "+c.gold+" · 粮 "+c.food+" · 兵 "+c.troops:"金 "+c.gold+"    粮 "+c.food+"\n兵 "+c.troops+"    城防 "+c.defense,compact?13:15,paper);
         HorizontalScrollView tabs=new HorizontalScrollView(this);tabs.setHorizontalScrollBarEnabled(false);LinearLayout row=new LinearLayout(this);tabs.addView(row);
-        for(String name:new String[]{"概览","内政","武将","军事","调动"}){Button b=button(name,v->{ui.group=name;refresh();revealPanel();});b.setTextColor(ui.group.equals(name)?gold:paper);row.addView(b,new LinearLayout.LayoutParams(dp(48),dp(48)));}panel.addView(tabs);tabs.post(()->{int index=Arrays.asList("概览","内政","武将","军事","调动").indexOf(ui.group);tabs.smoothScrollTo(Math.max(0,dp(index*48)-dp(90)),0);});
+        for(String name:new String[]{"概览","内政","武将","军事","调动","外交","研究"}){Button b=button(name,v->{ui.group=name;refresh();revealPanel();});b.setTextColor(ui.group.equals(name)?gold:paper);row.addView(b,new LinearLayout.LayoutParams(dp(48),dp(48)));}panel.addView(tabs);tabs.post(()->{int index=Arrays.asList("概览","内政","武将","军事","调动","外交","研究").indexOf(ui.group);tabs.smoothScrollTo(Math.max(0,dp(index*48)-dp(90)),0);});
         boolean own=c.owner==world.player&&!world.gameOver();
         switch(ui.group){
             case "内政":
@@ -130,13 +133,23 @@ public final class MainActivity extends Activity {
                 for(Domestic.Facility f:world.domestic.facilities)if(f.cityId==c.id){construction|=f.remaining>0;action(f.kind.label+" · "+(f.remaining==0?"已建成":"剩"+f.remaining+"旬"),v->domesticUi().facility(f));}
                 if(!construction)line("当前没有建设中的设施",13,muted);
                 if(own)action("设施开发",v->domesticUi().build(c));
+                if(own)action("商人 / 粮食买卖",v->campaignUi().trade(c));
                 if(own)action("巡察 · 金100",v->strategyUi().command(c,5));break;
+            case "外交":
+                if(own){action("外交 / 协定",v->campaignUi().diplomacy(c));action("流言",v->campaignUi().rumor(c));}
+                for(int side=0;side<world.factions.length;side++)if(side!=c.owner&&c.owner>=0&&world.alive(side))line(world.faction(side)+"\n"+world.campaign.relationLabel(c.owner,side),14,paper);break;
+            case "研究":
+                line("技巧点 "+world.campaign.points(c.owner),18,gold);
+                if(own){action("技巧研究",v->campaignUi().research(c));action("能力 / 适性培养",v->campaignUi().study(c));}
+                action("研究与培养进度",v->campaignUi().projects(c));break;
             case "武将":
                 if(own){
                     action("搜索人才",v->strategyUi().command(c,1));
                     action("登用武将",v->strategyUi().command(c,2));
                     action("褒奖武将",v->strategyUi().command(c,3));
                     action("任命太守",v->strategyUi().command(c,4));
+                    action("能力 / 适性培养",v->campaignUi().study(c));
+                    action("流放武将",v->campaignUi().dismiss(c));
                 }
                 line("可用武将 "+world.idle(c).size()+" / 驻扎 "+UiModels.officerCount(world,c.id),14,paper);
                 for(World.Officer o:world.officers)if(o.cityId==c.id)action(o.name+" · "+o.role.label+" · "+UiModels.status(world,o),v->officerDetail(o));
@@ -145,7 +158,8 @@ public final class MainActivity extends Activity {
             case "军事":
                 line("治安 "+c.order+" · 气力 "+c.morale+" · 兵源 "+c.recruitReserve,13,paper);
                 if(own)for(CityCommand command:militaryCommands(c))action(command.label,v->command.run.run());
-                else line("仅可在己方城池下达军令",14,muted);break;
+                else line("仅可在己方城池下达军令",14,muted);
+                if(own){action("修复城防",v->campaignUi().repair(c));action("建造军事设施",v->campaignUi().buildMilitary(c));action("军事设施管理",v->campaignUi().structures(c));}break;
             case "调动":
                 if(own){action("人员调动",v->domesticUi().transfer(c));action("资源运输",v->domesticUi().transport(c));}else line("仅可从己方城池派遣",14,muted);
                 action("查看任务 / 在途",v->{ui.page="tasks";refresh();});break;
@@ -156,6 +170,7 @@ public final class MainActivity extends Activity {
                 line("月收入 金 "+world.domestic.monthlyGold(c.id)+" / 粮 "+world.domestic.monthlyFood(c.id),13,muted);
                 if(own)action("设施开发",v->domesticUi().build(c));
                 action("展开军事命令",v->{ui.group="军事";refresh();revealPanel();});
+                if(own){action("外交 / 协定",v->campaignUi().diplomacy(c));action("技巧 / 培养",v->{ui.group="研究";refresh();revealPanel();});}
         }
     }
     private static final class CityCommand {final String label;final Runnable run;CityCommand(String label,Runnable run){this.label=label;this.run=run;}}
@@ -169,11 +184,15 @@ public final class MainActivity extends Activity {
     );}
     private void showUnit(World.Unit u){
         World.Officer o=world.officer(u.officerId);line(o.name,25,gold);line(world.faction(u.owner)+" · "+u.weapon.label,14,paper);
-        line("兵力 "+u.troops+"\n携粮 "+u.food+"\n气力 "+u.energy,16,paper);line("统率 "+o.leadership+"  武力 "+o.war,13,paper);line("移动 "+u.weapon.movement+"  射程 "+u.weapon.range,13,paper);
-        if(u.owner==world.player){line(u.acted?"本旬已行动":"点击高亮空地移动\n点敌军攻击 / 点城池攻城或入城",14,paper);action("取消部队选择",v->{moving=-1;selected=null;refresh();});}
+        line("兵力 "+u.troops+"\n携粮 "+u.food+"\n气力 "+u.energy,16,paper);line("统率 "+o.leadership+"  武力 "+o.war,13,paper);line("移动 "+world.war.movement(u)+"  射程 "+world.war.range(u),13,paper);
+        line("适性 "+War.rankLabel(o.aptitude[u.weapon.ordinal()])+" · 状态 "+u.status.label,14,paper);
+        if(u.owner==world.player){line(u.acted?"本旬已行动":"点击高亮空地移动\n点敌军攻击 / 点城池攻城或入城",14,paper);
+            if(!u.acted&&u.status==War.Status.NORMAL){action("战法",v->{moving=u.id;warUi().tactics(u);});action("部队计略",v->{moving=u.id;warUi().plots(u);});action("待命 · 恢复5气力",v->confirm("本旬待命并恢复5气力？",()->apply(world.war.waitUnit(u.id))));}
+            action("取消部队选择",v->{moving=-1;selected=null;refresh();});}
     }
     void officerDetail(World.Officer o){
         String stats="统率 "+o.leadership+"    武力 "+o.war+"\n智力 "+o.intelligence+"    政治 "+o.politics+"\n魅力 "+o.charm;
+        stats+="\n适性：枪"+War.rankLabel(o.aptitude[0])+" 戟"+War.rankLabel(o.aptitude[1])+" 弩"+War.rankLabel(o.aptitude[2])+" 骑"+War.rankLabel(o.aptitude[3]);
         AlertDialog.Builder d=new AlertDialog.Builder(this).setTitle(o.name+" · "+UiModels.faction(world,o)).setMessage(stats+"\n身份："+o.role.label+" · 忠诚 "+o.loyalty+"\n\n所在地："+UiModels.location(world,o)+"\n状态："+UiModels.status(world,o)).setNegativeButton("返回",null);
         Hex h=o.cityId>=0?world.city(o.cityId).hex:o.unitId>=0&&world.unit(o.unitId)!=null?world.unit(o.unitId).hex:null;
         for(Domestic.Mission m:world.domestic.missions)if(m.officerId==o.id)h=m.hex;
@@ -190,12 +209,14 @@ public final class MainActivity extends Activity {
     private void revealPanel(){panelScroll.post(()->panelScroll.scrollTo(0,0));}
     void selectAndFocus(Hex h){if(h==null)return;moving=-1;selected=h;ui.page="map";ui.panelVisible=true;ui.group="概览";refresh();map.focus(h);revealPanel();}
     private StrategyUi strategyUi(){return new StrategyUi(this,world,this::apply);}
+    private CampaignUi campaignUi(){return new CampaignUi(this,world,this::apply);}
+    private WarUi warUi(){return new WarUi(this,world,this::apply);}
     DomesticUi domesticUi(){return new DomesticUi(this,world,this::apply,this::selectAndFocus);}
     private void showMenu(){
         line("军政菜单",22,gold);action("保存局面（3个槽位）",v->saveSlots(false));action("读取存档",v->saveSlots(true));
         action("本旬结算摘要",v->message("旬结算摘要",ui.summary.isEmpty()?"结束一旬后将在这里显示结算摘要。":ui.summary));
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.5 · 人事与治理整合","独立 Android 策略游戏 · 原创测试沙盘。\n可搜索、登用、褒奖、任命太守；治安与太守影响收入，征兵消耗有限兵源。\n存档 v4，兼容 v1～v3。\n\n全国地图、全量人物、战法界面和 3D 表现仍在开发。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.6 · 军政与战法","同图战法、部队计略、火场与军事设施；外交协定、商人、技巧研究、能力培养、设施合并。\n存档 v5，兼容 v1～v4。\n\n当前为原创沙盘与工程规则，尚未达到原版完整还原。全国地图、全量人物、全特技、官方剧本事件等仍未完成。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}

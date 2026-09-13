@@ -18,9 +18,9 @@ public final class StrategicAi {
     public StrategicAi(World w){this.w=Objects.requireNonNull(w);}
     public int pressure(World.City c){
         if(c==null)return 0;int score=0;
-        for(World.City enemy:w.cities)if(enemy.owner>=0&&enemy.owner!=c.owner)
+        for(World.City enemy:w.cities)if(enemy.owner>=0&&w.campaign.hostile(enemy.owner,c.owner))
             score=Math.max(score,Math.max(0,9-c.hex.distance(enemy.hex))*5);
-        for(World.Unit u:w.units)if(u.owner!=c.owner&&u.hex.distance(c.hex)<=6)
+        for(World.Unit u:w.units)if(w.campaign.hostile(u.owner,c.owner)&&u.hex.distance(c.hex)<=6)
             score+=Math.max(5,u.troops/250)*(7-u.hex.distance(c.hex));
         return Math.min(100,score);
     }
