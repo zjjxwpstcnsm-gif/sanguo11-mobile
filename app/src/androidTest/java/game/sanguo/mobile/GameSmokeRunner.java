@@ -47,6 +47,7 @@ public final class GameSmokeRunner extends Instrumentation {
             strategicFlow();
             mobileFlow();
             personnelFlow();
+            campaignFlow();
             result.putString("stream","SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turns, three save slots, corrupt-load recovery, Activity recreation, construction, officer travel, editable cargo transport, task persistence and arrival, map tap/pan/pinch/bounds, filters, empty states, cancel/overwrite confirmation and navigation recreation, search/hire/governor/reward/patrol/recruit/train and save v4 restart verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
@@ -140,6 +141,39 @@ public final class GameSmokeRunner extends Instrumentation {
         screenshot("14-confirmed-cargo");
     }
     private MapView mapView(){final MapView[] result={null};runOnMainSync(()->result[0]=findMap(current.getWindow().getDecorView()));require(result[0]!=null,"map exists");return result[0];}
+    private void campaignFlow()throws Exception {
+        click("菜单",true);click("新游戏 / 选择势力",true);click("区域争雄 ·",false);click("孙权军",true);click("执行",true);waitForIdleSync();
+        locateCity("柴桑");click("内政",true);click("商人 / 粮食买卖",true);click("买粮 ·",false);click("1000粮",true);click("孙权 ·",false);
+        byte[] before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"cancel trade preserves exact save");
+        locateCity("柴桑");click("内政",true);click("商人 / 粮食买卖",true);click("买粮 ·",false);click("1000粮",true);click("孙权 ·",false);click("执行",true);
+        World w=saved();require(w.city(300).food==41000&&w.city(300).gold==4900&&w.campaign.traded(300)==1000,"UI trade executes quoted amount once");screenshot("18-merchant");
+        locateCity("柴桑");click("技巧 / 培养",true);click("能力 / 适性培养",true);click("周瑜 ·",false);click("枪兵适性 · 当前B",true);click("执行",true);
+        w=saved();require(w.officer(3001).otherTaskTurns==3&&w.campaign.projects().size()==1&&w.city(300).gold==4300,"study is real locked task");
+        clickNav("任务");click("筛选 · 全部任务",true);click("研究 / 培养",true);waitText("培养枪兵适性 · 周瑜",true);screenshot("19-study-task");
+        before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("培养枪兵适性 · 周瑜",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"new task and filter survive Activity recreation");
+        for(int i=1;i<=3;i++){endTurn();waitForTurn(i);}w=saved();require(w.officer(3001).aptitude[0]==2&&w.campaign.projects().stream().noneMatch(p->p.officerId==3001),"UI turn loop finishes aptitude study exactly once");
+        locateCity("柴桑");click("外交 / 协定",true);click("曹操军 ·",false);click("亲善 ·",false);click("周瑜 ·",false);click("执行",true);
+        w=saved();require(w.strategy.factionRelation(2,1)>0,"UI envoy affects actual relation");screenshot("20-diplomacy");
+
+        // Construct a test-only combat position, then issue every combat action via real Android clicks.
+        World battle=new World(15,10,"孙权军","曹操军","刘备军");battle.scenarioId="ui-combat-fixture";battle.scenarioName="战法验证";
+        battle.cities.add(new World.City(300,"柴桑",new Hex(2,2),0));battle.cities.add(new World.City(200,"许昌",new Hex(12,2),1));battle.cities.add(new World.City(100,"江陵",new Hex(10,8),2));
+        battle.officers.add(new World.Officer(1,"甘宁",0,-1,90,95,90,80,80));battle.officers.add(new World.Officer(2,"张辽",1,-1,90,90,80,80,80));battle.officers.add(new World.Officer(3,"周瑜",0,300,95,80,98,90,90));
+        World.Unit actor=new World.Unit(1,0,1,World.Weapon.SPEAR,new Hex(6,5),5000,10000);World.Unit enemy=new World.Unit(2,1,2,World.Weapon.SPEAR,new Hex(7,5),5000,10000);
+        battle.units.add(actor);battle.units.add(enemy);battle.nextUnitId=3;battle.officer(1).unitId=1;battle.officer(2).unitId=2;battle.officer(1).role=Strategy.Role.RULER;battle.officer(1).loyalty=100;battle.officer(2).role=Strategy.Role.RULER;battle.officer(2).loyalty=100;
+        battle.strategy.setSeed(0);installFixture(battle,actor.hex);
+        click("战法",true);click("突刺 ·",false);click("张辽 ·",false);click("取消",true);require(saved().unit(1).energy==80&&saved().unit(2).troops==5000,"cancel tactic has no cost");
+        click("战法",true);click("突刺 ·",false);click("张辽 ·",false);click("执行",true);w=saved();require(w.unit(1).energy==65&&w.unit(1).acted&&w.unit(2).troops<5000&&w.unit(2).hex.equals(new Hex(8,5)),"UI spear thrust persists damage, action and displacement");screenshot("21-tactical-thrust");
+        before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("战法验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"combat outcome survives recreation without duplicate settlement");
+        battle=SaveCodec.decode(before);battle.unit(1).acted=false;battle.unit(1).energy=80;battle.strategy.setSeed(0);installFixture(battle,battle.unit(1).hex);
+        click("部队计略",true);click("火计 ·",false);click("张辽 ·",false);click("执行",true);w=saved();require(w.war.fireAt(w.unit(2).hex)!=null&&w.unit(1).energy==70,"UI fire plot persists burning hex");screenshot("22-fire-field");
+        before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("战法验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"fire survives Activity recreation");
+    }
+    private void installFixture(World w,Hex focus)throws Exception {
+        SaveCodec.validate(w);java.lang.reflect.Field field=MainActivity.class.getDeclaredField("world");field.setAccessible(true);
+        runOnMainSync(()->{try{field.set(current,w);((MainActivity)current).selectAndFocus(focus);}catch(IllegalAccessException e){throw new RuntimeException(e);}});
+        try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(w));}waitForIdleSync();
+    }
     private MapView findMap(android.view.View v){if(v instanceof MapView)return (MapView)v;if(v instanceof android.view.ViewGroup){android.view.ViewGroup g=(android.view.ViewGroup)v;for(int i=0;i<g.getChildCount();i++){MapView m=findMap(g.getChildAt(i));if(m!=null)return m;}}return null;}
     private MapCamera camera(MapView map)throws Exception {java.lang.reflect.Field f=MapView.class.getDeclaredField("camera");f.setAccessible(true);return (MapCamera)f.get(map);}
     private void tapCity(int id,int dxDp)throws Exception {
