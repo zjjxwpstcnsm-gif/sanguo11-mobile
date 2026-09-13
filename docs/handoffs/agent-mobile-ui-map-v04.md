@@ -24,7 +24,7 @@ City details: **概览 / 内政 / 武将 / 军事 / 调动**. Shared resource he
 
 `MapView`: one-finger pan, pinch, confirmed single taps, double-tap city focus. Two-finger sequences suppress selection. City hit targets at least 48 dp diameter, labels also tappable, nearest city wins overlapping targets. Precise tile hits retained while issuing unit commands so target expansion cannot convert adjacent movement into entering a city.
 
-At overview zoom: cities/names/faction rings. At 1.55 × fitted scale: facilities, faction labels, units, missions. At 2.1 ×: city resource summaries. Selected units stay visible for tactical commands even when zoomed out. No per-frame `nextTurn`, `route`, `eta`, `reachable` or world recalculation. `reachable` remains computed on UI state refresh, not during gestures/draw. Typeface is cached. Large-map tile geometry still loops/culls visible cells; future national maps may benefit from cached terrain layers if profiling demonstrates a bottleneck.
+At overview zoom: cities/names/faction rings. At 1.55 × fitted scale: facilities, faction labels, units, missions. At 2.1 ×: city resource summaries. Selected units stay visible for tactical commands even when zoomed out. No per-frame `nextTurn`, `route`, `eta`, `reachable` or world recalculation. `reachable` remains computed on UI state refresh, not during gestures/draw. Typeface and immutable hex coordinates are cached. The map footer has a reserved camera inset. Large-map tile geometry still loops/culls visible cells; future national maps may benefit from cached terrain layers if profiling demonstrates a bottleneck.
 
 ## Feedback and confirmations
 
@@ -41,7 +41,7 @@ Large cargo review: gold >= 1,000 OR food >= 10,000 OR troops/any equipment >= 3
 - Full Android Java source and instrumentation source compilation against SDK 35 passed.
 - Added official Gradle 8.11.1 wrapper pinned to distribution SHA-256 `f397b287023acdba1e9f6fc5ea72d22dd63669d59ed4a289a29b1a76eee151c6`.
 - Instrumentation extends the previous actual-touch install flow with map hit/pinch/pan, filters/recreation, empty states, cancel turn, cancel overwrite, large cargo cancel/confirm. CI tests 1080×1920, 1080×2340 and 1080×2400 at density 420 on Android API 29 x86_64 (landscape); collects screenshots and crash/ANR logs per profile.
-- Final Gradle/lint/emulator/APK results and digest: recorded below after verification.
+- Local final `./gradlew test :core:check lint assembleDebug :app:assembleDebugAndroidTest` passed on the complete implementation. Lint: zero errors, nine non-blocking warnings (platform API/theme recommendations, programmatic View constructor, delegated click detection and text localization). Device-flow/CI artifact details follow below.
 
 ## Merge guidance
 
