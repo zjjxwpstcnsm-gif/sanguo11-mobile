@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=2, MAX_BYTES=4*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=3, MAX_BYTES=4*1024*1024;
     private SaveCodec() {}
     public static byte[] encode(World w) throws IOException {
         validate(w);
@@ -34,6 +34,7 @@ public final class SaveCodec {
             d.writeInt(u.id);d.writeInt(u.owner);d.writeInt(u.officerId);d.writeByte(u.weapon.ordinal());hex(d,u.hex);
             d.writeInt(u.troops);d.writeInt(u.food);d.writeInt(u.energy);d.writeBoolean(u.acted);
         }
+        w.domestic.write(d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
@@ -83,6 +84,7 @@ public final class SaveCodec {
             World.Unit u=new World.Unit(id,owner,officer,weapon,hex(d),d.readInt(),d.readInt());
             u.energy=d.readInt();u.acted=d.readBoolean();w.units.add(u);
         }
+        if(version>=3)w.domestic.read(d);
         count=bounded(d.readInt(),0,40);for(int i=0;i<count;i++)w.log.add(d.readUTF());
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         validate(w);return w;
@@ -125,6 +127,7 @@ public final class SaveCodec {
             require(o!=null&&o.owner==u.owner&&o.unitId==u.id&&o.cityId==-1,"部队武将引用错误");
             bounded(u.troops,1,10000);bounded(u.food,0,1000000);bounded(u.energy,0,100);
         }
+        w.domestic.validate();
         for(String line:w.log)label(line,2000);
         if(w.winner>=0) {
             require(w.alive(w.winner),"胜者势力不存在");

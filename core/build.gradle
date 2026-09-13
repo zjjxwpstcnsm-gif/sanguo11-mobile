@@ -14,3 +14,10 @@ tasks.register('verifyScenarios', JavaExec) {
     mainClass = 'game.sanguo.core.ScenarioTest'
 }
 check.dependsOn verifyScenarios
+
+tasks.register('verifyDomestic', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.DomesticTest'
+}
+check.dependsOn verifyDomestic

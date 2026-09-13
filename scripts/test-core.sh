@@ -10,3 +10,4 @@ else
 fi
 java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.CoreTest
 java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ScenarioTest
+java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.DomesticTest

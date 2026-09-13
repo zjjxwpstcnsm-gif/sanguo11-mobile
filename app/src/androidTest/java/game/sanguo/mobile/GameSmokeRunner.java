@@ -42,13 +42,44 @@ public final class GameSmokeRunner extends Instrumentation {
             require(Arrays.equals(before,SaveCodec.encode(saved())),"corrupt load leaves autosave unchanged");
             runOnMainSync(activity::recreate);waitText("区域争雄  ·  孙权军",false);waitForIdleSync();
             assertWorld(2,1,"regional-sandbox");screenshot("05-restored");
-            result.putString("stream","SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turn, three save slots, corrupt-load recovery and Activity recreation verified.\n");
+            strategicFlow();
+            result.putString("stream","SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turns, three save slots, corrupt-load recovery, Activity recreation, construction, officer travel, editable cargo transport, task persistence and arrival verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
             StringWriter trace=new StringWriter();error.printStackTrace(new PrintWriter(trace));
             result.putString("stream","SMOKE FAIL: "+trace+"\n");finish(Activity.RESULT_CANCELED,result);
         }
+    }
+    private void strategicFlow()throws Exception {
+        click("菜单",true);click("新游戏 / 选择势力",true);click("区域争雄 ·",false);click("孙权军",true);click("执行",true);waitForIdleSync();
+        assertWorld(2,0,"regional-sandbox");locateCity("柴桑");
+        click("设施开发",true);click("市场 ·",false);click("周瑜 ·",false);click("地块 ",false);click("开工",true);waitForIdleSync();
+        World w=saved();require(w.domestic.facilities.size()==1&&w.domestic.facilities.get(0).remaining==2&&w.domestic.busy(3001),"construction persisted and occupies builder");
+        screenshot("06-construction");
+        locateCity("柴桑");click("人员调动",true);click("建业 ·",false);click("孙权 ·",false);click("出发",true);waitForIdleSync();
+        require(saved().domestic.missions.size()==1&&saved().officer(3000).cityId==-1,"officer travel starts through UI");
+        locateCity("柴桑");click("资源运输",true);click("建业 ·",false);click("鲁肃 ·",false);waitText("运输数量",true);screenshot("07-cargo-form");click("发送",true);waitForIdleSync();
+        w=saved();require(w.domestic.missions.size()==2&&w.city(300).food==35000&&w.city(300).troops==11000&&w.city(300).equipment[0]==11000,"cargo deducted once through UI");
+        click("菜单",true);click("政务与在途",true);waitText("运输 · 鲁肃",false);screenshot("08-tasks");click("返回",true);
+        click("菜单",true);click("保存局面（3个槽位）",true);click("槽位 3 ·",false);click("执行",true);waitForIdleSync();
+        byte[] pending=SaveCodec.encode(saved());
+        startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        waitText("区域争雄  ·  孙权军",false);waitForIdleSync();require(Arrays.equals(pending,SaveCodec.encode(saved())),"pending tasks survive Activity restart");
+        click("下一旬  →",true);waitForTurn(1);require(saved().domestic.facilities.get(0).remaining==1,"construction advances one turn");
+        click("菜单",true);click("读取存档",true);click("槽位 3 · 区域争雄",false);click("执行",true);waitForIdleSync();
+        require(Arrays.equals(pending,SaveCodec.encode(saved())),"manual slot restores pending tasks exactly");
+        for(int i=1;i<=8;i++){click("下一旬  →",true);waitForTurn(i);w=saved();if(w.officer(3000).cityId==310&&w.officer(3002).cityId==310)break;}
+        w=saved();require(w.officer(3000).cityId==310&&w.officer(3002).cityId==310&&w.domestic.missions.stream().noneMatch(m->m.owner==2),"personnel and cargo arrive");
+        require(w.city(310).troops==13000&&w.city(310).equipment[0]==13000,"arrival credits cargo exactly once");
+        require(w.domestic.facilities.stream().anyMatch(f->f.cityId==300&&f.kind==Domestic.Kind.MARKET&&f.remaining==0),"market completes");
+        locateCity("建业");screenshot("09-arrival");locateCity("柴桑");click("政务与在途",true);waitText("市场 · 已建成",false);screenshot("10-completed");click("返回",true);
+    }
+    private void locateCity(String city){click("菜单",true);click("城池一览 / 定位",true);click(city+" · 孙权军",false);waitText(city,true);}
+    private void waitForTurn(int turn)throws Exception {
+        long until=SystemClock.uptimeMillis()+15000;
+        while(SystemClock.uptimeMillis()<until){waitForIdleSync();if(saved().turn==turn)return;SystemClock.sleep(100);}
+        throw new AssertionError("persisted turn not reached: "+turn);
     }
     private void require(boolean value,String message){if(!value)throw new AssertionError(message);}
     private void assertWorld(int player,int turn,String scenario)throws IOException {
@@ -77,7 +108,7 @@ public final class GameSmokeRunner extends Instrumentation {
         AccessibilityNodeInfo node=null;long until=SystemClock.uptimeMillis()+12000;
         while(node==null&&SystemClock.uptimeMillis()<until) {
             waitForIdleSync();AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();node=find(root,text,exact);
-            if(node==null){scroll(root);SystemClock.sleep(250);}
+            if(node==null){if(!scroll(root))scrollBack(root);SystemClock.sleep(250);}
         }
         if(node==null)throw new AssertionError("UI action not found: "+text);
         Rect bounds=new Rect();node.getBoundsInScreen(bounds);
@@ -89,6 +120,11 @@ public final class GameSmokeRunner extends Instrumentation {
         if(node==null)return false;
         if(node.isScrollable()&&node.isVisibleToUser()&&node.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD))return true;
         for(int i=0;i<node.getChildCount();i++)if(scroll(node.getChild(i)))return true;return false;
+    }
+    private boolean scrollBack(AccessibilityNodeInfo node) {
+        if(node==null)return false;
+        if(node.isScrollable()&&node.isVisibleToUser()&&node.performAction(AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD))return true;
+        for(int i=0;i<node.getChildCount();i++)if(scrollBack(node.getChild(i)))return true;return false;
     }
     private void screenshot(String name)throws IOException {
         waitForIdleSync();Bitmap bitmap=getUiAutomation().takeScreenshot();if(bitmap==null)throw new IOException("Screenshot unavailable");

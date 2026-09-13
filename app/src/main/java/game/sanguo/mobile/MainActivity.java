@@ -85,7 +85,12 @@ public final class MainActivity extends Activity {
         panel.removeAllViews();
         World.Unit unit=selected==null?null:world.unitAt(selected);World.City city=selected==null?null:world.cityAt(selected);
         if(world.unit(moving)==null)moving=-1;
-        if(unit!=null)showUnit(unit);else if(city!=null)showCity(city);else {
+        if(unit!=null)showUnit(unit);else if(city!=null)showCity(city);else if(selected!=null&&world.domestic.at(selected)!=null){
+            Domestic.Facility f=world.domestic.at(selected);line(f.kind.label,24,gold);line(world.city(f.cityId).name,15,paper);
+            line(f.remaining==0?f.kind.effect:"建设中 · 剩"+f.remaining+"旬",14,paper);
+            action("设施详情 / 管理",v->domesticUi().facility(f));
+            action("返回所属城池",v->{selected=world.city(f.cityId).hex;moving=-1;refresh();map.focus(selected);});
+        }else {
             line("山河之间",23,gold);line("点选城池或部队",15,paper);line("拖动地图 · 双指缩放\n旗帜颜色代表不同势力。菜单中可按城池定位。",13,paper);
         }
         line("规则测试 · 非原版完整游戏",11,Color.rgb(149,164,163));
@@ -101,12 +106,17 @@ public final class MainActivity extends Activity {
                 if(result.ok){World.Unit u=world.unit(o.unitId);selected=u.hex;moving=u.id;}
                 apply(result);
             }).show())));
-            action("征兵  +2000 · 金300",v->chooseOfficer(c,o->apply(world.recruit(c.id,o.id))));
+            action("征兵  +"+world.domestic.recruitAmount(c.id)+" · 金300",v->chooseOfficer(c,o->apply(world.recruit(c.id,o.id))));
             action("训练  气力+15 · 金100",v->chooseOfficer(c,o->apply(world.train(c.id,o.id))));
             action("巡察  治安+10 · 金100",v->chooseOfficer(c,o->apply(world.patrol(c.id,o.id))));
-            action("生产兵装  +2000 · 金400",v->chooseOfficer(c,o->chooseWeapon(weapon->apply(world.produce(c.id,o.id,weapon)))));
+            action("生产兵装  +"+world.domestic.produceAmount(c.id)+" · 金400",v->chooseOfficer(c,o->chooseWeapon(weapon->apply(world.produce(c.id,o.id,weapon)))));
+            action("设施开发",v->domesticUi().build(c));
+            action("人员调动",v->domesticUi().transfer(c));
+            action("资源运输",v->domesticUi().transport(c));
+            action("政务与在途",v->domesticUi().overview());
             line("可用武将 "+world.idle(c).size()+"  /  每次命令10行动力",12,paper);
         }
+        line("设施 "+world.domestic.count(c.id)+"/6 · 月金"+world.domestic.monthlyGold(c.id)+" / 月粮"+world.domestic.monthlyFood(c.id),12,paper);
         StringBuilder stocks=new StringBuilder("兵装库存\n");for(World.Weapon w:World.Weapon.values())stocks.append(w.label).append(" ").append(c.equipment[w.ordinal()]).append("  ");
         line(stocks.toString(),12,paper);
     }
@@ -128,9 +138,10 @@ public final class MainActivity extends Activity {
         String[] labels=new String[World.Weapon.values().length];for(int i=0;i<labels.length;i++)labels[i]=World.Weapon.values()[i].label;
         new AlertDialog.Builder(this).setTitle("选择兵种").setItems(labels,(d,index)->callback.choose(World.Weapon.values()[index])).show();
     }
+    private DomesticUi domesticUi(){return new DomesticUi(this,world,this::apply,h->{moving=-1;selected=h;refresh();map.focus(h);});}
     private void menu(){
         if(aiRunning)return;
-        new AlertDialog.Builder(this).setTitle("三国 · 研制版").setItems(new String[]{"保存局面（3个槽位）","读取存档","城池一览 / 定位","武将一览","战报","回到全图","新游戏 / 选择势力","版本与范围"},(d,index)->{
+        new AlertDialog.Builder(this).setTitle("三国 · 研制版").setItems(new String[]{"保存局面（3个槽位）","读取存档","城池一览 / 定位","武将一览","战报","回到全图","新游戏 / 选择势力","版本与范围","政务与在途"},(d,index)->{
             switch(index){
                 case 0:saveSlots(false);break;
                 case 1:saveSlots(true);break;
@@ -139,7 +150,8 @@ public final class MainActivity extends Activity {
                 case 4:new AlertDialog.Builder(this).setTitle("战报").setMessage(joinLog()).setPositiveButton("返回",null).show();break;
                 case 5:map.fit();break;
                 case 6:scenarioPicker();break;
-                case 7:new AlertDialog.Builder(this).setTitle("0.2.0 · M1开发中").setMessage("独立Android策略游戏。\n\n基础演练：3城6将，2势力。\n区域争雄：9城18将，3势力，可任选一方。\n\n两张地图均为原创沙盘，布局、归属、数值和规则尚未与原版对齐。全国地图、全武将、战法、外交和3D表现仍在开发。\n\n当前数据："+world.scenarioId+" r"+world.dataRevision).setPositiveButton("知道了",null).show();break;
+                case 7:new AlertDialog.Builder(this).setTitle("0.3.0 · 战略层开发").setMessage("独立Android策略游戏。\n\n基础演练：3城6将，2势力。\n区域争雄：9城18将，3势力，可任选一方。\n\n两张地图均为原创沙盘，布局、归属、数值和规则尚未与原版对齐。本版新增设施开发、人员调动、战略运输。运输不是战场运输队，不支持拦截与水运。全国地图、全武将、战法、外交和3D表现仍在开发。\n\n当前数据："+world.scenarioId+" r"+world.dataRevision).setPositiveButton("知道了",null).show();break;
+                case 8:domesticUi().overview();break;
             }
         }).show();
     }
@@ -202,7 +214,7 @@ public final class MainActivity extends Activity {
     private void officerList(){
         StringBuilder b=new StringBuilder("名称  统/武/智/政/魅\n（均为工程测试数值）\n\n");
         for(World.Officer o:world.officers){b.append(o.name).append("  ").append(o.leadership).append('/').append(o.war).append('/').append(o.intelligence).append('/').append(o.politics).append('/').append(o.charm).append('\n');
-            b.append(world.faction(o.owner)).append(" · ").append(o.unitId>=0?"出征中":o.cityId>=0?world.city(o.cityId).name:"已退出战场").append(o.acted?" · 本旬已行动":"").append("\n\n");}
+            b.append(world.faction(o.owner)).append(" · ").append(!world.domestic.assignment(o.id).isEmpty()?world.domestic.assignment(o.id):o.unitId>=0?"出征中":o.cityId>=0?world.city(o.cityId).name:"已退出战场").append(o.acted?" · 本旬已行动":"").append("\n\n");}
         new AlertDialog.Builder(this).setTitle("武将一览").setMessage(b.toString()).setPositiveButton("返回",null).show();
     }
     private AtomicFile file(String slot){return new AtomicFile(new File(getFilesDir(),slot+".sg11"));}

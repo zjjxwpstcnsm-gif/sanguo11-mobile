@@ -50,6 +50,7 @@ public final class World {
     public final List<Officer> officers=new ArrayList<>();
     public final List<Unit> units=new ArrayList<>();
     public final List<String> log=new ArrayList<>();
+    public final Domestic domestic=new Domestic(this);
     public final String[] factions;
     public final int[] actionPoints;
     public String scenarioId="m0-skirmish", scenarioName="基础演练", dataSource="engineering-original", dataHash="";
@@ -79,16 +80,16 @@ public final class World {
     public Unit unit(int id) { for(Unit u:units) if(u.id==id) return u;return null; }
     public City cityAt(Hex h) { for(City c:cities) if(c.hex.equals(h)) return c;return null; }
     public Unit unitAt(Hex h) { for(Unit u:units) if(u.hex.equals(h)) return u;return null; }
-    private Result fail(String text) { return new Result(false,text); }
-    private Result success(String text) { note(text);return new Result(true,text); }
+    Result fail(String text) { return new Result(false,text); }
+    Result success(String text) { note(text);return new Result(true,text); }
     public void note(String text) { log.add(text);while(log.size()>40)log.remove(0); }
-    private boolean available(Officer o,City c) { return o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted; }
+    private boolean available(Officer o,City c) { return o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id); }
     public List<Officer> idle(City c) {
         List<Officer> found=new ArrayList<>();
         if(c!=null&&c.owner==active) for(Officer o:officers) if(available(o,c))found.add(o);
         return found;
     }
-    private String cityError(City c,Officer o,int gold) {
+    String cityError(City c,Officer o,int gold) {
         if(gameOver())return "本局已结束";
         if(c==null||c.owner!=active)return "请选择己方城池";
         if(!available(o,c))return "需要一名本旬尚未行动的在城武将";
@@ -96,14 +97,15 @@ public final class World {
         if(c.gold<gold)return "金不足";
         return null;
     }
-    private void spend(City c,Officer o,int gold) { c.gold-=gold;actionPoints[active]-=10;o.acted=true; }
+    void spend(City c,Officer o,int gold) { c.gold-=gold;actionPoints[active]-=10;o.acted=true; }
     public Result recruit(int cityId,int officerId) {
         City c=city(cityId);Officer o=officer(officerId);String error=cityError(c,o,300);
         if(error!=null)return fail(error);
         if(c.order<30)return fail("治安低于30，先执行巡察");
-        if(c.troops>98000)return fail("测试城池兵力已接近上限");
-        spend(c,o,300);c.troops+=2000;c.order-=5;
-        return success(c.name+"征得2000兵，治安−5");
+        int amount=domestic.recruitAmount(c.id);
+        if(c.troops>100000-amount)return fail("测试城池兵力已接近上限");
+        spend(c,o,300);c.troops+=amount;c.order-=5;
+        return success(c.name+"征得"+amount+"兵，治安−5");
     }
     public Result train(int cityId,int officerId) {
         City c=city(cityId);Officer o=officer(officerId);String error=cityError(c,o,100);
@@ -121,8 +123,9 @@ public final class World {
         City c=city(cityId);Officer o=officer(officerId);String error=cityError(c,o,400);
         if(error!=null)return fail(error);
         if(weapon==null)return fail("兵装无效");
-        if(c.equipment[weapon.ordinal()]>98000)return fail("兵装已接近上限");
-        spend(c,o,400);c.equipment[weapon.ordinal()]+=2000;return success(c.name+"生产2000份"+weapon.label+"兵装");
+        int amount=domestic.produceAmount(c.id);
+        if(c.equipment[weapon.ordinal()]>100000-amount)return fail("兵装已接近上限");
+        spend(c,o,400);c.equipment[weapon.ordinal()]+=amount;return success(c.name+"生产"+amount+"份"+weapon.label+"兵装");
     }
     public Result deploy(int cityId,int officerId,Weapon weapon,int troops) {
         City c=city(cityId);Officer o=officer(officerId);String error=cityError(c,o,0);
@@ -130,7 +133,7 @@ public final class World {
         if(weapon==null||troops<1000||troops>10000)return fail("出征人数必须在1000至10000之间");
         if(c.troops<troops||c.food<troops*2||c.equipment[weapon.ordinal()]<troops)return fail("兵、兵装或出征粮草不足");
         Hex exit=null;
-        for(Hex h:c.hex.neighbors()) if(inside(h)&&cost(h,weapon)>0&&unitAt(h)==null&&cityAt(h)==null){exit=h;break;}
+        for(Hex h:c.hex.neighbors()) if(inside(h)&&cost(h,weapon)>0&&unitAt(h)==null&&cityAt(h)==null&&domestic.at(h)==null){exit=h;break;}
         if(exit==null)return fail("城外相邻格全部被占用或无法通行");
         spend(c,o,0);c.troops-=troops;c.food-=troops*2;c.equipment[weapon.ordinal()]-=troops;
         Unit u=new Unit(nextUnitId++,active,o.id,weapon,exit,troops,troops*2);u.energy=c.morale;
@@ -156,7 +159,7 @@ public final class World {
         while(!todo.isEmpty()) {
             Step s=todo.remove();if(s.cost!=distances.get(s.hex))continue;
             for(Hex next:s.hex.neighbors()) {
-                int c=cost(next,u.weapon);if(c<0||cityAt(next)!=null)continue;
+                int c=cost(next,u.weapon);if(c<0||cityAt(next)!=null||domestic.at(next)!=null)continue;
                 Unit occupant=unitAt(next);if(occupant!=null&&occupant.id!=u.id)continue;
                 int total=s.cost+c;
                 if(total<=u.weapon.movement&&total<distances.getOrDefault(next,Integer.MAX_VALUE)) {
@@ -200,7 +203,7 @@ public final class World {
         u.acted=true;u.energy=Math.max(0,u.energy-5);
         String message=officer(u.officerId).name+"攻城，城防−"+hit;
         if(c.defense==0) {
-            int old=c.owner;c.owner=u.owner;c.defense=1500;c.troops=0;c.morale=50;c.order=60;
+            int old=c.owner;c.owner=u.owner;domestic.captured(c.id);c.defense=1500;c.troops=0;c.morale=50;c.order=60;
             for(Officer o:officers) if(o.cityId==c.id&&o.owner==old)retreat(o,c.hex);
             message=c.name+"被"+faction(u.owner)+"攻占";
         }
@@ -229,7 +232,7 @@ public final class World {
             reset(active);runAi();checkVictory();
             if(gameOver()){active=player;return success(winner==player?"战场胜利":"我方势力已覆灭");}
         }
-        turn++;
+        turn++;domestic.tick();
         for(Unit u:new ArrayList<>(units)) {
             int consumption=Math.max(1,(u.troops+19)/20);
             if(u.food<consumption){u.food=0;u.troops-=Math.max(1,u.troops/10);note(officer(u.officerId).name+"部队断粮，兵力减少");}
@@ -240,7 +243,7 @@ public final class World {
             int consumption=(c.troops+49)/50;
             if(c.food<consumption){c.food=0;c.troops=Math.max(0,c.troops-Math.max(1,c.troops/20));}
             else c.food-=consumption;
-            if(turn%3==0){c.gold=Math.min(1000000,c.gold+800);c.food=Math.min(1000000,c.food+5000);}
+            if(turn%3==0){c.gold=Math.min(1000000,c.gold+domestic.monthlyGold(c.id));c.food=Math.min(1000000,c.food+domestic.monthlyFood(c.id));}
         }
         active=player;reset(player);checkVictory();return success(date()+" · 行动力恢复");
     }
@@ -277,11 +280,12 @@ public final class World {
             }
             if(!u.acted)for(Unit b:new ArrayList<>(units))if(b.owner!=active&&advance(u,b.hex,u.weapon.range))break;
         }
+        domestic.runAi();
     }
     /** Plan beyond one turn so AI can detour around rivers and mountains. */
     private boolean advance(Unit u,Hex target,int range) {
         Map<Hex,Integer> distances=new HashMap<>();Map<Hex,Hex> previous=new HashMap<>();
-        Set<Hex> blocked=new HashSet<>();for(City c:cities)blocked.add(c.hex);for(Unit b:units)if(b.id!=u.id)blocked.add(b.hex);
+        Set<Hex> blocked=new HashSet<>();for(City c:cities)blocked.add(c.hex);for(Domestic.Facility f:domestic.facilities)blocked.add(f.hex);for(Unit b:units)if(b.id!=u.id)blocked.add(b.hex);
         PriorityQueue<Step> todo=new PriorityQueue<>(Comparator.comparingInt((Step s)->s.cost).thenComparingInt(s->s.hex.q).thenComparingInt(s->s.hex.r));
         distances.put(u.hex,0);todo.add(new Step(u.hex,0));
         while(!todo.isEmpty()) {
@@ -304,6 +308,6 @@ public final class World {
     public void checkVictory() {
         int count=0,last=-1;
         for(int side=0;side<factions.length;side++)if(alive(side)){count++;last=side;}
-        winner=count==1?last:-1;
+        winner=count==1?last:-1;domestic.cleanupDefeated();
     }
 }
