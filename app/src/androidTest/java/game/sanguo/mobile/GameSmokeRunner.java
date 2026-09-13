@@ -143,12 +143,14 @@ public final class GameSmokeRunner extends Instrumentation {
     private MapView mapView(){final MapView[] result={null};runOnMainSync(()->result[0]=findMap(current.getWindow().getDecorView()));require(result[0]!=null,"map exists");return result[0];}
     private void campaignFlow()throws Exception {
         click("菜单",true);click("新游戏 / 选择势力",true);click("区域争雄 ·",false);click("孙权军",true);click("执行",true);waitForIdleSync();
-        locateCity("柴桑");click("内政",true);click("商人 / 粮食买卖",true);click("买粮 ·",false);click("1000粮",true);click("孙权 ·",false);
+        World opening=saved();int quote=opening.campaign.foodPrice(300,true),openingGold=opening.city(300).gold,openingFood=opening.city(300).food;
+        require(opening.startMonth==9&&quote==140,"September fixture has seasonal quote140, not January price100");
+        locateCity("柴桑");click("内政",true);click("商人 / 粮食买卖",true);waitText("买粮 · 每1000粮 / 金"+quote,true);click("买粮 ·",false);click("1000粮",true);click("孙权 ·",false);
         byte[] before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"cancel trade preserves exact save");
         locateCity("柴桑");click("内政",true);click("商人 / 粮食买卖",true);click("买粮 ·",false);click("1000粮",true);click("孙权 ·",false);click("执行",true);
-        World w=saved();require(w.city(300).food==41000&&w.city(300).gold==4900&&w.campaign.traded(300)==1000,"UI trade executes quoted amount once");screenshot("18-merchant");
+        World w=saved();require(w.city(300).food==openingFood+1000&&w.city(300).gold==openingGold-quote&&w.campaign.traded(300)==1000,"UI trade executes quoted amount once");screenshot("18-merchant");
         locateCity("柴桑");click("技巧 / 培养",true);click("能力 / 适性培养",true);click("周瑜 ·",false);click("枪兵适性 · 当前B",true);click("执行",true);
-        w=saved();require(w.officer(3001).otherTaskTurns==3&&w.campaign.projects().size()==1&&w.city(300).gold==4300,"study is real locked task");
+        w=saved();require(w.officer(3001).otherTaskTurns==3&&w.campaign.projects().size()==1&&w.city(300).gold==openingGold-quote-600,"study is real locked task");
         clickNav("任务");click("筛选 · 全部任务",true);click("研究 / 培养",true);waitText("培养枪兵适性 · 周瑜",true);screenshot("19-study-task");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("培养枪兵适性 · 周瑜",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"new task and filter survive Activity recreation");
         for(int i=1;i<=3;i++){endTurn();waitForTurn(i);}w=saved();require(w.officer(3001).aptitude[0]==2&&w.campaign.projects().stream().noneMatch(p->p.officerId==3001),"UI turn loop finishes aptitude study exactly once");
