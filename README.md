@@ -19,7 +19,7 @@
 
 最终要求仍包括全武将、全兵装/战法、全城关港、全国地图、剧本、内政、人事、外交、计略、单挑、舌战、技巧、能力研究、特技、事件、编辑器与完整胜负流程，详见 [功能覆盖表](docs/FEATURES.md)。
 
-当前 APK 与验证记录见 [v0.5 集成交付](docs/INTEGRATION_V0_5.md)。
+[v0.5 APK（ZIP）](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34762588004/artifacts/10319757409) · [全绿构建与三种横屏安装验证](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34762588004) · [本轮交付记录](docs/INTEGRATION_V0_5.md)。
 
 ## 本阶段试玩
 
