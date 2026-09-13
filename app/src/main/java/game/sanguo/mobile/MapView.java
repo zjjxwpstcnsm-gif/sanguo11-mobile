@@ -33,7 +33,7 @@ public final class MapView extends View {
             @Override public boolean onScale(ScaleGestureDetector d){zoom(scale*d.getScaleFactor(),d.getFocusX(),d.getFocusY());return true;}
         });
     }
-    public void setWorld(World world,Hex selected,int moving){boolean changed=this.world!=world;this.world=world;this.selected=selected;
+    public void setWorld(World world,Hex selected,int moving){boolean changed=this.world==null||this.world.width!=world.width||this.world.height!=world.height||!this.world.scenarioId.equals(world.scenarioId);this.world=world;this.selected=selected;
         reachable=world.reachable(world.unit(moving));if(changed&&getWidth()>0)fit();invalidate();}
     private float x(Hex h){return RADIUS*SQRT3*(h.q+h.r*.5f);}
     private float y(Hex h){return RADIUS*1.5f*h.r;}
@@ -43,7 +43,9 @@ public final class MapView extends View {
     public void fit(){if(world==null||getWidth()==0||getHeight()==0)return;
         fitScale=Math.min((getWidth()-40*density)/worldWidth(),(getHeight()-55*density)/worldHeight());fitScale=Math.max(.05f,fitScale);scale=fitScale;
         offsetX=(getWidth()-worldWidth()*scale)/2+RADIUS*scale;offsetY=(getHeight()-worldHeight()*scale)/2+RADIUS*scale-10*density;invalidate();}
-    private void zoom(float newScale,float fx,float fy){float old=scale;scale=Math.max(fitScale,Math.min(fitScale*4,newScale));offsetX=fx-(fx-offsetX)*scale/old;offsetY=fy-(fy-offsetY)*scale/old;clamp();invalidate();}
+    public void focus(Hex h){if(world==null||h==null)return;if(getWidth()==0){post(()->focus(h));return;}
+        scale=Math.max(fitScale,1.25f*density);offsetX=getWidth()/2f-x(h)*scale;offsetY=getHeight()/2f-y(h)*scale;clamp();invalidate();}
+    private void zoom(float newScale,float fx,float fy){float old=scale;scale=Math.max(fitScale,Math.min(Math.max(fitScale*4,2*density),newScale));offsetX=fx-(fx-offsetX)*scale/old;offsetY=fy-(fy-offsetY)*scale/old;clamp();invalidate();}
     private void clamp(){if(world==null)return;offsetX=Math.max(60*density-worldWidth()*scale,Math.min(getWidth()-60*density,offsetX));offsetY=Math.max(50*density-worldHeight()*scale,Math.min(getHeight()-50*density,offsetY));}
     @Override public boolean onTouchEvent(MotionEvent event){scaler.onTouchEvent(event);gestures.onTouchEvent(event);return true;}
     @Override public boolean performClick(){super.performClick();return true;}
@@ -57,7 +59,8 @@ public final class MapView extends View {
     private void fill(Canvas c,int color){paint.setStyle(Paint.Style.FILL);paint.setColor(color);c.drawPath(path,paint);}
     private void stroke(Canvas c,int color,float width){paint.setStyle(Paint.Style.STROKE);paint.setColor(color);paint.setStrokeWidth(width);c.drawPath(path,paint);paint.setStyle(Paint.Style.FILL);}
     private void label(Canvas c,String value,float x,float y,float size,int color){paint.setColor(color);paint.setStyle(Paint.Style.FILL);paint.setTextSize(size);paint.setTextAlign(Paint.Align.CENTER);paint.setTypeface(Typeface.create("sans-serif",Typeface.NORMAL));c.drawText(value,x,y,paint);}
-    private int factionColor(int owner){return owner==0?Color.rgb(98,175,143):owner==1?Color.rgb(102,156,197):Color.rgb(153,146,128);}
+    private int factionColor(int owner){if(owner<0)return Color.rgb(153,146,128);
+        int[] palette={Color.rgb(98,175,143),Color.rgb(102,156,197),Color.rgb(216,135,105),Color.rgb(185,143,205),Color.rgb(205,183,94),Color.rgb(91,184,184)};return palette[owner%palette.length];}
     @Override protected void onDraw(Canvas canvas){
         super.onDraw(canvas);canvas.drawColor(Color.rgb(23,44,46));if(world==null)return;
         canvas.save();canvas.translate(offsetX,offsetY);canvas.scale(scale,scale);
@@ -77,13 +80,13 @@ public final class MapView extends View {
         for(World.Unit u:world.units)drawUnit(canvas,u);
         canvas.restore();
         paint.setColor(Color.argb(190,17,32,37));canvas.drawRoundRect(10*density,getHeight()-34*density,getWidth()-10*density,getHeight()-8*density,5*density,5*density,paint);
-        label(canvas,"绿 · 刘备军     蓝 · 曹操军     山 / 水不可通行     双指缩放",getWidth()/2f,getHeight()-17*density,10*density,PAPER);
+        label(canvas,"执掌 "+world.faction(world.player)+"    山 / 水不可通行    双指缩放 · 城池列表定位",getWidth()/2f,getHeight()-17*density,10*density,PAPER);
     }
     private void drawCity(Canvas c,World.City city){float cx=x(city.hex),cy=y(city.hex);int owner=factionColor(city.owner);
         paint.setColor(Color.rgb(32,44,40));c.drawRect(cx-17,cy-8,cx+17,cy+12,paint);paint.setColor(Color.rgb(210,196,161));
         c.drawRect(cx-15,cy-6,cx+15,cy+9,paint);for(int i=-15;i<15;i+=6)c.drawRect(cx+i,cy-10,cx+i+4,cy-4,paint);
         paint.setColor(Color.rgb(61,62,46));c.drawRect(cx-4,cy+1,cx+4,cy+12,paint);paint.setColor(owner);c.drawRect(cx,cy-29,cx+13,cy-17,paint);paint.setStrokeWidth(1.5f);c.drawLine(cx,cy-30,cx,cy-9,paint);
-        float sz=13*density/scale;paint.setColor(Color.argb(225,22,37,37));c.drawRoundRect(cx-23*density/scale,cy+14,cx+23*density/scale,cy+14+sz*1.6f,3,3,paint);
+        float sz=Math.min(13*density/scale,22);paint.setColor(Color.argb(225,22,37,37));c.drawRoundRect(cx-sz*1.8f,cy+14,cx+sz*1.8f,cy+14+sz*1.6f,3,3,paint);
         label(c,city.name,cx,cy+14+sz*1.15f,sz,PAPER);
         paint.setColor(owner);c.drawRect(cx-16,cy+10,cx-16+32*Math.min(1,city.defense/3000f),cy+13,paint);
     }

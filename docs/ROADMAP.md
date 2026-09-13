@@ -27,3 +27,9 @@ M0采用 Java 17 纯规则内核与原生 Android 客户端。规则不调用 An
 Android当前固定 AGP 8.9.2 / Gradle 8.11.1 / JDK 17 / SDK 35 / minSdk 26。版本组合依据 [Android官方兼容表](https://developer.android.com/build/releases/agp-8-9-0-release-notes)。这是已知兼容基线，不声称是最新版本。当前不用NDK，ARM64和x86设备均执行同一份DEX代码。
 
 CI保存调试APK，参见 [GitHub产物文档](https://docs.github.com/en/actions/tutorials/store-and-share-data)。调试签名仅用于阶段测试；不能声称具备正式版持续覆盖升级能力。
+
+## 2026-09-13 · v0.2.0 增量
+
+数据包、稳定ID和基础校验已落地，见 `DATA_FORMAT.md`。多势力状态、任意玩家、两种沙盘入口、城池定位、多槽存档和v1迁移已接通。Android电脑回合使用独立快照在后台结算，成功后一次替换显示状态并自动保存；每次回合不再重置地图相机。
+
+本轮不是M1退出：仍缺原版具体版本冻结、完整清单和逐项依据；全国地图仍未构建。下轮优先采集原版城关港/武将/兵装数据规格与证据，并推进设施开发、运输与人员调动，保持现有规则和安装流程回归通过。

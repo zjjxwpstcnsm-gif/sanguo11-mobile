@@ -7,3 +7,10 @@ tasks.register('verifyCore', JavaExec) {
     mainClass = 'game.sanguo.core.CoreTest'
 }
 check.dependsOn verifyCore
+
+tasks.register('verifyScenarios', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.ScenarioTest'
+}
+check.dependsOn verifyScenarios

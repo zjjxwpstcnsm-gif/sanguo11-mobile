@@ -6,13 +6,16 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=1, MAX_BYTES=4*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=2, MAX_BYTES=4*1024*1024;
     private SaveCodec() {}
     public static byte[] encode(World w) throws IOException {
         validate(w);
         ByteArrayOutputStream bytes=new ByteArrayOutputStream();
         DataOutputStream d=new DataOutputStream(bytes);
         d.writeInt(w.width);d.writeInt(w.height);d.writeInt(w.turn);d.writeInt(w.active);d.writeInt(w.nextUnitId);d.writeInt(w.winner);
+        d.writeInt(w.factions.length);for(String faction:w.factions)d.writeUTF(faction);
+        d.writeInt(w.player);d.writeInt(w.startYear);d.writeInt(w.startMonth);d.writeInt(w.dataRevision);
+        d.writeUTF(w.scenarioId);d.writeUTF(w.scenarioName);d.writeUTF(w.dataSource);d.writeUTF(w.dataHash);
         for(int ap:w.actionPoints)d.writeInt(ap);
         for(World.Terrain[] row:w.terrain)for(World.Terrain t:row)d.writeByte(t.ordinal());
         d.writeInt(w.cities.size());
@@ -43,16 +46,22 @@ public final class SaveCodec {
         if(data==null||data.length<20||data.length>MAX_BYTES+20)throw new IOException("存档长度无效");
         DataInputStream d=new DataInputStream(new ByteArrayInputStream(data));
         if(d.readInt()!=MAGIC)throw new IOException("不是本项目存档");
-        if(d.readInt()!=VERSION)throw new IOException("存档版本不支持");
+        int version=d.readInt();if(version<1||version>VERSION)throw new IOException("存档版本不支持");
         int length=d.readInt();long expected=d.readLong();
         if(length!=data.length-20)throw new IOException("存档不完整");
         byte[] payload=new byte[length];d.readFully(payload);CRC32 crc=new CRC32();crc.update(payload);
         if(crc.getValue()!=expected)throw new IOException("存档校验失败");
         d=new DataInputStream(new ByteArrayInputStream(payload));
         int width=bounded(d.readInt(),1,128),height=bounded(d.readInt(),1,128);
-        World w=new World(width,height);w.turn=bounded(d.readInt(),0,100000);w.active=bounded(d.readInt(),0,1);
-        w.nextUnitId=bounded(d.readInt(),1,10000000);w.winner=bounded(d.readInt(),-1,1);
-        for(int i=0;i<2;i++)w.actionPoints[i]=bounded(d.readInt(),0,60);
+        int turn=d.readInt(),active=d.readInt(),nextUnitId=d.readInt(),winner=d.readInt();
+        String[] factions={"刘备军","曹操军"};
+        if(version>=2){factions=new String[bounded(d.readInt(),2,32)];for(int i=0;i<factions.length;i++)factions[i]=d.readUTF();}
+        World w=new World(width,height,factions);w.turn=turn;w.active=active;w.nextUnitId=nextUnitId;w.winner=winner;
+        if(version>=2) {
+            w.player=d.readInt();w.startYear=d.readInt();w.startMonth=d.readInt();w.dataRevision=d.readInt();
+            w.scenarioId=d.readUTF();w.scenarioName=d.readUTF();w.dataSource=d.readUTF();w.dataHash=d.readUTF();
+        }
+        for(int i=0;i<factions.length;i++)w.actionPoints[i]=bounded(d.readInt(),0,60);
         for(int q=0;q<width;q++)for(int r=0;r<height;r++)w.terrain[q][r]=World.Terrain.values()[bounded(d.readUnsignedByte(),0,3)];
         int count=bounded(d.readInt(),1,1000);
         for(int i=0;i<count;i++) {
@@ -83,20 +92,26 @@ public final class SaveCodec {
     private static int bounded(int n,int min,int max)throws IOException { if(n<min||n>max)throw new IOException("存档字段越界");return n; }
     private static void require(boolean ok,String message)throws IOException { if(!ok)throw new IOException(message); }
     public static void validate(World w)throws IOException {
-        bounded(w.width,1,128);bounded(w.height,1,128);bounded(w.active,0,1);bounded(w.turn,0,100000);bounded(w.winner,-1,1);
+        bounded(w.width,1,128);bounded(w.height,1,128);bounded(w.factions.length,2,32);
+        bounded(w.active,0,w.factions.length-1);bounded(w.player,0,w.factions.length-1);bounded(w.turn,0,100000);bounded(w.winner,-1,w.factions.length-1);
+        require(w.actionPoints.length==w.factions.length,"势力行动力缺失");
+        Set<String> factionNames=new HashSet<>();for(String name:w.factions){label(name,100);require(factionNames.add(name),"势力名称重复");}
+        bounded(w.startYear,1,9999);bounded(w.startMonth,1,12);bounded(w.dataRevision,1,1000000);
+        label(w.scenarioId,80);label(w.scenarioName,100);label(w.dataSource,500);
+        require(w.dataHash!=null&&(w.dataHash.isEmpty()||w.dataHash.matches("[0-9a-f]{64}")),"数据指纹无效");
         bounded(w.nextUnitId,1,10000000);for(int ap:w.actionPoints)bounded(ap,0,60);
         require(!w.cities.isEmpty()&&w.cities.size()<=1000&&w.officers.size()<=10000&&w.units.size()<=10000&&w.log.size()<=40,"记录数量无效");
         for(World.Terrain[] row:w.terrain)for(World.Terrain t:row)require(t!=null,"地形缺失");
         Set<Integer> ids=new HashSet<>();Set<Hex> occupied=new HashSet<>();
         for(World.City c:w.cities) {
             require(ids.add(c.id)&&c.id>=0,"城池ID重复或无效");require(c.name!=null&&!c.name.isEmpty()&&c.name.length()<=100,"城池名无效");
-            require(w.inside(c.hex)&&occupied.add(c.hex),"城池位置冲突");bounded(c.owner,-1,1);
+            require(w.inside(c.hex)&&occupied.add(c.hex)&&w.cost(c.hex,World.Weapon.SPEAR)>0,"城池位置冲突或不可通行");bounded(c.owner,-1,w.factions.length-1);
             bounded(c.gold,0,1000000);bounded(c.food,0,1000000);bounded(c.troops,0,100000);bounded(c.order,0,100);bounded(c.morale,0,100);bounded(c.defense,1,100000);
             for(int amount:c.equipment)bounded(amount,0,100000);
         }
         ids.clear();
         for(World.Officer o:w.officers) {
-            require(ids.add(o.id)&&o.id>=0,"武将ID重复或无效");require(o.name!=null&&!o.name.isEmpty()&&o.name.length()<=100,"武将名无效");bounded(o.owner,0,1);
+            require(ids.add(o.id)&&o.id>=0,"武将ID重复或无效");require(o.name!=null&&!o.name.isEmpty()&&o.name.length()<=100,"武将名无效");bounded(o.owner,0,w.factions.length-1);
             bounded(o.leadership,0,100);bounded(o.war,0,100);bounded(o.intelligence,0,100);bounded(o.politics,0,100);bounded(o.charm,0,100);
             require(o.cityId>=-1&&o.unitId>=-1,"武将驻地无效");
             if(o.cityId>=0)require(o.unitId==-1&&w.city(o.cityId)!=null&&w.city(o.cityId).owner==o.owner,"武将城池归属错误");
@@ -104,11 +119,17 @@ public final class SaveCodec {
         }
         ids.clear();Set<Integer> assigned=new HashSet<>();
         for(World.Unit u:w.units) {
-            require(ids.add(u.id)&&u.id>0&&u.id<w.nextUnitId,"部队ID重复或无效");bounded(u.owner,0,1);
+            require(ids.add(u.id)&&u.id>0&&u.id<w.nextUnitId,"部队ID重复或无效");bounded(u.owner,0,w.factions.length-1);
             require(u.weapon!=null&&w.inside(u.hex)&&w.cost(u.hex,u.weapon)>0&&occupied.add(u.hex),"部队位置冲突或不可通行");
             require(assigned.add(u.officerId),"武将重复带队");World.Officer o=w.officer(u.officerId);
             require(o!=null&&o.owner==u.owner&&o.unitId==u.id&&o.cityId==-1,"部队武将引用错误");
             bounded(u.troops,1,10000);bounded(u.food,0,1000000);bounded(u.energy,0,100);
         }
+        for(String line:w.log)label(line,2000);
+        if(w.winner>=0) {
+            require(w.alive(w.winner),"胜者势力不存在");
+            for(int side=0;side<w.factions.length;side++)if(side!=w.winner)require(!w.alive(side),"仍有敌对势力，不能判定获胜");
+        }
     }
+    private static void label(String value,int max)throws IOException {require(value!=null&&!value.trim().isEmpty()&&value.length()<=max,"文本字段无效");}
 }

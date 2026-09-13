@@ -8,4 +8,5 @@ if command -v javac >/dev/null 2>&1; then
 else
   java -m jdk.compiler/com.sun.tools.javac.Main -encoding UTF-8 --release 17 -d core/build/check @core/build/sources.txt
 fi
-java -cp core/build/check game.sanguo.core.CoreTest
+java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.CoreTest
+java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ScenarioTest

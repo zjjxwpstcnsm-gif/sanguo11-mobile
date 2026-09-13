@@ -2,7 +2,7 @@ package game.sanguo.core;
 
 import java.util.*;
 
-/** M0 test rules, NOT original SAN11 formulas. All commands validate before mutation. */
+/** Engineering rules, NOT original SAN11 formulas. All commands validate before mutation. */
 public final class World {
     public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER }
     public enum Weapon {
@@ -50,14 +50,29 @@ public final class World {
     public final List<Officer> officers=new ArrayList<>();
     public final List<Unit> units=new ArrayList<>();
     public final List<String> log=new ArrayList<>();
-    public final int[] actionPoints={60,60};
+    public final String[] factions;
+    public final int[] actionPoints;
+    public String scenarioId="m0-skirmish", scenarioName="基础演练", dataSource="engineering-original", dataHash="";
+    public int dataRevision=1, startYear=190, startMonth=1, player=0;
     public int turn=0, active=0, nextUnitId=1, winner=-1;
     public World(int width,int height) {
+        this(width,height,"刘备军","曹操军");
+    }
+    public World(int width,int height,String... factions) {
+        if(width<1||width>128||height<1||height>128||factions.length<2||factions.length>32)throw new IllegalArgumentException("地图或势力数量无效");
+        this.factions=factions.clone();actionPoints=new int[factions.length];Arrays.fill(actionPoints,60);
         this.width=width;this.height=height;terrain=new Terrain[width][height];
         for (Terrain[] row:terrain) Arrays.fill(row,Terrain.PLAIN);
     }
-    public String date() { return (190+turn/36)+"年 "+(turn/3%12+1)+"月 "+new String[]{"上旬","中旬","下旬"}[turn%3]; }
-    public String faction(int owner) { return owner==0?"刘备军":owner==1?"曹操军":"空城"; }
+    public String date() { int month=startMonth-1+turn/3;return (startYear+month/12)+"年 "+(month%12+1)+"月 "+new String[]{"上旬","中旬","下旬"}[turn%3]; }
+    public String faction(int owner) { return owner>=0&&owner<factions.length?factions[owner]:"空城"; }
+    public boolean alive(int owner) {
+        for(City c:cities)if(c.owner==owner)return true;
+        for(Unit u:units)if(u.owner==owner)return true;
+        return false;
+    }
+    public boolean gameOver() { return winner>=0||!alive(player); }
+    public City home() { for(City c:cities)if(c.owner==player)return c;return cities.isEmpty()?null:cities.get(0); }
     public boolean inside(Hex h) { return h.q>=0&&h.r>=0&&h.q<width&&h.r<height; }
     public City city(int id) { for(City c:cities) if(c.id==id) return c;return null; }
     public Officer officer(int id) { for(Officer o:officers) if(o.id==id) return o;return null; }
@@ -74,7 +89,7 @@ public final class World {
         return found;
     }
     private String cityError(City c,Officer o,int gold) {
-        if(winner>=0)return "本局已结束";
+        if(gameOver())return "本局已结束";
         if(c==null||c.owner!=active)return "请选择己方城池";
         if(!available(o,c))return "需要一名本旬尚未行动的在城武将";
         if(actionPoints[active]<10)return "行动力不足10";
@@ -152,7 +167,7 @@ public final class World {
         return distances;
     }
     private String unitError(Unit u) {
-        if(winner>=0)return "本局已结束";
+        if(gameOver())return "本局已结束";
         if(u==null||u.owner!=active)return "请选择当前势力的部队";
         if(u.acted)return "这支部队本旬已行动";
         return null;
@@ -186,7 +201,7 @@ public final class World {
         String message=officer(u.officerId).name+"攻城，城防−"+hit;
         if(c.defense==0) {
             int old=c.owner;c.owner=u.owner;c.defense=1500;c.troops=0;c.morale=50;c.order=60;
-            for(Officer o:officers) if(o.cityId==c.id&&o.owner==old){o.cityId=-1;o.acted=true;}
+            for(Officer o:officers) if(o.cityId==c.id&&o.owner==old)retreat(o,c.hex);
             message=c.name+"被"+faction(u.owner)+"攻占";
         }
         checkVictory();return success(message);
@@ -199,12 +214,21 @@ public final class World {
         Officer o=officer(u.officerId);o.unitId=-1;o.cityId=c.id;o.acted=true;units.remove(u);
         return success(o.name+"入城休整");
     }
-    private void removeUnit(Unit u) { Officer o=officer(u.officerId);o.unitId=-1;o.cityId=-1;o.acted=true;units.remove(u); }
+    private void retreat(Officer o,Hex from) {
+        City destination=null;
+        for(City c:cities)if(c.owner==o.owner&&(destination==null||from.distance(c.hex)<from.distance(destination.hex)))destination=c;
+        o.unitId=-1;o.cityId=destination==null?-1:destination.id;o.acted=true;
+    }
+    private void removeUnit(Unit u) { retreat(officer(u.officerId),u.hex);units.remove(u); }
     public Result nextTurn() {
-        if(winner>=0)return fail("本局已结束，请重开");
-        if(active!=0)return fail("等待电脑行动");
-        active=1;reset(1);runAi();
-        if(winner>=0){active=0;return success(winner==0?"测试战场胜利":"测试战场战败");}
+        if(gameOver())return fail("本局已结束，请重开");
+        if(active!=player)return fail("等待电脑行动");
+        for(int offset=1;offset<factions.length;offset++) {
+            active=(player+offset)%factions.length;
+            if(!alive(active))continue;
+            reset(active);runAi();checkVictory();
+            if(gameOver()){active=player;return success(winner==player?"战场胜利":"我方势力已覆灭");}
+        }
         turn++;
         for(Unit u:new ArrayList<>(units)) {
             int consumption=Math.max(1,(u.troops+19)/20);
@@ -218,7 +242,7 @@ public final class World {
             else c.food-=consumption;
             if(turn%3==0){c.gold=Math.min(1000000,c.gold+800);c.food=Math.min(1000000,c.food+5000);}
         }
-        active=0;reset(0);checkVictory();return success(date()+" · 行动力恢复");
+        active=player;reset(player);checkVictory();return success(date()+" · 行动力恢复");
     }
     private void reset(int owner) {
         actionPoints[owner]=60;
@@ -226,49 +250,60 @@ public final class World {
         for(Unit u:units)if(u.owner==owner)u.acted=false;
     }
     private void runAi() {
-        for(City c:cities) if(c.owner==1) {
+        for(City c:cities) if(c.owner==active) {
             List<Officer> available=idle(c);
             if(!available.isEmpty()) {
                 Officer o=available.get(0);
-                if(c.troops>=6000&&c.food>=6000)deploy(c.id,o.id,Weapon.SPEAR,3000);
+                Weapon weapon=null;
+                for(Weapon candidate:Weapon.values())if(c.equipment[candidate.ordinal()]>=3000){weapon=candidate;break;}
+                if(c.troops>=6000&&c.food>=6000&&weapon!=null)deploy(c.id,o.id,weapon,3000);
                 else if(c.order<50)patrol(c.id,o.id);
+                else if(weapon==null)produce(c.id,o.id,Weapon.SPEAR);
                 else recruit(c.id,o.id);
             }
         }
         for(Unit u:new ArrayList<>(units)) {
-            if(winner>=0)break;
+            if(gameOver())break;
+            if(u.owner!=active||u.acted)continue;
             Unit enemy=null;
             for(Unit b:units)if(b.owner!=u.owner&&u.hex.distance(b.hex)<=u.weapon.range){enemy=b;break;}
-            if(u.owner!=1||u.acted)continue;
             if(enemy!=null){attack(u.id,enemy.id);continue;}
-            City target=null;
-            for(City c:cities)if(c.owner!=1&&(target==null||u.hex.distance(c.hex)<u.hex.distance(target.hex)))target=c;
-            if(target==null) {
-                Unit closest=null;
-                for(Unit b:units)if(b.owner!=1&&(closest==null||u.hex.distance(b.hex)<u.hex.distance(closest.hex)))closest=b;
-                if(closest!=null)advance(u,closest.hex);
-                continue;
+            List<City> targets=new ArrayList<>();
+            for(City c:cities)if(c.owner!=active)targets.add(c);
+            targets.sort(Comparator.comparingInt((City c)->u.hex.distance(c.hex)).thenComparingInt(c->c.id));
+            for(City target:targets) {
+                if(u.hex.distance(target.hex)==1){siege(u.id,target.id);break;}
+                if(advance(u,target.hex,1))break;
             }
-            if(u.hex.distance(target.hex)==1)siege(u.id,target.id);else advance(u,target.hex);
+            if(!u.acted)for(Unit b:new ArrayList<>(units))if(b.owner!=active&&advance(u,b.hex,u.weapon.range))break;
         }
     }
-    private void advance(Unit u,Hex target) {
-        Hex best=u.hex;int distance=best.distance(target);
-        for(Hex h:reachable(u).keySet())if(h.distance(target)<distance){best=h;distance=h.distance(target);}
-        if(!best.equals(u.hex))move(u.id,best);
+    /** Plan beyond one turn so AI can detour around rivers and mountains. */
+    private boolean advance(Unit u,Hex target,int range) {
+        Map<Hex,Integer> distances=new HashMap<>();Map<Hex,Hex> previous=new HashMap<>();
+        Set<Hex> blocked=new HashSet<>();for(City c:cities)blocked.add(c.hex);for(Unit b:units)if(b.id!=u.id)blocked.add(b.hex);
+        PriorityQueue<Step> todo=new PriorityQueue<>(Comparator.comparingInt((Step s)->s.cost).thenComparingInt(s->s.hex.q).thenComparingInt(s->s.hex.r));
+        distances.put(u.hex,0);todo.add(new Step(u.hex,0));
+        while(!todo.isEmpty()) {
+            Step step=todo.remove();if(step.cost!=distances.get(step.hex))continue;
+            if(step.hex.distance(target)<=range) {
+                Hex destination=step.hex;
+                while(distances.get(destination)>u.weapon.movement)destination=previous.get(destination);
+                return !destination.equals(u.hex)&&move(u.id,destination).ok;
+            }
+            for(Hex next:step.hex.neighbors()) {
+                int cost=cost(next,u.weapon);if(cost<0||blocked.contains(next))continue;
+                int total=step.cost+cost;
+                if(total<distances.getOrDefault(next,Integer.MAX_VALUE)) {
+                    distances.put(next,total);previous.put(next,step.hex);todo.add(new Step(next,total));
+                }
+            }
+        }
+        return false;
     }
     public void checkVictory() {
-        for(int side=0;side<2;side++) {
-            boolean alive=false;
-            for(City c:cities)if(c.owner==side)alive=true;
-            for(Unit u:units)if(u.owner==side)alive=true;
-            if(!alive){winner=1-side;return;}
-        }
-        for(int side=0;side<2;side++) {
-            boolean all=!cities.isEmpty(),enemy=false;
-            for(City c:cities)if(c.owner!=side)all=false;
-            for(Unit u:units)if(u.owner!=side)enemy=true;
-            if(all&&!enemy){winner=side;return;}
-        }
+        int count=0,last=-1;
+        for(int side=0;side<factions.length;side++)if(alive(side)){count++;last=side;}
+        winner=count==1?last:-1;
     }
 }
