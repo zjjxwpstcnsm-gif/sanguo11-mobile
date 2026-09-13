@@ -16,6 +16,7 @@ public final class MapView extends View {
     private final GestureDetector gestures;
     private final ScaleGestureDetector scaler;
     private World world;
+    private Hex[][] tiles;
     private Hex selected;
     private Map<Hex,Integer> reachable=Collections.emptyMap();
     private final MapCamera camera=new MapCamera();
@@ -39,12 +40,13 @@ public final class MapView extends View {
         });
     }
     public void setWorld(World world,Hex selected,int moving){boolean changed=this.world==null||this.world.width!=world.width||this.world.height!=world.height||!this.world.scenarioId.equals(world.scenarioId);this.world=world;this.selected=selected;this.moving=moving;
+        if(changed){tiles=new Hex[world.width][world.height];for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)tiles[q][r]=new Hex(q,r);}
         reachable=world.reachable(world.unit(moving));if(changed&&getWidth()>0){resizeCamera();fit();}invalidate();}
     private float x(Hex h){return RADIUS*SQRT3*(h.q+h.r*.5f);}
     private float y(Hex h){return RADIUS*1.5f*h.r;}
     private float worldWidth(){return RADIUS*SQRT3*(world.width-1+(world.height-1)*.5f)+RADIUS*2;}
     private float worldHeight(){return RADIUS*1.5f*(world.height-1)+RADIUS*2;}
-    private void resizeCamera(){if(world!=null&&getWidth()>0&&getHeight()>0)camera.resize(getWidth(),getHeight(),worldWidth(),worldHeight(),RADIUS,density);}
+    private void resizeCamera(){if(world!=null&&getWidth()>0&&getHeight()>0)camera.resize(getWidth(),Math.max(1,getHeight()-36*density),worldWidth(),worldHeight(),RADIUS,density);}
     @Override protected void onSizeChanged(int w,int h,int oldw,int oldh){super.onSizeChanged(w,h,oldw,oldh);resizeCamera();applyPendingCamera();}
     public void fit(){if(world==null||getWidth()==0)return;camera.fit();invalidate();}
     public void focus(Hex h){if(world==null||h==null)return;if(getWidth()==0){post(()->focus(h));return;}camera.focus(x(h),y(h));invalidate();}
@@ -92,7 +94,7 @@ public final class MapView extends View {
         boolean detail=scale>=camera.minScale*1.55f;
         canvas.save();canvas.translate(offsetX,offsetY);canvas.scale(scale,scale);
         for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++){
-            Hex h=new Hex(q,r);float cx=x(h),cy=y(h);float sx=cx*scale+offsetX,sy=cy*scale+offsetY;
+            Hex h=tiles[q][r];float cx=x(h),cy=y(h);float sx=cx*scale+offsetX,sy=cy*scale+offsetY;
             if(sx<-RADIUS*scale||sy<-RADIUS*scale||sx>getWidth()+RADIUS*scale||sy>getHeight()+RADIUS*scale)continue;
             World.Terrain t=world.terrain[q][r];int color;
             switch(t){case FOREST:color=Color.rgb(65,90,73);break;case WATER:color=Color.rgb(54,88,108);break;case MOUNTAIN:color=Color.rgb(91,99,91);break;default:color=(q+r)%2==0?Color.rgb(126,132,99):Color.rgb(120,127,94);}

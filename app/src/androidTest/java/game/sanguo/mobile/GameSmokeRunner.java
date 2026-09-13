@@ -76,7 +76,7 @@ public final class GameSmokeRunner extends Instrumentation {
         w=saved();require(w.officer(3000).cityId==310&&w.officer(3002).cityId==310&&w.domestic.missions.stream().noneMatch(m->m.owner==2),"personnel and cargo arrive");
         require(w.city(310).troops==13000&&w.city(310).equipment[0]==13000,"arrival credits cargo exactly once");
         require(w.domestic.facilities.stream().anyMatch(f->f.cityId==300&&f.kind==Domestic.Kind.MARKET&&f.remaining==0),"market completes");
-        locateCity("建业");screenshot("09-arrival");locateCity("柴桑");click("内政",true);waitText("市场 · 已建成",false);screenshot("10-completed");
+        locateCity("建业");screenshot("09-arrival");locateCity("柴桑");click("内政",true);click("市场 · 已建成",false);screenshot("10-completed");click("返回",true);
     }
     private void clickNav(String name){click("导航 · "+name,true);}
     private void endTurn(){click("下一旬  →",true);click("执行",true);waitText("旬结算摘要",true);click("返回",true);}

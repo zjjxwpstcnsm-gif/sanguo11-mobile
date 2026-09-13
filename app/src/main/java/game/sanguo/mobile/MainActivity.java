@@ -117,18 +117,19 @@ public final class MainActivity extends Activity {
         }else {line("山河之间",23,gold);line("点选城池或部队",15,paper);line("单指拖动 · 双指缩放\n双击城池聚焦\n缩小时查看势力，放大查看设施与在途。",14,paper);action("定位本城",v->{if(world.home()!=null)selectAndFocus(world.home().hex);});}
     }
     private void showCity(World.City c){
-        line(c.name,25,gold);line(world.faction(c.owner)+" · 核心驻将 "+UiModels.coreOfficer(world,c.id),13,paper);
-        line("金 "+c.gold+"    粮 "+c.food+"\n兵 "+c.troops+"    城防 "+c.defense,15,paper);
+        boolean compact=!ui.group.equals("概览");
+        line(c.name,compact?21:25,gold);line(world.faction(c.owner)+" · 核心驻将 "+UiModels.coreOfficer(world,c.id),compact?12:13,paper);
+        line(compact?"金 "+c.gold+" · 粮 "+c.food+" · 兵 "+c.troops:"金 "+c.gold+"    粮 "+c.food+"\n兵 "+c.troops+"    城防 "+c.defense,compact?13:15,paper);
         HorizontalScrollView tabs=new HorizontalScrollView(this);tabs.setHorizontalScrollBarEnabled(false);LinearLayout row=new LinearLayout(this);tabs.addView(row);
         for(String name:new String[]{"概览","内政","武将","军事","调动"}){Button b=button(name,v->{ui.group=name;refresh();revealPanel();});b.setTextColor(ui.group.equals(name)?gold:paper);row.addView(b,new LinearLayout.LayoutParams(dp(48),dp(48)));}panel.addView(tabs);tabs.post(()->{int index=Arrays.asList("概览","内政","武将","军事","调动").indexOf(ui.group);tabs.smoothScrollTo(Math.max(0,dp(index*48)-dp(90)),0);});
         boolean own=c.owner==world.player&&!world.gameOver();
         switch(ui.group){
             case "内政":
                 line("设施 "+world.domestic.count(c.id)+"/"+Domestic.CITY_SLOTS+"\n每月收入：金 "+world.domestic.monthlyGold(c.id)+" / 粮 "+world.domestic.monthlyFood(c.id),14,paper);
+                boolean construction=false;
+                for(Domestic.Facility f:world.domestic.facilities)if(f.cityId==c.id){construction|=f.remaining>0;action(f.kind.label+" · "+(f.remaining==0?"已建成":"剩"+f.remaining+"旬"),v->domesticUi().facility(f));}
+                if(!construction)line("当前没有建设中的设施",13,muted);
                 if(own)action("设施开发",v->domesticUi().build(c));
-                boolean construction=false,facilities=false;
-                for(Domestic.Facility f:world.domestic.facilities)if(f.cityId==c.id){facilities=true;construction|=f.remaining>0;action(f.kind.label+" · "+(f.remaining==0?"已建成":"剩"+f.remaining+"旬"),v->domesticUi().facility(f));}
-                if(!facilities)line("当前尚未开发设施",14,muted);if(!construction)line("当前没有建设中的设施",14,muted);
                 if(own)action("巡察  治安+10 · 金100",v->chooseOfficer(c,o->apply(world.patrol(c.id,o.id))));break;
             case "武将":
                 line("可用武将 "+world.idle(c).size()+" / 驻扎 "+UiModels.officerCount(world,c.id),14,paper);
@@ -136,7 +137,7 @@ public final class MainActivity extends Activity {
                 if(UiModels.officerCount(world,c.id)==0)line("当前没有驻扎武将",14,muted);
                 action("筛选本城武将",v->{ui.city=c.id;ui.owner=-1;ui.query="";ui.page="officers";refresh();});break;
             case "军事":
-                line("治安 "+c.order+" · 气力 "+c.morale,14,paper);
+                line("治安 "+c.order+" · 气力 "+c.morale+" · 城防 "+c.defense,13,paper);
                 if(own)for(CityCommand command:militaryCommands(c))action(command.label,v->command.run.run());
                 else line("仅可在己方城池下达军令",14,muted);break;
             case "调动":
