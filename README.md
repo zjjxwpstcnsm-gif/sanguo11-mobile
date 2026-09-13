@@ -4,7 +4,9 @@
 
 ## 当前状态
 
-**v0.2.0 / M1开发中：已加入数据包、选剧本、选势力和三方沙盘。仍是开发试玩版，尚未完成原版完整复刻。**
+**v0.3.0 / 战略层开发：设施开发、人员调动和资源运输已接入原生Android。仍是开发试玩版，尚未完成原版完整复刻。**
+
+新增市场、农场、兵舍、锻冶所；建设占用武将并跨旬完成，实际影响收入、征兵和生产。支持城际人员调动、自定义金粮兵/兵装运输、满仓等待和失守改道。运输是非战斗战略任务，不是原版运输队，不支持战场拦截或水运。[规则与边界](docs/STRATEGY_LAYER.md)
 
 | 剧本 | 地图 | 城池 / 武将 | 可选势力 |
 |---|---|---|---|
@@ -15,7 +17,9 @@
 
 最终要求仍包括全武将、全兵装/战法、全城关港、全国地图、剧本、内政、人事、外交、计略、单挑、舌战、技巧、能力研究、特技、事件、编辑器与完整胜负流程，详见 [功能覆盖表](docs/FEATURES.md)。
 
-[下载本轮APK（ZIP）](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34752984146/artifacts/10316298273) · [构建与安装验证](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34752984146)
+[v0.3.0 APK（ZIP）](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34755189627/artifacts/10317745222) · [成功构建与安装验证](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34755189627)
+
+实际构建代码：`726de6369922f6e5934dbbcc4fcba6ce1128256f`。1196次内核断言、Android编译/Lint、API29 x86_64安装操作、签名检查通过。APK为80,141字节，SHA-256：`1fada126b7c68670c024ebff369c97bf593b8795159d32297347d8e707f57e99`。仓库成员登录可下载构建产物，保留至2026-10-13。
 
 ## 本阶段试玩
 
@@ -23,7 +27,8 @@
 2. 「菜单 → 城池一览 / 定位」优先列出己方城池，点击后放大定位。点己方城池即可征兵、训练、生产和出征。
 3. 点己方部队，再点高亮空地移动；点敌军普攻，点相邻非己方城池攻城，点相邻己方城池回城。弩兵可隔一格普攻，每支部队每旬一次完整行动。
 4. 「下一旬」执行其他存活势力的电脑行动，然后结算粮草、收入并恢复我方行动。结算在后台快照执行，期间阻止重复操作。
-5. 「菜单 → 保存局面 / 读取存档」支持3个手动槽。自动存档在成功操作和进入后台时更新；能读取M0的v1存档，旧手动槽对应现在的槽1。
+5. 「菜单 → 保存局面 / 读取存档」支持3个手动槽。自动存档在成功操作和进入后台时更新；当前写入v3，能读取M0的v1与M1的v2存档，旧手动槽对应现在的槽1。
+6. 点己方城池，向下滑动右侧面板可进入「设施开发 / 人员调动 / 资源运输 / 政务与在途」。菜单也有「政务与在途」；点击任务查看改道/返回，点击设施查看取消/拆除。
 
 ## 数据与存档
 
@@ -40,7 +45,7 @@
 
 Android 构建：安装 JDK 17、Android SDK 35、Build Tools 35.0.0、Gradle 8.11.1，然后运行 `gradle :core:check :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`。当前没有提交 Gradle Wrapper；CI 使用固定版本的 Gradle 安装步骤。
 
-APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；CI 会保存名为 `sanguo11-mobile-m1-apk` 的产物。安装测试证据另存为 `android-smoke-evidence`，包含操作截图与日志。它是开发调试签名，正式发行和后续覆盖升级前需要配置持久签名密钥。不要把密钥提交进仓库。
+APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；CI 会保存名为 `sanguo11-mobile-m1-apk` 的产物。对应提交源码另存为 `sanguo11-mobile-source`。安装测试证据另存为 `android-smoke-evidence`，包含操作截图与日志。它是开发调试签名，正式发行和后续覆盖升级前需要配置持久签名密钥。不要把密钥提交进仓库。
 
 验证范围与待验项目见 [VALIDATION.md](docs/VALIDATION.md)。
 

@@ -24,7 +24,8 @@
 - 本地 JDK21 按 Java17 编译，三组回归 **1196次断言通过（189 + 282 + 725）**。
 - 原有测试方法保留；旧测试中模拟至结束的循环次数受AI变化影响，不以计数增长代表覆盖率。
 - 战略层覆盖失败命令无副作用、建设占用/完成/失守、各类库存满仓等待、自动改道、往返、陆路阻塞、真实v1/v2迁移、三玩家各最多45旬确定性保存续局。
-- Android 编译/Lint/扩展安装操作测试：源码已加入，等待本轮实际CI确认。不得把此项写成已通过。
+- Android编译、Lint、数据包检查、API29 x86_64安装操作、签名检查均已通过。安装流程实际验证开发/调动/运输/在途存读档/到达入库，10张截图及日志已取回。
+- 修复了安装测试发现的重复城池定位侧栏不复位问题，保留原断言重新验证成功。
 - 上一版真实 APK、安装证据和SHA保留在 [v0.2记录](docs/PROGRESS_V0_2.md)。
 
 ### 后续缺口
@@ -34,3 +35,13 @@
 未进行真实ARM手机性能测试；现用临时调试签名，不能保证覆盖安装上一版。持久签名密钥不得提交仓库。
 
 细则见 [战略层说明](docs/STRATEGY_LAYER.md)，历史目标与差异见 [功能覆盖](docs/FEATURES.md)。
+
+## 本轮可下载交付
+
+- 功能提交：`ca3eab0035e9a2013aa06a6813e2cbfbddc42542`。
+- 实际通过构建的代码提交（包含定位修复）：`726de6369922f6e5934dbbcc4fcba6ce1128256f`。
+- [成功CI运行34755189627](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34755189627)，job103718260925。
+- [v0.3.0 APK ZIP](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34755189627/artifacts/10317745222)，内含app-debug.apk和SHA256SUMS；80,141字节APK已取回，SHA-256核对一致：`1fada126b7c68670c024ebff369c97bf593b8795159d32297347d8e707f57e99`。
+- [安装证据](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34755189627/artifacts/10316931136)，10张真实界面截图及SMOKE PASS日志。
+- [精确构建源码](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34755189627/artifacts/10317021550)，已逐字节核对26份运行时代码/测试/构建文件与本地一致。
+- 后续若仅更新文档，不会改变上述已验证APK对应的代码提交。
