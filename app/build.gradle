@@ -13,3 +13,11 @@ android {
     compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
 }
 dependencies { implementation project(':core') }
+
+// Execute plain Java presentation regressions without adding a runtime/test framework dependency.
+tasks.register('verifyPresentation', Exec) {
+    workingDir rootProject.projectDir
+    commandLine 'bash', 'scripts/test-ui-models.sh'
+}
+tasks.named('check').configure { dependsOn 'verifyPresentation' }
+tasks.matching { it.name == 'test' || it.name.endsWith('UnitTest') }.configureEach { dependsOn 'verifyPresentation' }
