@@ -40,7 +40,10 @@ jobs:
       - name: Install Android platform
         run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
       - name: Build and lint Android
-        run: gradle --no-daemon :core:check :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug
+        run: |
+          ./gradlew --no-daemon test :core:check
+          ./gradlew --no-daemon lint
+          ./gradlew --no-daemon assembleDebug :app:assembleDebugAndroidTest
       - name: Check bundled scenario resources
         run: |
           python3 - <<'PY'

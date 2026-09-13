@@ -59,8 +59,14 @@ final class DomesticUi {
         dialog.setOnShowListener(x->dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{
             int[] values=new int[7];try{for(int i=0;i<7;i++){String value=inputs[i].getText().toString().trim();values[i]=value.isEmpty()?0:Integer.parseInt(value);}}
             catch(NumberFormatException e){Toast.makeText(activity,"请输入有效的非负整数",Toast.LENGTH_SHORT).show();return;}
-            World.Result result=w.domestic.transport(c.id,d.id,o.id,values[0],values[1],values[2],Arrays.copyOfRange(values,3,7));
-            apply.accept(result);if(result.ok)dialog.dismiss();
+            Runnable send=()->{World.Result result=w.domestic.transport(c.id,d.id,o.id,values[0],values[1],values[2],Arrays.copyOfRange(values,3,7));apply.accept(result);if(result.ok)dialog.dismiss();};
+            // UX threshold only. Validity/costs are still checked by the engine on execution.
+            boolean large=values[0]>=1000||values[1]>=10000||values[2]>=3000;
+            for(int i=3;i<7;i++)large|=values[i]>=3000;
+            if(large){StringBuilder summary=new StringBuilder(o.name+"："+c.name+" → "+d.name+"\n金 "+values[0]+" / 粮 "+values[1]+" / 兵 "+values[2]);
+                for(int i=3;i<7;i++)if(values[i]>0)summary.append("\n").append(World.Weapon.values()[i-3].label).append("兵装 ").append(values[i]);
+                summary.append("\n另收金100、行动力10；出发后货物从本城扣除。");confirm("确认大额运输",summary.toString(),"确认发送",send);
+            }else send.run();
         }));dialog.show();dialog.getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
     void overview(){
@@ -79,7 +85,7 @@ final class DomesticUi {
         }
         dialog.show();
     }
-    private void mission(Domestic.Mission m){
+    void mission(Domestic.Mission m){
         focus.accept(m.hex);StringBuilder detail=new StringBuilder(w.officer(m.officerId).name+"\n"+w.city(m.sourceCity).name+" → "+w.city(m.targetCity).name+"\n"+w.domestic.status(m)+"\n当前坐标 "+m.hex.q+", "+m.hex.r);
         if(m.transport){detail.append("\n金 ").append(m.gold).append(" / 粮 ").append(m.food).append(" / 兵 ").append(m.troops);for(int i=0;i<4;i++)detail.append('\n').append(World.Weapon.values()[i].label).append("兵装 ").append(m.equipment[i]);}
         detail.append("\n\n战略在途标记，不是可交战运输队。目的地失守自动选择可达己城；无路则等待。满仓保留货物，下一旬重试。");
