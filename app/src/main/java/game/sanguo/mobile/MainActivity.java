@@ -18,6 +18,7 @@ public final class MainActivity extends Activity {
     private World world;
     private MapView map;
     private LinearLayout panel;
+    private ScrollView panelScroll;
     private TextView title,log;
     private Hex selected;
     private int moving=-1;
@@ -43,8 +44,8 @@ public final class MainActivity extends Activity {
         header.addView(button("菜单",v->menu()),new LinearLayout.LayoutParams(dp(80),dp(44)));
         root.addView(header);
         LinearLayout body=new LinearLayout(this);map=new MapView(this,this::onTile);body.addView(map,new LinearLayout.LayoutParams(0,-1,1));
-        ScrollView scroll=new ScrollView(this);scroll.setFillViewport(true);panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);panel.setPadding(dp(12),dp(8),dp(12),dp(10));
-        scroll.addView(panel);body.addView(scroll,new LinearLayout.LayoutParams(dp(226),-1));root.addView(body,new LinearLayout.LayoutParams(-1,0,1));
+        panelScroll=new ScrollView(this);panelScroll.setFillViewport(true);panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);panel.setPadding(dp(12),dp(8),dp(12),dp(10));
+        panelScroll.addView(panel);body.addView(panelScroll,new LinearLayout.LayoutParams(dp(226),-1));root.addView(body,new LinearLayout.LayoutParams(-1,0,1));
         LinearLayout bottom=new LinearLayout(this);bottom.setGravity(Gravity.CENTER_VERTICAL);bottom.setPadding(dp(12),dp(4),dp(8),dp(4));
         log=text("",12,paper);log.setMaxLines(2);bottom.addView(log,new LinearLayout.LayoutParams(0,dp(46),1));
         nextTurn=button("下一旬  →",v->advanceTurn());
@@ -71,7 +72,7 @@ public final class MainActivity extends Activity {
             }
             if(target==null){World.Result result=world.move(source.id,h);if(result.ok)selected=h;apply(result);return;}
         }
-        selected=h;moving=target!=null&&target.owner==world.player?target.id:-1;refresh();
+        selected=h;moving=target!=null&&target.owner==world.player?target.id:-1;refresh();revealPanel();
     }
     private void confirm(String message,Runnable action){new AlertDialog.Builder(this).setMessage(message).setPositiveButton("执行",(d,w)->action.run()).setNegativeButton("取消",null).show();}
     private void apply(World.Result result){
@@ -89,7 +90,7 @@ public final class MainActivity extends Activity {
             Domestic.Facility f=world.domestic.at(selected);line(f.kind.label,24,gold);line(world.city(f.cityId).name,15,paper);
             line(f.remaining==0?f.kind.effect:"建设中 · 剩"+f.remaining+"旬",14,paper);
             action("设施详情 / 管理",v->domesticUi().facility(f));
-            action("返回所属城池",v->{selected=world.city(f.cityId).hex;moving=-1;refresh();map.focus(selected);});
+            action("返回所属城池",v->{selectAndFocus(world.city(f.cityId).hex);});
         }else {
             line("山河之间",23,gold);line("点选城池或部队",15,paper);line("拖动地图 · 双指缩放\n旗帜颜色代表不同势力。菜单中可按城池定位。",13,paper);
         }
@@ -138,7 +139,10 @@ public final class MainActivity extends Activity {
         String[] labels=new String[World.Weapon.values().length];for(int i=0;i<labels.length;i++)labels[i]=World.Weapon.values()[i].label;
         new AlertDialog.Builder(this).setTitle("选择兵种").setItems(labels,(d,index)->callback.choose(World.Weapon.values()[index])).show();
     }
-    private DomesticUi domesticUi(){return new DomesticUi(this,world,this::apply,h->{moving=-1;selected=h;refresh();map.focus(h);});}
+    /** Explicit navigation reveals the destination header even when revisiting the same city. */
+    private void revealPanel(){panelScroll.post(()->panelScroll.scrollTo(0,0));}
+    private void selectAndFocus(Hex h){moving=-1;selected=h;refresh();map.focus(h);revealPanel();}
+    private DomesticUi domesticUi(){return new DomesticUi(this,world,this::apply,this::selectAndFocus);}
     private void menu(){
         if(aiRunning)return;
         new AlertDialog.Builder(this).setTitle("三国 · 研制版").setItems(new String[]{"保存局面（3个槽位）","读取存档","城池一览 / 定位","武将一览","战报","回到全图","新游戏 / 选择势力","版本与范围","政务与在途"},(d,index)->{
@@ -168,7 +172,7 @@ public final class MainActivity extends Activity {
         }catch(IOException e){showError("剧本读取失败",e);}
     }
     private void startScenario(String id,int player){
-        try{World fresh=ScenarioCatalog.load(id,player);world=fresh;moving=-1;selected=world.home().hex;refresh();map.focus(selected);save("auto",false);}
+        try{World fresh=ScenarioCatalog.load(id,player);world=fresh;selectAndFocus(world.home().hex);save("auto",false);}
         catch(IOException e){showError("无法开始剧本",e);}
     }
     private void cityList(){
@@ -176,7 +180,7 @@ public final class MainActivity extends Activity {
         options.sort((a,b)->{int friendly=Boolean.compare(b.owner==world.player,a.owner==world.player);return friendly!=0?friendly:Integer.compare(a.id,b.id);});
         String[] labels=new String[options.size()];
         for(int i=0;i<labels.length;i++){World.City c=options.get(i);labels[i]=c.name+" · "+world.faction(c.owner)+" · 兵"+c.troops;}
-        new AlertDialog.Builder(this).setTitle("城池一览 · 点击定位").setItems(labels,(d,index)->{moving=-1;selected=options.get(index).hex;refresh();map.focus(selected);}).setNegativeButton("返回",null).show();
+        new AlertDialog.Builder(this).setTitle("城池一览 · 点击定位").setItems(labels,(d,index)->{selectAndFocus(options.get(index).hex);}).setNegativeButton("返回",null).show();
     }
     private String slotName(int index){return index==0?"manual":"manual"+(index+1);}
     private void saveSlots(boolean loading){
@@ -231,7 +235,7 @@ public final class MainActivity extends Activity {
         }
     }
     private void loadSlot(String slot){
-        try{World restored=readSave(file(slot));world=restored;moving=-1;selected=world.home().hex;refresh();map.focus(selected);save("auto",false);}
+        try{World restored=readSave(file(slot));world=restored;selectAndFocus(world.home().hex);save("auto",false);}
         catch(IOException e){new AlertDialog.Builder(this).setTitle("读取失败").setMessage(e.getMessage()+"。当前局面未改变。").setPositiveButton("返回",null).show();}
     }
     private void restart(){scenarioPicker();}
