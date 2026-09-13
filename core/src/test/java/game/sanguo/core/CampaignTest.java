@@ -26,7 +26,7 @@ public final class CampaignTest {
     private static void seed(World w,int chance,boolean success){for(int n=0;n<10000;n++){w.strategy.setSeed(n);boolean hit=w.strategy.nextInt(100)<chance;if(hit==success){w.strategy.setSeed(n);return;}}throw new AssertionError("seed not found");}
     private static void caseDone(){cases++;}
     public static void main(String[] args)throws Exception{
-        trade();diplomacy();rumor();research();study();merge();structures();tactics();plots();combat();migration();validation();continuation();
+        trade();diplomacy();rumor();research();study();merge();structures();tactics();plots();combat();techEffects();migration();validation();continuation();
         System.out.println("PASS: "+cases+" campaign cases, "+checks+" assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.");
     }
     private static void trade()throws Exception{
@@ -166,6 +166,24 @@ public final class CampaignTest {
             for(World.Officer o:w.officers)check(Arrays.equals(o.aptitude,new int[]{1,1,1,1}),"legacy aptitude has documented B default");
             byte[] modern=bytes(w);check(modern[7]==5&&Arrays.equals(modern,bytes(SaveCodec.decode(modern))),"v4 upgrades to exact round-tripping v5");caseDone();
         }
+    }
+    private static void learn(World w,int owner,Campaign.Tech tech){if(tech.prerequisite!=null)learn(w,owner,tech.prerequisite);w.campaign.learned.computeIfAbsent(owner,k->EnumSet.noneOf(Campaign.Tech.class)).add(tech);}
+    private static void techEffects()throws Exception{
+        for(Campaign.Tech tech:new Campaign.Tech[]{Campaign.Tech.SPEAR_DRILL,Campaign.Tech.CROSSBOW_DRILL,Campaign.Tech.CAVALRY_DRILL}){
+            World w=fixture();World.Weapon weapon=tech==Campaign.Tech.SPEAR_DRILL?World.Weapon.SPEAR:tech==Campaign.Tech.CROSSBOW_DRILL?World.Weapon.CROSSBOW:World.Weapon.CAVALRY;
+            World.Unit a=unit(w,0,weapon,6,5),b=unit(w,10,World.Weapon.SPEAR,7,5);War.Tactic tactic=weapon==World.Weapon.SPEAR?War.Tactic.THRUST:weapon==World.Weapon.CROSSBOW?War.Tactic.FIRE_ARROW:War.Tactic.CHARGE;
+            seed(w,w.war.tacticChance(a.id,b.id,tactic),true);World enhanced=SaveCodec.decode(bytes(w));learn(enhanced,0,tech);
+            ok(w.war.tactic(a.id,b.id,tactic));ok(enhanced.war.tactic(a.id,b.id,tactic));check(enhanced.unit(b.id).troops<b.troops,"weapon drill increases actual tactic damage with identical RNG");caseDone();
+        }
+        World base=fixture();World.Unit shooter=unit(base,0,World.Weapon.CROSSBOW,6,5),guard=unit(base,10,World.Weapon.HALBERD,8,5);World drill=SaveCodec.decode(bytes(base)),shield=SaveCodec.decode(bytes(base));learn(drill,1,Campaign.Tech.HALBERD_DRILL);learn(shield,1,Campaign.Tech.SHIELD);
+        ok(base.attack(shooter.id,guard.id));ok(drill.attack(shooter.id,guard.id));ok(shield.attack(shooter.id,guard.id));check(guard.troops<drill.unit(guard.id).troops&&drill.unit(guard.id).troops<shield.unit(guard.id).troops,"halberd drill and shield give distinct effective defenses");caseDone();
+        World bow=fixture();World.Unit x=unit(bow,0,World.Weapon.CROSSBOW,6,5),y=unit(bow,10,World.Weapon.SPEAR,9,5);rejected(bow,()->bow.attack(x.id,y.id));learn(bow,0,Campaign.Tech.STRONG_BOW);ok(bow.attack(x.id,y.id));check(y.troops<5000,"strong bow opens extended range in real command");caseDone();
+        World horse=fixture();World.Unit rider=unit(horse,0,World.Weapon.CAVALRY,6,5);Hex destination=new Hex(13,5);check(!horse.reachable(rider).containsKey(destination),"base cavalry cannot travel seven points");learn(horse,0,Campaign.Tech.HORSE_BREEDING);ok(horse.move(rider.id,destination));check(rider.hex.equals(destination),"horse research extends real movement");caseDone();
+        World raid=fixture();World.Unit raider=unit(raid,0,World.Weapon.SPEAR,6,5),victim=unit(raid,10,World.Weapon.SPEAR,7,5);learn(raid,0,Campaign.Tech.SUPPLY_RAID);seed(raid,raid.war.tacticChance(raider.id,victim.id,War.Tactic.THRUST),true);ok(raid.war.tactic(raider.id,victim.id,War.Tactic.THRUST));check(raider.food==11000&&victim.food==9000,"supply raid transfers existing food rather than creating it");caseDone();
+        World normal=fixture();normal.city(10).defense=500;World builders=SaveCodec.decode(bytes(normal));learn(builders,0,Campaign.Tech.ENGINEERING);ok(normal.campaign.repair(10,0));ok(builders.campaign.repair(10,0));check(builders.city(10).defense>normal.city(10).defense&&builders.city(10).gold==normal.city(10).gold,"engineering improves repair for same cost");caseDone();
+        World city=fixture();World.Unit siege=unit(city,0,World.Weapon.SPEAR,15,2);World fortified=SaveCodec.decode(bytes(city));learn(fortified,1,Campaign.Tech.WALLS);ok(city.siege(siege.id,20));ok(fortified.siege(siege.id,20));check(fortified.city(20).defense>city.city(20).defense,"wall technique reduces actual siege damage");caseDone();
+        World fire=fixture();World.Unit target=unit(fire,10,World.Weapon.SPEAR,8,5);fire.war.fires.add(new War.Fire(target.hex,0,2));World stronger=SaveCodec.decode(bytes(fire));learn(stronger,0,Campaign.Tech.FIRE_MASTERY);fire.war.tick();stronger.war.tick();check(stronger.unit(target.id).troops<target.troops,"fire technique improves persistent burn damage");caseDone();
+        World supply=fixture();World.Unit army=unit(supply,0,World.Weapon.SPEAR,4,10);World efficient=SaveCodec.decode(bytes(supply));learn(efficient,0,Campaign.Tech.LOGISTICS);ok(supply.nextTurn());ok(efficient.nextTurn());check(efficient.unit(army.id).food>army.food,"logistics reduces consumption during full turn");caseDone();
     }
     private static void invalid(World w)throws Exception{boolean invalid=false;try{SaveCodec.encode(w);}catch(IOException expected){invalid=true;}check(invalid,"invalid state cannot be saved");}
     private static void validation()throws Exception{
