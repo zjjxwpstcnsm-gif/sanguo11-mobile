@@ -21,3 +21,6 @@ tasks.register('verifyDomestic', JavaExec) {
     mainClass = 'game.sanguo.core.DomesticTest'
 }
 check.dependsOn verifyDomestic
+
+// Independent tactical battle verification (Agent 2).
+apply from: "tactical-battle.gradle"
