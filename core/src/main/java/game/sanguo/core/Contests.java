@@ -156,6 +156,7 @@ public final class Contests {
                 }else loser.deputies=Arrays.stream(loser.deputies).filter(x->x!=beaten.id).toArray();
                 if(jail!=null&&!immune){w.government.capture(beaten,jail);text+=" "+beaten.name+"被俘。";}
                 else {w.retreat(beaten,loser.hex);text+=" "+beaten.name+"撤回后方。";}
+                w.treasures.fallenTreasury(loser.owner,victor.owner);
             }
             text+=" 单挑胜者："+w.officer(d.active(side).officer).name+"。";
         }

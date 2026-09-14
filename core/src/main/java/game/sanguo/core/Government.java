@@ -121,6 +121,7 @@ public final class Government {
             if(caught)capture(o,jail);else w.retreat(o,loser.hex);
         }
         w.units.remove(loser);
+        if(hostile)w.treasures.fallenTreasury(loser.owner,victor.owner);
         if(hostile)for(World.Officer o:w.army.crew(victor))earn(o.id,500);
     }
     void cityCaptured(World.City c,int oldOwner,World.Unit victor){
