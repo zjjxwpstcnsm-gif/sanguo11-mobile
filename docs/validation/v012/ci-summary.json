@@ -1,0 +1,87 @@
+{
+  "date": "2026-09-14",
+  "codeCommit": "880ce7a714d218a850ac7b8f6ed28d82930cda8b",
+  "ciRun": 34822667556,
+  "job": 103907601297,
+  "conclusion": "success",
+  "apk": {
+    "name": "sanguo11-mobile-v012-880ce7a.apk",
+    "bytes": 393569,
+    "sha256": "089118fde9f21d730f1df7f95e408b1cfc73392fbe65949a6c52eebd687ea123",
+    "certificateSha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "v2SignatureVerifiedByCI": true
+  },
+  "v011ActualApkComparison": {
+    "file": "sanguo11-mobile-v011-989dcd4.apk",
+    "apk_sha256": "a0888e0f81fcb40802cf420f64ab090cd6e69d946c3be08434dbb905047faadc",
+    "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24"
+  },
+  "sameCertificateAsV011": true,
+  "upgrade": {
+    "fromCodeVersion": "0.9",
+    "retainedSaveVersion": 8,
+    "writtenSaveVersion": 11,
+    "inPlaceInstallAndStateEquality": true
+  },
+  "ui": {
+    "platform": "Android API29 x86_64",
+    "screenshots": 160,
+    "perConfiguration": {
+      "1080x1920": 53,
+      "1080x2340": 53,
+      "1080x2400": 53,
+      "upgrade": 1
+    },
+    "dimensions": {
+      "(1920, 1080)": 54,
+      "(2340, 1080)": 53,
+      "(2400, 1080)": 53
+    },
+    "smokePassCount": 3,
+    "appFatalExceptions": 0,
+    "appANRs": 0,
+    "armDeviceVerified": false,
+    "visuallyInspected": [
+      "1080x1920/screenshots/51-fieldwork-building.png",
+      "1080x2340/screenshots/52-fieldwork-completed.png",
+      "1080x2400/screenshots/53-tech-branch.png"
+    ]
+  },
+  "sourceArchive": {
+    "comparedFiles": 205,
+    "exactBytesMatchBeforeFinalDocumentation": true,
+    "localCommittedTree": "3ce1166467b41af735ff47b1dc0d0fd1bd35bde7"
+  },
+  "artifacts": [
+    {
+      "id": 10340551478,
+      "name": "sanguo11-mobile-v012-apk",
+      "size": 388853,
+      "digest": "sha256:baa39d280ec117a46c3be7926e648189fd2aa3cf13e60e19e50a56e8b267b77d"
+    },
+    {
+      "id": 10340087398,
+      "name": "android-smoke-evidence",
+      "size": 40629466,
+      "digest": "sha256:9b2e365a2fd51feef0ddfc6a5a8ddee4a5490e1b6ae72c83b102f18a096cf477"
+    },
+    {
+      "id": 10339668476,
+      "name": "android-lint",
+      "size": 17499,
+      "digest": "sha256:9c7b72e10db3ca653b94e33705700301bac6cdc743232056c7eb69ce30ab2966"
+    },
+    {
+      "id": 10339116685,
+      "name": "sanguo11-mobile-source",
+      "size": 664303,
+      "digest": "sha256:b64159f4ad45d2dd36721ec340898e367cea86b6dff954e3abc0711258aa1699"
+    }
+  ],
+  "fullOriginalParity": false,
+  "lint": {
+    "errors": 0,
+    "warnings": 12
+  },
+  "newRulesAssertions": 600
+}

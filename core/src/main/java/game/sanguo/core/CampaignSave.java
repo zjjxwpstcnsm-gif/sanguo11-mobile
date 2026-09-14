@@ -13,7 +13,7 @@ final class CampaignSave {
         d.writeInt(w.units.size());for(World.Unit u:w.units){d.writeInt(u.id);d.writeByte(u.status.ordinal());d.writeInt(u.statusTurns);}
         d.writeInt(w.domestic.facilities.size());for(Domestic.Facility f:w.domestic.facilities){d.writeInt(f.id);d.writeInt(f.level);d.writeInt(f.upgradeTo);}
         d.writeInt(w.factions.length);for(int side=0;side<w.factions.length;side++){
-            d.writeInt(w.campaign.points(side));int mask=0;for(Campaign.Tech t:Campaign.Tech.values())if(w.campaign.has(side,t))mask|=1<<t.ordinal();d.writeInt(mask);
+            d.writeInt(w.campaign.points(side));int mask=0;for(Campaign.Tech t:Campaign.Tech.values())if(t.ordinal()<15&&w.campaign.learned.getOrDefault(side,EnumSet.noneOf(Campaign.Tech.class)).contains(t))mask|=1<<t.ordinal();d.writeInt(mask);
         }
         d.writeInt(w.campaign.treaties.size());for(Campaign.Treaty t:w.campaign.treaties){d.writeInt(t.a);d.writeInt(t.b);d.writeByte(t.kind.ordinal());d.writeInt(t.expires);}
         d.writeInt(w.campaign.projects.size());for(Campaign.Project p:w.campaign.projects){d.writeInt(p.owner);d.writeInt(p.cityId);d.writeInt(p.officerId);d.writeInt(p.tech==null?-1:p.tech.ordinal());d.writeInt(p.study==null?-1:p.study.ordinal());}
@@ -32,8 +32,8 @@ final class CampaignSave {
         require(d.readInt()==w.factions.length,"技巧势力数量错误");
         for(int side=0;side<w.factions.length;side++){
             int points=bound(d.readInt(),0,100000);if(points>0)w.campaign.points.put(side,points);
-            int mask=bound(d.readInt(),0,(1<<Campaign.Tech.values().length)-1);
-            for(Campaign.Tech tech:Campaign.Tech.values())if((mask&(1<<tech.ordinal()))!=0)w.campaign.learned.computeIfAbsent(side,k->EnumSet.noneOf(Campaign.Tech.class)).add(tech);
+            int mask=bound(d.readInt(),0,(1<<15)-1);
+            for(Campaign.Tech tech:Campaign.Tech.values())if(tech.ordinal()<15&&(mask&(1<<tech.ordinal()))!=0)w.campaign.learned.computeIfAbsent(side,k->EnumSet.noneOf(Campaign.Tech.class)).add(tech);
         }
         n=bound(d.readInt(),0,496);Set<Long> pairs=new HashSet<>();
         for(int i=0;i<n;i++){int a=d.readInt(),b=d.readInt();require(a<b&&pairs.add(((long)a<<32)|b),"协定双方顺序或重复错误");w.campaign.treaties.add(new Campaign.Treaty(a,b,Campaign.TreatyKind.values()[bound(d.readUnsignedByte(),0,1)],d.readInt()));}
@@ -52,7 +52,7 @@ final class CampaignSave {
         for(Domestic.Facility f:w.domestic.facilities){bound(f.level,1,3);bound(f.upgradeTo,0,3);require(f.upgradeTo==0||f.remaining>0&&f.upgradeTo==f.level+1&&Domestic.mergeable(f.kind),"设施合并状态错误");}
         for(Map.Entry<Integer,Integer> e:w.campaign.points.entrySet()){bound(e.getKey(),0,w.factions.length-1);bound(e.getValue(),0,100000);}
         for(Map.Entry<Integer,EnumSet<Campaign.Tech>> e:w.campaign.learned.entrySet()){
-            bound(e.getKey(),0,w.factions.length-1);for(Campaign.Tech tech:e.getValue())require(tech.prerequisite==null||e.getValue().contains(tech.prerequisite),"技巧前置缺失");
+            bound(e.getKey(),0,w.factions.length-1);for(Campaign.Tech tech:e.getValue())require(w.campaign.grandfathered(e.getKey(),tech)||tech.prerequisite==null||e.getValue().contains(tech.prerequisite),"技巧前置缺失");
         }
         Set<Long> pairs=new HashSet<>();bound(w.campaign.treaties.size(),0,496);
         for(Campaign.Treaty t:w.campaign.treaties){bound(t.a,0,w.factions.length-1);bound(t.b,0,w.factions.length-1);require(t.a<t.b&&t.kind!=null&&pairs.add(((long)t.a<<32)|t.b),"协定双方错误");bound(t.expires,w.turn,100012);}
@@ -60,12 +60,12 @@ final class CampaignSave {
         for(Campaign.Project p:w.campaign.projects){
             World.City c=w.city(p.cityId);World.Officer o=w.officer(p.officerId);require((p.tech==null)!=(p.study==null),"研究类型冲突");
             require(c!=null&&o!=null&&c.owner==p.owner&&o.owner==p.owner&&o.cityId==c.id&&busy.add(o.id)&&o.otherTaskTurns>0&&o.otherTask.equals(p.label()),"研究武将或城池引用错误");
-            if(p.tech!=null){require(researching.add(p.owner)&&!w.campaign.has(p.owner,p.tech),"重复技巧研究");require(p.tech.prerequisite==null||w.campaign.has(p.owner,p.tech.prerequisite),"研究前置缺失");require(o.otherTaskTurns<=p.tech.turns,"研究工期越界");}
+            if(p.tech!=null){require(researching.add(p.owner)&&!w.campaign.has(p.owner,p.tech),"重复技巧研究");require(w.campaign.grandfathered(p.owner,p.tech)||p.tech.prerequisite==null||w.campaign.has(p.owner,p.tech.prerequisite),"研究前置缺失");require(o.otherTaskTurns<=p.tech.turns,"研究工期越界");}
             else require(o.otherTaskTurns<=3,"培养工期越界");
         }
         bound(w.campaign.traded.size(),0,1000);for(Map.Entry<Integer,Integer> e:w.campaign.traded.entrySet()){require(w.city(e.getKey())!=null,"商人城池引用错误");bound(e.getValue(),1000,20000);require(e.getValue()%1000==0,"交易数量错误");}
         Set<Integer> ids=new HashSet<>();Set<Hex> occupied=new HashSet<>();bound(w.war.nextStructureId,1,10000000);bound(w.war.structures.size(),0,1000);
-        for(War.Structure s:w.war.structures){bound(s.id,1,w.war.nextStructureId-1);bound(s.owner,0,w.factions.length-1);require(s.kind!=null&&ids.add(s.id)&&occupied.add(s.hex)&&w.cost(s.hex,World.Weapon.SPEAR)>0&&w.cityAt(s.hex)==null&&w.unitAt(s.hex)==null&&w.domestic.at(s.hex)==null,"军事设施重叠或位置错误");bound(s.hp,1,s.kind.hp);}
+        for(War.Structure s:w.war.structures){bound(s.id,1,w.war.nextStructureId-1);bound(s.owner,0,w.factions.length-1);require(s.kind!=null&&ids.add(s.id)&&occupied.add(s.hex)&&(s.kind==War.StructureKind.FIRE_SHIP?w.army.water(s.hex):w.cost(s.hex,World.Weapon.SPEAR)>0)&&w.cityAt(s.hex)==null&&w.unitAt(s.hex)==null&&w.domestic.at(s.hex)==null,"军事设施重叠或位置错误");bound(s.hp,1,s.kind.hp);}
         occupied.clear();bound(w.war.fires.size(),0,w.width*w.height);
         for(War.Fire f:w.war.fires){bound(f.owner,0,w.factions.length-1);bound(f.remaining,1,2);require(occupied.add(f.hex)&&w.cost(f.hex,World.Weapon.SPEAR)>0&&w.cityAt(f.hex)==null&&w.domestic.at(f.hex)==null,"火场位置无效");}
     }

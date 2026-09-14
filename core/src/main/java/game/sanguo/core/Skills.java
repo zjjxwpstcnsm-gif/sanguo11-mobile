@@ -62,6 +62,9 @@ public final class Skills {
     public boolean avoidCounter(World.Unit a,Random rng){return has(a,w.army.water(a.hex)?QIANGXI:JIXI)&&rng.nextInt(100)<50;}
     public void onHit(World.Unit source,World.Unit target,int loss,boolean tactic){
         if(loss<=0)return;
+        if(!w.army.water(source.hex)&&source.weapon==World.Weapon.SPEAR&&w.campaign.has(source.owner,Campaign.Tech.SUPPLY_RAID)){
+            int food=Math.min(Math.min(target.food,Math.max(1,loss)),1000000-source.food);target.food-=food;source.food+=food;
+        }
         target.energy=Math.max(0,target.energy-(has(source,WEIFENG)?20:has(source,SAOTAO)?5:0));
         if(tactic&&has(target,NUFA)&&target.troops>0)target.energy=Math.min(w.campaign.energyCap(target.owner),target.energy+5);
         if(has(source,XINGONG)&&source.troops>0)source.troops=Math.max(source.troops,Math.min(w.government.commandLimit(source.officerId),source.troops+loss/10));
@@ -69,7 +72,9 @@ public final class Skills {
     }
     public int fireDamage(World.Unit target,int base,int owner,int power,boolean trap){
         if(has(target,HUOSHEN))return 0;
-        int amount=base*(owner!=target.owner?power:1);
+        int amount=base*power;
+        if(w.campaign.has(target.owner,Campaign.Tech.EXPLOSIVES))amount+=300;
+        if(trap&&w.campaign.has(owner,Campaign.Tech.EXPLOSIVES))amount+=300;
         if(has(target,TENGJIA))amount*=2;
         if(trap&&has(target,TAPO))amount/=2;
         return Math.min(target.troops,amount);
@@ -98,7 +103,7 @@ public final class Skills {
     }
     public void restoreEnergy(){
         for(World.Unit u:w.units){
-            boolean music=false;for(War.Structure s:w.war.structures)if(s.kind==War.StructureKind.MUSIC&&s.owner==u.owner&&s.hex.distance(u.hex)<=2){music=true;break;}
+            boolean music=false;for(War.Structure s:w.war.structures)if(s.complete&&s.kind==War.StructureKind.MUSIC&&s.owner==u.owner&&s.hex.distance(u.hex)<=2){music=true;break;}
             int gain=music?(has(u,SHIXIANG)?20:10):has(u,ZOUYUE)?5:0;
             u.energy=Math.min(w.campaign.energyCap(u.owner),u.energy+gain);
         }

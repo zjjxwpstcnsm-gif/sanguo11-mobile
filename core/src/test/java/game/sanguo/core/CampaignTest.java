@@ -63,9 +63,9 @@ public final class CampaignTest {
         rejected(w,()->w.campaign.rumor(10,1,10));rejected(w,()->w.campaign.rumor(10,1,20));caseDone();
     }
     private static void research()throws Exception{
-        World w=fixture();w.campaign.points.put(0,2000);
+        World w=fixture();w.campaign.points.put(0,3000);
         rejected(w,()->w.campaign.research(10,0,Campaign.Tech.SUPPLY_RAID));int gold=w.city(10).gold;
-        ok(w.campaign.research(10,0,Campaign.Tech.SPEAR_DRILL));check(w.campaign.points(0)==1700&&w.city(10).gold==gold-1000,"research debits exact costs once");
+        ok(w.campaign.research(10,0,Campaign.Tech.SPEAR_DRILL));check(w.campaign.points(0)==2000&&w.city(10).gold==gold-1000,"research debits exact costs once");
         rejected(w,()->w.deploy(10,0,World.Weapon.SPEAR,3000));rejected(w,()->w.campaign.research(10,1,Campaign.Tech.CROSSBOW_DRILL));
         World restored=SaveCodec.decode(bytes(w));for(int i=0;i<2;i++){tick(w);tick(restored);check(!w.campaign.has(0,Campaign.Tech.SPEAR_DRILL),"no early research effect");}
         tick(w);tick(restored);check(w.campaign.has(0,Campaign.Tech.SPEAR_DRILL)&&!w.strategy.busy(0)&&w.campaign.projects().isEmpty(),"research finishes and unlocks actor");
@@ -108,7 +108,7 @@ public final class CampaignTest {
         fire.war.structures.add(new War.Structure(1,0,War.StructureKind.FIRE_SEED,new Hex(6,5),200));fire.war.structures.add(new War.Structure(2,0,War.StructureKind.FIRE_SEED,new Hex(7,5),200));fire.war.nextStructureId=3;
         seed(fire,fire.war.plotChance(caster.id,new Hex(6,5),War.Plot.FIRE),true);ok(fire.war.plot(caster.id,new Hex(6,5),War.Plot.FIRE));
         check(fire.war.structures().isEmpty()&&fire.war.fireAt(enemy.hex)!=null,"fire seed chain ignites neighbors without recursion loop");
-        tick(fire);check(enemy.troops==4750&&friend.troops==4750,"fire hurts enemy and own troops");tick(fire);check(fire.war.fires().isEmpty()&&enemy.troops==4500,"fire lasts two ticks and expires");caseDone();
+        tick(fire);check(enemy.troops==4050&&friend.troops==3350,"fire hurts enemy and own troops");tick(fire);check(fire.war.fires().isEmpty()&&enemy.troops==3800,"fire lasts two ticks and expires");caseDone();
     }
     private static void tactics()throws Exception{
         for(War.Tactic tactic:War.Tactic.values()){
@@ -164,7 +164,7 @@ public final class CampaignTest {
             check(w.city(300).governorId==3001&&w.domestic.facilities.get(0).remaining==2,"real v4 governor/construction survive migration");
             check(w.campaign.projects().isEmpty()&&w.war.fires().isEmpty()&&w.campaign.points(2)==0,"legacy saves don't invent campaign history");
             for(World.Officer o:w.officers)check(Arrays.equals(o.aptitude,new int[]{1,1,1,1,1,1}),"legacy aptitude has documented B default");
-            byte[] modern=bytes(w);check(modern[7]==10&&Arrays.equals(modern,bytes(SaveCodec.decode(modern))),"v4 upgrades to exact round-tripping v9");caseDone();
+            byte[] modern=bytes(w);check(modern[7]==11&&Arrays.equals(modern,bytes(SaveCodec.decode(modern))),"v4 upgrades to exact round-tripping v9");caseDone();
         }
     }
     private static void learn(World w,int owner,Campaign.Tech tech){if(tech.prerequisite!=null)learn(w,owner,tech.prerequisite);w.campaign.learned.computeIfAbsent(owner,k->EnumSet.noneOf(Campaign.Tech.class)).add(tech);}
@@ -179,9 +179,9 @@ public final class CampaignTest {
         ok(base.attack(shooter.id,guard.id));ok(drill.attack(shooter.id,guard.id));ok(shield.attack(shooter.id,guard.id));check(guard.troops==drill.unit(guard.id).troops&&shield.unit(guard.id).troops>=guard.troops,"halberd drill is offensive; shield can block indirect normals");caseDone();
         World bow=fixture();World.Unit x=unit(bow,0,World.Weapon.CROSSBOW,6,5),y=unit(bow,10,World.Weapon.SPEAR,9,5);rejected(bow,()->bow.attack(x.id,y.id));learn(bow,0,Campaign.Tech.STRONG_BOW);ok(bow.attack(x.id,y.id));check(y.troops<5000,"strong bow opens extended range in real command");caseDone();
         World horse=fixture();World.Unit rider=unit(horse,0,World.Weapon.CAVALRY,6,5);Hex destination=new Hex(13,5);check(!horse.reachable(rider).containsKey(destination),"base cavalry cannot travel seven points");learn(horse,0,Campaign.Tech.HORSE_BREEDING);ok(horse.move(rider.id,destination));check(rider.hex.equals(destination),"horse research extends real movement");caseDone();
-        World raid=fixture();World.Unit raider=unit(raid,0,World.Weapon.SPEAR,6,5),victim=unit(raid,10,World.Weapon.SPEAR,7,5);learn(raid,0,Campaign.Tech.SUPPLY_RAID);seed(raid,raid.war.tacticChance(raider.id,victim.id,War.Tactic.THRUST),true);ok(raid.war.tactic(raider.id,victim.id,War.Tactic.THRUST));check(raider.food==11000&&victim.food==9000,"supply raid transfers existing food rather than creating it");caseDone();
+        World raid=fixture();World.Unit raider=unit(raid,0,World.Weapon.SPEAR,6,5),victim=unit(raid,10,World.Weapon.SPEAR,7,5);learn(raid,0,Campaign.Tech.SUPPLY_RAID);seed(raid,raid.war.tacticChance(raider.id,victim.id,War.Tactic.THRUST),true);ok(raid.war.tactic(raider.id,victim.id,War.Tactic.THRUST));check(raider.food>10000&&victim.food<10000&&raider.food+victim.food==20000,"supply raid transfers existing food rather than creating it");caseDone();
         World normal=fixture();normal.city(10).defense=500;World builders=SaveCodec.decode(bytes(normal));learn(builders,0,Campaign.Tech.ENGINEERING);ok(normal.campaign.repair(10,0));ok(builders.campaign.repair(10,0));check(builders.city(10).defense>normal.city(10).defense&&builders.city(10).gold==normal.city(10).gold,"engineering improves repair for same cost");caseDone();
-        World city=fixture();World.Unit siege=unit(city,0,World.Weapon.SPEAR,15,2);World fortified=SaveCodec.decode(bytes(city));learn(fortified,1,Campaign.Tech.WALLS);ok(city.siege(siege.id,20));ok(fortified.siege(siege.id,20));check(fortified.city(20).defense>city.city(20).defense,"wall technique reduces actual siege damage");caseDone();
+        World city=fixture();World.Unit siege=unit(city,0,World.Weapon.SPEAR,15,2);World fortified=SaveCodec.decode(bytes(city));learn(fortified,1,Campaign.Tech.WALLS);ok(city.siege(siege.id,20));ok(fortified.siege(siege.id,20));check(fortified.city(20).defense==city.city(20).defense&&fortified.campaign.defenseCap(fortified.city(20))==city.campaign.defenseCap(city.city(20))+3000,"wall technique raises capacity without inventing damage reduction");caseDone();
         World fire=fixture();World.Unit target=unit(fire,10,World.Weapon.SPEAR,8,5);fire.war.fires.add(new War.Fire(target.hex,0,2));World stronger=SaveCodec.decode(bytes(fire));learn(stronger,0,Campaign.Tech.FIRE_MASTERY);fire.war.tick();stronger.war.tick();check(stronger.unit(target.id).troops==target.troops,"divine fire changes range, not persistent fire damage");caseDone();
         World supply=fixture();World.Unit army=unit(supply,0,World.Weapon.SPEAR,4,10);World efficient=SaveCodec.decode(bytes(supply));learn(efficient,0,Campaign.Tech.LOGISTICS);ok(supply.nextTurn());ok(efficient.nextTurn());check(efficient.unit(army.id).food==army.food&&efficient.campaign.energyCap(0)==120,"veteran troops increase energy cap, not food efficiency");caseDone();
     }

@@ -42,7 +42,7 @@ public final class Government {
     void earn(int officer,int amount){if(w.officer(officer)!=null&&amount>0)merits.put(officer,Math.min(1000000,merit(officer)+amount));}
     public Rank office(int officer){return rank(ranks.get(officer));}
     /** Unappointed officers keep the existing sandbox's 10000 ceiling; assigning an office uses its real cap. */
-    public int commandLimit(int officer){Rank r=office(officer);return r==null?10000:r.troops;}
+    public int commandLimit(int officer){Rank r=office(officer);World.Officer o=w.officer(officer);return (r==null?10000:r.troops)+(o!=null&&w.campaign.has(o.owner,Campaign.Tech.MILITARY_REFORM)?3000:0);}
     public World.Officer advisor(int side){return w.officer(advisors.getOrDefault(side,-1));}
     public Policy policy(int city){return policies.getOrDefault(city,Policy.MANUAL);}
     public String status(int officer){Prisoner p=prisoner(officer);return p==null?"":"被"+w.faction(p.captor)+"俘虏 · 关押于"+w.city(p.cityId).name;}

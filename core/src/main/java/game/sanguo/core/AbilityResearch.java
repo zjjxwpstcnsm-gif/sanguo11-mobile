@@ -154,7 +154,7 @@ public final class AbilityResearch {
     }
     public static boolean skillAvailable(Skill skill){
         // These require systems not present yet; do not silently teach a no-op skill.
-        return !EnumSet.of(Skill.ZHUCHENG,Skill.TIEBI,Skill.WEIYA,Skill.LUNKE,Skill.JIJIAO,Skill.DUNZOU,Skill.GUIMEN,Skill.FENGSHUI,Skill.QIYUAN,Skill.TUNTIAN).contains(skill);
+        return !EnumSet.of(Skill.TIEBI,Skill.WEIYA,Skill.LUNKE,Skill.JIJIAO,Skill.DUNZOU,Skill.GUIMEN,Skill.FENGSHUI,Skill.QIYUAN).contains(skill);
     }
     public int value(int officer,Node n){return n==null?0:w.campaign.studyValue(officer,Campaign.Study.values()[n.category==Category.APTITUDE?n.index+5:Math.max(0,n.index)]);}
     public String trainingError(int city,int officer,String id,boolean overwrite){

@@ -34,8 +34,15 @@ public final class War {
         Plot(String label,int energy,String effect){this.label=label;this.energy=energy;this.effect=effect;}
     }
     public enum StructureKind {
-        CAMP("阵",500,800,"两格内己军受伤 -10%"), ARROW_TOWER("箭楼",800,650,"每旬射击两格内一支敌军"),
-        MUSIC("军乐台",700,500,"每旬恢复两格内己军10气力"), FIRE_SEED("火种",200,200,"受火引爆，点燃周围六格");
+        CAMP("阵",1500,1100,"2格内己军减伤15%、粮耗减少10%"), ARROW_TOWER("箭楼",600,700,"每旬射击2格内一支敌军"),
+        MUSIC("军乐台",800,800,"每旬恢复2格内己军10气力"), FIRE_SEED("火种",200,200,"引爆相邻格，可能伤及己军"),
+        FORT("砦",1500,1100,"3格内己军减伤25%、粮耗减少30%"), FORTRESS("城塞",1500,1100,"4格内己军减伤35%、粮耗减少50%"),
+        CROSSBOW_TOWER("连弩楼",600,700,"每旬射击3格内一支敌军"), CATAPULT_TOWER("投石台",800,1000,"每旬攻击2至3格内一支敌军，邻接为盲区"),
+        DRUM("太鼓台",500,800,"2格内己军攻击伤害增加10%"), STONE_MAZE("石兵八阵",1200,1000,"敌军邻接时可能混乱"),
+        EARTH_WALL("土垒",300,400,"阻挡地块通行"), STONE_WALL("石壁",300,800,"更坚固的通行障碍"),
+        FIRE_BALL("火球",200,200,"沿指定六边形方向引爆3格"), FLAME_SEED("火焰种",200,200,"引爆半径2格"),
+        FLAME_BALL("火焰球",200,200,"沿指定方向引爆5格"), INFERNO_SEED("业火种",200,200,"强化爆炸并造成混乱"),
+        INFERNO_BALL("业火球",200,200,"强化直线爆炸，可穿过军事设施"), FIRE_SHIP("火船",200,200,"在水面设置并引爆" );
         public final String label,effect;public final int gold,hp;
         StructureKind(String label,int gold,int hp,String effect){this.label=label;this.gold=gold;this.hp=hp;this.effect=effect;}
     }
@@ -44,7 +51,7 @@ public final class War {
         Fire(Hex hex,int owner,int remaining){this.hex=hex;this.owner=owner;this.remaining=remaining;}
     }
     public static final class Structure {
-        public final int id,owner;public final StructureKind kind;public final Hex hex;public int hp;
+        public final int id,owner;public StructureKind kind;public final Hex hex;public int hp,builder=-1,direction;public boolean complete=true;
         Structure(int id,int owner,StructureKind kind,Hex hex,int hp){this.id=id;this.owner=owner;this.kind=kind;this.hex=hex;this.hp=hp;}
     }
     final World w;final List<Fire> fires=new ArrayList<>();final List<Structure> structures=new ArrayList<>();int nextStructureId=1;
@@ -55,12 +62,13 @@ public final class War {
     public Structure at(Hex h){for(Structure s:structures)if(s.hex.equals(h))return s;return null;}
     public static String rankLabel(int rank){return new String[]{"C","B","A","S"}[Math.max(0,Math.min(3,rank))];}
     public int range(World.Unit u){return w.army.range(u)+(w.skills.has(u,Skill.SHECHENG)&&!w.army.water(u.hex)&&(u.weapon==World.Weapon.SIEGE_TOWER||u.weapon==World.Weapon.CATAPULT)?1:0)+(!w.army.water(u.hex)&&u.weapon==World.Weapon.CROSSBOW&&w.campaign.has(u.owner,Campaign.Tech.STRONG_BOW)?1:0);}
-    public int movement(World.Unit u){return w.army.movement(u)+w.skills.movementBonus(u)+(!w.army.water(u.hex)&&u.weapon==World.Weapon.CAVALRY&&w.campaign.has(u.owner,Campaign.Tech.HORSE_BREEDING)?1:0);}
+    public int movement(World.Unit u){return w.army.movement(u)+w.skills.movementBonus(u)+(w.campaign.eliteUnit(u)?1:0)+(!w.army.water(u.hex)&&Army.siegeWeapon(u.weapon)&&w.campaign.has(u.owner,Campaign.Tech.AXLE)?1:0)+(!w.army.water(u.hex)&&u.weapon==World.Weapon.CAVALRY&&w.campaign.has(u.owner,Campaign.Tech.HORSE_BREEDING)?1:0);}
     private String actorError(World.Unit u){
         return w.orders.error(u);
     }
     private String targetError(World.Unit a,World.Unit b,int min,int max){
         if(b==null||!w.campaign.hostile(a.owner,b.owner))return "请选择交战势力的部队";
+        if(!w.fieldworks.landTarget(a.owner,b.hex))return "需要难所行军才能攻击该地形上的目标";
         int distance=a.hex.distance(b.hex);return distance<min||distance>max?"敌军不在范围内":null;
     }
     private game.sanguo.core.battle.Terrain terrain(Hex h){
@@ -70,16 +78,18 @@ public final class War {
         int amount=w.army.water(a.hex)||w.army.water(b.hex)||a.weapon.ordinal()>=4||b.weapon.ordinal()>=4?w.army.damage(a,b,scale,rng):DamageCalculator.rawDamage(LegacyWorldBattleAdapter.toBattleUnit(a,w.army.combatOfficer(a),new HexPos(a.hex.q,a.hex.r)),
             LegacyWorldBattleAdapter.toBattleUnit(b,w.army.combatOfficer(b),new HexPos(b.hex.q,b.hex.r)),terrain(a.hex),terrain(b.hex),scale,rng);
 
-        for(Structure s:structures)if(s.owner==b.owner&&s.kind==StructureKind.CAMP&&s.hex.distance(b.hex)<=2){amount=amount*9/10;break;}
+        amount=amount*(100-w.fieldworks.defensePercent(b))/100;
         return Math.max(1,amount);
     }
     private Random random(){return new Random(w.strategy.nextInt(Integer.MAX_VALUE));}
     private void hurt(World.Unit u,int damage){if(w.unit(u.id)==null)return;u.troops=Math.max(0,u.troops-damage);if(u.troops==0)w.removeUnit(u);}
     int physicalDamage(World.Unit a,World.Unit b,double scale,boolean tactic,Random rng){
         if(w.skills.critical(a,b,tactic))scale*=1.15;
+        if(w.campaign.eliteUnit(a))scale*=1.1*1.05;if(w.campaign.eliteUnit(b))scale/=1.1;
+        if(w.fieldworks.drum(a))scale*=1.1;
         if(!w.army.water(a.hex)&&a.weapon.ordinal()<4){Campaign.Tech drill=new Campaign.Tech[]{Campaign.Tech.SPEAR_DRILL,Campaign.Tech.HALBERD_DRILL,Campaign.Tech.CROSSBOW_DRILL,Campaign.Tech.CAVALRY_DRILL}[a.weapon.ordinal()];if(w.campaign.has(a.owner,drill))scale*=1.1;}
         int amount=damage(a,b,scale,rng);
-        if(!tactic&&!w.army.water(b.hex)&&b.weapon==World.Weapon.HALBERD&&a.hex.distance(b.hex)>1&&w.campaign.has(b.owner,Campaign.Tech.SHIELD)&&rng.nextInt(100)<30)return 0;
+        if(!tactic&&!w.army.water(b.hex)&&b.weapon==World.Weapon.HALBERD&&(w.campaign.has(b.owner,Campaign.Tech.LARGE_SHIELD)||a.hex.distance(b.hex)>1&&w.campaign.has(b.owner,Campaign.Tech.SHIELD))&&rng.nextInt(100)<30)return 0;
         if(w.skills.has(b,Skill.TENGJIA))amount=Math.max(1,amount/2);
         if(!tactic&&w.skills.nullifyNormal(b,amount,rng))return 0;
         return Math.min(b.troops,amount);
@@ -96,12 +106,19 @@ public final class War {
         int attacks=w.skills.has(a,Skill.LIANZHAN)&&w.strategy.nextInt(100)<50?2:1;
         for(int i=0;i<attacks&&w.unit(a.id)!=null&&w.unit(b.id)!=null;i++){
             dealt+=strike(a,b,1,false);
-            if(w.unit(b.id)!=null&&a.hex.distance(b.hex)==1&&w.army.counter(b)&&b.status==Status.NORMAL&&!(w.skills.has(a,w.army.water(a.hex)?Skill.QIANGXI:Skill.JIXI)&&w.skills.avoidCounter(a,random())))
+            if(w.unit(b.id)!=null&&canCounter(a,b)&&b.status==Status.NORMAL&&!(w.skills.has(a,w.army.water(a.hex)?Skill.QIANGXI:Skill.JIXI)&&w.skills.avoidCounter(a,random())))
                 counter+=strike(b,a,.5,false);
         }
         int support=supportAttack(a,b);
         w.campaign.earn(a.owner,w.unit(b.id)==null&&w.skills.has(a,Skill.JINGMIAO)?40:20);w.checkVictory();
         return w.success(w.officer(a.officerId).name+"攻击：敌损"+dealt+"，反击损失"+counter+(support>0?"，支援伤害"+support:""));
+    }
+    private boolean canCounter(World.Unit a,World.Unit b){
+        if(!w.army.water(a.hex)&&a.weapon==World.Weapon.SPEAR&&w.terrain[a.hex.q][a.hex.r]==World.Terrain.FOREST&&w.campaign.has(a.owner,Campaign.Tech.FOREST_AMBUSH))return false;
+        if(a.hex.distance(b.hex)==1&&w.army.counter(b))return true;
+        return !w.army.water(b.hex)&&b.weapon==World.Weapon.CROSSBOW&&w.campaign.has(b.owner,Campaign.Tech.RETURN_FIRE)&&a.hex.distance(b.hex)<=range(b)&&
+            (a.weapon==World.Weapon.CROSSBOW||a.hex.distance(b.hex)>1)&&
+            (w.terrain[a.hex.q][a.hex.r]!=World.Terrain.FOREST||w.skills.has(b,Skill.SHESHOU));
     }
     private int supportAttack(World.Unit attacker,World.Unit target){
         if(w.unit(attacker.id)==null||w.unit(target.id)==null)return 0;int damage=0;
@@ -148,7 +165,6 @@ public final class War {
             if(splash)victims.add(u);
         }
         double multiplier=tactic.multiplier;
-        if(a.weapon==World.Weapon.SPEAR&&w.campaign.has(a.owner,Campaign.Tech.SUPPLY_RAID)){int food=Math.min(Math.min(b.food,1000),1000000-a.food);b.food-=food;a.food+=food;}
         int dealt=0;for(World.Unit victim:victims){int hit=strike(a,victim,multiplier,true);dealt+=hit;}
         switch(tactic){
             case THRUST:push(a,b,origin,targetHex,1,false);break;case DOUBLE_THRUST:push(a,b,origin,targetHex,2,false);break;
@@ -172,7 +188,9 @@ public final class War {
     private void push(World.Unit a,World.Unit b,Hex origin,Hex target,int steps,boolean follow){
         int dq=target.q-origin.q,dr=target.r-origin.r;
         for(int i=0;i<steps&&w.unit(b.id)!=null;i++){
-            Hex old=b.hex,next=add(old,dq,dr);if(!vacant(next,b.weapon)){World.Unit collision=w.unitAt(next);hurt(b,100);if(collision!=null&&(collision.owner==a.owner||w.campaign.hostile(a.owner,collision.owner)))hurt(collision,100);break;}b.hex=next;if(follow)a.hex=old;
+            Hex old=b.hex,next=add(old,dq,dr);Structure trap=at(next);
+            if(trap!=null&&trap.complete&&w.fieldworks.trap(trap.kind)&&w.campaign.hostile(a.owner,trap.owner)){b.hex=next;ignite(next,a);if(follow)a.hex=old;continue;}
+            if(!vacant(next,b.weapon)){World.Unit collision=w.unitAt(next);hurt(b,100);if(collision!=null&&(collision.owner==a.owner||w.campaign.hostile(a.owner,collision.owner)))hurt(collision,100);break;}b.hex=next;if(follow)a.hex=old;
         }
         if(follow&&w.unit(b.id)==null&&vacant(target,a.weapon))a.hex=target;
     }
@@ -189,7 +207,7 @@ public final class War {
         if(plot==Plot.EXTINGUISH)return fireAt(target)==null?"目标没有火焰":null;
         if(plot==Plot.CALM)return b==null||b.owner!=a.owner||b.status==Status.NORMAL?"请选择异常状态的己方部队":null;
         if(plot==Plot.FIRE){
-            if(w.cost(target,World.Weapon.SPEAR)<0||w.cityAt(target)!=null||w.domestic.at(target)!=null)return "此地无法放火";
+            if((w.cost(target,World.Weapon.SPEAR)<0&&!(at(target)!=null&&at(target).kind==StructureKind.FIRE_SHIP))||w.cityAt(target)!=null||w.domestic.at(target)!=null)return "此地无法放火";
             Structure s=at(target);if(b!=null&&!w.campaign.hostile(a.owner,b.owner)||s!=null&&s.owner!=a.owner&&!w.campaign.hostile(a.owner,s.owner))return "不能对友军或协定势力放火";
             return fireAt(target)!=null?"目标已起火":null;
         }
@@ -238,17 +256,9 @@ public final class War {
         }
         return true;
     }
-    private void ignite(Hex target,World.Unit source){
-        int owner=source.owner,power=w.skills.has(source,Skill.HUOSHEN)?2:1;
-        boolean trap=at(target)!=null&&at(target).kind==StructureKind.FIRE_SEED;
-        ArrayDeque<Hex> queue=new ArrayDeque<>();Set<Hex> visited=new HashSet<>();queue.add(target);
-        while(!queue.isEmpty()){
-            Hex h=queue.remove();if(!visited.add(h)||w.cost(h,World.Weapon.SPEAR)<0||w.cityAt(h)!=null||w.domestic.at(h)!=null)continue;
-            Structure s=at(h);if(s!=null&&s.owner!=owner&&!w.campaign.hostile(owner,s.owner))continue;
-            Fire old=fireAt(h);if(old!=null)fires.remove(old);Fire flame=new Fire(h,owner,2);flame.power=power;flame.trap=trap||s!=null&&s.kind==StructureKind.FIRE_SEED;fires.add(flame);
-            if(s!=null&&s.kind==StructureKind.FIRE_SEED){structures.remove(s);queue.addAll(h.neighbors());w.note("火种引爆，火势蔓延");}
-        }
-    }
+    void ignite(Hex target,World.Unit source){w.fieldworks.ignite(target,source);}
+    /** Legacy city-based fixture helper. Android gameplay uses Fieldworks.build with unit gold. */
+    @Deprecated
     public List<Hex> buildSites(int city){
         World.City c=w.city(city);List<Hex> result=new ArrayList<>();if(c==null)return result;
         for(int q=Math.max(0,c.hex.q-3);q<=Math.min(w.width-1,c.hex.q+3);q++)for(int r=Math.max(0,c.hex.r-3);r<=Math.min(w.height-1,c.hex.r+3);r++){
@@ -265,8 +275,8 @@ public final class War {
         World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return w.fail(error);Structure s=at(h);
         if(s==null||!w.campaign.hostile(u.owner,s.owner)||u.hex.distance(h)>range(u))return w.fail("请选择射程内敌方军事设施");
         if(!w.army.canAttackUnit(u))return w.army.tactic(unit,h,w.army.tactics(u).get(0));
-        int damage=Math.min(s.hp,200+w.army.war(u)*2);u.acted=true;s.hp-=damage;
-        if(s.hp<=0)structures.remove(s);w.campaign.earn(u.owner,20);return w.success("攻击"+s.kind.label+"，耐久减少"+damage);
+        int damage=Math.min(s.hp,w.campaign.constructionDamage(u,200+w.army.war(u)*2));u.acted=true;s.hp-=damage;
+        if(s.hp<=0)structures.remove(s);else w.fieldworks.counter(s,u);w.campaign.earn(u.owner,20);return w.success("攻击"+s.kind.label+"，耐久减少"+damage);
     }
     public World.Result removeStructure(int city,int officer,int id){
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
@@ -295,9 +305,9 @@ public final class War {
         for(Structure s:new ArrayList<>(structures)){
             if(!w.alive(s.owner)){structures.remove(s);continue;}
             // Music restoration is deduplicated per unit below, including skill priority.
-            if(s.kind==StructureKind.ARROW_TOWER)for(World.Unit u:new ArrayList<>(w.units))if(w.campaign.hostile(s.owner,u.owner)&&u.hex.distance(s.hex)<=2){hurt(u,200);w.note("箭楼射击敌军，损失200兵");break;}
+
         }
-        w.skills.restoreEnergy();
+        w.fieldworks.towers();w.skills.restoreEnergy();
     }
     boolean aiAction(World.Unit u,World.Unit enemy){
         if(u.acted||u.status!=Status.NORMAL)return false;

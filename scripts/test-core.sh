@@ -25,3 +25,5 @@ java -cp core/build/check:core/src/main/resources:core/src/test/resources game.s
 java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ContestTest
 
 java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.AbilityResearchTest
+
+java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.TechnologyFieldworksTest

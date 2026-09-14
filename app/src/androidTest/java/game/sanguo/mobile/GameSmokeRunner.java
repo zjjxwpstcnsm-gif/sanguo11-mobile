@@ -19,7 +19,7 @@ public final class GameSmokeRunner extends Instrumentation {
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
-            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v10 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
+            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v11 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
@@ -46,6 +46,7 @@ public final class GameSmokeRunner extends Instrumentation {
             require(Arrays.equals(before,SaveCodec.encode(saved())),"corrupt load leaves autosave unchanged");
             runOnMainSync(current::recreate);waitText("区域争雄  ·  孙权军",false);waitForIdleSync();
             assertWorld(2,1,"regional-sandbox");screenshot("05-restored");
+            fieldworkFlow();
             abilityFlow();
             strategicFlow();
             mobileFlow();
@@ -57,7 +58,7 @@ public final class GameSmokeRunner extends Instrumentation {
             governmentFlow();
             documentTransferFlow();
             contestFlow();
-            result.putString("stream","SMOKE PASS: v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            result.putString("stream","SMOKE PASS: v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -229,10 +230,10 @@ public final class GameSmokeRunner extends Instrumentation {
         java.lang.reflect.Field field=MainActivity.class.getDeclaredField("world");field.setAccessible(true);World[] loaded=new World[1];
         runOnMainSync(()->{try{loaded[0]=(World)field.get(current);}catch(IllegalAccessException e){throw new RuntimeException(e);}});
         require(Arrays.equals(before,SaveCodec.encode(loaded[0])),"upgraded app actually loaded all old state");
-        require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=11,"new app version installed");
+        require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=12,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
-        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==10,"upgraded writer produced v10 header");}
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==11,"upgraded writer produced v11 header");}
         screenshot("00-v09-upgrade-preserved");
     }
     private void contestFlow()throws Exception {
@@ -275,6 +276,26 @@ public final class GameSmokeRunner extends Instrumentation {
         click("留情 · 技巧+50",true);require(!saved().contests.busy()&&saved().officer(6).owner==0&&saved().campaign.points(0)==50,"native mercy choice recruits officer and awards points once");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("文武对决",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"settled debate does not pay rewards twice");screenshot("47-contest-settled");
     }
+    private void fieldworkFlow()throws Exception {
+        World w=ScenarioCatalog.load("fieldworks-drill",0);w.city(20).troops=0;w.city(21).troops=0;
+        World.Unit enemy=w.unit(2);enemy.hex=new Hex(23,17);enemy.acted=true;
+        installFixture(w,w.unit(1).hex);click("设置军事设施",true);click("阵 · 金1500",true);click("7,5",true);
+        byte[] before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"fieldwork cancel is pure");
+        click("设置军事设施",true);click("阵 · 金1500",true);click("7,5",true);click("执行",true);
+        w=saved();War.Structure s=w.war.at(new Hex(7,5));require(s!=null&&!s.complete&&s.builder==1&&w.unit(1).gold==8500,"UI construction uses carried gold and incomplete structure");screenshot("51-fieldwork-building");
+        before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("筑垒研兵",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"construction and carried gold survive recreation");
+        click("中止施工",true);click("执行",true);int hp=saved().war.at(new Hex(7,5)).hp;
+        endTurn();waitForTurn(1);require(saved().war.at(new Hex(7,5)).hp==hp,"stopped construction does not progress");
+        tapHex(saved().unit(1).hex);click("补修军事设施",true);click("阵 ·",false);click("执行",true);
+        endTurn();waitForTurn(2);require(saved().war.at(new Hex(7,5)).complete,"actual turn completes resumed repair");screenshot("52-fieldwork-completed");
+        locateCity("工营主城");click("研究",true);click("技巧研究",true);click("发明",true);click("车轴强化 ·",false);click("工营统领 ·",false);
+        before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"tech group preview is pure");
+        locateCity("工营主城");click("研究",true);click("技巧研究",true);click("发明",true);click("车轴强化 ·",false);click("工营统领 ·",false);click("执行",true);
+        require(saved().campaign.projects().size()==1&&saved().campaign.projects().get(0).tech==Campaign.Tech.AXLE,"real first-tier invention research started");
+        for(int turn=3;turn<=5;turn++){endTurn();waitForTurn(turn);}require(saved().campaign.has(0,Campaign.Tech.AXLE),"UI research completes");
+        locateCity("工营主城");click("研究",true);click("技巧研究",true);click("发明",true);waitText("石造建筑 ·",false);screenshot("53-tech-branch");click("取消",true);
+        before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("筑垒研兵",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"new research and completed works persist");
+    }
     private void abilityFlow()throws Exception {
         World w=new World(20,14,"学营","守营");w.scenarioId="pk-smoke";w.scenarioName="PK培养演练";
         w.cities.add(new World.City(10,"学宫",new Hex(2,2),0));w.cities.add(new World.City(20,"守城",new Hex(17,11),1));
@@ -311,7 +332,7 @@ public final class GameSmokeRunner extends Instrumentation {
     private void armyCity(){clickNav("城市");click("江东大营 · 江东军",false);click("军事",true);}
     private void fillFormation(){
         armyCity();click("编队 / 水陆出征",true);click("孙权 ·",false);click("周瑜 ·",false);click("甘宁 ·",false);click("鲁肃 ·",false);
-        click("下一步",true);click("冲车 ·",false);click("楼船 ·",false);click("3000人",true);click("18000粮",true);
+        click("下一步",true);click("冲车 ·",false);click("楼船 ·",false);click("3000人",true);click("18000粮",true);click("0金",true);
     }
     private void armyFlow()throws Exception {
         click("菜单",true);click("新游戏 / 选择势力",true);click("水陆攻防 ·",false);click("江东军",true);click("执行",true);

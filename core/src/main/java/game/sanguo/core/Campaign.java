@@ -7,24 +7,57 @@ public final class Campaign {
     public enum TreatyKind { CEASEFIRE("停战"), ALLIANCE("同盟");
         public final String label; TreatyKind(String label){this.label=label;}
     }
+    /** The first 15 ordinals are the immutable v5-v10 wire format. New saves use names. */
     public enum Tech {
-        SPEAR_DRILL("枪兵锻炼",300,1000,3,null,"枪兵战法伤害 +10%"),
-        HALBERD_DRILL("戟兵锻炼",300,1000,3,null,"戟兵普通攻击与战法伤害 +10%"),
-        CROSSBOW_DRILL("弩兵锻炼",300,1000,3,null,"弩兵战法伤害 +10%"),
-        CAVALRY_DRILL("骑兵锻炼",300,1000,3,null,"骑兵战法伤害 +10%"),
-        SUPPLY_RAID("兵粮袭击",500,1500,4,SPEAR_DRILL,"枪兵成功战法夺取目标最多1000粮"),
-        SHIELD("矢盾",500,1500,4,HALBERD_DRILL,"戟兵30%概率挡住间接普通攻击"),
-        STRONG_BOW("强弩",700,2000,5,CROSSBOW_DRILL,"弩兵普通攻击与战法射程 +1"),
-        HORSE_BREEDING("良马产出",500,1500,4,CAVALRY_DRILL,"骑兵每旬移动 +1"),
-        ENGINEERING("工兵育成",400,1200,3,null,"城防修复效果 +50%"),
-        WALLS("城壁强化",600,1800,4,ENGINEERING,"攻城受到的城防伤害 -20%"),
-        FIRE_MASTERY("神火计",600,1800,4,null,"火计基础范围扩至3格"),
-        LOGISTICS("熟练兵",400,1200,3,null,"部队与据点气力上限提高至120"),
-        WOODEN_BEAST("开发木兽",800,2000,4,ENGINEERING,"工房可制造木兽"),
-        CATAPULT("开发投石",1000,2500,5,ENGINEERING,"工房可制造投石"),
-        WARSHIP("开发斗舰",800,2000,4,ENGINEERING,"造船厂可制造斗舰");
-        public final String label,effect; public final int points,gold,turns; public final Tech prerequisite;
-        Tech(String label,int points,int gold,int turns,Tech prerequisite,String effect){this.label=label;this.points=points;this.gold=gold;this.turns=turns;this.prerequisite=prerequisite;this.effect=effect;}
+        SPEAR_DRILL("枪兵锻炼",0,1,"枪兵普攻与战法伤害增加10%"),
+        HALBERD_DRILL("戟兵锻炼",1,1,"戟兵普攻与战法伤害增加10%"),
+        CROSSBOW_DRILL("弩兵锻炼",2,1,"弩兵普攻与战法伤害增加10%"),
+        CAVALRY_DRILL("骑兵锻炼",3,1,"骑兵普攻与战法伤害增加10%"),
+        SUPPLY_RAID("兵粮袭击",0,2,"枪兵造成攻击伤害时夺取敌军兵粮"),
+        SHIELD("矢盾",1,2,"戟兵30%概率阻挡间接普攻"),
+        STRONG_BOW("强弩",2,3,"弩兵普攻与战法射程增加1格"),
+        HORSE_BREEDING("良马产出",3,2,"骑兵移动力提高"),
+        ENGINEERING("工兵育成",6,1,"据点自动补修提高至基础的2.5倍"),
+        WALLS("城壁强化",6,3,"据点耐久上限增加3000；阵系升级为城塞"),
+        FIRE_MASTERY("神火计",7,2,"火计基础范围扩至3格"),
+        LOGISTICS("熟练兵",4,1,"部队与据点气力上限120"),
+        WOODEN_BEAST("开发木兽",7,1,"可制造木兽"),
+        CATAPULT("开发投石",5,3,"可制造投石、斗舰及建造投石台"),
+        WARSHIP("开发斗舰",-1,0,"保留旧版独立研究；新局由开发投石解锁"),
+        FOREST_AMBUSH("奇袭",0,3,"枪兵在森林发起普通攻击不受反击"),
+        ELITE_SPEAR("精锐枪兵",0,4,"枪兵攻防、移动与伤害提高"),
+        LARGE_SHIELD("大盾",1,3,"戟兵30%概率阻挡普通攻击；与矢盾不重复抽签"),
+        ELITE_HALBERD("精锐戟兵",1,4,"戟兵攻防、移动与伤害提高"),
+        RETURN_FIRE("应射",2,2,"弩兵受到射击时可在自身射程内反击"),
+        ELITE_CROSSBOW("精锐弩兵",2,4,"弩兵攻防、移动与伤害提高"),
+        MOUNTED_ARCHERY("骑射",3,3,"骑兵可进行2格弓攻击"),
+        ELITE_CAVALRY("精锐骑兵",3,4,"骑兵攻防、移动与伤害提高"),
+        DIFFICULT_MARCH("难所行军",4,2,"允许通过间道、浅滩；免疫栈道行军损失"),
+        MILITARY_REFORM("军制改革",4,3,"主将统兵上限增加3000"),
+        SIEGE_LADDERS("云梯",4,4,"普通陆军对据点伤害增加40%；兵器舰船增加20%"),
+        AXLE("车轴强化",5,1,"陆上攻城兵器移动力提高"),
+        STONE_BUILDING("石造建筑",5,2,"可建石兵八阵；土垒升级为石壁"),
+        THUNDERBOLT("霹雳",5,4,"投石波及目标邻接格，可能误伤己方"),
+        FACILITY_REINFORCEMENT("设施强化",6,2,"阵升级为砦、箭楼升级为连弩楼"),
+        DEFENSE_REINFORCEMENT("防卫强化",6,4,"据点与阵系设施反击伤害翻倍"),
+        GUNPOWDER("火药炼成",7,3,"火种、火球升级为火焰种、火焰球"),
+        EXPLOSIVES("爆药炼成",7,4,"解锁业火陷阱，着火伤害额外提高"),
+        WOODEN_OX("木牛流马",8,1,"运输任务移动加快"),
+        PORT_EXPANSION("港关扩张",8,2,"港关金粮容量提高4倍，兵与兵装提高2倍"),
+        ADMINISTRATION("政令整备",8,3,"降低征兵、流言造成的治安损失"),
+        POPULAR_SUPPORT("人心掌握",8,4,"降低日常、流言造成的忠诚损失");
+        public static final String[] BRANCHES={"枪兵","戟兵","弩兵","骑兵","练兵","发明","防卫","火攻","内政（PK）"};
+        public final String label,effect; public final int branch,level,points,gold,turns;
+        public Tech prerequisite;
+        Tech(String label,int branch,int level,String effect){
+            this.label=label;this.branch=branch;this.level=level;this.effect=effect;
+            points=level==0?800:new int[]{1000,2000,3000,5000}[level-1];
+            gold=level==0?2000:new int[]{1000,2000,5000,10000}[level-1];
+            turns=level==0?4:level+2; // Engineering duration; executable timing is not yet calibrated.
+        }
+        static {for(Tech t:values())if(t.level>1)for(Tech prior:values())if(prior.branch==t.branch&&prior.level==t.level-1)t.prerequisite=prior;}
+        public static List<Tech> branch(int branch){List<Tech> out=new ArrayList<>();for(Tech t:values())if(t.branch==branch)out.add(t);out.sort(Comparator.comparingInt(t->t.level));return Collections.unmodifiableList(out);}
+        public static List<Tech> researchable(){List<Tech> out=new ArrayList<>();for(int i=0;i<BRANCHES.length;i++)out.addAll(branch(i));return Collections.unmodifiableList(out);}
     }
     public enum Study {
         LEADERSHIP("统率",0), WAR("武力",1), INTELLIGENCE("智力",2), POLITICS("政治",3), CHARM("魅力",4),
@@ -44,13 +77,27 @@ public final class Campaign {
     final List<Treaty> treaties=new ArrayList<>();
     final List<Project> projects=new ArrayList<>();
     final Map<Integer,EnumSet<Tech>> learned=new TreeMap<>();
+    final Map<Integer,EnumSet<Tech>> legacyTechs=new TreeMap<>();
     final Map<Integer,Integer> points=new TreeMap<>(),traded=new TreeMap<>();
     Campaign(World w){this.w=w;}
     public List<Project> projects(){return Collections.unmodifiableList(projects);}
     public int energyCap(int side){return has(side,Tech.LOGISTICS)?120:100;}
     public int points(int side){return points.getOrDefault(side,0);}
     void earn(int side,int amount){if(side>=0&&side<w.factions.length&&amount>0)points.put(side,Math.min(100000,points(side)+amount));}
-    public boolean has(int side,Tech tech){return learned.getOrDefault(side,EnumSet.noneOf(Tech.class)).contains(tech);}
+    public boolean has(int side,Tech tech){EnumSet<Tech> set=learned.getOrDefault(side,EnumSet.noneOf(Tech.class));return set.contains(tech)||tech==Tech.WARSHIP&&set.contains(Tech.CATAPULT);}
+    boolean grandfathered(int side,Tech tech){return legacyTechs.getOrDefault(side,EnumSet.noneOf(Tech.class)).contains(tech);}
+    public int defenseCap(World.City c){return Math.min(100000,c.baseDefense+(has(c.owner,Tech.WALLS)?3000:0));}
+    public int goldCap(World.City c){return c.kind==World.SiteKind.CITY?1000000:has(c.owner,Tech.PORT_EXPANSION)?40000:10000;}
+    public int foodCap(World.City c){return c.kind==World.SiteKind.CITY?1000000:has(c.owner,Tech.PORT_EXPANSION)?400000:100000;}
+    public int troopCap(World.City c){return c.kind==World.SiteKind.CITY?100000:has(c.owner,Tech.PORT_EXPANSION)?60000:30000;}
+    public int equipmentCap(World.City c,World.Weapon weapon){return Army.siegeWeapon(weapon)?100:troopCap(c);}
+    public int orderLoss(int owner,int base){return has(owner,Tech.ADMINISTRATION)?(base+1)/2:base;}
+    public int loyaltyLoss(int owner,int base){return has(owner,Tech.POPULAR_SUPPORT)?(base+1)/2:base;}
+    public Tech elite(World.Unit u){if(w.army.water(u.hex)||u.weapon.ordinal()>3)return null;return new Tech[]{Tech.ELITE_SPEAR,Tech.ELITE_HALBERD,Tech.ELITE_CROSSBOW,Tech.ELITE_CAVALRY}[u.weapon.ordinal()];}
+    public boolean eliteUnit(World.Unit u){Tech t=elite(u);return t!=null&&has(u.owner,t);}
+    int constructionDamage(World.Unit u,int amount){return has(u.owner,Tech.SIEGE_LADDERS)?amount*(w.army.water(u.hex)||Army.siegeWeapon(u.weapon)?120:140)/100:amount;}
+    void finishTech(int owner,Tech tech){learned.computeIfAbsent(owner,k->EnumSet.noneOf(Tech.class)).add(tech);w.fieldworks.upgrade(owner);}
+
     public Treaty treaty(int a,int b){for(Treaty t:treaties)if(t.a==Math.min(a,b)&&t.b==Math.max(a,b)&&t.expires>w.turn)return t;return null;}
     public boolean hostile(int a,int b){return a!=b&&(a<0||b<0||treaty(a,b)==null);}
     public String relationLabel(int a,int b){if(a==b)return "本势力";if(a<0||b<0)return "未占领";Treaty t=treaty(a,b);return (t==null?"交战":t.kind.label+" · 剩"+(t.expires-w.turn)+"旬")+" · 关系 "+w.strategy.factionRelation(a,b);}
@@ -95,7 +142,7 @@ public final class Campaign {
         if(target==null||target.owner<0||!hostile(c.owner,target.owner))return w.fail("请选择交战势力的城池");
         if(c.hex.distance(target.hex)>12)return w.fail("目标超出流言范围12格");
         int chance=rumorChance(officer,targetCity);w.spend(c,o,300);boolean success=w.strategy.nextInt(100)<chance;relation(c.owner,target.owner,-5);
-        if(success){target.order=Math.max(0,target.order-10);for(World.Officer t:w.officers)if(t.cityId==target.id&&t.owner==target.owner&&t.role!=Strategy.Role.RULER)t.loyalty=Math.max(0,t.loyalty-5);earn(c.owner,30);}
+        if(success){target.order=Math.max(0,target.order-orderLoss(target.owner,10));for(World.Officer t:w.officers)if(t.cityId==target.id&&t.owner==target.owner&&t.role!=Strategy.Role.RULER)t.loyalty=Math.max(0,t.loyalty-loyaltyLoss(t.owner,5));earn(c.owner,30);}
         return w.success(o.name+"在"+target.name+"散布流言"+(success?"，治安与武将忠诚下降":"，被识破"));
     }
     /** Same-turn ask/bid spread and per-city volume prevent profitable round-trip trading. */
@@ -110,13 +157,15 @@ public final class Campaign {
         if(food<1000||food>20000||food%1000!=0)return w.fail("交易量须为1000至20000的整千粮");
         int price=food/1000*foodPrice(city,buy);String error=w.cityError(c,o,buy?price:0);if(error!=null)return w.fail(error);
         if(traded(city)+food>20000)return w.fail("本城商人本旬交易量上限20000粮");
-        if(buy?c.food>1000000-food:c.food<food||c.gold>1000000-price)return w.fail("粮草不足或库存容量不足");
+        if(buy?c.food>w.campaign.foodCap(c)-food:c.food<food||c.gold>w.campaign.goldCap(c)-price)return w.fail("粮草不足或库存容量不足");
         w.spend(c,o,buy?price:0);if(buy)c.food+=food;else{c.food-=food;c.gold+=price;}traded.put(city,traded(city)+food);
         return w.success(c.name+(buy?"买入":"卖出")+food+"粮，"+(buy?"支出":"收入")+price+"金");
     }
     public String researchError(int city,int officer,Tech tech){
         if(tech==null)return "技巧无效";
+        if(tech==Tech.WARSHIP)return "斗舰由开发投石解锁，不再单独研究";
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,w.skills.researchGold(officer,tech));if(error!=null)return error;
+        if(c.kind!=World.SiteKind.CITY)return "技巧研究需要城市";
         if(has(c.owner,tech))return "该技巧已经掌握";
         if(tech.prerequisite!=null&&!has(c.owner,tech.prerequisite))return "需要前置技巧："+tech.prerequisite.label;
         if(points(c.owner)<tech.points)return "技巧点不足";
@@ -133,7 +182,7 @@ public final class Campaign {
     public World.Result cancelProject(int officer){
         Project p=projects.stream().filter(x->x.officerId==officer).findFirst().orElse(null);
         if(w.contests.busy()||w.gameOver()||p==null||p.owner!=w.active)return w.fail("请选择本势力研究或培养任务");
-        projects.remove(p);World.Officer o=w.officer(officer);o.otherTask="";o.otherTaskTurns=0;o.acted=true;
+        projects.remove(p);if(p.tech!=null)legacyTechs.getOrDefault(p.owner,EnumSet.noneOf(Tech.class)).remove(p.tech);World.Officer o=w.officer(officer);o.otherTask="";o.otherTaskTurns=0;o.acted=true;
         return w.success(p.label()+"已中止，费用不退还");
     }
     public int studyValue(int officer,Study study){
@@ -150,8 +199,8 @@ public final class Campaign {
 
     public World.Result repair(int city,int officer){
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,300);if(error!=null)return w.fail(error);
-        if(c.defense>=3000)return w.fail("城防已达到修复上限3000");
-        int amount=400+o.politics*4;if(has(c.owner,Tech.ENGINEERING))amount=amount*3/2;amount=Math.min(3000-c.defense,amount);
+        if(c.defense>=defenseCap(c))return w.fail("城防已达到修复上限"+defenseCap(c));
+        int amount=400+o.politics*4;if(has(c.owner,Tech.ENGINEERING))amount=amount*3/2;amount=Math.min(defenseCap(c)-c.defense,amount);
         w.spend(c,o,300);c.defense+=amount;earn(c.owner,20);return w.success(c.name+"修复城防"+amount);
     }
     public World.Result dismiss(int city,int officer,int target){
@@ -164,7 +213,7 @@ public final class Campaign {
         for(Project p:new ArrayList<>(projects)){
             World.Officer o=w.officer(p.officerId);World.City c=w.city(p.cityId);
             if(o==null||c==null||o.owner!=p.owner||c.owner!=p.owner||o.cityId!=c.id||o.otherTaskTurns<=0){
-                projects.remove(p);if(o!=null&&o.otherTask.equals(p.label())){o.otherTask="";o.otherTaskTurns=0;}
+                projects.remove(p);if(p.tech!=null)legacyTechs.getOrDefault(p.owner,EnumSet.noneOf(Tech.class)).remove(p.tech);if(o!=null&&o.otherTask.equals(p.label())){o.otherTask="";o.otherTaskTurns=0;}
                 w.note(p.label()+"因武将或城池归属变化中止，不退还费用");
             }
         }
@@ -175,7 +224,7 @@ public final class Campaign {
         cleanupProjects();
         for(Project p:new ArrayList<>(projects))if(w.officer(p.officerId).otherTaskTurns==1){
             World.Officer o=w.officer(p.officerId);
-            if(p.tech!=null)learned.computeIfAbsent(p.owner,k->EnumSet.noneOf(Tech.class)).add(p.tech);
+            if(p.tech!=null)finishTech(p.owner,p.tech);
             else switch(p.study){
                 case LEADERSHIP:o.leadership=Math.min(100,o.leadership+3);break;case WAR:o.war=Math.min(100,o.war+3);break;
                 case INTELLIGENCE:o.intelligence=Math.min(100,o.intelligence+3);break;case POLITICS:o.politics=Math.min(100,o.politics+3);break;
@@ -191,7 +240,7 @@ public final class Campaign {
             List<World.Officer> idle=w.idle(c);if(idle.isEmpty())continue;World.Officer o=idle.get(0);
             if(c.defense<2000&&c.gold>=1000){repair(c.id,o.id);continue;}
             if(c.food<6000&&c.gold>=2000){trade(c.id,o.id,true,5000);continue;}
-            if(c.gold>=5000)for(Tech tech:Tech.values())if(researchError(c.id,o.id,tech)==null){research(c.id,o.id,tech);break;}
+            if(c.gold>=5000)for(Tech tech:Tech.researchable())if(researchError(c.id,o.id,tech)==null){research(c.id,o.id,tech);break;}
         }
     }
 }

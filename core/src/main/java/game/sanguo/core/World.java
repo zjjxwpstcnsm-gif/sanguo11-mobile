@@ -5,7 +5,8 @@ import java.util.*;
 /** Engineering rules, NOT original SAN11 formulas. All commands validate before mutation. */
 public final class World {
     public enum Sex { UNKNOWN, MALE, FEMALE }
-    public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER }
+    public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER, MOUNTAIN_PATH, SHALLOWS, PLANK_ROAD }
+    public enum SiteKind { CITY, GATE, PORT }
     public enum Weapon {
         SPEAR("枪兵",4,1,115), HALBERD("戟兵",3,1,105), CROSSBOW("弩兵",3,2,95), CAVALRY("骑兵",6,1,120),
         SWORD("剑兵",4,1,80), RAM("冲车",2,1,40), SIEGE_TOWER("井阑",2,2,100),
@@ -19,6 +20,8 @@ public final class World {
         public final String name;
         public final Hex hex;
         public int owner, gold=5000, food=40000, troops=12000, order=90, morale=70, defense=3000;
+        public SiteKind kind=SiteKind.CITY;
+        public int baseDefense=3000;
         public int recruitReserve=20000, governorId=-1;
         public final int[] equipment={12000,12000,12000,12000,0,0,0,0,0};
         public final int[] ships={0,0};
@@ -45,7 +48,7 @@ public final class World {
         public final int id, owner, officerId;
         public final Weapon weapon;
         public Hex hex;
-        public int troops, food, energy=80;
+        public int troops, food, gold, energy=80;
         public boolean acted;
         public int movementBudget=-1, movementSpent;
         public War.Status status=War.Status.NORMAL;
@@ -73,6 +76,7 @@ public final class World {
     public final Campaign campaign=new Campaign(this);
     public final War war=new War(this);
     public final Army army=new Army(this);
+    public final Fieldworks fieldworks=new Fieldworks(this);
     public final UnitOrders orders=new UnitOrders(this);
     public final Skills skills=new Skills(this);
     public final Government government=new Government(this);
@@ -109,7 +113,7 @@ public final class World {
     public City cityAt(Hex h) { for(City c:cities) if(c.hex.equals(h)) return c;return null; }
     public Unit unitAt(Hex h) { for(Unit u:units) if(u.hex.equals(h)) return u;return null; }
     Result fail(String text) { return new Result(false,text); }
-    Result success(String text) { abilities.cleanup();note(text);return new Result(true,text); }
+    Result success(String text) { fieldworks.cleanup();abilities.cleanup();note(text);return new Result(true,text); }
     public void note(String text) { log.add(text);while(log.size()>40)log.remove(0); }
     private boolean available(Officer o,City c) { return !contests.busy()&&o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
     public List<Officer> idle(City c) {
@@ -138,7 +142,7 @@ public final class World {
         if(weapon==null||weapon==Weapon.SWORD)return fail("剑兵无需生产兵装，请选择其他兵装");
         if(Army.siegeWeapon(weapon))return army.produce(cityId,officerId,weapon,null);
         int amount=skills.produceAmount(c.id,o.id,weapon);
-        if(c.equipment[weapon.ordinal()]>100000-amount)return fail("兵装已接近上限");
+        if(c.equipment[weapon.ordinal()]>campaign.equipmentCap(c,weapon)-amount)return fail("兵装已接近上限");
         spend(c,o,400);c.equipment[weapon.ordinal()]+=amount;return success(c.name+"生产"+amount+"份"+weapon.label+"兵装");
     }
     public Result deploy(int cityId,int officerId,Weapon weapon,int troops) {
@@ -180,7 +184,7 @@ public final class World {
         int hit=Army.siegeWeapon(u.weapon)||army.water(u.hex)?army.siegeDefenseDamage(u):Math.max(100,damage(u,70,120)/2);
         int troopHit=Army.siegeWeapon(u.weapon)||army.water(u.hex)?army.siegeTroopDamage(u):hit;
         if(skills.has(u,Skill.GONGCHENG)||tactic&&skills.critical(u,null,true)){hit=hit*115/100;troopHit=troopHit*115/100;}
-        if(campaign.has(c.owner,Campaign.Tech.WALLS))hit=hit*4/5;c.defense=Math.max(0,c.defense-hit);c.troops=Math.max(0,c.troops-troopHit);
+        hit=campaign.constructionDamage(u,hit);troopHit=campaign.constructionDamage(u,troopHit);c.defense=Math.max(0,c.defense-hit);c.troops=Math.max(0,c.troops-troopHit);
         String message=officer(u.officerId).name+"攻城，城防−"+hit+"，守军−"+troopHit;
         if(c.defense==0||c.troops==0) {
             int old=c.owner;c.owner=u.owner;domestic.captured(c.id);strategy.cityCaptured(c.id);c.defense=1500;c.troops=0;c.morale=50;c.order=60;
@@ -188,14 +192,18 @@ public final class World {
             campaign.cleanupProjects();army.cleanup();campaign.earn(u.owner,100);
             message=c.name+"被"+faction(u.owner)+"攻占";
         }
+        else if(u.hex.distance(c.hex)==1&&!tactic&&army.counter(u)){
+            int counter=(campaign.has(c.owner,Campaign.Tech.DEFENSE_REINFORCEMENT)?2:1)*Math.max(50,c.troops/50);
+            u.troops=Math.max(0,u.troops-counter);if(u.troops==0)removeUnit(u);message+="，据点反击−"+counter;
+        }
         checkVictory();return success(message);
     }
     public Result enter(int unitId,int cityId) {
         Unit u=unit(unitId);City c=city(cityId);String error=unitError(u);if(error!=null)return fail(error);
         if(c==null||c.owner!=u.owner||u.hex.distance(c.hex)>1)return fail("请选择相邻己方城池");
-        int gear=Army.equipmentNeeded(u.weapon,u.troops),cap=Army.siegeWeapon(u.weapon)?100:100000;
-        if(c.troops+u.troops>100000||c.equipment[u.weapon.ordinal()]+gear>cap||c.food+u.food>1000000||u.ship!=Army.Ship.BOAT&&c.ships[u.ship.ordinal()-1]>=100)return fail("城池库存容量不足");
-        c.troops+=u.troops;c.food+=u.food;c.equipment[u.weapon.ordinal()]+=gear;if(u.ship!=Army.Ship.BOAT)c.ships[u.ship.ordinal()-1]++;
+        int gear=Army.equipmentNeeded(u.weapon,u.troops),cap=campaign.equipmentCap(c,u.weapon);
+        if(c.troops+u.troops>campaign.troopCap(c)||c.equipment[u.weapon.ordinal()]+gear>cap||c.food+u.food>campaign.foodCap(c)||c.gold+u.gold>campaign.goldCap(c)||u.ship!=Army.Ship.BOAT&&c.ships[u.ship.ordinal()-1]>=100)return fail("城池库存容量不足");
+        c.troops+=u.troops;c.food+=u.food;c.gold+=u.gold;c.equipment[u.weapon.ordinal()]+=gear;if(u.ship!=Army.Ship.BOAT)c.ships[u.ship.ordinal()-1]++;
         Officer o=officer(u.officerId);for(Officer member:army.crew(u)){member.unitId=-1;member.cityId=c.id;member.acted=true;}units.remove(u);
         return success(o.name+"入城休整");
     }
@@ -220,16 +228,17 @@ public final class World {
         }
         turn++;contests.tick();domestic.tick();campaign.tick();army.tick();abilities.tick();strategy.tick();war.tick();government.tick();
         for(Unit u:new ArrayList<>(units)) {
-            int consumption=Math.max(1,(u.troops+19)/20);
+            int consumption=fieldworks.foodUse(u,Math.max(1,(u.troops+19)/20));
             if(u.food<consumption){u.food=0;u.troops-=Math.max(1,u.troops/10);note(officer(u.officerId).name+"部队断粮，兵力减少");}
             else u.food-=consumption;
             if(u.troops<=0)removeUnit(u);
         }
         for(City c:cities) if(c.owner>=0) {
-            int consumption=(c.troops+49)/50;
+            int consumption=c.kind!=SiteKind.CITY&&skills.city(c.id,Skill.TUNTIAN)?0:(c.troops+49)/50;
             if(c.food<consumption){c.food=0;c.troops=Math.max(0,c.troops-Math.max(1,c.troops/20));}
             else c.food-=consumption;
-            c.gold=Math.min(1000000,c.gold+domestic.goldIncome(c.id,turn));c.food=Math.min(1000000,c.food+domestic.foodIncome(c.id,turn));
+            c.gold+=Math.min(Math.max(0,campaign.goldCap(c)-c.gold),domestic.goldIncome(c.id,turn));c.food+=Math.min(Math.max(0,campaign.foodCap(c)-c.food),domestic.foodIncome(c.id,turn));
+            if(c.defense<campaign.defenseCap(c))c.defense=Math.min(campaign.defenseCap(c),c.defense+(campaign.has(c.owner,Campaign.Tech.ENGINEERING)?250:100));
         }
         active=player;reset(player);checkVictory();return success(date()+" · 行动力恢复");
     }
@@ -237,7 +246,7 @@ public final class World {
         actionPoints[owner]=60;
         for(Officer o:officers)if(o.owner==owner)o.acted=false;
         for(Unit u:units)if(u.owner==owner)orders.reset(u);
-        war.resetOwner(owner);
+        war.resetOwner(owner);fieldworks.continueOwner(owner);
     }
     private void runAi() {
         government.runAi();
