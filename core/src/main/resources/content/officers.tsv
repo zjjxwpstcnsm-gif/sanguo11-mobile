@@ -1,0 +1,671 @@
+id	sourceId	name	stats	aptitudes	birth	death	appearance	skillId	status	source	relationsRaw	personality	gender
+1000	635	劉備	75,73,74,78,99	ABABCC	161	223	184	skill-001	cross-checked	rlu-officers	義兄=劉備；親近武將=公孫瓚；親近武將_2=諸葛亮；親近武將_3=徐庶；親近武將_4=趙雲；親近武將_5=盧植；厭惡武將=蔡氏；厭惡武將_2=蔡瑁；厭惡武將_3=馬謖	剛膽	男
+1001	98	關羽	95,97,75,62,93	SSBACA	162	219	184	skill-040	collected	rlu-officers	義兄=劉備；親近武將=周倉；親近武將_2=徐晃；親近武將_3=張遼；親近武將_4=趙累；厭惡武將=董卓；厭惡武將_2=糜芳；厭惡武將_3=傅士仁；厭惡武將_4=呂布	剛膽	男
+1002	432	張飛	85,98,30,22,45	SSCACC	167	221	184	skill-041	collected	rlu-officers	義兄=劉備；親近武將=嚴顏；親近武將_2=龐統；親近武將_3=雷銅；厭惡武將=曹操；厭惡武將_2=董卓；厭惡武將_3=劉巴；厭惡武將_4=呂布	豬突	男
+1003	395	趙雲	91,96,76,65,81	SBSSCB	168	229	187	skill-061	collected	rlu-officers	親近武將=諸葛亮；親近武將_2=陳到；親近武將_3=馬雲騄；親近武將_4=文鴦；親近武將_5=劉備	剛膽	男
+1004	289	諸葛亮	92,38,100,95,92	BBSCSA	181	234	208	skill-063	cross-checked	rlu-officers	父親=20 25；親近武將=黃月英；親近武將_2=趙雲；親近武將_3=馬謖；親近武將_4=馬良；親近武將_5=劉備；厭惡武將=魏延；厭惡武將_2=譙周；厭惡武將_3=陳式；厭惡武將_4=廖立	冷靜	男
+1005	185	黃忠	86,93,60,52,75	BSSACC	148	222	184	skill-044	collected	rlu-officers	親近武將=嚴顏；親近武將_2=法正；親近武將_3=劉磐	剛膽	男
+2000	343	曹操	96,72,91,94,96	SSAABC	155	220	184	skill-057	cross-checked	rlu-officers	父親=20 28；配偶=卞氏；親近武將=郭嘉；親近武將_2=夏侯淵；親近武將_3=夏侯惇；親近武將_4=荀彧；親近武將_5=典韋；厭惡武將=孔融；厭惡武將_2=朱靈；厭惡武將_3=董卓；厭惡武將_4=楊修；厭惡武將_5=左慈	冷靜	男
+2001	85	夏侯惇	89,90,58,70,81	ABCSBC	156	220	184	skill-037	collected	rlu-officers	父親=20 06；親近武將=夏侯淵；親近武將_2=曹洪；親近武將_3=曹仁；親近武將_4=曹操；親近武將_5=田疇	豬突	男
+2002	254	荀彧	52,14,95,98,93	CBBCCC	163	212	184	skill-085	collected	rlu-officers	父親=20 20；親近武將=郭嘉；親近武將_2=鍾繇；親近武將_3=曹操；親近武將_4=程昱	冷靜	男
+2003	78	夏侯淵	87,91,54,61,80	BBSSAC	162	219	184	skill-013	collected	rlu-officers	父親=20 08；親近武將=郭淮；親近武將_2=夏侯惇；親近武將_3=曹洪；親近武將_4=曹仁；親近武將_5=曹操	剛膽	男
+2004	439	張遼	93,92,78,58,78	SSBSBC	169	222	188	skill-010	collected	rlu-officers	親近武將=樂進；親近武將_2=關羽；親近武將_3=高順；親近武將_4=李典；親近武將_5=呂布	剛膽	男
+2005	63	郭嘉	51,15,98,84,78	BBBBBB	170	207	189	skill-065	collected	rlu-officers	親近武將=荀彧；親近武將_2=曹操；親近武將_3=程昱；親近武將_4=劉曄	冷靜	男
+3000	367	孫權	76,67,80,89,95	BACCCA	182	252	196	skill-084	collected	rlu-officers	父親=孫堅；親近武將=周泰；親近武將_2=朱然；厭惡武將=張昭	剛膽	男
+3001	245	周瑜	97,71,96,86,93	AASCCS	175	210	189	skill-062	cross-checked	rlu-officers	親近武將=小喬；親近武將_2=孫策；親近武將_3=程普；親近武將_4=呂蒙；親近武將_5=魯肅；厭惡武將=諸葛亮	冷靜	男
+3002	667	魯肅	80,56,92,90,89	AAACAA	172	217	191	skill-087	collected	rlu-officers	親近武將=周瑜；親近武將_2=諸葛瑾；親近武將_3=呂蒙	冷靜	男
+3003	118	甘寧	86,94,76,18,58	SAAASS	174	222	193	skill-010	collected	rlu-officers	親近武將=蘇飛；親近武將_2=凌統；厭惡武將=黃祖	豬突	男
+3004	389	太史慈	82,93,66,58,79	ASCSCB	166	209	185	skill-043	collected	rlu-officers	親近武將=孫策	剛膽	男
+3005	661	呂蒙	91,81,89,78,82	SABBSS	178	219	193	skill-022	collected	rlu-officers	親近武將=周瑜；親近武將_2=陸遜；親近武將_3=魯肅	剛膽	男
+10000	0	阿會喃	65,74,26,33,44	CACBCC	190	225	217	none	collected	rlu-officers	親近武將=金環三結；親近武將_2=董荼那	豬突	男
+10001	1	韋昭	16,19,65,73,70	CCCCBC	204	273	223	none	collected	rlu-officers	親近武將=華覈	剛膽	男
+10002	2	伊籍	29,24,80,86,84	CCCCCB	162	226	189	skill-085	collected	rlu-officers	親近武將=劉備；親近武將_2=馬謖；親近武將_3=馬良	冷靜	男
+10003	3	尹賞	51,44,61,66,53	CCBBCC	194	260	213	none	collected	rlu-officers	親近武將=姜維；親近武將_2=梁緒	冷靜	男
+10004	4	尹大目	4,9,33,51,48	CCCCCC	211	270	230	none	collected	rlu-officers	親近武將=文欽	小心	男
+10005	5	尹默	11,15,65,77,62	CCCCAC	183	239	212	skill-082	collected	rlu-officers	原表空白	小心	男
+10006	6	于禁	84,78,70,57,53	ABCACB	159	221	184	skill-072	collected	rlu-officers	厭惡武將=龐德	剛膽	男
+10007	7	于詮	64,76,40,39,67	ABCCBC	204	258	223	skill-028	collected	rlu-officers	原表空白	豬突	男
+10008	8	衛瓘	69,46,79,78,28	CBACAC	220	291	239	skill-019	collected	rlu-officers	厭惡武將=鄧艾	小心	男
+10009	9	袁遺	56,40,73,76,70	CBBCBC	150	193	184	skill-084	collected	rlu-officers	父親=20 02	剛膽	男
+10010	10	袁胤	17,14,39,41,46	CCCCCC	163	199	184	none	collected	rlu-officers	父親=20 01	小心	男
+10011	11	閻宇	52,61,58,59,20	BBCCBC	209	264	228	none	collected	rlu-officers	親近武將=黃皓；厭惡武將=姜維	小心	男
+10012	12	袁渙	30,17,72,83,83	CBCBCC	165	225	184	skill-072	collected	rlu-officers	原表空白	冷靜	男
+10013	13	袁熙	66,51,63,65,64	CCBCBC	176	207	190	skill-091	collected	rlu-officers	父親=袁紹	小心	男
+10014	14	閻行	72,84,61,58,69	BBCACC	159	222	184	skill-081	collected	rlu-officers	原表空白	剛膽	男
+10015	15	閻柔	71,57,70,73,78	CCAACC	168	227	189	skill-091	collected	rlu-officers	原表空白	剛膽	男
+10016	16	袁術	44,65,61,16,39	BCCCCC	155	199	184	skill-058	collected	rlu-officers	父親=20 02；厭惡武將=袁紹；厭惡武將_2=曹操	小心	男
+10017	17	袁尚	63,71,42,38,72	BCCBAC	179	207	193	none	collected	rlu-officers	父親=袁紹；母親=劉氏；親近武將=袁紹；親近武將_2=劉氏；厭惡武將=袁譚；厭惡武將_2=曹操	豬突	男
+10018	18	袁紹	81,69,70,73,90	ACACSC	154	202	184	skill-079	collected	rlu-officers	父親=20 00；配偶=劉氏；親近武將=袁尚；厭惡武將=袁術；厭惡武將_2=董卓	剛膽	男
+10019	19	閻象	30,27,70,74,51	CCCCBC	158	199	187	none	collected	rlu-officers	原表空白	冷靜	男
+10020	20	袁譚	60,69,30,35,59	CBBCBC	173	205	187	none	collected	rlu-officers	父親=袁紹；厭惡武將=袁尚	豬突	男
+10021	21	閻圃	29,25,82,79,70	CCCCBC	163	231	187	skill-088	collected	rlu-officers	原表空白	冷靜	男
+10022	22	袁燿	41,50,41,51,53	CCBCCB	177	206	191	none	collected	rlu-officers	父親=袁術	小心	男
+10023	23	王威	60,70,59,52,66	BCBCCA	163	208	192	none	collected	rlu-officers	原表空白	豬突	男
+10024	24	王異	58,26,82,68,73	CBBBBC	171	230	190	skill-030	collected	rlu-officers	厭惡武將=馬超	剛膽	女
+10025	25	王允	26,6,67,80,76	CCCCCC	137	192	184	skill-056	collected	rlu-officers	父親=20 03	小心	男
+10026	26	王基	77,78,76,75,75	SBBASC	190	261	219	skill-034	collected	rlu-officers	原表空白	剛膽	男
+10027	27	王頎	69,67,61,70,68	BCCAAC	217	281	236	skill-006	collected	rlu-officers	原表空白	剛膽	男
+10028	28	王匡	65,55,61,70,80	CBBBCC	150	190	184	skill-095	collected	rlu-officers	原表空白	剛膽	男
+10029	29	王業	33,6,35,66,49	CCCCCC	220	280	239	none	collected	rlu-officers	原表空白	小心	男
+10030	30	王經	67,63,66,75,76	CBBBCC	206	260	225	none	collected	rlu-officers	親近武將=崔林	剛膽	男
+10031	31	王伉	76,60,61,62,65	CABCBC	184	254	215	skill-028	collected	rlu-officers	親近武將=呂凱	剛膽	男
+10032	32	王渾	76,76,72,74,69	ABABAS	223	297	240	skill-038	collected	rlu-officers	父親=王昶	冷靜	男
+10033	33	王粲	6,3,79,80,56	CCCCCC	177	217	193	none	collected	rlu-officers	親近武將=曹植；親近武將_2=陳琳	小心	男
+10034	34	王修	54,27,76,78,63	CCBCCC	168	218	187	none	collected	rlu-officers	原表空白	冷靜	男
+10035	35	王戎	57,36,72,55,49	CCCCBA	234	305	253	none	collected	rlu-officers	原表空白	小心	男
+10036	36	王肅	36,22,75,78,71	CCCCCC	195	256	209	none	collected	rlu-officers	父親=王朗	冷靜	男
+10037	37	王濬	81,73,77,71,75	ABACSS	206	285	225	skill-083	collected	rlu-officers	原表空白	剛膽	男
+10038	38	王祥	23,19,68,78,84	CCCCCC	180	268	203	none	collected	rlu-officers	親近武將=呂虔	冷靜	男
+10039	39	區星	55,70,38,29,53	CACCAC	157	187	184	none	collected	rlu-officers	原表空白	豬突	男
+10040	40	王雙	64,88,19,22,27	BACACC	195	228	219	skill-051	collected	rlu-officers	原表空白	豬突	男
+10041	41	王忠	39,57,21,27,49	CBBCCC	152	214	186	none	collected	rlu-officers	原表空白	小心	男
+10042	42	王昶	74,64,79,79,75	ABABBC	188	259	207	skill-096	collected	rlu-officers	親近武將=郭奕；親近武將_2=王淩	冷靜	男
+10043	43	王韜	46,59,72,51,49	CBCBBC	210	269	229	none	collected	rlu-officers	原表空白	冷靜	男
+10044	44	王惇	60,66,46,61,56	CCCCCC	198	256	217	none	collected	rlu-officers	厭惡武將=孫綝	剛膽	男
+10045	45	王平	83,79,76,58,51	AASBCC	192	248	216	skill-073	collected	rlu-officers	厭惡武將=徐晃	冷靜	男
+10046	46	王甫	62,41,79,78,73	CCBCAB	171	219	190	skill-016	collected	rlu-officers	親近武將=關羽；親近武將_2=趙累	冷靜	男
+10047	47	王門	65,64,31,41,49	CCCACC	162	205	186	none	collected	rlu-officers	原表空白	豬突	男
+10048	48	王淩	74,64,70,82,71	ABABCB	172	251	191	none	collected	rlu-officers	父親=20 04；親近武將=王昶；親近武將_2=賈逵；親近武將_3=司馬朗	剛膽	男
+10049	49	王累	28,30,78,80,73	CCCCCC	173	211	192	none	collected	rlu-officers	厭惡武將=劉備	剛膽	男
+10050	50	王朗	47,35,79,81,51	CBCCCC	162	228	184	none	collected	rlu-officers	原表空白	剛膽	男
+10051	51	溫恢	62,36,73,86,76	BABBAB	178	222	197	skill-080	collected	rlu-officers	親近武將=蔣濟	冷靜	男
+10052	52	何晏	6,30,71,70,8	CCCCCC	190	249	209	skill-055	collected	rlu-officers	親近武將=曹爽	小心	男
+10053	53	蒯越	47,27,82,88,73	BCBCCB	157	214	184	skill-080	collected	rlu-officers	父親=20 05	剛膽	男
+10054	54	蒯良	68,33,88,82,71	BCSCBB	155	204	184	skill-016	collected	rlu-officers	父親=20 05	冷靜	男
+10055	55	賈華	49,65,41,29,52	BACCCC	176	224	195	none	collected	rlu-officers	原表空白	小心	男
+10056	56	華覈	20,24,71,78,68	CCCCBB	217	278	236	none	collected	rlu-officers	親近武將=韋昭	冷靜	男
+10057	57	賈逵	78,61,84,85,75	ABABAB	177	231	199	skill-077	collected	rlu-officers	親近武將=王淩；親近武將_2=司馬朗	冷靜	男
+10058	58	何儀	56,69,36,10,17	BACCCC	161	195	184	none	collected	rlu-officers	原表空白	豬突	男
+10059	59	華歆	18,33,82,83,17	CCCCCC	157	231	184	none	collected	rlu-officers	原表空白	冷靜	男
+10060	60	賈詡	86,48,97,85,57	SBABAC	147	223	184	skill-068	collected	rlu-officers	親近武將=張繡	冷靜	男
+10061	61	郭奕	21,29,70,76,47	CCBCCC	187	228	201	none	collected	rlu-officers	父親=郭嘉；親近武將=王昶	冷靜	男
+10062	62	郭援	66,73,36,33,48	BCCABC	167	202	191	none	collected	rlu-officers	原表空白	豬突	男
+10064	64	鄂煥	60,82,42,21,41	CACBCC	196	251	220	skill-035	collected	rlu-officers	原表空白	豬突	男
+10065	65	郭汜	64,76,13,14,13	BBCACC	146	197	184	none	collected	rlu-officers	原表空白	豬突	男
+10066	66	樂就	53,66,58,42,53	CBBCCC	157	195	184	none	collected	rlu-officers	原表空白	剛膽	男
+10067	67	霍峻	80,66,73,62,70	BAACBC	178	217	197	skill-027	collected	rlu-officers	親近武將=孟達	冷靜	男
+10068	68	郝昭	89,79,78,62,72	BSBASC	185	229	204	skill-027	collected	rlu-officers	原表空白	冷靜	男
+10069	69	樂進	80,84,52,51,65	SBBASC	159	218	188	skill-017	collected	rlu-officers	親近武將=張遼；親近武將_2=李典	剛膽	男
+10070	70	樂綝	73,75,43,41,63	ACCABC	196	257	210	none	collected	rlu-officers	父親=樂進；親近武將=張虎	豬突	男
+10071	71	郭圖	52,50,82,68,37	CCCBBC	155	205	184	none	collected	rlu-officers	厭惡武將=高覽；厭惡武將_2=審配；厭惡武將_3=張郃	小心	男
+10072	72	郭馬	68,71,47,21,54	BACCCC	239	280	253	none	collected	rlu-officers	原表空白	豬突	男
+10073	73	郝萌	62,67,42,34,48	CBCACC	156	197	184	none	collected	rlu-officers	原表空白	豬突	男
+10074	74	郭攸之	13,9,68,79,60	CCCCCC	190	259	209	none	collected	rlu-officers	原表空白	小心	男
+10075	75	霍弋	73,69,69,74,74	CAACAB	207	270	221	skill-073	collected	rlu-officers	父親=霍峻	剛膽	男
+10076	76	郭淮	87,78,81,75,77	ASCABC	187	255	206	skill-027	collected	rlu-officers	親近武將=夏侯淵；親近武將_2=曹真	冷靜	男
+10077	77	夏侯威	71,73,49,57,67	BCBACC	204	253	218	none	collected	rlu-officers	父親=夏侯淵	剛膽	男
+10079	79	夏侯恩	63,72,52,45,71	BCCBCC	180	208	194	none	collected	rlu-officers	原表空白	小心	男
+10080	80	夏侯和	48,51,70,76,64	CCCBBC	207	265	221	none	collected	rlu-officers	父親=夏侯淵	冷靜	男
+10081	81	夏侯惠	50,44,75,73,66	CCBBCC	206	242	220	none	collected	rlu-officers	父親=夏侯淵	冷靜	男
+10082	82	夏侯玄	54,39,75,92,66	CBBCBC	208	254	222	skill-079	collected	rlu-officers	父親=夏侯尚；親近武將=毌丘儉；親近武將_2=諸葛誕；親近武將_3=曹爽；親近武將_4=張緝；親近武將_5=李豐	冷靜	男
+10083	83	夏侯尚	79,72,74,65,61	BAABAC	181	225	199	none	collected	rlu-officers	父親=20 07；親近武將=桓階；親近武將_2=曹丕；親近武將_3=孟達	剛膽	男
+10084	84	夏侯德	69,73,32,40,52	BCCACC	178	218	197	none	collected	rlu-officers	父親=20 07	豬突	男
+10086	86	夏侯霸	79,84,77,55,71	ABBACC	202	262	216	skill-003	collected	rlu-officers	父親=夏侯淵；親近武將=姜維；親近武將_2=曹爽	剛膽	男
+10087	87	夏侯楙	20,7,4,21,2	CCCCCC	201	259	215	none	collected	rlu-officers	父親=夏侯惇；親近武將=曹丕	小心	男
+10088	88	夏侯令女	19,10,73,71,84	CCBCCC	207	257	221	skill-074	collected	rlu-officers	原表空白	冷靜	女
+10089	89	賈充	54,31,89,85,10	CBCCCC	217	282	231	skill-064	collected	rlu-officers	父親=賈逵；親近武將=司馬炎；親近武將_2=司馬昭；親近武將_3=裴秀	冷靜	男
+10090	90	何植	15,24,26,27,51	CCCCCC	230	284	245	none	collected	rlu-officers	原表空白	小心	男
+10091	91	何進	39,40,6,41,68	CCCCCC	135	189	184	none	collected	rlu-officers	原表空白	小心	男
+10092	92	賀齊	83,78,72,64,73	AAACAS	171	227	189	skill-011	collected	rlu-officers	原表空白	剛膽	男
+10093	93	賈範	60,62,73,62,62	CCBCBC	202	237	221	none	collected	rlu-officers	原表空白	冷靜	男
+10094	94	花鬘	69,82,32,26,70	AACBCC	209	239	223	skill-035	collected	rlu-officers	父親=孟獲；親近武將=關索；親近武將_2=鮑三娘	剛膽	女
+10095	95	華雄	81,92,56,40,57	BBCSCC	155	190	184	skill-051	collected	rlu-officers	原表空白	剛膽	男
+10096	96	關彝	50,62,44,52,59	CBBCCC	219	263	233	none	collected	rlu-officers	父親=關興；厭惡武將=龐會	小心	男
+10097	97	韓胤	26,29,64,54,44	CCCCCC	155	197	184	none	collected	rlu-officers	原表空白	小心	男
+10099	99	桓階	10,26,67,78,69	CCCCAC	156	221	184	none	collected	rlu-officers	親近武將=夏侯尚；親近武將_2=孟達	冷靜	男
+10100	100	管亥	70,82,10,5,25	BCCABC	160	193	184	none	collected	rlu-officers	原表空白	豬突	男
+10101	101	毌丘儉	78,74,52,56,54	ABBAAC	202	255	220	none	collected	rlu-officers	父親=20 09；親近武將=夏侯玄；親近武將_2=諸葛誕；親近武將_3=曹叡；親近武將_4=曹爽	小心	男
+10102	102	毌丘秀	58,62,33,38,51	CCBBCC	206	265	225	none	collected	rlu-officers	父親=20 09	小心	男
+10103	103	毌丘甸	63,60,69,70,65	CBBBBC	224	255	238	none	collected	rlu-officers	父親=毌丘儉	剛膽	男
+10104	104	韓莒子	51,59,51,46,52	CCBBCC	158	200	184	none	collected	rlu-officers	原表空白	豬突	男
+10105	105	韓玄	22,33,7,4,1	BCCCCC	163	208	184	none	collected	rlu-officers	父親=20 10	小心	男
+10106	106	韓浩	69,72,68,87,62	BCCBCC	164	218	184	skill-078	collected	rlu-officers	父親=20 10；厭惡武將=黃忠	剛膽	男
+10107	107	關興	76,86,62,58,75	ASBACB	199	234	213	skill-011	collected	rlu-officers	父親=關羽；親近武將=張苞	剛膽	男
+10108	108	關索	74,88,52,47,74	BACSCA	200	239	214	skill-049	collected	rlu-officers	父親=關羽；親近武將=花鬘；親近武將_2=鮑三娘	豬突	男
+10109	109	韓遂	89,70,77,61,80	ASCSAC	142	215	184	skill-003	collected	rlu-officers	親近武將=樊稠	冷靜	男
+10110	110	韓嵩	25,15,70,77,61	CCCCBC	154	210	184	none	collected	rlu-officers	原表空白	冷靜	男
+10111	111	關靖	36,52,72,63,42	CCCBCC	158	199	184	none	collected	rlu-officers	原表空白	小心	男
+10112	112	韓暹	69,66,36,18,51	BCBCCC	159	196	184	none	collected	rlu-officers	原表空白	剛膽	男
+10113	113	闞澤	43,49,83,86,73	CCBCBB	182	243	201	skill-086	collected	rlu-officers	親近武將=黃蓋；親近武將_2=孫和；親近武將_3=陸遜	剛膽	男
+10114	114	韓忠	64,67,18,12,23	BBCCCC	151	184	184	none	collected	rlu-officers	原表空白	剛膽	男
+10115	115	關統	63,60,61,63,75	CAACCB	218	259	232	none	collected	rlu-officers	父親=關興	剛膽	男
+10116	116	韓當	76,85,56,51,68	ABBACS	156	225	184	skill-038	collected	rlu-officers	親近武將=黃蓋；親近武將_2=孫堅；親近武將_3=程普	豬突	男
+10117	117	韓德	63,76,25,16,54	CACACC	171	228	199	skill-092	collected	rlu-officers	原表空白	豬突	男
+10119	119	桓範	20,11,78,74,51	CCCCCC	199	249	218	skill-059	collected	rlu-officers	原表空白	剛膽	男
+10120	120	韓馥	13,3,27,62,60	CCCCCC	149	191	184	none	collected	rlu-officers	原表空白	小心	男
+10121	121	關平	77,82,68,60,76	SABACB	186	219	200	skill-026	collected	rlu-officers	父親=關羽；親近武將=周倉；親近武將_2=趙累；親近武將_3=劉封；親近武將_4=廖化	冷靜	男
+10122	122	簡雍	20,32,74,71,74	CCCCBC	164	225	184	skill-086	collected	rlu-officers	親近武將=秦宓；親近武將_2=孫乾；親近武將_3=糜竺	剛膽	男
+10123	123	顏良	79,93,42,32,53	AACSCC	160	200	184	skill-010	collected	rlu-officers	親近武將=文醜	豬突	男
+10124	124	魏延	81,92,69,49,45	ASBACC	175	234	194	skill-012	collected	rlu-officers	親近武將=陳式；厭惡武將=諸葛亮；厭惡武將_2=楊儀	豬突	男
+10125	125	麴義	82,78,51,18,37	ACSACC	146	191	184	skill-036	collected	rlu-officers	原表空白	豬突	男
+10126	126	戲志才	23,7,88,73,58	CCCCBC	157	194	184	none	collected	rlu-officers	原表空白	冷靜	男
+10127	127	魏續	67,78,31,32,39	BBCACC	156	200	184	none	collected	rlu-officers	親近武將=侯成；親近武將_2=宋憲	剛膽	男
+10128	128	魏邈	57,62,59,54,65	BBCCCC	221	268	240	none	collected	rlu-officers	原表空白	冷靜	男
+10129	129	魏諷	52,23,72,78,86	BCCCBC	182	219	201	skill-079	collected	rlu-officers	親近武將=鍾繇	冷靜	男
+10130	130	魏攸	46,29,73,74,68	CCBCBC	151	193	184	none	collected	rlu-officers	原表空白	冷靜	男
+10131	131	牛金	72,79,38,40,45	BACACC	173	226	201	skill-012	collected	rlu-officers	親近武將=曹仁	豬突	男
+10132	132	丘建	39,52,65,52,51	BBCCBC	239	272	253	none	collected	rlu-officers	原表空白	冷靜	男
+10133	133	牛輔	38,60,21,26,37	CBCBCC	159	192	184	none	collected	rlu-officers	父親=董卓	小心	男
+10134	134	丘本	50,41,67,56,55	CCBCBC	232	269	251	none	collected	rlu-officers	原表空白	冷靜	男
+10135	135	季雍	63,52,41,40,58	CCCACC	170	192	184	none	collected	rlu-officers	原表空白	小心	男
+10136	136	姜維	90,89,90,67,80	SBASCC	202	264	225	skill-068	collected	rlu-officers	親近武將=尹賞；親近武將_2=夏侯霸；親近武將_3=鄧芝；親近武將_4=傅僉；親近武將_5=梁緒；厭惡武將=閻宇；厭惡武將_2=黃皓；厭惡武將_3=譙周	剛膽	男
+10137	137	鞏志	43,53,61,65,48	CCBCCC	178	242	197	none	collected	rlu-officers	原表空白	冷靜	男
+10138	138	橋蕤	64,69,38,41,58	ACBCCB	143	195	184	none	collected	rlu-officers	原表空白	剛膽	男
+10139	139	龔都	59,70,23,22,37	BCBBCC	164	200	184	none	collected	rlu-officers	親近武將=劉辟	豬突	男
+10140	140	橋瑁	54,45,69,72,73	BCCBCC	150	190	184	skill-054	collected	rlu-officers	原表空白	剛膽	男
+10141	141	許儀	51,74,15,16,49	BCCBCC	213	263	227	none	collected	rlu-officers	父親=許褚	剛膽	男
+10142	142	許貢	44,66,64,64,56	CBACCB	155	200	184	none	collected	rlu-officers	原表空白	小心	男
+10143	143	許靖	3,5,67,79,68	BCCCCC	152	222	184	none	collected	rlu-officers	原表空白	小心	男
+10144	144	許褚	65,96,36,20,59	ABCBCC	169	226	189	skill-028	collected	rlu-officers	親近武將=曹操；親近武將_2=典韋；厭惡武將=許攸	豬突	男
+10145	145	許攸	36,21,80,56,23	CCCBCC	155	204	184	none	collected	rlu-officers	厭惡武將=審配	小心	男
+10146	146	紀靈	78,83,51,48,55	AACACC	155	199	184	none	collected	rlu-officers	原表空白	剛膽	男
+10147	147	金禕	17,38,64,68,60	BCCCCC	177	218	197	none	collected	rlu-officers	父親=金旋	小心	男
+10148	148	金環三結	64,76,19,19,42	BACBCC	192	225	217	none	collected	rlu-officers	親近武將=阿會喃；親近武將_2=董荼那	豬突	男
+10149	149	金旋	52,68,13,29,47	CBCCCC	155	208	184	none	collected	rlu-officers	原表空白	豬突	男
+10150	150	虞汜	61,34,74,71,72	CCBCAA	217	273	231	none	collected	rlu-officers	父親=虞翻	冷靜	男
+10151	151	虞翻	43,46,86,81,46	CCBCBB	164	233	184	skill-097	collected	rlu-officers	親近武將=傅士仁；親近武將_2=龐統；親近武將_3=陸績	剛膽	男
+10152	152	邢道榮	61,80,41,16,12	CACBCC	174	208	193	none	collected	rlu-officers	原表空白	豬突	男
+10153	153	郤正	10,4,63,75,61	CCCCCC	208	278	227	skill-082	collected	rlu-officers	原表空白	冷靜	男
+10154	154	嚴顏	79,83,69,67,79	BASCBC	151	222	184	skill-036	collected	rlu-officers	親近武將=黃忠；親近武將_2=張飛	剛膽	男
+10155	155	牽弘	70,74,66,65,57	CBCBAC	224	272	243	skill-006	collected	rlu-officers	父親=牽招	冷靜	男
+10156	156	嚴綱	68,71,40,51,52	CBCABC	163	192	184	none	collected	rlu-officers	原表空白	豬突	男
+10157	157	嚴畯	13,2,70,84,72	CCCCCC	169	246	188	none	collected	rlu-officers	親近武將=諸葛瑾；親近武將_2=張承；親近武將_3=步騭	小心	男
+10158	158	牽招	72,69,73,75,73	CBBAAC	168	244	190	skill-091	collected	rlu-officers	原表空白	剛膽	男
+10159	159	嚴政	50,55,39,36,12	BBCCCC	151	189	184	none	collected	rlu-officers	原表空白	小心	男
+10160	160	嚴白虎	67,70,23,21,41	BACCCB	142	196	184	skill-093	collected	rlu-officers	父親=20 11	豬突	男
+10161	161	嚴輿	61,78,44,20,29	AABCCB	145	196	184	skill-093	collected	rlu-officers	父親=20 11	豬突	男
+10162	162	吳懿	83,73,68,70,77	ABSBBC	165	237	185	skill-026	collected	rlu-officers	原表空白	冷靜	男
+10163	163	黃蓋	79,83,65,65,81	BASCBS	154	218	184	skill-053	collected	rlu-officers	親近武將=韓當；親近武將_2=孫堅；親近武將_3=程普	剛膽	男
+10164	164	高幹	74,56,48,59,66	CAACBC	168	206	187	none	collected	rlu-officers	父親=20 12	小心	男
+10165	165	黃月英	51,31,88,87,79	CCSCSA	186	235	208	skill-046	collected	rlu-officers	父親=黃承彥；親近武將=諸葛亮	冷靜	女
+10166	166	黃權	75,59,82,79,78	BBACCA	167	240	186	skill-072	collected	rlu-officers	原表空白	冷靜	男
+10167	167	黃皓	1,1,30,10,1	CCCCCC	226	263	245	none	collected	rlu-officers	親近武將=閻宇；親近武將_2=劉禪；厭惡武將=姜維	小心	男
+10168	168	高柔	57,43,71,79,74	CBBCBC	174	263	193	none	collected	rlu-officers	父親=20 12	冷靜	男
+10169	169	高順	85,86,55,46,69	ABCSSC	162	198	186	skill-017	collected	rlu-officers	親近武將=張遼；親近武將_2=呂布；厭惡武將=陳宮	剛膽	男
+10170	170	高翔	68,68,52,44,55	CCBBCC	194	252	213	skill-007	collected	rlu-officers	原表空白	剛膽	男
+10171	171	高昇	67,73,41,21,27	ACCBCC	145	184	184	none	collected	rlu-officers	原表空白	豬突	男
+10172	172	黃崇	67,63,72,69,62	CBACBB	208	263	222	none	collected	rlu-officers	父親=黃權	剛膽	男
+10173	173	侯成	74,75,63,56,60	BBBACC	158	199	184	none	collected	rlu-officers	親近武將=魏續；親近武將_2=宋憲	冷靜	男
+10174	174	侯選	63,66,34,55,52	CCCABC	175	228	194	none	collected	rlu-officers	原表空白	小心	男
+10175	175	黃祖	74,66,53,38,32	BBACBA	148	208	184	none	collected	rlu-officers	親近武將=劉表；厭惡武將=甘寧	剛膽	男
+10176	176	公孫越	74,72,47,54,67	BCCSBC	160	192	184	skill-025	collected	rlu-officers	父親=20 13	剛膽	男
+10177	177	公孫淵	65,70,56,35,55	BCCBCC	205	238	219	none	collected	rlu-officers	父親=公孫康	豬突	男
+10178	178	公孫恭	39,17,68,61,42	CCCBCC	174	238	188	none	collected	rlu-officers	父親=公孫度	小心	男
+10179	179	公孫康	72,66,61,58,56	CCCACB	172	210	186	skill-016	collected	rlu-officers	父親=公孫度	冷靜	男
+10180	180	公孫瓚	84,83,70,46,77	BCASBC	152	199	184	skill-025	collected	rlu-officers	父親=20 13；親近武將=劉備；親近武將_2=盧植；厭惡武將=劉虞	剛膽	男
+10181	181	公孫續	63,68,54,63,66	CCBSBC	176	199	190	skill-025	collected	rlu-officers	父親=公孫瓚	冷靜	男
+10182	182	公孫度	67,71,63,51,35	BCCAAB	154	204	184	none	collected	rlu-officers	原表空白	剛膽	男
+10183	183	公孫範	73,69,64,62,61	CCBSBC	158	199	184	skill-025	collected	rlu-officers	父親=20 14	冷靜	男
+10184	184	孔伷	26,16,68,78,64	CCBCCC	151	194	184	none	collected	rlu-officers	原表空白	冷靜	男
+10186	186	高定	55,63,43,42,46	BBCCBC	190	251	209	none	collected	rlu-officers	原表空白	小心	男
+10187	187	高堂隆	35,24,76,85,70	CCCCAC	190	244	210	none	collected	rlu-officers	原表空白	冷靜	男
+10188	188	高沛	66,61,69,57,52	CBACBC	170	212	189	none	collected	rlu-officers	親近武將=楊懷	剛膽	男
+10189	189	皇甫嵩	87,61,73,51,72	SBACSC	132	195	184	skill-053	collected	rlu-officers	原表空白	剛膽	男
+10190	190	孔融	30,5,72,75,65	CCCCCC	153	208	184	none	collected	rlu-officers	親近武將=楊修	小心	男
+10191	191	高覽	76,82,66,55,62	BCCACC	159	201	184	none	collected	rlu-officers	親近武將=張郃；厭惡武將=郭圖	剛膽	男
+10192	192	伍延	66,73,42,49,64	BBBCCA	234	280	253	none	collected	rlu-officers	原表空白	剛膽	男
+10193	193	吳巨	49,61,23,51,54	CCCBCC	151	211	184	none	collected	rlu-officers	原表空白	小心	男
+10194	194	國淵	50,19,71,86,74	CCBCAC	160	219	184	skill-078	collected	rlu-officers	原表空白	冷靜	男
+10195	195	吳景	69,66,51,65,66	BCACCA	159	203	184	none	collected	rlu-officers	父親=20 59	剛膽	男
+10196	196	吾彥	74,72,77,69,68	CBACBA	235	297	253	skill-083	collected	rlu-officers	原表空白	冷靜	男
+10197	197	吳綱	48,38,65,65,72	CBCCCB	216	275	235	none	collected	rlu-officers	原表空白	冷靜	男
+10198	198	吳國太	30,21,70,74,81	CBCCCB	161	216	184	skill-096	collected	rlu-officers	父親=20 59；親近武將=孫尚香；親近武將_2=劉備	剛膽	女
+10199	199	胡濟	57,39,68,72,65	BCBCBC	207	264	223	none	collected	rlu-officers	原表空白	冷靜	男
+10200	200	吾粲	68,41,78,75,67	CBACBA	181	245	206	skill-011	collected	rlu-officers	原表空白	剛膽	男
+10201	201	胡質	73,46,74,77,72	CBBCCC	192	250	214	none	collected	rlu-officers	原表空白	冷靜	男
+10202	202	吳質	16,29,68,57,37	CCCCCC	177	230	196	none	collected	rlu-officers	親近武將=司馬懿；親近武將_2=曹丕；親近武將_3=陳群	小心	男
+10203	203	胡車兒	26,82,41,2,30	CBCBCC	164	206	188	skill-021	collected	rlu-officers	原表空白	剛膽	男
+10204	204	胡遵	70,76,52,50,62	ABCABC	200	256	219	none	collected	rlu-officers	原表空白	剛膽	男
+10205	205	胡軫	65,74,12,15,21	BCCACC	146	190	185	none	collected	rlu-officers	原表空白	豬突	男
+10206	206	顧譚	33,23,70,79,75	CCCCCB	203	244	218	none	collected	rlu-officers	父親=顧雍；親近武將=諸葛恪；親近武將_2=孫登；親近武將_3=張休；親近武將_4=陳表	冷靜	男
+10207	207	兀突骨	72,86,1,3,21	ASBCCC	186	225	217	skill-031	collected	rlu-officers	原表空白	豬突	男
+10208	208	胡班	55,55,58,50,62	CBBCCB	179	233	198	none	collected	rlu-officers	原表空白	冷靜	男
+10209	209	吳班	74,71,56,45,66	ABBBCB	171	234	190	none	collected	rlu-officers	原表空白	剛膽	男
+10210	210	胡奮	71,76,50,52,55	CBCASC	222	288	236	skill-017	collected	rlu-officers	父親=胡遵	豬突	男
+10211	211	顧雍	43,18,80,90,76	CCCCBC	168	243	197	skill-085	collected	rlu-officers	親近武將=張紘	冷靜	男
+10212	212	吳蘭	62,80,35,36,50	BBCBCC	170	218	189	none	collected	rlu-officers	親近武將=雷銅	豬突	男
+10213	213	胡烈	73,67,72,65,69	BAABBC	225	272	239	none	collected	rlu-officers	父親=胡遵	冷靜	男
+10214	214	崔琰	18,55,70,83,75	CCCCCC	162	216	184	skill-085	collected	rlu-officers	親近武將=司馬朗	冷靜	男
+10215	215	蔡琰	12,11,76,80,85	CCCBCC	168	224	184	skill-076	collected	rlu-officers	原表空白	冷靜	女
+10216	216	蔡和	39,50,1,26,45	CCBCCA	166	208	185	none	collected	rlu-officers	父親=20 15	小心	男
+10217	217	蔡氏	8,7,69,58,66	CCCCCB	159	208	184	none	collected	rlu-officers	父親=20 16；親近武將=劉琮；厭惡武將=劉琦；厭惡武將_2=劉備	剛膽	女
+10218	218	蔡中	40,54,2,22,43	CBCCCA	168	208	187	none	collected	rlu-officers	父親=20 15	小心	男
+10219	219	蔡瑁	77,70,77,72,62	BBBCCS	160	208	184	skill-005	collected	rlu-officers	父親=20 16；親近武將=張允；親近武將_2=劉琮；厭惡武將=劉琦；厭惡武將_2=劉備	小心	男
+10220	220	崔林	32,22,66,78,76	CCBCCC	187	244	207	none	collected	rlu-officers	親近武將=王經	剛膽	男
+10221	221	左奕	62,66,51,43,57	CABCCC	232	280	251	none	collected	rlu-officers	原表空白	冷靜	男
+10222	222	笮融	60,69,38,21,14	BACCAC	161	195	184	skill-021	collected	rlu-officers	原表空白	豬突	男
+10223	223	施朔	38,65,47,21,54	CBBCCC	226	268	245	none	collected	rlu-officers	原表空白	剛膽	男
+10224	224	師纂	60,72,54,46,14	ABCBCC	215	264	234	none	collected	rlu-officers	原表空白	剛膽	男
+10225	225	司馬懿	98,63,96,93,87	SAASAC	179	251	198	skill-067	collected	rlu-officers	父親=20 17；親近武將=吳質；親近武將_2=曹叡；親近武將_3=曹丕；親近武將_4=張郃；親近武將_5=陳群	冷靜	男
+10226	226	司馬炎	69,59,76,79,74	CCBBCC	236	290	250	none	collected	rlu-officers	父親=司馬昭；親近武將=賈充；親近武將_2=諸葛靚；厭惡武將=文鴦	剛膽	男
+10227	227	司馬師	80,64,88,82,78	ABBBCC	208	255	222	skill-072	collected	rlu-officers	父親=司馬懿；親近武將=司馬昭；親近武將_2=徐質；親近武將_3=陳泰	剛膽	男
+10228	228	司馬昭	76,57,87,88,80	ABABBC	211	265	225	skill-073	collected	rlu-officers	父親=司馬懿；親近武將=司馬師；親近武將_2=陳泰	冷靜	男
+10229	229	司馬伷	61,52,61,66,62	CCBCCA	227	283	241	none	collected	rlu-officers	父親=司馬懿	小心	男
+10230	230	司馬孚	70,37,76,79,85	BBBCBC	180	272	199	none	collected	rlu-officers	父親=20 17；親近武將=曹髦	冷靜	男
+10231	231	司馬望	73,58,78,65,42	CBCBCC	205	271	219	none	collected	rlu-officers	父親=司馬孚	冷靜	男
+10232	232	司馬攸	71,68,75,77,87	BBABBC	248	283	253	skill-096	collected	rlu-officers	父親=司馬昭	冷靜	男
+10233	233	司馬朗	20,21,71,82,81	CCBCCC	171	217	190	none	collected	rlu-officers	父親=20 17；親近武將=王淩；親近武將_2=賈逵；親近武將_3=崔琰	小心	男
+10234	234	謝旌	64,76,34,33,44	ACCBCB	178	221	197	none	collected	rlu-officers	原表空白	豬突	男
+10235	235	車冑	49,49,40,58,50	CBCBCC	164	199	184	none	collected	rlu-officers	原表空白	小心	男
+10236	236	沙摩柯	60,84,25,14,44	CSACCC	167	222	206	skill-051	collected	rlu-officers	原表空白	豬突	男
+10237	237	朱異	70,68,60,45,54	BABCCA	201	257	215	none	collected	rlu-officers	父親=朱桓；厭惡武將=文欽	剛膽	男
+10238	238	周昕	65,62,72,65,61	BCACCC	159	196	184	skill-097	collected	rlu-officers	父親=20 18	豬突	男
+10239	239	周昂	74,65,62,49,62	CCACAC	162	195	184	none	collected	rlu-officers	父親=20 18	豬突	男
+10240	240	周旨	65,85,41,29,43	CCCASA	233	295	252	skill-004	collected	rlu-officers	原表空白	豬突	男
+10241	241	周倉	62,84,42,33,60	CACBCA	164	219	184	skill-004	collected	rlu-officers	親近武將=關羽；親近武將_2=關平；親近武將_3=裴元紹	剛膽	男
+10242	242	周泰	76,91,48,38,60	ASCACS	171	225	189	skill-047	collected	rlu-officers	親近武將=蔣欽；親近武將_2=孫權	豬突	男
+10243	243	州泰	71,64,71,64,59	ABBBBC	207	261	226	none	collected	rlu-officers	原表空白	冷靜	男
+10244	244	周魴	52,41,80,75,59	CCBCCC	200	240	219	skill-054	collected	rlu-officers	原表空白	冷靜	男
+10246	246	朱桓	84,82,73,56,59	SAABCS	177	238	196	skill-034	collected	rlu-officers	原表空白	剛膽	男
+10247	247	朱據	77,57,72,70,76	ABABBS	190	246	209	skill-005	collected	rlu-officers	原表空白	冷靜	男
+10248	248	祝融	74,85,29,24,74	ASCBCC	193	246	214	skill-009	collected	rlu-officers	父親=20 19；親近武將=孟獲	豬突	女
+10249	249	朱雋	78,65,70,71,73	BAABAC	149	195	184	skill-053	collected	rlu-officers	原表空白	冷靜	男
+10250	250	朱然	79,69,71,60,75	AAACBS	182	249	196	skill-038	collected	rlu-officers	父親=朱治；親近武將=孫權	剛膽	男
+10251	251	朱治	71,56,72,73,75	BBABCC	156	224	184	skill-093	collected	rlu-officers	原表空白	冷靜	男
+10252	252	朱褒	68,73,34,32,40	CABCAC	191	225	209	none	collected	rlu-officers	原表空白	豬突	男
+10253	253	朱靈	71,73,67,53,42	BCCACC	170	236	189	none	collected	rlu-officers	原表空白	冷靜	男
+10255	255	淳于瓊	72,66,29,29,36	BCCBCC	146	200	184	none	collected	rlu-officers	原表空白	豬突	男
+10256	256	荀顗	16,13,70,74,69	CCCCCC	207	281	226	none	collected	rlu-officers	父親=荀彧；親近武將=鍾毓；親近武將_2=陳泰；親近武將_3=傅嘏	小心	男
+10257	257	荀勗	8,19,77,72,53	CCCCCC	225	289	244	none	collected	rlu-officers	父親=20 22	小心	男
+10258	258	荀諶	19,25,77,78,64	CCCCCC	164	208	184	none	collected	rlu-officers	父親=20 20	冷靜	男
+10259	259	荀攸	73,26,94,88,84	BBBBBC	157	214	184	skill-064	collected	rlu-officers	父親=20 21；親近武將=鍾繇	冷靜	男
+10260	260	焦彝	62,69,63,42,52	BCCBBC	219	266	238	none	collected	rlu-officers	原表空白	豬突	男
+10261	261	鍾毓	32,12,71,76,72	CCBCBC	223	263	238	skill-098	collected	rlu-officers	父親=鍾繇；親近武將=荀顗；親近武將_2=陳泰；親近武將_3=傅嘏	冷靜	男
+10262	262	蔣琬	78,34,84,93,81	BBACSA	188	246	207	skill-074	collected	rlu-officers	原表空白	冷靜	男
+10263	263	鍾會	82,51,91,79,66	BBACAC	225	264	239	skill-065	collected	rlu-officers	父親=鍾繇；親近武將=蔣斌；厭惡武將=鄧艾	冷靜	男
+10264	264	蔣幹	9,6,65,64,47	CCCCCC	175	239	194	none	collected	rlu-officers	原表空白	小心	男
+10265	265	蔣義渠	71,58,57,51,55	CCBBCC	159	205	184	none	collected	rlu-officers	原表空白	剛膽	男
+10266	266	小喬	16,12,73,77,92	CCBCCA	178	210	194	skill-075	collected	rlu-officers	父親=橋玄；親近武將=周瑜；親近武將_2=孫尚香；親近武將_3=大喬	剛膽	女
+10267	267	蔣欽	78,84,51,42,74	BASBCS	168	219	187	skill-036	collected	rlu-officers	親近武將=周泰	豬突	男
+10268	268	蔣濟	48,43,85,77,56	CBACBC	188	249	207	none	collected	rlu-officers	親近武將=溫恢	冷靜	男
+10269	269	譙周	3,3,66,71,50	CCCCCC	201	270	220	none	collected	rlu-officers	厭惡武將=姜維；厭惡武將_2=諸葛亮	小心	男
+10270	270	蔣舒	55,76,35,29,30	CACBCC	225	290	244	none	collected	rlu-officers	原表空白	小心	男
+10271	271	焦觸	65,72,33,32,39	CCCACC	159	208	184	none	collected	rlu-officers	原表空白	小心	男
+10272	272	向寵	76,61,76,67,71	BBACCC	195	240	214	skill-028	collected	rlu-officers	父親=20 24	冷靜	男
+10273	273	邵悌	21,15,72,66,54	CCCCCC	224	268	243	none	collected	rlu-officers	原表空白	冷靜	男
+10274	274	蔣班	63,73,62,41,48	BCBCBC	227	282	246	none	collected	rlu-officers	原表空白	豬突	男
+10275	275	蔣斌	27,23,64,73,74	CCBCCC	216	263	230	none	collected	rlu-officers	父親=蔣琬；親近武將=鍾會	小心	男
+10276	276	鍾繇	70,24,76,91,80	CCBBCC	151	230	184	skill-080	collected	rlu-officers	親近武將=魏諷；親近武將_2=荀彧；親近武將_3=荀攸；親近武將_4=張既	冷靜	男
+10277	277	鍾離牧	77,72,73,65,71	CABCAA	214	269	233	skill-093	collected	rlu-officers	原表空白	剛膽	男
+10278	278	向朗	28,18,73,74,69	CCBCCC	167	247	196	none	collected	rlu-officers	父親=20 23；親近武將=馬謖	冷靜	男
+10279	279	徐榮	80,76,57,43,42	BBCSCC	147	190	186	skill-003	collected	rlu-officers	原表空白	豬突	男
+10280	280	諸葛恪	72,47,90,80,60	BCACCB	203	253	217	skill-064	collected	rlu-officers	父親=諸葛瑾；親近武將=顧譚；親近武將_2=孫登；親近武將_3=張休；親近武將_4=陳表；厭惡武將=孫峻；厭惡武將_2=滕胤	豬突	男
+10281	281	諸葛喬	62,27,75,70,77	CCACAB	204	228	218	none	collected	rlu-officers	父親=諸葛瑾	冷靜	男
+10282	282	諸葛瑾	75,34,81,89,90	CBACCA	174	241	195	skill-086	collected	rlu-officers	父親=20 25；親近武將=嚴畯；親近武將_2=張承；親近武將_3=步騭；親近武將_4=魯肅	冷靜	男
+10283	283	諸葛均	29,25,51,66,71	CCBCBC	185	252	208	none	collected	rlu-officers	父親=20 25	冷靜	男
+10284	284	諸葛緒	41,40,29,46,48	CCCBCC	218	286	237	none	collected	rlu-officers	原表空白	小心	男
+10285	285	諸葛尚	64,77,62,55,68	AABBBC	246	263	253	skill-030	collected	rlu-officers	父親=諸葛瞻；親近武將=諸葛亮	豬突	男
+10286	286	諸葛靚	58,63,66,65,68	BBBCBB	241	300	253	none	collected	rlu-officers	父親=諸葛誕	剛膽	男
+10287	287	諸葛瞻	71,60,70,72,75	BBABAB	227	263	241	skill-016	collected	rlu-officers	父親=諸葛亮	剛膽	男
+10288	288	諸葛誕	81,72,71,75,82	BAABCB	206	258	225	skill-028	collected	rlu-officers	親近武將=夏侯玄；親近武將_2=毌丘儉；親近武將_3=曹爽；親近武將_4=張緝；親近武將_5=李豐；厭惡武將=文欽	剛膽	男
+10290	290	徐晃	88,90,74,48,71	ASBABC	165	228	188	skill-073	collected	rlu-officers	親近武將=關羽；厭惡武將=王平	冷靜	男
+10291	291	徐氏	41,16,80,70,84	CBBCCB	183	232	197	skill-056	collected	rlu-officers	親近武將=孫翊	冷靜	女
+10292	292	徐質	68,83,24,26,44	BCCACC	207	253	226	none	collected	rlu-officers	親近武將=司馬師	豬突	男
+10293	293	徐庶	84,64,93,80,81	SAAABB	178	232	206	skill-020	collected	rlu-officers	親近武將=劉備	冷靜	男
+10294	294	徐盛	87,81,78,65,73	ASABBS	177	234	196	skill-029	collected	rlu-officers	親近武將=丁奉	剛膽	男
+10295	295	徐邈	55,32,67,82,79	CCBCCC	171	249	190	skill-092	collected	rlu-officers	原表空白	冷靜	男
+10296	296	沈瑩	70,77,61,42,65	BABCCA	235	280	253	skill-035	collected	rlu-officers	原表空白	豬突	男
+10297	297	申儀	55,59,59,56,47	CBBCCC	190	252	209	none	collected	rlu-officers	父親=20 26；厭惡武將=孟達	小心	男
+10298	298	辛憲英	42,28,84,76,75	CCBCAB	191	269	205	skill-072	collected	rlu-officers	父親=辛毘	冷靜	女
+10299	299	岑昏	1,1,33,13,4	CCCCCC	239	280	253	none	collected	rlu-officers	親近武將=孫皓	小心	男
+10300	300	甄氏	15,4,71,66,94	CCCCCB	182	221	200	skill-069	collected	rlu-officers	親近武將=曹植	冷靜	女
+10301	301	辛敞	50,26,42,68,67	CCBCCC	210	272	224	none	collected	rlu-officers	父親=辛毘	小心	男
+10302	302	申耽	56,62,52,41,47	BCBCCC	188	254	207	none	collected	rlu-officers	父親=20 26；厭惡武將=孟達	小心	男
+10303	303	審配	84,60,83,73,70	BAABAC	156	204	184	skill-029	collected	rlu-officers	親近武將=袁紹；親近武將_2=逢紀；厭惡武將=郭圖；厭惡武將_2=許攸；厭惡武將_3=辛評；厭惡武將_4=田豐	剛膽	男
+10304	304	辛毘	39,24,78,79,72	CCBCCC	171	240	189	none	collected	rlu-officers	父親=20 27	冷靜	男
+10305	305	辛評	69,43,76,75,68	ACBCBC	165	204	184	none	collected	rlu-officers	父親=20 27；厭惡武將=審配	冷靜	男
+10306	306	秦宓	16,7,72,78,76	CCCCCC	160	226	192	none	collected	rlu-officers	親近武將=簡雍	冷靜	男
+10307	307	秦朗	58,70,35,15,42	BCCBCC	192	234	211	none	collected	rlu-officers	原表空白	剛膽	男
+10308	308	眭元進	52,68,45,32,49	CBBCBC	155	200	184	none	collected	rlu-officers	原表空白	豬突	男
+10309	309	眭固	63,71,38,7,33	ACBCCC	151	199	184	skill-021	collected	rlu-officers	原表空白	豬突	男
+10310	310	鄒氏	4,6,36,42,89	CCCBCC	165	197	184	skill-075	collected	rlu-officers	配偶=張濟	小心	女
+10311	311	鄒靖	70,64,66,59,67	ACBBCC	144	193	184	none	collected	rlu-officers	原表空白	冷靜	男
+10312	312	鄒丹	61,64,34,37,39	CCCACC	148	195	184	none	collected	rlu-officers	原表空白	剛膽	男
+10313	313	成宜	74,72,41,48,56	BCCABC	168	211	184	skill-081	collected	rlu-officers	原表空白	豬突	男
+10314	314	成公英	73,71,80,62,68	CBBAAC	172	220	189	skill-092	collected	rlu-officers	原表空白	冷靜	男
+10315	315	盛曼	61,68,66,50,57	CBACBA	225	276	244	none	collected	rlu-officers	原表空白	剛膽	男
+10316	316	石苞	69,71,56,53,60	ABBBBC	214	272	233	skill-097	collected	rlu-officers	親近武將=鄧艾	剛膽	男
+10317	317	薛瑩	49,18,64,74,62	CCBCBB	223	282	237	none	collected	rlu-officers	父親=薛綜	小心	男
+10318	318	薛珝	17,15,68,72,49	CCCCBB	221	271	235	none	collected	rlu-officers	父親=薛綜	冷靜	男
+10319	319	薛綜	34,16,72,80,63	CCCCBB	187	243	206	none	collected	rlu-officers	原表空白	小心	男
+10320	320	全禕	61,68,44,32,56	BCBCCA	230	274	244	none	collected	rlu-officers	父親=全端	剛膽	男
+10321	321	全懌	60,63,38,43,53	CBBCCA	212	265	226	none	collected	rlu-officers	父親=全琮	小心	男
+10322	322	全紀	49,69,61,70,63	BCBCCB	231	258	245	none	collected	rlu-officers	父親=全尚	剛膽	男
+10323	323	單經	71,68,43,49,54	BCCABC	156	199	184	none	collected	rlu-officers	原表空白	豬突	男
+10324	324	全尚	2,4,12,41,59	CCCCCB	208	258	227	none	collected	rlu-officers	原表空白	小心	男
+10325	325	全琮	78,72,71,61,67	ABACAS	183	249	202	skill-014	collected	rlu-officers	親近武將=孫魯班；厭惡武將=孫和	剛膽	男
+10326	326	全端	67,64,39,37,59	BBCCCA	204	261	218	none	collected	rlu-officers	父親=全琮	小心	男
+10327	327	曹宇	50,43,37,52,60	BBCCCC	199	260	213	none	collected	rlu-officers	父親=曹操；親近武將=曹叡	小心	男
+10328	328	曹叡	72,52,82,82,88	BCABBB	205	239	219	skill-013	collected	rlu-officers	父親=曹丕；親近武將=司馬懿；親近武將_2=甄氏；親近武將_3=曹宇；親近武將_4=曹植；厭惡武將=何晏；厭惡武將_2=諸葛誕	冷靜	男
+10329	329	曹奐	13,15,30,45,65	CCCCCC	246	302	253	none	collected	rlu-officers	父親=曹宇	小心	男
+10330	330	曹羲	30,26,50,53,45	CCBCCC	210	249	224	none	collected	rlu-officers	父親=曹真	小心	男
+10331	331	曹休	74,75,58,56,67	BCSACB	174	228	189	skill-050	collected	rlu-officers	父親=20 29	豬突	男
+10332	332	曹訓	18,34,11,13,28	CCCBCC	212	249	226	none	collected	rlu-officers	父親=曹真	小心	男
+10333	333	宋憲	68,77,38,27,31	BBCACC	157	200	184	none	collected	rlu-officers	親近武將=魏續；親近武將_2=侯成	豬突	男
+10334	334	宋謙	66,78,42,39,64	CACBCB	175	227	194	none	collected	rlu-officers	原表空白	剛膽	男
+10335	335	曹昂	74,67,66,68,77	BACBCC	175	197	189	skill-033	collected	rlu-officers	父親=曹操；親近武將=典韋	剛膽	男
+10336	336	曹洪	79,81,44,35,54	SACACC	169	232	188	skill-012	collected	rlu-officers	父親=20 32；親近武將=夏侯淵；親近武將_2=夏侯惇；親近武將_3=曹仁	豬突	男
+10337	337	曹純	75,71,60,35,72	BCCSCC	170	210	189	none	collected	rlu-officers	父親=20 31	豬突	男
+10338	338	曹彰	82,90,40,35,76	ABCSBC	190	223	204	skill-049	collected	rlu-officers	父親=曹操；母親=卞氏；親近武將=曹植	豬突	男
+10339	339	曹植	18,22,81,70,80	CCCCBC	192	232	206	skill-076	collected	rlu-officers	父親=曹操；母親=卞氏；親近武將=王粲；親近武將_2=甄氏；親近武將_3=曹叡；親近武將_4=曹彰；親近武將_5=陳琳；厭惡武將=曹丕	冷靜	男
+10340	340	曹真	87,74,68,72,88	ABBSCC	185	231	204	skill-020	collected	rlu-officers	父親=20 30；親近武將=郭淮	剛膽	男
+10341	341	曹仁	89,86,56,46,76	ASCACC	168	223	187	skill-029	collected	rlu-officers	父親=20 31；親近武將=夏侯淵；親近武將_2=夏侯惇；親近武將_3=牛金；親近武將_4=曹洪	剛膽	男
+10342	342	曹性	54,74,38,27,39	CCABCC	163	198	184	none	collected	rlu-officers	原表空白	豬突	男
+10344	344	曹爽	39,33,30,66,51	CCCBCC	207	249	221	none	collected	rlu-officers	父親=曹真；親近武將=夏侯玄；親近武將_2=夏侯霸；親近武將_3=毌丘儉；親近武將_4=諸葛誕；厭惡武將=司馬懿	小心	男
+10345	345	曹沖	31,21,85,79,83	CCCCAB	196	208	207	skill-096	collected	rlu-officers	父親=曹操	冷靜	男
+10346	346	臧霸	74,75,52,56,71	ABCACC	165	231	184	skill-095	collected	rlu-officers	親近武將=孫觀	豬突	男
+10347	347	曹丕	70,71,83,86,82	BBABCC	187	226	200	skill-050	collected	rlu-officers	父親=曹操；母親=卞氏；親近武將=夏侯尚；親近武將_2=吳質；親近武將_3=司馬懿；親近武將_4=陳群；親近武將_5=孟達；厭惡武將=王忠；厭惡武將_2=何晏；厭惡武將_3=曹洪；厭惡武將_4=曹植	冷靜	男
+10348	348	曹豹	54,69,32,21,26	BCBBCC	151	196	184	none	collected	rlu-officers	原表空白	小心	男
+10349	349	曹芳	5,3,27,48,72	CCCCCC	232	274	239	none	collected	rlu-officers	父親=曹叡	小心	男
+10350	350	曹髦	54,61,59,75,80	ACCBCC	241	260	253	skill-030	collected	rlu-officers	父親=20 33；親近武將=曹操	豬突	男
+10351	351	曹熊	9,5,52,64,68	CCCCCC	194	220	209	none	collected	rlu-officers	父親=曹操；母親=卞氏	小心	男
+10352	352	沮鵠	55,51,66,67,72	CCBBCC	184	204	198	none	collected	rlu-officers	父親=沮授	冷靜	男
+10353	353	沮授	78,35,90,89,74	BBAAAC	156	201	184	none	collected	rlu-officers	原表空白	冷靜	男
+10354	354	蘇飛	69,63,66,62,63	CABCCA	172	221	191	none	collected	rlu-officers	親近武將=甘寧	冷靜	男
+10355	355	祖茂	70,71,62,53,65	CACBCA	155	190	184	none	collected	rlu-officers	親近武將=孫堅	剛膽	男
+10356	356	蘇由	50,59,49,41,49	CBBCCC	164	210	184	none	collected	rlu-officers	原表空白	小心	男
+10357	357	孫異	69,71,55,62,61	BBACBA	223	272	237	none	collected	rlu-officers	父親=孫韶	剛膽	男
+10358	358	孫和	31,39,68,71,76	CCABCA	224	253	238	none	collected	rlu-officers	父親=孫權；親近武將=闞澤；親近武將_2=孫登；厭惡武將=孫魯班	剛膽	男
+10359	359	孫桓	82,73,72,68,78	BASCBA	197	228	216	skill-029	collected	rlu-officers	父親=20 34	冷靜	男
+10360	360	孫觀	72,78,51,39,66	BCCABC	166	217	184	skill-095	collected	rlu-officers	親近武將=臧霸	豬突	男
+10361	361	孫冀	60,67,51,60,66	BBBCCA	227	278	246	none	collected	rlu-officers	原表空白	小心	男
+10362	362	孫休	57,39,78,75,81	CCCCCA	235	264	249	none	collected	rlu-officers	父親=孫權；親近武將=張布；親近武將_2=濮陽興；厭惡武將=孫綝	冷靜	男
+10363	363	孫匡	52,46,44,65,56	BBBCCA	186	207	200	none	collected	rlu-officers	父親=孫堅	小心	男
+10364	364	孫歆	66,69,35,38,36	BCBCCA	235	280	249	none	collected	rlu-officers	父親=20 41	剛膽	男
+10365	365	孫堅	93,90,74,73,91	SSCACS	156	192	184	skill-023	collected	rlu-officers	父親=20 36；親近武將=韓當；親近武將_2=黃蓋；親近武將_3=程普；厭惡武將=董卓	剛膽	男
+10366	366	孫乾	34,33,78,84,84	CCCCBC	165	215	184	skill-086	collected	rlu-officers	親近武將=簡雍；親近武將_2=糜竺	冷靜	男
+10368	368	孫皓	13,28,31,6,3	CCCCCC	242	284	253	none	collected	rlu-officers	父親=孫和；親近武將=岑昏；厭惡武將=韋昭；厭惡武將_2=步闡；厭惡武將_3=留平；厭惡武將_4=樓玄	小心	男
+10369	369	孫皎	77,72,66,71,73	BAACAA	181	219	200	skill-007	collected	rlu-officers	父親=孫靜；親近武將=孫策	豬突	男
+10370	370	孫策	92,92,69,70,92	SABSAS	175	200	189	skill-039	collected	rlu-officers	父親=孫堅；親近武將=周瑜；親近武將_2=孫尚香；親近武將_3=大喬；親近武將_4=太史慈；厭惡武將=劉勳	豬突	男
+10371	371	孫氏	23,22,62,72,80	CCBCCA	188	250	203	skill-098	collected	rlu-officers	父親=孫策；親近武將=陸遜	小心	女
+10372	372	孫秀	55,51,53,57,68	BCACCA	235	299	249	none	collected	rlu-officers	父親=20 37；厭惡武將=孫皓	小心	男
+10373	373	孫峻	64,70,65,26,11	BCBCCB	219	256	238	none	collected	rlu-officers	父親=20 38；親近武將=孫魯班；親近武將_2=文欽；厭惡武將=諸葛恪	小心	男
+10374	374	孫韶	80,79,75,69,74	BACACS	188	241	207	skill-004	collected	rlu-officers	父親=20 35	豬突	男
+10375	375	孫尚香	72,86,67,63,86	ABSBCS	193	222	207	skill-036	collected	rlu-officers	父親=孫堅；親近武將=吳國太；親近武將_2=小喬；親近武將_3=孫策；親近武將_4=大喬；親近武將_5=劉備	豬突	女
+10376	376	孫震	67,70,48,44,54	BACCBC	234	280	253	none	collected	rlu-officers	父親=20 41	剛膽	男
+10377	377	孫靜	66,53,72,71,72	CCBCBA	160	206	184	none	collected	rlu-officers	父親=20 36	冷靜	男
+10378	378	孫仲	62,71,36,8,14	BCCBCC	154	184	184	none	collected	rlu-officers	原表空白	豬突	男
+10379	379	孫綝	25,39,65,17,7	BCCCCB	231	258	250	none	collected	rlu-officers	父親=20 39；厭惡武將=王惇；厭惡武將_2=朱異；厭惡武將_3=滕胤；厭惡武將_4=呂據	小心	男
+10380	380	孫登	62,37,79,80,87	BBACAA	209	241	223	skill-096	collected	rlu-officers	父親=孫權；親近武將=顧譚；親近武將_2=諸葛恪；親近武將_3=孫和；親近武將_4=張休；親近武將_5=陳表	冷靜	男
+10381	381	孫瑜	77,70,68,69,78	ABABAS	177	215	191	skill-093	collected	rlu-officers	父親=孫靜	冷靜	男
+10382	382	孫翊	67,78,27,16,45	ACCACA	184	204	198	skill-038	collected	rlu-officers	父親=孫堅；親近武將=徐氏；親近武將_2=孫策	豬突	男
+10383	383	孫亮	21,7,70,76,70	CCBCCB	243	260	253	none	collected	rlu-officers	父親=孫權；親近武將=孫魯班	冷靜	男
+10384	384	孫禮	78,81,62,73,74	BACABC	180	250	204	skill-051	collected	rlu-officers	原表空白	剛膽	男
+10385	385	孫朗	34,43,30,40,45	CCBCBB	187	226	201	none	collected	rlu-officers	父親=孫堅	小心	男
+10386	386	孫魯班	26,28,72,64,68	CBCCCA	202	250	216	skill-030	collected	rlu-officers	父親=孫權；親近武將=孫峻；親近武將_2=孫亮；厭惡武將=孫和	剛膽	女
+10387	387	大喬	17,11,72,78,92	CCBCCA	177	210	194	skill-075	collected	rlu-officers	父親=橋玄；親近武將=小喬；親近武將_2=孫策；親近武將_3=孫尚香	冷靜	女
+10388	388	太史享	57,66,48,59,60	CBCBCB	189	246	207	none	collected	rlu-officers	父親=太史慈	剛膽	男
+10390	390	帶來洞主	51,53,53,43,62	CBBCCC	195	249	217	skill-094	collected	rlu-officers	父親=20 19	小心	男
+10391	391	戴陵	70,75,39,48,50	BCCACC	199	258	218	none	collected	rlu-officers	原表空白	豬突	男
+10392	392	朵思大王	62,59,70,54,47	CBACCC	186	225	217	skill-008	collected	rlu-officers	原表空白	冷靜	男
+10393	393	譚雄	58,73,14,20,37	ACCBCB	188	221	207	none	collected	rlu-officers	原表空白	豬突	男
+10394	394	張允	72,67,42,56,48	CCACCS	163	208	187	none	collected	rlu-officers	親近武將=蔡氏；親近武將_2=蔡瑁	小心	男
+10396	396	張衛	74,66,45,44,61	CABCCC	172	215	191	none	collected	rlu-officers	父親=20 46	剛膽	男
+10397	397	張英	75,74,41,34,49	ABBCCC	154	195	184	none	collected	rlu-officers	原表空白	豬突	男
+10398	398	張燕	82,81,53,48,63	BBCSAC	153	210	184	skill-003	collected	rlu-officers	原表空白	豬突	男
+10399	399	張橫	59,70,23,24,49	CCCACC	178	211	197	none	collected	rlu-officers	原表空白	豬突	男
+10400	400	張溫	17,10,71,78,70	CCCCCB	193	231	210	none	collected	rlu-officers	原表空白	冷靜	男
+10401	401	張華	36,27,78,79,64	CCCCBC	232	300	251	none	collected	rlu-officers	親近武將=陳壽	冷靜	男
+10402	402	張闓	34,66,8,1,10	BBCCCC	155	202	184	skill-021	collected	rlu-officers	原表空白	小心	男
+10403	403	張角	86,25,86,80,98	ASACAC	140	184	184	skill-071	collected	rlu-officers	父親=20 42	冷靜	男
+10404	404	張既	74,35,75,88,81	CBBASC	170	223	189	skill-092	collected	rlu-officers	親近武將=夏侯淵；親近武將_2=鍾繇	冷靜	男
+10405	405	張休	53,27,74,77,73	CCBCBB	204	244	222	none	collected	rlu-officers	父親=張昭；親近武將=顧譚；親近武將_2=諸葛恪；親近武將_3=孫登；親近武將_4=陳表	冷靜	男
+10406	406	張球	69,72,44,30,46	CCCABC	201	263	220	skill-013	collected	rlu-officers	原表空白	豬突	男
+10407	407	張嶷	79,72,74,77,76	AAACAC	190	254	209	skill-006	collected	rlu-officers	原表空白	冷靜	男
+10408	408	張勳	72,68,41,39,59	BACCCB	156	206	184	none	collected	rlu-officers	原表空白	剛膽	男
+10409	409	張虎	75,74,41,44,61	BABABC	195	240	209	none	collected	rlu-officers	父親=張遼；親近武將=樂綝	豬突	男
+10410	410	張紘	24,22,86,95,82	CCCCAB	153	212	194	skill-077	collected	rlu-officers	親近武將=顧雍；親近武將_2=孫策	冷靜	男
+10411	411	張郃	90,89,69,57,71	ABCSAC	167	231	184	skill-011	collected	rlu-officers	親近武將=高覽；親近武將_2=司馬懿；厭惡武將=郭圖	剛膽	男
+10412	412	趙廣	67,71,53,53,62	CBBABC	210	263	224	none	collected	rlu-officers	父親=趙雲	剛膽	男
+10413	413	趙弘	66,72,28,22,19	BCCBCC	156	184	184	none	collected	rlu-officers	原表空白	剛膽	男
+10414	414	張濟	70,66,52,53,55	CCCACC	144	196	184	none	collected	rlu-officers	父親=20 44；配偶=鄒氏	剛膽	男
+10415	415	張繡	80,73,60,45,59	CCBSBC	154	207	184	skill-037	collected	rlu-officers	父親=20 45；親近武將=賈詡	剛膽	男
+10416	416	張緝	31,29,70,74,50	CCBCCC	196	254	215	none	collected	rlu-officers	父親=張既；親近武將=夏侯玄；親近武將_2=毌丘儉；親近武將_3=諸葛誕；親近武將_4=曹爽；親近武將_5=李豐	小心	男
+10417	417	張遵	63,68,66,59,57	BABCCC	224	263	238	none	collected	rlu-officers	父親=張苞	冷靜	男
+10418	418	張春華	60,9,76,72,68	CCCBBC	189	234	203	skill-059	collected	rlu-officers	原表空白	剛膽	女
+10419	419	張昭	33,3,84,97,80	BCCCCC	156	236	194	none	collected	rlu-officers	親近武將=孫策；厭惡武將=步騭	小心	男
+10420	420	張松	15,6,88,82,19	CCCCCC	170	212	189	skill-059	collected	rlu-officers	親近武將=法正；親近武將_2=孟達；親近武將_3=楊修；親近武將_4=劉備	小心	男
+10421	421	張紹	8,12,31,59,52	CCCCCC	202	264	216	none	collected	rlu-officers	父親=張飛	小心	男
+10422	422	張承	77,70,75,73,74	BAACBA	178	244	197	skill-038	collected	rlu-officers	父親=張昭；親近武將=嚴畯；親近武將_2=諸葛瑾；親近武將_3=步騭；親近武將_4=魯淑	剛膽	男
+10423	423	張任	88,84,78,59,76	ASSCBC	169	214	188	skill-036	collected	rlu-officers	厭惡武將=劉備	冷靜	男
+10424	424	貂蟬	10,26,81,65,94	CCBBCB	176	198	194	skill-069	collected	rlu-officers	父親=王允；親近武將=呂布	冷靜	女
+10425	425	張悌	67,43,80,78,83	ACBCCA	236	280	253	skill-027	collected	rlu-officers	原表空白	冷靜	男
+10426	426	趙統	68,67,61,54,58	BCBACC	209	260	223	none	collected	rlu-officers	父親=趙雲	冷靜	男
+10427	427	張特	73,54,75,66,68	CABCAC	209	265	228	skill-054	collected	rlu-officers	原表空白	冷靜	男
+10428	428	張南	57,71,46,34,34	CCCACC	168	208	187	none	collected	rlu-officers	原表空白	小心	男
+10429	429	張南	70,69,37,43,59	BBCBCC	187	222	209	none	collected	rlu-officers	原表空白	豬突	男
+10430	430	張邈	52,53,70,74,85	CBBBCC	155	195	184	skill-079	collected	rlu-officers	親近武將=袁紹；親近武將_2=陳宮	小心	男
+10431	431	趙範	28,21,32,58,56	CCCBCC	168	218	187	none	collected	rlu-officers	原表空白	小心	男
+10433	433	張布	31,24,71,66,41	CCCCCB	225	264	244	none	collected	rlu-officers	親近武將=孫休；親近武將_2=濮陽興	小心	男
+10434	434	張苞	75,87,48,46,68	SABACC	198	229	212	skill-009	collected	rlu-officers	父親=張飛；親近武將=關興	豬突	男
+10435	435	張寶	83,71,81,64,82	SBABSC	148	184	184	skill-071	collected	rlu-officers	父親=20 42	剛膽	男
+10436	436	張曼成	73,81,45,37,53	ABCBAC	143	184	184	skill-095	collected	rlu-officers	原表空白	豬突	男
+10437	437	張楊	72,70,62,58,68	CCBACC	151	195	184	none	collected	rlu-officers	原表空白	剛膽	男
+10438	438	張翼	75,74,71,72,70	BAACAC	188	264	207	skill-094	collected	rlu-officers	原表空白	剛膽	男
+10440	440	張梁	78,80,68,52,80	SCCAAC	153	184	184	skill-070	collected	rlu-officers	父親=20 42	剛膽	男
+10441	441	趙累	70,43,67,74,71	BBACAC	183	219	202	skill-026	collected	rlu-officers	親近武將=王甫；親近武將_2=關羽；親近武將_3=關平	冷靜	男
+10442	442	張魯	51,26,73,78,89	BCBCCC	163	237	184	skill-088	collected	rlu-officers	父親=20 46；厭惡武將=劉璋	小心	男
+10443	443	陳橫	64,63,26,35,43	CABCCC	161	195	184	none	collected	rlu-officers	原表空白	豬突	男
+10444	444	陳應	62,72,45,27,40	ABCCCC	172	208	203	none	collected	rlu-officers	親近武將=鮑隆	豬突	男
+10445	445	陳紀	58,65,43,48,32	CABCCC	165	198	184	none	collected	rlu-officers	原表空白	剛膽	男
+10446	446	陳宮	78,55,89,83,68	BBABAC	154	198	184	skill-018	collected	rlu-officers	親近武將=呂布；親近武將_2=張邈；厭惡武將=高順	冷靜	男
+10447	447	陳矯	61,27,76,83,64	CBACBC	175	237	194	none	collected	rlu-officers	親近武將=陳登；厭惡武將=袁術；厭惡武將_2=孫策	冷靜	男
+10448	448	陳群	32,14,74,96,73	CCCCCC	167	235	186	none	collected	rlu-officers	親近武將=吳質；親近武將_2=司馬懿；親近武將_3=曹丕	冷靜	男
+10449	449	陳珪	15,4,82,77,76	CCCCBC	132	206	184	skill-054	collected	rlu-officers	親近武將=劉備；厭惡武將=呂布	冷靜	男
+10450	450	陳騫	72,71,65,57,50	ACCBAB	214	292	233	none	collected	rlu-officers	父親=陳矯	剛膽	男
+10451	451	陳壽	12,22,60,75,51	CCCCCC	233	297	252	none	collected	rlu-officers	親近武將=張華	冷靜	男
+10452	452	陳式	70,71,25,23,30	BCCBAB	191	230	210	skill-006	collected	rlu-officers	親近武將=魏延；厭惡武將=諸葛亮	豬突	男
+10453	453	陳震	46,46,68,76,73	CCBCCC	170	235	189	none	collected	rlu-officers	原表空白	冷靜	男
+10454	454	陳泰	84,73,86,78,77	SAAAAC	210	260	224	skill-020	collected	rlu-officers	父親=陳群；親近武將=司馬師；親近武將_2=司馬昭；親近武將_3=鄧艾；親近武將_4=鍾毓；親近武將_5=傅嘏	冷靜	男
+10455	455	陳登	79,64,81,80,61	BAACSC	169	207	188	skill-056	collected	rlu-officers	父親=陳珪；親近武將=陳矯；親近武將_2=劉備；厭惡武將=呂布	冷靜	男
+10456	456	陳到	76,71,63,53,69	ACBABC	171	237	194	none	collected	rlu-officers	親近武將=趙雲	剛膽	男
+10457	457	陳表	66,42,74,78,72	CABCCA	204	237	218	skill-022	collected	rlu-officers	父親=陳武；親近武將=顧譚；親近武將_2=諸葛恪；親近武將_3=孫登；親近武將_4=張休	剛膽	男
+10458	458	陳武	74,87,43,40,62	ASCCCS	176	215	195	skill-035	collected	rlu-officers	原表空白	豬突	男
+10459	459	陳蘭	66,69,40,24,38	BACCBC	157	204	184	none	collected	rlu-officers	親近武將=雷薄	小心	男
+10460	460	陳琳	10,9,74,78,72	CCCCBC	160	217	184	skill-076	collected	rlu-officers	親近武將=王粲；親近武將_2=曹植	冷靜	男
+10461	461	程昱	70,49,90,79,58	ACCCAC	141	220	184	skill-018	collected	rlu-officers	親近武將=郭嘉；親近武將_2=荀彧	剛膽	男
+10462	462	程遠志	69,74,17,24,35	ACCABC	145	184	184	none	collected	rlu-officers	原表空白	豬突	男
+10463	463	丁儀	15,5,64,72,51	CCCCBC	184	220	203	none	collected	rlu-officers	親近武將=曹植	小心	男
+10464	464	程銀	69,73,40,36,50	CBCACC	169	211	184	none	collected	rlu-officers	原表空白	豬突	男
+10465	465	丁原	70,76,35,40,74	CCBACC	137	190	184	none	collected	rlu-officers	厭惡武將=董卓	豬突	男
+10466	466	程普	84,79,79,74,85	AAABBS	151	216	184	skill-079	collected	rlu-officers	親近武將=韓當；親近武將_2=黃蓋；親近武將_3=周瑜；親近武將_4=孫堅	冷靜	男
+10467	467	程武	56,35,75,71,45	BBCCCC	201	265	215	none	collected	rlu-officers	父親=程昱	冷靜	男
+10468	468	程秉	16,15,71,72,65	CCCCBB	172	226	191	none	collected	rlu-officers	原表空白	冷靜	男
+10469	469	丁奉	81,80,71,55,56	SABABS	190	271	207	skill-013	collected	rlu-officers	父親=20 47；親近武將=徐盛	剛膽	男
+10470	470	丁封	66,66,53,39,61	ACCBCA	198	266	217	none	collected	rlu-officers	父親=20 47	豬突	男
+10471	471	典韋	56,95,35,29,58	BACCCC	160	197	184	skill-052	collected	rlu-officers	親近武將=夏侯惇；親近武將_2=許褚；親近武將_3=曹昂；親近武將_4=曹操	剛膽	男
+10472	472	田楷	68,65,56,61,63	CCBABC	154	199	184	none	collected	rlu-officers	原表空白	冷靜	男
+10473	473	田續	47,60,55,15,32	BCCBBC	218	272	237	none	collected	rlu-officers	厭惡武將=鄧艾	小心	男
+10474	474	田疇	66,66,72,76,74	CCBBCC	169	214	188	skill-097	collected	rlu-officers	厭惡武將=袁紹；厭惡武將_2=公孫瓚	冷靜	男
+10475	475	田豐	72,29,93,87,64	ABBCAC	162	200	184	none	collected	rlu-officers	厭惡武將=審配；厭惡武將_2=逢紀	剛膽	男
+10476	476	典滿	51,73,39,26,52	CACCCC	181	235	195	none	collected	rlu-officers	父親=典韋	豬突	男
+10477	477	田予	80,72,80,78,75	BBAAAC	171	252	189	skill-091	collected	rlu-officers	親近武將=劉備	冷靜	男
+10478	478	滕胤	29,41,71,76,64	CCBCBB	194	256	221	none	collected	rlu-officers	厭惡武將=諸葛恪；厭惡武將_2=孫綝	小心	男
+10479	479	董允	47,28,78,91,79	CCBCBC	192	246	214	skill-084	collected	rlu-officers	父親=董和；親近武將=費禕；厭惡武將=黃皓	冷靜	男
+10480	480	董和	57,34,74,87,76	CBACCC	168	219	187	skill-094	collected	rlu-officers	原表空白	剛膽	男
+10481	481	鄧艾	94,87,89,81,70	SAAASC	197	264	216	skill-002	collected	rlu-officers	親近武將=州泰；親近武將_2=石苞；親近武將_3=陳泰；厭惡武將=鍾會	冷靜	男
+10482	482	黨均	33,24,77,59,47	BCCCAC	229	264	248	none	collected	rlu-officers	原表空白	冷靜	男
+10483	483	董厥	65,59,76,78,66	CCACAC	204	271	223	none	collected	rlu-officers	原表空白	冷靜	男
+10484	484	陶謙	51,27,63,63,77	CBBCCC	132	194	184	none	collected	rlu-officers	原表空白	小心	男
+10485	485	鄧賢	61,73,45,36,51	BCBCBC	188	248	208	none	collected	rlu-officers	原表空白	豬突	男
+10486	486	鄧芝	73,52,81,85,88	BCABAC	182	251	201	skill-086	collected	rlu-officers	親近武將=姜維	冷靜	男
+10487	487	唐咨	61,71,50,52,61	ACBCCA	196	265	225	skill-083	collected	rlu-officers	原表空白	剛膽	男
+10488	488	董襲	72,85,50,48,60	AABCBS	169	215	188	skill-004	collected	rlu-officers	原表空白	剛膽	男
+10489	489	滕脩	44,32,31,71,62	CCBCCB	228	288	247	none	collected	rlu-officers	原表空白	小心	男
+10490	490	陶濬	65,66,46,44,55	CCBCAA	238	285	253	none	collected	rlu-officers	原表空白	剛膽	男
+10491	491	董承	56,53,65,63,75	CCCBBC	154	200	184	none	collected	rlu-officers	原表空白	剛膽	男
+10492	492	董昭	19,25,80,82,59	CCCCBC	156	236	184	skill-007	collected	rlu-officers	原表空白	冷靜	男
+10493	493	董卓	74,87,69,19,37	CCAACC	139	192	184	skill-089	collected	rlu-officers	父親=20 48；親近武將=貂蟬；親近武將_2=李儒	剛膽	男
+10494	494	鄧忠	72,85,69,55,71	SBBAAC	230	264	244	skill-034	collected	rlu-officers	父親=鄧艾	剛膽	男
+10495	495	董朝	17,13,56,71,61	CCCCBB	221	281	240	none	collected	rlu-officers	原表空白	小心	男
+10496	496	董荼那	68,73,31,37,49	BACCCC	189	225	217	none	collected	rlu-officers	親近武將=阿會喃；親近武將_2=金環三結	豬突	男
+10497	497	唐彬	67,74,59,53,58	BCBBAA	235	294	253	none	collected	rlu-officers	原表空白	剛膽	男
+10498	498	董旻	49,60,25,12,23	CCCBCC	149	192	184	none	collected	rlu-officers	父親=20 48	小心	男
+10499	499	鄧茂	61,75,29,17,28	BCCACC	147	184	184	none	collected	rlu-officers	原表空白	豬突	男
+10500	500	杜畿	66,32,74,87,76	CCBCAB	163	224	184	skill-007	collected	rlu-officers	原表空白	冷靜	男
+10501	501	杜預	85,30,85,80,81	ABSCSS	222	284	241	skill-011	collected	rlu-officers	親近武將=羊祜	冷靜	男
+10502	502	甯隨	67,69,72,44,52	CCCACC	234	264	253	skill-078	collected	rlu-officers	原表空白	冷靜	男
+10503	503	裴元紹	49,65,25,27,42	BBCCCC	169	200	184	none	collected	rlu-officers	親近武將=周倉	豬突	男
+10504	504	裴秀	8,9,70,79,37	CCCCSC	223	271	243	skill-082	collected	rlu-officers	親近武將=賈充；親近武將_2=司馬炎	小心	男
+10505	505	馬雲騄	78,88,53,46,77	ACBSCB	183	225	197	skill-037	collected	rlu-officers	父親=馬騰；親近武將=趙雲；親近武將_2=馬岱；親近武將_3=馬超；親近武將_4=馬騰；厭惡武將=曹操	剛膽	女
+10506	506	馬玩	71,74,16,23,37	BCCACC	170	211	189	none	collected	rlu-officers	原表空白	豬突	男
+10507	507	馬休	68,73,48,45,68	BBCSCC	178	211	192	skill-003	collected	rlu-officers	父親=馬騰；親近武將=馬雲騄；親近武將_2=馬騰；親近武將_3=馬超；親近武將_4=馬鐵；親近武將_5=馬岱；厭惡武將=曹操	剛膽	男
+10508	508	馬鈞	2,7,60,70,41	CCCCSC	200	259	219	skill-082	collected	rlu-officers	原表空白	小心	男
+10509	509	波才	71,74,52,25,33	ABCCAC	145	184	184	skill-095	collected	rlu-officers	原表空白	剛膽	男
+10510	510	馬遵	38,52,31,51,48	CCCBCC	196	260	215	none	collected	rlu-officers	原表空白	小心	男
+10511	511	馬謖	61,67,87,68,67	BCBBCC	190	228	209	skill-064	collected	rlu-officers	父親=20 51；親近武將=伊籍；親近武將_2=向朗；親近武將_3=諸葛亮	豬突	男
+10512	512	馬岱	81,85,56,54,74	BBBSBC	183	246	197	skill-073	collected	rlu-officers	父親=20 50；親近武將=馬雲騄；親近武將_2=馬休；親近武將_3=馬超；親近武將_4=馬鐵；親近武將_5=馬騰；厭惡武將=曹操	冷靜	男
+10513	513	馬忠	67,77,64,36,38	CABCCB	186	222	205	skill-019	collected	rlu-officers	原表空白	剛膽	男
+10514	514	馬忠	78,72,68,78,79	BAACAC	187	249	205	skill-006	collected	rlu-officers	原表空白	剛膽	男
+10515	515	馬超	88,97,44,26,82	ABCSBC	176	226	189	skill-045	collected	rlu-officers	父親=馬騰；親近武將=馬雲騄；親近武將_2=馬休；親近武將_3=李恢；親近武將_4=馬鐵；親近武將_5=馬岱；厭惡武將=楊柏；厭惡武將_2=曹操	豬突	男
+10516	516	馬鐵	70,62,56,52,62	CCBSBC	179	211	193	skill-092	collected	rlu-officers	父親=馬騰；親近武將=馬雲騄；親近武將_2=馬休；親近武將_3=馬超；親近武將_4=馬騰；親近武將_5=馬岱；厭惡武將=曹操	冷靜	男
+10517	517	馬騰	82,80,51,59,89	BACSCC	149	211	184	skill-081	collected	rlu-officers	親近武將=馬雲騄；親近武將_2=馬休；親近武將_3=馬超；親近武將_4=馬鐵；親近武將_5=馬岱；厭惡武將=曹操	剛膽	男
+10518	518	馬邈	19,12,7,35,12	CCCCCC	221	265	240	none	collected	rlu-officers	原表空白	小心	男
+10519	519	馬良	46,23,85,90,86	CCBCBB	187	222	206	skill-080	collected	rlu-officers	父親=20 51；親近武將=伊籍；親近武將_2=諸葛亮	冷靜	男
+10520	520	萬彧	21,25,71,65,41	CCCCBC	240	272	253	none	collected	rlu-officers	親近武將=孫皓	小心	男
+10521	521	樊建	41,24,71,77,73	CCBCBC	205	270	224	none	collected	rlu-officers	原表空白	冷靜	男
+10522	522	樊氏	23,22,72,69,76	CCBBCB	176	215	200	skill-099	collected	rlu-officers	親近武將=趙雲	冷靜	女
+10523	523	潘濬	61,18,67,82,21	CBCCCC	174	239	193	none	collected	rlu-officers	原表空白	小心	男
+10524	524	潘璋	76,80,70,28,12	BAABCS	177	222	196	skill-019	collected	rlu-officers	原表空白	剛膽	男
+10525	525	樊稠	66,73,31,24,39	CCCACC	149	192	184	none	collected	rlu-officers	親近武將=韓遂	豬突	男
+10526	526	樊能	69,61,36,31,48	CBBCCC	158	195	184	none	collected	rlu-officers	原表空白	剛膽	男
+10527	527	潘鳳	56,77,4,14,25	CCCBCC	155	190	184	none	collected	rlu-officers	原表空白	豬突	男
+10528	528	費禕	77,30,83,92,83	BBACAB	193	253	212	skill-080	collected	rlu-officers	親近武將=董允	剛膽	男
+10529	529	卑衍	60,66,21,30,46	CCBBCC	196	238	215	none	collected	rlu-officers	原表空白	小心	男
+10530	530	費詩	15,28,64,74,66	CCCCBC	176	240	195	none	collected	rlu-officers	原表空白	小心	男
+10531	531	糜氏	12,6,66,70,79	CCCCCC	176	208	194	skill-099	collected	rlu-officers	父親=20 52	冷靜	女
+10532	532	糜竺	33,29,77,83,85	CCBCCC	165	220	184	skill-087	collected	rlu-officers	父親=20 52；親近武將=簡雍；親近武將_2=孫乾	冷靜	男
+10533	533	糜芳	54,61,32,23,23	BCBCCC	169	222	188	none	collected	rlu-officers	父親=20 52；親近武將=傅士仁；厭惡武將=關羽	小心	男
+10534	534	費耀	70,66,73,62,67	BBCBBC	192	228	211	none	collected	rlu-officers	原表空白	冷靜	男
+10535	535	武安國	67,83,34,33,36	BCCBCC	156	190	184	none	collected	rlu-officers	原表空白	豬突	男
+10536	536	馮習	72,71,39,41,62	ABCBCC	182	222	201	none	collected	rlu-officers	原表空白	豬突	男
+10537	537	傅嘏	44,35,81,82,70	CCBCBC	209	255	228	none	collected	rlu-officers	親近武將=荀顗；親近武將_2=鍾毓；親近武將_3=陳泰	冷靜	男
+10538	538	傅士仁	46,63,37,24,20	CBBCCC	182	222	201	none	collected	rlu-officers	親近武將=虞翻；厭惡武將=關羽	小心	男
+10539	539	傅僉	73,85,72,46,62	BACABC	216	263	230	skill-051	collected	rlu-officers	父親=傅彤；親近武將=姜維	剛膽	男
+10540	540	傅巽	14,13,69,72,46	CCCCCC	162	230	184	none	collected	rlu-officers	原表空白	冷靜	男
+10541	541	傅彤	66,72,46,42,63	BACBCC	183	222	207	skill-012	collected	rlu-officers	原表空白	豬突	男
+10542	542	文鴦	76,91,60,32,63	BCASCC	222	285	236	skill-013	collected	rlu-officers	父親=文欽；親近武將=趙雲	豬突	男
+10543	543	文欽	74,83,43,34,22	AABBCC	200	258	217	none	collected	rlu-officers	親近武將=尹大目；親近武將_2=孫峻；厭惡武將=朱異；厭惡武將_2=諸葛誕	豬突	男
+10544	544	文虎	66,72,45,30,58	BCCBBC	227	279	241	none	collected	rlu-officers	父親=文欽	剛膽	男
+10545	545	文醜	78,94,25,25,38	ABASCC	161	200	184	skill-037	collected	rlu-officers	親近武將=顏良	豬突	男
+10546	546	文聘	86,82,66,69,72	ASBCBA	178	237	197	skill-027	collected	rlu-officers	原表空白	剛膽	男
+10547	547	卞喜	56,70,59,37,24	BCBCBC	169	200	184	none	collected	rlu-officers	原表空白	豬突	男
+10548	548	卞氏	36,24,74,76,87	CCCBCC	160	230	184	skill-075	collected	rlu-officers	配偶=曹操	剛膽	女
+10549	549	方悅	68,80,44,46,55	ACCBCC	153	190	184	none	collected	rlu-officers	原表空白	豬突	男
+10550	550	龐會	69,75,49,42,52	BCCAAC	205	272	219	none	collected	rlu-officers	父親=龐德；厭惡武將=關彝；厭惡武將_2=關羽；厭惡武將_3=關興；厭惡武將_4=關統	剛膽	男
+10551	551	忙牙長	45,79,3,2,9	ACCBCC	191	225	217	none	collected	rlu-officers	原表空白	豬突	男
+10552	552	逢紀	27,21,84,70,39	CCCCCC	153	202	184	none	collected	rlu-officers	厭惡武將=審配；厭惡武將_2=田豐	小心	男
+10553	553	龐羲	60,38,68,74,57	CBBCBC	153	218	184	none	collected	rlu-officers	原表空白	剛膽	男
+10554	554	鮑三娘	72,83,56,36,75	BBBACA	198	248	220	skill-012	collected	rlu-officers	親近武將=花鬘；親近武將_2=關索	豬突	女
+10555	555	鮑信	77,67,81,73,78	BABCBC	152	192	184	skill-026	collected	rlu-officers	親近武將=曹操	剛膽	男
+10556	556	法正	82,47,94,78,55	CCACAC	176	220	195	skill-016	collected	rlu-officers	親近武將=黃忠；親近武將_2=張松；親近武將_3=孟達；親近武將_4=劉備	冷靜	男
+10557	557	龐統	78,34,97,85,69	BBCCBB	179	214	208	skill-066	collected	rlu-officers	親近武將=虞翻；親近武將_2=張飛；親近武將_3=陸績	冷靜	男
+10558	558	龐德	80,94,70,44,70	BAASBC	170	219	184	skill-025	collected	rlu-officers	原表空白	剛膽	男
+10559	559	鮑隆	58,76,49,23,30	BCACCC	174	208	202	none	collected	rlu-officers	親近武將=陳應	豬突	男
+10560	560	步協	71,49,69,63,67	CBACBA	216	264	230	none	collected	rlu-officers	父親=步騭	冷靜	男
+10561	561	穆順	52,77,11,21,20	CBCBCC	157	190	184	none	collected	rlu-officers	原表空白	豬突	男
+10562	562	濮陽興	37,32,70,72,59	CCCCBB	224	264	243	none	collected	rlu-officers	親近武將=孫休；親近武將_2=張布	小心	男
+10563	563	木鹿大王	65,71,39,6,32	CACCCC	184	225	216	skill-070	collected	rlu-officers	原表空白	豬突	男
+10564	564	步騭	72,51,84,86,70	CCACSA	177	247	196	skill-024	collected	rlu-officers	親近武將=嚴畯；親近武將_2=諸葛瑾；親近武將_3=張承；厭惡武將=張昭	冷靜	男
+10565	565	步闡	71,60,71,64,62	CABCCA	222	272	236	none	collected	rlu-officers	父親=步騭	冷靜	男
+10566	566	滿寵	84,64,82,84,80	CSACAC	170	242	189	skill-026	collected	rlu-officers	親近武將=毛玠；親近武將_2=劉曄；親近武將_3=呂虔	冷靜	男
+10567	567	毛玠	63,39,59,78,61	CCBCCB	161	216	184	skill-085	collected	rlu-officers	親近武將=滿寵；親近武將_2=呂虔	冷靜	男
+10568	568	孟獲	76,87,42,45,80	BSCCCC	186	245	212	skill-015	collected	rlu-officers	父親=20 53；親近武將=祝融	豬突	男
+10569	569	孟宗	47,28,72,78,79	CCBCAB	216	271	235	none	collected	rlu-officers	原表空白	冷靜	男
+10570	570	孟達	75,73,74,66,72	BBACAC	172	228	191	none	collected	rlu-officers	親近武將=夏侯尚；親近武將_2=桓階；親近武將_3=張松；親近武將_4=法正；親近武將_5=李嚴；厭惡武將=申儀；厭惡武將_2=申耽；厭惡武將_3=劉封	小心	男
+10571	571	孟優	50,68,22,18,37	BACCCC	190	251	215	skill-094	collected	rlu-officers	父親=20 53	豬突	男
+10572	572	俞涉	62,79,24,23,33	BCCACC	158	190	184	none	collected	rlu-officers	原表空白	豬突	男
+10573	573	楊懷	62,68,68,62,53	CABCCC	167	212	186	none	collected	rlu-officers	親近武將=高沛	剛膽	男
+10574	574	雍闓	81,75,54,56,68	AACCSC	188	225	207	skill-094	collected	rlu-officers	原表空白	豬突	男
+10575	575	楊儀	68,40,82,79,23	CBBCBC	190	235	209	none	collected	rlu-officers	親近武將=諸葛亮；厭惡武將=魏延；厭惡武將_2=劉巴	小心	男
+10576	576	楊欣	61,68,61,58,64	ACCBAC	220	278	239	none	collected	rlu-officers	原表空白	冷靜	男
+10577	577	羊祜	90,64,84,87,89	SBSABA	221	278	240	skill-020	collected	rlu-officers	親近武將=杜預；親近武將_2=陸抗	冷靜	男
+10578	578	楊弘	18,15,76,60,45	CCCCCC	152	199	184	none	collected	rlu-officers	原表空白	小心	男
+10579	579	楊昂	68,72,38,35,42	BBBBCC	172	215	191	none	collected	rlu-officers	原表空白	豬突	男
+10580	580	楊濟	67,68,71,66,64	BBBBBC	226	291	245	none	collected	rlu-officers	原表空白	冷靜	男
+10581	581	楊醜	52,65,40,22,32	BCCBCC	159	199	184	none	collected	rlu-officers	原表空白	小心	男
+10582	582	楊修	10,4,83,79,43	CCCCCC	175	219	194	none	collected	rlu-officers	親近武將=孔融；親近武將_2=曹植；親近武將_3=張松	小心	男
+10583	583	楊秋	67,64,58,63,42	CCBABC	172	238	191	none	collected	rlu-officers	原表空白	小心	男
+10584	584	楊松	2,5,28,34,5	CCCCCC	167	215	186	none	collected	rlu-officers	父親=20 54	小心	男
+10585	585	楊任	70,78,53,40,56	CABBCC	170	215	189	none	collected	rlu-officers	原表空白	剛膽	男
+10586	586	楊祚	53,61,36,32,41	BCCBCC	202	256	221	none	collected	rlu-officers	原表空白	小心	男
+10587	587	楊肇	70,65,68,62,58	ABABBC	223	286	242	none	collected	rlu-officers	原表空白	冷靜	男
+10588	588	楊柏	44,45,19,26,21	BCCCCC	171	214	189	none	collected	rlu-officers	父親=20 54；厭惡武將=馬超	小心	男
+10589	589	楊阜	67,50,83,78,77	CBBBAC	178	239	197	none	collected	rlu-officers	厭惡武將=馬超	冷靜	男
+10590	590	楊奉	66,65,31,14,58	BCCBCC	153	197	184	none	collected	rlu-officers	原表空白	小心	男
+10591	591	楊鋒	54,62,52,40,46	CBCCBC	191	252	213	none	collected	rlu-officers	原表空白	剛膽	男
+10592	592	雷銅	69,78,51,37,53	BACBBC	172	218	191	none	collected	rlu-officers	親近武將=吳蘭；親近武將_2=張飛	剛膽	男
+10593	593	雷薄	62,70,36,11,15	ABCCBC	157	206	184	none	collected	rlu-officers	親近武將=陳蘭	小心	男
+10594	594	駱統	76,58,75,77,77	BBACAA	193	228	207	skill-014	collected	rlu-officers	原表空白	冷靜	男
+10595	595	羅憲	85,71,75,72,73	BASCSC	218	270	237	skill-029	collected	rlu-officers	原表空白	冷靜	男
+10596	596	李異	59,77,19,18,24	ACCBBB	187	222	206	none	collected	rlu-officers	原表空白	豬突	男
+10597	597	李恢	79,65,78,77,80	BBSCSC	175	231	194	skill-055	collected	rlu-officers	親近武將=馬超	冷靜	男
+10598	598	李傕	69,72,24,1,17	BCCABC	148	198	184	none	collected	rlu-officers	原表空白	小心	男
+10599	599	陸凱	65,61,78,85,73	CCBCAA	198	269	217	none	collected	rlu-officers	父親=20 56	冷靜	男
+10600	600	陸抗	91,63,87,85,87	AASCSS	226	274	240	skill-020	collected	rlu-officers	父親=陸遜；親近武將=羊祜	冷靜	男
+10601	601	陸績	20,7,71,72,44	CCCCBB	187	219	206	skill-097	collected	rlu-officers	親近武將=虞翻；親近武將_2=龐統	小心	男
+10602	602	陸遜	96,69,95,87,90	ASSCAS	183	245	202	skill-065	collected	rlu-officers	父親=20 55；親近武將=闞澤；親近武將_2=孫氏；親近武將_3=呂蒙	冷靜	男
+10603	603	李嚴	83,84,75,74,52	BASCBC	172	234	191	skill-035	collected	rlu-officers	親近武將=諸葛亮；親近武將_2=孟達	冷靜	男
+10604	604	李儒	61,26,93,75,38	CCCBBC	150	192	184	skill-090	collected	rlu-officers	親近武將=董卓	冷靜	男
+10605	605	李肅	46,69,59,15,36	CCCBCC	156	192	184	none	collected	rlu-officers	親近武將=呂布	小心	男
+10606	606	李勝	12,22,29,69,51	CCCCBC	201	249	220	none	collected	rlu-officers	親近武將=曹爽	小心	男
+10607	607	李堪	58,69,33,37,45	CBCACC	176	211	195	none	collected	rlu-officers	原表空白	小心	男
+10608	608	李通	73,81,57,63,73	ACCABB	168	211	187	skill-034	collected	rlu-officers	原表空白	豬突	男
+10609	609	李典	78,77,79,74,65	AAABSC	174	216	189	skill-024	collected	rlu-officers	親近武將=樂進；親近武將_2=張遼	冷靜	男
+10610	610	李孚	31,36,74,73,69	CCBCBC	162	210	184	none	collected	rlu-officers	原表空白	冷靜	男
+10611	611	李豐	55,48,67,72,67	CBACBC	206	260	220	skill-007	collected	rlu-officers	父親=李嚴	冷靜	男
+10612	612	李豐	25,35,67,71,60	CCCCBC	204	254	223	none	collected	rlu-officers	親近武將=夏侯玄；親近武將_2=毌丘儉；親近武將_3=諸葛誕；親近武將_4=曹爽；親近武將_5=張緝	小心	男
+10613	613	李豐	69,74,50,22,47	CBCBBC	158	199	184	none	collected	rlu-officers	原表空白	剛膽	男
+10614	614	劉焉	53,38,80,81,85	CCBCAC	132	194	184	none	collected	rlu-officers	原表空白	冷靜	男
+10615	615	劉和	21,16,59,68,72	CCCCCC	165	193	184	none	collected	rlu-officers	父親=劉虞	小心	男
+10616	616	劉璝	71,73,66,44,62	CAACBC	165	214	189	none	collected	rlu-officers	原表空白	剛膽	男
+10617	617	劉琦	52,12,62,71,73	CCBCCA	174	209	188	none	collected	rlu-officers	父親=劉表	小心	男
+10618	618	劉虞	55,33,69,78,92	CCCBCC	145	193	184	skill-091	collected	rlu-officers	厭惡武將=公孫瓚	剛膽	男
+10619	619	劉勳	47,63,35,16,32	CBBCCB	163	216	184	none	collected	rlu-officers	原表空白	小心	男
+10620	620	劉賢	54,66,51,40,52	BBCBCC	188	252	202	none	collected	rlu-officers	父親=劉度	剛膽	男
+10621	621	留贊	78,75,64,57,62	AACBBA	172	255	202	skill-004	collected	rlu-officers	親近武將=凌統	剛膽	男
+10622	622	劉氏	3,8,66,49,69	CCCCCC	164	205	184	none	collected	rlu-officers	配偶=袁紹；親近武將=袁尚	冷靜	女
+10623	623	劉循	63,46,41,50,57	CBBCCC	184	239	198	none	collected	rlu-officers	父親=劉璋	豬突	男
+10624	624	劉璋	16,5,9,38,65	CCCCCC	162	219	184	none	collected	rlu-officers	父親=劉焉；厭惡武將=張魯	小心	男
+10625	625	劉劭	71,53,74,79,70	ABABBC	195	264	212	skill-076	collected	rlu-officers	原表空白	冷靜	男
+10626	626	劉丞	45,65,33,33,56	BBCCCB	215	258	234	none	collected	rlu-officers	原表空白	豬突	男
+10627	627	劉諶	60,62,69,73,82	BABCCC	238	263	252	skill-030	collected	rlu-officers	父親=劉禪；親近武將=劉備	剛膽	男
+10628	628	劉璿	8,21,36,51,55	CCCCCC	224	264	238	none	collected	rlu-officers	父親=劉禪	小心	男
+10629	629	劉禪	3,5,9,4,56	CCCCCC	207	271	221	skill-032	collected	rlu-officers	父親=劉備；親近武將=黃皓	小心	男
+10630	630	劉琮	24,22,64,65,70	CCBCCB	195	208	207	none	collected	rlu-officers	父親=劉表；親近武將=蔡氏；親近武將_2=蔡瑁	小心	男
+10631	631	劉岱	53,65,32,54,42	BBCBCC	147	202	184	none	collected	rlu-officers	父親=20 57	小心	男
+10632	632	劉度	25,23,26,49,53	CCBCCC	168	214	187	none	collected	rlu-officers	原表空白	小心	男
+10633	633	劉巴	14,22,74,81,57	CCCCCC	186	222	205	none	collected	rlu-officers	厭惡武將=張飛；厭惡武將_2=楊儀	小心	男
+10634	634	劉磐	69,76,47,43,55	ACCCBB	168	210	188	none	collected	rlu-officers	親近武將=黃忠	剛膽	男
+10636	636	劉表	48,31,71,81,83	CCBCCC	142	208	184	none	collected	rlu-officers	親近武將=黃祖	小心	男
+10637	637	劉馥	64,49,73,87,83	BBACAB	164	208	184	skill-078	collected	rlu-officers	原表空白	剛膽	男
+10638	638	留平	70,71,68,57,63	BBCCAA	218	272	232	skill-077	collected	rlu-officers	父親=留贊	剛膽	男
+10639	639	劉辟	70,72,47,34,55	ABCBBC	145	201	184	skill-015	collected	rlu-officers	親近武將=龔都	剛膽	男
+10640	640	劉封	75,79,44,50,76	ACCAAB	188	220	206	skill-034	collected	rlu-officers	父親=劉備；親近武將=關平；厭惡武將=孟達	剛膽	男
+10641	641	劉曄	36,32,92,73,69	CCCCSC	176	235	193	skill-024	collected	rlu-officers	親近武將=郭嘉；親近武將_2=滿寵；親近武將_3=呂虔	冷靜	男
+10642	642	劉繇	62,67,46,70,64	BCCBCB	156	195	184	none	collected	rlu-officers	父親=20 57	豬突	男
+10643	643	留略	71,66,59,46,51	CAACCA	206	260	220	skill-077	collected	rlu-officers	父親=留贊	剛膽	男
+10644	644	呂威璜	58,63,29,39,44	BBCBCC	159	200	188	none	collected	rlu-officers	原表空白	冷靜	男
+10645	645	廖化	73,76,64,49,66	AACBCC	170	264	184	skill-033	collected	rlu-officers	親近武將=關羽；親近武將_2=關平	豬突	男
+10646	646	梁興	61,65,19,22,26	CCCACC	169	211	188	none	collected	rlu-officers	原表空白	豬突	男
+10647	647	梁綱	60,69,41,22,46	BBBCCC	160	199	184	none	collected	rlu-officers	原表空白	豬突	男
+10648	648	梁習	73,40,73,87,80	CCCAAC	168	230	187	skill-081	collected	rlu-officers	原表空白	冷靜	男
+10649	649	梁緒	56,62,66,68,58	BCBBCC	198	260	217	none	collected	rlu-officers	親近武將=尹賞；親近武將_2=姜維	豬突	男
+10650	650	凌操	75,81,42,35,55	BACACS	165	203	184	skill-009	collected	rlu-officers	原表空白	豬突	男
+10651	651	凌統	77,89,55,40,71	BSCACS	189	237	203	skill-009	collected	rlu-officers	父親=凌操；親近武將=甘寧；親近武將_2=留贊	豬突	男
+10652	652	廖立	22,15,69,76,27	CCCCCC	181	250	200	none	collected	rlu-officers	厭惡武將=諸葛亮	冷靜	男
+10653	653	呂凱	53,30,66,77,73	CBCCAC	194	227	213	skill-008	collected	rlu-officers	親近武將=王伉	冷靜	男
+10654	654	呂據	70,59,71,62,62	CCACAA	196	256	210	skill-005	collected	rlu-officers	父親=呂範；厭惡武將=孫綝	剛膽	男
+10655	655	呂虔	57,70,58,72,60	BCACCC	173	238	192	skill-050	collected	rlu-officers	親近武將=王祥；親近武將_2=滿寵；親近武將_3=毛玠；親近武將_4=劉曄	剛膽	男
+10656	656	呂曠	56,70,13,22,29	CCCBCC	162	207	184	none	collected	rlu-officers	父親=20 58	豬突	男
+10657	657	呂翔	54,71,12,19,28	CCCBCC	164	207	184	none	collected	rlu-officers	父親=20 58	小心	男
+10658	658	呂岱	82,71,69,75,63	ABACAS	161	256	184	skill-005	collected	rlu-officers	原表空白	剛膽	男
+10659	659	呂範	73,63,74,75,69	BCACAA	169	228	188	skill-083	collected	rlu-officers	原表空白	剛膽	男
+10660	660	呂布	87,100,26,13,40	ASSSCC	156	198	184	skill-000	collected	rlu-officers	親近武將=高順；親近武將_2=貂蟬；親近武將_3=張遼；親近武將_4=陳宮；厭惡武將=關羽；厭惡武將_2=張飛	豬突	男
+10662	662	呂玲綺	81,89,37,18,56	BAASCC	182	198	196	skill-049	collected	rlu-officers	父親=呂布；親近武將=呂布	豬突	女
+10663	663	倫直	46,42,72,64,56	CCCBBC	197	237	216	none	collected	rlu-officers	原表空白	冷靜	男
+10664	664	冷苞	71,82,68,37,23	CAACBC	176	214	205	skill-015	collected	rlu-officers	原表空白	豬突	男
+10665	665	婁圭	52,13,87,67,15	CCCCBC	143	212	184	skill-077	collected	rlu-officers	原表空白	冷靜	男
+10666	666	樓玄	23,22,67,77,80	CCCCBB	223	275	242	skill-098	collected	rlu-officers	原表空白	冷靜	男
+10668	668	魯淑	71,53,74,76,73	CBACAA	208	274	226	skill-005	collected	rlu-officers	父親=魯肅；親近武將=張承	冷靜	男
+10669	669	盧植	86,63,82,85,81	ABSABC	139	192	184	skill-084	collected	rlu-officers	親近武將=公孫瓚；親近武將_2=劉備；厭惡武將=董卓	冷靜	男

@@ -1,0 +1,50 @@
+{
+  "format": 1,
+  "revision": 1,
+  "target": "san11-pc-pk-zh-Hant-1.1",
+  "targetDescription": "Windows 繁体中文版《三国志11》威力加强版 1.1；不混入 PS2/Wii、PK2.2 或 MOD",
+  "targetBinaryHash": null,
+  "verificationMeaning": "cross-checked 表示指定字段与公开资料逐项对照，不表示已对目标原版安装包校验；collected 表示已采集待复核；unknown 不填默认值",
+  "sources": [
+    {
+      "id": "rlu-officers",
+      "url": "https://github.com/reganlu007/reganlu007.github.io/blob/master/san11/man.md",
+      "blob": "1d81a16658885473db2f0f245528ae73b6bcb7d0",
+      "version": "未声明具体 PC/主机及补丁；不认定为目标原版",
+      "status": "collected",
+      "retrieved": "2026-09-14"
+    },
+    {
+      "id": "rlu-reference",
+      "url": "https://github.com/reganlu007/reganlu007.github.io/blob/master/san11/README.md",
+      "blob": "89d4de6bffc8d5ef591c32b8b3a431378848594d",
+      "version": "包含 PK 设施；具体发行版本未声明；关港坐标存在异常",
+      "status": "collected",
+      "retrieved": "2026-09-14"
+    },
+    {
+      "id": "koei-pc",
+      "url": "https://store.steampowered.com/app/628070/",
+      "blob": null,
+      "version": "Windows with PK 产品范围；不用于认定 1.1 数值",
+      "status": "cross-checked",
+      "retrieved": "2026-09-14"
+    },
+    {
+      "id": "wiki-scenarios",
+      "url": "https://w.atwiki.jp/sangokushi11/pages/840.html",
+      "blob": null,
+      "version": "人物剧本表 S1-S14；仅使用名称和日期，不把人物归属扩展为完整开局",
+      "status": "collected",
+      "retrieved": "2026-09-14"
+    },
+    {
+      "id": "project-baseline",
+      "url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/commit/ff624b6e9c48c81d7111a9a642b18cf6bd098fe1",
+      "blob": null,
+      "version": "原创区域沙盘 r2",
+      "status": "engineering-original",
+      "retrieved": "2026-09-14"
+    }
+  ]
+}

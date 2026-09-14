@@ -18,6 +18,40 @@ public final class MapView extends View {
     private World world;
     private Hex[][] tiles;
     private Hex selected;
+    private final Map<Integer,List<Object>> objectBuckets=new HashMap<>();
+    private final Map<Integer,World.Officer> officerIndex=new HashMap<>();
+    private final Map<Integer,World.City> cityIndex=new HashMap<>();
+    private final ArrayList<Object> visibleObjects=new ArrayList<>();
+    private final RectF miniRect=new RectF();
+    private Bitmap miniTerrain;
+    private boolean showMini,miniGesture;
+    private int lastTilesVisited,lastObjectsVisited;
+    private long lastDrawNanos;
+    public void toggleNavigator(){showMini=!showMini;invalidate();}
+    int tilesVisited(){return lastTilesVisited;}
+    int objectsVisited(){return lastObjectsVisited;}
+    long drawNanos(){return lastDrawNanos;}
+    private void index(Object object,Hex h){int key=(h.r/8)*1024+h.q/8;objectBuckets.computeIfAbsent(key,k->new ArrayList<>()).add(object);}
+    private Hex position(Object o){
+        if(o instanceof World.City)return ((World.City)o).hex;
+        if(o instanceof World.Unit)return ((World.Unit)o).hex;
+        if(o instanceof Domestic.Facility)return ((Domestic.Facility)o).hex;
+        if(o instanceof Domestic.Mission)return ((Domestic.Mission)o).hex;
+        if(o instanceof War.Fire)return ((War.Fire)o).hex;
+        return ((War.Structure)o).hex;
+    }
+    private void collectVisible(){
+        visibleObjects.clear();float margin=100*density/camera.scale;
+        int r0=camera.firstRow(world.height,margin),r1=camera.lastRow(world.height,margin);
+        for(int br=r0/8;br<=r1/8;br++){
+            int q0=camera.firstColumn(Math.min(world.height-1,br*8+7),world.width,margin)/8;
+            int q1=camera.lastColumn(br*8,world.width,margin)/8;
+            for(int bq=q0;bq<=q1;bq++){
+                List<Object> bucket=objectBuckets.get(br*1024+bq);if(bucket==null)continue;
+                for(Object o:bucket){lastObjectsVisited++;Hex h=position(o);if(camera.visible(x(h),y(h),100*density))visibleObjects.add(o);}
+            }
+        }
+    }
     private Map<Hex,Integer> reachable=Collections.emptyMap();
     private final MapCamera camera=new MapCamera();
     private boolean multiTouch;
@@ -39,8 +73,21 @@ public final class MapView extends View {
             @Override public boolean onScale(ScaleGestureDetector d){zoom(camera.scale*d.getScaleFactor(),d.getFocusX(),d.getFocusY());return true;}
         });
     }
-    public void setWorld(World world,Hex selected,int moving){boolean changed=this.world==null||this.world.width!=world.width||this.world.height!=world.height||!this.world.scenarioId.equals(world.scenarioId);this.world=world;this.selected=selected;this.moving=moving;
+    public void setWorld(World world,Hex selected,int moving){boolean changed=this.world==null||this.world.width!=world.width||this.world.height!=world.height||!this.world.scenarioId.equals(world.scenarioId);boolean newTerrain=this.world!=world||changed;this.world=world;this.selected=selected;this.moving=moving;
         if(changed){tiles=new Hex[world.width][world.height];for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)tiles[q][r]=new Hex(q,r);}
+        objectBuckets.clear();officerIndex.clear();cityIndex.clear();
+        for(World.Officer o:world.officers)officerIndex.put(o.id,o);
+        for(World.City c:world.cities){cityIndex.put(c.id,c);index(c,c.hex);}
+        for(World.Unit u:world.units)index(u,u.hex);
+        for(Domestic.Facility f:world.domestic.facilities)index(f,f.hex);
+        for(Domestic.Mission m:world.domestic.missions)index(m,m.hex);
+        for(War.Fire f:world.war.fires())index(f,f.hex);
+        for(War.Structure b:world.war.structures())index(b,b.hex);
+        if(newTerrain){
+            if(miniTerrain!=null)miniTerrain.recycle();
+            miniTerrain=Bitmap.createBitmap(world.width,world.height,Bitmap.Config.ARGB_8888);
+            for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)miniTerrain.setPixel(q,r,world.terrain[q][r]==World.Terrain.WATER?0xff36586c:world.terrain[q][r]==World.Terrain.MOUNTAIN?0xff5b635b:world.terrain[q][r]==World.Terrain.FOREST?0xff415a49:0xff7e8463);
+        }
         reachable=world.reachable(world.unit(moving));if(changed&&getWidth()>0){resizeCamera();fit();}invalidate();}
     private float x(Hex h){return RADIUS*SQRT3*(h.q+h.r*.5f);}
     private float y(Hex h){return RADIUS*1.5f*h.r;}
@@ -51,12 +98,20 @@ public final class MapView extends View {
     public void fit(){if(world==null||getWidth()==0)return;camera.fit();invalidate();}
     public void focus(Hex h){if(world==null||h==null)return;if(getWidth()==0){post(()->focus(h));return;}camera.focus(x(h),y(h));invalidate();}
     private void zoom(float scale,float fx,float fy){camera.zoom(scale,fx,fy);invalidate();}
-    void saveCamera(Bundle b){b.putFloat("cameraRatio",camera.scale/camera.minScale);b.putFloat("cameraX",camera.centerX());b.putFloat("cameraY",camera.centerY());}
-    void restoreCamera(Bundle b){pendingCamera=new Bundle(b);applyPendingCamera();}
+    void saveCamera(Bundle b){b.putBoolean("mapNavigator",showMini);b.putFloat("cameraRatio",camera.scale/camera.minScale);b.putFloat("cameraX",camera.centerX());b.putFloat("cameraY",camera.centerY());}
+    void restoreCamera(Bundle b){showMini=b.getBoolean("mapNavigator",false);pendingCamera=new Bundle(b);applyPendingCamera();}
     private void applyPendingCamera(){if(pendingCamera!=null&&getWidth()>0&&getHeight()>0){camera.restore(pendingCamera.getFloat("cameraRatio",1),pendingCamera.getFloat("cameraX"),pendingCamera.getFloat("cameraY"));pendingCamera=null;invalidate();}}
     @Override public boolean onTouchEvent(MotionEvent e){
         if(!isEnabled())return true;
-        if(e.getActionMasked()==MotionEvent.ACTION_DOWN)multiTouch=false;
+        if(e.getActionMasked()==MotionEvent.ACTION_DOWN){multiTouch=false;miniGesture=showMini&&miniRect.contains(e.getX(),e.getY());}
+        if(miniGesture){
+            if(e.getPointerCount()==1&&(e.getActionMasked()==MotionEvent.ACTION_DOWN||e.getActionMasked()==MotionEvent.ACTION_MOVE)){
+                float q=Math.max(0,Math.min(world.width-1,(e.getX()-miniRect.left)/miniRect.width()*world.width));
+                float r=Math.max(0,Math.min(world.height-1,(e.getY()-miniRect.top)/miniRect.height()*world.height));
+                camera.centerOn(RADIUS*SQRT3*(q+r*.5f),RADIUS*1.5f*r);invalidate();
+            }
+            if(e.getActionMasked()==MotionEvent.ACTION_UP)performClick();return true;
+        }
         if(e.getPointerCount()>1)multiTouch=true;
         scaler.onTouchEvent(e);gestures.onTouchEvent(e);
         if(e.getActionMasked()==MotionEvent.ACTION_CANCEL)multiTouch=true;
@@ -89,12 +144,13 @@ public final class MapView extends View {
     private int factionColor(int owner){if(owner<0)return Color.rgb(153,146,128);
         int[] palette={Color.rgb(98,175,143),Color.rgb(102,156,197),Color.rgb(216,135,105),Color.rgb(185,143,205),Color.rgb(205,183,94),Color.rgb(91,184,184)};return palette[owner%palette.length];}
     @Override protected void onDraw(Canvas canvas){
-        super.onDraw(canvas);canvas.drawColor(Color.rgb(23,44,46));if(world==null)return;
+        long drawStart=System.nanoTime();lastTilesVisited=0;lastObjectsVisited=0;super.onDraw(canvas);canvas.drawColor(Color.rgb(23,44,46));if(world==null)return;
         float scale=camera.scale,offsetX=camera.x,offsetY=camera.y;
-        boolean detail=scale>=camera.minScale*1.55f;
+        boolean detail=scale*RADIUS>=12*density;collectVisible();
         canvas.save();canvas.translate(offsetX,offsetY);canvas.scale(scale,scale);
-        for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++){
-            Hex h=tiles[q][r];float cx=x(h),cy=y(h);float sx=cx*scale+offsetX,sy=cy*scale+offsetY;
+        int r0=camera.firstRow(world.height,RADIUS*2),r1=camera.lastRow(world.height,RADIUS*2);
+        for(int r=r0;r<=r1;r++)for(int q=camera.firstColumn(r,world.width,RADIUS*2);q<=camera.lastColumn(r,world.width,RADIUS*2);q++){
+            lastTilesVisited++;Hex h=tiles[q][r];float cx=x(h),cy=y(h);float sx=cx*scale+offsetX,sy=cy*scale+offsetY;
             if(sx<-RADIUS*scale||sy<-RADIUS*scale||sx>getWidth()+RADIUS*scale||sy>getHeight()+RADIUS*scale)continue;
             World.Terrain t=world.terrain[q][r];int color;
             switch(t){case FOREST:color=Color.rgb(65,90,73);break;case WATER:color=Color.rgb(54,88,108);break;case MOUNTAIN:color=Color.rgb(91,99,91);break;default:color=(q+r)%2==0?Color.rgb(126,132,99):Color.rgb(120,127,94);}
@@ -105,25 +161,40 @@ public final class MapView extends View {
             if(reachable.containsKey(h)){polygon(cx,cy,RADIUS-1);fill(canvas,Color.argb(55,197,227,158));stroke(canvas,Color.argb(110,229,235,182),1);}
         }
         if(selected!=null){polygon(x(selected),y(selected),RADIUS-2);stroke(canvas,GOLD,Math.max(2,2*density/scale));}
-        if(detail)for(game.sanguo.core.War.Fire f:world.war.fires()){
+        if(detail)for(Object object:visibleObjects)if(object instanceof War.Fire){War.Fire f=(War.Fire)object;
             float cx=x(f.hex),cy=y(f.hex);polygon(cx,cy,RADIUS-2);fill(canvas,Color.argb(145,227,81,28));label(canvas,"火",cx,cy+5,18,PAPER);
         }
-        if(detail)for(game.sanguo.core.War.Structure s:world.war.structures()){
+        if(detail)for(Object object:visibleObjects)if(object instanceof War.Structure){War.Structure s=(War.Structure)object;
             float cx=x(s.hex),cy=y(s.hex);paint.setColor(factionColor(s.owner));canvas.drawRect(cx-14,cy-13,cx+14,cy+13,paint);
             label(canvas,s.kind.label.substring(0,1),cx,cy+5,15,Color.rgb(18,34,34));label(canvas,Integer.toString(s.hp),cx,cy-17,10,PAPER);
         }
-        if(detail)for(Domestic.Facility f:world.domestic.facilities){float cx=x(f.hex),cy=y(f.hex);paint.setColor(factionColor(world.city(f.cityId).owner));canvas.drawRect(cx-12,cy-12,cx+12,cy+12,paint);label(canvas,f.kind.label.substring(0,1),cx,cy+5,15,Color.rgb(18,34,34));if(f.remaining>0)label(canvas,"剩"+f.remaining,cx,cy-16,10,PAPER);}
-        for(World.City city:world.cities)drawCity(canvas,city);
-        if(detail||moving>=0)for(World.Unit u:world.units)drawUnit(canvas,u);
-        if(detail)for(Domestic.Mission m:world.domestic.missions)if(m.owner==world.player){float cx=x(m.hex)+15,cy=y(m.hex)-8;paint.setColor(Color.rgb(30,42,43));canvas.drawCircle(cx,cy,10,paint);label(canvas,m.transport?"运":"调",cx,cy+4,12,GOLD);}
+        if(detail)for(Object object:visibleObjects)if(object instanceof Domestic.Facility){Domestic.Facility f=(Domestic.Facility)object;float cx=x(f.hex),cy=y(f.hex);paint.setColor(factionColor(cityIndex.get(f.cityId).owner));canvas.drawRect(cx-12,cy-12,cx+12,cy+12,paint);label(canvas,f.kind.label.substring(0,1),cx,cy+5,15,Color.rgb(18,34,34));if(f.remaining>0)label(canvas,"剩"+f.remaining,cx,cy-16,10,PAPER);}
+        for(Object object:visibleObjects)if(object instanceof World.City)drawCity(canvas,(World.City)object);
+        if(detail||moving>=0)for(Object object:visibleObjects)if(object instanceof World.Unit)drawUnit(canvas,(World.Unit)object);
+        if(detail)for(Object object:visibleObjects)if(object instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)object;if(m.owner!=world.player)continue;float cx=x(m.hex)+15,cy=y(m.hex)-8;paint.setColor(Color.rgb(30,42,43));canvas.drawCircle(cx,cy,10,paint);label(canvas,m.transport?"运":"调",cx,cy+4,12,GOLD);}
         canvas.restore();
+        if(showMini)drawNavigator(canvas);
         paint.setColor(Color.argb(190,17,32,37));canvas.drawRoundRect(10*density,getHeight()-34*density,getWidth()-10*density,getHeight()-8*density,5*density,5*density,paint);
         label(canvas,detail?"设施 / 部队 / 在途  ·  双击城池聚焦":"势力总览  ·  放大查看设施与在途",getWidth()/2f,getHeight()-17*density,10*density,PAPER);
+        lastDrawNanos=System.nanoTime()-drawStart;
+    }
+    private void drawNavigator(Canvas c){
+        float mw=Math.min(144*density,getWidth()*.3f),mh=Math.min(100*density,getHeight()*.3f);
+        miniRect.set(getWidth()-mw-12*density,12*density,getWidth()-12*density,12*density+mh);
+        paint.setColor(0xee10272b);c.drawRect(miniRect.left-3,miniRect.top-3,miniRect.right+3,miniRect.bottom+3,paint);
+        c.drawBitmap(miniTerrain,null,miniRect,paint);
+        for(World.City city:world.cities){paint.setColor(factionColor(city.owner));c.drawCircle(miniRect.left+(city.hex.q+.5f)/world.width*mw,miniRect.top+(city.hex.r+.5f)/world.height*mh,2*density,paint);}
+        float r=camera.centerY()/(RADIUS*1.5f),q=camera.centerX()/(RADIUS*SQRT3)-r*.5f;
+        float px=miniRect.left+q/world.width*mw,py=miniRect.top+r/world.height*mh;
+        paint.setStyle(Paint.Style.STROKE);paint.setColor(GOLD);paint.setStrokeWidth(2*density);c.drawCircle(px,py,5*density,paint);paint.setStyle(Paint.Style.FILL);
+        label(c,"当前战场 · 拖动定位",miniRect.centerX(),miniRect.bottom+13*density,10*density,PAPER);
     }
     private void drawCity(Canvas c,World.City city){float scale=camera.scale;float cx=x(city.hex),cy=y(city.hex);int owner=factionColor(city.owner);
         paint.setColor(owner);c.drawCircle(cx,cy,22,paint);paint.setColor(Color.rgb(32,44,40));c.drawRect(cx-17,cy-8,cx+17,cy+12,paint);paint.setColor(Color.rgb(210,196,161));
         c.drawRect(cx-15,cy-6,cx+15,cy+9,paint);for(int i=-15;i<15;i+=6)c.drawRect(cx+i,cy-10,cx+i+4,cy-4,paint);
         paint.setColor(Color.rgb(61,62,46));c.drawRect(cx-4,cy+1,cx+4,cy+12,paint);paint.setColor(owner);c.drawRect(cx,cy-29,cx+13,cy-17,paint);paint.setStrokeWidth(1.5f);c.drawLine(cx,cy-30,cx,cy-9,paint);
+        boolean labelVisible=scale*RADIUS>=7*density||city.hex.equals(selected)||(world.home()!=null&&city.id==world.home().id);
+        if(!labelVisible)return;
         float sz=12*density/scale;paint.setColor(Color.argb(225,22,37,37));c.drawRoundRect(cx-sz*1.8f,cy+14,cx+sz*1.8f,cy+14+sz*1.6f,3,3,paint);
         label(c,city.name,cx,cy+14+sz*1.15f,sz,PAPER);
         if(scale>=camera.minScale*1.55f)label(c,world.faction(city.owner),cx,cy-34,10*density/scale,PAPER);
@@ -137,6 +208,6 @@ public final class MapView extends View {
         if(u.acted){paint.setColor(Color.argb(140,17,32,37));c.drawCircle(cx,cy,14,paint);label(c,"✓",cx,cy+4,14,PAPER);}
         if(u.burning>0)label(c,"火",cx-16,cy+15,12,Color.rgb(255,120,60));
         if(u.status!=game.sanguo.core.War.Status.NORMAL)label(c,u.status.label.substring(0,1),cx+16,cy+15,12,Color.rgb(255,194,100));
-        float sz=10*density/scale;label(c,world.officer(u.officerId).name+" "+u.troops,cx,cy-19,sz,PAPER);
+        float sz=10*density/scale;label(c,officerIndex.get(u.officerId).name+" "+u.troops,cx,cy-19,sz,PAPER);
     }
 }

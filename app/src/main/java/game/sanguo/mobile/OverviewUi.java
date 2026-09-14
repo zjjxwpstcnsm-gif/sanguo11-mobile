@@ -20,7 +20,7 @@ final class OverviewUi {
         host.addView(a.button(label,v->new AlertDialog.Builder(a).setTitle(label).setItems(labels,(d,i)->choose.accept(i)).setNegativeButton("取消",null).show()),new LinearLayout.LayoutParams(-1,a.dp(48)));
     }
     private final class Rows<T> extends BaseAdapter {
-        List<T> rows; final ToLongFunction<T> key; final Function<T,String> title,detail;
+        List<T> rows; TextView emptyView; final ToLongFunction<T> key; final Function<T,String> title,detail;
         Rows(List<T> rows,ToLongFunction<T> key,Function<T,String> title,Function<T,String> detail) {this.rows=rows;this.key=key;this.title=title;this.detail=detail;}
         public int getCount(){return rows.size();} public T getItem(int p){return rows.get(p);} public long getItemId(int p){return key.applyAsLong(rows.get(p));} public boolean hasStableIds(){return true;}
         public View getView(int p,View reuse,ViewGroup parent) {
@@ -35,14 +35,28 @@ final class OverviewUi {
         FrameLayout content=new FrameLayout(a);host.addView(content,new LinearLayout.LayoutParams(-1,0,1));
         ListView list=new ListView(a);list.setDividerHeight(a.dp(1));list.setCacheColorHint(Color.TRANSPARENT);list.setContentDescription("概览列表");
         TextView blank=text(empty,16);blank.setGravity(Gravity.CENTER);content.addView(blank,new FrameLayout.LayoutParams(-1,-1));content.addView(list,new FrameLayout.LayoutParams(-1,-1));list.setEmptyView(blank);
-        Rows<T> adapter=new Rows<>(rows,key,title,detail);list.setAdapter(adapter);list.setOnItemClickListener((p,v,index,id)->select.accept(adapter.getItem(index)));return adapter;
+        Rows<T> adapter=new Rows<>(rows,key,title,detail);adapter.emptyView=blank;list.setAdapter(adapter);list.setOnItemClickListener((p,v,index,id)->select.accept(adapter.getItem(index)));return adapter;
+    }
+    private EditText search(LinearLayout host,String hint,String value,Consumer<String> change){
+        EditText field=new EditText(a);field.setSingleLine();field.setTextColor(a.paper);field.setHintTextColor(a.muted);field.setHint(hint);field.setContentDescription(hint);field.setText(value);host.addView(field,new LinearLayout.LayoutParams(-1,a.dp(48)));
+        field.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int st,int c,int af){}public void afterTextChanged(Editable e){}public void onTextChanged(CharSequence s,int st,int b,int c){change.accept(s.toString());}});return field;
+    }
+    View factions(){
+        LinearLayout host=column();heading(host,"势力一览");
+        final Rows<Integer>[] holder=new Rows[1];
+        search(host,"搜索势力",state.factionQuery,q->{state.factionQuery=q;holder[0].rows=UiModels.factions(w,q);holder[0].notifyDataSetChanged();});
+        holder[0]=list(host,UiModels.factions(w,state.factionQuery),i->i,i->w.faction(i),i->{int cities=0,officers=0,troops=0;for(World.City c:w.cities)if(c.owner==i){cities++;troops+=c.troops;}for(World.Officer o:w.officers)if(o.owner==i)officers++;return cities+"城 · "+officers+"将 · 驻军"+troops+(w.alive(i)?"":" · 已灭亡");},i->{state.cityOwner=i;state.cityQuery="";state.page="cities";a.refresh();},"没有符合条件的势力");return host;
     }
     View cities() {
         LinearLayout host=column();heading(host,"城池一览");
+        final Rows<World.City>[] holder=new Rows[1];
+        search(host,"搜索城市或势力",state.cityQuery,q->{state.cityQuery=q;holder[0].rows=UiModels.cities(w,state.citySort,q,state.cityOwner);holder[0].notifyDataSetChanged();});
+        String[] owners=new String[w.factions.length+2];owners[0]="全部城池";owners[1]="中立城池";System.arraycopy(w.factions,0,owners,2,w.factions.length);
+        filter(host,state.cityOwner==-1?"全部城池":state.cityOwner==-2?"中立城池":w.faction(state.cityOwner),owners,i->{state.cityOwner=i==0?-1:i==1?-2:i-2;a.refresh();});
         String[] sorts={"己方优先","金最多","粮最多","兵最多","驻将最多"};
         filter(host,"排序 · "+sorts[state.citySort],sorts,i->{state.citySort=i;a.refresh();});
-        list(host,UiModels.cities(w,state.citySort),c->c.id,c->c.name+" · "+w.faction(c.owner),
-            c->"金 "+c.gold+" · 粮 "+c.food+"\n兵 "+c.troops+" · 驻将 "+UiModels.officerCount(w,c.id)+"  › 定位",c->a.selectAndFocus(c.hex),"当前没有可查看的城池");return host;
+        holder[0]=list(host,UiModels.cities(w,state.citySort,state.cityQuery,state.cityOwner),c->c.id,c->c.name+" · "+w.faction(c.owner),
+            c->"金 "+c.gold+" · 粮 "+c.food+"\n兵 "+c.troops+" · 驻将 "+UiModels.officerCount(w,c.id)+"  › 定位",c->a.selectAndFocus(c.hex),"没有符合条件的城池 · 清空检索或选择全部城池");return host;
     }
     View officers() {
         LinearLayout host=column();heading(host,"武将一览");
@@ -56,16 +70,19 @@ final class OverviewUi {
             o->"统 "+o.leadership+"  武 "+o.war+"  智 "+o.intelligence+"  政 "+o.politics+"  魅 "+o.charm+"\n"+o.role.label+" · 忠诚 "+o.loyalty+"\n"+UiModels.location(w,o)+" · "+UiModels.status(w,o),a::officerDetail,"没有符合筛选条件的武将\n试试清空姓名或选择全部城市");
         search.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void onTextChanged(CharSequence s,int start,int before,int count){state.query=s.toString();adapter.rows=UiModels.officers(w,state.query,state.owner,state.city,state.officerSort);adapter.notifyDataSetChanged();}public void afterTextChanged(Editable e){}});return host;
     }
+    private String taskEmpty(){return !state.taskQuery.isEmpty()?"没有符合检索条件的任务":state.taskType==1?"当前没有建设中的设施":"当前没有在途任务\n可从城池下达命令";}
     View tasks() {
-        LinearLayout host=column();heading(host,"任务 / 在途");String[] types={"全部任务","建设","调动","运输","研究 / 培养","军备制造"};
+        LinearLayout host=column();heading(host,"任务 / 在途");
+        final Rows<UiModels.Task>[] holder=new Rows[1];
+        search(host,"搜索任务、武将或城市",state.taskQuery,q->{state.taskQuery=q;holder[0].rows=UiModels.tasks(w,state.taskType,q);holder[0].emptyView.setText(taskEmpty());holder[0].notifyDataSetChanged();});String[] types={"全部任务","建设","调动","运输","研究 / 培养","军备制造"};
         filter(host,"筛选 · "+types[state.taskType],types,i->{state.taskType=i;a.refresh();});
-        list(host,UiModels.tasks(w,state.taskType),t->t.id,t->t.title,t->t.detail,t->{
+        holder[0]=list(host,UiModels.tasks(w,state.taskType,state.taskQuery),t->t.id,t->t.title,t->t.detail,t->{
             AlertDialog.Builder dialog=new AlertDialog.Builder(a).setTitle(t.title).setMessage(t.detail).setNegativeButton("返回",null);
             if(t.facility!=null) {dialog.setPositiveButton("定位城池",(d,n)->a.selectAndFocus(w.city(t.facility.cityId).hex));dialog.setNeutralButton("管理设施",(d,n)->a.domesticUi().facility(t.facility));}
             else if(t.production!=null){dialog.setPositiveButton("制造详情",(d,n)->new ArmyUi(a,w,a::applyResult,a::selectAndFocus).production(t.production));}
             else if(t.project!=null){dialog.setPositiveButton("定位研究城市",(d,n)->a.selectAndFocus(w.city(t.project.cityId).hex));}
             else {dialog.setPositiveButton("定位目的地",(d,n)->a.selectAndFocus(w.city(t.mission.targetCity).hex));dialog.setNeutralButton("起点 / 改道",(d,n)->new AlertDialog.Builder(a).setTitle("任务操作").setItems(new String[]{"定位起点","定位当前位置","改道 / 返回"},(x,i)->{if(i==0)a.selectAndFocus(w.city(t.mission.sourceCity).hex);else if(i==1)a.selectAndFocus(t.location);else a.domesticUi().mission(t.mission);}).show());}
             dialog.show();
-        },state.taskType==1?"当前没有建设中的设施":"当前没有在途任务\n可从城池的内政或调动页下达命令");return host;
+        },taskEmpty());return host;
     }
 }

@@ -17,10 +17,15 @@ public final class PresentationTest {
         check(UiModels.cities(w,0).get(0).owner==2,"friendly city first");
         check(UiModels.tasks(w,0).isEmpty(),"no phantom task");
         check(Arrays.equals(unchanged,SaveCodec.encode(w)),"projections never mutate world");
-        personnelProjection();
+        personnelProjection();viewport();
+        check(UiModels.cities(w,0,"建业",2).size()==1,"city search and owner");
+        check(UiModels.cities(w,0,"不存在",-1).isEmpty(),"empty city search");
+        check(UiModels.factions(w,"孙权").equals(Arrays.asList(2)),"faction search preserves ID");
         check(w.domestic.build(300,3001,Domestic.Kind.MARKET,w.domestic.buildSites(300).get(0)).ok,"construction fixture");
         check(w.domestic.transfer(300,310,3000).ok,"travel fixture");
         check(w.domestic.transport(300,310,3002,1000,3000,1000,new int[]{1000,0,0,0}).ok,"cargo fixture");
+        check(UiModels.tasks(w,0,"鲁肃").size()==1,"task name search");
+        check(UiModels.tasks(w,0,"不存在").isEmpty(),"empty task search");
         List<UiModels.Task> tasks=UiModels.tasks(w,0);check(tasks.size()==3,"unified tasks");
         check(tasks.stream().map(t->t.id).distinct().count()==3,"stable IDs across task types");
         check(UiModels.tasks(w,1).size()==1&&UiModels.tasks(w,2).size()==1&&UiModels.tasks(w,3).size()==1,"type filters");
@@ -46,6 +51,20 @@ public final class PresentationTest {
             c.focus(650,400);float fx=(width-300)/2f+30,fy=550;float wx=(fx-c.x)/c.scale,wy=(fy-c.y)/c.scale;c.zoom(c.scale*1.1f,fx,fy);near((fx-c.x)/c.scale,wx,"pinch focal x");near((fy-c.y)/c.scale,wy,"pinch focal y");
         }
         System.out.println("PASS: "+checks+" UI projection/camera assertions.");
+    }
+    private static void viewport(){
+        Random rng=new Random(803);
+        for(int width:new int[]{960,1170,1200}){
+            MapCamera c=new MapCamera();c.resize(width,540,8300,4820,25,1.5f);
+            for(int n=0;n<25;n++){
+                c.focus(rng.nextFloat()*8200,rng.nextFloat()*4700);c.zoom(c.minScale+(c.maxScale-c.minScale)*rng.nextFloat(),width/2f,270);
+                int first=c.firstRow(128,50),last=c.lastRow(128,50),visited=0;
+                for(int r=0;r<128;r++)for(int q=0;q<128;q++)if(c.visible(25*1.7320508f*(q+r*.5f),37.5f*r,25*c.scale))check(r>=first&&r<=last&&q>=c.firstColumn(r,128,50)&&q<=c.lastColumn(r,128,50),"viewport never omits visible hex");
+                for(int r=first;r<=last;r++)visited+=Math.max(0,c.lastColumn(r,128,50)-c.firstColumn(r,128,50)+1);
+                if(c.scale>1)check(visited<128*128/4,"zoomed traversal bounded by viewport");
+                float scale=c.scale;c.centerOn(4100,2400);near(c.scale,scale,"navigator preserves zoom");
+            }
+        }
     }
     private static void personnelProjection()throws Exception {
         World w=ScenarioCatalog.load("regional-sandbox",2);

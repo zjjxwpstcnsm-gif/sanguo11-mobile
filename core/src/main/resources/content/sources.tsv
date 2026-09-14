@@ -1,0 +1,6 @@
+id	url	version	status
+rlu-officers	https://github.com/reganlu007/reganlu007.github.io/blob/master/san11/man.md	未声明具体 PC/主机及补丁；不认定为目标原版	collected
+rlu-reference	https://github.com/reganlu007/reganlu007.github.io/blob/master/san11/README.md	包含 PK 设施；具体发行版本未声明；关港坐标存在异常	collected
+koei-pc	https://store.steampowered.com/app/628070/	Windows with PK 产品范围；不用于认定 1.1 数值	cross-checked
+wiki-scenarios	https://w.atwiki.jp/sangokushi11/pages/840.html	人物剧本表 S1-S14；仅使用名称和日期，不把人物归属扩展为完整开局	collected
+project-baseline	https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/commit/ff624b6e9c48c81d7111a9a642b18cf6bd098fe1	原创区域沙盘 r2	engineering-original

@@ -1,0 +1,296 @@
+[
+  {
+    "id": "pcpk-huangjin",
+    "sourceId": "wiki-S1",
+    "originalId": null,
+    "year": 184,
+    "month": 1,
+    "name": "黄巾之乱",
+    "kind": "historical",
+    "source": "wiki-scenarios",
+    "status": "incomplete",
+    "playable": false,
+    "missing": [
+      "map",
+      "ownership",
+      "roster",
+      "resources",
+      "equipment",
+      "relations",
+      "research"
+    ]
+  },
+  {
+    "id": "pcpk-anti-dongzhuo",
+    "sourceId": "wiki-S2",
+    "originalId": null,
+    "year": 190,
+    "month": 1,
+    "name": "反董卓联合",
+    "kind": "historical",
+    "source": "wiki-scenarios",
+    "status": "incomplete",
+    "playable": false,
+    "missing": [
+      "map",
+      "ownership",
+      "roster",
+      "resources",
+      "equipment",
+      "relations",
+      "research"
+    ]
+  },
+  {
+    "id": "pcpk-rival-warlords",
+    "sourceId": "wiki-S3",
+    "originalId": null,
+    "year": 194,
+    "month": 6,
+    "name": "群雄割据",
+    "kind": "historical",
+    "source": "wiki-scenarios",
+    "status": "incomplete",
+    "playable": false,
+    "missing": [
+      "map",
+      "ownership",
+      "roster",
+      "resources",
+      "equipment",
+      "relations",
+      "research"
+    ]
+  },
+  {
+    "id": "pcpk-guandu",
+    "sourceId": "wiki-S4",
+    "originalId": null,
+    "year": 200,
+    "month": 1,
+    "name": "官渡之战",
+    "kind": "historical",
+    "source": "wiki-scenarios",
+    "status": "incomplete",
+    "playable": false,
+    "missing": [
+      "map",
+      "ownership",
+      "roster",
+      "resources",
+      "equipment",
+      "relations",
+      "research"
+    ]
+  },
+  {
+    "id": "pcpk-three-visits",
+    "sourceId": "wiki-S5",
+    "originalId": null,
+    "year": 207,
+    "month": 9,
+    "name": "三顾茅庐",
+    "kind": "historical",
+    "source": "wiki-scenarios",
+    "status": "incomplete",
+    "playable": false,
+    "missing": [
+      "map",
+      "ownership",
+      "roster",
+      "resources",
+      "equipment",
+      "relations",
+      "research"
+    ]
+  },
+  {
+    "id": "pcpk-liubei-shu",
+    "sourceId": "wiki-S6",
+    "originalId": null,
+    "year": 211,
+    "month": 7,
+    "name": "刘备入蜀",
+    "kind": "historical",
+    "source": "wiki-scenarios",
+    "status": "incomplete",
+    "playable": false,
+    "missing": [
+      "map",
+      "ownership",
+      "roster",
+      "resources",
+      "equipment",
+      "relations",
+      "research"
+    ]
+  },
+  {
+    "id": "pcpk-nanman",
+    "sourceId": "wiki-S7",
+    "originalId": null,
+    "year": 225,
+    "month": 7,
+    "name": "南蛮征伐",
+    "kind": "historical",
+    "source": "wiki-scenarios",
+    "status": "incomplete",
+    "playable": false,
+    "missing": [
+      "map",
+      "ownership",
+      "roster",
+      "resources",
+      "equipment",
+      "relations",
+      "research"
+    ]
+  },
+  {
+    "id": "pcpk-heroes",
+    "sourceId": "wiki-S8",
+    "originalId": null,
+    "year": 251,
+    "month": 1,
+    "name": "英雄集结",
+    "kind": "fictional",
+    "source": "wiki-scenarios",
+    "status": "incomplete",
+    "playable": false,
+    "missing": [
+      "map",
+      "ownership",
+      "roster",
+      "resources",
+      "equipment",
+      "relations",
+      "research"
+    ]
+  },
+  {
+    "id": "pcpk-lubu",
+    "sourceId": "wiki-S9",
+    "originalId": null,
+    "year": 198,
+    "month": 1,
+    "name": "吕布讨伐战",
+    "kind": "historical",
+    "source": "wiki-scenarios",
+    "status": "incomplete",
+    "playable": false,
+    "missing": [
+      "map",
+      "ownership",
+      "roster",
+      "resources",
+      "equipment",
+      "relations",
+      "research"
+    ]
+  },
+  {
+    "id": "pcpk-yuan-family",
+    "sourceId": "wiki-S10",
+    "originalId": null,
+    "year": 203,
+    "month": 1,
+    "name": "袁家之战",
+    "kind": "historical",
+    "source": "wiki-scenarios",
+    "status": "incomplete",
+    "playable": false,
+    "missing": [
+      "map",
+      "ownership",
+      "roster",
+      "resources",
+      "equipment",
+      "relations",
+      "research"
+    ]
+  },
+  {
+    "id": "pcpk-hanzhong",
+    "sourceId": "wiki-S11",
+    "originalId": null,
+    "year": 217,
+    "month": 7,
+    "name": "汉中争夺战",
+    "kind": "historical",
+    "source": "wiki-scenarios",
+    "status": "incomplete",
+    "playable": false,
+    "missing": [
+      "map",
+      "ownership",
+      "roster",
+      "resources",
+      "equipment",
+      "relations",
+      "research"
+    ]
+  },
+  {
+    "id": "pcpk-hejin",
+    "sourceId": "wiki-S12",
+    "originalId": null,
+    "year": 187,
+    "month": 4,
+    "name": "何进包围网",
+    "kind": "fictional",
+    "source": "wiki-scenarios",
+    "status": "incomplete",
+    "playable": false,
+    "missing": [
+      "map",
+      "ownership",
+      "roster",
+      "resources",
+      "equipment",
+      "relations",
+      "research"
+    ]
+  },
+  {
+    "id": "pcpk-early-conqueror",
+    "sourceId": "wiki-S13",
+    "originalId": null,
+    "year": 191,
+    "month": 7,
+    "name": "序之争夺者",
+    "kind": "fictional",
+    "source": "wiki-scenarios",
+    "status": "incomplete",
+    "playable": false,
+    "missing": [
+      "map",
+      "ownership",
+      "roster",
+      "resources",
+      "equipment",
+      "relations",
+      "research"
+    ]
+  },
+  {
+    "id": "pcpk-women",
+    "sourceId": "wiki-S14",
+    "originalId": null,
+    "year": 251,
+    "month": 1,
+    "name": "女流之战",
+    "kind": "fictional",
+    "source": "wiki-scenarios",
+    "status": "incomplete",
+    "playable": false,
+    "missing": [
+      "map",
+      "ownership",
+      "roster",
+      "resources",
+      "equipment",
+      "relations",
+      "research"
+    ]
+  }
+]
