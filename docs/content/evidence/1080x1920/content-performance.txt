@@ -1,0 +1,3 @@
+Engineering 128x128, 128 cities, 128 officers; software Canvas onDraw timing, NOT FPS or GPU latency
+viewport=1111x696 tilesVisited=113 objectsVisited=16
+warm samples=40 medianMs=2.86617 p95Ms=4.27881 maxMs=4.33209
