@@ -13,14 +13,22 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        display: [1080x1920, 1080x2340, 1080x2400]
+    env:
+      SMOKE_DISPLAYS: ${{ matrix.display }}
     timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Archive exact build sources
+        if: matrix.display == '1080x1920'
         run: git archive --format=zip HEAD -o sanguo11-mobile-source.zip
       - uses: actions/upload-artifact@v4
+        if: matrix.display == '1080x1920'
         with:
           name: sanguo11-mobile-source
           path: sanguo11-mobile-source.zip
@@ -31,11 +39,13 @@ jobs:
           distribution: temurin
           java-version: '17'
       - name: Verify offline content pipeline
+        if: matrix.display == '1080x1920'
         run: |
           python3 tools/content/build_content.py --check
           python3 tools/content/test_content.py
           bash scripts/test-ui-models.sh
       - name: Verify core rules and saves
+        if: matrix.display == '1080x1920'
         run: bash scripts/test-core.sh
       - uses: gradle/actions/setup-gradle@v4
         with:
@@ -49,10 +59,12 @@ jobs:
         run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
       - name: Build and lint Android
         run: |
-          ./gradlew --no-daemon test :core:check
-          ./gradlew --no-daemon lint
+          if [ "$SMOKE_DISPLAYS" = "1080x1920" ]; then
+            ./gradlew --no-daemon test :core:check lint
+          fi
           ./gradlew --no-daemon assembleDebug :app:assembleDebugAndroidTest
       - name: Build pinned v0.9 upgrade baseline
+        if: matrix.display == '1080x1920'
         run: |
           git fetch --depth=1 origin 5ff24223f723a5ce4830b6c3753b479877e1ae94
           mkdir -p /tmp/sanguo-v09-upgrade app/build/upgrade
@@ -79,8 +91,11 @@ jobs:
           arch: x86_64
           profile: pixel_2
           disable-animations: true
-          script: bash scripts/verify-upgrade.sh && bash scripts/smoke-android.sh
+          script: |
+            if [ "$SMOKE_DISPLAYS" = "1080x1920" ]; then bash scripts/verify-upgrade.sh; fi
+            bash scripts/smoke-android.sh
       - name: Check stable development signature and record digest
+        if: matrix.display == '1080x1920'
         run: |
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs app/build/outputs/apk/debug/app-debug.apk | tee app/build/outputs/apk/debug/SIGNATURE.txt
           python3 - <<'PYVERIFY'
@@ -93,6 +108,7 @@ jobs:
           sha256sum sanguo11-mobile-v015-*.apk | tee SHA256SUMS
           git rev-parse HEAD > BUILD_COMMIT
       - uses: actions/upload-artifact@v4
+        if: matrix.display == '1080x1920'
         with:
           name: sanguo11-mobile-v015-apk
           path: |
@@ -105,12 +121,12 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: android-lint
+          name: android-lint-${{ matrix.display }}
           path: app/build/reports/lint-results-debug.html
           if-no-files-found: ignore
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: android-smoke-evidence
+          name: android-smoke-evidence-${{ matrix.display }}
           path: app/build/smoke
           if-no-files-found: ignore
