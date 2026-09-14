@@ -11,7 +11,7 @@ public final class Army {
         Tactic(String label,int energy,int rank,String effect){this.label=label;this.energy=energy;this.rank=rank;this.effect=effect;}
     }
     public enum Ship {
-        BOAT("走舸",4,1,70,0), TOWER_SHIP("楼船",5,2,105,800), WARSHIP("斗舰",6,3,120,1600);
+        BOAT("走舸",4,1,70,0), TOWER_SHIP("楼船",5,2,105,1800), WARSHIP("斗舰",6,3,120,2000);
         public final String label; public final int movement,range,power,gold;
         Ship(String label,int movement,int range,int power,int gold){this.label=label;this.movement=movement;this.range=range;this.power=power;this.gold=gold;}
     }
@@ -26,7 +26,11 @@ public final class Army {
     public List<Production> productions(){return Collections.unmodifiableList(productions);}
     public static boolean siegeWeapon(World.Weapon weapon){return weapon!=null&&weapon.ordinal()>=World.Weapon.RAM.ordinal();}
     public static int equipmentNeeded(World.Weapon weapon,int troops){return weapon==World.Weapon.SWORD?0:siegeWeapon(weapon)?1:troops;}
-    public static int productionGold(World.Weapon weapon){return siegeWeapon(weapon)?(weapon==World.Weapon.WOODEN_BEAST||weapon==World.Weapon.CATAPULT?1600:800):400;}
+    /** Listed PC manual base costs; specialty/difficulty modifiers are not yet implemented. */
+    public static int productionGold(World.Weapon weapon){
+        if(weapon==null||weapon==World.Weapon.SWORD)return 0;
+        switch(weapon){case RAM:return 1500;case SIEGE_TOWER:return 1600;case WOODEN_BEAST:return 1700;case CATAPULT:return 1800;default:return 700;}
+    }
     public static int category(World.Weapon weapon){return siegeWeapon(weapon)?4:weapon==World.Weapon.SWORD?-1:weapon.ordinal();}
     public List<World.Officer> crew(World.Unit unit){
         List<World.Officer> members=new ArrayList<>();members.add(w.officer(unit.officerId));

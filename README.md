@@ -4,6 +4,10 @@
 
 ## 当前状态
 
+**v0.18.0 资料人物与AI开发版。** 670名来源武将可通过原生预览加入真实局面；869条关系绑定、99条歧义隔离，生卒/登场/性格与关系可存读。AI共用多目标寻路、评估副将组合并避开厌恶关系；按官方PC手册校正部分生产费用和能吏/繁殖效果方向。沿用存档v15。**仍未达到100%还原**：官方逐格地形0格、官方完整开局0个，全部事件/PK/特技交互及精确公式仍有缺口。[本轮范围](docs/CONTENT_AI_V0_18.md) · [验证记录](docs/validation/v018/README.md)。
+
+## v0.17 历史状态
+
 **v0.17.0 生卒与继承开发版。** 已合并待处理PR #15、#16、#17；新增年初登场、寿终与任务/部队清理、可存读的君主继承、俘虏处决、生卒编辑、剧本文件导入、200×200错行地图载入。新增“世代传承”原创试玩局。写存档v15，兼容v1—v14。已有战役AI、全目录特技调用和PK系统继续保留。**仍未达到100%还原**，官方逐格地形和完整开局均为0，精确公式与全事件待核验。[本轮实现与缺口](docs/LIFECYCLE_V0_17.md)。本地APK/测试APK构建与Lint通过（0错误/14警告），签名和全部包内资源已核对；三屏安装及覆盖升级因CI运行器未启动而未验收。[v0.17验证记录](docs/validation/v017/README.md) · [PR #18](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/18)。
 
 ## v0.16 历史状态
@@ -107,7 +111,7 @@ v0.8 Agent 1 开发分支新增移动确认与移动后行动、部分真实特�
 
 Android 构建：安装 JDK 17、Android SDK 35、Build Tools 35.0.0、Gradle 8.11.1，然后运行 `./gradlew test :core:check :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`。已提交固定 Gradle 8.11.1 及 SHA-256 的 Wrapper。
 
-APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-v014-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
+APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-v018-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
 
 验证范围与待验项目见 [VALIDATION.md](docs/VALIDATION.md)。
 

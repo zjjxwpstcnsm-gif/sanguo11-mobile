@@ -1,0 +1,18 @@
+package: name='game.sanguo.mobile.dev' versionCode='18' versionName='0.18.0-content-ai-dev' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'
+minSdkVersion:'26'
+targetSdkVersion:'35'
+application-label:'三国·研制版'
+application-icon-160:'res/drawable/ic_banner.xml'
+application: label='三国·研制版' icon='res/drawable/ic_banner.xml'
+application-debuggable
+launchable-activity: name='game.sanguo.mobile.MainActivity'  label='' icon=''
+feature-group: label=''
+  uses-feature: name='android.hardware.faketouch'
+  uses-implied-feature: name='android.hardware.faketouch' reason='default feature for all apps'
+  uses-feature: name='android.hardware.screen.landscape'
+  uses-implied-feature: name='android.hardware.screen.landscape' reason='one or more activities have specified a landscape orientation'
+main
+supports-screens: 'small' 'normal' 'large' 'xlarge'
+supports-any-density: 'true'
+locales: '--_--'
+densities: '160'

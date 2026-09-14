@@ -42,7 +42,7 @@ public final class Editor {
     }
     private static String diff(World a,World b){
         StringBuilder s=new StringBuilder();
-        for(World.Officer o:b.officers){World.Officer old=a.officer(o.id);if(old==null){s.append("\n新增：").append(o.name).append(" · ").append(b.faction(o.owner)).append(" · ").append(b.city(o.cityId).name);old=o;}
+        for(World.Officer o:b.officers){World.Officer old=a.officer(o.id);if(old==null){s.append("\n新增：").append(o.name).append(" · ").append(b.faction(o.owner)).append(" · ").append(o.cityId<0?"未登场":b.city(o.cityId).name).append("\n").append(b.life.describe(o.id)).append("\n").append(b.relations.describe(o.id));old=o;}
             int[] x={old.leadership,old.war,old.intelligence,old.politics,old.charm,old.loyalty,a.government.merit(o.id)},y={o.leadership,o.war,o.intelligence,o.politics,o.charm,o.loyalty,b.government.merit(o.id)};
             String[] labels={"统率","武力","智力","政治","魅力","忠诚","功绩"};for(int i=0;i<x.length;i++)delta(s,o.name+" "+labels[i],x[i],y[i]);
             for(int i=0;i<6;i++)delta(s,o.name+" "+new String[]{"枪","戟","弩","骑","器","水"}[i]+"适性",old.aptitude[i],o.aptitude[i]);
@@ -132,4 +132,9 @@ public final class Editor {
         for(int id:customOfficers)if(w.officer(id)==null)throw new IOException("新武将引用缺失");
     }
     private static void range(int n,int lo,int hi){if(n<lo||n>hi)throw new IllegalArgumentException("数值需在"+lo+"至"+hi+"之间");}
+    public Draft sourceOfficer(int id,int city,boolean dated,boolean relations){
+        return preview("资料武将导入 · "+(dated?"按资料年份登场":"立即加入，不载入生卒")+" · "+(relations?"连接在场人物的来源关系":"不载入关系"),v->{
+            try{ContentProfiles.add(v,ContentCatalog.get(),id,city,dated,relations);}catch(IOException e){throw new IllegalArgumentException(e.getMessage(),e);}
+        });
+    }
 }

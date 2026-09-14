@@ -259,7 +259,7 @@ public final class MainActivity extends Activity {
         new CityCommand("军备制造 / 攻城器械与舰船",()->armyUi().manufacture(c)),
         new CityCommand("征兵 · 金300 · 兵源 "+c.recruitReserve,()->strategyUi().command(c,6)),
         new CityCommand("训练 · 金100",()->strategyUi().command(c,7)),
-        new CityCommand("生产兵装 · 金400",()->chooseOfficer(c,o->chooseBasicWeapon(weapon->apply(world.produce(c.id,o.id,weapon)))))
+        new CityCommand("生产兵装 · 查看费用",()->chooseOfficer(c,o->chooseBasicWeapon(weapon->confirm(o.name+"生产"+world.skills.produceAmount(c.id,o.id,weapon)+"份"+weapon.label+"兵装\n花费金"+world.skills.productionGold(o.id,weapon)+"、行动力10",()->apply(world.produce(c.id,o.id,weapon))))))
     );}
     private void showUnit(World.Unit u){
         World.Officer o=world.officer(u.officerId);line(o.name,25,gold);line(world.faction(u.owner)+" · "+world.army.equipmentLabel(u),14,paper);

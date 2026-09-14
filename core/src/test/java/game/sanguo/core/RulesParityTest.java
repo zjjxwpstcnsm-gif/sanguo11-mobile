@@ -121,7 +121,14 @@ public final class RulesParityTest {
     }
     private static void economy()throws Exception {
         World w=fixture();w.officer(1).skillId=NENGLI.id;int before=w.city(10).equipment[0];int quote=w.skills.produceAmount(10,1,World.Weapon.SPEAR);
-        ok(w.produce(10,1,World.Weapon.SPEAR));check(w.city(10).equipment[0]==before+quote&&quote==2*w.domestic.produceAmount(10,World.Weapon.SPEAR),"能吏 affects actual production");
+        int goldBefore=w.city(10).gold;
+        ok(w.produce(10,1,World.Weapon.SPEAR));check(w.city(10).equipment[0]==before+quote&&quote==w.domestic.produceAmount(10,World.Weapon.SPEAR)&&w.city(10).gold==goldBefore-350,"能吏 reduces cost without doubling output");
+        check(w.skills.productionGold(1,World.Weapon.CAVALRY)==700,"能吏 does not reduce horse cost");
+        w.officer(4).skillId=FANZHI.id;check(w.skills.productionGold(4,World.Weapon.CAVALRY)==350&&w.skills.productionGold(4,World.Weapon.SPEAR)==700,"繁殖 affects only horses");
+        World affordable=fixture();affordable.officer(1).skillId=NENGLI.id;affordable.city(10).gold=350;ok(affordable.produce(10,1,World.Weapon.SPEAR));check(affordable.city(10).gold==0,"discount is applied before affordability validation");
+        World broke=fixture();broke.officer(1).skillId=FANZHI.id;broke.city(10).gold=349;reject(broke,()->broke.produce(10,1,World.Weapon.CAVALRY));
+        check(Army.productionGold(World.Weapon.SPEAR)==700&&Army.productionGold(World.Weapon.HALBERD)==700&&Army.productionGold(World.Weapon.CROSSBOW)==700&&Army.productionGold(World.Weapon.CAVALRY)==700,"four listed base weapon costs");
+        check(Army.productionGold(World.Weapon.RAM)==1500&&Army.productionGold(World.Weapon.SIEGE_TOWER)==1600&&Army.productionGold(World.Weapon.WOODEN_BEAST)==1700&&Army.productionGold(World.Weapon.CATAPULT)==1800&&Army.Ship.TOWER_SHIP.gold==1800&&Army.Ship.WARSHIP.gold==2000,"listed siege and ship costs");
         w.officer(2).skillId=MINGSHENG.id;w.city(10).recruitReserve=50;int troops=w.city(10).troops;ok(w.recruit(10,2));check(w.city(10).troops==troops+50&&w.city(10).recruitReserve==0,"名声 cannot create unavailable recruits");
         w.officer(3).skillId=ZHIDAO.id;w.campaign.points.put(0,5000);int gold=w.city(10).gold;
         ok(w.campaign.research(10,3,Campaign.Tech.SPEAR_DRILL));check(w.city(10).gold==gold-Campaign.Tech.SPEAR_DRILL.gold/2,"指导 research gold discount, not points/time");

@@ -185,6 +185,49 @@ public final class CampaignAi {
     public int reserve(World.City c){return Math.min(w.campaign.troopCap(c),Math.max(6000,incoming(c)*2/3+4000));}
     public int foodTurns(World.Unit u){int use=w.fieldworks.foodUse(u,Math.max(1,(u.troops+19)/20));return use==0?999:u.food/use;}
     private int admin(World.Officer o){return o.politics*2+o.charm;}
+    private int combatSkill(Skill s,int category){
+        if(s==null)return 0;
+        switch(s){
+            case SHENSUAN:case XUSHI:case DONGCHA:case HUOSHEN:return 90;
+            case BAICHU:case LIANHUAN:case GUIMOU:case KANPO:case FANJI:case MINGJING:return 55;
+            case GUIMEN:case YAOSHU:case SHENMOU:case JILUE:case YANDU:case GUIJI:return 60;
+            case BAWANG:case SHENJIANG:case YONGJIANG:case FEIJIANG:case MENGZHE:case LIANZHAN:return 70;
+            case QIANGSHEN:case QIANGJIANG:return category==0?80:0;
+            case JISHEN:case JIJIANG:return category==1?80:0;
+            case GONGSHEN:case GONGJIANG:case SHECHENG:case SHESHOU:return category==2?80:0;
+            case QISHEN:case QIJIANG:case JICHI:case BAIMA:return category==3?80:0;
+            case GONGSHEN_SIEGE:case GONGCHENG:return category==4?80:0;
+            case SHUISHEN:case SHUIJIANG:return category==5?80:0;
+            case DOUSHEN:return category<=1?80:0;
+            case BOFU:case XUELU:case QIANGYUN:case HUWEI:case XINGONG:case WEIFENG:case TIEBI:return 40;
+            default:return 0; // City-only or unsupported interactions do not justify a field deputy.
+        }
+    }
+    private int formationValue(World.Unit u){
+        int category=Army.category(u.weapon),score=w.army.leadership(u)*2+w.army.war(u)+w.army.intelligence(u)/2+w.army.aptitude(w.army.crew(u),category)*100;
+        Set<Skill> skills=EnumSet.noneOf(Skill.class);
+        for(World.Officer o:w.army.crew(u)){Skill s=Skill.find(o.skillId);if(s!=null&&skills.add(s))score+=combatSkill(s,category);}
+        boolean caster=skills.contains(Skill.SHENSUAN)||skills.contains(Skill.XUSHI)||skills.contains(Skill.GUIMEN)||skills.contains(Skill.YAOSHU);
+        if(caster&&skills.contains(Skill.BAICHU))score+=100;
+        if(caster&&skills.contains(Skill.LIANHUAN))score+=80;
+        return score;
+    }
+    private int[] deputies(World.Unit probe,List<World.Officer> idle,World.Officer administrator){
+        List<Integer> chosen=new ArrayList<>();
+        while(chosen.size()<2&&idle.size()-chosen.size()>2){
+            int base=formationValue(probe),gain=0;World.Officer best=null;
+            for(World.Officer o:idle){
+                if(o.id==probe.officerId||o==administrator||chosen.contains(o.id))continue;
+                boolean conflict=false;for(World.Officer member:w.army.crew(probe))if(w.relations.dislikes(o.id,member.id)||w.relations.dislikes(member.id,o.id))conflict=true;
+                if(conflict)continue;
+                int[] prior=probe.deputies;probe.deputies=Arrays.copyOf(prior,prior.length+1);probe.deputies[prior.length]=o.id;
+                int value=formationValue(probe)-base;probe.deputies=prior;
+                if(value>gain){gain=value;best=o;}
+            }
+            if(best==null)break;chosen.add(best.id);probe.deputies=chosen.stream().mapToInt(i->i).toArray();
+        }
+        return probe.deputies.clone();
+    }
     public Deployment deployment(int city,int minimumReserve){
         return deployment(city,minimumReserve,c->true);
     }
@@ -203,19 +246,16 @@ public final class CampaignAi {
             if(Army.siegeWeapon(weapon)){if(c.equipment[weapon.ordinal()]<1||incoming(c)>0)continue;}
             else troops=Math.min(troops,c.equipment[weapon.ordinal()]);
             troops=Math.min(troops,(c.food-foodReserve)/3)/1000*1000;if(troops<3000)continue;
-            int category=Army.category(weapon),score=leader.leadership*2+leader.war+leader.aptitude[category]*100+troops/50;
+            World.Unit probe=new World.Unit(-1,c.owner,leader.id,weapon,c.hex,troops,troops*3);
+            int[] deputies=deputies(probe,idle,administrator);
+            int score=formationValue(probe)+troops/50;
             if(Army.siegeWeapon(weapon))score-=90;
             if(score<=bestScore)continue;
-            List<Integer> deputies=new ArrayList<>();int intelligence=leader.intelligence,aptitude=leader.aptitude[category];
-            for(World.Officer o:idle)if(o.id!=leader.id&&o!=administrator&&idle.size()-1-deputies.size()>1&&deputies.size()<2&&
-                (o.intelligence>intelligence+15||o.aptitude[category]>aptitude||!o.skillId.equals("none")&&!o.skillId.equals(leader.skillId))){
-                deputies.add(o.id);intelligence=Math.max(intelligence,o.intelligence);aptitude=Math.max(aptitude,o.aptitude[category]);
-            }
             Army.Ship ship=c.ships[1]>0?Army.Ship.WARSHIP:c.ships[0]>0?Army.Ship.TOWER_SHIP:Army.Ship.BOAT;
-            World.Unit probe=new World.Unit(-1,c.owner,leader.id,weapon,c.hex,troops,troops*3);probe.ship=ship;
+            probe.ship=ship;
             boolean route=false;for(World.City target:cities())if(w.campaign.hostile(c.owner,target.owner)&&objectives.test(target)&&route(probe,target.hex,1)!=null){route=true;break;}
             if(!route)continue;
-            bestScore=score;best=new Deployment(c.id,leader.id,troops,troops*3,reserve,weapon,ship,deputies.stream().mapToInt(i->i).toArray());
+            bestScore=score;best=new Deployment(c.id,leader.id,troops,troops*3,reserve,weapon,ship,deputies);
         }
         return best;
     }
@@ -263,18 +303,32 @@ public final class CampaignAi {
         if(w.terrain[h.q][h.r]==World.Terrain.PLANK_ROAD&&!w.skills.has(u,Skill.TAPO))cost+=3;
         return cost;
     }
-    private Route route(World.Unit u,Hex goal,int range){
+    int routeSearches,routeExpanded; // Per planner diagnostics; never part of world state or RNG.
+    private Route route(World.Unit u,Hex goal,int range){return routes(u,Collections.singleton(goal),range).get(goal);}
+    /** One weighted flood answers every candidate objective for this decision. No cache survives a command. */
+    private Map<Hex,Route> routes(World.Unit u,Collection<Hex> goals,int range){
+        Map<Hex,Route> result=new HashMap<>();if(goals.isEmpty())return result;routeSearches++;
         Set<Hex> blocked=new HashSet<>();for(World.City c:w.cities)blocked.add(c.hex);
         for(World.Unit other:w.units)if(other.id!=u.id)blocked.add(other.hex);
         for(Domestic.Facility f:w.domestic.facilities)blocked.add(f.hex);
         for(War.Structure s:w.war.structures())blocked.add(s.hex);
         for(WorldEvents.Camp c:w.events.camps())blocked.add(c.hex);
+        Set<Hex> targets=new HashSet<>(goals);
+        Map<Hex,List<Hex>> arrivals=new HashMap<>();
+        for(Hex goal:targets)for(int dq=-range;dq<=range;dq++)for(int dr=-range;dr<=range;dr++){
+            Hex h=new Hex(goal.q+dq,goal.r+dr);
+            if(w.inside(h)&&h.distance(goal)<=range)arrivals.computeIfAbsent(h,x->new ArrayList<>()).add(goal);
+        }
         Map<Hex,Integer> costs=new HashMap<>();Map<Hex,Hex> parents=new HashMap<>();
         PriorityQueue<Step> queue=new PriorityQueue<>(Comparator.comparingInt((Step s)->s.cost).thenComparingInt(s->s.h.q).thenComparingInt(s->s.h.r));
         queue.add(new Step(u.hex,0));costs.put(u.hex,0);
         while(!queue.isEmpty()){
-            Step s=queue.remove();if(costs.get(s.h)!=s.cost)continue;
-            if(s.h.distance(goal)<=range){LinkedList<Hex> path=new LinkedList<>();for(Hex h=s.h;h!=null;h=parents.get(h))path.addFirst(h);return new Route(path,s.cost);}
+            Step s=queue.remove();if(costs.get(s.h)!=s.cost)continue;routeExpanded++;
+            for(Hex goal:arrivals.getOrDefault(s.h,Collections.emptyList()))if(!result.containsKey(goal)){
+                LinkedList<Hex> path=new LinkedList<>();for(Hex h=s.h;h!=null;h=parents.get(h))path.addFirst(h);
+                result.put(goal,new Route(path,s.cost));
+            }
+            if(result.size()==targets.size())break;
             for(Hex h:s.h.neighbors()){
                 if(blocked.contains(h))continue;int step=w.army.moveCost(u,s.h,h);if(step<1)continue;
                 int cost=s.cost+step+hazard(u,h)+(w.advancedBattle.zone(u,h)?3:0);
@@ -282,7 +336,7 @@ public final class CampaignAi {
                 costs.put(h,cost);parents.put(h,s.h);queue.add(new Step(h,cost));
             }
         }
-        return null;
+        return result;
     }
     private boolean follow(World.Unit u,Route route){
         if(route==null||route.path.size()<2)return false;int used=0;List<Hex> prefix=new ArrayList<>();prefix.add(u.hex);
@@ -300,7 +354,10 @@ public final class CampaignAi {
     }
     private boolean retreat(World.Unit u,Predicate<World.City> homes){
         World.City home=null;Route best=null;
-        for(World.City c:cities())if(homes.test(c)&&canEnter(u,c)){Route r=route(u,c.hex,1);if(r!=null&&(best==null||r.cost<best.cost)){best=r;home=c;}}
+        List<World.City> candidates=new ArrayList<>();List<Hex> goals=new ArrayList<>();
+        for(World.City c:cities())if(homes.test(c)&&canEnter(u,c)){candidates.add(c);goals.add(c.hex);}
+        Map<Hex,Route> paths=routes(u,goals,1);
+        for(World.City c:candidates){Route r=paths.get(c.hex);if(r!=null&&(best==null||r.cost<best.cost)){best=r;home=c;}}
         if(home==null)return false;
         if(u.hex.distance(home.hex)>1)follow(u,best);
         if(w.unit(u.id)!=null&&u.hex.distance(home.hex)==1&&w.enter(u.id,home.id).ok)return true;
@@ -340,12 +397,16 @@ public final class CampaignAi {
         Route best=null;int bestScore=Integer.MAX_VALUE;
         if(attack){
             // Nearby hostile units take precedence over distant city objectives.
-            for(World.Unit enemy:units())if(w.campaign.hostile(u.owner,enemy.owner)&&u.hex.distance(enemy.hex)<=8){
-                Route r=route(u,enemy.hex,Math.max(1,w.war.range(u)));if(r!=null&&r.path.size()>1&&r.cost<bestScore){best=r;bestScore=r.cost;}
-            }
-            if(best==null)for(World.City c:cities())if(w.campaign.hostile(u.owner,c.owner)&&objectives.test(c)){
-                Route r=route(u,c.hex,Math.max(1,w.army.siegeRange(u)));int score=r==null?Integer.MAX_VALUE:r.cost+c.troops/3000+c.defense/1000;
-                if(r!=null&&score<bestScore){best=r;bestScore=score;}
+            List<World.Unit> enemies=new ArrayList<>();List<Hex> goals=new ArrayList<>();
+            for(World.Unit enemy:units())if(w.campaign.hostile(u.owner,enemy.owner)&&u.hex.distance(enemy.hex)<=8){enemies.add(enemy);goals.add(enemy.hex);}
+            Map<Hex,Route> paths=routes(u,goals,Math.max(1,w.war.range(u)));
+            for(World.Unit enemy:enemies){Route r=paths.get(enemy.hex);if(r!=null&&r.path.size()>1&&r.cost<bestScore){best=r;bestScore=r.cost;}}
+            if(best==null){
+                List<World.City> targets=new ArrayList<>();goals.clear();
+                for(World.City c:cities())if(w.campaign.hostile(u.owner,c.owner)&&objectives.test(c)){targets.add(c);goals.add(c.hex);}
+                paths=routes(u,goals,Math.max(1,w.army.siegeRange(u)));
+                for(World.City c:targets){Route r=paths.get(c.hex);int score=r==null?Integer.MAX_VALUE:r.cost+c.troops/3000+c.defense/1000;
+                    if(r!=null&&score<bestScore){best=r;bestScore=score;}}
             }
         }
         if(best!=null)follow(u,best);else retreat(u,homes);

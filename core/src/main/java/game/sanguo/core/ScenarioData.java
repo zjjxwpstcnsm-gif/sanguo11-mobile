@@ -30,6 +30,8 @@ public final class ScenarioData {
             if(!source.equals("engineering-original")&&!source.equals("community-reference")&&!source.equals("user-supplied"))throw new IOException("未知数据来源等级");
             String reference=source.equals("community-reference")?take(p,"reference"):null;
             if(reference!=null&&!reference.equals("rlu-officers"))throw new IOException("未知人物资料来源");
+            boolean referenceDetails=p.containsKey("reference-details")&&number(p,"reference-details",0,1)==1;
+            if(referenceDetails&&reference==null)throw new IOException("完整人物资料需要显式来源");
             int revision=number(p,"revision",1,1000000),year=number(p,"year",1,9999),month=number(p,"month",1,12);
             int width=number(p,"width",1,300),height=number(p,"height",1,200),sides=number(p,"factions",2,32);
             String[] factions=new String[sides];for(int i=0;i<sides;i++)factions[i]=take(p,"faction."+i);
@@ -128,7 +130,7 @@ public final class ScenarioData {
             if(p.containsKey("natural-deaths"))w.life.naturalDeaths=number(p,"natural-deaths",0,1)==1;
             if(p.containsKey("lifetimes")){int n=number(p,"lifetimes",0,w.officers.size());Set<Integer> seen=new HashSet<>();for(int i=0;i<n;i++){String[] f=fields(p,"lifetime."+i,6);int who=integer(f[0]);if(!seen.add(who))throw new IOException("生卒人物重复");w.life.configure(who,integer(f[1]),integer(f[2]),integer(f[3]),integer(f[4]),Lifecycle.State.valueOf(f[5]));}}
             if(!p.isEmpty())throw new IOException("未知剧本字段："+p.keySet().iterator().next());
-            if(reference!=null){ContentCatalog catalog=ContentCatalog.get();catalog.validateOpening(w);ContentRuntime.initializeOpening(w,catalog);}
+            if(reference!=null){ContentCatalog catalog=ContentCatalog.get();catalog.validateOpening(w);ContentRuntime.initializeOpening(w,catalog);if(referenceDetails)ContentProfiles.initialize(w,catalog);}
             w.strategy.initializeOffices();
             w.abilities.initialize(Objects.hash(w.scenarioId,w.startYear,w.startMonth));
             SaveCodec.validate(w);validateOpening(w);
