@@ -48,3 +48,11 @@ tasks.register('verifyArmy', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyArmy' }
 tasks.named('test') { dependsOn 'verifyArmy' }
+
+ tasks.register('verifyRulesParity', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.RulesParityTest'
+}
+tasks.named('check') { dependsOn 'verifyRulesParity' }
+tasks.named('test') { dependsOn 'verifyRulesParity' }

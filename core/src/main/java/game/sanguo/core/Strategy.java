@@ -120,7 +120,7 @@ public final class Strategy {
     }
     public int searchChance(int officerId) {
         World.Officer o=w.officer(officerId);
-        return o==null?0:StrategyRules.searchChance(o.politics,o.intelligence);
+        return o==null?0:w.skills.has(o,Skill.YANLI)?100:StrategyRules.searchChance(o.politics,o.intelligence);
     }
     List<Talent> discoverable(int cityId) {
         List<Talent> list=new ArrayList<>();
@@ -227,7 +227,7 @@ public final class Strategy {
     }
     public int recruitAmount(int cityId,int officerId) {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);
-        return c==null||o==null?0:StrategyRules.enlistment(w.domestic.recruitAmount(cityId),c.order,o.charm,c.recruitReserve);
+        return c==null||o==null?0:Math.min(c.recruitReserve,StrategyRules.enlistment(w.domestic.recruitAmount(cityId),c.order,o.charm,c.recruitReserve)*(w.skills.has(o,Skill.MINGSHENG)?150:100)/100);
     }
     public World.Result recruitSoldiers(int cityId,int officerId) {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,RECRUIT_COST);
@@ -236,7 +236,7 @@ public final class Strategy {
         if(c.recruitReserve<=0)return w.fail("本城兵源已耗尽");
         int amount=recruitAmount(cityId,officerId);
         if(amount<=0||c.troops>100000-amount)return w.fail("城池兵力已接近上限");
-        w.spend(c,o,RECRUIT_COST);c.recruitReserve-=amount;c.troops+=amount;c.order-=5;
+        w.spend(c,o,RECRUIT_COST);c.recruitReserve-=amount;c.troops+=amount;c.order=Math.max(0,c.order-(w.skills.has(o,Skill.MINGSHENG)?7:5));
         return w.success(c.name+"征得"+amount+"兵，治安−5，兵源剩余"+c.recruitReserve);
     }
     public int getArmyReadiness(int cityId) {
@@ -254,7 +254,7 @@ public final class Strategy {
         for(World.Officer o:w.officers) {
             if(o.otherTaskTurns>0&&--o.otherTaskTurns==0){o.otherTask="";o.acted=true;w.note(o.name+"完成战略任务");}
             World.City c=w.city(o.cityId);
-            if(w.turn%3==0&&o.owner>=0&&o.role!=Role.RULER&&c!=null&&c.owner==o.owner&&(c.order<40||c.gold<200))
+            if(!w.skills.city(o.cityId,Skill.RENZHENG)&&w.turn%3==0&&o.owner>=0&&o.role!=Role.RULER&&c!=null&&c.owner==o.owner&&(c.order<40||c.gold<200))
                 o.loyalty=Math.max(0,o.loyalty-2);
         }
     }

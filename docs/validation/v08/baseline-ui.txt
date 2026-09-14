@@ -1,0 +1,1 @@
+PASS: 64 UI projection/camera assertions.

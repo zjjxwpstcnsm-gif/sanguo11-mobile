@@ -43,7 +43,8 @@ public final class CoreTest {
             check(w.cityAt(e.getKey())==null,"cannot walk through cities");
         }
         Hex destination=null;for(Hex h:reachable.keySet())if(!h.equals(initial)){destination=h;break;}
-        check(destination!=null&&w.move(1,destination).ok,"legal path move");check(!w.move(1,initial).ok,"unit cannot move twice");
+        check(destination!=null&&w.move(1,destination).ok,"legal path move");check(!u.acted&&w.orders.remaining(u)<u.weapon.movement,"moving preserves command with reduced movement");
+        check(w.war.waitUnit(u.id).ok&&!w.move(1,initial).ok,"finished action cannot move again");
         w=deployed();u=w.unit(1);for(Hex n:u.hex.neighbors())if(w.inside(n))w.terrain[n.q][n.r]=World.Terrain.MOUNTAIN;
         check(w.reachable(u).size()==1,"cannot jump surrounding mountains");
         w=deployed();u=w.unit(1);Hex forest=u.hex.neighbors().get(0);w.terrain[forest.q][forest.r]=World.Terrain.FOREST;

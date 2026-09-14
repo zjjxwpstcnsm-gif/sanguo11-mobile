@@ -83,7 +83,7 @@ public final class MainActivity extends Activity {
                 else confirm("攻击"+city.name+"？",()->apply(world.siege(source.id,city.id)));
                 return;
             }
-            if(target==null){World.Result result=world.move(source.id,h);if(result.ok)selected=h;apply(result);return;}
+            if(target==null){warUi().move(source,h);return;}
         }
         if(!h.equals(selected))ui.group="概览";
         selected=h;moving=target!=null&&target.owner==world.player?target.id:-1;ui.page="map";ui.panelVisible=true;refresh();revealPanel();
@@ -111,7 +111,7 @@ public final class MainActivity extends Activity {
         log.setText(aiRunning?"正在结算电脑行动与本旬任务…":world.log.isEmpty()?"拖动地图 · 双指缩放 · 双击城池定位":world.log.get(world.log.size()-1));
         map.setWorld(world,selected,moving);map.setEnabled(!aiRunning);
     }
-    private int taskCount(){int n=0;for(Domestic.Facility f:world.domestic.facilities)if(f.remaining>0&&world.city(f.cityId).owner==world.player)n++;for(Domestic.Mission m:world.domestic.missions)if(m.owner==world.player)n++;for(Campaign.Project p:world.campaign.projects())if(p.owner==world.player)n++;return n;}
+    private int taskCount(){int n=0;for(Domestic.Facility f:world.domestic.facilities)if(f.remaining>0&&world.city(f.cityId).owner==world.player)n++;for(Domestic.Mission m:world.domestic.missions)if(m.owner==world.player)n++;for(Campaign.Project p:world.campaign.projects())if(p.owner==world.player)n++;for(Army.Production p:world.army.productions())if(p.owner==world.player)n++;return n;}
     private void showSelection(){
         World.Unit unit=selected==null?null:world.unitAt(selected);World.City city=selected==null?null:world.cityAt(selected);
         if(unit!=null)showUnit(unit);else if(city!=null)showCity(city);else if(selected!=null&&world.domestic.at(selected)!=null){
@@ -184,15 +184,16 @@ public final class MainActivity extends Activity {
         new CityCommand("军备制造 / 攻城器械与舰船",()->armyUi().manufacture(c)),
         new CityCommand("征兵 · 金300 · 兵源 "+c.recruitReserve,()->strategyUi().command(c,6)),
         new CityCommand("训练 · 金100",()->strategyUi().command(c,7)),
-        new CityCommand("生产兵装  +"+world.domestic.produceAmount(c.id)+" · 金400",()->chooseOfficer(c,o->chooseBasicWeapon(weapon->apply(world.produce(c.id,o.id,weapon)))))
+        new CityCommand("生产兵装 · 金400",()->chooseOfficer(c,o->chooseBasicWeapon(weapon->apply(world.produce(c.id,o.id,weapon)))))
     );}
     private void showUnit(World.Unit u){
         World.Officer o=world.officer(u.officerId);line(o.name,25,gold);line(world.faction(u.owner)+" · "+world.army.equipmentLabel(u),14,paper);
-        line("兵力 "+u.troops+"\n携粮 "+u.food+"\n气力 "+u.energy,16,paper);line("统率 "+o.leadership+"  武力 "+o.war,13,paper);line("移动 "+world.war.movement(u)+"  射程 "+world.war.range(u),13,paper);
+        line("兵力 "+u.troops+"\n携粮 "+u.food+"\n气力 "+u.energy,16,paper);line("统率 "+o.leadership+"  武力 "+o.war,13,paper);line("剩余移动 "+world.orders.remaining(u)+"  射程 "+world.war.range(u),13,paper);
         line("适性 "+War.rankLabel(world.army.aptitude(u))+" · 状态 "+u.status.label,14,paper);
         for(int id:u.deputies)line("副将 "+world.officer(id).name,14,paper);
         line("部队武力 "+world.army.war(u)+" · 智力 "+world.army.intelligence(u),13,paper);
         if(u.burning>0)line("部队燃烧 · 剩"+u.burning+"旬",14,gold);
+        action("编队特技",v->warUi().skills(u));
         if(u.owner==world.player){line(u.acted?"本旬已行动":"点击高亮空地移动\n点敌军攻击 / 点城池攻城或入城",14,paper);
             if(!u.acted&&u.status==War.Status.NORMAL){action("战法",v->{moving=u.id;if(world.army.water(u.hex)||Army.siegeWeapon(u.weapon))armyUi().tactics(u);else warUi().tactics(u);});
                 if(u.burning>0)action("部队灭火 · 气力5",v->confirm("扑灭本部队火焰？",()->apply(world.army.extinguish(u.id))));action("部队计略",v->{moving=u.id;warUi().plots(u);});action("待命 · 恢复5气力",v->confirm("本旬待命并恢复5气力？",()->apply(world.war.waitUnit(u.id))));}
@@ -216,7 +217,7 @@ public final class MainActivity extends Activity {
     private void chooseBasicWeapon(WeaponChoice callback){String[] names={"枪兵","戟兵","弩兵","骑兵"};new AlertDialog.Builder(this).setTitle("生产基础兵装").setItems(names,(d,i)->callback.choose(World.Weapon.values()[i])).setNegativeButton("取消",null).show();}
     private void chooseWeapon(WeaponChoice callback){String[] labels=new String[World.Weapon.values().length];for(int i=0;i<labels.length;i++)labels[i]=World.Weapon.values()[i].label;new AlertDialog.Builder(this).setTitle("选择兵种").setItems(labels,(d,index)->callback.choose(World.Weapon.values()[index])).setNegativeButton("取消",null).show();}
     private void revealPanel(){panelScroll.post(()->panelScroll.scrollTo(0,0));}
-    void selectAndFocus(Hex h){if(h==null)return;moving=-1;selected=h;ui.page="map";ui.panelVisible=true;ui.group="概览";refresh();map.focus(h);revealPanel();}
+    void selectAndFocus(Hex h){if(h==null)return;World.Unit unit=world.unitAt(h);moving=unit!=null&&unit.owner==world.player?unit.id:-1;selected=h;ui.page="map";ui.panelVisible=true;ui.group="概览";refresh();map.focus(h);revealPanel();}
     private StrategyUi strategyUi(){return new StrategyUi(this,world,this::apply);}
     private CampaignUi campaignUi(){return new CampaignUi(this,world,this::apply);}
     private WarUi warUi(){return new WarUi(this,world,this::apply);}

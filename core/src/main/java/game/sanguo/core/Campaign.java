@@ -115,7 +115,7 @@ public final class Campaign {
     }
     public String researchError(int city,int officer,Tech tech){
         if(tech==null)return "技巧无效";
-        World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,tech.gold);if(error!=null)return error;
+        World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,w.skills.researchGold(officer,tech));if(error!=null)return error;
         if(has(c.owner,tech))return "该技巧已经掌握";
         if(tech.prerequisite!=null&&!has(c.owner,tech.prerequisite))return "需要前置技巧："+tech.prerequisite.label;
         if(points(c.owner)<tech.points)return "技巧点不足";
@@ -124,9 +124,16 @@ public final class Campaign {
     }
     public World.Result research(int city,int officer,Tech tech){
         String error=researchError(city,officer,tech);if(error!=null)return w.fail(error);
-        World.City c=w.city(city);World.Officer o=w.officer(officer);w.spend(c,o,tech.gold);points.put(c.owner,points(c.owner)-tech.points);
+        World.City c=w.city(city);World.Officer o=w.officer(officer);w.spend(c,o,w.skills.researchGold(officer,tech));points.put(c.owner,points(c.owner)-tech.points);
         Project project=new Project(c.owner,city,officer,tech,null);projects.add(project);o.otherTask=project.label();o.otherTaskTurns=tech.turns;
         return w.success(o.name+"开始"+project.label()+"，需要"+tech.turns+"旬");
+    }
+    public int researchGold(int officer,Tech tech){return w.skills.researchGold(officer,tech);}
+    public World.Result cancelProject(int officer){
+        Project p=projects.stream().filter(x->x.officerId==officer).findFirst().orElse(null);
+        if(w.gameOver()||p==null||p.owner!=w.active)return w.fail("请选择本势力研究或培养任务");
+        projects.remove(p);World.Officer o=w.officer(officer);o.otherTask="";o.otherTaskTurns=0;o.acted=true;
+        return w.success(p.label()+"已中止，费用不退还");
     }
     public int studyValue(int officer,Study study){
         World.Officer o=w.officer(officer);if(o==null||study==null)return 0;

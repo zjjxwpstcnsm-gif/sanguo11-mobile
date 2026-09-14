@@ -67,7 +67,7 @@ jobs:
           script: bash scripts/smoke-android.sh
       - name: Check APK signature and record digest
         run: |
-          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose app/build/outputs/apk/debug/app-debug.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs app/build/outputs/apk/debug/app-debug.apk | tee app/build/outputs/apk/debug/SIGNATURE.txt
           cd app/build/outputs/apk/debug
           sha256sum app-debug.apk > SHA256SUMS
       - uses: actions/upload-artifact@v4
@@ -76,6 +76,7 @@ jobs:
           path: |
             app/build/outputs/apk/debug/app-debug.apk
             app/build/outputs/apk/debug/SHA256SUMS
+            app/build/outputs/apk/debug/SIGNATURE.txt
           if-no-files-found: error
           retention-days: 30
       - uses: actions/upload-artifact@v4

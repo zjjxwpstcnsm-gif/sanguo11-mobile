@@ -49,7 +49,8 @@ public final class GameSmokeRunner extends Instrumentation {
             personnelFlow();
             campaignFlow();
             armyFlow();
-            result.putString("stream","SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turns, three save slots, corrupt-load recovery, Activity recreation, construction, officer travel, editable cargo transport, task persistence and arrival, map tap/pan/pinch/bounds, filters, empty states, cancel/overwrite confirmation and navigation recreation, search/hire/governor/reward/patrol/recruit/train save v5 restart, merchant quotes/cancel/volume, aptitude study task/completion, goodwill, map tactic damage/displacement and persistent fire, three-officer formation/cancellation, equipment return, manufacturing completion, naval fire, v6 restart and disembarkation verified.\n");
+            rulesFlow();
+            result.putString("stream","SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turns, three save slots, corrupt-load recovery, Activity recreation, construction, officer travel, editable cargo transport, task persistence and arrival, map tap/pan/pinch/bounds, filters, empty states, cancel/overwrite confirmation and navigation recreation, search/hire/governor/reward/patrol/recruit/train save v5 restart, merchant quotes/cancel/volume, aptitude study task/completion, goodwill, map tactic damage/displacement and persistent fire, three-officer formation/cancellation, equipment return, manufacturing completion, naval fire, v6 restart and disembarkation, v7 move confirmation/cancellation/recreation and 神算百出连环 real results verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -197,7 +198,7 @@ public final class GameSmokeRunner extends Instrumentation {
         Hex site=factory.domestic.buildSites(10).get(0);require(factory.domestic.build(10,3,Domestic.Kind.WORKSHOP,site).ok,"manufacturing fixture workshop starts");
         for(int i=0;i<3;i++)require(factory.nextTurn().ok,"manufacturing fixture advances");installFixture(factory,factory.city(10).hex);
         armyCity();click("军备制造 / 攻城器械与舰船",true);click("井阑 ·",false);click("周瑜 ·",false);click("执行",true);
-        w=saved();require(w.army.productions().size()==1&&w.officer(1).otherTaskTurns==3,"manufacturing starts from UI");
+        w=saved();require(w.army.productions().size()==1&&w.officer(1).otherTaskTurns==3,"manufacturing starts from UI");waitText("任务 1",true);
         clickNav("任务");click("筛选 · 全部任务",true);click("军备制造",true);waitText("制造井阑 · 周瑜",true);screenshot("25-manufacturing-task");
         int count=w.city(10).equipment[6],turn=w.turn;for(int i=1;i<=3;i++){endTurn();waitForTurn(turn+i);}w=saved();require(w.city(10).equipment[6]==count+1&&w.army.productions().isEmpty(),"UI turn loop completes one equipment item");
 
@@ -210,13 +211,35 @@ public final class GameSmokeRunner extends Instrumentation {
         require(w.unit(2).burning==2&&w.unit(2).troops<5000&&w.unit(1).energy==70,"naval fire tactic updates actual troops and persistent burning");screenshot("26-naval-combat");
         before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("水陆攻防",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"naval outcome survives restart");
         World crossing=SaveCodec.decode(before);crossing.unit(1).acted=false;installFixture(crossing,crossing.unit(1).hex);
-        tapHex(new Hex(8,8));w=saved();require(w.unit(1).hex.equals(new Hex(8,8))&&w.unit(1).weapon==World.Weapon.SPEAR&&w.unit(1).ship==Army.Ship.WARSHIP,"map tap disembarks with preserved land gear and ship");screenshot("27-disembarked");
+        tapHex(new Hex(8,8));click("执行",true);w=saved();require(w.unit(1).hex.equals(new Hex(8,8))&&w.unit(1).weapon==World.Weapon.SPEAR&&w.unit(1).ship==Army.Ship.WARSHIP,"map tap disembarks with preserved land gear and ship");screenshot("27-disembarked");
+    }
+    private void rulesFlow()throws Exception {
+        World w=ScenarioCatalog.load("river-siege-sandbox",0);
+        World.Unit actor=new World.Unit(1,0,0,World.Weapon.SPEAR,new Hex(6,8),5000,20000);
+        actor.deputies=new int[]{1,2};w.officer(0).skillId=Skill.SHENSUAN.id;w.officer(0).intelligence=100;
+        w.officer(1).skillId=Skill.BAICHU.id;w.officer(2).skillId=Skill.LIANHUAN.id;
+        World.Unit target=new World.Unit(2,1,6,World.Weapon.SPEAR,new Hex(8,8),5000,20000);
+        World.Unit chained=new World.Unit(3,1,7,World.Weapon.SPEAR,new Hex(8,9),5000,20000);
+        w.units.add(actor);w.units.add(target);w.units.add(chained);w.nextUnitId=4;
+        for(World.Unit u:w.units)for(World.Officer o:w.army.crew(u)){o.cityId=-1;o.unitId=u.id;}
+        for(World.City c:w.cities)c.governorId=-1;
+        installFixture(w,actor.hex);byte[] initial=SaveCodec.encode(saved());
+        tapHex(new Hex(7,8));waitText("确认移动",true);screenshot("28-move-preview");click("取消",true);
+        require(Arrays.equals(initial,SaveCodec.encode(saved())),"move cancel does not change world or RNG");
+        tapHex(new Hex(7,8));click("执行",true);w=saved();
+        require(w.unit(1).hex.equals(new Hex(7,8))&&!w.unit(1).acted&&w.unit(1).movementSpent>0,"move preserves command and charges path");
+        byte[] moved=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("水陆攻防",false);
+        require(Arrays.equals(moved,SaveCodec.encode(saved())),"movement budget survives recreation");
+        click("部队计略",true);click("扰乱 · 气力1",true);click("曹操 ·",false);screenshot("29-skill-plot-preview");click("取消",true);
+        require(Arrays.equals(moved,SaveCodec.encode(saved())),"skill plot cancel is pure");
+        click("部队计略",true);click("扰乱 · 气力1",true);click("曹操 ·",false);click("执行",true);w=saved();
+        require(w.unit(1).acted&&w.unit(1).energy==79&&w.unit(2).statusTurns==2&&w.unit(3).statusTurns==2,"UI 神算百出连环 costs once and resolves two targets");
+        screenshot("30-move-then-skills");
     }
     private void tapHex(Hex h)throws Exception {
         MapView map=mapView();MapCamera c=camera(map);int[] pos=new int[2];float[] point=new float[2];
         runOnMainSync(()->{map.getLocationOnScreen(pos);point[0]=pos[0]+25*1.7320508f*(h.q+h.r*.5f)*c.scale+c.x;point[1]=pos[1]+25*1.5f*h.r*c.scale+c.y;});
-        long t=SystemClock.uptimeMillis();MotionEvent down=MotionEvent.obtain(t,t,MotionEvent.ACTION_DOWN,point[0],point[1],0),up=MotionEvent.obtain(t,t+80,MotionEvent.ACTION_UP,point[0],point[1],0);
-        getUiAutomation().injectInputEvent(down,true);getUiAutomation().injectInputEvent(up,true);down.recycle();up.recycle();waitForIdleSync();
+        long t=SystemClock.uptimeMillis();send(t,t,MotionEvent.ACTION_DOWN,point[0],point[1]);send(t,t+80,MotionEvent.ACTION_UP,point[0],point[1]);SystemClock.sleep(500);waitForIdleSync();
     }
     private MapView findMap(android.view.View v){if(v instanceof MapView)return (MapView)v;if(v instanceof android.view.ViewGroup){android.view.ViewGroup g=(android.view.ViewGroup)v;for(int i=0;i<g.getChildCount();i++){MapView m=findMap(g.getChildAt(i));if(m!=null)return m;}}return null;}
     private MapCamera camera(MapView map)throws Exception {java.lang.reflect.Field f=MapView.class.getDeclaredField("camera");f.setAccessible(true);return (MapCamera)f.get(map);}

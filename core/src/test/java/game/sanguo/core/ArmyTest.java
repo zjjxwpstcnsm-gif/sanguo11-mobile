@@ -60,7 +60,7 @@ public final class ArmyTest {
             World w=fixture();World.Unit u=unit(w,1,0,0,weapon,new Hex(8,8));u.ship=Army.Ship.TOWER_SHIP;
             check(w.reachable(u).containsKey(new Hex(9,8)),"every land weapon can embark "+weapon);ok(w.move(1,new Hex(9,8)));
             check(w.army.water(u.hex)&&w.war.range(u)==2&&w.war.movement(u)==5,"water uses selected ship profile");
-            check(w.army.equipmentLabel(u).contains("楼船"),"water equipment displayed");u.acted=false;ok(w.move(1,new Hex(11,8)));
+            check(w.army.equipmentLabel(u).contains("楼船"),"water equipment displayed");w.orders.reset(u);ok(w.move(1,new Hex(11,8)));
             check(!w.army.water(u.hex)&&u.weapon==weapon&&u.ship==Army.Ship.TOWER_SHIP,"disembark preserves both equipment identities");SaveCodec.validate(w);cases++;
         }
         World w=fixture();World.Unit u=unit(w,1,0,0,World.Weapon.CAVALRY,new Hex(9,8));
@@ -71,12 +71,12 @@ public final class ArmyTest {
     private static void combat()throws Exception{
         for(World.Weapon weapon:Arrays.asList(World.Weapon.RAM,World.Weapon.SIEGE_TOWER,World.Weapon.WOODEN_BEAST,World.Weapon.CATAPULT)){
             World w=fixture();World.Unit u=unit(w,1,0,0,weapon,new Hex(17,5));w.city(20).troops=10000;
-            int defense=w.city(20).defense;ok(w.siege(1,20));int defenseLoss=defense-w.city(20).defense,troopLoss=10000-w.city(20).troops;
+            int defense=w.city(20).defense;ok(w.army.tactic(1,w.city(20).hex,w.army.tactics(u).get(0)));int defenseLoss=defense-w.city(20).defense,troopLoss=10000-w.city(20).troops;
             check(weapon==World.Weapon.SIEGE_TOWER?troopLoss>defenseLoss:defenseLoss>=500,"siege specialization "+weapon);cases++;
         }
         World w=fixture();World.Unit u=unit(w,1,0,0,World.Weapon.SIEGE_TOWER,new Hex(16,5));w.city(20).troops=1;
-        ok(w.siege(1,20));check(w.city(20).owner==0,"zero garrison captures with remaining walls");SaveCodec.validate(w);cases++;
-        w=fixture();u=unit(w,1,0,0,World.Weapon.CATAPULT,new Hex(15,5));w.city(20).troops=10000;ok(w.siege(1,20));check(w.city(20).defense<3000,"catapult sieges at range three");cases++;
+        ok(w.army.tactic(1,w.city(20).hex,w.army.tactics(u).get(0)));check(w.city(20).owner==0,"zero garrison captures with remaining walls");SaveCodec.validate(w);cases++;
+        w=fixture();u=unit(w,1,0,0,World.Weapon.CATAPULT,new Hex(15,5));w.city(20).troops=10000;ok(w.army.tactic(1,w.city(20).hex,w.army.tactics(u).get(0)));check(w.city(20).defense<3000,"catapult sieges at range three");cases++;
         World ram=fixture();unit(ram,1,0,0,World.Weapon.RAM,new Hex(7,8));unit(ram,2,1,20,World.Weapon.SPEAR,new Hex(8,8));reject(ram,()->ram.attack(1,2));cases++;
         for(Army.Ship ship:Army.Ship.values()){
             World battle=fixture();World.Unit a=unit(battle,1,0,0,World.Weapon.SPEAR,new Hex(9,8));a.ship=ship;a.energy=100;battle.officer(0).aptitude[5]=3;
