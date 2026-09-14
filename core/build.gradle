@@ -56,3 +56,16 @@ tasks.named('test') { dependsOn 'verifyArmy' }
 }
 tasks.named('check') { dependsOn 'verifyRulesParity' }
 tasks.named('test') { dependsOn 'verifyRulesParity' }
+
+tasks.register('verifyGovernment', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.GovernmentTest'
+}
+tasks.register('verifySupply', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.SupplyTest'
+}
+tasks.named('check') { dependsOn 'verifyGovernment', 'verifySupply' }
+tasks.named('test') { dependsOn 'verifyGovernment', 'verifySupply' }

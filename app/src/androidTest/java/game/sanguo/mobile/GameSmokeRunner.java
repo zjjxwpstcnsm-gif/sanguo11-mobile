@@ -51,7 +51,9 @@ public final class GameSmokeRunner extends Instrumentation {
             armyFlow();
             rulesFlow();
             contentFlow();
-            result.putString("stream","SMOKE PASS: integrated original game/save/city/task/personnel/combat/army regressions; v7 move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            governmentFlow();
+            documentTransferFlow();
+            result.putString("stream","SMOKE PASS: integrated original game/save/city/task/personnel/combat/army regressions; v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -176,6 +178,41 @@ public final class GameSmokeRunner extends Instrumentation {
         require(!saved().unit(1).acted,"moving into fire range retains the plot command");
         click("部队计略",true);click("火计 ·",false);click("张辽 ·",false);click("执行",true);w=saved();require(w.war.fireAt(w.unit(2).hex)!=null&&w.unit(1).energy==70,"UI fire plot persists burning hex");screenshot("22-fire-field");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("战法验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"fire survives Activity recreation");
+    }
+    private void governmentFlow()throws Exception {
+        World w=new World(16,12,"刘备军","曹操军");w.scenarioId="ui-governance-fixture";w.scenarioName="军政验证";
+        w.cities.add(new World.City(0,"营城",new Hex(1,1),0));w.cities.add(new World.City(1,"后方",new Hex(1,9),0));w.cities.add(new World.City(2,"敌城",new Hex(14,1),1));
+        String[] names={"刘备","潘璋","张辽","鲁肃","吕蒙","诸葛瑾","黄盖","周泰"};
+        for(int i=0;i<names.length;i++)w.officers.add(new World.Officer(i,names[i],i==2?1:0,i==2?2:i==6?1:0,80,80,80,80,80));
+        w.officer(0).role=Strategy.Role.RULER;w.officer(0).loyalty=100;w.officer(1).skillId=Skill.BOFU.id;
+        World.Unit a=new World.Unit(1,0,1,World.Weapon.SPEAR,new Hex(4,4),5000,10000),b=new World.Unit(2,1,2,World.Weapon.SPEAR,new Hex(5,4),1,5000);
+        w.units.add(a);w.units.add(b);w.nextUnitId=3;w.officer(1).unitId=1;w.officer(1).cityId=-1;w.officer(2).unitId=2;w.officer(2).cityId=-1;
+        installFixture(w,a.hex);tapHex(b.hex);click("执行",true);waitForIdleSync();
+        require(saved().government.captive(2)&&saved().unit(2)==null,"capture skill produces persisted prisoner from actual map attack");
+        locateCity("营城");click("军政 / 俘虏 / 官职",true);click("俘虏处置",true);click("张辽 ·",false);click("释放",true);click("刘备 ·",false);
+        byte[] before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"release cancellation preserves exact save");
+        locateCity("营城");click("军政 / 俘虏 / 官职",true);click("俘虏处置",true);click("张辽 ·",false);click("释放",true);click("刘备 ·",false);click("执行",true);
+        require(!saved().government.captive(2)&&saved().officer(2).cityId==2,"release returns officer through real UI");screenshot("37-prisoner-release");
+        locateCity("营城");click("军政 / 俘虏 / 官职",true);click("任命军师",true);click("鲁肃 ·",false);click("吕蒙 ·",false);click("执行",true);
+        require(saved().government.advisor(0).id==4,"advisor appointment persists");
+        locateCity("营城");click("军政 / 俘虏 / 官职",true);click("授予官职",true);click("诸葛瑾 ·",false);click("鲁肃 ·",false);click("奋威校尉 ·",false);click("执行",true);
+        require(saved().government.commandLimit(3)==6000,"native rank command enforces its real troop cap");screenshot("38-officer-rank");
+        locateCity("营城");click("军政 / 俘虏 / 官职",true);click("召唤武将",true);click("黄盖 ·",false);click("执行",true);
+        require(saved().domestic.missions.stream().anyMatch(m->m.officerId==6&&m.targetCity==0),"summon creates actual mission");
+        before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("军政验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"governance state survives activity recreation");screenshot("39-governance-restored");
+    }
+    private void documentTransferFlow()throws Exception {
+        // Execute the document-result callback against an actual resolver file. Picker navigation is system-owned.
+        File exported=new File(getTargetContext().getFilesDir(),"smoke-export.sg11");Intent result=new Intent().setData(android.net.Uri.fromFile(exported));
+        byte[] before=SaveCodec.encode(saved());
+        runOnMainSync(()->((MainActivity)current).onActivityResult(911,Activity.RESULT_OK,result));waitText("存档已导出",true);click("返回",true);
+        byte[] data;try(FileInputStream in=new FileInputStream(exported);ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] buf=new byte[4096];int n;while((n=in.read(buf))!=-1)out.write(buf,0,n);data=out.toByteArray();}require(Arrays.equals(before,data),"export writes byte-identical playable save");
+        runOnMainSync(()->((MainActivity)current).onActivityResult(912,Activity.RESULT_OK,result));waitText("导入“军政验证”",false);click("取消",true);
+        require(Arrays.equals(before,SaveCodec.encode(saved())),"document import cancel keeps autosave");
+        runOnMainSync(()->((MainActivity)current).onActivityResult(912,Activity.RESULT_OK,result));click("执行",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"document import restores exact complete state");
+        try(FileOutputStream out=new FileOutputStream(exported)){out.write(new byte[]{1,2,3});}
+        runOnMainSync(()->((MainActivity)current).onActivityResult(912,Activity.RESULT_OK,result));waitText("导入失败",true);click("返回",true);
+        require(Arrays.equals(before,SaveCodec.encode(saved())),"corrupt external document does not mutate game");screenshot("40-document-restore");
     }
     private void installFixture(World w,Hex focus)throws Exception {
         SaveCodec.validate(w);java.lang.reflect.Field field=MainActivity.class.getDeclaredField("world");field.setAccessible(true);

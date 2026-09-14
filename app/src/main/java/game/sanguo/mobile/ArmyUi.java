@@ -16,6 +16,7 @@ final class ArmyUi {
         if(list.isEmpty()){info(title,"没有可用选项");return;}String[] names=new String[list.size()];for(int i=0;i<names.length;i++)names[i]=label.apply(list.get(i));
         new AlertDialog.Builder(a).setTitle(title).setItems(names,(d,i)->next.accept(list.get(i))).setNegativeButton("取消",null).show();
     }
+    private List<Integer> troopOptions(int officer){List<Integer> n=new ArrayList<>();int cap=w.government.commandLimit(officer);for(int v:new int[]{1000,3000,5000,8000,10000,12000,15000})if(v<=cap)n.add(v);if(!n.contains(cap))n.add(cap);Collections.sort(n);return n;}
     void deploy(World.City c){choose("编队 · 选择主将",w.idle(c),o->o.name+" · 统"+o.leadership,leader->{
         List<World.Officer> candidates=new ArrayList<>(w.idle(c));candidates.remove(leader);boolean[] selected=new boolean[candidates.size()];String[] labels=new String[candidates.size()];
         for(int i=0;i<labels.length;i++){World.Officer o=candidates.get(i);labels[i]=o.name+" · 武"+o.war+" / 智"+o.intelligence;}
@@ -27,7 +28,7 @@ final class ArmyUi {
             int[] deputies=new int[ids.size()];for(int i=0;i<ids.size();i++)deputies[i]=ids.get(i);
             choose("陆战兵装",Arrays.asList(World.Weapon.values()),weapon->weapon.label+(weapon==World.Weapon.SWORD?" · 无需库存":" · 库存"+c.equipment[weapon.ordinal()]),weapon->
                 choose("携带舰船",Arrays.asList(Army.Ship.values()),ship->ship.label+(ship==Army.Ship.BOAT?" · 免费配备":" · 库存"+c.ships[ship.ordinal()-1]),ship->
-                    choose("编队兵力",Arrays.asList(1000,3000,5000,8000,10000),n1->n1+"人",troops->
+                    choose("编队兵力",troopOptions(leader.id),n1->n1+"人",troops->
                         choose("出征携粮",Arrays.asList(troops,2*troops,6*troops,10*troops),food->food+"粮",food->{
                             List<World.Officer> crew=new ArrayList<>();crew.add(leader);for(int id:deputies)crew.add(w.officer(id));
                             StringBuilder text=new StringBuilder("主将 "+leader.name);for(int id:deputies)text.append("\n副将 ").append(w.officer(id).name);

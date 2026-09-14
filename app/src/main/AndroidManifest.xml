@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application android:label="三国·研制版" android:theme="@style/AppTheme" android:allowBackup="false" android:supportsRtl="true" android:icon="@drawable/ic_banner">
+    <application android:label="三国·研制版 0.9" android:theme="@style/AppTheme" android:allowBackup="false" android:supportsRtl="true" android:icon="@drawable/ic_banner">
         <activity android:name=".MainActivity" android:exported="true" android:screenOrientation="sensorLandscape" android:configChanges="orientation|screenSize|keyboardHidden">
             <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
         </activity>

@@ -22,7 +22,7 @@ public final class Domestic {
     }
     public static final class Mission {
         public final int id,owner,officerId,sourceCity;public int targetCity;
-        public Hex hex;public final boolean transport;public final int gold,food,troops;
+        public Hex hex;public final boolean transport;public final int gold,food;public int troops;public boolean sea;
         public final int[] equipment;
         Mission(int id,int owner,int officer,int source,int target,Hex hex,boolean transport,int gold,int food,int troops,int[] equipment){
             this.id=id;this.owner=owner;officerId=officer;sourceCity=source;targetCity=target;this.hex=hex;
@@ -123,7 +123,9 @@ public final class Domestic {
     }
     public World.Result transfer(int source,int target,int officer){return dispatch(source,target,officer,false,0,0,0,new int[4]);}
     public World.Result transport(int source,int target,int officer,int gold,int food,int troops,int[] equipment){return dispatch(source,target,officer,true,gold,food,troops,equipment);}
-    private World.Result dispatch(int source,int target,int officer,boolean cargo,int gold,int food,int troops,int[] equipment){
+    public World.Result transportSea(int source,int target,int officer,int gold,int food,int troops,int[] equipment){return dispatch(source,target,officer,true,gold,food,troops,equipment,true);}
+    private World.Result dispatch(int source,int target,int officer,boolean cargo,int gold,int food,int troops,int[] equipment){return dispatch(source,target,officer,cargo,gold,food,troops,equipment,false);}
+    private World.Result dispatch(int source,int target,int officer,boolean cargo,int gold,int food,int troops,int[] equipment,boolean sea){
         World.City c=w.city(source),d=w.city(target);World.Officer o=w.officer(officer);int fee=cargo?100:0;
         String error=w.cityError(c,o,fee);if(error!=null)return w.fail(error);
         if(d==null||d.owner!=w.active||d.id==c.id)return w.fail("请选择另一座己方城池");
@@ -132,10 +134,11 @@ public final class Domestic {
         if(cargo&&gold+food+troops+Arrays.stream(equipment).sum()==0)return w.fail("至少携带一种资源");
         if(c.gold-fee<gold||c.food<food||c.troops<troops)return w.fail("金、粮或兵力不足（运输另收金100）");
         for(int i=0;i<equipment.length;i++)if(c.equipment[i]<equipment[i])return w.fail("兵装库存不足");
-        if(route(c.hex,d.hex,w.active)==null)return w.fail("没有可用陆路，暂不支持水运");
+        if(sea&&(!c.hex.neighbors().stream().anyMatch(w.army::water)||!d.hex.neighbors().stream().anyMatch(w.army::water)))return w.fail("水陆运输需要起点和终点均临水");
+        if(route(c.hex,d.hex,w.active,sea)==null)return w.fail("没有可用运输路线");
         if(nextMissionId>=10000000)return w.fail("任务编号已达上限");
         w.spend(c,o,fee);c.gold-=gold;c.food-=food;c.troops-=troops;for(int i=0;i<equipment.length;i++)c.equipment[i]-=equipment[i];
-        w.strategy.releaseGovernor(o.id);o.cityId=-1;missions.add(new Mission(nextMissionId++,w.active,o.id,c.id,d.id,c.hex,cargo,gold,food,troops,equipment));
+        w.strategy.releaseGovernor(o.id);o.cityId=-1;Mission mission=new Mission(nextMissionId++,w.active,o.id,c.id,d.id,c.hex,cargo,gold,food,troops,equipment);mission.sea=sea;missions.add(mission);
         return w.success(o.name+(cargo?"运送资源":"调动")+"前往"+d.name);
     }
     private static boolean payload(int gold,int food,int troops,int[] equipment){
@@ -146,16 +149,17 @@ public final class Domestic {
         Mission m=mission(id);World.City c=w.city(target);
         if(w.gameOver()||m==null||m.owner!=w.active||c==null||c.owner!=m.owner||target==m.targetCity)return w.fail("请选择本势力在途任务与新的己方目的地");
         if(w.actionPoints[w.active]<10)return w.fail("行动力不足10");
-        if(route(m.hex,c.hex,m.owner)==null)return w.fail("没有可用陆路");
+        if(route(m.hex,c.hex,m.owner,m.sea)==null)return w.fail("没有可用陆路");
         w.actionPoints[w.active]-=10;m.targetCity=target;return w.success("任务已改道至"+c.name);
     }
     private static final class Step {final Hex h;final int cost;Step(Hex h,int c){this.h=h;cost=c;}}
-    private int travelCost(Hex h,int owner){
-        int cost=w.cost(h,World.Weapon.SPEAR);if(cost<0||at(h)!=null||w.war.at(h)!=null)return -1;
+    private int travelCost(Hex h,int owner,boolean sea){
+        int cost=sea&&w.army.water(h)?1:w.cost(h,World.Weapon.SPEAR);if(cost<0||at(h)!=null||w.war.at(h)!=null)return -1;
         World.City c=w.cityAt(h);return c!=null&&c.owner!=owner?-1:cost;
     }
     /** Strategic movement: avoids hostile cities/facilities but ignores tactical unit occupancy. */
-    public List<Hex> route(Hex from,Hex to,int owner){
+    public List<Hex> route(Hex from,Hex to,int owner){return route(from,to,owner,false);}
+    public List<Hex> route(Hex from,Hex to,int owner,boolean sea){
         if(from==null||to==null||!w.inside(from)||!w.inside(to))return null;
         Map<Hex,Integer> distance=new HashMap<>();Map<Hex,Hex> previous=new HashMap<>();
         PriorityQueue<Step> open=new PriorityQueue<>(Comparator.comparingInt((Step s)->s.cost).thenComparingInt(s->s.h.q).thenComparingInt(s->s.h.r));
@@ -164,7 +168,7 @@ public final class Domestic {
             Step s=open.remove();if(s.cost!=distance.get(s.h))continue;
             if(s.h.equals(to)){LinkedList<Hex> result=new LinkedList<>();Hex h=to;while(!h.equals(from)){result.addFirst(h);h=previous.get(h);}return result;}
             for(Hex h:s.h.neighbors()){
-                int cost=travelCost(h,owner);if(cost<0)continue;int total=s.cost+cost;
+                int cost=travelCost(h,owner,sea);if(cost<0)continue;int total=s.cost+cost;
                 if(total<distance.getOrDefault(h,Integer.MAX_VALUE)){distance.put(h,total);previous.put(h,s.h);open.add(new Step(h,total));}
             }
         }
@@ -172,9 +176,10 @@ public final class Domestic {
     }
     public int eta(Mission m){
         World.City c=w.city(m.targetCity);if(c==null||c.owner!=m.owner)return -1;
-        List<Hex> path=route(m.hex,c.hex,m.owner);if(path==null)return -1;
-        int turns=0,budget=0;for(Hex h:path){int cost=travelCost(h,m.owner);if(budget<cost){turns++;budget=TRAVEL_SPEED;}budget-=cost;}return turns;
+        List<Hex> path=route(m.hex,c.hex,m.owner,m.sea);if(path==null)return -1;
+        int turns=0,budget=0;for(Hex h:path){int cost=travelCost(h,m.owner,m.sea);if(budget<cost){turns++;budget=travelSpeed(m);}budget-=cost;}return turns;
     }
+    private int travelSpeed(Mission m){return TRAVEL_SPEED+(m.transport&&w.skills.has(w.officer(m.officerId),Skill.YUNBAN)?2:0);}
     public String status(Mission m){int turns=eta(m);return turns<0?"道路受阻 / 等待改道":turns==0?"已到达，等待结算或库存空间":"预计"+turns+"旬";}
     private boolean fits(Mission m,World.City c){
         if(c.gold>1000000-m.gold||c.food>1000000-m.food||c.troops>100000-m.troops)return false;
@@ -189,13 +194,13 @@ public final class Domestic {
             World.City c=w.city(m.targetCity);
             if(c.owner!=m.owner){
                 World.City best=null;int bestCost=Integer.MAX_VALUE;
-                for(World.City d:w.cities)if(d.owner==m.owner){List<Hex> path=route(m.hex,d.hex,m.owner);if(path==null)continue;int cost=0;for(Hex h:path)cost+=travelCost(h,m.owner);
+                for(World.City d:w.cities)if(d.owner==m.owner){List<Hex> path=route(m.hex,d.hex,m.owner,m.sea);if(path==null)continue;int cost=0;for(Hex h:path)cost+=travelCost(h,m.owner,m.sea);
                     if(cost<bestCost||(cost==bestCost&&(best==null||d.id<best.id))){best=d;bestCost=cost;}}
                 if(best==null)continue;m.targetCity=best.id;c=best;w.note(w.officer(m.officerId).name+"因目的地失守改道至"+c.name);
             }
-            List<Hex> path=route(m.hex,c.hex,m.owner);if(path==null)continue;
-            int budget=TRAVEL_SPEED;
-            for(Hex h:path){int cost=travelCost(h,m.owner);if(cost>budget)break;budget-=cost;m.hex=h;}
+            List<Hex> path=route(m.hex,c.hex,m.owner,m.sea);if(path==null)continue;
+            int budget=travelSpeed(m);
+            for(Hex h:path){int cost=travelCost(h,m.owner,m.sea);World.Unit blocker=w.unitAt(h);if(cost>budget||m.transport&&blocker!=null&&w.campaign.hostile(m.owner,blocker.owner))break;budget-=cost;m.hex=h;}
             if(m.hex.equals(c.hex)&&fits(m,c)){
                 c.gold+=m.gold;c.food+=m.food;c.troops+=m.troops;for(int i=0;i<m.equipment.length;i++)c.equipment[i]+=m.equipment[i];
                 World.Officer o=w.officer(m.officerId);o.cityId=c.id;o.acted=true;missions.remove(m);w.note(o.name+"抵达"+c.name+(m.transport?"，资源已入库":""));
@@ -243,7 +248,7 @@ public final class Domestic {
         for(Mission m:missions){
             require(m.id>0&&m.id<nextMissionId&&ids.add(m.id),"任务编号重复或无效");bound(m.owner,0,w.factions.length-1);
             require(w.city(m.sourceCity)!=null&&w.city(m.targetCity)!=null,"在途城池引用错误");
-            require(m.hex!=null&&w.inside(m.hex)&&w.cost(m.hex,World.Weapon.SPEAR)>0,"任务位置无效");
+            require(m.hex!=null&&w.inside(m.hex)&&(w.cost(m.hex,World.Weapon.SPEAR)>0||m.sea&&w.army.water(m.hex)),"任务位置无效");
             World.Officer o=w.officer(m.officerId);require(o!=null&&o.owner==m.owner&&o.cityId==-1&&o.unitId==-1&&assigned.add(o.id),"在途武将引用错误");
             require(payload(m.gold,m.food,m.troops,m.equipment),"运输货物越界");int sum=m.gold+m.food+m.troops+Arrays.stream(m.equipment).sum();
             require(m.transport?sum>0:sum==0,"任务种类与货物不符");

@@ -6,8 +6,15 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=7, MAX_BYTES=4*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=8, MAX_BYTES=4*1024*1024;
     private SaveCodec() {}
+    /** Shared bounded import path for app-private slots and Android document providers. */
+    public static World read(InputStream input)throws IOException {
+        if(input==null)throw new IOException("无法打开存档");
+        ByteArrayOutputStream out=new ByteArrayOutputStream();byte[] buffer=new byte[8192];int n;
+        while((n=input.read(buffer))!=-1){if(out.size()+n>MAX_BYTES+20)throw new IOException("存档超过大小限制");out.write(buffer,0,n);}
+        return decode(out.toByteArray());
+    }
     public static byte[] encode(World w) throws IOException {
         validate(w);
         ByteArrayOutputStream bytes=new ByteArrayOutputStream();
@@ -39,6 +46,7 @@ public final class SaveCodec {
         CampaignSave.write(w,d);
         ArmySave.write(w,d);
         RulesSave.write(w,d);
+        GovernmentSave.write(w,d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
@@ -93,6 +101,7 @@ public final class SaveCodec {
         if(version>=5)CampaignSave.read(w,d);
         if(version>=6)ArmySave.read(w,d);
         if(version>=7)RulesSave.read(w,d);
+        if(version>=8)GovernmentSave.read(w,d);
         count=bounded(d.readInt(),0,40);for(int i=0;i<count;i++)w.log.add(d.readUTF());
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         validate(w);return w;
@@ -133,13 +142,14 @@ public final class SaveCodec {
             require(u.weapon!=null&&w.inside(u.hex)&&(w.cost(u.hex,u.weapon)>0||w.army.water(u.hex))&&occupied.add(u.hex),"部队位置冲突或不可通行");
             require(assigned.add(u.officerId),"武将重复带队");World.Officer o=w.officer(u.officerId);
             require(o!=null&&o.owner==u.owner&&o.unitId==u.id&&o.cityId==-1,"部队武将引用错误");
-            bounded(u.troops,1,10000);bounded(u.food,0,1000000);bounded(u.energy,0,100);
+            bounded(u.troops,1,15000);bounded(u.food,0,1000000);bounded(u.energy,0,100);
         }
         w.domestic.validate();
         w.strategy.validate();
         CampaignSave.validate(w);
         ArmySave.validate(w);
         RulesSave.validate(w);
+        GovernmentSave.validate(w);
         for(String line:w.log)label(line,2000);
         if(w.winner>=0) {
             require(w.alive(w.winner),"胜者势力不存在");

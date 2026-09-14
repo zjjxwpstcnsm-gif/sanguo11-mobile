@@ -19,3 +19,5 @@ java -cp core/build/check:core/src/main/resources:core/src/test/resources game.s
 java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ArmyTest
 
 java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.RulesParityTest
+java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.GovernmentTest
+java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.SupplyTest

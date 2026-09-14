@@ -15,7 +15,7 @@ public final class Strategy {
         public final String label;
         Role(String label) { this.label=label; }
     }
-    public enum Activity { IDLE, ACTED, CONSTRUCTION, TRANSFER, TRANSPORT, OTHER_TASK, DEPLOYED, UNAFFILIATED, UNAVAILABLE }
+    public enum Activity { IDLE, ACTED, CONSTRUCTION, TRANSFER, TRANSPORT, OTHER_TASK, DEPLOYED, UNAFFILIATED, UNAVAILABLE, CAPTIVE }
     public enum SearchOutcome { REJECTED, OFFICER, GOLD, NOTHING }
 
     /** Snapshot derived from the actual assignments, never a second mutable task registry. */
@@ -90,13 +90,14 @@ public final class Strategy {
     public int factionRelation(int a,int b) { return relations.getOrDefault(relationKey(a,b),0); }
 
     public boolean busy(int officerId) {
-        World.Officer o=w.officer(officerId); return o!=null&&o.otherTaskTurns>0;
+        World.Officer o=w.officer(officerId); return o!=null&&(o.otherTaskTurns>0||w.government.captive(officerId));
     }
     public OfficerState officerState(int officerId) {
         World.Officer o=w.officer(officerId);
         if(o==null)throw new IllegalArgumentException("武将不存在");
         Activity activity=Activity.IDLE; int remaining=0;
-        if(o.unitId>=0)activity=Activity.DEPLOYED;
+        if(w.government.captive(o.id))activity=Activity.CAPTIVE;
+        else if(o.unitId>=0)activity=Activity.DEPLOYED;
         else {
             for(Domestic.Facility f:w.domestic.facilities)if(f.builderId==o.id){activity=Activity.CONSTRUCTION;remaining=f.remaining;break;}
             if(activity==Activity.IDLE)for(Domestic.Mission m:w.domestic.missions)if(m.officerId==o.id){activity=m.transport?Activity.TRANSPORT:Activity.TRANSFER;remaining=w.domestic.eta(m);break;}
@@ -169,7 +170,7 @@ public final class Strategy {
         World.Officer target=w.officer(targetId);int chance=recruitmentChance(cityId,officerId,targetId);
         w.spend(c,o,HIRE_COST);
         if(!StrategyRules.succeeds(chance,nextInt(100)))return w.success(o.name+"登用"+target.name+"未成功（成功率"+chance+"%）");
-        releaseGovernor(target.id);target.owner=c.owner;target.cityId=c.id;target.role=Role.OFFICER;
+        releaseGovernor(target.id);w.government.allegianceChanged(target.id);target.owner=c.owner;target.cityId=c.id;target.role=Role.OFFICER;
         target.loyalty=Math.min(100,60+o.charm/10+o.politics/5);target.lastRewardTurn=-1;target.acted=true;
         return w.success(target.name+"加入"+w.faction(c.owner)+"，本旬休整");
     }
