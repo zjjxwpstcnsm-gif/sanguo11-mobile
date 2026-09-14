@@ -85,6 +85,7 @@ public final class MainActivity extends Activity {
                 else confirm("攻击"+city.name+"？",()->apply(world.siege(source.id,city.id)));
                 return;
             }
+            for(Domestic.Mission m:world.domestic.missions)if(m.transport&&m.hex.equals(h)&&world.campaign.hostile(source.owner,m.owner)){governmentUi().raid(source,m);return;}
             if(target==null){warUi().move(source,h);return;}
         }
         if(!h.equals(selected))ui.group="概览";

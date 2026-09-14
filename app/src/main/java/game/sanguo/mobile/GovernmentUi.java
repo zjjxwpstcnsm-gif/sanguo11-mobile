@@ -59,7 +59,11 @@ final class GovernmentUi {
     }
     void raid(World.Unit u){
         List<Domestic.Mission> list=new ArrayList<>();for(Domestic.Mission m:w.domestic.missions)if(w.supply.raidError(u.id,m.id)==null)list.add(m);
-        choose("截击运输队",list,m->w.officer(m.officerId).name+" · 护送兵"+m.troops+" · "+m.hex,m->confirm("截击运输队",
-            "预计护送兵损失"+w.supply.raidDamage(u.id,m.id)+"，消耗本部队行动。\n击破后优先缴获可携带粮草，其余货物损失；城内和非交战运输队不能截击。",()->apply.accept(w.supply.raid(u.id,m.id))));
+        choose("截击运输队",list,m->w.officer(m.officerId).name+" · 护送兵"+m.troops+" · "+m.hex,m->raid(u,m));
     }
+    void raid(World.Unit u,Domestic.Mission m){
+        String error=w.supply.raidError(u.id,m.id);if(error!=null){info("无法截击",error);return;}
+        confirm("截击运输队","预计护送兵损失"+w.supply.raidDamage(u.id,m.id)+"，消耗本部队行动。\n击破后优先缴获可携带粮草，其余货物损失；城内和非交战运输队不能截击。",()->apply.accept(w.supply.raid(u.id,m.id)));
+    }
+
 }

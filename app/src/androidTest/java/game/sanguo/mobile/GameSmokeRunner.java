@@ -199,6 +199,12 @@ public final class GameSmokeRunner extends Instrumentation {
         require(saved().government.commandLimit(3)==6000,"native rank command enforces its real troop cap");screenshot("38-officer-rank");
         locateCity("营城");click("军政 / 俘虏 / 官职",true);click("召唤武将",true);click("黄盖 ·",false);click("执行",true);
         require(saved().domestic.missions.stream().anyMatch(m->m.officerId==6&&m.targetCity==0),"summon creates actual mission");
+        World raid=saved();raid.active=1;raid.officer(2).acted=false;
+        raid.cities.add(new World.City(3,"敌后方",new Hex(14,9),1));
+        require(raid.domestic.transport(2,3,2,0,5000,1,new int[4]).ok,"prepare real hostile cargo mission");raid.active=0;raid.unit(1).acted=false;
+        Domestic.Mission convoy=raid.domestic.missions.stream().filter(m->m.officerId==2).findFirst().get();convoy.hex=new Hex(5,4);
+        installFixture(raid,raid.unit(1).hex);tapHex(convoy.hex);click("执行",true);
+        require(saved().domestic.missions.stream().noneMatch(m->m.officerId==2)&&saved().government.captive(2),"map tap intercepts visible enemy transport and captures its courier");screenshot("41-transport-interception");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("军政验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"governance state survives activity recreation");screenshot("39-governance-restored");
     }
     private void documentTransferFlow()throws Exception {
