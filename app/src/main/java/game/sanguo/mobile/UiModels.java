@@ -140,6 +140,16 @@ final class UiModels {
             progress=true;World.Officer o=after.officer(p.officerId);boolean running=after.campaign.projects().stream().anyMatch(next->next.officerId==p.officerId);
             s.append(p.label()).append(" · ").append(before.officer(p.officerId).name).append(running?" · 剩余"+o.otherTaskTurns+"旬":o!=null&&o.owner==p.owner&&o.cityId==p.cityId?" · 已完成":" · 已中止").append('\n');
         }
+        AbilityResearch.Research research=before.abilities.research(before.player);
+        if(research!=null){
+            progress=true;AbilityResearch.Research next=after.abilities.research(before.player);
+            s.append("PK研究").append(AbilityResearch.node(research.nodeId).label).append(next!=null&&next.nodeId.equals(research.nodeId)?" · 剩余"+next.remaining+"旬":after.abilities.learned(before.player,research.nodeId)?" · 已完成":" · 已中止").append('\n');
+        }
+        for(AbilityResearch.Training t:before.abilities.training())if(t.owner==before.player){
+            progress=true;boolean running=after.abilities.training().stream().anyMatch(next->next.officerId==t.officerId&&next.nodeId.equals(t.nodeId));
+            boolean completed=after.abilities.remaining(t.owner,t.nodeId)<before.abilities.remaining(t.owner,t.nodeId);
+            s.append(t.label()).append(" · ").append(before.officer(t.officerId).name).append(running?" · 剩余"+after.officer(t.officerId).otherTaskTurns+"旬":completed?" · 已完成":" · 已中止").append('\n');
+        }
         for(Army.Production p:before.army.productions())if(p.owner==before.player){
             progress=true;boolean running=after.army.productions().stream().anyMatch(n->n.officerId==p.officerId);
             World.City c=after.city(p.cityId);boolean delivered=c!=null&&c.owner==p.owner&&(p.weapon!=null?c.equipment[p.weapon.ordinal()]>before.city(p.cityId).equipment[p.weapon.ordinal()]:c.ships[p.ship.ordinal()-1]>before.city(p.cityId).ships[p.ship.ordinal()-1]);
