@@ -67,7 +67,7 @@ final class StrategyUi {
 
     private static String activityLabel(Strategy.Activity state){
         switch(state){
-            case IDLE:return "可行动";case ACTED:return "本旬已行动";case CONSTRUCTION:return "建设中";
+            case CAPTIVE:return "被俘虏";case IDLE:return "可行动";case ACTED:return "本旬已行动";case CONSTRUCTION:return "建设中";
             case TRANSFER:return "调动中";case TRANSPORT:return "运输中";case OTHER_TASK:return "战略任务中";
             case DEPLOYED:return "带队出征";case UNAFFILIATED:return "在野";default:return "无有效驻地";
         }

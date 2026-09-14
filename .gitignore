@@ -9,3 +9,5 @@ local.properties
 *.keystore
 *.hprof
 .DS_Store
+
+!tools/android/dev-debug.keystore

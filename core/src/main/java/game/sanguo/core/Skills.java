@@ -63,7 +63,7 @@ public final class Skills {
         if(loss<=0)return;
         target.energy=Math.max(0,target.energy-(has(source,WEIFENG)?20:has(source,SAOTAO)?5:0));
         if(tactic&&has(target,NUFA)&&target.troops>0)target.energy=Math.min(100,target.energy+5);
-        if(has(source,XINGONG)&&source.troops>0)source.troops=Math.min(10000,source.troops+loss/10);
+        if(has(source,XINGONG)&&source.troops>0)source.troops=Math.max(source.troops,Math.min(w.government.commandLimit(source.officerId),source.troops+loss/10));
         if(target.troops==0&&has(source,ANGYANG))source.energy=Math.min(100,source.energy+10);
     }
     public int fireDamage(World.Unit target,int base,int owner,int power,boolean trap){

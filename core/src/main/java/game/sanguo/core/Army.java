@@ -51,7 +51,7 @@ public final class Army {
     public World.Result deploy(int city,int commander,int[] deputies,World.Weapon weapon,Ship ship,int troops,int food){
         World.City c=w.city(city);World.Officer leader=w.officer(commander);String error=w.cityError(c,leader,0);if(error!=null)return w.fail(error);
         if(weapon==null||ship==null||deputies==null||deputies.length>2)return w.fail("请选择主将、至多两名副将及有效兵装舰船");
-        if(troops<1000||troops>10000||food<troops||food>1000000)return w.fail("兵力1000至10000，携粮至少与兵力相同且不超过100万");
+        if(troops<1000||troops>w.government.commandLimit(commander)||food<troops||food>1000000)return w.fail("兵力1000至"+w.government.commandLimit(commander)+"，携粮至少与兵力相同且不超过100万");
         List<World.Officer> idle=w.idle(c),members=new ArrayList<>();members.add(leader);Set<Integer> ids=new HashSet<>();ids.add(commander);
         for(int id:deputies){World.Officer o=w.officer(id);if(!ids.add(id)||o==null||!idle.contains(o))return w.fail("副将不能重复，须为同城未行动的闲将");members.add(o);}
         int equipment=equipmentNeeded(weapon,troops);
@@ -155,7 +155,7 @@ public final class Army {
         }
         int amount=w.war.physicalDamage(u,enemy,tactic==Tactic.STONE?1.5:1.3,true,new Random(w.strategy.nextInt(Integer.MAX_VALUE)));
         enemy.troops-=amount;
-        if(enemy.troops==0)w.removeUnit(enemy);
+        if(enemy.troops==0)w.defeatUnit(enemy,u);
         else if((tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)&&!w.skills.has(enemy,Skill.HUOSHEN)){enemy.burning=2;enemy.burningOwner=u.owner;enemy.burningPower=w.skills.has(u,Skill.HUOSHEN)?2:1;}
         else if(tactic==Tactic.RAM&&water(u.hex)){
             Hex next=new Hex(target.q+target.q-u.hex.q,target.r+target.r-u.hex.r);

@@ -75,6 +75,8 @@ public final class World {
     public final Army army=new Army(this);
     public final UnitOrders orders=new UnitOrders(this);
     public final Skills skills=new Skills(this);
+    public final Government government=new Government(this);
+    public final Supply supply=new Supply(this);
     public final String[] factions;
     public final int[] actionPoints;
     public String scenarioId="m0-skirmish", scenarioName="基础演练", dataSource="engineering-original", dataHash="";
@@ -107,7 +109,7 @@ public final class World {
     Result fail(String text) { return new Result(false,text); }
     Result success(String text) { note(text);return new Result(true,text); }
     public void note(String text) { log.add(text);while(log.size()>40)log.remove(0); }
-    private boolean available(Officer o,City c) { return o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id); }
+    private boolean available(Officer o,City c) { return o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
     public List<Officer> idle(City c) {
         List<Officer> found=new ArrayList<>();
         if(c!=null&&c.owner==active) for(Officer o:officers) if(available(o,c))found.add(o);
@@ -121,7 +123,7 @@ public final class World {
         if(c.gold<gold)return "金不足";
         return null;
     }
-    void spend(City c,Officer o,int gold) { c.gold-=gold;actionPoints[active]-=10;o.acted=true; }
+    void spend(City c,Officer o,int gold) { c.gold-=gold;actionPoints[active]-=10;o.acted=true;government.earn(o.id,100); }
     /** Compatibility entry points: UI, AI and callers share the strategy rules. */
     public Result recruit(int cityId,int officerId) { return strategy.recruitSoldiers(cityId,officerId); }
     public Result train(int cityId,int officerId) { return strategy.trainArmy(cityId,officerId); }
@@ -179,7 +181,7 @@ public final class World {
         String message=officer(u.officerId).name+"攻城，城防−"+hit+"，守军−"+troopHit;
         if(c.defense==0||c.troops==0) {
             int old=c.owner;c.owner=u.owner;domestic.captured(c.id);strategy.cityCaptured(c.id);c.defense=1500;c.troops=0;c.morale=50;c.order=60;
-            for(Officer o:officers) if(o.cityId==c.id&&o.owner==old&&o.owner>=0)retreat(o,c.hex);
+            government.cityCaptured(c,old,u);
             campaign.cleanupProjects();army.cleanup();campaign.earn(u.owner,100);
             message=c.name+"被"+faction(u.owner)+"攻占";
         }
@@ -194,23 +196,25 @@ public final class World {
         Officer o=officer(u.officerId);for(Officer member:army.crew(u)){member.unitId=-1;member.cityId=c.id;member.acted=true;}units.remove(u);
         return success(o.name+"入城休整");
     }
-    private void retreat(Officer o,Hex from) {
+    void retreat(Officer o,Hex from) {
         strategy.releaseGovernor(o.id);o.otherTaskTurns=0;o.otherTask="";
         City destination=null;
         for(City c:cities)if(c.owner==o.owner&&(destination==null||from.distance(c.hex)<from.distance(destination.hex)))destination=c;
         o.unitId=-1;o.cityId=destination==null?-1:destination.id;o.acted=true;
     }
-    void removeUnit(Unit u) { for(Officer o:army.crew(u))retreat(o,u.hex);units.remove(u); }
+    void removeUnit(Unit u) { government.defeated(u,null); }
+    void defeatUnit(Unit u,Unit attacker){government.defeated(u,attacker);}
     public Result nextTurn() {
         if(gameOver())return fail("本局已结束，请重开");
         if(active!=player)return fail("等待电脑行动");
+        government.runDelegated();
         for(int offset=1;offset<factions.length;offset++) {
             active=(player+offset)%factions.length;
             if(!alive(active))continue;
             reset(active);runAi();checkVictory();
             if(gameOver()){active=player;return success(winner==player?"战场胜利":"我方势力已覆灭");}
         }
-        turn++;domestic.tick();campaign.tick();army.tick();strategy.tick();war.tick();
+        turn++;domestic.tick();campaign.tick();army.tick();strategy.tick();war.tick();government.tick();
         for(Unit u:new ArrayList<>(units)) {
             int consumption=Math.max(1,(u.troops+19)/20);
             if(campaign.has(u.owner,Campaign.Tech.LOGISTICS))consumption=Math.max(1,consumption*4/5);
@@ -233,6 +237,7 @@ public final class World {
         war.resetOwner(owner);
     }
     private void runAi() {
+        government.runAi();
         strategy.runAi(true);
         campaign.runAi();
         strategy.runAi(false);
@@ -253,6 +258,7 @@ public final class World {
         for(Unit u:new ArrayList<>(units)) {
             if(gameOver())break;
             if(u.owner!=active||u.acted)continue;
+            if(supply.aiRaid(u))continue;
             Unit enemy=null;
             for(Unit b:units)if(campaign.hostile(u.owner,b.owner)&&u.hex.distance(b.hex)<=war.range(u)){enemy=b;break;}
             if(enemy!=null&&army.canAttackUnit(u)){if(!war.aiAction(u,enemy))attack(u.id,enemy.id);continue;}

@@ -7,6 +7,7 @@ import java.util.*;
 final class UiModels {
     private UiModels() {}
     static String location(World w, World.Officer o) {
+        if(w.government.captive(o.id))return w.city(w.government.prisoner(o.id).cityId).name+"（关押）";
         for (Domestic.Mission m : w.domestic.missions) if (m.officerId == o.id)
             return w.city(m.sourceCity).name + " → " + w.city(m.targetCity).name;
         if (o.unitId >= 0) return "战场";
@@ -16,6 +17,7 @@ final class UiModels {
     static String status(World w, World.Officer o) {
         Strategy.OfficerState state=w.strategy.officerState(o.id);
         switch(state.activity){
+            case CAPTIVE: return w.government.status(o.id);
             case CONSTRUCTION: case TRANSFER: case TRANSPORT: return w.domestic.assignment(o.id);
             case OTHER_TASK: return o.otherTask+" · 剩"+state.remainingTurns+"旬";
             case DEPLOYED: {World.Unit unit=w.unit(o.unitId);return unit!=null&&unit.acted?"出征 · 已行动":"出征 · 待命";}

@@ -13,7 +13,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
         with:
@@ -73,45 +73,26 @@ jobs:
           profile: pixel_2
           disable-animations: true
           script: bash scripts/smoke-android.sh
-      - name: Check APK signature and record digest
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Check stable development signature and record digest
         run: |
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs app/build/outputs/apk/debug/app-debug.apk | tee app/build/outputs/apk/debug/SIGNATURE.txt
-          gh api repos/${{ github.repository }}/actions/artifacts/10328612868/zip > "$RUNNER_TEMP/prior-main-apk.zip"
-          unzip -q "$RUNNER_TEMP/prior-main-apk.zip" -d "$RUNNER_TEMP/prior-main-apk"
-          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs "$RUNNER_TEMP/prior-main-apk/app-debug.apk" > app/build/outputs/apk/debug/PRIOR-MAIN-SIGNATURE.txt
-          gh api repos/${{ github.repository }}/actions/artifacts/10329536376/zip > "$RUNNER_TEMP/prior-v07-apk.zip"
-          unzip -q "$RUNNER_TEMP/prior-v07-apk.zip" -d "$RUNNER_TEMP/prior-v07-apk"
-          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs "$RUNNER_TEMP/prior-v07-apk/app-debug.apk" > app/build/outputs/apk/debug/PRIOR-V07-SIGNATURE.txt
-          python3 - <<'PYCOMPARE'
+          python3 - <<'PYVERIFY'
           from pathlib import Path
-          root=Path('app/build/outputs/apk/debug')
-          def certificate(name):
-              return next(line.split(': ',1)[1] for line in (root/name).read_text().splitlines() if line.startswith('Signer #1 certificate SHA-256 digest:'))
-          old,new=certificate('PRIOR-MAIN-SIGNATURE.txt'),certificate('SIGNATURE.txt')
-          text='Prior APK: main e66656e3c6770716d47c89fd704c909409ee59cf; run 34791182444; artifact 10328612868\nOld SHA-256 certificate: '+old+'\nNew SHA-256 certificate: '+new+'\n'
-          text+='MATCH: signing certificate matches this specific prior APK.\n' if old==new else 'DIFFERENT: Android cannot install this APK over that prior signed package. Keep the existing app and important saves.\n'
-          prior7=certificate('PRIOR-V07-SIGNATURE.txt')
-          text+='Prior v0.7 APK: d89f9882; run 34793420077; artifact 10329536376; SHA-256 certificate: '+prior7+'\n'+('MATCH' if prior7==new else 'DIFFERENT: cannot cover-install v0.7')+'\n'
-          (root/'SIGNATURE-COMPARISON.txt').write_text(text)
-          print(text)
-          PYCOMPARE
+          signature=Path('app/build/outputs/apk/debug/SIGNATURE.txt').read_text()
+          assert '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' in signature
+          PYVERIFY
           cd app/build/outputs/apk/debug
-          cp app-debug.apk "sanguo11-mobile-integrated-v08-$(git rev-parse --short HEAD).apk"
-          sha256sum sanguo11-mobile-integrated-v08-*.apk | tee SHA256SUMS
+          cp app-debug.apk "sanguo11-mobile-v09-$(git rev-parse --short HEAD).apk"
+          sha256sum sanguo11-mobile-v09-*.apk | tee SHA256SUMS
           git rev-parse HEAD > BUILD_COMMIT
       - uses: actions/upload-artifact@v4
         with:
-          name: sanguo11-mobile-integrated-v08-apk
+          name: sanguo11-mobile-v09-apk
           path: |
-            app/build/outputs/apk/debug/sanguo11-mobile-integrated-v08-*.apk
+            app/build/outputs/apk/debug/sanguo11-mobile-v09-*.apk
             app/build/outputs/apk/debug/BUILD_COMMIT
             app/build/outputs/apk/debug/SHA256SUMS
             app/build/outputs/apk/debug/SIGNATURE.txt
-            app/build/outputs/apk/debug/PRIOR-MAIN-SIGNATURE.txt
-            app/build/outputs/apk/debug/PRIOR-V07-SIGNATURE.txt
-            app/build/outputs/apk/debug/SIGNATURE-COMPARISON.txt
           if-no-files-found: error
           retention-days: 30
       - uses: actions/upload-artifact@v4
