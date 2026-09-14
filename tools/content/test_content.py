@@ -39,9 +39,22 @@ class ImportTest(unittest.TestCase):
         self.data['cross-checks.json'][0]['stats'][0]-=1;self.rejected()
     def test_order_independent_ids(self):
         original,_=b.build();self.data['officers-source.json']['rows'].reverse();self.data['sites-source.json'].reverse();updated,_=b.build()
-        for name in ['officers.tsv','sites.tsv','aliases.tsv']:
+        for name in ['officers.tsv','sites.tsv','aliases.tsv','relations.tsv','profiles.tsv']:
             self.assertEqual(original[b.OUT/name],updated[b.OUT/name])
     def test_no_silent_relation_binding(self):
         _,report=b.build();self.assertTrue(report['uncertainRelations']);self.assertTrue(all(x['targetId'] is None for x in report['uncertainRelations']))
+        self.assertEqual(report['counts']['resolvedRelationRows'],869)
+        self.assertEqual(report['counts']['unresolvedRelationRows'],99)
+        self.assertEqual(len(report['swornGroupAnchors']),1)
+        self.assertTrue(any(len(x['candidates'])==3 for x in report['uncertainRelations']))
+    def test_unknown_personality(self):
+        self.data['officers-source.json']['rows'][0]['values']['性格']='unknown';self.rejected()
+    def test_invalid_lifespan_flag(self):
+        self.data['officers-source.json']['rows'][0]['values']['自然死']='yes';self.rejected()
+    def test_no_self_relation(self):
+        row=self.data['officers-source.json']['rows'][0];row['values']['父親']=row['name'];self.rejected()
+    def test_missing_relation_is_quarantined(self):
+        row=self.data['officers-source.json']['rows'][0];row['values']['親近武將']='不存在的人物'
+        _,report=b.build();self.assertTrue(any(x['raw']=='不存在的人物' and x['targetId'] is None for x in report['uncertainRelations']))
 
 if __name__=='__main__':unittest.main()

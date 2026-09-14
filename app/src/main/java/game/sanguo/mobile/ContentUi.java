@@ -45,21 +45,37 @@ final class ContentUi {
         return host;
     }
     private String status(String s){return s.equals("cross-checked")?"能力/适性双表比对（非原版核验）":s.equals("collected")?"已采集 · 待原版核验":"未知 / 未完成";}
-    private String subtitle(ContentCatalog.Entry e){List<String> f=e.fields;switch(state.contentKind){case "sites":return (f.get(2).equals("city")?"城市":f.get(2).equals("gate")?"关隘":"港口")+" · "+status(f.get(6));case "scenarios":return f.get(2)+"年"+f.get(3)+"月 · 缺少开局状态，不可选玩";case "items":return f.get(2)+" · 归属剧本未知";default:return "已采集名称 · 效果未接入";}}
+    private String subtitle(ContentCatalog.Entry e){List<String> f=e.fields;switch(state.contentKind){case "sites":return (f.get(2).equals("city")?"城市":f.get(2).equals("gate")?"关隘":"港口")+" · "+status(f.get(6));case "scenarios":return f.get(2)+"年"+f.get(3)+"月 · 缺少开局状态，不可选玩";case "items":return f.get(2)+" · 归属剧本未知";default:return "运行时已接入 · 全部交互待核验";}}
     private void detail(String id){
         AlertDialog.Builder dialog=new AlertDialog.Builder(a).setNegativeButton("返回",null);
         if(state.contentKind.equals("officers")){
-            ContentCatalog.Officer o=catalog.officer(Integer.parseInt(id));String message="项目 ID "+o.id+" / 来源编号 "+o.sourceId+"\n"+status(o.status)+"\n统率 "+o.stat(0)+" / 武力 "+o.stat(1)+" / 智力 "+o.stat(2)+" / 政治 "+o.stat(3)+" / 魅力 "+o.stat(4)+"\n枪、戟、弩、骑、兵器、水军："+o.aptitudeText()+"\n生年 "+o.birth+" / 卒年 "+o.death+" / 登场 "+o.appearance+"\n特技："+catalog.skillName(o.skillId)+"（"+o.skillId+"）\n关系原文："+o.relationsRaw+"\n\n生卒、登场、关系尚未接入。武将资料演练的18人加载能力、适性、性别和特技；特技仅已实现的效果生效。\n来源："+catalog.sourceUrl(o.source);
+            ContentCatalog.Officer o=catalog.officer(Integer.parseInt(id));String message="项目 ID "+o.id+" / 来源编号 "+o.sourceId+"\n"+status(o.status)+"\n统率 "+o.stat(0)+" / 武力 "+o.stat(1)+" / 智力 "+o.stat(2)+" / 政治 "+o.stat(3)+" / 魅力 "+o.stat(4)+"\n枪、戟、弩、骑、兵器、水军："+o.aptitudeText()+"\n生年 "+o.birth+" / 卒年 "+o.death+" / 登场 "+o.appearance+"\n性格："+ContentProfiles.temper(o).label+" · 来源自然死："+(catalog.profile(o.id).naturalDeath?"是":"否，卒年不作为寿终年")+"\n特技："+catalog.skillName(o.skillId)+"（"+o.skillId+"）\n已解析关系：\n"+ContentProfiles.describe(catalog,o.id)+"\n\n关系原文："+o.relationsRaw+"\n\n资料武将可加入当前局面。关系仅连接本局已存在、编号匹配的人物；同名歧义与外部人物不自动匹配。血缘编号/相性仅作资料保留。\n来源："+catalog.sourceUrl(o.source);
             dialog.setTitle(o.name).setMessage("目标：Windows 繁中 PK 1.1（安装哈希未知）\n"+message);
 
-            World.Officer actual=w.officer(o.id);if(w.scenarioId.equals("officer-reference-drill")&&actual!=null)dialog.setPositiveButton("当前武将",(d,n)->a.officerDetail(actual));
+            World.Officer actual=w.officer(o.id);if(actual!=null)dialog.setPositiveButton("当前武将",(d,n)->a.officerDetail(actual));
+            else dialog.setPositiveButton("加入局面",(d,n)->addOfficer(o));
         }else{
             ContentCatalog.Entry found=null;for(ContentCatalog.Entry e:catalog.rows(state.contentKind))if(e.id.equals(id))found=e;
             if(found==null)return;ContentCatalog.Entry e=found;String extra;
-            switch(state.contentKind){case "sites":extra="来源表 X="+e.fields.get(3)+"，Y="+e.fields.get(4)+"\n坐标方向和六角转换未知；不是游戏地形。45 个关港坐标存在疑点，未绘入预览。\n耐久资料："+e.fields.get(5);break;case "items":extra="价值："+e.fields.get(3)+"\n表内持有人："+e.fields.get(4)+"\n表内所在地："+e.fields.get(5)+"\n所属剧本未知；未加载归属或效果。";break;case "scenarios":extra="缺少原版地形、势力/君主、全部人员身份位置、资源兵装舰船、外交、研究及事件状态。仅有名称和日期资料，不可作为官方开局。";break;default:extra="仅名称清单；原版编号和效果未完成核验。本目录不改变运行中特技。";}
+            switch(state.contentKind){case "sites":extra="来源表 X="+e.fields.get(3)+"，Y="+e.fields.get(4)+"\n坐标方向和六角转换未知；不是游戏地形。45 个关港坐标存在疑点，未绘入预览。\n耐久资料："+e.fields.get(5);break;case "items":extra="价值："+e.fields.get(3)+"\n表内持有人："+e.fields.get(4)+"\n表内所在地："+e.fields.get(5)+"\n所属剧本未知，未加载原表归属；宝物效果已在游戏中接入。";break;case "scenarios":extra="缺少原版地形、势力/君主、全部人员身份位置、资源兵装舰船、外交、研究及事件状态。仅有名称和日期资料，不可作为官方开局。";break;default:extra="100项来源ID已桥接运行时；全部组合与精确数值尚未核验。本目录不改变运行中特技。";}
             dialog.setTitle(e.name).setMessage("项目 ID "+e.id+"\n"+subtitle(e)+"\n"+extra+"\n来源："+catalog.sourceUrl(e.fields.get(e.fields.size()-1)));
         }
         dialog.show();
+    }
+    private void addOfficer(ContentCatalog.Officer o){
+        List<World.City> cities=new ArrayList<>();for(World.City c:w.cities)if(c.owner==w.player)cities.add(c);
+        if(cities.isEmpty())return;
+        LinearLayout form=new LinearLayout(a);form.setOrientation(LinearLayout.VERTICAL);
+        form.addView(text("将 "+o.name+"加入己方据点，标记本局已编辑。未来登场人物会在指定年正月以在野身份出现。",14));
+        Spinner city=new Spinner(a);List<String> names=new ArrayList<>();for(World.City c:cities)names.add(c.name);
+        city.setAdapter(new ArrayAdapter<>(a,android.R.layout.simple_spinner_dropdown_item,names));form.addView(city);
+        CheckBox dated=new CheckBox(a);dated.setText("按资料年份登场并载入生卒");dated.setChecked(true);form.addView(dated);
+        CheckBox links=new CheckBox(a);links.setText("连接本局已存在人物的来源关系");links.setChecked(true);form.addView(links);
+        new AlertDialog.Builder(a).setTitle("加入资料武将 · "+o.name).setView(form).setNegativeButton("取消",null).setPositiveButton("预览",(d,n)->{
+            Editor.Draft draft=w.editor.sourceOfficer(o.id,cities.get(city.getSelectedItemPosition()).id,dated.isChecked(),links.isChecked());
+            AlertDialog.Builder preview=new AlertDialog.Builder(a).setTitle(draft.valid()?"确认加入资料武将":"无法加入").setMessage(draft.valid()?draft.summary:draft.error).setNegativeButton("返回",null);
+            if(draft.valid())preview.setPositiveButton("确认加入",(p,b)->a.applyResult(w.editor.apply(draft)));preview.show();
+        }).show();
     }
     private void preview(){
         LinearLayout panel=new LinearLayout(a);panel.setOrientation(LinearLayout.VERTICAL);panel.addView(text("42 城来源 X/Y 分布 · 非六角地图\n45 关港坐标隔离；地形、水系、道路、开发地未知。拖动、双指缩放；点城市查看来源。",13));

@@ -1,6 +1,6 @@
 {
   "target": "san11-pc-pk-zh-Hant-1.1",
-  "revision": 1,
+  "revision": 2,
   "originalInstallationVerified": false,
   "counts": {
     "officersCollected": 670,
@@ -10,7 +10,9 @@
     "items": 43,
     "scenarioMetadata": 14,
     "officialPlayableScenarios": 0,
-    "originalTerrainCells": 0
+    "originalTerrainCells": 0,
+    "resolvedRelationRows": 869,
+    "unresolvedRelationRows": 99
   },
   "crossCheckedOfficerIds": [
     1000,
@@ -20,6787 +22,808 @@
   ],
   "uncertainRelations": [
     {
-      "officerId": 1000,
-      "field": "義兄",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1000,
-      "field": "親近武將",
-      "raw": "公孫瓚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1000,
-      "field": "親近武將_2",
-      "raw": "諸葛亮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1000,
-      "field": "親近武將_3",
-      "raw": "徐庶",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1000,
-      "field": "親近武將_4",
-      "raw": "趙雲",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1000,
-      "field": "親近武將_5",
-      "raw": "盧植",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1000,
-      "field": "厭惡武將",
-      "raw": "蔡氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1000,
-      "field": "厭惡武將_2",
-      "raw": "蔡瑁",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1000,
-      "field": "厭惡武將_3",
-      "raw": "馬謖",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1001,
-      "field": "義兄",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1001,
-      "field": "親近武將",
-      "raw": "周倉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1001,
-      "field": "親近武將_2",
-      "raw": "徐晃",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1001,
-      "field": "親近武將_3",
-      "raw": "張遼",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1001,
-      "field": "親近武將_4",
-      "raw": "趙累",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1001,
-      "field": "厭惡武將",
-      "raw": "董卓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1001,
-      "field": "厭惡武將_2",
-      "raw": "糜芳",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1001,
-      "field": "厭惡武將_3",
-      "raw": "傅士仁",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1001,
-      "field": "厭惡武將_4",
-      "raw": "呂布",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1002,
-      "field": "義兄",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1002,
-      "field": "親近武將",
-      "raw": "嚴顏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1002,
-      "field": "親近武將_2",
-      "raw": "龐統",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1002,
-      "field": "親近武將_3",
-      "raw": "雷銅",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1002,
-      "field": "厭惡武將",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1002,
-      "field": "厭惡武將_2",
-      "raw": "董卓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1002,
-      "field": "厭惡武將_3",
-      "raw": "劉巴",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1002,
-      "field": "厭惡武將_4",
-      "raw": "呂布",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1003,
-      "field": "親近武將",
-      "raw": "諸葛亮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1003,
-      "field": "親近武將_2",
-      "raw": "陳到",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1003,
-      "field": "親近武將_3",
-      "raw": "馬雲騄",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1003,
-      "field": "親近武將_4",
-      "raw": "文鴦",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1003,
-      "field": "親近武將_5",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
       "officerId": 1004,
       "field": "父親",
       "raw": "20 25",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1004,
-      "field": "親近武將",
-      "raw": "黃月英",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1004,
-      "field": "親近武將_2",
-      "raw": "趙雲",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1004,
-      "field": "親近武將_3",
-      "raw": "馬謖",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1004,
-      "field": "親近武將_4",
-      "raw": "馬良",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1004,
-      "field": "親近武將_5",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1004,
-      "field": "厭惡武將",
-      "raw": "魏延",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1004,
-      "field": "厭惡武將_2",
-      "raw": "譙周",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1004,
-      "field": "厭惡武將_3",
-      "raw": "陳式",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1004,
-      "field": "厭惡武將_4",
-      "raw": "廖立",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1005,
-      "field": "親近武將",
-      "raw": "嚴顏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1005,
-      "field": "親近武將_2",
-      "raw": "法正",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 1005,
-      "field": "親近武將_3",
-      "raw": "劉磐",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 2000,
       "field": "父親",
       "raw": "20 28",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2000,
-      "field": "配偶",
-      "raw": "卞氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2000,
-      "field": "親近武將",
-      "raw": "郭嘉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2000,
-      "field": "親近武將_2",
-      "raw": "夏侯淵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2000,
-      "field": "親近武將_3",
-      "raw": "夏侯惇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2000,
-      "field": "親近武將_4",
-      "raw": "荀彧",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2000,
-      "field": "親近武將_5",
-      "raw": "典韋",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2000,
-      "field": "厭惡武將",
-      "raw": "孔融",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2000,
-      "field": "厭惡武將_2",
-      "raw": "朱靈",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2000,
-      "field": "厭惡武將_3",
-      "raw": "董卓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2000,
-      "field": "厭惡武將_4",
-      "raw": "楊修",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 2000,
       "field": "厭惡武將_5",
       "raw": "左慈",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 2001,
       "field": "父親",
       "raw": "20 06",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2001,
-      "field": "親近武將",
-      "raw": "夏侯淵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2001,
-      "field": "親近武將_2",
-      "raw": "曹洪",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2001,
-      "field": "親近武將_3",
-      "raw": "曹仁",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2001,
-      "field": "親近武將_4",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2001,
-      "field": "親近武將_5",
-      "raw": "田疇",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 2002,
       "field": "父親",
       "raw": "20 20",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2002,
-      "field": "親近武將",
-      "raw": "郭嘉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2002,
-      "field": "親近武將_2",
-      "raw": "鍾繇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2002,
-      "field": "親近武將_3",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2002,
-      "field": "親近武將_4",
-      "raw": "程昱",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 2003,
       "field": "父親",
       "raw": "20 08",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2003,
-      "field": "親近武將",
-      "raw": "郭淮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2003,
-      "field": "親近武將_2",
-      "raw": "夏侯惇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2003,
-      "field": "親近武將_3",
-      "raw": "曹洪",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2003,
-      "field": "親近武將_4",
-      "raw": "曹仁",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2003,
-      "field": "親近武將_5",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2004,
-      "field": "親近武將",
-      "raw": "樂進",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2004,
-      "field": "親近武將_2",
-      "raw": "關羽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2004,
-      "field": "親近武將_3",
-      "raw": "高順",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2004,
-      "field": "親近武將_4",
-      "raw": "李典",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2004,
-      "field": "親近武將_5",
-      "raw": "呂布",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2005,
-      "field": "親近武將",
-      "raw": "荀彧",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2005,
-      "field": "親近武將_2",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2005,
-      "field": "親近武將_3",
-      "raw": "程昱",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 2005,
-      "field": "親近武將_4",
-      "raw": "劉曄",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3000,
-      "field": "父親",
-      "raw": "孫堅",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3000,
-      "field": "親近武將",
-      "raw": "周泰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3000,
-      "field": "親近武將_2",
-      "raw": "朱然",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3000,
-      "field": "厭惡武將",
-      "raw": "張昭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3001,
-      "field": "親近武將",
-      "raw": "小喬",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3001,
-      "field": "親近武將_2",
-      "raw": "孫策",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3001,
-      "field": "親近武將_3",
-      "raw": "程普",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3001,
-      "field": "親近武將_4",
-      "raw": "呂蒙",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3001,
-      "field": "親近武將_5",
-      "raw": "魯肅",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3001,
-      "field": "厭惡武將",
-      "raw": "諸葛亮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3002,
-      "field": "親近武將",
-      "raw": "周瑜",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3002,
-      "field": "親近武將_2",
-      "raw": "諸葛瑾",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3002,
-      "field": "親近武將_3",
-      "raw": "呂蒙",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3003,
-      "field": "親近武將",
-      "raw": "蘇飛",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3003,
-      "field": "親近武將_2",
-      "raw": "凌統",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3003,
-      "field": "厭惡武將",
-      "raw": "黃祖",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3004,
-      "field": "親近武將",
-      "raw": "孫策",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3005,
-      "field": "親近武將",
-      "raw": "周瑜",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3005,
-      "field": "親近武將_2",
-      "raw": "陸遜",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 3005,
-      "field": "親近武將_3",
-      "raw": "魯肅",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10000,
-      "field": "親近武將",
-      "raw": "金環三結",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10000,
-      "field": "親近武將_2",
-      "raw": "董荼那",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10001,
-      "field": "親近武將",
-      "raw": "華覈",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10002,
-      "field": "親近武將",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10002,
-      "field": "親近武將_2",
-      "raw": "馬謖",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10002,
-      "field": "親近武將_3",
-      "raw": "馬良",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10003,
-      "field": "親近武將",
-      "raw": "姜維",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10003,
-      "field": "親近武將_2",
-      "raw": "梁緒",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10004,
-      "field": "親近武將",
-      "raw": "文欽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10006,
-      "field": "厭惡武將",
-      "raw": "龐德",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10008,
-      "field": "厭惡武將",
-      "raw": "鄧艾",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10009,
       "field": "父親",
       "raw": "20 02",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10010,
       "field": "父親",
       "raw": "20 01",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10011,
-      "field": "親近武將",
-      "raw": "黃皓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10011,
-      "field": "厭惡武將",
-      "raw": "姜維",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10013,
-      "field": "父親",
-      "raw": "袁紹",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10016,
       "field": "父親",
       "raw": "20 02",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10016,
-      "field": "厭惡武將",
-      "raw": "袁紹",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10016,
-      "field": "厭惡武將_2",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10017,
-      "field": "父親",
-      "raw": "袁紹",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10017,
-      "field": "母親",
-      "raw": "劉氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10017,
-      "field": "親近武將",
-      "raw": "袁紹",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10017,
-      "field": "親近武將_2",
-      "raw": "劉氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10017,
-      "field": "厭惡武將",
-      "raw": "袁譚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10017,
-      "field": "厭惡武將_2",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10018,
       "field": "父親",
       "raw": "20 00",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10018,
-      "field": "配偶",
-      "raw": "劉氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10018,
-      "field": "親近武將",
-      "raw": "袁尚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10018,
-      "field": "厭惡武將",
-      "raw": "袁術",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10018,
-      "field": "厭惡武將_2",
-      "raw": "董卓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10020,
-      "field": "父親",
-      "raw": "袁紹",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10020,
-      "field": "厭惡武將",
-      "raw": "袁尚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10022,
-      "field": "父親",
-      "raw": "袁術",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10024,
-      "field": "厭惡武將",
-      "raw": "馬超",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10025,
       "field": "父親",
       "raw": "20 03",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10030,
-      "field": "親近武將",
-      "raw": "崔林",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10031,
-      "field": "親近武將",
-      "raw": "呂凱",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10032,
-      "field": "父親",
-      "raw": "王昶",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10033,
-      "field": "親近武將",
-      "raw": "曹植",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10033,
-      "field": "親近武將_2",
-      "raw": "陳琳",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10036,
-      "field": "父親",
-      "raw": "王朗",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10038,
-      "field": "親近武將",
-      "raw": "呂虔",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10042,
-      "field": "親近武將",
-      "raw": "郭奕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10042,
-      "field": "親近武將_2",
-      "raw": "王淩",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10044,
-      "field": "厭惡武將",
-      "raw": "孫綝",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10045,
-      "field": "厭惡武將",
-      "raw": "徐晃",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10046,
-      "field": "親近武將",
-      "raw": "關羽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10046,
-      "field": "親近武將_2",
-      "raw": "趙累",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10048,
       "field": "父親",
       "raw": "20 04",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10048,
-      "field": "親近武將",
-      "raw": "王昶",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10048,
-      "field": "親近武將_2",
-      "raw": "賈逵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10048,
-      "field": "親近武將_3",
-      "raw": "司馬朗",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10049,
-      "field": "厭惡武將",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10051,
-      "field": "親近武將",
-      "raw": "蔣濟",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10052,
-      "field": "親近武將",
-      "raw": "曹爽",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10053,
       "field": "父親",
       "raw": "20 05",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10054,
       "field": "父親",
       "raw": "20 05",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10056,
-      "field": "親近武將",
-      "raw": "韋昭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10057,
-      "field": "親近武將",
-      "raw": "王淩",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10057,
-      "field": "親近武將_2",
-      "raw": "司馬朗",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10060,
-      "field": "親近武將",
-      "raw": "張繡",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10061,
-      "field": "父親",
-      "raw": "郭嘉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10061,
-      "field": "親近武將",
-      "raw": "王昶",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10067,
-      "field": "親近武將",
-      "raw": "孟達",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10069,
-      "field": "親近武將",
-      "raw": "張遼",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10069,
-      "field": "親近武將_2",
-      "raw": "李典",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10070,
-      "field": "父親",
-      "raw": "樂進",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10070,
-      "field": "親近武將",
-      "raw": "張虎",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10071,
-      "field": "厭惡武將",
-      "raw": "高覽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10071,
-      "field": "厭惡武將_2",
-      "raw": "審配",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10071,
-      "field": "厭惡武將_3",
-      "raw": "張郃",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10075,
-      "field": "父親",
-      "raw": "霍峻",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10076,
-      "field": "親近武將",
-      "raw": "夏侯淵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10076,
-      "field": "親近武將_2",
-      "raw": "曹真",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10077,
-      "field": "父親",
-      "raw": "夏侯淵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10080,
-      "field": "父親",
-      "raw": "夏侯淵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10081,
-      "field": "父親",
-      "raw": "夏侯淵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10082,
-      "field": "父親",
-      "raw": "夏侯尚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10082,
-      "field": "親近武將",
-      "raw": "毌丘儉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10082,
-      "field": "親近武將_2",
-      "raw": "諸葛誕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10082,
-      "field": "親近武將_3",
-      "raw": "曹爽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10082,
-      "field": "親近武將_4",
-      "raw": "張緝",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10082,
       "field": "親近武將_5",
       "raw": "李豐",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "ambiguous-source-name",
+      "candidates": [
+        10611,
+        10612,
+        10613
+      ]
     },
     {
       "officerId": 10083,
       "field": "父親",
       "raw": "20 07",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10083,
-      "field": "親近武將",
-      "raw": "桓階",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10083,
-      "field": "親近武將_2",
-      "raw": "曹丕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10083,
-      "field": "親近武將_3",
-      "raw": "孟達",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10084,
       "field": "父親",
       "raw": "20 07",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10086,
-      "field": "父親",
-      "raw": "夏侯淵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10086,
-      "field": "親近武將",
-      "raw": "姜維",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10086,
-      "field": "親近武將_2",
-      "raw": "曹爽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10087,
-      "field": "父親",
-      "raw": "夏侯惇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10087,
-      "field": "親近武將",
-      "raw": "曹丕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10089,
-      "field": "父親",
-      "raw": "賈逵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10089,
-      "field": "親近武將",
-      "raw": "司馬炎",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10089,
-      "field": "親近武將_2",
-      "raw": "司馬昭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10089,
-      "field": "親近武將_3",
-      "raw": "裴秀",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10094,
-      "field": "父親",
-      "raw": "孟獲",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10094,
-      "field": "親近武將",
-      "raw": "關索",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10094,
-      "field": "親近武將_2",
-      "raw": "鮑三娘",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10096,
-      "field": "父親",
-      "raw": "關興",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10096,
-      "field": "厭惡武將",
-      "raw": "龐會",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10099,
-      "field": "親近武將",
-      "raw": "夏侯尚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10099,
-      "field": "親近武將_2",
-      "raw": "孟達",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10101,
       "field": "父親",
       "raw": "20 09",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10101,
-      "field": "親近武將",
-      "raw": "夏侯玄",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10101,
-      "field": "親近武將_2",
-      "raw": "諸葛誕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10101,
-      "field": "親近武將_3",
-      "raw": "曹叡",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10101,
-      "field": "親近武將_4",
-      "raw": "曹爽",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10102,
       "field": "父親",
       "raw": "20 09",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10103,
-      "field": "父親",
-      "raw": "毌丘儉",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10105,
       "field": "父親",
       "raw": "20 10",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10106,
       "field": "父親",
       "raw": "20 10",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10106,
-      "field": "厭惡武將",
-      "raw": "黃忠",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10107,
-      "field": "父親",
-      "raw": "關羽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10107,
-      "field": "親近武將",
-      "raw": "張苞",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10108,
-      "field": "父親",
-      "raw": "關羽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10108,
-      "field": "親近武將",
-      "raw": "花鬘",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10108,
-      "field": "親近武將_2",
-      "raw": "鮑三娘",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10109,
-      "field": "親近武將",
-      "raw": "樊稠",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10113,
-      "field": "親近武將",
-      "raw": "黃蓋",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10113,
-      "field": "親近武將_2",
-      "raw": "孫和",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10113,
-      "field": "親近武將_3",
-      "raw": "陸遜",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10115,
-      "field": "父親",
-      "raw": "關興",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10116,
-      "field": "親近武將",
-      "raw": "黃蓋",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10116,
-      "field": "親近武將_2",
-      "raw": "孫堅",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10116,
-      "field": "親近武將_3",
-      "raw": "程普",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10121,
-      "field": "父親",
-      "raw": "關羽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10121,
-      "field": "親近武將",
-      "raw": "周倉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10121,
-      "field": "親近武將_2",
-      "raw": "趙累",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10121,
-      "field": "親近武將_3",
-      "raw": "劉封",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10121,
-      "field": "親近武將_4",
-      "raw": "廖化",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10122,
-      "field": "親近武將",
-      "raw": "秦宓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10122,
-      "field": "親近武將_2",
-      "raw": "孫乾",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10122,
-      "field": "親近武將_3",
-      "raw": "糜竺",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10123,
-      "field": "親近武將",
-      "raw": "文醜",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10124,
-      "field": "親近武將",
-      "raw": "陳式",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10124,
-      "field": "厭惡武將",
-      "raw": "諸葛亮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10124,
-      "field": "厭惡武將_2",
-      "raw": "楊儀",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10127,
-      "field": "親近武將",
-      "raw": "侯成",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10127,
-      "field": "親近武將_2",
-      "raw": "宋憲",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10129,
-      "field": "親近武將",
-      "raw": "鍾繇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10131,
-      "field": "親近武將",
-      "raw": "曹仁",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10133,
-      "field": "父親",
-      "raw": "董卓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10136,
-      "field": "親近武將",
-      "raw": "尹賞",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10136,
-      "field": "親近武將_2",
-      "raw": "夏侯霸",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10136,
-      "field": "親近武將_3",
-      "raw": "鄧芝",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10136,
-      "field": "親近武將_4",
-      "raw": "傅僉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10136,
-      "field": "親近武將_5",
-      "raw": "梁緒",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10136,
-      "field": "厭惡武將",
-      "raw": "閻宇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10136,
-      "field": "厭惡武將_2",
-      "raw": "黃皓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10136,
-      "field": "厭惡武將_3",
-      "raw": "譙周",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10139,
-      "field": "親近武將",
-      "raw": "劉辟",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10141,
-      "field": "父親",
-      "raw": "許褚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10144,
-      "field": "親近武將",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10144,
-      "field": "親近武將_2",
-      "raw": "典韋",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10144,
-      "field": "厭惡武將",
-      "raw": "許攸",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10145,
-      "field": "厭惡武將",
-      "raw": "審配",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10147,
-      "field": "父親",
-      "raw": "金旋",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10148,
-      "field": "親近武將",
-      "raw": "阿會喃",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10148,
-      "field": "親近武將_2",
-      "raw": "董荼那",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10150,
-      "field": "父親",
-      "raw": "虞翻",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10151,
-      "field": "親近武將",
-      "raw": "傅士仁",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10151,
-      "field": "親近武將_2",
-      "raw": "龐統",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10151,
-      "field": "親近武將_3",
-      "raw": "陸績",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10154,
-      "field": "親近武將",
-      "raw": "黃忠",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10154,
-      "field": "親近武將_2",
-      "raw": "張飛",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10155,
-      "field": "父親",
-      "raw": "牽招",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10157,
-      "field": "親近武將",
-      "raw": "諸葛瑾",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10157,
-      "field": "親近武將_2",
-      "raw": "張承",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10157,
-      "field": "親近武將_3",
-      "raw": "步騭",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10160,
       "field": "父親",
       "raw": "20 11",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10161,
       "field": "父親",
       "raw": "20 11",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10163,
-      "field": "親近武將",
-      "raw": "韓當",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10163,
-      "field": "親近武將_2",
-      "raw": "孫堅",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10163,
-      "field": "親近武將_3",
-      "raw": "程普",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10164,
       "field": "父親",
       "raw": "20 12",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10165,
       "field": "父親",
       "raw": "黃承彥",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10165,
-      "field": "親近武將",
-      "raw": "諸葛亮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10167,
-      "field": "親近武將",
-      "raw": "閻宇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10167,
-      "field": "親近武將_2",
-      "raw": "劉禪",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10167,
-      "field": "厭惡武將",
-      "raw": "姜維",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10168,
       "field": "父親",
       "raw": "20 12",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10169,
-      "field": "親近武將",
-      "raw": "張遼",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10169,
-      "field": "親近武將_2",
-      "raw": "呂布",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10169,
-      "field": "厭惡武將",
-      "raw": "陳宮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10172,
-      "field": "父親",
-      "raw": "黃權",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10173,
-      "field": "親近武將",
-      "raw": "魏續",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10173,
-      "field": "親近武將_2",
-      "raw": "宋憲",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10175,
-      "field": "親近武將",
-      "raw": "劉表",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10175,
-      "field": "厭惡武將",
-      "raw": "甘寧",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10176,
       "field": "父親",
       "raw": "20 13",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10177,
-      "field": "父親",
-      "raw": "公孫康",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10178,
-      "field": "父親",
-      "raw": "公孫度",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10179,
-      "field": "父親",
-      "raw": "公孫度",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10180,
       "field": "父親",
       "raw": "20 13",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10180,
-      "field": "親近武將",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10180,
-      "field": "親近武將_2",
-      "raw": "盧植",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10180,
-      "field": "厭惡武將",
-      "raw": "劉虞",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10181,
-      "field": "父親",
-      "raw": "公孫瓚",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10183,
       "field": "父親",
       "raw": "20 14",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10188,
-      "field": "親近武將",
-      "raw": "楊懷",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10190,
-      "field": "親近武將",
-      "raw": "楊修",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10191,
-      "field": "親近武將",
-      "raw": "張郃",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10191,
-      "field": "厭惡武將",
-      "raw": "郭圖",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10195,
       "field": "父親",
       "raw": "20 59",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10198,
       "field": "父親",
       "raw": "20 59",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10198,
-      "field": "親近武將",
-      "raw": "孫尚香",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10198,
-      "field": "親近武將_2",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10202,
-      "field": "親近武將",
-      "raw": "司馬懿",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10202,
-      "field": "親近武將_2",
-      "raw": "曹丕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10202,
-      "field": "親近武將_3",
-      "raw": "陳群",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10206,
-      "field": "父親",
-      "raw": "顧雍",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10206,
-      "field": "親近武將",
-      "raw": "諸葛恪",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10206,
-      "field": "親近武將_2",
-      "raw": "孫登",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10206,
-      "field": "親近武將_3",
-      "raw": "張休",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10206,
-      "field": "親近武將_4",
-      "raw": "陳表",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10210,
-      "field": "父親",
-      "raw": "胡遵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10211,
-      "field": "親近武將",
-      "raw": "張紘",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10212,
-      "field": "親近武將",
-      "raw": "雷銅",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10213,
-      "field": "父親",
-      "raw": "胡遵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10214,
-      "field": "親近武將",
-      "raw": "司馬朗",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10216,
       "field": "父親",
       "raw": "20 15",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10217,
       "field": "父親",
       "raw": "20 16",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10217,
-      "field": "親近武將",
-      "raw": "劉琮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10217,
-      "field": "厭惡武將",
-      "raw": "劉琦",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10217,
-      "field": "厭惡武將_2",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10218,
       "field": "父親",
       "raw": "20 15",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10219,
       "field": "父親",
       "raw": "20 16",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10219,
-      "field": "親近武將",
-      "raw": "張允",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10219,
-      "field": "親近武將_2",
-      "raw": "劉琮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10219,
-      "field": "厭惡武將",
-      "raw": "劉琦",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10219,
-      "field": "厭惡武將_2",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10220,
-      "field": "親近武將",
-      "raw": "王經",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10225,
       "field": "父親",
       "raw": "20 17",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10225,
-      "field": "親近武將",
-      "raw": "吳質",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10225,
-      "field": "親近武將_2",
-      "raw": "曹叡",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10225,
-      "field": "親近武將_3",
-      "raw": "曹丕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10225,
-      "field": "親近武將_4",
-      "raw": "張郃",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10225,
-      "field": "親近武將_5",
-      "raw": "陳群",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10226,
-      "field": "父親",
-      "raw": "司馬昭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10226,
-      "field": "親近武將",
-      "raw": "賈充",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10226,
-      "field": "親近武將_2",
-      "raw": "諸葛靚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10226,
-      "field": "厭惡武將",
-      "raw": "文鴦",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10227,
-      "field": "父親",
-      "raw": "司馬懿",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10227,
-      "field": "親近武將",
-      "raw": "司馬昭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10227,
-      "field": "親近武將_2",
-      "raw": "徐質",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10227,
-      "field": "親近武將_3",
-      "raw": "陳泰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10228,
-      "field": "父親",
-      "raw": "司馬懿",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10228,
-      "field": "親近武將",
-      "raw": "司馬師",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10228,
-      "field": "親近武將_2",
-      "raw": "陳泰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10229,
-      "field": "父親",
-      "raw": "司馬懿",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10230,
       "field": "父親",
       "raw": "20 17",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10230,
-      "field": "親近武將",
-      "raw": "曹髦",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10231,
-      "field": "父親",
-      "raw": "司馬孚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10232,
-      "field": "父親",
-      "raw": "司馬昭",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10233,
       "field": "父親",
       "raw": "20 17",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10233,
-      "field": "親近武將",
-      "raw": "王淩",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10233,
-      "field": "親近武將_2",
-      "raw": "賈逵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10233,
-      "field": "親近武將_3",
-      "raw": "崔琰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10237,
-      "field": "父親",
-      "raw": "朱桓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10237,
-      "field": "厭惡武將",
-      "raw": "文欽",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10238,
       "field": "父親",
       "raw": "20 18",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10239,
       "field": "父親",
       "raw": "20 18",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10241,
-      "field": "親近武將",
-      "raw": "關羽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10241,
-      "field": "親近武將_2",
-      "raw": "關平",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10241,
-      "field": "親近武將_3",
-      "raw": "裴元紹",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10242,
-      "field": "親近武將",
-      "raw": "蔣欽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10242,
-      "field": "親近武將_2",
-      "raw": "孫權",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10248,
       "field": "父親",
       "raw": "20 19",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10248,
-      "field": "親近武將",
-      "raw": "孟獲",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10250,
-      "field": "父親",
-      "raw": "朱治",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10250,
-      "field": "親近武將",
-      "raw": "孫權",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10256,
-      "field": "父親",
-      "raw": "荀彧",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10256,
-      "field": "親近武將",
-      "raw": "鍾毓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10256,
-      "field": "親近武將_2",
-      "raw": "陳泰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10256,
-      "field": "親近武將_3",
-      "raw": "傅嘏",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10257,
       "field": "父親",
       "raw": "20 22",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10258,
       "field": "父親",
       "raw": "20 20",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10259,
       "field": "父親",
       "raw": "20 21",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10259,
-      "field": "親近武將",
-      "raw": "鍾繇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10261,
-      "field": "父親",
-      "raw": "鍾繇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10261,
-      "field": "親近武將",
-      "raw": "荀顗",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10261,
-      "field": "親近武將_2",
-      "raw": "陳泰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10261,
-      "field": "親近武將_3",
-      "raw": "傅嘏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10263,
-      "field": "父親",
-      "raw": "鍾繇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10263,
-      "field": "親近武將",
-      "raw": "蔣斌",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10263,
-      "field": "厭惡武將",
-      "raw": "鄧艾",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10266,
       "field": "父親",
       "raw": "橋玄",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10266,
-      "field": "親近武將",
-      "raw": "周瑜",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10266,
-      "field": "親近武將_2",
-      "raw": "孫尚香",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10266,
-      "field": "親近武將_3",
-      "raw": "大喬",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10267,
-      "field": "親近武將",
-      "raw": "周泰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10268,
-      "field": "親近武將",
-      "raw": "溫恢",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10269,
-      "field": "厭惡武將",
-      "raw": "姜維",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10269,
-      "field": "厭惡武將_2",
-      "raw": "諸葛亮",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10272,
       "field": "父親",
       "raw": "20 24",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10275,
-      "field": "父親",
-      "raw": "蔣琬",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10275,
-      "field": "親近武將",
-      "raw": "鍾會",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10276,
-      "field": "親近武將",
-      "raw": "魏諷",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10276,
-      "field": "親近武將_2",
-      "raw": "荀彧",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10276,
-      "field": "親近武將_3",
-      "raw": "荀攸",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10276,
-      "field": "親近武將_4",
-      "raw": "張既",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10278,
       "field": "父親",
       "raw": "20 23",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10278,
-      "field": "親近武將",
-      "raw": "馬謖",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10280,
-      "field": "父親",
-      "raw": "諸葛瑾",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10280,
-      "field": "親近武將",
-      "raw": "顧譚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10280,
-      "field": "親近武將_2",
-      "raw": "孫登",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10280,
-      "field": "親近武將_3",
-      "raw": "張休",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10280,
-      "field": "親近武將_4",
-      "raw": "陳表",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10280,
-      "field": "厭惡武將",
-      "raw": "孫峻",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10280,
-      "field": "厭惡武將_2",
-      "raw": "滕胤",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10281,
-      "field": "父親",
-      "raw": "諸葛瑾",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10282,
       "field": "父親",
       "raw": "20 25",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10282,
-      "field": "親近武將",
-      "raw": "嚴畯",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10282,
-      "field": "親近武將_2",
-      "raw": "張承",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10282,
-      "field": "親近武將_3",
-      "raw": "步騭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10282,
-      "field": "親近武將_4",
-      "raw": "魯肅",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10283,
       "field": "父親",
       "raw": "20 25",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10285,
-      "field": "父親",
-      "raw": "諸葛瞻",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10285,
-      "field": "親近武將",
-      "raw": "諸葛亮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10286,
-      "field": "父親",
-      "raw": "諸葛誕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10287,
-      "field": "父親",
-      "raw": "諸葛亮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10288,
-      "field": "親近武將",
-      "raw": "夏侯玄",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10288,
-      "field": "親近武將_2",
-      "raw": "毌丘儉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10288,
-      "field": "親近武將_3",
-      "raw": "曹爽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10288,
-      "field": "親近武將_4",
-      "raw": "張緝",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10288,
       "field": "親近武將_5",
       "raw": "李豐",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10288,
-      "field": "厭惡武將",
-      "raw": "文欽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10290,
-      "field": "親近武將",
-      "raw": "關羽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10290,
-      "field": "厭惡武將",
-      "raw": "王平",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10291,
-      "field": "親近武將",
-      "raw": "孫翊",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10292,
-      "field": "親近武將",
-      "raw": "司馬師",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10293,
-      "field": "親近武將",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10294,
-      "field": "親近武將",
-      "raw": "丁奉",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "ambiguous-source-name",
+      "candidates": [
+        10611,
+        10612,
+        10613
+      ]
     },
     {
       "officerId": 10297,
       "field": "父親",
       "raw": "20 26",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10297,
-      "field": "厭惡武將",
-      "raw": "孟達",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10298,
-      "field": "父親",
-      "raw": "辛毘",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10299,
-      "field": "親近武將",
-      "raw": "孫皓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10300,
-      "field": "親近武將",
-      "raw": "曹植",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10301,
-      "field": "父親",
-      "raw": "辛毘",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10302,
       "field": "父親",
       "raw": "20 26",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10302,
-      "field": "厭惡武將",
-      "raw": "孟達",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10303,
-      "field": "親近武將",
-      "raw": "袁紹",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10303,
-      "field": "親近武將_2",
-      "raw": "逢紀",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10303,
-      "field": "厭惡武將",
-      "raw": "郭圖",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10303,
-      "field": "厭惡武將_2",
-      "raw": "許攸",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10303,
-      "field": "厭惡武將_3",
-      "raw": "辛評",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10303,
-      "field": "厭惡武將_4",
-      "raw": "田豐",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10304,
       "field": "父親",
       "raw": "20 27",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10305,
       "field": "父親",
       "raw": "20 27",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10305,
-      "field": "厭惡武將",
-      "raw": "審配",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10306,
-      "field": "親近武將",
-      "raw": "簡雍",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10310,
-      "field": "配偶",
-      "raw": "張濟",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10316,
-      "field": "親近武將",
-      "raw": "鄧艾",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10317,
-      "field": "父親",
-      "raw": "薛綜",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10318,
-      "field": "父親",
-      "raw": "薛綜",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10320,
-      "field": "父親",
-      "raw": "全端",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10321,
-      "field": "父親",
-      "raw": "全琮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10322,
-      "field": "父親",
-      "raw": "全尚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10325,
-      "field": "親近武將",
-      "raw": "孫魯班",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10325,
-      "field": "厭惡武將",
-      "raw": "孫和",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10326,
-      "field": "父親",
-      "raw": "全琮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10327,
-      "field": "父親",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10327,
-      "field": "親近武將",
-      "raw": "曹叡",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10328,
-      "field": "父親",
-      "raw": "曹丕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10328,
-      "field": "親近武將",
-      "raw": "司馬懿",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10328,
-      "field": "親近武將_2",
-      "raw": "甄氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10328,
-      "field": "親近武將_3",
-      "raw": "曹宇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10328,
-      "field": "親近武將_4",
-      "raw": "曹植",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10328,
-      "field": "厭惡武將",
-      "raw": "何晏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10328,
-      "field": "厭惡武將_2",
-      "raw": "諸葛誕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10329,
-      "field": "父親",
-      "raw": "曹宇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10330,
-      "field": "父親",
-      "raw": "曹真",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10331,
       "field": "父親",
       "raw": "20 29",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10332,
-      "field": "父親",
-      "raw": "曹真",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10333,
-      "field": "親近武將",
-      "raw": "魏續",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10333,
-      "field": "親近武將_2",
-      "raw": "侯成",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10335,
-      "field": "父親",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10335,
-      "field": "親近武將",
-      "raw": "典韋",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10336,
       "field": "父親",
       "raw": "20 32",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10336,
-      "field": "親近武將",
-      "raw": "夏侯淵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10336,
-      "field": "親近武將_2",
-      "raw": "夏侯惇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10336,
-      "field": "親近武將_3",
-      "raw": "曹仁",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10337,
       "field": "父親",
       "raw": "20 31",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10338,
-      "field": "父親",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10338,
-      "field": "母親",
-      "raw": "卞氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10338,
-      "field": "親近武將",
-      "raw": "曹植",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10339,
-      "field": "父親",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10339,
-      "field": "母親",
-      "raw": "卞氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10339,
-      "field": "親近武將",
-      "raw": "王粲",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10339,
-      "field": "親近武將_2",
-      "raw": "甄氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10339,
-      "field": "親近武將_3",
-      "raw": "曹叡",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10339,
-      "field": "親近武將_4",
-      "raw": "曹彰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10339,
-      "field": "親近武將_5",
-      "raw": "陳琳",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10339,
-      "field": "厭惡武將",
-      "raw": "曹丕",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10340,
       "field": "父親",
       "raw": "20 30",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10340,
-      "field": "親近武將",
-      "raw": "郭淮",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10341,
       "field": "父親",
       "raw": "20 31",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10341,
-      "field": "親近武將",
-      "raw": "夏侯淵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10341,
-      "field": "親近武將_2",
-      "raw": "夏侯惇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10341,
-      "field": "親近武將_3",
-      "raw": "牛金",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10341,
-      "field": "親近武將_4",
-      "raw": "曹洪",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10344,
-      "field": "父親",
-      "raw": "曹真",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10344,
-      "field": "親近武將",
-      "raw": "夏侯玄",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10344,
-      "field": "親近武將_2",
-      "raw": "夏侯霸",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10344,
-      "field": "親近武將_3",
-      "raw": "毌丘儉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10344,
-      "field": "親近武將_4",
-      "raw": "諸葛誕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10344,
-      "field": "厭惡武將",
-      "raw": "司馬懿",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10345,
-      "field": "父親",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10346,
-      "field": "親近武將",
-      "raw": "孫觀",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10347,
-      "field": "父親",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10347,
-      "field": "母親",
-      "raw": "卞氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10347,
-      "field": "親近武將",
-      "raw": "夏侯尚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10347,
-      "field": "親近武將_2",
-      "raw": "吳質",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10347,
-      "field": "親近武將_3",
-      "raw": "司馬懿",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10347,
-      "field": "親近武將_4",
-      "raw": "陳群",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10347,
-      "field": "親近武將_5",
-      "raw": "孟達",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10347,
-      "field": "厭惡武將",
-      "raw": "王忠",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10347,
-      "field": "厭惡武將_2",
-      "raw": "何晏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10347,
-      "field": "厭惡武將_3",
-      "raw": "曹洪",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10347,
-      "field": "厭惡武將_4",
-      "raw": "曹植",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10349,
-      "field": "父親",
-      "raw": "曹叡",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10350,
       "field": "父親",
       "raw": "20 33",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10350,
-      "field": "親近武將",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10351,
-      "field": "父親",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10351,
-      "field": "母親",
-      "raw": "卞氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10352,
-      "field": "父親",
-      "raw": "沮授",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10354,
-      "field": "親近武將",
-      "raw": "甘寧",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10355,
-      "field": "親近武將",
-      "raw": "孫堅",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10357,
-      "field": "父親",
-      "raw": "孫韶",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10358,
-      "field": "父親",
-      "raw": "孫權",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10358,
-      "field": "親近武將",
-      "raw": "闞澤",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10358,
-      "field": "親近武將_2",
-      "raw": "孫登",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10358,
-      "field": "厭惡武將",
-      "raw": "孫魯班",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10359,
       "field": "父親",
       "raw": "20 34",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10360,
-      "field": "親近武將",
-      "raw": "臧霸",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10362,
-      "field": "父親",
-      "raw": "孫權",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10362,
-      "field": "親近武將",
-      "raw": "張布",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10362,
-      "field": "親近武將_2",
-      "raw": "濮陽興",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10362,
-      "field": "厭惡武將",
-      "raw": "孫綝",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10363,
-      "field": "父親",
-      "raw": "孫堅",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10364,
       "field": "父親",
       "raw": "20 41",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10365,
       "field": "父親",
       "raw": "20 36",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10365,
-      "field": "親近武將",
-      "raw": "韓當",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10365,
-      "field": "親近武將_2",
-      "raw": "黃蓋",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10365,
-      "field": "親近武將_3",
-      "raw": "程普",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10365,
-      "field": "厭惡武將",
-      "raw": "董卓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10366,
-      "field": "親近武將",
-      "raw": "簡雍",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10366,
-      "field": "親近武將_2",
-      "raw": "糜竺",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10368,
-      "field": "父親",
-      "raw": "孫和",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10368,
-      "field": "親近武將",
-      "raw": "岑昏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10368,
-      "field": "厭惡武將",
-      "raw": "韋昭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10368,
-      "field": "厭惡武將_2",
-      "raw": "步闡",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10368,
-      "field": "厭惡武將_3",
-      "raw": "留平",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10368,
-      "field": "厭惡武將_4",
-      "raw": "樓玄",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10369,
-      "field": "父親",
-      "raw": "孫靜",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10369,
-      "field": "親近武將",
-      "raw": "孫策",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10370,
-      "field": "父親",
-      "raw": "孫堅",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10370,
-      "field": "親近武將",
-      "raw": "周瑜",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10370,
-      "field": "親近武將_2",
-      "raw": "孫尚香",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10370,
-      "field": "親近武將_3",
-      "raw": "大喬",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10370,
-      "field": "親近武將_4",
-      "raw": "太史慈",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10370,
-      "field": "厭惡武將",
-      "raw": "劉勳",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10371,
-      "field": "父親",
-      "raw": "孫策",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10371,
-      "field": "親近武將",
-      "raw": "陸遜",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10372,
       "field": "父親",
       "raw": "20 37",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10372,
-      "field": "厭惡武將",
-      "raw": "孫皓",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10373,
       "field": "父親",
       "raw": "20 38",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10373,
-      "field": "親近武將",
-      "raw": "孫魯班",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10373,
-      "field": "親近武將_2",
-      "raw": "文欽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10373,
-      "field": "厭惡武將",
-      "raw": "諸葛恪",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10374,
       "field": "父親",
       "raw": "20 35",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10375,
-      "field": "父親",
-      "raw": "孫堅",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10375,
-      "field": "親近武將",
-      "raw": "吳國太",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10375,
-      "field": "親近武將_2",
-      "raw": "小喬",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10375,
-      "field": "親近武將_3",
-      "raw": "孫策",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10375,
-      "field": "親近武將_4",
-      "raw": "大喬",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10375,
-      "field": "親近武將_5",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10376,
       "field": "父親",
       "raw": "20 41",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10377,
       "field": "父親",
       "raw": "20 36",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10379,
       "field": "父親",
       "raw": "20 39",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10379,
-      "field": "厭惡武將",
-      "raw": "王惇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10379,
-      "field": "厭惡武將_2",
-      "raw": "朱異",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10379,
-      "field": "厭惡武將_3",
-      "raw": "滕胤",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10379,
-      "field": "厭惡武將_4",
-      "raw": "呂據",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10380,
-      "field": "父親",
-      "raw": "孫權",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10380,
-      "field": "親近武將",
-      "raw": "顧譚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10380,
-      "field": "親近武將_2",
-      "raw": "諸葛恪",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10380,
-      "field": "親近武將_3",
-      "raw": "孫和",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10380,
-      "field": "親近武將_4",
-      "raw": "張休",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10380,
-      "field": "親近武將_5",
-      "raw": "陳表",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10381,
-      "field": "父親",
-      "raw": "孫靜",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10382,
-      "field": "父親",
-      "raw": "孫堅",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10382,
-      "field": "親近武將",
-      "raw": "徐氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10382,
-      "field": "親近武將_2",
-      "raw": "孫策",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10383,
-      "field": "父親",
-      "raw": "孫權",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10383,
-      "field": "親近武將",
-      "raw": "孫魯班",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10385,
-      "field": "父親",
-      "raw": "孫堅",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10386,
-      "field": "父親",
-      "raw": "孫權",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10386,
-      "field": "親近武將",
-      "raw": "孫峻",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10386,
-      "field": "親近武將_2",
-      "raw": "孫亮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10386,
-      "field": "厭惡武將",
-      "raw": "孫和",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10387,
       "field": "父親",
       "raw": "橋玄",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10387,
-      "field": "親近武將",
-      "raw": "小喬",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10387,
-      "field": "親近武將_2",
-      "raw": "孫策",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10387,
-      "field": "親近武將_3",
-      "raw": "孫尚香",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10388,
-      "field": "父親",
-      "raw": "太史慈",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10390,
       "field": "父親",
       "raw": "20 19",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10394,
-      "field": "親近武將",
-      "raw": "蔡氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10394,
-      "field": "親近武將_2",
-      "raw": "蔡瑁",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10396,
       "field": "父親",
       "raw": "20 46",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10401,
-      "field": "親近武將",
-      "raw": "陳壽",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10403,
       "field": "父親",
       "raw": "20 42",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10404,
-      "field": "親近武將",
-      "raw": "夏侯淵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10404,
-      "field": "親近武將_2",
-      "raw": "鍾繇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10405,
-      "field": "父親",
-      "raw": "張昭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10405,
-      "field": "親近武將",
-      "raw": "顧譚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10405,
-      "field": "親近武將_2",
-      "raw": "諸葛恪",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10405,
-      "field": "親近武將_3",
-      "raw": "孫登",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10405,
-      "field": "親近武將_4",
-      "raw": "陳表",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10409,
-      "field": "父親",
-      "raw": "張遼",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10409,
-      "field": "親近武將",
-      "raw": "樂綝",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10410,
-      "field": "親近武將",
-      "raw": "顧雍",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10410,
-      "field": "親近武將_2",
-      "raw": "孫策",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10411,
-      "field": "親近武將",
-      "raw": "高覽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10411,
-      "field": "親近武將_2",
-      "raw": "司馬懿",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10411,
-      "field": "厭惡武將",
-      "raw": "郭圖",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10412,
-      "field": "父親",
-      "raw": "趙雲",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10414,
       "field": "父親",
       "raw": "20 44",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10414,
-      "field": "配偶",
-      "raw": "鄒氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10415,
       "field": "父親",
       "raw": "20 45",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10415,
-      "field": "親近武將",
-      "raw": "賈詡",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10416,
-      "field": "父親",
-      "raw": "張既",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10416,
-      "field": "親近武將",
-      "raw": "夏侯玄",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10416,
-      "field": "親近武將_2",
-      "raw": "毌丘儉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10416,
-      "field": "親近武將_3",
-      "raw": "諸葛誕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10416,
-      "field": "親近武將_4",
-      "raw": "曹爽",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10416,
       "field": "親近武將_5",
       "raw": "李豐",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10417,
-      "field": "父親",
-      "raw": "張苞",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10419,
-      "field": "親近武將",
-      "raw": "孫策",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10419,
-      "field": "厭惡武將",
-      "raw": "步騭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10420,
-      "field": "親近武將",
-      "raw": "法正",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10420,
-      "field": "親近武將_2",
-      "raw": "孟達",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10420,
-      "field": "親近武將_3",
-      "raw": "楊修",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10420,
-      "field": "親近武將_4",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10421,
-      "field": "父親",
-      "raw": "張飛",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10422,
-      "field": "父親",
-      "raw": "張昭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10422,
-      "field": "親近武將",
-      "raw": "嚴畯",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10422,
-      "field": "親近武將_2",
-      "raw": "諸葛瑾",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10422,
-      "field": "親近武將_3",
-      "raw": "步騭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10422,
-      "field": "親近武將_4",
-      "raw": "魯淑",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10423,
-      "field": "厭惡武將",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10424,
-      "field": "父親",
-      "raw": "王允",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10424,
-      "field": "親近武將",
-      "raw": "呂布",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10426,
-      "field": "父親",
-      "raw": "趙雲",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10430,
-      "field": "親近武將",
-      "raw": "袁紹",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10430,
-      "field": "親近武將_2",
-      "raw": "陳宮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10433,
-      "field": "親近武將",
-      "raw": "孫休",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10433,
-      "field": "親近武將_2",
-      "raw": "濮陽興",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10434,
-      "field": "父親",
-      "raw": "張飛",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10434,
-      "field": "親近武將",
-      "raw": "關興",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "ambiguous-source-name",
+      "candidates": [
+        10611,
+        10612,
+        10613
+      ]
     },
     {
       "officerId": 10435,
       "field": "父親",
       "raw": "20 42",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10440,
       "field": "父親",
       "raw": "20 42",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10441,
-      "field": "親近武將",
-      "raw": "王甫",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10441,
-      "field": "親近武將_2",
-      "raw": "關羽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10441,
-      "field": "親近武將_3",
-      "raw": "關平",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10442,
       "field": "父親",
       "raw": "20 46",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10442,
-      "field": "厭惡武將",
-      "raw": "劉璋",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10444,
-      "field": "親近武將",
-      "raw": "鮑隆",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10446,
-      "field": "親近武將",
-      "raw": "呂布",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10446,
-      "field": "親近武將_2",
-      "raw": "張邈",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10446,
-      "field": "厭惡武將",
-      "raw": "高順",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10447,
-      "field": "親近武將",
-      "raw": "陳登",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10447,
-      "field": "厭惡武將",
-      "raw": "袁術",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10447,
-      "field": "厭惡武將_2",
-      "raw": "孫策",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10448,
-      "field": "親近武將",
-      "raw": "吳質",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10448,
-      "field": "親近武將_2",
-      "raw": "司馬懿",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10448,
-      "field": "親近武將_3",
-      "raw": "曹丕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10449,
-      "field": "親近武將",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10449,
-      "field": "厭惡武將",
-      "raw": "呂布",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10450,
-      "field": "父親",
-      "raw": "陳矯",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10451,
-      "field": "親近武將",
-      "raw": "張華",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10452,
-      "field": "親近武將",
-      "raw": "魏延",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10452,
-      "field": "厭惡武將",
-      "raw": "諸葛亮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10454,
-      "field": "父親",
-      "raw": "陳群",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10454,
-      "field": "親近武將",
-      "raw": "司馬師",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10454,
-      "field": "親近武將_2",
-      "raw": "司馬昭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10454,
-      "field": "親近武將_3",
-      "raw": "鄧艾",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10454,
-      "field": "親近武將_4",
-      "raw": "鍾毓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10454,
-      "field": "親近武將_5",
-      "raw": "傅嘏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10455,
-      "field": "父親",
-      "raw": "陳珪",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10455,
-      "field": "親近武將",
-      "raw": "陳矯",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10455,
-      "field": "親近武將_2",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10455,
-      "field": "厭惡武將",
-      "raw": "呂布",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10456,
-      "field": "親近武將",
-      "raw": "趙雲",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10457,
-      "field": "父親",
-      "raw": "陳武",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10457,
-      "field": "親近武將",
-      "raw": "顧譚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10457,
-      "field": "親近武將_2",
-      "raw": "諸葛恪",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10457,
-      "field": "親近武將_3",
-      "raw": "孫登",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10457,
-      "field": "親近武將_4",
-      "raw": "張休",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10459,
-      "field": "親近武將",
-      "raw": "雷薄",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10460,
-      "field": "親近武將",
-      "raw": "王粲",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10460,
-      "field": "親近武將_2",
-      "raw": "曹植",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10461,
-      "field": "親近武將",
-      "raw": "郭嘉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10461,
-      "field": "親近武將_2",
-      "raw": "荀彧",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10463,
-      "field": "親近武將",
-      "raw": "曹植",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10465,
-      "field": "厭惡武將",
-      "raw": "董卓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10466,
-      "field": "親近武將",
-      "raw": "韓當",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10466,
-      "field": "親近武將_2",
-      "raw": "黃蓋",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10466,
-      "field": "親近武將_3",
-      "raw": "周瑜",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10466,
-      "field": "親近武將_4",
-      "raw": "孫堅",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10467,
-      "field": "父親",
-      "raw": "程昱",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10469,
       "field": "父親",
       "raw": "20 47",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10469,
-      "field": "親近武將",
-      "raw": "徐盛",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10470,
       "field": "父親",
       "raw": "20 47",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10471,
-      "field": "親近武將",
-      "raw": "夏侯惇",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10471,
-      "field": "親近武將_2",
-      "raw": "許褚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10471,
-      "field": "親近武將_3",
-      "raw": "曹昂",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10471,
-      "field": "親近武將_4",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10473,
-      "field": "厭惡武將",
-      "raw": "鄧艾",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10474,
-      "field": "厭惡武將",
-      "raw": "袁紹",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10474,
-      "field": "厭惡武將_2",
-      "raw": "公孫瓚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10475,
-      "field": "厭惡武將",
-      "raw": "審配",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10475,
-      "field": "厭惡武將_2",
-      "raw": "逢紀",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10476,
-      "field": "父親",
-      "raw": "典韋",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10477,
-      "field": "親近武將",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10478,
-      "field": "厭惡武將",
-      "raw": "諸葛恪",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10478,
-      "field": "厭惡武將_2",
-      "raw": "孫綝",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10479,
-      "field": "父親",
-      "raw": "董和",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10479,
-      "field": "親近武將",
-      "raw": "費禕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10479,
-      "field": "厭惡武將",
-      "raw": "黃皓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10481,
-      "field": "親近武將",
-      "raw": "州泰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10481,
-      "field": "親近武將_2",
-      "raw": "石苞",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10481,
-      "field": "親近武將_3",
-      "raw": "陳泰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10481,
-      "field": "厭惡武將",
-      "raw": "鍾會",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10486,
-      "field": "親近武將",
-      "raw": "姜維",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10493,
       "field": "父親",
       "raw": "20 48",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10493,
-      "field": "親近武將",
-      "raw": "貂蟬",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10493,
-      "field": "親近武將_2",
-      "raw": "李儒",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10494,
-      "field": "父親",
-      "raw": "鄧艾",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10496,
-      "field": "親近武將",
-      "raw": "阿會喃",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10496,
-      "field": "親近武將_2",
-      "raw": "金環三結",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10498,
       "field": "父親",
       "raw": "20 48",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10501,
-      "field": "親近武將",
-      "raw": "羊祜",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10503,
-      "field": "親近武將",
-      "raw": "周倉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10504,
-      "field": "親近武將",
-      "raw": "賈充",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10504,
-      "field": "親近武將_2",
-      "raw": "司馬炎",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10505,
-      "field": "父親",
-      "raw": "馬騰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10505,
-      "field": "親近武將",
-      "raw": "趙雲",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10505,
-      "field": "親近武將_2",
-      "raw": "馬岱",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10505,
-      "field": "親近武將_3",
-      "raw": "馬超",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10505,
-      "field": "親近武將_4",
-      "raw": "馬騰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10505,
-      "field": "厭惡武將",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10507,
-      "field": "父親",
-      "raw": "馬騰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10507,
-      "field": "親近武將",
-      "raw": "馬雲騄",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10507,
-      "field": "親近武將_2",
-      "raw": "馬騰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10507,
-      "field": "親近武將_3",
-      "raw": "馬超",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10507,
-      "field": "親近武將_4",
-      "raw": "馬鐵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10507,
-      "field": "親近武將_5",
-      "raw": "馬岱",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10507,
-      "field": "厭惡武將",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10511,
       "field": "父親",
       "raw": "20 51",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10511,
-      "field": "親近武將",
-      "raw": "伊籍",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10511,
-      "field": "親近武將_2",
-      "raw": "向朗",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10511,
-      "field": "親近武將_3",
-      "raw": "諸葛亮",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10512,
       "field": "父親",
       "raw": "20 50",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10512,
-      "field": "親近武將",
-      "raw": "馬雲騄",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10512,
-      "field": "親近武將_2",
-      "raw": "馬休",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10512,
-      "field": "親近武將_3",
-      "raw": "馬超",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10512,
-      "field": "親近武將_4",
-      "raw": "馬鐵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10512,
-      "field": "親近武將_5",
-      "raw": "馬騰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10512,
-      "field": "厭惡武將",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10515,
-      "field": "父親",
-      "raw": "馬騰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10515,
-      "field": "親近武將",
-      "raw": "馬雲騄",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10515,
-      "field": "親近武將_2",
-      "raw": "馬休",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10515,
-      "field": "親近武將_3",
-      "raw": "李恢",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10515,
-      "field": "親近武將_4",
-      "raw": "馬鐵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10515,
-      "field": "親近武將_5",
-      "raw": "馬岱",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10515,
-      "field": "厭惡武將",
-      "raw": "楊柏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10515,
-      "field": "厭惡武將_2",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10516,
-      "field": "父親",
-      "raw": "馬騰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10516,
-      "field": "親近武將",
-      "raw": "馬雲騄",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10516,
-      "field": "親近武將_2",
-      "raw": "馬休",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10516,
-      "field": "親近武將_3",
-      "raw": "馬超",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10516,
-      "field": "親近武將_4",
-      "raw": "馬騰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10516,
-      "field": "親近武將_5",
-      "raw": "馬岱",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10516,
-      "field": "厭惡武將",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10517,
-      "field": "親近武將",
-      "raw": "馬雲騄",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10517,
-      "field": "親近武將_2",
-      "raw": "馬休",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10517,
-      "field": "親近武將_3",
-      "raw": "馬超",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10517,
-      "field": "親近武將_4",
-      "raw": "馬鐵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10517,
-      "field": "親近武將_5",
-      "raw": "馬岱",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10517,
-      "field": "厭惡武將",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10519,
       "field": "父親",
       "raw": "20 51",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10519,
-      "field": "親近武將",
-      "raw": "伊籍",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10519,
-      "field": "親近武將_2",
-      "raw": "諸葛亮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10520,
-      "field": "親近武將",
-      "raw": "孫皓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10522,
-      "field": "親近武將",
-      "raw": "趙雲",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10525,
-      "field": "親近武將",
-      "raw": "韓遂",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10528,
-      "field": "親近武將",
-      "raw": "董允",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10531,
       "field": "父親",
       "raw": "20 52",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10532,
       "field": "父親",
       "raw": "20 52",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10532,
-      "field": "親近武將",
-      "raw": "簡雍",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10532,
-      "field": "親近武將_2",
-      "raw": "孫乾",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10533,
       "field": "父親",
       "raw": "20 52",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10533,
-      "field": "親近武將",
-      "raw": "傅士仁",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10533,
-      "field": "厭惡武將",
-      "raw": "關羽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10537,
-      "field": "親近武將",
-      "raw": "荀顗",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10537,
-      "field": "親近武將_2",
-      "raw": "鍾毓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10537,
-      "field": "親近武將_3",
-      "raw": "陳泰",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10538,
-      "field": "親近武將",
-      "raw": "虞翻",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10538,
-      "field": "厭惡武將",
-      "raw": "關羽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10539,
-      "field": "父親",
-      "raw": "傅彤",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10539,
-      "field": "親近武將",
-      "raw": "姜維",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10542,
-      "field": "父親",
-      "raw": "文欽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10542,
-      "field": "親近武將",
-      "raw": "趙雲",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10543,
-      "field": "親近武將",
-      "raw": "尹大目",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10543,
-      "field": "親近武將_2",
-      "raw": "孫峻",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10543,
-      "field": "厭惡武將",
-      "raw": "朱異",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10543,
-      "field": "厭惡武將_2",
-      "raw": "諸葛誕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10544,
-      "field": "父親",
-      "raw": "文欽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10545,
-      "field": "親近武將",
-      "raw": "顏良",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10548,
-      "field": "配偶",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10550,
-      "field": "父親",
-      "raw": "龐德",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10550,
-      "field": "厭惡武將",
-      "raw": "關彝",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10550,
-      "field": "厭惡武將_2",
-      "raw": "關羽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10550,
-      "field": "厭惡武將_3",
-      "raw": "關興",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10550,
-      "field": "厭惡武將_4",
-      "raw": "關統",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10552,
-      "field": "厭惡武將",
-      "raw": "審配",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10552,
-      "field": "厭惡武將_2",
-      "raw": "田豐",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10554,
-      "field": "親近武將",
-      "raw": "花鬘",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10554,
-      "field": "親近武將_2",
-      "raw": "關索",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10555,
-      "field": "親近武將",
-      "raw": "曹操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10556,
-      "field": "親近武將",
-      "raw": "黃忠",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10556,
-      "field": "親近武將_2",
-      "raw": "張松",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10556,
-      "field": "親近武將_3",
-      "raw": "孟達",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10556,
-      "field": "親近武將_4",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10557,
-      "field": "親近武將",
-      "raw": "虞翻",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10557,
-      "field": "親近武將_2",
-      "raw": "張飛",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10557,
-      "field": "親近武將_3",
-      "raw": "陸績",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10559,
-      "field": "親近武將",
-      "raw": "陳應",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10560,
-      "field": "父親",
-      "raw": "步騭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10562,
-      "field": "親近武將",
-      "raw": "孫休",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10562,
-      "field": "親近武將_2",
-      "raw": "張布",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10564,
-      "field": "親近武將",
-      "raw": "嚴畯",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10564,
-      "field": "親近武將_2",
-      "raw": "諸葛瑾",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10564,
-      "field": "親近武將_3",
-      "raw": "張承",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10564,
-      "field": "厭惡武將",
-      "raw": "張昭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10565,
-      "field": "父親",
-      "raw": "步騭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10566,
-      "field": "親近武將",
-      "raw": "毛玠",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10566,
-      "field": "親近武將_2",
-      "raw": "劉曄",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10566,
-      "field": "親近武將_3",
-      "raw": "呂虔",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10567,
-      "field": "親近武將",
-      "raw": "滿寵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10567,
-      "field": "親近武將_2",
-      "raw": "呂虔",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10568,
       "field": "父親",
       "raw": "20 53",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10568,
-      "field": "親近武將",
-      "raw": "祝融",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10570,
-      "field": "親近武將",
-      "raw": "夏侯尚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10570,
-      "field": "親近武將_2",
-      "raw": "桓階",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10570,
-      "field": "親近武將_3",
-      "raw": "張松",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10570,
-      "field": "親近武將_4",
-      "raw": "法正",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10570,
-      "field": "親近武將_5",
-      "raw": "李嚴",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10570,
-      "field": "厭惡武將",
-      "raw": "申儀",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10570,
-      "field": "厭惡武將_2",
-      "raw": "申耽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10570,
-      "field": "厭惡武將_3",
-      "raw": "劉封",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10571,
       "field": "父親",
       "raw": "20 53",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10573,
-      "field": "親近武將",
-      "raw": "高沛",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10575,
-      "field": "親近武將",
-      "raw": "諸葛亮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10575,
-      "field": "厭惡武將",
-      "raw": "魏延",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10575,
-      "field": "厭惡武將_2",
-      "raw": "劉巴",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10577,
-      "field": "親近武將",
-      "raw": "杜預",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10577,
-      "field": "親近武將_2",
-      "raw": "陸抗",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10582,
-      "field": "親近武將",
-      "raw": "孔融",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10582,
-      "field": "親近武將_2",
-      "raw": "曹植",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10582,
-      "field": "親近武將_3",
-      "raw": "張松",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10584,
       "field": "父親",
       "raw": "20 54",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10588,
       "field": "父親",
       "raw": "20 54",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10588,
-      "field": "厭惡武將",
-      "raw": "馬超",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10589,
-      "field": "厭惡武將",
-      "raw": "馬超",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10592,
-      "field": "親近武將",
-      "raw": "吳蘭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10592,
-      "field": "親近武將_2",
-      "raw": "張飛",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10593,
-      "field": "親近武將",
-      "raw": "陳蘭",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10597,
-      "field": "親近武將",
-      "raw": "馬超",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10599,
       "field": "父親",
       "raw": "20 56",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10600,
-      "field": "父親",
-      "raw": "陸遜",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10600,
-      "field": "親近武將",
-      "raw": "羊祜",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10601,
-      "field": "親近武將",
-      "raw": "虞翻",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10601,
-      "field": "親近武將_2",
-      "raw": "龐統",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10602,
       "field": "父親",
       "raw": "20 55",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10602,
-      "field": "親近武將",
-      "raw": "闞澤",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10602,
-      "field": "親近武將_2",
-      "raw": "孫氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10602,
-      "field": "親近武將_3",
-      "raw": "呂蒙",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10603,
-      "field": "親近武將",
-      "raw": "諸葛亮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10603,
-      "field": "親近武將_2",
-      "raw": "孟達",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10604,
-      "field": "親近武將",
-      "raw": "董卓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10605,
-      "field": "親近武將",
-      "raw": "呂布",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10606,
-      "field": "親近武將",
-      "raw": "曹爽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10609,
-      "field": "親近武將",
-      "raw": "樂進",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10609,
-      "field": "親近武將_2",
-      "raw": "張遼",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10611,
-      "field": "父親",
-      "raw": "李嚴",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10612,
-      "field": "親近武將",
-      "raw": "夏侯玄",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10612,
-      "field": "親近武將_2",
-      "raw": "毌丘儉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10612,
-      "field": "親近武將_3",
-      "raw": "諸葛誕",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10612,
-      "field": "親近武將_4",
-      "raw": "曹爽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10612,
-      "field": "親近武將_5",
-      "raw": "張緝",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10615,
-      "field": "父親",
-      "raw": "劉虞",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10617,
-      "field": "父親",
-      "raw": "劉表",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10618,
-      "field": "厭惡武將",
-      "raw": "公孫瓚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10620,
-      "field": "父親",
-      "raw": "劉度",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10621,
-      "field": "親近武將",
-      "raw": "凌統",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10622,
-      "field": "配偶",
-      "raw": "袁紹",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10622,
-      "field": "親近武將",
-      "raw": "袁尚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10623,
-      "field": "父親",
-      "raw": "劉璋",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10624,
-      "field": "父親",
-      "raw": "劉焉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10624,
-      "field": "厭惡武將",
-      "raw": "張魯",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10627,
-      "field": "父親",
-      "raw": "劉禪",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10627,
-      "field": "親近武將",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10628,
-      "field": "父親",
-      "raw": "劉禪",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10629,
-      "field": "父親",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10629,
-      "field": "親近武將",
-      "raw": "黃皓",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10630,
-      "field": "父親",
-      "raw": "劉表",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10630,
-      "field": "親近武將",
-      "raw": "蔡氏",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10630,
-      "field": "親近武將_2",
-      "raw": "蔡瑁",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10631,
       "field": "父親",
       "raw": "20 57",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10633,
-      "field": "厭惡武將",
-      "raw": "張飛",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10633,
-      "field": "厭惡武將_2",
-      "raw": "楊儀",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10634,
-      "field": "親近武將",
-      "raw": "黃忠",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10636,
-      "field": "親近武將",
-      "raw": "黃祖",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10638,
-      "field": "父親",
-      "raw": "留贊",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10639,
-      "field": "親近武將",
-      "raw": "龔都",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10640,
-      "field": "父親",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10640,
-      "field": "親近武將",
-      "raw": "關平",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10640,
-      "field": "厭惡武將",
-      "raw": "孟達",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10641,
-      "field": "親近武將",
-      "raw": "郭嘉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10641,
-      "field": "親近武將_2",
-      "raw": "滿寵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10641,
-      "field": "親近武將_3",
-      "raw": "呂虔",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10642,
       "field": "父親",
       "raw": "20 57",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10643,
-      "field": "父親",
-      "raw": "留贊",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10645,
-      "field": "親近武將",
-      "raw": "關羽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10645,
-      "field": "親近武將_2",
-      "raw": "關平",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10649,
-      "field": "親近武將",
-      "raw": "尹賞",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10649,
-      "field": "親近武將_2",
-      "raw": "姜維",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10651,
-      "field": "父親",
-      "raw": "凌操",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10651,
-      "field": "親近武將",
-      "raw": "甘寧",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10651,
-      "field": "親近武將_2",
-      "raw": "留贊",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10652,
-      "field": "厭惡武將",
-      "raw": "諸葛亮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10653,
-      "field": "親近武將",
-      "raw": "王伉",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10654,
-      "field": "父親",
-      "raw": "呂範",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10654,
-      "field": "厭惡武將",
-      "raw": "孫綝",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10655,
-      "field": "親近武將",
-      "raw": "王祥",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10655,
-      "field": "親近武將_2",
-      "raw": "滿寵",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10655,
-      "field": "親近武將_3",
-      "raw": "毛玠",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10655,
-      "field": "親近武將_4",
-      "raw": "劉曄",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10656,
       "field": "父親",
       "raw": "20 58",
       "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     },
     {
       "officerId": 10657,
       "field": "父親",
       "raw": "20 58",
       "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10660,
-      "field": "親近武將",
-      "raw": "高順",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10660,
-      "field": "親近武將_2",
-      "raw": "貂蟬",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10660,
-      "field": "親近武將_3",
-      "raw": "張遼",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10660,
-      "field": "親近武將_4",
-      "raw": "陳宮",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10660,
-      "field": "厭惡武將",
-      "raw": "關羽",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10660,
-      "field": "厭惡武將_2",
-      "raw": "張飛",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10662,
-      "field": "父親",
-      "raw": "呂布",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10662,
-      "field": "親近武將",
-      "raw": "呂布",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10668,
-      "field": "父親",
-      "raw": "魯肅",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10668,
-      "field": "親近武將",
-      "raw": "張承",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10669,
-      "field": "親近武將",
-      "raw": "公孫瓚",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10669,
-      "field": "親近武將_2",
-      "raw": "劉備",
-      "targetId": null,
-      "status": "unresolved-source-name"
-    },
-    {
-      "officerId": 10669,
-      "field": "厭惡武將",
-      "raw": "董卓",
-      "targetId": null,
-      "status": "unresolved-source-name"
+      "status": "external-source-person",
+      "candidates": []
     }
   ],
   "duplicateItemNames": {
@@ -6840,12 +863,21 @@
     "全国逐格地形、道路、水系、岸线、开发地及连接关系未取得",
     "关港原始坐标疑似错配，禁止投影进游戏；42城坐标仍待原版核验",
     "全部历史/假想开局缺少完整状态；均不可选为官方剧本",
-    "来源表的完整生卒/关系/事件数据尚未接入；运行时特技、宝物、关系及天下系统的实际覆盖另见 docs/FEATURES.md"
+    "来源关系按唯一姓名离线解析，歧义/外部人物隔离；资料人物导入支持生卒/性格/已解析关系，官方各剧本开局和事件仍未取得"
   ],
   "sameNameOfficers": [
     "張南",
     "馬忠",
     "李豐"
+  ],
+  "swornGroupAnchors": [
+    {
+      "officerId": 1000,
+      "field": "義兄",
+      "raw": "劉備",
+      "targetId": 1000,
+      "status": "sworn-group-anchor"
+    }
   ],
   "runtimeOfficerDiff": [
     {
@@ -7213,7 +1245,7 @@
     "cross-checks.json": "846f5ca0d0c10597dc0c2f3a9ebc2f43ab5b919ebd0243297c9a5b739ce119a3",
     "items-source.json": "3b2ffdf73a5bae8303f8b7fb64fe1521f125c55c21a4f573a823a29fca660a17",
     "legacy-bridge.json": "b882a37dc620ccde2e1627bc5522d738c44cb63ee7bd5cf9aba9976da4c96cf9",
-    "manifest.json": "6775201b9eaf4f275069af2ec672e2af7639c9480115b826f86eefa2813e95c2",
+    "manifest.json": "8254efbc7682e97d5b4b456e46cc714cb6bfd0504609c2fcf4529ade752ddf44",
     "officers-source.json": "304fbb01c20d56a107c930c1146ffa27f57fa665ee98953f0af00b1a0b2f9b15",
     "scenarios-source.json": "009003d57ee8b195afce912b8a0e245bb6ce9dea6569dffba89b6c4132ae31df",
     "sites-source.json": "a5438126a9dadb532ef1f6b2c0b115f97a210c2309cb82b75dd77dfa0afcc56b",

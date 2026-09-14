@@ -7,6 +7,24 @@ import java.util.*;
 
 /** Immutable, source-pinned definitions. Never read by SaveCodec and never a second game state. */
 public final class ContentCatalog {
+    public static final class Profile {
+        public final int officer,bloodline,affinity;
+        public final boolean naturalDeath;
+        Profile(String[] c)throws IOException {
+            officer=integer(c[0],0,1000000);bloodline=integer(c[1],0,1000000);affinity=integer(c[2],0,149);
+            require(c[3].equals("O")||c[3].equals("X"),"自然死标记错误");naturalDeath=c[3].equals("O");
+        }
+    }
+    public static final class Relation {
+        public final int officer,target;
+        public final Relations.Kind kind;
+        public final String field,raw;
+        Relation(String[] c)throws IOException {
+            officer=integer(c[0],0,1000000);target=integer(c[1],0,1000000);
+            try{kind=Relations.Kind.valueOf(c[2]);}catch(IllegalArgumentException e){throw new IOException("未知资料关系",e);}
+            field=c[3];raw=c[4];require(officer!=target,"资料关系不能自指");
+        }
+    }
     public static final class Entry {
         public final String id,name;
         public final List<String> fields;
@@ -35,6 +53,8 @@ public final class ContentCatalog {
     private final Map<Integer,Officer> officerById;
     private final Map<String,List<Entry>> tables;
     private final Map<Integer,String> aliases;
+    private final Map<Integer,Profile> profiles;
+    private final List<Relation> relations;
     public final String target;
     public final int revision;
     private ContentCatalog()throws IOException {
@@ -43,7 +63,7 @@ public final class ContentCatalog {
             if(l.isEmpty()||l.startsWith("#"))continue;
             String[] p=l.split(" ",-1);require(p.length==2&&p[0].matches("[a-z]+\\.tsv")&&p[1].matches("[0-9a-f]{64}")&&index.put(p[0],p[1])==null,"内容索引无效");
         }
-        require(index.keySet().equals(new HashSet<>(Arrays.asList("officers.tsv","sites.tsv","skills.tsv","items.tsv","scenarios.tsv","sources.tsv","manifest.tsv","aliases.tsv"))),"未知/缺失内容资源");
+        require(index.keySet().equals(new HashSet<>(Arrays.asList("officers.tsv","sites.tsv","skills.tsv","items.tsv","scenarios.tsv","sources.tsv","manifest.tsv","aliases.tsv","profiles.tsv","relations.tsv"))),"未知/缺失内容资源");
         List<String[]> manifest=read(index,"manifest.tsv","format\trevision\ttarget\toriginalInstallationVerified");
         require(manifest.size()==1&&manifest.get(0)[0].equals("1")&&manifest.get(0)[3].equals("false"),"未知内容版本/核验声明");
         revision=integer(manifest.get(0)[1],1,1000000);target=manifest.get(0)[2];
@@ -74,10 +94,23 @@ public final class ContentCatalog {
         }
         require(list.size()==670,"武将数量差异");officers=Collections.unmodifiableList(list);officerById=Collections.unmodifiableMap(byId);
         Map<Integer,String> names=new HashMap<>();for(String[] c:read(index,"aliases.tsv","id\talias")){int id=integer(c[0],0,1000000);require(byId.containsKey(id)&&names.put(id,c[1])==null,"别名ID错误");}aliases=Collections.unmodifiableMap(names);
+        Map<Integer,Profile> details=new LinkedHashMap<>();
+        for(String[] c:read(index,"profiles.tsv","officerId\tbloodline\taffinity\tnaturalDeath\tsource")){
+            Profile p=new Profile(c);require(byId.containsKey(p.officer)&&details.put(p.officer,p)==null&&sources.contains(c[4]),"人物资料外键/重复错误");
+        }
+        require(details.size()==officers.size(),"人物资料不完整");profiles=Collections.unmodifiableMap(details);
+        List<Relation> links=new ArrayList<>();Set<String> linkIds=new HashSet<>();
+        for(String[] c:read(index,"relations.tsv","officerId\ttargetId\tkind\tfield\traw\tsource")){
+            Relation r=new Relation(c);require(byId.containsKey(r.officer)&&byId.containsKey(r.target)&&sources.contains(c[5]),"关系外键缺失");
+            require(byId.get(r.target).name.equals(r.raw)&&linkIds.add(r.officer+":"+r.target+":"+r.kind),"关系映射或重复错误");links.add(r);
+        }
+        relations=Collections.unmodifiableList(links);
     }
     public static synchronized ContentCatalog get()throws IOException {if(cached==null)cached=new ContentCatalog();return cached;}
     public List<Officer> officers(){return officers;}
     public Officer officer(int id){return officerById.get(id);}
+    public Profile profile(int id){return profiles.get(id);}
+    public List<Relation> relations(){return relations;}
     public List<Entry> rows(String table){List<Entry> r=tables.get(table);return r==null?Collections.emptyList():r;}
     public String alias(int id){return aliases.getOrDefault(id,"");}
     public String skillName(String id){if(id.equals("none"))return "原表无特技";for(Entry e:rows("skills"))if(e.id.equals(id))return e.name;return "未知";}

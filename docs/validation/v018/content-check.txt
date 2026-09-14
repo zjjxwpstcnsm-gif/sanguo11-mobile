@@ -1,0 +1,1 @@
+{"mode": "check", "files": 15, "counts": {"officersCollected": 670, "officersExcluded": 180, "sites": 87, "skills": 100, "items": 43, "scenarioMetadata": 14, "officialPlayableScenarios": 0, "originalTerrainCells": 0, "resolvedRelationRows": 869, "unresolvedRelationRows": 99}, "unresolvedRelations": 99}

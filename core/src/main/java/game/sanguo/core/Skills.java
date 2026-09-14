@@ -84,8 +84,13 @@ public final class Skills {
         return has(source,JICHI)&&w.army.attackPower(source)>w.army.attackPower(target);
     }
     public int produceAmount(int city,int officer,World.Weapon weapon){
-        int amount=w.domestic.produceAmount(city,weapon);World.Officer o=w.officer(officer);
-        return amount*(weapon==World.Weapon.CAVALRY?has(o,FANZHI)?2:1:weapon.ordinal()<3&&has(o,NENGLI)?2:1);
+        return w.domestic.produceAmount(city,weapon);
+    }
+    public int productionGold(int officer,World.Weapon weapon){
+        World.Officer o=w.officer(officer);int base=Army.productionGold(weapon);
+        boolean discount=weapon==World.Weapon.CAVALRY&&has(o,FANZHI)||weapon!=null&&weapon.ordinal()<3&&has(o,NENGLI);
+        // Cost reduction is documented; 50% remains an explicitly provisional coefficient.
+        return discount?base/2:base;
     }
     public int productionTurns(int officer,World.Weapon weapon){return has(w.officer(officer),weapon==null?ZAOCHUAN:FAMING)?2:3;}
     public int researchGold(int officer,Campaign.Tech tech){return has(w.officer(officer),ZHIDAO)?tech.gold/2:tech.gold;}

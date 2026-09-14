@@ -134,3 +134,11 @@ tasks.register('verifyLifecycle', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyLifecycle' }
 tasks.named('test') { dependsOn 'verifyLifecycle' }
+
+tasks.register('verifyContentProfiles', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.ContentProfilesTest'
+}
+tasks.named('check') { dependsOn 'verifyContentProfiles' }
+tasks.named('test') { dependsOn 'verifyContentProfiles' }

@@ -60,10 +60,11 @@ public final class GameSmokeRunner extends Instrumentation {
             armyFlow();
             rulesFlow();
             contentFlow();
+            sourceProfileFlow();
             governmentFlow();
             documentTransferFlow();
             contestFlow();
-            result.putString("stream","SMOKE PASS: v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            result.putString("stream","SMOKE PASS: v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -512,6 +513,18 @@ public final class GameSmokeRunner extends Instrumentation {
         screenshot("30-move-then-skills");
     }
     private String contentAnchor()throws Exception {java.lang.reflect.Field f=MainActivity.class.getDeclaredField("ui");f.setAccessible(true);return ((ClientState)f.get(current)).contentFirstId;}
+    private void sourceProfileFlow()throws Exception {
+        World w=ScenarioCatalog.load("regional-sandbox",0);installFixture(w,w.city(100).hex);
+        int id=ContentCatalog.get().officers().stream().filter(o->o.name.equals("曹丕")).findFirst().get().id;
+        click("菜单",true);click("全国资料 / 核验目录",true);setInput("搜索资料","曹丕");click("曹丕 · ID",false);
+        waitText("已解析关系",false);click("加入局面",true);click("预览",true);waitText("确认加入资料武将",true);
+        byte[] before=SaveCodec.encode(saved());screenshot("v018-source-preview");click("返回",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"cancel sourced import leaves save unchanged");
+        click("曹丕 · ID",false);click("加入局面",true);click("预览",true);click("确认加入",true);waitForIdleSync();
+        w=saved();require(w.officer(id)!=null&&w.life.life(id)!=null&&w.editor.edited(),"native import creates playable source officer and biography");
+        require(w.relations.parent(id,false)==2000,"native imported child links to existing source father");
+        before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(before,SaveCodec.encode(saved())),"source import survives Activity recreation");
+        screenshot("v018-source-imported");
+    }
     private void contentFlow()throws Exception {
         click("菜单",true);click("新游戏 / 选择势力",true);click("武将资料演练 ·",false);click("孙权军",true);waitText("能力/适性来自公开资料",false);screenshot("28-sourced-opening");click("执行",true);waitForIdleSync();
         assertWorld(2,0,"officer-reference-drill");ContentCatalog.get().validateOpening(saved());

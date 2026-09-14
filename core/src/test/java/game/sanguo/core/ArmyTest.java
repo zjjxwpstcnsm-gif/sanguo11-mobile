@@ -98,7 +98,7 @@ public final class ArmyTest {
         World w=fixture();final World initial=w;reject(w,()->initial.army.produce(10,1,World.Weapon.RAM,null));factory(w,Domestic.Kind.WORKSHOP);
         reject(w,()->initial.army.produce(10,1,World.Weapon.CATAPULT,null));
         int before=w.city(10).equipment[5],gold=w.city(10).gold;ok(w.army.produce(10,1,World.Weapon.RAM,null));
-        check(w.city(10).gold==gold-800&&w.officer(1).otherTaskTurns==3,"production charges and locks once");reject(w,()->initial.train(10,1));
+        check(w.city(10).gold==gold-1500&&w.officer(1).otherTaskTurns==3,"manual-listed RAM production cost charged once");reject(w,()->initial.train(10,1));
         for(int turn=0;turn<3;turn++){w=SaveCodec.decode(bytes(w));ok(w.nextTurn());check(w.city(10).equipment[5]==before+(turn==2?1:0),"production completes on third turn only");}
         check(w.army.productions().isEmpty()&&w.officer(1).otherTaskTurns==0,"production and task clocks agree");ok(w.nextTurn());check(w.city(10).equipment[5]==before+1,"no repeated completion");cases++;
         World canceled=fixture();Domestic.Facility factory=factory(canceled,Domestic.Kind.WORKSHOP);ok(canceled.army.produce(10,1,World.Weapon.RAM,null));ok(canceled.domestic.demolish(factory.id,2));

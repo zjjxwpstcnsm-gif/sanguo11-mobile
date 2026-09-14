@@ -22,7 +22,7 @@ public final class CampaignAiTest {
     private static byte[] bytes(World w)throws Exception{return SaveCodec.encode(w);}
     private static void run(World w,World.Unit u){new CampaignAi(w).runUnit(u,true,c->true,c->c.owner==u.owner);}
     public static void main(String[] args)throws Exception{
-        planning();friendlyFire();control();siege();retreat();deployment();supply();permissions();routing();replay();
+        planning();friendlyFire();control();siege();retreat();deployment();formations();supply();permissions();routing();nationalObjectives();replay();
         System.out.println("PASS: "+checks+" campaign AI assertions: pure/stable target selection, area friendly fire, rescue/immunity, siege, retreat/supply, reserves/formations, district permissions, hazards/detours and saved replay.");
     }
     private static void planning()throws Exception{
@@ -111,5 +111,34 @@ public final class CampaignAiTest {
                 b=SaveCodec.decode(bytes(b));
             }
         }
+    }
+    private static void formations()throws Exception{
+        World w=fixture();
+        for(World.Officer o:w.officers)if(o.owner==0){o.leadership=40;o.war=40;o.intelligence=40;o.politics=40;Arrays.fill(o.aptitude,0);}
+        w.officer(0).politics=100;w.officer(1).leadership=100;w.officer(1).war=100;w.officer(1).intelligence=100;w.officer(1).aptitude[0]=3;w.officer(1).skillId=Skill.SHENSUAN.id;
+        w.officer(2).skillId=Skill.FUHAO.id;w.officer(3).skillId=Skill.BAICHU.id;w.officer(4).skillId=Skill.LIANHUAN.id;
+        CampaignAi ai=new CampaignAi(w);byte[] before=bytes(w);CampaignAi.Deployment plan=ai.deployment(10,6000);
+        check(plan!=null&&plan.leader==1&&Arrays.equals(plan.deputies(),new int[]{3,4}),"choose 神百连 synergy instead of the first distinct city-income skill");
+        check(Arrays.equals(before,bytes(w)),"formation evaluation does not temporarily modify real officers or RNG");
+        w.relations.link(1,3,Relations.Kind.DISLIKE);plan=new CampaignAi(w).deployment(10,6000);
+        check(plan!=null&&Arrays.stream(plan.deputies()).noneMatch(x->x==3),"do not assign a hated deputy for a skill bonus");
+        Collections.reverse(w.officers);CampaignAi.Deployment reversed=new CampaignAi(w).deployment(10,6000);
+        check(reversed.leader==plan.leader&&Arrays.equals(reversed.deputies(),plan.deputies()),"formation selection stable after officer-list reorder");
+    }
+    private static void nationalObjectives()throws Exception{
+        World w=new World(299,200,"甲军","乙军");w.sourceMapWidth=200;
+        for(int q=0;q<w.width;q++)Arrays.fill(w.terrain[q],World.Terrain.MOUNTAIN);
+        for(int x=0;x<200;x++)for(int y=0;y<200;y++){Hex h=MapCoordinates.axial(x,y,200);w.terrain[h.q][h.r]=World.Terrain.PLAIN;}
+        w.cities.add(new World.City(10,"后方",MapCoordinates.axial(3,3,200),0));
+        for(int i=0;i<86;i++)w.cities.add(new World.City(20+i,"目标"+i,MapCoordinates.axial(15+i%9*20,15+i/9*18,200),1));
+        for(int i=0;i<670;i++)w.officers.add(new World.Officer(i,"将"+i,i==669?1:0,i==669?20:10,70,70,70,70,70));
+        w.strategy.initializeOffices();Hex start=MapCoordinates.axial(5,5,200);World.Unit u=unit(w,1,World.Weapon.SPEAR,start.q,start.r);
+        World copy=SaveCodec.decode(bytes(w));CampaignAi ai=new CampaignAi(w);long begin=System.nanoTime();ai.runUnit(u,true,c->true,c->c.owner==0);long elapsed=System.nanoTime()-begin;
+        check(!u.hex.equals(start),"national-size AI actually advances toward a target");
+        check(ai.routeSearches==1&&ai.routeExpanded<=40000,"86 city candidates share one search and at most one expansion per source cell");
+        Collections.reverse(copy.cities);new CampaignAi(copy).runUnit(copy.unit(u.id),true,c->true,c->c.owner==0);
+        check(copy.unit(u.id).hex.equals(u.hex),"multi-objective tie-breaking does not depend on city list order");
+        check(Arrays.equals(bytes(w),bytes(SaveCodec.decode(bytes(w)))),"large-map AI result remains a valid save");
+        System.out.printf(Locale.ROOT,"National AI (synthetic 200x200, 87 cities, 670 officers): %d search, %d expanded cells, %.1f ms%n",ai.routeSearches,ai.routeExpanded,elapsed/1e6);
     }
 }

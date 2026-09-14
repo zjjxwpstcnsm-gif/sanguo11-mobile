@@ -6,6 +6,32 @@ DATA = ROOT / 'data/content'
 OUT = ROOT / 'core/src/main/resources/content'
 STAT = ['統率','武勇','智謀','政治','魅力']
 APT = ['槍兵適性','戟兵適性','弩兵適性','騎兵適性','兵器適性','水軍適性']
+RELATIONS = {'父親':'FATHER', '母親':'MOTHER', '配偶':'SPOUSE', '義兄':'SWORN'}
+
+def resolve_relations(officers, headers):
+    """Resolve exact unique source names once, offline. Never guess duplicate/external identities."""
+    names=collections.defaultdict(list)
+    for o in officers:names[o['name']].append(o['projectId'])
+    fields=list(RELATIONS)+[k for k in headers if k.startswith(('親近武將','厭惡武將'))]
+    resolved=[];unknown=[];anchors=[];seen=set()
+    for o in sorted(officers,key=lambda o:o['projectId']):
+        for field in fields:
+            raw=o['values'][field]
+            if not raw:continue
+            kind=RELATIONS.get(field,'LIKE' if field.startswith('親近武將') else 'DISLIKE')
+            targets=names.get(raw,[])
+            entry={'officerId':o['projectId'],'field':field,'raw':raw,'targetId':None}
+            if len(targets)!=1:
+                entry['status']='ambiguous-source-name' if targets else 'external-source-person'
+                entry['candidates']=sorted(targets);unknown.append(entry);continue
+            target=targets[0]
+            if target==o['projectId'] and kind=='SWORN':
+                entry.update(targetId=target,status='sworn-group-anchor');anchors.append(entry);continue
+            require(target!=o['projectId'],'self relation: '+o['name']+' '+field)
+            key=(o['projectId'],target,kind)
+            require(key not in seen,'duplicate relation: '+str(key));seen.add(key)
+            resolved.append([*key,field,raw,'rlu-officers'])
+    return sorted(resolved),unknown,anchors
 
 def unique(pairs):
     result = {}
@@ -59,10 +85,13 @@ def build():
     require(set(checks)<=set(byid),'cross-check FK')
     for b in bridge:
         r=byid[b['projectId']];require(r['sourceId']==b['sourceId'] and r['name']==b['expectedName'],'stable ID bridge changed')
-    report={'target':m['target'],'revision':m['revision'],'originalInstallationVerified':False,'counts':{'officersCollected':len(officers),'officersExcluded':len(raw['rows'])-len(officers),'sites':len(sites),'skills':len(skills),'items':len(items),'scenarioMetadata':len(scenarios),'officialPlayableScenarios':0,'originalTerrainCells':0},'crossCheckedOfficerIds':sorted(checks),'uncertainRelations':[],'duplicateItemNames':{},'errors':[], 'gaps':['目标 1.1 原版安装数据哈希未知','全国逐格地形、道路、水系、岸线、开发地及连接关系未取得','关港原始坐标疑似错配，禁止投影进游戏；42城坐标仍待原版核验','全部历史/假想开局缺少完整状态；均不可选为官方剧本','来源表的完整生卒/关系/事件数据尚未接入；运行时特技、宝物、关系及天下系统的实际覆盖另见 docs/FEATURES.md']}
+    report={'target':m['target'],'revision':m['revision'],'originalInstallationVerified':False,'counts':{'officersCollected':len(officers),'officersExcluded':len(raw['rows'])-len(officers),'sites':len(sites),'skills':len(skills),'items':len(items),'scenarioMetadata':len(scenarios),'officialPlayableScenarios':0,'originalTerrainCells':0},'crossCheckedOfficerIds':sorted(checks),'uncertainRelations':[],'duplicateItemNames':{},'errors':[], 'gaps':['目标 1.1 原版安装数据哈希未知','全国逐格地形、道路、水系、岸线、开发地及连接关系未取得','关港原始坐标疑似错配，禁止投影进游戏；42城坐标仍待原版核验','全部历史/假想开局缺少完整状态；均不可选为官方剧本','来源关系按唯一姓名离线解析，歧义/外部人物隔离；资料人物导入支持生卒/性格/已解析关系，官方各剧本开局和事件仍未取得']}
     namecounts=collections.Counter(o['name'] for o in officers)
     report['sameNameOfficers']=[n for n,c in namecounts.items() if c>1]
-    orows=[]
+    relation_rows,report['uncertainRelations'],report['swornGroupAnchors']=resolve_relations(officers,raw['headers'])
+    report['counts']['resolvedRelationRows']=len(relation_rows)
+    report['counts']['unresolvedRelationRows']=len(report['uncertainRelations'])
+    orows=[];profiles=[]
     for o in sorted(officers,key=lambda o:o['projectId']):
         v=o['values'];require(set(v)==set(raw['headers']),'unknown/missing raw officer field')
         stats=[number(v[k],0,100) for k in STAT]
@@ -74,7 +103,10 @@ def build():
         relation=[]
         for k in ['父親','母親','配偶','義兄']+[k for k in raw['headers'] if k.startswith('親近武將') or k.startswith('厭惡武將')]:
             if v[k]:
-                relation.append(k+'='+v[k]);report['uncertainRelations'].append({'officerId':o['projectId'],'field':k,'raw':v[k],'targetId':None,'status':'unresolved-source-name'})
+                relation.append(k+'='+v[k])
+        require(v['自然死'] in ['O','X'],'unknown natural-death flag')
+        require(v['性格'] in ['小心','冷靜','剛膽','豬突'],'unknown personality')
+        profiles.append([o['projectId'],number(v['血緣'],0,1000000),number(v['相性'],0,149),v['自然死'],raw['source']])
         state='collected'
         if o['projectId'] in checks:
             check=checks[o['projectId']];require(stats==check['stats'] and apt==check['aptitudes'],'cross-source difference: '+o['name']);state='cross-checked'
@@ -89,6 +121,8 @@ def build():
         number(s['year'],1,9999);number(s['month'],1,12);require(s['kind'] in ['historical','fictional'],'unknown scenario kind')
     generated={}
     generated[OUT/'officers.tsv']=table(['id','sourceId','name','stats','aptitudes','birth','death','appearance','skillId','status','source','relationsRaw','personality','gender'],orows)
+    generated[OUT/'relations.tsv']=table(['officerId','targetId','kind','field','raw','source'],relation_rows)
+    generated[OUT/'profiles.tsv']=table(['officerId','bloodline','affinity','naturalDeath','source'],profiles)
     generated[OUT/'sites.tsv']=table(['id','name','kind','rawX','rawY','durability','coordinateStatus','source'],[[s[k] for k in ['id','name','kind','rawX','rawY','durability','coordinateStatus','source']] for s in sorted(sites,key=lambda s:s['id'])])
     generated[OUT/'skills.tsv']=table(['id','name','source'],[[s[k] for k in ['id','name','source']] for s in sorted(skills,key=lambda s:s['id'])])
     generated[OUT/'items.tsv']=table(['id','name','kind','value','holderRaw','locationRaw','scenarioId','source'],[[s['id'],s['name'],s['kind'],s['value'],s['rawHolder'] or '原表空白',s['rawLocation'] or '原表空白',None,s['source']] for s in sorted(items,key=lambda s:s['id'])])
@@ -109,7 +143,7 @@ def build():
         if l.startswith('id='):l='id=officer-reference-drill'
         elif l.startswith('name='):l='name=武将资料演练'
         elif l.startswith('source='):l='source=community-reference'
-        elif l.startswith('revision='):l='revision=1'
+        elif l.startswith('revision='):l='revision=2'
         elif l.startswith('talents=') or l.startswith('talent.'):continue
         elif l.startswith('officer.'):
             key,value=l.split('=',1);c=value.split('|');oid=int(c[0]);o=byid[oid];values=[str(o['values'][k]) for k in STAT];simple[oid]=c[1]
@@ -117,7 +151,7 @@ def build():
             l=key+'='+'|'.join(c[:4]+values)
         lines.append(l)
     lines[0]='# Original regional battlefield with community-sourced base stats; NOT an official historical opening.'
-    lines.extend(['reference=rlu-officers','aptitudes='+str(len(bridge))])
+    lines.extend(['reference=rlu-officers','reference-details=1','aptitudes='+str(len(bridge))])
     for i,b in enumerate(bridge):
         o=byid[b['projectId']];apt=''.join(unicodedata.normalize('NFKC',o['values'][k]) for k in APT)
         lines.append('aptitude.'+str(i)+'='+str(b['projectId'])+'|'+'|'.join(str('CBAS'.index(a)) for a in apt))
