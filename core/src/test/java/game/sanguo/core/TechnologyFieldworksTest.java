@@ -111,6 +111,13 @@ public final class TechnologyFieldworksTest {
     private static void terrainAndPorts()throws Exception{
         World w=fixture();World.Unit u=unit(w,1,World.Weapon.SPEAR,new Hex(7,6));Hex h=new Hex(8,6);w.terrain[8][6]=World.Terrain.MOUNTAIN_PATH;
         check(!w.reachable(u).containsKey(h),"hard path blocked without research");learn(w,0,Campaign.Tech.DIFFICULT_MARCH);check(w.reachable(u).containsKey(h),"research opens actual hard path");ok(w.move(u.id,h));check(copy(w).terrain[8][6]==World.Terrain.MOUNTAIN_PATH,"new terrain saved");
+        for(World.Terrain terrain:new World.Terrain[]{World.Terrain.MOUNTAIN_PATH,World.Terrain.SHALLOWS}){
+            World landing=fixture();World.Unit boat=unit(landing,1,World.Weapon.SPEAR,new Hex(7,6));landing.terrain[7][6]=World.Terrain.WATER;landing.terrain[8][6]=terrain;
+            reject(landing,()->landing.move(boat.id,h));check(!landing.reachable(boat).containsKey(h),"landing cannot bypass terrain research "+terrain);
+            learn(landing,0,Campaign.Tech.DIFFICULT_MARCH);ok(landing.move(boat.id,h));check(boat.hex.equals(h),"researched landing reaches terrain "+terrain);
+            World exit=fixture();for(Hex neighbor:exit.city(0).hex.neighbors())exit.terrain[neighbor.q][neighbor.r]=terrain;
+            reject(exit,()->exit.deploy(0,1,World.Weapon.SPEAR,3000));learn(exit,0,Campaign.Tech.DIFFICULT_MARCH);ok(exit.deploy(0,1,World.Weapon.SPEAR,3000));
+        }
         World.City port=new World.City(2,"港",new Hex(7,14),0);port.kind=World.SiteKind.PORT;port.baseDefense=1000;port.gold=9000;port.food=99000;port.troops=30000;w.cities.add(port);w.officer(2).cityId=2;
         check(w.campaign.goldCap(port)==10000&&w.campaign.foodCap(port)==100000&&w.campaign.troopCap(port)==30000,"base port capacities");reject(w,()->w.campaign.trade(2,2,true,5000));learn(w,0,Campaign.Tech.PORT_EXPANSION);ok(w.campaign.trade(2,2,true,5000));check(port.food==104000&&w.campaign.foodCap(port)==400000&&w.campaign.troopCap(port)==60000,"expansion changes actual port command acceptance");
         check(copy(w).city(2).kind==World.SiteKind.PORT,"port identity saved independent of data pack");

@@ -19,7 +19,7 @@ public final class GameSmokeRunner extends Instrumentation {
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
-            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v10 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
+            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v11 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
@@ -230,7 +230,7 @@ public final class GameSmokeRunner extends Instrumentation {
         java.lang.reflect.Field field=MainActivity.class.getDeclaredField("world");field.setAccessible(true);World[] loaded=new World[1];
         runOnMainSync(()->{try{loaded[0]=(World)field.get(current);}catch(IllegalAccessException e){throw new RuntimeException(e);}});
         require(Arrays.equals(before,SaveCodec.encode(loaded[0])),"upgraded app actually loaded all old state");
-        require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=11,"new app version installed");
+        require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=12,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
         try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==11,"upgraded writer produced v11 header");}
