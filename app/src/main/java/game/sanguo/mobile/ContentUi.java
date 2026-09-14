@@ -22,10 +22,11 @@ final class ContentUi {
         try{catalog=ContentCatalog.get();}catch(IOException e){host.addView(text("资料校验失败："+e.getMessage(),18));return host;}
         if(!Arrays.asList(kinds).contains(state.contentKind))state.contentKind="officers";
         host.addView(text("全国资料 / 核验目录",20));
-        host.addView(text("目标：Windows 繁中 PK 1.1 · 原安装未核验\n官方完整可玩剧本：0；资料不代表规则已生效",12));
-        host.addView(a.button(titles[Arrays.asList(kinds).indexOf(state.contentKind)],v->new AlertDialog.Builder(a).setTitle("资料分类").setItems(titles,(d,i)->{state.contentKind=kinds[i];state.contentQuery="";a.refresh();}).setNegativeButton("取消",null).show()));
-        host.addView(a.button("据点分布预览 · 来源坐标",v->preview()));
-        EditText search=new EditText(a);search.setSingleLine();search.setTextColor(a.paper);search.setHintTextColor(a.muted);search.setHint("搜索名称或稳定 ID");search.setContentDescription("搜索资料");search.setText(state.contentQuery);host.addView(search);
+        host.addView(text("资料待原版核验 · 资料不代表规则生效\n官方完整可玩剧本：0",12));
+        LinearLayout toolbar=new LinearLayout(a);host.addView(toolbar,new LinearLayout.LayoutParams(-1,a.dp(44)));
+        toolbar.addView(a.button(titles[Arrays.asList(kinds).indexOf(state.contentKind)],v->new AlertDialog.Builder(a).setTitle("资料分类").setItems(titles,(d,i)->{state.contentKind=kinds[i];state.contentQuery="";state.contentFirstId="";a.refresh();}).setNegativeButton("取消",null).show()),new LinearLayout.LayoutParams(0,-1,1));
+        toolbar.addView(a.button("据点分布预览",v->preview()),new LinearLayout.LayoutParams(0,-1,1));
+        EditText search=new EditText(a);search.setSingleLine();search.setTextColor(a.paper);search.setHintTextColor(a.muted);search.setHint("搜索名称或稳定 ID");search.setContentDescription("搜索资料");search.setText(state.contentQuery);host.addView(search,new LinearLayout.LayoutParams(-1,a.dp(40)));
         TextView count=text("",12);host.addView(count);
         FrameLayout frame=new FrameLayout(a);host.addView(frame,new LinearLayout.LayoutParams(-1,0,1));
         TextView empty=text("没有符合条件的资料 · 请清空检索",16);empty.setGravity(Gravity.CENTER);frame.addView(empty,new FrameLayout.LayoutParams(-1,-1));
@@ -37,8 +38,10 @@ final class ContentUi {
         BaseAdapter adapter=new BaseAdapter(){public int getCount(){return shown.size();}public Object getItem(int p){return shown.get(p);}public long getItemId(int p){return shown.get(p)[0].hashCode();}public boolean hasStableIds(){return true;}
             public View getView(int p,View reuse,ViewGroup parent){TextView row=reuse instanceof TextView?(TextView)reuse:text("",16);String[] r=shown.get(p);row.setText(r[1]+" · ID "+r[0]+"\n"+r[2]);row.setMinimumHeight(a.dp(80));return row;}};
         Runnable filter=()->{shown.clear();String q=state.contentQuery.trim().toLowerCase(Locale.ROOT);for(String[] r:all)if((r[0]+r[1]+r[3]).toLowerCase(Locale.ROOT).contains(q))shown.add(r);count.setText("显示 "+shown.size()+" / "+all.size()+" 条");adapter.notifyDataSetChanged();};
-        list.setAdapter(adapter);filter.run();list.setOnItemClickListener((p,v,i,id)->detail(shown.get(i)[0]));
-        search.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int st,int c,int af){}public void afterTextChanged(Editable e){}public void onTextChanged(CharSequence s,int st,int b,int c){state.contentQuery=s.toString();filter.run();}});
+        list.setAdapter(adapter);filter.run();String anchor=state.contentFirstId;for(int i=0;i<shown.size();i++)if(shown.get(i)[0].equals(anchor)){list.setSelection(i);break;}
+        list.setOnScrollListener(new AbsListView.OnScrollListener(){public void onScrollStateChanged(AbsListView v,int s){}public void onScroll(AbsListView v,int first,int visible,int total){if(first<shown.size()&&visible>0)state.contentFirstId=shown.get(first)[0];}});
+        list.setOnItemClickListener((p,v,i,id)->detail(shown.get(i)[0]));
+        search.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int st,int c,int af){}public void afterTextChanged(Editable e){}public void onTextChanged(CharSequence s,int st,int b,int c){state.contentQuery=s.toString();state.contentFirstId="";filter.run();list.setSelection(0);}});
         return host;
     }
     private String status(String s){return s.equals("cross-checked")?"能力/适性双表比对（非原版核验）":s.equals("collected")?"已采集 · 待原版核验":"未知 / 未完成";}
@@ -47,7 +50,8 @@ final class ContentUi {
         AlertDialog.Builder dialog=new AlertDialog.Builder(a).setNegativeButton("返回",null);
         if(state.contentKind.equals("officers")){
             ContentCatalog.Officer o=catalog.officer(Integer.parseInt(id));String message="项目 ID "+o.id+" / 来源编号 "+o.sourceId+"\n"+status(o.status)+"\n统率 "+o.stat(0)+" / 武力 "+o.stat(1)+" / 智力 "+o.stat(2)+" / 政治 "+o.stat(3)+" / 魅力 "+o.stat(4)+"\n枪、戟、弩、骑、兵器、水军："+o.aptitudeText()+"\n生年 "+o.birth+" / 卒年 "+o.death+" / 登场 "+o.appearance+"\n特技："+catalog.skillName(o.skillId)+"（"+o.skillId+"）\n关系原文："+o.relationsRaw+"\n\n生卒、登场、关系尚未接入。武将资料演练的18人加载能力、适性、性别和特技；特技仅已实现的效果生效。\n来源："+catalog.sourceUrl(o.source);
-            dialog.setTitle(o.name).setMessage(message);
+            dialog.setTitle(o.name).setMessage("目标：Windows 繁中 PK 1.1（安装哈希未知）\n"+message);
+
             World.Officer actual=w.officer(o.id);if(w.scenarioId.equals("officer-reference-drill")&&actual!=null)dialog.setPositiveButton("当前武将",(d,n)->a.officerDetail(actual));
         }else{
             ContentCatalog.Entry found=null;for(ContentCatalog.Entry e:catalog.rows(state.contentKind))if(e.id.equals(id))found=e;

@@ -5,19 +5,19 @@ import android.os.Bundle;
 /** Only navigation/filter state; the engine remains the source of truth. */
 final class ClientState {
     String page="map", group="概览", query="", summary="";
-    String cityQuery="",taskQuery="",factionQuery="",contentQuery="",contentKind="officers";
+    String cityQuery="",taskQuery="",factionQuery="",contentQuery="",contentKind="officers",contentFirstId="";
     int cityOwner=-1;
     int owner=-1, city=-1, officerSort=0, citySort=0, taskType=0;
     boolean panelVisible=true;
     void read(Bundle b) {
         if(b==null)return;
         page=b.getString("page","map");group=b.getString("group","概览");query=b.getString("query","");summary=b.getString("summary","");
-        cityQuery=b.getString("cityQuery","");taskQuery=b.getString("taskQuery","");factionQuery=b.getString("factionQuery","");contentQuery=b.getString("contentQuery","");contentKind=b.getString("contentKind","officers");cityOwner=b.getInt("cityOwner",-1);
+        cityQuery=b.getString("cityQuery","");taskQuery=b.getString("taskQuery","");factionQuery=b.getString("factionQuery","");contentQuery=b.getString("contentQuery","");contentKind=b.getString("contentKind","officers");cityOwner=b.getInt("cityOwner",-1);contentFirstId=b.getString("contentFirstId","");
         owner=b.getInt("owner",-1);city=b.getInt("city",-1);officerSort=b.getInt("officerSort");citySort=b.getInt("citySort");taskType=b.getInt("taskType");panelVisible=b.getBoolean("panel",true);
     }
     void write(Bundle b) {
         b.putString("page",page);b.putString("group",group);b.putString("query",query);b.putString("summary",summary);
-        b.putString("cityQuery",cityQuery);b.putString("taskQuery",taskQuery);b.putString("factionQuery",factionQuery);b.putString("contentQuery",contentQuery);b.putString("contentKind",contentKind);b.putInt("cityOwner",cityOwner);
+        b.putString("cityQuery",cityQuery);b.putString("taskQuery",taskQuery);b.putString("factionQuery",factionQuery);b.putString("contentQuery",contentQuery);b.putString("contentKind",contentKind);b.putInt("cityOwner",cityOwner);b.putString("contentFirstId",contentFirstId);
         b.putInt("owner",owner);b.putInt("city",city);b.putInt("officerSort",officerSort);b.putInt("citySort",citySort);b.putInt("taskType",taskType);b.putBoolean("panel",panelVisible);
     }
 }

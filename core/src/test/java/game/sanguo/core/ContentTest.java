@@ -30,6 +30,14 @@ public final class ContentTest {
         // A retired/updated content package must never replace a progressed snapshot with a new opening.
         World retired=ScenarioCatalog.load("officer-reference-drill",2);retired.nextTurn();retired.scenarioId="removed-source-pack";retired.dataRevision=900;retired.city(300).gold=1234;retired.officer(3001).aptitude[0]=3;
         World restored=SaveCodec.decode(SaveCodec.encode(retired));check(restored.turn==1&&restored.city(300).gold==1234&&restored.officer(3001).aptitude[0]==3&&restored.dataRevision==900,"removed/revised pack does not reset snapshot");
+        // Load SaveCodec in a fresh class loader with no data resources at all.
+        java.net.URL classes=SaveCodec.class.getProtectionDomain().getCodeSource().getLocation();
+        try(java.net.URLClassLoader loader=new java.net.URLClassLoader(new java.net.URL[]{classes},ClassLoader.getPlatformClassLoader())){
+            check(loader.getResource("scenarios/index.txt")==null&&loader.getResource("content/index.txt")==null,"isolated reader has no data packages");
+            Class<?> codec=loader.loadClass("game.sanguo.core.SaveCodec"),worldType=loader.loadClass("game.sanguo.core.World");byte[] bytes=SaveCodec.encode(retired);
+            Object snapshot=codec.getMethod("decode",byte[].class).invoke(null,(Object)bytes);
+            check(Arrays.equals(bytes,(byte[])codec.getMethod("encode",worldType).invoke(null,snapshot)),"exact old snapshot reads with all packs removed");
+        }
         String source;try(InputStream in=ContentTest.class.getResourceAsStream("/scenarios/officer-reference-drill.properties")){source=new String(in.readAllBytes(),StandardCharsets.UTF_8);}
         for(String bad:new String[]{source.replace("reference=rlu-officers","reference=missing"),source.replace("|97|71|96|86|93","|96|71|96|86|93"),source.replace("aptitude.0=1000|","aptitude.0=9999|")}){
             check(!bad.equals(source),"mutation actually changes source");try{ScenarioData.read(new ByteArrayInputStream(bad.getBytes(StandardCharsets.UTF_8)),2);throw new AssertionError("invalid sourced pack accepted");}catch(IOException expected){checks++;}
