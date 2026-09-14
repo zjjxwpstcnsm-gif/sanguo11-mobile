@@ -1,0 +1,50 @@
+{
+  "codeCommit": "b2eec25d20cadf4cd5196aeb0b6e99d9e556191b",
+  "ciRun": 34834950707,
+  "job": 103946585840,
+  "conclusion": "success",
+  "apk": {
+    "name": "sanguo11-mobile-v014-b2eec25.apk",
+    "bytes": 447335,
+    "sha256": "eede36311a81b3a51627133be463914c3eb259227651466c464699218c6478f6",
+    "certificateSha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "v2SignatureVerifiedByCI": true
+  },
+  "ui": {
+    "platform": "Android API29 x86_64",
+    "profiles": {
+      "1080x1920": 66,
+      "1080x2340": 66,
+      "1080x2400": 66
+    },
+    "screenshots": 198,
+    "smokePassCount": 3,
+    "appFatalExceptions": 0,
+    "appANRs": 0,
+    "armDeviceVerified": false,
+    "upgradeScreenshots": 1,
+    "totalScreenshots": 199,
+    "visualReview": [
+      "1080x1920/67-march-preview.png",
+      "1080x2340/68-march-active.png",
+      "1080x2400/72-march-arrived.png"
+    ]
+  },
+  "upgrade": {
+    "fromCodeVersion": "0.9",
+    "retainedSaveVersion": 8,
+    "writtenSaveVersion": 13,
+    "stateEqualityVerified": true
+  },
+  "sourceArchive": {
+    "comparedFiles": 232,
+    "exactBytesMatch": true
+  },
+  "fullOriginalParity": false,
+  "validation": {
+    "marchAssertions": 75,
+    "uiProjectionAndCameraAssertions": 51749,
+    "lintErrors": 0,
+    "lintWarnings": 12
+  }
+}
