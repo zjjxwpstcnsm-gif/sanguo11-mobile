@@ -29,15 +29,15 @@ final class ArmyUi {
             choose("陆战兵装",Arrays.asList(World.Weapon.values()),weapon->weapon.label+(weapon==World.Weapon.SWORD?" · 无需库存":" · 库存"+c.equipment[weapon.ordinal()]),weapon->
                 choose("携带舰船",Arrays.asList(Army.Ship.values()),ship->ship.label+(ship==Army.Ship.BOAT?" · 免费配备":" · 库存"+c.ships[ship.ordinal()-1]),ship->
                     choose("编队兵力",troopOptions(leader.id),n1->n1+"人",troops->
-                        choose("出征携粮",Arrays.asList(troops,2*troops,6*troops,10*troops),food->food+"粮",food->{
+                        choose("出征携粮",Arrays.asList(troops,2*troops,6*troops,10*troops),food->food+"粮",food->choose("出征携金",Arrays.asList(0,1000,3000,5000,10000),gold->gold+"金",gold->{
                             List<World.Officer> crew=new ArrayList<>();crew.add(leader);for(int id:deputies)crew.add(w.officer(id));
                             StringBuilder text=new StringBuilder("主将 "+leader.name);for(int id:deputies)text.append("\n副将 ").append(w.officer(id).name);
-                            text.append("\n").append(troops).append("兵 · ").append(food).append("粮 · ").append(ship.label)
+                            text.append("\n").append(troops).append("兵 · ").append(food).append("粮 · 金").append(gold).append(" · ").append(ship.label)
                                 .append("\n兵装 ").append(weapon.label).append(" · 消耗 ").append(Army.equipmentNeeded(weapon,troops)).append(Army.siegeWeapon(weapon)?"件":"份")
                                 .append("\n陆战适性 ").append(War.rankLabel(w.army.aptitude(crew,Army.category(weapon)))).append(" · 水军适性 ").append(War.rankLabel(w.army.aptitude(crew,5)))
                                 .append("\n行动力10；整队武将出征后不能再执行城池任务。\n统率取主将，武力、智力与适性取队内最高值。");
-                            confirm("确认编队出征",text.toString(),()->{World.Result result=w.army.deploy(c.id,leader.id,deputies,weapon,ship,troops,food);apply.accept(result);if(result.ok)focus.accept(w.unit(leader.unitId).hex);});
-                        }))));
+                            confirm("确认编队出征",text.toString(),()->{World.Result result=w.army.deploy(c.id,leader.id,deputies,weapon,ship,troops,food,gold);apply.accept(result);if(result.ok)focus.accept(w.unit(leader.unitId).hex);});
+                        })))));
         }).setNegativeButton("取消",null).create();dialog.show();
     });}
     void manufacture(World.City c){

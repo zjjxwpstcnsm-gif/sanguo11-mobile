@@ -97,7 +97,7 @@ public final class Domestic {
     }
     public List<Hex> buildSites(int cityId){
         World.City c=w.city(cityId);List<Hex> result=new ArrayList<>();
-        if(c==null||count(cityId)>=CITY_SLOTS)return result;
+        if(c==null||c.kind!=World.SiteKind.CITY||count(cityId)>=CITY_SLOTS)return result;
         for(int q=Math.max(0,c.hex.q-2);q<=Math.min(w.width-1,c.hex.q+2);q++)
             for(int r=Math.max(0,c.hex.r-2);r<=Math.min(w.height-1,c.hex.r+2);r++){Hex h=new Hex(q,r);if(site(c,h))result.add(h);}
         result.sort(Comparator.comparingInt((Hex h)->h.distance(c.hex)).thenComparingInt(h->h.q).thenComparingInt(h->h.r));
@@ -107,6 +107,7 @@ public final class Domestic {
         if(kind==null)return w.fail("设施类型无效");
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,kind.cost);
         if(error!=null)return w.fail(error);
+        if(c.kind!=World.SiteKind.CITY)return w.fail("港关不能开发内政设施");
         if(count(cityId)>=CITY_SLOTS)return w.fail("每城最多6处设施（含建设中）");
         if(kind==Kind.SHIPYARD&&(h==null||h.neighbors().stream().noneMatch(w.army::water)))return w.fail("造船厂必须建在临水的开发地");
         if(!site(c,h))return w.fail("请选择城池两格内空闲平地，且不能封死城池出口");
@@ -167,7 +168,7 @@ public final class Domestic {
     }
     private static final class Step {final Hex h;final int cost;Step(Hex h,int c){this.h=h;cost=c;}}
     private int travelCost(Hex h,int owner,boolean sea){
-        int cost=sea&&w.army.water(h)?1:w.cost(h,World.Weapon.SPEAR);if(cost<0||at(h)!=null||w.war.at(h)!=null)return -1;
+        int cost=sea&&w.army.water(h)?1:w.fieldworks.landCost(h,World.Weapon.SPEAR,owner);if(cost<0||at(h)!=null||w.war.at(h)!=null)return -1;
         World.City c=w.cityAt(h);return c!=null&&c.owner!=owner?-1:cost;
     }
     /** Strategic movement: avoids hostile cities/facilities but ignores tactical unit occupancy. */
@@ -192,11 +193,11 @@ public final class Domestic {
         List<Hex> path=route(m.hex,c.hex,m.owner,m.sea);if(path==null)return -1;
         int turns=0,budget=0;for(Hex h:path){int cost=travelCost(h,m.owner,m.sea);if(budget<cost){turns++;budget=travelSpeed(m);}budget-=cost;}return turns;
     }
-    private int travelSpeed(Mission m){return TRAVEL_SPEED+(m.transport&&w.skills.has(w.officer(m.officerId),Skill.YUNBAN)?2:0);}
+    private int travelSpeed(Mission m){return TRAVEL_SPEED+(m.transport&&w.campaign.has(m.owner,Campaign.Tech.WOODEN_OX)?1:0)+(m.transport&&w.skills.has(w.officer(m.officerId),Skill.YUNBAN)?2:0);}
     public String status(Mission m){int turns=eta(m);return turns<0?"道路受阻 / 等待改道":turns==0?"已到达，等待结算或库存空间":"预计"+turns+"旬";}
     private boolean fits(Mission m,World.City c){
-        if(c.gold>1000000-m.gold||c.food>1000000-m.food||c.troops>100000-m.troops)return false;
-        for(int i=0;i<m.equipment.length;i++)if(c.equipment[i]>(i>4?100:100000)-m.equipment[i])return false;return true;
+        if(c.gold>w.campaign.goldCap(c)-m.gold||c.food>w.campaign.foodCap(c)-m.food||c.troops>w.campaign.troopCap(c)-m.troops)return false;
+        for(int i=0;i<m.equipment.length;i++)if(c.equipment[i]>w.campaign.equipmentCap(c,World.Weapon.values()[i])-m.equipment[i])return false;return true;
     }
     void tick(){
         cleanupDefeated();

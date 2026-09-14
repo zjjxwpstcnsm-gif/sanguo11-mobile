@@ -140,7 +140,7 @@ public final class Strategy {
             return new SearchResult(w.success(o.name+"在"+c.name+"发现了在野武将"+talent.name),SearchOutcome.OFFICER,talent.id,0);
         }
         if(nextInt(100)<10+o.politics/5) {
-            int gold=Math.min(1_000_000-c.gold,30+nextInt(91));
+            int gold=Math.min(Math.max(0,w.campaign.goldCap(c)-c.gold),30+nextInt(91));
             if(gold>0){c.gold+=gold;return new SearchResult(w.success(o.name+"搜索获得金"+gold),SearchOutcome.GOLD,-1,gold);}
         }
         return new SearchResult(w.success(o.name+"搜索结束，未有发现"),SearchOutcome.NOTHING,-1,0);
@@ -236,8 +236,8 @@ public final class Strategy {
         if(c.order<30)return w.fail("治安低于30，先执行巡察");
         if(c.recruitReserve<=0)return w.fail("本城兵源已耗尽");
         int amount=recruitAmount(cityId,officerId);
-        if(amount<=0||c.troops>100000-amount)return w.fail("城池兵力已接近上限");
-        w.spend(c,o,RECRUIT_COST);c.recruitReserve-=amount;c.troops+=amount;c.order=Math.max(0,c.order-(w.skills.has(o,Skill.MINGSHENG)?7:5));
+        if(amount<=0||c.troops>w.campaign.troopCap(c)-amount)return w.fail("城池兵力已接近上限");
+        w.spend(c,o,RECRUIT_COST);c.recruitReserve-=amount;c.troops+=amount;c.order=Math.max(0,c.order-w.campaign.orderLoss(c.owner,w.skills.has(o,Skill.MINGSHENG)?7:5));
         return w.success(c.name+"征得"+amount+"兵，治安−5，兵源剩余"+c.recruitReserve);
     }
     public int getArmyReadiness(int cityId) {
@@ -256,7 +256,7 @@ public final class Strategy {
             if(o.otherTaskTurns>0&&--o.otherTaskTurns==0){o.otherTask="";o.acted=true;w.note(o.name+"完成战略任务");}
             World.City c=w.city(o.cityId);
             if(!w.skills.city(o.cityId,Skill.RENZHENG)&&w.turn%3==0&&o.owner>=0&&o.role!=Role.RULER&&c!=null&&c.owner==o.owner&&(c.order<40||c.gold<200))
-                o.loyalty=Math.max(0,o.loyalty-2);
+                o.loyalty=Math.max(0,o.loyalty-w.campaign.loyaltyLoss(o.owner,2));
         }
     }
     public StrategicAi.Decision planAi(int cityId) { return new StrategicAi(w).plan(cityId,false); }

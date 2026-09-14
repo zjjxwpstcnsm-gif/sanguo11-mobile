@@ -35,7 +35,7 @@ public final class Supply {
     public World.Result transfer(int actor,int target,int troops,int food){
         World.Unit a=w.unit(actor),b=w.unit(target);String error=w.orders.error(a);if(error!=null)return w.fail(error);
         if(b==null||b.id==a.id||b.owner!=a.owner||a.hex.distance(b.hex)!=1)return w.fail("请选择相邻己方部队");
-        if(troops<0||food<0||troops>15000||food>1000000||troops+food==0)return w.fail("请指定有效兵粮数量");
+        if(troops<0||food<0||troops>18000||food>1000000||troops+food==0)return w.fail("请指定有效兵粮数量");
         if(troops>0&&(a.weapon!=b.weapon||a.ship!=b.ship))return w.fail("移交士兵需要相同兵装和舰船");
         if(a.troops<=troops||a.food<food||b.troops>w.government.commandLimit(b.officerId)-troops||b.food>1000000-food)return w.fail("来源兵粮不足或接收部队超过统兵/携粮上限");
         a.troops-=troops;b.troops+=troops;a.food-=food;b.food+=food;a.acted=true;
@@ -44,7 +44,7 @@ public final class Supply {
     public World.Result replenish(int city,int officer,int target,int troops,int food){
         World.City c=w.city(city);World.Officer o=w.officer(officer);World.Unit u=w.unit(target);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
         if(u==null||u.owner!=c.owner||c.hex.distance(u.hex)>1)return w.fail("请选择城池相邻的己方部队");
-        if(troops<0||troops>15000||food<0||food>1000000||troops+food==0)return w.fail("请指定有效兵粮数量");
+        if(troops<0||troops>18000||food<0||food>1000000||troops+food==0)return w.fail("请指定有效兵粮数量");
         int equipment=Army.siegeWeapon(u.weapon)?0:Army.equipmentNeeded(u.weapon,troops);
         if(c.troops<troops||c.food<food||c.equipment[u.weapon.ordinal()]<equipment||u.troops>w.government.commandLimit(u.officerId)-troops||u.food>1000000-food)return w.fail("城内兵粮/兵装不足或部队超过容量");
         w.spend(c,o,0);c.troops-=troops;c.food-=food;c.equipment[u.weapon.ordinal()]-=equipment;u.troops+=troops;u.food+=food;

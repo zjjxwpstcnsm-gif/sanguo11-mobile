@@ -39,7 +39,7 @@ public final class ScenarioData {
             for(int r=0;r<height;r++) {
                 String row=take(p,"terrain."+r);if(row.length()!=width)throw new IOException("地形行宽不匹配："+r);
                 for(int q=0;q<width;q++) {
-                    int index="PFMW".indexOf(row.charAt(q));if(index<0)throw new IOException("未知地形："+row.charAt(q));
+                    int index="PFMWDSB".indexOf(row.charAt(q));if(index<0)throw new IOException("未知地形："+row.charAt(q));
                     w.terrain[q][r]=World.Terrain.values()[index];
                 }
             }
@@ -47,7 +47,7 @@ public final class ScenarioData {
             for(int i=0;i<cities;i++) {
                 String[] c=fields(p,"city."+i,15);
                 World.City city=new World.City(integer(c[0]),c[1],new Hex(integer(c[2]),integer(c[3])),integer(c[4]));
-                city.gold=integer(c[5]);city.food=integer(c[6]);city.troops=integer(c[7]);city.order=integer(c[8]);city.morale=integer(c[9]);city.defense=integer(c[10]);
+                city.gold=integer(c[5]);city.food=integer(c[6]);city.troops=integer(c[7]);city.order=integer(c[8]);city.morale=integer(c[9]);city.defense=integer(c[10]);city.baseDefense=Math.max(3000,city.defense);
                 for(int j=0;j<4;j++)city.equipment[j]=integer(c[11+j]);w.cities.add(city);
             }
             int officers=number(p,"officers",2,10000);
@@ -95,6 +95,18 @@ public final class ScenarioData {
                     if(!seen.add(officer))throw new IOException("对局配置武将重复");
                     w.contests.configure(officer,new Contests.Profile(Debate.Temper.valueOf(data[1]),integer(data[2]),integer(data[3])));
                 }
+            }
+            if(p.containsKey("site-kinds")){
+                int countKinds=number(p,"site-kinds",0,1000);Set<Integer> seen=new HashSet<>();
+                for(int i=0;i<countKinds;i++){String[] data=fields(p,"site-kind."+i,3);World.City c=w.city(integer(data[0]));if(c==null||!seen.add(c.id))throw new IOException("据点类型引用错误");c.kind=World.SiteKind.valueOf(data[1]);c.baseDefense=integer(data[2]);}
+            }
+            if(p.containsKey("unit-gold")){
+                int countGold=number(p,"unit-gold",0,10000);Set<Integer> seen=new HashSet<>();
+                for(int i=0;i<countGold;i++){String[] data=fields(p,"unit-gold."+i,2);World.Unit u=w.unit(integer(data[0]));if(u==null||!seen.add(u.id))throw new IOException("携金部队引用错误");u.gold=integer(data[1]);}
+            }
+            if(p.containsKey("technology-points")){
+                int countPoints=number(p,"technology-points",0,sides);Set<Integer> seen=new HashSet<>();
+                for(int i=0;i<countPoints;i++){String[] data=fields(p,"technology-points."+i,2);int side=integer(data[0]);if(side<0||side>=sides||!seen.add(side))throw new IOException("技巧点势力错误");w.campaign.points.put(side,integer(data[1]));}
             }
             if(!p.isEmpty())throw new IOException("未知剧本字段："+p.keySet().iterator().next());
             if(reference!=null){ContentCatalog catalog=ContentCatalog.get();catalog.validateOpening(w);ContentRuntime.initializeOpening(w,catalog);}

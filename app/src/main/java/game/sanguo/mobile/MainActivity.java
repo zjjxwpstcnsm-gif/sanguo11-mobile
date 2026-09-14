@@ -126,7 +126,7 @@ public final class MainActivity extends Activity {
         if(unit!=null)showUnit(unit);else if(city!=null)showCity(city);else if(selected!=null&&world.domestic.at(selected)!=null){
             Domestic.Facility f=world.domestic.at(selected);line(f.kind.label,24,gold);line(world.city(f.cityId).name,15,paper);line(f.remaining==0?f.kind.effect:"建设中 · 剩"+f.remaining+"旬",14,paper);
             action("设施详情 / 管理",v->domesticUi().facility(f));action("返回所属城池",v->selectAndFocus(world.city(f.cityId).hex));
-        }else if(selected!=null&&world.war.at(selected)!=null){War.Structure s=world.war.at(selected);line(s.kind.label,24,gold);line(world.faction(s.owner)+" · 耐久"+s.hp,15,paper);line(s.kind.effect,14,paper);}
+        }else if(selected!=null&&world.war.at(selected)!=null){War.Structure s=world.war.at(selected);line(s.kind.label,24,gold);line(world.faction(s.owner)+" · 耐久"+s.hp+"/"+s.kind.hp,15,paper);line(s.complete?s.kind.effect:"施工中，建成后生效",14,paper);if(s.builder>=0&&world.unit(s.builder)!=null)action("定位施工部队",v->selectAndFocus(world.unit(s.builder).hex));}
         else {line("山河之间",23,gold);if(selected!=null&&world.war.fireAt(selected)!=null)line("火场 · 剩"+world.war.fireAt(selected).remaining+"旬",16,gold);line("点选城池或部队",15,paper);line("单指拖动 · 双指缩放\n双击城池聚焦\n缩小时查看势力，放大查看设施与在途。",14,paper);action("定位本城",v->{if(world.home()!=null)selectAndFocus(world.home().hex);});}
     }
     private void showCity(World.City c){
@@ -209,11 +209,13 @@ public final class MainActivity extends Activity {
         line("兵力 "+u.troops+"\n携粮 "+u.food+"\n气力 "+u.energy,16,paper);line("统率 "+o.leadership+"  武力 "+o.war,13,paper);line("剩余移动 "+world.orders.remaining(u)+"  射程 "+world.war.range(u),13,paper);
         line("适性 "+War.rankLabel(world.army.aptitude(u))+" · 状态 "+u.status.label,14,paper);
         for(int id:u.deputies)line("副将 "+world.officer(id).name,14,paper);
+        line("携金 "+u.gold+" · "+(world.fieldworks.project(u.id)==null?"未施工":"施工中"),13,paper);
         line("部队武力 "+world.army.war(u)+" · 智力 "+world.army.intelligence(u),13,paper);
         if(u.burning>0)line("部队燃烧 · 剩"+u.burning+"旬",14,gold);
         action("编队特技",v->warUi().skills(u));
         if(u.owner==world.player){line(u.acted?"本旬已行动":"点击高亮空地移动\n点敌军攻击 / 点城池攻城或入城",14,paper);
-            if(!u.acted&&u.status==War.Status.NORMAL){action("单挑",v->new ContestUi(this,world,this::apply).challenge(u));action("截击运输队",v->governmentUi().raid(u));action("移交兵粮",v->governmentUi().supply(u));action("战法",v->{moving=u.id;if(world.army.water(u.hex)||Army.siegeWeapon(u.weapon))armyUi().tactics(u);else warUi().tactics(u);});
+            if(world.fieldworks.project(u.id)!=null)action("中止施工",v->new FieldworkUi(this,world,this::apply).stop(u));
+            if(!u.acted&&u.status==War.Status.NORMAL){action("设置军事设施",v->new FieldworkUi(this,world,this::apply).build(u));action("补修军事设施",v->new FieldworkUi(this,world,this::apply).repair(u));action("补充携金",v->new FieldworkUi(this,world,this::apply).fund(u));action("单挑",v->new ContestUi(this,world,this::apply).challenge(u));action("截击运输队",v->governmentUi().raid(u));action("移交兵粮",v->governmentUi().supply(u));action("战法",v->{moving=u.id;if(world.army.water(u.hex)||Army.siegeWeapon(u.weapon))armyUi().tactics(u);else warUi().tactics(u);});
                 if(u.burning>0)action("部队灭火 · 气力5",v->confirm("扑灭本部队火焰？",()->apply(world.army.extinguish(u.id))));action("部队计略",v->{moving=u.id;warUi().plots(u);});action("待命 · 恢复5气力",v->confirm("本旬待命并恢复5气力？",()->apply(world.war.waitUnit(u.id))));}
             action("取消部队选择",v->{moving=-1;selected=null;refresh();});}
     }
@@ -250,7 +252,7 @@ public final class MainActivity extends Activity {
         action("本旬结算摘要",v->message("旬结算摘要",ui.summary.isEmpty()?"结束一旬后将在这里显示结算摘要。":ui.summary));
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.11 · PK研究与培养","势力能力研究、有限次数培养、隐藏能力、特技覆盖与进度保存。\n存档 v10，兼容 v1～v9。\n\n原有军政、后勤等玩法保留。全国地形、官方完整开局、全部特技、事件与精确数值仍未完整还原。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.12 · 技巧与野战工程","九系36项技巧、部队携金施工、设施强化、难所通行与港关容量。\n存档 v11，兼容 v1～v10。\n\n原有军政、后勤等玩法保留。全国地形、官方完整开局、全部特技、事件与精确数值仍未完整还原。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}
