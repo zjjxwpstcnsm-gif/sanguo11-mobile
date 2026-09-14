@@ -102,10 +102,15 @@ public final class War {
         int amount=physicalDamage(a,b,scale,tactic,random());b.troops-=amount;if(b.troops==0)w.defeatUnit(b,a);w.skills.onHit(a,b,amount,tactic);if(w.campaign.hostile(a.owner,b.owner))w.government.earn(a.officerId,amount/10);return amount;
     }
     public int previewDamage(int actor,int target){World.Unit a=w.unit(actor),b=w.unit(target);return a==null||b==null?0:physicalDamage(a,b,1,false,new Random(0));}
+    public String attackError(int actor,int target){
+        World.Unit a=w.unit(actor),b=w.unit(target);String error=actorError(a);if(error==null)error=targetError(a,b,1,range(a));if(error!=null)return error;
+        if(!w.army.canAttackUnit(a))return "兵器需要使用战法";
+        if(!w.army.water(a.hex)&&a.weapon==World.Weapon.CROSSBOW&&w.terrain[b.hex.q][b.hex.r]==World.Terrain.FOREST&&!w.skills.has(a,Skill.SHESHOU))return "射向森林需要射手特技";
+        return null;
+    }
     public World.Result attack(int actor,int target){
-        World.Unit a=w.unit(actor),b=w.unit(target);String error=actorError(a);if(error==null)error=targetError(a,b,1,range(a));if(error!=null)return w.fail(error);
-        if(!w.army.canAttackUnit(a))return w.fail("兵器需要使用战法");
-        if(!w.army.water(a.hex)&&a.weapon==World.Weapon.CROSSBOW&&w.terrain[b.hex.q][b.hex.r]==World.Terrain.FOREST&&!w.skills.has(a,Skill.SHESHOU))return w.fail("射向森林需要射手特技");
+        String error=attackError(actor,target);if(error!=null)return w.fail(error);
+        World.Unit a=w.unit(actor),b=w.unit(target);
         a.acted=true;int dealt=0,counter=0;
         int attacks=w.skills.has(a,Skill.LIANZHAN)&&w.strategy.nextInt(100)<50?2:1;
         for(int i=0;i<attacks&&w.unit(a.id)!=null&&w.unit(b.id)!=null;i++){
@@ -117,7 +122,7 @@ public final class War {
         w.campaign.earn(a.owner,w.unit(b.id)==null&&w.skills.has(a,Skill.JINGMIAO)?40:20);w.checkVictory();
         return w.success(w.officer(a.officerId).name+"攻击：敌损"+dealt+"，反击损失"+counter+(support>0?"，支援伤害"+support:""));
     }
-    private boolean canCounter(World.Unit a,World.Unit b){
+    boolean canCounter(World.Unit a,World.Unit b){
         if(!w.army.water(a.hex)&&a.weapon==World.Weapon.SPEAR&&w.terrain[a.hex.q][a.hex.r]==World.Terrain.FOREST&&w.campaign.has(a.owner,Campaign.Tech.FOREST_AMBUSH))return false;
         if(a.hex.distance(b.hex)==1&&w.army.counter(b))return true;
         return !w.army.water(b.hex)&&b.weapon==World.Weapon.CROSSBOW&&w.campaign.has(b.owner,Campaign.Tech.RETURN_FIRE)&&a.hex.distance(b.hex)<=range(b)&&
@@ -323,16 +328,5 @@ public final class War {
 
         }
         w.fieldworks.towers();w.skills.restoreEnergy();
-    }
-    boolean aiAction(World.Unit u,World.Unit enemy){
-        if(u.acted||u.status!=Status.NORMAL)return false;
-        for(Plot p:new Plot[]{Plot.LIGHTNING,Plot.SORCERY,Plot.INFIGHT})if((p!=Plot.INFIGHT||w.skills.has(u,Skill.GUIJI))&&plotError(u.id,enemy.hex,p)==null&&plotChance(u.id,enemy.hex,p)>=40){
-            boolean friendlyFire=false;if(p==Plot.LIGHTNING)for(World.Unit own:w.units)if(own.owner==u.owner&&own.hex.distance(enemy.hex)<=1)friendlyFire=true;
-            if(!friendlyFire)return plot(u.id,enemy.hex,p).ok;
-        }
-        if(w.skills.has(u,Skill.JIJIAO)&&w.advancedBattle.jointError(u.id,enemy.id)==null)return w.advancedBattle.joint(u.id,enemy.id).ok;
-        for(Army.Tactic tactic:w.army.tactics(u))if(w.army.tacticError(u.id,enemy.hex,tactic)==null)return w.army.tactic(u.id,enemy.hex,tactic).ok;
-        for(Tactic tactic:Tactic.values())if(tacticError(u.id,enemy.id,tactic)==null)return tactic(u.id,enemy.id,tactic).ok;
-        return false;
     }
 }

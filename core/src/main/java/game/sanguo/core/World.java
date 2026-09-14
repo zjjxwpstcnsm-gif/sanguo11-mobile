@@ -181,11 +181,16 @@ public final class World {
         long value=(long)a.troops*a.weapon.power*(60+o.leadership)*(50+a.energy);
         return Math.max(80,(int)(value/(100L*(80+enemyLeadership)*100*defenseScale/10)));
     }
+    public String siegeError(int unitId,int cityId) {
+        Unit u=unit(unitId);City c=city(cityId);String error=unitError(u);if(error!=null)return error;
+        if(c==null||!campaign.hostile(u.owner,c.owner))return "请选择交战势力或未占领城池";
+        if(u.hex.distance(c.hex)>army.siegeRange(u))return "城池不在攻城射程内";
+        if(Army.siegeWeapon(u.weapon)&&!army.water(u.hex))return "兵器使用战法攻城";
+        return null;
+    }
     public Result siege(int unitId,int cityId) {
-        Unit u=unit(unitId);City c=city(cityId);String error=unitError(u);if(error!=null)return fail(error);
-        if(c==null||!campaign.hostile(u.owner,c.owner))return fail("请选择交战势力或未占领城池");
-        if(u.hex.distance(c.hex)>army.siegeRange(u))return fail("城池不在攻城射程内");
-        if(Army.siegeWeapon(u.weapon)&&!army.water(u.hex))return fail("兵器使用战法攻城");
+        String error=siegeError(unitId,cityId);if(error!=null)return fail(error);
+        Unit u=unit(unitId);City c=city(cityId);
         u.acted=true;return resolveSiege(u,c,false);
     }
     /** Caller has validated and paid for the command. No nested public command or second payment. */
@@ -259,52 +264,18 @@ public final class World {
         war.resetOwner(owner);fieldworks.continueOwner(owner);
     }
     private void runAi() {
+        CampaignAi ai=new CampaignAi(this);
         government.runAi();
         strategy.runAi(true);
+        List<City> ordered=new ArrayList<>(cities);
+        ordered.sort(Comparator.comparingInt((City c)->-ai.incoming(c)).thenComparingInt(c->c.id));
+        for(City c:ordered)if(c.owner==active)ai.replenish(c.id);
+        for(City c:ordered)if(c.owner==active)ai.deploy(c.id,6000);
         campaign.runAi();
         abilities.runAi();
         strategy.runAi(false);
-        for(City c:cities) if(c.owner==active) {
-            List<Officer> available=idle(c);
-            if(!available.isEmpty()) {
-                Officer o=available.get(0);
-                Weapon weapon=null;
-                for(Weapon candidate:Weapon.values())if(c.equipment[candidate.ordinal()]>=3000){weapon=candidate;break;}
-                for(Weapon candidate:Weapon.values())if(Army.siegeWeapon(candidate)&&c.equipment[candidate.ordinal()]>0){weapon=candidate;break;}
-                if(c.troops>=6000&&c.food>=6000&&weapon!=null){
-                    Army.Ship ship=c.ships[1]>0?Army.Ship.WARSHIP:c.ships[0]>0?Army.Ship.TOWER_SHIP:Army.Ship.BOAT;
-                    army.deploy(c.id,o.id,new int[0],weapon,ship,3000,6000);
-                }
-                else if(weapon==null&&c.troops>=6000)produce(c.id,o.id,Weapon.SPEAR);
-            }
-        }
-        for(Unit u:new ArrayList<>(units)) {
-            if(gameOver())break;
-            if(u.owner!=active||u.acted)continue;
-            if(supply.aiRaid(u))continue;
-            Unit enemy=null;
-            for(Unit b:units)if(campaign.hostile(u.owner,b.owner)&&u.hex.distance(b.hex)<=war.range(u)){enemy=b;break;}
-            if(enemy!=null&&army.canAttackUnit(u)){if(!war.aiAction(u,enemy))attack(u.id,enemy.id);continue;}
-            List<City> targets=new ArrayList<>();
-            for(City c:cities)if(campaign.hostile(active,c.owner))targets.add(c);
-            targets.sort(Comparator.comparingInt((City c)->u.hex.distance(c.hex)).thenComparingInt(c->c.id));
-            for(City target:targets) {
-                if(u.hex.distance(target.hex)<=army.siegeRange(u)){siege(u.id,target.id);break;}
-                if(advance(u,target.hex,army.siegeRange(u)))break;
-            }
-            if(!u.acted)for(Unit b:new ArrayList<>(units))if(campaign.hostile(active,b.owner)&&advance(u,b.hex,war.range(u)))break;
-        }
-        for(Unit u:new ArrayList<>(units))if(u.owner==active&&!u.acted&&u.status==War.Status.NORMAL){
-            for(Unit enemy:new ArrayList<>(units))if(campaign.hostile(u.owner,enemy.owner)){
-                if(war.aiAction(u,enemy))break;
-                if(army.canAttackUnit(u)&&u.hex.distance(enemy.hex)<=war.range(u)&&attack(u.id,enemy.id).ok)break;
-            }
-            if(!u.acted)for(City c:cities)if(campaign.hostile(u.owner,c.owner)&&u.hex.distance(c.hex)<=army.siegeRange(u)){
-                boolean done=false;for(Army.Tactic t:army.tactics(u))if(army.tacticError(u.id,c.hex,t)==null){done=army.tactic(u.id,c.hex,t).ok;break;}
-                if(done||siege(u.id,c.id).ok)break;
-            }
-            if(!u.acted)war.waitUnit(u.id);
-        }
+        for(City c:ordered)if(c.owner==active)ai.prepare(c.id);
+        ai.runUnits();
         domestic.runAi();
     }
     /** Plan beyond one turn so AI can detour around rivers and mountains. */

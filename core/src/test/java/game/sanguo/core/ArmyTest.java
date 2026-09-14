@@ -141,7 +141,7 @@ public final class ArmyTest {
         for(String bad:Arrays.asList(data.replace("arsenal.1=11|","arsenal.1=10|"),data.replace("arsenal.0=10|2|","arsenal.0=999|2|"),data.replace("arsenal.0=10|2|","arsenal.0=10|101|"),data.replace("aptitude.1=1|","aptitude.1=0|"),data.replace("aptitude.0=0|2|","aptitude.0=0|4|"))){
             try{ScenarioData.read(new ByteArrayInputStream(bad.getBytes(java.nio.charset.StandardCharsets.UTF_8)),0);throw new AssertionError("invalid arsenal/aptitude accepted");}catch(IOException expected){checks++;}
         }cases++;
-        World ai=fixture();ai.officers.add(new World.Officer(21,"敌军副将",1,20,75,75,75,75,75));Arrays.fill(ai.city(20).equipment,0);ai.city(20).equipment[5]=1;ai.city(20).troops=8000;ai.city(20).food=30000;ok(ai.nextTurn());
+        World ai=fixture();ai.officers.add(new World.Officer(21,"敌军副将",1,20,75,75,75,75,75));Arrays.fill(ai.city(20).equipment,0);ai.city(20).equipment[5]=1;ai.city(20).troops=16000;ai.city(20).food=60000;ok(ai.nextTurn());
         check(ai.units.stream().anyMatch(u->u.owner==1&&u.weapon==World.Weapon.RAM),"AI deploys siege stock even without basic weapon stock");SaveCodec.validate(ai);cases++;
     }
 }

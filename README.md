@@ -4,6 +4,11 @@
 
 ## 当前状态
 
+**v0.16.0 战役 AI 开发版。** 基于 v0.15 整合版增加按威胁留守和适性编队、战术目标/命中/友伤评估、远程拉开距离、兵器攻城、断粮回城与真实补给运输；电脑和委任军团共用决策。菜单→军团与天下→军情评估。沿用存档 v14。[本轮范围、工程参数与缺口](docs/AI_V0_16.md)。全国原版逐格地形和官方完整开局仍缺可核验数据，**仍未达到100%还原**。[APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34841640072/artifacts/10346389812) 对应代码 `d6ca5f2`；[完整CI](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34841640072)已通过全部核心/UI、Android构建/Lint、API29三屏操作及v0.9覆盖升级。225张截图与245文件源码归档已核验，新增6张界面截图已目检。Lint0错误/12警告，ARM真机未验。[验证证据](docs/validation/v016/README.md)。
+
+## v0.15 历史状态
+
+
 **v0.15.0 行军与天下整合开发版。** 军团编制/委任进攻/指定运输、同讨/妖术/落雷/齐攻、ZOC/毒泉、灾害/贼寨、论客外交舌战与点选目标逐旬自动行军已接入。菜单→军团与天下；原创沙盘可试玩。存档写v14，兼容v1—v12及两种开发分支v13。[天下系统与工程参数](docs/WORLD_V0_14.md)、[行军操作](docs/MARCH_V0_14.md)。**仍未达到100%还原**，全国原版格点与官方完整开局仍缺可核验数据。
 
 [v0.14 APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34834950707/artifacts/10345390694)对应代码`b2eec25`；[完整CI](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34834950707)已通过核心/UI回归、构建/Lint、三种横屏实际操作和v0.9覆盖升级。447335字节APK、签名、232文件源码与199张截图文件已核对；抽查路线预览、续行和抵达界面。Lint 0错误/12警告，ARM真机尚未验证。[验收证据](docs/validation/v014/README.md) · [PR #15](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/15)。

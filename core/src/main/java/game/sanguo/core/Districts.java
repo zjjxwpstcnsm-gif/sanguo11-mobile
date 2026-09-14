@@ -120,27 +120,22 @@ public final class Districts {
         if(c.defense<w.campaign.defenseCap(c)/2&&w.campaign.repair(c.id,admin.id).ok)return;
         if(d.supply>=0&&d.supply!=c.id&&pass==0){int gold=Math.min(3000,Math.max(0,c.gold-5000)),food=Math.min(20000,Math.max(0,c.food-40000));
             if((gold>0||food>0)&&w.domestic.transport(c.id,d.supply,admin.id,gold,food,0,new int[World.Weapon.values().length]).ok)return;}
-        if(d.attack&&d.policy!=Policy.ECONOMY&&d.policy!=Policy.DEFENSE&&c.troops>=14000&&c.food>=18000&&target(d,c.hex)!=null){
-            World.Officer leader=idle.stream().max(Comparator.comparingInt(o->o.leadership+o.war)).get();
-            for(World.Weapon weapon:new World.Weapon[]{World.Weapon.SPEAR,World.Weapon.HALBERD,World.Weapon.CROSSBOW,World.Weapon.CAVALRY})if(c.equipment[weapon.ordinal()]>=4000&&w.army.deploy(c.id,leader.id,new int[0],weapon,Army.Ship.BOAT,4000,12000).ok)return;
-        }
+        CampaignAi ai=new CampaignAi(w);
+        if(ai.replenish(c.id))return;
+        if(d.attack&&d.policy!=Policy.ECONOMY&&d.policy!=Policy.DEFENSE&&target(d,c.hex)!=null&&ai.deploy(c.id,10000,
+            target->(d.policy!=Policy.CITY_ATTACK||target.id==d.target)&&(d.policy!=Policy.FORCE_ATTACK||target.owner==d.target)))return;
         if(d.policy==Policy.ECONOMY||d.policy==Policy.DELEGATE){List<Hex> sites=w.domestic.buildSites(c.id);if(c.gold>=2500&&!sites.isEmpty()&&w.domestic.build(c.id,admin.id,c.food<40000?Domestic.Kind.FARM:Domestic.Kind.MARKET,sites.get(0)).ok)return;}
         if(d.produce&&c.gold>=1500&&c.equipment[0]<8000&&w.produce(c.id,admin.id,World.Weapon.SPEAR).ok)return;
-        StrategicAi ai=new StrategicAi(w);StrategicAi.Decision decision=ai.plan(c.id,false);if(decision!=null)ai.execute(decision);
+        StrategicAi civil=new StrategicAi(w);StrategicAi.Decision decision=civil.plan(c.id,false);if(decision!=null)civil.execute(decision);
     }
     private World.City target(District d,Hex from){
         List<World.City> candidates=new ArrayList<>();for(World.City c:w.cities)if(w.campaign.hostile(d.owner,c.owner)&&(d.policy!=Policy.CITY_ATTACK||c.id==d.target)&&(d.policy!=Policy.FORCE_ATTACK||c.owner==d.target))candidates.add(c);
         return candidates.stream().min(Comparator.comparingInt((World.City c)->from.distance(c.hex)).thenComparingInt(c->c.id)).orElse(null);
     }
     private void armyOrder(District d,World.Unit u){
-        if(u.status!=War.Status.NORMAL)return;
-        for(WorldEvents.Camp camp:new ArrayList<>(w.events.camps()))if(w.events.attackError(u.id,camp.id)==null){w.events.attack(u.id,camp.id);return;}
-        if(d.attack)for(World.Unit enemy:new ArrayList<>(w.units))if(w.campaign.hostile(u.owner,enemy.owner)&&u.hex.distance(enemy.hex)<=w.war.range(u)){
-            if(w.war.aiAction(u,enemy)||w.war.attack(u.id,enemy.id).ok)return;
-        }
-        World.City goal=d.attack&&d.policy!=Policy.DEFENSE&&d.policy!=Policy.ECONOMY?target(d,u.hex):null;
-        if(goal!=null){if(u.hex.distance(goal.hex)<=w.army.siegeRange(u)){w.siege(u.id,goal.id);return;}w.advance(u,goal.hex,w.army.siegeRange(u));if(u.hex.distance(goal.hex)<=w.army.siegeRange(u))w.siege(u.id,goal.id);}
-        else {World.City home=null;for(int city:d.cities){World.City c=w.city(city);if(home==null||u.hex.distance(c.hex)<u.hex.distance(home.hex))home=c;}if(home!=null){if(u.hex.distance(home.hex)==1){w.enter(u.id,home.id);return;}w.advance(u,home.hex,1);}}
-        if(w.unit(u.id)!=null&&!u.acted)w.war.waitUnit(u.id);
+        boolean offensive=d.policy!=Policy.DEFENSE&&d.policy!=Policy.ECONOMY;
+        new CampaignAi(w).runUnit(u,d.attack,
+            c->offensive&&(d.policy!=Policy.CITY_ATTACK||c.id==d.target)&&(d.policy!=Policy.FORCE_ATTACK||c.owner==d.target),
+            c->c.owner==d.owner&&d.cities.contains(c.id));
     }
 }

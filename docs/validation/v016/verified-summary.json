@@ -1,0 +1,75 @@
+{
+  "codeCommit": "d6ca5f282f23cbcbea27b9c06ac2cbaa8bdd7920",
+  "sourceTree": "7e34522fcd6f4d7ac1eb9aeeee97541ec4e299a0",
+  "ciRun": 34841640072,
+  "conclusion": "success",
+  "apk": {
+    "name": "sanguo11-mobile-v016-d6ca5f2.apk",
+    "bytes": 496576,
+    "sha256": "7caba187b235fb273c6ee5379bd8987fce076cbf2756f2a21d15c4f4817b42b8",
+    "certificateSha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "v2SignatureVerifiedByCI": true
+  },
+  "ui": {
+    "platform": "Android API29 x86_64",
+    "profiles": {
+      "1080x1920": 75,
+      "1080x2340": 75,
+      "1080x2400": 75
+    },
+    "screenshots": 225,
+    "smokePassCount": 3,
+    "appFatalExceptions": 0,
+    "appANRs": 0,
+    "armDeviceVerified": false,
+    "visuallyReviewedNewScreenshots": 6
+  },
+  "upgrade": {
+    "fromCodeVersion": "0.9",
+    "retainedSaveVersion": 8,
+    "writtenSaveVersion": 14,
+    "stateEqualityVerified": true
+  },
+  "sourceArchive": {
+    "comparedFiles": 245,
+    "exactBytesMatch": true,
+    "artifactId": 10346421809,
+    "zipSha256": "e04130ff405fc055356c08d1a8b4e9df30fa6c3872562380640589ea1c26c61d"
+  },
+  "localCoreSuites": 20,
+  "campaignAiAssertions": 452,
+  "uiModelAssertions": 51749,
+  "contentPipelineTests": 15,
+  "fullOriginalParity": false,
+  "lint": {
+    "errors": 0,
+    "warnings": 12
+  },
+  "artifacts": [
+    {
+      "id": 10346698735,
+      "name": "android-smoke-evidence-1080x1920",
+      "digest": "sha256:aa54a5594118f22487060ceda5c17992b51bdef0934c87d717cf156de09720c2"
+    },
+    {
+      "id": 10346653971,
+      "name": "android-lint-1080x1920",
+      "digest": "sha256:9479130818ef38759057641654143e3a592ca07723fdf7d550d4755badd48853"
+    },
+    {
+      "id": 10346389812,
+      "name": "sanguo11-mobile-v016-apk",
+      "digest": "sha256:d24ffc6945e612fc5a442788838a877cabae1dbf868cf5f9768e15b32b51eb46"
+    },
+    {
+      "id": 10346449214,
+      "name": "android-smoke-evidence-1080x2400",
+      "digest": "sha256:ee08b27e195fd8533a3fceed6d4fa1ee912da5ed26edfbf3885231f4323f7f26"
+    },
+    {
+      "id": 10346199032,
+      "name": "android-smoke-evidence-1080x2340",
+      "digest": "sha256:f549de3199b736a44ed108b1aaa889f42cf10e73f644c1aebe41a29f3b3b734b"
+    }
+  ]
+}

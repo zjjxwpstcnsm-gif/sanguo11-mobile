@@ -114,9 +114,10 @@ public final class ScenarioTest {
         w.officers.add(new World.Officer(0,"守将",0,0,75,70,70,70,70));w.officers.add(new World.Officer(1,"进攻将",1,1,75,70,70,70,70));
         for(int r=1;r<11;r++)w.terrain[6][r]=World.Terrain.MOUNTAIN;
         w.active=1;check(w.deploy(1,1,World.Weapon.SPEAR,3000).ok,"detour fixture deployment");w.unit(1).hex=new Hex(7,5);w.active=0;
-        int defense=w.city(0).defense;
-        for(int turn=0;turn<14&&!w.gameOver();turn++){check(w.nextTurn().ok,"detour turn "+turn);SaveCodec.validate(w);}
-        check(w.city(0).defense<defense||w.city(0).owner==1,"AI takes long detour and reaches enemy city");
+        int defense=w.city(0).defense;boolean attacked=false;
+        for(int turn=0;turn<14&&!w.gameOver();turn++){check(w.nextTurn().ok,"detour turn "+turn);SaveCodec.validate(w);attacked|=w.city(0).defense<defense||w.city(0).owner==1;}
+        // A damaged army now returns home; natural city repair can erase damage before turn 14.
+        check(attacked,"AI takes long detour and actually damages enemy city within 14 turns");
         w=ScenarioCatalog.load("regional-sandbox",0);w.deploy(100,1000,World.Weapon.SPEAR,3000);
         World.Unit unit=w.unit(1);unit.hex=new Hex(15,6);w.city(200).defense=1;
         check(w.siege(unit.id,200).ok&&w.officer(2000).cityId==210,"captured officers retreat to surviving friendly city");SaveCodec.validate(w);
