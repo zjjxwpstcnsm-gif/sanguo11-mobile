@@ -1,0 +1,85 @@
+{
+  "date": "2026-09-14",
+  "codeCommit": "989dcd4462b738bbfeb9c0624d6233b679415eca",
+  "ciRun": 34817238184,
+  "job": 103890409390,
+  "conclusion": "success",
+  "apk": {
+    "name": "sanguo11-mobile-v011-989dcd4.apk",
+    "bytes": 373201,
+    "sha256": "a0888e0f81fcb40802cf420f64ab090cd6e69d946c3be08434dbb905047faadc",
+    "certificateSha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "v2SignatureVerifiedByCI": true
+  },
+  "v010ActualApkComparison": {
+    "file": "sanguo11-mobile-v010-e7f1e23.apk",
+    "apk_sha256": "fbb85fe9b6a39b8a98aa0d20b0482bfb0331893d995038d1f98b1fbb89f9ecaf",
+    "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24"
+  },
+  "sameCertificateAsV010": true,
+  "upgrade": {
+    "fromCodeVersion": "0.9",
+    "retainedSaveVersion": 8,
+    "writtenSaveVersion": 10,
+    "inPlaceInstallAndStateEquality": true
+  },
+  "ui": {
+    "platform": "Android API29 x86_64",
+    "screenshots": 151,
+    "perConfiguration": {
+      "1080x1920": 50,
+      "1080x2340": 50,
+      "1080x2400": 50,
+      "upgrade": 1
+    },
+    "dimensions": {
+      "(1920, 1080)": 51,
+      "(2340, 1080)": 50,
+      "(2400, 1080)": 50
+    },
+    "smokePassCount": 3,
+    "appFatalExceptions": 0,
+    "appANRs": 0,
+    "armDeviceVerified": false
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 12
+  },
+  "sourceArchive": {
+    "comparedFiles": 193,
+    "exactBytesMatchBeforeFinalDocumentation": true
+  },
+  "artifacts": [
+    {
+      "id": 10338240343,
+      "name": "sanguo11-mobile-v011-apk",
+      "size": 368888,
+      "digest": "sha256:8a76ac0ddb64469aeccc565d2132cadee218d6bd1e588d37b00560c0026898ba"
+    },
+    {
+      "id": 10338011061,
+      "name": "android-smoke-evidence",
+      "size": 38997550,
+      "digest": "sha256:ec7d482a784fde4d6b6e57acf4a3b44590a6b70af6387a3fee132161909fc356"
+    },
+    {
+      "id": 10337756763,
+      "name": "android-lint",
+      "size": 17495,
+      "digest": "sha256:5ee26d24c2d6fbfb1f81eeec1143f7657cc962cbee3f08328f30f87aa0fb6473"
+    },
+    {
+      "id": 10336591545,
+      "name": "sanguo11-mobile-source",
+      "size": 625059,
+      "digest": "sha256:c25ec5a9801f3d6171a3e0737a2f35f19848ae7e8be3d51875d7c68f219a8028"
+    }
+  ],
+  "earlierFailure": {
+    "run": 34815953869,
+    "message": "UI action not found: 研究",
+    "fix": "Two-row city categories; PK task count from actual task projection; retained all assertions"
+  },
+  "fullOriginalParity": false
+}

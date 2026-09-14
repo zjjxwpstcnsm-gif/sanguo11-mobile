@@ -4,7 +4,9 @@
 
 ## 当前状态
 
-**v0.11.0 PK研究与培养开发版（本PR）。** 新增四方向能力研究、有限次数培养、隐藏候选、特技覆盖及v10存档；校正部分技巧和金粮收入时序。进入己方城池→研究使用。实际效果、来源冲突、禁用培养项与未还原范围见 [v0.11说明](docs/PK_V0_11.md)。本地回归通过，Android交付结果待CI记录。**仍未达到100%还原。**
+**v0.11.0 PK研究与培养开发版。** 新增四方向能力研究、有限次数培养、隐藏候选、特技覆盖及v10存档；校正部分技巧和金粮收入时序。进入己方城池→研究使用。实际效果、来源冲突、禁用培养项与未还原范围见 [v0.11说明](docs/PK_V0_11.md)。**仍未达到100%还原。**
+
+[v0.11 APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34817238184/artifacts/10338240343) 对应 `989dcd4`；[完整CI](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34817238184)通过核心/UI、Android构建/Lint、三种横屏操作及v0.9覆盖升级，取回151张截图。实际APK证书与已交付v0.10相同。修复了窄屏研究入口隐藏和PK任务数量遗漏；Lint保留12条警告，ARM真机尚未验证。
 
 ## v0.10 历史状态
 
@@ -79,7 +81,7 @@ v0.8 Agent 1 开发分支新增移动确认与移动后行动、部分真实特�
 
 Android 构建：安装 JDK 17、Android SDK 35、Build Tools 35.0.0、Gradle 8.11.1，然后运行 `./gradlew test :core:check :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`。已提交固定 Gradle 8.11.1 及 SHA-256 的 Wrapper。
 
-APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；联合CI保存名为 `sanguo11-mobile-integrated-v08-apk` 的产物，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与实际证书比较。对应提交源码另存为 `sanguo11-mobile-source`。安装测试证据另存为 `android-smoke-evidence`，包含操作截图与日志。它是开发调试签名，正式发行和后续覆盖升级前需要配置持久签名密钥。不要把密钥提交进仓库。
+APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-v011-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
 
 验证范围与待验项目见 [VALIDATION.md](docs/VALIDATION.md)。
 
@@ -88,4 +90,3 @@ APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；联合CI保存名
 先读 [progress.md](progress.md)、[功能覆盖表](docs/FEATURES.md)、[玩法研究](docs/RESEARCH.md)、[开发路线](docs/ROADMAP.md)。任何新实现必须明确标记「原版核验」或「工程近似」，不得用占位界面或名称数量宣称完整复刻。
 
 本仓库仅包含原创代码和程序绘制图形，未包含光荣原版肖像、音频、地图贴图、动画或说明文本。原版素材的接入以明确授权和来源记录为前提。
-
