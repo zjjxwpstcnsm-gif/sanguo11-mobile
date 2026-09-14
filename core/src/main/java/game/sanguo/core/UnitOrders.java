@@ -27,6 +27,7 @@ public final class UnitOrders {
     private final World w;
     UnitOrders(World w){this.w=w;}
     public String error(World.Unit u) {
+        if(w.contests.busy())return "请先完成当前单挑或舌战";
         if(w.gameOver())return "本局已结束";
         if(u==null||w.unit(u.id)!=u||u.owner!=w.active)return "请选择当前势力的部队";
         if(u.acted)return "这支部队本旬已行动";

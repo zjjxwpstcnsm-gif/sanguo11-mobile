@@ -13,11 +13,13 @@ import game.sanguo.core.*;
 /** Runs against an installed APK using platform UI automation, without a test framework dependency. */
 public final class GameSmokeRunner extends Instrumentation {
     private Activity current;
+    private boolean upgradeOnly;
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);current=a;}
-    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);start();}
+    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));start();}
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
+            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v9 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
@@ -53,7 +55,8 @@ public final class GameSmokeRunner extends Instrumentation {
             contentFlow();
             governmentFlow();
             documentTransferFlow();
-            result.putString("stream","SMOKE PASS: integrated original game/save/city/task/personnel/combat/army regressions; v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            contestFlow();
+            result.putString("stream","SMOKE PASS: integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -220,6 +223,59 @@ public final class GameSmokeRunner extends Instrumentation {
         try(FileOutputStream out=new FileOutputStream(exported)){out.write(new byte[]{1,2,3});}
         runOnMainSync(()->((MainActivity)current).onActivityResult(912,Activity.RESULT_OK,result));waitText("导入失败",true);click("返回",true);
         require(Arrays.equals(before,SaveCodec.encode(saved())),"corrupt external document does not mutate game");screenshot("40-document-restore");
+    }
+    private void upgradeFlow()throws Exception {
+        World legacy=saved();String scenarioName=legacy.scenarioName;byte[] before=SaveCodec.encode(legacy);
+        Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivitySync(launch);waitText(scenarioName,false);waitForIdleSync();
+        java.lang.reflect.Field field=MainActivity.class.getDeclaredField("world");field.setAccessible(true);World[] loaded=new World[1];
+        runOnMainSync(()->{try{loaded[0]=(World)field.get(current);}catch(IllegalAccessException e){throw new RuntimeException(e);}});
+        require(Arrays.equals(before,SaveCodec.encode(loaded[0])),"upgraded app actually loaded all old state");
+        require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=10,"new app version installed");
+        runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
+        require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==9,"upgraded writer produced v9 header");}
+        screenshot("00-v09-upgrade-preserved");
+    }
+    private void contestFlow()throws Exception {
+        clickNav("菜单");click("新游戏 / 选择势力",true);click("文武对决 ·",false);click("文武营",true);click("执行",true);
+        World w=saved();require(w.scenarioId.equals("contest-drill")&&w.units.size()==2&&w.contests.hasProfile(2),"real bundled contest opening and profiles load");
+        for(long seed=0;seed<100;seed++){w.strategy.setSeed(seed);World probe=SaveCodec.decode(SaveCodec.encode(w));probe.contests.challenge(1,2);if(probe.contests.busy())break;}
+        installFixture(w,w.unit(1).hex);byte[] before=SaveCodec.encode(saved());
+        click("单挑",true);click("岳平 ·",false);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"duel confirmation cancel costs nothing");
+        click("单挑",true);click("岳平 ·",false);click("执行",true);waitText("单挑 · 第0",false);screenshot("41-duel-start");
+        require(saved().unit(1).energy==70&&saved().unit(1).acted&&saved().contests.busy(),"duel initiation pays once");
+        require(!waitText("下一旬  →",true).isEnabled(),"next turn blocked during duel");
+        click("交锋",true);waitText("单挑 · 第1",false);before=SaveCodec.encode(saved());
+        runOnMainSync(current::recreate);waitText("单挑 · 第1",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"duel round restores without duplicate exchange");screenshot("42-duel-restored");
+        clickNav("菜单");click("保存局面（3个槽位）",true);click("槽位 2 ·",false);click("执行",true);click("继续当前对局",true);
+        click("认输并结束单挑",true);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"concession cancel preserves contest");
+        click("认输并结束单挑",true);click("执行",true);require(!saved().contests.busy()&&saved().government.captive(0)&&saved().unit(1)==null,"actual duel loss captures commander and dissolves unit");
+        screenshot("43-duel-capture");
+        clickNav("菜单");click("读取存档",true);click("槽位 2 · 文武对决",false);click("执行",true);waitText("单挑 · 第1",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"manual slot restores in-progress duel exactly");
+        clickNav("菜单");click("新游戏 / 选择势力",true);click("文武对决 ·",false);click("文武营",true);click("执行",true);
+        locateCity("东营");click("武将",true);click("舌战登用",true);click("林策 ·",false);click("苏澄 ·",false);
+        before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"debate confirmation cancel costs nothing");
+        click("舌战登用",true);click("林策 ·",false);click("苏澄 ·",false);click("执行",true);waitText("舌战 · 第0",false);screenshot("44-debate-start");
+        require(saved().city(10).gold==9900&&saved().actionPoints[0]==50,"debate start pays once");
+        click("再考 · 更换全部手牌",true);before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("舌战 · 第0",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"rethink cards/RNG/lock survive recreation");
+        Debate d=saved().contests.current().debate();int choice=0;while(d.cardError(choice)!=null)choice++;
+        click("出牌 · "+d.speaker(0).hand().get(choice).label(),true);waitText("舌战 · 第1",false);screenshot("45-debate-card");
+        // Continue actual engine commands to a pending victory, then exercise the native result choice.
+        World pending=null;
+        for(int seed=0;seed<100&&pending==null;seed++){
+            World candidate=ScenarioCatalog.load("contest-drill",0);candidate.strategy.setSeed(seed);candidate.contests.persuade(10,2,6);
+            while(candidate.contests.current().debate().winner()==-2){
+                Contests.Session cs=candidate.contests.current();Debate debate=cs.debate();int best=-1,score=-999;
+                for(int i=0;i<debate.speaker(0).hand().size();i++){Debate.Card card=debate.speaker(0).hand().get(i);if(debate.cardError(i)!=null)continue;int n=card.talk==Debate.Talk.SHOUT?40:card.talk==Debate.Talk.GUILE?30:card.talk==Debate.Talk.IGNORE?25:card.talk!=null?0:card.size*4+(card.topic==debate.topic()?20:0);if(n>score){score=n;best=i;}}
+                require(best>=0,"playable debate hand");require(candidate.contests.debateCard(cs.id(),cs.revision(),best).ok,"advance actual debate");
+            }
+            if(candidate.contests.current().debate().winner()==0)pending=candidate;
+        }
+        require(pending!=null,"deterministic actual debate victory available");installFixture(pending,pending.city(10).hex);waitText("舌战获胜",false);
+        before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("舌战获胜",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"pending victory remains uncommitted after recreation");screenshot("46-debate-victory");
+        click("留情 · 技巧+50",true);require(!saved().contests.busy()&&saved().officer(6).owner==0&&saved().campaign.points(0)==50,"native mercy choice recruits officer and awards points once");
+        before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("文武对决",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"settled debate does not pay rewards twice");screenshot("47-contest-settled");
     }
     private void installFixture(World w,Hex focus)throws Exception {
         SaveCodec.validate(w);java.lang.reflect.Field field=MainActivity.class.getDeclaredField("world");field.setAccessible(true);

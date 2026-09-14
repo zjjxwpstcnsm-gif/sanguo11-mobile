@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=8, MAX_BYTES=4*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=9, MAX_BYTES=4*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -47,6 +47,7 @@ public final class SaveCodec {
         ArmySave.write(w,d);
         RulesSave.write(w,d);
         GovernmentSave.write(w,d);
+        ContestSave.write(w,d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
@@ -102,6 +103,7 @@ public final class SaveCodec {
         if(version>=6)ArmySave.read(w,d);
         if(version>=7)RulesSave.read(w,d);
         if(version>=8)GovernmentSave.read(w,d);
+        if(version>=9)ContestSave.read(w,d);
         count=bounded(d.readInt(),0,40);for(int i=0;i<count;i++)w.log.add(d.readUTF());
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         validate(w);return w;
@@ -150,6 +152,7 @@ public final class SaveCodec {
         ArmySave.validate(w);
         RulesSave.validate(w);
         GovernmentSave.validate(w);
+        ContestSave.validate(w);
         for(String line:w.log)label(line,2000);
         if(w.winner>=0) {
             require(w.alive(w.winner),"胜者势力不存在");

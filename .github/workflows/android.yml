@@ -52,12 +52,19 @@ jobs:
           ./gradlew --no-daemon test :core:check
           ./gradlew --no-daemon lint
           ./gradlew --no-daemon assembleDebug :app:assembleDebugAndroidTest
+      - name: Build pinned v0.9 upgrade baseline
+        run: |
+          git fetch --depth=1 origin 5ff24223f723a5ce4830b6c3753b479877e1ae94
+          mkdir -p /tmp/sanguo-v09-upgrade app/build/upgrade
+          git archive 5ff24223f723a5ce4830b6c3753b479877e1ae94 | tar -x -C /tmp/sanguo-v09-upgrade
+          (cd /tmp/sanguo-v09-upgrade && ./gradlew --no-daemon :app:assembleDebug)
+          cp /tmp/sanguo-v09-upgrade/app/build/outputs/apk/debug/app-debug.apk app/build/upgrade/v09.apk
       - name: Check bundled scenario resources
         run: |
           python3 - <<'PY'
           import zipfile
           with zipfile.ZipFile('app/build/outputs/apk/debug/app-debug.apk') as apk:
-              for name in ['scenarios/index.txt', 'scenarios/m0-skirmish.properties', 'scenarios/regional-sandbox.properties', 'scenarios/river-siege-sandbox.properties', 'scenarios/officer-reference-drill.properties', 'content/index.txt', 'content/officers.tsv', 'content/sites.tsv']:
+              for name in ['scenarios/index.txt', 'scenarios/m0-skirmish.properties', 'scenarios/regional-sandbox.properties', 'scenarios/river-siege-sandbox.properties', 'scenarios/officer-reference-drill.properties', 'content/index.txt', 'content/officers.tsv', 'content/sites.tsv', 'scenarios/contest-drill.properties']:
                   assert name in apk.namelist(), name
           PY
       - name: Enable KVM for Android runtime verification
@@ -72,7 +79,7 @@ jobs:
           arch: x86_64
           profile: pixel_2
           disable-animations: true
-          script: bash scripts/smoke-android.sh
+          script: bash scripts/verify-upgrade.sh && bash scripts/smoke-android.sh
       - name: Check stable development signature and record digest
         run: |
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs app/build/outputs/apk/debug/app-debug.apk | tee app/build/outputs/apk/debug/SIGNATURE.txt
@@ -82,14 +89,14 @@ jobs:
           assert '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' in signature
           PYVERIFY
           cd app/build/outputs/apk/debug
-          cp app-debug.apk "sanguo11-mobile-v09-$(git rev-parse --short HEAD).apk"
-          sha256sum sanguo11-mobile-v09-*.apk | tee SHA256SUMS
+          cp app-debug.apk "sanguo11-mobile-v010-$(git rev-parse --short HEAD).apk"
+          sha256sum sanguo11-mobile-v010-*.apk | tee SHA256SUMS
           git rev-parse HEAD > BUILD_COMMIT
       - uses: actions/upload-artifact@v4
         with:
-          name: sanguo11-mobile-v09-apk
+          name: sanguo11-mobile-v010-apk
           path: |
-            app/build/outputs/apk/debug/sanguo11-mobile-v09-*.apk
+            app/build/outputs/apk/debug/sanguo11-mobile-v010-*.apk
             app/build/outputs/apk/debug/BUILD_COMMIT
             app/build/outputs/apk/debug/SHA256SUMS
             app/build/outputs/apk/debug/SIGNATURE.txt

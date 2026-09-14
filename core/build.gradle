@@ -69,3 +69,12 @@ tasks.register('verifySupply', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyGovernment', 'verifySupply' }
 tasks.named('test') { dependsOn 'verifyGovernment', 'verifySupply' }
+
+// Stateful single combat and debate rules plus campaign/save integration.
+tasks.register('verifyContests', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.ContestTest'
+}
+tasks.named('check') { dependsOn 'verifyContests' }
+tasks.named('test') { dependsOn 'verifyContests' }

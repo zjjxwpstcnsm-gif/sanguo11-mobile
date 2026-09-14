@@ -1,0 +1,13 @@
+PASS: 187 assertions covering hex paths, resources, combat, turns, saves, and deterministic simulation.
+PASS: 143 content/runtime integration assertions.
+PASS: 2638 content assertions; cold catalog 66.985 ms; sourced opening combat at turn 4.
+PASS: 359 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
+PASS: 701 domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.
+PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
+PASS: 50x50 benchmark, 100 A* queries: p50=1.217ms p95=2.104ms max=4.119ms total=129.339ms maxExpanded=2125/2500; 100 reachable queries=6.795ms
+PASS: 8498 strategy/officer assertions covering locks, seeded search/hiring, loyalty, offices, economy, finite reserves, readiness, AI and save v1-v4.
+PASS: 59 campaign cases, 590 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
+PASS: 45 army cases, 465 assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.
+PASS: 529 rules-parity assertions: move previews/replays/budget, skill priorities/holders/chains, actual damage/production, real v6 migration and deterministic campaigns.
+PASS: 598 governance assertions: rank caps/payroll, captive crew and immunity, recruit/release/ransom/rescue, delegation, real v7 migration and long campaigns.
+PASS: 43 supply assertions: troop/food conservation, no duplicate delivery, raid/capture/treaty, amphibious routes and save restoration.

@@ -77,6 +77,7 @@ public final class World {
     public final Skills skills=new Skills(this);
     public final Government government=new Government(this);
     public final Supply supply=new Supply(this);
+    public final Contests contests=new Contests(this);
     public final String[] factions;
     public final int[] actionPoints;
     public String scenarioId="m0-skirmish", scenarioName="基础演练", dataSource="engineering-original", dataHash="";
@@ -109,13 +110,14 @@ public final class World {
     Result fail(String text) { return new Result(false,text); }
     Result success(String text) { note(text);return new Result(true,text); }
     public void note(String text) { log.add(text);while(log.size()>40)log.remove(0); }
-    private boolean available(Officer o,City c) { return o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
+    private boolean available(Officer o,City c) { return !contests.busy()&&o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
     public List<Officer> idle(City c) {
         List<Officer> found=new ArrayList<>();
         if(c!=null&&c.owner==active) for(Officer o:officers) if(available(o,c))found.add(o);
         return found;
     }
     String cityError(City c,Officer o,int gold) {
+        if(contests.busy())return "请先完成当前单挑或舌战";
         if(gameOver())return "本局已结束";
         if(c==null||c.owner!=active)return "请选择己方城池";
         if(!available(o,c))return "需要一名本旬尚未行动的在城武将";
@@ -205,6 +207,7 @@ public final class World {
     void removeUnit(Unit u) { government.defeated(u,null); }
     void defeatUnit(Unit u,Unit attacker){government.defeated(u,attacker);}
     public Result nextTurn() {
+        if(contests.busy())return fail("请先完成当前单挑或舌战");
         if(gameOver())return fail("本局已结束，请重开");
         if(active!=player)return fail("等待电脑行动");
         government.runDelegated();
@@ -214,7 +217,7 @@ public final class World {
             reset(active);runAi();checkVictory();
             if(gameOver()){active=player;return success(winner==player?"战场胜利":"我方势力已覆灭");}
         }
-        turn++;domestic.tick();campaign.tick();army.tick();strategy.tick();war.tick();government.tick();
+        turn++;contests.tick();domestic.tick();campaign.tick();army.tick();strategy.tick();war.tick();government.tick();
         for(Unit u:new ArrayList<>(units)) {
             int consumption=Math.max(1,(u.troops+19)/20);
             if(campaign.has(u.owner,Campaign.Tech.LOGISTICS))consumption=Math.max(1,consumption*4/5);

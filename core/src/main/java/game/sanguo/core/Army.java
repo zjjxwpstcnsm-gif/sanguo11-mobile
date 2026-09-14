@@ -33,7 +33,7 @@ public final class Army {
         for(int id:unit.deputies)members.add(w.officer(id));return members;
     }
     public boolean contains(World.Unit unit,int officer){if(unit.officerId==officer)return true;if(unit.deputies!=null)for(int id:unit.deputies)if(id==officer)return true;return false;}
-    public int war(World.Unit unit){int value=0;for(World.Officer o:crew(unit))value=Math.max(value,o.war);return value;}
+    public int war(World.Unit unit){int value=0;for(World.Officer o:crew(unit))value=Math.max(value,w.contests.war(o));return value;}
     public int intelligence(World.Unit unit){int value=0;for(World.Officer o:crew(unit))value=Math.max(value,o.intelligence);return value;}
     public int aptitude(World.Unit unit){return aptitude(crew(unit),water(unit.hex)?5:category(unit.weapon));}
     public int aptitude(List<World.Officer> crew,int category){int value=0;if(category>=0)for(World.Officer o:crew)value=Math.max(value,o.aptitude[category]);return value;}
@@ -97,7 +97,7 @@ public final class Army {
         }
     }
     public World.Result cancelProduction(int officer){Production p=productions.stream().filter(x->x.officerId==officer).findFirst().orElse(null);
-        if(w.gameOver()||p==null||p.owner!=w.active)return w.fail("请选择本势力制造任务");productions.remove(p);World.Officer o=w.officer(officer);o.otherTask="";o.otherTaskTurns=0;o.acted=true;return w.success("制造中止，费用不退还");}
+        if(w.contests.busy()||w.gameOver()||p==null||p.owner!=w.active)return w.fail("请选择本势力制造任务");productions.remove(p);World.Officer o=w.officer(officer);o.otherTask="";o.otherTaskTurns=0;o.acted=true;return w.success("制造中止，费用不退还");}
     /** Current modeled unit attack; base attribute formula still awaits original executable calibration. */
     public double attackPower(World.Unit u){return (80+w.officer(u.officerId).leadership+war(u)/2.0)*(water(u.hex)?u.ship.power:u.weapon.power)/100.0;}
     int damage(World.Unit a,World.Unit b,double scale,Random random){
@@ -127,7 +127,7 @@ public final class Army {
         return result;
     }
     public String tacticError(int unit,Hex target,Tactic tactic){
-        World.Unit u=w.unit(unit);if(w.gameOver()||u==null||u.owner!=w.active||u.acted||u.status!=War.Status.NORMAL)return "需要当前势力可行动部队";
+        World.Unit u=w.unit(unit);if(w.contests.busy()||w.gameOver()||u==null||u.owner!=w.active||u.acted||u.status!=War.Status.NORMAL)return "需要当前势力可行动部队";
         if(tactic==null||!tactics(u).contains(tactic))return "当前兵装或舰船不能施展此战法";
         if(water(u.hex)&&aptitude(u)<tactic.rank||u.energy<tactic.energy)return "适性或气力不足";
         int distance=target==null?0:u.hex.distance(target),max=tactic==Tactic.RAM?1:w.war.range(u);
@@ -165,6 +165,6 @@ public final class Army {
         w.campaign.earn(u.owner,enemy.troops==0&&w.skills.has(u,Skill.JINGMIAO)?80:40);w.checkVictory();return w.success(tactic.label+"命中，敌损"+amount);
     }
     public World.Result extinguish(int unit){World.Unit u=w.unit(unit);
-        if(w.gameOver()||u==null||u.owner!=w.active||u.acted||u.status!=War.Status.NORMAL||u.burning==0||u.energy<5)return w.fail("需要可行动且正在燃烧的己方部队，消耗5气力");
+        if(w.contests.busy()||w.gameOver()||u==null||u.owner!=w.active||u.acted||u.status!=War.Status.NORMAL||u.burning==0||u.energy<5)return w.fail("需要可行动且正在燃烧的己方部队，消耗5气力");
         u.burning=0;u.burningOwner=-1;u.burningPower=1;u.energy-=5;u.acted=true;return w.success("部队已扑灭火焰");}
 }

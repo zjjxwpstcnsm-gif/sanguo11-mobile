@@ -1,0 +1,74 @@
+{
+  "date": "2026-09-14",
+  "repository": "zjjxwpstcnsm-gif/sanguo11-mobile",
+  "pull_request": 11,
+  "build_commit": "e7f1e23eaae5f75512fd1ef2b9581e4040844d4b",
+  "source_tree": "05770a17e442bc78d926b4320b11a8620100cc26",
+  "local_equivalent_commit": "bf9e47a063df13477676b8ca89eef8ffb3084128",
+  "source_archive_files_verified": 182,
+  "run_id": 34812466885,
+  "job_id": 103876362698,
+  "conclusion": "success",
+  "apk": {
+    "name": "sanguo11-mobile-v010-e7f1e23.apk",
+    "size_bytes": 353561,
+    "sha256": "fbb85fe9b6a39b8a98aa0d20b0482bfb0331893d995038d1f98b1fbb89f9ecaf",
+    "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "signature_v2": true
+  },
+  "android": {
+    "api": 29,
+    "arch": "x86_64",
+    "profiles": [
+      "1920x1080",
+      "2340x1080",
+      "2400x1080"
+    ],
+    "smoke_passes": 3,
+    "upgrade_passes": 1,
+    "screenshots": 145,
+    "lint_errors": 0,
+    "lint_warnings": 12,
+    "crash_or_anr_found": false
+  },
+  "upgrade": {
+    "baseline_commit": "5ff24223f723a5ce4830b6c3753b479877e1ae94",
+    "installed_over_old_apk": true,
+    "retained_file_identical": true,
+    "old_world_loaded": true,
+    "written_save_version": 9,
+    "restored_game_fields_identical": true
+  },
+  "artifacts": [
+    {
+      "id": 10335642016,
+      "name": "android-smoke-evidence",
+      "size_bytes": 37860689,
+      "digest": "sha256:b72b4a5d785223e4089acf4f3bd341f618e4de8d8b6ef1b331db9ddeb5bd6a03"
+    },
+    {
+      "id": 10335567258,
+      "name": "sanguo11-mobile-v010-apk",
+      "size_bytes": 349061,
+      "digest": "sha256:b0dc6ff2fc7762c87998f7a760415a9839f15591223f50bb4402f2086942b07f"
+    },
+    {
+      "id": 10335133667,
+      "name": "android-lint",
+      "size_bytes": 17496,
+      "digest": "sha256:06cf5f3edfccf797eaafaf0c9cfd66e1720e5d63512c188aee1e812be75ec8fe"
+    },
+    {
+      "id": 10334719781,
+      "name": "sanguo11-mobile-source",
+      "size_bytes": 587525,
+      "digest": "sha256:51417d1f42f9599d021cf5d25397cd1dc918738a76cd65b756f3e2d723156ed4"
+    }
+  ],
+  "limits": [
+    "engineering formulas are not original-game equivalence",
+    "ARM devices and low-memory process death untested",
+    "12 pre-existing lint warnings",
+    "final documentation commit does not rebuild APK"
+  ]
+}
