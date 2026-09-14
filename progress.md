@@ -2,7 +2,7 @@
 
 ## 当前 v0.8 联合开发版
 
-集成分支 agent/integrate-v08 已实际合入双方代码，唯一存档v7。来源目录到运行时特技/性别桥接完成；原有及双方新增回归均已合并，Android联合验证进行中。[集成记录与缺口](docs/handoffs/integration-v08.md)。
+集成分支 agent/integrate-v08 已实际合入双方代码及PR6最终修复，唯一存档v7。[PR #9](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/9) 的代码 `4f7e4b6b` 已通过完整独立CI：核心/UI、Android构建、Lint与API29三种横屏安装，108张截图。297602字节联合APK已取回并核对摘要；Lint12条警告，无ARM真机。签名与实际比较的旧v0.6、v0.7不同，不能覆盖这两个旧包。来源目录到运行时特技/性别桥接完成，仍未完整还原。[集成记录、APK与缺口](docs/handoffs/integration-v08.md)。
 
 ## v0.8 Agent 1 开发增量
 

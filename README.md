@@ -4,7 +4,9 @@
 
 ## 当前状态
 
-**v0.8.0 联合开发版，仍未完成原版完整玩法。** 已合入两Agent实际代码：移动后行动、部分特技规则、v7兼容存档与来源资料/导航；资料演练18人加载真实能力、适性、性别和特技。全国原版地形与官方完整开局尚未取得。联合APK验证进度见 [集成记录](docs/handoffs/integration-v08.md)。
+**v0.8.0 联合开发版，仍未完成原版完整玩法。** 已合入两Agent实际代码：移动后行动、部分特技规则、v7兼容存档与来源资料/导航；资料演练18人加载来源记录的能力、适性、性别和特技。全国原版地形与官方完整开局尚未取得。完整边界见 [集成记录](docs/handoffs/integration-v08.md)。
+
+[联合APK下载](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34795796771/artifacts/10330450599) 对应代码 `4f7e4b6b`；[联合CI](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34795796771) 的全部核心/UI、构建、Lint与API29三种横屏安装通过，共108张截图。Lint仍有12条警告，ARM真机未验证。实际签名与所比较的v0.6、v0.7旧APK均不同，不能覆盖安装；请保留有重要存档的旧应用。
 
 ## v0.7 历史状态
 
@@ -63,7 +65,7 @@ v0.8 Agent 1 开发分支新增移动确认与移动后行动、部分真实特�
 
 Android 构建：安装 JDK 17、Android SDK 35、Build Tools 35.0.0、Gradle 8.11.1，然后运行 `./gradlew test :core:check :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`。已提交固定 Gradle 8.11.1 及 SHA-256 的 Wrapper。
 
-APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；CI 会保存名为 `sanguo11-mobile-m1-apk` 的产物。对应提交源码另存为 `sanguo11-mobile-source`。安装测试证据另存为 `android-smoke-evidence`，包含操作截图与日志。它是开发调试签名，正式发行和后续覆盖升级前需要配置持久签名密钥。不要把密钥提交进仓库。
+APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；联合CI保存名为 `sanguo11-mobile-integrated-v08-apk` 的产物，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与实际证书比较。对应提交源码另存为 `sanguo11-mobile-source`。安装测试证据另存为 `android-smoke-evidence`，包含操作截图与日志。它是开发调试签名，正式发行和后续覆盖升级前需要配置持久签名密钥。不要把密钥提交进仓库。
 
 验证范围与待验项目见 [VALIDATION.md](docs/VALIDATION.md)。
 
