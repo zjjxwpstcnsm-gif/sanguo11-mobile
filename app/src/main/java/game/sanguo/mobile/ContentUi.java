@@ -21,27 +21,27 @@ final class ContentUi {
         LinearLayout host=new LinearLayout(a);host.setOrientation(LinearLayout.VERTICAL);
         try{catalog=ContentCatalog.get();}catch(IOException e){host.addView(text("资料校验失败："+e.getMessage(),18));return host;}
         if(!Arrays.asList(kinds).contains(state.contentKind))state.contentKind="officers";
-        host.addView(text("全国资料 / 核验目录",20));
-        host.addView(text("资料待原版核验 · 资料不代表规则生效\n官方完整可玩剧本：0",12));
-        LinearLayout toolbar=new LinearLayout(a);host.addView(toolbar,new LinearLayout.LayoutParams(-1,a.dp(44)));
-        toolbar.addView(a.button(titles[Arrays.asList(kinds).indexOf(state.contentKind)],v->new AlertDialog.Builder(a).setTitle("资料分类").setItems(titles,(d,i)->{state.contentKind=kinds[i];state.contentQuery="";state.contentFirstId="";a.refresh();}).setNegativeButton("取消",null).show()),new LinearLayout.LayoutParams(0,-1,1));
+        host.addView(text("全国资料 / 核验目录",18));
+        host.addView(text("原安装未核验 · 官方可玩 0",12));
+        LinearLayout toolbar=new LinearLayout(a);host.addView(toolbar,new LinearLayout.LayoutParams(-1,a.dp(40)));
+        toolbar.addView(a.button(titles[Arrays.asList(kinds).indexOf(state.contentKind)],v->new AlertDialog.Builder(a).setTitle("资料分类").setItems(titles,(d,i)->{state.contentKind=kinds[i];state.contentQuery="";state.contentFirstId="";state.contentTop=0;a.refresh();}).setNegativeButton("取消",null).show()),new LinearLayout.LayoutParams(0,-1,1));
         toolbar.addView(a.button("据点分布预览",v->preview()),new LinearLayout.LayoutParams(0,-1,1));
         EditText search=new EditText(a);search.setSingleLine();search.setTextColor(a.paper);search.setHintTextColor(a.muted);search.setHint("搜索名称或稳定 ID");search.setContentDescription("搜索资料");search.setText(state.contentQuery);host.addView(search,new LinearLayout.LayoutParams(-1,a.dp(40)));
-        TextView count=text("",12);host.addView(count);
+        TextView count=text("",12);count.setPadding(a.dp(8),0,a.dp(8),0);host.addView(count);
         FrameLayout frame=new FrameLayout(a);host.addView(frame,new LinearLayout.LayoutParams(-1,0,1));
         TextView empty=text("没有符合条件的资料 · 请清空检索",16);empty.setGravity(Gravity.CENTER);frame.addView(empty,new FrameLayout.LayoutParams(-1,-1));
         ListView list=new ListView(a);list.setContentDescription("资料列表");frame.addView(list,new FrameLayout.LayoutParams(-1,-1));list.setEmptyView(empty);
         final List<String[]> all=new ArrayList<>();
-        if(state.contentKind.equals("officers"))for(ContentCatalog.Officer o:catalog.officers())all.add(new String[]{String.valueOf(o.id),o.name,"统"+o.stat(0)+" 武"+o.stat(1)+" 智"+o.stat(2)+" 政"+o.stat(3)+" 魅"+o.stat(4)+"\n枪戟弩骑兵水 "+o.aptitudeText()+" · "+status(o.status),catalog.alias(o.id)});
+        if(state.contentKind.equals("officers"))for(ContentCatalog.Officer o:catalog.officers())all.add(new String[]{String.valueOf(o.id),o.name,"统"+o.stat(0)+" 武"+o.stat(1)+" 智"+o.stat(2)+" 政"+o.stat(3)+" 魅"+o.stat(4)+"\n适性 "+o.aptitudeText()+" · "+(o.status.equals("cross-checked")?"双表比对":"待核验"),catalog.alias(o.id)});
         else for(ContentCatalog.Entry e:catalog.rows(state.contentKind))all.add(new String[]{e.id,e.name,subtitle(e),""});
         final List<String[]> shown=new ArrayList<>();
         BaseAdapter adapter=new BaseAdapter(){public int getCount(){return shown.size();}public Object getItem(int p){return shown.get(p);}public long getItemId(int p){return shown.get(p)[0].hashCode();}public boolean hasStableIds(){return true;}
-            public View getView(int p,View reuse,ViewGroup parent){TextView row=reuse instanceof TextView?(TextView)reuse:text("",16);String[] r=shown.get(p);row.setText(r[1]+" · ID "+r[0]+"\n"+r[2]);row.setMinimumHeight(a.dp(80));return row;}};
+            public View getView(int p,View reuse,ViewGroup parent){TextView row=reuse instanceof TextView?(TextView)reuse:text("",14);String[] r=shown.get(p);row.setText(r[1]+" · ID "+r[0]+"\n"+r[2]);row.setMinimumHeight(a.dp(72));return row;}};
         Runnable filter=()->{shown.clear();String q=state.contentQuery.trim().toLowerCase(Locale.ROOT);for(String[] r:all)if((r[0]+r[1]+r[3]).toLowerCase(Locale.ROOT).contains(q))shown.add(r);count.setText("显示 "+shown.size()+" / "+all.size()+" 条");adapter.notifyDataSetChanged();};
-        list.setAdapter(adapter);filter.run();String anchor=state.contentFirstId;for(int i=0;i<shown.size();i++)if(shown.get(i)[0].equals(anchor)){list.setSelection(i);break;}
-        list.setOnScrollListener(new AbsListView.OnScrollListener(){public void onScrollStateChanged(AbsListView v,int s){}public void onScroll(AbsListView v,int first,int visible,int total){if(first<shown.size()&&visible>0)state.contentFirstId=shown.get(first)[0];}});
+        list.setAdapter(adapter);filter.run();String anchor=state.contentFirstId;for(int i=0;i<shown.size();i++)if(shown.get(i)[0].equals(anchor)){list.setSelectionFromTop(i,state.contentTop);break;}
+        list.setOnScrollListener(new AbsListView.OnScrollListener(){public void onScrollStateChanged(AbsListView v,int s){}public void onScroll(AbsListView v,int first,int visible,int total){if(first<shown.size()&&visible>0){state.contentFirstId=shown.get(first)[0];state.contentTop=v.getChildAt(0).getTop();}}});
         list.setOnItemClickListener((p,v,i,id)->detail(shown.get(i)[0]));
-        search.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int st,int c,int af){}public void afterTextChanged(Editable e){}public void onTextChanged(CharSequence s,int st,int b,int c){state.contentQuery=s.toString();state.contentFirstId="";filter.run();list.setSelection(0);}});
+        search.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int st,int c,int af){}public void afterTextChanged(Editable e){}public void onTextChanged(CharSequence s,int st,int b,int c){state.contentQuery=s.toString();state.contentFirstId="";state.contentTop=0;filter.run();list.setSelection(0);}});
         return host;
     }
     private String status(String s){return s.equals("cross-checked")?"能力/适性双表比对（非原版核验）":s.equals("collected")?"已采集 · 待原版核验":"未知 / 未完成";}

@@ -35,3 +35,15 @@ v1～v6 的原有布局不变。v7 在 ArmySave 后、日志前追加 RulesSave�
 Android 三种横屏安装操作、APK摘要与签名：等待修复后CI，完成后更新。未使用ARM真机，不能给出真机结论。签名未比较前不保证覆盖旧版安装，也不建议卸载有重要存档的旧版。
 
 Agent 2 分支 `agent/national-content-v08` 的实际代码尚未合入；联合验证待对方 PR 可用后在独立集成分支执行。
+
+
+## Agent 1 独立交付验证完成
+
+- [PR #7](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/7)，规则代码 `9956d9884a4d8d31bdfb276630770d646c93f138`。
+- [成功CI 34794431772](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34794431772)，job103824695203；核心、UI、Android构建、Lint、API29 x86_64三种横屏安装全部通过。每种30张截图，共90张，日志无应用FATAL EXCEPTION/ANR。
+- [实际APK ZIP](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34794431772/artifacts/10329308432)，含app-debug.apk、SHA256SUMS和证书比较；[安装证据](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34794431772/artifacts/10328829894)，[Lint](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34794431772/artifacts/10328839756)，[精确源码](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34794431772/artifacts/10328887936)。
+- 该CI实际checkout PR合成提交 `be141a0182a6441d256c71c0aa167f8e5fdac618`；通过Git对象核对，其完整tree `578b3f7933c8fbaf55fed000fb29f51aba80a9cb` 与规则head完全相同。集成CI改为明确checkout精确head并记录BUILD_COMMIT。
+- APK证书SHA256 `fdb2e9adeb26571c783406a7ef10a1cfcda39d13b4adca591a30590a05f6cdf7`；实际下载比较的旧main v0.6产物（E666、运行34791182444、artifact10328612868）证书 `e1fb6629564cc2d42c1b09ad5af57a372d421440e58dc2b219b4833d0364ea97`，两者不同，不能直接覆盖该旧版。保留重要存档的旧应用；格式兼容不等于签名兼容。
+- 无ARM真机，未验证真机性能/兼容。验证摘录见 docs/validation/v08/rules-ci-summary.txt。
+
+Agent 2 实际代码已在独立 [PR #9](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/9) 合入，包括9afa/08da后续资料滚动修复；PR6最终6dd63cd3也已纳入。共同代码的独立Android验证仍须完成，详见 docs/handoffs/integration-v08.md。本独立APK不代替联合APK结论。

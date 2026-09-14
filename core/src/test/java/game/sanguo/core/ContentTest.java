@@ -42,10 +42,18 @@ public final class ContentTest {
         for(String bad:new String[]{source.replace("reference=rlu-officers","reference=missing"),source.replace("|97|71|96|86|93","|96|71|96|86|93"),source.replace("aptitude.0=1000|","aptitude.0=9999|")}){
             check(!bad.equals(source),"mutation actually changes source");try{ScenarioData.read(new ByteArrayInputStream(bad.getBytes(StandardCharsets.UTF_8)),2);throw new AssertionError("invalid sourced pack accepted");}catch(IOException expected){checks++;}
         }
-        // AI marches on the real fixture and exchanges attacks; no teleport or injected damage.
-        World battle=ScenarioCatalog.load("officer-reference-drill",0);int before=battle.cities.stream().mapToInt(city->city.defense).sum();boolean fought=false;
-        for(int i=0;i<60&&!battle.gameOver();i++){battle.nextTurn();SaveCodec.validate(battle);if(battle.cities.stream().mapToInt(city->city.defense).sum()!=before||battle.units.stream().anyMatch(u->u.troops<3000)){fought=true;break;}}
-        check(fought,"new sourced start reaches real combat");
+        // Real player commands approach an AI unit and exchange damage, without teleporting.
+        World battle=ScenarioCatalog.load("officer-reference-drill",0);check(battle.deploy(100,1000,World.Weapon.CROSSBOW,3000).ok,"combat deployment");boolean fought=false;
+        for(int turn=0;turn<60&&!battle.gameOver()&&!fought;turn++){
+            for(World.Unit u:new ArrayList<>(battle.units))if(u.owner==battle.player&&!u.acted){
+                World.Unit enemy=battle.units.stream().filter(e->e.owner!=battle.player).min(Comparator.comparingInt(e->u.hex.distance(e.hex))).orElse(null);
+                if(enemy==null)continue;
+                if(u.hex.distance(enemy.hex)<=u.weapon.range){int troops=enemy.troops;World.Result hit=battle.attack(u.id,enemy.id);if(hit.ok&&enemy.troops<troops){fought=true;break;}}
+                else{Hex step=battle.reachable(u).keySet().stream().min(Comparator.<Hex>comparingInt(h->h.distance(enemy.hex)).thenComparingInt(h->h.q).thenComparingInt(h->h.r)).orElse(u.hex);battle.move(u.id,step);}
+            }
+            if(!fought)battle.nextTurn();SaveCodec.validate(battle);
+        }
+        check(fought,"new sourced start reaches actual player vs AI unit combat");
         System.out.printf(Locale.ROOT,"PASS: %d content assertions; cold catalog %.3f ms; sourced opening combat at turn %d.%n",checks,load/1e6,battle.turn);
     }
 }

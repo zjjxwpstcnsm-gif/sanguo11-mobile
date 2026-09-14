@@ -99,7 +99,7 @@ jobs:
           PYCOMPARE
           cd app/build/outputs/apk/debug
           cp app-debug.apk "sanguo11-mobile-integrated-v08-$(git rev-parse --short HEAD).apk"
-          sha256sum sanguo11-mobile-integrated-v08-*.apk > SHA256SUMS
+          sha256sum sanguo11-mobile-integrated-v08-*.apk | tee SHA256SUMS
           git rev-parse HEAD > BUILD_COMMIT
       - uses: actions/upload-artifact@v4
         with:
