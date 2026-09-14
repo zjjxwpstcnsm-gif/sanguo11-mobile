@@ -142,7 +142,7 @@ public final class Campaign {
         if(target==null||target.owner<0||!hostile(c.owner,target.owner))return w.fail("请选择交战势力的城池");
         if(c.hex.distance(target.hex)>12)return w.fail("目标超出流言范围12格");
         int chance=rumorChance(officer,targetCity);w.spend(c,o,300);boolean success=w.strategy.nextInt(100)<chance;relation(c.owner,target.owner,-5);
-        if(success){target.order=Math.max(0,target.order-orderLoss(target.owner,10));for(World.Officer t:w.officers)if(t.cityId==target.id&&t.owner==target.owner&&t.role!=Strategy.Role.RULER)t.loyalty=Math.max(0,t.loyalty-loyaltyLoss(t.owner,5));earn(c.owner,30);}
+        if(success){target.order=Math.max(0,target.order-orderLoss(target.owner,10));for(World.Officer t:w.officers)if(t.cityId==target.id&&t.owner==target.owner&&t.role!=Strategy.Role.RULER&&!w.relations.loyalBond(t.id))t.loyalty=Math.max(0,t.loyalty-loyaltyLoss(t.owner,5));earn(c.owner,30);}
         return w.success(o.name+"在"+target.name+"散布流言"+(success?"，治安与武将忠诚下降":"，被识破"));
     }
     /** Same-turn ask/bid spread and per-city volume prevent profitable round-trip trading. */

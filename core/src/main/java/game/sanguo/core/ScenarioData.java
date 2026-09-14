@@ -108,6 +108,18 @@ public final class ScenarioData {
                 int countPoints=number(p,"technology-points",0,sides);Set<Integer> seen=new HashSet<>();
                 for(int i=0;i<countPoints;i++){String[] data=fields(p,"technology-points."+i,2);int side=integer(data[0]);if(side<0||side>=sides||!seen.add(side))throw new IOException("技巧点势力错误");w.campaign.points.put(side,integer(data[1]));}
             }
+            if(p.containsKey("people-profiles")){
+                int n=number(p,"people-profiles",0,10000);Set<Integer> seen=new HashSet<>();
+                for(int i=0;i<n;i++){String[] data=fields(p,"people-profile."+i,4);World.Officer o=w.officer(integer(data[0]));if(o==null||!seen.add(o.id))throw new IOException("人物配置重复或缺失");o.sex=World.Sex.valueOf(data[1]);o.skillId=data[2];w.government.merits.put(o.id,integer(data[3]));}
+            }
+            if(p.containsKey("relations")){
+                int n=number(p,"relations",0,10000);
+                for(int i=0;i<n;i++){String[] data=fields(p,"relation."+i,3);int a=integer(data[0]),b=integer(data[1]);Relations.Kind k=Relations.Kind.valueOf(data[2]);String error=w.relations.linkError(a,b,k);if(error!=null)throw new IOException(error);w.relations.link(a,b,k);}
+            }
+            if(p.containsKey("treasures")){
+                int n=number(p,"treasures",0,43);Set<String> seen=new HashSet<>();
+                for(int i=0;i<n;i++){String[] data=fields(p,"treasure."+i,3);if(!seen.add(data[0]))throw new IOException("宝物重复");w.treasures.place(Treasures.definition(data[0]),Treasures.Place.valueOf(data[1]),integer(data[2]));}
+            }
             if(!p.isEmpty())throw new IOException("未知剧本字段："+p.keySet().iterator().next());
             if(reference!=null){ContentCatalog catalog=ContentCatalog.get();catalog.validateOpening(w);ContentRuntime.initializeOpening(w,catalog);}
             w.strategy.initializeOffices();

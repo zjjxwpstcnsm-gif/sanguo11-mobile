@@ -162,6 +162,8 @@ public final class MainActivity extends Activity {
                 action("研究与培养进度",v->campaignUi().projects(c));break;
             case "武将":
                 if(own){
+                    action("仲介 / 结义婚姻",v->new EstatesUi(this,world,this::apply).mediate(c));
+                    action("宝物 / 赏赐收回",v->new EstatesUi(this,world,this::apply).treasures(c));
                     action("搜索人才",v->strategyUi().command(c,1));
                     action("登用武将",v->strategyUi().command(c,2));
                     action("舌战登用",v->strategyUi().command(c,8));
@@ -224,6 +226,7 @@ public final class MainActivity extends Activity {
         if(world.contests.injury(o.id)>0)stats+="\n负伤 · 有效武力 "+world.contests.war(o)+" · 剩"+world.contests.injuryTurns(o.id)+"旬";
         Government.Rank office=world.government.office(o.id);stats+="\n功绩 "+world.government.merit(o.id)+" · 官职 "+(office==null?"未授官":office.id)+" · 统兵 "+world.government.commandLimit(o.id);
         stats+="\n适性：枪"+War.rankLabel(o.aptitude[0])+" 戟"+War.rankLabel(o.aptitude[1])+" 弩"+War.rankLabel(o.aptitude[2])+" 骑"+War.rankLabel(o.aptitude[3])+" 器"+War.rankLabel(o.aptitude[4])+" 水"+War.rankLabel(o.aptitude[5]);
+        stats+="\n特技："+Skill.label(o.skillId)+"\n\n"+world.relations.describe(o.id)+"\n\n宝物：\n"+world.treasures.describe(o.id);
         AlertDialog.Builder d=new AlertDialog.Builder(this).setTitle(o.name+" · "+UiModels.faction(world,o)).setMessage(stats+"\n身份："+o.role.label+" · 忠诚 "+o.loyalty+"\n\n所在地："+UiModels.location(world,o)+"\n状态："+UiModels.status(world,o)).setNegativeButton("返回",null);
         Hex h=o.cityId>=0?world.city(o.cityId).hex:o.unitId>=0&&world.unit(o.unitId)!=null?world.unit(o.unitId).hex:null;
         for(Domestic.Mission m:world.domestic.missions)if(m.officerId==o.id)h=m.hex;
@@ -247,12 +250,14 @@ public final class MainActivity extends Activity {
     DomesticUi domesticUi(){return new DomesticUi(this,world,this::apply,this::selectAndFocus);}
     private void showMenu(){
         line("军政菜单",22,gold);
+        action("PK编辑 / 新武将",v->new EditorUi(this,world,this::apply).menu());
+        if(world.editor.edited())line("当前局面已使用PK编辑",13,muted);
         if(world.contests.busy())action("继续当前对局",v->{ui.page="map";refresh();});
         if(!world.contests.lastResult().isEmpty())action("最近对局结果",v->message("对局结果",world.contests.lastResult()));action("保存局面（3个槽位）",v->saveSlots(false));action("读取存档",v->saveSlots(true));action("导出当前存档",v->exportSave());action("导入存档文件",v->importSave());
         action("本旬结算摘要",v->message("旬结算摘要",ui.summary.isEmpty()?"结束一旬后将在这里显示结算摘要。":ui.summary));
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.12 · 技巧与野战工程","九系36项技巧、部队携金施工、设施强化、难所通行与港关容量。\n存档 v11，兼容 v1～v10。\n\n原有军政、后勤等玩法保留。全国地形、官方完整开局、全部特技、事件与精确数值仍未完整还原。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.13 · 人物关系与宝物","仲介结义婚姻、宝物搜索赏赐与战斗作用、PK局面编辑、新武将模板。\n存档 v12，兼容 v1～v11。\n\n原有军政、后勤等玩法保留。全国地形、官方完整开局、全部特技、事件与精确数值仍未完整还原。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}
@@ -262,7 +267,7 @@ public final class MainActivity extends Activity {
     private String openingInfo(World w,int side){
         StringBuilder b=new StringBuilder(w.date()+" · "+w.width+"×"+w.height+"格\n");int people=0;for(World.Officer o:w.officers)if(o.owner==side)people++;
         b.append(people).append("名武将 · 领地：");for(World.City c:w.cities)if(c.owner==side)b.append(c.name).append(" ");
-        b.append(w.dataSource.equals("community-reference")?"\n能力/适性来自公开资料，地图/领地/资源为原创演练；特技已接入部分效果，生卒和关系尚未生效。":"\n原创测试地图、资源和武将数值；非官方历史开局。");return b.toString();
+        b.append(w.dataSource.equals("community-reference")?"\n能力/适性来自公开资料，地图/领地/资源为原创演练；特技已接入部分效果，生卒与完整关系数据尚未载入。":"\n原创测试地图、资源和武将数值；非官方历史开局。");return b.toString();
     }
     private void startScenario(String id,int player){try{world=ScenarioCatalog.load(id,player,System.nanoTime());ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;selectAndFocus(world.home().hex);save("auto",false);}catch(IOException e){showError("无法开始剧本");}}
     private String slotName(int index){return index==0?"manual":"manual"+(index+1);}
@@ -301,7 +306,15 @@ public final class MainActivity extends Activity {
         catch(IOException e){if(out!=null)f.failWrite(out);Toast.makeText(this,"保存失败，请检查设备存储空间后重试",Toast.LENGTH_LONG).show();}
     }
     private World readSave(AtomicFile f)throws IOException {try(FileInputStream in=f.openRead()){return SaveCodec.read(in);}}
-    private static final int EXPORT_SAVE=911, IMPORT_SAVE=912;
+    private static final int EXPORT_SAVE=911, IMPORT_SAVE=912, EXPORT_OFFICER=913, IMPORT_OFFICER=914;
+    void importOfficerTemplate(){if(!aiRunning)startActivityForResult(new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("*/*"),IMPORT_OFFICER);}
+    void exportOfficerTemplate(Editor.Template template){
+        if(aiRunning)return;
+        AtomicFile pending=new AtomicFile(new File(getFilesDir(),"pending-officer-export.sgof"));FileOutputStream out=null;
+        try{byte[] bytes=OfficerTemplateCodec.encode(template);out=pending.startWrite();out.write(bytes);pending.finishWrite(out);
+            startActivityForResult(new Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("application/octet-stream").putExtra(Intent.EXTRA_TITLE,"sanguo11-officer.sgof"),EXPORT_OFFICER);
+        }catch(IOException e){if(out!=null)pending.failWrite(out);showError("模板导出失败");}
+    }
     private void exportSave(){
         if(aiRunning)return;
         Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE)
@@ -316,7 +329,16 @@ public final class MainActivity extends Activity {
         super.onActivityResult(request,result,data);
         if(result!=RESULT_OK||data==null||data.getData()==null||aiRunning)return;
         try {
-            if(request==EXPORT_SAVE){
+            if(request==IMPORT_OFFICER){
+                Editor.Template template;try(InputStream in=getContentResolver().openInputStream(data.getData())){template=OfficerTemplateCodec.read(in);}
+                new AlertDialog.Builder(this).setTitle("导入新武将模板").setMessage(template.name+" · 统"+template.stat(0)+" / 武"+template.stat(1)+" / 智"+template.stat(2)+" / 政"+template.stat(3)+" / 魅"+template.stat(4)+"\n保存到模板列表后，可选择登场据点与身份。")
+                    .setPositiveButton("保存模板",(dialog,n)->{try{EditorUi.store(this,template);message("模板已保存",template.name+"已加入新武将列表");}catch(IOException e){showError("模板保存失败");}}).setNegativeButton("取消",null).show();
+            }else if(request==EXPORT_OFFICER){
+                Editor.Template template;AtomicFile pending=new AtomicFile(new File(getFilesDir(),"pending-officer-export.sgof"));
+                try(InputStream in=pending.openRead()){template=OfficerTemplateCodec.read(in);}
+                try(OutputStream out=getContentResolver().openOutputStream(data.getData(),"wt")){if(out==null)throw new IOException("无法写入模板");out.write(OfficerTemplateCodec.encode(template));}
+                pending.delete();message("模板已导出",template.name+"可导入其他安装包或存留备用");
+            }else if(request==EXPORT_SAVE){
                 byte[] bytes=SaveCodec.encode(world);
                 try(OutputStream out=getContentResolver().openOutputStream(data.getData(),"wt")){
                     if(out==null)throw new IOException("无法写入文件");out.write(bytes);

@@ -11,7 +11,7 @@ public final class Domestic {
         BARRACKS("兵舍",1200,"每次征兵 +500"), SMITH("锻冶所",1200,"每次兵装生产 +500"),
         MINT("造币",1500,"相邻市场产金 +50%，不重复叠加"), GRANARY("谷仓",1500,"相邻农场产粮 +50%，不重复叠加"),
         STABLE("厩舍",1200,"骑兵兵装生产额外 +500"), BLACK_MARKET("黑市",500,"每月金 +200，不可合并"),
-        WORKSHOP("工房",1500,"制造冲车、井阑、木兽、投石"), SHIPYARD("造船厂",1500,"临水建造，制造楼船与斗舰");
+        WORKSHOP("工房",1500,"制造冲车、井阑、木兽、投石"), SHIPYARD("造船厂",1500,"临水建造，制造楼船与斗舰"), BRONZE_TERRACE("铜雀台",1500,"需要铜雀；每月技巧点+100，不可合并");
         public final String label,effect;public final int cost;
         Kind(String label,int cost,String effect){this.label=label;this.cost=cost;this.effect=effect;}
     }
@@ -109,6 +109,7 @@ public final class Domestic {
         if(error!=null)return w.fail(error);
         if(c.kind!=World.SiteKind.CITY)return w.fail("港关不能开发内政设施");
         if(count(cityId)>=CITY_SLOTS)return w.fail("每城最多6处设施（含建设中）");
+        if(kind==Kind.BRONZE_TERRACE&&(!w.treasures.factionHas(c.owner,Treasures.Kind.BRONZE)||facilities.stream().anyMatch(f->f.cityId==cityId&&f.kind==kind)))return w.fail("需要持有铜雀，且本城至多一座铜雀台");
         if(kind==Kind.SHIPYARD&&(h==null||h.neighbors().stream().noneMatch(w.army::water)))return w.fail("造船厂必须建在临水的开发地");
         if(!site(c,h))return w.fail("请选择城池两格内空闲平地，且不能封死城池出口");
         if(nextFacilityId>=10000000)return w.fail("设施编号已达上限");

@@ -82,6 +82,9 @@ public final class World {
     public final Government government=new Government(this);
     public final Supply supply=new Supply(this);
     public final Contests contests=new Contests(this);
+    public final Relations relations=new Relations(this);
+    public final Treasures treasures=new Treasures(this);
+    public final Editor editor=new Editor(this);
     public final AbilityResearch abilities;
     public final String[] factions;
     public final int[] actionPoints;
@@ -188,7 +191,7 @@ public final class World {
         String message=officer(u.officerId).name+"攻城，城防−"+hit+"，守军−"+troopHit;
         if(c.defense==0||c.troops==0) {
             int old=c.owner;c.owner=u.owner;domestic.captured(c.id);strategy.cityCaptured(c.id);c.defense=1500;c.troops=0;c.morale=50;c.order=60;
-            government.cityCaptured(c,old,u);
+            government.cityCaptured(c,old,u);treasures.fallenTreasury(old,u.owner);
             campaign.cleanupProjects();army.cleanup();campaign.earn(u.owner,100);
             message=c.name+"被"+faction(u.owner)+"攻占";
         }
@@ -226,7 +229,7 @@ public final class World {
             reset(active);runAi();checkVictory();
             if(gameOver()){active=player;return success(winner==player?"战场胜利":"我方势力已覆灭");}
         }
-        turn++;contests.tick();domestic.tick();campaign.tick();army.tick();abilities.tick();strategy.tick();war.tick();government.tick();
+        turn++;contests.tick();domestic.tick();campaign.tick();army.tick();abilities.tick();strategy.tick();war.tick();government.tick();treasures.tick();
         for(Unit u:new ArrayList<>(units)) {
             int consumption=fieldworks.foodUse(u,Math.max(1,(u.troops+19)/20));
             if(u.food<consumption){u.food=0;u.troops-=Math.max(1,u.troops/10);note(officer(u.officerId).name+"部队断粮，兵力减少");}

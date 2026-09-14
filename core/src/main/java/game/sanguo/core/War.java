@@ -125,10 +125,10 @@ public final class War {
         List<World.Unit> helpers=new ArrayList<>(w.units);helpers.sort(Comparator.comparingInt(u->u.id));
         for(World.Unit helper:helpers){
             if(w.unit(target.id)==null)break;
-            if(helper.id==attacker.id||helper.owner!=attacker.owner||helper.status!=Status.NORMAL||!w.skills.has(w.officer(helper.officerId),Skill.FUZUO)||!w.army.canAttackUnit(helper))continue;
+            if(helper.id==attacker.id||helper.owner!=attacker.owner||helper.status!=Status.NORMAL||w.relations.supportChance(helper.officerId,attacker.officerId)==0||!w.army.canAttackUnit(helper))continue;
             int distance=helper.hex.distance(target.hex);if(distance<1||distance>range(helper))continue;
             if(!w.army.water(helper.hex)&&helper.weapon==World.Weapon.CROSSBOW&&w.terrain[target.hex.q][target.hex.r]==World.Terrain.FOREST&&!w.skills.has(helper,Skill.SHESHOU))continue;
-            if(w.strategy.nextInt(100)<30)damage+=strike(helper,target,.5,false);
+            if(w.strategy.nextInt(100)<w.relations.supportChance(helper.officerId,attacker.officerId))damage+=strike(helper,target,.5,false);
         }
         return damage;
     }

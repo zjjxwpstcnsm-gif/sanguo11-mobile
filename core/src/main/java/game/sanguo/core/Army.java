@@ -33,11 +33,12 @@ public final class Army {
         for(int id:unit.deputies)members.add(w.officer(id));return members;
     }
     public boolean contains(World.Unit unit,int officer){if(unit.officerId==officer)return true;if(unit.deputies!=null)for(int id:unit.deputies)if(id==officer)return true;return false;}
-    public int war(World.Unit unit){int value=0;for(World.Officer o:crew(unit))value=Math.max(value,w.contests.war(o));return value;}
+    public int war(World.Unit unit){int leader=w.contests.war(w.officer(unit.officerId)),value=leader;for(int id:unit.deputies)value=Math.max(value,w.relations.contribution(unit.officerId,id,leader,w.contests.war(w.officer(id))));return value;}
+    public int leadership(World.Unit unit){int leader=w.officer(unit.officerId).leadership,value=leader;for(int id:unit.deputies)value=Math.max(value,w.relations.contribution(unit.officerId,id,leader,w.officer(id).leadership));return value;}
     public int intelligence(World.Unit unit){int value=0;for(World.Officer o:crew(unit))value=Math.max(value,o.intelligence);return value;}
     public int aptitude(World.Unit unit){return aptitude(crew(unit),water(unit.hex)?5:category(unit.weapon));}
     public int aptitude(List<World.Officer> crew,int category){int value=0;if(category>=0)for(World.Officer o:crew)value=Math.max(value,o.aptitude[category]);return value;}
-    World.Officer combatOfficer(World.Unit u){World.Officer leader=w.officer(u.officerId);return new World.Officer(leader.id,leader.name,leader.owner,-1,leader.leadership,war(u),intelligence(u),leader.politics,leader.charm);}
+    World.Officer combatOfficer(World.Unit u){World.Officer leader=w.officer(u.officerId);return new World.Officer(leader.id,leader.name,leader.owner,-1,leadership(u),war(u),intelligence(u),leader.politics,leader.charm);}
     public boolean water(Hex h){return h!=null&&w.inside(h)&&w.terrain[h.q][h.r]==World.Terrain.WATER;}
     public String equipmentLabel(World.Unit u){return water(u.hex)?u.ship.label+"（携"+u.weapon.label+"）":u.weapon.label;}
     public int movement(World.Unit u){return water(u.hex)?u.ship.movement:u.weapon.movement;}
@@ -102,11 +103,11 @@ public final class Army {
     public World.Result cancelProduction(int officer){Production p=productions.stream().filter(x->x.officerId==officer).findFirst().orElse(null);
         if(w.contests.busy()||w.gameOver()||p==null||p.owner!=w.active)return w.fail("请选择本势力制造任务");productions.remove(p);World.Officer o=w.officer(officer);o.otherTask="";o.otherTaskTurns=0;o.acted=true;return w.success("制造中止，费用不退还");}
     /** Current modeled unit attack; base attribute formula still awaits original executable calibration. */
-    public double attackPower(World.Unit u){return (80+w.officer(u.officerId).leadership+war(u)/2.0)*(water(u.hex)?u.ship.power:u.weapon.power)/100.0;}
+    public double attackPower(World.Unit u){return (80+leadership(u)+war(u)/2.0)*(water(u.hex)?u.ship.power:u.weapon.power)/100.0;}
     int damage(World.Unit a,World.Unit b,double scale,Random random){
         double ap=water(a.hex)?a.ship.power:a.weapon.power,bp=water(b.hex)?b.ship.power:b.weapon.power;
-        double offense=80+w.officer(a.officerId).leadership+war(a)/2.0;
-        double defense=80+w.officer(b.officerId).leadership+intelligence(b)/4.0;
+        double offense=80+leadership(a)+war(a)/2.0;
+        double defense=80+leadership(b)+intelligence(b)/4.0;
         int amount=(int)(250*StrictMath.sqrt(a.troops/1000.0)*ap/100*Math.max(.4,offense/defense)*scale*(.9+random.nextDouble()*.2));
         if(!water(b.hex)&&siegeWeapon(b.weapon))amount=amount*3/2;
         if(water(b.hex)&&bp>100)amount=amount*9/10;
