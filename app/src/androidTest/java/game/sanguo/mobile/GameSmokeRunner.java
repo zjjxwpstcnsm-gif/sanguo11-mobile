@@ -252,7 +252,7 @@ public final class GameSmokeRunner extends Instrumentation {
         click("认输并结束单挑",true);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"concession cancel preserves contest");
         click("认输并结束单挑",true);click("执行",true);require(!saved().contests.busy()&&saved().government.captive(0)&&saved().unit(1)==null,"actual duel loss captures commander and dissolves unit");
         screenshot("43-duel-capture");
-        clickNav("菜单");click("读取存档",true);click("槽位 2 · 文武对决",false);click("执行",true);clickNav("地图");waitText("单挑 · 第1",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"manual slot restores in-progress duel exactly");
+        clickNav("菜单");click("读取存档",true);click("槽位 2 · 文武对决",false);click("执行",true);waitText("单挑 · 第1",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"manual slot restores in-progress duel exactly");
         clickNav("菜单");click("新游戏 / 选择势力",true);click("文武对决 ·",false);click("文武营",true);click("执行",true);
         locateCity("东营");click("武将",true);click("舌战登用",true);click("林策 ·",false);click("苏澄 ·",false);
         before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"debate confirmation cancel costs nothing");
