@@ -15,9 +15,18 @@ final class WorldUi {
         if(list.isEmpty()){info(title,"没有符合条件的选项");return;}String[] labels=list.stream().map(label).toArray(String[]::new);
         new AlertDialog.Builder(a).setTitle(title).setItems(labels,(d,n)->next.accept(list.get(n))).setNegativeButton("取消",null).show();
     }
-    void menu(){new AlertDialog.Builder(a).setTitle("军团与天下").setItems(new String[]{"军团编制","灾害与贼患","随机事件 · "+(w.events.enabled()?"已开启":"已关闭")},(d,n)->{
-        if(n==0)districts();else if(n==1)events();else confirm("随机事件",w.events.enabled()?"停止产生新灾害和贼患？现有灾害、营寨继续结算。":"开启月度贼患、季节灾害与七月丰收？风水、祈愿和亲族特技将影响发生条件。",()->apply.accept(w.events.toggle()));
+    void menu(){new AlertDialog.Builder(a).setTitle("军团与天下").setItems(new String[]{"军团编制","灾害与贼患","随机事件 · "+(w.events.enabled()?"已开启":"已关闭"),"军情评估"},(d,n)->{
+        if(n==0)districts();else if(n==1)events();else if(n==3)assessment();else confirm("随机事件",w.events.enabled()?"停止产生新灾害和贼患？现有灾害、营寨继续结算。":"开启月度贼患、季节灾害与七月丰收？风水、祈愿和亲族特技将影响发生条件。",()->apply.accept(w.events.toggle()));
     }).setNegativeButton("返回",null).show();}
+    private void assessment(){
+        CampaignAi ai=new CampaignAi(w);StringBuilder text=new StringBuilder();
+        for(World.City c:w.cities)if(c.owner==w.player){int reserve=ai.reserve(c);if(w.districts.city(c.id)!=null)reserve=Math.max(10000,reserve);
+            text.append(c.name).append(" · 周边敌兵 ").append(ai.incoming(c)).append("\n建议留守 ").append(reserve).append(" · 现有 ").append(c.troops).append("\n\n");}
+        for(World.Unit u:w.units)if(u.owner==w.player)text.append(w.officer(u.officerId).name).append("部队 · 兵 ").append(u.troops).append(" · 携粮约可用 ").append(ai.foodTurns(u)).append("旬\n");
+        text.append("\n按当前可见兵力与本旬粮耗估算；军情变化后会重新判断。");
+        ScrollView scroll=new ScrollView(a);TextView body=new TextView(a);body.setText(text.toString());body.setTextSize(16);body.setPadding(24,16,24,16);scroll.addView(body);
+        new AlertDialog.Builder(a).setTitle("军情评估").setView(scroll).setPositiveButton("返回",null).show();
+    }
     void districts(){List<Districts.District> list=w.districts.all();String[] names=new String[list.size()+1];names[0]="新设军团";for(int i=0;i<list.size();i++){Districts.District d=list.get(i);names[i+1]=d.name()+" · "+d.policy().label+" · "+d.cities().size()+"据点";}
         new AlertDialog.Builder(a).setTitle("第一军团 · 行动力"+w.actionPoints[w.player]).setItems(names,(dialog,n)->{if(n==0)members(null);else detail(list.get(n-1));}).setNegativeButton("返回",null).show();
     }
@@ -54,7 +63,7 @@ final class WorldUi {
         new AlertDialog.Builder(a).setTitle("军团委任内容").setView(panel).setPositiveButton("预览编制",(dialog,n)->{
             int id=old==null?-1:old.id;String title=name.getText().toString();String error=w.districts.configureError(id,title,members,p,target,supply);if(error!=null){info("无法编制",error);return;}
             try{byte[] before=SaveCodec.encode(w);StringBuilder text=new StringBuilder(p.label+"\n据点：");for(int city:members)text.append(w.city(city).name).append(' ');
-                text.append("\n消耗第一军团20行动力。新军团下一旬开始获得60行动力；军团指令消耗本团预算。\n自动运输保留5000金、40000粮；出兵保留至少10000守军。");
+                text.append("\n消耗第一军团20行动力。新军团下一旬开始获得60行动力；军团指令消耗本团预算。\n自动运输保留5000金、40000粮；出兵保留至少10000守军，附近敌兵较多时增加留守。按兵装适性编队并携带足够粮草，低兵力或将要断粮时回城。");
                 confirm(title,text.toString(),()->{try{if(!Arrays.equals(before,SaveCodec.encode(w))){info("局面变化","请重新编制");return;}apply.accept(w.districts.configure(id,title,members,p,target,supply,attack.isChecked(),produce.isChecked()));}catch(java.io.IOException ex){info("编制失败",ex.getMessage());}});
             }catch(java.io.IOException ex){info("编制失败",ex.getMessage());}
         }).setNegativeButton("取消",null).show();

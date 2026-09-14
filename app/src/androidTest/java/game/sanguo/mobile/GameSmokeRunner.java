@@ -48,6 +48,7 @@ public final class GameSmokeRunner extends Instrumentation {
             assertWorld(2,1,"regional-sandbox");screenshot("05-restored");
             marchFlow();
             worldFlow();
+            campaignAiFlow();
             estatesFlow();
             fieldworkFlow();
             abilityFlow();
@@ -89,6 +90,24 @@ public final class GameSmokeRunner extends Instrumentation {
         while(saved().unit(1).march!=null&&count++<12)endTurn();
         w=saved();require(w.unit(1).march==null&&w.unit(1).hex.distance(w.city(20).hex)==1&&w.city(20).owner==1&&!w.unit(1).acted,"arrival does not auto attack and retains action");screenshot("72-march-arrived");
         click("全图",true);tapHex(w.city(20).hex);click("执行",true);require(saved().city(20).defense<3000&&saved().unit(1).acted,"arrival followed by real siege through target tap");
+    }
+    private void campaignAiFlow()throws Exception {
+        World w=new World(32,18,"守营","攻营");w.scenarioId="ui-campaign-ai";w.scenarioName="军情验证";
+        w.cities.add(new World.City(10,"守城",new Hex(5,5),0));w.cities.add(new World.City(20,"攻城营",new Hex(27,5),1));w.city(20).troops=0;
+        w.officers.add(new World.Officer(0,"守城官",0,10,75,75,75,75,75));
+        w.officers.add(new World.Officer(1,"残部",0,-1,60,60,60,60,60));w.officers.add(new World.Officer(2,"完整守军",0,-1,80,80,80,80,80));
+        w.officers.add(new World.Officer(20,"军械官",1,-1,85,85,60,60,60));w.officers.add(new World.Officer(21,"突击官",1,-1,90,90,60,60,60));
+        World.Unit ram=new World.Unit(1,1,20,World.Weapon.RAM,new Hex(6,5),6000,60000);w.officer(20).unitId=1;
+        World.Unit spear=new World.Unit(2,1,21,World.Weapon.SPEAR,new Hex(20,10),6000,60000);w.officer(21).unitId=2;spear.energy=0;
+        World.Unit weak=new World.Unit(3,0,1,World.Weapon.CROSSBOW,new Hex(21,10),100,10000);w.officer(1).unitId=3;
+        World.Unit strong=new World.Unit(4,0,2,World.Weapon.SPEAR,new Hex(20,11),6000,60000);w.officer(2).unitId=4;
+        w.units.add(ram);w.units.add(spear);w.units.add(strong);w.units.add(weak);w.nextUnitId=5;w.strategy.initializeOffices();
+        installFixture(w,w.city(10).hex);byte[] before=SaveCodec.encode(saved());
+        clickNav("菜单");click("军团与天下",true);click("军情评估",true);waitText("建议留守",false);screenshot("81-ai-assessment");click("返回",true);
+        require(Arrays.equals(before,SaveCodec.encode(saved())),"assessment leaves game and random state unchanged");
+        endTurn();waitForTurn(1);w=saved();require(w.city(10).defense<3000&&w.unit(1).energy<80,"installed AI uses ram siege tactic");
+        require(w.unit(3)==null&&w.unit(4)!=null&&w.unit(4).troops==6000,"installed AI chooses a kill rather than first enemy in list");screenshot("82-ai-turn-result");
+        byte[] after=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("军情验证",false);require(Arrays.equals(after,SaveCodec.encode(saved())),"AI turn result survives activity recreation");
     }
     private void strategicFlow()throws Exception {
         click("菜单",true);click("新游戏 / 选择势力",true);click("区域争雄 ·",false);click("孙权军",true);click("执行",true);waitForIdleSync();
