@@ -195,7 +195,7 @@ public final class MainActivity extends Activity {
             panel.addView(row);
         }
         Districts.District district=world.districts.city(c.id);if(district!=null)line("所属军团："+district.name()+" · "+district.policy().label,13,gold);
-        line(world.events.cityStatus(c.id),12,muted);
+        String incident=world.events.cityStatus(c.id);if(!incident.equals("无灾害"))line(incident,12,muted);
         boolean own=c.owner==world.player&&!world.gameOver()&&world.districts.directCity(c.id);
         switch(ui.group){
             case "内政":
