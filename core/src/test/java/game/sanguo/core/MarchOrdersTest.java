@@ -13,7 +13,7 @@ public final class MarchOrdersTest {
         World.Unit u=new World.Unit(1,0,0,World.Weapon.SPEAR,new Hex(3,6),5000,100000);w.units.add(u);w.nextUnitId=2;return w;
     }
     public static void main(String[] args)throws Exception {
-        previewAndTurns();rerouteAndPause();terrain();targets();legacy();performance();
+        previewAndTurns();rerouteAndPause();terrain();futureBudgets();targets();legacy();performance();
         System.out.println("PASS: "+checks+" march assertions: pure/stale preview, weighted routes, multi-turn budget, retarget/stop, obstacles, water, target identity, v12 migration, deterministic save continuation.");
     }
     private static void previewAndTurns()throws Exception {
@@ -49,6 +49,14 @@ public final class MarchOrdersTest {
         World blocked=fixture();for(Hex h:blocked.unit(1).hex.neighbors())blocked.terrain[h.q][h.r]=World.Terrain.MOUNTAIN;byte[] before=bytes(blocked);MarchOrders.Plan impossible=blocked.marches.preview(1,new Hex(19,6));check(!impossible.valid()&&!blocked.marches.execute(impossible).ok&&Arrays.equals(before,bytes(blocked)),"unreachable is read-only");
         World narrow=new World(12,1);narrow.cities.add(new World.City(10,"甲",new Hex(0,0),0));narrow.cities.add(new World.City(20,"乙",new Hex(11,0),1));World.Officer o=new World.Officer(0,"冲车将",0,-1,80,80,80,80,80);o.unitId=1;narrow.officers.add(o);narrow.units.add(new World.Unit(1,0,0,World.Weapon.RAM,new Hex(1,0),3000,20000));narrow.nextUnitId=2;narrow.terrain[3][0]=World.Terrain.FOREST;
         check(!narrow.marches.preview(1,new Hex(10,0)).valid(),"edge costing more than full turn is not an endless route");
+    }
+    private static void futureBudgets()throws Exception {
+        World w=fixture();World.Unit u=w.unit(1);Hex land=u.hex,water=new Hex(4,6);w.terrain[4][6]=World.Terrain.WATER;
+        w.campaign.learned.put(0,EnumSet.of(Campaign.Tech.ELITE_SPEAR));
+        for(Skill skill:new Skill[]{Skill.QIANGXING,Skill.CAODUO}){
+            w.officer(0).skillId=skill.id;int predicted=w.war.movementAt(u,water);u.hex=water;check(predicted==w.war.movement(u),"future water skill and technology budget equals actual budget");
+            predicted=w.war.movementAt(u,land);u.hex=land;check(predicted==w.war.movement(u),"future land skill and technology budget equals actual budget");
+        }
     }
     private static void targets()throws Exception {
         World w=fixture();World.Unit u=w.unit(1);MarchOrders.Plan city=w.marches.preview(1,w.city(20).hex);check(city.valid()&&city.path.get(city.path.size()-1).distance(w.city(20).hex)==1,"city approached on a free adjacent tile");

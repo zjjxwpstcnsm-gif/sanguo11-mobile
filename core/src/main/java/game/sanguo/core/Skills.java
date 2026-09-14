@@ -88,8 +88,9 @@ public final class Skills {
     }
     public int productionTurns(int officer,World.Weapon weapon){return has(w.officer(officer),weapon==null?ZAOCHUAN:FAMING)?2:3;}
     public int researchGold(int officer,Campaign.Tech tech){return has(w.officer(officer),ZHIDAO)?tech.gold/2:tech.gold;}
-    public int movementBonus(World.Unit u){
-        if(w.army.water(u.hex))return has(u,CAODUO)?1:0;
+    public int movementBonus(World.Unit u){return movementBonusAt(u,u.hex);}
+    int movementBonusAt(World.Unit u,Hex h){
+        if(w.army.water(h))return has(u,CAODUO)?1:0;
         if(u.weapon==World.Weapon.CAVALRY)return has(u,CHANGQU)?1:0;
         return u.weapon.ordinal()<3&&has(u,QIANGXING)?1:0;
     }

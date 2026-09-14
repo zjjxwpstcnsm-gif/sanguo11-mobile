@@ -63,7 +63,11 @@ public final class MarchOrders {
     }
     /** Read-only current route for the map, including paused orders. */
     public Plan current(World.Unit u){return plan(u,u==null?null:u.march,false);}
+    private int budget(World.Unit u,Hex h,int[] budgets){
+        int mode=w.army.water(h)?1:0;if(budgets[mode]<0)budgets[mode]=w.war.movementAt(u,h);return budgets[mode];
+    }
     private Plan plan(World.Unit u,Order o,boolean snapshot){
+        int[] budgets={-1,-1};
         String problem=error(u);Hex destination=target(o);List<Hex> path=new ArrayList<>();int cost=0,stepsNow=0,turns=0;
         if(problem==null&&(o==null||destination==null||!w.inside(destination)))problem="目标已消失或归属改变，请重新选择";
         if(problem==null&&o.kind==Kind.UNIT&&o.targetId==u.id)problem="请选择其他目标";
@@ -82,7 +86,7 @@ public final class MarchOrders {
                 for(Hex next:s.h.neighbors()){
                     int step=w.army.moveCost(u,s.h,next);if(step<1||blocked.contains(next))continue;
                     // An edge that cannot fit in any turn at its source must never produce an endless order.
-                    int budget=w.war.movementAt(u,s.h);if(s.h.equals(u.hex))budget=Math.max(budget,w.orders.remaining(u));
+                    int budget=budget(u,s.h,budgets);if(s.h.equals(u.hex))budget=Math.max(budget,w.orders.remaining(u));
                     if(step>budget)continue;
                     int total=s.cost+step;if(total<distance.getOrDefault(next,Integer.MAX_VALUE)){distance.put(next,total);previous.put(next,s.h);queue.add(new Step(next,total));}
                 }
@@ -93,7 +97,7 @@ public final class MarchOrders {
                 int available=w.orders.remaining(u),spent=0;boolean now=true;
                 for(int i=1;i<path.size();i++){
                     int step=w.army.moveCost(u,path.get(i-1),path.get(i));
-                    if(spent+step>available){turns++;available=w.war.movementAt(u,path.get(i-1));spent=0;now=false;}
+                    if(spent+step>available){turns++;available=budget(u,path.get(i-1),budgets);spent=0;now=false;}
                     spent+=step;if(now)stepsNow=i;
                 }
             }

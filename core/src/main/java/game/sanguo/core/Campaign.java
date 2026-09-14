@@ -93,8 +93,10 @@ public final class Campaign {
     public int equipmentCap(World.City c,World.Weapon weapon){return Army.siegeWeapon(weapon)?100:troopCap(c);}
     public int orderLoss(int owner,int base){return has(owner,Tech.ADMINISTRATION)?(base+1)/2:base;}
     public int loyaltyLoss(int owner,int base){return has(owner,Tech.POPULAR_SUPPORT)?(base+1)/2:base;}
-    public Tech elite(World.Unit u){if(w.army.water(u.hex)||u.weapon.ordinal()>3)return null;return new Tech[]{Tech.ELITE_SPEAR,Tech.ELITE_HALBERD,Tech.ELITE_CROSSBOW,Tech.ELITE_CAVALRY}[u.weapon.ordinal()];}
-    public boolean eliteUnit(World.Unit u){Tech t=elite(u);return t!=null&&has(u.owner,t);}
+    public Tech elite(World.Unit u){return eliteAt(u,u.hex);}
+    private Tech eliteAt(World.Unit u,Hex h){if(w.army.water(h)||u.weapon.ordinal()>3)return null;return new Tech[]{Tech.ELITE_SPEAR,Tech.ELITE_HALBERD,Tech.ELITE_CROSSBOW,Tech.ELITE_CAVALRY}[u.weapon.ordinal()];}
+    public boolean eliteUnit(World.Unit u){return eliteUnitAt(u,u.hex);}
+    boolean eliteUnitAt(World.Unit u,Hex h){Tech t=eliteAt(u,h);return t!=null&&has(u.owner,t);}
     int constructionDamage(World.Unit u,int amount){return has(u.owner,Tech.SIEGE_LADDERS)?amount*(w.army.water(u.hex)||Army.siegeWeapon(u.weapon)?120:140)/100:amount;}
     void finishTech(int owner,Tech tech){learned.computeIfAbsent(owner,k->EnumSet.noneOf(Tech.class)).add(tech);w.fieldworks.upgrade(owner);}
 

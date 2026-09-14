@@ -20,7 +20,7 @@ final class UiModels {
             case CAPTIVE: return w.government.status(o.id);
             case CONSTRUCTION: case TRANSFER: case TRANSPORT: return w.domestic.assignment(o.id);
             case OTHER_TASK: return o.otherTask+" · 剩"+state.remainingTurns+"旬";
-            case DEPLOYED: {World.Unit unit=w.unit(o.unitId);return unit!=null&&unit.acted?"出征 · 已行动":"出征 · 待命";}
+            case DEPLOYED: {World.Unit unit=w.unit(o.unitId);if(unit!=null&&unit.march!=null)return "行军 → "+w.marches.label(unit.march)+(unit.march.paused.isEmpty()?"":" · 暂停");return unit!=null&&unit.acted?"出征 · 已行动":"出征 · 待命";}
             case UNAFFILIATED: return "在野 · 待登用";
             case UNAVAILABLE: return "不可派遣";
             case ACTED: return "本旬已行动";
