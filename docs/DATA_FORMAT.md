@@ -1,3 +1,13 @@
+# v0.17 当前扩展
+
+当前写v15、读v1—v14；见[生卒/继承与地图导入](LIFECYCLE_V0_17.md)。下方旧存档章节为版本历史。
+
+- `coordinates=axial` 为默认，width≤300、height≤200；`coordinates=odd-r` 时width/height均≤200，city/initial-unit/initial-camp使用源x/y，载入时一起转换。
+- `source` 接受 `engineering-original`、`community-reference`（须匹配已支持reference）、`user-supplied`；任何等级都不自动证明原版完整性。原始UTF-8字节SHA-256随存档保存。
+- `natural-deaths=0/1`，省略为0。
+- `lifetimes=N`，每项 `lifetime.i=武将ID|出生年|登场年|预计没年|登场据点ID|ACTIVE或UNAPPEARED`。日期0表示未知；未登场必须为未来年份、无所属/编队/任务/宝物，加载后不驻城。DEAD只能由运行时结算产生。跨引用/日期顺序/重复记录拒绝。
+- 所有旧的format=1包保持兼容。导入完整样例见 `core/src/main/resources/scenarios/lifecycle-drill.properties`；修改id/name/source和数据即可用安卓“导入剧本文件”加载。需要保留所有必填字段；来源标识不能代替核验。
+
 # v11扩展
 
 当前写v11、读v1—v10。新段包含完整技巧稳定名称及旧版前置许可、据点类型/基准耐久、部队携金、施工部队/完成状态/火球方向。原前15个技巧位图和枚举位置保持稳定。新增地形编码D（间道）、S（浅滩）、B（栈道），以及可选site-kinds、unit-gold、technology-points开局段，见fieldworks-drill.properties及[完整边界](TECHNOLOGY_V0_12.md)。
@@ -13,7 +23,7 @@
 - `id` 是稳定剧本标识，`revision` 为数据修订；修改数据后同时更新校验值和修订号。
 - 城池和武将使用稳定整数 ID，不依赖数组顺序。`city.N`、`officer.N` 的 N 只负责遍历，记录首列才是实际 ID。
 - 势力 ID 目前为数据包内连续的 0～N−1；同一包的修订不得重排既有势力编号。存档内嵌完整势力表与局面，不依赖新安装的数据文件。
-- `source=engineering-original` 是当前唯一开放的来源等级。未来接入核验数据时，须扩展按字段记录的版本/证据/差异格式，不能仅把字符串改为“原版”。SHA-256 用于一致性检查，不证明数据来源或原版正确性。
+- 来源等级以本文顶部当前扩展为准。未来接入核验数据时，须扩展按字段记录的版本/证据/差异格式，不能仅把字符串改为“原版”。SHA-256 用于一致性检查，不证明数据来源或原版正确性。
 
 ## 字段
 
@@ -22,9 +32,9 @@
 | format | 固定 1；未知版本拒绝 |
 | id / name / revision / source | 稳定 ID、中文名称、修订号、来源等级 |
 | year / month | 开局年份及月份，默认上旬开始；1～9999年，1～12月 |
-| width / height | 1～128格；轴向六角坐标 q/r |
+| width / height | 默认轴向≤300×200；显式odd-r≤200×200 |
 | factions / faction.N | 2～32家势力及名称，不允许重名 |
-| terrain.R | 第 R 行，共 width 个字符；P 平原，F 林地，M 山地，W 水面 |
+| terrain.R | 第 R 行，共 width 个字符；P 平原，F 林地，M 山地，W 水面，D 间道，S 浅滩，B 栈道，X 毒泉 |
 | cities / city.N | 城池数及记录 |
 | officers / officer.N | 武将数及记录 |
 

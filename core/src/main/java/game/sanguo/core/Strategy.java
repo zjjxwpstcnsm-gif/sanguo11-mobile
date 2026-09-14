@@ -15,7 +15,7 @@ public final class Strategy {
         public final String label;
         Role(String label) { this.label=label; }
     }
-    public enum Activity { IDLE, ACTED, CONSTRUCTION, TRANSFER, TRANSPORT, OTHER_TASK, DEPLOYED, UNAFFILIATED, UNAVAILABLE, CAPTIVE }
+    public enum Activity { IDLE, ACTED, CONSTRUCTION, TRANSFER, TRANSPORT, OTHER_TASK, DEPLOYED, UNAFFILIATED, UNAVAILABLE, CAPTIVE, UNAPPEARED, DEAD }
     public enum SearchOutcome { REJECTED, OFFICER, GOLD, NOTHING, TREASURE }
 
     /** Snapshot derived from the actual assignments, never a second mutable task registry. */
@@ -96,7 +96,8 @@ public final class Strategy {
         World.Officer o=w.officer(officerId);
         if(o==null)throw new IllegalArgumentException("武将不存在");
         Activity activity=Activity.IDLE; int remaining=0;
-        if(w.government.captive(o.id))activity=Activity.CAPTIVE;
+        if(!w.life.present(o.id))activity=w.life.state(o.id)==Lifecycle.State.DEAD?Activity.DEAD:Activity.UNAPPEARED;
+        else if(w.government.captive(o.id))activity=Activity.CAPTIVE;
         else if(o.unitId>=0)activity=Activity.DEPLOYED;
         else {
             for(Domestic.Facility f:w.domestic.facilities)if(f.builderId==o.id){activity=Activity.CONSTRUCTION;remaining=f.remaining;break;}

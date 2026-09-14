@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=14, MAX_BYTES=4*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=15, MAX_BYTES=4*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -53,6 +53,8 @@ public final class SaveCodec {
         EstatesSave.write(w,d);
         w.marches.write(d);
         WorldSystemsSave.write(w,d);
+        d.writeInt(w.sourceMapWidth);
+        w.life.write(d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
@@ -71,7 +73,7 @@ public final class SaveCodec {
         byte[] payload=new byte[length];d.readFully(payload);CRC32 crc=new CRC32();crc.update(payload);
         if(crc.getValue()!=expected)throw new IOException("存档校验失败");
         d=new DataInputStream(new ByteArrayInputStream(payload));
-        int width=bounded(d.readInt(),1,128),height=bounded(d.readInt(),1,128);
+        int width=bounded(d.readInt(),1,300),height=bounded(d.readInt(),1,200);
         int turn=d.readInt(),active=d.readInt(),nextUnitId=d.readInt(),winner=d.readInt();
         String[] factions={"刘备军","曹操军"};
         if(version>=2){factions=new String[bounded(d.readInt(),2,32)];for(int i=0;i<factions.length;i++)factions[i]=d.readUTF();}
@@ -119,6 +121,7 @@ public final class SaveCodec {
             d.mark(4);int marker=d.readInt();d.reset();
             if(marker==WorldSystemsSave.MARKER)WorldSystemsSave.read(w,d);else w.marches.read(d);
         }
+        if(version>=15){w.sourceMapWidth=bounded(d.readInt(),0,200);w.life.read(d);}
         count=bounded(d.readInt(),0,40);for(int i=0;i<count;i++)w.log.add(d.readUTF());
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         validate(w);return w;
@@ -128,7 +131,7 @@ public final class SaveCodec {
     private static int bounded(int n,int min,int max)throws IOException { if(n<min||n>max)throw new IOException("存档字段越界");return n; }
     private static void require(boolean ok,String message)throws IOException { if(!ok)throw new IOException(message); }
     public static void validate(World w)throws IOException {
-        bounded(w.width,1,128);bounded(w.height,1,128);bounded(w.factions.length,2,32);
+        bounded(w.width,1,300);bounded(w.height,1,200);bounded(w.factions.length,2,32);
         bounded(w.active,0,w.factions.length-1);bounded(w.player,0,w.factions.length-1);bounded(w.turn,0,100000);bounded(w.winner,-1,w.factions.length-1);
         require(w.actionPoints.length==w.factions.length,"势力行动力缺失");
         Set<String> factionNames=new HashSet<>();for(String name:w.factions){label(name,100);require(factionNames.add(name),"势力名称重复");}
@@ -161,6 +164,9 @@ public final class SaveCodec {
             require(o!=null&&o.owner==u.owner&&o.unitId==u.id&&o.cityId==-1,"部队武将引用错误");
             bounded(u.troops,1,18000);bounded(u.food,0,1000000);bounded(u.energy,0,w.campaign.energyCap(u.owner));
         }
+        bounded(w.sourceMapWidth,0,200);
+        if(w.sourceMapWidth>0){require(w.width==w.sourceMapWidth+(w.height-1)/2,"错行地图宽度不匹配");for(int q=0;q<w.width;q++)for(int r=0;r<w.height;r++){int x=MapCoordinates.source(new Hex(q,r),w.height).q;if(x<0||x>=w.sourceMapWidth)require(w.terrain[q][r]==World.Terrain.MOUNTAIN,"错行地图填充区必须不可通行");}}
+        w.life.validate();
         w.domestic.validate();
         w.strategy.validate();
         CampaignSave.validate(w);

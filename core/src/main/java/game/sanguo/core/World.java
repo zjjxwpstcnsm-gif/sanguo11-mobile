@@ -72,6 +72,7 @@ public final class World {
     public final List<Officer> officers=new ArrayList<>();
     public final List<Unit> units=new ArrayList<>();
     public final List<String> log=new ArrayList<>();
+    public final Lifecycle life=new Lifecycle(this);
     public final Domestic domestic=new Domestic(this);
     public final Strategy strategy=new Strategy(this);
     public final Campaign campaign=new Campaign(this);
@@ -94,13 +95,14 @@ public final class World {
     public final String[] factions;
     public final int[] actionPoints;
     public String scenarioId="m0-skirmish", scenarioName="基础演练", dataSource="engineering-original", dataHash="";
+    public int sourceMapWidth; // zero: axial; positive: original odd-r width
     public int dataRevision=1, startYear=190, startMonth=1, player=0;
     public int turn=0, active=0, nextUnitId=1, winner=-1;
     public World(int width,int height) {
         this(width,height,"刘备军","曹操军");
     }
     public World(int width,int height,String... factions) {
-        if(width<1||width>128||height<1||height>128||factions.length<2||factions.length>32)throw new IllegalArgumentException("地图或势力数量无效");
+        if(width<1||width>300||height<1||height>200||factions.length<2||factions.length>32)throw new IllegalArgumentException("地图或势力数量无效");
         this.factions=factions.clone();abilities=new AbilityResearch(this);actionPoints=new int[factions.length];Arrays.fill(actionPoints,60);
         this.width=width;this.height=height;terrain=new Terrain[width][height];
         for (Terrain[] row:terrain) Arrays.fill(row,Terrain.PLAIN);
@@ -112,6 +114,7 @@ public final class World {
         for(Unit u:units)if(u.owner==owner)return true;
         return false;
     }
+    public boolean commandsBlocked(){return contests.busy()||life.pending();}
     public boolean gameOver() { return winner>=0||!alive(player); }
     public City home() { for(City c:cities)if(c.owner==player)return c;return cities.isEmpty()?null:cities.get(0); }
     public boolean inside(Hex h) { return h.q>=0&&h.r>=0&&h.q<width&&h.r<height; }
@@ -123,14 +126,14 @@ public final class World {
     Result fail(String text) { return new Result(false,text); }
     Result success(String text) { fieldworks.cleanup();abilities.cleanup();districts.cleanup();note(text);return new Result(true,text); }
     public void note(String text) { log.add(text);while(log.size()>40)log.remove(0); }
-    private boolean available(Officer o,City c) { return !contests.busy()&&o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
+    private boolean available(Officer o,City c) { return !commandsBlocked()&&o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
     public List<Officer> idle(City c) {
         List<Officer> found=new ArrayList<>();
         if(c!=null&&c.owner==active) for(Officer o:officers) if(available(o,c))found.add(o);
         return found;
     }
     String cityError(City c,Officer o,int gold) {
-        if(contests.busy())return "请先完成当前单挑或舌战";
+        if(commandsBlocked())return "请先完成当前对局或君主继承";
         if(gameOver())return "本局已结束";
         if(c==null||c.owner!=active)return "请选择己方城池";
         if(!districts.directCity(c.id))return "该据点由委任军团管理，请先重编或撤销军团";
@@ -230,7 +233,7 @@ public final class World {
     void removeUnit(Unit u) { government.defeated(u,null); }
     void defeatUnit(Unit u,Unit attacker){government.defeated(u,attacker);}
     public Result nextTurn() {
-        if(contests.busy())return fail("请先完成当前单挑或舌战");
+        if(commandsBlocked())return fail("请先完成当前对局或君主继承");
         if(gameOver())return fail("本局已结束，请重开");
         if(active!=player)return fail("等待电脑行动");
         districts.run();government.runDelegated();
@@ -254,7 +257,7 @@ public final class World {
             c.gold+=Math.min(Math.max(0,campaign.goldCap(c)-c.gold),domestic.goldIncome(c.id,turn));c.food+=Math.min(Math.max(0,campaign.foodCap(c)-c.food),domestic.foodIncome(c.id,turn));
             if(c.defense<campaign.defenseCap(c))c.defense=Math.min(campaign.defenseCap(c),c.defense+(campaign.has(c.owner,Campaign.Tech.ENGINEERING)?250:100));
         }
-        events.tick();active=player;reset(player);checkVictory();marches.advanceAll();return success(date()+" · 行动力恢复");
+        events.tick();life.tick();active=player;reset(player);checkVictory();if(!life.pending())marches.advanceAll();return success(date()+" · 行动力恢复");
     }
     private void reset(int owner) {
         actionPoints[owner]=60;

@@ -19,7 +19,7 @@ public final class GameSmokeRunner extends Instrumentation {
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
-            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v14 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
+            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v15 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
@@ -49,6 +49,7 @@ public final class GameSmokeRunner extends Instrumentation {
             marchFlow();
             worldFlow();
             campaignAiFlow();
+            lifecycleFlow();
             estatesFlow();
             fieldworkFlow();
             abilityFlow();
@@ -62,7 +63,7 @@ public final class GameSmokeRunner extends Instrumentation {
             governmentFlow();
             documentTransferFlow();
             contestFlow();
-            result.putString("stream","SMOKE PASS: v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            result.putString("stream","SMOKE PASS: v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -110,6 +111,28 @@ public final class GameSmokeRunner extends Instrumentation {
         require(w.unit(3)==null&&w.unit(4)!=null&&w.unit(4).troops==6000,"installed AI chooses a kill rather than first enemy in list");screenshot("82-ai-turn-result");
         byte[] after=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("军情验证",false);require(Arrays.equals(after,SaveCodec.encode(saved())),"AI turn result survives activity recreation");
     }
+    private void lifecycleFlow()throws Exception {
+        World w=ScenarioCatalog.load("lifecycle-drill",0);w.turn=2;installFixture(w,w.city(10).hex);
+        byte[] before=SaveCodec.encode(saved());
+        openLifetime();setInput("出生年","174");click("预览",true);waitText("生卒编辑预览",true);screenshot("83-lifetime-preview");click("取消",true);
+        require(Arrays.equals(before,SaveCodec.encode(saved())),"biography preview cancellation is atomic");
+        openLifetime();setInput("出生年","174");click("预览",true);click("执行",true);require(saved().life.life(1).birth==174&&saved().editor.edited(),"biography draft applies to playable save");
+        endTurn();waitText("君主继承 · 先主已故",true);w=saved();require(w.life.pending()&&w.life.state(0)==Lifecycle.State.DEAD&&w.life.present(30),"January death and arrival require heir");
+        byte[] pending=SaveCodec.encode(w);screenshot("84-succession-pending");runOnMainSync(current::recreate);waitText("君主继承 · 先主已故",true);
+        require(Arrays.equals(pending,SaveCodec.encode(saved())),"pending succession survives recreation exactly");
+        click("继承 · 继业",true);click("取消",true);require(Arrays.equals(pending,SaveCodec.encode(saved())),"heir cancellation preserves unresolved event");
+        click("继承 · 继业",true);click("执行",true);w=saved();require(!w.life.pending()&&w.officer(1).role==Strategy.Role.RULER&&w.officer(1).loyalty==100,"real heir confirmation resumes play");
+        clickNav("菜单");click("生卒与继承",true);click("事件履历",true);waitText("继业继承传承营君主之位",false);screenshot("85-succession-history");click("返回",true);
+        byte[] settled=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("世代传承",false);require(Arrays.equals(settled,SaveCodec.encode(saved())),"inheritance settles once across restart");
+        File source=new File(getTargetContext().getFilesDir(),"scenario-import.properties");
+        try(InputStream in=ScenarioCatalog.class.getResourceAsStream("/scenarios/lifecycle-drill.properties");OutputStream out=new FileOutputStream(source)){byte[] b=new byte[4096];int n;while((n=in.read(b))!=-1)out.write(b,0,n);}
+        Intent document=new Intent().setData(android.net.Uri.fromFile(source));
+        runOnMainSync(()->((MainActivity)current).onActivityResult(915,Activity.RESULT_OK,document));waitText("导入剧本 · 选择势力",true);click("守望营",true);click("取消",true);require(Arrays.equals(settled,SaveCodec.encode(saved())),"scenario import cancel preserves current campaign");
+        runOnMainSync(()->((MainActivity)current).onActivityResult(915,Activity.RESULT_OK,document));click("守望营",true);click("执行",true);require(saved().player==1&&saved().turn==0&&saved().life.state(30)==Lifecycle.State.UNAPPEARED,"scenario import starts selected faction and configured lifetimes");screenshot("86-imported-scenario");
+        before=SaveCodec.encode(saved());try(OutputStream out=new FileOutputStream(source)){out.write(new byte[]{0,1,2});}
+        runOnMainSync(()->((MainActivity)current).onActivityResult(915,Activity.RESULT_OK,document));waitText("导入失败",true);click("返回",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"invalid scenario import is atomic");
+    }
+    private void openLifetime(){clickNav("菜单");click("生卒与继承",true);click("武将生卒资料",true);setInput("生卒武将姓名","继业");click("查找",true);click("继业 · 已登场",true);click("编辑生卒",true);}
     private void strategicFlow()throws Exception {
         click("菜单",true);click("新游戏 / 选择势力",true);click("区域争雄 ·",false);click("孙权军",true);click("执行",true);waitForIdleSync();
         assertWorld(2,0,"regional-sandbox");locateCity("柴桑");
@@ -277,7 +300,7 @@ public final class GameSmokeRunner extends Instrumentation {
         require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=14,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
-        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==14,"upgraded writer produced v14 header");}
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==15,"upgraded writer produced v15 header");}
         screenshot("00-v09-upgrade-preserved");
     }
     private void contestFlow()throws Exception {
@@ -513,12 +536,14 @@ public final class GameSmokeRunner extends Instrumentation {
         long t=SystemClock.uptimeMillis();send(t,t,MotionEvent.ACTION_DOWN,target[0],target[1]);send(t,t+40,MotionEvent.ACTION_MOVE,target[0]-20,target[1]+20);send(t,t+80,MotionEvent.ACTION_UP,target[0]-20,target[1]+20);waitForIdleSync();require(camera.centerX()!=old[0],"navigator touch relocates camera");require(Arrays.equals(before,SaveCodec.encode(saved())),"navigator does not issue commands");screenshot("32-navigator");
         runOnMainSync(current::recreate);waitText("武将资料演练",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"sourced map recreation keeps snapshot");
         // A maximum-sized engineering stress fixture, explicitly unrelated to original national terrain.
-        World stress=new World(128,128);stress.scenarioId="viewport-stress";stress.scenarioName="128 格绘制压测";
-        for(int i=0;i<128;i++){int id=40000+i;stress.cities.add(new World.City(id,"压测城"+i,new Hex(i,i),i%2));stress.officers.add(new World.Officer(50000+i,"压测将"+i,i%2,id,70,70,70,70,70));}
+        World stress=new World(299,200);stress.sourceMapWidth=200;stress.scenarioId="viewport-stress";stress.scenarioName="200 格绘制压测";
+        for(int y=0;y<200;y++)for(int x=0;x<299;x++){Hex raw=MapCoordinates.source(new Hex(x,y),200);if(raw.q<0||raw.q>=200)stress.terrain[x][y]=World.Terrain.MOUNTAIN;}
+        for(int i=0;i<87;i++)stress.cities.add(new World.City(40000+i,"压测城"+i,MapCoordinates.axial((i*17)%200,(i*13)%200,200),i%2));
+        for(int i=0;i<670;i++)stress.officers.add(new World.Officer(50000+i,"压测将"+i,(i%87)%2,40000+i%87,70,70,70,70,70));
         long[] elapsed=new long[40];int[] visits=new int[2];MapView finalMap=mapView();
-        runOnMainSync(()->{finalMap.setWorld(stress,null,-1);finalMap.focus(new Hex(64,64));Bitmap bitmap=Bitmap.createBitmap(finalMap.getWidth(),finalMap.getHeight(),Bitmap.Config.ARGB_8888);Canvas canvas=new Canvas(bitmap);for(int i=0;i<45;i++){finalMap.draw(canvas);if(i>=5)elapsed[i-5]=finalMap.drawNanos();}visits[0]=finalMap.tilesVisited();visits[1]=finalMap.objectsVisited();bitmap.recycle();});
-        Arrays.sort(elapsed);require(visits[0]<128*128/4,"large map drawing visits visible area");
-        try(PrintWriter out=new PrintWriter(new File(getTargetContext().getExternalFilesDir(null),"content-performance.txt"))){out.println("Engineering 128x128, 128 cities, 128 officers; software Canvas onDraw timing, NOT FPS or GPU latency");out.println("viewport="+finalMap.getWidth()+"x"+finalMap.getHeight()+" tilesVisited="+visits[0]+" objectsVisited="+visits[1]);out.println("warm samples=40 medianMs="+elapsed[20]/1e6+" p95Ms="+elapsed[38]/1e6+" maxMs="+elapsed[39]/1e6);}
+        runOnMainSync(()->{finalMap.setWorld(stress,null,-1);finalMap.focus(MapCoordinates.axial(100,100,200));Bitmap bitmap=Bitmap.createBitmap(finalMap.getWidth(),finalMap.getHeight(),Bitmap.Config.ARGB_8888);Canvas canvas=new Canvas(bitmap);for(int i=0;i<45;i++){finalMap.draw(canvas);if(i>=5)elapsed[i-5]=finalMap.drawNanos();}visits[0]=finalMap.tilesVisited();visits[1]=finalMap.objectsVisited();bitmap.recycle();});
+        Arrays.sort(elapsed);require(visits[0]<200*200/4,"large map drawing visits visible area");
+        try(PrintWriter out=new PrintWriter(new File(getTargetContext().getExternalFilesDir(null),"content-performance.txt"))){out.println("Engineering 200x200 odd-r (299x200 axial), 87 cities, 670 officers; software Canvas onDraw timing, NOT FPS or GPU latency");out.println("viewport="+finalMap.getWidth()+"x"+finalMap.getHeight()+" tilesVisited="+visits[0]+" objectsVisited="+visits[1]);out.println("warm samples=40 medianMs="+elapsed[20]/1e6+" p95Ms="+elapsed[38]/1e6+" maxMs="+elapsed[39]/1e6);}
         runOnMainSync(()->((MainActivity)current).refresh());
     }
     private void tapHex(Hex h)throws Exception {

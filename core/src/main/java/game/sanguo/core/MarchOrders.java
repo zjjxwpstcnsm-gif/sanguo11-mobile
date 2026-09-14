@@ -33,7 +33,7 @@ public final class MarchOrders {
     private final World w;
     MarchOrders(World w){this.w=w;}
     private String error(World.Unit u){
-        if(w.contests.busy())return "请先完成当前对局";
+        if(w.commandsBlocked())return "请先完成当前对局或君主继承";
         if(w.gameOver())return "本局已结束";
         if(u==null||u.owner!=w.active)return "请选择当前势力的部队";
         if(!w.districts.directUnit(u.id))return "该部队由委任军团指挥";
@@ -115,7 +115,7 @@ public final class MarchOrders {
         return w.success(w.officer(u.officerId).name+" · "+(u.march==null?"已抵达目标附近，可继续下令":u.march.paused.isEmpty()?"向"+label(u.march)+"行军，下旬自动继续":"行军暂停："+u.march.paused));
     }
     public World.Result stop(int id){
-        World.Unit u=w.unit(id);if(u==null||u.owner!=w.active||w.contests.busy())return w.fail("当前不能变更行军指令");
+        World.Unit u=w.unit(id);if(u==null||u.owner!=w.active||w.commandsBlocked())return w.fail("当前不能变更行军指令");
         if(!w.districts.directUnit(u.id))return w.fail("该部队由委任军团指挥");
         if(u.march==null)return w.fail("部队没有行军指令");u.march=null;return w.success(w.officer(u.officerId).name+"停止自动行军");
     }

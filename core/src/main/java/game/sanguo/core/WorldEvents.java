@@ -31,7 +31,7 @@ public final class WorldEvents {
     public Tribe region(int city){return regions.getOrDefault(city,Tribe.BANDIT);}
     public String cityStatus(int city){Hazard h=hazards.get(city);String text=h==null?"无灾害":h.kind.label+" · 剩"+Math.max(0,h.until-w.turn)+"旬";for(Camp c:camps)if(c.city==city)text+=" · "+c.tribe.label+"营寨 "+c.troops+"兵";return text;}
     public World.Result toggle(){
-        if(w.contests.busy()||w.gameOver()||w.active!=w.player)return w.fail("当前不能变更灾害设置");
+        if(w.commandsBlocked()||w.gameOver()||w.active!=w.player)return w.fail("当前不能变更灾害设置");
         enabled=!enabled;return w.success(enabled?"已开启季节灾害和月度贼患":"已停止产生新灾害和贼患；已有灾害和营寨仍会结算");
     }
     public void configureRegion(int city,Tribe tribe){if(w.city(city)==null||tribe==null)throw new IllegalArgumentException("异族区域无效");if(tribe==Tribe.BANDIT)regions.remove(city);else regions.put(city,tribe);}

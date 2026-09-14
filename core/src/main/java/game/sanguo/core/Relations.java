@@ -93,7 +93,7 @@ public final class Relations {
             case LIKE:p.likes.remove(b);break;case DISLIKE:p.dislikes.remove(b);break;}
     }
     public String mediateError(int city,int first,int second,Kind kind){
-        if(w.contests.busy()||w.gameOver()||w.active!=w.player)return "当前不能仲介";
+        if(w.commandsBlocked()||w.gameOver()||w.active!=w.player)return "当前不能仲介";
         if(kind!=Kind.SPOUSE&&kind!=Kind.SWORN)return "仲介仅支持结义与婚姻";
         String error=linkError(first,second,kind);if(error!=null)return error;
         World.City c=w.city(city);Set<Integer> group=kind==Kind.SWORN?swornGroup(first,second):new TreeSet<>(Arrays.asList(first,second));

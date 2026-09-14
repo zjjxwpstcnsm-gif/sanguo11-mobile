@@ -117,12 +117,13 @@ public final class MainActivity extends Activity {
         if(ui.owner>=world.factions.length)ui.owner=-1;
         if(ui.cityOwner>=world.factions.length)ui.cityOwner=-1;
         title.setText(world.scenarioName+"  ·  "+world.faction(world.player)+"    "+world.date()+"    行动力 "+world.actionPoints[world.player]);
-        nextTurn.setEnabled(!aiRunning&&!world.gameOver()&&!world.contests.busy());nextTurn.setText(aiRunning?"结算中…":"下一旬  →");
+        nextTurn.setEnabled(!aiRunning&&!world.gameOver()&&!world.commandsBlocked());nextTurn.setText(aiRunning?"结算中…":"下一旬  →");
         for(Map.Entry<String,Button> e:navigation.entrySet()){e.getValue().setEnabled(!aiRunning);e.getValue().setSelected(e.getKey().equals(ui.page));e.getValue().setTextColor(e.getKey().equals(ui.page)?gold:paper);}
         navigation.get("tasks").setText("任务"+(taskCount()>0?" "+taskCount():""));
         panelHost.removeAllViews();panel.removeAllViews();panelHost.setVisibility(ui.panelVisible?View.VISIBLE:View.GONE);
         if(world.unit(moving)==null)moving=-1;
-        if(world.contests.busy()&&!ui.page.equals("menu"))panelHost.addView(new ContestUi(this,world,this::apply).view());
+        if(world.life.pending()&&!ui.page.equals("menu")){panelHost.setVisibility(View.VISIBLE);panelHost.addView(new LifecycleUi(this,world,this::apply).succession());}
+        else if(world.contests.busy()&&!ui.page.equals("menu"))panelHost.addView(new ContestUi(this,world,this::apply).view());
         else if(ui.page.equals("cities"))panelHost.addView(new OverviewUi(this,world,ui).cities());
         else if(ui.page.equals("officers"))panelHost.addView(new OverviewUi(this,world,ui).officers());
         else if(ui.page.equals("content"))panelHost.addView(new ContentUi(this,world,ui).view());
@@ -131,7 +132,7 @@ public final class MainActivity extends Activity {
         else {panelHost.addView(panelScroll);if(ui.page.equals("menu"))showMenu();else showSelection();}
         log.setText(aiRunning?"正在结算电脑行动与本旬任务…":world.log.isEmpty()?"拖动地图 · 双指缩放 · 双击城池定位":world.log.get(world.log.size()-1));
         map.setWorld(world,selected,moving);map.setRoute(pendingMarch!=null?pendingMarch:world.unit(moving)!=null&&world.unit(moving).march!=null?world.marches.current(world.unit(moving)):null);
-        map.setEnabled(!aiRunning&&!world.contests.busy());refreshCommandDock();
+        map.setEnabled(!aiRunning&&!world.commandsBlocked());refreshCommandDock();
     }
     private void previewMarch(World.Unit unit,Hex target){
         pendingMarch=world.marches.preview(unit.id,target);ui.page="map";ui.panelVisible=false;refresh();
@@ -143,7 +144,7 @@ public final class MainActivity extends Activity {
     }
     private void refreshCommandDock(){
         commandDock.removeAllViews();World.Unit u=world.unit(moving);
-        commandDock.setVisibility(u!=null&&ui.page.equals("map")&&!world.contests.busy()?View.VISIBLE:View.GONE);
+        commandDock.setVisibility(u!=null&&ui.page.equals("map")&&!world.commandsBlocked()?View.VISIBLE:View.GONE);
         if(u==null)return;
         LinearLayout copy=new LinearLayout(this);copy.setOrientation(LinearLayout.VERTICAL);copy.setGravity(Gravity.CENTER_VERTICAL);
         TextView heading=text(pendingMarch!=null?"路线预览 · "+pendingMarch.label:world.officer(u.officerId).name+" · "+world.army.equipmentLabel(u),14,paper);
@@ -282,6 +283,7 @@ public final class MainActivity extends Activity {
         if(world.contests.injury(o.id)>0)stats+="\n负伤 · 有效武力 "+world.contests.war(o)+" · 剩"+world.contests.injuryTurns(o.id)+"旬";
         Government.Rank office=world.government.office(o.id);stats+="\n功绩 "+world.government.merit(o.id)+" · 官职 "+(office==null?"未授官":office.id)+" · 统兵 "+world.government.commandLimit(o.id);
         stats+="\n适性：枪"+War.rankLabel(o.aptitude[0])+" 戟"+War.rankLabel(o.aptitude[1])+" 弩"+War.rankLabel(o.aptitude[2])+" 骑"+War.rankLabel(o.aptitude[3])+" 器"+War.rankLabel(o.aptitude[4])+" 水"+War.rankLabel(o.aptitude[5]);
+        stats+="\n"+world.life.describe(o.id);
         stats+="\n特技："+Skill.label(o.skillId)+"\n\n"+world.relations.describe(o.id)+"\n\n宝物：\n"+world.treasures.describe(o.id);
         AlertDialog.Builder d=new AlertDialog.Builder(this).setTitle(o.name+" · "+UiModels.faction(world,o)).setMessage(stats+"\n身份："+o.role.label+" · 忠诚 "+o.loyalty+"\n\n所在地："+UiModels.location(world,o)+"\n状态："+UiModels.status(world,o)).setNegativeButton("返回",null);
         Hex h=o.cityId>=0?world.city(o.cityId).hex:o.unitId>=0&&world.unit(o.unitId)!=null?world.unit(o.unitId).hex:null;
@@ -306,11 +308,13 @@ public final class MainActivity extends Activity {
     DomesticUi domesticUi(){return new DomesticUi(this,world,this::apply,this::selectAndFocus);}
     private void showMenu(){
         line("军政菜单",22,gold);
+        action("生卒与继承",v->new LifecycleUi(this,world,this::apply).menu());
         action("军团与天下",v->new WorldUi(this,world,this::apply).menu());
         action("PK编辑 / 新武将",v->new EditorUi(this,world,this::apply).menu());
         if(world.editor.edited())line("当前局面已使用PK编辑",13,muted);
+        if(world.life.pending())action("继续君主继承",v->{ui.page="map";refresh();});
         if(world.contests.busy())action("继续当前对局",v->{ui.page="map";refresh();});
-        if(!world.contests.lastResult().isEmpty())action("最近对局结果",v->message("对局结果",world.contests.lastResult()));action("保存局面（3个槽位）",v->saveSlots(false));action("读取存档",v->saveSlots(true));action("导出当前存档",v->exportSave());action("导入存档文件",v->importSave());
+        if(!world.contests.lastResult().isEmpty())action("最近对局结果",v->message("对局结果",world.contests.lastResult()));action("保存局面（3个槽位）",v->saveSlots(false));action("读取存档",v->saveSlots(true));action("导出当前存档",v->exportSave());action("导入存档文件",v->importSave());action("导入剧本文件",v->{if(!aiRunning)startActivityForResult(new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("*/*"),IMPORT_SCENARIO);});
         action("本旬结算摘要",v->message("旬结算摘要",ui.summary.isEmpty()?"结束一旬后将在这里显示结算摘要。":ui.summary));
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
@@ -345,14 +349,14 @@ public final class MainActivity extends Activity {
     }
     private void showError(String title){message(title,"操作未完成，当前局面未改变。请检查存档是否损坏、版本是否兼容，以及设备存储空间后重试。");}
     private void confirmTurn(){
-        if(aiRunning||world.gameOver()||world.contests.busy())return;int idle=0;for(World.City c:world.cities)if(c.owner==world.player)idle+=world.idle(c).size();
+        if(aiRunning||world.gameOver()||world.commandsBlocked())return;int idle=0;for(World.City c:world.cities)if(c.owner==world.player)idle+=world.idle(c).size();
         confirm("结束 "+world.date()+"？\n还有 "+idle+" 名闲置武将、"+world.actionPoints[world.player]+" 点行动力。\n将执行电脑行动，推进建设、调动、运输与自动行军，并自动保存。",this::advanceTurn);
     }
-    private void advanceTurn(){if(aiRunning||world.gameOver()||world.contests.busy())return;aiRunning=true;turnWork=new TurnWork(world);turnWork.observe(this::finishTurn);refresh();turnWork.start();}
+    private void advanceTurn(){if(aiRunning||world.gameOver()||world.commandsBlocked())return;aiRunning=true;turnWork=new TurnWork(world);turnWork.observe(this::finishTurn);refresh();turnWork.start();}
     private void finishTurn(){
         if(turnWork==null||!turnWork.done||isFinishing()||isDestroyed())return;TurnWork completed=turnWork;completed.observe(null);turnWork=null;aiRunning=false;
         if(completed.error!=null){refresh();showError("回合结算失败");return;}
-        world=completed.after;ui.summary=completed.summary;pendingMarch=null;if(world.unit(moving)!=null)selected=world.unit(moving).hex;else moving=-1;refresh();save("auto",false);message("旬结算摘要",ui.summary);
+        world=completed.after;if(world.life.pending()){ui.page="map";ui.panelVisible=true;}ui.summary=completed.summary;pendingMarch=null;if(world.unit(moving)!=null)selected=world.unit(moving).hex;else moving=-1;refresh();save("auto",false);message("旬结算摘要",ui.summary);
     }
     @Override public Object onRetainNonConfigurationInstance(){if(turnWork!=null)turnWork.observe(null);return turnWork;}
     @Override protected void onDestroy(){if(turnWork!=null)turnWork.observe(null);super.onDestroy();}
@@ -363,7 +367,7 @@ public final class MainActivity extends Activity {
         catch(IOException e){if(out!=null)f.failWrite(out);Toast.makeText(this,"保存失败，请检查设备存储空间后重试",Toast.LENGTH_LONG).show();}
     }
     private World readSave(AtomicFile f)throws IOException {try(FileInputStream in=f.openRead()){return SaveCodec.read(in);}}
-    private static final int EXPORT_SAVE=911, IMPORT_SAVE=912, EXPORT_OFFICER=913, IMPORT_OFFICER=914;
+    private static final int EXPORT_SAVE=911, IMPORT_SAVE=912, EXPORT_OFFICER=913, IMPORT_OFFICER=914, IMPORT_SCENARIO=915;
     void importOfficerTemplate(){if(!aiRunning)startActivityForResult(new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("*/*"),IMPORT_OFFICER);}
     void exportOfficerTemplate(Editor.Template template){
         if(aiRunning)return;
@@ -386,7 +390,12 @@ public final class MainActivity extends Activity {
         super.onActivityResult(request,result,data);
         if(result!=RESULT_OK||data==null||data.getData()==null||aiRunning)return;
         try {
-            if(request==IMPORT_OFFICER){
+            if(request==IMPORT_SCENARIO){
+                final World imported;try(InputStream in=getContentResolver().openInputStream(data.getData())){imported=ScenarioData.read(in,0);}
+                new AlertDialog.Builder(this).setTitle("导入剧本 · 选择势力").setItems(imported.factions,(dialog,n)->confirm("开始“"+imported.scenarioName+"”？\n"+imported.faction(n)+" · "+(imported.sourceMapWidth>0?imported.sourceMapWidth:imported.width)+"×"+imported.height+"格 · "+imported.cities.size()+"据点 · "+imported.officers.size()+"武将\n将替换当前局面及自动存档，手动槽位保留。",()->{
+                    if(aiRunning)return;imported.player=n;imported.active=n;world=imported;ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;pendingMarch=null;moving=-1;selectAndFocus(world.home().hex);save("auto",false);
+                })).setNegativeButton("取消",null).show();
+            }else if(request==IMPORT_OFFICER){
                 Editor.Template template;try(InputStream in=getContentResolver().openInputStream(data.getData())){template=OfficerTemplateCodec.read(in);}
                 new AlertDialog.Builder(this).setTitle("导入新武将模板").setMessage(template.name+" · 统"+template.stat(0)+" / 武"+template.stat(1)+" / 智"+template.stat(2)+" / 政"+template.stat(3)+" / 魅"+template.stat(4)+"\n保存到模板列表后，可选择登场据点与身份。")
                     .setPositiveButton("保存模板",(dialog,n)->{try{EditorUi.store(this,template);message("模板已保存",template.name+"已加入新武将列表");}catch(IOException e){showError("模板保存失败");}}).setNegativeButton("取消",null).show();

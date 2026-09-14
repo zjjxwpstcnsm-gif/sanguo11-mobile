@@ -28,7 +28,7 @@ public final class Districts {
     public boolean directCity(int city){District d=city(city);return d==null||d.owner!=w.player||executing==d.id;}
     public boolean directUnit(int unit){District d=unit(unit);return d==null||d.owner!=w.player||executing==d.id;}
     private String manageError(){
-        if(w.contests.busy()||w.gameOver()||w.active!=w.player)return "当前无法编制军团";
+        if(w.commandsBlocked()||w.gameOver()||w.active!=w.player)return "当前无法编制军团";
         return w.actionPoints[w.active]<20?"编制需要第一军团20行动力":null;
     }
     public String configureError(int id,String name,int[] members,Policy policy,int target,int supply){

@@ -43,9 +43,10 @@ final class GovernmentUi {
     private void prisoners(World.City c){
         List<Government.Prisoner> list=new ArrayList<>();for(Government.Prisoner p:w.government.prisoners())if(p.captor==c.owner&&p.cityId==c.id)list.add(p);
         choose("本城俘虏",list,p->w.officer(p.officerId).name+" · 忠诚"+w.officer(p.officerId).loyalty,p->
-            new AlertDialog.Builder(a).setTitle(w.officer(p.officerId).name).setItems(new String[]{"招降","释放"},(d,n)->actor(c,o->{
+            new AlertDialog.Builder(a).setTitle(w.officer(p.officerId).name).setItems(new String[]{"招降","释放","处决"},(d,n)->actor(c,o->{
                 if(n==0)confirm("招降俘虏","当前成功率"+w.government.recruitChance(o.id,p.officerId)+"%。\n金100、行动力10；失败也消耗，每人每旬限一次。",()->apply.accept(w.government.recruitPrisoner(c.id,o.id,p.officerId)));
-                else confirm("释放俘虏","行动力10；返回原势力最近城池，原势力无城则在野；双方关系改善。",()->apply.accept(w.government.release(c.id,o.id,p.officerId)));
+                else if(n==1)confirm("释放俘虏","行动力10；返回原势力最近城池，原势力无城则在野；双方关系改善。",()->apply.accept(w.government.release(c.id,o.id,p.officerId)));
+                else confirm("处决俘虏","武将将永久死亡，宝物移交原势力府库；若为君主则触发继承。消耗行动力10，双方关系降至敌对。",()->apply.accept(w.life.executePrisoner(c.id,o.id,p.officerId)));
             })).setNegativeButton("返回",null).show());
     }
     private void amounts(String title,Consumer<int[]> next){choose(title,Arrays.asList(new int[]{0,1000},new int[]{0,5000},new int[]{1000,1000},new int[]{3000,5000}),v->v[0]+"兵 / "+v[1]+"粮",next);}

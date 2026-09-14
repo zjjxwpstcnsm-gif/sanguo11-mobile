@@ -66,7 +66,7 @@ public final class Fieldworks {
     }
     public World.Result stop(int unit){
         World.Unit u=w.unit(unit);War.Structure s=project(unit);
-        if(w.contests.busy()||w.gameOver()||u==null||u.owner!=w.active||s==null)return w.fail("请选择己方施工部队");
+        if(w.commandsBlocked()||w.gameOver()||u==null||u.owner!=w.active||s==null)return w.fail("请选择己方施工部队");
         s.builder=-1;return w.success("已中止施工，保留当前设施与耐久，费用不退还");
     }
     public World.Result withdraw(int unit,int city,int gold){
