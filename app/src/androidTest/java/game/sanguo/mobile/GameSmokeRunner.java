@@ -181,7 +181,7 @@ public final class GameSmokeRunner extends Instrumentation {
     }
     private void governmentFlow()throws Exception {
         World w=new World(16,12,"刘备军","曹操军");w.scenarioId="ui-governance-fixture";w.scenarioName="军政验证";
-        w.cities.add(new World.City(0,"营城",new Hex(1,1),0));w.cities.add(new World.City(1,"后方",new Hex(1,9),0));w.cities.add(new World.City(2,"敌城",new Hex(14,1),1));
+        w.cities.add(new World.City(0,"营城",new Hex(2,3),0));w.cities.add(new World.City(1,"后方",new Hex(1,9),0));w.cities.add(new World.City(2,"敌城",new Hex(14,1),1));
         String[] names={"刘备","潘璋","张辽","鲁肃","吕蒙","诸葛瑾","黄盖","周泰"};
         for(int i=0;i<names.length;i++)w.officers.add(new World.Officer(i,names[i],i==2?1:0,i==2?2:i==6?1:0,80,80,80,80,80));
         w.officer(0).role=Strategy.Role.RULER;w.officer(0).loyalty=100;w.officer(1).skillId=Skill.BOFU.id;
@@ -189,6 +189,7 @@ public final class GameSmokeRunner extends Instrumentation {
         w.units.add(a);w.units.add(b);w.nextUnitId=3;w.officer(1).unitId=1;w.officer(1).cityId=-1;w.officer(2).unitId=2;w.officer(2).cityId=-1;
         installFixture(w,a.hex);tapHex(b.hex);click("执行",true);waitForIdleSync();
         require(saved().government.captive(2)&&saved().unit(2)==null,"capture skill produces persisted prisoner from actual map attack");
+        require(saved().government.prisoner(2).cityId==0,"fixture routes prisoner to the city exercised by the UI");
         locateCity("营城");click("军政 / 俘虏 / 官职",true);click("俘虏处置",true);click("张辽 ·",false);click("释放",true);click("刘备 ·",false);
         byte[] before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"release cancellation preserves exact save");
         locateCity("营城");click("军政 / 俘虏 / 官职",true);click("俘虏处置",true);click("张辽 ·",false);click("释放",true);click("刘备 ·",false);click("执行",true);
