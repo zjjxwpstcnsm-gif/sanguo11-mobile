@@ -1,0 +1,13 @@
+{
+  "buildCommit": "afedab15b327b6e22605ffbc4648533e1f710056",
+  "tree": "24bb2509172b4f5ff413428521f44ed5524e89ba",
+  "bytes": 513098,
+  "sha256": "a2d8b7fd45446d5b8b4a5865712a295a14f9009960520517b7a93905bd63d522",
+  "lint": {
+    "Error": 0,
+    "Warning": 14,
+    "Fatal": 0
+  },
+  "nativeRuntimeVerified": false,
+  "upgradeVerified": false
+}
