@@ -19,13 +19,16 @@ public final class Campaign {
         ENGINEERING("工兵育成",400,1200,3,null,"城防修复效果 +50%"),
         WALLS("城壁强化",600,1800,4,ENGINEERING,"攻城受到的城防伤害 -20%"),
         FIRE_MASTERY("神火计",600,1800,4,null,"火计与火场伤害 +30%"),
-        LOGISTICS("熟练兵",400,1200,3,null,"野战部队每旬耗粮 -20%");
+        LOGISTICS("熟练兵",400,1200,3,null,"野战部队每旬耗粮 -20%"),
+        WOODEN_BEAST("开发木兽",800,2000,4,ENGINEERING,"工房可制造木兽"),
+        CATAPULT("开发投石",1000,2500,5,ENGINEERING,"工房可制造投石"),
+        WARSHIP("开发斗舰",800,2000,4,ENGINEERING,"造船厂可制造斗舰");
         public final String label,effect; public final int points,gold,turns; public final Tech prerequisite;
         Tech(String label,int points,int gold,int turns,Tech prerequisite,String effect){this.label=label;this.points=points;this.gold=gold;this.turns=turns;this.prerequisite=prerequisite;this.effect=effect;}
     }
     public enum Study {
         LEADERSHIP("统率",0), WAR("武力",1), INTELLIGENCE("智力",2), POLITICS("政治",3), CHARM("魅力",4),
-        SPEAR("枪兵适性",5), HALBERD("戟兵适性",6), CROSSBOW("弩兵适性",7), CAVALRY("骑兵适性",8);
+        SPEAR("枪兵适性",5), HALBERD("戟兵适性",6), CROSSBOW("弩兵适性",7), CAVALRY("骑兵适性",8), SIEGE("兵器适性",9), NAVY("水军适性",10);
         public final String label; final int index; Study(String label,int index){this.label=label;this.index=index;}
     }
     public static final class Treaty {

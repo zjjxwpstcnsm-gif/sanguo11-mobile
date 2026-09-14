@@ -16,3 +16,4 @@ java -cp core/build/check:core/src/main/resources:core/src/test/resources game.s
 
 java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.StrategyTest
 java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.CampaignTest
+java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ArmyTest

@@ -49,7 +49,7 @@ jobs:
           python3 - <<'PY'
           import zipfile
           with zipfile.ZipFile('app/build/outputs/apk/debug/app-debug.apk') as apk:
-              for name in ['scenarios/index.txt', 'scenarios/m0-skirmish.properties', 'scenarios/regional-sandbox.properties']:
+              for name in ['scenarios/index.txt', 'scenarios/m0-skirmish.properties', 'scenarios/regional-sandbox.properties', 'scenarios/river-siege-sandbox.properties']:
                   assert name in apk.namelist(), name
           PY
       - name: Enable KVM for Android runtime verification

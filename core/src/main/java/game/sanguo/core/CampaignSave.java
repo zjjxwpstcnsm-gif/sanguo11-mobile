@@ -9,7 +9,7 @@ final class CampaignSave {
     private CampaignSave(){}
     static void write(World w,DataOutputStream d)throws IOException {
         d.writeInt(MARKER);
-        d.writeInt(w.officers.size());for(World.Officer o:w.officers){d.writeInt(o.id);for(int aptitude:o.aptitude)d.writeByte(aptitude);}
+        d.writeInt(w.officers.size());for(World.Officer o:w.officers){d.writeInt(o.id);for(int j=0;j<4;j++)d.writeByte(o.aptitude[j]);}
         d.writeInt(w.units.size());for(World.Unit u:w.units){d.writeInt(u.id);d.writeByte(u.status.ordinal());d.writeInt(u.statusTurns);}
         d.writeInt(w.domestic.facilities.size());for(Domestic.Facility f:w.domestic.facilities){d.writeInt(f.id);d.writeInt(f.level);d.writeInt(f.upgradeTo);}
         d.writeInt(w.factions.length);for(int side=0;side<w.factions.length;side++){
@@ -47,7 +47,7 @@ final class CampaignSave {
         n=bound(d.readInt(),0,w.width*w.height);for(int i=0;i<n;i++)w.war.fires.add(new War.Fire(hex(d),d.readInt(),d.readInt()));
     }
     static void validate(World w)throws IOException {
-        for(World.Officer o:w.officers){require(o.aptitude.length==4,"适性数量错误");for(int v:o.aptitude)bound(v,0,3);}
+        for(World.Officer o:w.officers){require(o.aptitude.length==6,"适性数量错误");for(int v:o.aptitude)bound(v,0,3);}
         for(World.Unit u:w.units){require(u.status!=null,"部队状态缺失");bound(u.statusTurns,0,2);require(u.status!=War.Status.NORMAL||u.statusTurns==0,"正常部队仍有异常时长");}
         for(Domestic.Facility f:w.domestic.facilities){bound(f.level,1,3);bound(f.upgradeTo,0,3);require(f.upgradeTo==0||f.remaining>0&&f.upgradeTo==f.level+1&&Domestic.mergeable(f.kind),"设施合并状态错误");}
         for(Map.Entry<Integer,Integer> e:w.campaign.points.entrySet()){bound(e.getKey(),0,w.factions.length-1);bound(e.getValue(),0,100000);}

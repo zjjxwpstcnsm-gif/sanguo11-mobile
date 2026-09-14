@@ -71,8 +71,10 @@ final class GeometryPathTest {
             eq(2, BattleRules.weapon(WeaponType.CROSSBOW).minRange); eq(3, BattleRules.weapon(WeaponType.CROSSBOW).maxRange);
             check(BattleRules.weapon(WeaponType.SWORD).attack < BattleRules.weapon(WeaponType.SPEAR).attack, "Sword fallback penalty");
             check(BattleRules.weapon(WeaponType.HALBERD).defense > BattleRules.weapon(WeaponType.CAVALRY).defense, "Halberd defense");
-            for (WeaponType reserved : Arrays.asList(WeaponType.RAM, WeaponType.SIEGE_TOWER, WeaponType.WOODEN_BEAST, WeaponType.CATAPULT))
-                rejects(IllegalArgumentException.class, () -> u(0, 0, reserved, 0, 0));
+            for (WeaponType siege : Arrays.asList(WeaponType.RAM, WeaponType.SIEGE_TOWER, WeaponType.WOODEN_BEAST, WeaponType.CATAPULT)) {
+                eq(siege, u(0, 0, siege, 0, 0).weaponType);
+                eq(3, BattleRules.weapon(siege).movement);
+            }
         });
         run("cyclic weapon advantage and neutral pair", () -> {
             check(BattleRules.matchup(WeaponType.SPEAR, WeaponType.CAVALRY) > 1, "Spear counters cavalry");

@@ -163,8 +163,8 @@ public final class CampaignTest {
             check(in!=null,"authentic v4 fixture exists");World w=SaveCodec.decode(Base64.getMimeDecoder().decode(in.readAllBytes()));
             check(w.city(300).governorId==3001&&w.domestic.facilities.get(0).remaining==2,"real v4 governor/construction survive migration");
             check(w.campaign.projects().isEmpty()&&w.war.fires().isEmpty()&&w.campaign.points(2)==0,"legacy saves don't invent campaign history");
-            for(World.Officer o:w.officers)check(Arrays.equals(o.aptitude,new int[]{1,1,1,1}),"legacy aptitude has documented B default");
-            byte[] modern=bytes(w);check(modern[7]==5&&Arrays.equals(modern,bytes(SaveCodec.decode(modern))),"v4 upgrades to exact round-tripping v5");caseDone();
+            for(World.Officer o:w.officers)check(Arrays.equals(o.aptitude,new int[]{1,1,1,1,1,1}),"legacy aptitude has documented B default");
+            byte[] modern=bytes(w);check(modern[7]==6&&Arrays.equals(modern,bytes(SaveCodec.decode(modern))),"v4 upgrades to exact round-tripping v6");caseDone();
         }
     }
     private static void learn(World w,int owner,Campaign.Tech tech){if(tech.prerequisite!=null)learn(w,owner,tech.prerequisite);w.campaign.learned.computeIfAbsent(owner,k->EnumSet.noneOf(Campaign.Tech.class)).add(tech);}

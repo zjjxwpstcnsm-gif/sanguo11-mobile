@@ -42,6 +42,10 @@ public final class BattleRules {
         weapons.put(WeaponType.HALBERD, new WeaponProfile(5, 1, 1, 0.98, 1.20));
         weapons.put(WeaponType.CROSSBOW, new WeaponProfile(5, 2, 3, 0.95, 0.85));
         weapons.put(WeaponType.CAVALRY, new WeaponProfile(9, 1, 1, 1.15, 0.95));
+        weapons.put(WeaponType.RAM, new WeaponProfile(3, 1, 1, 0.35, 0.70));
+        weapons.put(WeaponType.SIEGE_TOWER, new WeaponProfile(3, 1, 2, 1.00, 0.70));
+        weapons.put(WeaponType.WOODEN_BEAST, new WeaponProfile(3, 1, 1, 0.90, 0.75));
+        weapons.put(WeaponType.CATAPULT, new WeaponProfile(3, 1, 3, 0.90, 0.70));
         WEAPONS = Collections.unmodifiableMap(weapons);
         EnumMap<Terrain, TerrainProfile> terrain = new EnumMap<>(Terrain.class);
         terrain.put(Terrain.PLAIN, new TerrainProfile(2, 2, 1.00, 1.00));

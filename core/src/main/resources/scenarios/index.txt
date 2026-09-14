@@ -1,3 +1,4 @@
 # scenario-id SHA-256 of exact UTF-8 bytes
 m0-skirmish 0673fc4ee62739a66d4579c3108e3216065e743351c9bc55253a23ec1f0b77d0
 regional-sandbox 34f636c3cae805a470b0edefce6f82665fda55d7c58abb0e1477f82e72a44edb
+river-siege-sandbox 739b3a1127679c5a29a9873a2da4a2e07d9b08f7e6d92854a8fed02983e5b810

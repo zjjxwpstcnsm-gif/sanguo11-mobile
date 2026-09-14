@@ -6,7 +6,9 @@ import java.util.*;
 public final class World {
     public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER }
     public enum Weapon {
-        SPEAR("枪兵",4,1,115), HALBERD("戟兵",3,1,105), CROSSBOW("弩兵",3,2,95), CAVALRY("骑兵",6,1,120);
+        SPEAR("枪兵",4,1,115), HALBERD("戟兵",3,1,105), CROSSBOW("弩兵",3,2,95), CAVALRY("骑兵",6,1,120),
+        SWORD("剑兵",4,1,80), RAM("冲车",2,1,40), SIEGE_TOWER("井阑",2,2,100),
+        WOODEN_BEAST("木兽",2,1,90), CATAPULT("投石",2,3,90);
         public final String label;
         public final int movement, range, power;
         Weapon(String label,int movement,int range,int power) { this.label=label;this.movement=movement;this.range=range;this.power=power; }
@@ -17,7 +19,8 @@ public final class World {
         public final Hex hex;
         public int owner, gold=5000, food=40000, troops=12000, order=90, morale=70, defense=3000;
         public int recruitReserve=20000, governorId=-1;
-        public final int[] equipment={12000,12000,12000,12000};
+        public final int[] equipment={12000,12000,12000,12000,0,0,0,0,0};
+        public final int[] ships={0,0};
         public City(int id,String name,Hex hex,int owner) { this.id=id;this.name=name;this.hex=hex;this.owner=owner; }
     }
     public static final class Officer {
@@ -25,7 +28,7 @@ public final class World {
         public final String name;
         public int owner, cityId, unitId=-1, leadership, war, intelligence, politics, charm;
         public boolean acted;
-        public final int[] aptitude={1,1,1,1};
+        public final int[] aptitude={1,1,1,1,1,1};
         public int loyalty=85, otherTaskTurns=0, lastRewardTurn=-1;
         public Strategy.Role role=Strategy.Role.OFFICER;
         public String otherTask="";
@@ -42,7 +45,9 @@ public final class World {
         public int troops, food, energy=80;
         public boolean acted;
         public War.Status status=War.Status.NORMAL;
-        public int statusTurns;
+        public int statusTurns, burning;
+        public int[] deputies=new int[0];
+        public Army.Ship ship=Army.Ship.BOAT;
         public Unit(int id,int owner,int officerId,Weapon weapon,Hex hex,int troops,int food) {
             this.id=id;this.owner=owner;this.officerId=officerId;this.weapon=weapon;this.hex=hex;this.troops=troops;this.food=food;
         }
@@ -62,6 +67,7 @@ public final class World {
     public final Strategy strategy=new Strategy(this);
     public final Campaign campaign=new Campaign(this);
     public final War war=new War(this);
+    public final Army army=new Army(this);
     public final String[] factions;
     public final int[] actionPoints;
     public String scenarioId="m0-skirmish", scenarioName="基础演练", dataSource="engineering-original", dataHash="";
@@ -117,29 +123,20 @@ public final class World {
     public Result produce(int cityId,int officerId,Weapon weapon) {
         City c=city(cityId);Officer o=officer(officerId);String error=cityError(c,o,400);
         if(error!=null)return fail(error);
-        if(weapon==null)return fail("兵装无效");
+        if(weapon==null||weapon==Weapon.SWORD)return fail("剑兵无需生产兵装，请选择其他兵装");
+        if(Army.siegeWeapon(weapon))return army.produce(cityId,officerId,weapon,null);
         int amount=domestic.produceAmount(c.id,weapon);
         if(c.equipment[weapon.ordinal()]>100000-amount)return fail("兵装已接近上限");
         spend(c,o,400);c.equipment[weapon.ordinal()]+=amount;return success(c.name+"生产"+amount+"份"+weapon.label+"兵装");
     }
     public Result deploy(int cityId,int officerId,Weapon weapon,int troops) {
-        City c=city(cityId);Officer o=officer(officerId);String error=cityError(c,o,0);
-        if(error!=null)return fail(error);
-        if(weapon==null||troops<1000||troops>10000)return fail("出征人数必须在1000至10000之间");
-        if(c.troops<troops||c.food<troops*2||c.equipment[weapon.ordinal()]<troops)return fail("兵、兵装或出征粮草不足");
-        Hex exit=null;
-        for(Hex h:c.hex.neighbors()) if(inside(h)&&cost(h,weapon)>0&&unitAt(h)==null&&cityAt(h)==null&&domestic.at(h)==null&&war.at(h)==null&&war.fireAt(h)==null){exit=h;break;}
-        if(exit==null)return fail("城外相邻格全部被占用或无法通行");
-        spend(c,o,0);c.troops-=troops;c.food-=troops*2;c.equipment[weapon.ordinal()]-=troops;
-        Unit u=new Unit(nextUnitId++,active,o.id,weapon,exit,troops,troops*2);u.energy=c.morale;
-        strategy.releaseGovernor(o.id);units.add(u);o.unitId=u.id;o.cityId=-1;
-        return success(o.name+"率"+troops+weapon.label+"出征");
+        return army.deploy(cityId,officerId,new int[0],weapon,Army.Ship.BOAT,troops,troops*2);
     }
     public int cost(Hex h,Weapon weapon) {
-        if(!inside(h))return -1;
+        if(h==null||weapon==null||!inside(h))return -1;
         Terrain t=terrain[h.q][h.r];
         if(t==Terrain.MOUNTAIN||t==Terrain.WATER)return -1;
-        return t==Terrain.FOREST?(weapon==Weapon.CAVALRY?3:2):1;
+        return t==Terrain.FOREST?(weapon==Weapon.CAVALRY||Army.siegeWeapon(weapon)?3:2):1;
     }
     private static final class Step {
         final Hex hex;final int cost;
@@ -154,7 +151,7 @@ public final class World {
         while(!todo.isEmpty()) {
             Step s=todo.remove();if(s.cost!=distances.get(s.hex))continue;
             for(Hex next:s.hex.neighbors()) {
-                int c=cost(next,u.weapon);if(c<0||cityAt(next)!=null||domestic.at(next)!=null||war.at(next)!=null)continue;
+                int c=army.moveCost(u,s.hex,next);if(c<0||cityAt(next)!=null||domestic.at(next)!=null||war.at(next)!=null)continue;
                 Unit occupant=unitAt(next);if(occupant!=null&&occupant.id!=u.id)continue;
                 int total=s.cost+c;
                 if(total<=war.movement(u)&&total<distances.getOrDefault(next,Integer.MAX_VALUE)) {
@@ -187,14 +184,16 @@ public final class World {
     public Result siege(int unitId,int cityId) {
         Unit u=unit(unitId);City c=city(cityId);String error=unitError(u);if(error!=null)return fail(error);
         if(c==null||!campaign.hostile(u.owner,c.owner))return fail("请选择交战势力或未占领城池");
-        if(u.hex.distance(c.hex)>1)return fail("攻城需要邻接城池");
-        int hit=Math.max(100,damage(u,70,120)/2);if(campaign.has(c.owner,Campaign.Tech.WALLS))hit=hit*4/5;c.defense=Math.max(0,c.defense-hit);c.troops=Math.max(0,c.troops-hit);
+        if(u.hex.distance(c.hex)>army.siegeRange(u))return fail("城池不在攻城射程内");
+        int hit=Army.siegeWeapon(u.weapon)||army.water(u.hex)?army.siegeDefenseDamage(u):Math.max(100,damage(u,70,120)/2);
+        int troopHit=Army.siegeWeapon(u.weapon)||army.water(u.hex)?army.siegeTroopDamage(u):hit;
+        if(campaign.has(c.owner,Campaign.Tech.WALLS))hit=hit*4/5;c.defense=Math.max(0,c.defense-hit);c.troops=Math.max(0,c.troops-troopHit);
         u.acted=true;u.energy=Math.max(0,u.energy-5);
-        String message=officer(u.officerId).name+"攻城，城防−"+hit;
-        if(c.defense==0) {
+        String message=officer(u.officerId).name+"攻城，城防−"+hit+"，守军−"+troopHit;
+        if(c.defense==0||c.troops==0) {
             int old=c.owner;c.owner=u.owner;domestic.captured(c.id);strategy.cityCaptured(c.id);c.defense=1500;c.troops=0;c.morale=50;c.order=60;
             for(Officer o:officers) if(o.cityId==c.id&&o.owner==old&&o.owner>=0)retreat(o,c.hex);
-            campaign.cleanupProjects();campaign.earn(u.owner,100);
+            campaign.cleanupProjects();army.cleanup();campaign.earn(u.owner,100);
             message=c.name+"被"+faction(u.owner)+"攻占";
         }
         checkVictory();return success(message);
@@ -202,9 +201,10 @@ public final class World {
     public Result enter(int unitId,int cityId) {
         Unit u=unit(unitId);City c=city(cityId);String error=unitError(u);if(error!=null)return fail(error);
         if(c==null||c.owner!=u.owner||u.hex.distance(c.hex)>1)return fail("请选择相邻己方城池");
-        if(c.troops+u.troops>100000||c.equipment[u.weapon.ordinal()]+u.troops>100000||c.food+u.food>1000000)return fail("城池库存容量不足");
-        c.troops+=u.troops;c.food+=u.food;c.equipment[u.weapon.ordinal()]+=u.troops;
-        Officer o=officer(u.officerId);o.unitId=-1;o.cityId=c.id;o.acted=true;units.remove(u);
+        int gear=Army.equipmentNeeded(u.weapon,u.troops),cap=Army.siegeWeapon(u.weapon)?100:100000;
+        if(c.troops+u.troops>100000||c.equipment[u.weapon.ordinal()]+gear>cap||c.food+u.food>1000000||u.ship!=Army.Ship.BOAT&&c.ships[u.ship.ordinal()-1]>=100)return fail("城池库存容量不足");
+        c.troops+=u.troops;c.food+=u.food;c.equipment[u.weapon.ordinal()]+=gear;if(u.ship!=Army.Ship.BOAT)c.ships[u.ship.ordinal()-1]++;
+        Officer o=officer(u.officerId);for(Officer member:army.crew(u)){member.unitId=-1;member.cityId=c.id;member.acted=true;}units.remove(u);
         return success(o.name+"入城休整");
     }
     private void retreat(Officer o,Hex from) {
@@ -213,7 +213,7 @@ public final class World {
         for(City c:cities)if(c.owner==o.owner&&(destination==null||from.distance(c.hex)<from.distance(destination.hex)))destination=c;
         o.unitId=-1;o.cityId=destination==null?-1:destination.id;o.acted=true;
     }
-    void removeUnit(Unit u) { retreat(officer(u.officerId),u.hex);units.remove(u); }
+    void removeUnit(Unit u) { for(Officer o:army.crew(u))retreat(o,u.hex);units.remove(u); }
     public Result nextTurn() {
         if(gameOver())return fail("本局已结束，请重开");
         if(active!=player)return fail("等待电脑行动");
@@ -223,7 +223,7 @@ public final class World {
             reset(active);runAi();checkVictory();
             if(gameOver()){active=player;return success(winner==player?"战场胜利":"我方势力已覆灭");}
         }
-        turn++;domestic.tick();campaign.tick();strategy.tick();war.tick();
+        turn++;domestic.tick();campaign.tick();army.tick();strategy.tick();war.tick();
         for(Unit u:new ArrayList<>(units)) {
             int consumption=Math.max(1,(u.troops+19)/20);
             if(campaign.has(u.owner,Campaign.Tech.LOGISTICS))consumption=Math.max(1,consumption*4/5);
@@ -255,7 +255,11 @@ public final class World {
                 Officer o=available.get(0);
                 Weapon weapon=null;
                 for(Weapon candidate:Weapon.values())if(c.equipment[candidate.ordinal()]>=3000){weapon=candidate;break;}
-                if(c.troops>=6000&&c.food>=6000&&weapon!=null)deploy(c.id,o.id,weapon,3000);
+                if(c.troops>=6000&&c.food>=6000&&weapon!=null){
+                    for(Weapon candidate:Weapon.values())if(Army.siegeWeapon(candidate)&&c.equipment[candidate.ordinal()]>0){weapon=candidate;break;}
+                    Army.Ship ship=c.ships[1]>0?Army.Ship.WARSHIP:c.ships[0]>0?Army.Ship.TOWER_SHIP:Army.Ship.BOAT;
+                    army.deploy(c.id,o.id,new int[0],weapon,ship,3000,6000);
+                }
                 else if(weapon==null&&c.troops>=6000)produce(c.id,o.id,Weapon.SPEAR);
             }
         }
@@ -264,13 +268,13 @@ public final class World {
             if(u.owner!=active||u.acted)continue;
             Unit enemy=null;
             for(Unit b:units)if(campaign.hostile(u.owner,b.owner)&&u.hex.distance(b.hex)<=war.range(u)){enemy=b;break;}
-            if(enemy!=null){if(!war.aiAction(u,enemy))attack(u.id,enemy.id);continue;}
+            if(enemy!=null&&army.canAttackUnit(u)){if(!war.aiAction(u,enemy))attack(u.id,enemy.id);continue;}
             List<City> targets=new ArrayList<>();
             for(City c:cities)if(campaign.hostile(active,c.owner))targets.add(c);
             targets.sort(Comparator.comparingInt((City c)->u.hex.distance(c.hex)).thenComparingInt(c->c.id));
             for(City target:targets) {
-                if(u.hex.distance(target.hex)==1){siege(u.id,target.id);break;}
-                if(advance(u,target.hex,1))break;
+                if(u.hex.distance(target.hex)<=army.siegeRange(u)){siege(u.id,target.id);break;}
+                if(advance(u,target.hex,army.siegeRange(u)))break;
             }
             if(!u.acted)for(Unit b:new ArrayList<>(units))if(campaign.hostile(active,b.owner)&&advance(u,b.hex,war.range(u)))break;
         }
@@ -291,7 +295,7 @@ public final class World {
                 return !destination.equals(u.hex)&&move(u.id,destination).ok;
             }
             for(Hex next:step.hex.neighbors()) {
-                int cost=cost(next,u.weapon);if(cost<0||blocked.contains(next))continue;
+                int cost=army.moveCost(u,step.hex,next);if(cost<0||blocked.contains(next))continue;
                 int total=step.cost+cost;
                 if(total<distances.getOrDefault(next,Integer.MAX_VALUE)) {
                     distances.put(next,total);previous.put(next,step.hex);todo.add(new Step(next,total));

@@ -10,7 +10,8 @@ public final class Domestic {
         MARKET("市场",1000,"每月金 +400"), FARM("农场",800,"每月粮 +2500"),
         BARRACKS("兵舍",1200,"每次征兵 +500"), SMITH("锻冶所",1200,"每次兵装生产 +500"),
         MINT("造币",1500,"相邻市场产金 +50%，不重复叠加"), GRANARY("谷仓",1500,"相邻农场产粮 +50%，不重复叠加"),
-        STABLE("厩舍",1200,"骑兵兵装生产额外 +500"), BLACK_MARKET("黑市",500,"每月金 +200，不可合并");
+        STABLE("厩舍",1200,"骑兵兵装生产额外 +500"), BLACK_MARKET("黑市",500,"每月金 +200，不可合并"),
+        WORKSHOP("工房",1500,"制造冲车、井阑、木兽、投石"), SHIPYARD("造船厂",1500,"临水建造，制造楼船与斗舰");
         public final String label,effect;public final int cost;
         Kind(String label,int cost,String effect){this.label=label;this.cost=cost;this.effect=effect;}
     }
@@ -25,7 +26,7 @@ public final class Domestic {
         public final int[] equipment;
         Mission(int id,int owner,int officer,int source,int target,Hex hex,boolean transport,int gold,int food,int troops,int[] equipment){
             this.id=id;this.owner=owner;officerId=officer;sourceCity=source;targetCity=target;this.hex=hex;
-            this.transport=transport;this.gold=gold;this.food=food;this.troops=troops;this.equipment=equipment.clone();
+            this.transport=transport;this.gold=gold;this.food=food;this.troops=troops;this.equipment=Arrays.copyOf(equipment,World.Weapon.values().length);
         }
     }
     public final List<Facility> facilities=new ArrayList<>();
@@ -94,6 +95,7 @@ public final class Domestic {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,kind.cost);
         if(error!=null)return w.fail(error);
         if(count(cityId)>=CITY_SLOTS)return w.fail("每城最多6处设施（含建设中）");
+        if(kind==Kind.SHIPYARD&&(h==null||h.neighbors().stream().noneMatch(w.army::water)))return w.fail("造船厂必须建在临水的开发地");
         if(!site(c,h))return w.fail("请选择城池两格内空闲平地，且不能封死城池出口");
         if(nextFacilityId>=10000000)return w.fail("设施编号已达上限");
         int turns=o.politics>=80?2:3;w.spend(c,o,kind.cost);
@@ -111,7 +113,7 @@ public final class Domestic {
         Facility f=facility(id);if(f==null||f.remaining!=0)return w.fail("请选择已完成设施");
         World.City c=w.city(f.cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,0);
         if(error!=null)return w.fail(error);
-        w.spend(c,o,0);facilities.remove(f);return w.success(c.name+"拆除"+f.kind.label+"，不退还费用");
+        w.spend(c,o,0);facilities.remove(f);w.army.cleanup();return w.success(c.name+"拆除"+f.kind.label+"，不退还费用");
     }
     void captured(int city){
         for(Facility f:new ArrayList<>(facilities))if(f.cityId==city&&f.remaining>0){
@@ -126,18 +128,19 @@ public final class Domestic {
         String error=w.cityError(c,o,fee);if(error!=null)return w.fail(error);
         if(d==null||d.owner!=w.active||d.id==c.id)return w.fail("请选择另一座己方城池");
         if(!payload(gold,food,troops,equipment))return w.fail("运输数量越界");
+        equipment=Arrays.copyOf(equipment,World.Weapon.values().length);
         if(cargo&&gold+food+troops+Arrays.stream(equipment).sum()==0)return w.fail("至少携带一种资源");
         if(c.gold-fee<gold||c.food<food||c.troops<troops)return w.fail("金、粮或兵力不足（运输另收金100）");
-        for(int i=0;i<4;i++)if(c.equipment[i]<equipment[i])return w.fail("兵装库存不足");
+        for(int i=0;i<equipment.length;i++)if(c.equipment[i]<equipment[i])return w.fail("兵装库存不足");
         if(route(c.hex,d.hex,w.active)==null)return w.fail("没有可用陆路，暂不支持水运");
         if(nextMissionId>=10000000)return w.fail("任务编号已达上限");
-        w.spend(c,o,fee);c.gold-=gold;c.food-=food;c.troops-=troops;for(int i=0;i<4;i++)c.equipment[i]-=equipment[i];
+        w.spend(c,o,fee);c.gold-=gold;c.food-=food;c.troops-=troops;for(int i=0;i<equipment.length;i++)c.equipment[i]-=equipment[i];
         w.strategy.releaseGovernor(o.id);o.cityId=-1;missions.add(new Mission(nextMissionId++,w.active,o.id,c.id,d.id,c.hex,cargo,gold,food,troops,equipment));
         return w.success(o.name+(cargo?"运送资源":"调动")+"前往"+d.name);
     }
     private static boolean payload(int gold,int food,int troops,int[] equipment){
-        if(gold<0||gold>100000||food<0||food>200000||troops<0||troops>20000||equipment==null||equipment.length!=4)return false;
-        for(int e:equipment)if(e<0||e>20000)return false;return true;
+        if(gold<0||gold>100000||food<0||food>200000||troops<0||troops>20000||equipment==null||(equipment.length!=4&&equipment.length!=World.Weapon.values().length))return false;
+        for(int i=0;i<equipment.length;i++)if(equipment[i]<0||equipment[i]>(i==World.Weapon.SWORD.ordinal()?0:i>4?100:20000))return false;return true;
     }
     public World.Result redirect(int id,int target){
         Mission m=mission(id);World.City c=w.city(target);
@@ -175,7 +178,7 @@ public final class Domestic {
     public String status(Mission m){int turns=eta(m);return turns<0?"道路受阻 / 等待改道":turns==0?"已到达，等待结算或库存空间":"预计"+turns+"旬";}
     private boolean fits(Mission m,World.City c){
         if(c.gold>1000000-m.gold||c.food>1000000-m.food||c.troops>100000-m.troops)return false;
-        for(int i=0;i<4;i++)if(c.equipment[i]>100000-m.equipment[i])return false;return true;
+        for(int i=0;i<m.equipment.length;i++)if(c.equipment[i]>(i>4?100:100000)-m.equipment[i])return false;return true;
     }
     void tick(){
         cleanupDefeated();
@@ -194,7 +197,7 @@ public final class Domestic {
             int budget=TRAVEL_SPEED;
             for(Hex h:path){int cost=travelCost(h,m.owner);if(cost>budget)break;budget-=cost;m.hex=h;}
             if(m.hex.equals(c.hex)&&fits(m,c)){
-                c.gold+=m.gold;c.food+=m.food;c.troops+=m.troops;for(int i=0;i<4;i++)c.equipment[i]+=m.equipment[i];
+                c.gold+=m.gold;c.food+=m.food;c.troops+=m.troops;for(int i=0;i<m.equipment.length;i++)c.equipment[i]+=m.equipment[i];
                 World.Officer o=w.officer(m.officerId);o.cityId=c.id;o.acted=true;missions.remove(m);w.note(o.name+"抵达"+c.name+(m.transport?"，资源已入库":""));
             }
         }
@@ -212,7 +215,7 @@ public final class Domestic {
     void write(DataOutputStream d)throws IOException{
         d.writeInt(nextFacilityId);d.writeInt(nextMissionId);d.writeInt(facilities.size());
         for(Facility f:facilities){d.writeInt(f.id);d.writeInt(f.cityId);d.writeByte(f.kind.ordinal());d.writeInt(f.hex.q);d.writeInt(f.hex.r);d.writeInt(f.builderId);d.writeInt(f.remaining);}
-        d.writeInt(missions.size());for(Mission m:missions){d.writeInt(m.id);d.writeInt(m.owner);d.writeInt(m.officerId);d.writeInt(m.sourceCity);d.writeInt(m.targetCity);d.writeInt(m.hex.q);d.writeInt(m.hex.r);d.writeBoolean(m.transport);d.writeInt(m.gold);d.writeInt(m.food);d.writeInt(m.troops);for(int e:m.equipment)d.writeInt(e);}
+        d.writeInt(missions.size());for(Mission m:missions){d.writeInt(m.id);d.writeInt(m.owner);d.writeInt(m.officerId);d.writeInt(m.sourceCity);d.writeInt(m.targetCity);d.writeInt(m.hex.q);d.writeInt(m.hex.r);d.writeBoolean(m.transport);d.writeInt(m.gold);d.writeInt(m.food);d.writeInt(m.troops);for(int j=0;j<4;j++)d.writeInt(m.equipment[j]);}
     }
     void read(DataInputStream d)throws IOException{
         nextFacilityId=d.readInt();nextMissionId=d.readInt();int n=bound(d.readInt(),0,6000);

@@ -19,6 +19,11 @@ public final class LegacyWorldBattleAdapter {
     private static WeaponType weapon(World.Weapon weapon) {
         if (weapon == null) throw new IllegalArgumentException("Missing strategic weapon");
         switch (weapon) {
+            case SWORD: return WeaponType.SWORD;
+            case RAM: return WeaponType.RAM;
+            case SIEGE_TOWER: return WeaponType.SIEGE_TOWER;
+            case WOODEN_BEAST: return WeaponType.WOODEN_BEAST;
+            case CATAPULT: return WeaponType.CATAPULT;
             case SPEAR: return WeaponType.SPEAR;
             case HALBERD: return WeaponType.HALBERD;
             case CROSSBOW: return WeaponType.CROSSBOW;
