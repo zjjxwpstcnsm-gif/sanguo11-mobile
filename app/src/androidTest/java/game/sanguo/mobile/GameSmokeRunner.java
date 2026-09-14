@@ -48,7 +48,8 @@ public final class GameSmokeRunner extends Instrumentation {
             mobileFlow();
             personnelFlow();
             campaignFlow();
-            result.putString("stream","SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turns, three save slots, corrupt-load recovery, Activity recreation, construction, officer travel, editable cargo transport, task persistence and arrival, map tap/pan/pinch/bounds, filters, empty states, cancel/overwrite confirmation and navigation recreation, search/hire/governor/reward/patrol/recruit/train save v5 restart, merchant quotes/cancel/volume, aptitude study task/completion, goodwill, map tactic damage/displacement and persistent fire verified.\n");
+            armyFlow();
+            result.putString("stream","SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turns, three save slots, corrupt-load recovery, Activity recreation, construction, officer travel, editable cargo transport, task persistence and arrival, map tap/pan/pinch/bounds, filters, empty states, cancel/overwrite confirmation and navigation recreation, search/hire/governor/reward/patrol/recruit/train save v5 restart, merchant quotes/cancel/volume, aptitude study task/completion, goodwill, map tactic damage/displacement and persistent fire, three-officer formation/cancellation, equipment return, manufacturing completion, naval fire, v6 restart and disembarkation verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -175,6 +176,46 @@ public final class GameSmokeRunner extends Instrumentation {
         SaveCodec.validate(w);java.lang.reflect.Field field=MainActivity.class.getDeclaredField("world");field.setAccessible(true);
         runOnMainSync(()->{try{field.set(current,w);((MainActivity)current).selectAndFocus(focus);}catch(IllegalAccessException e){throw new RuntimeException(e);}});
         try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(w));}waitForIdleSync();
+    }
+    private void armyCity(){clickNav("城市");click("江东大营 · 江东军",false);click("军事",true);}
+    private void fillFormation(){
+        armyCity();click("编队 / 水陆出征",true);click("孙权 ·",false);click("周瑜 ·",false);click("甘宁 ·",false);click("鲁肃 ·",false);
+        click("下一步",true);click("冲车 ·",false);click("楼船 ·",false);click("3000人",true);click("18000粮",true);
+    }
+    private void armyFlow()throws Exception {
+        click("菜单",true);click("新游戏 / 选择势力",true);click("水陆攻防 ·",false);click("江东军",true);click("执行",true);
+        byte[] initial=SaveCodec.encode(saved());fillFormation();screenshot("23-formation-confirm");click("取消",true);
+        require(Arrays.equals(initial,SaveCodec.encode(saved())),"formation preview and cancel do not change state");
+        fillFormation();click("执行",true);World w=saved();World.Unit army=w.unit(1);
+        require(army!=null&&army.weapon==World.Weapon.RAM&&army.ship==Army.Ship.TOWER_SHIP&&army.deputies.length==2,"UI creates three-officer siege/ship formation, caps deputies");
+        require(w.officer(1).unitId==1&&w.officer(2).unitId==1&&w.officer(3).unitId==-1,"only selected two deputies leave city");
+        require(w.city(10).ships[0]==2&&w.city(10).equipment[5]==1&&army.food==18000&&w.actionPoints[0]==50,"UI charges one ship, one ram and one AP payment");screenshot("24-three-officer-army");
+        byte[] before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("水陆攻防",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"v6 formation survives Activity recreation");
+        tapCity(10,0);click("执行",true);w=saved();require(w.units.isEmpty()&&w.officer(1).cityId==10&&w.city(10).ships[0]==3&&w.city(10).equipment[5]==2,"UI returns all crew and equipment once");
+
+        World factory=ScenarioCatalog.load("river-siege-sandbox",0);for(World.City city:factory.cities)if(city.owner==1){city.gold=0;city.troops=0;}
+        Hex site=factory.domestic.buildSites(10).get(0);require(factory.domestic.build(10,3,Domestic.Kind.WORKSHOP,site).ok,"manufacturing fixture workshop starts");
+        for(int i=0;i<3;i++)require(factory.nextTurn().ok,"manufacturing fixture advances");installFixture(factory,factory.city(10).hex);
+        armyCity();click("军备制造 / 攻城器械与舰船",true);click("井阑 ·",false);click("周瑜 ·",false);click("执行",true);
+        w=saved();require(w.army.productions().size()==1&&w.officer(1).otherTaskTurns==3,"manufacturing starts from UI");waitText("任务 1",true);
+        clickNav("任务");click("筛选 · 全部任务",true);click("军备制造",true);waitText("制造井阑 · 周瑜",true);screenshot("25-manufacturing-task");
+        int count=w.city(10).equipment[6],turn=w.turn;for(int i=1;i<=3;i++){endTurn();waitForTurn(turn+i);}w=saved();require(w.city(10).equipment[6]==count+1&&w.army.productions().isEmpty(),"UI turn loop completes one equipment item");
+
+        World naval=ScenarioCatalog.load("river-siege-sandbox",0);
+        World.Unit actor=new World.Unit(1,0,2,World.Weapon.SPEAR,new Hex(9,8),5000,20000);actor.ship=Army.Ship.WARSHIP;
+        World.Unit target=new World.Unit(2,1,7,World.Weapon.CAVALRY,new Hex(10,8),5000,20000);target.ship=Army.Ship.TOWER_SHIP;
+        naval.units.add(actor);naval.units.add(target);naval.nextUnitId=3;
+        naval.officer(2).cityId=-1;naval.officer(2).unitId=1;naval.officer(7).cityId=-1;naval.officer(7).unitId=2;naval.strategy.setSeed(0);installFixture(naval,actor.hex);
+        click("战法",true);click("火矢 ·",false);click("张辽",true);click("执行",true);w=saved();
+        require(w.unit(2).burning==2&&w.unit(2).troops<5000&&w.unit(1).energy==70,"naval fire tactic updates actual troops and persistent burning");screenshot("26-naval-combat");
+        before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("水陆攻防",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"naval outcome survives restart");
+        World crossing=SaveCodec.decode(before);crossing.unit(1).acted=false;installFixture(crossing,crossing.unit(1).hex);
+        tapHex(new Hex(8,8));w=saved();require(w.unit(1).hex.equals(new Hex(8,8))&&w.unit(1).weapon==World.Weapon.SPEAR&&w.unit(1).ship==Army.Ship.WARSHIP,"map tap disembarks with preserved land gear and ship");screenshot("27-disembarked");
+    }
+    private void tapHex(Hex h)throws Exception {
+        MapView map=mapView();MapCamera c=camera(map);int[] pos=new int[2];float[] point=new float[2];
+        runOnMainSync(()->{map.getLocationOnScreen(pos);point[0]=pos[0]+25*1.7320508f*(h.q+h.r*.5f)*c.scale+c.x;point[1]=pos[1]+25*1.5f*h.r*c.scale+c.y;});
+        long t=SystemClock.uptimeMillis();send(t,t,MotionEvent.ACTION_DOWN,point[0],point[1]);send(t,t+80,MotionEvent.ACTION_UP,point[0],point[1]);SystemClock.sleep(500);waitForIdleSync();
     }
     private MapView findMap(android.view.View v){if(v instanceof MapView)return (MapView)v;if(v instanceof android.view.ViewGroup){android.view.ViewGroup g=(android.view.ViewGroup)v;for(int i=0;i<g.getChildCount();i++){MapView m=findMap(g.getChildAt(i));if(m!=null)return m;}}return null;}
     private MapCamera camera(MapView map)throws Exception {java.lang.reflect.Field f=MapView.class.getDeclaredField("camera");f.setAccessible(true);return (MapCamera)f.get(map);}

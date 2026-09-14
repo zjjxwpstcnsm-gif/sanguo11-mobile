@@ -133,8 +133,9 @@ public final class MapView extends View {
         paint.setColor(owner);c.drawRect(cx-16,cy+10,cx-16+32*Math.min(1,city.defense/3000f),cy+13,paint);
     }
     private void drawUnit(Canvas c,World.Unit u){float scale=camera.scale;float cx=x(u.hex),cy=y(u.hex);paint.setColor(Color.rgb(24,38,37));c.drawCircle(cx+1,cy+2,15,paint);paint.setColor(factionColor(u.owner));c.drawCircle(cx,cy,14,paint);
-        label(c,u.weapon.label.substring(0,1),cx,cy+5,16,Color.rgb(18,34,34));
+        label(c,world.army.equipmentLabel(u).substring(0,1),cx,cy+5,16,Color.rgb(18,34,34));
         if(u.acted){paint.setColor(Color.argb(140,17,32,37));c.drawCircle(cx,cy,14,paint);label(c,"✓",cx,cy+4,14,PAPER);}
+        if(u.burning>0)label(c,"火",cx-16,cy+15,12,Color.rgb(255,120,60));
         if(u.status!=game.sanguo.core.War.Status.NORMAL)label(c,u.status.label.substring(0,1),cx+16,cy+15,12,Color.rgb(255,194,100));
         float sz=10*density/scale;label(c,world.officer(u.officerId).name+" "+u.troops,cx,cy-19,sz,PAPER);
     }

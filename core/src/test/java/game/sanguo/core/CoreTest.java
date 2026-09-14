@@ -39,7 +39,7 @@ public final class CoreTest {
         Hex bad=new Hex(-1,0);check(!w.move(1,bad).ok&&!u.acted,"out of bounds move rejected");
         Map<Hex,Integer> reachable=w.reachable(u);
         for(Map.Entry<Hex,Integer> e:reachable.entrySet()) {
-            check(e.getValue()<=u.weapon.movement,"path within budget");check(w.cost(e.getKey(),u.weapon)>0,"not water or mountain");
+            check(e.getValue()<=u.weapon.movement,"path within budget");check(w.cost(e.getKey(),u.weapon)>0||w.army.water(e.getKey()),"land or navigable water, never mountain");
             check(w.cityAt(e.getKey())==null,"cannot walk through cities");
         }
         Hex destination=null;for(Hex h:reachable.keySet())if(!h.equals(initial)){destination=h;break;}

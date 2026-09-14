@@ -62,6 +62,14 @@ public final class ScenarioData {
                         integer(t[3]),integer(t[4]),integer(t[5]),integer(t[6]),integer(t[7]),integer(t[8])));
                 }
             }
+            if(p.containsKey("arsenals")){
+                int countArsenal=number(p,"arsenals",0,1000);Set<Integer> seen=new HashSet<>();
+                for(int i=0;i<countArsenal;i++){String[] data=fields(p,"arsenal."+i,7);World.City c=w.city(integer(data[0]));if(c==null||!seen.add(c.id))throw new IOException("军备城池重复或缺失");for(int j=0;j<4;j++)c.equipment[5+j]=integer(data[1+j]);c.ships[0]=integer(data[5]);c.ships[1]=integer(data[6]);}
+            }
+            if(p.containsKey("aptitudes")){
+                int countAptitude=number(p,"aptitudes",0,10000);Set<Integer> seen=new HashSet<>();
+                for(int i=0;i<countAptitude;i++){String[] data=fields(p,"aptitude."+i,7);World.Officer o=w.officer(integer(data[0]));if(o==null||!seen.add(o.id))throw new IOException("适性武将重复或缺失");for(int j=0;j<6;j++)o.aptitude[j]=integer(data[1+j]);}
+            }
             if(!p.isEmpty())throw new IOException("未知剧本字段："+p.keySet().iterator().next());
             w.strategy.initializeOffices();
             SaveCodec.validate(w);validateOpening(w);

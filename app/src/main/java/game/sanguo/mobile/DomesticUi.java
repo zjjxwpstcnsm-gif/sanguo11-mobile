@@ -31,7 +31,7 @@ final class DomesticUi {
         for(int i=0;i<labels.length;i++){Domestic.Kind k=Domestic.Kind.values()[i];labels[i]=k.label+" · 金"+k.cost+" · "+k.effect;}
         new AlertDialog.Builder(activity).setTitle("设施开发 · 工程规则").setItems(labels,(d,i)->{
             Domestic.Kind kind=Domestic.Kind.values()[i];officer(c,o->{
-                List<Hex> sites=w.domestic.buildSites(c.id);if(sites.isEmpty()){message("无法开发","没有可用平地或已经达到每城6处设施上限。");return;}
+                List<Hex> sites=w.domestic.buildSites(c.id);if(kind==Domestic.Kind.SHIPYARD)sites.removeIf(h->h.neighbors().stream().noneMatch(w.army::water));if(sites.isEmpty()){message("无法开发","没有可用平地或已经达到每城6处设施上限。");return;}
                 String[] names=new String[sites.size()];for(int j=0;j<names.length;j++)names[j]="地块 "+sites.get(j).q+", "+sites.get(j).r;
                 new AlertDialog.Builder(activity).setTitle("选择开发地 · 点击预览").setItems(names,(dialog,j)->{
                     Hex h=sites.get(j);focus.accept(h);
@@ -48,23 +48,25 @@ final class DomesticUi {
     private void cargo(World.City c,World.City d,World.Officer o){
         LinearLayout form=new LinearLayout(activity);form.setOrientation(LinearLayout.VERTICAL);int padding=Math.round(16*activity.getResources().getDisplayMetrics().density);form.setPadding(padding,padding,padding,padding);
         TextView note=new TextView(activity);note.setText(o.name+"："+c.name+" → "+d.name+"\n另收金100、行动力10。满仓等待，不丢弃货物。\n本阶段为战略运输，不支持战场拦截或水运。");form.addView(note);
-        String[] labels={"金（上限100000）","粮（上限200000）","兵（上限20000）","枪兵装","戟兵装","弩兵装","骑兵装"};
-        int[] stock={c.gold,c.food,c.troops,c.equipment[0],c.equipment[1],c.equipment[2],c.equipment[3]};int[] initial={0,5000,1000,1000,0,0,0};EditText[] inputs=new EditText[7];
-        for(int i=0;i<7;i++){
+        int count=3+World.Weapon.values().length;String[] labels=new String[count];labels[0]="金（上限100000）";labels[1]="粮（上限200000）";labels[2]="兵（上限20000）";
+        int[] stock=new int[count],initial=new int[count];stock[0]=c.gold;stock[1]=c.food;stock[2]=c.troops;initial[1]=5000;initial[2]=1000;initial[3]=1000;
+        for(World.Weapon weapon:World.Weapon.values()){int i=3+weapon.ordinal();labels[i]=weapon.label+"装";stock[i]=c.equipment[weapon.ordinal()];}
+        labels[3]="枪兵装";labels[4]="戟兵装";labels[5]="弩兵装";labels[6]="骑兵装";EditText[] inputs=new EditText[count];
+        for(int i=0;i<count;i++){
             TextView label=new TextView(activity);label.setText(labels[i]+" · 现有"+stock[i]);form.addView(label);
             EditText input=new EditText(activity);input.setInputType(InputType.TYPE_CLASS_NUMBER);input.setSingleLine(true);input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(7)});input.setText(Integer.toString(initial[i]));input.setContentDescription(labels[i]);form.addView(input);inputs[i]=input;
         }
         ScrollView scroll=new ScrollView(activity);scroll.addView(form);
         AlertDialog dialog=new AlertDialog.Builder(activity).setTitle("运输数量").setView(scroll).setPositiveButton("发送",null).setNegativeButton("取消",null).create();
         dialog.setOnShowListener(x->dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{
-            int[] values=new int[7];try{for(int i=0;i<7;i++){String value=inputs[i].getText().toString().trim();values[i]=value.isEmpty()?0:Integer.parseInt(value);}}
+            int[] values=new int[count];try{for(int i=0;i<count;i++){String value=inputs[i].getText().toString().trim();values[i]=value.isEmpty()?0:Integer.parseInt(value);}}
             catch(NumberFormatException e){Toast.makeText(activity,"请输入有效的非负整数",Toast.LENGTH_SHORT).show();return;}
-            Runnable send=()->{World.Result result=w.domestic.transport(c.id,d.id,o.id,values[0],values[1],values[2],Arrays.copyOfRange(values,3,7));apply.accept(result);if(result.ok)dialog.dismiss();};
+            Runnable send=()->{World.Result result=w.domestic.transport(c.id,d.id,o.id,values[0],values[1],values[2],Arrays.copyOfRange(values,3,count));apply.accept(result);if(result.ok)dialog.dismiss();};
             // UX threshold only. Validity/costs are still checked by the engine on execution.
             boolean large=values[0]>=1000||values[1]>=10000||values[2]>=3000;
-            for(int i=3;i<7;i++)large|=values[i]>=3000;
+            for(int i=3;i<count;i++)large|=values[i]>=3000;
             if(large){StringBuilder summary=new StringBuilder(o.name+"："+c.name+" → "+d.name+"\n金 "+values[0]+" / 粮 "+values[1]+" / 兵 "+values[2]);
-                for(int i=3;i<7;i++)if(values[i]>0)summary.append("\n").append(World.Weapon.values()[i-3].label).append("兵装 ").append(values[i]);
+                for(int i=3;i<count;i++)if(values[i]>0)summary.append("\n").append(World.Weapon.values()[i-3].label).append("兵装 ").append(values[i]);
                 summary.append("\n另收金100、行动力10；出发后货物从本城扣除。");confirm("确认大额运输",summary.toString(),"确认发送",send);
             }else send.run();
         }));dialog.show();dialog.getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -89,7 +91,7 @@ final class DomesticUi {
     }
     void mission(Domestic.Mission m){
         focus.accept(m.hex);StringBuilder detail=new StringBuilder(w.officer(m.officerId).name+"\n"+w.city(m.sourceCity).name+" → "+w.city(m.targetCity).name+"\n"+w.domestic.status(m)+"\n当前坐标 "+m.hex.q+", "+m.hex.r);
-        if(m.transport){detail.append("\n金 ").append(m.gold).append(" / 粮 ").append(m.food).append(" / 兵 ").append(m.troops);for(int i=0;i<4;i++)detail.append('\n').append(World.Weapon.values()[i].label).append("兵装 ").append(m.equipment[i]);}
+        if(m.transport){detail.append("\n金 ").append(m.gold).append(" / 粮 ").append(m.food).append(" / 兵 ").append(m.troops);for(int i=0;i<m.equipment.length;i++)detail.append('\n').append(World.Weapon.values()[i].label).append("兵装 ").append(m.equipment[i]);}
         detail.append("\n\n战略在途标记，不是可交战运输队。目的地失守自动选择可达己城；无路则等待。满仓保留货物，下一旬重试。");
         AlertDialog.Builder d=new AlertDialog.Builder(activity).setTitle(m.transport?"运输详情":"调动详情").setMessage(detail).setNegativeButton("返回",null);
         if(!w.gameOver())d.setPositiveButton("改道 / 返回",(dialog,n)->destination(m.owner,m.targetCity,c->confirm("任务改道","改道至"+c.name+"，消耗行动力10。","执行",()->apply.accept(w.domestic.redirect(m.id,c.id)))));

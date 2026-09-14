@@ -66,6 +66,7 @@ final class UiModels {
     static final class Task {
         final long id; final String title, detail; final Hex location; final Domestic.Facility facility; final Domestic.Mission mission;
         Campaign.Project project;
+        Army.Production production;
         Task(long id, String title, String detail, Hex location, Domestic.Facility f, Domestic.Mission m) {
             this.id=id;this.title=title;this.detail=detail;this.location=location;facility=f;mission=m;
         }
@@ -82,6 +83,9 @@ final class UiModels {
             String status = eta < 0 ? "道路受阻 · 剩余旬数待定" : eta == 0 ? "等待入城 / 库存空间 · 剩余 0 旬（等待时间未定）" : "在途 · 预计剩余 "+eta+" 旬";
             result.add(new Task(10000000L+m.id, (m.transport?"运输":"调动")+" · "+w.officer(m.officerId).name,
                 w.city(m.sourceCity).name+" → "+w.city(m.targetCity).name+"\n"+status+(m.transport?"\n"+cargo(m):""), m.hex, null, m));
+        }
+        if(type==0||type==5)for(Army.Production p:w.army.productions())if(p.owner==w.player){
+            Task task=new Task(30000000L+p.officerId,p.label()+" · "+w.officer(p.officerId).name,w.city(p.cityId).name+" · 剩余 "+w.officer(p.officerId).otherTaskTurns+" 旬",w.city(p.cityId).hex,null,null);task.production=p;result.add(task);
         }
         if(type==0||type==4)for(Campaign.Project p:w.campaign.projects())if(p.owner==w.player){
             Task task=new Task(20000000L+p.officerId,p.label()+" · "+w.officer(p.officerId).name,
@@ -118,6 +122,11 @@ final class UiModels {
         for(Campaign.Project p:before.campaign.projects())if(p.owner==before.player){
             progress=true;World.Officer o=after.officer(p.officerId);boolean running=after.campaign.projects().stream().anyMatch(next->next.officerId==p.officerId);
             s.append(p.label()).append(" · ").append(before.officer(p.officerId).name).append(running?" · 剩余"+o.otherTaskTurns+"旬":o!=null&&o.owner==p.owner&&o.cityId==p.cityId?" · 已完成":" · 已中止").append('\n');
+        }
+        for(Army.Production p:before.army.productions())if(p.owner==before.player){
+            progress=true;boolean running=after.army.productions().stream().anyMatch(n->n.officerId==p.officerId);
+            World.City c=after.city(p.cityId);boolean delivered=c!=null&&c.owner==p.owner&&(p.weapon!=null?c.equipment[p.weapon.ordinal()]>before.city(p.cityId).equipment[p.weapon.ordinal()]:c.ships[p.ship.ordinal()-1]>before.city(p.cityId).ships[p.ship.ordinal()-1]);
+            s.append(p.label()).append(running?" · 制造中":delivered?" · 已入库":" · 已结束/中止，请查看日志").append("\n");
         }
         if (!progress) s.append("本旬没有建设、在途或研究任务\n");
         if (after.gameOver()) s.append(after.winner==after.player?"\n战场胜利":"\n战场战败");

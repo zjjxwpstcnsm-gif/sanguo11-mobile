@@ -14,8 +14,9 @@ final class WarUi {
     void attack(World.Unit u,World.Unit target){confirm("攻击"+w.officer(target.officerId).name,"预计敌损约"+w.war.previewDamage(u.id,target.id)+"（有随机波动）。\n邻接近战敌军可反击，攻击结束本旬行动。",()->apply.accept(w.attack(u.id,target.id)));}
     void tactics(World.Unit u){
         List<War.Tactic> list=new ArrayList<>();for(War.Tactic t:War.Tactic.values())if(t.weapon==u.weapon)list.add(t);
+        if(list.isEmpty()){info("剑兵没有专属战法，可普攻或使用部队计略。");return;}
         String[] labels=new String[list.size()];for(int i=0;i<labels.length;i++){War.Tactic t=list.get(i);labels[i]=t.label+" · 气力"+t.energy+" · "+War.rankLabel(t.rank)+"级";}
-        new AlertDialog.Builder(a).setTitle("战法 · 适性"+War.rankLabel(w.officer(u.officerId).aptitude[u.weapon.ordinal()])).setItems(labels,(d,i)->{
+        new AlertDialog.Builder(a).setTitle("战法 · 适性"+War.rankLabel(w.army.aptitude(u))).setItems(labels,(d,i)->{
             War.Tactic tactic=list.get(i);List<World.Unit> targets=new ArrayList<>();for(World.Unit t:w.units)if(w.war.tacticError(u.id,t.id,tactic)==null)targets.add(t);
             if(targets.isEmpty()){info("没有可施展目标。\n"+tactic.effect+"\n需要"+War.rankLabel(tactic.rank)+"级适性、气力"+tactic.energy+"和有效范围内交战目标；位移还需要空地。");return;}
             String[] names=new String[targets.size()];for(int j=0;j<names.length;j++){World.Unit t=targets.get(j);names[j]=w.officer(t.officerId).name+" · 兵"+t.troops+" · 成功率"+w.war.tacticChance(u.id,t.id,tactic)+"%";}
