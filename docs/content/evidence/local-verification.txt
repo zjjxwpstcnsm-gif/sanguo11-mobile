@@ -1,0 +1,34 @@
+Agent 2 local verification; fixed baseline ff624b6e9c48c81d7111a9a642b18cf6bd098fe1
+No local Android SDK/emulator; these are JVM measurements only.
+openjdk version "17.0.20" 2026-07-21
+OpenJDK Runtime Environment (build 17.0.20+8-1-24.04-Ubuntu)
+OpenJDK 64-Bit Server VM (build 17.0.20+8-1-24.04-Ubuntu, mixed mode, sharing)
+
+baseline-core.log
+PASS: 189 assertions covering hex paths, resources, combat, turns, saves, and deterministic simulation.
+PASS: 359 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
+PASS: 513 domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.
+PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
+PASS: 50x50 benchmark, 100 A* queries: p50=1.243ms p95=1.506ms max=2.919ms total=126.985ms maxExpanded=2125/2500; 100 reachable queries=6.614ms
+PASS: 5407 strategy/officer assertions covering locks, seeded search/hiring, loyalty, offices, economy, finite reserves, readiness, AI and save v1-v4.
+PASS: 59 campaign cases, 424 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
+PASS: 45 army cases, 465 assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.
+
+baseline-ui.log
+PASS: 64 UI projection/camera assertions.
+
+core-final-local.log
+PASS: 189 assertions covering hex paths, resources, combat, turns, saves, and deterministic simulation.
+PASS: 2637 content assertions; cold catalog 82.118 ms; sourced opening combat at turn 3.
+PASS: 359 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
+PASS: 513 domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.
+PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
+PASS: 50x50 benchmark, 100 A* queries: p50=1.698ms p95=2.390ms max=3.220ms total=164.374ms maxExpanded=2125/2500; 100 reachable queries=9.128ms
+PASS: 5407 strategy/officer assertions covering locks, seeded search/hiring, loyalty, offices, economy, finite reserves, readiness, AI and save v1-v4.
+PASS: 59 campaign cases, 424 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
+PASS: 45 army cases, 465 assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.
+
+Additional semantic validation after core-final-local.log: ContentTest 2638 assertions; normal player deployment/movement/attack on turn 3 dealt 391 troop damage; no teleport or injected damage.
+Isolated ClassLoader without scenarios/index.txt or content/index.txt reads and re-encodes progressed v6 snapshot byte-for-byte.
+
+Current ContentTest SHA-256: e176a2989a852fd0f780fbc19cd8141fe20d03fdbe030272b10778962be016cf

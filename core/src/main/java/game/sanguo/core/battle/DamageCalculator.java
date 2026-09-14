@@ -8,6 +8,9 @@ public final class DamageCalculator {
     private DamageCalculator() { }
     public static int damage(BattleUnit attacker, BattleUnit defender, Terrain attackTerrain,
                              Terrain defenseTerrain, double tacticMultiplier, Random random) {
+        return Math.min(defender.troopCount, rawDamage(attacker,defender,attackTerrain,defenseTerrain,tacticMultiplier,random));
+    }
+    public static int rawDamage(BattleUnit attacker,BattleUnit defender,Terrain attackTerrain,Terrain defenseTerrain,double tacticMultiplier,Random random){
         Objects.requireNonNull(random);
         if (!attacker.alive() || !defender.alive()) throw new IllegalArgumentException("Dead combatant");
         if (!Double.isFinite(tacticMultiplier) || tacticMultiplier <= 0 || tacticMultiplier > 3)
@@ -20,7 +23,7 @@ public final class DamageCalculator {
         double ratio = BattleRules.clamp(offense / defense, 0.35, 2.5);
         double raw = BattleRules.BASE_DAMAGE * StrictMath.sqrt(attacker.troopCount / BattleRules.TROOP_SCALE)
                 * ratio * BattleRules.matchup(attacker.weaponType, defender.weaponType) * tacticMultiplier;
-        return Math.min(defender.troopCount, boundedRoll(raw, random));
+        return boundedRoll(raw, random);
     }
     public static int siegeDamage(BattleUnit attacker, Terrain attackTerrain, Stronghold target, Random random) {
         if (!attacker.alive()) throw new IllegalArgumentException("Dead attacker");
@@ -32,7 +35,7 @@ public final class DamageCalculator {
         double offense = (50 + attacker.attack + 0.60 * attacker.commander.leadership
                 + 0.40 * attacker.commander.war) / 200.0;
         offense *= BattleRules.weapon(attacker.weaponType).attack * BattleRules.terrain(terrain).attack;
-        offense *= (0.70 + 0.30 * attacker.energy / BattleRules.MAX_ENERGY) * attacker.attackStatusMultiplier();
+        offense *= attacker.attackStatusMultiplier(); // Energy pays for tactics; it does not scale physical attack.
         return offense;
     }
     private static int boundedRoll(double raw, Random random) {

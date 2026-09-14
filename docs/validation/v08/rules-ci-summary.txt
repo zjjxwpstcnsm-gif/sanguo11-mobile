@@ -1,0 +1,39 @@
+Rules branch 9956d9884a4d8d31bdfb276630770d646c93f138
+Actual CI checkout be141a0182a6441d256c71c0aa167f8e5fdac618; tree 578b3f7933c8fbaf55fed000fb29f51aba80a9cb equals rules head exactly.
+Run 34794431772 / job 103824695203
+APK artifact 10329308432; smoke artifact 10328829894; lint artifact 10328839756; source artifact 10328887936.
+No ARM physical device verification.
+
+2026-09-14T00:59:53.4517951Z PASS: 187 assertions covering hex paths, resources, combat, turns, saves, and deterministic simulation.
+2026-09-14T00:59:58.0671926Z PASS: 359 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
+2026-09-14T01:00:00.3711288Z PASS: 705 domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.
+2026-09-14T01:00:00.9734531Z PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
+2026-09-14T01:00:01.6425367Z PASS: 50x50 benchmark, 100 A* queries: p50=3.230ms p95=4.690ms max=5.595ms total=346.339ms maxExpanded=2125/2500; 100 reachable queries=13.370ms
+2026-09-14T01:00:04.8942631Z PASS: 8747 strategy/officer assertions covering locks, seeded search/hiring, loyalty, offices, economy, finite reserves, readiness, AI and save v1-v4.
+2026-09-14T01:00:07.4369566Z PASS: 59 campaign cases, 590 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
+2026-09-14T01:00:08.5130889Z PASS: 45 army cases, 465 assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.
+2026-09-14T01:00:11.3954992Z PASS: 575 rules-parity assertions: move previews/replays/budget, skill priorities/holders/chains, actual damage/production, real v6 migration and deterministic campaigns.
+2026-09-14T01:00:49.1115976Z PASS: 64 UI projection/camera assertions.
+2026-09-14T01:00:54.7109498Z PASS: 45 army cases, 465 assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.
+2026-09-14T01:00:57.5044355Z PASS: 59 campaign cases, 590 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
+2026-09-14T01:00:59.0076330Z PASS: 187 assertions covering hex paths, resources, combat, turns, saves, and deterministic simulation.
+2026-09-14T01:01:01.9063531Z PASS: 705 domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.
+2026-09-14T01:01:04.8048174Z PASS: 575 rules-parity assertions: move previews/replays/budget, skill priorities/holders/chains, actual damage/production, real v6 migration and deterministic campaigns.
+2026-09-14T01:01:09.4076682Z PASS: 359 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
+2026-09-14T01:01:12.6044196Z PASS: 8747 strategy/officer assertions covering locks, seeded search/hiring, loyalty, offices, economy, finite reserves, readiness, AI and save v1-v4.
+2026-09-14T01:01:13.3057000Z PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
+2026-09-14T01:01:14.0066781Z PASS: 50x50 benchmark, 100 A* queries: p50=3.292ms p95=4.594ms max=5.227ms total=357.356ms maxExpanded=2125/2500; 100 reachable queries=12.116ms
+2026-09-14T01:01:14.1075455Z BUILD SUCCESSFUL in 48s
+2026-09-14T01:01:44.5216121Z PASS: 64 UI projection/camera assertions.
+2026-09-14T01:01:45.9246571Z BUILD SUCCESSFUL in 31s
+2026-09-14T01:02:11.2595961Z BUILD SUCCESSFUL in 25s
+2026-09-14T01:09:10.9852591Z SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turns, three save slots, corrupt-load recovery, Activity recreation, construction, officer travel, editable cargo transport, task persistence and arrival, map tap/pan/pinch/bounds, filters, empty states, cancel/overwrite confirmation and navigation recreation, search/hire/governor/reward/patrol/recruit/train save v5 restart, merchant quotes/cancel/volume, aptitude study task/completion, goodwill, map tactic damage/displacement and persistent fire, three-officer formation/cancellation, equipment return, manufacturing completion, naval fire, v6 restart and disembarkation, v7 move confirmation/cancellation/recreation and 神算百出连环 real results verified.
+2026-09-14T01:09:13.1243506Z /sdcard/Android/data/game.sanguo.mobile/files/smoke/: 30 files pulled, 0 skipped. 53.0 MB/s (7453001 bytes in 0.134s)
+2026-09-14T01:14:31.0683751Z SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turns, three save slots, corrupt-load recovery, Activity recreation, construction, officer travel, editable cargo transport, task persistence and arrival, map tap/pan/pinch/bounds, filters, empty states, cancel/overwrite confirmation and navigation recreation, search/hire/governor/reward/patrol/recruit/train save v5 restart, merchant quotes/cancel/volume, aptitude study task/completion, goodwill, map tactic damage/displacement and persistent fire, three-officer formation/cancellation, equipment return, manufacturing completion, naval fire, v6 restart and disembarkation, v7 move confirmation/cancellation/recreation and 神算百出连环 real results verified.
+2026-09-14T01:14:33.0057054Z /sdcard/Android/data/game.sanguo.mobile/files/smoke/: 30 files pulled, 0 skipped. 24.5 MB/s (8093002 bytes in 0.315s)
+2026-09-14T01:19:43.7959412Z SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turns, three save slots, corrupt-load recovery, Activity recreation, construction, officer travel, editable cargo transport, task persistence and arrival, map tap/pan/pinch/bounds, filters, empty states, cancel/overwrite confirmation and navigation recreation, search/hire/governor/reward/patrol/recruit/train save v5 restart, merchant quotes/cancel/volume, aptitude study task/completion, goodwill, map tactic damage/displacement and persistent fire, three-officer formation/cancellation, equipment return, manufacturing completion, naval fire, v6 restart and disembarkation, v7 move confirmation/cancellation/recreation and 神算百出连环 real results verified.
+2026-09-14T01:19:45.5796547Z /sdcard/Android/data/game.sanguo.mobile/files/smoke/: 30 files pulled, 0 skipped. 25.0 MB/s (7812683 bytes in 0.298s)
+2026-09-14T01:19:48.3765806Z Signer #1 certificate SHA-256 digest: fdb2e9adeb26571c783406a7ef10a1cfcda39d13b4adca591a30590a05f6cdf7
+2026-09-14T01:19:48.8783527Z Old SHA-256 certificate: e1fb6629564cc2d42c1b09ad5af57a372d421440e58dc2b219b4833d0364ea97
+2026-09-14T01:19:48.8803882Z New SHA-256 certificate: fdb2e9adeb26571c783406a7ef10a1cfcda39d13b4adca591a30590a05f6cdf7
+2026-09-14T01:19:48.8805698Z DIFFERENT: Android cannot install this APK over that prior signed package. Keep the existing app and important saves.

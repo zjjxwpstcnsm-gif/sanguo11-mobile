@@ -47,7 +47,7 @@ final class CampaignUi {
         choose("技巧研究 · 当前"+w.campaign.points(c.owner)+"点",Arrays.asList(Campaign.Tech.values()),tech->tech.label+(w.campaign.has(c.owner,tech)?" · 已掌握":" · "+tech.points+"点 / 金"+tech.gold),tech->officer(c,o->{
             String error=w.campaign.researchError(c.id,o.id,tech);
             if(error!=null){info(tech.label,error+"\n效果："+tech.effect);return;}
-            confirm("研究"+tech.label,tech.effect+"\n消耗"+tech.points+"技巧点、金"+tech.gold+"、行动力10。\n研究占用"+o.name+tech.turns+"旬，每势力同时研究一项。\n城池失守时中止，费用不退还。",()->apply.accept(w.campaign.research(c.id,o.id,tech)));
+            confirm("研究"+tech.label,tech.effect+"\n消耗"+tech.points+"技巧点、金"+w.campaign.researchGold(o.id,tech)+"、行动力10。\n研究占用"+o.name+tech.turns+"旬，每势力同时研究一项。\n城池失守时中止，费用不退还。",()->apply.accept(w.campaign.research(c.id,o.id,tech)));
         }));
     }
     void study(World.City c){officer(c,o->choose("培养"+o.name,Arrays.asList(Campaign.Study.values()),study->study.label+" · 当前"+(study.ordinal()<5?w.campaign.studyValue(o.id,study):War.rankLabel(w.campaign.studyValue(o.id,study))),study->confirm("培养"+study.label,
@@ -56,7 +56,11 @@ final class CampaignUi {
         StringBuilder text=new StringBuilder("技巧点 "+w.campaign.points(c.owner)+"\n每城每旬产出10点（势力上限100点/旬），战斗和部分军政命令也可获得技巧点。\n");
         for(Campaign.Project p:w.campaign.projects())if(p.owner==c.owner)text.append('\n').append(w.city(p.cityId).name).append(" · ").append(w.officer(p.officerId).name).append(" · ").append(p.label()).append(" · 剩").append(w.officer(p.officerId).otherTaskTurns).append("旬");
         for(Campaign.Tech t:Campaign.Tech.values())if(w.campaign.has(c.owner,t))text.append("\n已掌握 ").append(t.label).append("：").append(t.effect);
-        info("研究与培养进度",text.toString());
+        new AlertDialog.Builder(a).setTitle("研究与培养进度").setMessage(text.toString()).setPositiveButton("返回",null)
+            .setNeutralButton("中止任务",(d,n)->{
+                List<Campaign.Project> own=new ArrayList<>();for(Campaign.Project p:w.campaign.projects())if(p.owner==w.active)own.add(p);
+                choose("选择中止的任务",own,p->w.officer(p.officerId).name+" · "+p.label(),p->confirm("中止"+p.label(),"已付金和技巧点不退还，武将本旬仍算已行动。",()->apply.accept(w.campaign.cancelProject(p.officerId))));
+            }).show();
     }
     void repair(World.City c){officer(c,o->confirm("修复城防","金300、行动力10；修复"+Math.min(Math.max(0,3000-c.defense),(400+o.politics*4)*(w.campaign.has(c.owner,Campaign.Tech.ENGINEERING)?150:100)/100)+"城防。",()->apply.accept(w.campaign.repair(c.id,o.id))));}
     void dismiss(World.City c){officer(c,o->{List<World.Officer> targets=new ArrayList<>();for(World.Officer t:w.officers)if(t.owner==c.owner&&t.cityId==c.id&&t.id!=o.id&&t.role!=Strategy.Role.RULER&&!w.domestic.busy(t.id)&&!w.strategy.busy(t.id))targets.add(t);

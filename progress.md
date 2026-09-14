@@ -1,8 +1,16 @@
 # 项目进度
 
+## 当前 v0.8 联合开发版
+
+集成分支 agent/integrate-v08 已实际合入双方代码及PR6最终修复，唯一存档v7。[PR #9](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/9) 的代码 `4f7e4b6b` 已通过完整独立CI：核心/UI、Android构建、Lint与API29三种横屏安装，108张截图。297602字节联合APK已取回并核对摘要；Lint12条警告，无ARM真机。签名与实际比较的旧v0.6、v0.7不同，不能覆盖这两个旧包。来源目录到运行时特技/性别桥接完成，仍未完整还原。[集成记录、APK与缺口](docs/handoffs/integration-v08.md)。
+
+## v0.8 Agent 1 开发增量
+
+固定基线 ff624b6e9c48c81d7111a9a642b18cf6bd098fe1；分支 agent/rules-parity-v08；[PR #7](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/7)。部队命令流程、部分特技效果、v7兼容存档、移动确认与组合计略Android入口已提交。完整技巧/PK培养、军政人物与单挑舌战仍缺失；原版公式尚未全部核验，不能宣称完整复刻。详细规则、接口、夹具和最新验证见 [交接文档](docs/handoffs/agent-rules-parity-v08.md)。
+
 2026-09-14 · `zjjxwpstcnsm-gif/sanguo11-mobile` · private
 
-## 当前 v0.7.0 / 编队与水陆攻防
+## 历史 v0.7.0 / 编队与水陆攻防
 
 PR #4、#5 已核验并合并到 main `e66656e3`。PR #6 增加三将编队、9种陆战兵装、3类舰船、水陆切换、军备制造、器械运输、兵器/水军战法、六类适性、v6存档和水陆攻防沙盘。全部规则/UI回归共143,589次断言通过，包含新增45个军备场景；Android构建、Lint及API29三种横屏完整安装操作通过，取回81张截图，无应用崩溃/ANR。代码 `d89f9882`，CI运行34793420077；227,439字节APK已核对。签名与v0.6不同，不能直接覆盖安装，有旧存档请保留旧应用。完整边界与证据见 [ARMY_V0_7.md](docs/ARMY_V0_7.md)。仍未100%还原，未制作暂缓的专用界面与人物模型。
 

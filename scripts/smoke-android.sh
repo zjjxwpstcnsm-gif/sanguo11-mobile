@@ -15,6 +15,7 @@ for display in 1080x1920 1080x2340 1080x2400; do
   adb shell am instrument -w game.sanguo.mobile.test/game.sanguo.mobile.GameSmokeRunner | tee "app/build/smoke/$display/instrumentation.txt"
   adb logcat -d > "app/build/smoke/$display/logcat.txt"
   adb pull /sdcard/Android/data/game.sanguo.mobile/files/smoke "app/build/smoke/$display/screenshots"
+  adb pull /sdcard/Android/data/game.sanguo.mobile/files/content-performance.txt "app/build/smoke/$display/content-performance.txt" || true
   python3 - "$display" <<'CHECK'
 from pathlib import Path
 import sys

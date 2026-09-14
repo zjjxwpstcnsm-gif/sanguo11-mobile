@@ -48,6 +48,7 @@ public final class MainActivity extends Activity {
         title=text("",14,gold);title.setMaxLines(2);header.addView(title,new LinearLayout.LayoutParams(0,dp(48),1));
         header.addView(button("全图",v->map.fit()),new LinearLayout.LayoutParams(dp(56),dp(48)));
         header.addView(button("定位",v->{if(selected!=null)map.focus(selected);}),new LinearLayout.LayoutParams(dp(56),dp(48)));
+        header.addView(button("导航图",v->map.toggleNavigator()),new LinearLayout.LayoutParams(dp(64),dp(48)));
         root.addView(header);
         body=new LinearLayout(this);map=new MapView(this,this::onTile);body.addView(map,new LinearLayout.LayoutParams(0,-1,1));
         panelHost=new FrameLayout(this);body.addView(panelHost,new LinearLayout.LayoutParams(dp(panelWidth()),-1));
@@ -83,7 +84,7 @@ public final class MainActivity extends Activity {
                 else confirm("攻击"+city.name+"？",()->apply(world.siege(source.id,city.id)));
                 return;
             }
-            if(target==null){World.Result result=world.move(source.id,h);if(result.ok)selected=h;apply(result);return;}
+            if(target==null){warUi().move(source,h);return;}
         }
         if(!h.equals(selected))ui.group="概览";
         selected=h;moving=target!=null&&target.owner==world.player?target.id:-1;ui.page="map";ui.panelVisible=true;refresh();revealPanel();
@@ -98,6 +99,9 @@ public final class MainActivity extends Activity {
         if(result.ok&&world.gameOver())message(world.winner==world.player?"战场胜利":"战场战败","本局结束，可从菜单重新选择剧本。");
     }
     void refresh(){
+        if(ui.city>=0&&world.city(ui.city)==null)ui.city=-1;
+        if(ui.owner>=world.factions.length)ui.owner=-1;
+        if(ui.cityOwner>=world.factions.length)ui.cityOwner=-1;
         title.setText(world.scenarioName+"  ·  "+world.faction(world.player)+"    "+world.date()+"    行动力 "+world.actionPoints[world.player]);
         nextTurn.setEnabled(!aiRunning&&!world.gameOver());nextTurn.setText(aiRunning?"结算中…":"下一旬  →");
         for(Map.Entry<String,Button> e:navigation.entrySet()){e.getValue().setEnabled(!aiRunning);e.getValue().setTextColor(e.getKey().equals(ui.page)?gold:paper);}
@@ -106,6 +110,8 @@ public final class MainActivity extends Activity {
         if(world.unit(moving)==null)moving=-1;
         if(ui.page.equals("cities"))panelHost.addView(new OverviewUi(this,world,ui).cities());
         else if(ui.page.equals("officers"))panelHost.addView(new OverviewUi(this,world,ui).officers());
+        else if(ui.page.equals("content"))panelHost.addView(new ContentUi(this,world,ui).view());
+        else if(ui.page.equals("factions"))panelHost.addView(new OverviewUi(this,world,ui).factions());
         else if(ui.page.equals("tasks"))panelHost.addView(new OverviewUi(this,world,ui).tasks());
         else {panelHost.addView(panelScroll);if(ui.page.equals("menu"))showMenu();else showSelection();}
         log.setText(aiRunning?"正在结算电脑行动与本旬任务…":world.log.isEmpty()?"拖动地图 · 双指缩放 · 双击城池定位":world.log.get(world.log.size()-1));
@@ -184,15 +190,16 @@ public final class MainActivity extends Activity {
         new CityCommand("军备制造 / 攻城器械与舰船",()->armyUi().manufacture(c)),
         new CityCommand("征兵 · 金300 · 兵源 "+c.recruitReserve,()->strategyUi().command(c,6)),
         new CityCommand("训练 · 金100",()->strategyUi().command(c,7)),
-        new CityCommand("生产兵装  +"+world.domestic.produceAmount(c.id)+" · 金400",()->chooseOfficer(c,o->chooseBasicWeapon(weapon->apply(world.produce(c.id,o.id,weapon)))))
+        new CityCommand("生产兵装 · 金400",()->chooseOfficer(c,o->chooseBasicWeapon(weapon->apply(world.produce(c.id,o.id,weapon)))))
     );}
     private void showUnit(World.Unit u){
         World.Officer o=world.officer(u.officerId);line(o.name,25,gold);line(world.faction(u.owner)+" · "+world.army.equipmentLabel(u),14,paper);
-        line("兵力 "+u.troops+"\n携粮 "+u.food+"\n气力 "+u.energy,16,paper);line("统率 "+o.leadership+"  武力 "+o.war,13,paper);line("移动 "+world.war.movement(u)+"  射程 "+world.war.range(u),13,paper);
+        line("兵力 "+u.troops+"\n携粮 "+u.food+"\n气力 "+u.energy,16,paper);line("统率 "+o.leadership+"  武力 "+o.war,13,paper);line("剩余移动 "+world.orders.remaining(u)+"  射程 "+world.war.range(u),13,paper);
         line("适性 "+War.rankLabel(world.army.aptitude(u))+" · 状态 "+u.status.label,14,paper);
         for(int id:u.deputies)line("副将 "+world.officer(id).name,14,paper);
         line("部队武力 "+world.army.war(u)+" · 智力 "+world.army.intelligence(u),13,paper);
         if(u.burning>0)line("部队燃烧 · 剩"+u.burning+"旬",14,gold);
+        action("编队特技",v->warUi().skills(u));
         if(u.owner==world.player){line(u.acted?"本旬已行动":"点击高亮空地移动\n点敌军攻击 / 点城池攻城或入城",14,paper);
             if(!u.acted&&u.status==War.Status.NORMAL){action("战法",v->{moving=u.id;if(world.army.water(u.hex)||Army.siegeWeapon(u.weapon))armyUi().tactics(u);else warUi().tactics(u);});
                 if(u.burning>0)action("部队灭火 · 气力5",v->confirm("扑灭本部队火焰？",()->apply(world.army.extinguish(u.id))));action("部队计略",v->{moving=u.id;warUi().plots(u);});action("待命 · 恢复5气力",v->confirm("本旬待命并恢复5气力？",()->apply(world.war.waitUnit(u.id))));}
@@ -224,15 +231,21 @@ public final class MainActivity extends Activity {
     private void showMenu(){
         line("军政菜单",22,gold);action("保存局面（3个槽位）",v->saveSlots(false));action("读取存档",v->saveSlots(true));
         action("本旬结算摘要",v->message("旬结算摘要",ui.summary.isEmpty()?"结束一旬后将在这里显示结算摘要。":ui.summary));
+        action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
         action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.7 · 编队与水陆攻防","三将编队、攻城器械、走舸/楼船/斗舰与水陆切换；工房/造船厂、跨旬制造、兵器/水军战法。\n存档 v6，兼容 v1～v5。\n\n当前为原创沙盘与工程规则，尚未达到原版完整还原。全国地图、全量人物、全特技、官方剧本事件等仍未完成。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}
-            new AlertDialog.Builder(this).setTitle("选择剧本 · 原创测试沙盘").setItems(labels,(dialog,index)->{World template=scenarios.get(index);new AlertDialog.Builder(this).setTitle(template.scenarioName+" · 选择势力").setItems(template.factions,(d,side)->confirm("以"+template.faction(side)+"开始新局？当前自动存档将更新，手动存档保留。",()->startScenario(template.scenarioId,side))).setNegativeButton("返回",(d,n)->scenarioPicker()).show();}).setNegativeButton("取消",null).show();
+            new AlertDialog.Builder(this).setTitle("选择剧本 · 原创测试沙盘").setItems(labels,(dialog,index)->{World template=scenarios.get(index);new AlertDialog.Builder(this).setTitle(template.scenarioName+" · 选择势力").setItems(template.factions,(d,side)->confirm(openingInfo(template,side)+"\n\n以"+template.faction(side)+"开始新局？当前自动存档将更新，手动存档保留。",()->startScenario(template.scenarioId,side))).setNegativeButton("返回",(d,n)->scenarioPicker()).show();}).setNegativeButton("取消",null).show();
         }catch(IOException e){showError("剧本读取失败");}
     }
-    private void startScenario(String id,int player){try{world=ScenarioCatalog.load(id,player);ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.taskType=0;selectAndFocus(world.home().hex);save("auto",false);}catch(IOException e){showError("无法开始剧本");}}
+    private String openingInfo(World w,int side){
+        StringBuilder b=new StringBuilder(w.date()+" · "+w.width+"×"+w.height+"格\n");int people=0;for(World.Officer o:w.officers)if(o.owner==side)people++;
+        b.append(people).append("名武将 · 领地：");for(World.City c:w.cities)if(c.owner==side)b.append(c.name).append(" ");
+        b.append(w.dataSource.equals("community-reference")?"\n能力/适性来自公开资料，地图/领地/资源为原创演练；生卒、特技、关系不生效。":"\n原创测试地图、资源和武将数值；非官方历史开局。");return b.toString();
+    }
+    private void startScenario(String id,int player){try{world=ScenarioCatalog.load(id,player);ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;selectAndFocus(world.home().hex);save("auto",false);}catch(IOException e){showError("无法开始剧本");}}
     private String slotName(int index){return index==0?"manual":"manual"+(index+1);}
     private boolean present(AtomicFile f){return f.getBaseFile().exists()||new File(f.getBaseFile()+".bak").exists();}
     private void saveSlots(boolean loading){
@@ -269,7 +282,7 @@ public final class MainActivity extends Activity {
         catch(IOException e){if(out!=null)f.failWrite(out);Toast.makeText(this,"保存失败，请检查设备存储空间后重试",Toast.LENGTH_LONG).show();}
     }
     private World readSave(AtomicFile f)throws IOException {try(FileInputStream in=f.openRead();ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] buffer=new byte[8192];int count;while((count=in.read(buffer))!=-1){if(out.size()+count>4*1024*1024+20)throw new IOException("存档超过大小限制");out.write(buffer,0,count);}return SaveCodec.decode(out.toByteArray());}}
-    private void loadSlot(String slot){try{World restored=readSave(file(slot));world=restored;ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.taskType=0;selectAndFocus(world.home().hex);save("auto",false);}catch(IOException e){showError("读取失败");}}
+    private void loadSlot(String slot){try{World restored=readSave(file(slot));world=restored;ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;selectAndFocus(world.home().hex);save("auto",false);}catch(IOException e){showError("读取失败");}}
     @Override protected void onPause(){super.onPause();if(world!=null)save("auto",false);}
     @Override public void onBackPressed(){if(aiRunning)return;if(!ui.page.equals("map")){ui.page="map";refresh();}else if(ui.panelVisible){ui.panelVisible=false;refresh();}else confirm("退出游戏？当前局面将自动保存。",this::finish);}
 }

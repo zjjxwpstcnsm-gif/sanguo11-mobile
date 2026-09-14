@@ -49,7 +49,9 @@ public final class GameSmokeRunner extends Instrumentation {
             personnelFlow();
             campaignFlow();
             armyFlow();
-            result.putString("stream","SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turns, three save slots, corrupt-load recovery, Activity recreation, construction, officer travel, editable cargo transport, task persistence and arrival, map tap/pan/pinch/bounds, filters, empty states, cancel/overwrite confirmation and navigation recreation, search/hire/governor/reward/patrol/recruit/train save v5 restart, merchant quotes/cancel/volume, aptitude study task/completion, goodwill, map tactic damage/displacement and persistent fire, three-officer formation/cancellation, equipment return, manufacturing completion, naval fire, v6 restart and disembarkation verified.\n");
+            rulesFlow();
+            contentFlow();
+            result.putString("stream","SMOKE PASS: integrated original game/save/city/task/personnel/combat/army regressions; v7 move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -169,6 +171,9 @@ public final class GameSmokeRunner extends Instrumentation {
         click("战法",true);click("突刺 ·",false);click("张辽 ·",false);click("执行",true);w=saved();require(w.unit(1).energy==65&&w.unit(1).acted&&w.unit(2).troops<5000&&w.unit(2).hex.equals(new Hex(8,5)),"UI spear thrust persists damage, action and displacement");screenshot("21-tactical-thrust");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("战法验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"combat outcome survives recreation without duplicate settlement");
         battle=SaveCodec.decode(before);battle.unit(1).acted=false;battle.unit(1).energy=80;battle.strategy.setSeed(0);installFixture(battle,battle.unit(1).hex);
+        // Fire has adjacent range in the selected PC rules; move after the push before casting.
+        tapHex(new Hex(7,5));click("执行",true);
+        require(!saved().unit(1).acted,"moving into fire range retains the plot command");
         click("部队计略",true);click("火计 ·",false);click("张辽 ·",false);click("执行",true);w=saved();require(w.war.fireAt(w.unit(2).hex)!=null&&w.unit(1).energy==70,"UI fire plot persists burning hex");screenshot("22-fire-field");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("战法验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"fire survives Activity recreation");
     }
@@ -210,7 +215,63 @@ public final class GameSmokeRunner extends Instrumentation {
         require(w.unit(2).burning==2&&w.unit(2).troops<5000&&w.unit(1).energy==70,"naval fire tactic updates actual troops and persistent burning");screenshot("26-naval-combat");
         before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("水陆攻防",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"naval outcome survives restart");
         World crossing=SaveCodec.decode(before);crossing.unit(1).acted=false;installFixture(crossing,crossing.unit(1).hex);
-        tapHex(new Hex(8,8));w=saved();require(w.unit(1).hex.equals(new Hex(8,8))&&w.unit(1).weapon==World.Weapon.SPEAR&&w.unit(1).ship==Army.Ship.WARSHIP,"map tap disembarks with preserved land gear and ship");screenshot("27-disembarked");
+        tapHex(new Hex(8,8));click("执行",true);w=saved();require(w.unit(1).hex.equals(new Hex(8,8))&&w.unit(1).weapon==World.Weapon.SPEAR&&w.unit(1).ship==Army.Ship.WARSHIP,"map tap disembarks with preserved land gear and ship");screenshot("27-disembarked");
+    }
+    private void rulesFlow()throws Exception {
+        World w=ScenarioCatalog.load("river-siege-sandbox",0);
+        World.Unit actor=new World.Unit(1,0,0,World.Weapon.SPEAR,new Hex(6,8),5000,20000);
+        actor.deputies=new int[]{1,2};w.officer(0).skillId=Skill.SHENSUAN.id;w.officer(0).intelligence=100;
+        w.officer(1).skillId=Skill.BAICHU.id;w.officer(2).skillId=Skill.LIANHUAN.id;
+        World.Unit target=new World.Unit(2,1,6,World.Weapon.SPEAR,new Hex(8,8),5000,20000);
+        World.Unit chained=new World.Unit(3,1,7,World.Weapon.SPEAR,new Hex(8,9),5000,20000);
+        w.units.add(actor);w.units.add(target);w.units.add(chained);w.nextUnitId=4;
+        for(World.Unit u:w.units)for(World.Officer o:w.army.crew(u)){o.cityId=-1;o.unitId=u.id;}
+        for(World.City c:w.cities)c.governorId=-1;
+        installFixture(w,actor.hex);byte[] initial=SaveCodec.encode(saved());
+        tapHex(new Hex(7,8));waitText("确认移动",true);screenshot("28-move-preview");click("取消",true);
+        require(Arrays.equals(initial,SaveCodec.encode(saved())),"move cancel does not change world or RNG");
+        tapHex(new Hex(7,8));click("执行",true);w=saved();
+        require(w.unit(1).hex.equals(new Hex(7,8))&&!w.unit(1).acted&&w.unit(1).movementSpent>0,"move preserves command and charges path");
+        byte[] moved=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("水陆攻防",false);
+        require(Arrays.equals(moved,SaveCodec.encode(saved())),"movement budget survives recreation");
+        click("部队计略",true);click("扰乱 · 气力1",true);click("曹操 ·",false);screenshot("29-skill-plot-preview");click("取消",true);
+        require(Arrays.equals(moved,SaveCodec.encode(saved())),"skill plot cancel is pure");
+        click("部队计略",true);click("扰乱 · 气力1",true);click("曹操 ·",false);click("执行",true);w=saved();
+        require(w.unit(1).acted&&w.unit(1).energy==79&&w.unit(2).statusTurns==2&&w.unit(3).statusTurns==2,"UI 神算百出连环 costs once and resolves two targets");
+        screenshot("30-move-then-skills");
+    }
+    private String contentAnchor()throws Exception {java.lang.reflect.Field f=MainActivity.class.getDeclaredField("ui");f.setAccessible(true);return ((ClientState)f.get(current)).contentFirstId;}
+    private void contentFlow()throws Exception {
+        click("菜单",true);click("新游戏 / 选择势力",true);click("武将资料演练 ·",false);click("孙权军",true);waitText("能力/适性来自公开资料",false);screenshot("28-sourced-opening");click("执行",true);waitForIdleSync();
+        assertWorld(2,0,"officer-reference-drill");ContentCatalog.get().validateOpening(saved());
+        clickNav("城市");setInput("搜索城市或势力","不存在");waitText("没有符合条件的城池",false);setInput("搜索城市或势力","建业");click("建业 · 孙权军",false);
+        click("军事",true);click("出征",true);click("甘宁",true);click("弩兵",true);click("3000人",true);waitForIdleSync();require(saved().officer(3003).unitId>0,"sourced opening deployed via native command");
+        require(saved().officer(3003).skillId.equals(Skill.WEIFENG.id),"source skill ID binds to actual runtime officer");
+        tapHex(saved().unit(saved().officer(3003).unitId).hex);click("编队特技",true);waitText("甘宁 · 威风",false);screenshot("33-sourced-runtime-skill");click("返回",true);
+        endTurn();waitForTurn(1);
+        clickNav("任务");setInput("搜索任务、武将或城市","不存在");waitText("没有符合检索条件的任务",false);
+        click("菜单",true);click("势力一览",true);setInput("搜索势力","孙权");waitText("孙权军",true);screenshot("29-faction-search");
+        click("菜单",true);click("全国资料 / 核验目录",true);waitText("显示 670 / 670 条",true);
+        for(int attempt=0;attempt<4&&contentAnchor().equals("1000");attempt++){AccessibilityNodeInfo list=findInput(getUiAutomation().getRootInActiveWindow(),"资料列表");require(list!=null&&list.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD),"native long catalog scroll");waitForIdleSync();SystemClock.sleep(400);}String anchor=contentAnchor();require(!anchor.isEmpty()&&!anchor.equals("1000"),"scroll moved to later stable ID");runOnMainSync(current::recreate);waitText("显示 670 / 670 条",true);waitForIdleSync();require(anchor.equals(contentAnchor()),"long catalog stable row restores");
+        setInput("搜索资料","诸葛亮");waitText("諸葛亮 · ID 1004",false);click("諸葛亮 · ID 1004",false);waitText("智力 100",false);click("返回",true);
+        setInput("搜索资料","不存在");waitText("没有符合条件的资料",false);setInput("搜索资料","诸葛亮");runOnMainSync(current::recreate);waitText("显示 1 / 670 条",true);waitText("諸葛亮 · ID 1004",false);screenshot("30-content-restored");
+        click("据点分布预览",true);waitText("42 城来源 X/Y 分布",false);screenshot("31-source-coordinates");click("返回",true);
+        click("武将资料",true);click("剧本缺口",true);waitText("显示 14 / 14 条",true);click("黄巾之乱 · ID",false);waitText("缺少原版地形",false);click("返回",true);
+        click("菜单",true);click("保存局面（3个槽位）",true);click("槽位 1 ·",false);click("执行",true);waitForIdleSync();byte[] before=SaveCodec.encode(saved());
+        click("菜单",true);click("新游戏 / 选择势力",true);click("基础演练 ·",false);click("曹操军",true);click("执行",true);
+        click("菜单",true);click("读取存档",true);click("槽位 1 · 武将资料演练",false);click("执行",true);waitForIdleSync();require(Arrays.equals(before,SaveCodec.encode(saved())),"sourced snapshot exact restore after different opening");
+        click("全图",true);click("导航图",true);MapView map=mapView();MapCamera camera=camera(map);pinch(map,1.5f);
+        float[] old={0};runOnMainSync(()->old[0]=camera.centerX());int[] pos=new int[2];float[] target=new float[2];runOnMainSync(()->{map.getLocationOnScreen(pos);float den=map.getResources().getDisplayMetrics().density;target[0]=pos[0]+map.getWidth()-20*den;target[1]=pos[1]+24*den;});
+        long t=SystemClock.uptimeMillis();send(t,t,MotionEvent.ACTION_DOWN,target[0],target[1]);send(t,t+40,MotionEvent.ACTION_MOVE,target[0]-20,target[1]+20);send(t,t+80,MotionEvent.ACTION_UP,target[0]-20,target[1]+20);waitForIdleSync();require(camera.centerX()!=old[0],"navigator touch relocates camera");require(Arrays.equals(before,SaveCodec.encode(saved())),"navigator does not issue commands");screenshot("32-navigator");
+        runOnMainSync(current::recreate);waitText("武将资料演练",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"sourced map recreation keeps snapshot");
+        // A maximum-sized engineering stress fixture, explicitly unrelated to original national terrain.
+        World stress=new World(128,128);stress.scenarioId="viewport-stress";stress.scenarioName="128 格绘制压测";
+        for(int i=0;i<128;i++){int id=40000+i;stress.cities.add(new World.City(id,"压测城"+i,new Hex(i,i),i%2));stress.officers.add(new World.Officer(50000+i,"压测将"+i,i%2,id,70,70,70,70,70));}
+        long[] elapsed=new long[40];int[] visits=new int[2];MapView finalMap=mapView();
+        runOnMainSync(()->{finalMap.setWorld(stress,null,-1);finalMap.focus(new Hex(64,64));Bitmap bitmap=Bitmap.createBitmap(finalMap.getWidth(),finalMap.getHeight(),Bitmap.Config.ARGB_8888);Canvas canvas=new Canvas(bitmap);for(int i=0;i<45;i++){finalMap.draw(canvas);if(i>=5)elapsed[i-5]=finalMap.drawNanos();}visits[0]=finalMap.tilesVisited();visits[1]=finalMap.objectsVisited();bitmap.recycle();});
+        Arrays.sort(elapsed);require(visits[0]<128*128/4,"large map drawing visits visible area");
+        try(PrintWriter out=new PrintWriter(new File(getTargetContext().getExternalFilesDir(null),"content-performance.txt"))){out.println("Engineering 128x128, 128 cities, 128 officers; software Canvas onDraw timing, NOT FPS or GPU latency");out.println("viewport="+finalMap.getWidth()+"x"+finalMap.getHeight()+" tilesVisited="+visits[0]+" objectsVisited="+visits[1]);out.println("warm samples=40 medianMs="+elapsed[20]/1e6+" p95Ms="+elapsed[38]/1e6+" maxMs="+elapsed[39]/1e6);}
+        runOnMainSync(()->((MainActivity)current).refresh());
     }
     private void tapHex(Hex h)throws Exception {
         MapView map=mapView();MapCamera c=camera(map);int[] pos=new int[2];float[] point=new float[2];

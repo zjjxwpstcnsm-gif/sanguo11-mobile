@@ -79,15 +79,15 @@ public final class Army {
     public World.Result produce(int city,int officer,World.Weapon weapon,Ship ship){
         String error=productionError(city,officer,weapon,ship);if(error!=null)return w.fail(error);
         World.City c=w.city(city);World.Officer o=w.officer(officer);Production p=new Production(city,officer,c.owner,weapon,ship);
-        w.spend(c,o,weapon!=null?productionGold(weapon):ship.gold);o.otherTask=p.label();o.otherTaskTurns=3;productions.add(p);
-        return w.success(o.name+"开始"+p.label()+"，3旬后完成1件");
+        w.spend(c,o,weapon!=null?productionGold(weapon):ship.gold);o.otherTask=p.label();o.otherTaskTurns=w.skills.productionTurns(officer,weapon);productions.add(p);
+        return w.success(o.name+"开始"+p.label()+"，"+o.otherTaskTurns+"旬后完成1件");
     }
     private boolean valid(Production p){World.City c=w.city(p.cityId);World.Officer o=w.officer(p.officerId);return c!=null&&o!=null&&c.owner==p.owner&&o.owner==p.owner&&o.cityId==c.id&&o.otherTask.equals(p.label())&&completed(c.id,p.weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD);}
     void cleanup(){for(Production p:new ArrayList<>(productions))if(!valid(p)){productions.remove(p);World.Officer o=w.officer(p.officerId);if(o!=null&&o.otherTask.equals(p.label())){o.otherTask="";o.otherTaskTurns=0;}w.note(p.label()+"因城池或工场失守/拆除而中止");}}
     void tick(){
         for(World.Unit u:new ArrayList<>(w.units))if(u.burning>0){
-            u.burning--;if(u.burningOwner==u.owner||w.campaign.hostile(u.burningOwner,u.owner)){int hit=Math.min(u.troops,200);u.troops-=hit;w.note(w.officer(u.officerId).name+"的部队持续燃烧，损失"+hit+"兵");}
-            if(u.burning==0)u.burningOwner=-1;if(u.troops==0)w.removeUnit(u);
+            u.burning--;if(u.burningOwner==u.owner||w.campaign.hostile(u.burningOwner,u.owner)){int hit=w.skills.fireDamage(u,200,u.burningOwner,u.burningPower,false);u.troops-=hit;w.note(w.officer(u.officerId).name+"的部队持续燃烧，损失"+hit+"兵");}
+            if(u.burning==0){u.burningOwner=-1;u.burningPower=1;}if(u.troops==0)w.removeUnit(u);
         }
         cleanup();for(Production p:new ArrayList<>(productions))if(w.officer(p.officerId).otherTaskTurns==1){
             World.City c=w.city(p.cityId);int count=p.weapon!=null?c.equipment[p.weapon.ordinal()]:c.ships[p.ship.ordinal()-1];
@@ -98,16 +98,18 @@ public final class Army {
     }
     public World.Result cancelProduction(int officer){Production p=productions.stream().filter(x->x.officerId==officer).findFirst().orElse(null);
         if(w.gameOver()||p==null||p.owner!=w.active)return w.fail("请选择本势力制造任务");productions.remove(p);World.Officer o=w.officer(officer);o.otherTask="";o.otherTaskTurns=0;o.acted=true;return w.success("制造中止，费用不退还");}
+    /** Current modeled unit attack; base attribute formula still awaits original executable calibration. */
+    public double attackPower(World.Unit u){return (80+w.officer(u.officerId).leadership+war(u)/2.0)*(water(u.hex)?u.ship.power:u.weapon.power)/100.0;}
     int damage(World.Unit a,World.Unit b,double scale,Random random){
         double ap=water(a.hex)?a.ship.power:a.weapon.power,bp=water(b.hex)?b.ship.power:b.weapon.power;
-        double offense=(80+w.officer(a.officerId).leadership+war(a)/2.0)*(70+a.energy)/150.0;
+        double offense=80+w.officer(a.officerId).leadership+war(a)/2.0;
         double defense=80+w.officer(b.officerId).leadership+intelligence(b)/4.0;
         int amount=(int)(250*StrictMath.sqrt(a.troops/1000.0)*ap/100*Math.max(.4,offense/defense)*scale*(.9+random.nextDouble()*.2));
         if(!water(b.hex)&&siegeWeapon(b.weapon))amount=amount*3/2;
         if(water(b.hex)&&bp>100)amount=amount*9/10;
-        return Math.min(b.troops,Math.max(20,Math.min(2500,amount)));
+        return Math.max(20,Math.min(2500,amount));
     }
-    public int siegeRange(World.Unit u){return water(u.hex)?u.ship.range:u.weapon.range;}
+    public int siegeRange(World.Unit u){return w.war.range(u);}
     public int siegeDefenseDamage(World.Unit u){
         if(water(u.hex))return u.ship==Ship.WARSHIP?350:100;
         switch(u.weapon){case RAM:return 650;case WOODEN_BEAST:return 750;case CATAPULT:return 600;case SIEGE_TOWER:return 120;default:return 100;}
@@ -116,7 +118,7 @@ public final class Army {
         if(water(u.hex))return u.ship==Ship.WARSHIP?450:200;
         switch(u.weapon){case RAM:return 60;case WOODEN_BEAST:return 500;case CATAPULT:return 400;case SIEGE_TOWER:return 800;default:return 100;}
     }
-    public boolean canAttackUnit(World.Unit u){return water(u.hex)||u.weapon!=World.Weapon.RAM;}
+    public boolean canAttackUnit(World.Unit u){return water(u.hex)||!siegeWeapon(u.weapon);}
     public boolean counter(World.Unit u){return !water(u.hex)&&!siegeWeapon(u.weapon)&&u.weapon!=World.Weapon.CROSSBOW;}
     public List<Tactic> tactics(World.Unit u){
         List<Tactic> result=new ArrayList<>();
@@ -127,37 +129,42 @@ public final class Army {
     public String tacticError(int unit,Hex target,Tactic tactic){
         World.Unit u=w.unit(unit);if(w.gameOver()||u==null||u.owner!=w.active||u.acted||u.status!=War.Status.NORMAL)return "需要当前势力可行动部队";
         if(tactic==null||!tactics(u).contains(tactic))return "当前兵装或舰船不能施展此战法";
-        if(aptitude(u)<tactic.rank||u.energy<tactic.energy)return "适性或气力不足";
-        int distance=target==null?0:u.hex.distance(target),max=tactic==Tactic.RAM?1:range(u);
+        if(water(u.hex)&&aptitude(u)<tactic.rank||u.energy<tactic.energy)return "适性或气力不足";
+        int distance=target==null?0:u.hex.distance(target),max=tactic==Tactic.RAM?1:w.war.range(u);
         if(target==null||!w.inside(target)||distance<1||distance>max)return "目标不在战法范围内";
-        World.Unit enemy=w.unitAt(target);World.City city=w.cityAt(target);
-        if(enemy==null&&city==null||enemy!=null&&!w.campaign.hostile(u.owner,enemy.owner)||city!=null&&!w.campaign.hostile(u.owner,city.owner))return "请选择交战部队或城池";
-        if(enemy!=null&&!canAttackUnit(u))return "冲车只能攻击城池";
+        World.Unit enemy=w.unitAt(target);World.City city=w.cityAt(target);War.Structure structure=w.war.at(target);
+        if(enemy==null&&city==null&&structure==null||enemy!=null&&!w.campaign.hostile(u.owner,enemy.owner)||city!=null&&!w.campaign.hostile(u.owner,city.owner)||structure!=null&&!w.campaign.hostile(u.owner,structure.owner))return "请选择交战部队、城池或军事设施";
+        if(enemy!=null&&!water(u.hex)&&u.weapon==World.Weapon.RAM)return "冲车只能攻击城池";
+        if(enemy!=null&&tactic==Tactic.FIRE_ARROW&&!water(u.hex)&&w.terrain[target.q][target.r]==World.Terrain.FOREST&&!w.skills.has(u,Skill.SHESHOU))return "射向森林需要射手特技";
         if(tactic==Tactic.RAM&&water(u.hex)&&!water(target))return "撞击只能针对水上敌舰";
         return null;
     }
-    public int tacticChance(int unit){World.Unit u=w.unit(unit);return u==null?0:Math.min(95,75+aptitude(u)*5);}
+    public int tacticChance(int unit){World.Unit u=w.unit(unit);return u==null?0:!water(u.hex)&&siegeWeapon(u.weapon)?100:Math.min(95,75+aptitude(u)*5);}
+    public int tacticChance(int unit,Hex target){World.Unit enemy=w.unitAt(target);return enemy!=null&&enemy.status!=War.Status.NORMAL?100:tacticChance(unit);}
     public World.Result tactic(int unit,Hex target,Tactic tactic){
         String error=tacticError(unit,target,tactic);if(error!=null)return w.fail(error);
         World.Unit u=w.unit(unit),enemy=w.unitAt(target);World.City city=w.cityAt(target);
         u.acted=true;u.energy-=tactic.energy;
-        if(w.strategy.nextInt(100)>=tacticChance(unit))return w.success(tactic.label+"未命中，气力已消耗");
-        if(city!=null){
-            // Use the same capture and project cleanup path as normal siege. This internal call does not charge another action.
-            u.acted=false;int energy=u.energy;World.Result result=w.siege(unit,city.id);u.energy=energy;
-            return result;
+        if(tacticChance(unit,target)<100&&w.strategy.nextInt(100)>=tacticChance(unit,target))return w.success(tactic.label+"未命中，气力已消耗");
+        if(city!=null)return w.resolveSiege(u,city,true);
+        War.Structure structure=w.war.at(target);
+        if(structure!=null){
+            int amount=w.army.siegeDefenseDamage(u);if(w.skills.critical(u,null,true))amount=amount*115/100;
+            amount=Math.min(structure.hp,amount);structure.hp-=amount;if(structure.hp==0)w.war.structures.remove(structure);
+            w.campaign.earn(u.owner,20);return w.success(tactic.label+"命中"+structure.kind.label+"，耐久减少"+amount);
         }
-        int amount=damage(u,enemy,tactic==Tactic.STONE?1.5:1.3,new Random(w.strategy.nextInt(Integer.MAX_VALUE)));
+        int amount=w.war.physicalDamage(u,enemy,tactic==Tactic.STONE?1.5:1.3,true,new Random(w.strategy.nextInt(Integer.MAX_VALUE)));
         enemy.troops-=amount;
         if(enemy.troops==0)w.removeUnit(enemy);
-        else if(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME){enemy.burning=2;enemy.burningOwner=u.owner;}
+        else if((tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)&&!w.skills.has(enemy,Skill.HUOSHEN)){enemy.burning=2;enemy.burningOwner=u.owner;enemy.burningPower=w.skills.has(u,Skill.HUOSHEN)?2:1;}
         else if(tactic==Tactic.RAM&&water(u.hex)){
             Hex next=new Hex(target.q+target.q-u.hex.q,target.r+target.r-u.hex.r);
             if(water(next)&&w.unitAt(next)==null&&w.cityAt(next)==null&&w.domestic.at(next)==null&&w.war.at(next)==null)enemy.hex=next;
         }
-        w.campaign.earn(u.owner,40);w.checkVictory();return w.success(tactic.label+"命中，敌损"+amount);
+        w.skills.onHit(u,enemy,amount,true);
+        w.campaign.earn(u.owner,enemy.troops==0&&w.skills.has(u,Skill.JINGMIAO)?80:40);w.checkVictory();return w.success(tactic.label+"命中，敌损"+amount);
     }
     public World.Result extinguish(int unit){World.Unit u=w.unit(unit);
         if(w.gameOver()||u==null||u.owner!=w.active||u.acted||u.status!=War.Status.NORMAL||u.burning==0||u.energy<5)return w.fail("需要可行动且正在燃烧的己方部队，消耗5气力");
-        u.burning=0;u.burningOwner=-1;u.energy-=5;u.acted=true;return w.success("部队已扑灭火焰");}
+        u.burning=0;u.burningOwner=-1;u.burningPower=1;u.energy-=5;u.acted=true;return w.success("部队已扑灭火焰");}
 }

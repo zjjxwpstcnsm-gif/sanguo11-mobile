@@ -57,7 +57,7 @@ final class CombatTurnTest {
             CommandResult move = engine.move(0, h(3, 1)); ok(move); eq(3, move.path.size()); eq(2, engine.unit(0).movementRemaining);
             ok(engine.move(0, h(4, 1))); eq(0, engine.unit(0).movementRemaining); eq(energy, engine.unit(0).energy);
             error(NO_PATH, engine.move(0, h(4, 2))); ok(engine.attack(0, 1));
-            check(engine.unit(0).actedThisTurn, "Attack closes action"); eq(energy - 5, engine.unit(0).energy);
+            check(engine.unit(0).actedThisTurn, "Attack closes action"); eq(energy, engine.unit(0).energy);
             error(ALREADY_ACTED, engine.attack(0, 1)); error(ALREADY_ACTED, engine.move(0, h(3, 1)));
         });
         run("invalid movement has no side effects", () -> {
@@ -133,11 +133,11 @@ final class CombatTurnTest {
             check(damage(actor, target, Terrain.SHALLOW, Terrain.PLAIN) < plain, "Bad footing reduces attack");
             check(damage(actor.withStatus(new StatusEffect(StatusEffect.Kind.MORALE_BREAK, 1)), target, Terrain.PLAIN, Terrain.PLAIN) < plain, "Attacker morale status");
             check(damage(actor, target.withStatus(new StatusEffect(StatusEffect.Kind.CONFUSED, 1)), Terrain.PLAIN, Terrain.PLAIN) > plain, "Confused target defense penalty");
-            check(damage(actor.withEnergy(100), target, Terrain.PLAIN, Terrain.PLAIN) > damage(actor.withEnergy(0), target, Terrain.PLAIN, Terrain.PLAIN), "Energy modifies attack");
+            check(damage(actor.withEnergy(100), target, Terrain.PLAIN, Terrain.PLAIN) == damage(actor.withEnergy(0), target, Terrain.PLAIN, Terrain.PLAIN), "Energy pays for tactics, not physical damage (PC rule correction)");
         });
         run("ordinary attack from exhausted input consumes only normal cost", () -> {
             BattleEngine engine = active(sword(0, 0, 1, 1).withEnergy(0), sword(1, 1, 2, 1));
-            eq(6, engine.unit(0).energy); ok(engine.attack(0, 1)); eq(1, engine.unit(0).energy);
+            eq(6, engine.unit(0).energy); ok(engine.attack(0, 1)); eq(6, engine.unit(0).energy);
         });
         run("invalid attacks and previews do not consume combat RNG", () -> {
             BattleEngine noisy = active(u(0, 0, WeaponType.SPEAR, 1, 1), sword(1, 1, 2, 1));

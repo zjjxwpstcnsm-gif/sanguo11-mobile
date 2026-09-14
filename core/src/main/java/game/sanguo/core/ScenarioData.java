@@ -26,7 +26,9 @@ public final class ScenarioData {
             String id=take(p,"id"),name=take(p,"name"),source=take(p,"source");
             if(!id.matches("[a-z0-9-]{1,80}"))throw new IOException("剧本ID无效");
             // Only researched formats should be added here; current packs make no original-data claim.
-            if(!source.equals("engineering-original"))throw new IOException("未知数据来源等级");
+            if(!source.equals("engineering-original")&&!source.equals("community-reference"))throw new IOException("未知数据来源等级");
+            String reference=source.equals("community-reference")?take(p,"reference"):null;
+            if(reference!=null&&!reference.equals("rlu-officers"))throw new IOException("未知人物资料来源");
             int revision=number(p,"revision",1,1000000),year=number(p,"year",1,9999),month=number(p,"month",1,12);
             int width=number(p,"width",1,128),height=number(p,"height",1,128),sides=number(p,"factions",2,32);
             String[] factions=new String[sides];for(int i=0;i<sides;i++)factions[i]=take(p,"faction."+i);
@@ -71,9 +73,10 @@ public final class ScenarioData {
                 for(int i=0;i<countAptitude;i++){String[] data=fields(p,"aptitude."+i,7);World.Officer o=w.officer(integer(data[0]));if(o==null||!seen.add(o.id))throw new IOException("适性武将重复或缺失");for(int j=0;j<6;j++)o.aptitude[j]=integer(data[1+j]);}
             }
             if(!p.isEmpty())throw new IOException("未知剧本字段："+p.keySet().iterator().next());
+            if(reference!=null){ContentCatalog catalog=ContentCatalog.get();catalog.validateOpening(w);ContentRuntime.initializeOpening(w,catalog);}
             w.strategy.initializeOffices();
             SaveCodec.validate(w);validateOpening(w);
-            w.note(name+"：原创测试布局与数值，非原版历史剧本");
+            w.note(name+(reference==null?"：原创测试布局与数值，非原版历史剧本":"：公开资料能力/适性，原创区域地图与开局；非官方历史剧本"));
             w.note("当前执掌"+w.faction(player)+" · 点选己方城池开始经营");
             return w;
         }catch(IllegalArgumentException e){throw new IOException("剧本格式错误："+e.getMessage(),e);}

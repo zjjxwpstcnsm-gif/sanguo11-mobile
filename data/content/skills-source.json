@@ -1,0 +1,802 @@
+[
+  {
+    "id": "skill-000",
+    "sourceId": "rlu-skill-000",
+    "originalId": null,
+    "name": "飛將",
+    "sourceLine": 372,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-001",
+    "sourceId": "rlu-skill-001",
+    "originalId": null,
+    "name": "遁走",
+    "sourceLine": 373,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-002",
+    "sourceId": "rlu-skill-002",
+    "originalId": null,
+    "name": "強行",
+    "sourceLine": 374,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-003",
+    "sourceId": "rlu-skill-003",
+    "originalId": null,
+    "name": "長驅",
+    "sourceLine": 375,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-004",
+    "sourceId": "rlu-skill-004",
+    "originalId": null,
+    "name": "推進",
+    "sourceLine": 376,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-005",
+    "sourceId": "rlu-skill-005",
+    "originalId": null,
+    "name": "操舵",
+    "sourceLine": 377,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-006",
+    "sourceId": "rlu-skill-006",
+    "originalId": null,
+    "name": "踏破",
+    "sourceLine": 378,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-007",
+    "sourceId": "rlu-skill-007",
+    "originalId": null,
+    "name": "搬運",
+    "sourceLine": 379,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-008",
+    "sourceId": "rlu-skill-008",
+    "originalId": null,
+    "name": "解毒",
+    "sourceLine": 380,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-009",
+    "sourceId": "rlu-skill-009",
+    "originalId": null,
+    "name": "掃蕩",
+    "sourceLine": 381,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-010",
+    "sourceId": "rlu-skill-010",
+    "originalId": null,
+    "name": "威風",
+    "sourceLine": 382,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-011",
+    "sourceId": "rlu-skill-011",
+    "originalId": null,
+    "name": "昂揚",
+    "sourceLine": 383,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-012",
+    "sourceId": "rlu-skill-012",
+    "originalId": null,
+    "name": "連擊",
+    "sourceLine": 384,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-013",
+    "sourceId": "rlu-skill-013",
+    "originalId": null,
+    "name": "突襲",
+    "sourceLine": 385,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-014",
+    "sourceId": "rlu-skill-014",
+    "originalId": null,
+    "name": "強襲",
+    "sourceLine": 386,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-015",
+    "sourceId": "rlu-skill-015",
+    "originalId": null,
+    "name": "亂戰",
+    "sourceLine": 387,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-016",
+    "sourceId": "rlu-skill-016",
+    "originalId": null,
+    "name": "待伏",
+    "sourceLine": 388,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-017",
+    "sourceId": "rlu-skill-017",
+    "originalId": null,
+    "name": "攻城",
+    "sourceLine": 389,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-018",
+    "sourceId": "rlu-skill-018",
+    "originalId": null,
+    "name": "掎角",
+    "sourceLine": 390,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-019",
+    "sourceId": "rlu-skill-019",
+    "originalId": null,
+    "name": "捕縛",
+    "sourceLine": 391,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-020",
+    "sourceId": "rlu-skill-020",
+    "originalId": null,
+    "name": "精妙",
+    "sourceLine": 392,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-021",
+    "sourceId": "rlu-skill-021",
+    "originalId": null,
+    "name": "掠奪",
+    "sourceLine": 393,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-022",
+    "sourceId": "rlu-skill-022",
+    "originalId": null,
+    "name": "攻心",
+    "sourceLine": 394,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-023",
+    "sourceId": "rlu-skill-023",
+    "originalId": null,
+    "name": "驅逐",
+    "sourceLine": 395,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-024",
+    "sourceId": "rlu-skill-024",
+    "originalId": null,
+    "name": "射程",
+    "sourceLine": 396,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-025",
+    "sourceId": "rlu-skill-025",
+    "originalId": null,
+    "name": "白馬",
+    "sourceLine": 397,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-026",
+    "sourceId": "rlu-skill-026",
+    "originalId": null,
+    "name": "輔佐",
+    "sourceLine": 398,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-027",
+    "sourceId": "rlu-skill-027",
+    "originalId": null,
+    "name": "不屈",
+    "sourceLine": 399,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-028",
+    "sourceId": "rlu-skill-028",
+    "originalId": null,
+    "name": "金剛",
+    "sourceLine": 400,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-029",
+    "sourceId": "rlu-skill-029",
+    "originalId": null,
+    "name": "鐵壁",
+    "sourceLine": 401,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-030",
+    "sourceId": "rlu-skill-030",
+    "originalId": null,
+    "name": "怒髮",
+    "sourceLine": 402,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-031",
+    "sourceId": "rlu-skill-031",
+    "originalId": null,
+    "name": "藤甲",
+    "sourceLine": 403,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-032",
+    "sourceId": "rlu-skill-032",
+    "originalId": null,
+    "name": "強運",
+    "sourceLine": 404,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-033",
+    "sourceId": "rlu-skill-033",
+    "originalId": null,
+    "name": "血路",
+    "sourceLine": 405,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-034",
+    "sourceId": "rlu-skill-034",
+    "originalId": null,
+    "name": "槍將",
+    "sourceLine": 406,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-035",
+    "sourceId": "rlu-skill-035",
+    "originalId": null,
+    "name": "戟將",
+    "sourceLine": 407,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-036",
+    "sourceId": "rlu-skill-036",
+    "originalId": null,
+    "name": "弓將",
+    "sourceLine": 408,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-037",
+    "sourceId": "rlu-skill-037",
+    "originalId": null,
+    "name": "騎將",
+    "sourceLine": 409,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-038",
+    "sourceId": "rlu-skill-038",
+    "originalId": null,
+    "name": "水將",
+    "sourceLine": 410,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-039",
+    "sourceId": "rlu-skill-039",
+    "originalId": null,
+    "name": "勇將",
+    "sourceLine": 411,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-040",
+    "sourceId": "rlu-skill-040",
+    "originalId": null,
+    "name": "神將",
+    "sourceLine": 412,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-041",
+    "sourceId": "rlu-skill-041",
+    "originalId": null,
+    "name": "鬥神",
+    "sourceLine": 413,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-042",
+    "sourceId": "rlu-skill-042",
+    "originalId": null,
+    "name": "槍神",
+    "sourceLine": 414,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-043",
+    "sourceId": "rlu-skill-043",
+    "originalId": null,
+    "name": "戟神",
+    "sourceLine": 415,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-044",
+    "sourceId": "rlu-skill-044",
+    "originalId": null,
+    "name": "弓神",
+    "sourceLine": 416,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-045",
+    "sourceId": "rlu-skill-045",
+    "originalId": null,
+    "name": "騎神",
+    "sourceLine": 417,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-046",
+    "sourceId": "rlu-skill-046",
+    "originalId": null,
+    "name": "工神",
+    "sourceLine": 418,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-047",
+    "sourceId": "rlu-skill-047",
+    "originalId": null,
+    "name": "水神",
+    "sourceLine": 419,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-048",
+    "sourceId": "rlu-skill-048",
+    "originalId": null,
+    "name": "霸王",
+    "sourceLine": 420,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-049",
+    "sourceId": "rlu-skill-049",
+    "originalId": null,
+    "name": "疾馳",
+    "sourceLine": 421,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-050",
+    "sourceId": "rlu-skill-050",
+    "originalId": null,
+    "name": "射手",
+    "sourceLine": 422,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-051",
+    "sourceId": "rlu-skill-051",
+    "originalId": null,
+    "name": "猛者",
+    "sourceLine": 423,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-052",
+    "sourceId": "rlu-skill-052",
+    "originalId": null,
+    "name": "護衛",
+    "sourceLine": 424,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-053",
+    "sourceId": "rlu-skill-053",
+    "originalId": null,
+    "name": "火攻",
+    "sourceLine": 425,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-054",
+    "sourceId": "rlu-skill-054",
+    "originalId": null,
+    "name": "言毒",
+    "sourceLine": 426,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-055",
+    "sourceId": "rlu-skill-055",
+    "originalId": null,
+    "name": "機智",
+    "sourceLine": 427,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-056",
+    "sourceId": "rlu-skill-056",
+    "originalId": null,
+    "name": "詭計",
+    "sourceLine": 428,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-057",
+    "sourceId": "rlu-skill-057",
+    "originalId": null,
+    "name": "虛實",
+    "sourceLine": 429,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-058",
+    "sourceId": "rlu-skill-058",
+    "originalId": null,
+    "name": "妙計",
+    "sourceLine": 430,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-059",
+    "sourceId": "rlu-skill-059",
+    "originalId": null,
+    "name": "秘計",
+    "sourceLine": 431,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-060",
+    "sourceId": "rlu-skill-060",
+    "originalId": null,
+    "name": "看破",
+    "sourceLine": 432,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-061",
+    "sourceId": "rlu-skill-061",
+    "originalId": null,
+    "name": "洞察",
+    "sourceLine": 433,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-062",
+    "sourceId": "rlu-skill-062",
+    "originalId": null,
+    "name": "火神",
+    "sourceLine": 434,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-063",
+    "sourceId": "rlu-skill-063",
+    "originalId": null,
+    "name": "神算",
+    "sourceLine": 435,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-064",
+    "sourceId": "rlu-skill-064",
+    "originalId": null,
+    "name": "百出",
+    "sourceLine": 436,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-065",
+    "sourceId": "rlu-skill-065",
+    "originalId": null,
+    "name": "鬼謀",
+    "sourceLine": 437,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-066",
+    "sourceId": "rlu-skill-066",
+    "originalId": null,
+    "name": "連環",
+    "sourceLine": 438,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-067",
+    "sourceId": "rlu-skill-067",
+    "originalId": null,
+    "name": "深謀",
+    "sourceLine": 439,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-068",
+    "sourceId": "rlu-skill-068",
+    "originalId": null,
+    "name": "反計",
+    "sourceLine": 440,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-069",
+    "sourceId": "rlu-skill-069",
+    "originalId": null,
+    "name": "傾國",
+    "sourceLine": 441,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-070",
+    "sourceId": "rlu-skill-070",
+    "originalId": null,
+    "name": "妖術",
+    "sourceLine": 442,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-071",
+    "sourceId": "rlu-skill-071",
+    "originalId": null,
+    "name": "鬼門",
+    "sourceLine": 443,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-072",
+    "sourceId": "rlu-skill-072",
+    "originalId": null,
+    "name": "規律",
+    "sourceLine": 444,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-073",
+    "sourceId": "rlu-skill-073",
+    "originalId": null,
+    "name": "沉著",
+    "sourceLine": 445,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-074",
+    "sourceId": "rlu-skill-074",
+    "originalId": null,
+    "name": "明鏡",
+    "sourceLine": 446,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-075",
+    "sourceId": "rlu-skill-075",
+    "originalId": null,
+    "name": "奏樂",
+    "sourceLine": 447,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-076",
+    "sourceId": "rlu-skill-076",
+    "originalId": null,
+    "name": "詩想",
+    "sourceLine": 448,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-077",
+    "sourceId": "rlu-skill-077",
+    "originalId": null,
+    "name": "築城",
+    "sourceLine": 449,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-078",
+    "sourceId": "rlu-skill-078",
+    "originalId": null,
+    "name": "屯田",
+    "sourceLine": 450,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-079",
+    "sourceId": "rlu-skill-079",
+    "originalId": null,
+    "name": "名聲",
+    "sourceLine": 451,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-080",
+    "sourceId": "rlu-skill-080",
+    "originalId": null,
+    "name": "能吏",
+    "sourceLine": 452,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-081",
+    "sourceId": "rlu-skill-081",
+    "originalId": null,
+    "name": "繁殖",
+    "sourceLine": 453,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-082",
+    "sourceId": "rlu-skill-082",
+    "originalId": null,
+    "name": "發明",
+    "sourceLine": 454,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-083",
+    "sourceId": "rlu-skill-083",
+    "originalId": null,
+    "name": "造船",
+    "sourceLine": 455,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-084",
+    "sourceId": "rlu-skill-084",
+    "originalId": null,
+    "name": "指導",
+    "sourceLine": 456,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-085",
+    "sourceId": "rlu-skill-085",
+    "originalId": null,
+    "name": "眼力",
+    "sourceLine": 457,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-086",
+    "sourceId": "rlu-skill-086",
+    "originalId": null,
+    "name": "論客",
+    "sourceLine": 458,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-087",
+    "sourceId": "rlu-skill-087",
+    "originalId": null,
+    "name": "富豪",
+    "sourceLine": 459,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-088",
+    "sourceId": "rlu-skill-088",
+    "originalId": null,
+    "name": "米道",
+    "sourceLine": 460,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-089",
+    "sourceId": "rlu-skill-089",
+    "originalId": null,
+    "name": "徵稅",
+    "sourceLine": 461,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-090",
+    "sourceId": "rlu-skill-090",
+    "originalId": null,
+    "name": "徵收",
+    "sourceLine": 462,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-091",
+    "sourceId": "rlu-skill-091",
+    "originalId": null,
+    "name": "親烏",
+    "sourceLine": 463,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-092",
+    "sourceId": "rlu-skill-092",
+    "originalId": null,
+    "name": "親羌",
+    "sourceLine": 464,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-093",
+    "sourceId": "rlu-skill-093",
+    "originalId": null,
+    "name": "親越",
+    "sourceLine": 465,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-094",
+    "sourceId": "rlu-skill-094",
+    "originalId": null,
+    "name": "親蠻",
+    "sourceLine": 466,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-095",
+    "sourceId": "rlu-skill-095",
+    "originalId": null,
+    "name": "威壓",
+    "sourceLine": 467,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-096",
+    "sourceId": "rlu-skill-096",
+    "originalId": null,
+    "name": "仁政",
+    "sourceLine": 468,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-097",
+    "sourceId": "rlu-skill-097",
+    "originalId": null,
+    "name": "風水",
+    "sourceLine": 469,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-098",
+    "sourceId": "rlu-skill-098",
+    "originalId": null,
+    "name": "祈願",
+    "sourceLine": 470,
+    "source": "rlu-reference"
+  },
+  {
+    "id": "skill-099",
+    "sourceId": "rlu-skill-099",
+    "originalId": null,
+    "name": "內助",
+    "sourceLine": 471,
+    "source": "rlu-reference"
+  }
+]

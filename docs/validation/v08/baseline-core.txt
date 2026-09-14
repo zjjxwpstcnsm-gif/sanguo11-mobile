@@ -1,0 +1,8 @@
+PASS: 189 assertions covering hex paths, resources, combat, turns, saves, and deterministic simulation.
+PASS: 359 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
+PASS: 513 domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.
+PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
+PASS: 50x50 benchmark, 100 A* queries: p50=1.202ms p95=1.647ms max=5.889ms total=126.334ms maxExpanded=2125/2500; 100 reachable queries=8.797ms
+PASS: 5407 strategy/officer assertions covering locks, seeded search/hiring, loyalty, offices, economy, finite reserves, readiness, AI and save v1-v4.
+PASS: 59 campaign cases, 424 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
+PASS: 45 army cases, 465 assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.

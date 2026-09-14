@@ -1,0 +1,54 @@
+CI: https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34795796771
+Job: 103828525812
+Exact checkout / BUILD_COMMIT: 4f7e4b6b6c96a8fe19f0037a1cbaa57c35cc43eb
+Conclusion: success
+APK: 297602 bytes; SHA256 e67c42c8ed0fe731aebbd009b56723f33c69bf8be6055e2b37393111b4c0b75b
+Artifact: 10330450599
+Evidence: 10330027094; 108 PNGs, 36 each for 1080x1920, 1080x2340, 1080x2400; 3 SMOKE PASS; no application FATAL EXCEPTION/ANR found.
+Lint: 10329914188; 12 warnings; gate passed.
+Device: API29 x86_64 emulator only. ARM hardware unverified.
+
+2026-09-14T01:24:19.7853146Z Artifact download URL: https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34795796771/artifacts/10329427318
+2026-09-14T01:24:21.4201842Z Ran 15 tests in 1.232s
+2026-09-14T01:24:27.5335898Z PASS: 51730 UI projection/camera assertions.
+2026-09-14T01:24:32.4416566Z PASS: 187 assertions covering hex paths, resources, combat, turns, saves, and deterministic simulation.
+2026-09-14T01:24:32.7142759Z PASS: 143 content/runtime integration assertions.
+2026-09-14T01:24:33.2002812Z PASS: 2638 content assertions; cold catalog 124.817 ms; sourced opening combat at turn 4.
+2026-09-14T01:24:37.2759501Z PASS: 359 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
+2026-09-14T01:24:39.6814220Z PASS: 705 domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.
+2026-09-14T01:24:40.3629682Z PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
+2026-09-14T01:24:40.9776660Z PASS: 50x50 benchmark, 100 A* queries: p50=2.821ms p95=3.683ms max=4.543ms total=293.339ms maxExpanded=2125/2500; 100 reachable queries=14.812ms
+2026-09-14T01:24:44.6455732Z PASS: 8747 strategy/officer assertions covering locks, seeded search/hiring, loyalty, offices, economy, finite reserves, readiness, AI and save v1-v4.
+2026-09-14T01:24:47.3060818Z PASS: 59 campaign cases, 590 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
+2026-09-14T01:24:48.4573354Z PASS: 45 army cases, 465 assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.
+2026-09-14T01:24:51.4142975Z PASS: 575 rules-parity assertions: move previews/replays/budget, skill priorities/holders/chains, actual damage/production, real v6 migration and deterministic campaigns.
+2026-09-14T01:25:38.1706160Z PASS: 51730 UI projection/camera assertions.
+2026-09-14T01:25:44.4740841Z PASS: 45 army cases, 465 assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.
+2026-09-14T01:25:47.6705368Z PASS: 59 campaign cases, 590 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
+2026-09-14T01:25:49.2772464Z PASS: 187 assertions covering hex paths, resources, combat, turns, saves, and deterministic simulation.
+2026-09-14T01:25:52.1714009Z PASS: 705 domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.
+2026-09-14T01:25:55.1783166Z PASS: 575 rules-parity assertions: move previews/replays/budget, skill priorities/holders/chains, actual damage/production, real v6 migration and deterministic campaigns.
+2026-09-14T01:25:57.1742068Z PASS: 143 content/runtime integration assertions.
+2026-09-14T01:25:57.1743449Z PASS: 2638 content assertions; cold catalog 133.180 ms; sourced opening combat at turn 4.
+2026-09-14T01:25:59.8710625Z PASS: 359 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
+2026-09-14T01:26:03.3744001Z PASS: 8747 strategy/officer assertions covering locks, seeded search/hiring, loyalty, offices, economy, finite reserves, readiness, AI and save v1-v4.
+2026-09-14T01:26:04.0729259Z PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
+2026-09-14T01:26:04.6744411Z PASS: 50x50 benchmark, 100 A* queries: p50=2.830ms p95=3.738ms max=5.034ms total=298.934ms maxExpanded=2125/2500; 100 reachable queries=14.950ms
+2026-09-14T01:26:04.8581934Z BUILD SUCCESSFUL in 52s
+2026-09-14T01:26:36.3392409Z PASS: 51730 UI projection/camera assertions.
+2026-09-14T01:26:38.0062264Z BUILD SUCCESSFUL in 32s
+2026-09-14T01:27:04.1283497Z BUILD SUCCESSFUL in 25s
+2026-09-14T01:34:12.5676891Z SMOKE PASS: integrated original game/save/city/task/personnel/combat/army regressions; v7 move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.
+2026-09-14T01:39:52.1961289Z SMOKE PASS: integrated original game/save/city/task/personnel/combat/army regressions; v7 move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.
+2026-09-14T01:45:30.9719490Z SMOKE PASS: integrated original game/save/city/task/personnel/combat/army regressions; v7 move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.
+2026-09-14T01:45:34.5514516Z Signer #1 certificate SHA-256 digest: 382276fbba3f16fa6f01918081873364c6e1b1345df24653971d4e039e6ec007
+2026-09-14T01:45:35.8597408Z Old SHA-256 certificate: e1fb6629564cc2d42c1b09ad5af57a372d421440e58dc2b219b4833d0364ea97
+2026-09-14T01:45:35.8599278Z New SHA-256 certificate: 382276fbba3f16fa6f01918081873364c6e1b1345df24653971d4e039e6ec007
+2026-09-14T01:45:35.8601411Z DIFFERENT: Android cannot install this APK over that prior signed package. Keep the existing app and important saves.
+2026-09-14T01:45:35.8603602Z Prior v0.7 APK: d89f9882; run 34793420077; artifact 10329536376; SHA-256 certificate: aac48fb5a704665731c043e4b858f7c706865e7b77391d952481dfe8ab187445
+2026-09-14T01:45:35.8605222Z DIFFERENT: cannot cover-install v0.7
+2026-09-14T01:45:35.8882436Z e67c42c8ed0fe731aebbd009b56723f33c69bf8be6055e2b37393111b4c0b75b  sanguo11-mobile-integrated-v08-4f7e4b6.apk
+2026-09-14T01:45:36.6639378Z Artifact download URL: https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34795796771/artifacts/10330450599
+2026-09-14T01:45:37.3414312Z Artifact download URL: https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34795796771/artifacts/10329914188
+2026-09-14T01:45:39.2810975Z Artifact download URL: https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34795796771/artifacts/10330027094
+
