@@ -78,8 +78,26 @@ public final class UnitOrders {
         catch(IOException e){return w.fail("局面校验失败："+e.getMessage());}
         World.Unit u=w.unit(plan.unitId);String error=error(u);if(error!=null)return w.fail(error);
         if(u.movementBudget<0)u.movementBudget=w.war.movement(u); // Freeze before any water/land conversion.
+        u.march=null;
         u.movementSpent+=plan.cost;u.hex=plan.path.get(plan.path.size()-1);w.fieldworks.traveled(u,plan.path);
         return w.success(w.officer(u.officerId).name+"部队移动，剩余移动"+remaining(u)+"，仍可执行命令");
+    }
+    World.Result executeRoute(MovePlan base,List<Hex> route) {
+        if(base==null||!base.valid())return w.fail(base==null?"移动预览无效":base.error);
+        World.Unit u=w.unit(base.unitId);int cost=0;
+        if(u==null||route.isEmpty()||!route.get(0).equals(u.hex))return w.fail("路线起点已变化");
+        for(int i=1;i<route.size();i++){
+            Hex from=route.get(i-1),to=route.get(i);int step=w.army.moveCost(u,from,to);
+            if(from.distance(to)!=1||step<1||w.unitAt(to)!=null||w.cityAt(to)!=null||w.domestic.at(to)!=null||w.war.at(to)!=null)return w.fail("路线已被阻挡");
+            cost+=step;
+            if(cost>remaining(u))return w.fail("本旬移动力不足");
+            if(w.advancedBattle.zone(u,to)){
+                if(i<route.size()-1)return w.fail("敌军阻挡，需要下旬继续");
+                cost=remaining(u);
+            }
+        }
+        if(cost>remaining(u))return w.fail("本旬移动力不足");
+        return execute(new MovePlan(u.id,cost,remaining(u)-cost,route,null,base.snapshot));
     }
     void reset(World.Unit u){u.acted=false;u.movementBudget=-1;u.movementSpent=0;}
 }

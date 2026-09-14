@@ -110,3 +110,11 @@ tasks.register('verifyWorldSystems', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyWorldSystems' }
 tasks.named('test') { dependsOn 'verifyWorldSystems' }
+
+tasks.register('verifyMarches', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.MarchOrdersTest'
+}
+tasks.named('check') { dependsOn 'verifyMarches' }
+tasks.named('test') { dependsOn 'verifyMarches' }

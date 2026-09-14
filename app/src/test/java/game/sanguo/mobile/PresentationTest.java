@@ -17,7 +17,7 @@ public final class PresentationTest {
         check(UiModels.cities(w,0).get(0).owner==2,"friendly city first");
         check(UiModels.tasks(w,0).isEmpty(),"no phantom task");
         check(Arrays.equals(unchanged,SaveCodec.encode(w)),"projections never mutate world");
-        personnelProjection();abilityProjection();viewport();
+        personnelProjection();abilityProjection();marchProjection();viewport();
         check(UiModels.cities(w,0,"建业",2).size()==1,"city search and owner");
         check(UiModels.cities(w,0,"不存在",-1).isEmpty(),"empty city search");
         check(UiModels.factions(w,"孙权").equals(Arrays.asList(2)),"faction search preserves ID");
@@ -87,6 +87,15 @@ public final class PresentationTest {
         check(w.abilities.startResearch(10,"buqu").ok&&w.abilities.train(10,0,"lead.low",true).ok,"parallel research and training");
         before=SaveCodec.decode(SaveCodec.encode(w));w.city(10).owner=1;w.checkVictory();summary=UiModels.turnSummary(before,w);
         check(summary.contains("PK研究不屈 · 已中止")&&summary.contains("PK培养统率+5低 · 习武生 · 已中止"),"loss is cancellation, never completion");
+    }
+    private static void marchProjection()throws Exception {
+        World w=ScenarioCatalog.load("regional-sandbox",2);check(w.deploy(310,3003,World.Weapon.CROSSBOW,3000).ok,"march projection deployment");
+        World.Unit u=w.unit(w.officer(3003).unitId);MarchOrders.Plan plan=w.marches.preview(u.id,w.city(300).hex);check(plan.valid()&&w.marches.execute(plan).ok&&u.march!=null,"long route for UI task");
+        byte[] before=SaveCodec.encode(w);List<UiModels.Task> tasks=UiModels.tasks(w,6);check(tasks.size()==1&&tasks.get(0).marching==u&&tasks.get(0).location.equals(u.hex),"march task targets actual unit location");
+        check(UiModels.tasks(w,0).size()==1&&UiModels.tasks(w,6,"柴桑").size()==1&&UiModels.tasks(w,3).isEmpty(),"march filter/name/global count without cargo phantom");
+        check(UiModels.status(w,w.officer(3003)).contains("行军 → 柴桑"),"officer list shows actual march");
+        check(Arrays.equals(before,SaveCodec.encode(w)),"route task reads are pure");World old=SaveCodec.decode(before);check(w.nextTurn().ok&&UiModels.turnSummary(old,w).contains("行军 · 甘宁"),"turn summary includes route progress");
+        if(u.march!=null)check(w.marches.stop(u.id).ok,"stop fixture");check(UiModels.tasks(w,6).isEmpty(),"stopped route removed from task count");
     }
     private static void personnelProjection()throws Exception {
         World w=ScenarioCatalog.load("regional-sandbox",2);

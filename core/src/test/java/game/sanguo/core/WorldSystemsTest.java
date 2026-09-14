@@ -26,8 +26,8 @@ public final class WorldSystemsTest {
     private static void seed(World w,int chance,boolean success){for(long seed=0;seed<10000;seed++){w.strategy.setSeed(seed);boolean roll=w.strategy.nextInt(100)<chance;if(roll==success){w.strategy.setSeed(seed);return;}}throw new AssertionError("seed");}
     private static void reset(World w){Arrays.fill(w.actionPoints,60);for(World.Officer o:w.officers)o.acted=false;for(World.Unit u:w.units)w.orders.reset(u);}
     public static void main(String[] args)throws Exception{
-        movement();joint();plots();diplomacy();events();districts();migration();malformed();replay();
-        System.out.println("PASS: "+checks+" world-system assertions: ZOC/poison, joint/ironwall/infighting/magic, diplomatic debates, disasters/raiders, district budgets/orders/capture, v12 migration and saved replay.");
+        movement();marchIntegration();joint();plots();diplomacy();events();districts();migration();branchMigration();malformed();replay();
+        System.out.println("PASS: "+checks+" world-system assertions: ZOC/poison, joint/ironwall/infighting/magic, diplomatic debates, disasters/raiders, district budgets/orders/capture, v12/v13 branch migration, integrated marches and saved replay.");
     }
     private static void movement()throws Exception{
         World w=fixture();World.Unit a=unit(w,1,World.Weapon.SPEAR,5,6),b=unit(w,21,World.Weapon.SPEAR,7,6);
@@ -41,6 +41,16 @@ public final class WorldSystemsTest {
         World poison=fixture();World.Unit traveler=unit(poison,1,World.Weapon.SPEAR,5,6);poison.terrain[6][6]=World.Terrain.POISON;ok(poison.move(traveler.id,new Hex(6,6)));check(traveler.troops==5700,"poison on traversal");poison.turn++;poison.events.tick();check(traveler.troops==5415,"poison on residence");
         World protectedWorld=fixture();World.Unit immune=unit(protectedWorld,1,World.Weapon.SPEAR,5,6);protectedWorld.officer(1).skillId=Skill.JIEDU.id;protectedWorld.terrain[6][6]=World.Terrain.POISON;ok(protectedWorld.move(immune.id,new Hex(6,6)));protectedWorld.turn++;protectedWorld.events.tick();check(immune.troops==6000,"detox protects movement and residence");
         World peace=fixture();World.Unit ally=unit(peace,1,World.Weapon.SPEAR,5,6);unit(peace,21,World.Weapon.SPEAR,7,6);peace.campaign.treaties.add(new Campaign.Treaty(0,1,Campaign.TreatyKind.ALLIANCE,10));check(peace.orders.previewMove(ally.id,new Hex(6,6)).cost==1,"treaty disables hostile ZOC");
+    }
+    private static void marchIntegration()throws Exception{
+        World w=fixture();World.Unit a=unit(w,1,World.Weapon.SPEAR,5,6);unit(w,21,World.Weapon.SPEAR,7,5);
+        MarchOrders.Plan p=w.marches.preview(a.id,new Hex(11,6));check(p.valid()&&p.stepsNow==1&&p.estimatedTurns>=2,"march forecast stops on hostile ZOC");
+        ok(w.marches.execute(p));check(a.hex.equals(new Hex(6,6))&&w.orders.remaining(a)==0&&a.march!=null,"march cannot cross ZOC in one turn");
+        World saved=copy(w);w.orders.reset(a);saved.orders.reset(saved.unit(a.id));w.marches.advanceAll();saved.marches.advanceAll();check(Arrays.equals(bytes(w),bytes(saved)),"ZOC march resumes deterministically");
+        World escape=fixture();World.Unit e=unit(escape,1,World.Weapon.SPEAR,5,6);unit(escape,21,World.Weapon.SPEAR,7,5);escape.officer(1).skillId=Skill.DUNZOU.id;
+        p=escape.marches.preview(e.id,new Hex(11,6));check(p.stepsNow==4,"escape skill is respected by march forecast");ok(escape.marches.execute(p));check(e.hex.equals(new Hex(9,6)),"escape march uses actual four-point allowance");
+        World group=fixture();ok(group.districts.configure(-1,"联调军",new int[]{11},Districts.Policy.CITY_ATTACK,20,-1,true,true));group.turn=1;reset(group);group.districts.reset(0);group.districts.run();
+        World.Unit delegated=group.units.stream().filter(u->group.districts.unit(u.id)!=null).findFirst().get();check(!group.marches.preview(delegated.id,new Hex(15,15)).valid(),"delegated unit rejects manual march");reject(group,()->group.marches.stop(delegated.id));
     }
     private static void joint()throws Exception{
         World w=fixture();World.Unit a=unit(w,1,World.Weapon.SPEAR,6,6),helper=unit(w,2,World.Weapon.HALBERD,7,5),enemy=unit(w,21,World.Weapon.SPEAR,7,6);
@@ -111,7 +121,15 @@ public final class WorldSystemsTest {
     }
     private static void migration()throws Exception{
         try(InputStream in=WorldSystemsTest.class.getResourceAsStream("/legacy-v12.sg11.b64")){
-            check(in!=null,"real prior-version fixture exists");byte[] old=Base64.getMimeDecoder().decode(in.readAllBytes());check(old[7]==12,"old writer header");World w=SaveCodec.decode(old);check(w.treasures.items().size()==43&&!w.events.enabled()&&w.districts.all().isEmpty(),"old relationship/treasure save retains state without invented world events");check(bytes(w)[7]==13&&Arrays.equals(bytes(w),bytes(copy(w))),"v12 migration roundtrips");
+            check(in!=null,"real prior-version fixture exists");byte[] old=Base64.getMimeDecoder().decode(in.readAllBytes());check(old[7]==12,"old writer header");World w=SaveCodec.decode(old);check(w.treasures.items().size()==43&&!w.events.enabled()&&w.districts.all().isEmpty(),"old relationship/treasure save retains state without invented world events");check(bytes(w)[7]==14&&Arrays.equals(bytes(w),bytes(copy(w))),"v12 migration roundtrips");
+        }
+    }
+    private static void branchMigration()throws Exception{
+        for(String branch:new String[]{"world","march"})try(InputStream in=WorldSystemsTest.class.getResourceAsStream("/legacy-v13-"+branch+".sg11.b64")){
+            check(in!=null,"real v13 branch fixture exists");byte[] raw=Base64.getMimeDecoder().decode(in.readAllBytes());check(raw[7]==13,"fixture is a real unmodified v13 writer");World w=SaveCodec.decode(raw);
+            if(branch.equals("world")){check(w.events.enabled()&&w.events.camps().size()==1&&w.districts.all().size()==1,"world v13 retains district and hazards");check(w.units.stream().noneMatch(u->u.march!=null),"world v13 adds no march");}
+            else {check(w.unit(1).march!=null&&w.unit(1).hex.equals(new Hex(7,6)),"march v13 retains order and spent movement");check(!w.events.enabled()&&w.districts.all().isEmpty(),"march v13 adds no world events");}
+            check(bytes(w)[7]==14&&Arrays.equals(bytes(w),bytes(copy(w))),"both v13 layouts upgrade to stable v14");World b=copy(w);for(int i=0;i<3;i++){ok(w.nextTurn());ok(b.nextTurn());check(Arrays.equals(bytes(w),bytes(b)),"old branch resumes with all new systems");}
         }
     }
     private static void malformed()throws Exception{

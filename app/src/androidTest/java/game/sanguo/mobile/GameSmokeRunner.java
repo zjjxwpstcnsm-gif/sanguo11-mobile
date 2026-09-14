@@ -19,7 +19,7 @@ public final class GameSmokeRunner extends Instrumentation {
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
-            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v13 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
+            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v14 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
@@ -46,6 +46,7 @@ public final class GameSmokeRunner extends Instrumentation {
             require(Arrays.equals(before,SaveCodec.encode(saved())),"corrupt load leaves autosave unchanged");
             runOnMainSync(current::recreate);waitText("区域争雄  ·  孙权军",false);waitForIdleSync();
             assertWorld(2,1,"regional-sandbox");screenshot("05-restored");
+            marchFlow();
             worldFlow();
             estatesFlow();
             fieldworkFlow();
@@ -60,13 +61,34 @@ public final class GameSmokeRunner extends Instrumentation {
             governmentFlow();
             documentTransferFlow();
             contestFlow();
-            result.putString("stream","SMOKE PASS: v13 districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            result.putString("stream","SMOKE PASS: v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
             StringWriter trace=new StringWriter();error.printStackTrace(new PrintWriter(trace));
             result.putString("stream","SMOKE FAIL: "+trace+"\n");finish(Activity.RESULT_CANCELED,result);
         }
+    }
+    private void marchFlow()throws Exception {
+        World w=new World(24,12,"甲军","乙军");w.scenarioId="ui-march";w.scenarioName="行军验证";
+        w.cities.add(new World.City(10,"起点城",new Hex(1,1),0));w.cities.add(new World.City(20,"目标城",new Hex(22,10),1));
+        World.Officer o=new World.Officer(0,"行军将",0,-1,80,80,80,80,80);o.role=Strategy.Role.RULER;o.loyalty=100;o.unitId=1;w.officers.add(o);
+        World.Unit unit=new World.Unit(1,0,0,World.Weapon.SPEAR,new Hex(3,6),5000,100000);w.units.add(unit);w.nextUnitId=2;
+        installFixture(w,unit.hex);click("全图",true);byte[] initial=SaveCodec.encode(saved());
+        tapHex(w.city(20).hex);waitText("路线预览 · 目标城",true);screenshot("67-march-preview");
+        require(Arrays.equals(initial,SaveCodec.encode(saved())),"route preview does not mutate game");
+        runOnMainSync(current::recreate);waitText("路线预览 · 目标城",true);require(Arrays.equals(initial,SaveCodec.encode(saved())),"pending preview survives rotation without issuing order");
+        click("取消",true);require(Arrays.equals(initial,SaveCodec.encode(saved())),"route cancel has zero cost");
+        click("全图",true);tapHex(w.city(20).hex);click("开始行军",true);w=saved();require(w.unit(1).march!=null&&w.unit(1).movementSpent<=4&&!w.unit(1).acted,"map city tap starts budgeted persistent march");screenshot("68-march-active");
+        byte[] issued=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("行军验证",false);require(Arrays.equals(issued,SaveCodec.encode(saved())),"restart does not duplicate march movement");
+        Hex previous=saved().unit(1).hex;endTurn();require(!saved().unit(1).hex.equals(previous),"next turn advances selected marching unit");waitText("停止行军",true);screenshot("69-march-next-turn");
+        clickNav("任务");click("行军 · 行军将",true);waitText("目标 目标城",false);screenshot("70-march-task");click("定位部队",true);
+        click("全图",true);tapHex(new Hex(4,9));click("开始行军",true);require(saved().unit(1).march!=null&&saved().unit(1).march.tile.equals(new Hex(4,9)),"tap new ground retargets queued order");
+        click("停止行军",true);require(saved().unit(1).march==null,"stop through fixed command dock");screenshot("71-march-stopped");
+        click("全图",true);tapHex(saved().city(20).hex);click("开始行军",true);int count=0;
+        while(saved().unit(1).march!=null&&count++<12)endTurn();
+        w=saved();require(w.unit(1).march==null&&w.unit(1).hex.distance(w.city(20).hex)==1&&w.city(20).owner==1&&!w.unit(1).acted,"arrival does not auto attack and retains action");screenshot("72-march-arrived");
+        click("全图",true);tapHex(w.city(20).hex);click("执行",true);require(saved().city(20).defense<3000&&saved().unit(1).acted,"arrival followed by real siege through target tap");
     }
     private void strategicFlow()throws Exception {
         click("菜单",true);click("新游戏 / 选择势力",true);click("区域争雄 ·",false);click("孙权军",true);click("执行",true);waitForIdleSync();
@@ -178,7 +200,7 @@ public final class GameSmokeRunner extends Instrumentation {
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("战法验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"combat outcome survives recreation without duplicate settlement");
         battle=SaveCodec.decode(before);battle.unit(1).acted=false;battle.unit(1).energy=80;battle.strategy.setSeed(0);installFixture(battle,battle.unit(1).hex);
         // Fire has adjacent range in the selected PC rules; move after the push before casting.
-        tapHex(new Hex(7,5));click("执行",true);
+        tapHex(new Hex(7,5));click("开始行军",true);
         require(!saved().unit(1).acted,"moving into fire range retains the plot command");
         click("部队计略",true);click("火计 ·",false);click("张辽 ·",false);click("执行",true);w=saved();require(w.war.fireAt(w.unit(2).hex)!=null&&w.unit(1).energy==70,"UI fire plot persists burning hex");screenshot("22-fire-field");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("战法验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"fire survives Activity recreation");
@@ -235,7 +257,7 @@ public final class GameSmokeRunner extends Instrumentation {
         require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=14,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
-        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==13,"upgraded writer produced v13 header");}
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==14,"upgraded writer produced v14 header");}
         screenshot("00-v09-upgrade-preserved");
     }
     private void contestFlow()throws Exception {
@@ -421,7 +443,7 @@ public final class GameSmokeRunner extends Instrumentation {
         require(w.unit(2).burning==2&&w.unit(2).troops<5000&&w.unit(1).energy==70,"naval fire tactic updates actual troops and persistent burning");screenshot("26-naval-combat");
         before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("水陆攻防",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"naval outcome survives restart");
         World crossing=SaveCodec.decode(before);crossing.unit(1).acted=false;installFixture(crossing,crossing.unit(1).hex);
-        tapHex(new Hex(8,8));click("执行",true);w=saved();require(w.unit(1).hex.equals(new Hex(8,8))&&w.unit(1).weapon==World.Weapon.SPEAR&&w.unit(1).ship==Army.Ship.WARSHIP,"map tap disembarks with preserved land gear and ship");screenshot("27-disembarked");
+        tapHex(new Hex(8,8));click("开始行军",true);w=saved();require(w.unit(1).hex.equals(new Hex(8,8))&&w.unit(1).weapon==World.Weapon.SPEAR&&w.unit(1).ship==Army.Ship.WARSHIP,"map tap disembarks with preserved land gear and ship");screenshot("27-disembarked");
     }
     private void rulesFlow()throws Exception {
         World w=ScenarioCatalog.load("river-siege-sandbox",0);
@@ -434,9 +456,9 @@ public final class GameSmokeRunner extends Instrumentation {
         for(World.Unit u:w.units)for(World.Officer o:w.army.crew(u)){o.cityId=-1;o.unitId=u.id;}
         for(World.City c:w.cities)c.governorId=-1;
         installFixture(w,actor.hex);byte[] initial=SaveCodec.encode(saved());
-        tapHex(new Hex(7,8));waitText("确认移动",true);screenshot("28-move-preview");click("取消",true);
+        tapHex(new Hex(7,8));waitText("路线预览",false);screenshot("28-move-preview");click("取消",true);
         require(Arrays.equals(initial,SaveCodec.encode(saved())),"move cancel does not change world or RNG");
-        tapHex(new Hex(7,8));click("执行",true);w=saved();
+        tapHex(new Hex(7,8));click("开始行军",true);w=saved();
         require(w.unit(1).hex.equals(new Hex(7,8))&&!w.unit(1).acted&&w.unit(1).movementSpent>0,"move preserves command and charges path");
         byte[] moved=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("水陆攻防",false);
         require(Arrays.equals(moved,SaveCodec.encode(saved())),"movement budget survives recreation");

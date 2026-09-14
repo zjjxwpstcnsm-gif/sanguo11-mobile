@@ -62,7 +62,7 @@ public final class TechnologyFieldworksTest {
             check(old.war.structures().get(0).complete&&old.war.structures().get(0).hp==800,"legacy finished structure preserves current hp");
             World restored=copy(old);for(int i=0;i<5;i++){tick(old);tick(restored);check(Arrays.equals(bytes(old),bytes(restored)),"old pending research resumes deterministically");}
             check(old.campaign.has(0,Campaign.Tech.CATAPULT)&&!old.campaign.has(0,Campaign.Tech.STONE_BUILDING),"legacy project reward completes once");
-            check(bytes(old)[7]==13,"migrated writer uses v12");
+            check(bytes(old)[7]==14,"migrated writer uses v14");
         }
     }
     private static void construction()throws Exception{

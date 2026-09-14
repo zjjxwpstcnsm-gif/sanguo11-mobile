@@ -5,7 +5,7 @@ import java.util.*;
 
 /** v13 append-only section. Older saves retain their existing RNG and default to no new random events. */
 final class WorldSystemsSave {
-    private static final int MARKER=0x57535944;
+    static final int MARKER=0x57535944;
     static void write(World w,DataOutputStream d)throws IOException{
         d.writeInt(MARKER);WorldEvents e=w.events;d.writeBoolean(e.enabled);d.writeLong(e.randomState);d.writeInt(e.nextCamp);d.writeInt(e.lastTick);
         d.writeInt(e.regions.size());for(Map.Entry<Integer,WorldEvents.Tribe> item:e.regions.entrySet()){d.writeInt(item.getKey());d.writeUTF(item.getValue().name());}

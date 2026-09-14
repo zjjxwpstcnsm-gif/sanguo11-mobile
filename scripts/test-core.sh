@@ -31,3 +31,4 @@ java -cp core/build/check:core/src/main/resources:core/src/test/resources game.s
 java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.EstatesTest
 
 java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.WorldSystemsTest
+java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.MarchOrdersTest
