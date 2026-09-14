@@ -69,7 +69,7 @@ public final class ScenarioTest {
         check(w.unit(1).weapon==World.Weapon.CROSSBOW&&w.unit(1).food==5850,"v1 army and supply preserved");
         check(w.officer(0).unitId==1&&w.city(0).equipment[2]==9000,"v1 references and stocks preserved");
         check(w.dataHash.isEmpty()&&w.scenarioId.equals("m0-skirmish"),"legacy save has no fabricated data fingerprint");
-        byte[] migrated=SaveCodec.encode(w);check(migrated[7]==12,"new writes use save v12");
+        byte[] migrated=SaveCodec.encode(w);check(migrated[7]==13,"new writes use save v13");
         World restored=SaveCodec.decode(migrated);w.nextTurn();restored.nextTurn();
         check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(restored)),"migrated games continue identically");
         w=ScenarioCatalog.load("regional-sandbox",2);w.nextTurn();byte[] saved=SaveCodec.encode(w);restored=SaveCodec.decode(saved);

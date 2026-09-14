@@ -74,11 +74,12 @@ final class OverviewUi {
     View tasks() {
         LinearLayout host=column();heading(host,"任务 / 在途");
         final Rows<UiModels.Task>[] holder=new Rows[1];
-        search(host,"搜索任务、武将或城市",state.taskQuery,q->{state.taskQuery=q;holder[0].rows=UiModels.tasks(w,state.taskType,q);holder[0].emptyView.setText(taskEmpty());holder[0].notifyDataSetChanged();});String[] types={"全部任务","建设","调动","运输","研究 / 培养","军备制造"};
+        search(host,"搜索任务、武将或城市",state.taskQuery,q->{state.taskQuery=q;holder[0].rows=UiModels.tasks(w,state.taskType,q);holder[0].emptyView.setText(taskEmpty());holder[0].notifyDataSetChanged();});String[] types={"全部任务","建设","调动","运输","研究 / 培养","军备制造","行军"};
         filter(host,"筛选 · "+types[state.taskType],types,i->{state.taskType=i;a.refresh();});
         holder[0]=list(host,UiModels.tasks(w,state.taskType,state.taskQuery),t->t.id,t->t.title,t->t.detail,t->{
             AlertDialog.Builder dialog=new AlertDialog.Builder(a).setTitle(t.title).setMessage(t.detail).setNegativeButton("返回",null);
-            if(t.facility!=null) {dialog.setPositiveButton("定位城池",(d,n)->a.selectAndFocus(w.city(t.facility.cityId).hex));dialog.setNeutralButton("管理设施",(d,n)->a.domesticUi().facility(t.facility));}
+            if(t.marching!=null){dialog.setPositiveButton("定位部队",(d,n)->a.selectAndFocus(t.location));dialog.setNeutralButton("停止行军",(d,n)->a.applyResult(w.marches.stop(t.marching.id)));}
+            else if(t.facility!=null) {dialog.setPositiveButton("定位城池",(d,n)->a.selectAndFocus(w.city(t.facility.cityId).hex));dialog.setNeutralButton("管理设施",(d,n)->a.domesticUi().facility(t.facility));}
             else if(t.production!=null){dialog.setPositiveButton("制造详情",(d,n)->new ArmyUi(a,w,a::applyResult,a::selectAndFocus).production(t.production));}
             else if(t.project!=null){dialog.setPositiveButton("定位研究城市",(d,n)->a.selectAndFocus(w.city(t.project.cityId).hex));}
             else if(t.abilityResearch!=null||t.abilityTraining!=null){dialog.setPositiveButton("定位城市",(d,n)->a.selectAndFocus(t.location));dialog.setNeutralButton("PK进度",(d,n)->new AbilityUi(a,w,a::applyResult).progress(w.city(t.abilityResearch!=null?t.abilityResearch.cityId:t.abilityTraining.cityId)));}

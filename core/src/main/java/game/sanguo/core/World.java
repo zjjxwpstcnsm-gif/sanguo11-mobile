@@ -50,6 +50,7 @@ public final class World {
         public Hex hex;
         public int troops, food, gold, energy=80;
         public boolean acted;
+        public MarchOrders.Order march;
         public int movementBudget=-1, movementSpent;
         public War.Status status=War.Status.NORMAL;
         public int statusTurns, burning;
@@ -78,6 +79,7 @@ public final class World {
     public final Army army=new Army(this);
     public final Fieldworks fieldworks=new Fieldworks(this);
     public final UnitOrders orders=new UnitOrders(this);
+    public final MarchOrders marches=new MarchOrders(this);
     public final Skills skills=new Skills(this);
     public final Government government=new Government(this);
     public final Supply supply=new Supply(this);
@@ -243,7 +245,7 @@ public final class World {
             c.gold+=Math.min(Math.max(0,campaign.goldCap(c)-c.gold),domestic.goldIncome(c.id,turn));c.food+=Math.min(Math.max(0,campaign.foodCap(c)-c.food),domestic.foodIncome(c.id,turn));
             if(c.defense<campaign.defenseCap(c))c.defense=Math.min(campaign.defenseCap(c),c.defense+(campaign.has(c.owner,Campaign.Tech.ENGINEERING)?250:100));
         }
-        active=player;reset(player);checkVictory();return success(date()+" · 行动力恢复");
+        active=player;reset(player);checkVictory();marches.advanceAll();return success(date()+" · 行动力恢复");
     }
     private void reset(int owner) {
         actionPoints[owner]=60;

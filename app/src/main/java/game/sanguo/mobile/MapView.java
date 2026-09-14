@@ -56,6 +56,8 @@ public final class MapView extends View {
     private final MapCamera camera=new MapCamera();
     private boolean multiTouch;
     private int moving=-1;
+    private MarchOrders.Plan route;
+    void setRoute(MarchOrders.Plan route){this.route=route;invalidate();}
     private Bundle pendingCamera;
     private final Typeface font=Typeface.create("sans-serif",Typeface.NORMAL);
     private final float density;
@@ -160,6 +162,7 @@ public final class MapView extends View {
             if(t==World.Terrain.WATER){paint.setColor(Color.argb(65,163,195,198));paint.setStrokeWidth(1);canvas.drawLine(cx-10,cy-3,cx+8,cy-3,paint);canvas.drawLine(cx-5,cy+5,cx+12,cy+5,paint);}
             if(reachable.containsKey(h)){polygon(cx,cy,RADIUS-1);fill(canvas,Color.argb(55,197,227,158));stroke(canvas,Color.argb(110,229,235,182),1);}
         }
+        drawRoute(canvas);
         if(selected!=null){polygon(x(selected),y(selected),RADIUS-2);stroke(canvas,GOLD,Math.max(2,2*density/scale));}
         if(detail)for(Object object:visibleObjects)if(object instanceof War.Fire){War.Fire f=(War.Fire)object;
             float cx=x(f.hex),cy=y(f.hex);polygon(cx,cy,RADIUS-2);fill(canvas,Color.argb(145,227,81,28));label(canvas,"火",cx,cy+5,18,PAPER);
@@ -175,8 +178,20 @@ public final class MapView extends View {
         canvas.restore();
         if(showMini)drawNavigator(canvas);
         paint.setColor(Color.argb(190,17,32,37));canvas.drawRoundRect(10*density,getHeight()-34*density,getWidth()-10*density,getHeight()-8*density,5*density,5*density,paint);
-        label(canvas,detail?"设施 / 部队 / 在途  ·  双击城池聚焦":"势力总览  ·  放大查看设施与在途",getWidth()/2f,getHeight()-17*density,10*density,PAPER);
+        label(canvas,moving>=0?"点选目标规划路线  ·  青色本旬 / 虚线后续":detail?"设施 / 部队 / 在途  ·  双击城池聚焦":"势力总览  ·  放大查看设施与在途",getWidth()/2f,getHeight()-17*density,10*density,PAPER);
         lastDrawNanos=System.nanoTime()-drawStart;
+    }
+    private void drawRoute(Canvas c){
+        if(route==null)return;float stroke=Math.max(2,3*density/camera.scale);
+        paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(stroke);paint.setStrokeCap(Paint.Cap.ROUND);
+        for(int i=1;i<route.path.size();i++){
+            Hex a=route.path.get(i-1),b=route.path.get(i);boolean now=i<=route.stepsNow;
+            paint.setColor(now?0xff6ddcc5:0xffebc979);paint.setPathEffect(now?null:new android.graphics.DashPathEffect(new float[]{stroke*2,stroke*2},0));
+            c.drawLine(x(a),y(a),x(b),y(b),paint);
+        }
+        paint.setPathEffect(null);paint.setStrokeCap(Paint.Cap.BUTT);paint.setStyle(Paint.Style.FILL);
+        if(route.target!=null){float cx=x(route.target),cy=y(route.target);paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(stroke);paint.setColor(route.valid()?0xffebc979:0xffff927d);c.drawCircle(cx,cy,RADIUS*.8f,paint);paint.setStyle(Paint.Style.FILL);}
+        if(!route.path.isEmpty()){Hex last=route.path.get(route.path.size()-1);paint.setColor(0xffebc979);c.drawCircle(x(last),y(last),stroke*1.5f,paint);}
     }
     private void drawNavigator(Canvas c){
         float mw=Math.min(144*density,getWidth()*.3f),mh=Math.min(100*density,getHeight()*.3f);
