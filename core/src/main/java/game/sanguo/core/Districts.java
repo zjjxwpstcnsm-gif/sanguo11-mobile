@@ -122,7 +122,8 @@ public final class Districts {
             if((gold>0||food>0)&&w.domestic.transport(c.id,d.supply,admin.id,gold,food,0,new int[World.Weapon.values().length]).ok)return;}
         CampaignAi ai=new CampaignAi(w);
         if(ai.replenish(c.id))return;
-        if(d.attack&&d.policy!=Policy.ECONOMY&&d.policy!=Policy.DEFENSE&&target(d,c.hex)!=null&&ai.deploy(c.id,10000))return;
+        if(d.attack&&d.policy!=Policy.ECONOMY&&d.policy!=Policy.DEFENSE&&target(d,c.hex)!=null&&ai.deploy(c.id,10000,
+            target->(d.policy!=Policy.CITY_ATTACK||target.id==d.target)&&(d.policy!=Policy.FORCE_ATTACK||target.owner==d.target)))return;
         if(d.policy==Policy.ECONOMY||d.policy==Policy.DELEGATE){List<Hex> sites=w.domestic.buildSites(c.id);if(c.gold>=2500&&!sites.isEmpty()&&w.domestic.build(c.id,admin.id,c.food<40000?Domestic.Kind.FARM:Domestic.Kind.MARKET,sites.get(0)).ok)return;}
         if(d.produce&&c.gold>=1500&&c.equipment[0]<8000&&w.produce(c.id,admin.id,World.Weapon.SPEAR).ok)return;
         StrategicAi civil=new StrategicAi(w);StrategicAi.Decision decision=civil.plan(c.id,false);if(decision!=null)civil.execute(decision);

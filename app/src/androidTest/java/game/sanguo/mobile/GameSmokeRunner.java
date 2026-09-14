@@ -101,7 +101,8 @@ public final class GameSmokeRunner extends Instrumentation {
         World.Unit spear=new World.Unit(2,1,21,World.Weapon.SPEAR,new Hex(20,10),6000,60000);w.officer(21).unitId=2;spear.energy=0;
         World.Unit weak=new World.Unit(3,0,1,World.Weapon.CROSSBOW,new Hex(21,10),100,10000);w.officer(1).unitId=3;
         World.Unit strong=new World.Unit(4,0,2,World.Weapon.SPEAR,new Hex(20,11),6000,60000);w.officer(2).unitId=4;
-        w.units.add(ram);w.units.add(spear);w.units.add(strong);w.units.add(weak);w.nextUnitId=5;w.strategy.initializeOffices();
+        w.units.add(ram);w.units.add(spear);w.units.add(strong);w.units.add(weak);w.nextUnitId=5;
+        w.officer(0).role=Strategy.Role.RULER;w.officer(0).loyalty=100;w.officer(20).role=Strategy.Role.RULER;w.officer(20).loyalty=100;
         installFixture(w,w.city(10).hex);byte[] before=SaveCodec.encode(saved());
         clickNav("菜单");click("军团与天下",true);click("军情评估",true);waitText("建议留守",false);screenshot("81-ai-assessment");click("返回",true);
         require(Arrays.equals(before,SaveCodec.encode(saved())),"assessment leaves game and random state unchanged");

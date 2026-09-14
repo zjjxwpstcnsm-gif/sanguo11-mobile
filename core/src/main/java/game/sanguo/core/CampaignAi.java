@@ -151,7 +151,12 @@ public final class CampaignAi {
         }
         for(War.Structure s:w.war.structures())if(w.campaign.hostile(a.owner,s.owner)&&a.hex.distance(s.hex)<=w.war.range(a)){
             int score=200+Math.min(s.hp,200+w.army.war(a)*2)+(s.complete?100:0);
-            best=better(best,action(Kind.STRUCTURE,a,s.id,s.hex,score,"清除敌方设施与通路阻挡"));
+            if(w.army.canAttackUnit(a))best=better(best,action(Kind.STRUCTURE,a,s.id,s.hex,score,"清除敌方设施与通路阻挡"));
+            else for(Army.Tactic t:w.army.tactics(a))if(w.army.tacticError(a.id,s.hex,t)==null){
+                if(t==Army.Tactic.STONE&&w.campaign.has(a.owner,Campaign.Tech.THUNDERBOLT)&&ownAssetsNear(a,s.hex))continue;
+                if((t==Army.Tactic.FIRE_ARROW||t==Army.Tactic.FLAME)&&w.fieldworks.trap(s.kind))continue;
+                best=better(best,new Action(Kind.ARMY_TACTIC,a.id,s.id,s.hex,score-t.energy*5,null,t,null,"用合法兵器战法拆除设施并避开友伤"));
+            }
         }
         for(Domestic.Mission m:w.domestic.missions)if(w.supply.raidError(a.id,m.id)==null){int hit=w.supply.raidDamage(a.id,m.id);
             best=better(best,action(Kind.RAID,a,m.id,m.hex,hit+(hit>=m.troops?Math.min(2000,m.food/20)+300:0),"截击有价值的运输补给"));}
@@ -181,11 +186,14 @@ public final class CampaignAi {
     public int foodTurns(World.Unit u){int use=w.fieldworks.foodUse(u,Math.max(1,(u.troops+19)/20));return use==0?999:u.food/use;}
     private int admin(World.Officer o){return o.politics*2+o.charm;}
     public Deployment deployment(int city,int minimumReserve){
+        return deployment(city,minimumReserve,c->true);
+    }
+    Deployment deployment(int city,int minimumReserve,Predicate<World.City> objectives){
         World.City c=w.city(city);if(c==null||c.owner!=w.active||w.gameOver()||!w.districts.directCity(c.id)||w.actionPoints[w.active]<10||c.morale<65)return null;
         List<World.Officer> idle=idle(c);if(idle.isEmpty())return null;
         int reserve=Math.max(minimumReserve,reserve(c)),surplus=c.troops-reserve,foodReserve=Math.max(6000,(reserve+49)/50*12);
         if(surplus<3000||c.food<foodReserve+9000)return null;
-        boolean objective=false;for(World.City target:w.cities)if(w.campaign.hostile(c.owner,target.owner))objective=true;
+        boolean objective=false;for(World.City target:w.cities)if(w.campaign.hostile(c.owner,target.owner)&&objectives.test(target))objective=true;
         if(!objective)return null;
         World.Officer administrator=idle.stream().max(Comparator.comparingInt(this::admin).thenComparingInt(o->-o.id)).orElse(null);
         Deployment best=null;int bestScore=Integer.MIN_VALUE;
@@ -205,13 +213,14 @@ public final class CampaignAi {
             }
             Army.Ship ship=c.ships[1]>0?Army.Ship.WARSHIP:c.ships[0]>0?Army.Ship.TOWER_SHIP:Army.Ship.BOAT;
             World.Unit probe=new World.Unit(-1,c.owner,leader.id,weapon,c.hex,troops,troops*3);probe.ship=ship;
-            boolean route=false;for(World.City target:cities())if(w.campaign.hostile(c.owner,target.owner)&&route(probe,target.hex,1)!=null){route=true;break;}
+            boolean route=false;for(World.City target:cities())if(w.campaign.hostile(c.owner,target.owner)&&objectives.test(target)&&route(probe,target.hex,1)!=null){route=true;break;}
             if(!route)continue;
             bestScore=score;best=new Deployment(c.id,leader.id,troops,troops*3,reserve,weapon,ship,deputies.stream().mapToInt(i->i).toArray());
         }
         return best;
     }
     public boolean deploy(int city,int minimumReserve){Deployment d=deployment(city,minimumReserve);return d!=null&&w.army.deploy(d.city,d.leader,d.deputies(),d.weapon,d.ship,d.troops,d.food).ok;}
+    boolean deploy(int city,int minimumReserve,Predicate<World.City> objectives){Deployment d=deployment(city,minimumReserve,objectives);return d!=null&&w.army.deploy(d.city,d.leader,d.deputies(),d.weapon,d.ship,d.troops,d.food).ok;}
     /** City action: replenish threatened/low-food units before spending the last idle administrator. */
     public boolean replenish(int city){
         World.City c=w.city(city);if(c==null||c.owner!=w.active||!w.districts.directCity(city))return false;

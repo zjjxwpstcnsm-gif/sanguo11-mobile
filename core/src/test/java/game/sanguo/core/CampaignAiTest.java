@@ -41,6 +41,10 @@ public final class CampaignAiTest {
         Domestic.Facility farm=new Domestic.Facility(magic.domestic.nextFacilityId++,10,Domestic.Kind.FARM,new Hex(11,7),-1,0);magic.domestic.facilities.add(farm);
         CampaignAi.Action spell=new CampaignAi(magic).bestAction(mage.id,true);check(spell==null||spell.plot!=War.Plot.LIGHTNING,"protect friendly buildings from lightning even without nearby friendly troops");
         check(friend.troops==6000&&b.troops==6000&&enemy.troops==6000,"all tactical assessment is read-only");
+        World stone=fixture();World.Unit engine=unit(stone,1,World.Weapon.CATAPULT,9,8);unit(stone,2,World.Weapon.SPEAR,11,7);
+        stone.campaign.learned.put(0,EnumSet.of(Campaign.Tech.THUNDERBOLT));
+        stone.war.structures.add(new War.Structure(stone.war.nextStructureId++,1,War.StructureKind.ARROW_TOWER,new Hex(11,8),700));
+        CampaignAi.Action shot=new CampaignAi(stone).bestAction(engine.id,true);check(shot==null,"structure targeting must not bypass thunderbolt friendly-fire protection");
     }
     private static void control()throws Exception{
         World w=fixture();World.Unit caster=unit(w,1,World.Weapon.SPEAR,9,8),friend=unit(w,2,World.Weapon.SPEAR,10,8);friend.status=War.Status.CONFUSED;friend.statusTurns=2;
@@ -73,6 +77,8 @@ public final class CampaignAiTest {
         World poor=fixture();poor.city(10).troops=8000;check(new CampaignAi(poor).deployment(10,6000)==null,"do not empty an understrength garrison");
         poor.city(10).troops=24000;poor.city(10).food=6500;check(new CampaignAi(poor).deployment(10,6000)==null,"do not launch an army without food reserve");
         poor.city(10).food=150000;unit(poor,21,World.Weapon.SPEAR,5,3).troops=18000;check(new CampaignAi(poor).reserve(poor.city(10))>6000,"nearby invaders increase retained garrison");
+        World blocked=fixture();for(Hex h:blocked.city(20).hex.neighbors())blocked.terrain[h.q][h.r]=World.Terrain.MOUNTAIN;
+        check(new CampaignAi(blocked).deployment(10,10000,c->c.id==20)==null,"unreachable designated district objective does not launch a pointless army toward another force");
     }
     private static void supply()throws Exception{
         World w=fixture();World.Unit u=unit(w,1,World.Weapon.SPEAR,3,3);u.food=0;CampaignAi ai=new CampaignAi(w);int total=w.city(10).food;
