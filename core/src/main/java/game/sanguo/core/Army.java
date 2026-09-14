@@ -66,6 +66,7 @@ public final class Army {
         w.spend(c,leader,0);c.troops-=troops;c.food-=food;c.equipment[weapon.ordinal()]-=equipment;if(ship!=Ship.BOAT)c.ships[ship.ordinal()-1]--;
         World.Unit u=new World.Unit(w.nextUnitId++,w.active,commander,weapon,exit,troops,food);u.gold=gold;c.gold-=gold;u.ship=ship;u.deputies=deputies.clone();u.energy=c.morale;w.units.add(u);
         for(World.Officer o:members){w.strategy.releaseGovernor(o.id);o.acted=true;o.cityId=-1;o.unitId=u.id;}
+        w.districts.deployed(city,u);
         return w.success(leader.name+"率"+troops+weapon.label+"出征 · 编队"+members.size()+"将 · 携"+ship.label);
     }
     private boolean completed(int city,Domestic.Kind kind){return w.domestic.facilities.stream().anyMatch(f->f.cityId==city&&f.kind==kind&&f.remaining==0);}

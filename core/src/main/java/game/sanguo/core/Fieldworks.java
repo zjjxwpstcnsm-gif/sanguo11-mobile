@@ -46,7 +46,7 @@ public final class Fieldworks {
         if(u.gold<kind.gold)return "部队携金不足，需要"+kind.gold+"金";
         if(target==null||!w.inside(target)||u.hex.distance(target)!=1)return "只能在部队相邻格设置";
         if(w.unitAt(target)!=null||w.cityAt(target)!=null||w.domestic.at(target)!=null||w.war.at(target)!=null||w.war.fireAt(target)!=null)return "目标地块已被占用或燃烧";
-        if(kind==War.StructureKind.FIRE_SHIP?!w.army.water(target):w.army.water(target)||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN_PATH||w.terrain[target.q][target.r]==World.Terrain.PLANK_ROAD)return "该地形不能设置此设施";
+        if(kind==War.StructureKind.FIRE_SHIP?!w.army.water(target):w.army.water(target)||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN_PATH||w.terrain[target.q][target.r]==World.Terrain.PLANK_ROAD||w.terrain[target.q][target.r]==World.Terrain.POISON||w.events.at(target)!=null)return "该地形不能设置此设施";
         for(World.City c:w.cities)if(c.hex.distance(target)<=2)return "据点两格以内不能设置";
         if(military(kind))for(War.Structure s:w.war.structures)if(military(s.kind)&&s.hex.distance(target)<=2)return "军事设施两格以内不能重复设置";
         if(w.war.structures.size()>=1000||w.war.nextStructureId>=10000000)return "军事设施达到上限";
@@ -82,11 +82,12 @@ public final class Fieldworks {
     void cleanup(){for(War.Structure s:w.war.structures)if(s.builder>=0){World.Unit u=w.unit(s.builder);if(u==null||u.owner!=s.owner||u.hex.distance(s.hex)!=1)s.builder=-1;}}
     void continueOwner(int owner){cleanup();for(War.Structure s:new ArrayList<>(w.war.structures))if(s.owner==owner&&s.builder>=0){World.Unit u=w.unit(s.builder);if(u.status==War.Status.NORMAL&&!u.acted){u.acted=true;advance(s,u);}}}
     public int landCost(Hex h,World.Weapon weapon,int owner){
-        if(h==null||!w.inside(h))return -1;World.Terrain t=w.terrain[h.q][h.r];
+        if(h==null||!w.inside(h)||w.events.at(h)!=null)return -1;World.Terrain t=w.terrain[h.q][h.r];
         if((t==World.Terrain.MOUNTAIN_PATH||t==World.Terrain.SHALLOWS)&&!w.campaign.has(owner,Campaign.Tech.DIFFICULT_MARCH))return -1;
         return t==World.Terrain.MOUNTAIN_PATH||t==World.Terrain.PLANK_ROAD?3:t==World.Terrain.SHALLOWS?2:w.cost(h,weapon);
     }
     void traveled(World.Unit u,List<Hex> path){
+        if(!w.skills.has(u,Skill.JIEDU))for(int i=1;i<path.size();i++)if(w.terrain[path.get(i).q][path.get(i).r]==World.Terrain.POISON){int loss=Math.max(1,u.troops/20);u.troops=Math.max(1,u.troops-loss);w.note("经过毒泉，部队损失"+loss+"兵");}
         if(!w.campaign.has(u.owner,Campaign.Tech.DIFFICULT_MARCH))for(int i=1;i<path.size();i++)if(w.terrain[path.get(i).q][path.get(i).r]==World.Terrain.PLANK_ROAD&&!w.skills.has(u,Skill.TAPO))u.troops=Math.max(1,u.troops-Math.max(1,u.troops/100));
         for(War.Structure s:w.war.structures)if(s.complete&&s.kind==War.StructureKind.STONE_MAZE&&w.campaign.hostile(s.owner,u.owner)&&s.hex.distance(u.hex)==1&&!w.skills.has(u,Skill.TAPO)&&!w.skills.has(u,Skill.DONGCHA)&&w.strategy.nextInt(100)<35){u.status=War.Status.CONFUSED;u.statusTurns=1;u.acted=true;break;}
     }

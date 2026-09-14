@@ -5,7 +5,7 @@ import java.util.*;
 /** Engineering rules, NOT original SAN11 formulas. All commands validate before mutation. */
 public final class World {
     public enum Sex { UNKNOWN, MALE, FEMALE }
-    public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER, MOUNTAIN_PATH, SHALLOWS, PLANK_ROAD }
+    public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER, MOUNTAIN_PATH, SHALLOWS, PLANK_ROAD, POISON }
     public enum SiteKind { CITY, GATE, PORT }
     public enum Weapon {
         SPEAR("枪兵",4,1,115), HALBERD("戟兵",3,1,105), CROSSBOW("弩兵",3,2,95), CAVALRY("骑兵",6,1,120),
@@ -81,6 +81,9 @@ public final class World {
     public final UnitOrders orders=new UnitOrders(this);
     public final MarchOrders marches=new MarchOrders(this);
     public final Skills skills=new Skills(this);
+    public final AdvancedBattle advancedBattle=new AdvancedBattle(this);
+    public final WorldEvents events=new WorldEvents(this);
+    public final Districts districts=new Districts(this);
     public final Government government=new Government(this);
     public final Supply supply=new Supply(this);
     public final Contests contests=new Contests(this);
@@ -118,7 +121,7 @@ public final class World {
     public City cityAt(Hex h) { for(City c:cities) if(c.hex.equals(h)) return c;return null; }
     public Unit unitAt(Hex h) { for(Unit u:units) if(u.hex.equals(h)) return u;return null; }
     Result fail(String text) { return new Result(false,text); }
-    Result success(String text) { fieldworks.cleanup();abilities.cleanup();note(text);return new Result(true,text); }
+    Result success(String text) { fieldworks.cleanup();abilities.cleanup();districts.cleanup();note(text);return new Result(true,text); }
     public void note(String text) { log.add(text);while(log.size()>40)log.remove(0); }
     private boolean available(Officer o,City c) { return !contests.busy()&&o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
     public List<Officer> idle(City c) {
@@ -130,6 +133,7 @@ public final class World {
         if(contests.busy())return "请先完成当前单挑或舌战";
         if(gameOver())return "本局已结束";
         if(c==null||c.owner!=active)return "请选择己方城池";
+        if(!districts.directCity(c.id))return "该据点由委任军团管理，请先重编或撤销军团";
         if(!available(o,c))return "需要一名本旬尚未行动的在城武将";
         if(actionPoints[active]<10)return "行动力不足10";
         if(c.gold<gold)return "金不足";
@@ -154,10 +158,10 @@ public final class World {
         return army.deploy(cityId,officerId,new int[0],weapon,Army.Ship.BOAT,troops,troops*2);
     }
     public int cost(Hex h,Weapon weapon) {
-        if(h==null||weapon==null||!inside(h))return -1;
+        if(h==null||weapon==null||!inside(h)||events.at(h)!=null)return -1;
         Terrain t=terrain[h.q][h.r];
         if(t==Terrain.MOUNTAIN||t==Terrain.WATER)return -1;
-        return t==Terrain.FOREST?(weapon==Weapon.CAVALRY||Army.siegeWeapon(weapon)?3:2):1;
+        return t==Terrain.POISON?2:t==Terrain.FOREST?(weapon==Weapon.CAVALRY||Army.siegeWeapon(weapon)?3:2):1;
     }
     private static final class Step {
         final Hex hex;final int cost;
@@ -193,7 +197,7 @@ public final class World {
         String message=officer(u.officerId).name+"攻城，城防−"+hit+"，守军−"+troopHit;
         if(c.defense==0||c.troops==0) {
             int old=c.owner;c.owner=u.owner;domestic.captured(c.id);strategy.cityCaptured(c.id);c.defense=1500;c.troops=0;c.morale=50;c.order=60;
-            government.cityCaptured(c,old,u);treasures.fallenTreasury(old,u.owner);
+            government.cityCaptured(c,old,u);treasures.fallenTreasury(old,u.owner);districts.captured(c,u);
             campaign.cleanupProjects();army.cleanup();campaign.earn(u.owner,100);
             message=c.name+"被"+faction(u.owner)+"攻占";
         }
@@ -224,7 +228,7 @@ public final class World {
         if(contests.busy())return fail("请先完成当前单挑或舌战");
         if(gameOver())return fail("本局已结束，请重开");
         if(active!=player)return fail("等待电脑行动");
-        government.runDelegated();
+        districts.run();government.runDelegated();
         for(int offset=1;offset<factions.length;offset++) {
             active=(player+offset)%factions.length;
             if(!alive(active))continue;
@@ -245,10 +249,11 @@ public final class World {
             c.gold+=Math.min(Math.max(0,campaign.goldCap(c)-c.gold),domestic.goldIncome(c.id,turn));c.food+=Math.min(Math.max(0,campaign.foodCap(c)-c.food),domestic.foodIncome(c.id,turn));
             if(c.defense<campaign.defenseCap(c))c.defense=Math.min(campaign.defenseCap(c),c.defense+(campaign.has(c.owner,Campaign.Tech.ENGINEERING)?250:100));
         }
-        active=player;reset(player);checkVictory();marches.advanceAll();return success(date()+" · 行动力恢复");
+        events.tick();active=player;reset(player);checkVictory();marches.advanceAll();return success(date()+" · 行动力恢复");
     }
     private void reset(int owner) {
         actionPoints[owner]=60;
+        districts.reset(owner);
         for(Officer o:officers)if(o.owner==owner)o.acted=false;
         for(Unit u:units)if(u.owner==owner)orders.reset(u);
         war.resetOwner(owner);fieldworks.continueOwner(owner);
@@ -303,7 +308,7 @@ public final class World {
         domestic.runAi();
     }
     /** Plan beyond one turn so AI can detour around rivers and mountains. */
-    private boolean advance(Unit u,Hex target,int range) {
+    boolean advance(Unit u,Hex target,int range) {
         Map<Hex,Integer> distances=new HashMap<>();Map<Hex,Hex> previous=new HashMap<>();
         Set<Hex> blocked=new HashSet<>();for(City c:cities)blocked.add(c.hex);for(Domestic.Facility f:domestic.facilities)blocked.add(f.hex);for(Unit b:units)if(b.id!=u.id)blocked.add(b.hex);
         for(War.Structure s:war.structures())blocked.add(s.hex);
@@ -313,7 +318,8 @@ public final class World {
             Step step=todo.remove();if(step.cost!=distances.get(step.hex))continue;
             if(step.hex.distance(target)<=range) {
                 Hex destination=step.hex;
-                while(distances.get(destination)>orders.remaining(u))destination=previous.get(destination);
+                Map<Hex,Integer> reachable=orders.reachable(u);
+                while(!reachable.containsKey(destination))destination=previous.get(destination);
                 return !destination.equals(u.hex)&&move(u.id,destination).ok;
             }
             for(Hex next:step.hex.neighbors()) {

@@ -73,8 +73,9 @@ final class ContestSave {
             require(s.revision>=b.round&&s.revision<=b.round*2+1,"舌战操作序号无效");
             World.Officer a=w.officer(s.leftRef),target=w.officer(s.rightRef);World.City city=w.city(s.city);
             require(city!=null&&city.owner==s.owner&&a!=null&&a.owner==s.owner&&a.cityId==city.id&&a.unitId==-1&&a.acted&&target!=null&&target.owner!=s.owner&&target.unitId==-1&&target.cityId>=0&&target.acted,"舌战人物引用无效");
-            require(!w.government.captive(a.id)&&!w.government.captive(target.id)&&!w.domestic.busy(a.id)&&!w.domestic.busy(target.id)&&!w.strategy.busy(a.id)&&!w.strategy.busy(target.id)&&target.role!=Strategy.Role.RULER,"舌战人物任务冲突");
-            require(target.owner<0?target.cityId==s.city:target.loyalty<=Strategy.MAX_ENEMY_LOYALTY&&city.hex.distance(w.city(target.cityId).hex)<=Strategy.RECRUIT_RANGE,"舌战登用目标超出范围");
+            require(!w.government.captive(a.id)&&!w.government.captive(target.id)&&!w.domestic.busy(a.id)&&!w.domestic.busy(target.id)&&!w.strategy.busy(a.id)&&!w.strategy.busy(target.id),"舌战人物任务冲突");
+            if(s.diplomatic())require(s.foreign>=0&&s.foreign<w.factions.length&&s.foreign!=s.owner&&target.owner==s.foreign&&w.campaign.treaty(s.owner,s.foreign)==null&&(s.duration==3||s.duration==6||s.duration==12)&&w.skills.has(a,Skill.LUNKE),"外交舌战引用无效");
+            else {require(target.role!=Strategy.Role.RULER,"不能舌战登用君主");require(target.owner<0?target.cityId==s.city:target.loyalty<=Strategy.MAX_ENEMY_LOYALTY&&city.hex.distance(w.city(target.cityId).hex)<=Strategy.RECRUIT_RANGE,"舌战登用目标超出范围");}
             for(int side=0;side<2;side++){
                 Debate.Speaker p=b.speaker(side);require(p!=null&&p.officer==(side==0?s.leftRef:s.rightRef)&&p.temper==c.profile(p.officer).temper,"论辩性格引用无效");
                 range(p.hp,0,100);range(p.anger,0,b.winner==-2?99:200);range(p.fury,0,3);range(p.stage,0,4);require(p.stage==(100-p.hp)/25,"心理台阶无效");

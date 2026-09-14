@@ -59,7 +59,7 @@ def build():
     require(set(checks)<=set(byid),'cross-check FK')
     for b in bridge:
         r=byid[b['projectId']];require(r['sourceId']==b['sourceId'] and r['name']==b['expectedName'],'stable ID bridge changed')
-    report={'target':m['target'],'revision':m['revision'],'originalInstallationVerified':False,'counts':{'officersCollected':len(officers),'officersExcluded':len(raw['rows'])-len(officers),'sites':len(sites),'skills':len(skills),'items':len(items),'scenarioMetadata':len(scenarios),'officialPlayableScenarios':0,'originalTerrainCells':0},'crossCheckedOfficerIds':sorted(checks),'uncertainRelations':[],'duplicateItemNames':{},'errors':[], 'gaps':['目标 1.1 原版安装数据哈希未知','全国逐格地形、道路、水系、岸线、开发地及连接关系未取得','关港原始坐标疑似错配，禁止投影进游戏；42城坐标仍待原版核验','全部历史/假想开局缺少完整状态；均不可选为官方剧本','特技/宝物/事件/生卒/关系未接入运行时；不覆盖 Agent 1 的状态及存档']}
+    report={'target':m['target'],'revision':m['revision'],'originalInstallationVerified':False,'counts':{'officersCollected':len(officers),'officersExcluded':len(raw['rows'])-len(officers),'sites':len(sites),'skills':len(skills),'items':len(items),'scenarioMetadata':len(scenarios),'officialPlayableScenarios':0,'originalTerrainCells':0},'crossCheckedOfficerIds':sorted(checks),'uncertainRelations':[],'duplicateItemNames':{},'errors':[], 'gaps':['目标 1.1 原版安装数据哈希未知','全国逐格地形、道路、水系、岸线、开发地及连接关系未取得','关港原始坐标疑似错配，禁止投影进游戏；42城坐标仍待原版核验','全部历史/假想开局缺少完整状态；均不可选为官方剧本','来源表的完整生卒/关系/事件数据尚未接入；运行时特技、宝物、关系及天下系统的实际覆盖另见 docs/FEATURES.md']}
     namecounts=collections.Counter(o['name'] for o in officers)
     report['sameNameOfficers']=[n for n,c in namecounts.items() if c>1]
     orows=[]

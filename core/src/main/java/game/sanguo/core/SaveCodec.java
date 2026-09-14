@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=13, MAX_BYTES=4*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=14, MAX_BYTES=4*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -52,6 +52,7 @@ public final class SaveCodec {
         FieldworksSave.write(w,d);
         EstatesSave.write(w,d);
         w.marches.write(d);
+        WorldSystemsSave.write(w,d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
@@ -80,7 +81,7 @@ public final class SaveCodec {
             w.scenarioId=d.readUTF();w.scenarioName=d.readUTF();w.dataSource=d.readUTF();w.dataHash=d.readUTF();
         }
         for(int i=0;i<factions.length;i++)w.actionPoints[i]=bounded(d.readInt(),0,60);
-        for(int q=0;q<width;q++)for(int r=0;r<height;r++)w.terrain[q][r]=World.Terrain.values()[bounded(d.readUnsignedByte(),0,version>=11?World.Terrain.values().length-1:3)];
+        for(int q=0;q<width;q++)for(int r=0;r<height;r++)w.terrain[q][r]=World.Terrain.values()[bounded(d.readUnsignedByte(),0,version>=13?7:version>=11?6:3)];
         int count=bounded(d.readInt(),1,1000);
         for(int i=0;i<count;i++) {
             int id=d.readInt();String name=d.readUTF();Hex h=hex(d);int owner=d.readInt();
@@ -111,7 +112,13 @@ public final class SaveCodec {
         if(version>=10)AbilitySave.read(w,d);else w.abilities.initialize(Objects.hash(w.scenarioId,w.startYear,w.startMonth));
         if(version>=11)FieldworksSave.read(w,d);else FieldworksSave.migrate(w);
         if(version>=12)EstatesSave.read(w,d);
-        if(version>=13)w.marches.read(d);
+        if(version>=14){w.marches.read(d);WorldSystemsSave.read(w,d);}
+        else if(version==13){
+            // Both independently shipped development branches used v13. The world marker
+            // cannot be a march count, so preserve both layouts without guessing their data.
+            d.mark(4);int marker=d.readInt();d.reset();
+            if(marker==WorldSystemsSave.MARKER)WorldSystemsSave.read(w,d);else w.marches.read(d);
+        }
         count=bounded(d.readInt(),0,40);for(int i=0;i<count;i++)w.log.add(d.readUTF());
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         validate(w);return w;
@@ -165,6 +172,7 @@ public final class SaveCodec {
         FieldworksSave.validate(w);
         EstatesSave.validate(w);
         w.marches.validate();
+        WorldSystemsSave.validate(w);
         for(String line:w.log)label(line,2000);
         if(w.winner>=0) {
             require(w.alive(w.winner),"胜者势力不存在");

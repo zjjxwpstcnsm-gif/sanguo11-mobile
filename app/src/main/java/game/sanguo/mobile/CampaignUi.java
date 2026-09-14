@@ -27,7 +27,7 @@ final class CampaignUi {
                 else if(index==3)confirm("解除协定","行动力10；双方关系 -50，其他势力关系 -10。\n解除后即可交战。",()->apply.accept(w.campaign.breakTreaty(c.id,o.id,side)));
                 else {Campaign.TreatyKind kind=index==1?Campaign.TreatyKind.CEASEFIRE:Campaign.TreatyKind.ALLIANCE;
                     choose("选择期限",Arrays.asList(3,6,12),n->n+"旬",turns->confirm(kind.label,
-                        "成功率 "+w.campaign.treatyChance(o.id,side,kind)+"%\n金1000、行动力10；拒绝也消耗费用。\n有效期 "+turns+"旬，双方玩家和电脑均不能主动攻击。\n同盟需要关系至少20。",()->apply.accept(w.campaign.negotiate(c.id,o.id,side,kind,turns))));
+                        "成功率 "+w.campaign.treatyChance(o.id,side,kind)+"%"+(w.skills.has(o,Skill.LUNKE)?"\n论客：提议被拒绝后，可与对方代表舌战争取协定。":"")+"\n金1000、行动力10；拒绝也消耗费用。\n有效期 "+turns+"旬，双方玩家和电脑均不能主动攻击。\n同盟需要关系至少20。",()->apply.accept(w.campaign.negotiate(c.id,o.id,side,kind,turns))));
                 }
             })).setNegativeButton("返回",null).show();
         });

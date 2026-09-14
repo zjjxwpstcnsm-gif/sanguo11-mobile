@@ -19,7 +19,7 @@ public final class GameSmokeRunner extends Instrumentation {
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
-            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v13 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
+            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v14 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
@@ -47,6 +47,7 @@ public final class GameSmokeRunner extends Instrumentation {
             runOnMainSync(current::recreate);waitText("区域争雄  ·  孙权军",false);waitForIdleSync();
             assertWorld(2,1,"regional-sandbox");screenshot("05-restored");
             marchFlow();
+            worldFlow();
             estatesFlow();
             fieldworkFlow();
             abilityFlow();
@@ -60,7 +61,7 @@ public final class GameSmokeRunner extends Instrumentation {
             governmentFlow();
             documentTransferFlow();
             contestFlow();
-            result.putString("stream","SMOKE PASS: v13 tap-route/preview/cancel/recreate/retarget/stop/turn/arrival; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            result.putString("stream","SMOKE PASS: v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -253,10 +254,10 @@ public final class GameSmokeRunner extends Instrumentation {
         java.lang.reflect.Field field=MainActivity.class.getDeclaredField("world");field.setAccessible(true);World[] loaded=new World[1];
         runOnMainSync(()->{try{loaded[0]=(World)field.get(current);}catch(IllegalAccessException e){throw new RuntimeException(e);}});
         require(Arrays.equals(before,SaveCodec.encode(loaded[0])),"upgraded app actually loaded all old state");
-        require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=13,"new app version installed");
+        require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=14,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
-        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==13,"upgraded writer produced v13 header");}
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==14,"upgraded writer produced v14 header");}
         screenshot("00-v09-upgrade-preserved");
     }
     private void contestFlow()throws Exception {
@@ -302,6 +303,28 @@ public final class GameSmokeRunner extends Instrumentation {
     private void openEditor(){clickNav("菜单");click("PK编辑 / 新武将",true);}
     private void mediationMenu(){locateCity("文华城");click("武将",true);click("仲介 / 结义婚姻",true);}
     private void treasureMenu(){locateCity("文华城");click("武将",true);click("宝物 / 赏赐收回",true);}
+    private void worldDistrictWizard() {
+        clickNav("菜单");click("军团与天下",true);click("军团编制",true);click("新设军团",true);click("北境城",true);click("下一步",true);click("内政优先",true);click("经略主城",true);click("预览编制",true);
+    }
+    private void worldFlow()throws Exception {
+        clickNav("菜单");click("新游戏 / 选择势力",true);click("军团与天下 ·",false);click("经略营",true);click("执行",true);
+        World w=saved();require(w.scenarioId.equals("world-drill")&&w.events.camps().size()==1&&w.events.enabled(),"new bundled world scenario is playable");
+        byte[] before=SaveCodec.encode(w);worldDistrictWizard();screenshot("70-district-preview");click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"district preview cancellation is pure");
+        worldDistrictWizard();click("执行",true);require(saved().districts.all().size()==1&&saved().districts.all().get(0).cities().contains(11),"actual district created through UI");
+        endTurn();waitForTurn(1);endTurn();waitForTurn(2);w=saved();require(w.domestic.missions.stream().anyMatch(m->m.sourceCity==11&&m.targetCity==10),"district really dispatched supply transport");
+        clickNav("菜单");click("军团与天下",true);click("军团编制",true);click("第2军团 ·",false);waitText("军团行动力：",false);screenshot("71-district-orders");click("返回",true);
+        before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("军团与天下",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"district and active cargo survive recreation");
+        clickNav("菜单");click("军团与天下",true);click("灾害与贼患",true);waitText("蝗灾",false);screenshot("72-world-events");click("返回",true);
+        w=saved();w.unit(6).hex=new Hex(7,18);w.unit(6).acted=false;w.unit(6).movementSpent=0;w.unit(6).movementBudget=-1;installFixture(w,w.unit(6).hex);tapHex(w.unit(6).hex);
+        click("讨伐贼寨",true);click("盗贼 · 兵",false);click("执行",true);require(saved().events.camps().get(0).troops<3000,"real camp damage");screenshot("73-raider-attack");
+        w=ScenarioCatalog.load("world-drill",0,41);for(int seed=0;seed<100;seed++){w.strategy.setSeed(seed);World trial=SaveCodec.decode(SaveCodec.encode(w));trial.war.plot(1,trial.unit(4).hex,War.Plot.LIGHTNING);if(trial.unit(4).troops<w.unit(4).troops)break;}
+        installFixture(w,w.unit(1).hex);tapHex(w.unit(1).hex);click("部队计略",true);click("落雷 · 气力1",true);click("对阵将 ·",false);before=SaveCodec.encode(saved());screenshot("74-lightning-preview");click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"lightning preview is pure");
+        tapHex(w.unit(1).hex);click("部队计略",true);click("落雷 · 气力1",true);click("对阵将 ·",false);click("执行",true);require(saved().unit(4).troops<6000&&saved().unit(1).energy==99&&!saved().war.fires().isEmpty(),"UI lightning consumes one and affects actual units/fire");screenshot("75-lightning-result");
+        w=ScenarioCatalog.load("world-drill",0,41);for(int seed=0;seed<100;seed++){w.strategy.setSeed(seed);World trial=SaveCodec.decode(SaveCodec.encode(w));trial.campaign.negotiate(10,1,1,Campaign.TreatyKind.CEASEFIRE,6);if(trial.contests.busy())break;}
+        installFixture(w,w.city(10).hex);locateCity("经略主城");click("外交",true);click("外交 / 协定",true);click("对阵营 ·",false);click("停战 · 金1000",true);click("使节 ·",false);click("6旬",true);click("执行",true);
+        require(saved().contests.busy()&&saved().contests.current().diplomatic(),"real negotiation opens diplomatic debate");waitText("外交 · 停战 6旬",true);screenshot("76-diplomatic-debate");before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("外交 · 停战 6旬",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"diplomatic session survives recreation");
+        click("认输并结束舌战",true);click("执行",true);require(!saved().contests.busy()&&saved().campaign.treaty(0,1)==null&&saved().city(10).gold==29000,"UI diplomatic defeat preserves fee and no treaty");
+    }
     private void estatesFlow()throws Exception {
         clickNav("菜单");click("新游戏 / 选择势力",true);click("相知寻宝 ·",false);click("文华营",true);click("执行",true);waitForIdleSync();
         require(saved().treasures.items().size()==43,"scenario loads actual item states");

@@ -36,6 +36,7 @@ public final class MarchOrders {
         if(w.contests.busy())return "请先完成当前对局";
         if(w.gameOver())return "本局已结束";
         if(u==null||u.owner!=w.active)return "请选择当前势力的部队";
+        if(!w.districts.directUnit(u.id))return "该部队由委任军团指挥";
         if(w.fieldworks.project(u.id)!=null)return "请先中止部队施工";
         return null;
     }
@@ -98,7 +99,8 @@ public final class MarchOrders {
                 for(int i=1;i<path.size();i++){
                     int step=w.army.moveCost(u,path.get(i-1),path.get(i));
                     if(spent+step>available){turns++;available=budget(u,path.get(i-1),budgets);spent=0;now=false;}
-                    spent+=step;if(now)stepsNow=i;
+                    spent+=step;if(w.advancedBattle.zone(u,path.get(i)))spent=available;
+                    if(now)stepsNow=i;
                 }
             }
         }
@@ -114,6 +116,7 @@ public final class MarchOrders {
     }
     public World.Result stop(int id){
         World.Unit u=w.unit(id);if(u==null||u.owner!=w.active||w.contests.busy())return w.fail("当前不能变更行军指令");
+        if(!w.districts.directUnit(u.id))return w.fail("该部队由委任军团指挥");
         if(u.march==null)return w.fail("部队没有行军指令");u.march=null;return w.success(w.officer(u.officerId).name+"停止自动行军");
     }
     void advanceAll(){

@@ -33,10 +33,16 @@ final class WarUi {
             new AlertDialog.Builder(a).setTitle("选择战法目标").setItems(names,(dialog,j)->{World.Unit t=targets.get(j);confirm(tactic.label,tactic.effect+"\n成功率 "+w.war.tacticChance(u.id,t.id,tactic)+"%，消耗气力"+tactic.energy+"。\n失败也消耗气力和本旬行动。",()->apply.accept(w.war.tactic(u.id,t.id,tactic)));}).setNegativeButton("取消",null).show();
         }).setNegativeButton("取消",null).show();
     }
+    void joint(World.Unit u){
+        List<World.Unit> targets=new ArrayList<>();for(World.Unit t:w.units)if(w.advancedBattle.jointError(u.id,t.id)==null)targets.add(t);
+        if(targets.isEmpty()){info("齐攻需要至少两支未行动的陆上近战部队邻接同一敌军。");return;}
+        new AlertDialog.Builder(a).setTitle("齐攻目标").setItems(targets.stream().map(t->w.officer(t.officerId).name).toArray(String[]::new),(d,n)->{World.Unit t=targets.get(n);StringBuilder text=new StringBuilder("参与：");for(World.Unit member:w.advancedBattle.jointParticipants(u.id,t.id))text.append(w.officer(member.officerId).name).append(" ");text.append("\n参与部队本旬行动均结束。敌方铁壁将齐攻化为主攻部队的普攻，其他部队保留行动。");confirm("齐攻",text.toString(),()->apply.accept(w.advancedBattle.joint(u.id,t.id)));}).setNegativeButton("取消",null).show();
+    }
     void plots(World.Unit u){
-        String[] names=new String[War.Plot.values().length];for(int i=0;i<names.length;i++){War.Plot p=War.Plot.values()[i];names[i]=p.label+" · 气力"+w.war.plotCost(u.id,p);}
+        List<War.Plot> plots=new ArrayList<>();for(War.Plot p:War.Plot.values())if(w.advancedBattle.unlocked(u,p))plots.add(p);
+        String[] names=new String[plots.size()];for(int i=0;i<names.length;i++){War.Plot p=plots.get(i);names[i]=p.label+" · 气力"+w.war.plotCost(u.id,p);}
         new AlertDialog.Builder(a).setTitle("部队计略").setItems(names,(d,i)->{
-            War.Plot plot=War.Plot.values()[i];List<Hex> targets=new ArrayList<>();
+            War.Plot plot=plots.get(i);List<Hex> targets=new ArrayList<>();
             int range=w.war.plotRange(u.id,plot);
             for(int q=Math.max(0,u.hex.q-range);q<=Math.min(w.width-1,u.hex.q+range);q++)for(int r=Math.max(0,u.hex.r-range);r<=Math.min(w.height-1,u.hex.r+range);r++){Hex h=new Hex(q,r);if(w.war.plotError(u.id,h,plot)==null)targets.add(h);}
             if(targets.isEmpty()){info("没有可施展目标。\n"+plot.effect+"\n需要计略范围内有效目标和足够气力；伏兵还需自身位于森林。");return;}

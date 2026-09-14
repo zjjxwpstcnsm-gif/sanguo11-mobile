@@ -4,7 +4,7 @@
 
 ## 当前状态
 
-**v0.14.0 点选行军开发版。** 出征后点地图目标，预览本旬/后续路线并开始逐旬自动行军；支持改道、停止、任务定位、存读续行与固定部队操作栏。深色界面、圆角按钮、选中态和部队数据卡同步更新。写v13、读v1—v12。[本轮操作与边界](docs/MARCH_V0_14.md)。**仍未达到100%原版还原**。
+**v0.15.0 行军与天下整合开发版。** 军团编制/委任进攻/指定运输、同讨/妖术/落雷/齐攻、ZOC/毒泉、灾害/贼寨、论客外交舌战与点选目标逐旬自动行军已接入。菜单→军团与天下；原创沙盘可试玩。存档写v14，兼容v1—v12及两种开发分支v13。[天下系统与工程参数](docs/WORLD_V0_14.md)、[行军操作](docs/MARCH_V0_14.md)。**仍未达到100%还原**，全国原版格点与官方完整开局仍缺可核验数据。
 
 [v0.14 APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34834950707/artifacts/10345390694)对应代码`b2eec25`；[完整CI](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34834950707)已通过核心/UI回归、构建/Lint、三种横屏实际操作和v0.9覆盖升级。447335字节APK、签名、232文件源码与199张截图文件已核对；抽查路线预览、续行和抵达界面。Lint 0错误/12警告，ARM真机尚未验证。[验收证据](docs/validation/v014/README.md) · [PR #15](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/15)。
 

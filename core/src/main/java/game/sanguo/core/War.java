@@ -29,7 +29,10 @@ public final class War {
     public enum Plot {
         FIRE("火计",10,"点燃目标格，火场持续2旬"), EXTINGUISH("灭火",10,"扑灭目标格火焰"),
         CONFUSE("扰乱",15,"令敌军跳过1次行动"), MISLEAD("伪报",15,"敌军下次行动向己城退却"),
-        CALM("镇静",10,"清除己方部队混乱或伪报"), AMBUSH("伏兵",20,"从森林伏击邻接敌军并削减气力");
+        CALM("镇静",10,"清除己方部队混乱或伪报"), AMBUSH("伏兵",10,"从森林伏击邻接敌军并削减气力"),
+        INFIGHT("同讨",20,"使目标与其相邻同势力部队交战；不能针对兵器"),
+        SORCERY("妖术",50,"需要妖术或鬼门；使目标及相邻敌军混乱或伪报"),
+        LIGHTNING("落雷",50,"需要鬼门；打击目标及相邻格并起火，会伤及己方");
         public final String label,effect;public final int energy;
         Plot(String label,int energy,String effect){this.label=label;this.energy=energy;this.effect=effect;}
     }
@@ -95,7 +98,7 @@ public final class War {
         if(!tactic&&w.skills.nullifyNormal(b,amount,rng))return 0;
         return Math.min(b.troops,amount);
     }
-    private int strike(World.Unit a,World.Unit b,double scale,boolean tactic){
+    int strike(World.Unit a,World.Unit b,double scale,boolean tactic){
         int amount=physicalDamage(a,b,scale,tactic,random());b.troops-=amount;if(b.troops==0)w.defeatUnit(b,a);w.skills.onHit(a,b,amount,tactic);if(w.campaign.hostile(a.owner,b.owner))w.government.earn(a.officerId,amount/10);return amount;
     }
     public int previewDamage(int actor,int target){World.Unit a=w.unit(actor),b=w.unit(target);return a==null||b==null?0:physicalDamage(a,b,1,false,new Random(0));}
@@ -197,22 +200,31 @@ public final class War {
     }
     public int plotChance(int actor,Hex target,Plot plot){
         World.Unit a=w.unit(actor),b=target==null?null:w.unitAt(target);if(a==null||plot==null)return 0;
+        if(w.advancedBattle.magic(plot))return w.advancedBattle.magicChance(a,b,plot);
         if(plot==Plot.CALM||plot==Plot.EXTINGUISH)return 100;
         int defense=b==null?50:w.army.intelligence(b);
         return w.skills.plotChance(a,b,plot,Math.max(10,Math.min(95,65+(w.army.intelligence(a)-defense)/2)));
     }
     public String plotError(int actor,Hex target,Plot plot){
         World.Unit a=w.unit(actor);String error=actorError(a);if(error!=null)return error;
+        if(!w.advancedBattle.unlocked(a,plot))return "部队尚未掌握该计略所需特技";
         if(plot==null||target==null||!w.inside(target)||a.hex.distance(target)>w.skills.plotRange(a,plot))return "请选择计略范围内目标";
         if(a.energy<w.skills.plotCost(a,plot))return "气力不足";World.Unit b=w.unitAt(target);
         if(plot==Plot.EXTINGUISH)return fireAt(target)==null?"目标没有火焰":null;
         if(plot==Plot.CALM)return b==null||b.owner!=a.owner||b.status==Status.NORMAL?"请选择异常状态的己方部队":null;
+        if(plot==Plot.LIGHTNING){
+            if(w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN)return "不能在崖上落雷";
+            World.City c=w.cityAt(target);Structure s=at(target);Domestic.Facility f=w.domestic.at(target);
+            int owner=b!=null?b.owner:c!=null?c.owner:s!=null?s.owner:f!=null?w.city(f.cityId).owner:a.owner;
+            return owner!=a.owner&&!w.campaign.hostile(a.owner,owner)?"不能对协定势力施展落雷":null;
+        }
         if(plot==Plot.FIRE){
             if((w.cost(target,World.Weapon.SPEAR)<0&&!(at(target)!=null&&at(target).kind==StructureKind.FIRE_SHIP))||w.cityAt(target)!=null||w.domestic.at(target)!=null)return "此地无法放火";
             Structure s=at(target);if(b!=null&&!w.campaign.hostile(a.owner,b.owner)||s!=null&&s.owner!=a.owner&&!w.campaign.hostile(a.owner,s.owner))return "不能对友军或协定势力放火";
             return fireAt(target)!=null?"目标已起火":null;
         }
         error=targetError(a,b,1,w.skills.plotRange(a,plot));if(error!=null)return error;
+        if(plot==Plot.INFIGHT&&w.advancedBattle.infightingTargets(b).isEmpty())return "需要目标邻接另一支同势力非兵器部队";
         if(plot==Plot.AMBUSH&&(w.army.water(a.hex)||a.weapon==World.Weapon.CAVALRY||Army.siegeWeapon(a.weapon)))return "当前兵科不能施展伏兵";
         if(plot==Plot.AMBUSH&&w.terrain[a.hex.q][a.hex.r]!=World.Terrain.FOREST)return "伏兵需要自身位于森林";
         if((plot==Plot.CONFUSE||plot==Plot.MISLEAD)&&b.status!=Status.NORMAL)return "目标已经处于异常状态";return null;
@@ -235,6 +247,7 @@ public final class War {
     }
     /** A reflected/chained plot pays no second cost and cannot recurse into another reflection/chain. */
     private boolean resolvePlot(World.Unit a,World.Unit b,Hex target,Plot plot,boolean reflection){
+        if(w.advancedBattle.magic(plot))return w.advancedBattle.cast(a,b,target,plot,reflection);
         int chance=plotChance(a.id,target,plot);
         boolean success=chance==100||chance>0&&w.strategy.nextInt(100)<chance;
         if(!success){
@@ -244,6 +257,7 @@ public final class War {
         }
         boolean critical=w.skills.plotCritical(a,b,plot);
         switch(plot){
+            case INFIGHT:w.advancedBattle.infight(a,b,critical);break;
             case FIRE:ignite(target,a);break;
             case EXTINGUISH:
                 fires.removeIf(f->f.hex.equals(target)||critical&&f.hex.distance(target)==1);break;
@@ -312,6 +326,11 @@ public final class War {
     }
     boolean aiAction(World.Unit u,World.Unit enemy){
         if(u.acted||u.status!=Status.NORMAL)return false;
+        for(Plot p:new Plot[]{Plot.LIGHTNING,Plot.SORCERY,Plot.INFIGHT})if((p!=Plot.INFIGHT||w.skills.has(u,Skill.GUIJI))&&plotError(u.id,enemy.hex,p)==null&&plotChance(u.id,enemy.hex,p)>=40){
+            boolean friendlyFire=false;if(p==Plot.LIGHTNING)for(World.Unit own:w.units)if(own.owner==u.owner&&own.hex.distance(enemy.hex)<=1)friendlyFire=true;
+            if(!friendlyFire)return plot(u.id,enemy.hex,p).ok;
+        }
+        if(w.skills.has(u,Skill.JIJIAO)&&w.advancedBattle.jointError(u.id,enemy.id)==null)return w.advancedBattle.joint(u.id,enemy.id).ok;
         for(Army.Tactic tactic:w.army.tactics(u))if(w.army.tacticError(u.id,enemy.hex,tactic)==null)return w.army.tactic(u.id,enemy.hex,tactic).ok;
         for(Tactic tactic:Tactic.values())if(tacticError(u.id,enemy.id,tactic)==null)return tactic(u.id,enemy.id,tactic).ok;
         return false;

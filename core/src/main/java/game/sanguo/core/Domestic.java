@@ -215,7 +215,13 @@ public final class Domestic {
             }
             List<Hex> path=route(m.hex,c.hex,m.owner,m.sea);if(path==null)continue;
             int budget=travelSpeed(m);
-            for(Hex h:path){int cost=travelCost(h,m.owner,m.sea);World.Unit blocker=w.unitAt(h);if(cost>budget||m.transport&&blocker!=null&&w.campaign.hostile(m.owner,blocker.owner))break;budget-=cost;m.hex=h;}
+            for(Hex h:path){int cost=travelCost(h,m.owner,m.sea);World.Unit blocker=w.unitAt(h);if(cost>budget||m.transport&&blocker!=null&&w.campaign.hostile(m.owner,blocker.owner))break;budget-=cost;m.hex=h;
+                if(m.transport){
+                    if(w.terrain[h.q][h.r]==World.Terrain.POISON&&!w.skills.has(w.officer(m.officerId),Skill.JIEDU))m.troops=Math.max(0,m.troops-Math.max(1,m.troops/20));
+                    World.Unit transport=new World.Unit(-1,m.owner,m.officerId,World.Weapon.SWORD,h,m.troops,m.food);
+                    if(w.advancedBattle.zone(transport,h))break;
+                }
+            }
             if(m.hex.equals(c.hex)&&fits(m,c)){
                 c.gold+=m.gold;c.food+=m.food;c.troops+=m.troops;for(int i=0;i<m.equipment.length;i++)c.equipment[i]+=m.equipment[i];
                 World.Officer o=w.officer(m.officerId);o.cityId=c.id;o.acted=true;missions.remove(m);w.note(o.name+"抵达"+c.name+(m.transport?"，资源已入库":""));

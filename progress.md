@@ -114,3 +114,8 @@ PR #4、#5 已核验并合并到 main `e66656e3`。PR #6 增加三将编队、9�
 - [安装证据](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34755189627/artifacts/10316931136)，10张真实界面截图及SMOKE PASS日志。
 - [精确构建源码](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34755189627/artifacts/10317021550)，已逐字节核对26份运行时代码/测试/构建文件与本地一致。
 - 后续若仅更新文档，不会改变上述已验证APK对应的代码提交。
+
+
+## v0.15 行军与天下整合
+
+整合 PR #15 自动行军与军团、灾害、贼寨、特殊战斗、外交舌战。使用存档v14避免两个v13布局冲突，并加入两套真实v13迁移样本。ZOC路径预算和委任部队控制权交叉验证。精细人物建模暂缓；全国原版格点、官方完整开局及精确公式仍有缺口。

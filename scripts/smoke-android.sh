@@ -3,8 +3,8 @@ set -euo pipefail
 mkdir -p app/build/smoke
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
-# Landscape 1080p profiles. One emulator, three real display configurations.
-for display in 1080x1920 1080x2340 1080x2400; do
+# Landscape profiles run in separate CI matrix emulators; local default still runs all three.
+for display in ${SMOKE_DISPLAYS:-1080x1920 1080x2340 1080x2400}; do
   adb shell wm size "$display"
   adb shell wm density 420
   adb shell pm clear game.sanguo.mobile.dev

@@ -132,7 +132,7 @@ public final class ContestTest {
         }
         for(int version=1;version<=8;version++){
             try(InputStream in=ContestTest.class.getResourceAsStream("/legacy-v"+version+".sg11.b64")){
-                if(in==null)continue;World w=SaveCodec.decode(Base64.getMimeDecoder().decode(in.readAllBytes()));check(!w.contests.busy()&&w.contests.profiles.isEmpty(),"old save gains no invented profiles");check(ByteBuffer.wrap(bytes(w),4,4).getInt()==13,"old save writes v13");
+                if(in==null)continue;World w=SaveCodec.decode(Base64.getMimeDecoder().decode(in.readAllBytes()));check(!w.contests.busy()&&w.contests.profiles.isEmpty(),"old save gains no invented profiles");check(ByteBuffer.wrap(bytes(w),4,4).getInt()==14,"old save writes v14");
             }
         }
         World w=debate(Debate.Temper.BOLD);w.contests.current().debate().left.hand.add(talk(Debate.Talk.IGNORE));try{bytes(w);throw new AssertionError("oversized hand accepted");}catch(IOException expected){checks++;}

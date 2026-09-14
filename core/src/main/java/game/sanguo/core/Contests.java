@@ -22,10 +22,13 @@ public final class Contests {
         final int id,owner,turn,leftRef,rightRef,city;
         int revision;
         Duel duel;Debate debate;
+        Campaign.TreatyKind treaty;int foreign=-1,duration;
         Session(int id,int owner,int turn,int left,int right,int city){this.id=id;this.owner=owner;this.turn=turn;leftRef=left;rightRef=right;this.city=city;}
         public int id(){return id;} public int revision(){return revision;}
         public Duel duel(){return duel;} public Debate debate(){return debate;}
         public boolean isDuel(){return duel!=null;}
+        public boolean diplomatic(){return treaty!=null;}
+        public String purpose(){return treaty==null?"登用":"外交 · "+treaty.label+" "+duration+"旬";}
     }
     private final World w;
     final SortedMap<Integer,Profile> profiles=new TreeMap<>();
@@ -84,6 +87,17 @@ public final class Contests {
         session=new Session(nextId++,w.active,w.turn,actor,target,city);session.debate=new Debate(w,actor,target);
         return w.success(w.officer(actor).name+"以舌战说服"+w.officer(target).name+"；金100、行动力10已消耗");
     }
+    World.Officer foreignSpeaker(int side){
+        return w.officers.stream().filter(o->o.owner==side&&o.cityId>=0&&o.unitId==-1&&!o.acted&&!w.government.captive(o.id)&&!w.domestic.busy(o.id)&&!w.strategy.busy(o.id))
+            .min(Comparator.comparingInt((World.Officer o)->-o.intelligence).thenComparingInt(o->o.id)).orElse(null);
+    }
+    World.Result diplomaticDebate(int city,int actor,int foreign,Campaign.TreatyKind treaty,int duration){
+        World.Officer target=foreignSpeaker(foreign);
+        if(target==null||nextId>=10000000)return w.success("出使被拒绝，对方没有可进行舌战的代表");
+        target.acted=true;session=new Session(nextId++,w.active,w.turn,actor,target.id,city);
+        session.treaty=treaty;session.foreign=foreign;session.duration=duration;session.debate=new Debate(w,actor,target.id);
+        return w.success("论客发动：与"+target.name+"舌战议定"+duration+"旬"+treaty.label+"；出使费用已支付");
+    }
     private String currentError(int id,int revision,boolean duel){
         if(session==null||session.id!=id||session.revision!=revision)return "对局已变化，请使用当前指令";
         if(session.owner!=w.active||session.turn!=w.turn||session.isDuel()!=duel)return "对局状态不匹配";
@@ -115,6 +129,11 @@ public final class Contests {
         Debate d=session.debate;if(d.winner==-2)return w.fail("请先完成舌战");
         World.Officer actor=w.officer(session.leftRef),target=w.officer(session.rightRef);
         String text;
+        if(session.diplomatic()){
+            if(d.winner==0){w.campaign.concludeTreaty(session.owner,session.foreign,session.treaty,session.duration);w.government.earn(actor.id,200);text=actor.name+"舌战获胜，"+session.duration+"旬"+session.treaty.label+"成立";}
+            else text="外交舌战"+(d.winner==1?"落败":"平手")+"，协定未成立，出使费用不返还";
+            session=null;lastResult=text;return w.success(text);
+        }
         if(d.winner==0){
             w.strategy.releaseGovernor(target.id);w.government.allegianceChanged(target.id);
             target.owner=session.owner;target.cityId=session.city;target.role=Strategy.Role.OFFICER;

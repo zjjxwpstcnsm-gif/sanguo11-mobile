@@ -124,8 +124,12 @@ public final class Campaign {
         if(treaty(c.owner,side)!=null)return w.fail("双方已有有效协定");
         if(kind==TreatyKind.ALLIANCE&&w.strategy.factionRelation(c.owner,side)<20)return w.fail("同盟需要双方关系至少20");
         int chance=treatyChance(officer,side,kind);w.spend(c,o,1000);boolean accepted=w.strategy.nextInt(100)<chance;
-        if(accepted){treaties.removeIf(t->t.a==Math.min(c.owner,side)&&t.b==Math.max(c.owner,side));treaties.add(new Treaty(c.owner,side,kind,w.turn+turns));relation(c.owner,side,10);earn(c.owner,50);}
+        if(accepted)concludeTreaty(c.owner,side,kind,turns);
+        else if(w.active==w.player&&w.skills.has(o,Skill.LUNKE))return w.contests.diplomaticDebate(city,officer,side,kind,turns);
         return w.success(w.faction(side)+(accepted?"接受"+turns+"旬"+kind.label:"拒绝"+kind.label+"提议，出使费用已消耗"));
+    }
+    void concludeTreaty(int owner,int side,TreatyKind kind,int turns){
+        treaties.removeIf(t->t.a==Math.min(owner,side)&&t.b==Math.max(owner,side));treaties.add(new Treaty(owner,side,kind,w.turn+turns));relation(owner,side,10);earn(owner,50);w.districts.cleanup();
     }
     public World.Result breakTreaty(int city,int officer,int side){
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=foreignError(c,o,side,0);if(error!=null)return w.fail(error);
