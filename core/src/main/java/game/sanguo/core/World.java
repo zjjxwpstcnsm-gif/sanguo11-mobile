@@ -78,6 +78,7 @@ public final class World {
     public final Government government=new Government(this);
     public final Supply supply=new Supply(this);
     public final Contests contests=new Contests(this);
+    public final AbilityResearch abilities;
     public final String[] factions;
     public final int[] actionPoints;
     public String scenarioId="m0-skirmish", scenarioName="基础演练", dataSource="engineering-original", dataHash="";
@@ -88,7 +89,7 @@ public final class World {
     }
     public World(int width,int height,String... factions) {
         if(width<1||width>128||height<1||height>128||factions.length<2||factions.length>32)throw new IllegalArgumentException("地图或势力数量无效");
-        this.factions=factions.clone();actionPoints=new int[factions.length];Arrays.fill(actionPoints,60);
+        this.factions=factions.clone();abilities=new AbilityResearch(this);actionPoints=new int[factions.length];Arrays.fill(actionPoints,60);
         this.width=width;this.height=height;terrain=new Terrain[width][height];
         for (Terrain[] row:terrain) Arrays.fill(row,Terrain.PLAIN);
     }
@@ -108,7 +109,7 @@ public final class World {
     public City cityAt(Hex h) { for(City c:cities) if(c.hex.equals(h)) return c;return null; }
     public Unit unitAt(Hex h) { for(Unit u:units) if(u.hex.equals(h)) return u;return null; }
     Result fail(String text) { return new Result(false,text); }
-    Result success(String text) { note(text);return new Result(true,text); }
+    Result success(String text) { abilities.cleanup();note(text);return new Result(true,text); }
     public void note(String text) { log.add(text);while(log.size()>40)log.remove(0); }
     private boolean available(Officer o,City c) { return !contests.busy()&&o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
     public List<Officer> idle(City c) {
@@ -217,10 +218,9 @@ public final class World {
             reset(active);runAi();checkVictory();
             if(gameOver()){active=player;return success(winner==player?"战场胜利":"我方势力已覆灭");}
         }
-        turn++;contests.tick();domestic.tick();campaign.tick();army.tick();strategy.tick();war.tick();government.tick();
+        turn++;contests.tick();domestic.tick();campaign.tick();army.tick();abilities.tick();strategy.tick();war.tick();government.tick();
         for(Unit u:new ArrayList<>(units)) {
             int consumption=Math.max(1,(u.troops+19)/20);
-            if(campaign.has(u.owner,Campaign.Tech.LOGISTICS))consumption=Math.max(1,consumption*4/5);
             if(u.food<consumption){u.food=0;u.troops-=Math.max(1,u.troops/10);note(officer(u.officerId).name+"部队断粮，兵力减少");}
             else u.food-=consumption;
             if(u.troops<=0)removeUnit(u);
@@ -229,7 +229,7 @@ public final class World {
             int consumption=(c.troops+49)/50;
             if(c.food<consumption){c.food=0;c.troops=Math.max(0,c.troops-Math.max(1,c.troops/20));}
             else c.food-=consumption;
-            if(turn%3==0){c.gold=Math.min(1000000,c.gold+domestic.monthlyGold(c.id));c.food=Math.min(1000000,c.food+domestic.monthlyFood(c.id));}
+            c.gold=Math.min(1000000,c.gold+domestic.goldIncome(c.id,turn));c.food=Math.min(1000000,c.food+domestic.foodIncome(c.id,turn));
         }
         active=player;reset(player);checkVictory();return success(date()+" · 行动力恢复");
     }
@@ -243,6 +243,7 @@ public final class World {
         government.runAi();
         strategy.runAi(true);
         campaign.runAi();
+        abilities.runAi();
         strategy.runAi(false);
         for(City c:cities) if(c.owner==active) {
             List<Officer> available=idle(c);
@@ -314,6 +315,6 @@ public final class World {
     public void checkVictory() {
         int count=0,last=-1;
         for(int side=0;side<factions.length;side++)if(alive(side)){count++;last=side;}
-        winner=count==1?last:-1;domestic.cleanupDefeated();
+        winner=count==1?last:-1;domestic.cleanupDefeated();abilities.cleanup();
     }
 }

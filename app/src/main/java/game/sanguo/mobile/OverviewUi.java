@@ -81,6 +81,7 @@ final class OverviewUi {
             if(t.facility!=null) {dialog.setPositiveButton("定位城池",(d,n)->a.selectAndFocus(w.city(t.facility.cityId).hex));dialog.setNeutralButton("管理设施",(d,n)->a.domesticUi().facility(t.facility));}
             else if(t.production!=null){dialog.setPositiveButton("制造详情",(d,n)->new ArmyUi(a,w,a::applyResult,a::selectAndFocus).production(t.production));}
             else if(t.project!=null){dialog.setPositiveButton("定位研究城市",(d,n)->a.selectAndFocus(w.city(t.project.cityId).hex));}
+            else if(t.abilityResearch!=null||t.abilityTraining!=null){dialog.setPositiveButton("定位城市",(d,n)->a.selectAndFocus(t.location));dialog.setNeutralButton("PK进度",(d,n)->new AbilityUi(a,w,a::applyResult).progress(w.city(t.abilityResearch!=null?t.abilityResearch.cityId:t.abilityTraining.cityId)));}
             else {dialog.setPositiveButton("定位目的地",(d,n)->a.selectAndFocus(w.city(t.mission.targetCity).hex));dialog.setNeutralButton("起点 / 改道",(d,n)->new AlertDialog.Builder(a).setTitle("任务操作").setItems(new String[]{"定位起点","定位当前位置","改道 / 返回"},(x,i)->{if(i==0)a.selectAndFocus(w.city(t.mission.sourceCity).hex);else if(i==1)a.selectAndFocus(t.location);else a.domesticUi().mission(t.mission);}).show());}
             dialog.show();
         },taskEmpty());return host;

@@ -175,7 +175,7 @@ public final class StrategyTest {
         check(w.city(10).governorId==1&&w.officer(1).role==Strategy.Role.GOVERNOR&&w.officer(0).acted&&w.officer(1).acted,"appointment locks executor and appointee");
         check(w.domestic.monthlyGold(10)==960&&w.domestic.monthlyFood(10)==6000,"governor politics changes actual yields");
         int gold=w.city(10).gold,food=w.city(10).food;next(w);next(w);next(w);
-        check(w.city(10).gold==gold+960&&w.city(10).food==food-720+6000,"monthly settlement uses governor bonus, with upkeep");
+        check(w.city(10).gold==gold+960&&w.city(10).food==food-720,"monthly gold uses governor bonus; grain harvest waits until season");
         ok(w.domestic.transfer(10,20,1));check(w.city(10).governorId==-1&&w.officer(1).role==Strategy.Role.OFFICER&&w.domestic.monthlyGold(10)==800,"departing governor immediately loses city bonus");
         World replace=fixture();ok(replace.strategy.appointGovernor(10,0,1));next(replace);ok(replace.strategy.appointGovernor(10,0,2));
         check(replace.officer(1).role==Strategy.Role.OFFICER&&replace.city(10).governorId==2,"replacement removes old title");next(replace);
@@ -265,7 +265,7 @@ public final class StrategyTest {
         ok(w.strategy.beginAssignment(10,4,"筹备",3));ok(w.domestic.build(10,5,Domestic.Kind.MARKET,w.domestic.buildSites(10).get(0)));
         ok(w.domestic.transport(10,20,6,100,500,100,new int[]{100,0,0,0}));ok(w.strategy.search(10,7));
         w.city(10).recruitReserve=4321;w.city(10).morale=33;
-        byte[] bytes=SaveCodec.encode(w);check(ByteBuffer.wrap(bytes,4,4).getInt()==9,"writes save v9");World restored=SaveCodec.decode(bytes);
+        byte[] bytes=SaveCodec.encode(w);check(ByteBuffer.wrap(bytes,4,4).getInt()==10,"writes save v9");World restored=SaveCodec.decode(bytes);
         check(Arrays.equals(bytes,SaveCodec.encode(restored)),"all v4 state has exact binary round-trip");
         check(restored.city(10).governorId==1&&restored.city(10).recruitReserve==4321&&restored.city(10).morale==33,"governor reserve readiness persisted");
         check(restored.officer(3).lastRewardTurn==0&&restored.officer(4).otherTaskTurns==3,"reward guard and task persisted");
@@ -302,7 +302,7 @@ public final class StrategyTest {
                 check(w.strategy.officerState(1000).activity==Strategy.Activity.CONSTRUCTION&&w.strategy.officerState(1001).activity==Strategy.Activity.TRANSPORT,"v3 locks reconstructed from actual records");
                 Domestic.Mission m=w.domestic.missions.get(0);check(m.gold==100&&m.food==500&&m.troops==100&&m.equipment[0]==100,"v3 cargo preserved exactly");
             }
-            byte[] upgraded=SaveCodec.encode(w);check(ByteBuffer.wrap(upgraded,4,4).getInt()==9,"legacy resaves as v9");World paired=SaveCodec.decode(upgraded);
+            byte[] upgraded=SaveCodec.encode(w);check(ByteBuffer.wrap(upgraded,4,4).getInt()==10,"legacy resaves as v9");World paired=SaveCodec.decode(upgraded);
             for(int i=0;i<5&&!w.gameOver();i++){next(w);next(paired);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(paired)),"legacy migration deterministic continuation v"+v);}
         }
     }

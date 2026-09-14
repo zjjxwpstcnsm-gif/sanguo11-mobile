@@ -1,0 +1,15 @@
+PASS: 187 assertions covering hex paths, resources, combat, turns, saves, and deterministic simulation.
+PASS: 143 content/runtime integration assertions.
+PASS: 2638 content assertions; cold catalog 68.269 ms; sourced opening combat at turn 4.
+PASS: 330 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
+PASS: 828 domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.
+PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
+PASS: 50x50 benchmark, 100 A* queries: p50=1.242ms p95=2.021ms max=4.216ms total=133.215ms maxExpanded=2125/2500; 100 reachable queries=6.720ms
+PASS: 7955 strategy/officer assertions covering locks, seeded search/hiring, loyalty, offices, economy, finite reserves, readiness, AI and save v1-v4.
+PASS: 59 campaign cases, 578 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
+PASS: 45 army cases, 465 assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.
+PASS: 481 rules-parity assertions: move previews/replays/budget, skill priorities/holders/chains, actual damage/production, real v6 migration and deterministic campaigns.
+PASS: 580 governance assertions: rank caps/payroll, captive crew and immunity, recruit/release/ransom/rescue, delegation, real v7 migration and long campaigns.
+PASS: 43 supply assertions: troop/food conservation, no duplicate delivery, raid/capture/treaty, amphibious routes and save restoration.
+PASS: 2397 contest assertions: official duel/debate structures, guard/gear/fury/counters, campaign settlement, locks, stale inputs, real v8 migration and save-per-round replay.
+PASS: 1064 PK assertions: full ordinary graph, hidden stability, real research/training/limits/cancellation/capture, v9 migration and income schedule.

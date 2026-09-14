@@ -19,7 +19,7 @@ public final class GameSmokeRunner extends Instrumentation {
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
-            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v9 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
+            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v10 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
@@ -56,6 +56,7 @@ public final class GameSmokeRunner extends Instrumentation {
             governmentFlow();
             documentTransferFlow();
             contestFlow();
+            abilityFlow();
             result.putString("stream","SMOKE PASS: integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
@@ -157,11 +158,8 @@ public final class GameSmokeRunner extends Instrumentation {
         byte[] before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"cancel trade preserves exact save");
         locateCity("柴桑");click("内政",true);click("商人 / 粮食买卖",true);click("买粮 ·",false);click("1000粮",true);click("孙权 ·",false);click("执行",true);
         World w=saved();require(w.city(300).food==openingFood+1000&&w.city(300).gold==openingGold-quote&&w.campaign.traded(300)==1000,"UI trade executes quoted amount once");screenshot("18-merchant");
-        locateCity("柴桑");click("技巧 / 培养",true);click("能力 / 适性培养",true);click("周瑜 ·",false);click("枪兵适性 · 当前B",true);click("执行",true);
-        w=saved();require(w.officer(3001).otherTaskTurns==3&&w.campaign.projects().size()==1&&w.city(300).gold==openingGold-quote-600,"study is real locked task");
-        clickNav("任务");click("筛选 · 全部任务",true);click("研究 / 培养",true);waitText("培养枪兵适性 · 周瑜",true);screenshot("19-study-task");
-        before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("培养枪兵适性 · 周瑜",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"new task and filter survive Activity recreation");
-        for(int i=1;i<=3;i++){endTurn();waitForTurn(i);}w=saved();require(w.officer(3001).aptitude[0]==2&&w.campaign.projects().stream().noneMatch(p->p.officerId==3001),"UI turn loop finishes aptitude study exactly once");
+        locateCity("柴桑");click("技巧 / 培养",true);click("能力 / 适性培养",true);click("基础能力",true);waitText("没有符合条件的选项。",true);click("返回",true);
+        require(saved().abilities.training().isEmpty(),"training requires actual completed research");
         locateCity("柴桑");click("外交 / 协定",true);click("曹操军 ·",false);click("亲善 ·",false);click("周瑜 ·",false);click("执行",true);
         w=saved();require(w.strategy.factionRelation(2,1)>0,"UI envoy affects actual relation");screenshot("20-diplomacy");
 
@@ -231,10 +229,10 @@ public final class GameSmokeRunner extends Instrumentation {
         java.lang.reflect.Field field=MainActivity.class.getDeclaredField("world");field.setAccessible(true);World[] loaded=new World[1];
         runOnMainSync(()->{try{loaded[0]=(World)field.get(current);}catch(IllegalAccessException e){throw new RuntimeException(e);}});
         require(Arrays.equals(before,SaveCodec.encode(loaded[0])),"upgraded app actually loaded all old state");
-        require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=10,"new app version installed");
+        require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=11,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
-        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==9,"upgraded writer produced v9 header");}
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==10,"upgraded writer produced v10 header");}
         screenshot("00-v09-upgrade-preserved");
     }
     private void contestFlow()throws Exception {
@@ -276,6 +274,32 @@ public final class GameSmokeRunner extends Instrumentation {
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("舌战获胜",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"pending victory remains uncommitted after recreation");screenshot("46-debate-victory");
         click("留情 · 技巧+50",true);require(!saved().contests.busy()&&saved().officer(6).owner==0&&saved().campaign.points(0)==50,"native mercy choice recruits officer and awards points once");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("文武对决",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"settled debate does not pay rewards twice");screenshot("47-contest-settled");
+    }
+    private void abilityFlow()throws Exception {
+        World w=new World(20,14,"学营","守营");w.scenarioId="pk-smoke";w.scenarioName="PK培养演练";
+        w.cities.add(new World.City(10,"学宫",new Hex(2,2),0));w.cities.add(new World.City(20,"守城",new Hex(17,11),1));
+        for(World.City c:w.cities){c.gold=30000;c.food=200000;c.troops=0;}
+        w.officers.add(new World.Officer(0,"习武生",0,10,50,50,50,50,50));w.officer(0).role=Strategy.Role.RULER;w.officer(0).loyalty=100;
+        w.officers.add(new World.Officer(1,"研习生",0,10,50,50,50,50,50));
+        installFixture(w,w.city(10).hex);locateCity("学宫");click("研究",true);click("PK能力研究",true);click("防御",true);click("统率+5低 · 可研究",true);
+        byte[] before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"cancel ability research changes no RNG/cost/hidden selection");
+        locateCity("学宫");click("研究",true);click("PK能力研究",true);click("防御",true);click("统率+5低 · 可研究",true);click("执行",true);
+        require(saved().abilities.research(0).remaining==9&&saved().city(10).gold==29700&&saved().actionPoints[0]==40,"UI starts real nine-turn research");
+        clickNav("任务");click("筛选 · 全部任务",true);click("研究 / 培养",true);waitText("PK研究统率+5低",true);screenshot("48-pk-research");
+        before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("PK研究统率+5低",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"research survives recreation");
+        for(int turn=1;turn<=9;turn++){endTurn();waitForTurn(turn);}require(saved().abilities.learned(0,"lead.low"),"full UI turn loop unlocks research");
+        locateCity("学宫");click("研究",true);click("能力 / 适性培养",true);click("基础能力",true);click("统率+5低 · 剩5次",true);click("习武生 · 50",true);click("执行",true);
+        clickNav("任务");waitText("PK培养统率+5低 · 习武生",true);screenshot("49-pk-training");
+        before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("PK培养统率+5低 · 习武生",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"training survives recreation");
+        for(int turn=10;turn<=12;turn++){endTurn();waitForTurn(turn);}require(saved().officer(0).leadership==55&&saved().abilities.remaining(0,"lead.low")==4,"real stat change and finite use");
+        locateCity("学宫");click("研究",true);click("PK能力研究",true);click("防御",true);click("不屈 · 可研究",true);click("执行",true);
+        for(int turn=13;turn<=21;turn++){endTurn();waitForTurn(turn);}
+        w=saved();w.officer(1).skillId=Skill.YANLI.id;installFixture(w,w.city(10).hex);
+        locateCity("学宫");click("研究",true);click("能力 / 适性培养",true);click("特技",true);click("不屈 · 剩3次",true);click("研习生 · 眼力",true);waitText("原特技「眼力」将被「不屈」覆盖。",false);
+        before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"cancel skill overwrite preserves original skill and uses");
+        locateCity("学宫");click("研究",true);click("能力 / 适性培养",true);click("特技",true);click("不屈 · 剩3次",true);click("研习生 · 眼力",true);click("执行",true);
+        for(int turn=22;turn<=24;turn++){endTurn();waitForTurn(turn);}require(saved().officer(1).skillId.equals(Skill.BUQU.id)&&saved().abilities.remaining(0,"buqu")==2,"learned skill overwrites actual officer after three turns");
+        locateCity("学宫");click("研究",true);click("PK研究与培养进度",true);waitText("不屈 · 剩2次",false);screenshot("50-pk-completed");click("返回",true);
     }
     private void installFixture(World w,Hex focus)throws Exception {
         SaveCodec.validate(w);java.lang.reflect.Field field=MainActivity.class.getDeclaredField("world");field.setAccessible(true);

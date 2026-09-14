@@ -99,6 +99,7 @@ public final class ScenarioData {
             if(!p.isEmpty())throw new IOException("未知剧本字段："+p.keySet().iterator().next());
             if(reference!=null){ContentCatalog catalog=ContentCatalog.get();catalog.validateOpening(w);ContentRuntime.initializeOpening(w,catalog);}
             w.strategy.initializeOffices();
+            w.abilities.initialize(Objects.hash(w.scenarioId,w.startYear,w.startMonth));
             SaveCodec.validate(w);validateOpening(w);
             w.note(name+(reference==null?"：原创测试布局与数值，非原版历史剧本":"：公开资料能力/适性，原创区域地图与开局；非官方历史剧本"));
             w.note("当前执掌"+w.faction(player)+" · 点选己方城池开始经营");

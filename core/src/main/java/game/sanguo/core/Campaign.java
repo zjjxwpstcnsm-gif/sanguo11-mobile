@@ -9,17 +9,17 @@ public final class Campaign {
     }
     public enum Tech {
         SPEAR_DRILL("枪兵锻炼",300,1000,3,null,"枪兵战法伤害 +10%"),
-        HALBERD_DRILL("戟兵锻炼",300,1000,3,null,"戟兵受到伤害 -10%"),
+        HALBERD_DRILL("戟兵锻炼",300,1000,3,null,"戟兵普通攻击与战法伤害 +10%"),
         CROSSBOW_DRILL("弩兵锻炼",300,1000,3,null,"弩兵战法伤害 +10%"),
         CAVALRY_DRILL("骑兵锻炼",300,1000,3,null,"骑兵战法伤害 +10%"),
         SUPPLY_RAID("兵粮袭击",500,1500,4,SPEAR_DRILL,"枪兵成功战法夺取目标最多1000粮"),
-        SHIELD("矢盾",500,1500,4,HALBERD_DRILL,"戟兵受到弩兵伤害额外 -20%"),
+        SHIELD("矢盾",500,1500,4,HALBERD_DRILL,"戟兵30%概率挡住间接普通攻击"),
         STRONG_BOW("强弩",700,2000,5,CROSSBOW_DRILL,"弩兵普通攻击与战法射程 +1"),
         HORSE_BREEDING("良马产出",500,1500,4,CAVALRY_DRILL,"骑兵每旬移动 +1"),
         ENGINEERING("工兵育成",400,1200,3,null,"城防修复效果 +50%"),
         WALLS("城壁强化",600,1800,4,ENGINEERING,"攻城受到的城防伤害 -20%"),
-        FIRE_MASTERY("神火计",600,1800,4,null,"火计与火场伤害 +30%"),
-        LOGISTICS("熟练兵",400,1200,3,null,"野战部队每旬耗粮 -20%"),
+        FIRE_MASTERY("神火计",600,1800,4,null,"火计基础范围扩至3格"),
+        LOGISTICS("熟练兵",400,1200,3,null,"部队与据点气力上限提高至120"),
         WOODEN_BEAST("开发木兽",800,2000,4,ENGINEERING,"工房可制造木兽"),
         CATAPULT("开发投石",1000,2500,5,ENGINEERING,"工房可制造投石"),
         WARSHIP("开发斗舰",800,2000,4,ENGINEERING,"造船厂可制造斗舰");
@@ -47,6 +47,7 @@ public final class Campaign {
     final Map<Integer,Integer> points=new TreeMap<>(),traded=new TreeMap<>();
     Campaign(World w){this.w=w;}
     public List<Project> projects(){return Collections.unmodifiableList(projects);}
+    public int energyCap(int side){return has(side,Tech.LOGISTICS)?120:100;}
     public int points(int side){return points.getOrDefault(side,0);}
     void earn(int side,int amount){if(side>=0&&side<w.factions.length&&amount>0)points.put(side,Math.min(100000,points(side)+amount));}
     public boolean has(int side,Tech tech){return learned.getOrDefault(side,EnumSet.noneOf(Tech.class)).contains(tech);}
@@ -140,11 +141,13 @@ public final class Campaign {
         switch(study){case LEADERSHIP:return o.leadership;case WAR:return o.war;case INTELLIGENCE:return o.intelligence;case POLITICS:return o.politics;case CHARM:return o.charm;default:return o.aptitude[study.index-5];}
     }
     public World.Result study(int city,int officer,Study study){
-        World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,600);if(error!=null)return w.fail(error);
-        if(study==null||studyValue(officer,study)>=(study.index<5?100:3))return w.fail("培养项目无效或已达上限");
-        Project p=new Project(c.owner,city,officer,null,study);w.spend(c,o,600);projects.add(p);o.otherTask=p.label();o.otherTaskTurns=3;
-        return w.success(o.name+"开始"+p.label()+"，需要3旬");
+        if(study==null)return w.fail("培养项目无效");
+        for(AbilityResearch.Node n:w.abilities.visible(w.active))if(n.category!=AbilityResearch.Category.SKILL&&
+            (n.category==AbilityResearch.Category.STAT?n.index:n.index+5)==study.index&&w.abilities.trainingError(city,officer,n.id,false)==null)
+            return w.abilities.train(city,officer,n.id,false);
+        return w.fail("请先完成对应PK能力研究，并检查能力上限、培养次数和同类任务");
     }
+
     public World.Result repair(int city,int officer){
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,300);if(error!=null)return w.fail(error);
         if(c.defense>=3000)return w.fail("城防已达到修复上限3000");

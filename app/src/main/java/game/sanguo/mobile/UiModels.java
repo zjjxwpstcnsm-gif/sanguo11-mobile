@@ -77,6 +77,8 @@ final class UiModels {
         final long id; final String title, detail; final Hex location; final Domestic.Facility facility; final Domestic.Mission mission;
         Campaign.Project project;
         Army.Production production;
+        AbilityResearch.Research abilityResearch;
+        AbilityResearch.Training abilityTraining;
         Task(long id, String title, String detail, Hex location, Domestic.Facility f, Domestic.Mission m) {
             this.id=id;this.title=title;this.detail=detail;this.location=location;facility=f;mission=m;
         }
@@ -101,6 +103,11 @@ final class UiModels {
             Task task=new Task(20000000L+p.officerId,p.label()+" · "+w.officer(p.officerId).name,
                 w.city(p.cityId).name+" · 剩余 "+w.officer(p.officerId).otherTaskTurns+" 旬\n"+(p.tech!=null?p.tech.effect:"培养期间武将不能执行其他命令"),w.city(p.cityId).hex,null,null);
             task.project=p;result.add(task);
+        }
+        if(type==0||type==4){
+            AbilityResearch.Research r=w.abilities.research(w.player);
+            if(r!=null){Task t=new Task(40000000L+w.player,"PK研究"+AbilityResearch.node(r.nodeId).label,w.city(r.cityId).name+" · 剩余 "+r.remaining+" 旬",w.city(r.cityId).hex,null,null);t.abilityResearch=r;result.add(t);}
+            for(AbilityResearch.Training p:w.abilities.training())if(p.owner==w.player){Task t=new Task(50000000L+p.officerId,p.label()+" · "+w.officer(p.officerId).name,w.city(p.cityId).name+" · 剩余 "+w.officer(p.officerId).otherTaskTurns+" 旬",w.city(p.cityId).hex,null,null);t.abilityTraining=p;result.add(t);}
         }
         return result;
     }
