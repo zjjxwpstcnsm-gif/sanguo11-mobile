@@ -100,6 +100,6 @@ public final class WorldEvents {
     }
     private void destroyFacility(int city,Domestic.Kind kind){
         List<Domestic.Facility> eligible=new ArrayList<>();for(Domestic.Facility f:w.domestic.facilities)if(f.cityId==city&&(kind==null||f.kind==kind))eligible.add(f);
-        if(!eligible.isEmpty()){Domestic.Facility f=eligible.get(nextInt(eligible.size()));if(f.builderId>=0)w.officer(f.builderId).acted=true;w.domestic.facilities.remove(f);w.note(w.city(city).name+"的"+f.kind.label+"被毁");}
+        if(!eligible.isEmpty()){Domestic.Facility f=eligible.get(nextInt(eligible.size()));if(f.builderId>=0)w.officer(f.builderId).acted=true;w.domestic.facilities.remove(f);w.army.cleanup();w.note(w.city(city).name+"的"+f.kind.label+"被毁");}
     }
 }

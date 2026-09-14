@@ -26,7 +26,7 @@ public final class WorldSystemsTest {
     private static void seed(World w,int chance,boolean success){for(long seed=0;seed<10000;seed++){w.strategy.setSeed(seed);boolean roll=w.strategy.nextInt(100)<chance;if(roll==success){w.strategy.setSeed(seed);return;}}throw new AssertionError("seed");}
     private static void reset(World w){Arrays.fill(w.actionPoints,60);for(World.Officer o:w.officers)o.acted=false;for(World.Unit u:w.units)w.orders.reset(u);}
     public static void main(String[] args)throws Exception{
-        movement();marchIntegration();joint();plots();diplomacy();events();districts();migration();branchMigration();malformed();replay();
+        movement();marchIntegration();joint();plots();diplomacy();events();facilityLoss();districts();migration();branchMigration();malformed();replay();
         System.out.println("PASS: "+checks+" world-system assertions: ZOC/poison, joint/ironwall/infighting/magic, diplomatic debates, disasters/raiders, district budgets/orders/capture, v12/v13 branch migration, integrated marches and saved replay.");
     }
     private static void movement()throws Exception{
@@ -106,6 +106,24 @@ public final class WorldSystemsTest {
         w.turn=3;w.events.tick();check(w.events.hazards().isEmpty(),"disaster expires naturally");w.officer(8).skillId=Skill.QIYUAN.id;check(w.events.harvestChance(12)>w.events.harvestChance(11),"prayer raises harvest chance");
         World locust=fixture();check(locust.events.beginDisaster(11,WorldEvents.Disaster.LOCUST),"locust starts");int food=locust.city(11).food;locust.turn=1;locust.events.tick();check(locust.city(11).food==food*9/10,"locust affects real stock");
         World raids=fixture();raids.city(11).order=30;check(raids.events.spawn(11,WorldEvents.Tribe.BANDIT),"raid fixture");raids.turn=3;food=raids.city(11).food;raids.events.tick();check(raids.city(11).food==food-1000&&raids.city(11).order==25,"camp monthly raid reaches city resources");check(Arrays.equals(bytes(raids),bytes(copy(raids))),"camp RNG and strength roundtrip");
+    }
+    private static World producing(Domestic.Kind kind)throws Exception{
+        World w=fixture();if(kind==Domestic.Kind.SHIPYARD)w.terrain[3][18]=World.Terrain.WATER;
+        w.domestic.facilities.add(new Domestic.Facility(w.domestic.nextFacilityId++,11,kind,new Hex(3,17),-1,0));
+        ok(w.army.produce(11,5,kind==Domestic.Kind.WORKSHOP?World.Weapon.RAM:null,kind==Domestic.Kind.SHIPYARD?Army.Ship.TOWER_SHIP:null));return w;
+    }
+    private static void facilityLoss()throws Exception{
+        for(Domestic.Kind kind:new Domestic.Kind[]{Domestic.Kind.WORKSHOP,Domestic.Kind.SHIPYARD}){
+            World raid=producing(kind);int gold=raid.city(11).gold;raid.city(11).order=30;check(raid.events.spawn(11,WorldEvents.Tribe.BANDIT),"factory raid camp exists");
+            for(long value=0;;value++){raid.events.randomState=value;if(raid.events.nextInt(100)<25){raid.events.randomState=value;break;}}
+            raid.turn=3;raid.events.tick();check(raid.domestic.facilities.isEmpty(),"raid actually destroys production building");
+            check(raid.army.productions().isEmpty()&&raid.officer(5).otherTaskTurns==0&&raid.officer(5).otherTask.isEmpty(),"raid clears orphan production and worker clock immediately");
+            check(raid.city(11).gold==gold&&Arrays.equals(bytes(raid),bytes(copy(raid))),"raid cancels without refund and remains saveable");
+            World lightning=producing(kind);gold=lightning.city(11).gold;World.Unit mage=unit(lightning,1,World.Weapon.SPEAR,5,17),enemy=unit(lightning,21,World.Weapon.SPEAR,4,17);lightning.officer(1).skillId=Skill.GUIMEN.id;
+            seed(lightning,lightning.war.plotChance(mage.id,enemy.hex,War.Plot.LIGHTNING),true);ok(lightning.war.plot(mage.id,enemy.hex,War.Plot.LIGHTNING));
+            check(lightning.domestic.facilities.isEmpty()&&lightning.army.productions().isEmpty()&&lightning.officer(5).otherTaskTurns==0,"lightning clears factory production and occupied worker");
+            check(lightning.city(11).gold==gold&&Arrays.equals(bytes(lightning),bytes(copy(lightning))),"lightning factory loss can be saved without free refund");
+        }
     }
     private static void districts()throws Exception{
         World w=fixture();reject(w,()->w.districts.configure(-1,"非法",new int[]{10},Districts.Policy.ECONOMY,-1,-1,false,true));
