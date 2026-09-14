@@ -82,9 +82,10 @@ final class AiAdapterTest {
             BattleEngine first = BattleSimulation.demo(31104), repeated = BattleSimulation.demo(31104);
             BattleResult result = BattleSimulation.run(first, 31104L ^ 0x5DEECE66DL);
             BattleResult copy = BattleSimulation.run(repeated, 31104L ^ 0x5DEECE66DL);
-            eq(0, result.winner); eq(BattleResult.Reason.ELIMINATION, result.reason); eq(13, result.completedRounds);
+            eq(0, result.winner); eq(BattleResult.Reason.ELIMINATION, result.reason); eq(12, result.completedRounds);
             eq(result.survivingTroops, copy.survivingTroops); eq(result.casualties, copy.casualties); eq(fingerprint(first), fingerprint(repeated));
-            eq(38, result.survivingTroops.get(0)); eq(517, result.survivingTroops.get(1)); eq(3883, result.survivingTroops.get(2)); eq(5000, result.survivingTroops.get(3));
+            // v0.8: normal attack is free and energy no longer scales damage; preserve the deterministic and conservation checks.
+            eq(0, result.survivingTroops.get(0)); eq(585, result.survivingTroops.get(1)); eq(3578, result.survivingTroops.get(2)); eq(4480, result.survivingTroops.get(3));
             for (BattleUnit unit : first.units()) {
                 int initial = unit.forceId == 0 ? 5000 : 4500;
                 eq(initial, result.survivingTroops.get(unit.id) + result.casualties.get(unit.id));

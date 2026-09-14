@@ -1,5 +1,9 @@
 # 项目进度
 
+## v0.8 Agent 1 开发增量（联合集成待办）
+
+固定基线 ff624b6e9c48c81d7111a9a642b18cf6bd098fe1；分支 agent/rules-parity-v08；[PR #7](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/7)。部队命令流程、部分特技效果、v7兼容存档、移动确认与组合计略Android入口已提交。完整技巧/PK培养、军政人物与单挑舌战仍缺失；原版公式尚未全部核验，不能宣称完整复刻。详细规则、接口、夹具和最新验证见 [交接文档](docs/handoffs/agent-rules-parity-v08.md)。
+
 2026-09-14 · `zjjxwpstcnsm-gif/sanguo11-mobile` · private
 
 ## 当前 v0.7.0 / 编队与水陆攻防

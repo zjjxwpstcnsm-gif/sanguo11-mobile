@@ -8,7 +8,7 @@ import java.util.Map;
 public final class BattleRules {
     private BattleRules() { }
     public static final int MAX_TROOPS = 100000, MAX_ENERGY = 100;
-    public static final int NORMAL_ATTACK_ENERGY = 5, TURN_ENERGY_RECOVERY = 6;
+    public static final int NORMAL_ATTACK_ENERGY = 0, TURN_ENERGY_RECOVERY = 6;
     public static final int MAX_ROUNDS = 200, MAX_BATTLEFIELD_TILES = 65536;
     public static final int MIN_DAMAGE = 20, MAX_DAMAGE = 2500;
     public static final double BASE_DAMAGE = 230, TROOP_SCALE = 1000;

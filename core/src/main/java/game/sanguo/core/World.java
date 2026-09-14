@@ -50,7 +50,7 @@ public final class World {
         public int movementBudget=-1, movementSpent;
         public War.Status status=War.Status.NORMAL;
         public int statusTurns, burning;
-        public int burningOwner=-1;
+        public int burningOwner=-1, burningPower=1;
         public int[] deputies=new int[0];
         public Army.Ship ship=Army.Ship.BOAT;
         public Unit(int id,int owner,int officerId,Weapon weapon,Hex hex,int troops,int food) {

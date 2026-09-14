@@ -50,7 +50,7 @@ final class ArmyUi {
     }
     void production(Army.Production p){confirm(p.label(),w.city(p.cityId).name+" · "+w.officer(p.officerId).name+" · 剩余"+w.officer(p.officerId).otherTaskTurns+"旬\n是否中止？已付费用不退还。",()->apply.accept(w.army.cancelProduction(p.officerId)));}
     void tactics(World.Unit u){choose("兵器 / 水军战法",w.army.tactics(u),t->t.label+" · 气力"+t.energy,t->{
-        List<Hex> targets=new ArrayList<>();for(World.Unit enemy:w.units)if(w.army.tacticError(u.id,enemy.hex,t)==null)targets.add(enemy.hex);for(World.City city:w.cities)if(w.army.tacticError(u.id,city.hex,t)==null)targets.add(city.hex);
-        choose("选择军备战法目标",targets,h->w.cityAt(h)!=null?w.cityAt(h).name:w.officer(w.unitAt(h).officerId).name,h->confirm(t.label,t.effect+"\n成功率"+w.army.tacticChance(u.id,h)+"%；消耗"+t.energy+"气力，失败也消耗行动。",()->apply.accept(w.army.tactic(u.id,h,t))));
+        List<Hex> targets=new ArrayList<>();for(World.Unit enemy:w.units)if(w.army.tacticError(u.id,enemy.hex,t)==null)targets.add(enemy.hex);for(World.City city:w.cities)if(w.army.tacticError(u.id,city.hex,t)==null)targets.add(city.hex);for(War.Structure structure:w.war.structures())if(w.army.tacticError(u.id,structure.hex,t)==null)targets.add(structure.hex);
+        choose("选择军备战法目标",targets,h->w.cityAt(h)!=null?w.cityAt(h).name:w.war.at(h)!=null?w.war.at(h).kind.label:w.officer(w.unitAt(h).officerId).name,h->confirm(t.label,t.effect+"\n成功率"+w.army.tacticChance(u.id,h)+"%；消耗"+t.energy+"气力，失败也消耗行动。",()->apply.accept(w.army.tactic(u.id,h,t))));
     });}
 }

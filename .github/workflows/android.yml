@@ -6,6 +6,7 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
+  actions: read
 concurrency:
   group: android-${{ github.ref }}
   cancel-in-progress: true
@@ -66,8 +67,24 @@ jobs:
           disable-animations: true
           script: bash scripts/smoke-android.sh
       - name: Check APK signature and record digest
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs app/build/outputs/apk/debug/app-debug.apk | tee app/build/outputs/apk/debug/SIGNATURE.txt
+          gh api repos/${{ github.repository }}/actions/artifacts/10328612868/zip > "$RUNNER_TEMP/prior-main-apk.zip"
+          unzip -q "$RUNNER_TEMP/prior-main-apk.zip" -d "$RUNNER_TEMP/prior-main-apk"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs "$RUNNER_TEMP/prior-main-apk/app-debug.apk" > app/build/outputs/apk/debug/PRIOR-MAIN-SIGNATURE.txt
+          python3 - <<'PYCOMPARE'
+          from pathlib import Path
+          root=Path('app/build/outputs/apk/debug')
+          def certificate(name):
+              return next(line.split(': ',1)[1] for line in (root/name).read_text().splitlines() if line.startswith('Signer #1 certificate SHA-256 digest:'))
+          old,new=certificate('PRIOR-MAIN-SIGNATURE.txt'),certificate('SIGNATURE.txt')
+          text='Prior APK: main e66656e3c6770716d47c89fd704c909409ee59cf; run 34791182444; artifact 10328612868\nOld SHA-256 certificate: '+old+'\nNew SHA-256 certificate: '+new+'\n'
+          text+='MATCH: signing certificate matches this specific prior APK.\n' if old==new else 'DIFFERENT: Android cannot install this APK over that prior signed package. Keep the existing app and important saves.\n'
+          (root/'SIGNATURE-COMPARISON.txt').write_text(text)
+          print(text)
+          PYCOMPARE
           cd app/build/outputs/apk/debug
           sha256sum app-debug.apk > SHA256SUMS
       - uses: actions/upload-artifact@v4
@@ -77,6 +94,8 @@ jobs:
             app/build/outputs/apk/debug/app-debug.apk
             app/build/outputs/apk/debug/SHA256SUMS
             app/build/outputs/apk/debug/SIGNATURE.txt
+            app/build/outputs/apk/debug/PRIOR-MAIN-SIGNATURE.txt
+            app/build/outputs/apk/debug/SIGNATURE-COMPARISON.txt
           if-no-files-found: error
           retention-days: 30
       - uses: actions/upload-artifact@v4

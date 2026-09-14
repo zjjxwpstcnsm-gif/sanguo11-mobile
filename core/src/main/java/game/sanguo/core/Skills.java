@@ -66,6 +66,16 @@ public final class Skills {
         if(has(source,XINGONG)&&source.troops>0)source.troops=Math.min(10000,source.troops+loss/10);
         if(target.troops==0&&has(source,ANGYANG))source.energy=Math.min(100,source.energy+10);
     }
+    public int fireDamage(World.Unit target,int base,int owner,int power,boolean trap){
+        if(has(target,HUOSHEN))return 0;
+        int amount=base*(owner!=target.owner?power:1);
+        if(has(target,TENGJIA))amount*=2;
+        if(trap&&has(target,TAPO))amount/=2;
+        return Math.min(target.troops,amount);
+    }
+    public boolean swiftConfusion(World.Unit source,World.Unit target){
+        return has(source,JICHI)&&w.army.attackPower(source)>w.army.attackPower(target);
+    }
     public int produceAmount(int city,int officer,World.Weapon weapon){
         int amount=w.domestic.produceAmount(city,weapon);World.Officer o=w.officer(officer);
         return amount*(weapon==World.Weapon.CAVALRY?has(o,FANZHI)?2:1:weapon.ordinal()<3&&has(o,NENGLI)?2:1);

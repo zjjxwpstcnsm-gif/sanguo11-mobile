@@ -33,7 +33,7 @@ public final class RulesParityTest {
         int[] ids=Arrays.copyOf(u.deputies,u.deputies.length+1);ids[ids.length-1]=id;u.deputies=ids;
     }
     public static void main(String[] args)throws Exception {
-        actions();movementBudget();skills();combat();economy();migration();simulation();
+        actions();movementBudget();skills();combat();fireSources();economy();migration();simulation();
         System.out.println("PASS: "+checks+" rules-parity assertions: move previews/replays/budget, skill priorities/holders/chains, actual damage/production, real v6 migration and deterministic campaigns.");
     }
     private static void actions()throws Exception {
@@ -97,6 +97,27 @@ public final class RulesParityTest {
         World music=fixture();a=unit(music,0,5,6,World.Weapon.SPEAR);a.energy=20;music.officer(0).skillId=ZOUYUE.id;deputy(music,a,1,SHIXIANG);
         music.war.structures.add(new War.Structure(1,0,War.StructureKind.MUSIC,new Hex(4,6),500));music.war.structures.add(new War.Structure(2,0,War.StructureKind.MUSIC,new Hex(4,7),500));music.war.nextStructureId=3;
         music.war.tick();check(a.energy==40,"one music restoration, poetry doubles, no 奏乐 stacking");
+    }
+    private static void fireSources()throws Exception {
+        World w=fixture();World.Unit a=unit(w,0,5,6,World.Weapon.SPEAR),b=unit(w,10,6,6,World.Weapon.SPEAR);
+        w.officer(0).skillId=HUOSHEN.id;w.officer(0).intelligence=100;
+        ok(w.war.plot(a.id,b.hex,War.Plot.FIRE));check(w.war.fireAt(b.hex).power==2,"fire records source power");
+        w.officer(0).skillId="none";World resumed=SaveCodec.decode(bytes(w));w.war.tick();resumed.war.tick();
+        check(b.troops==4500&&Arrays.equals(bytes(w),bytes(resumed)),"source effect persists after caster changes and save/load");
+        World armor=fixture();World.Unit victim=unit(armor,10,6,6,World.Weapon.SPEAR);armor.officer(10).skillId=TENGJIA.id;
+        War.Fire fire=new War.Fire(victim.hex,0,2);fire.trap=true;armor.war.fires.add(fire);deputy(armor,victim,11,TAPO);
+        armor.war.tick();check(victim.troops==4750,"藤甲 x2 then 踏破 trap half");deputy(armor,victim,12,HUOSHEN);
+        armor.war.tick();check(victim.troops==4750,"PC 火神 immune before vulnerability");
+        victim.burning=2;victim.burningOwner=0;victim.burningPower=2;armor=SaveCodec.decode(bytes(armor));armor.army.tick();
+        check(armor.unit(victim.id).troops==4750,"火神 also protects persisted arrow burning");
+        World lethal=fixture();a=unit(lethal,0,5,6,World.Weapon.CROSSBOW);b=unit(lethal,10,7,6,World.Weapon.SPEAR);lethal.officer(10).skillId=TENGJIA.id;b.troops=10;
+        ok(lethal.attack(a.id,b.id));check(lethal.unit(b.id)==null,"armor applies before remaining-troop cap, cannot prevent lethal damage by halving that cap");
+        World siege=fixture();World.Unit ram=unit(siege,0,5,6,World.Weapon.RAM);War.Structure tower=new War.Structure(1,1,War.StructureKind.ARROW_TOWER,new Hex(6,6),650);siege.war.structures.add(tower);siege.war.nextStructureId=2;
+        ram.energy=0;reject(siege,()->siege.war.attackStructure(ram.id,tower.hex));ram.energy=80;ok(siege.war.attackStructure(ram.id,tower.hex));
+        check(ram.energy==80-Army.Tactic.RAM.energy&&ram.acted&&siege.war.at(tower.hex)==null,"structure assault resolves one siege tactic and cost");reject(siege,()->siege.war.attackStructure(ram.id,tower.hex));
+        World swift=fixture();a=unit(swift,0,5,6,World.Weapon.CAVALRY);b=unit(swift,10,6,6,World.Weapon.SPEAR);deputy(swift,a,1,JICHI);swift.officer(1).war=1;swift.officer(0).war=100;
+        check(swift.skills.swiftConfusion(a,b),"疾驰 compares formation attack, not low-war skill holder");
+        swift.officer(0).war=1;swift.officer(0).leadership=1;check(!swift.skills.swiftConfusion(a,b),"疾驰 fails against greater unit attack");
     }
     private static void economy()throws Exception {
         World w=fixture();w.officer(1).skillId=NENGLI.id;int before=w.city(10).equipment[0];int quote=w.skills.produceAmount(10,1,World.Weapon.SPEAR);
