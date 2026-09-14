@@ -117,7 +117,7 @@ public final class MainActivity extends Activity {
         log.setText(aiRunning?"正在结算电脑行动与本旬任务…":world.log.isEmpty()?"拖动地图 · 双指缩放 · 双击城池定位":world.log.get(world.log.size()-1));
         map.setWorld(world,selected,moving);map.setEnabled(!aiRunning);
     }
-    private int taskCount(){int n=0;for(Domestic.Facility f:world.domestic.facilities)if(f.remaining>0&&world.city(f.cityId).owner==world.player)n++;for(Domestic.Mission m:world.domestic.missions)if(m.owner==world.player)n++;for(Campaign.Project p:world.campaign.projects())if(p.owner==world.player)n++;return n;}
+    private int taskCount(){int n=0;for(Domestic.Facility f:world.domestic.facilities)if(f.remaining>0&&world.city(f.cityId).owner==world.player)n++;for(Domestic.Mission m:world.domestic.missions)if(m.owner==world.player)n++;for(Campaign.Project p:world.campaign.projects())if(p.owner==world.player)n++;for(Army.Production p:world.army.productions())if(p.owner==world.player)n++;return n;}
     private void showSelection(){
         World.Unit unit=selected==null?null:world.unitAt(selected);World.City city=selected==null?null:world.cityAt(selected);
         if(unit!=null)showUnit(unit);else if(city!=null)showCity(city);else if(selected!=null&&world.domestic.at(selected)!=null){
@@ -222,7 +222,7 @@ public final class MainActivity extends Activity {
     private void chooseBasicWeapon(WeaponChoice callback){String[] names={"枪兵","戟兵","弩兵","骑兵"};new AlertDialog.Builder(this).setTitle("生产基础兵装").setItems(names,(d,i)->callback.choose(World.Weapon.values()[i])).setNegativeButton("取消",null).show();}
     private void chooseWeapon(WeaponChoice callback){String[] labels=new String[World.Weapon.values().length];for(int i=0;i<labels.length;i++)labels[i]=World.Weapon.values()[i].label;new AlertDialog.Builder(this).setTitle("选择兵种").setItems(labels,(d,index)->callback.choose(World.Weapon.values()[index])).setNegativeButton("取消",null).show();}
     private void revealPanel(){panelScroll.post(()->panelScroll.scrollTo(0,0));}
-    void selectAndFocus(Hex h){if(h==null)return;moving=-1;selected=h;ui.page="map";ui.panelVisible=true;ui.group="概览";refresh();map.focus(h);revealPanel();}
+    void selectAndFocus(Hex h){if(h==null)return;World.Unit unit=world.unitAt(h);moving=unit!=null&&unit.owner==world.player?unit.id:-1;selected=h;ui.page="map";ui.panelVisible=true;ui.group="概览";refresh();map.focus(h);revealPanel();}
     private StrategyUi strategyUi(){return new StrategyUi(this,world,this::apply);}
     private CampaignUi campaignUi(){return new CampaignUi(this,world,this::apply);}
     private WarUi warUi(){return new WarUi(this,world,this::apply);}

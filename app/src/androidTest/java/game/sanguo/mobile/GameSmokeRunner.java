@@ -198,7 +198,7 @@ public final class GameSmokeRunner extends Instrumentation {
         Hex site=factory.domestic.buildSites(10).get(0);require(factory.domestic.build(10,3,Domestic.Kind.WORKSHOP,site).ok,"manufacturing fixture workshop starts");
         for(int i=0;i<3;i++)require(factory.nextTurn().ok,"manufacturing fixture advances");installFixture(factory,factory.city(10).hex);
         armyCity();click("军备制造 / 攻城器械与舰船",true);click("井阑 ·",false);click("周瑜 ·",false);click("执行",true);
-        w=saved();require(w.army.productions().size()==1&&w.officer(1).otherTaskTurns==3,"manufacturing starts from UI");
+        w=saved();require(w.army.productions().size()==1&&w.officer(1).otherTaskTurns==3,"manufacturing starts from UI");waitText("任务 1",true);
         clickNav("任务");click("筛选 · 全部任务",true);click("军备制造",true);waitText("制造井阑 · 周瑜",true);screenshot("25-manufacturing-task");
         int count=w.city(10).equipment[6],turn=w.turn;for(int i=1;i<=3;i++){endTurn();waitForTurn(turn+i);}w=saved();require(w.city(10).equipment[6]==count+1&&w.army.productions().isEmpty(),"UI turn loop completes one equipment item");
 
@@ -213,6 +213,7 @@ public final class GameSmokeRunner extends Instrumentation {
         World crossing=SaveCodec.decode(before);crossing.unit(1).acted=false;installFixture(crossing,crossing.unit(1).hex);
         tapHex(new Hex(8,8));w=saved();require(w.unit(1).hex.equals(new Hex(8,8))&&w.unit(1).weapon==World.Weapon.SPEAR&&w.unit(1).ship==Army.Ship.WARSHIP,"map tap disembarks with preserved land gear and ship");screenshot("27-disembarked");
     }
+    private String contentAnchor()throws Exception {java.lang.reflect.Field f=MainActivity.class.getDeclaredField("ui");f.setAccessible(true);return ((ClientState)f.get(current)).contentFirstId;}
     private void contentFlow()throws Exception {
         click("菜单",true);click("新游戏 / 选择势力",true);click("武将资料演练 ·",false);click("孙权军",true);waitText("能力/适性来自公开资料",false);screenshot("28-sourced-opening");click("执行",true);waitForIdleSync();
         assertWorld(2,0,"officer-reference-drill");ContentCatalog.get().validateOpening(saved());
@@ -221,9 +222,11 @@ public final class GameSmokeRunner extends Instrumentation {
         endTurn();waitForTurn(1);
         clickNav("任务");setInput("搜索任务、武将或城市","不存在");waitText("没有符合检索条件的任务",false);
         click("菜单",true);click("势力一览",true);setInput("搜索势力","孙权");waitText("孙权军",true);screenshot("29-faction-search");
-        click("菜单",true);click("全国资料 / 核验目录",true);waitText("显示 670 / 670 条",true);setInput("搜索资料","诸葛亮");waitText("諸葛亮 · ID 1004",false);click("諸葛亮 · ID 1004",false);waitText("智力 100",false);click("返回",true);
+        click("菜单",true);click("全国资料 / 核验目录",true);waitText("显示 670 / 670 条",true);
+        AccessibilityNodeInfo list=findInput(getUiAutomation().getRootInActiveWindow(),"资料列表");require(list!=null&&list.performAction(AccessibilityNodeInfo.ACTION_SCROLL_FORWARD),"native long catalog scroll");waitForIdleSync();SystemClock.sleep(400);String anchor=contentAnchor();require(!anchor.isEmpty()&&!anchor.equals("1000"),"scroll moved to later stable ID");runOnMainSync(current::recreate);waitText("显示 670 / 670 条",true);waitForIdleSync();require(anchor.equals(contentAnchor()),"long catalog stable row restores");
+        setInput("搜索资料","诸葛亮");waitText("諸葛亮 · ID 1004",false);click("諸葛亮 · ID 1004",false);waitText("智力 100",false);click("返回",true);
         setInput("搜索资料","不存在");waitText("没有符合条件的资料",false);setInput("搜索资料","诸葛亮");runOnMainSync(current::recreate);waitText("显示 1 / 670 条",true);waitText("諸葛亮 · ID 1004",false);screenshot("30-content-restored");
-        click("据点分布预览 · 来源坐标",true);waitText("42 城来源 X/Y 分布",false);screenshot("31-source-coordinates");click("返回",true);
+        click("据点分布预览",true);waitText("42 城来源 X/Y 分布",false);screenshot("31-source-coordinates");click("返回",true);
         click("武将资料",true);click("剧本缺口",true);waitText("显示 14 / 14 条",true);click("黄巾之乱 · ID",false);waitText("缺少原版地形",false);click("返回",true);
         click("菜单",true);click("保存局面（3个槽位）",true);click("槽位 1 ·",false);click("执行",true);waitForIdleSync();byte[] before=SaveCodec.encode(saved());
         click("菜单",true);click("新游戏 / 选择势力",true);click("基础演练 ·",false);click("曹操军",true);click("执行",true);
@@ -244,8 +247,7 @@ public final class GameSmokeRunner extends Instrumentation {
     private void tapHex(Hex h)throws Exception {
         MapView map=mapView();MapCamera c=camera(map);int[] pos=new int[2];float[] point=new float[2];
         runOnMainSync(()->{map.getLocationOnScreen(pos);point[0]=pos[0]+25*1.7320508f*(h.q+h.r*.5f)*c.scale+c.x;point[1]=pos[1]+25*1.5f*h.r*c.scale+c.y;});
-        long t=SystemClock.uptimeMillis();MotionEvent down=MotionEvent.obtain(t,t,MotionEvent.ACTION_DOWN,point[0],point[1],0),up=MotionEvent.obtain(t,t+80,MotionEvent.ACTION_UP,point[0],point[1],0);
-        getUiAutomation().injectInputEvent(down,true);getUiAutomation().injectInputEvent(up,true);down.recycle();up.recycle();waitForIdleSync();
+        long t=SystemClock.uptimeMillis();send(t,t,MotionEvent.ACTION_DOWN,point[0],point[1]);send(t,t+80,MotionEvent.ACTION_UP,point[0],point[1]);SystemClock.sleep(500);waitForIdleSync();
     }
     private MapView findMap(android.view.View v){if(v instanceof MapView)return (MapView)v;if(v instanceof android.view.ViewGroup){android.view.ViewGroup g=(android.view.ViewGroup)v;for(int i=0;i<g.getChildCount();i++){MapView m=findMap(g.getChildAt(i));if(m!=null)return m;}}return null;}
     private MapCamera camera(MapView map)throws Exception {java.lang.reflect.Field f=MapView.class.getDeclaredField("camera");f.setAccessible(true);return (MapCamera)f.get(map);}
