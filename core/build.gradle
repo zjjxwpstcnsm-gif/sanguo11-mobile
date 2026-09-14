@@ -94,3 +94,11 @@ tasks.register('verifyFieldworks', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyFieldworks' }
 tasks.named('test') { dependsOn 'verifyFieldworks' }
+
+tasks.register('verifyEstates', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.EstatesTest'
+}
+tasks.named('check') { dependsOn 'verifyEstates' }
+tasks.named('test') { dependsOn 'verifyEstates' }

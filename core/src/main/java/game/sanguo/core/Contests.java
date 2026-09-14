@@ -38,7 +38,7 @@ public final class Contests {
     public boolean busy(){return session!=null;}
     public Session current(){return session;}
     public String lastResult(){return lastResult;}
-    public Profile profile(int officer){return profiles.getOrDefault(officer,DEFAULT);}
+    public Profile profile(int officer){Profile p=profiles.getOrDefault(officer,DEFAULT);int gear=p.gearMask|w.treasures.gearMask(officer);return gear==p.gearMask?p:new Profile(p.temper,p.talkMask,gear);}
     public boolean hasProfile(int officer){return profiles.containsKey(officer);}
     /** Scenario setup only: do not infer canonical traits from name, gender, intelligence or affiliation. */
     public void configure(int officer,Profile profile){
@@ -75,7 +75,7 @@ public final class Contests {
         World.City c=w.city(city);String error=w.cityError(c,w.officer(actor),100);if(error!=null)return error;
         if(w.active!=w.player)return "仅当前玩家可发起交互舌战";
         if(nextId>=10000000)return "对局编号已达上限";
-        if(!w.strategy.canRecruitTarget(city,target)||w.officer(target).acted)return "目标须为本城未行动的在野武将或符合登用条件的敌将";
+        if(w.relations.refuses(target,actor,w.active)||!w.strategy.canRecruitTarget(city,target)||w.officer(target).acted)return "目标须为本城未行动的在野武将或符合登用条件的敌将";
         return null;
     }
     public World.Result persuade(int city,int actor,int target){
@@ -156,6 +156,7 @@ public final class Contests {
                 }else loser.deputies=Arrays.stream(loser.deputies).filter(x->x!=beaten.id).toArray();
                 if(jail!=null&&!immune){w.government.capture(beaten,jail);text+=" "+beaten.name+"被俘。";}
                 else {w.retreat(beaten,loser.hex);text+=" "+beaten.name+"撤回后方。";}
+                w.treasures.fallenTreasury(loser.owner,victor.owner);
             }
             text+=" 单挑胜者："+w.officer(d.active(side).officer).name+"。";
         }

@@ -26,7 +26,7 @@ public final class ScenarioTest {
         System.out.println("PASS: "+checks+" scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.");
     }
     private static void data()throws Exception {
-        List<World> packs=ScenarioCatalog.all();check(packs.size()==6,"five original packs plus sourced officer drill");
+        List<World> packs=ScenarioCatalog.all();check(packs.size()==7,"six original packs plus sourced officer drill");
         World w=ScenarioCatalog.load("regional-sandbox",2);
         check(w.cities.size()==9&&w.officers.size()==18&&w.factions.length==3,"sandbox content loaded");
         check(w.player==2&&w.active==2&&w.home().owner==2,"selected faction controls own city");
@@ -69,7 +69,7 @@ public final class ScenarioTest {
         check(w.unit(1).weapon==World.Weapon.CROSSBOW&&w.unit(1).food==5850,"v1 army and supply preserved");
         check(w.officer(0).unitId==1&&w.city(0).equipment[2]==9000,"v1 references and stocks preserved");
         check(w.dataHash.isEmpty()&&w.scenarioId.equals("m0-skirmish"),"legacy save has no fabricated data fingerprint");
-        byte[] migrated=SaveCodec.encode(w);check(migrated[7]==11,"new writes use save v11");
+        byte[] migrated=SaveCodec.encode(w);check(migrated[7]==12,"new writes use save v12");
         World restored=SaveCodec.decode(migrated);w.nextTurn();restored.nextTurn();
         check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(restored)),"migrated games continue identically");
         w=ScenarioCatalog.load("regional-sandbox",2);w.nextTurn();byte[] saved=SaveCodec.encode(w);restored=SaveCodec.decode(saved);

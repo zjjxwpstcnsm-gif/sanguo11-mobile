@@ -16,7 +16,7 @@ public final class Strategy {
         Role(String label) { this.label=label; }
     }
     public enum Activity { IDLE, ACTED, CONSTRUCTION, TRANSFER, TRANSPORT, OTHER_TASK, DEPLOYED, UNAFFILIATED, UNAVAILABLE, CAPTIVE }
-    public enum SearchOutcome { REJECTED, OFFICER, GOLD, NOTHING }
+    public enum SearchOutcome { REJECTED, OFFICER, GOLD, NOTHING, TREASURE }
 
     /** Snapshot derived from the actual assignments, never a second mutable task registry. */
     public static final class OfficerState {
@@ -139,6 +139,8 @@ public final class Strategy {
             talents.remove(talent);w.officers.add(talent.reveal());
             return new SearchResult(w.success(o.name+"在"+c.name+"发现了在野武将"+talent.name),SearchOutcome.OFFICER,talent.id,0);
         }
+        String treasure=w.treasures.discover(cityId,officerId,roll);
+        if(treasure!=null)return new SearchResult(w.success(o.name+"搜索发现宝物"+treasure+"，已入府库"),SearchOutcome.TREASURE,-1,0);
         if(nextInt(100)<10+o.politics/5) {
             int gold=Math.min(Math.max(0,w.campaign.goldCap(c)-c.gold),30+nextInt(91));
             if(gold>0){c.gold+=gold;return new SearchResult(w.success(o.name+"搜索获得金"+gold),SearchOutcome.GOLD,-1,gold);}
@@ -148,6 +150,7 @@ public final class Strategy {
     public boolean canRecruitTarget(int cityId,int targetId) {
         World.City c=w.city(cityId);World.Officer t=w.officer(targetId);
         if(c==null||c.owner!=w.active||t==null||t.owner==c.owner||t.unitId>=0||busy(t.id)||w.domestic.busy(t.id))return false;
+        if(w.relations.loyalBond(targetId))return false;
         if(t.owner==-1)return t.cityId==c.id&&t.role==Role.UNAFFILIATED;
         World.City source=w.city(t.cityId);
         return !t.acted&&t.role!=Role.RULER&&t.loyalty<=MAX_ENEMY_LOYALTY&&source!=null&&source.owner==t.owner&&source.hex.distance(c.hex)<=RECRUIT_RANGE;
@@ -159,15 +162,16 @@ public final class Strategy {
     }
     public int recruitmentChance(int cityId,int officerId,int targetId) {
         World.Officer o=w.officer(officerId),target=w.officer(targetId);
-        if(o==null||!canRecruitTarget(cityId,targetId))return 0;
-        return StrategyRules.recruitmentChance(o.charm,o.politics,target.loyalty,target.owner<0,
-                target.owner<0?0:factionRelation(w.city(cityId).owner,target.owner));
+        if(o==null||!canRecruitTarget(cityId,targetId)||w.relations.refuses(targetId,officerId,w.active))return 0;
+        return Math.min(100,w.relations.recruitmentBonus(targetId,officerId,w.active)+StrategyRules.recruitmentChance(o.charm,o.politics,target.loyalty,target.owner<0,
+                target.owner<0?0:factionRelation(w.city(cityId).owner,target.owner)));
     }
     public World.Result recruitOfficer(int cityId,int officerId,int targetId) {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,HIRE_COST);
         if(error!=null)return w.fail(error);
         if(!canRecruitTarget(cityId,targetId))return w.fail("目标须为本城在野武将，或六格内未行动、忠诚不高于60的敌方非君主闲将");
         World.Officer target=w.officer(targetId);int chance=recruitmentChance(cityId,officerId,targetId);
+        if(w.relations.refuses(targetId,officerId,c.owner))return w.fail("目标因结义、配偶或厌恶关系拒绝登用");
         w.spend(c,o,HIRE_COST);
         if(!StrategyRules.succeeds(chance,nextInt(100)))return w.success(o.name+"登用"+target.name+"未成功（成功率"+chance+"%）");
         releaseGovernor(target.id);w.government.allegianceChanged(target.id);target.owner=c.owner;target.cityId=c.id;target.role=Role.OFFICER;
@@ -255,7 +259,7 @@ public final class Strategy {
         for(World.Officer o:w.officers) {
             if(o.otherTaskTurns>0&&--o.otherTaskTurns==0){o.otherTask="";o.acted=true;w.note(o.name+"完成战略任务");}
             World.City c=w.city(o.cityId);
-            if(!w.skills.city(o.cityId,Skill.RENZHENG)&&w.turn%3==0&&o.owner>=0&&o.role!=Role.RULER&&c!=null&&c.owner==o.owner&&(c.order<40||c.gold<200))
+            if(!w.relations.loyalBond(o.id)&&!w.skills.city(o.cityId,Skill.RENZHENG)&&w.turn%3==0&&o.owner>=0&&o.role!=Role.RULER&&c!=null&&c.owner==o.owner&&(c.order<40||c.gold<200))
                 o.loyalty=Math.max(0,o.loyalty-w.campaign.loyaltyLoss(o.owner,2));
         }
     }

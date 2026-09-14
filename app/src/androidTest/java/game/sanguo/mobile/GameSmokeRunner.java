@@ -19,7 +19,7 @@ public final class GameSmokeRunner extends Instrumentation {
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
-            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v11 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
+            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v12 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
@@ -46,6 +46,7 @@ public final class GameSmokeRunner extends Instrumentation {
             require(Arrays.equals(before,SaveCodec.encode(saved())),"corrupt load leaves autosave unchanged");
             runOnMainSync(current::recreate);waitText("区域争雄  ·  孙权军",false);waitForIdleSync();
             assertWorld(2,1,"regional-sandbox");screenshot("05-restored");
+            estatesFlow();
             fieldworkFlow();
             abilityFlow();
             strategicFlow();
@@ -58,7 +59,7 @@ public final class GameSmokeRunner extends Instrumentation {
             governmentFlow();
             documentTransferFlow();
             contestFlow();
-            result.putString("stream","SMOKE PASS: v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            result.putString("stream","SMOKE PASS: v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -230,10 +231,10 @@ public final class GameSmokeRunner extends Instrumentation {
         java.lang.reflect.Field field=MainActivity.class.getDeclaredField("world");field.setAccessible(true);World[] loaded=new World[1];
         runOnMainSync(()->{try{loaded[0]=(World)field.get(current);}catch(IllegalAccessException e){throw new RuntimeException(e);}});
         require(Arrays.equals(before,SaveCodec.encode(loaded[0])),"upgraded app actually loaded all old state");
-        require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=12,"new app version installed");
+        require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=13,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
-        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==11,"upgraded writer produced v11 header");}
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==12,"upgraded writer produced v12 header");}
         screenshot("00-v09-upgrade-preserved");
     }
     private void contestFlow()throws Exception {
@@ -275,6 +276,41 @@ public final class GameSmokeRunner extends Instrumentation {
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("舌战获胜",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"pending victory remains uncommitted after recreation");screenshot("46-debate-victory");
         click("留情 · 技巧+50",true);require(!saved().contests.busy()&&saved().officer(6).owner==0&&saved().campaign.points(0)==50,"native mercy choice recruits officer and awards points once");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("文武对决",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"settled debate does not pay rewards twice");screenshot("47-contest-settled");
+    }
+    private void openEditor(){clickNav("菜单");click("PK编辑 / 新武将",true);}
+    private void mediationMenu(){locateCity("文华城");click("武将",true);click("仲介 / 结义婚姻",true);}
+    private void treasureMenu(){locateCity("文华城");click("武将",true);click("宝物 / 赏赐收回",true);}
+    private void estatesFlow()throws Exception {
+        clickNav("菜单");click("新游戏 / 选择势力",true);click("相知寻宝 ·",false);click("文华营",true);click("执行",true);waitForIdleSync();
+        require(saved().treasures.items().size()==43,"scenario loads actual item states");
+        byte[] before=SaveCodec.encode(saved());
+        mediationMenu();click("义兄弟",true);click("司库官 ·",false);click("武备官 ·",false);screenshot("60-mediate-preview");click("取消",true);
+        require(Arrays.equals(before,SaveCodec.encode(saved())),"mediation cancel is pure");
+        mediationMenu();click("义兄弟",true);click("司库官 ·",false);click("武备官 ·",false);click("执行",true);
+        require(saved().relations.sworn(1,2)&&saved().campaign.points(0)==4500,"actual sworn mediation and cost");
+        mediationMenu();click("配偶",true);click("文华统领 ·",false);click("知音 ·",false);click("执行",true);
+        require(saved().relations.spouse(0)==3&&saved().officer(0).war==76&&saved().officer(3).war==76,"actual marriage and inner assistance");
+        treasureMenu();click("赏赐府库宝物",true);click("赤兔馬 ·",false);click("武备官 ·",false);click("司库官",true);screenshot("61-treasure-award");click("执行",true);
+        require(saved().contests.profile(2).has(Contests.Gear.HORSE)&&saved().actionPoints[0]==50,"item command changes gear and charges action");
+        locateCity("文华城");click("武将",true);click("武备官 ·",false);waitText("赤兔馬",false);screenshot("62-person-relations-items");click("返回",true);
+        openEditor();click("编辑武将",true);click("武备官 ·",false);setInput("武力（0—100）","91");click("预览修改",true);waitText("75 → 91",false);screenshot("63-pk-officer-preview");before=SaveCodec.encode(saved());click("取消",true);
+        require(Arrays.equals(before,SaveCodec.encode(saved())),"PK officer preview cancellation");
+        openEditor();click("编辑武将",true);click("武备官 ·",false);setInput("武力（0—100）","91");click("预览修改",true);click("应用修改",true);
+        require(saved().officer(2).war==91&&saved().editor.edited()&&saved().actionPoints[0]==50,"PK edit changes selected value without action cost");
+        openEditor();click("编辑据点",true);click("文华城",true);setInput("金","12345");click("预览修改",true);click("应用修改",true);require(saved().city(10).gold==12345,"real site editor");
+        openEditor();click("编辑势力",true);click("文华营",true);click("行动力与技巧点",true);setInput("技巧点（0—100000）","2345");click("预览修改",true);click("应用修改",true);require(saved().campaign.points(0)==2345,"real faction editor");
+        openEditor();click("编辑部队",true);click("领阵将",true);setInput("携金（0—10000）","4321");click("预览修改",true);click("应用修改",true);require(saved().unit(1).gold==4321,"real unit editor");
+        openEditor();click("制作新武将模板",true);setInput("姓名","清和");setInput("武力（0—100）","88");screenshot("64-custom-officer-form");click("保存模板",true);waitText("模板已保存",true);click("返回",true);
+        openEditor();click("已保存新武将",true);click("清和",true);click("文华城",true);click("文华营",true);screenshot("65-custom-officer-placement");click("应用修改",true);
+        World w=saved();World.Officer custom=w.officers.stream().filter(o->o.name.equals("清和")).findFirst().orElse(null);require(custom!=null&&custom.war==88&&custom.cityId==10&&w.editor.custom(custom.id),"custom officer created from persisted template");
+        Editor.Template template=w.editor.template(custom.id);byte[] templateBytes=OfficerTemplateCodec.encode(template);File exported=new File(getTargetContext().getFilesDir(),"smoke-officer-export.sgof");
+        try(FileOutputStream out=getTargetContext().openFileOutput("pending-officer-export.sgof",0)){out.write(templateBytes);}
+        Intent document=new Intent().setData(android.net.Uri.fromFile(exported));runOnMainSync(()->((MainActivity)current).onActivityResult(913,Activity.RESULT_OK,document));waitText("模板已导出",true);click("返回",true);
+        try(InputStream in=new FileInputStream(exported)){require(OfficerTemplateCodec.read(in).stat(1)==88,"actual document resolver writes reusable officer template");}
+        before=SaveCodec.encode(saved());runOnMainSync(()->((MainActivity)current).onActivityResult(914,Activity.RESULT_OK,document));waitText("导入新武将模板",true);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"template import cancel preserves game");
+        runOnMainSync(()->((MainActivity)current).onActivityResult(914,Activity.RESULT_OK,document));click("保存模板",true);waitText("模板已保存",true);click("返回",true);
+        runOnMainSync(current::recreate);waitText("相知寻宝",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"all edits, relationships and items survive activity recreation");screenshot("66-estates-restored");
+        openEditor();click("已保存新武将",true);waitText("清和",true);click("返回",true);
     }
     private void fieldworkFlow()throws Exception {
         World w=ScenarioCatalog.load("fieldworks-drill",0);w.city(20).troops=0;w.city(21).troops=0;

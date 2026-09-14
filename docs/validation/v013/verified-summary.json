@@ -1,0 +1,99 @@
+{
+  "date": "2026-09-14",
+  "codeCommit": "178735ef0cb7b0d07093dc20e3e47b4e8f84232d",
+  "ciRun": 34829252144,
+  "job": 103928455096,
+  "conclusion": "success",
+  "apk": {
+    "name": "sanguo11-mobile-v013-178735e.apk",
+    "bytes": 436079,
+    "sha256": "60ecdc915f54a9e397f1fd10122c76c4c538cf1eed9a030ddd0d8989118b4827",
+    "certificateSha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "v2SignatureVerifiedByCI": true
+  },
+  "v011ActualApkComparison": {
+    "file": "sanguo11-mobile-v011-989dcd4.apk",
+    "apk_sha256": "a0888e0f81fcb40802cf420f64ab090cd6e69d946c3be08434dbb905047faadc",
+    "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24"
+  },
+  "sameCertificateAsV011": true,
+  "sameCertificateAsV012": true,
+  "v012ActualApkComparison": {
+    "file": "sanguo11-mobile-v012-880ce7a.apk",
+    "apk_sha256": "089118fde9f21d730f1df7f95e408b1cfc73392fbe65949a6c52eebd687ea123",
+    "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24"
+  },
+  "upgrade": {
+    "fromCodeVersion": "0.9",
+    "retainedSaveVersion": 8,
+    "writtenSaveVersion": 12,
+    "inPlaceInstallAndStateEquality": true
+  },
+  "ui": {
+    "platform": "Android API29 x86_64",
+    "screenshots": 181,
+    "perConfiguration": {
+      "1080x1920": 60,
+      "1080x2340": 60,
+      "1080x2400": 60,
+      "upgrade": 1
+    },
+    "dimensions": {
+      "(1920, 1080)": 61,
+      "(2340, 1080)": 60,
+      "(2400, 1080)": 60
+    },
+    "smokePassCount": 3,
+    "appFatalExceptions": 0,
+    "appANRs": 0,
+    "armDeviceVerified": false,
+    "visualReview": {
+      "sampledScreenshots": 10,
+      "coverage": [
+        "mediation",
+        "treasure award",
+        "officer details",
+        "PK numeric preview",
+        "template form",
+        "custom officer placement",
+        "activity restoration"
+      ],
+      "note": "1080x2400 screenshot 65 captured the transition background; corresponding 1920/2340 previews were inspected. All three profiles separately passed actual confirmation and persisted new-officer assertions."
+    }
+  },
+  "sourceArchive": {
+    "comparedFiles": 226,
+    "exactBytesMatchBeforeFinalDocumentation": true
+  },
+  "artifacts": [
+    {
+      "id": 10342653196,
+      "name": "android-lint",
+      "size": 17497,
+      "digest": "sha256:e0f881509fd994c2ebf5b94a315f602265261d92bfce50298d9a1fd02d4b666e"
+    },
+    {
+      "id": 10342519141,
+      "name": "android-smoke-evidence",
+      "size": 44435325,
+      "digest": "sha256:63b82348c3600340f25477e9eb26395f25d6bc468085fdbe2646b39bd6f3e77e"
+    },
+    {
+      "id": 10342514205,
+      "name": "sanguo11-mobile-v013-apk",
+      "size": 431321,
+      "digest": "sha256:2ddcbcf966958895025a16a856b45328245a669bbcf8de361f26c0dd1e91d592"
+    },
+    {
+      "id": 10340984065,
+      "name": "sanguo11-mobile-source",
+      "size": 711898,
+      "digest": "sha256:6dc543290c7518999897c2205272b8626b07feb38d3c43945f9519c11fec0a42"
+    }
+  ],
+  "lint": {
+    "errors": 0,
+    "warnings": 12
+  },
+  "fullOriginalParity": false
+}

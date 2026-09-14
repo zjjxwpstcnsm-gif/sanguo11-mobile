@@ -132,12 +132,12 @@ public final class ContestTest {
         }
         for(int version=1;version<=8;version++){
             try(InputStream in=ContestTest.class.getResourceAsStream("/legacy-v"+version+".sg11.b64")){
-                if(in==null)continue;World w=SaveCodec.decode(Base64.getMimeDecoder().decode(in.readAllBytes()));check(!w.contests.busy()&&w.contests.profiles.isEmpty(),"old save gains no invented profiles");check(ByteBuffer.wrap(bytes(w),4,4).getInt()==11,"old save writes v11");
+                if(in==null)continue;World w=SaveCodec.decode(Base64.getMimeDecoder().decode(in.readAllBytes()));check(!w.contests.busy()&&w.contests.profiles.isEmpty(),"old save gains no invented profiles");check(ByteBuffer.wrap(bytes(w),4,4).getInt()==12,"old save writes v12");
             }
         }
         World w=debate(Debate.Temper.BOLD);w.contests.current().debate().left.hand.add(talk(Debate.Talk.IGNORE));try{bytes(w);throw new AssertionError("oversized hand accepted");}catch(IOException expected){checks++;}
         World bad=fixture();start(bad);bad.contests.current().duel().leftIndex=9;try{bytes(bad);throw new AssertionError("bad active index accepted");}catch(IOException expected){checks++;}
-        World injury=fixture();injury.contests.injuries.put(0,new Contests.Injury(2,3));check(injury.army.war(injury.unit(1))==80,"healthy deputy still contributes best war");injury.contests.injuries.put(1,new Contests.Injury(2,3));check(injury.army.war(injury.unit(1))==60,"injuries affect army stat");
+        World injury=fixture();injury.contests.injuries.put(0,new Contests.Injury(2,3));check(injury.army.war(injury.unit(1))==70,"healthy unrelated deputy contributes half the advantage");injury.contests.injuries.put(1,new Contests.Injury(2,3));check(injury.army.war(injury.unit(1))==60,"injuries affect army stat");
         injury.turn=3;injury.contests.tick();check(injury.contests.injuries.isEmpty()&&injury.army.war(injury.unit(1))==80,"injuries recover at saved deadline");bytes(injury);
     }
     public static void main(String[] args)throws Exception{locks();mechanics();cards();fury();settlement();simulations();saveAndCorruption();System.out.println("PASS: "+checks+" contest assertions: official duel/debate structures, guard/gear/fury/counters, campaign settlement, locks, stale inputs, real v8 migration and save-per-round replay.");}

@@ -103,6 +103,7 @@ public final class Government {
     World.City refuge(int owner,Hex from){return w.cities.stream().filter(c->c.owner==owner)
         .min(Comparator.comparingInt((World.City c)->c.hex.distance(from)).thenComparingInt(c->c.id)).orElse(null);}
     void capture(World.Officer o,World.City jail){
+        w.treasures.captured(o.id,jail.owner);
         w.strategy.releaseGovernor(o.id);allegianceChanged(o.id);o.unitId=-1;o.cityId=-1;o.otherTask="";o.otherTaskTurns=0;o.acted=true;
         prisoners.put(o.id,new Prisoner(o.id,jail.owner,jail.id,w.turn));w.note(o.name+"被俘，押往"+jail.name);
     }
@@ -112,18 +113,21 @@ public final class Government {
         World.City jail=hostile?refuge(victor.owner,loser.hex):null;
         boolean binding=victor!=null&&w.skills.has(victor,Skill.BOFU);
         int attack=victor==null?0:w.army.war(victor);
+        Set<Integer> horses=new HashSet<>();for(World.Officer o:crew)if(w.contests.profile(o.id).has(Contests.Gear.HORSE))horses.add(o.id);
+        if(hostile)w.treasures.rob(victor,crew);
         for(World.Officer o:crew){
-            boolean caught=jail!=null&&!blood&&!w.skills.has(o,Skill.QIANGYUN)&&
+            boolean caught=jail!=null&&!blood&&!horses.contains(o.id)&&!w.skills.has(o,Skill.QIANGYUN)&&
                 (binding||w.strategy.nextInt(100)<Math.max(5,Math.min(60,20+(attack-o.war)/5)));
             if(caught)capture(o,jail);else w.retreat(o,loser.hex);
         }
         w.units.remove(loser);
+        if(hostile)w.treasures.fallenTreasury(loser.owner,victor.owner);
         if(hostile)for(World.Officer o:w.army.crew(victor))earn(o.id,500);
     }
     void cityCaptured(World.City c,int oldOwner,World.Unit victor){
         policies.remove(c.id);
         for(World.Officer o:w.officers)if(o.cityId==c.id&&o.owner==oldOwner&&oldOwner>=0){
-            if(!w.skills.has(o,Skill.QIANGYUN)&&w.strategy.nextInt(100)<30)capture(o,c);else w.retreat(o,c.hex);
+            if(!w.skills.has(o,Skill.QIANGYUN)&&!w.contests.profile(o.id).has(Contests.Gear.HORSE)&&w.strategy.nextInt(100)<30)capture(o,c);else w.retreat(o,c.hex);
         }
         relocatePrisoners();
     }
@@ -143,8 +147,8 @@ public final class Government {
     }
     public int recruitChance(int actor,int target){
         World.Officer o=w.officer(actor),t=w.officer(target);Prisoner p=prisoner(target);
-        if(o==null||t==null||p==null||o.owner!=p.captor||t.role==Strategy.Role.RULER&&w.alive(t.owner))return 0;
-        return Math.max(5,Math.min(95,20+o.charm/2+o.politics/5-t.loyalty/2+(!w.alive(t.owner)?20:0)));
+        if(o==null||t==null||p==null||w.relations.refuses(target,actor,o.owner)||o.owner!=p.captor||t.role==Strategy.Role.RULER&&w.alive(t.owner))return 0;
+        return Math.max(5,Math.min(95,20+w.relations.recruitmentBonus(target,actor,o.owner)+o.charm/2+o.politics/5-t.loyalty/2+(!w.alive(t.owner)?20:0)));
     }
     private String prisonerError(int city,int actor,int target,int gold){
         String error=w.cityError(w.city(city),w.officer(actor),gold);if(error!=null)return error;
@@ -176,13 +180,13 @@ public final class Government {
         relocatePrisoners();
         advisors.entrySet().removeIf(e->{World.Officer o=w.officer(e.getValue());return o==null||o.owner!=e.getKey()||captive(o.id);});
         for(Prisoner p:new ArrayList<>(prisoners.values())){
-            World.Officer o=w.officer(p.officerId);if(o.role!=Strategy.Role.RULER)o.loyalty=Math.max(0,o.loyalty-2);
+            World.Officer o=w.officer(p.officerId);if(o.role!=Strategy.Role.RULER&&!w.relations.loyalBond(o.id))o.loyalty=Math.max(0,o.loyalty-2);
             if(w.turn>p.capturedTurn&&w.strategy.nextInt(100)<5)free(p);
         }
         if(w.turn%3==0)for(Map.Entry<Integer,String> e:ranks.entrySet()){
             World.Officer o=w.officer(e.getKey());if(captive(o.id))continue;
             World.City c=o.cityId>=0?w.city(o.cityId):o.unitId>=0?refuge(o.owner,w.unit(o.unitId).hex):null;
-            if(c!=null){int pay=rank(e.getValue()).salary;if(c.gold>=pay)c.gold-=pay;else{o.loyalty=Math.max(0,o.loyalty-2);w.note(o.name+"俸禄不足，忠诚下降2");}}
+            if(c!=null){int pay=rank(e.getValue()).salary;if(c.gold>=pay)c.gold-=pay;else{if(!w.relations.loyalBond(o.id))o.loyalty=Math.max(0,o.loyalty-2);w.note(o.name+"俸禄不足，忠诚下降2");}}
         }
     }
     void runAi(){
