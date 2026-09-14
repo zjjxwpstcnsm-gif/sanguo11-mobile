@@ -197,7 +197,7 @@ public final class GameSmokeRunner extends Instrumentation {
         Hex site=factory.domestic.buildSites(10).get(0);require(factory.domestic.build(10,3,Domestic.Kind.WORKSHOP,site).ok,"manufacturing fixture workshop starts");
         for(int i=0;i<3;i++)require(factory.nextTurn().ok,"manufacturing fixture advances");installFixture(factory,factory.city(10).hex);
         armyCity();click("军备制造 / 攻城器械与舰船",true);click("井阑 ·",false);click("周瑜 ·",false);click("执行",true);
-        w=saved();require(w.army.productions().size()==1&&w.officer(1).otherTaskTurns==3,"manufacturing starts from UI");
+        w=saved();require(w.army.productions().size()==1&&w.officer(1).otherTaskTurns==3,"manufacturing starts from UI");waitText("任务 1",true);
         clickNav("任务");click("筛选 · 全部任务",true);click("军备制造",true);waitText("制造井阑 · 周瑜",true);screenshot("25-manufacturing-task");
         int count=w.city(10).equipment[6],turn=w.turn;for(int i=1;i<=3;i++){endTurn();waitForTurn(turn+i);}w=saved();require(w.city(10).equipment[6]==count+1&&w.army.productions().isEmpty(),"UI turn loop completes one equipment item");
 
