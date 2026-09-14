@@ -29,7 +29,7 @@ final class StrategyUi {
     }
     void city(World.City c){
         String title=c.name+" · 人事 / 城市治理";
-        String[] labels={"城市与武将状态","搜索人才","登用武将","褒奖武将","任命太守","巡察","征兵","训练"};
+        String[] labels={"城市与武将状态","搜索人才","登用武将","褒奖武将","任命太守","巡察","征兵","训练","舌战登用"};
         new AlertDialog.Builder(activity).setTitle(title).setItems(labels,(d,n)->command(c,n)).setNegativeButton("返回",null).show();
     }
     void command(World.City c,int n){
@@ -60,6 +60,10 @@ final class StrategyUi {
                 case 5:confirm("巡察","消耗金100；治安 +"+Math.min(100-c.order,StrategyRules.patrolGain(o.politics,o.charm))+"。",()->apply.accept(w.strategy.patrol(c.id,o.id)));break;
                 case 6:confirm("征兵","消耗金300、治安5；预计征兵 "+w.strategy.recruitAmount(c.id,o.id)+"，扣减等量兵源。当前兵源 "+c.recruitReserve+"。",()->apply.accept(w.strategy.recruitSoldiers(c.id,o.id)));break;
                 case 7:confirm("训练","消耗金100；气力 +"+Math.min(100-c.morale,StrategyRules.trainingGain(o.leadership,o.war))+"，出征时作为初始部队气力。",()->apply.accept(w.strategy.trainArmy(c.id,o.id)));break;
+                case 8:{
+                    List<World.Officer> targets=new ArrayList<>();for(World.Officer target:w.officers)if(w.contests.debateError(c.id,o.id,target.id)==null)targets.add(target);
+                    choose("选择舌战登用目标",targets,target->confirm("舌战说服"+target.name,"金100。通过出牌与憤激决出胜负，获胜后加入本势力；失败不退费。",()->apply.accept(w.contests.persuade(c.id,o.id,target.id))));break;
+                }
                 default:break;
             }
         });

@@ -72,6 +72,30 @@ public final class ScenarioData {
                 int countAptitude=number(p,"aptitudes",0,10000);Set<Integer> seen=new HashSet<>();
                 for(int i=0;i<countAptitude;i++){String[] data=fields(p,"aptitude."+i,7);World.Officer o=w.officer(integer(data[0]));if(o==null||!seen.add(o.id))throw new IOException("适性武将重复或缺失");for(int j=0;j<6;j++)o.aptitude[j]=integer(data[1+j]);}
             }
+            if(p.containsKey("initial-units")){
+                int initialCount=number(p,"initial-units",0,10000);
+                for(int i=0;i<initialCount;i++){
+                    String[] data=fields(p,"initial-unit."+i,11);
+                    World.Unit unit=new World.Unit(integer(data[0]),integer(data[1]),integer(data[2]),World.Weapon.valueOf(data[4]),new Hex(integer(data[6]),integer(data[7])),integer(data[8]),integer(data[9]));
+                    unit.deputies=data[3].equals("-")?new int[0]:Arrays.stream(data[3].split(",")).mapToInt(Integer::parseInt).toArray();
+                    unit.ship=Army.Ship.valueOf(data[5]);unit.energy=integer(data[10]);
+                    if(unit.id<1||unit.id>=10000000)throw new IOException("开局部队编号无效");
+                    for(int idInCrew:joinCrew(unit)){
+                        World.Officer officer=w.officer(idInCrew);
+                        if(officer==null||officer.owner!=unit.owner||officer.unitId!=-1)throw new IOException("开局编队武将无效");
+                        officer.cityId=-1;officer.unitId=unit.id;
+                    }
+                    w.units.add(unit);w.nextUnitId=Math.max(w.nextUnitId,unit.id+1);
+                }
+            }
+            if(p.containsKey("contest-profiles")){
+                int profileCount=number(p,"contest-profiles",0,10000);Set<Integer> seen=new HashSet<>();
+                for(int i=0;i<profileCount;i++){
+                    String[] data=fields(p,"contest-profile."+i,4);int officer=integer(data[0]);
+                    if(!seen.add(officer))throw new IOException("对局配置武将重复");
+                    w.contests.configure(officer,new Contests.Profile(Debate.Temper.valueOf(data[1]),integer(data[2]),integer(data[3])));
+                }
+            }
             if(!p.isEmpty())throw new IOException("未知剧本字段："+p.keySet().iterator().next());
             if(reference!=null){ContentCatalog catalog=ContentCatalog.get();catalog.validateOpening(w);ContentRuntime.initializeOpening(w,catalog);}
             w.strategy.initializeOffices();
@@ -81,6 +105,7 @@ public final class ScenarioData {
             return w;
         }catch(IllegalArgumentException e){throw new IOException("剧本格式错误："+e.getMessage(),e);}
     }
+    private static int[] joinCrew(World.Unit u){int[] ids=new int[1+u.deputies.length];ids[0]=u.officerId;System.arraycopy(u.deputies,0,ids,1,u.deputies.length);return ids;}
     private static String hash(byte[] bytes)throws IOException {
         try {
             byte[] hash=MessageDigest.getInstance("SHA-256").digest(bytes);StringBuilder out=new StringBuilder();

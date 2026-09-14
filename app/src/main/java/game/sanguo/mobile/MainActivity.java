@@ -105,19 +105,20 @@ public final class MainActivity extends Activity {
         if(ui.owner>=world.factions.length)ui.owner=-1;
         if(ui.cityOwner>=world.factions.length)ui.cityOwner=-1;
         title.setText(world.scenarioName+"  ·  "+world.faction(world.player)+"    "+world.date()+"    行动力 "+world.actionPoints[world.player]);
-        nextTurn.setEnabled(!aiRunning&&!world.gameOver());nextTurn.setText(aiRunning?"结算中…":"下一旬  →");
+        nextTurn.setEnabled(!aiRunning&&!world.gameOver()&&!world.contests.busy());nextTurn.setText(aiRunning?"结算中…":"下一旬  →");
         for(Map.Entry<String,Button> e:navigation.entrySet()){e.getValue().setEnabled(!aiRunning);e.getValue().setTextColor(e.getKey().equals(ui.page)?gold:paper);}
         navigation.get("tasks").setText("任务"+(taskCount()>0?" "+taskCount():""));
         panelHost.removeAllViews();panel.removeAllViews();panelHost.setVisibility(ui.panelVisible?View.VISIBLE:View.GONE);
         if(world.unit(moving)==null)moving=-1;
-        if(ui.page.equals("cities"))panelHost.addView(new OverviewUi(this,world,ui).cities());
+        if(world.contests.busy()&&!ui.page.equals("menu"))panelHost.addView(new ContestUi(this,world,this::apply).view());
+        else if(ui.page.equals("cities"))panelHost.addView(new OverviewUi(this,world,ui).cities());
         else if(ui.page.equals("officers"))panelHost.addView(new OverviewUi(this,world,ui).officers());
         else if(ui.page.equals("content"))panelHost.addView(new ContentUi(this,world,ui).view());
         else if(ui.page.equals("factions"))panelHost.addView(new OverviewUi(this,world,ui).factions());
         else if(ui.page.equals("tasks"))panelHost.addView(new OverviewUi(this,world,ui).tasks());
         else {panelHost.addView(panelScroll);if(ui.page.equals("menu"))showMenu();else showSelection();}
         log.setText(aiRunning?"正在结算电脑行动与本旬任务…":world.log.isEmpty()?"拖动地图 · 双指缩放 · 双击城池定位":world.log.get(world.log.size()-1));
-        map.setWorld(world,selected,moving);map.setEnabled(!aiRunning);
+        map.setWorld(world,selected,moving);map.setEnabled(!aiRunning&&!world.contests.busy());
     }
     private int taskCount(){int n=0;for(Domestic.Facility f:world.domestic.facilities)if(f.remaining>0&&world.city(f.cityId).owner==world.player)n++;for(Domestic.Mission m:world.domestic.missions)if(m.owner==world.player)n++;for(Campaign.Project p:world.campaign.projects())if(p.owner==world.player)n++;for(Army.Production p:world.army.productions())if(p.owner==world.player)n++;return n;}
     private void showSelection(){
@@ -155,6 +156,7 @@ public final class MainActivity extends Activity {
                 if(own){
                     action("搜索人才",v->strategyUi().command(c,1));
                     action("登用武将",v->strategyUi().command(c,2));
+                    action("舌战登用",v->strategyUi().command(c,8));
                     action("褒奖武将",v->strategyUi().command(c,3));
                     action("任命太守",v->strategyUi().command(c,4));
                     action("能力 / 适性培养",v->campaignUi().study(c));
@@ -203,12 +205,13 @@ public final class MainActivity extends Activity {
         if(u.burning>0)line("部队燃烧 · 剩"+u.burning+"旬",14,gold);
         action("编队特技",v->warUi().skills(u));
         if(u.owner==world.player){line(u.acted?"本旬已行动":"点击高亮空地移动\n点敌军攻击 / 点城池攻城或入城",14,paper);
-            if(!u.acted&&u.status==War.Status.NORMAL){action("截击运输队",v->governmentUi().raid(u));action("移交兵粮",v->governmentUi().supply(u));action("战法",v->{moving=u.id;if(world.army.water(u.hex)||Army.siegeWeapon(u.weapon))armyUi().tactics(u);else warUi().tactics(u);});
+            if(!u.acted&&u.status==War.Status.NORMAL){action("单挑",v->new ContestUi(this,world,this::apply).challenge(u));action("截击运输队",v->governmentUi().raid(u));action("移交兵粮",v->governmentUi().supply(u));action("战法",v->{moving=u.id;if(world.army.water(u.hex)||Army.siegeWeapon(u.weapon))armyUi().tactics(u);else warUi().tactics(u);});
                 if(u.burning>0)action("部队灭火 · 气力5",v->confirm("扑灭本部队火焰？",()->apply(world.army.extinguish(u.id))));action("部队计略",v->{moving=u.id;warUi().plots(u);});action("待命 · 恢复5气力",v->confirm("本旬待命并恢复5气力？",()->apply(world.war.waitUnit(u.id))));}
             action("取消部队选择",v->{moving=-1;selected=null;refresh();});}
     }
     void officerDetail(World.Officer o){
         String stats="统率 "+o.leadership+"    武力 "+o.war+"\n智力 "+o.intelligence+"    政治 "+o.politics+"\n魅力 "+o.charm;
+        if(world.contests.injury(o.id)>0)stats+="\n负伤 · 有效武力 "+world.contests.war(o)+" · 剩"+world.contests.injuryTurns(o.id)+"旬";
         Government.Rank office=world.government.office(o.id);stats+="\n功绩 "+world.government.merit(o.id)+" · 官职 "+(office==null?"未授官":office.id)+" · 统兵 "+world.government.commandLimit(o.id);
         stats+="\n适性：枪"+War.rankLabel(o.aptitude[0])+" 戟"+War.rankLabel(o.aptitude[1])+" 弩"+War.rankLabel(o.aptitude[2])+" 骑"+War.rankLabel(o.aptitude[3])+" 器"+War.rankLabel(o.aptitude[4])+" 水"+War.rankLabel(o.aptitude[5]);
         AlertDialog.Builder d=new AlertDialog.Builder(this).setTitle(o.name+" · "+UiModels.faction(world,o)).setMessage(stats+"\n身份："+o.role.label+" · 忠诚 "+o.loyalty+"\n\n所在地："+UiModels.location(world,o)+"\n状态："+UiModels.status(world,o)).setNegativeButton("返回",null);
@@ -233,11 +236,13 @@ public final class MainActivity extends Activity {
     private WarUi warUi(){return new WarUi(this,world,this::apply);}
     DomesticUi domesticUi(){return new DomesticUi(this,world,this::apply,this::selectAndFocus);}
     private void showMenu(){
-        line("军政菜单",22,gold);action("保存局面（3个槽位）",v->saveSlots(false));action("读取存档",v->saveSlots(true));action("导出当前存档",v->exportSave());action("导入存档文件",v->importSave());
+        line("军政菜单",22,gold);
+        if(world.contests.busy())action("继续当前对局",v->{ui.page="map";refresh();});
+        if(!world.contests.lastResult().isEmpty())action("最近对局结果",v->message("对局结果",world.contests.lastResult()));action("保存局面（3个槽位）",v->saveSlots(false));action("读取存档",v->saveSlots(true));action("导出当前存档",v->exportSave());action("导入存档文件",v->importSave());
         action("本旬结算摘要",v->message("旬结算摘要",ui.summary.isEmpty()?"结束一旬后将在这里显示结算摘要。":ui.summary));
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.9 · 军政与后勤","俘虏招降、释放与赎回；40武官、功绩、俸禄；军师建议、召唤与城池委任；运输截击、水陆运输与兵粮补给。\n存档 v8，兼容 v1～v7，支持导入导出。\n\n当前仍为资料演练与原创沙盘。全国原版地形、官方开局、全特技、单挑舌战与事件等尚未完整还原。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.10 · 文武对决","单挑的方针、斗志、必杀、换将与俘获；舌战话题、话术、憤激与登用；对局中保存和恢复。\n存档 v9，兼容 v1～v8。\n\n原有军政、后勤等玩法保留。全国地形、官方完整开局、全部特技、事件与精确数值仍未完整还原。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}
@@ -268,10 +273,10 @@ public final class MainActivity extends Activity {
     }
     private void showError(String title){message(title,"操作未完成，当前局面未改变。请检查存档是否损坏、版本是否兼容，以及设备存储空间后重试。");}
     private void confirmTurn(){
-        if(aiRunning||world.gameOver())return;int idle=0;for(World.City c:world.cities)if(c.owner==world.player)idle+=world.idle(c).size();
+        if(aiRunning||world.gameOver()||world.contests.busy())return;int idle=0;for(World.City c:world.cities)if(c.owner==world.player)idle+=world.idle(c).size();
         confirm("结束 "+world.date()+"？\n还有 "+idle+" 名闲置武将、"+world.actionPoints[world.player]+" 点行动力。\n将执行电脑行动，推进建设、调动与运输，并自动保存。",this::advanceTurn);
     }
-    private void advanceTurn(){if(aiRunning||world.gameOver())return;aiRunning=true;turnWork=new TurnWork(world);turnWork.observe(this::finishTurn);refresh();turnWork.start();}
+    private void advanceTurn(){if(aiRunning||world.gameOver()||world.contests.busy())return;aiRunning=true;turnWork=new TurnWork(world);turnWork.observe(this::finishTurn);refresh();turnWork.start();}
     private void finishTurn(){
         if(turnWork==null||!turnWork.done||isFinishing()||isDestroyed())return;TurnWork completed=turnWork;completed.observe(null);turnWork=null;aiRunning=false;
         if(completed.error!=null){refresh();showError("回合结算失败");return;}

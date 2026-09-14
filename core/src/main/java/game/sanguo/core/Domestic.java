@@ -104,7 +104,7 @@ public final class Domestic {
     }
     public World.Result cancelBuild(int id){
         Facility f=facility(id);
-        if(w.gameOver()||f==null||w.city(f.cityId).owner!=w.active||f.remaining==0)return w.fail("没有可取消的己方建设");
+        if(w.contests.busy()||w.gameOver()||f==null||w.city(f.cityId).owner!=w.active||f.remaining==0)return w.fail("没有可取消的己方建设");
         w.officer(f.builderId).acted=true;
         if(f.upgradeTo>0){f.upgradeTo=0;f.remaining=0;f.builderId=-1;return w.success("已取消合并，保留原等级；费用和已吸收设施不退还");}
         facilities.remove(f);return w.success("已取消"+f.kind.label+"建设，不退还费用");
@@ -147,7 +147,7 @@ public final class Domestic {
     }
     public World.Result redirect(int id,int target){
         Mission m=mission(id);World.City c=w.city(target);
-        if(w.gameOver()||m==null||m.owner!=w.active||c==null||c.owner!=m.owner||target==m.targetCity)return w.fail("请选择本势力在途任务与新的己方目的地");
+        if(w.contests.busy()||w.gameOver()||m==null||m.owner!=w.active||c==null||c.owner!=m.owner||target==m.targetCity)return w.fail("请选择本势力在途任务与新的己方目的地");
         if(w.actionPoints[w.active]<10)return w.fail("行动力不足10");
         if(route(m.hex,c.hex,m.owner,m.sea)==null)return w.fail("没有可用陆路");
         w.actionPoints[w.active]-=10;m.targetCity=target;return w.success("任务已改道至"+c.name);
