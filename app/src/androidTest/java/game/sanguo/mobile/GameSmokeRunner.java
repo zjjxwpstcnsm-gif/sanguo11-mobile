@@ -13,11 +13,13 @@ import game.sanguo.core.*;
 /** Runs against an installed APK using platform UI automation, without a test framework dependency. */
 public final class GameSmokeRunner extends Instrumentation {
     private Activity current;
+    private boolean upgradeOnly;
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);current=a;}
-    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);start();}
+    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));start();}
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
+            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v9 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
@@ -221,6 +223,19 @@ public final class GameSmokeRunner extends Instrumentation {
         try(FileOutputStream out=new FileOutputStream(exported)){out.write(new byte[]{1,2,3});}
         runOnMainSync(()->((MainActivity)current).onActivityResult(912,Activity.RESULT_OK,result));waitText("导入失败",true);click("返回",true);
         require(Arrays.equals(before,SaveCodec.encode(saved())),"corrupt external document does not mutate game");screenshot("40-document-restore");
+    }
+    private void upgradeFlow()throws Exception {
+        byte[] before=SaveCodec.encode(saved());
+        Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivitySync(launch);waitText(saved().scenarioName,false);waitForIdleSync();
+        java.lang.reflect.Field field=MainActivity.class.getDeclaredField("world");field.setAccessible(true);World[] loaded=new World[1];
+        runOnMainSync(()->{try{loaded[0]=(World)field.get(current);}catch(IllegalAccessException e){throw new RuntimeException(e);}});
+        require(Arrays.equals(before,SaveCodec.encode(loaded[0])),"upgraded app actually loaded all old state");
+        require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=10,"new app version installed");
+        runOnMainSync(current::recreate);waitText(saved().scenarioName,false);waitForIdleSync();
+        require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==9,"upgraded writer produced v9 header");}
+        screenshot("00-v09-upgrade-preserved");
     }
     private void contestFlow()throws Exception {
         clickNav("菜单");click("新游戏 / 选择势力",true);click("文武对决 ·",false);click("文武营",true);click("执行",true);

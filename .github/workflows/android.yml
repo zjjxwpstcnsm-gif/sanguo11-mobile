@@ -52,6 +52,13 @@ jobs:
           ./gradlew --no-daemon test :core:check
           ./gradlew --no-daemon lint
           ./gradlew --no-daemon assembleDebug :app:assembleDebugAndroidTest
+      - name: Build pinned v0.9 upgrade baseline
+        run: |
+          git fetch --depth=1 origin 5ff24223f723a5ce4830b6c3753b479877e1ae94
+          mkdir -p /tmp/sanguo-v09-upgrade app/build/upgrade
+          git archive 5ff24223f723a5ce4830b6c3753b479877e1ae94 | tar -x -C /tmp/sanguo-v09-upgrade
+          (cd /tmp/sanguo-v09-upgrade && ./gradlew --no-daemon :app:assembleDebug)
+          cp /tmp/sanguo-v09-upgrade/app/build/outputs/apk/debug/app-debug.apk app/build/upgrade/v09.apk
       - name: Check bundled scenario resources
         run: |
           python3 - <<'PY'
@@ -72,7 +79,7 @@ jobs:
           arch: x86_64
           profile: pixel_2
           disable-animations: true
-          script: bash scripts/smoke-android.sh
+          script: bash scripts/verify-upgrade.sh && bash scripts/smoke-android.sh
       - name: Check stable development signature and record digest
         run: |
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs app/build/outputs/apk/debug/app-debug.apk | tee app/build/outputs/apk/debug/SIGNATURE.txt
