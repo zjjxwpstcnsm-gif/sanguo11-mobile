@@ -22,11 +22,11 @@ public final class ScenarioTest {
         try{SaveCodec.encode(world);throw new AssertionError("Accepted "+reason);}catch(IOException expected){checks++;}
     }
     public static void main(String[] args)throws Exception {
-        data();migration();factions();routing();campaigns();
+        ContentTest.main(args);data();migration();factions();routing();campaigns();
         System.out.println("PASS: "+checks+" scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.");
     }
     private static void data()throws Exception {
-        List<World> packs=ScenarioCatalog.all();check(packs.size()==3,"three bundled packs");
+        List<World> packs=ScenarioCatalog.all();check(packs.size()==4,"three original packs plus sourced officer drill");
         World w=ScenarioCatalog.load("regional-sandbox",2);
         check(w.cities.size()==9&&w.officers.size()==18&&w.factions.length==3,"sandbox content loaded");
         check(w.player==2&&w.active==2&&w.home().owner==2,"selected faction controls own city");

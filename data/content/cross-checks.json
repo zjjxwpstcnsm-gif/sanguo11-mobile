@@ -1,0 +1,58 @@
+[
+  {
+    "projectId": 1000,
+    "url": "https://w.atwiki.jp/sangokushi11/pages/339.html",
+    "stats": [
+      75,
+      73,
+      74,
+      78,
+      99
+    ],
+    "aptitudes": "ABABCC",
+    "status": "cross-checked",
+    "scope": "五项素质与六类适性；未认证安装包版本"
+  },
+  {
+    "projectId": 2000,
+    "url": "https://w.atwiki.jp/sangokushi11/pages/338.html",
+    "stats": [
+      96,
+      72,
+      91,
+      94,
+      96
+    ],
+    "aptitudes": "SSAABC",
+    "status": "cross-checked",
+    "scope": "五项素质与六类适性；未认证安装包版本"
+  },
+  {
+    "projectId": 1004,
+    "url": "https://w.atwiki.jp/sangokushi11/pages/123.html",
+    "stats": [
+      92,
+      38,
+      100,
+      95,
+      92
+    ],
+    "aptitudes": "BBSCSA",
+    "status": "cross-checked",
+    "scope": "五项素质与六类适性；未认证安装包版本"
+  },
+  {
+    "projectId": 3001,
+    "url": "https://w.atwiki.jp/sangokushi11/pages/456.html",
+    "stats": [
+      97,
+      71,
+      96,
+      86,
+      93
+    ],
+    "aptitudes": "AASCCS",
+    "status": "cross-checked",
+    "scope": "五项素质与六类适性；未认证安装包版本"
+  }
+]

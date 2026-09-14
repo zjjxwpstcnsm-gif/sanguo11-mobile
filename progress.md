@@ -1,12 +1,16 @@
 # 项目进度
 
-## v0.8 Agent 1 开发增量（联合集成待办）
+## 当前 v0.8 联合开发版
+
+集成分支 agent/integrate-v08 已实际合入双方代码，唯一存档v7。来源目录到运行时特技/性别桥接完成；原有及双方新增回归均已合并，Android联合验证进行中。[集成记录与缺口](docs/handoffs/integration-v08.md)。
+
+## v0.8 Agent 1 开发增量
 
 固定基线 ff624b6e9c48c81d7111a9a642b18cf6bd098fe1；分支 agent/rules-parity-v08；[PR #7](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/7)。部队命令流程、部分特技效果、v7兼容存档、移动确认与组合计略Android入口已提交。完整技巧/PK培养、军政人物与单挑舌战仍缺失；原版公式尚未全部核验，不能宣称完整复刻。详细规则、接口、夹具和最新验证见 [交接文档](docs/handoffs/agent-rules-parity-v08.md)。
 
 2026-09-14 · `zjjxwpstcnsm-gif/sanguo11-mobile` · private
 
-## 当前 v0.7.0 / 编队与水陆攻防
+## 历史 v0.7.0 / 编队与水陆攻防
 
 PR #4、#5 已核验并合并到 main `e66656e3`。PR #6 增加三将编队、9种陆战兵装、3类舰船、水陆切换、军备制造、器械运输、兵器/水军战法、六类适性、v6存档和水陆攻防沙盘。本地旧回归与新增45个军备场景通过；Android验证正在运行。完整边界见 [ARMY_V0_7.md](docs/ARMY_V0_7.md)。仍未100%还原，未制作暂缓的专用界面与人物模型。
 

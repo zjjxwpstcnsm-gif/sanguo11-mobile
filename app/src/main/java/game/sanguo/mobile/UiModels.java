@@ -57,6 +57,14 @@ final class UiModels {
             .reversed().thenComparingInt(c -> c.id));
         return result;
     }
+    static List<World.City> cities(World w,int sort,String query,int owner){
+        List<World.City> result=cities(w,sort);String needle=query.trim();
+        result.removeIf(c->!(c.name.contains(needle)||w.faction(c.owner).contains(needle))||(owner>=0&&c.owner!=owner)||(owner==-2&&c.owner>=0));return result;
+    }
+    static List<Integer> factions(World w,String query){
+        List<Integer> result=new ArrayList<>();for(int i=0;i<w.factions.length;i++)if(w.faction(i).contains(query.trim()))result.add(i);return result;
+    }
+    static List<Task> tasks(World w,int type,String query){List<Task> result=tasks(w,type);String needle=query.trim();result.removeIf(t->!t.title.contains(needle)&&!t.detail.contains(needle));return result;}
     static String cargo(Domestic.Mission m) {
         StringBuilder s = new StringBuilder("金 "+m.gold+" · 粮 "+m.food+" · 兵 "+m.troops);
         for (World.Weapon weapon : World.Weapon.values()) if (m.equipment[weapon.ordinal()] > 0)

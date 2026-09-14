@@ -16,6 +16,8 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Archive exact build sources
         run: git archive --format=zip HEAD -o sanguo11-mobile-source.zip
       - uses: actions/upload-artifact@v4
@@ -28,6 +30,11 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
+      - name: Verify offline content pipeline
+        run: |
+          python3 tools/content/build_content.py --check
+          python3 tools/content/test_content.py
+          bash scripts/test-ui-models.sh
       - name: Verify core rules and saves
         run: bash scripts/test-core.sh
       - uses: gradle/actions/setup-gradle@v4
@@ -50,7 +57,7 @@ jobs:
           python3 - <<'PY'
           import zipfile
           with zipfile.ZipFile('app/build/outputs/apk/debug/app-debug.apk') as apk:
-              for name in ['scenarios/index.txt', 'scenarios/m0-skirmish.properties', 'scenarios/regional-sandbox.properties', 'scenarios/river-siege-sandbox.properties']:
+              for name in ['scenarios/index.txt', 'scenarios/m0-skirmish.properties', 'scenarios/regional-sandbox.properties', 'scenarios/river-siege-sandbox.properties', 'scenarios/officer-reference-drill.properties', 'content/index.txt', 'content/officers.tsv', 'content/sites.tsv']:
                   assert name in apk.namelist(), name
           PY
       - name: Enable KVM for Android runtime verification
@@ -86,12 +93,15 @@ jobs:
           print(text)
           PYCOMPARE
           cd app/build/outputs/apk/debug
-          sha256sum app-debug.apk > SHA256SUMS
+          cp app-debug.apk "sanguo11-mobile-integrated-v08-$(git rev-parse --short HEAD).apk"
+          sha256sum sanguo11-mobile-integrated-v08-*.apk > SHA256SUMS
+          git rev-parse HEAD > BUILD_COMMIT
       - uses: actions/upload-artifact@v4
         with:
-          name: sanguo11-mobile-m1-apk
+          name: sanguo11-mobile-integrated-v08-apk
           path: |
-            app/build/outputs/apk/debug/app-debug.apk
+            app/build/outputs/apk/debug/sanguo11-mobile-integrated-v08-*.apk
+            app/build/outputs/apk/debug/BUILD_COMMIT
             app/build/outputs/apk/debug/SHA256SUMS
             app/build/outputs/apk/debug/SIGNATURE.txt
             app/build/outputs/apk/debug/PRIOR-MAIN-SIGNATURE.txt
