@@ -1,0 +1,42 @@
+{
+  "commit": "08da7a68592bb4834c5a08ebf824dedc27bd0d35",
+  "run": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34795560166",
+  "apk": "sanguo11-mobile-national-content-08da7a6.apk",
+  "bytes": 279402,
+  "sha256": "d9e5e1385be4d6eb06a350c1eb7250793508ace5e25421049ac4a8e1e80bb84a",
+  "signature": "apksigner verification passed; v2 signature",
+  "sdk": 35,
+  "emulatorApi": 29,
+  "physicalDevicesTested": 0,
+  "lint": {
+    "errors": 0,
+    "warnings": 12
+  },
+  "profiles": [
+    {
+      "profile": "1080x1920",
+      "screenshotCount": 32,
+      "result": "PASS"
+    },
+    {
+      "profile": "1080x2340",
+      "screenshotCount": 32,
+      "result": "PASS"
+    },
+    {
+      "profile": "1080x2400",
+      "screenshotCount": 32,
+      "result": "PASS"
+    }
+  ],
+  "artifacts": {
+    "apk": 10329458403,
+    "screenshots": 10330500123,
+    "lint": 10330430264
+  },
+  "limitations": [
+    "Software Canvas onDraw timing is not FPS or GPU latency",
+    "City source preview labels can overlap when zoomed out; zoom for detail",
+    "No verified original national terrain or complete official starting scenario"
+  ]
+}

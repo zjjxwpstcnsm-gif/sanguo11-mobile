@@ -1,0 +1,35 @@
+CI 34795560166 / exact build commit 08da7a68592bb4834c5a08ebf824dedc27bd0d35
+2026-09-14T01:19:56.7963757Z PASS: 51730 UI projection/camera assertions.
+2026-09-14T01:20:01.6791245Z PASS: 189 assertions covering hex paths, resources, combat, turns, saves, and deterministic simulation.
+2026-09-14T01:20:02.1825557Z PASS: 2638 content assertions; cold catalog 129.327 ms; sourced opening combat at turn 3.
+2026-09-14T01:20:03.0681282Z PASS: 359 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
+2026-09-14T01:20:03.8046920Z PASS: 513 domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.
+2026-09-14T01:20:04.4404809Z PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
+2026-09-14T01:20:05.0575360Z PASS: 50x50 benchmark, 100 A* queries: p50=3.109ms p95=3.827ms max=4.637ms total=310.305ms maxExpanded=2125/2500; 100 reachable queries=15.977ms
+2026-09-14T01:20:06.0853640Z PASS: 5407 strategy/officer assertions covering locks, seeded search/hiring, loyalty, offices, economy, finite reserves, readiness, AI and save v1-v4.
+2026-09-14T01:20:06.8602664Z PASS: 59 campaign cases, 424 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
+2026-09-14T01:20:07.5186253Z PASS: 45 army cases, 465 assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.
+2026-09-14T01:20:50.2631607Z PASS: 51730 UI projection/camera assertions.
+2026-09-14T01:20:56.7605252Z PASS: 45 army cases, 465 assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.
+2026-09-14T01:20:58.7594688Z PASS: 59 campaign cases, 424 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
+2026-09-14T01:20:59.4945195Z PASS: 189 assertions covering hex paths, resources, combat, turns, saves, and deterministic simulation.
+2026-09-14T01:21:00.5583516Z PASS: 513 domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.
+2026-09-14T01:21:01.9591914Z PASS: 2638 content assertions; cold catalog 128.240 ms; sourced opening combat at turn 3.
+2026-09-14T01:21:01.9612669Z PASS: 359 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
+2026-09-14T01:21:02.9585640Z PASS: 5407 strategy/officer assertions covering locks, seeded search/hiring, loyalty, offices, economy, finite reserves, readiness, AI and save v1-v4.
+2026-09-14T01:21:03.7672452Z PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
+2026-09-14T01:21:04.5622404Z PASS: 50x50 benchmark, 100 A* queries: p50=3.051ms p95=5.821ms max=10.841ms total=356.447ms maxExpanded=2125/2500; 100 reachable queries=15.345ms
+2026-09-14T01:21:04.6501838Z BUILD SUCCESSFUL in 37s
+2026-09-14T01:21:35.5511766Z PASS: 51730 UI projection/camera assertions.
+2026-09-14T01:21:37.7496355Z BUILD SUCCESSFUL in 32s
+2026-09-14T01:22:04.2107523Z BUILD SUCCESSFUL in 26s
+2026-09-14T01:29:14.5562710Z SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turns, three save slots, corrupt-load recovery, Activity recreation, construction, officer travel, editable cargo transport, task persistence and arrival, map tap/pan/pinch/bounds, filters, empty states, cancel/overwrite confirmation and navigation recreation, search/hire/governor/reward/patrol/recruit/train save v5 restart, merchant quotes/cancel/volume, aptitude study task/completion, goodwill, map tactic damage/displacement and persistent fire, three-officer formation/cancellation, equipment return, manufacturing completion, naval fire, v6 restart and disembarkation; sourced opening, content/city/task/faction searches, source coordinate preview, navigator, exact save restore, viewport stress verified.
+2026-09-14T01:34:54.6182906Z SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turns, three save slots, corrupt-load recovery, Activity recreation, construction, officer travel, editable cargo transport, task persistence and arrival, map tap/pan/pinch/bounds, filters, empty states, cancel/overwrite confirmation and navigation recreation, search/hire/governor/reward/patrol/recruit/train save v5 restart, merchant quotes/cancel/volume, aptitude study task/completion, goodwill, map tactic damage/displacement and persistent fire, three-officer formation/cancellation, equipment return, manufacturing completion, naval fire, v6 restart and disembarkation; sourced opening, content/city/task/faction searches, source coordinate preview, navigator, exact save restore, viewport stress verified.
+2026-09-14T01:40:24.3962941Z SMOKE PASS: installed APK launches; scenario/faction selection, city navigation, deployment, AI turns, three save slots, corrupt-load recovery, Activity recreation, construction, officer travel, editable cargo transport, task persistence and arrival, map tap/pan/pinch/bounds, filters, empty states, cancel/overwrite confirmation and navigation recreation, search/hire/governor/reward/patrol/recruit/train save v5 restart, merchant quotes/cancel/volume, aptitude study task/completion, goodwill, map tactic damage/displacement and persistent fire, three-officer formation/cancellation, equipment return, manufacturing completion, naval fire, v6 restart and disembarkation; sourced opening, content/city/task/faction searches, source coordinate preview, navigator, exact save restore, viewport stress verified.
+2026-09-14T01:40:28.5895525Z Verifies
+2026-09-14T01:40:28.5922378Z Verified using v1 scheme (JAR signing): false
+2026-09-14T01:40:28.5937589Z Verified using v2 scheme (APK Signature Scheme v2): true
+2026-09-14T01:40:28.5940001Z Verified using v3 scheme (APK Signature Scheme v3): false
+2026-09-14T01:40:28.5956377Z Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+2026-09-14T01:40:28.5968127Z Verified using v4 scheme (APK Signature Scheme v4): false
+2026-09-14T01:40:28.5969844Z Number of signers: 1
