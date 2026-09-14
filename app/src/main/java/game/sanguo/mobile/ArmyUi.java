@@ -32,7 +32,7 @@ final class ArmyUi {
                             List<World.Officer> crew=new ArrayList<>();crew.add(leader);for(int id:deputies)crew.add(w.officer(id));
                             StringBuilder text=new StringBuilder("主将 "+leader.name);for(int id:deputies)text.append("\n副将 ").append(w.officer(id).name);
                             text.append("\n").append(troops).append("兵 · ").append(food).append("粮 · ").append(ship.label)
-                                .append("\n消耗兵装 ").append(Army.equipmentNeeded(weapon,troops)).append(Army.siegeWeapon(weapon)?"件":"份")
+                                .append("\n兵装 ").append(weapon.label).append(" · 消耗 ").append(Army.equipmentNeeded(weapon,troops)).append(Army.siegeWeapon(weapon)?"件":"份")
                                 .append("\n陆战适性 ").append(War.rankLabel(w.army.aptitude(crew,Army.category(weapon)))).append(" · 水军适性 ").append(War.rankLabel(w.army.aptitude(crew,5)))
                                 .append("\n行动力10；整队武将出征后不能再执行城池任务。\n统率取主将，武力、智力与适性取队内最高值。");
                             confirm("确认编队出征",text.toString(),()->{World.Result result=w.army.deploy(c.id,leader.id,deputies,weapon,ship,troops,food);apply.accept(result);if(result.ok)focus.accept(w.unit(leader.unitId).hex);});

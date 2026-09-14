@@ -216,7 +216,7 @@ public final class GameSmokeRunner extends Instrumentation {
         MapView map=mapView();MapCamera c=camera(map);int[] pos=new int[2];float[] point=new float[2];
         runOnMainSync(()->{map.getLocationOnScreen(pos);point[0]=pos[0]+25*1.7320508f*(h.q+h.r*.5f)*c.scale+c.x;point[1]=pos[1]+25*1.5f*h.r*c.scale+c.y;});
         long t=SystemClock.uptimeMillis();MotionEvent down=MotionEvent.obtain(t,t,MotionEvent.ACTION_DOWN,point[0],point[1],0),up=MotionEvent.obtain(t,t+80,MotionEvent.ACTION_UP,point[0],point[1],0);
-        getUiAutomation().injectInputEvent(down,true);getUiAutomation().injectInputEvent(up,true);down.recycle();up.recycle();waitForIdleSync();
+        getUiAutomation().injectInputEvent(down,true);getUiAutomation().injectInputEvent(up,true);down.recycle();up.recycle();SystemClock.sleep(500);waitForIdleSync();
     }
     private MapView findMap(android.view.View v){if(v instanceof MapView)return (MapView)v;if(v instanceof android.view.ViewGroup){android.view.ViewGroup g=(android.view.ViewGroup)v;for(int i=0;i<g.getChildCount();i++){MapView m=findMap(g.getChildAt(i));if(m!=null)return m;}}return null;}
     private MapCamera camera(MapView map)throws Exception {java.lang.reflect.Field f=MapView.class.getDeclaredField("camera");f.setAccessible(true);return (MapCamera)f.get(map);}
