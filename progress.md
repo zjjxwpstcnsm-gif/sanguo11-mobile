@@ -1,8 +1,13 @@
 # 项目进度
 
-2026-09-13 · `zjjxwpstcnsm-gif/sanguo11-mobile` · private
+2026-09-14 · `zjjxwpstcnsm-gif/sanguo11-mobile` · private
 
-## 当前 v0.6.0 / 军政与同图战法
+## 当前 v0.7.0 / 编队与水陆攻防
+
+PR #4、#5 已核验并合并到 main `e66656e3`。PR #6 增加三将编队、9种陆战兵装、3类舰船、水陆切换、军备制造、器械运输、兵器/水军战法、六类适性、v6存档和水陆攻防沙盘。本地旧回归与新增45个军备场景通过；Android验证正在运行。完整边界见 [ARMY_V0_7.md](docs/ARMY_V0_7.md)。仍未100%还原，未制作暂缓的专用界面与人物模型。
+
+## 历史 v0.6.0 / 军政与同图战法
+
 
 基于main `50f370e`及尚未合并的PR #4 `aeb2aa6`，分支 `agent/campaign-gameplay-v06`。暂不制作单挑／舌战专用界面和人物模型。
 

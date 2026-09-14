@@ -31,7 +31,7 @@ final class DomesticUi {
         for(int i=0;i<labels.length;i++){Domestic.Kind k=Domestic.Kind.values()[i];labels[i]=k.label+" · 金"+k.cost+" · "+k.effect;}
         new AlertDialog.Builder(activity).setTitle("设施开发 · 工程规则").setItems(labels,(d,i)->{
             Domestic.Kind kind=Domestic.Kind.values()[i];officer(c,o->{
-                List<Hex> sites=w.domestic.buildSites(c.id);if(sites.isEmpty()){message("无法开发","没有可用平地或已经达到每城6处设施上限。");return;}
+                List<Hex> sites=w.domestic.buildSites(c.id);if(kind==Domestic.Kind.SHIPYARD)sites.removeIf(h->h.neighbors().stream().noneMatch(w.army::water));if(sites.isEmpty()){message("无法开发","没有可用平地或已经达到每城6处设施上限。");return;}
                 String[] names=new String[sites.size()];for(int j=0;j<names.length;j++)names[j]="地块 "+sites.get(j).q+", "+sites.get(j).r;
                 new AlertDialog.Builder(activity).setTitle("选择开发地 · 点击预览").setItems(names,(dialog,j)->{
                     Hex h=sites.get(j);focus.accept(h);

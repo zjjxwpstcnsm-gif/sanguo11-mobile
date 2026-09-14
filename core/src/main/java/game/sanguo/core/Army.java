@@ -85,7 +85,10 @@ public final class Army {
     private boolean valid(Production p){World.City c=w.city(p.cityId);World.Officer o=w.officer(p.officerId);return c!=null&&o!=null&&c.owner==p.owner&&o.owner==p.owner&&o.cityId==c.id&&o.otherTask.equals(p.label())&&completed(c.id,p.weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD);}
     void cleanup(){for(Production p:new ArrayList<>(productions))if(!valid(p)){productions.remove(p);World.Officer o=w.officer(p.officerId);if(o!=null&&o.otherTask.equals(p.label())){o.otherTask="";o.otherTaskTurns=0;}w.note(p.label()+"因城池或工场失守/拆除而中止");}}
     void tick(){
-        for(World.Unit u:new ArrayList<>(w.units))if(u.burning>0){u.burning--;u.troops-=Math.min(u.troops,200);w.note(w.officer(u.officerId).name+"的部队持续燃烧，损失200兵");if(u.troops==0)w.removeUnit(u);}
+        for(World.Unit u:new ArrayList<>(w.units))if(u.burning>0){
+            u.burning--;if(u.burningOwner==u.owner||w.campaign.hostile(u.burningOwner,u.owner)){int hit=Math.min(u.troops,200);u.troops-=hit;w.note(w.officer(u.officerId).name+"的部队持续燃烧，损失"+hit+"兵");}
+            if(u.burning==0)u.burningOwner=-1;if(u.troops==0)w.removeUnit(u);
+        }
         cleanup();for(Production p:new ArrayList<>(productions))if(w.officer(p.officerId).otherTaskTurns==1){
             World.City c=w.city(p.cityId);int count=p.weapon!=null?c.equipment[p.weapon.ordinal()]:c.ships[p.ship.ordinal()-1];
             if(count>=100){w.officer(p.officerId).otherTaskTurns=2;continue;}
@@ -147,7 +150,7 @@ public final class Army {
         int amount=damage(u,enemy,tactic==Tactic.STONE?1.5:1.3,new Random(w.strategy.nextInt(Integer.MAX_VALUE)));
         enemy.troops-=amount;
         if(enemy.troops==0)w.removeUnit(enemy);
-        else if(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)enemy.burning=2;
+        else if(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME){enemy.burning=2;enemy.burningOwner=u.owner;}
         else if(tactic==Tactic.RAM&&water(u.hex)){
             Hex next=new Hex(target.q+target.q-u.hex.q,target.r+target.r-u.hex.r);
             if(water(next)&&w.unitAt(next)==null&&w.cityAt(next)==null&&w.domestic.at(next)==null&&w.war.at(next)==null)enemy.hex=next;
@@ -156,5 +159,5 @@ public final class Army {
     }
     public World.Result extinguish(int unit){World.Unit u=w.unit(unit);
         if(w.gameOver()||u==null||u.owner!=w.active||u.acted||u.status!=War.Status.NORMAL||u.burning==0||u.energy<5)return w.fail("需要可行动且正在燃烧的己方部队，消耗5气力");
-        u.burning=0;u.energy-=5;u.acted=true;return w.success("部队已扑灭火焰");}
+        u.burning=0;u.burningOwner=-1;u.energy-=5;u.acted=true;return w.success("部队已扑灭火焰");}
 }

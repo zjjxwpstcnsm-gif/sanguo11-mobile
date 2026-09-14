@@ -89,7 +89,6 @@ public final class War {
     }
     public int tacticChance(int actor,int target,Tactic tactic){
         World.Unit a=w.unit(actor),b=w.unit(target);if(a==null||b==null||tactic==null)return 0;
-        World.Officer o=w.officer(a.officerId),d=w.officer(b.officerId);
         return Math.max(30,Math.min(95,70+w.army.aptitude(a)*5+(w.army.war(a)-w.army.war(b))/5));
     }
     public String tacticError(int actor,int target,Tactic tactic){
@@ -220,7 +219,7 @@ public final class War {
             u.acted=true;u.statusTurns--;
             if(u.status==Status.MISLED){
                 World.City home=null;for(World.City c:w.cities)if(c.owner==owner&&(home==null||u.hex.distance(c.hex)<u.hex.distance(home.hex)))home=c;
-                if(home!=null){final Hex destination=home.hex;List<Hex> steps=u.hex.neighbors();steps.sort(Comparator.comparingInt(h->h.distance(destination)));for(Hex h:steps)if(h.distance(destination)<u.hex.distance(destination)&&vacant(h,u.weapon)){u.hex=h;break;}}
+                if(home!=null){final Hex destination=home.hex;List<Hex> steps=u.hex.neighbors();steps.sort(Comparator.comparingInt(h->h.distance(destination)));for(Hex h:steps)if(h.distance(destination)<u.hex.distance(destination)&&w.army.moveCost(u,u.hex,h)>0&&w.cityAt(h)==null&&w.unitAt(h)==null&&w.domestic.at(h)==null&&at(h)==null){u.hex=h;break;}}
             }
             w.note(w.officer(u.officerId).name+"受"+u.status.label+"影响，本旬不能行动");
         }

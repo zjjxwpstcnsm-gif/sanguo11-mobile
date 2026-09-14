@@ -10,7 +10,7 @@ final class ArmySave {
         d.writeInt(MARKER);d.writeInt(w.cities.size());
         for(World.City c:w.cities){d.writeInt(c.id);for(int i=4;i<c.equipment.length;i++)d.writeInt(c.equipment[i]);for(int n:c.ships)d.writeInt(n);}
         d.writeInt(w.officers.size());for(World.Officer o:w.officers){d.writeInt(o.id);d.writeByte(o.aptitude[4]);d.writeByte(o.aptitude[5]);}
-        d.writeInt(w.units.size());for(World.Unit u:w.units){d.writeInt(u.id);d.writeByte(u.ship.ordinal());d.writeByte(u.deputies.length);for(int id:u.deputies)d.writeInt(id);d.writeByte(u.burning);}
+        d.writeInt(w.units.size());for(World.Unit u:w.units){d.writeInt(u.id);d.writeByte(u.ship.ordinal());d.writeByte(u.deputies.length);for(int id:u.deputies)d.writeInt(id);d.writeByte(u.burning);d.writeInt(u.burningOwner);}
         d.writeInt(w.domestic.missions.size());for(Domestic.Mission m:w.domestic.missions){d.writeInt(m.id);for(int i=4;i<m.equipment.length;i++)d.writeInt(m.equipment[i]);}
         d.writeInt(w.army.productions.size());for(Army.Production p:w.army.productions){d.writeInt(p.cityId);d.writeInt(p.officerId);d.writeInt(p.owner);d.writeInt(p.weapon==null?-1:p.weapon.ordinal());d.writeInt(p.ship==null?-1:p.ship.ordinal());}
     }
@@ -18,7 +18,7 @@ final class ArmySave {
         require(d.readInt()==MARKER,"军备扩展标记错误");Set<Integer> ids=new HashSet<>();int n=count(d,1000,w.cities.size());
         for(int j=0;j<n;j++){int id=d.readInt();World.City c=w.city(id);require(c!=null&&ids.add(id),"军备城池引用重复或缺失");for(int i=4;i<c.equipment.length;i++)c.equipment[i]=d.readInt();for(int i=0;i<c.ships.length;i++)c.ships[i]=d.readInt();}
         ids.clear();n=count(d,10000,w.officers.size());for(int j=0;j<n;j++){int id=d.readInt();World.Officer o=w.officer(id);require(o!=null&&ids.add(id),"兵器水军适性引用重复或缺失");o.aptitude[4]=d.readUnsignedByte();o.aptitude[5]=d.readUnsignedByte();}
-        ids.clear();n=count(d,10000,w.units.size());for(int j=0;j<n;j++){int id=d.readInt();World.Unit u=w.unit(id);require(u!=null&&ids.add(id),"编队引用重复或缺失");u.ship=Army.Ship.values()[bound(d.readUnsignedByte(),0,2)];u.deputies=new int[bound(d.readUnsignedByte(),0,2)];for(int i=0;i<u.deputies.length;i++)u.deputies[i]=d.readInt();u.burning=d.readUnsignedByte();}
+        ids.clear();n=count(d,10000,w.units.size());for(int j=0;j<n;j++){int id=d.readInt();World.Unit u=w.unit(id);require(u!=null&&ids.add(id),"编队引用重复或缺失");u.ship=Army.Ship.values()[bound(d.readUnsignedByte(),0,2)];u.deputies=new int[bound(d.readUnsignedByte(),0,2)];for(int i=0;i<u.deputies.length;i++)u.deputies[i]=d.readInt();u.burning=d.readUnsignedByte();u.burningOwner=d.readInt();}
         ids.clear();n=count(d,10000,w.domestic.missions.size());for(int j=0;j<n;j++){int id=d.readInt();Domestic.Mission m=w.domestic.mission(id);require(m!=null&&ids.add(id),"运输军备引用重复或缺失");for(int i=4;i<m.equipment.length;i++)m.equipment[i]=d.readInt();}
         n=bound(d.readInt(),0,10000);for(int i=0;i<n;i++){
             int city=d.readInt(),officer=d.readInt(),owner=d.readInt(),weapon=bound(d.readInt(),-1,World.Weapon.values().length-1),ship=bound(d.readInt(),-1,2);
@@ -28,7 +28,7 @@ final class ArmySave {
     static void validate(World w)throws IOException {
         for(World.City c:w.cities){require(c.equipment.length==World.Weapon.values().length&&c.ships.length==2,"军备数量错误");require(c.equipment[4]==0,"剑兵无需库存");for(int i=5;i<c.equipment.length;i++)bound(c.equipment[i],0,100);for(int n:c.ships)bound(n,0,100);}
         Set<Integer> assigned=new HashSet<>();for(World.Unit u:w.units){
-            require(u.ship!=null&&u.deputies!=null&&u.deputies.length<=2&&assigned.add(u.officerId),"编队主将或舰船错误");bound(u.burning,0,2);
+            require(u.ship!=null&&u.deputies!=null&&u.deputies.length<=2&&assigned.add(u.officerId),"编队主将或舰船错误");bound(u.burning,0,2);bound(u.burningOwner,-1,w.factions.length-1);require(u.burning==0?u.burningOwner==-1:u.burningOwner>=0,"部队火源错误");
             for(int id:u.deputies){World.Officer o=w.officer(id);require(o!=null&&assigned.add(id)&&o.owner==u.owner&&o.unitId==u.id&&o.cityId==-1&&!w.domestic.busy(id)&&o.otherTaskTurns==0,"副将重复、位置或任务冲突");}
         }
         Set<Integer> workers=new HashSet<>();bound(w.army.productions.size(),0,10000);

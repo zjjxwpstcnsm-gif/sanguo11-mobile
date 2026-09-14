@@ -46,6 +46,7 @@ public final class World {
         public boolean acted;
         public War.Status status=War.Status.NORMAL;
         public int statusTurns, burning;
+        public int burningOwner=-1;
         public int[] deputies=new int[0];
         public Army.Ship ship=Army.Ship.BOAT;
         public Unit(int id,int owner,int officerId,Weapon weapon,Hex hex,int troops,int food) {
@@ -255,8 +256,8 @@ public final class World {
                 Officer o=available.get(0);
                 Weapon weapon=null;
                 for(Weapon candidate:Weapon.values())if(c.equipment[candidate.ordinal()]>=3000){weapon=candidate;break;}
+                for(Weapon candidate:Weapon.values())if(Army.siegeWeapon(candidate)&&c.equipment[candidate.ordinal()]>0){weapon=candidate;break;}
                 if(c.troops>=6000&&c.food>=6000&&weapon!=null){
-                    for(Weapon candidate:Weapon.values())if(Army.siegeWeapon(candidate)&&c.equipment[candidate.ordinal()]>0){weapon=candidate;break;}
                     Army.Ship ship=c.ships[1]>0?Army.Ship.WARSHIP:c.ships[0]>0?Army.Ship.TOWER_SHIP:Army.Ship.BOAT;
                     army.deploy(c.id,o.id,new int[0],weapon,ship,3000,6000);
                 }

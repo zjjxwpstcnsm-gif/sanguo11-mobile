@@ -184,7 +184,7 @@ public final class MainActivity extends Activity {
         new CityCommand("军备制造 / 攻城器械与舰船",()->armyUi().manufacture(c)),
         new CityCommand("征兵 · 金300 · 兵源 "+c.recruitReserve,()->strategyUi().command(c,6)),
         new CityCommand("训练 · 金100",()->strategyUi().command(c,7)),
-        new CityCommand("生产兵装  +"+world.domestic.produceAmount(c.id)+" · 金400",()->chooseOfficer(c,o->chooseWeapon(weapon->apply(world.produce(c.id,o.id,weapon)))))
+        new CityCommand("生产兵装  +"+world.domestic.produceAmount(c.id)+" · 金400",()->chooseOfficer(c,o->chooseBasicWeapon(weapon->apply(world.produce(c.id,o.id,weapon)))))
     );}
     private void showUnit(World.Unit u){
         World.Officer o=world.officer(u.officerId);line(o.name,25,gold);line(world.faction(u.owner)+" · "+world.army.equipmentLabel(u),14,paper);
@@ -213,6 +213,7 @@ public final class MainActivity extends Activity {
         String[] names=new String[options.size()];for(int i=0;i<names.length;i++)names[i]=options.get(i).name;
         new AlertDialog.Builder(this).setTitle("执行武将").setItems(names,(d,index)->callback.choose(options.get(index))).setNegativeButton("取消",null).show();
     }
+    private void chooseBasicWeapon(WeaponChoice callback){String[] names={"枪兵","戟兵","弩兵","骑兵"};new AlertDialog.Builder(this).setTitle("生产基础兵装").setItems(names,(d,i)->callback.choose(World.Weapon.values()[i])).setNegativeButton("取消",null).show();}
     private void chooseWeapon(WeaponChoice callback){String[] labels=new String[World.Weapon.values().length];for(int i=0;i<labels.length;i++)labels[i]=World.Weapon.values()[i].label;new AlertDialog.Builder(this).setTitle("选择兵种").setItems(labels,(d,index)->callback.choose(World.Weapon.values()[index])).setNegativeButton("取消",null).show();}
     private void revealPanel(){panelScroll.post(()->panelScroll.scrollTo(0,0));}
     void selectAndFocus(Hex h){if(h==null)return;moving=-1;selected=h;ui.page="map";ui.panelVisible=true;ui.group="概览";refresh();map.focus(h);revealPanel();}
@@ -224,7 +225,7 @@ public final class MainActivity extends Activity {
         line("军政菜单",22,gold);action("保存局面（3个槽位）",v->saveSlots(false));action("读取存档",v->saveSlots(true));
         action("本旬结算摘要",v->message("旬结算摘要",ui.summary.isEmpty()?"结束一旬后将在这里显示结算摘要。":ui.summary));
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.6 · 军政与战法","同图战法、部队计略、火场与军事设施；外交协定、商人、技巧研究、能力培养、设施合并。\n存档 v5，兼容 v1～v4。\n\n当前为原创沙盘与工程规则，尚未达到原版完整还原。全国地图、全量人物、全特技、官方剧本事件等仍未完成。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.7 · 编队与水陆攻防","三将编队、攻城器械、走舸/楼船/斗舰与水陆切换；工房/造船厂、跨旬制造、兵器/水军战法。\n存档 v6，兼容 v1～v5。\n\n当前为原创沙盘与工程规则，尚未达到原版完整还原。全国地图、全量人物、全特技、官方剧本事件等仍未完成。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}

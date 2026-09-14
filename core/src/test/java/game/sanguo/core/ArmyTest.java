@@ -21,9 +21,9 @@ public final class ArmyTest {
     }
     private static World.Unit unit(World w,int id,int owner,int officer,World.Weapon weapon,Hex h){World.Unit u=new World.Unit(id,owner,officer,weapon,h,5000,20000);w.units.add(u);w.nextUnitId=Math.max(w.nextUnitId,id+1);World.Officer o=w.officer(officer);w.strategy.releaseGovernor(o.id);o.unitId=id;o.cityId=-1;return u;}
     private static void reset(World w){w.actionPoints[0]=60;for(World.Officer o:w.officers)if(o.owner==0)o.acted=false;for(World.Unit u:w.units)u.acted=false;}
-    private static Domestic.Facility factory(World w,Domestic.Kind kind){Hex h=new Hex(6,4);if(kind==Domestic.Kind.SHIPYARD)h=new Hex(7,5);Domestic.Facility f=new Domestic.Facility(w.domestic.nextFacilityId++,10,kind,h,-1,0);w.domestic.facilities.add(f);return f;}
+    private static Domestic.Facility factory(World w,Domestic.Kind kind){Hex h=new Hex(6,4);if(kind==Domestic.Kind.SHIPYARD){h=new Hex(7,5);w.terrain[8][5]=World.Terrain.WATER;}Domestic.Facility f=new Domestic.Facility(w.domestic.nextFacilityId++,10,kind,h,-1,0);w.domestic.facilities.add(f);return f;}
     public static void main(String[] args)throws Exception{
-        formations();equipment();water();combat();manufacturing();cargo();saves();simulation();
+        formations();equipment();water();combat();manufacturing();cargo();saves();scenarioData();simulation();
         System.out.println("PASS: "+cases+" army cases, "+checks+" assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.");
     }
     private static void formations()throws Exception{
@@ -87,6 +87,12 @@ public final class ArmyTest {
                 World loaded=SaveCodec.decode(bytes(battle));check(loaded.unit(2).burning==2,"burn survives save");battle.active=1;b.acted=false;ok(battle.army.extinguish(2));check(b.burning==0&&b.energy==75,"burn can be extinguished");}
             SaveCodec.validate(battle);cases++;
         }
+        World treaty=fixture();World.Unit fire=unit(treaty,1,0,0,World.Weapon.SPEAR,new Hex(9,8));fire.ship=Army.Ship.WARSHIP;treaty.officer(0).aptitude[5]=3;
+        World.Unit ship=unit(treaty,2,1,20,World.Weapon.CAVALRY,new Hex(10,8));treaty.strategy.setSeed(0);ok(treaty.army.tactic(1,ship.hex,Army.Tactic.FIRE_ARROW));
+        treaty.campaign.treaties.add(new Campaign.Treaty(0,1,Campaign.TreatyKind.CEASEFIRE,3));int troops=ship.troops;treaty.army.tick();check(ship.troops==troops&&ship.burning==1,"ceasefire suppresses persistent damage but fire clock advances");
+        treaty.army.tick();check(ship.burning==0&&ship.burningOwner==-1,"expired fire source cleared");SaveCodec.validate(treaty);cases++;
+        World retreat=fixture();World.Unit misled=unit(retreat,1,0,0,World.Weapon.SPEAR,new Hex(10,8));misled.status=War.Status.MISLED;misled.statusTurns=1;Hex old=misled.hex;
+        retreat.war.resetOwner(0);check(!old.equals(misled.hex)&&misled.hex.distance(retreat.city(10).hex)<old.distance(retreat.city(10).hex),"naval mislead retreats toward city");SaveCodec.validate(retreat);cases++;
     }
     private static void manufacturing()throws Exception{
         World w=fixture();final World initial=w;reject(w,()->initial.army.produce(10,1,World.Weapon.RAM,null));factory(w,Domestic.Kind.WORKSHOP);
@@ -129,5 +135,13 @@ public final class ArmyTest {
             }
             check(sawWater,"AI uses water routes on playable sandbox");cases++;
         }
+    }
+    private static void scenarioData()throws Exception{
+        String data;try(InputStream in=ArmyTest.class.getResourceAsStream("/scenarios/river-siege-sandbox.properties")){data=new String(in.readAllBytes(),java.nio.charset.StandardCharsets.UTF_8);}
+        for(String bad:Arrays.asList(data.replace("arsenal.1=11|","arsenal.1=10|"),data.replace("arsenal.0=10|2|","arsenal.0=999|2|"),data.replace("arsenal.0=10|2|","arsenal.0=10|101|"),data.replace("aptitude.1=1|","aptitude.1=0|"),data.replace("aptitude.0=0|2|","aptitude.0=0|4|"))){
+            try{ScenarioData.read(new ByteArrayInputStream(bad.getBytes(java.nio.charset.StandardCharsets.UTF_8)),0);throw new AssertionError("invalid arsenal/aptitude accepted");}catch(IOException expected){checks++;}
+        }cases++;
+        World ai=fixture();ai.officers.add(new World.Officer(21,"敌军副将",1,20,75,75,75,75,75));Arrays.fill(ai.city(20).equipment,0);ai.city(20).equipment[5]=1;ai.city(20).troops=8000;ai.city(20).food=30000;ok(ai.nextTurn());
+        check(ai.units.stream().anyMatch(u->u.owner==1&&u.weapon==World.Weapon.RAM),"AI deploys siege stock even without basic weapon stock");SaveCodec.validate(ai);cases++;
     }
 }
