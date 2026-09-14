@@ -80,6 +80,10 @@ public final class TechnologyFieldworksTest {
         tick(w);reject(w,()->w.fieldworks.build(u.id,War.StructureKind.MUSIC,new Hex(7,7),0));
         World fast=fixture();World.Unit f=unit(fast,1,World.Weapon.SPEAR,new Hex(7,6));f.gold=5000;fast.officer(1).skillId=Skill.ZHUCHENG.id;int speed=fast.fieldworks.constructionRate(f);fast.officer(1).skillId="none";check(speed==2*fast.fieldworks.constructionRate(f),"construction skill changes real rate");
         f.gold=100;reject(fast,()->fast.fieldworks.build(f.id,War.StructureKind.CAMP,new Hex(8,6),0));
+        World walls=fixture();World.Unit mason=unit(walls,1,World.Weapon.SPEAR,new Hex(7,6));mason.gold=5000;
+        ok(walls.fieldworks.build(mason.id,War.StructureKind.EARTH_WALL,new Hex(8,6),0));War.Structure earth=walls.war.at(new Hex(8,6));int earthHp=earth.hp;
+        learn(walls,0,Campaign.Tech.STONE_BUILDING);check(earth.kind==War.StructureKind.EARTH_WALL&&earth.hp==earthHp,"stone construction unlocks stone walls without transforming existing earth walls");
+        check(walls.fieldworks.available(0).contains(War.StructureKind.EARTH_WALL)&&walls.fieldworks.available(0).contains(War.StructureKind.STONE_WALL),"both earth and stone wall choices remain available");
     }
     private static void gold()throws Exception{
         World w=fixture();int gold=w.city(0).gold;ok(w.army.deploy(0,1,new int[0],World.Weapon.SPEAR,Army.Ship.BOAT,3000,6000,3000));World.Unit u=w.unit(1);

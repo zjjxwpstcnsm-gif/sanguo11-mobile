@@ -13,7 +13,6 @@ public final class Fieldworks {
     public War.StructureKind upgraded(int owner,War.StructureKind kind){
         if(camp(kind))return w.campaign.has(owner,Campaign.Tech.WALLS)?War.StructureKind.FORTRESS:w.campaign.has(owner,Campaign.Tech.FACILITY_REINFORCEMENT)?War.StructureKind.FORT:kind;
         if(kind==War.StructureKind.ARROW_TOWER&&w.campaign.has(owner,Campaign.Tech.FACILITY_REINFORCEMENT))return War.StructureKind.CROSSBOW_TOWER;
-        if(kind==War.StructureKind.EARTH_WALL&&w.campaign.has(owner,Campaign.Tech.STONE_BUILDING))return War.StructureKind.STONE_WALL;
         if(trap(kind)&&kind!=War.StructureKind.FIRE_SHIP){
             if(w.campaign.has(owner,Campaign.Tech.EXPLOSIVES))return ball(kind)?War.StructureKind.INFERNO_BALL:War.StructureKind.INFERNO_SEED;
             if(w.campaign.has(owner,Campaign.Tech.GUNPOWDER))return ball(kind)?War.StructureKind.FLAME_BALL:War.StructureKind.FLAME_SEED;
