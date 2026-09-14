@@ -1,6 +1,6 @@
 # Agent 1 · rules-parity-v08 交接
 
-分支 `agent/rules-parity-v08`，固定父提交 `ff624b6e9c48c81d7111a9a642b18cf6bd098fe1`，存档从 v6 升级为 v7。本交接随验证推进更新；尚未完成联合集成。
+分支 `agent/rules-parity-v08`，固定父提交 `ff624b6e9c48c81d7111a9a642b18cf6bd098fe1`，存档从 v6 升级为 v7。联合代码与最终验证另见 [integration-v08.md](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/blob/agent/integrate-v08/docs/handoffs/integration-v08.md)。
 
 规则清单、来源、近似与明确未完成项见 [RULES_V0_8.md](../RULES_V0_8.md)。本分支不是全玩法或全特技100%完成。
 
@@ -32,11 +32,6 @@ v1～v6 的原有布局不变。v7 在 ArmySave 后、日志前追加 RulesSave�
 
 首轮本分支CI 34793890292 构建/Lint通过；安装测试暴露旧火计测试在突刺击退后仍从两格距离施放，本轮按PC基础射程1格修正规则后必须先移动至邻格。测试改为真实点击移动再施放，保留火场与气力断言。
 
-Android 三种横屏安装操作、APK摘要与签名：等待修复后CI，完成后更新。未使用ARM真机，不能给出真机结论。签名未比较前不保证覆盖旧版安装，也不建议卸载有重要存档的旧版。
-
-Agent 2 分支 `agent/national-content-v08` 的实际代码尚未合入；联合验证待对方 PR 可用后在独立集成分支执行。
-
-
 ## Agent 1 独立交付验证完成
 
 - [PR #7](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/7)，规则代码 `9956d9884a4d8d31bdfb276630770d646c93f138`。
@@ -45,5 +40,6 @@ Agent 2 分支 `agent/national-content-v08` 的实际代码尚未合入；联合
 - 该CI实际checkout PR合成提交 `be141a0182a6441d256c71c0aa167f8e5fdac618`；通过Git对象核对，其完整tree `578b3f7933c8fbaf55fed000fb29f51aba80a9cb` 与规则head完全相同。集成CI改为明确checkout精确head并记录BUILD_COMMIT。
 - APK证书SHA256 `fdb2e9adeb26571c783406a7ef10a1cfcda39d13b4adca591a30590a05f6cdf7`；实际下载比较的旧main v0.6产物（E666、运行34791182444、artifact10328612868）证书 `e1fb6629564cc2d42c1b09ad5af57a372d421440e58dc2b219b4833d0364ea97`，两者不同，不能直接覆盖该旧版。保留重要存档的旧应用；格式兼容不等于签名兼容。
 - 无ARM真机，未验证真机性能/兼容。验证摘录见 docs/validation/v08/rules-ci-summary.txt。
+- 已取回实际 APK 并核对 ZIP 内 SHA256SUMS：243107字节，SHA256 `8e7810daf241fb4b297c3b78814a46e72d28930c9bd6002ff8059881bc6e1dba`。Lint 报告10条警告，构建门禁通过；不表示零警告。
 
-Agent 2 实际代码已在独立 [PR #9](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/9) 合入，包括9afa/08da后续资料滚动修复；PR6最终6dd63cd3也已纳入。共同代码的独立Android验证仍须完成，详见 docs/handoffs/integration-v08.md。本独立APK不代替联合APK结论。
+Agent 2 实际代码已在独立 [PR #9](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/9) 合入，包括9afa/08da后续资料滚动修复；PR6最终6dd63cd3也已纳入。联合代码 `4f7e4b6b` 通过 [独立完整CI 34795796771](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34795796771)，297602字节APK与108张三横屏截图已取回核对，Lint12条警告。完整摘要、实际旧包签名比较与未完成项见 [集成记录](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/blob/agent/integrate-v08/docs/handoffs/integration-v08.md)。本独立APK不代替联合APK结论。
