@@ -62,7 +62,8 @@ public final class War {
     public Structure at(Hex h){for(Structure s:structures)if(s.hex.equals(h))return s;return null;}
     public static String rankLabel(int rank){return new String[]{"C","B","A","S"}[Math.max(0,Math.min(3,rank))];}
     public int range(World.Unit u){return w.army.range(u)+(w.skills.has(u,Skill.SHECHENG)&&!w.army.water(u.hex)&&(u.weapon==World.Weapon.SIEGE_TOWER||u.weapon==World.Weapon.CATAPULT)?1:0)+(!w.army.water(u.hex)&&u.weapon==World.Weapon.CROSSBOW&&w.campaign.has(u.owner,Campaign.Tech.STRONG_BOW)?1:0);}
-    public int movement(World.Unit u){return w.army.movement(u)+w.skills.movementBonus(u)+(w.campaign.eliteUnit(u)?1:0)+(!w.army.water(u.hex)&&Army.siegeWeapon(u.weapon)&&w.campaign.has(u.owner,Campaign.Tech.AXLE)?1:0)+(!w.army.water(u.hex)&&u.weapon==World.Weapon.CAVALRY&&w.campaign.has(u.owner,Campaign.Tech.HORSE_BREEDING)?1:0);}
+    public int movement(World.Unit u){return movementAt(u,u.hex);}
+    public int movementAt(World.Unit u,Hex h){return (w.army.water(h)?u.ship.movement:u.weapon.movement)+w.skills.movementBonus(u)+(w.campaign.eliteUnit(u)?1:0)+(!w.army.water(h)&&Army.siegeWeapon(u.weapon)&&w.campaign.has(u.owner,Campaign.Tech.AXLE)?1:0)+(!w.army.water(h)&&u.weapon==World.Weapon.CAVALRY&&w.campaign.has(u.owner,Campaign.Tech.HORSE_BREEDING)?1:0);}
     private String actorError(World.Unit u){
         return w.orders.error(u);
     }

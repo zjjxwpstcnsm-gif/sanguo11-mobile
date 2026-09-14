@@ -79,6 +79,7 @@ final class UiModels {
         Army.Production production;
         AbilityResearch.Research abilityResearch;
         AbilityResearch.Training abilityTraining;
+        World.Unit marching;
         Task(long id, String title, String detail, Hex location, Domestic.Facility f, Domestic.Mission m) {
             this.id=id;this.title=title;this.detail=detail;this.location=location;facility=f;mission=m;
         }
@@ -109,6 +110,9 @@ final class UiModels {
             if(r!=null){Task t=new Task(40000000L+w.player,"PK研究"+AbilityResearch.node(r.nodeId).label,w.city(r.cityId).name+" · 剩余 "+r.remaining+" 旬",w.city(r.cityId).hex,null,null);t.abilityResearch=r;result.add(t);}
             for(AbilityResearch.Training p:w.abilities.training())if(p.owner==w.player){Task t=new Task(50000000L+p.officerId,p.label()+" · "+w.officer(p.officerId).name,w.city(p.cityId).name+" · 剩余 "+w.officer(p.officerId).otherTaskTurns+" 旬",w.city(p.cityId).hex,null,null);t.abilityTraining=p;result.add(t);}
         }
+        if(type==0||type==6)for(World.Unit u:w.units)if(u.owner==w.player&&u.march!=null){
+            Task t=new Task(60000000L+u.id,"行军 · "+w.officer(u.officerId).name,"目标 "+w.marches.label(u.march)+"\n"+(u.march.paused.isEmpty()?"每旬自动前进 · 可点地图改道":u.march.paused),u.hex,null,null);t.marching=u;result.add(t);
+        }
         return result;
     }
     static String turnSummary(World before, World after) {
@@ -123,6 +127,9 @@ final class UiModels {
         }
         if (!changed) s.append("本旬城池资源无变化\n");
         for (World.City b : after.cities) if (b.owner == after.player && before.city(b.id) != null && before.city(b.id).owner != before.player) s.append("占领 ").append(b.name).append('\n');
+        for(World.Unit u:before.units)if(u.owner==before.player&&u.march!=null){
+            World.Unit next=after.unit(u.id);s.append("\n行军 · ").append(before.officer(u.officerId).name).append("：").append(next==null?"部队已解编":next.march==null?"行军结束":next.march.paused.isEmpty()?"已前进至 "+next.hex:next.march.paused).append('\n');
+        }
         s.append("\n建设 / 在途进展\n"); boolean progress = false;
         for (Domestic.Facility f : before.domestic.facilities) if (before.city(f.cityId).owner == before.player && f.remaining > 0) {
             Domestic.Facility next = after.domestic.facility(f.id); progress=true;
