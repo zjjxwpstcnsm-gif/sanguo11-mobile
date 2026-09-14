@@ -347,7 +347,12 @@ public final class GameSmokeRunner extends Instrumentation {
         AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();AccessibilityNodeInfo input=findInput(root,description);require(input!=null,"input available: "+description);Bundle args=new Bundle();args.putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE,value);require(input.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT,args),"set editable input");waitForIdleSync();SystemClock.sleep(200);
     }
     private AccessibilityNodeInfo findInput(AccessibilityNodeInfo n,String description){if(n==null)return null;if(description.contentEquals(n.getContentDescription()==null?"":n.getContentDescription()))return n;for(int i=0;i<n.getChildCount();i++){AccessibilityNodeInfo found=findInput(n.getChild(i),description);if(found!=null)return found;}return null;}
-    private void locateCity(String city){clickNav("城市");click(city+" · 孙权军",false);waitText(city,true);}
+    private void locateCity(String city){
+        World w;try{w=saved();}catch(IOException e){throw new AssertionError("read city selection state",e);}
+        World.City target=w.cities.stream().filter(c->c.name.equals(city)).findFirst().orElse(null);
+        require(target!=null,"city exists in active scenario: "+city);
+        clickNav("城市");click(city+" · "+w.faction(target.owner),false);waitText(city,true);
+    }
     private void waitForTurn(int turn)throws Exception {
         long until=SystemClock.uptimeMillis()+15000;
         while(SystemClock.uptimeMillis()<until){waitForIdleSync();if(saved().turn==turn)return;SystemClock.sleep(100);}
