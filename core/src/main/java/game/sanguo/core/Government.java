@@ -108,7 +108,8 @@ public final class Government {
     }
     void defeated(World.Unit loser,World.Unit victor){
         List<World.Officer> crew=w.army.crew(loser);boolean blood=w.skills.has(loser,Skill.XUELU);
-        World.City jail=victor==null?null:refuge(victor.owner,loser.hex);
+        boolean hostile=victor!=null&&w.campaign.hostile(victor.owner,loser.owner);
+        World.City jail=hostile?refuge(victor.owner,loser.hex):null;
         boolean binding=victor!=null&&w.skills.has(victor,Skill.BOFU);
         int attack=victor==null?0:w.army.war(victor);
         for(World.Officer o:crew){
@@ -117,7 +118,7 @@ public final class Government {
             if(caught)capture(o,jail);else w.retreat(o,loser.hex);
         }
         w.units.remove(loser);
-        if(victor!=null)for(World.Officer o:w.army.crew(victor))earn(o.id,500);
+        if(hostile)for(World.Officer o:w.army.crew(victor))earn(o.id,500);
     }
     void cityCaptured(World.City c,int oldOwner,World.Unit victor){
         policies.remove(c.id);

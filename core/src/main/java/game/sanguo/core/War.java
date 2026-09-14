@@ -84,7 +84,7 @@ public final class War {
         return Math.min(b.troops,amount);
     }
     private int strike(World.Unit a,World.Unit b,double scale,boolean tactic){
-        int amount=physicalDamage(a,b,scale,tactic,random());b.troops-=amount;if(b.troops==0)w.defeatUnit(b,a);w.skills.onHit(a,b,amount,tactic);w.government.earn(a.officerId,amount/10);return amount;
+        int amount=physicalDamage(a,b,scale,tactic,random());b.troops-=amount;if(b.troops==0)w.defeatUnit(b,a);w.skills.onHit(a,b,amount,tactic);if(w.campaign.hostile(a.owner,b.owner))w.government.earn(a.officerId,amount/10);return amount;
     }
     public int previewDamage(int actor,int target){World.Unit a=w.unit(actor),b=w.unit(target);return a==null||b==null?0:physicalDamage(a,b,1,false,new Random(0));}
     public World.Result attack(int actor,int target){

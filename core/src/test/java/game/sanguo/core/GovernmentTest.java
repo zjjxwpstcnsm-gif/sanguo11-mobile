@@ -30,7 +30,7 @@ public final class GovernmentTest {
     }
     static void refresh(World w){w.actionPoints[w.active]=60;for(World.Officer o:w.officers)if(o.owner==w.active)o.acted=false;for(World.Unit u:w.units)if(u.owner==w.active)u.acted=false;}
     public static void main(String[] args)throws Exception{
-        ranks();captivity();releaseAndRescue();administration();migration();longCampaigns();
+        ranks();captivity();friendlyFire();releaseAndRescue();administration();migration();longCampaigns();
         System.out.println("PASS: "+checks+" governance assertions: rank caps/payroll, captive crew and immunity, recruit/release/ransom/rescue, delegation, real v7 migration and long campaigns.");
     }
     static void ranks()throws Exception{
@@ -84,6 +84,14 @@ public final class GovernmentTest {
         World displaced=world();displaced.government.capture(displaced.officer(7),displaced.city(0));displaced.city(0).owner=2;
         displaced.government.relocatePrisoners();check(displaced.government.prisoner(7).cityId==1,"lost prison relocates to remaining captor city");
         displaced.city(1).owner=2;displaced.government.relocatePrisoners();check(!displaced.government.captive(7)&&displaced.officer(7).cityId==2,"no remaining prison releases captive safely");
+    }
+    static void friendlyFire()throws Exception{
+        World w=world();World.Unit a=new World.Unit(w.nextUnitId++,0,1,World.Weapon.CROSSBOW,new Hex(4,4),5000,20000);
+        w.units.add(a);w.officer(1).cityId=-1;w.officer(1).unitId=a.id;w.officer(1).aptitude[2]=3;w.officer(1).skillId=Skill.BOFU.id;
+        World.Unit enemy=unit(w,7,1,new Hex(5,4),5000),friend=unit(w,2,0,new Hex(5,5),1);
+        enemy.status=War.Status.CONFUSED;enemy.statusTurns=1;
+        ok(w.war.tactic(a.id,enemy.id,War.Tactic.VOLLEY));
+        check(w.unit(friend.id)==null&&!w.government.captive(2)&&w.officer(2).owner==0,"lethal friendly splash retreats ally without self-capture");copy(w);
     }
     static void administration()throws Exception{
         World w=world();ok(w.government.appointAdvisor(0,0,1));String snapshot=Arrays.toString(bytes(w));String advice=w.government.advice(0);
