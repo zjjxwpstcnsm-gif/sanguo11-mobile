@@ -46,6 +46,7 @@ public final class GameSmokeRunner extends Instrumentation {
             require(Arrays.equals(before,SaveCodec.encode(saved())),"corrupt load leaves autosave unchanged");
             runOnMainSync(current::recreate);waitText("区域争雄  ·  孙权军",false);waitForIdleSync();
             assertWorld(2,1,"regional-sandbox");screenshot("05-restored");
+            abilityFlow();
             strategicFlow();
             mobileFlow();
             personnelFlow();
@@ -56,8 +57,7 @@ public final class GameSmokeRunner extends Instrumentation {
             governmentFlow();
             documentTransferFlow();
             contestFlow();
-            abilityFlow();
-            result.putString("stream","SMOKE PASS: integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            result.putString("stream","SMOKE PASS: v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -285,10 +285,12 @@ public final class GameSmokeRunner extends Instrumentation {
         byte[] before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"cancel ability research changes no RNG/cost/hidden selection");
         locateCity("学宫");click("研究",true);click("PK能力研究",true);click("防御",true);click("统率+5低 · 可研究",true);click("执行",true);
         require(saved().abilities.research(0).remaining==9&&saved().city(10).gold==29700&&saved().actionPoints[0]==40,"UI starts real nine-turn research");
+        waitText("任务 1",true);
         clickNav("任务");click("筛选 · 全部任务",true);click("研究 / 培养",true);waitText("PK研究统率+5低",true);screenshot("48-pk-research");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("PK研究统率+5低",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"research survives recreation");
         for(int turn=1;turn<=9;turn++){endTurn();waitForTurn(turn);}require(saved().abilities.learned(0,"lead.low"),"full UI turn loop unlocks research");
         locateCity("学宫");click("研究",true);click("能力 / 适性培养",true);click("基础能力",true);click("统率+5低 · 剩5次",true);click("习武生 · 50",true);click("执行",true);
+        waitText("任务 1",true);
         clickNav("任务");waitText("PK培养统率+5低 · 习武生",true);screenshot("49-pk-training");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("PK培养统率+5低 · 习武生",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"training survives recreation");
         for(int turn=10;turn<=12;turn++){endTurn();waitForTurn(turn);}require(saved().officer(0).leadership==55&&saved().abilities.remaining(0,"lead.low")==4,"real stat change and finite use");

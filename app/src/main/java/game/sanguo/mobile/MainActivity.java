@@ -120,7 +120,7 @@ public final class MainActivity extends Activity {
         log.setText(aiRunning?"正在结算电脑行动与本旬任务…":world.log.isEmpty()?"拖动地图 · 双指缩放 · 双击城池定位":world.log.get(world.log.size()-1));
         map.setWorld(world,selected,moving);map.setEnabled(!aiRunning&&!world.contests.busy());
     }
-    private int taskCount(){int n=0;for(Domestic.Facility f:world.domestic.facilities)if(f.remaining>0&&world.city(f.cityId).owner==world.player)n++;for(Domestic.Mission m:world.domestic.missions)if(m.owner==world.player)n++;for(Campaign.Project p:world.campaign.projects())if(p.owner==world.player)n++;for(Army.Production p:world.army.productions())if(p.owner==world.player)n++;return n;}
+    private int taskCount(){return UiModels.tasks(world,0).size();}
     private void showSelection(){
         World.Unit unit=selected==null?null:world.unitAt(selected);World.City city=selected==null?null:world.cityAt(selected);
         if(unit!=null)showUnit(unit);else if(city!=null)showCity(city);else if(selected!=null&&world.domestic.at(selected)!=null){
@@ -133,8 +133,15 @@ public final class MainActivity extends Activity {
         boolean compact=!ui.group.equals("概览");
         line(c.name,compact?21:25,gold);line(world.faction(c.owner)+" · 太守 "+UiModels.governor(world,c.id),compact?12:13,paper);
         line(compact?"金 "+c.gold+" · 粮 "+c.food+" · 兵 "+c.troops:"金 "+c.gold+"    粮 "+c.food+"\n兵 "+c.troops+"    城防 "+c.defense,compact?13:15,paper);
-        HorizontalScrollView tabs=new HorizontalScrollView(this);tabs.setHorizontalScrollBarEnabled(false);LinearLayout row=new LinearLayout(this);tabs.addView(row);
-        for(String name:new String[]{"概览","内政","武将","军事","调动","外交","研究"}){Button b=button(name,v->{ui.group=name;refresh();revealPanel();});b.setTextColor(ui.group.equals(name)?gold:paper);row.addView(b,new LinearLayout.LayoutParams(dp(48),dp(48)));}panel.addView(tabs);tabs.post(()->{int index=Arrays.asList("概览","内政","武将","军事","调动","外交","研究").indexOf(ui.group);tabs.smoothScrollTo(Math.max(0,dp(index*48)-dp(90)),0);});
+        String[] groups={"概览","内政","武将","军事","调动","外交","研究"};
+        for(int first=0;first<groups.length;first+=4){
+            LinearLayout row=new LinearLayout(this);
+            for(int i=first;i<Math.min(first+4,groups.length);i++){
+                String name=groups[i];Button b=button(name,v->{ui.group=name;refresh();revealPanel();});b.setTextColor(ui.group.equals(name)?gold:paper);
+                row.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
+            }
+            panel.addView(row);
+        }
         boolean own=c.owner==world.player&&!world.gameOver();
         switch(ui.group){
             case "内政":
