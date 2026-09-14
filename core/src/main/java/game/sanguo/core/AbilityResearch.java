@@ -128,7 +128,7 @@ public final class AbilityResearch {
     public int remaining(int side,String id){Node n=node(id);return !learned(side,id)||n==null?0:n.uses-states[side].used.getOrDefault(id,0);}
     public int gained(int officer,int attribute){return attribute<0||attribute>=5?0:gains.getOrDefault(officer,new int[5])[attribute];}
     private String commandError(int city,int gold){
-        if(w.contests.busy())return "请先完成当前单挑或舌战";
+        if(w.commandsBlocked())return "请先完成当前单挑或舌战";
         if(w.gameOver())return "本局已结束";World.City c=w.city(city);
         if(c==null||c.owner!=w.active)return "请选择己方城池";
         if(w.actionPoints[w.active]<20)return "行动力不足20";
@@ -149,7 +149,7 @@ public final class AbilityResearch {
         return w.success(w.faction(c.owner)+"开始研究"+n.label+"，需要"+n.turns+"旬");
     }
     public World.Result cancelResearch(int side){
-        if(w.contests.busy()||w.gameOver()||side!=w.active||research(side)==null)return w.fail("没有可中止的本势力能力研究");
+        if(w.commandsBlocked()||w.gameOver()||side!=w.active||research(side)==null)return w.fail("没有可中止的本势力能力研究");
         states[side].research=null;return w.success("能力研究已中止，金与行动力不退还");
     }
     public static boolean skillAvailable(Skill skill){
@@ -177,7 +177,7 @@ public final class AbilityResearch {
     }
     public World.Result cancelTraining(int officer){
         Training t=training.stream().filter(x->x.officerId==officer).findFirst().orElse(null);
-        if(w.contests.busy()||w.gameOver()||t==null||t.owner!=w.active)return w.fail("没有可中止的本势力培养");
+        if(w.commandsBlocked()||w.gameOver()||t==null||t.owner!=w.active)return w.fail("没有可中止的本势力培养");
         release(t);return w.success("培养已中止，保留未完成的培养次数，行动力不退还");
     }
     private void release(Training t){training.remove(t);World.Officer o=w.officer(t.officerId);if(o!=null&&o.otherTask.equals(t.label())){o.otherTask="";o.otherTaskTurns=0;o.acted=true;}}

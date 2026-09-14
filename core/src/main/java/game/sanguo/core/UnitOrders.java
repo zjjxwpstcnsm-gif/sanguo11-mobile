@@ -27,7 +27,7 @@ public final class UnitOrders {
     private final World w;
     UnitOrders(World w){this.w=w;}
     public String error(World.Unit u) {
-        if(w.contests.busy())return "请先完成当前单挑或舌战";
+        if(w.commandsBlocked())return "请先完成当前对局或君主继承";
         if(w.gameOver())return "本局已结束";
         if(u==null||w.unit(u.id)!=u||u.owner!=w.active)return "请选择当前势力的部队";
         if(!w.districts.directUnit(u.id))return "该部队由委任军团指挥";

@@ -187,7 +187,7 @@ public final class Campaign {
     public int researchGold(int officer,Tech tech){return w.skills.researchGold(officer,tech);}
     public World.Result cancelProject(int officer){
         Project p=projects.stream().filter(x->x.officerId==officer).findFirst().orElse(null);
-        if(w.contests.busy()||w.gameOver()||p==null||p.owner!=w.active)return w.fail("请选择本势力研究或培养任务");
+        if(w.commandsBlocked()||w.gameOver()||p==null||p.owner!=w.active)return w.fail("请选择本势力研究或培养任务");
         projects.remove(p);if(p.tech!=null)legacyTechs.getOrDefault(p.owner,EnumSet.noneOf(Tech.class)).remove(p.tech);World.Officer o=w.officer(officer);o.otherTask="";o.otherTaskTurns=0;o.acted=true;
         return w.success(p.label()+"已中止，费用不退还");
     }

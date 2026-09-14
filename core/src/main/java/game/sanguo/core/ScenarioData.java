@@ -22,18 +22,19 @@ public final class ScenarioData {
         };
         try {
             p.load(new InputStreamReader(new ByteArrayInputStream(raw),StandardCharsets.UTF_8.newDecoder().onMalformedInput(CodingErrorAction.REPORT)));
+            int sourceWidth=MapCoordinates.normalize(p);
             number(p,"format",1,1);
             String id=take(p,"id"),name=take(p,"name"),source=take(p,"source");
             if(!id.matches("[a-z0-9-]{1,80}"))throw new IOException("剧本ID无效");
             // Only researched formats should be added here; current packs make no original-data claim.
-            if(!source.equals("engineering-original")&&!source.equals("community-reference"))throw new IOException("未知数据来源等级");
+            if(!source.equals("engineering-original")&&!source.equals("community-reference")&&!source.equals("user-supplied"))throw new IOException("未知数据来源等级");
             String reference=source.equals("community-reference")?take(p,"reference"):null;
             if(reference!=null&&!reference.equals("rlu-officers"))throw new IOException("未知人物资料来源");
             int revision=number(p,"revision",1,1000000),year=number(p,"year",1,9999),month=number(p,"month",1,12);
-            int width=number(p,"width",1,128),height=number(p,"height",1,128),sides=number(p,"factions",2,32);
+            int width=number(p,"width",1,300),height=number(p,"height",1,200),sides=number(p,"factions",2,32);
             String[] factions=new String[sides];for(int i=0;i<sides;i++)factions[i]=take(p,"faction."+i);
             if(player<0||player>=sides)throw new IOException("选择的势力不存在");
-            World w=new World(width,height,factions);w.player=player;w.active=player;
+            World w=new World(width,height,factions);w.player=player;w.active=player;w.sourceMapWidth=sourceWidth;
             w.scenarioId=id;w.scenarioName=name;w.dataSource=source;w.dataRevision=revision;w.startYear=year;w.startMonth=month;
             w.dataHash=hash(raw);
             for(int r=0;r<height;r++) {
@@ -124,12 +125,14 @@ public final class ScenarioData {
             if(p.containsKey("regions")){int n=number(p,"regions",0,w.cities.size());Set<Integer> seen=new HashSet<>();for(int i=0;i<n;i++){String[] f=fields(p,"region."+i,2);int city=integer(f[0]);if(!seen.add(city))throw new IOException("区域重复");w.events.configureRegion(city,WorldEvents.Tribe.valueOf(f[1]));}}
             if(p.containsKey("initial-camps")){int n=number(p,"initial-camps",0,w.cities.size());for(int i=0;i<n;i++){String[] f=fields(p,"initial-camp."+i,5);w.events.camps.add(new WorldEvents.Camp(w.events.nextCamp++,integer(f[0]),WorldEvents.Tribe.valueOf(f[1]),new Hex(integer(f[2]),integer(f[3])),integer(f[4])));}}
             if(p.containsKey("initial-hazards")){int n=number(p,"initial-hazards",0,w.cities.size());for(int i=0;i<n;i++){String[] f=fields(p,"initial-hazard."+i,2);int city=integer(f[0]);if(!w.events.beginDisaster(city,WorldEvents.Disaster.valueOf(f[1])))throw new IOException("初始灾害无效");}}
+            if(p.containsKey("natural-deaths"))w.life.naturalDeaths=number(p,"natural-deaths",0,1)==1;
+            if(p.containsKey("lifetimes")){int n=number(p,"lifetimes",0,w.officers.size());Set<Integer> seen=new HashSet<>();for(int i=0;i<n;i++){String[] f=fields(p,"lifetime."+i,6);int who=integer(f[0]);if(!seen.add(who))throw new IOException("生卒人物重复");w.life.configure(who,integer(f[1]),integer(f[2]),integer(f[3]),integer(f[4]),Lifecycle.State.valueOf(f[5]));}}
             if(!p.isEmpty())throw new IOException("未知剧本字段："+p.keySet().iterator().next());
             if(reference!=null){ContentCatalog catalog=ContentCatalog.get();catalog.validateOpening(w);ContentRuntime.initializeOpening(w,catalog);}
             w.strategy.initializeOffices();
             w.abilities.initialize(Objects.hash(w.scenarioId,w.startYear,w.startMonth));
             SaveCodec.validate(w);validateOpening(w);
-            w.note(name+(reference==null?"：原创测试布局与数值，非原版历史剧本":"：公开资料能力/适性，原创区域地图与开局；非官方历史剧本"));
+            w.note(name+(source.equals("user-supplied")?"：导入数据，原版一致性未核验":reference==null?"：原创测试布局与数值，非原版历史剧本":"：公开资料能力/适性，原创区域地图与开局；非官方历史剧本"));
             w.note("当前执掌"+w.faction(player)+" · 点选己方城池开始经营");
             return w;
         }catch(IllegalArgumentException e){throw new IOException("剧本格式错误："+e.getMessage(),e);}

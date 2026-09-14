@@ -126,3 +126,11 @@ tasks.register('verifyCampaignAi', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyCampaignAi' }
 tasks.named('test') { dependsOn 'verifyCampaignAi' }
+
+tasks.register('verifyLifecycle', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.LifecycleTest'
+}
+tasks.named('check') { dependsOn 'verifyLifecycle' }
+tasks.named('test') { dependsOn 'verifyLifecycle' }

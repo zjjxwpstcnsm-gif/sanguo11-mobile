@@ -59,7 +59,7 @@ public final class Editor {
     }
     private static void delta(StringBuilder s,String label,int old,int value){if(old!=value)s.append("\n").append(label).append("：").append(old).append(" → ").append(value);}
     private Draft preview(String summary,Consumer<World> change){
-        if(w.contests.busy()||w.active!=w.player)return new Draft(summary,"请先完成对局或等待本方行动",null,null);
+        if(w.commandsBlocked()||w.active!=w.player)return new Draft(summary,"请先完成对局或等待本方行动",null,null);
         try{
             byte[] before=SaveCodec.encode(w);World copy=SaveCodec.decode(before);
             change.accept(copy);if(Arrays.equals(before,SaveCodec.encode(copy)))throw new IllegalArgumentException("没有发生数值或配置变化");
@@ -82,6 +82,7 @@ public final class Editor {
         });
     }
     private static void set(World.Officer o,Template t){o.leadership=t.stat(0);o.war=t.stat(1);o.intelligence=t.stat(2);o.politics=t.stat(3);o.charm=t.stat(4);for(int i=0;i<6;i++)o.aptitude[i]=t.aptitude(i);o.sex=t.sex;o.skillId=t.skill;}
+    public Draft lifetime(int officer,int birth,int appearance,int death,int home,Lifecycle.State state){return preview("生卒资料 · 出生"+birth+" / 登场"+appearance+" / 预计没年"+death,v->v.life.configure(officer,birth,appearance,death,home,state));}
     public Draft city(int id,int gold,int food,int troops,int order,int morale,int defense,int reserve,int[] equipment,int[] ships){
         final int[] gear=equipment==null?new int[0]:equipment.clone(),fleet=ships==null?new int[0]:ships.clone();
         return preview("据点资源 · 金"+gold+" / 粮"+food+" / 兵"+troops,v->{

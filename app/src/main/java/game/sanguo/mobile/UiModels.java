@@ -7,6 +7,7 @@ import java.util.*;
 final class UiModels {
     private UiModels() {}
     static String location(World w, World.Officer o) {
+        if(!w.life.present(o.id))return w.life.state(o.id).label;
         if(w.government.captive(o.id))return w.city(w.government.prisoner(o.id).cityId).name+"（关押）";
         for (Domestic.Mission m : w.domestic.missions) if (m.officerId == o.id)
             return w.city(m.sourceCity).name + " → " + w.city(m.targetCity).name;
@@ -17,6 +18,8 @@ final class UiModels {
     static String status(World w, World.Officer o) {
         Strategy.OfficerState state=w.strategy.officerState(o.id);
         switch(state.activity){
+            case DEAD: return "已故";
+            case UNAPPEARED: return "未登场 · "+w.life.life(o.id).appearance+"年";
             case CAPTIVE: return w.government.status(o.id);
             case CONSTRUCTION: case TRANSFER: case TRANSPORT: return w.domestic.assignment(o.id);
             case OTHER_TASK: return o.otherTask+" · 剩"+state.remainingTurns+"旬";
@@ -31,12 +34,12 @@ final class UiModels {
         World.City c=w.city(cityId);World.Officer o=c==null?null:w.officer(c.governorId);
         return o==null?"未任命":o.name;
     }
-    static String faction(World w,World.Officer o){return o.owner<0?"在野":w.faction(o.owner);}
+    static String faction(World w,World.Officer o){return !w.life.present(o.id)?w.life.state(o.id).label:o.owner<0?"在野":w.faction(o.owner);}
 
     static List<World.Officer> officers(World w, String query, int owner, int city, int sort) {
         List<World.Officer> result = new ArrayList<>();
         for (World.Officer o : w.officers)
-            if ((owner == -1 || (owner == -2 ? o.owner < 0 : o.owner == owner)) && (city < 0 || o.cityId == city) && o.name.contains(query.trim())) result.add(o);
+            if ((owner == -1 || (owner == -2 ? o.owner < 0&&w.life.present(o.id) : o.owner == owner)) && (city < 0 || o.cityId == city) && o.name.contains(query.trim())) result.add(o);
         Comparator<World.Officer> order = sort == 0 ? Comparator.comparing(o -> o.name)
             : Comparator.comparingInt((World.Officer o) -> ability(o, sort)).reversed();
         result.sort(order.thenComparingInt(o -> o.id));
