@@ -13,8 +13,9 @@ public final class LegacyWorldBattleAdapter {
             throw new IllegalArgumentException("Strategic army/commander mismatch");
         BattleUnit.Commander commander = new BattleUnit.Commander(officer.id, officer.name,
                 officer.leadership, officer.war, officer.intelligence);
+        // Damage-only projection: rawDamage does not use energy. Keep PK energy on the real unit.
         return BattleAdapters.toBattleUnit(new BattleAdapters.StrategicArmy(unit.id, unit.owner, commander,
-                weapon(unit.weapon), unit.troops, unit.energy, 100, 100), localPosition);
+                weapon(unit.weapon), unit.troops, Math.min(unit.energy, game.sanguo.core.battle.BattleRules.MAX_ENERGY), 100, 100), localPosition);
     }
     private static WeaponType weapon(World.Weapon weapon) {
         if (weapon == null) throw new IllegalArgumentException("Missing strategic weapon");

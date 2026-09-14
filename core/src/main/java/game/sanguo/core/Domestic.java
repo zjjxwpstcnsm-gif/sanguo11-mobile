@@ -7,7 +7,7 @@ import java.util.*;
 public final class Domestic {
     public static final int CITY_SLOTS=6, TRAVEL_SPEED=4;
     public enum Kind {
-        MARKET("市场",1000,"每月金 +400"), FARM("农场",800,"每月粮 +2500"),
+        MARKET("市场",1000,"每月金 +400"), FARM("农场",800,"每季粮 +2500"),
         BARRACKS("兵舍",1200,"每次征兵 +500"), SMITH("锻冶所",1200,"每次兵装生产 +500"),
         MINT("造币",1500,"相邻市场产金 +50%，不重复叠加"), GRANARY("谷仓",1500,"相邻农场产粮 +50%，不重复叠加"),
         STABLE("厩舍",1200,"骑兵兵装生产额外 +500"), BLACK_MARKET("黑市",500,"每月金 +200，不可合并"),
@@ -58,6 +58,19 @@ public final class Domestic {
     }
     public int monthlyGold(int city){return w.strategy.cityIncome(city,800+this.yield(city,Kind.MARKET,400)+this.yield(city,Kind.BLACK_MARKET,200));}
     public int monthlyFood(int city){return w.strategy.cityIncome(city,5000+this.yield(city,Kind.FARM,2500));}
+    /** Scheduled income, including the PC month/season-only interaction of wealth and tax skills. */
+    public int goldIncome(int city,int turn){
+        int base=monthlyGold(city);boolean monthly=turn%3==0,tax=w.skills.city(city,Skill.ZHENGSHUI);
+        if(!monthly&&!tax)return 0;
+        int amount=tax?base/2:base;
+        return monthly&&w.skills.city(city,Skill.FUHAO)?amount*3/2:amount;
+    }
+    public int foodIncome(int city,int turn){
+        if(turn%3!=0)return 0;boolean season=(w.startMonth-1+turn/3)%3==0,tax=w.skills.city(city,Skill.ZHENGSHOU);
+        if(!season&&!tax)return 0;int amount=tax?monthlyFood(city)/2:monthlyFood(city);
+        return season&&w.skills.city(city,Skill.MIDAO)?amount*3/2:amount;
+    }
+    public String incomeSchedule(int city){return "月初基准金 "+monthlyGold(city)+" / 季初基准粮 "+monthlyFood(city)+"\n下旬结算 金 "+goldIncome(city,w.turn+1)+" / 粮 "+foodIncome(city,w.turn+1);}
     public int recruitAmount(int city){return 2000+this.yield(city,Kind.BARRACKS,500);}
     public int produceAmount(int city){return 2000+this.yield(city,Kind.SMITH,500);}
     public int produceAmount(int city,World.Weapon weapon){return produceAmount(city)+(weapon==World.Weapon.CAVALRY?this.yield(city,Kind.STABLE,500):0);}

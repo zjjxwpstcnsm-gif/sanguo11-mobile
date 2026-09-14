@@ -120,7 +120,7 @@ public final class MainActivity extends Activity {
         log.setText(aiRunning?"正在结算电脑行动与本旬任务…":world.log.isEmpty()?"拖动地图 · 双指缩放 · 双击城池定位":world.log.get(world.log.size()-1));
         map.setWorld(world,selected,moving);map.setEnabled(!aiRunning&&!world.contests.busy());
     }
-    private int taskCount(){int n=0;for(Domestic.Facility f:world.domestic.facilities)if(f.remaining>0&&world.city(f.cityId).owner==world.player)n++;for(Domestic.Mission m:world.domestic.missions)if(m.owner==world.player)n++;for(Campaign.Project p:world.campaign.projects())if(p.owner==world.player)n++;for(Army.Production p:world.army.productions())if(p.owner==world.player)n++;return n;}
+    private int taskCount(){return UiModels.tasks(world,0).size();}
     private void showSelection(){
         World.Unit unit=selected==null?null:world.unitAt(selected);World.City city=selected==null?null:world.cityAt(selected);
         if(unit!=null)showUnit(unit);else if(city!=null)showCity(city);else if(selected!=null&&world.domestic.at(selected)!=null){
@@ -133,12 +133,19 @@ public final class MainActivity extends Activity {
         boolean compact=!ui.group.equals("概览");
         line(c.name,compact?21:25,gold);line(world.faction(c.owner)+" · 太守 "+UiModels.governor(world,c.id),compact?12:13,paper);
         line(compact?"金 "+c.gold+" · 粮 "+c.food+" · 兵 "+c.troops:"金 "+c.gold+"    粮 "+c.food+"\n兵 "+c.troops+"    城防 "+c.defense,compact?13:15,paper);
-        HorizontalScrollView tabs=new HorizontalScrollView(this);tabs.setHorizontalScrollBarEnabled(false);LinearLayout row=new LinearLayout(this);tabs.addView(row);
-        for(String name:new String[]{"概览","内政","武将","军事","调动","外交","研究"}){Button b=button(name,v->{ui.group=name;refresh();revealPanel();});b.setTextColor(ui.group.equals(name)?gold:paper);row.addView(b,new LinearLayout.LayoutParams(dp(48),dp(48)));}panel.addView(tabs);tabs.post(()->{int index=Arrays.asList("概览","内政","武将","军事","调动","外交","研究").indexOf(ui.group);tabs.smoothScrollTo(Math.max(0,dp(index*48)-dp(90)),0);});
+        String[] groups={"概览","内政","武将","军事","调动","外交","研究"};
+        for(int first=0;first<groups.length;first+=4){
+            LinearLayout row=new LinearLayout(this);
+            for(int i=first;i<Math.min(first+4,groups.length);i++){
+                String name=groups[i];Button b=button(name,v->{ui.group=name;refresh();revealPanel();});b.setTextColor(ui.group.equals(name)?gold:paper);
+                row.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
+            }
+            panel.addView(row);
+        }
         boolean own=c.owner==world.player&&!world.gameOver();
         switch(ui.group){
             case "内政":
-                line("设施 "+world.domestic.count(c.id)+"/"+Domestic.CITY_SLOTS+"\n每月收入：金 "+world.domestic.monthlyGold(c.id)+" / 粮 "+world.domestic.monthlyFood(c.id),14,paper);
+                line("设施 "+world.domestic.count(c.id)+"/"+Domestic.CITY_SLOTS+"\n"+world.domestic.incomeSchedule(c.id),14,paper);
                 boolean construction=false;
                 for(Domestic.Facility f:world.domestic.facilities)if(f.cityId==c.id){construction|=f.remaining>0;action(f.kind.label+" · "+(f.remaining==0?"已建成":"剩"+f.remaining+"旬"),v->domesticUi().facility(f));}
                 if(!construction)line("当前没有建设中的设施",13,muted);
@@ -150,7 +157,8 @@ public final class MainActivity extends Activity {
                 for(int side=0;side<world.factions.length;side++)if(side!=c.owner&&c.owner>=0&&world.alive(side))line(world.faction(side)+"\n"+world.campaign.relationLabel(c.owner,side),14,paper);break;
             case "研究":
                 line("技巧点 "+world.campaign.points(c.owner),18,gold);
-                if(own){action("技巧研究",v->campaignUi().research(c));action("能力 / 适性培养",v->campaignUi().study(c));}
+                if(own){action("PK能力研究",v->new AbilityUi(this,world,this::apply).research(c));action("技巧研究",v->campaignUi().research(c));action("能力 / 适性培养",v->campaignUi().study(c));}
+                action("PK研究与培养进度",v->new AbilityUi(this,world,this::apply).progress(c));
                 action("研究与培养进度",v->campaignUi().projects(c));break;
             case "武将":
                 if(own){
@@ -178,7 +186,7 @@ public final class MainActivity extends Activity {
                 line("治安 "+c.order+" · 气力 "+c.morale+" · 兵源 "+c.recruitReserve+"\n可用武将 "+world.idle(c).size()+" · 驻扎 "+UiModels.officerCount(world,c.id),14,paper);
                 if(own){action("人事 / 城市治理",v->strategyUi().city(c));action("军政 / 俘虏 / 官职",v->governmentUi().city(c));}
                 StringBuilder stocks=new StringBuilder("兵装库存\n");for(World.Weapon weapon:World.Weapon.values())stocks.append(weapon.label).append(" ").append(c.equipment[weapon.ordinal()]).append("  ");stocks.append("\n楼船 ").append(c.ships[0]).append(" · 斗舰 ").append(c.ships[1]);line(stocks.toString(),13,paper);
-                line("月收入 金 "+world.domestic.monthlyGold(c.id)+" / 粮 "+world.domestic.monthlyFood(c.id),13,muted);
+                line("月金 / 季粮基准 金 "+world.domestic.monthlyGold(c.id)+" / 粮 "+world.domestic.monthlyFood(c.id),13,muted);
                 if(own)action("设施开发",v->domesticUi().build(c));
                 action("展开军事命令",v->{ui.group="军事";refresh();revealPanel();});
                 if(own){action("外交 / 协定",v->campaignUi().diplomacy(c));action("技巧 / 培养",v->{ui.group="研究";refresh();revealPanel();});}
@@ -242,7 +250,7 @@ public final class MainActivity extends Activity {
         action("本旬结算摘要",v->message("旬结算摘要",ui.summary.isEmpty()?"结束一旬后将在这里显示结算摘要。":ui.summary));
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.10 · 文武对决","单挑的方针、斗志、必杀、换将与俘获；舌战话题、话术、憤激与登用；对局中保存和恢复。\n存档 v9，兼容 v1～v8。\n\n原有军政、后勤等玩法保留。全国地形、官方完整开局、全部特技、事件与精确数值仍未完整还原。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.11 · PK研究与培养","势力能力研究、有限次数培养、隐藏能力、特技覆盖与进度保存。\n存档 v10，兼容 v1～v9。\n\n原有军政、后勤等玩法保留。全国地形、官方完整开局、全部特技、事件与精确数值仍未完整还原。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}
@@ -254,7 +262,7 @@ public final class MainActivity extends Activity {
         b.append(people).append("名武将 · 领地：");for(World.City c:w.cities)if(c.owner==side)b.append(c.name).append(" ");
         b.append(w.dataSource.equals("community-reference")?"\n能力/适性来自公开资料，地图/领地/资源为原创演练；特技已接入部分效果，生卒和关系尚未生效。":"\n原创测试地图、资源和武将数值；非官方历史开局。");return b.toString();
     }
-    private void startScenario(String id,int player){try{world=ScenarioCatalog.load(id,player);ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;selectAndFocus(world.home().hex);save("auto",false);}catch(IOException e){showError("无法开始剧本");}}
+    private void startScenario(String id,int player){try{world=ScenarioCatalog.load(id,player,System.nanoTime());ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;selectAndFocus(world.home().hex);save("auto",false);}catch(IOException e){showError("无法开始剧本");}}
     private String slotName(int index){return index==0?"manual":"manual"+(index+1);}
     private boolean present(AtomicFile f){return f.getBaseFile().exists()||new File(f.getBaseFile()+".bak").exists();}
     private void saveSlots(boolean loading){

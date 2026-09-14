@@ -55,7 +55,7 @@ public final class War {
     public Structure at(Hex h){for(Structure s:structures)if(s.hex.equals(h))return s;return null;}
     public static String rankLabel(int rank){return new String[]{"C","B","A","S"}[Math.max(0,Math.min(3,rank))];}
     public int range(World.Unit u){return w.army.range(u)+(w.skills.has(u,Skill.SHECHENG)&&!w.army.water(u.hex)&&(u.weapon==World.Weapon.SIEGE_TOWER||u.weapon==World.Weapon.CATAPULT)?1:0)+(!w.army.water(u.hex)&&u.weapon==World.Weapon.CROSSBOW&&w.campaign.has(u.owner,Campaign.Tech.STRONG_BOW)?1:0);}
-    public int movement(World.Unit u){return w.army.movement(u)+(!w.army.water(u.hex)&&u.weapon==World.Weapon.CAVALRY&&w.campaign.has(u.owner,Campaign.Tech.HORSE_BREEDING)?1:0);}
+    public int movement(World.Unit u){return w.army.movement(u)+w.skills.movementBonus(u)+(!w.army.water(u.hex)&&u.weapon==World.Weapon.CAVALRY&&w.campaign.has(u.owner,Campaign.Tech.HORSE_BREEDING)?1:0);}
     private String actorError(World.Unit u){
         return w.orders.error(u);
     }
@@ -69,8 +69,7 @@ public final class War {
     private int damage(World.Unit a,World.Unit b,double scale,Random rng){
         int amount=w.army.water(a.hex)||w.army.water(b.hex)||a.weapon.ordinal()>=4||b.weapon.ordinal()>=4?w.army.damage(a,b,scale,rng):DamageCalculator.rawDamage(LegacyWorldBattleAdapter.toBattleUnit(a,w.army.combatOfficer(a),new HexPos(a.hex.q,a.hex.r)),
             LegacyWorldBattleAdapter.toBattleUnit(b,w.army.combatOfficer(b),new HexPos(b.hex.q,b.hex.r)),terrain(a.hex),terrain(b.hex),scale,rng);
-        if(b.weapon==World.Weapon.HALBERD&&w.campaign.has(b.owner,Campaign.Tech.HALBERD_DRILL))amount=amount*9/10;
-        if(b.weapon==World.Weapon.HALBERD&&a.weapon==World.Weapon.CROSSBOW&&w.campaign.has(b.owner,Campaign.Tech.SHIELD))amount=amount*4/5;
+
         for(Structure s:structures)if(s.owner==b.owner&&s.kind==StructureKind.CAMP&&s.hex.distance(b.hex)<=2){amount=amount*9/10;break;}
         return Math.max(1,amount);
     }
@@ -78,7 +77,9 @@ public final class War {
     private void hurt(World.Unit u,int damage){if(w.unit(u.id)==null)return;u.troops=Math.max(0,u.troops-damage);if(u.troops==0)w.removeUnit(u);}
     int physicalDamage(World.Unit a,World.Unit b,double scale,boolean tactic,Random rng){
         if(w.skills.critical(a,b,tactic))scale*=1.15;
+        if(!w.army.water(a.hex)&&a.weapon.ordinal()<4){Campaign.Tech drill=new Campaign.Tech[]{Campaign.Tech.SPEAR_DRILL,Campaign.Tech.HALBERD_DRILL,Campaign.Tech.CROSSBOW_DRILL,Campaign.Tech.CAVALRY_DRILL}[a.weapon.ordinal()];if(w.campaign.has(a.owner,drill))scale*=1.1;}
         int amount=damage(a,b,scale,rng);
+        if(!tactic&&!w.army.water(b.hex)&&b.weapon==World.Weapon.HALBERD&&a.hex.distance(b.hex)>1&&w.campaign.has(b.owner,Campaign.Tech.SHIELD)&&rng.nextInt(100)<30)return 0;
         if(w.skills.has(b,Skill.TENGJIA))amount=Math.max(1,amount/2);
         if(!tactic&&w.skills.nullifyNormal(b,amount,rng))return 0;
         return Math.min(b.troops,amount);
@@ -90,6 +91,7 @@ public final class War {
     public World.Result attack(int actor,int target){
         World.Unit a=w.unit(actor),b=w.unit(target);String error=actorError(a);if(error==null)error=targetError(a,b,1,range(a));if(error!=null)return w.fail(error);
         if(!w.army.canAttackUnit(a))return w.fail("兵器需要使用战法");
+        if(!w.army.water(a.hex)&&a.weapon==World.Weapon.CROSSBOW&&w.terrain[b.hex.q][b.hex.r]==World.Terrain.FOREST&&!w.skills.has(a,Skill.SHESHOU))return w.fail("射向森林需要射手特技");
         a.acted=true;int dealt=0,counter=0;
         int attacks=w.skills.has(a,Skill.LIANZHAN)&&w.strategy.nextInt(100)<50?2:1;
         for(int i=0;i<attacks&&w.unit(a.id)!=null&&w.unit(b.id)!=null;i++){
@@ -97,8 +99,21 @@ public final class War {
             if(w.unit(b.id)!=null&&a.hex.distance(b.hex)==1&&w.army.counter(b)&&b.status==Status.NORMAL&&!(w.skills.has(a,w.army.water(a.hex)?Skill.QIANGXI:Skill.JIXI)&&w.skills.avoidCounter(a,random())))
                 counter+=strike(b,a,.5,false);
         }
+        int support=supportAttack(a,b);
         w.campaign.earn(a.owner,w.unit(b.id)==null&&w.skills.has(a,Skill.JINGMIAO)?40:20);w.checkVictory();
-        return w.success(w.officer(a.officerId).name+"攻击：敌损"+dealt+"，反击损失"+counter);
+        return w.success(w.officer(a.officerId).name+"攻击：敌损"+dealt+"，反击损失"+counter+(support>0?"，支援伤害"+support:""));
+    }
+    private int supportAttack(World.Unit attacker,World.Unit target){
+        if(w.unit(attacker.id)==null||w.unit(target.id)==null)return 0;int damage=0;
+        List<World.Unit> helpers=new ArrayList<>(w.units);helpers.sort(Comparator.comparingInt(u->u.id));
+        for(World.Unit helper:helpers){
+            if(w.unit(target.id)==null)break;
+            if(helper.id==attacker.id||helper.owner!=attacker.owner||helper.status!=Status.NORMAL||!w.skills.has(w.officer(helper.officerId),Skill.FUZUO)||!w.army.canAttackUnit(helper))continue;
+            int distance=helper.hex.distance(target.hex);if(distance<1||distance>range(helper))continue;
+            if(!w.army.water(helper.hex)&&helper.weapon==World.Weapon.CROSSBOW&&w.terrain[target.hex.q][target.hex.r]==World.Terrain.FOREST&&!w.skills.has(helper,Skill.SHESHOU))continue;
+            if(w.strategy.nextInt(100)<30)damage+=strike(helper,target,.5,false);
+        }
+        return damage;
     }
     public int tacticChance(int actor,int target,Tactic tactic){
         World.Unit a=w.unit(actor),b=w.unit(target);if(a==null||b==null||tactic==null)return 0;
@@ -133,8 +148,6 @@ public final class War {
             if(splash)victims.add(u);
         }
         double multiplier=tactic.multiplier;
-        Campaign.Tech tech=a.weapon==World.Weapon.SPEAR?Campaign.Tech.SPEAR_DRILL:a.weapon==World.Weapon.CROSSBOW?Campaign.Tech.CROSSBOW_DRILL:a.weapon==World.Weapon.CAVALRY?Campaign.Tech.CAVALRY_DRILL:null;
-        if(tech!=null&&w.campaign.has(a.owner,tech))multiplier*=1.1;
         if(a.weapon==World.Weapon.SPEAR&&w.campaign.has(a.owner,Campaign.Tech.SUPPLY_RAID)){int food=Math.min(Math.min(b.food,1000),1000000-a.food);b.food-=food;a.food+=food;}
         int dealt=0;for(World.Unit victim:victims){int hit=strike(a,victim,multiplier,true);dealt+=hit;}
         switch(tactic){
@@ -145,6 +158,7 @@ public final class War {
             case BREAKTHROUGH:a.hex=add(targetHex,targetHex.q-origin.q,targetHex.r-origin.r);break;
             case FIRE_ARROW:ignite(targetHex,a);break;default:break;
         }
+        if(!a.hex.equals(origin)||!b.hex.equals(targetHex))w.skills.woundAfterDisplacement(a,b);
         if(w.unit(b.id)!=null&&a.weapon==World.Weapon.CAVALRY&&w.skills.swiftConfusion(a,b)){b.status=Status.CONFUSED;b.statusTurns=1;}
         w.campaign.earn(a.owner,w.unit(b.id)==null&&w.skills.has(a,Skill.JINGMIAO)?80:40);w.checkVictory();return w.success(w.officer(a.officerId).name+"施展"+tactic.label+"，命中"+victims.size()+"队，敌损"+dealt);
     }
@@ -260,7 +274,7 @@ public final class War {
         if(s==null||s.owner!=c.owner||s.hex.distance(c.hex)>3)return w.fail("请选择本城三格内己方军事设施");
         w.spend(c,o,0);structures.remove(s);return w.success("已拆除"+s.kind.label);
     }
-    public World.Result waitUnit(int unit){World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return w.fail(error);u.acted=true;u.energy=Math.min(100,u.energy+5);return w.success("部队待命，恢复5气力");}
+    public World.Result waitUnit(int unit){World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return w.fail(error);u.acted=true;u.energy=Math.min(w.campaign.energyCap(u.owner),u.energy+5);return w.success("部队待命，恢复5气力");}
     void resetOwner(int owner){
         for(World.Unit u:new ArrayList<>(w.units))if(u.owner==owner&&u.status!=Status.NORMAL){
             if(u.statusTurns<=0){u.status=Status.NORMAL;continue;}
@@ -274,7 +288,7 @@ public final class War {
     }
     void tick(){
         for(Fire f:new ArrayList<>(fires)){
-            World.Unit u=w.unitAt(f.hex);if(u!=null&&(u.owner==f.owner||w.campaign.hostile(f.owner,u.owner))){int hit=250+(w.terrain[f.hex.q][f.hex.r]==World.Terrain.FOREST?150:0);if(w.campaign.has(f.owner,Campaign.Tech.FIRE_MASTERY))hit=hit*13/10;hit=w.skills.fireDamage(u,hit,f.owner,f.power,f.trap);hurt(u,hit);w.note("火场灼烧，部队损失"+hit);}
+            World.Unit u=w.unitAt(f.hex);if(u!=null&&(u.owner==f.owner||w.campaign.hostile(f.owner,u.owner))){int hit=250+(w.terrain[f.hex.q][f.hex.r]==World.Terrain.FOREST?150:0);hit=w.skills.fireDamage(u,hit,f.owner,f.power,f.trap);hurt(u,hit);w.note("火场灼烧，部队损失"+hit);}
             Structure s=at(f.hex);if(s!=null&&(s.owner==f.owner||w.campaign.hostile(f.owner,s.owner))){s.hp-=200;if(s.hp<=0)structures.remove(s);}
             if(--f.remaining==0)fires.remove(f);
         }

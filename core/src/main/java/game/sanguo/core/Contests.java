@@ -145,7 +145,7 @@ public final class Contests {
         if(d.winner>=0){
             int side=d.winner;World.Unit victor=w.unit(side==0?session.leftRef:session.rightRef),loser=w.unit(side==0?session.rightRef:session.leftRef);
             World.Officer beaten=w.officer(d.active(1-side).officer);
-            w.government.earn(d.active(side).officer,200);w.campaign.earn(victor.owner,20);victor.energy=Math.min(100,victor.energy+10);
+            w.government.earn(d.active(side).officer,200);w.campaign.earn(victor.owner,20);victor.energy=Math.min(w.campaign.energyCap(victor.owner),victor.energy+10);
             loser.energy=Math.max(0,loser.energy-20);
             if(d.escaped<0){
                 boolean immune=w.skills.has(beaten,Skill.QIANGYUN)||w.skills.has(loser,Skill.XUELU)||profile(beaten.id).has(Gear.HORSE);

@@ -50,8 +50,7 @@ final class CampaignUi {
             confirm("研究"+tech.label,tech.effect+"\n消耗"+tech.points+"技巧点、金"+w.campaign.researchGold(o.id,tech)+"、行动力10。\n研究占用"+o.name+tech.turns+"旬，每势力同时研究一项。\n城池失守时中止，费用不退还。",()->apply.accept(w.campaign.research(c.id,o.id,tech)));
         }));
     }
-    void study(World.City c){officer(c,o->choose("培养"+o.name,Arrays.asList(Campaign.Study.values()),study->study.label+" · 当前"+(study.ordinal()<5?w.campaign.studyValue(o.id,study):War.rankLabel(w.campaign.studyValue(o.id,study))),study->confirm("培养"+study.label,
-        "金600、行动力10，占用本人3旬。\n"+(study.ordinal()<5?"完成后属性 +3，最高100。":"完成后适性提升一级，最高S；可解锁对应高级战法。"),()->apply.accept(w.campaign.study(c.id,o.id,study)))));}
+    void study(World.City c){new AbilityUi(a,w,apply).train(c);}
     void projects(World.City c){
         StringBuilder text=new StringBuilder("技巧点 "+w.campaign.points(c.owner)+"\n每城每旬产出10点（势力上限100点/旬），战斗和部分军政命令也可获得技巧点。\n");
         for(Campaign.Project p:w.campaign.projects())if(p.owner==c.owner)text.append('\n').append(w.city(p.cityId).name).append(" · ").append(w.officer(p.officerId).name).append(" · ").append(p.label()).append(" · 剩").append(w.officer(p.officerId).otherTaskTurns).append("旬");

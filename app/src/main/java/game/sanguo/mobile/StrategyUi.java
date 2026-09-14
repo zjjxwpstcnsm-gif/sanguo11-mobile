@@ -36,7 +36,7 @@ final class StrategyUi {
         World.Officer governor=w.officer(c.governorId);
         String title=c.name+" · 人事 / 城市治理";
         if(n==0){
-            StringBuilder text=new StringBuilder("太守："+(governor==null?"未任命":governor.name)+"\n兵源 "+c.recruitReserve+" / 守军 "+c.troops+"\n治安 "+c.order+" / 气力 "+w.strategy.getArmyReadiness(c.id)+"\n月金 "+w.domestic.monthlyGold(c.id)+" / 月粮 "+w.domestic.monthlyFood(c.id)+"\n");
+            StringBuilder text=new StringBuilder("太守："+(governor==null?"未任命":governor.name)+"\n兵源 "+c.recruitReserve+" / 守军 "+c.troops+"\n治安 "+c.order+" / 气力 "+w.strategy.getArmyReadiness(c.id)+"\n月金 "+w.domestic.monthlyGold(c.id)+" / 季粮 "+w.domestic.monthlyFood(c.id)+"\n");
             for(World.Officer o:w.officers)if(o.cityId==c.id){
                 Strategy.OfficerState s=w.strategy.officerState(o.id);World.City location=w.city(o.cityId);
                 text.append('\n').append(o.name).append(" · ").append(o.role.label).append(" · 忠诚").append(o.loyalty)
@@ -59,7 +59,7 @@ final class StrategyUi {
                 case 4:choose("选择太守",w.idle(c),target->confirm("任命"+target.name,"金粮收入加成 "+(target.politics/4)+"%；仍受治安影响。执行者和新太守均消耗本旬行动；出征或调动自动卸任。",()->apply.accept(w.strategy.appointGovernor(c.id,o.id,target.id))));break;
                 case 5:confirm("巡察","消耗金100；治安 +"+Math.min(100-c.order,StrategyRules.patrolGain(o.politics,o.charm))+"。",()->apply.accept(w.strategy.patrol(c.id,o.id)));break;
                 case 6:confirm("征兵","消耗金300、治安5；预计征兵 "+w.strategy.recruitAmount(c.id,o.id)+"，扣减等量兵源。当前兵源 "+c.recruitReserve+"。",()->apply.accept(w.strategy.recruitSoldiers(c.id,o.id)));break;
-                case 7:confirm("训练","消耗金100；气力 +"+Math.min(100-c.morale,StrategyRules.trainingGain(o.leadership,o.war))+"，出征时作为初始部队气力。",()->apply.accept(w.strategy.trainArmy(c.id,o.id)));break;
+                case 7:confirm("训练","消耗金100；气力 +"+Math.min(w.campaign.energyCap(c.owner)-c.morale,StrategyRules.trainingGain(o.leadership,o.war))+"，出征时作为初始部队气力。",()->apply.accept(w.strategy.trainArmy(c.id,o.id)));break;
                 case 8:{
                     List<World.Officer> targets=new ArrayList<>();for(World.Officer target:w.officers)if(w.contests.debateError(c.id,o.id,target.id)==null)targets.add(target);
                     choose("选择舌战登用目标",targets,target->confirm("舌战说服"+target.name,"金100。通过出牌与憤激决出胜负，获胜后加入本势力；失败不退费。",()->apply.accept(w.contests.persuade(c.id,o.id,target.id))));break;

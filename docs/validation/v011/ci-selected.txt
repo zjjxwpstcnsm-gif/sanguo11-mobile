@@ -1,0 +1,47 @@
+2026-09-14T07:18:32.5458175Z PASS: 51740 UI projection/camera assertions.
+2026-09-14T07:18:38.1837504Z PASS: 187 assertions covering hex paths, resources, combat, turns, saves, and deterministic simulation.
+2026-09-14T07:18:38.4637044Z PASS: 143 content/runtime integration assertions.
+2026-09-14T07:18:39.3411543Z PASS: 2638 content assertions; cold catalog 131.373 ms; sourced opening combat at turn 4.
+2026-09-14T07:18:42.1250773Z PASS: 330 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
+2026-09-14T07:18:45.0524589Z PASS: 828 domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.
+2026-09-14T07:18:45.7660064Z PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
+2026-09-14T07:18:46.3716975Z PASS: 50x50 benchmark, 100 A* queries: p50=2.781ms p95=3.711ms max=5.422ms total=295.250ms maxExpanded=2125/2500; 100 reachable queries=13.716ms
+2026-09-14T07:18:50.3002139Z PASS: 7955 strategy/officer assertions covering locks, seeded search/hiring, loyalty, offices, economy, finite reserves, readiness, AI and save v1-v4.
+2026-09-14T07:18:53.1578551Z PASS: 59 campaign cases, 578 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
+2026-09-14T07:18:54.4938365Z PASS: 45 army cases, 465 assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.
+2026-09-14T07:18:57.4695439Z PASS: 481 rules-parity assertions: move previews/replays/budget, skill priorities/holders/chains, actual damage/production, real v6 migration and deterministic campaigns.
+2026-09-14T07:19:01.0207884Z PASS: 580 governance assertions: rank caps/payroll, captive crew and immunity, recruit/release/ransom/rescue, delegation, real v7 migration and long campaigns.
+2026-09-14T07:19:01.2466991Z PASS: 43 supply assertions: troop/food conservation, no duplicate delivery, raid/capture/treaty, amphibious routes and save restoration.
+2026-09-14T07:19:02.2129365Z PASS: 2397 contest assertions: official duel/debate structures, guard/gear/fury/counters, campaign settlement, locks, stale inputs, real v8 migration and save-per-round replay.
+2026-09-14T07:19:02.9475578Z PASS: 1064 PK assertions: full ordinary graph, hidden stability, real research/training/limits/cancellation/capture, v9 migration and income schedule.
+2026-09-14T07:19:51.5416997Z PASS: 51740 UI projection/camera assertions.
+2026-09-14T07:19:57.6387340Z PASS: 1064 PK assertions: full ordinary graph, hidden stability, real research/training/limits/cancellation/capture, v9 migration and income schedule.
+2026-09-14T07:19:59.1411124Z PASS: 45 army cases, 465 assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.
+2026-09-14T07:20:03.5408421Z PASS: 59 campaign cases, 578 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
+2026-09-14T07:20:04.9418901Z PASS: 2397 contest assertions: official duel/debate structures, guard/gear/fury/counters, campaign settlement, locks, stale inputs, real v8 migration and save-per-round replay.
+2026-09-14T07:20:05.4398586Z PASS: 187 assertions covering hex paths, resources, combat, turns, saves, and deterministic simulation.
+2026-09-14T07:20:08.3387314Z PASS: 828 domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.
+2026-09-14T07:20:11.7352871Z PASS: 580 governance assertions: rank caps/payroll, captive crew and immunity, recruit/release/ransom/rescue, delegation, real v7 migration and long campaigns.
+2026-09-14T07:20:14.6387584Z PASS: 481 rules-parity assertions: move previews/replays/budget, skill priorities/holders/chains, actual damage/production, real v6 migration and deterministic campaigns.
+2026-09-14T07:20:16.6376378Z PASS: 143 content/runtime integration assertions.
+2026-09-14T07:20:16.6377714Z PASS: 2638 content assertions; cold catalog 130.608 ms; sourced opening combat at turn 4.
+2026-09-14T07:20:18.4528617Z PASS: 330 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
+2026-09-14T07:20:22.1828086Z PASS: 7955 strategy/officer assertions covering locks, seeded search/hiring, loyalty, offices, economy, finite reserves, readiness, AI and save v1-v4.
+2026-09-14T07:20:22.5935710Z PASS: 43 supply assertions: troop/food conservation, no duplicate delivery, raid/capture/treaty, amphibious routes and save restoration.
+2026-09-14T07:20:23.1575833Z PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
+2026-09-14T07:20:23.7578815Z PASS: 50x50 benchmark, 100 A* queries: p50=2.812ms p95=3.866ms max=4.453ms total=295.260ms maxExpanded=2125/2500; 100 reachable queries=15.114ms
+2026-09-14T07:20:23.8566509Z BUILD SUCCESSFUL in 57s
+2026-09-14T07:20:57.2827972Z PASS: 51740 UI projection/camera assertions.
+2026-09-14T07:20:58.6746612Z BUILD SUCCESSFUL in 34s
+2026-09-14T07:21:25.8843503Z BUILD SUCCESSFUL in 27s
+2026-09-14T07:21:55.6036509Z BUILD SUCCESSFUL in 28s
+2026-09-14T07:23:33.1732780Z UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v10 and restored identically.
+2026-09-14T07:32:05.3528594Z SMOKE PASS: v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.
+2026-09-14T07:40:34.8960604Z SMOKE PASS: v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.
+2026-09-14T07:49:05.9270863Z SMOKE PASS: v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.
+2026-09-14T07:49:10.8924093Z Verified using v1 scheme (JAR signing): false
+2026-09-14T07:49:10.8942285Z Verified using v2 scheme (APK Signature Scheme v2): true
+2026-09-14T07:49:10.8956904Z Verified using v3 scheme (APK Signature Scheme v3): false
+2026-09-14T07:49:10.8958046Z Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+2026-09-14T07:49:10.8959182Z Verified using v4 scheme (APK Signature Scheme v4): false
+2026-09-14T07:49:10.8963551Z Signer #1 certificate SHA-256 digest: 8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24

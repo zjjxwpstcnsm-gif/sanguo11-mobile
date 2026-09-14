@@ -12,7 +12,7 @@ public final class Skills {
     public boolean city(int city,Skill s){World.City c=w.city(city);if(c!=null)for(World.Officer o:w.officers)if(o.owner==c.owner&&o.cityId==city&&o.unitId<0&&has(o,s))return true;return false;}
     public int holderStat(World.Unit u,Skill s,boolean intelligence){int best=-1;if(u!=null)for(World.Officer o:w.army.crew(u))if(has(o,s))best=Math.max(best,intelligence?o.intelligence:o.war);return best;}
     public int plotCost(World.Unit u,War.Plot plot){return has(u,BAICHU)?1:plot.energy;}
-    public int plotRange(World.Unit u,War.Plot plot){return (plot==War.Plot.FIRE||plot==War.Plot.AMBUSH?1:2)+(has(u,GUIMOU)?1:0);}
+    public int plotRange(World.Unit u,War.Plot plot){return (plot==War.Plot.FIRE?(w.campaign.has(u.owner,Campaign.Tech.FIRE_MASTERY)?3:1):plot==War.Plot.AMBUSH?1:2)+(has(u,GUIMOU)?1:0);}
     public boolean plotImmune(World.Unit source,World.Unit target,War.Plot plot){
         if(target==null||plot==War.Plot.CALM||plot==War.Plot.EXTINGUISH)return false;
         if(has(target,DONGCHA))return true;
@@ -42,6 +42,7 @@ public final class Skills {
         return false;
     }
     public boolean critical(World.Unit a,World.Unit b,boolean tactic){
+        if(!tactic&&b!=null&&!w.army.water(a.hex)&&a.weapon==World.Weapon.CAVALRY&&a.hex.distance(b.hex)>1&&has(a,BAIMA))return true;
         if(b!=null&&w.terrain[a.hex.q][a.hex.r]==World.Terrain.FOREST&&has(a,LUANZHAN))return true;
         int category=w.army.water(a.hex)?5:Army.category(a.weapon);
         if(!tactic)return b!=null&&(holderStat(a,QUZHU,false)>w.army.war(b)||holderStat(a,SHENJIANG,false)>w.army.war(b));
@@ -62,9 +63,9 @@ public final class Skills {
     public void onHit(World.Unit source,World.Unit target,int loss,boolean tactic){
         if(loss<=0)return;
         target.energy=Math.max(0,target.energy-(has(source,WEIFENG)?20:has(source,SAOTAO)?5:0));
-        if(tactic&&has(target,NUFA)&&target.troops>0)target.energy=Math.min(100,target.energy+5);
+        if(tactic&&has(target,NUFA)&&target.troops>0)target.energy=Math.min(w.campaign.energyCap(target.owner),target.energy+5);
         if(has(source,XINGONG)&&source.troops>0)source.troops=Math.max(source.troops,Math.min(w.government.commandLimit(source.officerId),source.troops+loss/10));
-        if(target.troops==0&&has(source,ANGYANG))source.energy=Math.min(100,source.energy+10);
+        if(target.troops==0&&has(source,ANGYANG))source.energy=Math.min(w.campaign.energyCap(source.owner),source.energy+10);
     }
     public int fireDamage(World.Unit target,int base,int owner,int power,boolean trap){
         if(has(target,HUOSHEN))return 0;
@@ -82,11 +83,24 @@ public final class Skills {
     }
     public int productionTurns(int officer,World.Weapon weapon){return has(w.officer(officer),weapon==null?ZAOCHUAN:FAMING)?2:3;}
     public int researchGold(int officer,Campaign.Tech tech){return has(w.officer(officer),ZHIDAO)?tech.gold/2:tech.gold;}
+    public int movementBonus(World.Unit u){
+        if(w.army.water(u.hex))return has(u,CAODUO)?1:0;
+        if(u.weapon==World.Weapon.CAVALRY)return has(u,CHANGQU)?1:0;
+        return u.weapon.ordinal()<3&&has(u,QIANGXING)?1:0;
+    }
+    void woundAfterDisplacement(World.Unit source,World.Unit target){
+        if(target==null||w.unit(target.id)==null||!has(source,MENGZHE)||w.strategy.nextInt(100)>=50)return;
+        List<World.Officer> crew=w.army.crew(target);World.Officer victim=crew.get(w.strategy.nextInt(crew.size()));
+        if(has(victim,QIANGYUN))return;
+        for(World.Officer guard:crew)if(guard.id!=victim.id&&has(guard,HUWEI))return;
+        w.contests.injuries.put(victim.id,new Contests.Injury(Math.min(3,w.contests.injury(victim.id)+1),w.turn+3));
+        w.note(victim.name+"受到猛者战法影响而负伤");
+    }
     public void restoreEnergy(){
         for(World.Unit u:w.units){
             boolean music=false;for(War.Structure s:w.war.structures)if(s.kind==War.StructureKind.MUSIC&&s.owner==u.owner&&s.hex.distance(u.hex)<=2){music=true;break;}
             int gain=music?(has(u,SHIXIANG)?20:10):has(u,ZOUYUE)?5:0;
-            u.energy=Math.min(100,u.energy+gain);
+            u.energy=Math.min(w.campaign.energyCap(u.owner),u.energy+gain);
         }
     }
 }

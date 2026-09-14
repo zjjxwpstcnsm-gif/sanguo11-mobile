@@ -41,7 +41,7 @@ public final class Army {
     public boolean water(Hex h){return h!=null&&w.inside(h)&&w.terrain[h.q][h.r]==World.Terrain.WATER;}
     public String equipmentLabel(World.Unit u){return water(u.hex)?u.ship.label+"（携"+u.weapon.label+"）":u.weapon.label;}
     public int movement(World.Unit u){return water(u.hex)?u.ship.movement:u.weapon.movement;}
-    public int range(World.Unit u){return water(u.hex)?u.ship.range:u.weapon.range;}
+    public int range(World.Unit u){return water(u.hex)?u.ship.range:u.weapon==World.Weapon.CAVALRY&&w.skills.has(u,Skill.BAIMA)?2:u.weapon.range;}
     public int moveCost(World.Unit u,Hex from,Hex to){
         if(to==null||!w.inside(to)||w.terrain[to.q][to.r]==World.Terrain.MOUNTAIN)return -1;
         if(water(from)!=water(to))return 2; // Embark/disembark consumes movement, not another inventory item.

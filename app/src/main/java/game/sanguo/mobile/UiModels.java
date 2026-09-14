@@ -77,6 +77,8 @@ final class UiModels {
         final long id; final String title, detail; final Hex location; final Domestic.Facility facility; final Domestic.Mission mission;
         Campaign.Project project;
         Army.Production production;
+        AbilityResearch.Research abilityResearch;
+        AbilityResearch.Training abilityTraining;
         Task(long id, String title, String detail, Hex location, Domestic.Facility f, Domestic.Mission m) {
             this.id=id;this.title=title;this.detail=detail;this.location=location;facility=f;mission=m;
         }
@@ -101,6 +103,11 @@ final class UiModels {
             Task task=new Task(20000000L+p.officerId,p.label()+" · "+w.officer(p.officerId).name,
                 w.city(p.cityId).name+" · 剩余 "+w.officer(p.officerId).otherTaskTurns+" 旬\n"+(p.tech!=null?p.tech.effect:"培养期间武将不能执行其他命令"),w.city(p.cityId).hex,null,null);
             task.project=p;result.add(task);
+        }
+        if(type==0||type==4){
+            AbilityResearch.Research r=w.abilities.research(w.player);
+            if(r!=null){Task t=new Task(40000000L+w.player,"PK研究"+AbilityResearch.node(r.nodeId).label,w.city(r.cityId).name+" · 剩余 "+r.remaining+" 旬",w.city(r.cityId).hex,null,null);t.abilityResearch=r;result.add(t);}
+            for(AbilityResearch.Training p:w.abilities.training())if(p.owner==w.player){Task t=new Task(50000000L+p.officerId,p.label()+" · "+w.officer(p.officerId).name,w.city(p.cityId).name+" · 剩余 "+w.officer(p.officerId).otherTaskTurns+" 旬",w.city(p.cityId).hex,null,null);t.abilityTraining=p;result.add(t);}
         }
         return result;
     }
@@ -132,6 +139,16 @@ final class UiModels {
         for(Campaign.Project p:before.campaign.projects())if(p.owner==before.player){
             progress=true;World.Officer o=after.officer(p.officerId);boolean running=after.campaign.projects().stream().anyMatch(next->next.officerId==p.officerId);
             s.append(p.label()).append(" · ").append(before.officer(p.officerId).name).append(running?" · 剩余"+o.otherTaskTurns+"旬":o!=null&&o.owner==p.owner&&o.cityId==p.cityId?" · 已完成":" · 已中止").append('\n');
+        }
+        AbilityResearch.Research research=before.abilities.research(before.player);
+        if(research!=null){
+            progress=true;AbilityResearch.Research next=after.abilities.research(before.player);
+            s.append("PK研究").append(AbilityResearch.node(research.nodeId).label).append(next!=null&&next.nodeId.equals(research.nodeId)?" · 剩余"+next.remaining+"旬":after.abilities.learned(before.player,research.nodeId)?" · 已完成":" · 已中止").append('\n');
+        }
+        for(AbilityResearch.Training t:before.abilities.training())if(t.owner==before.player){
+            progress=true;boolean running=after.abilities.training().stream().anyMatch(next->next.officerId==t.officerId&&next.nodeId.equals(t.nodeId));
+            boolean completed=after.abilities.remaining(t.owner,t.nodeId)<before.abilities.remaining(t.owner,t.nodeId);
+            s.append(t.label()).append(" · ").append(before.officer(t.officerId).name).append(running?" · 剩余"+after.officer(t.officerId).otherTaskTurns+"旬":completed?" · 已完成":" · 已中止").append('\n');
         }
         for(Army.Production p:before.army.productions())if(p.owner==before.player){
             progress=true;boolean running=after.army.productions().stream().anyMatch(n->n.officerId==p.officerId);

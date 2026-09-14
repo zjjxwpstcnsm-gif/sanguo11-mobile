@@ -115,7 +115,7 @@ public final class Strategy {
     public World.Result beginAssignment(int cityId,int officerId,String label,int turns) {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,0);
         if(error!=null)return w.fail(error);
-        if(label==null||label.trim().isEmpty()||label.length()>80||turns<1||turns>12)return w.fail("任务名称或工期无效");
+        if(label==null||label.trim().isEmpty()||label.trim().startsWith("PK培养")||label.length()>80||turns<1||turns>12)return w.fail("任务名称或工期无效");
         w.spend(c,o,0);o.otherTask=label.trim();o.otherTaskTurns=turns;
         return w.success(o.name+"执行"+o.otherTask+"，需要"+turns+"旬");
     }
@@ -247,8 +247,8 @@ public final class Strategy {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,TRAIN_COST);
         if(error!=null)return w.fail(error);
         if(c.troops<=0)return w.fail("本城没有可训练的军队");
-        if(c.morale>=100)return w.fail("气力已满");
-        int gain=Math.min(100-c.morale,StrategyRules.trainingGain(o.leadership,o.war));
+        if(c.morale>=w.campaign.energyCap(c.owner))return w.fail("气力已满");
+        int gain=Math.min(w.campaign.energyCap(c.owner)-c.morale,StrategyRules.trainingGain(o.leadership,o.war));
         w.spend(c,o,TRAIN_COST);c.morale+=gain;return w.success(c.name+"训练，气力+"+gain);
     }
     void tick() {

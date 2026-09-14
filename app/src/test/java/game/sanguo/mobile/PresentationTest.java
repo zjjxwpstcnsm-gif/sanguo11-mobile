@@ -17,7 +17,7 @@ public final class PresentationTest {
         check(UiModels.cities(w,0).get(0).owner==2,"friendly city first");
         check(UiModels.tasks(w,0).isEmpty(),"no phantom task");
         check(Arrays.equals(unchanged,SaveCodec.encode(w)),"projections never mutate world");
-        personnelProjection();viewport();
+        personnelProjection();abilityProjection();viewport();
         check(UiModels.cities(w,0,"建业",2).size()==1,"city search and owner");
         check(UiModels.cities(w,0,"不存在",-1).isEmpty(),"empty city search");
         check(UiModels.factions(w,"孙权").equals(Arrays.asList(2)),"faction search preserves ID");
@@ -65,6 +65,28 @@ public final class PresentationTest {
                 float scale=c.scale;c.centerOn(4100,2400);near(c.scale,scale,"navigator preserves zoom");
             }
         }
+    }
+    private static void abilityProjection()throws Exception {
+        World w=new World(20,14,"学营","守营");
+        w.cities.add(new World.City(10,"学宫",new Hex(2,2),0));w.cities.add(new World.City(20,"守城",new Hex(17,11),1));
+        for(World.City c:w.cities){c.gold=30000;c.food=200000;c.troops=0;}
+        w.officers.add(new World.Officer(0,"习武生",0,10,50,50,50,50,50));
+        check(w.abilities.startResearch(10,"lead.low").ok,"PK research projection fixture");
+        List<UiModels.Task> tasks=UiModels.tasks(w,4);
+        check(tasks.size()==1&&tasks.get(0).abilityResearch!=null&&tasks.get(0).title.equals("PK研究统率+5低"),"real research task in filter");
+        World before=SaveCodec.decode(SaveCodec.encode(w));w.nextTurn();String summary=UiModels.turnSummary(before,w);
+        check(summary.contains("PK研究统率+5低 · 剩余8旬")&&!summary.contains("本旬没有建设"),"PK research progress in summary");
+        for(int i=0;i<7;i++)w.nextTurn();before=SaveCodec.decode(SaveCodec.encode(w));w.nextTurn();
+        check(UiModels.turnSummary(before,w).contains("PK研究统率+5低 · 已完成"),"research completion shown");
+        check(w.abilities.train(10,0,"lead.low",true).ok,"PK training projection fixture");
+        tasks=UiModels.tasks(w,4);check(tasks.size()==1&&tasks.get(0).abilityTraining!=null&&tasks.get(0).title.equals("PK培养统率+5低 · 习武生"),"real training task in filter");
+        before=SaveCodec.decode(SaveCodec.encode(w));w.nextTurn();
+        check(UiModels.turnSummary(before,w).contains("PK培养统率+5低 · 习武生 · 剩余2旬"),"training progress shown");
+        w.nextTurn();before=SaveCodec.decode(SaveCodec.encode(w));w.nextTurn();
+        check(UiModels.turnSummary(before,w).contains("PK培养统率+5低 · 习武生 · 已完成"),"training completion shown");
+        check(w.abilities.startResearch(10,"buqu").ok&&w.abilities.train(10,0,"lead.low",true).ok,"parallel research and training");
+        before=SaveCodec.decode(SaveCodec.encode(w));w.city(10).owner=1;w.checkVictory();summary=UiModels.turnSummary(before,w);
+        check(summary.contains("PK研究不屈 · 已中止")&&summary.contains("PK培养统率+5低 · 习武生 · 已中止"),"loss is cancellation, never completion");
     }
     private static void personnelProjection()throws Exception {
         World w=ScenarioCatalog.load("regional-sandbox",2);

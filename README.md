@@ -4,6 +4,12 @@
 
 ## 当前状态
 
+**v0.11.0 PK研究与培养开发版。** 新增四方向能力研究、有限次数培养、隐藏候选、特技覆盖及v10存档；校正部分技巧和金粮收入时序。进入己方城池→研究使用。实际效果、来源冲突、禁用培养项与未还原范围见 [v0.11说明](docs/PK_V0_11.md)。**仍未达到100%还原。**
+
+[v0.11 APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34817238184/artifacts/10338240343) 对应 `989dcd4`；[完整CI](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34817238184)通过核心/UI、Android构建/Lint、三种横屏操作及v0.9覆盖升级，取回151张截图。实际APK证书与已交付v0.10相同。修复了窄屏研究入口隐藏和PK任务数量遗漏；Lint保留12条警告，ARM真机尚未验证。
+
+## v0.10 历史状态
+
 **v0.10.0 文武对决开发版。** 基于已合并的v0.9，新增实际单挑、舌战登用、对局中保存恢复与原创“文武对决”开局。写存档v9、读v1–v8，沿用v0.9开发包名与签名。规则结构已核对官方手册，数值和未完成范围见 [本轮范围](docs/CONTESTS_V0_10.md)。**仍非100%还原**。
 
 [v0.10 APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34812466885/artifacts/10335567258) 对应 `e7f1e23`。[完整CI](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34812466885) 通过核心/UI回归、Android构建、Lint、API29三种横屏安装及v0.9真实覆盖升级，共145张截图。Lint保留12条警告，ARM真机尚未验证。进入“文武对决”选择文武营，点杜衡部队进行单挑；东营→武将→舌战登用可试玩舌战。
@@ -47,7 +53,7 @@ PR #7、#8、#9、#10 已合并。加入俘虏、40武官职位、功绩俸禄�
 2. 底部「城市」优先列出己方城池，点击后放大定位。点己方城池即可征兵、训练、生产和出征。
 3. 点己方部队，再点高亮空地移动；点射程内敌军普攻，点射程内敌方城池攻城，点相邻己方城池回城。弩兵可隔一格普攻，投石与舰船使用各自射程；移动需确认路径并消耗有限预算，移动后仍可攻击、战法、计略、入城或待命；这些命令结束完整行动。
 4. 「下一旬」执行其他存活势力的电脑行动，然后结算粮草、收入并恢复我方行动。结算在后台快照执行，期间阻止重复操作。
-5. 「菜单 → 保存局面 / 读取存档」支持3个手动槽。自动存档在成功操作和进入后台时更新；当前写入v7，能读取v1～v6旧存档，旧手动槽对应现在的槽1。
+5. 「菜单 → 保存局面 / 读取存档」支持3个手动槽。自动存档在成功操作和进入后台时更新；当前写入v10，能读取v1～v9旧存档，旧手动槽对应现在的槽1。
 6. 己方城池「内政」开发设施和巡察，「调动」派遣人员或运输，「任务」查看改道/返回，点击设施可取消/拆除。
 7. 城池「武将」可搜索、登用、褒奖、任命太守；概览「人事 / 城市治理」可查看本城状态。武将一览提供姓名、势力、城市、能力排序与在野筛选。
 8. 「军事」征兵时显示本城剩余兵源，选择武将后预览实际征兵/训练效果；太守、治安会影响真实月收入。
@@ -75,7 +81,7 @@ v0.8 Agent 1 开发分支新增移动确认与移动后行动、部分真实特�
 
 Android 构建：安装 JDK 17、Android SDK 35、Build Tools 35.0.0、Gradle 8.11.1，然后运行 `./gradlew test :core:check :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`。已提交固定 Gradle 8.11.1 及 SHA-256 的 Wrapper。
 
-APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；联合CI保存名为 `sanguo11-mobile-integrated-v08-apk` 的产物，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与实际证书比较。对应提交源码另存为 `sanguo11-mobile-source`。安装测试证据另存为 `android-smoke-evidence`，包含操作截图与日志。它是开发调试签名，正式发行和后续覆盖升级前需要配置持久签名密钥。不要把密钥提交进仓库。
+APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-v011-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
 
 验证范围与待验项目见 [VALIDATION.md](docs/VALIDATION.md)。
 
