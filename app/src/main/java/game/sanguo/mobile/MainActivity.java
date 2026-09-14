@@ -78,6 +78,7 @@ public final class MainActivity extends Activity {
         if(h==null||aiRunning)return;
         World.Unit target=world.unitAt(h);World.City city=world.cityAt(h);World.Unit source=world.unit(moving);
         if(source!=null&&source.owner==world.player) {
+            if(world.events.at(h)!=null){new WorldUi(this,world,this::apply).attack(source,world.events.at(h));return;}
             if(target!=null&&target.owner!=world.player){warUi().attack(source,target);return;}
             if(world.war.at(h)!=null){confirm("攻击军事设施？",()->apply(world.war.attackStructure(source.id,h)));return;}
             if(city!=null){
@@ -88,6 +89,7 @@ public final class MainActivity extends Activity {
             for(Domestic.Mission m:world.domestic.missions)if(m.transport&&m.hex.equals(h)&&world.campaign.hostile(source.owner,m.owner)){governmentUi().raid(source,m);return;}
             if(target==null){warUi().move(source,h);return;}
         }
+        if(world.events.at(h)!=null){new WorldUi(this,world,this::apply).camp(world.events.at(h));return;}
         if(!h.equals(selected))ui.group="概览";
         selected=h;moving=target!=null&&target.owner==world.player?target.id:-1;ui.page="map";ui.panelVisible=true;refresh();revealPanel();
     }
@@ -142,7 +144,9 @@ public final class MainActivity extends Activity {
             }
             panel.addView(row);
         }
-        boolean own=c.owner==world.player&&!world.gameOver();
+        Districts.District district=world.districts.city(c.id);if(district!=null)line("所属军团："+district.name()+" · "+district.policy().label,13,gold);
+        line(world.events.cityStatus(c.id),12,muted);
+        boolean own=c.owner==world.player&&!world.gameOver()&&world.districts.directCity(c.id);
         switch(ui.group){
             case "内政":
                 line("设施 "+world.domestic.count(c.id)+"/"+Domestic.CITY_SLOTS+"\n"+world.domestic.incomeSchedule(c.id),14,paper);
@@ -215,9 +219,10 @@ public final class MainActivity extends Activity {
         line("部队武力 "+world.army.war(u)+" · 智力 "+world.army.intelligence(u),13,paper);
         if(u.burning>0)line("部队燃烧 · 剩"+u.burning+"旬",14,gold);
         action("编队特技",v->warUi().skills(u));
+        Districts.District district=world.districts.unit(u.id);if(district!=null)line("所属军团："+district.name()+" · 自动指挥",13,gold);
         if(u.owner==world.player){line(u.acted?"本旬已行动":"点击高亮空地移动\n点敌军攻击 / 点城池攻城或入城",14,paper);
             if(world.fieldworks.project(u.id)!=null)action("中止施工",v->new FieldworkUi(this,world,this::apply).stop(u));
-            if(!u.acted&&u.status==War.Status.NORMAL){action("设置军事设施",v->new FieldworkUi(this,world,this::apply).build(u));action("补修军事设施",v->new FieldworkUi(this,world,this::apply).repair(u));action("补充携金",v->new FieldworkUi(this,world,this::apply).fund(u));action("单挑",v->new ContestUi(this,world,this::apply).challenge(u));action("截击运输队",v->governmentUi().raid(u));action("移交兵粮",v->governmentUi().supply(u));action("战法",v->{moving=u.id;if(world.army.water(u.hex)||Army.siegeWeapon(u.weapon))armyUi().tactics(u);else warUi().tactics(u);});
+            if(!u.acted&&u.status==War.Status.NORMAL){action("设置军事设施",v->new FieldworkUi(this,world,this::apply).build(u));action("补修军事设施",v->new FieldworkUi(this,world,this::apply).repair(u));action("补充携金",v->new FieldworkUi(this,world,this::apply).fund(u));action("单挑",v->new ContestUi(this,world,this::apply).challenge(u));action("齐攻",v->warUi().joint(u));action("讨伐贼寨",v->new WorldUi(this,world,this::apply).raids(u));action("截击运输队",v->governmentUi().raid(u));action("移交兵粮",v->governmentUi().supply(u));action("战法",v->{moving=u.id;if(world.army.water(u.hex)||Army.siegeWeapon(u.weapon))armyUi().tactics(u);else warUi().tactics(u);});
                 if(u.burning>0)action("部队灭火 · 气力5",v->confirm("扑灭本部队火焰？",()->apply(world.army.extinguish(u.id))));action("部队计略",v->{moving=u.id;warUi().plots(u);});action("待命 · 恢复5气力",v->confirm("本旬待命并恢复5气力？",()->apply(world.war.waitUnit(u.id))));}
             action("取消部队选择",v->{moving=-1;selected=null;refresh();});}
     }
@@ -250,6 +255,7 @@ public final class MainActivity extends Activity {
     DomesticUi domesticUi(){return new DomesticUi(this,world,this::apply,this::selectAndFocus);}
     private void showMenu(){
         line("军政菜单",22,gold);
+        action("军团与天下",v->new WorldUi(this,world,this::apply).menu());
         action("PK编辑 / 新武将",v->new EditorUi(this,world,this::apply).menu());
         if(world.editor.edited())line("当前局面已使用PK编辑",13,muted);
         if(world.contests.busy())action("继续当前对局",v->{ui.page="map";refresh();});
@@ -257,7 +263,7 @@ public final class MainActivity extends Activity {
         action("本旬结算摘要",v->message("旬结算摘要",ui.summary.isEmpty()?"结束一旬后将在这里显示结算摘要。":ui.summary));
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.13 · 人物关系与宝物","仲介结义婚姻、宝物搜索赏赐与战斗作用、PK局面编辑、新武将模板。\n存档 v12，兼容 v1～v11。\n\n原有军政、后勤等玩法保留。全国地形、官方完整开局、全部特技、事件与精确数值仍未完整还原。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.14 · 军团与天下","军团编制与委任出兵运输、同讨妖术落雷与齐攻、敌军阻挡移动、毒泉、灾害贼寨及外交舌战。\n存档 v13，兼容 v1～v12。\n全国原版格点、官方完整开局、全部历史事件、寿命继承与精确公式仍未还原。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}

@@ -26,7 +26,7 @@ public final class ScenarioTest {
         System.out.println("PASS: "+checks+" scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.");
     }
     private static void data()throws Exception {
-        List<World> packs=ScenarioCatalog.all();check(packs.size()==7,"six original packs plus sourced officer drill");
+        List<World> packs=ScenarioCatalog.all();check(packs.size()==8,"seven original packs plus sourced officer drill");
         World w=ScenarioCatalog.load("regional-sandbox",2);
         check(w.cities.size()==9&&w.officers.size()==18&&w.factions.length==3,"sandbox content loaded");
         check(w.player==2&&w.active==2&&w.home().owner==2,"selected faction controls own city");
@@ -47,7 +47,7 @@ public final class ScenarioTest {
         bad(text.replace("faction.2=孙权军\n",""),0,"missing faction");
         bad(text.replace("faction.2=孙权军","faction.2=曹操军"),0,"duplicate faction name");
         bad(text,3,"player outside factions");bad(text,-1,"negative player");
-        bad(text.replaceFirst("terrain.0=.","terrain.0=X"),0,"unknown terrain");
+        bad(text.replaceFirst("terrain.0=.","terrain.0=?"),0,"unknown terrain");
         bad(text.replaceFirst("terrain.0=.","terrain.0="),0,"short terrain row");
         bad(text.replace("|孙权|2|300|","|孙权|1|300|"),0,"officer owner mismatch");
         String isolated=text;
@@ -69,7 +69,7 @@ public final class ScenarioTest {
         check(w.unit(1).weapon==World.Weapon.CROSSBOW&&w.unit(1).food==5850,"v1 army and supply preserved");
         check(w.officer(0).unitId==1&&w.city(0).equipment[2]==9000,"v1 references and stocks preserved");
         check(w.dataHash.isEmpty()&&w.scenarioId.equals("m0-skirmish"),"legacy save has no fabricated data fingerprint");
-        byte[] migrated=SaveCodec.encode(w);check(migrated[7]==12,"new writes use save v12");
+        byte[] migrated=SaveCodec.encode(w);check(migrated[7]==13,"new writes use save v13");
         World restored=SaveCodec.decode(migrated);w.nextTurn();restored.nextTurn();
         check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(restored)),"migrated games continue identically");
         w=ScenarioCatalog.load("regional-sandbox",2);w.nextTurn();byte[] saved=SaveCodec.encode(w);restored=SaveCodec.decode(saved);

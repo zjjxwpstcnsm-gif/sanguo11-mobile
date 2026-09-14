@@ -60,6 +60,7 @@ final class ContestUi {
     private void debate(LinearLayout panel,Contests.Session s){
         Debate d=s.debate();final int id=s.id(),revision=s.revision();
         label(panel,"舌战 · 第"+d.round()+"合",20,gold);
+        label(panel,s.purpose(),14,gold);
         for(int side=0;side<2;side++){
             Debate.Speaker p=d.speaker(side);label(panel,(side==0?"我方 ":"对方 ")+w.officer(p.officerId()).name+" · "+p.temper().label,15,paper);
             label(panel,"心理 "+p.hp()+" / 100    怒气 "+p.anger()+" / 100"+(p.fury()>0?"\n憤激剩余 "+p.fury()+"合":""),13,paper);
@@ -67,7 +68,8 @@ final class ContestUi {
         label(panel,"当前话题："+d.topic().label+" · "+d.opponentOpening(),14,gold);label(panel,d.report(),12,paper);
         if(d.winner()!=-2){
             label(panel,d.winner()==0?"舌战获胜 · 等待结算":d.winner()==1?"舌战落败":"舌战平手",18,gold);
-            if(d.winner()==0){button(panel,"留情 · 技巧+50",true,()->apply.accept(w.contests.finishDebate(id,revision,true)));button(panel,"乘胜追问 · 尝试提升智力",true,()->apply.accept(w.contests.finishDebate(id,revision,false)));}
+            if(s.diplomatic())button(panel,"结算外交结果",true,()->apply.accept(w.contests.finishDebate(id,revision,true)));
+            else if(d.winner()==0){button(panel,"留情 · 技巧+50",true,()->apply.accept(w.contests.finishDebate(id,revision,true)));button(panel,"乘胜追问 · 尝试提升智力",true,()->apply.accept(w.contests.finishDebate(id,revision,false)));}
             else button(panel,"结算结果",true,()->apply.accept(w.contests.finishDebate(id,revision,true)));
             return;
         }
@@ -75,7 +77,7 @@ final class ContestUi {
             final int index=i;Debate.Card card=d.speaker(0).hand().get(i);button(panel,"出牌 · "+card.label(),d.cardError(i)==null,()->apply.accept(w.contests.debateCard(id,revision,index)));
         }
         button(panel,"再考 · 更换全部手牌",d.speaker(0).canRethink(),()->apply.accept(w.contests.rethink(id,revision)));
-        button(panel,"认输并结束舌战",true,()->confirm("认输","登用失败，已经消耗的金与行动不会返还。",()->apply.accept(w.contests.concede(id,revision))));
+        button(panel,"认输并结束舌战",true,()->confirm("认输",s.diplomatic()?"协定未成立，出使费用不会返还。":"登用失败，已经消耗的金与行动不会返还。",()->apply.accept(w.contests.concede(id,revision))));
         button(panel,"舌战规则",true,()->info("舌战规则","本话题优先；相同话题大＞中＞小。\n无视＞大喝＞诡辩＞话题＞镇静＞逆上。\n镇静与逆上承伤后生效；留在手中可自动反制憤激。\n冷静：增强出牌、封印对方话术，每合可再考。\n刚胆：除无视、大喝外压过对方牌。\n小心：打出手中全部话题牌。\n莽撞：爆发心理伤害。\n再考通常需心理台阶下降才恢复。"));
     }
 }

@@ -28,6 +28,7 @@ public final class Skills {
         int defense=b==null?50:w.army.intelligence(b);
         if(holderStat(a,XUSHI,true)>defense||holderStat(a,SHENSUAN,true)>defense||
             p==War.Plot.CONFUSE&&holderStat(a,JILUE,true)>defense||
+            p==War.Plot.INFIGHT&&holderStat(a,GUIJI,true)>defense||
             p==War.Plot.MISLEAD&&holderStat(a,YANDU,true)>defense||
             p==War.Plot.FIRE&&(holderStat(a,HUOGONG,true)>defense||holderStat(a,HUOSHEN,true)>defense))return 100;
         // Unknown sex is not evidence that a formation is all male.

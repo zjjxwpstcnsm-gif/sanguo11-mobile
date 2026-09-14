@@ -39,10 +39,10 @@ public final class RulesParityTest {
     private static void actions()throws Exception {
         World w=fixture();World.Unit a=unit(w,0,5,6,World.Weapon.SPEAR),b=unit(w,10,7,6,World.Weapon.HALBERD);
         byte[] initial=bytes(w);UnitOrders.MovePlan plan=w.orders.previewMove(a.id,new Hex(6,6));
-        check(plan.valid()&&plan.cost==1&&plan.path.size()==2,"path includes origin and target with exact cost");
+        check(plan.valid()&&plan.cost==4&&plan.path.size()==2,"path includes origin and target with exact cost");
         for(int i=0;i<10;i++){w.orders.previewMove(a.id,new Hex(6,6));w.war.previewDamage(a.id,b.id);w.war.plotChance(a.id,b.hex,War.Plot.CONFUSE);}
         check(Arrays.equals(initial,bytes(w)),"preview and cancellation change no state");
-        ok(w.orders.execute(plan));check(!a.acted&&a.movementSpent==1,"move leaves action available");
+        ok(w.orders.execute(plan));check(!a.acted&&a.movementSpent==4,"move leaves action available");
         reject(w,()->w.orders.execute(plan));reject(w,()->w.move(a.id,b.hex));
         World loaded=SaveCodec.decode(bytes(w));ok(w.attack(a.id,b.id));ok(loaded.attack(a.id,b.id));
         check(Arrays.equals(bytes(w),bytes(loaded)),"save after move resumes identical attack including counter and RNG");

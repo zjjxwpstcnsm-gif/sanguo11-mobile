@@ -138,6 +138,8 @@ public final class CampaignTest {
             if(plot==War.Plot.EXTINGUISH)w.war.fires.add(new War.Fire(target,1,2));
             if(plot==War.Plot.CALM){friend.status=War.Status.CONFUSED;friend.statusTurns=1;target=friend.hex;}
             if(plot==War.Plot.AMBUSH)w.terrain[6][5]=World.Terrain.FOREST;
+            if(plot==War.Plot.INFIGHT)unit(w,11,World.Weapon.SPEAR,8,5);
+            if(w.advancedBattle.magic(plot))w.officer(0).skillId=Skill.GUIMEN.id;
             int chance=w.war.plotChance(a.id,target,plot);if(chance<100)seed(w,chance,true);ok(w.war.plot(a.id,target,plot));
             check(a.acted&&a.energy==80-plot.energy,"plot spends action and quoted energy");
             if(plot==War.Plot.EXTINGUISH)check(w.war.fireAt(target)==null,"extinguish removes fire");
@@ -164,7 +166,7 @@ public final class CampaignTest {
             check(w.city(300).governorId==3001&&w.domestic.facilities.get(0).remaining==2,"real v4 governor/construction survive migration");
             check(w.campaign.projects().isEmpty()&&w.war.fires().isEmpty()&&w.campaign.points(2)==0,"legacy saves don't invent campaign history");
             for(World.Officer o:w.officers)check(Arrays.equals(o.aptitude,new int[]{1,1,1,1,1,1}),"legacy aptitude has documented B default");
-            byte[] modern=bytes(w);check(modern[7]==12&&Arrays.equals(modern,bytes(SaveCodec.decode(modern))),"v4 upgrades to exact round-tripping v9");caseDone();
+            byte[] modern=bytes(w);check(modern[7]==13&&Arrays.equals(modern,bytes(SaveCodec.decode(modern))),"v4 upgrades to exact round-tripping v9");caseDone();
         }
     }
     private static void learn(World w,int owner,Campaign.Tech tech){if(tech.prerequisite!=null)learn(w,owner,tech.prerequisite);w.campaign.learned.computeIfAbsent(owner,k->EnumSet.noneOf(Campaign.Tech.class)).add(tech);}

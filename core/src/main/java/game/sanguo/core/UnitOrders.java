@@ -30,6 +30,7 @@ public final class UnitOrders {
         if(w.contests.busy())return "请先完成当前单挑或舌战";
         if(w.gameOver())return "本局已结束";
         if(u==null||w.unit(u.id)!=u||u.owner!=w.active)return "请选择当前势力的部队";
+        if(!w.districts.directUnit(u.id))return "该部队由委任军团指挥";
         if(u.acted)return "这支部队本旬已行动";
         if(u.status!=War.Status.NORMAL)return "部队处于异常状态，需要镇静";
         return null;
@@ -50,6 +51,7 @@ public final class UnitOrders {
                 if(cost<0||w.cityAt(next)!=null||w.domestic.at(next)!=null||w.war.at(next)!=null)continue;
                 World.Unit other=w.unitAt(next);if(other!=null&&other.id!=u.id)continue;
                 int total=step.cost+cost;
+                if(total<=budget&&w.advancedBattle.zone(u,next))total=budget;
                 if(total<=budget&&total<result.costs.getOrDefault(next,Integer.MAX_VALUE)) {
                     result.costs.put(next,total);result.previous.put(next,step.hex);queue.add(new Step(next,total));
                 }

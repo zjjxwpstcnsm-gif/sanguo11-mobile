@@ -39,7 +39,7 @@ public final class ScenarioData {
             for(int r=0;r<height;r++) {
                 String row=take(p,"terrain."+r);if(row.length()!=width)throw new IOException("地形行宽不匹配："+r);
                 for(int q=0;q<width;q++) {
-                    int index="PFMWDSB".indexOf(row.charAt(q));if(index<0)throw new IOException("未知地形："+row.charAt(q));
+                    int index="PFMWDSBX".indexOf(row.charAt(q));if(index<0)throw new IOException("未知地形："+row.charAt(q));
                     w.terrain[q][r]=World.Terrain.values()[index];
                 }
             }
@@ -120,6 +120,10 @@ public final class ScenarioData {
                 int n=number(p,"treasures",0,43);Set<String> seen=new HashSet<>();
                 for(int i=0;i<n;i++){String[] data=fields(p,"treasure."+i,3);if(!seen.add(data[0]))throw new IOException("宝物重复");w.treasures.place(Treasures.definition(data[0]),Treasures.Place.valueOf(data[1]),integer(data[2]));}
             }
+            if(p.containsKey("world-events"))w.events.enabled=number(p,"world-events",0,1)==1;
+            if(p.containsKey("regions")){int n=number(p,"regions",0,w.cities.size());Set<Integer> seen=new HashSet<>();for(int i=0;i<n;i++){String[] f=fields(p,"region."+i,2);int city=integer(f[0]);if(!seen.add(city))throw new IOException("区域重复");w.events.configureRegion(city,WorldEvents.Tribe.valueOf(f[1]));}}
+            if(p.containsKey("initial-camps")){int n=number(p,"initial-camps",0,w.cities.size());for(int i=0;i<n;i++){String[] f=fields(p,"initial-camp."+i,5);w.events.camps.add(new WorldEvents.Camp(w.events.nextCamp++,integer(f[0]),WorldEvents.Tribe.valueOf(f[1]),new Hex(integer(f[2]),integer(f[3])),integer(f[4])));}}
+            if(p.containsKey("initial-hazards")){int n=number(p,"initial-hazards",0,w.cities.size());for(int i=0;i<n;i++){String[] f=fields(p,"initial-hazard."+i,2);int city=integer(f[0]);if(!w.events.beginDisaster(city,WorldEvents.Disaster.valueOf(f[1])))throw new IOException("初始灾害无效");}}
             if(!p.isEmpty())throw new IOException("未知剧本字段："+p.keySet().iterator().next());
             if(reference!=null){ContentCatalog catalog=ContentCatalog.get();catalog.validateOpening(w);ContentRuntime.initializeOpening(w,catalog);}
             w.strategy.initializeOffices();

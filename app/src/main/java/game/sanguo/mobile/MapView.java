@@ -38,6 +38,7 @@ public final class MapView extends View {
         if(o instanceof Domestic.Facility)return ((Domestic.Facility)o).hex;
         if(o instanceof Domestic.Mission)return ((Domestic.Mission)o).hex;
         if(o instanceof War.Fire)return ((War.Fire)o).hex;
+        if(o instanceof WorldEvents.Camp)return ((WorldEvents.Camp)o).hex;
         return ((War.Structure)o).hex;
     }
     private void collectVisible(){
@@ -83,6 +84,7 @@ public final class MapView extends View {
         for(Domestic.Mission m:world.domestic.missions)index(m,m.hex);
         for(War.Fire f:world.war.fires())index(f,f.hex);
         for(War.Structure b:world.war.structures())index(b,b.hex);
+        for(WorldEvents.Camp c:world.events.camps())index(c,c.hex);
         if(newTerrain){
             if(miniTerrain!=null)miniTerrain.recycle();
             miniTerrain=Bitmap.createBitmap(world.width,world.height,Bitmap.Config.ARGB_8888);
@@ -153,7 +155,7 @@ public final class MapView extends View {
             lastTilesVisited++;Hex h=tiles[q][r];float cx=x(h),cy=y(h);float sx=cx*scale+offsetX,sy=cy*scale+offsetY;
             if(sx<-RADIUS*scale||sy<-RADIUS*scale||sx>getWidth()+RADIUS*scale||sy>getHeight()+RADIUS*scale)continue;
             World.Terrain t=world.terrain[q][r];int color;
-            switch(t){case FOREST:color=Color.rgb(65,90,73);break;case WATER:color=Color.rgb(54,88,108);break;case MOUNTAIN:color=Color.rgb(91,99,91);break;case MOUNTAIN_PATH:color=Color.rgb(124,106,80);break;case SHALLOWS:color=Color.rgb(91,142,151);break;case PLANK_ROAD:color=Color.rgb(145,117,84);break;default:color=(q+r)%2==0?Color.rgb(126,132,99):Color.rgb(120,127,94);}
+            switch(t){case FOREST:color=Color.rgb(65,90,73);break;case WATER:color=Color.rgb(54,88,108);break;case MOUNTAIN:color=Color.rgb(91,99,91);break;case MOUNTAIN_PATH:color=Color.rgb(124,106,80);break;case SHALLOWS:color=Color.rgb(91,142,151);break;case PLANK_ROAD:color=Color.rgb(145,117,84);break;case POISON:color=Color.rgb(102,84,123);break;default:color=(q+r)%2==0?Color.rgb(126,132,99):Color.rgb(120,127,94);}
             polygon(cx,cy,RADIUS-.3f);fill(canvas,color);stroke(canvas,Color.argb(40,13,37,35),.7f);
             if(t==World.Terrain.MOUNTAIN){path.reset();path.moveTo(cx-13,cy+9);path.lineTo(cx-3,cy-12);path.lineTo(cx+5,cy+2);path.lineTo(cx+11,cy-7);path.lineTo(cx+18,cy+9);path.close();fill(canvas,Color.rgb(158,159,137));}
             if(t==World.Terrain.FOREST){paint.setColor(Color.rgb(40,77,60));canvas.drawCircle(cx-6,cy-3,7,paint);canvas.drawCircle(cx+6,cy+5,8,paint);}
@@ -169,6 +171,7 @@ public final class MapView extends View {
             label(canvas,s.kind.label.substring(0,1),cx,cy+5,15,Color.rgb(18,34,34));label(canvas,(s.complete?"":"建")+s.hp,cx,cy-17,10,PAPER);
         }
         if(detail)for(Object object:visibleObjects)if(object instanceof Domestic.Facility){Domestic.Facility f=(Domestic.Facility)object;float cx=x(f.hex),cy=y(f.hex);paint.setColor(factionColor(cityIndex.get(f.cityId).owner));canvas.drawRect(cx-12,cy-12,cx+12,cy+12,paint);label(canvas,f.kind.label.substring(0,1),cx,cy+5,15,Color.rgb(18,34,34));if(f.remaining>0)label(canvas,"剩"+f.remaining,cx,cy-16,10,PAPER);}
+        for(Object object:visibleObjects)if(object instanceof WorldEvents.Camp){WorldEvents.Camp camp=(WorldEvents.Camp)object;float cx=x(camp.hex),cy=y(camp.hex);paint.setColor(Color.rgb(173,77,59));canvas.drawRect(cx-15,cy-15,cx+15,cy+15,paint);label(canvas,"寨",cx,cy+5,16,PAPER);if(detail)label(canvas,camp.tribe.label+" "+camp.troops,cx,cy-20,10,PAPER);}
         for(Object object:visibleObjects)if(object instanceof World.City)drawCity(canvas,(World.City)object);
         if(detail||moving>=0)for(Object object:visibleObjects)if(object instanceof World.Unit)drawUnit(canvas,(World.Unit)object);
         if(detail)for(Object object:visibleObjects)if(object instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)object;if(m.owner!=world.player&&!m.transport)continue;float cx=x(m.hex)+15,cy=y(m.hex)-8;paint.setColor(Color.rgb(30,42,43));canvas.drawCircle(cx,cy,10,paint);label(canvas,m.transport?"运":"调",cx,cy+4,12,m.owner==world.player?GOLD:factionColor(m.owner));}
