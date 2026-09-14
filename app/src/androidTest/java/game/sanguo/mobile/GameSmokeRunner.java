@@ -225,14 +225,14 @@ public final class GameSmokeRunner extends Instrumentation {
         require(Arrays.equals(before,SaveCodec.encode(saved())),"corrupt external document does not mutate game");screenshot("40-document-restore");
     }
     private void upgradeFlow()throws Exception {
-        byte[] before=SaveCodec.encode(saved());
+        World legacy=saved();String scenarioName=legacy.scenarioName;byte[] before=SaveCodec.encode(legacy);
         Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivitySync(launch);waitText(saved().scenarioName,false);waitForIdleSync();
+        startActivitySync(launch);waitText(scenarioName,false);waitForIdleSync();
         java.lang.reflect.Field field=MainActivity.class.getDeclaredField("world");field.setAccessible(true);World[] loaded=new World[1];
         runOnMainSync(()->{try{loaded[0]=(World)field.get(current);}catch(IllegalAccessException e){throw new RuntimeException(e);}});
         require(Arrays.equals(before,SaveCodec.encode(loaded[0])),"upgraded app actually loaded all old state");
         require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=10,"new app version installed");
-        runOnMainSync(current::recreate);waitText(saved().scenarioName,false);waitForIdleSync();
+        runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
         try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==9,"upgraded writer produced v9 header");}
         screenshot("00-v09-upgrade-preserved");
