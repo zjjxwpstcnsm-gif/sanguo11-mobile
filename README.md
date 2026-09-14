@@ -6,6 +6,8 @@
 
 **v0.14.0 点选行军开发版。** 出征后点地图目标，预览本旬/后续路线并开始逐旬自动行军；支持改道、停止、任务定位、存读续行与固定部队操作栏。深色界面、圆角按钮、选中态和部队数据卡同步更新。写v13、读v1—v12。[本轮操作与边界](docs/MARCH_V0_14.md)。**仍未达到100%原版还原**。
 
+[v0.14 APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34834950707/artifacts/10345390694)对应代码`b2eec25`；[完整CI](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34834950707)已通过核心/UI回归、构建/Lint、三种横屏实际操作和v0.9覆盖升级。447335字节APK、签名、232文件源码与199张截图文件已核对；抽查路线预览、续行和抵达界面。Lint 0错误/12警告，ARM真机尚未验证。[验收证据](docs/validation/v014/README.md) · [PR #15](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/15)。
+
 ## v0.13 历史状态
 
 **v0.13.0 人物关系与宝物开发版。** 新增仲介结义婚姻、宝物持有/搜索/赏赐/战斗效果、PK局面编辑与可复用新武将模板。写v12、读v1—v12。菜单→PK编辑 / 新武将；“相知寻宝”可试玩完整新增流程。[实现范围与未完成项](docs/ESTATES_V0_13.md)。**仍未达到100%还原**；全国原版地图和官方完整开局尚缺可核验数据。 [APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34829252144/artifacts/10342514205)对应`178735e`；[完整CI](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/34829252144)已通过三屏操作和v0.9覆盖升级，181张截图摘要及226文件源码归档已核对。
