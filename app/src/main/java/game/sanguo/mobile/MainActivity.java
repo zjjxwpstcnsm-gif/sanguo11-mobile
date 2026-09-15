@@ -23,6 +23,7 @@ public final class MainActivity extends Activity {
     private ScrollView panelScroll;
     private TextView title,panelTitle,battleBanner;
     private String lastBattleReport="";
+    private World battleReportWorld;
     private Button selectionButton,expandPanel,closePanel;
     private AlertDialog navigationDialog;
     private Hex selected;
@@ -185,7 +186,7 @@ public final class MainActivity extends Activity {
         if(!result.ok)message("命令未执行",result.message);
         if(result.ok)pendingMarch=null;
         if(result.ok&&result.feedback!=World.Feedback.NONE){
-            lastBattleReport=result.message;
+            lastBattleReport=result.message;battleReportWorld=world;
             battleBanner.setText((result.feedback==World.Feedback.DEFEAT?"击破战果 · ":"战斗 · ")+result.message+"  · 点此详情");
             battleBanner.setVisibility(View.VISIBLE);
             map.battleFeedback(result,getPreferences(MODE_PRIVATE).getBoolean("battleHaptics",true));
@@ -195,6 +196,7 @@ public final class MainActivity extends Activity {
         if(result.ok&&world.gameOver())message(world.winner==world.player?"战场胜利":"战场战败","本局结束，可从菜单重新选择剧本。");
     }
     void refresh(){
+        if(battleReportWorld!=world){battleReportWorld=world;lastBattleReport="";battleBanner.setVisibility(View.GONE);}
         if(ui.city>=0&&world.city(ui.city)==null)ui.city=-1;
         if(ui.owner>=world.factions.length)ui.owner=-1;
         if(ui.cityOwner>=world.factions.length)ui.cityOwner=-1;

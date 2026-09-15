@@ -105,7 +105,7 @@ public final class MapView extends View {
             miniTerrain=Bitmap.createBitmap(world.width,world.height,Bitmap.Config.ARGB_8888);
             for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)miniTerrain.setPixel(q,r,world.terrain[q][r]==World.Terrain.WATER?0xff36586c:world.terrain[q][r]==World.Terrain.MOUNTAIN?0xff5b635b:world.terrain[q][r]==World.Terrain.FOREST?0xff415a49:0xff7e8463);
         }
-        reachable=world.reachable(world.unit(moving));if(changed&&getWidth()>0){resizeCamera();fit();}invalidate();}
+        reachable=world.orders.marchReachable(world.unit(moving));if(changed&&getWidth()>0){resizeCamera();fit();}invalidate();}
     private float x(Hex h){return RADIUS*SQRT3*(h.q+h.r*.5f);}
     private float y(Hex h){return RADIUS*1.5f*h.r;}
     private float worldWidth(){return RADIUS*SQRT3*(world.width-1+(world.height-1)*.5f)+RADIUS*2;}

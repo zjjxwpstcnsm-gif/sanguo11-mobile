@@ -39,7 +39,8 @@ public final class UnitOrders {
         return u==null||u.acted||u.status!=War.Status.NORMAL?0:
             Math.max(0,(u.movementBudget<0?w.war.movement(u):u.movementBudget)-u.movementSpent);
     }
-    private Paths paths(World.Unit u) {
+    private Paths paths(World.Unit u) {return paths(u,false);}
+    private Paths paths(World.Unit u,boolean avoidFire) {
         Paths result=new Paths();if(error(u)!=null)return result;
         PriorityQueue<Step> queue=new PriorityQueue<>(Comparator.comparingInt((Step s)->s.cost)
             .thenComparingInt(s->s.hex.q).thenComparingInt(s->s.hex.r));
@@ -48,7 +49,7 @@ public final class UnitOrders {
             Step step=queue.remove();if(step.cost!=result.costs.get(step.hex))continue;
             for(Hex next:step.hex.neighbors()) {
                 int cost=w.army.moveCost(u,step.hex,next);
-                if(cost<0||w.cityAt(next)!=null||w.domestic.at(next)!=null||w.war.at(next)!=null)continue;
+                if(cost<0||w.cityAt(next)!=null||w.domestic.at(next)!=null||w.war.at(next)!=null||avoidFire&&w.war.fireAt(next)!=null)continue;
                 World.Unit other=w.unitAt(next);if(other!=null&&other.id!=u.id)continue;
                 int total=step.cost+cost;
                 if(total<=budget&&w.advancedBattle.zone(u,next))total=budget;
@@ -59,6 +60,8 @@ public final class UnitOrders {
         }
         return result;
     }
+    /** Map taps issue safe automatic marches, so their highlight must also avoid fire. */
+    public Map<Hex,Integer> marchReachable(World.Unit u){return Collections.unmodifiableMap(paths(u,true).costs);}
     public Map<Hex,Integer> reachable(World.Unit u){return Collections.unmodifiableMap(paths(u).costs);}
     public MovePlan previewMove(int unitId,Hex destination) {
         World.Unit u=w.unit(unitId);String error=error(u);

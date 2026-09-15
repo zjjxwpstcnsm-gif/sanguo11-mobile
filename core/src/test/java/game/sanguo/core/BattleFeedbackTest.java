@@ -29,6 +29,10 @@ public final class BattleFeedbackTest {
         check(a.hex.equals(new Hex(4,4))&&a.march!=null,"attack does not grant second action");
         w.orders.reset(a);w.marches.advanceAll();check(a.hex.equals(b.hex)&&a.march==null,"queued route enters actual defeated tile when action refreshes");
         check(Arrays.equals(bytes(w),bytes(SaveCodec.decode(bytes(w)))),"loot and prisoner metadata persist in existing v15");
+        World ally=fixture();World.Unit killer=unit(ally,1,0,4,8000),enemy=unit(ally,7,1,5,1);
+        World.Unit follower=unit(ally,2,0,6,3000);ok(ally.attack(killer.id,enemy.id));
+        check(ally.orders.marchReachable(follower).containsKey(enemy.hex),"another fresh unit sees the defeated tile as reachable immediately");
+        ok(ally.marches.execute(ally.marches.preview(follower.id,enemy.hex)));check(follower.hex.equals(enemy.hex),"another fresh unit immediately walks onto the cleared enemy tile");
     }
     private static void capsAndExactlyOnce()throws Exception{
         World w=fixture();World.Unit a=unit(w,1,0,4,8000),b=unit(w,7,1,5,1);a.gold=9990;a.food=999995;b.gold=400;b.food=100;
@@ -60,6 +64,7 @@ public final class BattleFeedbackTest {
         ok(w.war.tactic(a.id,b.id,War.Tactic.FIRE_ARROW));check(w.unitAt(b.hex)==null&&w.war.fireAt(b.hex)!=null,"lethal fire arrow leaves real fire, not ghost unit");
         MarchOrders.Plan blocked=w.marches.preview(a.id,b.hex);check(!blocked.valid()&&blocked.error.contains("火场")&&blocked.error.contains("剩"),"automatic route explains remaining fire");
         byte[] before=bytes(w);check(!w.marches.execute(blocked).ok&&Arrays.equals(before,bytes(w)),"fire rejection consumes nothing");
+        w.orders.reset(a);check(!w.orders.marchReachable(a).containsKey(b.hex),"map highlight does not advertise a fire tile that automatic routing refuses");
         w.war.fires.clear();w.orders.reset(a);MarchOrders.Plan clear=w.marches.preview(a.id,b.hex);check(clear.valid()&&clear.stepsNow==1,"extinguished target reachable immediately");ok(w.marches.execute(clear));check(a.hex.equals(b.hex),"actual automatic route executes onto empty former enemy tile");
         Hex next=new Hex(6,4);w.domestic.facilities.add(new Domestic.Facility(1,0,Domestic.Kind.MARKET,next,-1,0));
         check(w.marches.preview(a.id,next).error.contains("市场"),"occupied target names facility");
