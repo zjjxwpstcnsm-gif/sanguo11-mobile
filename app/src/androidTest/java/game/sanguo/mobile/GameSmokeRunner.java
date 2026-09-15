@@ -282,6 +282,7 @@ public final class GameSmokeRunner extends Instrumentation {
         // Fire has adjacent range in the selected PC rules; move after the push before casting.
         tapHex(new Hex(7,5));click("开始行军",true);
         require(!saved().unit(1).acted,"moving into fire range retains the plot command");
+        click("选中对象指令 ·",false);
         click("部队计略",true);click("火计 ·",false);click("张辽 ·",false);click("执行",true);w=saved();require(w.war.fireAt(w.unit(2).hex)!=null&&w.unit(1).energy==70,"UI fire plot persists burning hex");screenshot("22-fire-field");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("战法验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"fire survives Activity recreation");
     }
@@ -542,6 +543,7 @@ public final class GameSmokeRunner extends Instrumentation {
         require(w.unit(1).hex.equals(new Hex(7,8))&&!w.unit(1).acted&&w.unit(1).movementSpent>0,"move preserves command and charges path");
         byte[] moved=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("水陆攻防",false);
         require(Arrays.equals(moved,SaveCodec.encode(saved())),"movement budget survives recreation");
+        click("选中对象指令 ·",false);
         click("部队计略",true);click("扰乱 · 气力1",true);click("曹操 ·",false);screenshot("29-skill-plot-preview");click("取消",true);
         require(Arrays.equals(moved,SaveCodec.encode(saved())),"skill plot cancel is pure");
         click("部队计略",true);click("扰乱 · 气力1",true);click("曹操 ·",false);click("执行",true);w=saved();
