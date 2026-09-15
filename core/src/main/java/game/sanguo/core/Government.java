@@ -26,7 +26,7 @@ public final class Government {
     public static List<Rank> ranks(){return RANKS;}
     public static Rank rank(String id){for(Rank r:RANKS)if(r.id.equals(id))return r;return null;}
     public static final class Prisoner {
-        public final int officerId,captor,capturedTurn; public int cityId,lastAttempt=-1;
+        public final int officerId,capturedTurn; public int captor,cityId,unitId=-1,lastAttempt=-1;
         Prisoner(int officer,int captor,int city,int turn){officerId=officer;this.captor=captor;cityId=city;capturedTurn=turn;}
     }
     final World w;
@@ -45,7 +45,18 @@ public final class Government {
     public int commandLimit(int officer){Rank r=office(officer);World.Officer o=w.officer(officer);return (r==null?10000:r.troops)+(o!=null&&w.campaign.has(o.owner,Campaign.Tech.MILITARY_REFORM)?3000:0);}
     public World.Officer advisor(int side){return w.officer(advisors.getOrDefault(side,-1));}
     public Policy policy(int city){return policies.getOrDefault(city,Policy.MANUAL);}
-    public String status(int officer){Prisoner p=prisoner(officer);return p==null?"":"被"+w.faction(p.captor)+"俘虏 · 关押于"+w.city(p.cityId).name;}
+    public List<Prisoner> escorted(int unit){
+        List<Prisoner> result=new ArrayList<>();for(Prisoner p:prisoners.values())if(p.unitId==unit)result.add(p);return Collections.unmodifiableList(result);
+    }
+    public Hex location(Prisoner p){
+        if(p==null)return null;World.Unit u=w.unit(p.unitId);World.City c=w.city(p.cityId);
+        return p.unitId>=0?(u==null?null:u.hex):(c==null?null:c.hex);
+    }
+    public String locationLabel(Prisoner p){
+        if(p==null)return "";World.Unit u=w.unit(p.unitId);World.City c=w.city(p.cityId);
+        return p.unitId>=0?(u==null?"押送部队失联":"随"+w.officer(u.officerId).name+"部队行军（"+u.hex.q+","+u.hex.r+"）"):(c==null?"关押地失联":c.name+"（关押）");
+    }
+    public String status(int officer){Prisoner p=prisoner(officer);return p==null?"":"被"+w.faction(p.captor)+"俘虏 · "+locationLabel(p);}
     public World.Result appointRank(int city,int actor,int target,String rankId){
         World.City c=w.city(city);World.Officer o=w.officer(actor),t=w.officer(target);Rank r=rank(rankId);
         String error=w.cityError(c,o,100);if(error!=null)return w.fail(error);
@@ -103,14 +114,32 @@ public final class Government {
     World.City refuge(int owner,Hex from){return w.cities.stream().filter(c->c.owner==owner)
         .min(Comparator.comparingInt((World.City c)->c.hex.distance(from)).thenComparingInt(c->c.id)).orElse(null);}
     void capture(World.Officer o,World.City jail){
-        w.treasures.captured(o.id,jail.owner);
+        capture(o,jail.owner,jail.id,-1);
+    }
+    void capture(World.Officer o,World.Unit escort){capture(o,escort.owner,-1,escort.id);}
+    private void capture(World.Officer o,int captor,int city,int unit){
+        w.treasures.captured(o.id,captor);
         w.strategy.releaseGovernor(o.id);allegianceChanged(o.id);o.unitId=-1;o.cityId=-1;o.otherTask="";o.otherTaskTurns=0;o.acted=true;
-        prisoners.put(o.id,new Prisoner(o.id,jail.owner,jail.id,w.turn));w.note(o.name+"被俘，押往"+jail.name);
+        Prisoner p=new Prisoner(o.id,captor,city,w.turn);p.unitId=unit;prisoners.put(o.id,p);w.note(o.name+"被俘，"+locationLabel(p));
+    }
+    int entered(World.Unit u,World.City c){
+        List<Prisoner> escorted=escorted(u.id);
+        for(Prisoner p:escorted){p.unitId=-1;p.cityId=c.id;w.note(w.officer(p.officerId).name+"随部队入城，关押于"+c.name);}
+        return escorted.size();
+    }
+    void escortLost(World.Unit loser,World.Unit victor){
+        boolean hostile=victor!=null&&w.unit(victor.id)==victor&&victor.troops>0&&w.campaign.hostile(victor.owner,loser.owner);
+        for(Prisoner p:escorted(loser.id)){
+            if(hostile&&w.officer(p.officerId).owner!=victor.owner){
+                p.captor=victor.owner;p.unitId=victor.id;p.cityId=-1;p.lastAttempt=-1;
+                w.battleOutcome(w.officer(p.officerId).name+"转由"+w.officer(victor.officerId).name+"部队押送");
+            }else{free(p,loser.hex);w.battleOutcome(w.officer(p.officerId).name+"因押送部队溃散而获释");}
+        }
     }
     /** Engineering capture probability; protections are checked before capture skill. Read-only. */
     public int captureChance(World.Unit victor,World.Unit loser,World.Officer officer){
         if(victor==null||loser==null||officer==null||!w.campaign.hostile(victor.owner,loser.owner)||
-            refuge(victor.owner,loser.hex)==null||w.skills.has(loser,Skill.XUELU)||
+            w.skills.has(loser,Skill.XUELU)||
             w.skills.has(officer,Skill.QIANGYUN)||w.contests.profile(officer.id).has(Contests.Gear.HORSE))return 0;
         return w.skills.has(victor,Skill.BOFU)?100:Math.max(5,Math.min(60,20+(w.army.war(victor)-officer.war)/5));
     }
@@ -119,7 +148,6 @@ public final class Government {
         if(loser==null||w.unit(loser.id)!=loser)return;
         List<World.Officer> crew=w.army.crew(loser);
         boolean hostile=victor!=null&&w.unit(victor.id)==victor&&victor.troops>0&&w.campaign.hostile(victor.owner,loser.owner);
-        World.City jail=hostile?refuge(victor.owner,loser.hex):null;
         // Capture immunity is sampled before plunder can transfer a horse away from its owner.
         Map<Integer,Integer> chances=new LinkedHashMap<>();
         for(World.Officer o:crew)chances.put(o.id,hostile?captureChance(victor,loser,o):0);
@@ -132,7 +160,7 @@ public final class Government {
         for(World.Officer o:crew){
             int chance=chances.get(o.id);
             boolean caught=chance>0&&(chance==100||w.strategy.nextInt(100)<chance);
-            if(caught){capture(o,jail);captured.add(o.name+"（"+jail.name+"）");}
+            if(caught){capture(o,victor);captured.add(o.name+"（随军押送）");}
             else{w.retreat(o,loser.hex);escaped.add(o.name);}
         }
         w.battleImpact(loser.hex,true);
@@ -143,7 +171,7 @@ public final class Government {
         report+="；俘虏："+(captured.isEmpty()?"无":String.join("、",captured));
         if(!escaped.isEmpty())report+="；逃脱："+String.join("、",escaped);
         w.battleOutcome(report);
-        w.units.remove(loser);
+        escortLost(loser,hostile?victor:null);w.units.remove(loser);
         if(hostile)w.treasures.fallenTreasury(loser.owner,victor.owner);
         if(hostile)for(World.Officer o:w.army.crew(victor))earn(o.id,500);
     }
@@ -154,15 +182,21 @@ public final class Government {
         }
         relocatePrisoners();
     }
-    private void free(Prisoner p){
-        World.Officer o=w.officer(p.officerId);World.City jail=w.city(p.cityId),home=refuge(o.owner,jail.hex);prisoners.remove(o.id);
-        if(home==null){allegianceChanged(o.id);o.owner=-1;o.cityId=jail.id;o.role=Strategy.Role.UNAFFILIATED;o.loyalty=0;}
-        else o.cityId=home.id;
+    private void free(Prisoner p){free(p,location(p));}
+    private void free(Prisoner p,Hex from){
+        World.Officer o=w.officer(p.officerId);if(from==null)from=new Hex(0,0);
+        World.City home=refuge(o.owner,from);prisoners.remove(o.id);
+        if(home==null){
+            final Hex origin=from;World.City near=w.cities.stream().min(Comparator.comparingInt(c->c.hex.distance(origin))).orElse(null);
+            allegianceChanged(o.id);o.owner=-1;o.cityId=near==null?-1:near.id;o.role=Strategy.Role.UNAFFILIATED;o.loyalty=0;
+        }else o.cityId=home.id;
         o.unitId=-1;o.acted=true;w.note(o.name+(home==null?"获释，成为在野武将":"获释返回"+home.name));
     }
     void relocatePrisoners(){
         for(Prisoner p:new ArrayList<>(prisoners.values())){
+            if(p.unitId>=0){World.Unit escort=w.unit(p.unitId);if(escort!=null&&escort.owner==p.captor)continue;free(p);continue;}
             World.City jail=w.city(p.cityId);World.Officer o=w.officer(p.officerId);
+            if(jail==null){free(p);continue;}
             if(jail.owner==p.captor)continue;
             if(jail.owner==o.owner){prisoners.remove(o.id);o.cityId=jail.id;o.acted=true;w.note(o.name+"获救");continue;}
             World.City next=refuge(p.captor,jail.hex);if(next==null)free(p);else p.cityId=next.id;
@@ -196,8 +230,10 @@ public final class Government {
         World.City c=w.city(city);World.Officer t=w.officer(target);Prisoner p=prisoner(target);int cost=ransomCost(target);
         String error=w.cityError(c,w.officer(actor),cost);if(error!=null)return w.fail(error);
         if(p==null||t.owner!=c.owner||p.captor==c.owner)return w.fail("请选择被其他势力俘虏的己方武将");
-        World.City jail=w.city(p.cityId);if(jail.gold>1000000-cost)return w.fail("对方城池金库存已满");
-        w.spend(c,w.officer(actor),cost);jail.gold+=cost;free(p);return w.success("支付"+cost+"金赎回"+t.name);
+        World.City jail=w.city(p.cityId);World.Unit escort=w.unit(p.unitId);
+        if(p.unitId>=0?(escort==null||escort.gold>10000-cost):(jail==null||jail.gold>1000000-cost))return w.fail("对方金容量不足或押送地无效");
+        w.spend(c,w.officer(actor),cost);if(escort!=null)escort.gold+=cost;else jail.gold+=cost;
+        free(p);return w.success("支付"+cost+"金赎回"+t.name);
     }
     void tick(){
         relocatePrisoners();
@@ -213,7 +249,7 @@ public final class Government {
         }
     }
     void runAi(){
-        for(Prisoner p:new ArrayList<>(prisoners.values()))if(p.captor==w.active&&p.lastAttempt!=w.turn){
+        for(Prisoner p:new ArrayList<>(prisoners.values()))if(p.captor==w.active&&p.unitId<0&&p.lastAttempt!=w.turn){
             World.City c=w.city(p.cityId);if(c.gold<100||w.idle(c).isEmpty())continue;
             World.Officer o=w.idle(c).stream().max(Comparator.comparingInt(x->x.charm)).get();
             if(recruitChance(o.id,p.officerId)>=50)recruitPrisoner(c.id,o.id,p.officerId);

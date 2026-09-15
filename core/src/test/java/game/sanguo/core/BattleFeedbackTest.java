@@ -28,7 +28,7 @@ public final class BattleFeedbackTest {
         MarchOrders.Plan move=w.marches.preview(a.id,b.hex);check(move.valid()&&move.stepsNow==0&&move.estimatedTurns==1,"acted killer may queue newly empty tile next turn");ok(w.marches.execute(move));
         check(a.hex.equals(new Hex(4,4))&&a.march!=null,"attack does not grant second action");
         w.orders.reset(a);w.marches.advanceAll();check(a.hex.equals(b.hex)&&a.march==null,"queued route enters actual defeated tile when action refreshes");
-        check(Arrays.equals(bytes(w),bytes(SaveCodec.decode(bytes(w)))),"loot and prisoner metadata persist in existing v15");
+        check(Arrays.equals(bytes(w),bytes(SaveCodec.decode(bytes(w)))),"loot and prisoner metadata persist in existing v16");
         World ally=fixture();World.Unit killer=unit(ally,1,0,4,8000),enemy=unit(ally,7,1,5,1);
         World.Unit follower=unit(ally,2,0,6,3000);ok(ally.attack(killer.id,enemy.id));
         check(ally.orders.marchReachable(follower).containsKey(enemy.hex),"another fresh unit sees the defeated tile as reachable immediately");

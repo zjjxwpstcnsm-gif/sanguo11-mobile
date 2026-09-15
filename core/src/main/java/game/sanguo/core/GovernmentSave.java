@@ -13,11 +13,11 @@ final class GovernmentSave {
         d.writeInt(g.advisors.size());for(Map.Entry<Integer,Integer> e:g.advisors.entrySet()){d.writeInt(e.getKey());d.writeInt(e.getValue());}
         d.writeInt(g.policies.size());for(Map.Entry<Integer,Government.Policy> e:g.policies.entrySet()){d.writeInt(e.getKey());d.writeUTF(e.getValue().name());}
         d.writeInt(g.prisoners.size());for(Government.Prisoner p:g.prisoners.values()){
-            d.writeInt(p.officerId);d.writeInt(p.captor);d.writeInt(p.cityId);d.writeInt(p.capturedTurn);d.writeInt(p.lastAttempt);
+            d.writeInt(p.officerId);d.writeInt(p.captor);d.writeInt(p.cityId);d.writeInt(p.capturedTurn);d.writeInt(p.lastAttempt);d.writeInt(p.unitId);
         }
         d.writeInt(w.domestic.missions.size());for(Domestic.Mission m:w.domestic.missions){d.writeInt(m.id);d.writeBoolean(m.sea);}
     }
-    static void read(World w,DataInputStream d)throws IOException {
+    static void read(World w,DataInputStream d,int version)throws IOException {
         require(d.readInt()==MARKER,"军政扩展标记无效");Government g=w.government;
         int n=count(d,10000);for(int i=0;i<n;i++){int k=d.readInt();require(g.merits.put(k,d.readInt())==null,"功绩记录重复");}
         n=count(d,10000);for(int i=0;i<n;i++){int k=d.readInt();require(g.ranks.put(k,d.readUTF())==null,"官职记录重复");}
@@ -26,7 +26,7 @@ final class GovernmentSave {
             try{policy=Government.Policy.valueOf(d.readUTF());}catch(IllegalArgumentException e){throw new IOException("委任方针无效",e);}
             require(g.policies.put(k,policy)==null,"委任记录重复");}
         n=count(d,w.officers.size());for(int i=0;i<n;i++){
-            Government.Prisoner p=new Government.Prisoner(d.readInt(),d.readInt(),d.readInt(),d.readInt());p.lastAttempt=d.readInt();require(g.prisoners.put(p.officerId,p)==null,"俘虏记录重复");
+            Government.Prisoner p=new Government.Prisoner(d.readInt(),d.readInt(),d.readInt(),d.readInt());p.lastAttempt=d.readInt();if(version>=16)p.unitId=d.readInt();require(g.prisoners.put(p.officerId,p)==null,"俘虏记录重复");
         }
         n=count(d,w.domestic.missions.size());require(n==w.domestic.missions.size(),"运输方式记录缺失");Set<Integer> ids=new HashSet<>();
         for(int i=0;i<n;i++){int id=d.readInt();Domestic.Mission m=w.domestic.mission(id);require(m!=null&&ids.add(id),"运输方式引用无效");m.sea=d.readBoolean();}
@@ -46,8 +46,9 @@ final class GovernmentSave {
         }
         for(Map.Entry<Integer,Government.Policy> e:g.policies.entrySet())require(w.city(e.getKey())!=null&&w.city(e.getKey()).owner>=0&&e.getValue()!=null&&e.getValue()!=Government.Policy.MANUAL,"委任城池或方针无效");
         for(Government.Prisoner p:g.prisoners.values()){
-            World.Officer o=w.officer(p.officerId);World.City c=w.city(p.cityId);
-            require(o!=null&&o.owner>=0&&p.captor>=0&&p.captor<w.factions.length&&p.captor!=o.owner&&c!=null&&c.owner==p.captor,"俘虏归属或关押地错误");
+            World.Officer o=w.officer(p.officerId);World.City c=w.city(p.cityId);World.Unit u=w.unit(p.unitId);
+            require(o!=null&&o.owner>=0&&p.captor>=0&&p.captor<w.factions.length&&p.captor!=o.owner,"俘虏归属错误");
+            require(p.unitId>=0?(p.cityId==-1&&u!=null&&u.owner==p.captor):(p.unitId==-1&&c!=null&&c.owner==p.captor),"俘虏关押地或押送部队错误");
             require(o.unitId==-1&&o.cityId==-1&&o.otherTaskTurns==0&&!w.domestic.busy(o.id)&&o.role!=Strategy.Role.GOVERNOR,"俘虏仍承担部队或城务");
             require(p.capturedTurn>=0&&p.capturedTurn<=w.turn&&p.lastAttempt>=-1&&p.lastAttempt<=w.turn,"俘虏日期无效");
         }

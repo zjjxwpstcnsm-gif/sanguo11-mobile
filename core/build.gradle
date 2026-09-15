@@ -150,3 +150,11 @@ tasks.register('verifyBattleFeedback', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyBattleFeedback' }
 tasks.named('test') { dependsOn 'verifyBattleFeedback' }
+
+tasks.register('verifyPrisonerEscort', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PrisonerEscortTest'
+}
+tasks.named('check') { dependsOn 'verifyPrisonerEscort' }
+tasks.named('test') { dependsOn 'verifyPrisonerEscort' }

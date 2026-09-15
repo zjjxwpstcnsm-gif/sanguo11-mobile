@@ -8,7 +8,7 @@ final class UiModels {
     private UiModels() {}
     static String location(World w, World.Officer o) {
         if(!w.life.present(o.id))return w.life.state(o.id).label;
-        if(w.government.captive(o.id))return w.city(w.government.prisoner(o.id).cityId).name+"（关押）";
+        if(w.government.captive(o.id))return w.government.locationLabel(w.government.prisoner(o.id));
         for (Domestic.Mission m : w.domestic.missions) if (m.officerId == o.id)
             return w.city(m.sourceCity).name + " → " + w.city(m.targetCity).name;
         if (o.unitId >= 0) return "战场";

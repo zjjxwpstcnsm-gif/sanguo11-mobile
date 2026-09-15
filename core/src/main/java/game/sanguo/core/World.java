@@ -240,8 +240,8 @@ public final class World {
         int gear=Army.equipmentNeeded(u.weapon,u.troops),cap=campaign.equipmentCap(c,u.weapon);
         if(c.troops+u.troops>campaign.troopCap(c)||c.equipment[u.weapon.ordinal()]+gear>cap||c.food+u.food>campaign.foodCap(c)||c.gold+u.gold>campaign.goldCap(c)||u.ship!=Army.Ship.BOAT&&c.ships[u.ship.ordinal()-1]>=100)return fail("城池库存容量不足");
         c.troops+=u.troops;c.food+=u.food;c.gold+=u.gold;c.equipment[u.weapon.ordinal()]+=gear;if(u.ship!=Army.Ship.BOAT)c.ships[u.ship.ordinal()-1]++;
-        Officer o=officer(u.officerId);for(Officer member:army.crew(u)){member.unitId=-1;member.cityId=c.id;member.acted=true;}units.remove(u);
-        return success(o.name+"入城休整");
+        int prisoners=government.entered(u,c);Officer o=officer(u.officerId);for(Officer member:army.crew(u)){member.unitId=-1;member.cityId=c.id;member.acted=true;}units.remove(u);
+        return success(o.name+"入城休整"+(prisoners>0?"；随军俘虏"+prisoners+"人已关押于"+c.name:""));
     }
     void retreat(Officer o,Hex from) {
         strategy.releaseGovernor(o.id);o.otherTaskTurns=0;o.otherTask="";

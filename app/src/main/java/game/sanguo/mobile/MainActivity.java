@@ -333,7 +333,8 @@ public final class MainActivity extends Activity {
     private static final class CityCommand {final String label;final Runnable run;CityCommand(String label,Runnable run){this.label=label;this.run=run;}}
     private ArmyUi armyUi(){return new ArmyUi(this,world,this::apply,this::selectAndFocus);}
     private List<CityCommand> militaryCommands(World.City c){return Arrays.asList(
-        new CityCommand("出征",()->chooseOfficer(c,o->chooseWeapon(weapon->new AlertDialog.Builder(this).setTitle("出征兵力").setItems(new String[]{"3000人","5000人","8000人"},(d,which)->{
+        new CityCommand("出征",()->armyUi().deploy(c)),
+        new CityCommand("快速出征（单将）",()->chooseOfficer(c,o->chooseWeapon(weapon->new AlertDialog.Builder(this).setTitle("出征兵力").setItems(new String[]{"3000人","5000人","8000人"},(d,which)->{
             World.Result result=world.deploy(c.id,o.id,weapon,new int[]{3000,5000,8000}[which]);if(result.ok){World.Unit u=world.unit(o.unitId);selected=u.hex;moving=u.id;}apply(result);
         }).show()))),
         new CityCommand("编队 / 水陆出征",()->armyUi().deploy(c)),
@@ -353,7 +354,13 @@ public final class MainActivity extends Activity {
         }
         unitStats(u);line("统率 "+o.leadership+"  武力 "+o.war,13,paper);line("剩余移动 "+world.orders.remaining(u)+"  射程 "+world.war.range(u),13,paper);
         line("适性 "+War.rankLabel(world.army.aptitude(u))+" · 状态 "+u.status.label,14,paper);
-        for(int id:u.deputies)line("副将 "+world.officer(id).name,14,paper);
+        action("主将 · "+o.name+" · 查看武将",v->officerDetail(o));
+        for(int id:u.deputies){World.Officer deputy=world.officer(id);action("副将 · "+deputy.name+" · 查看武将",v->officerDetail(deputy));}
+        List<Government.Prisoner> prisoners=world.government.escorted(u.id);
+        if(!prisoners.isEmpty()){
+            line("随军俘虏 "+prisoners.size()+"人 · 部队入城后收押",14,gold);
+            for(Government.Prisoner prisoner:prisoners){World.Officer captive=world.officer(prisoner.officerId);action("随军俘虏 · "+captive.name,v->officerDetail(captive));}
+        }
         line("携金 "+u.gold+" · "+(world.fieldworks.project(u.id)==null?"未施工":"施工中"),13,paper);
         line("部队武力 "+world.army.war(u)+" · 智力 "+world.army.intelligence(u),13,paper);
         if(u.burning>0)line("部队燃烧 · 剩"+u.burning+"旬",14,gold);
@@ -375,6 +382,7 @@ public final class MainActivity extends Activity {
         stats+="\n特技："+Skill.label(o.skillId)+"\n\n"+world.relations.describe(o.id)+"\n\n宝物：\n"+world.treasures.describe(o.id);
         AlertDialog.Builder d=new AlertDialog.Builder(this).setTitle(o.name+" · "+UiModels.faction(world,o)).setMessage(stats+"\n身份："+o.role.label+" · 忠诚 "+o.loyalty+"\n\n所在地："+UiModels.location(world,o)+"\n状态："+UiModels.status(world,o)).setNegativeButton("返回",null);
         Hex h=o.cityId>=0?world.city(o.cityId).hex:o.unitId>=0&&world.unit(o.unitId)!=null?world.unit(o.unitId).hex:null;
+        if(world.government.captive(o.id))h=world.government.location(world.government.prisoner(o.id));
         for(Domestic.Mission m:world.domestic.missions)if(m.officerId==o.id)h=m.hex;
         final Hex target=h;if(target!=null)d.setPositiveButton("地图定位",(dialog,n)->selectAndFocus(target));d.show();
     }
@@ -408,7 +416,7 @@ public final class MainActivity extends Activity {
         action("本旬结算摘要",v->message("旬结算摘要",ui.summary.isEmpty()?"结束一旬后将在这里显示结算摘要。":ui.summary));
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.20 · 战果与地图模型","击破缴获金粮、俘虏结果与战斗触感；兵种和建筑简易模型；缩小时保留阻挡物，行军显示具体阻挡原因。\n视图→战斗震动可开关。存档v15，兼容旧版存档。\n全国原版格点、官方完整开局、全特技交互与精确公式仍有缺口。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.20 · 战果与地图模型","击破缴获金粮、俘虏结果与战斗触感；兵种和建筑简易模型；缩小时保留阻挡物，行军显示具体阻挡原因。\n俘虏随部队行军，入城后收押；出征可编入1主将+2副将，部队详情可逐将查看。\n视图→战斗震动可开关。存档v16，兼容旧版存档。\n全国原版格点、官方完整开局、全特技交互与精确公式仍有缺口。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}

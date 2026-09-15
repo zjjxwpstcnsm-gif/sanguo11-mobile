@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=15, MAX_BYTES=4*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=16, MAX_BYTES=4*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -109,7 +109,7 @@ public final class SaveCodec {
         if(version>=5)CampaignSave.read(w,d);
         if(version>=6)ArmySave.read(w,d);
         if(version>=7)RulesSave.read(w,d);
-        if(version>=8)GovernmentSave.read(w,d);
+        if(version>=8)GovernmentSave.read(w,d,version);
         if(version>=9)ContestSave.read(w,d);
         if(version>=10)AbilitySave.read(w,d);else w.abilities.initialize(Objects.hash(w.scenarioId,w.startYear,w.startMonth));
         if(version>=11)FieldworksSave.read(w,d);else FieldworksSave.migrate(w);

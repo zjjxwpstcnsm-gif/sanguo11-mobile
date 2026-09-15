@@ -168,12 +168,11 @@ public final class Contests {
             loser.energy=Math.max(0,loser.energy-20);
             if(d.escaped<0){
                 boolean immune=w.skills.has(beaten,Skill.QIANGYUN)||w.skills.has(loser,Skill.XUELU)||profile(beaten.id).has(Gear.HORSE);
-                World.City jail=w.government.refuge(victor.owner,loser.hex);
                 if(loser.officerId==beaten.id){
                     for(World.Officer o:w.army.crew(loser))if(o.id!=beaten.id)w.retreat(o,loser.hex);
-                    w.units.remove(loser);
+                    w.government.escortLost(loser,victor);w.units.remove(loser);
                 }else loser.deputies=Arrays.stream(loser.deputies).filter(x->x!=beaten.id).toArray();
-                if(jail!=null&&!immune){w.government.capture(beaten,jail);text+=" "+beaten.name+"被俘。";}
+                if(!immune){w.government.capture(beaten,victor);text+=" "+beaten.name+"被俘，随胜方部队押送。";}
                 else {w.retreat(beaten,loser.hex);text+=" "+beaten.name+"撤回后方。";}
                 w.treasures.fallenTreasury(loser.owner,victor.owner);
             }

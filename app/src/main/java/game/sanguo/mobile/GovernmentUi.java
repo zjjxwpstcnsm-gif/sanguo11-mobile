@@ -31,7 +31,7 @@ final class GovernmentUi {
                 case 3:actor(c,o->choose("选择免官武将",residents(c),this::officer,t->confirm("免除官职","行动力10，忠诚下降5；已出征部队不受影响。",()->apply.accept(w.government.removeRank(c.id,o.id,t.id)))));break;
                 case 4:prisoners(c);break;
                 case 5:{List<Government.Prisoner> list=new ArrayList<>();for(Government.Prisoner p:w.government.prisoners())if(w.officer(p.officerId).owner==c.owner)list.add(p);
-                    choose("赎回己将",list,p->w.officer(p.officerId).name+" · 金"+w.government.ransomCost(p.officerId),p->actor(c,o->confirm("赎回武将","支付"+w.government.ransomCost(p.officerId)+"金与行动力10，武将返回最近己城，本旬休整。",()->apply.accept(w.government.ransom(c.id,o.id,p.officerId)))));break;}
+                    choose("赎回己将",list,p->w.officer(p.officerId).name+" · "+w.government.locationLabel(p)+" · 金"+w.government.ransomCost(p.officerId),p->actor(c,o->confirm("赎回武将","支付"+w.government.ransomCost(p.officerId)+"金与行动力10，武将返回最近己城，本旬休整。",()->apply.accept(w.government.ransom(c.id,o.id,p.officerId)))));break;}
                 case 6:{List<World.Officer> list=new ArrayList<>();for(World.City from:w.cities)if(from.owner==c.owner&&from.id!=c.id)list.addAll(w.idle(from));
                     choose("召唤武将",list,o->o.name+" · "+w.city(o.cityId).name,o->confirm("召唤"+o.name,"从驻城出发前往"+c.name+"，消耗行动力10；使用实际陆路任务，在途不可行动。",()->apply.accept(w.government.summon(c.id,o.id))));break;}
                 case 7:actor(c,o->choose("委任方针 · "+w.government.policy(c.id).label,Arrays.asList(Government.Policy.values()),p->p.label,p->confirm("调整委任","行动力10。结束旬时，使用剩余行动力和闲将自动执行一项城务。\n内政优先开发；守备优先修复和治理。",()->apply.accept(w.government.delegate(c.id,o.id,p)))));break;
