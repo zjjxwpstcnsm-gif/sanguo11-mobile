@@ -402,7 +402,6 @@ public final class MainActivity extends Activity {
     private interface WeaponChoice {void choose(World.Weapon weapon);}
     private void chooseOfficer(World.City c,OfficerChoice callback){
         List<World.Officer> options=world.idle(c);if(options.isEmpty()){message("武将不足","没有本旬可行动的在城武将");return;}
-        String[] names=new String[options.size()];for(int i=0;i<names.length;i++)names[i]=options.get(i).name;
         new AlertDialog.Builder(this).setTitle("执行武将").setAdapter(GameIcon.adapter(this,world,options,o->o.name),(d,index)->callback.choose(options.get(index))).setNegativeButton("取消",null).show();
     }
     private void chooseBasicWeapon(WeaponChoice callback){new AlertDialog.Builder(this).setTitle("生产基础兵装").setAdapter(GameIcon.adapter(this,world,Arrays.asList(World.Weapon.values()).subList(0,4),x->x.label),(d,i)->callback.choose(World.Weapon.values()[i])).setNegativeButton("取消",null).show();}

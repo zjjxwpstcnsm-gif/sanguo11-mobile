@@ -15,7 +15,10 @@ final class CampaignUi {
     private <T> void choose(String title,List<T> options,java.util.function.Function<T,String> label,Consumer<T> next){
         if(options.isEmpty()){info(title,"没有符合条件的选项。");return;}
         String[] names=new String[options.size()];for(int i=0;i<names.length;i++)names[i]=label.apply(options.get(i));
-        new AlertDialog.Builder(a).setTitle(title).setItems(names,(d,i)->next.accept(options.get(i))).setNegativeButton("取消",null).show();
+        AlertDialog.Builder dialog=new AlertDialog.Builder(a).setTitle(title).setNegativeButton("取消",null);
+        if(GameIcon.supports(options.get(0)))dialog.setAdapter(GameIcon.adapter(a,w,options,label),(d,i)->next.accept(options.get(i)));
+        else dialog.setItems(names,(d,i)->next.accept(options.get(i)));
+        dialog.show();
     }
     private void officer(World.City c,Consumer<World.Officer> next){choose("选择执行武将",w.idle(c),o->o.name+" · 政"+o.politics+" / 智"+o.intelligence+" / 魅"+o.charm,next);}
     void diplomacy(World.City c){
