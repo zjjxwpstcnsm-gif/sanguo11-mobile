@@ -26,6 +26,7 @@ public final class GameSmokeRunner extends Instrumentation {
             click("区域争雄 ·",false);click("孙权军",true);click("执行",true);
             waitText("区域争雄  ·  孙权军",false);assertWorld(2,0,"regional-sandbox");
             adaptiveMapFlow();
+            modelAtlas();
             clickNav("城市");click("建业 · 孙权军",false);
             waitText("建业",true);screenshot("02-city");
             click("军事",true);click("出征",true);click("甘宁",true);click("弩兵",true);click("3000人",true);
@@ -65,7 +66,8 @@ public final class GameSmokeRunner extends Instrumentation {
             governmentFlow();
             documentTransferFlow();
             contestFlow();
-            result.putString("stream","SMOKE PASS: v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            battleFeedbackFlow();
+            result.putString("stream","SMOKE PASS: v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -704,6 +706,39 @@ public final class GameSmokeRunner extends Instrumentation {
         if(node==null)return false;
         if(node.isScrollable()&&node.isVisibleToUser()&&node.performAction(AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD))return true;
         for(int i=0;i<node.getChildCount();i++)if(scrollBack(node.getChild(i)))return true;return false;
+    }
+    private void battleFeedbackFlow()throws Exception {
+        World w=new World(12,8,"我军","敌军");w.scenarioId="battle-feedback-smoke";w.scenarioName="战果验证";
+        w.cities.add(new World.City(10,"本营",new Hex(1,1),0));w.cities.add(new World.City(20,"敌营",new Hex(10,6),1));
+        World.Officer a=new World.Officer(1,"捕将",0,-1,80,80,80,80,80),b=new World.Officer(2,"敌将",1,-1,80,80,80,80,80);
+        a.unitId=1;b.unitId=2;a.skillId=Skill.BOFU.id;w.officers.add(a);w.officers.add(b);
+        World.Unit u=new World.Unit(1,0,1,World.Weapon.SPEAR,new Hex(4,4),5000,10000),enemy=new World.Unit(2,1,2,World.Weapon.HALBERD,new Hex(5,4),1,5000);
+        enemy.gold=600;w.units.add(u);w.units.add(enemy);w.nextUnitId=3;installFixture(w,u.hex);
+        tapHex(enemy.hex);waitText("敌将：100%",false);screenshot("v020-capture-preview");click("执行",true);
+        waitText("击破战果",false);require(saved().unit(2)==null&&saved().unit(1).gold==600&&saved().unit(1).food==15000&&saved().government.captive(2),"actual map attack shows and saves captured resources and officer");
+        click("击破战果",false);waitText("战斗结果",true);waitText("金+600",false);screenshot("v020-defeat-report");click("收起战果",true);
+        tapHex(enemy.hex);waitText("本旬已行动，下旬出发",false);screenshot("v020-defeated-tile-route");click("开始行军",true);
+        require(saved().unit(1).hex.equals(new Hex(4,4))&&saved().unit(1).march!=null,"can queue former enemy tile without refunding action");
+        endTurn();require(saved().unit(1).hex.equals(enemy.hex)&&saved().unit(1).march==null,"installed client enters defeated tile next turn");
+        chooseOrientation("竖屏");click("全图",true);screenshot("v020-map-models-portrait");
+        click("视图",true);click("战斗震动",true);click("关闭",true);runOnMainSync(current::recreate);waitForIdleSync();
+        click("视图",true);click("战斗震动",true);require(waitText("关闭",true).isChecked(),"haptics off survives recreation");click("开启（遵循系统触感设置）",true);
+        chooseOrientation("横屏");
+    }
+    private void modelAtlas()throws Exception {
+        MapModels models=new MapModels();java.util.List<String> labels=new java.util.ArrayList<>();
+        java.util.List<java.util.function.Consumer<Canvas>> draws=new java.util.ArrayList<>();int color=0xff62af8f;
+        for(World.Weapon weapon:World.Weapon.values()){labels.add(weapon.label);draws.add(c->models.unit(c,new World.Unit(1,0,1,weapon,new Hex(0,0),1000,1000),false,color));}
+        for(Army.Ship ship:Army.Ship.values()){labels.add(ship.label);draws.add(c->{World.Unit u=new World.Unit(1,0,1,World.Weapon.SPEAR,new Hex(0,0),1000,1000);u.ship=ship;models.unit(c,u,true,color);});}
+        for(World.SiteKind kind:World.SiteKind.values()){labels.add(kind.name());draws.add(c->models.city(c,kind,color));}
+        for(Domestic.Kind kind:Domestic.Kind.values()){labels.add(kind.label);draws.add(c->models.facility(c,kind,color));}
+        for(War.StructureKind kind:War.StructureKind.values()){labels.add(kind.label);draws.add(c->models.structure(c,kind,color));}
+        require(labels.size()==44,"all current troop and building categories have a renderable model");
+        Bitmap bitmap=Bitmap.createBitmap(1200,1200,Bitmap.Config.ARGB_8888);Canvas c=new Canvas(bitmap);c.drawColor(0xff192d32);
+        Paint text=new Paint(Paint.ANTI_ALIAS_FLAG);text.setColor(0xffead9ad);text.setTextSize(23);text.setTextAlign(Paint.Align.CENTER);
+        for(int i=0;i<labels.size();i++){float x=(i%6)*200+100,y=(i/6)*150+70;c.save();c.translate(x,y);c.scale(2,2);draws.get(i).accept(c);c.restore();c.drawText(labels.get(i),x,y+62,text);}
+        File directory=getTargetContext().getExternalFilesDir("smoke");if(directory==null)throw new IOException("Model screenshot directory unavailable");
+        try(FileOutputStream out=new FileOutputStream(new File(directory,"v020-model-atlas.png"))){bitmap.compress(Bitmap.CompressFormat.PNG,100,out);}finally{bitmap.recycle();}
     }
     private void screenshot(String name)throws IOException {
         waitForIdleSync();Bitmap bitmap=getUiAutomation().takeScreenshot();if(bitmap==null)throw new IOException("Screenshot unavailable");

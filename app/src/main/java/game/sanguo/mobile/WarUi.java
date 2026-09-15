@@ -21,7 +21,11 @@ final class WarUi {
         StringBuilder text=new StringBuilder();for(World.Officer o:w.army.crew(u))text.append(o.name).append(" · ").append(Skill.label(o.skillId)).append('\n');
         info(text.toString());
     }
-    void attack(World.Unit u,World.Unit target){confirm("攻击"+w.officer(target.officerId).name,"预计敌损约"+w.war.previewDamage(u.id,target.id)+"（有随机波动）。\n邻接近战敌军可反击，攻击结束本旬行动。",()->apply.accept(w.attack(u.id,target.id)));}
+    void attack(World.Unit u,World.Unit target){
+        StringBuilder capture=new StringBuilder();
+        for(World.Officer o:w.army.crew(target))capture.append("\n").append(o.name).append("：").append(w.government.captureChance(u,target,o)).append("%");
+        confirm("攻击"+w.officer(target.officerId).name,"预计敌损约"+w.war.previewDamage(u.id,target.id)+"（有随机波动）。\n邻接近战敌军可反击，攻击结束本旬行动。\n击破时回收敌军剩余金粮，加入实际击破部队，受携带容量限制。\n击破后俘虏概率："+capture,()->apply.accept(w.attack(u.id,target.id)));
+    }
     void tactics(World.Unit u){
         List<War.Tactic> list=new ArrayList<>();for(War.Tactic t:War.Tactic.values())if(t.weapon==u.weapon)list.add(t);
         if(list.isEmpty()){info("剑兵没有专属战法，可普攻或使用部队计略。");return;}

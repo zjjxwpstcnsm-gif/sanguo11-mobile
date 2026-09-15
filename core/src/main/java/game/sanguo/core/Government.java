@@ -107,19 +107,42 @@ public final class Government {
         w.strategy.releaseGovernor(o.id);allegianceChanged(o.id);o.unitId=-1;o.cityId=-1;o.otherTask="";o.otherTaskTurns=0;o.acted=true;
         prisoners.put(o.id,new Prisoner(o.id,jail.owner,jail.id,w.turn));w.note(o.name+"被俘，押往"+jail.name);
     }
+    /** Engineering capture probability; protections are checked before capture skill. Read-only. */
+    public int captureChance(World.Unit victor,World.Unit loser,World.Officer officer){
+        if(victor==null||loser==null||officer==null||!w.campaign.hostile(victor.owner,loser.owner)||
+            refuge(victor.owner,loser.hex)==null||w.skills.has(loser,Skill.XUELU)||
+            w.skills.has(officer,Skill.QIANGYUN)||w.contests.profile(officer.id).has(Contests.Gear.HORSE))return 0;
+        return w.skills.has(victor,Skill.BOFU)?100:Math.max(5,Math.min(60,20+(w.army.war(victor)-officer.war)/5));
+    }
     void defeated(World.Unit loser,World.Unit victor){
-        List<World.Officer> crew=w.army.crew(loser);boolean blood=w.skills.has(loser,Skill.XUELU);
-        boolean hostile=victor!=null&&w.campaign.hostile(victor.owner,loser.owner);
+        // Multiple splash/collision callbacks must never pay twice or release an already captured officer.
+        if(loser==null||w.unit(loser.id)!=loser)return;
+        List<World.Officer> crew=w.army.crew(loser);
+        boolean hostile=victor!=null&&w.unit(victor.id)==victor&&victor.troops>0&&w.campaign.hostile(victor.owner,loser.owner);
         World.City jail=hostile?refuge(victor.owner,loser.hex):null;
-        boolean binding=victor!=null&&w.skills.has(victor,Skill.BOFU);
-        int attack=victor==null?0:w.army.war(victor);
-        Set<Integer> horses=new HashSet<>();for(World.Officer o:crew)if(w.contests.profile(o.id).has(Contests.Gear.HORSE))horses.add(o.id);
-        if(hostile)w.treasures.rob(victor,crew);
+        // Capture immunity is sampled before plunder can transfer a horse away from its owner.
+        Map<Integer,Integer> chances=new LinkedHashMap<>();
+        for(World.Officer o:crew)chances.put(o.id,hostile?captureChance(victor,loser,o):0);
+        int gold=hostile?Math.min(loser.gold,Math.max(0,10000-victor.gold)):0;
+        int food=hostile?Math.min(loser.food,Math.max(0,1000000-victor.food)):0;
+        if(hostile){victor.gold+=gold;victor.food+=food;w.treasures.rob(victor,crew);}
+        int lostGold=loser.gold-gold,lostFood=loser.food-food;
+        loser.gold=0;loser.food=0;
+        List<String> captured=new ArrayList<>(),escaped=new ArrayList<>();
         for(World.Officer o:crew){
-            boolean caught=jail!=null&&!blood&&!horses.contains(o.id)&&!w.skills.has(o,Skill.QIANGYUN)&&
-                (binding||w.strategy.nextInt(100)<Math.max(5,Math.min(60,20+(attack-o.war)/5)));
-            if(caught)capture(o,jail);else w.retreat(o,loser.hex);
+            int chance=chances.get(o.id);
+            boolean caught=chance>0&&(chance==100||w.strategy.nextInt(100)<chance);
+            if(caught){capture(o,jail);captured.add(o.name+"（"+jail.name+"）");}
+            else{w.retreat(o,loser.hex);escaped.add(o.name);}
         }
+        w.battleImpact(loser.hex,true);
+        String report=w.officer(loser.officerId).name+"部队被击破";
+        if(hostile)report+="；"+w.officer(victor.officerId).name+"部队缴获 金+"+gold+"、粮+"+food+
+            (lostGold+lostFood>0?"（携带已满，遗失金"+lostGold+"、粮"+lostFood+"）":"");
+        else report+="；无可接收战利品的敌军，物资损失";
+        report+="；俘虏："+(captured.isEmpty()?"无":String.join("、",captured));
+        if(!escaped.isEmpty())report+="；逃脱："+String.join("、",escaped);
+        w.battleOutcome(report);
         w.units.remove(loser);
         if(hostile)w.treasures.fallenTreasury(loser.owner,victor.owner);
         if(hostile)for(World.Officer o:w.army.crew(victor))earn(o.id,500);

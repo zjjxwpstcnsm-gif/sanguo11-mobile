@@ -13,6 +13,19 @@ public final class MapView extends View {
     private final TileListener listener;
     private final Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Path path=new Path();
+    private final MapModels models=new MapModels();
+    private Hex impactHex;
+    private long impactUntil;
+    private boolean defeatImpact;
+    void battleFeedback(World.Result result,boolean haptics){
+        impactHex=result.impact;defeatImpact=result.feedback==World.Feedback.DEFEAT;
+        impactUntil=android.os.SystemClock.uptimeMillis()+450;
+        if(haptics&&result.feedback!=World.Feedback.NONE)post(()->{
+            int effect=defeatImpact?(android.os.Build.VERSION.SDK_INT>=30?HapticFeedbackConstants.CONFIRM:HapticFeedbackConstants.LONG_PRESS):HapticFeedbackConstants.CONTEXT_CLICK;
+            performHapticFeedback(effect);
+        });
+        invalidate();
+    }
     private final GestureDetector gestures;
     private final ScaleGestureDetector scaler;
     private World world;
@@ -167,18 +180,31 @@ public final class MapView extends View {
         }
         drawRoute(canvas);
         if(selected!=null){polygon(x(selected),y(selected),RADIUS-2);stroke(canvas,GOLD,Math.max(2,2*density/scale));}
-        if(detail)for(Object object:visibleObjects)if(object instanceof War.Fire){War.Fire f=(War.Fire)object;
-            float cx=x(f.hex),cy=y(f.hex);polygon(cx,cy,RADIUS-2);fill(canvas,Color.argb(145,227,81,28));label(canvas,"火",cx,cy+5,18,PAPER);
+        for(Object object:visibleObjects)if(object instanceof War.Fire){War.Fire f=(War.Fire)object;
+            float cx=x(f.hex),cy=y(f.hex);polygon(cx,cy,RADIUS-2);fill(canvas,Color.argb(145,227,81,28));if(detail)label(canvas,"火",cx,cy+5,18,PAPER);
         }
-        if(detail)for(Object object:visibleObjects)if(object instanceof War.Structure){War.Structure s=(War.Structure)object;
-            float cx=x(s.hex),cy=y(s.hex);paint.setColor(factionColor(s.owner));canvas.drawRect(cx-14,cy-13,cx+14,cy+13,paint);
-            label(canvas,s.kind.label.substring(0,1),cx,cy+5,15,Color.rgb(18,34,34));label(canvas,(s.complete?"":"建")+s.hp,cx,cy-17,10,PAPER);
+        for(Object object:visibleObjects)if(object instanceof War.Structure){War.Structure s=(War.Structure)object;
+            float cx=x(s.hex),cy=y(s.hex);int color=factionColor(s.owner);
+            if(detail){canvas.save();canvas.translate(cx,cy);models.structure(canvas,s.kind,color);canvas.restore();label(canvas,s.kind.label+(s.complete?"":"·建"),cx,cy+26,9,PAPER);}
+            else {paint.setColor(color);canvas.drawRect(cx-12,cy-12,cx+12,cy+12,paint);}
+            if(detail)label(canvas,String.valueOf(s.hp),cx,cy-30,9,PAPER);
         }
-        if(detail)for(Object object:visibleObjects)if(object instanceof Domestic.Facility){Domestic.Facility f=(Domestic.Facility)object;float cx=x(f.hex),cy=y(f.hex);paint.setColor(factionColor(cityIndex.get(f.cityId).owner));canvas.drawRect(cx-12,cy-12,cx+12,cy+12,paint);label(canvas,f.kind.label.substring(0,1),cx,cy+5,15,Color.rgb(18,34,34));if(f.remaining>0)label(canvas,"剩"+f.remaining,cx,cy-16,10,PAPER);}
+        for(Object object:visibleObjects)if(object instanceof Domestic.Facility){Domestic.Facility f=(Domestic.Facility)object;float cx=x(f.hex),cy=y(f.hex);int color=factionColor(cityIndex.get(f.cityId).owner);
+            if(detail){canvas.save();canvas.translate(cx,cy);models.facility(canvas,f.kind,color);canvas.restore();label(canvas,f.kind.label+"·"+f.level,cx,cy+26,9,PAPER);if(f.remaining>0)label(canvas,"建·剩"+f.remaining,cx,cy-30,9,GOLD);}
+            else {paint.setColor(color);canvas.drawRect(cx-10,cy-10,cx+10,cy+10,paint);}
+        }
         for(Object object:visibleObjects)if(object instanceof WorldEvents.Camp){WorldEvents.Camp camp=(WorldEvents.Camp)object;float cx=x(camp.hex),cy=y(camp.hex);paint.setColor(Color.rgb(173,77,59));canvas.drawRect(cx-15,cy-15,cx+15,cy+15,paint);label(canvas,"寨",cx,cy+5,16,PAPER);if(detail)label(canvas,camp.tribe.label+" "+camp.troops,cx,cy-20,10,PAPER);}
         for(Object object:visibleObjects)if(object instanceof World.City)drawCity(canvas,(World.City)object);
-        if(detail||moving>=0)for(Object object:visibleObjects)if(object instanceof World.Unit)drawUnit(canvas,(World.Unit)object);
+        for(Object object:visibleObjects)if(object instanceof World.Unit){World.Unit u=(World.Unit)object;
+            if(detail)drawUnit(canvas,u);else {paint.setColor(factionColor(u.owner));canvas.drawCircle(x(u.hex),y(u.hex),12,paint);}
+        }
         if(detail)for(Object object:visibleObjects)if(object instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)object;if(m.owner!=world.player&&!m.transport)continue;float cx=x(m.hex)+15,cy=y(m.hex)-8;paint.setColor(Color.rgb(30,42,43));canvas.drawCircle(cx,cy,10,paint);label(canvas,m.transport?"运":"调",cx,cy+4,12,m.owner==world.player?GOLD:factionColor(m.owner));}
+        long remaining=impactUntil-android.os.SystemClock.uptimeMillis();
+        if(impactHex!=null&&remaining>0){
+            float progress=1-remaining/450f;paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(defeatImpact?3:2);
+            paint.setColor(Color.argb((int)(220*(1-progress)),255,defeatImpact?178:226,106));
+            canvas.drawCircle(x(impactHex),y(impactHex),12+progress*22,paint);paint.setStyle(Paint.Style.FILL);postInvalidateOnAnimation();
+        }
         canvas.restore();
         if(showMini)drawNavigator(canvas);
 
@@ -208,9 +234,7 @@ public final class MapView extends View {
         label(c,"当前战场 · 拖动定位",miniRect.centerX(),miniRect.bottom+13*density,10*density,PAPER);
     }
     private void drawCity(Canvas c,World.City city){float scale=camera.scale;float cx=x(city.hex),cy=y(city.hex);int owner=factionColor(city.owner);
-        paint.setColor(owner);c.drawCircle(cx,cy,22,paint);paint.setColor(Color.rgb(32,44,40));c.drawRect(cx-17,cy-8,cx+17,cy+12,paint);paint.setColor(Color.rgb(210,196,161));
-        c.drawRect(cx-15,cy-6,cx+15,cy+9,paint);for(int i=-15;i<15;i+=6)c.drawRect(cx+i,cy-10,cx+i+4,cy-4,paint);
-        paint.setColor(Color.rgb(61,62,46));c.drawRect(cx-4,cy+1,cx+4,cy+12,paint);paint.setColor(owner);c.drawRect(cx,cy-29,cx+13,cy-17,paint);paint.setStrokeWidth(1.5f);c.drawLine(cx,cy-30,cx,cy-9,paint);
+        c.save();c.translate(cx,cy);models.city(c,city.kind,owner);c.restore();
         boolean labelVisible=scale*RADIUS>=7*density||city.hex.equals(selected)||(world.home()!=null&&city.id==world.home().id);
         if(!labelVisible)return;
         float sz=12*density/scale;paint.setColor(Color.argb(225,22,37,37));c.drawRoundRect(cx-sz*1.8f,cy+14,cx+sz*1.8f,cy+14+sz*1.6f,3,3,paint);
@@ -221,11 +245,12 @@ public final class MapView extends View {
             paint.setTextSize(fs);float half=paint.measureText(info)/2+4*density/scale;paint.setColor(Color.argb(235,17,32,37));c.drawRoundRect(cx-half,baseline-fs,cx+half,baseline+fs*.3f,2,2,paint);label(c,info,cx,baseline,fs,PAPER);}
         paint.setColor(owner);c.drawRect(cx-16,cy+10,cx-16+32*Math.min(1,city.defense/3000f),cy+13,paint);
     }
-    private void drawUnit(Canvas c,World.Unit u){float scale=camera.scale;float cx=x(u.hex),cy=y(u.hex);paint.setColor(Color.rgb(24,38,37));c.drawCircle(cx+1,cy+2,15,paint);paint.setColor(factionColor(u.owner));c.drawCircle(cx,cy,14,paint);
-        label(c,world.army.equipmentLabel(u).substring(0,1),cx,cy+5,16,Color.rgb(18,34,34));
-        if(u.acted){paint.setColor(Color.argb(140,17,32,37));c.drawCircle(cx,cy,14,paint);label(c,"✓",cx,cy+4,14,PAPER);}
+    private void drawUnit(Canvas c,World.Unit u){float scale=camera.scale;float cx=x(u.hex),cy=y(u.hex);
+        c.save();c.translate(cx,cy);models.unit(c,u,world.army.water(u.hex),factionColor(u.owner));c.restore();
+        if(u.acted){paint.setColor(Color.argb(210,17,32,37));c.drawCircle(cx+16,cy-14,7,paint);label(c,"✓",cx+16,cy-11,10,PAPER);}
         if(u.burning>0)label(c,"火",cx-16,cy+15,12,Color.rgb(255,120,60));
-        if(u.status!=game.sanguo.core.War.Status.NORMAL)label(c,u.status.label.substring(0,1),cx+16,cy+15,12,Color.rgb(255,194,100));
-        float sz=10*density/scale;label(c,officerIndex.get(u.officerId).name+" "+u.troops,cx,cy-19,sz,PAPER);
+        if(u.status!=War.Status.NORMAL)label(c,u.status.label.substring(0,1),cx+16,cy+15,12,Color.rgb(255,194,100));
+        float sz=Math.min(10,10*density/scale);label(c,officerIndex.get(u.officerId).name+" "+u.troops,cx,cy-31,sz,PAPER);
+        label(c,world.army.water(u.hex)?u.ship.label:u.weapon.label,cx,cy+26,9,PAPER);
     }
 }

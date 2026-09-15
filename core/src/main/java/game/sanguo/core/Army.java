@@ -153,26 +153,26 @@ public final class Army {
     public World.Result tactic(int unit,Hex target,Tactic tactic){
         String error=tacticError(unit,target,tactic);if(error!=null)return w.fail(error);
         World.Unit u=w.unit(unit),enemy=w.unitAt(target);World.City city=w.cityAt(target);
-        u.acted=true;u.energy-=tactic.energy;
+        u.acted=true;u.energy-=tactic.energy;w.battleImpact(target,false);
         if(tacticChance(unit,target)<100&&w.strategy.nextInt(100)>=tacticChance(unit,target))return w.success(tactic.label+"未命中，气力已消耗");
-        if(city!=null){World.Result result=w.resolveSiege(u,city,true);if(tactic==Tactic.STONE)w.fieldworks.stoneSplash(u,target);w.checkVictory();return result;}
+        if(city!=null)return w.resolveSiege(u,city,true,tactic==Tactic.STONE);
         War.Structure structure=w.war.at(target);
         if(structure!=null){
             if(structure.complete&&w.fieldworks.trap(structure.kind)&&(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)){w.war.ignite(target,u);w.checkVictory();return w.success(tactic.label+"引爆"+structure.kind.label);}
             int amount=w.campaign.constructionDamage(u,w.army.siegeDefenseDamage(u));if(w.skills.critical(u,null,true))amount=amount*115/100;
-            amount=Math.min(structure.hp,amount);structure.hp-=amount;if(structure.hp==0)w.war.structures.remove(structure);
+            amount=Math.min(structure.hp,amount);structure.hp-=amount;if(structure.hp==0){w.war.structures.remove(structure);w.battleImpact(target,true);w.battleOutcome(structure.kind.label+"已摧毁，地块已释放");}
             if(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)w.war.ignite(target,u);if(tactic==Tactic.STONE)w.fieldworks.stoneSplash(u,target);
             w.campaign.earn(u.owner,20);return w.success(tactic.label+"命中"+structure.kind.label+"，耐久减少"+amount);
         }
         int amount=w.war.physicalDamage(u,enemy,tactic==Tactic.STONE?1.5:1.3,true,new Random(w.strategy.nextInt(Integer.MAX_VALUE)));
-        enemy.troops-=amount;
+        enemy.troops-=amount;w.skills.onHit(u,enemy,amount,true);
         if(enemy.troops==0)w.defeatUnit(enemy,u);
         else if((tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)&&!w.skills.has(enemy,Skill.HUOSHEN)){enemy.burning=2;enemy.burningOwner=u.owner;enemy.burningPower=w.skills.has(u,Skill.HUOSHEN)?2:1;}
         else if(tactic==Tactic.RAM&&water(u.hex)){
             Hex next=new Hex(target.q+target.q-u.hex.q,target.r+target.r-u.hex.r);
             if(water(next)&&w.unitAt(next)==null&&w.cityAt(next)==null&&w.domestic.at(next)==null&&w.war.at(next)==null)enemy.hex=next;
         }
-        w.skills.onHit(u,enemy,amount,true);if(tactic==Tactic.STONE)w.fieldworks.stoneSplash(u,target);
+        if(tactic==Tactic.STONE)w.fieldworks.stoneSplash(u,target);
         w.campaign.earn(u.owner,enemy.troops==0&&w.skills.has(u,Skill.JINGMIAO)?80:40);w.checkVictory();return w.success(tactic.label+"命中，敌损"+amount);
     }
     public World.Result extinguish(int unit){World.Unit u=w.unit(unit);

@@ -4,9 +4,13 @@
 
 ## 当前状态
 
-**v0.19.0 大地图与横竖屏界面开发版。** 详情默认收起，城市/武将/任务/存档收纳到「功能」，全图/定位/导航图收纳到「视图」。竖屏底部面板、横屏侧栏支持展开/缩小/收起；视图→屏幕方向可选跟随系统、竖屏、横屏并记住设置。行军确认栏仅在路线预览时出现，地图在面板开合与转屏时保持缩放比例。沿用 v0.18 内容、规则和 v15 存档。
+**v0.20.0 战果与地图模型开发版。** 击破缴获剩余金粮，逐人显示俘虏/逃脱与关押位置；攻击/击破触感反馈及开关；44类兵种、舰船、城关港和设施简易模型。低缩放仍显示占格物，火场/地形阻挡及攻击后下旬行军有明确提示。存档沿用v15。
 
-本地全部核心回归与 51,770 条 UI 模型/相机断言通过；已新增 Android 横竖屏操作回归，**Android 编译、安装与真机视觉验收仍受构建环境阻塞，尚无 v0.19 APK**。详细操作和验证边界见 [本轮说明](docs/MOBILE_LAYOUT_V0_19.md)。
+全部核心回归及新增204条战果/寻路断言通过；Android构建与安装验证待CI完成。[本轮实现与规则边界](docs/BATTLE_MAP_V0_20.md)。**仍未达到100%还原**：原版逐格地图、完整官方开局、全事件/PK/特技交互和精确公式尚有缺口。
+
+## v0.19 历史状态
+
+v0.19地图优先与横竖屏界面已合入；[最后主线验证运行](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions)可在Actions查看，原实现说明见 [v0.19说明](docs/MOBILE_LAYOUT_V0_19.md)。
 
 ## v0.18 历史状态
 
@@ -117,7 +121,7 @@ v0.8 Agent 1 开发分支新增移动确认与移动后行动、部分真实特�
 
 Android 构建：安装 JDK 17、Android SDK 35、Build Tools 35.0.0、Gradle 8.11.1，然后运行 `./gradlew test :core:check :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`。已提交固定 Gradle 8.11.1 及 SHA-256 的 Wrapper。
 
-APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-v019-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
+APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-v020-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
 
 验证范围与待验项目见 [VALIDATION.md](docs/VALIDATION.md)。
 

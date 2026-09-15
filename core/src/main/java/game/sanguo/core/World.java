@@ -61,10 +61,13 @@ public final class World {
             this.id=id;this.owner=owner;this.officerId=officerId;this.weapon=weapon;this.hex=hex;this.troops=troops;this.food=food;
         }
     }
+    public enum Feedback { NONE, ATTACK, DEFEAT }
     public static final class Result {
         public final boolean ok;
         public final String message;
-        private Result(boolean ok,String message) { this.ok=ok;this.message=message; }
+        public final Feedback feedback;
+        public final Hex impact;
+        private Result(boolean ok,String message,Feedback feedback,Hex impact) { this.ok=ok;this.message=message;this.feedback=feedback;this.impact=impact; }
     }
     public final int width,height;
     public final Terrain[][] terrain;
@@ -123,8 +126,21 @@ public final class World {
     public Unit unit(int id) { for(Unit u:units) if(u.id==id) return u;return null; }
     public City cityAt(Hex h) { for(City c:cities) if(c.hex.equals(h)) return c;return null; }
     public Unit unitAt(Hex h) { for(Unit u:units) if(u.hex.equals(h)) return u;return null; }
-    Result fail(String text) { return new Result(false,text); }
-    Result success(String text) { fieldworks.cleanup();abilities.cleanup();districts.cleanup();note(text);return new Result(true,text); }
+    // Transient command feedback, never serialized or inferred by parsing translated log text.
+    private Feedback feedback=Feedback.NONE;
+    private Hex impact;
+    private final List<String> battleOutcomes=new ArrayList<>();
+    void battleImpact(Hex hex,boolean defeated){
+        if(defeated||feedback==Feedback.NONE){feedback=defeated?Feedback.DEFEAT:Feedback.ATTACK;impact=hex;}
+    }
+    void battleOutcome(String text){battleOutcomes.add(text);note(text);}
+    private Result result(boolean ok,String text){
+        String message=text+(ok&&!battleOutcomes.isEmpty()?"\n"+String.join("\n",battleOutcomes):"");
+        Result result=new Result(ok,message,ok?feedback:Feedback.NONE,ok?impact:null);
+        feedback=Feedback.NONE;impact=null;battleOutcomes.clear();return result;
+    }
+    Result fail(String text) { return result(false,text); }
+    Result success(String text) { fieldworks.cleanup();abilities.cleanup();districts.cleanup();note(text);return result(true,text); }
     public void note(String text) { log.add(text);while(log.size()>40)log.remove(0); }
     private boolean available(Officer o,City c) { return !commandsBlocked()&&o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
     public List<Officer> idle(City c) {
@@ -197,11 +213,13 @@ public final class World {
         u.acted=true;return resolveSiege(u,c,false);
     }
     /** Caller has validated and paid for the command. No nested public command or second payment. */
-    Result resolveSiege(Unit u,City c,boolean tactic) {
+    Result resolveSiege(Unit u,City c,boolean tactic) {return resolveSiege(u,c,tactic,false);}
+    Result resolveSiege(Unit u,City c,boolean tactic,boolean stoneSplash) {
         int hit=Army.siegeWeapon(u.weapon)||army.water(u.hex)?army.siegeDefenseDamage(u):Math.max(100,damage(u,70,120)/2);
         int troopHit=Army.siegeWeapon(u.weapon)||army.water(u.hex)?army.siegeTroopDamage(u):hit;
         if(skills.has(u,Skill.GONGCHENG)||tactic&&skills.critical(u,null,true)){hit=hit*115/100;troopHit=troopHit*115/100;}
         hit=campaign.constructionDamage(u,hit);troopHit=campaign.constructionDamage(u,troopHit);c.defense=Math.max(0,c.defense-hit);c.troops=Math.max(0,c.troops-troopHit);
+        battleImpact(c.hex,c.defense==0||c.troops==0);
         String message=officer(u.officerId).name+"攻城，城防−"+hit+"，守军−"+troopHit;
         if(c.defense==0||c.troops==0) {
             int old=c.owner;c.owner=u.owner;domestic.captured(c.id);strategy.cityCaptured(c.id);c.defense=1500;c.troops=0;c.morale=50;c.order=60;
@@ -213,6 +231,7 @@ public final class World {
             int counter=(campaign.has(c.owner,Campaign.Tech.DEFENSE_REINFORCEMENT)?2:1)*Math.max(50,c.troops/50);
             u.troops=Math.max(0,u.troops-counter);if(u.troops==0)removeUnit(u);message+="，据点反击−"+counter;
         }
+        if(stoneSplash)fieldworks.stoneSplash(u,c.hex);
         checkVictory();return success(message);
     }
     public Result enter(int unitId,int cityId) {

@@ -64,6 +64,18 @@ public final class MarchOrders {
     }
     /** Read-only current route for the map, including paused orders. */
     public Plan current(World.Unit u){return plan(u,u==null?null:u.march,false);}
+    /** Explain a target obstruction without changing the world or spending an action. */
+    public String tileError(World.Unit u,Hex tile){
+        if(tile==null||!w.inside(tile))return "目标在地图范围外";
+        if(u==null)return "请选择己方部队";
+        Domestic.Facility facility=w.domestic.at(tile);
+        if(facility!=null)return facility.kind.label+"占据目标格，请选择旁边空地";
+        War.Fire fire=w.war.fireAt(tile);
+        if(fire!=null)return "目标格有火场（剩"+fire.remaining+"旬），自动行军避火；请先灭火或等待熄灭";
+        if(w.terrain[tile.q][tile.r]==World.Terrain.MOUNTAIN)return "目标是山地，部队无法通行";
+        if(w.army.moveCost(u,u.hex,tile)<1)return "当前兵种无法进入该地形，可能需要难所行军技巧";
+        return null;
+    }
     private int budget(World.Unit u,Hex h,int[] budgets){
         int mode=w.army.water(h)?1:0;if(budgets[mode]<0)budgets[mode]=w.war.movementAt(u,h);return budgets[mode];
     }
@@ -72,6 +84,7 @@ public final class MarchOrders {
         String problem=error(u);Hex destination=target(o);List<Hex> path=new ArrayList<>();int cost=0,stepsNow=0,turns=0;
         if(problem==null&&(o==null||destination==null||!w.inside(destination)))problem="目标已消失或归属改变，请重新选择";
         if(problem==null&&o.kind==Kind.UNIT&&o.targetId==u.id)problem="请选择其他目标";
+        if(problem==null&&o.kind==Kind.TILE)problem=tileError(u,destination);
         if(problem==null){
             Set<Hex> blocked=new HashSet<>();for(World.City c:w.cities)blocked.add(c.hex);
             for(World.Unit other:w.units)if(other.id!=u.id)blocked.add(other.hex);
