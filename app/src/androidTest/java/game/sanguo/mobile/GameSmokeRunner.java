@@ -23,7 +23,14 @@ public final class GameSmokeRunner extends Instrumentation {
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
-            click("区域争雄 ·",false);click("孙权军",true);click("执行",true);
+            click("区域争雄 ·",false);click("孙权军",true);
+            for(int orientation:new int[]{android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT,android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE}){
+                runOnMainSync(()->current.setRequestedOrientation(orientation));assertOrientation(orientation==android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                getUiAutomation().waitForIdle(800,5000);waitForIdleSync();
+                Rect button=new Rect();waitText("执行",true).getBoundsInScreen(button);android.graphics.Point display=new android.graphics.Point();current.getWindowManager().getDefaultDisplay().getSize(display);
+                require(button.left>=0&&button.top>=0&&button.right<=display.x&&button.bottom<=display.y,"open confirmation remains fully reachable after rotation");
+            }
+            screenshot("v021-rotated-confirmation");click("执行",true);
             waitText("区域争雄  ·  孙权军",false);assertWorld(2,0,"regional-sandbox");
             adaptiveMapFlow();
             modelAtlas();
