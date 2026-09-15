@@ -335,7 +335,7 @@ public final class MainActivity extends Activity {
     private List<CityCommand> militaryCommands(World.City c){return Arrays.asList(
         new CityCommand("出征",()->armyUi().deploy(c)),
         new CityCommand("快速出征（单将）",()->chooseOfficer(c,o->chooseWeapon(weapon->new AlertDialog.Builder(this).setTitle("出征兵力").setItems(new String[]{"3000人","5000人","8000人"},(d,which)->{
-            World.Result result=world.deploy(c.id,o.id,weapon,new int[]{3000,5000,8000}[which]);if(result.ok){World.Unit u=world.unit(o.unitId);selected=u.hex;moving=u.id;}apply(result);
+            World.Result result=world.deploy(c.id,o.id,weapon,new int[]{3000,5000,8000}[which]);apply(result);if(result.ok)selectAndFocus(world.unit(o.unitId).hex);
         }).show()))),
         new CityCommand("编队 / 水陆出征",()->armyUi().deploy(c)),
         new CityCommand("军备制造 / 攻城器械与舰船",()->armyUi().manufacture(c)),
