@@ -376,8 +376,8 @@ public final class GameSmokeRunner extends Instrumentation {
             }
             if(candidate.contests.current().debate().winner()==0)pending=candidate;
         }
-        require(pending!=null,"deterministic actual debate victory available");installFixture(pending,pending.city(10).hex);waitText("舌战获胜",false);
-        before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("舌战获胜",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"pending victory remains uncommitted after recreation");screenshot("46-debate-victory");
+        require(pending!=null,"deterministic actual debate victory available");installFixture(pending,pending.city(10).hex);scrollToText("舌战获胜",false);
+        before=SaveCodec.encode(saved());runOnMainSync(current::recreate);scrollToText("舌战获胜",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"pending victory remains uncommitted after recreation");screenshot("46-debate-victory");
         click("留情 · 技巧+50",true);require(!saved().contests.busy()&&saved().officer(6).owner==0&&saved().campaign.points(0)==50,"native mercy choice recruits officer and awards points once");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("文武对决",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"settled debate does not pay rewards twice");screenshot("47-contest-settled");
     }
