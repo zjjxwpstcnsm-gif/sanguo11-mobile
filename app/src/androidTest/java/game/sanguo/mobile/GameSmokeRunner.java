@@ -88,7 +88,7 @@ public final class GameSmokeRunner extends Instrumentation {
         clickNav("城市");waitText("城池一览",true);assertMapLayout(false,true);screenshot("94-landscape-sheet");
         click("收起",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"layout changes preserve resources, turn and RNG");
     }
-    private void chooseOrientation(String label){click("视图",true);click("屏幕方向",true);click(label,true);waitForIdleSync();}
+    private void chooseOrientation(String label)throws Exception {click("视图",true);click("屏幕方向",true);click(label,true);getUiAutomation().waitForIdle(800,5000);waitForIdleSync();}
     private void assertOrientation(boolean portrait){
         long until=SystemClock.uptimeMillis()+5000;
         while(SystemClock.uptimeMillis()<until){waitForIdleSync();if((current.getResources().getConfiguration().orientation==android.content.res.Configuration.ORIENTATION_PORTRAIT)==portrait)return;SystemClock.sleep(100);}
@@ -467,12 +467,12 @@ public final class GameSmokeRunner extends Instrumentation {
         byte[] before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"cancel ability research changes no RNG/cost/hidden selection");
         locateCity("学宫");click("研究",true);click("PK能力研究",true);click("防御",true);click("统率+5低 · 可研究",true);click("执行",true);
         require(saved().abilities.research(0).remaining==9&&saved().city(10).gold==29700&&saved().actionPoints[0]==40,"UI starts real nine-turn research");
-        waitText("任务 1",true);
+        click("功能",true);waitText("任务 1",true);
         clickNav("任务");click("筛选 · 全部任务",true);click("研究 / 培养",true);waitText("PK研究统率+5低",true);screenshot("48-pk-research");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("PK研究统率+5低",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"research survives recreation");
         for(int turn=1;turn<=9;turn++){endTurn();waitForTurn(turn);}require(saved().abilities.learned(0,"lead.low"),"full UI turn loop unlocks research");
         locateCity("学宫");click("研究",true);click("能力 / 适性培养",true);click("基础能力",true);click("统率+5低 · 剩5次",true);click("习武生 · 50",true);click("执行",true);
-        waitText("任务 1",true);
+        click("功能",true);waitText("任务 1",true);
         clickNav("任务");waitText("PK培养统率+5低 · 习武生",true);screenshot("49-pk-training");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("PK培养统率+5低 · 习武生",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"training survives recreation");
         for(int turn=10;turn<=12;turn++){endTurn();waitForTurn(turn);}require(saved().officer(0).leadership==55&&saved().abilities.remaining(0,"lead.low")==4,"real stat change and finite use");
@@ -510,7 +510,7 @@ public final class GameSmokeRunner extends Instrumentation {
         Hex site=factory.domestic.buildSites(10).get(0);require(factory.domestic.build(10,3,Domestic.Kind.WORKSHOP,site).ok,"manufacturing fixture workshop starts");
         for(int i=0;i<3;i++)require(factory.nextTurn().ok,"manufacturing fixture advances");installFixture(factory,factory.city(10).hex);
         armyCity();click("军备制造 / 攻城器械与舰船",true);click("井阑 ·",false);click("周瑜 ·",false);click("执行",true);
-        w=saved();require(w.army.productions().size()==1&&w.officer(1).otherTaskTurns==3,"manufacturing starts from UI");waitText("任务 1",true);
+        w=saved();require(w.army.productions().size()==1&&w.officer(1).otherTaskTurns==3,"manufacturing starts from UI");click("功能",true);waitText("任务 1",true);
         clickNav("任务");click("筛选 · 全部任务",true);click("军备制造",true);waitText("制造井阑 · 周瑜",true);screenshot("25-manufacturing-task");
         int count=w.city(10).equipment[6],turn=w.turn;for(int i=1;i<=3;i++){endTurn();waitForTurn(turn+i);}w=saved();require(w.city(10).equipment[6]==count+1&&w.army.productions().isEmpty(),"UI turn loop completes one equipment item");
 

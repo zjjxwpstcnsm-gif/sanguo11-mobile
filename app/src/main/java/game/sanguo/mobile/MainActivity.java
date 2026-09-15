@@ -107,8 +107,10 @@ public final class MainActivity extends Activity {
         navigation.clear();String[] keys={"map","cities","officers","tasks","menu"},labels={"地图","城市","武将","任务","菜单"};
         ScrollView scroll=new ScrollView(this);scroll.addView(list);
         navigationDialog=new AlertDialog.Builder(this).setTitle("功能导航").setView(scroll).setNegativeButton("返回",null).create();
+        int pendingTasks=taskCount();
         for(int i=0;i<keys.length;i++){
-            final String page=keys[i];Button item=button(labels[i],v->{navigationDialog.dismiss();ui.page=page;ui.panelVisible=!page.equals("map");ui.panelExpanded=false;refresh();revealPanel();});
+            final String page=keys[i];String label=labels[i]+(page.equals("tasks")&&pendingTasks>0?" "+pendingTasks:"");
+            Button item=button(label,v->{navigationDialog.dismiss();ui.page=page;ui.panelVisible=!page.equals("map");ui.panelExpanded=false;refresh();revealPanel();});
             item.setContentDescription("导航 · "+labels[i]);navigation.put(page,item);list.addView(item,new LinearLayout.LayoutParams(-1,dp(48)));
         }
         navigationDialog.show();
