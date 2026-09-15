@@ -554,7 +554,7 @@ public final class GameSmokeRunner extends Instrumentation {
     private void sourceProfileFlow()throws Exception {
         World w=ScenarioCatalog.load("regional-sandbox",0);installFixture(w,w.city(100).hex);
         int id=ContentCatalog.get().officers().stream().filter(o->o.name.equals("曹丕")).findFirst().get().id;
-        click("菜单",true);click("全国资料 / 核验目录",true);setInput("搜索资料","曹丕");click("曹丕 · ID",false);
+        click("菜单",true);click("全国资料 / 核验目录",true);click("剧本缺口",true);click("武将资料",true);setInput("搜索资料","曹丕");click("曹丕 · ID",false);
         scrollToText("已解析关系",false);click("加入局面",true);click("预览",true);waitText("确认加入资料武将",true);
         byte[] before=SaveCodec.encode(saved());screenshot("v018-source-preview");click("返回",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"cancel sourced import leaves save unchanged");
         click("曹丕 · ID",false);click("加入局面",true);click("预览",true);click("确认加入",true);waitForIdleSync();
