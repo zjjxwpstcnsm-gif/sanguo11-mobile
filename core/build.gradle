@@ -142,3 +142,19 @@ tasks.register('verifyContentProfiles', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyContentProfiles' }
 tasks.named('test') { dependsOn 'verifyContentProfiles' }
+
+tasks.register('verifyBattleFeedback', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.BattleFeedbackTest'
+}
+tasks.named('check') { dependsOn 'verifyBattleFeedback' }
+tasks.named('test') { dependsOn 'verifyBattleFeedback' }
+
+tasks.register('verifyPrisonerEscort', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PrisonerEscortTest'
+}
+tasks.named('check') { dependsOn 'verifyPrisonerEscort' }
+tasks.named('test') { dependsOn 'verifyPrisonerEscort' }

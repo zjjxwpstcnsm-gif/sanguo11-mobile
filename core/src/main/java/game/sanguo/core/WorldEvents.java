@@ -65,7 +65,7 @@ public final class WorldEvents {
     public World.Result attack(int unit,int camp){
         String error=attackError(unit,camp);if(error!=null)return w.fail(error);World.Unit u=w.unit(unit);Camp c=camp(camp);u.acted=true;
         int hit=Math.min(c.troops,300+w.army.war(u)*6+u.troops/12);c.troops-=hit;
-        int counter=0;if(c.troops==0){camps.remove(c);u.gold=Math.min(10000,u.gold+500);w.campaign.earn(u.owner,50);w.government.earn(u.officerId,200);}
+        w.battleImpact(c.hex,c.troops==0);int counter=0;if(c.troops==0){camps.remove(c);u.gold=Math.min(10000,u.gold+500);w.campaign.earn(u.owner,50);w.government.earn(u.officerId,200);}
         else if(u.hex.distance(c.hex)==1){counter=Math.min(u.troops,100+c.troops/15);u.troops-=counter;if(u.troops==0)w.removeUnit(u);}
         return w.success("讨伐"+c.tribe.label+"：敌损"+hit+"，反击损失"+counter+(c.troops==0?"，营寨已毁，获得500金（受携金上限限制）":""));
     }

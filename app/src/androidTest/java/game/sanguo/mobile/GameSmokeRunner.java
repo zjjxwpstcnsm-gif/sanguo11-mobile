@@ -19,16 +19,17 @@ public final class GameSmokeRunner extends Instrumentation {
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
-            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v15 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
+            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v16 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
             click("区域争雄 ·",false);click("孙权军",true);click("执行",true);
             waitText("区域争雄  ·  孙权军",false);assertWorld(2,0,"regional-sandbox");
             adaptiveMapFlow();
+            modelAtlas();
             clickNav("城市");click("建业 · 孙权军",false);
             waitText("建业",true);screenshot("02-city");
-            click("军事",true);click("出征",true);click("甘宁",true);click("弩兵",true);click("3000人",true);
+            click("军事",true);click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);click("3000人",true);
             waitText("携粮 6000",false);waitForIdleSync();
             World w=saved();require(w.units.size()==1&&w.unit(1).owner==2&&w.unit(1).officerId==3003,"selected faction deployment");
             screenshot("03-deployment");
@@ -65,7 +66,8 @@ public final class GameSmokeRunner extends Instrumentation {
             governmentFlow();
             documentTransferFlow();
             contestFlow();
-            result.putString("stream","SMOKE PASS: v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            battleFeedbackFlow();
+            result.putString("stream","SMOKE PASS: v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -296,7 +298,10 @@ public final class GameSmokeRunner extends Instrumentation {
         w.units.add(a);w.units.add(b);w.nextUnitId=3;w.officer(1).unitId=1;w.officer(1).cityId=-1;w.officer(2).unitId=2;w.officer(2).cityId=-1;
         installFixture(w,a.hex);tapHex(b.hex);click("执行",true);waitForIdleSync();
         require(saved().government.captive(2)&&saved().unit(2)==null,"capture skill produces persisted prisoner from actual map attack");
-        require(saved().government.prisoner(2).cityId==0,"fixture routes prisoner to the city exercised by the UI");
+        require(saved().government.prisoner(2).unitId==1&&saved().government.prisoner(2).cityId==-1,"prisoner initially follows victorious field unit");
+        World returning=saved();returning.unit(1).hex=new Hex(3,3);returning.unit(1).acted=false;installFixture(returning,returning.unit(1).hex);
+        tapHex(returning.city(0).hex);click("执行",true);
+        require(saved().government.prisoner(2).unitId==-1&&saved().government.prisoner(2).cityId==0,"actual enter command delivers prisoner to city");
         locateCity("营城");click("军政 / 俘虏 / 官职",true);click("俘虏处置",true);click("张辽 ·",false);click("释放",true);click("刘备 ·",false);
         byte[] before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"release cancellation preserves exact save");
         locateCity("营城");click("军政 / 俘虏 / 官职",true);click("俘虏处置",true);click("张辽 ·",false);click("释放",true);click("刘备 ·",false);click("执行",true);
@@ -309,9 +314,11 @@ public final class GameSmokeRunner extends Instrumentation {
         require(saved().domestic.missions.stream().anyMatch(m->m.officerId==6&&m.targetCity==0),"summon creates actual mission");
         World raid=saved();raid.active=1;raid.officer(2).acted=false;
         raid.cities.add(new World.City(3,"敌后方",new Hex(14,9),1));
-        require(raid.domestic.transport(2,3,2,0,5000,1,new int[4]).ok,"prepare real hostile cargo mission");raid.active=0;raid.unit(1).acted=false;
+        require(raid.domestic.transport(2,3,2,0,5000,1,new int[4]).ok,"prepare real hostile cargo mission");raid.active=0;raid.officer(1).acted=false;
+        require(raid.deploy(0,1,World.Weapon.SPEAR,3000).ok,"redeploy former escort for transport interception");
+        World.Unit raider=raid.unit(raid.officer(1).unitId);raider.hex=new Hex(4,4);
         Domestic.Mission convoy=raid.domestic.missions.stream().filter(m->m.officerId==2).findFirst().get();convoy.hex=new Hex(5,4);
-        installFixture(raid,raid.unit(1).hex);tapHex(convoy.hex);click("执行",true);
+        installFixture(raid,raider.hex);tapHex(convoy.hex);click("执行",true);
         require(saved().domestic.missions.stream().noneMatch(m->m.officerId==2)&&saved().government.captive(2),"map tap intercepts visible enemy transport and captures its courier");screenshot("41-transport-interception");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("军政验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"governance state survives activity recreation");screenshot("39-governance-restored");
     }
@@ -338,7 +345,7 @@ public final class GameSmokeRunner extends Instrumentation {
         require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=14,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
-        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==15,"upgraded writer produced v15 header");}
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==16,"upgraded writer produced v16 header");}
         screenshot("00-v09-upgrade-preserved");
     }
     private void contestFlow()throws Exception {
@@ -493,7 +500,7 @@ public final class GameSmokeRunner extends Instrumentation {
     }
     private void armyCity(){clickNav("城市");click("江东大营 · 江东军",false);click("军事",true);}
     private void fillFormation(){
-        armyCity();click("编队 / 水陆出征",true);click("孙权 ·",false);click("周瑜 ·",false);click("甘宁 ·",false);click("鲁肃 ·",false);
+        armyCity();click("出征",true);click("孙权 ·",false);click("周瑜 ·",false);click("甘宁 ·",false);click("鲁肃 ·",false);
         click("下一步",true);click("冲车 ·",false);click("楼船 ·",false);click("3000人",true);click("18000粮",true);click("0金",true);
     }
     private void armyFlow()throws Exception {
@@ -504,6 +511,9 @@ public final class GameSmokeRunner extends Instrumentation {
         require(army!=null&&army.weapon==World.Weapon.RAM&&army.ship==Army.Ship.TOWER_SHIP&&army.deputies.length==2,"UI creates three-officer siege/ship formation, caps deputies");
         require(w.officer(1).unitId==1&&w.officer(2).unitId==1&&w.officer(3).unitId==-1,"only selected two deputies leave city");
         require(w.city(10).ships[0]==2&&w.city(10).equipment[5]==1&&army.food==18000&&w.actionPoints[0]==50,"UI charges one ship, one ram and one AP payment");screenshot("24-three-officer-army");
+        for(String name:new String[]{"主将 · 孙权 · 查看武将","副将 · 周瑜 · 查看武将","副将 · 甘宁 · 查看武将"}){
+            click(name,true);waitText("统率",false);waitText("适性：",false);waitText("特技：",false);screenshot("v020-officer-"+name.charAt(0)+"-"+name.charAt(5));click("返回",true);
+        }
         byte[] before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("水陆攻防",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"v6 formation survives Activity recreation");
         tapCity(10,0);click("执行",true);w=saved();require(w.units.isEmpty()&&w.officer(1).cityId==10&&w.city(10).ships[0]==3&&w.city(10).equipment[5]==2,"UI returns all crew and equipment once");
 
@@ -567,7 +577,7 @@ public final class GameSmokeRunner extends Instrumentation {
         click("菜单",true);click("新游戏 / 选择势力",true);click("武将资料演练 ·",false);click("孙权军",true);waitText("能力/适性来自公开资料",false);screenshot("28-sourced-opening");click("执行",true);waitForIdleSync();
         assertWorld(2,0,"officer-reference-drill");ContentCatalog.get().validateOpening(saved());
         clickNav("城市");setInput("搜索城市或势力","不存在");waitText("没有符合条件的城池",false);setInput("搜索城市或势力","建业");click("建业 · 孙权军",false);
-        click("军事",true);click("出征",true);click("甘宁",true);click("弩兵",true);click("3000人",true);waitForIdleSync();require(saved().officer(3003).unitId>0,"sourced opening deployed via native command");
+        click("军事",true);click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);click("3000人",true);waitForIdleSync();require(saved().officer(3003).unitId>0,"sourced opening deployed via native command");
         require(saved().officer(3003).skillId.equals(Skill.WEIFENG.id),"source skill ID binds to actual runtime officer");
         tapHex(saved().unit(saved().officer(3003).unitId).hex);click("编队特技",true);waitText("甘宁 · 威风",false);screenshot("33-sourced-runtime-skill");click("返回",true);
         endTurn();waitForTurn(1);
@@ -704,6 +714,47 @@ public final class GameSmokeRunner extends Instrumentation {
         if(node==null)return false;
         if(node.isScrollable()&&node.isVisibleToUser()&&node.performAction(AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD))return true;
         for(int i=0;i<node.getChildCount();i++)if(scrollBack(node.getChild(i)))return true;return false;
+    }
+    private void battleFeedbackFlow()throws Exception {
+        World w=new World(12,8,"我军","敌军");w.scenarioId="battle-feedback-smoke";w.scenarioName="战果验证";
+        w.cities.add(new World.City(10,"本营",new Hex(3,3),0));w.cities.add(new World.City(20,"敌营",new Hex(10,6),1));
+        World.Officer a=new World.Officer(1,"捕将",0,-1,80,80,80,80,80),b=new World.Officer(2,"敌将",1,-1,80,80,80,80,80);
+        a.unitId=1;b.unitId=2;a.skillId=Skill.BOFU.id;w.officers.add(a);w.officers.add(b);
+        World.Unit u=new World.Unit(1,0,1,World.Weapon.SPEAR,new Hex(4,4),5000,10000),enemy=new World.Unit(2,1,2,World.Weapon.HALBERD,new Hex(5,4),1,5000);
+        enemy.gold=600;w.units.add(u);w.units.add(enemy);w.nextUnitId=3;
+        for(long seed=0;seed<100;seed++){w.strategy.setSeed(seed);World probe=SaveCodec.decode(SaveCodec.encode(w));probe.attack(1,2);probe.marches.execute(probe.marches.preview(1,enemy.hex));probe.nextTurn();if(probe.government.captive(2))break;}
+        installFixture(w,u.hex);
+        tapHex(enemy.hex);waitText("敌将：100%",false);screenshot("v020-capture-preview");click("执行",true);
+        waitText("击破战果",false);require(saved().unit(2)==null&&saved().unit(1).gold==600&&saved().unit(1).food==15000&&saved().government.captive(2),"actual map attack shows and saves captured resources and officer");
+        click("击破战果",false);waitText("战斗结果",true);waitText("金+600",false);screenshot("v020-defeat-report");click("收起战果",true);
+        tapHex(enemy.hex);waitText("本旬已行动，下旬出发",false);screenshot("v020-defeated-tile-route");click("开始行军",true);
+        require(saved().unit(1).hex.equals(new Hex(4,4))&&saved().unit(1).march!=null,"can queue former enemy tile without refunding action");
+        endTurn();require(saved().unit(1).hex.equals(enemy.hex)&&saved().unit(1).march==null,"installed client enters defeated tile next turn");
+        World marching=saved();require(marching.government.prisoner(2).unitId==1&&marching.government.location(marching.government.prisoner(2)).equals(enemy.hex),"prisoner follows real march");
+        tapHex(enemy.hex);click("随军俘虏 · 敌将",true);waitText("随捕将部队行军",false);screenshot("v020-escort-officer");click("返回",true);
+        byte[] escortSave=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(escortSave,SaveCodec.encode(saved())),"escorted captive survives client recreation");
+        tapHex(new Hex(4,3));click("开始行军",true);require(saved().unit(1).hex.equals(new Hex(4,3)),"carrier returns to city entrance");
+        tapHex(new Hex(3,3));click("执行",true);require(saved().unit(1)==null&&saved().government.prisoner(2).unitId==-1&&saved().government.prisoner(2).cityId==10,"only entering city changes prisoner to fixed city jail");
+        screenshot("v020-prisoner-delivered");
+        chooseOrientation("竖屏");click("全图",true);screenshot("v020-map-models-portrait");
+        click("视图",true);click("战斗震动",true);click("关闭",true);runOnMainSync(current::recreate);waitForIdleSync();
+        click("视图",true);click("战斗震动",true);require(waitText("关闭",true).isChecked(),"haptics off survives recreation");click("开启（遵循系统触感设置）",true);
+        chooseOrientation("横屏");
+    }
+    private void modelAtlas()throws Exception {
+        MapModels models=new MapModels();java.util.List<String> labels=new java.util.ArrayList<>();
+        java.util.List<java.util.function.Consumer<Canvas>> draws=new java.util.ArrayList<>();int color=0xff62af8f;
+        for(World.Weapon weapon:World.Weapon.values()){labels.add(weapon.label);draws.add(c->models.unit(c,new World.Unit(1,0,1,weapon,new Hex(0,0),1000,1000),false,color));}
+        for(Army.Ship ship:Army.Ship.values()){labels.add(ship.label);draws.add(c->{World.Unit u=new World.Unit(1,0,1,World.Weapon.SPEAR,new Hex(0,0),1000,1000);u.ship=ship;models.unit(c,u,true,color);});}
+        for(World.SiteKind kind:World.SiteKind.values()){labels.add(kind.name());draws.add(c->models.city(c,kind,color));}
+        for(Domestic.Kind kind:Domestic.Kind.values()){labels.add(kind.label);draws.add(c->models.facility(c,kind,color));}
+        for(War.StructureKind kind:War.StructureKind.values()){labels.add(kind.label);draws.add(c->models.structure(c,kind,color));}
+        require(labels.size()==44,"all current troop and building categories have a renderable model");
+        Bitmap bitmap=Bitmap.createBitmap(1200,1200,Bitmap.Config.ARGB_8888);Canvas c=new Canvas(bitmap);c.drawColor(0xff192d32);
+        Paint text=new Paint(Paint.ANTI_ALIAS_FLAG);text.setColor(0xffead9ad);text.setTextSize(23);text.setTextAlign(Paint.Align.CENTER);
+        for(int i=0;i<labels.size();i++){float x=(i%6)*200+100,y=(i/6)*150+70;c.save();c.translate(x,y);c.scale(2,2);draws.get(i).accept(c);c.restore();c.drawText(labels.get(i),x,y+62,text);}
+        File directory=getTargetContext().getExternalFilesDir("smoke");if(directory==null)throw new IOException("Model screenshot directory unavailable");
+        try(FileOutputStream out=new FileOutputStream(new File(directory,"v020-model-atlas.png"))){bitmap.compress(Bitmap.CompressFormat.PNG,100,out);}finally{bitmap.recycle();}
     }
     private void screenshot(String name)throws IOException {
         waitForIdleSync();Bitmap bitmap=getUiAutomation().takeScreenshot();if(bitmap==null)throw new IOException("Screenshot unavailable");

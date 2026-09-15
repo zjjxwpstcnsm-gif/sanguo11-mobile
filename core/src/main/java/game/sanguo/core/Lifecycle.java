@@ -81,7 +81,7 @@ public final class Lifecycle {
                 next.deputies=Arrays.stream(u.deputies).filter(x->x!=heir).toArray();next.gold=u.gold;next.ship=u.ship;next.energy=u.energy;next.acted=u.acted;next.march=u.march;
                 next.movementBudget=u.movementBudget;next.movementSpent=u.movementSpent;next.status=u.status;next.statusTurns=u.statusTurns;next.burning=u.burning;next.burningOwner=u.burningOwner;next.burningPower=u.burningPower;
                 w.units.set(w.units.indexOf(u),next);record(w.officer(heir).name+"接掌"+o.name+"部队，兵粮与行军指令保留");
-            }else{w.units.remove(u);record(o.name+"部队失去主将而解散，所携兵粮散失");}
+            }else{w.government.escortLost(u,null);w.units.remove(u);record(o.name+"部队失去主将而解散，所携兵粮散失");}
         }
         for(Treasures.Item i:new ArrayList<>(w.treasures.held(id)))w.treasures.place(i.definition,former>=0?Treasures.Place.TREASURY:Treasures.Place.HIDDEN,former>=0?former:p.home);
         w.strategy.releaseGovernor(id);w.government.allegianceChanged(id);w.government.prisoners.remove(id);w.contests.injuries.remove(id);

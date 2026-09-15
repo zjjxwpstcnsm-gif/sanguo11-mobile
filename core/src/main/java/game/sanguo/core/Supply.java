@@ -21,16 +21,17 @@ public final class Supply {
     public World.Result raid(int actor,int mission){
         String error=raidError(actor,mission);if(error!=null)return w.fail(error);
         World.Unit u=w.unit(actor);Domestic.Mission m=w.domestic.mission(mission);int loss=raidDamage(actor,mission);
-        u.acted=true;m.troops-=loss;w.government.earn(u.officerId,Math.max(20,loss/10));
+        u.acted=true;m.troops-=loss;w.battleImpact(m.hex,m.troops==0);w.government.earn(u.officerId,Math.max(20,loss/10));
         if(m.troops>0)return w.success("截击运输队，护送兵损失"+loss+"，货物仍在途");
-        int food=Math.min(m.food,1000000-u.food);u.food+=food;
-        World.Officer courier=w.officer(m.officerId);World.City jail=w.government.refuge(u.owner,m.hex);
+        int food=Math.min(m.food,1000000-u.food),gold=Math.min(m.gold,Math.max(0,10000-u.gold));u.food+=food;u.gold+=gold;
+        World.Officer courier=w.officer(m.officerId);
         w.domestic.missions.remove(m);
-        boolean caught=jail!=null&&!w.skills.has(courier,Skill.QIANGYUN)&&!w.skills.has(courier,Skill.XUELU)&&
+        boolean caught=!w.skills.has(courier,Skill.QIANGYUN)&&!w.skills.has(courier,Skill.XUELU)&&!w.contests.profile(courier.id).has(Contests.Gear.HORSE)&&
             (w.skills.has(u,Skill.BOFU)||w.strategy.nextInt(100)<30);
-        if(caught)w.government.capture(courier,jail);else w.retreat(courier,m.hex);
+        if(caught)w.government.capture(courier,u);else w.retreat(courier,m.hex);
         w.campaign.earn(u.owner,40);w.checkVictory();
-        return w.success("运输队溃败，缴获"+food+"粮；其余货物损失，未入城库存");
+        w.battleOutcome("运输队被击破；缴获 金+"+gold+"、粮+"+food+"，加入攻击部队；俘虏："+(caught?courier.name+"（随军押送）":"无，"+courier.name+"逃脱")+"；其余货物损失");
+        return w.success("运输队溃败，缴获"+food+"粮、"+gold+"金");
     }
     public World.Result transfer(int actor,int target,int troops,int food){
         World.Unit a=w.unit(actor),b=w.unit(target);String error=w.orders.error(a);if(error!=null)return w.fail(error);

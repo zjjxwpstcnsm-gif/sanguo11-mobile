@@ -20,9 +20,10 @@ final class ArmyUi {
     void deploy(World.City c){choose("编队 · 选择主将",w.idle(c),o->o.name+" · 统"+o.leadership,leader->{
         List<World.Officer> candidates=new ArrayList<>(w.idle(c));candidates.remove(leader);boolean[] selected=new boolean[candidates.size()];String[] labels=new String[candidates.size()];
         for(int i=0;i<labels.length;i++){World.Officer o=candidates.get(i);labels[i]=o.name+" · 武"+o.war+" / 智"+o.intelligence;}
-        AlertDialog dialog=new AlertDialog.Builder(a).setTitle("副将 · 最多选择2人").setMultiChoiceItems(labels,selected,(d,i,on)->{
+        AlertDialog dialog=new AlertDialog.Builder(a).setTitle("副将 · 可选0–2人").setMultiChoiceItems(labels,selected,(d,i,on)->{
             int count=0;for(boolean value:selected)if(value)count++;
-            if(count>2){selected[i]=false;((AlertDialog)d).getListView().setItemChecked(i,false);}
+            if(count>2){selected[i]=false;((AlertDialog)d).getListView().setItemChecked(i,false);count=2;}
+            ((AlertDialog)d).setTitle("副将 · 已选"+count+"/2人");
         }).setPositiveButton("下一步",(d,n)->{
             List<Integer> ids=new ArrayList<>();for(int i=0;i<selected.length;i++)if(selected[i])ids.add(candidates.get(i).id);
             int[] deputies=new int[ids.size()];for(int i=0;i<ids.size();i++)deputies[i]=ids.get(i);

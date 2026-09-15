@@ -140,7 +140,7 @@ public final class Fieldworks {
                     if(s.kind==War.StructureKind.FIRE_SHIP?!w.army.water(next):w.army.water(next))continue;
                     World.Unit victim=w.unitAt(next);if(victim!=null&&(victim.owner==source.owner||w.campaign.hostile(source.owner,victim.owner))){
                         victim.troops-=w.skills.fireDamage(victim,base,source.owner,w.skills.has(source,Skill.HUOSHEN)?2:1,true);
-                        if(victim.troops==0)w.removeUnit(victim);else if(s.kind==War.StructureKind.INFERNO_SEED&&!w.skills.has(victim,Skill.HUOSHEN)){victim.status=War.Status.CONFUSED;victim.statusTurns=2;}
+                        if(victim.troops==0)w.defeatUnit(victim,source);else if(s.kind==War.StructureKind.INFERNO_SEED&&!w.skills.has(victim,Skill.HUOSHEN)){victim.status=War.Status.CONFUSED;victim.statusTurns=2;}
                     }
                     War.Structure adjacent=w.war.at(next);if(adjacent!=null&&adjacent.complete&&trap(adjacent.kind))queue.add(next);else if(adjacent!=null&&(adjacent.owner==source.owner||w.campaign.hostile(source.owner,adjacent.owner))){adjacent.hp-=base/2;if(adjacent.hp<=0)w.war.structures.remove(adjacent);}
                     flame(next,source,true);

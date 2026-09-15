@@ -87,6 +87,11 @@ public final class War {
     }
     private Random random(){return new Random(w.strategy.nextInt(Integer.MAX_VALUE));}
     private void hurt(World.Unit u,int damage){if(w.unit(u.id)==null)return;u.troops=Math.max(0,u.troops-damage);if(u.troops==0)w.removeUnit(u);}
+    private void collision(World.Unit target,int damage,World.Unit source){
+        if(w.unit(target.id)==null)return;
+        target.troops=Math.max(0,target.troops-damage);w.battleImpact(target.hex,false);
+        if(target.troops==0)w.defeatUnit(target,source);
+    }
     int physicalDamage(World.Unit a,World.Unit b,double scale,boolean tactic,Random rng){
         if(w.skills.critical(a,b,tactic))scale*=1.15;
         if(w.campaign.eliteUnit(a))scale*=1.1*1.05;if(w.campaign.eliteUnit(b))scale/=1.1;
@@ -99,7 +104,7 @@ public final class War {
         return Math.min(b.troops,amount);
     }
     int strike(World.Unit a,World.Unit b,double scale,boolean tactic){
-        int amount=physicalDamage(a,b,scale,tactic,random());b.troops-=amount;if(b.troops==0)w.defeatUnit(b,a);w.skills.onHit(a,b,amount,tactic);if(w.campaign.hostile(a.owner,b.owner))w.government.earn(a.officerId,amount/10);return amount;
+        w.battleImpact(b.hex,false);int amount=physicalDamage(a,b,scale,tactic,random());b.troops-=amount;w.skills.onHit(a,b,amount,tactic);if(b.troops==0)w.defeatUnit(b,a);if(w.campaign.hostile(a.owner,b.owner))w.government.earn(a.officerId,amount/10);return amount;
     }
     public int previewDamage(int actor,int target){World.Unit a=w.unit(actor),b=w.unit(target);return a==null||b==null?0:physicalDamage(a,b,1,false,new Random(0));}
     public String attackError(int actor,int target){
@@ -163,7 +168,7 @@ public final class War {
     }
     public World.Result tactic(int actor,int target,Tactic tactic){
         String error=tacticError(actor,target,tactic);if(error!=null)return w.fail(error);
-        World.Unit a=w.unit(actor),b=w.unit(target);int chance=tacticChance(actor,target,tactic);a.acted=true;a.energy-=tactic.energy;
+        World.Unit a=w.unit(actor),b=w.unit(target);int chance=tacticChance(actor,target,tactic);a.acted=true;a.energy-=tactic.energy;w.battleImpact(b.hex,false);
         if(w.strategy.nextInt(100)>=chance)return w.success(w.officer(a.officerId).name+"的"+tactic.label+"未命中，气力已消耗");
         Hex origin=a.hex,targetHex=b.hex;List<World.Unit> victims=new ArrayList<>();victims.add(b);
         for(World.Unit u:new ArrayList<>(w.units))if(u.id!=b.id&&u.id!=a.id&&(w.campaign.hostile(a.owner,u.owner)||tactic==Tactic.VOLLEY&&u.owner==a.owner&&!w.skills.has(a,Skill.GONGSHEN))){
@@ -199,7 +204,7 @@ public final class War {
         for(int i=0;i<steps&&w.unit(b.id)!=null;i++){
             Hex old=b.hex,next=add(old,dq,dr);Structure trap=at(next);
             if(trap!=null&&trap.complete&&w.fieldworks.trap(trap.kind)&&w.campaign.hostile(a.owner,trap.owner)){b.hex=next;ignite(next,a);if(follow)a.hex=old;continue;}
-            if(!vacant(next,b.weapon)){World.Unit collision=w.unitAt(next);hurt(b,100);if(collision!=null&&(collision.owner==a.owner||w.campaign.hostile(a.owner,collision.owner)))hurt(collision,100);break;}b.hex=next;if(follow)a.hex=old;
+            if(!vacant(next,b.weapon)){World.Unit collision=w.unitAt(next);collision(b,100,a);if(collision!=null&&(collision.owner==a.owner||w.campaign.hostile(a.owner,collision.owner)))collision(collision,100,a);break;}b.hex=next;if(follow)a.hex=old;
         }
         if(follow&&w.unit(b.id)==null&&vacant(target,a.weapon))a.hex=target;
     }
@@ -296,7 +301,7 @@ public final class War {
         if(s==null||!w.campaign.hostile(u.owner,s.owner)||u.hex.distance(h)>range(u))return w.fail("请选择射程内敌方军事设施");
         if(!w.army.canAttackUnit(u))return w.army.tactic(unit,h,w.army.tactics(u).get(0));
         int damage=Math.min(s.hp,w.campaign.constructionDamage(u,200+w.army.war(u)*2));u.acted=true;s.hp-=damage;
-        if(s.hp<=0)structures.remove(s);else w.fieldworks.counter(s,u);w.campaign.earn(u.owner,20);return w.success("攻击"+s.kind.label+"，耐久减少"+damage);
+        w.battleImpact(h,s.hp<=0);if(s.hp<=0){structures.remove(s);w.battleOutcome(s.kind.label+"已摧毁，地块已释放");}else w.fieldworks.counter(s,u);w.campaign.earn(u.owner,20);return w.success("攻击"+s.kind.label+"，耐久减少"+damage);
     }
     public World.Result removeStructure(int city,int officer,int id){
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
