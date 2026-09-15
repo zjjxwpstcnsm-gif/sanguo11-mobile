@@ -97,14 +97,15 @@ public final class MapView extends View {
     private float y(Hex h){return RADIUS*1.5f*h.r;}
     private float worldWidth(){return RADIUS*SQRT3*(world.width-1+(world.height-1)*.5f)+RADIUS*2;}
     private float worldHeight(){return RADIUS*1.5f*(world.height-1)+RADIUS*2;}
-    private void resizeCamera(){if(world!=null&&getWidth()>0&&getHeight()>0)camera.resize(getWidth(),Math.max(1,getHeight()-36*density),worldWidth(),worldHeight(),RADIUS,density);}
+    private void resizeCamera(){if(world!=null&&getWidth()>0&&getHeight()>0)camera.resize(getWidth(),getHeight(),worldWidth(),worldHeight(),RADIUS,density);}
     @Override protected void onSizeChanged(int w,int h,int oldw,int oldh){super.onSizeChanged(w,h,oldw,oldh);resizeCamera();applyPendingCamera();}
     public void fit(){if(world==null||getWidth()==0)return;camera.fit();invalidate();}
     public void focus(Hex h){if(world==null||h==null)return;if(getWidth()==0){post(()->focus(h));return;}camera.focus(x(h),y(h));invalidate();}
+    public void center(Hex h){if(world!=null&&h!=null){camera.centerOn(x(h),y(h));invalidate();}}
     private void zoom(float scale,float fx,float fy){camera.zoom(scale,fx,fy);invalidate();}
-    void saveCamera(Bundle b){b.putBoolean("mapNavigator",showMini);b.putFloat("cameraRatio",camera.scale/camera.minScale);b.putFloat("cameraX",camera.centerX());b.putFloat("cameraY",camera.centerY());}
+    void saveCamera(Bundle b){b.putBoolean("mapNavigator",showMini);b.putFloat("cameraRatio",camera.scale/camera.minScale);b.putFloat("cameraScaleDp",camera.scale/density);b.putFloat("cameraX",camera.centerX());b.putFloat("cameraY",camera.centerY());}
     void restoreCamera(Bundle b){showMini=b.getBoolean("mapNavigator",false);pendingCamera=new Bundle(b);applyPendingCamera();}
-    private void applyPendingCamera(){if(pendingCamera!=null&&getWidth()>0&&getHeight()>0){camera.restore(pendingCamera.getFloat("cameraRatio",1),pendingCamera.getFloat("cameraX"),pendingCamera.getFloat("cameraY"));pendingCamera=null;invalidate();}}
+    private void applyPendingCamera(){if(pendingCamera!=null&&getWidth()>0&&getHeight()>0){if(pendingCamera.containsKey("cameraScaleDp"))camera.restoreScale(pendingCamera.getFloat("cameraScaleDp")*density,pendingCamera.getFloat("cameraX"),pendingCamera.getFloat("cameraY"));else camera.restore(pendingCamera.getFloat("cameraRatio",1),pendingCamera.getFloat("cameraX"),pendingCamera.getFloat("cameraY"));pendingCamera=null;invalidate();}}
     @Override public boolean onTouchEvent(MotionEvent e){
         if(!isEnabled())return true;
         if(e.getActionMasked()==MotionEvent.ACTION_DOWN){multiTouch=false;miniGesture=showMini&&miniRect.contains(e.getX(),e.getY());}
@@ -180,8 +181,7 @@ public final class MapView extends View {
         if(detail)for(Object object:visibleObjects)if(object instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)object;if(m.owner!=world.player&&!m.transport)continue;float cx=x(m.hex)+15,cy=y(m.hex)-8;paint.setColor(Color.rgb(30,42,43));canvas.drawCircle(cx,cy,10,paint);label(canvas,m.transport?"运":"调",cx,cy+4,12,m.owner==world.player?GOLD:factionColor(m.owner));}
         canvas.restore();
         if(showMini)drawNavigator(canvas);
-        paint.setColor(Color.argb(190,17,32,37));canvas.drawRoundRect(10*density,getHeight()-34*density,getWidth()-10*density,getHeight()-8*density,5*density,5*density,paint);
-        label(canvas,moving>=0?"点选目标规划路线  ·  青色本旬 / 虚线后续":detail?"设施 / 部队 / 在途  ·  双击城池聚焦":"势力总览  ·  放大查看设施与在途",getWidth()/2f,getHeight()-17*density,10*density,PAPER);
+
         lastDrawNanos=System.nanoTime()-drawStart;
     }
     private void drawRoute(Canvas c){

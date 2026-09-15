@@ -25,6 +25,7 @@ public final class GameSmokeRunner extends Instrumentation {
             screenshot("01-scenarios");
             click("区域争雄 ·",false);click("孙权军",true);click("执行",true);
             waitText("区域争雄  ·  孙权军",false);assertWorld(2,0,"regional-sandbox");
+            adaptiveMapFlow();
             clickNav("城市");click("建业 · 孙权军",false);
             waitText("建业",true);screenshot("02-city");
             click("军事",true);click("出征",true);click("甘宁",true);click("弩兵",true);click("3000人",true);
@@ -64,13 +65,46 @@ public final class GameSmokeRunner extends Instrumentation {
             governmentFlow();
             documentTransferFlow();
             contestFlow();
-            result.putString("stream","SMOKE PASS: v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            result.putString("stream","SMOKE PASS: v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
             StringWriter trace=new StringWriter();error.printStackTrace(new PrintWriter(trace));
             result.putString("stream","SMOKE FAIL: "+trace+"\n");finish(Activity.RESULT_CANCELED,result);
         }
+    }
+    private void adaptiveMapFlow()throws Exception {
+        byte[] before=SaveCodec.encode(saved());
+        require(find(getUiAutomation().getRootInActiveWindow(),"导航 · 城市",true)==null,"navigation is hidden until requested");
+        require(find(getUiAutomation().getRootInActiveWindow(),"全图",true)==null,"map tools are hidden until requested");
+        chooseOrientation("竖屏");assertOrientation(true);assertMapLayout(true,false);screenshot("90-portrait-map");
+        clickNav("城市");waitText("城池一览",true);assertMapLayout(true,true);screenshot("91-portrait-sheet");
+        int halfHeight=mapView().getHeight();click("展开",true);require(mapView().getHeight()<halfHeight,"expanded sheet has more room");
+        screenshot("92-portrait-expanded");click("缩小",true);click("收起",true);assertMapLayout(true,false);
+        click("选中对象指令 ·",false);assertMapLayout(true,true);
+        runOnMainSync(current::recreate);waitText("区域争雄",false);assertOrientation(true);assertMapLayout(true,true);
+        runOnMainSync(current::onBackPressed);waitForIdleSync();assertMapLayout(true,false);
+        chooseOrientation("横屏");assertOrientation(false);assertMapLayout(false,false);screenshot("93-landscape-map");
+        clickNav("城市");waitText("城池一览",true);assertMapLayout(false,true);screenshot("94-landscape-sheet");
+        click("收起",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"layout changes preserve resources, turn and RNG");
+    }
+    private void chooseOrientation(String label){click("视图",true);click("屏幕方向",true);click(label,true);waitForIdleSync();}
+    private void assertOrientation(boolean portrait){
+        long until=SystemClock.uptimeMillis()+5000;
+        while(SystemClock.uptimeMillis()<until){waitForIdleSync();if((current.getResources().getConfiguration().orientation==android.content.res.Configuration.ORIENTATION_PORTRAIT)==portrait)return;SystemClock.sleep(100);}
+        throw new AssertionError("orientation did not change");
+    }
+    private void assertMapLayout(boolean portrait,boolean opened)throws Exception {
+        waitForIdleSync();java.lang.reflect.Field shell=MainActivity.class.getDeclaredField("panelShell");shell.setAccessible(true);
+        java.lang.reflect.Field bodyField=MainActivity.class.getDeclaredField("body");bodyField.setAccessible(true);
+        runOnMainSync(()->{try{
+            android.view.View panel=(android.view.View)shell.get(current);android.view.View body=(android.view.View)bodyField.get(current);MapView map=findMap(current.getWindow().getDecorView());
+            require((panel.getVisibility()==android.view.View.VISIBLE)==opened,"sheet visibility");
+            if(!opened){require(map.getWidth()==body.getWidth()&&map.getHeight()==body.getHeight(),"closed sheet leaves entire play area for map");}
+            else if(portrait){require(panel.getWidth()==body.getWidth()&&panel.getTop()>=map.getBottom(),"portrait panel stacks below map");}
+            else require(panel.getLeft()>=map.getRight()&&panel.getHeight()==body.getHeight(),"landscape panel stacks beside map");
+            require(map.getWidth()>0&&map.getHeight()>0,"map remains visible");
+        }catch(IllegalAccessException e){throw new RuntimeException(e);}});
     }
     private void marchFlow()throws Exception {
         World w=new World(24,12,"甲军","乙军");w.scenarioId="ui-march";w.scenarioName="行军验证";
@@ -80,11 +114,13 @@ public final class GameSmokeRunner extends Instrumentation {
         installFixture(w,unit.hex);click("全图",true);byte[] initial=SaveCodec.encode(saved());
         tapHex(w.city(20).hex);waitText("路线预览 · 目标城",true);screenshot("67-march-preview");
         require(Arrays.equals(initial,SaveCodec.encode(saved())),"route preview does not mutate game");
+        chooseOrientation("竖屏");assertOrientation(true);waitText("路线预览 · 目标城",true);waitText("开始行军",true);screenshot("95-portrait-route");
         runOnMainSync(current::recreate);waitText("路线预览 · 目标城",true);require(Arrays.equals(initial,SaveCodec.encode(saved())),"pending preview survives rotation without issuing order");
+        chooseOrientation("横屏");assertOrientation(false);waitText("路线预览 · 目标城",true);
         click("取消",true);require(Arrays.equals(initial,SaveCodec.encode(saved())),"route cancel has zero cost");
         click("全图",true);tapHex(w.city(20).hex);click("开始行军",true);w=saved();require(w.unit(1).march!=null&&w.unit(1).movementSpent<=4&&!w.unit(1).acted,"map city tap starts budgeted persistent march");screenshot("68-march-active");
         byte[] issued=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("行军验证",false);require(Arrays.equals(issued,SaveCodec.encode(saved())),"restart does not duplicate march movement");
-        Hex previous=saved().unit(1).hex;endTurn();require(!saved().unit(1).hex.equals(previous),"next turn advances selected marching unit");waitText("停止行军",true);screenshot("69-march-next-turn");
+        Hex previous=saved().unit(1).hex;endTurn();require(!saved().unit(1).hex.equals(previous),"next turn advances selected marching unit");click("选中对象指令 ·",false);waitText("停止行军",true);screenshot("69-march-next-turn");
         clickNav("任务");click("行军 · 行军将",true);waitText("目标 目标城",false);screenshot("70-march-task");click("定位部队",true);
         click("全图",true);tapHex(new Hex(4,9));click("开始行军",true);require(saved().unit(1).march!=null&&saved().unit(1).march.tile.equals(new Hex(4,9)),"tap new ground retargets queued order");
         click("停止行军",true);require(saved().unit(1).march==null,"stop through fixed command dock");screenshot("71-march-stopped");
@@ -199,7 +235,7 @@ public final class GameSmokeRunner extends Instrumentation {
         click("菜单",true);click("新游戏 / 选择势力",true);click("区域争雄 ·",false);click("孙权军",true);click("执行",true);
         click("全图",true);tapCity(310,20);waitText("建业",true);waitText("太守",false);screenshot("11-city-hit-target");
         MapView map=mapView();MapCamera camera=camera(map);float[] scale={0};runOnMainSync(()->scale[0]=camera.scale);
-        pinch(map,1.7f);float[] afterScale={0};runOnMainSync(()->afterScale[0]=camera.scale);require(afterScale[0]>scale[0]&&afterScale[0]<=camera.maxScale,"pinch changes camera scale: before="+scale[0]+", after="+afterScale[0]);
+        click("收起",true);pinch(map,1.7f);float[] afterScale={0};runOnMainSync(()->afterScale[0]=camera.scale);require(afterScale[0]>scale[0]&&afterScale[0]<=camera.maxScale,"pinch changes camera scale: before="+scale[0]+", after="+afterScale[0]);
         World unchanged=saved();byte[] snapshot=SaveCodec.encode(unchanged);
         dragMap(map,150,80);require(Arrays.equals(snapshot,SaveCodec.encode(saved())),"map gestures never mutate world");
         screenshot("12-map-zoom");
@@ -613,7 +649,7 @@ public final class GameSmokeRunner extends Instrumentation {
     private AccessibilityNodeInfo find(AccessibilityNodeInfo node,String text,boolean exact) {
         if(node==null)return null;
         CharSequence value=node.getText();
-        if(text.startsWith("导航 · "))value=node.getContentDescription();
+        if(text.startsWith("导航 · ")||text.startsWith("选中对象指令 ·"))value=node.getContentDescription();
         if(value!=null&&(exact?value.toString().equals(text):value.toString().contains(text))&&node.isVisibleToUser())return node;
         for(int i=0;i<node.getChildCount();i++){AccessibilityNodeInfo found=find(node.getChild(i),text,exact);if(found!=null)return found;}return null;
     }
@@ -626,6 +662,14 @@ public final class GameSmokeRunner extends Instrumentation {
         throw new AssertionError("UI text not found: "+text);
     }
     private void click(String text,boolean exact) {
+        if(exact&&text.equals("菜单")){clickNav("菜单");return;}
+        AccessibilityNodeInfo active=getUiAutomation().getRootInActiveWindow();
+        if(text.startsWith("导航 · ")&&find(active,text,exact)==null)click("功能",true);
+        else if(exact&&(text.equals("全图")||text.equals("定位")||text.equals("导航图"))&&find(active,text,true)==null)click("视图",true);
+        else if(exact&&(text.equals("停止行军")||text.equals("下一部队"))){
+            AccessibilityNodeInfo button=find(active,"选中对象指令 ·",false);
+            if(button!=null&&button.getText()!=null&&button.getText().toString().endsWith(" · 指令"))click("选中对象指令 ·",false);
+        }
         AccessibilityNodeInfo node=null;long until=SystemClock.uptimeMillis()+12000;
         while(node==null&&SystemClock.uptimeMillis()<until) {
             waitForIdleSync();AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();node=find(root,text,exact);
