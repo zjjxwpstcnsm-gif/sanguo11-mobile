@@ -83,7 +83,7 @@ public final class EstatesTest {
     private static void migration()throws Exception{
         byte[] raw;try(InputStream in=EstatesTest.class.getResourceAsStream("/legacy-v11.sg11.b64")){raw=Base64.getMimeDecoder().decode(in.readAllBytes());}
         check(raw[7]==11,"fixture is genuine previous writer");World w=SaveCodec.decode(raw);check(w.treasures.items().isEmpty()&&w.relations.people.isEmpty()&&!w.editor.edited(),"legacy gets no invented treasures or kinship");check(w.unit(1).gold==8500&&w.war.structures().size()==1&&w.war.structures().get(0).builder==1,"real v11 carried gold and ongoing construction survive");
-        check(bytes(w)[7]==16&&Arrays.equals(bytes(w),bytes(copy(w))),"v11 migrates to v16 without loss");
+        check(bytes(w)[7]==17&&Arrays.equals(bytes(w),bytes(copy(w))),"v11 migrates to v17 without loss");
     }
     private static void malformed()throws Exception{
         World w=fixture();w.relations.link(0,1,Relations.Kind.SPOUSE);w.relations.people.get(1).spouse=-1;try{bytes(w);throw new AssertionError("asymmetric spouse");}catch(IOException e){checks++;}

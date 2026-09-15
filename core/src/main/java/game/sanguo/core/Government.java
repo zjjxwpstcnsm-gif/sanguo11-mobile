@@ -182,7 +182,7 @@ public final class Government {
         }
         relocatePrisoners();
     }
-    private void free(Prisoner p){free(p,location(p));}
+    void free(Prisoner p){free(p,location(p));}
     private void free(Prisoner p,Hex from){
         World.Officer o=w.officer(p.officerId);if(from==null)from=new Hex(0,0);
         World.City home=refuge(o.owner,from);prisoners.remove(o.id);
@@ -231,7 +231,7 @@ public final class Government {
         String error=w.cityError(c,w.officer(actor),cost);if(error!=null)return w.fail(error);
         if(p==null||t.owner!=c.owner||p.captor==c.owner)return w.fail("请选择被其他势力俘虏的己方武将");
         World.City jail=w.city(p.cityId);World.Unit escort=w.unit(p.unitId);
-        if(p.unitId>=0?(escort==null||escort.gold>10000-cost):(jail==null||jail.gold>1000000-cost))return w.fail("对方金容量不足或押送地无效");
+        if(p.unitId>=0?(escort==null||escort.owner!=p.captor||escort.gold>10000-cost):(jail==null||jail.owner!=p.captor||jail.gold>w.campaign.goldCap(jail)-cost))return w.fail("对方金容量不足或押送地无效");
         w.spend(c,w.officer(actor),cost);if(escort!=null)escort.gold+=cost;else jail.gold+=cost;
         free(p);return w.success("支付"+cost+"金赎回"+t.name);
     }

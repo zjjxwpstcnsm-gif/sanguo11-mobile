@@ -17,19 +17,24 @@ final class CampaignUi {
         String[] names=new String[options.size()];for(int i=0;i<names.length;i++)names[i]=label.apply(options.get(i));
         new AlertDialog.Builder(a).setTitle(title).setItems(names,(d,i)->next.accept(options.get(i))).setNegativeButton("取消",null).show();
     }
-    private void officer(World.City c,Consumer<World.Officer> next){choose("选择执行武将",w.idle(c),o->o.name+" · 政"+o.politics+" / 智"+o.intelligence,next);}
+    private void officer(World.City c,Consumer<World.Officer> next){choose("选择执行武将",w.idle(c),o->o.name+" · 政"+o.politics+" / 智"+o.intelligence+" / 魅"+o.charm,next);}
     void diplomacy(World.City c){
         List<Integer> sides=new ArrayList<>();for(int side=0;side<w.factions.length;side++)if(side!=c.owner&&w.alive(side))sides.add(side);
         choose("外交 · 选择势力",sides,side->w.faction(side)+" · "+w.campaign.relationLabel(c.owner,side),side->{
-            String[] commands={"亲善 · 金500","停战 · 金1000","同盟 · 金1000","解除协定"};
-            new AlertDialog.Builder(a).setTitle(w.faction(side)+" · "+w.campaign.relationLabel(c.owner,side)).setItems(commands,(d,index)->officer(c,o->{
+            String[] commands={"亲善 · 金500","停战 · 金1000","同盟 · 金1000","解除协定","请求援军","劝降","交换俘虏","援军任务"};
+            new AlertDialog.Builder(a).setTitle(w.faction(side)+" · "+w.campaign.relationLabel(c.owner,side)).setItems(commands,(d,index)->{
+                DiplomacyUi foreign=new DiplomacyUi(a,w,apply);if(index==7){foreign.missions(side);return;}
+                officer(c,o->{
                 if(index==0)confirm("亲善",o.name+"出使：金500、行动力10。\n关系 +"+(15+o.politics/10),()->apply.accept(w.campaign.goodwill(c.id,o.id,side)));
                 else if(index==3)confirm("解除协定","行动力10；双方关系 -50，其他势力关系 -10。\n解除后即可交战。",()->apply.accept(w.campaign.breakTreaty(c.id,o.id,side)));
+                else if(index==4)foreign.aid(c,o,side);
+                else if(index==5)foreign.surrender(c,o,side);
+                else if(index==6)foreign.exchange(c,o,side);
                 else {Campaign.TreatyKind kind=index==1?Campaign.TreatyKind.CEASEFIRE:Campaign.TreatyKind.ALLIANCE;
                     choose("选择期限",Arrays.asList(3,6,12),n->n+"旬",turns->confirm(kind.label,
                         "成功率 "+w.campaign.treatyChance(o.id,side,kind)+"%"+(w.skills.has(o,Skill.LUNKE)?"\n论客：提议被拒绝后，可与对方代表舌战争取协定。":"")+"\n金1000、行动力10；拒绝也消耗费用。\n有效期 "+turns+"旬，双方玩家和电脑均不能主动攻击。\n同盟需要关系至少20。",()->apply.accept(w.campaign.negotiate(c.id,o.id,side,kind,turns))));
                 }
-            })).setNegativeButton("返回",null).show();
+            });}).setNegativeButton("返回",null).show();
         });
     }
     void rumor(World.City c){

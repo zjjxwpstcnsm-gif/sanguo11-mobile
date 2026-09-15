@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=16, MAX_BYTES=4*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=17, MAX_BYTES=4*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -55,6 +55,7 @@ public final class SaveCodec {
         WorldSystemsSave.write(w,d);
         d.writeInt(w.sourceMapWidth);
         w.life.write(d);
+        w.diplomacy.write(d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
@@ -122,6 +123,7 @@ public final class SaveCodec {
             if(marker==WorldSystemsSave.MARKER)WorldSystemsSave.read(w,d);else w.marches.read(d);
         }
         if(version>=15){w.sourceMapWidth=bounded(d.readInt(),0,200);w.life.read(d);}
+        if(version>=17)w.diplomacy.read(d);
         count=bounded(d.readInt(),0,40);for(int i=0;i<count;i++)w.log.add(d.readUTF());
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         validate(w);return w;
@@ -167,6 +169,7 @@ public final class SaveCodec {
         bounded(w.sourceMapWidth,0,200);
         if(w.sourceMapWidth>0){require(w.width==w.sourceMapWidth+(w.height-1)/2,"错行地图宽度不匹配");for(int q=0;q<w.width;q++)for(int r=0;r<w.height;r++){int x=MapCoordinates.source(new Hex(q,r),w.height).q;if(x<0||x>=w.sourceMapWidth)require(w.terrain[q][r]==World.Terrain.MOUNTAIN,"错行地图填充区必须不可通行");}}
         w.life.validate();
+        w.diplomacy.validate();
         w.domestic.validate();
         w.strategy.validate();
         CampaignSave.validate(w);

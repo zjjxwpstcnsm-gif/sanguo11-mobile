@@ -79,6 +79,7 @@ public final class World {
     public final Domestic domestic=new Domestic(this);
     public final Strategy strategy=new Strategy(this);
     public final Campaign campaign=new Campaign(this);
+    public final Diplomacy diplomacy=new Diplomacy(this);
     public final War war=new War(this);
     public final Army army=new Army(this);
     public final Fieldworks fieldworks=new Fieldworks(this);
@@ -140,7 +141,7 @@ public final class World {
         feedback=Feedback.NONE;impact=null;battleOutcomes.clear();return result;
     }
     Result fail(String text) { return result(false,text); }
-    Result success(String text) { fieldworks.cleanup();abilities.cleanup();districts.cleanup();note(text);return result(true,text); }
+    Result success(String text) { fieldworks.cleanup();abilities.cleanup();districts.cleanup();diplomacy.cleanup();note(text);return result(true,text); }
     public void note(String text) { log.add(text);while(log.size()>40)log.remove(0); }
     private boolean available(Officer o,City c) { return !commandsBlocked()&&o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
     public List<Officer> idle(City c) {
@@ -276,7 +277,7 @@ public final class World {
             c.gold+=Math.min(Math.max(0,campaign.goldCap(c)-c.gold),domestic.goldIncome(c.id,turn));c.food+=Math.min(Math.max(0,campaign.foodCap(c)-c.food),domestic.foodIncome(c.id,turn));
             if(c.defense<campaign.defenseCap(c))c.defense=Math.min(campaign.defenseCap(c),c.defense+(campaign.has(c.owner,Campaign.Tech.ENGINEERING)?250:100));
         }
-        events.tick();life.tick();active=player;reset(player);checkVictory();if(!life.pending())marches.advanceAll();return success(date()+" · 行动力恢复");
+        events.tick();life.tick();diplomacy.tick();active=player;reset(player);checkVictory();if(!life.pending())marches.advanceAll();return success(date()+" · 行动力恢复");
     }
     private void reset(int owner) {
         actionPoints[owner]=60;
@@ -287,6 +288,7 @@ public final class World {
     }
     private void runAi() {
         CampaignAi ai=new CampaignAi(this);
+        diplomacy.dispatch();
         government.runAi();
         strategy.runAi(true);
         List<City> ordered=new ArrayList<>(cities);

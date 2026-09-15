@@ -13,7 +13,9 @@ final class FieldworkUi {
     private <T> void choose(String title,List<T> list,Function<T,String> label,Consumer<T> next){
         if(list.isEmpty()){info("没有符合条件的选项，请检查携金、行动状态、前置技巧和邻接地块。");return;}
         String[] labels=new String[list.size()];for(int i=0;i<labels.length;i++)labels[i]=label.apply(list.get(i));
-        new AlertDialog.Builder(a).setTitle(title).setItems(labels,(d,i)->next.accept(list.get(i))).setNegativeButton("取消",null).show();
+        AlertDialog.Builder dialog=new AlertDialog.Builder(a).setTitle(title).setNegativeButton("取消",null);
+        if(GameIcon.supports(list.get(0)))dialog.setAdapter(GameIcon.adapter(a,w,list,label),(d,i)->next.accept(list.get(i)));
+        else dialog.setItems(labels,(d,i)->next.accept(list.get(i)));dialog.show();
     }
     private void confirm(String title,String text,Runnable action){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("执行",(d,i)->action.run()).setNegativeButton("取消",null).show();}
     void build(World.Unit u){choose("部队设置 · 携金"+u.gold,w.fieldworks.available(u.owner),k->k.label+" · 金"+k.gold,k->

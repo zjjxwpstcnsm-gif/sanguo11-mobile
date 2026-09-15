@@ -18,6 +18,8 @@ final class MapModels {
     private void house(Canvas c,int color,float x,float y,float w,float h){
         box(c,x-w,y-h,x+w,y,LIGHT);poly(c,WOOD,x+w,y-h,x+w+5,y-h-3,x+w+5,y-3,x+w,y);
         poly(c,color,x-w-3,y-h,x,y-h-9,x+w+5,y-h-3,x+w,y-h+2);box(c,x-2,y-6,x+2,y,DARK);
+        line(c,x-w-3,y-h,x,y-h-9,1,LIGHT);line(c,x,y-h-9,x+w+5,y-h-3,1,DARK);
+        if(w>9){box(c,x-w+3,y-7,x-w+6,y-3,WOOD);box(c,x+w-6,y-7,x+w-3,y-3,WOOD);}
     }
     private void flag(Canvas c,int color,float x,float y){line(c,x,y,x,y+17,1.2f,WOOD);poly(c,color,x,y,x+9,y+2,x,y+7);}
     private void wheels(Canvas c){disc(c,-10,12,4,DARK);disc(c,10,12,4,DARK);disc(c,-10,12,2,STEEL);disc(c,10,12,2,STEEL);box(c,-14,5,15,10,WOOD);}
@@ -58,17 +60,34 @@ final class MapModels {
         if(water){ship(c,color,u.ship.ordinal(),false);return;}
         if(Army.siegeWeapon(u.weapon)){siege(c,u.weapon,color);return;}
         if(u.weapon==World.Weapon.CAVALRY){horse(c,color);disc(c,0,-11,3,LIGHT);box(c,-3,-8,3,-1,color);line(c,5,0,8,-21,2,STEEL);return;}
-        soldier(c,color,-8,0,u.weapon);soldier(c,color,5,4,u.weapon);
+        soldier(c,color,-8,-5,u.weapon);soldier(c,color,6,0,u.weapon);soldier(c,color,-5,9,u.weapon);
+    }
+    void weaponIcon(Canvas c,World.Weapon weapon,int color){
+        if(Army.siegeWeapon(weapon)){base(c,color);siege(c,weapon,color);return;}
+        if(weapon==World.Weapon.CAVALRY){base(c,color);horse(c,color);return;}
+        if(weapon==World.Weapon.CROSSBOW){bow(c,0,-5,true);line(c,0,14,0,-23,2,STEEL);poly(c,STEEL,-4,-19,0,-26,4,-19);return;}
+        if(weapon==World.Weapon.SWORD){poly(c,STEEL,-3,9,-4,-19,0,-27,4,-19,3,9);box(c,-9,7,9,10,WOOD);box(c,-2,10,2,21,WOOD);return;}
+        line(c,-7,20,4,-21,3,WOOD);poly(c,STEEL,0,-19,6,-29,8,-17);
+        if(weapon==World.Weapon.HALBERD)poly(c,STEEL,6,-22,17,-14,14,-4,7,-8,11,-14,4,-14);
+        else {line(c,10,20,-1,-18,2,WOOD);poly(c,STEEL,-5,-16,-4,-25,3,-19);}
+    }
+    void shipIcon(Canvas c,Army.Ship kind,int color){ship(c,color,kind.ordinal(),false);}
+    void scaffolding(Canvas c){
+        for(int x=-21;x<=21;x+=14){line(c,x,-17,x,17,1.5f,WOOD);line(c,x,-17,x+8,-23,1,WOOD);}
+        line(c,-21,0,21,0,2,LIGHT);line(c,-21,12,21,12,2,LIGHT);line(c,-21,11,21,-15,1,WOOD);
     }
     void city(Canvas c,World.SiteKind kind,int color){
+        if(BuildingAtlas.draw(c,kind==World.SiteKind.CITY?0:kind==World.SiteKind.GATE?1:2)){flag(c,color,21,-27);return;}
         base(c,color);
         if(kind==World.SiteKind.PORT){box(c,-20,7,18,12,WOOD);for(int x=-16;x<=16;x+=8)line(c,x,8,x,19,2,WOOD);ship(c,color,0,false);house(c,color,-10,-3,7,9);return;}
-        box(c,-19,-3,19,12,LIGHT);box(c,-5,2,5,12,DARK);
+        poly(c,0xff70827e,-21,-3,19,-3,24,1,24,12,0,21,-21,12);box(c,-19,-3,19,12,LIGHT);box(c,-5,2,5,12,DARK);
         if(kind==World.SiteKind.GATE){house(c,color,-13,4,5,13);house(c,color,13,4,5,13);box(c,-7,-6,7,-2,WOOD);}
-        else {house(c,color,0,0,11,12);for(int x=-18;x<=14;x+=6)box(c,x,-6,x+4,-1,STEEL);}
+        else {house(c,color,-7,-6,9,9);house(c,color,8,0,10,14);for(int x=-18;x<=14;x+=6)box(c,x,-6,x+4,-1,STEEL);house(c,color,-17,6,4,8);house(c,color,18,6,4,8);}
         flag(c,color,13,-30);
     }
     void facility(Canvas c,Domestic.Kind kind,int color){
+        int sprite=-1;switch(kind){case FARM:sprite=3;break;case MARKET:sprite=4;break;case GRANARY:sprite=5;break;case BARRACKS:sprite=6;break;case SMITH:sprite=7;break;case STABLE:sprite=8;break;case WORKSHOP:sprite=9;break;case SHIPYARD:sprite=10;break;case MINT:sprite=11;break;default:break;}
+        if(BuildingAtlas.draw(c,sprite)){flag(c,color,21,-20);return;}
         base(c,color);
         switch(kind){
             case FARM:poly(c,0xff7b9c4c,-18,-5,10,-10,20,7,-9,14);for(int y=-3;y<12;y+=5)line(c,-14,y,15,y-3,2,LIGHT);break;
@@ -87,6 +106,8 @@ final class MapModels {
     }
     private void tent(Canvas c,int color){poly(c,color,-18,10,0,-17,18,10);poly(c,LIGHT,0,-17,4,10,18,10);poly(c,DARK,-4,10,0,-1,4,10);}
     void structure(Canvas c,War.StructureKind kind,int color){
+        int sprite=kind==War.StructureKind.FORTRESS?12:kind==War.StructureKind.ARROW_TOWER?13:kind==War.StructureKind.MUSIC?14:kind==War.StructureKind.DRUM?15:-1;
+        if(BuildingAtlas.draw(c,sprite)){flag(c,color,21,-27);return;}
         base(c,color);
         switch(kind){
             case CAMP:tent(c,color);break;

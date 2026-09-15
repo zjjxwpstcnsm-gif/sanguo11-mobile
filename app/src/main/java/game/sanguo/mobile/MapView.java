@@ -79,6 +79,7 @@ public final class MapView extends View {
     private static final int PAPER=Color.rgb(232,224,199),GOLD=Color.rgb(230,191,119);
     public MapView(Context context,TileListener listener){
         super(context);this.listener=listener;density=getResources().getDisplayMetrics().density;setContentDescription("六角格战略地图。拖动平移，双指缩放，点选城池或部队。");setFocusable(true);
+        BuildingAtlas.load(context);
         gestures=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
             @Override public boolean onDown(MotionEvent e){return true;}
             @Override public boolean onSingleTapConfirmed(MotionEvent e){if(!multiTouch&&!scaler.isInProgress()){performClick();listener.tap(hit(e.getX(),e.getY()));}return true;}
@@ -185,18 +186,19 @@ public final class MapView extends View {
         }
         for(Object object:visibleObjects)if(object instanceof War.Structure){War.Structure s=(War.Structure)object;
             float cx=x(s.hex),cy=y(s.hex);int color=factionColor(s.owner);
-            if(detail){canvas.save();canvas.translate(cx,cy);models.structure(canvas,s.kind,color);canvas.restore();label(canvas,s.kind.label+(s.complete?"":"·建"),cx,cy+26,9,PAPER);}
+            if(detail){canvas.save();canvas.translate(cx,cy);models.structure(canvas,s.kind,color);if(!s.complete)models.scaffolding(canvas);canvas.restore();label(canvas,s.kind.label+(s.complete?"":"·建"),cx,cy+26,9,PAPER);bar(canvas,cx,cy+17,34,s.hp/(float)s.kind.hp,s.complete?color:GOLD);}
             else {paint.setColor(color);canvas.drawRect(cx-12,cy-12,cx+12,cy+12,paint);}
             if(detail)label(canvas,String.valueOf(s.hp),cx,cy-30,9,PAPER);
         }
         for(Object object:visibleObjects)if(object instanceof Domestic.Facility){Domestic.Facility f=(Domestic.Facility)object;float cx=x(f.hex),cy=y(f.hex);int color=factionColor(cityIndex.get(f.cityId).owner);
-            if(detail){canvas.save();canvas.translate(cx,cy);models.facility(canvas,f.kind,color);canvas.restore();label(canvas,f.kind.label+"·"+f.level,cx,cy+26,9,PAPER);if(f.remaining>0)label(canvas,"建·剩"+f.remaining,cx,cy-30,9,GOLD);}
+            if(detail){canvas.save();canvas.translate(cx,cy);models.facility(canvas,f.kind,color);if(f.remaining>0)models.scaffolding(canvas);canvas.restore();label(canvas,f.kind.label+"·"+f.level,cx,cy+26,9,PAPER);if(f.remaining>0)label(canvas,"建·剩"+f.remaining,cx,cy-30,9,GOLD);}
             else {paint.setColor(color);canvas.drawRect(cx-10,cy-10,cx+10,cy+10,paint);}
         }
         for(Object object:visibleObjects)if(object instanceof WorldEvents.Camp){WorldEvents.Camp camp=(WorldEvents.Camp)object;float cx=x(camp.hex),cy=y(camp.hex);paint.setColor(Color.rgb(173,77,59));canvas.drawRect(cx-15,cy-15,cx+15,cy+15,paint);label(canvas,"寨",cx,cy+5,16,PAPER);if(detail)label(canvas,camp.tribe.label+" "+camp.troops,cx,cy-20,10,PAPER);}
         for(Object object:visibleObjects)if(object instanceof World.City)drawCity(canvas,(World.City)object);
         for(Object object:visibleObjects)if(object instanceof World.Unit){World.Unit u=(World.Unit)object;
-            if(detail)drawUnit(canvas,u);else {paint.setColor(factionColor(u.owner));canvas.drawCircle(x(u.hex),y(u.hex),12,paint);}
+            if(detail)drawUnit(canvas,u);else {paint.setColor(factionColor(u.owner));canvas.drawCircle(x(u.hex),y(u.hex),14,paint);
+                if(scale*RADIUS>=5*density){canvas.save();canvas.translate(x(u.hex),y(u.hex));canvas.scale(.6f,.6f);if(world.army.water(u.hex))models.shipIcon(canvas,u.ship,PAPER);else models.weaponIcon(canvas,u.weapon,PAPER);canvas.restore();}}
         }
         if(detail)for(Object object:visibleObjects)if(object instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)object;if(m.owner!=world.player&&!m.transport)continue;float cx=x(m.hex)+15,cy=y(m.hex)-8;paint.setColor(Color.rgb(30,42,43));canvas.drawCircle(cx,cy,10,paint);label(canvas,m.transport?"运":"调",cx,cy+4,12,m.owner==world.player?GOLD:factionColor(m.owner));}
         long remaining=impactUntil-android.os.SystemClock.uptimeMillis();
@@ -243,13 +245,20 @@ public final class MapView extends View {
 
         if(scale>=camera.minScale*2.1f){float fs=10*density/scale;float baseline=cy+14+sz*1.6f+fs*1.3f;String info="金 "+city.gold+" · 粮 "+city.food+" · 兵 "+city.troops;
             paint.setTextSize(fs);float half=paint.measureText(info)/2+4*density/scale;paint.setColor(Color.argb(235,17,32,37));c.drawRoundRect(cx-half,baseline-fs,cx+half,baseline+fs*.3f,2,2,paint);label(c,info,cx,baseline,fs,PAPER);}
-        paint.setColor(owner);c.drawRect(cx-16,cy+10,cx-16+32*Math.min(1,city.defense/3000f),cy+13,paint);
+        bar(c,cx,cy+10,32,city.defense/(float)world.campaign.defenseCap(city),owner);
+    }
+    private void bar(Canvas c,float x,float y,float width,float fraction,int color){
+        paint.setColor(0xdd12252b);c.drawRoundRect(x-width/2-1,y-1,x+width/2+1,y+4,1,1,paint);
+        paint.setColor(color);c.drawRect(x-width/2,y,x-width/2+width*Math.max(0,Math.min(1,fraction)),y+3,paint);
     }
     private void drawUnit(Canvas c,World.Unit u){float scale=camera.scale;float cx=x(u.hex),cy=y(u.hex);
         c.save();c.translate(cx,cy);models.unit(c,u,world.army.water(u.hex),factionColor(u.owner));c.restore();
         if(u.acted){paint.setColor(Color.argb(210,17,32,37));c.drawCircle(cx+16,cy-14,7,paint);label(c,"✓",cx+16,cy-11,10,PAPER);}
         if(u.burning>0)label(c,"火",cx-16,cy+15,12,Color.rgb(255,120,60));
         if(u.status!=War.Status.NORMAL)label(c,u.status.label.substring(0,1),cx+16,cy+15,12,Color.rgb(255,194,100));
+        bar(c,cx,cy+17,34,u.troops/(float)world.government.commandLimit(u.officerId),u.owner==world.player?0xff8bc4a0:factionColor(u.owner));
+        if(world.diplomacy.aidForUnit(u.id)!=null)label(c,"援",cx-17,cy-14,11,0xff91d3e0);
+        else if(u.food<(u.troops+19)/20*3)label(c,"粮!",cx-17,cy-14,10,0xffffb077);
         float sz=Math.min(10,10*density/scale);label(c,officerIndex.get(u.officerId).name+" "+u.troops,cx,cy-31,sz,PAPER);
         label(c,world.army.water(u.hex)?u.ship.label:u.weapon.label,cx,cy+26,9,PAPER);
     }

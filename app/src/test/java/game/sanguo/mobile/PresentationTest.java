@@ -9,6 +9,9 @@ public final class PresentationTest {
     private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
     private static void near(float a,float b,String label){check(Math.abs(a-b)<.02f,label+": "+a+" vs "+b);}
     public static void main(String[] args)throws Exception {
+        for(int i=0;i<PortraitCatalog.NAMES.length;i++)check(PortraitCatalog.index(PortraitCatalog.NAMES[i])==i,"stable famous portrait mapping");
+        check(PortraitCatalog.index("劉備")==1&&PortraitCatalog.index("趙雲")==6&&PortraitCatalog.index("自建武将")==-1,"traditional names and custom portrait fallback");
+        check(PortraitCatalog.variant(1,"甲")==PortraitCatalog.variant(1,"甲")&&PortraitCatalog.variant(1,"甲")!=PortraitCatalog.variant(2,"甲"),"fallback identity stable across redraws and different IDs");
         World w=ScenarioCatalog.load("regional-sandbox",2);
         byte[] unchanged=SaveCodec.encode(w);
         check(UiModels.officers(w,"周",2,-1,0).size()==1,"name and faction filter");

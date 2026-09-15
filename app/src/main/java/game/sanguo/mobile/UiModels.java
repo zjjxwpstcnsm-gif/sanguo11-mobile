@@ -83,6 +83,7 @@ final class UiModels {
         AbilityResearch.Research abilityResearch;
         AbilityResearch.Training abilityTraining;
         World.Unit marching;
+        Diplomacy.Aid aid;
         Task(long id, String title, String detail, Hex location, Domestic.Facility f, Domestic.Mission m) {
             this.id=id;this.title=title;this.detail=detail;this.location=location;facility=f;mission=m;
         }
@@ -115,6 +116,9 @@ final class UiModels {
         }
         if(type==0||type==6)for(World.Unit u:w.units)if(u.owner==w.player&&u.march!=null){
             Task t=new Task(60000000L+u.id,"行军 · "+w.officer(u.officerId).name,"目标 "+w.marches.label(u.march)+"\n"+(u.march.paused.isEmpty()?"每旬自动前进 · 可点地图改道":u.march.paused),u.hex,null,null);t.marching=u;result.add(t);
+        }
+        if(type==0||type==7)for(Diplomacy.Aid aid:w.diplomacy.aids())if(aid.requester==w.player){
+            World.Unit unit=w.unit(aid.unit);Task t=new Task(70000000L+aid.requester,"援军 · "+w.faction(aid.ally),w.diplomacy.describe(aid),unit==null?w.city(aid.source).hex:unit.hex,null,null);t.aid=aid;result.add(t);
         }
         return result;
     }

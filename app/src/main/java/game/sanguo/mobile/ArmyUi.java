@@ -14,7 +14,9 @@ final class ArmyUi {
     private void confirm(String title,String text,Runnable action){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("执行",(d,n)->action.run()).setNegativeButton("取消",null).show();}
     private <T> void choose(String title,List<T> list,Function<T,String> label,Consumer<T> next){
         if(list.isEmpty()){info(title,"没有可用选项");return;}String[] names=new String[list.size()];for(int i=0;i<names.length;i++)names[i]=label.apply(list.get(i));
-        new AlertDialog.Builder(a).setTitle(title).setItems(names,(d,i)->next.accept(list.get(i))).setNegativeButton("取消",null).show();
+        AlertDialog.Builder dialog=new AlertDialog.Builder(a).setTitle(title).setNegativeButton("取消",null);
+        if(GameIcon.supports(list.get(0)))dialog.setAdapter(GameIcon.adapter(a,w,list,label),(d,i)->next.accept(list.get(i)));
+        else dialog.setItems(names,(d,i)->next.accept(list.get(i)));dialog.show();
     }
     private List<Integer> troopOptions(int officer){List<Integer> n=new ArrayList<>();int cap=w.government.commandLimit(officer);for(int v:new int[]{1000,3000,5000,8000,10000,12000,15000})if(v<=cap)n.add(v);if(!n.contains(cap))n.add(cap);Collections.sort(n);return n;}
     void deploy(World.City c){choose("编队 · 选择主将",w.idle(c),o->o.name+" · 统"+o.leadership,leader->{

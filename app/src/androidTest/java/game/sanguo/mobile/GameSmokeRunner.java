@@ -19,7 +19,7 @@ public final class GameSmokeRunner extends Instrumentation {
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
-            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v16 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
+            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v17 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
@@ -67,7 +67,8 @@ public final class GameSmokeRunner extends Instrumentation {
             documentTransferFlow();
             contestFlow();
             battleFeedbackFlow();
-            result.putString("stream","SMOKE PASS: v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            diplomacyVisualFlow();
+            result.putString("stream","SMOKE PASS: v21 original portraits/building assets/shared icons, pure diplomacy previews, allied dispatch/task/recreation and whole-force surrender; v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -345,7 +346,7 @@ public final class GameSmokeRunner extends Instrumentation {
         require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=14,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
-        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==16,"upgraded writer produced v16 header");}
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==17,"upgraded writer produced v17 header");}
         screenshot("00-v09-upgrade-preserved");
     }
     private void contestFlow()throws Exception {
@@ -740,6 +741,47 @@ public final class GameSmokeRunner extends Instrumentation {
         click("视图",true);click("战斗震动",true);click("关闭",true);runOnMainSync(current::recreate);waitForIdleSync();
         click("视图",true);click("战斗震动",true);require(waitText("关闭",true).isChecked(),"haptics off survives recreation");click("开启（遵循系统触感设置）",true);
         chooseOrientation("横屏");
+    }
+    private World diplomacyFixture()throws Exception {
+        World w=new World(32,18,"汉营","盟营","敌营");w.scenarioId="diplomacy-smoke";w.scenarioName="合纵连横";
+        w.cities.add(new World.City(0,"汉都",new Hex(2,3),0));w.cities.add(new World.City(1,"汉后方",new Hex(2,12),0));w.cities.add(new World.City(10,"盟都",new Hex(10,3),1));w.cities.add(new World.City(20,"敌都",new Hex(26,3),2));
+        String[] names={"刘备","诸葛亮","关羽","张飞","赵云"};
+        for(World.City c:w.cities){c.gold=30000;c.food=150000;c.troops=c.owner==0?60000:18000;c.morale=90;
+            for(int i=0;i<5;i++){World.Officer o=new World.Officer(c.id*10+i,c.id==0?names[i]:"使将"+(c.id*10+i),c.owner,c.id,80,80,85,90,95);w.officers.add(o);}
+        }
+        for(int id:new int[]{0,100,200}){w.officer(id).role=Strategy.Role.RULER;w.officer(id).loyalty=100;}
+        w.strategy.setFactionRelation(0,1,100);
+        for(int seed=0;seed<100;seed++){w.strategy.setSeed(seed);World test=SaveCodec.decode(SaveCodec.encode(w));test.campaign.negotiate(0,1,1,Campaign.TreatyKind.ALLIANCE,12);if(test.campaign.treaty(0,1)!=null)break;}
+        require(w.campaign.negotiate(0,1,1,Campaign.TreatyKind.ALLIANCE,12).ok,"fixture alliance");Arrays.fill(w.actionPoints,60);for(World.Officer o:w.officers)o.acted=false;
+        return w;
+    }
+    private void aidWizard(){locateCity("汉都");click("外交",true);click("外交 / 协定",true);click("盟营 ·",false);click("请求援军",true);click("诸葛亮 ·",false);click("盟都 ·",false);click("敌都 ·",false);click("金1000",true);}
+    private void diplomacyVisualFlow()throws Exception {
+        World w=diplomacyFixture();
+        for(int seed=0;seed<100;seed++){w.strategy.setSeed(seed);World test=SaveCodec.decode(SaveCodec.encode(w));test.diplomacy.requestAid(0,1,10,20,1000);if(!test.diplomacy.aids().isEmpty())break;}
+        installFixture(w,w.city(0).hex);chooseOrientation("竖屏");locateCity("汉都");screenshot("v021-city-card");
+        java.lang.reflect.Field stateField=MainActivity.class.getDeclaredField("ui");stateField.setAccessible(true);runOnMainSync(()->{try{ClientState state=(ClientState)stateField.get(current);state.owner=-1;state.city=-1;state.query="";}catch(IllegalAccessException e){throw new RuntimeException(e);}});
+        clickNav("武将");setSearch("诸葛亮");screenshot("v021-officer-list");click("诸葛亮 · 汉营",true);waitForIdleSync();require(findInput(getUiAutomation().getRootInActiveWindow(),"诸葛亮头像或模型")!=null,"detail has officer portrait");screenshot("v021-officer-detail");click("返回",true);
+        locateCity("汉都");click("军事",true);click("快速出征（单将）",true);click("张飞",true);waitText("选择兵种",true);screenshot("v021-weapon-picker");click("取消",true);
+        byte[] before=SaveCodec.encode(saved());aidWizard();waitText("期限18旬",false);screenshot("v021-aid-confirm");click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"aid cancellation leaves money, officers, RNG and requests untouched");
+        aidWizard();click("执行",true);require(saved().diplomacy.aids().size()==1&&saved().actionPoints[0]==30,"UI aid request persists and spends 30 AP");
+        endTurn();w=saved();require(w.diplomacy.aids().size()==1&&w.diplomacy.aids().get(0).unit>=0,"UI next turn dispatches actual allied army");
+        clickNav("任务");click("援军 · 盟营",true);screenshot("v021-aid-task");click("返回",true);before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(before,SaveCodec.encode(saved())),"aid survives activity recreation");
+        click("视图",true);click("兵种与建筑图例",true);click("陆军与水军",true);screenshot("v021-icon-guide");click("返回",true);
+        portraitAtlas();
+        w=diplomacyFixture();w.city(10).troops=1000;w.city(10).defense=500;
+        for(int seed=0;seed<100;seed++){w.strategy.setSeed(seed);World test=SaveCodec.decode(SaveCodec.encode(w));test.diplomacy.surrender(0,1,1);if(!test.alive(1))break;}
+        installFixture(w,w.city(0).hex);locateCity("汉都");click("外交",true);click("外交 / 协定",true);click("盟营 ·",false);click("劝降",true);click("诸葛亮 ·",false);screenshot("v021-surrender");before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"cancel surrender is pure");
+        locateCity("汉都");click("外交",true);click("外交 / 协定",true);click("盟营 ·",false);click("劝降",true);click("诸葛亮 ·",false);click("执行",true);require(!saved().alive(1)&&saved().city(10).owner==0&&saved().officer(100).role==Strategy.Role.OFFICER,"UI surrender transfers whole force");screenshot("v021-surrender-complete");
+        chooseOrientation("横屏");
+    }
+    private void portraitAtlas()throws Exception {
+        Bitmap bitmap=Bitmap.createBitmap(800,1000,Bitmap.Config.ARGB_8888);Canvas canvas=new Canvas(bitmap);canvas.drawColor(0xff192d32);Paint label=new Paint(Paint.ANTI_ALIAS_FLAG);label.setColor(0xffead9ad);label.setTextSize(22);label.setTextAlign(Paint.Align.CENTER);World w=saved();
+        try(InputStream in=getTargetContext().getAssets().open("portraits/officers.png")){Bitmap atlas=BitmapFactory.decodeStream(in);require(atlas!=null&&atlas.getWidth()>=1000&&atlas.getHeight()>=1000,"original portrait atlas packaged and decodable");atlas.recycle();}
+        try(InputStream in=getTargetContext().getAssets().open("map/buildings.png")){Bitmap atlas=BitmapFactory.decodeStream(in);require(atlas!=null&&atlas.getWidth()==1254&&atlas.getHeight()==1254&&atlas.hasAlpha(),"complete transparent building atlas packaged");atlas.recycle();}
+        for(int i=0;i<20;i++){String name=i<16?PortraitCatalog.NAMES[i]:"自建武将"+i;World.Officer o=new World.Officer(900+i,name,0,0,60,60,80,80,60);if(i==18)o.sex=World.Sex.FEMALE;
+            OfficerPortrait portrait=new OfficerPortrait(getTargetContext(),w,o);int x=i%4*200,y=i/4*200;portrait.setBounds(x+20,y+10,x+180,y+170);portrait.draw(canvas);canvas.drawText(name,x+100,y+195,label);}
+        File directory=getTargetContext().getExternalFilesDir("smoke");require(directory!=null,"portrait atlas directory");try(FileOutputStream out=new FileOutputStream(new File(directory,"v021-portrait-atlas.png"))){bitmap.compress(Bitmap.CompressFormat.PNG,100,out);}bitmap.recycle();
     }
     private void modelAtlas()throws Exception {
         MapModels models=new MapModels();java.util.List<String> labels=new java.util.ArrayList<>();
