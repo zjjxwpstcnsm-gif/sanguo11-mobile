@@ -244,7 +244,7 @@ public final class GameSmokeRunner extends Instrumentation {
         setSearch("不存在");waitText("没有符合筛选条件的武将",false);setSearch("周瑜");
         runOnMainSync(current::recreate);waitText("武将一览",true);waitText("周瑜 · 孙权军",true);screenshot("13-officer-filter-restored");
         clickNav("任务");waitText("当前没有在途任务",false);click("筛选 · 全部任务",true);click("建设",true);waitText("当前没有建设中的设施",false);
-        locateCity("柴桑");click("内政",true);waitText("当前没有建设中的设施",false);
+        locateCity("柴桑");click("内政",true);scrollToText("当前没有建设中的设施",false);
         click("下一旬  →",true);click("取消",true);require(saved().turn==0,"cancel turn preserves world");
         // Filled slot replacement is explicit and cancellable; metadata is visible.
         click("菜单",true);click("保存局面（3个槽位）",true);waitText("最后保存",false);click("槽位 1 ·",false);waitText("覆盖以下存档",false);click("取消",true);
@@ -553,7 +553,7 @@ public final class GameSmokeRunner extends Instrumentation {
         World w=ScenarioCatalog.load("regional-sandbox",0);installFixture(w,w.city(100).hex);
         int id=ContentCatalog.get().officers().stream().filter(o->o.name.equals("曹丕")).findFirst().get().id;
         click("菜单",true);click("全国资料 / 核验目录",true);setInput("搜索资料","曹丕");click("曹丕 · ID",false);
-        waitText("已解析关系",false);click("加入局面",true);click("预览",true);waitText("确认加入资料武将",true);
+        scrollToText("已解析关系",false);click("加入局面",true);click("预览",true);waitText("确认加入资料武将",true);
         byte[] before=SaveCodec.encode(saved());screenshot("v018-source-preview");click("返回",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"cancel sourced import leaves save unchanged");
         click("曹丕 · ID",false);click("加入局面",true);click("预览",true);click("确认加入",true);waitForIdleSync();
         w=saved();require(w.officer(id)!=null&&w.life.life(id)!=null&&w.editor.edited(),"native import creates playable source officer and biography");
@@ -670,16 +670,20 @@ public final class GameSmokeRunner extends Instrumentation {
             AccessibilityNodeInfo button=find(active,"选中对象指令 ·",false);
             if(button!=null&&button.getText()!=null&&button.getText().toString().endsWith(" · 指令"))click("选中对象指令 ·",false);
         }
+        AccessibilityNodeInfo node=scrollToText(text,exact);
+        Rect bounds=new Rect();node.getBoundsInScreen(bounds);
+        long time=SystemClock.uptimeMillis();MotionEvent down=MotionEvent.obtain(time,time,MotionEvent.ACTION_DOWN,bounds.centerX(),bounds.centerY(),0);
+        MotionEvent up=MotionEvent.obtain(time,time+40,MotionEvent.ACTION_UP,bounds.centerX(),bounds.centerY(),0);
+        sendPointerSync(down);sendPointerSync(up);down.recycle();up.recycle();waitForIdleSync();SystemClock.sleep(350);
+    }
+    private AccessibilityNodeInfo scrollToText(String text,boolean exact) {
         AccessibilityNodeInfo node=null;long until=SystemClock.uptimeMillis()+12000;
         while(node==null&&SystemClock.uptimeMillis()<until) {
             waitForIdleSync();AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();node=find(root,text,exact);
             if(node==null){if(!scroll(root))scrollBack(root);SystemClock.sleep(250);}
         }
-        if(node==null)throw new AssertionError("UI action not found: "+text);
-        Rect bounds=new Rect();node.getBoundsInScreen(bounds);
-        long time=SystemClock.uptimeMillis();MotionEvent down=MotionEvent.obtain(time,time,MotionEvent.ACTION_DOWN,bounds.centerX(),bounds.centerY(),0);
-        MotionEvent up=MotionEvent.obtain(time,time+40,MotionEvent.ACTION_UP,bounds.centerX(),bounds.centerY(),0);
-        sendPointerSync(down);sendPointerSync(up);down.recycle();up.recycle();waitForIdleSync();SystemClock.sleep(350);
+        if(node==null)throw new AssertionError("UI content not reachable by scrolling: "+text);
+        return node;
     }
     private boolean scroll(AccessibilityNodeInfo node) {
         if(node==null)return false;
