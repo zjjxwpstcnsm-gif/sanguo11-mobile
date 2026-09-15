@@ -1,8 +1,14 @@
 # sanguo11-mobile
 
-独立运行的 Android 三国回合制策略游戏工程，最终目标参照 **PC《三国志11＋威力加强版》** 的完整系统范围。横屏、中文、离线游玩；不依赖模拟器、原版可执行文件或远程串流。
+独立运行的 Android 三国回合制策略游戏工程，最终目标参照 **PC《三国志11＋威力加强版》** 的完整系统范围。横竖屏、中文、离线游玩；不依赖模拟器、原版可执行文件或远程串流。
 
 ## 当前状态
+
+**v0.19.0 大地图与横竖屏界面开发版。** 详情默认收起，城市/武将/任务/存档收纳到「功能」，全图/定位/导航图收纳到「视图」。竖屏底部面板、横屏侧栏支持展开/缩小/收起；视图→屏幕方向可选跟随系统、竖屏、横屏并记住设置。行军确认栏仅在路线预览时出现，地图在面板开合与转屏时保持缩放比例。沿用 v0.18 内容、规则和 v15 存档。
+
+本地全部核心回归与 51,770 条 UI 模型/相机断言通过；已新增 Android 横竖屏操作回归，**Android 编译、安装与真机视觉验收仍受构建环境阻塞，尚无 v0.19 APK**。详细操作和验证边界见 [本轮说明](docs/MOBILE_LAYOUT_V0_19.md)。
+
+## v0.18 历史状态
 
 **v0.18.0 资料人物与AI开发版。** 670名来源武将可通过原生预览加入真实局面；869条关系绑定、99条歧义隔离，生卒/登场/性格与关系可存读。AI共用多目标寻路、评估副将组合并避开厌恶关系；按官方PC手册校正部分生产费用和能吏/繁殖效果方向。沿用存档v15。**仍未达到100%还原**：官方逐格地形0格、官方完整开局0个，全部事件/PK/特技交互及精确公式仍有缺口。[本轮范围](docs/CONTENT_AI_V0_18.md) · [验证记录](docs/validation/v018/README.md)。
 
@@ -111,7 +117,7 @@ v0.8 Agent 1 开发分支新增移动确认与移动后行动、部分真实特�
 
 Android 构建：安装 JDK 17、Android SDK 35、Build Tools 35.0.0、Gradle 8.11.1，然后运行 `./gradlew test :core:check :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`。已提交固定 Gradle 8.11.1 及 SHA-256 的 Wrapper。
 
-APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-v018-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
+APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-v019-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
 
 验证范围与待验项目见 [VALIDATION.md](docs/VALIDATION.md)。
 

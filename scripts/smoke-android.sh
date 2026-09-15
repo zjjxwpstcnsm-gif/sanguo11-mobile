@@ -3,7 +3,7 @@ set -euo pipefail
 mkdir -p app/build/smoke
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
-# Landscape profiles run in separate CI matrix emulators; local default still runs all three.
+# Each display verifies portrait and landscape via the in-game orientation picker.
 for display in ${SMOKE_DISPLAYS:-1080x1920 1080x2340 1080x2400}; do
   adb shell wm size "$display"
   adb shell wm density 420

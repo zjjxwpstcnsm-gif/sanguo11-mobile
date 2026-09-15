@@ -45,11 +45,21 @@ public final class PresentationTest {
             c.pan(-200000,-200000);check(c.x+(1400-25)*c.scale>=width-48.02&&c.y+(900-25)*c.scale>=1080-48.02,"negative drag bounds");
             c.zoom(0,width/2f,540);near(c.scale,c.minScale,"min zoom");
             c.focus(650,400);float cx=c.centerX(),cy=c.centerY(),ratio=c.scale/c.minScale;
-            c.resize(width-300,1080,1400,900,25,3);near(c.centerX(),cx,"resize world center x");near(c.centerY(),cy,"resize world center y");
+            float scaleBefore=c.scale;
+            c.resize(width-300,1080,1400,900,25,3);near(c.scale,scaleBefore,"panel opening keeps world scale");near(c.centerX(),cx,"resize world center x");near(c.centerY(),cy,"resize world center y");
             c.restore(ratio,cx,cy);near(c.centerX(),cx,"restored camera center");
             // Pinch preserves the touched world point when not on a clamped boundary.
             c.focus(650,400);float fx=(width-300)/2f+30,fy=550;float wx=(fx-c.x)/c.scale,wy=(fy-c.y)/c.scale;c.zoom(c.scale*1.1f,fx,fy);near((fx-c.x)/c.scale,wx,"pinch focal x");near((fy-c.y)/c.scale,wy,"pinch focal y");
         }
+        // Orientation and sheet changes must expose more map, not magnify the same patch.
+        MapCamera rotated=new MapCamera();rotated.resize(1080,2000,10000,8000,25,3);rotated.focus(4500,3500);
+        float stableScale=rotated.scale,stableX=rotated.centerX(),stableY=rotated.centerY();
+        for(int[] size:new int[][]{{1080,1000},{2200,780},{1500,780},{2200,780},{1080,2000}}){
+            rotated.resize(size[0],size[1],10000,8000,25,3);
+            near(rotated.scale,stableScale,"orientation preserves readable zoom");near(rotated.centerX(),stableX,"orientation preserves world center x");near(rotated.centerY(),stableY,"orientation preserves world center y");
+        }
+        MapCamera restored=new MapCamera();restored.resize(1080,1000,10000,8000,25,3);restored.restoreScale(stableScale,stableX,stableY);
+        near(restored.scale,stableScale,"saved absolute zoom independent of sheet size");near(restored.centerX(),stableX,"saved absolute camera x");near(restored.centerY(),stableY,"saved absolute camera y");
         System.out.println("PASS: "+checks+" UI projection/camera assertions.");
     }
     private static void viewport(){

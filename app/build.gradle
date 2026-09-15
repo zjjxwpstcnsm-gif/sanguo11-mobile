@@ -7,8 +7,8 @@ android {
         minSdk 26
         targetSdk 35
         testInstrumentationRunner 'game.sanguo.mobile.GameSmokeRunner'
-        versionCode 18
-        versionName '0.18.0-content-ai-dev'
+        versionCode 19
+        versionName '0.19.0-map-portrait-dev'
     }
     signingConfigs {
         debug {
