@@ -673,7 +673,15 @@ public final class GameSmokeRunner extends Instrumentation {
             if(button!=null&&button.getText()!=null&&button.getText().toString().endsWith(" · 指令"))click("选中对象指令 ·",false);
         }
         AccessibilityNodeInfo node=scrollToText(text,exact);
+        // Dialogs and scrolling can expose accessibility nodes before their final layout.
+        try{getUiAutomation().waitForIdle(100,5000);}catch(java.util.concurrent.TimeoutException e){throw new AssertionError("UI did not settle before clicking: "+text,e);}
+        node=waitText(text,exact);
         Rect bounds=new Rect();node.getBoundsInScreen(bounds);
+        // A partly visible row may have its full center behind the fixed footer.
+        for(AccessibilityNodeInfo parent=node.getParent();parent!=null;parent=parent.getParent()){
+            Rect clip=new Rect();parent.getBoundsInScreen(clip);
+            require(bounds.intersect(clip),"click target has visible bounds: "+text);
+        }
         long time=SystemClock.uptimeMillis();MotionEvent down=MotionEvent.obtain(time,time,MotionEvent.ACTION_DOWN,bounds.centerX(),bounds.centerY(),0);
         MotionEvent up=MotionEvent.obtain(time,time+40,MotionEvent.ACTION_UP,bounds.centerX(),bounds.centerY(),0);
         sendPointerSync(down);sendPointerSync(up);down.recycle();up.recycle();waitForIdleSync();SystemClock.sleep(350);
