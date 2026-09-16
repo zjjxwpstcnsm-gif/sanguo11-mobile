@@ -43,7 +43,7 @@ public final class AbilityResearchTest {
         unlock(w,0,"jingang");reject(w,()->w.abilities.train(10,2,"jingang",false));ok(w.abilities.train(10,2,"jingang",true));ok(w.abilities.cancelTraining(2));check(w.officer(2).skillId.equals(Skill.BUQU.id)&&w.abilities.remaining(0,"jingang")==3,"cancel preserves skill and use");
         reject(w,()->w.abilities.cancelTraining(2));ok(w.abilities.train(10,3,"jingang",false));for(int i=0;i<3;i++)tick(w);check(w.officer(3).skillId.equals(Skill.JINGANG.id),"new skill visible to combat hooks");
         w.officer(4).leadership=69;ok(w.abilities.train(10,4,"lead.low",false));for(int i=0;i<3;i++)tick(w);check(w.officer(4).leadership==70&&w.abilities.gained(4,0)==1,"cap records actual gain rather than five");reject(w,()->w.abilities.train(10,4,"lead.low",false));
-        w.officer(5).aptitude[0]=1;reject(w,()->w.abilities.train(10,5,"spear.b",false));unlock(w,0,"tiebi");reject(w,()->w.abilities.train(10,5,"tiebi",false));
+        w.officer(5).aptitude[0]=1;reject(w,()->w.abilities.train(10,5,"spear.b",false));unlock(w,0,"tiebi");ok(w.abilities.train(10,5,"tiebi",false));for(int i=0;i<3;i++)tick(w);check(w.officer(5).skillId.equals(Skill.TIEBI.id),"implemented ironwall can now be taught");
     }
     private static void limits()throws Exception{
         World w=fixture();unlock(w,0,"lead.mid");w.officer(0).leadership=51;
@@ -54,7 +54,7 @@ public final class AbilityResearchTest {
     }
     private static void lossAndLegacy()throws Exception{
         World w=fixture();w.cities.add(new World.City(11,"后方",new Hex(2,10),0));unlock(w,0,"war.low");ok(w.abilities.train(10,0,"war.low",false));ok(w.abilities.startResearch(10,"lead.low"));w.city(10).owner=1;for(World.Officer o:w.officers)if(o.owner==0)o.cityId=11;w.abilities.cleanup();check(w.abilities.training().isEmpty()&&w.abilities.research(0)==null&&w.abilities.remaining(0,"war.low")==5,"lost city cancels training and research without granting results");SaveCodec.validate(w);
-        try(InputStream in=AbilityResearchTest.class.getResourceAsStream("/legacy-v9.sg11.b64")){World old=SaveCodec.decode(Base64.getMimeDecoder().decode(in.readAllBytes()));check(old.campaign.projects().size()==1&&old.abilities.training().isEmpty(),"real v9 running legacy project preserved");check(ByteBuffer.wrap(bytes(old),4,4).getInt()==16,"migrates v9 to v16");for(int i=0;i<3;i++)tick(old);check(old.officer(3001).aptitude[0]==2&&old.campaign.projects().isEmpty(),"legacy task finishes original reward once");}
+        try(InputStream in=AbilityResearchTest.class.getResourceAsStream("/legacy-v9.sg11.b64")){World old=SaveCodec.decode(Base64.getMimeDecoder().decode(in.readAllBytes()));check(old.campaign.projects().size()==1&&old.abilities.training().isEmpty(),"real v9 running legacy project preserved");check(ByteBuffer.wrap(bytes(old),4,4).getInt()==17,"migrates v9 to v17");for(int i=0;i<3;i++)tick(old);check(old.officer(3001).aptitude[0]==2&&old.campaign.projects().isEmpty(),"legacy task finishes original reward once");}
         World broken=fixture();unlock(broken,0,"war.low");ok(broken.abilities.train(10,0,"war.low",false));broken.officer(0).otherTask="";invalid(broken);
     }
     private static void allOrdinaryNodes()throws Exception{

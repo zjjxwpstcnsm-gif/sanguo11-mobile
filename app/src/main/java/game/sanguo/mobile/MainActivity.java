@@ -26,6 +26,7 @@ public final class MainActivity extends Activity {
     private World battleReportWorld;
     private Button selectionButton,expandPanel,closePanel;
     private AlertDialog navigationDialog;
+    private AlertDialog confirmationDialog;
     private Hex selected;
     private int moving=-1;
     private boolean aiRunning;
@@ -134,7 +135,7 @@ public final class MainActivity extends Activity {
             else if(index==4)message("战报",String.join("\n",world.log));
             else if(index==6){boolean enabled=getPreferences(MODE_PRIVATE).getBoolean("battleHaptics",true);
                 new AlertDialog.Builder(this).setTitle("战斗震动").setSingleChoiceItems(new String[]{"开启（遵循系统触感设置）","关闭"},enabled?0:1,(dialog,which)->{getPreferences(MODE_PRIVATE).edit().putBoolean("battleHaptics",which==0).apply();dialog.dismiss();}).setNegativeButton("返回",null).show();}
-            else if(index==7)message("兵种与建筑图例","枪兵：长枪阵；戟兵：斧刃；弩兵：弩弓；骑兵：马匹；剑兵：剑盾。\n冲车：撞木车；井阑：高塔车；木兽：兽首车；投石：投臂车。水军以船体、层楼和帆数区分。\n城池：城墙屋顶；关隘：双塔城门；港口：码头船帆。市场摊棚、农田垄沟、谷仓筒仓、厩舍马匹、工房齿轮等分别绘制。军事建筑以营帐、箭塔、乐台、鼓、土石墙及火焰陷阱区分。\n颜色表示势力；灰色勾表示本旬已行动。缩小时保留部队、建筑和火场标记，放大后显示模型和名称。");
+            else if(index==7)VisualGuide.show(this,world);
             else message("地图操作","单指拖动 · 双指缩放 · 双击城池定位\n点城池或部队打开指令，点空地或「收起」返回大地图。\n「功能」打开城市、武将、任务和存档菜单。\n竖屏使用底部面板，横屏使用右侧面板；「展开」可查看更多内容。\n选中己方部队后点地图目标，确认后开始行军。返回键先取消路线或收起面板。");
         }).setNegativeButton("返回",null).show();
     }
@@ -148,7 +149,13 @@ public final class MainActivity extends Activity {
         int mode=getPreferences(MODE_PRIVATE).getInt("screenMode",0);
         setRequestedOrientation(mode==1?android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:mode==2?android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE:android.content.pm.ActivityInfo.SCREEN_ORIENTATION_FULL_USER);
     }
-    @Override public void onConfigurationChanged(Configuration config){super.onConfigurationChanged(config);if(root!=null){layoutPanels();refreshCommandDock();root.requestApplyInsets();}}
+    @Override public void onConfigurationChanged(Configuration config){super.onConfigurationChanged(config);if(root!=null){layoutPanels();refreshCommandDock();root.requestApplyInsets();}fitConfirmation();}
+    private void fitConfirmation(){
+        if(confirmationDialog==null||!confirmationDialog.isShowing())return;
+        // A dialog opened during sensor rotation can retain the previous orientation's minimum width.
+        int width=dp(Math.min(560,Math.max(240,getResources().getConfiguration().screenWidthDp-32)));
+        confirmationDialog.getWindow().setLayout(width,WindowManager.LayoutParams.WRAP_CONTENT);
+    }
     int dp(float n){return Math.round(n*getResources().getDisplayMetrics().density);}
     TextView text(String value,int size,int color){TextView t=new TextView(this);t.setText(value);t.setTextSize(size);t.setTextColor(color);t.setGravity(Gravity.CENTER_VERTICAL);return t;}
     Button button(String value,View.OnClickListener action){Button b=new Button(this);b.setText(value);b.setTextSize(13);b.setAllCaps(false);b.setMinWidth(0);b.setMinimumWidth(0);b.setPadding(dp(4),0,dp(4),0);b.setTextColor(new android.content.res.ColorStateList(new int[][]{new int[]{-android.R.attr.state_enabled},new int[]{}},new int[]{0xff6b7d8d,paper}));
@@ -156,6 +163,14 @@ public final class MainActivity extends Activity {
         b.setBackground(new android.graphics.drawable.RippleDrawable(android.content.res.ColorStateList.valueOf(0x446ddcc5),new android.graphics.drawable.InsetDrawable(shape,dp(3),dp(3),dp(3),dp(3)),null));b.setOnClickListener(v->{if(!aiRunning)action.onClick(v);});return b;}
     private void line(String value,int size,int color){TextView t=text(value,size,color);t.setPadding(0,dp(4),0,dp(4));panel.addView(t);}
     private void action(String label,View.OnClickListener click){Button b=button(label,click);b.setEnabled(!aiRunning);panel.addView(b,new LinearLayout.LayoutParams(-1,dp(48)));}
+    private void iconAction(String label,Object item,View.OnClickListener click){
+        Button b=button(label,click);android.graphics.drawable.Drawable icon=GameIcon.drawable(this,world,item);icon.setBounds(0,0,dp(36),dp(36));b.setCompoundDrawables(icon,null,null,null);b.setCompoundDrawablePadding(dp(8));b.setEnabled(!aiRunning);panel.addView(b,new LinearLayout.LayoutParams(-1,dp(52)));
+    }
+    private LinearLayout visualHeader(Object item,String name,String subtitle,int size){
+        LinearLayout row=new LinearLayout(this);row.setGravity(Gravity.CENTER_VERTICAL);row.setPadding(0,dp(6),0,dp(6));
+        ImageView icon=new ImageView(this);icon.setImageDrawable(GameIcon.drawable(this,world,item));icon.setContentDescription(name+"头像或模型");row.addView(icon,new LinearLayout.LayoutParams(dp(size),dp(size)));
+        LinearLayout words=new LinearLayout(this);words.setOrientation(LinearLayout.VERTICAL);words.setPadding(dp(12),0,0,0);words.addView(text(name,22,gold));words.addView(text(subtitle,13,paper));row.addView(words,new LinearLayout.LayoutParams(0,-2,1));return row;
+    }
     private void onTile(Hex h) {
         if(h==null||aiRunning)return;
         World.Unit target=world.unitAt(h);World.City city=world.cityAt(h);World.Unit source=world.unit(moving);
@@ -180,7 +195,7 @@ public final class MainActivity extends Activity {
         selected=h;moving=target!=null&&target.owner==world.player?target.id:-1;ui.page="map";ui.panelVisible=target!=null||city!=null||world.domestic.at(h)!=null||world.war.at(h)!=null||world.war.fireAt(h)!=null;ui.panelExpanded=false;refresh();if(ui.panelVisible)map.post(()->map.center(h));revealPanel();
     }
     private void message(String title,String value){new AlertDialog.Builder(this).setTitle(title).setMessage(value).setPositiveButton("返回",null).show();}
-    private void confirm(String value,Runnable action){new AlertDialog.Builder(this).setMessage(value).setPositiveButton("执行",(d,w)->{if(!aiRunning)action.run();}).setNegativeButton("取消",null).show();}
+    private void confirm(String value,Runnable action){confirmationDialog=new AlertDialog.Builder(this).setMessage(value).setPositiveButton("执行",(d,w)->{if(!aiRunning)action.run();}).setNegativeButton("取消",null).show();fitConfirmation();}
     void applyResult(World.Result result){apply(result);}
     private void apply(World.Result result){
         if(!result.ok)message("命令未执行",result.message);
@@ -258,14 +273,14 @@ public final class MainActivity extends Activity {
     private void showSelection(){
         World.Unit unit=selected==null?null:world.unitAt(selected);World.City city=selected==null?null:world.cityAt(selected);
         if(unit!=null)showUnit(unit);else if(city!=null)showCity(city);else if(selected!=null&&world.domestic.at(selected)!=null){
-            Domestic.Facility f=world.domestic.at(selected);line(f.kind.label,24,gold);line(world.city(f.cityId).name,15,paper);line(f.remaining==0?f.kind.effect:"建设中 · 剩"+f.remaining+"旬",14,paper);
+            Domestic.Facility f=world.domestic.at(selected);panel.addView(visualHeader(f,f.kind.label,world.city(f.cityId).name,64));line(f.remaining==0?f.kind.effect:"建设中 · 剩"+f.remaining+"旬",14,paper);
             action("设施详情 / 管理",v->domesticUi().facility(f));action("返回所属城池",v->selectAndFocus(world.city(f.cityId).hex));
-        }else if(selected!=null&&world.war.at(selected)!=null){War.Structure s=world.war.at(selected);line(s.kind.label,24,gold);line(world.faction(s.owner)+" · 耐久"+s.hp+"/"+s.kind.hp,15,paper);line(s.complete?s.kind.effect:"施工中，建成后生效",14,paper);if(s.builder>=0&&world.unit(s.builder)!=null)action("定位施工部队",v->selectAndFocus(world.unit(s.builder).hex));}
+        }else if(selected!=null&&world.war.at(selected)!=null){War.Structure s=world.war.at(selected);panel.addView(visualHeader(s.kind,s.kind.label,world.faction(s.owner),64));line(world.faction(s.owner)+" · 耐久"+s.hp+"/"+s.kind.hp,15,paper);line(s.complete?s.kind.effect:"施工中，建成后生效",14,paper);if(s.builder>=0&&world.unit(s.builder)!=null)action("定位施工部队",v->selectAndFocus(world.unit(s.builder).hex));}
         else {line("山河之间",23,gold);if(selected!=null&&world.war.fireAt(selected)!=null)line("火场 · 剩"+world.war.fireAt(selected).remaining+"旬",16,gold);line("点选城池或部队",15,paper);line("单指拖动 · 双指缩放\n双击城池聚焦\n缩小时保留占格标记，放大查看模型与名称。",14,paper);action("定位本城",v->{if(world.home()!=null)selectAndFocus(world.home().hex);});}
     }
     private void showCity(World.City c){
         boolean compact=!ui.group.equals("概览");
-        line(c.name,compact?21:25,gold);line(world.faction(c.owner)+" · 太守 "+UiModels.governor(world,c.id),compact?12:13,paper);
+        panel.addView(visualHeader(c,c.name,world.faction(c.owner)+" · 太守 "+UiModels.governor(world,c.id),compact?44:64));
         line(compact?"金 "+c.gold+" · 粮 "+c.food+" · 兵 "+c.troops:"金 "+c.gold+"    粮 "+c.food+"\n兵 "+c.troops+"    城防 "+c.defense,compact?13:15,paper);
         String[] groups={"概览","内政","武将","军事","调动","外交","研究"};
         for(int first=0;first<groups.length;first+=4){
@@ -283,7 +298,7 @@ public final class MainActivity extends Activity {
             case "内政":
                 line("设施 "+world.domestic.count(c.id)+"/"+Domestic.CITY_SLOTS+"\n"+world.domestic.incomeSchedule(c.id),14,paper);
                 boolean construction=false;
-                for(Domestic.Facility f:world.domestic.facilities)if(f.cityId==c.id){construction|=f.remaining>0;action(f.kind.label+" · "+(f.remaining==0?"已建成":"剩"+f.remaining+"旬"),v->domesticUi().facility(f));}
+                for(Domestic.Facility f:world.domestic.facilities)if(f.cityId==c.id){construction|=f.remaining>0;iconAction(f.kind.label+" · "+(f.remaining==0?"已建成":"剩"+f.remaining+"旬"),f,v->domesticUi().facility(f));}
                 if(!construction)line("当前没有建设中的设施",13,muted);
                 if(own)action("设施开发",v->domesticUi().build(c));
                 if(own)action("商人 / 粮食买卖",v->campaignUi().trade(c));
@@ -309,7 +324,7 @@ public final class MainActivity extends Activity {
                     action("流放武将",v->campaignUi().dismiss(c));
                 }
                 line("可用武将 "+world.idle(c).size()+" / 驻扎 "+UiModels.officerCount(world,c.id),14,paper);
-                for(World.Officer o:world.officers)if(o.cityId==c.id)action(o.name+" · "+o.role.label+" · "+UiModels.status(world,o),v->officerDetail(o));
+                for(World.Officer o:world.officers)if(o.cityId==c.id)iconAction(o.name+" · "+o.role.label+" · "+UiModels.status(world,o),o,v->officerDetail(o));
                 if(UiModels.officerCount(world,c.id)==0)line("当前没有驻扎武将",14,muted);
                 action("筛选本城武将",v->{ui.city=c.id;ui.owner=-1;ui.query="";ui.page="officers";refresh();});break;
             case "军事":
@@ -344,7 +359,8 @@ public final class MainActivity extends Activity {
         new CityCommand("生产兵装 · 查看费用",()->chooseOfficer(c,o->chooseBasicWeapon(weapon->confirm(o.name+"生产"+world.skills.produceAmount(c.id,o.id,weapon)+"份"+weapon.label+"兵装\n花费金"+world.skills.productionGold(o.id,weapon)+"、行动力10",()->apply(world.produce(c.id,o.id,weapon))))))
     );}
     private void showUnit(World.Unit u){
-        World.Officer o=world.officer(u.officerId);line(o.name,25,gold);line(world.faction(u.owner)+" · "+world.army.equipmentLabel(u),14,paper);
+        World.Officer o=world.officer(u.officerId);panel.addView(visualHeader(o,o.name,world.faction(u.owner)+" · "+world.army.equipmentLabel(u),64));
+        Diplomacy.Aid aid=world.diplomacy.aidForUnit(u.id);if(aid!=null)line("援军 · "+world.diplomacy.describe(aid),13,gold);
         if(u.owner==world.player){
             LinearLayout quick=new LinearLayout(this);
             quick.addView(button("选择目标",v->closePanel()),new LinearLayout.LayoutParams(0,dp(48),1));
@@ -354,12 +370,12 @@ public final class MainActivity extends Activity {
         }
         unitStats(u);line("统率 "+o.leadership+"  武力 "+o.war,13,paper);line("剩余移动 "+world.orders.remaining(u)+"  射程 "+world.war.range(u),13,paper);
         line("适性 "+War.rankLabel(world.army.aptitude(u))+" · 状态 "+u.status.label,14,paper);
-        action("主将 · "+o.name+" · 查看武将",v->officerDetail(o));
-        for(int id:u.deputies){World.Officer deputy=world.officer(id);action("副将 · "+deputy.name+" · 查看武将",v->officerDetail(deputy));}
+        iconAction("主将 · "+o.name+" · 查看武将",o,v->officerDetail(o));
+        for(int id:u.deputies){World.Officer deputy=world.officer(id);iconAction("副将 · "+deputy.name+" · 查看武将",deputy,v->officerDetail(deputy));}
         List<Government.Prisoner> prisoners=world.government.escorted(u.id);
         if(!prisoners.isEmpty()){
             line("随军俘虏 "+prisoners.size()+"人 · 部队入城后收押",14,gold);
-            for(Government.Prisoner prisoner:prisoners){World.Officer captive=world.officer(prisoner.officerId);action("随军俘虏 · "+captive.name,v->officerDetail(captive));}
+            for(Government.Prisoner prisoner:prisoners){World.Officer captive=world.officer(prisoner.officerId);iconAction("随军俘虏 · "+captive.name,captive,v->officerDetail(captive));}
         }
         line("携金 "+u.gold+" · "+(world.fieldworks.project(u.id)==null?"未施工":"施工中"),13,paper);
         line("部队武力 "+world.army.war(u)+" · 智力 "+world.army.intelligence(u),13,paper);
@@ -380,7 +396,10 @@ public final class MainActivity extends Activity {
         stats+="\n适性：枪"+War.rankLabel(o.aptitude[0])+" 戟"+War.rankLabel(o.aptitude[1])+" 弩"+War.rankLabel(o.aptitude[2])+" 骑"+War.rankLabel(o.aptitude[3])+" 器"+War.rankLabel(o.aptitude[4])+" 水"+War.rankLabel(o.aptitude[5]);
         stats+="\n"+world.life.describe(o.id);
         stats+="\n特技："+Skill.label(o.skillId)+"\n\n"+world.relations.describe(o.id)+"\n\n宝物：\n"+world.treasures.describe(o.id);
-        AlertDialog.Builder d=new AlertDialog.Builder(this).setTitle(o.name+" · "+UiModels.faction(world,o)).setMessage(stats+"\n身份："+o.role.label+" · 忠诚 "+o.loyalty+"\n\n所在地："+UiModels.location(world,o)+"\n状态："+UiModels.status(world,o)).setNegativeButton("返回",null);
+        LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);content.setPadding(dp(20),dp(8),dp(20),dp(16));content.addView(visualHeader(o,o.name,o.role.label+" · 忠诚 "+o.loyalty,88));
+        TextView description=text(stats+"\n身份："+o.role.label+" · 忠诚 "+o.loyalty+"\n\n所在地："+UiModels.location(world,o)+"\n状态："+UiModels.status(world,o),15,paper);content.addView(description);
+        ScrollView scroll=new ScrollView(this);scroll.addView(content);
+        AlertDialog.Builder d=new AlertDialog.Builder(this).setTitle(o.name+" · "+UiModels.faction(world,o)).setView(scroll).setNegativeButton("返回",null);
         Hex h=o.cityId>=0?world.city(o.cityId).hex:o.unitId>=0&&world.unit(o.unitId)!=null?world.unit(o.unitId).hex:null;
         if(world.government.captive(o.id))h=world.government.location(world.government.prisoner(o.id));
         for(Domestic.Mission m:world.domestic.missions)if(m.officerId==o.id)h=m.hex;
@@ -390,11 +409,10 @@ public final class MainActivity extends Activity {
     private interface WeaponChoice {void choose(World.Weapon weapon);}
     private void chooseOfficer(World.City c,OfficerChoice callback){
         List<World.Officer> options=world.idle(c);if(options.isEmpty()){message("武将不足","没有本旬可行动的在城武将");return;}
-        String[] names=new String[options.size()];for(int i=0;i<names.length;i++)names[i]=options.get(i).name;
-        new AlertDialog.Builder(this).setTitle("执行武将").setItems(names,(d,index)->callback.choose(options.get(index))).setNegativeButton("取消",null).show();
+        new AlertDialog.Builder(this).setTitle("执行武将").setAdapter(GameIcon.adapter(this,world,options,o->o.name),(d,index)->callback.choose(options.get(index))).setNegativeButton("取消",null).show();
     }
-    private void chooseBasicWeapon(WeaponChoice callback){String[] names={"枪兵","戟兵","弩兵","骑兵"};new AlertDialog.Builder(this).setTitle("生产基础兵装").setItems(names,(d,i)->callback.choose(World.Weapon.values()[i])).setNegativeButton("取消",null).show();}
-    private void chooseWeapon(WeaponChoice callback){String[] labels=new String[World.Weapon.values().length];for(int i=0;i<labels.length;i++)labels[i]=World.Weapon.values()[i].label;new AlertDialog.Builder(this).setTitle("选择兵种").setItems(labels,(d,index)->callback.choose(World.Weapon.values()[index])).setNegativeButton("取消",null).show();}
+    private void chooseBasicWeapon(WeaponChoice callback){new AlertDialog.Builder(this).setTitle("生产基础兵装").setAdapter(GameIcon.adapter(this,world,Arrays.asList(World.Weapon.values()).subList(0,4),x->x.label),(d,i)->callback.choose(World.Weapon.values()[i])).setNegativeButton("取消",null).show();}
+    private void chooseWeapon(WeaponChoice callback){new AlertDialog.Builder(this).setTitle("选择兵种").setAdapter(GameIcon.adapter(this,world,Arrays.asList(World.Weapon.values()),x->x.label),(d,index)->callback.choose(World.Weapon.values()[index])).setNegativeButton("取消",null).show();}
     private void revealPanel(){panelScroll.post(()->panelScroll.scrollTo(0,0));}
     void selectAndFocus(Hex h){if(h==null)return;pendingMarch=null;World.Unit unit=world.unitAt(h);moving=unit!=null&&unit.owner==world.player?unit.id:-1;selected=h;ui.page="map";ui.panelVisible=true;ui.panelExpanded=false;ui.group="概览";refresh();map.post(()->map.focus(h));revealPanel();}
     private GovernmentUi governmentUi(){return new GovernmentUi(this,world,this::apply);}
@@ -416,7 +434,7 @@ public final class MainActivity extends Activity {
         action("本旬结算摘要",v->message("旬结算摘要",ui.summary.isEmpty()?"结束一旬后将在这里显示结算摘要。":ui.summary));
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.20 · 战果与地图模型","击破缴获金粮、俘虏结果与战斗触感；兵种和建筑简易模型；缩小时保留阻挡物，行军显示具体阻挡原因。\n俘虏随部队行军，入城后收押；出征可编入1主将+2副将，部队详情可逐将查看。\n视图→战斗震动可开关。存档v16，兼容旧版存档。\n全国原版格点、官方完整开局、全特技交互与精确公式仍有缺口。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.21 · 外交与常用视觉","援军请求、势力劝降、交换俘虏；八项特技恢复培养。\n16位名将原创头像、其余武将稳定默认头像；选将、兵种与设施图标统一；施工模型与城防/兵力条优化。\n存档v17，兼容v1—v16。\n全国原版格点、官方完整开局、全事件、全特技交互与精确公式仍有缺口。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}

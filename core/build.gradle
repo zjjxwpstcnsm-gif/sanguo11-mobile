@@ -158,3 +158,11 @@ tasks.register('verifyPrisonerEscort', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyPrisonerEscort' }
 tasks.named('test') { dependsOn 'verifyPrisonerEscort' }
+
+tasks.register('verifyDiplomacy', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.DiplomacyTest'
+}
+tasks.named('check') { dependsOn 'verifyDiplomacy' }
+tasks.named('test') { dependsOn 'verifyDiplomacy' }

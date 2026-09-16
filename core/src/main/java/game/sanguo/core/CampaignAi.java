@@ -413,5 +413,8 @@ public final class CampaignAi {
         if(w.unit(u.id)==null||u.acted)return;
         action=bestAction(u.id,attack,objectives);if(action==null||!execute(action).ok)w.war.waitUnit(u.id);
     }
-    public void runUnits(){for(World.Unit u:units())if(u.owner==w.active&&!w.gameOver())runUnit(u,true,c->true,c->c.owner==u.owner);}
+    public void runUnits(){for(World.Unit u:units())if(u.owner==w.active&&!w.gameOver()){
+        Diplomacy.Aid aid=w.diplomacy.aidForUnit(u.id);
+        runUnit(u,aid==null||!aid.returning,c->aid==null||c.id==aid.target,c->c.owner==u.owner);
+    }}
 }

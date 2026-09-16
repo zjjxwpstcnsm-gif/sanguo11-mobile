@@ -153,8 +153,8 @@ public final class AbilityResearch {
         states[side].research=null;return w.success("能力研究已中止，金与行动力不退还");
     }
     public static boolean skillAvailable(Skill skill){
-        // These require systems not present yet; do not silently teach a no-op skill.
-        return !EnumSet.of(Skill.TIEBI,Skill.WEIYA,Skill.LUNKE,Skill.JIJIAO,Skill.DUNZOU,Skill.GUIMEN,Skill.FENGSHUI,Skill.QIYUAN).contains(skill);
+        // All catalogued skills now have runtime hooks (including the v0.15 world systems).
+        return skill!=null;
     }
     public int value(int officer,Node n){return n==null?0:w.campaign.studyValue(officer,Campaign.Study.values()[n.category==Category.APTITUDE?n.index+5:Math.max(0,n.index)]);}
     public String trainingError(int city,int officer,String id,boolean overwrite){

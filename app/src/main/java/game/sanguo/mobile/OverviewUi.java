@@ -26,9 +26,13 @@ final class OverviewUi {
         public View getView(int p,View reuse,ViewGroup parent) {
             LinearLayout row;
             if(reuse instanceof LinearLayout)row=(LinearLayout)reuse;
-            else {row=column();row.setMinimumHeight(a.dp(80));row.addView(text("",16));row.addView(text("",13));}
-            ((TextView)row.getChildAt(0)).setText(title.apply(rows.get(p)));((TextView)row.getChildAt(0)).setTextColor(a.gold);
-            ((TextView)row.getChildAt(1)).setText(detail.apply(rows.get(p)));return row;
+            else {row=column();row.setOrientation(LinearLayout.HORIZONTAL);row.setGravity(Gravity.CENTER_VERTICAL);row.setMinimumHeight(a.dp(80));
+                ImageView icon=new ImageView(a);row.addView(icon,new LinearLayout.LayoutParams(a.dp(48),a.dp(48)));
+                LinearLayout copy=column();copy.addView(text("",16));copy.addView(text("",13));row.addView(copy,new LinearLayout.LayoutParams(0,-2,1));}
+            Object item=rows.get(p);ImageView icon=(ImageView)row.getChildAt(0);boolean visible=GameIcon.supports(item);icon.setVisibility(visible?View.VISIBLE:View.GONE);
+            icon.setImageDrawable(visible?GameIcon.drawable(a,w,item):null);icon.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+            LinearLayout copy=(LinearLayout)row.getChildAt(1);((TextView)copy.getChildAt(0)).setText(title.apply(rows.get(p)));((TextView)copy.getChildAt(0)).setTextColor(a.gold);
+            ((TextView)copy.getChildAt(1)).setText(detail.apply(rows.get(p)));return row;
         }
     }
     private <T> Rows<T> list(LinearLayout host,List<T> rows,ToLongFunction<T> key,Function<T,String> title,Function<T,String> detail,Consumer<T> select,String empty) {
@@ -74,11 +78,12 @@ final class OverviewUi {
     View tasks() {
         LinearLayout host=column();heading(host,"任务 / 在途");
         final Rows<UiModels.Task>[] holder=new Rows[1];
-        search(host,"搜索任务、武将或城市",state.taskQuery,q->{state.taskQuery=q;holder[0].rows=UiModels.tasks(w,state.taskType,q);holder[0].emptyView.setText(taskEmpty());holder[0].notifyDataSetChanged();});String[] types={"全部任务","建设","调动","运输","研究 / 培养","军备制造","行军"};
+        search(host,"搜索任务、武将或城市",state.taskQuery,q->{state.taskQuery=q;holder[0].rows=UiModels.tasks(w,state.taskType,q);holder[0].emptyView.setText(taskEmpty());holder[0].notifyDataSetChanged();});String[] types={"全部任务","建设","调动","运输","研究 / 培养","军备制造","行军","援军"};
         filter(host,"筛选 · "+types[state.taskType],types,i->{state.taskType=i;a.refresh();});
         holder[0]=list(host,UiModels.tasks(w,state.taskType,state.taskQuery),t->t.id,t->t.title,t->t.detail,t->{
             AlertDialog.Builder dialog=new AlertDialog.Builder(a).setTitle(t.title).setMessage(t.detail).setNegativeButton("返回",null);
-            if(t.marching!=null){dialog.setPositiveButton("定位部队",(d,n)->a.selectAndFocus(t.location));dialog.setNeutralButton("停止行军",(d,n)->a.applyResult(w.marches.stop(t.marching.id)));}
+            if(t.aid!=null){dialog.setPositiveButton("定位援军",(d,n)->a.selectAndFocus(t.location));dialog.setNeutralButton("援军详情",(d,n)->new DiplomacyUi(a,w,a::applyResult).missions(t.aid.ally));}
+            else if(t.marching!=null){dialog.setPositiveButton("定位部队",(d,n)->a.selectAndFocus(t.location));dialog.setNeutralButton("停止行军",(d,n)->a.applyResult(w.marches.stop(t.marching.id)));}
             else if(t.facility!=null) {dialog.setPositiveButton("定位城池",(d,n)->a.selectAndFocus(w.city(t.facility.cityId).hex));dialog.setNeutralButton("管理设施",(d,n)->a.domesticUi().facility(t.facility));}
             else if(t.production!=null){dialog.setPositiveButton("制造详情",(d,n)->new ArmyUi(a,w,a::applyResult,a::selectAndFocus).production(t.production));}
             else if(t.project!=null){dialog.setPositiveButton("定位研究城市",(d,n)->a.selectAndFocus(w.city(t.project.cityId).hex));}

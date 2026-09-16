@@ -28,7 +28,7 @@ public final class LifecycleTest {
         String text=new String(LifecycleTest.class.getResourceAsStream("/legacy-v14.b64").readAllBytes(),StandardCharsets.UTF_8).trim();byte[] old=Base64.getDecoder().decode(text);
         check(new DataInputStream(new ByteArrayInputStream(old)).readInt()==0x53473131,"real previous writer header");World w=SaveCodec.decode(old);
         check(w.scenarioId.equals("world-drill")&&!w.life.enabled()&&w.life.people().isEmpty()&&!w.life.pending(),"old saves do not invent mortality or dates");
-        check(Arrays.equals(bytes(w),bytes(copy(w))),"v14 to v16 canonical roundtrip");
+        check(Arrays.equals(bytes(w),bytes(copy(w))),"v14 to v17 canonical roundtrip");
     }
     private static void appearance()throws Exception{
         World w=fixture();w.startMonth=12;World.Officer future=new World.Officer(30,"后辈",-1,10,80,70,60,50,40);w.officers.add(future);

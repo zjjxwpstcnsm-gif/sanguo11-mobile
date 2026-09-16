@@ -17,19 +17,15 @@ final class DomesticUi {
     private void confirm(String title,String text,String positive,Runnable run){new AlertDialog.Builder(activity).setTitle(title).setMessage(text).setPositiveButton(positive,(d,n)->run.run()).setNegativeButton("取消",null).show();}
     private void officer(World.City c,Consumer<World.Officer> next){
         List<World.Officer> options=w.idle(c);if(options.isEmpty()){message("武将不足","没有本旬可行动的在城武将。建设中与在途武将不可重复派遣。");return;}
-        String[] labels=new String[options.size()];for(int i=0;i<labels.length;i++)labels[i]=options.get(i).name+" · 政治"+options.get(i).politics;
-        new AlertDialog.Builder(activity).setTitle("执行武将").setItems(labels,(d,i)->next.accept(options.get(i))).setNegativeButton("取消",null).show();
+        new AlertDialog.Builder(activity).setTitle("执行武将").setAdapter(GameIcon.adapter(activity,w,options,o->o.name+" · 政治"+o.politics),(d,i)->next.accept(options.get(i))).setNegativeButton("取消",null).show();
     }
     private void destination(int owner,int excluded,Consumer<World.City> next){
         List<World.City> options=new ArrayList<>();for(World.City c:w.cities)if(c.owner==owner&&c.id!=excluded)options.add(c);
         if(options.isEmpty()){message("目的地不足","需要另一座己方城池。");return;}
-        String[] labels=new String[options.size()];for(int i=0;i<labels.length;i++)labels[i]=options.get(i).name+" · 兵"+options.get(i).troops;
-        new AlertDialog.Builder(activity).setTitle("选择目的地").setItems(labels,(d,i)->next.accept(options.get(i))).setNegativeButton("取消",null).show();
+        new AlertDialog.Builder(activity).setTitle("选择目的地").setAdapter(GameIcon.adapter(activity,w,options,c->c.name+" · 兵"+c.troops),(d,i)->next.accept(options.get(i))).setNegativeButton("取消",null).show();
     }
     void build(World.City c){
-        String[] labels=new String[Domestic.Kind.values().length];
-        for(int i=0;i<labels.length;i++){Domestic.Kind k=Domestic.Kind.values()[i];labels[i]=k.label+" · 金"+k.cost+" · "+k.effect;}
-        new AlertDialog.Builder(activity).setTitle("设施开发 · 工程规则").setItems(labels,(d,i)->{
+        new AlertDialog.Builder(activity).setTitle("设施开发 · 工程规则").setAdapter(GameIcon.adapter(activity,w,Arrays.asList(Domestic.Kind.values()),k->k.label+" · 金"+k.cost+" · "+k.effect),(d,i)->{
             Domestic.Kind kind=Domestic.Kind.values()[i];officer(c,o->{
                 List<Hex> sites=w.domestic.buildSites(c.id);if(kind==Domestic.Kind.SHIPYARD)sites.removeIf(h->h.neighbors().stream().noneMatch(w.army::water));if(sites.isEmpty()){message("无法开发","没有可用平地或已经达到每城6处设施上限。");return;}
                 String[] names=new String[sites.size()];for(int j=0;j<names.length;j++)names[j]="地块 "+sites.get(j).q+", "+sites.get(j).r;
