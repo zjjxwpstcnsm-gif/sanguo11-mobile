@@ -5,6 +5,14 @@ import java.util.*;
 
 /** Read-only presentation of engine state. No commands or resource rules live here. */
 final class UiModels {
+    static int deployTroopCap(World w,World.City c,int commander,World.Weapon weapon,Army.Ship ship){
+        if(c==null||weapon==null||ship==null)return 0;
+        if(ship!=Army.Ship.BOAT&&c.ships[ship.ordinal()-1]<1)return 0;
+        int cap=Math.min(w.government.commandLimit(commander),Math.min(c.troops,c.food));
+        if(Army.siegeWeapon(weapon))return c.equipment[weapon.ordinal()]<1?0:cap;
+        return weapon==World.Weapon.SWORD?cap:Math.min(cap,c.equipment[weapon.ordinal()]);
+    }
+
     private UiModels() {}
     static String location(World w, World.Officer o) {
         if(!w.life.present(o.id))return w.life.state(o.id).label;

@@ -7,8 +7,8 @@ import java.util.*;
 import java.util.function.*;
 
 final class FieldworkUi {
-    private final Activity a;private final World w;private final Consumer<World.Result> apply;
-    FieldworkUi(Activity a,World w,Consumer<World.Result> apply){this.a=a;this.w=w;this.apply=apply;}
+    private final MainActivity a;private final World w;private final Consumer<World.Result> apply;
+    FieldworkUi(MainActivity a,World w,Consumer<World.Result> apply){this.a=a;this.w=w;this.apply=apply;}
     private void info(String text){new AlertDialog.Builder(a).setMessage(text).setPositiveButton("返回",null).show();}
     private <T> void choose(String title,List<T> list,Function<T,String> label,Consumer<T> next){
         if(list.isEmpty()){info("没有符合条件的选项，请检查携金、行动状态、前置技巧和邻接地块。");return;}
@@ -19,8 +19,8 @@ final class FieldworkUi {
     }
     private void confirm(String title,String text,Runnable action){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("执行",(d,i)->action.run()).setNegativeButton("取消",null).show();}
     void build(World.Unit u){choose("部队设置 · 携金"+u.gold,w.fieldworks.available(u.owner),k->k.label+" · 金"+k.gold,k->
-        choose("选择相邻工地",w.fieldworks.sites(u.id,k),Hex::toString,h->{
-            if(w.fieldworks.ball(k))choose("选择火球方向",Arrays.asList(0,1,2,3,4,5),direction->"朝向 "+h.neighbors().get(direction),direction->place(u,k,h,direction));
+        a.pickOnMap("设置"+k.label,u.hex,w.fieldworks.sites(u.id,k),h->{
+            if(w.fieldworks.ball(k))a.pickOnMap("火球方向",h,h.neighbors().stream().filter(w::inside).collect(java.util.stream.Collectors.toList()),direction->place(u,k,h,h.neighbors().indexOf(direction)));
             else place(u,k,h,0);
         }));}
     private void place(World.Unit u,War.StructureKind k,Hex h,int direction){

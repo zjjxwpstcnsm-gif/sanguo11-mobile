@@ -8,7 +8,19 @@ public final class PresentationTest {
     private static int checks;
     private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
     private static void near(float a,float b,String label){check(Math.abs(a-b)<.02f,label+": "+a+" vs "+b);}
+    private static void deploymentCaps()throws Exception {
+        World w=ScenarioCatalog.load("regional-sandbox",0);World.City c=w.home();int leader=w.idle(c).get(0).id;
+        c.troops=7000;c.food=8000;c.equipment[0]=4567;
+        check(UiModels.deployTroopCap(w,c,leader,World.Weapon.SPEAR,Army.Ship.BOAT)==4567,"equipment limits actual slider maximum");
+        c.food=1234;check(UiModels.deployTroopCap(w,c,leader,World.Weapon.SPEAR,Army.Ship.BOAT)==1234,"food limits troop maximum");
+        c.food=8000;c.equipment[5]=1;
+        check(UiModels.deployTroopCap(w,c,leader,World.Weapon.RAM,Army.Ship.BOAT)==Math.min(7000,w.government.commandLimit(leader)),"siege stock uses one piece, not troop count");
+        c.equipment[5]=0;check(UiModels.deployTroopCap(w,c,leader,World.Weapon.RAM,Army.Ship.BOAT)==0,"missing siege piece blocks form");
+        c.ships[0]=0;check(UiModels.deployTroopCap(w,c,leader,World.Weapon.SWORD,Army.Ship.TOWER_SHIP)==0,"missing ship blocks form");
+        check(UiModels.deployTroopCap(w,c,leader,World.Weapon.SWORD,Army.Ship.BOAT)==Math.min(7000,w.government.commandLimit(leader)),"sword needs no inventory");
+    }
     public static void main(String[] args)throws Exception {
+        deploymentCaps();
         for(int i=0;i<PortraitCatalog.NAMES.length;i++)check(PortraitCatalog.index(PortraitCatalog.NAMES[i])==i,"stable famous portrait mapping");
         check(PortraitCatalog.index("劉備")==1&&PortraitCatalog.index("趙雲")==6&&PortraitCatalog.index("自建武将")==-1,"traditional names and custom portrait fallback");
         check(PortraitCatalog.variant(1,"甲")==PortraitCatalog.variant(1,"甲")&&PortraitCatalog.variant(1,"甲")!=PortraitCatalog.variant(2,"甲"),"fallback identity stable across redraws and different IDs");

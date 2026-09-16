@@ -7,8 +7,8 @@ android {
         minSdk 26
         targetSdk 35
         testInstrumentationRunner 'game.sanguo.mobile.GameSmokeRunner'
-        versionCode 22
-        versionName '0.22.0-unit-commands-dev'
+        versionCode 23
+        versionName '0.23.0-mobile-shortcuts-dev'
     }
     signingConfigs {
         debug {

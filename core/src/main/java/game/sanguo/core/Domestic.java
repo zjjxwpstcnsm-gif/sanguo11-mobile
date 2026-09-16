@@ -94,6 +94,18 @@ public final class Domestic {
     public int produceAmount(int city){return 2000+this.yield(city,Kind.SMITH,500);}
     public int produceAmount(int city,World.Weapon weapon){return produceAmount(city)+(weapon==World.Weapon.CAVALRY?this.yield(city,Kind.STABLE,500):0);}
     public static boolean mergeable(Kind kind){return kind==Kind.MARKET||kind==Kind.FARM||kind==Kind.BARRACKS||kind==Kind.SMITH||kind==Kind.STABLE;}
+    /** Mobile shortcut: upgradeable facilities are built at their highest level. */
+    public static int buildLevel(Kind kind){return mergeable(kind)?3:1;}
+    public static String buildEffect(Kind kind){
+        switch(kind){
+            case MARKET:return "每月金 +600";
+            case FARM:return "每季粮 +3750";
+            case BARRACKS:return "每次征兵 +750";
+            case SMITH:return "每次兵装生产 +750";
+            case STABLE:return "骑兵兵装生产额外 +750";
+            default:return kind.effect;
+        }
+    }
     public List<Facility> mergeCandidates(int target){
         Facility f=facility(target);List<Facility> result=new ArrayList<>();if(f==null||f.remaining>0||f.level>=3||!mergeable(f.kind))return result;
         for(Facility other:facilities)if(other.id!=f.id&&other.cityId==f.cityId&&other.kind==f.kind&&other.remaining==0&&other.level==1&&other.hex.distance(f.hex)==1)result.add(other);return result;
@@ -133,8 +145,9 @@ public final class Domestic {
         if(!site(c,h))return w.fail("请选择城池两格内空闲平地，且不能封死城池出口");
         if(nextFacilityId>=10000000)return w.fail("设施编号已达上限");
         int turns=o.politics>=80?2:3;w.spend(c,o,kind.cost);
-        facilities.add(new Facility(nextFacilityId++,c.id,kind,h,o.id,turns));
-        return w.success(o.name+"开始建设"+kind.label+"，需要"+turns+"旬");
+        Facility facility=new Facility(nextFacilityId++,c.id,kind,h,o.id,turns);
+        facility.level=buildLevel(kind);facilities.add(facility);
+        return w.success(o.name+"开始建设"+kind.label+" Lv"+facility.level+"，需要"+turns+"旬");
     }
     public World.Result cancelBuild(int id){
         Facility f=facility(id);

@@ -32,12 +32,13 @@ public final class GameSmokeRunner extends Instrumentation {
             }
             screenshot("v021-rotated-confirmation");click("执行",true);
             waitText("区域争雄  ·  孙权军",false);assertWorld(2,0,"regional-sandbox");
+            mobileShortcutsFlow();
             unitCommandFlow();
             adaptiveMapFlow();
             modelAtlas();
             clickNav("城市");click("建业 · 孙权军",false);
             waitText("建业",true);screenshot("02-city");
-            click("军事",true);click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);click("3000人",true);
+            click("军事",true);click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);click("确认出征",true);
             waitText("携粮 6000",false);waitForIdleSync();
             World w=saved();require(w.units.size()==1&&w.unit(1).owner==2&&w.unit(1).officerId==3003,"selected faction deployment");
             screenshot("03-deployment");
@@ -76,13 +77,43 @@ public final class GameSmokeRunner extends Instrumentation {
             contestFlow();
             battleFeedbackFlow();
             diplomacyVisualFlow();
-            result.putString("stream","SMOKE PASS: v22 fixed unit command dock, blank/self/button/back cancellation, movement range, move-then-tactic, facility attack/destruction/save restoration; v21 original portraits/building assets/shared icons, pure diplomacy previews, allied dispatch/task/recreation and whole-force surrender; v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            result.putString("stream","SMOKE PASS: v23 native quantity sliders/exact input/cancel/deploy/recreation, map construction/rotation/Lv3, expanded playable world and terrain legend; v22 fixed unit command dock, blank/self/button/back cancellation, movement range, move-then-tactic, facility attack/destruction/save restoration; v21 original portraits/building assets/shared icons, pure diplomacy previews, allied dispatch/task/recreation and whole-force surrender; v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
             StringWriter trace=new StringWriter();error.printStackTrace(new PrintWriter(trace));
             result.putString("stream","SMOKE FAIL: "+trace+"\n");finish(Activity.RESULT_CANCELED,result);
         }
+    }
+    private void mobileShortcutsFlow()throws Exception {
+        byte[] original=SaveCodec.encode(saved());
+        for(String orientation:new String[]{"竖屏","横屏"}){
+            World w=ScenarioCatalog.load("regional-sandbox",2);installFixture(w,w.city(310).hex);chooseOrientation(orientation);
+            locateCity("建业");click("军事",true);click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);
+            byte[] before=SaveCodec.encode(saved());setInput("兵力数量","999");
+            require(!waitText("确认出征",true).isEnabled(),"invalid exact quantity disables deployment");
+            setInput("兵力数量","2345");
+            AccessibilityNodeInfo slider=findInput(getUiAutomation().getRootInActiveWindow(),"兵力滑块");
+            require(slider!=null,"native troop slider exists");Bundle amount=new Bundle();amount.putFloat(AccessibilityNodeInfo.ACTION_ARGUMENT_PROGRESS_VALUE,1456);
+            require(slider.performAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SET_PROGRESS.getId(),amount),"native slider accepts drag-equivalent progress");waitForIdleSync();
+            require("2456".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"兵力数量").getText()),"slider and exact entry are synchronized");
+            setInput("兵力数量","2345");scrollToText("粮食 · 可选",false);setInput("粮食数量","6789");scrollToText("金钱 · 可选",false);setInput("金钱数量","4321");
+            screenshot("v023-quantities-"+orientation);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"quantity cancellation is pure");
+            click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);setInput("兵力数量","2345");scrollToText("粮食 · 可选",false);setInput("粮食数量","6789");scrollToText("金钱 · 可选",false);setInput("金钱数量","4321");click("确认出征",true);
+            World actual=saved();World.Unit u=actual.unit(actual.officer(3003).unitId);
+            require(u.troops==2345&&u.food==6789&&u.gold==4321,"actual UI deploys nonpreset quantities");
+            World stock=SaveCodec.decode(before);require(actual.city(310).troops==stock.city(310).troops-2345&&actual.city(310).gold==stock.city(310).gold-4321&&actual.city(310).food==stock.city(310).food-6789,"UI debits exact stock");
+            byte[] after=SaveCodec.encode(actual);runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(after,SaveCodec.encode(saved())),"quantity deployment never replays after recreation");
+        }
+        World w=ScenarioCatalog.load("regional-sandbox",2);installFixture(w,w.city(300).hex);chooseOrientation("竖屏");locateCity("柴桑");click("内政",true);click("设施开发",true);click("市场 ·",false);click("周瑜 ·",false);
+        byte[] before=SaveCodec.encode(saved());waitText("点选高亮地块",false);require(!waitText("下一旬",false).isEnabled(),"cannot advance time during map placement");
+        tapHex(w.city(300).hex);require(Arrays.equals(before,SaveCodec.encode(saved())),"invalid construction tile does not spend resources");
+        screenshot("v023-map-construction-portrait");runOnMainSync(()->current.setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE));assertOrientation(false);waitText("点选高亮地块",false);
+        Hex site=w.domestic.buildSites(300).get(0);tapHex(site);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"map construction confirmation cancels without cost");
+        tapHex(site);click("开工",true);require(saved().domestic.at(site).level==3&&saved().domestic.at(site).remaining==2,"map-selected construction starts at Lv3");screenshot("v023-map-construction-landscape");
+        World heroes=ScenarioCatalog.load("heroes-mobile-sandbox",0);installFixture(heroes,heroes.home().hex);click("全图",true);screenshot("v023-42-city-map");
+        click("视图",true);click("兵种与建筑图例",true);click("地形与通行",true);screenshot("v023-terrain-legend");click("返回",true);
+        installFixture(SaveCodec.decode(original),SaveCodec.decode(original).home().hex);
     }
     private void unitCommandFlow()throws Exception {
         World original=saved();
@@ -110,7 +141,7 @@ public final class GameSmokeRunner extends Instrumentation {
         tapHex(u.hex);click("行军",true);tapHex(new Hex(7,5));waitText("路线预览",false);click("取消",true);require(Arrays.equals(initial,SaveCodec.encode(saved())),"route cancel preserves action and movement");
         click("行军",true);runOnMainSync(current::recreate);waitForIdleSync();waitText("行军：点目标",false);tapHex(new Hex(7,5));click("开始行军",true);
         require(saved().unit(1).hex.equals(new Hex(7,5))&&!saved().unit(1).acted,"explicit movement retains attack action");
-        click("战法",true);click("突刺 ·",false);click("守将 ·",false);click("执行",true);
+        click("战法",true);click("突刺 ·",false);tapHex(saved().unit(2).hex);click("执行",true);
         require(saved().unit(1).acted&&saved().unit(1).energy==65&&mapView().reachableCount()==0,"move then tactic pays energy and clears movement overlay");screenshot("v022-move-then-tactic");
         w=SaveCodec.decode(initial);installFixture(w,w.unit(1).hex);click("行军",true);tapHex(facility.hex);waitText("路线预览 · 市场",true);click("取消",true);require(Arrays.equals(initial,SaveCodec.encode(saved())),"march mode on adjacent facility never attacks");click("攻击",true);tapHex(facility.hex);waitText("耐久 400/1000",false);click("取消",true);require(Arrays.equals(initial,SaveCodec.encode(saved())),"facility attack cancel is pure");
         tapHex(facility.hex);click("执行",true);require(saved().domestic.at(facility.hex).hp==40&&saved().unit(1).acted,"map facility attack damages real facility");
@@ -219,7 +250,7 @@ public final class GameSmokeRunner extends Instrumentation {
     private void strategicFlow()throws Exception {
         click("菜单",true);click("新游戏 / 选择势力",true);click("区域争雄 ·",false);click("孙权军",true);click("执行",true);waitForIdleSync();
         assertWorld(2,0,"regional-sandbox");locateCity("柴桑");
-        click("设施开发",true);click("市场 ·",false);click("周瑜 ·",false);click("地块 ",false);click("开工",true);waitForIdleSync();
+        click("设施开发",true);click("市场 ·",false);click("周瑜 ·",false);tapHex(saved().domestic.buildSites(300).get(0));click("开工",true);waitForIdleSync();
         World w=saved();require(w.domestic.facilities.size()==1&&w.domestic.facilities.get(0).remaining==2&&w.domestic.busy(3001),"construction persisted and occupies builder");
         screenshot("06-construction");
         locateCity("柴桑");click("调动",true);click("人员调动",true);click("建业 ·",false);click("孙权 ·",false);click("出发",true);waitForIdleSync();
@@ -321,15 +352,15 @@ public final class GameSmokeRunner extends Instrumentation {
         World.Unit actor=new World.Unit(1,0,1,World.Weapon.SPEAR,new Hex(6,5),5000,10000);World.Unit enemy=new World.Unit(2,1,2,World.Weapon.SPEAR,new Hex(7,5),5000,10000);
         battle.units.add(actor);battle.units.add(enemy);battle.nextUnitId=3;battle.officer(1).unitId=1;battle.officer(2).unitId=2;battle.officer(1).role=Strategy.Role.RULER;battle.officer(1).loyalty=100;battle.officer(2).role=Strategy.Role.RULER;battle.officer(2).loyalty=100;
         battle.strategy.setSeed(0);installFixture(battle,actor.hex);
-        click("战法",true);click("突刺 ·",false);click("张辽 ·",false);click("取消",true);require(saved().unit(1).energy==80&&saved().unit(2).troops==5000,"cancel tactic has no cost");
-        click("战法",true);click("突刺 ·",false);click("张辽 ·",false);click("执行",true);w=saved();require(w.unit(1).energy==65&&w.unit(1).acted&&w.unit(2).troops<5000&&w.unit(2).hex.equals(new Hex(8,5)),"UI spear thrust persists damage, action and displacement");screenshot("21-tactical-thrust");
+        click("战法",true);click("突刺 ·",false);tapHex(saved().unit(2).hex);click("取消",true);require(saved().unit(1).energy==80&&saved().unit(2).troops==5000,"cancel tactic has no cost");click("取消选取",true);
+        click("战法",true);click("突刺 ·",false);tapHex(saved().unit(2).hex);click("执行",true);w=saved();require(w.unit(1).energy==65&&w.unit(1).acted&&w.unit(2).troops<5000&&w.unit(2).hex.equals(new Hex(8,5)),"UI spear thrust persists damage, action and displacement");screenshot("21-tactical-thrust");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("战法验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"combat outcome survives recreation without duplicate settlement");
         battle=SaveCodec.decode(before);battle.unit(1).acted=false;battle.unit(1).energy=80;battle.strategy.setSeed(0);installFixture(battle,battle.unit(1).hex);
         // Fire has adjacent range in the selected PC rules; move after the push before casting.
         click("行军",true);tapHex(new Hex(7,5));click("开始行军",true);
         require(!saved().unit(1).acted,"moving into fire range retains the plot command");
         click("选中对象指令 ·",false);
-        click("部队计略",true);click("火计 ·",false);click("张辽 ·",false);click("执行",true);w=saved();require(w.war.fireAt(w.unit(2).hex)!=null&&w.unit(1).energy==70,"UI fire plot persists burning hex");screenshot("22-fire-field");
+        click("部队计略",true);click("火计 ·",false);tapHex(saved().unit(2).hex);click("执行",true);w=saved();require(w.war.fireAt(w.unit(2).hex)!=null&&w.unit(1).energy==70,"UI fire plot persists burning hex");screenshot("22-fire-field");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("战法验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"fire survives Activity recreation");
     }
     private void governmentFlow()throws Exception {
@@ -450,8 +481,8 @@ public final class GameSmokeRunner extends Instrumentation {
         w=saved();w.unit(6).hex=new Hex(7,18);w.unit(6).acted=false;w.unit(6).movementSpent=0;w.unit(6).movementBudget=-1;installFixture(w,w.unit(6).hex);
         click("讨伐贼寨",true);click("盗贼 · 兵",false);click("执行",true);require(saved().events.camps().get(0).troops<3000,"real camp damage");screenshot("73-raider-attack");
         w=ScenarioCatalog.load("world-drill",0,41);for(int seed=0;seed<100;seed++){w.strategy.setSeed(seed);World trial=SaveCodec.decode(SaveCodec.encode(w));trial.war.plot(1,trial.unit(4).hex,War.Plot.LIGHTNING);if(trial.unit(4).troops<w.unit(4).troops)break;}
-        installFixture(w,w.unit(1).hex);click("部队计略",true);click("落雷 · 气力1",true);click("对阵将 ·",false);before=SaveCodec.encode(saved());screenshot("74-lightning-preview");click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"lightning preview is pure");
-        click("部队计略",true);click("落雷 · 气力1",true);click("对阵将 ·",false);click("执行",true);require(saved().unit(4).troops<6000&&saved().unit(1).energy==99&&!saved().war.fires().isEmpty(),"UI lightning consumes one and affects actual units/fire");screenshot("75-lightning-result");
+        installFixture(w,w.unit(1).hex);click("计略",true);click("落雷 · 气力1",true);tapHex(saved().unit(4).hex);before=SaveCodec.encode(saved());screenshot("74-lightning-preview");click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"lightning preview is pure");click("取消选取",true);
+        click("计略",true);click("落雷 · 气力1",true);tapHex(saved().unit(4).hex);click("执行",true);require(saved().unit(4).troops<6000&&saved().unit(1).energy==99&&!saved().war.fires().isEmpty(),"UI lightning consumes one and affects actual units/fire");screenshot("75-lightning-result");
         w=ScenarioCatalog.load("world-drill",0,41);for(int seed=0;seed<100;seed++){w.strategy.setSeed(seed);World trial=SaveCodec.decode(SaveCodec.encode(w));trial.campaign.negotiate(10,1,1,Campaign.TreatyKind.CEASEFIRE,6);if(trial.contests.busy())break;}
         installFixture(w,w.city(10).hex);locateCity("经略主城");click("外交",true);click("外交 / 协定",true);click("对阵营 ·",false);click("停战 · 金1000",true);click("使节 ·",false);click("6旬",true);click("执行",true);
         require(saved().contests.busy()&&saved().contests.current().diplomatic(),"real negotiation opens diplomatic debate");waitText("外交 · 停战 6旬",true);screenshot("76-diplomatic-debate");before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("外交 · 停战 6旬",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"diplomatic session survives recreation");
@@ -492,11 +523,11 @@ public final class GameSmokeRunner extends Instrumentation {
     private void fieldworkFlow()throws Exception {
         World w=ScenarioCatalog.load("fieldworks-drill",0);w.city(20).troops=0;w.city(21).troops=0;
         World.Unit enemy=w.unit(2);enemy.hex=new Hex(23,17);enemy.acted=true;
-        installFixture(w,w.unit(1).hex);click("设置军事设施",true);click("阵 · 金1500",true);click("7,5",true);
-        byte[] before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"fieldwork cancel is pure");
-        click("设置军事设施",true);click("阵 · 金1500",true);click("7,5",true);click("执行",true);
+        installFixture(w,w.unit(1).hex);click("设置军事设施",true);click("阵 · 金1500",true);tapHex(new Hex(7,5));
+        byte[] before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"fieldwork cancel is pure");click("取消选取",true);click("选中对象指令 ·",false);
+        click("设置军事设施",true);click("阵 · 金1500",true);tapHex(new Hex(7,5));click("执行",true);
         w=saved();War.Structure s=w.war.at(new Hex(7,5));require(s!=null&&!s.complete&&s.builder==1&&w.unit(1).gold==8500,"UI construction uses carried gold and incomplete structure");screenshot("51-fieldwork-building");
-        before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("筑垒研兵",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"construction and carried gold survive recreation");
+        before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("筑垒研兵",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"construction and carried gold survive recreation");click("选中对象指令 ·",false);
         click("中止施工",true);click("执行",true);int hp=saved().war.at(new Hex(7,5)).hp;
         endTurn();waitForTurn(1);require(saved().war.at(new Hex(7,5)).hp==hp,"stopped construction does not progress");
         click("补修军事设施",true);click("阵 ·",false);click("执行",true);
@@ -545,13 +576,13 @@ public final class GameSmokeRunner extends Instrumentation {
     private void armyCity(){clickNav("城市");click("江东大营 · 江东军",false);click("军事",true);}
     private void fillFormation(){
         armyCity();click("出征",true);click("孙权 ·",false);click("周瑜 ·",false);click("甘宁 ·",false);click("鲁肃 ·",false);
-        click("下一步",true);click("冲车 ·",false);click("楼船 ·",false);click("3000人",true);click("18000粮",true);click("0金",true);
+        click("下一步",true);click("冲车 ·",false);click("楼船 ·",false);setInput("粮食数量","18000");
     }
     private void armyFlow()throws Exception {
         click("菜单",true);click("新游戏 / 选择势力",true);click("水陆攻防 ·",false);click("江东军",true);click("执行",true);
         byte[] initial=SaveCodec.encode(saved());fillFormation();screenshot("23-formation-confirm");click("取消",true);
         require(Arrays.equals(initial,SaveCodec.encode(saved())),"formation preview and cancel do not change state");
-        fillFormation();click("执行",true);World w=saved();World.Unit army=w.unit(1);
+        fillFormation();click("确认出征",true);World w=saved();World.Unit army=w.unit(1);
         require(army!=null&&army.weapon==World.Weapon.RAM&&army.ship==Army.Ship.TOWER_SHIP&&army.deputies.length==2,"UI creates three-officer siege/ship formation, caps deputies");
         require(w.officer(1).unitId==1&&w.officer(2).unitId==1&&w.officer(3).unitId==-1,"only selected two deputies leave city");
         require(w.city(10).ships[0]==2&&w.city(10).equipment[5]==1&&army.food==18000&&w.actionPoints[0]==50,"UI charges one ship, one ram and one AP payment");screenshot("24-three-officer-army");
@@ -574,7 +605,7 @@ public final class GameSmokeRunner extends Instrumentation {
         World.Unit target=new World.Unit(2,1,7,World.Weapon.CAVALRY,new Hex(10,8),5000,20000);target.ship=Army.Ship.TOWER_SHIP;
         naval.units.add(actor);naval.units.add(target);naval.nextUnitId=3;
         naval.officer(2).cityId=-1;naval.officer(2).unitId=1;naval.officer(7).cityId=-1;naval.officer(7).unitId=2;naval.strategy.setSeed(0);installFixture(naval,actor.hex);
-        click("战法",true);click("火矢 ·",false);click("张辽",true);click("执行",true);w=saved();
+        click("战法",true);click("火矢 ·",false);tapHex(saved().unit(2).hex);click("执行",true);w=saved();
         require(w.unit(2).burning==2&&w.unit(2).troops<5000&&w.unit(1).energy==70,"naval fire tactic updates actual troops and persistent burning");screenshot("26-naval-combat");
         before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("水陆攻防",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"naval outcome survives restart");
         World crossing=SaveCodec.decode(before);crossing.unit(1).acted=false;installFixture(crossing,crossing.unit(1).hex);
@@ -598,9 +629,9 @@ public final class GameSmokeRunner extends Instrumentation {
         byte[] moved=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("水陆攻防",false);
         require(Arrays.equals(moved,SaveCodec.encode(saved())),"movement budget survives recreation");
         click("选中对象指令 ·",false);
-        click("部队计略",true);click("扰乱 · 气力1",true);click("曹操 ·",false);screenshot("29-skill-plot-preview");click("取消",true);
-        require(Arrays.equals(moved,SaveCodec.encode(saved())),"skill plot cancel is pure");
-        click("部队计略",true);click("扰乱 · 气力1",true);click("曹操 ·",false);click("执行",true);w=saved();
+        click("计略",true);click("扰乱 · 气力1",true);tapHex(saved().unit(2).hex);screenshot("29-skill-plot-preview");click("取消",true);
+        require(Arrays.equals(moved,SaveCodec.encode(saved())),"skill plot cancel is pure");click("取消选取",true);
+        click("计略",true);click("扰乱 · 气力1",true);tapHex(saved().unit(2).hex);click("执行",true);w=saved();
         require(w.unit(1).acted&&w.unit(1).energy==79&&w.unit(2).statusTurns==2&&w.unit(3).statusTurns==2,"UI 神算百出连环 costs once and resolves two targets");
         screenshot("30-move-then-skills");
     }
@@ -621,7 +652,7 @@ public final class GameSmokeRunner extends Instrumentation {
         click("菜单",true);click("新游戏 / 选择势力",true);click("武将资料演练 ·",false);click("孙权军",true);waitText("能力/适性来自公开资料",false);screenshot("28-sourced-opening");click("执行",true);waitForIdleSync();
         assertWorld(2,0,"officer-reference-drill");ContentCatalog.get().validateOpening(saved());
         clickNav("城市");setInput("搜索城市或势力","不存在");waitText("没有符合条件的城池",false);setInput("搜索城市或势力","建业");click("建业 · 孙权军",false);
-        click("军事",true);click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);click("3000人",true);waitForIdleSync();require(saved().officer(3003).unitId>0,"sourced opening deployed via native command");
+        click("军事",true);click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);click("确认出征",true);waitForIdleSync();require(saved().officer(3003).unitId>0,"sourced opening deployed via native command");
         require(saved().officer(3003).skillId.equals(Skill.WEIFENG.id),"source skill ID binds to actual runtime officer");
         click("编队特技",true);waitText("甘宁 · 威风",false);screenshot("33-sourced-runtime-skill");click("返回",true);
         endTurn();waitForTurn(1);

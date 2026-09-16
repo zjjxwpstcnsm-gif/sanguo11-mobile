@@ -42,7 +42,7 @@ public final class DomesticTest {
         check(w.domestic.monthlyGold(10)==800,"unfinished market gives no yield");next(w);check(f.remaining==1,"first tick construction");
         check(!w.officer(0).acted&&w.domestic.busy(0)&&!w.idle(w.city(10)).contains(w.officer(0)),"reset does not free builder");
         World restored=copy(w);check(restored.domestic.busy(0)&&restored.domestic.facility(f.id).remaining==1,"construction restored");next(restored);
-        check(restored.domestic.monthlyGold(10)==1200&&!restored.domestic.busy(0),"completion frees officer and activates market");
+        check(restored.domestic.monthlyGold(10)==1400&&!restored.domestic.busy(0),"completion frees officer and activates market");
         ok(restored.domestic.demolish(f.id,0));check(restored.domestic.count(10)==0&&restored.domestic.monthlyGold(10)==800,"demolition removes effect");
         next(w);Domestic.Facility slow=build(w,Domestic.Kind.FARM,1);check(slow.remaining==3,"low politics requires three turns");next(w);check(slow.remaining==2,"slow construction advances");
         int gold=w.city(10).gold;ok(w.domestic.cancelBuild(slow.id));check(w.city(10).gold==gold&&w.officer(1).acted&&!w.domestic.busy(1),"cancel no refund or same-turn reuse");
@@ -59,12 +59,12 @@ public final class DomesticTest {
     }
     private static void economy()throws Exception{
         World w=fixture();for(int i=0;i<4;i++)build(w,Domestic.Kind.values()[i],i==1?4:i);next(w);next(w);
-        check(w.domestic.recruitAmount(10)==2500&&w.domestic.produceAmount(10)==2500,"completed barracks and smith improve orders");
+        check(w.domestic.recruitAmount(10)==2750&&w.domestic.produceAmount(10)==2750,"completed barracks and smith improve orders");
         int troops=w.city(10).troops,equipment=w.city(10).equipment[0];ok(w.recruit(10,0));ok(w.produce(10,2,World.Weapon.SPEAR));
-        check(w.city(10).troops==troops+2500&&w.city(10).equipment[0]==equipment+2500,"actual command yields use facilities");
+        check(w.city(10).troops==troops+2750&&w.city(10).equipment[0]==equipment+2750,"actual command yields use facilities");
         w.city(10).troops=99000;reject(w,()->w.recruit(10,3));w.city(10).equipment[0]=99000;reject(w,()->w.produce(10,3,World.Weapon.SPEAR));
         w.city(10).troops=0;int gold=w.city(10).gold,food=w.city(10).food;next(w);
-        check(w.city(10).gold==gold+1140&&w.city(10).food==food,"month income uses completed facilities; food waits for the season");
+        check(w.city(10).gold==gold+1330&&w.city(10).food==food,"month income uses completed facilities; food waits for the season");
         w.city(10).gold=999999;w.city(10).food=999999;for(int i=0;i<6;i++)next(w);
         check(w.city(10).gold==1000000&&w.city(10).food==1000000,"month and season caps prevent overflow");
     }
