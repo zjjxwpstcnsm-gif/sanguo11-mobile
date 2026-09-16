@@ -39,7 +39,8 @@ final class OverviewUi {
         FrameLayout content=new FrameLayout(a);host.addView(content,new LinearLayout.LayoutParams(-1,0,1));
         ListView list=new ListView(a);list.setDividerHeight(a.dp(1));list.setCacheColorHint(Color.TRANSPARENT);list.setContentDescription("概览列表");
         TextView blank=text(empty,16);blank.setGravity(Gravity.CENTER);content.addView(blank,new FrameLayout.LayoutParams(-1,-1));content.addView(list,new FrameLayout.LayoutParams(-1,-1));list.setEmptyView(blank);
-        Rows<T> adapter=new Rows<>(rows,key,title,detail);adapter.emptyView=blank;list.setAdapter(adapter);list.setOnItemClickListener((p,v,index,id)->select.accept(adapter.getItem(index)));return adapter;
+        if(state.page.equals("cities")){list.setOnScrollListener(new AbsListView.OnScrollListener(){public void onScrollStateChanged(AbsListView view,int scrollState){}public void onScroll(AbsListView view,int first,int visible,int total){if(view.getChildCount()>0){state.cityPosition=first;state.cityTop=view.getChildAt(0).getTop();}}});}
+        Rows<T> adapter=new Rows<>(rows,key,title,detail);adapter.emptyView=blank;list.setAdapter(adapter);if(state.page.equals("cities"))list.setSelectionFromTop(state.cityPosition,state.cityTop);list.setOnItemClickListener((p,v,index,id)->select.accept(adapter.getItem(index)));return adapter;
     }
     private EditText search(LinearLayout host,String hint,String value,Consumer<String> change){
         EditText field=new EditText(a);field.setSingleLine();field.setTextColor(a.paper);field.setHintTextColor(a.muted);field.setHint(hint);field.setContentDescription(hint);field.setText(value);host.addView(field,new LinearLayout.LayoutParams(-1,a.dp(48)));
@@ -52,15 +53,22 @@ final class OverviewUi {
         holder[0]=list(host,UiModels.factions(w,state.factionQuery),i->i,i->w.faction(i),i->{int cities=0,officers=0,troops=0;for(World.City c:w.cities)if(c.owner==i){cities++;troops+=c.troops;}for(World.Officer o:w.officers)if(o.owner==i)officers++;return cities+"城 · "+officers+"将 · 驻军"+troops+(w.alive(i)?"":" · 已灭亡");},i->{state.cityOwner=i;state.cityQuery="";state.page="cities";a.refresh();},"没有符合条件的势力");return host;
     }
     View cities() {
-        LinearLayout host=column();heading(host,"城池一览");
+        LinearLayout host=column();heading(host,"城池一览");CityOverview overview=new CityOverview(w);
         final Rows<World.City>[] holder=new Rows[1];
-        search(host,"搜索城市或势力",state.cityQuery,q->{state.cityQuery=q;holder[0].rows=UiModels.cities(w,state.citySort,q,state.cityOwner);holder[0].notifyDataSetChanged();});
+        search(host,"搜索城市或势力",state.cityQuery,q->{state.cityQuery=q;holder[0].rows=overview.cities(state.cityFilter,state.cityDistrict,state.citySort,q,state.cityOwner);holder[0].notifyDataSetChanged();});
         String[] owners=new String[w.factions.length+2];owners[0]="全部城池";owners[1]="中立城池";System.arraycopy(w.factions,0,owners,2,w.factions.length);
         filter(host,state.cityOwner==-1?"全部城池":state.cityOwner==-2?"中立城池":w.faction(state.cityOwner),owners,i->{state.cityOwner=i==0?-1:i==1?-2:i-2;a.refresh();});
-        String[] sorts={"己方优先","金最多","粮最多","兵最多","驻将最多"};
+        String[] sorts=CityOverview.SORTS;
+        LinearLayout controls=new LinearLayout(a);host.addView(controls);
+        controls.addView(a.button("筛选 · "+CityOverview.FILTERS[state.cityFilter],v->new AlertDialog.Builder(a).setTitle("全国管理筛选").setItems(new String[]{"城池状态","所属军团","批量划入军团","军团经营总览"},(dialog,n)->{
+            if(n==0)new AlertDialog.Builder(a).setTitle("城池状态").setItems(CityOverview.FILTERS,(d,i)->{state.cityFilter=i;state.cityPosition=0;a.refresh();}).setNegativeButton("取消",null).show();
+            else if(n==1){List<Districts.District> groups=w.districts.all();String[] labels=new String[groups.size()+2];labels[0]="全部军团";labels[1]="第一军团（直属）";for(int i=0;i<groups.size();i++)labels[i+2]=groups.get(i).name();new AlertDialog.Builder(a).setTitle("所属军团").setItems(labels,(d,i)->{state.cityDistrict=i==0?-1:i==1?0:groups.get(i-2).id;state.cityPosition=0;a.refresh();}).setNegativeButton("取消",null).show();}
+            else if(n==2)new WorldUi(a,w,a::applyResult).batch(holder[0].rows);
+            else new WorldUi(a,w,a::applyResult).districts();
+        }).setNegativeButton("返回",null).show()),new LinearLayout.LayoutParams(-1,a.dp(48)));
         filter(host,"排序 · "+sorts[state.citySort],sorts,i->{state.citySort=i;a.refresh();});
-        holder[0]=list(host,UiModels.cities(w,state.citySort,state.cityQuery,state.cityOwner),c->c.id,c->c.name+" · "+w.faction(c.owner),
-            c->"金 "+c.gold+" · 粮 "+c.food+"\n兵 "+c.troops+" · 驻将 "+UiModels.officerCount(w,c.id)+"  › 定位",c->a.selectAndFocus(c.hex),"没有符合条件的城池 · 清空检索或选择全部城池");return host;
+        holder[0]=list(host,overview.cities(state.cityFilter,state.cityDistrict,state.citySort,state.cityQuery,state.cityOwner),c->c.id,c->c.name+" · "+w.faction(c.owner),
+            overview::detail,c->a.selectAndFocus(c.hex),"没有符合条件的城池 · 清空检索或选择全部城池");return host;
     }
     View officers() {
         LinearLayout host=column();heading(host,"武将一览");

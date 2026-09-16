@@ -105,15 +105,15 @@ jobs:
           assert '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' in signature
           PYVERIFY
           cd app/build/outputs/apk/debug
-          cp app-debug.apk "sanguo11-mobile-v024-$(git rev-parse --short HEAD).apk"
-          sha256sum sanguo11-mobile-v024-*.apk | tee SHA256SUMS
+          cp app-debug.apk "sanguo11-mobile-v025-$(git rev-parse --short HEAD).apk"
+          sha256sum sanguo11-mobile-v025-*.apk | tee SHA256SUMS
           git rev-parse HEAD > BUILD_COMMIT
       - uses: actions/upload-artifact@v4
         if: matrix.display == '1080x1920'
         with:
-          name: sanguo11-mobile-v024-apk
+          name: sanguo11-mobile-v025-apk
           path: |
-            app/build/outputs/apk/debug/sanguo11-mobile-v024-*.apk
+            app/build/outputs/apk/debug/sanguo11-mobile-v025-*.apk
             app/build/outputs/apk/debug/BUILD_COMMIT
             app/build/outputs/apk/debug/SHA256SUMS
             app/build/outputs/apk/debug/SIGNATURE.txt

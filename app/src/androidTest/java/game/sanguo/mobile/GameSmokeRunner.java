@@ -19,7 +19,7 @@ public final class GameSmokeRunner extends Instrumentation {
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
-            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v18 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
+            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v19 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
@@ -32,6 +32,7 @@ public final class GameSmokeRunner extends Instrumentation {
             }
             screenshot("v021-rotated-confirmation");click("执行",true);
             waitText("区域争雄  ·  孙权军",false);assertWorld(2,0,"regional-sandbox");
+            strategicManagementFlow();
             territoryAiFlow();
             mobileShortcutsFlow();
             unitCommandFlow();
@@ -78,13 +79,35 @@ public final class GameSmokeRunner extends Instrumentation {
             contestFlow();
             battleFeedbackFlow();
             diplomacyVisualFlow();
-            result.putString("stream","SMOKE PASS: v24 territory modes/legend/frontline/recreation, quick delegation/cancel/real administration/save, melee response to ranged attack; v23 native quantity sliders/exact input/cancel/deploy/recreation, map construction/rotation/Lv3, expanded playable world and terrain legend; v22 fixed unit command dock, blank/self/button/back cancellation, movement range, move-then-tactic, facility attack/destruction/save restoration; v21 original portraits/building assets/shared icons, pure diplomacy previews, allied dispatch/task/recreation and whole-force surrender; v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            result.putString("stream","SMOKE PASS: v25 national filters/sort/recreation/focus, batch cancel/execute and saved district settings; v24 territory modes/legend/frontline/recreation, quick delegation/cancel/real administration/save, melee response to ranged attack; v23 native quantity sliders/exact input/cancel/deploy/recreation, map construction/rotation/Lv3, expanded playable world and terrain legend; v22 fixed unit command dock, blank/self/button/back cancellation, movement range, move-then-tactic, facility attack/destruction/save restoration; v21 original portraits/building assets/shared icons, pure diplomacy previews, allied dispatch/task/recreation and whole-force surrender; v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
             StringWriter trace=new StringWriter();error.printStackTrace(new PrintWriter(trace));
             result.putString("stream","SMOKE FAIL: "+trace+"\n");finish(Activity.RESULT_CANCELED,result);
         }
+    }
+    private void strategicManagementFlow()throws Exception {
+        byte[] original=SaveCodec.encode(saved());World w=ScenarioCatalog.load("world-drill",0);w.city(11).food=0;installFixture(w,w.city(11).hex);
+        for(String orientation:new String[]{"竖屏","横屏"}){
+            chooseOrientation(orientation);byte[] before=SaveCodec.encode(saved());
+            click("视图",true);click("全国城池总览",true);click("筛选 · 全部状态",true);click("城池状态",true);click("缺粮（不足6旬）",true);
+            waitText("北境城 · 经略营",true);screenshot("v025-national-food-"+orientation);
+            runOnMainSync(current::recreate);waitForIdleSync();waitText("筛选 · 缺粮（不足6旬）",true);
+            click("排序 · 己方优先",true);click("粮食续航最少",true);waitText("北境城 · 经略营",true);
+            click("北境城 · 经略营",true);waitText("北境城",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"national filters sort restore and focus are read-only");
+            click("视图",true);click("全国城池总览",true);click("筛选 · 缺粮（不足6旬）",true);click("城池状态",true);click("全部状态",true);
+            click("排序 · 粮食续航最少",true);click("己方优先",true);
+            click("筛选 · 全部状态",true);click("批量划入军团",true);click("北境城",true);click("预览",true);click("新建内政军团",true);waitText("批量执行预览",true);screenshot("v025-batch-preview-"+orientation);click("取消",true);
+            require(Arrays.equals(before,SaveCodec.encode(saved())),"batch preview cancellation leaves full game unchanged");
+            sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);waitForIdleSync();
+        }
+        click("视图",true);click("全国城池总览",true);click("筛选 · 全部状态",true);click("批量划入军团",true);click("北境城",true);click("预览",true);click("新建内政军团",true);click("执行",true);
+        require(saved().districts.city(11)!=null&&saved().actionPoints[0]==40,"batch UI executes once with real budget");
+        locateCity("北境城");click("城池托管 / 军团",true);click("经营设置",true);setInput("留守兵力","15000");setInput("保留金","6000");setInput("保留粮","50000");click("预览设置",true);click("执行",true);click("返回",true);
+        runOnMainSync(current::recreate);waitForIdleSync();require(saved().districts.city(11).reserveTroops()==15000&&saved().districts.city(11).reserveFood()==50000&&saved().actionPoints[0]==20,"native settings saved and charged exactly once");
+        locateCity("北境城");click("城池托管 / 军团",true);waitText("最近经营报告",false);screenshot("v025-district-report");click("返回",true);
+        World restore=SaveCodec.decode(original);installFixture(restore,restore.home().hex);
     }
     private void territoryMode(String mode){click("视图",true);click("领地着色 / 前线",true);click(mode,false);}
     private void territoryAiFlow()throws Exception {
@@ -465,7 +488,7 @@ public final class GameSmokeRunner extends Instrumentation {
         require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=14,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
-        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==18,"upgraded writer produced v18 header");}
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==19,"upgraded writer produced v19 header");}
         screenshot("00-v09-upgrade-preserved");
     }
     private void contestFlow()throws Exception {

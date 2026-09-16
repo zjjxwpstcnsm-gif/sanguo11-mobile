@@ -44,6 +44,8 @@ public final class Supply {
     }
     public World.Result replenish(int city,int officer,int target,int troops,int food){
         World.City c=w.city(city);World.Officer o=w.officer(officer);World.Unit u=w.unit(target);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
+        if(w.districts.executing(city)&&!w.districts.city(city).supplyEnabled)return w.fail("军团禁止补给运输");
+        if(w.districts.reserveError(c,0,food,troops)!=null)return w.fail(w.districts.reserveError(c,0,food,troops));
         if(u==null||u.owner!=c.owner||c.hex.distance(u.hex)>1)return w.fail("请选择城池相邻的己方部队");
         if(troops<0||troops>18000||food<0||food>1000000||troops+food==0)return w.fail("请指定有效兵粮数量");
         int equipment=Army.siegeWeapon(u.weapon)?0:Army.equipmentNeeded(u.weapon,troops);

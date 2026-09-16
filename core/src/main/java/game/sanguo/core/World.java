@@ -89,6 +89,7 @@ public final class World {
     public final AdvancedBattle advancedBattle=new AdvancedBattle(this);
     public final WorldEvents events=new WorldEvents(this);
     public final Districts districts=new Districts(this);
+    public final AiOrders aiOrders=new AiOrders(this);
     public final Government government=new Government(this);
     public final Supply supply=new Supply(this);
     public final Contests contests=new Contests(this);
@@ -141,7 +142,7 @@ public final class World {
         feedback=Feedback.NONE;impact=null;battleOutcomes.clear();return result;
     }
     Result fail(String text) { return result(false,text); }
-    Result success(String text) { fieldworks.cleanup();abilities.cleanup();districts.cleanup();diplomacy.cleanup();note(text);return result(true,text); }
+    Result success(String text) { fieldworks.cleanup();abilities.cleanup();districts.cleanup();diplomacy.cleanup();aiOrders.cleanup();note(text);return result(true,text); }
     public void note(String text) { log.add(text);while(log.size()>40)log.remove(0); }
     private boolean available(Officer o,City c) { return !commandsBlocked()&&o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
     public List<Officer> idle(City c) {
@@ -168,6 +169,7 @@ public final class World {
     public Result produce(int cityId,int officerId,Weapon weapon) {
         City c=city(cityId);Officer o=officer(officerId);int gold=skills.productionGold(officerId,weapon);String error=cityError(c,o,gold);
         if(error!=null)return fail(error);
+        if(districts.productionError(cityId)!=null)return fail(districts.productionError(cityId));
         if(weapon==null||weapon==Weapon.SWORD)return fail("剑兵无需生产兵装，请选择其他兵装");
         if(Army.siegeWeapon(weapon))return army.produce(cityId,officerId,weapon,null);
         int amount=skills.produceAmount(c.id,o.id,weapon);
@@ -294,6 +296,7 @@ public final class World {
         List<City> ordered=new ArrayList<>(cities);
         ordered.sort(Comparator.comparingInt((City c)->-ai.incoming(c)).thenComparingInt(c->c.id));
         for(City c:ordered)if(c.owner==active)ai.replenish(c.id);
+        for(City c:ordered)if(c.owner==active)ai.support(c.id);
         for(City c:ordered)if(c.owner==active)ai.deploy(c.id,6000);
         campaign.runAi();
         abilities.runAi();

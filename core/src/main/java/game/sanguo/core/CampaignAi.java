@@ -30,6 +30,7 @@ public final class CampaignAi {
         public int[] deputies(){return deputies.clone();}
     }
     private final World w;
+    private Route selectedRoute;
     public CampaignAi(World w){this.w=Objects.requireNonNull(w);}
     private List<World.Unit> units(){List<World.Unit> out=new ArrayList<>(w.units);out.sort(Comparator.comparingInt(u->u.id));return out;}
     private List<World.City> cities(){List<World.City> out=new ArrayList<>(w.cities);out.sort(Comparator.comparingInt(c->c.id));return out;}
@@ -158,7 +159,7 @@ public final class CampaignAi {
                 best=better(best,new Action(Kind.ARMY_TACTIC,a.id,s.id,s.hex,score-t.energy*5,null,t,null,"用合法兵器战法拆除设施并避开友伤"));
             }
         }
-        for(Domestic.Facility f:w.domestic.facilities)if(w.campaign.hostile(a.owner,w.city(f.cityId).owner)){
+        for(Domestic.Facility f:w.domestic.facilities)if(w.campaign.hostile(a.owner,w.city(f.cityId).owner)&&objectives.test(w.city(f.cityId))){
             int score=150+Math.min(f.hp,w.campaign.constructionDamage(a,w.army.siegeDefenseDamage(a)));
             if(w.war.facilityAttackError(a.id,f.hex)==null)best=better(best,action(Kind.FACILITY,a,f.id,f.hex,score,"破坏敌方内政并清除道路阻挡"));
             else for(Army.Tactic t:w.army.tactics(a))if(w.army.tacticError(a.id,f.hex,t)==null){
@@ -243,44 +244,79 @@ public final class CampaignAi {
     Deployment deployment(int city,int minimumReserve,Predicate<World.City> objectives){
         World.City c=w.city(city);if(c==null||c.owner!=w.active||w.gameOver()||!w.districts.directCity(c.id)||w.actionPoints[w.active]<10||c.morale<65)return null;
         List<World.Officer> idle=idle(c);if(idle.isEmpty())return null;
-        int reserve=Math.max(minimumReserve,reserve(c)),surplus=c.troops-reserve,foodReserve=Math.max(6000,(reserve+49)/50*12);
+        Districts.District district=w.districts.city(c.id);
+        int reserve=Math.max(minimumReserve,reserve(c)),surplus=c.troops-reserve,foodReserve=Math.max(district==null?6000:district.reserveFood,(reserve+49)/50*12);
         if(surplus<3000||c.food<foodReserve+9000)return null;
         boolean objective=false;for(World.City target:w.cities)if(w.campaign.hostile(c.owner,target.owner)&&objectives.test(target))objective=true;
-        if(!objective)return null;
+        if(!objective&&incoming(c)==0)return null;
         World.Officer administrator=idle.stream().max(Comparator.comparingInt(this::admin).thenComparingInt(o->-o.id)).orElse(null);
         Deployment best=null;int bestScore=Integer.MIN_VALUE;
         for(World.Officer leader:idle)for(World.Weapon weapon:World.Weapon.values()){
             if(weapon==World.Weapon.SWORD||idle.size()>1&&leader==administrator&&leader.politics>leader.leadership+15)continue;
             int troops=Math.min(8000,Math.min(surplus,w.government.commandLimit(leader.id)));
-            if(Army.siegeWeapon(weapon)){if(c.equipment[weapon.ordinal()]<1||incoming(c)>0)continue;}
+            if(Army.siegeWeapon(weapon)){if(c.equipment[weapon.ordinal()]<1||incoming(c)>0)continue;
+                }
             else troops=Math.min(troops,c.equipment[weapon.ordinal()]);
             troops=Math.min(troops,(c.food-foodReserve)/3)/1000*1000;if(troops<3000)continue;
             World.Unit probe=new World.Unit(-1,c.owner,leader.id,weapon,c.hex,troops,troops*3);
             int[] deputies=deputies(probe,idle,administrator);
             int score=formationValue(probe)+troops/50;
-            if(Army.siegeWeapon(weapon))score-=90;
+            if(Army.siegeWeapon(weapon))score+=escorts(probe)>=6000?180:-90;
             if(score<=bestScore)continue;
             Army.Ship ship=c.ships[1]>0?Army.Ship.WARSHIP:c.ships[0]>0?Army.Ship.TOWER_SHIP:Army.Ship.BOAT;
             probe.ship=ship;
-            boolean route=false;for(World.City target:cities())if(w.campaign.hostile(c.owner,target.owner)&&objectives.test(target)&&route(probe,target.hex,1)!=null){route=true;break;}
-            if(!route)continue;
+            List<Hex> goals=new ArrayList<>();for(World.City target:cities())if(w.campaign.hostile(c.owner,target.owner)&&objectives.test(target))goals.add(target.hex);
+            if(incoming(c)==0&&routes(probe,goals,1).isEmpty())continue;
             bestScore=score;best=new Deployment(c.id,leader.id,troops,troops*3,reserve,weapon,ship,deputies);
         }
         return best;
     }
-    public boolean deploy(int city,int minimumReserve){Deployment d=deployment(city,minimumReserve);return d!=null&&w.army.deploy(d.city,d.leader,d.deputies(),d.weapon,d.ship,d.troops,d.food).ok;}
-    boolean deploy(int city,int minimumReserve,Predicate<World.City> objectives){Deployment d=deployment(city,minimumReserve,objectives);return d!=null&&w.army.deploy(d.city,d.leader,d.deputies(),d.weapon,d.ship,d.troops,d.food).ok;}
+    public boolean deploy(int city,int minimumReserve){return deploy(city,minimumReserve,c->true);}
+    boolean deploy(int city,int minimumReserve,Predicate<World.City> objectives){
+        Deployment d=deployment(city,minimumReserve,objectives);if(d==null)return false;
+        World.City source=w.city(city);World.Unit probe=new World.Unit(-1,source.owner,d.leader,d.weapon,source.hex,d.troops,d.food);probe.ship=d.ship;
+        World.City target=objective(probe,objectives,-1);boolean defense=incoming(source)>0;
+        if(!defense&&target==null)return false;
+        if(!defense&&Army.siegeWeapon(d.weapon)&&escorts(probe)<3000){
+            World.Officer escort=null;for(World.Officer o:idle(source))if(o.id!=d.leader&&o.role!=Strategy.Role.RULER){escort=o;break;}
+            if(escort==null||source.troops-d.reserve<6000||source.food<d.food+9000)return false;
+            int escortId=w.nextUnitId;
+            if(!w.army.deploy(city,escort.id,new int[0],World.Weapon.SWORD,Army.Ship.BOAT,3000,9000).ok)return false;
+            AiOrders.Order guard=w.aiOrders.get(w.unit(escortId));guard.home=city;guard.target=target.id;guard.staging=true;
+            d=deployment(city,minimumReserve,objectives);if(d==null)return true;
+        }
+        int id=w.nextUnitId;
+        if(!w.army.deploy(d.city,d.leader,d.deputies(),d.weapon,d.ship,d.troops,d.food).ok)return false;
+        AiOrders.Order order=w.aiOrders.get(w.unit(id));order.home=source.id;order.target=defense?-1:target.id;order.staging=!defense;order.defending=defense;return true;
+    }
+    private int escorts(World.Unit u){int n=0;for(World.Unit friend:w.units)if(friend.owner==u.owner&&!Army.siegeWeapon(friend.weapon)&&friend.hex.distance(u.hex)<=8)n+=friend.troops;return n;}
+    private int resistance(World.City c){int force=c.troops+c.defense*2;for(World.Unit enemy:w.units)if(enemy.owner==c.owner&&enemy.hex.distance(c.hex)<=7)force+=enemy.troops;return Math.max(3000,force);}
+    private World.City objective(World.Unit u,Predicate<World.City> allowed,int prior){
+        List<Hex> goals=new ArrayList<>();for(World.City c:cities())if(w.campaign.hostile(u.owner,c.owner)&&allowed.test(c))goals.add(c.hex);
+        Map<Hex,Route> paths=routes(u,goals,Math.max(1,w.army.siegeRange(u)));World.City best=null;long bestScore=Long.MAX_VALUE;
+        for(World.City c:cities()){Route r=paths.get(c.hex);if(r==null||r.cost/Math.max(1,w.war.movement(u))+4>foodTurns(u))continue;
+            long score=r.cost*300L+resistance(c);if(c.id==prior)score-=12000;
+            for(World.Unit friend:w.units){AiOrders.Order order=w.aiOrders.orders.get(friend.id);if(friend.owner==u.owner&&order!=null&&order.target==c.id)score-=Math.min(4000,friend.troops/2);}
+            if(score<bestScore){best=c;bestScore=score;}
+        }selectedRoute=best==null?null:paths.get(best.hex);return best;
+    }
     /** City action: replenish threatened/low-food units before spending the last idle administrator. */
     public boolean replenish(int city){
         World.City c=w.city(city);if(c==null||c.owner!=w.active||!w.districts.directCity(city))return false;
         List<World.Officer> idle=idle(c);if(idle.isEmpty())return false;
         for(World.Unit u:units())if(u.owner==c.owner&&u.hex.distance(c.hex)==1){
-            int food=Math.min(Math.max(0,c.food-6000),Math.max(0,u.troops*3-u.food));
-            int troops=foodTurns(u)<3?0:Math.min(3000,Math.max(0,Math.min(c.troops-reserve(c),w.government.commandLimit(u.officerId)-u.troops)));
+            Districts.District district=w.districts.city(c.id);if(district!=null&&!district.supplyEnabled)return false;
+            int food=Math.min(Math.max(0,c.food-(district==null?6000:district.reserveFood)),Math.max(0,u.troops*3-u.food));
+            int troops=foodTurns(u)<3?0:Math.min(3000,Math.max(0,Math.min(c.troops-Math.max(reserve(c),district==null?0:district.reserveTroops),w.government.commandLimit(u.officerId)-u.troops)));
             if(!Army.siegeWeapon(u.weapon))troops=Math.min(troops,c.equipment[u.weapon.ordinal()]);
             if((foodTurns(u)<6&&food>0||u.troops<3000&&troops>0)&&w.supply.replenish(c.id,idle.get(0).id,u.id,troops,food).ok)return true;
         }
         return false;
+    }
+    public boolean support(int city){World.City c=w.city(city);if(c==null||c.owner!=w.active||idle(c).isEmpty())return false;
+        Districts.District d=new Districts.District(-1,c.owner,"后方支援");d.reserveTroops=6000;d.reserveGold=5000;d.reserveFood=40000;
+        for(World.City own:cities())if(own.owner==c.owner)d.cities.add(own.id);
+        return new DistrictManagement(w).supply(d,c,idle(c).stream().max(Comparator.comparingInt(this::admin)).get());
     }
     /** Reserve-aware equipment production and backline supply, using ordinary paid missions. */
     public boolean prepare(int city){
@@ -403,6 +439,37 @@ public final class CampaignAi {
     /** Shared by computer factions and delegated districts. Attack permission is checked before every offensive action. */
     public void runUnit(World.Unit u,boolean attack,Predicate<World.City> objectives,Predicate<World.City> homes){
         if(w.orders.error(u)!=null)return;
+        AiOrders.Order order=w.aiOrders.get(u);Hex before=u.hex;long strength=hostileStrength(u.owner);
+        if(order.home<0||w.city(order.home).owner!=u.owner){World.City home=null;for(World.City c:cities())if(homes.test(c)&&(home==null||u.hex.distance(c.hex)<u.hex.distance(home.hex)))home=c;order.home=home==null?-1:home.id;}
+        stepUnit(u,attack,objectives,homes,order);
+        if(w.unit(u.id)!=null&&order.turn!=w.turn){order.stalled=before.equals(u.hex)&&hostileStrength(u.owner)>=strength?Math.min(100,order.stalled+1):0;order.last=u.hex;order.turn=w.turn;}
+    }
+    private long hostileStrength(int owner){long n=0;for(World.Unit u:w.units)if(w.campaign.hostile(owner,u.owner))n+=u.troops;for(World.City c:w.cities)if(w.campaign.hostile(owner,c.owner))n+=c.troops+c.defense;return n;}
+    private boolean yieldSiegeLane(World.Unit u){
+        if(Army.siegeWeapon(u.weapon)||w.orders.remaining(u)==0)return false;
+        for(World.City c:cities())if(w.campaign.hostile(u.owner,c.owner)&&u.hex.distance(c.hex)==1){
+            boolean engine=false;for(World.Unit ally:w.units)if(ally.owner==u.owner&&Army.siegeWeapon(ally.weapon)&&ally.hex.distance(u.hex)<=3&&ally.hex.distance(c.hex)>w.army.siegeRange(ally))engine=true;
+            if(engine){for(Map.Entry<Hex,Integer> e:w.orders.reachable(u).entrySet())if(e.getKey().distance(c.hex)==2&&w.unitAt(e.getKey())==null&&exposure(u,e.getKey())<=exposure(u,u.hex))return w.orders.execute(w.orders.previewMove(u.id,e.getKey())).ok;}
+        }return false;
+    }
+    private void stepUnit(World.Unit u,boolean attack,Predicate<World.City> objectives,Predicate<World.City> homes,AiOrders.Order order){
+        if(order.defending&&order.home>=0){
+            World.City home=w.city(order.home);if(home.owner!=u.owner||incoming(home)==0||u.hex.distance(home.hex)>9){if(retreat(u,homes)){if(w.unit(u.id)!=null&&!u.acted)w.war.waitUnit(u.id);return;}}
+            objectives=c->false;
+        }
+        if(order.target>=0&&(!w.campaign.hostile(u.owner,w.city(order.target).owner)||!objectives.test(w.city(order.target))))order.target=-1;
+        if(!attack||!order.staging&&order.stalled>=3){order.target=-1;if(retreat(u,homes)){if(w.unit(u.id)!=null&&!u.acted)w.war.waitUnit(u.id);return;}}
+        if(order.staging&&order.target>=0&&order.home>=0&&incoming(w.city(order.home))==0){
+            int assembled=0;for(World.Unit ally:w.units){AiOrders.Order plan=w.aiOrders.orders.get(ally.id);if(ally.owner==u.owner&&plan!=null&&plan.target==order.target&&ally.hex.distance(u.hex)<=8)assembled+=ally.troops;}
+            if(assembled<resistance(w.city(order.target))&&foodTurns(u)>=6&&order.stalled<6){
+                World.City rally=w.city(order.home);for(World.Unit ally:w.units){AiOrders.Order plan=w.aiOrders.orders.get(ally.id);if(ally.owner==u.owner&&plan!=null&&plan.target==order.target&&plan.home>=0&&w.city(plan.home).owner==u.owner&&plan.home<rally.id)rally=w.city(plan.home);}
+                if(u.hex.distance(rally.hex)>4){follow(u,route(u,rally.hex,3));w.war.waitUnit(u.id);return;}
+                // Clear deployment exits while gathering. This is an ordinary paid movement, never teleportation.
+                World.City home=rally;if(u.hex.distance(home.hex)<=1)for(Hex h:w.orders.reachable(u).keySet())if(h.distance(home.hex)==3&&w.unitAt(h)==null){w.orders.execute(w.orders.previewMove(u.id,h));break;}
+                w.war.waitUnit(u.id);return;
+            }if(foodTurns(u)<6||order.stalled>=6){order.staging=false;order.target=-1;if(retreat(u,homes)){if(w.unit(u.id)!=null&&!u.acted)w.war.waitUnit(u.id);return;}}else{order.staging=false;for(World.Unit ally:w.units){AiOrders.Order plan=w.aiOrders.orders.get(ally.id);if(ally.owner==u.owner&&plan!=null&&plan.target==order.target&&ally.hex.distance(u.hex)<=8)plan.staging=false;}}
+        }
+        if(attack&&yieldSiegeLane(u)){w.war.waitUnit(u.id);return;}
         if((u.troops<1500||foodTurns(u)<4)&&retreat(u,homes)){
             if(w.unit(u.id)!=null&&!u.acted)w.war.waitUnit(u.id);return;
         }
@@ -414,15 +481,13 @@ public final class CampaignAi {
         if(attack){
             // Nearby hostile units take precedence over distant city objectives.
             List<World.Unit> enemies=new ArrayList<>();List<Hex> goals=new ArrayList<>();
-            for(World.Unit enemy:units())if(w.campaign.hostile(u.owner,enemy.owner)&&u.hex.distance(enemy.hex)<=8){enemies.add(enemy);goals.add(enemy.hex);}
+            for(World.Unit enemy:units())if(w.campaign.hostile(u.owner,enemy.owner)&&u.hex.distance(enemy.hex)<=8&&(!Army.siegeWeapon(u.weapon)||escorts(u)>=enemy.troops)&&(order.target>=0||order.home<0||enemy.hex.distance(w.city(order.home).hex)<=8)){enemies.add(enemy);goals.add(enemy.hex);}
             Map<Hex,Route> paths=routes(u,goals,Math.max(1,w.war.range(u)));
             for(World.Unit enemy:enemies){Route r=paths.get(enemy.hex);if(r!=null&&r.path.size()>1&&r.cost<bestScore){best=r;bestScore=r.cost;}}
             if(best==null){
-                List<World.City> targets=new ArrayList<>();goals.clear();
-                for(World.City c:cities())if(w.campaign.hostile(u.owner,c.owner)&&objectives.test(c)){targets.add(c);goals.add(c.hex);}
-                paths=routes(u,goals,Math.max(1,w.army.siegeRange(u)));
-                for(World.City c:targets){Route r=paths.get(c.hex);int score=r==null?Integer.MAX_VALUE:r.cost+c.troops/3000+c.defense/1000;
-                    if(r!=null&&score<bestScore){best=r;bestScore=score;}}
+                World.City target=objective(u,objectives,order.target);
+                if(target!=null){order.target=target.id;best=selectedRoute;}
+                else order.target=-1;
             }
         }
         if(best!=null)follow(u,best);else retreat(u,homes);
