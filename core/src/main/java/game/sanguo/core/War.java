@@ -108,7 +108,11 @@ public final class War {
     }
     public int previewDamage(int actor,int target){World.Unit a=w.unit(actor),b=w.unit(target);return a==null||b==null?0:physicalDamage(a,b,1,false,new Random(0));}
     public String attackError(int actor,int target){
-        World.Unit a=w.unit(actor),b=w.unit(target);String error=actorError(a);if(error==null)error=targetError(a,b,1,range(a));if(error!=null)return error;
+        World.Unit a=w.unit(actor),b=w.unit(target);String error=actorError(a);return error!=null?error:attackPositionError(a,b);
+    }
+    /** Pure position validation also used by the AI's detached movement probes. */
+    String attackPositionError(World.Unit a,World.Unit b){
+        String error=targetError(a,b,1,range(a));if(error!=null)return error;
         if(!w.army.canAttackUnit(a))return "兵器需要使用战法";
         if(!w.army.water(a.hex)&&a.weapon==World.Weapon.CROSSBOW&&w.terrain[b.hex.q][b.hex.r]==World.Terrain.FOREST&&!w.skills.has(a,Skill.SHESHOU))return "射向森林需要射手特技";
         return null;

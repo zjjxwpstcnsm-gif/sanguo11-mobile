@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 /** Deterministic, resource-constrained planning. Scores are engineering policy, not SAN11 formulas.
  * Planning never consumes world RNG, changes state, or grants resources. Commands remain authoritative. */
 public final class CampaignAi {
-    public enum Kind { ATTACK, TACTIC, ARMY_TACTIC, PLOT, SIEGE, STRUCTURE, RAID, CAMP, EXTINGUISH, JOINT }
+    public enum Kind { ATTACK, TACTIC, ARMY_TACTIC, PLOT, SIEGE, STRUCTURE, FACILITY, RAID, CAMP, EXTINGUISH, JOINT }
     public static final class Action {
         public final Kind kind;
         public final int actor, target, score;
@@ -158,6 +158,14 @@ public final class CampaignAi {
                 best=better(best,new Action(Kind.ARMY_TACTIC,a.id,s.id,s.hex,score-t.energy*5,null,t,null,"用合法兵器战法拆除设施并避开友伤"));
             }
         }
+        for(Domestic.Facility f:w.domestic.facilities)if(w.campaign.hostile(a.owner,w.city(f.cityId).owner)){
+            int score=150+Math.min(f.hp,w.campaign.constructionDamage(a,w.army.siegeDefenseDamage(a)));
+            if(w.war.facilityAttackError(a.id,f.hex)==null)best=better(best,action(Kind.FACILITY,a,f.id,f.hex,score,"破坏敌方内政并清除道路阻挡"));
+            else for(Army.Tactic t:w.army.tactics(a))if(w.army.tacticError(a.id,f.hex,t)==null){
+                if(t==Army.Tactic.STONE&&w.campaign.has(a.owner,Campaign.Tech.THUNDERBOLT)&&ownAssetsNear(a,f.hex))continue;
+                best=better(best,new Action(Kind.ARMY_TACTIC,a.id,f.id,f.hex,score-t.energy*5,null,t,null,"兵器拆除敌方内政设施"));
+            }
+        }
         for(Domestic.Mission m:w.domestic.missions)if(w.supply.raidError(a.id,m.id)==null){int hit=w.supply.raidDamage(a.id,m.id);
             best=better(best,action(Kind.RAID,a,m.id,m.hex,hit+(hit>=m.troops?Math.min(2000,m.food/20)+300:0),"截击有价值的运输补给"));}
         for(WorldEvents.Camp camp:w.events.camps())if(w.events.attackError(a.id,camp.id)==null)
@@ -174,6 +182,7 @@ public final class CampaignAi {
             case PLOT:return w.war.plot(a.actor,a.hex,a.plot);
             case SIEGE:return w.siege(a.actor,a.target);
             case STRUCTURE:return w.war.attackStructure(a.actor,a.hex);
+            case FACILITY:return w.war.attackFacility(a.actor,a.hex);
             case RAID:return w.supply.raid(a.actor,a.target);
             case CAMP:return w.events.attack(a.actor,a.target);
             case EXTINGUISH:return w.army.extinguish(a.actor);
@@ -359,32 +368,37 @@ public final class CampaignAi {
         Map<Hex,Route> paths=routes(u,goals,1);
         for(World.City c:candidates){Route r=paths.get(c.hex);if(r!=null&&(best==null||r.cost<best.cost)){best=r;home=c;}}
         if(home==null)return false;
-        if(u.hex.distance(home.hex)>1)follow(u,best);
+        boolean moved=u.hex.distance(home.hex)>1&&follow(u,best);
         if(w.unit(u.id)!=null&&u.hex.distance(home.hex)==1&&w.enter(u.id,home.id).ok)return true;
-        return best!=null;
+        return moved;
     }
     private World.Unit at(World.Unit u,Hex h){World.Unit copy=new World.Unit(u.id,u.owner,u.officerId,u.weapon,h,u.troops,u.food);copy.ship=u.ship;copy.deputies=u.deputies;copy.energy=u.energy;return copy;}
     private int exposure(World.Unit u,Hex h){
         int threat=hazard(u,h)*100;World.Unit probe=at(u,h);
         for(World.Unit enemy:w.units)if(w.campaign.hostile(u.owner,enemy.owner)&&enemy.status==War.Status.NORMAL){
-            int distance=enemy.hex.distance(h);if(distance<=w.war.range(enemy))threat+=damage(enemy,probe,1,false);
+            int distance=enemy.hex.distance(h);if(w.war.attackPositionError(enemy,probe)==null)threat+=damage(enemy,probe,1,false);
             else if(distance<=w.war.movement(enemy)+w.war.range(enemy))threat+=damage(enemy,probe,1,false)/6;
         }
         return threat;
     }
     private void reposition(World.Unit u){
-        if(w.war.range(u)<=1||w.orders.remaining(u)==0)return;
+        if(!w.army.canAttackUnit(u)||w.orders.remaining(u)==0)return;
+        boolean nearby=false;for(World.Unit enemy:w.units)if(w.campaign.hostile(u.owner,enemy.owner)&&u.hex.distance(enemy.hex)<=w.orders.remaining(u)+4){nearby=true;break;}
+        if(!nearby)return;
         Hex best=u.hex;int bestScore=Integer.MIN_VALUE;
         for(Map.Entry<Hex,Integer> e:w.orders.reachable(u).entrySet()){
             World.Unit probe=at(u,e.getKey());int offense=0;
-            for(World.Unit b:w.units)if(w.campaign.hostile(u.owner,b.owner)&&probe.hex.distance(b.hex)<=w.war.range(probe)&&
-                w.fieldworks.landTarget(u.owner,b.hex)&&(!w.army.water(probe.hex)&&probe.weapon==World.Weapon.CROSSBOW?w.terrain[b.hex.q][b.hex.r]!=World.Terrain.FOREST||w.skills.has(probe,Skill.SHESHOU):true))
-                offense=Math.max(offense,value(b,damage(probe,b,1,false)));
+            for(World.Unit b:w.units)if(w.war.attackPositionError(probe,b)==null){
+                int hit=damage(probe,b,1,false),counter=b.status==War.Status.NORMAL&&w.war.canCounter(probe,b)&&hit<b.troops?damage(b,probe,.5,false):0;
+                offense=Math.max(offense,value(b,hit)-counter);
+            }
             if(offense==0)continue;
-            int score=offense-exposure(u,e.getKey())-e.getValue()*8;
-            if(score>bestScore){bestScore=score;best=e.getKey();}
+            // A melee army must close before spending its action on a low-value ranged plot.
+            // Count future enemy fire without treating unavoidable retaliation as a reason to freeze.
+            int score=offense-exposure(u,e.getKey())*(w.war.range(probe)>1?100:55)/100-e.getValue()*8;
+            if(score>bestScore||score==bestScore&&e.getKey().equals(u.hex)){bestScore=score;best=e.getKey();}
         }
-        if(!best.equals(u.hex))follow(u,route(u,best,0));
+        if(!best.equals(u.hex))w.orders.execute(w.orders.previewMove(u.id,best));
     }
     /** Shared by computer factions and delegated districts. Attack permission is checked before every offensive action. */
     public void runUnit(World.Unit u,boolean attack,Predicate<World.City> objectives,Predicate<World.City> homes){
@@ -392,8 +406,10 @@ public final class CampaignAi {
         if((u.troops<1500||foodTurns(u)<4)&&retreat(u,homes)){
             if(w.unit(u.id)!=null&&!u.acted)w.war.waitUnit(u.id);return;
         }
+        Action action=bestAction(u.id,attack,objectives);
+        if(action!=null&&(action.kind==Kind.EXTINGUISH||action.plot==War.Plot.CALM)&&execute(action).ok)return;
         if(attack)reposition(u);
-        Action action=bestAction(u.id,attack,objectives);if(action!=null&&execute(action).ok)return;
+        action=bestAction(u.id,attack,objectives);if(action!=null&&execute(action).ok)return;
         Route best=null;int bestScore=Integer.MAX_VALUE;
         if(attack){
             // Nearby hostile units take precedence over distant city objectives.

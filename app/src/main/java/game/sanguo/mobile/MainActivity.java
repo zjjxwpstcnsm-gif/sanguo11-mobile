@@ -62,7 +62,7 @@ public final class MainActivity extends Activity {
         header.addView(title,new LinearLayout.LayoutParams(0,dp(48),1));
         Button tools=button("视图",v->showMapTools());tools.setContentDescription("地图工具 · 全图、定位、导航图和屏幕方向");
         header.addView(tools,new LinearLayout.LayoutParams(dp(56),dp(48)));root.addView(header);
-        body=new LinearLayout(this);map=new MapView(this,this::onTile);body.addView(map);
+        body=new LinearLayout(this);map=new MapView(this,this::onTile);body.addView(map);map.setTerritoryMode(getPreferences(MODE_PRIVATE).getInt("territoryMode",0));
         panelShell=new LinearLayout(this);panelShell.setOrientation(LinearLayout.VERTICAL);panelShell.setBackgroundColor(0xff131f2c);
         panelShell.setVisibility(View.GONE);body.addView(panelShell);
         LinearLayout panelHeader=new LinearLayout(this);panelHeader.setPadding(dp(12),0,dp(4),0);panelHeader.setGravity(Gravity.CENTER_VERTICAL);
@@ -132,7 +132,7 @@ public final class MainActivity extends Activity {
     }
     private void showMapTools(){
         if(mapPick!=null)cancelMapPick();
-        String[] labels={"全图","定位","导航图","屏幕方向","战报","操作说明","战斗震动","兵种与建筑图例"};
+        String[] labels={"全图","定位","导航图","屏幕方向","战报","操作说明","战斗震动","兵种与建筑图例","领地着色 / 前线","势力领地图例","军团托管"};
         new AlertDialog.Builder(this).setTitle("地图视图").setItems(labels,(d,index)->{
             if(aiRunning)return;
             if(index==0){closePanel();map.post(map::fit);}
@@ -143,8 +143,35 @@ public final class MainActivity extends Activity {
             else if(index==6){boolean enabled=getPreferences(MODE_PRIVATE).getBoolean("battleHaptics",true);
                 new AlertDialog.Builder(this).setTitle("战斗震动").setSingleChoiceItems(new String[]{"开启（遵循系统触感设置）","关闭"},enabled?0:1,(dialog,which)->{getPreferences(MODE_PRIVATE).edit().putBoolean("battleHaptics",which==0).apply();dialog.dismiss();}).setNegativeButton("返回",null).show();}
             else if(index==7)VisualGuide.show(this,world);
+            else if(index==8)showTerritoryPicker();
+            else if(index==9)showTerritoryLegend();
+            else if(index==10)new WorldUi(this,world,this::apply).districts();
             else message("地图操作","单指拖动 · 双指缩放 · 双击城池定位\n点城池或部队打开指令，点空地或「收起」返回大地图。\n「功能」打开城市、武将、任务和存档菜单。\n竖屏使用底部面板，横屏使用右侧面板；「展开」可查看更多内容。\n选中部队即显示青色行动范围和红色攻击目标。先点「行军」再点目标预览路线；「攻击」「战法」「计略」在固定底栏。普通点空地、再点本队或「取消选中」可解除选择。返回键依次取消路线、指令、选中。");
         }).setNegativeButton("返回",null).show();
+    }
+    private void showTerritoryPicker(){
+        new AlertDialog.Builder(this).setTitle("领地着色 / 前线").setSingleChoiceItems(
+            new String[]{"关闭领地着色","势力范围 · 同势力合并","据点辖区 · 城 / 关 / 港边界"},map.territoryMode(),(dialog,which)->{
+                getPreferences(MODE_PRIVATE).edit().putInt("territoryMode",which).apply();map.setTerritoryMode(which);dialog.dismiss();closePanel();
+            }).setNeutralButton("前线据点",(d,n)->showFrontlines()).setNegativeButton("返回",null).show();
+    }
+    private void showFrontlines(){
+        List<World.City> cities=new ArrayList<>();Territory territory=map.territory();
+        for(World.City city:world.cities)if(territory.frontline(city.id))cities.add(city);
+        cities.sort(Comparator.comparingInt((World.City c)->c.owner==world.player?0:1).thenComparingInt(c->c.owner).thenComparingInt(c->c.id));
+        if(cities.isEmpty()){message("前线据点","当前没有与交战势力辖区接壤的据点。");return;}
+        new AlertDialog.Builder(this).setTitle("前线据点 · 点选定位").setItems(cities.stream().map(c->c.name+" · "+world.faction(c.owner)).toArray(String[]::new),
+            (d,n)->selectAndFocus(cities.get(n).hex)).setNegativeButton("返回",null).show();
+    }
+    private void showTerritoryLegend(){
+        LinearLayout list=new LinearLayout(this);list.setOrientation(LinearLayout.VERTICAL);list.setPadding(dp(20),dp(10),dp(20),dp(10));
+        TextView help=text("半透明色块表示辖区，红圈标记与交战势力接壤的据点。点据点可查看辖区与邻接关系。",14,paper);list.addView(help);
+        for(int owner=-1;owner<world.factions.length;owner++){
+            int count=0,front=0;for(World.City c:world.cities)if(c.owner==owner){count++;if(map.territory().frontline(c.id))front++;}
+            if(count==0)continue;TextView row=text("■  "+world.faction(owner)+" · "+count+"据点 · 前线"+front,16,MapView.factionColor(owner));row.setPadding(0,dp(8),0,dp(8));list.addView(row);
+        }
+        ScrollView scroll=new ScrollView(this);scroll.setBackgroundColor(ink);scroll.addView(list);
+        new AlertDialog.Builder(this).setTitle("势力领地图例").setView(scroll).setPositiveButton("前线据点",(d,n)->showFrontlines()).setNegativeButton("返回",null).show();
     }
     private void showOrientationPicker(){
         int selectedMode=getPreferences(MODE_PRIVATE).getInt("screenMode",0);
@@ -367,6 +394,7 @@ public final class MainActivity extends Activity {
         boolean own=c.owner==world.player&&!world.gameOver()&&world.districts.directCity(c.id);
         switch(ui.group){
             case "内政":
+                if(c.owner==world.player)action("城池托管 / 军团",v->new WorldUi(this,world,this::apply).city(c));
                 line("设施 "+world.domestic.count(c.id)+"/"+Domestic.CITY_SLOTS+"\n"+world.domestic.incomeSchedule(c.id),14,paper);
                 boolean construction=false;
                 for(Domestic.Facility f:world.domestic.facilities)if(f.cityId==c.id){construction|=f.remaining>0;iconAction(f.kind.label+" · "+(f.remaining==0?"已建成":"剩"+f.remaining+"旬"),f,v->domesticUi().facility(f));}
@@ -407,6 +435,11 @@ public final class MainActivity extends Activity {
                 if(own){action("人员调动",v->domesticUi().transfer(c));action("资源运输",v->domesticUi().transport(c));action("水陆运输",v->domesticUi().transportSea(c));}else line("仅可从己方城池派遣",14,muted);
                 action("查看任务 / 在途",v->{ui.page="tasks";refresh();});break;
             default:
+                Territory territory=map.territory();
+                if(territory!=null){StringBuilder border=new StringBuilder(c.name+"辖区 · "+territory.size(c.id)+"格 · "+(territory.frontline(c.id)?"前线":"非前线"));
+                    for(int id:territory.neighbors(c.id)){World.City adjacent=world.city(id);border.append("\n邻接 ").append(adjacent.name).append(" · ").append(world.faction(adjacent.owner));}
+                    line(border.toString(),13,muted);}
+                if(c.owner==world.player)action("城池托管 / 军团",v->new WorldUi(this,world,this::apply).city(c));
                 line("治安 "+c.order+" · 气力 "+c.morale+" · 兵源 "+c.recruitReserve+"\n可用武将 "+world.idle(c).size()+" · 驻扎 "+UiModels.officerCount(world,c.id),14,paper);
                 if(own){action("人事 / 城市治理",v->strategyUi().city(c));action("军政 / 俘虏 / 官职",v->governmentUi().city(c));}
                 StringBuilder stocks=new StringBuilder("兵装库存\n");for(World.Weapon weapon:World.Weapon.values())stocks.append(weapon.label).append(" ").append(c.equipment[weapon.ordinal()]).append("  ");stocks.append("\n楼船 ").append(c.ships[0]).append(" · 斗舰 ").append(c.ships[1]);line(stocks.toString(),13,paper);
@@ -503,7 +536,7 @@ public final class MainActivity extends Activity {
         action("本旬结算摘要",v->message("旬结算摘要",ui.summary.isEmpty()?"结束一旬后将在这里显示结算摘要。":ui.summary));
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.23 · 移动操作与群英沙盘","设施直接最高级；兵钱粮滑块与精确输入；战法、计略、内政和野战建设地图点选。\n八类地形纹理；新增42城670将、18城180将、12城120将三种自制开局。\n援军请求、势力劝降、交换俘虏；八项特技恢复培养。\n16位名将原创头像、其余武将稳定默认头像；选将、兵种与设施图标统一；施工模型与城防/兵力条优化。\n内政设施耐久与攻击；固定部队指令栏；显式行军、取消选择、行动范围。\n存档v18，兼容v1—v17。\n全国原版格点、官方完整开局、全事件、全特技交互与精确公式仍有缺口。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.24 · 领地与军团AI","势力范围 / 城关港辖区着色、前线标记与图例；城池快捷托管、后方批量编团；接敌走位与军团预算调度改进。\n设施直接最高级；兵钱粮滑块与精确输入；战法、计略、内政和野战建设地图点选。\n八类地形纹理；新增42城670将、18城180将、12城120将三种自制开局。\n援军请求、势力劝降、交换俘虏；八项特技恢复培养。\n16位名将原创头像、其余武将稳定默认头像；选将、兵种与设施图标统一；施工模型与城防/兵力条优化。\n内政设施耐久与攻击；固定部队指令栏；显式行军、取消选择、行动范围。\n存档v18，兼容v1—v17。\n全国原版格点、官方完整开局、全事件、全特技交互与精确公式仍有缺口。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}

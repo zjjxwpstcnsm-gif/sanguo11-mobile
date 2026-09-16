@@ -25,6 +25,13 @@ public final class Districts {
     public District get(int id){return groups.get(id);}
     public District city(int city){for(District d:groups.values())if(d.cities.contains(city))return d;return null;}
     public District unit(int unit){return groups.get(units.getOrDefault(unit,-1));}
+    public String status(District d){
+        int idle=0,people=0;for(int id:d.cities){World.City c=w.city(id);if(c!=null){idle+=w.idle(c).size();for(World.Officer o:w.officers)if(o.owner==d.owner&&o.cityId==id)people++;}}
+        if(people==0)return "缺少驻城武将，请先调入人才";
+        if(d.points==0)return "等待下一旬恢复军团行动力";
+        if(idle==0)return "驻城武将已行动或正在执行任务";
+        return "托管中 · 结束旬时自动经营 · 闲将"+idle;
+    }
     public boolean directCity(int city){District d=city(city);return d==null||d.owner!=w.player||executing==d.id;}
     public boolean directUnit(int unit){District d=unit(unit);return d==null||d.owner!=w.player||executing==d.id;}
     private String manageError(){
@@ -105,10 +112,18 @@ public final class Districts {
         for(District d:new ArrayList<>(groups.values()))if(d.owner==owner&&d.actedTurn!=w.turn){
             d.actedTurn=w.turn;int mainPoints=w.actionPoints[owner];executing=d.id;w.actionPoints[owner]=d.points;
             try{
-                for(int pass=0;pass<4&&w.actionPoints[owner]>=10;pass++)for(int city:new ArrayList<>(d.cities)){
+                List<Integer> ordered=new ArrayList<>(d.cities);
+                // Rotate equal-priority cities so a large district never starves high-ID holdings.
+                Collections.rotate(ordered,-(w.turn%ordered.size()));
+                CampaignAi planner=new CampaignAi(w);
+                ordered.sort(Comparator.comparingInt((Integer id)->{
+                    World.City c=w.city(id);return c==null?0:-(planner.incoming(c)+(c.order<65?100000:0));}));
+                int startPoints=w.actionPoints[owner];
+                for(int pass=0;pass<4&&w.actionPoints[owner]>=10;pass++)for(int city:ordered){
                     World.City c=w.city(city);if(c!=null&&c.owner==owner&&w.actionPoints[owner]>=10)order(d,c,pass);
                 }
                 for(World.Unit u:new ArrayList<>(w.units))if(Objects.equals(units.get(u.id),d.id)&&!u.acted)armyOrder(d,u);
+                if(startPoints>0)w.note(d.name+"自动经营完成 · 消耗"+(startPoints-w.actionPoints[owner])+"行动力 · 剩余"+w.actionPoints[owner]);
             }finally{d.points=w.actionPoints[owner];w.actionPoints[owner]=mainPoints;executing=-1;}
         }
         cleanup();
@@ -116,17 +131,32 @@ public final class Districts {
     private void order(District d,World.City c,int pass){
         List<World.Officer> idle=w.idle(c);if(idle.isEmpty())return;
         World.Officer admin=idle.stream().max(Comparator.comparingInt(o->o.politics)).get();
+        StrategicAi civil=new StrategicAi(w);StrategicAi.Decision urgent=civil.plan(c.id,true);
+        if(urgent!=null&&civil.execute(urgent).ok)return;
         if(c.order<65&&w.strategy.patrol(c.id,admin.id).ok)return;
         if(c.defense<w.campaign.defenseCap(c)/2&&w.campaign.repair(c.id,admin.id).ok)return;
-        if(d.supply>=0&&d.supply!=c.id&&pass==0){int gold=Math.min(3000,Math.max(0,c.gold-5000)),food=Math.min(20000,Math.max(0,c.food-40000));
-            if((gold>0||food>0)&&w.domestic.transport(c.id,d.supply,admin.id,gold,food,0,new int[World.Weapon.values().length]).ok)return;}
+        boolean underway=false;for(Domestic.Mission m:w.domestic.missions)if(m.transport&&m.owner==c.owner&&m.targetCity==d.supply)underway=true;
+        if(d.supply>=0&&d.supply!=c.id&&pass==0&&!underway&&c.troops>=11000){World.City destination=w.city(d.supply);
+            int gold=Math.min(3000,Math.min(Math.max(0,c.gold-5000),Math.max(0,w.campaign.goldCap(destination)-destination.gold)));
+            int food=Math.min(20000,Math.min(Math.max(0,c.food-40000),Math.max(0,w.campaign.foodCap(destination)-destination.food)));
+            if((gold>0||food>0)&&w.domestic.transport(c.id,d.supply,admin.id,gold,food,1000,new int[World.Weapon.values().length]).ok)return;}
         CampaignAi ai=new CampaignAi(w);
         if(ai.replenish(c.id))return;
         if(d.attack&&d.policy!=Policy.ECONOMY&&d.policy!=Policy.DEFENSE&&target(d,c.hex)!=null&&ai.deploy(c.id,10000,
             target->(d.policy!=Policy.CITY_ATTACK||target.id==d.target)&&(d.policy!=Policy.FORCE_ATTACK||target.owner==d.target)))return;
+        StrategicAi.Decision decision=civil.plan(c.id,false);
+        if((d.policy==Policy.DEFENSE||ai.incoming(c)>0)&&decision!=null&&civil.execute(decision).ok)return;
         if(d.policy==Policy.ECONOMY||d.policy==Policy.DELEGATE){List<Hex> sites=w.domestic.buildSites(c.id);if(c.gold>=2500&&!sites.isEmpty()&&w.domestic.build(c.id,admin.id,c.food<40000?Domestic.Kind.FARM:Domestic.Kind.MARKET,sites.get(0)).ok)return;}
-        if(d.produce&&c.gold>=1500&&c.equipment[0]<8000&&w.produce(c.id,admin.id,World.Weapon.SPEAR).ok)return;
-        StrategicAi civil=new StrategicAi(w);StrategicAi.Decision decision=civil.plan(c.id,false);if(decision!=null)civil.execute(decision);
+        if(d.produce&&c.gold>=1500){
+            World.Weapon preferred=World.Weapon.SPEAR;int best=Integer.MIN_VALUE;
+            for(World.Weapon weapon:new World.Weapon[]{World.Weapon.SPEAR,World.Weapon.HALBERD,World.Weapon.CROSSBOW,World.Weapon.CAVALRY}){
+                int rank=0;for(World.Officer o:idle)rank=Math.max(rank,o.aptitude[Army.category(weapon)]);
+                int score=rank*10000-c.equipment[weapon.ordinal()];
+                if(c.equipment[weapon.ordinal()]<8000&&score>best){best=score;preferred=weapon;}
+            }
+            if(best>Integer.MIN_VALUE&&w.produce(c.id,admin.id,preferred).ok)return;
+        }
+        if(decision!=null)civil.execute(decision);
     }
     private World.City target(District d,Hex from){
         List<World.City> candidates=new ArrayList<>();for(World.City c:w.cities)if(w.campaign.hostile(d.owner,c.owner)&&(d.policy!=Policy.CITY_ATTACK||c.id==d.target)&&(d.policy!=Policy.FORCE_ATTACK||c.owner==d.target))candidates.add(c);

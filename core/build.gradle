@@ -166,3 +166,11 @@ tasks.register('verifyDiplomacy', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyDiplomacy' }
 tasks.named('test') { dependsOn 'verifyDiplomacy' }
+
+tasks.register('verifyTerritoryAi', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.TerritoryAiTest'
+}
+tasks.named('check') { dependsOn 'verifyTerritoryAi' }
+tasks.named('test') { dependsOn 'verifyTerritoryAi' }
