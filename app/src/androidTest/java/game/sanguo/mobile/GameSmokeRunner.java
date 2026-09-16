@@ -527,7 +527,7 @@ public final class GameSmokeRunner extends Instrumentation {
         byte[] before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"fieldwork cancel is pure");click("取消选取",true);click("选中对象指令 ·",false);
         click("设置军事设施",true);click("阵 · 金1500",true);tapHex(new Hex(7,5));click("执行",true);
         w=saved();War.Structure s=w.war.at(new Hex(7,5));require(s!=null&&!s.complete&&s.builder==1&&w.unit(1).gold==8500,"UI construction uses carried gold and incomplete structure");screenshot("51-fieldwork-building");
-        before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("筑垒研兵",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"construction and carried gold survive recreation");
+        before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("筑垒研兵",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"construction and carried gold survive recreation");click("选中对象指令 ·",false);
         click("中止施工",true);click("执行",true);int hp=saved().war.at(new Hex(7,5)).hp;
         endTurn();waitForTurn(1);require(saved().war.at(new Hex(7,5)).hp==hp,"stopped construction does not progress");
         click("补修军事设施",true);click("阵 ·",false);click("执行",true);
