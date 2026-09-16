@@ -189,6 +189,7 @@ public final class MapView extends View {
         // Preserve precise tile commands while a unit is selected, including adjacent movement.
         if(moving>=0||pickTargets!=null)return world.inside(exact)?exact:null;
         if(world.inside(exact)&&(world.unitAt(exact)!=null||world.domestic.at(exact)!=null))return exact;
+        for(Domestic.Mission mission:world.domestic.missions)if(mission.transport&&mission.hex.equals(exact))return exact;
         for(Map.Entry<Integer,RectF> entry:cityLabelBounds.entrySet())if(entry.getValue().contains(px,py)){World.City c=cityIndex.get(entry.getKey());if(c!=null)return c.hex;}
         World.City nearest=null;float best=Float.MAX_VALUE;
         for(World.City city:world.cities){float dx=px-(x(city.hex)*camera.scale+camera.x),dy=py-(y(city.hex)*camera.scale+camera.y);float distance=dx*dx+dy*dy;

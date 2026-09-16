@@ -44,7 +44,7 @@ public final class MainActivity extends Activity {
     final int ink=Color.rgb(13,22,32),paper=Color.rgb(235,241,247),gold=Color.rgb(109,220,197),muted=Color.rgb(155,176,195);
 
     @Override public void onCreate(Bundle state) {
-        super.onCreate(state);world=DemoScenario.create();ui.read(state);
+        super.onCreate(state);boolean coldStart=state==null;world=DemoScenario.create();ui.read(state);
         applyOrientationPreference();
         String restoreError=null;boolean restored=false;
         AtomicFile autosave=file("auto");
@@ -108,6 +108,7 @@ public final class MainActivity extends Activity {
         if(state!=null&&!aiRunning&&ui.formDraft.getBoolean("open"))root.post(this::restoreFormDraft);
         if(!restored&&restoreError==null&&state==null)root.post(this::scenarioPicker);
         if(restoreError!=null)message("自动存档未能读取",restoreError);
+        else if(restored&&coldStart)Toast.makeText(this,"已恢复自动存档 · "+world.date(),Toast.LENGTH_SHORT).show();
     }
     private boolean portrait(){return getResources().getConfiguration().orientation!=Configuration.ORIENTATION_LANDSCAPE;}
     private void layoutPanels(){
@@ -237,7 +238,9 @@ public final class MainActivity extends Activity {
             if(candidates.size()>1){new AlertDialog.Builder(this).setTitle("选择攻击对象").setItems(candidates.stream().map(u->world.officer(u.officerId).name+" · "+world.army.equipmentLabel(u)).toArray(String[]::new),(d,i)->attackOnMap(source,h,candidates.get(i))).setNegativeButton("取消",null).show();return;}
             attackOnMap(source,h,candidates.isEmpty()?null:candidates.get(0));return;
         }
-        List<World.Unit> candidates=new ArrayList<>();for(World.Unit u:world.fieldUnits())if(h.equals(u.hex))candidates.add(u);
+        List<World.Unit> candidates=new ArrayList<>();for(World.Unit u:world.units)if(h.equals(u.hex))candidates.add(u);
+        // City staging and migrated overlapping convoys are visible objects, although not field combat targets.
+        for(Domestic.Mission mission:world.domestic.missions)if(mission.transport&&h.equals(mission.hex))candidates.add(mission);
         World.City city=world.cityAt(h);
         if(candidates.size()+(city==null?0:1)>1){
             List<String> labels=new ArrayList<>();if(city!=null)labels.add(city.name+" · 据点");
@@ -623,7 +626,7 @@ public final class MainActivity extends Activity {
         action("本旬结算摘要",v->showTurnReport());
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.24 · 领地与军团AI","势力范围 / 城关港辖区着色、前线标记与图例；城池快捷托管、后方批量编团；接敌走位与军团预算调度改进。\n设施直接最高级；兵钱粮滑块与精确输入；战法、计略、内政和野战建设地图点选。\n八类地形纹理；新增42城670将、18城180将、12城120将三种自制开局。\n援军请求、势力劝降、交换俘虏；八项特技恢复培养。\n16位名将原创头像、其余武将稳定默认头像；选将、兵种与设施图标统一；施工模型与城防/兵力条优化。\n内政设施耐久与攻击；固定部队指令栏；显式行军、取消选择、行动范围。\n存档v18，兼容v1—v17。\n全国原版格点、官方完整开局、全事件、全特技交互与精确公式仍有缺口。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.28 · 手机操作体验","全国标签避让、低干扰领地色、紧凑详情与城池快捷命令。\n点选查看 → 命令 → 地图目标 → 预览 → 确认；待行动前后切换、同格对象选择、可查看禁用原因。\n出征/运输数量草稿、返回全国列表、可展开旬报和恢复反馈。\n沿用v0.27地图运输、补给、护送/截击与72旬经营；存档v21，兼容旧档。\n全国原版逐格地图、官方完整剧本、全事件和精确公式仍有缺口。精确运输参数、高级运输船型和复杂路口协同未完成。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}
@@ -755,7 +758,7 @@ public final class MainActivity extends Activity {
             }
         }catch(IOException|SecurityException e){showError(request==EXPORT_SAVE?"导出失败":"导入失败");}
     }
-    private void loadSlot(String slot){try{World restored=readSave(file(slot));world=restored;ui.formDraft=new Bundle();ui.returnToCities=false;ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;selectAndFocus(world.home().hex);save("auto",false);}catch(IOException e){showError("读取失败");}}
+    private void loadSlot(String slot){try{World restored=readSave(file(slot));world=restored;ui.formDraft=new Bundle();ui.returnToCities=false;ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;selectAndFocus(world.home().hex);save("auto",false);Toast.makeText(this,"已读取存档 · "+world.date(),Toast.LENGTH_SHORT).show();}catch(IOException e){showError("读取失败");}}
     @Override protected void onPause(){super.onPause();if(world!=null){save("auto",false);persistClientState();}}
     @Override public void onBackPressed(){if(aiRunning)return;if(mapPick!=null){cancelMapPick();return;}if(pendingMarch!=null){pendingMarch=null;unitCommand="select";refresh();return;}if(!unitCommand.equals("select")){unitCommand="select";refresh();return;}if(ui.page.equals("map")&&ui.returnToCities){returnToCities();return;}if(moving>=0&&ui.page.equals("map")){if(ui.panelVisible){closePanel();return;}clearUnitSelection();return;}if(!ui.page.equals("map")){closePanel();}else if(ui.panelVisible){closePanel();}else confirm("退出游戏？当前局面将自动保存。",this::finish);}
 }

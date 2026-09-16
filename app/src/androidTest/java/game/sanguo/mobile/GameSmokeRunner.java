@@ -177,7 +177,7 @@ public final class GameSmokeRunner extends Instrumentation {
             installFixture(ScenarioCatalog.load("regional-sandbox",2),new Hex(18,10));locateCity("建业");click("军事",true);click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);setInput("兵力数量","2345");
             before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitForIdleSync();waitText("确认出征",true);require("2345".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"兵力数量").getText()),"deploy draft quantity survives recreation");
             screenshot("v028-deploy-draft-"+orientation);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"draft restore cannot deploy automatically");
-            w=logisticsFixture();installFixture(w,w.city(11).hex);locateCity("后方");click("调动",true);click("资源运输",true);click("前方 ·",false);click("将4 ·",false);scrollToText("运输粮 · 可选",false);setInput("粮（上限200000）","6789");
+            w=logisticsFixture();installFixture(w,w.city(11).hex);locateCity("后方");click("运输",true);click("前方 ·",false);click("将4 ·",false);scrollToText("运输粮 · 可选",false);setInput("粮（上限200000）","6789");
             before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitForIdleSync();waitText("运输数量",true);scrollToText("运输粮 · 可选",false);require("6789".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"粮（上限200000）").getText()),"cargo draft survives recreation");screenshot("v028-cargo-draft-"+orientation);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"restored cargo is still unsubmitted");
             // Legacy overlap is an actual permitted v21 state; resolve each object by stable ID.
             w=logisticsFixture();require(w.domestic.transport(11,12,4,new int[0],0,5000,1000,new int[World.Weapon.values().length],false,false).ok,"first stacked convoy dispatch");
@@ -299,7 +299,7 @@ public final class GameSmokeRunner extends Instrumentation {
             World stock=SaveCodec.decode(before);require(actual.city(310).troops==stock.city(310).troops-2345&&actual.city(310).gold==stock.city(310).gold-4321&&actual.city(310).food==stock.city(310).food-6789,"UI debits exact stock");
             byte[] after=SaveCodec.encode(actual);runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(after,SaveCodec.encode(saved())),"quantity deployment never replays after recreation");
         }
-        World w=ScenarioCatalog.load("regional-sandbox",2);installFixture(w,w.city(300).hex);chooseOrientation("竖屏");locateCity("柴桑");click("内政",true);click("设施开发",true);click("市场 ·",false);click("周瑜 ·",false);
+        World w=ScenarioCatalog.load("regional-sandbox",2);installFixture(w,w.city(300).hex);chooseOrientation("竖屏");locateCity("柴桑");click("建设",true);click("市场 ·",false);click("周瑜 ·",false);
         byte[] before=SaveCodec.encode(saved());waitText("点选高亮地块",false);require(!waitText("下一旬",false).isEnabled(),"cannot advance time during map placement");
         tapHex(w.city(300).hex);click("返回",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"invalid construction tile does not spend resources");
         screenshot("v023-map-construction-portrait");runOnMainSync(()->current.setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE));assertOrientation(false);waitText("点选高亮地块",false);
@@ -833,7 +833,7 @@ public final class GameSmokeRunner extends Instrumentation {
         runOnMainSync(()->{try{field.set(current,w);((MainActivity)current).rememberForm(new Bundle());((MainActivity)current).selectAndFocus(focus);}catch(IllegalAccessException e){throw new RuntimeException(e);}});
         try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(w));}waitForIdleSync();
     }
-    private void armyCity(){clickNav("城市");click("江东大营 · 江东军",false);click("军事",true);}
+    private void armyCity(){clickNav("城市");click("江东大营 · 江东军",false);}
     private void fillFormation(){
         armyCity();click("出征",true);click("孙权 ·",false);click("周瑜 ·",false);click("甘宁 ·",false);click("鲁肃 ·",false);
         click("下一步",true);click("冲车 ·",false);click("楼船 ·",false);setInput("粮食数量","18000");
