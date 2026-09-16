@@ -618,9 +618,26 @@ public final class GameSmokeRunner extends Instrumentation {
         locateCity("建业");click("军事",true);click("征兵 ·",false);click("甘宁 ·",false);click("执行",true);waitForIdleSync();
         w=saved();require(w.city(310).troops>troops&&w.city(310).troops-troops==20000-w.city(310).recruitReserve,"UI recruitment conserves finite manpower");
         byte[] before=SaveCodec.encode(w);
+        Activity previous=current;boolean restorePortrait=current.getResources().getConfiguration().orientation==android.content.res.Configuration.ORIENTATION_PORTRAIT;
         startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK));
+        awaitRestoredWindow(previous,restorePortrait);
         waitText("区域争雄  ·  孙权军",false);waitForIdleSync();require(Arrays.equals(before,SaveCodec.encode(saved())),"personnel v4 state survives Activity restart");
         personnelMenu("柴桑");click("城市与武将状态",true);waitText("太守：周瑜",false);screenshot("17-v4-restored");click("返回",true);
+    }
+    private void awaitRestoredWindow(Activity previous,boolean portrait)throws Exception {
+        // CLEAR_TASK briefly launches in the device orientation before restoring the
+        // saved app orientation. Never inject a tap using that provisional window.
+        long until=SystemClock.uptimeMillis()+8000,stableSince=0;
+        while(SystemClock.uptimeMillis()<until){
+            boolean[] ready={false};runOnMainSync(()->{android.view.View decor=current.getWindow().getDecorView();
+                ready[0]=current!=previous&&current.hasWindowFocus()&&!decor.isLayoutRequested()
+                    &&(current.getResources().getConfiguration().orientation==android.content.res.Configuration.ORIENTATION_PORTRAIT)==portrait
+                    &&decor.getWidth()>0&&decor.getHeight()>0&&(decor.getWidth()<decor.getHeight())==portrait;});
+            if(ready[0]){if(stableSince==0)stableSince=SystemClock.uptimeMillis();if(SystemClock.uptimeMillis()-stableSince>=600){getUiAutomation().waitForIdle(300,5000);return;}}
+            else stableSince=0;
+            SystemClock.sleep(100);
+        }
+        throw new AssertionError("restored Activity window did not stabilize in its saved orientation");
     }
     private void clickNav(String name){click("导航 · "+name,true);}
     private void endTurn(){click("下一旬  →",true);click("执行",true);click("旬结算完成",false);waitText("旬结算摘要",true);click("返回",true);}
