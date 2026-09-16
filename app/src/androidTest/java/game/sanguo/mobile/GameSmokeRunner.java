@@ -13,12 +13,13 @@ import game.sanguo.core.*;
 /** Runs against an installed APK using platform UI automation, without a test framework dependency. */
 public final class GameSmokeRunner extends Instrumentation {
     private Activity current;
-    private boolean upgradeOnly,upgrade25,upgrade26;
+    private boolean upgradeOnly,upgrade25,upgrade26,experience;
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);current=a;}
-    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
+    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
+            if(experience){experienceFlow();result.putString("stream","EXPERIENCE PASS: installed APK observations and official entry flows completed.\n");finish(Activity.RESULT_OK,result);return;}
             if(upgradeOnly||upgrade25||upgrade26){upgradeFlow();result.putString("stream",upgrade26?"UPGRADE26 PASS: actual verified v0.26 APK replaced in place; real v20 three-officer cargo, spent ration, return personnel, district and AI intent retained and v21 continued once.\n":upgrade25?"UPGRADE25 PASS: actual v0.25 APK replaced in place; v19 settings, intent and convoy retained, v21 replay continued once.\n":"UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v21 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
@@ -89,6 +90,47 @@ public final class GameSmokeRunner extends Instrumentation {
             result.putString("stream","SMOKE FAIL: "+trace+"\n");finish(Activity.RESULT_CANCELED,result);
         }
     }
+
+    private void experienceFlow()throws Exception {
+        World initial=ScenarioCatalog.load("regional-sandbox",2);
+        try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(initial));}
+        startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitForIdleSync();
+        try(PrintWriter out=new PrintWriter(new File(getTargetContext().getExternalFilesDir(null),"experience.txt"))){
+            out.println("version="+getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).versionName);
+            for(String orientation:new String[]{"竖屏","横屏"}){
+                World w=logisticsFixture();
+                for(int i=1;i<=3;i++){World.Unit u=new World.Unit(i,0,3+i,World.Weapon.SPEAR,new Hex(8+i,15),4000,10000);w.units.add(u);w.officer(3+i).cityId=-1;w.officer(3+i).unitId=i;}w.nextUnitId=4;w.unit(2).acted=true;
+                installFixture(w,w.unit(1).hex);chooseOrientation(orientation);click("收起",true);
+                MapView map=mapView();MapCamera cam=camera(map);dragMap(map,-100,0);
+                float cx=cam.centerX(),cy=cam.centerY();screenshot("v028-before-select-"+orientation);tapHex(w.unit(3).hex);
+                out.println(orientation+" select camera delta="+(cam.centerX()-cx)+","+(cam.centerY()-cy)+" map="+map.getWidth()+"x"+map.getHeight());screenshot("v028-after-select-"+orientation);
+                installFixture(w,w.unit(1).hex);click("下一部队",true);
+                java.lang.reflect.Field moving=MainActivity.class.getDeclaredField("moving");moving.setAccessible(true);
+                out.println(orientation+" next selected="+moving.getInt(current)+" acted="+w.unit(moving.getInt(current)).acted);
+                AccessibilityNodeInfo attack=waitText("攻击",true);out.println(orientation+" attack enabled="+attack.isEnabled());screenshot("v028-acted-command-"+orientation);
+                World nation=ScenarioCatalog.load("heroes-mobile-sandbox",0);installFixture(nation,nation.home().hex);territoryMode("势力范围 · 同势力合并");click("全图",true);screenshot("v028-national-"+orientation);
+                territoryMode("关闭领地着色");
+            }
+            World nation=ScenarioCatalog.load("heroes-mobile-sandbox",0);installFixture(nation,nation.home().hex);benchmarkExperience(out,nation,"42cities-670officers");
+            World large=new World(200,200,"我军","敌军");large.scenarioId="experience-stress";
+            for(int i=0;i<42;i++)large.cities.add(new World.City(i,"城"+i,new Hex(8+(i%7)*27,8+(i/7)*30),i%2));
+            for(int i=0;i<670;i++)large.officers.add(new World.Officer(i,"将"+i,(i%42)%2,i%42,80,80,80,80,80));
+            for(int i=0;i<40;i++){World.City c=large.city(i);World.Unit u=new World.Unit(i+1,c.owner,i,World.Weapon.SPEAR,new Hex(c.hex.q+1,c.hex.r),4000,10000);large.units.add(u);large.officer(i).cityId=-1;large.officer(i).unitId=u.id;}large.nextUnitId=41;
+            for(int i:new int[]{0,2,4}){World.City c=large.city(i),d=large.city(i+2);c.food=100000;c.troops=30000;require(large.domestic.transport(c.id,d.id,i+42,new int[0],0,5000,1000,new int[World.Weapon.values().length],false,false).ok,"stress actual dispatch");}
+            installFixture(large,large.unit(1).hex);benchmarkExperience(out,large,"200x200-42cities-40units-3transports");
+        }
+        installFixture(initial,initial.home().hex);
+        mobileShortcutsFlow();unitCommandFlow();logisticsFlow();tacticalLogisticsFlow();strategicManagementFlow();armyFlow();
+    }
+    private void benchmarkExperience(PrintWriter out,World w,String label)throws Exception {
+        MapView map=mapView();long[][] samples=new long[4][12];
+        runOnMainSync(()->{map.focus(w.home().hex);Bitmap bitmap=Bitmap.createBitmap(map.getWidth(),map.getHeight(),Bitmap.Config.ARGB_8888);Canvas canvas=new Canvas(bitmap);
+            for(int i=0;i<15;i++){long t=System.nanoTime();map.setWorld(w,w.home().hex,w.units.isEmpty()?-1:w.units.get(0).id);long selected=System.nanoTime()-t;t=System.nanoTime();map.draw(canvas);long draw=System.nanoTime()-t;t=System.nanoTime();((MainActivity)current).refresh();long refresh=System.nanoTime()-t;t=System.nanoTime();UiModels.cities(w,0,"",-1);long list=System.nanoTime()-t;if(i>=3){samples[0][i-3]=selected;samples[1][i-3]=draw;samples[2][i-3]=refresh;samples[3][i-3]=list;}}bitmap.recycle();});
+        for(int i=0;i<samples.length;i++){Arrays.sort(samples[i]);out.println(label+" "+new String[]{"setWorld-range-index","softwareDraw","refresh-detail","city-list"}[i]+" medianMs="+samples[i][6]/1e6+" p95Ms="+samples[i][11]/1e6);}
+        byte[] bytes=SaveCodec.encode(w);for(int i=0;i<3;i++){World copy=SaveCodec.decode(bytes);long t=System.nanoTime();copy.nextTurn();out.println(label+" actual-nextTurn-ms="+(System.nanoTime()-t)/1e6);}
+        out.flush();
+    }
+
     private void strategicManagementFlow()throws Exception {
         byte[] original=SaveCodec.encode(saved());World w=ScenarioCatalog.load("world-drill",0);w.city(11).food=0;installFixture(w,w.city(11).hex);
         for(String orientation:new String[]{"竖屏","横屏"}){
