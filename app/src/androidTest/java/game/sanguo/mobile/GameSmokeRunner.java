@@ -118,6 +118,7 @@ public final class GameSmokeRunner extends Instrumentation {
         battle.cities.add(new World.City(10,"我城",new Hex(2,3),0));battle.cities.add(new World.City(20,"敌城",new Hex(26,3),1));
         for(int id:new int[]{0,1,20,21})battle.officers.add(new World.Officer(id,"将"+id,id<20?0:1,id<20?10:20,80,80,80,80,80));
         battle.officer(0).role=Strategy.Role.RULER;battle.officer(20).role=Strategy.Role.RULER;
+        battle.officer(0).loyalty=100;battle.officer(20).loyalty=100;
         World.Unit bow=new World.Unit(1,0,1,World.Weapon.CROSSBOW,new Hex(12,10),6000,20000),enemy=new World.Unit(2,1,21,World.Weapon.SPEAR,new Hex(10,10),6000,20000);
         for(World.Unit u:new World.Unit[]{bow,enemy}){battle.officer(u.officerId).cityId=-1;battle.officer(u.officerId).unitId=u.id;battle.units.add(u);}battle.nextUnitId=3;
         require(battle.attack(1,2).ok,"initial ranged attack fixture");installFixture(battle,bow.hex);endTurn();waitForTurn(1);
