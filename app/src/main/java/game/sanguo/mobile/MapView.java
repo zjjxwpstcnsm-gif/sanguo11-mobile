@@ -14,6 +14,7 @@ public final class MapView extends View {
     private final Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Path path=new Path();
     private final MapModels models=new MapModels();
+    private final TerrainTiles terrainTiles=new TerrainTiles();
     private Hex impactHex;
     private long impactUntil;
     private boolean defeatImpact;
@@ -31,6 +32,8 @@ public final class MapView extends View {
     private World world;
     private Hex[][] tiles;
     private Hex selected;
+    private Set<Hex> pickTargets;
+    void setPickTargets(Set<Hex> targets){pickTargets=targets;invalidate();}
     private final Map<Integer,List<Object>> objectBuckets=new HashMap<>();
     private final Map<Integer,World.Officer> officerIndex=new HashMap<>();
     private final Map<Integer,World.City> cityIndex=new HashMap<>();
@@ -110,7 +113,7 @@ public final class MapView extends View {
         if(newTerrain){
             if(miniTerrain!=null)miniTerrain.recycle();
             miniTerrain=Bitmap.createBitmap(world.width,world.height,Bitmap.Config.ARGB_8888);
-            for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)miniTerrain.setPixel(q,r,world.terrain[q][r]==World.Terrain.WATER?0xff36586c:world.terrain[q][r]==World.Terrain.MOUNTAIN?0xff5b635b:world.terrain[q][r]==World.Terrain.FOREST?0xff415a49:0xff7e8463);
+            for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)miniTerrain.setPixel(q,r,TerrainTiles.color(world.terrain[q][r]));
         }
         World.Unit actor=world.unit(moving);reachable=world.orders.marchReachable(actor);attackTargets.clear();
         if(world.orders.error(actor)==null){
@@ -158,7 +161,7 @@ public final class MapView extends View {
         if(dq>dr&&dq>dz)iq=-ir-iz;else if(dr>dz)ir=-iq-iz;
         Hex exact=new Hex(iq,ir);
         // Preserve precise tile commands while a unit is selected, including adjacent movement.
-        if(moving>=0)return world.inside(exact)?exact:null;
+        if(moving>=0||pickTargets!=null)return world.inside(exact)?exact:null;
         if(world.inside(exact)&&(world.unitAt(exact)!=null||world.domestic.at(exact)!=null))return exact;
         World.City nearest=null;float best=Float.MAX_VALUE;
         for(World.City city:world.cities){float dx=px-(x(city.hex)*camera.scale+camera.x),dy=py-(y(city.hex)*camera.scale+camera.y);float distance=dx*dx+dy*dy;
@@ -184,13 +187,11 @@ public final class MapView extends View {
         for(int r=r0;r<=r1;r++)for(int q=camera.firstColumn(r,world.width,RADIUS*2);q<=camera.lastColumn(r,world.width,RADIUS*2);q++){
             lastTilesVisited++;Hex h=tiles[q][r];float cx=x(h),cy=y(h);float sx=cx*scale+offsetX,sy=cy*scale+offsetY;
             if(sx<-RADIUS*scale||sy<-RADIUS*scale||sx>getWidth()+RADIUS*scale||sy>getHeight()+RADIUS*scale)continue;
-            World.Terrain t=world.terrain[q][r];int color;
-            switch(t){case FOREST:color=Color.rgb(65,90,73);break;case WATER:color=Color.rgb(54,88,108);break;case MOUNTAIN:color=Color.rgb(91,99,91);break;case MOUNTAIN_PATH:color=Color.rgb(124,106,80);break;case SHALLOWS:color=Color.rgb(91,142,151);break;case PLANK_ROAD:color=Color.rgb(145,117,84);break;case POISON:color=Color.rgb(102,84,123);break;default:color=(q+r)%2==0?Color.rgb(126,132,99):Color.rgb(120,127,94);}
-            polygon(cx,cy,RADIUS-.3f);fill(canvas,color);stroke(canvas,Color.argb(40,13,37,35),.7f);
-            if(t==World.Terrain.MOUNTAIN){path.reset();path.moveTo(cx-13,cy+9);path.lineTo(cx-3,cy-12);path.lineTo(cx+5,cy+2);path.lineTo(cx+11,cy-7);path.lineTo(cx+18,cy+9);path.close();fill(canvas,Color.rgb(158,159,137));}
-            if(t==World.Terrain.FOREST){paint.setColor(Color.rgb(40,77,60));canvas.drawCircle(cx-6,cy-3,7,paint);canvas.drawCircle(cx+6,cy+5,8,paint);}
-            if(t==World.Terrain.WATER){paint.setColor(Color.argb(65,163,195,198));paint.setStrokeWidth(1);canvas.drawLine(cx-10,cy-3,cx+8,cy-3,paint);canvas.drawLine(cx-5,cy+5,cx+12,cy+5,paint);}
-            if(reachable.containsKey(h)&&reachable.get(h)>0){polygon(cx,cy,RADIUS-1);fill(canvas,Color.argb(110,62,218,209));stroke(canvas,Color.argb(225,117,244,234),Math.max(1,1.2f*density/scale));}
+            World.Terrain t=world.terrain[q][r];
+            if(detail)terrainTiles.draw(canvas,t,q,r,cx,cy);
+            else {polygon(cx,cy,RADIUS-.3f);fill(canvas,TerrainTiles.color(t));}
+            polygon(cx,cy,RADIUS-.3f);stroke(canvas,Color.argb(40,13,37,35),.7f);
+            if(pickTargets==null&&reachable.containsKey(h)&&reachable.get(h)>0){polygon(cx,cy,RADIUS-1);fill(canvas,Color.argb(110,62,218,209));stroke(canvas,Color.argb(225,117,244,234),Math.max(1,1.2f*density/scale));}
         }
         drawRoute(canvas);
         if(selected!=null){polygon(x(selected),y(selected),RADIUS-2);stroke(canvas,GOLD,Math.max(2,2*density/scale));}
@@ -213,8 +214,8 @@ public final class MapView extends View {
             if(detail)drawUnit(canvas,u);else {paint.setColor(factionColor(u.owner));canvas.drawCircle(x(u.hex),y(u.hex),14,paint);
                 if(scale*RADIUS>=5*density){canvas.save();canvas.translate(x(u.hex),y(u.hex));canvas.scale(.6f,.6f);if(world.army.water(u.hex))models.shipIcon(canvas,u.ship,PAPER);else models.weaponIcon(canvas,u.weapon,PAPER);canvas.restore();}}
         }
-        for(Hex h:attackTargets)if(camera.visible(x(h),y(h),RADIUS)){
-            polygon(x(h),y(h),RADIUS-1);stroke(canvas,0xffff987a,Math.max(2,2*density/scale));
+        for(Hex h:pickTargets==null?attackTargets:pickTargets)if(camera.visible(x(h),y(h),RADIUS)){
+            polygon(x(h),y(h),RADIUS-1);if(pickTargets!=null)fill(canvas,0x555be6bf);stroke(canvas,pickTargets==null?0xffff987a:0xff70ffca,Math.max(2,2*density/scale));
         }
         if(detail)for(Object object:visibleObjects)if(object instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)object;if(m.owner!=world.player&&!m.transport)continue;float cx=x(m.hex)+15,cy=y(m.hex)-8;paint.setColor(Color.rgb(30,42,43));canvas.drawCircle(cx,cy,10,paint);label(canvas,m.transport?"运":"调",cx,cy+4,12,m.owner==world.player?GOLD:factionColor(m.owner));}
         long remaining=impactUntil-android.os.SystemClock.uptimeMillis();

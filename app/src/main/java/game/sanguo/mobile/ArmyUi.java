@@ -2,14 +2,15 @@ package game.sanguo.mobile;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.widget.*;
 import game.sanguo.core.*;
 import java.util.*;
 import java.util.function.*;
 
 /** All dialogs collect choices first. Only the final confirmation changes the world. */
 final class ArmyUi {
-    private final Activity a;private final World w;private final Consumer<World.Result> apply;private final Consumer<Hex> focus;
-    ArmyUi(Activity a,World w,Consumer<World.Result> apply,Consumer<Hex> focus){this.a=a;this.w=w;this.apply=apply;this.focus=focus;}
+    private final MainActivity a;private final World w;private final Consumer<World.Result> apply;private final Consumer<Hex> focus;
+    ArmyUi(MainActivity a,World w,Consumer<World.Result> apply,Consumer<Hex> focus){this.a=a;this.w=w;this.apply=apply;this.focus=focus;}
     private void info(String title,String text){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("返回",null).show();}
     private void confirm(String title,String text,Runnable action){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("执行",(d,n)->action.run()).setNegativeButton("取消",null).show();}
     private <T> void choose(String title,List<T> list,Function<T,String> label,Consumer<T> next){
@@ -18,7 +19,38 @@ final class ArmyUi {
         if(GameIcon.supports(list.get(0)))dialog.setAdapter(GameIcon.adapter(a,w,list,label),(d,i)->next.accept(list.get(i)));
         else dialog.setItems(names,(d,i)->next.accept(list.get(i)));dialog.show();
     }
-    private List<Integer> troopOptions(int officer){List<Integer> n=new ArrayList<>();int cap=w.government.commandLimit(officer);for(int v:new int[]{1000,3000,5000,8000,10000,12000,15000})if(v<=cap)n.add(v);if(!n.contains(cap))n.add(cap);Collections.sort(n);return n;}
+    void quickDeploy(World.City c){choose("选择武将",w.idle(c),o->o.name,leader->
+        choose("选择兵种",Arrays.asList(World.Weapon.SPEAR,World.Weapon.HALBERD,World.Weapon.CROSSBOW,World.Weapon.CAVALRY),weapon->weapon.label,
+            weapon->quantities(c,leader,new int[0],weapon,Army.Ship.BOAT)));}
+    private void quantities(World.City c,World.Officer leader,int[] deputies,World.Weapon weapon,Army.Ship ship){
+        int troopCap=UiModels.deployTroopCap(w,c,leader.id,weapon,ship);
+        if(troopCap<1000){info("无法出征","兵力、粮食或选定兵装/舰船不足，至少需要1000兵和1000粮。");return;}
+        LinearLayout form=new LinearLayout(a);form.setOrientation(LinearLayout.VERTICAL);form.setPadding(a.dp(16),a.dp(8),a.dp(16),a.dp(12));
+        form.addView(a.text(leader.name+" · "+weapon.label+" · "+ship.label+"\n带兵上限 "+w.government.commandLimit(leader.id)+" · 兵装库存 "+c.equipment[weapon.ordinal()],14,a.gold));
+        int initial=Math.min(3000,troopCap);
+        QuantityControl troops=new QuantityControl(a,"兵力",1000,troopCap,initial);
+        QuantityControl food=new QuantityControl(a,"粮食",initial,Math.min(c.food,1000000),Math.min(c.food,initial*2));
+        QuantityControl gold=new QuantityControl(a,"金钱",0,Math.min(c.gold,10000),0);
+        form.addView(troops);form.addView(food);form.addView(gold);
+        TextView summary=a.text("",13,a.paper);form.addView(summary);
+        ScrollView scroll=new ScrollView(a);scroll.setFillViewport(true);scroll.addView(form);
+        AlertDialog dialog=new AlertDialog.Builder(a).setTitle("出征兵钱粮 · 滑动调整").setView(scroll).setPositiveButton("确认出征",null).setNegativeButton("取消",null).create();
+        Runnable update=()->{
+            boolean valid=troops.valid()&&food.valid()&&gold.valid()&&food.value()>=troops.value();
+            summary.setText(valid?"城内保留：兵 "+(c.troops-troops.value())+" / 粮 "+(c.food-food.value())+" / 金 "+(c.gold-gold.value())+"\n兵装消耗 "+Army.equipmentNeeded(weapon,troops.value())+" · 行动力10\n滑动粗调，也可点击数字精确输入。":"请检查数量范围；携粮不能少于兵力。");
+            if(dialog.isShowing())dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(valid);
+        };
+        troops.onChange(()->{if(troops.valid())food.bounds(troops.value(),Math.min(c.food,1000000));update.run();});food.onChange(update);gold.onChange(update);
+        dialog.setOnShowListener(v->{
+            update.run();dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(button->{
+                if(!troops.valid()||!food.valid()||!gold.valid()||food.value()<troops.value())return;
+                World.Result result=w.army.deploy(c.id,leader.id,deputies,weapon,ship,troops.value(),food.value(),gold.value());
+                apply.accept(result);if(result.ok){dialog.dismiss();focus.accept(w.unit(leader.unitId).hex);}
+            });
+            dialog.getWindow().setLayout(a.dp(Math.min(560,a.getResources().getConfiguration().screenWidthDp-24)),android.view.WindowManager.LayoutParams.WRAP_CONTENT);
+        });
+        dialog.show();a.trackDialog(dialog);dialog.getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN|android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+    }
     void deploy(World.City c){choose("编队 · 选择主将",w.idle(c),o->o.name+" · 统"+o.leadership,leader->{
         List<World.Officer> candidates=new ArrayList<>(w.idle(c));candidates.remove(leader);boolean[] selected=new boolean[candidates.size()];String[] labels=new String[candidates.size()];
         for(int i=0;i<labels.length;i++){World.Officer o=candidates.get(i);labels[i]=o.name+" · 武"+o.war+" / 智"+o.intelligence;}
@@ -31,16 +63,8 @@ final class ArmyUi {
             int[] deputies=new int[ids.size()];for(int i=0;i<ids.size();i++)deputies[i]=ids.get(i);
             choose("陆战兵装",Arrays.asList(World.Weapon.values()),weapon->weapon.label+(weapon==World.Weapon.SWORD?" · 无需库存":" · 库存"+c.equipment[weapon.ordinal()]),weapon->
                 choose("携带舰船",Arrays.asList(Army.Ship.values()),ship->ship.label+(ship==Army.Ship.BOAT?" · 免费配备":" · 库存"+c.ships[ship.ordinal()-1]),ship->
-                    choose("编队兵力",troopOptions(leader.id),n1->n1+"人",troops->
-                        choose("出征携粮",Arrays.asList(troops,2*troops,6*troops,10*troops),food->food+"粮",food->choose("出征携金",Arrays.asList(0,1000,3000,5000,10000),gold->gold+"金",gold->{
-                            List<World.Officer> crew=new ArrayList<>();crew.add(leader);for(int id:deputies)crew.add(w.officer(id));
-                            StringBuilder text=new StringBuilder("主将 "+leader.name);for(int id:deputies)text.append("\n副将 ").append(w.officer(id).name);
-                            text.append("\n").append(troops).append("兵 · ").append(food).append("粮 · 金").append(gold).append(" · ").append(ship.label)
-                                .append("\n兵装 ").append(weapon.label).append(" · 消耗 ").append(Army.equipmentNeeded(weapon,troops)).append(Army.siegeWeapon(weapon)?"件":"份")
-                                .append("\n陆战适性 ").append(War.rankLabel(w.army.aptitude(crew,Army.category(weapon)))).append(" · 水军适性 ").append(War.rankLabel(w.army.aptitude(crew,5)))
-                                .append("\n行动力10；整队武将出征后不能再执行城池任务。\n统率取主将，武力、智力与适性取队内最高值。");
-                            confirm("确认编队出征",text.toString(),()->{World.Result result=w.army.deploy(c.id,leader.id,deputies,weapon,ship,troops,food,gold);apply.accept(result);if(result.ok)focus.accept(w.unit(leader.unitId).hex);});
-                        })))));
+                    quantities(c,leader,deputies,weapon,ship)));
+
         }).setNegativeButton("取消",null).create();dialog.show();
     });}
     void manufacture(World.City c){
@@ -55,6 +79,6 @@ final class ArmyUi {
     void production(Army.Production p){confirm(p.label(),w.city(p.cityId).name+" · "+w.officer(p.officerId).name+" · 剩余"+w.officer(p.officerId).otherTaskTurns+"旬\n是否中止？已付费用不退还。",()->apply.accept(w.army.cancelProduction(p.officerId)));}
     void tactics(World.Unit u){choose("兵器 / 水军战法",w.army.tactics(u),t->t.label+" · 气力"+t.energy,t->{
         List<Hex> targets=new ArrayList<>();for(World.Unit enemy:w.units)if(w.army.tacticError(u.id,enemy.hex,t)==null)targets.add(enemy.hex);for(World.City city:w.cities)if(w.army.tacticError(u.id,city.hex,t)==null)targets.add(city.hex);for(War.Structure structure:w.war.structures())if(w.army.tacticError(u.id,structure.hex,t)==null)targets.add(structure.hex);for(Domestic.Facility f:w.domestic.facilities)if(w.army.tacticError(u.id,f.hex,t)==null)targets.add(f.hex);
-        choose("选择军备战法目标",targets,h->w.cityAt(h)!=null?w.cityAt(h).name:w.war.at(h)!=null?w.war.at(h).kind.label:w.domestic.at(h)!=null?w.domestic.at(h).kind.label+" · 耐久"+w.domestic.at(h).hp:w.officer(w.unitAt(h).officerId).name,h->confirm(t.label,t.effect+"\n成功率"+w.army.tacticChance(u.id,h)+"%；消耗"+t.energy+"气力，失败也消耗行动。",()->apply.accept(w.army.tactic(u.id,h,t))));
+        a.pickOnMap(t.label+" · 选择目标",u.hex,targets,h->confirm(t.label,t.effect+"\n成功率"+w.army.tacticChance(u.id,h)+"%；消耗"+t.energy+"气力，失败也消耗行动。",()->apply.accept(w.army.tactic(u.id,h,t))));
     });}
 }

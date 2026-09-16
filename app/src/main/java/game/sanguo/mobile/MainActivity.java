@@ -30,6 +30,9 @@ public final class MainActivity extends Activity {
     private Hex selected;
     private int moving=-1;
     private String unitCommand="select";
+    private Set<Hex> pickTargets=Collections.emptySet();
+    private java.util.function.Consumer<Hex> mapPick;
+    private String pickTitle="";
     private boolean aiRunning;
     private Button nextTurn;
     private final ClientState ui=new ClientState();
@@ -113,6 +116,7 @@ public final class MainActivity extends Activity {
     }
     private void closePanel(){ui.panelVisible=false;ui.panelExpanded=false;ui.page="map";refresh();}
     private void showNavigation(){
+        if(mapPick!=null)cancelMapPick();
         if(navigationDialog!=null&&navigationDialog.isShowing())return;
         LinearLayout list=new LinearLayout(this);list.setOrientation(LinearLayout.VERTICAL);list.setPadding(dp(12),dp(4),dp(12),dp(12));
         navigation.clear();String[] keys={"map","cities","officers","tasks","menu"},labels={"地图","城市","武将","任务","菜单"};
@@ -127,6 +131,7 @@ public final class MainActivity extends Activity {
         navigationDialog.show();
     }
     private void showMapTools(){
+        if(mapPick!=null)cancelMapPick();
         String[] labels={"全图","定位","导航图","屏幕方向","战报","操作说明","战斗震动","兵种与建筑图例"};
         new AlertDialog.Builder(this).setTitle("地图视图").setItems(labels,(d,index)->{
             if(aiRunning)return;
@@ -152,6 +157,7 @@ public final class MainActivity extends Activity {
         setRequestedOrientation(mode==1?android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:mode==2?android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE:android.content.pm.ActivityInfo.SCREEN_ORIENTATION_FULL_USER);
     }
     @Override public void onConfigurationChanged(Configuration config){super.onConfigurationChanged(config);if(root!=null){layoutPanels();refreshCommandDock();root.requestApplyInsets();}fitConfirmation();}
+    void trackDialog(AlertDialog dialog){confirmationDialog=dialog;fitConfirmation();}
     private void fitConfirmation(){
         if(confirmationDialog==null||!confirmationDialog.isShowing())return;
         // A dialog opened during sensor rotation can retain the previous orientation's minimum width.
@@ -175,6 +181,11 @@ public final class MainActivity extends Activity {
     }
     private void onTile(Hex h) {
         if(aiRunning||world.commandsBlocked())return;
+        if(mapPick!=null){
+            if(h!=null&&pickTargets.contains(h)){map.center(h);mapPick.accept(h);}
+            else Toast.makeText(this,"请点选高亮地块，或点「取消选取」返回",Toast.LENGTH_SHORT).show();
+            return;
+        }
         if(h==null){clearUnitSelection();return;}
         World.Unit target=world.unitAt(h);World.City city=world.cityAt(h);World.Unit source=world.unit(moving);
         if(source!=null&&source.owner==world.player) {
@@ -217,6 +228,13 @@ public final class MainActivity extends Activity {
         selected=h;moving=target!=null&&target.owner==world.player?target.id:-1;ui.page="map";ui.panelVisible=target!=null||city!=null||world.domestic.at(h)!=null||world.war.at(h)!=null||world.war.fireAt(h)!=null;ui.panelExpanded=false;refresh();if(ui.panelVisible)map.post(()->map.center(h));revealPanel();
     }
     private void clearUnitSelection(){pendingMarch=null;unitCommand="select";moving=-1;selected=null;closePanel();}
+    void pickOnMap(String title,Hex origin,Collection<Hex> targets,java.util.function.Consumer<Hex> action){
+        if(targets.isEmpty()){message(title,"当前没有可用目标。请检查射程、气力、适性、库存或地块条件。");return;}
+        pendingMarch=null;unitCommand="select";pickTitle=title;pickTargets=new LinkedHashSet<>(targets);mapPick=action;
+        ui.page="map";ui.panelVisible=false;ui.panelExpanded=false;refresh();map.post(()->map.focus(origin));
+        commandDock.announceForAccessibility(title+"，请点选高亮地块");
+    }
+    private void cancelMapPick(){mapPick=null;pickTargets=Collections.emptySet();pickTitle="";refresh();}
     private void approach(World.Unit u,Hex h){
         if(unitCommand.equals("march")){previewMarch(u,h);return;}
         confirm("目标在当前射程外，规划行军到目标附近？抵达后需要再次下令攻击。",()->{unitCommand="march";previewMarch(u,h);});
@@ -231,7 +249,7 @@ public final class MainActivity extends Activity {
     void applyResult(World.Result result){apply(result);}
     private void apply(World.Result result){
         if(!result.ok)message("命令未执行",result.message);
-        if(result.ok){pendingMarch=null;unitCommand="select";}
+        if(result.ok){pendingMarch=null;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();pickTitle="";}
         if(result.ok&&result.feedback!=World.Feedback.NONE){
             lastBattleReport=result.message;battleReportWorld=world;
             battleBanner.setText((result.feedback==World.Feedback.DEFEAT?"击破战果 · ":"战斗 · ")+result.message+"  · 点此详情");
@@ -249,7 +267,7 @@ public final class MainActivity extends Activity {
         if(ui.cityOwner>=world.factions.length)ui.cityOwner=-1;
         title.setText(world.scenarioName+"  ·  "+world.faction(world.player)+"\n"+world.date()+" · 行动力 "+world.actionPoints[world.player]+(aiRunning?" · 结算中…":""));
         title.setContentDescription("军情 · "+title.getText());
-        nextTurn.setEnabled(!aiRunning&&!world.gameOver()&&!world.commandsBlocked());nextTurn.setText(aiRunning?"结算中…":"下一旬  →");
+        nextTurn.setEnabled(mapPick==null&&!aiRunning&&!world.gameOver()&&!world.commandsBlocked());nextTurn.setText(aiRunning?"结算中…":"下一旬  →");
         for(Map.Entry<String,Button> e:navigation.entrySet()){e.getValue().setEnabled(!aiRunning);e.getValue().setSelected(e.getKey().equals(ui.page));e.getValue().setTextColor(e.getKey().equals(ui.page)?gold:paper);}
         if(navigation.get("tasks")!=null)navigation.get("tasks").setText("任务"+(taskCount()>0?" "+taskCount():""));
         panelHost.removeAllViews();panel.removeAllViews();
@@ -257,7 +275,7 @@ public final class MainActivity extends Activity {
         panelShell.setVisibility(ui.panelVisible||required?View.VISIBLE:View.GONE);closePanel.setEnabled(!required&&!aiRunning);
         String selectedName=selected==null?"点选城池":world.cityAt(selected)!=null?world.cityAt(selected).name:world.unitAt(selected)!=null?world.officer(world.unitAt(selected).officerId).name:"地块";
         selectionButton.setText(selectedName+(panelShell.getVisibility()==View.VISIBLE?" · 收起":" · 指令"));
-        selectionButton.setContentDescription("选中对象指令 · "+selectedName);selectionButton.setEnabled(!aiRunning&&!required);
+        selectionButton.setContentDescription("选中对象指令 · "+selectedName);selectionButton.setEnabled(mapPick==null&&!aiRunning&&!required);
         panelTitle.setText(ui.page.equals("map")?selectedName+" · 指令":ui.page.equals("cities")?"城市":ui.page.equals("officers")?"武将":ui.page.equals("tasks")?"任务":ui.page.equals("menu")?"菜单":"资料");
         if(world.unit(moving)==null)moving=-1;
         if(world.life.pending()&&!ui.page.equals("menu")){panelHost.addView(new LifecycleUi(this,world,this::apply).succession());}
@@ -269,6 +287,7 @@ public final class MainActivity extends Activity {
         else if(ui.page.equals("tasks"))panelHost.addView(new OverviewUi(this,world,ui).tasks());
         else {panelHost.addView(panelScroll);if(ui.page.equals("menu"))showMenu();else showSelection();}
         map.setWorld(world,selected,moving);map.setRoute(pendingMarch!=null?pendingMarch:world.unit(moving)!=null&&world.unit(moving).march!=null?world.marches.current(world.unit(moving)):null);
+        map.setPickTargets(mapPick==null?null:pickTargets);
         map.setEnabled(!aiRunning&&!world.commandsBlocked());refreshCommandDock();layoutPanels();
     }
     private void previewMarch(World.Unit unit,Hex target){
@@ -277,6 +296,12 @@ public final class MainActivity extends Activity {
     }
     private void refreshCommandDock(){
         commandDock.removeAllViews();World.Unit u=world.unit(moving);
+        if(mapPick!=null){
+            commandDock.setVisibility(View.VISIBLE);commandDock.setOrientation(LinearLayout.HORIZONTAL);
+            TextView hint=text(pickTitle+" · 点选高亮地块（"+pickTargets.size()+"处）",13,gold);hint.setMaxLines(2);
+            commandDock.addView(hint,new LinearLayout.LayoutParams(0,-2,1));
+            commandDock.addView(button("取消选取",v->cancelMapPick()),new LinearLayout.LayoutParams(dp(96),dp(48)));return;
+        }
         commandDock.setVisibility(u!=null&&ui.page.equals("map")&&!world.commandsBlocked()?View.VISIBLE:View.GONE);
         if(u==null)return;
         commandDock.setOrientation(portrait()?LinearLayout.VERTICAL:LinearLayout.HORIZONTAL);commandDock.setGravity(Gravity.CENTER_VERTICAL);
@@ -395,9 +420,7 @@ public final class MainActivity extends Activity {
     private ArmyUi armyUi(){return new ArmyUi(this,world,this::apply,this::selectAndFocus);}
     private List<CityCommand> militaryCommands(World.City c){return Arrays.asList(
         new CityCommand("出征",()->armyUi().deploy(c)),
-        new CityCommand("快速出征（单将）",()->chooseOfficer(c,o->chooseWeapon(weapon->new AlertDialog.Builder(this).setTitle("出征兵力").setItems(new String[]{"3000人","5000人","8000人"},(d,which)->{
-            World.Result result=world.deploy(c.id,o.id,weapon,new int[]{3000,5000,8000}[which]);apply(result);if(result.ok)selectAndFocus(world.unit(o.unitId).hex);
-        }).show()))),
+        new CityCommand("快速出征（单将）",()->armyUi().quickDeploy(c)),
         new CityCommand("编队 / 水陆出征",()->armyUi().deploy(c)),
         new CityCommand("军备制造 / 攻城器械与舰船",()->armyUi().manufacture(c)),
         new CityCommand("征兵 · 金300 · 兵源 "+c.recruitReserve,()->strategyUi().command(c,6)),
@@ -480,7 +503,7 @@ public final class MainActivity extends Activity {
         action("本旬结算摘要",v->message("旬结算摘要",ui.summary.isEmpty()?"结束一旬后将在这里显示结算摘要。":ui.summary));
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.22 · 部队指令与设施攻防","援军请求、势力劝降、交换俘虏；八项特技恢复培养。\n16位名将原创头像、其余武将稳定默认头像；选将、兵种与设施图标统一；施工模型与城防/兵力条优化。\n内政设施耐久与攻击；固定部队指令栏；显式行军、取消选择、行动范围。\n存档v18，兼容v1—v17。\n全国原版格点、官方完整开局、全事件、全特技交互与精确公式仍有缺口。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.23 · 移动操作与群英沙盘","设施直接最高级；兵钱粮滑块与精确输入；战法、计略、内政和野战建设地图点选。\n八类地形纹理；新增42城670将、18城180将、12城120将三种自制开局。\n援军请求、势力劝降、交换俘虏；八项特技恢复培养。\n16位名将原创头像、其余武将稳定默认头像；选将、兵种与设施图标统一；施工模型与城防/兵力条优化。\n内政设施耐久与攻击；固定部队指令栏；显式行军、取消选择、行动范围。\n存档v18，兼容v1—v17。\n全国原版格点、官方完整开局、全事件、全特技交互与精确公式仍有缺口。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}
@@ -490,7 +513,7 @@ public final class MainActivity extends Activity {
     private String openingInfo(World w,int side){
         StringBuilder b=new StringBuilder(w.date()+" · "+w.width+"×"+w.height+"格\n");int people=0;for(World.Officer o:w.officers)if(o.owner==side)people++;
         b.append(people).append("名武将 · 领地：");for(World.City c:w.cities)if(c.owner==side)b.append(c.name).append(" ");
-        b.append(w.dataSource.equals("community-reference")?"\n能力/适性来自公开资料，地图/领地/资源为原创演练；特技已接入部分效果，生卒与完整关系数据尚未载入。":"\n原创测试地图、资源和武将数值；非官方历史开局。");return b.toString();
+        b.append(w.dataSource.equals("community-reference")?"\n能力/适性来自公开资料，地图/领地/资源为原创演练；特技、性格和已解析关系依剧本载入。群英类自制沙盘为跨时代配置，不按生卒年退场。":"\n原创测试地图、资源和武将数值；非官方历史开局。");return b.toString();
     }
     private void startScenario(String id,int player){try{world=ScenarioCatalog.load(id,player,System.nanoTime());ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;selectAndFocus(world.home().hex);closePanel();save("auto",false);}catch(IOException e){showError("无法开始剧本");}}
     private String slotName(int index){return index==0?"manual":"manual"+(index+1);}
@@ -586,5 +609,5 @@ public final class MainActivity extends Activity {
     }
     private void loadSlot(String slot){try{World restored=readSave(file(slot));world=restored;ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;selectAndFocus(world.home().hex);save("auto",false);}catch(IOException e){showError("读取失败");}}
     @Override protected void onPause(){super.onPause();if(world!=null)save("auto",false);}
-    @Override public void onBackPressed(){if(aiRunning)return;if(pendingMarch!=null){pendingMarch=null;unitCommand="select";refresh();return;}if(!unitCommand.equals("select")){unitCommand="select";refresh();return;}if(moving>=0&&ui.page.equals("map")){clearUnitSelection();return;}if(!ui.page.equals("map")){closePanel();}else if(ui.panelVisible){closePanel();}else confirm("退出游戏？当前局面将自动保存。",this::finish);}
+    @Override public void onBackPressed(){if(aiRunning)return;if(mapPick!=null){cancelMapPick();return;}if(pendingMarch!=null){pendingMarch=null;unitCommand="select";refresh();return;}if(!unitCommand.equals("select")){unitCommand="select";refresh();return;}if(moving>=0&&ui.page.equals("map")){clearUnitSelection();return;}if(!ui.page.equals("map")){closePanel();}else if(ui.panelVisible){closePanel();}else confirm("退出游戏？当前局面将自动保存。",this::finish);}
 }

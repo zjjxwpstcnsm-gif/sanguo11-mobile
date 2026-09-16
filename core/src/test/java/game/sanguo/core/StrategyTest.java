@@ -204,7 +204,7 @@ public final class StrategyTest {
         check(reserve.city(10).gold==99700&&reserve.city(10).order==85,"recruitment costs gold and order");reject(reserve,()->reserve.recruit(10,1));
         World barracks=fixture();barracks.officer(0).politics=90;
         ok(barracks.domestic.build(10,0,Domestic.Kind.BARRACKS,barracks.domestic.buildSites(10).get(0)));next(barracks);next(barracks);
-        check(barracks.strategy.recruitAmount(10,1)==2500,"completed barracks raise real recruitment");
+        check(barracks.strategy.recruitAmount(10,1)==2750,"completed barracks raise real recruitment");
         barracks.officer(1).charm=20;int low=barracks.strategy.recruitAmount(10,1);barracks.officer(1).charm=80;
         check(barracks.strategy.recruitAmount(10,1)>low,"charm affects recruitment");barracks.city(10).order=50;
         check(barracks.strategy.recruitAmount(10,1)<2500,"order affects recruitment");

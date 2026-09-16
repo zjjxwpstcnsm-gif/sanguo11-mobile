@@ -164,8 +164,12 @@ def build():
     generated[OUT/'index.txt']=('\n'.join(index)+'\n').encode()
     # Preserve old pack hashes and order byte-for-byte.
     path=ROOT/'core/src/main/resources/scenarios/index.txt'
-    current=[l for l in path.read_text().splitlines() if not l.startswith('officer-reference-drill ')]
-    generated[path]=('\n'.join(current)+'\nofficer-reference-drill '+sha(generated[ROOT/'core/src/main/resources/scenarios/officer-reference-drill.properties'])+'\n').encode()
+    reference='officer-reference-drill '+sha(generated[ROOT/'core/src/main/resources/scenarios/officer-reference-drill.properties'])
+    current=path.read_text().splitlines()
+    if any(l.startswith('officer-reference-drill ') for l in current):
+        current=[reference if l.startswith('officer-reference-drill ') else l for l in current]
+    else:current.append(reference)
+    generated[path]=('\n'.join(current)+'\n').encode()
     return generated,report
 
 def main():

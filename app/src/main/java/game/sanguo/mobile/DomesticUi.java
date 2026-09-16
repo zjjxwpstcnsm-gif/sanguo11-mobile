@@ -11,8 +11,8 @@ import java.util.function.Consumer;
 
 /** Native command forms; every confirmed mutation goes through the validated core. */
 final class DomesticUi {
-    private final Activity activity;private final World w;private final Consumer<World.Result> apply;private final Consumer<Hex> focus;
-    DomesticUi(Activity a,World w,Consumer<World.Result> apply,Consumer<Hex> focus){activity=a;this.w=w;this.apply=apply;this.focus=focus;}
+    private final MainActivity activity;private final World w;private final Consumer<World.Result> apply;private final Consumer<Hex> focus;
+    DomesticUi(MainActivity a,World w,Consumer<World.Result> apply,Consumer<Hex> focus){activity=a;this.w=w;this.apply=apply;this.focus=focus;}
     private void message(String title,String text){new AlertDialog.Builder(activity).setTitle(title).setMessage(text).setPositiveButton("返回",null).show();}
     private void confirm(String title,String text,String positive,Runnable run){new AlertDialog.Builder(activity).setTitle(title).setMessage(text).setPositiveButton(positive,(d,n)->run.run()).setNegativeButton("取消",null).show();}
     private void officer(World.City c,Consumer<World.Officer> next){
@@ -25,14 +25,11 @@ final class DomesticUi {
         new AlertDialog.Builder(activity).setTitle("选择目的地").setAdapter(GameIcon.adapter(activity,w,options,c->c.name+" · 兵"+c.troops),(d,i)->next.accept(options.get(i))).setNegativeButton("取消",null).show();
     }
     void build(World.City c){
-        new AlertDialog.Builder(activity).setTitle("设施开发 · 工程规则").setAdapter(GameIcon.adapter(activity,w,Arrays.asList(Domestic.Kind.values()),k->k.label+" · 金"+k.cost+" · "+k.effect),(d,i)->{
+        new AlertDialog.Builder(activity).setTitle("设施开发 · 直接最高级").setAdapter(GameIcon.adapter(activity,w,Arrays.asList(Domestic.Kind.values()),k->k.label+" · Lv"+Domestic.buildLevel(k)+" · 金"+k.cost+" · "+Domestic.buildEffect(k)),(d,i)->{
             Domestic.Kind kind=Domestic.Kind.values()[i];officer(c,o->{
                 List<Hex> sites=w.domestic.buildSites(c.id);if(kind==Domestic.Kind.SHIPYARD)sites.removeIf(h->h.neighbors().stream().noneMatch(w.army::water));if(sites.isEmpty()){message("无法开发","没有可用平地或已经达到每城6处设施上限。");return;}
-                String[] names=new String[sites.size()];for(int j=0;j<names.length;j++)names[j]="地块 "+sites.get(j).q+", "+sites.get(j).r;
-                new AlertDialog.Builder(activity).setTitle("选择开发地 · 点击预览").setItems(names,(dialog,j)->{
-                    Hex h=sites.get(j);focus.accept(h);
-                    confirm("建设"+kind.label,c.name+" · "+o.name+"\n金"+kind.cost+" / 行动力10 / "+(o.politics>=80?2:3)+"旬\n建设期间武将不可执行其他命令。\n建成后："+kind.effect+"\n取消不退费。","开工",()->apply.accept(w.domestic.build(c.id,o.id,kind,h)));
-                }).setNegativeButton("取消",null).show();
+                activity.pickOnMap("建设"+kind.label+" Lv"+Domestic.buildLevel(kind),c.hex,sites,h->
+                    confirm("建设"+kind.label,c.name+" · "+o.name+"\n金"+kind.cost+" / 行动力10 / "+(o.politics>=80?2:3)+"旬\n建设期间武将不可执行其他命令。\n建成即最高等级 Lv"+Domestic.buildLevel(kind)+"："+Domestic.buildEffect(kind)+"\n取消不退费。","开工",()->apply.accept(w.domestic.build(c.id,o.id,kind,h))));
             });
         }).setNegativeButton("取消",null).show();
     }
@@ -78,11 +75,10 @@ final class DomesticUi {
     }
     void facility(Domestic.Facility f){
         focus.accept(f.hex);World.City c=w.city(f.cityId);
-        AlertDialog.Builder dialog=new AlertDialog.Builder(activity).setTitle(c.name+" · "+f.kind.label+" Lv"+f.level).setMessage("耐久 "+f.hp+"/"+f.maxHp()+"\n"+f.kind.effect+"\n等级倍率：Lv1 100% / Lv2 120% / Lv3 150%\n"+(f.remaining==0?"已建成":w.officer(f.builderId).name+(f.upgradeTo>0?"合并中":"建设中")+"，剩"+f.remaining+"旬")+"\n坐标 "+f.hex.q+", "+f.hex.r).setNegativeButton("返回",null);
+        AlertDialog.Builder dialog=new AlertDialog.Builder(activity).setTitle(c.name+" · "+f.kind.label+" Lv"+f.level).setMessage("耐久 "+f.hp+"/"+f.maxHp()+"\n"+(f.level==3?Domestic.buildEffect(f.kind):f.kind.effect)+"\n新建设施直接最高级，无需吸收合并。\n"+(f.remaining==0?"已建成":w.officer(f.builderId).name+(f.upgradeTo>0?"合并中":"建设中")+"，剩"+f.remaining+"旬")+"\n坐标 "+f.hex.q+", "+f.hex.r).setNegativeButton("返回",null);
         if(c.owner==w.player&&!w.gameOver()){
             if(f.remaining>0)dialog.setPositiveButton("取消建设",(d,n)->confirm("取消建设","不会退还建设费用，本旬不能重复使用武将。","确定取消",()->apply.accept(w.domestic.cancelBuild(f.id))));
             else dialog.setPositiveButton("拆除",(d,n)->officer(c,o->confirm("拆除设施","需要一名闲置武将与行动力10，不退还费用。","确定拆除",()->apply.accept(w.domestic.demolish(f.id,o.id)))));
-            if(f.remaining==0&&f.level<3&&Domestic.mergeable(f.kind))dialog.setNeutralButton("吸收合并",(d,n)->new CampaignUi(activity,w,apply).merge(f));
         }
         dialog.show();
     }

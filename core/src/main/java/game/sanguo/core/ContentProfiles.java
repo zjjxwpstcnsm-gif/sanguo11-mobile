@@ -38,10 +38,13 @@ public final class ContentProfiles {
         }
     }
     static void initialize(World w,ContentCatalog catalog)throws IOException {
+        initialize(w,catalog,true);
+    }
+    static void initialize(World w,ContentCatalog catalog,boolean dated)throws IOException {
         Set<Integer> ids=new TreeSet<>();
         for(World.Officer o:w.officers){
             if(w.life.life(o.id)!=null||w.contests.profiles.containsKey(o.id))throw new IOException("显式人物配置不能与来源整表同时启用");
-            biography(w,catalog,o.id,o.cityId,true);ids.add(o.id);
+            biography(w,catalog,o.id,o.cityId,dated);ids.add(o.id);
         }
         relations(w,catalog,ids);
     }
