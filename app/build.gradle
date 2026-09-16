@@ -2,6 +2,7 @@ plugins { id 'com.android.application' }
 android {
     namespace 'game.sanguo.mobile'
     compileSdk 35
+    sourceSets.androidTest.java.srcDir rootProject.file("core/src/testFixtures/java")
     defaultConfig {
         applicationId 'game.sanguo.mobile.dev'
         minSdk 26

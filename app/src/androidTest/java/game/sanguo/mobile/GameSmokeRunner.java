@@ -13,13 +13,15 @@ import game.sanguo.core.*;
 /** Runs against an installed APK using platform UI automation, without a test framework dependency. */
 public final class GameSmokeRunner extends Instrumentation {
     private Activity current;
+    private String displacement="";
     private String recovery="";
     private boolean upgradeOnly,upgrade25,upgrade26,upgrade27,experience;
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);current=a;}
-    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);recovery=arguments==null?"":arguments.getString("recovery","");upgrade27=arguments!=null&&"27".equals(arguments.getString("upgrade"));experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
+    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);displacement=arguments==null?"":arguments.getString("displacement","");recovery=arguments==null?"":arguments.getString("recovery","");upgrade27=arguments!=null&&"27".equals(arguments.getString("upgrade"));experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
+            if(!displacement.isEmpty()){displacementFlow();result.putString("stream","DISPLACEMENT PASS: official map selection, cancellation and execution recorded.\n");finish(Activity.RESULT_OK,result);return;}
             if(!recovery.isEmpty()){recoveryFlow();result.putString("stream","RECOVERY "+recovery+" PASS: UI draft and authoritative save preserved.\n");finish(Activity.RESULT_OK,result);return;}
             if(experience){experienceFlow();result.putString("stream","EXPERIENCE PASS: installed APK observations and official entry flows completed.\n");finish(Activity.RESULT_OK,result);return;}
             if(upgradeOnly||upgrade25||upgrade26||upgrade27){upgradeFlow();result.putString("stream",upgrade27?"UPGRADE27 PASS: exact delivered v0.27 APK replaced in place, v21 fields retained, next turn and recreation execute only once.\n":upgrade26?"UPGRADE26 PASS: actual verified v0.26 APK replaced in place; real v20 three-officer cargo, spent ration, return personnel, district and AI intent retained and v21 continued once.\n":upgrade25?"UPGRADE25 PASS: actual v0.25 APK replaced in place; v19 settings, intent and convoy retained, v21 replay continued once.\n":"UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v21 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
@@ -94,6 +96,41 @@ public final class GameSmokeRunner extends Instrumentation {
         }
     }
 
+
+    // BEGIN DISPLACEMENT OBSERVER: compiles against the delivered v0.28 APIs.
+    private void displacementFlow()throws Exception {
+        World initial=DisplacementFixture.create("plain");
+        try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(initial));}
+        startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitForIdleSync();chooseOrientation("竖屏");
+        try(PrintWriter out=new PrintWriter(new File(getTargetContext().getExternalFilesDir(null),"displacement.txt"))){
+            out.println("version="+getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).versionName);
+            for(String scene:DisplacementFixture.CASES){
+                World w=DisplacementFixture.create(scene);World.Unit a=w.unit(1),b=w.unit(2);installFixture(w,a.hex);
+                byte[] before=SaveCodec.encode(w);try(FileOutputStream fixture=new FileOutputStream(new File(getTargetContext().getExternalFilesDir(null),scene+".sg11"))){fixture.write(before);}
+                out.println(scene+" actor="+a.hex+" target="+b.hex+" weapon="+a.weapon+" aptitude="+w.army.aptitude(a)+" energy="+a.energy+" acted="+a.acted+" retreat="+new Hex(a.hex.q-1,a.hex.r)+" rear1="+new Hex(b.hex.q+1,b.hex.r)+" rear2="+new Hex(b.hex.q+2,b.hex.r));out.flush();
+                click("战法",true);String label=scene.equals("naval-shore")?Army.Tactic.RAM.label:DisplacementFixture.tactic(scene).label;
+                click(label+" · 气力",false);waitForIdleSync();
+                boolean selectable=find(getUiAutomation().getRootInActiveWindow(),"取消选取",true)!=null;
+                out.println("  menu selectable="+selectable+" reason="+displacementText(getUiAutomation().getRootInActiveWindow()));out.flush();
+                screenshot("v029-"+scene+"-target");
+                if(!selectable){click("返回",true);require(Arrays.equals(before,SaveCodec.encode(w)),"rejected selection is pure: "+scene);continue;}
+                tapHex(b.hex);waitText("执行",true);screenshot("v029-"+scene+"-preview");
+                out.println("  preview="+displacementText(getUiAutomation().getRootInActiveWindow()));out.flush();
+                require(Arrays.equals(before,SaveCodec.encode(w)),"preview is pure: "+scene);click("取消",true);
+                require(Arrays.equals(before,SaveCodec.encode(w)),"cancel is pure: "+scene);
+                tapHex(b.hex);click("执行",true);waitForIdleSync();
+                out.println("  result actor="+(w.unit(1)==null?"destroyed":w.unit(1).hex)+" target="+(w.unit(2)==null?"destroyed":w.unit(2).hex+" troops="+w.unit(2).troops)+" energy="+a.energy+" log="+String.join(" | ",w.log));out.flush();
+                screenshot("v029-"+scene+"-result");
+                // The old runtime's illegal difficult-terrain movement is recorded, not hidden by validation.
+                try{SaveCodec.validate(w);out.println("  state valid");}catch(Exception invalid){out.println("  INVALID: "+invalid.getMessage());}out.flush();
+            }
+        }
+    }
+    private String displacementText(AccessibilityNodeInfo node){
+        if(node==null)return "";StringBuilder out=new StringBuilder();if(node.getText()!=null)out.append(node.getText()).append(" | ");
+        for(int i=0;i<node.getChildCount();i++)out.append(displacementText(node.getChild(i)));return out.toString();
+    }
+    // END DISPLACEMENT OBSERVER
 
     private void recoveryFlow()throws Exception {
         if(recovery.equals("prepare")){
