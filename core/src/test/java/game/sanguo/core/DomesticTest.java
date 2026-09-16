@@ -76,11 +76,11 @@ public final class DomesticTest {
             reject(w,()->w.domestic.transport(10,20,0,bad,1,0,new int[4]));reject(w,()->w.domestic.transport(10,20,0,0,bad,0,new int[4]));
             reject(w,()->w.domestic.transport(10,20,0,0,1,bad,new int[4]));reject(w,()->w.domestic.transport(10,20,0,0,1,0,new int[]{bad,0,0,0}));
         }
-        reject(w,()->w.domestic.transport(10,20,0,100000,1,0,new int[4]));reject(w,()->w.domestic.transport(10,20,0,0,50000,0,new int[4]));
+        reject(w,()->w.domestic.transport(10,20,0,100001,1,0,new int[4]));reject(w,()->w.domestic.transport(10,20,0,0,50000,0,new int[4]));
         reject(w,()->w.domestic.transport(10,20,0,0,1,15000,new int[4]));reject(w,()->w.domestic.transport(10,20,0,0,1,0,new int[]{15000,0,0,0}));
         int[] cargo={500,600,700,800};ok(w.domestic.transport(10,20,0,1000,5000,1000,cargo));cargo[0]=999;
         Domestic.Mission m=w.domestic.missions.get(0);check(m.equipment[0]==500,"cargo defensively copied");
-        check(w.city(10).gold==98900&&w.city(10).food==35000&&w.city(10).troops==11000,"dispatch deducts cargo and fee exactly");
+        check(w.city(10).gold==99000&&w.city(10).food==35000&&w.city(10).troops==11000,"dispatch deducts only cargo; manual p38 no gold fee");
         check(w.officer(0).cityId==-1&&w.domestic.busy(0),"officer in transit not available");reject(w,()->w.domestic.transfer(10,20,0));
         check(w.domestic.eta(m)==2,"seven plain steps need two ticks");next(w);check(m.hex.distance(w.city(10).hex)==4&&w.city(20).troops==12000,"no teleport/early delivery");
         World clone=copy(w);next(w);next(clone);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(clone)),"transit save continuation deterministic");
@@ -95,7 +95,7 @@ public final class DomesticTest {
     }
     private static void capacity()throws Exception{
         for(int resource=0;resource<7;resource++){
-            World w=fixture();World.City d=w.city(20);int gold=resource==0?1:0,food=resource==1?1:0,troops=resource==2?1:0;int[] eq=new int[4];if(resource>=3)eq[resource-3]=1;
+            World w=fixture();World.City d=w.city(20);int gold=resource==0?1:0,food=resource==1?1:resource==2?20:0,troops=resource==2?1:0;int[] eq=new int[4];if(resource>=3)eq[resource-3]=1;
             if(resource==0)d.gold=1000000;if(resource==1){d.food=1000000;d.troops=0;}if(resource==2)d.troops=100000;if(resource>=3)d.equipment[resource-3]=100000;
             ok(w.domestic.transport(10,20,0,gold,food,troops,eq));next(w);next(w);
             check(w.domestic.missions.size()==1&&w.domestic.missions.get(0).hex.equals(d.hex),"capacity wait retains cargo "+resource);
@@ -135,7 +135,7 @@ public final class DomesticTest {
         for(String file:new String[]{"/m0-v1.sg11.b64","/m1-v2.sg11.b64"}){
             byte[] original;try(InputStream in=DomesticTest.class.getResourceAsStream(file)){if(in==null)throw new IOException(file);original=Base64.getMimeDecoder().decode(in.readAllBytes());}
             check(original[7]==(file.contains("v1")?1:2),"fixture genuinely old version");World w=SaveCodec.decode(original);check(w.domestic.facilities.isEmpty()&&w.domestic.missions.isEmpty(),"legacy initializes empty strategic layer");
-            World clone=copy(w);check(SaveCodec.encode(w)[7]==19,"new writes use save v19");for(int i=0;i<5&&!w.gameOver();i++){next(w);next(clone);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(clone)),"legacy deterministic continuation");}
+            World clone=copy(w);check(SaveCodec.encode(w)[7]==20,"new writes use save v19");for(int i=0;i<5&&!w.gameOver();i++){next(w);next(clone);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(clone)),"legacy deterministic continuation");}
         }
     }
     private static void campaigns()throws Exception{

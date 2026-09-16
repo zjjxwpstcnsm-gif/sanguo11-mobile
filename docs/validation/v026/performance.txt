@@ -1,0 +1,52 @@
+Pre-optimization JFR, local Java 17, synthetic 200x200 / 40-city / 40-unit nextTurn.
+168 execution samples (includes test setup; sampled stacks may be truncated).
+Not an ARM-device benchmark.
+
+Top sampled frames:
+java/util/Collections.unmodifiableList: 53
+game/sanguo/core/World.officer: 31
+game/sanguo/core/Army.crew: 21
+java/util/HashMap.getNode: 14
+java/util/Arrays.copyOf: 7
+game/sanguo/core/CampaignAi.routes: 6
+java/util/Comparator.lambda$comparingInt$7b0bb60$1: 5
+java/util/HashMap.putVal: 5
+game/sanguo/core/SaveCodec.validate: 3
+game/sanguo/core/AdvancedBattle.zone: 3
+game.sanguo.core.CampaignAi$$Lambda$109+0x00007faeec01e058/1840976765.applyAsInt: 3
+java/util/HashMap.resize: 3
+game/sanguo/core/SaveCodec.encode: 2
+java/util/Comparator.lambda$thenComparing$36697e65$1: 2
+java/lang/Integer.valueOf: 2
+
+Inclusive game frames:
+game/sanguo/core/CampaignAi.routes: 112
+game/sanguo/core/AdvancedBattle.zone: 109
+game/sanguo/core/CampaignAi.objective: 91
+game/sanguo/core/AdvancedBattle.ignoresZone: 53
+game/sanguo/core/War.structures: 53
+game/sanguo/core/Skills.has: 52
+game/sanguo/core/Army.crew: 52
+game/sanguo/core/CampaignAi.stepUnit: 36
+game/sanguo/core/World.officer: 31
+game/sanguo/core/CampaignAi.runUnit: 15
+game/sanguo/core/CampaignAi.runUnits: 6
+game/sanguo/core/SaveCodec.encode: 5
+game/sanguo/core/CampaignAi.follow: 5
+game/sanguo/core/SaveCodec.validate: 3
+game/sanguo/core/UnitOrders.previewMove: 3
+game/sanguo/core/UnitOrders.executeRoute: 2
+game/sanguo/core/UnitOrders.execute: 2
+game/sanguo/core/StrategicManagementTest.largeTurn: 1
+game/sanguo/core/Army.moveCost: 1
+game/sanguo/core/Hex.equals: 1
+
+Finding: CampaignAi.routes repeatedly invokes AdvancedBattle.zone per expanded neighbor, re-reading the same crew skills, hostile units and structure wrappers.
+Fix: zoneForSearch snapshots hostile neighbors and actor immunity once per synchronous search. No snapshot survives a command.
+Validation: whole-map live-vs-snapshot comparison for spear/ram and four skills including land/water; fresh search after enemy movement.
+Same local runner full-regression observations (ms, single runs, not a statistical FPS claim):
+v0.25 baseline: 42-city/670-officer=479; 200x200/40-city/40-unit=2138.
+v0.26 before optimization: 405 / 2165.
+v0.26 after optimization: 230 / 652.
+Remaining cost: weighted flood HashMap/PriorityQueue work and movement-cost checks; no persistent path cache introduced.
+Final full-journey coordination build, same local regression: 367 / 817 ms. Added soft planning through temporary friendly occupancy; actual moves stop before the occupied tile.

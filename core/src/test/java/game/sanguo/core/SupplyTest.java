@@ -49,9 +49,9 @@ public final class SupplyTest {
         Domestic.Mission m=w.domestic.missions.get(0);check(m.sea&&w.domestic.eta(m)>0,"water transport has real route and ETA");
         World clone=copy(w);w.domestic.tick();clone.domestic.tick();check(Arrays.equals(bytes(w),bytes(clone)),"water route advances identically after save");
         check(w.army.water(m.hex),"cargo occupies actual water tile");copy(w);
-        for(int i=0;i<6&&!w.domestic.missions.isEmpty();i++)w.domestic.tick();
+        for(int i=0;i<6&&!w.domestic.missions.isEmpty();i++){w.turn++;w.domestic.tick();}
         check(w.domestic.missions.isEmpty()&&w.officer(1).cityId==1,"water convoy arrives and unlocks courier");
-        check(w.city(0).gold+w.city(1).gold==total-100,"water cargo gold conserved less dispatch fee");
+        check(w.city(0).gold+w.city(1).gold==total,"water cargo gold conserved without dispatch fee (manual p38)");
         byte[] arrived=bytes(w);w.domestic.tick();check(Arrays.equals(arrived,bytes(w)),"no repeated delivery after arrival");
         World blocked=world();ok(blocked.domestic.transport(0,1,1,0,5000,1000,new int[4]));Domestic.Mission convoy=blocked.domestic.missions.get(0);
         Hex next=blocked.domestic.route(convoy.hex,blocked.city(1).hex,0).get(0);unit(blocked,7,1,next,1000);

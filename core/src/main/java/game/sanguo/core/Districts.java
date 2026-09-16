@@ -56,6 +56,21 @@ public final class Districts {
         d.reserveTroops=troops;d.reserveGold=gold;d.reserveFood=food;d.transfer=transfer;d.supplyEnabled=supply;w.actionPoints[w.active]-=20;
         return w.success(d.name+"经营设置已保存；已出发任务继续运抵，不重复扣款");
     }
+    public DistrictManagement.SupplyPlan supportPlan(int source,int target){
+        World.City c=w.city(source),t=w.city(target);District d=city(source);
+        if(c==null||t==null||d==null||c.owner!=w.player||t.owner!=w.player||source==target)return null;
+        World.Officer courier=w.idle(c).stream().filter(o->o.role!=Strategy.Role.RULER).min(Comparator.comparingInt(o->o.politics)).orElse(null);
+        DistrictManagement.SupplyPlan plan=new DistrictManagement(w).plan(d,c,t,courier);
+        if(d.points<10)return new DistrictManagement.SupplyPlan(source,target,courier==null?-1:courier.id,0,0,0,new int[World.Weapon.values().length],false,"出发军团行动预算不足10");
+        return plan;
+    }
+    public World.Result requestSupport(int source,int target){
+        if(w.commandsBlocked()||w.gameOver()||w.active!=w.player||executing!=-1)return w.fail("当前不能申请军团支援");
+        DistrictManagement.SupplyPlan p=supportPlan(source,target);if(p==null)return w.fail("请选择已授权的己方军团来源和目的地");if(!p.valid())return w.fail(p.reason);
+        District d=city(source);int points=w.actionPoints[w.active];executing=d.id;w.actionPoints[w.active]=d.points;
+        try{World.Result result=new DistrictManagement(w).send(p);if(result.ok){d.report=w.city(source).name+"接受支援申请→"+w.city(target).name+"；实际派送 金"+p.gold+" / 粮"+p.food+" / 兵"+p.troops;d.reportTurn=w.turn;}return result;}
+        finally{d.points=w.actionPoints[w.active];w.actionPoints[w.active]=points;executing=-1;}
+    }
     private String manageError(){
         if(w.commandsBlocked()||w.gameOver()||w.active!=w.player)return "当前无法编制军团";
         return w.actionPoints[w.active]<20?"编制需要第一军团20行动力":null;
@@ -94,7 +109,7 @@ public final class Districts {
     public World.Result dissolve(int id){
         String error=manageError();if(error!=null)return w.fail(error);District d=get(id);
         if(d==null||d.owner!=w.active)return w.fail("请选择己方委任军团");
-        w.actionPoints[w.active]-=20;groups.remove(id);units.values().removeIf(value->value==id);
+        w.actionPoints[w.active]-=20;groups.remove(id);for(Map.Entry<Integer,Integer> e:units.entrySet())if(e.getValue()==id)w.aiOrders.orders.remove(e.getKey());units.values().removeIf(value->value==id);
         return w.success(d.name+"已撤销，据点与部队回归第一军团，未用军团行动力作废");
     }
     void deployed(int city,World.Unit u){District d=city(city);if(d!=null)units.put(u.id,d.id);}
@@ -160,7 +175,7 @@ public final class Districts {
     private void order(District d,World.City c,int pass){
         List<World.Officer> idle=w.idle(c);if(idle.isEmpty())return;
         World.Officer admin=idle.stream().max(Comparator.comparingInt(o->o.politics)).get();
-        if(new DistrictManagement(w).foodTurns(c)<6){
+        if(new DistrictManagement(w).famineTurn(c)<=3){
             int amount=Math.min(20000-w.campaign.traded(c.id),Math.min(w.campaign.foodCap(c)-c.food,Math.max(0,c.gold-1000)/w.campaign.foodPrice(c.id,true)*1000))/1000*1000;
             if(amount>=1000&&w.campaign.trade(c.id,admin.id,true,amount).ok)return;
         }
@@ -181,7 +196,7 @@ public final class Districts {
         if(d.policy==Policy.ECONOMY||d.policy==Policy.DELEGATE){
             int expectedFood=w.domestic.monthlyFood(c.id);
             for(Domestic.Facility f:w.domestic.facilities)if(f.cityId==c.id&&f.kind==Domestic.Kind.FARM&&f.remaining>0)expectedFood+=w.strategy.cityIncome(c.id,2500*(f.level==3?150:f.level==2?120:100)/100);
-            Domestic.Kind kind=c.food<40000||expectedFood<w.cityFoodUse(c)*12?Domestic.Kind.FARM:Domestic.Kind.MARKET;
+            Domestic.Kind kind=expectedFood<w.cityFoodUse(c)*9+(d.supply>=0&&d.supply!=c.id?20000:0)||new DistrictManagement(w).famineTurn(c)<12?Domestic.Kind.FARM:Domestic.Kind.MARKET;
             List<Hex> sites=w.domestic.buildSites(c.id);if(c.gold>=2500&&!sites.isEmpty()&&w.domestic.build(c.id,admin.id,kind,sites.get(0)).ok)return;
         }
         if(d.produce&&c.gold>=d.reserveGold+1500){

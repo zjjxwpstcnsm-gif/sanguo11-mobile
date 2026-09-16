@@ -1,0 +1,8 @@
+Same expanded campaign regression, original CampaignAi from ba482e0. All commands and starting worlds otherwise identical.
+v026 campaign [initial defense=2000] turn 5 units=7 defender=16000 hp=2500 origins=[11, 12]
+v026 campaign [initial defense=2000] turn 10 units=8 defender=0 hp=1600 origins=[11, 12]
+Exception in thread "main" java.lang.AssertionError: two real source armies actually meet with enough combined force
+	at game.sanguo.core.LogisticsCampaignTest.check(LogisticsCampaignTest.java:10)
+	at game.sanguo.core.LogisticsCampaignTest.campaign(LogisticsCampaignTest.java:159)
+	at game.sanguo.core.LogisticsCampaignTest.campaign(LogisticsCampaignTest.java:141)
+	at game.sanguo.core.LogisticsCampaignTest.main(LogisticsCampaignTest.java:17)

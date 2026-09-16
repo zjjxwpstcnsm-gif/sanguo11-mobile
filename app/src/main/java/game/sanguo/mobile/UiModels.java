@@ -17,7 +17,7 @@ final class UiModels {
     static String location(World w, World.Officer o) {
         if(!w.life.present(o.id))return w.life.state(o.id).label;
         if(w.government.captive(o.id))return w.government.locationLabel(w.government.prisoner(o.id));
-        for (Domestic.Mission m : w.domestic.missions) if (m.officerId == o.id)
+        for (Domestic.Mission m : w.domestic.missions) if (m.contains(o.id))
             return w.city(m.sourceCity).name + " → " + w.city(m.targetCity).name;
         if (o.unitId >= 0) return "战场";
         World.City c = w.city(o.cityId);
@@ -104,9 +104,8 @@ final class UiModels {
                 city+" → "+city+"开发地\n施工中 · 剩余 "+f.remaining+" 旬", f.hex, f, null));
         }
         for (Domestic.Mission m : w.domestic.missions) if (m.owner == w.player && (type == 0 || type == (m.transport ? 3 : 2))) {
-            int eta = w.domestic.eta(m);
-            String status = eta < 0 ? "道路受阻 · 剩余旬数待定" : eta == 0 ? "等待入城 / 库存空间 · 剩余 0 旬（等待时间未定）" : "在途 · 预计剩余 "+eta+" 旬";
-            result.add(new Task(10000000L+m.id, (m.transport?"运输":"调动")+" · "+w.officer(m.officerId).name,
+            String status=w.domestic.status(m);
+            result.add(new Task(10000000L+m.id, (m.returning?"返程":m.transport?"运输":"调动")+" · "+w.officer(m.officerId).name,
                 w.city(m.sourceCity).name+" → "+w.city(m.targetCity).name+"\n"+status+(m.transport?"\n"+cargo(m):""), m.hex, null, m));
         }
         if(type==0||type==5)for(Army.Production p:w.army.productions())if(p.owner==w.player){
@@ -153,8 +152,10 @@ final class UiModels {
         for (Domestic.Mission m : before.domestic.missions) if (m.owner == before.player) {
             Domestic.Mission next = after.domestic.mission(m.id); World.Officer o = after.officer(m.officerId);progress=true;
             s.append(before.officer(m.officerId).name).append(" · ");
-            if (next != null) s.append(after.city(next.targetCity).name).append(" · ").append(after.domestic.status(next));
-            else if (o != null && o.cityId >= 0) {s.append("抵达").append(after.city(o.cityId).name); if (m.transport) s.append("\n  入库：").append(cargo(m));}
+            String receipt=after.domestic.receipt(m.id);
+            if(receipt!=null){s.append(receipt);if(next!=null)s.append("\n  ").append(after.domestic.status(next));}
+            else if (next != null) s.append(after.city(next.targetCity).name).append(" · ").append(after.domestic.status(next));
+            else if (o != null && o.cityId >= 0) {s.append("任务结束 · 武将驻于").append(after.city(o.cityId).name); if (m.transport) s.append("\n  实际入库、途中耗粮或损失见事件记录");}
             else s.append("任务终止");
             s.append('\n');
         }
