@@ -32,13 +32,17 @@ public final class DistrictManagement {
         }
     }
     boolean supply(Districts.District d,World.City source,World.Officer officer){
-        if(!d.supplyEnabled||ai.incoming(source)>0||residents(source)<=2)return false;
+        if(!d.supplyEnabled||residents(source)<=2)return false;
+        int danger=ai.incoming(source);
+        // A nearby small force must not cancel an explicit supply order forever.
+        // Keep enough defenders; unsolicited exports still wait until pressure ends.
+        if(danger>0&&d.supply<0)return false;
         List<World.City> targets=new ArrayList<>();for(World.City c:w.cities)if(c.owner==source.owner&&c.id!=source.id&&(d.supply>=0?c.id==d.supply:d.cities.contains(c.id)&&(ai.incoming(c)>0||foodTurns(c)<12)))targets.add(c);
         targets.sort(Comparator.comparingInt((World.City c)->-ai.incoming(c)).thenComparingInt(this::foodTurns).thenComparingInt(c->c.id));
         for(World.City target:targets){
             int gold=target.gold,food=target.food,troops=target.troops;int[] equipment=target.equipment.clone();
             for(Domestic.Mission m:w.domestic.missions)if(m.owner==source.owner&&m.targetCity==target.id&&m.transport){gold+=m.gold;food+=m.food;troops+=m.troops;for(int i=0;i<equipment.length;i++)equipment[i]+=m.equipment[i];}
-            int keep=Math.max(d.reserveTroops,ai.reserve(source));
+            int keep=Math.max(d.reserveTroops,Math.max(ai.reserve(source),danger+4000));
             int sendTroops=Math.min(8000,Math.min(Math.max(0,source.troops-keep),Math.max(0,Math.min(w.campaign.troopCap(target),d.supply>=0?w.campaign.troopCap(target):Math.max(16000,ai.incoming(target)))-troops)));
             int sendGold=Math.min(3000,Math.min(Math.max(0,source.gold-d.reserveGold-100),Math.max(0,Math.min(w.campaign.goldCap(target),d.supply>=0?w.campaign.goldCap(target):8000)-gold)));
             int sendFood=Math.min(20000,Math.min(Math.max(0,source.food-d.reserveFood),Math.max(0,Math.min(w.campaign.foodCap(target),d.supply>=0?w.campaign.foodCap(target):60000)-food)));

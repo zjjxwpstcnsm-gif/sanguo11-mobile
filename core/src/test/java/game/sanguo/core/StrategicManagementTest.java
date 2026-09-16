@@ -54,6 +54,11 @@ public final class StrategicManagementTest {
         check(w.domestic.missions.isEmpty()&&front.food>0&&front.troops>0&&front.equipment[0]>0,"troops food gold equipment really delivered");check(Arrays.equals(original,stock(w)),"arrival neither duplicates nor swallows resources");
         World support=fixture();support.city(12).troops=2000;support.city(12).food=2000;unit(support,21,World.Weapon.SPEAR,new Hex(20,15));
         check(new CampaignAi(support).support(11),"nearby rear actually supports threatened city");check(support.domestic.missions.get(0).targetCity==12&&support.domestic.missions.get(0).troops>1000,"support addresses actual troop deficit");
+        World specified=ScenarioCatalog.load("world-drill",0,25016);
+        check(specified.districts.configure(-1,"指定运输",new int[]{11},Districts.Policy.ECONOMY,-1,10,true,true).ok,"configure installed regression's explicit destination");
+        specified.nextTurn();specified.nextTurn();
+        check(specified.domestic.missions.stream().anyMatch(m->m.transport&&m.sourceCity==11&&m.targetCity==10),"small nearby enemy does not indefinitely suppress explicit convoy");
+        check(specified.city(11).troops>=Math.max(10000,new CampaignAi(specified).incoming(specified.city(11))+4000)&&new DistrictManagement(specified).residents(specified.city(11))>=2,"explicit convoy retains threatened source garrison and administrators");
     }
     private static void permissions()throws Exception{
         World w=fixture();Districts.District d=group(w,false,false);check(w.districts.settings(d.id,18000,8000,80000,false,false).ok,"disable permissions");int[] equipment=w.city(11).equipment.clone();w.turn=1;reset(w);w.districts.run();
