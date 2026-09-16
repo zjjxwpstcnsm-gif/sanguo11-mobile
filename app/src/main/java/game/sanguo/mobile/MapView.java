@@ -42,6 +42,7 @@ public final class MapView extends View {
     private Bitmap miniTerrain;
     private Bitmap miniTerritory;
     private Territory territory;
+    private final Path factionBorders=new Path(),siteBorders=new Path();
     private int territoryMode;
     private String territoryOwners="";
     Territory territory(){return territory;}
@@ -127,7 +128,12 @@ public final class MapView extends View {
         if(!territoryOwners.equals(owners.toString())){
             territoryOwners=owners.toString();if(miniTerritory!=null)miniTerritory.recycle();
             miniTerritory=Bitmap.createBitmap(world.width,world.height,Bitmap.Config.ARGB_8888);
-            for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)if(territory.siteAt(q,r)>=0)miniTerritory.setPixel(q,r,alpha(factionColor(territory.ownerAt(q,r)),155));
+            factionBorders.reset();siteBorders.reset();
+            for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)if(territory.siteAt(q,r)>=0){
+                miniTerritory.setPixel(q,r,alpha(factionColor(territory.ownerAt(q,r)),155));
+                addBorders(factionBorders,territory.boundary(q,r,false),x(tiles[q][r]),y(tiles[q][r]));
+                addBorders(siteBorders,territory.boundary(q,r,true),x(tiles[q][r]),y(tiles[q][r]));
+            }
         }
         World.Unit actor=world.unit(moving);reachable=world.orders.marchReachable(actor);attackTargets.clear();
         if(world.orders.error(actor)==null){
@@ -198,11 +204,12 @@ public final class MapView extends View {
         if(territoryMode==0||territory==null||territory.siteAt(q,r)<0)return;
         int color=factionColor(territory.ownerAt(q,r));polygon(cx,cy,RADIUS);
         fill(canvas,alpha(color,territoryMode==2?95+(territory.siteAt(q,r)%3)*18:115));
-        int mask=territory.boundary(q,r,territoryMode==2);
-        paint.setColor(alpha(color,245));paint.setStrokeWidth(Math.max(1,1.3f*density/scale));
+    }
+    private void addBorders(Path borders,int mask,float cx,float cy){
         for(int side=0;side<6;side++)if((mask&(1<<side))!=0){
             double a=Math.toRadians(-side*60-30),b=a+Math.PI/3;
-            canvas.drawLine(cx+(float)Math.cos(a)*RADIUS,cy+(float)Math.sin(a)*RADIUS,cx+(float)Math.cos(b)*RADIUS,cy+(float)Math.sin(b)*RADIUS,paint);
+            borders.moveTo(cx+(float)Math.cos(a)*RADIUS,cy+(float)Math.sin(a)*RADIUS);
+            borders.lineTo(cx+(float)Math.cos(b)*RADIUS,cy+(float)Math.sin(b)*RADIUS);
         }
     }
     @Override protected void onDraw(Canvas canvas){
@@ -220,6 +227,11 @@ public final class MapView extends View {
             polygon(cx,cy,RADIUS-.3f);stroke(canvas,Color.argb(40,13,37,35),.7f);
             drawTerritory(canvas,q,r,cx,cy,scale);
             if(pickTargets==null&&reachable.containsKey(h)&&reachable.get(h)>0){polygon(cx,cy,RADIUS-1);fill(canvas,Color.argb(110,62,218,209));stroke(canvas,Color.argb(225,117,244,234),Math.max(1,1.2f*density/scale));}
+        }
+        if(territoryMode>0){
+            // Draw after all fills: neighboring tiles must not paint over the shared border.
+            paint.setStyle(Paint.Style.STROKE);paint.setColor(0xbfe3ebcf);paint.setStrokeWidth(Math.max(1,density/scale));
+            canvas.drawPath(territoryMode==2?siteBorders:factionBorders,paint);paint.setStyle(Paint.Style.FILL);
         }
         drawRoute(canvas);
         if(selected!=null){polygon(x(selected),y(selected),RADIUS-2);stroke(canvas,GOLD,Math.max(2,2*density/scale));}

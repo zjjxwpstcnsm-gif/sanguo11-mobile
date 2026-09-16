@@ -305,6 +305,7 @@ public final class MainActivity extends Activity {
         selectionButton.setContentDescription("选中对象指令 · "+selectedName);selectionButton.setEnabled(mapPick==null&&!aiRunning&&!required);
         panelTitle.setText(ui.page.equals("map")?selectedName+" · 指令":ui.page.equals("cities")?"城市":ui.page.equals("officers")?"武将":ui.page.equals("tasks")?"任务":ui.page.equals("menu")?"菜单":"资料");
         if(world.unit(moving)==null)moving=-1;
+        map.setWorld(world,selected,moving);
         if(world.life.pending()&&!ui.page.equals("menu")){panelHost.addView(new LifecycleUi(this,world,this::apply).succession());}
         else if(world.contests.busy()&&!ui.page.equals("menu"))panelHost.addView(new ContestUi(this,world,this::apply).view());
         else if(ui.page.equals("cities"))panelHost.addView(new OverviewUi(this,world,ui).cities());
@@ -313,7 +314,7 @@ public final class MainActivity extends Activity {
         else if(ui.page.equals("factions"))panelHost.addView(new OverviewUi(this,world,ui).factions());
         else if(ui.page.equals("tasks"))panelHost.addView(new OverviewUi(this,world,ui).tasks());
         else {panelHost.addView(panelScroll);if(ui.page.equals("menu"))showMenu();else showSelection();}
-        map.setWorld(world,selected,moving);map.setRoute(pendingMarch!=null?pendingMarch:world.unit(moving)!=null&&world.unit(moving).march!=null?world.marches.current(world.unit(moving)):null);
+        map.setRoute(pendingMarch!=null?pendingMarch:world.unit(moving)!=null&&world.unit(moving).march!=null?world.marches.current(world.unit(moving)):null);
         map.setPickTargets(mapPick==null?null:pickTargets);
         map.setEnabled(!aiRunning&&!world.commandsBlocked());refreshCommandDock();layoutPanels();
     }

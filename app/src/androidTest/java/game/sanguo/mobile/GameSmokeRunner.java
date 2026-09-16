@@ -124,6 +124,10 @@ public final class GameSmokeRunner extends Instrumentation {
         require(battle.attack(1,2).ok,"initial ranged attack fixture");installFixture(battle,bow.hex);endTurn();waitForTurn(1);
         World result=saved();require(result.unit(2)!=null&&!result.unit(2).hex.equals(new Hex(10,10)),"installed enemy responds by moving after being shot");
         screenshot("v024-ai-closes-on-archer");
+        World replacement=new World(20,12,"甲","乙");
+        replacement.cities.add(new World.City(10,"重用编号城",new Hex(3,3),0));replacement.cities.add(new World.City(40,"新邻城",new Hex(16,3),1));
+        installFixture(replacement,replacement.city(10).hex);
+        require(mapView().territory().neighbors(10).contains(40)&&!mapView().territory().neighbors(10).contains(20),"scenario replacement updates territory before city details read it");
         World restore=SaveCodec.decode(original);installFixture(restore,restore.home().hex);
     }
     private void mobileShortcutsFlow()throws Exception {
