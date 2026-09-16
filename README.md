@@ -6,13 +6,13 @@
 
 ## 当前状态
 
-v0.26正式开发及验证进行中，写存档v20，旧档兼容，固定开发包名/签名。[实际完成内容与边界](docs/LOGISTICS_CAMPAIGN_V0_26.md)。
+v0.26已通过完整验收，写存档v20，兼容旧档并沿用固定开发包名/签名。[最新APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35085267945/artifacts/10442343895)对应`b75e249`；[CI35085267945](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35085267945)三屏横竖屏、真实v0.9/v0.25覆盖升级全部通过。新增1095条断言、51,795条UI模型断言、19项内容测试通过，381份源码与435张截图已核对。Lint0错误/21警告；ARM真机未验。[验收与APK摘要](docs/validation/v026/README.md) / [实际实现和剩余差异](docs/LOGISTICS_CAMPAIGN_V0_26.md)。
 
 ## v0.25 历史状态
 
 v0.25 增加保存的战略意图、集结/守备、器械让路、军团调将与物资需求计算、经营设置和报告、全国筛选与批量编制。写存档v19并兼容旧档，仍未100%还原。[实现与规则边界](docs/STRATEGIC_MANAGEMENT_V0_25.md)。
 
-[最新APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35069101123/artifacts/10436410691)对应`f194ee2`；[完整CI](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35069101123)已通过核心/UI/内容、构建/Lint、API29三屏横竖屏操作及v0.9覆盖升级。105条新增经营断言、352份源码与403张截图已核对，固定签名、v19旧档迁移及APK摘要见[验收记录](docs/validation/v025/README.md)。Lint0错误/21警告，ARM真机未验。
+[v0.25历史APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35069101123/artifacts/10436410691)对应`f194ee2`；[完整CI](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35069101123)已通过核心/UI/内容、构建/Lint、API29三屏横竖屏操作及v0.9覆盖升级。105条新增经营断言、352份源码与403张截图已核对，固定签名、v19旧档迁移及APK摘要见[验收记录](docs/validation/v025/README.md)。Lint0错误/21警告，ARM真机未验。
 
 ## v0.24 历史状态
 

@@ -1,0 +1,30 @@
+{
+  "commit": "b75e2495f891801bca9a86c122cb22b094bee2ec",
+  "source_files_matched": 381,
+  "apk": "sanguo11-mobile-v026-b75e249.apk",
+  "apk_bytes": 6233346,
+  "sha256": "47edc0678bbe0117ffe9388a95ed0fdbb8dab98e5896074c399caafd7ab121c0",
+  "package": "package: name='game.sanguo.mobile.dev' versionCode='26' versionName='0.26.0-logistics-campaign-dev' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+  "screens": {
+    "1080x1920": {
+      "count": 147,
+      "new": 10
+    },
+    "1080x2340": {
+      "count": 144,
+      "new": 10
+    },
+    "1080x2400": {
+      "count": 144,
+      "new": 10
+    }
+  },
+  "lint": [
+    {
+      "file": "android-lint-1080x1920/lint-results-debug.html",
+      "summary": "21 warnings"
+    }
+  ],
+  "upgrade": "UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v20 and restored identically.",
+  "upgrade-v025": "UPGRADE25 PASS: actual v0.25 APK replaced in place; v19 settings, intent and convoy retained, v20 replay continued once."
+}
