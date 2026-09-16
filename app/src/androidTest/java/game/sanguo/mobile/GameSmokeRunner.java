@@ -32,6 +32,7 @@ public final class GameSmokeRunner extends Instrumentation {
             }
             screenshot("v021-rotated-confirmation");click("执行",true);
             waitText("区域争雄  ·  孙权军",false);assertWorld(2,0,"regional-sandbox");
+            territoryAiFlow();
             mobileShortcutsFlow();
             unitCommandFlow();
             adaptiveMapFlow();
@@ -77,13 +78,57 @@ public final class GameSmokeRunner extends Instrumentation {
             contestFlow();
             battleFeedbackFlow();
             diplomacyVisualFlow();
-            result.putString("stream","SMOKE PASS: v23 native quantity sliders/exact input/cancel/deploy/recreation, map construction/rotation/Lv3, expanded playable world and terrain legend; v22 fixed unit command dock, blank/self/button/back cancellation, movement range, move-then-tactic, facility attack/destruction/save restoration; v21 original portraits/building assets/shared icons, pure diplomacy previews, allied dispatch/task/recreation and whole-force surrender; v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            result.putString("stream","SMOKE PASS: v24 territory modes/legend/frontline/recreation, quick delegation/cancel/real administration/save, melee response to ranged attack; v23 native quantity sliders/exact input/cancel/deploy/recreation, map construction/rotation/Lv3, expanded playable world and terrain legend; v22 fixed unit command dock, blank/self/button/back cancellation, movement range, move-then-tactic, facility attack/destruction/save restoration; v21 original portraits/building assets/shared icons, pure diplomacy previews, allied dispatch/task/recreation and whole-force surrender; v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
             StringWriter trace=new StringWriter();error.printStackTrace(new PrintWriter(trace));
             result.putString("stream","SMOKE FAIL: "+trace+"\n");finish(Activity.RESULT_CANCELED,result);
         }
+    }
+    private void territoryMode(String mode){click("视图",true);click("领地着色 / 前线",true);click(mode,false);}
+    private void territoryAiFlow()throws Exception {
+        byte[] original=SaveCodec.encode(saved());
+        World nation=ScenarioCatalog.load("heroes-mobile-sandbox",0);installFixture(nation,nation.home().hex);
+        byte[] before=SaveCodec.encode(saved());
+        for(String orientation:new String[]{"竖屏","横屏"}){
+            chooseOrientation(orientation);territoryMode("势力范围 · 同势力合并");click("全图",true);
+            require(mapView().territoryMode()==1,"faction territory switch is active");screenshot("v024-faction-territory-"+orientation);
+            territoryMode("据点辖区 · 城 / 关 / 港边界");
+            require(mapView().territoryMode()==2,"per-site territory switch is active");screenshot("v024-site-territory-"+orientation);
+            runOnMainSync(current::recreate);waitForIdleSync();require(mapView().territoryMode()==2,"territory preference survives recreation");
+            click("视图",true);click("势力领地图例",true);waitText("前线",false);screenshot("v024-territory-legend-"+orientation);click("返回",true);
+        }
+        require(Arrays.equals(before,SaveCodec.encode(saved())),"territory tools never mutate game state");
+        click("视图",true);click("领地着色 / 前线",true);click("前线据点",true);
+        World.City front=nation.cities.stream().filter(c->new Territory(nation).frontline(c.id)).findFirst().get();
+        click(front.name+" · "+nation.faction(front.owner),true);waitText(front.name,true);screenshot("v024-frontline-focus");
+        territoryMode("关闭领地着色");require(mapView().territoryMode()==0,"overlay can be disabled");
+        World w=ScenarioCatalog.load("world-drill",0);int mainAp=w.actionPoints[0];installFixture(w,w.city(11).hex);locateCity("北境城");
+        click("城池托管 / 军团",true);click("快速托管内政（新军团）",true);before=SaveCodec.encode(saved());screenshot("v024-quick-delegate-preview");click("取消",true);
+        require(Arrays.equals(before,SaveCodec.encode(saved())),"cancel quick delegation leaves resources unchanged");
+        click("城池托管 / 军团",true);click("快速托管内政（新军团）",true);click("执行",true);
+        require(saved().districts.city(11)!=null&&saved().actionPoints[0]==mainAp-20,"quick city action creates a real district and pays AP");
+        endTurn();waitForTurn(1);endTurn();waitForTurn(2);
+        require(saved().domestic.count(11)>0,"quick-delegated city is really developed by the AI");
+        locateCity("北境城");click("城池托管 / 军团",true);waitText("军团行动力：",false);screenshot("v024-district-status");click("返回",true);
+        runOnMainSync(current::recreate);waitForIdleSync();require(saved().districts.city(11)!=null,"delegated city survives recreation");
+        // Real installed turn: opponent is shot at two tiles, then must close and act.
+        World battle=new World(30,20,"玩家","电脑");
+        battle.cities.add(new World.City(10,"我城",new Hex(2,3),0));battle.cities.add(new World.City(20,"敌城",new Hex(26,3),1));
+        for(int id:new int[]{0,1,20,21})battle.officers.add(new World.Officer(id,"将"+id,id<20?0:1,id<20?10:20,80,80,80,80,80));
+        battle.officer(0).role=Strategy.Role.RULER;battle.officer(20).role=Strategy.Role.RULER;
+        battle.officer(0).loyalty=100;battle.officer(20).loyalty=100;
+        World.Unit bow=new World.Unit(1,0,1,World.Weapon.CROSSBOW,new Hex(12,10),6000,20000),enemy=new World.Unit(2,1,21,World.Weapon.SPEAR,new Hex(10,10),6000,20000);
+        for(World.Unit u:new World.Unit[]{bow,enemy}){battle.officer(u.officerId).cityId=-1;battle.officer(u.officerId).unitId=u.id;battle.units.add(u);}battle.nextUnitId=3;
+        require(battle.attack(1,2).ok,"initial ranged attack fixture");installFixture(battle,bow.hex);endTurn();waitForTurn(1);
+        World result=saved();require(result.unit(2)!=null&&!result.unit(2).hex.equals(new Hex(10,10)),"installed enemy responds by moving after being shot");
+        screenshot("v024-ai-closes-on-archer");
+        World replacement=new World(20,12,"甲","乙");
+        replacement.cities.add(new World.City(10,"重用编号城",new Hex(3,3),0));replacement.cities.add(new World.City(40,"新邻城",new Hex(16,3),1));
+        installFixture(replacement,replacement.city(10).hex);
+        require(mapView().territory().neighbors(10).contains(40)&&!mapView().territory().neighbors(10).contains(20),"scenario replacement updates territory before city details read it");
+        World restore=SaveCodec.decode(original);installFixture(restore,restore.home().hex);
     }
     private void mobileShortcutsFlow()throws Exception {
         byte[] original=SaveCodec.encode(saved());

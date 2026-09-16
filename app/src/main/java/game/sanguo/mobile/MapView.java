@@ -40,6 +40,14 @@ public final class MapView extends View {
     private final ArrayList<Object> visibleObjects=new ArrayList<>();
     private final RectF miniRect=new RectF();
     private Bitmap miniTerrain;
+    private Bitmap miniTerritory;
+    private Territory territory;
+    private final Path factionBorders=new Path(),siteBorders=new Path();
+    private int territoryMode;
+    private String territoryOwners="";
+    Territory territory(){return territory;}
+    int territoryMode(){return territoryMode;}
+    void setTerritoryMode(int mode){territoryMode=Math.max(0,Math.min(2,mode));invalidate();}
     private boolean showMini,miniGesture;
     private int lastTilesVisited,lastObjectsVisited;
     private long lastDrawNanos;
@@ -111,9 +119,21 @@ public final class MapView extends View {
         for(War.Structure b:world.war.structures())index(b,b.hex);
         for(WorldEvents.Camp c:world.events.camps())index(c,c.hex);
         if(newTerrain){
+            territory=new Territory(world);territoryOwners="";
             if(miniTerrain!=null)miniTerrain.recycle();
             miniTerrain=Bitmap.createBitmap(world.width,world.height,Bitmap.Config.ARGB_8888);
             for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)miniTerrain.setPixel(q,r,TerrainTiles.color(world.terrain[q][r]));
+        }
+        StringBuilder owners=new StringBuilder();for(World.City city:world.cities)owners.append(city.id).append(':').append(city.owner).append(';');
+        if(!territoryOwners.equals(owners.toString())){
+            territoryOwners=owners.toString();if(miniTerritory!=null)miniTerritory.recycle();
+            miniTerritory=Bitmap.createBitmap(world.width,world.height,Bitmap.Config.ARGB_8888);
+            factionBorders.reset();siteBorders.reset();
+            for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)if(territory.siteAt(q,r)>=0){
+                miniTerritory.setPixel(q,r,alpha(factionColor(territory.ownerAt(q,r)),155));
+                addBorders(factionBorders,territory.boundary(q,r,false),x(tiles[q][r]),y(tiles[q][r]));
+                addBorders(siteBorders,territory.boundary(q,r,true),x(tiles[q][r]),y(tiles[q][r]));
+            }
         }
         World.Unit actor=world.unit(moving);reachable=world.orders.marchReachable(actor);attackTargets.clear();
         if(world.orders.error(actor)==null){
@@ -176,8 +196,22 @@ public final class MapView extends View {
     private void fill(Canvas c,int color){paint.setStyle(Paint.Style.FILL);paint.setColor(color);c.drawPath(path,paint);}
     private void stroke(Canvas c,int color,float width){paint.setStyle(Paint.Style.STROKE);paint.setColor(color);paint.setStrokeWidth(width);c.drawPath(path,paint);paint.setStyle(Paint.Style.FILL);}
     private void label(Canvas c,String value,float x,float y,float size,int color){paint.setColor(color);paint.setStyle(Paint.Style.FILL);paint.setTextSize(size);paint.setTextAlign(Paint.Align.CENTER);paint.setTypeface(font);c.drawText(value,x,y,paint);}
-    private int factionColor(int owner){if(owner<0)return Color.rgb(153,146,128);
-        int[] palette={Color.rgb(98,175,143),Color.rgb(102,156,197),Color.rgb(216,135,105),Color.rgb(185,143,205),Color.rgb(205,183,94),Color.rgb(91,184,184)};return palette[owner%palette.length];}
+    static int factionColor(int owner){if(owner<0)return Color.rgb(153,146,128);
+        int[] palette={Color.rgb(98,175,143),Color.rgb(102,156,197),Color.rgb(216,135,105),Color.rgb(185,143,205),Color.rgb(205,183,94),Color.rgb(91,184,184)};
+        return owner<palette.length?palette[owner]:Color.HSVToColor(new float[]{(owner*137.508f)%360,.48f,.84f});}
+    private static int alpha(int color,int opacity){return (color&0x00ffffff)|(opacity<<24);}
+    private void drawTerritory(Canvas canvas,int q,int r,float cx,float cy,float scale){
+        if(territoryMode==0||territory==null||territory.siteAt(q,r)<0)return;
+        int color=factionColor(territory.ownerAt(q,r));polygon(cx,cy,RADIUS);
+        fill(canvas,alpha(color,territoryMode==2?95+(territory.siteAt(q,r)%3)*18:115));
+    }
+    private void addBorders(Path borders,int mask,float cx,float cy){
+        for(int side=0;side<6;side++)if((mask&(1<<side))!=0){
+            double a=Math.toRadians(-side*60-30),b=a+Math.PI/3;
+            borders.moveTo(cx+(float)Math.cos(a)*RADIUS,cy+(float)Math.sin(a)*RADIUS);
+            borders.lineTo(cx+(float)Math.cos(b)*RADIUS,cy+(float)Math.sin(b)*RADIUS);
+        }
+    }
     @Override protected void onDraw(Canvas canvas){
         long drawStart=System.nanoTime();lastTilesVisited=0;lastObjectsVisited=0;super.onDraw(canvas);canvas.drawColor(Color.rgb(23,44,46));if(world==null)return;
         float scale=camera.scale,offsetX=camera.x,offsetY=camera.y;
@@ -191,7 +225,13 @@ public final class MapView extends View {
             if(detail)terrainTiles.draw(canvas,t,q,r,cx,cy);
             else {polygon(cx,cy,RADIUS-.3f);fill(canvas,TerrainTiles.color(t));}
             polygon(cx,cy,RADIUS-.3f);stroke(canvas,Color.argb(40,13,37,35),.7f);
+            drawTerritory(canvas,q,r,cx,cy,scale);
             if(pickTargets==null&&reachable.containsKey(h)&&reachable.get(h)>0){polygon(cx,cy,RADIUS-1);fill(canvas,Color.argb(110,62,218,209));stroke(canvas,Color.argb(225,117,244,234),Math.max(1,1.2f*density/scale));}
+        }
+        if(territoryMode>0){
+            // Draw after all fills: neighboring tiles must not paint over the shared border.
+            paint.setStyle(Paint.Style.STROKE);paint.setColor(0xbfe3ebcf);paint.setStrokeWidth(Math.max(1,density/scale));
+            canvas.drawPath(territoryMode==2?siteBorders:factionBorders,paint);paint.setStyle(Paint.Style.FILL);
         }
         drawRoute(canvas);
         if(selected!=null){polygon(x(selected),y(selected),RADIUS-2);stroke(canvas,GOLD,Math.max(2,2*density/scale));}
@@ -225,6 +265,13 @@ public final class MapView extends View {
             canvas.drawCircle(x(impactHex),y(impactHex),12+progress*22,paint);paint.setStyle(Paint.Style.FILL);postInvalidateOnAnimation();
         }
         canvas.restore();
+        if(territoryMode>0){
+            String caption=territoryMode==1?"势力范围 · 红圈为前线":"据点辖区 · 红圈为前线";
+            int site=territory.siteAt(selected);World.City city=cityIndex.get(site);
+            if(city!=null)caption=city.name+"辖区 · "+world.faction(city.owner)+(territory.frontline(site)?" · 前线":"");
+            paint.setColor(0xe612272b);canvas.drawRoundRect(8*density,8*density,Math.min(getWidth()-8*density,258*density),38*density,6*density,6*density,paint);
+            paint.setTextAlign(Paint.Align.LEFT);paint.setTextSize(12*density);paint.setColor(PAPER);canvas.drawText(caption,16*density,28*density,paint);
+        }
         if(showMini)drawNavigator(canvas);
 
         lastDrawNanos=System.nanoTime()-drawStart;
@@ -246,6 +293,7 @@ public final class MapView extends View {
         miniRect.set(getWidth()-mw-12*density,12*density,getWidth()-12*density,12*density+mh);
         paint.setColor(0xee10272b);c.drawRect(miniRect.left-3,miniRect.top-3,miniRect.right+3,miniRect.bottom+3,paint);
         c.drawBitmap(miniTerrain,null,miniRect,paint);
+        if(territoryMode>0&&miniTerritory!=null)c.drawBitmap(miniTerritory,null,miniRect,paint);
         for(World.City city:world.cities){paint.setColor(factionColor(city.owner));c.drawCircle(miniRect.left+(city.hex.q+.5f)/world.width*mw,miniRect.top+(city.hex.r+.5f)/world.height*mh,2*density,paint);}
         float r=camera.centerY()/(RADIUS*1.5f),q=camera.centerX()/(RADIUS*SQRT3)-r*.5f;
         float px=miniRect.left+q/world.width*mw,py=miniRect.top+r/world.height*mh;
@@ -254,6 +302,7 @@ public final class MapView extends View {
     }
     private void drawCity(Canvas c,World.City city){float scale=camera.scale;float cx=x(city.hex),cy=y(city.hex);int owner=factionColor(city.owner);
         c.save();c.translate(cx,cy);models.city(c,city.kind,owner);c.restore();
+        if(territoryMode>0&&territory.frontline(city.id)){paint.setStyle(Paint.Style.STROKE);paint.setColor(0xffff8570);paint.setStrokeWidth(2*density/scale);c.drawCircle(cx,cy,Math.max(24,5*density/scale),paint);paint.setStyle(Paint.Style.FILL);}
         boolean labelVisible=scale*RADIUS>=7*density||city.hex.equals(selected)||(world.home()!=null&&city.id==world.home().id);
         if(!labelVisible)return;
         float sz=12*density/scale;paint.setColor(Color.argb(225,22,37,37));c.drawRoundRect(cx-sz*1.8f,cy+14,cx+sz*1.8f,cy+14+sz*1.6f,3,3,paint);

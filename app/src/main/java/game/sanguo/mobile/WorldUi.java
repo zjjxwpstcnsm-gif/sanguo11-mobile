@@ -27,16 +27,47 @@ final class WorldUi {
         ScrollView scroll=new ScrollView(a);TextView body=new TextView(a);body.setText(text.toString());body.setTextSize(16);body.setPadding(24,16,24,16);scroll.addView(body);
         new AlertDialog.Builder(a).setTitle("军情评估").setView(scroll).setPositiveButton("返回",null).show();
     }
-    void districts(){List<Districts.District> list=w.districts.all();String[] names=new String[list.size()+1];names[0]="新设军团";for(int i=0;i<list.size();i++){Districts.District d=list.get(i);names[i+1]=d.name()+" · "+d.policy().label+" · "+d.cities().size()+"据点";}
-        new AlertDialog.Builder(a).setTitle("第一军团 · 行动力"+w.actionPoints[w.player]).setItems(names,(dialog,n)->{if(n==0)members(null);else detail(list.get(n-1));}).setNegativeButton("返回",null).show();
+    void districts(){List<Districts.District> list=w.districts.all();String[] names=new String[list.size()+2];names[0]="新设军团";for(int i=0;i<list.size();i++){Districts.District d=list.get(i);names[i+1]=d.name()+" · "+d.policy().label+" · "+d.cities().size()+"据点";}
+        names[names.length-1]="批量托管后方据点";
+        new AlertDialog.Builder(a).setTitle("第一军团 · 行动力"+w.actionPoints[w.player]).setItems(names,(dialog,n)->{if(n==0)members(null);else if(n==names.length-1)rear();else detail(list.get(n-1));}).setNegativeButton("返回",null).show();
+    }
+    private String nextName(){Set<String> names=new HashSet<>();for(Districts.District d:w.districts.all())names.add(d.name());for(int i=2;i<=9;i++)if(!names.contains("第"+i+"军团"))return "第"+i+"军团";return "新军团";}
+    void city(World.City c){
+        Districts.District district=w.districts.city(c.id);if(district!=null){detail(district);return;}
+        new AlertDialog.Builder(a).setTitle(c.name+" · 城池托管").setItems(new String[]{"快速托管内政（新军团）","编入已有军团","自定义军团"},(d,n)->{
+            if(n==0)quick(new int[]{c.id});
+            else if(n==1)choose("选择接管军团",w.districts.all(),group->group.name()+" · "+group.policy().label,group->{
+                Set<Integer> members=new TreeSet<>(group.cities());members.add(c.id);int[] ids=members.stream().mapToInt(i->i).toArray();
+                String error=w.districts.configureError(group.id,group.name(),ids,group.policy(),group.target(),group.supply());
+                if(error!=null){info("无法编制",error);return;}
+                confirm("编入"+group.name(),c.name+"交由军团经营，消耗第一军团20行动力。现有方针和军团行动力不变。",()->apply.accept(w.districts.configure(group.id,group.name(),ids,group.policy(),group.target(),group.supply(),group.attack(),group.produce())));
+            });else members(null);
+        }).setNegativeButton("返回",null).show();
+    }
+    private boolean rulerCity(World.City c){for(World.Officer o:w.officers)if(o.owner==w.player&&o.role==Strategy.Role.RULER&&o.cityId==c.id)return true;return false;}
+    private void rear(){
+        Territory territory=new Territory(w);List<World.City> cities=new ArrayList<>();CampaignAi ai=new CampaignAi(w);
+        for(World.City c:w.cities)if(c.owner==w.player&&w.districts.city(c.id)==null&&!rulerCity(c)&&!territory.frontline(c.id)&&ai.incoming(c)==0)cities.add(c);
+        if(cities.isEmpty()){info("后方托管","没有可编组的后方直属据点。君主驻地、前线、敌兵接近的据点保留手动管理，也可自定义选择。");return;}
+        boolean[] checked=new boolean[cities.size()];Arrays.fill(checked,true);
+        new AlertDialog.Builder(a).setTitle("后方托管 · 勾选据点").setMultiChoiceItems(cities.stream().map(c->c.name+" · 闲将"+w.idle(c).size()).toArray(String[]::new),checked,(d,n,yes)->checked[n]=yes)
+            .setPositiveButton("预览托管",(d,n)->{List<Integer> selected=new ArrayList<>();for(int i=0;i<checked.length;i++)if(checked[i])selected.add(cities.get(i).id);quick(selected.stream().mapToInt(i->i).toArray());}).setNegativeButton("取消",null).show();
+    }
+    private void quick(int[] members){
+        String name=nextName();String error=w.districts.configureError(-1,name,members,Districts.Policy.ECONOMY,-1,-1);
+        if(error!=null){info("无法编制",error);return;}
+        StringBuilder text=new StringBuilder();for(int id:members){World.City c=w.city(id);text.append(c.name).append(" · 闲将").append(w.idle(c).size()).append('\n');}
+        text.append("内政优先，允许兵装生产，不主动进攻。消耗第一军团20行动力；下一旬恢复本团60行动力后，结束旬时自动经营。缺少驻城武将的据点需要先调入人才。可随时重编或撤销。");
+        confirm(name+" · 快速托管",text.toString(),()->apply.accept(w.districts.configure(-1,name,members,Districts.Policy.ECONOMY,-1,-1,false,true)));
     }
     private String describe(Districts.District d){StringBuilder b=new StringBuilder(d.policy().label+"\n都督："+(d.leader()<0?"暂无在城武将":w.officer(d.leader()).name)+"\n军团行动力："+d.points()+" / 60\n");
-        for(int id:d.cities())b.append(w.city(id).name).append("  ");
+        b.append(w.districts.status(d)).append('\n');
+        for(int id:d.cities()){World.City c=w.city(id);b.append(c.name).append(" · 闲将").append(w.idle(c).size()).append(" · 金").append(c.gold).append(" · 粮").append(c.food).append('\n');}
         if(d.target()>=0)b.append("\n攻略目标：").append(d.policy()==Districts.Policy.FORCE_ATTACK?w.faction(d.target()):w.city(d.target()).name);
         b.append("\n运输目标：").append(d.supply()<0?"无":w.city(d.supply()).name).append("\n允许进攻：").append(d.attack()?"是":"否").append("；允许生产：").append(d.produce()?"是":"否");
         return b.toString();
     }
-    private void detail(Districts.District d){new AlertDialog.Builder(a).setTitle(d.name()).setMessage(describe(d)).setPositiveButton("重编",(dialog,n)->members(d)).setNeutralButton("撤销军团",(dialog,n)->confirm("撤销"+d.name(),"消耗第一军团20行动力。全部据点、部队恢复直接指挥，余下军团行动力作废。",()->apply.accept(w.districts.dissolve(d.id)))).setNegativeButton("返回",null).show();}
+    private void detail(Districts.District d){ScrollView scroll=new ScrollView(a);TextView body=new TextView(a);body.setText(describe(d));body.setTextSize(16);body.setPadding(24,16,24,16);scroll.addView(body);new AlertDialog.Builder(a).setTitle(d.name()).setView(scroll).setPositiveButton("重编",(dialog,n)->members(d)).setNeutralButton("撤销军团",(dialog,n)->confirm("撤销"+d.name(),"消耗第一军团20行动力。全部据点、部队恢复直接指挥，余下军团行动力作废。",()->apply.accept(w.districts.dissolve(d.id)))).setNegativeButton("返回",null).show();}
     private void members(Districts.District old){
         List<World.City> list=new ArrayList<>();for(World.City c:w.cities){Districts.District other=w.districts.city(c.id);boolean ruler=false;for(World.Officer o:w.officers)if(o.owner==w.player&&o.role==Strategy.Role.RULER&&o.cityId==c.id)ruler=true;if(c.owner==w.player&&!ruler&&(other==null||other==old))list.add(c);}
         if(list.isEmpty()){info("编制据点","需要君主驻地之外的己方据点");return;}
@@ -57,7 +88,7 @@ final class WorldUi {
         choose("物资运输目的地",targets,id->id<0?"不指定运输":w.city(id).name,id->options(old,members,p,target,id));
     }
     private void options(Districts.District old,int[] members,Districts.Policy p,int target,int supply){
-        LinearLayout panel=new LinearLayout(a);panel.setOrientation(LinearLayout.VERTICAL);panel.setPadding(24,12,24,12);EditText name=new EditText(a);name.setSingleLine(true);name.setHint("军团名称");name.setContentDescription("军团名称");name.setText(old==null?"第"+(w.districts.all().size()+2)+"军团":old.name());panel.addView(name);
+        LinearLayout panel=new LinearLayout(a);panel.setOrientation(LinearLayout.VERTICAL);panel.setPadding(24,12,24,12);EditText name=new EditText(a);name.setSingleLine(true);name.setHint("军团名称");name.setContentDescription("军团名称");name.setText(old==null?nextName():old.name());panel.addView(name);
         CheckBox attack=new CheckBox(a);attack.setText("允许进攻");attack.setChecked(old==null?p==Districts.Policy.CITY_ATTACK||p==Districts.Policy.FORCE_ATTACK:old.attack());panel.addView(attack);
         CheckBox produce=new CheckBox(a);produce.setText("允许兵装生产");produce.setChecked(old==null||old.produce());panel.addView(produce);
         new AlertDialog.Builder(a).setTitle("军团委任内容").setView(panel).setPositiveButton("预览编制",(dialog,n)->{
