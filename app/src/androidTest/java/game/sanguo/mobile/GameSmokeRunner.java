@@ -107,10 +107,13 @@ public final class GameSmokeRunner extends Instrumentation {
         require("7654".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"粮（上限200000）").getText()),"force-stop and new process restore raw unsubmitted cargo");
         byte[] expected=java.nio.file.Files.readAllBytes(new File(getTargetContext().getExternalFilesDir(null),"cold-world.sg11").toPath());require(Arrays.equals(expected,SaveCodec.encode(saved())),"cold restore cannot spend goods or RNG");
         screenshot("v028-cold-after");
+        android.accessibilityservice.AccessibilityServiceInfo service=getUiAutomation().getServiceInfo();service.flags|=android.accessibilityservice.AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS;getUiAutomation().setServiceInfo(service);
         for(int orientation:new int[]{android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT,android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE}){
             runOnMainSync(()->current.setRequestedOrientation(orientation));assertOrientation(orientation==android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);waitText("运输数量",true);scrollToText("运输粮 · 可选",false);
             AccessibilityNodeInfo input=findInput(getUiAutomation().getRootInActiveWindow(),"粮（上限200000）");input.performAction(AccessibilityNodeInfo.ACTION_FOCUS);input.performAction(AccessibilityNodeInfo.ACTION_CLICK);SystemClock.sleep(600);
-            Rect button=new Rect();waitText("发送",true).getBoundsInScreen(button);require(button.height()>=current.getResources().getDisplayMetrics().density*40,"send remains visible above keyboard at enlarged font");
+            Rect keyboard=new Rect();for(int attempt=0;attempt<20&&keyboard.isEmpty();attempt++){for(android.view.accessibility.AccessibilityWindowInfo window:getUiAutomation().getWindows())if(window.getType()==android.view.accessibility.AccessibilityWindowInfo.TYPE_INPUT_METHOD)window.getBoundsInScreen(keyboard);if(keyboard.isEmpty())SystemClock.sleep(150);}
+            require(!keyboard.isEmpty(),"actual system keyboard is visible for keyboard overlap verification");
+            Rect button=new Rect();waitText("发送",true).getBoundsInScreen(button);require(button.height()>=current.getResources().getDisplayMetrics().density*40&&button.bottom<=keyboard.top,"send remains visible above actual keyboard at enlarged font");
             screenshot("v028-font-keyboard-"+orientation);sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);waitForIdleSync();
         }
         click("取消",true);require(Arrays.equals(expected,SaveCodec.encode(saved())),"keyboard/rotation/cancel preserve world");

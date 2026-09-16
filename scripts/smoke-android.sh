@@ -9,6 +9,7 @@ if [ "${SMOKE_DISPLAYS:-1080x1920}" = "1080x1920" ]; then
   adb shell pm clear game.sanguo.mobile.dev
   adb shell wm density 360
   adb shell settings put system font_scale 1.3
+  adb shell settings put secure show_ime_with_hard_keyboard 1
   mkdir -p app/build/smoke/recovery
   adb shell am instrument -w -e recovery prepare game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner | tee app/build/smoke/recovery/prepare.txt
   adb shell am force-stop game.sanguo.mobile.dev
@@ -21,6 +22,7 @@ for name in ['prepare','check']:
     assert 'RECOVERY '+name+' PASS' in s,s
 RECOVERY
   adb shell settings put system font_scale 1.0
+  adb shell settings put secure show_ime_with_hard_keyboard 0
 fi
 
 # Each display verifies portrait and landscape via the in-game orientation picker.
