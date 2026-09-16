@@ -101,7 +101,11 @@ public final class GameSmokeRunner extends Instrumentation {
             startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitForIdleSync();installFixture(w,w.city(11).hex);chooseOrientation("竖屏");
             locateCity("后方");click("调动",true);click("资源运输",true);click("前方 ·",false);click("将4 ·",false);scrollToText("运输粮 · 可选",false);setInput("粮（上限200000）","7654");
             byte[] before=SaveCodec.encode(saved());try(FileOutputStream out=new FileOutputStream(new File(getTargetContext().getExternalFilesDir(null),"cold-world.sg11"))){out.write(before);}
-            screenshot("v028-cold-before");sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_HOME);waitForIdleSync();SystemClock.sleep(500);return;
+            screenshot("v028-cold-before");require(getUiAutomation().performGlobalAction(android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_HOME),"system HOME action accepted");waitForIdleSync();SystemClock.sleep(500);
+            require(!current.hasWindowFocus(),"HOME really puts the game in background before force-stop");
+            require(!current.getPreferences(0).getString("clientState","").isEmpty(),"background pause persists UI hints before process termination");
+            java.lang.reflect.Method hintsReader=MainActivity.class.getDeclaredMethod("readClientState");hintsReader.setAccessible(true);Bundle hints=(Bundle)hintsReader.invoke(current);Bundle form=hints==null?null:hints.getBundle("formDraft");
+            require(form!=null&&form.getBoolean("open")&&"7654".equals(form.getStringArray("amounts")[1]),"persisted background hints match the actual unsubmitted cargo before force-stop");return;
         }
         startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitText("运输数量",true);scrollToText("运输粮 · 可选",false);
         require("7654".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"粮（上限200000）").getText()),"force-stop and new process restore raw unsubmitted cargo");

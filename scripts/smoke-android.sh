@@ -11,10 +11,12 @@ if [ "${SMOKE_DISPLAYS:-1080x1920}" = "1080x1920" ]; then
   adb shell settings put system font_scale 1.3
   adb shell settings put secure show_ime_with_hard_keyboard 1
   mkdir -p app/build/smoke/recovery
+  adb logcat -c
   adb shell am instrument -w -e recovery prepare game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner | tee app/build/smoke/recovery/prepare.txt
   adb shell am force-stop game.sanguo.mobile.dev
   adb shell am instrument -w -e recovery check game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner | tee app/build/smoke/recovery/check.txt
   adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke app/build/smoke/recovery/screenshots
+  adb logcat -d > app/build/smoke/recovery/logcat.txt
   python3 - <<'RECOVERY'
 from pathlib import Path
 for name in ['prepare','check']:

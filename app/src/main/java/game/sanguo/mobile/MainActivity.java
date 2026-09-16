@@ -692,13 +692,13 @@ public final class MainActivity extends Activity {
     private String worldDigest()throws Exception{return android.util.Base64.encodeToString(java.security.MessageDigest.getInstance("SHA-256").digest(SaveCodec.encode(world)),android.util.Base64.NO_WRAP);}
     private void persistClientState(){
         if(map==null)return;android.os.Parcel parcel=android.os.Parcel.obtain();
-        try{Bundle state=new Bundle();writeClientState(state);parcel.writeBundle(state);String data=android.util.Base64.encodeToString(parcel.marshall(),android.util.Base64.NO_WRAP);getPreferences(MODE_PRIVATE).edit().putString("clientWorld",worldDigest()).putString("clientState",data).apply();}
-        catch(Exception e){/* UI hints are optional; the AtomicFile world save remains authoritative. */}finally{parcel.recycle();}
+        try{Bundle state=new Bundle();writeClientState(state);parcel.writeBundle(state);String data=android.util.Base64.encodeToString(parcel.marshall(),android.util.Base64.NO_WRAP);if(!getPreferences(MODE_PRIVATE).edit().putString("clientWorld",worldDigest()).putString("clientState",data).commit())android.util.Log.w("UiRecovery","Could not persist UI hints");}
+        catch(Exception e){android.util.Log.w("UiRecovery","Could not encode UI hints",e);}finally{parcel.recycle();}
     }
     private Bundle readClientState(){
         android.os.Parcel parcel=android.os.Parcel.obtain();
-        try{if(!worldDigest().equals(getPreferences(MODE_PRIVATE).getString("clientWorld","")))return null;String encoded=getPreferences(MODE_PRIVATE).getString("clientState","");if(encoded.length()>100000)return null;byte[] bytes=android.util.Base64.decode(encoded,android.util.Base64.DEFAULT);parcel.unmarshall(bytes,0,bytes.length);parcel.setDataPosition(0);return parcel.readBundle(getClassLoader());}
-        catch(Exception e){return null;}finally{parcel.recycle();}
+        try{if(!worldDigest().equals(getPreferences(MODE_PRIVATE).getString("clientWorld",""))){android.util.Log.i("UiRecovery","No UI hints matching authoritative world");return null;}String encoded=getPreferences(MODE_PRIVATE).getString("clientState","");if(encoded.length()>100000)return null;byte[] bytes=android.util.Base64.decode(encoded,android.util.Base64.DEFAULT);parcel.unmarshall(bytes,0,bytes.length);parcel.setDataPosition(0);return parcel.readBundle(getClassLoader());}
+        catch(Exception e){android.util.Log.w("UiRecovery","Could not restore UI hints",e);return null;}finally{parcel.recycle();}
     }
     private AtomicFile file(String slot){return new AtomicFile(new File(getFilesDir(),slot+".sg11"));}
     private void save(String slot,boolean announce){
