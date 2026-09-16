@@ -13,12 +13,14 @@ import game.sanguo.core.*;
 /** Runs against an installed APK using platform UI automation, without a test framework dependency. */
 public final class GameSmokeRunner extends Instrumentation {
     private Activity current;
+    private String recovery="";
     private boolean upgradeOnly,upgrade25,upgrade26,upgrade27,experience;
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);current=a;}
-    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);upgrade27=arguments!=null&&"27".equals(arguments.getString("upgrade"));experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
+    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);recovery=arguments==null?"":arguments.getString("recovery","");upgrade27=arguments!=null&&"27".equals(arguments.getString("upgrade"));experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
+            if(!recovery.isEmpty()){recoveryFlow();result.putString("stream","RECOVERY "+recovery+" PASS: UI draft and authoritative save preserved.\n");finish(Activity.RESULT_OK,result);return;}
             if(experience){experienceFlow();result.putString("stream","EXPERIENCE PASS: installed APK observations and official entry flows completed.\n");finish(Activity.RESULT_OK,result);return;}
             if(upgradeOnly||upgrade25||upgrade26||upgrade27){upgradeFlow();result.putString("stream",upgrade27?"UPGRADE27 PASS: exact delivered v0.27 APK replaced in place, v21 fields retained, next turn and recreation execute only once.\n":upgrade26?"UPGRADE26 PASS: actual verified v0.26 APK replaced in place; real v20 three-officer cargo, spent ration, return personnel, district and AI intent retained and v21 continued once.\n":upgrade25?"UPGRADE25 PASS: actual v0.25 APK replaced in place; v19 settings, intent and convoy retained, v21 replay continued once.\n":"UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v21 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -92,6 +94,29 @@ public final class GameSmokeRunner extends Instrumentation {
         }
     }
 
+
+    private void recoveryFlow()throws Exception {
+        if(recovery.equals("prepare")){
+            World w=logisticsFixture();try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(w));}
+            startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitForIdleSync();installFixture(w,w.city(11).hex);chooseOrientation("竖屏");
+            locateCity("后方");click("调动",true);click("资源运输",true);click("前方 ·",false);click("将4 ·",false);scrollToText("运输粮 · 可选",false);setInput("粮（上限200000）","7654");
+            byte[] before=SaveCodec.encode(saved());try(FileOutputStream out=new FileOutputStream(new File(getTargetContext().getExternalFilesDir(null),"cold-world.sg11"))){out.write(before);}
+            screenshot("v028-cold-before");sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_HOME);waitForIdleSync();SystemClock.sleep(500);return;
+        }
+        startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitText("运输数量",true);scrollToText("运输粮 · 可选",false);
+        require("7654".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"粮（上限200000）").getText()),"force-stop and new process restore raw unsubmitted cargo");
+        byte[] expected=java.nio.file.Files.readAllBytes(new File(getTargetContext().getExternalFilesDir(null),"cold-world.sg11").toPath());require(Arrays.equals(expected,SaveCodec.encode(saved())),"cold restore cannot spend goods or RNG");
+        screenshot("v028-cold-after");
+        for(int orientation:new int[]{android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT,android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE}){
+            runOnMainSync(()->current.setRequestedOrientation(orientation));assertOrientation(orientation==android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);waitText("运输数量",true);scrollToText("运输粮 · 可选",false);
+            AccessibilityNodeInfo input=findInput(getUiAutomation().getRootInActiveWindow(),"粮（上限200000）");input.performAction(AccessibilityNodeInfo.ACTION_FOCUS);input.performAction(AccessibilityNodeInfo.ACTION_CLICK);SystemClock.sleep(600);
+            Rect button=new Rect();waitText("发送",true).getBoundsInScreen(button);require(button.height()>=current.getResources().getDisplayMetrics().density*40,"send remains visible above keyboard at enlarged font");
+            screenshot("v028-font-keyboard-"+orientation);sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);waitForIdleSync();
+        }
+        click("取消",true);require(Arrays.equals(expected,SaveCodec.encode(saved())),"keyboard/rotation/cancel preserve world");
+        runOnMainSync(current::recreate);waitForIdleSync();require(find(getUiAutomation().getRootInActiveWindow(),"运输数量",true)==null,"cancelled draft does not reopen automatically");
+    }
+
     private void experienceFlow()throws Exception {
         World initial=ScenarioCatalog.load("regional-sandbox",2);
         try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(initial));}
@@ -139,11 +164,12 @@ public final class GameSmokeRunner extends Instrumentation {
             click("行军",true);dragMap(mapView(),60,30);SystemClock.sleep(400);require(find(getUiAutomation().getRootInActiveWindow(),"开始行军",true)==null,"drag release never selects command target");
             runOnMainSync(current::onBackPressed);waitForIdleSync();runOnMainSync(current::onBackPressed);waitForIdleSync();runOnMainSync(current::onBackPressed);waitForIdleSync();
             require(Arrays.equals(before,SaveCodec.encode(saved())),"back layers never change game");
+            if(find(getUiAutomation().getRootInActiveWindow(),"退出游戏？",false)!=null)click("取消",true);
             // Keep raw unsubmitted quantities and crew through Activity recreation, not just rotation.
             installFixture(ScenarioCatalog.load("regional-sandbox",2),new Hex(18,10));locateCity("建业");click("军事",true);click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);setInput("兵力数量","2345");
             before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitForIdleSync();waitText("确认出征",true);require("2345".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"兵力数量").getText()),"deploy draft quantity survives recreation");
             screenshot("v028-deploy-draft-"+orientation);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"draft restore cannot deploy automatically");
-            w=logisticsFixture();installFixture(w,w.city(11).hex);locateCity("后方");click("调动",true);click("资源运输",true);click("前方 ·",false);click("将4 ·",false);setInput("粮（上限200000）","6789");
+            w=logisticsFixture();installFixture(w,w.city(11).hex);locateCity("后方");click("调动",true);click("资源运输",true);click("前方 ·",false);click("将4 ·",false);scrollToText("运输粮 · 可选",false);setInput("粮（上限200000）","6789");
             before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitForIdleSync();waitText("运输数量",true);scrollToText("运输粮 · 可选",false);require("6789".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"粮（上限200000）").getText()),"cargo draft survives recreation");screenshot("v028-cargo-draft-"+orientation);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"restored cargo is still unsubmitted");
             // Legacy overlap is an actual permitted v21 state; resolve each object by stable ID.
             w=logisticsFixture();require(w.domestic.transport(11,12,4,new int[0],0,5000,1000,new int[World.Weapon.values().length],false,false).ok,"first stacked convoy dispatch");
@@ -300,7 +326,7 @@ public final class GameSmokeRunner extends Instrumentation {
     private void adaptiveMapFlow()throws Exception {
         byte[] before=SaveCodec.encode(saved());
         require(find(getUiAutomation().getRootInActiveWindow(),"导航 · 城市",true)==null,"navigation is hidden until requested");
-        require(find(getUiAutomation().getRootInActiveWindow(),"全图",true)==null,"map tools are hidden until requested");
+        require(find(getUiAutomation().getRootInActiveWindow(),"全图",true)!=null,"full map has a direct one-tap entry");
         chooseOrientation("竖屏");assertOrientation(true);assertMapLayout(true,false);screenshot("90-portrait-map");
         clickNav("城市");waitText("城池一览",true);assertMapLayout(true,true);screenshot("91-portrait-sheet");
         int halfHeight=mapView().getHeight();click("展开",true);require(mapView().getHeight()<halfHeight,"expanded sheet has more room");

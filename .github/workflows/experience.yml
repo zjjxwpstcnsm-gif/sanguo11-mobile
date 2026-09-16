@@ -41,7 +41,7 @@ jobs:
           gh api repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10446263614/zip > /tmp/v027.zip
           mkdir -p app/build/baseline
           unzip -j /tmp/v027.zip '*.apk' -d app/build/baseline
-          mv app/build/baseline/*.apk app/build/baseline/v027.apk
+          mv app/build/baseline/sanguo11-mobile-v027-1884da6.apk app/build/baseline/v027.apk
           echo '8f0ca650ddbd0dc4615e3306ae407be6e8042aff6fc04bf0d3a4e2deb74c41dc  app/build/baseline/v027.apk' | sha256sum -c -
       - name: Enable KVM
         run: |

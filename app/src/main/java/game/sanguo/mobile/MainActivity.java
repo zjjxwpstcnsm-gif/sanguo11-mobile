@@ -51,6 +51,7 @@ public final class MainActivity extends Activity {
         if(present(autosave)) {
             try{world=readSave(autosave);restored=true;}catch(IOException e){restoreError="自动存档损坏或版本不兼容。可在菜单读取手动存档。";}
         }
+        if(state==null&&restored){state=readClientState();ui.read(state);}
         turnWork=(TurnWork)getLastNonConfigurationInstance();
         if(turnWork!=null){world=turnWork.before;aiRunning=!turnWork.done;}
         root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(ink);
@@ -63,6 +64,7 @@ public final class MainActivity extends Activity {
         title=text("",12,gold);title.setMaxLines(2);title.setEllipsize(android.text.TextUtils.TruncateAt.END);
         title.setOnClickListener(v->{if(!aiRunning)message("当前军情",world.scenarioName+" · "+world.faction(world.player)+"\n"+world.date()+" · 行动力 "+world.actionPoints[world.player]+"\n进行中任务 "+taskCount());});
         header.addView(title,new LinearLayout.LayoutParams(0,dp(48),1));
+        Button full=button("全图",v->{closePanel();map.post(map::fit);});full.setContentDescription("显示全国地图");header.addView(full,new LinearLayout.LayoutParams(dp(56),dp(48)));
         Button tools=button("视图",v->showMapTools());tools.setContentDescription("地图工具 · 全图、定位、导航图和屏幕方向");
         header.addView(tools,new LinearLayout.LayoutParams(dp(56),dp(48)));root.addView(header);
         body=new LinearLayout(this);map=new MapView(this,this::onTile);body.addView(map);map.setTerritoryMode(getPreferences(MODE_PRIVATE).getInt("territoryMode",0));
@@ -98,7 +100,7 @@ public final class MainActivity extends Activity {
         bottom.addView(previousReady,new LinearLayout.LayoutParams(dp(48),dp(52)));bottom.addView(nextReady,new LinearLayout.LayoutParams(dp(48),dp(52)));
         nextTurn=button("下一旬  →",v->confirmTurn());nextTurn.setSelected(true);bottom.addView(nextTurn,new LinearLayout.LayoutParams(dp(104),dp(52)));root.addView(bottom);
         setContentView(root);root.requestApplyInsets();selected=world.home()==null?null:world.home().hex;
-        if(state!=null){Hex h=new Hex(state.getInt("selectedQ",-1),state.getInt("selectedR",-1));if(world.inside(h))selected=h;moving=state.getInt("moving",-1);}
+        if(state!=null){Hex h=new Hex(state.getInt("selectedQ",-1),state.getInt("selectedR",-1));selected=world.inside(h)?h:null;moving=state.getInt("moving",-1);}
         if(state!=null)unitCommand=state.getString("unitCommand","select");
         if(state!=null&&state.containsKey("routeQ")&&world.unit(moving)!=null)pendingMarch=world.marches.preview(moving,new Hex(state.getInt("routeQ"),state.getInt("routeR")));
         refresh();if(state!=null){map.restoreCamera(state);if(!ui.summary.isEmpty()){turnBanner.setText("旬结算完成 · 点此查看重要变化与待处理");turnBanner.setVisibility(View.VISIBLE);}}
@@ -675,8 +677,23 @@ public final class MainActivity extends Activity {
         world=completed.after;if(world.life.pending()){ui.page="map";ui.panelVisible=true;}ui.summary=completed.summary;pendingMarch=null;if(world.unit(moving)!=null)selected=world.unit(moving).hex;else moving=-1;refresh();save("auto",false);turnBanner.setText("旬结算完成 · 点此查看重要变化与待处理");turnBanner.setVisibility(View.VISIBLE);
     }
     @Override public Object onRetainNonConfigurationInstance(){if(turnWork!=null)turnWork.observe(null);return turnWork;}
-    @Override protected void onDestroy(){if(turnWork!=null)turnWork.observe(null);super.onDestroy();}
-    @Override protected void onSaveInstanceState(Bundle state){super.onSaveInstanceState(state);ui.write(state);if(selected!=null){state.putInt("selectedQ",selected.q);state.putInt("selectedR",selected.r);}state.putInt("moving",moving);state.putString("unitCommand",unitCommand);if(pendingMarch!=null&&pendingMarch.target!=null){state.putInt("routeQ",pendingMarch.target.q);state.putInt("routeR",pendingMarch.target.r);}map.saveCamera(state);save("auto",false);}
+    @Override protected void onDestroy(){if(turnWork!=null)turnWork.observe(null);if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
+    private void writeClientState(Bundle state){
+        ui.write(state);state.putInt("selectedQ",selected==null?-1:selected.q);state.putInt("selectedR",selected==null?-1:selected.r);state.putInt("moving",moving);state.putString("unitCommand",unitCommand);
+        if(pendingMarch!=null&&pendingMarch.target!=null){state.putInt("routeQ",pendingMarch.target.q);state.putInt("routeR",pendingMarch.target.r);}map.saveCamera(state);
+    }
+    @Override protected void onSaveInstanceState(Bundle state){super.onSaveInstanceState(state);writeClientState(state);save("auto",false);}
+    private String worldDigest()throws Exception{return android.util.Base64.encodeToString(java.security.MessageDigest.getInstance("SHA-256").digest(SaveCodec.encode(world)),android.util.Base64.NO_WRAP);}
+    private void persistClientState(){
+        if(map==null)return;android.os.Parcel parcel=android.os.Parcel.obtain();
+        try{Bundle state=new Bundle();writeClientState(state);parcel.writeBundle(state);String data=android.util.Base64.encodeToString(parcel.marshall(),android.util.Base64.NO_WRAP);getPreferences(MODE_PRIVATE).edit().putString("clientWorld",worldDigest()).putString("clientState",data).apply();}
+        catch(Exception e){/* UI hints are optional; the AtomicFile world save remains authoritative. */}finally{parcel.recycle();}
+    }
+    private Bundle readClientState(){
+        android.os.Parcel parcel=android.os.Parcel.obtain();
+        try{if(!worldDigest().equals(getPreferences(MODE_PRIVATE).getString("clientWorld","")))return null;String encoded=getPreferences(MODE_PRIVATE).getString("clientState","");if(encoded.length()>100000)return null;byte[] bytes=android.util.Base64.decode(encoded,android.util.Base64.DEFAULT);parcel.unmarshall(bytes,0,bytes.length);parcel.setDataPosition(0);return parcel.readBundle(getClassLoader());}
+        catch(Exception e){return null;}finally{parcel.recycle();}
+    }
     private AtomicFile file(String slot){return new AtomicFile(new File(getFilesDir(),slot+".sg11"));}
     private void save(String slot,boolean announce){
         AtomicFile f=file(slot);FileOutputStream out=null;try{byte[] bytes=SaveCodec.encode(world);out=f.startWrite();out.write(bytes);f.finishWrite(out);if(announce)Toast.makeText(this,"局面已保存",Toast.LENGTH_SHORT).show();}
@@ -739,6 +756,6 @@ public final class MainActivity extends Activity {
         }catch(IOException|SecurityException e){showError(request==EXPORT_SAVE?"导出失败":"导入失败");}
     }
     private void loadSlot(String slot){try{World restored=readSave(file(slot));world=restored;ui.formDraft=new Bundle();ui.returnToCities=false;ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;selectAndFocus(world.home().hex);save("auto",false);}catch(IOException e){showError("读取失败");}}
-    @Override protected void onPause(){super.onPause();if(world!=null)save("auto",false);}
+    @Override protected void onPause(){super.onPause();if(world!=null){save("auto",false);persistClientState();}}
     @Override public void onBackPressed(){if(aiRunning)return;if(mapPick!=null){cancelMapPick();return;}if(pendingMarch!=null){pendingMarch=null;unitCommand="select";refresh();return;}if(!unitCommand.equals("select")){unitCommand="select";refresh();return;}if(ui.page.equals("map")&&ui.returnToCities){returnToCities();return;}if(moving>=0&&ui.page.equals("map")){if(ui.panelVisible){closePanel();return;}clearUnitSelection();return;}if(!ui.page.equals("map")){closePanel();}else if(ui.panelVisible){closePanel();}else confirm("退出游戏？当前局面将自动保存。",this::finish);}
 }

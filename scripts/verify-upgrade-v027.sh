@@ -9,6 +9,8 @@ adb shell run-as game.sanguo.mobile.dev mkdir -p files
 adb shell -T 'run-as game.sanguo.mobile.dev sh -c "cat > files/auto.sg11"' < app/build/upgrade/v20.sg11
 adb shell am start -W -n game.sanguo.mobile.dev/game.sanguo.mobile.MainActivity
 sleep 2
+adb shell input keyevent 3
+sleep 1
 adb shell am force-stop game.sanguo.mobile.dev
 adb exec-out run-as game.sanguo.mobile.dev cat files/auto.sg11 > app/build/upgrade/v20-old-app.sg11
 # The actual v0.27 app reads the real old fixture and writes its own v21 bytes.
