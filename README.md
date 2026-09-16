@@ -6,11 +6,11 @@
 
 ## 当前状态
 
-v0.27写存档v21，固定包名与签名沿用。正在完成三屏安装及v0.9/v0.25/v0.26真实APK覆盖升级验收，最终下载与证据见本轮验收记录。
+v0.27写存档v21，固定包名与签名沿用。[最新APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35094950113/artifacts/10446263614)对应运行代码`1884da6`；[完整CI35094950113](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35094950113)三屏横竖屏、真实v0.9/v0.25/v0.26原位覆盖升级全部通过。新增5426条断言、全部旧核心回归、51,795条UI模型断言及19项内容测试通过。412份源码逐字节一致、449张截图及APK摘要/固定签名已核对；CI Lint0错误/21警告。[PR #35](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/35)待审阅，尚未合并；最后收尾只更新文档和证据。ARM真机、真实系统杀进程以及连续敌对72旬组合场景未测，其他边界见本轮验收记录。
 
 ## v0.26 历史状态
 
-v0.26已通过完整验收，写存档v20，兼容旧档并沿用固定开发包名/签名。[最新APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35085267945/artifacts/10442343895)对应`b75e249`；[CI35085267945](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35085267945)三屏横竖屏、真实v0.9/v0.25覆盖升级全部通过。新增1095条断言、51,795条UI模型断言、19项内容测试通过，381份源码与435张截图已核对。Lint0错误/21警告；ARM真机未验。[验收与APK摘要](docs/validation/v026/README.md) / [实际实现和剩余差异](docs/LOGISTICS_CAMPAIGN_V0_26.md)。
+v0.26已通过完整验收，写存档v20，兼容旧档并沿用固定开发包名/签名。[v0.26历史APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35085267945/artifacts/10442343895)对应`b75e249`；[CI35085267945](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35085267945)三屏横竖屏、真实v0.9/v0.25覆盖升级全部通过。新增1095条断言、51,795条UI模型断言、19项内容测试通过，381份源码与435张截图已核对。Lint0错误/21警告；ARM真机未验。[验收与APK摘要](docs/validation/v026/README.md) / [实际实现和剩余差异](docs/LOGISTICS_CAMPAIGN_V0_26.md)。
 
 ## v0.25 历史状态
 

@@ -1,10 +1,36 @@
 # v0.27 验收记录
 
-基线PR #34已核查并合并为main `acfa053fde67c7a866830202e8f0784fe546a209`。本轮[PR #35](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/35)。最终运行提交、完整CI、APK和签名在验收结束后补齐；中途修复零兵运输和旧档当旬移动预算后，重新执行全部安装门槛，不把早期未结束的作业标为通过。
+基线PR #34已核查并合并为main `acfa053fde67c7a866830202e8f0784fe546a209`。本轮[PR #35](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/35)。已完成运行提交`1884da66b8aae334f742b975c235d39838f0f647`的全部三屏CI，PR #35开放待审阅、尚未合并。中途修复零兵运输和旧档当旬移动预算后，重新执行全部安装门槛；最后收尾提交仅更新文档及证据，APK与通过CI的运行代码一致。
+
+
+## 最终APK与CI
+
+[APK下载（Actions归档内含APK）](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35094950113/artifacts/10446263614) · [完整CI35094950113](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35094950113)。
+
+| 项目 | 已核对值 |
+|---|---|
+| APK | `sanguo11-mobile-v027-1884da6.apk`，6,241,566字节 |
+| 运行提交 | `1884da66b8aae334f742b975c235d39838f0f647` |
+| 运行树 | `938e4ef07393e1c122722ca8c3681935f46b9906` |
+| 版本 | versionCode 27 / `0.27.0-tactical-logistics-dev` |
+| 包名 | `game.sanguo.mobile.dev` |
+| APK SHA-256 | `8f0ca650ddbd0dc4615e3306ae407be6e8042aff6fc04bf0d3a4e2deb74c41dc` |
+| 固定签名证书 SHA-256 | `8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24` |
+| 1080×1920 | job104789920327，成功；含三项真实旧APK升级 |
+| 1080×2340 | job104789920556，成功 |
+| 1080×2400 | job104789920659，成功 |
+| Android环境 | API29 x86_64模拟器，三种分辨率横竖屏 |
+| Lint | CI 0错误/21警告；本地0错误/20警告，均未屏蔽门槛 |
+
+六份下载归档SHA-256与GitHub元数据一致，ZIP完整性通过。源码归档412份文件与运行提交逐字节相同。449张PNG均可解码且逐文件摘要已保存；人工抽查1920竖屏运输详情、2340横屏补给后指令栏、2400横屏运输详情和竖屏补给后指令栏，文字/图标/单行指令栏可用。三组SMOKE PASS与v0.9/v0.25/v0.26三项UPGRADE PASS全部存在，应用日志未出现FATAL EXCEPTION或ANR。
+
+v0.26覆盖升级检查真实v20军团设置、AI意图、三将任务、已耗粮以及返程人员；写v21后继续一次，不重复派遣、入库或消耗。Activity重建仅验证Activity恢复，不冒称系统杀进程。
+
+原始证据：`artifacts.json`、`verification.json`、`ci-results.txt`、`screenshots.sha256`、`apk-badging.txt`、`apk-signature.txt`。全部UI证据及Lint HTML可从上述CI归档下载；Actions归档具有保留期限，源码和验收摘要长期保留于Git。
 
 ## 已执行本地验证
 
-完整既有核心回归（含原1095条v0.26物流/战役断言与36旬账本）保留；新增5426条断言：地图运输、真实战斗、船货、野外补给、旧档、停止/多旬地块命令、双向狭口、实际护军、前线粮食与72旬账本。UI模型51795条、内容19项及生成内容核对通过。Gradle test/:core:check、Android主APK/测试APK编译及Lint通过，本地0错误/20警告；最终安装结果以CI记录为准。
+完整既有核心回归（含原1095条v0.26物流/战役断言与36旬账本）保留；新增5426条断言：地图运输、真实战斗、船货、野外补给、旧档、停止/多旬地块命令、双向狭口、实际护军、前线粮食与72旬账本。UI模型51795条、内容19项及生成内容核对通过。Gradle test/:core:check、Android主APK/测试APK编译及Lint通过，本地0错误/20警告；最终安装门槛亦已全部通过，详见上表。
 
 72旬账本不调用income/foodUse实现来计算预期；固定场景按明列收入和消耗参数独立算术，逐旬审计命令成本、月金季粮、完工、兵/装备/船以及武将唯一位置；保存恢复后每旬全局字节相同。不是任意战争长期稳定性证明。
 
