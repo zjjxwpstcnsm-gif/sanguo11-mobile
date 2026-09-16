@@ -1,0 +1,618 @@
+{
+  "artifacts": [
+    {
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10455763091/zip",
+      "created_at": "2026-09-16T15:38:30Z",
+      "digest": "sha256:a430b8cf999656a73e0368f60e2feeccb46a74858529aec2d1e76d17ba313047",
+      "expired": false,
+      "expires_at": "2026-12-15T15:10:56Z",
+      "id": 10455763091,
+      "name": "android-smoke-evidence-1080x1920",
+      "size_in_bytes": 74534859,
+      "updated_at": "2026-09-16T15:38:30Z",
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10455763091",
+      "workflow_run": {
+        "head_branch": "agent/mobile-experience-v028",
+        "head_repository_id": 1368277401,
+        "head_sha": "66417c08739441322ac8d2d01b85b36a16b0d88c",
+        "id": 35113579871,
+        "repository_id": 1368277401
+      }
+    },
+    {
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10455733167/zip",
+      "created_at": "2026-09-16T15:38:27Z",
+      "digest": "sha256:fa54ffdd351b939a6076b262e43a03d5285eb37962789552ae94c2c7fa1b152e",
+      "expired": false,
+      "expires_at": "2026-12-15T15:10:56Z",
+      "id": 10455733167,
+      "name": "android-lint-1080x1920",
+      "size_in_bytes": 20104,
+      "updated_at": "2026-09-16T15:38:27Z",
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10455733167",
+      "workflow_run": {
+        "head_branch": "agent/mobile-experience-v028",
+        "head_repository_id": 1368277401,
+        "head_sha": "66417c08739441322ac8d2d01b85b36a16b0d88c",
+        "id": 35113579871,
+        "repository_id": 1368277401
+      }
+    },
+    {
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10455622554/zip",
+      "created_at": "2026-09-16T15:35:05Z",
+      "digest": "sha256:378d6055fba66533ea614efb46e051b7f6c0395dd3545b7752a2048242f3fd7e",
+      "expired": false,
+      "expires_at": "2026-12-15T15:10:56Z",
+      "id": 10455622554,
+      "name": "android-smoke-evidence-1080x2400",
+      "size_in_bytes": 84380527,
+      "updated_at": "2026-09-16T15:35:05Z",
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10455622554",
+      "workflow_run": {
+        "head_branch": "agent/mobile-experience-v028",
+        "head_repository_id": 1368277401,
+        "head_sha": "66417c08739441322ac8d2d01b85b36a16b0d88c",
+        "id": 35113579871,
+        "repository_id": 1368277401
+      }
+    },
+    {
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10455463236/zip",
+      "created_at": "2026-09-16T15:38:26Z",
+      "digest": "sha256:1c1a75ee51f13a813fab58bb8098ef8b4d365c55a3364c728345556c7b7bafe7",
+      "expired": false,
+      "expires_at": "2026-10-16T15:38:25Z",
+      "id": 10455463236,
+      "name": "sanguo11-mobile-v028-apk",
+      "size_in_bytes": 6228365,
+      "updated_at": "2026-09-16T15:38:26Z",
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10455463236",
+      "workflow_run": {
+        "head_branch": "agent/mobile-experience-v028",
+        "head_repository_id": 1368277401,
+        "head_sha": "66417c08739441322ac8d2d01b85b36a16b0d88c",
+        "id": 35113579871,
+        "repository_id": 1368277401
+      }
+    },
+    {
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10455332483/zip",
+      "created_at": "2026-09-16T15:33:45Z",
+      "digest": "sha256:7df63dbc1e6463731819efe67874bb93d9f58b1d85cf5585d7cff22a7cdf2311",
+      "expired": false,
+      "expires_at": "2026-12-15T15:10:56Z",
+      "id": 10455332483,
+      "name": "android-smoke-evidence-1080x2340",
+      "size_in_bytes": 84564808,
+      "updated_at": "2026-09-16T15:33:45Z",
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10455332483",
+      "workflow_run": {
+        "head_branch": "agent/mobile-experience-v028",
+        "head_repository_id": 1368277401,
+        "head_sha": "66417c08739441322ac8d2d01b85b36a16b0d88c",
+        "id": 35113579871,
+        "repository_id": 1368277401
+      }
+    },
+    {
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10453681271/zip",
+      "created_at": "2026-09-16T15:12:06Z",
+      "digest": "sha256:e1085bc37c46ac37a3c77459df4f38b3870fcefcdfcae77af08d97e6a63ae225",
+      "expired": false,
+      "expires_at": "2026-10-16T15:12:05Z",
+      "id": 10453681271,
+      "name": "sanguo11-mobile-source",
+      "size_in_bytes": 6809534,
+      "updated_at": "2026-09-16T15:12:06Z",
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10453681271",
+      "workflow_run": {
+        "head_branch": "agent/mobile-experience-v028",
+        "head_repository_id": 1368277401,
+        "head_sha": "66417c08739441322ac8d2d01b85b36a16b0d88c",
+        "id": 35113579871,
+        "repository_id": 1368277401
+      }
+    }
+  ],
+  "jobs": [
+    {
+      "conclusion": "success",
+      "id": 104853621495,
+      "logs_url": null,
+      "name": "build (1080x2340)",
+      "run_id": 35113579871,
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Archive exact build sources",
+          "number": 3,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 4,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/setup-java@v5",
+          "number": 5,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Verify offline content pipeline",
+          "number": 6,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Verify core rules and saves",
+          "number": 7,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run gradle/actions/setup-gradle@v4",
+          "number": 8,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Set up Android SDK tools",
+          "number": 9,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Install Android platform",
+          "number": 10,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Build and lint Android",
+          "number": 11,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Build pinned v0.9 upgrade baseline",
+          "number": 12,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Download actual verified v0.25 APK for in-place upgrade",
+          "number": 13,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Download actual verified v0.26 APK for in-place upgrade",
+          "number": 14,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Download actual verified v0.27 APK for in-place upgrade",
+          "number": 15,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check bundled scenario resources",
+          "number": 16,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Enable KVM for Android runtime verification",
+          "number": 17,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Verify installed game flow on Android",
+          "number": 18,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Check stable development signature and record digest",
+          "number": 19,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 20,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 21,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 22,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run gradle/actions/setup-gradle@v4",
+          "number": 42,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/setup-java@v5",
+          "number": 43,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 44,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 45,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "conclusion": "success",
+      "id": 104853621612,
+      "logs_url": null,
+      "name": "build (1080x1920)",
+      "run_id": 35113579871,
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Archive exact build sources",
+          "number": 3,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 4,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/setup-java@v5",
+          "number": 5,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Verify offline content pipeline",
+          "number": 6,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Verify core rules and saves",
+          "number": 7,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run gradle/actions/setup-gradle@v4",
+          "number": 8,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Set up Android SDK tools",
+          "number": 9,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Install Android platform",
+          "number": 10,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Build and lint Android",
+          "number": 11,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Build pinned v0.9 upgrade baseline",
+          "number": 12,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Download actual verified v0.25 APK for in-place upgrade",
+          "number": 13,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Download actual verified v0.26 APK for in-place upgrade",
+          "number": 14,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Download actual verified v0.27 APK for in-place upgrade",
+          "number": 15,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check bundled scenario resources",
+          "number": 16,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Enable KVM for Android runtime verification",
+          "number": 17,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Verify installed game flow on Android",
+          "number": 18,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check stable development signature and record digest",
+          "number": 19,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 20,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 21,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 22,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run gradle/actions/setup-gradle@v4",
+          "number": 42,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/setup-java@v5",
+          "number": 43,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 44,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 45,
+          "status": "completed"
+        }
+      ]
+    },
+    {
+      "conclusion": "success",
+      "id": 104853621707,
+      "logs_url": null,
+      "name": "build (1080x2400)",
+      "run_id": 35113579871,
+      "status": "completed",
+      "steps": [
+        {
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Archive exact build sources",
+          "number": 3,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 4,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/setup-java@v5",
+          "number": 5,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Verify offline content pipeline",
+          "number": 6,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Verify core rules and saves",
+          "number": 7,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run gradle/actions/setup-gradle@v4",
+          "number": 8,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Set up Android SDK tools",
+          "number": 9,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Install Android platform",
+          "number": 10,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Build and lint Android",
+          "number": 11,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Build pinned v0.9 upgrade baseline",
+          "number": 12,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Download actual verified v0.25 APK for in-place upgrade",
+          "number": 13,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Download actual verified v0.26 APK for in-place upgrade",
+          "number": 14,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Download actual verified v0.27 APK for in-place upgrade",
+          "number": 15,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Check bundled scenario resources",
+          "number": 16,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Enable KVM for Android runtime verification",
+          "number": 17,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Verify installed game flow on Android",
+          "number": 18,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Check stable development signature and record digest",
+          "number": 19,
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 20,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 21,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Run actions/upload-artifact@v4",
+          "number": 22,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run gradle/actions/setup-gradle@v4",
+          "number": 42,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/setup-java@v5",
+          "number": 43,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 44,
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 45,
+          "status": "completed"
+        }
+      ]
+    }
+  ]
+}

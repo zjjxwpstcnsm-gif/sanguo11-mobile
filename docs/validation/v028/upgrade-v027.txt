@@ -1,0 +1,2 @@
+UPGRADE27 PASS: exact delivered v0.27 APK replaced in place, v21 fields retained, next turn and recreation execute only once.
+

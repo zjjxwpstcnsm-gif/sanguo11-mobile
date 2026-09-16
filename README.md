@@ -6,7 +6,7 @@
 
 ## 当前状态
 
-v0.28沿用存档v21、固定包名和签名；本轮APK与通过状态以[最终验收记录](docs/validation/v028/README.md)为准。PR #35已核查并合入main，本轮[PR #36](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/36)继续验证。
+v0.28沿用存档v21、固定包名和签名；本轮APK与通过状态以[最终验收记录](docs/validation/v028/README.md)为准。PR #35已核查并合入main，本轮[PR #36](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/36)可审阅、未合并。运行提交`66417c0`的核心/UI/内容、36/72旬、Android/Lint、三屏横竖屏及四版覆盖升级全部通过。[下载v0.28 APK归档](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35113579871/artifacts/10455463236)。同模拟器对比：竖屏所测地图高度+24.1%，普通选择镜头位移归零；大型场景整旬4.94→5.12秒，未宣称全面提速。ARM真机仍未测。
 
 ## v0.27 历史状态
 
