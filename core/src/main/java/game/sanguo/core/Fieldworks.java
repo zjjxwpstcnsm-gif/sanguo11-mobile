@@ -119,6 +119,32 @@ public final class Fieldworks {
             War.Structure s=w.war.at(h);if(s!=null&&(s.owner==source.owner||w.campaign.hostile(source.owner,s.owner))){s.hp-=w.campaign.constructionDamage(source,300);if(s.hp<=0)w.war.structures.remove(s);}
         }
     }
+    private List<Hex> trapArea(War.Structure s){
+        Hex h=s.hex;List<Hex> affected=new ArrayList<>();affected.add(h);
+        if(ball(s.kind)){
+            Hex delta=new Hex(0,0).neighbors().get(s.direction);int range=s.kind==War.StructureKind.FIRE_BALL?3:5;
+            for(int n=1;n<=range;n++){Hex next=new Hex(h.q+delta.q*n,h.r+delta.r*n);if(!w.inside(next)||w.terrain[next.q][next.r]==World.Terrain.MOUNTAIN||w.army.water(next))break;affected.add(next);if(w.war.at(next)!=null&&s.kind!=War.StructureKind.INFERNO_BALL)break;}
+        }else{
+            int radius=s.kind==War.StructureKind.FIRE_SEED?1:2;
+            for(int q=Math.max(0,h.q-radius);q<=Math.min(w.width-1,h.q+radius);q++)for(int r=Math.max(0,h.r-radius);r<=Math.min(w.height-1,h.r+radius);r++){Hex next=new Hex(q,r);if(!next.equals(h)&&h.distance(next)<=radius)affected.add(next);}
+        }
+        affected.removeIf(next->s.kind==War.StructureKind.FIRE_SHIP?!w.army.water(next):w.army.water(next));return affected;
+    }
+    /** Conservative current-occupancy chain footprint; no damage roll and no world changes. */
+    public List<Hex> ignitionArea(Hex start,int owner){
+        LinkedHashSet<Hex> area=new LinkedHashSet<>();Set<Integer> visited=new HashSet<>();ArrayDeque<Hex> queue=new ArrayDeque<>();queue.add(start);
+        while(!queue.isEmpty()){
+            War.Structure s=w.war.at(queue.remove());if(s==null||!s.complete||!trap(s.kind)||!visited.add(s.id)||s.owner!=owner&&!w.campaign.hostile(owner,s.owner))continue;
+            for(Hex h:trapArea(s)){area.add(h);War.Structure next=w.war.at(h);if(next!=null&&trap(next.kind))queue.add(h);}
+        }
+        return new ArrayList<>(area);
+    }
+    void displaceIntoTrap(World.Unit target,Hex next,World.Unit source){
+        Hex old=target.hex;target.hex=next;
+        if(target instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)target;m.legacyOverlap=false;m.waiting="受战法位移，路线将从当前位置重算";}
+        ignite(next,source);
+        if(w.unit(target.id)==target)traveled(target,Arrays.asList(old,next));
+    }
     /** Queue contains only ignitions: trap removal precedes propagation, bounding chains by map size. */
     void ignite(Hex target,World.Unit source){
         ArrayDeque<Hex> queue=new ArrayDeque<>();Set<Hex> visited=new HashSet<>();queue.add(target);
@@ -127,25 +153,19 @@ public final class Fieldworks {
             War.Structure s=w.war.at(h);
             if(s!=null&&s.owner!=source.owner&&!w.campaign.hostile(source.owner,s.owner))continue;
             if(s!=null&&s.complete&&trap(s.kind)){
-                w.war.structures.remove(s);List<Hex> affected=new ArrayList<>();affected.add(h);
-                if(ball(s.kind)){
-                    Hex delta=new Hex(0,0).neighbors().get(s.direction);int range=s.kind==War.StructureKind.FIRE_BALL?3:5;
-                    for(int n=1;n<=range;n++){Hex next=new Hex(h.q+delta.q*n,h.r+delta.r*n);if(!w.inside(next)||w.terrain[next.q][next.r]==World.Terrain.MOUNTAIN||w.army.water(next))break;affected.add(next);if(w.war.at(next)!=null&&s.kind!=War.StructureKind.INFERNO_BALL)break;}
-                }else{
-                    int radius=s.kind==War.StructureKind.FIRE_SEED?1:2;
-                    for(int q=Math.max(0,h.q-radius);q<=Math.min(w.width-1,h.q+radius);q++)for(int r=Math.max(0,h.r-radius);r<=Math.min(w.height-1,h.r+radius);r++){Hex next=new Hex(q,r);if(!next.equals(h)&&h.distance(next)<=radius)affected.add(next);}
-                }
+                w.war.structures.remove(s);List<Hex> affected=trapArea(s);
                 int base=s.kind==War.StructureKind.INFERNO_SEED||s.kind==War.StructureKind.INFERNO_BALL?1500:s.kind==War.StructureKind.FIRE_SEED||s.kind==War.StructureKind.FIRE_BALL?700:1000;
                 for(Hex next:affected){
                     if(s.kind==War.StructureKind.FIRE_SHIP?!w.army.water(next):w.army.water(next))continue;
                     World.Unit victim=w.unitAt(next);if(victim!=null&&(victim.owner==source.owner||w.campaign.hostile(source.owner,victim.owner))){
-                        victim.troops-=w.skills.fireDamage(victim,base,source.owner,w.skills.has(source,Skill.HUOSHEN)?2:1,true);
+                        int fireLoss=w.skills.fireDamage(victim,base,source.owner,w.skills.has(source,Skill.HUOSHEN)?2:1,true);victim.troops-=fireLoss;
+                        w.battleOutcome(w.officer(victim.officerId).name+"受到"+s.kind.label+"火伤"+fireLoss);
                         if(victim.troops==0)w.defeatUnit(victim,source);else if(s.kind==War.StructureKind.INFERNO_SEED&&!w.skills.has(victim,Skill.HUOSHEN)){victim.status=War.Status.CONFUSED;victim.statusTurns=2;}
                     }
-                    War.Structure adjacent=w.war.at(next);if(adjacent!=null&&adjacent.complete&&trap(adjacent.kind))queue.add(next);else if(adjacent!=null&&(adjacent.owner==source.owner||w.campaign.hostile(source.owner,adjacent.owner))){adjacent.hp-=base/2;if(adjacent.hp<=0)w.war.structures.remove(adjacent);}
+                    War.Structure adjacent=w.war.at(next);if(adjacent!=null&&adjacent.complete&&trap(adjacent.kind))queue.add(next);else if(adjacent!=null&&(adjacent.owner==source.owner||w.campaign.hostile(source.owner,adjacent.owner))){int loss=Math.min(adjacent.hp,base/2);adjacent.hp-=loss;w.battleOutcome(adjacent.kind.label+"被陷阱波及，耐久减少"+loss);if(adjacent.hp<=0){w.war.structures.remove(adjacent);w.battleOutcome(adjacent.kind.label+"已摧毁");}}
                     flame(next,source,true);
                 }
-                w.note(s.kind.label+"引爆");
+                w.battleOutcome(s.kind.label+"引爆");
             }else flame(h,source,false);
         }
     }

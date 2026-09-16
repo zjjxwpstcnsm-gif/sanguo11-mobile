@@ -33,6 +33,10 @@ public final class MainActivity extends Activity {
     private Set<Hex> pickTargets=Collections.emptySet();
     private java.util.function.Consumer<Hex> mapPick;
     private String pickTitle="";
+    private Displacement.Preview tacticPreview;
+    private Runnable tacticConfirmation;
+    private Hex reportLocation;
+    private Bundle reportReturn;
     private java.util.function.Function<Hex,String> pickError;
     private Button previousReady,nextReady;
     private TextView turnBanner;
@@ -84,8 +88,12 @@ public final class MainActivity extends Activity {
         battleBanner=text("",13,paper);battleBanner.setMaxLines(2);battleBanner.setEllipsize(android.text.TextUtils.TruncateAt.END);
         battleBanner.setPadding(dp(12),dp(6),dp(12),dp(6));battleBanner.setBackgroundColor(0xff30443b);battleBanner.setVisibility(View.GONE);
         battleBanner.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);
-        battleBanner.setOnClickListener(v->new AlertDialog.Builder(this).setTitle("战斗结果").setMessage(lastBattleReport)
-            .setPositiveButton("返回",null).setNeutralButton("收起战果",(d,n)->battleBanner.setVisibility(View.GONE)).show());
+        battleBanner.setOnClickListener(v->{
+            AlertDialog.Builder report=new AlertDialog.Builder(this).setTitle(reportLocation==null?"操作结果":"战斗结果").setMessage(lastBattleReport)
+                .setPositiveButton("返回",null).setNeutralButton("收起战果",(d,n)->battleBanner.setVisibility(View.GONE));
+            if(reportLocation!=null&&battleReportWorld==world)report.setNegativeButton("定位发生地点",(d,n)->locateBattleReport());
+            report.show();
+        });
         root.addView(battleBanner,new LinearLayout.LayoutParams(-1,-2));
         turnBanner=text("",13,paper);turnBanner.setPadding(dp(12),dp(5),dp(12),dp(5));turnBanner.setMaxLines(2);turnBanner.setBackgroundColor(0xff243e4b);turnBanner.setVisibility(View.GONE);turnBanner.setContentDescription("查看本旬结算摘要");turnBanner.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);turnBanner.setOnClickListener(v->showTurnReport());root.addView(turnBanner,new LinearLayout.LayoutParams(-1,-2));
         body.addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->{if(r-l!=or-ol||b-t!=ob-ot)layoutPanels();});
@@ -287,7 +295,7 @@ public final class MainActivity extends Activity {
     void pickOnMap(String title,Hex origin,Collection<Hex> targets,java.util.function.Consumer<Hex> action,java.util.function.Function<Hex,String> error){
         pickOnMap(title,origin,targets,action);pickError=h->{String reason=error.apply(h);return reason==null?"目标已变化，请重新选择":reason;};
     }
-    private void cancelMapPick(){mapPick=null;pickTargets=Collections.emptySet();pickTitle="";refresh();}
+    private void cancelMapPick(){clearTacticPreview();mapPick=null;pickTargets=Collections.emptySet();pickTitle="";refresh();}
     private void approach(World.Unit u,Hex h){
         if(unitCommand.equals("march")){previewMarch(u,h);return;}
         confirm("目标在当前射程外，规划行军到目标附近？抵达后需要再次下令攻击。",()->{unitCommand="march";previewMarch(u,h);});
@@ -309,14 +317,37 @@ public final class MainActivity extends Activity {
             action.run();
         }).setNegativeButton("取消",null).show();trackDialog(dialog);
     }
+    void showTacticPreview(World expected,Displacement.Preview preview,Runnable execute){
+        if(!preview.valid()){message("不能发动",preview.error);return;}
+        final byte[] before;try{before=SaveCodec.encode(expected);}catch(IOException e){message("命令未执行","局面无法校验，请重新选择");return;}
+        tacticPreview=preview;boolean[] submitted={false};
+        tacticConfirmation=()->{
+            if(submitted[0])return;submitted[0]=true;
+            try{if(!currentWorld(expected)||!Arrays.equals(before,SaveCodec.encode(world))){clearTacticPreview();refresh();message("命令未执行","局面已变化，请重新选择目标；本次未扣资源。");return;}}
+            catch(IOException e){clearTacticPreview();refresh();message("命令未执行","局面校验失败");return;}
+            clearTacticPreview();execute.run();
+        };
+        ui.panelVisible=false;refresh();
+    }
+    private void clearTacticPreview(){tacticPreview=null;tacticConfirmation=null;if(map!=null)map.setTacticPreview(null);}
+    private void locateBattleReport(){
+        if(reportLocation==null||battleReportWorld!=world)return;
+        reportReturn=new Bundle();writeClientState(reportReturn);mapPick=null;pickTargets=Collections.emptySet();clearTacticPreview();
+        // A historical event points to its coordinate, never a potentially replaced unit ID.
+        selected=reportLocation;ui.selectedUnit=-2;moving=-1;ui.page="map";ui.panelVisible=false;refresh();map.post(()->map.focus(reportLocation));
+    }
+    private void returnFromBattleReport(){
+        Bundle saved=reportReturn;reportReturn=null;if(saved==null)return;ui.read(saved);moving=saved.getInt("moving",-1);selected=new Hex(saved.getInt("selectedQ",-1),saved.getInt("selectedR",-1));if(!world.inside(selected))selected=null;
+        pendingMarch=null;unitCommand="select";refresh();map.restoreCamera(saved);
+    }
     void applyResult(World.Result result){apply(result);}
     private void apply(World.Result result){
         if(!result.ok)message("命令未执行",result.message);
-        if(result.ok){pendingMarch=null;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();pickTitle="";}
-        if(result.ok&&result.feedback==World.Feedback.NONE)Toast.makeText(this,result.message,Toast.LENGTH_SHORT).show();
+        if(result.ok){clearTacticPreview();pendingMarch=null;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();pickTitle="";}
+        if(result.ok&&result.feedback==World.Feedback.NONE){lastBattleReport=result.message;battleReportWorld=world;reportLocation=null;battleBanner.setText("结果 · 点此展开\n"+result.message);battleBanner.setVisibility(View.VISIBLE);}
         if(result.ok&&result.feedback!=World.Feedback.NONE){
-            lastBattleReport=result.message;battleReportWorld=world;
-            battleBanner.setText((result.feedback==World.Feedback.DEFEAT?"击破战果 · ":"战斗 · ")+result.message+"  · 点此详情");
+            lastBattleReport=result.message;battleReportWorld=world;reportLocation=result.impact;
+            battleBanner.setText((result.feedback==World.Feedback.DEFEAT?"击破战果":"战斗")+" · 点此展开\n"+result.message);
             battleBanner.setVisibility(View.VISIBLE);
             map.battleFeedback(result,getPreferences(MODE_PRIVATE).getBoolean("battleHaptics",true));
         }
@@ -325,7 +356,7 @@ public final class MainActivity extends Activity {
         if(result.ok&&world.gameOver())message(world.winner==world.player?"战场胜利":"战场战败","本局结束，可从菜单重新选择剧本。");
     }
     void refresh(){
-        if(battleReportWorld!=world){battleReportWorld=world;lastBattleReport="";battleBanner.setVisibility(View.GONE);}
+        if(battleReportWorld!=world){battleReportWorld=world;lastBattleReport="";reportLocation=null;reportReturn=null;clearTacticPreview();battleBanner.setVisibility(View.GONE);}
         if(ui.city>=0&&world.city(ui.city)==null)ui.city=-1;
         if(ui.cityDistrict>0&&world.districts.get(ui.cityDistrict)==null)ui.cityDistrict=-1;
         if(ui.owner>=world.factions.length)ui.owner=-1;
@@ -357,7 +388,7 @@ public final class MainActivity extends Activity {
         else if(ui.page.equals("tasks"))panelHost.addView(new OverviewUi(this,world,ui).tasks());
         else {panelHost.addView(panelScroll);if(ui.page.equals("menu"))showMenu();else showSelection();}
         map.setRoute(pendingMarch!=null?pendingMarch:world.unit(moving)!=null&&world.unit(moving).march!=null?world.marches.current(world.unit(moving)):null);
-        map.setPickTargets(mapPick==null?null:pickTargets);
+        map.setPickTargets(mapPick==null?null:pickTargets);map.setTacticPreview(tacticPreview);
         map.setEnabled(!aiRunning&&!world.commandsBlocked());refreshCommandDock();layoutPanels();
     }
     private void previewMarch(World.Unit unit,Hex target){
@@ -366,6 +397,17 @@ public final class MainActivity extends Activity {
     }
     private void refreshCommandDock(){
         commandDock.removeAllViews();World.Unit u=world.unit(moving);
+        if(tacticPreview!=null){
+            commandDock.setVisibility(View.VISIBLE);commandDock.setOrientation(portrait()?LinearLayout.VERTICAL:LinearLayout.HORIZONTAL);
+            ScrollView scroll=new ScrollView(this);scroll.addView(text(tacticPreview.text+"\n地图：青箭头己方，橙箭头目标，红叉阻挡，橙圈可能风险。",13,paper));
+            int height=dp(portrait()?132:112);commandDock.addView(scroll,new LinearLayout.LayoutParams(portrait()?-1:0,height,portrait()?0:1));
+            LinearLayout actions=new LinearLayout(this);Runnable confirm=tacticConfirmation;
+            actions.addView(button("取消",v->{clearTacticPreview();refresh();}),new LinearLayout.LayoutParams(0,dp(48),1));
+            actions.addView(button("执行",v->confirm.run()),new LinearLayout.LayoutParams(0,dp(48),1));
+            commandDock.addView(actions,new LinearLayout.LayoutParams(portrait()?-1:dp(180),-2));return;
+        }
+        if(reportReturn!=null){commandDock.setVisibility(View.VISIBLE);commandDock.setOrientation(LinearLayout.HORIZONTAL);commandDock.addView(text("历史战果地点 "+reportLocation,13,paper),new LinearLayout.LayoutParams(0,-2,1));commandDock.addView(button("返回定位前",v->returnFromBattleReport()),new LinearLayout.LayoutParams(dp(120),dp(48)));return;}
+
         if(mapPick!=null){
             commandDock.setVisibility(View.VISIBLE);commandDock.setOrientation(LinearLayout.HORIZONTAL);
             TextView hint=text(pickTitle+" · 点选高亮地块（"+pickTargets.size()+"处）",13,gold);hint.setMaxLines(2);
@@ -629,7 +671,7 @@ public final class MainActivity extends Activity {
         action("本旬结算摘要",v->showTurnReport());
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.28 · 手机操作体验","全国标签避让、低干扰领地色、紧凑详情与城池快捷命令。\n点选查看 → 命令 → 地图目标 → 预览 → 确认；待行动前后切换、同格对象选择、可查看禁用原因。\n出征/运输数量草稿、返回全国列表、可展开旬报和恢复反馈。\n沿用v0.27地图运输、补给、护送/截击与72旬经营；存档v21，兼容旧档。\n全国原版逐格地图、官方完整剧本、全事件和精确公式仍有缺口。精确运输参数、高级运输船型和复杂路口协同未完成。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.29 · 战法位移与操作反馈","逐格位移检查、可取消地图战法预览、具体阻挡原因与分项战果。\n出征选将/兵装/数量完整草稿与返回修改。\n沿用全国标签避让、低干扰领地色、紧凑详情与城池快捷命令。\n点选查看 → 命令 → 地图目标 → 预览 → 确认；待行动前后切换、同格对象选择、可查看禁用原因。\n出征/运输数量草稿、返回全国列表、可展开旬报和恢复反馈。\n沿用v0.27地图运输、补给、护送/截击与72旬经营；存档v21，兼容旧档。\n全国原版逐格地图、官方完整剧本、全事件和精确公式仍有缺口。精确运输参数、高级运输船型和复杂路口协同未完成。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}
@@ -765,6 +807,8 @@ public final class MainActivity extends Activity {
     @Override protected void onPause(){super.onPause();if(world!=null){save("auto",false);persistClientState();}}
     @Override public void onBackPressed(){
         if(aiRunning)return;
+        if(tacticPreview!=null){clearTacticPreview();refresh();return;}
+        if(reportReturn!=null){returnFromBattleReport();return;}
         if(mapPick!=null){cancelMapPick();return;}
         if(pendingMarch!=null){pendingMarch=null;unitCommand="select";refresh();return;}
         if(!unitCommand.equals("select")){unitCommand="select";refresh();return;}

@@ -154,11 +154,19 @@ public final class Army {
     }
     public int tacticChance(int unit){World.Unit u=w.unit(unit);return u==null?0:!water(u.hex)&&siegeWeapon(u.weapon)?100:Math.min(95,75+aptitude(u)*5);}
     public int tacticChance(int unit,Hex target){World.Unit enemy=w.unitAt(target);return enemy!=null&&enemy.status!=War.Status.NORMAL?100:tacticChance(unit);}
+    public Displacement.Preview tacticPreview(int unit,Hex target,Tactic tactic){
+        World.Unit a=w.unit(unit),b=w.unitAt(target);String error=tacticError(unit,target,tactic);
+        String heading=(tactic==null?"未选择战法":tactic.label+" · 消耗气力"+tactic.energy)+" / 当前"+(a==null?0:a.energy)+"\n命中率"+tacticChance(unit,target)+"%；失败同样消耗气力和本旬行动。\n目标："+target;
+        if(a!=null&&tactic!=null)heading+="\n射程：1–"+(tactic==Tactic.RAM?1:w.war.range(a))+"格；效果："+tactic.effect;
+        World.City city=w.cityAt(target);War.Structure structure=w.war.at(target);Domestic.Facility facility=w.domestic.at(target);
+        heading+="\n实际对象："+(b!=null?w.officer(b.officerId).name:city!=null?city.name:structure!=null?structure.kind.label:facility!=null?facility.kind.label:"无");
+        return w.war.displacement.preview(a,b,tactic==Tactic.RAM&&a!=null&&water(a.hex)?Displacement.Kind.NAVAL:Displacement.Kind.NONE,error,heading);
+    }
     public World.Result tactic(int unit,Hex target,Tactic tactic){
         String error=tacticError(unit,target,tactic);if(error!=null)return w.fail(error);
         World.Unit u=w.unit(unit),enemy=w.unitAt(target);World.City city=w.cityAt(target);
         u.acted=true;u.energy-=tactic.energy;w.battleImpact(target,false);
-        if(tacticChance(unit,target)<100&&w.strategy.nextInt(100)>=tacticChance(unit,target))return w.success(tactic.label+"未命中，气力已消耗");
+        if(tacticChance(unit,target)<100&&w.strategy.nextInt(100)>=tacticChance(unit,target))return w.success(tactic.label+"未命中，消耗气力"+tactic.energy+"，本旬行动结束");
         if(city!=null)return w.resolveSiege(u,city,true,tactic==Tactic.STONE);
         Domestic.Facility facility=w.domestic.at(target);
         if(facility!=null){
@@ -179,12 +187,9 @@ public final class Army {
         enemy.troops-=amount;w.skills.onHit(u,enemy,amount,true);
         if(enemy.troops==0)w.defeatUnit(enemy,u);
         else if((tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)&&!w.skills.has(enemy,Skill.HUOSHEN)){enemy.burning=2;enemy.burningOwner=u.owner;enemy.burningPower=w.skills.has(u,Skill.HUOSHEN)?2:1;}
-        else if(tactic==Tactic.RAM&&water(u.hex)){
-            Hex next=new Hex(target.q+target.q-u.hex.q,target.r+target.r-u.hex.r);
-            if(water(next)&&w.unitAt(next)==null&&w.cityAt(next)==null&&w.domestic.at(next)==null&&w.war.at(next)==null)enemy.hex=next;
-        }
+        if(tactic==Tactic.RAM&&water(u.hex))w.war.displacement.execute(u,enemy,u.hex,target,Displacement.Kind.NAVAL);
         if(tactic==Tactic.STONE)w.fieldworks.stoneSplash(u,target);
-        w.campaign.earn(u.owner,enemy.troops==0&&w.skills.has(u,Skill.JINGMIAO)?80:40);w.checkVictory();return w.success(tactic.label+"命中，敌损"+amount);
+        w.campaign.earn(u.owner,enemy.troops==0&&w.skills.has(u,Skill.JINGMIAO)?80:40);w.checkVictory();return w.success(tactic.label+"命中，主伤害"+amount+"，消耗气力"+tactic.energy+"，本旬行动结束");
     }
     public World.Result extinguish(int unit){World.Unit u=w.unit(unit);
         if(w.commandsBlocked()||w.gameOver()||u==null||u.owner!=w.active||u.acted||u.status!=War.Status.NORMAL||u.burning==0||u.energy<5)return w.fail("需要可行动且正在燃烧的己方部队，消耗5气力");

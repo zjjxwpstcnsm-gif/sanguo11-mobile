@@ -124,6 +124,7 @@ public final class CampaignAi {
                 best=better(best,action(Kind.JOINT,a,b.id,b.hex,score,"比较齐攻歼灭收益与协攻部队行动代价"));
             }
             for(War.Tactic t:War.Tactic.values())if(w.war.tacticError(a.id,b.id,t)==null){
+                if(w.war.tacticPreview(a.id,b.id,t).friendlyRisk)continue;
                 int hit=value(b,damage(a,b,t.multiplier,true));boolean friendly=false;
                 for(World.Unit other:units())if(other.id!=b.id&&other.id!=a.id&&splash(t,a.hex,b.hex,other.hex)){
                     if(t==War.Tactic.VOLLEY&&other.owner==a.owner&&!w.skills.has(a,Skill.GONGSHEN)){friendly=true;break;}
@@ -135,6 +136,7 @@ public final class CampaignAi {
                 best=better(best,new Action(Kind.TACTIC,a.id,b.id,b.hex,score,t,null,null,"按命中与范围收益选择战法"));
             }
             for(Army.Tactic t:w.army.tactics(a))if(w.army.tacticError(a.id,b.hex,t)==null){
+                if(w.army.tacticPreview(a.id,b.hex,t).friendlyRisk)continue;
                 if(t==Army.Tactic.STONE&&w.campaign.has(a.owner,Campaign.Tech.THUNDERBOLT)&&ownAssetsNear(a,b.hex))continue;
                 int score=value(b,damage(a,b,t==Army.Tactic.STONE?1.5:1.3,true))*w.army.tacticChance(a.id,b.hex)/100-t.energy*8;
                 best=better(best,new Action(Kind.ARMY_TACTIC,a.id,b.id,b.hex,score,null,t,null,"兵器与水军选择有效战法"));

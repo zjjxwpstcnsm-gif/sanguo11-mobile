@@ -58,7 +58,8 @@ public final class War {
         Structure(int id,int owner,StructureKind kind,Hex hex,int hp){this.id=id;this.owner=owner;this.kind=kind;this.hex=hex;this.hp=hp;}
     }
     final World w;final List<Fire> fires=new ArrayList<>();final List<Structure> structures=new ArrayList<>();int nextStructureId=1;
-    War(World w){this.w=w;}
+    final Displacement displacement;
+    War(World w){this.w=w;displacement=new Displacement(w);}
     public List<Fire> fires(){return Collections.unmodifiableList(fires);}
     public List<Structure> structures(){return Collections.unmodifiableList(structures);}
     public Fire fireAt(Hex h){for(Fire f:fires)if(f.hex.equals(h))return f;return null;}
@@ -87,10 +88,13 @@ public final class War {
         return Math.max(1,amount);
     }
     private Random random(){return new Random(w.strategy.nextInt(Integer.MAX_VALUE));}
-    private void hurt(World.Unit u,int damage){if(w.unit(u.id)==null)return;u.troops=Math.max(0,u.troops-damage);if(u.troops==0)w.removeUnit(u);}
-    private void collision(World.Unit target,int damage,World.Unit source){
-        if(w.unit(target.id)==null)return;
-        target.troops=Math.max(0,target.troops-damage);w.battleImpact(target.hex,false);
+    private void hurt(World.Unit u,int damage){if(w.unit(u.id)!=u)return;u.troops=Math.max(0,u.troops-damage);if(u.troops==0)w.removeUnit(u);}
+    // Inherited v0.8 engineering parameter; not a verified original-game formula.
+    private static final int LEGACY_COLLISION_DAMAGE=100;
+    void collision(World.Unit target,World.Unit source){
+        if(w.unit(target.id)!=target)return;
+        int damage=Math.min(target.troops,LEGACY_COLLISION_DAMAGE);target.troops-=damage;w.battleImpact(target.hex,false);
+        w.battleOutcome(w.officer(target.officerId).name+"碰撞损失"+damage+"（工程参数）");
         if(target.troops==0)w.defeatUnit(target,source);
     }
     int physicalDamage(World.Unit a,World.Unit b,double scale,boolean tactic,Random rng){
@@ -167,14 +171,9 @@ public final class War {
         if(a.weapon==World.Weapon.CROSSBOW&&w.terrain[b.hex.q][b.hex.r]==World.Terrain.FOREST&&!w.skills.has(a,Skill.SHESHOU))return "射向森林需要射手特技";
         if(tactic==Tactic.PIERCE&&direction(a.hex,b.hex)==null)return "贯射需要直线目标";
         if(w.army.water(b.hex)&&(tactic==Tactic.HOOK||tactic==Tactic.THRUST||tactic==Tactic.DOUBLE_THRUST||tactic==Tactic.CHARGE||tactic==Tactic.ADVANCE||tactic==Tactic.BREAKTHROUGH))return "位移战法不能跨越水陆边界";
-        if(tactic==Tactic.HOOK&&!vacant(add(a.hex,-(b.hex.q-a.hex.q),-(b.hex.r-a.hex.r)),a.weapon))return "熊手后退位置被阻挡";
-        if(tactic==Tactic.BREAKTHROUGH&&!vacant(add(b.hex,b.hex.q-a.hex.q,b.hex.r-a.hex.r),a.weapon))return "敌军身后没有可用格";
-        return null;
+        return displacement.requiredError(a,b,Displacement.kind(tactic));
     }
-    public World.Result tactic(int actor,int target,Tactic tactic){
-        String error=tacticError(actor,target,tactic);if(error!=null)return w.fail(error);
-        World.Unit a=w.unit(actor),b=w.unit(target);int chance=tacticChance(actor,target,tactic);a.acted=true;a.energy-=tactic.energy;w.battleImpact(b.hex,false);
-        if(w.strategy.nextInt(100)>=chance)return w.success(w.officer(a.officerId).name+"的"+tactic.label+"未命中，气力已消耗");
+    private List<World.Unit> tacticVictims(World.Unit a,World.Unit b,Tactic tactic){
         Hex origin=a.hex,targetHex=b.hex;List<World.Unit> victims=new ArrayList<>();victims.add(b);
         for(World.Unit u:new ArrayList<>(w.fieldUnits()))if(u.id!=b.id&&u.id!=a.id&&(w.campaign.hostile(a.owner,u.owner)||tactic==Tactic.VOLLEY&&u.owner==a.owner&&!w.skills.has(a,Skill.GONGSHEN))){
             boolean splash=tactic==Tactic.WHIRLWIND&&origin.distance(u.hex)==1
@@ -183,19 +182,35 @@ public final class War {
             int[] ray=direction(origin,targetHex);if(tactic==Tactic.PIERCE&&ray!=null&&u.hex.equals(add(targetHex,ray[0],ray[1])))splash=true;
             if(splash)victims.add(u);
         }
+        return victims;
+    }
+    public Displacement.Preview tacticPreview(int actor,int target,Tactic tactic){
+        World.Unit a=w.unit(actor),b=w.unit(target);String error=tacticError(actor,target,tactic);
+        String heading=tactic==null?"未选择战法":tactic.label+" · 消耗气力"+tactic.energy+" / 当前"+(a==null?0:a.energy)+"\n命中率"+tacticChance(actor,target,tactic)+"%；命中或失败均结束本旬行动，失败同样扣气力。";
+        if(b!=null)heading+="\n实际目标："+w.officer(b.officerId).name+" · "+b.hex;
+        if(tactic!=null)heading+="\n射程："+tactic.minRange+"–"+(tactic.maxRange+(a!=null&&a.weapon==World.Weapon.CROSSBOW?range(a)-a.weapon.range:0))+"格；效果："+tactic.effect;
+        Displacement.Preview p=displacement.preview(a,b,Displacement.kind(tactic),error,heading);
+        if(error!=null)return p;
+        List<Hex> risks=new ArrayList<>(p.riskHexes);boolean friendly=p.friendlyRisk;StringBuilder text=new StringBuilder(p.text);
+        List<World.Unit> victims=tacticVictims(a,b,tactic);if(victims.size()>1){text.append("\n命中时波及：");for(World.Unit v:victims){text.append(w.officer(v.officerId).name).append("@").append(v.hex).append(" ");risks.add(v.hex);if(v.owner==a.owner)friendly=true;}}
+        if(friendly&&!p.friendlyRisk)text.append("\n警示：范围伤害会波及己方部队。");
+        return new Displacement.Preview(null,text.toString(),p.actorPath,p.targetPath,risks,p.blocked,friendly);
+    }
+    public World.Result tactic(int actor,int target,Tactic tactic){
+        String error=tacticError(actor,target,tactic);if(error!=null)return w.fail(error);
+        World.Unit a=w.unit(actor),b=w.unit(target);int chance=tacticChance(actor,target,tactic);a.acted=true;a.energy-=tactic.energy;w.battleImpact(b.hex,false);
+        if(w.strategy.nextInt(100)>=chance)return w.success(w.officer(a.officerId).name+"的"+tactic.label+"未命中，消耗气力"+tactic.energy+"，本旬行动结束");
+        Hex origin=a.hex,targetHex=b.hex;List<World.Unit> victims=tacticVictims(a,b,tactic);
         double multiplier=tactic.multiplier;
-        int dealt=0;for(World.Unit victim:victims){int hit=strike(a,victim,multiplier,true);dealt+=hit;}
+        int dealt=0;for(World.Unit victim:victims){if(w.unit(a.id)!=a||w.unit(victim.id)!=victim)continue;int hit=strike(a,victim,multiplier,true);dealt+=hit;}
         switch(tactic){
-            case THRUST:push(a,b,origin,targetHex,1,false);break;case DOUBLE_THRUST:push(a,b,origin,targetHex,2,false);break;
-            case CHARGE:push(a,b,origin,targetHex,1,true);break;case ADVANCE:push(a,b,origin,targetHex,2,true);break;
+            case THRUST:case DOUBLE_THRUST:case CHARGE:case ADVANCE:case HOOK:case BREAKTHROUGH:displacement.execute(a,b,origin,targetHex,Displacement.kind(tactic));break;
             case SPIRAL:if(w.unit(b.id)!=null){b.status=Status.CONFUSED;b.statusTurns=w.skills.critical(a,b,true)?2:1;}break;
-            case HOOK:a.hex=add(origin,-(targetHex.q-origin.q),-(targetHex.r-origin.r));if(w.unit(b.id)!=null)b.hex=origin;break;
-            case BREAKTHROUGH:a.hex=add(targetHex,targetHex.q-origin.q,targetHex.r-origin.r);break;
             case FIRE_ARROW:ignite(targetHex,a);break;default:break;
         }
-        if(!a.hex.equals(origin)||!b.hex.equals(targetHex))w.skills.woundAfterDisplacement(a,b);
-        if(w.unit(b.id)!=null&&a.weapon==World.Weapon.CAVALRY&&w.skills.swiftConfusion(a,b)){b.status=Status.CONFUSED;b.statusTurns=1;}
-        w.campaign.earn(a.owner,w.unit(b.id)==null&&w.skills.has(a,Skill.JINGMIAO)?80:40);w.checkVictory();return w.success(w.officer(a.officerId).name+"施展"+tactic.label+"，命中"+victims.size()+"队，敌损"+dealt);
+        if(w.unit(a.id)==a&&w.unit(b.id)==b&&(!a.hex.equals(origin)||!b.hex.equals(targetHex)))w.skills.woundAfterDisplacement(a,b);
+        if(w.unit(a.id)==a&&w.unit(b.id)==b&&a.weapon==World.Weapon.CAVALRY&&w.skills.swiftConfusion(a,b)){b.status=Status.CONFUSED;b.statusTurns=1;}
+        w.campaign.earn(a.owner,w.unit(b.id)==null&&w.skills.has(a,Skill.JINGMIAO)?80:40);w.checkVictory();return w.success(w.officer(a.officerId).name+"施展"+tactic.label+"，命中"+victims.size()+"队，主伤害"+dealt+"，消耗气力"+tactic.energy+"，本旬行动结束");
     }
     private static Hex add(Hex h,int q,int r){return new Hex(h.q+q,h.r+r);}
     private static int[] direction(Hex a,Hex b){
@@ -204,15 +219,6 @@ public final class War {
         Hex step=new Hex(dq/distance,dr/distance);return new Hex(0,0).distance(step)==1?new int[]{step.q,step.r}:null;
     }
     private boolean vacant(Hex h,World.Weapon weapon){return w.cost(h,weapon)>0&&w.cityAt(h)==null&&w.unitAt(h)==null&&w.domestic.at(h)==null&&at(h)==null;}
-    private void push(World.Unit a,World.Unit b,Hex origin,Hex target,int steps,boolean follow){
-        int dq=target.q-origin.q,dr=target.r-origin.r;
-        for(int i=0;i<steps&&w.unit(b.id)!=null;i++){
-            Hex old=b.hex,next=add(old,dq,dr);Structure trap=at(next);
-            if(trap!=null&&trap.complete&&w.fieldworks.trap(trap.kind)&&w.campaign.hostile(a.owner,trap.owner)){b.hex=next;ignite(next,a);if(follow)a.hex=old;continue;}
-            if(!vacant(next,b.weapon)){World.Unit collision=w.unitAt(next);collision(b,100,a);if(collision!=null&&(collision.owner==a.owner||w.campaign.hostile(a.owner,collision.owner)))collision(collision,100,a);break;}b.hex=next;if(follow)a.hex=old;
-        }
-        if(follow&&w.unit(b.id)==null&&vacant(target,a.weapon))a.hex=target;
-    }
     public int plotChance(int actor,Hex target,Plot plot){
         World.Unit a=w.unit(actor),b=target==null?null:w.unitAt(target);if(a==null||plot==null)return 0;
         if(w.advancedBattle.magic(plot))return w.advancedBattle.magicChance(a,b,plot);

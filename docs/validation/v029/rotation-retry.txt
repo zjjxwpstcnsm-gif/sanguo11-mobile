@@ -1,0 +1,25 @@
+CI35128269155 attempt1 / job104902611865 / runtime37ac1cc
+Failure: personnelFlow after Activity restart, UI content not reachable by scrolling: 导航 · 城市
+The restored save assertion passed before this navigation click. Log records portrait→landscape window switch and touch injection dropped at old portrait coordinate (100,2205). No app FATAL EXCEPTION or ANR.
+
+09-16 17:46:05.739  1923  3573 I ActivityTaskManager: START u0 {flg=0x10008000 cmp=game.sanguo.mobile.dev/game.sanguo.mobile.MainActivity} from uid 10116
+09-16 17:46:05.785  1923  3533 I ActivityTaskManager: Config changes=20000480 {1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h842dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2274) mWindowingMode=fullscreen mDisplayWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} s.907}
+09-16 17:46:06.427  1923  1943 I ActivityTaskManager: Config changes=20000480 {1.0 310mcc260mnc [en_US] ldltr sw411dp w866dp h387dp 420dpi nrml long land finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 2400, 1080) mAppBounds=Rect(0, 0 - 2274, 1080) mWindowingMode=fullscreen mDisplayWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_90} s.935}
+09-16 17:46:06.427  1923  1943 I chatty  : uid=1000(system) android.display identical 8 lines
+09-16 17:46:06.427  1923  1943 W InputReader: Device has associated, but no associated display id.
+09-16 17:46:06.789  1923  2009 I InputDispatcher: Dropping event because there is no touchable window or gesture monitor at (100, 2205) in display 0.
+09-16 17:46:06.789  1923  2009 W InputDispatcher: Permission denied: injecting event from pid 3282 uid 10116
+09-16 17:46:06.793  1923  3533 W InputManager: Input event injection from pid 3282 failed.
+09-16 17:46:06.793  1923  1944 I WindowManager: Screen frozen for +409ms due to Window{763a0d1 u0 StatusBar}
+
+CI35130621921 / job104910632750 / f0df381
+The same orientation transition affected the other CLEAR_TASK restart, in strategicFlow before endTurn. Added the same window check to both existing CLEAR_TASK sites. All save and turn assertions remain.
+09-16 18:07:31.982  1918  3044 I ActivityTaskManager: START u0 {flg=0x10008000 cmp=game.sanguo.mobile.dev/game.sanguo.mobile.MainActivity} from uid 10116
+09-16 18:07:32.029  1918  3029 I ActivityTaskManager: Config changes=20000480 {1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h842dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2274) mWindowingMode=fullscreen mDisplayWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} s.853}
+09-16 18:07:32.641  1918  1938 I ActivityTaskManager: Config changes=20000480 {1.0 310mcc260mnc [en_US] ldltr sw411dp w866dp h387dp 420dpi nrml long land finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 2400, 1080) mAppBounds=Rect(0, 0 - 2274, 1080) mWindowingMode=fullscreen mDisplayWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_90} s.881}
+09-16 18:07:33.058  1918  2004 I InputDispatcher: Dropping event because there is no touchable window or gesture monitor at (927, 2205) in display 0.
+09-16 18:07:33.058  1918  2004 W InputDispatcher: Permission denied: injecting event from pid 3243 uid 10116
+09-16 18:07:33.058  1918  2161 W InputManager: Input event injection from pid 3243 failed.
+09-16 18:07:33.062  1918  2161 W InputManager: Input event injection from pid 3243 failed.
+09-16 18:07:33.062  1918  2004 W InputDispatcher: Permission denied: injecting event from pid 3243 uid 10116
+09-16 18:07:46.211  1918  2877 I ActivityTaskManager: Config changes=20000480 {1.0 310mcc260mnc [en_US] ldltr sw411dp w411dp h842dp 420dpi nrml long port finger qwerty/v/v -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 0 - 1080, 2274) mWindowingMode=fullscreen mDisplayWindowingMode=fullscreen mActivityType=undefined mAlwaysOnTop=undefined mRotation=ROTATION_0} s.909}
