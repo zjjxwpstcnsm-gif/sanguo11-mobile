@@ -1,10 +1,16 @@
 # sanguo11-mobile
 
-当前增量：**v0.24 领地与军团AI**。领地着色、前线定位、快捷托管与接敌修复见[说明](docs/TERRITORY_AI_V0_24.md)，验收状态见[进度](progress.md)。
+当前增量：**v0.25 战略AI与全国管理**。持续攻防任务、军团人才/物资经营、全国筛选及批量编制见[说明](docs/STRATEGIC_MANAGEMENT_V0_25.md)，[验收记录](docs/validation/v025/README.md)。
 
 独立运行的 Android 三国回合制策略游戏工程，最终目标参照 **PC《三国志11＋威力加强版》** 的完整系统范围。横竖屏、中文、离线游玩；不依赖模拟器、原版可执行文件或远程串流。
 
 ## 当前状态
+
+v0.25 增加保存的战略意图、集结/守备、器械让路、军团调将与物资需求计算、经营设置和报告、全国筛选与批量编制。写存档v19并兼容旧档，仍未100%还原。[实现与规则边界](docs/STRATEGIC_MANAGEMENT_V0_25.md)。
+
+[最新APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35069101123/artifacts/10436410691)对应`f194ee2`；[完整CI](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35069101123)已通过核心/UI/内容、构建/Lint、API29三屏横竖屏操作及v0.9覆盖升级。105条新增经营断言、352份源码与403张截图已核对，固定签名、v19旧档迁移及APK摘要见[验收记录](docs/validation/v025/README.md)。Lint0错误/21警告，ARM真机未验。
+
+## v0.24 历史状态
 
 v0.24 已实现领地着色、前线定位、军团快捷托管和接敌修复。全部核心/UI/内容回归、Android构建/Lint、API29三屏横竖屏安装操作及v0.9覆盖升级通过。[APK与验收记录](docs/validation/v024/README.md)。详见[本轮规则与边界](docs/TERRITORY_AI_V0_24.md)。**仍未达到100%还原**。
 
@@ -143,7 +149,7 @@ v0.8 Agent 1 开发分支新增移动确认与移动后行动、部分真实特�
 
 Android 构建：安装 JDK 17、Android SDK 35、Build Tools 35.0.0、Gradle 8.11.1，然后运行 `./gradlew test :core:check :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`。已提交固定 Gradle 8.11.1 及 SHA-256 的 Wrapper。
 
-APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-v022-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
+APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-v025-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
 
 验证范围与待验项目见 [VALIDATION.md](docs/VALIDATION.md)。
 

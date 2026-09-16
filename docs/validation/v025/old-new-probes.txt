@@ -1,0 +1,14 @@
+v0.24 / 7f1408c, staff: exit 1
+Exception in thread "main" java.lang.AssertionError: vacant district city never receives an actual officer transfer
+	at game.sanguo.core.StrategicRegressionProbe.main(StrategicRegressionProbe.java:13)
+
+v0.24 / 7f1408c, objective: exit 1
+Exception in thread "main" java.lang.AssertionError: city-target restriction bypassed by economic facility raid
+	at game.sanguo.core.StrategicRegressionProbe.main(StrategicRegressionProbe.java:18)
+
+v0.25 working tree, staff: exit 0
+PASS: staff
+
+v0.25 working tree, objective: exit 0
+PASS: objective
+

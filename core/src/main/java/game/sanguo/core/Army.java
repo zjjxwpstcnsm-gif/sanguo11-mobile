@@ -57,6 +57,7 @@ public final class Army {
     public World.Result deploy(int city,int commander,int[] deputies,World.Weapon weapon,Ship ship,int troops,int food){return deploy(city,commander,deputies,weapon,ship,troops,food,0);}
     public World.Result deploy(int city,int commander,int[] deputies,World.Weapon weapon,Ship ship,int troops,int food,int gold){
         World.City c=w.city(city);World.Officer leader=w.officer(commander);String error=w.cityError(c,leader,0);if(error!=null)return w.fail(error);
+        if(w.districts.reserveError(c,gold,food,troops)!=null)return w.fail(w.districts.reserveError(c,gold,food,troops));
         if(gold<0||gold>10000||c.gold<gold)return w.fail("携金须为0至10000，且据点有足够金");
         if(weapon==null||ship==null||deputies==null||deputies.length>2)return w.fail("请选择主将、至多两名副将及有效兵装舰船");
         if(troops<1000||troops>w.government.commandLimit(commander)||food<troops||food>1000000)return w.fail("兵力1000至"+w.government.commandLimit(commander)+"，携粮至少与兵力相同且不超过100万");
@@ -77,6 +78,7 @@ public final class Army {
     public String productionError(int city,int officer,World.Weapon weapon,Ship ship){
         if((weapon==null)==(ship==null)||weapon!=null&&!siegeWeapon(weapon)||ship==Ship.BOAT)return "请选择攻城器械或高级舰船";
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,weapon!=null?productionGold(weapon):ship.gold);if(error!=null)return error;
+        if(w.districts.productionError(city)!=null)return w.districts.productionError(city);
         Domestic.Kind facility=weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD;
         if(!completed(city,facility))return "需要已建成的"+facility.label;
         Campaign.Tech tech=weapon==World.Weapon.WOODEN_BEAST?Campaign.Tech.WOODEN_BEAST:weapon==World.Weapon.CATAPULT?Campaign.Tech.CATAPULT:ship==Ship.WARSHIP?Campaign.Tech.WARSHIP:null;

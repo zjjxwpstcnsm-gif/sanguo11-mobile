@@ -175,6 +175,8 @@ public final class Domestic {
     private World.Result dispatch(int source,int target,int officer,boolean cargo,int gold,int food,int troops,int[] equipment,boolean sea){
         World.City c=w.city(source),d=w.city(target);World.Officer o=w.officer(officer);int fee=cargo?100:0;
         String error=w.cityError(c,o,fee);if(error!=null)return w.fail(error);
+        if(w.districts.dispatchError(source,target,cargo)!=null)return w.fail(w.districts.dispatchError(source,target,cargo));
+        if(cargo&&w.districts.reserveError(c,gold+fee,food,troops)!=null)return w.fail(w.districts.reserveError(c,gold+fee,food,troops));
         if(d==null||d.owner!=w.active||d.id==c.id)return w.fail("请选择另一座己方城池");
         if(!payload(gold,food,troops,equipment))return w.fail("运输数量越界");
         equipment=Arrays.copyOf(equipment,World.Weapon.values().length);

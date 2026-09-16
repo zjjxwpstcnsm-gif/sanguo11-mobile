@@ -68,7 +68,7 @@ public final class MarchOrdersTest {
     }
     private static void legacy()throws Exception {
         try(InputStream input=MarchOrdersTest.class.getResourceAsStream("/legacy-v12.sg11.b64")){
-            byte[] old=Base64.getMimeDecoder().decode(input.readAllBytes());check(old[7]==12,"fixture produced by actual v12 writer");World w=SaveCodec.decode(old);check(w.scenarioId.equals("estates-drill")&&w.units.stream().noneMatch(u->u.march!=null),"v12 gains no invented orders");check(bytes(w)[7]==18&&Arrays.equals(bytes(w),bytes(SaveCodec.decode(bytes(w)))),"v12 upgrades to stable v17");
+            byte[] old=Base64.getMimeDecoder().decode(input.readAllBytes());check(old[7]==12,"fixture produced by actual v12 writer");World w=SaveCodec.decode(old);check(w.scenarioId.equals("estates-drill")&&w.units.stream().noneMatch(u->u.march!=null),"v12 gains no invented orders");check(bytes(w)[7]==19&&Arrays.equals(bytes(w),bytes(SaveCodec.decode(bytes(w)))),"v12 upgrades to stable v17");
         }
     }
     private static void performance(){

@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=18, MAX_BYTES=4*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=19, MAX_BYTES=4*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -57,6 +57,7 @@ public final class SaveCodec {
         w.life.write(d);
         w.diplomacy.write(d);
         w.domestic.writeDurability(d);
+        w.aiOrders.write(d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
@@ -126,6 +127,7 @@ public final class SaveCodec {
         if(version>=15){w.sourceMapWidth=bounded(d.readInt(),0,200);w.life.read(d);}
         if(version>=17)w.diplomacy.read(d);
         if(version>=18)w.domestic.readDurability(d);
+        if(version>=19)w.aiOrders.read(d);
         count=bounded(d.readInt(),0,40);for(int i=0;i<count;i++)w.log.add(d.readUTF());
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         validate(w);return w;
@@ -135,6 +137,7 @@ public final class SaveCodec {
     private static int bounded(int n,int min,int max)throws IOException { if(n<min||n>max)throw new IOException("存档字段越界");return n; }
     private static void require(boolean ok,String message)throws IOException { if(!ok)throw new IOException(message); }
     public static void validate(World w)throws IOException {
+        w.aiOrders.validate();
         bounded(w.width,1,300);bounded(w.height,1,200);bounded(w.factions.length,2,32);
         bounded(w.active,0,w.factions.length-1);bounded(w.player,0,w.factions.length-1);bounded(w.turn,0,100000);bounded(w.winner,-1,w.factions.length-1);
         require(w.actionPoints.length==w.factions.length,"势力行动力缺失");

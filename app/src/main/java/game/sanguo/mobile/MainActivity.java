@@ -132,7 +132,7 @@ public final class MainActivity extends Activity {
     }
     private void showMapTools(){
         if(mapPick!=null)cancelMapPick();
-        String[] labels={"全图","定位","导航图","屏幕方向","战报","操作说明","战斗震动","兵种与建筑图例","领地着色 / 前线","势力领地图例","军团托管"};
+        String[] labels={"全图","定位","导航图","屏幕方向","战报","操作说明","战斗震动","兵种与建筑图例","领地着色 / 前线","势力领地图例","军团托管","全国城池总览"};
         new AlertDialog.Builder(this).setTitle("地图视图").setItems(labels,(d,index)->{
             if(aiRunning)return;
             if(index==0){closePanel();map.post(map::fit);}
@@ -146,6 +146,7 @@ public final class MainActivity extends Activity {
             else if(index==8)showTerritoryPicker();
             else if(index==9)showTerritoryLegend();
             else if(index==10)new WorldUi(this,world,this::apply).districts();
+            else if(index==11){ui.page="cities";ui.panelVisible=true;ui.panelExpanded=true;refresh();revealPanel();}
             else message("地图操作","单指拖动 · 双指缩放 · 双击城池定位\n点城池或部队打开指令，点空地或「收起」返回大地图。\n「功能」打开城市、武将、任务和存档菜单。\n竖屏使用底部面板，横屏使用右侧面板；「展开」可查看更多内容。\n选中部队即显示青色行动范围和红色攻击目标。先点「行军」再点目标预览路线；「攻击」「战法」「计略」在固定底栏。普通点空地、再点本队或「取消选中」可解除选择。返回键依次取消路线、指令、选中。");
         }).setNegativeButton("返回",null).show();
     }
@@ -165,7 +166,7 @@ public final class MainActivity extends Activity {
     }
     private void showTerritoryLegend(){
         LinearLayout list=new LinearLayout(this);list.setOrientation(LinearLayout.VERTICAL);list.setPadding(dp(20),dp(10),dp(20),dp(10));
-        TextView help=text("半透明色块表示辖区，红圈标记与交战势力接壤的据点。点据点可查看辖区与邻接关系。",14,paper);list.addView(help);
+        TextView help=text("半透明色块表示辖区，橙圈为与交战势力接壤的前线，红色!为已有敌军逼近。点据点可查看辖区与邻接关系。",14,paper);list.addView(help);
         for(int owner=-1;owner<world.factions.length;owner++){
             int count=0,front=0;for(World.City c:world.cities)if(c.owner==owner){count++;if(map.territory().frontline(c.id))front++;}
             if(count==0)continue;TextView row=text("■  "+world.faction(owner)+" · "+count+"据点 · 前线"+front,16,MapView.factionColor(owner));row.setPadding(0,dp(8),0,dp(8));list.addView(row);
@@ -290,6 +291,7 @@ public final class MainActivity extends Activity {
     void refresh(){
         if(battleReportWorld!=world){battleReportWorld=world;lastBattleReport="";battleBanner.setVisibility(View.GONE);}
         if(ui.city>=0&&world.city(ui.city)==null)ui.city=-1;
+        if(ui.cityDistrict>0&&world.districts.get(ui.cityDistrict)==null)ui.cityDistrict=-1;
         if(ui.owner>=world.factions.length)ui.owner=-1;
         if(ui.cityOwner>=world.factions.length)ui.cityOwner=-1;
         title.setText(world.scenarioName+"  ·  "+world.faction(world.player)+"\n"+world.date()+" · 行动力 "+world.actionPoints[world.player]+(aiRunning?" · 结算中…":""));
@@ -303,7 +305,7 @@ public final class MainActivity extends Activity {
         String selectedName=selected==null?"点选城池":world.cityAt(selected)!=null?world.cityAt(selected).name:world.unitAt(selected)!=null?world.officer(world.unitAt(selected).officerId).name:"地块";
         selectionButton.setText(selectedName+(panelShell.getVisibility()==View.VISIBLE?" · 收起":" · 指令"));
         selectionButton.setContentDescription("选中对象指令 · "+selectedName);selectionButton.setEnabled(mapPick==null&&!aiRunning&&!required);
-        panelTitle.setText(ui.page.equals("map")?selectedName+" · 指令":ui.page.equals("cities")?"城市":ui.page.equals("officers")?"武将":ui.page.equals("tasks")?"任务":ui.page.equals("menu")?"菜单":"资料");
+        panelTitle.setText(ui.page.equals("map")?selectedName+" · 指令":ui.page.equals("cities")?"城池一览":ui.page.equals("officers")?"武将":ui.page.equals("tasks")?"任务":ui.page.equals("menu")?"菜单":"资料");
         if(world.unit(moving)==null)moving=-1;
         map.setWorld(world,selected,moving);
         if(world.life.pending()&&!ui.page.equals("menu")){panelHost.addView(new LifecycleUi(this,world,this::apply).succession());}

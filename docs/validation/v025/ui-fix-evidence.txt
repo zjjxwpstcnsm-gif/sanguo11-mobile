@@ -1,0 +1,8 @@
+CI35067016386 / 9c35ccb: UI content not reachable by scrolling: 柴桑 · 孙权军
+Observed: saved scroll position began below the target; old helper bounced forward/back one page at the bottom.
+Fix: full reverse scan after reaching the bottom; assertions retained. Compact national controls preserve landscape list space.
+
+CI35068204479 / 1c15fa2: district really dispatched supply transport
+Observed in the unchanged world-drill scenario after 2 turns: source had 24000 troops, 3 residents, 6000 nearby enemies; blanket source threat check blocked explicitly requested cargo.
+Fixed with real convoy, source reserves and at least 2 residents. Same scenario after 2 turns on f194ee2: source 16000 troops, 2 residents, 6000 nearby enemies; actual mission 11 -> 10 present.
+StrategicManagementTest adds explicit-order dispatch and retained-garrison assertions; original installed-world assertion retained.

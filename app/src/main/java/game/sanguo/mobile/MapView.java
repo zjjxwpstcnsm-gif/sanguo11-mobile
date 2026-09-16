@@ -42,6 +42,7 @@ public final class MapView extends View {
     private Bitmap miniTerrain;
     private Bitmap miniTerritory;
     private Territory territory;
+    private final Set<Integer> threatenedCities=new HashSet<>();
     private final Path factionBorders=new Path(),siteBorders=new Path();
     private int territoryMode;
     private String territoryOwners="";
@@ -111,7 +112,8 @@ public final class MapView extends View {
         if(changed){tiles=new Hex[world.width][world.height];for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)tiles[q][r]=new Hex(q,r);}
         objectBuckets.clear();officerIndex.clear();cityIndex.clear();
         for(World.Officer o:world.officers)officerIndex.put(o.id,o);
-        for(World.City c:world.cities){cityIndex.put(c.id,c);index(c,c.hex);}
+        threatenedCities.clear();CampaignAi threatPlanner=new CampaignAi(world);
+        for(World.City c:world.cities){cityIndex.put(c.id,c);index(c,c.hex);if(threatPlanner.incoming(c)>0)threatenedCities.add(c.id);}
         for(World.Unit u:world.units)index(u,u.hex);
         for(Domestic.Facility f:world.domestic.facilities)index(f,f.hex);
         for(Domestic.Mission m:world.domestic.missions)index(m,m.hex);
@@ -266,7 +268,7 @@ public final class MapView extends View {
         }
         canvas.restore();
         if(territoryMode>0){
-            String caption=territoryMode==1?"势力范围 · 红圈为前线":"据点辖区 · 红圈为前线";
+            String caption=territoryMode==1?"势力范围 · 橙圈接壤 · 红!敌军逼近":"据点辖区 · 橙圈接壤 · 红!敌军逼近";
             int site=territory.siteAt(selected);World.City city=cityIndex.get(site);
             if(city!=null)caption=city.name+"辖区 · "+world.faction(city.owner)+(territory.frontline(site)?" · 前线":"");
             paint.setColor(0xe612272b);canvas.drawRoundRect(8*density,8*density,Math.min(getWidth()-8*density,258*density),38*density,6*density,6*density,paint);
@@ -302,7 +304,8 @@ public final class MapView extends View {
     }
     private void drawCity(Canvas c,World.City city){float scale=camera.scale;float cx=x(city.hex),cy=y(city.hex);int owner=factionColor(city.owner);
         c.save();c.translate(cx,cy);models.city(c,city.kind,owner);c.restore();
-        if(territoryMode>0&&territory.frontline(city.id)){paint.setStyle(Paint.Style.STROKE);paint.setColor(0xffff8570);paint.setStrokeWidth(2*density/scale);c.drawCircle(cx,cy,Math.max(24,5*density/scale),paint);paint.setStyle(Paint.Style.FILL);}
+        if(territoryMode>0&&territory.frontline(city.id)){paint.setStyle(Paint.Style.STROKE);paint.setColor(0xffffbb65);paint.setStrokeWidth(2*density/scale);c.drawCircle(cx,cy,Math.max(24,5*density/scale),paint);paint.setStyle(Paint.Style.FILL);}
+        if(territoryMode>0&&threatenedCities.contains(city.id))label(c,"!",cx,cy-20*density/scale,16*density/scale,0xffff5555);
         boolean labelVisible=scale*RADIUS>=7*density||city.hex.equals(selected)||(world.home()!=null&&city.id==world.home().id);
         if(!labelVisible)return;
         float sz=12*density/scale;paint.setColor(Color.argb(225,22,37,37));c.drawRoundRect(cx-sz*1.8f,cy+14,cx+sz*1.8f,cy+14+sz*1.6f,3,3,paint);

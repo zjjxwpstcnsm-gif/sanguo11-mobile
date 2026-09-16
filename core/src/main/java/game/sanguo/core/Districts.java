@@ -11,6 +11,11 @@ public final class Districts {
     public static final class District {
         public final int id,owner;String name;Policy policy;final SortedSet<Integer> cities=new TreeSet<>();
         int leader=-1,target=-1,supply=-1,points,actedTurn=-1;boolean attack,produce;
+        int reserveTroops=10000,reserveGold=5000,reserveFood=40000,reportTurn=-1;
+        boolean transfer=true,supplyEnabled=true;String report="尚未执行托管";
+        public int reserveTroops(){return reserveTroops;}public int reserveGold(){return reserveGold;}public int reserveFood(){return reserveFood;}
+        public boolean transfer(){return transfer;}public boolean supplyEnabled(){return supplyEnabled;}
+        public String report(){return report;}public int reportTurn(){return reportTurn;}
         District(int id,int owner,String name){this.id=id;this.owner=owner;this.name=name;}
         public String name(){return name;}public Policy policy(){return policy;}public int leader(){return leader;}
         public int target(){return target;}public int supply(){return supply;}public int points(){return points;}
@@ -34,6 +39,23 @@ public final class Districts {
     }
     public boolean directCity(int city){District d=city(city);return d==null||d.owner!=w.player||executing==d.id;}
     public boolean directUnit(int unit){District d=unit(unit);return d==null||d.owner!=w.player||executing==d.id;}
+    boolean executing(int city){District d=city(city);return d!=null&&executing==d.id;}
+    String reserveError(World.City c,int gold,int food,int troops){District d=city(c.id);
+        if(d==null||executing!=d.id)return null;
+        if(c.gold-gold<d.reserveGold||c.food-food<d.reserveFood||c.troops-troops<d.reserveTroops)return "军团金粮兵留存不足";return null;
+    }
+    String productionError(int city){District d=city(city);return d!=null&&executing==d.id&&!d.produce?"军团禁止生产":null;}
+    String dispatchError(int source,int target,boolean cargo){District d=city(source);
+        if(d==null||executing!=d.id)return null;
+        if(cargo)return !d.supplyEnabled?"军团禁止补给运输":d.supply>=0&&target!=d.supply?"军团限定运输目的地":null;
+        return !d.transfer?"军团禁止调将":!d.cities.contains(target)?"调将超出军团范围":null;
+    }
+    public World.Result settings(int id,int troops,int gold,int food,boolean transfer,boolean supply){
+        String error=manageError();if(error!=null)return w.fail(error);District d=get(id);
+        if(d==null||d.owner!=w.active||troops<0||troops>100000||gold<0||gold>1000000||food<0||food>1000000)return w.fail("军团或留存数值无效");
+        d.reserveTroops=troops;d.reserveGold=gold;d.reserveFood=food;d.transfer=transfer;d.supplyEnabled=supply;w.actionPoints[w.active]-=20;
+        return w.success(d.name+"经营设置已保存；已出发任务继续运抵，不重复扣款");
+    }
     private String manageError(){
         if(w.commandsBlocked()||w.gameOver()||w.active!=w.player)return "当前无法编制军团";
         return w.actionPoints[w.active]<20?"编制需要第一军团20行动力":null;
@@ -66,7 +88,7 @@ public final class Districts {
         String error=configureError(id,name,members,policy,target,supply);if(error!=null)return w.fail(error);
         District d=id<0?new District(nextId++,w.active,name.trim()):get(id);
         d.name=name.trim();d.policy=policy;d.target=target;d.supply=supply;d.attack=attack;d.produce=produce;d.cities.clear();for(int member:members){d.cities.add(member);w.government.policies.remove(member);}
-        groups.put(d.id,d);w.actionPoints[w.active]-=20;chooseLeader(d);
+        groups.put(d.id,d);units.entrySet().removeIf(e->{AiOrders.Order order=w.aiOrders.orders.get(e.getKey());return e.getValue()==d.id&&order!=null&&order.home>=0&&!d.cities.contains(order.home);});for(Map.Entry<Integer,Integer> e:units.entrySet())if(e.getValue()==d.id)w.aiOrders.orders.remove(e.getKey());w.actionPoints[w.active]-=20;chooseLeader(d);
         return w.success(d.name+"已编制 · "+policy.label+"；新军团下一旬取得行动力，直属部队与城务交由都督执行");
     }
     public World.Result dissolve(int id){
@@ -118,11 +140,18 @@ public final class Districts {
                 CampaignAi planner=new CampaignAi(w);
                 ordered.sort(Comparator.comparingInt((Integer id)->{
                     World.City c=w.city(id);return c==null?0:-(planner.incoming(c)+(c.order<65?100000:0));}));
-                int startPoints=w.actionPoints[owner];
+                int startPoints=w.actionPoints[owner];d.report="";d.reportTurn=w.turn;
+                if(d.transfer)new DistrictManagement(w).balance(d);
                 for(int pass=0;pass<4&&w.actionPoints[owner]>=10;pass++)for(int city:ordered){
-                    World.City c=w.city(city);if(c!=null&&c.owner==owner&&w.actionPoints[owner]>=10)order(d,c,pass);
+                    World.City c=w.city(city);if(c!=null&&c.owner==owner&&w.actionPoints[owner]>=10){
+                        int before=w.actionPoints[owner];order(d,c,pass);
+                        if(w.actionPoints[owner]<before&&d.report.length()<4500)d.report+=c.name+"："+w.log.get(w.log.size()-1)+"\n";
+                    }
                 }
                 for(World.Unit u:new ArrayList<>(w.units))if(Objects.equals(units.get(u.id),d.id)&&!u.acted)armyOrder(d,u);
+                for(int id:d.cities){String reason=new DistrictManagement(w).reason(w.city(id));if(!reason.isEmpty()&&d.report.length()<5000)d.report+=w.city(id).name+"："+reason+"\n";}
+                if(w.actionPoints[owner]<10)d.report+="行动预算不足10，剩余城务下旬轮换\n";
+                if(d.report.isEmpty())d.report="当前无可执行需求；留守、储备和权限限制继续生效";
                 if(startPoints>0)w.note(d.name+"自动经营完成 · 消耗"+(startPoints-w.actionPoints[owner])+"行动力 · 剩余"+w.actionPoints[owner]);
             }finally{d.points=w.actionPoints[owner];w.actionPoints[owner]=mainPoints;executing=-1;}
         }
@@ -131,23 +160,33 @@ public final class Districts {
     private void order(District d,World.City c,int pass){
         List<World.Officer> idle=w.idle(c);if(idle.isEmpty())return;
         World.Officer admin=idle.stream().max(Comparator.comparingInt(o->o.politics)).get();
+        if(new DistrictManagement(w).foodTurns(c)<6){
+            int amount=Math.min(20000-w.campaign.traded(c.id),Math.min(w.campaign.foodCap(c)-c.food,Math.max(0,c.gold-1000)/w.campaign.foodPrice(c.id,true)*1000))/1000*1000;
+            if(amount>=1000&&w.campaign.trade(c.id,admin.id,true,amount).ok)return;
+        }
         StrategicAi civil=new StrategicAi(w);StrategicAi.Decision urgent=civil.plan(c.id,true);
         if(urgent!=null&&civil.execute(urgent).ok)return;
         if(c.order<65&&w.strategy.patrol(c.id,admin.id).ok)return;
         if(c.defense<w.campaign.defenseCap(c)/2&&w.campaign.repair(c.id,admin.id).ok)return;
-        boolean underway=false;for(Domestic.Mission m:w.domestic.missions)if(m.transport&&m.owner==c.owner&&m.targetCity==d.supply)underway=true;
-        if(d.supply>=0&&d.supply!=c.id&&pass==0&&!underway&&c.troops>=11000){World.City destination=w.city(d.supply);
-            int gold=Math.min(3000,Math.min(Math.max(0,c.gold-5000),Math.max(0,w.campaign.goldCap(destination)-destination.gold)));
-            int food=Math.min(20000,Math.min(Math.max(0,c.food-40000),Math.max(0,w.campaign.foodCap(destination)-destination.food)));
-            if((gold>0||food>0)&&w.domestic.transport(c.id,d.supply,admin.id,gold,food,1000,new int[World.Weapon.values().length]).ok)return;}
         CampaignAi ai=new CampaignAi(w);
-        if(ai.replenish(c.id))return;
-        if(d.attack&&d.policy!=Policy.ECONOMY&&d.policy!=Policy.DEFENSE&&target(d,c.hex)!=null&&ai.deploy(c.id,10000,
-            target->(d.policy!=Policy.CITY_ATTACK||target.id==d.target)&&(d.policy!=Policy.FORCE_ATTACK||target.owner==d.target)))return;
+        if(pass==0&&d.supplyEnabled&&new DistrictManagement(w).supply(d,c,admin))return;
+        if(d.supplyEnabled&&ai.replenish(c.id))return;
+        if(d.attack&&d.policy!=Policy.ECONOMY&&ai.deploy(c.id,d.reserveTroops,
+            target->d.policy!=Policy.DEFENSE&&(d.policy!=Policy.CITY_ATTACK||target.id==d.target)&&(d.policy!=Policy.FORCE_ATTACK||target.owner==d.target)))return;
         StrategicAi.Decision decision=civil.plan(c.id,false);
         if((d.policy==Policy.DEFENSE||ai.incoming(c)>0)&&decision!=null&&civil.execute(decision).ok)return;
-        if(d.policy==Policy.ECONOMY||d.policy==Policy.DELEGATE){List<Hex> sites=w.domestic.buildSites(c.id);if(c.gold>=2500&&!sites.isEmpty()&&w.domestic.build(c.id,admin.id,c.food<40000?Domestic.Kind.FARM:Domestic.Kind.MARKET,sites.get(0)).ok)return;}
-        if(d.produce&&c.gold>=1500){
+        if(d.produce&&d.attack&&d.policy!=Policy.ECONOMY&&d.policy!=Policy.DEFENSE&&c.equipment[World.Weapon.RAM.ordinal()]==0&&w.domestic.facilities.stream().noneMatch(f->f.cityId==c.id&&f.kind==Domestic.Kind.WORKSHOP)){
+            List<Hex> sites=w.domestic.buildSites(c.id);if(!sites.isEmpty()&&w.domestic.build(c.id,admin.id,Domestic.Kind.WORKSHOP,sites.get(0)).ok)return;
+        }
+        if(d.policy==Policy.ECONOMY||d.policy==Policy.DELEGATE){
+            int expectedFood=w.domestic.monthlyFood(c.id);
+            for(Domestic.Facility f:w.domestic.facilities)if(f.cityId==c.id&&f.kind==Domestic.Kind.FARM&&f.remaining>0)expectedFood+=w.strategy.cityIncome(c.id,2500*(f.level==3?150:f.level==2?120:100)/100);
+            Domestic.Kind kind=c.food<40000||expectedFood<w.cityFoodUse(c)*12?Domestic.Kind.FARM:Domestic.Kind.MARKET;
+            List<Hex> sites=w.domestic.buildSites(c.id);if(c.gold>=2500&&!sites.isEmpty()&&w.domestic.build(c.id,admin.id,kind,sites.get(0)).ok)return;
+        }
+        if(d.produce&&c.gold>=d.reserveGold+1500){
+            if(d.attack&&d.policy!=Policy.ECONOMY&&d.policy!=Policy.DEFENSE&&c.equipment[World.Weapon.RAM.ordinal()]==0&&
+                w.army.productionError(c.id,admin.id,World.Weapon.RAM,null)==null&&w.army.produce(c.id,admin.id,World.Weapon.RAM,null).ok)return;
             World.Weapon preferred=World.Weapon.SPEAR;int best=Integer.MIN_VALUE;
             for(World.Weapon weapon:new World.Weapon[]{World.Weapon.SPEAR,World.Weapon.HALBERD,World.Weapon.CROSSBOW,World.Weapon.CAVALRY}){
                 int rank=0;for(World.Officer o:idle)rank=Math.max(rank,o.aptitude[Army.category(weapon)]);
