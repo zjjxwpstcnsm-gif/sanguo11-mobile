@@ -1,0 +1,1 @@
+Synthetic axial 200x200 plain map / 40 cities / 40 deployed units / seed 25016: one actual nextTurn = 1947 ms; remaining units=40. Desktop JVM timing, not Android FPS.
