@@ -85,7 +85,7 @@ public final class GameSmokeRunner extends Instrumentation {
             contestFlow();
             battleFeedbackFlow();
             diplomacyVisualFlow();
-            result.putString("stream","SMOKE PASS: v27 map convoy select/stop/route/cancel/field supply/recreation in both orientations; v26 convoy crew/food/return preview/cancel/confirm/recreation, logistics filter/task focus and authorized support; v25 national filters/sort/recreation/focus, batch cancel/execute and saved district settings; v24 territory modes/legend/frontline/recreation, quick delegation/cancel/real administration/save, melee response to ranged attack; v23 native quantity sliders/exact input/cancel/deploy/recreation, map construction/rotation/Lv3, expanded playable world and terrain legend; v22 fixed unit command dock, blank/self/button/back cancellation, movement range, move-then-tactic, facility attack/destruction/save restoration; v21 original portraits/building assets/shared icons, pure diplomacy previews, allied dispatch/task/recreation and whole-force surrender; v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            result.putString("stream","SMOKE PASS: v28 explicit attack/inspect/drag/back, quantity and overlap identity recreation, double/stale confirmation, national return position; v27 map convoy select/stop/route/cancel/field supply/recreation in both orientations; v26 convoy crew/food/return preview/cancel/confirm/recreation, logistics filter/task focus and authorized support; v25 national filters/sort/recreation/focus, batch cancel/execute and saved district settings; v24 territory modes/legend/frontline/recreation, quick delegation/cancel/real administration/save, melee response to ranged attack; v23 native quantity sliders/exact input/cancel/deploy/recreation, map construction/rotation/Lv3, expanded playable world and terrain legend; v22 fixed unit command dock, blank/self/button/back cancellation, movement range, move-then-tactic, facility attack/destruction/save restoration; v21 original portraits/building assets/shared icons, pure diplomacy previews, allied dispatch/task/recreation and whole-force surrender; v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -137,7 +137,7 @@ public final class GameSmokeRunner extends Instrumentation {
                 out.println(orientation+" next selected="+moving.getInt(current)+" acted="+w.unit(moving.getInt(current)).acted);
                 installFixture(w,w.unit(2).hex);click("攻击",true);waitText("这支部队本旬已行动",false);screenshot("v028-command-reason-"+orientation);click("返回",true);
                 AccessibilityNodeInfo attack=waitText("攻击",true);out.println(orientation+" attack enabled="+attack.isEnabled());screenshot("v028-acted-command-"+orientation);
-                World nation=ScenarioCatalog.load("heroes-mobile-sandbox",0);installFixture(nation,nation.home().hex);territoryMode("势力范围 · 同势力合并");click("全图",true);out.println(orientation+" full-map scale="+camera(mapView()).scale+" min="+camera(mapView()).minScale);screenshot("v028-national-"+orientation);
+                World nation=ScenarioCatalog.load("heroes-mobile-sandbox",0);installFixture(nation,nation.home().hex);territoryMode("势力范围 · 同势力合并");click("全图",true);out.println(orientation+" full-map scale="+camera(mapView()).scale+" min="+camera(mapView()).minScale);require(Math.abs(camera(mapView()).scale-camera(mapView()).minScale)<.001f,"explicit full map reaches national scale");screenshot("v028-national-"+orientation);
                 territoryMode("关闭领地着色");
             }
             World nation=ScenarioCatalog.load("heroes-mobile-sandbox",0);installFixture(nation,nation.home().hex);benchmarkExperience(out,nation,"42cities-670officers");
@@ -165,6 +165,14 @@ public final class GameSmokeRunner extends Instrumentation {
             runOnMainSync(current::onBackPressed);waitForIdleSync();runOnMainSync(current::onBackPressed);waitForIdleSync();runOnMainSync(current::onBackPressed);waitForIdleSync();
             require(Arrays.equals(before,SaveCodec.encode(saved())),"back layers never change game");
             if(find(getUiAutomation().getRootInActiveWindow(),"退出游戏？",false)!=null)click("取消",true);
+            installFixture(SaveCodec.decode(before),a.hex);click("攻击",true);tapHex(b.hex);
+            java.lang.reflect.Field dialogField=MainActivity.class.getDeclaredField("confirmationDialog");dialogField.setAccessible(true);
+            AlertDialog repeated=(AlertDialog)dialogField.get(current);World once=SaveCodec.decode(before);require(once.attack(1,2).ok,"one formal expected attack");
+            runOnMainSync(()->{repeated.getButton(AlertDialog.BUTTON_POSITIVE).performClick();repeated.getButton(AlertDialog.BUTTON_POSITIVE).performClick();});waitForIdleSync();
+            require(Arrays.equals(SaveCodec.encode(once),SaveCodec.encode(saved())),"queued double confirmation executes exactly one formal attack including RNG");
+            installFixture(SaveCodec.decode(before),a.hex);click("攻击",true);tapHex(b.hex);AlertDialog stale=(AlertDialog)dialogField.get(current);
+            installFixture(SaveCodec.decode(before),a.hex);runOnMainSync(()->stale.getButton(AlertDialog.BUTTON_POSITIVE).performClick());waitText("局面已变化",false);click("返回",true);
+            require(Arrays.equals(before,SaveCodec.encode(saved())),"old world confirmation cannot mutate replacement world");
             // Keep raw unsubmitted quantities and crew through Activity recreation, not just rotation.
             installFixture(ScenarioCatalog.load("regional-sandbox",2),new Hex(18,10));locateCity("建业");click("军事",true);click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);setInput("兵力数量","2345");
             before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitForIdleSync();waitText("确认出征",true);require("2345".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"兵力数量").getText()),"deploy draft quantity survives recreation");
@@ -174,14 +182,27 @@ public final class GameSmokeRunner extends Instrumentation {
             // Legacy overlap is an actual permitted v21 state; resolve each object by stable ID.
             w=logisticsFixture();require(w.domestic.transport(11,12,4,new int[0],0,5000,1000,new int[World.Weapon.values().length],false,false).ok,"first stacked convoy dispatch");
             require(w.domestic.transport(11,12,5,new int[0],0,5000,1000,new int[World.Weapon.values().length],false,false).ok,"second stacked convoy dispatch");
-            installFixture(w,w.city(11).hex);click("取消选中",true);runOnMainSync(()->mapViewUnsafe().focus(wCityHex()));waitForIdleSync();tapHex(w.city(11).hex);waitText("同格对象",false);screenshot("v028-overlap-picker-"+orientation);click("将5 ·",false);waitText("将5运输队",true);
+            installFixture(w,w.city(11).hex);tapHex(w.city(11).hex);waitText("同格对象",false);screenshot("v028-overlap-picker-"+orientation);click("将5 ·",false);waitText("将5运输队",true);
             java.lang.reflect.Field moving=MainActivity.class.getDeclaredField("moving");moving.setAccessible(true);require(moving.getInt(current)==w.domestic.missions.get(1).id,"second overlapping convoy is selectable by stable ID");
             runOnMainSync(current::recreate);waitForIdleSync();waitText("将5运输队",true);require(moving.getInt(current)==w.domestic.missions.get(1).id,"overlap identity survives recreation");
         }
+        nationalReturnPosition();
         installFixture(original,original.home().hex);
     }
-    private MapView mapViewUnsafe(){return findMap(current.getWindow().getDecorView());}
-    private Hex wCityHex(){return new Hex(3,15);}
+    private android.widget.ListView nativeList(android.view.View view){
+        if(view instanceof android.widget.ListView)return (android.widget.ListView)view;
+        if(view instanceof android.view.ViewGroup){android.view.ViewGroup group=(android.view.ViewGroup)view;for(int i=0;i<group.getChildCount();i++){android.widget.ListView found=nativeList(group.getChildAt(i));if(found!=null)return found;}}return null;
+    }
+    private void nationalReturnPosition()throws Exception {
+        World nation=ScenarioCatalog.load("heroes-mobile-sandbox",0);installFixture(nation,nation.home().hex);chooseOrientation("竖屏");allCityStates();clickNav("城市");click("展开",true);
+        for(int i=0;i<3;i++){require(scroll(getUiAutomation().getRootInActiveWindow()),"national list scrolls");waitForIdleSync();SystemClock.sleep(250);}
+        android.widget.ListView list=nativeList(current.getWindow().getDecorView());require(list!=null,"native national list visible");
+        int[] location=new int[2];String[] label=new String[1];runOnMainSync(()->{location[0]=list.getFirstVisiblePosition();location[1]=list.getChildAt(0).getTop();World.City city=(World.City)list.getItemAtPosition(location[0]);label[0]=city.name+" · "+nation.faction(city.owner);});
+        require(location[0]>0,"national list genuinely left first row");byte[] before=SaveCodec.encode(saved());screenshot("v028-national-position-before");click(label[0],true);click("返回全国列表",true);waitForIdleSync();
+        android.widget.ListView restored=nativeList(current.getWindow().getDecorView());require(restored!=null,"single action returns to national list");
+        runOnMainSync(()->require(restored.getFirstVisiblePosition()==location[0]&&Math.abs(restored.getChildAt(0).getTop()-location[1])<=1,"national list preserves first row and pixel offset"));
+        screenshot("v028-national-position-after");require(Arrays.equals(before,SaveCodec.encode(saved())),"list map round trip is pure");
+    }
 
     private void benchmarkExperience(PrintWriter out,World w,String label)throws Exception {
         MapView map=mapView();long[][] samples=new long[4][12];
@@ -200,7 +221,7 @@ public final class GameSmokeRunner extends Instrumentation {
             waitText("北境城 · 经略营",true);screenshot("v025-national-food-"+orientation);
             runOnMainSync(current::recreate);waitForIdleSync();waitText("筛选 · 缺粮（不足6旬）",true);
             click("排序 · 己方优先",true);click("粮食续航最少",true);waitText("北境城 · 经略营",true);
-            click("北境城 · 经略营",true);waitText("北境城",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"national filters sort restore and focus are read-only");
+            click("北境城 · 经略营",true);waitText("北境城",true);click("返回全国列表",true);waitText("筛选 · 缺粮（不足6旬）",true);waitText("排序 · 粮食续航最少",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"national filters sort restore and focus are read-only");
             click("视图",true);click("全国城池总览",true);click("筛选 · 缺粮（不足6旬）",true);click("城池状态",true);click("全部状态",true);
             click("排序 · 粮食续航最少",true);click("己方优先",true);
             click("筛选 · 全部状态",true);click("批量划入军团",true);click("北境城",true);click("预览",true);click("新建内政军团",true);waitText("批量执行预览",true);screenshot("v025-batch-preview-"+orientation);click("取消",true);
