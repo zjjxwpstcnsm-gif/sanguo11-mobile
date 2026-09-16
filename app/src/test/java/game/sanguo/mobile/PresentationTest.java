@@ -19,8 +19,24 @@ public final class PresentationTest {
         c.ships[0]=0;check(UiModels.deployTroopCap(w,c,leader,World.Weapon.SWORD,Army.Ship.TOWER_SHIP)==0,"missing ship blocks form");
         check(UiModels.deployTroopCap(w,c,leader,World.Weapon.SWORD,Army.Ship.BOAT)==Math.min(7000,w.government.commandLimit(leader)),"sword needs no inventory");
     }
+    private static void readyQueueAndNotices()throws Exception {
+        World w=new World(20,12,"我军","敌军");w.cities.add(new World.City(0,"本营",new Hex(2,2),0));w.cities.add(new World.City(1,"敌营",new Hex(17,9),1));
+        for(int i=1;i<=4;i++){World.Officer o=new World.Officer(i,"将"+i,0,-1,80,80,80,80,80);o.unitId=i;w.officers.add(o);w.units.add(new World.Unit(i,0,i,World.Weapon.SPEAR,new Hex(3+i,4),4000,10000));}w.nextUnitId=5;
+        w.unit(2).acted=true;w.unit(4).status=War.Status.CONFUSED;
+        byte[] before=SaveCodec.encode(w);
+        check(UiModels.readyUnits(w).size()==2,"only eligible direct armies in ready queue");
+        check(UiModels.cycleReady(w,1,1).id==3,"next skips spent army");
+        check(UiModels.cycleReady(w,3,1).id==1,"next wraps by stable ID");
+        check(UiModels.cycleReady(w,1,-1).id==3,"previous wraps by stable ID");
+        check(Arrays.equals(before,SaveCodec.encode(w)),"cycling and reasons preserve game/RNG");
+        w.unit(1).acted=true;w.unit(3).acted=true;check(UiModels.cycleReady(w,1,1)==null,"empty ready queue is explicit");
+        World normal=ScenarioCatalog.load("regional-sandbox",2);World low=SaveCodec.decode(SaveCodec.encode(normal));low.home().food=0;
+        String report=UiModels.turnSummary(normal,low);check(report.indexOf("新增待处理")<report.indexOf("城池资源净变化"),"priority changes precede bulk resource deltas");
+        check(UiModels.attention(low).stream().anyMatch(n->n.key.equals("food:"+low.home().id)),"food notice uses real city ID");
+        check(UiModels.turnSummary(low,SaveCodec.decode(SaveCodec.encode(low))).contains("没有新增异常"),"persistent anomaly not repeated as new alert");
+    }
     public static void main(String[] args)throws Exception {
-        deploymentCaps();
+        deploymentCaps();readyQueueAndNotices();
         for(int i=0;i<PortraitCatalog.NAMES.length;i++)check(PortraitCatalog.index(PortraitCatalog.NAMES[i])==i,"stable famous portrait mapping");
         check(PortraitCatalog.index("劉備")==1&&PortraitCatalog.index("趙雲")==6&&PortraitCatalog.index("自建武将")==-1,"traditional names and custom portrait fallback");
         check(PortraitCatalog.variant(1,"甲")==PortraitCatalog.variant(1,"甲")&&PortraitCatalog.variant(1,"甲")!=PortraitCatalog.variant(2,"甲"),"fallback identity stable across redraws and different IDs");

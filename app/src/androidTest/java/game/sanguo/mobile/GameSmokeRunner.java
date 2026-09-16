@@ -13,14 +13,14 @@ import game.sanguo.core.*;
 /** Runs against an installed APK using platform UI automation, without a test framework dependency. */
 public final class GameSmokeRunner extends Instrumentation {
     private Activity current;
-    private boolean upgradeOnly,upgrade25,upgrade26,experience;
+    private boolean upgradeOnly,upgrade25,upgrade26,upgrade27,experience;
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);current=a;}
-    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
+    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);upgrade27=arguments!=null&&"27".equals(arguments.getString("upgrade"));experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
             if(experience){experienceFlow();result.putString("stream","EXPERIENCE PASS: installed APK observations and official entry flows completed.\n");finish(Activity.RESULT_OK,result);return;}
-            if(upgradeOnly||upgrade25||upgrade26){upgradeFlow();result.putString("stream",upgrade26?"UPGRADE26 PASS: actual verified v0.26 APK replaced in place; real v20 three-officer cargo, spent ration, return personnel, district and AI intent retained and v21 continued once.\n":upgrade25?"UPGRADE25 PASS: actual v0.25 APK replaced in place; v19 settings, intent and convoy retained, v21 replay continued once.\n":"UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v21 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
+            if(upgradeOnly||upgrade25||upgrade26||upgrade27){upgradeFlow();result.putString("stream",upgrade27?"UPGRADE27 PASS: exact delivered v0.27 APK replaced in place, v21 fields retained, next turn and recreation execute only once.\n":upgrade26?"UPGRADE26 PASS: actual verified v0.26 APK replaced in place; real v20 three-officer cargo, spent ration, return personnel, district and AI intent retained and v21 continued once.\n":upgrade25?"UPGRADE25 PASS: actual v0.25 APK replaced in place; v19 settings, intent and convoy retained, v21 replay continued once.\n":"UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v21 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
@@ -33,6 +33,7 @@ public final class GameSmokeRunner extends Instrumentation {
             }
             screenshot("v021-rotated-confirmation");click("执行",true);
             waitText("区域争雄  ·  孙权军",false);assertWorld(2,0,"regional-sandbox");
+            experienceRegressions();
             logisticsFlow();
             tacticalLogisticsFlow();
             strategicManagementFlow();
@@ -103,12 +104,15 @@ public final class GameSmokeRunner extends Instrumentation {
                 installFixture(w,w.unit(1).hex);chooseOrientation(orientation);click("收起",true);
                 MapView map=mapView();MapCamera cam=camera(map);dragMap(map,-100,0);
                 float cx=cam.centerX(),cy=cam.centerY();screenshot("v028-before-select-"+orientation);tapHex(w.unit(3).hex);
+                require(Math.abs(cam.centerX()-cx)<.1&&Math.abs(cam.centerY()-cy)<.1,"ordinary selection preserves camera center");
                 out.println(orientation+" select camera delta="+(cam.centerX()-cx)+","+(cam.centerY()-cy)+" map="+map.getWidth()+"x"+map.getHeight());screenshot("v028-after-select-"+orientation);
-                installFixture(w,w.unit(1).hex);click("下一部队",true);
+                installFixture(w,w.unit(1).hex);click("下一个待行动部队",true);
                 java.lang.reflect.Field moving=MainActivity.class.getDeclaredField("moving");moving.setAccessible(true);
+                require(moving.getInt(current)==3,"ready cycle skips spent unit2");
                 out.println(orientation+" next selected="+moving.getInt(current)+" acted="+w.unit(moving.getInt(current)).acted);
+                installFixture(w,w.unit(2).hex);click("攻击",true);waitText("这支部队本旬已行动",false);screenshot("v028-command-reason-"+orientation);click("返回",true);
                 AccessibilityNodeInfo attack=waitText("攻击",true);out.println(orientation+" attack enabled="+attack.isEnabled());screenshot("v028-acted-command-"+orientation);
-                World nation=ScenarioCatalog.load("heroes-mobile-sandbox",0);installFixture(nation,nation.home().hex);territoryMode("势力范围 · 同势力合并");click("全图",true);screenshot("v028-national-"+orientation);
+                World nation=ScenarioCatalog.load("heroes-mobile-sandbox",0);installFixture(nation,nation.home().hex);territoryMode("势力范围 · 同势力合并");click("全图",true);out.println(orientation+" full-map scale="+camera(mapView()).scale+" min="+camera(mapView()).minScale);screenshot("v028-national-"+orientation);
                 territoryMode("关闭领地着色");
             }
             World nation=ScenarioCatalog.load("heroes-mobile-sandbox",0);installFixture(nation,nation.home().hex);benchmarkExperience(out,nation,"42cities-670officers");
@@ -120,8 +124,39 @@ public final class GameSmokeRunner extends Instrumentation {
             installFixture(large,large.unit(1).hex);benchmarkExperience(out,large,"200x200-42cities-40units-3transports");
         }
         installFixture(initial,initial.home().hex);
+        experienceRegressions();
         mobileShortcutsFlow();unitCommandFlow();logisticsFlow();tacticalLogisticsFlow();strategicManagementFlow();armyFlow();
     }
+
+    private void experienceRegressions()throws Exception {
+        World original=saved();
+        for(String orientation:new String[]{"竖屏","横屏"}){
+            World w=logisticsFixture();World.Unit a=new World.Unit(1,0,4,World.Weapon.SPEAR,new Hex(8,15),5000,10000),b=new World.Unit(2,1,20,World.Weapon.SPEAR,new Hex(9,15),5000,10000);
+            World.Officer enemy=new World.Officer(20,"敌将",1,-1,80,80,80,80,80);enemy.unitId=2;w.officers.add(enemy);w.officer(4).cityId=-1;w.officer(4).unitId=1;w.units.add(a);w.units.add(b);w.nextUnitId=3;
+            installFixture(w,a.hex);chooseOrientation(orientation);byte[] before=SaveCodec.encode(saved());
+            tapHex(b.hex);waitText("敌将",true);require(find(getUiAutomation().getRootInActiveWindow(),"执行",true)==null,"inspecting enemy cannot open attack confirmation");
+            tapHex(a.hex);click("攻击",true);tapHex(b.hex);screenshot("v028-explicit-attack-"+orientation);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"cancel explicit attack is pure");
+            click("行军",true);dragMap(mapView(),60,30);SystemClock.sleep(400);require(find(getUiAutomation().getRootInActiveWindow(),"开始行军",true)==null,"drag release never selects command target");
+            runOnMainSync(current::onBackPressed);waitForIdleSync();runOnMainSync(current::onBackPressed);waitForIdleSync();runOnMainSync(current::onBackPressed);waitForIdleSync();
+            require(Arrays.equals(before,SaveCodec.encode(saved())),"back layers never change game");
+            // Keep raw unsubmitted quantities and crew through Activity recreation, not just rotation.
+            installFixture(ScenarioCatalog.load("regional-sandbox",2),new Hex(18,10));locateCity("建业");click("军事",true);click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);setInput("兵力数量","2345");
+            before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitForIdleSync();waitText("确认出征",true);require("2345".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"兵力数量").getText()),"deploy draft quantity survives recreation");
+            screenshot("v028-deploy-draft-"+orientation);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"draft restore cannot deploy automatically");
+            w=logisticsFixture();installFixture(w,w.city(11).hex);locateCity("后方");click("调动",true);click("资源运输",true);click("前方 ·",false);click("将4 ·",false);setInput("粮（上限200000）","6789");
+            before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitForIdleSync();waitText("运输数量",true);scrollToText("运输粮 · 可选",false);require("6789".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"粮（上限200000）").getText()),"cargo draft survives recreation");screenshot("v028-cargo-draft-"+orientation);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"restored cargo is still unsubmitted");
+            // Legacy overlap is an actual permitted v21 state; resolve each object by stable ID.
+            w=logisticsFixture();require(w.domestic.transport(11,12,4,new int[0],0,5000,1000,new int[World.Weapon.values().length],false,false).ok,"first stacked convoy dispatch");
+            require(w.domestic.transport(11,12,5,new int[0],0,5000,1000,new int[World.Weapon.values().length],false,false).ok,"second stacked convoy dispatch");
+            installFixture(w,w.city(11).hex);click("取消选中",true);runOnMainSync(()->mapViewUnsafe().focus(wCityHex()));waitForIdleSync();tapHex(w.city(11).hex);waitText("同格对象",false);screenshot("v028-overlap-picker-"+orientation);click("将5 ·",false);waitText("将5运输队",true);
+            java.lang.reflect.Field moving=MainActivity.class.getDeclaredField("moving");moving.setAccessible(true);require(moving.getInt(current)==w.domestic.missions.get(1).id,"second overlapping convoy is selectable by stable ID");
+            runOnMainSync(current::recreate);waitForIdleSync();waitText("将5运输队",true);require(moving.getInt(current)==w.domestic.missions.get(1).id,"overlap identity survives recreation");
+        }
+        installFixture(original,original.home().hex);
+    }
+    private MapView mapViewUnsafe(){return findMap(current.getWindow().getDecorView());}
+    private Hex wCityHex(){return new Hex(3,15);}
+
     private void benchmarkExperience(PrintWriter out,World w,String label)throws Exception {
         MapView map=mapView();long[][] samples=new long[4][12];
         runOnMainSync(()->{map.focus(w.home().hex);Bitmap bitmap=Bitmap.createBitmap(map.getWidth(),map.getHeight(),Bitmap.Config.ARGB_8888);Canvas canvas=new Canvas(bitmap);
@@ -219,7 +254,7 @@ public final class GameSmokeRunner extends Instrumentation {
         }
         World w=ScenarioCatalog.load("regional-sandbox",2);installFixture(w,w.city(300).hex);chooseOrientation("竖屏");locateCity("柴桑");click("内政",true);click("设施开发",true);click("市场 ·",false);click("周瑜 ·",false);
         byte[] before=SaveCodec.encode(saved());waitText("点选高亮地块",false);require(!waitText("下一旬",false).isEnabled(),"cannot advance time during map placement");
-        tapHex(w.city(300).hex);require(Arrays.equals(before,SaveCodec.encode(saved())),"invalid construction tile does not spend resources");
+        tapHex(w.city(300).hex);click("返回",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"invalid construction tile does not spend resources");
         screenshot("v023-map-construction-portrait");runOnMainSync(()->current.setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE));assertOrientation(false);waitText("点选高亮地块",false);
         Hex site=w.domestic.buildSites(300).get(0);tapHex(site);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"map construction confirmation cancels without cost");
         tapHex(site);click("开工",true);require(saved().domestic.at(site).level==3&&saved().domestic.at(site).remaining==2,"map-selected construction starts at Lv3");screenshot("v023-map-construction-landscape");
@@ -258,7 +293,7 @@ public final class GameSmokeRunner extends Instrumentation {
         w=SaveCodec.decode(initial);installFixture(w,w.unit(1).hex);click("行军",true);tapHex(facility.hex);waitText("路线预览 · 市场",true);click("取消",true);require(Arrays.equals(initial,SaveCodec.encode(saved())),"march mode on adjacent facility never attacks");click("攻击",true);tapHex(facility.hex);waitText("耐久 400/1000",false);click("取消",true);require(Arrays.equals(initial,SaveCodec.encode(saved())),"facility attack cancel is pure");
         tapHex(facility.hex);click("执行",true);require(saved().domestic.at(facility.hex).hp==40&&saved().unit(1).acted,"map facility attack damages real facility");
         runOnMainSync(current::recreate);waitForIdleSync();require(saved().domestic.at(facility.hex).hp==40,"facility damage survives recreation");screenshot("v022-facility-damaged");
-        w=saved();w.unit(1).acted=false;installFixture(w,w.unit(1).hex);tapHex(facility.hex);click("执行",true);
+        w=saved();w.unit(1).acted=false;installFixture(w,w.unit(1).hex);click("攻击",true);tapHex(facility.hex);click("执行",true);
         require(saved().domestic.at(facility.hex)==null,"second attack destroys facility");waitText("地块已释放",false);screenshot("v022-facility-destroyed");
         installFixture(original,original.home().hex);click("收起",true);
     }
@@ -316,7 +351,7 @@ public final class GameSmokeRunner extends Instrumentation {
         click("全图",true);click("行军",true);tapHex(saved().city(20).hex);click("开始行军",true);int count=0;
         while(saved().unit(1).march!=null&&count++<12)endTurn();
         w=saved();require(w.unit(1).march==null&&w.unit(1).hex.distance(w.city(20).hex)==1&&w.city(20).owner==1&&!w.unit(1).acted,"arrival does not auto attack and retains action");screenshot("72-march-arrived");
-        click("全图",true);tapHex(w.city(20).hex);click("执行",true);require(saved().city(20).defense<3000&&saved().unit(1).acted,"arrival followed by real siege through target tap");
+        click("全图",true);click("攻击",true);tapHex(w.city(20).hex);click("执行",true);require(saved().city(20).defense<3000&&saved().unit(1).acted,"arrival followed by real siege through target tap");
     }
     private void campaignAiFlow()throws Exception {
         World w=new World(32,18,"守营","攻营");w.scenarioId="ui-campaign-ai";w.scenarioName="军情验证";
@@ -418,7 +453,7 @@ public final class GameSmokeRunner extends Instrumentation {
         personnelMenu("柴桑");click("城市与武将状态",true);waitText("太守：周瑜",false);screenshot("17-v4-restored");click("返回",true);
     }
     private void clickNav(String name){click("导航 · "+name,true);}
-    private void endTurn(){click("下一旬  →",true);click("执行",true);waitText("旬结算摘要",true);click("返回",true);}
+    private void endTurn(){click("下一旬  →",true);click("执行",true);click("旬结算完成",false);waitText("旬结算摘要",true);click("返回",true);}
     private void mobileFlow() throws Exception {
         // Test actual hit targets on the canvas, including the enlarged city target at full-map zoom.
         click("菜单",true);click("新游戏 / 选择势力",true);click("区域争雄 ·",false);click("孙权军",true);click("执行",true);
@@ -483,11 +518,11 @@ public final class GameSmokeRunner extends Instrumentation {
         w.officer(0).role=Strategy.Role.RULER;w.officer(0).loyalty=100;w.officer(1).skillId=Skill.BOFU.id;
         World.Unit a=new World.Unit(1,0,1,World.Weapon.SPEAR,new Hex(4,4),5000,10000),b=new World.Unit(2,1,2,World.Weapon.SPEAR,new Hex(5,4),1,5000);
         w.units.add(a);w.units.add(b);w.nextUnitId=3;w.officer(1).unitId=1;w.officer(1).cityId=-1;w.officer(2).unitId=2;w.officer(2).cityId=-1;
-        installFixture(w,a.hex);tapHex(b.hex);click("执行",true);waitForIdleSync();
+        installFixture(w,a.hex);click("攻击",true);tapHex(b.hex);click("执行",true);waitForIdleSync();
         require(saved().government.captive(2)&&saved().unit(2)==null,"capture skill produces persisted prisoner from actual map attack");
         require(saved().government.prisoner(2).unitId==1&&saved().government.prisoner(2).cityId==-1,"prisoner initially follows victorious field unit");
         World returning=saved();returning.unit(1).hex=new Hex(3,3);returning.unit(1).acted=false;installFixture(returning,returning.unit(1).hex);
-        tapHex(returning.city(0).hex);click("执行",true);
+        click("入城",true);tapHex(returning.city(0).hex);click("执行",true);
         require(saved().government.prisoner(2).unitId==-1&&saved().government.prisoner(2).cityId==0,"actual enter command delivers prisoner to city");
         locateCity("营城");click("军政 / 俘虏 / 官职",true);click("俘虏处置",true);click("张辽 ·",false);click("释放",true);click("刘备 ·",false);
         byte[] before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"release cancellation preserves exact save");
@@ -505,7 +540,7 @@ public final class GameSmokeRunner extends Instrumentation {
         require(raid.deploy(0,1,World.Weapon.SPEAR,3000).ok,"redeploy former escort for transport interception");
         World.Unit raider=raid.unit(raid.officer(1).unitId);raider.hex=new Hex(4,4);
         Domestic.Mission convoy=raid.domestic.missions.stream().filter(m->m.officerId==2).findFirst().get();convoy.hex=new Hex(5,4);
-        installFixture(raid,raider.hex);tapHex(convoy.hex);click("执行",true);
+        installFixture(raid,raider.hex);click("攻击",true);tapHex(convoy.hex);click("执行",true);
         require(saved().domestic.missions.stream().noneMatch(m->m.officerId==2)&&saved().government.captive(2),"map tap intercepts visible enemy transport and captures its courier");screenshot("41-transport-interception");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("军政验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"governance state survives activity recreation");screenshot("39-governance-restored");
     }
@@ -585,8 +620,8 @@ public final class GameSmokeRunner extends Instrumentation {
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
         try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==21,"upgraded writer produced v21 header");}
-        screenshot(upgrade26?"00-v26-upgrade-preserved":upgrade25?"00-v25-upgrade-preserved":"00-v09-upgrade-preserved");
-        if(upgrade26){
+        screenshot(upgrade27?"00-v27-upgrade-preserved":upgrade26?"00-v26-upgrade-preserved":upgrade25?"00-v25-upgrade-preserved":"00-v09-upgrade-preserved");
+        if(upgrade26||upgrade27){
             require(legacy.districts.all().size()==1&&legacy.domestic.missions.size()==2&&legacy.units.stream().anyMatch(u->!legacy.aiOrders.describe(u).equals("待评估")),"v26 district, real army intention and two actual tasks retained");
             Domestic.Mission returning=legacy.domestic.missions.get(0),cargo=legacy.domestic.missions.get(1);
             require(returning.returning&&returning.crew().length==3&&cargo.transport&&cargo.crew().length==3&&cargo.food==9950&&cargo.consumedFood==50,"v20 return crew and already-paid grain retained");
@@ -748,7 +783,7 @@ public final class GameSmokeRunner extends Instrumentation {
     }
     private void installFixture(World w,Hex focus)throws Exception {
         SaveCodec.validate(w);java.lang.reflect.Field field=MainActivity.class.getDeclaredField("world");field.setAccessible(true);
-        runOnMainSync(()->{try{field.set(current,w);((MainActivity)current).selectAndFocus(focus);}catch(IllegalAccessException e){throw new RuntimeException(e);}});
+        runOnMainSync(()->{try{field.set(current,w);((MainActivity)current).rememberForm(new Bundle());((MainActivity)current).selectAndFocus(focus);}catch(IllegalAccessException e){throw new RuntimeException(e);}});
         try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(w));}waitForIdleSync();
     }
     private void armyCity(){clickNav("城市");click("江东大营 · 江东军",false);click("军事",true);}
@@ -914,7 +949,7 @@ public final class GameSmokeRunner extends Instrumentation {
     private AccessibilityNodeInfo find(AccessibilityNodeInfo node,String text,boolean exact) {
         if(node==null)return null;
         CharSequence value=node.getText();
-        if(text.startsWith("导航 · ")||text.startsWith("选中对象指令 ·"))value=node.getContentDescription();
+        if(text.startsWith("导航 · ")||text.startsWith("选中对象指令 ·")||text.endsWith("待行动部队"))value=node.getContentDescription();
         if(value!=null&&(exact?value.toString().equals(text):value.toString().contains(text))&&node.isVisibleToUser())return node;
         for(int i=0;i<node.getChildCount();i++){AccessibilityNodeInfo found=find(node.getChild(i),text,exact);if(found!=null)return found;}return null;
     }
@@ -979,7 +1014,7 @@ public final class GameSmokeRunner extends Instrumentation {
         enemy.gold=600;w.units.add(u);w.units.add(enemy);w.nextUnitId=3;
         for(long seed=0;seed<100;seed++){w.strategy.setSeed(seed);World probe=SaveCodec.decode(SaveCodec.encode(w));probe.attack(1,2);probe.marches.execute(probe.marches.preview(1,enemy.hex));probe.nextTurn();if(probe.government.captive(2))break;}
         installFixture(w,u.hex);
-        tapHex(enemy.hex);waitText("敌将：100%",false);screenshot("v020-capture-preview");click("执行",true);
+        click("攻击",true);tapHex(enemy.hex);waitText("敌将：100%",false);screenshot("v020-capture-preview");click("执行",true);
         waitText("击破战果",false);require(saved().unit(2)==null&&saved().unit(1).gold==600&&saved().unit(1).food==15000&&saved().government.captive(2),"actual map attack shows and saves captured resources and officer");
         click("击破战果",false);waitText("战斗结果",true);waitText("金+600",false);screenshot("v020-defeat-report");click("收起战果",true);
         click("行军",true);tapHex(enemy.hex);waitText("本旬已行动，下旬出发",false);screenshot("v020-defeated-tile-route");click("开始行军",true);
@@ -989,7 +1024,7 @@ public final class GameSmokeRunner extends Instrumentation {
         click("选中对象指令 ·",false);click("随军俘虏 · 敌将",true);waitText("随捕将部队行军",false);screenshot("v020-escort-officer");click("返回",true);
         byte[] escortSave=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(escortSave,SaveCodec.encode(saved())),"escorted captive survives client recreation");
         click("行军",true);tapHex(new Hex(4,3));click("开始行军",true);require(saved().unit(1).hex.equals(new Hex(4,3)),"carrier returns to city entrance");
-        tapHex(new Hex(3,3));click("执行",true);require(saved().unit(1)==null&&saved().government.prisoner(2).unitId==-1&&saved().government.prisoner(2).cityId==10,"only entering city changes prisoner to fixed city jail");
+        click("选中对象指令 ·",false);click("入城",true);tapHex(new Hex(3,3));click("执行",true);require(saved().unit(1)==null&&saved().government.prisoner(2).unitId==-1&&saved().government.prisoner(2).cityId==10,"only entering city changes prisoner to fixed city jail");
         screenshot("v020-prisoner-delivered");
         chooseOrientation("竖屏");click("全图",true);screenshot("v020-map-models-portrait");
         click("视图",true);click("战斗震动",true);click("关闭",true);runOnMainSync(current::recreate);waitForIdleSync();
@@ -1053,7 +1088,7 @@ public final class GameSmokeRunner extends Instrumentation {
         try(FileOutputStream out=new FileOutputStream(new File(directory,"v020-model-atlas.png"))){bitmap.compress(Bitmap.CompressFormat.PNG,100,out);}finally{bitmap.recycle();}
     }
     private void screenshot(String name)throws IOException {
-        waitForIdleSync();Bitmap bitmap=getUiAutomation().takeScreenshot();if(bitmap==null)throw new IOException("Screenshot unavailable");
+        waitForIdleSync();SystemClock.sleep(250);Bitmap bitmap=getUiAutomation().takeScreenshot();if(bitmap==null)throw new IOException("Screenshot unavailable");
         File directory=getTargetContext().getExternalFilesDir("smoke");if(directory==null)throw new IOException("Screenshot directory unavailable");
         try(FileOutputStream out=new FileOutputStream(new File(directory,name+".png"))){bitmap.compress(Bitmap.CompressFormat.PNG,100,out);}finally{bitmap.recycle();}
     }

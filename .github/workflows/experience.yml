@@ -26,7 +26,14 @@ jobs:
         with:
           packages: ''
       - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
-      - run: ./gradlew --no-daemon :app:assembleDebugAndroidTest
+      - name: Build current app and pinned old observation runner
+        run: |
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest
+          mkdir -p /tmp/v027-observer app/build/baseline
+          git fetch origin a92f43697a05d42cc2bcd7c9766c8103f009e48b
+          git archive a92f43697a05d42cc2bcd7c9766c8103f009e48b | tar -x -C /tmp/v027-observer
+          (cd /tmp/v027-observer && ./gradlew --no-daemon :app:assembleDebugAndroidTest)
+          cp /tmp/v027-observer/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk app/build/baseline/observer.apk
       - name: Download exact delivered baseline
         env:
           GH_TOKEN: ${{ github.token }}
@@ -51,6 +58,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: mobile-experience-baseline
+          name: mobile-experience-comparison
           path: app/build/experience
           retention-days: 30

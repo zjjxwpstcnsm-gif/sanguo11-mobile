@@ -39,6 +39,10 @@ public final class MapView extends View {
     private final Map<Integer,World.City> cityIndex=new HashMap<>();
     private final ArrayList<Object> visibleObjects=new ArrayList<>();
     private final RectF miniRect=new RectF();
+    private final ArrayList<RectF> labelBounds=new ArrayList<>();
+    private final Map<Integer,RectF> cityLabelBounds=new HashMap<>();
+    private int lastLabels;
+    int labelsDrawn(){return lastLabels;}
     private Bitmap miniTerrain;
     private Bitmap miniTerritory;
     private Territory territory;
@@ -83,7 +87,7 @@ public final class MapView extends View {
     int reachableCount(){return reachable.size();}
     private void addAttackTarget(World.Unit u,Hex h,boolean normal){
         if(normal){attackTargets.add(h);return;}
-        for(Army.Tactic tactic:world.army.tactics(u))if(world.army.tacticError(u.id,h,tactic)==null){attackTargets.add(h);return;}
+
     }
     private final MapCamera camera=new MapCamera();
     private boolean multiTouch;
@@ -142,7 +146,7 @@ public final class MapView extends View {
             for(World.Unit target:world.fieldUnits())if(target.id!=actor.id)addAttackTarget(actor,target.hex,world.war.attackError(actor.id,target.id)==null);
             for(World.City city:world.cities)addAttackTarget(actor,city.hex,world.siegeError(actor.id,city.id)==null);
             for(Domestic.Facility f:world.domestic.facilities)addAttackTarget(actor,f.hex,world.war.facilityAttackError(actor.id,f.hex)==null);
-            for(War.Structure s:world.war.structures())addAttackTarget(actor,s.hex,world.army.canAttackUnit(actor)&&world.campaign.hostile(actor.owner,s.owner)&&actor.hex.distance(s.hex)<=world.war.range(actor));
+            for(War.Structure s:world.war.structures())addAttackTarget(actor,s.hex,world.war.structureAttackError(actor.id,s.hex)==null);
         }
         if(changed&&getWidth()>0){resizeCamera();fit();}invalidate();}
     private float x(Hex h){return RADIUS*SQRT3*(h.q+h.r*.5f);}
@@ -185,10 +189,11 @@ public final class MapView extends View {
         // Preserve precise tile commands while a unit is selected, including adjacent movement.
         if(moving>=0||pickTargets!=null)return world.inside(exact)?exact:null;
         if(world.inside(exact)&&(world.unitAt(exact)!=null||world.domestic.at(exact)!=null))return exact;
+        for(Map.Entry<Integer,RectF> entry:cityLabelBounds.entrySet())if(entry.getValue().contains(px,py)){World.City c=cityIndex.get(entry.getKey());if(c!=null)return c.hex;}
         World.City nearest=null;float best=Float.MAX_VALUE;
         for(World.City city:world.cities){float dx=px-(x(city.hex)*camera.scale+camera.x),dy=py-(y(city.hex)*camera.scale+camera.y);float distance=dx*dx+dy*dy;
             float radius=Math.max(24*density,20*camera.scale);
-            boolean name=Math.abs(dx)<=28*density&&dy>=12*camera.scale&&dy<=12*camera.scale+24*density;
+            boolean name=false;
             if((distance<=radius*radius||name)&&distance<best){nearest=city;best=distance;}
         }
         if(nearest!=null)return nearest.hex;
@@ -205,7 +210,7 @@ public final class MapView extends View {
     private void drawTerritory(Canvas canvas,int q,int r,float cx,float cy,float scale){
         if(territoryMode==0||territory==null||territory.siteAt(q,r)<0)return;
         int color=factionColor(territory.ownerAt(q,r));polygon(cx,cy,RADIUS);
-        fill(canvas,alpha(color,territoryMode==2?95+(territory.siteAt(q,r)%3)*18:115));
+        fill(canvas,alpha(color,territoryMode==2?34+(territory.siteAt(q,r)%3)*8:44));
     }
     private void addBorders(Path borders,int mask,float cx,float cy){
         for(int side=0;side<6;side++)if((mask&(1<<side))!=0){
@@ -259,7 +264,7 @@ public final class MapView extends View {
         for(Hex h:pickTargets==null?attackTargets:pickTargets)if(camera.visible(x(h),y(h),RADIUS)){
             polygon(x(h),y(h),RADIUS-1);if(pickTargets!=null)fill(canvas,0x555be6bf);stroke(canvas,pickTargets==null?0xffff987a:0xff70ffca,Math.max(2,2*density/scale));
         }
-        if(detail)for(Object object:visibleObjects)if(object instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)object;if(m.owner!=world.player&&!m.transport)continue;float cx=x(m.hex),cy=y(m.hex);paint.setColor(factionColor(m.owner));canvas.drawRoundRect(cx-17,cy-10,cx+17,cy+10,4,4,paint);paint.setColor(PAPER);canvas.drawCircle(cx-11,cy+13,4,paint);canvas.drawCircle(cx+11,cy+13,4,paint);label(canvas,m.transport?"运":"调",cx,cy+5,15,Color.BLACK);if(m.transport){label(canvas,String.valueOf(m.troops),cx,cy-15,10,PAPER);if(m.stopped||!m.waiting.isEmpty())label(canvas,"!",cx+23,cy+4,16,GOLD);}}
+        for(Object object:visibleObjects)if(object instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)object;if(m.owner!=world.player&&!m.transport)continue;float cx=x(m.hex),cy=y(m.hex);if(!detail){polygon(cx,cy,Math.max(8,3*density/scale));fill(canvas,factionColor(m.owner));stroke(canvas,PAPER,density/scale);continue;}paint.setColor(factionColor(m.owner));canvas.drawRoundRect(cx-17,cy-10,cx+17,cy+10,4,4,paint);paint.setColor(PAPER);canvas.drawCircle(cx-11,cy+13,4,paint);canvas.drawCircle(cx+11,cy+13,4,paint);label(canvas,m.transport?"运":"调",cx,cy+5,15,Color.BLACK);if(m.transport){if(m.stopped||!m.waiting.isEmpty())label(canvas,"!",cx+23,cy+4,16,GOLD);}}
         long remaining=impactUntil-android.os.SystemClock.uptimeMillis();
         if(impactHex!=null&&remaining>0){
             float progress=1-remaining/450f;paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(defeatImpact?3:2);
@@ -267,6 +272,7 @@ public final class MapView extends View {
             canvas.drawCircle(x(impactHex),y(impactHex),12+progress*22,paint);paint.setStyle(Paint.Style.FILL);postInvalidateOnAnimation();
         }
         canvas.restore();
+        drawMapLabels(canvas,detail);
         if(territoryMode>0){
             String caption=territoryMode==1?"势力范围 · 橙圈接壤 · 红!敌军逼近":"据点辖区 · 橙圈接壤 · 红!敌军逼近";
             int site=territory.siteAt(selected);World.City city=cityIndex.get(site);
@@ -306,16 +312,53 @@ public final class MapView extends View {
         c.save();c.translate(cx,cy);models.city(c,city.kind,owner);c.restore();
         if(territoryMode>0&&territory.frontline(city.id)){paint.setStyle(Paint.Style.STROKE);paint.setColor(0xffffbb65);paint.setStrokeWidth(2*density/scale);c.drawCircle(cx,cy,Math.max(24,5*density/scale),paint);paint.setStyle(Paint.Style.FILL);}
         if(territoryMode>0&&threatenedCities.contains(city.id))label(c,"!",cx,cy-20*density/scale,16*density/scale,0xffff5555);
-        boolean labelVisible=scale*RADIUS>=7*density||city.hex.equals(selected)||(world.home()!=null&&city.id==world.home().id);
-        if(!labelVisible)return;
-        float sz=12*density/scale;paint.setColor(Color.argb(225,22,37,37));c.drawRoundRect(cx-sz*1.8f,cy+14,cx+sz*1.8f,cy+14+sz*1.6f,3,3,paint);
-        label(c,city.name,cx,cy+14+sz*1.15f,sz,PAPER);
-        if(scale>=camera.minScale*1.55f)label(c,world.faction(city.owner),cx,cy-34,10*density/scale,PAPER);
-
-        if(scale>=camera.minScale*2.1f){float fs=10*density/scale;float baseline=cy+14+sz*1.6f+fs*1.3f;String info="金 "+city.gold+" · 粮 "+city.food+" · 兵 "+city.troops;
-            paint.setTextSize(fs);float half=paint.measureText(info)/2+4*density/scale;paint.setColor(Color.argb(235,17,32,37));c.drawRoundRect(cx-half,baseline-fs,cx+half,baseline+fs*.3f,2,2,paint);label(c,info,cx,baseline,fs,PAPER);}
         bar(c,cx,cy+10,32,city.defense/(float)world.campaign.defenseCap(city),owner);
     }
+
+    /** Text lives in screen coordinates: readable dp/sp size, collision rejection and edge clamping. */
+    private void drawMapLabels(Canvas c,boolean detail){
+        labelBounds.clear();cityLabelBounds.clear();lastLabels=0;
+        if(territoryMode>0)labelBounds.add(new RectF(0,0,Math.min(getWidth(),266*density),42*density));
+        if(showMini)labelBounds.add(new RectF(getWidth()-164*density,0,getWidth(),130*density));
+        // Selection first, then cities in stable engine order. No pathfinding or sorting while drawing.
+        World.City chosen=selected==null?null:world.cityAt(selected);
+        if(chosen!=null)cityName(c,chosen,true,detail);
+        for(Object object:visibleObjects)if(object instanceof World.City&&object!=chosen)cityName(c,(World.City)object,false,detail);
+        if(detail)for(Object object:visibleObjects)if(object instanceof World.Unit){
+            World.Unit u=(World.Unit)object;if(u instanceof Domestic.Mission&&!((Domestic.Mission)u).transport)continue;
+            boolean active=u.id==moving;World.Officer officer=officerIndex.get(u.officerId);if(officer==null)continue;
+            String relation=u.owner==world.player?"我":world.campaign.hostile(world.player,u.owner)?"敌":"友";
+            String state=u.acted?"✓":u.food<(u.troops+19)/20*3?"粮!":u instanceof Domestic.Mission&&(((Domestic.Mission)u).stopped||!((Domestic.Mission)u).waiting.isEmpty())?"!":"";
+            String name=relation+"·"+(u instanceof Domestic.Mission?"运":world.army.water(u.hex)?u.ship.label:u.weapon.label)+state;
+            if(active)name+=" "+officer.name+" "+u.troops;
+            placeLabel(c,name,x(u.hex)*camera.scale+camera.x,y(u.hex)*camera.scale+camera.y-30*camera.scale,active?GOLD:PAPER,-1);
+        }
+    }
+    private void cityName(Canvas c,World.City city,boolean active,boolean detail){
+        float sx=x(city.hex)*camera.scale+camera.x,sy=y(city.hex)*camera.scale+camera.y;
+        if(sx<0||sy<0||sx>getWidth()||sy>getHeight())return;
+        String relation=city.owner==world.player?"我":city.owner<0?"空":world.campaign.hostile(world.player,city.owner)?"敌":"友";
+        String type=city.kind==World.SiteKind.CITY?"":city.kind==World.SiteKind.GATE?"关·":"港·";
+        String name=relation+"·"+type+city.name+(threatenedCities.contains(city.id)?" !":"");
+        placeLabel(c,name,sx,sy+Math.max(8*density,16*camera.scale),active?GOLD:PAPER,city.id);
+        if(active&&detail)placeLabel(c,"金 "+city.gold+" · 粮 "+city.food+" · 兵 "+city.troops,sx,sy+Math.max(8*density,16*camera.scale)+25*density,PAPER,-1);
+    }
+    private void placeLabel(Canvas c,String text,float sx,float sy,int color,int cityId){
+        float fontSize=11*getResources().getDisplayMetrics().scaledDensity;
+        paint.setTextSize(fontSize);paint.setTypeface(font);paint.setTextAlign(Paint.Align.LEFT);
+        float width=Math.min(getWidth()-8*density,paint.measureText(text)+10*density),height=fontSize*1.5f;
+        if(width<=0||height>getHeight()-8*density)return;
+        float left=Math.max(4*density,Math.min(getWidth()-4*density-width,sx-width/2));
+        for(int lane=0;lane<3;lane++){
+            float top=Math.max(4*density,Math.min(getHeight()-4*density-height,sy+lane*(height+2*density)));
+            RectF box=new RectF(left,top,left+width,top+height);boolean blocked=false;
+            for(RectF occupied:labelBounds)if(RectF.intersects(box,occupied)){blocked=true;break;}if(blocked)continue;
+            labelBounds.add(box);if(cityId>=0)cityLabelBounds.put(cityId,box);lastLabels++;
+            paint.setColor(0xee10252b);c.drawRoundRect(box,4*density,4*density,paint);
+            paint.setColor(color);c.save();c.clipRect(box);c.drawText(text,left+5*density,top+(height-fontSize)/2+fontSize*.83f,paint);c.restore();return;
+        }
+    }
+
     private void bar(Canvas c,float x,float y,float width,float fraction,int color){
         paint.setColor(0xdd12252b);c.drawRoundRect(x-width/2-1,y-1,x+width/2+1,y+4,1,1,paint);
         paint.setColor(color);c.drawRect(x-width/2,y,x-width/2+width*Math.max(0,Math.min(1,fraction)),y+3,paint);
@@ -328,7 +371,6 @@ public final class MapView extends View {
         bar(c,cx,cy+17,34,u.troops/(float)world.government.commandLimit(u.officerId),u.owner==world.player?0xff8bc4a0:factionColor(u.owner));
         if(world.diplomacy.aidForUnit(u.id)!=null)label(c,"援",cx-17,cy-14,11,0xff91d3e0);
         else if(u.food<(u.troops+19)/20*3)label(c,"粮!",cx-17,cy-14,10,0xffffb077);
-        float sz=Math.min(10,10*density/scale);label(c,officerIndex.get(u.officerId).name+" "+u.troops,cx,cy-31,sz,PAPER);
-        label(c,world.army.water(u.hex)?u.ship.label:u.weapon.label,cx,cy+26,9,PAPER);
+
     }
 }

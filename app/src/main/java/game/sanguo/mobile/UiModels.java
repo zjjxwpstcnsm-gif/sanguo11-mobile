@@ -13,6 +13,19 @@ final class UiModels {
         return weapon==World.Weapon.SWORD?cap:Math.min(cap,c.equipment[weapon.ordinal()]);
     }
 
+    /** Stable ID order; automatic convoys/marches, delegated armies and spent actions are excluded. */
+    static List<World.Unit> readyUnits(World w){
+        List<World.Unit> out=new ArrayList<>();
+        for(World.Unit u:w.fieldUnits())if(u.owner==w.player&&w.orders.error(u)==null&&u.march==null&&w.fieldworks.project(u.id)==null
+            &&(!(u instanceof Domestic.Mission)||((Domestic.Mission)u).stopped))out.add(u);
+        out.sort(Comparator.comparingInt(u->u.id));return out;
+    }
+    static World.Unit cycleReady(World w,int current,int direction){
+        List<World.Unit> units=readyUnits(w);if(units.isEmpty())return null;
+        if(direction>0){for(World.Unit u:units)if(u.id>current)return u;return units.get(0);}
+        for(int i=units.size()-1;i>=0;i--)if(units.get(i).id<current)return units.get(i);return units.get(units.size()-1);
+    }
+
     private UiModels() {}
     static String location(World w, World.Officer o) {
         if(!w.life.present(o.id))return w.life.state(o.id).label;
@@ -129,8 +142,27 @@ final class UiModels {
         }
         return result;
     }
+    static final class Attention {
+        final int cityId,unitId;final String key,text;
+        Attention(String key,String text,int city,int unit){this.key=key;this.text=text;cityId=city;unitId=unit;}
+    }
+    static List<Attention> attention(World w){
+        List<Attention> out=new ArrayList<>();DistrictManagement management=new DistrictManagement(w);CampaignAi ai=new CampaignAi(w);
+        for(World.City c:w.cities)if(c.owner==w.player){
+            if(management.foodTurns(c)<6)out.add(new Attention("food:"+c.id,c.name+" · 携粮不足6旬；需调粮或买粮，在途援粮"+management.incomingFood(c),c.id,-1));
+            if(ai.incoming(c)>0)out.add(new Attention("threat:"+c.id,c.name+" · 敌军逼近，威胁兵力"+ai.incoming(c),c.id,-1));
+            String reason=management.reason(c);if(w.districts.city(c.id)!=null&&!reason.isEmpty())out.add(new Attention("district:"+c.id+":"+reason,c.name+" · "+reason,c.id,-1));
+        }
+        for(Domestic.Mission m:w.domestic.missions)if(m.owner==w.player&&m.transport&&(m.stopped||!m.waiting.isEmpty()||w.city(m.targetCity).owner!=m.owner))out.add(new Attention("cargo:"+m.id+":"+m.waiting+":"+m.stopped,w.officer(m.officerId).name+"运输队 · "+w.domestic.status(m),-1,m.id));
+        return out;
+    }
     static String turnSummary(World before, World after) {
-        StringBuilder s = new StringBuilder(before.date()+" → "+after.date()+"\n第 "+(after.turn+1)+" 旬\n\n城池资源净变化（含收入、消耗与战事）\n");
+        StringBuilder s = new StringBuilder(before.date()+" → "+after.date()+"\n第 "+(after.turn+1)+" 旬\n");
+        Set<String> previous=new HashSet<>();for(Attention item:attention(before))previous.add(item.key);
+        s.append("\n新增待处理\n");boolean fresh=false;for(Attention item:attention(after))if(!previous.contains(item.key)){s.append(item.text).append('\n');fresh=true;}
+        if(!fresh)s.append("没有新增异常；持续问题可在当前待处理查看。\n");
+        for(Domestic.Mission m:before.domestic.missions)if(m.owner==before.player&&m.transport&&after.domestic.mission(m.id)==null&&after.domestic.receipt(m.id)==null)s.append(before.officer(m.officerId).name).append("运输任务终止，请查看下方历史结果。\n");
+        s.append("\n城池资源净变化（含收入、消耗与战事）\n");
         boolean changed = false;
         for (World.City a : before.cities) if (a.owner == before.player) {
             World.City b = after.city(a.id); if (b == null) continue;
