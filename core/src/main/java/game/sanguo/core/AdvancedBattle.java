@@ -17,6 +17,15 @@ public final class AdvancedBattle {
         for(War.Structure s:w.war.structures())if(s.complete&&w.campaign.hostile(u.owner,s.owner)&&!w.fieldworks.trap(s.kind)&&s.kind!=War.StructureKind.EARTH_WALL&&s.kind!=War.StructureKind.STONE_WALL&&s.hex.distance(hex)==1)return true;
         return false;
     }
+    /** Snapshot for one synchronous route search only; discard before executing any command. */
+    java.util.function.Predicate<Hex> zoneForSearch(World.Unit u){
+        boolean ignoreWater=w.skills.has(u,Skill.TUIJIN);
+        boolean ignoreLand=!Army.siegeWeapon(u.weapon)&&(w.skills.has(u,Skill.DUNZOU)||w.skills.has(u,Skill.FEIJIANG));
+        Set<Hex> occupied=new HashSet<>();
+        for(World.Unit enemy:w.units)if(enemy.id!=u.id&&w.campaign.hostile(u.owner,enemy.owner))occupied.addAll(enemy.hex.neighbors());
+        for(War.Structure s:w.war.structures())if(s.complete&&w.campaign.hostile(u.owner,s.owner)&&!w.fieldworks.trap(s.kind)&&s.kind!=War.StructureKind.EARTH_WALL&&s.kind!=War.StructureKind.STONE_WALL)occupied.addAll(s.hex.neighbors());
+        return hex->occupied.contains(hex)&&!(w.army.water(hex)?ignoreWater:ignoreLand);
+    }
     public List<World.Unit> jointParticipants(int actor,int target){
         World.Unit a=w.unit(actor),b=w.unit(target);List<World.Unit> out=new ArrayList<>();
         if(a==null||b==null)return out;

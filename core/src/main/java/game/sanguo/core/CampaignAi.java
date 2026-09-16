@@ -354,6 +354,7 @@ public final class CampaignAi {
         for(Domestic.Facility f:w.domestic.facilities)blocked.add(f.hex);
         for(War.Structure s:w.war.structures())blocked.add(s.hex);
         for(WorldEvents.Camp c:w.events.camps())blocked.add(c.hex);
+        java.util.function.Predicate<Hex> zone=w.advancedBattle.zoneForSearch(u);
         Set<Hex> targets=new HashSet<>(goals);
         Map<Hex,List<Hex>> arrivals=new HashMap<>();
         for(Hex goal:targets)for(int dq=-range;dq<=range;dq++)for(int dr=-range;dr<=range;dr++){
@@ -372,7 +373,7 @@ public final class CampaignAi {
             if(result.size()==targets.size())break;
             for(Hex h:s.h.neighbors()){
                 if(blocked.contains(h))continue;int step=w.army.moveCost(u,s.h,h);if(step<1)continue;
-                int cost=s.cost+step+hazard(u,h)+(w.advancedBattle.zone(u,h)?3:0);
+                int cost=s.cost+step+hazard(u,h)+(zone.test(h)?3:0);
                 if(cost>=costs.getOrDefault(h,Integer.MAX_VALUE))continue;
                 costs.put(h,cost);parents.put(h,s.h);queue.add(new Step(h,cost));
             }

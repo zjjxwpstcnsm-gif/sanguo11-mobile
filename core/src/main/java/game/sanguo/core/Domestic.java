@@ -40,6 +40,9 @@ public final class Domestic {
     private final World w;int nextFacilityId=1,nextMissionId=1;
     // Per atomic turn settlement, never a cached forecast or serialized game state.
     private final Map<Integer,Integer> arrivedTroops=new HashMap<>();
+    private final Map<Integer,String> receipts=new HashMap<>();
+    /** Actual atomic settlement transcript, not a saved or forecast inventory. */
+    public String receipt(int mission){return receipts.get(mission);}
     int arrivalFoodCredit(World.City c){int n=arrivedTroops.getOrDefault(c.id,0);return w.cityFoodUse(c)==0?0:(c.troops+49)/50-(Math.max(0,c.troops-n)+49)/50;}
     Domestic(World w){this.w=w;}
     public Facility facility(int id){for(Facility f:facilities)if(f.id==id)return f;return null;}
@@ -291,7 +294,7 @@ public final class Domestic {
         for(int i=0;i<m.equipment.length;i++)if(c.equipment[i]>w.campaign.equipmentCap(c,World.Weapon.values()[i])-m.equipment[i])return false;return true;
     }
     void tick(){
-        arrivedTroops.clear();cleanupDefeated();
+        arrivedTroops.clear();receipts.clear();cleanupDefeated();
         for(Facility f:facilities)if(f.remaining>0){
             f.remaining--;if(f.remaining==0){World.Officer o=w.officer(f.builderId);o.acted=true;f.builderId=-1;if(f.upgradeTo>0){f.level=f.upgradeTo;f.upgradeTo=0;}w.note(w.city(f.cityId).name+"的"+f.kind.label+"建成 · Lv"+f.level);}
         }
@@ -319,6 +322,7 @@ public final class Domestic {
             }
             if(m.hex.equals(c.hex)&&fits(m,c)){
                 c.gold+=m.gold;c.food+=m.food;c.troops+=m.troops;arrivedTroops.merge(c.id,m.troops,Integer::sum);for(int i=0;i<m.equipment.length;i++)c.equipment[i]+=m.equipment[i];
+                String receipt="抵达"+c.name;if(m.transport){receipt+="\n  入库：金 "+m.gold+" · 粮 "+m.food+" · 兵 "+m.troops;for(World.Weapon weapon:World.Weapon.values())if(m.equipment[weapon.ordinal()]>0)receipt+=" · "+weapon.label+" "+m.equipment[weapon.ordinal()];}receipts.put(m.id,receipt);
                 World.Officer o=w.officer(m.officerId);w.note(o.name+"抵达"+c.name+(m.transport?"，入库金"+m.gold+"、粮"+m.food+"、兵"+m.troops+"；累计途中耗粮"+m.consumedFood:""));
                 if(m.transport&&m.returnOfficers&&c.id!=m.sourceCity&&w.city(m.sourceCity).owner==m.owner){
                     m.transport=false;m.returning=true;m.returnOfficers=false;m.gold=0;m.food=0;m.troops=0;Arrays.fill(m.equipment,0);m.targetCity=m.sourceCity;

@@ -483,7 +483,7 @@ public final class GameSmokeRunner extends Instrumentation {
         World w=new World(36,24,"我军","敌军");w.strategy.setSeed(26016);
         w.cities.add(new World.City(10,"主城",new Hex(2,2),0));w.cities.add(new World.City(11,"后方",new Hex(3,15),0));w.cities.add(new World.City(12,"前方",new Hex(15,15),0));w.cities.add(new World.City(20,"敌城",new Hex(32,15),1));
         for(World.City c:w.cities){c.gold=30000;c.food=160000;c.troops=30000;c.morale=100;}
-        for(int i=0;i<12;i++)w.officers.add(new World.Officer(i,"将"+i,0,i<3?10:i<9?11:12,80,80,80,80,80));w.officer(0).role=Strategy.Role.RULER;return w;
+        for(int i=0;i<12;i++)w.officers.add(new World.Officer(i,"将"+i,0,i<3?10:i<9?11:12,80,80,80,80,80));w.officer(0).role=Strategy.Role.RULER;w.officer(0).loyalty=100;return w;
     }
     private void logisticsFlow()throws Exception {
         for(String orientation:new String[]{"竖屏","横屏"}){

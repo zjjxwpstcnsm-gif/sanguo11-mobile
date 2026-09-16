@@ -44,7 +44,7 @@ final class DomesticUi {
         TextView note=new TextView(activity);note.setText(o.name+"："+c.name+" → "+d.name+"\n派遣费0金、行动力10。满仓等待，不丢弃货物。\n途中可被敌军截击，护送兵归零时货物会损失。");form.addView(note);
         List<World.Officer> candidates=new ArrayList<>(w.idle(c));candidates.removeIf(member->member.id==o.id);boolean[] selected=new boolean[candidates.size()];
         Button crew=new Button(activity);crew.setText("运输副将（最多2名）");form.addView(crew);
-        crew.setOnClickListener(v->new AlertDialog.Builder(activity).setTitle("运输副将（最多2名）").setMultiChoiceItems(candidates.stream().map(member->member.name).toArray(String[]::new),selected,(dlg,i,yes)->{int n=0;for(boolean value:selected)if(value)n++;if(yes&&n>2){((AlertDialog)dlg).getListView().setItemChecked(i,false);return;}selected[i]=yes;}).setPositiveButton("完成",null).setNegativeButton("清空",(dlg,i)->Arrays.fill(selected,false)).show());
+        crew.setOnClickListener(v->new AlertDialog.Builder(activity).setTitle("运输副将（最多2名）").setMultiChoiceItems(candidates.stream().map(member->member.name).toArray(String[]::new),selected,(dlg,i,yes)->{int n=0;for(boolean value:selected)if(value)n++;if(yes&&n>2){((AlertDialog)dlg).getListView().setItemChecked(i,false);selected[i]=false;return;}selected[i]=yes;}).setPositiveButton("完成",null).setNegativeButton("清空",(dlg,i)->Arrays.fill(selected,false)).show());
         CheckBox returning=new CheckBox(activity);returning.setText("卸货后武将返回出发城");form.addView(returning);
         int count=3+World.Weapon.values().length;String[] labels=new String[count];labels[0]="金（上限100000）";labels[1]="粮（上限200000）";labels[2]="兵（上限20000）";
         int[] stock=new int[count],initial=new int[count];stock[0]=c.gold;stock[1]=c.food;stock[2]=c.troops;initial[1]=5000;initial[2]=1000;initial[3]=1000;

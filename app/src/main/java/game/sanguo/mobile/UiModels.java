@@ -152,8 +152,10 @@ final class UiModels {
         for (Domestic.Mission m : before.domestic.missions) if (m.owner == before.player) {
             Domestic.Mission next = after.domestic.mission(m.id); World.Officer o = after.officer(m.officerId);progress=true;
             s.append(before.officer(m.officerId).name).append(" · ");
-            if (next != null) s.append(after.city(next.targetCity).name).append(" · ").append(after.domestic.status(next));
-            else if (o != null && o.cityId >= 0) {s.append("抵达").append(after.city(o.cityId).name); if (m.transport) s.append("\n  入库：").append(cargo(m));}
+            String receipt=after.domestic.receipt(m.id);
+            if(receipt!=null){s.append(receipt);if(next!=null)s.append("\n  ").append(after.domestic.status(next));}
+            else if (next != null) s.append(after.city(next.targetCity).name).append(" · ").append(after.domestic.status(next));
+            else if (o != null && o.cityId >= 0) {s.append("任务结束 · 武将驻于").append(after.city(o.cityId).name); if (m.transport) s.append("\n  实际入库、途中耗粮或损失见事件记录");}
             else s.append("任务终止");
             s.append('\n');
         }

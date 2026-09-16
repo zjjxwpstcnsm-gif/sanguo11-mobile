@@ -51,6 +51,7 @@ public final class PresentationTest {
         check(first.contains("剩余 1 旬")&&first.contains(before.date())&&first.contains(w.date()),"summary dates and progress");
         before=SaveCodec.decode(SaveCodec.encode(w));w.nextTurn();String second=UiModels.turnSummary(before,w);
         check(second.contains("市场建设完成")&&second.contains("抵达建业")&&second.contains("入库：金 1000"),"summary completion and cargo arrival");
+        check(second.contains("粮 2900")&&!second.contains("粮 2950"),"arrival report uses actual final grain after last travel ration");
         // Resource changes are net snapshots, not invented monthly income calculations.
         before=SaveCodec.decode(SaveCodec.encode(w));w.city(300).gold-=123;check(UiModels.turnSummary(before,w).contains("金 -123"),"signed net delta");
         for(int width:new int[]{1920,2340,2400}) {
