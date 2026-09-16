@@ -489,7 +489,7 @@ public final class GameSmokeRunner extends Instrumentation {
         for(String orientation:new String[]{"竖屏","横屏"}){
             World w=logisticsFixture();installFixture(w,w.city(11).hex);chooseOrientation(orientation);byte[] before=SaveCodec.encode(saved());
             locateCity("后方");click("调动",true);click("资源运输",true);click("前方 ·",false);click("将4 ·",false);
-            click("运输副将（最多2名）",true);click("将5",true);click("将6",true);click("完成",true);click("卸货后武将返回出发城",true);
+            click("运输副将（最多2名）",true);click("将5",true);click("将6",true);click("将7",true);click("完成",true);click("卸货后武将返回出发城",true);
             setInput("粮（上限200000）","6000");click("发送",true);waitText("派遣费0金",false);screenshot("v026-convoy-preview-"+orientation);click("取消",true);
             require(Arrays.equals(before,SaveCodec.encode(saved())),"new convoy preview and cancel are read only");
             click("发送",true);click("确认发送",true);w=saved();require(w.domestic.missions.size()==1&&w.domestic.missions.get(0).crew().length==3&&w.domestic.missions.get(0).returnOfficers,"three officers and return option actually saved");
@@ -500,6 +500,9 @@ public final class GameSmokeRunner extends Instrumentation {
             // Pure anomaly filtering retains the underlying convoy and camera/UI state through recreation.
             click("视图",true);click("全国城池总览",true);click("筛选 ·",false);click("城池状态",true);click("有在途援助",true);waitText("前方 · 我军",false);
             before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("筛选 · 有在途援助",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"logistics filter/recreation are pure");screenshot("v026-inbound-filter-"+orientation);
+            w=saved();for(Hex h:w.domestic.missions.get(0).hex.neighbors())w.terrain[h.q][h.r]=World.Terrain.MOUNTAIN;installFixture(w,w.city(11).hex);before=SaveCodec.encode(saved());
+            click("视图",true);click("全国城池总览",true);click("筛选 ·",false);click("城池状态",true);click("物流异常",true);waitText("后方 · 我军",false);screenshot("v026-anomaly-filter-"+orientation);click("后方 · 我军",false);
+            require(Arrays.equals(before,SaveCodec.encode(saved())),"anomaly filter and city focus cannot change blocked cargo");
             w=logisticsFixture();require(w.districts.configure(-1,"后方军",new int[]{11},Districts.Policy.ECONOMY,-1,12,false,false).ok,"support fixture authorization");
             require(w.nextTurn().ok,"new group obtains next-turn budget");installFixture(w,w.city(11).hex);byte[] pending=SaveCodec.encode(saved());
             click("视图",true);click("军团托管",true);click("后方军 ·",false);click("支援申请 / 可执行预览",true);click("后方",true);waitText("支援执行预览",true);screenshot("v026-support-preview-"+orientation);click("取消",true);

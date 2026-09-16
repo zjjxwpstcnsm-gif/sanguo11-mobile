@@ -10,12 +10,13 @@ public final class CityOverview {
     public CityOverview(World w){this.w=w;territory=new Territory(w);management=new DistrictManagement(w);ai=new CampaignAi(w);}
     public int idle(World.City c){int n=0;for(World.Officer o:w.officers)if(o.owner==c.owner&&o.cityId==c.id&&!o.acted&&!w.domestic.busy(o.id)&&!w.strategy.busy(o.id)&&!w.government.captive(o.id))n++;return n;}
     public List<World.City> cities(int filter,int district,int sort,String query,int owner){
+        Set<Integer> blocked=filter==7?management.logisticsBlockedCities():Collections.emptySet();
         List<World.City> out=new ArrayList<>();String q=query==null?"":query.trim();
         for(World.City c:w.cities){Districts.District d=w.districts.city(c.id);
             if(owner==-2?c.owner!=-1:owner>=0&&c.owner!=owner)continue;
             if(!q.isEmpty()&&!c.name.contains(q)&&!w.faction(c.owner).contains(q))continue;
             if(district==0&&(c.owner!=w.player||d!=null)||district>0&&(d==null||d.id!=district))continue;
-            if(filter==7&&!management.logisticsBlocked(c)||filter==8&&management.incomingFood(c)==0)continue;
+            if(filter==7&&!blocked.contains(c.id)||filter==8&&management.incomingFood(c)==0)continue;
             if(filter==1&&!territory.frontline(c.id)||filter==2&&ai.incoming(c)==0||filter==3&&management.foodTurns(c)>=6||filter==4&&management.residents(c)>0||filter==5&&c.order>=65||filter==6&&(d==null||management.reason(c).isEmpty()))continue;
             out.add(c);
         }

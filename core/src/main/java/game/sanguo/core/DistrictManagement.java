@@ -27,7 +27,7 @@ public final class DistrictManagement {
         for(int t=1;t<=36;t++){food+=inbound[t];if(food<use)return t;food=Math.min(w.campaign.foodCap(c),food-use+foodIncome(c,t));}return 999;
     }
     public int incomingFood(World.City c){int n=0;for(Domestic.Mission m:w.domestic.missions)if(m.transport&&m.owner==c.owner&&m.targetCity==c.id)n+=m.food;return n;}
-    public boolean logisticsBlocked(World.City c){for(Domestic.Mission m:w.domestic.missions)if(m.sourceCity==c.id||m.targetCity==c.id){String s=w.domestic.status(m);if(s.contains("受阻")||s.contains("失守")||s.contains("满仓")||s.contains("断粮")||s.contains("截停"))return true;}return false;}
+    public Set<Integer> logisticsBlockedCities(){Set<Integer> cities=new HashSet<>();for(Domestic.Mission m:w.domestic.missions){String s=w.domestic.status(m);if(s.contains("受阻")||s.contains("失守")||s.contains("满仓")||s.contains("断粮")||s.contains("截停")){cities.add(m.sourceCity);cities.add(m.targetCity);}}return cities;}
     public String reason(World.City c){List<String> reasons=new ArrayList<>();Districts.District d=w.districts.city(c.id);int danger=ai.incoming(c);
         if(danger>0)reasons.add("敌军逼近"+danger);
         if(foodTurns(c)<6)reasons.add("缺粮：现粮约"+foodTurns(c)+"旬");

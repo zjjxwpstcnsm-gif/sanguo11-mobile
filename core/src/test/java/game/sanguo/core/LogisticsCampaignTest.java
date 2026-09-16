@@ -43,7 +43,7 @@ public final class LogisticsCampaignTest {
         World w=fixture();ok(w.domestic.transport(11,12,4,500,20,1000,new int[4]));Domestic.Mission m=w.domestic.missions.get(0);
         Hex start=m.hex;for(Hex h:start.neighbors())w.terrain[h.q][h.r]=World.Terrain.MOUNTAIN;
         tick(w);check(m.food==0&&m.troops==900&&m.hex.equals(start),"blocked convoy still eats real cargo and loses troops on famine");
-        check(w.domestic.status(m).contains("受阻"),"blocked status");World b=copy(w);tick(w);tick(b);check(Arrays.equals(bytes(w),bytes(b)),"starving save replay");
+        check(w.domestic.status(m).contains("受阻"),"blocked status");byte[] untouched=bytes(w);List<World.City> anomalies=new CityOverview(w).cities(7,-1,0,"",0);check(anomalies.size()==2&&anomalies.contains(w.city(11))&&anomalies.contains(w.city(12))&&Arrays.equals(untouched,bytes(w)),"anomaly filter locates both real ends without mutation");World b=copy(w);tick(w);tick(b);check(Arrays.equals(bytes(w),bytes(b)),"starving save replay");
         for(Hex h:start.neighbors())w.terrain[h.q][h.r]=World.Terrain.PLAIN;tick(w);check(!m.hex.equals(start),"opened route resumes ordinary movement");
         World enemy=fixture();ok(enemy.domestic.transport(11,12,4,0,5000,1000,new int[4]));Domestic.Mission convoy=enemy.domestic.missions.get(0);Hex next=enemy.domestic.route(convoy.hex,enemy.city(12).hex,0).get(0);StrategicManagementTest.unit(enemy,20,World.Weapon.SPEAR,next);tick(enemy);check(!convoy.hex.equals(next),"cannot move through actual hostile occupancy");
     }
