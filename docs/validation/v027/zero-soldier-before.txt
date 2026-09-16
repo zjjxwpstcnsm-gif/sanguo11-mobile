@@ -1,0 +1,3 @@
+zero-soldier convoy after actual poison movement: troops=1
+Exception in thread "main" java.lang.AssertionError: terrain damage created soldiers
+	at game.sanguo.core.ZeroSoldierProbe.main(ZeroSoldierProbe.java:10)

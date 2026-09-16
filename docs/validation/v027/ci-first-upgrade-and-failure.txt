@@ -1,0 +1,11 @@
+2026-09-16T11:50:30.2659309Z UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v21 and restored identically.
+2026-09-16T11:50:38.0034331Z UPGRADE25 PASS: actual v0.25 APK replaced in place; v19 settings, intent and convoy retained, v21 replay continued once.
+2026-09-16T11:50:45.6716775Z UPGRADE26 PASS: actual verified v0.26 APK replaced in place; real v20 three-officer cargo, spent ration, return personnel, district and AI intent retained and v21 continued once.
+2026-09-16T11:52:26.2389209Z SMOKE FAIL: java.lang.AssertionError: UI text not found: 路线预览
+2026-09-16T11:52:26.2390321Z 	at game.sanguo.mobile.GameSmokeRunner.waitText(GameSmokeRunner.java:885)
+2026-09-16T11:52:26.2391571Z 	at game.sanguo.mobile.GameSmokeRunner.tacticalLogisticsFlow(GameSmokeRunner.java:523)
+2026-09-16T11:52:26.2392395Z 	at game.sanguo.mobile.GameSmokeRunner.onStart(GameSmokeRunner.java:36)
+2026-09-16T11:52:26.9688237Z AssertionError: SMOKE FAIL: java.lang.AssertionError: UI text not found: 路线预览
+2026-09-16T11:52:26.9688808Z 	at game.sanguo.mobile.GameSmokeRunner.waitText(GameSmokeRunner.java:885)
+2026-09-16T11:52:26.9689674Z 	at game.sanguo.mobile.GameSmokeRunner.tacticalLogisticsFlow(GameSmokeRunner.java:523)
+2026-09-16T11:52:26.9690443Z 	at game.sanguo.mobile.GameSmokeRunner.onStart(GameSmokeRunner.java:36)

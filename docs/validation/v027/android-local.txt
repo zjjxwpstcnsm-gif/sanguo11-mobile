@@ -20,13 +20,7 @@ Daemon will be stopped at the end of the build
 > Task :app:processDebugManifest UP-TO-DATE
 > Task :app:processDebugManifestForPackage UP-TO-DATE
 > Task :app:processDebugResources UP-TO-DATE
-
-> Task :app:compileDebugJavaWithJavac
-Note: Some input files use or override a deprecated API.
-Note: Recompile with -Xlint:deprecation for details.
-Note: /workspace/scratch/b20e30592c7b/sanguo11-mobile/app/src/main/java/game/sanguo/mobile/OverviewUi.java uses unchecked or unsafe operations.
-Note: Recompile with -Xlint:unchecked for details.
-
+> Task :app:compileDebugJavaWithJavac UP-TO-DATE
 > Task :app:bundleDebugClassesToCompileJar UP-TO-DATE
 > Task :app:preDebugUnitTestBuild UP-TO-DATE
 > Task :app:bundleDebugClassesToRuntimeJar
@@ -34,34 +28,26 @@ Note: Recompile with -Xlint:unchecked for details.
 > Task :app:verifyPresentation
 PASS: 51795 UI projection/camera assertions.
 
+> Task :app:javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :app:compileDebugUnitTestJavaWithJavac UP-TO-DATE
 > Task :app:processDebugJavaRes NO-SOURCE
 > Task :app:processDebugUnitTestJavaRes NO-SOURCE
-> Task :app:preReleaseBuild UP-TO-DATE
-> Task :app:javaPreCompileDebugUnitTest
-> Task :app:javaPreCompileRelease
-> Task :app:compileDebugUnitTestJavaWithJavac
 > Task :app:testDebugUnitTest
-> Task :app:checkReleaseAarMetadata
-> Task :app:generateReleaseResValues
-> Task :app:mapReleaseSourceSetPaths
-> Task :app:generateReleaseResources
-> Task :app:packageReleaseResources
-> Task :app:createReleaseCompatibleScreenManifests
-> Task :app:extractDeepLinksRelease
-> Task :app:parseReleaseLocalResources
-> Task :app:mergeReleaseResources
-> Task :app:processReleaseMainManifest
-> Task :app:processReleaseManifest
-> Task :app:preReleaseUnitTestBuild UP-TO-DATE
-> Task :app:processReleaseJavaRes NO-SOURCE
-> Task :app:javaPreCompileReleaseUnitTest
-> Task :app:processReleaseManifestForPackage
-> Task :app:processReleaseUnitTestJavaRes NO-SOURCE
-> Task :app:processReleaseResources
-
-> Task :core:compileTestJava
-Note: /workspace/scratch/b20e30592c7b/sanguo11-mobile/core/src/test/java/game/sanguo/core/CampaignTest.java uses or overrides a deprecated API.
-Note: Recompile with -Xlint:deprecation for details.
+> Task :app:preReleaseBuild UP-TO-DATE
+> Task :app:javaPreCompileRelease UP-TO-DATE
+> Task :app:checkReleaseAarMetadata UP-TO-DATE
+> Task :app:generateReleaseResValues UP-TO-DATE
+> Task :app:mapReleaseSourceSetPaths UP-TO-DATE
+> Task :app:generateReleaseResources UP-TO-DATE
+> Task :app:mergeReleaseResources UP-TO-DATE
+> Task :app:packageReleaseResources UP-TO-DATE
+> Task :app:parseReleaseLocalResources UP-TO-DATE
+> Task :app:createReleaseCompatibleScreenManifests UP-TO-DATE
+> Task :app:extractDeepLinksRelease UP-TO-DATE
+> Task :app:processReleaseMainManifest UP-TO-DATE
+> Task :app:processReleaseManifest UP-TO-DATE
+> Task :app:processReleaseManifestForPackage UP-TO-DATE
+> Task :app:processReleaseResources UP-TO-DATE
 
 > Task :app:compileReleaseJavaWithJavac
 Note: Some input files use or override a deprecated API.
@@ -69,12 +55,21 @@ Note: Recompile with -Xlint:deprecation for details.
 Note: /workspace/scratch/b20e30592c7b/sanguo11-mobile/app/src/main/java/game/sanguo/mobile/OverviewUi.java uses unchecked or unsafe operations.
 Note: Recompile with -Xlint:unchecked for details.
 
-> Task :app:bundleReleaseClassesToRuntimeJar
+> Task :app:preReleaseUnitTestBuild UP-TO-DATE
+> Task :app:javaPreCompileReleaseUnitTest UP-TO-DATE
 > Task :app:bundleReleaseClassesToCompileJar
-> Task :core:processTestResources
-> Task :app:compileReleaseUnitTestJavaWithJavac
+> Task :app:bundleReleaseClassesToRuntimeJar
+> Task :app:compileReleaseUnitTestJavaWithJavac UP-TO-DATE
+> Task :app:processReleaseJavaRes NO-SOURCE
+> Task :app:processReleaseUnitTestJavaRes NO-SOURCE
 > Task :app:testReleaseUnitTest
 > Task :app:test
+
+> Task :core:compileTestJava
+Note: /workspace/scratch/b20e30592c7b/sanguo11-mobile/core/src/test/java/game/sanguo/core/CampaignTest.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+
+> Task :core:processTestResources UP-TO-DATE
 > Task :core:testClasses
 
 > Task :core:verifyAbilities
@@ -90,7 +85,7 @@ PASS: 209 battle-feedback assertions: cargo/capture/escape, immutable previews, 
 PASS: 62 campaign cases, 678 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
 
 > Task :core:verifyCampaignAi
-National AI (synthetic 200x200, 87 cities, 670 officers): 1 search, 37839 expanded cells, 76.4 ms
+National AI (synthetic 200x200, 87 cities, 670 officers): 1 search, 37839 expanded cells, 107.3 ms
 PASS: 540 campaign AI assertions: pure/stable target selection, area friendly fire, rescue/immunity, siege, retreat/supply, reserves/formations, district permissions, hazards/detours and saved replay.
 
 > Task :core:verifyContentProfiles
@@ -118,7 +113,7 @@ PASS: 600 technology/fieldworks assertions: 36 real research completions, legacy
 PASS: 782 governance assertions: rank caps/payroll, captive crew and immunity, recruit/release/ransom/rescue, delegation, real v7 migration and long campaigns.
 
 > Task :core:verifyLifecycle
-200x200 offset map cold route: 60 ms
+200x200 offset map cold route: 61 ms
 PASS: 159354 lifecycle/national-grid assertions: actual v14 migration, annual arrival, mortality, task cleanup, commander replacement, pending succession guards/replay, execution, AI heirs, 40000 offset cells and import/save/path.
 
 > Task :core:verifyLogisticsCampaign
@@ -174,7 +169,7 @@ v026 campaign [initial defense=8000] turn 25 units=9 defender=0 hp=1600 origins=
 PASS: 1095 v026 logistics/campaign assertions.
 
 > Task :core:verifyMarches
-March 128x128 cold preview: 27 ms
+March 128x128 cold preview: 24 ms
 PASS: 75 march assertions: pure/stale preview, weighted routes, multi-turn budget, retarget/stop, obstacles, water, target identity, v12 migration, deterministic save continuation.
 
 > Task :core:verifyPrisonerEscort
@@ -185,13 +180,13 @@ PASS: 583 rules-parity assertions: move previews/replays/budget, skill prioritie
 
 > Task :core:verifyScenarios
 PASS: 143 content/runtime integration assertions.
-PASS: 2638 content assertions; cold catalog 110.870 ms; sourced opening combat at turn 4.
+PASS: 2638 content assertions; cold catalog 104.748 ms; sourced opening combat at turn 4.
 PASS: 182 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
 
 > Task :core:verifyStrategicManagement
-18 multi-city turns + save replay: 101 ms
-42 cities / 670 officers next turn: 348 ms
-Synthetic axial 200x200 / 40 cities / 40 units next turn: 1148 ms
+18 multi-city turns + save replay: 74 ms
+42 cities / 670 officers next turn: 385 ms
+Synthetic axial 200x200 / 40 cities / 40 units next turn: 941 ms
 PASS: 105 strategic management assertions: v18 migration, settings/replay, real transfers/production/cargo, reserves/permissions, stable targets/siege lanes, national filters and performance.
 
 > Task :core:verifyStrategy
@@ -204,7 +199,7 @@ PASS: 44 supply assertions: troop/food conservation, no duplicate delivery, raid
 PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
 
 > Task :core:verifyTacticalBattlePerformance
-PASS: 50x50 benchmark, 100 A* queries: p50=1.299ms p95=2.295ms max=4.232ms total=143.109ms maxExpanded=2125/2500; 100 reachable queries=8.850ms
+PASS: 50x50 benchmark, 100 A* queries: p50=1.414ms p95=3.336ms max=14.087ms total=164.718ms maxExpanded=2125/2500; 100 reachable queries=8.345ms
 
 > Task :core:verifyTacticalLogistics
 V027 LEDGER 1 gold=121500+0=121500 food=476000+0-2280-0=473720
@@ -283,10 +278,10 @@ v026 campaign [initial defense=8000] turn 5 units=6 defender=16000 hp=8000 origi
 v026 campaign [initial defense=8000] turn 10 units=6 defender=16000 hp=8000 origins=[11, 12]
 v026 campaign [initial defense=8000] turn 15 units=6 defender=16000 hp=8000 origins=[11, 12]
 v026 campaign [initial defense=8000] turn 20 units=6 defender=14164 hp=6364 origins=[11, 12]
-PASS: 5420 v027 tactical logistics assertions.
+PASS: 5424 v027 tactical logistics assertions.
 
 > Task :core:verifyTerritoryAi
-Territory 200x200 / 87 sites: 39 ms
+Territory 200x200 / 87 sites: 68 ms
 PASS: 674 territory/AI assertions: catchments, capture/treaties, gates/ports, map bounds, ranged pressure, district budgets/fairness/save replay.
 
 > Task :core:verifyWorldSystems
@@ -321,12 +316,7 @@ PASS: 881 world-system assertions: ZOC/poison, joint/ironwall/infighting/magic, 
 > Task :app:mergeDebugAndroidTestResources UP-TO-DATE
 > Task :app:processDebugAndroidTestManifest UP-TO-DATE
 > Task :app:processDebugAndroidTestResources UP-TO-DATE
-> Task :app:mergeDebugJavaResource
-
-> Task :app:compileDebugAndroidTestJavaWithJavac
-Note: /workspace/scratch/b20e30592c7b/sanguo11-mobile/app/src/androidTest/java/game/sanguo/mobile/GameSmokeRunner.java uses or overrides a deprecated API.
-Note: Recompile with -Xlint:deprecation for details.
-
+> Task :app:compileDebugAndroidTestJavaWithJavac UP-TO-DATE
 > Task :app:mergeDebugAndroidTestShaders UP-TO-DATE
 > Task :app:compileDebugAndroidTestShaders NO-SOURCE
 > Task :app:generateDebugAndroidTestAssets UP-TO-DATE
@@ -345,15 +335,16 @@ Note: Recompile with -Xlint:deprecation for details.
 > Task :app:mergeDebugAndroidTestNativeLibs NO-SOURCE
 > Task :app:stripDebugAndroidTestDebugSymbols NO-SOURCE
 > Task :app:validateSigningDebugAndroidTest UP-TO-DATE
+> Task :app:mergeDebugJavaResource
 > Task :app:writeDebugAndroidTestSigningConfigVersions UP-TO-DATE
 > Task :app:packageDebugAndroidTest UP-TO-DATE
 > Task :app:createDebugAndroidTestApkListingFileRedirect UP-TO-DATE
 > Task :app:assembleDebugAndroidTest UP-TO-DATE
-> Task :app:mergeLibDexDebug
 > Task :app:generateDebugAndroidTestLintModel
 > Task :app:extractProguardFiles UP-TO-DATE
 > Task :app:generateDebugLintReportModel
 > Task :app:generateDebugUnitTestLintModel
+> Task :app:mergeLibDexDebug
 > Task :app:packageDebug
 > Task :app:createDebugApkListingFileRedirect UP-TO-DATE
 > Task :app:assembleDebug
@@ -371,5 +362,5 @@ You can use '--warning-mode all' to show the individual deprecation warnings and
 
 For more on this, please refer to https://docs.gradle.org/8.11.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
 
-BUILD SUCCESSFUL in 57s
-125 actionable tasks: 69 executed, 56 up-to-date
+BUILD SUCCESSFUL in 49s
+125 actionable tasks: 48 executed, 77 up-to-date

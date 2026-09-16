@@ -87,8 +87,8 @@ public final class Fieldworks {
         return t==World.Terrain.MOUNTAIN_PATH||t==World.Terrain.PLANK_ROAD?3:t==World.Terrain.SHALLOWS?2:w.cost(h,weapon);
     }
     void traveled(World.Unit u,List<Hex> path){
-        if(!w.skills.has(u,Skill.JIEDU))for(int i=1;i<path.size();i++)if(w.terrain[path.get(i).q][path.get(i).r]==World.Terrain.POISON){int loss=Math.max(1,u.troops/20);u.troops=Math.max(1,u.troops-loss);w.note("经过毒泉，部队损失"+loss+"兵");}
-        if(!w.campaign.has(u.owner,Campaign.Tech.DIFFICULT_MARCH))for(int i=1;i<path.size();i++)if(w.terrain[path.get(i).q][path.get(i).r]==World.Terrain.PLANK_ROAD&&!w.skills.has(u,Skill.TAPO))u.troops=Math.max(1,u.troops-Math.max(1,u.troops/100));
+        if(u.troops>0&&!w.skills.has(u,Skill.JIEDU))for(int i=1;i<path.size();i++)if(w.terrain[path.get(i).q][path.get(i).r]==World.Terrain.POISON){int loss=Math.max(1,u.troops/20);u.troops=Math.max(1,u.troops-loss);w.note("经过毒泉，部队损失"+loss+"兵");}
+        if(u.troops>0&&!w.campaign.has(u.owner,Campaign.Tech.DIFFICULT_MARCH))for(int i=1;i<path.size();i++)if(w.terrain[path.get(i).q][path.get(i).r]==World.Terrain.PLANK_ROAD&&!w.skills.has(u,Skill.TAPO))u.troops=Math.max(1,u.troops-Math.max(1,u.troops/100));
         for(War.Structure s:w.war.structures)if(s.complete&&s.kind==War.StructureKind.STONE_MAZE&&w.campaign.hostile(s.owner,u.owner)&&s.hex.distance(u.hex)==1&&!w.skills.has(u,Skill.TAPO)&&!w.skills.has(u,Skill.DONGCHA)&&w.strategy.nextInt(100)<35){u.status=War.Status.CONFUSED;u.statusTurns=1;u.acted=true;break;}
     }
     public int defensePercent(World.Unit u){int best=0;for(War.Structure s:w.war.structures)if(s.complete&&s.owner==u.owner&&camp(s.kind)){

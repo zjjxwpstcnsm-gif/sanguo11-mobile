@@ -14,7 +14,7 @@ public final class TacticalLogisticsTest {
     static World fixture(){World w=LogisticsCampaignTest.fixture();w.strategy.setSeed(27016);return w;}
     static void tick(World w){w.turn++;w.domestic.tick();}
     static Domestic.Mission send(World w,boolean sea,boolean returning){ok(w.domestic.transport(11,12,4,new int[]{5,6},700,10000,2000,new int[]{1000,0,0,0},sea,returning));return w.domestic.missions.get(0);}
-    public static void main(String[] args)throws Exception{identity();combat();water();migration();permissions();waypoint();queue();escort();frontline();twoYears();LogisticsCampaignTest.campaign(8000,true);System.out.println("PASS: "+checks+" v027 tactical logistics assertions.");}
+    public static void main(String[] args)throws Exception{identity();combat();water();migration();permissions();waypoint();queue();escort();frontline();emptySoldiers();twoYears();LogisticsCampaignTest.campaign(8000,true);System.out.println("PASS: "+checks+" v027 tactical logistics assertions.");}
     static void identity()throws Exception{
         World w=fixture();Domestic.Mission m=send(w,false,true);long[] before=stock(w);tick(w);
         check(w.unitAt(m.hex)==m&&w.unit(m.id)==m,"one object is both cargo owner and actual battlefield target");check(m.food==9900,"one actual ration");
@@ -99,6 +99,11 @@ public final class TacticalLogisticsTest {
         new CampaignAi(w).runUnit(hungry,true,c->c.id==20,c->c.owner==0);check(m.acted&&hungry.food>600&&m.food+hungry.food==total,"frontline AI receives actual adjacent convoy grain without creating supply");
         World denied=fixture();Domestic.Mission foreign=send(denied,false,false);tick(denied);World.Unit unit=StrategicManagementTest.unit(denied,7,World.Weapon.SPEAR,foreign.hex.neighbors().get(0));unit.food=600;
         ok(denied.districts.configure(-1,"战区",new int[]{12},Districts.Policy.ECONOMY,-1,-1,false,false));denied.districts.units.put(unit.id,1);int grain=foreign.food;new CampaignAi(denied).runUnit(unit,true,c->true,c->c.id==12);check(foreign.food==grain,"delegated frontline cannot siphon first-district convoy");
+    }
+    static void emptySoldiers()throws Exception{
+        World w=fixture();ok(w.domestic.transport(11,12,4,100,1000,0,new int[4]));Domestic.Mission m=w.domestic.missions.get(0);long[] before=stock(w);
+        w.terrain[4][15]=World.Terrain.POISON;ok(w.orders.execute(w.orders.previewMove(m.id,new Hex(4,15))));check(m.troops==0&&Arrays.equals(before,stock(w)),"legacy-compatible zero-soldier cargo cannot gain troops from poison minimum-survivor rule");
+        World replay=copy(w);check(replay.domestic.missions.get(0).troops==0,"zero-soldier tactical state survives save without invented guard");
     }
     static long[] stock(World w){long[] a=new long[14];for(World.City c:w.cities){a[0]+=c.gold;a[1]+=c.food;a[2]+=c.troops;for(int i=0;i<9;i++)a[3+i]+=c.equipment[i];for(int i=0;i<2;i++)a[12+i]+=c.ships[i];}for(Domestic.Mission m:w.domestic.missions){a[0]+=m.gold;a[1]+=m.food;a[2]+=m.troops;for(int i=0;i<9;i++)a[3+i]+=m.equipment[i];for(int i=0;i<2;i++)a[12+i]+=m.cargoShips[i];}return a;}
     static long income(World w,World.City c,boolean food){
