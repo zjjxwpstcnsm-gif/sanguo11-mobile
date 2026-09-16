@@ -187,6 +187,10 @@ public final class GameSmokeRunner extends Instrumentation {
             runOnMainSync(current::recreate);waitForIdleSync();waitText("将5运输队",true);require(moving.getInt(current)==w.domestic.missions.get(1).id,"overlap identity survives recreation");
         }
         nationalReturnPosition();
+        // Compact object sheets must not leave a management list with zero height under its filters.
+        World officers=diplomacyFixture();installFixture(officers,officers.home().hex);chooseOrientation("竖屏");clickNav("武将");setSearch("诸葛亮");
+        android.widget.ListView officerList=nativeList(current.getWindow().getDecorView());require(officerList!=null&&officerList.getHeight()>=current.getResources().getDisplayMetrics().density*80,"default officer list retains a usable row below search and filters without manual expansion");
+        screenshot("v028-officer-list-default");click("诸葛亮 · 汉营",true);waitText("诸葛亮",true);click("返回",true);
         installFixture(original,original.home().hex);
     }
     private android.widget.ListView nativeList(android.view.View view){

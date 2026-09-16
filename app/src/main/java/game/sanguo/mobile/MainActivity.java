@@ -117,7 +117,7 @@ public final class MainActivity extends Activity {
         boolean vertical=portrait();body.setOrientation(vertical?LinearLayout.VERTICAL:LinearLayout.HORIZONTAL);
         LinearLayout.LayoutParams mapParams=new LinearLayout.LayoutParams(vertical?-1:0,vertical?0:-1,1);
         LinearLayout.LayoutParams sheetParams=vertical
-            ?new LinearLayout.LayoutParams(-1,Math.round(body.getHeight()*(ui.panelExpanded?.78f:.38f)))
+            ?new LinearLayout.LayoutParams(-1,Math.round(body.getHeight()*(ui.panelExpanded?.78f:ui.page.equals("map")?.38f:.62f)))
             :new LinearLayout.LayoutParams(Math.min(dp(ui.panelExpanded?460:312),Math.round(body.getWidth()*(ui.panelExpanded?.60f:.38f))),-1);
         setPanelParams(map,mapParams);setPanelParams(panelShell,sheetParams);
         expandPanel.setText(ui.panelExpanded?"缩小":"展开");
