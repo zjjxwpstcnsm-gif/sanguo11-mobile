@@ -3,7 +3,9 @@ set -euo pipefail
 mkdir -p app/build/experience
 adb shell wm size 1080x1920
 adb shell wm density 420
-for phase in before after; do
+# Observe the candidate first so failures surface before repeating the pinned old flows.
+# Both versions still run on this one emulator when the comparison succeeds.
+for phase in after before; do
   adb uninstall game.sanguo.mobile.dev || true
   adb uninstall game.sanguo.mobile.dev.test || true
   if [ "$phase" = before ]; then

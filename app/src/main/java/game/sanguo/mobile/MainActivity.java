@@ -137,7 +137,7 @@ public final class MainActivity extends Activity {
         int pendingTasks=taskCount();
         for(int i=0;i<keys.length;i++){
             final String page=keys[i];String label=labels[i]+(page.equals("tasks")&&pendingTasks>0?" "+pendingTasks:"");
-            Button item=button(label,v->{navigationDialog.dismiss();ui.page=page;ui.panelVisible=!page.equals("map");ui.panelExpanded=false;refresh();revealPanel();});
+            Button item=button(label,v->{navigationDialog.dismiss();ui.returnToCities=false;ui.page=page;ui.panelVisible=!page.equals("map");ui.panelExpanded=false;refresh();revealPanel();});
             item.setContentDescription("导航 · "+labels[i]);navigation.put(page,item);list.addView(item,new LinearLayout.LayoutParams(-1,dp(48)));
         }
         navigationDialog.show();
@@ -158,7 +158,7 @@ public final class MainActivity extends Activity {
             else if(index==8)showTerritoryPicker();
             else if(index==9)showTerritoryLegend();
             else if(index==10)new WorldUi(this,world,this::apply).districts();
-            else if(index==11){ui.page="cities";ui.panelVisible=true;ui.panelExpanded=true;refresh();revealPanel();}
+            else if(index==11){ui.returnToCities=false;ui.page="cities";ui.panelVisible=true;ui.panelExpanded=true;refresh();revealPanel();}
             else message("地图操作","单指拖动 · 双指缩放 · 双击城池定位\n点城池或部队打开指令，点空地或「收起」返回大地图。\n「功能」打开城市、武将、任务和存档菜单。\n竖屏使用底部面板，横屏使用右侧面板；「展开」可查看更多内容。\n选中部队即显示青色行动范围和红色攻击目标。先点「行军」再点目标预览路线；「攻击」「战法」「计略」在固定底栏。普通点空地、再点本队或「取消选中」可解除选择。返回键依次取消路线、指令、选中。");
         }).setNegativeButton("返回",null).show();
     }
@@ -763,5 +763,14 @@ public final class MainActivity extends Activity {
     }
     private void loadSlot(String slot){try{World restored=readSave(file(slot));world=restored;ui.formDraft=new Bundle();ui.returnToCities=false;ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;selectAndFocus(world.home().hex);save("auto",false);Toast.makeText(this,"已读取存档 · "+world.date(),Toast.LENGTH_SHORT).show();}catch(IOException e){showError("读取失败");}}
     @Override protected void onPause(){super.onPause();if(world!=null){save("auto",false);persistClientState();}}
-    @Override public void onBackPressed(){if(aiRunning)return;if(mapPick!=null){cancelMapPick();return;}if(pendingMarch!=null){pendingMarch=null;unitCommand="select";refresh();return;}if(!unitCommand.equals("select")){unitCommand="select";refresh();return;}if(ui.page.equals("map")&&ui.returnToCities){returnToCities();return;}if(moving>=0&&ui.page.equals("map")){if(ui.panelVisible){closePanel();return;}clearUnitSelection();return;}if(!ui.page.equals("map")){closePanel();}else if(ui.panelVisible){closePanel();}else confirm("退出游戏？当前局面将自动保存。",this::finish);}
+    @Override public void onBackPressed(){
+        if(aiRunning)return;
+        if(mapPick!=null){cancelMapPick();return;}
+        if(pendingMarch!=null){pendingMarch=null;unitCommand="select";refresh();return;}
+        if(!unitCommand.equals("select")){unitCommand="select";refresh();return;}
+        if(!ui.page.equals("map")||ui.panelVisible){closePanel();return;}
+        if(moving>=0){clearUnitSelection();return;}
+        if(ui.returnToCities){returnToCities();return;}
+        confirm("退出游戏？当前局面将自动保存。",this::finish);
+    }
 }
