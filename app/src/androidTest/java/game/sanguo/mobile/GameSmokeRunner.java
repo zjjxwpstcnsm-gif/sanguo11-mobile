@@ -481,8 +481,8 @@ public final class GameSmokeRunner extends Instrumentation {
         w=saved();w.unit(6).hex=new Hex(7,18);w.unit(6).acted=false;w.unit(6).movementSpent=0;w.unit(6).movementBudget=-1;installFixture(w,w.unit(6).hex);
         click("讨伐贼寨",true);click("盗贼 · 兵",false);click("执行",true);require(saved().events.camps().get(0).troops<3000,"real camp damage");screenshot("73-raider-attack");
         w=ScenarioCatalog.load("world-drill",0,41);for(int seed=0;seed<100;seed++){w.strategy.setSeed(seed);World trial=SaveCodec.decode(SaveCodec.encode(w));trial.war.plot(1,trial.unit(4).hex,War.Plot.LIGHTNING);if(trial.unit(4).troops<w.unit(4).troops)break;}
-        installFixture(w,w.unit(1).hex);click("部队计略",true);click("落雷 · 气力1",true);click("对阵将 ·",false);before=SaveCodec.encode(saved());screenshot("74-lightning-preview");click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"lightning preview is pure");
-        click("部队计略",true);click("落雷 · 气力1",true);click("对阵将 ·",false);click("执行",true);require(saved().unit(4).troops<6000&&saved().unit(1).energy==99&&!saved().war.fires().isEmpty(),"UI lightning consumes one and affects actual units/fire");screenshot("75-lightning-result");
+        installFixture(w,w.unit(1).hex);click("计略",true);click("落雷 · 气力1",true);tapHex(saved().unit(4).hex);before=SaveCodec.encode(saved());screenshot("74-lightning-preview");click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"lightning preview is pure");click("取消选取",true);
+        click("计略",true);click("落雷 · 气力1",true);tapHex(saved().unit(4).hex);click("执行",true);require(saved().unit(4).troops<6000&&saved().unit(1).energy==99&&!saved().war.fires().isEmpty(),"UI lightning consumes one and affects actual units/fire");screenshot("75-lightning-result");
         w=ScenarioCatalog.load("world-drill",0,41);for(int seed=0;seed<100;seed++){w.strategy.setSeed(seed);World trial=SaveCodec.decode(SaveCodec.encode(w));trial.campaign.negotiate(10,1,1,Campaign.TreatyKind.CEASEFIRE,6);if(trial.contests.busy())break;}
         installFixture(w,w.city(10).hex);locateCity("经略主城");click("外交",true);click("外交 / 协定",true);click("对阵营 ·",false);click("停战 · 金1000",true);click("使节 ·",false);click("6旬",true);click("执行",true);
         require(saved().contests.busy()&&saved().contests.current().diplomatic(),"real negotiation opens diplomatic debate");waitText("外交 · 停战 6旬",true);screenshot("76-diplomatic-debate");before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("外交 · 停战 6旬",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"diplomatic session survives recreation");
@@ -629,9 +629,9 @@ public final class GameSmokeRunner extends Instrumentation {
         byte[] moved=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("水陆攻防",false);
         require(Arrays.equals(moved,SaveCodec.encode(saved())),"movement budget survives recreation");
         click("选中对象指令 ·",false);
-        click("部队计略",true);click("扰乱 · 气力1",true);click("曹操 ·",false);screenshot("29-skill-plot-preview");click("取消",true);
-        require(Arrays.equals(moved,SaveCodec.encode(saved())),"skill plot cancel is pure");
-        click("部队计略",true);click("扰乱 · 气力1",true);click("曹操 ·",false);click("执行",true);w=saved();
+        click("计略",true);click("扰乱 · 气力1",true);tapHex(saved().unit(2).hex);screenshot("29-skill-plot-preview");click("取消",true);
+        require(Arrays.equals(moved,SaveCodec.encode(saved())),"skill plot cancel is pure");click("取消选取",true);
+        click("计略",true);click("扰乱 · 气力1",true);tapHex(saved().unit(2).hex);click("执行",true);w=saved();
         require(w.unit(1).acted&&w.unit(1).energy==79&&w.unit(2).statusTurns==2&&w.unit(3).statusTurns==2,"UI 神算百出连环 costs once and resolves two targets");
         screenshot("30-move-then-skills");
     }
