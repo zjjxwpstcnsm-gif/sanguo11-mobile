@@ -59,10 +59,10 @@ final class OverviewUi {
         String[] owners=new String[w.factions.length+2];owners[0]="全部城池";owners[1]="中立城池";System.arraycopy(w.factions,0,owners,2,w.factions.length);
         String[] sorts=CityOverview.SORTS;
         LinearLayout controls=new LinearLayout(a);host.addView(controls);
-        controls.addView(a.button(state.cityOwner==-1?"全部城池":state.cityOwner==-2?"中立城池":w.faction(state.cityOwner),v->new AlertDialog.Builder(a).setTitle("所属势力").setItems(owners,(dialog,i)->{state.cityOwner=i==0?-1:i==1?-2:i-2;state.cityPosition=0;a.refresh();}).setNegativeButton("取消",null).show()),new LinearLayout.LayoutParams(0,a.dp(48),1));
+        controls.addView(a.button(state.cityOwner==-1?"全部城池":state.cityOwner==-2?"中立城池":w.faction(state.cityOwner),v->new AlertDialog.Builder(a).setTitle("所属势力").setItems(owners,(dialog,i)->{state.cityOwner=i==0?-1:i==1?-2:i-2;state.cityPosition=0;state.cityTop=0;a.refresh();}).setNegativeButton("取消",null).show()),new LinearLayout.LayoutParams(0,a.dp(48),1));
         controls.addView(a.button("筛选 · "+CityOverview.FILTERS[state.cityFilter],v->new AlertDialog.Builder(a).setTitle("全国管理筛选").setItems(new String[]{"城池状态","所属军团","批量划入军团","军团经营总览"},(dialog,n)->{
-            if(n==0)new AlertDialog.Builder(a).setTitle("城池状态").setItems(CityOverview.FILTERS,(d,i)->{state.cityFilter=i;state.cityPosition=0;a.refresh();}).setNegativeButton("取消",null).show();
-            else if(n==1){List<Districts.District> groups=w.districts.all();String[] labels=new String[groups.size()+2];labels[0]="全部军团";labels[1]="第一军团（直属）";for(int i=0;i<groups.size();i++)labels[i+2]=groups.get(i).name();new AlertDialog.Builder(a).setTitle("所属军团").setItems(labels,(d,i)->{state.cityDistrict=i==0?-1:i==1?0:groups.get(i-2).id;state.cityPosition=0;a.refresh();}).setNegativeButton("取消",null).show();}
+            if(n==0)new AlertDialog.Builder(a).setTitle("城池状态").setItems(CityOverview.FILTERS,(d,i)->{state.cityFilter=i;state.cityPosition=0;state.cityTop=0;a.refresh();}).setNegativeButton("取消",null).show();
+            else if(n==1){List<Districts.District> groups=w.districts.all();String[] labels=new String[groups.size()+2];labels[0]="全部军团";labels[1]="第一军团（直属）";for(int i=0;i<groups.size();i++)labels[i+2]=groups.get(i).name();new AlertDialog.Builder(a).setTitle("所属军团").setItems(labels,(d,i)->{state.cityDistrict=i==0?-1:i==1?0:groups.get(i-2).id;state.cityPosition=0;state.cityTop=0;a.refresh();}).setNegativeButton("取消",null).show();}
             else if(n==2)new WorldUi(a,w,a::applyResult).batch(holder[0].rows);
             else new WorldUi(a,w,a::applyResult).districts();
         }).setNegativeButton("返回",null).show()),new LinearLayout.LayoutParams(0,a.dp(48),1));

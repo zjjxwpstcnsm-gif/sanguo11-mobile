@@ -840,10 +840,12 @@ public final class GameSmokeRunner extends Instrumentation {
         sendPointerSync(down);sendPointerSync(up);down.recycle();up.recycle();waitForIdleSync();SystemClock.sleep(350);
     }
     private AccessibilityNodeInfo scrollToText(String text,boolean exact) {
-        AccessibilityNodeInfo node=null;long until=SystemClock.uptimeMillis()+12000;
+        AccessibilityNodeInfo node=null;long until=SystemClock.uptimeMillis()+12000;boolean forward=true;
         while(node==null&&SystemClock.uptimeMillis()<until) {
             waitForIdleSync();AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();node=find(root,text,exact);
-            if(node==null){if(!scroll(root))scrollBack(root);SystemClock.sleep(250);}
+            // Lists retain their position across reopening/recreation. Search the full
+            // list in both directions, rather than bouncing around its last page.
+            if(node==null){if(forward&&!scroll(root))forward=false;if(!forward)scrollBack(root);SystemClock.sleep(250);}
         }
         if(node==null)throw new AssertionError("UI content not reachable by scrolling: "+text);
         return node;
