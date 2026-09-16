@@ -39,8 +39,17 @@ final class OverviewUi {
         FrameLayout content=new FrameLayout(a);host.addView(content,new LinearLayout.LayoutParams(-1,0,1));
         ListView list=new ListView(a);list.setDividerHeight(a.dp(1));list.setCacheColorHint(Color.TRANSPARENT);list.setContentDescription("概览列表");
         TextView blank=text(empty,16);blank.setGravity(Gravity.CENTER);content.addView(blank,new FrameLayout.LayoutParams(-1,-1));content.addView(list,new FrameLayout.LayoutParams(-1,-1));list.setEmptyView(blank);
-        if(state.page.equals("cities")){list.setOnScrollListener(new AbsListView.OnScrollListener(){public void onScrollStateChanged(AbsListView view,int scrollState){}public void onScroll(AbsListView view,int first,int visible,int total){if(view.getChildCount()>0){state.cityPosition=first;state.cityTop=view.getChildAt(0).getTop();}}});}
-        Rows<T> adapter=new Rows<>(rows,key,title,detail);adapter.emptyView=blank;list.setAdapter(adapter);if(state.page.equals("cities"))list.setSelectionFromTop(state.cityPosition,state.cityTop);list.setOnItemClickListener((p,v,index,id)->select.accept(adapter.getItem(index)));
+        boolean cityPage=state.page.equals("cities");int position=state.cityPosition,top=state.cityTop;
+        boolean[] restoring={cityPage};
+        Rows<T> adapter=new Rows<>(rows,key,title,detail);adapter.emptyView=blank;list.setAdapter(adapter);
+        if(cityPage){
+            list.setSelectionFromTop(position,top);
+            list.setOnScrollListener(new AbsListView.OnScrollListener(){public void onScrollStateChanged(AbsListView view,int scrollState){}public void onScroll(AbsListView view,int first,int visible,int total){
+                if(!restoring[0]&&state.page.equals("cities")&&view.isAttachedToWindow()&&view.getChildCount()>0){state.cityPosition=first;state.cityTop=view.getChildAt(0).getTop();}
+            }});
+            list.post(()->{list.setSelectionFromTop(position,top);restoring[0]=false;});
+        }
+        list.setOnItemClickListener((p,v,index,id)->select.accept(adapter.getItem(index)));
         if(state.page.equals("cities"))list.setOnItemLongClickListener((p,v,index,id)->{Object row=adapter.getItem(index);if(row instanceof World.City){World.City city=(World.City)row;new AlertDialog.Builder(a).setTitle(city.name+" · 物流预测").setMessage(new DistrictManagement(w).forecast(city)).setPositiveButton("查看相关任务",(d,n)->{state.taskQuery=city.name;state.taskType=0;state.page="tasks";a.refresh();}).setNegativeButton("返回",null).show();return true;}return false;});return adapter;
     }
     private EditText search(LinearLayout host,String hint,String value,Consumer<String> change){

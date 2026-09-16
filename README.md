@@ -1,12 +1,16 @@
 # sanguo11-mobile
 
-当前增量：**v0.27 可交战运输、水陆协同与两年经营**。地图运输、兵粮金野外补给、实际护送/截击、船货、72旬账本和真实v20迁移见[实现与差异](docs/TACTICAL_LOGISTICS_V0_27.md)、[验收记录](docs/validation/v027/README.md)。
+当前增量：**v0.28 手机操作体验**。地图标签、紧凑详情、显式地图命令、待行动切换、同格运输选择、数量草稿、全国列表返回与结果反馈见[实现说明](docs/MOBILE_EXPERIENCE_V0_28.md)、[验收记录](docs/validation/v028/README.md)。
 
 独立运行的 Android 三国回合制策略游戏工程，最终目标参照 **PC《三国志11＋威力加强版》** 的完整系统范围。横竖屏、中文、离线游玩；不依赖模拟器、原版可执行文件或远程串流。
 
 ## 当前状态
 
-v0.27写存档v21，固定包名与签名沿用。[最新APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35094950113/artifacts/10446263614)对应运行代码`1884da6`；[完整CI35094950113](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35094950113)三屏横竖屏、真实v0.9/v0.25/v0.26原位覆盖升级全部通过。新增5426条断言、全部旧核心回归、51,795条UI模型断言及19项内容测试通过。412份源码逐字节一致、449张截图及APK摘要/固定签名已核对；CI Lint0错误/21警告。[PR #35](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/35)待审阅，尚未合并；最后收尾只更新文档和证据。ARM真机、真实系统杀进程以及连续敌对72旬组合场景未测，其他边界见本轮验收记录。
+v0.28沿用存档v21、固定包名和签名；本轮APK与通过状态以[最终验收记录](docs/validation/v028/README.md)为准。PR #35已核查并合入main，本轮[PR #36](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/36)继续验证。
+
+## v0.27 历史状态
+
+v0.27写存档v21，固定包名与签名沿用。[v0.27历史APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35094950113/artifacts/10446263614)对应运行代码`1884da6`；[完整CI35094950113](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35094950113)三屏横竖屏、真实v0.9/v0.25/v0.26原位覆盖升级全部通过。新增5426条断言、全部旧核心回归、51,795条UI模型断言及19项内容测试通过。412份源码逐字节一致、449张截图及APK摘要/固定签名已核对；CI Lint0错误/21警告。[PR #35](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/35)已在v0.28开工核查后合并；上轮最后收尾只更新文档和证据。ARM真机、真实系统杀进程以及连续敌对72旬组合场景未测，其他边界见本轮验收记录。
 
 ## v0.26 历史状态
 

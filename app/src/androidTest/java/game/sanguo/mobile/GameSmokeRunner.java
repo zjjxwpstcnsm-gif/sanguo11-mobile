@@ -200,8 +200,9 @@ public final class GameSmokeRunner extends Instrumentation {
         int[] location=new int[2];String[] label=new String[1];runOnMainSync(()->{location[0]=list.getFirstVisiblePosition();location[1]=list.getChildAt(0).getTop();World.City city=(World.City)list.getItemAtPosition(location[0]);label[0]=city.name+" · "+nation.faction(city.owner);});
         require(location[0]>0,"national list genuinely left first row");byte[] before=SaveCodec.encode(saved());screenshot("v028-national-position-before");click(label[0],true);click("返回全国列表",true);waitForIdleSync();
         android.widget.ListView restored=nativeList(current.getWindow().getDecorView());require(restored!=null,"single action returns to national list");
-        runOnMainSync(()->require(restored.getFirstVisiblePosition()==location[0]&&Math.abs(restored.getChildAt(0).getTop()-location[1])<=1,"national list preserves first row and pixel offset"));
-        screenshot("v028-national-position-after");require(Arrays.equals(before,SaveCodec.encode(saved())),"list map round trip is pure");
+        int[] actual=new int[2];runOnMainSync(()->{actual[0]=restored.getFirstVisiblePosition();actual[1]=restored.getChildAt(0).getTop();});screenshot("v028-national-position-after");
+        require(actual[0]==location[0]&&Math.abs(actual[1]-location[1])<=1,"national list preserves first row and pixel offset: "+Arrays.toString(location)+" -> "+Arrays.toString(actual));
+        require(Arrays.equals(before,SaveCodec.encode(saved())),"list map round trip is pure");
     }
 
     private void benchmarkExperience(PrintWriter out,World w,String label)throws Exception {
@@ -209,8 +210,21 @@ public final class GameSmokeRunner extends Instrumentation {
         runOnMainSync(()->{map.focus(w.home().hex);Bitmap bitmap=Bitmap.createBitmap(map.getWidth(),map.getHeight(),Bitmap.Config.ARGB_8888);Canvas canvas=new Canvas(bitmap);
             for(int i=0;i<15;i++){long t=System.nanoTime();map.setWorld(w,w.home().hex,w.units.isEmpty()?-1:w.units.get(0).id);long selected=System.nanoTime()-t;t=System.nanoTime();map.draw(canvas);long draw=System.nanoTime()-t;t=System.nanoTime();((MainActivity)current).refresh();long refresh=System.nanoTime()-t;t=System.nanoTime();UiModels.cities(w,0,"",-1);long list=System.nanoTime()-t;if(i>=3){samples[0][i-3]=selected;samples[1][i-3]=draw;samples[2][i-3]=refresh;samples[3][i-3]=list;}}bitmap.recycle();});
         for(int i=0;i<samples.length;i++){Arrays.sort(samples[i]);out.println(label+" "+new String[]{"setWorld-range-index","softwareDraw","refresh-detail","city-list"}[i]+" medianMs="+samples[i][6]/1e6+" p95Ms="+samples[i][11]/1e6);}
+        out.println(label+" nativeViewport="+map.getWidth()+"x"+map.getHeight()+" tilesVisited="+map.tilesVisited());
+        long[] drag=new long[12],zoom=new long[12];
+        for(int i=0;i<12;i++){long t=System.nanoTime();dragMap(map,i%2==0?80:-80,0);drag[i]=System.nanoTime()-t;t=System.nanoTime();timedPinch(map,i%2==0?1.15f:1/1.15f);zoom[i]=System.nanoTime()-t;}
+        Arrays.sort(drag);Arrays.sort(zoom);out.println(label+" injected-drag-to-idle medianMs="+drag[6]/1e6+" p95Ms="+drag[11]/1e6);out.println(label+" injected-pinch-to-idle medianMs="+zoom[6]/1e6+" p95Ms="+zoom[11]/1e6);
         byte[] bytes=SaveCodec.encode(w);for(int i=0;i<3;i++){World copy=SaveCodec.decode(bytes);long t=System.nanoTime();copy.nextTurn();out.println(label+" actual-nextTurn-ms="+(System.nanoTime()-t)/1e6);}
         out.flush();
+    }
+
+    private void timedPinch(MapView map,float factor){
+        int[] pos=new int[2];runOnMainSync(()->map.getLocationOnScreen(pos));float cx=pos[0]+map.getWidth()/2f,cy=pos[1]+map.getHeight()/2f,span=map.getWidth()*.30f;long down=SystemClock.uptimeMillis();
+        MotionEvent.PointerProperties[] properties={new MotionEvent.PointerProperties(),new MotionEvent.PointerProperties()};MotionEvent.PointerCoords[] coords={new MotionEvent.PointerCoords(),new MotionEvent.PointerCoords()};
+        for(int i=0;i<2;i++){properties[i].id=i;properties[i].toolType=MotionEvent.TOOL_TYPE_FINGER;coords[i].pressure=1;coords[i].size=1;coords[i].y=cy;}
+        for(int step=0;step<=10;step++){float d=span*(1+(factor-1)*Math.min(step,8)/8f);coords[0].x=cx-d;coords[1].x=cx+d;int action=step==0?MotionEvent.ACTION_DOWN:step==1?MotionEvent.ACTION_POINTER_DOWN|(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT):step==9?MotionEvent.ACTION_POINTER_UP|(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT):step==10?MotionEvent.ACTION_UP:MotionEvent.ACTION_MOVE;
+            MotionEvent e=MotionEvent.obtain(down,down+step*16,action,step==0||step==10?1:2,properties,coords,0,0,1,1,0,0,android.view.InputDevice.SOURCE_TOUCHSCREEN,0);sendPointerSync(e);e.recycle();}
+        waitForIdleSync();
     }
 
     private void strategicManagementFlow()throws Exception {
@@ -833,9 +847,9 @@ public final class GameSmokeRunner extends Instrumentation {
         runOnMainSync(()->{try{field.set(current,w);((MainActivity)current).rememberForm(new Bundle());((MainActivity)current).selectAndFocus(focus);}catch(IllegalAccessException e){throw new RuntimeException(e);}});
         try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(w));}waitForIdleSync();
     }
-    private void armyCity(){clickNav("城市");click("江东大营 · 江东军",false);}
+    private void armyCity(){clickNav("城市");click("江东大营 · 江东军",false);click("军事",true);}
     private void fillFormation(){
-        armyCity();click("出征",true);click("孙权 ·",false);click("周瑜 ·",false);click("甘宁 ·",false);click("鲁肃 ·",false);
+        clickNav("城市");click("江东大营 · 江东军",false);click("出征",true);click("孙权 ·",false);click("周瑜 ·",false);click("甘宁 ·",false);click("鲁肃 ·",false);
         click("下一步",true);click("冲车 ·",false);click("楼船 ·",false);setInput("粮食数量","18000");
     }
     private void armyFlow()throws Exception {

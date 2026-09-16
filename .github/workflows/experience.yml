@@ -32,6 +32,7 @@ jobs:
           mkdir -p /tmp/v027-observer app/build/baseline
           git fetch origin a92f43697a05d42cc2bcd7c9766c8103f009e48b
           git archive a92f43697a05d42cc2bcd7c9766c8103f009e48b | tar -x -C /tmp/v027-observer
+          python3 scripts/sync-experience-benchmark.py /tmp/v027-observer
           (cd /tmp/v027-observer && ./gradlew --no-daemon :app:assembleDebugAndroidTest)
           cp /tmp/v027-observer/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk app/build/baseline/observer.apk
       - name: Download exact delivered baseline
