@@ -136,13 +136,13 @@ public final class Army {
         return result;
     }
     public String tacticError(int unit,Hex target,Tactic tactic){
-        World.Unit u=w.unit(unit);if(w.commandsBlocked()||w.gameOver()||u==null||u.owner!=w.active||u.acted||u.status!=War.Status.NORMAL)return "需要当前势力可行动部队";
+        World.Unit u=w.unit(unit);String actorError=w.orders.error(u);if(actorError!=null)return actorError;
         if(tactic==null||!tactics(u).contains(tactic))return "当前兵装或舰船不能施展此战法";
         if(water(u.hex)&&aptitude(u)<tactic.rank||u.energy<tactic.energy)return "适性或气力不足";
         int distance=target==null?0:u.hex.distance(target),max=tactic==Tactic.RAM?1:w.war.range(u);
         if(target==null||!w.inside(target)||distance<1||distance>max||!w.fieldworks.landTarget(u.owner,target))return "目标不在战法范围内";
-        World.Unit enemy=w.unitAt(target);World.City city=w.cityAt(target);War.Structure structure=w.war.at(target);
-        if(enemy==null&&city==null&&structure==null||enemy!=null&&!w.campaign.hostile(u.owner,enemy.owner)||city!=null&&!w.campaign.hostile(u.owner,city.owner)||structure!=null&&!w.campaign.hostile(u.owner,structure.owner))return "请选择交战部队、城池或军事设施";
+        World.Unit enemy=w.unitAt(target);World.City city=w.cityAt(target);War.Structure structure=w.war.at(target);Domestic.Facility facility=w.domestic.at(target);
+        if(enemy==null&&city==null&&structure==null&&facility==null||enemy!=null&&!w.campaign.hostile(u.owner,enemy.owner)||city!=null&&!w.campaign.hostile(u.owner,city.owner)||structure!=null&&!w.campaign.hostile(u.owner,structure.owner)||facility!=null&&!w.campaign.hostile(u.owner,w.city(facility.cityId).owner))return "请选择交战部队、城池或设施";
         if(enemy!=null&&!water(u.hex)&&u.weapon==World.Weapon.RAM)return "冲车只能攻击城池";
         if(enemy!=null&&tactic==Tactic.FIRE_ARROW&&!water(u.hex)&&w.terrain[target.q][target.r]==World.Terrain.FOREST&&!w.skills.has(u,Skill.SHESHOU))return "射向森林需要射手特技";
         if(tactic==Tactic.RAM&&water(u.hex)&&!water(target))return "撞击只能针对水上敌舰";
@@ -156,6 +156,13 @@ public final class Army {
         u.acted=true;u.energy-=tactic.energy;w.battleImpact(target,false);
         if(tacticChance(unit,target)<100&&w.strategy.nextInt(100)>=tacticChance(unit,target))return w.success(tactic.label+"未命中，气力已消耗");
         if(city!=null)return w.resolveSiege(u,city,true,tactic==Tactic.STONE);
+        Domestic.Facility facility=w.domestic.at(target);
+        if(facility!=null){
+            int amount=w.campaign.constructionDamage(u,siegeDefenseDamage(u));if(w.skills.critical(u,null,true))amount=amount*115/100;
+            amount=w.domestic.damage(facility,amount);w.battleImpact(target,facility.hp==0);
+            if(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)w.war.ignite(target,u);if(tactic==Tactic.STONE)w.fieldworks.stoneSplash(u,target);
+            w.campaign.earn(u.owner,20);return w.success(tactic.label+"命中"+facility.kind.label+"，耐久减少"+amount+"，剩余"+facility.hp);
+        }
         War.Structure structure=w.war.at(target);
         if(structure!=null){
             if(structure.complete&&w.fieldworks.trap(structure.kind)&&(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)){w.war.ignite(target,u);w.checkVictory();return w.success(tactic.label+"引爆"+structure.kind.label);}

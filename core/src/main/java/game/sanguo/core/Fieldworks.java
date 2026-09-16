@@ -150,7 +150,8 @@ public final class Fieldworks {
         }
     }
     private void flame(Hex h,World.Unit source,boolean trap){
-        if(w.cost(h,World.Weapon.SPEAR)<0||w.cityAt(h)!=null||w.domestic.at(h)!=null)return;
+        if(w.cost(h,World.Weapon.SPEAR)<0||w.cityAt(h)!=null)return;
+        Domestic.Facility facility=w.domestic.at(h);if(facility!=null&&w.city(facility.cityId).owner!=source.owner&&!w.campaign.hostile(source.owner,w.city(facility.cityId).owner))return;
         War.Structure s=w.war.at(h);if(s!=null&&s.owner!=source.owner&&!w.campaign.hostile(source.owner,s.owner))return;
         War.Fire old=w.war.fireAt(h);if(old!=null)w.war.fires.remove(old);
         War.Fire f=new War.Fire(h,source.owner,2);f.power=w.skills.has(source,Skill.HUOSHEN)?2:1;f.trap=trap;w.war.fires.add(f);

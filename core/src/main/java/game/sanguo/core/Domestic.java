@@ -17,7 +17,9 @@ public final class Domestic {
     }
     public static final class Facility {
         public final int id,cityId;public final Kind kind;public final Hex hex;
-        public int builderId,remaining,level=1,upgradeTo;
+        public int builderId,remaining,level=1,upgradeTo,hp=1000;
+        /** Engineering durability, pending original-game calibration. */
+        public int maxHp(){return 1000;}
         Facility(int id,int city,Kind kind,Hex hex,int builder,int remaining){this.id=id;cityId=city;this.kind=kind;this.hex=hex;builderId=builder;this.remaining=remaining;}
     }
     public static final class Mission {
@@ -35,6 +37,23 @@ public final class Domestic {
     Domestic(World w){this.w=w;}
     public Facility facility(int id){for(Facility f:facilities)if(f.id==id)return f;return null;}
     public Facility at(Hex h){for(Facility f:facilities)if(f.hex.equals(h))return f;return null;}
+    int damage(Facility f,int amount){
+        if(f==null||!facilities.contains(f))return 0;
+        int hit=Math.min(f.hp,Math.max(0,amount));f.hp-=hit;
+        if(f.hp==0){
+            World.Officer builder=w.officer(f.builderId);if(builder!=null)builder.acted=true;
+            facilities.remove(f);w.army.cleanup();
+            w.battleOutcome(f.kind.label+"已摧毁，地块已释放");
+        }
+        return hit;
+    }
+    void writeDurability(DataOutputStream d)throws IOException{
+        d.writeInt(facilities.size());for(Facility f:facilities){d.writeInt(f.id);d.writeInt(f.hp);}
+    }
+    void readDurability(DataInputStream d)throws IOException{
+        int count=bound(d.readInt(),0,6000);require(count==facilities.size(),"设施耐久数量错误");Set<Integer> ids=new HashSet<>();
+        for(int i=0;i<count;i++){int id=d.readInt();Facility f=facility(id);require(f!=null&&ids.add(id),"设施耐久引用错误");f.hp=bound(d.readInt(),1,f.maxHp());}
+    }
     public Mission mission(int id){for(Mission m:missions)if(m.id==id)return m;return null;}
     public boolean busy(int officer){
         if(officer<0)return false;
@@ -262,6 +281,7 @@ public final class Domestic {
             require(f.hex!=null&&w.inside(f.hex)&&w.terrain[f.hex.q][f.hex.r]==World.Terrain.PLAIN&&occupied.add(f.hex)&&w.cityAt(f.hex)==null&&w.unitAt(f.hex)==null&&f.hex.distance(c.hex)>=1&&f.hex.distance(c.hex)<=2,"设施位置冲突或无效");
             require(f.kind!=Kind.SHIPYARD||f.hex.neighbors().stream().anyMatch(w.army::water),"造船厂必须临水");
             bound(f.remaining,0,3);
+            bound(f.hp,1,f.maxHp());
             if(f.remaining==0)require(f.builderId==-1,"已建成设施仍占用武将");
             else{World.Officer o=w.officer(f.builderId);require(o!=null&&o.owner==c.owner&&o.cityId==c.id&&o.unitId==-1&&assigned.add(o.id),"建设武将引用错误");}
         }

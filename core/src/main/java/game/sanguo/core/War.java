@@ -229,7 +229,8 @@ public final class War {
             return owner!=a.owner&&!w.campaign.hostile(a.owner,owner)?"不能对协定势力施展落雷":null;
         }
         if(plot==Plot.FIRE){
-            if((w.cost(target,World.Weapon.SPEAR)<0&&!(at(target)!=null&&at(target).kind==StructureKind.FIRE_SHIP))||w.cityAt(target)!=null||w.domestic.at(target)!=null)return "此地无法放火";
+            if((w.cost(target,World.Weapon.SPEAR)<0&&!(at(target)!=null&&at(target).kind==StructureKind.FIRE_SHIP))||w.cityAt(target)!=null)return "此地无法放火";
+            Domestic.Facility facility=w.domestic.at(target);if(facility!=null&&!w.campaign.hostile(a.owner,w.city(facility.cityId).owner))return "不能对己方或协定设施放火";
             Structure s=at(target);if(b!=null&&!w.campaign.hostile(a.owner,b.owner)||s!=null&&s.owner!=a.owner&&!w.campaign.hostile(a.owner,s.owner))return "不能对友军或协定势力放火";
             return fireAt(target)!=null?"目标已起火":null;
         }
@@ -296,6 +297,21 @@ public final class War {
         if(!buildSites(city).contains(h))return w.fail("请选择城池两至三格内空地，不可堵塞城池出口");
         w.spend(c,o,kind.gold);structures.add(new Structure(nextStructureId++,c.owner,kind,h,kind.hp));return w.success(c.name+"建造"+kind.label);
     }
+    public String facilityAttackError(int unit,Hex h){
+        World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return error;
+        Domestic.Facility f=w.domestic.at(h);
+        if(f==null||!w.campaign.hostile(u.owner,w.city(f.cityId).owner))return "请选择敌方内政设施";
+        if(u.hex.distance(h)<1||u.hex.distance(h)>range(u))return "设施不在攻击射程内";
+        if(!w.army.canAttackUnit(u))return "兵器需要使用战法";
+        return null;
+    }
+    public int facilityDamage(int unit){World.Unit u=w.unit(unit);return u==null?0:w.campaign.constructionDamage(u,200+w.army.war(u)*2);}
+    public World.Result attackFacility(int unit,Hex h){
+        String error=facilityAttackError(unit,h);if(error!=null)return w.fail(error);
+        World.Unit u=w.unit(unit);Domestic.Facility f=w.domestic.at(h);u.acted=true;
+        int amount=w.domestic.damage(f,facilityDamage(unit));w.battleImpact(h,f.hp==0);w.campaign.earn(u.owner,20);
+        return w.success("攻击"+f.kind.label+"，耐久减少"+amount+"，剩余"+f.hp+"/"+f.maxHp());
+    }
     public World.Result attackStructure(int unit,Hex h){
         World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return w.fail(error);Structure s=at(h);
         if(s==null||!w.campaign.hostile(u.owner,s.owner)||u.hex.distance(h)>range(u))return w.fail("请选择射程内敌方军事设施");
@@ -325,6 +341,7 @@ public final class War {
         for(Fire f:new ArrayList<>(fires)){
             World.Unit u=w.unitAt(f.hex);if(u!=null&&(u.owner==f.owner||w.campaign.hostile(f.owner,u.owner))){int hit=250+(w.terrain[f.hex.q][f.hex.r]==World.Terrain.FOREST?150:0);hit=w.skills.fireDamage(u,hit,f.owner,f.power,f.trap);hurt(u,hit);w.note("火场灼烧，部队损失"+hit);}
             Structure s=at(f.hex);if(s!=null&&(s.owner==f.owner||w.campaign.hostile(f.owner,s.owner))){s.hp-=200;if(s.hp<=0)structures.remove(s);}
+            Domestic.Facility facility=w.domestic.at(f.hex);if(facility!=null&&(w.city(facility.cityId).owner==f.owner||w.campaign.hostile(f.owner,w.city(facility.cityId).owner)))w.domestic.damage(facility,200);
             if(--f.remaining==0)fires.remove(f);
         }
         for(Structure s:new ArrayList<>(structures)){

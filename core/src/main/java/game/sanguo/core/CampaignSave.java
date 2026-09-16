@@ -67,7 +67,7 @@ final class CampaignSave {
         Set<Integer> ids=new HashSet<>();Set<Hex> occupied=new HashSet<>();bound(w.war.nextStructureId,1,10000000);bound(w.war.structures.size(),0,1000);
         for(War.Structure s:w.war.structures){bound(s.id,1,w.war.nextStructureId-1);bound(s.owner,0,w.factions.length-1);require(s.kind!=null&&ids.add(s.id)&&occupied.add(s.hex)&&(s.kind==War.StructureKind.FIRE_SHIP?w.army.water(s.hex):w.cost(s.hex,World.Weapon.SPEAR)>0)&&w.cityAt(s.hex)==null&&w.unitAt(s.hex)==null&&w.domestic.at(s.hex)==null,"军事设施重叠或位置错误");bound(s.hp,1,s.kind.hp);}
         occupied.clear();bound(w.war.fires.size(),0,w.width*w.height);
-        for(War.Fire f:w.war.fires){bound(f.owner,0,w.factions.length-1);bound(f.remaining,1,2);require(occupied.add(f.hex)&&w.cost(f.hex,World.Weapon.SPEAR)>0&&w.cityAt(f.hex)==null&&w.domestic.at(f.hex)==null,"火场位置无效");}
+        for(War.Fire f:w.war.fires){bound(f.owner,0,w.factions.length-1);bound(f.remaining,1,2);require(occupied.add(f.hex)&&w.cost(f.hex,World.Weapon.SPEAR)>0&&w.cityAt(f.hex)==null,"火场位置无效");}
     }
     private static void hex(DataOutputStream d,Hex h)throws IOException{d.writeInt(h.q);d.writeInt(h.r);}
     private static Hex hex(DataInputStream d)throws IOException{return new Hex(d.readInt(),d.readInt());}

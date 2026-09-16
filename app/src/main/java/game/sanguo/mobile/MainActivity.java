@@ -29,6 +29,7 @@ public final class MainActivity extends Activity {
     private AlertDialog confirmationDialog;
     private Hex selected;
     private int moving=-1;
+    private String unitCommand="select";
     private boolean aiRunning;
     private Button nextTurn;
     private final ClientState ui=new ClientState();
@@ -88,6 +89,7 @@ public final class MainActivity extends Activity {
         nextTurn=button("下一旬  →",v->confirmTurn());nextTurn.setSelected(true);bottom.addView(nextTurn,new LinearLayout.LayoutParams(dp(104),dp(52)));root.addView(bottom);
         setContentView(root);root.requestApplyInsets();selected=world.home()==null?null:world.home().hex;
         if(state!=null){Hex h=new Hex(state.getInt("selectedQ",-1),state.getInt("selectedR",-1));if(world.inside(h))selected=h;moving=state.getInt("moving",-1);}
+        if(state!=null)unitCommand=state.getString("unitCommand","select");
         if(state!=null&&state.containsKey("routeQ")&&world.unit(moving)!=null)pendingMarch=world.marches.preview(moving,new Hex(state.getInt("routeQ"),state.getInt("routeR")));
         refresh();if(state!=null)map.restoreCamera(state);
         if(turnWork!=null)turnWork.observe(this::finishTurn);
@@ -136,7 +138,7 @@ public final class MainActivity extends Activity {
             else if(index==6){boolean enabled=getPreferences(MODE_PRIVATE).getBoolean("battleHaptics",true);
                 new AlertDialog.Builder(this).setTitle("战斗震动").setSingleChoiceItems(new String[]{"开启（遵循系统触感设置）","关闭"},enabled?0:1,(dialog,which)->{getPreferences(MODE_PRIVATE).edit().putBoolean("battleHaptics",which==0).apply();dialog.dismiss();}).setNegativeButton("返回",null).show();}
             else if(index==7)VisualGuide.show(this,world);
-            else message("地图操作","单指拖动 · 双指缩放 · 双击城池定位\n点城池或部队打开指令，点空地或「收起」返回大地图。\n「功能」打开城市、武将、任务和存档菜单。\n竖屏使用底部面板，横屏使用右侧面板；「展开」可查看更多内容。\n选中己方部队后点地图目标，确认后开始行军。返回键先取消路线或收起面板。");
+            else message("地图操作","单指拖动 · 双指缩放 · 双击城池定位\n点城池或部队打开指令，点空地或「收起」返回大地图。\n「功能」打开城市、武将、任务和存档菜单。\n竖屏使用底部面板，横屏使用右侧面板；「展开」可查看更多内容。\n选中部队即显示青色行动范围和红色攻击目标。先点「行军」再点目标预览路线；「攻击」「战法」「计略」在固定底栏。普通点空地、再点本队或「取消选中」可解除选择。返回键依次取消路线、指令、选中。");
         }).setNegativeButton("返回",null).show();
     }
     private void showOrientationPicker(){
@@ -172,34 +174,64 @@ public final class MainActivity extends Activity {
         LinearLayout words=new LinearLayout(this);words.setOrientation(LinearLayout.VERTICAL);words.setPadding(dp(12),0,0,0);words.addView(text(name,22,gold));words.addView(text(subtitle,13,paper));row.addView(words,new LinearLayout.LayoutParams(0,-2,1));return row;
     }
     private void onTile(Hex h) {
-        if(h==null||aiRunning)return;
+        if(aiRunning||world.commandsBlocked())return;
+        if(h==null){clearUnitSelection();return;}
         World.Unit target=world.unitAt(h);World.City city=world.cityAt(h);World.Unit source=world.unit(moving);
         if(source!=null&&source.owner==world.player) {
+            if(target==source){clearUnitSelection();return;}
+            if(unitCommand.equals("march")){previewMarch(source,h);return;}
+            Domestic.Facility facility=world.domestic.at(h);
+            if(facility!=null){
+                if(world.campaign.hostile(source.owner,world.city(facility.cityId).owner)){
+                    pendingMarch=null;
+                    if(source.hex.distance(h)>world.war.range(source)){approach(source,h);return;}
+                    if(!world.army.canAttackUnit(source)){showTactics(source);return;}
+                    String error=world.war.facilityAttackError(source.id,h);if(error!=null){message("无法攻击",error);return;}
+                    confirm("攻击"+facility.kind.label+"？\n耐久 "+facility.hp+"/"+facility.maxHp()+" · 预计减少"+Math.min(facility.hp,world.war.facilityDamage(source.id))+"\n攻击结束本旬行动，摧毁后释放地块。",()->apply(world.war.attackFacility(source.id,h)));return;
+                }
+                if(unitCommand.equals("attack")){message("无法攻击","不能攻击己方或有协定的设施");return;}
+                selectAndFocus(h);return;
+            }
             if(world.events.at(h)!=null){pendingMarch=null;new WorldUi(this,world,this::apply).attack(source,world.events.at(h));return;}
-            if(target!=null&&target.owner!=world.player){if(source.hex.distance(h)<=world.war.range(source)){pendingMarch=null;warUi().attack(source,target);}else previewMarch(source,h);return;}
-            if(world.war.at(h)!=null&&source.hex.distance(h)>world.war.range(source)){previewMarch(source,h);return;}
-            if(world.war.at(h)!=null){pendingMarch=null;confirm("攻击军事设施？",()->apply(world.war.attackStructure(source.id,h)));return;}
+            if(target!=null&&target.owner!=world.player){if(!world.campaign.hostile(source.owner,target.owner)){selectAndFocus(h);return;}if(source.hex.distance(h)<=world.war.range(source)){pendingMarch=null;if(!world.army.canAttackUnit(source))showTactics(source);else warUi().attack(source,target);}else approach(source,h);return;}
+            if(world.war.at(h)!=null&&!world.campaign.hostile(source.owner,world.war.at(h).owner)){selectAndFocus(h);return;}
+            if(world.war.at(h)!=null&&source.hex.distance(h)>world.war.range(source)){approach(source,h);return;}
+            if(world.war.at(h)!=null){pendingMarch=null;if(!world.army.canAttackUnit(source)){showTactics(source);return;}confirm("攻击军事设施？",()->apply(world.war.attackStructure(source.id,h)));return;}
             if(city!=null){
-                if(source.hex.distance(h)>(city.owner==world.player?1:world.army.siegeRange(source))){previewMarch(source,h);return;}
+                if(city.owner!=world.player&&!world.campaign.hostile(source.owner,city.owner)){selectAndFocus(h);return;}
+                if(source.hex.distance(h)>(city.owner==world.player?1:world.army.siegeRange(source))){approach(source,h);return;}
                 pendingMarch=null;
                 if(city.owner==world.player)confirm("进入"+city.name+"并归还兵装与粮草？",()->{World.Result result=world.enter(source.id,city.id);if(result.ok)moving=-1;apply(result);});
+                else if(!world.army.canAttackUnit(source))showTactics(source);
                 else confirm("攻击"+city.name+"？",()->apply(world.siege(source.id,city.id)));
                 return;
             }
             for(Domestic.Mission m:world.domestic.missions)if(m.transport&&m.hex.equals(h)&&world.campaign.hostile(source.owner,m.owner)){governmentUi().raid(source,m);return;}
-            if(target==null){previewMarch(source,h);return;}
+            if(target==null&&unitCommand.equals("march")){previewMarch(source,h);return;}
+            if(unitCommand.equals("attack")){message("选择攻击目标","请点选射程内敌军、城池或设施；返回键可退出攻击。 ");return;}
+            if(target==null){clearUnitSelection();return;}
         }
-        pendingMarch=null;
+        pendingMarch=null;unitCommand="select";
         if(world.events.at(h)!=null){new WorldUi(this,world,this::apply).camp(world.events.at(h));return;}
         if(!h.equals(selected))ui.group="概览";
         selected=h;moving=target!=null&&target.owner==world.player?target.id:-1;ui.page="map";ui.panelVisible=target!=null||city!=null||world.domestic.at(h)!=null||world.war.at(h)!=null||world.war.fireAt(h)!=null;ui.panelExpanded=false;refresh();if(ui.panelVisible)map.post(()->map.center(h));revealPanel();
+    }
+    private void clearUnitSelection(){pendingMarch=null;unitCommand="select";moving=-1;selected=null;closePanel();}
+    private void approach(World.Unit u,Hex h){
+        if(unitCommand.equals("march")){previewMarch(u,h);return;}
+        confirm("目标在当前射程外，规划行军到目标附近？抵达后需要再次下令攻击。",()->{unitCommand="march";previewMarch(u,h);});
+    }
+    private void showTactics(World.Unit u){
+        pendingMarch=null;unitCommand="select";refresh();
+        String error=world.orders.error(u);if(error!=null){message("战法暂不可用",error);return;}
+        if(world.army.water(u.hex)||Army.siegeWeapon(u.weapon))armyUi().tactics(u);else warUi().tactics(u);
     }
     private void message(String title,String value){new AlertDialog.Builder(this).setTitle(title).setMessage(value).setPositiveButton("返回",null).show();}
     private void confirm(String value,Runnable action){confirmationDialog=new AlertDialog.Builder(this).setMessage(value).setPositiveButton("执行",(d,w)->{if(!aiRunning)action.run();}).setNegativeButton("取消",null).show();fitConfirmation();}
     void applyResult(World.Result result){apply(result);}
     private void apply(World.Result result){
         if(!result.ok)message("命令未执行",result.message);
-        if(result.ok)pendingMarch=null;
+        if(result.ok){pendingMarch=null;unitCommand="select";}
         if(result.ok&&result.feedback!=World.Feedback.NONE){
             lastBattleReport=result.message;battleReportWorld=world;
             battleBanner.setText((result.feedback==World.Feedback.DEFEAT?"击破战果 · ":"战斗 · ")+result.message+"  · 点此详情");
@@ -245,15 +277,29 @@ public final class MainActivity extends Activity {
     }
     private void refreshCommandDock(){
         commandDock.removeAllViews();World.Unit u=world.unit(moving);
-        commandDock.setVisibility(u!=null&&pendingMarch!=null&&ui.page.equals("map")&&!world.commandsBlocked()?View.VISIBLE:View.GONE);
-        if(u==null||pendingMarch==null)return;
+        commandDock.setVisibility(u!=null&&ui.page.equals("map")&&!world.commandsBlocked()?View.VISIBLE:View.GONE);
+        if(u==null)return;
         commandDock.setOrientation(portrait()?LinearLayout.VERTICAL:LinearLayout.HORIZONTAL);commandDock.setGravity(Gravity.CENTER_VERTICAL);
+        if(pendingMarch==null){
+            String error=world.orders.error(u);
+            String hint=unitCommand.equals("march")?"行军：点目标预览，确认后出发":unitCommand.equals("attack")?"攻击：点红框敌军、城池或设施":error!=null?error:"青色为本旬可达范围 · 红框可攻击";
+            TextView state=text(hint+" · 剩余移动 "+world.orders.remaining(u),12,gold);state.setMaxLines(2);
+            commandDock.addView(state,new LinearLayout.LayoutParams(portrait()?-1:0,-2,portrait()?0:1));
+            LinearLayout actions=new LinearLayout(this);
+            Button march=button("行军",v->{unitCommand="march";ui.panelVisible=false;refresh();});march.setSelected(unitCommand.equals("march"));
+            Button attack=button("攻击",v->{unitCommand="attack";ui.panelVisible=false;refresh();});attack.setSelected(unitCommand.equals("attack"));attack.setEnabled(error==null&&!aiRunning);
+            Button tactics=button("战法",v->showTactics(u));tactics.setEnabled(error==null&&!aiRunning);
+            Button plots=button("计略",v->{pendingMarch=null;unitCommand="select";refresh();warUi().plots(u);});plots.setEnabled(error==null&&!aiRunning);
+            Button cancel=button("取消选中",v->clearUnitSelection());
+            for(Button b:new Button[]{march,attack,tactics,plots,cancel})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
+            commandDock.addView(actions,new LinearLayout.LayoutParams(portrait()?-1:dp(360),-2));return;
+        }
         LinearLayout copy=new LinearLayout(this);copy.setOrientation(LinearLayout.VERTICAL);copy.setGravity(Gravity.CENTER_VERTICAL);
         TextView heading=text("路线预览 · "+pendingMarch.label,14,paper);heading.setMaxLines(1);heading.setEllipsize(android.text.TextUtils.TruncateAt.END);copy.addView(heading);
         TextView hint=text(pendingMarch.valid()?(u.acted?"本旬已行动，下旬出发 · ":u.status!=War.Status.NORMAL?"异常状态，恢复后继续 · ":world.orders.remaining(u)==0?"移动力已用尽，下旬继续 · ":"本旬 "+pendingMarch.stepsNow+" 格 · ")+"预计再需 "+pendingMarch.estimatedTurns+" 旬 · 抵达后手动下令":pendingMarch.error,12,muted);hint.setMaxLines(2);hint.setEllipsize(android.text.TextUtils.TruncateAt.END);copy.addView(hint);
         commandDock.addView(copy,new LinearLayout.LayoutParams(portrait()?-1:0,-2,portrait()?0:1));
         LinearLayout actions=new LinearLayout(this);MarchOrders.Plan plan=pendingMarch;
-        Button cancel=button("取消",v->{pendingMarch=null;refresh();});
+        Button cancel=button("取消",v->{pendingMarch=null;unitCommand="select";refresh();});
         Button execute=button("开始行军",v->apply(world.marches.execute(plan)));execute.setTextColor(gold);execute.setEnabled(plan.valid()&&!aiRunning);
         actions.addView(cancel,new LinearLayout.LayoutParams(0,dp(48),1));actions.addView(execute,new LinearLayout.LayoutParams(0,dp(48),1));
         commandDock.addView(actions,new LinearLayout.LayoutParams(portrait()?-1:dp(208),-2));
@@ -273,7 +319,7 @@ public final class MainActivity extends Activity {
     private void showSelection(){
         World.Unit unit=selected==null?null:world.unitAt(selected);World.City city=selected==null?null:world.cityAt(selected);
         if(unit!=null)showUnit(unit);else if(city!=null)showCity(city);else if(selected!=null&&world.domestic.at(selected)!=null){
-            Domestic.Facility f=world.domestic.at(selected);panel.addView(visualHeader(f,f.kind.label,world.city(f.cityId).name,64));line(f.remaining==0?f.kind.effect:"建设中 · 剩"+f.remaining+"旬",14,paper);
+            Domestic.Facility f=world.domestic.at(selected);panel.addView(visualHeader(f,f.kind.label,world.city(f.cityId).name,64));line("耐久 "+f.hp+"/"+f.maxHp(),14,gold);line(f.remaining==0?f.kind.effect:"建设中 · 剩"+f.remaining+"旬",14,paper);
             action("设施详情 / 管理",v->domesticUi().facility(f));action("返回所属城池",v->selectAndFocus(world.city(f.cityId).hex));
         }else if(selected!=null&&world.war.at(selected)!=null){War.Structure s=world.war.at(selected);panel.addView(visualHeader(s.kind,s.kind.label,world.faction(s.owner),64));line(world.faction(s.owner)+" · 耐久"+s.hp+"/"+s.kind.hp,15,paper);line(s.complete?s.kind.effect:"施工中，建成后生效",14,paper);if(s.builder>=0&&world.unit(s.builder)!=null)action("定位施工部队",v->selectAndFocus(world.unit(s.builder).hex));}
         else {line("山河之间",23,gold);if(selected!=null&&world.war.fireAt(selected)!=null)line("火场 · 剩"+world.war.fireAt(selected).remaining+"旬",16,gold);line("点选城池或部队",15,paper);line("单指拖动 · 双指缩放\n双击城池聚焦\n缩小时保留占格标记，放大查看模型与名称。",14,paper);action("定位本城",v->{if(world.home()!=null)selectAndFocus(world.home().hex);});}
@@ -363,7 +409,7 @@ public final class MainActivity extends Activity {
         Diplomacy.Aid aid=world.diplomacy.aidForUnit(u.id);if(aid!=null)line("援军 · "+world.diplomacy.describe(aid),13,gold);
         if(u.owner==world.player){
             LinearLayout quick=new LinearLayout(this);
-            quick.addView(button("选择目标",v->closePanel()),new LinearLayout.LayoutParams(0,dp(48),1));
+            quick.addView(button("选择目标",v->{unitCommand="march";closePanel();}),new LinearLayout.LayoutParams(0,dp(48),1));
             quick.addView(button("下一部队",v->nextUnit()),new LinearLayout.LayoutParams(0,dp(48),1));
             if(u.march!=null)quick.addView(button("停止行军",v->apply(world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
             panel.addView(quick);
@@ -382,12 +428,12 @@ public final class MainActivity extends Activity {
         if(u.burning>0)line("部队燃烧 · 剩"+u.burning+"旬",14,gold);
         action("编队特技",v->warUi().skills(u));
         Districts.District district=world.districts.unit(u.id);if(district!=null)line("所属军团："+district.name()+" · 自动指挥",13,gold);
-        if(u.owner==world.player){line(u.acted?"本旬已行动，攻击后不能再移动 · 可安排下旬行军":"点地图目标规划路线 · 抵达后继续下令",14,paper);
+        if(u.owner==world.player){line(u.acted?"本旬已行动，攻击后不能再移动 · 可安排下旬行军":"底栏选择行军、攻击、战法；点空地或本队取消选中",14,paper);
             if(u.march!=null)line("行军 → "+world.marches.label(u.march)+(u.march.paused.isEmpty()?"\n每旬自动前进":"\n暂停："+u.march.paused),14,gold);
             if(world.fieldworks.project(u.id)!=null)action("中止施工",v->new FieldworkUi(this,world,this::apply).stop(u));
-            if(!u.acted&&u.status==War.Status.NORMAL){action("设置军事设施",v->new FieldworkUi(this,world,this::apply).build(u));action("补修军事设施",v->new FieldworkUi(this,world,this::apply).repair(u));action("补充携金",v->new FieldworkUi(this,world,this::apply).fund(u));action("单挑",v->new ContestUi(this,world,this::apply).challenge(u));action("齐攻",v->warUi().joint(u));action("讨伐贼寨",v->new WorldUi(this,world,this::apply).raids(u));action("截击运输队",v->governmentUi().raid(u));action("移交兵粮",v->governmentUi().supply(u));action("战法",v->{moving=u.id;if(world.army.water(u.hex)||Army.siegeWeapon(u.weapon))armyUi().tactics(u);else warUi().tactics(u);});
+            if(!u.acted&&u.status==War.Status.NORMAL){action("设置军事设施",v->new FieldworkUi(this,world,this::apply).build(u));action("补修军事设施",v->new FieldworkUi(this,world,this::apply).repair(u));action("补充携金",v->new FieldworkUi(this,world,this::apply).fund(u));action("单挑",v->new ContestUi(this,world,this::apply).challenge(u));action("齐攻",v->warUi().joint(u));action("讨伐贼寨",v->new WorldUi(this,world,this::apply).raids(u));action("截击运输队",v->governmentUi().raid(u));action("移交兵粮",v->governmentUi().supply(u));action("部队战法详情",v->showTactics(u));
                 if(u.burning>0)action("部队灭火 · 气力5",v->confirm("扑灭本部队火焰？",()->apply(world.army.extinguish(u.id))));action("部队计略",v->{moving=u.id;warUi().plots(u);});action("待命 · 恢复5气力",v->confirm("本旬待命并恢复5气力？",()->apply(world.war.waitUnit(u.id))));}
-            action("取消部队选择",v->{moving=-1;selected=null;closePanel();});}
+            action("取消部队选择",v->clearUnitSelection());}
     }
     void officerDetail(World.Officer o){
         String stats="统率 "+o.leadership+"    武力 "+o.war+"\n智力 "+o.intelligence+"    政治 "+o.politics+"\n魅力 "+o.charm;
@@ -414,7 +460,7 @@ public final class MainActivity extends Activity {
     private void chooseBasicWeapon(WeaponChoice callback){new AlertDialog.Builder(this).setTitle("生产基础兵装").setAdapter(GameIcon.adapter(this,world,Arrays.asList(World.Weapon.values()).subList(0,4),x->x.label),(d,i)->callback.choose(World.Weapon.values()[i])).setNegativeButton("取消",null).show();}
     private void chooseWeapon(WeaponChoice callback){new AlertDialog.Builder(this).setTitle("选择兵种").setAdapter(GameIcon.adapter(this,world,Arrays.asList(World.Weapon.values()),x->x.label),(d,index)->callback.choose(World.Weapon.values()[index])).setNegativeButton("取消",null).show();}
     private void revealPanel(){panelScroll.post(()->panelScroll.scrollTo(0,0));}
-    void selectAndFocus(Hex h){if(h==null)return;pendingMarch=null;World.Unit unit=world.unitAt(h);moving=unit!=null&&unit.owner==world.player?unit.id:-1;selected=h;ui.page="map";ui.panelVisible=true;ui.panelExpanded=false;ui.group="概览";refresh();map.post(()->map.focus(h));revealPanel();}
+    void selectAndFocus(Hex h){if(h==null)return;pendingMarch=null;unitCommand="select";World.Unit unit=world.unitAt(h);moving=unit!=null&&unit.owner==world.player?unit.id:-1;selected=h;ui.page="map";ui.panelVisible=true;ui.panelExpanded=false;ui.group="概览";refresh();map.post(()->map.focus(h));revealPanel();}
     private GovernmentUi governmentUi(){return new GovernmentUi(this,world,this::apply);}
     private StrategyUi strategyUi(){return new StrategyUi(this,world,this::apply);}
     private CampaignUi campaignUi(){return new CampaignUi(this,world,this::apply);}
@@ -434,7 +480,7 @@ public final class MainActivity extends Activity {
         action("本旬结算摘要",v->message("旬结算摘要",ui.summary.isEmpty()?"结束一旬后将在这里显示结算摘要。":ui.summary));
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.21 · 外交与常用视觉","援军请求、势力劝降、交换俘虏；八项特技恢复培养。\n16位名将原创头像、其余武将稳定默认头像；选将、兵种与设施图标统一；施工模型与城防/兵力条优化。\n存档v17，兼容v1—v16。\n全国原版格点、官方完整开局、全事件、全特技交互与精确公式仍有缺口。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.22 · 部队指令与设施攻防","援军请求、势力劝降、交换俘虏；八项特技恢复培养。\n16位名将原创头像、其余武将稳定默认头像；选将、兵种与设施图标统一；施工模型与城防/兵力条优化。\n内政设施耐久与攻击；固定部队指令栏；显式行军、取消选择、行动范围。\n存档v18，兼容v1—v17。\n全国原版格点、官方完整开局、全事件、全特技交互与精确公式仍有缺口。"));
     }
     private void scenarioPicker(){
         try {List<World> scenarios=ScenarioCatalog.all();String[] labels=new String[scenarios.size()];for(int i=0;i<labels.length;i++){World w=scenarios.get(i);labels[i]=w.scenarioName+" · "+w.cities.size()+"城 / "+w.officers.size()+"将 / "+w.factions.length+"势力";}
@@ -476,7 +522,7 @@ public final class MainActivity extends Activity {
     }
     @Override public Object onRetainNonConfigurationInstance(){if(turnWork!=null)turnWork.observe(null);return turnWork;}
     @Override protected void onDestroy(){if(turnWork!=null)turnWork.observe(null);super.onDestroy();}
-    @Override protected void onSaveInstanceState(Bundle state){super.onSaveInstanceState(state);ui.write(state);if(selected!=null){state.putInt("selectedQ",selected.q);state.putInt("selectedR",selected.r);}state.putInt("moving",moving);if(pendingMarch!=null&&pendingMarch.target!=null){state.putInt("routeQ",pendingMarch.target.q);state.putInt("routeR",pendingMarch.target.r);}map.saveCamera(state);save("auto",false);}
+    @Override protected void onSaveInstanceState(Bundle state){super.onSaveInstanceState(state);ui.write(state);if(selected!=null){state.putInt("selectedQ",selected.q);state.putInt("selectedR",selected.r);}state.putInt("moving",moving);state.putString("unitCommand",unitCommand);if(pendingMarch!=null&&pendingMarch.target!=null){state.putInt("routeQ",pendingMarch.target.q);state.putInt("routeR",pendingMarch.target.r);}map.saveCamera(state);save("auto",false);}
     private AtomicFile file(String slot){return new AtomicFile(new File(getFilesDir(),slot+".sg11"));}
     private void save(String slot,boolean announce){
         AtomicFile f=file(slot);FileOutputStream out=null;try{byte[] bytes=SaveCodec.encode(world);out=f.startWrite();out.write(bytes);f.finishWrite(out);if(announce)Toast.makeText(this,"局面已保存",Toast.LENGTH_SHORT).show();}
@@ -540,5 +586,5 @@ public final class MainActivity extends Activity {
     }
     private void loadSlot(String slot){try{World restored=readSave(file(slot));world=restored;ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;selectAndFocus(world.home().hex);save("auto",false);}catch(IOException e){showError("读取失败");}}
     @Override protected void onPause(){super.onPause();if(world!=null)save("auto",false);}
-    @Override public void onBackPressed(){if(aiRunning)return;if(pendingMarch!=null){pendingMarch=null;refresh();return;}if(!ui.page.equals("map")){closePanel();}else if(ui.panelVisible){closePanel();}else confirm("退出游戏？当前局面将自动保存。",this::finish);}
+    @Override public void onBackPressed(){if(aiRunning)return;if(pendingMarch!=null){pendingMarch=null;unitCommand="select";refresh();return;}if(!unitCommand.equals("select")){unitCommand="select";refresh();return;}if(moving>=0&&ui.page.equals("map")){clearUnitSelection();return;}if(!ui.page.equals("map")){closePanel();}else if(ui.panelVisible){closePanel();}else confirm("退出游戏？当前局面将自动保存。",this::finish);}
 }

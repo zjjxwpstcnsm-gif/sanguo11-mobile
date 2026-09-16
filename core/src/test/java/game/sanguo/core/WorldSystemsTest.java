@@ -139,7 +139,7 @@ public final class WorldSystemsTest {
     }
     private static void migration()throws Exception{
         try(InputStream in=WorldSystemsTest.class.getResourceAsStream("/legacy-v12.sg11.b64")){
-            check(in!=null,"real prior-version fixture exists");byte[] old=Base64.getMimeDecoder().decode(in.readAllBytes());check(old[7]==12,"old writer header");World w=SaveCodec.decode(old);check(w.treasures.items().size()==43&&!w.events.enabled()&&w.districts.all().isEmpty(),"old relationship/treasure save retains state without invented world events");check(bytes(w)[7]==17&&Arrays.equals(bytes(w),bytes(copy(w))),"v12 migration roundtrips");
+            check(in!=null,"real prior-version fixture exists");byte[] old=Base64.getMimeDecoder().decode(in.readAllBytes());check(old[7]==12,"old writer header");World w=SaveCodec.decode(old);check(w.treasures.items().size()==43&&!w.events.enabled()&&w.districts.all().isEmpty(),"old relationship/treasure save retains state without invented world events");check(bytes(w)[7]==18&&Arrays.equals(bytes(w),bytes(copy(w))),"v12 migration roundtrips");
         }
     }
     private static void branchMigration()throws Exception{
@@ -147,7 +147,7 @@ public final class WorldSystemsTest {
             check(in!=null,"real v13 branch fixture exists");byte[] raw=Base64.getMimeDecoder().decode(in.readAllBytes());check(raw[7]==13,"fixture is a real unmodified v13 writer");World w=SaveCodec.decode(raw);
             if(branch.equals("world")){check(w.events.enabled()&&w.events.camps().size()==1&&w.districts.all().size()==1,"world v13 retains district and hazards");check(w.units.stream().noneMatch(u->u.march!=null),"world v13 adds no march");}
             else {check(w.unit(1).march!=null&&w.unit(1).hex.equals(new Hex(7,6)),"march v13 retains order and spent movement");check(!w.events.enabled()&&w.districts.all().isEmpty(),"march v13 adds no world events");}
-            check(bytes(w)[7]==17&&Arrays.equals(bytes(w),bytes(copy(w))),"both v13 layouts upgrade to stable v17");World b=copy(w);for(int i=0;i<3;i++){ok(w.nextTurn());ok(b.nextTurn());check(Arrays.equals(bytes(w),bytes(b)),"old branch resumes with all new systems");}
+            check(bytes(w)[7]==18&&Arrays.equals(bytes(w),bytes(copy(w))),"both v13 layouts upgrade to stable v17");World b=copy(w);for(int i=0;i<3;i++){ok(w.nextTurn());ok(b.nextTurn());check(Arrays.equals(bytes(w),bytes(b)),"old branch resumes with all new systems");}
         }
     }
     private static void malformed()throws Exception{
