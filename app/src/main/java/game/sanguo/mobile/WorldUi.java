@@ -73,17 +73,17 @@ final class WorldUi {
         return b.toString();
     }
     private void detail(Districts.District d){ScrollView scroll=new ScrollView(a);TextView body=new TextView(a);body.setText(describe(d));body.setTextSize(16);body.setPadding(24,16,24,16);LinearLayout panel=new LinearLayout(a);panel.setOrientation(LinearLayout.VERTICAL);panel.addView(body);Button settings=new Button(a);settings.setText("经营设置");settings.setOnClickListener(v->settings(d));panel.addView(settings);
-        Button support=new Button(a);support.setText("支援申请 / 可执行预览");support.setOnClickListener(v->support(d));panel.addView(support);
+        Button support=new Button(a);support.setText("支援申请 / 可执行预览");support.setOnClickListener(v->support(d,()->body.setText(describe(d))));panel.addView(support);
         Button locate=new Button(a);locate.setText("定位在途任务");locate.setOnClickListener(v->{List<Domestic.Mission> tasks=new ArrayList<>();for(Domestic.Mission m:w.domestic.missions)if(d.cities().contains(m.sourceCity)||d.cities().contains(m.targetCity))tasks.add(m);choose("选择在途任务",tasks,m->w.officer(m.officerId).name+" → "+w.city(m.targetCity).name,m->{if(a instanceof MainActivity)((MainActivity)a).domesticUi().mission(m);});});panel.addView(locate);
         scroll.addView(panel);new AlertDialog.Builder(a).setTitle(d.name()).setView(scroll).setPositiveButton("重编",(dialog,n)->members(d)).setNeutralButton("撤销军团",(dialog,n)->confirm("撤销"+d.name(),"消耗第一军团20行动力。全部据点、部队恢复直接指挥，余下军团行动力作废。",()->apply.accept(w.districts.dissolve(d.id)))).setNegativeButton("返回",null).show();}
-    private void support(Districts.District d){
+    private void support(Districts.District d,Runnable refresh){
         if(d.supply()<0){info("支援申请","请先在重编中指定运输目的地，以明确授权本军团向该城支援。未授权时不会抽调其他军团。");return;}
         List<World.City> sources=new ArrayList<>();for(int id:d.cities())if(id!=d.supply())sources.add(w.city(id));
         choose("支援出发城",sources,c->c.name,c->{DistrictManagement.SupplyPlan p=w.districts.supportPlan(c.id,d.supply());
             if(p==null){info("支援不可执行","来源或目的地已改变");return;}
             String body=c.name+" → "+w.city(p.target).name+"\n"+(p.valid()?"可派送：金"+p.gold+" / 粮"+p.food+" / 兵"+p.troops+"\n执行武将："+w.officer(p.officer).name+"；军团行动力10，派遣费0金\n"+(p.returning?"卸货后人员返程":"武将抵达留驻"):"不能执行："+p.reason)+"\n"+new DistrictManagement(w).forecast(c);
             if(!p.valid()){info("支援不可执行",body);return;}
-            confirm("支援执行预览",body,()->apply.accept(w.districts.requestSupport(p.source,p.target)));
+            confirm("支援执行预览",body,()->{apply.accept(w.districts.requestSupport(p.source,p.target));refresh.run();});
         });
     }
     void batch(List<World.City> visible){

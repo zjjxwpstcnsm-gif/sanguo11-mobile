@@ -507,7 +507,7 @@ public final class GameSmokeRunner extends Instrumentation {
             require(w.nextTurn().ok,"new group obtains next-turn budget");installFixture(w,w.city(11).hex);byte[] pending=SaveCodec.encode(saved());
             click("视图",true);click("军团托管",true);click("后方军 ·",false);click("支援申请 / 可执行预览",true);click("后方",true);waitText("支援执行预览",true);screenshot("v026-support-preview-"+orientation);click("取消",true);
             require(Arrays.equals(pending,SaveCodec.encode(saved())),"support preview cancellation spends no resources or AP");
-            click("支援申请 / 可执行预览",true);click("后方",true);click("执行",true);w=saved();require(w.domestic.missions.size()==1&&w.districts.get(1).points()==50,"support sends one actual authorized convoy using district budget");click("返回",true);
+            click("支援申请 / 可执行预览",true);click("后方",true);click("执行",true);w=saved();require(w.domestic.missions.size()==1&&w.districts.get(1).points()==50,"support sends one actual authorized convoy using district budget");waitText("军团行动力：50 / 60",false);click("返回",true);
         }
         installFixture(ScenarioCatalog.load("regional-sandbox",2),new Hex(18,10));
     }
