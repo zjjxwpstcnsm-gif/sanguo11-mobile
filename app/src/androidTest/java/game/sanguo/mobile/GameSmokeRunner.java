@@ -102,7 +102,7 @@ public final class GameSmokeRunner extends Instrumentation {
             click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);setInput("兵力数量","2345");scrollToText("粮食 · 可选",false);setInput("粮食数量","6789");scrollToText("金钱 · 可选",false);setInput("金钱数量","4321");click("确认出征",true);
             World actual=saved();World.Unit u=actual.unit(actual.officer(3003).unitId);
             require(u.troops==2345&&u.food==6789&&u.gold==4321,"actual UI deploys nonpreset quantities");
-            require(actual.city(310).troops==w.city(310).troops-2345&&actual.city(310).gold==w.city(310).gold-4321,"UI debits exact stock");
+            World stock=SaveCodec.decode(before);require(actual.city(310).troops==stock.city(310).troops-2345&&actual.city(310).gold==stock.city(310).gold-4321&&actual.city(310).food==stock.city(310).food-6789,"UI debits exact stock");
             byte[] after=SaveCodec.encode(actual);runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(after,SaveCodec.encode(saved())),"quantity deployment never replays after recreation");
         }
         World w=ScenarioCatalog.load("regional-sandbox",2);installFixture(w,w.city(300).hex);chooseOrientation("竖屏");locateCity("柴桑");click("内政",true);click("设施开发",true);click("市场 ·",false);click("周瑜 ·",false);
