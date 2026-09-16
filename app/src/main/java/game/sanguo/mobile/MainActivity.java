@@ -179,6 +179,7 @@ public final class MainActivity extends Activity {
         World.Unit target=world.unitAt(h);World.City city=world.cityAt(h);World.Unit source=world.unit(moving);
         if(source!=null&&source.owner==world.player) {
             if(target==source){clearUnitSelection();return;}
+            if(unitCommand.equals("march")){previewMarch(source,h);return;}
             Domestic.Facility facility=world.domestic.at(h);
             if(facility!=null){
                 if(world.campaign.hostile(source.owner,world.city(facility.cityId).owner)){
@@ -408,7 +409,7 @@ public final class MainActivity extends Activity {
         Diplomacy.Aid aid=world.diplomacy.aidForUnit(u.id);if(aid!=null)line("援军 · "+world.diplomacy.describe(aid),13,gold);
         if(u.owner==world.player){
             LinearLayout quick=new LinearLayout(this);
-            quick.addView(button("选择目标",v->closePanel()),new LinearLayout.LayoutParams(0,dp(48),1));
+            quick.addView(button("选择目标",v->{unitCommand="march";closePanel();}),new LinearLayout.LayoutParams(0,dp(48),1));
             quick.addView(button("下一部队",v->nextUnit()),new LinearLayout.LayoutParams(0,dp(48),1));
             if(u.march!=null)quick.addView(button("停止行军",v->apply(world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
             panel.addView(quick);

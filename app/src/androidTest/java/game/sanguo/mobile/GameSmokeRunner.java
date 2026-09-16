@@ -112,7 +112,7 @@ public final class GameSmokeRunner extends Instrumentation {
         require(saved().unit(1).hex.equals(new Hex(7,5))&&!saved().unit(1).acted,"explicit movement retains attack action");
         click("战法",true);click("突刺 ·",false);click("守将 ·",false);click("执行",true);
         require(saved().unit(1).acted&&saved().unit(1).energy==65&&mapView().reachableCount()==0,"move then tactic pays energy and clears movement overlay");screenshot("v022-move-then-tactic");
-        w=SaveCodec.decode(initial);installFixture(w,w.unit(1).hex);click("攻击",true);tapHex(facility.hex);waitText("耐久 400/1000",false);click("取消",true);require(Arrays.equals(initial,SaveCodec.encode(saved())),"facility attack cancel is pure");
+        w=SaveCodec.decode(initial);installFixture(w,w.unit(1).hex);click("行军",true);tapHex(facility.hex);waitText("路线预览 · 市场",true);click("取消",true);require(Arrays.equals(initial,SaveCodec.encode(saved())),"march mode on adjacent facility never attacks");click("攻击",true);tapHex(facility.hex);waitText("耐久 400/1000",false);click("取消",true);require(Arrays.equals(initial,SaveCodec.encode(saved())),"facility attack cancel is pure");
         tapHex(facility.hex);click("执行",true);require(saved().domestic.at(facility.hex).hp==40&&saved().unit(1).acted,"map facility attack damages real facility");
         runOnMainSync(current::recreate);waitForIdleSync();require(saved().domestic.at(facility.hex).hp==40,"facility damage survives recreation");screenshot("v022-facility-damaged");
         w=saved();w.unit(1).acted=false;installFixture(w,w.unit(1).hex);tapHex(facility.hex);click("执行",true);
@@ -499,7 +499,7 @@ public final class GameSmokeRunner extends Instrumentation {
         before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("筑垒研兵",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"construction and carried gold survive recreation");
         click("中止施工",true);click("执行",true);int hp=saved().war.at(new Hex(7,5)).hp;
         endTurn();waitForTurn(1);require(saved().war.at(new Hex(7,5)).hp==hp,"stopped construction does not progress");
-        click("选中对象指令 ·",false);click("补修军事设施",true);click("阵 ·",false);click("执行",true);
+        click("补修军事设施",true);click("阵 ·",false);click("执行",true);
         endTurn();waitForTurn(2);require(saved().war.at(new Hex(7,5)).complete,"actual turn completes resumed repair");screenshot("52-fieldwork-completed");
         locateCity("工营主城");click("研究",true);click("技巧研究",true);click("发明",true);click("车轴强化 ·",false);click("工营统领 ·",false);
         before=SaveCodec.encode(saved());click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"tech group preview is pure");
