@@ -520,7 +520,7 @@ public final class GameSmokeRunner extends Instrumentation {
             // An adjacent friendly unit isolates the phone supply interaction; campaign tests use city deployments.
             World.Unit friend=new World.Unit(1,0,7,World.Weapon.SPEAR,m.hex.neighbors().get(0),3000,6000);w.units.add(friend);w.nextUnitId=2;w.officer(7).cityId=-1;w.officer(7).unitId=1;
             installFixture(w,m.hex);chooseOrientation(orientation);waitText("携兵 2000",false);screenshot("v027-convoy-map-"+orientation);
-            byte[] before=SaveCodec.encode(saved());click("行军",true);tapHex(w.city(12).hex);waitText("路线预览",false);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"transport route cancel is pure");
+            byte[] before=SaveCodec.encode(saved());click("全图",true);click("行军",true);tapHex(w.city(12).hex);waitText("路线预览",false);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"transport route cancel is pure");
             click("停止",true);require(saved().domestic.missions.get(0).stopped,"map stop changes actual convoy command");before=SaveCodec.encode(saved());
             runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(before,SaveCodec.encode(saved())),"map convoy rebuild cannot move/refund/consume");
             click("补给",true);tapHex(friend.hex);setInput("运输补给粮","1000");setInput("运输补给金","100");click("预览",true);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"field supply cancel is pure");

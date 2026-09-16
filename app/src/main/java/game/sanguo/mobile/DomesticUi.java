@@ -64,8 +64,9 @@ final class DomesticUi {
             String error=w.domestic.transportError(c.id,d.id,o.id,deputies,values[0],values[1],values[2],equipment,sea);
             String preview=w.domestic.transportPreview(c.id,d.id,o.id,deputies,values[0],values[1],values[2],equipment,sea,returning.isChecked());
             int[] ships=Arrays.copyOfRange(values,equipmentEnd,count);String shipError=w.domestic.shipCargoError(c.id,ships);if(error!=null||shipError!=null){message("运输不能执行",shipError==null?preview:shipError);return;}
+            String shipPreview="\n舰船货物：楼船"+ships[0]+" / 斗舰"+ships[1]+"；目的地余量：楼船"+Math.max(0,100-d.ships[0])+" / 斗舰"+Math.max(0,100-d.ships[1])+"\n"+(d.ships[0]+ships[0]>100||d.ships[1]+ships[1]>100?"目的地舰船仓不足，抵达后保留货物等待":"舰船货物不会改变当前使用的走舸");
             boolean large=values[0]>=1000||values[1]>=10000||values[2]>=3000;for(int i=3;i<count;i++)large|=values[i]>=3000;
-            confirm(large?"确认大额运输":"确认运输",o.name+"："+c.name+" → "+d.name+"\n金 "+values[0]+" / 粮 "+values[1]+" / 兵 "+values[2]+"\n"+preview,"确认发送",()->{
+            confirm(large?"确认大额运输":"确认运输",o.name+"："+c.name+" → "+d.name+"\n金 "+values[0]+" / 粮 "+values[1]+" / 兵 "+values[2]+"\n"+preview+shipPreview,"确认发送",()->{
                 World.Result result=w.domestic.transport(c.id,d.id,o.id,deputies,values[0],values[1],values[2],equipment,sea,returning.isChecked(),ships);apply.accept(result);if(result.ok)dialog.dismiss();
             });
         }));dialog.show();dialog.getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
@@ -91,6 +92,7 @@ final class DomesticUi {
         focus.accept(m.hex);StringBuilder detail=new StringBuilder(w.officer(m.officerId).name+"\n"+w.city(m.sourceCity).name+" → "+w.city(m.targetCity).name+"\n"+w.domestic.status(m)+"\n当前坐标 "+m.hex.q+", "+m.hex.r);
         detail.append("\n编队武将：");for(int id:m.crew())detail.append(w.officer(id).name).append(" ");
         if(m.transport){detail.append("\n金 ").append(m.gold).append(" / 粮 ").append(m.food).append(" / 兵 ").append(m.troops);for(int i=0;i<m.equipment.length;i++)detail.append('\n').append(World.Weapon.values()[i].label).append("兵装 ").append(m.equipment[i]);}
+        if(m.transport)detail.append("\n舰船货物：楼船 ").append(m.cargoShips[0]).append(" / 斗舰 ").append(m.cargoShips[1]);
         detail.append("\n累计途中耗粮："+m.consumedFood+"；"+(m.returnOfficers?"卸货后人员返程":m.returning?"仅人员返程，无返程物资":"抵达留驻"));
         detail.append("\n\n运输队可被截击；城内受城防保护。目的地失守自动选择可达己城；无路则等待。满仓保留货物，下一旬重试。");
         AlertDialog.Builder d=new AlertDialog.Builder(activity).setTitle(m.transport?"运输详情":"调动详情").setMessage(detail).setNegativeButton("返回",null);

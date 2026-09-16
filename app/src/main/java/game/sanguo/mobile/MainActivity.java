@@ -495,6 +495,7 @@ public final class MainActivity extends Activity {
             if(world.fieldworks.project(u.id)!=null)action("中止施工",v->new FieldworkUi(this,world,this::apply).stop(u));
             if(!u.acted&&u.status==War.Status.NORMAL){action("设置军事设施",v->new FieldworkUi(this,world,this::apply).build(u));action("补修军事设施",v->new FieldworkUi(this,world,this::apply).repair(u));action("补充携金",v->new FieldworkUi(this,world,this::apply).fund(u));action("单挑",v->new ContestUi(this,world,this::apply).challenge(u));action("齐攻",v->warUi().joint(u));action("讨伐贼寨",v->new WorldUi(this,world,this::apply).raids(u));action("截击运输队",v->governmentUi().raid(u));action("移交兵粮",v->governmentUi().supply(u));action("部队战法详情",v->showTactics(u));
                 if(u.burning>0)action("部队灭火 · 气力5",v->confirm("扑灭本部队火焰？",()->apply(world.army.extinguish(u.id))));action("部队计略",v->{moving=u.id;warUi().plots(u);});action("待命 · 恢复5气力",v->confirm("本旬待命并恢复5气力？",()->apply(world.war.waitUnit(u.id))));}
+            for(Domestic.Mission convoy:world.domestic.missions)if(convoy.transport&&convoy.escortId==u.id)action("定位护送运输队",v->selectAndFocus(convoy.hex));
             action("取消部队选择",v->clearUnitSelection());}
     }
     private void showConvoy(Domestic.Mission m){
@@ -513,7 +514,7 @@ public final class MainActivity extends Activity {
     }
     private void convoySupply(Domestic.Mission m){
         List<Hex> targets=new ArrayList<>();for(World.Unit u:world.units)if(u.owner==m.owner&&u.hex.distance(m.hex)==1)targets.add(u.hex);
-        pickOnMap("运输补给：选择相邻友军",m.hex,targets,h->{World.Unit target=world.unitAt(h);if(target==null)return;
+        pickOnMap("运输补给：选择相邻友军",m.hex,targets,h->{World.Unit target=world.unitAt(h);if(target==null)return;cancelMapPick();
             LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);form.setPadding(dp(16),dp(8),dp(16),dp(8));
             EditText[] fields=new EditText[3];String[] names={"兵","粮","金"};for(int i=0;i<3;i++){fields[i]=new EditText(this);fields[i].setInputType(android.text.InputType.TYPE_CLASS_NUMBER);fields[i].setHint(names[i]+"数量（0为不移交）");fields[i].setContentDescription("运输补给"+names[i]);form.addView(fields[i]);}
             ScrollView scroll=new ScrollView(this);scroll.addView(form);
