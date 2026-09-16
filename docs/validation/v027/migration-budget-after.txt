@@ -1,0 +1,1 @@
+v20 turn=1 lastTick=1 position=7,15 food=4950 consumed=50 movementRemaining=0

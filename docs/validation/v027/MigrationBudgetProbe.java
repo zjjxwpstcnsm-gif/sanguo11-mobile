@@ -1,0 +1,3 @@
+package game.sanguo.core;
+import java.nio.file.*;import java.util.*;
+public class MigrationBudgetProbe {public static void main(String[] a)throws Exception {World w=SaveCodec.decode(Base64.getMimeDecoder().decode(Files.readAllBytes(Path.of("core/src/test/resources/legacy-v20-logistics.sg11.b64"))));Domestic.Mission m=w.domestic.missions.get(0);System.out.println("v20 turn="+w.turn+" lastTick="+m.lastTick+" position="+m.hex+" food="+m.food+" consumed="+m.consumedFood+" movementRemaining="+w.orders.remaining(m));if(w.orders.remaining(m)!=0)throw new AssertionError("old already-settled movement granted again by migration");}}

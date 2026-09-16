@@ -1,0 +1,3 @@
+v20 turn=1 lastTick=1 position=7,15 food=4950 consumed=50 movementRemaining=4
+Exception in thread "main" java.lang.AssertionError: old already-settled movement granted again by migration
+	at game.sanguo.core.MigrationBudgetProbe.main(MigrationBudgetProbe.java:3)

@@ -58,7 +58,8 @@ public final class TacticalLogisticsTest {
         byte[] old;try(InputStream in=TacticalLogisticsTest.class.getResourceAsStream("/legacy-v20-logistics.sg11.b64")){old=Base64.getMimeDecoder().decode(in.readAllBytes());}
         check(old[7]==20,"actual unmodified v026 encoder fixture");World w=SaveCodec.decode(old);Domestic.Mission m=w.domestic.missions.get(0);
         check(m.food==4950&&m.consumedFood==50&&m.crew().length==3&&m.returnOfficers,"old paid ration, cargo, crew and return option retained");
-        check(w.unitAt(m.hex)==m,"old task gains same-object battlefield identity");World replay=copy(w);
+        check(w.unitAt(m.hex)==m,"old task gains same-object battlefield identity");
+        check(w.orders.remaining(m)==0,"already-settled v20 movement cannot be granted again on upgrade");byte[] migrated=bytes(w);check(!w.orders.previewMove(m.id,m.hex.neighbors().get(0)).valid()&&Arrays.equals(migrated,bytes(w)),"upgrade cannot grant immediate extra movement or mutate on preview");World replay=copy(w);
         for(int i=0;i<10;i++){tick(w);tick(replay);check(Arrays.equals(bytes(w),bytes(replay)),"v20 continuation equals v21 roundtrip");replay=copy(replay);byte[] done=bytes(w);w.domestic.tick();check(Arrays.equals(done,bytes(w)),"saved last settlement cannot move or consume twice");}
     }
     static void permissions()throws Exception{
@@ -89,8 +90,8 @@ public final class TacticalLogisticsTest {
         World.Unit guard=StrategicManagementTest.unit(w,7,World.Weapon.SPEAR,new Hex(7,13));AiOrders.Order intent=w.aiOrders.get(guard);intent.home=10;intent.target=20;int homeTroops=w.city(10).troops;
         new CampaignAi(w).runUnit(guard,true,c->c.id==20,c->c.id==10);check(m.escortId==guard.id&&guard.acted,"existing army takes actual escort order and action");check(w.city(10).troops==homeTroops&&guard.movementSpent<=w.war.movement(guard),"escort invents no troops or movement");
         check(w.aiOrders.describe(guard).contains("护送")&&intent.stalled==0,"legitimate escort wait is not stuck");
-        World defended=fixture();Domestic.Mission c=send(defended,false,false);tick(defended);World.Unit defender=StrategicManagementTest.unit(defended,7,World.Weapon.SPEAR,new Hex(4,3));AiOrders.Order defense=defended.aiOrders.get(defender);defense.home=10;defense.defending=true;
-        StrategicManagementTest.unit(defended,20,World.Weapon.SPEAR,new Hex(5,2));new CampaignAi(defended).runUnit(defender,true,x->true,x->x.id==10);check(c.escortId<0&&defender.hex.distance(defended.city(10).hex)<=7,"threatened home defender never diverted to convoy");
+        World defended=fixture();Domestic.Mission c=send(defended,false,false);tick(defended);World.Unit defender=StrategicManagementTest.unit(defended,7,World.Weapon.SPEAR,new Hex(5,14));AiOrders.Order defense=defended.aiOrders.get(defender);defense.home=11;defense.defending=true;
+        StrategicManagementTest.unit(defended,20,World.Weapon.SPEAR,new Hex(5,16));new CampaignAi(defended).runUnit(defender,true,x->true,x->x.id==11);check(c.escortId<0&&defender.hex.distance(defended.city(11).hex)<=7,"threatened home defender never diverted to convoy");
         // Out-of-range convoy does not even enter local attack scoring.
         w.active=1;threat.hex=new Hex(30,15);CampaignAi ai=new CampaignAi(w);CampaignAi.Action action=ai.bestAction(threat.id,true);check(action==null||action.target!=m.id,"distant convoy cannot attract local combat action");
     }
@@ -98,7 +99,7 @@ public final class TacticalLogisticsTest {
         World w=fixture();Domestic.Mission m=send(w,false,false);tick(w);World.Unit hungry=StrategicManagementTest.unit(w,7,World.Weapon.SPEAR,m.hex.neighbors().get(0));hungry.food=600;int total=m.food+hungry.food;AiOrders.Order order=w.aiOrders.get(hungry);order.home=11;order.target=20;
         new CampaignAi(w).runUnit(hungry,true,c->c.id==20,c->c.owner==0);check(m.acted&&hungry.food>600&&m.food+hungry.food==total,"frontline AI receives actual adjacent convoy grain without creating supply");
         World denied=fixture();Domestic.Mission foreign=send(denied,false,false);tick(denied);World.Unit unit=StrategicManagementTest.unit(denied,7,World.Weapon.SPEAR,foreign.hex.neighbors().get(0));unit.food=600;
-        ok(denied.districts.configure(-1,"战区",new int[]{12},Districts.Policy.ECONOMY,-1,-1,false,false));denied.districts.units.put(unit.id,1);int grain=foreign.food;new CampaignAi(denied).runUnit(unit,true,c->true,c->c.id==12);check(foreign.food==grain,"delegated frontline cannot siphon first-district convoy");
+        ok(denied.districts.configure(-1,"战区",new int[]{12},Districts.Policy.CITY_ATTACK,20,-1,true,false));denied.districts.units.put(unit.id,1);int grain=foreign.food;denied.districts.reset(0);denied.districts.run();check(foreign.food==grain,"delegated frontline cannot siphon first-district convoy");
     }
     static void emptySoldiers()throws Exception{
         World w=fixture();ok(w.domestic.transport(11,12,4,100,1000,0,new int[4]));Domestic.Mission m=w.domestic.missions.get(0);long[] before=stock(w);

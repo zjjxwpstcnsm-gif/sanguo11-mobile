@@ -407,7 +407,10 @@ public final class Domestic {
     /** v20 tasks retain their exact cargo/personnel/location; only their battlefield identity is enabled.
      * Overlapping legacy tasks wait at that exact position until they can leave legally. */
     void migrateTactical(){Set<Hex> occupied=new HashSet<>();for(World.Unit u:w.units)occupied.add(u.hex);
-        for(Mission m:missions)if(m.transport){m.legacyOverlap=w.cityAt(m.hex)==null&&!occupied.add(m.hex);m.movementTurn=w.turn;}
+        for(Mission m:missions)if(m.transport){m.legacyOverlap=w.cityAt(m.hex)==null&&!occupied.add(m.hex);m.movementTurn=w.turn;
+            // Old task movement already ran this turn; older formats have no per-turn budget trace.
+            // Freeze in-flight legacy movement until the next tick, without moving or refunding cargo.
+            if(m.lastTick==w.turn||w.cityAt(m.hex)==null){m.movementBudget=w.war.movement(m);m.movementSpent=m.movementBudget;}}
     }
     void writeTactical(DataOutputStream d)throws IOException{
         d.writeInt(missions.size());for(Mission m:missions){d.writeInt(m.taskId);d.writeBoolean(m.stopped);d.writeBoolean(m.legacyOverlap);d.writeInt(m.movementTurn);d.writeInt(m.movementBudget);d.writeInt(m.movementSpent);d.writeBoolean(m.acted);d.writeByte(m.status.ordinal());d.writeInt(m.statusTurns);d.writeInt(m.energy);d.writeInt(m.burning);d.writeInt(m.burningOwner);d.writeInt(m.burningPower);d.writeInt(m.escortId);d.writeUTF(m.waiting);
