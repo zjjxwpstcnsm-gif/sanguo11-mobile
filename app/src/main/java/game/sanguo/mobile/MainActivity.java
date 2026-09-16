@@ -24,7 +24,7 @@ public final class MainActivity extends Activity {
     private TextView title,panelTitle,battleBanner;
     private String lastBattleReport="";
     private World battleReportWorld;
-    private Button selectionButton,expandPanel,closePanel;
+    private Button selectionButton,expandPanel,closePanel,returnList;
     private AlertDialog navigationDialog;
     private AlertDialog confirmationDialog;
     private Hex selected;
@@ -71,6 +71,7 @@ public final class MainActivity extends Activity {
         panelShell=new LinearLayout(this);panelShell.setOrientation(LinearLayout.VERTICAL);panelShell.setBackgroundColor(0xff131f2c);
         panelShell.setVisibility(View.GONE);body.addView(panelShell);
         LinearLayout panelHeader=new LinearLayout(this);panelHeader.setPadding(dp(12),0,dp(4),0);panelHeader.setGravity(Gravity.CENTER_VERTICAL);
+        returnList=button("列表",v->returnToCities());returnList.setContentDescription("返回全国列表");panelHeader.addView(returnList,new LinearLayout.LayoutParams(dp(48),dp(48)));
         panelTitle=text("指令",14,gold);panelTitle.setMaxLines(1);panelTitle.setEllipsize(android.text.TextUtils.TruncateAt.END);
         panelHeader.addView(panelTitle,new LinearLayout.LayoutParams(0,dp(48),1));
         expandPanel=button("展开",v->{ui.panelExpanded=!ui.panelExpanded;layoutPanels();});expandPanel.setContentDescription("展开或缩小操作面板");
@@ -337,6 +338,8 @@ public final class MainActivity extends Activity {
         panelHost.removeAllViews();panel.removeAllViews();
         boolean required=(world.life.pending()||world.contests.busy())&&!ui.page.equals("menu");
         panelShell.setVisibility(ui.panelVisible||required?View.VISIBLE:View.GONE);closePanel.setEnabled(!required&&!aiRunning);
+        returnList.setVisibility(ui.returnToCities&&ui.page.equals("map")?View.VISIBLE:View.GONE);
+        if(ui.summary.isEmpty())turnBanner.setVisibility(View.GONE);
         World.Unit selectedActor=selectedUnit();
         String selectedName=selectedActor!=null?world.officer(selectedActor.officerId).name:selected==null?"点选城池":world.cityAt(selected)!=null?world.cityAt(selected).name:"地块";
         int ready=UiModels.readyUnits(world).size();previousReady.setEnabled(!aiRunning&&mapPick==null);nextReady.setEnabled(!aiRunning&&mapPick==null);previousReady.setTooltipText("上一个待行动部队 · "+ready+"队");nextReady.setTooltipText("下一个待行动部队 · "+ready+"队");
@@ -413,7 +416,6 @@ public final class MainActivity extends Activity {
     }
     private int taskCount(){return UiModels.tasks(world,0).size();}
     private void showSelection(){
-        if(ui.returnToCities)action("返回全国列表",v->returnToCities());
         World.Unit unit=selectedUnit();World.City city=selected==null?null:world.cityAt(selected);
         if(unit!=null)showUnit(unit);else if(city!=null)showCity(city);else if(selected!=null&&world.domestic.at(selected)!=null){
             Domestic.Facility f=world.domestic.at(selected);panel.addView(visualHeader(f,f.kind.label,world.city(f.cityId).name,64));line("耐久 "+f.hp+"/"+f.maxHp(),14,gold);line(f.remaining==0?f.kind.effect:"建设中 · 剩"+f.remaining+"旬",14,paper);
@@ -525,7 +527,8 @@ public final class MainActivity extends Activity {
     );}
     private void showUnit(World.Unit u){
         if(u instanceof Domestic.Mission){showConvoy((Domestic.Mission)u);return;}
-        World.Officer o=world.officer(u.officerId);panel.addView(visualHeader(o,o.name,world.faction(u.owner)+" · "+world.army.equipmentLabel(u),64));
+        World.Officer o=world.officer(u.officerId);panel.addView(visualHeader(o,o.name,world.faction(u.owner)+" · "+world.army.equipmentLabel(u),44));
+        unitStats(u);
         Diplomacy.Aid aid=world.diplomacy.aidForUnit(u.id);if(aid!=null)line("援军 · "+world.diplomacy.describe(aid),13,gold);
         if(u.owner==world.player){
             LinearLayout quick=new LinearLayout(this);
@@ -534,7 +537,7 @@ public final class MainActivity extends Activity {
             if(u.march!=null)quick.addView(button("停止行军",v->apply(world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
             panel.addView(quick);
         }
-        unitStats(u);line("统率 "+o.leadership+"  武力 "+o.war,13,paper);line("剩余移动 "+world.orders.remaining(u)+"  射程 "+world.war.range(u),13,paper);
+        line("统率 "+o.leadership+"  武力 "+o.war,13,paper);line("剩余移动 "+world.orders.remaining(u)+"  射程 "+world.war.range(u),13,paper);
         line("适性 "+War.rankLabel(world.army.aptitude(u))+" · 状态 "+u.status.label,14,paper);
         iconAction("主将 · "+o.name+" · 查看武将",o,v->officerDetail(o));
         for(int id:u.deputies){World.Officer deputy=world.officer(id);iconAction("副将 · "+deputy.name+" · 查看武将",deputy,v->officerDetail(deputy));}
@@ -559,9 +562,9 @@ public final class MainActivity extends Activity {
     }
     private void showConvoy(Domestic.Mission m){
         World.Officer leader=world.officer(m.officerId);
-        panel.addView(visualHeader(leader,leader.name+"运输队",world.faction(m.owner)+" · "+(world.army.water(m.hex)?"水运 · 走舸":"陆运"),64));
-        line(world.domestic.status(m),14,gold);line("目的地："+world.city(m.targetCity).name+" · 当前 "+m.hex,14,paper);
+        panel.addView(visualHeader(leader,leader.name+"运输队",world.faction(m.owner)+" · "+(world.army.water(m.hex)?"水运 · 走舸":"陆运"),44));
         line("携兵 "+m.troops+" · 金 "+m.gold+" · 粮 "+m.food+" · 已耗粮 "+m.consumedFood,14,paper);
+        line(world.domestic.status(m),14,gold);line("目的地："+world.city(m.targetCity).name+" · 当前 "+m.hex,14,paper);
         for(World.Weapon weapon:World.Weapon.values())if(m.equipment[weapon.ordinal()]>0)line(weapon.label+"货物 "+m.equipment[weapon.ordinal()],13,paper);
         line("舰船货物：楼船 "+m.cargoShips[0]+" / 斗舰 "+m.cargoShips[1]+"；当前走舸不入库存",13,paper);
         for(int id:m.crew())iconAction("编队 · "+world.officer(id).name,world.officer(id),v->officerDetail(world.officer(id)));

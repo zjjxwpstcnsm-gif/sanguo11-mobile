@@ -1010,7 +1010,7 @@ public final class GameSmokeRunner extends Instrumentation {
     private AccessibilityNodeInfo find(AccessibilityNodeInfo node,String text,boolean exact) {
         if(node==null)return null;
         CharSequence value=node.getText();
-        if(text.startsWith("导航 · ")||text.startsWith("选中对象指令 ·")||text.endsWith("待行动部队"))value=node.getContentDescription();
+        if(text.equals("返回全国列表")||text.startsWith("导航 · ")||text.startsWith("选中对象指令 ·")||text.endsWith("待行动部队"))value=node.getContentDescription();
         if(value!=null&&(exact?value.toString().equals(text):value.toString().contains(text))&&node.isVisibleToUser())return node;
         for(int i=0;i<node.getChildCount();i++){AccessibilityNodeInfo found=find(node.getChild(i),text,exact);if(found!=null)return found;}return null;
     }
