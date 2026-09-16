@@ -487,7 +487,7 @@ public final class GameSmokeRunner extends Instrumentation {
     }
     private void logisticsFlow()throws Exception {
         for(String orientation:new String[]{"竖屏","横屏"}){
-            World w=logisticsFixture();installFixture(w,w.city(11).hex);chooseOrientation(orientation);byte[] before=SaveCodec.encode(saved());
+            World w=logisticsFixture();installFixture(w,w.city(11).hex);chooseOrientation(orientation);allCityStates();byte[] before=SaveCodec.encode(saved());
             locateCity("后方");click("调动",true);click("资源运输",true);click("前方 ·",false);click("将4 ·",false);
             click("运输副将（最多2名）",true);click("将5",true);click("将6",true);click("将7",true);click("完成",true);click("卸货后武将返回出发城",true);
             setInput("粮（上限200000）","6000");click("发送",true);waitText("派遣费0金",false);screenshot("v026-convoy-preview-"+orientation);click("取消",true);
@@ -509,8 +509,9 @@ public final class GameSmokeRunner extends Instrumentation {
             require(Arrays.equals(pending,SaveCodec.encode(saved())),"support preview cancellation spends no resources or AP");
             click("支援申请 / 可执行预览",true);click("后方",true);click("执行",true);w=saved();require(w.domestic.missions.size()==1&&w.districts.get(1).points()==50,"support sends one actual authorized convoy using district budget");waitText("军团行动力：50 / 60",false);click("返回",true);
         }
-        installFixture(ScenarioCatalog.load("regional-sandbox",2),new Hex(18,10));
+        allCityStates();installFixture(ScenarioCatalog.load("regional-sandbox",2),new Hex(18,10));
     }
+    private void allCityStates(){click("视图",true);click("全国城池总览",true);click("筛选 ·",false);click("城池状态",true);click("全部状态",true);}
     private void upgradeFlow()throws Exception {
         World legacy=saved();String scenarioName=legacy.scenarioName;byte[] before=SaveCodec.encode(legacy);
         Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
