@@ -125,7 +125,7 @@ public final class MainActivity extends Activity {
         int pendingTasks=taskCount();
         for(int i=0;i<keys.length;i++){
             final String page=keys[i];String label=labels[i]+(page.equals("tasks")&&pendingTasks>0?" "+pendingTasks:"");
-            Button item=button(label,v->{navigationDialog.dismiss();ui.page=page;ui.panelVisible=!page.equals("map");ui.panelExpanded=page.equals("cities");refresh();revealPanel();});
+            Button item=button(label,v->{navigationDialog.dismiss();ui.page=page;ui.panelVisible=!page.equals("map");ui.panelExpanded=false;refresh();revealPanel();});
             item.setContentDescription("导航 · "+labels[i]);navigation.put(page,item);list.addView(item,new LinearLayout.LayoutParams(-1,dp(48)));
         }
         navigationDialog.show();
@@ -305,7 +305,7 @@ public final class MainActivity extends Activity {
         String selectedName=selected==null?"点选城池":world.cityAt(selected)!=null?world.cityAt(selected).name:world.unitAt(selected)!=null?world.officer(world.unitAt(selected).officerId).name:"地块";
         selectionButton.setText(selectedName+(panelShell.getVisibility()==View.VISIBLE?" · 收起":" · 指令"));
         selectionButton.setContentDescription("选中对象指令 · "+selectedName);selectionButton.setEnabled(mapPick==null&&!aiRunning&&!required);
-        panelTitle.setText(ui.page.equals("map")?selectedName+" · 指令":ui.page.equals("cities")?"城市":ui.page.equals("officers")?"武将":ui.page.equals("tasks")?"任务":ui.page.equals("menu")?"菜单":"资料");
+        panelTitle.setText(ui.page.equals("map")?selectedName+" · 指令":ui.page.equals("cities")?"城池一览":ui.page.equals("officers")?"武将":ui.page.equals("tasks")?"任务":ui.page.equals("menu")?"菜单":"资料");
         if(world.unit(moving)==null)moving=-1;
         map.setWorld(world,selected,moving);
         if(world.life.pending()&&!ui.page.equals("menu")){panelHost.addView(new LifecycleUi(this,world,this::apply).succession());}
