@@ -90,7 +90,7 @@ public final class Districts {
         if(!direct)return "第一军团必须保留至少一个据点";
         // Groups need connected own territory; paths use the current passable map, never straight-line adjacency guesses.
         Set<Integer> linked=new HashSet<>();linked.add(members[0]);boolean changed=true;
-        while(changed){changed=false;for(int member:members)if(!linked.contains(member))for(int from:new ArrayList<>(linked))if(w.domestic.route(w.city(from).hex,w.city(member).hex,w.active)!=null){linked.add(member);changed=true;break;}}
+        while(changed){changed=false;for(int member:members)if(!linked.contains(member))for(int from:new ArrayList<>(linked))if(w.domestic.route(w.city(from).hex,w.city(member).hex,w.active,true)!=null){linked.add(member);changed=true;break;}}
         if(linked.size()!=ids.size())return "军团据点之间没有可通行的运输路线";
         if(policy==Policy.CITY_ATTACK){World.City c=w.city(target);if(c==null||!w.campaign.hostile(w.active,c.owner))return "都市攻略需要交战据点";}
         else if(policy==Policy.FORCE_ATTACK){if(target<0||target>=w.factions.length||!w.alive(target)||!w.campaign.hostile(w.active,target))return "势力攻略需要交战势力";}

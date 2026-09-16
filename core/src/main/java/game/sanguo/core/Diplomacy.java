@@ -172,7 +172,7 @@ public final class Diplomacy {
             War.Fire fire=new War.Fire(old.hex,owner,old.remaining);fire.power=old.power;fire.trap=old.trap;w.war.fires.set(i,fire);
         }
         for(int i=0;i<w.domestic.missions.size();i++){Domestic.Mission m=w.domestic.missions.get(i);if(m.owner!=former)continue;
-            Domestic.Mission next=new Domestic.Mission(m.id,owner,m.officerId,m.sourceCity,m.targetCity,m.hex,m.transport,m.gold,m.food,m.troops,m.equipment);next.sea=m.sea;w.domestic.missions.set(i,next);
+            m.owner=owner;m.acted=true;m.march=null;m.escortId=-1;if(m.burningOwner==former)m.burningOwner=owner;
         }
         for(int i=0;i<w.army.productions.size();i++){Army.Production p=w.army.productions.get(i);if(p.owner==former)w.army.productions.set(i,new Army.Production(p.cityId,p.officerId,owner,p.weapon,p.ship));}
         // Preserve completed military technology (and migrated legacy prerequisites), not hidden PK rolls/uses.

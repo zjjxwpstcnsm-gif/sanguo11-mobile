@@ -44,8 +44,9 @@ public final class World {
             if(owner<0){loyalty=0;role=Strategy.Role.UNAFFILIATED;}
         }
     }
-    public static final class Unit {
-        public final int id, owner, officerId;
+    public static class Unit {
+        public final int id;
+        public int owner,officerId;
         public final Weapon weapon;
         public Hex hex;
         public int troops, food, gold, energy=80;
@@ -125,9 +126,12 @@ public final class World {
     public boolean inside(Hex h) { return h.q>=0&&h.r>=0&&h.q<width&&h.r<height; }
     public City city(int id) { for(City c:cities) if(c.id==id) return c;return null; }
     public Officer officer(int id) { for(Officer o:officers) if(o.id==id) return o;return null; }
-    public Unit unit(int id) { for(Unit u:units) if(u.id==id) return u;return null; }
+    public Unit unit(int id) { for(Unit u:units) if(u.id==id) return u;
+        if(id>=10000000){Domestic.Mission m=domestic.mission(id);if(m!=null&&m.transport)return m;}return null; }
+    /** Read-only union; mission and battlefield refer to the same cargo object. */
+    public List<Unit> fieldUnits(){List<Unit> all=new ArrayList<>(units);for(Domestic.Mission m:domestic.missions)if(m.transport&&!m.legacyOverlap&&cityAt(m.hex)==null)all.add(m);return all;}
     public City cityAt(Hex h) { for(City c:cities) if(c.hex.equals(h)) return c;return null; }
-    public Unit unitAt(Hex h) { for(Unit u:units) if(u.hex.equals(h)) return u;return null; }
+    public Unit unitAt(Hex h) {for(Unit u:units)if(u.hex.equals(h))return u;for(Domestic.Mission m:domestic.missions)if(m.transport&&!m.legacyOverlap&&m.hex.equals(h)&&cityAt(h)==null)return m;return null;}
     // Transient command feedback, never serialized or inferred by parsing translated log text.
     private Feedback feedback=Feedback.NONE;
     private Hex impact;
@@ -206,6 +210,7 @@ public final class World {
     }
     public String siegeError(int unitId,int cityId) {
         Unit u=unit(unitId);City c=city(cityId);String error=unitError(u);if(error!=null)return error;
+        if(u instanceof Domestic.Mission)return "运输队不能攻城";
         if(c==null||!campaign.hostile(u.owner,c.owner))return "请选择交战势力或未占领城池";
         if(u.hex.distance(c.hex)>army.siegeRange(u))return "城池不在攻城射程内";
         if(Army.siegeWeapon(u.weapon)&&!army.water(u.hex))return "兵器使用战法攻城";
@@ -240,6 +245,7 @@ public final class World {
     }
     public Result enter(int unitId,int cityId) {
         Unit u=unit(unitId);City c=city(cityId);String error=unitError(u);if(error!=null)return fail(error);
+        if(u instanceof Domestic.Mission)return domestic.unload((Domestic.Mission)u,cityId);
         if(c==null||c.owner!=u.owner||u.hex.distance(c.hex)>1)return fail("请选择相邻己方城池");
         int gear=Army.equipmentNeeded(u.weapon,u.troops),cap=campaign.equipmentCap(c,u.weapon);
         if(c.troops+u.troops>campaign.troopCap(c)||c.equipment[u.weapon.ordinal()]+gear>cap||c.food+u.food>campaign.foodCap(c)||c.gold+u.gold>campaign.goldCap(c)||u.ship!=Army.Ship.BOAT&&c.ships[u.ship.ordinal()-1]>=100)return fail("城池库存容量不足");
@@ -309,7 +315,7 @@ public final class World {
     /** Plan beyond one turn so AI can detour around rivers and mountains. */
     boolean advance(Unit u,Hex target,int range) {
         Map<Hex,Integer> distances=new HashMap<>();Map<Hex,Hex> previous=new HashMap<>();
-        Set<Hex> blocked=new HashSet<>();for(City c:cities)blocked.add(c.hex);for(Domestic.Facility f:domestic.facilities)blocked.add(f.hex);for(Unit b:units)if(b.id!=u.id)blocked.add(b.hex);
+        Set<Hex> blocked=new HashSet<>();for(City c:cities)blocked.add(c.hex);for(Domestic.Facility f:domestic.facilities)blocked.add(f.hex);for(Unit b:fieldUnits())if(b.id!=u.id)blocked.add(b.hex);
         for(War.Structure s:war.structures())blocked.add(s.hex);
         PriorityQueue<Step> todo=new PriorityQueue<>(Comparator.comparingInt((Step s)->s.cost).thenComparingInt(s->s.hex.q).thenComparingInt(s->s.hex.r));
         distances.put(u.hex,0);todo.add(new Step(u.hex,0));

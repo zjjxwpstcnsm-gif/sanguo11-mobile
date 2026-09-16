@@ -27,7 +27,7 @@ public final class DistrictManagement {
         for(int t=1;t<=36;t++){food+=inbound[t];if(food<use)return t;food=Math.min(w.campaign.foodCap(c),food-use+foodIncome(c,t));}return 999;
     }
     public int incomingFood(World.City c){int n=0;for(Domestic.Mission m:w.domestic.missions)if(m.transport&&m.owner==c.owner&&m.targetCity==c.id)n+=m.food;return n;}
-    public Set<Integer> logisticsBlockedCities(){Set<Integer> cities=new HashSet<>();for(Domestic.Mission m:w.domestic.missions){String s=w.domestic.status(m);if(s.contains("受阻")||s.contains("失守")||s.contains("满仓")||s.contains("断粮")||s.contains("截停")){cities.add(m.sourceCity);cities.add(m.targetCity);}}return cities;}
+    public Set<Integer> logisticsBlockedCities(){Set<Integer> cities=new HashSet<>();for(Domestic.Mission m:w.domestic.missions){String s=w.domestic.status(m);if(s.contains("受阻")||s.contains("失守")||s.contains("满仓")||s.contains("断粮")||s.contains("截停")||s.contains("等待")||s.contains("已停止")){cities.add(m.sourceCity);cities.add(m.targetCity);}}return cities;}
     public String reason(World.City c){List<String> reasons=new ArrayList<>();Districts.District d=w.districts.city(c.id);int danger=ai.incoming(c);
         if(danger>0)reasons.add("敌军逼近"+danger);
         if(foodTurns(c)<6)reasons.add("缺粮：现粮约"+foodTurns(c)+"旬");
@@ -52,7 +52,7 @@ public final class DistrictManagement {
         }
     }
     public static final class SupplyPlan {
-        public final int source,target,officer,gold,food,troops;public final boolean returning;public final String reason;private final int[] equipment;
+        public final int source,target,officer,gold,food,troops;public final boolean returning;public boolean sea;public final String reason;private final int[] equipment;
         SupplyPlan(int source,int target,int officer,int gold,int food,int troops,int[] equipment,boolean returning,String reason){this.source=source;this.target=target;this.officer=officer;this.gold=gold;this.food=food;this.troops=troops;this.equipment=equipment.clone();this.returning=returning;this.reason=reason;}
         public boolean valid(){return reason==null;}
         public int[] equipment(){return equipment.clone();}
@@ -79,12 +79,13 @@ public final class DistrictManagement {
         if(sendTroops+sendGold+sendFood+Arrays.stream(cargo).sum()==0)return blocked(source,target,officer,"已承诺和在途物资满足需求，或来源城达到保留线");
         if(sendTroops<1000){sendTroops=Math.min(1000,Math.min(source.troops-keep,w.campaign.troopCap(target)-troops));if(sendTroops<1000)return blocked(source,target,officer,"留守兵力或目的地护兵容量不足");}
         Domestic.Mission probe=new Domestic.Mission(0,source.owner,officer.id,source.id,target.id,source.hex,true,sendGold,sendFood,sendTroops,cargo);
-        int eta=w.domestic.eta(probe);if(eta<0)return blocked(source,target,officer,"道路受阻，暂无可达运输路线");
+        int eta=w.domestic.eta(probe);if(eta<0){probe.sea=true;eta=w.domestic.eta(probe);}if(eta<0)return blocked(source,target,officer,"道路受阻，暂无可达运输路线");
+        String threat=w.domestic.threatReason(probe);if(threat!=null)return blocked(source,target,officer,threat);
         int ration=(eta+2)*w.domestic.foodUse(probe);sendFood=Math.max(sendFood,ration);
         if(sendFood>source.food-keepFood(d,source)||sendFood>w.campaign.foodCap(target)-food)return blocked(source,target,officer,"途中口粮或目的地粮仓空间不足");
-        return new SupplyPlan(source.id,target.id,officer.id,sendGold,sendFood,sendTroops,cargo,!d.transfer||residents(target)+arriving(target)>=3,null);
+        SupplyPlan result=new SupplyPlan(source.id,target.id,officer.id,sendGold,sendFood,sendTroops,cargo,!d.transfer||residents(target)+arriving(target)>=3,null);result.sea=probe.sea;return result;
     }
-    World.Result send(SupplyPlan p){if(!p.valid())return w.fail(p.reason);return w.domestic.transport(p.source,p.target,p.officer,new int[0],p.gold,p.food,p.troops,p.equipment,false,p.returning);}
+    World.Result send(SupplyPlan p){if(!p.valid())return w.fail(p.reason);return w.domestic.transport(p.source,p.target,p.officer,new int[0],p.gold,p.food,p.troops,p.equipment,p.sea,p.returning);}
     boolean supply(Districts.District d,World.City source,World.Officer officer){
         List<World.City> targets=new ArrayList<>();for(World.City c:w.cities)if(c.owner==source.owner&&c.id!=source.id&&(d.supply>=0?c.id==d.supply:d.cities.contains(c.id)&&(ai.incoming(c)>0||foodTurns(c)<12)))targets.add(c);
         targets.sort(Comparator.comparingInt((World.City c)->-ai.incoming(c)).thenComparingInt(this::foodTurns).thenComparingInt(c->c.id));

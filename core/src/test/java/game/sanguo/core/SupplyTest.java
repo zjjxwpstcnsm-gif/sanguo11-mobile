@@ -25,7 +25,7 @@ public final class SupplyTest {
         World w=world();w.active=1;ok(w.domestic.transport(2,3,7,1000,5000,5000,new int[]{1000,0,0,0}));w.active=0;
         Domestic.Mission m=w.domestic.missions.get(0);m.hex=new Hex(5,4);World.Unit a=unit(w,1,0,new Hex(4,4),5000);
         byte[] before=bytes(w);int expected=w.supply.raidDamage(a.id,m.id);check(Arrays.equals(before,bytes(w)),"raid preview leaves RNG unchanged");
-        int cargoTroops=m.troops;ok(w.supply.raid(a.id,m.id));check(m.troops==cargoTroops-expected&&w.domestic.mission(m.id)!=null,"surviving transport retains cargo");
+        World direct=copy(w);ok(direct.attack(a.id,m.id));int cargoTroops=m.troops;ok(w.supply.raid(a.id,m.id));check(Arrays.equals(bytes(w),bytes(direct))&&m.troops<cargoTroops&&w.domestic.mission(m.id)!=null,"raid alias exactly matches actual battle, surviving transport retains cargo");
         rejected(w,()->w.supply.raid(a.id,m.id));refresh(w);m.troops=1;w.officer(1).skillId=Skill.BOFU.id;
         int food=a.food,cityGold=w.city(0).gold;ok(w.supply.raid(a.id,m.id));
         check(w.domestic.mission(m.id)==null&&w.government.captive(7)&&a.food==food+5000,"defeat captures courier and loots available food");
@@ -55,6 +55,6 @@ public final class SupplyTest {
         byte[] arrived=bytes(w);w.domestic.tick();check(Arrays.equals(arrived,bytes(w)),"no repeated delivery after arrival");
         World blocked=world();ok(blocked.domestic.transport(0,1,1,0,5000,1000,new int[4]));Domestic.Mission convoy=blocked.domestic.missions.get(0);
         Hex next=blocked.domestic.route(convoy.hex,blocked.city(1).hex,0).get(0);unit(blocked,7,1,next,1000);
-        blocked.domestic.tick();check(convoy.hex.equals(blocked.city(0).hex),"convoy cannot cross an enemy occupying its next route tile");
+        blocked.domestic.tick();check(!convoy.hex.equals(next)&&convoy.hex.distance(blocked.city(0).hex)<=4,"convoy obeys movement budget and cannot occupy enemy tile; legal detour allowed");
     }
 }

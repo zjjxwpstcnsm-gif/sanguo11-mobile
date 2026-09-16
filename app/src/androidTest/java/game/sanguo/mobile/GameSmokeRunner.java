@@ -13,13 +13,13 @@ import game.sanguo.core.*;
 /** Runs against an installed APK using platform UI automation, without a test framework dependency. */
 public final class GameSmokeRunner extends Instrumentation {
     private Activity current;
-    private boolean upgradeOnly,upgrade25;
+    private boolean upgradeOnly,upgrade25,upgrade26;
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);current=a;}
-    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));start();}
+    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
-            if(upgradeOnly||upgrade25){upgradeFlow();result.putString("stream",upgrade25?"UPGRADE25 PASS: actual v0.25 APK replaced in place; v19 settings, intent and convoy retained, v20 replay continued once.\n":"UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v20 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
+            if(upgradeOnly||upgrade25||upgrade26){upgradeFlow();result.putString("stream",upgrade26?"UPGRADE26 PASS: actual verified v0.26 APK replaced in place; real v20 three-officer cargo, spent ration, return personnel, district and AI intent retained and v21 continued once.\n":upgrade25?"UPGRADE25 PASS: actual v0.25 APK replaced in place; v19 settings, intent and convoy retained, v21 replay continued once.\n":"UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v21 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
@@ -33,6 +33,7 @@ public final class GameSmokeRunner extends Instrumentation {
             screenshot("v021-rotated-confirmation");click("执行",true);
             waitText("区域争雄  ·  孙权军",false);assertWorld(2,0,"regional-sandbox");
             logisticsFlow();
+            tacticalLogisticsFlow();
             strategicManagementFlow();
             territoryAiFlow();
             mobileShortcutsFlow();
@@ -80,7 +81,7 @@ public final class GameSmokeRunner extends Instrumentation {
             contestFlow();
             battleFeedbackFlow();
             diplomacyVisualFlow();
-            result.putString("stream","SMOKE PASS: v26 convoy crew/food/return preview/cancel/confirm/recreation, logistics filter/task focus and authorized support; v25 national filters/sort/recreation/focus, batch cancel/execute and saved district settings; v24 territory modes/legend/frontline/recreation, quick delegation/cancel/real administration/save, melee response to ranged attack; v23 native quantity sliders/exact input/cancel/deploy/recreation, map construction/rotation/Lv3, expanded playable world and terrain legend; v22 fixed unit command dock, blank/self/button/back cancellation, movement range, move-then-tactic, facility attack/destruction/save restoration; v21 original portraits/building assets/shared icons, pure diplomacy previews, allied dispatch/task/recreation and whole-force surrender; v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            result.putString("stream","SMOKE PASS: v27 map convoy select/stop/route/cancel/field supply/recreation in both orientations; v26 convoy crew/food/return preview/cancel/confirm/recreation, logistics filter/task focus and authorized support; v25 national filters/sort/recreation/focus, batch cancel/execute and saved district settings; v24 territory modes/legend/frontline/recreation, quick delegation/cancel/real administration/save, melee response to ranged attack; v23 native quantity sliders/exact input/cancel/deploy/recreation, map construction/rotation/Lv3, expanded playable world and terrain legend; v22 fixed unit command dock, blank/self/button/back cancellation, movement range, move-then-tactic, facility attack/destruction/save restoration; v21 original portraits/building assets/shared icons, pure diplomacy previews, allied dispatch/task/recreation and whole-force surrender; v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -511,6 +512,25 @@ public final class GameSmokeRunner extends Instrumentation {
         }
         allCityStates();installFixture(ScenarioCatalog.load("regional-sandbox",2),new Hex(18,10));
     }
+    private void tacticalLogisticsFlow()throws Exception {
+        for(String orientation:new String[]{"竖屏","横屏"}){
+            World w=logisticsFixture();w.city(11).equipment[0]=5000;
+            require(w.domestic.transport(11,12,4,new int[]{5,6},500,10000,2000,new int[]{1000,0,0,0},true,true).ok,"real city dispatch");
+            require(w.nextTurn().ok,"real convoy departure");Domestic.Mission m=w.domestic.missions.get(0);
+            // An adjacent friendly unit isolates the phone supply interaction; campaign tests use city deployments.
+            World.Unit friend=new World.Unit(1,0,7,World.Weapon.SPEAR,m.hex.neighbors().get(0),3000,6000);w.units.add(friend);w.nextUnitId=2;w.officer(7).cityId=-1;w.officer(7).unitId=1;
+            installFixture(w,m.hex);chooseOrientation(orientation);waitText("携兵 2000",false);screenshot("v027-convoy-map-"+orientation);
+            byte[] before=SaveCodec.encode(saved());click("全图",true);click("行军",true);tapHex(w.city(12).hex);waitText("路线预览",false);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"transport route cancel is pure");
+            click("停止",true);require(saved().domestic.missions.get(0).stopped,"map stop changes actual convoy command");before=SaveCodec.encode(saved());
+            runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(before,SaveCodec.encode(saved())),"map convoy rebuild cannot move/refund/consume");
+            click("补给",true);tapHex(friend.hex);setInput("运输补给粮","1000");setInput("运输补给金","100");click("预览",true);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"field supply cancel is pure");
+            click("补给",true);tapHex(friend.hex);setInput("运输补给粮","1000");setInput("运输补给金","100");click("预览",true);click("执行",true);w=saved();m=w.domestic.missions.get(0);
+            require(m.food==8900&&m.gold==400&&m.acted&&w.unit(1).food==7000&&w.unit(1).gold==100,"installed field supply changes single cargo owner and real recipient once");screenshot("v027-field-supply-"+orientation);
+            before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(before,SaveCodec.encode(saved())),"supply rebuild cannot repeat");
+        }
+        installFixture(ScenarioCatalog.load("regional-sandbox",2),new Hex(18,10));
+    }
+
     private void allCityStates(){click("视图",true);click("全国城池总览",true);click("筛选 ·",false);click("城池状态",true);click("全部状态",true);}
     private void upgradeFlow()throws Exception {
         World legacy=saved();String scenarioName=legacy.scenarioName;byte[] before=SaveCodec.encode(legacy);
@@ -522,8 +542,17 @@ public final class GameSmokeRunner extends Instrumentation {
         require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=14,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
-        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==20,"upgraded writer produced v20 header");}
-        screenshot(upgrade25?"00-v25-upgrade-preserved":"00-v09-upgrade-preserved");
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==21,"upgraded writer produced v21 header");}
+        screenshot(upgrade26?"00-v26-upgrade-preserved":upgrade25?"00-v25-upgrade-preserved":"00-v09-upgrade-preserved");
+        if(upgrade26){
+            require(legacy.districts.all().size()==1&&legacy.domestic.missions.size()==2&&legacy.units.stream().anyMatch(u->!legacy.aiOrders.describe(u).equals("待评估")),"v26 district, real army intention and two actual tasks retained");
+            Domestic.Mission returning=legacy.domestic.missions.get(0),cargo=legacy.domestic.missions.get(1);
+            require(returning.returning&&returning.crew().length==3&&cargo.transport&&cargo.crew().length==3&&cargo.food==9950&&cargo.consumedFood==50,"v20 return crew and already-paid grain retained");
+            World expected=SaveCodec.decode(before);require(expected.nextTurn().ok,"expected migrated continuation");endTurn();waitForTurn(legacy.turn+1);
+            require(Arrays.equals(SaveCodec.encode(expected),SaveCodec.encode(saved())),"v26 upgrade executes only new tactical transport executor");
+            runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(SaveCodec.encode(expected),SaveCodec.encode(saved())),"v26 recreation no duplicate dispatch ration or delivery");screenshot("01-v26-upgrade-continued");
+        }
+
         if(upgrade25){require(legacy.districts.all().size()==1&&legacy.domestic.missions.size()==1&&legacy.districts.get(1).reserveFood()==45000,"real v25 district and pending mission loaded");
             World expected=SaveCodec.decode(before);require(expected.nextTurn().ok,"expected next turn");int turn=legacy.turn+1;endTurn();waitForTurn(turn);
             require(Arrays.equals(SaveCodec.encode(expected),SaveCodec.encode(saved())),"v25 upgrade continues actual AI and convoy exactly once");

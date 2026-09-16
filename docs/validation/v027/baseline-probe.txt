@@ -1,0 +1,3 @@
+position=7,15 food=4950 spent=50 battlefieldUnit=false
+Exception in thread "main" java.lang.AssertionError: transport has no real battlefield identity / target
+	at game.sanguo.core.TacticalLogisticsProbe.main(TacticalLogisticsProbe.java:9)

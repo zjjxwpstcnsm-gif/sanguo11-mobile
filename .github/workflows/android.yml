@@ -81,6 +81,15 @@ jobs:
           unzip -j /tmp/v025-verified.zip '*.apk' -d /tmp/v025-verified
           cp /tmp/v025-verified/*.apk app/build/upgrade/v025.apk
           echo 'd065889f86ee60988927105dac928eab18bf2d7773d8ccec0dc7fcc960bcd123  app/build/upgrade/v025.apk' | sha256sum -c -
+      - name: Download actual verified v0.26 APK for in-place upgrade
+        if: matrix.display == '1080x1920'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10442343895/zip > /tmp/v026-verified.zip
+          unzip -j /tmp/v026-verified.zip '*.apk' -d /tmp/v026-verified
+          cp /tmp/v026-verified/*.apk app/build/upgrade/v026.apk
+          echo '47edc0678bbe0117ffe9388a95ed0fdbb8dab98e5896074c399caafd7ab121c0  app/build/upgrade/v026.apk' | sha256sum -c -
       - name: Check bundled scenario resources
         run: |
           python3 - <<'PY'
@@ -102,7 +111,7 @@ jobs:
           profile: pixel_2
           disable-animations: true
           script: |
-            if [ "$SMOKE_DISPLAYS" = "1080x1920" ]; then bash scripts/verify-upgrade.sh; bash scripts/verify-upgrade-v025.sh; fi
+            if [ "$SMOKE_DISPLAYS" = "1080x1920" ]; then bash scripts/verify-upgrade.sh; bash scripts/verify-upgrade-v025.sh; bash scripts/verify-upgrade-v026.sh; fi
             bash scripts/smoke-android.sh
       - name: Check stable development signature and record digest
         if: matrix.display == '1080x1920'
@@ -114,15 +123,15 @@ jobs:
           assert '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' in signature
           PYVERIFY
           cd app/build/outputs/apk/debug
-          cp app-debug.apk "sanguo11-mobile-v026-$(git rev-parse --short HEAD).apk"
-          sha256sum sanguo11-mobile-v026-*.apk | tee SHA256SUMS
+          cp app-debug.apk "sanguo11-mobile-v027-$(git rev-parse --short HEAD).apk"
+          sha256sum sanguo11-mobile-v027-*.apk | tee SHA256SUMS
           git rev-parse HEAD > BUILD_COMMIT
       - uses: actions/upload-artifact@v4
         if: matrix.display == '1080x1920'
         with:
-          name: sanguo11-mobile-v026-apk
+          name: sanguo11-mobile-v027-apk
           path: |
-            app/build/outputs/apk/debug/sanguo11-mobile-v026-*.apk
+            app/build/outputs/apk/debug/sanguo11-mobile-v027-*.apk
             app/build/outputs/apk/debug/BUILD_COMMIT
             app/build/outputs/apk/debug/SHA256SUMS
             app/build/outputs/apk/debug/SIGNATURE.txt

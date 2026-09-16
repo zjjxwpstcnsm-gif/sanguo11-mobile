@@ -12,7 +12,7 @@ public final class AiOrders {
     final SortedMap<Integer,Order> orders=new TreeMap<>();
     AiOrders(World w){this.w=w;}
     Order get(World.Unit u){return orders.computeIfAbsent(u.id,id->new Order());}
-    public String describe(World.Unit u){Order o=orders.get(u.id);if(o==null)return "待评估";World.City c=w.city(o.target);
+    public String describe(World.Unit u){for(Domestic.Mission m:w.domestic.missions)if(m.transport&&m.escortId==u.id)return "护送"+w.officer(m.officerId).name+"运输队 · "+w.domestic.status(m);Order o=orders.get(u.id);if(o==null)return "待评估";World.City c=w.city(o.target);
         String result=(c==null?"守备 / 归城":(o.staging?"集结等待增援 · ":"行军攻略 · ")+c.name)+(o.stalled>0?" · 连续无进展"+o.stalled+"旬":"");
         if(c!=null&&o.staging){StringJoiner waiting=new StringJoiner("、");for(World.Unit ally:w.units){Order plan=orders.get(ally.id);if(ally.owner==u.owner&&ally.id!=u.id&&plan!=null&&plan.target==o.target&&plan.staging&&ally.hex.distance(u.hex)>8)waiting.add(w.officer(ally.officerId).name+"@"+ally.hex);}if(waiting.length()>0)result+=" · 等待"+waiting;}
         return result;

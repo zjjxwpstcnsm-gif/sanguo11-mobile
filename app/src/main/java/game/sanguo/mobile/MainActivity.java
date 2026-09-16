@@ -232,6 +232,7 @@ public final class MainActivity extends Activity {
                 selectAndFocus(h);return;
             }
             if(world.events.at(h)!=null){pendingMarch=null;new WorldUi(this,world,this::apply).attack(source,world.events.at(h));return;}
+            if(source instanceof Domestic.Mission&&target!=null&&target.owner==world.player&&target.id!=source.id){convoySupply((Domestic.Mission)source);return;}
             if(target!=null&&target.owner!=world.player){if(!world.campaign.hostile(source.owner,target.owner)){selectAndFocus(h);return;}if(source.hex.distance(h)<=world.war.range(source)){pendingMarch=null;if(!world.army.canAttackUnit(source))showTactics(source);else warUi().attack(source,target);}else approach(source,h);return;}
             if(world.war.at(h)!=null&&!world.campaign.hostile(source.owner,world.war.at(h).owner)){selectAndFocus(h);return;}
             if(world.war.at(h)!=null&&source.hex.distance(h)>world.war.range(source)){approach(source,h);return;}
@@ -273,7 +274,7 @@ public final class MainActivity extends Activity {
         if(world.army.water(u.hex)||Army.siegeWeapon(u.weapon))armyUi().tactics(u);else warUi().tactics(u);
     }
     private void message(String title,String value){new AlertDialog.Builder(this).setTitle(title).setMessage(value).setPositiveButton("返回",null).show();}
-    private void confirm(String value,Runnable action){confirmationDialog=new AlertDialog.Builder(this).setMessage(value).setPositiveButton("执行",(d,w)->{if(!aiRunning)action.run();}).setNegativeButton("取消",null).show();fitConfirmation();}
+    private void confirm(String value,Runnable action){boolean[] submitted={false};confirmationDialog=new AlertDialog.Builder(this).setMessage(value).setPositiveButton("执行",(d,w)->{if(!aiRunning&&!submitted[0]){submitted[0]=true;action.run();}}).setNegativeButton("取消",null).show();fitConfirmation();}
     void applyResult(World.Result result){apply(result);}
     private void apply(World.Result result){
         if(!result.ok)message("命令未执行",result.message);
@@ -346,6 +347,7 @@ public final class MainActivity extends Activity {
             Button tactics=button("战法",v->showTactics(u));tactics.setEnabled(error==null&&!aiRunning);
             Button plots=button("计略",v->{pendingMarch=null;unitCommand="select";refresh();warUi().plots(u);});plots.setEnabled(error==null&&!aiRunning);
             Button cancel=button("取消选中",v->clearUnitSelection());
+            if(u instanceof Domestic.Mission){attack.setText("补给");attack.setOnClickListener(v->convoySupply((Domestic.Mission)u));tactics.setText("停止");tactics.setOnClickListener(v->apply(world.marches.stop(u.id)));plots.setText("货物");plots.setOnClickListener(v->{ui.panelVisible=true;refresh();revealPanel();});}
             for(Button b:new Button[]{march,attack,tactics,plots,cancel})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
             commandDock.addView(actions,new LinearLayout.LayoutParams(portrait()?-1:dp(360),-2));return;
         }
@@ -360,7 +362,7 @@ public final class MainActivity extends Activity {
         commandDock.addView(actions,new LinearLayout.LayoutParams(portrait()?-1:dp(208),-2));
     }
     private void nextUnit(){
-        List<World.Unit> units=new ArrayList<>();for(World.Unit unit:world.units)if(unit.owner==world.player)units.add(unit);
+        List<World.Unit> units=new ArrayList<>();for(World.Unit unit:world.fieldUnits())if(unit.owner==world.player)units.add(unit);
         units.sort(Comparator.comparingInt(unit->unit.id));if(units.isEmpty())return;
         int index=0;for(int i=0;i<units.size();i++)if(units.get(i).id==moving)index=(i+1)%units.size();selectAndFocus(units.get(index).hex);
     }
@@ -464,6 +466,7 @@ public final class MainActivity extends Activity {
         new CityCommand("生产兵装 · 查看费用",()->chooseOfficer(c,o->chooseBasicWeapon(weapon->confirm(o.name+"生产"+world.skills.produceAmount(c.id,o.id,weapon)+"份"+weapon.label+"兵装\n花费金"+world.skills.productionGold(o.id,weapon)+"、行动力10",()->apply(world.produce(c.id,o.id,weapon))))))
     );}
     private void showUnit(World.Unit u){
+        if(u instanceof Domestic.Mission){showConvoy((Domestic.Mission)u);return;}
         World.Officer o=world.officer(u.officerId);panel.addView(visualHeader(o,o.name,world.faction(u.owner)+" · "+world.army.equipmentLabel(u),64));
         Diplomacy.Aid aid=world.diplomacy.aidForUnit(u.id);if(aid!=null)line("援军 · "+world.diplomacy.describe(aid),13,gold);
         if(u.owner==world.player){
@@ -492,7 +495,31 @@ public final class MainActivity extends Activity {
             if(world.fieldworks.project(u.id)!=null)action("中止施工",v->new FieldworkUi(this,world,this::apply).stop(u));
             if(!u.acted&&u.status==War.Status.NORMAL){action("设置军事设施",v->new FieldworkUi(this,world,this::apply).build(u));action("补修军事设施",v->new FieldworkUi(this,world,this::apply).repair(u));action("补充携金",v->new FieldworkUi(this,world,this::apply).fund(u));action("单挑",v->new ContestUi(this,world,this::apply).challenge(u));action("齐攻",v->warUi().joint(u));action("讨伐贼寨",v->new WorldUi(this,world,this::apply).raids(u));action("截击运输队",v->governmentUi().raid(u));action("移交兵粮",v->governmentUi().supply(u));action("部队战法详情",v->showTactics(u));
                 if(u.burning>0)action("部队灭火 · 气力5",v->confirm("扑灭本部队火焰？",()->apply(world.army.extinguish(u.id))));action("部队计略",v->{moving=u.id;warUi().plots(u);});action("待命 · 恢复5气力",v->confirm("本旬待命并恢复5气力？",()->apply(world.war.waitUnit(u.id))));}
+            for(Domestic.Mission convoy:world.domestic.missions)if(convoy.transport&&convoy.escortId==u.id)action("定位护送运输队",v->selectAndFocus(convoy.hex));
             action("取消部队选择",v->clearUnitSelection());}
+    }
+    private void showConvoy(Domestic.Mission m){
+        World.Officer leader=world.officer(m.officerId);
+        panel.addView(visualHeader(leader,leader.name+"运输队",world.faction(m.owner)+" · "+(world.army.water(m.hex)?"水运 · 走舸":"陆运"),64));
+        line(world.domestic.status(m),14,gold);line("目的地："+world.city(m.targetCity).name+" · 当前 "+m.hex,14,paper);
+        line("携兵 "+m.troops+" · 金 "+m.gold+" · 粮 "+m.food+" · 已耗粮 "+m.consumedFood,14,paper);
+        for(World.Weapon weapon:World.Weapon.values())if(m.equipment[weapon.ordinal()]>0)line(weapon.label+"货物 "+m.equipment[weapon.ordinal()],13,paper);
+        line("舰船货物：楼船 "+m.cargoShips[0]+" / 斗舰 "+m.cargoShips[1]+"；当前走舸不入库存",13,paper);
+        for(int id:m.crew())iconAction("编队 · "+world.officer(id).name,world.officer(id),v->officerDetail(world.officer(id)));
+        line("剩余移动 "+world.orders.remaining(m)+"；路线和到达时间依赖当前道路、占格和威胁",13,muted);
+        if(m.owner==world.player){action("地图选择目的地 / 改道",v->{unitCommand="march";moving=m.id;closePanel();});action("停止运输",v->apply(world.marches.stop(m.id)));action("地图补给友军",v->convoySupply(m));
+            action("定位目的地",v->selectAndFocus(world.city(m.targetCity).hex));
+            if(world.unit(m.escortId)!=null)action("定位护送部队",v->selectAndFocus(world.unit(m.escortId).hex));
+        }
+    }
+    private void convoySupply(Domestic.Mission m){
+        List<Hex> targets=new ArrayList<>();for(World.Unit u:world.units)if(u.owner==m.owner&&u.hex.distance(m.hex)==1)targets.add(u.hex);
+        pickOnMap("运输补给：选择相邻友军",m.hex,targets,h->{World.Unit target=world.unitAt(h);if(target==null)return;cancelMapPick();
+            LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);form.setPadding(dp(16),dp(8),dp(16),dp(8));
+            EditText[] fields=new EditText[3];String[] names={"兵","粮","金"};for(int i=0;i<3;i++){fields[i]=new EditText(this);fields[i].setInputType(android.text.InputType.TYPE_CLASS_NUMBER);fields[i].setHint(names[i]+"数量（0为不移交）");fields[i].setContentDescription("运输补给"+names[i]);form.addView(fields[i]);}
+            ScrollView scroll=new ScrollView(this);scroll.addView(form);
+            AlertDialog dialog=new AlertDialog.Builder(this).setTitle("补给"+world.officer(target.officerId).name).setView(scroll).setNegativeButton("取消",null).setPositiveButton("预览",(d,n)->{try{int[] amount=new int[3];for(int i=0;i<3;i++)amount[i]=fields[i].getText().toString().isEmpty()?0:Integer.parseInt(fields[i].getText().toString());confirm("移交兵"+amount[0]+"、粮"+amount[1]+"、金"+amount[2]+"；确认后运输队结束本旬行动",()->apply(world.supply.convoyTransfer(m.id,target.id,amount[0],amount[1],amount[2])));}catch(NumberFormatException e){message("数量无效","请输入有效整数");}}).show();dialog.getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        });
     }
     void officerDetail(World.Officer o){
         String stats="统率 "+o.leadership+"    武力 "+o.war+"\n智力 "+o.intelligence+"    政治 "+o.politics+"\n魅力 "+o.charm;

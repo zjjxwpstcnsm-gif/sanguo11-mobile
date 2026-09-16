@@ -1,0 +1,1 @@
+position=7,15 food=4950 spent=50 battlefieldUnit=true

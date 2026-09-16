@@ -172,6 +172,10 @@ public final class Government {
         if(!escaped.isEmpty())report+="；逃脱："+String.join("、",escaped);
         w.battleOutcome(report);
         escortLost(loser,hostile?victor:null);w.units.remove(loser);
+        if(loser instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)loser;
+            w.battleOutcome("运输兵装散失："+Arrays.toString(m.equipment)+"；舰船货物散失："+Arrays.toString(m.cargoShips));
+            Arrays.fill(m.equipment,0);Arrays.fill(m.cargoShips,0);w.domestic.missions.remove(m);
+        }
         if(hostile)w.treasures.fallenTreasury(loser.owner,victor.owner);
         if(hostile)for(World.Officer o:w.army.crew(victor))earn(o.id,500);
     }

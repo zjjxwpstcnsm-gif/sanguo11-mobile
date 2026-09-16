@@ -1,0 +1,1 @@
+zero-soldier convoy after actual poison movement: troops=0

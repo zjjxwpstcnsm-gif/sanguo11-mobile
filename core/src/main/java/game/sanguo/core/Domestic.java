@@ -3,7 +3,7 @@ package game.sanguo.core;
 import java.io.*;
 import java.util.*;
 
-/** Original engineering strategic rules, not SAN11/PK formulas or tactical transport. */
+/** Strategic logistics with shared tactical transport; numeric rates remain engineering parameters. */
 public final class Domestic {
     public static final int CITY_SLOTS=6, TRAVEL_SPEED=4;
     public enum Kind {
@@ -22,21 +22,26 @@ public final class Domestic {
         public int maxHp(){return 1000;}
         Facility(int id,int city,Kind kind,Hex hex,int builder,int remaining){this.id=id;cityId=city;this.kind=kind;this.hex=hex;builderId=builder;this.remaining=remaining;}
     }
-    public static final class Mission {
-        public final int id,owner,sourceCity;public int officerId,targetCity;
-        public Hex hex;public boolean transport;public int gold,food,troops;public boolean sea;
-        public int[] deputies=new int[0];public boolean returnOfficers,returning;
+    /** The mission IS the battlefield unit; cargo fields are inherited, never mirrored.
+     * Battle IDs occupy a disjoint namespace; taskId preserves every historical save reference. */
+    public static final class Mission extends World.Unit {
+        public final int taskId,sourceCity;public int targetCity;
+        public boolean transport,sea,returnOfficers,returning,stopped,legacyOverlap;
+        public final int[] cargoShips=new int[2];
+        public String waiting="";public int escortId=-1,movementTurn=-1;
+
         public int consumedFood,lastTick=-1;
         public boolean contains(int officer){return officerId==officer||Arrays.stream(deputies).anyMatch(id->id==officer);}
         public int[] crew(){int[] ids=new int[deputies.length+1];ids[0]=officerId;System.arraycopy(deputies,0,ids,1,deputies.length);return ids;}
         public final int[] equipment;
         Mission(int id,int owner,int officer,int source,int target,Hex hex,boolean transport,int gold,int food,int troops,int[] equipment){
-            this.id=id;this.owner=owner;officerId=officer;sourceCity=source;targetCity=target;this.hex=hex;
+            super(10000000+id,owner,officer,World.Weapon.SWORD,hex,troops,food);taskId=id;sourceCity=source;targetCity=target;
             this.transport=transport;this.gold=gold;this.food=food;this.troops=troops;this.equipment=Arrays.copyOf(equipment,World.Weapon.values().length);
         }
     }
     public final List<Facility> facilities=new ArrayList<>();
     public final List<Mission> missions=new ArrayList<>();
+    private boolean settling;
     private final World w;int nextFacilityId=1,nextMissionId=1;
     // Per atomic turn settlement, never a cached forecast or serialized game state.
     private final Map<Integer,Integer> arrivedTroops=new HashMap<>();
@@ -64,7 +69,7 @@ public final class Domestic {
         int count=bound(d.readInt(),0,6000);require(count==facilities.size(),"设施耐久数量错误");Set<Integer> ids=new HashSet<>();
         for(int i=0;i<count;i++){int id=d.readInt();Facility f=facility(id);require(f!=null&&ids.add(id),"设施耐久引用错误");f.hp=bound(d.readInt(),1,f.maxHp());}
     }
-    public Mission mission(int id){for(Mission m:missions)if(m.id==id)return m;return null;}
+    public Mission mission(int id){for(Mission m:missions)if(m.id==id||m.taskId==id)return m;return null;}
     public boolean busy(int officer){
         if(officer<0)return false;
         for(Facility f:facilities)if(f.builderId==officer)return true;
@@ -184,6 +189,12 @@ public final class Domestic {
     public World.Result transport(int source,int target,int officer,int[] deputies,int gold,int food,int troops,int[] equipment,boolean sea,boolean returnOfficers){
         return dispatch(source,target,officer,deputies,true,gold,food,troops,equipment,sea,returnOfficers);
     }
+    public String shipCargoError(int source,int[] ships){World.City c=w.city(source);if(c==null||ships==null||ships.length!=2)return "舰船货物无效";for(int i=0;i<2;i++)if(ships[i]<0||ships[i]>100||ships[i]>c.ships[i])return "舰船货物超过库存或100上限";return null;}
+    public World.Result transport(int source,int target,int officer,int[] deputies,int gold,int food,int troops,int[] equipment,boolean sea,boolean returning,int[] ships){
+        String error=shipCargoError(source,ships);if(error!=null)return w.fail(error);
+        World.Result result=transport(source,target,officer,deputies,gold,food,troops,equipment,sea,returning);if(!result.ok)return result;
+        Mission m=missions.get(missions.size()-1);for(int i=0;i<2;i++){m.cargoShips[i]=ships[i];w.city(source).ships[i]-=ships[i];}return result;
+    }
     public String transportError(int source,int target,int officer,int[] deputies,int gold,int food,int troops,int[] equipment,boolean sea){
         return dispatchError(source,target,officer,deputies,true,gold,food,troops,equipment,sea);
     }
@@ -200,8 +211,8 @@ public final class Domestic {
         if(c.gold<gold||c.food<food||c.troops<troops)return "金、粮或兵力库存不足";
         if(cargo&&w.districts.reserveError(c,gold,food,troops)!=null)return w.districts.reserveError(c,gold,food,troops);
         for(int i=0;i<equipment.length;i++)if(c.equipment[i]<equipment[i])return "兵装库存不足";
-        if(sea&&(!c.hex.neighbors().stream().anyMatch(w.army::water)||!d.hex.neighbors().stream().anyMatch(w.army::water)))return "水陆运输需要起点和终点均临水";
-        if(route(c.hex,d.hex,w.active,sea)==null)return "没有可用运输路线";
+
+        if(cargo){Mission probe=new Mission(0,c.owner,officer,source,target,c.hex,true,gold,food,troops,equipment);probe.sea=sea;MarchOrders.Plan plan=routePlan(probe);if(!plan.valid())return plan.error;}else if(route(c.hex,d.hex,w.active,sea)==null)return "没有可用运输路线";
         if(nextMissionId>=10000000)return "任务编号已达上限";
         return null;
     }
@@ -241,7 +252,7 @@ public final class Domestic {
         Districts.District control=w.districts.city(m.sourceCity);
         if(control!=null&&control.owner==w.player&&!w.districts.directCity(m.sourceCity))return w.fail("委任军团任务请先调整军团方针或撤销托管");
         if(route(m.hex,c.hex,m.owner,m.sea)==null)return w.fail("没有可用路线");
-        w.actionPoints[w.active]-=10;m.targetCity=target;if(target==m.sourceCity)m.returnOfficers=false;return w.success("任务已改道至"+c.name);
+        w.actionPoints[w.active]-=10;m.targetCity=target;m.stopped=false;m.march=null;if(target==m.sourceCity)m.returnOfficers=false;return w.success("任务已改道至"+c.name);
     }
     private static final class Step {final Hex h;final int cost;Step(Hex h,int c){this.h=h;cost=c;}}
     private int travelCost(Hex h,int owner,boolean sea){
@@ -267,11 +278,13 @@ public final class Domestic {
     }
     public int eta(Mission m){
         World.City c=w.city(m.targetCity);if(c==null||c.owner!=m.owner)return -1;
+        if(m.transport){MarchOrders.Plan p=routePlan(m);return p.valid()?Math.max(1,p.estimatedTurns+1):-1;}
         List<Hex> path=route(m.hex,c.hex,m.owner,m.sea);if(path==null)return -1;
         return estimate(path,m);
     }
     public int deliverableEta(Mission m){
-        World.City c=w.city(m.targetCity);if(c==null||c.owner!=m.owner||!fits(m,c))return -1;
+        World.City c=w.city(m.targetCity);if(c==null||c.owner!=m.owner||!fits(m,c)||m.stopped)return -1;
+        if(m.transport)return threatReason(m)==null?eta(m):-1;
         List<Hex> path=route(m.hex,c.hex,m.owner,m.sea);if(path==null)return -1;
         if(m.transport)for(Hex h:path){World.Unit enemy=w.unitAt(h);if(enemy!=null&&w.campaign.hostile(m.owner,enemy.owner))return -1;}
         return estimate(path,m);
@@ -284,12 +297,14 @@ public final class Domestic {
     public int expectedFood(Mission m){int turns=eta(m);return turns<0?0:Math.max(0,m.food-turns*foodUse(m));}
     public String status(Mission m){
         World.City c=w.city(m.targetCity);if(c==null||c.owner!=m.owner)return "目的地失守，待选择可达己城";
-        if(m.hex.equals(c.hex))return fits(m,c)?"已到达，等待结算":"满仓等待，货物仍在队中";
-        List<Hex> path=route(m.hex,c.hex,m.owner,m.sea);if(path==null)return "道路受阻 / 等待改道";
-        String block="";if(m.transport)for(Hex h:path){World.Unit u=w.unitAt(h);if(u!=null&&w.campaign.hostile(m.owner,u.owner)){block=" · 路线上有敌军，可能截停";break;}}
-        return (m.returning?"人员返程 · ":"")+"预计"+estimate(path,m)+"旬"+block+(m.transport?" · 旬耗粮"+foodUse(m)+" · "+(m.food<foodUse(m)?"已断粮，将损兵":"携粮可支撑"+(foodUse(m)==0?"无限":m.food/foodUse(m))+"旬"):"");
+        if(m.stopped)return m.march==null?"已停止，仍消耗携粮；选择地图目的地可继续":"按地图路线行军，到达后待命 · "+w.marches.label(m.march);
+        if(!m.waiting.isEmpty())return m.waiting;
+        if(m.hex.distance(c.hex)<=1)return fits(m,c)?"已到达，等待结算":"满仓等待，货物仍在队中";
+        int turns=eta(m);if(turns<0)return "道路受阻 / 等待改道";
+        return (m.returning?"人员返程 · ":"")+"预计"+turns+"旬（依当前道路与威胁）"+(m.transport?" · 旬耗粮"+foodUse(m)+" · "+(m.food<foodUse(m)?"已断粮，将损兵":"携粮可支撑"+(foodUse(m)==0?"无限":m.food/foodUse(m))+"旬"):"");
     }
     private boolean fits(Mission m,World.City c){
+        for(int i=0;i<2;i++)if(c.ships[i]>100-m.cargoShips[i])return false;
         if(c.gold>w.campaign.goldCap(c)-m.gold||c.food>w.campaign.foodCap(c)-m.food||c.troops>w.campaign.troopCap(c)-m.troops)return false;
         for(int i=0;i<m.equipment.length;i++)if(c.equipment[i]>w.campaign.equipmentCap(c,World.Weapon.values()[i])-m.equipment[i])return false;return true;
     }
@@ -300,37 +315,111 @@ public final class Domestic {
         }
         for(Mission m:new ArrayList<>(missions)){
             if(m.lastTick==w.turn)continue;m.lastTick=w.turn;
+            if(m.movementTurn!=w.turn){w.orders.reset(m);m.movementTurn=w.turn;}
             if(m.transport){int use=foodUse(m),paid=Math.min(m.food,use);m.food-=paid;m.consumedFood+=paid;
                 if(paid<use){int lost=Math.min(m.troops,Math.max(1,m.troops/10));m.troops-=lost;w.note(w.officer(m.officerId).name+"运输队断粮，损失"+lost+"兵；余粮"+m.food);
-                    if(m.troops==0){for(int id:m.crew())w.retreat(w.officer(id),m.hex);missions.remove(m);w.note("运输队因断粮解散，剩余货物散失");continue;}}
+                    if(m.troops==0){w.removeUnit(m);continue;}}
             }
             World.City c=w.city(m.targetCity);
             if(c.owner!=m.owner){
                 World.City best=null;int bestCost=Integer.MAX_VALUE;
                 for(World.City d:w.cities)if(d.owner==m.owner){List<Hex> path=route(m.hex,d.hex,m.owner,m.sea);if(path==null)continue;int cost=0;for(Hex h:path)cost+=travelCost(h,m.owner,m.sea);
                     if(cost<bestCost||(cost==bestCost&&(best==null||d.id<best.id))){best=d;bestCost=cost;}}
-                if(best==null)continue;m.targetCity=best.id;c=best;w.note(w.officer(m.officerId).name+"因目的地失守改道至"+c.name);
+                if(best==null)continue;m.targetCity=best.id;m.march=null;c=best;w.note(w.officer(m.officerId).name+"因目的地失守改道至"+c.name);
             }
+            if(m.transport){advanceTransport(m);continue;}
             List<Hex> path=route(m.hex,c.hex,m.owner,m.sea);if(path==null)continue;
             int budget=travelSpeed(m);
-            for(Hex h:path){int cost=travelCost(h,m.owner,m.sea);World.Unit blocker=w.unitAt(h);if(cost>budget||m.transport&&blocker!=null&&w.campaign.hostile(m.owner,blocker.owner))break;budget-=cost;m.hex=h;
-                if(m.transport){
-                    if(w.terrain[h.q][h.r]==World.Terrain.POISON&&!Arrays.stream(m.crew()).anyMatch(id->w.skills.has(w.officer(id),Skill.JIEDU)))m.troops=Math.max(0,m.troops-Math.max(1,m.troops/20));
-                    World.Unit transport=new World.Unit(-1,m.owner,m.officerId,World.Weapon.SWORD,h,m.troops,m.food);
-                    if(w.advancedBattle.zone(transport,h))break;
-                }
-            }
-            if(m.hex.equals(c.hex)&&fits(m,c)){
-                c.gold+=m.gold;c.food+=m.food;c.troops+=m.troops;arrivedTroops.merge(c.id,m.troops,Integer::sum);for(int i=0;i<m.equipment.length;i++)c.equipment[i]+=m.equipment[i];
-                String receipt="抵达"+c.name;if(m.transport){receipt+="\n  入库：金 "+m.gold+" · 粮 "+m.food+" · 兵 "+m.troops;for(World.Weapon weapon:World.Weapon.values())if(m.equipment[weapon.ordinal()]>0)receipt+=" · "+weapon.label+" "+m.equipment[weapon.ordinal()];}receipts.put(m.id,receipt);
-                World.Officer o=w.officer(m.officerId);w.note(o.name+"抵达"+c.name+(m.transport?"，入库金"+m.gold+"、粮"+m.food+"、兵"+m.troops+"；累计途中耗粮"+m.consumedFood:""));
-                if(m.transport&&m.returnOfficers&&c.id!=m.sourceCity&&w.city(m.sourceCity).owner==m.owner){
-                    m.transport=false;m.returning=true;m.returnOfficers=false;m.gold=0;m.food=0;m.troops=0;Arrays.fill(m.equipment,0);m.targetCity=m.sourceCity;
-                    w.note(o.name+"等"+m.crew().length+"将卸货后返程，未携带返程物资");
-                }else{for(int id:m.crew()){World.Officer member=w.officer(id);member.cityId=c.id;member.acted=true;}missions.remove(m);}
+            for(Hex h:path){int cost=travelCost(h,m.owner,m.sea);if(cost>budget)break;budget-=cost;m.hex=h;}
+            if(m.hex.equals(c.hex)&&fits(m,c))deliver(m,c);
 
+        }
+    }
+    public boolean commandable(Mission m){return settling||w.districts.directCity(m.sourceCity);}
+    private MarchOrders.Plan routePlan(Mission m){
+        // Prediction has no mutations: the caller's actual active faction is honored by shared commands.
+        return w.marches.convoyRoute(m);
+    }
+    private void advanceTransport(Mission m){
+        int active=w.active;boolean previous=settling;w.active=m.owner;settling=true;
+        try{
+            if(m.stopped&&m.march==null){m.waiting="已停止，携粮继续消耗";return;}
+            World.City c=w.city(m.targetCity);m.waiting="";
+            if(m.escortId>=0&&(w.unit(m.escortId)==null||w.unit(m.escortId).owner!=m.owner))m.escortId=-1;
+            String threat=threatReason(m);if(!m.stopped&&threat!=null){m.waiting=threat;return;}
+            if(m.march!=null){w.marches.advance(m);if(m.march!=null){m.waiting=m.march.paused.isEmpty()?"":"道路受阻 / 等待："+m.march.paused;if(!m.waiting.isEmpty()){approachQueue(m);yieldConvoy(m);}return;}}
+            if(m.stopped)return;
+            if(m.hex.distance(c.hex)>1){
+                MarchOrders.Plan plan=routePlan(m);
+                if(!plan.valid()){m.waiting="道路受阻，等待改道："+plan.error;approachQueue(m);yieldConvoy(m);return;}
+                World.Result result=w.marches.execute(w.marches.preview(m,w.city(m.targetCity).hex));if(!result.ok){m.waiting=result.message;return;}
+            }
+            if(m.hex.distance(c.hex)<=1){if(fits(m,c))deliver(m,c);else m.waiting="满仓等待，货物仍在队中";}
+        }finally{w.active=active;settling=previous;}
+    }
+    /** Near-term safety decision shared by manual automatic orders and delegated logistics. */
+    String threatReason(Mission m){
+        if(m.gold+m.food/10+m.troops<1500)return null;
+        boolean nearby=false;for(World.Unit u:w.units)if(w.campaign.hostile(m.owner,u.owner)&&u.hex.distance(m.hex)<=10){nearby=true;break;}if(!nearby)return null;
+        MarchOrders.Plan plan=routePlan(m);if(!plan.valid())return null;
+        int danger=0,guard=0;
+        for(World.Unit u:w.units){
+            if(w.campaign.hostile(m.owner,u.owner)){for(int i=0;i<Math.min(5,plan.path.size());i++)if(u.hex.distance(plan.path.get(i))<=2){danger+=u.troops;break;}}
+            else if(u.owner==m.owner&&!Army.siegeWeapon(u.weapon)&&u.hex.distance(m.hex)<=4)guard+=u.troops;
+        }
+        return danger>0&&guard<danger?"前路敌军"+danger+"兵，附近护军"+guard+"兵；等待真实护军接近、敌军撤离或地图改道":null;
+    }
+    private void approachQueue(Mission m){
+        MarchOrders.Plan plan=w.marches.convoyQueueRoute(m);if(!plan.valid()||plan.path.size()<2)return;
+        Map<Hex,Integer> reachable=w.orders.reachable(m);int end=0;
+        for(int i=1;i<plan.path.size();i++){Hex h=plan.path.get(i);if(w.unitAt(h)!=null||!reachable.containsKey(h))break;end=i;}
+        if(end>0){Hex h=plan.path.get(end);if(w.orders.executeRoute(w.orders.previewMove(m.id,h),plan.path.subList(0,end+1)).ok)m.waiting="已到队列前端，等待前方友军通过";}
+    }
+    private void yieldConvoy(Mission m){
+        if(w.orders.remaining(m)==0||w.cityAt(m.hex)!=null)return;
+        for(Mission other:missions)if(other.transport&&other.owner==m.owner&&other.taskId<m.taskId&&m.hex.distance(other.hex)==1){
+            Hex goal=w.city(other.targetCity).hex;
+            for(Hex h:m.hex.neighbors())if(h.distance(goal)>m.hex.distance(goal)&&w.unitAt(h)==null&&w.cityAt(h)==null){
+                UnitOrders.MovePlan move=w.orders.previewMove(m.id,h);if(move.valid()&&w.orders.execute(move).ok){m.waiting="排队让行：为运输"+other.taskId+"让出狭口，下旬继续";return;}
             }
         }
+    }
+    public World.Result unload(Mission m,int city){
+        World.City c=w.city(city);
+        if(mission(m.id)!=m||!m.transport||c==null||c.owner!=m.owner||m.hex.distance(c.hex)>1)return w.fail("请选择相邻己方城池");
+        String permission=w.districts.dispatchError(m.sourceCity,city,true);if(permission!=null)return w.fail(permission);
+        if(!fits(m,c))return w.fail("城池库存容量不足，货物保留在运输队");
+        deliver(m,c);return w.success("运输货物已一次入库");
+    }
+    private void deliver(Mission m,World.City c){
+        c.gold+=m.gold;c.food+=m.food;c.troops+=m.troops;
+        if(settling)arrivedTroops.merge(c.id,m.troops,Integer::sum);
+        for(int i=0;i<m.equipment.length;i++)c.equipment[i]+=m.equipment[i];
+        for(int i=0;i<2;i++)c.ships[i]+=m.cargoShips[i];
+        String receipt="抵达"+c.name+"，入库：金 "+m.gold+" · 粮 "+m.food+" · 兵 "+m.troops+"；累计途中耗粮"+m.consumedFood;
+        receipts.put(m.id,receipt);w.note(receipt);m.hex=c.hex;m.march=null;m.waiting="";
+        m.gold=0;m.food=0;m.troops=0;Arrays.fill(m.equipment,0);Arrays.fill(m.cargoShips,0);
+        if(m.transport&&m.returnOfficers&&c.id!=m.sourceCity&&w.city(m.sourceCity).owner==m.owner){
+            m.transport=false;m.returning=true;m.returnOfficers=false;m.stopped=false;m.targetCity=m.sourceCity;
+            w.note(w.officer(m.officerId).name+"等"+m.crew().length+"将卸货返程，无返程物资");
+        }else{for(int id:m.crew()){World.Officer member=w.officer(id);member.cityId=c.id;member.acted=true;}missions.remove(m);}
+    }
+    /** v20 tasks retain their exact cargo/personnel/location; only their battlefield identity is enabled.
+     * Overlapping legacy tasks wait at that exact position until they can leave legally. */
+    void migrateTactical(){Set<Hex> occupied=new HashSet<>();for(World.Unit u:w.units)occupied.add(u.hex);
+        for(Mission m:missions)if(m.transport){m.legacyOverlap=w.cityAt(m.hex)==null&&!occupied.add(m.hex);m.movementTurn=w.turn;
+            // Old task movement already ran this turn; older formats have no per-turn budget trace.
+            // Freeze in-flight legacy movement until the next tick, without moving or refunding cargo.
+            if(m.lastTick==w.turn||w.cityAt(m.hex)==null){m.movementBudget=w.war.movement(m);m.movementSpent=m.movementBudget;}}
+    }
+    void writeTactical(DataOutputStream d)throws IOException{
+        d.writeInt(missions.size());for(Mission m:missions){d.writeInt(m.taskId);d.writeBoolean(m.stopped);d.writeBoolean(m.legacyOverlap);d.writeInt(m.movementTurn);d.writeInt(m.movementBudget);d.writeInt(m.movementSpent);d.writeBoolean(m.acted);d.writeByte(m.status.ordinal());d.writeInt(m.statusTurns);d.writeInt(m.energy);d.writeInt(m.burning);d.writeInt(m.burningOwner);d.writeInt(m.burningPower);d.writeInt(m.escortId);d.writeUTF(m.waiting);
+            for(int n:m.cargoShips)d.writeInt(n);d.writeBoolean(m.march!=null);if(m.march!=null){MarchOrders.Order o=m.march;d.writeByte(o.kind.ordinal());d.writeInt(o.tile.q);d.writeInt(o.tile.r);d.writeInt(o.targetId);d.writeInt(o.owner);d.writeUTF(o.paused);}}
+    }
+    void readTactical(DataInputStream d)throws IOException{
+        int n=bound(d.readInt(),0,10000);require(n==missions.size(),"运输战术记录数错误");Set<Integer> ids=new HashSet<>();
+        for(int i=0;i<n;i++){Mission m=mission(d.readInt());require(m!=null&&ids.add(m.id),"运输战术引用错误");m.stopped=d.readBoolean();m.legacyOverlap=d.readBoolean();m.movementTurn=d.readInt();m.movementBudget=d.readInt();m.movementSpent=d.readInt();m.acted=d.readBoolean();m.status=War.Status.values()[bound(d.readUnsignedByte(),0,2)];m.statusTurns=d.readInt();m.energy=d.readInt();m.burning=d.readInt();m.burningOwner=d.readInt();m.burningPower=d.readInt();m.escortId=d.readInt();m.waiting=d.readUTF();
+            for(int j=0;j<2;j++)m.cargoShips[j]=d.readInt();if(d.readBoolean()){MarchOrders.Kind kind=MarchOrders.Kind.values()[bound(d.readUnsignedByte(),0,4)];Hex tile=new Hex(d.readInt(),d.readInt());m.march=new MarchOrders.Order(kind,tile,d.readInt(),d.readInt());m.march.paused=d.readUTF();}}
     }
     void cleanupDefeated(){for(Mission m:new ArrayList<>(missions))if(!w.alive(m.owner)){missions.remove(m);for(int id:m.crew())w.officer(id).acted=true;w.note(w.faction(m.owner)+"覆灭，在途任务终止");}}
     void runAi(){
@@ -343,7 +432,7 @@ public final class Domestic {
         }
     }
     void writeLogistics(DataOutputStream d)throws IOException{
-        d.writeInt(missions.size());for(Mission m:missions){d.writeInt(m.id);d.writeInt(m.deputies.length);for(int id:m.deputies)d.writeInt(id);d.writeBoolean(m.returnOfficers);d.writeBoolean(m.returning);d.writeInt(m.consumedFood);d.writeInt(m.lastTick);}
+        d.writeInt(missions.size());for(Mission m:missions){d.writeInt(m.taskId);d.writeInt(m.deputies.length);for(int id:m.deputies)d.writeInt(id);d.writeBoolean(m.returnOfficers);d.writeBoolean(m.returning);d.writeInt(m.consumedFood);d.writeInt(m.lastTick);}
     }
     void readLogistics(DataInputStream d)throws IOException{
         int n=bound(d.readInt(),0,10000);require(n==missions.size(),"物流扩展数量错误");Set<Integer> seen=new HashSet<>();
@@ -357,7 +446,7 @@ public final class Domestic {
     void write(DataOutputStream d)throws IOException{
         d.writeInt(nextFacilityId);d.writeInt(nextMissionId);d.writeInt(facilities.size());
         for(Facility f:facilities){d.writeInt(f.id);d.writeInt(f.cityId);d.writeByte(f.kind.ordinal());d.writeInt(f.hex.q);d.writeInt(f.hex.r);d.writeInt(f.builderId);d.writeInt(f.remaining);}
-        d.writeInt(missions.size());for(Mission m:missions){d.writeInt(m.id);d.writeInt(m.owner);d.writeInt(m.officerId);d.writeInt(m.sourceCity);d.writeInt(m.targetCity);d.writeInt(m.hex.q);d.writeInt(m.hex.r);d.writeBoolean(m.transport);d.writeInt(m.gold);d.writeInt(m.food);d.writeInt(m.troops);for(int j=0;j<4;j++)d.writeInt(m.equipment[j]);}
+        d.writeInt(missions.size());for(Mission m:missions){d.writeInt(m.taskId);d.writeInt(m.owner);d.writeInt(m.officerId);d.writeInt(m.sourceCity);d.writeInt(m.targetCity);d.writeInt(m.hex.q);d.writeInt(m.hex.r);d.writeBoolean(m.transport);d.writeInt(m.gold);d.writeInt(m.food);d.writeInt(m.troops);for(int j=0;j<4;j++)d.writeInt(m.equipment[j]);}
     }
     void read(DataInputStream d)throws IOException{
         nextFacilityId=d.readInt();nextMissionId=d.readInt();int n=bound(d.readInt(),0,6000);
@@ -384,11 +473,18 @@ public final class Domestic {
         }
         ids.clear();
         for(Mission m:missions){
-            require(m.id>0&&m.id<nextMissionId&&ids.add(m.id),"任务编号重复或无效");bound(m.owner,0,w.factions.length-1);
+            require(m.taskId>0&&m.taskId<nextMissionId&&ids.add(m.taskId),"任务编号重复或无效");bound(m.owner,0,w.factions.length-1);
             require(w.city(m.sourceCity)!=null&&w.city(m.targetCity)!=null,"在途城池引用错误");
             require(m.hex!=null&&w.inside(m.hex)&&(w.cost(m.hex,World.Weapon.SPEAR)>0||m.sea&&w.army.water(m.hex)),"任务位置无效");
             require(m.deputies!=null&&m.deputies.length<=2,"运输编队过大");
             for(int id:m.crew()){World.Officer o=w.officer(id);require(o!=null&&o.owner==m.owner&&o.cityId==-1&&o.unitId==-1&&assigned.add(o.id),"在途武将引用错误");}
+            bound(m.movementTurn,-1,w.turn);bound(m.movementBudget,-1,1000);bound(m.movementSpent,0,1000);
+            require(m.movementBudget<0?m.movementSpent==0:m.movementSpent<=m.movementBudget,"运输移动预算无效");
+            require(m.waiting!=null&&m.waiting.length()<=600,"运输阻塞原因无效");for(int n:m.cargoShips)bound(n,0,100);
+            bound(m.escortId,-1,9999999);require(m.transport||Arrays.stream(m.cargoShips).sum()==0,"返程不能携带舰船货物");
+            bound(m.energy,0,150);bound(m.statusTurns,0,10);bound(m.burning,0,2);bound(m.burningOwner,-1,w.factions.length-1);bound(m.burningPower,1,2);
+            if(m.transport&&!m.legacyOverlap&&w.cityAt(m.hex)==null)require(w.unitAt(m.hex)==m&&w.domestic.at(m.hex)==null&&w.war.at(m.hex)==null,"运输占格冲突");
+            if(m.march!=null)require(m.march.tile!=null&&w.inside(m.march.tile)&&m.march.paused.length()<=300,"运输行军目标无效");
             bound(m.lastTick,-1,w.turn);bound(m.consumedFood,0,200000);require(!m.returning||!m.transport,"返程不能重复携货");
             require(payload(m.gold,m.food,m.troops,m.equipment),"运输货物越界");int sum=m.gold+m.food+m.troops+Arrays.stream(m.equipment).sum();
             require(m.transport?sum>0:sum==0,"任务种类与货物不符");

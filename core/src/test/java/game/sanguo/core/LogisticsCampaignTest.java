@@ -20,7 +20,7 @@ public final class LogisticsCampaignTest {
         check(raw[7]==19,"actual old encoder fixture");World w=SaveCodec.decode(raw);check(w.city(10).gold==29400,"old paid 100 fee preserved without refund or recharge");
         check(w.domestic.missions.size()==1&&w.domestic.missions.get(0).deputies.length==0&&!w.domestic.missions.get(0).returnOfficers,"legacy convoy no invented personnel or return policy");
         check(w.districts.get(1).reserveTroops()==14000&&w.aiOrders.orders.size()==1,"old settings and intention survive");
-        World restored=copy(w);check(bytes(w)[7]==20&&Arrays.equals(bytes(w),bytes(restored)),"v20 exact roundtrip");
+        World restored=copy(w);check(bytes(w)[7]==21&&Arrays.equals(bytes(w),bytes(restored)),"v20 exact roundtrip");
         for(int t=0;t<5;t++){ok(w.nextTurn());ok(restored.nextTurn());check(Arrays.equals(bytes(w),bytes(restored)),"old pending convoy and AI resume identically");restored=copy(restored);}
     }
     private static void transport()throws Exception{
@@ -50,7 +50,7 @@ public final class LogisticsCampaignTest {
     private static void capacityAndRedirect()throws Exception{
         World w=fixture();World.City target=w.city(12);target.gold=w.campaign.goldCap(target);long[] before=stock(w);
         ok(w.domestic.transport(11,12,4,500,5000,1000,new int[4]));Domestic.Mission m=w.domestic.missions.get(0);for(int i=0;i<4;i++)tick(w);
-        check(m.hex.equals(target.hex)&&w.domestic.status(m).contains("满仓"),"full capacity retains actual cargo");int consumed=m.consumedFood;before[1]-=consumed;check(Arrays.equals(before,stock(w)),"full warehouse waiting food accounted");
+        check(m.hex.distance(target.hex)==1&&w.domestic.status(m).contains("满仓"),"full capacity retains actual cargo");int consumed=m.consumedFood;before[1]-=consumed;check(Arrays.equals(before,stock(w)),"full warehouse waiting food accounted");
         World saved=copy(w);ok(w.domestic.redirect(m.id,11));ok(saved.domestic.redirect(m.id,11));for(int i=0;i<5;i++){tick(w);tick(saved);check(Arrays.equals(bytes(w),bytes(saved)),"redirect and return exact replay");}
         check(w.domestic.missions.isEmpty()&&w.officer(4).cityId==11,"cancel by return delivers once to source");
         World lost=fixture();ok(lost.domestic.transport(11,12,4,new int[]{5},500,5000,1000,new int[4],false,true));tick(lost);lost.city(12).owner=1;for(int i=8;i<12;i++){lost.officer(i).cityId=11;}for(int i=0;i<10&&!lost.domestic.missions.isEmpty();i++)tick(lost);
@@ -139,17 +139,23 @@ public final class LogisticsCampaignTest {
         check(Arrays.equals(expected,stock(after)),"all command costs, produced equipment, purchases and search income reconcile: "+after.log);
     }
     private static void campaign()throws Exception{campaign(2000);campaign(8000);}
-    private static void campaign(int defense)throws Exception{
+    private static void campaign(int defense)throws Exception{campaign(defense,false);}
+    static void campaign(int defense,boolean water)throws Exception{
         World w=fixture();w.city(20).troops=16000;w.city(20).baseDefense=Math.max(3000,defense);w.city(20).defense=defense;w.officers.removeIf(o->o.owner==1);
         for(int i=30;i<36;i++)w.officers.add(new World.Officer(i,"援将"+i,0,12,85,85,80,70,80));
         for(World.City c:w.cities)if(c.owner==0){c.troops=42000;c.food=240000;c.gold=40000;}
         w.city(11).equipment[World.Weapon.RAM.ordinal()]=2;w.officer(4).aptitude[4]=3;w.city(12).equipment[2]=20000;
         for(int q=23;q<=24;q++)for(int rr=0;rr<w.height;rr++)w.terrain[q][rr]=rr==15?World.Terrain.PLAIN:World.Terrain.MOUNTAIN;
+        Domestic.Mission convoy=null;boolean afloat=false;
+        if(water){for(int q=9;q<=11;q++)for(int rr=0;rr<w.height;rr++)w.terrain[q][rr]=World.Terrain.WATER;for(int q=23;q<=24;q++)w.terrain[q][15]=World.Terrain.WATER;
+            w.city(20).kind=World.SiteKind.PORT;
+            ok(w.domestic.transportSea(11,12,7,300,12000,1000,new int[4]));convoy=w.domestic.missions.get(0);
+        }
         ok(w.districts.configure(-1,"联合攻城",new int[]{11,12},Districts.Policy.CITY_ATTACK,20,-1,true,true));
         check(w.units.isEmpty(),"entire campaign starts inside cities, no prepositioned armies");
         Set<String> engines=new HashSet<>();Set<Integer> departed=new HashSet<>(),weapons=new HashSet<>();boolean staging=false,crossed=false,damage=false,siegeCrossed=false,siegeHit=false,joined=false;int minDef=w.city(20).defense;
         for(int t=0;t<40&&w.city(20).owner==1;t++){
-            w.log.clear();ok(w.nextTurn());SaveCodec.validate(w);
+            w.log.clear();ok(w.nextTurn());SaveCodec.validate(w);if(water)for(World.Unit moving:w.fieldUnits())afloat|=w.army.water(moving.hex);
             for(World.Unit u:w.units)if(u.owner==0){AiOrders.Order o=w.aiOrders.orders.get(u.id);if(o!=null){departed.add(o.home);staging|=o.staging;}weapons.add(u.weapon.ordinal());crossed|=u.hex.q>=25;if(Army.siegeWeapon(u.weapon)){engines.add(w.officer(u.officerId).name);siegeCrossed|=u.hex.q>=25;}
                 Set<Integer> origins=new HashSet<>();int assembled=0;for(World.Unit ally:w.units){AiOrders.Order plan=w.aiOrders.orders.get(ally.id);if(ally.owner==0&&plan!=null&&plan.target==20&&ally.hex.distance(u.hex)<=8){origins.add(plan.home);assembled+=ally.troops;}}joined|=origins.contains(11)&&origins.contains(12)&&assembled>=20000;}
             for(String line:w.log)for(String name:engines)siegeHit|=line.startsWith(name+"攻城，");
@@ -157,5 +163,6 @@ public final class LogisticsCampaignTest {
             if(t%5==4)System.out.println("v026 campaign [initial defense="+defense+"] turn "+w.turn+" units="+w.units.size()+" defender="+w.city(20).troops+" hp="+w.city(20).defense+" origins="+departed);
         }
         check(departed.contains(11)&&departed.contains(12),"actual departures from two cities");check(staging,"actual staging observed");check(crossed,"real march traverses one tile choke");check(damage||w.city(20).owner==0,"actual mixed campaign causes combat result");check(weapons.size()>=2,"mixed weapon departures");check(joined,"two real source armies actually meet with enough combined force");check(siegeCrossed,"real siege engine traverses choke from rear city");if(defense==8000)check(siegeHit,"fortified city receives an actual siege-engine attack after the full march");
+        if(water){check(afloat&&convoy.consumedFood>0&&w.domestic.mission(convoy.id)==null,"actual inland convoy crosses water and delivers before port assault");check(w.city(20).owner==0,"complete amphibious campaign takes the fortified port");}
     }
 }

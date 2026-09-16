@@ -1,0 +1,14 @@
+{
+  "legacy-v20-logistics.sg11.b64": {
+    "version": 20,
+    "bytes": 4026,
+    "sha256": "408aa69402b58b5086c227746598442d1c47da199ffad5d9242c8335b48830ff",
+    "encoder": "b75e2495f891801bca9a86c122cb22b094bee2ec (unmodified)"
+  },
+  "legacy-v20-upgrade.sg11.b64": {
+    "version": 20,
+    "bytes": 4806,
+    "sha256": "fec1f60edd814cb26df091ca924360b26ecba59bf0742314de2912e176a93573",
+    "encoder": "b75e2495f891801bca9a86c122cb22b094bee2ec (unmodified)"
+  }
+}

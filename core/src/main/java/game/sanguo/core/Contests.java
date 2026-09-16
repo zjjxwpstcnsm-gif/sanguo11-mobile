@@ -53,7 +53,7 @@ public final class Contests {
     public int injuryTurns(int officer){Injury injury=injuries.get(officer);return injury==null?0:Math.max(0,injury.until-w.turn);}
     void tick(){injuries.entrySet().removeIf(e->e.getValue().until<=w.turn);}
     public String duelError(int actor,int target){
-        World.Unit a=w.unit(actor),b=w.unit(target);String error=w.orders.error(a);if(error!=null)return error;
+        World.Unit a=w.unit(actor),b=w.unit(target);String error=w.orders.combatError(a);if(error!=null)return error;
         if(w.active!=w.player)return "仅当前玩家可发起交互单挑";
         if(nextId>=10000000)return "对局编号已达上限";
         if(b==null||!w.campaign.hostile(a.owner,b.owner)||a.hex.distance(b.hex)!=1)return "请选择相邻交战部队";

@@ -46,9 +46,10 @@ final class DomesticUi {
         Button crew=new Button(activity);crew.setText("运输副将（最多2名）");form.addView(crew);
         crew.setOnClickListener(v->new AlertDialog.Builder(activity).setTitle("运输副将（最多2名）").setMultiChoiceItems(candidates.stream().map(member->member.name).toArray(String[]::new),selected,(dlg,i,yes)->{int n=0;for(boolean value:selected)if(value)n++;if(yes&&n>2){((AlertDialog)dlg).getListView().setItemChecked(i,false);selected[i]=false;return;}selected[i]=yes;}).setPositiveButton("完成",null).setNegativeButton("清空",(dlg,i)->Arrays.fill(selected,false)).show());
         CheckBox returning=new CheckBox(activity);returning.setText("卸货后武将返回出发城");form.addView(returning);
-        int count=3+World.Weapon.values().length;String[] labels=new String[count];labels[0]="金（上限100000）";labels[1]="粮（上限200000）";labels[2]="兵（上限20000）";
+        int equipmentEnd=3+World.Weapon.values().length;int count=equipmentEnd+2;String[] labels=new String[count];labels[0]="金（上限100000）";labels[1]="粮（上限200000）";labels[2]="兵（上限20000）";
         int[] stock=new int[count],initial=new int[count];stock[0]=c.gold;stock[1]=c.food;stock[2]=c.troops;initial[1]=5000;initial[2]=1000;initial[3]=1000;
         for(World.Weapon weapon:World.Weapon.values()){int i=3+weapon.ordinal();labels[i]=weapon.label+"装";stock[i]=c.equipment[weapon.ordinal()];}
+        labels[equipmentEnd]="楼船货物（上限100）";labels[equipmentEnd+1]="斗舰货物（上限100）";stock[equipmentEnd]=c.ships[0];stock[equipmentEnd+1]=c.ships[1];
         labels[3]="枪兵装";labels[4]="戟兵装";labels[5]="弩兵装";labels[6]="骑兵装";EditText[] inputs=new EditText[count];
         for(int i=0;i<count;i++){
             TextView label=new TextView(activity);label.setText(labels[i]+" · 现有"+stock[i]);form.addView(label);
@@ -59,13 +60,14 @@ final class DomesticUi {
         dialog.setOnShowListener(x->dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{
             int[] values=new int[count];try{for(int i=0;i<count;i++){String value=inputs[i].getText().toString().trim();values[i]=value.isEmpty()?0:Integer.parseInt(value);}}
             catch(NumberFormatException e){Toast.makeText(activity,"请输入有效的非负整数",Toast.LENGTH_SHORT).show();return;}
-            List<Integer> ids=new ArrayList<>();for(int i=0;i<selected.length;i++)if(selected[i])ids.add(candidates.get(i).id);int[] deputies=ids.stream().mapToInt(i->i).toArray();int[] equipment=Arrays.copyOfRange(values,3,count);
+            List<Integer> ids=new ArrayList<>();for(int i=0;i<selected.length;i++)if(selected[i])ids.add(candidates.get(i).id);int[] deputies=ids.stream().mapToInt(i->i).toArray();int[] equipment=Arrays.copyOfRange(values,3,equipmentEnd);
             String error=w.domestic.transportError(c.id,d.id,o.id,deputies,values[0],values[1],values[2],equipment,sea);
             String preview=w.domestic.transportPreview(c.id,d.id,o.id,deputies,values[0],values[1],values[2],equipment,sea,returning.isChecked());
-            if(error!=null){message("运输不能执行",preview);return;}
+            int[] ships=Arrays.copyOfRange(values,equipmentEnd,count);String shipError=w.domestic.shipCargoError(c.id,ships);if(error!=null||shipError!=null){message("运输不能执行",shipError==null?preview:shipError);return;}
+            String shipPreview="\n舰船货物：楼船"+ships[0]+" / 斗舰"+ships[1]+"；目的地余量：楼船"+Math.max(0,100-d.ships[0])+" / 斗舰"+Math.max(0,100-d.ships[1])+"\n"+(d.ships[0]+ships[0]>100||d.ships[1]+ships[1]>100?"目的地舰船仓不足，抵达后保留货物等待":"舰船货物不会改变当前使用的走舸");
             boolean large=values[0]>=1000||values[1]>=10000||values[2]>=3000;for(int i=3;i<count;i++)large|=values[i]>=3000;
-            confirm(large?"确认大额运输":"确认运输",o.name+"："+c.name+" → "+d.name+"\n金 "+values[0]+" / 粮 "+values[1]+" / 兵 "+values[2]+"\n"+preview,"确认发送",()->{
-                World.Result result=w.domestic.transport(c.id,d.id,o.id,deputies,values[0],values[1],values[2],equipment,sea,returning.isChecked());apply.accept(result);if(result.ok)dialog.dismiss();
+            confirm(large?"确认大额运输":"确认运输",o.name+"："+c.name+" → "+d.name+"\n金 "+values[0]+" / 粮 "+values[1]+" / 兵 "+values[2]+"\n"+preview+shipPreview,"确认发送",()->{
+                World.Result result=w.domestic.transport(c.id,d.id,o.id,deputies,values[0],values[1],values[2],equipment,sea,returning.isChecked(),ships);apply.accept(result);if(result.ok)dialog.dismiss();
             });
         }));dialog.show();dialog.getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
@@ -90,6 +92,7 @@ final class DomesticUi {
         focus.accept(m.hex);StringBuilder detail=new StringBuilder(w.officer(m.officerId).name+"\n"+w.city(m.sourceCity).name+" → "+w.city(m.targetCity).name+"\n"+w.domestic.status(m)+"\n当前坐标 "+m.hex.q+", "+m.hex.r);
         detail.append("\n编队武将：");for(int id:m.crew())detail.append(w.officer(id).name).append(" ");
         if(m.transport){detail.append("\n金 ").append(m.gold).append(" / 粮 ").append(m.food).append(" / 兵 ").append(m.troops);for(int i=0;i<m.equipment.length;i++)detail.append('\n').append(World.Weapon.values()[i].label).append("兵装 ").append(m.equipment[i]);}
+        if(m.transport)detail.append("\n舰船货物：楼船 ").append(m.cargoShips[0]).append(" / 斗舰 ").append(m.cargoShips[1]);
         detail.append("\n累计途中耗粮："+m.consumedFood+"；"+(m.returnOfficers?"卸货后人员返程":m.returning?"仅人员返程，无返程物资":"抵达留驻"));
         detail.append("\n\n运输队可被截击；城内受城防保护。目的地失守自动选择可达己城；无路则等待。满仓保留货物，下一旬重试。");
         AlertDialog.Builder d=new AlertDialog.Builder(activity).setTitle(m.transport?"运输详情":"调动详情").setMessage(detail).setNegativeButton("返回",null);

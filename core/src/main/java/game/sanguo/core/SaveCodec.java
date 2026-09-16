@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=20, MAX_BYTES=4*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=21, MAX_BYTES=4*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -59,6 +59,7 @@ public final class SaveCodec {
         w.domestic.writeDurability(d);
         w.aiOrders.write(d);
         w.domestic.writeLogistics(d);
+        w.domestic.writeTactical(d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
@@ -130,6 +131,7 @@ public final class SaveCodec {
         if(version>=18)w.domestic.readDurability(d);
         if(version>=19)w.aiOrders.read(d);
         if(version>=20)w.domestic.readLogistics(d);
+        if(version>=21)w.domestic.readTactical(d);else w.domestic.migrateTactical();
         count=bounded(d.readInt(),0,40);for(int i=0;i<count;i++)w.log.add(d.readUTF());
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         validate(w);return w;

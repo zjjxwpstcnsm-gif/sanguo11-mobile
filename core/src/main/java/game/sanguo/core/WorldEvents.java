@@ -59,7 +59,7 @@ public final class WorldEvents {
         camps.add(new Camp(nextCamp++,city,tribe,sites.get(nextInt(sites.size())),3000));w.note(c.name+"附近出现"+tribe.label+"营寨，可派兵讨伐");return true;
     }
     public String attackError(int unit,int camp){
-        World.Unit u=w.unit(unit);String error=w.orders.error(u);if(error!=null)return error;Camp c=camp(camp);
+        World.Unit u=w.unit(unit);String error=w.orders.combatError(u);if(error!=null)return error;Camp c=camp(camp);
         return c==null||u.hex.distance(c.hex)<1||u.hex.distance(c.hex)>w.war.range(u)?"请选择射程内贼寨":null;
     }
     public World.Result attack(int unit,int camp){

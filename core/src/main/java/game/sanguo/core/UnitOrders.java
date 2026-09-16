@@ -30,11 +30,13 @@ public final class UnitOrders {
         if(w.commandsBlocked())return "请先完成当前对局或君主继承";
         if(w.gameOver())return "本局已结束";
         if(u==null||w.unit(u.id)!=u||u.owner!=w.active)return "请选择当前势力的部队";
+        if(u instanceof Domestic.Mission&&!w.domestic.commandable((Domestic.Mission)u))return "该运输队由委任军团指挥";
         if(!w.districts.directUnit(u.id))return "该部队由委任军团指挥";
         if(u.acted)return "这支部队本旬已行动";
         if(u.status!=War.Status.NORMAL)return "部队处于异常状态，需要镇静";
         return null;
     }
+    public String combatError(World.Unit u){return u instanceof Domestic.Mission?"运输队不能执行作战或施工命令":error(u);}
     public int remaining(World.Unit u) {
         return u==null||u.acted||u.status!=War.Status.NORMAL?0:
             Math.max(0,(u.movementBudget<0?w.war.movement(u):u.movementBudget)-u.movementSpent);
@@ -82,6 +84,7 @@ public final class UnitOrders {
         World.Unit u=w.unit(plan.unitId);String error=error(u);if(error!=null)return w.fail(error);
         if(u.movementBudget<0)u.movementBudget=w.war.movement(u); // Freeze before any water/land conversion.
         u.march=null;
+        if(u instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)u;m.legacyOverlap=false;m.waiting="";}
         u.movementSpent+=plan.cost;u.hex=plan.path.get(plan.path.size()-1);w.fieldworks.traveled(u,plan.path);
         return w.success(w.officer(u.officerId).name+"部队移动，剩余移动"+remaining(u)+"，仍可执行命令");
     }
