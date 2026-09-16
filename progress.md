@@ -1,3 +1,7 @@
+# 2026-09-16 v0.26 运输与跨季经营
+
+PR #33已合并到`7f37ecf`，本轮分支`agent/logistics-campaign-v026`。实际实现和规则边界见[说明](docs/LOGISTICS_CAMPAIGN_V0_26.md)，验证结果持续更新于[记录](docs/validation/v026/README.md)。尚未声明最终CI验收通过。
+
 # 2026-09-16 v0.25 战略AI与全国管理
 
 先核验并合并PR #32到`7f1408c`。本轮正式实现和入口见[说明](docs/STRATEGIC_MANAGEMENT_V0_25.md)。保存格式升为v19，真实v18夹具和历史回归保留；实际代码`f194ee2`、CI35069101123三组全部通过：全部历史核心回归、105条新增经营断言、51,794条UI断言、19项内容测试、Android构建/Lint、API29三屏横竖屏安装与v0.9覆盖升级。6,218,766字节APK、固定签名、352份源码及403张截图已核对。Lint0错误/21警告，ARM真机未验；收尾提交仅补文档。详细结果见[记录](docs/validation/v025/README.md)。未宣称100%还原。

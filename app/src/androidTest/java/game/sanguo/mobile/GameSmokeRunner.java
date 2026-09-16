@@ -13,13 +13,13 @@ import game.sanguo.core.*;
 /** Runs against an installed APK using platform UI automation, without a test framework dependency. */
 public final class GameSmokeRunner extends Instrumentation {
     private Activity current;
-    private boolean upgradeOnly;
+    private boolean upgradeOnly,upgrade25;
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);current=a;}
-    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));start();}
+    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));start();}
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
-            if(upgradeOnly){upgradeFlow();result.putString("stream","UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v19 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
+            if(upgradeOnly||upgrade25){upgradeFlow();result.putString("stream",upgrade25?"UPGRADE25 PASS: actual v0.25 APK replaced in place; v19 settings, intent and convoy retained, v20 replay continued once.\n":"UPGRADE PASS: v0.9 APK replaced in place, v8 save retained, loaded, written as v20 and restored identically.\n");finish(Activity.RESULT_OK,result);return;}
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);waitText("选择剧本",false);
             screenshot("01-scenarios");
@@ -32,6 +32,7 @@ public final class GameSmokeRunner extends Instrumentation {
             }
             screenshot("v021-rotated-confirmation");click("执行",true);
             waitText("区域争雄  ·  孙权军",false);assertWorld(2,0,"regional-sandbox");
+            logisticsFlow();
             strategicManagementFlow();
             territoryAiFlow();
             mobileShortcutsFlow();
@@ -79,7 +80,7 @@ public final class GameSmokeRunner extends Instrumentation {
             contestFlow();
             battleFeedbackFlow();
             diplomacyVisualFlow();
-            result.putString("stream","SMOKE PASS: v25 national filters/sort/recreation/focus, batch cancel/execute and saved district settings; v24 territory modes/legend/frontline/recreation, quick delegation/cancel/real administration/save, melee response to ranged attack; v23 native quantity sliders/exact input/cancel/deploy/recreation, map construction/rotation/Lv3, expanded playable world and terrain legend; v22 fixed unit command dock, blank/self/button/back cancellation, movement range, move-then-tactic, facility attack/destruction/save restoration; v21 original portraits/building assets/shared icons, pure diplomacy previews, allied dispatch/task/recreation and whole-force surrender; v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
+            result.putString("stream","SMOKE PASS: v26 convoy crew/food/return preview/cancel/confirm/recreation, logistics filter/task focus and authorized support; v25 national filters/sort/recreation/focus, batch cancel/execute and saved district settings; v24 territory modes/legend/frontline/recreation, quick delegation/cancel/real administration/save, melee response to ranged attack; v23 native quantity sliders/exact input/cancel/deploy/recreation, map construction/rotation/Lv3, expanded playable world and terrain legend; v22 fixed unit command dock, blank/self/button/back cancellation, movement range, move-then-tactic, facility attack/destruction/save restoration; v21 original portraits/building assets/shared icons, pure diplomacy previews, allied dispatch/task/recreation and whole-force surrender; v20 battle loot/capture/banner/queue-after-kill/haptics-settings and 44 procedural models; v19 portrait/landscape/collapsible panels/hidden navigation/route rotation; v18 sourced-profile preview/cancel/import/relations/recreation; v17 biography edit/cancel/death/succession/recreation/scenario import/200x200 offset viewport; v14 integrated march/ZOC/districts/events/raids/magic/diplomatic-debate/recreation; v12 mediation/treasure/PK-editor/templates/save; v11 fieldwork/36-tech/carry-gold/construction/repair/upgrade; v10 PK research/training/finite uses/skill overwrite/cancel/turn progression/task count/recreation; integrated original game/save/city/task/personnel/combat/army regressions; v9 duel/debate/start/cancel/round/save/settlement, v8 governance/capture/rank/summon, document export/import/cancel/corruption; legacy move preview/cancel/recreation and 神算百出连环; sourced opening, content/search/navigation/save restore and viewport stress verified.\n");
             finish(Activity.RESULT_OK,result);
         }catch(Throwable error){
             try{screenshot("failure");}catch(Exception ignored){}
@@ -323,7 +324,7 @@ public final class GameSmokeRunner extends Instrumentation {
         screenshot("06-construction");
         locateCity("柴桑");click("调动",true);click("人员调动",true);click("建业 ·",false);click("孙权 ·",false);click("出发",true);waitForIdleSync();
         require(saved().domestic.missions.size()==1&&saved().officer(3000).cityId==-1,"officer travel starts through UI");
-        locateCity("柴桑");click("调动",true);click("资源运输",true);click("建业 ·",false);click("鲁肃 ·",false);waitText("运输数量",true);screenshot("07-cargo-form");click("发送",true);waitForIdleSync();
+        locateCity("柴桑");click("调动",true);click("资源运输",true);click("建业 ·",false);click("鲁肃 ·",false);waitText("运输数量",true);screenshot("07-cargo-form");click("发送",true);click("确认发送",true);waitForIdleSync();
         w=saved();require(w.domestic.missions.size()==2&&w.city(300).food==35000&&w.city(300).troops==11000&&w.city(300).equipment[0]==11000,"cargo deducted once through UI");
         clickNav("任务");click("筛选 · 全部任务",true);click("运输",true);waitText("运输 · 鲁肃",false);screenshot("08-tasks");
         click("菜单",true);click("保存局面（3个槽位）",true);click("槽位 3 ·",false);click("执行",true);waitForIdleSync();
@@ -478,6 +479,35 @@ public final class GameSmokeRunner extends Instrumentation {
         runOnMainSync(()->((MainActivity)current).onActivityResult(912,Activity.RESULT_OK,result));waitText("导入失败",true);click("返回",true);
         require(Arrays.equals(before,SaveCodec.encode(saved())),"corrupt external document does not mutate game");screenshot("40-document-restore");
     }
+    private World logisticsFixture(){
+        World w=new World(36,24,"我军","敌军");w.strategy.setSeed(26016);
+        w.cities.add(new World.City(10,"主城",new Hex(2,2),0));w.cities.add(new World.City(11,"后方",new Hex(3,15),0));w.cities.add(new World.City(12,"前方",new Hex(15,15),0));w.cities.add(new World.City(20,"敌城",new Hex(32,15),1));
+        for(World.City c:w.cities){c.gold=30000;c.food=160000;c.troops=30000;c.morale=100;}
+        for(int i=0;i<12;i++)w.officers.add(new World.Officer(i,"将"+i,0,i<3?10:i<9?11:12,80,80,80,80,80));w.officer(0).role=Strategy.Role.RULER;return w;
+    }
+    private void logisticsFlow()throws Exception {
+        for(String orientation:new String[]{"竖屏","横屏"}){
+            World w=logisticsFixture();installFixture(w,w.city(11).hex);chooseOrientation(orientation);byte[] before=SaveCodec.encode(saved());
+            locateCity("后方");click("调动",true);click("资源运输",true);click("前方 ·",false);click("将4 ·",false);
+            click("运输副将（最多2名）",true);click("将5",true);click("将6",true);click("完成",true);click("卸货后武将返回出发城",true);
+            setInput("粮（上限200000）","6000");click("发送",true);waitText("派遣费0金",false);screenshot("v026-convoy-preview-"+orientation);click("取消",true);
+            require(Arrays.equals(before,SaveCodec.encode(saved())),"new convoy preview and cancel are read only");
+            click("发送",true);click("确认发送",true);w=saved();require(w.domestic.missions.size()==1&&w.domestic.missions.get(0).crew().length==3&&w.domestic.missions.get(0).returnOfficers,"three officers and return option actually saved");
+            require(w.city(11).gold==30000&&w.city(11).food==154000&&w.actionPoints[0]==50,"new transport charges zero fee and one action");
+            byte[] sent=SaveCodec.encode(w);runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(sent,SaveCodec.encode(saved())),"recreation cannot dispatch twice");
+            endTurn();waitForTurn(1);require(saved().domestic.missions.get(0).food==5950,"installed convoy really consumes carried food");
+            clickNav("任务");click("运输 · 将4",false);click("起点 / 改道",true);click("定位当前位置",true);screenshot("v026-convoy-focus-"+orientation);
+            // Pure anomaly filtering retains the underlying convoy and camera/UI state through recreation.
+            click("视图",true);click("全国城池总览",true);click("筛选 ·",false);click("城池状态",true);click("有在途援助",true);waitText("前方 · 我军",false);
+            before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("筛选 · 有在途援助",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"logistics filter/recreation are pure");screenshot("v026-inbound-filter-"+orientation);
+            w=logisticsFixture();require(w.districts.configure(-1,"后方军",new int[]{11},Districts.Policy.ECONOMY,-1,12,false,false).ok,"support fixture authorization");
+            require(w.nextTurn().ok,"new group obtains next-turn budget");installFixture(w,w.city(11).hex);byte[] pending=SaveCodec.encode(saved());
+            click("视图",true);click("军团托管",true);click("后方军 ·",false);click("支援申请 / 可执行预览",true);click("后方",true);waitText("支援执行预览",true);screenshot("v026-support-preview-"+orientation);click("取消",true);
+            require(Arrays.equals(pending,SaveCodec.encode(saved())),"support preview cancellation spends no resources or AP");
+            click("支援申请 / 可执行预览",true);click("后方",true);click("执行",true);w=saved();require(w.domestic.missions.size()==1&&w.districts.get(1).points()==50,"support sends one actual authorized convoy using district budget");
+        }
+        installFixture(ScenarioCatalog.load("regional-sandbox",2),new Hex(18,10));
+    }
     private void upgradeFlow()throws Exception {
         World legacy=saved();String scenarioName=legacy.scenarioName;byte[] before=SaveCodec.encode(legacy);
         Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -488,8 +518,13 @@ public final class GameSmokeRunner extends Instrumentation {
         require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=14,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
-        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==19,"upgraded writer produced v19 header");}
-        screenshot("00-v09-upgrade-preserved");
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==20,"upgraded writer produced v20 header");}
+        screenshot(upgrade25?"00-v25-upgrade-preserved":"00-v09-upgrade-preserved");
+        if(upgrade25){require(legacy.districts.all().size()==1&&legacy.domestic.missions.size()==1&&legacy.districts.get(1).reserveFood()==45000,"real v25 district and pending mission loaded");
+            World expected=SaveCodec.decode(before);require(expected.nextTurn().ok,"expected next turn");int turn=legacy.turn+1;endTurn();waitForTurn(turn);
+            require(Arrays.equals(SaveCodec.encode(expected),SaveCodec.encode(saved())),"v25 upgrade continues actual AI and convoy exactly once");
+            runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(SaveCodec.encode(expected),SaveCodec.encode(saved())),"activity recreation does not redispatch or consume food");screenshot("01-v25-upgrade-continued");}
+
     }
     private void contestFlow()throws Exception {
         clickNav("菜单");click("新游戏 / 选择势力",true);click("文武对决 ·",false);click("文武营",true);click("执行",true);

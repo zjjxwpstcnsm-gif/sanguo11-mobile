@@ -71,7 +71,7 @@ public final class Lifecycle {
             if(f.upgradeTo>0){f.upgradeTo=0;f.remaining=0;f.builderId=-1;}else w.domestic.facilities.remove(f);
             record(o.name+"经办的"+f.kind.label+"施工中止，不退费");
         }
-        for(Domestic.Mission m:new ArrayList<>(w.domestic.missions))if(m.officerId==id){w.domestic.missions.remove(m);record(o.name+(m.transport?"运输途中去世，运输队及所携物资散失":"调动途中去世，任务终止"));}
+        w.domestic.officerDied(id);
         World.Unit u=w.unit(o.unitId);
         if(u!=null){
             if(u.officerId!=id)u.deputies=Arrays.stream(u.deputies).filter(x->x!=id).toArray();

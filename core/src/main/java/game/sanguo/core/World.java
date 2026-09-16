@@ -274,7 +274,7 @@ public final class World {
             if(u.troops<=0)removeUnit(u);
         }
         for(City c:cities) if(c.owner>=0) {
-            int consumption=cityFoodUse(c);
+            int consumption=cityFoodUse(c)-domestic.arrivalFoodCredit(c);
             if(c.food<consumption){c.food=0;c.troops=Math.max(0,c.troops-Math.max(1,c.troops/20));}
             else c.food-=consumption;
             c.gold+=Math.min(Math.max(0,campaign.goldCap(c)-c.gold),domestic.goldIncome(c.id,turn));c.food+=Math.min(Math.max(0,campaign.foodCap(c)-c.food),domestic.foodIncome(c.id,turn));

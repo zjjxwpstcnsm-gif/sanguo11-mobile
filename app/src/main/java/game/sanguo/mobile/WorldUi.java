@@ -10,7 +10,7 @@ final class WorldUi {
     private final Activity a;private final World w;private final Consumer<World.Result> apply;
     WorldUi(Activity a,World w,Consumer<World.Result> apply){this.a=a;this.w=w;this.apply=apply;}
     private void info(String title,String text){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("返回",null).show();}
-    private void confirm(String title,String text,Runnable action){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("执行",(d,n)->action.run()).setNegativeButton("取消",null).show();}
+    private void confirm(String title,String text,Runnable action){boolean[] submitted={false};new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("执行",(d,n)->{if(!submitted[0]){submitted[0]=true;action.run();}}).setNegativeButton("取消",null).show();}
     private <T> void choose(String title,List<T> list,Function<T,String> label,Consumer<T> next){
         if(list.isEmpty()){info(title,"没有符合条件的选项");return;}String[] labels=list.stream().map(label).toArray(String[]::new);
         new AlertDialog.Builder(a).setTitle(title).setItems(labels,(d,n)->next.accept(list.get(n))).setNegativeButton("取消",null).show();
@@ -62,7 +62,7 @@ final class WorldUi {
     }
     private String describe(Districts.District d){StringBuilder b=new StringBuilder(d.policy().label+"\n都督："+(d.leader()<0?"暂无在城武将":w.officer(d.leader()).name)+"\n军团行动力："+d.points()+" / 60\n");
         b.append(w.districts.status(d)).append('\n');
-        for(int id:d.cities()){World.City c=w.city(id);b.append(c.name).append(" · 闲将").append(w.idle(c).size()).append(" · 金").append(c.gold).append(" · 粮").append(c.food).append('\n');}
+        for(int id:d.cities()){World.City c=w.city(id);b.append(c.name).append(" · 闲将").append(w.idle(c).size()).append(" · 金").append(c.gold).append(" · 粮").append(c.food).append('\n').append(new DistrictManagement(w).forecast(c)).append('\n');}
         if(d.target()>=0)b.append("\n攻略目标：").append(d.policy()==Districts.Policy.FORCE_ATTACK?w.faction(d.target()):w.city(d.target()).name);
         b.append("\n运输目标：").append(d.supply()<0?"无":w.city(d.supply()).name).append("\n允许进攻：").append(d.attack()?"是":"否").append("；允许生产：").append(d.produce()?"是":"否");
         b.append("\n留存：兵").append(d.reserveTroops()).append(" / 金").append(d.reserveGold()).append(" / 粮").append(d.reserveFood());
@@ -72,7 +72,20 @@ final class WorldUi {
         for(World.Unit u:w.units)if(w.districts.unit(u.id)==d)b.append("\n").append(w.officer(u.officerId).name).append("：").append(w.aiOrders.describe(u));
         return b.toString();
     }
-    private void detail(Districts.District d){ScrollView scroll=new ScrollView(a);TextView body=new TextView(a);body.setText(describe(d));body.setTextSize(16);body.setPadding(24,16,24,16);LinearLayout panel=new LinearLayout(a);panel.setOrientation(LinearLayout.VERTICAL);panel.addView(body);Button settings=new Button(a);settings.setText("经营设置");settings.setOnClickListener(v->settings(d));panel.addView(settings);scroll.addView(panel);new AlertDialog.Builder(a).setTitle(d.name()).setView(scroll).setPositiveButton("重编",(dialog,n)->members(d)).setNeutralButton("撤销军团",(dialog,n)->confirm("撤销"+d.name(),"消耗第一军团20行动力。全部据点、部队恢复直接指挥，余下军团行动力作废。",()->apply.accept(w.districts.dissolve(d.id)))).setNegativeButton("返回",null).show();}
+    private void detail(Districts.District d){ScrollView scroll=new ScrollView(a);TextView body=new TextView(a);body.setText(describe(d));body.setTextSize(16);body.setPadding(24,16,24,16);LinearLayout panel=new LinearLayout(a);panel.setOrientation(LinearLayout.VERTICAL);panel.addView(body);Button settings=new Button(a);settings.setText("经营设置");settings.setOnClickListener(v->settings(d));panel.addView(settings);
+        Button support=new Button(a);support.setText("支援申请 / 可执行预览");support.setOnClickListener(v->support(d));panel.addView(support);
+        Button locate=new Button(a);locate.setText("定位在途任务");locate.setOnClickListener(v->{List<Domestic.Mission> tasks=new ArrayList<>();for(Domestic.Mission m:w.domestic.missions)if(d.cities().contains(m.sourceCity)||d.cities().contains(m.targetCity))tasks.add(m);choose("选择在途任务",tasks,m->w.officer(m.officerId).name+" → "+w.city(m.targetCity).name,m->{if(a instanceof MainActivity)((MainActivity)a).domesticUi().mission(m);});});panel.addView(locate);
+        scroll.addView(panel);new AlertDialog.Builder(a).setTitle(d.name()).setView(scroll).setPositiveButton("重编",(dialog,n)->members(d)).setNeutralButton("撤销军团",(dialog,n)->confirm("撤销"+d.name(),"消耗第一军团20行动力。全部据点、部队恢复直接指挥，余下军团行动力作废。",()->apply.accept(w.districts.dissolve(d.id)))).setNegativeButton("返回",null).show();}
+    private void support(Districts.District d){
+        if(d.supply()<0){info("支援申请","请先在重编中指定运输目的地，以明确授权本军团向该城支援。未授权时不会抽调其他军团。");return;}
+        List<World.City> sources=new ArrayList<>();for(int id:d.cities())if(id!=d.supply())sources.add(w.city(id));
+        choose("支援出发城",sources,c->c.name,c->{DistrictManagement.SupplyPlan p=w.districts.supportPlan(c.id,d.supply());
+            if(p==null){info("支援不可执行","来源或目的地已改变");return;}
+            String body=c.name+" → "+w.city(p.target).name+"\n"+(p.valid()?"可派送：金"+p.gold+" / 粮"+p.food+" / 兵"+p.troops+"\n执行武将："+w.officer(p.officer).name+"；军团行动力10，派遣费0金\n"+(p.returning?"卸货后人员返程":"武将抵达留驻"):"不能执行："+p.reason)+"\n"+new DistrictManagement(w).forecast(c);
+            if(!p.valid()){info("支援不可执行",body);return;}
+            confirm("支援执行预览",body,()->apply.accept(w.districts.requestSupport(p.source,p.target)));
+        });
+    }
     void batch(List<World.City> visible){
         List<World.City> cities=new ArrayList<>();for(World.City c:visible)if(c.owner==w.player)cities.add(c);
         if(cities.isEmpty()){info("批量划入军团","当前筛选下没有己方据点");return;}

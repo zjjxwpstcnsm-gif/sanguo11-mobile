@@ -12,7 +12,7 @@ public final class AiOrders {
     final SortedMap<Integer,Order> orders=new TreeMap<>();
     AiOrders(World w){this.w=w;}
     Order get(World.Unit u){return orders.computeIfAbsent(u.id,id->new Order());}
-    public String describe(World.Unit u){Order o=orders.get(u.id);if(o==null)return "待评估";World.City c=w.city(o.target);return (c==null?"守备 / 归城":"集结攻略 "+c.name)+(o.stalled>0?" · 连续无进展"+o.stalled+"旬":"");}
+    public String describe(World.Unit u){Order o=orders.get(u.id);if(o==null)return "待评估";World.City c=w.city(o.target);return (c==null?"守备 / 归城":(o.staging?"集结等待增援 · ":"行军攻略 · ")+c.name)+(o.stalled>0?" · 连续无进展"+o.stalled+"旬":"");}
     void cleanup(){orders.keySet().removeIf(id->w.unit(id)==null);}
     void write(DataOutputStream d)throws IOException{
         d.writeInt(orders.size());for(Map.Entry<Integer,Order> e:orders.entrySet()){Order o=e.getValue();d.writeInt(e.getKey());d.writeInt(o.target);d.writeInt(o.home);d.writeInt(o.stalled);d.writeInt(o.turn);d.writeBoolean(o.staging);d.writeBoolean(o.defending);d.writeBoolean(o.last!=null);if(o.last!=null){d.writeInt(o.last.q);d.writeInt(o.last.r);}}

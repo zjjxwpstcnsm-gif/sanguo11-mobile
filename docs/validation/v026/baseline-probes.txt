@@ -1,0 +1,6 @@
+Exception in thread "main" java.lang.AssertionError: manual p38: transport must not charge 100 gold
+	at game.sanguo.core.LogisticsRegressionProbe.main(LogisticsRegressionProbe.java:11)
+Exception in thread "main" java.lang.AssertionError: manual p38: traveling convoy does not consume carried food
+	at game.sanguo.core.LogisticsRegressionProbe.main(LogisticsRegressionProbe.java:12)
+Exception in thread "main" java.lang.AssertionError: productive facility attack is counted as stalled
+	at game.sanguo.core.LogisticsRegressionProbe.main(LogisticsRegressionProbe.java:18)

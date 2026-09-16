@@ -1,10 +1,14 @@
 # sanguo11-mobile
 
-当前增量：**v0.25 战略AI与全国管理**。持续攻防任务、军团人才/物资经营、全国筛选及批量编制见[说明](docs/STRATEGIC_MANAGEMENT_V0_25.md)，[验收记录](docs/validation/v025/README.md)。
+当前增量：**v0.26 运输与跨季军团经营**。三将运输/耗粮/返程、经营预测、授权跨团支援和行军协同见[说明](docs/LOGISTICS_CAMPAIGN_V0_26.md)，[验收记录](docs/validation/v026/README.md)。
 
 独立运行的 Android 三国回合制策略游戏工程，最终目标参照 **PC《三国志11＋威力加强版》** 的完整系统范围。横竖屏、中文、离线游玩；不依赖模拟器、原版可执行文件或远程串流。
 
 ## 当前状态
+
+v0.26正式开发及验证进行中，写存档v20，旧档兼容，固定开发包名/签名。[实际完成内容与边界](docs/LOGISTICS_CAMPAIGN_V0_26.md)。
+
+## v0.25 历史状态
 
 v0.25 增加保存的战略意图、集结/守备、器械让路、军团调将与物资需求计算、经营设置和报告、全国筛选与批量编制。写存档v19并兼容旧档，仍未100%还原。[实现与规则边界](docs/STRATEGIC_MANAGEMENT_V0_25.md)。
 
@@ -120,7 +124,7 @@ PR #7、#8、#9、#10 已合并。加入俘虏、40武官职位、功绩俸禄�
 2. 底部「城市」优先列出己方城池，点击后放大定位。点己方城池即可征兵、训练、生产和出征。
 3. 点己方部队，先点固定底栏「行军」，再点地图目标查看路线，用底栏「开始行军」确认，远程目标逐旬自动前进，支持改道/停止；点射程内敌军普攻，点射程内敌方城池攻城，点相邻己方城池回城。弩兵可隔一格普攻，投石与舰船使用各自射程；移动需确认路径并消耗有限预算，移动后仍可攻击、战法、计略、入城或待命；这些命令结束完整行动。
 4. 「下一旬」执行其他存活势力的电脑行动，然后结算粮草、收入并恢复我方行动。结算在后台快照执行，期间阻止重复操作。
-5. 「菜单 → 保存局面 / 读取存档」支持3个手动槽。自动存档在成功操作和进入后台时更新；当前写入v18，能读取v1～v17旧存档，旧手动槽对应现在的槽1。
+5. 「菜单 → 保存局面 / 读取存档」支持3个手动槽。自动存档在成功操作和进入后台时更新；当前写入v20，能读取v1～v19旧存档，旧手动槽对应现在的槽1。
 6. 己方城池「内政」开发设施和巡察，「调动」派遣人员或运输，「任务」查看改道/返回，点击设施可取消/拆除。
 7. 城池「武将」可搜索、登用、褒奖、任命太守；概览「人事 / 城市治理」可查看本城状态。武将一览提供姓名、势力、城市、能力排序与在野筛选。
 8. 「军事」征兵时显示本城剩余兵源，选择武将后预览实际征兵/训练效果；太守、治安会影响真实月收入。
@@ -149,7 +153,7 @@ v0.8 Agent 1 开发分支新增移动确认与移动后行动、部分真实特�
 
 Android 构建：安装 JDK 17、Android SDK 35、Build Tools 35.0.0、Gradle 8.11.1，然后运行 `./gradlew test :core:check :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`。已提交固定 Gradle 8.11.1 及 SHA-256 的 Wrapper。
 
-APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-v025-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
+APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-v026-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
 
 验证范围与待验项目见 [VALIDATION.md](docs/VALIDATION.md)。
 

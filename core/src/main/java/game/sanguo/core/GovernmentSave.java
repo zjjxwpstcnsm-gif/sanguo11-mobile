@@ -52,7 +52,7 @@ final class GovernmentSave {
             require(o.unitId==-1&&o.cityId==-1&&o.otherTaskTurns==0&&!w.domestic.busy(o.id)&&o.role!=Strategy.Role.GOVERNOR,"俘虏仍承担部队或城务");
             require(p.capturedTurn>=0&&p.capturedTurn<=w.turn&&p.lastAttempt>=-1&&p.lastAttempt<=w.turn,"俘虏日期无效");
         }
-        for(Domestic.Mission m:w.domestic.missions)require(!m.sea||m.transport,"人员调动不能使用运输方式扩展");
+        for(Domestic.Mission m:w.domestic.missions)require(!m.sea||m.transport||m.returning,"人员调动不能使用运输方式扩展");
     }
     private static int count(DataInputStream d,int max)throws IOException {int n=d.readInt();require(n>=0&&n<=max,"军政记录数量无效");return n;}
     private static void require(boolean ok,String reason)throws IOException{if(!ok)throw new IOException(reason);}

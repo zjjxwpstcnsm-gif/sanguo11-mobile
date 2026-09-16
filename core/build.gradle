@@ -182,3 +182,11 @@ tasks.register('verifyStrategicManagement', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyStrategicManagement' }
 tasks.named('test') { dependsOn 'verifyStrategicManagement' }
+
+tasks.register('verifyLogisticsCampaign', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.LogisticsCampaignTest'
+}
+tasks.named('check') { dependsOn 'verifyLogisticsCampaign' }
+tasks.named('test') { dependsOn 'verifyLogisticsCampaign' }

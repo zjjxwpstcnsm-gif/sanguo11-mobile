@@ -17,7 +17,7 @@ final class UiModels {
     static String location(World w, World.Officer o) {
         if(!w.life.present(o.id))return w.life.state(o.id).label;
         if(w.government.captive(o.id))return w.government.locationLabel(w.government.prisoner(o.id));
-        for (Domestic.Mission m : w.domestic.missions) if (m.officerId == o.id)
+        for (Domestic.Mission m : w.domestic.missions) if (m.contains(o.id))
             return w.city(m.sourceCity).name + " → " + w.city(m.targetCity).name;
         if (o.unitId >= 0) return "战场";
         World.City c = w.city(o.cityId);
@@ -104,9 +104,8 @@ final class UiModels {
                 city+" → "+city+"开发地\n施工中 · 剩余 "+f.remaining+" 旬", f.hex, f, null));
         }
         for (Domestic.Mission m : w.domestic.missions) if (m.owner == w.player && (type == 0 || type == (m.transport ? 3 : 2))) {
-            int eta = w.domestic.eta(m);
-            String status = eta < 0 ? "道路受阻 · 剩余旬数待定" : eta == 0 ? "等待入城 / 库存空间 · 剩余 0 旬（等待时间未定）" : "在途 · 预计剩余 "+eta+" 旬";
-            result.add(new Task(10000000L+m.id, (m.transport?"运输":"调动")+" · "+w.officer(m.officerId).name,
+            String status=w.domestic.status(m);
+            result.add(new Task(10000000L+m.id, (m.returning?"返程":m.transport?"运输":"调动")+" · "+w.officer(m.officerId).name,
                 w.city(m.sourceCity).name+" → "+w.city(m.targetCity).name+"\n"+status+(m.transport?"\n"+cargo(m):""), m.hex, null, m));
         }
         if(type==0||type==5)for(Army.Production p:w.army.productions())if(p.owner==w.player){

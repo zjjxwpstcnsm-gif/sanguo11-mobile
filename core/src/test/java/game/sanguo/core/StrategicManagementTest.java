@@ -22,7 +22,7 @@ public final class StrategicManagementTest {
     private static long[] stock(World w){long[] v=new long[3+World.Weapon.values().length];for(World.City c:w.cities){v[0]+=c.gold;v[1]+=c.food;v[2]+=c.troops;for(int i=0;i<c.equipment.length;i++)v[i+3]+=c.equipment[i];}for(Domestic.Mission m:w.domestic.missions){v[0]+=m.gold;v[1]+=m.food;v[2]+=m.troops;for(int i=0;i<m.equipment.length;i++)v[i+3]+=m.equipment[i];}return v;}
     public static void main(String[] args)throws Exception{migration();personnel();famine();logistics();permissions();overview();coordination();stuck();longRun();performance();largeTurn();System.out.println("PASS: "+checks+" strategic management assertions: v18 migration, settings/replay, real transfers/production/cargo, reserves/permissions, stable targets/siege lanes, national filters and performance.");}
     private static void migration()throws Exception{
-        try(InputStream in=StrategicManagementTest.class.getResourceAsStream("/legacy-v18.sg11.b64")){byte[] old=Base64.getDecoder().decode(in.readAllBytes());check(old[7]==18,"fixture produced by actual v0.24 writer");World w=SaveCodec.decode(old);check(bytes(w)[7]==19&&Arrays.equals(bytes(w),bytes(copy(w))),"real v18 upgrades and roundtrips");}
+        try(InputStream in=StrategicManagementTest.class.getResourceAsStream("/legacy-v18.sg11.b64")){byte[] old=Base64.getDecoder().decode(in.readAllBytes());check(old[7]==18,"fixture produced by actual v0.24 writer");World w=SaveCodec.decode(old);check(bytes(w)[7]==20&&Arrays.equals(bytes(w),bytes(copy(w))),"real v18 upgrades and roundtrips");}
         try(InputStream in=StrategicManagementTest.class.getResourceAsStream("/legacy-v18-district.sg11.b64")){World old=SaveCodec.decode(Base64.getDecoder().decode(in.readAllBytes()));Districts.District prior=old.districts.all().get(0);check(prior.reserveTroops()==10000&&prior.reserveGold()==5000&&prior.reserveFood()==40000&&prior.transfer()&&prior.supplyEnabled(),"actual legacy district gets defaults");byte[] saved=bytes(old);old.districts.run();check(Arrays.equals(saved,bytes(old)),"old acted district and pending cargo do not reexecute on migration");}
         World w=fixture();Districts.District d=group(w,false,true);check(d.reserveTroops()==10000&&d.transfer()&&d.supplyEnabled(),"legacy-compatible defaults");check(w.districts.settings(d.id,17000,7000,65000,false,false).ok,"save settings through paid command");World b=copy(w);Districts.District bd=b.districts.get(d.id);check(bd.reserveTroops()==17000&&bd.reserveGold()==7000&&bd.reserveFood()==65000&&!bd.transfer()&&!bd.supplyEnabled(),"settings retained");
         byte[] before=bytes(w);check(!w.districts.settings(d.id,-1,0,0,true,true).ok&&Arrays.equals(before,bytes(w)),"invalid settings atomic");
@@ -32,7 +32,7 @@ public final class StrategicManagementTest {
         check(w.domestic.missions.stream().anyMatch(m->!m.transport&&m.targetCity==12),"empty city receives actual personnel mission");
         check(new DistrictManagement(w).residents(w.city(12))==0,"officer does not teleport");
         byte[] before=bytes(w);w.districts.run();check(Arrays.equals(before,bytes(w)),"same-turn execution cannot dispatch twice");World replay=copy(w);replay.districts.run();check(Arrays.equals(before,bytes(replay)),"saved acted turn prevents duplicate mission");
-        for(int t=0;t<5;t++)w.domestic.tick();check(new DistrictManagement(w).residents(w.city(12))>0,"personnel really arrives");check(d.report().contains("调将"),"report identifies personnel action");
+        for(int t=0;t<5;t++){w.turn++;w.domestic.tick();}check(new DistrictManagement(w).residents(w.city(12))>0,"personnel really arrives");check(d.report().contains("调将"),"report identifies personnel action");
     }
     private static void famine()throws Exception{
         World w=fixture();Districts.District d=group(w,false,false);d.supplyEnabled=false;w.city(11).food=0;int gold=w.city(11).gold;w.turn=1;reset(w);w.districts.run();
@@ -46,12 +46,12 @@ public final class StrategicManagementTest {
         Districts.District d=new Districts.District(-1,0,"测试后勤");d.cities.add(11);d.cities.add(12);d.supply=12;
         DistrictManagement manager=new DistrictManagement(w);long[] original=stock(w);int sent=0;
         for(int i=3;i<9;i++)if(manager.supply(d,w.city(11),w.officer(i)))sent++;
-        check(sent>0&&w.domestic.missions.stream().allMatch(m->m.troops>=1000),"real convoys carry escorts");long[] after=stock(w);original[0]-=sent*100;check(Arrays.equals(original,after),"all inventories and pending cargo conserved minus real fees");
+        check(sent>0&&w.domestic.missions.stream().allMatch(m->m.troops>=1000),"real convoys carry escorts");long[] after=stock(w);check(Arrays.equals(original,after),"all inventories and pending cargo conserved without fees");
         int incomingFood=0,incomingGold=0,incomingTroops=0;for(Domestic.Mission m:w.domestic.missions){incomingFood+=m.food;incomingGold+=m.gold;incomingTroops+=m.troops;}
         check(incomingFood<=w.campaign.foodCap(front)&&incomingGold<=w.campaign.goldCap(front)&&incomingTroops<=w.campaign.troopCap(front),"all in-flight cargo counted against port capacities");
-        check(w.city(11).troops>=d.reserveTroops&&w.city(11).food>=d.reserveFood&&w.city(11).gold>=d.reserveGold,"source reserves include fee");World replay=copy(w);
-        for(int i=0;i<8;i++){w.domestic.tick();replay.domestic.tick();check(Arrays.equals(bytes(w),bytes(replay)),"cargo replay deterministic");}
-        check(w.domestic.missions.isEmpty()&&front.food>0&&front.troops>0&&front.equipment[0]>0,"troops food gold equipment really delivered");check(Arrays.equals(original,stock(w)),"arrival neither duplicates nor swallows resources");
+        check(w.city(11).troops>=d.reserveTroops&&w.city(11).food>=d.reserveFood&&w.city(11).gold>=d.reserveGold,"source reserves include fee");World replay=copy(w);long consumed=0;
+        for(int i=0;i<8;i++){for(Domestic.Mission m:w.domestic.missions)consumed+=Math.min(m.food,w.domestic.foodUse(m));w.turn++;replay.turn++;w.domestic.tick();replay.domestic.tick();check(Arrays.equals(bytes(w),bytes(replay)),"cargo replay deterministic");}
+        check(w.domestic.missions.isEmpty()&&front.food>0&&front.troops>0&&front.equipment[0]>0,"troops food gold equipment really delivered");original[1]-=consumed;check(Arrays.equals(original,stock(w)),"arrival conserves all resources after explicitly counted transit food");
         World support=fixture();support.city(12).troops=2000;support.city(12).food=2000;unit(support,21,World.Weapon.SPEAR,new Hex(20,15));
         check(new CampaignAi(support).support(11),"nearby rear actually supports threatened city");check(support.domestic.missions.get(0).targetCity==12&&support.domestic.missions.get(0).troops>1000,"support addresses actual troop deficit");
         World specified=ScenarioCatalog.load("world-drill",0,25016);

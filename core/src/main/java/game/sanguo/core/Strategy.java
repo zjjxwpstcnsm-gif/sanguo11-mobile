@@ -101,7 +101,7 @@ public final class Strategy {
         else if(o.unitId>=0)activity=Activity.DEPLOYED;
         else {
             for(Domestic.Facility f:w.domestic.facilities)if(f.builderId==o.id){activity=Activity.CONSTRUCTION;remaining=f.remaining;break;}
-            if(activity==Activity.IDLE)for(Domestic.Mission m:w.domestic.missions)if(m.officerId==o.id){activity=m.transport?Activity.TRANSPORT:Activity.TRANSFER;remaining=w.domestic.eta(m);break;}
+            if(activity==Activity.IDLE)for(Domestic.Mission m:w.domestic.missions)if(m.contains(o.id)){activity=m.transport?Activity.TRANSPORT:Activity.TRANSFER;remaining=w.domestic.eta(m);break;}
             if(activity==Activity.IDLE&&o.otherTaskTurns>0){activity=Activity.OTHER_TASK;remaining=o.otherTaskTurns;}
             if(activity==Activity.IDLE){
                 World.City c=w.city(o.cityId);
