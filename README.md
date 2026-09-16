@@ -1,12 +1,16 @@
 # sanguo11-mobile
 
-当前增量：**v0.28 手机操作体验**。地图标签、紧凑详情、显式地图命令、待行动切换、同格运输选择、数量草稿、全国列表返回与结果反馈见[实现说明](docs/MOBILE_EXPERIENCE_V0_28.md)、[验收记录](docs/validation/v028/README.md)。
+当前增量：**v0.29 战法位移与连续操作**。修复通行能力绕过与己方陷阱触发，区分施放限制和受阻结果，增加正式规则预览、实际分项战果、可恢复出征向导。见[规则与差异](docs/TACTICAL_DISPLACEMENT_V0_29.md)、[验收记录](docs/validation/v029/README.md)。
 
 独立运行的 Android 三国回合制策略游戏工程，最终目标参照 **PC《三国志11＋威力加强版》** 的完整系统范围。横竖屏、中文、离线游玩；不依赖模拟器、原版可执行文件或远程串流。
 
 ## 当前状态
 
-v0.28沿用存档v21、固定包名和签名；本轮APK与通过状态以[最终验收记录](docs/validation/v028/README.md)为准。PR #35已核查并合入main，本轮[PR #36](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/36)可审阅、未合并。运行提交`66417c0`的核心/UI/内容、36/72旬、Android/Lint、三屏横竖屏及四版覆盖升级全部通过。[下载v0.28 APK归档](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35113579871/artifacts/10455463236)。同模拟器对比：竖屏所测地图高度+24.1%，普通选择镜头位移归零；大型场景整旬4.94→5.12秒，未宣称全面提速。ARM真机仍未测。
+v0.29沿用存档v21、固定包名和签名。[PR #36](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/36)已按本轮授权核查合并；本轮[PR #37](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/37)保留待审阅。交付APK、运行提交及通过状态以[最终验收记录](docs/validation/v029/README.md)为准。设施碰撞耐久、精确原版公式及水军参数差异仍待核验，没有宣称全部战法完成精确还原。
+
+## v0.28 历史状态
+
+v0.28沿用存档v21、固定包名和签名；本轮APK与通过状态以[最终验收记录](docs/validation/v028/README.md)为准。PR #35已核查并合入main，[PR #36](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/36)已在v0.29开工核查后合并。运行提交`66417c0`的核心/UI/内容、36/72旬、Android/Lint、三屏横竖屏及四版覆盖升级全部通过。[下载v0.28 APK归档](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35113579871/artifacts/10455463236)。同模拟器对比：竖屏所测地图高度+24.1%，普通选择镜头位移归零；大型场景整旬4.94→5.12秒，未宣称全面提速。ARM真机仍未测。
 
 ## v0.27 历史状态
 

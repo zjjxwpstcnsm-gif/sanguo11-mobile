@@ -34,7 +34,15 @@ public final class Displacement {
     private String terrainError(World.Unit u,Hex from,Hex to){
         if(to==null||!w.inside(to))return "地图边缘或不存在的地块";
         if(w.army.water(from)!=w.army.water(to))return "水陆边界，强制位移不换乘";
-        if(w.army.moveCost(u,from,to)<1)return "该部队不能进入"+w.terrain[to.q][to.r]+"（检查难所行军与部队通行能力）";
+        if(w.events.at(to)!=null)return "被事件营地占据";
+        if(w.army.moveCost(u,from,to)<1){
+            switch(w.terrain[to.q][to.r]){
+                case MOUNTAIN:return "山地不可通行";
+                case MOUNTAIN_PATH:return "该部队未满足险径通行条件（难所行军）";
+                case SHALLOWS:return "该部队未满足浅滩通行条件（难所行军）";
+                default:return "该部队不具备此地形的通行能力";
+            }
+        }
         return null;
     }
     private String stepError(World.Unit mover,Hex from,Hex to,int ignoredUnit,boolean traps,World.Unit source){
