@@ -8,6 +8,8 @@
 
 v0.29沿用存档v21、固定包名和签名。[PR #36](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/36)已按本轮授权核查合并；本轮[PR #37](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/37)保留待审阅。交付APK、运行提交及通过状态以[最终验收记录](docs/validation/v029/README.md)为准。设施碰撞耐久、精确原版公式及水军参数差异仍待核验，没有宣称全部战法完成精确还原。
 
+[下载v0.29 APK归档](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35132774435/artifacts/10462473769)：`sanguo11-mobile-v029-b08c518.apk`（6,274,126字节），对应构建`b08c518`。完整CI35132774435三屏全部通过，实际v0.28位移/升级配对CI35132774542、既有体验配对CI35132774416通过。266条新增位移断言、51,804条UI模型断言、19项内容测试及旧核心/长局回归通过；CI Lint0错误/20警告，摘要与签名见验收记录。最后收尾仅补文档和证据，ARM真机仍未测。
+
 ## v0.28 历史状态
 
 v0.28沿用存档v21、固定包名和签名；本轮APK与通过状态以[最终验收记录](docs/validation/v028/README.md)为准。PR #35已核查并合入main，[PR #36](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/36)已在v0.29开工核查后合并。运行提交`66417c0`的核心/UI/内容、36/72旬、Android/Lint、三屏横竖屏及四版覆盖升级全部通过。[下载v0.28 APK归档](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35113579871/artifacts/10455463236)。同模拟器对比：竖屏所测地图高度+24.1%，普通选择镜头位移归零；大型场景整旬4.94→5.12秒，未宣称全面提速。ARM真机仍未测。

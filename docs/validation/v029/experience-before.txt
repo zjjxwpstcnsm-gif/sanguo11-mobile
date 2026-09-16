@@ -1,0 +1,27 @@
+version=0.27.0-tactical-logistics-dev
+竖屏 select camera delta=54.602478,0.0 map=1080x638
+竖屏 next selected=2 acted=true
+竖屏 attack enabled=false
+横屏 select camera delta=55.331543,0.0 map=1041x606
+横屏 next selected=2 acted=true
+横屏 attack enabled=false
+42cities-670officers setWorld-range-index medianMs=0.059494 p95Ms=0.104363
+42cities-670officers softwareDraw medianMs=4.825141 p95Ms=8.425682
+42cities-670officers refresh-detail medianMs=2.765614 p95Ms=8.52997
+42cities-670officers city-list medianMs=0.086168 p95Ms=0.224756
+42cities-670officers nativeViewport=1041x754 tilesVisited=127
+42cities-670officers injected-drag-to-idle medianMs=231.982744 p95Ms=250.190593
+42cities-670officers injected-pinch-to-idle medianMs=204.43398 p95Ms=422.3287
+42cities-670officers actual-nextTurn-ms=623.313728
+42cities-670officers actual-nextTurn-ms=556.873372
+42cities-670officers actual-nextTurn-ms=580.250116
+200x200-42cities-40units-3transports setWorld-range-index medianMs=0.877415 p95Ms=1.218348
+200x200-42cities-40units-3transports softwareDraw medianMs=4.430488 p95Ms=6.466059
+200x200-42cities-40units-3transports refresh-detail medianMs=3.802118 p95Ms=9.11496
+200x200-42cities-40units-3transports city-list medianMs=0.036578 p95Ms=0.099088
+200x200-42cities-40units-3transports nativeViewport=1041x606 tilesVisited=103
+200x200-42cities-40units-3transports injected-drag-to-idle medianMs=227.976213 p95Ms=258.472742
+200x200-42cities-40units-3transports injected-pinch-to-idle medianMs=189.162733 p95Ms=491.734884
+200x200-42cities-40units-3transports actual-nextTurn-ms=3564.359667
+200x200-42cities-40units-3transports actual-nextTurn-ms=3186.137566
+200x200-42cities-40units-3transports actual-nextTurn-ms=3162.585401
