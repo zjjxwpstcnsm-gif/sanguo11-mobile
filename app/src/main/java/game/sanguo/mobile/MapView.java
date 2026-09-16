@@ -199,7 +199,7 @@ public final class MapView extends View {
         int color=factionColor(territory.ownerAt(q,r));polygon(cx,cy,RADIUS);
         fill(canvas,alpha(color,territoryMode==2?95+(territory.siteAt(q,r)%3)*18:115));
         int mask=territory.boundary(q,r,territoryMode==2);
-        paint.setColor(alpha(color,245));paint.setStrokeWidth(Math.min(4,Math.max(1,1.3f*density/scale)));
+        paint.setColor(alpha(color,245));paint.setStrokeWidth(Math.max(1,1.3f*density/scale));
         for(int side=0;side<6;side++)if((mask&(1<<side))!=0){
             double a=Math.toRadians(-side*60-30),b=a+Math.PI/3;
             canvas.drawLine(cx+(float)Math.cos(a)*RADIUS,cy+(float)Math.sin(a)*RADIUS,cx+(float)Math.cos(b)*RADIUS,cy+(float)Math.sin(b)*RADIUS,paint);
