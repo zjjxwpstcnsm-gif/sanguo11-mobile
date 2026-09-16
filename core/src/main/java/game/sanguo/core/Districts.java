@@ -160,6 +160,10 @@ public final class Districts {
     private void order(District d,World.City c,int pass){
         List<World.Officer> idle=w.idle(c);if(idle.isEmpty())return;
         World.Officer admin=idle.stream().max(Comparator.comparingInt(o->o.politics)).get();
+        if(new DistrictManagement(w).foodTurns(c)<6){
+            int amount=Math.min(20000-w.campaign.traded(c.id),Math.min(w.campaign.foodCap(c)-c.food,Math.max(0,c.gold-1000)/w.campaign.foodPrice(c.id,true)*1000))/1000*1000;
+            if(amount>=1000&&w.campaign.trade(c.id,admin.id,true,amount).ok)return;
+        }
         StrategicAi civil=new StrategicAi(w);StrategicAi.Decision urgent=civil.plan(c.id,true);
         if(urgent!=null&&civil.execute(urgent).ok)return;
         if(c.order<65&&w.strategy.patrol(c.id,admin.id).ok)return;
@@ -174,7 +178,12 @@ public final class Districts {
         if(d.produce&&d.attack&&d.policy!=Policy.ECONOMY&&d.policy!=Policy.DEFENSE&&c.equipment[World.Weapon.RAM.ordinal()]==0&&w.domestic.facilities.stream().noneMatch(f->f.cityId==c.id&&f.kind==Domestic.Kind.WORKSHOP)){
             List<Hex> sites=w.domestic.buildSites(c.id);if(!sites.isEmpty()&&w.domestic.build(c.id,admin.id,Domestic.Kind.WORKSHOP,sites.get(0)).ok)return;
         }
-        if(d.policy==Policy.ECONOMY||d.policy==Policy.DELEGATE){List<Hex> sites=w.domestic.buildSites(c.id);if(c.gold>=2500&&!sites.isEmpty()&&w.domestic.build(c.id,admin.id,c.food<40000?Domestic.Kind.FARM:Domestic.Kind.MARKET,sites.get(0)).ok)return;}
+        if(d.policy==Policy.ECONOMY||d.policy==Policy.DELEGATE){
+            int expectedFood=w.domestic.monthlyFood(c.id);
+            for(Domestic.Facility f:w.domestic.facilities)if(f.cityId==c.id&&f.kind==Domestic.Kind.FARM&&f.remaining>0)expectedFood+=w.strategy.cityIncome(c.id,2500*(f.level==3?150:f.level==2?120:100)/100);
+            Domestic.Kind kind=c.food<40000||expectedFood<w.cityFoodUse(c)*12?Domestic.Kind.FARM:Domestic.Kind.MARKET;
+            List<Hex> sites=w.domestic.buildSites(c.id);if(c.gold>=2500&&!sites.isEmpty()&&w.domestic.build(c.id,admin.id,kind,sites.get(0)).ok)return;
+        }
         if(d.produce&&c.gold>=d.reserveGold+1500){
             if(d.attack&&d.policy!=Policy.ECONOMY&&d.policy!=Policy.DEFENSE&&c.equipment[World.Weapon.RAM.ordinal()]==0&&
                 w.army.productionError(c.id,admin.id,World.Weapon.RAM,null)==null&&w.army.produce(c.id,admin.id,World.Weapon.RAM,null).ok)return;

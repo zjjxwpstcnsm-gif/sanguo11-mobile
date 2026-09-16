@@ -8,7 +8,7 @@ public final class DistrictManagement {
     public DistrictManagement(World w){this.w=w;ai=new CampaignAi(w);}
     public int residents(World.City c){int n=0;for(World.Officer o:w.officers)if(o.owner==c.owner&&o.cityId==c.id&&!w.government.captive(o.id))n++;return n;}
     public int arriving(World.City c){int n=0;for(Domestic.Mission m:w.domestic.missions)if(m.owner==c.owner&&m.targetCity==c.id)n++;return n;}
-    public int foodTurns(World.City c){return c.troops==0?999:Math.min(999,c.food/Math.max(1,(c.troops+49)/50));}
+    public int foodTurns(World.City c){int use=w.cityFoodUse(c);return use==0?999:Math.min(999,c.food/use);}
     public String reason(World.City c){List<String> reasons=new ArrayList<>();Districts.District d=w.districts.city(c.id);
         if(ai.incoming(c)>0)reasons.add("敌军逼近"+ai.incoming(c));
         if(foodTurns(c)<6)reasons.add("缺粮：约"+foodTurns(c)+"旬");

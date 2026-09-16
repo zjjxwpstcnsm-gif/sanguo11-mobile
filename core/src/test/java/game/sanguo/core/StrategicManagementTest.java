@@ -20,7 +20,7 @@ public final class StrategicManagementTest {
     private static Districts.District group(World w,boolean attack,boolean produce){check(w.districts.configure(-1,"二军",new int[]{11,12},Districts.Policy.DEFENSE,-1,-1,attack,produce).ok,"create real district");return w.districts.all().get(0);}
     private static void reset(World w){for(World.Officer o:w.officers)o.acted=false;for(World.Unit u:w.units)w.orders.reset(u);w.actionPoints[0]=60;w.actionPoints[1]=60;w.districts.reset(0);}
     private static long[] stock(World w){long[] v=new long[3+World.Weapon.values().length];for(World.City c:w.cities){v[0]+=c.gold;v[1]+=c.food;v[2]+=c.troops;for(int i=0;i<c.equipment.length;i++)v[i+3]+=c.equipment[i];}for(Domestic.Mission m:w.domestic.missions){v[0]+=m.gold;v[1]+=m.food;v[2]+=m.troops;for(int i=0;i<m.equipment.length;i++)v[i+3]+=m.equipment[i];}return v;}
-    public static void main(String[] args)throws Exception{migration();personnel();logistics();permissions();overview();coordination();stuck();longRun();performance();largeTurn();System.out.println("PASS: "+checks+" strategic management assertions: v18 migration, settings/replay, real transfers/production/cargo, reserves/permissions, stable targets/siege lanes, national filters and performance.");}
+    public static void main(String[] args)throws Exception{migration();personnel();famine();logistics();permissions();overview();coordination();stuck();longRun();performance();largeTurn();System.out.println("PASS: "+checks+" strategic management assertions: v18 migration, settings/replay, real transfers/production/cargo, reserves/permissions, stable targets/siege lanes, national filters and performance.");}
     private static void migration()throws Exception{
         try(InputStream in=StrategicManagementTest.class.getResourceAsStream("/legacy-v18.sg11.b64")){byte[] old=Base64.getDecoder().decode(in.readAllBytes());check(old[7]==18,"fixture produced by actual v0.24 writer");World w=SaveCodec.decode(old);check(bytes(w)[7]==19&&Arrays.equals(bytes(w),bytes(copy(w))),"real v18 upgrades and roundtrips");}
         try(InputStream in=StrategicManagementTest.class.getResourceAsStream("/legacy-v18-district.sg11.b64")){World old=SaveCodec.decode(Base64.getDecoder().decode(in.readAllBytes()));Districts.District prior=old.districts.all().get(0);check(prior.reserveTroops()==10000&&prior.reserveGold()==5000&&prior.reserveFood()==40000&&prior.transfer()&&prior.supplyEnabled(),"actual legacy district gets defaults");byte[] saved=bytes(old);old.districts.run();check(Arrays.equals(saved,bytes(old)),"old acted district and pending cargo do not reexecute on migration");}
@@ -33,6 +33,13 @@ public final class StrategicManagementTest {
         check(new DistrictManagement(w).residents(w.city(12))==0,"officer does not teleport");
         byte[] before=bytes(w);w.districts.run();check(Arrays.equals(before,bytes(w)),"same-turn execution cannot dispatch twice");World replay=copy(w);replay.districts.run();check(Arrays.equals(before,bytes(replay)),"saved acted turn prevents duplicate mission");
         for(int t=0;t<5;t++)w.domestic.tick();check(new DistrictManagement(w).residents(w.city(12))>0,"personnel really arrives");check(d.report().contains("调将"),"report identifies personnel action");
+    }
+    private static void famine()throws Exception{
+        World w=fixture();Districts.District d=group(w,false,false);d.supplyEnabled=false;w.city(11).food=0;int gold=w.city(11).gold;w.turn=1;reset(w);w.districts.run();
+        check(w.city(11).food>=1000&&w.city(11).gold<gold&&w.campaign.traded(11)>0,"starving district buys grain with actual merchant payment and volume limit");
+        check(d.report().contains("买入"),"famine treatment is explained in actual report");
+        World port=fixture();port.city(11).kind=World.SiteKind.PORT;port.city(11).food=0;port.officer(3).skillId=Skill.TUNTIAN.id;
+        check(port.cityFoodUse(port.city(11))==0&&new DistrictManagement(port).foodTurns(port.city(11))==999,"overview uses actual port屯田 exemption, no false famine");
     }
     private static void logistics()throws Exception{
         World w=fixture();World.City front=w.city(12);front.kind=World.SiteKind.PORT;front.gold=0;front.food=0;front.troops=0;Arrays.fill(front.equipment,0);
@@ -76,7 +83,7 @@ public final class StrategicManagementTest {
     private static void longRun()throws Exception{
         World w=fixture();w.campaign.treaties.add(new Campaign.Treaty(0,1,Campaign.TreatyKind.ALLIANCE,36));Districts.District d=group(w,false,true);check(w.districts.configure(d.id,d.name(),new int[]{11,12},Districts.Policy.ECONOMY,-1,-1,false,true).ok,"economic long-run policy");w.city(11).equipment[0]=0;World replay=copy(w);long start=System.nanoTime();
         for(int turn=0;turn<18;turn++){check(w.nextTurn().ok&&replay.nextTurn().ok,"multi-city turn completes");check(Arrays.equals(bytes(w),bytes(replay)),"multi-city real turns deterministic after restart");replay=copy(replay);}
-        check(new DistrictManagement(w).residents(w.city(12))>0,"long-term vacant city acquires staff");check(w.city(11).equipment[0]>0,"economy district actually manufactures missing equipment over time");check(w.domestic.count(12)>0||w.city(12).governorId>=0,"staff operates destination");
+        check(new DistrictManagement(w).residents(w.city(12))>0,"long-term vacant city acquires staff");check(w.city(11).equipment[0]>0,"economy district actually manufactures missing equipment over time");check(w.domestic.facilities.stream().anyMatch(f->f.cityId==11&&f.kind==Domestic.Kind.FARM),"economic planning creates sustained grain income");check(w.domestic.count(12)>0||w.city(12).governorId>=0,"staff operates destination");
         System.out.println("18 multi-city turns + save replay: "+(System.nanoTime()-start)/1000000+" ms");
     }
     private static void performance()throws Exception{
