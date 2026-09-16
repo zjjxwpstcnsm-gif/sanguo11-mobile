@@ -10,7 +10,7 @@ final class WorldUi {
     private final Activity a;private final World w;private final Consumer<World.Result> apply;
     WorldUi(Activity a,World w,Consumer<World.Result> apply){this.a=a;this.w=w;this.apply=apply;}
     private void info(String title,String text){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("返回",null).show();}
-    private void confirm(String title,String text,Runnable action){boolean[] submitted={false};new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("执行",(d,n)->{if(!submitted[0]){submitted[0]=true;action.run();}}).setNegativeButton("取消",null).show();}
+    private void confirm(String title,String text,Runnable action){((MainActivity)a).commandDialog(title,text,"执行",w,action);}
     private <T> void choose(String title,List<T> list,Function<T,String> label,Consumer<T> next){
         if(list.isEmpty()){info(title,"没有符合条件的选项");return;}String[] labels=list.stream().map(label).toArray(String[]::new);
         new AlertDialog.Builder(a).setTitle(title).setItems(labels,(d,n)->next.accept(list.get(n))).setNegativeButton("取消",null).show();

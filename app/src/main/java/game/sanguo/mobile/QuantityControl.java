@@ -19,7 +19,8 @@ final class QuantityControl extends LinearLayout {
         LinearLayout row=new LinearLayout(a);row.setGravity(Gravity.CENTER_VERTICAL);
         input=new EditText(a);input.setInputType(InputType.TYPE_CLASS_NUMBER);input.setSingleLine(true);
         input.setTextColor(a.paper);input.setContentDescription(label+"数量");input.setSelectAllOnFocus(true);
-        input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(7)});
+        input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(7)});input.setImeOptions(android.view.inputmethod.EditorInfo.IME_ACTION_DONE);
+        input.setOnEditorActionListener((v,action,event)->{if(action!=android.view.inputmethod.EditorInfo.IME_ACTION_DONE)return false;((android.view.inputmethod.InputMethodManager)a.getSystemService(android.content.Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(input.getWindowToken(),0);input.clearFocus();return true;});
         row.addView(input,new LayoutParams(0,a.dp(48),1));
         row.addView(a.button("一半",v->set(Math.max(this.min,this.max/2))),new LayoutParams(a.dp(56),a.dp(48)));
         row.addView(a.button("最大",v->set(this.max)),new LayoutParams(a.dp(56),a.dp(48)));addView(row);
@@ -42,10 +43,13 @@ final class QuantityControl extends LinearLayout {
         });
         bounds(min,max);set(initial);
     }
+    String draftValue(){return input.getText().toString();}
+    void restoreValue(String raw){input.setText(raw);}
+    void inputDescription(String name){input.setContentDescription(name);}
     int value(){return value;}
     boolean valid(){return value>=min&&value<=max;}
     void onChange(Runnable action){changed=action;}
-    void bounds(int low,int high){min=low;max=Math.max(low,high);slider.setMax(max-min);caption.setText(label+" · 可选 "+min+"–"+max);set(Math.max(min,Math.min(max,value)));}
+    void bounds(int low,int high){min=low;max=Math.max(low,high);slider.setMax(max-min);caption.setText(label+" · 可选 "+min+"–"+max);if(input.length()>0)restoreValue(input.getText().toString());}
     void set(int n){
         value=Math.max(min,Math.min(max,n));syncing=true;input.setText(Integer.toString(value));input.setError(null);slider.setProgress(value-min);syncing=false;changed.run();
     }

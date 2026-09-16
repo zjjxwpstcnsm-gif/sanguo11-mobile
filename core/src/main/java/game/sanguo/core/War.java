@@ -317,9 +317,14 @@ public final class War {
         int amount=w.domestic.damage(f,facilityDamage(unit));w.battleImpact(h,f.hp==0);w.campaign.earn(u.owner,20);
         return w.success("攻击"+f.kind.label+"，耐久减少"+amount+"，剩余"+f.hp+"/"+f.maxHp());
     }
+    public String structureAttackError(int unit,Hex h){
+        World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return error;Structure s=at(h);
+        if(s==null||!w.campaign.hostile(u.owner,s.owner)||u.hex.distance(h)>range(u))return "请选择射程内敌方军事设施";
+        if(!w.army.canAttackUnit(u)){List<Army.Tactic> tactics=w.army.tactics(u);return tactics.isEmpty()?"该兵种不能普通攻击军事设施":w.army.tacticError(unit,h,tactics.get(0));}
+        return null;
+    }
     public World.Result attackStructure(int unit,Hex h){
-        World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return w.fail(error);Structure s=at(h);
-        if(s==null||!w.campaign.hostile(u.owner,s.owner)||u.hex.distance(h)>range(u))return w.fail("请选择射程内敌方军事设施");
+        String error=structureAttackError(unit,h);if(error!=null)return w.fail(error);World.Unit u=w.unit(unit);Structure s=at(h);
         if(!w.army.canAttackUnit(u))return w.army.tactic(unit,h,w.army.tactics(u).get(0));
         int damage=Math.min(s.hp,w.campaign.constructionDamage(u,200+w.army.war(u)*2));u.acted=true;s.hp-=damage;
         w.battleImpact(h,s.hp<=0);if(s.hp<=0){structures.remove(s);w.battleOutcome(s.kind.label+"已摧毁，地块已释放");}else w.fieldworks.counter(s,u);w.campaign.earn(u.owner,20);return w.success("攻击"+s.kind.label+"，耐久减少"+damage);

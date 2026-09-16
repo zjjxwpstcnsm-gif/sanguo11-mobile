@@ -1,0 +1,21 @@
+version=0.27.0-tactical-logistics-dev
+竖屏 select camera delta=54.602478,0.0 map=1080x638
+竖屏 next selected=2 acted=true
+竖屏 attack enabled=false
+横屏 select camera delta=54.602478,0.0 map=1041x606
+横屏 next selected=2 acted=true
+横屏 attack enabled=false
+42cities-670officers setWorld-range-index medianMs=0.06871 p95Ms=0.09573
+42cities-670officers softwareDraw medianMs=4.85652 p95Ms=5.19441
+42cities-670officers refresh-detail medianMs=3.25154 p95Ms=4.70647
+42cities-670officers city-list medianMs=0.05225 p95Ms=0.10932
+42cities-670officers actual-nextTurn-ms=815.56072
+42cities-670officers actual-nextTurn-ms=995.42058
+42cities-670officers actual-nextTurn-ms=706.41627
+200x200-42cities-40units-3transports setWorld-range-index medianMs=1.12453 p95Ms=1.81423
+200x200-42cities-40units-3transports softwareDraw medianMs=4.99005 p95Ms=5.66989
+200x200-42cities-40units-3transports refresh-detail medianMs=4.61918 p95Ms=19.03616
+200x200-42cities-40units-3transports city-list medianMs=0.04757 p95Ms=0.0908
+200x200-42cities-40units-3transports actual-nextTurn-ms=4622.21882
+200x200-42cities-40units-3transports actual-nextTurn-ms=4162.14647
+200x200-42cities-40units-3transports actual-nextTurn-ms=4054.04543

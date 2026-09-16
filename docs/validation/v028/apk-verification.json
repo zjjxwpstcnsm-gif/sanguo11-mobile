@@ -1,0 +1,21 @@
+{
+  "runtime_commit": "66417c08739441322ac8d2d01b85b36a16b0d88c",
+  "apk": "sanguo11-mobile-v028-66417c0.apk",
+  "apk_sha256": "bd24da23469cf77ab4991dfa4982af30eb087e2ea3ef72e5228a4d8a6f2e3df1",
+  "apk_bytes": 6258594,
+  "package": "game.sanguo.mobile.dev",
+  "version": "0.28.0-mobile-experience-dev",
+  "versionCode": 28,
+  "saveVersion": 21,
+  "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+  "lint": {
+    "errors": 0,
+    "warnings": 19
+  },
+  "native_screenshots": {
+    "1920_including_recovery_upgrade": 170,
+    "2340": 159,
+    "2400": 159
+  },
+  "paired_comparison_screenshots": 105
+}

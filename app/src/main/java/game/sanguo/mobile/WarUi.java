@@ -10,7 +10,7 @@ final class WarUi {
     private final MainActivity a;private final World w;private final Consumer<World.Result> apply;
     WarUi(MainActivity a,World w,Consumer<World.Result> apply){this.a=a;this.w=w;this.apply=apply;}
     private void info(String text){new AlertDialog.Builder(a).setMessage(text).setPositiveButton("返回",null).show();}
-    private void confirm(String title,String text,Runnable command){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("执行",(d,n)->command.run()).setNegativeButton("取消",null).show();}
+    private void confirm(String title,String text,Runnable command){a.commandDialog(title,text,"执行",w,command);}
     void move(World.Unit u,Hex target){
         UnitOrders.MovePlan plan=w.orders.previewMove(u.id,target);
         if(!plan.valid()){info(plan.error);return;}
@@ -31,13 +31,13 @@ final class WarUi {
         if(list.isEmpty()){info("剑兵没有专属战法，可普攻或使用部队计略。");return;}
         String[] labels=new String[list.size()];for(int i=0;i<labels.length;i++){War.Tactic t=list.get(i);labels[i]=t.label+" · 气力"+t.energy+" · "+War.rankLabel(t.rank)+"级";}
         new AlertDialog.Builder(a).setTitle("战法 · 适性"+War.rankLabel(w.army.aptitude(u))).setItems(labels,(d,i)->{
-            War.Tactic tactic=list.get(i);List<World.Unit> targets=new ArrayList<>();for(World.Unit t:w.units)if(w.war.tacticError(u.id,t.id,tactic)==null)targets.add(t);
+            War.Tactic tactic=list.get(i);List<World.Unit> targets=new ArrayList<>();for(World.Unit t:w.fieldUnits())if(w.war.tacticError(u.id,t.id,tactic)==null)targets.add(t);
             if(targets.isEmpty()){info("没有可施展目标。\n"+tactic.effect+"\n需要"+War.rankLabel(tactic.rank)+"级适性、气力"+tactic.energy+"和有效范围内交战目标；位移还需要空地。");return;}
-            a.pickOnMap(tactic.label+" · 选择目标",u.hex,targets.stream().map(t->t.hex).collect(java.util.stream.Collectors.toList()),h->{World.Unit t=w.unitAt(h);if(t==null)return;confirm(tactic.label,tactic.effect+"\n目标："+w.officer(t.officerId).name+"\n成功率 "+w.war.tacticChance(u.id,t.id,tactic)+"%，消耗气力"+tactic.energy+"。\n失败也消耗气力和本旬行动。",()->apply.accept(w.war.tactic(u.id,t.id,tactic)));});
+            a.pickOnMap(tactic.label+" · 选择目标",u.hex,targets.stream().map(t->t.hex).collect(java.util.stream.Collectors.toList()),h->{World.Unit t=w.unitAt(h);if(t==null)return;confirm(tactic.label,tactic.effect+"\n目标："+w.officer(t.officerId).name+"\n成功率 "+w.war.tacticChance(u.id,t.id,tactic)+"%，消耗气力"+tactic.energy+"。\n失败也消耗气力和本旬行动。",()->apply.accept(w.war.tactic(u.id,t.id,tactic)));},h->h==null?"目标在地图范围外":w.war.tacticError(u.id,w.unitAt(h)==null?-1:w.unitAt(h).id,tactic));
         }).setNegativeButton("取消",null).show();
     }
     void joint(World.Unit u){
-        List<World.Unit> targets=new ArrayList<>();for(World.Unit t:w.units)if(w.advancedBattle.jointError(u.id,t.id)==null)targets.add(t);
+        List<World.Unit> targets=new ArrayList<>();for(World.Unit t:w.fieldUnits())if(w.advancedBattle.jointError(u.id,t.id)==null)targets.add(t);
         if(targets.isEmpty()){info("齐攻需要至少两支未行动的陆上近战部队邻接同一敌军。");return;}
         a.pickOnMap("齐攻 · 选择目标",u.hex,targets.stream().map(t->t.hex).collect(java.util.stream.Collectors.toList()),h->{World.Unit t=w.unitAt(h);if(t==null)return;StringBuilder text=new StringBuilder("参与：");for(World.Unit member:w.advancedBattle.jointParticipants(u.id,t.id))text.append(w.officer(member.officerId).name).append(" ");text.append("\n参与部队本旬行动均结束。敌方铁壁将齐攻化为主攻部队的普攻，其他部队保留行动。");confirm("齐攻",text.toString(),()->apply.accept(w.advancedBattle.joint(u.id,t.id)));});
     }
@@ -49,7 +49,7 @@ final class WarUi {
             int range=w.war.plotRange(u.id,plot);
             for(int q=Math.max(0,u.hex.q-range);q<=Math.min(w.width-1,u.hex.q+range);q++)for(int r=Math.max(0,u.hex.r-range);r<=Math.min(w.height-1,u.hex.r+range);r++){Hex h=new Hex(q,r);if(w.war.plotError(u.id,h,plot)==null)targets.add(h);}
             if(targets.isEmpty()){info("没有可施展目标。\n"+plot.effect+"\n需要计略范围内有效目标和足够气力；伏兵还需自身位于森林。");return;}
-            a.pickOnMap(plot.label+" · 选择目标",u.hex,targets,h->confirm(plot.label,plot.effect+"\n成功率 "+w.war.plotChance(u.id,h,plot)+"%\n消耗气力"+w.war.plotCost(u.id,plot)+"和本旬行动；失败也消耗。\n火种可连锁引爆，己方部队进入火场也会受伤。",()->apply.accept(w.war.plot(u.id,h,plot))));
+            a.pickOnMap(plot.label+" · 选择目标",u.hex,targets,h->confirm(plot.label,plot.effect+"\n成功率 "+w.war.plotChance(u.id,h,plot)+"%\n消耗气力"+w.war.plotCost(u.id,plot)+"和本旬行动；失败也消耗。\n火种可连锁引爆，己方部队进入火场也会受伤。",()->apply.accept(w.war.plot(u.id,h,plot))),h->h==null?"目标在地图范围外":w.war.plotError(u.id,h,plot));
         }).setNegativeButton("取消",null).show();
     }
 }
