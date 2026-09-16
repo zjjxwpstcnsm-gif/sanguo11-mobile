@@ -1,0 +1,31 @@
+Note: core/src/test/java/game/sanguo/core/CampaignTest.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+PASS: 197 assertions covering hex paths, resources, combat, turns, saves, and deterministic simulation.
+PASS: 143 content/runtime integration assertions.
+PASS: 2638 content assertions; cold catalog 103.804 ms; sourced opening combat at turn 2.
+PASS: 179 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
+PASS: 828 domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.
+PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
+PASS: 50x50 benchmark, 100 A* queries: p50=1.187ms p95=1.488ms max=2.638ms total=122.281ms maxExpanded=2125/2500; 100 reachable queries=6.722ms
+PASS: 9796 strategy/officer assertions covering locks, seeded search/hiring, loyalty, offices, economy, finite reserves, readiness, AI and save v1-v4.
+PASS: 62 campaign cases, 678 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
+PASS: 45 army cases, 384 assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.
+PASS: 583 rules-parity assertions: move previews/replays/budget, skill priorities/holders/chains, actual damage/production, real v6 migration and deterministic campaigns.
+PASS: 782 governance assertions: rank caps/payroll, captive crew and immunity, recruit/release/ransom/rescue, delegation, real v7 migration and long campaigns.
+PASS: 43 supply assertions: troop/food conservation, no duplicate delivery, raid/capture/treaty, amphibious routes and save restoration.
+PASS: 2397 contest assertions: official duel/debate structures, guard/gear/fury/counters, campaign settlement, locks, stale inputs, real v8 migration and save-per-round replay.
+PASS: 1076 PK assertions: full ordinary graph, hidden stability, real research/training/limits/cancellation/capture, v9 migration and income schedule.
+PASS: 570 technology/fieldworks assertions: 36 real research completions, legacy v10, high-bit saves, construction/gold/upgrade/cancel, battle effects, traps, terrain, ports and deterministic campaigns.
+PASS: 393 estates assertions: mediation/relationships, 43 item identities/ownership/effects, paid search/reward/capture, atomic PK drafts, new-officer templates, real v11 migration and deterministic replay.
+PASS: 881 world-system assertions: ZOC/poison, joint/ironwall/infighting/magic, diplomatic debates, disasters/raiders, district budgets/orders/capture, v12/v13 branch migration, integrated marches and saved replay.
+March 128x128 cold preview: 33 ms
+PASS: 75 march assertions: pure/stale preview, weighted routes, multi-turn budget, retarget/stop, obstacles, water, target identity, v12 migration, deterministic save continuation.
+National AI (synthetic 200x200, 87 cities, 670 officers): 1 search, 37839 expanded cells, 74.5 ms
+PASS: 460 campaign AI assertions: pure/stable target selection, area friendly fire, rescue/immunity, siege, retreat/supply, reserves/formations, district permissions, hazards/detours and saved replay.
+200x200 offset map cold route: 55 ms
+PASS: 159354 lifecycle/national-grid assertions: actual v14 migration, annual arrival, mortality, task cleanup, commander replacement, pending succession guards/replay, execution, AI heirs, 40000 offset cells and import/save/path.
+PASS: 890 sourced-profile assertions: full 670 roster, relations, birth/appearance, temperament, atomic imports and saved edits.
+PASS: 209 battle-feedback assertions: cargo/capture/escape, immutable previews, single settlement, caps, save/replay, actual defeated-tile march and fire visibility errors.
+PASS: 45 prisoner escort assertions: movement, atomic entry, permanent city jail, rescue/transfer, carrier death/succession, ransom, v15 migration and invalid saves.
+PASS: 100 diplomacy assertions: actual allied expedition dispatch/return, pure previews, treaties/capacity/stale requests, atomic prisoner exchange, whole-force absorption/cargo/tasks, eight restored PK skills, v16 migration and deterministic saves.
+PASS: 112 facility combat assertions: normal/siege/fire, economy/occupancy/production, atomic rejection, route invalidation, v17 migration and v18 persistence.
