@@ -44,10 +44,11 @@ public final class Army {
     public int aptitude(List<World.Officer> crew,int category){int value=0;if(category>=0)for(World.Officer o:crew)value=Math.max(value,o.aptitude[category]);return value;}
     World.Officer combatOfficer(World.Unit u){World.Officer leader=w.officer(u.officerId);return new World.Officer(leader.id,leader.name,leader.owner,-1,leadership(u),war(u),intelligence(u),leader.politics,leader.charm);}
     public boolean water(Hex h){return h!=null&&w.inside(h)&&w.terrain[h.q][h.r]==World.Terrain.WATER;}
-    public String equipmentLabel(World.Unit u){return water(u.hex)?u.ship.label+"（携"+u.weapon.label+"）":u.weapon.label;}
+    public String equipmentLabel(World.Unit u){if(u instanceof Domestic.Mission)return water(u.hex)?"运输队 · 走舸":"运输队";return water(u.hex)?u.ship.label+"（携"+u.weapon.label+"）":u.weapon.label;}
     public int movement(World.Unit u){return water(u.hex)?u.ship.movement:u.weapon.movement;}
     public int range(World.Unit u){return water(u.hex)?u.ship.range:u.weapon==World.Weapon.CAVALRY&&(w.skills.has(u,Skill.BAIMA)||w.campaign.has(u.owner,Campaign.Tech.MOUNTED_ARCHERY))?2:u.weapon.range;}
     public int moveCost(World.Unit u,Hex from,Hex to){
+        if(u instanceof Domestic.Mission&&!((Domestic.Mission)u).sea&&water(to))return -1;
         if(to==null||!w.inside(to)||w.terrain[to.q][to.r]==World.Terrain.MOUNTAIN)return -1;
         if(water(to))return water(from)?1:2; // Embark consumes movement, not another inventory item.
         int land=w.fieldworks.landCost(to,u.weapon,u.owner);
@@ -96,7 +97,7 @@ public final class Army {
     private boolean valid(Production p){World.City c=w.city(p.cityId);World.Officer o=w.officer(p.officerId);return c!=null&&o!=null&&c.owner==p.owner&&o.owner==p.owner&&o.cityId==c.id&&o.otherTask.equals(p.label())&&completed(c.id,p.weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD);}
     void cleanup(){for(Production p:new ArrayList<>(productions))if(!valid(p)){productions.remove(p);World.Officer o=w.officer(p.officerId);if(o!=null&&o.otherTask.equals(p.label())){o.otherTask="";o.otherTaskTurns=0;}w.note(p.label()+"因城池或工场失守/拆除而中止");}}
     void tick(){
-        for(World.Unit u:new ArrayList<>(w.units))if(u.burning>0){
+        for(World.Unit u:new ArrayList<>(w.fieldUnits()))if(u.burning>0){
             u.burning--;if(u.burningOwner==u.owner||w.campaign.hostile(u.burningOwner,u.owner)){int hit=w.skills.fireDamage(u,200,u.burningOwner,u.burningPower,false);u.troops-=hit;w.note(w.officer(u.officerId).name+"的部队持续燃烧，损失"+hit+"兵");}
             if(u.burning==0){u.burningOwner=-1;u.burningPower=1;}if(u.troops==0)w.removeUnit(u);
         }
@@ -115,6 +116,7 @@ public final class Army {
         double ap=water(a.hex)?a.ship.power:a.weapon.power,bp=water(b.hex)?b.ship.power:b.weapon.power;
         double offense=80+leadership(a)+war(a)/2.0;
         double defense=80+leadership(b)+intelligence(b)/4.0;
+        if(b instanceof Domestic.Mission)defense/=2; // Weak convoy defense: engineering coefficient, not a calibrated original formula.
         int amount=(int)(250*StrictMath.sqrt(a.troops/1000.0)*ap/100*Math.max(.4,offense/defense)*scale*(.9+random.nextDouble()*.2));
         if(!water(b.hex)&&siegeWeapon(b.weapon))amount=amount*3/2;
         if(water(b.hex)&&bp>100)amount=amount*9/10;
@@ -129,10 +131,10 @@ public final class Army {
         if(water(u.hex))return u.ship==Ship.WARSHIP?450:200;
         switch(u.weapon){case RAM:return 60;case WOODEN_BEAST:return 500;case CATAPULT:return 400;case SIEGE_TOWER:return 800;default:return 100;}
     }
-    public boolean canAttackUnit(World.Unit u){return water(u.hex)||!siegeWeapon(u.weapon);}
-    public boolean counter(World.Unit u){return !water(u.hex)&&!siegeWeapon(u.weapon)&&u.weapon!=World.Weapon.CROSSBOW;}
+    public boolean canAttackUnit(World.Unit u){return !(u instanceof Domestic.Mission)&&(water(u.hex)||!siegeWeapon(u.weapon));}
+    public boolean counter(World.Unit u){return !(u instanceof Domestic.Mission)&&!water(u.hex)&&!siegeWeapon(u.weapon)&&u.weapon!=World.Weapon.CROSSBOW;}
     public List<Tactic> tactics(World.Unit u){
-        List<Tactic> result=new ArrayList<>();
+        List<Tactic> result=new ArrayList<>();if(u instanceof Domestic.Mission)return result;
         if(water(u.hex)){if(u.ship!=Ship.BOAT){result.add(Tactic.FIRE_ARROW);result.add(Tactic.RAM);}if(u.ship==Ship.WARSHIP)result.add(Tactic.STONE);}
         else switch(u.weapon){case RAM:result.add(Tactic.RAM);break;case SIEGE_TOWER:result.add(Tactic.FIRE_ARROW);break;case WOODEN_BEAST:result.add(Tactic.FLAME);break;case CATAPULT:result.add(Tactic.STONE);break;default:break;}
         return result;

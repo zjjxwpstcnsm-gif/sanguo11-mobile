@@ -98,7 +98,7 @@ public final class DomesticTest {
             World w=fixture();World.City d=w.city(20);int gold=resource==0?1:0,food=resource==1?1:resource==2?20:0,troops=resource==2?1:0;int[] eq=new int[4];if(resource>=3)eq[resource-3]=1;
             if(resource==0)d.gold=1000000;if(resource==1){d.food=1000000;d.troops=0;}if(resource==2)d.troops=100000;if(resource>=3)d.equipment[resource-3]=100000;
             ok(w.domestic.transport(10,20,0,gold,food,troops,eq));next(w);next(w);
-            check(w.domestic.missions.size()==1&&w.domestic.missions.get(0).hex.equals(d.hex),"capacity wait retains cargo "+resource);
+            check(w.domestic.missions.size()==1&&w.domestic.missions.get(0).hex.distance(d.hex)==1,"capacity wait retains cargo "+resource);
             World clone=copy(w);check(clone.domestic.missions.size()==1&&clone.officer(0).cityId==-1,"capacity wait survives save "+resource);
             d.gold=Math.min(d.gold,999999);d.food=Math.min(d.food,999999);d.troops=Math.min(d.troops,99999);for(int i=0;i<4;i++)d.equipment[i]=Math.min(d.equipment[i],99999);
             next(w);check(w.domestic.missions.isEmpty()&&w.officer(0).cityId==20,"capacity release delivers once "+resource);
@@ -135,7 +135,7 @@ public final class DomesticTest {
         for(String file:new String[]{"/m0-v1.sg11.b64","/m1-v2.sg11.b64"}){
             byte[] original;try(InputStream in=DomesticTest.class.getResourceAsStream(file)){if(in==null)throw new IOException(file);original=Base64.getMimeDecoder().decode(in.readAllBytes());}
             check(original[7]==(file.contains("v1")?1:2),"fixture genuinely old version");World w=SaveCodec.decode(original);check(w.domestic.facilities.isEmpty()&&w.domestic.missions.isEmpty(),"legacy initializes empty strategic layer");
-            World clone=copy(w);check(SaveCodec.encode(w)[7]==20,"new writes use save v19");for(int i=0;i<5&&!w.gameOver();i++){next(w);next(clone);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(clone)),"legacy deterministic continuation");}
+            World clone=copy(w);check(SaveCodec.encode(w)[7]==21,"new writes use save v19");for(int i=0;i<5&&!w.gameOver();i++){next(w);next(clone);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(clone)),"legacy deterministic continuation");}
         }
     }
     private static void campaigns()throws Exception{

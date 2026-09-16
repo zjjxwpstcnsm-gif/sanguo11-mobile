@@ -1,10 +1,14 @@
 # sanguo11-mobile
 
-当前增量：**v0.26 运输与跨季军团经营**。三将运输/耗粮/返程、经营预测、授权跨团支援和行军协同见[说明](docs/LOGISTICS_CAMPAIGN_V0_26.md)，[验收记录](docs/validation/v026/README.md)。
+当前增量：**v0.27 可交战运输、水陆协同与两年经营**。地图运输、兵粮金野外补给、实际护送/截击、船货、72旬账本和真实v20迁移见[实现与差异](docs/TACTICAL_LOGISTICS_V0_27.md)、[验收记录](docs/validation/v027/README.md)。
 
 独立运行的 Android 三国回合制策略游戏工程，最终目标参照 **PC《三国志11＋威力加强版》** 的完整系统范围。横竖屏、中文、离线游玩；不依赖模拟器、原版可执行文件或远程串流。
 
 ## 当前状态
+
+v0.27写存档v21，固定包名与签名沿用。正在完成三屏安装及v0.9/v0.25/v0.26真实APK覆盖升级验收，最终下载与证据见本轮验收记录。
+
+## v0.26 历史状态
 
 v0.26已通过完整验收，写存档v20，兼容旧档并沿用固定开发包名/签名。[最新APK](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35085267945/artifacts/10442343895)对应`b75e249`；[CI35085267945](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35085267945)三屏横竖屏、真实v0.9/v0.25覆盖升级全部通过。新增1095条断言、51,795条UI模型断言、19项内容测试通过，381份源码与435张截图已核对。Lint0错误/21警告；ARM真机未验。[验收与APK摘要](docs/validation/v026/README.md) / [实际实现和剩余差异](docs/LOGISTICS_CAMPAIGN_V0_26.md)。
 

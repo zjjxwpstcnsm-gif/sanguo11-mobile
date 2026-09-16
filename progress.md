@@ -1,3 +1,7 @@
+# 2026-09-16 v0.27 可交战运输与两年经营
+
+PR #34已按授权核查合并，main `acfa053`。本轮以同一个Domestic任务对象扩展真实Unit，接共用占格/预算/战斗/补给，新增船货、实际护军、双向排队、72旬独立账本与水陆港口全流程。存档v21；真实v20三将/已耗粮/返程夹具由旧编码器生成。完整交付状态见[验收记录](docs/validation/v027/README.md)，规则与未完成项见[说明](docs/TACTICAL_LOGISTICS_V0_27.md)。
+
 # 2026-09-16 v0.26 运输与跨季经营
 
 PR #33已合并到`7f37ecf`，本轮分支`agent/logistics-campaign-v026`，[PR #34](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/34)开放。运行时代码`b75e2495f891801bca9a86c122cb22b094bee2ec`。

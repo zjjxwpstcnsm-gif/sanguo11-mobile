@@ -13,7 +13,7 @@ public final class AdvancedBattle {
     }
     public boolean zone(World.Unit u,Hex hex){
         if(ignoresZone(u,hex))return false;
-        for(World.Unit enemy:w.units)if(enemy.id!=u.id&&w.campaign.hostile(u.owner,enemy.owner)&&enemy.hex.distance(hex)==1)return true;
+        for(World.Unit enemy:w.fieldUnits())if(enemy.id!=u.id&&!(enemy instanceof Domestic.Mission)&&w.campaign.hostile(u.owner,enemy.owner)&&enemy.hex.distance(hex)==1)return true;
         for(War.Structure s:w.war.structures())if(s.complete&&w.campaign.hostile(u.owner,s.owner)&&!w.fieldworks.trap(s.kind)&&s.kind!=War.StructureKind.EARTH_WALL&&s.kind!=War.StructureKind.STONE_WALL&&s.hex.distance(hex)==1)return true;
         return false;
     }
@@ -22,18 +22,18 @@ public final class AdvancedBattle {
         boolean ignoreWater=w.skills.has(u,Skill.TUIJIN);
         boolean ignoreLand=!Army.siegeWeapon(u.weapon)&&(w.skills.has(u,Skill.DUNZOU)||w.skills.has(u,Skill.FEIJIANG));
         Set<Hex> occupied=new HashSet<>();
-        for(World.Unit enemy:w.units)if(enemy.id!=u.id&&w.campaign.hostile(u.owner,enemy.owner))occupied.addAll(enemy.hex.neighbors());
+        for(World.Unit enemy:w.fieldUnits())if(enemy.id!=u.id&&!(enemy instanceof Domestic.Mission)&&w.campaign.hostile(u.owner,enemy.owner))occupied.addAll(enemy.hex.neighbors());
         for(War.Structure s:w.war.structures())if(s.complete&&w.campaign.hostile(u.owner,s.owner)&&!w.fieldworks.trap(s.kind)&&s.kind!=War.StructureKind.EARTH_WALL&&s.kind!=War.StructureKind.STONE_WALL)occupied.addAll(s.hex.neighbors());
         return hex->occupied.contains(hex)&&!(w.army.water(hex)?ignoreWater:ignoreLand);
     }
     public List<World.Unit> jointParticipants(int actor,int target){
         World.Unit a=w.unit(actor),b=w.unit(target);List<World.Unit> out=new ArrayList<>();
         if(a==null||b==null)return out;
-        for(World.Unit u:w.units)if(u.owner==a.owner&&w.orders.error(u)==null&&u.hex.distance(b.hex)==1&&w.army.counter(u)&&!w.army.water(u.hex))out.add(u);
+        for(World.Unit u:w.fieldUnits())if(u.owner==a.owner&&w.orders.error(u)==null&&u.hex.distance(b.hex)==1&&w.army.counter(u)&&!w.army.water(u.hex))out.add(u);
         out.sort(Comparator.comparingInt(u->u.id==actor?-1:u.id));return Collections.unmodifiableList(out);
     }
     public String jointError(int actor,int target){
-        World.Unit a=w.unit(actor),b=w.unit(target);String error=w.orders.error(a);if(error!=null)return error;
+        World.Unit a=w.unit(actor),b=w.unit(target);String error=w.orders.combatError(a);if(error!=null)return error;
         if(b==null||!w.campaign.hostile(a.owner,b.owner)||w.army.water(b.hex)||!w.fieldworks.landTarget(a.owner,b.hex))return "请选择可交战的陆上部队";
         List<World.Unit> group=jointParticipants(actor,target);
         if(!group.contains(a)||group.size()<2)return "齐攻需要至少两支相邻、未行动的陆上近战部队";
@@ -58,7 +58,7 @@ public final class AdvancedBattle {
     public boolean unlocked(World.Unit u,War.Plot p){return p==War.Plot.LIGHTNING?w.skills.has(u,Skill.GUIMEN):p!=War.Plot.SORCERY||w.skills.has(u,Skill.YAOSHU)||w.skills.has(u,Skill.GUIMEN);}
     List<World.Unit> infightingTargets(World.Unit target){
         List<World.Unit> out=new ArrayList<>();if(target==null||Army.siegeWeapon(target.weapon))return out;
-        for(World.Unit u:w.units)if(u.id!=target.id&&u.owner==target.owner&&u.hex.distance(target.hex)==1&&!Army.siegeWeapon(u.weapon)&&w.army.water(u.hex)==w.army.water(target.hex))out.add(u);
+        for(World.Unit u:w.fieldUnits())if(u.id!=target.id&&u.owner==target.owner&&u.hex.distance(target.hex)==1&&!Army.siegeWeapon(u.weapon)&&w.army.water(u.hex)==w.army.water(target.hex))out.add(u);
         out.sort(Comparator.comparingInt(u->u.id));return out;
     }
     void infight(World.Unit source,World.Unit target,boolean critical){
@@ -80,7 +80,7 @@ public final class AdvancedBattle {
             if(reflection&&primary!=null&&w.skills.has(primary,Skill.FANJI))cast(primary,a,a.hex,p,false);
             return false;
         }
-        List<World.Unit> victims=new ArrayList<>(w.units);victims.sort(Comparator.comparingInt(u->u.id));
+        List<World.Unit> victims=new ArrayList<>(w.fieldUnits());victims.sort(Comparator.comparingInt(u->u.id));
         int power=w.army.intelligence(a);boolean critical=w.skills.plotCritical(a,primary,p);
         for(World.Unit target:victims){
             if(target.hex.distance(center)>1||target.owner!=a.owner&&!w.campaign.hostile(a.owner,target.owner))continue;

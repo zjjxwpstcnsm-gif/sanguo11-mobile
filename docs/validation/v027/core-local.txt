@@ -1,0 +1,170 @@
+Note: core/src/test/java/game/sanguo/core/CampaignTest.java uses or overrides a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+PASS: 197 assertions covering hex paths, resources, combat, turns, saves, and deterministic simulation.
+PASS: 143 content/runtime integration assertions.
+PASS: 2638 content assertions; cold catalog 84.898 ms; sourced opening combat at turn 4.
+PASS: 182 scenario assertions covering malformed data, faction turns, migration, AI detours, and multi-faction campaigns.
+PASS: 828 domestic assertions covering facilities, travel, cargo conservation, rerouting, capacity and save v1/v2/v3/v4 continuity.
+PASS: 71 tactical cases, 136168 assertions covering hex, terrain, paths, combat, tactics, status, turns, AI, objectives, adapters and simulation.
+PASS: 50x50 benchmark, 100 A* queries: p50=1.197ms p95=1.513ms max=2.709ms total=124.627ms maxExpanded=2125/2500; 100 reachable queries=6.626ms
+PASS: 9842 strategy/officer assertions covering locks, seeded search/hiring, loyalty, offices, economy, finite reserves, readiness, AI and save v1-v4.
+PASS: 62 campaign cases, 678 assertions covering diplomacy, trade, research, studies, merges, 12 tactics, 6 plots, fire chains, structures and save v1-v5.
+PASS: 45 army cases, 453 assertions covering crew locks, equipment conservation, water transitions, siege/naval combat, manufacturing, cargo, save v1-v6 and deterministic AI.
+PASS: 583 rules-parity assertions: move previews/replays/budget, skill priorities/holders/chains, actual damage/production, real v6 migration and deterministic campaigns.
+PASS: 782 governance assertions: rank caps/payroll, captive crew and immunity, recruit/release/ransom/rescue, delegation, real v7 migration and long campaigns.
+PASS: 44 supply assertions: troop/food conservation, no duplicate delivery, raid/capture/treaty, amphibious routes and save restoration.
+PASS: 2397 contest assertions: official duel/debate structures, guard/gear/fury/counters, campaign settlement, locks, stale inputs, real v8 migration and save-per-round replay.
+PASS: 1076 PK assertions: full ordinary graph, hidden stability, real research/training/limits/cancellation/capture, v9 migration and income schedule.
+PASS: 600 technology/fieldworks assertions: 36 real research completions, legacy v10, high-bit saves, construction/gold/upgrade/cancel, battle effects, traps, terrain, ports and deterministic campaigns.
+PASS: 393 estates assertions: mediation/relationships, 43 item identities/ownership/effects, paid search/reward/capture, atomic PK drafts, new-officer templates, real v11 migration and deterministic replay.
+PASS: 881 world-system assertions: ZOC/poison, joint/ironwall/infighting/magic, diplomatic debates, disasters/raiders, district budgets/orders/capture, v12/v13 branch migration, integrated marches and saved replay.
+March 128x128 cold preview: 31 ms
+PASS: 75 march assertions: pure/stale preview, weighted routes, multi-turn budget, retarget/stop, obstacles, water, target identity, v12 migration, deterministic save continuation.
+National AI (synthetic 200x200, 87 cities, 670 officers): 1 search, 37839 expanded cells, 90.7 ms
+PASS: 540 campaign AI assertions: pure/stable target selection, area friendly fire, rescue/immunity, siege, retreat/supply, reserves/formations, district permissions, hazards/detours and saved replay.
+200x200 offset map cold route: 64 ms
+PASS: 159354 lifecycle/national-grid assertions: actual v14 migration, annual arrival, mortality, task cleanup, commander replacement, pending succession guards/replay, execution, AI heirs, 40000 offset cells and import/save/path.
+PASS: 890 sourced-profile assertions: full 670 roster, relations, birth/appearance, temperament, atomic imports and saved edits.
+PASS: 209 battle-feedback assertions: cargo/capture/escape, immutable previews, single settlement, caps, save/replay, actual defeated-tile march and fire visibility errors.
+PASS: 45 prisoner escort assertions: movement, atomic entry, permanent city jail, rescue/transfer, carrier death/succession, ransom, v15 migration and invalid saves.
+PASS: 100 diplomacy assertions: actual allied expedition dispatch/return, pure previews, treaties/capacity/stale requests, atomic prisoner exchange, whole-force absorption/cargo/tasks, eight restored PK skills, v16 migration and deterministic saves.
+PASS: 112 facility combat assertions: normal/siege/fire, economy/occupancy/production, atomic rejection, route invalidation, v17 migration and v18 persistence.
+PASS: 137 mobile shortcut/content assertions: Lv3 construction, costs, rejection, saving, 42/18/12 cities, 670/180/120 officers, 3 factions, exact deployment and AI replay.
+Territory 200x200 / 87 sites: 36 ms
+PASS: 674 territory/AI assertions: catchments, capture/treaties, gates/ports, map bounds, ranged pressure, district budgets/fairness/save replay.
+18 multi-city turns + save replay: 80 ms
+42 cities / 670 officers next turn: 243 ms
+Synthetic axial 200x200 / 40 cities / 40 units next turn: 626 ms
+PASS: 105 strategic management assertions: v18 migration, settings/replay, real transfers/production/cargo, reserves/permissions, stable targets/siege lanes, national filters and performance.
+PASS: staff
+PASS: objective
+LEDGER turn 1: gold 121500 + income 0 = 121500; food 476000 + harvest 0 - city 2280 - convoy 0 = 473720
+LEDGER turn 2: gold 116700 + income 0 = 116700; food 473720 + harvest 0 - city 2080 - convoy 500 = 471140
+LEDGER turn 3: gold 115100 + income 4160 = 119260; food 471140 + harvest 0 - city 2080 - convoy 500 = 468560
+LEDGER turn 4: gold 115760 + income 0 = 115760; food 468560 + harvest 0 - city 2080 - convoy 500 = 465980
+LEDGER turn 5: gold 112360 + income 0 = 112360; food 465980 + harvest 0 - city 2240 - convoy 100 = 463640
+LEDGER turn 6: gold 109560 + income 6680 = 116240; food 463640 + harvest 0 - city 2240 - convoy 100 = 461300
+LEDGER turn 7: gold 110440 + income 0 = 110440; food 461300 + harvest 0 - city 2240 - convoy 100 = 458960
+LEDGER turn 8: gold 106640 + income 0 = 106640; food 458960 + harvest 0 - city 2280 - convoy 0 = 456680
+LEDGER turn 9: gold 104140 + income 9508 = 113648; food 456680 + harvest 67975 - city 2280 - convoy 0 = 522375
+v026 season 9: food=522375, gold=113648, tasks=3, source staff=7
+LEDGER turn 10: gold 112248 + income 0 = 112248; food 522375 + harvest 0 - city 2280 - convoy 0 = 520095
+LEDGER turn 11: gold 110148 + income 0 = 110148; food 520095 + harvest 0 - city 2280 - convoy 0 = 517815
+LEDGER turn 12: gold 108048 + income 10108 = 118156; food 517815 + harvest 0 - city 2280 - convoy 0 = 515535
+LEDGER turn 13: gold 116056 + income 0 = 116056; food 515535 + harvest 0 - city 2120 - convoy 400 = 513015
+LEDGER turn 14: gold 113956 + income 0 = 113956; food 513015 + harvest 0 - city 2120 - convoy 400 = 510495
+LEDGER turn 15: gold 113256 + income 11032 = 124288; food 510495 + harvest 0 - city 2120 - convoy 400 = 507975
+LEDGER turn 16: gold 122888 + income 0 = 122888; food 507975 + harvest 0 - city 2120 - convoy 400 = 505455
+LEDGER turn 17: gold 122888 + income 0 = 122888; food 505455 + harvest 0 - city 2280 - convoy 0 = 503175
+LEDGER turn 18: gold 122888 + income 11032 = 133920; food 503175 + harvest 69025 - city 2280 - convoy 0 = 569920
+v026 season 18: food=569920, gold=133920, tasks=4, source staff=6
+LEDGER turn 19: gold 133920 + income 0 = 133920; food 569920 + harvest 0 - city 2200 - convoy 200 = 567520
+LEDGER turn 20: gold 133920 + income 0 = 133920; food 567520 + harvest 0 - city 2200 - convoy 200 = 565120
+LEDGER turn 21: gold 133920 + income 11032 = 144952; food 565120 + harvest 0 - city 2200 - convoy 200 = 562720
+LEDGER turn 22: gold 143552 + income 0 = 143552; food 562720 + harvest 0 - city 2200 - convoy 200 = 560320
+LEDGER turn 23: gold 143552 + income 0 = 143552; food 560320 + harvest 0 - city 2280 - convoy 0 = 558040
+LEDGER turn 24: gold 143552 + income 11032 = 154584; food 558040 + harvest 0 - city 2280 - convoy 0 = 555760
+LEDGER turn 25: gold 151784 + income 0 = 151784; food 555760 + harvest 0 - city 2280 - convoy 0 = 553480
+LEDGER turn 26: gold 151784 + income 0 = 151784; food 553480 + harvest 0 - city 2280 - convoy 0 = 551200
+LEDGER turn 27: gold 151784 + income 11032 = 162816; food 551200 + harvest 69025 - city 2280 - convoy 0 = 617945
+v026 season 27: food=617945, gold=162816, tasks=5, source staff=7
+LEDGER turn 28: gold 160716 + income 0 = 160716; food 617945 + harvest 0 - city 2280 - convoy 0 = 615665
+LEDGER turn 29: gold 160716 + income 0 = 160716; food 615665 + harvest 0 - city 2280 - convoy 0 = 613385
+LEDGER turn 30: gold 160716 + income 11032 = 171748; food 613385 + harvest 0 - city 2280 - convoy 0 = 611105
+LEDGER turn 31: gold 168948 + income 0 = 168948; food 611105 + harvest 0 - city 2280 - convoy 0 = 608825
+LEDGER turn 32: gold 168948 + income 0 = 168948; food 608825 + harvest 0 - city 2280 - convoy 0 = 606545
+LEDGER turn 33: gold 168948 + income 11032 = 179980; food 606545 + harvest 0 - city 2280 - convoy 0 = 604265
+LEDGER turn 34: gold 179280 + income 0 = 179280; food 604265 + harvest 0 - city 2280 - convoy 0 = 601985
+LEDGER turn 35: gold 179280 + income 0 = 179280; food 601985 + harvest 0 - city 2280 - convoy 0 = 599705
+LEDGER turn 36: gold 179280 + income 11032 = 190312; food 599705 + harvest 69025 - city 2280 - convoy 0 = 666450
+v026 season 36: food=666450, gold=190312, tasks=5, source staff=7
+v026 campaign [initial defense=2000] turn 5 units=7 defender=16000 hp=2500 origins=[11, 12]
+v026 campaign [initial defense=2000] turn 10 units=8 defender=16000 hp=3000 origins=[11, 12]
+v026 campaign [initial defense=2000] turn 15 units=9 defender=16000 hp=3000 origins=[11, 12]
+v026 campaign [initial defense=2000] turn 20 units=8 defender=16000 hp=3000 origins=[11, 12]
+v026 campaign [initial defense=8000] turn 5 units=7 defender=16000 hp=8000 origins=[11, 12]
+v026 campaign [initial defense=8000] turn 10 units=8 defender=16000 hp=8000 origins=[11, 12]
+v026 campaign [initial defense=8000] turn 15 units=9 defender=16000 hp=8000 origins=[11, 12]
+v026 campaign [initial defense=8000] turn 20 units=8 defender=16000 hp=8000 origins=[11, 12]
+v026 campaign [initial defense=8000] turn 25 units=9 defender=0 hp=1600 origins=[11, 12]
+PASS: 1095 v026 logistics/campaign assertions.
+PASS v026 probe: fee
+PASS v026 probe: food
+PASS v026 probe: progress
+V027 LEDGER 1 gold=121500+0=121500 food=476000+0-2280-0=473720
+V027 LEDGER 2 gold=114500+0=114500 food=473720+0-2080-500=471140
+V027 LEDGER 3 gold=111100+5800=116900 food=471140+0-2080-500=468560
+V027 LEDGER 4 gold=112200+0=112200 food=468560+0-2080-500=465980
+V027 LEDGER 5 gold=112200+0=112200 food=465980+0-2080-500=463400
+V027 LEDGER 6 gold=112200+9548=121748 food=463400+0-2080-500=460820
+V027 LEDGER 7 gold=120748+0=120748 food=460820+0-2240-100=458480
+V027 LEDGER 8 gold=120748+0=120748 food=458480+0-2280-0=456200
+V027 LEDGER 9 gold=120748+10268=131016 food=456200+73475-2280-0=527395
+V027 LEDGER 10 gold=131016+0=131016 food=527395+0-2280-0=525115
+V027 LEDGER 11 gold=131016+0=131016 food=525115+0-2280-0=522835
+V027 LEDGER 12 gold=131016+10268=141284 food=522835+0-2280-0=520555
+V027 LEDGER 13 gold=141284+0=141284 food=520555+0-2120-400=518035
+V027 LEDGER 14 gold=141284+0=141284 food=518035+0-2040-600=515395
+V027 LEDGER 15 gold=141284+10268=151552 food=515395+0-2040-600=512755
+V027 LEDGER 16 gold=151552+0=151552 food=512755+0-2040-600=510115
+V027 LEDGER 17 gold=151552+0=151552 food=510115+0-2200-200=507715
+V027 LEDGER 18 gold=151552+10268=161820 food=507715+73475-2200-200=578790
+V027 LEDGER 19 gold=161820+0=161820 food=578790+0-2280-0=576510
+V027 LEDGER 20 gold=161820+0=161820 food=576510+0-2280-0=574230
+V027 LEDGER 21 gold=161820+10268=172088 food=574230+0-2280-0=571950
+V027 LEDGER 22 gold=172088+0=172088 food=571950+0-2280-0=569670
+V027 LEDGER 23 gold=172088+0=172088 food=569670+0-2280-0=567390
+V027 LEDGER 24 gold=172088+10268=182356 food=567390+0-2280-0=565110
+V027 LEDGER 25 gold=182356+0=182356 food=565110+0-2280-0=562830
+V027 LEDGER 26 gold=182356+0=182356 food=562830+0-2280-0=560550
+V027 LEDGER 27 gold=182356+10268=192624 food=560550+73475-2280-0=631745
+V027 LEDGER 28 gold=192624+0=192624 food=631745+0-2280-0=629465
+V027 LEDGER 29 gold=192624+0=192624 food=629465+0-2280-0=627185
+V027 LEDGER 30 gold=192624+10268=202892 food=627185+0-2280-0=624905
+V027 LEDGER 31 gold=202892+0=202892 food=624905+0-2280-0=622625
+V027 LEDGER 32 gold=202892+0=202892 food=622625+0-2280-0=620345
+V027 LEDGER 33 gold=202892+10268=213160 food=620345+0-2280-0=618065
+V027 LEDGER 34 gold=213160+0=213160 food=618065+0-2280-0=615785
+V027 LEDGER 35 gold=213160+0=213160 food=615785+0-2280-0=613505
+V027 LEDGER 36 gold=213160+10268=223428 food=613505+73475-2280-0=684700
+V027 LEDGER 37 gold=223428+0=223428 food=684700+0-2280-0=682420
+V027 LEDGER 38 gold=223428+0=223428 food=682420+0-2280-0=680140
+V027 LEDGER 39 gold=223428+10268=233696 food=680140+0-2280-0=677860
+V027 LEDGER 40 gold=233696+0=233696 food=677860+0-2280-0=675580
+V027 LEDGER 41 gold=233696+0=233696 food=675580+0-2280-0=673300
+V027 LEDGER 42 gold=233696+10268=243964 food=673300+0-2280-0=671020
+V027 LEDGER 43 gold=243964+0=243964 food=671020+0-2280-0=668740
+V027 LEDGER 44 gold=243964+0=243964 food=668740+0-2280-0=666460
+V027 LEDGER 45 gold=243964+10268=254232 food=666460+73475-2280-0=737655
+V027 LEDGER 46 gold=254232+0=254232 food=737655+0-2280-0=735375
+V027 LEDGER 47 gold=254232+0=254232 food=735375+0-2280-0=733095
+V027 LEDGER 48 gold=254232+10268=264500 food=733095+0-2280-0=730815
+V027 LEDGER 49 gold=264500+0=264500 food=730815+0-2280-0=728535
+V027 LEDGER 50 gold=264500+0=264500 food=728535+0-2280-0=726255
+V027 LEDGER 51 gold=264500+10268=274768 food=726255+0-2280-0=723975
+V027 LEDGER 52 gold=274768+0=274768 food=723975+0-2280-0=721695
+V027 LEDGER 53 gold=274768+0=274768 food=721695+0-2280-0=719415
+V027 LEDGER 54 gold=274768+10268=285036 food=719415+73475-2280-0=790610
+V027 LEDGER 55 gold=285036+0=285036 food=790610+0-2280-0=788330
+V027 LEDGER 56 gold=285036+0=285036 food=788330+0-2280-0=786050
+V027 LEDGER 57 gold=285036+10268=295304 food=786050+0-2280-0=783770
+V027 LEDGER 58 gold=295304+0=295304 food=783770+0-2280-0=781490
+V027 LEDGER 59 gold=295304+0=295304 food=781490+0-2280-0=779210
+V027 LEDGER 60 gold=295304+10268=305572 food=779210+0-2280-0=776930
+V027 LEDGER 61 gold=305572+0=305572 food=776930+0-2280-0=774650
+V027 LEDGER 62 gold=305572+0=305572 food=774650+0-2280-0=772370
+V027 LEDGER 63 gold=305572+10268=315840 food=772370+73475-2280-0=843565
+V027 LEDGER 64 gold=315840+0=315840 food=843565+0-2280-0=841285
+V027 LEDGER 65 gold=315840+0=315840 food=841285+0-2280-0=839005
+V027 LEDGER 66 gold=315840+10268=326108 food=839005+0-2280-0=836725
+V027 LEDGER 67 gold=326108+0=326108 food=836725+0-2280-0=834445
+V027 LEDGER 68 gold=326108+0=326108 food=834445+0-2280-0=832165
+V027 LEDGER 69 gold=326108+10268=336376 food=832165+0-2280-0=829885
+V027 LEDGER 70 gold=336376+0=336376 food=829885+0-2280-0=827605
+V027 LEDGER 71 gold=336376+0=336376 food=827605+0-2280-0=825325
+V027 LEDGER 72 gold=336376+10268=346644 food=825325+73475-2280-0=896520
+v026 campaign [initial defense=8000] turn 5 units=6 defender=16000 hp=8000 origins=[11, 12]
+v026 campaign [initial defense=8000] turn 10 units=6 defender=16000 hp=8000 origins=[11, 12]
+v026 campaign [initial defense=8000] turn 15 units=6 defender=16000 hp=8000 origins=[11, 12]
+v026 campaign [initial defense=8000] turn 20 units=6 defender=14164 hp=6364 origins=[11, 12]
+PASS: 5420 v027 tactical logistics assertions.

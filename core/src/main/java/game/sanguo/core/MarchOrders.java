@@ -36,6 +36,7 @@ public final class MarchOrders {
         if(w.commandsBlocked())return "请先完成当前对局或君主继承";
         if(w.gameOver())return "本局已结束";
         if(u==null||u.owner!=w.active)return "请选择当前势力的部队";
+        if(u instanceof Domestic.Mission&&!w.domestic.commandable((Domestic.Mission)u))return "该运输队由委任军团指挥";
         if(!w.districts.directUnit(u.id))return "该部队由委任军团指挥";
         if(w.fieldworks.project(u.id)!=null)return "请先中止部队施工";
         return null;
@@ -57,7 +58,10 @@ public final class MarchOrders {
         return "地块 "+o.tile;
     }
     public Plan preview(int id,Hex tile){
-        World.Unit u=w.unit(id);Order o=null;
+        return preview(w.unit(id),tile);
+    }
+    public Plan preview(World.Unit u,Hex tile){
+        Order o=null;
         if(tile!=null&&w.inside(tile)){
             World.City city=w.cityAt(tile);World.Unit unit=w.unitAt(tile);War.Structure structure=w.war.at(tile);
             o=city!=null?new Order(Kind.CITY,tile,city.id,city.owner):unit!=null?new Order(Kind.UNIT,tile,unit.id,unit.owner):structure!=null?new Order(Kind.STRUCTURE,tile,-1,structure.owner):new Order(Kind.TILE,tile,-1,-1);
@@ -65,6 +69,8 @@ public final class MarchOrders {
         }
         return plan(u,o,true);
     }
+    Plan convoyRoute(Domestic.Mission m){World.City c=w.city(m.targetCity);return plan(m,c==null?null:new Order(Kind.CITY,c.hex,c.id,c.owner),false);}
+    Plan convoyQueueRoute(Domestic.Mission m){World.City c=w.city(m.targetCity);return plan(m,c==null?null:new Order(Kind.CITY,c.hex,c.id,c.owner),false,true);}
     /** Read-only current route for the map, including paused orders. */
     public Plan current(World.Unit u){return plan(u,u==null?null:u.march,false);}
     /** Explain a target obstruction without changing the world or spending an action. */
@@ -82,15 +88,16 @@ public final class MarchOrders {
     private int budget(World.Unit u,Hex h,int[] budgets){
         int mode=w.army.water(h)?1:0;if(budgets[mode]<0)budgets[mode]=w.war.movementAt(u,h);return budgets[mode];
     }
-    private Plan plan(World.Unit u,Order o,boolean snapshot){
+    private Plan plan(World.Unit u,Order o,boolean snapshot){return plan(u,o,snapshot,false);}
+    private Plan plan(World.Unit u,Order o,boolean snapshot,boolean queued){
         int[] budgets={-1,-1};
-        String problem=error(u);Hex destination=target(o);List<Hex> path=new ArrayList<>();int cost=0,stepsNow=0,turns=0;
+        String problem=snapshot?error(u):u==null?"请选择部队":null;Hex destination=target(o);List<Hex> path=new ArrayList<>();int cost=0,stepsNow=0,turns=0;
         if(problem==null&&(o==null||destination==null||!w.inside(destination)))problem="目标已消失或归属改变，请重新选择";
         if(problem==null&&o.kind==Kind.UNIT&&o.targetId==u.id)problem="请选择其他目标";
         if(problem==null&&o.kind==Kind.TILE)problem=tileError(u,destination);
         if(problem==null){
             Set<Hex> blocked=new HashSet<>();for(World.City c:w.cities)blocked.add(c.hex);
-            for(World.Unit other:w.units)if(other.id!=u.id)blocked.add(other.hex);
+            for(World.Unit other:w.fieldUnits())if(other.id!=u.id&&(!queued||other.owner!=u.owner))blocked.add(other.hex);
             for(Domestic.Facility f:w.domestic.facilities)blocked.add(f.hex);
             for(War.Structure s:w.war.structures())blocked.add(s.hex);
             for(War.Fire f:w.war.fires())blocked.add(f.hex);
@@ -127,19 +134,22 @@ public final class MarchOrders {
         if(plan==null||!plan.valid()||plan.snapshot==null)return w.fail(plan==null?"请先选择行军目标":plan.error==null?"请重新预览路线":plan.error);
         try{if(!Arrays.equals(plan.snapshot,SaveCodec.encode(w)))return w.fail("局面已变化，请重新预览路线");}catch(IOException e){return w.fail("局面校验失败");}
         World.Unit u=w.unit(plan.unitId);String problem=error(u);if(problem!=null)return w.fail(problem);
+        if(u instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)u;if(plan.order.kind==Kind.CITY&&plan.order.owner==u.owner){String permission=w.districts.dispatchError(m.sourceCity,plan.order.targetId,true);if(permission!=null)return w.fail(permission);m.targetCity=plan.order.targetId;m.stopped=false;}else m.stopped=true;}
         u.march=new Order(plan.order.kind,plan.order.tile,plan.order.targetId,plan.order.owner);advance(u);
         return w.success(w.officer(u.officerId).name+" · "+(u.march==null?"已抵达目标附近，可继续下令":u.march.paused.isEmpty()?"向"+label(u.march)+"行军，下旬自动继续":"行军暂停："+u.march.paused));
     }
     public World.Result stop(int id){
         World.Unit u=w.unit(id);if(u==null||u.owner!=w.active||w.commandsBlocked())return w.fail("当前不能变更行军指令");
+        if(u instanceof Domestic.Mission&&!w.domestic.commandable((Domestic.Mission)u))return w.fail("该运输队由委任军团指挥");
         if(!w.districts.directUnit(u.id))return w.fail("该部队由委任军团指挥");
+        if(u instanceof Domestic.Mission){((Domestic.Mission)u).stopped=true;u.march=null;return w.success("运输已停止，货物保留并继续耗粮");}
         if(u.march==null)return w.fail("部队没有行军指令");u.march=null;return w.success(w.officer(u.officerId).name+"停止自动行军");
     }
     void advanceAll(){
         if(w.gameOver())return;
         for(World.Unit u:new ArrayList<>(w.units))if(u.owner==w.active&&u.march!=null)advance(u);
     }
-    private void advance(World.Unit u){
+    void advance(World.Unit u){
         Order order=u.march;if(order==null)return;
         if(u.acted){order.paused="本旬已行动，下旬继续";return;}
         if(u.status!=War.Status.NORMAL){order.paused="异常状态，恢复后继续";return;}
@@ -169,7 +179,7 @@ public final class MarchOrders {
     }
     void validate()throws IOException {
         for(World.Unit u:w.units)if(u.march!=null){Order o=u.march;
-            if(o.kind==null||o.tile==null||!w.inside(o.tile)||o.paused==null||o.paused.length()>300||o.owner< -1||o.owner>=w.factions.length||o.targetId< -1||o.targetId>10000000)throw new IOException("行军目标无效");
+            if(o.kind==null||o.tile==null||!w.inside(o.tile)||o.paused==null||o.paused.length()>300||o.owner< -1||o.owner>=w.factions.length||o.targetId< -1||o.targetId>=20000000)throw new IOException("行军目标无效");
             if((o.kind==Kind.CITY||o.kind==Kind.UNIT)&&o.targetId<0||o.kind==Kind.UNIT&&o.targetId==u.id)throw new IOException("行军目标引用无效");
         }
     }

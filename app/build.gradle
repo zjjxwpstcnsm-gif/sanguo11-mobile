@@ -7,8 +7,8 @@ android {
         minSdk 26
         targetSdk 35
         testInstrumentationRunner 'game.sanguo.mobile.GameSmokeRunner'
-        versionCode 26
-        versionName '0.26.0-logistics-campaign-dev'
+        versionCode 27
+        versionName '0.27.0-tactical-logistics-dev'
     }
     signingConfigs {
         debug {

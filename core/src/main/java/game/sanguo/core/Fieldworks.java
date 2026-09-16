@@ -39,7 +39,7 @@ public final class Fieldworks {
         return w.skills.has(u,Skill.ZHUCHENG)?rate*2:rate;
     }
     public String buildError(int unit,War.StructureKind kind,Hex target,int direction){
-        World.Unit u=w.unit(unit);String error=w.orders.error(u);if(error!=null)return error;
+        World.Unit u=w.unit(unit);String error=w.orders.combatError(u);if(error!=null)return error;
         if(kind==null||!available(u.owner).contains(kind))return "需要前置技巧，或该设施已被强化版替代";
         if(direction<0||direction>5)return "请选择六个有效方向之一";
         if(project(unit)!=null)return "部队正在施工，请先中止";
@@ -60,7 +60,7 @@ public final class Fieldworks {
         return w.success("设置"+kind.label+" · "+(s.complete?"已建成":"施工"+s.hp+"/"+kind.hp+"，后续自动补修"));
     }
     public World.Result repair(int unit,int structure){
-        World.Unit u=w.unit(unit);String error=w.orders.error(u);if(error!=null)return w.fail(error);War.Structure s=byId(structure);
+        World.Unit u=w.unit(unit);String error=w.orders.combatError(u);if(error!=null)return w.fail(error);War.Structure s=byId(structure);
         if(s==null||s.owner!=u.owner||u.hex.distance(s.hex)!=1||s.hp>=s.kind.hp||s.builder>=0&&s.builder!=unit||project(unit)!=null&&project(unit)!=s)return w.fail("请选择邻接、受损且无其他部队施工的己方设施");
         u.acted=true;s.builder=unit;advance(s,u);return w.success("补修"+s.kind.label+" · 耐久"+s.hp+"/"+s.kind.hp);
     }
@@ -70,7 +70,7 @@ public final class Fieldworks {
         s.builder=-1;return w.success("已中止施工，保留当前设施与耐久，费用不退还");
     }
     public World.Result withdraw(int unit,int city,int gold){
-        World.Unit u=w.unit(unit);World.City c=w.city(city);String error=w.orders.error(u);if(error!=null)return w.fail(error);
+        World.Unit u=w.unit(unit);World.City c=w.city(city);String error=w.orders.combatError(u);if(error!=null)return w.fail(error);
         if(c==null||c.owner!=u.owner||u.hex.distance(c.hex)!=1||gold<=0||gold>10000||u.gold>10000-gold||c.gold<gold)return w.fail("需要相邻己方据点、足够金及部队携金容量（10000）");
         c.gold-=gold;u.gold+=gold;u.acted=true;return w.success("部队补充"+gold+"金");
     }
@@ -106,7 +106,7 @@ public final class Fieldworks {
     void towers(){for(War.Structure s:new ArrayList<>(w.war.structures))if(s.complete){
         int min=1,max=s.kind==War.StructureKind.ARROW_TOWER?2:s.kind==War.StructureKind.CROSSBOW_TOWER?3:s.kind==War.StructureKind.CATAPULT_TOWER?3:0;
         if(s.kind==War.StructureKind.CATAPULT_TOWER)min=2;if(max==0)continue;
-        World.Unit target=null;for(World.Unit u:w.units){int d=s.hex.distance(u.hex);if(d>=min&&d<=max&&w.campaign.hostile(s.owner,u.owner)&&landTarget(s.owner,u.hex)&&(target==null||u.id<target.id))target=u;}
+        World.Unit target=null;for(World.Unit u:w.fieldUnits()){int d=s.hex.distance(u.hex);if(d>=min&&d<=max&&w.campaign.hostile(s.owner,u.owner)&&landTarget(s.owner,u.hex)&&(target==null||u.id<target.id))target=u;}
         if(target!=null){int damage=s.kind==War.StructureKind.CATAPULT_TOWER?300:200;target.troops=Math.max(0,target.troops-damage);if(target.troops==0)w.removeUnit(target);w.note(s.kind.label+"射击敌军，损失"+damage+"兵");}
     }}
     boolean landTarget(int owner,Hex h){return w.army.water(h)||landCost(h,World.Weapon.SPEAR,owner)>0;}

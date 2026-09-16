@@ -53,3 +53,5 @@ java -cp core/build/check:core/src/main/resources:core/src/test/resources game.s
 for mode in fee food progress; do
   java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.LogisticsRegressionProbe "$mode"
 done
+
+java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.TacticalLogisticsTest

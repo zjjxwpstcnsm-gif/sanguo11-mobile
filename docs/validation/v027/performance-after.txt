@@ -1,0 +1,2 @@
+42 cities / 670 officers: warmup 385.44 ms; real turns 229.76 / 184.00 / 177.34 ms; separate AI action scoring 0.01 ms; separate multi-goal path 0.00 ms (0 searches/0 cells); nine UI filters 13.28 ms (66 rows)
+synthetic 200x200 / 40 cities / 40 armies / 4 transports / 4 available guards: warmup 773.72 ms; real turns 646.27 / 664.85 / 648.78 ms; separate AI action scoring 3.04 ms; separate multi-goal path 30.91 ms (1 searches/38594 cells); nine UI filters 44.44 ms (100 rows)
