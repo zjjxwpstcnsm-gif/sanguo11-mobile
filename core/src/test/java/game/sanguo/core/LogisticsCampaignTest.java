@@ -138,20 +138,24 @@ public final class LogisticsCampaignTest {
         }
         check(Arrays.equals(expected,stock(after)),"all command costs, produced equipment, purchases and search income reconcile: "+after.log);
     }
-    private static void campaign()throws Exception{
-        World w=fixture();w.city(20).troops=16000;w.city(20).defense=2000;w.officers.removeIf(o->o.owner==1);
+    private static void campaign()throws Exception{campaign(2000);campaign(8000);}
+    private static void campaign(int defense)throws Exception{
+        World w=fixture();w.city(20).troops=16000;w.city(20).baseDefense=Math.max(3000,defense);w.city(20).defense=defense;w.officers.removeIf(o->o.owner==1);
         for(int i=30;i<36;i++)w.officers.add(new World.Officer(i,"援将"+i,0,12,85,85,80,70,80));
         for(World.City c:w.cities)if(c.owner==0){c.troops=42000;c.food=240000;c.gold=40000;}
         w.city(11).equipment[World.Weapon.RAM.ordinal()]=2;w.officer(4).aptitude[4]=3;w.city(12).equipment[2]=20000;
         for(int q=23;q<=24;q++)for(int rr=0;rr<w.height;rr++)w.terrain[q][rr]=rr==15?World.Terrain.PLAIN:World.Terrain.MOUNTAIN;
         ok(w.districts.configure(-1,"联合攻城",new int[]{11,12},Districts.Policy.CITY_ATTACK,20,-1,true,true));
-        Set<Integer> departed=new HashSet<>(),weapons=new HashSet<>();boolean staging=false,crossed=false,damage=false;int minDef=w.city(20).defense;
+        check(w.units.isEmpty(),"entire campaign starts inside cities, no prepositioned armies");
+        Set<String> engines=new HashSet<>();Set<Integer> departed=new HashSet<>(),weapons=new HashSet<>();boolean staging=false,crossed=false,damage=false,siegeCrossed=false,siegeHit=false,joined=false;int minDef=w.city(20).defense;
         for(int t=0;t<40&&w.city(20).owner==1;t++){
-            ok(w.nextTurn());SaveCodec.validate(w);
-            for(World.Unit u:w.units)if(u.owner==0){AiOrders.Order o=w.aiOrders.orders.get(u.id);if(o!=null){departed.add(o.home);staging|=o.staging;}weapons.add(u.weapon.ordinal());crossed|=u.hex.q>=25;}
+            w.log.clear();ok(w.nextTurn());SaveCodec.validate(w);
+            for(World.Unit u:w.units)if(u.owner==0){AiOrders.Order o=w.aiOrders.orders.get(u.id);if(o!=null){departed.add(o.home);staging|=o.staging;}weapons.add(u.weapon.ordinal());crossed|=u.hex.q>=25;if(Army.siegeWeapon(u.weapon)){engines.add(w.officer(u.officerId).name);siegeCrossed|=u.hex.q>=25;}
+                Set<Integer> origins=new HashSet<>();int assembled=0;for(World.Unit ally:w.units){AiOrders.Order plan=w.aiOrders.orders.get(ally.id);if(ally.owner==0&&plan!=null&&plan.target==20&&ally.hex.distance(u.hex)<=8){origins.add(plan.home);assembled+=ally.troops;}}joined|=origins.contains(11)&&origins.contains(12)&&assembled>=20000;}
+            for(String line:w.log)for(String name:engines)siegeHit|=line.startsWith(name+"攻城，");
             damage|=w.city(20).defense<minDef||w.city(20).troops<16000-w.turn*400;minDef=Math.min(minDef,w.city(20).defense);
-            if(t%5==4)System.out.println("v026 campaign turn "+w.turn+" units="+w.units.size()+" defender="+w.city(20).troops+" hp="+w.city(20).defense+" origins="+departed);
+            if(t%5==4)System.out.println("v026 campaign [initial defense="+defense+"] turn "+w.turn+" units="+w.units.size()+" defender="+w.city(20).troops+" hp="+w.city(20).defense+" origins="+departed);
         }
-        check(departed.contains(11)&&departed.contains(12),"actual departures from two cities");check(staging,"actual staging observed");check(crossed,"real march traverses one tile choke");check(damage||w.city(20).owner==0,"actual mixed campaign causes combat result");check(weapons.size()>=2,"mixed weapon departures");
+        check(departed.contains(11)&&departed.contains(12),"actual departures from two cities");check(staging,"actual staging observed");check(crossed,"real march traverses one tile choke");check(damage||w.city(20).owner==0,"actual mixed campaign causes combat result");check(weapons.size()>=2,"mixed weapon departures");check(joined,"two real source armies actually meet with enough combined force");check(siegeCrossed,"real siege engine traverses choke from rear city");if(defense==8000)check(siegeHit,"fortified city receives an actual siege-engine attack after the full march");
     }
 }

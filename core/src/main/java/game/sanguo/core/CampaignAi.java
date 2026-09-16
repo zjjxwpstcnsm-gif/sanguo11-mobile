@@ -31,7 +31,7 @@ public final class CampaignAi {
     }
     private final World w;
     private Route selectedRoute;
-    private boolean actedProductively;
+    private boolean actedProductively,formationWait;
     public CampaignAi(World w){this.w=Objects.requireNonNull(w);}
     private List<World.Unit> units(){List<World.Unit> out=new ArrayList<>(w.units);out.sort(Comparator.comparingInt(u->u.id));return out;}
     private List<World.City> cities(){List<World.City> out=new ArrayList<>(w.cities);out.sort(Comparator.comparingInt(c->c.id));return out;}
@@ -349,8 +349,8 @@ public final class CampaignAi {
     /** One weighted flood answers every candidate objective for this decision. No cache survives a command. */
     private Map<Hex,Route> routes(World.Unit u,Collection<Hex> goals,int range){
         Map<Hex,Route> result=new HashMap<>();if(goals.isEmpty())return result;routeSearches++;
-        Set<Hex> blocked=new HashSet<>();for(World.City c:w.cities)blocked.add(c.hex);
-        for(World.Unit other:w.units)if(other.id!=u.id)blocked.add(other.hex);
+        Set<Hex> blocked=new HashSet<>(),friendly=new HashSet<>();for(World.City c:w.cities)blocked.add(c.hex);
+        for(World.Unit other:w.units)if(other.id!=u.id){if(other.owner==u.owner)friendly.add(other.hex);else blocked.add(other.hex);}
         for(Domestic.Facility f:w.domestic.facilities)blocked.add(f.hex);
         for(War.Structure s:w.war.structures())blocked.add(s.hex);
         for(WorldEvents.Camp c:w.events.camps())blocked.add(c.hex);
@@ -366,14 +366,14 @@ public final class CampaignAi {
         queue.add(new Step(u.hex,0));costs.put(u.hex,0);
         while(!queue.isEmpty()){
             Step s=queue.remove();if(costs.get(s.h)!=s.cost)continue;routeExpanded++;
-            for(Hex goal:arrivals.getOrDefault(s.h,Collections.emptyList()))if(!result.containsKey(goal)){
+            for(Hex goal:arrivals.getOrDefault(s.h,Collections.emptyList()))if(!result.containsKey(goal)&&!friendly.contains(s.h)){
                 LinkedList<Hex> path=new LinkedList<>();for(Hex h=s.h;h!=null;h=parents.get(h))path.addFirst(h);
                 result.put(goal,new Route(path,s.cost));
             }
             if(result.size()==targets.size())break;
             for(Hex h:s.h.neighbors()){
                 if(blocked.contains(h))continue;int step=w.army.moveCost(u,s.h,h);if(step<1)continue;
-                int cost=s.cost+step+hazard(u,h)+(zone.test(h)?3:0);
+                int cost=s.cost+step+hazard(u,h)+(zone.test(h)?3:0)+(friendly.contains(h)?3:0);
                 if(cost>=costs.getOrDefault(h,Integer.MAX_VALUE))continue;
                 costs.put(h,cost);parents.put(h,s.h);queue.add(new Step(h,cost));
             }
@@ -383,7 +383,7 @@ public final class CampaignAi {
     private boolean follow(World.Unit u,Route route){
         if(route==null||route.path.size()<2)return false;int used=0;List<Hex> prefix=new ArrayList<>();prefix.add(u.hex);
         for(int i=1;i<route.path.size();i++){
-            Hex h=route.path.get(i);used+=w.army.moveCost(u,route.path.get(i-1),h);if(used>w.orders.remaining(u))break;
+            Hex h=route.path.get(i);if(w.unitAt(h)!=null)break;used+=w.army.moveCost(u,route.path.get(i-1),h);if(used>w.orders.remaining(u))break;
             prefix.add(h);if(w.advancedBattle.zone(u,h))break;
         }
         if(prefix.size()<2)return false;
@@ -436,10 +436,10 @@ public final class CampaignAi {
     /** Shared by computer factions and delegated districts. Attack permission is checked before every offensive action. */
     public void runUnit(World.Unit u,boolean attack,Predicate<World.City> objectives,Predicate<World.City> homes){
         if(w.orders.error(u)!=null)return;
-        AiOrders.Order order=w.aiOrders.get(u);Hex before=u.hex;actedProductively=false;
+        AiOrders.Order order=w.aiOrders.get(u);Hex before=u.hex;actedProductively=false;formationWait=false;
         if(order.home<0||w.city(order.home).owner!=u.owner){World.City home=null;for(World.City c:cities())if(homes.test(c)&&(home==null||u.hex.distance(c.hex)<u.hex.distance(home.hex)))home=c;order.home=home==null?-1:home.id;}
         stepUnit(u,attack,objectives,homes,order);
-        if(w.unit(u.id)!=null&&order.turn!=w.turn){order.stalled=before.equals(u.hex)&&!actedProductively?Math.min(100,order.stalled+1):0;order.last=u.hex;order.turn=w.turn;}
+        if(w.unit(u.id)!=null&&order.turn!=w.turn){order.stalled=before.equals(u.hex)&&!actedProductively&&!formationWait?Math.min(100,order.stalled+1):0;order.last=u.hex;order.turn=w.turn;}
     }
 
     private boolean yieldFriendlyLane(World.Unit u){
@@ -470,8 +470,9 @@ public final class CampaignAi {
         if(!attack||!order.staging&&order.stalled>=3){order.target=-1;if(retreat(u,homes)){if(w.unit(u.id)!=null&&!u.acted)w.war.waitUnit(u.id);return;}}
         if(order.staging&&order.target>=0&&order.home>=0&&incoming(w.city(order.home))==0){
             int assembled=0;for(World.Unit ally:w.units){AiOrders.Order plan=w.aiOrders.orders.get(ally.id);if(ally.owner==u.owner&&plan!=null&&plan.target==order.target&&ally.hex.distance(u.hex)<=8)assembled+=ally.troops;}
-            if(assembled<resistance(w.city(order.target))&&foodTurns(u)>=6&&(order.stalled<6||reinforcementsApproaching(u,order))){
-                World.City rally=w.city(order.home);for(World.Unit ally:w.units){AiOrders.Order plan=w.aiOrders.orders.get(ally.id);if(ally.owner==u.owner&&plan!=null&&plan.target==order.target&&plan.home>=0&&w.city(plan.home).owner==u.owner&&plan.home<rally.id)rally=w.city(plan.home);}
+            boolean approaching=reinforcementsApproaching(u,order);
+            if((assembled<resistance(w.city(order.target))||approaching)&&foodTurns(u)>=6&&(order.stalled<6||approaching)){
+                World.City rally=w.city(order.home);for(World.Unit ally:w.units){AiOrders.Order plan=w.aiOrders.orders.get(ally.id);if(ally.owner==u.owner&&plan!=null&&plan.target==order.target&&plan.home>=0&&w.city(plan.home).owner==u.owner){World.City candidate=w.city(plan.home),target=w.city(order.target);if(candidate.hex.distance(target.hex)<rally.hex.distance(target.hex)||candidate.hex.distance(target.hex)==rally.hex.distance(target.hex)&&candidate.id<rally.id)rally=candidate;}}
                 if(u.hex.distance(rally.hex)>4){follow(u,route(u,rally.hex,3));w.war.waitUnit(u.id);return;}
                 // Clear deployment exits while gathering. This is an ordinary paid movement, never teleportation.
                 World.City home=rally;if(u.hex.distance(home.hex)<=1)for(Hex h:w.orders.reachable(u).keySet())if(h.distance(home.hex)==3&&w.unitAt(h)==null){w.orders.execute(w.orders.previewMove(u.id,h));break;}
@@ -498,6 +499,17 @@ public final class CampaignAi {
                 if(target!=null){order.target=target.id;best=selectedRoute;}
                 else if(order.target>=0&&order.stalled<3&&w.campaign.hostile(u.owner,w.city(order.target).owner)){if(yieldFriendlyLane(u)){w.war.waitUnit(u.id);return;}w.war.waitUnit(u.id);return;}
                 else order.target=-1;
+            }
+        }
+        if(best!=null&&order.target>=0&&!order.staging&&!Army.siegeWeapon(u.weapon)){
+            World.City target=w.city(order.target);
+            for(World.Unit engine:w.units){AiOrders.Order plan=w.aiOrders.orders.get(engine.id);int gap=u.hex.distance(engine.hex);
+                if(engine.owner!=u.owner||!Army.siegeWeapon(engine.weapon)||plan==null||plan.staging||plan.target!=order.target||plan.stalled>=3||gap>16||engine.hex.distance(target.hex)<=u.hex.distance(target.hex)||foodTurns(engine)<6)continue;
+                int exits=0;for(Hex h:u.hex.neighbors())if(w.army.moveCost(u,u.hex,h)>0)exits++;
+                if(exits<=2)continue; // Clear a narrow passage before waiting for the engine.
+                int limit=1;while(limit<best.path.size()&&best.path.get(limit).distance(engine.hex)<=4)limit++;
+                if(limit==1){yieldFriendlyLane(u);formationWait=true;w.war.waitUnit(u.id);return;}
+                best=new Route(new ArrayList<>(best.path.subList(0,limit)),best.cost);break;
             }
         }
         if(best!=null)follow(u,best);else retreat(u,homes);

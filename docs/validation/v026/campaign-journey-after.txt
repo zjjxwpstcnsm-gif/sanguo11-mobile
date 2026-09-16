@@ -1,0 +1,10 @@
+v026 campaign [initial defense=2000] turn 5 units=7 defender=16000 hp=2500 origins=[11, 12]
+v026 campaign [initial defense=2000] turn 10 units=8 defender=16000 hp=3000 origins=[11, 12]
+v026 campaign [initial defense=2000] turn 15 units=9 defender=16000 hp=3000 origins=[11, 12]
+v026 campaign [initial defense=2000] turn 20 units=8 defender=16000 hp=3000 origins=[11, 12]
+v026 campaign [initial defense=8000] turn 5 units=7 defender=16000 hp=8000 origins=[11, 12]
+v026 campaign [initial defense=8000] turn 10 units=8 defender=16000 hp=8000 origins=[11, 12]
+v026 campaign [initial defense=8000] turn 15 units=9 defender=16000 hp=8000 origins=[11, 12]
+v026 campaign [initial defense=8000] turn 20 units=8 defender=16000 hp=8000 origins=[11, 12]
+v026 campaign [initial defense=8000] turn 25 units=9 defender=0 hp=1600 origins=[11, 12]
+PASS: 1095 v026 logistics/campaign assertions.

@@ -49,3 +49,4 @@ v0.25 baseline: 42-city/670-officer=479; 200x200/40-city/40-unit=2138.
 v0.26 before optimization: 405 / 2165.
 v0.26 after optimization: 230 / 652.
 Remaining cost: weighted flood HashMap/PriorityQueue work and movement-cost checks; no persistent path cache introduced.
+Final full-journey coordination build, same local regression: 367 / 817 ms. Added soft planning through temporary friendly occupancy; actual moves stop before the occupied tile.
