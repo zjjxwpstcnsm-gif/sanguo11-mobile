@@ -39,6 +39,7 @@ final class ArmyUi {
         QuantityControl food=new QuantityControl(a,"粮食",initial,Math.min(c.food,1000000),Math.min(c.food,initial*2));
         QuantityControl gold=new QuantityControl(a,"金钱",0,Math.min(c.gold,10000),0);
         if(reusable){troops.restoreValue(previous.getString("troops",troops.draftValue()));food.restoreValue(previous.getString("food",food.draftValue()));gold.restoreValue(previous.getString("gold",gold.draftValue()));}
+        if(troops.valid())food.bounds(troops.value(),Math.min(c.food,1000000));
         StringBuilder crew=new StringBuilder("主将 "+leader.name+" · "+Skill.label(leader.skillId));for(int id:deputies){World.Officer o=w.officer(id);if(o!=null)crew.append("\n副将 ").append(o.name).append(" · ").append(Skill.label(o.skillId));}form.addView(a.text(crew.toString(),13,a.paper));
         TextView summary=a.text("",13,a.gold);form.addView(summary);
         form.addView(troops);form.addView(food);form.addView(gold);

@@ -88,8 +88,12 @@ public final class MainActivity extends Activity {
         battleBanner=text("",13,paper);battleBanner.setMaxLines(2);battleBanner.setEllipsize(android.text.TextUtils.TruncateAt.END);
         battleBanner.setPadding(dp(12),dp(6),dp(12),dp(6));battleBanner.setBackgroundColor(0xff30443b);battleBanner.setVisibility(View.GONE);
         battleBanner.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);
-        battleBanner.setOnClickListener(v->new AlertDialog.Builder(this).setTitle("战斗结果").setMessage(lastBattleReport)
-            .setPositiveButton("返回",null).setNegativeButton("定位发生地点",(d,n)->locateBattleReport()).setNeutralButton("收起战果",(d,n)->battleBanner.setVisibility(View.GONE)).show());
+        battleBanner.setOnClickListener(v->{
+            AlertDialog.Builder report=new AlertDialog.Builder(this).setTitle(reportLocation==null?"操作结果":"战斗结果").setMessage(lastBattleReport)
+                .setPositiveButton("返回",null).setNeutralButton("收起战果",(d,n)->battleBanner.setVisibility(View.GONE));
+            if(reportLocation!=null&&battleReportWorld==world)report.setNegativeButton("定位发生地点",(d,n)->locateBattleReport());
+            report.show();
+        });
         root.addView(battleBanner,new LinearLayout.LayoutParams(-1,-2));
         turnBanner=text("",13,paper);turnBanner.setPadding(dp(12),dp(5),dp(12),dp(5));turnBanner.setMaxLines(2);turnBanner.setBackgroundColor(0xff243e4b);turnBanner.setVisibility(View.GONE);turnBanner.setContentDescription("查看本旬结算摘要");turnBanner.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);turnBanner.setOnClickListener(v->showTurnReport());root.addView(turnBanner,new LinearLayout.LayoutParams(-1,-2));
         body.addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->{if(r-l!=or-ol||b-t!=ob-ot)layoutPanels();});
@@ -340,10 +344,10 @@ public final class MainActivity extends Activity {
     private void apply(World.Result result){
         if(!result.ok)message("命令未执行",result.message);
         if(result.ok){clearTacticPreview();pendingMarch=null;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();pickTitle="";}
-        if(result.ok&&result.feedback==World.Feedback.NONE){lastBattleReport=result.message;battleReportWorld=world;reportLocation=null;battleBanner.setText(result.message+" · 点此详情");battleBanner.setVisibility(View.VISIBLE);}
+        if(result.ok&&result.feedback==World.Feedback.NONE){lastBattleReport=result.message;battleReportWorld=world;reportLocation=null;battleBanner.setText("结果 · 点此展开\n"+result.message);battleBanner.setVisibility(View.VISIBLE);}
         if(result.ok&&result.feedback!=World.Feedback.NONE){
             lastBattleReport=result.message;battleReportWorld=world;reportLocation=result.impact;
-            battleBanner.setText((result.feedback==World.Feedback.DEFEAT?"击破战果 · ":"战斗 · ")+result.message+"  · 点此详情");
+            battleBanner.setText((result.feedback==World.Feedback.DEFEAT?"击破战果":"战斗")+" · 点此展开\n"+result.message);
             battleBanner.setVisibility(View.VISIBLE);
             map.battleFeedback(result,getPreferences(MODE_PRIVATE).getBoolean("battleHaptics",true));
         }

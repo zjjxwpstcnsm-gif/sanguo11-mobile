@@ -184,10 +184,11 @@ public final class GameSmokeRunner extends Instrumentation {
         runOnMainSync(current::recreate);waitText("编队 · 选择主将",true);require("将5".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"出征武将搜索").getText()),"recreation restores leader step/query");click("将5 ·",false);
         runOnMainSync(current::recreate);waitText("副将 ·",false);require(waitText("将6 ·",false).isChecked(),"recreation restores deputy selection");click("下一步",true);
         runOnMainSync(current::recreate);waitText("陆战兵装",true);click("枪兵 ·",false);runOnMainSync(current::recreate);waitText("携带舰船",true);click("走舸 ·",false);
-        require("7654".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"粮食数量").getText()),"back/recreation preserve raw quantity");require(Arrays.equals(before,SaveCodec.encode(saved())),"all wizard navigation/recreation remains pure");screenshot("v029-wizard-restored");
+        require("7654".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"粮食数量").getText()),"back/recreation preserve raw quantity");setInput("粮食数量","2499");require(!waitText("确认出征",true).isEnabled(),"restored crew cannot depart with food below current troops");setInput("粮食数量","2500");require(waitText("确认出征",true).isEnabled(),"restored food minimum follows restored 2500 troops instead of default 3000");setInput("粮食数量","7654");require(Arrays.equals(before,SaveCodec.encode(saved())),"all wizard navigation/recreation remains pure");screenshot("v029-wizard-restored");
         // State changes while the unsubmitted form is open. The real confirm must reject the stale snapshot.
         java.lang.reflect.Field wf=MainActivity.class.getDeclaredField("world");wf.setAccessible(true);World live=(World)wf.get(current);runOnMainSync(()->live.city(11).food-=100);click("确认出征",true);waitText("库存或人物状态已变化",true);require(live.units.isEmpty(),"stale quantity cannot silently deploy");click("返回",true);
         screenshot("v029-wizard-revalidated");click("确认出征",true);require(live.units.size()==1&&live.unit(1).troops==2500&&live.unit(1).food==7654&&live.unit(1).deputies.length==1&&live.unit(1).deputies[0]==6,"retained choices create exactly one real deployment");
+        click("结果 · 点此展开",false);require(find(getUiAutomation().getRootInActiveWindow(),"定位发生地点",true)==null,"noncombat result does not offer an inert location action");click("返回",true);
         installFixture(ScenarioCatalog.load("regional-sandbox",2),new Hex(1,1));
     }
 
