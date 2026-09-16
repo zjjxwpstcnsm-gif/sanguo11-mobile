@@ -67,6 +67,12 @@ public final class MapView extends View {
         }
     }
     private Map<Hex,Integer> reachable=Collections.emptyMap();
+    private final Set<Hex> attackTargets=new HashSet<>();
+    int reachableCount(){return reachable.size();}
+    private void addAttackTarget(World.Unit u,Hex h,boolean normal){
+        if(normal){attackTargets.add(h);return;}
+        for(Army.Tactic tactic:world.army.tactics(u))if(world.army.tacticError(u.id,h,tactic)==null){attackTargets.add(h);return;}
+    }
     private final MapCamera camera=new MapCamera();
     private boolean multiTouch;
     private int moving=-1;
@@ -106,7 +112,14 @@ public final class MapView extends View {
             miniTerrain=Bitmap.createBitmap(world.width,world.height,Bitmap.Config.ARGB_8888);
             for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)miniTerrain.setPixel(q,r,world.terrain[q][r]==World.Terrain.WATER?0xff36586c:world.terrain[q][r]==World.Terrain.MOUNTAIN?0xff5b635b:world.terrain[q][r]==World.Terrain.FOREST?0xff415a49:0xff7e8463);
         }
-        reachable=world.orders.marchReachable(world.unit(moving));if(changed&&getWidth()>0){resizeCamera();fit();}invalidate();}
+        World.Unit actor=world.unit(moving);reachable=world.orders.marchReachable(actor);attackTargets.clear();
+        if(world.orders.error(actor)==null){
+            for(World.Unit target:world.units)if(target.id!=actor.id)addAttackTarget(actor,target.hex,world.war.attackError(actor.id,target.id)==null);
+            for(World.City city:world.cities)addAttackTarget(actor,city.hex,world.siegeError(actor.id,city.id)==null);
+            for(Domestic.Facility f:world.domestic.facilities)addAttackTarget(actor,f.hex,world.war.facilityAttackError(actor.id,f.hex)==null);
+            for(War.Structure s:world.war.structures())addAttackTarget(actor,s.hex,world.army.canAttackUnit(actor)&&world.campaign.hostile(actor.owner,s.owner)&&actor.hex.distance(s.hex)<=world.war.range(actor));
+        }
+        if(changed&&getWidth()>0){resizeCamera();fit();}invalidate();}
     private float x(Hex h){return RADIUS*SQRT3*(h.q+h.r*.5f);}
     private float y(Hex h){return RADIUS*1.5f*h.r;}
     private float worldWidth(){return RADIUS*SQRT3*(world.width-1+(world.height-1)*.5f)+RADIUS*2;}
@@ -177,7 +190,7 @@ public final class MapView extends View {
             if(t==World.Terrain.MOUNTAIN){path.reset();path.moveTo(cx-13,cy+9);path.lineTo(cx-3,cy-12);path.lineTo(cx+5,cy+2);path.lineTo(cx+11,cy-7);path.lineTo(cx+18,cy+9);path.close();fill(canvas,Color.rgb(158,159,137));}
             if(t==World.Terrain.FOREST){paint.setColor(Color.rgb(40,77,60));canvas.drawCircle(cx-6,cy-3,7,paint);canvas.drawCircle(cx+6,cy+5,8,paint);}
             if(t==World.Terrain.WATER){paint.setColor(Color.argb(65,163,195,198));paint.setStrokeWidth(1);canvas.drawLine(cx-10,cy-3,cx+8,cy-3,paint);canvas.drawLine(cx-5,cy+5,cx+12,cy+5,paint);}
-            if(reachable.containsKey(h)){polygon(cx,cy,RADIUS-1);fill(canvas,Color.argb(55,197,227,158));stroke(canvas,Color.argb(110,229,235,182),1);}
+            if(reachable.containsKey(h)&&reachable.get(h)>0){polygon(cx,cy,RADIUS-1);fill(canvas,Color.argb(110,62,218,209));stroke(canvas,Color.argb(225,117,244,234),Math.max(1,1.2f*density/scale));}
         }
         drawRoute(canvas);
         if(selected!=null){polygon(x(selected),y(selected),RADIUS-2);stroke(canvas,GOLD,Math.max(2,2*density/scale));}
@@ -191,7 +204,7 @@ public final class MapView extends View {
             if(detail)label(canvas,String.valueOf(s.hp),cx,cy-30,9,PAPER);
         }
         for(Object object:visibleObjects)if(object instanceof Domestic.Facility){Domestic.Facility f=(Domestic.Facility)object;float cx=x(f.hex),cy=y(f.hex);int color=factionColor(cityIndex.get(f.cityId).owner);
-            if(detail){canvas.save();canvas.translate(cx,cy);models.facility(canvas,f.kind,color);if(f.remaining>0)models.scaffolding(canvas);canvas.restore();label(canvas,f.kind.label+"·"+f.level,cx,cy+26,9,PAPER);if(f.remaining>0)label(canvas,"建·剩"+f.remaining,cx,cy-30,9,GOLD);}
+            if(detail){canvas.save();canvas.translate(cx,cy);models.facility(canvas,f.kind,color);if(f.remaining>0)models.scaffolding(canvas);canvas.restore();label(canvas,f.kind.label+"·"+f.level,cx,cy+26,9,PAPER);bar(canvas,cx,cy+17,34,f.hp/(float)f.maxHp(),f.hp<f.maxHp()?GOLD:color);if(f.remaining>0)label(canvas,"建·剩"+f.remaining,cx,cy-30,9,GOLD);}
             else {paint.setColor(color);canvas.drawRect(cx-10,cy-10,cx+10,cy+10,paint);}
         }
         for(Object object:visibleObjects)if(object instanceof WorldEvents.Camp){WorldEvents.Camp camp=(WorldEvents.Camp)object;float cx=x(camp.hex),cy=y(camp.hex);paint.setColor(Color.rgb(173,77,59));canvas.drawRect(cx-15,cy-15,cx+15,cy+15,paint);label(canvas,"寨",cx,cy+5,16,PAPER);if(detail)label(canvas,camp.tribe.label+" "+camp.troops,cx,cy-20,10,PAPER);}
@@ -199,6 +212,9 @@ public final class MapView extends View {
         for(Object object:visibleObjects)if(object instanceof World.Unit){World.Unit u=(World.Unit)object;
             if(detail)drawUnit(canvas,u);else {paint.setColor(factionColor(u.owner));canvas.drawCircle(x(u.hex),y(u.hex),14,paint);
                 if(scale*RADIUS>=5*density){canvas.save();canvas.translate(x(u.hex),y(u.hex));canvas.scale(.6f,.6f);if(world.army.water(u.hex))models.shipIcon(canvas,u.ship,PAPER);else models.weaponIcon(canvas,u.weapon,PAPER);canvas.restore();}}
+        }
+        for(Hex h:attackTargets)if(camera.visible(x(h),y(h),RADIUS)){
+            polygon(x(h),y(h),RADIUS-1);stroke(canvas,0xffff987a,Math.max(2,2*density/scale));
         }
         if(detail)for(Object object:visibleObjects)if(object instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)object;if(m.owner!=world.player&&!m.transport)continue;float cx=x(m.hex)+15,cy=y(m.hex)-8;paint.setColor(Color.rgb(30,42,43));canvas.drawCircle(cx,cy,10,paint);label(canvas,m.transport?"运":"调",cx,cy+4,12,m.owner==world.player?GOLD:factionColor(m.owner));}
         long remaining=impactUntil-android.os.SystemClock.uptimeMillis();

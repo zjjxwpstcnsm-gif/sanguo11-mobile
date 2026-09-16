@@ -5,7 +5,7 @@ import java.util.*;
 
 /** Persistent approach orders. Movement shares the tactical budget; combat always needs a new command. */
 public final class MarchOrders {
-    public enum Kind { TILE, CITY, UNIT, STRUCTURE }
+    public enum Kind { TILE, CITY, UNIT, STRUCTURE, FACILITY }
     public static final class Order {
         public final Kind kind;
         public final Hex tile;
@@ -45,6 +45,7 @@ public final class MarchOrders {
         if(o.kind==Kind.UNIT){World.Unit unit=w.unit(o.targetId);return unit!=null&&unit.owner==o.owner?unit.hex:null;}
         if(o.kind==Kind.CITY){World.City city=w.city(o.targetId);return city!=null&&city.owner==o.owner?city.hex:null;}
         if(o.kind==Kind.STRUCTURE){War.Structure s=w.war.at(o.tile);return s!=null&&s.owner==o.owner?o.tile:null;}
+        if(o.kind==Kind.FACILITY){Domestic.Facility f=w.domestic.facility(o.targetId);return f!=null&&f.hex.equals(o.tile)&&w.city(f.cityId).owner==o.owner?f.hex:null;}
         return o.tile;
     }
     public String label(Order o){
@@ -52,6 +53,7 @@ public final class MarchOrders {
         if(o.kind==Kind.CITY&&w.city(o.targetId)!=null)return w.city(o.targetId).name;
         if(o.kind==Kind.UNIT&&w.unit(o.targetId)!=null)return w.officer(w.unit(o.targetId).officerId).name+"部队";
         if(o.kind==Kind.STRUCTURE&&w.war.at(o.tile)!=null)return w.war.at(o.tile).kind.label;
+        if(o.kind==Kind.FACILITY&&w.domestic.facility(o.targetId)!=null)return w.domestic.facility(o.targetId).kind.label;
         return "地块 "+o.tile;
     }
     public Plan preview(int id,Hex tile){
@@ -59,6 +61,7 @@ public final class MarchOrders {
         if(tile!=null&&w.inside(tile)){
             World.City city=w.cityAt(tile);World.Unit unit=w.unitAt(tile);War.Structure structure=w.war.at(tile);
             o=city!=null?new Order(Kind.CITY,tile,city.id,city.owner):unit!=null?new Order(Kind.UNIT,tile,unit.id,unit.owner):structure!=null?new Order(Kind.STRUCTURE,tile,-1,structure.owner):new Order(Kind.TILE,tile,-1,-1);
+            Domestic.Facility f=w.domestic.at(tile);if(f!=null&&u!=null&&w.campaign.hostile(u.owner,w.city(f.cityId).owner))o=new Order(Kind.FACILITY,tile,f.id,w.city(f.cityId).owner);
         }
         return plan(u,o,true);
     }
