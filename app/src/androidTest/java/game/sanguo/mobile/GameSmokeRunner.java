@@ -608,7 +608,7 @@ public final class GameSmokeRunner extends Instrumentation {
         w=saved();require(w.city(300).governorId==3001&&w.domestic.monthlyGold(300)>800,"UI appointment has actual income benefit");
         screenshot("16-personnel-actions");endTurn();waitForTurn(1);
         int loyalty=saved().officer(3001).loyalty;
-        personnelAction("柴桑","褒奖武将");click("孙权 ·",false);click("清空副将",true);click("周瑜 ·",false);click("执行",true);waitForIdleSync();
+        personnelAction("柴桑","褒奖武将");click("孙权 ·",false);click("周瑜 ·",false);click("执行",true);waitForIdleSync();
         require(saved().officer(3001).loyalty>loyalty,"UI reward persists loyalty");
         locateCity("柴桑");click("内政",true);click("巡察 · 金100",true);click("鲁肃 ·",false);click("执行",true);waitForIdleSync();require(saved().city(300).order==100,"UI patrol caps order");
         int readiness=saved().city(300).morale;
