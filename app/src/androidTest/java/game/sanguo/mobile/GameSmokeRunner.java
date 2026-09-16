@@ -864,7 +864,7 @@ public final class GameSmokeRunner extends Instrumentation {
             click(name,true);waitText("统率",false);waitText("适性：",false);waitText("特技：",false);screenshot("v020-officer-"+name.charAt(0)+"-"+name.charAt(5));click("返回",true);
         }
         byte[] before=SaveCodec.encode(w);runOnMainSync(current::recreate);waitText("水陆攻防",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"v6 formation survives Activity recreation");
-        tapCity(10,0);click("执行",true);w=saved();require(w.units.isEmpty()&&w.officer(1).cityId==10&&w.city(10).ships[0]==3&&w.city(10).equipment[5]==2,"UI returns all crew and equipment once");
+        click("入城",true);tapCity(10,0);click("执行",true);w=saved();require(w.units.isEmpty()&&w.officer(1).cityId==10&&w.city(10).ships[0]==3&&w.city(10).equipment[5]==2,"UI returns all crew and equipment once");
 
         World factory=ScenarioCatalog.load("river-siege-sandbox",0);for(World.City city:factory.cities)if(city.owner==1){city.gold=0;city.troops=0;}
         Hex site=factory.domestic.buildSites(10).get(0);require(factory.domestic.build(10,3,Domestic.Kind.WORKSHOP,site).ok,"manufacturing fixture workshop starts");

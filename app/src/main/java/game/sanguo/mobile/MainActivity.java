@@ -104,7 +104,7 @@ public final class MainActivity extends Activity {
         if(state!=null){Hex h=new Hex(state.getInt("selectedQ",-1),state.getInt("selectedR",-1));selected=world.inside(h)?h:null;moving=state.getInt("moving",-1);}
         if(state!=null)unitCommand=state.getString("unitCommand","select");
         if(state!=null&&state.containsKey("routeQ")&&world.unit(moving)!=null)pendingMarch=world.marches.preview(moving,new Hex(state.getInt("routeQ"),state.getInt("routeR")));
-        refresh();if(state!=null){map.restoreCamera(state);if(!ui.summary.isEmpty()){turnBanner.setText("旬结算完成 · 点此查看重要变化与待处理");turnBanner.setVisibility(View.VISIBLE);}}
+        refresh();if(state!=null){map.restoreCamera(state);if(!aiRunning&&!ui.summary.isEmpty()){turnBanner.setText("旬结算完成 · 点此查看重要变化与待处理");turnBanner.setVisibility(View.VISIBLE);}}
         if(turnWork!=null)turnWork.observe(this::finishTurn);
         if(state!=null&&!aiRunning&&ui.formDraft.getBoolean("open"))root.post(this::restoreFormDraft);
         if(!restored&&restoreError==null&&state==null)root.post(this::scenarioPicker);
@@ -339,7 +339,7 @@ public final class MainActivity extends Activity {
         boolean required=(world.life.pending()||world.contests.busy())&&!ui.page.equals("menu");
         panelShell.setVisibility(ui.panelVisible||required?View.VISIBLE:View.GONE);closePanel.setEnabled(!required&&!aiRunning);
         returnList.setVisibility(ui.returnToCities&&ui.page.equals("map")?View.VISIBLE:View.GONE);
-        if(ui.summary.isEmpty())turnBanner.setVisibility(View.GONE);
+        if(aiRunning||ui.summary.isEmpty())turnBanner.setVisibility(View.GONE);
         World.Unit selectedActor=selectedUnit();
         String selectedName=selectedActor!=null?world.officer(selectedActor.officerId).name:selected==null?"点选城池":world.cityAt(selected)!=null?world.cityAt(selected).name:"地块";
         int ready=UiModels.readyUnits(world).size();previousReady.setEnabled(!aiRunning&&mapPick==null);nextReady.setEnabled(!aiRunning&&mapPick==null);previousReady.setTooltipText("上一个待行动部队 · "+ready+"队");nextReady.setTooltipText("下一个待行动部队 · "+ready+"队");
