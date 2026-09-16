@@ -28,7 +28,7 @@ public final class DisplacementFixture {
             case "enemy":unit(w,3,1,World.Weapon.SPEAR,rear,4000);break;
             case "ally":case "ceasefire":unit(w,3,2,World.Weapon.SPEAR,rear,4000);w.campaign.treaties.add(new Campaign.Treaty(0,2,scene.equals("ally")?Campaign.TreatyKind.ALLIANCE:Campaign.TreatyKind.CEASEFIRE,12));break;
             case "city":case "gate":case "port":World.City c=new World.City(20,"阻挡据点",rear,1);c.kind=scene.equals("gate")?World.SiteKind.GATE:scene.equals("port")?World.SiteKind.PORT:World.SiteKind.CITY;w.cities.add(c);break;
-            case "facility":w.domestic.facilities.add(new Domestic.Facility(1,11,Domestic.Kind.MARKET,rear,-1,0));w.domestic.nextFacilityId=2;break;
+            case "facility":w.cities.add(new World.City(20,"设施所属城",new Hex(8,5),1));w.domestic.facilities.add(new Domestic.Facility(1,20,Domestic.Kind.MARKET,rear,-1,0));w.domestic.nextFacilityId=2;break;
             case "tower":case "own-seed":case "enemy-ball":War.StructureKind kind=scene.equals("tower")?War.StructureKind.ARROW_TOWER:scene.equals("own-seed")?War.StructureKind.FIRE_SEED:War.StructureKind.FIRE_BALL;w.war.structures.add(new War.Structure(1,scene.equals("own-seed")?0:1,kind,rear,kind.hp));w.war.nextStructureId=2;break;
             case "fire":w.war.fires.add(new War.Fire(rear,0,2));break;
             case "second-block":w.terrain[8][6]=World.Terrain.MOUNTAIN;break;
