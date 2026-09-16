@@ -55,3 +55,4 @@ for mode in fee food progress; do
 done
 
 java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.TacticalLogisticsTest
+java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.DisplacementTest

@@ -11,13 +11,14 @@ public final class DisplacementFixture {
         if(scene.equals("kill"))return War.Tactic.CHARGE;
         return scene.equals("second-block")?War.Tactic.DOUBLE_THRUST:War.Tactic.THRUST;
     }
-    public static World create(String scene){
+    public static World create(String scene){return create(scene,tactic(scene).weapon);}
+    public static World create(String scene,World.Weapon weapon){
         World w=new World(16,12,"我军","敌军","第三军");w.scenarioId="displacement-probe";w.scenarioName="位移验收";w.strategy.setSeed(29016);
         for(int i=0;i<3;i++){
             w.cities.add(new World.City(10+i,"后营"+i,new Hex(1+i*6,1),i));
             World.Officer ruler=new World.Officer(10+i,"主公"+i,i,10+i,80,80,80,80,80);ruler.role=Strategy.Role.RULER;ruler.loyalty=100;w.officers.add(ruler);
         }
-        World.Unit a=unit(w,1,0,tactic(scene).weapon,new Hex(5,6),8000),b=unit(w,2,1,World.Weapon.SPEAR,new Hex(6,6),8000);
+        World.Unit a=unit(w,1,0,weapon,new Hex(5,6),8000),b=unit(w,2,1,World.Weapon.SPEAR,new Hex(6,6),8000);
         b.status=War.Status.CONFUSED;b.statusTurns=1;Hex rear=new Hex(7,6);
         switch(scene){
             case "mountain":w.terrain[7][6]=World.Terrain.MOUNTAIN;break;

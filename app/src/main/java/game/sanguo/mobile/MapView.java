@@ -15,6 +15,8 @@ public final class MapView extends View {
     private final Path path=new Path();
     private final MapModels models=new MapModels();
     private final TerrainTiles terrainTiles=new TerrainTiles();
+    private Displacement.Preview tacticPreview;
+    void setTacticPreview(Displacement.Preview p){tacticPreview=p;invalidate();}
     private Hex impactHex;
     private long impactUntil;
     private boolean defeatImpact;
@@ -266,6 +268,7 @@ public final class MapView extends View {
             polygon(x(h),y(h),RADIUS-1);if(pickTargets!=null)fill(canvas,0x555be6bf);stroke(canvas,pickTargets==null?0xffff987a:0xff70ffca,Math.max(2,2*density/scale));
         }
         for(Object object:visibleObjects)if(object instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)object;if(m.owner!=world.player&&!m.transport)continue;float cx=x(m.hex),cy=y(m.hex);if(!detail){polygon(cx,cy,Math.max(8,3*density/scale));fill(canvas,factionColor(m.owner));stroke(canvas,PAPER,density/scale);continue;}paint.setColor(factionColor(m.owner));canvas.drawRoundRect(cx-17,cy-10,cx+17,cy+10,4,4,paint);paint.setColor(PAPER);canvas.drawCircle(cx-11,cy+13,4,paint);canvas.drawCircle(cx+11,cy+13,4,paint);label(canvas,m.transport?"运":"调",cx,cy+5,15,Color.BLACK);if(m.transport){if(m.stopped||!m.waiting.isEmpty())label(canvas,"!",cx+23,cy+4,16,GOLD);}}
+        drawTacticPreview(canvas);
         long remaining=impactUntil-android.os.SystemClock.uptimeMillis();
         if(impactHex!=null&&remaining>0){
             float progress=1-remaining/450f;paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(defeatImpact?3:2);
@@ -360,6 +363,21 @@ public final class MapView extends View {
         }
     }
 
+    private void drawTacticPreview(Canvas c){
+        if(tacticPreview==null)return;
+        drawArrows(c,tacticPreview.actorPath,0xff70ffca);drawArrows(c,tacticPreview.targetPath,0xffffb261);
+        paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(2*density/camera.scale);paint.setColor(0xffffb261);
+        for(Hex h:tacticPreview.riskHexes)c.drawCircle(x(h),y(h),RADIUS-2,paint);
+        Hex h=tacticPreview.blocked;if(h!=null){paint.setColor(0xffff6767);c.drawLine(x(h)-10,y(h)-10,x(h)+10,y(h)+10,paint);c.drawLine(x(h)+10,y(h)-10,x(h)-10,y(h)+10,paint);}
+        paint.setStyle(Paint.Style.FILL);
+    }
+    private void drawArrows(Canvas c,java.util.List<Hex> points,int color){
+        paint.setColor(color);paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(3*density/camera.scale);
+        for(int i=1;i<points.size();i++){Hex from=points.get(i-1),to=points.get(i);float dx=x(to)-x(from),dy=y(to)-y(from);float len=(float)Math.hypot(dx,dy),ux=dx/len,uy=dy/len;
+            c.drawLine(x(from),y(from),x(to),y(to),paint);c.drawLine(x(to),y(to),x(to)-ux*10+uy*6,y(to)-uy*10-ux*6,paint);c.drawLine(x(to),y(to),x(to)-ux*10-uy*6,y(to)-uy*10+ux*6,paint);c.drawCircle(x(to),y(to),8,paint);
+        }
+        paint.setStyle(Paint.Style.FILL);
+    }
     private void bar(Canvas c,float x,float y,float width,float fraction,int color){
         paint.setColor(0xdd12252b);c.drawRoundRect(x-width/2-1,y-1,x+width/2+1,y+4,1,1,paint);
         paint.setColor(color);c.drawRect(x-width/2,y,x-width/2+width*Math.max(0,Math.min(1,fraction)),y+3,paint);

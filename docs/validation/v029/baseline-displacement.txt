@@ -1,0 +1,201 @@
+version=0.28.0-mobile-experience-dev
+plain actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=7,6 troops=7028 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+mountain actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=6,6 troops=6928 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+cliff actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=7,6 troops=7028 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+shore actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=6,6 troops=6928 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+edge actor=14,6 target=15,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=13,6 rear1=16,6 rear2=17,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=14,6 target=15,6 troops=6928 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+friend actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=6,6 troops=6928 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+enemy actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=6,6 troops=6928 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+ally actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=6,6 troops=6928 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+ceasefire actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=6,6 troops=6928 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+city actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=6,6 troops=6928 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+gate actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=6,6 troops=6928 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+port actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=6,6 troops=6928 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+facility actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=6,6 troops=6928 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+tower actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=6,6 troops=6928 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+own-seed actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=6,6 troops=6928 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+enemy-ball actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=7,6 troops=6328 energy=85 log=火球引爆 | 战将1施展突刺，命中1队，敌损972
+  state valid
+fire actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突刺 | 击退1格
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=7,6 troops=7028 energy=85 log=战将1施展突刺，命中1队，敌损972
+  state valid
+second-block actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 二段突刺 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=二段突刺 | 击退2格
+目标：战将2
+成功率 100%，消耗气力25。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=5,6 target=7,6 troops=6684 energy=75 log=战将1施展二段突刺，命中1队，敌损1216
+  state valid
+kill actor=5,6 target=6,6 weapon=CAVALRY aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突击 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突击 | 击退1格并跟进
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=6,6 target=destroyed energy=85 log=战将2部队被击破；战将1部队缴获 金+123、粮+456；俘虏：无；逃脱：战将2 | 战将1施展突击，命中1队，敌损1
+  state valid
+hook-retreat actor=5,6 target=6,6 weapon=HALBERD aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=false reason=没有可施展目标。
+自身后退并拉动敌军
+需要B级适性、气力15和有效范围内交战目标；位移还需要空地。 | 返回 | 
+break-forest actor=5,6 target=6,6 weapon=CAVALRY aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 突破 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=突破 | 穿过敌军到其身后
+目标：战将2
+成功率 100%，消耗气力20。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=7,6 target=6,6 troops=6882 energy=80 log=战将1施展突破，命中1队，敌损1118
+  state valid
+hook-cliff actor=5,6 target=6,6 weapon=HALBERD aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 熊手 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=熊手 | 自身后退并拉动敌军
+目标：战将2
+成功率 100%，消耗气力15。
+失败也消耗气力和本旬行动。 | 取消 | 执行 | 
+  result actor=4,6 target=5,6 troops=6913 energy=85 log=战将1施展熊手，命中1队，敌损1087
+  state valid
+naval-shore actor=5,6 target=6,6 weapon=SPEAR aptitude=3 energy=100 acted=false retreat=4,6 rear1=7,6 rear2=8,6
+  menu selectable=true reason=位移验收  ·  我军
+190年 1月 上旬 · 行动力 60 | 全图 | 视图 | 破碎 / 撞击 · 选择目标 · 点选高亮地块（1处） | 取消选取 | 功能 | 战将1 · 指令 | ‹ | › | 下一旬  → | 
+  preview=破碎 / 撞击 | 重创城防；水上撞击并推退敌舰
+成功率100%；消耗15气力，失败也消耗行动。 | 取消 | 执行 | 
+  result actor=5,6 target=6,6 troops=7044 energy=85 log=破碎 / 撞击命中，敌损956
+  state valid

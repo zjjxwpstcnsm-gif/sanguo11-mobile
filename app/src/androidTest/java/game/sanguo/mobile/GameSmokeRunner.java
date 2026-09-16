@@ -21,6 +21,7 @@ public final class GameSmokeRunner extends Instrumentation {
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
+            if(displacement.equals("upgrade")){upgrade28Flow();result.putString("stream","UPGRADE28 PASS: delivered v0.28 save retained and advanced once.\n");finish(Activity.RESULT_OK,result);return;}
             if(!displacement.isEmpty()){displacementFlow();result.putString("stream","DISPLACEMENT PASS: official map selection, cancellation and execution recorded.\n");finish(Activity.RESULT_OK,result);return;}
             if(!recovery.isEmpty()){recoveryFlow();result.putString("stream","RECOVERY "+recovery+" PASS: UI draft and authoritative save preserved.\n");finish(Activity.RESULT_OK,result);return;}
             if(experience){experienceFlow();result.putString("stream","EXPERIENCE PASS: installed APK observations and official entry flows completed.\n");finish(Activity.RESULT_OK,result);return;}
@@ -37,6 +38,8 @@ public final class GameSmokeRunner extends Instrumentation {
             }
             screenshot("v021-rotated-confirmation");click("执行",true);
             waitText("区域争雄  ·  孙权军",false);assertWorld(2,0,"regional-sandbox");
+            tacticalDisplacementFlow();
+            deploymentWizardFlow();
             experienceRegressions();
             logisticsFlow();
             tacticalLogisticsFlow();
@@ -48,7 +51,7 @@ public final class GameSmokeRunner extends Instrumentation {
             modelAtlas();
             clickNav("城市");click("建业 · 孙权军",false);
             waitText("建业",true);screenshot("02-city");
-            click("军事",true);click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);click("确认出征",true);
+            click("军事",true);click("快速出征（单将）",true);click("甘宁 ·",false);click("弩兵 ·",false);click("确认出征",true);
             waitText("携粮 6000",false);waitForIdleSync();
             World w=saved();require(w.units.size()==1&&w.unit(1).owner==2&&w.unit(1).officerId==3003,"selected faction deployment");
             screenshot("03-deployment");
@@ -131,6 +134,54 @@ public final class GameSmokeRunner extends Instrumentation {
         for(int i=0;i<node.getChildCount();i++)out.append(displacementText(node.getChild(i)));return out.toString();
     }
     // END DISPLACEMENT OBSERVER
+
+    private void upgrade28Flow()throws Exception {
+        byte[] expected=java.nio.file.Files.readAllBytes(new File(getTargetContext().getExternalFilesDir(null),"upgrade-v028.sg11").toPath());
+        World old=SaveCodec.decode(expected);startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitForIdleSync();
+        java.lang.reflect.Field wf=MainActivity.class.getDeclaredField("world");wf.setAccessible(true);require(Arrays.equals(expected,SaveCodec.encode((World)wf.get(current))),"actual old v21 loads unchanged after APK replacement");
+        endTurn();require(saved().turn==old.turn+1,"v028 upgrade advances exactly one full turn");byte[] advanced=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(advanced,SaveCodec.encode(saved())),"recreation after upgrade cannot repeat action or AI");screenshot("v029-upgrade-v028");
+    }
+    private void tacticalDisplacementFlow()throws Exception {
+        for(String orientation:new String[]{"竖屏","横屏"}){
+            for(String scene:new String[]{"mountain","own-seed","second-block","naval-shore","kill"}){
+                World w=DisplacementFixture.create(scene);installFixture(w,w.unit(1).hex);chooseOrientation(orientation);byte[] before=SaveCodec.encode(w);
+                click("战法",true);String label=scene.equals("naval-shore")?Army.Tactic.RAM.label:DisplacementFixture.tactic(scene).label;click(label+" · 气力",false);tapHex(w.unit(2).hex);waitText("执行",true);
+                java.lang.reflect.Field field=MainActivity.class.getDeclaredField("tacticPreview");field.setAccessible(true);Displacement.Preview plan=(Displacement.Preview)field.get(current);
+                require(plan!=null&&plan.valid(),"native preview uses formal plan");require(Arrays.equals(before,SaveCodec.encode(w)),"native preview cannot consume RNG/energy");
+                screenshot("v029-native-"+scene+"-preview-"+orientation);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(w)),"native cancellation is pure");
+                tapHex(w.unit(2).hex);click("执行",true);require(w.unit(1).acted,"native confirmation ends real action");
+                if(scene.equals("mountain"))require(w.unit(2).hex.equals(new Hex(6,6))&&w.unit(2).troops<8000,"blocked thrust still damages without invalid movement");
+                if(scene.equals("own-seed"))require(w.war.at(new Hex(7,6))==null&&w.unit(2).hex.equals(new Hex(7,6)),"own trap really triggered");
+                if(scene.equals("second-block"))require(w.unit(2).hex.equals(new Hex(7,6)),"second blocked tile never skipped");
+                if(scene.equals("kill")){require(w.unit(2)==null&&w.unit(1).hex.equals(new Hex(6,6)),"lethal charge follows once");click("击破战果",false);click("定位发生地点",true);waitText("历史战果地点",false);screenshot("v029-result-location-"+orientation);click("返回定位前",true);}
+                java.lang.reflect.Field moving=MainActivity.class.getDeclaredField("moving");moving.setAccessible(true);require(moving.getInt(current)==1,"battle preserves selected attacker identity");
+                screenshot("v029-native-"+scene+"-result-"+orientation);SaveCodec.validate(w);
+            }
+            for(String scene:new String[]{"hook-retreat","break-block"}){
+                World w=scene.equals("break-block")?DisplacementFixture.create("mountain",World.Weapon.CAVALRY):DisplacementFixture.create(scene);installFixture(w,w.unit(1).hex);byte[] before=SaveCodec.encode(w);
+                click("战法",true);click((scene.equals("break-block")?"突破":"熊手")+" · 气力",false);waitText(scene.equals("break-block")?"身后落点":"己方退路",false);screenshot("v029-native-"+scene+"-"+orientation);click("返回",true);require(Arrays.equals(before,SaveCodec.encode(w)),"unavailable tactic explains exact cause without cost");
+            }
+            World clear=DisplacementFixture.create("plain");clear.unit(2).troops=1;DisplacementFixture.unit(clear,3,0,World.Weapon.SPEAR,new Hex(7,6),4000);installFixture(clear,clear.unit(1).hex);
+            click("战法",true);click("突刺 · 气力",false);tapHex(new Hex(6,6));click("执行",true);click("下一个待行动部队",true);click("行军",true);tapHex(new Hex(6,6));click("开始行军",true);
+            require(clear.unit(3).hex.equals(new Hex(6,6))&&clear.unit(1).acted,"fresh next unit can move onto newly cleared tile without resetting attacker");
+        }
+        installFixture(ScenarioCatalog.load("regional-sandbox",2),new Hex(1,1));
+    }
+    private void deploymentWizardFlow()throws Exception {
+        World w=logisticsFixture();for(int id=30;id<46;id++)w.officers.add(new World.Officer(id,"候选"+id,0,11,70,70,70,70,70));w.officer(4).acted=true;
+        installFixture(w,w.city(11).hex);chooseOrientation("竖屏");byte[] before=SaveCodec.encode(w);click("出征",true);setInput("出征武将搜索","将5");click("将5 ·",false);click("清空副将",true);click("将6 ·",false);click("下一步",true);click("枪兵 ·",false);click("走舸 ·",false);
+        setInput("兵力数量","2500");setInput("粮食数量","7654");setInput("金钱数量","321");click("上一步",true);click("上一步",true);click("上一步",true);
+        require(waitText("将6 ·",false).isChecked(),"back from quantity retains chosen deputy");click("上一步",true);
+        require("将5".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"出征武将搜索").getText()),"leader query retained when going back");
+        runOnMainSync(current::recreate);waitText("编队 · 选择主将",true);require("将5".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"出征武将搜索").getText()),"recreation restores leader step/query");click("将5 ·",false);
+        runOnMainSync(current::recreate);waitText("副将 ·",false);require(waitText("将6 ·",false).isChecked(),"recreation restores deputy selection");click("下一步",true);
+        runOnMainSync(current::recreate);waitText("陆战兵装",true);click("枪兵 ·",false);runOnMainSync(current::recreate);waitText("携带舰船",true);click("走舸 ·",false);
+        require("7654".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"粮食数量").getText()),"back/recreation preserve raw quantity");require(Arrays.equals(before,SaveCodec.encode(saved())),"all wizard navigation/recreation remains pure");screenshot("v029-wizard-restored");
+        // State changes while the unsubmitted form is open. The real confirm must reject the stale snapshot.
+        java.lang.reflect.Field wf=MainActivity.class.getDeclaredField("world");wf.setAccessible(true);World live=(World)wf.get(current);runOnMainSync(()->live.city(11).food-=100);click("确认出征",true);waitText("库存或人物状态已变化",true);require(live.units.isEmpty(),"stale quantity cannot silently deploy");click("返回",true);
+        screenshot("v029-wizard-revalidated");click("确认出征",true);require(live.units.size()==1&&live.unit(1).troops==2500&&live.unit(1).food==7654&&live.unit(1).deputies.length==1&&live.unit(1).deputies[0]==6,"retained choices create exactly one real deployment");
+        installFixture(ScenarioCatalog.load("regional-sandbox",2),new Hex(1,1));
+    }
 
     private void recoveryFlow()throws Exception {
         if(recovery.equals("prepare")){
@@ -218,7 +269,7 @@ public final class GameSmokeRunner extends Instrumentation {
             installFixture(SaveCodec.decode(before),a.hex);runOnMainSync(()->stale.getButton(AlertDialog.BUTTON_POSITIVE).performClick());waitText("局面已变化",false);click("返回",true);
             require(Arrays.equals(before,SaveCodec.encode(saved())),"old world confirmation cannot mutate replacement world");
             // Keep raw unsubmitted quantities and crew through Activity recreation, not just rotation.
-            installFixture(ScenarioCatalog.load("regional-sandbox",2),new Hex(18,10));locateCity("建业");click("军事",true);click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);setInput("兵力数量","2345");
+            installFixture(ScenarioCatalog.load("regional-sandbox",2),new Hex(18,10));locateCity("建业");click("军事",true);click("快速出征（单将）",true);click("甘宁 ·",false);click("弩兵 ·",false);setInput("兵力数量","2345");
             before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitForIdleSync();waitText("确认出征",true);require("2345".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"兵力数量").getText()),"deploy draft quantity survives recreation");
             screenshot("v028-deploy-draft-"+orientation);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"draft restore cannot deploy automatically");
             w=logisticsFixture();installFixture(w,w.city(11).hex);locateCity("后方");click("运输",true);click("前方 ·",false);click("将4 ·",false);scrollToText("运输粮 · 可选",false);setInput("粮（上限200000）","6789");
@@ -345,7 +396,7 @@ public final class GameSmokeRunner extends Instrumentation {
         byte[] original=SaveCodec.encode(saved());
         for(String orientation:new String[]{"竖屏","横屏"}){
             World w=ScenarioCatalog.load("regional-sandbox",2);installFixture(w,w.city(310).hex);chooseOrientation(orientation);
-            locateCity("建业");click("军事",true);click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);
+            locateCity("建业");click("军事",true);click("快速出征（单将）",true);click("甘宁 ·",false);click("弩兵 ·",false);
             byte[] before=SaveCodec.encode(saved());setInput("兵力数量","999");
             require(!waitText("确认出征",true).isEnabled(),"invalid exact quantity disables deployment");
             setInput("兵力数量","2345");
@@ -355,7 +406,7 @@ public final class GameSmokeRunner extends Instrumentation {
             require("2456".contentEquals(findInput(getUiAutomation().getRootInActiveWindow(),"兵力数量").getText()),"slider and exact entry are synchronized");
             setInput("兵力数量","2345");scrollToText("粮食 · 可选",false);setInput("粮食数量","6789");scrollToText("金钱 · 可选",false);setInput("金钱数量","4321");
             screenshot("v023-quantities-"+orientation);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"quantity cancellation is pure");
-            click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);setInput("兵力数量","2345");scrollToText("粮食 · 可选",false);setInput("粮食数量","6789");scrollToText("金钱 · 可选",false);setInput("金钱数量","4321");click("确认出征",true);
+            click("快速出征（单将）",true);click("甘宁 ·",false);click("弩兵 ·",false);setInput("兵力数量","2345");scrollToText("粮食 · 可选",false);setInput("粮食数量","6789");scrollToText("金钱 · 可选",false);setInput("金钱数量","4321");click("确认出征",true);
             World actual=saved();World.Unit u=actual.unit(actual.officer(3003).unitId);
             require(u.troops==2345&&u.food==6789&&u.gold==4321,"actual UI deploys nonpreset quantities");
             World stock=SaveCodec.decode(before);require(actual.city(310).troops==stock.city(310).troops-2345&&actual.city(310).gold==stock.city(310).gold-4321&&actual.city(310).food==stock.city(310).food-6789,"UI debits exact stock");
@@ -548,7 +599,7 @@ public final class GameSmokeRunner extends Instrumentation {
         w=saved();require(w.city(300).governorId==3001&&w.domestic.monthlyGold(300)>800,"UI appointment has actual income benefit");
         screenshot("16-personnel-actions");endTurn();waitForTurn(1);
         int loyalty=saved().officer(3001).loyalty;
-        personnelAction("柴桑","褒奖武将");click("孙权 ·",false);click("周瑜 ·",false);click("执行",true);waitForIdleSync();
+        personnelAction("柴桑","褒奖武将");click("孙权 ·",false);click("清空副将",true);click("周瑜 ·",false);click("执行",true);waitForIdleSync();
         require(saved().officer(3001).loyalty>loyalty,"UI reward persists loyalty");
         locateCity("柴桑");click("内政",true);click("巡察 · 金100",true);click("鲁肃 ·",false);click("执行",true);waitForIdleSync();require(saved().city(300).order==100,"UI patrol caps order");
         int readiness=saved().city(300).morale;
@@ -897,7 +948,7 @@ public final class GameSmokeRunner extends Instrumentation {
     }
     private void armyCity(){clickNav("城市");click("江东大营 · 江东军",false);click("军事",true);}
     private void fillFormation(){
-        clickNav("城市");click("江东大营 · 江东军",false);click("出征",true);click("孙权 ·",false);click("周瑜 ·",false);click("甘宁 ·",false);click("鲁肃 ·",false);
+        clickNav("城市");click("江东大营 · 江东军",false);click("出征",true);click("孙权 ·",false);click("清空副将",true);click("周瑜 ·",false);click("甘宁 ·",false);click("鲁肃 ·",false);
         click("下一步",true);click("冲车 ·",false);click("楼船 ·",false);setInput("粮食数量","18000");
     }
     private void armyFlow()throws Exception {
@@ -974,7 +1025,7 @@ public final class GameSmokeRunner extends Instrumentation {
         click("菜单",true);click("新游戏 / 选择势力",true);click("武将资料演练 ·",false);click("孙权军",true);waitText("能力/适性来自公开资料",false);screenshot("28-sourced-opening");click("执行",true);waitForIdleSync();
         assertWorld(2,0,"officer-reference-drill");ContentCatalog.get().validateOpening(saved());
         clickNav("城市");setInput("搜索城市或势力","不存在");waitText("没有符合条件的城池",false);setInput("搜索城市或势力","建业");click("建业 · 孙权军",false);
-        click("军事",true);click("快速出征（单将）",true);click("甘宁",true);click("弩兵",true);click("确认出征",true);waitForIdleSync();require(saved().officer(3003).unitId>0,"sourced opening deployed via native command");
+        click("军事",true);click("快速出征（单将）",true);click("甘宁 ·",false);click("弩兵 ·",false);click("确认出征",true);waitForIdleSync();require(saved().officer(3003).unitId>0,"sourced opening deployed via native command");
         require(saved().officer(3003).skillId.equals(Skill.WEIFENG.id),"source skill ID binds to actual runtime officer");
         click("编队特技",true);waitText("甘宁 · 威风",false);screenshot("33-sourced-runtime-skill");click("返回",true);
         endTurn();waitForTurn(1);
@@ -1160,7 +1211,7 @@ public final class GameSmokeRunner extends Instrumentation {
         installFixture(w,w.city(0).hex);chooseOrientation("竖屏");locateCity("汉都");screenshot("v021-city-card");
         java.lang.reflect.Field stateField=MainActivity.class.getDeclaredField("ui");stateField.setAccessible(true);runOnMainSync(()->{try{ClientState state=(ClientState)stateField.get(current);state.owner=-1;state.city=-1;state.query="";}catch(IllegalAccessException e){throw new RuntimeException(e);}});
         clickNav("武将");setSearch("诸葛亮");screenshot("v021-officer-list");click("诸葛亮 · 汉营",true);waitForIdleSync();require(findInput(getUiAutomation().getRootInActiveWindow(),"诸葛亮头像或模型")!=null,"detail has officer portrait");screenshot("v021-officer-detail");click("返回",true);
-        locateCity("汉都");click("军事",true);click("快速出征（单将）",true);click("张飞",true);waitText("选择兵种",true);screenshot("v021-weapon-picker");click("取消",true);
+        locateCity("汉都");click("军事",true);click("快速出征（单将）",true);click("张飞 ·",false);waitText("选择兵种",true);screenshot("v021-weapon-picker");click("取消",true);
         byte[] before=SaveCodec.encode(saved());aidWizard();waitText("期限18旬",false);screenshot("v021-aid-confirm");click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"aid cancellation leaves money, officers, RNG and requests untouched");
         aidWizard();click("执行",true);require(saved().diplomacy.aids().size()==1&&saved().actionPoints[0]==30,"UI aid request persists and spends 30 AP");
         endTurn();w=saved();require(w.diplomacy.aids().size()==1&&w.diplomacy.aids().get(0).unit>=0,"UI next turn dispatches actual allied army");

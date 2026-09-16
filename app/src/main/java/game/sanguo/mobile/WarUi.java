@@ -32,8 +32,15 @@ final class WarUi {
         String[] labels=new String[list.size()];for(int i=0;i<labels.length;i++){War.Tactic t=list.get(i);labels[i]=t.label+" · 气力"+t.energy+" · "+War.rankLabel(t.rank)+"级";}
         new AlertDialog.Builder(a).setTitle("战法 · 适性"+War.rankLabel(w.army.aptitude(u))).setItems(labels,(d,i)->{
             War.Tactic tactic=list.get(i);List<World.Unit> targets=new ArrayList<>();for(World.Unit t:w.fieldUnits())if(w.war.tacticError(u.id,t.id,tactic)==null)targets.add(t);
-            if(targets.isEmpty()){info("没有可施展目标。\n"+tactic.effect+"\n需要"+War.rankLabel(tactic.rank)+"级适性、气力"+tactic.energy+"和有效范围内交战目标；位移还需要空地。");return;}
-            a.pickOnMap(tactic.label+" · 选择目标",u.hex,targets.stream().map(t->t.hex).collect(java.util.stream.Collectors.toList()),h->{World.Unit t=w.unitAt(h);if(t==null)return;confirm(tactic.label,tactic.effect+"\n目标："+w.officer(t.officerId).name+"\n成功率 "+w.war.tacticChance(u.id,t.id,tactic)+"%，消耗气力"+tactic.energy+"。\n失败也消耗气力和本旬行动。",()->apply.accept(w.war.tactic(u.id,t.id,tactic)));},h->h==null?"目标在地图范围外":w.war.tacticError(u.id,w.unitAt(h)==null?-1:w.unitAt(h).id,tactic));
+            if(targets.isEmpty()){
+                List<World.Unit> nearby=new ArrayList<>();for(World.Unit t:w.fieldUnits())if(w.campaign.hostile(u.owner,t.owner))nearby.add(t);
+                nearby.sort(Comparator.comparingInt((World.Unit t)->u.hex.distance(t.hex)).thenComparingInt(t->t.id));
+                StringBuilder reasons=new StringBuilder(tactic.label+"当前没有合法目标。\n");
+                if(nearby.isEmpty())reasons.append(w.war.tacticError(u.id,-1,tactic));
+                for(int n=0;n<Math.min(3,nearby.size());n++){World.Unit t=nearby.get(n);reasons.append(w.officer(t.officerId).name).append("：").append(w.war.tacticError(u.id,t.id,tactic)).append('\n');}
+                info(reasons.toString());return;
+            }
+            a.pickOnMap(tactic.label+" · 选择目标",u.hex,targets.stream().map(t->t.hex).collect(java.util.stream.Collectors.toList()),h->{World.Unit t=w.unitAt(h);if(t==null)return;a.showTacticPreview(w,w.war.tacticPreview(u.id,t.id,tactic),()->apply.accept(w.war.tactic(u.id,t.id,tactic)));},h->h==null?"目标在地图范围外":w.war.tacticError(u.id,w.unitAt(h)==null?-1:w.unitAt(h).id,tactic));
         }).setNegativeButton("取消",null).show();
     }
     void joint(World.Unit u){

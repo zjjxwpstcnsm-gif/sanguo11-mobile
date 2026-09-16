@@ -200,3 +200,11 @@ tasks.named('check') { dependsOn 'verifyTacticalLogistics' }
 tasks.named('test') { dependsOn 'verifyTacticalLogistics' }
 
 sourceSets.test.java.srcDir "src/testFixtures/java"
+
+tasks.register('verifyDisplacement', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.DisplacementTest'
+}
+tasks.named('check') { dependsOn 'verifyDisplacement' }
+tasks.named('test') { dependsOn 'verifyDisplacement' }

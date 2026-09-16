@@ -1,4 +1,4 @@
-name: Delivered v0.28 displacement reproduction
+name: Installed displacement regression and v0.28 upgrade
 on:
   pull_request:
     branches: [main]
@@ -28,6 +28,7 @@ jobs:
       - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
       - name: Build pinned v0.28 observation runner
         run: |
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest
           mkdir -p /tmp/v028-observer app/build/baseline
           git fetch origin 7c2053bf36b0dd0637c74538c221c51021d64695
           git archive 7c2053bf36b0dd0637c74538c221c51021d64695 | tar -x -C /tmp/v028-observer
@@ -57,6 +58,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: v028-displacement-reproduction
+          name: tactical-displacement-comparison
           path: app/build/displacement
           retention-days: 30
