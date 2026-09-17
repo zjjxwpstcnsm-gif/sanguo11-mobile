@@ -1352,7 +1352,7 @@ public final class GameSmokeRunner extends Instrumentation {
         World w;try{w=saved();}catch(IOException e){throw new AssertionError("read city selection state",e);}
         World.City target=w.cities.stream().filter(c->c.name.equals(city)).findFirst().orElse(null);
         require(target!=null,"city exists in active scenario: "+city);
-        clickNav("城市");click(city+" · "+w.faction(target.owner),false);waitText(city,true);
+        clickNav("城市");setInput("搜索城市或势力",city);click(city+" · "+w.faction(target.owner),false);waitText(city,true);
     }
     private void waitForTurn(int turn)throws Exception {
         long until=SystemClock.uptimeMillis()+15000;
@@ -1408,17 +1408,12 @@ public final class GameSmokeRunner extends Instrumentation {
         sendPointerSync(down);sendPointerSync(up);down.recycle();up.recycle();waitForIdleSync();SystemClock.sleep(350);
     }
     private AccessibilityNodeInfo scrollToText(String text,boolean exact) {
-        AccessibilityNodeInfo node=null;long until=SystemClock.uptimeMillis()+12000;boolean forward=true;int directionSteps=0;
+        AccessibilityNodeInfo node=null;long until=SystemClock.uptimeMillis()+12000;boolean forward=true;
         while(node==null&&SystemClock.uptimeMillis()<until) {
             waitForIdleSync();AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();node=find(root,text,exact);
-            // Android accessibility can report a successful ListView scroll even when
-            // the viewport is already at an edge. Bound each directional sweep so a
-            // retained list position is always searched both forward and backward.
-            if(node==null){
-                boolean moved=forward?scroll(root):scrollBack(root);directionSteps++;
-                if(!moved||directionSteps>=20){forward=!forward;directionSteps=0;}
-                SystemClock.sleep(250);
-            }
+            // Lists retain their position across reopening/recreation. Search the full
+            // list in both directions, rather than bouncing around its last page.
+            if(node==null){if(forward&&!scroll(root))forward=false;if(!forward)scrollBack(root);SystemClock.sleep(250);}
         }
         if(node==null)throw new AssertionError("UI content not reachable by scrolling: "+text);
         return node;
