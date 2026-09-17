@@ -22,6 +22,7 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
 
           main = Path('app/src/main/java/game/sanguo/mobile/MainActivity.java')
           s = main.read_text(encoding='utf-8')
@@ -32,26 +33,28 @@ jobs:
               raise SystemExit('officer page title target not found')
           s = s.replace(old, new, 1)
 
-          old = '''        ScrollView scroll=new ScrollView(this);scroll.setFillViewport(false);scroll.addView(list,new ScrollView.LayoutParams(-1,-2));
-          dlg[0]=new AlertDialog.Builder(this).setTitle("选择剧本 · 六个年代与自制沙盘").setView(scroll).setNegativeButton("返回",null).create();
-          dlg[0].setOnShowListener(d->{
-              int rows=Math.min(5,Math.max(3,ss.size()));
-              int target=dp(rows*56+16);
-              int cap=Math.max(dp(180),getResources().getDisplayMetrics().heightPixels*58/100);
-              scroll.getLayoutParams().height=Math.min(target,cap);scroll.requestLayout();
-          });
-          dlg[0].show();'''
-          new = '''        ScrollView scroll=new ScrollView(this);scroll.setFillViewport(false);scroll.addView(list,new ScrollView.LayoutParams(-1,-2));
+          marker = 'ScrollView scroll=new ScrollView(this);scroll.setFillViewport(false);scroll.addView(list,new ScrollView.LayoutParams(-1,-2));'
+          if marker not in s:
+              raise SystemExit('scenario scroll marker not found')
+          shell = marker + '''
           int rows=Math.min(5,Math.max(3,ss.size()));
           int target=dp(rows*56+16);
           int cap=Math.max(dp(180),getResources().getDisplayMetrics().heightPixels*58/100);
           LinearLayout shell=UiViews.col(this);
-          shell.addView(scroll,new LinearLayout.LayoutParams(-1,Math.min(target,cap)));
-          dlg[0]=new AlertDialog.Builder(this).setTitle("选择剧本 · 六个年代与自制沙盘").setView(shell).setNegativeButton("返回",null).create();
-          dlg[0].show();'''
-          if old not in s:
-              raise SystemExit('scenario picker target not found')
-          s = s.replace(old, new, 1)
+          shell.addView(scroll,new LinearLayout.LayoutParams(-1,Math.min(target,cap)));'''
+          s = s.replace(marker, shell, 1)
+
+          view_old = '.setTitle("选择剧本 · 六个年代与自制沙盘").setView(scroll).setNegativeButton("返回",null).create();'
+          view_new = '.setTitle("选择剧本 · 六个年代与自制沙盘").setView(shell).setNegativeButton("返回",null).create();'
+          if view_old not in s:
+              raise SystemExit('scenario dialog view target not found')
+          s = s.replace(view_old, view_new, 1)
+
+          listener = re.compile(r'\n\s*dlg\[0\]\.setOnShowListener\(d->\{\s*int rows=Math\.min\(5,Math\.max\(3,ss\.size\(\)\)\);\s*int target=dp\(rows\*56\+16\);\s*int cap=Math\.max\(dp\(180\),getResources\(\)\.getDisplayMetrics\(\)\.heightPixels\*58/100\);\s*scroll\.getLayoutParams\(\)\.height=Math\.min\(target,cap\);scroll\.requestLayout\(\);\s*\}\);', re.S)
+          s, count = listener.subn('', s, count=1)
+          if count != 1:
+              raise SystemExit(f'scenario onShow listener target not found: {count}')
+
           main.write_text(s, encoding='utf-8')
           PY
       - name: Commit fix
