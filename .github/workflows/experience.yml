@@ -4,7 +4,7 @@ on:
     branches: [main]
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
   actions: read
 concurrency:
   group: experience-${{ github.ref }}
@@ -17,28 +17,6 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
-          fetch-depth: 0
-      - name: Harden bidirectional accessibility list search
-        shell: bash
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          p=Path('app/src/androidTest/java/game/sanguo/mobile/GameSmokeRunner.java')
-          s=p.read_text()
-          old='''    private AccessibilityNodeInfo scrollToText(String text,boolean exact) {\n        AccessibilityNodeInfo node=null;long until=SystemClock.uptimeMillis()+12000;boolean forward=true;\n        while(node==null&&SystemClock.uptimeMillis()<until) {\n            waitForIdleSync();AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();node=find(root,text,exact);\n            // Lists retain their position across reopening/recreation. Search the full\n            // list in both directions, rather than bouncing around its last page.\n            if(node==null){if(forward&&!scroll(root))forward=false;if(!forward)scrollBack(root);SystemClock.sleep(250);}\n        }\n        if(node==null)throw new AssertionError("UI content not reachable by scrolling: "+text);\n        return node;\n    }\n'''
-          new='''    private AccessibilityNodeInfo scrollToText(String text,boolean exact) {\n        AccessibilityNodeInfo node=null;long until=SystemClock.uptimeMillis()+12000;boolean forward=true;int directionSteps=0;\n        while(node==null&&SystemClock.uptimeMillis()<until) {\n            waitForIdleSync();AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();node=find(root,text,exact);\n            // Android accessibility can report a successful ListView scroll even when\n            // the viewport is already at an edge. Bound each directional sweep so a\n            // retained list position is always searched both forward and backward.\n            if(node==null){\n                boolean moved=forward?scroll(root):scrollBack(root);directionSteps++;\n                if(!moved||directionSteps>=20){forward=!forward;directionSteps=0;}\n                SystemClock.sleep(250);\n            }\n        }\n        if(node==null)throw new AssertionError("UI content not reachable by scrolling: "+text);\n        return node;\n    }\n'''
-          if old in s:
-              p.write_text(s.replace(old,new,1))
-          elif new not in s:
-              raise SystemExit('scrollToText target not found')
-          PY
-          git config user.name "sanguo11-mobile-ci"
-          git config user.email "actions@users.noreply.github.com"
-          git add app/src/androidTest/java/game/sanguo/mobile/GameSmokeRunner.java
-          if ! git diff --cached --quiet; then
-            git commit -m "test: make accessibility list search bidirectional"
-            git push origin HEAD:agent/mobile-ux-geography-turn-v034
-          fi
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
