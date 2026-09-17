@@ -32,3 +32,47 @@ MAP PERFORMANCE PASS: full-map drawing, territory switches, gestures, opaque fra
 
 10-fidelity-2400
 FIDELITY PASS: geography, parcel construction, draft restoration, pagination and army drag verified.
+
+11-army / 12-architecture (final APK 36600f9)
+BLOCKED: fresh software-emulator System UI ANR dialog obscured the app, confirmed in failure screenshot; dismissed system dialog before retry.
+
+13-army-retry
+FAIL: test attempted to edit offscreen food quantity; test helper now scrolls real UI before editing.
+
+14-architecture-retry (final APK 36600f9)
+COMMAND ["shell", "pm", "clear", "game.sanguo.mobile.dev"]
+Success
+
+EXIT 0
+COMMAND ["shell", "am", "instrument", "-w", "-e", "architecture33", "true", "game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner"]
+V033 checkpoint: startup
+V033 checkpoint: corrupt backup and historical new game verified
+V033 checkpoint: physical/fire/critical/weifeng execution verified
+V033 checkpoint: music and global-turn replay verified
+V033 checkpoint: PK task filter regression verified
+ARCHITECTURE33 PASS: empty/corrupt/backup/restore startup, production catalog, four-rule native commands, pure preview, recreation, turn replay and PK filter isolation.
+
+
+EXIT 0
+COMMAND ["pull", "/sdcard/Android/data/game.sanguo.mobile.dev/files/smoke", "/tmp/v033-architecture-retry"]
+/sdcard/Android/data/game.sanguo.mobile.dev/files/smoke/: 7 files pulled, 0 skipped. 12.8 MB/s (2583663 bytes in 0.193s)
+
+EXIT 0
+
+15-fidelity-final (final APK 36600f9, 1080x2400)
+COMMAND ["shell", "wm", "size", "1080x2400"]
+
+EXIT 0
+COMMAND ["shell", "pm", "clear", "game.sanguo.mobile.dev"]
+Success
+
+EXIT 0
+COMMAND ["shell", "am", "instrument", "-w", "-e", "fidelity", "true", "game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner"]
+FIDELITY PASS: geography, parcel construction, draft restoration, pagination and army drag verified.
+
+
+EXIT 0
+COMMAND ["pull", "/sdcard/Android/data/game.sanguo.mobile.dev/files/smoke", "/tmp/v033-fidelity-final"]
+/sdcard/Android/data/game.sanguo.mobile.dev/files/smoke/: 4 files pulled, 0 skipped. 13.7 MB/s (2380097 bytes in 0.165s)
+
+EXIT 0
