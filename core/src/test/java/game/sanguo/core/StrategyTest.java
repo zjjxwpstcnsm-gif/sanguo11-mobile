@@ -250,7 +250,7 @@ public final class StrategyTest {
         int pressure=border.strategy.strategicPressure(10);border.active=1;border.city(30).troops=6000;border.city(30).food=12000;
         ok(border.deploy(30,90,World.Weapon.SPEAR,3000));border.unit(1).hex=new Hex(3,3);border.active=0;
         check(border.strategy.strategicPressure(10)>pressure,"nearby enemy troops increase pressure");decision(border,StrategicAi.Command.RECRUIT);
-        World ordinary=ScenarioCatalog.load("regional-sandbox",0);ordinary.strategy.setSeed(1);int officers=ordinary.officers.size();next(ordinary);
+        World ordinary=TestScenarios.load("regional-sandbox",0);ordinary.strategy.setSeed(1);int officers=ordinary.officers.size();next(ordinary);
         check(ordinary.officers.size()>officers,"nextTurn integrates AI search before it deploys all administrators");
     }
     private static int marker(byte[] bytes){
@@ -310,11 +310,11 @@ public final class StrategyTest {
         try{ScenarioData.read(new ByteArrayInputStream(text.getBytes(StandardCharsets.UTF_8)),0);throw new AssertionError("invalid scenario accepted");}catch(IOException expected){checks++;}
     }
     private static void scenarioData()throws Exception{
-        World regional=ScenarioCatalog.load("regional-sandbox",0),small=ScenarioCatalog.load("m0-skirmish",0);
+        World regional=TestScenarios.load("regional-sandbox",0),small=TestScenarios.load("m0-skirmish",0);
         check(regional.officers.size()==18&&regional.strategy.hiddenTalents().size()==3,"new regional optional hidden pool preserves initial roster");
         check(small.officers.size()==6&&small.strategy.hiddenTalents().size()==2,"small scenario gets a local searchable pool");
         check(regional.officers.stream().filter(o->o.role==Strategy.Role.RULER).count()==3,"one ruler per starting faction");
-        String data=new String(resource("/scenarios/regional-sandbox.properties"),StandardCharsets.UTF_8);
+        String data=new String(resource("/test-scenarios/regional-sandbox.properties"),StandardCharsets.UTF_8);
         String old=data.substring(0,data.indexOf("# Fictional"));World legacy=ScenarioData.read(new ByteArrayInputStream(old.getBytes(StandardCharsets.UTF_8)),0);
         check(legacy.officers.size()==18&&legacy.strategy.hiddenTalents().isEmpty(),"existing format-1 packs without talent fields still load");
         badScenario(data.replace("910000|","1000|"));badScenario(data.replace("910000|杜衡|100|","910000|杜衡|99999|"));
@@ -326,7 +326,7 @@ public final class StrategyTest {
     }
     private static void campaigns()throws Exception{
         for(int player=0;player<3;player++){
-            World a=ScenarioCatalog.load("regional-sandbox",player);a.strategy.setSeed(20260913L+player);World b=copy(a);int turns=0;
+            World a=TestScenarios.load("regional-sandbox",player);a.strategy.setSeed(20260913L+player);World b=copy(a);int turns=0;
             while(turns<60&&!a.gameOver()){
                 new StrategicAi(a).run(true);new StrategicAi(a).run(false);new StrategicAi(b).run(true);new StrategicAi(b).run(false);
                 check(Arrays.equals(SaveCodec.encode(a),SaveCodec.encode(b)),"same player-side decisions after save");next(a);next(b);turns++;

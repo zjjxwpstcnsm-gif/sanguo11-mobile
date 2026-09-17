@@ -137,7 +137,7 @@ def build():
         svg.append(f'<circle cx="{x}" cy="{y}" r="4" fill="#8bd4b3"/><text x="{x+7}" y="{y+5}" font-size="13">{html.escape(s["name"])} ({s["rawX"]},{s["rawY"]})</text>')
     svg.append('</g></svg>');generated[ROOT/'docs/content/site-coordinate-preview.svg']=''.join(svg).encode()
     # Same original regional fixture, with explicit sourced base abilities/aptitudes. No invented historical opening.
-    base=(ROOT/'core/src/main/resources/scenarios/regional-sandbox.properties').read_text()
+    base=(ROOT/'core/src/test/resources/test-scenarios/regional-sandbox.properties').read_text()
     lines=[];diff=[];simple={}
     for l in base.splitlines():
         if l.startswith('id='):l='id=officer-reference-drill'
@@ -155,7 +155,7 @@ def build():
     for i,b in enumerate(bridge):
         o=byid[b['projectId']];apt=''.join(unicodedata.normalize('NFKC',o['values'][k]) for k in APT)
         lines.append('aptitude.'+str(i)+'='+str(b['projectId'])+'|'+'|'.join(str('CBAS'.index(a)) for a in apt))
-    generated[ROOT/'core/src/main/resources/scenarios/officer-reference-drill.properties']=('\n'.join(lines)+'\n').encode()
+    generated[ROOT/'core/src/test/resources/test-scenarios/officer-reference-drill.properties']=('\n'.join(lines)+'\n').encode()
     generated[OUT/'aliases.tsv']=table(['id','alias'],sorted(simple.items()))
     report['runtimeOfficerDiff']=diff
     report['sourceFileHashes']={p.name:sha(p.read_bytes()) for p in sorted(DATA.glob('*.json'))}
@@ -163,8 +163,8 @@ def build():
     index=['# resource SHA-256; format 1; generated offline']+[p.name+' '+sha(b) for p,b in sorted(generated.items()) if p.parent==OUT]
     generated[OUT/'index.txt']=('\n'.join(index)+'\n').encode()
     # Preserve old pack hashes and order byte-for-byte.
-    path=ROOT/'core/src/main/resources/scenarios/index.txt'
-    reference='officer-reference-drill '+sha(generated[ROOT/'core/src/main/resources/scenarios/officer-reference-drill.properties'])
+    path=ROOT/'core/src/test/resources/test-scenarios/index.txt'
+    reference='officer-reference-drill '+sha(generated[ROOT/'core/src/test/resources/test-scenarios/officer-reference-drill.properties'])
     current=path.read_text().splitlines()
     if any(l.startswith('officer-reference-drill ') for l in current):
         current=[reference if l.startswith('officer-reference-drill ') else l for l in current]

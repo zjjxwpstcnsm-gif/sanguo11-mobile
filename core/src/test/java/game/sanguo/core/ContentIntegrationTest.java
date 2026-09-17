@@ -9,7 +9,7 @@ public final class ContentIntegrationTest {
     public static void main(String[] args)throws Exception {
         ContentCatalog catalog=ContentCatalog.get();ContentRuntime.validate(catalog);
         for(ContentCatalog.Entry e:catalog.rows("skills"))check(ContentRuntime.skill(e.id)!=null,"explicit mapping "+e.id);
-        World w=ScenarioCatalog.load("officer-reference-drill",0);
+        World w=TestScenarios.load("officer-reference-drill",0);
         for(World.Officer o:w.officers){ContentCatalog.Officer d=catalog.officer(o.id);check(o.skillId.equals(d.skillId.equals("none")?"none":ContentRuntime.skill(d.skillId).id),"source skill becomes runtime state");check(o.sex!=World.Sex.UNKNOWN,"known gender binds");}
         check(w.officer(1004).skillId.equals(Skill.SHENSUAN.id)&&w.officer(3001).skillId.equals(Skill.HUOSHEN.id),"sourced Zhuge Liang and Zhou Yu retain distinct effects");
         World.Unit source=new World.Unit(w.nextUnitId++,0,1004,World.Weapon.SPEAR,new Hex(4,4),3000,12000);
@@ -21,7 +21,7 @@ public final class ContentIntegrationTest {
         check(target.statusTurns==2&&source.energy==65&&Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(copy)),"sourced critical/cost and restored result agree");
         w.officer(1004).skillId="future.retrained";w.officer(1004).sex=World.Sex.FEMALE;w.scenarioId="retired-pack";
         World restored=SaveCodec.decode(SaveCodec.encode(w));check(restored.officer(1004).skillId.equals("future.retrained")&&restored.officer(1004).sex==World.Sex.FEMALE,"load never rebinds static original skill/gender");
-        World old=ScenarioCatalog.load("regional-sandbox",0);check(old.officers.stream().allMatch(o->o.skillId.equals("none")&&o.sex==World.Sex.UNKNOWN),"original scenarios do not silently acquire new static people/skills");
+        World old=TestScenarios.load("regional-sandbox",0);check(old.officers.stream().allMatch(o->o.skillId.equals("none")&&o.sex==World.Sex.UNKNOWN),"original scenarios do not silently acquire new static people/skills");
         System.out.println("PASS: "+checks+" content/runtime integration assertions.");
     }
 }

@@ -123,10 +123,10 @@ public final class ContestTest {
         }
     }
     private static void saveAndCorruption()throws Exception{
-        World drill=ScenarioCatalog.load("contest-drill",0);check(drill.units.size()==2&&drill.contests.profiles.size()==10,"real drill has deployed units and explicit profiles");
+        World drill=TestScenarios.load("contest-drill",0);check(drill.units.size()==2&&drill.contests.profiles.size()==10,"real drill has deployed units and explicit profiles");
         check(drill.unit(1).hex.distance(drill.unit(2).hex)==1&&drill.army.crew(drill.unit(1)).size()==2,"drill is immediately playable");
         byte[] drillSave=bytes(drill);check(Arrays.equals(drillSave,bytes(SaveCodec.decode(drillSave))),"scenario profiles and initial units survive standalone save");
-        String opening;try(InputStream in=ContestTest.class.getResourceAsStream("/scenarios/contest-drill.properties")){opening=new String(in.readAllBytes(),java.nio.charset.StandardCharsets.UTF_8);}
+        String opening;try(InputStream in=ContestTest.class.getResourceAsStream("/test-scenarios/contest-drill.properties")){opening=new String(in.readAllBytes(),java.nio.charset.StandardCharsets.UTF_8);}
         for(String malformed:Arrays.asList(opening.replace("SPEAR|BOAT|4|3", "SPEAR|BOAT|3|3"),opening.replace("contest-profile.1=1|", "contest-profile.1=0|"),opening.replace("CALM|31|32", "CALM|32|32"),opening.replace("2|1|3|4|SPEAR", "2|1|3|1|SPEAR"))){
             try{ScenarioData.read(new ByteArrayInputStream(malformed.getBytes(java.nio.charset.StandardCharsets.UTF_8)),0);throw new AssertionError("invalid contest opening accepted");}catch(IOException expected){checks++;}
         }

@@ -54,7 +54,7 @@ public final class StrategicManagementTest {
         check(w.domestic.missions.isEmpty()&&front.food>0&&front.troops>0&&front.equipment[0]>0,"troops food gold equipment really delivered");original[1]-=consumed;check(Arrays.equals(original,stock(w)),"arrival conserves all resources after explicitly counted transit food");
         World support=fixture();support.city(12).troops=2000;support.city(12).food=2000;unit(support,21,World.Weapon.SPEAR,new Hex(20,15));
         check(new CampaignAi(support).support(11),"nearby rear actually supports threatened city");check(support.domestic.missions.get(0).targetCity==12&&support.domestic.missions.get(0).troops>1000,"support addresses actual troop deficit");
-        World specified=ScenarioCatalog.load("world-drill",0,25016);
+        World specified=TestScenarios.load("world-drill",0,25016);
         check(specified.districts.configure(-1,"指定运输",new int[]{11},Districts.Policy.ECONOMY,-1,10,true,true).ok,"configure installed regression's explicit destination");
         specified.nextTurn();specified.nextTurn();
         check(specified.domestic.missions.stream().anyMatch(m->m.transport&&m.sourceCity==11&&m.targetCity==10),"small nearby enemy does not indefinitely suppress explicit convoy");
@@ -92,7 +92,7 @@ public final class StrategicManagementTest {
         System.out.println("18 multi-city turns + save replay: "+(System.nanoTime()-start)/1000000+" ms");
     }
     private static void performance()throws Exception{
-        World w=ScenarioCatalog.load("heroes-mobile-sandbox",0,25016);long start=System.nanoTime();check(w.nextTurn().ok,"42-city/670-officer real turn");long elapsed=(System.nanoTime()-start)/1000000;check(elapsed<30000,"nation turn remains bounded under 30s on test runner");System.out.println("42 cities / 670 officers next turn: "+elapsed+" ms");
+        World w=TestScenarios.load("heroes-mobile-sandbox",0,25016);long start=System.nanoTime();check(w.nextTurn().ok,"42-city/670-officer real turn");long elapsed=(System.nanoTime()-start)/1000000;check(elapsed<30000,"nation turn remains bounded under 30s on test runner");System.out.println("42 cities / 670 officers next turn: "+elapsed+" ms");
     }
     private static void largeTurn()throws Exception{
         World w=new World(200,200,"甲","乙");w.strategy.setSeed(25016);

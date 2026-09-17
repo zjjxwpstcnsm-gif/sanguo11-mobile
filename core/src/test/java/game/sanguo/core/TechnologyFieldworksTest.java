@@ -28,7 +28,7 @@ public final class TechnologyFieldworksTest {
     }
     public static void main(String[] args)throws Exception{
         research();migration();construction();gold();effects();traps();terrainAndPorts();malformed();
-        World drill=ScenarioCatalog.load("fieldworks-drill",0);check(drill.units.get(0).gold==10000&&drill.city(11).kind==World.SiteKind.PORT,"bundled playable drill includes actual gold and ports");
+        World drill=TestScenarios.load("fieldworks-drill",0);check(drill.units.get(0).gold==10000&&drill.city(11).kind==World.SiteKind.PORT,"bundled playable drill includes actual gold and ports");
         check(Arrays.equals(bytes(drill),bytes(copy(drill))),"drill roundtrip");
         World again=copy(drill);for(int i=0;i<24&&!drill.gameOver();i++){ok(drill.nextTurn());ok(again.nextTurn());check(Arrays.equals(bytes(drill),bytes(again)),"full AI continuation deterministic");}
         System.out.println("PASS: "+checks+" technology/fieldworks assertions: 36 real research completions, legacy v10, high-bit saves, construction/gold/upgrade/cancel, battle effects, traps, terrain, ports and deterministic campaigns.");

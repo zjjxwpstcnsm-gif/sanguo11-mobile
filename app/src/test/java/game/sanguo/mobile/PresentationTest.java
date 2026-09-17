@@ -9,7 +9,7 @@ public final class PresentationTest {
     private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
     private static void near(float a,float b,String label){check(Math.abs(a-b)<.02f,label+": "+a+" vs "+b);}
     private static void deploymentCaps()throws Exception {
-        World w=ScenarioCatalog.load("regional-sandbox",0);World.City c=w.home();int leader=w.idle(c).get(0).id;
+        World w=TestScenarios.load("regional-sandbox",0);World.City c=w.home();int leader=w.idle(c).get(0).id;
         c.troops=7000;c.food=8000;c.equipment[0]=4567;
         check(UiModels.deployTroopCap(w,c,leader,World.Weapon.SPEAR,Army.Ship.BOAT)==4567,"equipment limits actual slider maximum");
         c.food=1234;check(UiModels.deployTroopCap(w,c,leader,World.Weapon.SPEAR,Army.Ship.BOAT)==1234,"food limits troop maximum");
@@ -30,13 +30,13 @@ public final class PresentationTest {
         check(UiModels.cycleReady(w,1,-1).id==3,"previous wraps by stable ID");
         check(Arrays.equals(before,SaveCodec.encode(w)),"cycling and reasons preserve game/RNG");
         w.unit(1).acted=true;w.unit(3).acted=true;check(UiModels.cycleReady(w,1,1)==null,"empty ready queue is explicit");
-        World normal=ScenarioCatalog.load("regional-sandbox",2);World low=SaveCodec.decode(SaveCodec.encode(normal));low.home().food=0;
+        World normal=TestScenarios.load("regional-sandbox",2);World low=SaveCodec.decode(SaveCodec.encode(normal));low.home().food=0;
         String report=UiModels.turnSummary(normal,low);check(report.indexOf("新增待处理")<report.indexOf("城池资源净变化"),"priority changes precede bulk resource deltas");
         check(UiModels.attention(low).stream().anyMatch(n->n.key.equals("food:"+low.home().id)),"food notice uses real city ID");
         check(UiModels.turnSummary(low,SaveCodec.decode(SaveCodec.encode(low))).contains("没有新增异常"),"persistent anomaly not repeated as new alert");
     }
     public static void main(String[] args)throws Exception {
-        World colors=ScenarioCatalog.load("heroes-mobile-sandbox",1);
+        World colors=TestScenarios.load("heroes-mobile-sandbox",1);
         check(FactionColors.color(colors,1)==0xff285be8,"Cao Cao pure blue");
         check(FactionColors.color(colors,0)==0xff36ac54,"Liu Bei green");
         check(FactionColors.color(colors,2)==0xffe34843,"Sun Quan red");
@@ -51,7 +51,7 @@ public final class PresentationTest {
         for(int i=0;i<PortraitCatalog.NAMES.length;i++)check(PortraitCatalog.index(PortraitCatalog.NAMES[i])==i,"stable famous portrait mapping");
         check(PortraitCatalog.index("劉備")==1&&PortraitCatalog.index("趙雲")==6&&PortraitCatalog.index("自建武将")==-1,"traditional names and custom portrait fallback");
         check(PortraitCatalog.variant(1,"甲")==PortraitCatalog.variant(1,"甲")&&PortraitCatalog.variant(1,"甲")!=PortraitCatalog.variant(2,"甲"),"fallback identity stable across redraws and different IDs");
-        World w=ScenarioCatalog.load("regional-sandbox",2);
+        World w=TestScenarios.load("regional-sandbox",2);
         byte[] unchanged=SaveCodec.encode(w);
         check(UiModels.officers(w,"周",2,-1,0).size()==1,"name and faction filter");
         check(UiModels.officers(w,"",2,300,4).get(0).name.equals("鲁肃"),"politics descending in city");
@@ -142,7 +142,7 @@ public final class PresentationTest {
         check(summary.contains("PK研究不屈 · 已中止")&&summary.contains("PK培养统率+5低 · 习武生 · 已中止"),"loss is cancellation, never completion");
     }
     private static void marchProjection()throws Exception {
-        World w=ScenarioCatalog.load("regional-sandbox",2);check(w.deploy(310,3003,World.Weapon.CROSSBOW,3000).ok,"march projection deployment");
+        World w=TestScenarios.load("regional-sandbox",2);check(w.deploy(310,3003,World.Weapon.CROSSBOW,3000).ok,"march projection deployment");
         World.Unit u=w.unit(w.officer(3003).unitId);MarchOrders.Plan plan=w.marches.preview(u.id,w.city(300).hex);check(plan.valid()&&w.marches.execute(plan).ok&&u.march!=null,"long route for UI task");
         byte[] before=SaveCodec.encode(w);List<UiModels.Task> tasks=UiModels.tasks(w,6);check(tasks.size()==1&&tasks.get(0).marching==u&&tasks.get(0).location.equals(u.hex),"march task targets actual unit location");
         check(UiModels.tasks(w,0).size()==1&&UiModels.tasks(w,6,"柴桑").size()==1&&UiModels.tasks(w,3).isEmpty(),"march filter/name/global count without cargo phantom");
@@ -151,7 +151,7 @@ public final class PresentationTest {
         if(u.march!=null)check(w.marches.stop(u.id).ok,"stop fixture");check(UiModels.tasks(w,6).isEmpty(),"stopped route removed from task count");
     }
     private static void personnelProjection()throws Exception {
-        World w=ScenarioCatalog.load("regional-sandbox",2);
+        World w=TestScenarios.load("regional-sandbox",2);
         check(UiModels.governor(w,300).equals("未任命"),"no invented governor before appointment");
         check(w.strategy.search(300,3002).ok,"discover seeded talent");
         World.Officer talent=w.officer(910002);
@@ -168,12 +168,12 @@ public final class PresentationTest {
         check(w.strategy.appointGovernor(300,3001,3001).ok&&UiModels.governor(w,300).equals("周瑜"),"actual appointed governor displayed");
         World restored=SaveCodec.decode(SaveCodec.encode(w));
         check(UiModels.governor(restored,300).equals("周瑜")&&restored.officer(3001).role==Strategy.Role.GOVERNOR,"governor projection survives v4 round trip");
-        World deployed=ScenarioCatalog.load("regional-sandbox",2);
+        World deployed=TestScenarios.load("regional-sandbox",2);
         check(deployed.deploy(310,3003,World.Weapon.CROSSBOW,3000).ok,"deployed officer fixture");
         World.Officer officer=deployed.officer(3003);World.Unit unit=deployed.unit(officer.unitId);
         officer.acted=false;unit.acted=true;
         check(UiModels.status(deployed,officer).equals("出征 · 已行动"),"deployed status follows army action flag");
-        World assigned=ScenarioCatalog.load("regional-sandbox",2);
+        World assigned=TestScenarios.load("regional-sandbox",2);
         check(assigned.strategy.beginAssignment(300,3002,"政务",2).ok,"long assignment fixture");
         check(UiModels.status(assigned,assigned.officer(3002)).equals("政务 · 剩2旬"),"long assignment visible");
     }

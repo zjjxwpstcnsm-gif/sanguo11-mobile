@@ -18,7 +18,7 @@ public final class MapSkillsTest {
         w.units.add(a);w.units.add(b);w.nextUnitId=3;w.strategy.setSeed(88);return w;
     }
     private static void geography()throws Exception {
-        World w=ScenarioCatalog.load("heroes-mobile-sandbox",1);
+        World w=TestScenarios.load("heroes-mobile-sandbox",1);
         int[] expected={12,15,12,15,12,12,20,12,18,10,15,15,15,18,12,22,15,22,12,10,12,15,18,15,15,15,12,12,10,18,15,12,10,12,12,12,15,10,12,18,12,15};
         Set<Hex> all=new HashSet<>();int distant=0;
         for(World.City c:w.cities){if(c.kind!=World.SiteKind.CITY)continue;check(w.development.capacity(c.id)==expected[c.id-20000],"researched city capacity "+c.name);check(w.domestic.buildSites(c.id).size()==expected[c.id-20000],"all parcels can initially build "+c.name);

@@ -13,8 +13,8 @@ main CI 35177570022 三个屏幕均在实装步骤失败，编译成功。1920 �
 |高|Skills、War、Army、Contests 直接加减气力|统一 EnergyRules.change，预览返回 before/after/actual/reason|初始化、反序列化、迁移、PK编辑和身份转移的赋值保留；不是规则服务持久化|
 |高|Skills 的火系、条件暴击与命中效果混合|火伤/条件暴击迁移至 CombatRules；命中应用至 CombatEffects；Skills 保留特技持有者查询、计略条件与非战斗特技|没有保留旧计算方法的转发别名|
 |高|World.nextTurn 阶段不明显|独立 settleGlobalTurn，保留所有阶段的既有顺序|存档 v22；势力 reset 与全局旬继续区分|
-|高|MainActivity 先创建 Demo；坏档后暂停会保存 Demo|待启动流程隔离批次处理|必须保留损坏字节，不能静默覆盖|
-|中|Demo/演练地图、独立 battle 实验引擎打入 APK|待测试内容隔离批次移入 testFixtures/test resources|存档内嵌地图/人物；不依赖剧本目录|
+|高|MainActivity 先创建 Demo；坏档后暂停会保存 Demo|无档/损坏档显示起始页；确认替换前备份坏档；正常恢复独立处理|必须保留损坏字节，不能静默覆盖|
+|中|Demo/演练地图、独立 battle 实验引擎打入 APK|已移入 testFixtures/test resources；正式 catalog 仅保留六年代+三种全国玩家沙盘|存档内嵌地图/人物；不依赖剧本目录|
 |中|AI 八次采样和 UI 预览|采样策略移入 CombatRules.expectedDamage，UI 用同规则端点范围；都只使用本地 RNG|预览不推进世界 RNG，AI策略的原采样仍保持|
 
 ## 职责与执行顺序

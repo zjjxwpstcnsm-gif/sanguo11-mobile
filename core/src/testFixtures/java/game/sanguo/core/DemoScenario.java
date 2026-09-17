@@ -6,7 +6,7 @@ import java.io.IOException;
 public final class DemoScenario {
     private DemoScenario() {}
     public static World create() {
-        try{return ScenarioCatalog.load("m0-skirmish",0);}
+        try{return TestScenarios.load("m0-skirmish",0);}
         catch(IOException e){throw new IllegalStateException("内置基础演练数据损坏",e);}
     }
 }

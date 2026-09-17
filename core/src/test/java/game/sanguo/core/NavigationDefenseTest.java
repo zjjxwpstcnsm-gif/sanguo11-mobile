@@ -49,7 +49,7 @@ public final class NavigationDefenseTest {
     }
     static void geography()throws Exception{
         for(String id:new String[]{"heroes-mobile-sandbox","huangjin-184","coalition-190","warlords-194","guandu-200","chibi-207","heroes-250"}){
-            World w=ScenarioCatalog.load(id,0);check(w.cities.size()==87,"87 live sites "+id);
+            World w=TestScenarios.load(id,0);check(w.cities.size()==87,"87 live sites "+id);
             check(w.cities.stream().filter(c->c.kind==World.SiteKind.PORT).count()==35&&w.cities.stream().filter(c->c.kind==World.SiteKind.GATE).count()==10,"35 ports, 10 gates "+id);
             for(World.City c:w.cities)if(c.kind==World.SiteKind.PORT){check(c.hex.neighbors().stream().anyMatch(w.army::water),"port touches navigable water "+c.name);check(c.hex.neighbors().stream().filter(h->w.cost(h,World.Weapon.SPEAR)>0&&w.cityAt(h)==null).count()>=2,"port has land approach and spare exit "+c.name);}
             for(int[] pair:new int[][]{{20036,20017},{20037,20036},{20036,20020},{20039,20037}}){int distance=landDistance(w,w.city(pair[0]).hex,w.city(pair[1]).hex);check(distance>0&&distance<75,"direct passable northern land route "+Arrays.toString(pair)+" got "+distance);}
@@ -57,9 +57,9 @@ public final class NavigationDefenseTest {
             check(w.development.capacity(20017)==22&&w.development.capacity(20006)==20,"retained city capacities");
             check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(copy(w))),"full site map roundtrip "+id);
         }
-        World w=ScenarioCatalog.load("chibi-207",0);Hex lu=w.city(20025).hex;boolean south=false;for(int r=3;r<=12;r++)if(w.army.water(new Hex(lu.q-r/2,lu.r+r)))south=true;check(south,"Yangtze south of Lujiang");
+        World w=TestScenarios.load("chibi-207",0);Hex lu=w.city(20025).hex;boolean south=false;for(int r=3;r<=12;r++)if(w.army.water(new Hex(lu.q-r/2,lu.r+r)))south=true;check(south,"Yangtze south of Lujiang");
         // Run actual deployment and route preview through the rebuilt passes.
-        World n=ScenarioCatalog.load("heroes-mobile-sandbox",1);World.City source=n.city(20036);World.Officer leader=n.idle(source).get(0);
+        World n=TestScenarios.load("heroes-mobile-sandbox",1);World.City source=n.city(20036);World.Officer leader=n.idle(source).get(0);
         check(n.army.deploy(source.id,leader.id,new int[0],World.Weapon.SPEAR,Army.Ship.BOAT,3000,20000,0).ok,"deploy in Hanzhong");
         MarchOrders.Plan p=n.marches.preview(leader.unitId,n.city(20017).hex);check(p.valid()&&p.path.size()<80,"actual northbound march preview");check(n.marches.execute(p).ok,"actual march starts");SaveCodec.validate(n);
     }
@@ -67,10 +67,10 @@ public final class NavigationDefenseTest {
     static String catalogName(int id){try{return ContentCatalog.get().officer(id).name;}catch(Exception e){throw new RuntimeException(e);}}
     static String owner(World w,String name){World.Officer o=named(w,name);return w.faction(o.owner);}
     static void scenarios()throws Exception{
-        for(ScenarioCatalog.Summary item:ScenarioCatalog.summaries()){World w=ScenarioCatalog.load(item.id,0);check(item.sites==w.cities.size()&&item.officers==w.officers.size()&&item.factions==w.factions.length&&item.name.equals(w.scenarioName),"lightweight catalog matches world "+item.id);}
+        for(ScenarioCatalog.Summary item:ScenarioCatalog.summaries()){World w=TestScenarios.load(item.id,0);check(item.sites==w.cities.size()&&item.officers==w.officers.size()&&item.factions==w.factions.length&&item.name.equals(w.scenarioName),"lightweight catalog matches world "+item.id);}
         String[] ids={"huangjin-184","coalition-190","warlords-194","guandu-200","chibi-207","heroes-250"};int[] years={184,190,194,200,207,250};
         for(int k=0;k<ids.length;k++){
-            World w=ScenarioCatalog.load(ids[k],0);check(w.startYear==years[k],"requested date");
+            World w=TestScenarios.load(ids[k],0);check(w.startYear==years[k],"requested date");
             for(int side=0;side<w.factions.length;side++){
                 int selected=side;World.Officer ruler=w.officers.stream().filter(o->o.owner==selected&&o.role==Strategy.Role.RULER).findFirst().orElseThrow();
                 ContentCatalog.Officer source=ContentCatalog.get().officer(ruler.id);check(w.faction(side).equals(source.name+"军"),"explicit ruler matches faction "+w.faction(side));
@@ -79,15 +79,15 @@ public final class NavigationDefenseTest {
             check(w.officers.stream().noneMatch(o->o.owner>=0&&!w.life.present(o.id)),"no future officers serving");
             if(years[k]<250){World.Officer future=named(w,"姜維");check(!w.life.present(future.id)&&future.owner==-1,"future general not active early");}
         }
-        World first=ScenarioCatalog.load("huangjin-184",0);check(named(first,"曹操").owner==named(first,"何進").owner,"184 Cao serves court");
-        World c=ScenarioCatalog.load("coalition-190",0);check(c.city(20012).owner==named(c,"曹操").owner&&c.city(20015).owner==named(c,"董卓").owner,"190 Chenliu/Luoyang");check(named(c,"郭嘉").owner==-1,"190 Guo Jia not prematurely assigned to Cao");
-        World g=ScenarioCatalog.load("guandu-200",0);check(named(g,"張郃").owner==named(g,"袁紹").owner&&named(g,"張遼").owner==named(g,"曹操").owner,"200 transferred officers");
-        World ch=ScenarioCatalog.load("chibi-207",0);check(ch.city(20028).owner==named(ch,"劉備").owner&&named(ch,"趙雲").owner==named(ch,"劉備").owner,"207 Xinye and Zhao Yun");check(named(ch,"諸葛亮").owner==-1,"207 Zhuge Liang available to recruit");
-        World f=ScenarioCatalog.load("heroes-250",0);check(f.officers.size()==670&&f.life.people().isEmpty()&&f.factions.length==28,"all-era fantasy without life gates");
+        World first=TestScenarios.load("huangjin-184",0);check(named(first,"曹操").owner==named(first,"何進").owner,"184 Cao serves court");
+        World c=TestScenarios.load("coalition-190",0);check(c.city(20012).owner==named(c,"曹操").owner&&c.city(20015).owner==named(c,"董卓").owner,"190 Chenliu/Luoyang");check(named(c,"郭嘉").owner==-1,"190 Guo Jia not prematurely assigned to Cao");
+        World g=TestScenarios.load("guandu-200",0);check(named(g,"張郃").owner==named(g,"袁紹").owner&&named(g,"張遼").owner==named(g,"曹操").owner,"200 transferred officers");
+        World ch=TestScenarios.load("chibi-207",0);check(ch.city(20028).owner==named(ch,"劉備").owner&&named(ch,"趙雲").owner==named(ch,"劉備").owner,"207 Xinye and Zhao Yun");check(named(ch,"諸葛亮").owner==-1,"207 Zhuge Liang available to recruit");
+        World f=TestScenarios.load("heroes-250",0);check(f.officers.size()==670&&f.life.people().isEmpty()&&f.factions.length==28,"all-era fantasy without life gates");
     }
     static void campaigns()throws Exception{
         for(String id:new String[]{"huangjin-184","coalition-190","warlords-194","guandu-200","chibi-207","heroes-250"}){
-            World w=ScenarioCatalog.load(id,0);for(int turn=0;turn<3;turn++){World replay=copy(w);check(w.nextTurn().ok&&replay.nextTurn().ok,"new historical campaign advances "+id);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(replay)),"historical turn replays exactly "+id);SaveCodec.validate(w);}
+            World w=TestScenarios.load(id,0);for(int turn=0;turn<3;turn++){World replay=copy(w);check(w.nextTurn().ok&&replay.nextTurn().ok,"new historical campaign advances "+id);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(replay)),"historical turn replays exactly "+id);SaveCodec.validate(w);}
         }
     }
     public static void main(String[] args)throws Exception{defense();geography();scenarios();campaigns();System.out.println("PASS: "+checks+" navigation/defense/historical opening assertions.");}

@@ -155,7 +155,7 @@ public final class RulesParityTest {
     private static void simulation()throws Exception {
         Skill[] available={SHENSUAN,BAICHU,LIANZHAN,QIANGSHEN,WEIFENG,MINGJING,TENGJIA,RENZHENG};
         for(int player=0;player<3;player++){
-            World w=ScenarioCatalog.load("regional-sandbox",player);for(World.Officer o:w.officers)o.skillId=available[o.id%available.length].id;
+            World w=TestScenarios.load("regional-sandbox",player);for(World.Officer o:w.officers)o.skillId=available[o.id%available.length].id;
             World copy=SaveCodec.decode(bytes(w));
             for(int turn=0;turn<60&&!w.gameOver();turn++){
                 check(w.nextTurn().ok==copy.nextTurn().ok,"same AI command result");check(Arrays.equals(bytes(w),bytes(copy)),"deterministic multi-faction skill campaign");copy=SaveCodec.decode(bytes(copy));

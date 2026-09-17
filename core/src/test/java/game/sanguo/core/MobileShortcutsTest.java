@@ -8,7 +8,7 @@ public final class MobileShortcutsTest {
     private static void check(boolean value,String message){checks++;if(!value)throw new AssertionError(message);}
     public static void main(String[] args)throws Exception {
         for(Domestic.Kind kind:Arrays.asList(Domestic.Kind.MARKET,Domestic.Kind.FARM,Domestic.Kind.BARRACKS,Domestic.Kind.SMITH,Domestic.Kind.STABLE)){
-            World w=ScenarioCatalog.load("regional-sandbox",0);World.City c=w.home();World.Officer o=w.idle(c).get(0);
+            World w=TestScenarios.load("regional-sandbox",0);World.City c=w.home();World.Officer o=w.idle(c).get(0);
             int gold=c.gold,ap=w.actionPoints[0];Hex h=w.domestic.buildSites(c.id).get(0);
             check(w.domestic.build(c.id,o.id,kind,h).ok,"build highest level "+kind);
             Domestic.Facility f=w.domestic.at(h);check(f.level==3&&f.upgradeTo==0&&f.remaining>0,"level three construction uses no absorption");
@@ -22,7 +22,7 @@ public final class MobileShortcutsTest {
         String[] ids={"heroes-mobile-sandbox","central-mobile-sandbox","jingxiang-mobile-sandbox"};
         int[] cities={42,18,12},people={670,180,120};
         for(int i=0;i<ids.length;i++)for(int side=0;side<3;side++){
-            World w=ScenarioCatalog.load(ids[i],side);
+            World w=TestScenarios.load(ids[i],side);
             check(w.cities.stream().filter(c->c.kind==World.SiteKind.CITY).count()==cities[i]&&w.officers.size()==people[i],"playable city and officer totals");
             check(w.officers.stream().map(o->o.id).distinct().count()==people[i],"stable unique officer IDs");
             check(w.officers.stream().anyMatch(o->o.owner==-1),"unaffiliated officers are actually recruitable");
