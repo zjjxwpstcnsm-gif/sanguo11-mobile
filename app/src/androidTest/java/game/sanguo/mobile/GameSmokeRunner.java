@@ -124,7 +124,9 @@ public final class GameSmokeRunner extends Instrumentation {
 
 
 
+    private void checkpoint(String label){Bundle status=new Bundle();status.putString("stream","V033 checkpoint: "+label+"\n");sendStatus(0,status);}
     private void architecture33Flow()throws Exception{
+        checkpoint("startup");
         for(String name:new String[]{"auto.sg11","auto.sg11.bak","auto.sg11.new"})getTargetContext().deleteFile(name);
         startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitText("新建游戏 · 选择剧本",true);
         require(!getTargetContext().getFileStreamPath("auto.sg11").exists(),"empty startup writes no demo");
@@ -136,14 +138,15 @@ public final class GameSmokeRunner extends Instrumentation {
         click("新建游戏 · 选择剧本",true);waitText("选择剧本",false);require(ScenarioCatalog.summaries().size()==9,"only six eras and three player sandboxes");screenshot("v033-production-catalog");
         click("190 讨伐董卓",false);waitText("选择势力",false,180000);click("曹操军",true);click("执行",true);waitText("190 讨伐董卓 · 重建  ·",false,180000);waitForIdleSync();require(saved().scenarioId.equals("coalition-190"),"explicit new game");
         boolean backed=false;for(File f:getTargetContext().getFilesDir().listFiles())if(f.getName().startsWith("auto-unreadable-"))backed|=Arrays.equals(corrupt,java.nio.file.Files.readAllBytes(f.toPath()));require(backed,"corrupt archive retains exact original");
+        checkpoint("corrupt backup and historical new game verified");
         World base=ArchitectureFixture.create();base.scenarioName="规则架构验证";base.officer(0).skillId=Skill.HUOSHEN.id;base.officer(1).skillId=Skill.WEIFENG.id;base.officer(2).skillId=Skill.SHENJIANG.id;base.officer(2).war=100;
         base.unit(2).hex=new Hex(8,6);base.strategy.setSeed(0);World expected=SaveCodec.decode(SaveCodec.encode(base));require(expected.war.tactic(1,2,War.Tactic.FIRE_ARROW).ok&&expected.unit(2).energy==60,"real four-rule fixture hits");
         installFixture(base,base.unit(1).hex);byte[] before=SaveCodec.encode(saved());click("战法",true);click("火矢 ·",false);tapHex(saved().unit(2).hex);waitText("物理伤害",false);screenshot("v033-fire-preview");click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"native preview cancel preserves RNG and resources");click("取消选取",true);
-        click("战法",true);click("火矢 ·",false);tapHex(saved().unit(2).hex);click("执行",true);require(Arrays.equals(SaveCodec.encode(expected),SaveCodec.encode(saved())),"UI command equals authoritative execution including fire/crit/weifeng");screenshot("v033-fire-executed");
+        click("战法",true);click("火矢 ·",false);tapHex(saved().unit(2).hex);click("执行",true);require(Arrays.equals(SaveCodec.encode(expected),SaveCodec.encode(saved())),"UI command equals authoritative execution including fire/crit/weifeng");screenshot("v033-fire-executed");checkpoint("physical/fire/critical/weifeng execution verified");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("规则架构验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"recreation applies no effects");
         World music=saved();music.officer(1).skillId=Skill.SHIXIANG.id;music.officer(2).skillId=Skill.ZOUYUE.id;music.unit(1).energy=40;ArchitectureFixture.addMusic(music);
-        World next=SaveCodec.decode(SaveCodec.encode(music));require(next.nextTurn().ok,"reference global turn");installFixture(music,music.unit(1).hex);endTurn();waitForTurn(1);require(Arrays.equals(SaveCodec.encode(next),SaveCodec.encode(saved())),"one native global turn matches save replay");before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("规则架构验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"music not applied again on recreation");screenshot("v033-music-turn");
-        abilityFlow();
+        World next=SaveCodec.decode(SaveCodec.encode(music));require(next.nextTurn().ok,"reference global turn");installFixture(music,music.unit(1).hex);endTurn();waitForTurn(1);require(Arrays.equals(SaveCodec.encode(next),SaveCodec.encode(saved())),"one native global turn matches save replay");before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("规则架构验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"music not applied again on recreation");screenshot("v033-music-turn");checkpoint("music and global-turn replay verified");
+        abilityFlow(true);checkpoint("PK task filter regression verified");
     }
 
     private RectF mapRect(MapView map,String name)throws Exception{java.lang.reflect.Field f=MapView.class.getDeclaredField(name);f.setAccessible(true);return new RectF((RectF)f.get(map));}
@@ -1149,7 +1152,8 @@ public final class GameSmokeRunner extends Instrumentation {
         locateCity("工营主城");click("研究",true);click("技巧研究",true);click("发明",true);waitText("石造建筑 ·",false);screenshot("53-tech-branch");click("取消",true);
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("筑垒研兵",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"new research and completed works persist");
     }
-    private void abilityFlow()throws Exception {
+    private void abilityFlow()throws Exception {abilityFlow(false);}
+    private void abilityFlow(boolean taskFilterOnly)throws Exception {
         World w=new World(20,14,"学营","守营");w.scenarioId="pk-smoke";w.scenarioName="PK培养演练";
         w.cities.add(new World.City(10,"学宫",new Hex(2,2),0));w.cities.add(new World.City(20,"守城",new Hex(17,11),1));
         for(World.City c:w.cities){c.gold=30000;c.food=200000;c.troops=0;}
@@ -1162,6 +1166,7 @@ public final class GameSmokeRunner extends Instrumentation {
         click("功能",true);waitText("任务 1",true);
         clickNav("任务");click("筛选 · 全部任务",true);click("研究 / 培养",true);waitText("PK研究统率+5低",true);screenshot("48-pk-research");
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("PK研究统率+5低",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"research survives recreation");
+        if(taskFilterOnly)return;
         for(int turn=1;turn<=9;turn++){endTurn();waitForTurn(turn);}require(saved().abilities.learned(0,"lead.low"),"full UI turn loop unlocks research");
         locateCity("学宫");click("研究",true);click("能力 / 适性培养",true);click("基础能力",true);click("统率+5低 · 剩5次",true);click("习武生 · 50",true);click("执行",true);
         click("功能",true);waitText("任务 1",true);
