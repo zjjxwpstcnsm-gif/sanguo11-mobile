@@ -11,7 +11,8 @@ public final class TestScenarios {
         Map<String,String> out=new LinkedHashMap<>();
         try(InputStream in=TestScenarios.class.getResourceAsStream("/test-scenarios/index.txt")){
             if(in==null)throw new IOException("Test resources missing");
-            for(String line:new String(in.readAllBytes(),StandardCharsets.UTF_8).split("\n"))if(!line.isEmpty()&&!line.startsWith("#")){String[] pair=line.split(" ");out.put(pair[0],pair[1]);}
+            BufferedReader reader=new BufferedReader(new InputStreamReader(in,StandardCharsets.UTF_8));String line;
+            while((line=reader.readLine())!=null)if(!line.isEmpty()&&!line.startsWith("#")){String[] pair=line.split(" ");out.put(pair[0],pair[1]);}
         }return out;
     }
     public static World load(String id,int player)throws IOException{
