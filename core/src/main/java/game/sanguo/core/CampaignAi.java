@@ -122,7 +122,7 @@ public final class CampaignAi {
             }
             for(War.Tactic t:War.Tactic.values())if(w.war.tacticError(a.id,b.id,t)==null){
                 if(w.war.tacticPreview(a.id,b.id,t).friendlyRisk)continue;
-                int hit=value(b,w.combat.expectedDamage(a,b,t.multiplier,true));boolean friendly=false;
+                int hit=value(b,w.combat.expectedWithFire(a,b,t.multiplier,t==War.Tactic.FIRE_ARROW));boolean friendly=false;
                 for(World.Unit other:units())if(other.id!=b.id&&other.id!=a.id&&splash(t,a.hex,b.hex,other.hex)){
                     if(t==War.Tactic.VOLLEY&&other.owner==a.owner&&!w.skills.has(a,Skill.GONGSHEN)){friendly=true;break;}
                     if(w.campaign.hostile(a.owner,other.owner))hit+=value(other,w.combat.expectedDamage(a,other,t.multiplier,true));
@@ -135,7 +135,7 @@ public final class CampaignAi {
             for(Army.Tactic t:w.army.tactics(a))if(w.army.tacticError(a.id,b.hex,t)==null){
                 if(w.army.tacticPreview(a.id,b.hex,t).friendlyRisk)continue;
                 if(t==Army.Tactic.STONE&&w.campaign.has(a.owner,Campaign.Tech.THUNDERBOLT)&&ownAssetsNear(a,b.hex))continue;
-                int score=value(b,w.combat.expectedDamage(a,b,t==Army.Tactic.STONE?1.5:1.3,true))*w.army.tacticChance(a.id,b.hex)/100-t.energy*8;
+                int score=value(b,w.combat.expectedWithFire(a,b,t==Army.Tactic.STONE?1.5:1.3,t==Army.Tactic.FIRE_ARROW||t==Army.Tactic.FLAME))*w.army.tacticChance(a.id,b.hex)/100-t.energy*8;
                 best=better(best,new Action(Kind.ARMY_TACTIC,a.id,b.id,b.hex,score,null,t,null,"兵器与水军选择有效战法"));
             }
             for(War.Plot p:War.Plot.values())if(p!=War.Plot.CALM&&p!=War.Plot.EXTINGUISH&&w.war.plotError(a.id,b.hex,p)==null)
@@ -143,28 +143,29 @@ public final class CampaignAi {
         }
         if(!attack)return best;
         for(World.City c:cities())if(w.campaign.hostile(a.owner,c.owner)&&objectives.test(c)){
-            int score=150+(c.troops==0||c.defense<=w.combat.siegeDefenseDamage(a)?1800:0);
+            CombatRules.SiegeDamage normal=w.combat.siege(a,false),tactic=w.combat.siege(a,true);
+            int score=150+(c.troops<=normal.troops||c.defense<=normal.wall?1800:0);
             if(w.siegeError(a.id,c.id)==null)best=better(best,action(Kind.SIEGE,a,c.id,c.hex,score,"夺取可占领据点"));
             for(Army.Tactic t:w.army.tactics(a))if(w.army.tacticError(a.id,c.hex,t)==null){
                 if(t==Army.Tactic.STONE&&w.campaign.has(a.owner,Campaign.Tech.THUNDERBOLT)&&ownAssetsNear(a,c.hex))continue;
-                best=better(best,new Action(Kind.ARMY_TACTIC,a.id,c.id,c.hex,score+w.combat.siegeDefenseDamage(a)+w.combat.siegeTroopDamage(a)/2-t.energy*5,null,t,null,"使用兵器战法削减城防和守军"));
+                best=better(best,new Action(Kind.ARMY_TACTIC,a.id,c.id,c.hex,150+(c.troops<=tactic.troops||c.defense<=tactic.wall?1800:0)+tactic.wall+tactic.troops/2-t.energy*5,null,t,null,"使用兵器战法削减城防和守军"));
             }
         }
         for(War.Structure s:w.war.structures())if(w.campaign.hostile(a.owner,s.owner)&&a.hex.distance(s.hex)<=w.war.range(a)){
-            int score=200+Math.min(s.hp,200+w.army.war(a)*2)+(s.complete?100:0);
-            if(w.army.canAttackUnit(a))best=better(best,action(Kind.STRUCTURE,a,s.id,s.hex,score,"清除敌方设施与通路阻挡"));
+            int score=200+Math.min(s.hp,w.combat.structureDamage(a,false))+(s.complete?100:0);
+            if(w.army.canAttackUnit(a)&&w.war.structureAttackError(a.id,s.hex)==null)best=better(best,action(Kind.STRUCTURE,a,s.id,s.hex,score,"清除敌方设施与通路阻挡"));
             else for(Army.Tactic t:w.army.tactics(a))if(w.army.tacticError(a.id,s.hex,t)==null){
                 if(t==Army.Tactic.STONE&&w.campaign.has(a.owner,Campaign.Tech.THUNDERBOLT)&&ownAssetsNear(a,s.hex))continue;
                 if((t==Army.Tactic.FIRE_ARROW||t==Army.Tactic.FLAME)&&w.fieldworks.trap(s.kind))continue;
-                best=better(best,new Action(Kind.ARMY_TACTIC,a.id,s.id,s.hex,score-t.energy*5,null,t,null,"用合法兵器战法拆除设施并避开友伤"));
+                best=better(best,new Action(Kind.ARMY_TACTIC,a.id,s.id,s.hex,200+Math.min(s.hp,w.combat.structureDamage(a,true))+(s.complete?100:0)-t.energy*5,null,t,null,"用合法兵器战法拆除设施并避开友伤"));
             }
         }
         for(Domestic.Facility f:w.domestic.facilities)if(w.campaign.hostile(a.owner,w.city(f.cityId).owner)&&objectives.test(w.city(f.cityId))){
-            int score=150+Math.min(f.hp,w.campaign.constructionDamage(a,w.combat.siegeDefenseDamage(a)));
+            int score=150+Math.min(f.hp,w.combat.structureDamage(a,false));
             if(w.war.facilityAttackError(a.id,f.hex)==null)best=better(best,action(Kind.FACILITY,a,f.id,f.hex,score,"破坏敌方内政并清除道路阻挡"));
             else for(Army.Tactic t:w.army.tactics(a))if(w.army.tacticError(a.id,f.hex,t)==null){
                 if(t==Army.Tactic.STONE&&w.campaign.has(a.owner,Campaign.Tech.THUNDERBOLT)&&ownAssetsNear(a,f.hex))continue;
-                best=better(best,new Action(Kind.ARMY_TACTIC,a.id,f.id,f.hex,score-t.energy*5,null,t,null,"兵器拆除敌方内政设施"));
+                best=better(best,new Action(Kind.ARMY_TACTIC,a.id,f.id,f.hex,150+Math.min(f.hp,w.combat.structureDamage(a,true))-t.energy*5,null,t,null,"兵器拆除敌方内政设施"));
             }
         }
         for(Domestic.Mission m:w.domestic.missions)if(w.supply.raidError(a.id,m.id)==null){int hit=w.supply.raidDamage(a.id,m.id);

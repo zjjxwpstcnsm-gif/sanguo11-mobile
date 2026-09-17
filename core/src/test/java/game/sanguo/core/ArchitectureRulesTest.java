@@ -10,7 +10,7 @@ public final class ArchitectureRulesTest {
     private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
     private static byte[] bytes(World w)throws Exception{return SaveCodec.encode(w);}
     private static void skill(World w,int officer,Skill s){w.officer(officer).skillId=s.id;}
-    public static void main(String[] args)throws Exception{numericalBaseline();holders();energyAndHit();pureQueries();fireReplay();music();splashAndTrap();roster();auraScope();System.out.println("PASS: "+checks+" v033 architecture/rule assertions.");}
+    public static void main(String[] args)throws Exception{numericalBaseline();holders();energyAndHit();pureQueries();fireReplay();music();splashAndTrap();roster();auraScope();aiSharedResults();System.out.println("PASS: "+checks+" v033 architecture/rule assertions.");}
     private static void numericalBaseline(){
         // Old isolated engine serves only as the frozen pre-migration numerical oracle.
         Random r=new Random(330);World w=ArchitectureFixture.create();
@@ -88,5 +88,12 @@ public final class ArchitectureRulesTest {
         w.war.structures.set(0,new War.Structure(1,0,War.StructureKind.FORTRESS,camp.hex,2000));check(w.fieldworks.queryAuras(()->w.combat.expectedDamage(a,b,1,false))>live,"next query sees immediate ownership change");
         try{w.fieldworks.queryAuras(()->{throw new IllegalStateException("test");});}catch(IllegalStateException expected){}
         w.war.structures.set(0,camp);check(w.combat.expectedDamage(a,b,1,false)==live,"exception clears query cache");
+    }
+    private static void aiSharedResults()throws Exception{
+        World w=ArchitectureFixture.create();World.Unit a=w.unit(1),b=w.unit(2);skill(w,1,HUOSHEN);
+        int physical=w.combat.expectedDamage(a,b,1.3,true);check(w.combat.expectedWithFire(a,b,1.3,true)==physical+800,"AI includes the real elemental component");
+        skill(w,4,HUOSHEN);check(w.combat.expectedWithFire(a,b,1.3,true)==physical,"AI fire immunity retains physical component");
+        b.hex=new Hex(15,10);w.campaign.finishTech(0,Campaign.Tech.SIEGE_LADDERS);War.Structure s=new War.Structure(1,1,War.StructureKind.STONE_WALL,new Hex(7,6),1000);w.war.structures.add(s);w.war.nextStructureId=2;
+        CampaignAi.Action choice=new CampaignAi(w).bestAction(a.id,true);check(choice!=null&&choice.kind==CampaignAi.Kind.STRUCTURE&&choice.score==300+Math.min(s.hp,w.combat.structureDamage(a,false)),"AI structure value includes actual construction technology");
     }
 }

@@ -16,6 +16,10 @@ public final class CombatRules {
     public int expectedDamage(World.Unit a,World.Unit b,double scale,boolean tactic){
         Physical evaluation=new Physical(a,b,scale,tactic);return expectedDamage(evaluation);
     }
+    public int expectedWithFire(World.Unit a,World.Unit b,double scale,boolean fire){
+        int physical=expectedDamage(a,b,scale,true);
+        return physical+(fire?Math.min(b.troops-physical,fireDamage(b,DIRECT_FIRE_BASE,a.owner,firePower(a),false)):0);
+    }
     private int expectedDamage(Physical evaluation){
         int total=0;for(int i=0;i<8;i++)total+=evaluation.roll(new Random(7919L*i+17));
         return total/8;
