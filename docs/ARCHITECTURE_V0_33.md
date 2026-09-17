@@ -46,3 +46,43 @@ main CI 35177570022 三个屏幕均在实装步骤失败，编译成功。1920 �
 - AI火计与连环估值改用正式400基数和同一火神来源倍率，删除250/无来源倍率的旧估值；改变的是决策评分，不改执行伤害。
 - 陷阱预览按实际种类显示700/1000/1500基数、首爆各目标伤害与连锁范围。连锁后续根据剩余兵力结算，不把多次爆炸显示成确定的单次值。
 - 点火开始时固定来源阵营和火力，连锁中来源击破/俘虏不会改变后续来源；火场继续保存既有owner/power/trap。
+
+## 删除/合并明细与保留理由
+
+|原正式内容|原用途、调用证据|替代路径、兼容影响|
+|---|---|---|
+|DemoScenario 与 core/battle 全部19个类|M0独立战场/模拟器、另一套坐标兵种与伤害模型；除 War 适配器外其余仅旧测试引用|War适配入口已删除；全部移动 testFixtures，原测试保留为数值对照，APK不含类；存档从未序列化它们|
+|m0-skirmish|最早基础演练；DemoScenario及回归|test-scenarios+TestScenarios；旧档直接解码内嵌数据|
+|regional-sandbox|旧24格区域经营测试；核心及仪器测试|同上；玩家已有三种全国自制沙盘替代新游戏用途|
+|river-siege-sandbox|水军兵器三将演练|测试夹具继续覆盖编队、火矢、运输与旧档|
+|contest-drill|单挑舌战演练|测试目录；正式单挑/舌战入口保留|
+|fieldworks-drill|设施科技演练|测试目录；正式建设入口保留|
+|estates-drill|宝物/编辑器演练|测试目录；编辑器、宝物玩法不删除|
+|world-drill|经略、据点/计略综合演练|测试目录；真实命令回归保留|
+|lifecycle-drill|生卒继承演练|测试目录；生产 Lifecycle 不删规则|
+|officer-reference-drill|内容管线生成的武将资料回归|生成器与索引改指测试目录，校验哈希继续检测漂移|
+|旧 War/Army 主伤与命中函数、Army 武将投影、Skills 火伤/暴击/恢复|生产调用已全部迁移|CombatRules/CombatEffects/EnergyRules；不留转发包装|
+|UI 确认时整局 SaveCodec.encode|防止旧确认重复操作，每次预览扫描全国世界|World身份+临时成功命令代次+一次提交标记，正式命令再次校验；出征表单另有具体库存/人员校验。代次不入档|
+
+正式目录仅六年代及 heroes-mobile-sandbox / central-mobile-sandbox / jingxiang-mobile-sandbox的全国自制玩法，保留后者的跨时代自由开局价值。正式导航小地图、MapView 的位图缓存与偏好实现没有删除。World 构造器仍保留最早 m0 元数据默认值，供极早存档缺省字段兼容；没有加载测试资源的生产分支。
+
+单挑败方主将被俘后的队伍解散、主将死亡无继承人后的解散、入城和投降身份转移，仍按各自规则处理，不冒充兵力归零击破；所有战斗归零统一 Government.defeated，包含运输任务去重。CityDefense 保留城防射击公式（并非部队普攻），但部队受损/归零共用应用路径；Domestic/SaveCodec 的旧档迁移、校验和有限制的PK编辑保留。
+
+## 四组覆盖表
+
+|规则|条件、对象和阶段|数值/叠加|正式入口|回归|
+|---|---|---|---|---|
+|火计/火矢/兵器火焰|计略成功或战法命中；当前格敌我目标按原关系过滤|直接400；火神只倍增火分项；目标火神免疫优先；藤甲×2|War/Army→Fieldworks→CombatRules.fireDamage→CombatEffects.hit|MapSkillsTest、ArchitectureRulesTest、原生architecture33|
+|火种/火球/强化/连锁|完成的陷阱、有效地形、源阵营；先移除陷阱再传播|700/1000/1500工程基数；踏破减半；来源power在点火时快照|Fieldworks.ignite/trapBase/ignitionPreview|MapSkillsTest、TechnologyFieldworksTest、ArchitectureRulesTest|
+|持续火场/燃烧|全局旬；来源可已死亡或离场|火场250+森林150、部队燃烧既有基数；护卫免持续；owner/power/trap既有字段|War.tick/Army.tick→CombatRules.ongoingFireDamage|来源消失、v22编码解码对照、原生旬/重建|
+|神将/驱逐|主副将实际持有者武力严格高于目标部队武力；普攻/战法按兵种条件|一次条件暴击，×1.15工程系数；神将非水军/兵器战法；无持有者借用主将武力|CombatRules.critical/Physical→War/Army/AI/预览|持有者高低相等、多特技、设施、水军；2000组旧基式逐值对照|
+|威风/扫讨|正物理伤害后；普通/战法/反击/多目标逐目标；未命中/0伤害不触发|20优先5；钳制至0；同一物理+火伤只扣一次；归零在清理前处理|CombatEffects.onHit→EnergyRules.change；霹雳溅射同路径|零伤、火免疫物理仍生效、溅射、重复击破/缴获、实际变化量|
+|军乐台/诗想/奏乐|同势力、完成、距离≤2；全局旬末一次；移动/拆除/易主实时|10/诗想20；多座不叠；无台奏乐5；上限沿科技100/120|War.tick→EnergyRules.settleTurn|边界/重叠/未完成/阵营/移动/拆除/读档、原生旬重建|
+
+## 性能和扩展
+
+OfficerRoster 提供按稳定ID索引；add/set/remove/sort均失效重建，避免每个特技查询遍历全国人物。单次 Physical 评估只计算一次暴击、鼓台、阵防、科技和藤甲修正，预览端点与AI八次采样共用，返回后丢弃，不会跨移动/易主沿用。范围恢复只在旬结算查询当前设施，没有保存或界面重建时恢复。每次AI bestAction查询建立一次完成阵/鼓台的位置索引，候选只查当前位置周围最多61格；finally清除索引（含异常），下一次查询重建，所以移动、易主、拆除不需要猜测失效。单独预览只扫描当前设施一次，不跨命令保存缓存。
+
+新增一个“正物理命中减气”特技：在稳定 Skill ID 中增加条目，在 EnergyRules.hitDrain 明确与威风/扫讨的优先级，补主副将/多目标/0伤害测试；不改 War/Army/Android。新增军乐台同类范围效果：在 EnergyRules.recovery 明确范围、阵营与叠加，若确需新建筑再追加 StructureKind（不能插队重排旧序号）及内容/图标；补移动、易主、完成、重叠和旬回放测试。新增元素伤害：在 CombatRules 增加已落实条件，在已有命令效果顺序中调用 CombatEffects；只有实际新增持久状态时才考虑保存版本。
+
+依然未核实的原版差异：完整伤害基式与暴击系数、火科技附加常数、反击威风适用性、范围恢复精确势力时点、建筑火损、全量历史地图/人物/事件归属。参照 v0.30/v0.32 差异记录继续补齐，不宣称100%还原。

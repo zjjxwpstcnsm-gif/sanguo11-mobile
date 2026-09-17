@@ -102,7 +102,7 @@ public final class AdvancedBattle {
         return true;
     }
     private void injure(World.Unit target,int amount,World.Unit source){
-        if(w.unit(target.id)==null)return;w.battleImpact(target.hex,false);target.troops=Math.max(0,target.troops-amount);
-        if(target.troops==0){if(source.owner!=target.owner&&w.unit(source.id)!=null)w.defeatUnit(target,source);else w.removeUnit(target);}
+        if(w.unit(target.id)==null)return;w.battleImpact(target.hex,false);
+        w.combatEffects.hit(source.owner!=target.owner&&w.unit(source.id)!=null?source:null,target,amount,false,false);
     }
 }

@@ -6,6 +6,23 @@ import java.util.*;
 public final class Fieldworks {
     private final World w;
     Fieldworks(World w){this.w=w;}
+    // Synchronous AI-query scope only. No retained cache survives movement, ownership or construction.
+    private Map<Hex,List<War.Structure>> queryAuras;
+    <T> T queryAuras(java.util.function.Supplier<T> calculation){
+        if(queryAuras!=null)return calculation.get();
+        Map<Hex,List<War.Structure>> index=new HashMap<>();
+        for(War.Structure s:w.war.structures)if(s.complete&&(camp(s.kind)||s.kind==War.StructureKind.DRUM))index.computeIfAbsent(s.hex,h->new ArrayList<>()).add(s);
+        queryAuras=index;try{return calculation.get();}finally{queryAuras=null;}
+    }
+    private Iterable<War.Structure> nearbyAuras(Hex origin){
+        if(queryAuras==null)return w.war.structures;
+        List<War.Structure> found=new ArrayList<>();
+        for(int q=-4;q<=4;q++)for(int r=Math.max(-4,-q-4);r<=Math.min(4,-q+4);r++){
+            List<War.Structure> at=queryAuras.get(new Hex(origin.q+q,origin.r+r));if(at!=null)found.addAll(at);
+        }
+        return found;
+    }
+
     public boolean trap(War.StructureKind kind){return kind==War.StructureKind.FIRE_SEED||kind.ordinal()>=War.StructureKind.FIRE_BALL.ordinal();}
     public boolean ball(War.StructureKind kind){return kind==War.StructureKind.FIRE_BALL||kind==War.StructureKind.FLAME_BALL||kind==War.StructureKind.INFERNO_BALL;}
     public boolean camp(War.StructureKind k){return k==War.StructureKind.CAMP||k==War.StructureKind.FORT||k==War.StructureKind.FORTRESS;}
@@ -91,7 +108,7 @@ public final class Fieldworks {
         if(u.troops>0&&!w.campaign.has(u.owner,Campaign.Tech.DIFFICULT_MARCH))for(int i=1;i<path.size();i++)if(w.terrain[path.get(i).q][path.get(i).r]==World.Terrain.PLANK_ROAD&&!w.skills.has(u,Skill.TAPO))u.troops=Math.max(1,u.troops-Math.max(1,u.troops/100));
         for(War.Structure s:w.war.structures)if(s.complete&&s.kind==War.StructureKind.STONE_MAZE&&w.campaign.hostile(s.owner,u.owner)&&s.hex.distance(u.hex)==1&&!w.skills.has(u,Skill.TAPO)&&!w.skills.has(u,Skill.DONGCHA)&&w.strategy.nextInt(100)<35){u.status=War.Status.CONFUSED;u.statusTurns=1;u.acted=true;break;}
     }
-    public int defensePercent(World.Unit u){int best=0;for(War.Structure s:w.war.structures)if(s.complete&&s.owner==u.owner&&camp(s.kind)){
+    public int defensePercent(World.Unit u){int best=0;for(War.Structure s:nearbyAuras(u.hex))if(s.complete&&s.owner==u.owner&&camp(s.kind)){
         int tier=s.kind==War.StructureKind.FORTRESS?3:s.kind==War.StructureKind.FORT?2:1;
         if(s.hex.distance(u.hex)<=tier+1)best=Math.max(best,tier==3?35:tier==2?25:15);
     }return best;}
@@ -99,7 +116,7 @@ public final class Fieldworks {
         int tier=s.kind==War.StructureKind.FORTRESS?3:s.kind==War.StructureKind.FORT?2:1;
         if(s.hex.distance(u.hex)<=tier+1)reduction=Math.max(reduction,tier==3?50:tier==2?30:10);
     }return Math.max(1,base*(100-reduction)/100);}
-    public boolean drum(World.Unit u){for(War.Structure s:w.war.structures)if(s.complete&&s.kind==War.StructureKind.DRUM&&s.owner==u.owner&&s.hex.distance(u.hex)<=2)return true;return false;}
+    public boolean drum(World.Unit u){for(War.Structure s:nearbyAuras(u.hex))if(s.complete&&s.kind==War.StructureKind.DRUM&&s.owner==u.owner&&s.hex.distance(u.hex)<=2)return true;return false;}
     void counter(War.Structure s,World.Unit u){if(s.complete&&camp(s.kind)&&u.hex.distance(s.hex)==1&&w.army.counter(u)){
         int damage=w.campaign.has(s.owner,Campaign.Tech.DEFENSE_REINFORCEMENT)?400:200;w.combatEffects.hit(null,u,damage,false,false);
     }}

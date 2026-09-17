@@ -10,7 +10,7 @@ public final class ArchitectureRulesTest {
     private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
     private static byte[] bytes(World w)throws Exception{return SaveCodec.encode(w);}
     private static void skill(World w,int officer,Skill s){w.officer(officer).skillId=s.id;}
-    public static void main(String[] args)throws Exception{numericalBaseline();holders();energyAndHit();pureQueries();fireReplay();music();splashAndTrap();roster();System.out.println("PASS: "+checks+" v033 architecture/rule assertions.");}
+    public static void main(String[] args)throws Exception{numericalBaseline();holders();energyAndHit();pureQueries();fireReplay();music();splashAndTrap();roster();auraScope();System.out.println("PASS: "+checks+" v033 architecture/rule assertions.");}
     private static void numericalBaseline(){
         // Old isolated engine serves only as the frozen pre-migration numerical oracle.
         Random r=new Random(330);World w=ArchitectureFixture.create();
@@ -46,8 +46,9 @@ public final class ArchitectureRulesTest {
         w.combatEffects.hit(a,b,20000,false,true);w.defeatUnit(b,a);check(a.gold==gold&&a.food==food&&w.unit(2)==null,"duplicate hit/defeat cannot loot twice");
     }
     private static void pureQueries()throws Exception{
-        World w=ArchitectureFixture.create();World.Unit a=w.unit(1),b=w.unit(2);skill(w,1,WEIFENG);byte[] before=bytes(w);
+        World w=ArchitectureFixture.create();World.Unit a=w.unit(1),b=w.unit(2);skill(w,1,WEIFENG);byte[] before=bytes(w);long revision=w.commandRevision();
         for(int i=0;i<30;i++){w.war.attackPreview(1,2);w.war.tacticPreview(1,2,War.Tactic.FIRE_ARROW);w.combat.firePreview(a,b,CombatRules.DIRECT_FIRE_BASE,false);w.energy.recovery(a);new CampaignAi(w).bestAction(1,true);}
+        check(w.commandRevision()==revision,"queries preserve transient command revision");
         check(Arrays.equals(before,bytes(w)),"all previews and AI preserve state, log and RNG");
         CombatRules.DamageRange range=w.combat.preview(a,b,1,false);
         for(int i=0;i<250;i++){int hit=w.combat.physicalDamage(a,b,1,false,new Random(i));check(hit>=range.min&&hit<=range.max,"preview bounds enclose execution");}
@@ -80,5 +81,12 @@ public final class ArchitectureRulesTest {
         World w=ArchitectureFixture.create();World.Officer original=w.officer(1);w.officers.remove(original);check(w.officer(1)==null,"removed officer index invalidates");
         w.officers.add(0,original);check(w.officer(1)==original,"inserted officer index invalidates");
         Collections.reverse(w.officers);check(w.officer(1)==original,"reordering preserves stable identity");
+    }
+    private static void auraScope(){
+        World w=ArchitectureFixture.create();World.Unit a=w.unit(1),b=w.unit(2);War.Structure camp=new War.Structure(1,1,War.StructureKind.FORTRESS,new Hex(9,6),2000);w.war.structures.add(camp);
+        int live=w.combat.expectedDamage(a,b,1,false);check(w.fieldworks.queryAuras(()->w.combat.expectedDamage(a,b,1,false))==live,"bounded AI aura query matches live calculation");
+        w.war.structures.set(0,new War.Structure(1,0,War.StructureKind.FORTRESS,camp.hex,2000));check(w.fieldworks.queryAuras(()->w.combat.expectedDamage(a,b,1,false))>live,"next query sees immediate ownership change");
+        try{w.fieldworks.queryAuras(()->{throw new IllegalStateException("test");});}catch(IllegalStateException expected){}
+        w.war.structures.set(0,camp);check(w.combat.expectedDamage(a,b,1,false)==live,"exception clears query cache");
     }
 }

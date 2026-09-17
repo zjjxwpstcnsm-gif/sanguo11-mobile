@@ -163,7 +163,10 @@ public final class World {
         feedback=Feedback.NONE;impact=null;battleOutcomes.clear();return result;
     }
     Result fail(String text) { return result(false,text); }
-    Result success(String text) { fieldworks.cleanup();abilities.cleanup();districts.cleanup();diplomacy.cleanup();aiOrders.cleanup();note(text);return result(true,text); }
+    private long commandRevision;
+    /** Transient successful-command generation; identity plus generation guards open UI confirmations. */
+    public long commandRevision(){return commandRevision;}
+    Result success(String text) {commandRevision++; fieldworks.cleanup();abilities.cleanup();districts.cleanup();diplomacy.cleanup();aiOrders.cleanup();note(text);return result(true,text); }
     public void note(String text) { log.add(text);while(log.size()>40)log.remove(0); }
     private boolean available(Officer o,City c) { return !commandsBlocked()&&o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
     public int cityFoodUse(City c){return c.kind!=SiteKind.CITY&&skills.city(c.id,Skill.TUNTIAN)?0:(c.troops+49)/50;}

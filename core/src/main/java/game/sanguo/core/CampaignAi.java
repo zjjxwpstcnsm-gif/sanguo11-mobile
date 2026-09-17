@@ -94,7 +94,8 @@ public final class CampaignAi {
     public Action bestAction(int unit,boolean attack){
         return bestAction(unit,attack,c->true);
     }
-    private Action bestAction(int unit,boolean attack,Predicate<World.City> objectives){
+    private Action bestAction(int unit,boolean attack,Predicate<World.City> objectives){return w.fieldworks.queryAuras(()->evaluateActions(unit,attack,objectives));}
+    private Action evaluateActions(int unit,boolean attack,Predicate<World.City> objectives){
         World.Unit a=w.unit(unit);if(w.orders.error(a)!=null)return null;Action best=null;
         if(a.burning>0&&a.energy>=5)best=action(Kind.EXTINGUISH,a,-1,a.hex,Math.min(a.troops,400),"扑灭部队持续燃烧");
         for(World.Unit b:units()){

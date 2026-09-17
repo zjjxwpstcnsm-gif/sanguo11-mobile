@@ -5,6 +5,7 @@ import java.util.Arrays;
 /** Four-rule fixture shared by JVM and instrumentation; never in the app source set. */
 public final class ArchitectureFixture {
     private ArchitectureFixture(){}
+    public static void addMusic(World w){w.war.structures.add(new War.Structure(w.war.nextStructureId++,0,War.StructureKind.MUSIC,new Hex(6,5),800));}
     public static World create(){
         World w=new World(20,16,"甲","乙");
         w.cities.add(new World.City(10,"甲城",new Hex(2,3),0));w.cities.add(new World.City(20,"乙城",new Hex(17,10),1));

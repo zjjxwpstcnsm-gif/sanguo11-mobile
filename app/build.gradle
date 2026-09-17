@@ -10,8 +10,8 @@ android {
         minSdk 26
         targetSdk 35
         testInstrumentationRunner 'game.sanguo.mobile.GameSmokeRunner'
-        versionCode 32
-        versionName '0.32.0-navigation-defense-dev'
+        versionCode 33
+        versionName '0.33.0-architecture-rules-dev'
     }
     signingConfigs {
         debug {

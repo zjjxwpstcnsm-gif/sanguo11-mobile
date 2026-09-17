@@ -15,12 +15,13 @@ public final class GameSmokeRunner extends Instrumentation {
     private Activity current;
     private String displacement="";
     private String recovery="";
-    private boolean navigation32,mapPerformance,fidelity,upgradeOnly,upgrade25,upgrade26,upgrade27,experience;
+    private boolean architecture33,navigation32,mapPerformance,fidelity,upgradeOnly,upgrade25,upgrade26,upgrade27,experience;
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);current=a;}
-    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);navigation32=arguments!=null&&"true".equals(arguments.getString("navigation32"));mapPerformance=arguments!=null&&"true".equals(arguments.getString("mapPerformance"));fidelity=arguments!=null&&"true".equals(arguments.getString("fidelity"));displacement=arguments==null?"":arguments.getString("displacement","");recovery=arguments==null?"":arguments.getString("recovery","");upgrade27=arguments!=null&&"27".equals(arguments.getString("upgrade"));experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
+    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);architecture33=arguments!=null&&"true".equals(arguments.getString("architecture33"));navigation32=arguments!=null&&"true".equals(arguments.getString("navigation32"));mapPerformance=arguments!=null&&"true".equals(arguments.getString("mapPerformance"));fidelity=arguments!=null&&"true".equals(arguments.getString("fidelity"));displacement=arguments==null?"":arguments.getString("displacement","");recovery=arguments==null?"":arguments.getString("recovery","");upgrade27=arguments!=null&&"27".equals(arguments.getString("upgrade"));experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
+            if(architecture33){architecture33Flow();result.putString("stream","ARCHITECTURE33 PASS: empty/corrupt/backup/restore startup, production catalog, four-rule native commands, pure preview, recreation, turn replay and PK filter isolation.\n");finish(Activity.RESULT_OK,result);return;}
             if(navigation32){
                 World national=TestScenarios.load("heroes-250",0);
                 World.City home=national.home();World.Officer leader=national.idle(home).get(0);
@@ -49,14 +50,14 @@ public final class GameSmokeRunner extends Instrumentation {
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);click("新建游戏 · 选择剧本",true);waitText("选择剧本",false);
             screenshot("01-scenarios");
-            click("190 讨伐董卓",false);click("曹操军",true);
+            click("190 讨伐董卓",false);waitText("选择势力",false,180000);click("曹操军",true);
             for(int orientation:new int[]{android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT,android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE}){
                 runOnMainSync(()->current.setRequestedOrientation(orientation));assertOrientation(orientation==android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 getUiAutomation().waitForIdle(800,5000);waitForIdleSync();
                 Rect button=new Rect();waitText("执行",true).getBoundsInScreen(button);android.graphics.Point display=new android.graphics.Point();current.getWindowManager().getDefaultDisplay().getSize(display);
                 require(button.left>=0&&button.top>=0&&button.right<=display.x&&button.bottom<=display.y,"open confirmation remains fully reachable after rotation");
             }
-            screenshot("v021-rotated-confirmation");click("执行",true);waitForIdleSync();
+            screenshot("v021-rotated-confirmation");click("执行",true);waitText("190 讨伐董卓 · 重建  ·",false,180000);waitForIdleSync();
             require(saved().scenarioId.equals("coalition-190"),"new game uses production catalog");installFixture(TestScenarios.load("regional-sandbox",2),new Hex(18,10));
             waitText("区域争雄  ·  孙权军",false);assertWorld(2,0,"regional-sandbox");
             fidelityFlow();
@@ -123,6 +124,27 @@ public final class GameSmokeRunner extends Instrumentation {
 
 
 
+    private void architecture33Flow()throws Exception{
+        for(String name:new String[]{"auto.sg11","auto.sg11.bak","auto.sg11.new"})getTargetContext().deleteFile(name);
+        startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitText("新建游戏 · 选择剧本",true);
+        require(!getTargetContext().getFileStreamPath("auto.sg11").exists(),"empty startup writes no demo");
+        byte[] corrupt={3,3,0,7};try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(corrupt);}
+        runOnMainSync(current::recreate);waitText("自动存档损坏",false);screenshot("v033-corrupt-start");
+        runOnMainSync(current::recreate);waitText("自动存档损坏",false);
+        require(Arrays.equals(corrupt,java.nio.file.Files.readAllBytes(getTargetContext().getFileStreamPath("auto.sg11").toPath())),"recreation preserves corrupt bytes");
+        click("新建游戏 · 选择剧本",true);waitText("选择剧本",false);require(ScenarioCatalog.summaries().size()==9,"only six eras and three player sandboxes");screenshot("v033-production-catalog");
+        click("190 讨伐董卓",false);waitText("选择势力",false,180000);click("曹操军",true);click("执行",true);waitText("190 讨伐董卓 · 重建  ·",false,180000);waitForIdleSync();require(saved().scenarioId.equals("coalition-190"),"explicit new game");
+        boolean backed=false;for(File f:getTargetContext().getFilesDir().listFiles())if(f.getName().startsWith("auto-unreadable-"))backed|=Arrays.equals(corrupt,java.nio.file.Files.readAllBytes(f.toPath()));require(backed,"corrupt archive retains exact original");
+        World base=ArchitectureFixture.create();base.scenarioName="规则架构验证";base.officer(0).skillId=Skill.HUOSHEN.id;base.officer(1).skillId=Skill.WEIFENG.id;base.officer(2).skillId=Skill.SHENJIANG.id;base.officer(2).war=100;
+        base.unit(2).hex=new Hex(8,6);base.strategy.setSeed(0);World expected=SaveCodec.decode(SaveCodec.encode(base));require(expected.war.tactic(1,2,War.Tactic.FIRE_ARROW).ok&&expected.unit(2).energy==60,"real four-rule fixture hits");
+        installFixture(base,base.unit(1).hex);byte[] before=SaveCodec.encode(saved());click("战法",true);click("火矢 ·",false);tapHex(saved().unit(2).hex);waitText("物理伤害",false);screenshot("v033-fire-preview");click("取消",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"native preview cancel preserves RNG and resources");click("取消选取",true);
+        click("战法",true);click("火矢 ·",false);tapHex(saved().unit(2).hex);click("执行",true);require(Arrays.equals(SaveCodec.encode(expected),SaveCodec.encode(saved())),"UI command equals authoritative execution including fire/crit/weifeng");screenshot("v033-fire-executed");
+        before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("规则架构验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"recreation applies no effects");
+        World music=saved();music.officer(1).skillId=Skill.SHIXIANG.id;music.officer(2).skillId=Skill.ZOUYUE.id;music.unit(1).energy=40;ArchitectureFixture.addMusic(music);
+        World next=SaveCodec.decode(SaveCodec.encode(music));require(next.nextTurn().ok,"reference global turn");installFixture(music,music.unit(1).hex);endTurn();waitForTurn(1);require(Arrays.equals(SaveCodec.encode(next),SaveCodec.encode(saved())),"one native global turn matches save replay");before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitText("规则架构验证",false);require(Arrays.equals(before,SaveCodec.encode(saved())),"music not applied again on recreation");screenshot("v033-music-turn");
+        abilityFlow();
+    }
+
     private RectF mapRect(MapView map,String name)throws Exception{java.lang.reflect.Field f=MapView.class.getDeclaredField(name);f.setAccessible(true);return new RectF((RectF)f.get(map));}
     private void tapMapPoint(MapView map,float x,float y){int[] at=new int[2];runOnMainSync(()->map.getLocationOnScreen(at));long now=SystemClock.uptimeMillis();send(now,now,MotionEvent.ACTION_DOWN,at[0]+x,at[1]+y);send(now,now+80,MotionEvent.ACTION_UP,at[0]+x,at[1]+y);SystemClock.sleep(300);waitForIdleSync();}
     private void navigation32Flow()throws Exception{
@@ -154,9 +176,9 @@ public final class GameSmokeRunner extends Instrumentation {
         runOnMainSync(()->landscape.focus(national.city(20077).hex));waitForIdleSync();screenshot("v032-xiakou-port");
         require(Arrays.equals(before,SaveCodec.encode(saved())),"navigation/toggles/orientation leave game state unchanged");
         clickNav("菜单");click("新游戏 / 选择势力",true);screenshot("v032-scenarios");
-        click("190 讨伐董卓",false);screenshot("v032-coalition-factions");click("曹操军",true);click("执行",true);waitForIdleSync();
+        click("190 讨伐董卓",false);waitText("选择势力",false,180000);screenshot("v032-coalition-factions");click("曹操军",true);click("执行",true);waitText("190 讨伐董卓 · 重建  ·",false,180000);waitForIdleSync();
         World opening=saved();require(opening.scenarioId.equals("coalition-190")&&opening.city(20012).owner==opening.player&&opening.cities.size()==87,"real new-game entry creates selected historical force");
-        runOnMainSync(current::recreate);waitForIdleSync();require(saved().scenarioId.equals("coalition-190"),"new opening survives recreation");screenshot("v032-coalition-start");
+        runOnMainSync(current::recreate);waitText("190 讨伐董卓 · 重建  ·",false,180000);waitForIdleSync();require(saved().scenarioId.equals("coalition-190"),"new opening survives recreation");screenshot("v032-coalition-start");
     }
 
     private void mapPerformanceFlow()throws Exception {
@@ -1327,8 +1349,9 @@ public final class GameSmokeRunner extends Instrumentation {
         if(value!=null&&(exact?value.toString().equals(text):value.toString().contains(text))&&node.isVisibleToUser())return node;
         for(int i=0;i<node.getChildCount();i++){AccessibilityNodeInfo found=find(node.getChild(i),text,exact);if(found!=null)return found;}return null;
     }
-    private AccessibilityNodeInfo waitText(String text,boolean exact) {
-        long until=SystemClock.uptimeMillis()+12000;
+    private AccessibilityNodeInfo waitText(String text,boolean exact){return waitText(text,exact,12000);}
+    private AccessibilityNodeInfo waitText(String text,boolean exact,long timeout) {
+        long until=SystemClock.uptimeMillis()+timeout;
         while(SystemClock.uptimeMillis()<until) {
             waitForIdleSync();AccessibilityNodeInfo node=find(getUiAutomation().getRootInActiveWindow(),text,exact);
             if(node!=null)return node;SystemClock.sleep(100);

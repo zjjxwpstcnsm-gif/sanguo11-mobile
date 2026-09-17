@@ -343,22 +343,21 @@ public final class MainActivity extends Activity {
     private void confirm(String value,Runnable action){commandDialog(null,value,"执行",world,action);}
     boolean currentWorld(World expected){return !aiRunning&&!isFinishing()&&!isDestroyed()&&world==expected;}
     void commandDialog(String heading,String value,String positive,World expected,Runnable action){
-        final byte[] snapshot;try{snapshot=expected==null?null:SaveCodec.encode(expected);}catch(IOException e){message("命令未执行","无法校验当前局面，请重新打开命令");return;}
+        final long revision=expected==null?0:expected.commandRevision();
         boolean[] submitted={false};
         AlertDialog dialog=new AlertDialog.Builder(this).setTitle(heading).setMessage(value).setPositiveButton(positive,(d,n)->{
             if(submitted[0])return;submitted[0]=true;
-            try{if(!currentWorld(expected)||!Arrays.equals(snapshot,world==null?null:SaveCodec.encode(world))){message("命令未执行","局面已变化，请重新预览；本次没有扣除资源。");return;}}catch(IOException e){message("命令未执行","无法校验当前局面");return;}
+            if(!currentWorld(expected)||(world==null?0:world.commandRevision())!=revision){message("命令未执行","局面已变化，请重新预览；本次没有扣除资源。");return;}
             action.run();
         }).setNegativeButton("取消",null).show();trackDialog(dialog);
     }
     void showTacticPreview(World expected,Displacement.Preview preview,Runnable execute){
         if(!preview.valid()){message("不能发动",preview.error);return;}
-        final byte[] before;try{before=SaveCodec.encode(expected);}catch(IOException e){message("命令未执行","局面无法校验，请重新选择");return;}
+        final long revision=expected.commandRevision();
         tacticPreview=preview;boolean[] submitted={false};
         tacticConfirmation=()->{
             if(submitted[0])return;submitted[0]=true;
-            try{if(!currentWorld(expected)||!Arrays.equals(before,SaveCodec.encode(world))){clearTacticPreview();refresh();message("命令未执行","局面已变化，请重新选择目标；本次未扣资源。");return;}}
-            catch(IOException e){clearTacticPreview();refresh();message("命令未执行","局面校验失败");return;}
+            if(!currentWorld(expected)||world.commandRevision()!=revision){clearTacticPreview();refresh();message("命令未执行","局面已变化，请重新选择目标；本次未扣资源。");return;}
             clearTacticPreview();execute.run();
         };
         ui.panelVisible=false;refresh();
@@ -707,7 +706,7 @@ public final class MainActivity extends Activity {
         action("本旬结算摘要",v->showTurnReport());
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.32 · 小地图、港关与守备","右上小地图直接跳转、收起/展开，保持当前缩放；视图菜单可切换主将姓名与兵力/气力双条。\n六个年代开局新增42城、10关、35港；修正北上陆路与庐江江岸。\n城市每旬自动射击，普攻与器械攻城均在射程内反击，伤害受守军、气力、城防与总量上限影响。\n旧存档保留原地图；新增地形和开局配置需要新游戏。\n历史重建/定制剧本，完整官方数据及精确公式仍待核验。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.33 · 规则执行与架构整理","普攻、战法、反击共用计算与命中结算；火伤、暴击、威风和军乐台统一规则入口。\n无存档显示新游戏入口；坏档保留并在确认替换时备份。\n右上小地图直接跳转、收起/展开，保持当前缩放；视图菜单可切换主将姓名与兵力/气力双条。\n六个年代开局新增42城、10关、35港；修正北上陆路与庐江江岸。\n城市每旬自动射击，普攻与器械攻城均在射程内反击，伤害受守军、气力、城防与总量上限影响。\n旧存档保留原地图；新增地形和开局配置需要新游戏。\n历史重建/定制剧本，完整官方数据及精确公式仍待核验。"));
     }
     private void scenarioPicker(){
         try {List<ScenarioCatalog.Summary> scenarios=ScenarioCatalog.summaries();String[] labels=new String[scenarios.size()];
@@ -730,7 +729,13 @@ public final class MainActivity extends Activity {
         b.append(people).append("名武将 · 领地：");for(World.City c:w.cities)if(c.owner==side)b.append(c.name).append(" ");
         b.append(w.dataSource.equals("community-reference")?"\n能力/适性来自公开资料；地图、领地与资源为历史重建或定制。群英类跨时代配置不按生卒年退场。":"\n重建或定制开局；官方完整资源、事件与归属仍待核验。");return b.toString();
     }
-    private void startScenario(String id,int player){try{if(!activateWorld(ScenarioCatalog.load(id,player,System.nanoTime())))return;selectAndFocus(world.home().hex);closePanel();save("auto",false);}catch(IOException e){showError("无法开始剧本");}}
+    private void startScenario(String id,int player){
+        java.util.concurrent.atomic.AtomicBoolean canceled=new java.util.concurrent.atomic.AtomicBoolean();
+        AlertDialog loading=new AlertDialog.Builder(this).setMessage("正在建立新局…").setNegativeButton("取消",(d,n)->canceled.set(true)).create();loading.setOnCancelListener(d->canceled.set(true));loading.show();
+        new Thread(()->{try{World next=ScenarioCatalog.load(id,player,System.nanoTime());runOnUiThread(()->{
+            if(isFinishing()||isDestroyed()||canceled.get())return;loading.dismiss();if(!activateWorld(next))return;selectAndFocus(world.home().hex);closePanel();save("auto",false);
+        });}catch(IOException e){runOnUiThread(()->{if(!isFinishing()&&!isDestroyed()&&!canceled.get()){loading.dismiss();showError("无法开始剧本");}});}},"scenario-start").start();
+    }
     private String slotName(int index){return index==0?"manual":"manual"+(index+1);}
     private boolean present(AtomicFile f){return f.getBaseFile().exists()||new File(f.getBaseFile()+".bak").exists();}
     private void saveSlots(boolean loading){

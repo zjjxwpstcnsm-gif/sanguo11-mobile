@@ -14,11 +14,15 @@ public final class CombatRules {
     }
     /** Local deterministic RNGs only; never copies World or advances strategy RNG. */
     public int expectedDamage(World.Unit a,World.Unit b,double scale,boolean tactic){
-        int total=0;for(int i=0;i<8;i++)total+=physicalDamage(a,b,scale,tactic,new Random(7919L*i+17));
+        Physical evaluation=new Physical(a,b,scale,tactic);return expectedDamage(evaluation);
+    }
+    private int expectedDamage(Physical evaluation){
+        int total=0;for(int i=0;i<8;i++)total+=evaluation.roll(new Random(7919L*i+17));
         return total/8;
     }
     public DamageRange preview(World.Unit a,World.Unit b,double scale,boolean tactic){
-        return new DamageRange(physicalDamage(a,b,scale,tactic,new BoundRandom(false)),physicalDamage(a,b,scale,tactic,new BoundRandom(true)),expectedDamage(a,b,scale,tactic),critical(a,b,tactic));
+        Physical evaluation=new Physical(a,b,scale,tactic);
+        return new DamageRange(evaluation.roll(new BoundRandom(false)),evaluation.roll(new BoundRandom(true)),expectedDamage(evaluation),evaluation.critical);
     }
     private static final class BoundRandom extends Random {
         private final boolean high;
@@ -27,7 +31,8 @@ public final class CombatRules {
         @Override public int nextInt(int bound){return high?bound-1:0;}
     }
     /** Preserves the former tactical projection numerically, without allocating another unit model. */
-    int rawDamage(World.Unit a,World.Unit b,double scale,Random rng){
+    int rawDamage(World.Unit a,World.Unit b,double scale,Random rng){return rawDamage(a,b,scale,rng,w.fieldworks.defensePercent(b));}
+    private int rawDamage(World.Unit a,World.Unit b,double scale,Random rng,int defensePercent){
         int amount;
         if(w.army.water(a.hex)||w.army.water(b.hex)||a.weapon.ordinal()>=4||b.weapon.ordinal()>=4)amount=advancedDamage(a,b,scale,rng);
         else {
@@ -39,7 +44,7 @@ public final class CombatRules {
             double raw=230*StrictMath.sqrt(a.troops/1000.0)*ratio*matchup(a.weapon,b.weapon)*scale;
             amount=(int)Math.max(20,Math.min(2500,Math.round(raw*(.9+.2*rng.nextDouble()))));
         }
-        amount=amount*(100-w.fieldworks.defensePercent(b))/100;
+        amount=amount*(100-defensePercent)/100;
         return Math.max(1,amount);
     }
     private static double attackFactor(World.Weapon weapon){switch(weapon){case SPEAR:return 1.05;case HALBERD:return .98;case CROSSBOW:return .95;case CAVALRY:return 1.15;default:throw new IllegalArgumentException("Not a field weapon");}}
@@ -58,16 +63,26 @@ public final class CombatRules {
         if(w.army.water(b.hex)&&bp>100)amount=amount*9/10;
         return Math.max(20,Math.min(2500,amount));
     }
-    public int physicalDamage(World.Unit a,World.Unit b,double scale,boolean tactic,Random rng){
-        if(critical(a,b,tactic))scale*=1.15;
-        if(w.campaign.eliteUnit(a))scale*=1.1*1.05;if(w.campaign.eliteUnit(b))scale/=1.1;
-        if(w.fieldworks.drum(a))scale*=1.1;
-        if(!w.army.water(a.hex)&&a.weapon.ordinal()<4){Campaign.Tech drill=new Campaign.Tech[]{Campaign.Tech.SPEAR_DRILL,Campaign.Tech.HALBERD_DRILL,Campaign.Tech.CROSSBOW_DRILL,Campaign.Tech.CAVALRY_DRILL}[a.weapon.ordinal()];if(w.campaign.has(a.owner,drill))scale*=1.1;}
-        int amount=rawDamage(a,b,scale,rng);
-        if(!tactic&&!w.army.water(b.hex)&&b.weapon==World.Weapon.HALBERD&&(w.campaign.has(b.owner,Campaign.Tech.LARGE_SHIELD)||a.hex.distance(b.hex)>1&&w.campaign.has(b.owner,Campaign.Tech.SHIELD))&&rng.nextInt(100)<30)return 0;
-        if(w.skills.has(b,Skill.TENGJIA))amount=Math.max(1,amount/2);
-        if(!tactic&&w.skills.nullifyNormal(b,amount,rng))return 0;
-        return Math.min(b.troops,amount);
+    public int physicalDamage(World.Unit a,World.Unit b,double scale,boolean tactic,Random rng){return new Physical(a,b,scale,tactic).roll(rng);}
+    /** One synchronous evaluation snapshots modifiers once for all preview/AI samples. Never retained across a command. */
+    private final class Physical {
+        final World.Unit a,b;final boolean tactic,critical,shield,wicker;final int defense;final double scale;
+        Physical(World.Unit a,World.Unit b,double base,boolean tactic){
+            this.a=a;this.b=b;this.tactic=tactic;critical=critical(a,b,tactic);
+            if(critical)base*=1.15;
+            if(w.campaign.eliteUnit(a))base*=1.1*1.05;if(w.campaign.eliteUnit(b))base/=1.1;
+            if(w.fieldworks.drum(a))base*=1.1;
+            if(!w.army.water(a.hex)&&a.weapon.ordinal()<4){Campaign.Tech drill=new Campaign.Tech[]{Campaign.Tech.SPEAR_DRILL,Campaign.Tech.HALBERD_DRILL,Campaign.Tech.CROSSBOW_DRILL,Campaign.Tech.CAVALRY_DRILL}[a.weapon.ordinal()];if(w.campaign.has(a.owner,drill))base*=1.1;}
+            scale=base;defense=w.fieldworks.defensePercent(b);wicker=w.skills.has(b,Skill.TENGJIA);
+            shield=!tactic&&!w.army.water(b.hex)&&b.weapon==World.Weapon.HALBERD&&(w.campaign.has(b.owner,Campaign.Tech.LARGE_SHIELD)||a.hex.distance(b.hex)>1&&w.campaign.has(b.owner,Campaign.Tech.SHIELD));
+        }
+        int roll(Random rng){
+            int amount=rawDamage(a,b,scale,rng,defense);
+            if(shield&&rng.nextInt(100)<30)return 0;
+            if(wicker)amount=Math.max(1,amount/2);
+            if(!tactic&&w.skills.nullifyNormal(b,amount,rng))return 0;
+            return Math.min(b.troops,amount);
+        }
     }
     public boolean critical(World.Unit a,World.Unit b,boolean tactic){
         if(!tactic&&b!=null&&!w.army.water(a.hex)&&a.weapon==World.Weapon.CAVALRY&&a.hex.distance(b.hex)>1&&w.skills.has(a,BAIMA))return true;
