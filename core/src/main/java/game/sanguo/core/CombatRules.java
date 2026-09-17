@@ -105,4 +105,30 @@ public final class CombatRules {
             +(w.skills.has(source,HUOSHEN)?" · 火神×2":"")+(target!=null&&w.skills.has(target,HUOSHEN)?" · 目标火神免疫":"")
             +"\n火矢物理伤害独立计算；火神不免疫箭矢物理伤害。";
     }
+    public int siegeDefenseDamage(World.Unit u){
+        if(w.army.water(u.hex))return u.ship==Army.Ship.WARSHIP?350:100;
+        switch(u.weapon){case RAM:return 650;case WOODEN_BEAST:return 750;case CATAPULT:return 600;case SIEGE_TOWER:return 120;default:return 100;}
+    }
+    public int siegeTroopDamage(World.Unit u){
+        if(w.army.water(u.hex))return u.ship==Army.Ship.WARSHIP?450:200;
+        switch(u.weapon){case RAM:return 60;case WOODEN_BEAST:return 500;case CATAPULT:return 400;case SIEGE_TOWER:return 800;default:return 100;}
+    }
+    public static final class SiegeDamage {
+        public final int wall,troops;
+        SiegeDamage(int wall,int troops){this.wall=wall;this.troops=troops;}
+    }
+    public int structureDamage(World.Unit source,boolean tactic){
+        int base=tactic?siegeDefenseDamage(source):200+w.army.war(source)*2;
+        int amount=w.campaign.constructionDamage(source,base);
+        return tactic&&critical(source,null,true)?amount*115/100:amount;
+    }
+    public SiegeDamage siege(World.Unit u,boolean tactic){
+        boolean engine=Army.siegeWeapon(u.weapon)||w.army.water(u.hex);
+        long value=(long)u.troops*u.weapon.power*(60+w.officer(u.officerId).leadership)*(50+u.energy);
+        int legacy=Math.max(80,(int)(value/(100L*(80+70)*100*120/10)));
+        int hit=engine?siegeDefenseDamage(u):Math.max(100,legacy/2);
+        int troopHit=engine?siegeTroopDamage(u):hit;
+        if(w.skills.has(u,GONGCHENG)||tactic&&critical(u,null,true)){hit=hit*115/100;troopHit=troopHit*115/100;}
+        return new SiegeDamage(w.campaign.constructionDamage(u,hit),w.campaign.constructionDamage(u,troopHit));
+    }
 }

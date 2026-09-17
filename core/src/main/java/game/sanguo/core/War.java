@@ -75,14 +75,13 @@ public final class War {
         int distance=a.hex.distance(b.hex);return distance<min||distance>max?"敌军不在范围内":null;
     }
     private Random random(){return new Random(w.strategy.nextInt(Integer.MAX_VALUE));}
-    private void hurt(World.Unit u,int damage){if(w.unit(u.id)!=u)return;u.troops=Math.max(0,u.troops-damage);if(u.troops==0)w.removeUnit(u);}
+    private void hurt(World.Unit u,int damage){w.combatEffects.hit(null,u,damage,false,false);}
     // Inherited v0.8 engineering parameter; not a verified original-game formula.
     private static final int LEGACY_COLLISION_DAMAGE=100;
     void collision(World.Unit target,World.Unit source){
         if(w.unit(target.id)!=target)return;
-        int damage=Math.min(target.troops,LEGACY_COLLISION_DAMAGE);target.troops-=damage;w.battleImpact(target.hex,false);
+        int damage=w.combatEffects.hit(source,target,LEGACY_COLLISION_DAMAGE,false,false);w.battleImpact(target.hex,false);
         w.battleOutcome(w.officer(target.officerId).name+"碰撞损失"+damage+"（工程参数）");
-        if(target.troops==0)w.defeatUnit(target,source);
     }
     int strike(World.Unit a,World.Unit b,double scale,boolean tactic){
         w.battleImpact(b.hex,false);int amount=w.combatEffects.physical(a,b,scale,tactic);if(w.campaign.hostile(a.owner,b.owner))w.government.earn(a.officerId,amount/10);return amount;
@@ -303,7 +302,7 @@ public final class War {
         if(!w.army.canAttackUnit(u))return "兵器需要使用战法";
         return null;
     }
-    public int facilityDamage(int unit){World.Unit u=w.unit(unit);return u==null?0:w.campaign.constructionDamage(u,200+w.army.war(u)*2);}
+    public int facilityDamage(int unit){World.Unit u=w.unit(unit);return u==null?0:w.combat.structureDamage(u,false);}
     public World.Result attackFacility(int unit,Hex h){
         String error=facilityAttackError(unit,h);if(error!=null)return w.fail(error);
         World.Unit u=w.unit(unit);Domestic.Facility f=w.domestic.at(h);u.acted=true;
@@ -319,7 +318,7 @@ public final class War {
     public World.Result attackStructure(int unit,Hex h){
         String error=structureAttackError(unit,h);if(error!=null)return w.fail(error);World.Unit u=w.unit(unit);Structure s=at(h);
         if(!w.army.canAttackUnit(u))return w.army.tactic(unit,h,w.army.tactics(u).get(0));
-        int damage=Math.min(s.hp,w.campaign.constructionDamage(u,200+w.army.war(u)*2));u.acted=true;s.hp-=damage;
+        int damage=Math.min(s.hp,w.combat.structureDamage(u,false));u.acted=true;s.hp-=damage;
         w.battleImpact(h,s.hp<=0);if(s.hp<=0){structures.remove(s);w.battleOutcome(s.kind.label+"已摧毁，地块已释放");}else w.fieldworks.counter(s,u);w.campaign.earn(u.owner,20);return w.success("攻击"+s.kind.label+"，耐久减少"+damage);
     }
     public World.Result removeStructure(int city,int officer,int id){

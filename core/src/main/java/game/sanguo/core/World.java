@@ -72,8 +72,20 @@ public final class World {
     }
     public final int width,height;
     public final Terrain[][] terrain;
+    /** Index follows every List mutation, including iterators/subLists; values remain authoritative. */
+    private static final class OfficerRoster extends AbstractList<Officer> implements RandomAccess {
+        private final List<Officer> values=new ArrayList<>();
+        private final Map<Integer,Officer> ids=new HashMap<>();
+        private boolean dirty=true;
+        @Override public Officer get(int i){return values.get(i);}
+        @Override public int size(){return values.size();}
+        @Override public void add(int i,Officer o){values.add(i,o);dirty=true;modCount++;}
+        @Override public Officer set(int i,Officer o){Officer old=values.set(i,o);dirty=true;return old;}
+        @Override public Officer remove(int i){Officer old=values.remove(i);dirty=true;modCount++;return old;}
+        Officer byId(int id){if(dirty){ids.clear();for(Officer o:values)ids.putIfAbsent(o.id,o);dirty=false;}return ids.get(id);}
+    }
     public final List<City> cities=new ArrayList<>();
-    public final List<Officer> officers=new ArrayList<>();
+    public final List<Officer> officers=new OfficerRoster();
     public final List<Unit> units=new ArrayList<>();
     public final List<String> log=new ArrayList<>();
     public final Lifecycle life=new Lifecycle(this);
@@ -130,7 +142,7 @@ public final class World {
     public City home() { for(City c:cities)if(c.owner==player)return c;return cities.isEmpty()?null:cities.get(0); }
     public boolean inside(Hex h) { return h!=null&&h.q>=0&&h.r>=0&&h.q<width&&h.r<height&&terrain[h.q][h.r]!=Terrain.VOID; }
     public City city(int id) { for(City c:cities) if(c.id==id) return c;return null; }
-    public Officer officer(int id) { for(Officer o:officers) if(o.id==id) return o;return null; }
+    public Officer officer(int id) { return ((OfficerRoster)officers).byId(id); }
     public Unit unit(int id) { for(Unit u:units) if(u.id==id) return u;
         if(id>=10000000){Domestic.Mission m=domestic.mission(id);if(m!=null&&m.transport)return m;}return null; }
     /** Read-only union; mission and battlefield refer to the same cargo object. */
@@ -208,11 +220,6 @@ public final class World {
     public Result attack(int attackerId,int targetId) {
         return war.attack(attackerId,targetId);
     }
-    private int damage(Unit a,int enemyLeadership,int defenseScale) {
-        Officer o=officer(a.officerId);
-        long value=(long)a.troops*a.weapon.power*(60+o.leadership)*(50+a.energy);
-        return Math.max(80,(int)(value/(100L*(80+enemyLeadership)*100*defenseScale/10)));
-    }
     public String siegeError(int unitId,int cityId) {
         Unit u=unit(unitId);City c=city(cityId);String error=unitError(u);if(error!=null)return error;
         if(u instanceof Domestic.Mission)return "运输队不能攻城";
@@ -229,10 +236,8 @@ public final class World {
     /** Caller has validated and paid for the command. No nested public command or second payment. */
     Result resolveSiege(Unit u,City c,boolean tactic) {return resolveSiege(u,c,tactic,false);}
     Result resolveSiege(Unit u,City c,boolean tactic,boolean stoneSplash) {
-        int hit=Army.siegeWeapon(u.weapon)||army.water(u.hex)?army.siegeDefenseDamage(u):Math.max(100,damage(u,70,120)/2);
-        int troopHit=Army.siegeWeapon(u.weapon)||army.water(u.hex)?army.siegeTroopDamage(u):hit;
-        if(skills.has(u,Skill.GONGCHENG)||tactic&&combat.critical(u,null,true)){hit=hit*115/100;troopHit=troopHit*115/100;}
-        hit=campaign.constructionDamage(u,hit);troopHit=campaign.constructionDamage(u,troopHit);c.defense=Math.max(0,c.defense-hit);c.troops=Math.max(0,c.troops-troopHit);
+        CombatRules.SiegeDamage damage=combat.siege(u,tactic);int hit=damage.wall,troopHit=damage.troops;
+        c.defense=Math.max(0,c.defense-hit);c.troops=Math.max(0,c.troops-troopHit);
         battleImpact(c.hex,c.defense==0||c.troops==0);
         String message=officer(u.officerId).name+"攻城，城防−"+hit+"，守军−"+troopHit;
         if(c.defense==0||c.troops==0) {

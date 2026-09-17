@@ -142,11 +142,11 @@ public final class CampaignAi {
         }
         if(!attack)return best;
         for(World.City c:cities())if(w.campaign.hostile(a.owner,c.owner)&&objectives.test(c)){
-            int score=150+(c.troops==0||c.defense<=w.army.siegeDefenseDamage(a)?1800:0);
+            int score=150+(c.troops==0||c.defense<=w.combat.siegeDefenseDamage(a)?1800:0);
             if(w.siegeError(a.id,c.id)==null)best=better(best,action(Kind.SIEGE,a,c.id,c.hex,score,"夺取可占领据点"));
             for(Army.Tactic t:w.army.tactics(a))if(w.army.tacticError(a.id,c.hex,t)==null){
                 if(t==Army.Tactic.STONE&&w.campaign.has(a.owner,Campaign.Tech.THUNDERBOLT)&&ownAssetsNear(a,c.hex))continue;
-                best=better(best,new Action(Kind.ARMY_TACTIC,a.id,c.id,c.hex,score+w.army.siegeDefenseDamage(a)+w.army.siegeTroopDamage(a)/2-t.energy*5,null,t,null,"使用兵器战法削减城防和守军"));
+                best=better(best,new Action(Kind.ARMY_TACTIC,a.id,c.id,c.hex,score+w.combat.siegeDefenseDamage(a)+w.combat.siegeTroopDamage(a)/2-t.energy*5,null,t,null,"使用兵器战法削减城防和守军"));
             }
         }
         for(War.Structure s:w.war.structures())if(w.campaign.hostile(a.owner,s.owner)&&a.hex.distance(s.hex)<=w.war.range(a)){
@@ -159,7 +159,7 @@ public final class CampaignAi {
             }
         }
         for(Domestic.Facility f:w.domestic.facilities)if(w.campaign.hostile(a.owner,w.city(f.cityId).owner)&&objectives.test(w.city(f.cityId))){
-            int score=150+Math.min(f.hp,w.campaign.constructionDamage(a,w.army.siegeDefenseDamage(a)));
+            int score=150+Math.min(f.hp,w.campaign.constructionDamage(a,w.combat.siegeDefenseDamage(a)));
             if(w.war.facilityAttackError(a.id,f.hex)==null)best=better(best,action(Kind.FACILITY,a,f.id,f.hex,score,"破坏敌方内政并清除道路阻挡"));
             else for(Army.Tactic t:w.army.tactics(a))if(w.army.tacticError(a.id,f.hex,t)==null){
                 if(t==Army.Tactic.STONE&&w.campaign.has(a.owner,Campaign.Tech.THUNDERBOLT)&&ownAssetsNear(a,f.hex))continue;

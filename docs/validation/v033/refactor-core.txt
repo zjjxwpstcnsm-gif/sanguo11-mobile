@@ -170,3 +170,5 @@ v026 campaign [initial defense=8000] turn 20 units=6 defender=14164 hp=6364 orig
 PASS: 5426 v027 tactical logistics assertions.
 PASS: 266 v029 displacement assertions: authoritative previews, blocked steps, hazards, protected parties, kill/cargo identity, deterministic AI and replay.
 PASS: 1391 v030 map/parcel/fire assertions.
+PASS: 1142 navigation/defense/historical opening assertions.
+PASS: 2276 v033 architecture/rule assertions.

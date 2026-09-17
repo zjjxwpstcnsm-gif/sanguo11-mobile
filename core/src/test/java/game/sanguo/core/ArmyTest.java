@@ -37,7 +37,7 @@ public final class ArmyTest {
         check(w.actionPoints[0]==50&&w.city(10).troops==27000&&w.city(10).food==182000,"three-officer deployment charges once");
         for(int id:new int[]{0,1,2})check(w.officer(id).unitId==1&&w.officer(id).cityId==-1&&w.officer(id).acted,"every crew member locked");
         check(w.army.aptitude(u)==3&&w.army.intelligence(u)==99&&w.army.war(u)==84,"deputy stats and aptitude contribute");
-        check(w.army.combatOfficer(u).leadership==71,"unrelated deputy contributes half of leadership advantage");
+        check(w.army.leadership(u)==71,"unrelated deputy contributes half of leadership advantage");
         reject(w,()->w.train(10,1));reject(w,()->w.deploy(10,2,World.Weapon.CAVALRY,3000));
         byte[] snapshot=bytes(w);check(Arrays.equals(snapshot,bytes(SaveCodec.decode(snapshot))),"crew survives exact roundtrip");
         ok(w.enter(1,10));check(w.city(10).ships[0]==2&&w.city(10).troops==30000&&w.city(10).equipment[0]==12000,"return restores gear once");

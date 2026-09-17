@@ -42,7 +42,6 @@ public final class Army {
     public int intelligence(World.Unit unit){int value=0;for(World.Officer o:crew(unit))value=Math.max(value,o.intelligence);return value;}
     public int aptitude(World.Unit unit){return aptitude(crew(unit),water(unit.hex)?5:category(unit.weapon));}
     public int aptitude(List<World.Officer> crew,int category){int value=0;if(category>=0)for(World.Officer o:crew)value=Math.max(value,o.aptitude[category]);return value;}
-    World.Officer combatOfficer(World.Unit u){World.Officer leader=w.officer(u.officerId);return new World.Officer(leader.id,leader.name,leader.owner,-1,leadership(u),war(u),intelligence(u),leader.politics,leader.charm);}
     public boolean water(Hex h){return h!=null&&w.inside(h)&&(w.terrain[h.q][h.r]==World.Terrain.WATER||w.terrain[h.q][h.r]==World.Terrain.SEA);}
     public String equipmentLabel(World.Unit u){if(u instanceof Domestic.Mission)return water(u.hex)?"运输队 · 走舸":"运输队";return water(u.hex)?u.ship.label+"（携"+u.weapon.label+"）":u.weapon.label;}
     public int movement(World.Unit u){return water(u.hex)?u.ship.movement:u.weapon.movement;}
@@ -98,8 +97,8 @@ public final class Army {
     void cleanup(){for(Production p:new ArrayList<>(productions))if(!valid(p)){productions.remove(p);World.Officer o=w.officer(p.officerId);if(o!=null&&o.otherTask.equals(p.label())){o.otherTask="";o.otherTaskTurns=0;}w.note(p.label()+"因城池或工场失守/拆除而中止");}}
     void tick(){
         for(World.Unit u:new ArrayList<>(w.fieldUnits()))if(u.burning>0){
-            u.burning--;if(u.burningOwner==u.owner||w.campaign.hostile(u.burningOwner,u.owner)){int hit=w.combat.ongoingFireDamage(u,200,u.burningOwner,u.burningPower,false);u.troops-=hit;w.note(w.officer(u.officerId).name+"的部队持续燃烧，损失"+hit+"兵");}
-            if(u.burning==0){u.burningOwner=-1;u.burningPower=1;}if(u.troops==0)w.removeUnit(u);
+            u.burning--;if(u.burningOwner==u.owner||w.campaign.hostile(u.burningOwner,u.owner)){int hit=w.combat.ongoingFireDamage(u,200,u.burningOwner,u.burningPower,false);w.combatEffects.hit(null,u,hit,false,false);w.note(w.officer(u.officerId).name+"的部队持续燃烧，损失"+hit+"兵");}
+            if(u.burning==0){u.burningOwner=-1;u.burningPower=1;}
         }
         cleanup();for(Production p:new ArrayList<>(productions))if(w.officer(p.officerId).otherTaskTurns==1){
             World.City c=w.city(p.cityId);int count=p.weapon!=null?c.equipment[p.weapon.ordinal()]:c.ships[p.ship.ordinal()-1];
@@ -113,14 +112,6 @@ public final class Army {
     /** Current modeled unit attack; base attribute formula still awaits original executable calibration. */
     public double attackPower(World.Unit u){return (80+leadership(u)+war(u)/2.0)*(water(u.hex)?u.ship.power:u.weapon.power)/100.0;}
     public int siegeRange(World.Unit u){return w.war.range(u);}
-    public int siegeDefenseDamage(World.Unit u){
-        if(water(u.hex))return u.ship==Ship.WARSHIP?350:100;
-        switch(u.weapon){case RAM:return 650;case WOODEN_BEAST:return 750;case CATAPULT:return 600;case SIEGE_TOWER:return 120;default:return 100;}
-    }
-    public int siegeTroopDamage(World.Unit u){
-        if(water(u.hex))return u.ship==Ship.WARSHIP?450:200;
-        switch(u.weapon){case RAM:return 60;case WOODEN_BEAST:return 500;case CATAPULT:return 400;case SIEGE_TOWER:return 800;default:return 100;}
-    }
     public boolean canAttackUnit(World.Unit u){return !(u instanceof Domestic.Mission)&&(water(u.hex)||!siegeWeapon(u.weapon));}
     public boolean counter(World.Unit u){return !(u instanceof Domestic.Mission)&&!water(u.hex)&&!siegeWeapon(u.weapon)&&u.weapon!=World.Weapon.CROSSBOW;}
     public List<Tactic> tactics(World.Unit u){
@@ -163,7 +154,7 @@ public final class Army {
         if(city!=null)return w.resolveSiege(u,city,true,tactic==Tactic.STONE);
         Domestic.Facility facility=w.domestic.at(target);
         if(facility!=null){
-            int amount=w.campaign.constructionDamage(u,siegeDefenseDamage(u));if(w.combat.critical(u,null,true))amount=amount*115/100;
+            int amount=w.combat.structureDamage(u,true);
             amount=w.domestic.damage(facility,amount);w.battleImpact(target,facility.hp==0);
             if(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)w.war.ignite(target,u);if(tactic==Tactic.STONE)w.fieldworks.stoneSplash(u,target);
             w.campaign.earn(u.owner,20);return w.success(tactic.label+"命中"+facility.kind.label+"，耐久减少"+amount+"，剩余"+facility.hp);
@@ -171,7 +162,7 @@ public final class Army {
         War.Structure structure=w.war.at(target);
         if(structure!=null){
             if(structure.complete&&w.fieldworks.trap(structure.kind)&&(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)){w.war.ignite(target,u);w.checkVictory();return w.success(tactic.label+"引爆"+structure.kind.label);}
-            int amount=w.campaign.constructionDamage(u,w.army.siegeDefenseDamage(u));if(w.combat.critical(u,null,true))amount=amount*115/100;
+            int amount=w.combat.structureDamage(u,true);
             amount=Math.min(structure.hp,amount);structure.hp-=amount;if(structure.hp==0){w.war.structures.remove(structure);w.battleImpact(target,true);w.battleOutcome(structure.kind.label+"已摧毁，地块已释放");}
             if(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)w.war.ignite(target,u);if(tactic==Tactic.STONE)w.fieldworks.stoneSplash(u,target);
             w.campaign.earn(u.owner,20);return w.success(tactic.label+"命中"+structure.kind.label+"，耐久减少"+amount);
