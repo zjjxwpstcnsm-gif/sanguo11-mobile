@@ -159,7 +159,7 @@ public final class WorldSystemsTest {
     }
     private static void invalid(World w)throws Exception{try{bytes(w);throw new AssertionError("invalid world accepted");}catch(IOException expected){checks++;}}
     private static void replay()throws Exception{
-        World a=ScenarioCatalog.load("world-drill",0,41);check(a.events.enabled()&&a.events.camps().size()==1&&a.events.hazards().size()==1,"new scenario loads real events and poison");ok(a.districts.configure(-1,"北军",new int[]{11},Districts.Policy.ECONOMY,-1,10,false,true));World b=copy(a);
+        World a=TestScenarios.load("world-drill",0,41);check(a.events.enabled()&&a.events.camps().size()==1&&a.events.hazards().size()==1,"new scenario loads real events and poison");ok(a.districts.configure(-1,"北军",new int[]{11},Districts.Policy.ECONOMY,-1,10,false,true));World b=copy(a);
         for(int i=0;i<36&&!a.gameOver();i++){ok(a.nextTurn());ok(b.nextTurn());check(Arrays.equals(bytes(a),bytes(b)),"world/district per-turn replay "+i);b=copy(b);}
     }
 }

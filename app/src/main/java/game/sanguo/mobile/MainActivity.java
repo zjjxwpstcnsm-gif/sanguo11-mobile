@@ -16,6 +16,7 @@ import game.sanguo.core.*;
 
 public final class MainActivity extends Activity {
     private World world;
+    private boolean unreadableAutosave;
     private MapView map;
     private LinearLayout panel,root,body,commandDock,panelShell;
     private MarchOrders.Plan pendingMarch;
@@ -48,16 +49,40 @@ public final class MainActivity extends Activity {
     final int ink=Color.rgb(13,22,32),paper=Color.rgb(235,241,247),gold=Color.rgb(109,220,197),muted=Color.rgb(155,176,195);
 
     @Override public void onCreate(Bundle state) {
-        super.onCreate(state);boolean coldStart=state==null;world=DemoScenario.create();ui.read(state);
+        super.onCreate(state);boolean coldStart=state==null;ui.read(state);
         applyOrientationPreference();
         String restoreError=null;boolean restored=false;
         AtomicFile autosave=file("auto");
         if(present(autosave)) {
-            try{world=readSave(autosave);restored=true;}catch(IOException e){restoreError="自动存档损坏或版本不兼容。可在菜单读取手动存档。";}
+            try{world=readSave(autosave);restored=true;}catch(IOException e){unreadableAutosave=true;restoreError="自动存档损坏或版本不兼容。原文件已保留；请选择手动存档、导入文件或新建游戏。";}
         }
         if(state==null&&restored){state=readClientState();ui.read(state);}
         turnWork=(TurnWork)getLastNonConfigurationInstance();
         if(turnWork!=null){world=turnWork.before;aiRunning=!turnWork.done;}
+        if(world==null){showStartScreen(restoreError);return;}
+        buildGameUi(state,restored,coldStart);
+    }
+    private void showStartScreen(String error){
+        root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setGravity(Gravity.CENTER);root.setPadding(dp(24),dp(40),dp(24),dp(40));root.setBackgroundColor(ink);
+        TextView heading=text("三国志 · 掌上战略",25,gold);root.addView(heading);
+        TextView detail=text(error==null?"开始一个年代，或继续已有存档。":error,16,paper);detail.setPadding(0,dp(24),0,dp(24));root.addView(detail);
+        root.addView(button("新建游戏 · 选择剧本",v->scenarioPicker()));
+        root.addView(button("读取手动存档",v->saveSlots(true)));
+        root.addView(button("导入存档文件",v->importSave()));
+        if(error!=null)root.addView(button("重试自动存档",v->{try{World loaded=readSave(file("auto"));unreadableAutosave=false;world=loaded;buildGameUi(null,true,true);}catch(IOException e){showError("自动存档仍无法读取，原文件保留");}}));
+        ScrollView startScroll=new ScrollView(this);startScroll.setFillViewport(true);startScroll.setBackgroundColor(ink);startScroll.addView(root,new ScrollView.LayoutParams(-1,-2));setContentView(startScroll);
+    }
+    /** Called only after a user-confirmed replacement; unreadable bytes remain recoverable. */
+    private boolean activateWorld(World next){
+        if(unreadableAutosave){
+            File backup=new File(getFilesDir(),"auto-unreadable-"+System.currentTimeMillis()+".sg11");
+            try(InputStream in=file("auto").openRead();OutputStream out=new FileOutputStream(backup)){byte[] data=new byte[8192];int n;while((n=in.read(data))!=-1)out.write(data,0,n);}
+            catch(IOException e){showError("无法保留损坏存档，本次没有替换局面");return false;}
+            unreadableAutosave=false;
+        }
+        world=next;ui.read(new Bundle());pendingMarch=null;moving=-1;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();return true;
+    }
+    private void buildGameUi(Bundle state,boolean restored,boolean coldStart){
         root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(ink);
         root.setOnApplyWindowInsetsListener((v,insets)->{
             if(android.os.Build.VERSION.SDK_INT>=30){android.graphics.Insets safe=insets.getInsets(WindowInsets.Type.systemBars()|WindowInsets.Type.displayCutout());v.setPadding(safe.left,safe.top,safe.right,safe.bottom);}
@@ -115,9 +140,7 @@ public final class MainActivity extends Activity {
         refresh();if(state!=null){map.restoreCamera(state);if(!aiRunning&&!ui.summary.isEmpty()){turnBanner.setText("旬结算完成 · 点此查看重要变化与待处理");turnBanner.setVisibility(View.VISIBLE);}}
         if(turnWork!=null)turnWork.observe(this::finishTurn);
         if(state!=null&&!aiRunning&&ui.formDraft.getBoolean("open"))root.post(this::restoreFormDraft);
-        if(!restored&&restoreError==null&&state==null)root.post(this::scenarioPicker);
-        if(restoreError!=null)message("自动存档未能读取",restoreError);
-        else if(restored&&coldStart)Toast.makeText(this,"已恢复自动存档 · "+world.date(),Toast.LENGTH_SHORT).show();
+        if(restored&&coldStart)Toast.makeText(this,"已恢复自动存档 · "+world.date(),Toast.LENGTH_SHORT).show();
     }
     private boolean portrait(){return getResources().getConfiguration().orientation!=Configuration.ORIENTATION_LANDSCAPE;}
     private void layoutPanels(){
@@ -205,7 +228,7 @@ public final class MainActivity extends Activity {
         int mode=getPreferences(MODE_PRIVATE).getInt("screenMode",0);
         setRequestedOrientation(mode==1?android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:mode==2?android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE:android.content.pm.ActivityInfo.SCREEN_ORIENTATION_FULL_USER);
     }
-    @Override public void onConfigurationChanged(Configuration config){super.onConfigurationChanged(config);if(root!=null){layoutPanels();refreshCommandDock();root.requestApplyInsets();}fitConfirmation();}
+    @Override public void onConfigurationChanged(Configuration config){super.onConfigurationChanged(config);if(map!=null&&world!=null){layoutPanels();refreshCommandDock();}if(root!=null)root.requestApplyInsets();fitConfirmation();}
     void trackDialog(AlertDialog dialog){confirmationDialog=dialog;fitConfirmation();}
     private void fitConfirmation(){
         if(confirmationDialog==null||!confirmationDialog.isShowing())return;
@@ -320,22 +343,21 @@ public final class MainActivity extends Activity {
     private void confirm(String value,Runnable action){commandDialog(null,value,"执行",world,action);}
     boolean currentWorld(World expected){return !aiRunning&&!isFinishing()&&!isDestroyed()&&world==expected;}
     void commandDialog(String heading,String value,String positive,World expected,Runnable action){
-        final byte[] snapshot;try{snapshot=SaveCodec.encode(expected);}catch(IOException e){message("命令未执行","无法校验当前局面，请重新打开命令");return;}
+        final long revision=expected==null?0:expected.commandRevision();
         boolean[] submitted={false};
         AlertDialog dialog=new AlertDialog.Builder(this).setTitle(heading).setMessage(value).setPositiveButton(positive,(d,n)->{
             if(submitted[0])return;submitted[0]=true;
-            try{if(!currentWorld(expected)||!Arrays.equals(snapshot,SaveCodec.encode(world))){message("命令未执行","局面已变化，请重新预览；本次没有扣除资源。");return;}}catch(IOException e){message("命令未执行","无法校验当前局面");return;}
+            if(!currentWorld(expected)||(world==null?0:world.commandRevision())!=revision){message("命令未执行","局面已变化，请重新预览；本次没有扣除资源。");return;}
             action.run();
         }).setNegativeButton("取消",null).show();trackDialog(dialog);
     }
     void showTacticPreview(World expected,Displacement.Preview preview,Runnable execute){
         if(!preview.valid()){message("不能发动",preview.error);return;}
-        final byte[] before;try{before=SaveCodec.encode(expected);}catch(IOException e){message("命令未执行","局面无法校验，请重新选择");return;}
+        final long revision=expected.commandRevision();
         tacticPreview=preview;boolean[] submitted={false};
         tacticConfirmation=()->{
             if(submitted[0])return;submitted[0]=true;
-            try{if(!currentWorld(expected)||!Arrays.equals(before,SaveCodec.encode(world))){clearTacticPreview();refresh();message("命令未执行","局面已变化，请重新选择目标；本次未扣资源。");return;}}
-            catch(IOException e){clearTacticPreview();refresh();message("命令未执行","局面校验失败");return;}
+            if(!currentWorld(expected)||world.commandRevision()!=revision){clearTacticPreview();refresh();message("命令未执行","局面已变化，请重新选择目标；本次未扣资源。");return;}
             clearTacticPreview();execute.run();
         };
         ui.panelVisible=false;refresh();
@@ -664,7 +686,7 @@ public final class MainActivity extends Activity {
     private void chooseWeapon(WeaponChoice callback){new AlertDialog.Builder(this).setTitle("选择兵种").setAdapter(GameIcon.adapter(this,world,Arrays.asList(World.Weapon.values()),x->x.label),(d,index)->callback.choose(World.Weapon.values()[index])).setNegativeButton("取消",null).show();}
     private void returnToCities(){ui.returnToCities=false;ui.page="cities";ui.panelVisible=true;ui.panelExpanded=true;pendingMarch=null;unitCommand="select";refresh();}
     private void revealPanel(){panelScroll.post(()->panelScroll.scrollTo(0,0));}
-    void selectAndFocus(Hex h){if(h==null)return;if(ui.page.equals("cities"))ui.returnToCities=true;World.Unit unit=world.unitAt(h);selectObject(h,unit==null?-2:unit.id,true);}
+    void selectAndFocus(Hex h){if(map==null&&world!=null)buildGameUi(null,false,false);if(h==null)return;if(ui.page.equals("cities"))ui.returnToCities=true;World.Unit unit=world.unitAt(h);selectObject(h,unit==null?-2:unit.id,true);}
     private GovernmentUi governmentUi(){return new GovernmentUi(this,world,this::apply);}
     private StrategyUi strategyUi(){return new StrategyUi(this,world,this::apply);}
     private CampaignUi campaignUi(){return new CampaignUi(this,world,this::apply);}
@@ -684,12 +706,12 @@ public final class MainActivity extends Activity {
         action("本旬结算摘要",v->showTurnReport());
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.32 · 小地图、港关与守备","右上小地图直接跳转、收起/展开，保持当前缩放；视图菜单可切换主将姓名与兵力/气力双条。\n六个年代开局新增42城、10关、35港；修正北上陆路与庐江江岸。\n城市每旬自动射击，普攻与器械攻城均在射程内反击，伤害受守军、气力、城防与总量上限影响。\n旧存档保留原地图；新增地形和开局配置需要新游戏。\n历史重建/定制剧本，完整官方数据及精确公式仍待核验。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.33 · 规则执行与架构整理","普攻、战法、反击共用计算与命中结算；火伤、暴击、威风和军乐台统一规则入口。\n无存档显示新游戏入口；坏档保留并在确认替换时备份。\n右上小地图直接跳转、收起/展开，保持当前缩放；视图菜单可切换主将姓名与兵力/气力双条。\n六个年代开局新增42城、10关、35港；修正北上陆路与庐江江岸。\n城市每旬自动射击，普攻与器械攻城均在射程内反击，伤害受守军、气力、城防与总量上限影响。\n旧存档保留原地图；新增地形和开局配置需要新游戏。\n历史重建/定制剧本，完整官方数据及精确公式仍待核验。"));
     }
     private void scenarioPicker(){
         try {List<ScenarioCatalog.Summary> scenarios=ScenarioCatalog.summaries();String[] labels=new String[scenarios.size()];
             for(int i=0;i<labels.length;i++){ScenarioCatalog.Summary s=scenarios.get(i);labels[i]=s.name+" · "+s.sites+"据点 / "+s.officers+"将 / "+s.factions+"势力";}
-            new AlertDialog.Builder(this).setTitle("选择剧本 · 年代重建与沙盘").setItems(labels,(dialog,index)->chooseScenarioTemplate(scenarios.get(index).id)).setNegativeButton("取消",null).show();
+            new AlertDialog.Builder(this).setTitle("选择剧本 · 六个年代与自制沙盘").setItems(labels,(dialog,index)->chooseScenarioTemplate(scenarios.get(index).id)).setNegativeButton("取消",null).show();
         }catch(IOException e){showError("剧本读取失败");}
     }
     private void chooseScenarioTemplate(String id){
@@ -698,16 +720,22 @@ public final class MainActivity extends Activity {
         loading.setOnCancelListener(d->canceled.set(true));loading.show();
         new Thread(()->{try {World template=ScenarioCatalog.load(id,0);runOnUiThread(()->{
             if(isFinishing()||isDestroyed()||canceled.get())return;loading.dismiss();
-            new AlertDialog.Builder(this).setTitle(template.scenarioName+" · 选择势力").setItems(template.factions,(d,side)->confirm(openingInfo(template,side)+"\n\n以"+template.faction(side)+"开始新局？当前自动存档将更新，手动存档保留。",()->startScenario(template.scenarioId,side))).setNegativeButton("返回",(d,n)->scenarioPicker()).show();
+            new AlertDialog.Builder(this).setTitle(template.scenarioName+" · 选择势力").setItems(template.factions,(d,side)->confirm(openingInfo(template,side)+"\n\n以"+template.faction(side)+"开始新局？当前自动存档将更新，手动存档保留；损坏的自动存档会另存备份。",()->startScenario(template.scenarioId,side))).setNegativeButton("返回",(d,n)->scenarioPicker()).show();
         });}catch(IOException e){runOnUiThread(()->{if(!isFinishing()&&!isDestroyed()&&!canceled.get()){loading.dismiss();showError("剧本读取失败");}});}},"scenario-preview").start();
     }
 
     private String openingInfo(World w,int side){
         StringBuilder b=new StringBuilder(w.date()+" · "+w.width+"×"+w.height+"格\n");int people=0;for(World.Officer o:w.officers)if(o.owner==side)people++;
         b.append(people).append("名武将 · 领地：");for(World.City c:w.cities)if(c.owner==side)b.append(c.name).append(" ");
-        b.append(w.dataSource.equals("community-reference")?"\n能力/适性来自公开资料，地图/领地/资源为原创演练；特技、性格和已解析关系依剧本载入。群英类自制沙盘为跨时代配置，不按生卒年退场。":"\n原创测试地图、资源和武将数值；非官方历史开局。");return b.toString();
+        b.append(w.dataSource.equals("community-reference")?"\n能力/适性来自公开资料；地图、领地与资源为历史重建或定制。群英类跨时代配置不按生卒年退场。":"\n重建或定制开局；官方完整资源、事件与归属仍待核验。");return b.toString();
     }
-    private void startScenario(String id,int player){try{world=ScenarioCatalog.load(id,player,System.nanoTime());ui.formDraft=new Bundle();ui.returnToCities=false;ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;selectAndFocus(world.home().hex);closePanel();save("auto",false);}catch(IOException e){showError("无法开始剧本");}}
+    private void startScenario(String id,int player){
+        java.util.concurrent.atomic.AtomicBoolean canceled=new java.util.concurrent.atomic.AtomicBoolean();
+        AlertDialog loading=new AlertDialog.Builder(this).setMessage("正在建立新局…").setNegativeButton("取消",(d,n)->canceled.set(true)).create();loading.setOnCancelListener(d->canceled.set(true));loading.show();
+        new Thread(()->{try{World next=ScenarioCatalog.load(id,player,System.nanoTime());runOnUiThread(()->{
+            if(isFinishing()||isDestroyed()||canceled.get())return;loading.dismiss();if(!activateWorld(next))return;selectAndFocus(world.home().hex);closePanel();save("auto",false);
+        });}catch(IOException e){runOnUiThread(()->{if(!isFinishing()&&!isDestroyed()&&!canceled.get()){loading.dismiss();showError("无法开始剧本");}});}},"scenario-start").start();
+    }
     private String slotName(int index){return index==0?"manual":"manual"+(index+1);}
     private boolean present(AtomicFile f){return f.getBaseFile().exists()||new File(f.getBaseFile()+".bak").exists();}
     private void saveSlots(boolean loading){
@@ -751,6 +779,7 @@ public final class MainActivity extends Activity {
     @Override public Object onRetainNonConfigurationInstance(){if(turnWork!=null)turnWork.observe(null);return turnWork;}
     @Override protected void onDestroy(){if(turnWork!=null)turnWork.observe(null);if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
     private void writeClientState(Bundle state){
+        if(world==null||map==null)return;
         ui.write(state);state.putInt("selectedQ",selected==null?-1:selected.q);state.putInt("selectedR",selected==null?-1:selected.r);state.putInt("moving",moving);state.putString("unitCommand",unitCommand);
         if(pendingMarch!=null&&pendingMarch.target!=null){state.putInt("routeQ",pendingMarch.target.q);state.putInt("routeR",pendingMarch.target.r);}map.saveCamera(state);
     }
@@ -768,6 +797,7 @@ public final class MainActivity extends Activity {
     }
     private AtomicFile file(String slot){return new AtomicFile(new File(getFilesDir(),slot+".sg11"));}
     private void save(String slot,boolean announce){
+        if(world==null||unreadableAutosave)return;
         AtomicFile f=file(slot);FileOutputStream out=null;try{byte[] bytes=SaveCodec.encode(world);out=f.startWrite();out.write(bytes);f.finishWrite(out);if(announce)Toast.makeText(this,"局面已保存",Toast.LENGTH_SHORT).show();}
         catch(IOException e){if(out!=null)f.failWrite(out);Toast.makeText(this,"保存失败，请检查设备存储空间后重试",Toast.LENGTH_LONG).show();}
     }
@@ -798,7 +828,7 @@ public final class MainActivity extends Activity {
             if(request==IMPORT_SCENARIO){
                 final World imported;try(InputStream in=getContentResolver().openInputStream(data.getData())){imported=ScenarioData.read(in,0);}
                 new AlertDialog.Builder(this).setTitle("导入剧本 · 选择势力").setItems(imported.factions,(dialog,n)->confirm("开始“"+imported.scenarioName+"”？\n"+imported.faction(n)+" · "+(imported.sourceMapWidth>0?imported.sourceMapWidth:imported.width)+"×"+imported.height+"格 · "+imported.cities.size()+"据点 · "+imported.officers.size()+"武将\n将替换当前局面及自动存档，手动槽位保留。",()->{
-                    if(aiRunning)return;imported.player=n;imported.active=n;world=imported;ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;pendingMarch=null;moving=-1;selectAndFocus(world.home().hex);save("auto",false);
+                    if(aiRunning)return;imported.player=n;imported.active=n;if(!activateWorld(imported))return;selectAndFocus(world.home().hex);save("auto",false);
                 })).setNegativeButton("取消",null).show();
             }else if(request==IMPORT_OFFICER){
                 Editor.Template template;try(InputStream in=getContentResolver().openInputStream(data.getData())){template=OfficerTemplateCodec.read(in);}
@@ -821,15 +851,16 @@ public final class MainActivity extends Activity {
                 if(imported.active!=imported.player)throw new IOException("非玩家回合存档");
                 confirm("导入“"+imported.scenarioName+"”？\n"+imported.faction(imported.player)+" · "+imported.date()+"\n将替换当前局面和自动存档，手动槽位保留。",()->{
                     if(aiRunning)return;
-                    world=imported;ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;
+                    if(!activateWorld(imported))return;ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;
                     selectAndFocus(world.home().hex);save("auto",false);
                 });
             }
         }catch(IOException|SecurityException e){showError(request==EXPORT_SAVE?"导出失败":"导入失败");}
     }
-    private void loadSlot(String slot){try{World restored=readSave(file(slot));world=restored;ui.formDraft=new Bundle();ui.returnToCities=false;ui.summary="";ui.city=-1;ui.owner=-1;ui.query="";ui.cityQuery="";ui.cityOwner=-1;ui.taskQuery="";ui.taskType=0;selectAndFocus(world.home().hex);save("auto",false);Toast.makeText(this,"已读取存档 · "+world.date(),Toast.LENGTH_SHORT).show();}catch(IOException e){showError("读取失败");}}
+    private void loadSlot(String slot){try{World restored=readSave(file(slot));if(!activateWorld(restored))return;selectAndFocus(world.home().hex);save("auto",false);Toast.makeText(this,"已读取存档 · "+world.date(),Toast.LENGTH_SHORT).show();}catch(IOException e){showError("读取失败");}}
     @Override protected void onPause(){super.onPause();if(world!=null){save("auto",false);persistClientState();}}
     @Override public void onBackPressed(){
+        if(world==null){finish();return;}
         if(aiRunning)return;
         if(tacticPreview!=null){clearTacticPreview();refresh();return;}
         if(reportReturn!=null){returnFromBattleReport();return;}

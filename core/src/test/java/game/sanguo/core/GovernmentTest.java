@@ -115,7 +115,7 @@ public final class GovernmentTest {
     static void invalid(World w,String label)throws Exception{try{bytes(w);throw new AssertionError(label);}catch(IOException expected){checks++;}}
     static void longCampaigns()throws Exception{
         for(int player=0;player<3;player++){
-            World w=ScenarioCatalog.load("regional-sandbox",player),c=copy(w);
+            World w=TestScenarios.load("regional-sandbox",player),c=copy(w);
             for(int turn=0;turn<80&&!w.gameOver();turn++){
                 ok(w.nextTurn());ok(c.nextTurn());check(Arrays.equals(bytes(w),bytes(c)),"long campaign deterministic after each save");c=copy(c);
             }

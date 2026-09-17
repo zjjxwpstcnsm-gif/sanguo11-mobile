@@ -11,7 +11,7 @@ public final class EstatesTest {
     private static void ok(World.Result r){check(r.ok,r.message);}
     private static byte[] bytes(World w)throws Exception{return SaveCodec.encode(w);}
     private static World copy(World w)throws Exception{return SaveCodec.decode(bytes(w));}
-    private static World fixture()throws Exception{return ScenarioCatalog.load("estates-drill",0,41);}
+    private static World fixture()throws Exception{return TestScenarios.load("estates-drill",0,41);}
     private static void reject(World w,Supplier<World.Result> action)throws Exception{byte[] before=bytes(w);check(!action.get().ok,"invalid command rejected");check(Arrays.equals(before,bytes(w)),"no RNG, action, ownership or resource mutation on rejection");}
     private static void rejectDraft(World w,Editor.Draft draft)throws Exception{check(!draft.valid(),"invalid draft rejected: "+draft.summary);reject(w,()->w.editor.apply(draft));}
     private static void edit(World w,Editor.Draft draft){check(draft.valid(),draft.error);ok(w.editor.apply(draft));}

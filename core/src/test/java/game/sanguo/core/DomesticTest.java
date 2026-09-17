@@ -140,7 +140,7 @@ public final class DomesticTest {
     }
     private static void campaigns()throws Exception{
         for(int player=0;player<3;player++){
-            World w=ScenarioCatalog.load("regional-sandbox",player);
+            World w=TestScenarios.load("regional-sandbox",player);
             for(int t=0;t<45&&!w.gameOver();t++){
                 for(World.City c:new ArrayList<>(w.cities))if(c.owner==player){
                     List<World.Officer> idle=w.idle(c);List<Hex> sites=w.domestic.buildSites(c.id);

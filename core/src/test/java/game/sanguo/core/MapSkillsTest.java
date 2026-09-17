@@ -18,7 +18,7 @@ public final class MapSkillsTest {
         w.units.add(a);w.units.add(b);w.nextUnitId=3;w.strategy.setSeed(88);return w;
     }
     private static void geography()throws Exception {
-        World w=ScenarioCatalog.load("heroes-mobile-sandbox",1);
+        World w=TestScenarios.load("heroes-mobile-sandbox",1);
         int[] expected={12,15,12,15,12,12,20,12,18,10,15,15,15,18,12,22,15,22,12,10,12,15,18,15,15,15,12,12,10,18,15,12,10,12,12,12,15,10,12,18,12,15};
         Set<Hex> all=new HashSet<>();int distant=0;
         for(World.City c:w.cities){if(c.kind!=World.SiteKind.CITY)continue;check(w.development.capacity(c.id)==expected[c.id-20000],"researched city capacity "+c.name);check(w.domestic.buildSites(c.id).size()==expected[c.id-20000],"all parcels can initially build "+c.name);
@@ -69,7 +69,7 @@ public final class MapSkillsTest {
             World powered=copy(trap);powered.officer(1).skillId=Skill.HUOSHEN.id;
             trap.fieldworks.ignite(h,trap.unit(1));powered.fieldworks.ignite(h,powered.unit(1));
             int ordinary=10000-trap.unit(2).troops,doubled=10000-powered.unit(2).troops;check(ordinary>0&&doubled==ordinary*2,"trap uses igniter skill exactly once "+kind);
-            World armor=fireFixture(World.Weapon.SPEAR);armor.officer(3).skillId=Skill.TENGJIA.id;check(armor.skills.fireDamage(armor.unit(2),700,0,2,true)==2800,"vine armor stacks vulnerability with source power");armor.unit(2).deputies=new int[]{4};armor.officer(4).skillId=Skill.TAPO.id;check(armor.skills.fireDamage(armor.unit(2),700,0,2,true)==1400&&armor.skills.fireDamage(armor.unit(2),400,0,2,false)==1600,"tapo halves traps only");
+            World armor=fireFixture(World.Weapon.SPEAR);armor.officer(3).skillId=Skill.TENGJIA.id;check(armor.combat.fireDamage(armor.unit(2),700,0,2,true)==2800,"vine armor stacks vulnerability with source power");armor.unit(2).deputies=new int[]{4};armor.officer(4).skillId=Skill.TAPO.id;check(armor.combat.fireDamage(armor.unit(2),700,0,2,true)==1400&&armor.combat.fireDamage(armor.unit(2),400,0,2,false)==1600,"tapo halves traps only");
         }
         for(World.Weapon weapon:new World.Weapon[]{World.Weapon.SPEAR,World.Weapon.SIEGE_TOWER,World.Weapon.WOODEN_BEAST}){
             World engine=fireFixture(weapon);engine.unit(2).status=War.Status.CONFUSED;engine.unit(2).statusTurns=1;

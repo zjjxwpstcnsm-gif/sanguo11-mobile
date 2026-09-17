@@ -66,7 +66,7 @@ public final class WorldEvents {
         String error=attackError(unit,camp);if(error!=null)return w.fail(error);World.Unit u=w.unit(unit);Camp c=camp(camp);u.acted=true;
         int hit=Math.min(c.troops,300+w.army.war(u)*6+u.troops/12);c.troops-=hit;
         w.battleImpact(c.hex,c.troops==0);int counter=0;if(c.troops==0){camps.remove(c);u.gold=Math.min(10000,u.gold+500);w.campaign.earn(u.owner,50);w.government.earn(u.officerId,200);}
-        else if(u.hex.distance(c.hex)==1){counter=Math.min(u.troops,100+c.troops/15);u.troops-=counter;if(u.troops==0)w.removeUnit(u);}
+        else if(u.hex.distance(c.hex)==1){counter=Math.min(u.troops,100+c.troops/15);w.combatEffects.hit(null,u,counter,false,false);}
         return w.success("讨伐"+c.tribe.label+"：敌损"+hit+"，反击损失"+counter+(c.troops==0?"，营寨已毁，获得500金（受携金上限限制）":""));
     }
     void tick(){
@@ -82,7 +82,7 @@ public final class WorldEvents {
         for(Camp camp:new ArrayList<>(camps)){
             World.City c=w.city(camp.city);if(c.owner<0)continue;
             World.Unit nearest=null;for(World.Unit u:w.units)if(u.hex.distance(camp.hex)<=1&&(nearest==null||u.id<nearest.id))nearest=u;
-            if(nearest!=null){int hit=Math.min(nearest.troops,100+camp.troops/20);nearest.troops-=hit;if(nearest.troops==0)w.removeUnit(nearest);w.note(camp.tribe.label+"袭击邻近部队，损失"+hit+"兵");}
+            if(nearest!=null){int hit=Math.min(nearest.troops,100+camp.troops/20);w.combatEffects.hit(null,nearest,hit,false,false);w.note(camp.tribe.label+"袭击邻近部队，损失"+hit+"兵");}
             if(w.turn%3==0){c.order=Math.max(0,c.order-5);c.food=Math.max(0,c.food-1000);camp.troops=Math.min(6000,camp.troops+200);if(nextInt(100)<25)destroyFacility(c.id,null);w.note(c.name+"受到"+camp.tribe.label+"劫掠，粮草与治安下降");}
         }
         if(!enabled||w.turn%3!=0)return;

@@ -43,6 +43,7 @@ jobs:
         run: |
           python3 tools/content/build_content.py --check
           python3 tools/content/build_mobile_scenarios.py --check
+          python3 tools/content/build_historical_scenarios.py --check
           python3 tools/content/test_content.py
           bash scripts/test-ui-models.sh
       - name: Verify core rules and saves
@@ -101,12 +102,7 @@ jobs:
           echo '8f0ca650ddbd0dc4615e3306ae407be6e8042aff6fc04bf0d3a4e2deb74c41dc  app/build/upgrade/v027.apk' | sha256sum -c -
       - name: Check bundled scenario resources
         run: |
-          python3 - <<'PY'
-          import zipfile
-          with zipfile.ZipFile('app/build/outputs/apk/debug/app-debug.apk') as apk:
-              for name in ['assets/portraits/officers.png', 'assets/map/buildings.png', 'scenarios/index.txt', 'scenarios/m0-skirmish.properties', 'scenarios/regional-sandbox.properties', 'scenarios/river-siege-sandbox.properties', 'scenarios/officer-reference-drill.properties', 'content/index.txt', 'content/officers.tsv', 'content/sites.tsv', 'scenarios/contest-drill.properties', 'scenarios/fieldworks-drill.properties', 'scenarios/estates-drill.properties', 'scenarios/world-drill.properties', 'scenarios/lifecycle-drill.properties', 'scenarios/heroes-mobile-sandbox.properties', 'scenarios/central-mobile-sandbox.properties', 'scenarios/jingxiang-mobile-sandbox.properties']:
-                  assert name in apk.namelist(), name
-          PY
+          python3 tools/check_apk_content.py app/build/outputs/apk/debug/app-debug.apk
       - name: Enable KVM for Android runtime verification
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -132,15 +128,15 @@ jobs:
           assert '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' in signature
           PYVERIFY
           cd app/build/outputs/apk/debug
-          cp app-debug.apk "sanguo11-mobile-v030-$(git rev-parse --short HEAD).apk"
-          sha256sum sanguo11-mobile-v030-*.apk | tee SHA256SUMS
+          cp app-debug.apk "sanguo11-mobile-v033-$(git rev-parse --short HEAD).apk"
+          sha256sum sanguo11-mobile-v033-*.apk | tee SHA256SUMS
           git rev-parse HEAD > BUILD_COMMIT
       - uses: actions/upload-artifact@v4
         if: matrix.display == '1080x1920'
         with:
-          name: sanguo11-mobile-v030-apk
+          name: sanguo11-mobile-v033-apk
           path: |
-            app/build/outputs/apk/debug/sanguo11-mobile-v030-*.apk
+            app/build/outputs/apk/debug/sanguo11-mobile-v033-*.apk
             app/build/outputs/apk/debug/BUILD_COMMIT
             app/build/outputs/apk/debug/SHA256SUMS
             app/build/outputs/apk/debug/SIGNATURE.txt

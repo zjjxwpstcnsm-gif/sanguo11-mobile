@@ -199,7 +199,7 @@ public final class CampaignTest {
     }
     private static void continuation()throws Exception{
         for(int side=0;side<3;side++){
-            World w=ScenarioCatalog.load("regional-sandbox",side);World.City home=w.home();World.Officer officer=w.idle(home).get(0);
+            World w=TestScenarios.load("regional-sandbox",side);World.City home=w.home();World.Officer officer=w.idle(home).get(0);
             AbilityResearchTest.unlock(w,side,"spear.a");ok(w.campaign.study(home.id,officer.id,Campaign.Study.SPEAR));World copy=SaveCodec.decode(bytes(w));
             for(int turn=0;turn<60&&!w.gameOver();turn++){
                 check(w.nextTurn().ok&&copy.nextTurn().ok,"complete campaign turn succeeds");check(Arrays.equals(bytes(w),bytes(copy)),"player "+side+" deterministic turn "+turn);

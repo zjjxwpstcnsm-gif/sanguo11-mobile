@@ -17,7 +17,7 @@ public final class ContentProfilesTest {
     public static void main(String[] args)throws Exception {
         ContentCatalog c=ContentCatalog.get();check(c.relations().size()==869,"869 usable relation rows, no self group marker");
         int liu=id(c,"劉備"),guan=id(c,"關羽"),zhang=id(c,"張飛"),cao=id(c,"曹操"),pi=id(c,"曹丕");
-        World reference=ScenarioCatalog.load("officer-reference-drill",0);
+        World reference=TestScenarios.load("officer-reference-drill",0);
         check(reference.relations.sworn(liu,guan)&&reference.relations.sworn(guan,zhang),"source group closes in actual opening");
         check(reference.relations.contribution(liu,guan,75,97)==97,"source relationship changes formation contribution");
         check(reference.contests.profile(zhang).temper==Debate.Temper.RASH,"source temperament reaches debate");
@@ -44,7 +44,7 @@ public final class ContentProfilesTest {
         for(ContentCatalog.Relation r:c.relations())check(all.relations.links(r.officer,r.kind).contains(r.target),"resolved source relation applied: "+r.officer+"/"+r.target);
         byte[] full=bytes(all);check(Arrays.equals(full,bytes(SaveCodec.decode(full))),"full roster and relations round trip independently of catalog");
         Collections.reverse(all.officers);check(all.relations.sworn(guan,zhang),"identity binding survives roster reordering");
-        World old=ScenarioCatalog.load("regional-sandbox",0);check(old.life.people().isEmpty()&&old.relations.people.isEmpty(),"old original opening gains no source state implicitly");
+        World old=TestScenarios.load("regional-sandbox",0);check(old.life.people().isEmpty()&&old.relations.people.isEmpty(),"old original opening gains no source state implicitly");
         World changed=SaveCodec.decode(bytes(reference));changed.relations.unlink(guan,liu,Relations.Kind.SWORN);changed.contests.configure(zhang,new Contests.Profile(Debate.Temper.CALM,0,0));
         changed=SaveCodec.decode(bytes(changed));check(!changed.relations.sworn(guan,liu)&&changed.contests.profile(zhang).temper==Debate.Temper.CALM,"loading never reapplies static relationships or personality");
         System.out.println("PASS: "+checks+" sourced-profile assertions: full 670 roster, relations, birth/appearance, temperament, atomic imports and saved edits.");

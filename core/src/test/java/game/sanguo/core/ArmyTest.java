@@ -37,7 +37,7 @@ public final class ArmyTest {
         check(w.actionPoints[0]==50&&w.city(10).troops==27000&&w.city(10).food==182000,"three-officer deployment charges once");
         for(int id:new int[]{0,1,2})check(w.officer(id).unitId==1&&w.officer(id).cityId==-1&&w.officer(id).acted,"every crew member locked");
         check(w.army.aptitude(u)==3&&w.army.intelligence(u)==99&&w.army.war(u)==84,"deputy stats and aptitude contribute");
-        check(w.army.combatOfficer(u).leadership==71,"unrelated deputy contributes half of leadership advantage");
+        check(w.army.leadership(u)==71,"unrelated deputy contributes half of leadership advantage");
         reject(w,()->w.train(10,1));reject(w,()->w.deploy(10,2,World.Weapon.CAVALRY,3000));
         byte[] snapshot=bytes(w);check(Arrays.equals(snapshot,bytes(SaveCodec.decode(snapshot))),"crew survives exact roundtrip");
         ok(w.enter(1,10));check(w.city(10).ships[0]==2&&w.city(10).troops==30000&&w.city(10).equipment[0]==12000,"return restores gear once");
@@ -127,7 +127,7 @@ public final class ArmyTest {
     }
     private static void simulation()throws Exception{
         for(int player=0;player<2;player++){
-            World a=ScenarioCatalog.load("river-siege-sandbox",player),b=ScenarioCatalog.load("river-siege-sandbox",player);boolean sawWater=false;
+            World a=TestScenarios.load("river-siege-sandbox",player),b=TestScenarios.load("river-siege-sandbox",player);boolean sawWater=false;
             for(int i=0;i<35&&!a.gameOver();i++){
                 for(World x:Arrays.asList(a,b)){for(World.City c:x.cities)if(c.owner==player&&!x.idle(c).isEmpty())x.army.deploy(c.id,x.idle(c).get(0).id,new int[0],World.Weapon.SWORD,Army.Ship.BOAT,3000,6000);ok(x.nextTurn());}
                 SaveCodec.validate(a);check(Arrays.equals(bytes(a),bytes(b)),"water campaign deterministic after save "+i);
@@ -137,7 +137,7 @@ public final class ArmyTest {
         }
     }
     private static void scenarioData()throws Exception{
-        String data;try(InputStream in=ArmyTest.class.getResourceAsStream("/scenarios/river-siege-sandbox.properties")){data=new String(in.readAllBytes(),java.nio.charset.StandardCharsets.UTF_8);}
+        String data;try(InputStream in=ArmyTest.class.getResourceAsStream("/test-scenarios/river-siege-sandbox.properties")){data=new String(in.readAllBytes(),java.nio.charset.StandardCharsets.UTF_8);}
         for(String bad:Arrays.asList(data.replace("arsenal.1=11|","arsenal.1=10|"),data.replace("arsenal.0=10|2|","arsenal.0=999|2|"),data.replace("arsenal.0=10|2|","arsenal.0=10|101|"),data.replace("aptitude.1=1|","aptitude.1=0|"),data.replace("aptitude.0=0|2|","aptitude.0=0|4|"))){
             try{ScenarioData.read(new ByteArrayInputStream(bad.getBytes(java.nio.charset.StandardCharsets.UTF_8)),0);throw new AssertionError("invalid arsenal/aptitude accepted");}catch(IOException expected){checks++;}
         }cases++;

@@ -105,7 +105,7 @@ public final class CampaignAiTest {
     }
     private static void replay()throws Exception{
         for(String id:new String[]{"regional-sandbox","river-siege-sandbox","world-drill"})for(int seed=0;seed<3;seed++){
-            World a=ScenarioCatalog.load(id,0,seed);a.strategy.setSeed(seed);World b=SaveCodec.decode(bytes(a));
+            World a=TestScenarios.load(id,0,seed);a.strategy.setSeed(seed);World b=SaveCodec.decode(bytes(a));
             for(int turn=0;turn<36&&!a.gameOver();turn++){
                 check(a.nextTurn().ok&&b.nextTurn().ok,"paired campaign advances");check(Arrays.equals(bytes(a),bytes(b)),"AI and battles reproduce exactly after save/restore");
                 b=SaveCodec.decode(bytes(b));

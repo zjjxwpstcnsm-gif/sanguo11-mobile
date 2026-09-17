@@ -27,10 +27,9 @@ public final class CityDefense {
     public String describe(World.City c){return "守备射程 "+range(c)+" 格 · 每旬对范围内敌军自动射击\n单队基础伤害 ≤"+strength(c)+"，全城每旬总量 ≤"+(strength(c)*2)+"；反击约为单队伤害的⅔。缺粮或无守军停射。";}
     private int hurt(World.City c,World.Unit u,int damage,String reason){
         if(w.unit(u.id)!=u||damage<=0)return 0;
-        int actual=Math.min(u.troops,damage);u.troops-=actual;
+        int actual=w.combatEffects.hit(null,u,damage,false,false);
         w.battleImpact(u.hex,u.troops==0);
         w.note(c.name+reason+"，"+w.officer(u.officerId).name+"部队损失"+actual);
-        if(u.troops==0)w.removeUnit(u); // Shared crew, cargo and prisoner cleanup, exactly once.
         return actual;
     }
     int counter(World.City c,World.Unit u){return hurt(c,u,counterDamage(c,u),"反击");}

@@ -42,56 +42,10 @@ public final class Skills {
         if(a!=null)for(World.Officer o:w.army.crew(a))if(has(o,MIJI)&&o.intelligence<defense)return true;
         return false;
     }
-    public boolean critical(World.Unit a,World.Unit b,boolean tactic){
-        if(!tactic&&b!=null&&!w.army.water(a.hex)&&a.weapon==World.Weapon.CAVALRY&&a.hex.distance(b.hex)>1&&has(a,BAIMA))return true;
-        if(b!=null&&w.terrain[a.hex.q][a.hex.r]==World.Terrain.FOREST&&has(a,LUANZHAN))return true;
-        int category=w.army.water(a.hex)?5:Army.category(a.weapon);
-        if(!tactic)return b!=null&&(holderStat(a,QUZHU,false)>w.army.war(b)||holderStat(a,SHENJIANG,false)>w.army.war(b));
-        if(has(a,BAWANG))return true;
-        Skill god=category==0?QIANGSHEN:category==1?JISHEN:category==2?GONGSHEN:category==3?QISHEN:category==4?GONGSHEN_SIEGE:category==5?SHUISHEN:null;
-        if(god!=null&&has(a,god)||category>=0&&category<=1&&has(a,DOUSHEN))return true;
-        if(b==null)return has(a,GONGCHENG);
-        int defense=w.army.war(b);
-        if(holderStat(a,YONGJIANG,false)>defense)return true;
-        if(category>=0&&category<=3&&(holderStat(a,FEIJIANG,false)>defense||holderStat(a,SHENJIANG,false)>defense))return true;
-        Skill general=category==0?QIANGJIANG:category==1?JIJIANG:category==2?GONGJIANG:category==3?QIJIANG:category==5?SHUIJIANG:null;
-        return general!=null&&holderStat(a,general,false)>defense;
-    }
     public boolean nullifyNormal(World.Unit target,int damage,Random rng){
         return ((target.troops<3000&&has(target,BUQU))||(damage<500&&has(target,JINGANG)))&&rng.nextInt(100)<50;
     }
     public boolean avoidCounter(World.Unit a,Random rng){return has(a,w.army.water(a.hex)?QIANGXI:JIXI)&&rng.nextInt(100)<50;}
-    public void onHit(World.Unit source,World.Unit target,int loss,boolean tactic){
-        if(loss<=0)return;
-        if(!w.army.water(source.hex)&&source.weapon==World.Weapon.SPEAR&&w.campaign.has(source.owner,Campaign.Tech.SUPPLY_RAID)){
-            int food=Math.min(Math.min(target.food,Math.max(1,loss)),1000000-source.food);target.food-=food;source.food+=food;
-        }
-        target.energy=Math.max(0,target.energy-(has(source,WEIFENG)?20:has(source,SAOTAO)?5:0));
-        if(tactic&&has(target,NUFA)&&target.troops>0)target.energy=Math.min(w.campaign.energyCap(target.owner),target.energy+5);
-        if(has(source,XINGONG)&&source.troops>0)source.troops=Math.max(source.troops,Math.min(w.government.commandLimit(source.officerId),source.troops+loss/10));
-        if(target.troops==0&&has(source,ANGYANG))source.energy=Math.min(w.campaign.energyCap(source.owner),source.energy+10);
-    }
-    public int fireDamage(World.Unit target,int base,int owner,int power,boolean trap){
-        if(has(target,HUOSHEN))return 0;
-        int amount=base;
-        if(w.campaign.has(target.owner,Campaign.Tech.EXPLOSIVES))amount+=300;
-        if(trap&&w.campaign.has(owner,Campaign.Tech.EXPLOSIVES))amount+=300;
-        amount*=power;
-        if(has(target,TENGJIA))amount*=2;
-        if(trap&&has(target,TAPO))amount/=2;
-        return Math.min(target.troops,amount);
-    }
-    /** Only the elemental component is doubled; physical arrow impact is separate. */
-    public int firePower(World.Unit source){return has(source,HUOSHEN)?2:1;}
-    public int ongoingFireDamage(World.Unit target,int base,int owner,int power,boolean trap){
-        return has(target,HUWEI)?0:fireDamage(target,base,owner,power,trap);
-    }
-    public String firePreview(World.Unit source,World.Unit target,boolean trap){
-        int base=trap?700:400;
-        return "火焰伤害："+(target==null?"按实际波及部队分别结算":fireDamage(target,base,source.owner,firePower(source),trap))
-            +(has(source,HUOSHEN)?" · 火神×2":"")+(target!=null&&has(target,HUOSHEN)?" · 目标火神免疫":"")
-            +"\n火矢物理伤害独立计算；火神不免疫箭矢物理伤害。";
-    }
     public boolean swiftConfusion(World.Unit source,World.Unit target){
         return has(source,JICHI)&&w.army.attackPower(source)>w.army.attackPower(target);
     }
@@ -120,11 +74,5 @@ public final class Skills {
         w.contests.injuries.put(victim.id,new Contests.Injury(Math.min(3,w.contests.injury(victim.id)+1),w.turn+3));
         w.note(victim.name+"受到猛者战法影响而负伤");
     }
-    public void restoreEnergy(){
-        for(World.Unit u:w.units){
-            boolean music=false;for(War.Structure s:w.war.structures)if(s.complete&&s.kind==War.StructureKind.MUSIC&&s.owner==u.owner&&s.hex.distance(u.hex)<=2){music=true;break;}
-            int gain=music?(has(u,SHIXIANG)?20:10):has(u,ZOUYUE)?5:0;
-            u.energy=Math.min(w.campaign.energyCap(u.owner),u.energy+gain);
-        }
-    }
+
 }
