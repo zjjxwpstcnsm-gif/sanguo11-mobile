@@ -169,12 +169,18 @@ public final class MainActivity extends Activity {
     }
     private void refreshQuickNavigator(){
         if(quickCityStrip==null||quickUnitStrip==null||world==null)return;
+        View cityRow=(View)quickCityStrip.getParent().getParent();View unitRow=(View)quickUnitStrip.getParent().getParent();
+        boolean mapContext="map".equals(ui.page)&&!aiRunning;
+        if(!mapContext){
+            quickCityStrip.removeAllViews();quickUnitStrip.removeAllViews();
+            cityRow.setVisibility(View.GONE);unitRow.setVisibility(View.GONE);return;
+        }
         quickCityStrip.removeAllViews();quickUnitStrip.removeAllViews();
         List<World.City> ownCities=new ArrayList<>();for(World.City c:world.cities)if(c.owner==world.player)ownCities.add(c);ownCities.sort(Comparator.comparingInt(c->c.id));
         for(World.City c:ownCities){Button b=button(c.name+" · "+(c.troops/1000)+"k",v->selectObject(c.hex,-2,true));b.setTextSize(11);b.setContentDescription("定位己方据点 "+c.name);quickCityStrip.addView(b,new LinearLayout.LayoutParams(dp(104),-1));}
         List<World.Unit> ownUnits=new ArrayList<>();for(World.Unit u:world.fieldUnits())if(u.owner==world.player)ownUnits.add(u);ownUnits.sort(Comparator.comparingInt(u->u.id));
         for(World.Unit u:ownUnits){World.Officer o=world.officer(u.officerId);String n=o==null?("部队"+u.id):o.name;Button b=button(n+" · "+u.troops,v->selectObject(u.hex,u.id,true));b.setTextSize(11);b.setContentDescription("定位己方部队 "+n);quickUnitStrip.addView(b,new LinearLayout.LayoutParams(dp(116),-1));}
-        View cityRow=(View)quickCityStrip.getParent().getParent();View unitRow=(View)quickUnitStrip.getParent().getParent();cityRow.setVisibility(ownCities.isEmpty()?View.GONE:View.VISIBLE);unitRow.setVisibility(ownUnits.isEmpty()?View.GONE:View.VISIBLE);
+        cityRow.setVisibility(ownCities.isEmpty()?View.GONE:View.VISIBLE);unitRow.setVisibility(ownUnits.isEmpty()?View.GONE:View.VISIBLE);
     }
     private void refreshTurnProgress(){
         if(turnProgress==null)return;
