@@ -216,3 +216,12 @@ tasks.register('verifyMapSkills', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyMapSkills' }
 tasks.named('test') { dependsOn 'verifyMapSkills' }
+
+['ArchitectureRules', 'NavigationDefense'].each { suite ->
+    tasks.register("verify${suite}", JavaExec) {
+        dependsOn testClasses
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = "game.sanguo.core.${suite}Test"
+    }
+    tasks.named('check') { dependsOn "verify${suite}" }
+}

@@ -64,8 +64,8 @@ public final class AdvancedBattle {
     void infight(World.Unit source,World.Unit target,boolean critical){
         List<World.Unit> others=infightingTargets(target);if(others.isEmpty())return;
         World.Unit other=others.get(w.strategy.nextInt(others.size()));
-        int first=w.war.physicalDamage(target,other,critical?1.15:1,false,new Random(w.strategy.nextInt(Integer.MAX_VALUE)));
-        int second=w.war.physicalDamage(other,target,.5,false,new Random(w.strategy.nextInt(Integer.MAX_VALUE)));
+        int first=w.combat.physicalDamage(target,other,critical?1.15:1,false,new Random(w.strategy.nextInt(Integer.MAX_VALUE)));
+        int second=w.combat.physicalDamage(other,target,.5,false,new Random(w.strategy.nextInt(Integer.MAX_VALUE)));
         // Simultaneous losses; their same-faction troops cannot capture or award each other merit.
         injure(other,first,source);injure(target,second,source);
         w.note("同讨造成双方损失"+first+" / "+second);

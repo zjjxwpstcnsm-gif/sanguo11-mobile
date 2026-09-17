@@ -114,7 +114,7 @@ public final class Fieldworks {
         if(!w.campaign.has(source.owner,Campaign.Tech.THUNDERBOLT))return;
         for(Hex h:center.neighbors()){
             World.Unit target=w.unitAt(h);if(target!=null&&(target.owner==source.owner||w.campaign.hostile(source.owner,target.owner))){
-                int hit=w.war.physicalDamage(source,target,.75,true,new Random(w.strategy.nextInt(Integer.MAX_VALUE)));target.troops-=hit;if(target.troops<=0)w.defeatUnit(target,source);
+                int hit=w.combat.physicalDamage(source,target,.75,true,new Random(w.strategy.nextInt(Integer.MAX_VALUE)));target.troops-=hit;if(target.troops<=0)w.defeatUnit(target,source);
             }
             War.Structure s=w.war.at(h);if(s!=null&&(s.owner==source.owner||w.campaign.hostile(source.owner,s.owner))){s.hp-=w.campaign.constructionDamage(source,300);if(s.hp<=0)w.war.structures.remove(s);}
         }
@@ -158,7 +158,7 @@ public final class Fieldworks {
                 for(Hex next:affected){
                     if(s.kind==War.StructureKind.FIRE_SHIP?!w.army.water(next):w.army.water(next))continue;
                     World.Unit victim=w.unitAt(next);if(victim!=null&&(victim.owner==source.owner||w.campaign.hostile(source.owner,victim.owner))){
-                        int fireLoss=w.skills.fireDamage(victim,base,source.owner,w.skills.firePower(source),true);victim.troops-=fireLoss;
+                        int fireLoss=w.combat.fireDamage(victim,base,source.owner,w.combat.firePower(source),true);victim.troops-=fireLoss;
                         w.battleOutcome(w.officer(victim.officerId).name+"受到"+s.kind.label+"火伤"+fireLoss);
                         if(victim.troops==0)w.defeatUnit(victim,source);else if(s.kind==War.StructureKind.INFERNO_SEED){victim.status=War.Status.CONFUSED;victim.statusTurns=2;}
                     }
@@ -173,7 +173,7 @@ public final class Fieldworks {
     int directFire(Hex h,World.Unit source){
         World.Unit victim=w.unitAt(h);
         if(victim==null||victim.owner!=source.owner&&!w.campaign.hostile(source.owner,victim.owner))return 0;
-        int hit=w.skills.fireDamage(victim,400,source.owner,w.skills.firePower(source),false);
+        int hit=w.combat.fireDamage(victim,400,source.owner,w.combat.firePower(source),false);
         victim.troops-=hit;w.battleImpact(h,false);
         w.battleOutcome(w.officer(victim.officerId).name+"受到火焰伤害"+hit+(w.skills.has(source,Skill.HUOSHEN)?"（火神×2）":"")+(w.skills.has(victim,Skill.HUOSHEN)?"（火神免疫）":""));
         if(victim.troops==0)w.defeatUnit(victim,source);
@@ -184,6 +184,6 @@ public final class Fieldworks {
         Domestic.Facility facility=w.domestic.at(h);if(facility!=null&&w.city(facility.cityId).owner!=source.owner&&!w.campaign.hostile(source.owner,w.city(facility.cityId).owner))return;
         War.Structure s=w.war.at(h);if(s!=null&&s.owner!=source.owner&&!w.campaign.hostile(source.owner,s.owner))return;
         War.Fire old=w.war.fireAt(h);if(old!=null)w.war.fires.remove(old);
-        War.Fire f=new War.Fire(h,source.owner,2);f.power=w.skills.firePower(source);f.trap=trap;w.war.fires.add(f);
+        War.Fire f=new War.Fire(h,source.owner,2);f.power=w.combat.firePower(source);f.trap=trap;w.war.fires.add(f);
     }
 }

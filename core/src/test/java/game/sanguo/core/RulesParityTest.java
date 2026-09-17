@@ -86,8 +86,8 @@ public final class RulesParityTest {
         World w=fixture();World.Unit a=unit(w,0,5,6,World.Weapon.CROSSBOW),b=unit(w,10,7,6,World.Weapon.SPEAR);w.officer(0).skillId=WEIFENG.id;deputy(w,a,1,SAOTAO);
         ok(w.attack(a.id,b.id));check(b.energy==60,"威风 supersedes 扫讨, no additive -25");
         World crit=fixture();a=unit(crit,0,5,6,World.Weapon.SPEAR);b=unit(crit,10,6,6,World.Weapon.SPEAR);deputy(crit,a,1,QIANGJIANG);crit.officer(0).war=100;crit.officer(1).war=50;
-        check(!crit.skills.critical(a,b,true),"combat skill holder cannot borrow war stat");crit.officer(1).war=90;check(crit.skills.critical(a,b,true)&&!crit.skills.critical(a,b,false),"general only modifies successful tactic");
-        crit.officer(1).skillId=FEIJIANG.id;crit.terrain[a.hex.q][a.hex.r]=World.Terrain.WATER;check(!crit.skills.critical(a,b,true),"飞将 does not give naval critical");crit.officer(1).skillId=YONGJIANG.id;check(crit.skills.critical(a,b,true),"勇将 applies to naval units");
+        check(!crit.combat.critical(a,b,true),"combat skill holder cannot borrow war stat");crit.officer(1).war=90;check(crit.combat.critical(a,b,true)&&!crit.combat.critical(a,b,false),"general only modifies successful tactic");
+        crit.officer(1).skillId=FEIJIANG.id;crit.terrain[a.hex.q][a.hex.r]=World.Terrain.WATER;check(!crit.combat.critical(a,b,true),"飞将 does not give naval critical");crit.officer(1).skillId=YONGJIANG.id;check(crit.combat.critical(a,b,true),"勇将 applies to naval units");
         World volley=fixture();a=unit(volley,0,5,6,World.Weapon.CROSSBOW);b=unit(volley,10,7,6,World.Weapon.SPEAR);World.Unit friend=unit(volley,1,7,7,World.Weapon.SPEAR);b.status=War.Status.CONFUSED;b.statusTurns=1;
         World safe=SaveCodec.decode(bytes(volley));safe.officer(0).skillId=GONGSHEN.id;
         ok(volley.war.tactic(a.id,b.id,War.Tactic.VOLLEY));ok(safe.war.tactic(a.id,b.id,War.Tactic.VOLLEY));

@@ -89,6 +89,9 @@ public final class World {
     public final UnitOrders orders=new UnitOrders(this);
     public final MarchOrders marches=new MarchOrders(this);
     public final Skills skills=new Skills(this);
+    public final CombatRules combat=new CombatRules(this);
+    public final CombatEffects combatEffects=new CombatEffects(this);
+    public final EnergyRules energy=new EnergyRules(this);
     public final AdvancedBattle advancedBattle=new AdvancedBattle(this);
     public final WorldEvents events=new WorldEvents(this);
     public final Districts districts=new Districts(this);
@@ -228,7 +231,7 @@ public final class World {
     Result resolveSiege(Unit u,City c,boolean tactic,boolean stoneSplash) {
         int hit=Army.siegeWeapon(u.weapon)||army.water(u.hex)?army.siegeDefenseDamage(u):Math.max(100,damage(u,70,120)/2);
         int troopHit=Army.siegeWeapon(u.weapon)||army.water(u.hex)?army.siegeTroopDamage(u):hit;
-        if(skills.has(u,Skill.GONGCHENG)||tactic&&skills.critical(u,null,true)){hit=hit*115/100;troopHit=troopHit*115/100;}
+        if(skills.has(u,Skill.GONGCHENG)||tactic&&combat.critical(u,null,true)){hit=hit*115/100;troopHit=troopHit*115/100;}
         hit=campaign.constructionDamage(u,hit);troopHit=campaign.constructionDamage(u,troopHit);c.defense=Math.max(0,c.defense-hit);c.troops=Math.max(0,c.troops-troopHit);
         battleImpact(c.hex,c.defense==0||c.troops==0);
         String message=officer(u.officerId).name+"攻城，城防−"+hit+"，守军−"+troopHit;
@@ -271,6 +274,11 @@ public final class World {
             reset(active);runAi();checkVictory();
             if(gameOver()){active=player;return success(winner==player?"战场胜利":"我方势力已覆灭");}
         }
+        settleGlobalTurn();
+        active=player;reset(player);checkVictory();if(!life.pending())marches.advanceAll();return success(date()+" · 行动力恢复");
+    }
+    /** Exactly once after all factions have acted. Keep this order stable across save replay. */
+    private void settleGlobalTurn(){
         turn++;contests.tick();domestic.tick();campaign.tick();army.tick();abilities.tick();strategy.tick();war.tick();cityDefense.tick();government.tick();treasures.tick();
         for(Unit u:new ArrayList<>(units)) {
             int consumption=fieldworks.foodUse(u,Math.max(1,(u.troops+19)/20));
@@ -285,7 +293,7 @@ public final class World {
             c.gold+=Math.min(Math.max(0,campaign.goldCap(c)-c.gold),domestic.goldIncome(c.id,turn));c.food+=Math.min(Math.max(0,campaign.foodCap(c)-c.food),domestic.foodIncome(c.id,turn));
             if(c.defense<campaign.defenseCap(c))c.defense=Math.min(campaign.defenseCap(c),c.defense+(campaign.has(c.owner,Campaign.Tech.ENGINEERING)?250:100));
         }
-        events.tick();life.tick();diplomacy.tick();active=player;reset(player);checkVictory();if(!life.pending())marches.advanceAll();return success(date()+" · 行动力恢复");
+        events.tick();life.tick();diplomacy.tick();
     }
     private void reset(int owner) {
         actionPoints[owner]=60;

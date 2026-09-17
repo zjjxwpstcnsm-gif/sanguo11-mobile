@@ -41,10 +41,6 @@ public final class CampaignAi {
         // Candidates are enumerated by stable IDs and enums; equal scores retain the first.
         return b!=null&&b.score>0&&(a==null||b.score>a.score)?b:a;
     }
-    private int damage(World.Unit a,World.Unit b,double scale,boolean tactic){
-        int total=0;for(int i=0;i<8;i++)total+=w.war.physicalDamage(a,b,scale,tactic,new Random(7919L*i+17));
-        return total/8;
-    }
     private int value(World.Unit target,int loss){return (target instanceof Domestic.Mission?Math.min(1500,target.gold/5+target.food/50):0)+loss+(loss>=target.troops?900:0)+(Army.siegeWeapon(target.weapon)?loss/4:0);}
     private int controlValue(World.Unit u){return u.status==War.Status.NORMAL?250+Math.min(700,u.troops/10):0;}
     private boolean splash(War.Tactic t,Hex origin,Hex center,Hex h){
@@ -74,20 +70,20 @@ public final class CampaignAi {
                 break;
             case INFIGHT:
                 List<World.Unit> others=w.advancedBattle.infightingTargets(b);
-                for(World.Unit u:others)amount+=value(u,damage(b,u,1,false))+value(b,damage(u,b,.5,false));
+                for(World.Unit u:others)amount+=value(u,w.combat.expectedDamage(b,u,1,false))+value(b,w.combat.expectedDamage(u,b,.5,false));
                 if(!others.isEmpty())amount/=others.size();break;
-            case AMBUSH: amount=value(b,damage(a,b,1.35,true))+100;break;
+            case AMBUSH: amount=value(b,w.combat.expectedDamage(a,b,1.35,true))+100;break;
             case FIRE:
                 // Avoid an unmodeled trap cascade hitting friendlies.
                 if(w.war.at(b.hex)!=null)return -1;
-                amount=w.skills.fireDamage(b,250,a.owner,w.skills.has(a,Skill.HUOSHEN)?2:1,false);break;
+                amount=w.combat.fireDamage(b,250,a.owner,w.skills.has(a,Skill.HUOSHEN)?2:1,false);break;
             default:return -1;
         }
         int chance=w.war.plotChance(a.id,b.hex,p);
         if(w.skills.has(a,Skill.LIANHUAN)&&(p==War.Plot.CONFUSE||p==War.Plot.MISLEAD||p==War.Plot.FIRE)){
             for(World.Unit u:units())if(u.id!=b.id&&w.campaign.hostile(a.owner,u.owner)&&u.hex.distance(b.hex)==1&&
                 (p==War.Plot.FIRE?w.war.fireAt(u.hex)==null&&!w.army.water(u.hex):u.status==War.Status.NORMAL)){
-                int chained=p==War.Plot.FIRE?w.skills.fireDamage(u,250,a.owner,1,false):controlValue(u);
+                int chained=p==War.Plot.FIRE?w.combat.fireDamage(u,250,a.owner,1,false):controlValue(u);
                 amount+=chained*w.war.plotChance(a.id,u.hex,p)/100;break;
             }
         }
@@ -111,24 +107,24 @@ public final class CampaignAi {
             }
             if(!attack||!w.campaign.hostile(a.owner,b.owner))continue;
             if(w.war.attackError(a.id,b.id)==null){
-                int hit=damage(a,b,1,false),counter=b.status==War.Status.NORMAL&&w.war.canCounter(a,b)&&hit<b.troops?damage(b,a,.5,false):0;
+                int hit=w.combat.expectedDamage(a,b,1,false),counter=b.status==War.Status.NORMAL&&w.war.canCounter(a,b)&&hit<b.troops?w.combat.expectedDamage(b,a,.5,false):0;
                 best=better(best,action(Kind.ATTACK,a,b.id,b.hex,value(b,hit)-counter,"比较伤害、歼灭收益与反击损失"));
             }
             if(!w.skills.has(b,Skill.TIEBI)&&w.advancedBattle.jointError(a.id,b.id)==null){
                 int hit=0,opportunity=0;boolean flank=false;
                 for(World.Unit helper:w.advancedBattle.jointParticipants(a.id,b.id)){
-                    hit+=damage(helper,b,.65,false);flank|=w.skills.has(helper,Skill.JIJIAO);
-                    if(helper.id!=a.id)opportunity+=damage(helper,b,1,false)*3/4;
+                    hit+=w.combat.expectedDamage(helper,b,.65,false);flank|=w.skills.has(helper,Skill.JIJIAO);
+                    if(helper.id!=a.id)opportunity+=w.combat.expectedDamage(helper,b,1,false)*3/4;
                 }
                 int score=value(b,Math.min(hit,b.troops))-opportunity+(flank?controlValue(b)/2:0);
                 best=better(best,action(Kind.JOINT,a,b.id,b.hex,score,"比较齐攻歼灭收益与协攻部队行动代价"));
             }
             for(War.Tactic t:War.Tactic.values())if(w.war.tacticError(a.id,b.id,t)==null){
                 if(w.war.tacticPreview(a.id,b.id,t).friendlyRisk)continue;
-                int hit=value(b,damage(a,b,t.multiplier,true));boolean friendly=false;
+                int hit=value(b,w.combat.expectedDamage(a,b,t.multiplier,true));boolean friendly=false;
                 for(World.Unit other:units())if(other.id!=b.id&&other.id!=a.id&&splash(t,a.hex,b.hex,other.hex)){
                     if(t==War.Tactic.VOLLEY&&other.owner==a.owner&&!w.skills.has(a,Skill.GONGSHEN)){friendly=true;break;}
-                    if(w.campaign.hostile(a.owner,other.owner))hit+=value(other,damage(a,other,t.multiplier,true));
+                    if(w.campaign.hostile(a.owner,other.owner))hit+=value(other,w.combat.expectedDamage(a,other,t.multiplier,true));
                 }
                 if(friendly)continue;
                 if(t==War.Tactic.SPIRAL)hit+=controlValue(b);
@@ -138,7 +134,7 @@ public final class CampaignAi {
             for(Army.Tactic t:w.army.tactics(a))if(w.army.tacticError(a.id,b.hex,t)==null){
                 if(w.army.tacticPreview(a.id,b.hex,t).friendlyRisk)continue;
                 if(t==Army.Tactic.STONE&&w.campaign.has(a.owner,Campaign.Tech.THUNDERBOLT)&&ownAssetsNear(a,b.hex))continue;
-                int score=value(b,damage(a,b,t==Army.Tactic.STONE?1.5:1.3,true))*w.army.tacticChance(a.id,b.hex)/100-t.energy*8;
+                int score=value(b,w.combat.expectedDamage(a,b,t==Army.Tactic.STONE?1.5:1.3,true))*w.army.tacticChance(a.id,b.hex)/100-t.energy*8;
                 best=better(best,new Action(Kind.ARMY_TACTIC,a.id,b.id,b.hex,score,null,t,null,"兵器与水军选择有效战法"));
             }
             for(War.Plot p:War.Plot.values())if(p!=War.Plot.CALM&&p!=War.Plot.EXTINGUISH&&w.war.plotError(a.id,b.hex,p)==null)
@@ -411,8 +407,8 @@ public final class CampaignAi {
     private int exposure(World.Unit u,Hex h){
         int threat=hazard(u,h)*100;World.Unit probe=at(u,h);
         for(World.Unit enemy:w.units)if(w.campaign.hostile(u.owner,enemy.owner)&&enemy.status==War.Status.NORMAL){
-            int distance=enemy.hex.distance(h);if(w.war.attackPositionError(enemy,probe)==null)threat+=damage(enemy,probe,1,false);
-            else if(distance<=w.war.movement(enemy)+w.war.range(enemy))threat+=damage(enemy,probe,1,false)/6;
+            int distance=enemy.hex.distance(h);if(w.war.attackPositionError(enemy,probe)==null)threat+=w.combat.expectedDamage(enemy,probe,1,false);
+            else if(distance<=w.war.movement(enemy)+w.war.range(enemy))threat+=w.combat.expectedDamage(enemy,probe,1,false)/6;
         }
         return threat;
     }
@@ -424,7 +420,7 @@ public final class CampaignAi {
         for(Map.Entry<Hex,Integer> e:w.orders.reachable(u).entrySet()){
             World.Unit probe=at(u,e.getKey());int offense=0;
             for(World.Unit b:w.fieldUnits())if(w.war.attackPositionError(probe,b)==null){
-                int hit=damage(probe,b,1,false),counter=b.status==War.Status.NORMAL&&w.war.canCounter(probe,b)&&hit<b.troops?damage(b,probe,.5,false):0;
+                int hit=w.combat.expectedDamage(probe,b,1,false),counter=b.status==War.Status.NORMAL&&w.war.canCounter(probe,b)&&hit<b.troops?w.combat.expectedDamage(b,probe,.5,false):0;
                 offense=Math.max(offense,value(b,hit)-counter);
             }
             if(offense==0)continue;

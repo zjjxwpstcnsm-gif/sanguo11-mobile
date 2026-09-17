@@ -69,7 +69,7 @@ public final class Contests {
     public World.Result challenge(int actor,int target){
         String error=duelError(actor,target);if(error!=null)return w.fail(error);
         World.Unit a=w.unit(actor),b=w.unit(target);int chance=acceptance(actor,target);
-        a.energy-=10;a.acted=true;
+        w.energy.change(a,-10,EnergyRules.Reason.COMMAND);a.acted=true;
         if(w.strategy.nextInt(100)>=chance){lastResult=w.officer(b.officerId).name+"拒绝单挑，挑战方本旬行动与10气力已消耗";return w.success(lastResult);}
         b.acted=true;session=new Session(nextId++,w.active,w.turn,actor,target,-1);session.duel=new Duel(w,a,b);
         return w.success(w.officer(a.officerId).name+"与"+w.officer(b.officerId).name+"开始单挑");
@@ -164,8 +164,8 @@ public final class Contests {
         if(d.winner>=0){
             int side=d.winner;World.Unit victor=w.unit(side==0?session.leftRef:session.rightRef),loser=w.unit(side==0?session.rightRef:session.leftRef);
             World.Officer beaten=w.officer(d.active(1-side).officer);
-            w.government.earn(d.active(side).officer,200);w.campaign.earn(victor.owner,20);victor.energy=Math.min(w.campaign.energyCap(victor.owner),victor.energy+10);
-            loser.energy=Math.max(0,loser.energy-20);
+            w.government.earn(d.active(side).officer,200);w.campaign.earn(victor.owner,20);w.energy.change(victor,10,EnergyRules.Reason.DUEL);
+            w.energy.change(loser,-20,EnergyRules.Reason.DUEL);
             if(d.escaped<0){
                 boolean immune=w.skills.has(beaten,Skill.QIANGYUN)||w.skills.has(loser,Skill.XUELU)||profile(beaten.id).has(Gear.HORSE);
                 if(loser.officerId==beaten.id){
