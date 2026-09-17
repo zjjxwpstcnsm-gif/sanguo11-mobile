@@ -1,0 +1,34 @@
+05-architecture
+ARCHITECTURE33 PASS: empty/corrupt/backup/restore startup, production catalog, four-rule native commands, pure preview, recreation, turn replay and PK filter isolation.
+
+06-regressions
+V033 checkpoint: startup
+V033 checkpoint: corrupt backup and historical new game verified
+V033 checkpoint: physical/fire/critical/weifeng execution verified
+V033 checkpoint: music and global-turn replay verified
+V033 checkpoint: PK task filter regression verified
+ARCHITECTURE33 PASS: empty/corrupt/backup/restore startup, production catalog, four-rule native commands, pure preview, recreation, turn replay and PK filter isolation.
+SMOKE FAIL: java.lang.NoSuchMethodError: No virtual method readAllBytes()[B in class Ljava/io/InputStream; or its super classes (declaration of 'java.io.InputStream' appears in /apex/com.android.runtime/javalib/core-oj.jar)
+SMOKE FAIL: java.lang.NoSuchMethodError: No virtual method readAllBytes()[B in class Ljava/io/InputStream; or its super classes (declaration of 'java.io.InputStream' appears in /apex/com.android.runtime/javalib/core-oj.jar)
+SMOKE FAIL: java.lang.NoSuchMethodError: No virtual method readAllBytes()[B in class Ljava/io/InputStream; or its super classes (declaration of 'java.io.InputStream' appears in /apex/com.android.runtime/javalib/core-oj.jar)
+
+07-regressions
+NAVIGATION32 PASS: close-view minimap taps/drags/collapse/rotation, independent labels/bars, live ports/gates, historical new-game entry and state preservation.
+FIDELITY PASS: geography, parcel construction, draft restoration, pagination and army drag verified.
+SMOKE FAIL: java.lang.AssertionError: test viewport must fit Android minimum pinch span
+
+08-final-apk
+V033 checkpoint: startup
+V033 checkpoint: corrupt backup and historical new game verified
+V033 checkpoint: physical/fire/critical/weifeng execution verified
+V033 checkpoint: music and global-turn replay verified
+V033 checkpoint: PK task filter regression verified
+ARCHITECTURE33 PASS: empty/corrupt/backup/restore startup, production catalog, four-rule native commands, pure preview, recreation, turn replay and PK filter isolation.
+    versionCode=33 minSdk=26 targetSdk=35
+    versionName=0.33.0-architecture-rules-dev
+
+09-performance
+MAP PERFORMANCE PASS: full-map drawing, territory switches, gestures, opaque frames and state preservation verified.
+
+10-fidelity-2400
+FIDELITY PASS: geography, parcel construction, draft restoration, pagination and army drag verified.

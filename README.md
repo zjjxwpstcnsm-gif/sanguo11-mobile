@@ -15,7 +15,7 @@
 
 ## 当前状态
 
-v0.33 的最终运行提交、APK、签名和实时CI结论以[本轮验收](docs/validation/v033/README.md)为准。下文为历史版本状态。
+v0.33 已同步分支并创建 [PR #39](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/39)，运行源码 `a7739af`，交付 APK `sanguo11-mobile-v033-a7739af.apk`。最终运行提交、APK、签名和实时CI结论以[本轮验收](docs/validation/v033/README.md)为准。下文为历史版本状态。
 
 v0.32沿用存档v22并兼容v1–v21；新增港关、地理和年代配置需要新开局，旧档地图保留。代码已本地提交，本轮未重新尝试此前被自动审批拒绝的GitHub上传。APK已本地编译，核心/UI模型、内容与API29实装导航通过；最终检查见[本轮说明](docs/NAVIGATION_DEFENSE_V0_32.md)与[验证记录](docs/validation/v032/README.md)。下列为历史版本记录。
 

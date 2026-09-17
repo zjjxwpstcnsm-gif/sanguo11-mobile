@@ -1,0 +1,8 @@
+{"mode": "check", "files": 15, "counts": {"officersCollected": 670, "officersExcluded": 180, "sites": 87, "skills": 100, "items": 43, "scenarioMetadata": 14, "officialPlayableScenarios": 0, "originalTerrainCells": 0, "resolvedRelationRows": 869, "unresolvedRelationRows": 99}, "unresolvedRelations": 99}
+[('huangjin-184', 7, 670, 54), ('coalition-190', 18, 656, 114), ('warlords-194', 19, 623, 131), ('guandu-200', 9, 567, 96), ('chibi-207', 12, 522, 101), ('heroes-250', 28, 670, 224)]
+...................
+----------------------------------------------------------------------
+Ran 19 tests in 0.968s
+
+OK
+PASS: 51810 UI projection/camera assertions.
