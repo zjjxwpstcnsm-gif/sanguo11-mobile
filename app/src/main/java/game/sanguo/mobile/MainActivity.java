@@ -40,7 +40,8 @@ public final class MainActivity extends Activity {
     private Bundle reportReturn;
     private java.util.function.Function<Hex,String> pickError;
     private Button previousReady,nextReady;
-    private TextView turnBanner;
+    private TextView turnBanner,turnProgress;
+    private LinearLayout quickCityStrip,quickUnitStrip;
     private boolean aiRunning;
     private Button nextTurn;
     private final ClientState ui=new ClientState();
@@ -123,6 +124,9 @@ public final class MainActivity extends Activity {
         turnBanner=text("",13,paper);turnBanner.setPadding(dp(12),dp(5),dp(12),dp(5));turnBanner.setMaxLines(2);turnBanner.setBackgroundColor(0xff243e4b);turnBanner.setVisibility(View.GONE);turnBanner.setContentDescription("查看本旬结算摘要");turnBanner.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);turnBanner.setOnClickListener(v->showTurnReport());root.addView(turnBanner,new LinearLayout.LayoutParams(-1,-2));
         body.addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->{if(r-l!=or-ol||b-t!=ob-ot)layoutPanels();});
         commandDock=new LinearLayout(this);commandDock.setPadding(dp(8),dp(4),dp(8),dp(4));commandDock.setBackgroundColor(0xff162934);root.addView(commandDock);
+        turnProgress=text("",12,gold);turnProgress.setPadding(dp(12),dp(3),dp(12),dp(3));turnProgress.setBackgroundColor(0xff1c3340);turnProgress.setVisibility(View.GONE);turnProgress.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);root.addView(turnProgress,new LinearLayout.LayoutParams(-1,-2));
+        quickCityStrip=new LinearLayout(this);quickCityStrip.setOrientation(LinearLayout.HORIZONTAL);root.addView(quickNavigatorRow("城池",quickCityStrip),new LinearLayout.LayoutParams(-1,dp(42)));
+        quickUnitStrip=new LinearLayout(this);quickUnitStrip.setOrientation(LinearLayout.HORIZONTAL);root.addView(quickNavigatorRow("部队",quickUnitStrip),new LinearLayout.LayoutParams(-1,dp(42)));
         LinearLayout bottom=new LinearLayout(this);bottom.setPadding(dp(6),0,dp(6),0);bottom.setGravity(Gravity.CENTER_VERTICAL);
         Button functions=button("功能",v->showNavigation());functions.setContentDescription("打开功能导航 · 城市、武将、任务、菜单");
         bottom.addView(functions,new LinearLayout.LayoutParams(dp(64),dp(52)));
@@ -158,6 +162,26 @@ public final class MainActivity extends Activity {
         if(!(old instanceof LinearLayout.LayoutParams)||old.width!=params.width||old.height!=params.height||((LinearLayout.LayoutParams)old).weight!=params.weight)view.setLayoutParams(params);
     }
     private void closePanel(){ui.panelVisible=false;ui.panelExpanded=false;ui.page="map";refresh();}
+    private View quickNavigatorRow(String label,LinearLayout strip){
+        LinearLayout row=new LinearLayout(this);row.setGravity(Gravity.CENTER_VERTICAL);row.setPadding(dp(6),0,dp(6),0);row.setBackgroundColor(0xff101d28);
+        TextView name=text(label,12,gold);name.setGravity(Gravity.CENTER);row.addView(name,new LinearLayout.LayoutParams(dp(42),-1));
+        HorizontalScrollView scroll=new HorizontalScrollView(this);scroll.setHorizontalScrollBarEnabled(true);scroll.setFillViewport(false);scroll.addView(strip,new HorizontalScrollView.LayoutParams(-2,-1));row.addView(scroll,new LinearLayout.LayoutParams(0,-1,1));return row;
+    }
+    private void refreshQuickNavigator(){
+        if(quickCityStrip==null||quickUnitStrip==null||world==null)return;
+        quickCityStrip.removeAllViews();quickUnitStrip.removeAllViews();
+        List<World.City> ownCities=new ArrayList<>();for(World.City c:world.cities)if(c.owner==world.player)ownCities.add(c);ownCities.sort(Comparator.comparingInt(c->c.id));
+        for(World.City c:ownCities){Button b=button(c.name+" · "+(c.troops/1000)+"k",v->selectObject(c.hex,-2,true));b.setTextSize(11);b.setContentDescription("定位己方据点 "+c.name);quickCityStrip.addView(b,new LinearLayout.LayoutParams(dp(104),-1));}
+        List<World.Unit> ownUnits=new ArrayList<>();for(World.Unit u:world.fieldUnits())if(u.owner==world.player)ownUnits.add(u);ownUnits.sort(Comparator.comparingInt(u->u.id));
+        for(World.Unit u:ownUnits){World.Officer o=world.officer(u.officerId);String n=o==null?("部队"+u.id):o.name;Button b=button(n+" · "+u.troops,v->selectObject(u.hex,u.id,true));b.setTextSize(11);b.setContentDescription("定位己方部队 "+n);quickUnitStrip.addView(b,new LinearLayout.LayoutParams(dp(116),-1));}
+        View cityRow=(View)quickCityStrip.getParent().getParent();View unitRow=(View)quickUnitStrip.getParent().getParent();cityRow.setVisibility(ownCities.isEmpty()?View.GONE:View.VISIBLE);unitRow.setVisibility(ownUnits.isEmpty()?View.GONE:View.VISIBLE);
+    }
+    private void refreshTurnProgress(){
+        if(turnProgress==null)return;
+        if(aiRunning&&turnWork!=null&&!turnWork.done){turnProgress.setText(turnWork.status());turnProgress.setVisibility(View.VISIBLE);turnProgress.removeCallbacks(turnProgressTicker);turnProgress.postDelayed(turnProgressTicker,120);}
+        else {turnProgress.removeCallbacks(turnProgressTicker);turnProgress.setVisibility(View.GONE);}
+    }
+    private final Runnable turnProgressTicker=()->refreshTurnProgress();
     private void showNavigation(){
         if(mapPick!=null)cancelMapPick();
         if(navigationDialog!=null&&navigationDialog.isShowing())return;
@@ -389,6 +413,7 @@ public final class MainActivity extends Activity {
         if(result.ok&&world.gameOver())message(world.winner==world.player?"战场胜利":"战场战败","本局结束，可从菜单重新选择剧本。");
     }
     void refresh(){
+        refreshQuickNavigator();refreshTurnProgress();
         if(battleReportWorld!=world){battleReportWorld=world;lastBattleReport="";reportLocation=null;reportReturn=null;clearTacticPreview();battleBanner.setVisibility(View.GONE);}
         if(ui.city>=0&&world.city(ui.city)==null)ui.city=-1;
         if(ui.cityDistrict>0&&world.districts.get(ui.cityDistrict)==null)ui.cityDistrict=-1;
