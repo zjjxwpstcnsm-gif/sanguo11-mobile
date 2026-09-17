@@ -22,6 +22,10 @@ jobs:
           from pathlib import Path
           p=Path('/tmp/v034_apply.py');s=p.read_text()
           s=s.replace("r'(\\n\\s*private void refresh\\(\\)\\s*\\{)'","r'(\\n\\s*(?:private )?void refresh\\(\\)\\s*\\{)'")
+          s=s.replace("if 4<=d<=9 and terrain[yy][xx] not in 'WOV'","if 9<=d<=12 and terrain[yy][xx] not in 'WOV'")
+          s=s.replace("for xx in range(73,86):\\n        if terrain[84][xx]", "for xx in range(71,88):\\n        if terrain[87][xx]")
+          s=s.replace("terrain[84][xx]='M'", "terrain[87][xx]='M'")
+          s=s.replace("sum(t[84][x]==\"M\" for x in range(73,86))>=10", "sum(t[87][x]==\"M\" for x in range(71,88))>=12")
           p.write_text(s)
           PY
       - name: Apply migration and regenerate content
