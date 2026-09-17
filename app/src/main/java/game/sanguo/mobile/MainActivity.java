@@ -484,7 +484,7 @@ public final class MainActivity extends Activity {
         if(pendingMarch==null){
             String error=world.orders.error(u);
             String hint=unitCommand.equals("march")?"行军：点目标预览，确认后出发":unitCommand.equals("attack")?"攻击：点红框敌军、城池或设施":error!=null?error:"青色为本旬可达范围 · 红框可攻击";
-            TextView state=text((u instanceof Domestic.Mission?"运输":"兵"+u.troops)+" · 粮"+u.food+" · "+hint+" · 剩余移动 "+world.orders.remaining(u),12,gold);state.setMaxLines(2);
+            TextView state=text((u instanceof Domestic.Mission?"运输":"兵"+u.troops)+" · 携粮 "+u.food+" · "+hint+" · 剩余移动 "+world.orders.remaining(u),12,gold);state.setMaxLines(2);
             commandDock.addView(state,new LinearLayout.LayoutParams(portrait()?-1:0,-2,portrait()?0:1));
             LinearLayout actions=new LinearLayout(this);
             Button march=button("行军",v->{unitCommand="march";ui.panelVisible=false;refresh();});march.setSelected(unitCommand.equals("march"));
