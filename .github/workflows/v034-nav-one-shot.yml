@@ -1,0 +1,41 @@
+name: v034 one-shot navigator smoke fix
+
+on:
+  push:
+    branches:
+      - agent/mobile-ux-geography-turn-v034
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: ${{ !contains(github.event.head_commit.message, '[v034-nav-patch]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/mobile-ux-geography-turn-v034
+          fetch-depth: 0
+      - name: Correct navigator touch target
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('app/src/androidTest/java/game/sanguo/mobile/GameSmokeRunner.java')
+          s=p.read_text(encoding='utf-8')
+          old='target[0]=pos[0]+map.getWidth()-20*den;target[1]=pos[1]+24*den;'
+          new='target[0]=pos[0]+map.getWidth()-20*den;target[1]=pos[1]+72*den;'
+          if old not in s:
+              raise SystemExit('navigator touch target not found')
+          s=s.replace(old,new,1)
+          p.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit fix
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/src/androidTest/java/game/sanguo/mobile/GameSmokeRunner.java
+          git commit -m "test: tap inside navigator map [v034-nav-patch]"
+          git push origin HEAD:agent/mobile-ux-geography-turn-v034
