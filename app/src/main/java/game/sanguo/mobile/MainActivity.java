@@ -740,9 +740,18 @@ public final class MainActivity extends Activity {
         action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.33 · 规则执行与架构整理","普攻、战法、反击共用计算与命中结算；火伤、暴击、威风和军乐台统一规则入口。\n无存档显示新游戏入口；坏档保留并在确认替换时备份。\n右上小地图直接跳转、收起/展开，保持当前缩放；视图菜单可切换主将姓名与兵力/气力双条。\n六个年代开局新增42城、10关、35港；修正北上陆路与庐江江岸。\n城市每旬自动射击，普攻与器械攻城均在射程内反击，伤害受守军、气力、城防与总量上限影响。\n旧存档保留原地图；新增地形和开局配置需要新游戏。\n历史重建/定制剧本，完整官方数据及精确公式仍待核验。"));
     }
     private void scenarioPicker(){
-        try {List<ScenarioCatalog.Summary> scenarios=ScenarioCatalog.summaries();String[] labels=new String[scenarios.size()];
-            for(int i=0;i<labels.length;i++){ScenarioCatalog.Summary s=scenarios.get(i);labels[i]=s.name+" · "+s.sites+"据点 / "+s.officers+"将 / "+s.factions+"势力";}
-            new AlertDialog.Builder(this).setTitle("选择剧本 · 六个年代与自制沙盘").setItems(labels,(dialog,index)->chooseScenarioTemplate(scenarios.get(index).id)).setNegativeButton("取消",null).show();
+        try {
+            List<ScenarioCatalog.Summary> scenarios=ScenarioCatalog.summaries();
+            LinearLayout list=new LinearLayout(this);list.setOrientation(LinearLayout.VERTICAL);list.setPadding(dp(8),dp(4),dp(8),dp(4));
+            ScrollView scroll=new ScrollView(this);scroll.setFillViewport(true);scroll.setVerticalScrollBarEnabled(true);scroll.addView(list,new ScrollView.LayoutParams(-1,-2));
+            final AlertDialog[] holder=new AlertDialog[1];
+            for(ScenarioCatalog.Summary scenario:scenarios){
+                String label=scenario.name+" · "+scenario.sites+"据点 / "+scenario.officers+"将 / "+scenario.factions+"势力";
+                Button option=button(label,v->{if(holder[0]!=null)holder[0].dismiss();chooseScenarioTemplate(scenario.id);});
+                option.setAllCaps(false);option.setGravity(Gravity.START|Gravity.CENTER_VERTICAL);option.setContentDescription("选择剧本 "+scenario.name);
+                list.addView(option,new LinearLayout.LayoutParams(-1,dp(52)));
+            }
+            holder[0]=new AlertDialog.Builder(this).setTitle("选择剧本 · 六个年代与自制沙盘").setView(scroll).setNegativeButton("取消",null).show();
         }catch(IOException e){showError("剧本读取失败");}
     }
     private void chooseScenarioTemplate(String id){
