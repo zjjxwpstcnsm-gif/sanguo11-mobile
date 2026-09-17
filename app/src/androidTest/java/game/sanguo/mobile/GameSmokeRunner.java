@@ -15,12 +15,13 @@ public final class GameSmokeRunner extends Instrumentation {
     private Activity current;
     private String displacement="";
     private String recovery="";
-    private boolean architecture33,navigation32,mapPerformance,fidelity,upgradeOnly,upgrade25,upgrade26,upgrade27,experience;
+    private boolean architecture33,navigation32,mapPerformance,fidelity,upgradeOnly,upgrade25,upgrade26,upgrade27,experience,armyOnly;
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);current=a;}
-    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);architecture33=arguments!=null&&"true".equals(arguments.getString("architecture33"));navigation32=arguments!=null&&"true".equals(arguments.getString("navigation32"));mapPerformance=arguments!=null&&"true".equals(arguments.getString("mapPerformance"));fidelity=arguments!=null&&"true".equals(arguments.getString("fidelity"));displacement=arguments==null?"":arguments.getString("displacement","");recovery=arguments==null?"":arguments.getString("recovery","");upgrade27=arguments!=null&&"27".equals(arguments.getString("upgrade"));experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
+    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);armyOnly=arguments!=null&&"true".equals(arguments.getString("army"));architecture33=arguments!=null&&"true".equals(arguments.getString("architecture33"));navigation32=arguments!=null&&"true".equals(arguments.getString("navigation32"));mapPerformance=arguments!=null&&"true".equals(arguments.getString("mapPerformance"));fidelity=arguments!=null&&"true".equals(arguments.getString("fidelity"));displacement=arguments==null?"":arguments.getString("displacement","");recovery=arguments==null?"":arguments.getString("recovery","");upgrade27=arguments!=null&&"27".equals(arguments.getString("upgrade"));experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
+            if(armyOnly){World initial=TestScenarios.load("river-siege-sandbox",0);try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(initial));}startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitForIdleSync();chooseOrientation("横屏");armyFlow();result.putString("stream","ARMY PASS: landscape formation, task visibility/detail, manufacturing, naval fire and embarkation.\n");finish(Activity.RESULT_OK,result);return;}
             if(architecture33){architecture33Flow();result.putString("stream","ARCHITECTURE33 PASS: empty/corrupt/backup/restore startup, production catalog, four-rule native commands, pure preview, recreation, turn replay and PK filter isolation.\n");finish(Activity.RESULT_OK,result);return;}
             if(navigation32){
                 World national=TestScenarios.load("heroes-250",0);
@@ -81,7 +82,7 @@ public final class GameSmokeRunner extends Instrumentation {
             endTurn();waitText("中旬",false);waitForIdleSync();assertWorld(2,1,"regional-sandbox");
             w=saved();require(w.units.stream().anyMatch(u->u.owner==0)&&w.units.stream().anyMatch(u->u.owner==1),"both opponents acted");
             click("菜单",true);click("保存局面（3个槽位）",true);click("槽位 1 ·",false);waitForIdleSync();
-            startTestScenario("m0-skirmish",0);
+            startTestScenario("m0-skirmish",1);
             waitText("基础演练  ·  曹操军",false);waitForIdleSync();assertWorld(1,0,"m0-skirmish");
             click("菜单",true);click("保存局面（3个槽位）",true);click("槽位 2 ·",false);waitForIdleSync();
             click("菜单",true);click("读取存档",true);screenshot("04-save-slots");click("槽位 1 · 区域争雄",false);click("执行",true);
@@ -1225,6 +1226,7 @@ public final class GameSmokeRunner extends Instrumentation {
         armyCity();click("军备制造 / 攻城器械与舰船",true);click("井阑 ·",false);click("周瑜 ·",false);click("执行",true);
         w=saved();require(w.army.productions().size()==1&&w.officer(1).otherTaskTurns==3,"manufacturing starts from UI");click("功能",true);waitText("任务 1",true);
         clickNav("任务");click("筛选 · 全部任务",true);click("军备制造",true);waitText("制造井阑 · 周瑜",true);screenshot("25-manufacturing-task");
+        click("制造井阑 · 周瑜",true);waitText("江东大营 · 剩余 3 旬",false);click("返回",true);
         int count=w.city(10).equipment[6],turn=w.turn;for(int i=1;i<=3;i++){endTurn();waitForTurn(turn+i);}w=saved();require(w.city(10).equipment[6]==count+1&&w.army.productions().isEmpty(),"UI turn loop completes one equipment item");
 
         World naval=TestScenarios.load("river-siege-sandbox",0);

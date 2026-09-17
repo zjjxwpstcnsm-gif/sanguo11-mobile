@@ -15,7 +15,10 @@ final class OverviewUi {
     OverviewUi(MainActivity a, World w, ClientState state) {this.a=a;this.w=w;this.state=state;}
     private LinearLayout column() {LinearLayout v=new LinearLayout(a);v.setOrientation(LinearLayout.VERTICAL);v.setPadding(a.dp(10),0,a.dp(10),0);return v;}
     private TextView text(String s,int size) {TextView v=a.text(s,size,a.paper);v.setPadding(a.dp(6),a.dp(6),a.dp(6),a.dp(6));return v;}
-    private void heading(LinearLayout host,String title) {host.addView(text(title,21));}
+    private void heading(LinearLayout host,String title) {
+        // The panel header already names the page. Preserve list space on short landscape screens.
+        if(a.getResources().getConfiguration().orientation!=android.content.res.Configuration.ORIENTATION_LANDSCAPE)host.addView(text(title,21));
+    }
     private void filter(LinearLayout host,String label,String[] labels,IntConsumer choose) {
         host.addView(a.button(label,v->new AlertDialog.Builder(a).setTitle(label).setItems(labels,(d,i)->choose.accept(i)).setNegativeButton("取消",null).show()),new LinearLayout.LayoutParams(-1,a.dp(48)));
     }
