@@ -20,28 +20,51 @@ final class OverviewUi {
         host.addView(a.button(label,v->new AlertDialog.Builder(a).setTitle(label).setItems(labels,(d,i)->choose.accept(i)).setNegativeButton("取消",null).show()),new LinearLayout.LayoutParams(-1,a.dp(48)));
     }
     private final class Rows<T> extends BaseAdapter {
-        List<T> rows; TextView emptyView; final ToLongFunction<T> key; final Function<T,String> title,detail;
-        Rows(List<T> rows,ToLongFunction<T> key,Function<T,String> title,Function<T,String> detail) {this.rows=rows;this.key=key;this.title=title;this.detail=detail;}
-        public int getCount(){return rows.size();} public T getItem(int p){return rows.get(p);} public long getItemId(int p){return key.applyAsLong(rows.get(p));} public boolean hasStableIds(){return true;}
+        List<T> rows,lastRows; TextView emptyView; int page; Runnable updatePager=()->{};ListView nativeList;
+        final String pageKey=state.page;
+        String signature(){switch(pageKey){
+            case "cities":return state.cityQuery+"|"+state.cityOwner+"|"+state.cityFilter+"|"+state.citySort+"|"+state.cityDistrict;
+            case "officers":return state.query+"|"+state.owner+"|"+state.city+"|"+state.officerSort;
+            case "tasks":return state.taskType+"|"+state.taskQuery;
+            default:return state.factionQuery;
+        }}
+        int size(){return state.listPageSize==50?50:state.listPageSize==100?100:20;}
+        int pages(){return Math.max(1,(rows.size()+size()-1)/size());}
+        void changePage(int value){page=Math.max(0,Math.min(pages()-1,value));state.listPages.putInt(pageKey,page);state.cityPosition=0;state.cityTop=0;super.notifyDataSetChanged();if(nativeList!=null)nativeList.setSelection(0);updatePager.run();}
+        @Override public void notifyDataSetChanged(){if(lastRows!=rows){page=0;lastRows=rows;state.cityPosition=0;state.cityTop=0;if(nativeList!=null)nativeList.setSelection(0);}page=Math.max(0,Math.min(page,pages()-1));state.listPages.putInt(pageKey,page);state.listPages.putString(pageKey+"Filter",signature());super.notifyDataSetChanged();updatePager.run();}
+         final ToLongFunction<T> key; final Function<T,String> title,detail;
+        Rows(List<T> rows,ToLongFunction<T> key,Function<T,String> title,Function<T,String> detail) {this.rows=rows;this.lastRows=rows;this.key=key;this.title=title;this.detail=detail;
+            String signature=signature();
+            page=signature.equals(state.listPages.getString(pageKey+"Filter"))?Math.min(state.listPages.getInt(pageKey,0),pages()-1):0;
+            state.listPages.putString(pageKey+"Filter",signature);state.listPages.putInt(pageKey,page);}
+        public int getCount(){return Math.max(0,Math.min(size(),rows.size()-page*size()));} public T getItem(int p){return rows.get(page*size()+p);} public long getItemId(int p){return key.applyAsLong(getItem(p));} public boolean hasStableIds(){return true;}
         public View getView(int p,View reuse,ViewGroup parent) {
             LinearLayout row;
             if(reuse instanceof LinearLayout)row=(LinearLayout)reuse;
-            else {row=column();row.setOrientation(LinearLayout.HORIZONTAL);row.setGravity(Gravity.CENTER_VERTICAL);row.setMinimumHeight(a.dp(80));
+            else {row=column();row.setOrientation(LinearLayout.HORIZONTAL);row.setGravity(Gravity.CENTER_VERTICAL);row.setMinimumHeight(a.dp(82));row.setPadding(a.dp(10),a.dp(8),a.dp(8),a.dp(8));
+                android.graphics.drawable.GradientDrawable background=new android.graphics.drawable.GradientDrawable();background.setColor(0xff203142);background.setCornerRadius(a.dp(12));
+                row.setBackground(new android.graphics.drawable.RippleDrawable(android.content.res.ColorStateList.valueOf(0x446ddcc5),background,null));
                 ImageView icon=new ImageView(a);row.addView(icon,new LinearLayout.LayoutParams(a.dp(48),a.dp(48)));
                 LinearLayout copy=column();copy.addView(text("",16));copy.addView(text("",13));row.addView(copy,new LinearLayout.LayoutParams(0,-2,1));}
-            Object item=rows.get(p);ImageView icon=(ImageView)row.getChildAt(0);boolean visible=GameIcon.supports(item);icon.setVisibility(visible?View.VISIBLE:View.GONE);
+            Object item=getItem(p);ImageView icon=(ImageView)row.getChildAt(0);boolean visible=GameIcon.supports(item);icon.setVisibility(visible?View.VISIBLE:View.GONE);
             icon.setImageDrawable(visible?GameIcon.drawable(a,w,item):null);icon.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-            LinearLayout copy=(LinearLayout)row.getChildAt(1);((TextView)copy.getChildAt(0)).setText(title.apply(rows.get(p)));((TextView)copy.getChildAt(0)).setTextColor(a.gold);
-            ((TextView)copy.getChildAt(1)).setText(detail.apply(rows.get(p)));return row;
+            LinearLayout copy=(LinearLayout)row.getChildAt(1);((TextView)copy.getChildAt(0)).setText(title.apply(getItem(p)));((TextView)copy.getChildAt(0)).setTextColor(a.gold);
+            ((TextView)copy.getChildAt(1)).setText(detail.apply(getItem(p)));return row;
         }
     }
     private <T> Rows<T> list(LinearLayout host,List<T> rows,ToLongFunction<T> key,Function<T,String> title,Function<T,String> detail,Consumer<T> select,String empty) {
         FrameLayout content=new FrameLayout(a);host.addView(content,new LinearLayout.LayoutParams(-1,0,1));
-        ListView list=new ListView(a);list.setDividerHeight(a.dp(1));list.setCacheColorHint(Color.TRANSPARENT);list.setContentDescription("概览列表");
+        ListView list=new ListView(a);list.setDivider(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));list.setDividerHeight(a.dp(6));list.setCacheColorHint(Color.TRANSPARENT);list.setContentDescription("概览列表");
         TextView blank=text(empty,16);blank.setGravity(Gravity.CENTER);content.addView(blank,new FrameLayout.LayoutParams(-1,-1));content.addView(list,new FrameLayout.LayoutParams(-1,-1));list.setEmptyView(blank);
         boolean cityPage=state.page.equals("cities");int position=state.cityPosition,top=state.cityTop;
         boolean[] restoring={cityPage};
-        Rows<T> adapter=new Rows<>(rows,key,title,detail);adapter.emptyView=blank;list.setAdapter(adapter);
+        Rows<T> adapter=new Rows<>(rows,key,title,detail);adapter.emptyView=blank;adapter.nativeList=list;list.setAdapter(adapter);
+        LinearLayout pager=new LinearLayout(a);pager.setGravity(Gravity.CENTER_VERTICAL);host.addView(pager,new LinearLayout.LayoutParams(-1,a.dp(52)));
+        Button previous=a.button("‹",v->adapter.changePage(adapter.page-1)),next=a.button("›",v->adapter.changePage(adapter.page+1));previous.setContentDescription("上一页");next.setContentDescription("下一页");
+        Button number=a.button("",v->{EditText input=new EditText(a);input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);input.setHint("1–"+adapter.pages());input.setContentDescription("跳转页码");new AlertDialog.Builder(a).setTitle("跳转到页").setView(input).setPositiveButton("跳转",(d,n)->{try{adapter.changePage(Integer.parseInt(input.getText().toString())-1);}catch(NumberFormatException ignored){input.setError("请输入页码");}}).setNegativeButton("取消",null).show();});
+        Button size=a.button(adapter.size()+"条",v->new AlertDialog.Builder(a).setTitle("每页条数").setItems(new String[]{"20条","50条","100条"},(d,n)->{state.listPageSize=new int[]{20,50,100}[n];adapter.changePage(0);}).setNegativeButton("取消",null).show());
+        pager.addView(previous,new LinearLayout.LayoutParams(a.dp(40),-1));pager.addView(number,new LinearLayout.LayoutParams(0,-1,1));pager.addView(next,new LinearLayout.LayoutParams(a.dp(40),-1));pager.addView(size,new LinearLayout.LayoutParams(a.dp(64),-1));
+        adapter.updatePager=()->{previous.setEnabled(adapter.page>0);next.setEnabled(adapter.page+1<adapter.pages());number.setText((adapter.page+1)+"/"+adapter.pages()+" · "+adapter.rows.size()+"项");number.setContentDescription("第"+(adapter.page+1)+"页，共"+adapter.pages()+"页，"+adapter.rows.size()+"项，点击跳转");size.setText(adapter.size()+"条");};adapter.updatePager.run();
         if(cityPage){
             list.setSelectionFromTop(position,top);
             list.setOnScrollListener(new AbsListView.OnScrollListener(){public void onScrollStateChanged(AbsListView view,int scrollState){}public void onScroll(AbsListView view,int first,int visible,int total){
@@ -83,13 +106,14 @@ final class OverviewUi {
             overview::detail,c->a.selectAndFocus(c.hex),"没有符合条件的城池 · 清空检索或选择全部城池");return host;
     }
     View officers() {
-        LinearLayout host=column();heading(host,"武将一览");
-        EditText search=new EditText(a);search.setSingleLine();search.setTextColor(a.paper);search.setHintTextColor(a.muted);search.setHint("搜索武将姓名");search.setContentDescription("搜索武将姓名");search.setText(state.query);search.setImeOptions(android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH);search.setOnEditorActionListener((v,action,event)->{if(action!=android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH)return false;android.view.inputmethod.InputMethodManager keyboard=(android.view.inputmethod.InputMethodManager)a.getSystemService(android.content.Context.INPUT_METHOD_SERVICE);keyboard.hideSoftInputFromWindow(search.getWindowToken(),0);search.clearFocus();return true;});host.addView(search,new LinearLayout.LayoutParams(-1,a.dp(48)));
+        LinearLayout host=column();
+        LinearLayout searchBar=new LinearLayout(a);host.addView(searchBar);
+        EditText search=new EditText(a);search.setSingleLine();search.setTextColor(a.paper);search.setHintTextColor(a.muted);search.setHint("搜索武将姓名");search.setContentDescription("搜索武将姓名");search.setText(state.query);search.setImeOptions(android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH);search.setOnEditorActionListener((v,action,event)->{if(action!=android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH)return false;android.view.inputmethod.InputMethodManager keyboard=(android.view.inputmethod.InputMethodManager)a.getSystemService(android.content.Context.INPUT_METHOD_SERVICE);keyboard.hideSoftInputFromWindow(search.getWindowToken(),0);search.clearFocus();return true;});searchBar.addView(search,new LinearLayout.LayoutParams(0,a.dp(48),1));
         LinearLayout filters=new LinearLayout(a);host.addView(filters);
         Button faction=a.button(state.owner==-2?"在野武将":state.owner<0?"全部势力":w.faction(state.owner),v->{String[] labels=new String[w.factions.length+2];labels[0]="全部势力";System.arraycopy(w.factions,0,labels,1,w.factions.length);labels[labels.length-1]="在野武将";new AlertDialog.Builder(a).setTitle("按势力筛选").setItems(labels,(d,i)->{state.owner=i==w.factions.length+1?-2:i-1;a.refresh();}).show();});
         Button city=a.button(state.city<0?"全部城市":w.city(state.city).name,v->{String[] labels=new String[w.cities.size()+1];labels[0]="全部城市（含在途）";for(int i=0;i<w.cities.size();i++)labels[i+1]=w.cities.get(i).name;new AlertDialog.Builder(a).setTitle("按城市筛选").setItems(labels,(d,i)->{state.city=i==0?-1:w.cities.get(i-1).id;a.refresh();}).show();});
         filters.addView(faction,new LinearLayout.LayoutParams(0,a.dp(48),1));filters.addView(city,new LinearLayout.LayoutParams(0,a.dp(48),1));
-        String[] sorts={"姓名","统率","武力","智力","政治","魅力"};filter(host,"排序 · "+sorts[state.officerSort],sorts,i->{state.officerSort=i;a.refresh();});
+        String[] sorts={"姓名","统率","武力","智力","政治","魅力"};searchBar.addView(a.button("排序 · "+sorts[state.officerSort],v->new AlertDialog.Builder(a).setTitle("武将排序").setItems(sorts,(d,i)->{state.officerSort=i;a.refresh();}).setNegativeButton("取消",null).show()),new LinearLayout.LayoutParams(a.dp(132),a.dp(48)));
         Rows<World.Officer> adapter=list(host,UiModels.officers(w,state.query,state.owner,state.city,state.officerSort),o->o.id,o->o.name+" · "+UiModels.faction(w,o),
             o->"统 "+o.leadership+"  武 "+o.war+"  智 "+o.intelligence+"  政 "+o.politics+"  魅 "+o.charm+"\n"+o.role.label+" · 忠诚 "+o.loyalty+"\n"+UiModels.location(w,o)+" · "+UiModels.status(w,o),a::officerDetail,"没有符合筛选条件的武将\n试试清空姓名或选择全部城市");
         search.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void onTextChanged(CharSequence s,int start,int before,int count){state.query=s.toString();adapter.rows=UiModels.officers(w,state.query,state.owner,state.city,state.officerSort);adapter.notifyDataSetChanged();}public void afterTextChanged(Editable e){}});return host;

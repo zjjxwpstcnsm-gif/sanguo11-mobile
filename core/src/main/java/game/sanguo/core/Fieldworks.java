@@ -158,22 +158,32 @@ public final class Fieldworks {
                 for(Hex next:affected){
                     if(s.kind==War.StructureKind.FIRE_SHIP?!w.army.water(next):w.army.water(next))continue;
                     World.Unit victim=w.unitAt(next);if(victim!=null&&(victim.owner==source.owner||w.campaign.hostile(source.owner,victim.owner))){
-                        int fireLoss=w.skills.fireDamage(victim,base,source.owner,w.skills.has(source,Skill.HUOSHEN)?2:1,true);victim.troops-=fireLoss;
+                        int fireLoss=w.skills.fireDamage(victim,base,source.owner,w.skills.firePower(source),true);victim.troops-=fireLoss;
                         w.battleOutcome(w.officer(victim.officerId).name+"受到"+s.kind.label+"火伤"+fireLoss);
-                        if(victim.troops==0)w.defeatUnit(victim,source);else if(s.kind==War.StructureKind.INFERNO_SEED&&!w.skills.has(victim,Skill.HUOSHEN)){victim.status=War.Status.CONFUSED;victim.statusTurns=2;}
+                        if(victim.troops==0)w.defeatUnit(victim,source);else if(s.kind==War.StructureKind.INFERNO_SEED){victim.status=War.Status.CONFUSED;victim.statusTurns=2;}
                     }
                     War.Structure adjacent=w.war.at(next);if(adjacent!=null&&adjacent.complete&&trap(adjacent.kind))queue.add(next);else if(adjacent!=null&&(adjacent.owner==source.owner||w.campaign.hostile(source.owner,adjacent.owner))){int loss=Math.min(adjacent.hp,base/2);adjacent.hp-=loss;w.battleOutcome(adjacent.kind.label+"被陷阱波及，耐久减少"+loss);if(adjacent.hp<=0){w.war.structures.remove(adjacent);w.battleOutcome(adjacent.kind.label+"已摧毁");}}
                     flame(next,source,true);
                 }
                 w.battleOutcome(s.kind.label+"引爆");
-            }else flame(h,source,false);
+            }else {directFire(h,source);flame(h,source,false);}
         }
+    }
+    /** Immediate fire component, shared by plots, arrows and engines. */
+    int directFire(Hex h,World.Unit source){
+        World.Unit victim=w.unitAt(h);
+        if(victim==null||victim.owner!=source.owner&&!w.campaign.hostile(source.owner,victim.owner))return 0;
+        int hit=w.skills.fireDamage(victim,400,source.owner,w.skills.firePower(source),false);
+        victim.troops-=hit;w.battleImpact(h,false);
+        w.battleOutcome(w.officer(victim.officerId).name+"受到火焰伤害"+hit+(w.skills.has(source,Skill.HUOSHEN)?"（火神×2）":"")+(w.skills.has(victim,Skill.HUOSHEN)?"（火神免疫）":""));
+        if(victim.troops==0)w.defeatUnit(victim,source);
+        return hit;
     }
     private void flame(Hex h,World.Unit source,boolean trap){
         if(w.cost(h,World.Weapon.SPEAR)<0||w.cityAt(h)!=null)return;
         Domestic.Facility facility=w.domestic.at(h);if(facility!=null&&w.city(facility.cityId).owner!=source.owner&&!w.campaign.hostile(source.owner,w.city(facility.cityId).owner))return;
         War.Structure s=w.war.at(h);if(s!=null&&s.owner!=source.owner&&!w.campaign.hostile(source.owner,s.owner))return;
         War.Fire old=w.war.fireAt(h);if(old!=null)w.war.fires.remove(old);
-        War.Fire f=new War.Fire(h,source.owner,2);f.power=w.skills.has(source,Skill.HUOSHEN)?2:1;f.trap=trap;w.war.fires.add(f);
+        War.Fire f=new War.Fire(h,source.owner,2);f.power=w.skills.firePower(source);f.trap=trap;w.war.fires.add(f);
     }
 }

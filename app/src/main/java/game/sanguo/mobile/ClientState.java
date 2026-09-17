@@ -7,6 +7,8 @@ final class ClientState {
     int selectedUnit=-1;
     boolean returnToCities=false;
     Bundle formDraft=new Bundle();
+    Bundle listPages=new Bundle();
+    int listPageSize=20;
     String page="map", group="概览", query="", summary="";
     String cityQuery="",taskQuery="",factionQuery="",contentQuery="",contentKind="officers",contentFirstId="";
     int cityOwner=-1,contentTop=0,cityFilter=0,cityDistrict=-1,cityPosition=0,cityTop=0;
@@ -14,6 +16,7 @@ final class ClientState {
     boolean panelVisible=false,panelExpanded=false;
     void read(Bundle b) {
         if(b==null)return;
+        listPages=b.getBundle("listPages");if(listPages==null)listPages=new Bundle();listPageSize=b.getInt("listPageSize",20);
         selectedUnit=b.getInt("selectedUnit",-1);returnToCities=b.getBoolean("returnToCities",false);formDraft=b.getBundle("formDraft");if(formDraft==null)formDraft=new Bundle();
         cityFilter=b.getInt("cityFilter",0);cityDistrict=b.getInt("cityDistrict",-1);cityPosition=b.getInt("cityPosition",0);cityTop=b.getInt("cityTop",0);
         page=b.getString("page","map");group=b.getString("group","概览");query=b.getString("query","");summary=b.getString("summary","");
@@ -21,6 +24,7 @@ final class ClientState {
         owner=b.getInt("owner",-1);city=b.getInt("city",-1);officerSort=b.getInt("officerSort");citySort=b.getInt("citySort");taskType=b.getInt("taskType");panelVisible=b.getBoolean("panel",false);panelExpanded=b.getBoolean("panelExpanded",false);
     }
     void write(Bundle b) {
+        b.putBundle("listPages",listPages);b.putInt("listPageSize",listPageSize);
         b.putInt("selectedUnit",selectedUnit);b.putBoolean("returnToCities",returnToCities);b.putBundle("formDraft",formDraft);
         b.putInt("cityFilter",cityFilter);b.putInt("cityDistrict",cityDistrict);b.putInt("cityPosition",cityPosition);b.putInt("cityTop",cityTop);
         b.putString("page",page);b.putString("group",group);b.putString("query",query);b.putString("summary",summary);

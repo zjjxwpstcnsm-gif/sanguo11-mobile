@@ -1,0 +1,20 @@
+{
+  "runtime_commit": "aac1b8bde6c2b5fc456793dc131e94b3ff89689e",
+  "filename": "sanguo11-mobile-v032-aac1b8b.apk",
+  "bytes": 7084466,
+  "sha256": "c4387b66b9e443e7166133d5a34b944b4935d42653eba1f45df06f18fbe65cdf",
+  "package": "game.sanguo.mobile.dev",
+  "version_name": "0.32.0-navigation-defense-dev",
+  "version_code": 32,
+  "min_sdk": 26,
+  "target_sdk": 35,
+  "save_version": 22,
+  "signing_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+  "core_resources_byte_verified": 30,
+  "lint": {
+    "Error": 0,
+    "Warning": 24,
+    "Fatal": 0
+  },
+  "device": "API29 x86 software emulator, 1080x1920, no KVM; not ARM hardware"
+}

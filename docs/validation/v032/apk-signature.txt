@@ -1,0 +1,4 @@
+Signer #1 certificate DN: CN=Android Debug, O=Sanguo11 Mobile Development, C=CN
+Signer #1 certificate SHA-256 digest: 8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24
+Signer #1 certificate SHA-1 digest: f335e953deca3b7db15fc4581ddfc0ba6ff796f6
+Signer #1 certificate MD5 digest: 74c8291ef976e8c21bed0ee561a1dd73

@@ -20,7 +20,7 @@ public final class MapCoordinates {
             p.remove(key);p.setProperty(key,new String(converted));
         }
         for(String key:new ArrayList<>(p.stringPropertyNames())){
-            int xIndex=key.matches("city\\.\\d+")?2:key.matches("initial-unit\\.\\d+")?6:key.matches("initial-camp\\.\\d+")?2:-1;
+            int xIndex=key.matches("development-plot\\.\\d+")?1:key.matches("city\\.\\d+")?2:key.matches("initial-unit\\.\\d+")?6:key.matches("initial-camp\\.\\d+")?2:-1;
             if(xIndex<0)continue;
             String[] f=p.getProperty(key).split("\\|",-1);if(f.length<=xIndex+1)throw new IOException("坐标对象列数错误");
             int x=Integer.parseInt(f[xIndex].trim()),y=Integer.parseInt(f[xIndex+1].trim());if(x<0||x>=width||y<0||y>=height)throw new IOException("原始坐标越界："+key);

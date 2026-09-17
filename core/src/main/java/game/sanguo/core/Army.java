@@ -43,7 +43,7 @@ public final class Army {
     public int aptitude(World.Unit unit){return aptitude(crew(unit),water(unit.hex)?5:category(unit.weapon));}
     public int aptitude(List<World.Officer> crew,int category){int value=0;if(category>=0)for(World.Officer o:crew)value=Math.max(value,o.aptitude[category]);return value;}
     World.Officer combatOfficer(World.Unit u){World.Officer leader=w.officer(u.officerId);return new World.Officer(leader.id,leader.name,leader.owner,-1,leadership(u),war(u),intelligence(u),leader.politics,leader.charm);}
-    public boolean water(Hex h){return h!=null&&w.inside(h)&&w.terrain[h.q][h.r]==World.Terrain.WATER;}
+    public boolean water(Hex h){return h!=null&&w.inside(h)&&(w.terrain[h.q][h.r]==World.Terrain.WATER||w.terrain[h.q][h.r]==World.Terrain.SEA);}
     public String equipmentLabel(World.Unit u){if(u instanceof Domestic.Mission)return water(u.hex)?"运输队 · 走舸":"运输队";return water(u.hex)?u.ship.label+"（携"+u.weapon.label+"）":u.weapon.label;}
     public int movement(World.Unit u){return water(u.hex)?u.ship.movement:u.weapon.movement;}
     public int range(World.Unit u){return water(u.hex)?u.ship.range:u.weapon==World.Weapon.CAVALRY&&(w.skills.has(u,Skill.BAIMA)||w.campaign.has(u.owner,Campaign.Tech.MOUNTED_ARCHERY))?2:u.weapon.range;}
@@ -98,7 +98,7 @@ public final class Army {
     void cleanup(){for(Production p:new ArrayList<>(productions))if(!valid(p)){productions.remove(p);World.Officer o=w.officer(p.officerId);if(o!=null&&o.otherTask.equals(p.label())){o.otherTask="";o.otherTaskTurns=0;}w.note(p.label()+"因城池或工场失守/拆除而中止");}}
     void tick(){
         for(World.Unit u:new ArrayList<>(w.fieldUnits()))if(u.burning>0){
-            u.burning--;if(u.burningOwner==u.owner||w.campaign.hostile(u.burningOwner,u.owner)){int hit=w.skills.fireDamage(u,200,u.burningOwner,u.burningPower,false);u.troops-=hit;w.note(w.officer(u.officerId).name+"的部队持续燃烧，损失"+hit+"兵");}
+            u.burning--;if(u.burningOwner==u.owner||w.campaign.hostile(u.burningOwner,u.owner)){int hit=w.skills.ongoingFireDamage(u,200,u.burningOwner,u.burningPower,false);u.troops-=hit;w.note(w.officer(u.officerId).name+"的部队持续燃烧，损失"+hit+"兵");}
             if(u.burning==0){u.burningOwner=-1;u.burningPower=1;}if(u.troops==0)w.removeUnit(u);
         }
         cleanup();for(Production p:new ArrayList<>(productions))if(w.officer(p.officerId).otherTaskTurns==1){
@@ -158,8 +158,10 @@ public final class Army {
         World.Unit a=w.unit(unit),b=w.unitAt(target);String error=tacticError(unit,target,tactic);
         String heading=(tactic==null?"未选择战法":tactic.label+" · 消耗气力"+tactic.energy)+" / 当前"+(a==null?0:a.energy)+"\n命中率"+tacticChance(unit,target)+"%；失败同样消耗气力和本旬行动。\n目标："+target;
         if(a!=null&&tactic!=null)heading+="\n射程：1–"+(tactic==Tactic.RAM?1:w.war.range(a))+"格；效果："+tactic.effect;
+        if(a!=null&&(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME))heading+="\n"+w.skills.firePreview(a,b,false);
         World.City city=w.cityAt(target);War.Structure structure=w.war.at(target);Domestic.Facility facility=w.domestic.at(target);
         heading+="\n实际对象："+(b!=null?w.officer(b.officerId).name:city!=null?city.name:structure!=null?structure.kind.label:facility!=null?facility.kind.label:"无");
+        if(city!=null&&a!=null)heading+="\n"+w.cityDefense.preview(city,a);
         return w.war.displacement.preview(a,b,tactic==Tactic.RAM&&a!=null&&water(a.hex)?Displacement.Kind.NAVAL:Displacement.Kind.NONE,error,heading);
     }
     public World.Result tactic(int unit,Hex target,Tactic tactic){
@@ -186,7 +188,10 @@ public final class Army {
         int amount=w.war.physicalDamage(u,enemy,tactic==Tactic.STONE?1.5:1.3,true,new Random(w.strategy.nextInt(Integer.MAX_VALUE)));
         enemy.troops-=amount;w.skills.onHit(u,enemy,amount,true);
         if(enemy.troops==0)w.defeatUnit(enemy,u);
-        else if((tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)&&!w.skills.has(enemy,Skill.HUOSHEN)){enemy.burning=2;enemy.burningOwner=u.owner;enemy.burningPower=w.skills.has(u,Skill.HUOSHEN)?2:1;}
+        else if(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME){
+            w.fieldworks.directFire(target,u);
+            if(w.unit(enemy.id)==enemy&&!w.skills.has(enemy,Skill.HUOSHEN)){enemy.burning=2;enemy.burningOwner=u.owner;enemy.burningPower=w.skills.firePower(u);}
+        }
         if(tactic==Tactic.RAM&&water(u.hex))w.war.displacement.execute(u,enemy,u.hex,target,Displacement.Kind.NAVAL);
         if(tactic==Tactic.STONE)w.fieldworks.stoneSplash(u,target);
         w.campaign.earn(u.owner,enemy.troops==0&&w.skills.has(u,Skill.JINGMIAO)?80:40);w.checkVictory();return w.success(tactic.label+"命中，主伤害"+amount+"，消耗气力"+tactic.energy+"，本旬行动结束");

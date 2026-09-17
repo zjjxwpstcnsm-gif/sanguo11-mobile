@@ -5,7 +5,7 @@ import java.util.*;
 /** Engineering rules, NOT original SAN11 formulas. All commands validate before mutation. */
 public final class World {
     public enum Sex { UNKNOWN, MALE, FEMALE }
-    public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER, MOUNTAIN_PATH, SHALLOWS, PLANK_ROAD, POISON }
+    public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER, MOUNTAIN_PATH, SHALLOWS, PLANK_ROAD, POISON, SEA, VOID }
     public enum SiteKind { CITY, GATE, PORT }
     public enum Weapon {
         SPEAR("枪兵",4,1,115), HALBERD("戟兵",3,1,105), CROSSBOW("弩兵",3,2,95), CAVALRY("骑兵",6,1,120),
@@ -78,10 +78,12 @@ public final class World {
     public final List<String> log=new ArrayList<>();
     public final Lifecycle life=new Lifecycle(this);
     public final Domestic domestic=new Domestic(this);
+    public final Development development=new Development(this);
     public final Strategy strategy=new Strategy(this);
     public final Campaign campaign=new Campaign(this);
     public final Diplomacy diplomacy=new Diplomacy(this);
     public final War war=new War(this);
+    public final CityDefense cityDefense=new CityDefense(this);
     public final Army army=new Army(this);
     public final Fieldworks fieldworks=new Fieldworks(this);
     public final UnitOrders orders=new UnitOrders(this);
@@ -123,7 +125,7 @@ public final class World {
     public boolean commandsBlocked(){return contests.busy()||life.pending();}
     public boolean gameOver() { return winner>=0||!alive(player); }
     public City home() { for(City c:cities)if(c.owner==player)return c;return cities.isEmpty()?null:cities.get(0); }
-    public boolean inside(Hex h) { return h.q>=0&&h.r>=0&&h.q<width&&h.r<height; }
+    public boolean inside(Hex h) { return h!=null&&h.q>=0&&h.r>=0&&h.q<width&&h.r<height&&terrain[h.q][h.r]!=Terrain.VOID; }
     public City city(int id) { for(City c:cities) if(c.id==id) return c;return null; }
     public Officer officer(int id) { for(Officer o:officers) if(o.id==id) return o;return null; }
     public Unit unit(int id) { for(Unit u:units) if(u.id==id) return u;
@@ -187,7 +189,7 @@ public final class World {
     public int cost(Hex h,Weapon weapon) {
         if(h==null||weapon==null||!inside(h)||events.at(h)!=null)return -1;
         Terrain t=terrain[h.q][h.r];
-        if(t==Terrain.MOUNTAIN||t==Terrain.WATER)return -1;
+        if(t==Terrain.MOUNTAIN||t==Terrain.WATER||t==Terrain.SEA||t==Terrain.VOID)return -1;
         return t==Terrain.POISON?2:t==Terrain.FOREST?(weapon==Weapon.CAVALRY||Army.siegeWeapon(weapon)?3:2):1;
     }
     private static final class Step {
@@ -236,10 +238,7 @@ public final class World {
             campaign.cleanupProjects();army.cleanup();campaign.earn(u.owner,100);
             message=c.name+"被"+faction(u.owner)+"攻占";
         }
-        else if(u.hex.distance(c.hex)==1&&!tactic&&army.counter(u)){
-            int counter=(campaign.has(c.owner,Campaign.Tech.DEFENSE_REINFORCEMENT)?2:1)*Math.max(50,c.troops/50);
-            u.troops=Math.max(0,u.troops-counter);if(u.troops==0)removeUnit(u);message+="，据点反击−"+counter;
-        }
+        else {int counter=cityDefense.counter(c,u);if(counter>0)message+="，据点反击−"+counter;}
         if(stoneSplash)fieldworks.stoneSplash(u,c.hex);
         checkVictory();return success(message);
     }
@@ -272,7 +271,7 @@ public final class World {
             reset(active);runAi();checkVictory();
             if(gameOver()){active=player;return success(winner==player?"战场胜利":"我方势力已覆灭");}
         }
-        turn++;contests.tick();domestic.tick();campaign.tick();army.tick();abilities.tick();strategy.tick();war.tick();government.tick();treasures.tick();
+        turn++;contests.tick();domestic.tick();campaign.tick();army.tick();abilities.tick();strategy.tick();war.tick();cityDefense.tick();government.tick();treasures.tick();
         for(Unit u:new ArrayList<>(units)) {
             int consumption=fieldworks.foodUse(u,Math.max(1,(u.troops+19)/20));
             if(u.food<consumption){u.food=0;u.troops-=Math.max(1,u.troops/10);note(officer(u.officerId).name+"部队断粮，兵力减少");}

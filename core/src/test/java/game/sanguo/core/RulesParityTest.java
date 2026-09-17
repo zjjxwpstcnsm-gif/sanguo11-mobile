@@ -102,8 +102,8 @@ public final class RulesParityTest {
         World w=fixture();World.Unit a=unit(w,0,5,6,World.Weapon.SPEAR),b=unit(w,10,6,6,World.Weapon.SPEAR);
         w.officer(0).skillId=HUOSHEN.id;w.officer(0).intelligence=100;
         ok(w.war.plot(a.id,b.hex,War.Plot.FIRE));check(w.war.fireAt(b.hex).power==2,"fire records source power");
-        w.officer(0).skillId="none";World resumed=SaveCodec.decode(bytes(w));w.war.tick();resumed.war.tick();
-        check(b.troops==4500&&Arrays.equals(bytes(w),bytes(resumed)),"source effect persists after caster changes and save/load");
+        int afterIgnition=b.troops;check(afterIgnition==4200,"fire plot applies immediate doubled damage");w.officer(0).skillId="none";World resumed=SaveCodec.decode(bytes(w));w.war.tick();resumed.war.tick();
+        check(b.troops==afterIgnition-500&&Arrays.equals(bytes(w),bytes(resumed)),"source effect persists after caster changes and save/load");
         World armor=fixture();World.Unit victim=unit(armor,10,6,6,World.Weapon.SPEAR);armor.officer(10).skillId=TENGJIA.id;
         War.Fire fire=new War.Fire(victim.hex,0,2);fire.trap=true;armor.war.fires.add(fire);deputy(armor,victim,11,TAPO);
         armor.war.tick();check(victim.troops==4750,"藤甲 x2 then 踏破 trap half");deputy(armor,victim,12,HUOSHEN);

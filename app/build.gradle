@@ -8,8 +8,8 @@ android {
         minSdk 26
         targetSdk 35
         testInstrumentationRunner 'game.sanguo.mobile.GameSmokeRunner'
-        versionCode 29
-        versionName '0.29.0-tactical-displacement-dev'
+        versionCode 32
+        versionName '0.32.0-navigation-defense-dev'
     }
     signingConfigs {
         debug {

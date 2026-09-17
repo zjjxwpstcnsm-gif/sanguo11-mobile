@@ -132,7 +132,7 @@ public final class Domestic {
         return w.success(f.kind.label+"开始吸收合并，2旬后达到Lv"+f.upgradeTo+"，原材料地块已腾空");
     }
     private boolean site(World.City city,Hex h){
-        if(city==null||h==null||!w.inside(h)||city.hex.distance(h)<1||city.hex.distance(h)>2)return false;
+        if(city==null||h==null||!w.inside(h)||!w.development.contains(city,h))return false;
         if(w.terrain[h.q][h.r]!=World.Terrain.PLAIN||w.cityAt(h)!=null||w.unitAt(h)!=null||at(h)!=null||w.war.at(h)!=null||w.war.fireAt(h)!=null)return false;
         for(World.City c:w.cities)if(c.hex.distance(h)==1){
             boolean exit=false;
@@ -143,7 +143,10 @@ public final class Domestic {
     }
     public List<Hex> buildSites(int cityId){
         World.City c=w.city(cityId);List<Hex> result=new ArrayList<>();
-        if(c==null||c.kind!=World.SiteKind.CITY||count(cityId)>=CITY_SLOTS)return result;
+        if(c==null||c.kind!=World.SiteKind.CITY||count(cityId)>=w.development.capacity(cityId))return result;
+        if(w.development.configured(cityId)){
+            for(Hex h:w.development.parcels(cityId))if(site(c,h))result.add(h);return result;
+        }
         for(int q=Math.max(0,c.hex.q-2);q<=Math.min(w.width-1,c.hex.q+2);q++)
             for(int r=Math.max(0,c.hex.r-2);r<=Math.min(w.height-1,c.hex.r+2);r++){Hex h=new Hex(q,r);if(site(c,h))result.add(h);}
         result.sort(Comparator.comparingInt((Hex h)->h.distance(c.hex)).thenComparingInt(h->h.q).thenComparingInt(h->h.r));
@@ -154,10 +157,10 @@ public final class Domestic {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,kind.cost);
         if(error!=null)return w.fail(error);
         if(c.kind!=World.SiteKind.CITY)return w.fail("港关不能开发内政设施");
-        if(count(cityId)>=CITY_SLOTS)return w.fail("每城最多6处设施（含建设中）");
+        if(count(cityId)>=w.development.capacity(cityId))return w.fail("本城最多"+w.development.capacity(cityId)+"处设施（含建设中）");
         if(kind==Kind.BRONZE_TERRACE&&(!w.treasures.factionHas(c.owner,Treasures.Kind.BRONZE)||facilities.stream().anyMatch(f->f.cityId==cityId&&f.kind==kind)))return w.fail("需要持有铜雀，且本城至多一座铜雀台");
         if(kind==Kind.SHIPYARD&&(h==null||h.neighbors().stream().noneMatch(w.army::water)))return w.fail("造船厂必须建在临水的开发地");
-        if(!site(c,h))return w.fail("请选择城池两格内空闲平地，且不能封死城池出口");
+        if(!site(c,h))return w.fail("请选择本城空闲开发地，且不能封死城池出口");
         if(nextFacilityId>=10000000)return w.fail("设施编号已达上限");
         int turns=o.politics>=80?2:3;w.spend(c,o,kind.cost);
         Facility facility=new Facility(nextFacilityId++,c.id,kind,h,o.id,turns);
@@ -463,8 +466,8 @@ public final class Domestic {
         Set<Integer> ids=new HashSet<>(),assigned=new HashSet<>();Set<Hex> occupied=new HashSet<>();
         for(Facility f:facilities){
             require(f.id>0&&f.id<nextFacilityId&&ids.add(f.id),"设施编号重复或无效");World.City c=w.city(f.cityId);
-            require(c!=null&&f.kind!=null&&count(c.id)<=CITY_SLOTS,"设施城池或数量错误");
-            require(f.hex!=null&&w.inside(f.hex)&&w.terrain[f.hex.q][f.hex.r]==World.Terrain.PLAIN&&occupied.add(f.hex)&&w.cityAt(f.hex)==null&&w.unitAt(f.hex)==null&&f.hex.distance(c.hex)>=1&&f.hex.distance(c.hex)<=2,"设施位置冲突或无效");
+            require(c!=null&&f.kind!=null&&count(c.id)<=w.development.capacity(c.id),"设施城池或数量错误");
+            require(f.hex!=null&&w.inside(f.hex)&&w.terrain[f.hex.q][f.hex.r]==World.Terrain.PLAIN&&occupied.add(f.hex)&&w.cityAt(f.hex)==null&&w.unitAt(f.hex)==null&&w.development.contains(c,f.hex),"设施位置冲突或无效");
             require(f.kind!=Kind.SHIPYARD||f.hex.neighbors().stream().anyMatch(w.army::water),"造船厂必须临水");
             bound(f.remaining,0,3);
             bound(f.hp,1,f.maxHp());

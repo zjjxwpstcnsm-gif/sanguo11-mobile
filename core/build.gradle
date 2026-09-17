@@ -208,3 +208,11 @@ tasks.register('verifyDisplacement', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyDisplacement' }
 tasks.named('test') { dependsOn 'verifyDisplacement' }
+
+tasks.register('verifyMapSkills', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.MapSkillsTest'
+}
+tasks.named('check') { dependsOn 'verifyMapSkills' }
+tasks.named('test') { dependsOn 'verifyMapSkills' }

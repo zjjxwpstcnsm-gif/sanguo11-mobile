@@ -44,7 +44,7 @@ public final class ScenarioData {
             for(int r=0;r<height;r++) {
                 String row=take(p,"terrain."+r);if(row.length()!=width)throw new IOException("地形行宽不匹配："+r);
                 for(int q=0;q<width;q++) {
-                    int index="PFMWDSBX".indexOf(row.charAt(q));if(index<0)throw new IOException("未知地形："+row.charAt(q));
+                    int index="PFMWDSBXOV".indexOf(row.charAt(q));if(index<0)throw new IOException("未知地形："+row.charAt(q));
                     w.terrain[q][r]=World.Terrain.values()[index];
                 }
             }
@@ -54,6 +54,11 @@ public final class ScenarioData {
                 World.City city=new World.City(integer(c[0]),c[1],new Hex(integer(c[2]),integer(c[3])),integer(c[4]));
                 city.gold=integer(c[5]);city.food=integer(c[6]);city.troops=integer(c[7]);city.order=integer(c[8]);city.morale=integer(c[9]);city.defense=integer(c[10]);city.baseDefense=Math.max(3000,city.defense);
                 for(int j=0;j<4;j++)city.equipment[j]=integer(c[11+j]);w.cities.add(city);
+            }
+            if(p.containsKey("development-plots")){
+                int n=number(p,"development-plots",0,36000);Map<Integer,List<Hex>> plots=new LinkedHashMap<>();
+                for(int i=0;i<n;i++){String[] f=fields(p,"development-plot."+i,3);plots.computeIfAbsent(integer(f[0]),key->new ArrayList<>()).add(new Hex(integer(f[1]),integer(f[2])));}
+                for(Map.Entry<Integer,List<Hex>> entry:plots.entrySet())w.development.configure(entry.getKey(),entry.getValue());
             }
             int officers=number(p,"officers",2,10000);
             for(int i=0;i<officers;i++) {
@@ -131,6 +136,17 @@ public final class ScenarioData {
             if(p.containsKey("initial-hazards")){int n=number(p,"initial-hazards",0,w.cities.size());for(int i=0;i<n;i++){String[] f=fields(p,"initial-hazard."+i,2);int city=integer(f[0]);if(!w.events.beginDisaster(city,WorldEvents.Disaster.valueOf(f[1])))throw new IOException("初始灾害无效");}}
             if(p.containsKey("natural-deaths"))w.life.naturalDeaths=number(p,"natural-deaths",0,1)==1;
             if(p.containsKey("lifetimes")){int n=number(p,"lifetimes",0,w.officers.size());Set<Integer> seen=new HashSet<>();for(int i=0;i<n;i++){String[] f=fields(p,"lifetime."+i,6);int who=integer(f[0]);if(!seen.add(who))throw new IOException("生卒人物重复");w.life.configure(who,integer(f[1]),integer(f[2]),integer(f[3]),integer(f[4]),Lifecycle.State.valueOf(f[5]));}}
+            if(p.containsKey("initial-treaties")){
+                int n=number(p,"initial-treaties",0,496);Set<String> seen=new HashSet<>();
+                for(int i=0;i<n;i++){String[] f=fields(p,"initial-treaty."+i,4);int a=integer(f[0]),b=integer(f[1]),turns=integer(f[3]);
+                    if(a<0||b<0||a>=sides||b>=sides||a==b||turns<1||turns>360||!seen.add(Math.min(a,b)+":"+Math.max(a,b)))throw new IOException("初始协定无效");
+                    w.campaign.concludeTreaty(a,b,Campaign.TreatyKind.valueOf(f[2]),turns);}
+            }
+            if(p.containsKey("rulers")){
+                int n=number(p,"rulers",0,sides);Set<Integer> seen=new HashSet<>();
+                for(int i=0;i<n;i++){String[] f=fields(p,"ruler."+i,2);int side=integer(f[0]);World.Officer o=w.officer(integer(f[1]));
+                    if(side<0||side>=sides||!seen.add(side)||o==null||o.owner!=side||o.cityId<0)throw new IOException("君主配置无效");o.role=Strategy.Role.RULER;o.loyalty=100;}
+            }
             if(!p.isEmpty())throw new IOException("未知剧本字段："+p.keySet().iterator().next());
             if(reference!=null){ContentCatalog catalog=ContentCatalog.get();catalog.validateOpening(w);ContentRuntime.initializeOpening(w,catalog);if(referenceDetails)ContentProfiles.initialize(w,catalog,referenceDates);}
             w.strategy.initializeOffices();
@@ -174,7 +190,7 @@ public final class ScenarioData {
         // Ignore city occupancy here: this checks geographic connectivity, not access through ownership.
         Set<Hex> visited=new HashSet<>();ArrayDeque<Hex> pending=new ArrayDeque<>();
         pending.add(w.cities.get(0).hex);visited.add(pending.peek());
-        while(!pending.isEmpty())for(Hex h:pending.remove().neighbors())if(w.cost(h,World.Weapon.SPEAR)>0&&visited.add(h))pending.add(h);
-        for(World.City c:w.cities)if(!visited.contains(c.hex))throw new IOException("城池与陆路地图隔绝："+c.name);
+        while(!pending.isEmpty())for(Hex h:pending.remove().neighbors())if((w.cost(h,World.Weapon.SPEAR)>0||w.army.water(h))&&visited.add(h))pending.add(h);
+        for(World.City c:w.cities)if(!visited.contains(c.hex))throw new IOException("城池与水陆地图隔绝："+c.name);
     }
 }

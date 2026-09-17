@@ -1,0 +1,3 @@
+INSTRUMENTATION_RESULT: stream=NAVIGATION32 PASS: close-view minimap taps/drags/collapse/rotation, independent labels/bars, live ports/gates, historical new-game entry and state preservation.
+
+INSTRUMENTATION_CODE: -1

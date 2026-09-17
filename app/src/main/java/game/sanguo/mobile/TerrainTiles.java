@@ -13,7 +13,9 @@ final class TerrainTiles {
         switch(t){
             case FOREST:return 0xff395c43;
             case MOUNTAIN:return 0xff717774;
-            case WATER:return 0xff315f79;
+            case WATER:return 0xff427f99;
+            case SEA:return 0xff244b6c;
+            case VOID:return 0xff152331;
             case MOUNTAIN_PATH:return 0xff97836a;
             case SHALLOWS:return 0xff6da6a7;
             case PLANK_ROAD:return 0xff5f6a61;
@@ -43,7 +45,7 @@ final class TerrainTiles {
                 for(int i=0;i<3;i++){float x=(i-1)*15,y=i%2*10-4;Path mountain=new Path();mountain.moveTo(x-12,y+15);mountain.lineTo(x,y-15);mountain.lineTo(x+14,y+15);mountain.close();p.setColor(0xffadb09d);c.drawPath(mountain,p);mountain.reset();mountain.moveTo(x,y-15);mountain.lineTo(x+14,y+15);mountain.lineTo(x-1,y+7);mountain.close();p.setColor(0xff535f5d);c.drawPath(mountain,p);}
                 if(t==World.Terrain.MOUNTAIN_PATH){Path road=new Path();road.moveTo(-20,22);road.cubicTo(8,8,-9,2,18,-23);p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(6);p.setColor(0xff675944);c.drawPath(road,p);p.setStrokeWidth(3.5f);p.setColor(0xffd4bb85);c.drawPath(road,p);p.setStyle(Paint.Style.FILL);}
                 if(t==World.Terrain.PLANK_ROAD){p.setColor(0xff333e3c);c.drawRect(-8,-26,8,26,p);for(int y=-25;y<26;y+=4){p.setColor(y%3==0?0xffd4b177:0xffb89760);c.drawRect(-7,y,7,y+3,p);}p.setColor(0xffe1c895);p.setStrokeWidth(.8f);c.drawLine(-9,-25,-9,25,p);c.drawLine(9,-25,9,25,p);}break;
-            case WATER:case SHALLOWS:
+            case SEA:case WATER:case SHALLOWS:
                 if(t==World.Terrain.SHALLOWS){p.setColor(0xffb9bea0);c.drawOval(-24,-8,-4,12,p);c.drawOval(5,5,20,19,p);}
                 p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(.75f);p.setColor(t==World.Terrain.WATER?0xff779da9:0xffc4dfcc);
                 for(int i=0;i<6;i++){float y=i*8-20,x=(i+variant)%2*8-23;Path wave=new Path();wave.moveTo(x,y);wave.cubicTo(x+5,y-3,x+11,y+3,x+17,y);c.drawPath(wave,p);}p.setStyle(Paint.Style.FILL);break;

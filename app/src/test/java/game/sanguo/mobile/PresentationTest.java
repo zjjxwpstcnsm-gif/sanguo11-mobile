@@ -36,6 +36,17 @@ public final class PresentationTest {
         check(UiModels.turnSummary(low,SaveCodec.decode(SaveCodec.encode(low))).contains("没有新增异常"),"persistent anomaly not repeated as new alert");
     }
     public static void main(String[] args)throws Exception {
+        World colors=ScenarioCatalog.load("heroes-mobile-sandbox",1);
+        check(FactionColors.color(colors,1)==0xff285be8,"Cao Cao pure blue");
+        check(FactionColors.color(colors,0)==0xff36ac54,"Liu Bei green");
+        check(FactionColors.color(colors,2)==0xffe34843,"Sun Quan red");
+        for(Hex h:new Hex[]{colors.city(20000).hex,colors.city(20017).hex,colors.city(20041).hex}){
+            MapCamera offset=new MapCamera();offset.columnOffset=(colors.height-1)/2;offset.resize(1080,1600,colors.sourceMapWidth*43.30127f,colors.height*37.5f,25,3);
+            offset.focus((h.q+h.r*.5f-offset.columnOffset)*43.30127f,h.r*37.5f);
+            check(h.q>=offset.firstColumn(h.r,colors.width,50)&&h.q<=offset.lastColumn(h.r,colors.width,50),"odd-r camera retains distant city in visible column range");
+        }
+
+
         deploymentCaps();readyQueueAndNotices();
         for(int i=0;i<PortraitCatalog.NAMES.length;i++)check(PortraitCatalog.index(PortraitCatalog.NAMES[i])==i,"stable famous portrait mapping");
         check(PortraitCatalog.index("劉備")==1&&PortraitCatalog.index("趙雲")==6&&PortraitCatalog.index("自建武将")==-1,"traditional names and custom portrait fallback");
