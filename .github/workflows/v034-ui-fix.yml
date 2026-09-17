@@ -1,0 +1,70 @@
+name: v0.34 quick navigator regression fix
+
+on:
+  push:
+    branches:
+      - agent/mobile-ux-geography-turn-v034
+    paths:
+      - .github/workflows/v034-ui-fix.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/mobile-ux-geography-turn-v034
+          fetch-depth: 0
+      - name: Scope quick navigator to map context
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('app/src/main/java/game/sanguo/mobile/MainActivity.java')
+          s = p.read_text()
+          old = '''    private void refreshQuickNavigator(){
+        if(quickCityStrip==null||quickUnitStrip==null||world==null)return;
+        quickCityStrip.removeAllViews();quickUnitStrip.removeAllViews();
+        List<World.City> ownCities=new ArrayList<>();for(World.City c:world.cities)if(c.owner==world.player)ownCities.add(c);ownCities.sort(Comparator.comparingInt(c->c.id));
+        for(World.City c:ownCities){Button b=button(c.name+" · "+(c.troops/1000)+"k",v->selectObject(c.hex,-2,true));b.setTextSize(11);b.setContentDescription("定位己方据点 "+c.name);quickCityStrip.addView(b,new LinearLayout.LayoutParams(dp(104),-1));}
+        List<World.Unit> ownUnits=new ArrayList<>();for(World.Unit u:world.fieldUnits())if(u.owner==world.player)ownUnits.add(u);ownUnits.sort(Comparator.comparingInt(u->u.id));
+        for(World.Unit u:ownUnits){World.Officer o=world.officer(u.officerId);String n=o==null?("部队"+u.id):o.name;Button b=button(n+" · "+u.troops,v->selectObject(u.hex,u.id,true));b.setTextSize(11);b.setContentDescription("定位己方部队 "+n);quickUnitStrip.addView(b,new LinearLayout.LayoutParams(dp(116),-1));}
+        View cityRow=(View)quickCityStrip.getParent().getParent();View unitRow=(View)quickUnitStrip.getParent().getParent();cityRow.setVisibility(ownCities.isEmpty()?View.GONE:View.VISIBLE);unitRow.setVisibility(ownUnits.isEmpty()?View.GONE:View.VISIBLE);
+    }
+'''
+          new = '''    private void refreshQuickNavigator(){
+        if(quickCityStrip==null||quickUnitStrip==null||world==null)return;
+        View cityRow=(View)quickCityStrip.getParent().getParent();View unitRow=(View)quickUnitStrip.getParent().getParent();
+        boolean mapContext="map".equals(ui.page)&&!aiRunning;
+        if(!mapContext){
+            quickCityStrip.removeAllViews();quickUnitStrip.removeAllViews();
+            cityRow.setVisibility(View.GONE);unitRow.setVisibility(View.GONE);return;
+        }
+        quickCityStrip.removeAllViews();quickUnitStrip.removeAllViews();
+        List<World.City> ownCities=new ArrayList<>();for(World.City c:world.cities)if(c.owner==world.player)ownCities.add(c);ownCities.sort(Comparator.comparingInt(c->c.id));
+        for(World.City c:ownCities){Button b=button(c.name+" · "+(c.troops/1000)+"k",v->selectObject(c.hex,-2,true));b.setTextSize(11);b.setContentDescription("定位己方据点 "+c.name);quickCityStrip.addView(b,new LinearLayout.LayoutParams(dp(104),-1));}
+        List<World.Unit> ownUnits=new ArrayList<>();for(World.Unit u:world.fieldUnits())if(u.owner==world.player)ownUnits.add(u);ownUnits.sort(Comparator.comparingInt(u->u.id));
+        for(World.Unit u:ownUnits){World.Officer o=world.officer(u.officerId);String n=o==null?("部队"+u.id):o.name;Button b=button(n+" · "+u.troops,v->selectObject(u.hex,u.id,true));b.setTextSize(11);b.setContentDescription("定位己方部队 "+n);quickUnitStrip.addView(b,new LinearLayout.LayoutParams(dp(116),-1));}
+        cityRow.setVisibility(ownCities.isEmpty()?View.GONE:View.VISIBLE);unitRow.setVisibility(ownUnits.isEmpty()?View.GONE:View.VISIBLE);
+    }
+'''
+          if old not in s:
+              raise SystemExit('target refreshQuickNavigator block not found')
+          p.write_text(s.replace(old, new, 1))
+          PY
+      - name: Run focused regression tests
+        shell: bash
+        run: |
+          bash scripts/test-ui-models.sh
+          bash scripts/test-core.sh
+      - name: Commit fix
+        shell: bash
+        run: |
+          git config user.name "sanguo11-mobile-ci"
+          git config user.email "actions@users.noreply.github.com"
+          git add app/src/main/java/game/sanguo/mobile/MainActivity.java
+          git commit -m "fix: scope quick navigation to map context"
+          git push origin HEAD:agent/mobile-ux-geography-turn-v034
