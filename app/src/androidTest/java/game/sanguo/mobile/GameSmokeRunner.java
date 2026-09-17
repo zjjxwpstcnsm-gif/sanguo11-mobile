@@ -1339,7 +1339,13 @@ public final class GameSmokeRunner extends Instrumentation {
     }
     private void setSearch(String value){setInput("搜索武将姓名",value);}
     private void setInput(String description,String value){
-        AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();AccessibilityNodeInfo input=findInput(root,description);require(input!=null,"input available: "+description);Bundle args=new Bundle();args.putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE,value);require(input.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT,args),"set editable input");waitForIdleSync();SystemClock.sleep(200);
+        AccessibilityNodeInfo input=null;long until=SystemClock.uptimeMillis()+12000;boolean forward=true;
+        while(SystemClock.uptimeMillis()<until){
+            waitForIdleSync();AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();input=findInput(root,description);
+            if(input!=null&&input.isVisibleToUser())break;input=null;
+            if(forward&&!scroll(root))forward=false;if(!forward)scrollBack(root);SystemClock.sleep(250);
+        }
+        require(input!=null,"input reachable: "+description);Bundle args=new Bundle();args.putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE,value);require(input.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT,args),"set editable input");waitForIdleSync();SystemClock.sleep(200);
     }
     private AccessibilityNodeInfo findInput(AccessibilityNodeInfo n,String description){if(n==null)return null;if(description.contentEquals(n.getContentDescription()==null?"":n.getContentDescription()))return n;for(int i=0;i<n.getChildCount();i++){AccessibilityNodeInfo found=findInput(n.getChild(i),description);if(found!=null)return found;}return null;}
     private void locateCity(String city){
