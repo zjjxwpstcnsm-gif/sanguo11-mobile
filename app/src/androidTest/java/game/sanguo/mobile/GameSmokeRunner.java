@@ -1353,6 +1353,7 @@ public final class GameSmokeRunner extends Instrumentation {
         World.City target=w.cities.stream().filter(c->c.name.equals(city)).findFirst().orElse(null);
         require(target!=null,"city exists in active scenario: "+city);
         clickNav("城市");setInput("搜索城市或势力",city);click(city+" · "+w.faction(target.owner),false);waitText(city,true);
+        runOnMainSync(()->{try{java.lang.reflect.Field f=MainActivity.class.getDeclaredField("ui");f.setAccessible(true);((ClientState)f.get(current)).cityQuery="";}catch(ReflectiveOperationException e){throw new RuntimeException(e);}});
     }
     private void waitForTurn(int turn)throws Exception {
         long until=SystemClock.uptimeMillis()+15000;
