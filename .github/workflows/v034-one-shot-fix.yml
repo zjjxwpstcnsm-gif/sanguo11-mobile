@@ -1,0 +1,71 @@
+name: v034 one-shot UI smoke fix
+
+on:
+  push:
+    branches:
+      - agent/mobile-ux-geography-turn-v034
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: ${{ !contains(github.event.head_commit.message, '[v034-patch]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/mobile-ux-geography-turn-v034
+          fetch-depth: 0
+      - name: Apply targeted v0.34 fixes
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          main = Path('app/src/main/java/game/sanguo/mobile/MainActivity.java')
+          s = main.read_text(encoding='utf-8')
+
+          old = 'else if("officers".equals(ui.page))title="武将";'
+          new = 'else if("officers".equals(ui.page))title="武将一览";'
+          if old not in s:
+              raise SystemExit('officer page title target not found')
+          s = s.replace(old, new, 1)
+
+          old = '''        scroll.addView(list,new ScrollView.LayoutParams(-1,-2));
+          holder[0]=new AlertDialog.Builder(this).setTitle("选择剧本").setView(scroll)
+               .setNegativeButton("返回",null).create();'''
+          new = '''        scroll.addView(list,new ScrollView.LayoutParams(-1,-2));
+          int screenHeight=getResources().getDisplayMetrics().heightPixels;
+          int listHeight=UiViews.dp(this,52)*ss.size()+UiViews.dp(this,14);
+          int pickerHeight=Math.min(listHeight,Math.max(UiViews.dp(this,208),(int)(screenHeight*0.62f)));
+          LinearLayout shell=UiViews.col(this);
+          shell.addView(scroll,new LinearLayout.LayoutParams(-1,pickerHeight));
+          holder[0]=new AlertDialog.Builder(this).setTitle("选择剧本").setView(shell)
+               .setNegativeButton("返回",null).create();'''
+          if old not in s:
+              raise SystemExit('scenario picker target not found')
+          s = s.replace(old, new, 1)
+          main.write_text(s, encoding='utf-8')
+
+          smoke = Path('app/src/androidTest/java/game/sanguo/mobile/GameSmokeRunner.java')
+          t = smoke.read_text(encoding='utf-8')
+          old = 'click("新建游戏 · 选择剧本",true);waitText("选择剧本",false);screenshot("01-scenarios");'
+          new = 'click("新建游戏 · 选择剧本",true);waitText("选择剧本",true);screenshot("01-scenarios");'
+          if old not in t:
+              raise SystemExit('scenario smoke wait target not found')
+          t = t.replace(old, new, 1)
+          smoke.write_text(t, encoding='utf-8')
+          PY
+      - name: Commit fix
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/src/main/java/game/sanguo/mobile/MainActivity.java app/src/androidTest/java/game/sanguo/mobile/GameSmokeRunner.java
+          git commit -m "fix: stabilize overview and scenario picker [v034-patch]"
+          git push origin HEAD:agent/mobile-ux-geography-turn-v034
