@@ -170,7 +170,7 @@ public final class MainActivity extends Activity {
     private void refreshQuickNavigator(){
         if(quickCityStrip==null||quickUnitStrip==null||world==null)return;
         View cityRow=(View)quickCityStrip.getParent().getParent();View unitRow=(View)quickUnitStrip.getParent().getParent();
-        boolean mapContext="map".equals(ui.page)&&!aiRunning;
+        boolean mapContext="map".equals(ui.page)&&!aiRunning&&!ui.panelVisible;
         if(!mapContext){
             quickCityStrip.removeAllViews();quickUnitStrip.removeAllViews();
             cityRow.setVisibility(View.GONE);unitRow.setVisibility(View.GONE);return;
@@ -493,7 +493,9 @@ public final class MainActivity extends Activity {
             Button plots=button("计略",v->{if(error!=null){message("计略暂不可用",error);return;}pendingMarch=null;unitCommand="select";refresh();warUi().plots(u);});plots.setAlpha(error==null?1f:.55f);
             Button cancel=button("取消选中",v->clearUnitSelection());
             if(u instanceof Domestic.Mission){attack.setText("补给");attack.setOnClickListener(v->{if(error!=null)message("补给暂不可用",error);else convoySupply((Domestic.Mission)u);});tactics.setText("停止");tactics.setOnClickListener(v->apply(world.marches.stop(u.id)));plots.setText("货物");plots.setOnClickListener(v->{ui.panelVisible=true;refresh();revealPanel();});}
-            for(Button b:new Button[]{march,attack,tactics,plots,cancel})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
+            for(Button b:new Button[]{march,attack,tactics,plots})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
+            if(!(u instanceof Domestic.Mission)&&u.march!=null)actions.addView(button("停止行军",v->apply(world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
+            actions.addView(cancel,new LinearLayout.LayoutParams(0,dp(48),1));
             commandDock.addView(actions,new LinearLayout.LayoutParams(portrait()?-1:dp(360),-2));return;
         }
         LinearLayout copy=new LinearLayout(this);copy.setOrientation(LinearLayout.VERTICAL);copy.setGravity(Gravity.CENTER_VERTICAL);
