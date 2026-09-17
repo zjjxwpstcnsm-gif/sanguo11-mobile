@@ -18,6 +18,12 @@ jobs:
         run: |
           git fetch origin main
           git show origin/main:tools/v034_apply.py > /tmp/v034_apply.py
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('/tmp/v034_apply.py');s=p.read_text()
+          s=s.replace("r'(\\n\\s*private void refresh\\(\\)\\s*\\{)'","r'(\\n\\s*(?:private )?void refresh\\(\\)\\s*\\{)'")
+          p.write_text(s)
+          PY
       - name: Apply migration and regenerate content
         run: |
           python3 /tmp/v034_apply.py
