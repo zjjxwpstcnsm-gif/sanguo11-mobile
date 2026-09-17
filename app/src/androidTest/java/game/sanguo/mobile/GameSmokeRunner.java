@@ -293,14 +293,25 @@ public final class GameSmokeRunner extends Instrumentation {
         before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(before,SaveCodec.encode(saved())),"construction executes only once on restore");
         java.lang.reflect.Field f=MainActivity.class.getDeclaredField("ui");f.setAccessible(true);
         runOnMainSync(()->{try{ClientState state=(ClientState)f.get(current);state.query="";state.owner=-1;state.city=-1;state.listPageSize=20;}catch(Exception e){throw new RuntimeException(e);}});
-        clickNav("武将");waitText("1/34 · 670项",true);click("下一页",true);waitText("2/34 · 670项",true);
-        runOnMainSync(current::recreate);waitText("2/34 · 670项",true);screenshot("v030-paginated-officers");
+        clickNav("武将");waitOfficerPage(1);click("下一页",true);waitOfficerPage(2);
+        runOnMainSync(current::recreate);waitOfficerPage(2);screenshot("v030-paginated-officers");
         World drag=DisplacementFixture.create("plain");drag.unit(2).hex=new Hex(12,8);installFixture(drag,drag.unit(1).hex);
         before=SaveCodec.encode(saved());dragArmy(drag.unit(1).hex,new Hex(4,6),true);require(Arrays.equals(before,SaveCodec.encode(saved())),"cancel drag preserves state");
         dragArmy(drag.unit(1).hex,new Hex(4,6),false);World moved=saved();require(moved.unit(1).hex.equals(new Hex(4,6)),"long press drag commits reachable tile");
         require(!moved.unit(1).acted,"drag leaves combat order available");screenshot("v030-drag-moved");before=SaveCodec.encode(moved);
         runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(before,SaveCodec.encode(saved())),"drag survives recreation without duplicate movement");
         World restored=SaveCodec.decode(original);installFixture(restored,restored.home().hex);
+    }
+    // Rapid pager updates can leave the accessibility snapshot stale on fast CI devices.
+    // Keep the physical tap and verify both the actually rendered widget and persisted UI model.
+    private void waitOfficerPage(int page)throws Exception{
+        java.lang.reflect.Field field=MainActivity.class.getDeclaredField("ui");field.setAccessible(true);long until=SystemClock.uptimeMillis()+12000;
+        while(SystemClock.uptimeMillis()<until){boolean[] matched={false};runOnMainSync(()->{try{ClientState state=(ClientState)field.get(current);matched[0]=state.listPages.getInt("officers")==page-1&&shownText(current.getWindow().getDecorView(),page+"/34 · 670项");}catch(IllegalAccessException e){throw new RuntimeException(e);}});if(matched[0])return;SystemClock.sleep(100);}
+        throw new AssertionError("rendered officer page/model did not reach "+page);
+    }
+    private boolean shownText(android.view.View view,String text){
+        if(view instanceof android.widget.TextView&&view.isShown()&&text.contentEquals(((android.widget.TextView)view).getText()))return true;
+        if(view instanceof android.view.ViewGroup){android.view.ViewGroup group=(android.view.ViewGroup)view;for(int i=0;i<group.getChildCount();i++)if(shownText(group.getChildAt(i),text))return true;}return false;
     }
     private void dragArmy(Hex from,Hex to,boolean cancel)throws Exception {
         MapView map=mapView();MapCamera c=camera(map);int[] pos=new int[2];float[] p=new float[4];
