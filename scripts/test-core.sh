@@ -56,3 +56,7 @@ done
 
 java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.TacticalLogisticsTest
 java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.DisplacementTest
+
+java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.MapSkillsTest
+
+java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.NavigationDefenseTest

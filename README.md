@@ -1,10 +1,19 @@
 # sanguo11-mobile
 
-当前增量：**v0.29 战法位移与连续操作**。修复通行能力绕过与己方陷阱触发，区分施放限制和受阻结果，增加正式规则预览、实际分项战果、可恢复出征向导。见[规则与差异](docs/TACTICAL_DISPLACEMENT_V0_29.md)、[验收记录](docs/validation/v029/README.md)。
+已同步此前交付的v0.30–v0.32源码和验收资料。[整合记录与提交身份说明](docs/INTEGRATION_V0_32.md)。下文未上传等表述为前轮交付时的历史状态。
+
+当前开发版：**v0.32 小地图、港关、城防与六个年代开局**。从实际交付v0.31继续，保留全图性能优化。右上小地图可直接跳转/收起；视图菜单可切换主将及兵力/气力双条。新开局载入87据点及六个年代配置。旧档地图保留，未宣称100%原版还原。[本轮说明](docs/NAVIGATION_DEFENSE_V0_32.md) · [验收记录](docs/validation/v032/README.md)。
+
+
+当前性能增量：**v0.31 全图缓存与局部边界绘制**。基于本地已交付 v0.30，解决远景每帧遍历数万格的热点，后台生成有界地形/领地图层，保留近景与原有游戏操作。见[实现与限制](docs/MAP_PERFORMANCE_V0_31.md)、[验收记录](docs/validation/v031/README.md)。
+
+当前增量：**v0.30 大地图、城市开发地、火系特技和触控操作**。见[改动、来源与还原边界](docs/GEOGRAPHY_SKILLS_V0_30.md)。
 
 独立运行的 Android 三国回合制策略游戏工程，最终目标参照 **PC《三国志11＋威力加强版》** 的完整系统范围。横竖屏、中文、离线游玩；不依赖模拟器、原版可执行文件或远程串流。
 
 ## 当前状态
+
+v0.32沿用存档v22并兼容v1–v21；新增港关、地理和年代配置需要新开局，旧档地图保留。代码已本地提交，本轮未重新尝试此前被自动审批拒绝的GitHub上传。APK已本地编译，核心/UI模型、内容与API29实装导航通过；最终检查见[本轮说明](docs/NAVIGATION_DEFENSE_V0_32.md)与[验证记录](docs/validation/v032/README.md)。下列为历史版本记录。
 
 v0.29沿用存档v21、固定包名和签名。[PR #36](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/36)已按本轮授权核查合并；本轮[PR #37](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/37)保留待审阅。交付APK、运行提交及通过状态以[最终验收记录](docs/validation/v029/README.md)为准。设施碰撞耐久、精确原版公式及水军参数差异仍待核验，没有宣称全部战法完成精确还原。
 
@@ -138,7 +147,7 @@ PR #7、#8、#9、#10 已合并。加入俘虏、40武官职位、功绩俸禄�
 2. 底部「城市」优先列出己方城池，点击后放大定位。点己方城池即可征兵、训练、生产和出征。
 3. 点己方部队，先点固定底栏「行军」，再点地图目标查看路线，用底栏「开始行军」确认，远程目标逐旬自动前进，支持改道/停止；点射程内敌军普攻，点射程内敌方城池攻城，点相邻己方城池回城。弩兵可隔一格普攻，投石与舰船使用各自射程；移动需确认路径并消耗有限预算，移动后仍可攻击、战法、计略、入城或待命；这些命令结束完整行动。
 4. 「下一旬」执行其他存活势力的电脑行动，然后结算粮草、收入并恢复我方行动。结算在后台快照执行，期间阻止重复操作。
-5. 「菜单 → 保存局面 / 读取存档」支持3个手动槽。自动存档在成功操作和进入后台时更新；当前写入v20，能读取v1～v19旧存档，旧手动槽对应现在的槽1。
+5. 「菜单 → 保存局面 / 读取存档」支持3个手动槽。自动存档在成功操作和进入后台时更新；当前写入v22，能读取v1～v21旧存档，旧手动槽对应现在的槽1。
 6. 己方城池「内政」开发设施和巡察，「调动」派遣人员或运输，「任务」查看改道/返回，点击设施可取消/拆除。
 7. 城池「武将」可搜索、登用、褒奖、任命太守；概览「人事 / 城市治理」可查看本城状态。武将一览提供姓名、势力、城市、能力排序与在野筛选。
 8. 「军事」征兵时显示本城剩余兵源，选择武将后预览实际征兵/训练效果；太守、治安会影响真实月收入。
@@ -167,7 +176,7 @@ v0.8 Agent 1 开发分支新增移动确认与移动后行动、部分真实特�
 
 Android 构建：安装 JDK 17、Android SDK 35、Build Tools 35.0.0、Gradle 8.11.1，然后运行 `./gradlew test :core:check :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`。已提交固定 Gradle 8.11.1 及 SHA-256 的 Wrapper。
 
-APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-v026-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
+APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-v030-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
 
 验证范围与待验项目见 [VALIDATION.md](docs/VALIDATION.md)。
 

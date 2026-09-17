@@ -28,7 +28,7 @@ final class DomesticUi {
     void build(World.City c){
         new AlertDialog.Builder(activity).setTitle("设施开发 · 直接最高级").setAdapter(GameIcon.adapter(activity,w,Arrays.asList(Domestic.Kind.values()),k->k.label+" · Lv"+Domestic.buildLevel(k)+" · 金"+k.cost+" · "+Domestic.buildEffect(k)),(d,i)->{
             Domestic.Kind kind=Domestic.Kind.values()[i];officer(c,o->{
-                List<Hex> sites=w.domestic.buildSites(c.id);if(kind==Domestic.Kind.SHIPYARD)sites.removeIf(h->h.neighbors().stream().noneMatch(w.army::water));if(sites.isEmpty()){message("无法开发","没有可用平地或已经达到每城6处设施上限。");return;}
+                List<Hex> sites=w.domestic.buildSites(c.id);if(kind==Domestic.Kind.SHIPYARD)sites.removeIf(h->h.neighbors().stream().noneMatch(w.army::water));if(sites.isEmpty()){message("无法开发","没有可用开发地或已经达到本城设施上限。");return;}
                 activity.pickOnMap("建设"+kind.label+" Lv"+Domestic.buildLevel(kind),c.hex,sites,h->
                     confirm("建设"+kind.label,c.name+" · "+o.name+"\n金"+kind.cost+" / 行动力10 / "+(o.politics>=80?2:3)+"旬\n建设期间武将不可执行其他命令。\n建成即最高等级 Lv"+Domestic.buildLevel(kind)+"："+Domestic.buildEffect(kind)+"\n取消不退费。","开工",()->apply.accept(w.domestic.build(c.id,o.id,kind,h))));
             });
@@ -98,7 +98,7 @@ final class DomesticUi {
     }
     void overview(){
         List<String> labels=new ArrayList<>();List<Runnable> actions=new ArrayList<>();
-        for(World.City c:w.cities)if(c.owner==w.player){labels.add(c.name+" · 设施"+w.domestic.count(c.id)+"/6 · 月金"+w.domestic.monthlyGold(c.id)+" / 季粮"+w.domestic.monthlyFood(c.id));actions.add(()->focus.accept(c.hex));}
+        for(World.City c:w.cities)if(c.owner==w.player){labels.add(c.name+" · 设施"+w.domestic.count(c.id)+"/"+w.development.capacity(c.id)+" · 月金"+w.domestic.monthlyGold(c.id)+" / 季粮"+w.domestic.monthlyFood(c.id));actions.add(()->focus.accept(c.hex));}
         for(World.City c:w.cities)if(c.owner==w.player){labels.add(c.name+" · 人事 / 城市治理 / 武将状态");actions.add(()->new StrategyUi(activity,w,apply).city(c));}
         for(Domestic.Facility f:w.domestic.facilities)if(w.city(f.cityId).owner==w.player){labels.add(w.city(f.cityId).name+" · "+f.kind.label+" · "+(f.remaining==0?"已建成":"剩"+f.remaining+"旬"));actions.add(()->facility(f));}
         for(Domestic.Mission m:w.domestic.missions)if(m.owner==w.player){labels.add((m.transport?"运输":"调动")+" · "+w.officer(m.officerId).name+" → "+w.city(m.targetCity).name+" · "+w.domestic.status(m));actions.add(()->mission(m));}

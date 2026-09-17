@@ -1,0 +1,3 @@
+INSTRUMENTATION_RESULT: stream=NAVIGATION32 PASS: minimap taps/drags/collapse/rotation, independent labels/bars, live ports/gates, six openings and state preservation.
+
+INSTRUMENTATION_CODE: -1

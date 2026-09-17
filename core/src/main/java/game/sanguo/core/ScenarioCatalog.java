@@ -21,6 +21,20 @@ public final class ScenarioCatalog {
         }
         if(result.isEmpty())throw new IOException("剧本目录为空");return result;
     }
+    /** Lightweight catalog rows: opening the picker must not build every national world. */
+    public static final class Summary {
+        public final String id,name;public final int sites,officers,factions;
+        private Summary(String id,Properties p){this.id=id;name=p.getProperty("name");sites=Integer.parseInt(p.getProperty("cities"));officers=Integer.parseInt(p.getProperty("officers"));factions=Integer.parseInt(p.getProperty("factions"));}
+    }
+    private static List<Summary> cachedSummaries;
+    public static synchronized List<Summary> summaries()throws IOException {
+        if(cachedSummaries!=null)return cachedSummaries;
+        List<Summary> result=new ArrayList<>();
+        for(String id:entries().keySet())try(InputStream in=ScenarioCatalog.class.getResourceAsStream("/scenarios/"+id+".properties")){
+            if(in==null)throw new IOException("剧本资源缺失");Properties p=new Properties();p.load(new InputStreamReader(in,StandardCharsets.UTF_8));result.add(new Summary(id,p));
+        }catch(IllegalArgumentException e){throw new IOException("剧本目录字段无效",e);}
+        return cachedSummaries=Collections.unmodifiableList(result);
+    }
     public static List<World> all()throws IOException {
         List<World> worlds=new ArrayList<>();for(String id:entries().keySet())worlds.add(load(id,0));return worlds;
     }

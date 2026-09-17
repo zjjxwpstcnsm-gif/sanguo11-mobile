@@ -1,0 +1,12 @@
+{
+  "version": "0.31.0-map-performance-dev",
+  "versionCode": 31,
+  "package": "game.sanguo.mobile.dev",
+  "runtimeCommit": "be183384348fcd5f9833670a559219435871778b",
+  "bytes": 6305518,
+  "sha256": "cdeaea047e8dbe179642cf4f88fef3da0cbb6576320672476fe2f73f1ee3051a",
+  "certificateSha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+  "baseCommit": "6d9452c",
+  "baseRuntimeCommit": "da3f09f",
+  "saveVersion": 21
+}

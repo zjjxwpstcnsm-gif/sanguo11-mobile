@@ -58,7 +58,7 @@ public final class PrisonerEscortTest {
     static void migrationAndValidation()throws Exception{
         byte[] raw;try(InputStream in=PrisonerEscortTest.class.getResourceAsStream("/legacy-v15.sg11.b64")){raw=Base64.getMimeDecoder().decode(in.readAllBytes());}
         check(raw[7]==15,"fixture produced by untouched v15 writer");World old=SaveCodec.decode(raw);Government.Prisoner p=old.government.prisoner(7);
-        check(p.cityId==0&&p.unitId==-1,"old city prisoners stay at original jail");check(SaveCodec.encode(old)[7]==21,"v15 upgrades to v17");copy(old);
+        check(p.cityId==0&&p.unitId==-1,"old city prisoners stay at original jail");check(SaveCodec.encode(old)[7]==22,"v15 upgrades to v17");copy(old);
         World w=battle();p=w.government.prisoner(7);p.unitId=999;invalid(w);p.unitId=1;p.cityId=0;invalid(w);p.cityId=-1;p.captor=2;invalid(w);
     }
     static void invalid(World w)throws Exception{try{SaveCodec.encode(w);throw new AssertionError("invalid escort accepted");}catch(IOException expected){checks++;}}

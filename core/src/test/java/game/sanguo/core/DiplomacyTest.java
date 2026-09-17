@@ -116,7 +116,7 @@ public final class DiplomacyTest {
     static void migration()throws Exception{
         try(InputStream in=DiplomacyTest.class.getResourceAsStream("/save-v16-before-diplomacy.b64")){
             byte[] old=Base64.getMimeDecoder().decode(in.readAllBytes());check(old[7]==16,"real previous writer fixture");World w=SaveCodec.decode(old);
-            check(w.government.prisoner(7).unitId==1&&w.diplomacy.aids.isEmpty(),"old escort migrates without invented diplomacy");check(bytes(w)[7]==21&&Arrays.equals(bytes(w),bytes(copy(w))),"current save exact roundtrip");
+            check(w.government.prisoner(7).unitId==1&&w.diplomacy.aids.isEmpty(),"old escort migrates without invented diplomacy");check(bytes(w)[7]==22&&Arrays.equals(bytes(w),bytes(copy(w))),"current save exact roundtrip");
         }
         World w=world();w.diplomacy.attempts.add("exchange:999:2");try{bytes(w);throw new AssertionError("invalid attempt saved");}catch(IOException expected){checks++;}
     }

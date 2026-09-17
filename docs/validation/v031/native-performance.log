@@ -1,0 +1,3 @@
+INSTRUMENTATION_RESULT: stream=MAP PERFORMANCE PASS: full-map drawing, territory switches, gestures, opaque frames and state preservation verified.
+
+INSTRUMENTATION_CODE: -1

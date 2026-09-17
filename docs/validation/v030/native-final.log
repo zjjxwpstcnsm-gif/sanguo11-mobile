@@ -1,0 +1,23 @@
+Waiting for Android boot: 0
+Waiting for Android boot: 20
+BOOT COMPLETE
+
+
+
+
+Performing Streamed Install
+Success
+
+Performing Streamed Install
+Success
+
+
+Dismissed pre-game System UI startup dialog using Wait
+INSTALLED SOURCE SHA256 811b3c5688ffda9bc0ecf2fd7c671a9b0e68695645b228bffdaeb13eb71e2add
+RUNNING NATIVE FIDELITY FLOW
+INSTRUMENTATION_RESULT: stream=FIDELITY PASS: geography, parcel construction, draft restoration, pagination and army drag verified.
+
+INSTRUMENTATION_CODE: -1
+
+/sdcard/Android/data/game.sanguo.mobile.dev/files/: 5 files pulled, 0 skipped. 8.5 MB/s (2105926 bytes in 0.237s)
+

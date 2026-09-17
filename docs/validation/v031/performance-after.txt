@@ -1,0 +1,7 @@
+version=0.31.0-map-performance-dev
+Software Canvas onDraw timings; NOT display FPS or ARM device performance.
+mode=0 viewport=1080x1468 tilesVisited=0 objectsVisited=42 medianMs=164.469195 p95Ms=237.259125 maxMs=237.790951
+mode=1 viewport=1080x1468 tilesVisited=0 objectsVisited=42 medianMs=230.72988 p95Ms=301.433106 maxMs=334.037962
+mode=2 viewport=1080x1468 tilesVisited=0 objectsVisited=42 medianMs=173.758785 p95Ms=229.192233 maxMs=231.012793
+overviewBytes=16264476 overviewBuilds=1
+Gesture/rotation/state, memory cap, cache reuse and ownership/scenario invalidation PASS

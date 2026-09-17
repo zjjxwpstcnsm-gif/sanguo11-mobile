@@ -27,7 +27,7 @@ public final class War {
         Tactic(String label,World.Weapon weapon,int energy,int rank,int min,int max,double mult,String effect){this.label=label;this.weapon=weapon;this.energy=energy;this.rank=rank;minRange=min;maxRange=max;multiplier=mult;this.effect=effect;}
     }
     public enum Plot {
-        FIRE("火计",10,"点燃目标格，火场持续2旬"), EXTINGUISH("灭火",10,"扑灭目标格火焰"),
+        FIRE("火计",10,"即时火伤并点燃目标格；通常持续2旬，暴击延长1旬"), EXTINGUISH("灭火",10,"扑灭目标格火焰"),
         CONFUSE("扰乱",15,"令敌军跳过1次行动"), MISLEAD("伪报",15,"敌军下次行动向己城退却"),
         CALM("镇静",10,"清除己方部队混乱或伪报"), AMBUSH("伏兵",10,"从森林伏击邻接敌军并削减气力"),
         INFIGHT("同讨",20,"使目标与其相邻同势力部队交战；不能针对兵器"),
@@ -78,7 +78,7 @@ public final class War {
         int distance=a.hex.distance(b.hex);return distance<min||distance>max?"敌军不在范围内":null;
     }
     private game.sanguo.core.battle.Terrain terrain(Hex h){
-        switch(w.terrain[h.q][h.r]){case FOREST:return game.sanguo.core.battle.Terrain.FOREST;case WATER:return game.sanguo.core.battle.Terrain.RIVER;case MOUNTAIN:return game.sanguo.core.battle.Terrain.MOUNTAIN;default:return game.sanguo.core.battle.Terrain.PLAIN;}
+        switch(w.terrain[h.q][h.r]){case FOREST:return game.sanguo.core.battle.Terrain.FOREST;case WATER:case SEA:return game.sanguo.core.battle.Terrain.RIVER;case MOUNTAIN:return game.sanguo.core.battle.Terrain.MOUNTAIN;default:return game.sanguo.core.battle.Terrain.PLAIN;}
     }
     private int damage(World.Unit a,World.Unit b,double scale,Random rng){
         int amount=w.army.water(a.hex)||w.army.water(b.hex)||a.weapon.ordinal()>=4||b.weapon.ordinal()>=4?w.army.damage(a,b,scale,rng):DamageCalculator.rawDamage(LegacyWorldBattleAdapter.toBattleUnit(a,w.army.combatOfficer(a),new HexPos(a.hex.q,a.hex.r)),
@@ -187,10 +187,12 @@ public final class War {
     public Displacement.Preview tacticPreview(int actor,int target,Tactic tactic){
         World.Unit a=w.unit(actor),b=w.unit(target);String error=tacticError(actor,target,tactic);
         String heading=tactic==null?"未选择战法":tactic.label+" · 消耗气力"+tactic.energy+" / 当前"+(a==null?0:a.energy)+"\n命中率"+tacticChance(actor,target,tactic)+"%；命中或失败均结束本旬行动，失败同样扣气力。";
+        if(a!=null&&tactic==Tactic.FIRE_ARROW)heading+="\n"+w.skills.firePreview(a,b,false);
         if(b!=null)heading+="\n实际目标："+w.officer(b.officerId).name+" · "+b.hex;
         if(tactic!=null)heading+="\n射程："+tactic.minRange+"–"+(tactic.maxRange+(a!=null&&a.weapon==World.Weapon.CROSSBOW?range(a)-a.weapon.range:0))+"格；效果："+tactic.effect;
         Displacement.Preview p=displacement.preview(a,b,Displacement.kind(tactic),error,heading);
         if(error!=null)return p;
+        if(tactic==Tactic.FIRE_ARROW)p=new Displacement.Preview(null,p.text+"\n"+w.skills.firePreview(a,b,false),p.actorPath,p.targetPath,p.riskHexes,p.blocked,p.friendlyRisk);
         List<Hex> risks=new ArrayList<>(p.riskHexes);boolean friendly=p.friendlyRisk;StringBuilder text=new StringBuilder(p.text);
         List<World.Unit> victims=tacticVictims(a,b,tactic);if(victims.size()>1){text.append("\n命中时波及：");for(World.Unit v:victims){text.append(w.officer(v.officerId).name).append("@").append(v.hex).append(" ");risks.add(v.hex);if(v.owner==a.owner)friendly=true;}}
         if(friendly&&!p.friendlyRisk)text.append("\n警示：范围伤害会波及己方部队。");
@@ -280,7 +282,7 @@ public final class War {
         boolean critical=w.skills.plotCritical(a,b,plot);
         switch(plot){
             case INFIGHT:w.advancedBattle.infight(a,b,critical);break;
-            case FIRE:ignite(target,a);break;
+            case FIRE:ignite(target,a);Fire created=fireAt(target);if(critical&&created!=null)created.remaining++;break;
             case EXTINGUISH:
                 fires.removeIf(f->f.hex.equals(target)||critical&&f.hex.distance(target)==1);break;
             case CONFUSE:b.status=Status.CONFUSED;b.statusTurns=critical?2:1;break;
@@ -355,7 +357,7 @@ public final class War {
     }
     void tick(){
         for(Fire f:new ArrayList<>(fires)){
-            World.Unit u=w.unitAt(f.hex);if(u!=null&&(u.owner==f.owner||w.campaign.hostile(f.owner,u.owner))){int hit=250+(w.terrain[f.hex.q][f.hex.r]==World.Terrain.FOREST?150:0);hit=w.skills.fireDamage(u,hit,f.owner,f.power,f.trap);hurt(u,hit);w.note("火场灼烧，部队损失"+hit);}
+            World.Unit u=w.unitAt(f.hex);if(u!=null&&(u.owner==f.owner||w.campaign.hostile(f.owner,u.owner))){int hit=250+(w.terrain[f.hex.q][f.hex.r]==World.Terrain.FOREST?150:0);hit=w.skills.ongoingFireDamage(u,hit,f.owner,f.power,f.trap);hurt(u,hit);w.note("火场灼烧，部队损失"+hit);}
             Structure s=at(f.hex);if(s!=null&&(s.owner==f.owner||w.campaign.hostile(f.owner,s.owner))){s.hp-=200;if(s.hp<=0)structures.remove(s);}
             Domestic.Facility facility=w.domestic.at(f.hex);if(facility!=null&&(w.city(facility.cityId).owner==f.owner||w.campaign.hostile(f.owner,w.city(facility.cityId).owner)))w.domestic.damage(facility,200);
             if(--f.remaining==0)fires.remove(f);

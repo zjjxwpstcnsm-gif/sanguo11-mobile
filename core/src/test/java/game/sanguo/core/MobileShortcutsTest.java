@@ -23,7 +23,7 @@ public final class MobileShortcutsTest {
         int[] cities={42,18,12},people={670,180,120};
         for(int i=0;i<ids.length;i++)for(int side=0;side<3;side++){
             World w=ScenarioCatalog.load(ids[i],side);
-            check(w.cities.size()==cities[i]&&w.officers.size()==people[i],"playable city and officer totals");
+            check(w.cities.stream().filter(c->c.kind==World.SiteKind.CITY).count()==cities[i]&&w.officers.size()==people[i],"playable city and officer totals");
             check(w.officers.stream().map(o->o.id).distinct().count()==people[i],"stable unique officer IDs");
             check(w.officers.stream().anyMatch(o->o.owner==-1),"unaffiliated officers are actually recruitable");
             check(!w.life.naturalDeaths,"all-era sandbox does not kill historical characters on start");

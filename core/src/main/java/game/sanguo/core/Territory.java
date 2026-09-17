@@ -29,7 +29,7 @@ public final class Territory {
         while(!queue.isEmpty()){
             Step s=queue.remove();if(costs[s.q][s.r]!=s.cost||sites[s.q][s.r]!=s.site)continue;
             for(int[] d:DIRECTIONS){int q=s.q+d[0],r=s.r+d[1];if(!inside(q,r))continue;
-                World.Terrain terrain=world.terrain[q][r];if(terrain==World.Terrain.MOUNTAIN)continue;
+                World.Terrain terrain=world.terrain[q][r];if(terrain==World.Terrain.MOUNTAIN||terrain==World.Terrain.VOID||terrain==World.Terrain.SEA)continue;
                 int step=terrain==World.Terrain.PLAIN?2:terrain==World.Terrain.WATER?5:3;
                 int cost=s.cost+step;
                 if(cost>costs[q][r]||cost==costs[q][r]&&s.site>=sites[q][r])continue;

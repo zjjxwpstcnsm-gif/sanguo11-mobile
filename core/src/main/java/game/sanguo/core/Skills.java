@@ -26,11 +26,11 @@ public final class Skills {
         if(p==War.Plot.CALM||p==War.Plot.EXTINGUISH)return base;
         if(plotImmune(a,b,p))return 0; // Defensive immunities precede guaranteed-hit skills.
         int defense=b==null?50:w.army.intelligence(b);
-        if(holderStat(a,XUSHI,true)>defense||holderStat(a,SHENSUAN,true)>defense||
+        if(b!=null&&(holderStat(a,XUSHI,true)>defense||holderStat(a,SHENSUAN,true)>defense||
             p==War.Plot.CONFUSE&&holderStat(a,JILUE,true)>defense||
             p==War.Plot.INFIGHT&&holderStat(a,GUIJI,true)>defense||
             p==War.Plot.MISLEAD&&holderStat(a,YANDU,true)>defense||
-            p==War.Plot.FIRE&&(holderStat(a,HUOGONG,true)>defense||holderStat(a,HUOSHEN,true)>defense))return 100;
+            p==War.Plot.FIRE&&(holderStat(a,HUOGONG,true)>defense||holderStat(a,HUOSHEN,true)>defense)))return 100;
         // Unknown sex is not evidence that a formation is all male.
         if(b!=null&&has(a,QINGGUO)&&w.army.crew(b).stream().allMatch(o->o.sex==World.Sex.MALE))base=Math.min(100,base*2);
         return base;
@@ -73,12 +73,24 @@ public final class Skills {
     }
     public int fireDamage(World.Unit target,int base,int owner,int power,boolean trap){
         if(has(target,HUOSHEN))return 0;
-        int amount=base*power;
+        int amount=base;
         if(w.campaign.has(target.owner,Campaign.Tech.EXPLOSIVES))amount+=300;
         if(trap&&w.campaign.has(owner,Campaign.Tech.EXPLOSIVES))amount+=300;
+        amount*=power;
         if(has(target,TENGJIA))amount*=2;
         if(trap&&has(target,TAPO))amount/=2;
         return Math.min(target.troops,amount);
+    }
+    /** Only the elemental component is doubled; physical arrow impact is separate. */
+    public int firePower(World.Unit source){return has(source,HUOSHEN)?2:1;}
+    public int ongoingFireDamage(World.Unit target,int base,int owner,int power,boolean trap){
+        return has(target,HUWEI)?0:fireDamage(target,base,owner,power,trap);
+    }
+    public String firePreview(World.Unit source,World.Unit target,boolean trap){
+        int base=trap?700:400;
+        return "火焰伤害："+(target==null?"按实际波及部队分别结算":fireDamage(target,base,source.owner,firePower(source),trap))
+            +(has(source,HUOSHEN)?" · 火神×2":"")+(target!=null&&has(target,HUOSHEN)?" · 目标火神免疫":"")
+            +"\n火矢物理伤害独立计算；火神不免疫箭矢物理伤害。";
     }
     public boolean swiftConfusion(World.Unit source,World.Unit target){
         return has(source,JICHI)&&w.army.attackPower(source)>w.army.attackPower(target);

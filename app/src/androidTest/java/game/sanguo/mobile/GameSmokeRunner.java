@@ -15,12 +15,32 @@ public final class GameSmokeRunner extends Instrumentation {
     private Activity current;
     private String displacement="";
     private String recovery="";
-    private boolean upgradeOnly,upgrade25,upgrade26,upgrade27,experience;
+    private boolean navigation32,mapPerformance,fidelity,upgradeOnly,upgrade25,upgrade26,upgrade27,experience;
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);current=a;}
-    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);displacement=arguments==null?"":arguments.getString("displacement","");recovery=arguments==null?"":arguments.getString("recovery","");upgrade27=arguments!=null&&"27".equals(arguments.getString("upgrade"));experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
+    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);navigation32=arguments!=null&&"true".equals(arguments.getString("navigation32"));mapPerformance=arguments!=null&&"true".equals(arguments.getString("mapPerformance"));fidelity=arguments!=null&&"true".equals(arguments.getString("fidelity"));displacement=arguments==null?"":arguments.getString("displacement","");recovery=arguments==null?"":arguments.getString("recovery","");upgrade27=arguments!=null&&"27".equals(arguments.getString("upgrade"));experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
+            if(navigation32){
+                World national=ScenarioCatalog.load("heroes-250",0);
+                World.City home=national.home();World.Officer leader=national.idle(home).get(0);
+                require(national.army.deploy(home.id,leader.id,new int[0],World.Weapon.SPEAR,Army.Ship.BOAT,6000,12000,0).ok,"fixture deploy");
+                try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(national));}
+                getTargetContext().getSharedPreferences("map-display",0).edit().clear().commit();
+                startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitForIdleSync();
+                navigation32Flow();result.putString("stream","NAVIGATION32 PASS: close-view minimap taps/drags/collapse/rotation, independent labels/bars, live ports/gates, historical new-game entry and state preservation.\n");finish(Activity.RESULT_OK,result);return;
+            }
+            if(mapPerformance){
+                World national=ScenarioCatalog.load("heroes-mobile-sandbox",1);
+                try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(national));}
+                startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitForIdleSync();
+                mapPerformanceFlow();result.putString("stream","MAP PERFORMANCE PASS: full-map drawing, territory switches, gestures, opaque frames and state preservation verified.\n");finish(Activity.RESULT_OK,result);return;
+            }
+            if(fidelity){
+                World base=DisplacementFixture.create("plain");try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(base));}
+                startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitForIdleSync();
+                fidelityFlow();result.putString("stream","FIDELITY PASS: geography, parcel construction, draft restoration, pagination and army drag verified.\n");finish(Activity.RESULT_OK,result);return;
+            }
             if(displacement.equals("upgrade")){upgrade28Flow();result.putString("stream","UPGRADE28 PASS: delivered v0.28 save retained and advanced once.\n");finish(Activity.RESULT_OK,result);return;}
             if(!displacement.isEmpty()){displacementFlow();result.putString("stream","DISPLACEMENT PASS: official map selection, cancellation and execution recorded.\n");finish(Activity.RESULT_OK,result);return;}
             if(!recovery.isEmpty()){recoveryFlow();result.putString("stream","RECOVERY "+recovery+" PASS: UI draft and authoritative save preserved.\n");finish(Activity.RESULT_OK,result);return;}
@@ -38,6 +58,7 @@ public final class GameSmokeRunner extends Instrumentation {
             }
             screenshot("v021-rotated-confirmation");click("执行",true);
             waitText("区域争雄  ·  孙权军",false);assertWorld(2,0,"regional-sandbox");
+            fidelityFlow();
             tacticalDisplacementFlow();
             deploymentWizardFlow();
             experienceRegressions();
@@ -99,6 +120,168 @@ public final class GameSmokeRunner extends Instrumentation {
         }
     }
 
+
+
+    private RectF mapRect(MapView map,String name)throws Exception{java.lang.reflect.Field f=MapView.class.getDeclaredField(name);f.setAccessible(true);return new RectF((RectF)f.get(map));}
+    private void tapMapPoint(MapView map,float x,float y){int[] at=new int[2];runOnMainSync(()->map.getLocationOnScreen(at));long now=SystemClock.uptimeMillis();send(now,now,MotionEvent.ACTION_DOWN,at[0]+x,at[1]+y);send(now,now+80,MotionEvent.ACTION_UP,at[0]+x,at[1]+y);SystemClock.sleep(300);waitForIdleSync();}
+    private void navigation32Flow()throws Exception{
+        chooseOrientation("竖屏");MapView map=mapView();require(map.navigatorShown()&&map.commandersShown()&&map.unitBarsShown(),"visible defaults");
+        final MapView startMap=map;World national=saved();awaitOverview(map);runOnMainSync(()->startMap.focus(national.units.get(0).hex));waitForIdleSync();getUiAutomation().waitForIdle(800,5000);SystemClock.sleep(300);
+        require(camera(map).scale>camera(map).minScale*8,"navigation fixture starts at close unit view");screenshot("v032-commander-dual-bars");
+        byte[] before=SaveCodec.encode(saved());float scale=camera(map).scale;RectF mini=mapRect(map,"miniRect");
+        tapMapPoint(map,mini.left+mini.width()*.67f,mini.top+mini.height()*.35f);
+        require(Math.abs(camera(map).scale-scale)<.001f,"minimap jump preserves close zoom");
+        float targetX=25*1.7320508f*200*.67f,targetY=37.5f*200*.35f;
+        require(Math.abs(camera(map).centerX()-targetX)<80&&Math.abs(camera(map).centerY()-targetY)<80,"minimap uses the correct national coordinate frame");
+        require(Arrays.equals(before,SaveCodec.encode(saved())),"minimap does not issue a map command");screenshot("v032-jump-viewport");
+        int[] location=new int[2];MapView dragMapView=map;runOnMainSync(()->dragMapView.getLocationOnScreen(location));long dragTime=SystemClock.uptimeMillis();
+        send(dragTime,dragTime,MotionEvent.ACTION_DOWN,location[0]+mini.centerX(),location[1]+mini.centerY());
+        send(dragTime,dragTime+100,MotionEvent.ACTION_MOVE,location[0]+mini.left+mini.width()*.45f,location[1]+mini.top+mini.height()*.65f);
+        send(dragTime,dragTime+180,MotionEvent.ACTION_UP,location[0]+mini.left+mini.width()*.45f,location[1]+mini.top+mini.height()*.65f);waitForIdleSync();
+        require(Math.abs(camera(map).scale-scale)<.001f&&Math.abs(camera(map).centerX()-25*1.7320508f*90)<80,"minimap drag preserves zoom and tracks position");
+        require(Arrays.equals(before,SaveCodec.encode(saved())),"minimap drag leaves authoritative save untouched");
+        RectF button=mapRect(map,"miniButton");tapMapPoint(map,button.centerX(),button.centerY());require(!map.navigatorShown(),"one tap collapse");
+        runOnMainSync(current::recreate);waitForIdleSync();map=mapView();require(!map.navigatorShown(),"collapse persists recreation");
+        button=mapRect(map,"miniButton");tapMapPoint(map,button.centerX(),button.centerY());require(map.navigatorShown(),"one tap expand");
+        click("视图",true);click("部队标注 / 双条",true);click("显示主将姓名",true);click("显示兵力（绿）与气力（蓝）",true);click("完成",true);
+        require(!map.commandersShown()&&!map.unitBarsShown(),"independent display toggles through real menu");
+        runOnMainSync(current::recreate);waitForIdleSync();map=mapView();require(!map.commandersShown()&&!map.unitBarsShown(),"display preferences persist recreation");
+        click("视图",true);click("部队标注 / 双条",true);click("显示主将姓名",true);click("显示兵力（绿）与气力（蓝）",true);click("完成",true);
+        chooseOrientation("横屏");map=mapView();require(map.navigatorShown(),"navigator remains expanded in landscape");MapView landscape=map;runOnMainSync(landscape::fit);awaitOverview(map);waitForIdleSync();
+        require(map.tilesVisited()==0,"overview retains bounded bitmap path with 87 sites");screenshot("v032-landscape-sites");
+        runOnMainSync(()->landscape.focus(national.city(20047).hex));waitForIdleSync();screenshot("v032-yangping-gate");
+        runOnMainSync(()->landscape.focus(national.city(20077).hex));waitForIdleSync();screenshot("v032-xiakou-port");
+        require(Arrays.equals(before,SaveCodec.encode(saved())),"navigation/toggles/orientation leave game state unchanged");
+        clickNav("菜单");click("新游戏 / 选择势力",true);screenshot("v032-scenarios");
+        click("190 讨伐董卓",false);screenshot("v032-coalition-factions");click("曹操军",true);click("执行",true);waitForIdleSync();
+        World opening=saved();require(opening.scenarioId.equals("coalition-190")&&opening.city(20012).owner==opening.player&&opening.cities.size()==87,"real new-game entry creates selected historical force");
+        runOnMainSync(current::recreate);waitForIdleSync();require(saved().scenarioId.equals("coalition-190"),"new opening survives recreation");screenshot("v032-coalition-start");
+    }
+
+    private void mapPerformanceFlow()throws Exception {
+        chooseOrientation("竖屏");World w=saved();byte[] before=SaveCodec.encode(w);
+        MapView map=mapView();MapCamera cam=camera(map);
+        awaitOverview(map);
+        int[] cacheBuilds={0};runOnMainSync(()->cacheBuilds[0]=map.overviewBuilds());
+        try(PrintWriter out=new PrintWriter(new File(getTargetContext().getExternalFilesDir(null),"map-performance.txt"))){
+            out.println("version="+getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).versionName);
+            out.println("Software Canvas onDraw timings; NOT display FPS or ARM device performance.");
+            for(int mode=0;mode<3;mode++){
+                final int territoryMode=mode;
+                runOnMainSync(()->{map.setTerritoryMode(territoryMode);map.fit();});
+                SystemClock.sleep(2000);waitForIdleSync();
+                long[] samples=new long[24];int[] visits=new int[2];
+                runOnMainSync(()->{
+                    Bitmap image=Bitmap.createBitmap(map.getWidth(),map.getHeight(),Bitmap.Config.ARGB_8888);Canvas c=new Canvas(image);
+                    for(int i=0;i<28;i++){
+                        cam.zoom(cam.minScale*(1+(i%7)*.07f),map.getWidth()*.5f,map.getHeight()*.5f);cam.pan(i%2==0?5:-5,0);
+                        map.draw(c);if(i>=4)samples[i-4]=map.drawNanos();
+                        if(i==27){visits[0]=map.tilesVisited();visits[1]=map.objectsVisited();}
+                        for(int y=0;y<image.getHeight();y+=31)for(int x=0;x<image.getWidth();x+=31){int color=image.getPixel(x,y);require(Color.alpha(color)==255,"map frame remains opaque");require((color&0xffffff)!=0xffffff,"map frame has no white clear");}
+                    }
+                    image.recycle();
+                });
+                Arrays.sort(samples);out.println("mode="+mode+" viewport="+map.getWidth()+"x"+map.getHeight()+" tilesVisited="+visits[0]+" objectsVisited="+visits[1]+" medianMs="+samples[12]/1e6+" p95Ms="+samples[22]/1e6+" maxMs="+samples[23]/1e6);out.flush();
+                runOnMainSync(map::fit);waitForIdleSync();screenshot("v031-overview-mode-"+mode);
+            }
+            pinch(map,1.5f);dragMap(map,-140,70);pinch(map,.8f);
+            runOnMainSync(()->map.focus(w.home().hex));waitForIdleSync();screenshot("v031-detail");
+            chooseOrientation("横屏");runOnMainSync(map::fit);waitForIdleSync();screenshot("v031-landscape");
+            chooseOrientation("竖屏");runOnMainSync(map::fit);waitForIdleSync();
+            require(Arrays.equals(before,SaveCodec.encode(saved())),"camera gestures do not change saved game");
+            runOnMainSync(()->{
+                require(map.overviewBuilds()==cacheBuilds[0],"pan, zoom, rotation and territory toggles reuse the same overview");
+                require(map.tilesVisited()==0,"full-map rendering does not iterate terrain tiles");
+                require(map.overviewBytes()<16L*1024*1024,"all overview modes fit within 16 MiB");
+                out.println("overviewBytes="+map.overviewBytes()+" overviewBuilds="+map.overviewBuilds());
+            });
+            verifyPresentedMapFrames(map,cam);
+            verifyOverviewInvalidation(map,w);
+            out.println("Gesture/rotation/state, memory cap, cache reuse and ownership/scenario invalidation PASS");
+        }
+    }
+
+    private void verifyPresentedMapFrames(MapView map,MapCamera cam){
+        // Inspect the actual window compositor, in addition to offscreen Canvas tests.
+        for(float ratio:new float[]{1,2,5,12,5,1}){
+            runOnMainSync(()->{cam.zoom(cam.minScale*ratio,map.getWidth()/2f,map.getHeight()/2f);map.invalidate();});
+            waitForIdleSync();SystemClock.sleep(300);
+            Bitmap screen=getUiAutomation().takeScreenshot();require(screen!=null,"compositor screenshot available");
+            int[] origin=new int[2];runOnMainSync(()->map.getLocationOnScreen(origin));int white=0,samples=0,content=0;
+            for(int y=8;y<map.getHeight()-8;y+=17)for(int x=8;x<map.getWidth()-8;x+=17){
+                int color=screen.getPixel(origin[0]+x,origin[1]+y);samples++;
+                if(Color.red(color)>245&&Color.green(color)>245&&Color.blue(color)>245)white++;
+                if((color&0xffffff)!=(MapOverview.BACKGROUND&0xffffff))content++;
+            }
+            screen.recycle();require(white<samples/20,"no white compositor frame during LOD switch");require(content>samples/25,"map remains visible during LOD switch");
+        }
+        runOnMainSync(map::fit);waitForIdleSync();
+    }
+
+    private void awaitOverview(MapView map){
+        boolean[] ready={false};
+        for(int i=0;i<200;i++){runOnMainSync(()->ready[0]=map.overviewReady());if(ready[0])return;SystemClock.sleep(100);}
+        throw new AssertionError("background overview did not finish");
+    }
+    private void verifyOverviewInvalidation(MapView map,World original)throws Exception {
+        World copy=SaveCodec.decode(SaveCodec.encode(original));
+        World.City city=copy.home();int old=city.owner;int[] builds={0};
+        runOnMainSync(()->{map.setWorld(copy,null,-1);builds[0]=map.overviewBuilds();map.setWorld(copy,city.hex,-1);require(map.overviewBuilds()==builds[0],"selection does not rebuild terrain");city.owner=(old+1)%copy.factions.length;map.setWorld(copy,city.hex,-1);require(map.overviewBuilds()==builds[0]+1,"capture refreshes overview");});
+        awaitOverview(map);
+        java.lang.reflect.Field field=MapView.class.getDeclaredField("overview");field.setAccessible(true);
+        runOnMainSync(()->{
+            try{
+                MapOverview overview=(MapOverview)field.get(map);
+                float offset=copy.sourceMapWidth>0?(copy.height-1)/2:0;
+                float extent=43.30127f*(copy.sourceMapWidth>0?copy.sourceMapWidth-.5f:copy.width-1+(copy.height-1)*.5f)+50;
+                float scale=1024/extent;
+                Bitmap bitmap=Bitmap.createBitmap(1024,1024,Bitmap.Config.ARGB_8888);Canvas c=new Canvas(bitmap);c.scale(scale,scale);c.translate(25,25);overview.draw(c,1);
+                int px=Math.round((43.30127f*(city.hex.q+city.hex.r*.5f-offset)+25)*scale),py=Math.round((37.5f*city.hex.r+25)*scale);
+                int actual=bitmap.getPixel(px,py),terrain=TerrainTiles.color(copy.terrain[city.hex.q][city.hex.r]),owner=FactionColors.color(copy,city.owner);
+                for(int shift:new int[]{0,8,16}){int expected=((terrain>>shift&255)*97+(owner>>shift&255)*158)/255;require(Math.abs((actual>>shift&255)-expected)<10,"overview displays new owner color");}
+                bitmap.recycle();
+            }catch(ReflectiveOperationException e){throw new RuntimeException(e);}
+        });
+        // Replace while an earlier raster job is pending; stale jobs must never become the active map.
+        runOnMainSync(()->{map.setWorld(copy,null,-1);map.setWorld(original,null,-1);map.fit();});
+        awaitOverview(map);runOnMainSync(()->require(map.overviewReady(),"latest scenario has complete overview"));
+    }
+
+    private void fidelityFlow()throws Exception {
+        byte[] original=SaveCodec.encode(saved());
+        World national=ScenarioCatalog.load("heroes-mobile-sandbox",1);World.City city=national.city(20017);
+        Hex parcel=national.development.parcels(city.id).stream().filter(h->h.distance(city.hex)>2).findFirst().get();
+        installFixture(national,city.hex);chooseOrientation("竖屏");
+        territoryMode("势力范围 · 同势力合并");click("全图",true);waitForIdleSync();
+        MapCamera nationalCamera=camera(mapView());require(Math.abs(nationalCamera.scale-nationalCamera.minScale)<.001f,"national map button fits geographic theatre");
+        SystemClock.sleep(1200);screenshot("v030-national-map");
+        territoryMode("关闭领地着色");
+        runOnMainSync(()->((MainActivity)current).selectAndFocus(parcel));waitForIdleSync();
+        tapHex(parcel);waitText("开发地 · 选择设施",true);byte[] before=SaveCodec.encode(saved());screenshot("v030-parcel-facilities");
+        click("市场 ·",false);waitText("建设 · 选择执行人",true);
+        runOnMainSync(current::recreate);waitText("建设 · 选择执行人",true);
+        require(Arrays.equals(before,SaveCodec.encode(saved())),"build draft rotation does not issue command");
+        String worker=national.idle(city).stream().max(java.util.Comparator.comparingInt(o->o.politics)).get().name;
+        click(worker+" ·",false);click("开工",true);require(saved().domestic.at(parcel)!=null,"tap parcel builds exact selected tile");
+        before=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(before,SaveCodec.encode(saved())),"construction executes only once on restore");
+        java.lang.reflect.Field f=MainActivity.class.getDeclaredField("ui");f.setAccessible(true);
+        runOnMainSync(()->{try{ClientState state=(ClientState)f.get(current);state.query="";state.owner=-1;state.city=-1;state.listPageSize=20;}catch(Exception e){throw new RuntimeException(e);}});
+        clickNav("武将");waitText("1/34 · 670项",true);click("下一页",true);waitText("2/34 · 670项",true);
+        runOnMainSync(current::recreate);waitText("2/34 · 670项",true);screenshot("v030-paginated-officers");
+        World drag=DisplacementFixture.create("plain");drag.unit(2).hex=new Hex(12,8);installFixture(drag,drag.unit(1).hex);
+        before=SaveCodec.encode(saved());dragArmy(drag.unit(1).hex,new Hex(4,6),true);require(Arrays.equals(before,SaveCodec.encode(saved())),"cancel drag preserves state");
+        dragArmy(drag.unit(1).hex,new Hex(4,6),false);World moved=saved();require(moved.unit(1).hex.equals(new Hex(4,6)),"long press drag commits reachable tile");
+        require(!moved.unit(1).acted,"drag leaves combat order available");screenshot("v030-drag-moved");before=SaveCodec.encode(moved);
+        runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(before,SaveCodec.encode(saved())),"drag survives recreation without duplicate movement");
+        World restored=SaveCodec.decode(original);installFixture(restored,restored.home().hex);
+    }
+    private void dragArmy(Hex from,Hex to,boolean cancel)throws Exception {
+        MapView map=mapView();MapCamera c=camera(map);int[] pos=new int[2];float[] p=new float[4];
+        runOnMainSync(()->{map.getLocationOnScreen(pos);p[0]=pos[0]+25*1.7320508f*(from.q+from.r*.5f-c.columnOffset)*c.scale+c.x;p[1]=pos[1]+37.5f*from.r*c.scale+c.y;p[2]=pos[0]+25*1.7320508f*(to.q+to.r*.5f-c.columnOffset)*c.scale+c.x;p[3]=pos[1]+37.5f*to.r*c.scale+c.y;});
+        long t=SystemClock.uptimeMillis();send(t,t,MotionEvent.ACTION_DOWN,p[0],p[1]);SystemClock.sleep(700);
+        for(int i=1;i<=8;i++){send(t,SystemClock.uptimeMillis(),MotionEvent.ACTION_MOVE,p[0]+(p[2]-p[0])*i/8,p[1]+(p[3]-p[1])*i/8);SystemClock.sleep(35);}
+        send(t,SystemClock.uptimeMillis(),cancel?MotionEvent.ACTION_CANCEL:MotionEvent.ACTION_UP,p[2],p[3]);SystemClock.sleep(500);waitForIdleSync();
+    }
 
     // BEGIN DISPLACEMENT OBSERVER: compiles against the delivered v0.28 APIs.
     private void displacementFlow()throws Exception {
@@ -808,7 +991,7 @@ public final class GameSmokeRunner extends Instrumentation {
         require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=14,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
-        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==21,"upgraded writer produced v21 header");}
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==22,"upgraded writer produced v21 header");}
         screenshot(upgrade27?"00-v27-upgrade-preserved":upgrade26?"00-v26-upgrade-preserved":upgrade25?"00-v25-upgrade-preserved":"00-v09-upgrade-preserved");
         if(upgrade26||upgrade27){
             require(legacy.districts.all().size()==1&&legacy.domestic.missions.size()==2&&legacy.units.stream().anyMatch(u->!legacy.aiOrders.describe(u).equals("待评估")),"v26 district, real army intention and two actual tasks retained");
@@ -1086,14 +1269,14 @@ public final class GameSmokeRunner extends Instrumentation {
     }
     private void tapHex(Hex h)throws Exception {
         MapView map=mapView();MapCamera c=camera(map);int[] pos=new int[2];float[] point=new float[2];
-        runOnMainSync(()->{map.getLocationOnScreen(pos);point[0]=pos[0]+25*1.7320508f*(h.q+h.r*.5f)*c.scale+c.x;point[1]=pos[1]+25*1.5f*h.r*c.scale+c.y;});
+        runOnMainSync(()->{map.getLocationOnScreen(pos);point[0]=pos[0]+25*1.7320508f*(h.q+h.r*.5f-c.columnOffset)*c.scale+c.x;point[1]=pos[1]+25*1.5f*h.r*c.scale+c.y;});
         long t=SystemClock.uptimeMillis();send(t,t,MotionEvent.ACTION_DOWN,point[0],point[1]);send(t,t+80,MotionEvent.ACTION_UP,point[0],point[1]);SystemClock.sleep(500);waitForIdleSync();
     }
     private MapView findMap(android.view.View v){if(v instanceof MapView)return (MapView)v;if(v instanceof android.view.ViewGroup){android.view.ViewGroup g=(android.view.ViewGroup)v;for(int i=0;i<g.getChildCount();i++){MapView m=findMap(g.getChildAt(i));if(m!=null)return m;}}return null;}
     private MapCamera camera(MapView map)throws Exception {java.lang.reflect.Field f=MapView.class.getDeclaredField("camera");f.setAccessible(true);return (MapCamera)f.get(map);}
     private void tapCity(int id,int dxDp)throws Exception {
         World w=saved();MapView map=mapView();MapCamera c=camera(map);int[] pos=new int[2];float[] xy=new float[2];
-        runOnMainSync(()->{map.getLocationOnScreen(pos);Hex h=w.city(id).hex;xy[0]=pos[0]+25*1.7320508f*(h.q+h.r*.5f)*c.scale+c.x+dxDp*map.getResources().getDisplayMetrics().density;xy[1]=pos[1]+25*1.5f*h.r*c.scale+c.y;});
+        runOnMainSync(()->{map.getLocationOnScreen(pos);Hex h=w.city(id).hex;xy[0]=pos[0]+25*1.7320508f*(h.q+h.r*.5f-c.columnOffset)*c.scale+c.x+dxDp*map.getResources().getDisplayMetrics().density;xy[1]=pos[1]+25*1.5f*h.r*c.scale+c.y;});
         long t=SystemClock.uptimeMillis();send(t,t,MotionEvent.ACTION_DOWN,xy[0],xy[1]);send(t,t+40,MotionEvent.ACTION_UP,xy[0],xy[1]);SystemClock.sleep(500);waitForIdleSync();
     }
     private void send(long down,long time,int action,float x,float y){MotionEvent e=MotionEvent.obtain(down,time,action,x,y,0);sendPointerSync(e);e.recycle();}
@@ -1138,7 +1321,7 @@ public final class GameSmokeRunner extends Instrumentation {
     private AccessibilityNodeInfo find(AccessibilityNodeInfo node,String text,boolean exact) {
         if(node==null)return null;
         CharSequence value=node.getText();
-        if(text.equals("返回全国列表")||text.startsWith("导航 · ")||text.startsWith("选中对象指令 ·")||text.endsWith("待行动部队"))value=node.getContentDescription();
+        if(text.equals("返回全国列表")||text.startsWith("导航 · ")||text.startsWith("选中对象指令 ·")||text.endsWith("待行动部队")||(text.equals("下一页")||text.equals("上一页"))&&node.getContentDescription()!=null)value=node.getContentDescription();
         if(value!=null&&(exact?value.toString().equals(text):value.toString().contains(text))&&node.isVisibleToUser())return node;
         for(int i=0;i<node.getChildCount();i++){AccessibilityNodeInfo found=find(node.getChild(i),text,exact);if(found!=null)return found;}return null;
     }
