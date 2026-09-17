@@ -128,6 +128,7 @@ public final class GameSmokeRunner extends Instrumentation {
         for(String name:new String[]{"auto.sg11","auto.sg11.bak","auto.sg11.new"})getTargetContext().deleteFile(name);
         startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitText("新建游戏 · 选择剧本",true);
         require(!getTargetContext().getFileStreamPath("auto.sg11").exists(),"empty startup writes no demo");
+        runOnMainSync(()->current.setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE));assertOrientation(false);waitText("新建游戏 · 选择剧本",true);screenshot("v033-empty-landscape");runOnMainSync(()->current.setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT));assertOrientation(true);
         byte[] corrupt={3,3,0,7};try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(corrupt);}
         runOnMainSync(current::recreate);waitText("自动存档损坏",false);screenshot("v033-corrupt-start");
         runOnMainSync(current::recreate);waitText("自动存档损坏",false);

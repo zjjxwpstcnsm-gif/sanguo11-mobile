@@ -70,7 +70,7 @@ public final class MainActivity extends Activity {
         root.addView(button("读取手动存档",v->saveSlots(true)));
         root.addView(button("导入存档文件",v->importSave()));
         if(error!=null)root.addView(button("重试自动存档",v->{try{World loaded=readSave(file("auto"));unreadableAutosave=false;world=loaded;buildGameUi(null,true,true);}catch(IOException e){showError("自动存档仍无法读取，原文件保留");}}));
-        setContentView(root);
+        ScrollView startScroll=new ScrollView(this);startScroll.setFillViewport(true);startScroll.setBackgroundColor(ink);startScroll.addView(root,new ScrollView.LayoutParams(-1,-2));setContentView(startScroll);
     }
     /** Called only after a user-confirmed replacement; unreadable bytes remain recoverable. */
     private boolean activateWorld(World next){
@@ -228,7 +228,7 @@ public final class MainActivity extends Activity {
         int mode=getPreferences(MODE_PRIVATE).getInt("screenMode",0);
         setRequestedOrientation(mode==1?android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:mode==2?android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE:android.content.pm.ActivityInfo.SCREEN_ORIENTATION_FULL_USER);
     }
-    @Override public void onConfigurationChanged(Configuration config){super.onConfigurationChanged(config);if(root!=null){layoutPanels();refreshCommandDock();root.requestApplyInsets();}fitConfirmation();}
+    @Override public void onConfigurationChanged(Configuration config){super.onConfigurationChanged(config);if(map!=null&&world!=null){layoutPanels();refreshCommandDock();}if(root!=null)root.requestApplyInsets();fitConfirmation();}
     void trackDialog(AlertDialog dialog){confirmationDialog=dialog;fitConfirmation();}
     private void fitConfirmation(){
         if(confirmationDialog==null||!confirmationDialog.isShowing())return;
