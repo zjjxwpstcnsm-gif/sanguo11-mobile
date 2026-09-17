@@ -1408,12 +1408,17 @@ public final class GameSmokeRunner extends Instrumentation {
         sendPointerSync(down);sendPointerSync(up);down.recycle();up.recycle();waitForIdleSync();SystemClock.sleep(350);
     }
     private AccessibilityNodeInfo scrollToText(String text,boolean exact) {
-        AccessibilityNodeInfo node=null;long until=SystemClock.uptimeMillis()+12000;boolean forward=true;
+        AccessibilityNodeInfo node=null;long until=SystemClock.uptimeMillis()+12000;boolean forward=true;int directionSteps=0;
         while(node==null&&SystemClock.uptimeMillis()<until) {
             waitForIdleSync();AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();node=find(root,text,exact);
-            // Lists retain their position across reopening/recreation. Search the full
-            // list in both directions, rather than bouncing around its last page.
-            if(node==null){if(forward&&!scroll(root))forward=false;if(!forward)scrollBack(root);SystemClock.sleep(250);}
+            // Android accessibility can report a successful ListView scroll even when
+            // the viewport is already at an edge. Bound each directional sweep so a
+            // retained list position is always searched both forward and backward.
+            if(node==null){
+                boolean moved=forward?scroll(root):scrollBack(root);directionSteps++;
+                if(!moved||directionSteps>=20){forward=!forward;directionSteps=0;}
+                SystemClock.sleep(250);
+            }
         }
         if(node==null)throw new AssertionError("UI content not reachable by scrolling: "+text);
         return node;
