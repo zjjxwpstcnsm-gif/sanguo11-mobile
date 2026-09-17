@@ -4,7 +4,7 @@ on:
     branches: [main]
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   actions: read
 concurrency:
   group: experience-${{ github.ref }}
@@ -17,6 +17,36 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          fetch-depth: 0
+      - name: Apply v0.34 persistent-march visibility fix
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('app/src/main/java/game/sanguo/mobile/MainActivity.java')
+          s = p.read_text()
+          a = 'boolean mapContext="map".equals(ui.page)&&!aiRunning;'
+          b = 'boolean mapContext="map".equals(ui.page)&&!aiRunning&&!ui.panelVisible;'
+          if a in s:
+              s = s.replace(a, b, 1)
+          elif b not in s:
+              raise SystemExit('quick navigator target not found')
+          a = 'for(Button b:new Button[]{march,attack,tactics,plots,cancel})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));'
+          b = 'for(Button b:new Button[]{march,attack,tactics,plots})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));\n            if(!(u instanceof Domestic.Mission)&&u.march!=null)actions.addView(button("停止行军",v->apply(world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));\n            actions.addView(cancel,new LinearLayout.LayoutParams(0,dp(48),1));'
+          if a in s:
+              s = s.replace(a, b, 1)
+          elif 'if(!(u instanceof Domestic.Mission)&&u.march!=null)actions.addView(button("停止行军"' not in s:
+              raise SystemExit('march command target not found')
+          p.write_text(s)
+          PY
+          bash scripts/test-ui-models.sh
+          if ! git diff --quiet -- app/src/main/java/game/sanguo/mobile/MainActivity.java; then
+            git config user.name "zjjxwpstcnsm-gif"
+            git config user.email "zjjxwpstcnsm@gmail.com"
+            git add app/src/main/java/game/sanguo/mobile/MainActivity.java
+            git commit -m "fix: keep active march controls reachable"
+            git push origin HEAD:agent/mobile-ux-geography-turn-v034
+          fi
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
