@@ -10,7 +10,7 @@ public final class ArchitectureRulesTest {
     private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
     private static byte[] bytes(World w)throws Exception{return SaveCodec.encode(w);}
     private static void skill(World w,int officer,Skill s){w.officer(officer).skillId=s.id;}
-    public static void main(String[] args)throws Exception{numericalBaseline();holders();energyAndHit();pureQueries();fireReplay();music();System.out.println("PASS: "+checks+" v033 architecture/rule assertions.");}
+    public static void main(String[] args)throws Exception{numericalBaseline();holders();energyAndHit();pureQueries();fireReplay();music();splashAndTrap();roster();System.out.println("PASS: "+checks+" v033 architecture/rule assertions.");}
     private static void numericalBaseline(){
         // Old isolated engine serves only as the frozen pre-migration numerical oracle.
         Random r=new Random(330);World w=ArchitectureFixture.create();
@@ -47,7 +47,7 @@ public final class ArchitectureRulesTest {
     }
     private static void pureQueries()throws Exception{
         World w=ArchitectureFixture.create();World.Unit a=w.unit(1),b=w.unit(2);skill(w,1,WEIFENG);byte[] before=bytes(w);
-        for(int i=0;i<30;i++){w.war.attackPreview(1,2);w.war.tacticPreview(1,2,War.Tactic.FIRE_ARROW);w.combat.firePreview(a,b,false);w.energy.recovery(a);new CampaignAi(w).bestAction(1,true);}
+        for(int i=0;i<30;i++){w.war.attackPreview(1,2);w.war.tacticPreview(1,2,War.Tactic.FIRE_ARROW);w.combat.firePreview(a,b,CombatRules.DIRECT_FIRE_BASE,false);w.energy.recovery(a);new CampaignAi(w).bestAction(1,true);}
         check(Arrays.equals(before,bytes(w)),"all previews and AI preserve state, log and RNG");
         CombatRules.DamageRange range=w.combat.preview(a,b,1,false);
         for(int i=0;i<250;i++){int hit=w.combat.physicalDamage(a,b,1,false,new Random(i));check(hit>=range.min&&hit<=range.max,"preview bounds enclose execution");}
@@ -66,5 +66,19 @@ public final class ArchitectureRulesTest {
         w.energy.settleTurn();check(a.energy==60,"one global recovery");byte[] before=bytes(w);World restored=SaveCodec.decode(before);check(restored.unit(1).energy==60&&Arrays.equals(before,bytes(restored)),"load never applies recovery");
         a.hex=new Hex(12,12);check(w.energy.recovery(a)==5,"movement immediately leaves aura");a.hex=new Hex(6,6);w.war.structures.remove(first);check(w.energy.recovery(a)==5,"destruction immediately removes aura");
         second.complete=true;w.war.structures.clear();w.war.structures.add(new War.Structure(3,1,War.StructureKind.MUSIC,new Hex(5,6),800));check(w.energy.recovery(a)==5,"enemy music excluded");
+    }
+    private static void splashAndTrap()throws Exception{
+        World w=ArchitectureFixture.create();World.Unit a=w.unit(1),b=w.unit(2);skill(w,1,WEIFENG);w.campaign.finishTech(0,Campaign.Tech.THUNDERBOLT);
+        w.fieldworks.stoneSplash(a,new Hex(8,6));check(b.energy==60,"thunderbolt collateral receives one weifeng drain");
+        w=ArchitectureFixture.create();a=w.unit(1);b=w.unit(2);skill(w,1,HUOSHEN);
+        War.Structure trap=new War.Structure(1,0,War.StructureKind.INFERNO_SEED,new Hex(8,6),200);w.war.structures.add(trap);w.war.nextStructureId=2;
+        byte[] before=bytes(w);String preview=w.fieldworks.ignitionPreview(a,trap.hex);check(preview.contains("3000")&&Arrays.equals(before,bytes(w)),"inferno preview uses shared base without mutation");
+        w.fieldworks.ignite(trap.hex,a);check(b.troops==7000,"inferno execution matches primary preview");
+        check(w.war.fires.stream().allMatch(f->f.power==2&&f.owner==0&&f.trap),"chain retains source snapshot");
+    }
+    private static void roster(){
+        World w=ArchitectureFixture.create();World.Officer original=w.officer(1);w.officers.remove(original);check(w.officer(1)==null,"removed officer index invalidates");
+        w.officers.add(0,original);check(w.officer(1)==original,"inserted officer index invalidates");
+        Collections.reverse(w.officers);check(w.officer(1)==original,"reordering preserves stable identity");
     }
 }

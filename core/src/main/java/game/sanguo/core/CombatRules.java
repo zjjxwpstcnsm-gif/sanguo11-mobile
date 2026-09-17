@@ -99,8 +99,11 @@ public final class CombatRules {
     public int ongoingFireDamage(World.Unit target,int base,int owner,int power,boolean trap){
         return w.skills.has(target,HUWEI)?0:fireDamage(target,base,owner,power,trap);
     }
-    public String firePreview(World.Unit source,World.Unit target,boolean trap){
-        int base=trap?700:400;
+    public static final int DIRECT_FIRE_BASE=400;
+    public static int trapBase(War.StructureKind kind){
+        return kind==War.StructureKind.INFERNO_SEED||kind==War.StructureKind.INFERNO_BALL?1500:kind==War.StructureKind.FIRE_SEED||kind==War.StructureKind.FIRE_BALL?700:1000;
+    }
+    public String firePreview(World.Unit source,World.Unit target,int base,boolean trap){
         return "火焰伤害："+(target==null?"按实际波及部队分别结算":fireDamage(target,base,source.owner,firePower(source),trap))
             +(w.skills.has(source,HUOSHEN)?" · 火神×2":"")+(target!=null&&w.skills.has(target,HUOSHEN)?" · 目标火神免疫":"")
             +"\n火矢物理伤害独立计算；火神不免疫箭矢物理伤害。";

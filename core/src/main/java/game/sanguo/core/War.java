@@ -171,7 +171,7 @@ public final class War {
     public Displacement.Preview tacticPreview(int actor,int target,Tactic tactic){
         World.Unit a=w.unit(actor),b=w.unit(target);String error=tacticError(actor,target,tactic);
         String heading=tactic==null?"未选择战法":tactic.label+" · 消耗气力"+tactic.energy+" / 当前"+(a==null?0:a.energy)+"\n命中率"+tacticChance(actor,target,tactic)+"%；命中或失败均结束本旬行动，失败同样扣气力。";
-        if(a!=null&&tactic==Tactic.FIRE_ARROW)heading+="\n"+w.combat.firePreview(a,b,false);
+        if(a!=null&&tactic==Tactic.FIRE_ARROW)heading+="\n"+w.combat.firePreview(a,b,CombatRules.DIRECT_FIRE_BASE,false);
         if(b!=null)heading+="\n实际目标："+w.officer(b.officerId).name+" · "+b.hex;
         if(tactic!=null)heading+="\n射程："+tactic.minRange+"–"+(tactic.maxRange+(a!=null&&a.weapon==World.Weapon.CROSSBOW?range(a)-a.weapon.range:0))+"格；效果："+tactic.effect;
         Displacement.Preview p=displacement.preview(a,b,Displacement.kind(tactic),error,heading);

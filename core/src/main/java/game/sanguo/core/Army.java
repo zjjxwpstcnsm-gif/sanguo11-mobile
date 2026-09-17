@@ -140,7 +140,7 @@ public final class Army {
         String heading=(tactic==null?"未选择战法":tactic.label+" · 消耗气力"+tactic.energy)+" / 当前"+(a==null?0:a.energy)+"\n命中率"+tacticChance(unit,target)+"%；失败同样消耗气力和本旬行动。\n目标："+target;
         if(a!=null&&tactic!=null)heading+="\n射程：1–"+(tactic==Tactic.RAM?1:w.war.range(a))+"格；效果："+tactic.effect;
         if(error==null&&b!=null)heading+="\n"+w.combat.preview(a,b,tactic==Tactic.STONE?1.5:1.3,true).describe()+"\n"+w.energy.hitPreview(a,b);
-        if(a!=null&&(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME))heading+="\n"+w.combat.firePreview(a,b,false);
+        if(a!=null&&(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME))heading+="\n"+w.combat.firePreview(a,b,CombatRules.DIRECT_FIRE_BASE,false);
         World.City city=w.cityAt(target);War.Structure structure=w.war.at(target);Domestic.Facility facility=w.domestic.at(target);
         heading+="\n实际对象："+(b!=null?w.officer(b.officerId).name:city!=null?city.name:structure!=null?structure.kind.label:facility!=null?facility.kind.label:"无");
         if(city!=null&&a!=null)heading+="\n"+w.cityDefense.preview(city,a);

@@ -76,14 +76,14 @@ public final class CampaignAi {
             case FIRE:
                 // Avoid an unmodeled trap cascade hitting friendlies.
                 if(w.war.at(b.hex)!=null)return -1;
-                amount=w.combat.fireDamage(b,250,a.owner,w.skills.has(a,Skill.HUOSHEN)?2:1,false);break;
+                amount=w.combat.fireDamage(b,CombatRules.DIRECT_FIRE_BASE,a.owner,w.combat.firePower(a),false);break;
             default:return -1;
         }
         int chance=w.war.plotChance(a.id,b.hex,p);
         if(w.skills.has(a,Skill.LIANHUAN)&&(p==War.Plot.CONFUSE||p==War.Plot.MISLEAD||p==War.Plot.FIRE)){
             for(World.Unit u:units())if(u.id!=b.id&&w.campaign.hostile(a.owner,u.owner)&&u.hex.distance(b.hex)==1&&
                 (p==War.Plot.FIRE?w.war.fireAt(u.hex)==null&&!w.army.water(u.hex):u.status==War.Status.NORMAL)){
-                int chained=p==War.Plot.FIRE?w.combat.fireDamage(u,250,a.owner,1,false):controlValue(u);
+                int chained=p==War.Plot.FIRE?w.combat.fireDamage(u,CombatRules.DIRECT_FIRE_BASE,a.owner,w.combat.firePower(a),false):controlValue(u);
                 amount+=chained*w.war.plotChance(a.id,u.hex,p)/100;break;
             }
         }
