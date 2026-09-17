@@ -1,0 +1,45 @@
+name: v0.34 unit summary regression fix
+
+on:
+  push:
+    branches:
+      - agent/mobile-ux-geography-turn-v034
+    paths:
+      - .github/workflows/v034-unit-summary-fix.yml
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/mobile-ux-geography-turn-v034
+          fetch-depth: 0
+      - name: Keep selected-unit food visible in the map command bar
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('app/src/main/java/game/sanguo/mobile/MainActivity.java')
+          s=p.read_text()
+          old='(u instanceof Domestic.Mission?"运输":"兵"+u.troops)+" · 粮"+u.food+" · "+hint+" · 剩余移动 "+world.orders.remaining(u)'
+          new='(u instanceof Domestic.Mission?"运输":"兵"+u.troops)+" · 携粮 "+u.food+" · "+hint+" · 剩余移动 "+world.orders.remaining(u)'
+          if old not in s:
+              raise SystemExit('unit command summary target not found')
+          p.write_text(s.replace(old,new,1))
+          PY
+      - name: Run focused presentation regression
+        shell: bash
+        run: |
+          bash scripts/test-ui-models.sh
+      - name: Commit fix
+        shell: bash
+        run: |
+          git config user.name "sanguo11-mobile-ci"
+          git config user.email "actions@users.noreply.github.com"
+          git add app/src/main/java/game/sanguo/mobile/MainActivity.java
+          git commit -m "fix: keep selected unit supply visible on map"
+          git push origin HEAD:agent/mobile-ux-geography-turn-v034
