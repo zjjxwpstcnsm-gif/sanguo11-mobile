@@ -440,7 +440,7 @@ public final class MainActivity extends Activity {
         int ready=UiModels.readyUnits(world).size();previousReady.setEnabled(!aiRunning&&mapPick==null);nextReady.setEnabled(!aiRunning&&mapPick==null);previousReady.setTooltipText("上一个待行动部队 · "+ready+"队");nextReady.setTooltipText("下一个待行动部队 · "+ready+"队");
         selectionButton.setText(selectedName+(panelShell.getVisibility()==View.VISIBLE?" · 收起":" · 指令"));
         selectionButton.setContentDescription("选中对象指令 · "+selectedName);selectionButton.setEnabled(mapPick==null&&!aiRunning&&!required);
-        panelTitle.setText(ui.page.equals("map")?selectedName+" · 指令":ui.page.equals("cities")?"城池一览":ui.page.equals("officers")?"武将":ui.page.equals("tasks")?"任务":ui.page.equals("menu")?"菜单":"资料");
+        panelTitle.setText(ui.page.equals("map")?selectedName+" · 指令":ui.page.equals("cities")?"城池一览":ui.page.equals("officers")?"武将一览":ui.page.equals("tasks")?"任务":ui.page.equals("menu")?"菜单":"资料");
         if(world.unit(moving)==null)moving=-1;
         map.setWorld(world,selected,moving);
         if(world.life.pending()&&!ui.page.equals("menu")){panelHost.addView(new LifecycleUi(this,world,this::apply).succession());}
@@ -745,7 +745,7 @@ public final class MainActivity extends Activity {
         try {
             List<ScenarioCatalog.Summary> scenarios=ScenarioCatalog.summaries();
             LinearLayout list=new LinearLayout(this);list.setOrientation(LinearLayout.VERTICAL);list.setPadding(dp(8),dp(4),dp(8),dp(4));
-            ScrollView scroll=new ScrollView(this);scroll.setFillViewport(true);scroll.setVerticalScrollBarEnabled(true);scroll.addView(list,new ScrollView.LayoutParams(-1,-2));
+            ScrollView scroll=new ScrollView(this);scroll.setFillViewport(false);scroll.setVerticalScrollBarEnabled(true);scroll.addView(list,new ScrollView.LayoutParams(-1,-2));
             final AlertDialog[] holder=new AlertDialog[1];
             for(ScenarioCatalog.Summary scenario:scenarios){
                 String label=scenario.name+" · "+scenario.sites+"据点 / "+scenario.officers+"将 / "+scenario.factions+"势力";
@@ -753,7 +753,12 @@ public final class MainActivity extends Activity {
                 option.setAllCaps(false);option.setGravity(Gravity.START|Gravity.CENTER_VERTICAL);option.setContentDescription("选择剧本 "+scenario.name);
                 list.addView(option,new LinearLayout.LayoutParams(-1,dp(52)));
             }
-            holder[0]=new AlertDialog.Builder(this).setTitle("选择剧本 · 六个年代与自制沙盘").setView(scroll).setNegativeButton("取消",null).show();
+            int rows=Math.min(5,Math.max(3,scenarios.size()));
+    int target=dp(rows*56+16);
+    int cap=Math.max(dp(180),getResources().getDisplayMetrics().heightPixels*58/100);
+    LinearLayout shell=new LinearLayout(this);shell.setOrientation(LinearLayout.VERTICAL);
+    shell.addView(scroll,new LinearLayout.LayoutParams(-1,Math.min(target,cap)));
+    holder[0]=new AlertDialog.Builder(this).setTitle("选择剧本 · 六个年代与自制沙盘").setView(shell).setNegativeButton("取消",null).show();
         }catch(IOException e){showError("剧本读取失败");}
     }
     private void chooseScenarioTemplate(String id){
