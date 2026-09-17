@@ -347,8 +347,9 @@ public final class GameSmokeRunner extends Instrumentation {
 
     private void upgrade28Flow()throws Exception {
         byte[] expected=java.nio.file.Files.readAllBytes(new File(getTargetContext().getExternalFilesDir(null),"upgrade-v028.sg11").toPath());
-        World old=SaveCodec.decode(expected);startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitForIdleSync();
-        java.lang.reflect.Field wf=MainActivity.class.getDeclaredField("world");wf.setAccessible(true);require(Arrays.equals(expected,SaveCodec.encode((World)wf.get(current))),"actual old v21 loads unchanged after APK replacement");
+        try(DataInputStream input=new DataInputStream(new ByteArrayInputStream(expected))){input.readInt();require(input.readInt()==21,"actual old APK produced v21 input");}
+        World old=SaveCodec.decode(expected);byte[] migrated=SaveCodec.encode(old);startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitForIdleSync();
+        java.lang.reflect.Field wf=MainActivity.class.getDeclaredField("world");wf.setAccessible(true);require(Arrays.equals(migrated,SaveCodec.encode((World)wf.get(current))),"actual v21 state loads unchanged under canonical v22 encoding");
         endTurn();require(saved().turn==old.turn+1,"v028 upgrade advances exactly one full turn");byte[] advanced=SaveCodec.encode(saved());runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(advanced,SaveCodec.encode(saved())),"recreation after upgrade cannot repeat action or AI");screenshot("v029-upgrade-v028");
     }
     private void tacticalDisplacementFlow()throws Exception {
@@ -1018,7 +1019,7 @@ public final class GameSmokeRunner extends Instrumentation {
         require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=14,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
-        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==22,"upgraded writer produced v21 header");}
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==22,"upgraded writer produced v22 header");}
         screenshot(upgrade27?"00-v27-upgrade-preserved":upgrade26?"00-v26-upgrade-preserved":upgrade25?"00-v25-upgrade-preserved":"00-v09-upgrade-preserved");
         if(upgrade26||upgrade27){
             require(legacy.districts.all().size()==1&&legacy.domestic.missions.size()==2&&legacy.units.stream().anyMatch(u->!legacy.aiOrders.describe(u).equals("待评估")),"v26 district, real army intention and two actual tasks retained");
