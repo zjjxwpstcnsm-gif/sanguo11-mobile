@@ -46,7 +46,7 @@ APK 随本次任务直接交付；CI产物是各自构建结果，其摘要应�
 最新运行提交为 `36600f9faa8ba5bc4abc07b93478590f8787e4df`，最新测试提交为 `caf9a2004902210ba9a4fb9cb0cc7d3feb23df28`。验收记录写入时状态如下，运行中的任务**不计为通过**：
 
 - [Android三屏 35183982269](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35183982269)：仍在运行。
-- [最终运行提交实际v0.28替换/位移 35183557022](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35183557022)：已完成，通过；测试辅助改动后的复验 [35183982274](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35183982274) 仍在运行。
+- [最终运行提交实际v0.28替换/位移 35183557022](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35183557022)：已完成，通过；测试辅助改动后的复验 [35183982274](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35183982274) 也已完成通过。
 - [实际旧版体验对比 35183982339](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35183982339)：仍在运行。
 
 本地重点验收已完成，真实v0.28 APK替换已通过；远端全量三屏和旧版体验对比以各任务最终结论为准。此后证据提交不变更应用与测试，不把运行中的检查写成通过。
