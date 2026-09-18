@@ -294,7 +294,7 @@ public final class Domestic {
             Step s=open.remove();if(s.cost!=distance.get(s.h))continue;
             if(s.h.equals(to)){LinkedList<Hex> result=new LinkedList<>();Hex h=to;while(!h.equals(from)){result.addFirst(h);h=previous.get(h);}return result;}
             for(Hex h:s.h.neighbors()){
-                int cost=travelCost(h,owner,sea);if(cost<0||!w.army.water(s.h)&&!w.army.water(h)&&w.gateBlocks(owner,s.h,h))continue;int total=s.cost+cost;
+                int cost=travelCost(h,owner,sea);if(!w.army.water(s.h)&&w.army.water(h)&&w.army.embarkPort(owner,s.h,h)==null)continue;if(cost<0||!w.army.water(s.h)&&!w.army.water(h)&&w.gateBlocks(owner,s.h,h))continue;int total=s.cost+cost;
                 if(total<distance.getOrDefault(h,Integer.MAX_VALUE)){distance.put(h,total);previous.put(h,s.h);open.add(new Step(h,total));}
             }
         }
@@ -385,12 +385,13 @@ public final class Domestic {
             World.City c=w.city(m.targetCity);m.waiting="";
             if(m.escortId>=0&&(w.unit(m.escortId)==null||w.unit(m.escortId).owner!=m.owner))m.escortId=-1;
             String threat=threatReason(m);if(!m.stopped&&threat!=null){m.waiting=threat;return;}
-            if(m.march!=null){w.marches.advance(m);if(m.march!=null){m.waiting=m.march.paused.isEmpty()?"":"道路受阻 / 等待："+m.march.paused;if(!m.waiting.isEmpty()){approachQueue(m);yieldConvoy(m);}return;}}
+            if(m.march!=null){w.marches.advance(m);if(mission(m.id)!=m||!m.transport)return;if(m.march!=null){m.waiting=m.march.paused.isEmpty()?"":"道路受阻 / 等待："+m.march.paused;if(!m.waiting.isEmpty()){approachQueue(m);yieldConvoy(m);}return;}}
             if(m.stopped)return;
             if(m.hex.distance(c.hex)>1){
                 MarchOrders.Plan plan=routePlan(m);
                 if(!plan.valid()){m.waiting="道路受阻，等待改道："+plan.error;approachQueue(m);yieldConvoy(m);return;}
                 World.Result result=w.marches.execute(w.marches.preview(m,w.city(m.targetCity).hex));if(!result.ok){m.waiting=result.message;return;}
+                if(mission(m.id)!=m||!m.transport)return;
             }
             if(m.hex.distance(c.hex)<=1){if(fits(m,c))deliver(m,c);else m.waiting="满仓等待，货物仍在队中";}
         }finally{w.active=active;settling=previous;}
@@ -430,6 +431,7 @@ public final class Domestic {
         deliver(m,c);return w.success("运输货物已一次入库");
     }
     private void deliver(Mission m,World.City c){
+        if(!missions.contains(m))return; // Receipt and cargo transfer are exactly once.
         c.gold+=m.gold;c.food+=m.food;c.troops+=m.troops;
         if(settling)arrivedTroops.merge(c.id,m.troops,Integer::sum);
         for(int i=0;i<m.equipment.length;i++)c.equipment[i]+=m.equipment[i];

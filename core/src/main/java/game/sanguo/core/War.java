@@ -110,7 +110,7 @@ public final class War {
     public World.Result attack(int actor,int target){
         String error=attackError(actor,target);if(error!=null)return w.fail(error);
         World.Unit a=w.unit(actor),b=w.unit(target);
-        a.acted=true;int dealt=0,counter=0;
+        w.marches.supersede(a);a.acted=true;int dealt=0,counter=0;
         int attacks=w.skills.has(a,Skill.LIANZHAN)&&w.strategy.nextInt(100)<50?2:1;
         for(int i=0;i<attacks&&w.unit(a.id)!=null&&w.unit(b.id)!=null;i++){
             dealt+=strike(a,b,1,false);
@@ -187,7 +187,7 @@ public final class War {
     }
     public World.Result tactic(int actor,int target,Tactic tactic){
         String error=tacticError(actor,target,tactic);if(error!=null)return w.fail(error);
-        World.Unit a=w.unit(actor),b=w.unit(target);int chance=tacticChance(actor,target,tactic);a.acted=true;w.energy.change(a,-tactic.energy,EnergyRules.Reason.COMMAND);w.battleImpact(b.hex,false);
+        World.Unit a=w.unit(actor),b=w.unit(target);int chance=tacticChance(actor,target,tactic);w.marches.supersede(a);a.acted=true;w.energy.change(a,-tactic.energy,EnergyRules.Reason.COMMAND);w.battleImpact(b.hex,false);
         if(w.strategy.nextInt(100)>=chance)return w.success(w.officer(a.officerId).name+"的"+tactic.label+"未命中，消耗气力"+tactic.energy+"，本旬行动结束");
         Hex origin=a.hex,targetHex=b.hex;List<World.Unit> victims=tacticVictims(a,b,tactic);
         double multiplier=tactic.multiplier;
@@ -299,6 +299,9 @@ public final class War {
     }
     public String facilityAttackError(int unit,Hex h){
         World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return error;
+        return facilityAttackPositionError(u,h);
+    }
+    String facilityAttackPositionError(World.Unit u,Hex h){
         Domestic.Facility f=w.domestic.at(h);
         if(f==null||!w.campaign.hostile(u.owner,w.city(f.cityId).owner))return "请选择敌方内政设施";
         if(u.hex.distance(h)<1||u.hex.distance(h)>range(u))return "设施不在攻击射程内";
@@ -308,20 +311,29 @@ public final class War {
     public int facilityDamage(int unit){World.Unit u=w.unit(unit);return u==null?0:w.combat.structureDamage(u,false);}
     public World.Result attackFacility(int unit,Hex h){
         String error=facilityAttackError(unit,h);if(error!=null)return w.fail(error);
-        World.Unit u=w.unit(unit);Domestic.Facility f=w.domestic.at(h);u.acted=true;
+        World.Unit u=w.unit(unit);Domestic.Facility f=w.domestic.at(h);w.marches.supersede(u);u.acted=true;
         int amount=w.domestic.damage(f,facilityDamage(unit));w.battleImpact(h,f.hp==0);w.campaign.earn(u.owner,20);
         return w.success("攻击"+f.kind.label+"，耐久减少"+amount+"，剩余"+f.hp+"/"+f.maxHp());
     }
     public String structureAttackError(int unit,Hex h){
-        World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return error;Structure s=at(h);
-        if(s==null||(s.kind!=StructureKind.DAM&&!w.campaign.hostile(u.owner,s.owner))||u.hex.distance(h)>range(u))return "请选择射程内敌方军事设施";
-        if(!w.army.canAttackUnit(u)){List<Army.Tactic> tactics=w.army.tactics(u);return tactics.isEmpty()?"该兵种不能普通攻击军事设施":w.army.tacticError(unit,h,tactics.get(0));}
+        World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return error;
+        String position=structureAttackPositionError(u,h);
+        if(position!=null&&!w.army.canAttackUnit(u)){
+            List<Army.Tactic> tactics=w.army.tactics(u);
+            return tactics.isEmpty()?position:w.army.tacticPositionError(u,h,tactics.get(0));
+        }
+        return position;
+    }
+    String structureAttackPositionError(World.Unit u,Hex h){
+        Structure s=at(h);
+        if(s==null||(s.kind!=StructureKind.DAM&&!w.campaign.hostile(u.owner,s.owner))||u.hex.distance(h)>range(u)||u.hex.equals(h))return "请选择射程内敌方军事设施";
+        if(!w.army.canAttackUnit(u))return "兵器需要使用战法";
         return null;
     }
     public World.Result attackStructure(int unit,Hex h){
         String error=structureAttackError(unit,h);if(error!=null)return w.fail(error);World.Unit u=w.unit(unit);Structure s=at(h);
         if(!w.army.canAttackUnit(u))return w.army.tactic(unit,h,w.army.tactics(u).get(0));
-        int damage=Math.min(s.hp,w.combat.structureDamage(u,false));u.acted=true;s.hp-=damage;
+        w.marches.supersede(u);int damage=Math.min(s.hp,w.combat.structureDamage(u,false));u.acted=true;s.hp-=damage;
         w.battleImpact(h,s.hp<=0);if(s.hp<=0){w.fieldworks.destroy(s);w.battleOutcome(s.kind.label+"已摧毁，地块已释放");}else w.fieldworks.counter(s,u);w.campaign.earn(u.owner,20);return w.success("攻击"+s.kind.label+"，耐久减少"+damage);
     }
     public World.Result removeStructure(int city,int officer,int id){
@@ -330,7 +342,7 @@ public final class War {
         if(s==null||s.owner!=c.owner||s.hex.distance(c.hex)>3)return w.fail("请选择本城三格内己方军事设施");
         w.spend(c,o,0);w.fieldworks.destroy(s);return w.success("已拆除"+s.kind.label);
     }
-    public World.Result waitUnit(int unit){World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return w.fail(error);u.acted=true;w.energy.change(u,5,EnergyRules.Reason.WAIT);return w.success("部队待命，恢复5气力");}
+    public World.Result waitUnit(int unit){World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return w.fail(error);w.marches.supersede(u);u.acted=true;w.energy.change(u,5,EnergyRules.Reason.WAIT);return w.success("部队待命，恢复5气力");}
     void resetOwner(int owner){
         for(World.Unit u:new ArrayList<>(w.fieldUnits()))if(u.owner==owner&&u.status!=Status.NORMAL){
             if(u.statusTurns<=0){u.status=Status.NORMAL;continue;}

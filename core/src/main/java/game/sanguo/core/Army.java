@@ -46,6 +46,17 @@ public final class Army {
     public String equipmentLabel(World.Unit u){if(u instanceof Domestic.Mission)return water(u.hex)?"运输队 · 走舸":"运输队";return water(u.hex)?u.ship.label+"（携"+u.weapon.label+"）":u.weapon.label;}
     public int movement(World.Unit u){return water(u.hex)?u.ship.movement:u.weapon.movement;}
     public int range(World.Unit u){return water(u.hex)?u.ship.range:u.weapon==World.Weapon.CAVALRY&&(w.skills.has(u,Skill.BAIMA)||w.campaign.has(u.owner,Campaign.Tech.MOUNTED_ARCHERY))?2:u.weapon.range;}
+    /** The shore edge must touch the same owned port on both ends. */
+    public World.City embarkPort(int owner, Hex from, Hex to) {
+        if(from==null||to==null||water(from)||!water(to)||from.distance(to)!=1)return null;
+        World.City center=w.cityAt(from);
+        if(center!=null&&center.kind==World.SiteKind.PORT&&center.owner==owner)return center;
+        for(Hex h:from.neighbors()){
+            World.City port=w.cityAt(h);
+            if(port!=null&&port.kind==World.SiteKind.PORT&&port.owner==owner&&port.hex.distance(to)<=1)return port;
+        }
+        return null;
+    }
     public int moveCost(World.Unit u, Hex from, Hex to) {
         if (((u instanceof Domestic.Mission) && !((Domestic.Mission) u).sea && water(to)) || to == null || !this.w.inside(to) || this.w.terrain[to.q][to.r] == World.Terrain.MOUNTAIN) {
             return -1;
@@ -54,6 +65,7 @@ public final class Army {
             return -1;
         }
         if (water(to)) {
+            if(!water(from)&&embarkPort(u.owner,from,to)==null)return -1;
             return water(from) ? 1 : 2;
         }
         int land = this.w.fieldworks.landCost(to, u.weapon, u.owner);
@@ -132,6 +144,11 @@ public final class Army {
     }
     public String tacticError(int unit,Hex target,Tactic tactic){
         World.Unit u=w.unit(unit);String actorError=w.orders.error(u);if(actorError!=null)return actorError;
+        return tacticPositionError(u,target,tactic);
+    }
+    /** Read-only legality for detached route/AI probes; execution still validates the actor. */
+    String tacticPositionError(World.Unit u,Hex target,Tactic tactic){
+        if(u instanceof Domestic.Mission)return "运输队不能施展战法";
         if(tactic==null||!tactics(u).contains(tactic))return "当前兵装或舰船不能施展此战法";
         if(water(u.hex)&&aptitude(u)<tactic.rank||u.energy<tactic.energy)return "适性或气力不足";
         int distance=target==null?0:u.hex.distance(target),max=tactic==Tactic.RAM?1:w.war.range(u);
@@ -159,7 +176,7 @@ public final class Army {
     public World.Result tactic(int unit,Hex target,Tactic tactic){
         String error=tacticError(unit,target,tactic);if(error!=null)return w.fail(error);
         World.Unit u=w.unit(unit),enemy=w.unitAt(target);World.City city=w.cityAt(target);
-        u.acted=true;w.energy.change(u,-tactic.energy,EnergyRules.Reason.COMMAND);w.battleImpact(target,false);
+        w.marches.supersede(u);u.acted=true;w.energy.change(u,-tactic.energy,EnergyRules.Reason.COMMAND);w.battleImpact(target,false);
         if(tacticChance(unit,target)<100&&w.strategy.nextInt(100)>=tacticChance(unit,target))return w.success(tactic.label+"未命中，消耗气力"+tactic.energy+"，本旬行动结束");
         if(city!=null)return w.resolveSiege(u,city,true,tactic==Tactic.STONE);
         Domestic.Facility facility=w.domestic.at(target);

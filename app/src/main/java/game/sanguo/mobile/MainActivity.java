@@ -381,7 +381,7 @@ public final class MainActivity extends Activity {
     private void cancelMapPick(){clearTacticPreview();mapPick=null;pickTargets=Collections.emptySet();pickTitle="";refresh();}
     private void approach(World.Unit u,Hex h){
         if(unitCommand.equals("march")){previewMarch(u,h);return;}
-        confirm("目标在当前射程外，规划行军到目标附近？抵达后需要再次下令攻击。",()->{unitCommand="march";previewMarch(u,h);});
+        confirm("目标在当前射程外，预览自动攻击路线？确认后将逐旬接近并持续攻击，攻下据点后自动进驻。",()->{unitCommand="march";previewMarch(u,h);});
     }
     private void showTactics(World.Unit u){
         pendingMarch=null;unitCommand="select";refresh();
@@ -503,7 +503,7 @@ public final class MainActivity extends Activity {
         commandDock.setOrientation(portrait()?LinearLayout.VERTICAL:LinearLayout.HORIZONTAL);commandDock.setGravity(Gravity.CENTER_VERTICAL);
         if(pendingMarch==null){
             String error=world.orders.error(u);
-            String hint=unitCommand.equals("march")?"行军：点目标预览，确认后出发":unitCommand.equals("attack")?"攻击：点红框敌军、城池或设施":error!=null?error:"青色为本旬可达范围 · 红框可攻击";
+            String hint=unitCommand.equals("march")?"目标任务：点选攻击、进驻或修理目标":unitCommand.equals("attack")?"攻击：点红框敌军、城池或设施":error!=null?error:"青色为本旬可达范围 · 红框可攻击";
             TextView state=text((u instanceof Domestic.Mission?"运输":"兵"+u.troops)+" · 携粮 "+u.food+" · "+hint+" · 剩余移动 "+world.orders.remaining(u),12,gold);state.setMaxLines(2);
             commandDock.addView(state,new LinearLayout.LayoutParams(portrait()?-1:0,-2,portrait()?0:1));
             LinearLayout actions=new LinearLayout(this);
@@ -514,18 +514,18 @@ public final class MainActivity extends Activity {
             Button cancel=button("取消选中",v->clearUnitSelection());
             if(u instanceof Domestic.Mission){attack.setText("补给");attack.setOnClickListener(v->{if(error!=null)message("补给暂不可用",error);else convoySupply((Domestic.Mission)u);});tactics.setText("停止");tactics.setOnClickListener(v->apply(world.marches.stop(u.id)));plots.setText("货物");plots.setOnClickListener(v->{ui.panelVisible=true;refresh();revealPanel();});}
             for(Button b:new Button[]{march,attack,tactics,plots})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
-            if(!(u instanceof Domestic.Mission)&&u.march!=null)actions.addView(button("停止行军",v->apply(world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
+            if(!(u instanceof Domestic.Mission)&&u.march!=null)actions.addView(button("停止任务",v->apply(world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
             actions.addView(cancel,new LinearLayout.LayoutParams(0,dp(48),1));
             commandDock.addView(actions,new LinearLayout.LayoutParams(portrait()?-1:dp(360),-2));return;
         }
         LinearLayout copy=new LinearLayout(this);copy.setOrientation(LinearLayout.VERTICAL);copy.setGravity(Gravity.CENTER_VERTICAL);
-        TextView heading=text("路线预览 · "+pendingMarch.label,14,paper);heading.setMaxLines(1);heading.setEllipsize(android.text.TextUtils.TruncateAt.END);copy.addView(heading);
-        TextView hint=text(pendingMarch.valid()?(u.acted?"本旬已行动，下旬出发 · ":u.status!=War.Status.NORMAL?"异常状态，恢复后继续 · ":world.orders.remaining(u)==0?"移动力已用尽，下旬继续 · ":"本旬 "+pendingMarch.stepsNow+" 格 · ")+"预计再需 "+pendingMarch.estimatedTurns+" 旬 · 抵达后手动下令":pendingMarch.error,12,muted);hint.setMaxLines(3);hint.setEllipsize(android.text.TextUtils.TruncateAt.END);copy.addView(hint);
+        TextView heading=text(pendingMarch.actionLabel+" · "+pendingMarch.label,14,paper);heading.setMaxLines(1);heading.setEllipsize(android.text.TextUtils.TruncateAt.END);copy.addView(heading);
+        TextView hint=text(pendingMarch.valid()?(u.acted?"本旬已行动，下旬出发 · ":u.status!=War.Status.NORMAL?"异常状态，恢复后继续 · ":world.orders.remaining(u)==0?"移动力已用尽，下旬继续 · ":"本旬 "+pendingMarch.stepsNow+" 格 · ")+"行军预计再需 "+pendingMarch.estimatedTurns+" 旬 · "+pendingMarch.completion:pendingMarch.error,12,muted);hint.setMaxLines(3);hint.setEllipsize(android.text.TextUtils.TruncateAt.END);copy.addView(hint);
         if(pendingMarch.valid())copy.addView(text("路线总耗移动 "+pendingMarch.cost+" · 本旬走"+pendingMarch.stepsNow+"格 · "+(u.food<Math.max(1,(u.troops+19)/20)*(pendingMarch.estimatedTurns+1)?"携粮可能不足":"携粮按现有兵力估算可支撑路线"),12,gold));
         commandDock.addView(copy,new LinearLayout.LayoutParams(portrait()?-1:0,-2,portrait()?0:1));
         LinearLayout actions=new LinearLayout(this);MarchOrders.Plan plan=pendingMarch;
         Button cancel=button("取消",v->{pendingMarch=null;unitCommand="select";refresh();});
-        Button execute=button("开始行军",v->apply(world.marches.execute(plan)));execute.setTextColor(gold);execute.setEnabled(plan.valid()&&!aiRunning);
+        Button execute=button("确认任务",v->apply(world.marches.execute(plan)));execute.setTextColor(gold);execute.setEnabled(plan.valid()&&!aiRunning);
         actions.addView(cancel,new LinearLayout.LayoutParams(0,dp(48),1));actions.addView(execute,new LinearLayout.LayoutParams(0,dp(48),1));
         commandDock.addView(actions,new LinearLayout.LayoutParams(portrait()?-1:dp(208),-2));
     }
@@ -686,7 +686,7 @@ public final class MainActivity extends Activity {
             for(World.City base:world.cities)if(base.owner==u.owner&&u.hex.distance(base.hex)==1){
                 primaryAction("进入"+base.name,()->confirm("进入"+base.name+"并归还兵装与粮草？",()->apply(world.enter(u.id,base.id))));break;
             }
-            if(u.march!=null)primaryAction("停止行军",()->apply(world.marches.stop(u.id)));
+            if(u.march!=null)primaryAction("停止任务",()->apply(world.marches.stop(u.id)));
         }
         if(u instanceof Domestic.Mission){showConvoy((Domestic.Mission)u);return;}
         World.Officer o=world.officer(u.officerId);panel.addView(visualHeader(o,o.name,world.faction(u.owner)+" · "+world.army.equipmentLabel(u),44));
@@ -696,7 +696,7 @@ public final class MainActivity extends Activity {
             LinearLayout quick=new LinearLayout(this);
             quick.addView(button("选择目标",v->{unitCommand="march";closePanel();}),new LinearLayout.LayoutParams(0,dp(48),1));
             quick.addView(button("下一部队",v->nextUnit()),new LinearLayout.LayoutParams(0,dp(48),1));
-            if(u.march!=null)quick.addView(button("停止行军",v->apply(world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
+            if(u.march!=null)quick.addView(button("停止任务",v->apply(world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
             panel.addView(quick);
         }
         line("统率 "+o.leadership+"  武力 "+o.war,13,paper);line("剩余移动 "+world.orders.remaining(u)+"  射程 "+world.war.range(u),13,paper);
@@ -715,7 +715,7 @@ public final class MainActivity extends Activity {
         if(u.owner==world.player)action("入城",v->{List<Hex> targets=new ArrayList<>();for(World.City c:world.cities)if(c.owner==u.owner&&u.hex.distance(c.hex)==1)targets.add(c.hex);pickOnMap("入城 · 选择相邻己城",u.hex,targets,h->{World.City c=world.cityAt(h);if(c!=null)confirm("进入"+c.name+"并归还兵装与粮草？",()->apply(world.enter(u.id,c.id)));});});
         Districts.District district=world.districts.unit(u.id);if(district!=null)line("所属军团："+district.name()+" · 自动指挥",13,gold);
         if(u.owner==world.player){line(u.acted?"本旬已行动，攻击后不能再移动 · 可安排下旬行军":"底栏选择行军、攻击、战法；点空地或本队取消选中",14,paper);
-            if(u.march!=null)line("行军 → "+world.marches.label(u.march)+(u.march.paused.isEmpty()?"\n每旬自动前进":"\n暂停："+u.march.paused),14,gold);
+            if(u.march!=null)line(world.marches.describe(u),14,gold);
             if(world.fieldworks.project(u.id)!=null)action("中止施工",v->new FieldworkUi(this,world,this::apply).stop(u));
             if(!u.acted&&u.status==War.Status.NORMAL){action("设置军事设施",v->new FieldworkUi(this,world,this::apply).build(u));action("补修军事设施",v->new FieldworkUi(this,world,this::apply).repair(u));action("补充携金",v->new FieldworkUi(this,world,this::apply).fund(u));action("单挑",v->new ContestUi(this,world,this::apply).challenge(u));action("齐攻",v->warUi().joint(u));action("讨伐贼寨",v->new WorldUi(this,world,this::apply).raids(u));action("截击运输队",v->governmentUi().raid(u));action("移交兵粮",v->governmentUi().supply(u));action("部队战法详情",v->showTactics(u));
                 if(u.burning>0)action("部队灭火 · 气力5",v->confirm("扑灭本部队火焰？",()->apply(world.army.extinguish(u.id))));action("部队计略",v->{moving=u.id;warUi().plots(u);});action("待命 · 恢复5气力",v->confirm("本旬待命并恢复5气力？",()->apply(world.war.waitUnit(u.id))));}
@@ -791,7 +791,7 @@ public final class MainActivity extends Activity {
         action("本旬结算摘要",v->showTurnReport());
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("v"+BuildConfig.VERSION_NAME+" · 设施产能与编队表现", "构建 "+BuildConfig.VERSION_CODE+" · 源码 "+BuildConfig.SOURCE_REVISION+"\n港口、关卡、城市使用不同攻城系数；器械伤害随兵力增长。围攻停止自然修复，主动补修降为¼。\n地块开发、城市出征与运输固定在面板顶部；结算期间仍可拖动地图与收起面板。\n栈道与山径按六方向连接，河岸连续描边。\n每座兵舍/生产设施每旬1次；枪戟弩共用锻冶所次数，战马使用厩舍。部队按2500兵一档显示1至5个模型，万人以上5个。新开局为开发基线。\n历史重建/定制剧本，完整官方数据及精确公式仍待核验。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("v"+BuildConfig.VERSION_NAME+" · 地理与连续目标任务", "构建 "+BuildConfig.VERSION_CODE+" · 源码 "+BuildConfig.SOURCE_REVISION+"\n西北绿洲道路、许新森林、吴附近曲阿港及邺晋间壶关；地形更新需新开局。\n下河须经过己方港口；目标任务支持持续攻击、攻占后进驻和连续修理，可随时停止。\n港口、关卡、城市使用不同攻城系数；器械伤害随兵力增长。围攻停止自然修复，主动补修降为¼。\n地块开发、城市出征与运输固定在面板顶部；结算期间仍可拖动地图与收起面板。\n栈道与山径按六方向连接，河岸连续描边。\n每座兵舍/生产设施每旬1次；枪戟弩共用锻冶所次数，战马使用厩舍。部队按2500兵一档显示1至5个模型，万人以上5个。新开局为开发基线。\n历史重建/定制剧本，完整官方数据及精确公式仍待核验。"));
     }
     private void scenarioPicker(){
         try {

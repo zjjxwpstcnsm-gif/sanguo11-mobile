@@ -258,6 +258,9 @@ public final class World {
     }
     public String siegeError(int unitId,int cityId) {
         Unit u=unit(unitId);City c=city(cityId);String error=unitError(u);if(error!=null)return error;
+        return siegePositionError(u,c);
+    }
+    String siegePositionError(Unit u,City c){
         if(u instanceof Domestic.Mission)return "运输队不能攻城";
         if(c==null||!campaign.hostile(u.owner,c.owner))return "请选择交战势力或未占领城池";
         if(u.hex.distance(c.hex)>army.siegeRange(u))return "城池不在攻城射程内";
@@ -267,7 +270,7 @@ public final class World {
     public Result siege(int unitId,int cityId) {
         String error=siegeError(unitId,cityId);if(error!=null)return fail(error);
         Unit u=unit(unitId);City c=city(cityId);
-        u.acted=true;return resolveSiege(u,c,false);
+        marches.supersede(u);u.acted=true;return resolveSiege(u,c,false);
     }
     /** Caller has validated and paid for the command. No nested public command or second payment. */
     Result resolveSiege(Unit u,City c,boolean tactic) {return resolveSiege(u,c,tactic,false);}
@@ -287,14 +290,16 @@ public final class World {
         checkVictory();return success(message);
     }
     public Result enter(int unitId, int cityId) {
-        Unit u = unit(unitId);
-        City c = city(cityId);
-        String error = unitError(u);
+        return enterSite(unit(unitId),city(cityId),false);
+    }
+    Result enterAfterCapture(Unit u,City c){return enterSite(u,c,true);}
+    private Result enterSite(Unit u,City c,boolean captured) {
+        String error = captured?(u==null||unit(u.id)!=u||u.owner!=active?"攻城部队已失效":null):unitError(u);
         if (error != null) {
             return fail(error);
         }
         if (u instanceof Domestic.Mission) {
-            return this.domestic.unload((Domestic.Mission) u, cityId);
+            return this.domestic.unload((Domestic.Mission) u, c==null?-1:c.id);
         }
         if (c == null || c.owner != u.owner || u.hex.distance(c.hex) > 1) {
             return fail("请选择相邻己方城市、关卡或港口");
@@ -304,6 +309,7 @@ public final class World {
         if (c.troops + u.troops > this.campaign.troopCap(c) || c.equipment[u.weapon.ordinal()] + gear > cap || c.food + u.food > this.campaign.foodCap(c) || c.gold + u.gold > this.campaign.goldCap(c) || (u.ship != Army.Ship.BOAT && c.ships[u.ship.ordinal() - 1] >= 100)) {
             return fail("据点容量不足：兵余" + Math.max(0, this.campaign.troopCap(c) - c.troops) + "、粮余" + Math.max(0, this.campaign.foodCap(c) - c.food) + "、金余" + Math.max(0, this.campaign.goldCap(c) - c.gold) + "、所选兵装余" + Math.max(0, cap - c.equipment[u.weapon.ordinal()]));
         }
+        marches.supersede(u);
         c.troops += u.troops;
         c.food += u.food;
         c.gold += u.gold;

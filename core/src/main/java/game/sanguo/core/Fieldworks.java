@@ -73,19 +73,19 @@ public final class Fieldworks {
     public List<Hex> sites(int unit,War.StructureKind kind){List<Hex> out=new ArrayList<>();World.Unit u=w.unit(unit);if(u!=null)for(Hex h:u.hex.neighbors())if(buildError(unit,kind,h,0)==null)out.add(h);return out;}
     public World.Result build(int unit,War.StructureKind kind,Hex target,int direction){
         String error=buildError(unit,kind,target,direction);if(error!=null)return w.fail(error);
-        World.Unit u=w.unit(unit);u.gold-=kind.gold;u.acted=true;
+        World.Unit u=w.unit(unit);w.marches.supersede(u);u.gold-=kind.gold;u.acted=true;
         War.Structure s=new War.Structure(w.war.nextStructureId++,u.owner,kind,target,0);s.complete=false;s.builder=unit;s.direction=direction;w.war.structures.add(s);advance(s,u);
         return w.success("设置"+kind.label+" · "+(s.complete?"已建成":"施工"+s.hp+"/"+kind.hp+"，后续自动补修"));
     }
     public World.Result repair(int unit,int structure){
         World.Unit u=w.unit(unit);String error=w.orders.combatError(u);if(error!=null)return w.fail(error);War.Structure s=byId(structure);
         if(s==null||s.owner!=u.owner||u.hex.distance(s.hex)!=1||s.hp>=s.kind.hp||s.builder>=0&&s.builder!=unit||project(unit)!=null&&project(unit)!=s)return w.fail("请选择邻接、受损且无其他部队施工的己方设施");
-        u.acted=true;s.builder=unit;advance(s,u);return w.success("补修"+s.kind.label+" · 耐久"+s.hp+"/"+s.kind.hp);
+        w.marches.supersede(u);u.acted=true;s.builder=unit;advance(s,u);return w.success("补修"+s.kind.label+" · 耐久"+s.hp+"/"+s.kind.hp);
     }
     public World.Result stop(int unit){
         World.Unit u=w.unit(unit);War.Structure s=project(unit);
         if(w.commandsBlocked()||w.gameOver()||u==null||u.owner!=w.active||s==null)return w.fail("请选择己方施工部队");
-        s.builder=-1;return w.success("已中止施工，保留当前设施与耐久，费用不退还");
+        w.marches.supersede(u);s.builder=-1;return w.success("已中止施工，保留当前设施与耐久，费用不退还");
     }
     public World.Result withdraw(int unit,int city,int gold){
         World.Unit u=w.unit(unit);World.City c=w.city(city);String error=w.orders.combatError(u);if(error!=null)return w.fail(error);

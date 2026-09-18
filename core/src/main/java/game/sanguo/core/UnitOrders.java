@@ -83,7 +83,7 @@ public final class UnitOrders {
         catch(IOException e){return w.fail("局面校验失败："+e.getMessage());}
         World.Unit u=w.unit(plan.unitId);String error=error(u);if(error!=null)return w.fail(error);
         if(u.movementBudget<0)u.movementBudget=w.war.movement(u); // Freeze before any water/land conversion.
-        u.march=null;
+        w.marches.supersede(u);
         if(u instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)u;m.legacyOverlap=false;m.waiting="";}
         u.movementSpent+=plan.cost;u.hex=plan.path.get(plan.path.size()-1);w.fieldworks.traveled(u,plan.path);
         return w.success(w.officer(u.officerId).name+"部队移动，剩余移动"+remaining(u)+"，仍可执行命令");

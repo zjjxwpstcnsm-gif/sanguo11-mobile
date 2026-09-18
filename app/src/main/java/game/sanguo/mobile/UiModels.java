@@ -140,7 +140,7 @@ final class UiModels {
             for(AbilityResearch.Training p:w.abilities.training())if(p.owner==w.player){Task t=new Task(50000000L+p.officerId,p.label()+" · "+w.officer(p.officerId).name,w.city(p.cityId).name+" · 剩余 "+w.officer(p.officerId).otherTaskTurns+" 旬",w.city(p.cityId).hex,null,null);t.abilityTraining=p;result.add(t);}
         }
         if(type==0||type==6)for(World.Unit u:w.units)if(u.owner==w.player&&u.march!=null){
-            Task t=new Task(60000000L+u.id,"行军 · "+w.officer(u.officerId).name,"目标 "+w.marches.label(u.march)+"\n"+(u.march.paused.isEmpty()?"每旬自动前进 · 可点地图改道":u.march.paused),u.hex,null,null);t.marching=u;result.add(t);
+            Task t=new Task(60000000L+u.id,"自动任务 · "+w.officer(u.officerId).name,w.marches.describe(u),u.hex,null,null);t.marching=u;result.add(t);
         }
         if(type==0||type==7)for(Diplomacy.Aid aid:w.diplomacy.aids())if(aid.requester==w.player){
             World.Unit unit=w.unit(aid.unit);Task t=new Task(70000000L+aid.requester,"援军 · "+w.faction(aid.ally),w.diplomacy.describe(aid),unit==null?w.city(aid.source).hex:unit.hex,null,null);t.aid=aid;result.add(t);
