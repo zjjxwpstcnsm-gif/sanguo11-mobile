@@ -1,0 +1,22 @@
+name: v045 development workbench
+on:
+  push:
+    branches: [agent/geography-orders-v045]
+    paths: ['.github/workflows/v045-workbench.yml', '.ci/apply_v045_source.py']
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: c4bc410223365cd083d6d6196b0303255b740f1c
+      - run: git archive --format=zip HEAD -o v044-source.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v044-source-for-v045
+          path: v044-source.zip
+          retention-days: 3
+          compression-level: 0
