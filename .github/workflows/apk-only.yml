@@ -1,0 +1,79 @@
+name: APK build only (no tests)
+run-name: v0.43 APK build only
+
+on:
+  push:
+    branches: [ci/apk-only-v043-20260919]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: apk-only-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  apk:
+    name: Build v0.43 APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out exact v0.43 main source
+        uses: actions/checkout@v4
+        with:
+          ref: 7f135f334eb185819b6d2115fa1b97eaf759286b
+          persist-credentials: false
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - name: Set up Android SDK tools
+        uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Install Android platform
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Build APK without tests, lint, or emulator
+        run: ./gradlew --no-daemon :app:assembleDebug
+      - name: Package APK and record source and signature
+        id: package
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          app_version=$(sed -n 's/^versionName=//p' version.properties | tr -d '\r')
+          test -n "$app_version"
+          source_commit=$(git rev-parse HEAD)
+          short_commit=$(git rev-parse --short=12 HEAD)
+          apk_name="sanguo11-mobile-v${app_version}-${short_commit}.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "dist/$apk_name"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "dist/$apk_name" | tee dist/SIGNATURE.txt
+          grep -Fq '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' dist/SIGNATURE.txt
+          printf '%s\n' "$source_commit" > dist/BUILD_COMMIT
+          cp app/build/outputs/apk/debug/output-metadata.json dist/output-metadata.json
+          (cd dist && sha256sum "$apk_name" > SHA256SUMS)
+          printf 'name=sanguo11-mobile-v%s-%s\n' "$app_version" "$short_commit" >> "$GITHUB_OUTPUT"
+          {
+            echo '## APK build only'
+            echo "- Version: $app_version"
+            echo "- Source commit: $source_commit"
+            echo "- File: $apk_name"
+            echo '- Stable development signing certificate verified.'
+            echo '- Unit tests, lint, Android instrumentation and emulator checks were not run.'
+            echo '```text'
+            cat dist/SHA256SUMS
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.package.outputs.name }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
