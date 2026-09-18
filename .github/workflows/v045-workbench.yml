@@ -1,22 +1,124 @@
 name: v045 development workbench
+run-name: v0.45 geography and persistent objective APK
 on:
   push:
     branches: [agent/geography-orders-v045]
-    paths: ['.github/workflows/v045-workbench.yml', '.ci/apply_v045_source.py']
+    paths: ['.github/workflows/v045-workbench.yml', '.ci/v045.*.b64']
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: v045-development
+  cancel-in-progress: true
 jobs:
-  source:
+  apk:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: c4bc410223365cd083d6d6196b0303255b740f1c
-      - run: git archive --format=zip HEAD -o v044-source.zip
+          fetch-depth: 8
+      - name: Materialize exact reviewed sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64,hashlib,json,lzma,pathlib,subprocess
+          expected=['ed30eb9e550d8d04bf4764469d66e3f0fc889310f09799f7cce3b74ef3f9d6be','c5890116ac2e9c940efe0e8f209a869172c5a63887c247637f42b40de3702350','3ce3caee6efa4562cc93062ac3378dcf6ac176f3ba5d7c9928224393ad4cc607','528d6502e7be163728c12599b0e6dc65441c0fda1cd87805f12ea4e4b8ee6552']
+          chunks=[]
+          for i in range(4):
+              text=pathlib.Path(f'.ci/v045.{i}.b64').read_text().strip()
+              digest=hashlib.sha256(text.encode()).hexdigest()
+              print('Source chunk',i,len(text),digest)
+              assert digest==expected[i],f'Chunk {i} checksum mismatch'
+              chunks.append(text)
+          raw=lzma.decompress(base64.b64decode(''.join(chunks),validate=True))
+          assert hashlib.sha256(raw).hexdigest()=='4aa16ddbb0a4a7f3445c3303332525984d7b4e2cf881116808b206b3be6becae'
+          items=json.loads(raw)
+          hashes={}
+          for item in items:
+              p=pathlib.Path(item['path'])
+              assert not p.is_absolute() and '..' not in p.parts
+              old=p.read_text() if p.exists() else None
+              assert (hashlib.sha256(old.encode()).hexdigest() if old is not None else None)==item['base'],str(p)+' baseline mismatch'
+              lines=[] if old is None else old.splitlines(keepends=True)
+              for start,end,text in reversed(item['ops']):
+                  lines[start:end]=[text]
+              result=''.join(lines)
+              assert hashlib.sha256(result.encode()).hexdigest()==item['result'],str(p)+' output mismatch'
+              p.parent.mkdir(parents=True,exist_ok=True)
+              p.write_text(result)
+              hashes[str(p)]=item['result']
+          pathlib.Path('/tmp/SOURCE_CHECKSUMS.json').write_text(json.dumps(hashes,indent=2)+'\n')
+          for i in range(4):
+              pathlib.Path(f'.ci/v045.{i}.b64').unlink()
+          pathlib.Path('.github/workflows/v045-workbench.yml').unlink()
+          subprocess.run(['git','add','-A'],check=True)
+          changed=subprocess.check_output(['git','diff','--cached','--name-only','c4bc410223365cd083d6d6196b0303255b740f1c'],text=True).splitlines()
+          assert sorted(changed)==sorted(hashes),'Unexpected source changes'
+          print('Verified exact reviewed files:',len(hashes))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          source_tree=$(git write-tree)
+          source_commit=$(printf '%s\n' 'feat: geography and persistent objectives v0.45.0 [skip ci]' | git commit-tree "$source_tree" -p c4bc410223365cd083d6d6196b0303255b740f1c)
+          git checkout --detach "$source_commit"
+          echo "SOURCE_COMMIT=$source_commit" >> "$GITHUB_ENV"
+          git diff --stat c4bc410223365cd083d6d6196b0303255b740f1c HEAD
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Install Android platform
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Focused objective and port checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/v045-classes dist
+          javac --release 17 -encoding UTF-8 -d /tmp/v045-classes $(find core/src/main/java -name '*.java') core/src/test/java/game/sanguo/core/ObjectiveOrdersTest.java
+          java -Dfile.encoding=UTF-8 -cp /tmp/v045-classes:core/src/main/resources game.sanguo.core.ObjectiveOrdersTest | tee dist/objective-checks.txt
+          python3 scripts/verify-map-release.py | tee dist/map-source-checks.txt
+      - name: Build APK without full regression or emulator
+        run: ./gradlew --no-daemon :app:assembleDebug
+      - name: Verify signature, content and source identity
+        id: package
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_COMMIT"
+          git diff --exit-code
+          short_commit=$(git rev-parse --short=12 HEAD)
+          apk_name="sanguo11-mobile-v045-${short_commit}.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "dist/$apk_name"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "dist/$apk_name" | tee dist/SIGNATURE.txt
+          grep -Fq '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' dist/SIGNATURE.txt
+          python3 scripts/verify-map-release.py "dist/$apk_name" | tee dist/map-apk-checks.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "dist/$apk_name" > dist/APK_BADGING.txt
+          grep -Fq "versionCode='45' versionName='0.45.0'" dist/APK_BADGING.txt
+          printf '%s\n' "$SOURCE_COMMIT" > dist/BUILD_COMMIT
+          cp app/build/outputs/apk/debug/output-metadata.json dist/output-metadata.json
+          cp /tmp/SOURCE_CHECKSUMS.json dist/SOURCE_CHECKSUMS.json
+          cp docs/validation/v045/geography.json dist/geography.json
+          git diff --binary c4bc410223365cd083d6d6196b0303255b740f1c HEAD > dist/v045-source.patch
+          git archive --format=zip HEAD -o dist/v045-source.zip
+          (cd dist && sha256sum "$apk_name" v045-source.zip v045-source.patch > SHA256SUMS)
+          printf 'name=sanguo11-mobile-v045-%s\n' "$short_commit" >> "$GITHUB_OUTPUT"
+          echo "## v0.45 verified APK: $SOURCE_COMMIT" >> "$GITHUB_STEP_SUMMARY"
+          cat dist/objective-checks.txt dist/SHA256SUMS >> "$GITHUB_STEP_SUMMARY"
+          echo 'Full historical regression, lint, emulator and ARM-device UI checks were not run.' >> "$GITHUB_STEP_SUMMARY"
+      - name: Publish verified source branch
+        run: git push origin "$SOURCE_COMMIT:refs/heads/agent/v045-ready"
       - uses: actions/upload-artifact@v4
         with:
-          name: v044-source-for-v045
-          path: v044-source.zip
-          retention-days: 3
+          name: ${{ steps.package.outputs.name }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
           compression-level: 0
