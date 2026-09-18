@@ -1213,25 +1213,26 @@ public final class GameSmokeRunner extends Instrumentation {
         return w;
     }
     private void balance41Flow()throws Exception{
+        checkpoint("v041 startup");
         World first=balance41Fixture();try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(first));}
         startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitForIdleSync();
         for(int orientation:new int[]{android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT,android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE}){
             runOnMainSync(()->current.setRequestedOrientation(orientation));assertOrientation(orientation==android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             String label=orientation==android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT?"portrait":"landscape";
-            World w=balance41Fixture();Hex parcel=new Hex(5,8);installFixture(w,parcel);byte[] before=SaveCodec.encode(w);
+            checkpoint("v041 orientation "+label);World w=balance41Fixture();Hex parcel=new Hex(5,8);installFixture(w,parcel);checkpoint("v041 parcel selected");byte[] before=SaveCodec.encode(w);
             AccessibilityNodeInfo develop=waitText("＋ 开发此地",true);Rect bounds=new Rect();develop.getBoundsInScreen(bounds);
             require(develop.isVisibleToUser()&&bounds.height()>=current.getResources().getDisplayMetrics().density*40,"development action visible without scrolling");
-            screenshot("v041-development-"+label);click("＋ 开发此地",true);waitText("开发地 · 选择设施",true);
+            screenshot("v041-development-"+label);checkpoint("v041 develop visible");click("＋ 开发此地",true);waitText("开发地 · 选择设施",true);
             click("市场 ·",false);waitText("建设 · 选择执行人",true);click("武将2 ·",false);waitText("开工",true);
             screenshot("v041-build-confirm-"+label);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(w)),"construction cancellation keeps state");
             click("＋ 开发此地",true);click("市场 ·",false);click("武将2 ·",false);click("开工",true);
-            require(w.domestic.at(parcel)!=null&&w.domestic.at(parcel).remaining>0,"top action actually starts construction");
+            require(w.domestic.at(parcel)!=null&&w.domestic.at(parcel).remaining>0,"top action actually starts construction");checkpoint("v041 construction complete");
             installFixture(balance41Fixture(),new Hex(6,8));require(waitText("设施开发",true).isVisibleToUser(),"city development pinned above detail");screenshot("v041-city-"+label);
             w=balance41Fixture();installFixture(w,w.unit(1).hex);before=SaveCodec.encode(w);
-            click("攻击",true);tapHex(w.city(20).hex);waitText("预计城防",false);screenshot("v041-siege-preview-"+label);
+            checkpoint("v041 attack selected");click("攻击",true);tapHex(w.city(20).hex);waitText("预计城防",false);screenshot("v041-siege-preview-"+label);
             require(Arrays.equals(before,SaveCodec.encode(w)),"siege preview pure");int wall=w.city(20).defense,expected=w.combat.siege(w.unit(1),w.city(20),false).wall;
             click("执行",true);require(w.city(20).defense==wall-expected&&w.unit(1).acted,"installed APK uses advertised port damage");
-            installFixture(balance41Fixture(),new Hex(6,4));click("收起",true);screenshot("v041-connected-roads-"+label);
+            installFixture(balance41Fixture(),new Hex(6,4));click("收起",true);screenshot("v041-connected-roads-"+label);checkpoint("v041 finished "+label);
         }
     }
 

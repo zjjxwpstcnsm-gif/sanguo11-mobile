@@ -1,0 +1,14 @@
+V033 checkpoint: v041 startup
+V033 checkpoint: v041 orientation portrait
+V033 checkpoint: v041 parcel selected
+V033 checkpoint: v041 develop visible
+V033 checkpoint: v041 construction complete
+V033 checkpoint: v041 attack selected
+V033 checkpoint: v041 finished portrait
+V033 checkpoint: v041 orientation landscape
+V033 checkpoint: v041 parcel selected
+V033 checkpoint: v041 develop visible
+V033 checkpoint: v041 construction complete
+V033 checkpoint: v041 attack selected
+V033 checkpoint: v041 finished landscape
+BALANCE41 PASS: pinned development/city actions in portrait and landscape, construction execution, pure siege preview, real attack damage and connected terrain.

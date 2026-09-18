@@ -14,8 +14,16 @@
 
 ## Android 实装
 
-API 29 软件模拟器，720×1280 / density 240，实际横竖屏。专用 instrumentation 参数 `-e balance41 true` 检查固定开发按钮无需滚动、设施→执行人→确认/取消及实际开工、城市开发首屏入口、攻城预览与实际扣减、相邻栈道绘制。结果与截图在本目录记录。
+API 29 软件模拟器，720×1280 / density 240，实际横竖屏。专用 instrumentation 参数 `-e balance41 true` 检查固定开发按钮无需滚动、设施→执行人→确认/取消及实际开工、城市开发首屏入口、攻城预览与实际扣减、相邻栈道绘制。**已通过**，见 [实装日志](android-instrumentation.txt)。重跑时游戏无 AndroidRuntime 崩溃；首次软件模拟器启动时 System UI ANR 弹窗遮挡游戏，清理系统弹窗后完整重跑通过。
 
 ARM 真机与 v0.40 的 v23/v24 存档迁移未验证/未支持。v0.40 源码未作为本轮基线；v1–v22 主线存档继续兼容，读取失败保留原档。
 
-最终安装包使用固定开发包名和签名。应用菜单显示源码提交，APK 摘要和构建身份将在交付构建时写入本目录。
+最终安装包使用固定开发包名和签名。应用菜单显示源码提交，交付 APK 文件名与应用菜单显示同一源码提交；SHA-256 在交付时计算。签名 SHA-256：`8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24`，已与既有 v0.40 APK 比对一致。
+
+## 实际界面
+
+![竖屏开发入口](development-portrait.png)
+
+![横屏开发入口](development-landscape.png)
+
+![连接栈道](connected-roads.png)
