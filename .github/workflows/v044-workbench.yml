@@ -1,30 +1,94 @@
-name: v044 development workbench
+name: v044 source and APK
+run-name: v0.44 sand terrain, river and compact controls
 on:
   push:
     branches: [agent/sand-river-ux-v044]
+    paths: ['.ci/apply_v044_source.py', '.github/workflows/v044-workbench.yml']
 permissions:
-  contents: read
+  contents: write
+concurrency:
+  group: v044-development
+  cancel-in-progress: true
 jobs:
-  inspect:
+  apk:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: false
-      - name: Inspect map generation and rendering integration
+          fetch-depth: 5
+      - name: Materialize reviewed source on a clean main-parent commit
+        shell: bash
         run: |
-          find tools/content -maxdepth 2 -type f
-          grep -nE '黄河|新野|许昌|river|mountain|def .*map|revision=' tools/content/*.py || true
-          grep -nE 'Button button|new Button|terrainLabel|terrainName|Terrain|case DAM|case SWAMP' app/src/main/java/game/sanguo/mobile/{MainActivity,TerrainTiles,VisualGuide,MapView,MapOverview,MapModels}.java | head -160
-          grep -nE 'cost\(|case |terrainLabel|terrainName' core/src/main/java/game/sanguo/core/World.java
-          cat scripts/verify-map-release.py
-      - name: Export exact source for editing
+          set -euo pipefail
+          python3 .ci/apply_v044_source.py
+          python3 tools/content/refine_geography_v044.py --apply
+          python3 scripts/verify-map-release.py
+          rm .ci/apply_v044_source.py .github/workflows/v044-workbench.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          source_tree=$(git write-tree)
+          source_commit=$(printf '%s\n' 'feat: v0.44 sand terrain, Yellow River and compact map controls [skip ci]' | git commit-tree "$source_tree" -p 7f135f334eb185819b6d2115fa1b97eaf759286b)
+          git checkout --detach "$source_commit"
+          git push origin "$source_commit:refs/heads/agent/v044-ready"
+          echo "SOURCE_COMMIT=$source_commit" >> "$GITHUB_ENV"
+          git diff --stat 7f135f334eb185819b6d2115fa1b97eaf759286b HEAD
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Android platform
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Focused sand command and save checks only
+        shell: bash
         run: |
-          mkdir -p /tmp/source
-          git archive --format=tar.gz HEAD > /tmp/source/sanguo11-source.tar.gz
+          set -euo pipefail
+          mkdir -p /tmp/v044-classes
+          javac --release 17 -encoding UTF-8 -d /tmp/v044-classes $(find core/src/main/java -name '*.java') core/src/test/java/game/sanguo/core/SandTerrainTest.java
+          java -Dfile.encoding=UTF-8 -cp /tmp/v044-classes:core/src/main/resources game.sanguo.core.SandTerrainTest
+      - name: Build APK (no full regression, lint or emulator)
+        run: ./gradlew --no-daemon :app:assembleDebug
+      - name: Package and verify exact source and signature
+        id: package
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          source_commit=$(git rev-parse HEAD)
+          test "$source_commit" = "$SOURCE_COMMIT"
+          app_version=$(sed -n 's/^versionName=//p' version.properties | tr -d '\r')
+          short_commit=$(git rev-parse --short=12 HEAD)
+          apk_name="sanguo11-mobile-v${app_version}-${short_commit}.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "dist/$apk_name"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "dist/$apk_name" | tee dist/SIGNATURE.txt
+          grep -Fq '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' dist/SIGNATURE.txt
+          python3 scripts/verify-map-release.py "dist/$apk_name"
+          printf '%s\n' "$source_commit" > dist/BUILD_COMMIT
+          cp app/build/outputs/apk/debug/output-metadata.json dist/output-metadata.json
+          cp docs/validation/v044/geography.json dist/geography.json
+          python3 - <<'PY'
+          import hashlib,json,pathlib,subprocess
+          names=subprocess.check_output(['git','diff','--name-only','7f135f334eb185819b6d2115fa1b97eaf759286b','HEAD'],text=True).splitlines()
+          hashes={p:hashlib.sha256(pathlib.Path(p).read_bytes()).hexdigest() for p in names if pathlib.Path(p).is_file()}
+          pathlib.Path('dist/source-checksums.json').write_text(json.dumps(hashes,indent=2)+'\n')
+          PY
+          (cd dist && sha256sum "$apk_name" > SHA256SUMS)
+          printf 'name=sanguo11-mobile-v%s-%s\n' "$app_version" "$short_commit" >> "$GITHUB_OUTPUT"
+          echo "## v0.44 APK: $source_commit" >> "$GITHUB_STEP_SUMMARY"
+          cat dist/SHA256SUMS >> "$GITHUB_STEP_SUMMARY"
+          echo 'Focused sand checks passed. Full regression, lint, emulator and ARM-device UI checks were not run.' >> "$GITHUB_STEP_SUMMARY"
       - uses: actions/upload-artifact@v4
         with:
-          name: v044-source-baseline
-          path: /tmp/source/
-          retention-days: 2
+          name: ${{ steps.package.outputs.name }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
