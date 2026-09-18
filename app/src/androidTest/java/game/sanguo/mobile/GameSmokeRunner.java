@@ -1033,7 +1033,7 @@ public final class GameSmokeRunner extends Instrumentation {
         require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=14,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
-        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==24,"upgraded writer produced v22 header");}
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==25,"upgraded writer produced v25 header");}
         screenshot(upgrade27?"00-v27-upgrade-preserved":upgrade26?"00-v26-upgrade-preserved":upgrade25?"00-v25-upgrade-preserved":"00-v09-upgrade-preserved");
         if(upgrade26||upgrade27){
             require(legacy.districts.all().size()==1&&legacy.domestic.missions.size()==2&&legacy.units.stream().anyMatch(u->!legacy.aiOrders.describe(u).equals("待评估")),"v26 district, real army intention and two actual tasks retained");
@@ -1216,8 +1216,8 @@ public final class GameSmokeRunner extends Instrumentation {
     private void map42Flow()throws Exception{
         World national=TestScenarios.load("heroes-250",0);
         balance41Flow();
-        require(VisualAssets.ready()&&VisualAssets.terrainReady(),"all four map atlases decoded");
-        require(VisualAssets.bytes()>20_000_000&&VisualAssets.bytes()<27_000_000,"bounded shared atlas memory");
+        require(VisualAssets.ready()&&VisualAssets.terrainReady(),"all five map atlases decoded");
+        require(VisualAssets.bytes()>20_000_000&&VisualAssets.bytes()<31_000_000,"bounded shared atlas memory");
         require(PortraitCatalog.NAMES.length==32&&PortraitCatalog.index("夏侯惇")==16,"v40 portraits restored");
         for(int orientation:new int[]{android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT,android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE}){
             runOnMainSync(()->current.setRequestedOrientation(orientation));assertOrientation(orientation==android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);

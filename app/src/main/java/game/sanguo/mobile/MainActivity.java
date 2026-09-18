@@ -658,9 +658,9 @@ public final class MainActivity extends Activity {
         new CityCommand("快速出征（单将）",()->armyUi().quickDeploy(c)),
         new CityCommand("编队 / 水陆出征",()->armyUi().deploy(c)),
         new CityCommand("军备制造 / 攻城器械与舰船",()->armyUi().manufacture(c)),
-        new CityCommand("征兵 · 金300 · 兵源 "+c.recruitReserve,()->strategyUi().command(c,6)),
+        new CityCommand("征兵 · "+world.domestic.usage(c.id,Domestic.Kind.BARRACKS),()->strategyUi().command(c,6)),
         new CityCommand("训练 · 金100",()->strategyUi().command(c,7)),
-        new CityCommand("生产兵装 · 查看费用",()->chooseOfficer(c,o->chooseBasicWeapon(weapon->confirm(o.name+"生产"+world.skills.produceAmount(c.id,o.id,weapon)+"份"+weapon.label+"兵装\n花费金"+world.skills.productionGold(o.id,weapon)+"、行动力10",()->apply(world.produce(c.id,o.id,weapon))))))
+        new CityCommand("生产兵装 · 查看设施次数与费用",()->armyUi().basicProduction(c))
     );}
     private void showUnit(World.Unit u){
         if(u.owner==world.player&&!world.gameOver()){
@@ -772,7 +772,7 @@ public final class MainActivity extends Activity {
         action("本旬结算摘要",v->showTurnReport());
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("v"+BuildConfig.VERSION_NAME+" · 数值与地图体验", "构建 "+BuildConfig.VERSION_CODE+" · 源码 "+BuildConfig.SOURCE_REVISION+"\n港口、关卡、城市使用不同攻城系数；器械伤害随兵力增长。围攻停止自然修复，主动补修降为¼。\n地块开发、城市出征与运输固定在面板顶部；结算期间仍可拖动地图与收起面板。\n栈道与山径按六方向连接，河岸连续描边。\n当前主线存档格式 v22；独立交付 v0.40 的 v23/v24 存档暂不兼容，原档保留。\n历史重建/定制剧本，完整官方数据及精确公式仍待核验。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("v"+BuildConfig.VERSION_NAME+" · 设施产能与编队表现", "构建 "+BuildConfig.VERSION_CODE+" · 源码 "+BuildConfig.SOURCE_REVISION+"\n港口、关卡、城市使用不同攻城系数；器械伤害随兵力增长。围攻停止自然修复，主动补修降为¼。\n地块开发、城市出征与运输固定在面板顶部；结算期间仍可拖动地图与收起面板。\n栈道与山径按六方向连接，河岸连续描边。\n每座兵舍/生产设施每旬1次；枪戟弩共用锻冶所次数，战马使用厩舍。部队按2500兵一档显示1至5个模型，万人以上5个。新开局为开发基线。\n历史重建/定制剧本，完整官方数据及精确公式仍待核验。"));
     }
     private void scenarioPicker(){
         try {

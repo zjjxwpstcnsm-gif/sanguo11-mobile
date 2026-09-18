@@ -85,6 +85,11 @@
       "apk_path": "assets/map/military-v040.png",
       "source_path": "app/src/main/assets/map/military-v040.png",
       "sha256": "25f32897aab33513fc461adec7eb8d7a3281b5042716d1637571c050eb0985c6"
+    },
+    {
+      "apk_path": "assets/map/units-v043.png",
+      "source_path": "app/src/main/assets/map/units-v043.png",
+      "sha256": "8706a2095243fac24832b8bb736505b8d45687c7dcd42b39d5a4e1caa8e3f043"
     }
   ]
 }

@@ -56,16 +56,28 @@ final class MapModels {
         line(c,-18,16,-8,16,1,STEEL);line(c,5,18,18,18,1,STEEL);
     }
     void unit(Canvas c,World.Unit u,boolean water,int color){
-        if(VisualAssets.draw(c,0,water?VisualAssets.ship(u.ship):VisualAssets.weapon(u.weapon),51,51,15)){flag(c,color,20,-24);return;}
-
-        base(c,color);
-        if(water){ship(c,color,u.ship.ordinal(),false);return;}
-        if(Army.siegeWeapon(u.weapon)){siege(c,u.weapon,color);return;}
-        if(u.weapon==World.Weapon.CAVALRY){horse(c,color);disc(c,0,-11,3,LIGHT);box(c,-3,-8,3,-1,color);line(c,5,0,8,-21,2,STEEL);return;}
-        soldier(c,color,-8,-5,u.weapon);soldier(c,color,6,0,u.weapon);soldier(c,color,-5,9,u.weapon);
+        int count=UiModels.unitFigureCount(u.troops);if(count==0)return;
+        // Two staggered ranks, drawn back to front, within the original single-hex footprint.
+        for(int i=0;i<count;i++){
+            int back=count<=2?0:count-2,row=i<back?0:1;
+            int inRow=row==0?back:count-back,index=row==0?i:i-back;
+            float spacing=count>=4?15:19,x=(index-(inRow-1)/2f)*spacing;
+            float y=count<=2?5:row==0?-5:10;
+            c.save();c.translate(x,y);
+            float width=count==1?38:count==2?29:25,height=count==1?47:38;
+            if(!VisualAssets.drawUnit(c,water?VisualAssets.ship(u.ship):VisualAssets.weapon(u.weapon),width,height,8,color)){
+                c.scale(count==1?.85f:.6f,count==1?.85f:.6f);
+                if(water)ship(c,color,u.ship.ordinal(),false);
+                else if(Army.siegeWeapon(u.weapon))siege(c,u.weapon,color);
+                else if(u.weapon==World.Weapon.CAVALRY){horse(c,color);disc(c,0,-11,3,LIGHT);box(c,-3,-8,3,-1,color);}
+                else soldier(c,color,0,0,u.weapon);
+            }
+            c.restore();
+        }
+        flag(c,color,21,-24);
     }
     void weaponIcon(Canvas c,World.Weapon weapon,int color){
-        if(VisualAssets.draw(c,0,VisualAssets.weapon(weapon),53,52,18))return;
+        if(VisualAssets.drawUnit(c,VisualAssets.weapon(weapon),53,52,18,color))return;
 
         if(Army.siegeWeapon(weapon)){base(c,color);siege(c,weapon,color);return;}
         if(weapon==World.Weapon.CAVALRY){base(c,color);horse(c,color);return;}
@@ -76,7 +88,7 @@ final class MapModels {
         else {line(c,10,20,-1,-18,2,WOOD);poly(c,STEEL,-5,-16,-4,-25,3,-19);}
     }
     void shipIcon(Canvas c,Army.Ship kind,int color){
-        if(VisualAssets.draw(c,0,VisualAssets.ship(kind),54,50,17))return;
+        if(VisualAssets.drawUnit(c,VisualAssets.ship(kind),54,50,17,color))return;
         ship(c,color,kind.ordinal(),false);}
     void scaffolding(Canvas c){
         for(int x=-21;x<=21;x+=14){line(c,x,-17,x,17,1.5f,WOOD);line(c,x,-17,x+8,-23,1,WOOD);}

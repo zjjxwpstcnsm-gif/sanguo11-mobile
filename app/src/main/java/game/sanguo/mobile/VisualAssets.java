@@ -7,10 +7,14 @@ import java.io.*;
 
 /** Shared, bounded v0.40 artwork. Decode once; no allocations while drawing the map. */
 final class VisualAssets {
-    private static final String[] FILES={"map/units-v040.png","map/items-facilities-v040.png","map/terrain-v040.png","map/military-v040.png"};
-    private static final Bitmap[] SHEETS=new Bitmap[4];
-    private static final Rect[][] CELLS=new Rect[4][16];
+    private static final String[] FILES={"map/units-v040.png","map/items-facilities-v040.png","map/terrain-v040.png","map/military-v040.png","map/units-v043.png"};
+    private static final Bitmap[] SHEETS=new Bitmap[FILES.length];
+    private static final Rect[][] CELLS=new Rect[FILES.length][16];
     private static final int[] MILITARY_ROWS={0,345,645,921,1254};
+    // Reviewed transparent gutters; preserve complete spear tips, boots and cavalry hooves.
+    private static final int[][] UNIT_ROWS={{0,344,693,969,1254},{0,374,671,955,1254},{0,345,660,973,1254},{0,361,662,979,1254}};
+    private static Bitmap teamMask;
+    private static final android.util.SparseArray<LightingColorFilter> TEAM_COLORS=new android.util.SparseArray<>();
     private static final Paint PAINT=new Paint(Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG);
     private static final RectF TARGET=new RectF();
     private static int[][] samples;
@@ -20,7 +24,8 @@ final class VisualAssets {
         if(loaded)return;
         for(int sheet=0;sheet<FILES.length;sheet++){
             try(InputStream input=context.getAssets().open(FILES[sheet])){
-                Bitmap bitmap=BitmapFactory.decodeStream(input);
+                BitmapFactory.Options options=new BitmapFactory.Options();if(sheet==4)options.inSampleSize=2;
+                Bitmap bitmap=BitmapFactory.decodeStream(input,null,options);
                 if(bitmap==null)continue;
                 int w=bitmap.getWidth(),h=bitmap.getHeight();
                 int[] pixels=new int[w*h];bitmap.getPixels(pixels,0,w,0,0,w,h);
@@ -29,6 +34,7 @@ final class VisualAssets {
                     int l=(cell%4)*w/4,r=(cell%4+1)*w/4;
                     int t=(cell/4)*h/4,b=(cell/4+1)*h/4;
                     if(sheet==3){t=MILITARY_ROWS[cell/4]*h/1254;b=MILITARY_ROWS[cell/4+1]*h/1254;}
+                    if(sheet==4){t=UNIT_ROWS[cell%4][cell/4]*h/1254;b=UNIT_ROWS[cell%4][cell/4+1]*h/1254;}
                     if(sheet!=2){
                         int left=r,top=b,right=l,bottom=t;
                         for(int y=t;y<b;y++)for(int x=l;x<r;x++)if((pixels[y*w+x]>>>24)>12){
@@ -42,6 +48,17 @@ final class VisualAssets {
                 }
                 if(sheet==2)for(int cell=1;cell<3;cell++)for(int i=0;i<4096;i++)samples[cell][i]=mix(samples[0][i],samples[cell][i]);
                 SHEETS[sheet]=bitmap;
+                if(sheet==4){
+                    float[] hsv=new float[3];
+                    for(int i=0;i<pixels.length;i++){
+                        int pixel=pixels[i];Color.colorToHSV(pixel,hsv);
+                        // Only blue cloth/pennants: steel, skin, wood and horses keep their materials.
+                        float coverage=hsv[0]>=195&&hsv[0]<=255?Math.min(1,Math.max(0,(hsv[1]-.20f)/.25f)):0;
+                        int alpha=Math.round((pixel>>>24)*coverage),shade=Math.min(255,Math.round(hsv[2]*340));
+                        pixels[i]=Color.argb(alpha,shade,shade,shade);
+                    }
+                    teamMask=Bitmap.createBitmap(pixels,w,h,Bitmap.Config.ARGB_8888);
+                }
             }catch(IOException e){android.util.Log.e("VisualAssets","Missing packaged artwork: "+FILES[sheet],e);}
         }
         loaded=true;
@@ -49,7 +66,16 @@ final class VisualAssets {
     static boolean ready(){for(Bitmap sheet:SHEETS)if(sheet==null)return false;return true;}
     static boolean terrainReady(){return SHEETS[2]!=null;}
     static int[][] terrainSamples(){return samples;}
-    static long bytes(){long bytes=0;for(Bitmap b:SHEETS)if(b!=null)bytes+=b.getAllocationByteCount();return bytes;}
+    static long bytes(){long bytes=teamMask==null?0:teamMask.getAllocationByteCount();for(Bitmap b:SHEETS)if(b!=null)bytes+=b.getAllocationByteCount();return bytes;}
+    static boolean drawUnit(Canvas c,int cell,float width,float height,float baseline,int color){
+        if(!draw(c,4,cell,width,height,baseline))return false;
+        if(teamMask!=null){
+            LightingColorFilter filter=TEAM_COLORS.get(color);
+            if(filter==null){if(TEAM_COLORS.size()>=40)TEAM_COLORS.clear();filter=new LightingColorFilter(color,0);TEAM_COLORS.put(color,filter);}
+            PAINT.setColorFilter(filter);c.drawBitmap(teamMask,CELLS[4][cell],TARGET,PAINT);PAINT.setColorFilter(null);
+        }
+        return true;
+    }
     static boolean draw(Canvas c,int sheet,int cell,float width,float height,float baseline){
         if(sheet<0||sheet>=SHEETS.length||cell<0||cell>=16||SHEETS[sheet]==null)return false;
         Rect source=CELLS[sheet][cell];float scale=Math.min(width/source.width(),height/source.height());

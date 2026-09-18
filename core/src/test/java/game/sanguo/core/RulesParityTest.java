@@ -120,12 +120,12 @@ public final class RulesParityTest {
         swift.officer(0).war=1;swift.officer(0).leadership=1;check(!swift.skills.swiftConfusion(a,b),"疾驰 fails against greater unit attack");
     }
     private static void economy()throws Exception {
-        World w=fixture();w.officer(1).skillId=NENGLI.id;int before=w.city(10).equipment[0];int quote=w.skills.produceAmount(10,1,World.Weapon.SPEAR);
+        World w=fixture();FacilityProductionTest.facility(w,10,Domestic.Kind.SMITH);FacilityProductionTest.facility(w,10,Domestic.Kind.BARRACKS);w.officer(1).skillId=NENGLI.id;int before=w.city(10).equipment[0];int quote=w.skills.produceAmount(10,1,World.Weapon.SPEAR);
         int goldBefore=w.city(10).gold;
         ok(w.produce(10,1,World.Weapon.SPEAR));check(w.city(10).equipment[0]==before+quote&&quote==w.domestic.produceAmount(10,World.Weapon.SPEAR)&&w.city(10).gold==goldBefore-350,"能吏 reduces cost without doubling output");
         check(w.skills.productionGold(1,World.Weapon.CAVALRY)==700,"能吏 does not reduce horse cost");
         w.officer(4).skillId=FANZHI.id;check(w.skills.productionGold(4,World.Weapon.CAVALRY)==350&&w.skills.productionGold(4,World.Weapon.SPEAR)==700,"繁殖 affects only horses");
-        World affordable=fixture();affordable.officer(1).skillId=NENGLI.id;affordable.city(10).gold=350;ok(affordable.produce(10,1,World.Weapon.SPEAR));check(affordable.city(10).gold==0,"discount is applied before affordability validation");
+        World affordable=fixture();FacilityProductionTest.facility(affordable,10,Domestic.Kind.SMITH);affordable.officer(1).skillId=NENGLI.id;affordable.city(10).gold=350;ok(affordable.produce(10,1,World.Weapon.SPEAR));check(affordable.city(10).gold==0,"discount is applied before affordability validation");
         World broke=fixture();broke.officer(1).skillId=FANZHI.id;broke.city(10).gold=349;reject(broke,()->broke.produce(10,1,World.Weapon.CAVALRY));
         check(Army.productionGold(World.Weapon.SPEAR)==700&&Army.productionGold(World.Weapon.HALBERD)==700&&Army.productionGold(World.Weapon.CROSSBOW)==700&&Army.productionGold(World.Weapon.CAVALRY)==700,"four listed base weapon costs");
         check(Army.productionGold(World.Weapon.RAM)==1500&&Army.productionGold(World.Weapon.SIEGE_TOWER)==1600&&Army.productionGold(World.Weapon.WOODEN_BEAST)==1700&&Army.productionGold(World.Weapon.CATAPULT)==1800&&Army.Ship.TOWER_SHIP.gold==1800&&Army.Ship.WARSHIP.gold==2000,"listed siege and ship costs");

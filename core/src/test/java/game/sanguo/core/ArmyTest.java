@@ -107,7 +107,7 @@ public final class ArmyTest {
         World captured=fixture();factory(captured,Domestic.Kind.WORKSHOP);ok(captured.army.produce(10,1,World.Weapon.RAM,null));World.Unit attacker=unit(captured,1,1,20,World.Weapon.CAVALRY,new Hex(6,5));captured.active=1;captured.city(10).defense=1;ok(captured.siege(attacker.id,10));
         check(captured.army.productions().isEmpty()&&captured.officer(1).cityId==11,"capture cancels production and retreats worker");SaveCodec.validate(captured);cases++;
         World ship=fixture();factory(ship,Domestic.Kind.SHIPYARD);ok(ship.army.produce(10,1,null,Army.Ship.TOWER_SHIP));ok(ship.army.cancelProduction(1));check(ship.city(10).ships[0]==2,"cancellation produces nothing");
-        reset(ship);ship.campaign.learned.put(0,EnumSet.of(Campaign.Tech.ENGINEERING,Campaign.Tech.WARSHIP));ok(ship.army.produce(10,1,null,Army.Ship.WARSHIP));for(int i=0;i<3;i++)ok(ship.nextTurn());check(ship.city(10).ships[1]==3,"researched warship completes");cases++;
+        ok(ship.nextTurn());reset(ship);ship.campaign.learned.put(0,EnumSet.of(Campaign.Tech.ENGINEERING,Campaign.Tech.WARSHIP));ok(ship.army.produce(10,1,null,Army.Ship.WARSHIP));for(int i=0;i<3;i++)ok(ship.nextTurn());check(ship.city(10).ships[1]==3,"researched warship completes");cases++;
     }
     private static void cargo()throws Exception{
         World w=fixture();int[] payload=new int[9];payload[5]=1;payload[8]=2;ok(w.domestic.transport(10,11,1,0,0,0,payload));check(w.city(10).equipment[5]==1&&w.city(10).equipment[8]==0,"siege cargo deducted once");

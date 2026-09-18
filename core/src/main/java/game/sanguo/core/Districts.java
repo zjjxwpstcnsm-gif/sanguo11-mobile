@@ -189,6 +189,7 @@ public final class Districts {
         if(d.attack&&d.policy!=Policy.ECONOMY&&ai.deploy(c.id,d.reserveTroops,
             target->d.policy!=Policy.DEFENSE&&(d.policy!=Policy.CITY_ATTACK||target.id==d.target)&&(d.policy!=Policy.FORCE_ATTACK||target.owner==d.target)))return;
         StrategicAi.Decision decision=civil.plan(c.id,false);
+        if(decision!=null&&decision.command==StrategicAi.Command.BUILD&&civil.execute(decision).ok)return;
         if((d.policy==Policy.DEFENSE||ai.incoming(c)>0)&&decision!=null&&civil.execute(decision).ok)return;
         if(d.produce&&d.attack&&d.policy!=Policy.ECONOMY&&d.policy!=Policy.DEFENSE&&c.equipment[World.Weapon.RAM.ordinal()]==0&&w.domestic.facilities.stream().noneMatch(f->f.cityId==c.id&&f.kind==Domestic.Kind.WORKSHOP)){
             List<Hex> sites=w.domestic.buildSites(c.id);if(!sites.isEmpty()&&w.domestic.build(c.id,admin.id,Domestic.Kind.WORKSHOP,sites.get(0)).ok)return;
@@ -204,6 +205,7 @@ public final class Districts {
                 w.army.productionError(c.id,admin.id,World.Weapon.RAM,null)==null&&w.army.produce(c.id,admin.id,World.Weapon.RAM,null).ok)return;
             World.Weapon preferred=World.Weapon.SPEAR;int best=Integer.MIN_VALUE;
             for(World.Weapon weapon:new World.Weapon[]{World.Weapon.SPEAR,World.Weapon.HALBERD,World.Weapon.CROSSBOW,World.Weapon.CAVALRY}){
+                if(w.domestic.operationError(c.id,Domestic.productionFacility(weapon))!=null)continue;
                 int rank=0;for(World.Officer o:idle)rank=Math.max(rank,o.aptitude[Army.category(weapon)]);
                 int score=rank*10000-c.equipment[weapon.ordinal()];
                 if(c.equipment[weapon.ordinal()]<8000&&score>best){best=score;preferred=weapon;}

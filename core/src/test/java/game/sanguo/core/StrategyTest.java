@@ -199,7 +199,7 @@ public final class StrategyTest {
         check(patrol.city(10).order==15&&patrol.city(10).gold==99900&&patrol.domestic.monthlyGold(10)==200,"patrol restores order and yields");
         patrol.city(10).order=98;ok(patrol.patrol(10,2));check(patrol.city(10).order==100,"patrol caps at 100");reject(patrol,()->patrol.patrol(10,3));
         World poor=fixture();poor.city(10).gold=99;reject(poor,()->poor.patrol(10,0));reject(poor,()->poor.train(10,0));
-        World reserve=fixture();reserve.city(10).recruitReserve=1300;int troops=reserve.city(10).troops;
+        World reserve=fixture();FacilityProductionTest.facility(reserve,10,Domestic.Kind.BARRACKS);reserve.city(10).recruitReserve=1300;int troops=reserve.city(10).troops;
         ok(reserve.recruit(10,0));check(reserve.city(10).troops==troops+1300&&reserve.city(10).recruitReserve==0,"recruitment draws a finite reserve exactly");
         check(reserve.city(10).gold==99700&&reserve.city(10).order==85,"recruitment costs gold and order");reject(reserve,()->reserve.recruit(10,1));
         World barracks=fixture();barracks.officer(0).politics=90;
@@ -208,7 +208,7 @@ public final class StrategyTest {
         barracks.officer(1).charm=20;int low=barracks.strategy.recruitAmount(10,1);barracks.officer(1).charm=80;
         check(barracks.strategy.recruitAmount(10,1)>low,"charm affects recruitment");barracks.city(10).order=50;
         check(barracks.strategy.recruitAmount(10,1)<2500,"order affects recruitment");
-        World blocked=fixture();blocked.city(10).gold=299;reject(blocked,()->blocked.recruit(10,0));blocked.city(10).gold=10000;blocked.city(10).order=29;
+        World blocked=fixture();FacilityProductionTest.facility(blocked,10,Domestic.Kind.BARRACKS);blocked.city(10).gold=299;reject(blocked,()->blocked.recruit(10,0));blocked.city(10).gold=10000;blocked.city(10).order=29;
         reject(blocked,()->blocked.recruit(10,0));blocked.city(10).order=30;blocked.city(10).recruitReserve=10;
         ok(blocked.recruit(10,0));check(blocked.city(10).recruitReserve==0&&blocked.city(10).order==25,"minimum order and small reserve stay bounded");
         World training=fixture();training.city(10).morale=95;ok(training.strategy.trainArmy(10,0));
@@ -237,7 +237,7 @@ public final class StrategyTest {
         World patrol=calm();patrol.city(10).order=10;decision(patrol,StrategicAi.Command.PATROL);check(patrol.city(10).order>10,"AI restores unrest");
         World hire=calm();hire.officers.add(new World.Officer(1000,"在野",-1,10,80,80,80,80,80));hire.strategy.setSeed(1);
         decision(hire,StrategicAi.Command.HIRE);check(hire.officer(1000).owner==0,"AI actually recruits local talent");
-        World recruit=calm();recruit.city(10).troops=1000;recruit.city(10).recruitReserve=1000;
+        World recruit=calm();FacilityProductionTest.facility(recruit,10,Domestic.Kind.BARRACKS);recruit.city(10).troops=1000;recruit.city(10).recruitReserve=1000;
         decision(recruit,StrategicAi.Command.RECRUIT);check(recruit.city(10).recruitReserve==0&&recruit.city(10).troops==2000,"AI uses finite reserve");
         World train=calm();train.city(10).morale=10;decision(train,StrategicAi.Command.TRAIN);check(train.city(10).morale>10,"AI trains existing army");
         World search=calm();search.strategy.addHiddenTalent(talent(1000,10,0));search.strategy.setSeed(1);
@@ -245,7 +245,7 @@ public final class StrategyTest {
         World appoint=calm();appoint.city(10).governorId=-1;decision(appoint,StrategicAi.Command.APPOINT);check(appoint.city(10).governorId==7,"AI appoints best available administrator");
         World poor=calm();poor.city(10).gold=0;poor.city(10).order=1;decision(poor,StrategicAi.Command.SEARCH);
         poor.actionPoints[0]=0;check(poor.strategy.planAi(10)==null,"AI respects exhausted AP");
-        World border=calm();border.city(10).troops=9000;border.city(10).recruitReserve=20000;
+        World border=calm();FacilityProductionTest.facility(border,10,Domestic.Kind.BARRACKS);border.city(10).troops=9000;border.city(10).recruitReserve=20000;
         check(border.strategy.planAi(10)==null,"peaceful city does not recruit forever");
         int pressure=border.strategy.strategicPressure(10);border.active=1;border.city(30).troops=6000;border.city(30).food=12000;
         ok(border.deploy(30,90,World.Weapon.SPEAR,3000));border.unit(1).hex=new Hex(3,3);border.active=0;
@@ -265,7 +265,7 @@ public final class StrategyTest {
         ok(w.strategy.beginAssignment(10,4,"筹备",3));ok(w.domestic.build(10,5,Domestic.Kind.MARKET,w.domestic.buildSites(10).get(0)));
         ok(w.domestic.transport(10,20,6,100,500,100,new int[]{100,0,0,0}));ok(w.strategy.search(10,7));
         w.city(10).recruitReserve=4321;w.city(10).morale=33;
-        byte[] bytes=SaveCodec.encode(w);check(ByteBuffer.wrap(bytes,4,4).getInt()==24,"writes save v17");World restored=SaveCodec.decode(bytes);
+        byte[] bytes=SaveCodec.encode(w);check(ByteBuffer.wrap(bytes,4,4).getInt()==25,"writes save v17");World restored=SaveCodec.decode(bytes);
         check(Arrays.equals(bytes,SaveCodec.encode(restored)),"all v4 state has exact binary round-trip");
         check(restored.city(10).governorId==1&&restored.city(10).recruitReserve==4321&&restored.city(10).morale==33,"governor reserve readiness persisted");
         check(restored.officer(3).lastRewardTurn==0&&restored.officer(4).otherTaskTurns==3,"reward guard and task persisted");
@@ -302,7 +302,7 @@ public final class StrategyTest {
                 check(w.strategy.officerState(1000).activity==Strategy.Activity.CONSTRUCTION&&w.strategy.officerState(1001).activity==Strategy.Activity.TRANSPORT,"v3 locks reconstructed from actual records");
                 Domestic.Mission m=w.domestic.missions.get(0);check(m.gold==100&&m.food==500&&m.troops==100&&m.equipment[0]==100,"v3 cargo preserved exactly");
             }
-            byte[] upgraded=SaveCodec.encode(w);check(ByteBuffer.wrap(upgraded,4,4).getInt()==24,"legacy resaves as v17");World paired=SaveCodec.decode(upgraded);
+            byte[] upgraded=SaveCodec.encode(w);check(ByteBuffer.wrap(upgraded,4,4).getInt()==25,"legacy resaves as v17");World paired=SaveCodec.decode(upgraded);
             for(int i=0;i<5&&!w.gameOver();i++){next(w);next(paired);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(paired)),"legacy migration deterministic continuation v"+v);}
         }
     }

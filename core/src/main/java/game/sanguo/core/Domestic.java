@@ -8,16 +8,16 @@ public final class Domestic {
     public static final int CITY_SLOTS=6, TRAVEL_SPEED=4;
     public enum Kind {
         MARKET("市场",1000,"每月金 +400"), FARM("农场",800,"每季粮 +2500"),
-        BARRACKS("兵舍",1200,"每次征兵 +500"), SMITH("锻冶所",1200,"每次兵装生产 +500"),
+        BARRACKS("兵舍",1200,"每座每旬可征兵1次；每次征兵 +500"), SMITH("锻冶所",1200,"每座每旬可生产枪/戟/弩共1次；每次产量 +500"),
         MINT("造币",1500,"相邻市场产金 +50%，不重复叠加"), GRANARY("谷仓",1500,"相邻农场产粮 +50%，不重复叠加"),
-        STABLE("厩舍",1200,"骑兵兵装生产额外 +500"), BLACK_MARKET("黑市",500,"每月金 +200，不可合并"),
-        WORKSHOP("工房",1500,"制造冲车、井阑、木兽、投石"), SHIPYARD("造船厂",1500,"临水建造，制造楼船与斗舰"), BRONZE_TERRACE("铜雀台",1500,"需要铜雀；每月技巧点+100，不可合并");
+        STABLE("厩舍",1200,"每座每旬可生产战马1次；每次产量 +500"), BLACK_MARKET("黑市",500,"每月金 +200，不可合并"),
+        WORKSHOP("工房",1500,"每座每旬可开工1次攻城器械；跨旬完成"), SHIPYARD("造船厂",1500,"临水建造；每座每旬可开工1次舰船；跨旬完成"), BRONZE_TERRACE("铜雀台",1500,"需要铜雀；每月技巧点+100，不可合并");
         public final String label,effect;public final int cost;
         Kind(String label,int cost,String effect){this.label=label;this.cost=cost;this.effect=effect;}
     }
     public static final class Facility {
         public final int id,cityId;public final Kind kind;public final Hex hex;
-        public int builderId,remaining,level=1,upgradeTo,hp=1000;
+        public int builderId,remaining,level=1,upgradeTo,hp=1000,lastUseTurn=-1;
         /** Engineering durability, pending original-game calibration. */
         public int maxHp(){return 1000;}
         Facility(int id,int city,Kind kind,Hex hex,int builder,int remaining){this.id=id;cityId=city;this.kind=kind;this.hex=hex;builderId=builder;this.remaining=remaining;}
@@ -82,6 +82,25 @@ public final class Domestic {
         return "";
     }
     public int count(int city){int n=0;for(Facility f:facilities)if(f.cityId==city)n++;return n;}
+    /** Each completed facility supplies one order per turn, shared by all products of its kind. */
+    public int capacity(int city,Kind kind){int n=0;for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&operational(f))n++;return n;}
+    public int remainingUses(int city,Kind kind){int n=0;for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&operational(f)&&f.lastUseTurn!=w.turn)n++;return n;}
+    private boolean operational(Facility f){return f.hp>0&&(f.remaining==0||f.upgradeTo>0);}
+    public String operationError(int city,Kind kind){
+        World.City c=w.city(city);if(c==null||c.kind!=World.SiteKind.CITY)return "只有城市可以征兵和生产军备";
+        if(kind==null)return "该兵种无需生产兵装";
+        if(capacity(city,kind)==0)return "需要已建成的"+kind.label+"；建设中的设施不提供次数";
+        return remainingUses(city,kind)==0?kind.label+"本旬次数已用完（每座每旬1次），请等待下一旬":null;
+    }
+    public String usage(int city,Kind kind){return kind.label+" · 本旬剩余 "+remainingUses(city,kind)+" / "+capacity(city,kind)+" 次";}
+    void use(int city,Kind kind){
+        for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&operational(f)&&f.lastUseTurn!=w.turn){f.lastUseTurn=w.turn;return;}
+        throw new IllegalStateException("Facility order must be validated before spending");
+    }
+    public static Kind productionFacility(World.Weapon weapon){
+        if(weapon==null||weapon==World.Weapon.SWORD)return null;
+        return Army.siegeWeapon(weapon)?Kind.WORKSHOP:weapon==World.Weapon.CAVALRY?Kind.STABLE:Kind.SMITH;
+    }
     private int yield(int city,Kind kind,int base){
         int total=0;for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&(f.remaining==0||f.upgradeTo>0)){
             int amount=base*(f.level==3?150:f.level==2?120:100)/100;
@@ -107,7 +126,7 @@ public final class Domestic {
     public String incomeSchedule(int city){return "月初基准金 "+monthlyGold(city)+" / 季初基准粮 "+monthlyFood(city)+"\n下旬结算 金 "+goldIncome(city,w.turn+1)+" / 粮 "+foodIncome(city,w.turn+1);}
     public int recruitAmount(int city){return 2000+this.yield(city,Kind.BARRACKS,500);}
     public int produceAmount(int city){return 2000+this.yield(city,Kind.SMITH,500);}
-    public int produceAmount(int city,World.Weapon weapon){return produceAmount(city)+(weapon==World.Weapon.CAVALRY?this.yield(city,Kind.STABLE,500):0);}
+    public int produceAmount(int city,World.Weapon weapon){return 2000+this.yield(city,weapon==World.Weapon.CAVALRY?Kind.STABLE:Kind.SMITH,500);}
     public static boolean mergeable(Kind kind){return kind==Kind.MARKET||kind==Kind.FARM||kind==Kind.BARRACKS||kind==Kind.SMITH||kind==Kind.STABLE;}
     /** Mobile shortcut: upgradeable facilities are built at their highest level. */
     public static int buildLevel(Kind kind){return mergeable(kind)?3:1;}
@@ -115,9 +134,11 @@ public final class Domestic {
         switch(kind){
             case MARKET:return "每月金 +600";
             case FARM:return "每季粮 +3750";
-            case BARRACKS:return "每次征兵 +750";
-            case SMITH:return "每次兵装生产 +750";
-            case STABLE:return "骑兵兵装生产额外 +750";
+            case BARRACKS:return "每座每旬可征兵1次；每次征兵 +750";
+            case SMITH:return "每座每旬可生产枪/戟/弩共1次；每次产量 +750";
+            case STABLE:return "每座每旬可生产战马1次；每次产量 +750";
+            case WORKSHOP:return "每座每旬可开工1次攻城器械；跨旬完成";
+            case SHIPYARD:return "临水建造；每座每旬可开工1次舰船；跨旬完成";
             default:return kind.effect;
         }
     }
@@ -465,6 +486,13 @@ public final class Domestic {
         for(Facility f:facilities){d.writeInt(f.id);d.writeInt(f.cityId);d.writeByte(f.kind.ordinal());d.writeInt(f.hex.q);d.writeInt(f.hex.r);d.writeInt(f.builderId);d.writeInt(f.remaining);}
         d.writeInt(missions.size());for(Mission m:missions){d.writeInt(m.taskId);d.writeInt(m.owner);d.writeInt(m.officerId);d.writeInt(m.sourceCity);d.writeInt(m.targetCity);d.writeInt(m.hex.q);d.writeInt(m.hex.r);d.writeBoolean(m.transport);d.writeInt(m.gold);d.writeInt(m.food);d.writeInt(m.troops);for(int j=0;j<4;j++)d.writeInt(m.equipment[j]);}
     }
+    void writeUsage(DataOutputStream d)throws IOException{
+        d.writeInt(facilities.size());for(Facility f:facilities){d.writeInt(f.id);d.writeInt(f.lastUseTurn);}
+    }
+    void readUsage(DataInputStream d)throws IOException{
+        int count=bound(d.readInt(),0,6000);require(count==facilities.size(),"设施次数数量错误");Set<Integer> ids=new HashSet<>();
+        for(int i=0;i<count;i++){Facility f=facility(d.readInt());require(f!=null&&ids.add(f.id),"设施次数引用错误");f.lastUseTurn=bound(d.readInt(),-1,w.turn);}
+    }
     void read(DataInputStream d)throws IOException{
         nextFacilityId=d.readInt();nextMissionId=d.readInt();int n=bound(d.readInt(),0,6000);
         for(int i=0;i<n;i++)facilities.add(new Facility(d.readInt(),d.readInt(),Kind.values()[bound(d.readUnsignedByte(),0,Kind.values().length-1)],new Hex(d.readInt(),d.readInt()),d.readInt(),d.readInt()));
@@ -485,6 +513,7 @@ public final class Domestic {
             require(f.kind!=Kind.SHIPYARD||f.hex.neighbors().stream().anyMatch(w.army::water),"造船厂必须临水");
             bound(f.remaining,0,3);
             bound(f.hp,1,f.maxHp());
+            bound(f.lastUseTurn,-1,w.turn);
             if(f.remaining==0)require(f.builderId==-1,"已建成设施仍占用武将");
             else{World.Officer o=w.officer(f.builderId);require(o!=null&&o.owner==c.owner&&o.cityId==c.id&&o.unitId==-1&&assigned.add(o.id),"建设武将引用错误");}
         }

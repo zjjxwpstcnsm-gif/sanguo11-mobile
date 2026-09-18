@@ -54,18 +54,31 @@ final class TerrainTiles {
         Path deck=new Path();
         if(mask==0){deck.moveTo(-7,0);deck.lineTo(7,0);}
         else for(int d=0;d<6;d++)if((mask&(1<<d))!=0){deck.moveTo(0,0);deck.lineTo(TerrainConnections.edgeX(d)*1.03f,TerrainConnections.edgeY(d)*1.03f);}
-        p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(plank?13:8);p.setColor(0xcc283b35);c.drawPath(deck,p);
-        p.setStrokeWidth(plank?10:5.5f);p.setColor(plank?0xff715739:0xff887b5f);c.drawPath(deck,p);
-        p.setStrokeWidth(plank?8.5f:3.5f);p.setColor(plank?0xffc4a46e:0xffd9c38e);c.drawPath(deck,p);
+        p.setStyle(Paint.Style.STROKE);p.setStrokeJoin(Paint.Join.ROUND);
+        c.save();c.translate(.5f,2);p.setStrokeWidth(plank?10:6);p.setColor(0x78242c27);c.drawPath(deck,p);c.restore();
+        p.setStrokeWidth(plank?8.5f:5.5f);p.setColor(plank?0xff50483b:0xff736e59);c.drawPath(deck,p);
+        p.setStrokeWidth(plank?6.8f:3.6f);p.setColor(plank?0xff968268:0xffb0a083);c.drawPath(deck,p);
         if(plank){
-            p.setStrokeCap(Paint.Cap.BUTT);p.setStrokeWidth(.8f);p.setColor(0xff68513a);
-            for(int d=0;d<6;d++)if((mask&(1<<d))!=0){
+            p.setStrokeCap(Paint.Cap.BUTT);
+            int directions=mask==0?9:mask;
+            for(int d=0;d<6;d++)if((directions&(1<<d))!=0){
                 c.save();c.rotate(-60*d);
-                for(float pos=4;pos<22;pos+=3.5f){c.drawLine(pos,-4.1f,pos,4.1f,p);}
-                p.setColor(0xffe5c994);c.drawLine(6,-5,21.7f,-5,p);c.drawLine(6,5,21.7f,5,p);
-                p.setColor(0xff68513a);c.restore();
+                float end=mask==0?7:22;
+                for(float pos=2;pos<end;pos+=2.25f){
+                    p.setStrokeWidth(1.65f);p.setColor(((int)(pos*4)%3)==0?0xffa28c6e:0xff8c7b62);c.drawLine(pos,-3.3f,pos,3.3f,p);
+                    p.setStrokeWidth(.35f);p.setColor(0xffc0aa86);c.drawLine(pos-.65f,-3.1f,pos-.65f,3.1f,p);
+                    p.setColor(0xff655b4b);c.drawLine(pos+.75f,-3.3f,pos+.75f,3.3f,p);
+                    p.setStrokeWidth(.25f);p.setColor(0x78736850);c.drawLine(pos-.1f,-2.4f,pos+.2f,2.1f,p);
+                }
+                // Slim rails, raised posts and diagonal supports give the deck depth against the rocks.
+                for(float pos=7;pos<end;pos+=7){
+                    p.setStrokeWidth(.8f);p.setColor(0xff574f42);c.drawLine(pos,3.5f,pos,6.5f,p);c.drawLine(pos-3,3.5f,pos,6.5f,p);
+                    p.setColor(0xffb19a78);c.drawLine(pos,-3.8f,pos,-6,p);c.drawLine(pos,3.8f,pos,1.6f,p);
+                }
+                p.setStrokeWidth(.65f);p.setColor(0xffbba582);c.drawLine(3,-5.8f,end,-5.8f,p);c.drawLine(3,1.6f,end,1.6f,p);
+                c.restore();
             }
-            p.setStyle(Paint.Style.FILL);p.setColor(0xffc4a46e);c.drawCircle(0,0,3,p);
+            p.setStrokeWidth(.45f);p.setColor(0xff645a48);c.drawLine(-2,-2,2,-2,p);c.drawLine(-2,.5f,2,.5f,p);
         }
         return b;
     }

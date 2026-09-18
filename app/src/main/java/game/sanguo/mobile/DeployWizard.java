@@ -27,10 +27,10 @@ final class DeployWizard {
         LinearLayout form=new LinearLayout(a);form.setOrientation(LinearLayout.VERTICAL);form.setPadding(a.dp(12),a.dp(6),a.dp(12),a.dp(12));
         final AlertDialog[] holder={null};
         form.addView(a.text(c.name+" · 点击任一项目修改",15,a.gold));
-        form.addView(a.button("主将 · "+name(draft.getInt("leader",-1)),v->{holder[0].dismiss();officer(c,-1);}));
-        if(!draft.getBoolean("quick"))for(int slot=0;slot<2;slot++){final int index=slot;int[] ids=deputies();form.addView(a.button("副将"+(slot+1)+" · "+name(slot<ids.length?ids[slot]:-1),v->{holder[0].dismiss();officer(c,index);}));}
-        form.addView(a.button("兵装 · "+weapon().label+" · 库存"+c.equipment[weapon().ordinal()],v->{holder[0].dismiss();equipment(c,false);}));
-        form.addView(a.button("舰船 · "+ship().label+(ship()==Army.Ship.BOAT?" · 免费": " · 库存"+c.ships[ship().ordinal()-1]),v->{holder[0].dismiss();equipment(c,true);}));
+        form.addView(selection("主将 · "+name(draft.getInt("leader",-1)),w.officer(draft.getInt("leader",-1)),v->{holder[0].dismiss();officer(c,-1);}));
+        if(!draft.getBoolean("quick"))for(int slot=0;slot<2;slot++){final int index=slot;int[] ids=deputies();int id=slot<ids.length?ids[slot]:-1;form.addView(selection("副将"+(slot+1)+" · "+name(id),w.officer(id),v->{holder[0].dismiss();officer(c,index);}));}
+        form.addView(selection("兵装 · "+weapon().label+(weapon()==World.Weapon.SWORD?" · 无需库存":" · 库存"+c.equipment[weapon().ordinal()]),weapon(),v->{holder[0].dismiss();equipment(c,false);}));
+        form.addView(selection("舰船 · "+ship().label+(ship()==Army.Ship.BOAT?" · 免费": " · 库存"+c.ships[ship().ordinal()-1]),ship(),v->{holder[0].dismiss();equipment(c,true);}));
         int leader=draft.getInt("leader",-1);int cap=leader<0?Math.min(10000,c.troops):UiModels.deployTroopCap(w,c,leader,weapon(),ship());
         QuantityControl troops=new QuantityControl(a,"兵力",1000,Math.max(1000,cap),number("troops",Math.min(3000,Math.max(1000,cap))));
         QuantityControl food=new QuantityControl(a,"粮食",0,Math.min(c.food,1000000),number("food",Math.min(c.food,6000)));
@@ -47,6 +47,12 @@ final class DeployWizard {
             if(result.ok){a.closeForm();dialog.dismiss();a.selectAndFocus(w.unit(o.unitId).hex);}else submitted[0]=false;
         });dialog.getWindow().setLayout(a.dp(Math.min(560,a.getResources().getConfiguration().screenWidthDp-24)),-2);});
         dialog.show();a.trackDialog(dialog);dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+    }
+    private Button selection(String label,Object item,View.OnClickListener click){
+        Button button=a.button(label,click);button.setGravity(Gravity.CENTER_VERTICAL|Gravity.START);button.setMinHeight(a.dp(56));
+        button.setPadding(a.dp(10),a.dp(4),a.dp(10),a.dp(4));
+        if(item!=null){android.graphics.drawable.Drawable icon=GameIcon.drawable(a,w,item);icon.setBounds(0,0,a.dp(44),a.dp(44));button.setCompoundDrawables(icon,null,null,null);button.setCompoundDrawablePadding(a.dp(12));}
+        return button;
     }
     private String error(World.City c,QuantityControl troops,QuantityControl food,QuantityControl gold){
         World.Officer leader=w.officer(draft.getInt("leader",-1));if(!w.idle(c).contains(leader))return "请选择当前可用的主将";

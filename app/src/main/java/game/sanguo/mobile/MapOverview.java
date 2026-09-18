@@ -118,7 +118,7 @@ final class MapOverview {
             images[mode]=Bitmap.createBitmap(w,h,Bitmap.Config.ARGB_8888);
             images[mode].setPixels(pixels,0,w,0,0,w,h);
             Canvas canvas=new Canvas(images[mode]);canvas.scale(w/bounds.width(),h/bounds.height());canvas.translate(-bounds.left,-bounds.top);
-            Paint road=new Paint(Paint.ANTI_ALIAS_FLAG);road.setColor(0xffd3b47b);road.setStrokeCap(Paint.Cap.ROUND);road.setStrokeWidth(Math.max(3,.65f/scale));
+            Paint road=new Paint(Paint.ANTI_ALIAS_FLAG);road.setColor(0xffa18f73);road.setStrokeCap(Paint.Cap.ROUND);road.setStrokeWidth(Math.max(2.5f,.55f/scale));
             for(int r=0;r<height;r++)for(int q=0;q<width;q++)if(roads[r*width+q]!=0){
                 float cx=DX*(q+r*.5f-offset),cy=DY*r;
                 int mask=roads[r*width+q]&63;

@@ -5,7 +5,7 @@ import java.util.function.ToIntFunction;
 
 /** Resource-aware, deterministic priority planning. Execution uses the same commands as the player. */
 public final class StrategicAi {
-    public enum Command { REWARD, PATROL, HIRE, RECRUIT, TRAIN, SEARCH, APPOINT }
+    public enum Command { REWARD, PATROL, HIRE, RECRUIT, TRAIN, SEARCH, APPOINT, BUILD }
     public static final class Decision {
         public final int cityId, officerId, targetId, priority;
         public final Command command;
@@ -53,8 +53,18 @@ public final class StrategicAi {
                 if(chance>=50)add(choices,c,charmer,target.id,Command.HIRE,35+Math.max(0,3-residents)*20+chance/10-travel*8,"补充人才；按实际登用概率决策");
             }
             int desired=pressure>=40?15000:8000;
-            if(c.kind==World.SiteKind.CITY&&c.gold>=Strategy.RECRUIT_COST&&c.troops<desired&&c.order>=45&&c.recruitReserve>0&&w.strategy.recruitAmount(c.id,charmer.id)>0)
+            if(c.kind==World.SiteKind.CITY&&c.gold>=Strategy.RECRUIT_COST&&c.troops<desired&&c.order>=45&&c.recruitReserve>0&&w.domestic.operationError(c.id,Domestic.Kind.BARRACKS)==null&&w.strategy.recruitAmount(c.id,charmer.id)>0)
                 add(choices,c,charmer,-1,Command.RECRUIT,30+(desired-c.troops)/500+pressure/3,"按兵源、守军缺口和周边压力补兵");
+            if(c.kind==World.SiteKind.CITY&&!w.domestic.buildSites(c.id).isEmpty()){
+                Domestic.Kind needed=c.troops<desired&&c.recruitReserve>0?Domestic.Kind.BARRACKS:null;
+                addFacility(choices,c,admin,needed,58,"先建设兵舍，恢复征兵能力");
+                if(w.districts.productionError(c.id)==null){
+                    World.Weapon preferred=World.Weapon.SPEAR;int rank=-1;
+                    for(World.Weapon weapon:new World.Weapon[]{World.Weapon.SPEAR,World.Weapon.HALBERD,World.Weapon.CROSSBOW,World.Weapon.CAVALRY})
+                        for(World.Officer o:idle)if(o.aptitude[Army.category(weapon)]>rank){preferred=weapon;rank=o.aptitude[Army.category(weapon)];}
+                    if(c.equipment[preferred.ordinal()]<8000)addFacility(choices,c,admin,Domestic.productionFacility(preferred),38,"先建设生产设施，补充兵装");
+                }
+            }
             int readiness=pressure>=40?90:80;
             if(c.gold>=Strategy.TRAIN_COST&&c.troops>0&&c.morale<readiness)
                 add(choices,c,best(idle,o->o.leadership+o.war/4),-1,Command.TRAIN,20+readiness-c.morale+pressure/4,"提升现有守军战备");
@@ -78,8 +88,15 @@ public final class StrategicAi {
             case RECRUIT:return w.strategy.recruitSoldiers(d.cityId,d.officerId);
             case TRAIN:return w.strategy.trainArmy(d.cityId,d.officerId);
             case APPOINT:return w.strategy.appointGovernor(d.cityId,d.officerId,d.targetId);
+            case BUILD:
+                List<Hex> sites=w.domestic.buildSites(d.cityId);
+                return sites.isEmpty()?w.fail("没有空闲开发地"):w.domestic.build(d.cityId,d.officerId,Domestic.Kind.values()[d.targetId],sites.get(0));
             default:throw new AssertionError(d.command);
         }
+    }
+    private void addFacility(List<Decision> choices,World.City c,World.Officer admin,Domestic.Kind kind,int priority,String reason){
+        if(kind!=null&&c.gold>=kind.cost+500&&w.domestic.facilities.stream().noneMatch(f->f.cityId==c.id&&f.kind==kind))
+            add(choices,c,admin,kind.ordinal(),Command.BUILD,w.strategy.discoverable(c.id).isEmpty()?priority:Math.min(priority,30),reason);
     }
     /** At most one order per city/pass, preserving AP and officers for existing construction/military AI. */
     public void run(boolean emergency){

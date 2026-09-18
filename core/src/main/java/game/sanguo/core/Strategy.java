@@ -259,6 +259,8 @@ public final class Strategy {
         if (c.kind != World.SiteKind.CITY) {
             return this.w.fail("港口和关卡不能征兵，请从城市运输兵员");
         }
+        error=w.domestic.operationError(cityId,Domestic.Kind.BARRACKS);
+        if(error!=null)return w.fail(error);
         if (c.order < 30) {
             return this.w.fail("治安低于30，先执行巡察");
         }
@@ -270,6 +272,7 @@ public final class Strategy {
             return this.w.fail("城池兵力已接近上限");
         }
         this.w.spend(c, o, RECRUIT_COST);
+        w.domestic.use(cityId,Domestic.Kind.BARRACKS);
         c.recruitReserve -= amount;
         c.troops += amount;
         c.order = Math.max(0, c.order - this.w.campaign.orderLoss(c.owner, this.w.skills.has(o, Skill.MINGSHENG) ? 7 : 5));

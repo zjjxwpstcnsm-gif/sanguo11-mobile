@@ -36,6 +36,8 @@ public final class PresentationTest {
         check(UiModels.turnSummary(low,SaveCodec.decode(SaveCodec.encode(low))).contains("没有新增异常"),"persistent anomaly not repeated as new alert");
     }
     public static void main(String[] args)throws Exception {
+        int[][] figures={{0,0},{1,1},{2500,1},{2501,2},{5000,2},{5001,3},{7500,3},{7501,4},{10000,4},{10001,5},{20000,5}};
+        for(int[] pair:figures)check(UiModels.unitFigureCount(pair[0])==pair[1],"visible formation at "+pair[0]+" troops");
         World colors=TestScenarios.load("heroes-mobile-sandbox",1);
         check(FactionColors.color(colors,1)==0xff285be8,"Cao Cao pure blue");
         check(FactionColors.color(colors,0)==0xff36ac54,"Liu Bei green");

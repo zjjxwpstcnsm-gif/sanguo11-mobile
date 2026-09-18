@@ -5,6 +5,8 @@ import java.util.*;
 
 /** Read-only presentation of engine state. No commands or resource rules live here. */
 final class UiModels {
+    /** Exact visible figures; 2,500 troops per figure up to four, then five above 10,000. */
+    static int unitFigureCount(int troops){return troops<=0?0:troops>10000?5:1+(troops-1)/2500;}
     static int deployTroopCap(World w,World.City c,int commander,World.Weapon weapon,Army.Ship ship){
         if(c==null||weapon==null||ship==null)return 0;
         if(ship!=Army.Ship.BOAT&&c.ships[ship.ordinal()-1]<1)return 0;

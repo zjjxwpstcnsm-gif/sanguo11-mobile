@@ -19,14 +19,26 @@ final class ArmyUi {
     void restoreDraft(Bundle draft){new DeployWizard(a,w,this,draft).show();}
 
     void deploy(World.City c){new DeployWizard(a,w,this,DeployWizard.start(a,c,false)).show();}
+    void basicProduction(World.City c){
+        choose("生产基础兵装",Arrays.asList(World.Weapon.SPEAR,World.Weapon.HALBERD,World.Weapon.CROSSBOW,World.Weapon.CAVALRY),
+            weapon->weapon.label+" · "+w.domestic.usage(c.id,Domestic.productionFacility(weapon)),weapon->{
+                Domestic.Kind facility=Domestic.productionFacility(weapon);String error=w.domestic.operationError(c.id,facility);
+                if(error!=null){info("暂不能生产",error);return;}
+                choose("选择生产武将",w.idle(c),o->o.name+" · 政"+o.politics,o->confirm("生产"+weapon.label,
+                    w.domestic.usage(c.id,facility)+"\n"+o.name+"生产"+w.skills.produceAmount(c.id,o.id,weapon)+"份；花费金"+w.skills.productionGold(o.id,weapon)+"、行动力10。",()->apply.accept(w.produce(c.id,o.id,weapon))));
+            });
+    }
     void manufacture(World.City c){
         List<String> labels=new ArrayList<>();List<World.Weapon> weapons=Arrays.asList(World.Weapon.RAM,World.Weapon.SIEGE_TOWER,World.Weapon.WOODEN_BEAST,World.Weapon.CATAPULT);
-        for(World.Weapon weapon:weapons)labels.add(weapon.label+" · 金"+Army.productionGold(weapon));for(Army.Ship ship:Arrays.asList(Army.Ship.TOWER_SHIP,Army.Ship.WARSHIP))labels.add(ship.label+" · 金"+ship.gold);
-        new AlertDialog.Builder(a).setTitle("军备制造").setItems(labels.toArray(new String[0]),(d,index)->choose("选择制造武将",w.idle(c),o->o.name+" · 政"+o.politics,o->{
+        for(World.Weapon weapon:weapons)labels.add(weapon.label+" · 金"+Army.productionGold(weapon)+" · "+w.domestic.usage(c.id,Domestic.Kind.WORKSHOP));for(Army.Ship ship:Arrays.asList(Army.Ship.TOWER_SHIP,Army.Ship.WARSHIP))labels.add(ship.label+" · 金"+ship.gold+" · "+w.domestic.usage(c.id,Domestic.Kind.SHIPYARD));
+        new AlertDialog.Builder(a).setTitle("军备制造").setItems(labels.toArray(new String[0]),(d,index)->{
+            String facilityError=w.domestic.operationError(c.id,index<4?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD);
+            if(facilityError!=null){info("暂不能制造",facilityError);return;}
+            choose("选择制造武将",w.idle(c),o->o.name+" · 政"+o.politics,o->{
             World.Weapon weapon=index<4?weapons.get(index):null;Army.Ship ship=index<4?null:Army.Ship.values()[index-3];String error=w.army.productionError(c.id,o.id,weapon,ship);
             if(error!=null){info("暂不能制造",error);return;}
             confirm("制造"+(weapon==null?ship.label:weapon.label),"金"+(weapon==null?ship.gold:Army.productionGold(weapon))+"、行动力10，占用"+o.name+w.skills.productionTurns(o.id,weapon)+"旬。\n完成1件；城池失守或工场拆除时中止。",()->apply.accept(w.army.produce(c.id,o.id,weapon,ship)));
-        })).setNegativeButton("取消",null).show();
+        });}).setNegativeButton("取消",null).show();
     }
     void production(Army.Production p){confirm(p.label(),w.city(p.cityId).name+" · "+w.officer(p.officerId).name+" · 剩余"+w.officer(p.officerId).otherTaskTurns+"旬\n是否中止？已付费用不退还。",()->apply.accept(w.army.cancelProduction(p.officerId)));}
     void tactics(World.Unit u){choose("兵器 / 水军战法",w.army.tactics(u),t->t.label+" · 气力"+t.energy,t->{

@@ -331,10 +331,11 @@ public final class CampaignAi {
         if(c.troops<reserve(c)+3000||c.gold<1500)return false;
         World.Weapon preferred=World.Weapon.SPEAR;int aptitude=-1;
         for(World.Weapon weapon:new World.Weapon[]{World.Weapon.SPEAR,World.Weapon.HALBERD,World.Weapon.CROSSBOW,World.Weapon.CAVALRY}){
+            if(w.domestic.operationError(city,Domestic.productionFacility(weapon))!=null)continue;
             int rank=0;for(World.Officer leader:idle)rank=Math.max(rank,leader.aptitude[Army.category(weapon)]);
             if(rank>aptitude){preferred=weapon;aptitude=rank;}
         }
-        return c.equipment[preferred.ordinal()]<8000&&w.produce(c.id,o.id,preferred).ok;
+        return aptitude>=0&&c.equipment[preferred.ordinal()]<8000&&w.produce(c.id,o.id,preferred).ok;
     }
     private static final class Step {final Hex h;final int cost;Step(Hex h,int c){this.h=h;cost=c;}}
     private static final class Route {final List<Hex> path;final int cost;Route(List<Hex> p,int c){path=p;cost=c;}}

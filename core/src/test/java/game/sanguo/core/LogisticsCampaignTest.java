@@ -20,7 +20,7 @@ public final class LogisticsCampaignTest {
         check(raw[7]==19,"actual old encoder fixture");World w=SaveCodec.decode(raw);check(w.city(10).gold==29400,"old paid 100 fee preserved without refund or recharge");
         check(w.domestic.missions.size()==1&&w.domestic.missions.get(0).deputies.length==0&&!w.domestic.missions.get(0).returnOfficers,"legacy convoy no invented personnel or return policy");
         check(w.districts.get(1).reserveTroops()==14000&&w.aiOrders.orders.size()==1,"old settings and intention survive");
-        World restored=copy(w);check(bytes(w)[7]==24&&Arrays.equals(bytes(w),bytes(restored)),"v20 exact roundtrip");
+        World restored=copy(w);check(bytes(w)[7]==25&&Arrays.equals(bytes(w),bytes(restored)),"v20 exact roundtrip");
         for(int t=0;t<5;t++){ok(w.nextTurn());ok(restored.nextTurn());check(Arrays.equals(bytes(w),bytes(restored)),"old pending convoy and AI resume identically");restored=copy(restored);}
     }
     private static void transport()throws Exception{

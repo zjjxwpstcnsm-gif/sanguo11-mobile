@@ -65,3 +65,4 @@ java -cp core/build/check:core/src/main/resources:core/src/test/resources game.s
 java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.BalanceTest
 
 java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.Release42Test
+java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.FacilityProductionTest

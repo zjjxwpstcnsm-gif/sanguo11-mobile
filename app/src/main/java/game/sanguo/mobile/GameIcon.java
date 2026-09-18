@@ -16,7 +16,7 @@ final class GameIcon extends Drawable {
     static Drawable drawable(Context context,World w,Object item){
         BuildingAtlas.load(context);VisualAssets.load(context);
         if(item instanceof World.Officer)return new OfficerPortrait(context,w,(World.Officer)item);
-        return new GameIcon(item,item instanceof World.City?FactionColors.color(w,((World.City)item).owner):item instanceof World.Unit?FactionColors.color(w,((World.Unit)item).owner):0xff779b9c);
+        return new GameIcon(item,item instanceof World.City?FactionColors.color(w,((World.City)item).owner):item instanceof World.Unit?FactionColors.color(w,((World.Unit)item).owner):FactionColors.color(w,w.player));
     }
     static <T> ArrayAdapter<T> adapter(Context context,World w,List<T> items,Function<T,String> label){
         return new ArrayAdapter<T>(context,android.R.layout.select_dialog_item,items){

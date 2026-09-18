@@ -227,9 +227,11 @@ public final class World {
         if(districts.productionError(cityId)!=null)return fail(districts.productionError(cityId));
         if(weapon==null||weapon==Weapon.SWORD)return fail("剑兵无需生产兵装，请选择其他兵装");
         if(Army.siegeWeapon(weapon))return army.produce(cityId,officerId,weapon,null);
+        Domestic.Kind facility=Domestic.productionFacility(weapon);
+        error=domestic.operationError(cityId,facility);if(error!=null)return fail(error);
         int amount=skills.produceAmount(c.id,o.id,weapon);
         if(c.equipment[weapon.ordinal()]>campaign.equipmentCap(c,weapon)-amount)return fail("兵装已接近上限");
-        spend(c,o,gold);c.equipment[weapon.ordinal()]+=amount;return success(c.name+"生产"+amount+"份"+weapon.label+"兵装，金−"+gold);
+        spend(c,o,gold);domestic.use(cityId,facility);c.equipment[weapon.ordinal()]+=amount;return success(c.name+"生产"+amount+"份"+weapon.label+"兵装，金−"+gold);
     }
     public Result deploy(int cityId,int officerId,Weapon weapon,int troops) {
         return army.deploy(cityId,officerId,new int[0],weapon,Army.Ship.BOAT,troops,troops*2);

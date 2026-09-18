@@ -135,7 +135,7 @@ public final class DomesticTest {
         for(String file:new String[]{"/m0-v1.sg11.b64","/m1-v2.sg11.b64"}){
             byte[] original;try(InputStream in=DomesticTest.class.getResourceAsStream(file)){if(in==null)throw new IOException(file);original=Base64.getMimeDecoder().decode(in.readAllBytes());}
             check(original[7]==(file.contains("v1")?1:2),"fixture genuinely old version");World w=SaveCodec.decode(original);check(w.domestic.facilities.isEmpty()&&w.domestic.missions.isEmpty(),"legacy initializes empty strategic layer");
-            World clone=copy(w);check(SaveCodec.encode(w)[7]==24,"new writes use save v19");for(int i=0;i<5&&!w.gameOver();i++){next(w);next(clone);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(clone)),"legacy deterministic continuation");}
+            World clone=copy(w);check(SaveCodec.encode(w)[7]==25,"new writes use save v19");for(int i=0;i<5&&!w.gameOver();i++){next(w);next(clone);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(clone)),"legacy deterministic continuation");}
         }
     }
     private static void campaigns()throws Exception{

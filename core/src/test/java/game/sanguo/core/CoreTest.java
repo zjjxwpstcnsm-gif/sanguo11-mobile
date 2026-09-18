@@ -21,12 +21,12 @@ public final class CoreTest {
         check(new Hex(0,0).distance(new Hex(2,-2))==2,"axial distance");
     }
     private static void actions()throws Exception {
-        World w=DemoScenario.create();byte[] before=SaveCodec.encode(w);
+        World w=DemoScenario.create();FacilityProductionTest.facility(w,0,Domestic.Kind.BARRACKS);byte[] before=SaveCodec.encode(w);
         check(!w.recruit(1,3).ok,"cannot command enemy city");check(Arrays.equals(before,SaveCodec.encode(w)),"invalid command is atomic");
-        check(w.recruit(0,0).ok,"recruit");check(w.city(0).troops==14000&&w.city(0).gold==4700&&w.city(0).order==85,"recruit costs and troops");
+        check(w.recruit(0,0).ok,"recruit");check(w.city(0).troops==14500&&w.city(0).gold==4700&&w.city(0).order==85,"recruit costs and troops");
         check(!w.train(0,0).ok,"officer cannot act twice");check(w.actionPoints[0]==50,"spent AP exactly once");
         check(w.deploy(0,1,World.Weapon.CROSSBOW,3000).ok,"deploy second officer");
-        check(w.city(0).troops==11000&&w.city(0).food==34000&&w.city(0).equipment[2]==9000,"deployment conserves stores");
+        check(w.city(0).troops==11500&&w.city(0).food==34000&&w.city(0).equipment[2]==9000,"deployment conserves stores");
         check(w.officer(1).cityId==-1&&w.officer(1).unitId==1,"officer has single location");
         w.city(0).food=0;before=SaveCodec.encode(w);check(!w.deploy(0,2,World.Weapon.SPEAR,3000).ok,"cannot deploy without supply");
         check(Arrays.equals(before,SaveCodec.encode(w)),"failed deployment does not spend resources");

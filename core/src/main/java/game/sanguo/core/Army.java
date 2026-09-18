@@ -89,7 +89,7 @@ public final class Army {
         if(c.kind!=World.SiteKind.CITY)return "港口和关卡不能生产军备";
         if(w.districts.productionError(city)!=null)return w.districts.productionError(city);
         Domestic.Kind facility=weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD;
-        if(!completed(city,facility))return "需要已建成的"+facility.label;
+        error=w.domestic.operationError(city,facility);if(error!=null)return error;
         Campaign.Tech tech=weapon==World.Weapon.WOODEN_BEAST?Campaign.Tech.WOODEN_BEAST:weapon==World.Weapon.CATAPULT?Campaign.Tech.CATAPULT:ship==Ship.WARSHIP?Campaign.Tech.WARSHIP:null;
         if(tech!=null&&!w.campaign.has(c.owner,tech))return "需要先研究"+(tech==Campaign.Tech.WARSHIP?Campaign.Tech.CATAPULT:tech).label;
         int amount=weapon!=null?c.equipment[weapon.ordinal()]:c.ships[ship.ordinal()-1];
@@ -100,6 +100,7 @@ public final class Army {
         String error=productionError(city,officer,weapon,ship);if(error!=null)return w.fail(error);
         World.City c=w.city(city);World.Officer o=w.officer(officer);Production p=new Production(city,officer,c.owner,weapon,ship);
         w.spend(c,o,weapon!=null?productionGold(weapon):ship.gold);o.otherTask=p.label();o.otherTaskTurns=w.skills.productionTurns(officer,weapon);productions.add(p);
+        w.domestic.use(city,weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD);
         return w.success(o.name+"开始"+p.label()+"，"+o.otherTaskTurns+"旬后完成1件");
     }
     private boolean valid(Production p){World.City c=w.city(p.cityId);World.Officer o=w.officer(p.officerId);return c!=null&&o!=null&&c.owner==p.owner&&o.owner==p.owner&&o.cityId==c.id&&o.otherTask.equals(p.label())&&completed(c.id,p.weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD);}
