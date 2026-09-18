@@ -40,7 +40,8 @@ public final class MainActivity extends Activity {
     private Bundle reportReturn;
     private java.util.function.Function<Hex,String> pickError;
     private Button previousReady,nextReady;
-    private TextView turnBanner;
+    private TextView turnBanner,turnProgress;
+    private LinearLayout quickCityStrip,quickUnitStrip;
     private boolean aiRunning;
     private Button nextTurn;
     private final ClientState ui=new ClientState();
@@ -123,6 +124,9 @@ public final class MainActivity extends Activity {
         turnBanner=text("",13,paper);turnBanner.setPadding(dp(12),dp(5),dp(12),dp(5));turnBanner.setMaxLines(2);turnBanner.setBackgroundColor(0xff243e4b);turnBanner.setVisibility(View.GONE);turnBanner.setContentDescription("查看本旬结算摘要");turnBanner.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);turnBanner.setOnClickListener(v->showTurnReport());root.addView(turnBanner,new LinearLayout.LayoutParams(-1,-2));
         body.addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->{if(r-l!=or-ol||b-t!=ob-ot)layoutPanels();});
         commandDock=new LinearLayout(this);commandDock.setPadding(dp(8),dp(4),dp(8),dp(4));commandDock.setBackgroundColor(0xff162934);root.addView(commandDock);
+        turnProgress=text("",12,gold);turnProgress.setPadding(dp(12),dp(3),dp(12),dp(3));turnProgress.setBackgroundColor(0xff1c3340);turnProgress.setVisibility(View.GONE);turnProgress.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);root.addView(turnProgress,new LinearLayout.LayoutParams(-1,-2));
+        quickCityStrip=new LinearLayout(this);quickCityStrip.setOrientation(LinearLayout.HORIZONTAL);root.addView(quickNavigatorRow("城池",quickCityStrip),new LinearLayout.LayoutParams(-1,dp(42)));
+        quickUnitStrip=new LinearLayout(this);quickUnitStrip.setOrientation(LinearLayout.HORIZONTAL);root.addView(quickNavigatorRow("部队",quickUnitStrip),new LinearLayout.LayoutParams(-1,dp(42)));
         LinearLayout bottom=new LinearLayout(this);bottom.setPadding(dp(6),0,dp(6),0);bottom.setGravity(Gravity.CENTER_VERTICAL);
         Button functions=button("功能",v->showNavigation());functions.setContentDescription("打开功能导航 · 城市、武将、任务、菜单");
         bottom.addView(functions,new LinearLayout.LayoutParams(dp(64),dp(52)));
@@ -158,6 +162,32 @@ public final class MainActivity extends Activity {
         if(!(old instanceof LinearLayout.LayoutParams)||old.width!=params.width||old.height!=params.height||((LinearLayout.LayoutParams)old).weight!=params.weight)view.setLayoutParams(params);
     }
     private void closePanel(){ui.panelVisible=false;ui.panelExpanded=false;ui.page="map";refresh();}
+    private View quickNavigatorRow(String label,LinearLayout strip){
+        LinearLayout row=new LinearLayout(this);row.setGravity(Gravity.CENTER_VERTICAL);row.setPadding(dp(6),0,dp(6),0);row.setBackgroundColor(0xff101d28);
+        TextView name=text(label,12,gold);name.setGravity(Gravity.CENTER);row.addView(name,new LinearLayout.LayoutParams(dp(42),-1));
+        HorizontalScrollView scroll=new HorizontalScrollView(this);scroll.setHorizontalScrollBarEnabled(true);scroll.setFillViewport(false);scroll.addView(strip,new HorizontalScrollView.LayoutParams(-2,-1));row.addView(scroll,new LinearLayout.LayoutParams(0,-1,1));return row;
+    }
+    private void refreshQuickNavigator(){
+        if(quickCityStrip==null||quickUnitStrip==null||world==null)return;
+        View cityRow=(View)quickCityStrip.getParent().getParent();View unitRow=(View)quickUnitStrip.getParent().getParent();
+        boolean mapContext="map".equals(ui.page)&&!aiRunning&&!ui.panelVisible;
+        if(!mapContext){
+            quickCityStrip.removeAllViews();quickUnitStrip.removeAllViews();
+            cityRow.setVisibility(View.GONE);unitRow.setVisibility(View.GONE);return;
+        }
+        quickCityStrip.removeAllViews();quickUnitStrip.removeAllViews();
+        List<World.City> ownCities=new ArrayList<>();for(World.City c:world.cities)if(c.owner==world.player)ownCities.add(c);ownCities.sort(Comparator.comparingInt(c->c.id));
+        for(World.City c:ownCities){Button b=button(c.name+" · "+(c.troops/1000)+"k",v->selectObject(c.hex,-2,true));b.setTextSize(11);b.setContentDescription("定位己方据点 "+c.name);quickCityStrip.addView(b,new LinearLayout.LayoutParams(dp(104),-1));}
+        List<World.Unit> ownUnits=new ArrayList<>();for(World.Unit u:world.fieldUnits())if(u.owner==world.player)ownUnits.add(u);ownUnits.sort(Comparator.comparingInt(u->u.id));
+        for(World.Unit u:ownUnits){World.Officer o=world.officer(u.officerId);String n=o==null?("部队"+u.id):o.name;Button b=button(n+" · "+u.troops,v->selectObject(u.hex,u.id,true));b.setTextSize(11);b.setContentDescription("定位己方部队 "+n);quickUnitStrip.addView(b,new LinearLayout.LayoutParams(dp(116),-1));}
+        cityRow.setVisibility(ownCities.isEmpty()?View.GONE:View.VISIBLE);unitRow.setVisibility(ownUnits.isEmpty()?View.GONE:View.VISIBLE);
+    }
+    private void refreshTurnProgress(){
+        if(turnProgress==null)return;
+        if(aiRunning&&turnWork!=null&&!turnWork.done){turnProgress.setText(turnWork.status());turnProgress.setVisibility(View.VISIBLE);turnProgress.removeCallbacks(turnProgressTicker);turnProgress.postDelayed(turnProgressTicker,120);}
+        else {turnProgress.removeCallbacks(turnProgressTicker);turnProgress.setVisibility(View.GONE);}
+    }
+    private final Runnable turnProgressTicker=()->refreshTurnProgress();
     private void showNavigation(){
         if(mapPick!=null)cancelMapPick();
         if(navigationDialog!=null&&navigationDialog.isShowing())return;
@@ -389,6 +419,7 @@ public final class MainActivity extends Activity {
         if(result.ok&&world.gameOver())message(world.winner==world.player?"战场胜利":"战场战败","本局结束，可从菜单重新选择剧本。");
     }
     void refresh(){
+        refreshQuickNavigator();refreshTurnProgress();
         if(battleReportWorld!=world){battleReportWorld=world;lastBattleReport="";reportLocation=null;reportReturn=null;clearTacticPreview();battleBanner.setVisibility(View.GONE);}
         if(ui.city>=0&&world.city(ui.city)==null)ui.city=-1;
         if(ui.cityDistrict>0&&world.districts.get(ui.cityDistrict)==null)ui.cityDistrict=-1;
@@ -409,7 +440,7 @@ public final class MainActivity extends Activity {
         int ready=UiModels.readyUnits(world).size();previousReady.setEnabled(!aiRunning&&mapPick==null);nextReady.setEnabled(!aiRunning&&mapPick==null);previousReady.setTooltipText("上一个待行动部队 · "+ready+"队");nextReady.setTooltipText("下一个待行动部队 · "+ready+"队");
         selectionButton.setText(selectedName+(panelShell.getVisibility()==View.VISIBLE?" · 收起":" · 指令"));
         selectionButton.setContentDescription("选中对象指令 · "+selectedName);selectionButton.setEnabled(mapPick==null&&!aiRunning&&!required);
-        panelTitle.setText(ui.page.equals("map")?selectedName+" · 指令":ui.page.equals("cities")?"城池一览":ui.page.equals("officers")?"武将":ui.page.equals("tasks")?"任务":ui.page.equals("menu")?"菜单":"资料");
+        panelTitle.setText(ui.page.equals("map")?selectedName+" · 指令":ui.page.equals("cities")?"城池一览":ui.page.equals("officers")?"武将一览":ui.page.equals("tasks")?"任务":ui.page.equals("menu")?"菜单":"资料");
         if(world.unit(moving)==null)moving=-1;
         map.setWorld(world,selected,moving);
         if(world.life.pending()&&!ui.page.equals("menu")){panelHost.addView(new LifecycleUi(this,world,this::apply).succession());}
@@ -453,7 +484,7 @@ public final class MainActivity extends Activity {
         if(pendingMarch==null){
             String error=world.orders.error(u);
             String hint=unitCommand.equals("march")?"行军：点目标预览，确认后出发":unitCommand.equals("attack")?"攻击：点红框敌军、城池或设施":error!=null?error:"青色为本旬可达范围 · 红框可攻击";
-            TextView state=text((u instanceof Domestic.Mission?"运输":"兵"+u.troops)+" · 粮"+u.food+" · "+hint+" · 剩余移动 "+world.orders.remaining(u),12,gold);state.setMaxLines(2);
+            TextView state=text((u instanceof Domestic.Mission?"运输":"兵"+u.troops)+" · 携粮 "+u.food+" · "+hint+" · 剩余移动 "+world.orders.remaining(u),12,gold);state.setMaxLines(2);
             commandDock.addView(state,new LinearLayout.LayoutParams(portrait()?-1:0,-2,portrait()?0:1));
             LinearLayout actions=new LinearLayout(this);
             Button march=button("行军",v->{unitCommand="march";ui.panelVisible=false;refresh();});march.setSelected(unitCommand.equals("march"));
@@ -462,7 +493,9 @@ public final class MainActivity extends Activity {
             Button plots=button("计略",v->{if(error!=null){message("计略暂不可用",error);return;}pendingMarch=null;unitCommand="select";refresh();warUi().plots(u);});plots.setAlpha(error==null?1f:.55f);
             Button cancel=button("取消选中",v->clearUnitSelection());
             if(u instanceof Domestic.Mission){attack.setText("补给");attack.setOnClickListener(v->{if(error!=null)message("补给暂不可用",error);else convoySupply((Domestic.Mission)u);});tactics.setText("停止");tactics.setOnClickListener(v->apply(world.marches.stop(u.id)));plots.setText("货物");plots.setOnClickListener(v->{ui.panelVisible=true;refresh();revealPanel();});}
-            for(Button b:new Button[]{march,attack,tactics,plots,cancel})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
+            for(Button b:new Button[]{march,attack,tactics,plots})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
+            if(!(u instanceof Domestic.Mission)&&u.march!=null)actions.addView(button("停止行军",v->apply(world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
+            actions.addView(cancel,new LinearLayout.LayoutParams(0,dp(48),1));
             commandDock.addView(actions,new LinearLayout.LayoutParams(portrait()?-1:dp(360),-2));return;
         }
         LinearLayout copy=new LinearLayout(this);copy.setOrientation(LinearLayout.VERTICAL);copy.setGravity(Gravity.CENTER_VERTICAL);
@@ -709,9 +742,23 @@ public final class MainActivity extends Activity {
         action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.33 · 规则执行与架构整理","普攻、战法、反击共用计算与命中结算；火伤、暴击、威风和军乐台统一规则入口。\n无存档显示新游戏入口；坏档保留并在确认替换时备份。\n右上小地图直接跳转、收起/展开，保持当前缩放；视图菜单可切换主将姓名与兵力/气力双条。\n六个年代开局新增42城、10关、35港；修正北上陆路与庐江江岸。\n城市每旬自动射击，普攻与器械攻城均在射程内反击，伤害受守军、气力、城防与总量上限影响。\n旧存档保留原地图；新增地形和开局配置需要新游戏。\n历史重建/定制剧本，完整官方数据及精确公式仍待核验。"));
     }
     private void scenarioPicker(){
-        try {List<ScenarioCatalog.Summary> scenarios=ScenarioCatalog.summaries();String[] labels=new String[scenarios.size()];
-            for(int i=0;i<labels.length;i++){ScenarioCatalog.Summary s=scenarios.get(i);labels[i]=s.name+" · "+s.sites+"据点 / "+s.officers+"将 / "+s.factions+"势力";}
-            new AlertDialog.Builder(this).setTitle("选择剧本 · 六个年代与自制沙盘").setItems(labels,(dialog,index)->chooseScenarioTemplate(scenarios.get(index).id)).setNegativeButton("取消",null).show();
+        try {
+            List<ScenarioCatalog.Summary> scenarios=ScenarioCatalog.summaries();
+            LinearLayout list=new LinearLayout(this);list.setOrientation(LinearLayout.VERTICAL);list.setPadding(dp(8),dp(4),dp(8),dp(4));
+            ScrollView scroll=new ScrollView(this);scroll.setFillViewport(false);scroll.setVerticalScrollBarEnabled(true);scroll.addView(list,new ScrollView.LayoutParams(-1,-2));
+            final AlertDialog[] holder=new AlertDialog[1];
+            for(ScenarioCatalog.Summary scenario:scenarios){
+                String label=scenario.name+" · "+scenario.sites+"据点 / "+scenario.officers+"将 / "+scenario.factions+"势力";
+                Button option=button(label,v->{if(holder[0]!=null)holder[0].dismiss();chooseScenarioTemplate(scenario.id);});
+                option.setAllCaps(false);option.setGravity(Gravity.START|Gravity.CENTER_VERTICAL);option.setContentDescription("选择剧本 "+scenario.name);
+                list.addView(option,new LinearLayout.LayoutParams(-1,dp(52)));
+            }
+            int rows=Math.min(5,Math.max(3,scenarios.size()));
+    int target=dp(rows*56+16);
+    int cap=Math.max(dp(180),getResources().getDisplayMetrics().heightPixels*58/100);
+    LinearLayout shell=new LinearLayout(this);shell.setOrientation(LinearLayout.VERTICAL);
+    shell.addView(scroll,new LinearLayout.LayoutParams(-1,Math.min(target,cap)));
+    holder[0]=new AlertDialog.Builder(this).setTitle("选择剧本 · 六个年代与自制沙盘").setView(shell).setNegativeButton("取消",null).show();
         }catch(IOException e){showError("剧本读取失败");}
     }
     private void chooseScenarioTemplate(String id){

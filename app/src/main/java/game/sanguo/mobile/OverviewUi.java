@@ -57,7 +57,14 @@ final class OverviewUi {
     }
     private <T> Rows<T> list(LinearLayout host,List<T> rows,ToLongFunction<T> key,Function<T,String> title,Function<T,String> detail,Consumer<T> select,String empty) {
         FrameLayout content=new FrameLayout(a);host.addView(content,new LinearLayout.LayoutParams(-1,0,1));
-        ListView list=new ListView(a);list.setDivider(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));list.setDividerHeight(a.dp(6));list.setCacheColorHint(Color.TRANSPARENT);list.setContentDescription("概览列表");
+        ListView list=new ListView(a){
+            @Override public boolean performAccessibilityAction(int action,android.os.Bundle args){
+                int count=getCount(),children=getChildCount();
+                if(action==android.view.accessibility.AccessibilityNodeInfo.ACTION_SCROLL_FORWARD&&count>0&&children>0&&getLastVisiblePosition()==count-1&&getChildAt(children-1).getBottom()<=getHeight()-getPaddingBottom())return false;
+                if(action==android.view.accessibility.AccessibilityNodeInfo.ACTION_SCROLL_BACKWARD&&count>0&&children>0&&getFirstVisiblePosition()==0&&getChildAt(0).getTop()>=getPaddingTop())return false;
+                return super.performAccessibilityAction(action,args);
+            }
+        };list.setDivider(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));list.setDividerHeight(a.dp(6));list.setCacheColorHint(Color.TRANSPARENT);list.setContentDescription("概览列表");
         TextView blank=text(empty,16);blank.setGravity(Gravity.CENTER);content.addView(blank,new FrameLayout.LayoutParams(-1,-1));content.addView(list,new FrameLayout.LayoutParams(-1,-1));list.setEmptyView(blank);
         boolean cityPage=state.page.equals("cities");int position=state.cityPosition,top=state.cityTop;
         boolean[] restoring={cityPage};

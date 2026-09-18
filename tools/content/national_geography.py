@@ -133,6 +133,30 @@ def generate_geography(cities):
                 if p==end:break
                 from strategic_sites import neighbors
                 p=min(neighbors(x,y),key=lambda h:(hex_distance(h,end),h))
+    # Luoyang basin must not be bypassable by generic nearest-city roads. The
+    # Yellow River seals the north; mountain walls seal the south and flanks,
+    # leaving the authored western/eastern gate corridors (Tong/Hangu and Hulao).
+    luoyang=(79,76)
+    for yy in range(68,86):
+        for xx in range(68,91):
+            d=hex_distance(luoyang,(xx,yy))
+            if 9<=d<=12 and terrain[yy][xx] not in 'WOV':terrain[yy][xx]='M'
+    def carve_corridor(points):
+        for start,end in zip(points,points[1:]):
+            p=start
+            while True:
+                x,y=p
+                for yy in range(max(0,y-1),min(200,y+2)):
+                    for xx in range(max(0,x-1),min(200,x+2)):
+                        if hex_distance(p,(xx,yy))<=1 and terrain[yy][xx] not in 'WOV':terrain[yy][xx]='P';roads.add((xx,yy))
+                if p==end:break
+                from strategic_sites import neighbors
+                p=min(neighbors(x,y),key=lambda h:(hex_distance(h,end),h))
+    carve_corridor([(79,76),(84,77),(90,77)])       # Hulao east exit
+    carve_corridor([(79,76),(71,78),(65,72)])       # Hangu/Tong west exit
+    for xx in range(71,88):
+        if terrain[87][xx] not in 'WOV':terrain[87][xx]='M'
+
     from strategic_sites import layout
     extra_sites=layout(terrain,positions)
     # Two or three compact farming districts, offset from the city, with at least

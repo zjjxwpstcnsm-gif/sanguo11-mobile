@@ -315,15 +315,19 @@ public final class World {
         diplomacy.dispatch();
         government.runAi();
         strategy.runAi(true);
-        List<City> ordered=new ArrayList<>(cities);
+        // Hot path: each AI faction only evaluates and sorts its own bases. With the
+        // full historical faction set, sorting the national city list per faction made
+        // end-of-turn time grow much faster than the actual amount of AI work.
+        List<City> ordered=new ArrayList<>();
+        for(City c:cities)if(c.owner==active)ordered.add(c);
         ordered.sort(Comparator.comparingInt((City c)->-ai.incoming(c)).thenComparingInt(c->c.id));
-        for(City c:ordered)if(c.owner==active)ai.replenish(c.id);
-        for(City c:ordered)if(c.owner==active)ai.support(c.id);
-        for(City c:ordered)if(c.owner==active)ai.deploy(c.id,6000);
+        for(City c:ordered)ai.replenish(c.id);
+        for(City c:ordered)ai.support(c.id);
+        for(City c:ordered)ai.deploy(c.id,6000);
         campaign.runAi();
         abilities.runAi();
         strategy.runAi(false);
-        for(City c:ordered)if(c.owner==active)ai.prepare(c.id);
+        for(City c:ordered)ai.prepare(c.id);
         ai.runUnits();
         domestic.runAi();
     }
