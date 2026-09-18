@@ -9,7 +9,7 @@ public final class War {
     }
     public enum Tactic {
         THRUST("突刺",World.Weapon.SPEAR,15,1,1,1,1.2,"击退1格"),
-        SPIRAL("螺旋突刺",World.Weapon.SPEAR,20,2,1,1,1.35,"混乱1次行动"),
+        SPIRAL("螺旋突刺",World.Weapon.SPEAR,20,2,1,1,1.35,"命中后概率混乱；条件暴击必定混乱"),
         DOUBLE_THRUST("二段突刺",World.Weapon.SPEAR,25,3,1,1,1.5,"击退2格"),
         HOOK("熊手",World.Weapon.HALBERD,15,1,1,1,1.15,"自身后退并拉动敌军"),
         SWEEP("横扫",World.Weapon.HALBERD,20,2,1,1,1.15,"攻击正面相邻敌军"),
@@ -173,6 +173,7 @@ public final class War {
         String heading=tactic==null?"未选择战法":tactic.label+" · 消耗气力"+tactic.energy+" / 当前"+(a==null?0:a.energy)+"\n命中率"+tacticChance(actor,target,tactic)+"%；命中或失败均结束本旬行动，失败同样扣气力。";
         if(a!=null&&tactic==Tactic.FIRE_ARROW)heading+="\n"+w.combat.firePreview(a,b,CombatRules.DIRECT_FIRE_BASE,false);
         if(b!=null)heading+="\n实际目标："+w.officer(b.officerId).name+" · "+b.hex;
+        if(a!=null&&b!=null&&tactic==Tactic.SPIRAL)heading+="\n命中后混乱概率："+w.combat.spiralConfusionChance(a,b)+"%";
         if(tactic!=null)heading+="\n射程："+tactic.minRange+"–"+(tactic.maxRange+(a!=null&&a.weapon==World.Weapon.CROSSBOW?range(a)-a.weapon.range:0))+"格；效果："+tactic.effect;
         Displacement.Preview p=displacement.preview(a,b,Displacement.kind(tactic),error,heading);
         if(error!=null)return p;
@@ -191,7 +192,7 @@ public final class War {
         int dealt=0;for(World.Unit victim:victims){if(w.unit(a.id)!=a||w.unit(victim.id)!=victim)continue;int hit=strike(a,victim,multiplier,true);dealt+=hit;}
         switch(tactic){
             case THRUST:case DOUBLE_THRUST:case CHARGE:case ADVANCE:case HOOK:case BREAKTHROUGH:displacement.execute(a,b,origin,targetHex,Displacement.kind(tactic));break;
-            case SPIRAL:if(w.unit(b.id)!=null){b.status=Status.CONFUSED;b.statusTurns=w.combat.critical(a,b,true)?2:1;}break;
+            case SPIRAL:if(w.unit(b.id)!=null&&w.strategy.nextInt(100)<w.combat.spiralConfusionChance(a,b)){b.status=Status.CONFUSED;b.statusTurns=w.combat.critical(a,b,true)?2:1;}break;
             case FIRE_ARROW:ignite(targetHex,a);break;default:break;
         }
         if(w.unit(a.id)==a&&w.unit(b.id)==b&&(!a.hex.equals(origin)||!b.hex.equals(targetHex)))w.skills.woundAfterDisplacement(a,b);

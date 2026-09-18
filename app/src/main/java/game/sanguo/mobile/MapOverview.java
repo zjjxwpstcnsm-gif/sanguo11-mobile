@@ -24,6 +24,7 @@ final class MapOverview {
     private final int width,height;
     private final float offset;
     private final int[] terrain,sites,owners,colors;
+    private final byte[] roads;
     private final RectF bounds;
     private final Paint paint=new Paint(Paint.FILTER_BITMAP_FLAG);
     private final Bitmap[] preview;
@@ -36,6 +37,7 @@ final class MapOverview {
         bounds=new RectF(-RADIUS,-RADIUS,worldWidth-RADIUS,worldHeight-RADIUS);
         int count=width*height;
         terrain=new int[count];sites=new int[count];owners=new int[count];colors=new int[count];
+        roads=new byte[count];
         Arrays.fill(sites,-1);Arrays.fill(owners,-1);
         int[] palette=new int[world.factions.length];
         for(int i=0;i<palette.length;i++)palette[i]=FactionColors.color(world,i);
@@ -43,6 +45,7 @@ final class MapOverview {
             int source=q+(r-(r&1))/2-(height-1)/2,index=r*width+q;
             if(world.terrain[q][r]==World.Terrain.VOID||world.sourceMapWidth>0&&(source<0||source>=world.sourceMapWidth))continue;
             terrain[index]=TerrainTiles.color(world.terrain[q][r]);
+            if(TerrainConnections.road(world.terrain[q][r]))roads[index]=(byte)(64|TerrainConnections.mask(world,q,r));
             sites[index]=territory.siteAt(q,r);owners[index]=territory.ownerAt(q,r);
             colors[index]=owners[index]<0?0xffa6a6a6:palette[owners[index]];
         }
@@ -100,7 +103,15 @@ final class MapOverview {
                     pixels[i]=color;
                 }
             }
-            images[mode]=Bitmap.createBitmap(pixels,w,h,Bitmap.Config.ARGB_8888);
+            images[mode]=Bitmap.createBitmap(w,h,Bitmap.Config.ARGB_8888);
+            images[mode].setPixels(pixels,0,w,0,0,w,h);
+            Canvas canvas=new Canvas(images[mode]);canvas.scale(w/bounds.width(),h/bounds.height());canvas.translate(-bounds.left,-bounds.top);
+            Paint road=new Paint(Paint.ANTI_ALIAS_FLAG);road.setColor(0xffd3b47b);road.setStrokeCap(Paint.Cap.ROUND);road.setStrokeWidth(Math.max(3,.65f/scale));
+            for(int r=0;r<height;r++)for(int q=0;q<width;q++)if(roads[r*width+q]!=0){
+                float cx=DX*(q+r*.5f-offset),cy=DY*r;
+                int mask=roads[r*width+q]&63;
+                for(int d=0;d<6;d++)if((mask&(1<<d))!=0)canvas.drawLine(cx,cy,cx+TerrainConnections.edgeX(d),cy+TerrainConnections.edgeY(d),road);
+            }
         }
         return images;
     }

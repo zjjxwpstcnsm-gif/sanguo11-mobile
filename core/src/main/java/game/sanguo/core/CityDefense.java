@@ -6,6 +6,22 @@ import java.util.*;
 public final class CityDefense {
     private final World w;
     CityDefense(World w){this.w=w;}
+    /** Range three includes ranged siege pressure; convoys and allies cannot stop repairs. */
+    public boolean besieged(World.City c){
+        if(c==null)return false;
+        for(World.Unit u:w.units)if(u.troops>0&&w.campaign.hostile(c.owner,u.owner)&&u.hex.distance(c.hex)<=3)return true;
+        return false;
+    }
+    public int recovery(World.City c){
+        if(c==null||c.owner<0||c.food<=0||besieged(c)||c.defense>=w.campaign.defenseCap(c))return 0;
+        return Math.min(w.campaign.defenseCap(c)-c.defense,w.campaign.has(c.owner,Campaign.Tech.ENGINEERING)?40:20);
+    }
+    public int repairAmount(World.City c,World.Officer o){
+        int amount=400+o.politics*4;
+        if(w.campaign.has(c.owner,Campaign.Tech.ENGINEERING))amount=amount*3/2;
+        if(besieged(c))amount/=4;
+        return Math.max(0,Math.min(w.campaign.defenseCap(c)-c.defense,amount));
+    }
     public int range(World.City city){return city.kind==World.SiteKind.CITY?2:1;}
     private boolean ready(World.City c){return c!=null&&c.owner>=0&&c.troops>0&&c.food>0&&c.defense>0;}
     public boolean inRange(World.City c,World.Unit u){return ready(c)&&u!=null&&w.campaign.hostile(c.owner,u.owner)&&c.hex.distance(u.hex)>0&&c.hex.distance(u.hex)<=range(c);}
@@ -24,7 +40,7 @@ public final class CityDefense {
     }
     public int counterDamage(World.City c,World.Unit attacker){return inRange(c,attacker)?Math.min(attacker.troops,against(attacker,strength(c)*2/3)):0;}
     public String preview(World.City c,World.Unit u){int n=counterDamage(c,u);return n>0?"据点存续时反击：至多 "+n+" 兵（随剩余守军降低）；防御射程 "+range(c)+" 格。":"当前距离或守备状态下无据点反击。";}
-    public String describe(World.City c){return "守备射程 "+range(c)+" 格 · 每旬对范围内敌军自动射击\n单队基础伤害 ≤"+strength(c)+"，全城每旬总量 ≤"+(strength(c)*2)+"；反击约为单队伤害的⅔。缺粮或无守军停射。";}
+    public String describe(World.City c){return "守备射程 "+range(c)+" 格 · 每旬对范围内敌军自动射击\n单队基础伤害 ≤"+strength(c)+"，全城每旬总量 ≤"+(strength(c)*2)+"；反击约为单队伤害的⅔。缺粮或无守军停射。\n"+(besieged(c)?"受围攻：自动修复暂停，主动补修为平时的¼。":"城防自然恢复：每旬 +"+recovery(c)+"（需粮食）。");}
     private int hurt(World.City c,World.Unit u,int damage,String reason){
         if(w.unit(u.id)!=u||damage<=0)return 0;
         int actual=w.combatEffects.hit(null,u,damage,false,false);

@@ -72,7 +72,7 @@ final class CampaignUi {
                 choose("选择中止的任务",own,p->w.officer(p.officerId).name+" · "+p.label(),p->confirm("中止"+p.label(),"已付金和技巧点不退还，武将本旬仍算已行动。",()->apply.accept(w.campaign.cancelProject(p.officerId))));
             }).show();
     }
-    void repair(World.City c){officer(c,o->confirm("修复城防","金300、行动力10；修复"+Math.min(Math.max(0,w.campaign.defenseCap(c)-c.defense),(400+o.politics*4)*(w.campaign.has(c.owner,Campaign.Tech.ENGINEERING)?150:100)/100)+"城防。",()->apply.accept(w.campaign.repair(c.id,o.id))));}
+    void repair(World.City c){officer(c,o->confirm("修复城防","金300、行动力10；修复"+w.cityDefense.repairAmount(c,o)+"城防。"+(w.cityDefense.besieged(c)?"\n受围攻，补修效率为平时的¼。":""),()->apply.accept(w.campaign.repair(c.id,o.id))));}
     void dismiss(World.City c){officer(c,o->{List<World.Officer> targets=new ArrayList<>();for(World.Officer t:w.officers)if(t.owner==c.owner&&t.cityId==c.id&&t.id!=o.id&&t.role!=Strategy.Role.RULER&&!w.domestic.busy(t.id)&&!w.strategy.busy(t.id))targets.add(t);
         choose("流放武将",targets,t->t.name,t->confirm("流放"+t.name,"行动力10；解除太守任命并成为本城在野武将，需要重新登用。",()->apply.accept(w.campaign.dismiss(c.id,o.id,t.id))));});}
     void buildMilitary(World.City c){info("部队设置", "请在编队出征时携带金，移动到工地相邻格，然后选择部队→设置军事设施。\n施工期间部队自动补修，完成后设施开始生效。");}

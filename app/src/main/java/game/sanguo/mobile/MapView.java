@@ -311,9 +311,9 @@ public final class MapView extends View {
             World.Terrain t=world.terrain[q][r];
             int source=q+(r-(r&1))/2-(world.height-1)/2;
             if(t==World.Terrain.VOID||world.sourceMapWidth>0&&(source<0||source>=world.sourceMapWidth))continue;
-            if(detail)terrainTiles.draw(canvas,t,q,r,cx,cy);
+            if(detail)terrainTiles.draw(canvas,world,q,r,cx,cy);
             else {polygon(cx,cy,RADIUS-.3f);fill(canvas,TerrainTiles.color(t));}
-            polygon(cx,cy,RADIUS-.3f);stroke(canvas,Color.argb(40,13,37,35),.7f);
+            if(!TerrainConnections.road(t)){polygon(cx,cy,RADIUS-.3f);stroke(canvas,Color.argb(40,13,37,35),.7f);}
             drawTerritory(canvas,q,r,cx,cy,scale);
         }
         if(detail&&territoryMode>0){

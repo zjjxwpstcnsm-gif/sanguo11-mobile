@@ -43,7 +43,9 @@ public final class ContentTest {
             check(!bad.equals(source),"mutation actually changes source");try{ScenarioData.read(new ByteArrayInputStream(bad.getBytes(StandardCharsets.UTF_8)),2);throw new AssertionError("invalid sourced pack accepted");}catch(IOException expected){checks++;}
         }
         // Real player commands approach an AI unit and exchange damage, without teleporting.
-        World battle=TestScenarios.load("officer-reference-drill",0);check(battle.deploy(100,1000,World.Weapon.CROSSBOW,3000).ok,"combat deployment");boolean fought=false;
+        // This integration probe pursues the nearest enemy, including forests. Use a melee
+        // force: an archer without 射手 cannot legally fire at the selected forest defender.
+        World battle=TestScenarios.load("officer-reference-drill",0);check(battle.deploy(100,1000,World.Weapon.SPEAR,6000).ok,"combat deployment");boolean fought=false;
         for(int turn=0;turn<60&&!battle.gameOver()&&!fought;turn++){
             for(World.Unit u:new ArrayList<>(battle.units))if(u.owner==battle.player&&!u.acted){
                 World.Unit enemy=battle.units.stream().filter(e->e.owner!=battle.player).min(Comparator.comparingInt(e->u.hex.distance(e.hex))).orElse(null);

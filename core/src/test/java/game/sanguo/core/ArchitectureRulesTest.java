@@ -1,7 +1,5 @@
 package game.sanguo.core;
 
-import game.sanguo.core.battle.*;
-import game.sanguo.core.battle.adapter.LegacyWorldBattleAdapter;
 import java.util.*;
 import static game.sanguo.core.Skill.*;
 
@@ -12,17 +10,20 @@ public final class ArchitectureRulesTest {
     private static void skill(World w,int officer,Skill s){w.officer(officer).skillId=s.id;}
     public static void main(String[] args)throws Exception{numericalBaseline();holders();energyAndHit();pureQueries();fireReplay();music();splashAndTrap();roster();auraScope();aiSharedResults();System.out.println("PASS: "+checks+" v033 architecture/rule assertions.");}
     private static void numericalBaseline(){
-        // Old isolated engine serves only as the frozen pre-migration numerical oracle.
+        // v0.41 intentionally replaces the v0.33 frozen formula. Keep broad numeric
+        // contracts here; gameplay role/tempo benchmarks live in BalanceTest.
         Random r=new Random(330);World w=ArchitectureFixture.create();
         for(int i=0;i<2000;i++){
             World.Weapon aw=World.Weapon.values()[i%4],bw=World.Weapon.values()[(i/4)%4];
             World.Unit a=new World.Unit(1,0,0,aw,new Hex(6,6),1+r.nextInt(18000),50000),b=new World.Unit(2,1,3,bw,new Hex(7,6),10000,50000);
             for(World.Officer o:w.officers){o.leadership=1+r.nextInt(100);o.war=1+r.nextInt(100);o.intelligence=1+r.nextInt(100);}
             World.Terrain t=i%3==0?World.Terrain.FOREST:i%3==1?World.Terrain.MOUNTAIN:World.Terrain.PLAIN;w.terrain[6][6]=t;w.terrain[7][6]=t;
-            Terrain old=t==World.Terrain.FOREST?Terrain.FOREST:t==World.Terrain.MOUNTAIN?Terrain.MOUNTAIN:Terrain.PLAIN;
             double scale=.5+(i%5)*.3;long seed=r.nextLong();
-            int expected=DamageCalculator.rawDamage(LegacyWorldBattleAdapter.toBattleUnit(a,w.officer(0),new HexPos(6,6)),LegacyWorldBattleAdapter.toBattleUnit(b,w.officer(3),new HexPos(7,6)),old,old,scale,new Random(seed));
-            check(expected==w.combat.rawDamage(a,b,scale,new Random(seed)),"preserved baseline roll "+i);
+            int full=w.combat.rawDamage(a,b,scale,new Random(seed));
+            check(full>=1&&full<=2500,"bounded physical damage "+i);
+            check(full==w.combat.rawDamage(a,b,scale,new Random(seed)),"deterministic physical roll "+i);
+            a.troops=Math.max(1,a.troops/2);
+            check(w.combat.rawDamage(a,b,scale,new Random(seed))<=full,"smaller force cannot increase damage "+i);
         }
     }
     private static void holders(){

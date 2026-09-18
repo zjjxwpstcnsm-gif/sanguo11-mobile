@@ -128,7 +128,7 @@ public final class CampaignAi {
                     if(w.campaign.hostile(a.owner,other.owner))hit+=value(other,w.combat.expectedDamage(a,other,t.multiplier,true));
                 }
                 if(friendly)continue;
-                if(t==War.Tactic.SPIRAL)hit+=controlValue(b);
+                if(t==War.Tactic.SPIRAL)hit+=controlValue(b)*w.combat.spiralConfusionChance(a,b)/100;
                 int score=hit*w.war.tacticChance(a.id,b.id,t)/100-t.energy*8;
                 best=better(best,new Action(Kind.TACTIC,a.id,b.id,b.hex,score,t,null,null,"按命中与范围收益选择战法"));
             }
@@ -143,8 +143,8 @@ public final class CampaignAi {
         }
         if(!attack)return best;
         for(World.City c:cities())if(w.campaign.hostile(a.owner,c.owner)&&objectives.test(c)){
-            CombatRules.SiegeDamage normal=w.combat.siege(a,false),tactic=w.combat.siege(a,true);
-            int score=150+(c.troops<=normal.troops||c.defense<=normal.wall?1800:0);
+            CombatRules.SiegeDamage normal=w.combat.siege(a,c,false),tactic=w.combat.siege(a,c,true);
+            int score=150+Math.min(c.defense,normal.wall)+Math.min(c.troops,normal.troops)/2+(c.troops<=normal.troops||c.defense<=normal.wall?1800:0);
             if(w.siegeError(a.id,c.id)==null)best=better(best,action(Kind.SIEGE,a,c.id,c.hex,score,"夺取可占领据点"));
             for(Army.Tactic t:w.army.tactics(a))if(w.army.tacticError(a.id,c.hex,t)==null){
                 if(t==Army.Tactic.STONE&&w.campaign.has(a.owner,Campaign.Tech.THUNDERBOLT)&&ownAssetsNear(a,c.hex))continue;

@@ -1,5 +1,13 @@
 plugins { id 'com.android.application' }
+def release = new Properties()
+rootProject.file('version.properties').withInputStream { release.load(it) }
+def revision = providers.exec {
+    workingDir rootProject.projectDir
+    commandLine 'git', 'rev-parse', '--short=12', 'HEAD'
+    ignoreExitValue = true
+}.standardOutput.asText.get().trim()
 android {
+    buildFeatures { buildConfig true }
     namespace 'game.sanguo.mobile'
     compileSdk 35
     sourceSets.androidTest.java.srcDir rootProject.file("core/src/testFixtures/java")
@@ -13,8 +21,9 @@ android {
         minSdk 26
         targetSdk 35
         testInstrumentationRunner 'game.sanguo.mobile.GameSmokeRunner'
-        versionCode 34
-        versionName '0.34.0-mobile-ux-geography-turn-dev'
+        versionCode release.getProperty('versionCode').toInteger()
+        versionName release.getProperty('versionName')
+        buildConfigField 'String', 'SOURCE_REVISION', '"' + (revision ?: 'source-archive') + '"'
     }
     signingConfigs {
         debug {

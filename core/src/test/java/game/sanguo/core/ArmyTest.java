@@ -71,6 +71,7 @@ public final class ArmyTest {
     private static void combat()throws Exception{
         for(World.Weapon weapon:Arrays.asList(World.Weapon.RAM,World.Weapon.SIEGE_TOWER,World.Weapon.WOODEN_BEAST,World.Weapon.CATAPULT)){
             World w=fixture();World.Unit u=unit(w,1,0,0,weapon,new Hex(17,5));w.city(20).troops=10000;
+            u.troops=10000; // Engine breach benchmark is now a full-sized crew; tiny crews scale down.
             int defense=w.city(20).defense;ok(w.army.tactic(1,w.city(20).hex,w.army.tactics(u).get(0)));int defenseLoss=defense-w.city(20).defense,troopLoss=10000-w.city(20).troops;
             check(weapon==World.Weapon.SIEGE_TOWER?troopLoss>defenseLoss:defenseLoss>=500,"siege specialization "+weapon);cases++;
         }

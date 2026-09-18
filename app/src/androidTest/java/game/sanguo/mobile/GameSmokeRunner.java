@@ -15,12 +15,13 @@ public final class GameSmokeRunner extends Instrumentation {
     private Activity current;
     private String displacement="";
     private String recovery="";
-    private boolean architecture33,navigation32,mapPerformance,fidelity,upgradeOnly,upgrade25,upgrade26,upgrade27,experience,armyOnly;
+    private boolean balance41,architecture33,navigation32,mapPerformance,fidelity,upgradeOnly,upgrade25,upgrade26,upgrade27,experience,armyOnly;
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);current=a;}
-    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);armyOnly=arguments!=null&&"true".equals(arguments.getString("army"));architecture33=arguments!=null&&"true".equals(arguments.getString("architecture33"));navigation32=arguments!=null&&"true".equals(arguments.getString("navigation32"));mapPerformance=arguments!=null&&"true".equals(arguments.getString("mapPerformance"));fidelity=arguments!=null&&"true".equals(arguments.getString("fidelity"));displacement=arguments==null?"":arguments.getString("displacement","");recovery=arguments==null?"":arguments.getString("recovery","");upgrade27=arguments!=null&&"27".equals(arguments.getString("upgrade"));experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
+    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);balance41=arguments!=null&&"true".equals(arguments.getString("balance41"));armyOnly=arguments!=null&&"true".equals(arguments.getString("army"));architecture33=arguments!=null&&"true".equals(arguments.getString("architecture33"));navigation32=arguments!=null&&"true".equals(arguments.getString("navigation32"));mapPerformance=arguments!=null&&"true".equals(arguments.getString("mapPerformance"));fidelity=arguments!=null&&"true".equals(arguments.getString("fidelity"));displacement=arguments==null?"":arguments.getString("displacement","");recovery=arguments==null?"":arguments.getString("recovery","");upgrade27=arguments!=null&&"27".equals(arguments.getString("upgrade"));experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
+            if(balance41){balance41Flow();result.putString("stream","BALANCE41 PASS: pinned development/city actions in portrait and landscape, construction execution, pure siege preview, real attack damage and connected terrain.\n");finish(Activity.RESULT_OK,result);return;}
             if(armyOnly){World initial=TestScenarios.load("river-siege-sandbox",0);try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(initial));}startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitForIdleSync();chooseOrientation("横屏");armyFlow();result.putString("stream","ARMY PASS: landscape formation, task visibility/detail, manufacturing, naval fire and embarkation.\n");finish(Activity.RESULT_OK,result);return;}
             if(architecture33){architecture33Flow();result.putString("stream","ARCHITECTURE33 PASS: empty/corrupt/backup/restore startup, production catalog, four-rule native commands, pure preview, recreation, turn replay and PK filter isolation.\n");finish(Activity.RESULT_OK,result);return;}
             if(navigation32){
@@ -285,7 +286,7 @@ public final class GameSmokeRunner extends Instrumentation {
         SystemClock.sleep(1200);screenshot("v030-national-map");
         territoryMode("关闭领地着色");
         runOnMainSync(()->((MainActivity)current).selectAndFocus(parcel));waitForIdleSync();
-        tapHex(parcel);waitText("开发地 · 选择设施",true);byte[] before=SaveCodec.encode(saved());screenshot("v030-parcel-facilities");
+        tapHex(parcel);click("＋ 开发此地",true);waitText("开发地 · 选择设施",true);byte[] before=SaveCodec.encode(saved());screenshot("v030-parcel-facilities");
         click("市场 ·",false);waitText("建设 · 选择执行人",true);
         runOnMainSync(current::recreate);waitText("建设 · 选择执行人",true);
         require(Arrays.equals(before,SaveCodec.encode(saved())),"build draft rotation does not issue command");
@@ -645,7 +646,7 @@ public final class GameSmokeRunner extends Instrumentation {
             World stock=SaveCodec.decode(before);require(actual.city(310).troops==stock.city(310).troops-2345&&actual.city(310).gold==stock.city(310).gold-4321&&actual.city(310).food==stock.city(310).food-6789,"UI debits exact stock");
             byte[] after=SaveCodec.encode(actual);runOnMainSync(current::recreate);waitForIdleSync();require(Arrays.equals(after,SaveCodec.encode(saved())),"quantity deployment never replays after recreation");
         }
-        World w=TestScenarios.load("regional-sandbox",2);installFixture(w,w.city(300).hex);chooseOrientation("竖屏");locateCity("柴桑");click("建设",true);click("市场 ·",false);click("周瑜 ·",false);
+        World w=TestScenarios.load("regional-sandbox",2);installFixture(w,w.city(300).hex);chooseOrientation("竖屏");locateCity("柴桑");click("设施开发",true);click("市场 ·",false);click("周瑜 ·",false);
         byte[] before=SaveCodec.encode(saved());waitText("点选高亮地块",false);require(!waitText("下一旬",false).isEnabled(),"cannot advance time during map placement");
         tapHex(w.city(300).hex);click("返回",true);require(Arrays.equals(before,SaveCodec.encode(saved())),"invalid construction tile does not spend resources");
         screenshot("v023-map-construction-portrait");runOnMainSync(()->current.setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE));assertOrientation(false);waitText("点选高亮地块",false);
@@ -1196,6 +1197,44 @@ public final class GameSmokeRunner extends Instrumentation {
         locateCity("学宫");click("研究",true);click("PK研究与培养进度",true);waitText("不屈 · 剩2次",false);screenshot("50-pk-completed");click("返回",true);
     }
     private void startTestScenario(String id,int player)throws Exception{World w=TestScenarios.load(id,player);installFixture(w,w.home().hex);}
+
+    private World balance41Fixture(){
+        World w=new World(32,24);w.scenarioName="数值与地图验证";
+        w.cities.add(new World.City(10,"我城",new Hex(6,8),0));
+        w.cities.add(new World.City(20,"敌港",new Hex(11,8),1));
+        w.cities.add(new World.City(30,"敌城",new Hex(25,18),1));
+        w.city(20).kind=World.SiteKind.PORT;w.city(20).baseDefense=2000;w.city(20).defense=2000;
+        for(int id=1;id<=6;id++){World.Officer o=new World.Officer(id,"武将"+id,id<=3?0:1,id<=3?10:30,80,80,70,85,80);Arrays.fill(o.aptitude,2);w.officers.add(o);}
+        World.Unit u=new World.Unit(1,0,1,World.Weapon.SPEAR,new Hex(10,8),10000,30000);w.units.add(u);w.nextUnitId=2;w.officer(1).unitId=1;w.officer(1).cityId=-1;
+        w.development.configure(10,Arrays.asList(new Hex(5,8),new Hex(5,9),new Hex(6,9)));
+        for(int q=3;q<=10;q++)for(int r=2;r<=6;r++)w.terrain[q][r]=World.Terrain.MOUNTAIN;
+        for(int[] h:new int[][]{{4,4},{5,4},{6,4},{7,4},{7,5},{6,6},{6,3},{6,2}})w.terrain[h[0]][h[1]]=World.Terrain.PLANK_ROAD;
+        w.terrain[3][4]=World.Terrain.MOUNTAIN_PATH;w.terrain[8][4]=World.Terrain.MOUNTAIN_PATH;
+        return w;
+    }
+    private void balance41Flow()throws Exception{
+        World first=balance41Fixture();try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(first));}
+        startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitForIdleSync();
+        for(int orientation:new int[]{android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT,android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE}){
+            runOnMainSync(()->current.setRequestedOrientation(orientation));assertOrientation(orientation==android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            String label=orientation==android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT?"portrait":"landscape";
+            World w=balance41Fixture();Hex parcel=new Hex(5,8);installFixture(w,parcel);byte[] before=SaveCodec.encode(w);
+            AccessibilityNodeInfo develop=waitText("＋ 开发此地",true);Rect bounds=new Rect();develop.getBoundsInScreen(bounds);
+            require(develop.isVisibleToUser()&&bounds.height()>=current.getResources().getDisplayMetrics().density*40,"development action visible without scrolling");
+            screenshot("v041-development-"+label);click("＋ 开发此地",true);waitText("开发地 · 选择设施",true);
+            click("市场 ·",false);waitText("建设 · 选择执行人",true);click("武将2 ·",false);waitText("开工",true);
+            screenshot("v041-build-confirm-"+label);click("取消",true);require(Arrays.equals(before,SaveCodec.encode(w)),"construction cancellation keeps state");
+            click("＋ 开发此地",true);click("市场 ·",false);click("武将2 ·",false);click("开工",true);
+            require(w.domestic.at(parcel)!=null&&w.domestic.at(parcel).remaining>0,"top action actually starts construction");
+            installFixture(balance41Fixture(),new Hex(6,8));require(waitText("设施开发",true).isVisibleToUser(),"city development pinned above detail");screenshot("v041-city-"+label);
+            w=balance41Fixture();installFixture(w,w.unit(1).hex);before=SaveCodec.encode(w);
+            click("攻击",true);tapHex(w.city(20).hex);waitText("预计城防",false);screenshot("v041-siege-preview-"+label);
+            require(Arrays.equals(before,SaveCodec.encode(w)),"siege preview pure");int wall=w.city(20).defense,expected=w.combat.siege(w.unit(1),w.city(20),false).wall;
+            click("执行",true);require(w.city(20).defense==wall-expected&&w.unit(1).acted,"installed APK uses advertised port damage");
+            installFixture(balance41Fixture(),new Hex(6,4));click("收起",true);screenshot("v041-connected-roads-"+label);
+        }
+    }
+
     private void installFixture(World w,Hex focus)throws Exception {
         SaveCodec.validate(w);java.lang.reflect.Field field=MainActivity.class.getDeclaredField("world");field.setAccessible(true);java.lang.reflect.Field uiField=MainActivity.class.getDeclaredField("ui");uiField.setAccessible(true);
         runOnMainSync(()->{try{((ClientState)uiField.get(current)).read(new Bundle());field.set(current,w);((MainActivity)current).rememberForm(new Bundle());((MainActivity)current).selectAndFocus(focus);}catch(IllegalAccessException e){throw new RuntimeException(e);}});

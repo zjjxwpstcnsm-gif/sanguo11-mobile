@@ -34,39 +34,34 @@ public final class CombatRules {
         @Override public double nextDouble(){return high?Math.nextDown(1.0):0;}
         @Override public int nextInt(int bound){return high?bound-1:0;}
     }
-    /** Preserves the former tactical projection numerically, without allocating another unit model. */
+    /** One field/naval formula; previews and execution never allocate a second unit model. */
     int rawDamage(World.Unit a,World.Unit b,double scale,Random rng){return rawDamage(a,b,scale,rng,w.fieldworks.defensePercent(b));}
     private int rawDamage(World.Unit a,World.Unit b,double scale,Random rng,int defensePercent){
         int amount;
-        if(w.army.water(a.hex)||w.army.water(b.hex)||a.weapon.ordinal()>=4||b.weapon.ordinal()>=4)amount=advancedDamage(a,b,scale,rng);
-        else {
-            double offense=(150+0.60*w.army.leadership(a)+0.40*w.army.war(a))/200.0;
-            offense*=attackFactor(a.weapon)*terrainAttack(w.terrain[a.hex.q][a.hex.r]);
-            double defense=(170+0.85*w.army.leadership(b)+0.15*w.army.intelligence(b))/250.0;
-            defense*=defenseFactor(b.weapon);defense*=terrainDefense(w.terrain[b.hex.q][b.hex.r]);
-            double ratio=Math.max(.35,Math.min(2.5,offense/defense));
-            double raw=230*StrictMath.sqrt(a.troops/1000.0)*ratio*matchup(a.weapon,b.weapon)*scale;
-            amount=(int)Math.max(20,Math.min(2500,Math.round(raw*(.9+.2*rng.nextDouble()))));
-        }
+        double ratio=Math.max(.35,Math.min(2.5,attackRating(a)/defenseRating(b)));
+        double counter=w.army.water(a.hex)||w.army.water(b.hex)?1:matchup(a.weapon,b.weapon);
+        double raw=230*StrictMath.sqrt(Math.max(1,a.troops)/1000.0)*ratio*counter*scale;
+        amount=(int)Math.max(1,Math.min(2500,Math.round(raw*(.9+.2*rng.nextDouble()))));
         amount=amount*(100-defensePercent)/100;
         return Math.max(1,amount);
     }
-    private static double attackFactor(World.Weapon weapon){switch(weapon){case SPEAR:return 1.05;case HALBERD:return .98;case CROSSBOW:return .95;case CAVALRY:return 1.15;default:throw new IllegalArgumentException("Not a field weapon");}}
-    private static double defenseFactor(World.Weapon weapon){switch(weapon){case SPEAR:return 1;case HALBERD:return 1.2;case CROSSBOW:return .85;case CAVALRY:return .95;default:throw new IllegalArgumentException("Not a field weapon");}}
+    private static double attackFactor(World.Weapon weapon){switch(weapon){case SPEAR:return 1.05;case HALBERD:return .98;case CROSSBOW:return .95;case CAVALRY:return 1.15;case SWORD:return .70;case RAM:return .35;default:return .90;}}
+    private static double defenseFactor(World.Weapon weapon){switch(weapon){case SPEAR:return 1;case HALBERD:return 1.2;case CROSSBOW:return .85;case CAVALRY:return .95;case SWORD:return .75;default:return .65;}}
+    private double aptitudeFactor(World.Unit u){return .75+.1*Math.max(0,Math.min(3,w.army.aptitude(u)));}
+    public double attackRating(World.Unit u){
+        boolean water=w.army.water(u.hex);
+        return (40+.7*w.army.leadership(u)+.3*w.army.war(u))*aptitudeFactor(u)
+            *(water?u.ship.power/100.0:attackFactor(u.weapon)*terrainAttack(w.terrain[u.hex.q][u.hex.r]));
+    }
+    public double defenseRating(World.Unit u){
+        boolean water=w.army.water(u.hex);
+        return (40+w.army.leadership(u))*aptitudeFactor(u)*(u instanceof Domestic.Mission?.5:1)
+            *(water?u.ship.power/100.0:defenseFactor(u.weapon)*terrainDefense(w.terrain[u.hex.q][u.hex.r]));
+    }
     private static double terrainAttack(World.Terrain t){return t==World.Terrain.FOREST?.95:t==World.Terrain.MOUNTAIN?.9:1;}
     private static double terrainDefense(World.Terrain t){return t==World.Terrain.FOREST?1.2:t==World.Terrain.MOUNTAIN?1.25:1;}
     private static boolean advantage(World.Weapon a,World.Weapon b){return a==World.Weapon.SPEAR&&b==World.Weapon.CAVALRY||a==World.Weapon.CAVALRY&&b==World.Weapon.HALBERD||a==World.Weapon.HALBERD&&b==World.Weapon.SPEAR;}
     private static double matchup(World.Weapon a,World.Weapon b){return advantage(a,b)?1.25:advantage(b,a)?.90:1;}
-    private int advancedDamage(World.Unit a,World.Unit b,double scale,Random random){
-        double ap=w.army.water(a.hex)?a.ship.power:a.weapon.power,bp=w.army.water(b.hex)?b.ship.power:b.weapon.power;
-        double offense=80+w.army.leadership(a)+w.army.war(a)/2.0;
-        double defense=80+w.army.leadership(b)+w.army.intelligence(b)/4.0;
-        if(b instanceof Domestic.Mission)defense/=2; // Weak convoy defense: engineering coefficient, not a calibrated original formula.
-        int amount=(int)(250*StrictMath.sqrt(a.troops/1000.0)*ap/100*Math.max(.4,offense/defense)*scale*(.9+random.nextDouble()*.2));
-        if(!w.army.water(b.hex)&&Army.siegeWeapon(b.weapon))amount=amount*3/2;
-        if(w.army.water(b.hex)&&bp>100)amount=amount*9/10;
-        return Math.max(20,Math.min(2500,amount));
-    }
     public int physicalDamage(World.Unit a,World.Unit b,double scale,boolean tactic,Random rng){return new Physical(a,b,scale,tactic).roll(rng);}
     /** One synchronous evaluation snapshots modifiers once for all preview/AI samples. Never retained across a command. */
     private final class Physical {
@@ -128,12 +123,12 @@ public final class CombatRules {
             +"\n火矢物理伤害独立计算；火神不免疫箭矢物理伤害。";
     }
     public int siegeDefenseDamage(World.Unit u){
-        if(w.army.water(u.hex))return u.ship==Army.Ship.WARSHIP?350:100;
-        switch(u.weapon){case RAM:return 650;case WOODEN_BEAST:return 750;case CATAPULT:return 600;case SIEGE_TOWER:return 120;default:return 100;}
+        if(w.army.water(u.hex))return u.ship==Army.Ship.WARSHIP?500:u.ship==Army.Ship.TOWER_SHIP?380:200;
+        switch(u.weapon){case RAM:return 900;case WOODEN_BEAST:return 1000;case CATAPULT:return 800;case SIEGE_TOWER:return 230;case SPEAR:return 320;case HALBERD:return 300;case CROSSBOW:return 220;case CAVALRY:return 240;default:return 200;}
     }
     public int siegeTroopDamage(World.Unit u){
         if(w.army.water(u.hex))return u.ship==Army.Ship.WARSHIP?450:200;
-        switch(u.weapon){case RAM:return 60;case WOODEN_BEAST:return 500;case CATAPULT:return 400;case SIEGE_TOWER:return 800;default:return 100;}
+        switch(u.weapon){case RAM:return 100;case WOODEN_BEAST:return 550;case CATAPULT:return 450;case SIEGE_TOWER:return 1000;default:return 200;}
     }
     public static final class SiegeDamage {
         public final int wall,troops;
@@ -144,13 +139,28 @@ public final class CombatRules {
         int amount=w.campaign.constructionDamage(source,base);
         return tactic&&critical(source,null,true)?amount*115/100:amount;
     }
-    public SiegeDamage siege(World.Unit u,boolean tactic){
+    public SiegeDamage siege(World.Unit u,boolean tactic){return siege(u,null,tactic);}
+    /** At 10k/80 leadership/80 energy a spear deals about 480 to ports, 267 to cities.
+     * Engines keep a breach role; small detachments no longer deliver full engine damage. */
+    public SiegeDamage siege(World.Unit u,World.City target,boolean tactic){
         boolean engine=Army.siegeWeapon(u.weapon)||w.army.water(u.hex);
-        long value=(long)u.troops*u.weapon.power*(60+w.officer(u.officerId).leadership)*(50+u.energy);
-        int legacy=Math.max(80,(int)(value/(100L*(80+70)*100*120/10)));
-        int hit=engine?siegeDefenseDamage(u):Math.max(100,legacy/2);
-        int troopHit=engine?siegeTroopDamage(u):hit;
+        double strength=StrictMath.sqrt(Math.max(1,u.troops)/10000.0)
+            *(.65+.35*Math.min(100,w.army.leadership(u))/100.0)
+            *(engine?1:.75+.25*Math.max(0,Math.min(100,u.energy))/100.0)*aptitudeFactor(u);
+        double wallFactor=target==null||target.kind==World.SiteKind.CITY?1:target.kind==World.SiteKind.PORT?1.8:.9;
+        int hit=Math.max(1,(int)Math.round(siegeDefenseDamage(u)*strength*wallFactor));
+        int troopHit=Math.max(1,(int)Math.round(siegeTroopDamage(u)*strength));
         if(w.skills.has(u,GONGCHENG)||tactic&&critical(u,null,true)){hit=hit*115/100;troopHit=troopHit*115/100;}
         return new SiegeDamage(w.campaign.constructionDamage(u,hit),w.campaign.constructionDamage(u,troopHit));
+    }
+    public String siegePreview(World.Unit u,World.City c,boolean tactic){
+        SiegeDamage d=siege(u,c,tactic);
+        int strikes=Math.max(1,(c.defense+d.wall-1)/d.wall);
+        return "预计城防 −"+Math.min(c.defense,d.wall)+" / "+c.defense+" · 守军 −"+Math.min(c.troops,d.troops)
+            +"\n按当前兵力约 "+strikes+" 次命中破防（不含后续战损、补修）"
+            +"\n"+w.cityDefense.preview(c,u);
+    }
+    public int spiralConfusionChance(World.Unit a,World.Unit b){
+        return critical(a,b,true)?100:Math.max(10,Math.min(40,25+(w.army.war(a)-w.army.war(b))/2));
     }
 }

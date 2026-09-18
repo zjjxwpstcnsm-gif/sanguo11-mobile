@@ -239,12 +239,12 @@ public final class World {
     /** Caller has validated and paid for the command. No nested public command or second payment. */
     Result resolveSiege(Unit u,City c,boolean tactic) {return resolveSiege(u,c,tactic,false);}
     Result resolveSiege(Unit u,City c,boolean tactic,boolean stoneSplash) {
-        CombatRules.SiegeDamage damage=combat.siege(u,tactic);int hit=damage.wall,troopHit=damage.troops;
+        CombatRules.SiegeDamage damage=combat.siege(u,c,tactic);int hit=Math.min(c.defense,damage.wall),troopHit=Math.min(c.troops,damage.troops);
         c.defense=Math.max(0,c.defense-hit);c.troops=Math.max(0,c.troops-troopHit);
         battleImpact(c.hex,c.defense==0||c.troops==0);
         String message=officer(u.officerId).name+"攻城，城防−"+hit+"，守军−"+troopHit;
         if(c.defense==0||c.troops==0) {
-            int old=c.owner;c.owner=u.owner;domestic.captured(c.id);strategy.cityCaptured(c.id);c.defense=1500;c.troops=0;c.morale=50;c.order=60;
+            int old=c.owner;c.owner=u.owner;domestic.captured(c.id);strategy.cityCaptured(c.id);c.defense=Math.max(1,campaign.defenseCap(c)/4);c.troops=0;c.morale=50;c.order=60;
             government.cityCaptured(c,old,u);treasures.fallenTreasury(old,u.owner);districts.captured(c,u);
             campaign.cleanupProjects();army.cleanup();campaign.earn(u.owner,100);
             message=c.name+"被"+faction(u.owner)+"攻占";
@@ -299,7 +299,7 @@ public final class World {
             if(c.food<consumption){c.food=0;c.troops=Math.max(0,c.troops-Math.max(1,c.troops/20));}
             else c.food-=consumption;
             c.gold+=Math.min(Math.max(0,campaign.goldCap(c)-c.gold),domestic.goldIncome(c.id,turn));c.food+=Math.min(Math.max(0,campaign.foodCap(c)-c.food),domestic.foodIncome(c.id,turn));
-            if(c.defense<campaign.defenseCap(c))c.defense=Math.min(campaign.defenseCap(c),c.defense+(campaign.has(c.owner,Campaign.Tech.ENGINEERING)?250:100));
+            c.defense+=cityDefense.recovery(c);
         }
         events.tick();life.tick();diplomacy.tick();
     }

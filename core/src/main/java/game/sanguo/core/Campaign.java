@@ -206,7 +206,7 @@ public final class Campaign {
     public World.Result repair(int city,int officer){
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,300);if(error!=null)return w.fail(error);
         if(c.defense>=defenseCap(c))return w.fail("城防已达到修复上限"+defenseCap(c));
-        int amount=400+o.politics*4;if(has(c.owner,Tech.ENGINEERING))amount=amount*3/2;amount=Math.min(defenseCap(c)-c.defense,amount);
+        int amount=w.cityDefense.repairAmount(c,o);
         w.spend(c,o,300);c.defense+=amount;earn(c.owner,20);return w.success(c.name+"修复城防"+amount);
     }
     public World.Result dismiss(int city,int officer,int target){

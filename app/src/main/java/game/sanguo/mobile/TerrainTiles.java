@@ -7,7 +7,9 @@ import java.util.Random;
 /** Original cached terrain art. Stable tile variants never shimmer when panning. */
 final class TerrainTiles {
     private final Bitmap[][] tiles=new Bitmap[World.Terrain.values().length][3];
+    private final Bitmap[][] connections=new Bitmap[2][64];
     private final Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG);
+    private final Paint coast=new Paint(Paint.ANTI_ALIAS_FLAG);
     private final RectF destination=new RectF();
     static int color(World.Terrain t){
         switch(t){
@@ -23,16 +25,52 @@ final class TerrainTiles {
             default:return 0xff8a9569;
         }
     }
-    void draw(Canvas c,World.Terrain terrain,int q,int r,float x,float y){
+    void draw(Canvas c,World world,int q,int r,float x,float y){
+        World.Terrain terrain=world.terrain[q][r];
         int variant=Math.floorMod(q*31+r*17,3);
         Bitmap tile=tiles[terrain.ordinal()][variant];
         if(tile==null)tiles[terrain.ordinal()][variant]=tile=create(terrain,variant);
         destination.set(x-25,y-25,x+25,y+25);c.drawBitmap(tile,null,destination,paint);
+        if(TerrainConnections.road(terrain)){
+            int kind=terrain==World.Terrain.PLANK_ROAD?0:1,mask=TerrainConnections.mask(world,q,r);
+            Bitmap overlay=connections[kind][mask];
+            if(overlay==null)connections[kind][mask]=overlay=connection(kind==0,mask);
+            c.drawBitmap(overlay,null,destination,paint);
+        }else if(TerrainConnections.water(terrain)){
+            int mask=TerrainConnections.mask(world,q,r);coast.setStrokeWidth(1.2f);coast.setColor(0xffb5c3a0);
+            for(int d=0;d<6;d++)if((mask&(1<<d))==0){
+                int nq=q+TerrainConnections.DQ[d],nr=r+TerrainConnections.DR[d];
+                if(!TerrainConnections.inside(world,nq,nr)||world.terrain[nq][nr]==World.Terrain.VOID)continue;
+                double a=-d*Math.PI/3;float ex=TerrainConnections.edgeX(d),ey=TerrainConnections.edgeY(d),px=(float)-Math.sin(a)*12.5f,py=(float)Math.cos(a)*12.5f;
+                c.drawLine(x+ex-px,y+ey-py,x+ex+px,y+ey+py,coast);
+            }
+        }
+    }
+    private Bitmap connection(boolean plank,int mask){
+        Bitmap b=Bitmap.createBitmap(96,96,Bitmap.Config.ARGB_8888);Canvas c=new Canvas(b);c.scale(1.92f,1.92f);c.translate(25,25);
+        Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);p.setStrokeCap(Paint.Cap.ROUND);
+        Path deck=new Path();
+        if(mask==0){deck.moveTo(-7,0);deck.lineTo(7,0);}
+        else for(int d=0;d<6;d++)if((mask&(1<<d))!=0){deck.moveTo(0,0);deck.lineTo(TerrainConnections.edgeX(d)*1.03f,TerrainConnections.edgeY(d)*1.03f);}
+        p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(plank?13:8);p.setColor(0xcc283b35);c.drawPath(deck,p);
+        p.setStrokeWidth(plank?10:5.5f);p.setColor(plank?0xff715739:0xff887b5f);c.drawPath(deck,p);
+        p.setStrokeWidth(plank?8.5f:3.5f);p.setColor(plank?0xffc4a46e:0xffd9c38e);c.drawPath(deck,p);
+        if(plank){
+            p.setStrokeCap(Paint.Cap.BUTT);p.setStrokeWidth(.8f);p.setColor(0xff68513a);
+            for(int d=0;d<6;d++)if((mask&(1<<d))!=0){
+                c.save();c.rotate(-60*d);
+                for(float pos=4;pos<22;pos+=3.5f){c.drawLine(pos,-4.1f,pos,4.1f,p);}
+                p.setColor(0xffe5c994);c.drawLine(6,-5,21.7f,-5,p);c.drawLine(6,5,21.7f,5,p);
+                p.setColor(0xff68513a);c.restore();
+            }
+            p.setStyle(Paint.Style.FILL);p.setColor(0xffc4a46e);c.drawCircle(0,0,3,p);
+        }
+        return b;
     }
     private Bitmap create(World.Terrain t,int variant){
         Bitmap bitmap=Bitmap.createBitmap(128,128,Bitmap.Config.ARGB_8888);Canvas c=new Canvas(bitmap);c.scale(2.56f,2.56f);c.translate(25,25);
         Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);Path hex=new Path();
-        for(int i=0;i<6;i++){double a=Math.toRadians(i*60-30);float x=(float)Math.cos(a)*24.7f,y=(float)Math.sin(a)*24.7f;if(i==0)hex.moveTo(x,y);else hex.lineTo(x,y);}hex.close();c.clipPath(hex);
+        for(int i=0;i<6;i++){double a=Math.toRadians(i*60-30);float x=(float)Math.cos(a)*25.05f,y=(float)Math.sin(a)*25.05f;if(i==0)hex.moveTo(x,y);else hex.lineTo(x,y);}hex.close();c.clipPath(hex);
         c.drawColor(color(t));Random random=new Random(t.ordinal()*101+variant*29);
         for(int i=0;i<70;i++){p.setColor(i%2==0?0x11242e22:0x17d5d6ae);c.drawCircle(random.nextFloat()*50-25,random.nextFloat()*50-25,random.nextFloat()*2+1,p);}
         switch(t){
@@ -43,8 +81,7 @@ final class TerrainTiles {
                 for(int i=0;i<9;i++){float x=(i%3-1)*12+random.nextFloat()*4-2,y=(i/3-1)*12+random.nextFloat()*4-2;p.setColor(0xff30402c);c.drawOval(x-5,y+2,x+7,y+6,p);p.setColor(0xff80684a);c.drawRect(x-.8f,y-1,x+.8f,y+6,p);p.setColor(i%2==0?0xff244f39:0xff42764c);c.drawCircle(x,y-2,5.6f,p);p.setColor(0xff73925c);c.drawCircle(x-1.7f,y-3.8f,2.6f,p);}break;
             case MOUNTAIN:case MOUNTAIN_PATH:case PLANK_ROAD:
                 for(int i=0;i<3;i++){float x=(i-1)*15,y=i%2*10-4;Path mountain=new Path();mountain.moveTo(x-12,y+15);mountain.lineTo(x,y-15);mountain.lineTo(x+14,y+15);mountain.close();p.setColor(0xffadb09d);c.drawPath(mountain,p);mountain.reset();mountain.moveTo(x,y-15);mountain.lineTo(x+14,y+15);mountain.lineTo(x-1,y+7);mountain.close();p.setColor(0xff535f5d);c.drawPath(mountain,p);}
-                if(t==World.Terrain.MOUNTAIN_PATH){Path road=new Path();road.moveTo(-20,22);road.cubicTo(8,8,-9,2,18,-23);p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(6);p.setColor(0xff675944);c.drawPath(road,p);p.setStrokeWidth(3.5f);p.setColor(0xffd4bb85);c.drawPath(road,p);p.setStyle(Paint.Style.FILL);}
-                if(t==World.Terrain.PLANK_ROAD){p.setColor(0xff333e3c);c.drawRect(-8,-26,8,26,p);for(int y=-25;y<26;y+=4){p.setColor(y%3==0?0xffd4b177:0xffb89760);c.drawRect(-7,y,7,y+3,p);}p.setColor(0xffe1c895);p.setStrokeWidth(.8f);c.drawLine(-9,-25,-9,25,p);c.drawLine(9,-25,9,25,p);}break;
+                break;
             case SEA:case WATER:case SHALLOWS:
                 if(t==World.Terrain.SHALLOWS){p.setColor(0xffb9bea0);c.drawOval(-24,-8,-4,12,p);c.drawOval(5,5,20,19,p);}
                 p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(.75f);p.setColor(t==World.Terrain.WATER?0xff779da9:0xffc4dfcc);

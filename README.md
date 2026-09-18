@@ -1,19 +1,23 @@
 # sanguo11-mobile
 
+当前版本：**v0.41.0 · 数值平衡、首屏操作与连续地形**。开发基线为 main `e6d9868`（PR #40，应用版本 v0.34），按用户确认在此继续开发。版本统一由 `version.properties` 定义，应用“版本与范围”显示版本号与源码提交；PR 编号不再作为应用版本使用。
+
+[本轮改动与版本对应关系](docs/BALANCE_UX_V0_41.md) · [验证记录](docs/validation/v041/README.md)。旧 main 的 v1–v22 存档继续兼容；独立 v0.40 APK 的 v23/v24 存档暂不兼容，读取失败会保留原档。以下 v0.33 等状态为历史记录。
+
 已同步此前交付的v0.30–v0.32源码和验收资料。[整合记录与提交身份说明](docs/INTEGRATION_V0_32.md)。下文未上传等表述为前轮交付时的历史状态。
 
-当前开发版：**v0.33 规则执行与架构整理**。从已合入 main 的 v0.32 开始，统一正式伤害、暴击、火伤、命中后气力与范围恢复；隔离旧独立战斗引擎及九个演练剧本，保留六年代、三种全国自制沙盘和正式小地图。无档/坏档启动明确区分，坏档确认替换前保留原始备份。保存格式仍 v22。
+历史开发版：**v0.33 规则执行与架构整理**。从已合入 main 的 v0.32 开始，统一正式伤害、暴击、火伤、命中后气力与范围恢复；隔离旧独立战斗引擎及九个演练剧本，保留六年代、三种全国自制沙盘和正式小地图。无档/坏档启动明确区分，坏档确认替换前保留原始备份。保存格式仍 v22。
 
 [架构、删除清单、四组规则与扩展示例](docs/ARCHITECTURE_V0_33.md) · [测试、APK身份与CI状态](docs/validation/v033/README.md)。原版暴击系数、火系工程常数和势力阶段恢复时点仍待核验，不宣称100%还原。
 
 
-当前性能增量：**v0.31 全图缓存与局部边界绘制**。基于本地已交付 v0.30，解决远景每帧遍历数万格的热点，后台生成有界地形/领地图层，保留近景与原有游戏操作。见[实现与限制](docs/MAP_PERFORMANCE_V0_31.md)、[验收记录](docs/validation/v031/README.md)。
+历史性能增量：**v0.31 全图缓存与局部边界绘制**。基于本地已交付 v0.30，解决远景每帧遍历数万格的热点，后台生成有界地形/领地图层，保留近景与原有游戏操作。见[实现与限制](docs/MAP_PERFORMANCE_V0_31.md)、[验收记录](docs/validation/v031/README.md)。
 
-当前增量：**v0.30 大地图、城市开发地、火系特技和触控操作**。见[改动、来源与还原边界](docs/GEOGRAPHY_SKILLS_V0_30.md)。
+历史增量：**v0.30 大地图、城市开发地、火系特技和触控操作**。见[改动、来源与还原边界](docs/GEOGRAPHY_SKILLS_V0_30.md)。
 
 独立运行的 Android 三国回合制策略游戏工程，最终目标参照 **PC《三国志11＋威力加强版》** 的完整系统范围。横竖屏、中文、离线游玩；不依赖模拟器、原版可执行文件或远程串流。
 
-## 当前状态
+## 历史交付记录
 
 v0.33 已同步分支并创建 [PR #39](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/39)，运行源码 `36600f9`，交付 APK `sanguo11-mobile-v033.apk`。最终运行提交、APK、签名和实时CI结论以[本轮验收](docs/validation/v033/README.md)为准。下文为历史版本状态。
 
@@ -180,7 +184,7 @@ v0.8 Agent 1 开发分支新增移动确认与移动后行动、部分真实特�
 
 Android 构建：安装 JDK 17、Android SDK 35、Build Tools 35.0.0、Gradle 8.11.1，然后运行 `./gradlew test :core:check :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug`。已提交固定 Gradle 8.11.1 及 SHA-256 的 Wrapper。
 
-APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-v030-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
+APK 产物位于 `app/build/outputs/apk/debug/app-debug.apk`；当前CI产物名为 `sanguo11-mobile-apk`，含以提交命名的APK、BUILD_COMMIT、SHA256SUMS与签名检查记录。对应提交源码为 `sanguo11-mobile-source`；`android-smoke-evidence` 包含操作截图与日志。v0.9起沿用固定公开开发证书及 `game.sanguo.mobile.dev` 包名；正式发行应使用独立、妥善保管的发行密钥。
 
 验证范围与待验项目见 [VALIDATION.md](docs/VALIDATION.md)。
 

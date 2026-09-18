@@ -24,7 +24,7 @@ for name in ['prepare','check']:
     assert 'RECOVERY '+name+' PASS' in s,s
 RECOVERY
   adb shell settings put system font_scale 1.0
-  for gate in architecture33 navigation32 mapPerformance fidelity; do
+  for gate in architecture33 navigation32 mapPerformance fidelity balance41; do
     adb shell pm clear game.sanguo.mobile.dev
     adb shell am instrument -w -e "$gate" true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner | tee "app/build/smoke/$gate.txt"
     python3 - "$gate" <<'GATE'

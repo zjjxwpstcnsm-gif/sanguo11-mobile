@@ -217,7 +217,7 @@ tasks.register('verifyMapSkills', JavaExec) {
 tasks.named('check') { dependsOn 'verifyMapSkills' }
 tasks.named('test') { dependsOn 'verifyMapSkills' }
 
-['ArchitectureRules', 'NavigationDefense'].each { suite ->
+['ArchitectureRules', 'NavigationDefense', 'Balance'].each { suite ->
     tasks.register("verify${suite}", JavaExec) {
         dependsOn testClasses
         classpath = sourceSets.test.runtimeClasspath

@@ -143,7 +143,7 @@ public final class Army {
         if(a!=null&&(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME))heading+="\n"+w.combat.firePreview(a,b,CombatRules.DIRECT_FIRE_BASE,false);
         World.City city=w.cityAt(target);War.Structure structure=w.war.at(target);Domestic.Facility facility=w.domestic.at(target);
         heading+="\n实际对象："+(b!=null?w.officer(b.officerId).name:city!=null?city.name:structure!=null?structure.kind.label:facility!=null?facility.kind.label:"无");
-        if(city!=null&&a!=null)heading+="\n"+w.cityDefense.preview(city,a);
+        if(city!=null&&a!=null)heading+="\n"+w.combat.siegePreview(a,city,true);
         return w.war.displacement.preview(a,b,tactic==Tactic.RAM&&a!=null&&water(a.hex)?Displacement.Kind.NAVAL:Displacement.Kind.NONE,error,heading);
     }
     public World.Result tactic(int unit,Hex target,Tactic tactic){

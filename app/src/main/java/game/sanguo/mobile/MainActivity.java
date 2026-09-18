@@ -18,7 +18,7 @@ public final class MainActivity extends Activity {
     private World world;
     private boolean unreadableAutosave;
     private MapView map;
-    private LinearLayout panel,root,body,commandDock,panelShell;
+    private LinearLayout panel,root,body,commandDock,panelShell,primaryActions;
     private MarchOrders.Plan pendingMarch;
     private FrameLayout panelHost;
     private ScrollView panelScroll;
@@ -108,6 +108,8 @@ public final class MainActivity extends Activity {
         panelHeader.addView(expandPanel,new LinearLayout.LayoutParams(dp(56),dp(48)));
         closePanel=button("收起",v->closePanel());closePanel.setContentDescription("收起操作面板，返回大地图");
         panelHeader.addView(closePanel,new LinearLayout.LayoutParams(dp(56),dp(48)));panelShell.addView(panelHeader);
+        primaryActions=new LinearLayout(this);primaryActions.setPadding(dp(8),0,dp(8),dp(4));primaryActions.setBackgroundColor(0xff203b43);primaryActions.setVisibility(View.GONE);
+        panelShell.addView(primaryActions,new LinearLayout.LayoutParams(-1,-2));
         panelHost=new FrameLayout(this);panelShell.addView(panelHost,new LinearLayout.LayoutParams(-1,0,1));
         panelScroll=new ScrollView(this);panelScroll.setFillViewport(true);panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);panel.setPadding(dp(12),dp(4),dp(12),dp(10));panelScroll.addView(panel);
         root.addView(body,new LinearLayout.LayoutParams(-1,0,1));
@@ -221,7 +223,7 @@ public final class MainActivity extends Activity {
             else if(index==10)new WorldUi(this,world,this::apply).districts();
             else if(index==12){new AlertDialog.Builder(this).setTitle("部队地图标注").setMultiChoiceItems(new String[]{"显示主将姓名","显示兵力（绿）与气力（蓝）"},new boolean[]{map.commandersShown(),map.unitBarsShown()},(dialog,which,checked)->{if(which==0)map.setCommandersShown(checked);else map.setUnitBarsShown(checked);}).setPositiveButton("完成",null).show();}
             else if(index==11){ui.returnToCities=false;ui.page="cities";ui.panelVisible=true;ui.panelExpanded=true;refresh();revealPanel();}
-            else message("地图操作","单指拖动地图 · 双指缩放 · 双击城池定位\n点城池或部队打开指令，点空地或「收起」返回大地图。\n「功能」打开城市、武将、任务和存档菜单。\n竖屏使用底部面板，横屏使用右侧面板；「展开」可查看更多内容。\n选中部队即显示青色行动范围和红色攻击目标。长按选中的部队，再拖到高亮空格，松手立即移动；拖出范围或双指触摸会取消。\n点选己方城市后，点击地图金色＋开发地，可直接选择设施和执行人。先点「行军」再点目标预览路线；「攻击」「战法」「计略」在固定底栏。普通点空地、再点本队或「取消选中」可解除选择。返回键依次取消路线、指令、选中。");
+            else message("地图操作","单指拖动地图 · 双指缩放 · 双击城池定位\n点城池或部队打开指令，点空地或「收起」返回大地图。\n「功能」打开城市、武将、任务和存档菜单。\n竖屏使用底部面板，横屏使用右侧面板；「展开」可查看更多内容。\n选中部队即显示青色行动范围和红色攻击目标。长按选中的部队，再拖到高亮空格，松手立即移动；拖出范围或双指触摸会取消。\n点击空地查看状态，金色＋开发地的「开发此地」按钮固定在面板顶部，再选择设施和执行人。先点「行军」再点目标预览路线；「攻击」「战法」「计略」在固定底栏。普通点空地、再点本队或「取消选中」可解除选择。返回键依次取消路线、指令、选中。");
         }).setNegativeButton("返回",null).show();
     }
     private void showTerritoryPicker(){
@@ -313,9 +315,8 @@ public final class MainActivity extends Activity {
         World.Unit target=candidates.isEmpty()?null:candidates.get(0);
         if(target!=null&&selected!=null&&h.equals(selected)&&ui.selectedUnit==target.id){clearUnitSelection();return;}
         if(target==null&&city==null&&world.domestic.at(h)==null&&world.war.at(h)==null&&world.events.at(h)==null){
-            World.City development=world.development.cityAt(h);
-            if(source==null&&development!=null&&development.owner==world.player){BuildPicker.open(this,world,development,h);return;}
-            clearUnitSelection();return;
+            if(world.inside(h)&&world.terrain[h.q][h.r]!=World.Terrain.VOID)selectObject(h,-2,false);
+            else clearUnitSelection();return;
         }
         if(world.events.at(h)!=null){new WorldUi(this,world,this::apply).camp(world.events.at(h));return;}
         selectObject(h,target==null?-2:target.id,false);
@@ -339,7 +340,7 @@ public final class MainActivity extends Activity {
         if(error!=null){message("无法攻击",error);return;}
         if(target!=null){warUi().attack(source,target);return;}
         if(facility!=null){confirm("攻击"+facility.kind.label+"？\n耐久 "+facility.hp+"/"+facility.maxHp()+" · 预计减少"+Math.min(facility.hp,world.war.facilityDamage(source.id))+"\n攻击结束本旬行动，摧毁后释放地块。",()->apply(world.war.attackFacility(source.id,h)));return;}
-        if(city!=null){confirm("攻击"+city.name+"？攻击结束本旬行动。\n"+world.cityDefense.preview(city,source),()->apply(world.siege(source.id,city.id)));return;}
+        if(city!=null){confirm("攻击"+city.name+"？攻击结束本旬行动。\n"+world.combat.siegePreview(source,city,false),()->apply(world.siege(source.id,city.id)));return;}
         confirm("攻击军事设施？攻击结束本旬行动。",()->apply(world.war.attackStructure(source.id,h)));
     }
     private void selectObject(Hex h,int unitId,boolean focus){
@@ -430,9 +431,9 @@ public final class MainActivity extends Activity {
         nextTurn.setEnabled(mapPick==null&&!aiRunning&&!world.gameOver()&&!world.commandsBlocked());nextTurn.setText(aiRunning?"结算中…":"下一旬  →");
         for(Map.Entry<String,Button> e:navigation.entrySet()){e.getValue().setEnabled(!aiRunning);e.getValue().setSelected(e.getKey().equals(ui.page));e.getValue().setTextColor(e.getKey().equals(ui.page)?gold:paper);}
         if(navigation.get("tasks")!=null)navigation.get("tasks").setText("任务"+(taskCount()>0?" "+taskCount():""));
-        panelHost.removeAllViews();panel.removeAllViews();
+        panelHost.removeAllViews();panel.removeAllViews();primaryActions.removeAllViews();primaryActions.setVisibility(View.GONE);
         boolean required=(world.life.pending()||world.contests.busy())&&!ui.page.equals("menu");
-        panelShell.setVisibility(ui.panelVisible||required?View.VISIBLE:View.GONE);closePanel.setEnabled(!required&&!aiRunning);
+        panelShell.setVisibility(ui.panelVisible||required?View.VISIBLE:View.GONE);closePanel.setEnabled(!required);
         returnList.setVisibility(ui.returnToCities&&ui.page.equals("map")?View.VISIBLE:View.GONE);
         if(aiRunning||ui.summary.isEmpty())turnBanner.setVisibility(View.GONE);
         World.Unit selectedActor=selectedUnit();
@@ -453,7 +454,8 @@ public final class MainActivity extends Activity {
         else {panelHost.addView(panelScroll);if(ui.page.equals("menu"))showMenu();else showSelection();}
         map.setRoute(pendingMarch!=null?pendingMarch:world.unit(moving)!=null&&world.unit(moving).march!=null?world.marches.current(world.unit(moving)):null);
         map.setPickTargets(mapPick==null?null:pickTargets);map.setTacticPreview(tacticPreview);
-        map.setEnabled(!aiRunning&&!world.commandsBlocked());refreshCommandDock();layoutPanels();
+        // onTile/dropUnit guard commands; panning/zooming and closing panels remain available during AI.
+        map.setEnabled(true);refreshCommandDock();layoutPanels();
     }
     private void previewMarch(World.Unit unit,Hex target){
         pendingMarch=world.marches.preview(unit.id,target);ui.page="map";ui.panelVisible=false;refresh();
@@ -523,27 +525,52 @@ public final class MainActivity extends Activity {
         ProgressBar energy=new ProgressBar(this,null,android.R.attr.progressBarStyleHorizontal);energy.setMax(world.campaign.energyCap(u.owner));energy.setProgress(u.energy);energy.setProgressTintList(android.content.res.ColorStateList.valueOf(gold));energy.setContentDescription("气力 "+u.energy);card.addView(energy,new LinearLayout.LayoutParams(-1,dp(10)));panel.addView(card);
     }
     private int taskCount(){return UiModels.tasks(world,0).size();}
+    private void primaryAction(String label,Runnable run){
+        Button b=button(label,v->{if(!aiRunning&&!world.commandsBlocked())run.run();});b.setSelected(true);b.setEnabled(!aiRunning);
+        primaryActions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));primaryActions.setVisibility(View.VISIBLE);
+    }
     private void showSelection(){
         World.Unit unit=selectedUnit();World.City city=selected==null?null:world.cityAt(selected);
         if(unit!=null)showUnit(unit);else if(city!=null)showCity(city);else if(selected!=null&&world.domestic.at(selected)!=null){
             Domestic.Facility f=world.domestic.at(selected);panel.addView(visualHeader(f,f.kind.label,world.city(f.cityId).name,64));line("耐久 "+f.hp+"/"+f.maxHp(),14,gold);line(f.remaining==0?f.kind.effect:"建设中 · 剩"+f.remaining+"旬",14,paper);
-            action("设施详情 / 管理",v->domesticUi().facility(f));action("返回所属城池",v->selectAndFocus(world.city(f.cityId).hex));
+            primaryAction("设施详情 / 管理",()->domesticUi().facility(f));primaryAction("所属城池",()->selectAndFocus(world.city(f.cityId).hex));
         }else if(selected!=null&&world.war.at(selected)!=null){War.Structure s=world.war.at(selected);panel.addView(visualHeader(s.kind,s.kind.label,world.faction(s.owner),64));line(world.faction(s.owner)+" · 耐久"+s.hp+"/"+s.kind.hp,15,paper);line(s.complete?s.kind.effect:"施工中，建成后生效",14,paper);if(s.builder>=0&&world.unit(s.builder)!=null)action("定位施工部队",v->selectAndFocus(world.unit(s.builder).hex));}
-        else {line("山河之间",23,gold);if(selected!=null&&world.war.fireAt(selected)!=null)line("火场 · 剩"+world.war.fireAt(selected).remaining+"旬",16,gold);line("点选城池或部队",15,paper);line("单指拖动 · 双指缩放\n双击城池聚焦\n缩小时保留占格标记，放大查看模型与名称。",14,paper);action("定位本城",v->{if(world.home()!=null)selectAndFocus(world.home().hex);});}
+        else if(selected!=null)showTerrain(selected);
+        else {line("山河之间",23,gold);line("点空地查看地形与开发条件，点城池或部队下达指令。",15,paper);action("定位本城",v->{if(world.home()!=null)selectAndFocus(world.home().hex);});}
+    }
+    private void showTerrain(Hex h){
+        World.Terrain t=world.terrain[h.q][h.r];World.City c=world.development.cityAt(h);
+        String[] names={"平原","森林","山地","河流","山径","浅滩","栈道","毒泉","海域","界外"};
+        String reason=null;
+        if(c!=null){
+            if(c.owner!=world.player)reason="仅能开发己方城市的地块";
+            else if(!world.districts.directCity(c.id))reason="此城由军团托管，请先改为直属经营";
+            else if(!world.domestic.buildSites(c.id).contains(h))reason="地块不可用：检查设施容量、占用、火场、地形或城池出口";
+            final String unavailable=reason;
+            if(reason==null){primaryAction("＋ 开发此地",()->BuildPicker.open(this,world,c,h));line("可开发 · "+c.name+"开发地",18,gold);}
+            else {primaryAction("查看开发条件",()->message("暂不可开发",unavailable));line(reason,14,gold);}
+            primaryAction("前往"+c.name,()->selectAndFocus(c.hex));
+        }
+        line(names[t.ordinal()]+" · 地块 "+h,18,paper);
+        if(c!=null)line(c.name+" · "+world.faction(c.owner)+"\n设施 "+world.domestic.count(c.id)+" / "+world.development.capacity(c.id)+" · 可用金 "+c.gold,14,paper);
+        else line("此地不属于城市开发用地",14,muted);
+        int cost=world.cost(h,World.Weapon.SPEAR);
+        line(cost>0?"步兵通行 · 基础移动消耗 "+cost:"普通步兵不可通行",14,paper);
+        if(t==World.Terrain.PLANK_ROAD||t==World.Terrain.MOUNTAIN_PATH)line("山地通路 · 相邻栈道与山径按六角方向连接",13,muted);
+        if(world.war.fireAt(h)!=null)line("火场 · 剩"+world.war.fireAt(h).remaining+"旬 · 不能建设",14,gold);
     }
     private void showCity(World.City c){
         boolean compact=!ui.group.equals("概览");
+        if(c.owner==world.player&&world.districts.directCity(c.id)&&!world.gameOver()){
+            primaryAction("出征",()->armyUi().deploy(c));primaryAction("运输",()->domesticUi().transport(c));
+            if(c.kind==World.SiteKind.CITY)primaryAction("设施开发",()->domesticUi().build(c));
+            else primaryAction("修复城防",()->campaignUi().repair(c));
+        }
         panel.addView(visualHeader(c,c.name,world.faction(c.owner)+" · 太守 "+UiModels.governor(world,c.id),44));
         if(!compact)line(world.cityDefense.describe(c),12,paper);
         line(compact?"金 "+c.gold+" · 粮 "+c.food+" · 兵 "+c.troops:"金 "+c.gold+"    粮 "+c.food+"\n兵 "+c.troops+"    城防 "+c.defense,compact?13:15,paper);
         if(ui.group.equals("概览")){
             line("可用武将 "+world.idle(c).size()+" · 行动力 "+(world.districts.city(c.id)==null?world.actionPoints[world.player]:world.districts.city(c.id).points())+" · "+(world.districts.directCity(c.id)?"直属经营":"军团托管"),13,gold);
-            if(c.owner==world.player&&world.districts.directCity(c.id)){
-                LinearLayout quick=new LinearLayout(this);
-                quick.addView(button("出征",v->armyUi().deploy(c)),new LinearLayout.LayoutParams(0,dp(48),1));
-                quick.addView(button("运输",v->domesticUi().transport(c)),new LinearLayout.LayoutParams(0,dp(48),1));
-                quick.addView(button("建设",v->domesticUi().build(c)),new LinearLayout.LayoutParams(0,dp(48),1));panel.addView(quick);
-            }
         }
         String[] groups={"概览","内政","武将","军事","调动","外交","研究"};
         for(int first=0;first<groups.length;first+=4){
@@ -636,6 +663,12 @@ public final class MainActivity extends Activity {
         new CityCommand("生产兵装 · 查看费用",()->chooseOfficer(c,o->chooseBasicWeapon(weapon->confirm(o.name+"生产"+world.skills.produceAmount(c.id,o.id,weapon)+"份"+weapon.label+"兵装\n花费金"+world.skills.productionGold(o.id,weapon)+"、行动力10",()->apply(world.produce(c.id,o.id,weapon))))))
     );}
     private void showUnit(World.Unit u){
+        if(u.owner==world.player&&!world.gameOver()){
+            for(World.City base:world.cities)if(base.owner==u.owner&&u.hex.distance(base.hex)==1){
+                primaryAction("进入"+base.name,()->confirm("进入"+base.name+"并归还兵装与粮草？",()->apply(world.enter(u.id,base.id))));break;
+            }
+            if(u.march!=null)primaryAction("停止行军",()->apply(world.marches.stop(u.id)));
+        }
         if(u instanceof Domestic.Mission){showConvoy((Domestic.Mission)u);return;}
         World.Officer o=world.officer(u.officerId);panel.addView(visualHeader(o,o.name,world.faction(u.owner)+" · "+world.army.equipmentLabel(u),44));
         unitStats(u);
@@ -739,7 +772,7 @@ public final class MainActivity extends Activity {
         action("本旬结算摘要",v->showTurnReport());
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
-        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("0.33 · 规则执行与架构整理","普攻、战法、反击共用计算与命中结算；火伤、暴击、威风和军乐台统一规则入口。\n无存档显示新游戏入口；坏档保留并在确认替换时备份。\n右上小地图直接跳转、收起/展开，保持当前缩放；视图菜单可切换主将姓名与兵力/气力双条。\n六个年代开局新增42城、10关、35港；修正北上陆路与庐江江岸。\n城市每旬自动射击，普攻与器械攻城均在射程内反击，伤害受守军、气力、城防与总量上限影响。\n旧存档保留原地图；新增地形和开局配置需要新游戏。\n历史重建/定制剧本，完整官方数据及精确公式仍待核验。"));
+        action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("v"+BuildConfig.VERSION_NAME+" · 数值与地图体验", "构建 "+BuildConfig.VERSION_CODE+" · 源码 "+BuildConfig.SOURCE_REVISION+"\n港口、关卡、城市使用不同攻城系数；器械伤害随兵力增长。围攻停止自然修复，主动补修降为¼。\n地块开发、城市出征与运输固定在面板顶部；结算期间仍可拖动地图与收起面板。\n栈道与山径按六方向连接，河岸连续描边。\n当前主线存档格式 v22；独立交付 v0.40 的 v23/v24 存档暂不兼容，原档保留。\n历史重建/定制剧本，完整官方数据及精确公式仍待核验。"));
     }
     private void scenarioPicker(){
         try {

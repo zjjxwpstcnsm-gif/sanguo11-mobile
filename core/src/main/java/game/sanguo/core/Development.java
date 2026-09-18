@@ -19,7 +19,11 @@ public final class Development {
     public World.City cityAt(Hex h){
         if(h==null)return null;
         for(Map.Entry<Integer,List<Hex>> e:parcels.entrySet())if(e.getValue().contains(h))return w.city(e.getKey());
-        return null;
+        // Older saves and small scenarios have implicit radius-two development land.
+        World.City nearest=null;
+        for(World.City c:w.cities)if(c.kind==World.SiteKind.CITY&&!configured(c.id)&&contains(c,h)
+            &&(nearest==null||c.hex.distance(h)<nearest.hex.distance(h)||c.hex.distance(h)==nearest.hex.distance(h)&&c.id<nearest.id))nearest=c;
+        return nearest;
     }
     void write(DataOutputStream d)throws IOException {
         d.writeInt(parcels.size());for(Map.Entry<Integer,List<Hex>> e:parcels.entrySet()){

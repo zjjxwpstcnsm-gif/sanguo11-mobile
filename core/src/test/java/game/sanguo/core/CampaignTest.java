@@ -113,6 +113,7 @@ public final class CampaignTest {
     private static void tactics()throws Exception{
         for(War.Tactic tactic:War.Tactic.values()){
             World w=fixture();World.Unit a=unit(w,0,tactic.weapon,6,5),b=unit(w,10,World.Weapon.SPEAR,7,5);Arrays.fill(w.officer(0).aptitude,3);
+            if(tactic==War.Tactic.SPIRAL)w.officer(0).skillId=Skill.QIANGSHEN.id;
             int initialEnergy=a.energy;seed(w,w.war.tacticChance(a.id,b.id,tactic),true);ok(w.war.tactic(a.id,b.id,tactic));
             check(b.troops<5000&&a.energy==initialEnergy-tactic.energy&&a.acted,"successful tactic damages and spends one action");
             rejected(w,()->w.war.tactic(a.id,b.id,tactic));SaveCodec.validate(w);
@@ -120,7 +121,7 @@ public final class CampaignTest {
             if(tactic==War.Tactic.DOUBLE_THRUST)check(b.hex.equals(new Hex(9,5)),"double thrust pushes two hexes");
             if(tactic==War.Tactic.HOOK)check(a.hex.equals(new Hex(5,5))&&b.hex.equals(new Hex(6,5)),"hook retreats actor and pulls enemy");
             if(tactic==War.Tactic.BREAKTHROUGH)check(a.hex.equals(new Hex(8,5))&&b.hex.equals(new Hex(7,5)),"breakthrough passes behind enemy");
-            if(tactic==War.Tactic.SPIRAL)check(b.status==War.Status.CONFUSED,"spiral applies confusion");
+            if(tactic==War.Tactic.SPIRAL)check(b.status==War.Status.CONFUSED,"critical spiral guarantees confusion");
             if(tactic==War.Tactic.FIRE_ARROW)check(w.war.fireAt(b.hex)!=null,"fire arrow ignites target hex");
             caseDone();
         }

@@ -27,8 +27,9 @@ final class VisualGuide {
         String[] labels={"平地 · 正常通行，可开发内政设施","森林 · 移动力消耗增加，可伏兵","山峰 · 无法通行","水面 · 使用舰船与水军战法","山路 · 需要难所行军，消耗3移动力","浅滩 · 需要难所行军，消耗2移动力","栈道 · 消耗3移动力，未解锁技巧可能损兵","毒泉 · 经过会损兵，解毒特技可免疫","海洋 · 舰船通行，不划入陆地势力范围","地图边界 · 不可进入"};
         TerrainTiles tiles=new TerrainTiles();int size=Math.round(64*a.getResources().getDisplayMetrics().density);
         for(World.Terrain t:World.Terrain.values()){
+            World sample=new World(3,3);for(World.Terrain[] column:sample.terrain)java.util.Arrays.fill(column,t);
             android.widget.LinearLayout row=new android.widget.LinearLayout(a);row.setGravity(android.view.Gravity.CENTER_VERTICAL);
-            android.view.View preview=new android.view.View(a){protected void onDraw(android.graphics.Canvas canvas){canvas.save();canvas.translate(getWidth()/2f,getHeight()/2f);canvas.scale(size/56f,size/56f);tiles.draw(canvas,t,0,0,0,0);canvas.restore();}};
+            android.view.View preview=new android.view.View(a){protected void onDraw(android.graphics.Canvas canvas){canvas.save();canvas.translate(getWidth()/2f,getHeight()/2f);canvas.scale(size/56f,size/56f);tiles.draw(canvas,sample,1,1,0,0);canvas.restore();}};
             preview.setContentDescription(labels[t.ordinal()]);row.addView(preview,new android.widget.LinearLayout.LayoutParams(size,size));
             android.widget.TextView text=new android.widget.TextView(a);text.setText(labels[t.ordinal()]);text.setTextSize(14);row.addView(text,new android.widget.LinearLayout.LayoutParams(0,-2,1));rows.addView(row);
         }
