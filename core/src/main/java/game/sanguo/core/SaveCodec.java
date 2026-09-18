@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=25, MAX_BYTES=4*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=26, MAX_BYTES=4*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -90,7 +90,7 @@ public final class SaveCodec {
             w.scenarioId=d.readUTF();w.scenarioName=d.readUTF();w.dataSource=d.readUTF();w.dataHash=d.readUTF();
         }
         for(int i=0;i<factions.length;i++)w.actionPoints[i]=bounded(d.readInt(),0,60);
-        for(int q=0;q<width;q++)for(int r=0;r<height;r++)w.terrain[q][r]=World.Terrain.values()[bounded(d.readUnsignedByte(),0,version>=24?11:version>=22?9:version>=13?7:version>=11?6:3)];
+        for(int q=0;q<width;q++)for(int r=0;r<height;r++)w.terrain[q][r]=World.Terrain.values()[bounded(d.readUnsignedByte(),0,version>=26?12:version>=24?11:version>=22?9:version>=13?7:version>=11?6:3)];
         int count=bounded(d.readInt(),1,1000);
         for(int i=0;i<count;i++) {
             int id=d.readInt();String name=d.readUTF();Hex h=hex(d);int owner=d.readInt();

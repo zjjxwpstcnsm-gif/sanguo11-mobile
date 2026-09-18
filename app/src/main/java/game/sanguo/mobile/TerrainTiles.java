@@ -24,6 +24,7 @@ final class TerrainTiles {
             case POISON:return 0xff65566f;
             case SWAMP:return 0xff566158;
             case DAM:return 0xffa09079;
+            case SAND:return 0xffc6b184;
             default:return 0xff8a9569;
         }
     }
@@ -87,12 +88,23 @@ final class TerrainTiles {
         Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);Path hex=new Path();
         for(int i=0;i<6;i++){double a=Math.toRadians(i*60-30);float x=(float)Math.cos(a)*25.05f,y=(float)Math.sin(a)*25.05f;if(i==0)hex.moveTo(x,y);else hex.lineTo(x,y);}hex.close();c.clipPath(hex);
         c.drawColor(color(t));
-        if(VisualAssets.terrainReady()&&t!=World.Terrain.VOID){
+        if(VisualAssets.terrainReady()&&t!=World.Terrain.VOID&&t!=World.Terrain.SAND){
             VisualAssets.texture(c,TerrainConnections.road(t)?World.Terrain.MOUNTAIN:t,variant);return bitmap;
         }
         Random random=new Random(t.ordinal()*101+variant*29);
         for(int i=0;i<70;i++){p.setColor(i%2==0?0x11242e22:0x17d5d6ae);c.drawCircle(random.nextFloat()*50-25,random.nextFloat()*50-25,random.nextFloat()*2+1,p);}
         switch(t){
+            case SAND:
+                p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(.65f);
+                for(int i=0;i<8;i++){
+                    float y=i*7-27+variant*1.5f,x=-28+random.nextFloat()*5;
+                    Path ridge=new Path();ridge.moveTo(x,y);ridge.cubicTo(x+15,y-3,x+28,y+5,x+54,y+1);
+                    p.setColor(0x507a684a);c.drawPath(ridge,p);
+                    c.save();c.translate(0,-1);p.setColor(0x68f4e5ba);c.drawPath(ridge,p);c.restore();
+                }
+                p.setStyle(Paint.Style.FILL);p.setColor(0x448b7957);
+                for(int i=0;i<35;i++)c.drawCircle(random.nextFloat()*50-25,random.nextFloat()*50-25,.35f,p);
+                break;
             case PLAIN:
                 p.setColor(0xff657b47);p.setStrokeWidth(.55f);
                 for(int i=0;i<15;i++){float x=random.nextFloat()*38-19,y=random.nextFloat()*36-18;c.drawLine(x-1,y,x,y-2,p);c.drawLine(x,y,x+1.3f,y-1.6f,p);}break;

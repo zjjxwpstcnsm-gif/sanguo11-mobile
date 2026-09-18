@@ -35,7 +35,7 @@ final class ContestUi {
     }
     private void label(LinearLayout panel,String text,int size,int color){TextView v=new TextView(a);v.setText(text);v.setTextSize(size);v.setTextColor(color);v.setPadding(0,dp(3),0,dp(5));panel.addView(v);}
     private void button(LinearLayout panel,String text,boolean enabled,Runnable action){
-        Button b=new Button(a);b.setText(text);b.setTextColor(paper);b.setTextSize(13);b.setAllCaps(false);b.setMinHeight(dp(48));b.setEnabled(enabled);b.setOnClickListener(v->action.run());panel.addView(b,new LinearLayout.LayoutParams(-1,dp(48)));
+        Button b=CompactButtons.create(a);b.setText(text);b.setTextColor(paper);b.setTextSize(13);b.setAllCaps(false);b.setMinHeight(dp(48));b.setEnabled(enabled);b.setOnClickListener(v->action.run());panel.addView(b,new LinearLayout.LayoutParams(-1,dp(48)));
     }
     private void duel(LinearLayout panel,Contests.Session s){
         Duel d=s.duel();final int id=s.id(),revision=s.revision();

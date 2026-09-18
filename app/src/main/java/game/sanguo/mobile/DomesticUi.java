@@ -39,7 +39,7 @@ final class DomesticUi {
         List<World.Officer> candidates=new ArrayList<>(w.idle(c));boolean[] selected=new boolean[candidates.size()];
         int[] oldCrew=reusable?previous.getIntArray("deputies"):null;for(int i=0;i<candidates.size();i++)if(oldCrew!=null)for(int id:oldCrew)if(candidates.get(i).id==id)selected[i]=true;
         Runnable[] update={()->{}};
-        Button crew=new Button(activity);crew.setText("运输副将（最多2名）");form.addView(crew);
+        Button crew=CompactButtons.create(activity);crew.setText("运输副将（最多2名）");form.addView(crew);
         crew.setOnClickListener(v->new AlertDialog.Builder(activity).setTitle("运输副将（最多2名）").setMultiChoiceItems(candidates.stream().map(member->member.name).toArray(String[]::new),selected,(dlg,i,yes)->{int n=0;for(boolean value:selected)if(value)n++;if(yes&&n>2){((AlertDialog)dlg).getListView().setItemChecked(i,false);selected[i]=false;return;}selected[i]=yes;}).setPositiveButton("完成",(dlg,i)->update[0].run()).setNegativeButton("清空",(dlg,i)->{Arrays.fill(selected,false);update[0].run();}).show());
         CheckBox returning=new CheckBox(activity);returning.setText("卸货后武将返回出发城");returning.setChecked(reusable&&previous.getBoolean("returning"));form.addView(returning);
         TextView summary=activity.text("",13,activity.gold);form.addView(summary);

@@ -16,7 +16,7 @@ final class LifecycleUi {
     private ScrollView scroll(LinearLayout panel){ScrollView s=new ScrollView(a);s.addView(panel);return s;}
     private LinearLayout panel(){LinearLayout p=new LinearLayout(a);p.setOrientation(LinearLayout.VERTICAL);p.setPadding(18,12,18,20);return p;}
     private void text(LinearLayout p,String value){TextView t=new TextView(a);t.setText(value);t.setTextSize(16);t.setTextColor(0xffebe3cd);t.setPadding(0,8,0,8);p.addView(t);}
-    private void button(LinearLayout p,String value,Runnable action){Button b=new Button(a);b.setText(value);b.setAllCaps(false);b.setMinHeight((int)(48*a.getResources().getDisplayMetrics().density));b.setOnClickListener(v->action.run());p.addView(b);}
+    private void button(LinearLayout p,String value,Runnable action){Button b=CompactButtons.create(a);b.setText(value);b.setAllCaps(false);b.setMinHeight((int)(48*a.getResources().getDisplayMetrics().density));b.setOnClickListener(v->action.run());p.addView(b);}
     View succession(){LinearLayout p=panel();int departed=w.life.departedRuler();
         text(p,"君主继承 · "+w.officer(departed).name+"已故");text(p,"请选择本势力的继承人。城池、资源、外交与军团归属保留；完成前暂停其他命令。可随时保存，读档后继续选择。");
         for(World.Officer o:w.life.successors())button(p,"继承 · "+o.name,()->confirm("立"+o.name+"为君主","统率"+o.leadership+" · 政治"+o.politics+" · 魅力"+o.charm+"\n原任官职解除，忠诚为100。",()->apply.accept(w.life.inherit(departed,o.id))));

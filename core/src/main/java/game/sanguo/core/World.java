@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 /** Engineering rules, NOT original SAN11 formulas. All commands validate before mutation. */
 public final class World {
     public enum Sex { UNKNOWN, MALE, FEMALE }
-    public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER, MOUNTAIN_PATH, SHALLOWS, PLANK_ROAD, POISON, SEA, VOID, SWAMP, DAM }
+    public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER, MOUNTAIN_PATH, SHALLOWS, PLANK_ROAD, POISON, SEA, VOID, SWAMP, DAM, SAND }
     public enum SiteKind { CITY, GATE, PORT }
     public enum Weapon {
         SPEAR("枪兵",4,1,115), HALBERD("戟兵",3,1,105), CROSSBOW("弩兵",3,2,95), CAVALRY("骑兵",6,1,120),

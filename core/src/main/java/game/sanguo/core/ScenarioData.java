@@ -44,7 +44,7 @@ public final class ScenarioData {
             for(int r=0;r<height;r++) {
                 String row=take(p,"terrain."+r);if(row.length()!=width)throw new IOException("地形行宽不匹配："+r);
                 for(int q=0;q<width;q++) {
-                    int index="PFMWDSBXOVZH".indexOf(row.charAt(q));if(index<0)throw new IOException("未知地形："+row.charAt(q));
+                    int index="PFMWDSBXOVZHA".indexOf(row.charAt(q));if(index<0)throw new IOException("未知地形："+row.charAt(q));
                     w.terrain[q][r]=World.Terrain.values()[index];
                 }
             }

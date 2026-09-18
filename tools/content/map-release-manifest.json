@@ -1,0 +1,96 @@
+{
+  "release": "0.44.0",
+  "baseline_manifest": "tools/content/map-v040-manifest.json",
+  "files": [
+    {
+      "apk_path": "assets/map/buildings.png",
+      "source_path": "app/src/main/assets/map/buildings.png",
+      "sha256": "6dee326510e59cc5bc26153c0548e36432437e9dd0a4dc7ffd35461a705a4fd3"
+    },
+    {
+      "apk_path": "assets/map/terrain-v040.png",
+      "source_path": "app/src/main/assets/map/terrain-v040.png",
+      "sha256": "6b9f16d4fc4f90e960b8f664ad73a5307a67b26d595aa186323987349496f459"
+    },
+    {
+      "apk_path": "assets/map/units-v040.png",
+      "source_path": "app/src/main/assets/map/units-v040.png",
+      "sha256": "c0021a6c1be28ca656737f7d65a818d6424fda1bd64f6a7dbf67276eed7bee6c"
+    },
+    {
+      "apk_path": "assets/portraits/officers-v040.png",
+      "source_path": "app/src/main/assets/portraits/officers-v040.png",
+      "sha256": "3d68c887d97e6ed50d390899f9e4b03f86c38c8e45ee2dd34f25567f885857a4"
+    },
+    {
+      "apk_path": "assets/portraits/officers.png",
+      "source_path": "app/src/main/assets/portraits/officers.png",
+      "sha256": "c39255112dce5d08ac5fb09d5653ca96328d140f5a3fdec92d79eca6f50c28ce"
+    },
+    {
+      "apk_path": "scenarios/central-mobile-sandbox.properties",
+      "source_path": "core/src/main/resources/scenarios/central-mobile-sandbox.properties",
+      "sha256": "aaad21ecd8e1cc9b726b3f029ae95aa03e24108af83d50779a0e317beb0cc2eb"
+    },
+    {
+      "apk_path": "scenarios/chibi-207.properties",
+      "source_path": "core/src/main/resources/scenarios/chibi-207.properties",
+      "sha256": "7aa74a982a62afa91589f4697ed7420c3630100a2c152d28e8b28091f938263c"
+    },
+    {
+      "apk_path": "scenarios/coalition-190.properties",
+      "source_path": "core/src/main/resources/scenarios/coalition-190.properties",
+      "sha256": "287b6190de235e7ec2d2be4421bfc3662e867f232508d1a37c16aaec6932f8c5"
+    },
+    {
+      "apk_path": "scenarios/guandu-200.properties",
+      "source_path": "core/src/main/resources/scenarios/guandu-200.properties",
+      "sha256": "cb72fd3c2fcc2f384134d96731ead2eace8d623dd06568f6cd96535c976084ff"
+    },
+    {
+      "apk_path": "scenarios/heroes-250.properties",
+      "source_path": "core/src/main/resources/scenarios/heroes-250.properties",
+      "sha256": "34714610c7c7a27241a45294dcf171ab9b31360b683ba9492cf137a8e700b5b7"
+    },
+    {
+      "apk_path": "scenarios/heroes-mobile-sandbox.properties",
+      "source_path": "core/src/main/resources/scenarios/heroes-mobile-sandbox.properties",
+      "sha256": "3e75b82175e33808e81efec5fa4e847b58f4b31ee07cb5b9b4c8a23b12efa1c6"
+    },
+    {
+      "apk_path": "scenarios/huangjin-184.properties",
+      "source_path": "core/src/main/resources/scenarios/huangjin-184.properties",
+      "sha256": "7ebe2715f612e8859dd0047a3f69745bef35675fb9f0bb6129efff3ccc564cfd"
+    },
+    {
+      "apk_path": "scenarios/index.txt",
+      "source_path": "core/src/main/resources/scenarios/index.txt",
+      "sha256": "f322de3de9110b7fe074258e5201d4b9dfa92731c5ffb8e19de89b91298f22a7"
+    },
+    {
+      "apk_path": "scenarios/jingxiang-mobile-sandbox.properties",
+      "source_path": "core/src/main/resources/scenarios/jingxiang-mobile-sandbox.properties",
+      "sha256": "4f1caf1540c04e2d7f9f87c54f2dee6f7953f41df346c01cffb9f67f2417617d"
+    },
+    {
+      "apk_path": "scenarios/warlords-194.properties",
+      "source_path": "core/src/main/resources/scenarios/warlords-194.properties",
+      "sha256": "174e8b09730aa2a553306eff48a981c7abcf89b2e08172761e0abbdf4b60aea9"
+    },
+    {
+      "apk_path": "assets/map/items-facilities-v040.png",
+      "source_path": "app/src/main/assets/map/items-facilities-v040.png",
+      "sha256": "1f2d3bf7f527f042a3b082d25110b63ebf3159a92b04eca18f9b55f231c27911"
+    },
+    {
+      "apk_path": "assets/map/military-v040.png",
+      "source_path": "app/src/main/assets/map/military-v040.png",
+      "sha256": "25f32897aab33513fc461adec7eb8d7a3281b5042716d1637571c050eb0985c6"
+    },
+    {
+      "apk_path": "assets/map/units-v043.png",
+      "source_path": "app/src/main/assets/map/units-v043.png",
+      "sha256": "8706a2095243fac24832b8bb736505b8d45687c7dcd42b39d5a4e1caa8e3f043"
+    }
+  ]
+}

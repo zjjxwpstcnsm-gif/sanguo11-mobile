@@ -25,7 +25,7 @@ public final class MainActivity extends Activity {
     private TextView title,panelTitle,battleBanner;
     private String lastBattleReport="";
     private World battleReportWorld;
-    private Button selectionButton,expandPanel,closePanel,returnList;
+    private Button selectionButton,expandPanel,closePanel,returnList,territoryToggle;
     private AlertDialog navigationDialog;
     private AlertDialog confirmationDialog;
     private Hex selected;
@@ -94,10 +94,14 @@ public final class MainActivity extends Activity {
         title=text("",12,gold);title.setMaxLines(2);title.setEllipsize(android.text.TextUtils.TruncateAt.END);
         title.setOnClickListener(v->{if(!aiRunning)message("当前军情",world.scenarioName+" · "+world.faction(world.player)+"\n"+world.date()+" · 行动力 "+world.actionPoints[world.player]+"\n进行中任务 "+taskCount());});
         header.addView(title,new LinearLayout.LayoutParams(0,dp(48),1));
+        territoryToggle=CompactButtons.create(this);territoryToggle.setText("势力");
+        territoryToggle.setOnClickListener(v->setTerritoryMode(map.territoryMode()==0?1:0));
+        territoryToggle.setOnLongClickListener(v->{showTerritoryPicker();return true;});
+        header.addView(territoryToggle,new LinearLayout.LayoutParams(dp(56),dp(48)));
         Button full=button("全图",v->{closePanel();map.post(map::fit);});full.setContentDescription("显示全国地图");header.addView(full,new LinearLayout.LayoutParams(dp(56),dp(48)));
         Button tools=button("视图",v->showMapTools());tools.setContentDescription("地图工具 · 全图、定位、导航图和屏幕方向");
         header.addView(tools,new LinearLayout.LayoutParams(dp(56),dp(48)));root.addView(header);
-        body=new LinearLayout(this);map=new MapView(this,this::onTile);body.addView(map);map.setUnitDrop(this::dropUnit);map.setTerritoryMode(getPreferences(MODE_PRIVATE).getInt("territoryMode",0));
+        body=new LinearLayout(this);map=new MapView(this,this::onTile);body.addView(map);map.setUnitDrop(this::dropUnit);map.setTerritoryMode(getPreferences(MODE_PRIVATE).getInt("territoryMode",0));refreshTerritoryToggle();
         panelShell=new LinearLayout(this);panelShell.setOrientation(LinearLayout.VERTICAL);panelShell.setBackgroundColor(0xff131f2c);
         panelShell.setVisibility(View.GONE);body.addView(panelShell);
         LinearLayout panelHeader=new LinearLayout(this);panelHeader.setPadding(dp(12),0,dp(4),0);panelHeader.setGravity(Gravity.CENTER_VERTICAL);
@@ -131,14 +135,14 @@ public final class MainActivity extends Activity {
         quickUnitStrip=new LinearLayout(this);quickUnitStrip.setOrientation(LinearLayout.HORIZONTAL);root.addView(quickNavigatorRow("部队",quickUnitStrip),new LinearLayout.LayoutParams(-1,dp(42)));
         LinearLayout bottom=new LinearLayout(this);bottom.setPadding(dp(6),0,dp(6),0);bottom.setGravity(Gravity.CENTER_VERTICAL);
         Button functions=button("功能",v->showNavigation());functions.setContentDescription("打开功能导航 · 城市、武将、任务、菜单");
-        bottom.addView(functions,new LinearLayout.LayoutParams(dp(64),dp(52)));
+        bottom.addView(functions,new LinearLayout.LayoutParams(dp(64),dp(48)));
         selectionButton=button("点选城池",v->{ui.page="map";ui.panelVisible=!ui.panelVisible;refresh();revealPanel();});
         selectionButton.setMaxLines(1);selectionButton.setEllipsize(android.text.TextUtils.TruncateAt.END);
-        bottom.addView(selectionButton,new LinearLayout.LayoutParams(0,dp(52),1));
+        bottom.addView(selectionButton,new LinearLayout.LayoutParams(0,dp(48),1));
         previousReady=button("‹",v->cycleReady(-1));previousReady.setContentDescription("上一个待行动部队");
         nextReady=button("›",v->cycleReady(1));nextReady.setContentDescription("下一个待行动部队");
-        bottom.addView(previousReady,new LinearLayout.LayoutParams(dp(48),dp(52)));bottom.addView(nextReady,new LinearLayout.LayoutParams(dp(48),dp(52)));
-        nextTurn=button("下一旬  →",v->confirmTurn());nextTurn.setSelected(true);bottom.addView(nextTurn,new LinearLayout.LayoutParams(dp(104),dp(52)));root.addView(bottom);
+        bottom.addView(previousReady,new LinearLayout.LayoutParams(dp(48),dp(48)));bottom.addView(nextReady,new LinearLayout.LayoutParams(dp(48),dp(48)));
+        nextTurn=button("下一旬  →",v->confirmTurn());nextTurn.setSelected(true);bottom.addView(nextTurn,new LinearLayout.LayoutParams(dp(104),dp(48)));root.addView(bottom);
         setContentView(root);root.requestApplyInsets();selected=world.home()==null?null:world.home().hex;
         if(state!=null){Hex h=new Hex(state.getInt("selectedQ",-1),state.getInt("selectedR",-1));selected=world.inside(h)?h:null;moving=state.getInt("moving",-1);}
         if(state!=null)unitCommand=state.getString("unitCommand","select");
@@ -226,10 +230,23 @@ public final class MainActivity extends Activity {
             else message("地图操作","单指拖动地图 · 双指缩放 · 双击城池定位\n点城池或部队打开指令，点空地或「收起」返回大地图。\n「功能」打开城市、武将、任务和存档菜单。\n竖屏使用底部面板，横屏使用右侧面板；「展开」可查看更多内容。\n选中部队即显示青色行动范围和红色攻击目标。长按选中的部队，再拖到高亮空格，松手立即移动；拖出范围或双指触摸会取消。\n点击空地查看状态，金色＋开发地的「开发此地」按钮固定在面板顶部，再选择设施和执行人。先点「行军」再点目标预览路线；「攻击」「战法」「计略」在固定底栏。普通点空地、再点本队或「取消选中」可解除选择。返回键依次取消路线、指令、选中。");
         }).setNegativeButton("返回",null).show();
     }
+    private void setTerritoryMode(int mode){
+        map.setTerritoryMode(mode);
+        getPreferences(MODE_PRIVATE).edit().putInt("territoryMode",map.territoryMode()).apply();
+        refreshTerritoryToggle();
+    }
+    private void refreshTerritoryToggle(){
+        if(territoryToggle==null||map==null)return;
+        int mode=map.territoryMode();territoryToggle.setSelected(mode>0);
+        String state=mode==0?"已关闭":mode==1?"势力范围已开启":"据点辖区已开启";
+        territoryToggle.setContentDescription("地图着色："+state+"；点击切换势力着色，长按选择辖区模式");
+        territoryToggle.setTooltipText("地图着色："+state+" · 长按更多选项");
+        if(android.os.Build.VERSION.SDK_INT>=30)territoryToggle.setStateDescription(state);
+    }
     private void showTerritoryPicker(){
         new AlertDialog.Builder(this).setTitle("领地着色 / 前线").setSingleChoiceItems(
             new String[]{"关闭领地着色","势力范围 · 同势力合并","据点辖区 · 城 / 关 / 港边界"},map.territoryMode(),(dialog,which)->{
-                getPreferences(MODE_PRIVATE).edit().putInt("territoryMode",which).apply();map.setTerritoryMode(which);dialog.dismiss();closePanel();
+                setTerritoryMode(which);dialog.dismiss();
             }).setNeutralButton("前线据点",(d,n)->showFrontlines()).setNegativeButton("返回",null).show();
     }
     private void showFrontlines(){
@@ -270,13 +287,14 @@ public final class MainActivity extends Activity {
     }
     int dp(float n){return Math.round(n*getResources().getDisplayMetrics().density);}
     TextView text(String value,int size,int color){TextView t=new TextView(this);t.setText(value);t.setTextSize(size);t.setTextColor(color);t.setGravity(Gravity.CENTER_VERTICAL);return t;}
-    Button button(String value,View.OnClickListener action){Button b=new Button(this);b.setText(value);b.setTextSize(13);b.setAllCaps(false);b.setMinWidth(0);b.setMinimumWidth(0);b.setPadding(dp(4),0,dp(4),0);b.setTextColor(new android.content.res.ColorStateList(new int[][]{new int[]{-android.R.attr.state_enabled},new int[]{}},new int[]{0xff6b7d8d,paper}));
-        android.graphics.drawable.GradientDrawable shape=new android.graphics.drawable.GradientDrawable();shape.setColor(new android.content.res.ColorStateList(new int[][]{new int[]{android.R.attr.state_selected},new int[]{-android.R.attr.state_enabled},new int[]{}},new int[]{0xff285256,0xff182638,0xff213547}));shape.setCornerRadius(dp(12));shape.setStroke(dp(1),0xff30485b);
-        b.setBackground(new android.graphics.drawable.RippleDrawable(android.content.res.ColorStateList.valueOf(0x446ddcc5),new android.graphics.drawable.InsetDrawable(shape,dp(3),dp(3),dp(3),dp(3)),null));b.setOnClickListener(v->{if(!aiRunning||value.equals("收起")||value.equals("展开")||value.equals("全图"))action.onClick(v);});return b;}
+    Button button(String value,View.OnClickListener action){
+        Button b=CompactButtons.create(this);b.setText(value);
+        b.setOnClickListener(v->{if(!aiRunning||value.equals("收起")||value.equals("展开")||value.equals("全图"))action.onClick(v);});return b;
+    }
     private void line(String value,int size,int color){TextView t=text(value,size,color);t.setPadding(0,dp(4),0,dp(4));panel.addView(t);}
     private void action(String label,View.OnClickListener click){Button b=button(label,click);b.setEnabled(!aiRunning);panel.addView(b,new LinearLayout.LayoutParams(-1,dp(48)));}
     private void iconAction(String label,Object item,View.OnClickListener click){
-        Button b=button(label,click);android.graphics.drawable.Drawable icon=GameIcon.drawable(this,world,item);icon.setBounds(0,0,dp(36),dp(36));b.setCompoundDrawables(icon,null,null,null);b.setCompoundDrawablePadding(dp(8));b.setEnabled(!aiRunning);panel.addView(b,new LinearLayout.LayoutParams(-1,dp(52)));
+        Button b=button(label,click);android.graphics.drawable.Drawable icon=GameIcon.drawable(this,world,item);icon.setBounds(0,0,dp(36),dp(36));b.setCompoundDrawables(icon,null,null,null);b.setCompoundDrawablePadding(dp(8));b.setEnabled(!aiRunning);panel.addView(b,new LinearLayout.LayoutParams(-1,dp(48)));
     }
     private LinearLayout visualHeader(Object item,String name,String subtitle,int size){
         LinearLayout row=new LinearLayout(this);row.setGravity(Gravity.CENTER_VERTICAL);row.setPadding(0,dp(6),0,dp(6));
@@ -540,7 +558,7 @@ public final class MainActivity extends Activity {
     }
     private void showTerrain(Hex h){
         World.Terrain t=world.terrain[h.q][h.r];World.City c=world.development.cityAt(h);
-        String[] names={"平原","森林","山地","河流","山径","浅滩","栈道","毒泉","海域","界外","沼泽","堤坝"};
+        String[] names={"平原","森林","山地","河流","山径","浅滩","栈道","毒泉","海域","界外","沼泽","堤坝","沙地"};
         String reason=null;
         if(c!=null){
             if(c.owner!=world.player)reason="仅能开发己方城市的地块";
@@ -556,6 +574,7 @@ public final class MainActivity extends Activity {
         else line("此地不属于城市开发用地",14,muted);
         int cost=world.cost(h,World.Weapon.SPEAR);
         line(cost>0?"步兵通行 · 基础移动消耗 "+cost:"普通步兵不可通行",14,paper);
+        if(t==World.Terrain.SAND)line("沙地 · 枪兵不能施放战法；普通攻击与通行不受影响",13,gold);
         if(t==World.Terrain.PLANK_ROAD||t==World.Terrain.MOUNTAIN_PATH)line("山地通路 · 相邻栈道与山径按六角方向连接",13,muted);
         if(world.war.fireAt(h)!=null)line("火场 · 剩"+world.war.fireAt(h).remaining+"旬 · 不能建设",14,gold);
     }
@@ -784,7 +803,7 @@ public final class MainActivity extends Activity {
                 String label=scenario.name+" · "+scenario.sites+"据点 / "+scenario.officers+"将 / "+scenario.factions+"势力";
                 Button option=button(label,v->{if(holder[0]!=null)holder[0].dismiss();chooseScenarioTemplate(scenario.id);});
                 option.setAllCaps(false);option.setGravity(Gravity.START|Gravity.CENTER_VERTICAL);option.setContentDescription("选择剧本 "+scenario.name);
-                list.addView(option,new LinearLayout.LayoutParams(-1,dp(52)));
+                list.addView(option,new LinearLayout.LayoutParams(-1,dp(48)));
             }
             int rows=Math.min(5,Math.max(3,scenarios.size()));
     int target=dp(rows*56+16);

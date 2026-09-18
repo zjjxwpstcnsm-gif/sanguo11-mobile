@@ -149,6 +149,7 @@ public final class War {
         World.Unit a=w.unit(actor),b=w.unit(target);String error=actorError(a);if(error!=null)return error;
         if(w.army.water(a.hex))return "水上需使用水军战法";
         if(tactic==null||a.weapon!=tactic.weapon)return "兵种不能使用该战法";
+        if(a.weapon==World.Weapon.SPEAR&&w.terrain[a.hex.q][a.hex.r]==World.Terrain.SAND)return "枪兵位于沙地，不能施放战法；可普通攻击或移至其他地形";
         if(w.army.aptitude(a)<tactic.rank)return "需要"+rankLabel(tactic.rank)+"级兵科适性";
         if(a.energy<tactic.energy)return "气力不足";
         error=targetError(a,b,tactic.minRange,tactic.maxRange+(a.weapon==World.Weapon.CROSSBOW?range(a)-a.weapon.range:0));if(error!=null)return error;
