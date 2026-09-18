@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=22, MAX_BYTES=4*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=24, MAX_BYTES=4*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -60,7 +60,7 @@ public final class SaveCodec {
         w.aiOrders.write(d);
         w.domestic.writeLogistics(d);
         w.domestic.writeTactical(d);
-        w.development.write(d);
+        w.development.write(d);w.recruitment.write(d);w.envoys.write(d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
@@ -89,7 +89,7 @@ public final class SaveCodec {
             w.scenarioId=d.readUTF();w.scenarioName=d.readUTF();w.dataSource=d.readUTF();w.dataHash=d.readUTF();
         }
         for(int i=0;i<factions.length;i++)w.actionPoints[i]=bounded(d.readInt(),0,60);
-        for(int q=0;q<width;q++)for(int r=0;r<height;r++)w.terrain[q][r]=World.Terrain.values()[bounded(d.readUnsignedByte(),0,version>=22?9:version>=13?7:version>=11?6:3)];
+        for(int q=0;q<width;q++)for(int r=0;r<height;r++)w.terrain[q][r]=World.Terrain.values()[bounded(d.readUnsignedByte(),0,version>=24?11:version>=22?9:version>=13?7:version>=11?6:3)];
         int count=bounded(d.readInt(),1,1000);
         for(int i=0;i<count;i++) {
             int id=d.readInt();String name=d.readUTF();Hex h=hex(d);int owner=d.readInt();
@@ -134,6 +134,8 @@ public final class SaveCodec {
         if(version>=20)w.domestic.readLogistics(d);
         if(version>=21)w.domestic.readTactical(d);else w.domestic.migrateTactical();
         if(version>=22)w.development.read(d);
+        if(version>=23)w.recruitment.read(d);
+        if(version>=24)w.envoys.read(d);
         count=bounded(d.readInt(),0,40);for(int i=0;i<count;i++)w.log.add(d.readUTF());
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         validate(w);return w;
@@ -144,7 +146,7 @@ public final class SaveCodec {
     private static void require(boolean ok,String message)throws IOException { if(!ok)throw new IOException(message); }
     public static void validate(World w)throws IOException {
         w.aiOrders.validate();
-        w.development.validate();
+        w.development.validate();w.recruitment.validate();w.envoys.validate();
         bounded(w.width,1,300);bounded(w.height,1,200);bounded(w.factions.length,2,32);
         bounded(w.active,0,w.factions.length-1);bounded(w.player,0,w.factions.length-1);bounded(w.turn,0,100000);bounded(w.winner,-1,w.factions.length-1);
         require(w.actionPoints.length==w.factions.length,"势力行动力缺失");
@@ -167,7 +169,7 @@ public final class SaveCodec {
             require(ids.add(o.id)&&o.id>=0,"武将ID重复或无效");require(o.name!=null&&!o.name.isEmpty()&&o.name.length()<=100,"武将名无效");bounded(o.owner,-1,w.factions.length-1);
             bounded(o.leadership,0,100);bounded(o.war,0,100);bounded(o.intelligence,0,100);bounded(o.politics,0,100);bounded(o.charm,0,100);
             require(o.cityId>=-1&&o.unitId>=-1,"武将驻地无效");
-            if(o.cityId>=0)require(o.unitId==-1&&w.city(o.cityId)!=null&&(o.owner==-1||w.city(o.cityId).owner==o.owner),"武将城池归属错误");
+            if(o.cityId>=0)require(o.unitId==-1&&w.city(o.cityId)!=null&&(o.owner==-1||w.city(o.cityId).owner==o.owner||w.recruitment.returning(o)),"武将城池归属错误");
             if(o.unitId>=0)require(o.cityId==-1&&w.unit(o.unitId)!=null&&w.army.contains(w.unit(o.unitId),o.id),"武将部队引用错误");
         }
         ids.clear();Set<Integer> assigned=new HashSet<>();

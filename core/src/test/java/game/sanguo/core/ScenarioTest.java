@@ -70,7 +70,7 @@ public final class ScenarioTest {
         check(w.unit(1).weapon==World.Weapon.CROSSBOW&&w.unit(1).food==5850,"v1 army and supply preserved");
         check(w.officer(0).unitId==1&&w.city(0).equipment[2]==9000,"v1 references and stocks preserved");
         check(w.dataHash.isEmpty()&&w.scenarioId.equals("m0-skirmish"),"legacy save has no fabricated data fingerprint");
-        byte[] migrated=SaveCodec.encode(w);check(migrated[7]==22,"new writes use save v19");
+        byte[] migrated=SaveCodec.encode(w);check(migrated[7]==24,"new writes use save v19");
         World restored=SaveCodec.decode(migrated);w.nextTurn();restored.nextTurn();
         check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(restored)),"migrated games continue identically");
         w=TestScenarios.load("regional-sandbox",2);w.nextTurn();byte[] saved=SaveCodec.encode(w);restored=SaveCodec.decode(saved);
@@ -106,7 +106,7 @@ public final class ScenarioTest {
         byte[] before=SaveCodec.encode(w);check(!w.nextTurn().ok&&Arrays.equals(before,SaveCodec.encode(w)),"defeat freezes commands and state");
         w=TestScenarios.load("regional-sandbox",0);w.deploy(100,1000,World.Weapon.SPEAR,3000);
         w.cities.removeIf(c->c.owner==0);w.officers.removeIf(o->o.owner==0&&o.unitId<0);dropMissingTalents(w);w.checkVictory();
-        check(!w.gameOver(),"landless army can continue fighting");SaveCodec.validate(w);
+        check(w.gameOver()&&w.units.stream().noneMatch(u->u.owner==0),"loss of the final city disbands remaining armies");SaveCodec.validate(w);
         w=TestScenarios.load("regional-sandbox",2);w.cities.removeIf(c->c.owner==0||c.owner==1);w.officers.removeIf(o->o.owner!=2);dropMissingTalents(w);w.checkVictory();
         check(w.winner==2&&w.gameOver(),"third faction can win");SaveCodec.validate(w);
     }

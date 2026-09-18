@@ -10,10 +10,7 @@ final class EstatesUi {
     private final Activity a;private final World w;private final Consumer<World.Result> apply;
     EstatesUi(Activity a,World w,Consumer<World.Result> apply){this.a=a;this.w=w;this.apply=apply;}
     private void info(String title,String message){new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("返回",null).show();}
-    private <T> void choose(String title,List<T> values,Function<T,String> label,Consumer<T> next){
-        if(values.isEmpty()){info(title,"没有符合条件的对象");return;}String[] names=new String[values.size()];for(int i=0;i<names.length;i++)names[i]=label.apply(values.get(i));
-        new AlertDialog.Builder(a).setTitle(title).setItems(names,(d,n)->next.accept(values.get(n))).setNegativeButton("返回",null).show();
-    }
+    private <T> void choose(String title,List<T> values,java.util.function.Function<T,String> label,Consumer<T> next){ChoiceDialog.show(a,w,title,values,label,next);}
     private void confirm(String title,String text,Runnable run){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("执行",(d,n)->run.run()).setNegativeButton("取消",null).show();}
     private List<World.Officer> residents(World.City c){List<World.Officer> out=new ArrayList<>();for(World.Officer o:w.officers)if(o.owner==c.owner&&o.cityId==c.id&&!w.government.captive(o.id))out.add(o);return out;}
     void mediate(World.City c){

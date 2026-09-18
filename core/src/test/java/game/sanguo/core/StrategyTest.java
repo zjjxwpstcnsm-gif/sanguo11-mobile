@@ -138,21 +138,21 @@ public final class StrategyTest {
         World enemy=fixture();enemy.officer(91).loyalty=40;enemy.city(40).governorId=91;enemy.officer(91).role=Strategy.Role.GOVERNOR;
         int neutral=enemy.strategy.recruitmentChance(10,0,91);enemy.strategy.setFactionRelation(0,1,100);
         check(enemy.strategy.recruitmentChance(10,0,91)>neutral&&enemy.strategy.factionRelation(1,0)==100,"symmetric scenario relationship modifier");
-        enemy.strategy.setSeed(1);ok(enemy.strategy.recruitOfficer(10,0,91));
+        enemy.strategy.setSeed(1);ok(enemy.strategy.recruitOfficer(10,0,91));check(enemy.officer(91).owner==1&&!enemy.recruitment.missions().isEmpty(),"remote target stays put until the envoy arrives");TravelChecks.complete(enemy);
         check(enemy.officer(91).owner==0&&enemy.officer(91).cityId==10&&enemy.city(40).governorId==-1,"defection rehomes target and vacates enemy governorship");SaveCodec.validate(enemy);
-        World protectedTarget=fixture();protectedTarget.officer(91).loyalty=61;
+        World protectedTarget=fixture();protectedTarget.officer(91).role=Strategy.Role.RULER;protectedTarget.officer(90).role=Strategy.Role.OFFICER;protectedTarget.officer(91).loyalty=100;
         reject(protectedTarget,()->protectedTarget.strategy.recruitOfficer(10,0,91));reject(protectedTarget,()->protectedTarget.strategy.recruitOfficer(10,0,90));
-        protectedTarget.officer(91).loyalty=20;protectedTarget.officer(91).acted=true;
-        reject(protectedTarget,()->protectedTarget.strategy.recruitOfficer(10,0,91));protectedTarget.officer(91).acted=false;
+        protectedTarget.officer(91).role=Strategy.Role.OFFICER;protectedTarget.officer(90).role=Strategy.Role.RULER;protectedTarget.officer(91).loyalty=20;protectedTarget.officer(91).otherTask="调查";protectedTarget.officer(91).otherTaskTurns=1;protectedTarget.officer(91).acted=true;
+        reject(protectedTarget,()->protectedTarget.strategy.recruitOfficer(10,0,91));protectedTarget.officer(91).acted=false;protectedTarget.officer(91).otherTask="";protectedTarget.officer(91).otherTaskTurns=0;
         protectedTarget.active=1;protectedTarget.city(40).gold=5000;
         ok(protectedTarget.domestic.build(40,91,Domestic.Kind.MARKET,protectedTarget.domestic.buildSites(40).get(0)));protectedTarget.active=0;protectedTarget.officer(91).acted=false;
         reject(protectedTarget,()->protectedTarget.strategy.recruitOfficer(10,0,91));
         World otherCity=fixture();otherCity.officers.add(new World.Officer(1000,"他城在野",-1,20,70,70,70,70,70));
-        reject(otherCity,()->otherCity.strategy.recruitOfficer(10,0,1000));otherCity.officer(91).loyalty=0;otherCity.officer(91).cityId=30;
-        reject(otherCity,()->otherCity.strategy.recruitOfficer(10,0,91));
+        ok(otherCity.strategy.recruitOfficer(10,0,1000));check(!otherCity.recruitment.missions().isEmpty(),"remote unaffiliated target dispatches an envoy");otherCity.officer(91).loyalty=0;otherCity.officer(91).cityId=30;
+        ok(otherCity.strategy.recruitOfficer(10,1,91));check(otherCity.recruitment.missions().size()==2,"remote enemy recruitment has no obsolete six-tile cutoff");
         World poor=fixture();poor.officer(91).loyalty=40;poor.city(10).gold=99;reject(poor,()->poor.strategy.recruitOfficer(10,0,91));
         World zero=fixture();zero.officer(0).charm=0;zero.officer(0).politics=0;zero.officer(91).loyalty=60;zero.strategy.setFactionRelation(0,1,-100);zero.strategy.setSeed(1);
-        check(zero.strategy.recruitmentChance(10,0,91)==0,"eligible target may still have zero success probability");ok(zero.strategy.recruitOfficer(10,0,91));check(zero.officer(91).owner==1,"zero chance cannot succeed");
+        check(zero.strategy.recruitmentChance(10,0,91)==0,"eligible target may still have zero success probability");reject(zero,()->zero.strategy.recruitOfficer(10,0,91));check(zero.officer(91).owner==1,"zero chance cannot succeed");
     }
     private static void rewards()throws Exception{
         World poor=fixture();poor.city(10).gold=199;poor.officer(1).loyalty=40;reject(poor,()->poor.strategy.rewardOfficer(10,0,1));
@@ -265,7 +265,7 @@ public final class StrategyTest {
         ok(w.strategy.beginAssignment(10,4,"筹备",3));ok(w.domestic.build(10,5,Domestic.Kind.MARKET,w.domestic.buildSites(10).get(0)));
         ok(w.domestic.transport(10,20,6,100,500,100,new int[]{100,0,0,0}));ok(w.strategy.search(10,7));
         w.city(10).recruitReserve=4321;w.city(10).morale=33;
-        byte[] bytes=SaveCodec.encode(w);check(ByteBuffer.wrap(bytes,4,4).getInt()==22,"writes save v17");World restored=SaveCodec.decode(bytes);
+        byte[] bytes=SaveCodec.encode(w);check(ByteBuffer.wrap(bytes,4,4).getInt()==24,"writes save v17");World restored=SaveCodec.decode(bytes);
         check(Arrays.equals(bytes,SaveCodec.encode(restored)),"all v4 state has exact binary round-trip");
         check(restored.city(10).governorId==1&&restored.city(10).recruitReserve==4321&&restored.city(10).morale==33,"governor reserve readiness persisted");
         check(restored.officer(3).lastRewardTurn==0&&restored.officer(4).otherTaskTurns==3,"reward guard and task persisted");
@@ -302,7 +302,7 @@ public final class StrategyTest {
                 check(w.strategy.officerState(1000).activity==Strategy.Activity.CONSTRUCTION&&w.strategy.officerState(1001).activity==Strategy.Activity.TRANSPORT,"v3 locks reconstructed from actual records");
                 Domestic.Mission m=w.domestic.missions.get(0);check(m.gold==100&&m.food==500&&m.troops==100&&m.equipment[0]==100,"v3 cargo preserved exactly");
             }
-            byte[] upgraded=SaveCodec.encode(w);check(ByteBuffer.wrap(upgraded,4,4).getInt()==22,"legacy resaves as v17");World paired=SaveCodec.decode(upgraded);
+            byte[] upgraded=SaveCodec.encode(w);check(ByteBuffer.wrap(upgraded,4,4).getInt()==24,"legacy resaves as v17");World paired=SaveCodec.decode(upgraded);
             for(int i=0;i<5&&!w.gameOver();i++){next(w);next(paired);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(paired)),"legacy migration deterministic continuation v"+v);}
         }
     }

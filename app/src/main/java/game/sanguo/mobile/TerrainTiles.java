@@ -22,6 +22,8 @@ final class TerrainTiles {
             case SHALLOWS:return 0xff6da6a7;
             case PLANK_ROAD:return 0xff5f6a61;
             case POISON:return 0xff65566f;
+            case SWAMP:return 0xff566158;
+            case DAM:return 0xffa09079;
             default:return 0xff8a9569;
         }
     }
@@ -71,7 +73,11 @@ final class TerrainTiles {
         Bitmap bitmap=Bitmap.createBitmap(128,128,Bitmap.Config.ARGB_8888);Canvas c=new Canvas(bitmap);c.scale(2.56f,2.56f);c.translate(25,25);
         Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);Path hex=new Path();
         for(int i=0;i<6;i++){double a=Math.toRadians(i*60-30);float x=(float)Math.cos(a)*25.05f,y=(float)Math.sin(a)*25.05f;if(i==0)hex.moveTo(x,y);else hex.lineTo(x,y);}hex.close();c.clipPath(hex);
-        c.drawColor(color(t));Random random=new Random(t.ordinal()*101+variant*29);
+        c.drawColor(color(t));
+        if(VisualAssets.terrainReady()&&t!=World.Terrain.VOID){
+            VisualAssets.texture(c,TerrainConnections.road(t)?World.Terrain.MOUNTAIN:t,variant);return bitmap;
+        }
+        Random random=new Random(t.ordinal()*101+variant*29);
         for(int i=0;i<70;i++){p.setColor(i%2==0?0x11242e22:0x17d5d6ae);c.drawCircle(random.nextFloat()*50-25,random.nextFloat()*50-25,random.nextFloat()*2+1,p);}
         switch(t){
             case PLAIN:

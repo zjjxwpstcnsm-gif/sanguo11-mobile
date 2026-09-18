@@ -1,0 +1,90 @@
+{
+  "source_apk_sha256": "a3945a0a8d6d3c0ac1c4606d2ecab28b67df9067c0da96e39ca8b44a1f8e8b0e",
+  "files": [
+    {
+      "apk_path": "assets/map/buildings.png",
+      "source_path": "app/src/main/assets/map/buildings.png",
+      "sha256": "6dee326510e59cc5bc26153c0548e36432437e9dd0a4dc7ffd35461a705a4fd3"
+    },
+    {
+      "apk_path": "assets/map/terrain-v040.png",
+      "source_path": "app/src/main/assets/map/terrain-v040.png",
+      "sha256": "6b9f16d4fc4f90e960b8f664ad73a5307a67b26d595aa186323987349496f459"
+    },
+    {
+      "apk_path": "assets/map/units-v040.png",
+      "source_path": "app/src/main/assets/map/units-v040.png",
+      "sha256": "c0021a6c1be28ca656737f7d65a818d6424fda1bd64f6a7dbf67276eed7bee6c"
+    },
+    {
+      "apk_path": "assets/portraits/officers-v040.png",
+      "source_path": "app/src/main/assets/portraits/officers-v040.png",
+      "sha256": "3d68c887d97e6ed50d390899f9e4b03f86c38c8e45ee2dd34f25567f885857a4"
+    },
+    {
+      "apk_path": "assets/portraits/officers.png",
+      "source_path": "app/src/main/assets/portraits/officers.png",
+      "sha256": "c39255112dce5d08ac5fb09d5653ca96328d140f5a3fdec92d79eca6f50c28ce"
+    },
+    {
+      "apk_path": "scenarios/central-mobile-sandbox.properties",
+      "source_path": "core/src/main/resources/scenarios/central-mobile-sandbox.properties",
+      "sha256": "b2bdd31839986c60aada290aff1eac7ad9d139f82fa46189b7ee9437041c59f2"
+    },
+    {
+      "apk_path": "scenarios/chibi-207.properties",
+      "source_path": "core/src/main/resources/scenarios/chibi-207.properties",
+      "sha256": "eb72a3dd4aab73bf361f7a6b69e7b5c99f27dfac75185a991e50e7d7328529f3"
+    },
+    {
+      "apk_path": "scenarios/coalition-190.properties",
+      "source_path": "core/src/main/resources/scenarios/coalition-190.properties",
+      "sha256": "7693498a33a04a2c900256acd16cc9a6939b9f16345532047b9dbcdff55bbb2e"
+    },
+    {
+      "apk_path": "scenarios/guandu-200.properties",
+      "source_path": "core/src/main/resources/scenarios/guandu-200.properties",
+      "sha256": "7e521e33c927b5af479c5f729228b62e27092163b725236e10b8542216c831ea"
+    },
+    {
+      "apk_path": "scenarios/heroes-250.properties",
+      "source_path": "core/src/main/resources/scenarios/heroes-250.properties",
+      "sha256": "63f4034866fb7e37809f25d337fed119f73b55b0a7bb3d213372f756741f6863"
+    },
+    {
+      "apk_path": "scenarios/heroes-mobile-sandbox.properties",
+      "source_path": "core/src/main/resources/scenarios/heroes-mobile-sandbox.properties",
+      "sha256": "180ca01e565d990d697b7cf984e665a89a653dab87a5909400267d4f60f7284f"
+    },
+    {
+      "apk_path": "scenarios/huangjin-184.properties",
+      "source_path": "core/src/main/resources/scenarios/huangjin-184.properties",
+      "sha256": "b3836f717a5101ae8f8272684e76395476e4c0be93a5490faf7cf340e15ec9f2"
+    },
+    {
+      "apk_path": "scenarios/index.txt",
+      "source_path": "core/src/main/resources/scenarios/index.txt",
+      "sha256": "dd3ae4b34f6ef986f85b61962b6b32a1e8bc7d7292b5ce52c4580620b58184da"
+    },
+    {
+      "apk_path": "scenarios/jingxiang-mobile-sandbox.properties",
+      "source_path": "core/src/main/resources/scenarios/jingxiang-mobile-sandbox.properties",
+      "sha256": "de0d824714d1024cc71f2c6e16a8be15a5d5f19c247ea458821d3a573fe38dcd"
+    },
+    {
+      "apk_path": "scenarios/warlords-194.properties",
+      "source_path": "core/src/main/resources/scenarios/warlords-194.properties",
+      "sha256": "3879fdaaf1a0ae6bd9423aadd791ba48ddaab34f0b97d86e9078b2ef3573d5d5"
+    },
+    {
+      "apk_path": "assets/map/items-facilities-v040.png",
+      "source_path": "app/src/main/assets/map/items-facilities-v040.png",
+      "sha256": "1f2d3bf7f527f042a3b082d25110b63ebf3159a92b04eca18f9b55f231c27911"
+    },
+    {
+      "apk_path": "assets/map/military-v040.png",
+      "source_path": "app/src/main/assets/map/military-v040.png",
+      "sha256": "25f32897aab33513fc461adec7eb8d7a3281b5042716d1637571c050eb0985c6"
+    }
+  ]
+}

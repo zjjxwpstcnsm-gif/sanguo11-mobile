@@ -59,12 +59,12 @@ final class StrategySave {
         }
         for(World.Officer o:w.officers){
             ids.add(o.id);bound(o.loyalty,0,100);bound(o.lastRewardTurn,-1,w.turn);require(o.role!=null,"武将身份缺失");
-            bound(o.otherTaskTurns,0,12);text(o.otherTask,80,true);
+            bound(o.otherTaskTurns,0,100);if(o.otherTaskTurns>12)require(w.recruitment.assigned(o)||w.envoys.assigned(o),"非出使任务超过工期限制");text(o.otherTask,80,true);
             require((o.otherTaskTurns>0)==!o.otherTask.isEmpty(),"任务名称与剩余旬数不匹配");
             if(o.otherTaskTurns>0)require(o.owner>=0&&o.cityId>=0&&o.unitId==-1&&!w.domestic.busy(o.id),"武将战略任务冲突");
             if(o.role==Strategy.Role.GOVERNOR)require(governors.contains(o.id),"太守缺少任命城池");
             if(o.role==Strategy.Role.RULER)require(o.owner>=0&&rulers.add(o.owner)&&o.loyalty==100,"君主重复、势力无效或忠诚错误");
-            if(o.owner<0)require(o.role==Strategy.Role.UNAFFILIATED&&(o.cityId>=0||!w.life.present(o.id))&&o.unitId==-1&&o.loyalty==0&&o.otherTaskTurns==0&&!w.domestic.busy(o.id),"在野武将身份或任务错误");
+            if(o.owner<0)require(o.role==Strategy.Role.UNAFFILIATED&&(o.cityId>=0||w.government.captive(o.id)||!w.life.present(o.id))&&o.unitId==-1&&o.loyalty==0&&o.otherTaskTurns==0&&!w.domestic.busy(o.id),"在野武将身份或任务错误");
             else require(o.role!=Strategy.Role.UNAFFILIATED,"所属勢力与身份不符");
         }
         bound(s.talents.size()+w.officers.size(),0,10000);

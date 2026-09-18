@@ -272,7 +272,7 @@ public final class MainActivity extends Activity {
     TextView text(String value,int size,int color){TextView t=new TextView(this);t.setText(value);t.setTextSize(size);t.setTextColor(color);t.setGravity(Gravity.CENTER_VERTICAL);return t;}
     Button button(String value,View.OnClickListener action){Button b=new Button(this);b.setText(value);b.setTextSize(13);b.setAllCaps(false);b.setMinWidth(0);b.setMinimumWidth(0);b.setPadding(dp(4),0,dp(4),0);b.setTextColor(new android.content.res.ColorStateList(new int[][]{new int[]{-android.R.attr.state_enabled},new int[]{}},new int[]{0xff6b7d8d,paper}));
         android.graphics.drawable.GradientDrawable shape=new android.graphics.drawable.GradientDrawable();shape.setColor(new android.content.res.ColorStateList(new int[][]{new int[]{android.R.attr.state_selected},new int[]{-android.R.attr.state_enabled},new int[]{}},new int[]{0xff285256,0xff182638,0xff213547}));shape.setCornerRadius(dp(12));shape.setStroke(dp(1),0xff30485b);
-        b.setBackground(new android.graphics.drawable.RippleDrawable(android.content.res.ColorStateList.valueOf(0x446ddcc5),new android.graphics.drawable.InsetDrawable(shape,dp(3),dp(3),dp(3),dp(3)),null));b.setOnClickListener(v->{if(!aiRunning)action.onClick(v);});return b;}
+        b.setBackground(new android.graphics.drawable.RippleDrawable(android.content.res.ColorStateList.valueOf(0x446ddcc5),new android.graphics.drawable.InsetDrawable(shape,dp(3),dp(3),dp(3),dp(3)),null));b.setOnClickListener(v->{if(!aiRunning||value.equals("收起")||value.equals("展开")||value.equals("全图"))action.onClick(v);});return b;}
     private void line(String value,int size,int color){TextView t=text(value,size,color);t.setPadding(0,dp(4),0,dp(4));panel.addView(t);}
     private void action(String label,View.OnClickListener click){Button b=button(label,click);b.setEnabled(!aiRunning);panel.addView(b,new LinearLayout.LayoutParams(-1,dp(48)));}
     private void iconAction(String label,Object item,View.OnClickListener click){
@@ -540,7 +540,7 @@ public final class MainActivity extends Activity {
     }
     private void showTerrain(Hex h){
         World.Terrain t=world.terrain[h.q][h.r];World.City c=world.development.cityAt(h);
-        String[] names={"平原","森林","山地","河流","山径","浅滩","栈道","毒泉","海域","界外"};
+        String[] names={"平原","森林","山地","河流","山径","浅滩","栈道","毒泉","海域","界外","沼泽","堤坝"};
         String reason=null;
         if(c!=null){
             if(c.owner!=world.player)reason="仅能开发己方城市的地块";
@@ -732,7 +732,7 @@ public final class MainActivity extends Activity {
         Government.Rank office=world.government.office(o.id);stats+="\n功绩 "+world.government.merit(o.id)+" · 官职 "+(office==null?"未授官":office.id)+" · 统兵 "+world.government.commandLimit(o.id);
         stats+="\n适性：枪"+War.rankLabel(o.aptitude[0])+" 戟"+War.rankLabel(o.aptitude[1])+" 弩"+War.rankLabel(o.aptitude[2])+" 骑"+War.rankLabel(o.aptitude[3])+" 器"+War.rankLabel(o.aptitude[4])+" 水"+War.rankLabel(o.aptitude[5]);
         stats+="\n"+world.life.describe(o.id);
-        stats+="\n特技："+Skill.label(o.skillId)+"\n\n"+world.relations.describe(o.id)+"\n\n宝物：\n"+world.treasures.describe(o.id);
+        stats+="\n特技："+Skill.label(o.skillId)+"\n"+Skill.description(o.skillId)+"\n\n"+world.relations.describe(o.id)+"\n\n宝物：\n"+world.treasures.describe(o.id);
         LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);content.setPadding(dp(20),dp(8),dp(20),dp(16));content.addView(visualHeader(o,o.name,o.role.label+" · 忠诚 "+o.loyalty,88));
         TextView description=text(stats+"\n身份："+o.role.label+" · 忠诚 "+o.loyalty+"\n\n所在地："+UiModels.location(world,o)+"\n状态："+UiModels.status(world,o),15,paper);content.addView(description);
         ScrollView scroll=new ScrollView(this);scroll.addView(content);

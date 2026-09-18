@@ -12,9 +12,9 @@ import java.util.function.Function;
 final class GameIcon extends Drawable {
     private final Object item;private final MapModels models=new MapModels();private final Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG);private final int color;
     GameIcon(Object item,int color){this.item=item;this.color=color;}
-    static boolean supports(Object item){return item instanceof World.Officer||item instanceof World.City||item instanceof World.Weapon||item instanceof Army.Ship||item instanceof Domestic.Kind||item instanceof War.StructureKind;}
+    static boolean supports(Object item){return item instanceof World.Officer||item instanceof World.City||item instanceof World.Weapon||item instanceof Army.Ship||item instanceof Domestic.Kind||item instanceof War.StructureKind||item instanceof Treasures.Definition||item instanceof Treasures.Item;}
     static Drawable drawable(Context context,World w,Object item){
-        BuildingAtlas.load(context);
+        BuildingAtlas.load(context);VisualAssets.load(context);
         if(item instanceof World.Officer)return new OfficerPortrait(context,w,(World.Officer)item);
         return new GameIcon(item,item instanceof World.City?FactionColors.color(w,((World.City)item).owner):item instanceof World.Unit?FactionColors.color(w,((World.Unit)item).owner):0xff779b9c);
     }
@@ -22,15 +22,17 @@ final class GameIcon extends Drawable {
         return new ArrayAdapter<T>(context,android.R.layout.select_dialog_item,items){
             @Override public android.view.View getView(int position,android.view.View reuse,android.view.ViewGroup parent){
                 TextView row=(TextView)super.getView(position,reuse,parent);T item=getItem(position);row.setText(label.apply(item));
-                int size=Math.round(44*context.getResources().getDisplayMetrics().density);Drawable icon=drawable(context,w,item);icon.setBounds(0,0,size,size);
-                row.setCompoundDrawables(icon,null,null,null);row.setCompoundDrawablePadding(size/4);row.setMinHeight(size*3/2);return row;
+                int size=Math.round(44*context.getResources().getDisplayMetrics().density);Drawable icon=supports(item)?drawable(context,w,item):null;if(icon!=null)icon.setBounds(0,0,size,size);
+                row.setCompoundDrawables(icon,null,null,null);row.setCompoundDrawablePadding(size/4);row.setMinHeight(size+size/4);row.setTextSize(14);return row;
             }
         };
     }
     @Override public void draw(Canvas c){
         Rect b=getBounds();float radius=b.width()*.14f;paint.setColor(0xff20373f);c.drawRoundRect(b.left,b.top,b.right,b.bottom,radius,radius,paint);
         c.save();c.translate(b.exactCenterX(),b.exactCenterY()+b.height()*.10f);c.scale(b.width()/62f,b.height()/62f);
-        if(item instanceof World.City)models.city(c,((World.City)item).kind,color);
+        if(item instanceof Treasures.Item)VisualAssets.draw(c,1,((Treasures.Item)item).definition.kind.ordinal(),51,52,18);
+        else if(item instanceof Treasures.Definition)VisualAssets.draw(c,1,((Treasures.Definition)item).kind.ordinal(),51,52,18);
+        else if(item instanceof World.City)models.city(c,((World.City)item).kind,color);
         else if(item instanceof World.SiteKind)models.city(c,(World.SiteKind)item,color);
         else if(item instanceof Domestic.Facility)models.facility(c,((Domestic.Facility)item).kind,color);
         else if(item instanceof Domestic.Kind)models.facility(c,(Domestic.Kind)item,color);

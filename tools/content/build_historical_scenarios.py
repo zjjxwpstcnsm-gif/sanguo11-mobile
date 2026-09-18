@@ -78,6 +78,14 @@ def person(name):
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--check',action='store_true');args=parser.parse_args()
+    # v40's delivered maps are the authoritative curated snapshot; the generator below predates it.
+    if (ROOT/'tools/content/map-v040-manifest.json').exists():
+        if not args.check:
+            parser.error('The v40 maps are curated snapshots. Edit and review their source data and manifest; this legacy generator must not overwrite them.')
+        import runpy
+        runpy.run_path(str(ROOT/'scripts/verify-map-release.py'))['verify']()
+        return
+
     terrain,parcels=generate_geography(cities)
     extras=layout(terrain,{c['id']:(int(c['rawX']),int(c['rawY'])) for c in cities})
     site_data={int(c['id']):c for c in rows('sites.tsv')}

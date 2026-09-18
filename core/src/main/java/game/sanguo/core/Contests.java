@@ -74,11 +74,21 @@ public final class Contests {
         b.acted=true;session=new Session(nextId++,w.active,w.turn,actor,target,-1);session.duel=new Duel(w,a,b);
         return w.success(w.officer(a.officerId).name+"与"+w.officer(b.officerId).name+"开始单挑");
     }
-    public String debateError(int city,int actor,int target){
-        World.City c=w.city(city);String error=w.cityError(c,w.officer(actor),100);if(error!=null)return error;
-        if(w.active!=w.player)return "仅当前玩家可发起交互舌战";
-        if(nextId>=10000000)return "对局编号已达上限";
-        if(w.relations.refuses(target,actor,w.active)||!w.strategy.canRecruitTarget(city,target)||w.officer(target).acted)return "目标须为本城未行动的在野武将或符合登用条件的敌将";
+    public String debateError(int city, int actor, int target) {
+        World.City c = this.w.city(city);
+        String error = this.w.cityError(c, this.w.officer(actor), 100);
+        if (error != null) {
+            return error;
+        }
+        if (this.w.active != this.w.player) {
+            return "仅当前玩家可发起交互舌战";
+        }
+        if (this.nextId >= 10000000) {
+            return "对局编号已达上限";
+        }
+        if (this.w.relations.refuses(target, actor, this.w.active) || !this.w.strategy.canRecruitTarget(city, target) || this.w.officer(target).cityId != city || this.w.officer(target).acted) {
+            return "目标须为本城未行动的在野武将或符合登用条件的敌将";
+        }
         return null;
     }
     public World.Result persuade(int city,int actor,int target){

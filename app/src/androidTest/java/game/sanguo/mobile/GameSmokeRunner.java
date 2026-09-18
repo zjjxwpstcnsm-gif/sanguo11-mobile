@@ -15,12 +15,13 @@ public final class GameSmokeRunner extends Instrumentation {
     private Activity current;
     private String displacement="";
     private String recovery="";
-    private boolean balance41,architecture33,navigation32,mapPerformance,fidelity,upgradeOnly,upgrade25,upgrade26,upgrade27,experience,armyOnly;
+    private boolean map42,balance41,architecture33,navigation32,mapPerformance,fidelity,upgradeOnly,upgrade25,upgrade26,upgrade27,experience,armyOnly;
     @Override public void callActivityOnResume(Activity a){super.callActivityOnResume(a);current=a;}
-    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);balance41=arguments!=null&&"true".equals(arguments.getString("balance41"));armyOnly=arguments!=null&&"true".equals(arguments.getString("army"));architecture33=arguments!=null&&"true".equals(arguments.getString("architecture33"));navigation32=arguments!=null&&"true".equals(arguments.getString("navigation32"));mapPerformance=arguments!=null&&"true".equals(arguments.getString("mapPerformance"));fidelity=arguments!=null&&"true".equals(arguments.getString("fidelity"));displacement=arguments==null?"":arguments.getString("displacement","");recovery=arguments==null?"":arguments.getString("recovery","");upgrade27=arguments!=null&&"27".equals(arguments.getString("upgrade"));experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
+    @Override public void onCreate(Bundle arguments){super.onCreate(arguments);map42=arguments!=null&&"true".equals(arguments.getString("map42"));balance41=arguments!=null&&"true".equals(arguments.getString("balance41"));armyOnly=arguments!=null&&"true".equals(arguments.getString("army"));architecture33=arguments!=null&&"true".equals(arguments.getString("architecture33"));navigation32=arguments!=null&&"true".equals(arguments.getString("navigation32"));mapPerformance=arguments!=null&&"true".equals(arguments.getString("mapPerformance"));fidelity=arguments!=null&&"true".equals(arguments.getString("fidelity"));displacement=arguments==null?"":arguments.getString("displacement","");recovery=arguments==null?"":arguments.getString("recovery","");upgrade27=arguments!=null&&"27".equals(arguments.getString("upgrade"));experience=arguments!=null&&"true".equals(arguments.getString("experience"));upgradeOnly=arguments!=null&&"true".equals(arguments.getString("upgrade"));upgrade25=arguments!=null&&"25".equals(arguments.getString("upgrade"));upgrade26=arguments!=null&&"26".equals(arguments.getString("upgrade"));start();}
     @Override public void onStart(){
         Bundle result=new Bundle();
         try {
+            if(map42){dismissSystemDialog();map42Flow();result.putString("stream","MAP42 PASS: fresh v42 scenarios, all five atlases, national/detail maps in portrait/landscape and v41 development/siege/connected roads.\n");finish(Activity.RESULT_OK,result);return;}
             if(balance41){balance41Flow();result.putString("stream","BALANCE41 PASS: pinned development/city actions in portrait and landscape, construction execution, pure siege preview, real attack damage and connected terrain.\n");finish(Activity.RESULT_OK,result);return;}
             if(armyOnly){World initial=TestScenarios.load("river-siege-sandbox",0);try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(initial));}startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));waitForIdleSync();chooseOrientation("横屏");armyFlow();result.putString("stream","ARMY PASS: landscape formation, task visibility/detail, manufacturing, naval fire and embarkation.\n");finish(Activity.RESULT_OK,result);return;}
             if(architecture33){architecture33Flow();result.putString("stream","ARCHITECTURE33 PASS: empty/corrupt/backup/restore startup, production catalog, four-rule native commands, pure preview, recreation, turn replay and PK filter isolation.\n");finish(Activity.RESULT_OK,result);return;}
@@ -1032,7 +1033,7 @@ public final class GameSmokeRunner extends Instrumentation {
         require(getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).getLongVersionCode()>=14,"new app version installed");
         runOnMainSync(current::recreate);waitForIdleSync();waitText(scenarioName,false);waitForIdleSync();
         require(Arrays.equals(before,SaveCodec.encode(saved())),"upgrade and recreation preserve every gameplay field");
-        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==22,"upgraded writer produced v22 header");}
+        try(DataInputStream in=new DataInputStream(getTargetContext().openFileInput("auto.sg11"))){in.readInt();require(in.readInt()==24,"upgraded writer produced v22 header");}
         screenshot(upgrade27?"00-v27-upgrade-preserved":upgrade26?"00-v26-upgrade-preserved":upgrade25?"00-v25-upgrade-preserved":"00-v09-upgrade-preserved");
         if(upgrade26||upgrade27){
             require(legacy.districts.all().size()==1&&legacy.domestic.missions.size()==2&&legacy.units.stream().anyMatch(u->!legacy.aiOrders.describe(u).equals("待评估")),"v26 district, real army intention and two actual tasks retained");
@@ -1212,6 +1213,39 @@ public final class GameSmokeRunner extends Instrumentation {
         w.terrain[3][4]=World.Terrain.MOUNTAIN_PATH;w.terrain[8][4]=World.Terrain.MOUNTAIN_PATH;
         return w;
     }
+    private void map42Flow()throws Exception{
+        World national=TestScenarios.load("heroes-250",0);
+        balance41Flow();
+        require(VisualAssets.ready()&&VisualAssets.terrainReady(),"all four map atlases decoded");
+        require(VisualAssets.bytes()>20_000_000&&VisualAssets.bytes()<27_000_000,"bounded shared atlas memory");
+        require(PortraitCatalog.NAMES.length==32&&PortraitCatalog.index("夏侯惇")==16,"v40 portraits restored");
+        for(int orientation:new int[]{android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT,android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE}){
+            runOnMainSync(()->current.setRequestedOrientation(orientation));assertOrientation(orientation==android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            String label=orientation==android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT?"portrait":"landscape";
+            installFixture(national,national.home().hex);MapView map=mapView();
+            runOnMainSync(map::fit);awaitOverview(map);waitForIdleSync();screenshot("v042-national-"+label);
+            require(map.tilesVisited()==0,"national view retains bitmap cache");
+            for(int id:new int[]{20015,20036,20025}){World.City city=national.city(id);runOnMainSync(()->map.focus(city.hex));waitForIdleSync();screenshot("v042-detail-"+id+"-"+label);}
+        }
+        feature42Ui();
+        modelAtlas();
+        try(InputStream in=getTargetContext().getAssets().open("portraits/officers-v040.png")){require(BitmapFactory.decodeStream(in)!=null,"second portrait atlas packaged");}
+        checkpoint("v042 map and sprites captured");
+    }
+
+    private void feature42Ui()throws Exception{
+        World w=TestScenarios.load("regional-sandbox",0);World.City c=w.home();installFixture(w,c.hex);
+        runOnMainSync(()->current.setRequestedOrientation(android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE));assertOrientation(false);
+        clickNav("武将");setSearch(w.officer(1000).name);waitText(w.officer(1000).name,true);click("统",true);screenshot("v042-officer-table");setSearch("");click("关羽",true);waitText("特技：",false);click("返回",true);
+        installFixture(w,c.hex);byte[] before=SaveCodec.encode(w);runOnMainSync(()->new ArmyUi((MainActivity)current,w,((MainActivity)current)::applyResult,((MainActivity)current)::selectAndFocus).deploy(c));
+        waitText("出征编队总览",true);click("主将 ·",false);waitText("选择主将",true);click(w.officer(1000).name,true);waitText("出征编队总览",true);
+        setInput("兵力数量","3000");setInput("粮食数量","6000");setInput("金钱数量","100");screenshot("v042-deployment-overview");click("取消",true);require(Arrays.equals(before,SaveCodec.encode(w)),"editable deployment cancellation is pure");
+        runOnMainSync(()->new ArmyUi((MainActivity)current,w,((MainActivity)current)::applyResult,((MainActivity)current)::selectAndFocus).deploy(c));click("确认出征",true);
+        require(w.units.size()==1&&w.unit(w.officer(1000).unitId).gold==100,"native overview deploys actual selected crew and cargo");
+        installFixture(w,c.hex);runOnMainSync(()->new StrategyUi(current,w,((MainActivity)current)::applyResult).command(c,2));waitText("选择登用目标",true);screenshot("v042-target-first-recruitment");click("取消",true);
+        World turn=TestScenarios.load("regional-sandbox",0);installFixture(turn,turn.home().hex);click("下一旬  →",true);click("执行",true);waitText("旬结算完成",false,180000);require(saved().turn==1,"real retained turn completes exactly once");screenshot("v042-turn-complete");
+    }
+
     private void balance41Flow()throws Exception{
         checkpoint("v041 startup");
         World first=balance41Fixture();try(FileOutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(first));}
@@ -1416,11 +1450,15 @@ public final class GameSmokeRunner extends Instrumentation {
         if(value!=null&&(exact?value.toString().equals(text):value.toString().contains(text))&&node.isVisibleToUser())return node;
         for(int i=0;i<node.getChildCount();i++){AccessibilityNodeInfo found=find(node.getChild(i),text,exact);if(found!=null)return found;}return null;
     }
+    private void dismissSystemDialog(){
+        AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();
+        if(find(root,"System UI isn't responding",false)!=null){AccessibilityNodeInfo wait=find(root,"Wait",true);if(wait!=null){wait.performAction(AccessibilityNodeInfo.ACTION_CLICK);SystemClock.sleep(300);}}
+    }
     private AccessibilityNodeInfo waitText(String text,boolean exact){return waitText(text,exact,12000);}
     private AccessibilityNodeInfo waitText(String text,boolean exact,long timeout) {
         long until=SystemClock.uptimeMillis()+timeout;
         while(SystemClock.uptimeMillis()<until) {
-            waitForIdleSync();AccessibilityNodeInfo node=find(getUiAutomation().getRootInActiveWindow(),text,exact);
+            dismissSystemDialog();waitForIdleSync();AccessibilityNodeInfo node=find(getUiAutomation().getRootInActiveWindow(),text,exact);
             if(node!=null)return node;SystemClock.sleep(100);
         }
         throw new AssertionError("UI text not found: "+text);
@@ -1544,7 +1582,7 @@ public final class GameSmokeRunner extends Instrumentation {
         for(World.SiteKind kind:World.SiteKind.values()){labels.add(kind.name());draws.add(c->models.city(c,kind,color));}
         for(Domestic.Kind kind:Domestic.Kind.values()){labels.add(kind.label);draws.add(c->models.facility(c,kind,color));}
         for(War.StructureKind kind:War.StructureKind.values()){labels.add(kind.label);draws.add(c->models.structure(c,kind,color));}
-        require(labels.size()==44,"all current troop and building categories have a renderable model");
+        require(labels.size()==45,"all current troop and building categories have a renderable model");
         Bitmap bitmap=Bitmap.createBitmap(1200,1200,Bitmap.Config.ARGB_8888);Canvas c=new Canvas(bitmap);c.drawColor(0xff192d32);
         Paint text=new Paint(Paint.ANTI_ALIAS_FLAG);text.setColor(0xffead9ad);text.setTextSize(23);text.setTextAlign(Paint.Align.CENTER);
         for(int i=0;i<labels.size();i++){float x=(i%6)*200+100,y=(i/6)*150+70;c.save();c.translate(x,y);c.scale(2,2);draws.get(i).accept(c);c.restore();c.drawText(labels.get(i),x,y+62,text);}

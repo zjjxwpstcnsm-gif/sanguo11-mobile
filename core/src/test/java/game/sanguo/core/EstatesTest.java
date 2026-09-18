@@ -57,7 +57,7 @@ public final class EstatesTest {
         World captive=fixture();captive.treasures.place(Treasures.definition("item-001"),Treasures.Place.TREASURY,0);captive.treasures.place(Treasures.definition("item-007"),Treasures.Place.OFFICER,11);captive.officer(6).skillId=Skill.BOFU.id;captive.defeatUnit(captive.unit(2),captive.unit(1));check(captive.government.captive(11)&&captive.treasures.item("item-007").place==Treasures.Place.TREASURY&&captive.treasures.owner(captive.treasures.item("item-007"))==0,"capture transfers actual item once");bytes(captive);
         boolean robbed=false;for(int seed=0;seed<200&&!robbed;seed++){World p=fixture();p.officer(6).skillId=Skill.QIANGDUO.id;p.strategy.setSeed(seed);p.defeatUnit(p.unit(2),p.unit(1));if(p.treasures.item("item-001").holder==6){robbed=true;check(!p.government.captive(11),"robbery cannot retroactively remove horse protection");check(p.treasures.has(6,Treasures.Kind.HORSE),"strong robbery transfers real effect");bytes(p);}}check(robbed,"strong robbery can actually fire");
         World fallen=fixture();fallen.city(20).owner=0;fallen.government.cityCaptured(fallen.city(20),1,fallen.unit(1));fallen.treasures.place(Treasures.definition("item-040"),Treasures.Place.TREASURY,1);
-        check(fallen.alive(1),"last surviving army keeps faction alive after losing cities");fallen.defeatUnit(fallen.unit(2),fallen.unit(1));
+        check(!fallen.alive(1),"remaining army does not keep a cityless faction alive");fallen.treasures.fallenTreasury(1,0);fallen.checkVictory();
         check(!fallen.alive(1)&&fallen.treasures.item("item-040").holder==0,"last army defeat transfers fallen treasury");bytes(fallen);
     }
     private static void editor()throws Exception{
@@ -83,7 +83,7 @@ public final class EstatesTest {
     private static void migration()throws Exception{
         byte[] raw;try(InputStream in=EstatesTest.class.getResourceAsStream("/legacy-v11.sg11.b64")){raw=Base64.getMimeDecoder().decode(in.readAllBytes());}
         check(raw[7]==11,"fixture is genuine previous writer");World w=SaveCodec.decode(raw);check(w.treasures.items().isEmpty()&&w.relations.people.isEmpty()&&!w.editor.edited(),"legacy gets no invented treasures or kinship");check(w.unit(1).gold==8500&&w.war.structures().size()==1&&w.war.structures().get(0).builder==1,"real v11 carried gold and ongoing construction survive");
-        check(bytes(w)[7]==22&&Arrays.equals(bytes(w),bytes(copy(w))),"v11 migrates to v17 without loss");
+        check(bytes(w)[7]==24&&Arrays.equals(bytes(w),bytes(copy(w))),"v11 migrates to v17 without loss");
     }
     private static void malformed()throws Exception{
         World w=fixture();w.relations.link(0,1,Relations.Kind.SPOUSE);w.relations.people.get(1).spouse=-1;try{bytes(w);throw new AssertionError("asymmetric spouse");}catch(IOException e){checks++;}

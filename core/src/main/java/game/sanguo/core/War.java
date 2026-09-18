@@ -42,7 +42,8 @@ public final class War {
         EARTH_WALL("土垒",300,400,"阻挡地块通行"), STONE_WALL("石壁",300,800,"更坚固的通行障碍"),
         FIRE_BALL("火球",200,200,"沿指定六边形方向引爆3格"), FLAME_SEED("火焰种",200,200,"引爆半径2格"),
         FLAME_BALL("火焰球",200,200,"沿指定方向引爆5格"), INFERNO_SEED("业火种",200,200,"强化爆炸并造成混乱"),
-        INFERNO_BALL("业火球",200,200,"强化直线爆炸，可穿过军事设施"), FIRE_SHIP("火船",200,200,"在水面设置并引爆" );
+        INFERNO_BALL("业火球",200,200,"强化直线爆炸，可穿过军事设施"), FIRE_SHIP("火船",200,200,"在水面设置并引爆"),
+        DAM("堤坝",0,1200,"阻挡通行；击破后两格内低地洪水，敌我均受600兵损失");
         public final String label,effect;public final int gold,hp;
         StructureKind(String label,int gold,int hp,String effect){this.label=label;this.gold=gold;this.hp=hp;this.effect=effect;}
     }
@@ -312,7 +313,7 @@ public final class War {
     }
     public String structureAttackError(int unit,Hex h){
         World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return error;Structure s=at(h);
-        if(s==null||!w.campaign.hostile(u.owner,s.owner)||u.hex.distance(h)>range(u))return "请选择射程内敌方军事设施";
+        if(s==null||(s.kind!=StructureKind.DAM&&!w.campaign.hostile(u.owner,s.owner))||u.hex.distance(h)>range(u))return "请选择射程内敌方军事设施";
         if(!w.army.canAttackUnit(u)){List<Army.Tactic> tactics=w.army.tactics(u);return tactics.isEmpty()?"该兵种不能普通攻击军事设施":w.army.tacticError(unit,h,tactics.get(0));}
         return null;
     }
@@ -320,13 +321,13 @@ public final class War {
         String error=structureAttackError(unit,h);if(error!=null)return w.fail(error);World.Unit u=w.unit(unit);Structure s=at(h);
         if(!w.army.canAttackUnit(u))return w.army.tactic(unit,h,w.army.tactics(u).get(0));
         int damage=Math.min(s.hp,w.combat.structureDamage(u,false));u.acted=true;s.hp-=damage;
-        w.battleImpact(h,s.hp<=0);if(s.hp<=0){structures.remove(s);w.battleOutcome(s.kind.label+"已摧毁，地块已释放");}else w.fieldworks.counter(s,u);w.campaign.earn(u.owner,20);return w.success("攻击"+s.kind.label+"，耐久减少"+damage);
+        w.battleImpact(h,s.hp<=0);if(s.hp<=0){w.fieldworks.destroy(s);w.battleOutcome(s.kind.label+"已摧毁，地块已释放");}else w.fieldworks.counter(s,u);w.campaign.earn(u.owner,20);return w.success("攻击"+s.kind.label+"，耐久减少"+damage);
     }
     public World.Result removeStructure(int city,int officer,int id){
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
         Structure s=null;for(Structure item:structures)if(item.id==id)s=item;
         if(s==null||s.owner!=c.owner||s.hex.distance(c.hex)>3)return w.fail("请选择本城三格内己方军事设施");
-        w.spend(c,o,0);structures.remove(s);return w.success("已拆除"+s.kind.label);
+        w.spend(c,o,0);w.fieldworks.destroy(s);return w.success("已拆除"+s.kind.label);
     }
     public World.Result waitUnit(int unit){World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return w.fail(error);u.acted=true;w.energy.change(u,5,EnergyRules.Reason.WAIT);return w.success("部队待命，恢复5气力");}
     void resetOwner(int owner){
@@ -343,12 +344,12 @@ public final class War {
     void tick(){
         for(Fire f:new ArrayList<>(fires)){
             World.Unit u=w.unitAt(f.hex);if(u!=null&&(u.owner==f.owner||w.campaign.hostile(f.owner,u.owner))){int hit=250+(w.terrain[f.hex.q][f.hex.r]==World.Terrain.FOREST?150:0);hit=w.combat.ongoingFireDamage(u,hit,f.owner,f.power,f.trap);hurt(u,hit);w.note("火场灼烧，部队损失"+hit);}
-            Structure s=at(f.hex);if(s!=null&&(s.owner==f.owner||w.campaign.hostile(f.owner,s.owner))){s.hp-=200;if(s.hp<=0)structures.remove(s);}
+            Structure s=at(f.hex);if(s!=null&&(s.owner==f.owner||w.campaign.hostile(f.owner,s.owner))){s.hp-=200;if(s.hp<=0)w.fieldworks.destroy(s);}
             Domestic.Facility facility=w.domestic.at(f.hex);if(facility!=null&&(w.city(facility.cityId).owner==f.owner||w.campaign.hostile(f.owner,w.city(facility.cityId).owner)))w.domestic.damage(facility,200);
             if(--f.remaining==0)fires.remove(f);
         }
         for(Structure s:new ArrayList<>(structures)){
-            if(!w.alive(s.owner)){structures.remove(s);continue;}
+            if(s.kind!=StructureKind.DAM&&!w.alive(s.owner)){w.fieldworks.destroy(s);continue;}
             // Music restoration is deduplicated per unit below, including skill priority.
 
         }

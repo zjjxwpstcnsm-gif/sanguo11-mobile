@@ -269,7 +269,7 @@ public final class CampaignAi {
             Army.Ship ship=c.ships[1]>0?Army.Ship.WARSHIP:c.ships[0]>0?Army.Ship.TOWER_SHIP:Army.Ship.BOAT;
             probe.ship=ship;
             List<Hex> goals=new ArrayList<>();for(World.City target:cities())if(w.campaign.hostile(c.owner,target.owner)&&objectives.test(target))goals.add(target.hex);
-            if(incoming(c)==0&&routes(probe,goals,1).isEmpty())continue;
+            if(incoming(c)==0&&routes(probe,goals,1,true).isEmpty())continue;
             bestScore=score;best=new Deployment(c.id,leader.id,troops,troops*3,reserve,weapon,ship,deputies);
         }
         return best;
@@ -347,7 +347,8 @@ public final class CampaignAi {
     int routeSearches,routeExpanded; // Per planner diagnostics; never part of world state or RNG.
     private Route route(World.Unit u,Hex goal,int range){return routes(u,Collections.singleton(goal),range).get(goal);}
     /** One weighted flood answers every candidate objective for this decision. No cache survives a command. */
-    private Map<Hex,Route> routes(World.Unit u,Collection<Hex> goals,int range){
+    private Map<Hex,Route> routes(World.Unit u,Collection<Hex> goals,int range){return routes(u,goals,range,false);}
+    private Map<Hex,Route> routes(World.Unit u,Collection<Hex> goals,int range,boolean firstOnly){
         Map<Hex,Route> result=new HashMap<>();if(goals.isEmpty())return result;routeSearches++;
         Set<Hex> blocked=new HashSet<>(),friendly=new HashSet<>();for(World.City c:w.cities)blocked.add(c.hex);
         for(World.Unit other:w.fieldUnits())if(other.id!=u.id){if(other.owner==u.owner)friendly.add(other.hex);else blocked.add(other.hex);}
@@ -361,21 +362,21 @@ public final class CampaignAi {
             Hex h=new Hex(goal.q+dq,goal.r+dr);
             if(w.inside(h)&&h.distance(goal)<=range)arrivals.computeIfAbsent(h,x->new ArrayList<>()).add(goal);
         }
-        Map<Hex,Integer> costs=new HashMap<>();Map<Hex,Hex> parents=new HashMap<>();
+        int[] costs=new int[w.width*w.height];Arrays.fill(costs,Integer.MAX_VALUE);Hex[] parents=new Hex[costs.length];
         PriorityQueue<Step> queue=new PriorityQueue<>(Comparator.comparingInt((Step s)->s.cost).thenComparingInt(s->s.h.q).thenComparingInt(s->s.h.r));
-        queue.add(new Step(u.hex,0));costs.put(u.hex,0);
+        queue.add(new Step(u.hex,0));costs[u.hex.q*w.height+u.hex.r]=0;
         while(!queue.isEmpty()){
-            Step s=queue.remove();if(costs.get(s.h)!=s.cost)continue;routeExpanded++;
+            Step s=queue.remove();if(costs[s.h.q*w.height+s.h.r]!=s.cost)continue;routeExpanded++;
             for(Hex goal:arrivals.getOrDefault(s.h,Collections.emptyList()))if(!result.containsKey(goal)&&!friendly.contains(s.h)){
-                LinkedList<Hex> path=new LinkedList<>();for(Hex h=s.h;h!=null;h=parents.get(h))path.addFirst(h);
-                result.put(goal,new Route(path,s.cost));
+                LinkedList<Hex> path=new LinkedList<>();for(Hex h=s.h;h!=null;h=parents[h.q*w.height+h.r])path.addFirst(h);
+                result.put(goal,new Route(path,s.cost));if(firstOnly)return result;
             }
             if(result.size()==targets.size())break;
             for(Hex h:s.h.neighbors()){
                 if(blocked.contains(h))continue;int step=w.army.moveCost(u,s.h,h);if(step<1)continue;
                 int cost=s.cost+step+hazard(u,h)+(zone.test(h)?3:0)+(friendly.contains(h)?3:0);
-                if(cost>=costs.getOrDefault(h,Integer.MAX_VALUE))continue;
-                costs.put(h,cost);parents.put(h,s.h);queue.add(new Step(h,cost));
+                if(cost>=costs[h.q*w.height+h.r])continue;
+                costs[h.q*w.height+h.r]=cost;parents[h.q*w.height+h.r]=s.h;queue.add(new Step(h,cost));
             }
         }
         return result;

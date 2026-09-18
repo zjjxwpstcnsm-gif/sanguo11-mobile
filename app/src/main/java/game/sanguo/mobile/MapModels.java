@@ -5,7 +5,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import game.sanguo.core.*;
 
-/** Small original silhouettes in tile coordinates; no textures, downloads or 3D asset dependency. */
+/** Original isometric sprite atlases, with vector fallbacks in tile coordinates. */
 final class MapModels {
     private final Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Path shape=new Path();
@@ -56,6 +56,8 @@ final class MapModels {
         line(c,-18,16,-8,16,1,STEEL);line(c,5,18,18,18,1,STEEL);
     }
     void unit(Canvas c,World.Unit u,boolean water,int color){
+        if(VisualAssets.draw(c,0,water?VisualAssets.ship(u.ship):VisualAssets.weapon(u.weapon),51,51,15)){flag(c,color,20,-24);return;}
+
         base(c,color);
         if(water){ship(c,color,u.ship.ordinal(),false);return;}
         if(Army.siegeWeapon(u.weapon)){siege(c,u.weapon,color);return;}
@@ -63,6 +65,8 @@ final class MapModels {
         soldier(c,color,-8,-5,u.weapon);soldier(c,color,6,0,u.weapon);soldier(c,color,-5,9,u.weapon);
     }
     void weaponIcon(Canvas c,World.Weapon weapon,int color){
+        if(VisualAssets.draw(c,0,VisualAssets.weapon(weapon),53,52,18))return;
+
         if(Army.siegeWeapon(weapon)){base(c,color);siege(c,weapon,color);return;}
         if(weapon==World.Weapon.CAVALRY){base(c,color);horse(c,color);return;}
         if(weapon==World.Weapon.CROSSBOW){bow(c,0,-5,true);line(c,0,14,0,-23,2,STEEL);poly(c,STEEL,-4,-19,0,-26,4,-19);return;}
@@ -71,12 +75,16 @@ final class MapModels {
         if(weapon==World.Weapon.HALBERD)poly(c,STEEL,6,-22,17,-14,14,-4,7,-8,11,-14,4,-14);
         else {line(c,10,20,-1,-18,2,WOOD);poly(c,STEEL,-5,-16,-4,-25,3,-19);}
     }
-    void shipIcon(Canvas c,Army.Ship kind,int color){ship(c,color,kind.ordinal(),false);}
+    void shipIcon(Canvas c,Army.Ship kind,int color){
+        if(VisualAssets.draw(c,0,VisualAssets.ship(kind),54,50,17))return;
+        ship(c,color,kind.ordinal(),false);}
     void scaffolding(Canvas c){
         for(int x=-21;x<=21;x+=14){line(c,x,-17,x,17,1.5f,WOOD);line(c,x,-17,x+8,-23,1,WOOD);}
         line(c,-21,0,21,0,2,LIGHT);line(c,-21,12,21,12,2,LIGHT);line(c,-21,11,21,-15,1,WOOD);
     }
     void city(Canvas c,World.SiteKind kind,int color){
+        if(VisualAssets.draw(c,0,kind==World.SiteKind.CITY?12:kind==World.SiteKind.GATE?13:14,60,52,17)){flag(c,color,22,-27);return;}
+
         if(BuildingAtlas.draw(c,kind==World.SiteKind.CITY?0:kind==World.SiteKind.GATE?1:2)){flag(c,color,21,-27);return;}
         base(c,color);
         if(kind==World.SiteKind.PORT){box(c,-20,7,18,12,WOOD);for(int x=-16;x<=16;x+=8)line(c,x,8,x,19,2,WOOD);ship(c,color,0,false);house(c,color,-10,-3,7,9);return;}
@@ -86,6 +94,10 @@ final class MapModels {
         flag(c,color,13,-30);
     }
     void facility(Canvas c,Domestic.Kind kind,int color){
+        int sheet=kind==Domestic.Kind.FARM?0:kind==Domestic.Kind.BRONZE_TERRACE?3:1;
+        int cell=kind==Domestic.Kind.FARM?15:kind==Domestic.Kind.BRONZE_TERRACE?0:VisualAssets.facility(kind);
+        if(VisualAssets.draw(c,sheet,cell,52,48,15)){flag(c,color,21,-20);return;}
+
         int sprite=-1;switch(kind){case FARM:sprite=3;break;case MARKET:sprite=4;break;case GRANARY:sprite=5;break;case BARRACKS:sprite=6;break;case SMITH:sprite=7;break;case STABLE:sprite=8;break;case WORKSHOP:sprite=9;break;case SHIPYARD:sprite=10;break;case MINT:sprite=11;break;default:break;}
         if(BuildingAtlas.draw(c,sprite)){flag(c,color,21,-20);return;}
         base(c,color);
@@ -106,6 +118,10 @@ final class MapModels {
     }
     private void tent(Canvas c,int color){poly(c,color,-18,10,0,-17,18,10);poly(c,LIGHT,0,-17,4,10,18,10);poly(c,DARK,-4,10,0,-1,4,10);}
     void structure(Canvas c,War.StructureKind kind,int color){
+        if(VisualAssets.draw(c,3,VisualAssets.structure(kind),51,48,15)){
+            if(kind==War.StructureKind.CAMP||kind==War.StructureKind.FORT||kind==War.StructureKind.CROSSBOW_TOWER||kind==War.StructureKind.CATAPULT_TOWER)flag(c,color,21,-27);return;
+        }
+
         int sprite=kind==War.StructureKind.FORTRESS?12:kind==War.StructureKind.ARROW_TOWER?13:kind==War.StructureKind.MUSIC?14:kind==War.StructureKind.DRUM?15:-1;
         if(BuildingAtlas.draw(c,sprite)){flag(c,color,21,-27);return;}
         base(c,color);

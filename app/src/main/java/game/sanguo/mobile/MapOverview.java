@@ -25,6 +25,8 @@ final class MapOverview {
     private final float offset;
     private final int[] terrain,sites,owners,colors;
     private final byte[] roads;
+    private final int[] styles;
+    private final int[][] artwork;
     private final RectF bounds;
     private final Paint paint=new Paint(Paint.FILTER_BITMAP_FLAG);
     private final Bitmap[] preview;
@@ -37,7 +39,7 @@ final class MapOverview {
         bounds=new RectF(-RADIUS,-RADIUS,worldWidth-RADIUS,worldHeight-RADIUS);
         int count=width*height;
         terrain=new int[count];sites=new int[count];owners=new int[count];colors=new int[count];
-        roads=new byte[count];
+        roads=new byte[count];styles=new int[count];Arrays.fill(styles,-1);artwork=VisualAssets.terrainSamples();
         Arrays.fill(sites,-1);Arrays.fill(owners,-1);
         int[] palette=new int[world.factions.length];
         for(int i=0;i<palette.length;i++)palette[i]=FactionColors.color(world,i);
@@ -45,6 +47,8 @@ final class MapOverview {
             int source=q+(r-(r&1))/2-(height-1)/2,index=r*width+q;
             if(world.terrain[q][r]==World.Terrain.VOID||world.sourceMapWidth>0&&(source<0||source>=world.sourceMapWidth))continue;
             terrain[index]=TerrainTiles.color(world.terrain[q][r]);
+            World.Terrain t=world.terrain[q][r];
+            styles[index]=VisualAssets.terrainCell(TerrainConnections.road(t)?World.Terrain.MOUNTAIN:t,Math.floorMod(q*31+r*17,3));
             if(TerrainConnections.road(world.terrain[q][r]))roads[index]=(byte)(64|TerrainConnections.mask(world,q,r));
             sites[index]=territory.siteAt(q,r);owners[index]=territory.ownerAt(q,r);
             colors[index]=owners[index]<0?0xffa6a6a6:palette[owners[index]];
@@ -75,7 +79,7 @@ final class MapOverview {
         float scale=Math.min(side/Math.max(bounds.width(),bounds.height()),
             (float)Math.sqrt(pixelLimit/(bounds.width()*bounds.height())));
         int w=Math.max(1,(int)(bounds.width()*scale)),h=Math.max(1,(int)(bounds.height()*scale));
-        int[] cells=new int[w*h],pixels=new int[w*h];
+        int[] cells=new int[w*h],pixels=new int[w*h],ground=new int[w*h];
         float stepX=bounds.width()/w,stepY=bounds.height()/h;
         for(int y=0;y<h;y++){
             if(Thread.currentThread().isInterrupted())return null;
@@ -85,7 +89,15 @@ final class MapOverview {
                 int iq=Math.round(q),ir=Math.round(r),iz=Math.round(z);
                 float dq=Math.abs(iq-q),dr=Math.abs(ir-r),dz=Math.abs(iz-z);
                 if(dq>dr&&dq>dz)iq=-ir-iz;else if(dr>dz)ir=-iq-iz;
-                cells[y*w+x]=iq>=0&&iq<width&&ir>=0&&ir<height?ir*width+iq:-1;
+                int cell=iq>=0&&iq<width&&ir>=0&&ir<height?ir*width+iq:-1;
+                cells[y*w+x]=cell;
+                int color=cell<0||terrain[cell]==0?BACKGROUND:terrain[cell];
+                if(cell>=0&&styles[cell]>=0&&artwork!=null){
+                    int tx=Math.max(0,Math.min(63,(int)((((q-iq)+(r-ir)*.5f)*DX+RADIUS)*64/50)));
+                    int ty=Math.max(0,Math.min(63,(int)(((r-ir)*DY+RADIUS)*64/50)));
+                    color=blend(color,artwork[styles[cell]][ty*64+tx],96);
+                }
+                ground[y*w+x]=color;
             }
         }
         Bitmap[] images=new Bitmap[3];
@@ -94,7 +106,7 @@ final class MapOverview {
                 if(Thread.currentThread().isInterrupted()){recycleUnpublished(images);return null;}
                 for(int x=0;x<w;x++){
                     int i=y*w+x,cell=cells[i];
-                    int color=cell<0||terrain[cell]==0?BACKGROUND:terrain[cell];
+                    int color=ground[i];
                     if(mode>0&&cell>=0&&sites[cell]>=0){
                         color=blend(color,colors[cell],mode==1?158:138+(sites[cell]%3)*10);
                         if(x>0&&boundary(cell,cells[i-1],mode)||y>0&&boundary(cell,cells[i-w],mode))

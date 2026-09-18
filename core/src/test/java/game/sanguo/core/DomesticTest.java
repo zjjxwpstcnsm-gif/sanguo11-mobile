@@ -89,9 +89,9 @@ public final class DomesticTest {
         World personnel=fixture();ok(personnel.domestic.transfer(10,20,0));next(personnel);next(personnel);check(personnel.officer(0).cityId==20&&personnel.city(10).gold==100000,"personnel travel has no gold fee");
         World forest=fixture();for(int q=0;q<forest.width;q++)for(int r=0;r<forest.height;r++)if(forest.cityAt(new Hex(q,r))==null)forest.terrain[q][r]=World.Terrain.FOREST;
         ok(forest.domestic.transfer(10,20,0));int estimate=forest.domestic.eta(forest.domestic.missions.get(0)),elapsed=0;
-        while(!forest.domestic.missions.isEmpty()&&elapsed<20){next(forest);elapsed++;}check(elapsed==estimate&&elapsed>2,"weighted route ETA matches actual travel");
+        while(!forest.domestic.missions.isEmpty()&&elapsed<20){next(forest);elapsed++;}check(elapsed==estimate&&elapsed==1,"personnel cross one adjacent city per turn regardless of forest");
         World island=fixture();for(Hex h:island.city(20).hex.neighbors())island.terrain[h.q][h.r]=World.Terrain.WATER;
-        reject(island,()->island.domestic.transfer(10,20,0));reject(island,()->island.domestic.transport(10,20,0,0,1,0,new int[4]));
+        ok(island.domestic.transfer(10,20,0));next(island);check(island.officer(0).cityId==20,"personnel routes are separate from tactical water movement");reject(island,()->island.domestic.transport(10,20,0,0,1,0,new int[4]));
     }
     private static void capacity()throws Exception{
         for(int resource=0;resource<7;resource++){
@@ -106,7 +106,7 @@ public final class DomesticTest {
         World back=fixture();ok(back.domestic.transport(10,20,0,0,1000,0,new int[4]));next(back);int id=back.domestic.missions.get(0).id;
         reject(back,()->back.domestic.redirect(id,30));reject(back,()->back.domestic.redirect(id,20));
         ok(back.domestic.redirect(id,10));check(back.actionPoints[0]==50,"redirect AP cost");next(back);check(back.domestic.missions.isEmpty()&&back.officer(0).cityId==10,"return to source supported");
-        World blocked=fixture();ok(blocked.domestic.transfer(10,20,0));next(blocked);Hex before=blocked.domestic.missions.get(0).hex;
+        World blocked=fixture();ok(blocked.domestic.transport(10,20,0,0,1000,0,new int[4]));next(blocked);Hex before=blocked.domestic.missions.get(0).hex;
         for(Hex h:blocked.city(20).hex.neighbors())blocked.terrain[h.q][h.r]=World.Terrain.WATER;
         next(blocked);check(blocked.domestic.missions.get(0).hex.equals(before),"new obstruction waits without teleport");
         for(Hex h:blocked.city(20).hex.neighbors())blocked.terrain[h.q][h.r]=World.Terrain.PLAIN;next(blocked);check(blocked.officer(0).cityId==20,"reopened road resumes");
@@ -135,7 +135,7 @@ public final class DomesticTest {
         for(String file:new String[]{"/m0-v1.sg11.b64","/m1-v2.sg11.b64"}){
             byte[] original;try(InputStream in=DomesticTest.class.getResourceAsStream(file)){if(in==null)throw new IOException(file);original=Base64.getMimeDecoder().decode(in.readAllBytes());}
             check(original[7]==(file.contains("v1")?1:2),"fixture genuinely old version");World w=SaveCodec.decode(original);check(w.domestic.facilities.isEmpty()&&w.domestic.missions.isEmpty(),"legacy initializes empty strategic layer");
-            World clone=copy(w);check(SaveCodec.encode(w)[7]==22,"new writes use save v19");for(int i=0;i<5&&!w.gameOver();i++){next(w);next(clone);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(clone)),"legacy deterministic continuation");}
+            World clone=copy(w);check(SaveCodec.encode(w)[7]==24,"new writes use save v19");for(int i=0;i<5&&!w.gameOver();i++){next(w);next(clone);check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(clone)),"legacy deterministic continuation");}
         }
     }
     private static void campaigns()throws Exception{

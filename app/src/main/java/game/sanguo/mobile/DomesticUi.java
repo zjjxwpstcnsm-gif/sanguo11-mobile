@@ -16,41 +16,27 @@ final class DomesticUi {
     DomesticUi(MainActivity a,World w,Consumer<World.Result> apply,Consumer<Hex> focus){activity=a;this.w=w;this.apply=apply;this.focus=focus;}
     private void message(String title,String text){new AlertDialog.Builder(activity).setTitle(title).setMessage(text).setPositiveButton("返回",null).show();}
     private void confirm(String title,String text,String positive,Runnable run){activity.commandDialog(title,text,positive,w,run);}
-    private void officer(World.City c,Consumer<World.Officer> next){
-        List<World.Officer> options=w.idle(c);if(options.isEmpty()){message("武将不足","没有本旬可行动的在城武将。建设中与在途武将不可重复派遣。");return;}
-        new AlertDialog.Builder(activity).setTitle("执行武将").setAdapter(GameIcon.adapter(activity,w,options,o->o.name+" · 政治"+o.politics),(d,i)->next.accept(options.get(i))).setNegativeButton("取消",null).show();
-    }
+    private void officer(World.City c,Consumer<World.Officer> next){DataTable.choose(activity,w,"执行武将",w.idle(c),o->"",next,null);}
     private void destination(int owner,int excluded,Consumer<World.City> next){
         List<World.City> options=new ArrayList<>();for(World.City c:w.cities)if(c.owner==owner&&c.id!=excluded)options.add(c);
-        if(options.isEmpty()){message("目的地不足","需要另一座己方城池。");return;}
-        new AlertDialog.Builder(activity).setTitle("选择目的地").setAdapter(GameIcon.adapter(activity,w,options,c->c.name+" · 兵"+c.troops),(d,i)->next.accept(options.get(i))).setNegativeButton("取消",null).show();
+        ChoiceDialog.show(activity,w,"选择目的地",options,c->c.name+" · "+w.personnel.description(excluded,c.id),next);
     }
     void build(World.City c){
-        new AlertDialog.Builder(activity).setTitle("设施开发 · 直接最高级").setAdapter(GameIcon.adapter(activity,w,Arrays.asList(Domestic.Kind.values()),k->k.label+" · Lv"+Domestic.buildLevel(k)+" · 金"+k.cost+" · "+Domestic.buildEffect(k)),(d,i)->{
-            Domestic.Kind kind=Domestic.Kind.values()[i];officer(c,o->{
-                List<Hex> sites=w.domestic.buildSites(c.id);if(kind==Domestic.Kind.SHIPYARD)sites.removeIf(h->h.neighbors().stream().noneMatch(w.army::water));if(sites.isEmpty()){message("无法开发","没有可用开发地或已经达到本城设施上限。");return;}
-                activity.pickOnMap("建设"+kind.label+" Lv"+Domestic.buildLevel(kind),c.hex,sites,h->
-                    confirm("建设"+kind.label,c.name+" · "+o.name+"\n金"+kind.cost+" / 行动力10 / "+(o.politics>=80?2:3)+"旬\n建设期间武将不可执行其他命令。\n建成即最高等级 Lv"+Domestic.buildLevel(kind)+"："+Domestic.buildEffect(kind)+"\n取消不退费。","开工",()->apply.accept(w.domestic.build(c.id,o.id,kind,h))));
-            });
-        }).setNegativeButton("取消",null).show();
+        ChoiceDialog.show(activity,w,"设施开发 · 直接最高级",Arrays.asList(Domestic.Kind.values()),k->k.label+" · Lv"+Domestic.buildLevel(k)+" · 金"+k.cost,kind->{
+            List<Hex> sites=w.domestic.buildSites(c.id);if(kind==Domestic.Kind.SHIPYARD)sites.removeIf(h->h.neighbors().stream().noneMatch(w.army::water));if(sites.isEmpty()){message("无法开发","没有可用开发地或已达到本城设施上限。");return;}
+            activity.pickOnMap("建设"+kind.label,c.hex,sites,h->officer(c,o->confirm("建设"+kind.label,c.name+" · "+o.name+"\n金"+kind.cost+" / 行动力10 / "+(o.politics>=80?2:3)+"旬\n建成即最高等级 Lv"+Domestic.buildLevel(kind)+"："+Domestic.buildEffect(kind),"开工",()->apply.accept(w.domestic.build(c.id,o.id,kind,h)))));
+        });
     }
-    void transfer(World.City c){destination(c.owner,c.id,d->officer(c,o->{
-        List<Hex> path=w.domestic.route(c.hex,d.hex,c.owner);
-        confirm("人员调动",o.name+"："+c.name+" → "+d.name+"\n行动力10；按陆路每旬移动4点。"+(path==null?"\n当前无可用陆路。":"")+"\n在途期间不可执行其他命令。","出发",()->apply.accept(w.domestic.transfer(c.id,d.id,o.id)));
-    }));}
-    void transport(World.City c){destination(c.owner,c.id,d->officer(c,o->cargo(c,d,o,false)));}
-    void transportSea(World.City c){destination(c.owner,c.id,d->officer(c,o->cargo(c,d,o,true)));}
-    void restoreDraft(Bundle draft){
-        World.City c=w.city(draft.getInt("city")),d=w.city(draft.getInt("target"));World.Officer o=w.officer(draft.getInt("leader"));
-        if(c==null||d==null||o==null||!w.idle(c).contains(o)){activity.closeForm();message("草稿需要重新选将","目的地或武将状态已变化，请重新打开运输。");return;}
-        cargo(c,d,o,draft.getBoolean("sea"));
-    }
-    private void cargo(World.City c,World.City d,World.Officer o,boolean sea){
-        Bundle previous=new Bundle(activity.formDraft()),draft=new Bundle();draft.putString("kind","cargo");draft.putInt("city",c.id);draft.putInt("target",d.id);draft.putInt("leader",o.id);draft.putBoolean("sea",sea);draft.putBoolean("open",true);
-        boolean reusable="cargo".equals(previous.getString("kind"))&&previous.getInt("city")==c.id&&previous.getInt("target")==d.id&&previous.getInt("leader")==o.id&&previous.getBoolean("sea")==sea;
+    void transfer(World.City c){destination(c.owner,c.id,d->officer(c,o->confirm("人员调动",o.name+"："+c.name+" → "+d.name+"\n"+w.personnel.description(c.id,d.id)+"\n行动力10；在途期间不可执行其他命令。","出发",()->apply.accept(w.domestic.transfer(c.id,d.id,o.id)))));}
+    void transport(World.City c){destination(c.owner,c.id,d->cargo(c,d,false));}
+    void transportSea(World.City c){destination(c.owner,c.id,d->cargo(c,d,true));}
+    void restoreDraft(Bundle draft){World.City c=w.city(draft.getInt("city")),d=w.city(draft.getInt("target"));if(c==null||d==null||c.owner!=w.player||d.owner!=w.player){activity.closeForm();return;}cargo(c,d,draft.getBoolean("sea"));}
+    private void cargo(World.City c,World.City d,boolean sea){
+        Bundle previous=new Bundle(activity.formDraft()),draft=new Bundle();draft.putString("kind","cargo");draft.putInt("city",c.id);draft.putInt("target",d.id);draft.putBoolean("sea",sea);draft.putBoolean("open",true);
+        boolean reusable="cargo".equals(previous.getString("kind"))&&previous.getInt("city")==c.id&&previous.getInt("target")==d.id&&previous.getBoolean("sea")==sea;
         LinearLayout form=new LinearLayout(activity);form.setOrientation(LinearLayout.VERTICAL);int padding=Math.round(16*activity.getResources().getDisplayMetrics().density);form.setPadding(padding,padding,padding,padding);
-        TextView note=new TextView(activity);note.setText(o.name+"："+c.name+" → "+d.name+"\n派遣费0金、行动力10。满仓等待，不丢弃货物。\n途中可被敌军截击，护送兵归零时货物会损失。");form.addView(note);
-        List<World.Officer> candidates=new ArrayList<>(w.idle(c));candidates.removeIf(member->member.id==o.id);boolean[] selected=new boolean[candidates.size()];
+        TextView note=new TextView(activity);note.setText(c.name+" → "+d.name+"\n派遣费0金、行动力10。满仓等待，不丢弃货物。\n途中可被敌军截击，护送兵归零时货物会损失。");form.addView(note);
+        List<World.Officer> candidates=new ArrayList<>(w.idle(c));boolean[] selected=new boolean[candidates.size()];
         int[] oldCrew=reusable?previous.getIntArray("deputies"):null;for(int i=0;i<candidates.size();i++)if(oldCrew!=null)for(int id:oldCrew)if(candidates.get(i).id==id)selected[i]=true;
         Runnable[] update={()->{}};
         Button crew=new Button(activity);crew.setText("运输副将（最多2名）");form.addView(crew);
@@ -78,7 +64,7 @@ final class DomesticUi {
             String[] amounts=new String[count];boolean valid=true;for(int i=0;i<count;i++){amounts[i]=inputs[i].draftValue();valid&=inputs[i].valid();}draft.putStringArray("amounts",amounts);draft.putBoolean("returning",returning.isChecked());
             List<Integer> ids=new ArrayList<>();for(int i=0;i<selected.length;i++)if(selected[i])ids.add(candidates.get(i).id);draft.putIntArray("deputies",ids.stream().mapToInt(id->id).toArray());activity.rememberForm(draft);
             int soldiers=inputs[2].value(),food=inputs[1].value();int ration=Math.max(0,(soldiers+19)/20);
-            summary.setText(valid?"主将 "+o.name+" · 副将"+ids.size()+"人\n留守：兵"+(c.troops-soldiers)+" / 粮"+(c.food-food)+" / 金"+(c.gold-inputs[0].value())+"\n运输携粮约"+(ration==0?"不限":food/ration)+"旬 · 当前船型走舸\n目标余量：兵"+Math.max(0,w.campaign.troopCap(d)-d.troops)+" / 粮"+Math.max(0,w.campaign.foodCap(d)-d.food):"草稿数量超出当前库存或容量，请修改标红输入。");
+            summary.setText(valid?"最后选择主将 · 副将"+ids.size()+"人\n留守：兵"+(c.troops-soldiers)+" / 粮"+(c.food-food)+" / 金"+(c.gold-inputs[0].value())+"\n运输携粮约"+(ration==0?"不限":food/ration)+"旬 · 当前船型走舸\n目标余量：兵"+Math.max(0,w.campaign.troopCap(d)-d.troops)+" / 粮"+Math.max(0,w.campaign.foodCap(d)-d.food):"草稿数量超出当前库存或容量，请修改标红输入。");
             if(dialog.isShowing())dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(valid);
         };
         for(QuantityControl input:inputs)input.onChange(update[0]);returning.setOnCheckedChangeListener((button,checked)->update[0].run());
@@ -86,6 +72,8 @@ final class DomesticUi {
             int[] values=new int[count];try{for(int i=0;i<count;i++){if(!inputs[i].valid())return;values[i]=inputs[i].value();}}
             catch(NumberFormatException e){Toast.makeText(activity,"请输入有效的非负整数",Toast.LENGTH_SHORT).show();return;}
             List<Integer> ids=new ArrayList<>();for(int i=0;i<selected.length;i++)if(selected[i])ids.add(candidates.get(i).id);int[] deputies=ids.stream().mapToInt(i->i).toArray();int[] equipment=Arrays.copyOfRange(values,3,equipmentEnd);
+            List<World.Officer> leaders=new ArrayList<>(w.idle(c));leaders.removeIf(member->ids.contains(member.id));
+            DataTable.choose(activity,w,"选择运输主将",leaders,member->"",o->{
             String error=w.domestic.transportError(c.id,d.id,o.id,deputies,values[0],values[1],values[2],equipment,sea);
             String preview=w.domestic.transportPreview(c.id,d.id,o.id,deputies,values[0],values[1],values[2],equipment,sea,returning.isChecked());
             int[] ships=Arrays.copyOfRange(values,equipmentEnd,count);String shipError=w.domestic.shipCargoError(c.id,ships);if(error!=null||shipError!=null){message("运输不能执行",shipError==null?preview:shipError);return;}
@@ -94,6 +82,7 @@ final class DomesticUi {
             confirm(large?"确认大额运输":"确认运输",o.name+"："+c.name+" → "+d.name+"\n金 "+values[0]+" / 粮 "+values[1]+" / 兵 "+values[2]+"\n"+preview+shipPreview,"确认发送",()->{
                 World.Result result=w.domestic.transport(c.id,d.id,o.id,deputies,values[0],values[1],values[2],equipment,sea,returning.isChecked(),ships);apply.accept(result);if(result.ok){activity.closeForm();dialog.dismiss();}
             });
+            },null);
         }));dialog.show();update[0].run();activity.trackDialog(dialog);dialog.getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN|android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
     void overview(){

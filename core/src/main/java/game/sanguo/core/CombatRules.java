@@ -58,8 +58,8 @@ public final class CombatRules {
         return (40+w.army.leadership(u))*aptitudeFactor(u)*(u instanceof Domestic.Mission?.5:1)
             *(water?u.ship.power/100.0:defenseFactor(u.weapon)*terrainDefense(w.terrain[u.hex.q][u.hex.r]));
     }
-    private static double terrainAttack(World.Terrain t){return t==World.Terrain.FOREST?.95:t==World.Terrain.MOUNTAIN?.9:1;}
-    private static double terrainDefense(World.Terrain t){return t==World.Terrain.FOREST?1.2:t==World.Terrain.MOUNTAIN?1.25:1;}
+    private static double terrainAttack(World.Terrain t){if(t==World.Terrain.SWAMP)return 0.85;return t==World.Terrain.FOREST?.95:t==World.Terrain.MOUNTAIN?.9:1;}
+    private static double terrainDefense(World.Terrain t){if(t==World.Terrain.SWAMP)return 0.9;return t==World.Terrain.FOREST?1.2:t==World.Terrain.MOUNTAIN?1.25:1;}
     private static boolean advantage(World.Weapon a,World.Weapon b){return a==World.Weapon.SPEAR&&b==World.Weapon.CAVALRY||a==World.Weapon.CAVALRY&&b==World.Weapon.HALBERD||a==World.Weapon.HALBERD&&b==World.Weapon.SPEAR;}
     private static double matchup(World.Weapon a,World.Weapon b){return advantage(a,b)?1.25:advantage(b,a)?.90:1;}
     public int physicalDamage(World.Unit a,World.Unit b,double scale,boolean tactic,Random rng){return new Physical(a,b,scale,tactic).roll(rng);}

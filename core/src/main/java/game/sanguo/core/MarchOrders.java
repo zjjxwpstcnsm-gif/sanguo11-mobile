@@ -130,13 +130,48 @@ public final class MarchOrders {
         byte[] state=null;if(problem==null&&snapshot)try{state=SaveCodec.encode(w);}catch(IOException e){problem="局面无法保存："+e.getMessage();}
         return new Plan(u==null?-1:u.id,o,destination,label(o),path,cost,stepsNow,turns,problem,state);
     }
-    public World.Result execute(Plan plan){
-        if(plan==null||!plan.valid()||plan.snapshot==null)return w.fail(plan==null?"请先选择行军目标":plan.error==null?"请重新预览路线":plan.error);
-        try{if(!Arrays.equals(plan.snapshot,SaveCodec.encode(w)))return w.fail("局面已变化，请重新预览路线");}catch(IOException e){return w.fail("局面校验失败");}
-        World.Unit u=w.unit(plan.unitId);String problem=error(u);if(problem!=null)return w.fail(problem);
-        if(u instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)u;if(plan.order.kind==Kind.CITY&&plan.order.owner==u.owner){String permission=w.districts.dispatchError(m.sourceCity,plan.order.targetId,true);if(permission!=null)return w.fail(permission);m.targetCity=plan.order.targetId;m.stopped=false;}else m.stopped=true;}
-        u.march=new Order(plan.order.kind,plan.order.tile,plan.order.targetId,plan.order.owner);advance(u);
-        return w.success(w.officer(u.officerId).name+" · "+(u.march==null?"已抵达目标附近，可继续下令":u.march.paused.isEmpty()?"向"+label(u.march)+"行军，下旬自动继续":"行军暂停："+u.march.paused));
+    public World.Result execute(Plan plan) {
+        String string;
+        if (plan == null || !plan.valid() || plan.snapshot == null) {
+            return this.w.fail(plan == null ? "请先选择行军目标" : plan.error == null ? "请重新预览路线" : plan.error);
+        }
+        try {
+            if (!Arrays.equals(plan.snapshot, SaveCodec.encode(this.w))) {
+                return this.w.fail("局面已变化，请重新预览路线");
+            }
+            World.Unit u = this.w.unit(plan.unitId);
+            String problem = error(u);
+            if (problem != null) {
+                return this.w.fail(problem);
+            }
+            if (u instanceof Domestic.Mission) {
+                Domestic.Mission m = (Domestic.Mission) u;
+                if (plan.order.kind == Kind.CITY && plan.order.owner == u.owner) {
+                    String permission = this.w.districts.dispatchError(m.sourceCity, plan.order.targetId, true);
+                    if (permission != null) {
+                        return this.w.fail(permission);
+                    }
+                    m.targetCity = plan.order.targetId;
+                    m.stopped = false;
+                } else {
+                    m.stopped = true;
+                }
+            }
+            u.march = new Order(plan.order.kind, plan.order.tile, plan.order.targetId, plan.order.owner);
+            advance(u);
+            World world = this.w;
+            String str = this.w.officer(u.officerId).name;
+            if (this.w.unit(u.id) == null) {
+                string = "已入驻据点";
+            } else if (u.march == null) {
+                string = "已抵达目标附近，可继续下令";
+            } else {
+                string = (u.march.paused.isEmpty() ? new StringBuilder().append("向").append(label(u.march)).append("行军，下旬自动继续") : new StringBuilder().append("行军暂停：").append(u.march.paused)).toString();
+            }
+            return world.success(str + " · " + string);
+        } catch (IOException e) {
+            return this.w.fail("局面校验失败");
+        }
     }
     public World.Result stop(int id){
         World.Unit u=w.unit(id);if(u==null||u.owner!=w.active||w.commandsBlocked())return w.fail("当前不能变更行军指令");
@@ -149,21 +184,50 @@ public final class MarchOrders {
         if(w.gameOver())return;
         for(World.Unit u:new ArrayList<>(w.units))if(u.owner==w.active&&u.march!=null)advance(u);
     }
-    void advance(World.Unit u){
-        Order order=u.march;if(order==null)return;
-        if(u.acted){order.paused="本旬已行动，下旬继续";return;}
-        if(u.status!=War.Status.NORMAL){order.paused="异常状态，恢复后继续";return;}
-        Plan route=plan(u,order,false);
-        if(!route.valid()){order.paused=route.error;w.note(w.officer(u.officerId).name+"行军暂停："+route.error);return;}
-        order.paused="";
-        if(route.stepsNow>0){
-            UnitOrders.MovePlan movement=w.orders.previewMove(u.id,route.path.get(route.stepsNow));
-            // Use the chosen route itself: the tactical planner may choose a shorter path through fire.
-            World.Result moved=w.orders.executeRoute(movement,route.path.subList(0,route.stepsNow+1));
-            if(!moved.ok){order.paused=moved.message;u.march=order;return;}
-            u.march=order;
+    void advance(World.Unit u) {
+        Order order = u.march;
+        if (order == null) {
+            return;
         }
-        if(u.hex.equals(route.path.get(route.path.size()-1))){u.march=null;w.note(w.officer(u.officerId).name+"抵达"+route.label+"附近，请选择下一道命令");}
+        if (u.acted) {
+            order.paused = "本旬已行动，下旬继续";
+            return;
+        }
+        if (u.status != War.Status.NORMAL) {
+            order.paused = "异常状态，恢复后继续";
+            return;
+        }
+        Plan route = plan(u, order, false);
+        if (!route.valid()) {
+            order.paused = route.error;
+            this.w.note(this.w.officer(u.officerId).name + "行军暂停：" + route.error);
+            return;
+        }
+        order.paused = "";
+        if (route.stepsNow > 0) {
+            UnitOrders.MovePlan movement = this.w.orders.previewMove(u.id, route.path.get(route.stepsNow));
+            World.Result moved = this.w.orders.executeRoute(movement, route.path.subList(0, route.stepsNow + 1));
+            if (!moved.ok) {
+                order.paused = moved.message;
+                u.march = order;
+                return;
+            }
+            u.march = order;
+        }
+        if (u.hex.equals(route.path.get(route.path.size() - 1))) {
+            if (!(u instanceof Domestic.Mission) && order.kind == Kind.CITY && this.w.city(order.targetId).owner == u.owner) {
+                World.Result entered = this.w.enter(u.id, order.targetId);
+                if (entered.ok) {
+                    u.march = null;
+                    return;
+                } else {
+                    order.paused = entered.message;
+                    return;
+                }
+            }
+            u.march = null;
+            this.w.note(this.w.officer(u.officerId).name + "抵达" + route.label + "附近，请选择下一道命令");
+        }
     }
     void write(DataOutputStream d)throws IOException {
         int count=0;for(World.Unit u:w.units)if(u.march!=null)count++;d.writeInt(count);

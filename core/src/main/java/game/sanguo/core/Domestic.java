@@ -215,7 +215,7 @@ public final class Domestic {
         if(cargo&&w.districts.reserveError(c,gold,food,troops)!=null)return w.districts.reserveError(c,gold,food,troops);
         for(int i=0;i<equipment.length;i++)if(c.equipment[i]<equipment[i])return "兵装库存不足";
 
-        if(cargo){Mission probe=new Mission(0,c.owner,officer,source,target,c.hex,true,gold,food,troops,equipment);probe.sea=sea;MarchOrders.Plan plan=routePlan(probe);if(!plan.valid())return plan.error;}else if(route(c.hex,d.hex,w.active,sea)==null)return "没有可用运输路线";
+        if(cargo){Mission probe=new Mission(0,c.owner,officer,source,target,c.hex,true,gold,food,troops,equipment);probe.sea=sea;MarchOrders.Plan plan=routePlan(probe);if(!plan.valid())return plan.error;}else if(w.personnel.turns(source,target)<0)return "没有可用人员路线";
         if(nextMissionId>=10000000)return "任务编号已达上限";
         return null;
     }
@@ -254,7 +254,7 @@ public final class Domestic {
         String permission=w.districts.dispatchError(m.sourceCity,target,m.transport);if(permission!=null)return w.fail(permission);
         Districts.District control=w.districts.city(m.sourceCity);
         if(control!=null&&control.owner==w.player&&!w.districts.directCity(m.sourceCity))return w.fail("委任军团任务请先调整军团方针或撤销托管");
-        if(route(m.hex,c.hex,m.owner,m.sea)==null)return w.fail("没有可用路线");
+        if(m.transport?route(m.hex,c.hex,m.owner,m.sea)==null:w.personnel.turns(m.hex,target)<0)return w.fail("没有可用路线");
         w.actionPoints[w.active]-=10;m.targetCity=target;m.stopped=false;m.march=null;if(target==m.sourceCity)m.returnOfficers=false;return w.success("任务已改道至"+c.name);
     }
     private static final class Step {final Hex h;final int cost;Step(Hex h,int c){this.h=h;cost=c;}}
@@ -273,24 +273,38 @@ public final class Domestic {
             Step s=open.remove();if(s.cost!=distance.get(s.h))continue;
             if(s.h.equals(to)){LinkedList<Hex> result=new LinkedList<>();Hex h=to;while(!h.equals(from)){result.addFirst(h);h=previous.get(h);}return result;}
             for(Hex h:s.h.neighbors()){
-                int cost=travelCost(h,owner,sea);if(cost<0)continue;int total=s.cost+cost;
+                int cost=travelCost(h,owner,sea);if(cost<0||!w.army.water(s.h)&&!w.army.water(h)&&w.gateBlocks(owner,s.h,h))continue;int total=s.cost+cost;
                 if(total<distance.getOrDefault(h,Integer.MAX_VALUE)){distance.put(h,total);previous.put(h,s.h);open.add(new Step(h,total));}
             }
         }
         return null;
     }
-    public int eta(Mission m){
-        World.City c=w.city(m.targetCity);if(c==null||c.owner!=m.owner)return -1;
-        if(m.transport){MarchOrders.Plan p=routePlan(m);return p.valid()?Math.max(1,p.estimatedTurns+1):-1;}
-        List<Hex> path=route(m.hex,c.hex,m.owner,m.sea);if(path==null)return -1;
-        return estimate(path,m);
+    public int eta(Mission m) {
+        World.City c = this.w.city(m.targetCity);
+        if (c == null || c.owner != m.owner) {
+            return -1;
+        }
+        if (!m.transport) {
+            return this.w.personnel.turns(m.hex, c.id);
+        }
+        MarchOrders.Plan p = routePlan(m);
+        if (p.valid()) {
+            return Math.max(1, p.estimatedTurns + 1);
+        }
+        return -1;
     }
-    public int deliverableEta(Mission m){
-        World.City c=w.city(m.targetCity);if(c==null||c.owner!=m.owner||!fits(m,c)||m.stopped)return -1;
-        if(m.transport)return threatReason(m)==null?eta(m):-1;
-        List<Hex> path=route(m.hex,c.hex,m.owner,m.sea);if(path==null)return -1;
-        if(m.transport)for(Hex h:path){World.Unit enemy=w.unitAt(h);if(enemy!=null&&w.campaign.hostile(m.owner,enemy.owner))return -1;}
-        return estimate(path,m);
+    public int deliverableEta(Mission m) {
+        World.City c = this.w.city(m.targetCity);
+        if (c == null || c.owner != m.owner || !fits(m, c) || m.stopped) {
+            return -1;
+        }
+        if (!m.transport) {
+            return this.w.personnel.turns(m.hex, c.id);
+        }
+        if (threatReason(m) == null) {
+            return eta(m);
+        }
+        return -1;
     }
     private int estimate(List<Hex> path,Mission m){int turns=0,budget=0;for(Hex h:path){int cost=travelCost(h,m.owner,m.sea);if(budget<cost){turns++;budget=travelSpeed(m);}budget-=cost;}return turns;
     }
@@ -326,14 +340,14 @@ public final class Domestic {
             World.City c=w.city(m.targetCity);
             if(c.owner!=m.owner){
                 World.City best=null;int bestCost=Integer.MAX_VALUE;
-                for(World.City d:w.cities)if(d.owner==m.owner){List<Hex> path=route(m.hex,d.hex,m.owner,m.sea);if(path==null)continue;int cost=0;for(Hex h:path)cost+=travelCost(h,m.owner,m.sea);
+                for(World.City d:w.cities)if(d.owner==m.owner){int cost;
+                    if(m.transport){List<Hex> path=route(m.hex,d.hex,m.owner,m.sea);if(path==null)continue;cost=0;for(Hex h:path)cost+=travelCost(h,m.owner,m.sea);}
+                    else {cost=w.personnel.turns(m.hex,d.id);if(cost<0)continue;}
                     if(cost<bestCost||(cost==bestCost&&(best==null||d.id<best.id))){best=d;bestCost=cost;}}
                 if(best==null)continue;m.targetCity=best.id;m.march=null;c=best;w.note(w.officer(m.officerId).name+"因目的地失守改道至"+c.name);
             }
             if(m.transport){advanceTransport(m);continue;}
-            List<Hex> path=route(m.hex,c.hex,m.owner,m.sea);if(path==null)continue;
-            int budget=travelSpeed(m);
-            for(Hex h:path){int cost=travelCost(h,m.owner,m.sea);if(cost>budget)break;budget-=cost;m.hex=h;}
+            m.hex=w.personnel.next(m.hex,c.id);
             if(m.hex.equals(c.hex)&&fits(m,c))deliver(m,c);
 
         }

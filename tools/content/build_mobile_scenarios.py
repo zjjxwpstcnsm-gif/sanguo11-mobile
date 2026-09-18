@@ -103,6 +103,14 @@ def generate(scenario_id, title, city_ids, people_count, check=False):
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument("--check",action="store_true");args=parser.parse_args()
+    # v40's delivered maps are the authoritative curated snapshot; the generator below predates it.
+    if (ROOT/'tools/content/map-v040-manifest.json').exists():
+        if not args.check:
+            parser.error('The v40 maps are curated snapshots. Edit and review their source data and manifest; this legacy generator must not overwrite them.')
+        import runpy
+        runpy.run_path(str(ROOT/'scripts/verify-map-release.py'))['verify']()
+        return
+
     # Separate scenarios offer short regional sessions and a much larger campaign.
     entries=[generate('heroes-mobile-sandbox','群英汇聚 · 自制',range(20000,20042),670,args.check),
              generate('central-mobile-sandbox','中原竞逐 · 自制',list(range(20008,20019))+list(range(20022,20029)),180,args.check),

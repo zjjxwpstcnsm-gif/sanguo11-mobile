@@ -148,36 +148,50 @@ public final class Strategy {
         }
         return new SearchResult(w.success(o.name+"搜索结束，未有发现"),SearchOutcome.NOTHING,-1,0);
     }
-    public boolean canRecruitTarget(int cityId,int targetId) {
-        World.City c=w.city(cityId);World.Officer t=w.officer(targetId);
-        if(c==null||c.owner!=w.active||t==null||t.owner==c.owner||t.unitId>=0||busy(t.id)||w.domestic.busy(t.id))return false;
-        if(w.relations.loyalBond(targetId))return false;
-        if(t.owner==-1)return t.cityId==c.id&&t.role==Role.UNAFFILIATED;
-        World.City source=w.city(t.cityId);
-        return !t.acted&&t.role!=Role.RULER&&t.loyalty<=MAX_ENEMY_LOYALTY&&source!=null&&source.owner==t.owner&&source.hex.distance(c.hex)<=RECRUIT_RANGE;
+    public boolean canRecruitTarget(int cityId, int targetId) {
+        World.City c = this.w.city(cityId);
+        return c != null && c.owner == this.w.active && recruitable(c.owner, targetId) && !this.w.recruitment.pending(c.owner, targetId);
     }
     public List<World.Officer> recruitmentTargets(int cityId) {
         List<World.Officer> result=new ArrayList<>();
         for(World.Officer o:w.officers)if(canRecruitTarget(cityId,o.id))result.add(o);
-        result.sort(Comparator.comparingInt(o->o.id));return result;
+        result.sort(Comparator.comparingInt((World.Officer o)->w.recruitment.travelTurns(cityId,o.id)).thenComparingInt(o->o.id));
+        return result;
     }
-    public int recruitmentChance(int cityId,int officerId,int targetId) {
-        World.Officer o=w.officer(officerId),target=w.officer(targetId);
-        if(o==null||!canRecruitTarget(cityId,targetId)||w.relations.refuses(targetId,officerId,w.active))return 0;
-        return Math.min(100,w.relations.recruitmentBonus(targetId,officerId,w.active)+StrategyRules.recruitmentChance(o.charm,o.politics,target.loyalty,target.owner<0,
-                target.owner<0?0:factionRelation(w.city(cityId).owner,target.owner)));
+    public int recruitmentChance(int cityId, int officerId, int targetId) {
+        World.City city = this.w.city(cityId);
+        if (city == null) {
+            return 0;
+        }
+        return recruitChance(city.owner, officerId, targetId);
     }
-    public World.Result recruitOfficer(int cityId,int officerId,int targetId) {
-        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,HIRE_COST);
-        if(error!=null)return w.fail(error);
-        if(!canRecruitTarget(cityId,targetId))return w.fail("目标须为本城在野武将，或六格内未行动、忠诚不高于60的敌方非君主闲将");
-        World.Officer target=w.officer(targetId);int chance=recruitmentChance(cityId,officerId,targetId);
-        if(w.relations.refuses(targetId,officerId,c.owner))return w.fail("目标因结义、配偶或厌恶关系拒绝登用");
-        w.spend(c,o,HIRE_COST);
-        if(!StrategyRules.succeeds(chance,nextInt(100)))return w.success(o.name+"登用"+target.name+"未成功（成功率"+chance+"%）");
-        releaseGovernor(target.id);w.government.allegianceChanged(target.id);target.owner=c.owner;target.cityId=c.id;target.role=Role.OFFICER;
-        target.loyalty=Math.min(100,60+o.charm/10+o.politics/5);target.lastRewardTurn=-1;target.acted=true;
-        return w.success(target.name+"加入"+w.faction(c.owner)+"，本旬休整");
+    public World.Result recruitOfficer(int cityId, int officerId, int targetId) {
+        World.City c = this.w.city(cityId);
+        World.Officer o = this.w.officer(officerId);
+        String error = this.w.cityError(c, o, 100);
+        if (error != null) {
+            return this.w.fail(error);
+        }
+        if (!canRecruitTarget(cityId, targetId)) {
+            return this.w.fail("目标须为已登场、未被俘或执行任务的在野武将或其他势力非君主武将；不能重复派遣");
+        }
+        World.Officer target = this.w.officer(targetId);
+        int chance = recruitmentChance(cityId, officerId, targetId);
+        if (this.w.relations.refuses(targetId, officerId, c.owner)) {
+            return this.w.fail("目标因结义、配偶或厌恶关系拒绝登用");
+        }
+        if (chance == 0) {
+            return this.w.fail("当前登用成功率为0，请先改善关系或降低目标忠诚");
+        }
+        this.w.spend(c, o, 100);
+        if (target.cityId != cityId) {
+            return this.w.recruitment.start(c, o, target);
+        }
+        if (!StrategyRules.succeeds(chance, nextInt(100))) {
+            return this.w.success(o.name + "登用" + target.name + "未成功（成功率" + chance + "%）");
+        }
+        join(o, target, c.id);
+        return this.w.success(target.name + "加入" + this.w.faction(c.owner) + "，本旬休整");
     }
     public World.Result rewardOfficer(int cityId,int officerId,int targetId) {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,REWARD_COST);
@@ -214,7 +228,7 @@ public final class Strategy {
     }
     void cityCaptured(int cityId) {
         World.City c=w.city(cityId);if(c.governorId>=0)releaseGovernor(c.governorId);
-        for(World.Officer o:w.officers)if(o.cityId==cityId&&o.owner!=c.owner){o.otherTaskTurns=0;o.otherTask="";}
+        for(World.Officer o:w.officers)if(o.cityId==cityId&&o.owner!=c.owner&&!w.recruitment.returning(o)){o.otherTaskTurns=0;o.otherTask="";}
     }
     /** Deterministic migration/default leadership. Does not auto-appoint a governor or invent talent. */
     void initializeOffices() {
@@ -235,15 +249,31 @@ public final class Strategy {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);
         return c==null||o==null?0:Math.min(c.recruitReserve,StrategyRules.enlistment(w.domestic.recruitAmount(cityId),c.order,o.charm,c.recruitReserve)*(w.skills.has(o,Skill.MINGSHENG)?150:100)/100);
     }
-    public World.Result recruitSoldiers(int cityId,int officerId) {
-        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,RECRUIT_COST);
-        if(error!=null)return w.fail(error);
-        if(c.order<30)return w.fail("治安低于30，先执行巡察");
-        if(c.recruitReserve<=0)return w.fail("本城兵源已耗尽");
-        int amount=recruitAmount(cityId,officerId);
-        if(amount<=0||c.troops>w.campaign.troopCap(c)-amount)return w.fail("城池兵力已接近上限");
-        w.spend(c,o,RECRUIT_COST);c.recruitReserve-=amount;c.troops+=amount;c.order=Math.max(0,c.order-w.campaign.orderLoss(c.owner,w.skills.has(o,Skill.MINGSHENG)?7:5));
-        return w.success(c.name+"征得"+amount+"兵，治安−5，兵源剩余"+c.recruitReserve);
+    public World.Result recruitSoldiers(int cityId, int officerId) {
+        World.City c = this.w.city(cityId);
+        World.Officer o = this.w.officer(officerId);
+        String error = this.w.cityError(c, o, RECRUIT_COST);
+        if (error != null) {
+            return this.w.fail(error);
+        }
+        if (c.kind != World.SiteKind.CITY) {
+            return this.w.fail("港口和关卡不能征兵，请从城市运输兵员");
+        }
+        if (c.order < 30) {
+            return this.w.fail("治安低于30，先执行巡察");
+        }
+        if (c.recruitReserve <= 0) {
+            return this.w.fail("本城兵源已耗尽");
+        }
+        int amount = recruitAmount(cityId, officerId);
+        if (amount <= 0 || c.troops > this.w.campaign.troopCap(c) - amount) {
+            return this.w.fail("城池兵力已接近上限");
+        }
+        this.w.spend(c, o, RECRUIT_COST);
+        c.recruitReserve -= amount;
+        c.troops += amount;
+        c.order = Math.max(0, c.order - this.w.campaign.orderLoss(c.owner, this.w.skills.has(o, Skill.MINGSHENG) ? 7 : 5));
+        return this.w.success(c.name + "征得" + amount + "兵，治安−5，兵源剩余" + c.recruitReserve);
     }
     public int getArmyReadiness(int cityId) {
         World.City c=w.city(cityId);if(c==null)throw new IllegalArgumentException("城池不存在");return c.morale;
@@ -270,4 +300,36 @@ public final class Strategy {
     void write(DataOutputStream out)throws IOException { StrategySave.write(this,out); }
     void read(DataInputStream in)throws IOException { StrategySave.read(this,in); }
     void validate()throws IOException { StrategySave.validate(this); }
+boolean recruitable(int owner, int targetId) {
+        World.Officer t = this.w.officer(targetId);
+        if (t == null || !this.w.life.present(t.id) || t.owner == owner || t.unitId >= 0 || busy(t.id) || this.w.domestic.busy(t.id) || this.w.city(t.cityId) == null || this.w.relations.loyalBond(targetId) || t.role == Role.RULER) {
+            return false;
+        }
+        if (t.owner < 0) {
+            if (t.role != Role.UNAFFILIATED) {
+                return false;
+            }
+        } else if (this.w.city(t.cityId).owner != t.owner) {
+            return false;
+        }
+        return true;
+    }
+int recruitChance(int owner, int officerId, int targetId) {
+        World.Officer o = this.w.officer(officerId);
+        World.Officer target = this.w.officer(targetId);
+        if (o == null || !recruitable(owner, targetId) || this.w.relations.refuses(targetId, officerId, owner)) {
+            return 0;
+        }
+        return Math.max(0, Math.min(100, this.w.relations.recruitmentBonus(targetId, officerId, owner) + StrategyRules.recruitmentChance(o.charm, o.politics, target.loyalty, target.owner < 0, target.owner < 0 ? 0 : factionRelation(owner, target.owner))));
+    }
+void join(World.Officer actor, World.Officer target, int city) {
+        releaseGovernor(target.id);
+        this.w.government.allegianceChanged(target.id);
+        target.owner = actor.owner;
+        target.cityId = city;
+        target.role = Role.OFFICER;
+        target.loyalty = Math.min(100, (actor.charm / 10) + 60 + (actor.politics / 5));
+        target.lastRewardTurn = -1;
+        target.acted = true;
+    }
 }

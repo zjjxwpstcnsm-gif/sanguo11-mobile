@@ -72,7 +72,7 @@ public final class FacilityCombatTest {
     static void migration()throws Exception{
         try(java.io.InputStream in=FacilityCombatTest.class.getResourceAsStream("/save-v17-facility.sg11")){
             check(in!=null,"real pre-change v17 fixture exists");World w=SaveCodec.read(in);Domestic.Facility f=w.domestic.facilities.get(0);
-            check(f.hp==1000&&f.level==3,"v17 existing facility keeps level and gains full durability");check(bytes(w)[7]==22,"writer uses v19");
+            check(f.hp==1000&&f.level==3,"v17 existing facility keeps level and gains full durability");check(bytes(w)[7]==24,"writer uses v19");
             f.hp=234;check(SaveCodec.decode(bytes(w)).domestic.facility(f.id).hp==234,"migrated facility can be damaged and reloaded");
             f.hp=0;try{bytes(w);throw new AssertionError("zero hp should be removed");}catch(java.io.IOException expected){checks++;}
         }

@@ -1,11 +1,12 @@
 package game.sanguo.core;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 /** Engineering rules, NOT original SAN11 formulas. All commands validate before mutation. */
 public final class World {
     public enum Sex { UNKNOWN, MALE, FEMALE }
-    public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER, MOUNTAIN_PATH, SHALLOWS, PLANK_ROAD, POISON, SEA, VOID }
+    public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER, MOUNTAIN_PATH, SHALLOWS, PLANK_ROAD, POISON, SEA, VOID, SWAMP, DAM }
     public enum SiteKind { CITY, GATE, PORT }
     public enum Weapon {
         SPEAR("枪兵",4,1,115), HALBERD("戟兵",3,1,105), CROSSBOW("弩兵",3,2,95), CAVALRY("骑兵",6,1,120),
@@ -84,7 +85,24 @@ public final class World {
         @Override public Officer remove(int i){Officer old=values.remove(i);dirty=true;modCount++;return old;}
         Officer byId(int id){if(dirty){ids.clear();for(Officer o:values)ids.putIfAbsent(o.id,o);dirty=false;}return ids.get(id);}
     }
-    public final List<City> cities=new ArrayList<>();
+    private static final class CityRoster extends AbstractList<City> implements RandomAccess {
+        private final List<City> values=new ArrayList<>();
+        private final Map<Integer,City> ids=new HashMap<>();
+        private final Map<Hex,City> positions=new HashMap<>();
+        private final Map<Hex,List<City>> neighbors=new HashMap<>();
+        private boolean dirty=true;
+        public City get(int i){return values.get(i);}
+        public int size(){return values.size();}
+        public void add(int i,City c){values.add(i,c);dirty=true;modCount++;}
+        public City set(int i,City c){City old=values.set(i,c);dirty=true;return old;}
+        public City remove(int i){City old=values.remove(i);dirty=true;modCount++;return old;}
+        private void index(){if(!dirty)return;ids.clear();positions.clear();neighbors.clear();
+            for(City c:values){ids.putIfAbsent(c.id,c);positions.putIfAbsent(c.hex,c);for(Hex h:c.hex.neighbors())neighbors.computeIfAbsent(h,k->new ArrayList<>()).add(c);}dirty=false;}
+        City byId(int id){index();return ids.get(id);}
+        City at(Hex h){index();return positions.get(h);}
+        List<City> near(Hex h){index();return neighbors.getOrDefault(h,Collections.emptyList());}
+    }
+    public final List<City> cities=new CityRoster();
     public final List<Officer> officers=new OfficerRoster();
     public final List<Unit> units=new ArrayList<>();
     public final List<String> log=new ArrayList<>();
@@ -92,6 +110,10 @@ public final class World {
     public final Domestic domestic=new Domestic(this);
     public final Development development=new Development(this);
     public final Strategy strategy=new Strategy(this);
+    public final PersonnelTravel personnel=new PersonnelTravel(this);
+    public final Recruitment recruitment=new Recruitment(this);
+    public final Envoys envoys=new Envoys(this);
+    public int terrainRevision;
     public final Campaign campaign=new Campaign(this);
     public final Diplomacy diplomacy=new Diplomacy(this);
     public final War war=new War(this);
@@ -133,21 +155,27 @@ public final class World {
     public String date() { int month=startMonth-1+turn/3;return (startYear+month/12)+"年 "+(month%12+1)+"月 "+new String[]{"上旬","中旬","下旬"}[turn%3]; }
     public String faction(int owner) { return owner>=0&&owner<factions.length?factions[owner]:"空城"; }
     public boolean alive(int owner) {
-        for(City c:cities)if(c.owner==owner)return true;
-        for(Unit u:units)if(u.owner==owner)return true;
+        if (owner < 0 || owner >= this.factions.length) {
+            return false;
+        }
+        for (City c : this.cities) {
+            if (c.owner == owner && c.kind == SiteKind.CITY) {
+                return true;
+            }
+        }
         return false;
     }
     public boolean commandsBlocked(){return contests.busy()||life.pending();}
     public boolean gameOver() { return winner>=0||!alive(player); }
     public City home() { for(City c:cities)if(c.owner==player)return c;return cities.isEmpty()?null:cities.get(0); }
     public boolean inside(Hex h) { return h!=null&&h.q>=0&&h.r>=0&&h.q<width&&h.r<height&&terrain[h.q][h.r]!=Terrain.VOID; }
-    public City city(int id) { for(City c:cities) if(c.id==id) return c;return null; }
+    public City city(int id){return ((CityRoster)cities).byId(id);}
     public Officer officer(int id) { return ((OfficerRoster)officers).byId(id); }
     public Unit unit(int id) { for(Unit u:units) if(u.id==id) return u;
         if(id>=10000000){Domestic.Mission m=domestic.mission(id);if(m!=null&&m.transport)return m;}return null; }
     /** Read-only union; mission and battlefield refer to the same cargo object. */
     public List<Unit> fieldUnits(){List<Unit> all=new ArrayList<>(units);for(Domestic.Mission m:domestic.missions)if(m.transport&&!m.legacyOverlap&&cityAt(m.hex)==null)all.add(m);return all;}
-    public City cityAt(Hex h) { for(City c:cities) if(c.hex.equals(h)) return c;return null; }
+    public City cityAt(Hex h){return ((CityRoster)cities).at(h);}
     public Unit unitAt(Hex h) {for(Unit u:units)if(u.hex.equals(h))return u;for(Domestic.Mission m:domestic.missions)if(m.transport&&!m.legacyOverlap&&m.hex.equals(h)&&cityAt(h)==null)return m;return null;}
     // Transient command feedback, never serialized or inferred by parsing translated log text.
     private Feedback feedback=Feedback.NONE;
@@ -179,13 +207,14 @@ public final class World {
         if(commandsBlocked())return "请先完成当前对局或君主继承";
         if(gameOver())return "本局已结束";
         if(c==null||c.owner!=active)return "请选择己方城池";
+        if(envoys.resolving(o==null?-1:o.id))return o!=null&&o.owner==c.owner&&o.unitId<0&&!government.captive(o.id)?null:"使者状态变化";
         if(!districts.directCity(c.id))return "该据点由委任军团管理，请先重编或撤销军团";
         if(!available(o,c))return "需要一名本旬尚未行动的在城武将";
         if(actionPoints[active]<10)return "行动力不足10";
         if(c.gold<gold)return "金不足";
         return null;
     }
-    void spend(City c,Officer o,int gold) { c.gold-=gold;actionPoints[active]-=10;o.acted=true;government.earn(o.id,100); }
+    void spend(City c,Officer o,int gold) { if(envoys.resolving(o.id))return; c.gold-=gold;actionPoints[active]-=10;o.acted=true;government.earn(o.id,100); }
     /** Compatibility entry points: UI, AI and callers share the strategy rules. */
     public Result recruit(int cityId,int officerId) { return strategy.recruitSoldiers(cityId,officerId); }
     public Result train(int cityId,int officerId) { return strategy.trainArmy(cityId,officerId); }
@@ -194,6 +223,7 @@ public final class World {
     public Result produce(int cityId,int officerId,Weapon weapon) {
         City c=city(cityId);Officer o=officer(officerId);int gold=skills.productionGold(officerId,weapon);String error=cityError(c,o,gold);
         if(error!=null)return fail(error);
+        if(c.kind!=SiteKind.CITY)return fail("港口和关卡不能生产军备");
         if(districts.productionError(cityId)!=null)return fail(districts.productionError(cityId));
         if(weapon==null||weapon==Weapon.SWORD)return fail("剑兵无需生产兵装，请选择其他兵装");
         if(Army.siegeWeapon(weapon))return army.produce(cityId,officerId,weapon,null);
@@ -208,7 +238,8 @@ public final class World {
         if(h==null||weapon==null||!inside(h)||events.at(h)!=null)return -1;
         Terrain t=terrain[h.q][h.r];
         if(t==Terrain.MOUNTAIN||t==Terrain.WATER||t==Terrain.SEA||t==Terrain.VOID)return -1;
-        return t==Terrain.POISON?2:t==Terrain.FOREST?(weapon==Weapon.CAVALRY||Army.siegeWeapon(weapon)?3:2):1;
+        if(t==Terrain.SWAMP)return weapon==Weapon.CAVALRY||Army.siegeWeapon(weapon)?4:2;
+        return t==Terrain.DAM||t==Terrain.POISON?2:t==Terrain.FOREST?(weapon==Weapon.CAVALRY||Army.siegeWeapon(weapon)?3:2):1;
     }
     private static final class Step {
         final Hex hex;final int cost;
@@ -253,15 +284,44 @@ public final class World {
         if(stoneSplash)fieldworks.stoneSplash(u,c.hex);
         checkVictory();return success(message);
     }
-    public Result enter(int unitId,int cityId) {
-        Unit u=unit(unitId);City c=city(cityId);String error=unitError(u);if(error!=null)return fail(error);
-        if(u instanceof Domestic.Mission)return domestic.unload((Domestic.Mission)u,cityId);
-        if(c==null||c.owner!=u.owner||u.hex.distance(c.hex)>1)return fail("请选择相邻己方城池");
-        int gear=Army.equipmentNeeded(u.weapon,u.troops),cap=campaign.equipmentCap(c,u.weapon);
-        if(c.troops+u.troops>campaign.troopCap(c)||c.equipment[u.weapon.ordinal()]+gear>cap||c.food+u.food>campaign.foodCap(c)||c.gold+u.gold>campaign.goldCap(c)||u.ship!=Army.Ship.BOAT&&c.ships[u.ship.ordinal()-1]>=100)return fail("城池库存容量不足");
-        c.troops+=u.troops;c.food+=u.food;c.gold+=u.gold;c.equipment[u.weapon.ordinal()]+=gear;if(u.ship!=Army.Ship.BOAT)c.ships[u.ship.ordinal()-1]++;
-        int prisoners=government.entered(u,c);Officer o=officer(u.officerId);for(Officer member:army.crew(u)){member.unitId=-1;member.cityId=c.id;member.acted=true;}units.remove(u);
-        return success(o.name+"入城休整"+(prisoners>0?"；随军俘虏"+prisoners+"人已关押于"+c.name:""));
+    public Result enter(int unitId, int cityId) {
+        Unit u = unit(unitId);
+        City c = city(cityId);
+        String error = unitError(u);
+        if (error != null) {
+            return fail(error);
+        }
+        if (u instanceof Domestic.Mission) {
+            return this.domestic.unload((Domestic.Mission) u, cityId);
+        }
+        if (c == null || c.owner != u.owner || u.hex.distance(c.hex) > 1) {
+            return fail("请选择相邻己方城市、关卡或港口");
+        }
+        int gear = Army.equipmentNeeded(u.weapon, u.troops);
+        int cap = this.campaign.equipmentCap(c, u.weapon);
+        if (c.troops + u.troops > this.campaign.troopCap(c) || c.equipment[u.weapon.ordinal()] + gear > cap || c.food + u.food > this.campaign.foodCap(c) || c.gold + u.gold > this.campaign.goldCap(c) || (u.ship != Army.Ship.BOAT && c.ships[u.ship.ordinal() - 1] >= 100)) {
+            return fail("据点容量不足：兵余" + Math.max(0, this.campaign.troopCap(c) - c.troops) + "、粮余" + Math.max(0, this.campaign.foodCap(c) - c.food) + "、金余" + Math.max(0, this.campaign.goldCap(c) - c.gold) + "、所选兵装余" + Math.max(0, cap - c.equipment[u.weapon.ordinal()]));
+        }
+        c.troops += u.troops;
+        c.food += u.food;
+        c.gold += u.gold;
+        int[] iArr = c.equipment;
+        int iOrdinal = u.weapon.ordinal();
+        iArr[iOrdinal] = iArr[iOrdinal] + gear;
+        if (u.ship != Army.Ship.BOAT) {
+            int[] iArr2 = c.ships;
+            int iOrdinal2 = u.ship.ordinal() - 1;
+            iArr2[iOrdinal2] = iArr2[iOrdinal2] + 1;
+        }
+        int prisoners = this.government.entered(u, c);
+        Officer o = officer(u.officerId);
+        for (Officer member : this.army.crew(u)) {
+            member.unitId = -1;
+            member.cityId = c.id;
+            member.acted = true;
+        }
+        this.units.remove(u);
+        return success(o.name + "入城休整" + (prisoners > 0 ? "；随军俘虏" + prisoners + "人已关押于" + c.name : ""));
     }
     void retreat(Officer o,Hex from) {
         strategy.releaseGovernor(o.id);o.otherTaskTurns=0;o.otherTask="";
@@ -271,23 +331,34 @@ public final class World {
     }
     void removeUnit(Unit u) { government.defeated(u,null); }
     void defeatUnit(Unit u,Unit attacker){government.defeated(u,attacker);}
-    public Result nextTurn() {
+    public Result nextTurn(){return nextTurn(p->{});}
+    public static final class TurnProgress {
+        public final int owner,completed,total; public final String phase;
+        public TurnProgress(int owner,int completed,int total,String phase){this.owner=owner;this.completed=completed;this.total=total;this.phase=phase;}
+    }
+    public Result nextTurn(Consumer<TurnProgress> progress){
+        Objects.requireNonNull(progress);
         if(commandsBlocked())return fail("请先完成当前对局或君主继承");
         if(gameOver())return fail("本局已结束，请重开");
         if(active!=player)return fail("等待电脑行动");
-        districts.run();government.runDelegated();
-        for(int offset=1;offset<factions.length;offset++) {
-            active=(player+offset)%factions.length;
-            if(!alive(active))continue;
-            reset(active);runAi();checkVictory();
-            if(gameOver()){active=player;return success(winner==player?"战场胜利":"我方势力已覆灭");}
+        List<Integer> sides=new ArrayList<>();for(int offset=1;offset<factions.length;offset++){int side=(player+offset)%factions.length;if(alive(side))sides.add(side);}
+        int total=sides.size()+3;progress.accept(new TurnProgress(player,0,total,"委任军团与太守"));
+        districts.run();government.runDelegated();int completed=1;
+        for(int side:sides){active=side;final int done=completed;
+            if(alive(side)){progress.accept(new TurnProgress(side,done,total,"准备行动"));reset(side);runAi(phase->progress.accept(new TurnProgress(side,done,total,phase)));checkVictory();
+                if(gameOver()){active=player;progress.accept(new TurnProgress(player,total,total,"战局结束"));return success(winner==player?"战场胜利":"我方势力已覆灭");}}
+            completed++;
         }
-        settleGlobalTurn();
-        active=player;reset(player);checkVictory();if(!life.pending())marches.advanceAll();return success(date()+" · 行动力恢复");
+        final int global=completed;settleGlobalTurn(phase->progress.accept(new TurnProgress(-1,global,total,phase)));
+        active=player;progress.accept(new TurnProgress(player,completed+1,total,"恢复行动与自动行军"));reset(player);checkVictory();if(!commandsBlocked())marches.advanceAll();
+        progress.accept(new TurnProgress(player,total,total,"结算完成"));return success(date()+" · 行动力恢复");
     }
     /** Exactly once after all factions have acted. Keep this order stable across save replay. */
-    private void settleGlobalTurn(){
-        turn++;contests.tick();domestic.tick();campaign.tick();army.tick();abilities.tick();strategy.tick();war.tick();cityDefense.tick();government.tick();treasures.tick();
+    private void settleGlobalTurn(Consumer<String> progress){
+        progress.accept("运输、建设与生产");
+        turn++;contests.tick();domestic.tick();campaign.tick();army.tick();abilities.tick();recruitment.tick();envoys.tick();strategy.tick();
+        progress.accept("火场、守备与武将");war.tick();cityDefense.tick();government.tick();treasures.tick();
+        progress.accept("兵粮消耗与城池收入");
         for(Unit u:new ArrayList<>(units)) {
             int consumption=fieldworks.foodUse(u,Math.max(1,(u.troops+19)/20));
             if(u.food<consumption){u.food=0;u.troops-=Math.max(1,u.troops/10);note(officer(u.officerId).name+"部队断粮，兵力减少");}
@@ -301,16 +372,26 @@ public final class World {
             c.gold+=Math.min(Math.max(0,campaign.goldCap(c)-c.gold),domestic.goldIncome(c.id,turn));c.food+=Math.min(Math.max(0,campaign.foodCap(c)-c.food),domestic.foodIncome(c.id,turn));
             c.defense+=cityDefense.recovery(c);
         }
-        events.tick();life.tick();diplomacy.tick();
+        progress.accept("事件、寿命与外交");events.tick();life.tick();diplomacy.tick();
     }
     private void reset(int owner) {
-        actionPoints[owner]=60;
-        districts.reset(owner);
-        for(Officer o:officers)if(o.owner==owner)o.acted=false;
-        for(Unit u:units)if(u.owner==owner)orders.reset(u);
-        war.resetOwner(owner);fieldworks.continueOwner(owner);
+        this.actionPoints[owner] = 60;
+        this.districts.reset(owner);
+        for (Officer o : this.officers) {
+            if (o.owner == owner) {
+                o.acted = this.contests.busy() && !this.contests.current().isDuel() && (this.contests.current().leftRef == o.id || this.contests.current().rightRef == o.id);
+            }
+        }
+        for (Unit u : this.units) {
+            if (u.owner == owner) {
+                this.orders.reset(u);
+            }
+        }
+        this.war.resetOwner(owner);
+        this.fieldworks.continueOwner(owner);
     }
-    private void runAi() {
+    private void runAi(Consumer<String> progress) {
+        progress.accept("外交与内政");
         CampaignAi ai=new CampaignAi(this);
         diplomacy.dispatch();
         government.runAi();
@@ -321,15 +402,16 @@ public final class World {
         List<City> ordered=new ArrayList<>();
         for(City c:cities)if(c.owner==active)ordered.add(c);
         ordered.sort(Comparator.comparingInt((City c)->-ai.incoming(c)).thenComparingInt(c->c.id));
-        for(City c:ordered)ai.replenish(c.id);
+        progress.accept("补给与支援");for(City c:ordered)ai.replenish(c.id);
         for(City c:ordered)ai.support(c.id);
-        for(City c:ordered)ai.deploy(c.id,6000);
+        for(City c:ordered){progress.accept("出征 · "+c.name);ai.deploy(c.id,6000);}
+        progress.accept("技巧与人才");
         campaign.runAi();
         abilities.runAi();
         strategy.runAi(false);
         for(City c:ordered)ai.prepare(c.id);
-        ai.runUnits();
-        domestic.runAi();
+        progress.accept("部队行军与交战");ai.runUnits();
+        progress.accept("内政建设");domestic.runAi();
     }
     /** Plan beyond one turn so AI can detour around rivers and mountains. */
     boolean advance(Unit u,Hex target,int range) {
@@ -357,8 +439,26 @@ public final class World {
         return false;
     }
     public void checkVictory() {
-        int count=0,last=-1;
-        for(int side=0;side<factions.length;side++)if(alive(side)){count++;last=side;}
-        winner=count==1?last:-1;domestic.cleanupDefeated();abilities.cleanup();
+        for (int side = 0; side < this.factions.length; side++) {
+            if (!alive(side)) {
+                FactionCollapse.resolve(this, side);
+            }
+        }
+        int count = 0;
+        int last = -1;
+        for (int side2 = 0; side2 < this.factions.length; side2++) {
+            if (alive(side2)) {
+                count++;
+                last = side2;
+            }
+        }
+        this.winner = count == 1 ? last : -1;
+        this.domestic.cleanupDefeated();
+        this.abilities.cleanup();
+    }
+    boolean gateBlocks(int owner,Hex from,Hex to){
+        if(from==null||to==null)return false;
+        for(City c:((CityRoster)cities).near(from))if(c.kind==SiteKind.GATE&&c.hex.distance(to)==1&&campaign.hostile(owner,c.owner))return true;
+        return false;
     }
 }

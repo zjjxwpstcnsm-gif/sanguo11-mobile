@@ -43,24 +43,24 @@ public final class CampaignTest {
     private static void diplomacy()throws Exception{
         World w=fixture();World.Unit a=unit(w,1,World.Weapon.SPEAR,6,5),b=unit(w,11,World.Weapon.SPEAR,7,5);
         rejected(w,()->w.campaign.negotiate(10,0,1,Campaign.TreatyKind.ALLIANCE,6));
-        ok(w.campaign.goodwill(10,0,1));check(w.strategy.factionRelation(0,1)==23,"envoy improves relation");
-        seed(w,w.campaign.treatyChance(2,1,Campaign.TreatyKind.ALLIANCE),true);ok(w.campaign.negotiate(10,2,1,Campaign.TreatyKind.ALLIANCE,3));
+        ok(w.campaign.goodwill(10,0,1));TravelChecks.complete(w);check(w.strategy.factionRelation(0,1)==23,"envoy improves relation");
+        seed(w,w.campaign.treatyChance(2,1,Campaign.TreatyKind.ALLIANCE),true);ok(w.campaign.negotiate(10,2,1,Campaign.TreatyKind.ALLIANCE,3));TravelChecks.complete(w);
         check(!w.campaign.hostile(0,1)&&!w.campaign.hostile(1,0)&&w.campaign.hostile(0,2),"symmetric pact doesn't protect third party");
         rejected(w,()->w.attack(a.id,b.id));rejected(w,()->w.war.tactic(a.id,b.id,War.Tactic.THRUST));rejected(w,()->w.war.plot(a.id,b.hex,War.Plot.FIRE));
         a.hex=new Hex(15,2);rejected(w,()->w.siege(a.id,20));a.hex=new Hex(6,5);
         rejected(w,()->w.campaign.negotiate(10,3,1,Campaign.TreatyKind.CEASEFIRE,6));
         w.active=1;rejected(w,()->w.attack(b.id,a.id));w.active=0;
         tick(w);check(!w.campaign.hostile(0,1),"pact survives first tick");tick(w);check(!w.campaign.hostile(0,1),"pact remains until due turn");tick(w);check(w.campaign.hostile(0,1),"pact expires exactly at due turn");
-        seed(w,w.campaign.treatyChance(0,1,Campaign.TreatyKind.CEASEFIRE),false);int gold=w.city(10).gold;ok(w.campaign.negotiate(10,0,1,Campaign.TreatyKind.CEASEFIRE,6));
+        seed(w,w.campaign.treatyChance(0,1,Campaign.TreatyKind.CEASEFIRE),false);int gold=w.city(10).gold;ok(w.campaign.negotiate(10,0,1,Campaign.TreatyKind.CEASEFIRE,6));TravelChecks.complete(w);
         check(w.campaign.treaty(0,1)==null&&w.city(10).gold==gold-1000&&w.officer(0).acted,"refusal consumes costs without treaty");
-        reset(w);seed(w,w.campaign.treatyChance(0,1,Campaign.TreatyKind.CEASEFIRE),true);ok(w.campaign.negotiate(10,0,1,Campaign.TreatyKind.CEASEFIRE,6));int relation=w.strategy.factionRelation(0,1);
+        reset(w);seed(w,w.campaign.treatyChance(0,1,Campaign.TreatyKind.CEASEFIRE),true);ok(w.campaign.negotiate(10,0,1,Campaign.TreatyKind.CEASEFIRE,6));TravelChecks.complete(w);int relation=w.strategy.factionRelation(0,1);
         ok(w.campaign.breakTreaty(10,3,1));check(w.campaign.hostile(0,1)&&w.strategy.factionRelation(0,1)==relation-50&&w.strategy.factionRelation(0,2)==-10,"breaking pact changes diplomacy and combat eligibility");caseDone();
     }
     private static void rumor()throws Exception{
         World w=fixture();w.cities.add(new World.City(21,"边城",new Hex(10,3),1));w.officer(12).cityId=21;
-        int loyalty=w.officer(12).loyalty;seed(w,w.campaign.rumorChance(0,21),true);ok(w.campaign.rumor(10,0,21));
+        int loyalty=w.officer(12).loyalty;seed(w,w.campaign.rumorChance(0,21),true);ok(w.campaign.rumor(10,0,21));TravelChecks.complete(w);
         check(w.city(21).order==80&&w.officer(12).loyalty==loyalty-5,"rumor affects actual order and loyalty");
-        rejected(w,()->w.campaign.rumor(10,1,10));rejected(w,()->w.campaign.rumor(10,1,20));caseDone();
+        rejected(w,()->w.campaign.rumor(10,1,10));ok(w.campaign.rumor(10,1,20));check(!w.envoys.missions().isEmpty(),"distant rumor dispatch is allowed");caseDone();
     }
     private static void research()throws Exception{
         World w=fixture();w.campaign.points.put(0,3000);
@@ -167,7 +167,7 @@ public final class CampaignTest {
             check(w.city(300).governorId==3001&&w.domestic.facilities.get(0).remaining==2,"real v4 governor/construction survive migration");
             check(w.campaign.projects().isEmpty()&&w.war.fires().isEmpty()&&w.campaign.points(2)==0,"legacy saves don't invent campaign history");
             for(World.Officer o:w.officers)check(Arrays.equals(o.aptitude,new int[]{1,1,1,1,1,1}),"legacy aptitude has documented B default");
-            byte[] modern=bytes(w);check(modern[7]==22&&Arrays.equals(modern,bytes(SaveCodec.decode(modern))),"v4 upgrades to exact round-tripping v9");caseDone();
+            byte[] modern=bytes(w);check(modern[7]==24&&Arrays.equals(modern,bytes(SaveCodec.decode(modern))),"v4 upgrades to exact round-tripping v9");caseDone();
         }
     }
     private static void learn(World w,int owner,Campaign.Tech tech){if(tech.prerequisite!=null)learn(w,owner,tech.prerequisite);w.campaign.learned.computeIfAbsent(owner,k->EnumSet.noneOf(Campaign.Tech.class)).add(tech);}

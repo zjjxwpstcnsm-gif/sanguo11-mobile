@@ -32,6 +32,8 @@ final class UiModels {
         if(w.government.captive(o.id))return w.government.locationLabel(w.government.prisoner(o.id));
         for (Domestic.Mission m : w.domestic.missions) if (m.contains(o.id))
             return w.city(m.sourceCity).name + " → " + w.city(m.targetCity).name;
+        for(Recruitment.Mission m:w.recruitment.missions())if(m.actor==o.id||m.joined&&m.target==o.id)return w.recruitment.describe(m);
+        for(Envoys.Mission m:w.envoys.missions())if(m.actor==o.id)return w.envoys.describe(m);
         if (o.unitId >= 0) return "战场";
         World.City c = w.city(o.cityId);
         return c == null ? "已退出战场" : c.name;
@@ -105,6 +107,7 @@ final class UiModels {
         AbilityResearch.Training abilityTraining;
         World.Unit marching;
         Diplomacy.Aid aid;
+        Recruitment.Mission recruitment;Envoys.Mission envoy;
         Task(long id, String title, String detail, Hex location, Domestic.Facility f, Domestic.Mission m) {
             this.id=id;this.title=title;this.detail=detail;this.location=location;facility=f;mission=m;
         }
@@ -140,6 +143,8 @@ final class UiModels {
         if(type==0||type==7)for(Diplomacy.Aid aid:w.diplomacy.aids())if(aid.requester==w.player){
             World.Unit unit=w.unit(aid.unit);Task t=new Task(70000000L+aid.requester,"援军 · "+w.faction(aid.ally),w.diplomacy.describe(aid),unit==null?w.city(aid.source).hex:unit.hex,null,null);t.aid=aid;result.add(t);
         }
+        if(type==0||type==8)for(Recruitment.Mission m:w.recruitment.missions())if(m.owner==w.player){Task t=new Task(80000000L+m.actor,"登用 · "+w.officer(m.actor).name,w.recruitment.describe(m),w.city(m.destination).hex,null,null);t.recruitment=m;result.add(t);}
+        if(type==0||type==9)for(Envoys.Mission m:w.envoys.missions())if(m.owner==w.player){Task t=new Task(90000000L+m.actor,"外交 · "+w.officer(m.actor).name,w.envoys.describe(m),w.city(m.destination).hex,null,null);t.envoy=m;result.add(t);}
         return result;
     }
     static final class Attention {

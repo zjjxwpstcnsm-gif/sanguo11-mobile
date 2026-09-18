@@ -59,6 +59,7 @@ public final class MapView extends View {
     private int lastLabels;
     int labelsDrawn(){return lastLabels;}
     private Bitmap miniTerrain;
+    private int seenTerrainRevision=-1;
     private Bitmap miniTerritory;
     private Territory territory;
     private final Set<Integer> threatenedCities=new HashSet<>();
@@ -134,7 +135,7 @@ public final class MapView extends View {
         super(context);this.listener=listener;density=getResources().getDisplayMetrics().density;setContentDescription("六角格战略地图。拖动平移，双指缩放，点选城池或部队。");setFocusable(true);
         displayPrefs=context.getSharedPreferences("map-display",Context.MODE_PRIVATE);
         showMini=displayPrefs.getBoolean("navigator",true);showCommanders=displayPrefs.getBoolean("commanders",true);showUnitBars=displayPrefs.getBoolean("unitBars",true);
-        BuildingAtlas.load(context);
+        BuildingAtlas.load(context);VisualAssets.load(context);
         gestures=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
             @Override public boolean onDown(MotionEvent e){return true;}
             @Override public boolean onSingleTapConfirmed(MotionEvent e){if(!multiTouch&&!scaler.isInProgress()){performClick();listener.tap(hit(e.getX(),e.getY()));}return true;}
@@ -151,7 +152,7 @@ public final class MapView extends View {
             @Override public boolean onScale(ScaleGestureDetector d){zoom(camera.scale*d.getScaleFactor(),d.getFocusX(),d.getFocusY());return true;}
         });
     }
-    public void setWorld(World world,Hex selected,int moving){boolean changed=this.world==null||this.world.width!=world.width||this.world.height!=world.height||!this.world.scenarioId.equals(world.scenarioId);boolean newTerrain=this.world!=world||changed;this.world=world;this.selected=selected;this.moving=moving;
+    public void setWorld(World world,Hex selected,int moving){boolean changed=this.world==null||this.world.width!=world.width||this.world.height!=world.height||!this.world.scenarioId.equals(world.scenarioId);boolean newTerrain=this.world!=world||changed||seenTerrainRevision!=world.terrainRevision;seenTerrainRevision=world.terrainRevision;this.world=world;this.selected=selected;this.moving=moving;
         if(changed){tiles=new Hex[world.width][world.height];for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)tiles[q][r]=new Hex(q,r);}
         objectBuckets.clear();officerIndex.clear();cityIndex.clear();
         for(World.Officer o:world.officers)officerIndex.put(o.id,o);

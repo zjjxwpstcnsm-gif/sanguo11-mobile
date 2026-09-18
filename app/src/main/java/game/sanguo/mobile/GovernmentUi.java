@@ -12,11 +12,7 @@ final class GovernmentUi {
     GovernmentUi(Activity a,World w,Consumer<World.Result> apply){this.a=a;this.w=w;this.apply=apply;}
     private void info(String title,String message){new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("返回",null).show();}
     private void confirm(String title,String message,Runnable run){new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("执行",(d,n)->run.run()).setNegativeButton("取消",null).show();}
-    private <T> void choose(String title,List<T> list,Function<T,String> label,Consumer<T> next){
-        if(list.isEmpty()){info(title,"没有符合条件的对象。");return;}
-        String[] names=new String[list.size()];for(int i=0;i<names.length;i++)names[i]=label.apply(list.get(i));
-        new AlertDialog.Builder(a).setTitle(title).setItems(names,(d,n)->next.accept(list.get(n))).setNegativeButton("返回",null).show();
-    }
+    private <T> void choose(String title,List<T> values,java.util.function.Function<T,String> label,Consumer<T> next){ChoiceDialog.show(a,w,title,values,label,next);}
     private String officer(World.Officer o){Government.Rank r=w.government.office(o.id);return o.name+" · 功绩"+w.government.merit(o.id)+(r==null?"":" · "+r.id);}
     private List<World.Officer> residents(World.City c){List<World.Officer> list=new ArrayList<>();for(World.Officer o:w.officers)if(o.cityId==c.id&&o.owner==c.owner&&!w.government.captive(o.id))list.add(o);return list;}
     private void actor(World.City c,Consumer<World.Officer> next){choose("选择执行武将",w.idle(c),this::officer,next);}

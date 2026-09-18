@@ -20,7 +20,7 @@ public final class LogisticsCampaignTest {
         check(raw[7]==19,"actual old encoder fixture");World w=SaveCodec.decode(raw);check(w.city(10).gold==29400,"old paid 100 fee preserved without refund or recharge");
         check(w.domestic.missions.size()==1&&w.domestic.missions.get(0).deputies.length==0&&!w.domestic.missions.get(0).returnOfficers,"legacy convoy no invented personnel or return policy");
         check(w.districts.get(1).reserveTroops()==14000&&w.aiOrders.orders.size()==1,"old settings and intention survive");
-        World restored=copy(w);check(bytes(w)[7]==22&&Arrays.equals(bytes(w),bytes(restored)),"v20 exact roundtrip");
+        World restored=copy(w);check(bytes(w)[7]==24&&Arrays.equals(bytes(w),bytes(restored)),"v20 exact roundtrip");
         for(int t=0;t<5;t++){ok(w.nextTurn());ok(restored.nextTurn());check(Arrays.equals(bytes(w),bytes(restored)),"old pending convoy and AI resume identically");restored=copy(restored);}
     }
     private static void transport()throws Exception{
@@ -103,7 +103,7 @@ public final class LogisticsCampaignTest {
         for(World.City c:w.cities)Arrays.fill(c.equipment,0);World replay=copy(w);Set<Integer> missions=new HashSet<>();boolean transfer=false,transport=false,production=false,received=false;int farms=0;
         for(int t=0;t<36;t++){
             w.log.clear();replay.log.clear();World beforeOrders=copy(w);
-            w.districts.run();replay.districts.run();auditOrders(beforeOrders,w);
+            w.districts.run();replay.districts.run();auditOrders(beforeOrders,w);for(Domestic.Mission m:w.domestic.missions)transfer|=!m.transport&&!m.returning;
             long[] settled=stock(w);long convoyFood=0,cityFood=0;for(Domestic.Mission m:w.domestic.missions)convoyFood+=Math.min(m.food,w.domestic.foodUse(m));for(World.City c:w.cities)cityFood+=w.cityFoodUse(c);
             check(w.government.ranks.isEmpty()&&!w.events.enabled(),"audit fixture has no unaccounted payroll or random disaster");
             ok(w.nextTurn());ok(replay.nextTurn());
@@ -148,7 +148,7 @@ public final class LogisticsCampaignTest {
         for(int q=23;q<=24;q++)for(int rr=0;rr<w.height;rr++)w.terrain[q][rr]=rr==15?World.Terrain.PLAIN:World.Terrain.MOUNTAIN;
         Domestic.Mission convoy=null;boolean afloat=false;
         if(water){for(int q=9;q<=11;q++)for(int rr=0;rr<w.height;rr++)w.terrain[q][rr]=World.Terrain.WATER;for(int q=23;q<=24;q++)w.terrain[q][15]=World.Terrain.WATER;
-            w.city(20).kind=World.SiteKind.PORT;
+            w.city(20).kind=World.SiteKind.PORT;w.cities.add(new World.City(21,"敌方后方城",new Hex(38,21),1));w.city(21).troops=0;
             ok(w.domestic.transportSea(11,12,7,300,12000,1000,new int[4]));convoy=w.domestic.missions.get(0);
         }
         ok(w.districts.configure(-1,"联合攻城",new int[]{11,12},Districts.Policy.CITY_ATTACK,20,-1,true,true));

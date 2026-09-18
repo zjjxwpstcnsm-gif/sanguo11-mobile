@@ -12,7 +12,7 @@ final class AbilityUi {
     AbilityUi(Activity a,World w,Consumer<World.Result> apply){this.a=a;this.w=w;this.apply=apply;}
     private void info(String title,String message){new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("返回",null).show();}
     private void confirm(String title,String message,Runnable run){new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("执行",(d,n)->run.run()).setNegativeButton("取消",null).show();}
-    private <T> void choose(String title,List<T> values,Function<T,String> label,Consumer<T> next){if(values.isEmpty()){info(title,"没有符合条件的选项。");return;}String[] labels=values.stream().map(label).toArray(String[]::new);new AlertDialog.Builder(a).setTitle(title).setItems(labels,(d,i)->next.accept(values.get(i))).setNegativeButton("返回",null).show();}
+    private <T> void choose(String title,List<T> values,java.util.function.Function<T,String> label,Consumer<T> next){ChoiceDialog.show(a,w,title,values,label,next);}
     private String state(int side,AbilityResearch.Node n){AbilityResearch.Research r=w.abilities.research(side);return w.abilities.learned(side,n.id)?"已研究 · 剩"+w.abilities.remaining(side,n.id)+"次":r!=null&&r.nodeId.equals(n.id)?"研究中 · 剩"+r.remaining+"旬":w.abilities.unlocked(side,n)?"可研究":"待解锁";}
     void research(World.City city){
         choose("PK能力研究 · 选择方向",Arrays.asList("攻击","防御","计略","内政"),s->s,branch->{

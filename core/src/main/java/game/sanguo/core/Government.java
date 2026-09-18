@@ -224,10 +224,19 @@ public final class Government {
         prisoners.remove(target);allegianceChanged(target);t.owner=c.owner;t.cityId=city;t.role=Strategy.Role.OFFICER;t.loyalty=70;t.lastRewardTurn=-1;t.acted=true;
         return w.success(t.name+"接受招降，加入"+w.faction(c.owner));
     }
-    public World.Result release(int city,int actor,int target){
-        String error=prisonerError(city,actor,target,0);if(error!=null)return w.fail(error);
-        World.City c=w.city(city);int old=w.officer(target).owner;w.spend(c,w.officer(actor),0);free(prisoner(target));
-        w.strategy.setFactionRelation(c.owner,old,Math.min(100,w.strategy.factionRelation(c.owner,old)+10));return w.success("俘虏已释放，双方关系改善");
+    public World.Result release(int city, int actor, int target) {
+        String error = prisonerError(city, actor, target, 0);
+        if (error != null) {
+            return this.w.fail(error);
+        }
+        World.City c = this.w.city(city);
+        int old = this.w.officer(target).owner;
+        this.w.spend(c, this.w.officer(actor), 0);
+        free(prisoner(target));
+        if (old >= 0) {
+            this.w.strategy.setFactionRelation(c.owner, old, Math.min(100, this.w.strategy.factionRelation(c.owner, old) + 10));
+        }
+        return this.w.success(old >= 0 ? "俘虏已释放，双方关系改善" : "俘虏已释放，成为在野武将");
     }
     public int ransomCost(int officer){World.Officer o=w.officer(officer);return o==null?0:500+10*Math.max(o.war,Math.max(o.intelligence,o.politics));}
     public World.Result ransom(int city,int actor,int target){

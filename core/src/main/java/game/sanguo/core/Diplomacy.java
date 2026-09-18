@@ -27,11 +27,11 @@ public final class Diplomacy {
     private void attempt(String kind,int owner,int target){if(attemptTurn!=w.turn){attempts.clear();attemptTurn=w.turn;}attempts.add(kind+":"+owner+":"+target);}
     private String foreignError(int city,int actor,int side,int gold){
         String error=w.cityError(w.city(city),w.officer(actor),gold);if(error!=null)return error;
-        if(w.actionPoints[w.active]<ACTION_POINTS)return "行动力不足30";
+        if(!w.envoys.resolving(actor)&&w.actionPoints[w.active]<ACTION_POINTS)return "行动力不足30";
         if(side<0||side>=w.factions.length||side==w.active||!w.alive(side))return "请选择其他存活势力";
         return null;
     }
-    private void spend(int city,int actor,int gold){w.spend(w.city(city),w.officer(actor),gold);w.actionPoints[w.active]-=ACTION_POINTS-10;}
+    private void spend(int city,int actor,int gold){if(w.envoys.resolving(actor))return;w.spend(w.city(city),w.officer(actor),gold);w.actionPoints[w.active]-=ACTION_POINTS-10;}
     private int clamp(int chance){return Math.max(5,Math.min(95,chance));}
     private World.Officer ruler(int side){for(World.Officer o:w.officers)if(o.owner==side&&o.role==Strategy.Role.RULER&&w.life.present(o.id))return o;return null;}
     public long strength(int side){long result=0;for(World.City c:w.cities)if(c.owner==side)result+=c.troops+2L*c.defense;for(World.Unit u:w.units)if(u.owner==side)result+=u.troops;return result;}
@@ -54,11 +54,24 @@ public final class Diplomacy {
         long ratio=Math.min(6,strength(o.owner)/Math.max(1,strength(side)));
         return clamp(5+o.charm/2+w.strategy.factionRelation(o.owner,side)/5+(int)ratio*5);
     }
-    public World.Result surrender(int city,int actor,int side){
-        String error=surrenderError(city,actor,side);if(error!=null)return w.fail(error);
-        int chance=surrenderChance(actor,side),owner=w.active;spend(city,actor,0);attempt("surrender",owner,side);
-        if(w.strategy.nextInt(100)>=chance){w.strategy.setFactionRelation(owner,side,Math.max(-100,w.strategy.factionRelation(owner,side)-10));return w.success(w.faction(side)+"拒绝劝降，行动力已消耗，关系下降10");}
-        absorb(side,owner);return w.success(w.faction(side)+"接受劝降，全部据点、武将、部队和库存归入"+w.faction(owner));
+    public World.Result surrender(int city, int actor, int side) {
+        String error = surrenderError(city, actor, side);
+        if (error != null) {
+            return this.w.fail(error);
+        }
+        if (!this.w.envoys.resolving(actor)) {
+            return this.w.envoys.dispatch(Envoys.Kind.SURRENDER, city, actor, this.w.personnel.destination(side), side, 0, 0, 0, 0, 30);
+        }
+        int chance = surrenderChance(actor, side);
+        int owner = this.w.active;
+        spend(city, actor, 0);
+        attempt("surrender", owner, side);
+        if (this.w.strategy.nextInt(100) >= chance) {
+            this.w.strategy.setFactionRelation(owner, side, Math.max(-100, this.w.strategy.factionRelation(owner, side) - 10));
+            return this.w.success(this.w.faction(side) + "拒绝劝降，行动力已消耗，关系下降10");
+        }
+        absorb(side, owner);
+        return this.w.success(this.w.faction(side) + "接受劝降，全部据点、武将、部队和库存归入" + this.w.faction(owner));
     }
 
     public String exchangeError(int city,int actor,int wanted,int offered,int gold){
@@ -81,15 +94,42 @@ public final class Diplomacy {
         int value=gold+(offered<0?0:w.government.ransomCost(offered));
         return clamp(35+o.politics/3+w.strategy.factionRelation(o.owner,p.captor)/5+(value-w.government.ransomCost(wanted))/50);
     }
-    public World.Result exchange(int city,int actor,int wanted,int offered,int gold){
-        String error=exchangeError(city,actor,wanted,offered,gold);if(error!=null)return w.fail(error);
-        Government.Prisoner target=w.government.prisoner(wanted);int side=target.captor,chance=exchangeChance(actor,wanted,offered,gold);
-        spend(city,actor,0);attempt("exchange",w.active,wanted);
-        if(w.strategy.nextInt(100)>=chance)return w.success("交换提议被拒绝，行动力已消耗；金与俘虏保留");
-        w.city(city).gold-=gold;if(target.unitId>=0)w.unit(target.unitId).gold+=gold;else w.city(target.cityId).gold+=gold;
-        w.government.free(target);if(offered>=0)w.government.free(w.government.prisoner(offered));
-        w.strategy.setFactionRelation(w.active,side,Math.min(100,w.strategy.factionRelation(w.active,side)+5));
-        return w.success("交换成功，"+w.officer(wanted).name+"获释；交付金"+gold+(offered>=0?"，释放"+w.officer(offered).name:""));
+    public World.Result exchange(int city, int actor, int wanted, int offered, int gold) {
+        String str;
+        String error = exchangeError(city, actor, wanted, offered, gold);
+        if (error != null) {
+            return this.w.fail(error);
+        }
+        Government.Prisoner target = this.w.government.prisoner(wanted);
+        int side = target.captor;
+        int chance = exchangeChance(actor, wanted, offered, gold);
+        if (!this.w.envoys.resolving(actor)) {
+            return this.w.envoys.dispatch(Envoys.Kind.EXCHANGE, city, actor, this.w.personnel.destination(side), wanted, offered, gold, 0, gold, 30);
+        }
+        spend(city, actor, 0);
+        attempt("exchange", this.w.active, wanted);
+        if (this.w.strategy.nextInt(100) >= chance) {
+            return this.w.success("交换提议被拒绝，行动力已消耗；金与俘虏保留");
+        }
+        this.w.envoys.gift(this.w.city(city), gold);
+        if (target.unitId >= 0) {
+            this.w.unit(target.unitId).gold += gold;
+        } else {
+            this.w.city(target.cityId).gold += gold;
+        }
+        this.w.government.free(target);
+        if (offered >= 0) {
+            this.w.government.free(this.w.government.prisoner(offered));
+        }
+        this.w.strategy.setFactionRelation(this.w.active, side, Math.min(100, this.w.strategy.factionRelation(this.w.active, side) + 5));
+        World world = this.w;
+        String str2 = this.w.officer(wanted).name;
+        if (offered >= 0) {
+            str = "，释放" + this.w.officer(offered).name;
+        } else {
+            str = "";
+        }
+        return world.success("交换成功，" + str2 + "获释；交付金" + gold + str);
     }
 
     public String aidError(int city,int actor,int source,int target,int gold){
@@ -115,12 +155,25 @@ public final class Diplomacy {
         }catch(IOException e){return null;}
     }
     public int aidChance(int actor,int ally,int gold){World.Officer o=w.officer(actor);return o==null?0:clamp(30+o.politics/3+w.strategy.factionRelation(o.owner,ally)/4+gold/200);}
-    public World.Result requestAid(int city,int actor,int source,int target,int gold){
-        String error=aidError(city,actor,source,target,gold);if(error!=null)return w.fail(error);
-        World.City ally=w.city(source);int chance=aidChance(actor,ally.owner,gold);spend(city,actor,0);attempt("aid",w.active,ally.owner);
-        if(w.strategy.nextInt(100)>=chance)return w.success("盟军拒绝援军请求，行动力已消耗，礼金保留");
-        w.city(city).gold-=gold;ally.gold+=gold;aids.add(new Aid(w.active,ally.owner,source,target,w.city(target).owner,w.turn+AID_TURNS));
-        return w.success(w.faction(ally.owner)+"接受援军请求，下一次行动从"+ally.name+"出征，攻略"+w.city(target).name+"；期限18旬");
+    public World.Result requestAid(int city, int actor, int source, int target, int gold) {
+        String error = aidError(city, actor, source, target, gold);
+        if (error != null) {
+            return this.w.fail(error);
+        }
+        World.City ally = this.w.city(source);
+        if (!this.w.envoys.resolving(actor)) {
+            return this.w.envoys.dispatch(Envoys.Kind.AID, city, actor, source, source, target, gold, 0, gold, 30);
+        }
+        int chance = aidChance(actor, ally.owner, gold);
+        spend(city, actor, 0);
+        attempt("aid", this.w.active, ally.owner);
+        if (this.w.strategy.nextInt(100) >= chance) {
+            return this.w.success("盟军拒绝援军请求，行动力已消耗，礼金保留");
+        }
+        this.w.envoys.gift(this.w.city(city), gold);
+        ally.gold += gold;
+        this.aids.add(new Aid(this.w.active, ally.owner, source, target, this.w.city(target).owner, this.w.turn + 18));
+        return this.w.success(this.w.faction(ally.owner) + "接受援军请求，下一次行动从" + ally.name + "出征，攻略" + this.w.city(target).name + "；期限18旬");
     }
     public String describe(Aid a){World.Unit u=w.unit(a.unit);return w.faction(a.ally)+" · "+w.city(a.source).name+" → "+w.city(a.target).name+"\n"+a.status+
         (u==null?"":" · "+w.officer(u.officerId).name+"率"+u.troops+"兵")+"\n"+(a.returning?"返程中":"剩余"+Math.max(0,a.expires-w.turn)+"旬");}

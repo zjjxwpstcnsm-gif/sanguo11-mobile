@@ -48,11 +48,12 @@ public final class StrategicAi {
             add(choices,c,admin,-1,Command.PATROL,40+(75-c.order)*2+pressure/4,"恢复治安和收入/征兵条件");
         if(!emergency){
             if(c.gold>=Strategy.HIRE_COST)for(World.Officer target:w.strategy.recruitmentTargets(c.id)){
+                int travel=w.recruitment.travelTurns(c.id,target.id);if(travel>3||travel>0&&residents<3)continue;
                 int chance=w.strategy.recruitmentChance(c.id,charmer.id,target.id);
-                if(chance>0)add(choices,c,charmer,target.id,Command.HIRE,35+Math.max(0,3-residents)*20+chance/10,"补充人才；按实际登用概率决策");
+                if(chance>=50)add(choices,c,charmer,target.id,Command.HIRE,35+Math.max(0,3-residents)*20+chance/10-travel*8,"补充人才；按实际登用概率决策");
             }
             int desired=pressure>=40?15000:8000;
-            if(c.gold>=Strategy.RECRUIT_COST&&c.troops<desired&&c.order>=45&&c.recruitReserve>0&&w.strategy.recruitAmount(c.id,charmer.id)>0)
+            if(c.kind==World.SiteKind.CITY&&c.gold>=Strategy.RECRUIT_COST&&c.troops<desired&&c.order>=45&&c.recruitReserve>0&&w.strategy.recruitAmount(c.id,charmer.id)>0)
                 add(choices,c,charmer,-1,Command.RECRUIT,30+(desired-c.troops)/500+pressure/3,"按兵源、守军缺口和周边压力补兵");
             int readiness=pressure>=40?90:80;
             if(c.gold>=Strategy.TRAIN_COST&&c.troops>0&&c.morale<readiness)

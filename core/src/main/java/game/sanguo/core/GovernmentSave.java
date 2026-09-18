@@ -47,7 +47,7 @@ final class GovernmentSave {
         for(Map.Entry<Integer,Government.Policy> e:g.policies.entrySet())require(w.city(e.getKey())!=null&&w.city(e.getKey()).owner>=0&&e.getValue()!=null&&e.getValue()!=Government.Policy.MANUAL,"委任城池或方针无效");
         for(Government.Prisoner p:g.prisoners.values()){
             World.Officer o=w.officer(p.officerId);World.City c=w.city(p.cityId);World.Unit u=w.unit(p.unitId);
-            require(o!=null&&o.owner>=0&&p.captor>=0&&p.captor<w.factions.length&&p.captor!=o.owner,"俘虏归属错误");
+            require(o!=null&&o.owner>=-1&&p.captor>=0&&p.captor<w.factions.length&&p.captor!=o.owner,"俘虏归属错误");
             require(p.unitId>=0?(p.cityId==-1&&u!=null&&u.owner==p.captor):(p.unitId==-1&&c!=null&&c.owner==p.captor),"俘虏关押地或押送部队错误");
             require(o.unitId==-1&&o.cityId==-1&&o.otherTaskTurns==0&&!w.domestic.busy(o.id)&&o.role!=Strategy.Role.GOVERNOR,"俘虏仍承担部队或城务");
             require(p.capturedTurn>=0&&p.capturedTurn<=w.turn&&p.lastAttempt>=-1&&p.lastAttempt<=w.turn,"俘虏日期无效");

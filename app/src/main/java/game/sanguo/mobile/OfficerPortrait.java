@@ -8,22 +8,25 @@ import java.io.*;
 
 /** One bounded atlas allocation, shared by recycled list rows and detail cards. No network or per-face bitmaps. */
 final class OfficerPortrait extends Drawable {
-    private static Bitmap atlas;private static boolean loaded;
+    private static final Bitmap[] atlases=new Bitmap[2];private static boolean loaded;
     private final World.Officer officer;private final int age,index,variant;
     private final Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG);
     private final Path path=new Path();private final Rect source=new Rect();private final RectF area=new RectF();
     OfficerPortrait(Context context,World w,World.Officer officer){
         this.officer=officer;age=w.life.age(officer.id);index=PortraitCatalog.index(officer.name);variant=PortraitCatalog.variant(officer.id,officer.name);
-        if(!loaded){loaded=true;try(InputStream input=context.getAssets().open("portraits/officers.png")){
-            BitmapFactory.Options options=new BitmapFactory.Options();atlas=BitmapFactory.decodeStream(input,null,options);
-        }catch(IOException ignored){/* Custom and unknown officers still have deterministic vector portraits. */}}
+        if(!loaded){loaded=true;String[] files={"portraits/officers.png","portraits/officers-v040.png"};
+            for(int i=0;i<files.length;i++)try(InputStream input=context.getAssets().open(files[i])){
+                atlases[i]=BitmapFactory.decodeStream(input);
+            }catch(IOException ignored){/* Deterministic fallback for missing artwork. */}
+        }
     }
     private void fill(int color){paint.setColor(color);paint.setStyle(Paint.Style.FILL);}
     private void oval(Canvas c,float l,float t,float r,float b,int color){fill(color);c.drawOval(l,t,r,b,paint);}
     private void poly(Canvas c,int color,float... xy){path.reset();path.moveTo(xy[0],xy[1]);for(int i=2;i<xy.length;i+=2)path.lineTo(xy[i],xy[i+1]);path.close();fill(color);c.drawPath(path,paint);}
     @Override public void draw(Canvas c){
         area.set(getBounds());c.save();path.reset();path.addRoundRect(area,area.width()*.1f,area.width()*.1f,Path.Direction.CW);c.clipPath(path);
-        if(index>=0&&atlas!=null){int col=index%4,row=index/4;source.set(col*atlas.getWidth()/4,row*atlas.getHeight()/4,(col+1)*atlas.getWidth()/4,(row+1)*atlas.getHeight()/4);fill(Color.WHITE);c.drawBitmap(atlas,source,area,paint);}
+        Bitmap atlas=index>=0?atlases[index/16]:null;
+        if(atlas!=null){int col=index%4,row=(index%16)/4;source.set(col*atlas.getWidth()/4,row*atlas.getHeight()/4,(col+1)*atlas.getWidth()/4,(row+1)*atlas.getHeight()/4);fill(Color.WHITE);c.drawBitmap(atlas,source,area,paint);}
         else {c.translate(area.left,area.top);c.scale(area.width()/100,area.height()/100);fallback(c);}
         c.restore();fill(0xffc9ae73);paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(Math.max(1,area.width()/70));c.drawRoundRect(area,area.width()*.1f,area.width()*.1f,paint);paint.setStyle(Paint.Style.FILL);
     }

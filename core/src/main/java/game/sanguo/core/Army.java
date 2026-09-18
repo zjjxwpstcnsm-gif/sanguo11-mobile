@@ -46,13 +46,21 @@ public final class Army {
     public String equipmentLabel(World.Unit u){if(u instanceof Domestic.Mission)return water(u.hex)?"运输队 · 走舸":"运输队";return water(u.hex)?u.ship.label+"（携"+u.weapon.label+"）":u.weapon.label;}
     public int movement(World.Unit u){return water(u.hex)?u.ship.movement:u.weapon.movement;}
     public int range(World.Unit u){return water(u.hex)?u.ship.range:u.weapon==World.Weapon.CAVALRY&&(w.skills.has(u,Skill.BAIMA)||w.campaign.has(u.owner,Campaign.Tech.MOUNTED_ARCHERY))?2:u.weapon.range;}
-    public int moveCost(World.Unit u,Hex from,Hex to){
-        if(u instanceof Domestic.Mission&&!((Domestic.Mission)u).sea&&water(to))return -1;
-        if(to==null||!w.inside(to)||w.terrain[to.q][to.r]==World.Terrain.MOUNTAIN)return -1;
-        if(water(to))return water(from)?1:2; // Embark consumes movement, not another inventory item.
-        int land=w.fieldworks.landCost(to,u.weapon,u.owner);
-        if(land<0)return -1; // Landing must obey the same terrain prerequisites as land movement.
-        return water(from)?Math.max(2,land):land;
+    public int moveCost(World.Unit u, Hex from, Hex to) {
+        if (((u instanceof Domestic.Mission) && !((Domestic.Mission) u).sea && water(to)) || to == null || !this.w.inside(to) || this.w.terrain[to.q][to.r] == World.Terrain.MOUNTAIN) {
+            return -1;
+        }
+        if (!water(from) && !water(to) && this.w.gateBlocks(u.owner, from, to)) {
+            return -1;
+        }
+        if (water(to)) {
+            return water(from) ? 1 : 2;
+        }
+        int land = this.w.fieldworks.landCost(to, u.weapon, u.owner);
+        if (land < 0) {
+            return -1;
+        }
+        return water(from) ? Math.max(2, land) : land;
     }
     public World.Result deploy(int city,int commander,int[] deputies,World.Weapon weapon,Ship ship,int troops,int food){return deploy(city,commander,deputies,weapon,ship,troops,food,0);}
     public World.Result deploy(int city,int commander,int[] deputies,World.Weapon weapon,Ship ship,int troops,int food,int gold){
@@ -66,7 +74,7 @@ public final class Army {
         int equipment=equipmentNeeded(weapon,troops);
         if(c.troops<troops||c.food<food||c.equipment[weapon.ordinal()]<equipment||ship!=Ship.BOAT&&c.ships[ship.ordinal()-1]<1)return w.fail("兵力、携粮、兵装或舰船库存不足");
         if(w.nextUnitId>=10000000)return w.fail("部队编号达到上限");
-        Hex exit=null;for(Hex h:c.hex.neighbors())if(w.fieldworks.landCost(h,weapon,c.owner)>0&&w.unitAt(h)==null&&w.cityAt(h)==null&&w.domestic.at(h)==null&&w.war.at(h)==null&&w.war.fireAt(h)==null){exit=h;break;}
+        Hex exit=null;for(Hex h:c.hex.neighbors())if((w.fieldworks.landCost(h,weapon,c.owner)>0||c.kind==World.SiteKind.PORT&&water(h))&&w.unitAt(h)==null&&w.cityAt(h)==null&&w.domestic.at(h)==null&&w.war.at(h)==null&&w.war.fireAt(h)==null){exit=h;break;}
         if(exit==null)return w.fail("城外没有可用出征格");
         w.spend(c,leader,0);c.troops-=troops;c.food-=food;c.equipment[weapon.ordinal()]-=equipment;if(ship!=Ship.BOAT)c.ships[ship.ordinal()-1]--;
         World.Unit u=new World.Unit(w.nextUnitId++,w.active,commander,weapon,exit,troops,food);u.gold=gold;c.gold-=gold;u.ship=ship;u.deputies=deputies.clone();u.energy=c.morale;w.units.add(u);
@@ -78,6 +86,7 @@ public final class Army {
     public String productionError(int city,int officer,World.Weapon weapon,Ship ship){
         if((weapon==null)==(ship==null)||weapon!=null&&!siegeWeapon(weapon)||ship==Ship.BOAT)return "请选择攻城器械或高级舰船";
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,weapon!=null?productionGold(weapon):ship.gold);if(error!=null)return error;
+        if(c.kind!=World.SiteKind.CITY)return "港口和关卡不能生产军备";
         if(w.districts.productionError(city)!=null)return w.districts.productionError(city);
         Domestic.Kind facility=weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD;
         if(!completed(city,facility))return "需要已建成的"+facility.label;
@@ -163,7 +172,7 @@ public final class Army {
         if(structure!=null){
             if(structure.complete&&w.fieldworks.trap(structure.kind)&&(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)){w.war.ignite(target,u);w.checkVictory();return w.success(tactic.label+"引爆"+structure.kind.label);}
             int amount=w.combat.structureDamage(u,true);
-            amount=Math.min(structure.hp,amount);structure.hp-=amount;if(structure.hp==0){w.war.structures.remove(structure);w.battleImpact(target,true);w.battleOutcome(structure.kind.label+"已摧毁，地块已释放");}
+            amount=Math.min(structure.hp,amount);structure.hp-=amount;if(structure.hp==0){w.fieldworks.destroy(structure);w.battleImpact(target,true);w.battleOutcome(structure.kind.label+"已摧毁，地块已释放");}
             if(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)w.war.ignite(target,u);if(tactic==Tactic.STONE)w.fieldworks.stoneSplash(u,target);
             w.campaign.earn(u.owner,20);return w.success(tactic.label+"命中"+structure.kind.label+"，耐久减少"+amount);
         }

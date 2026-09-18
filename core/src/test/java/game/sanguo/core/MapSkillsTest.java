@@ -25,13 +25,13 @@ public final class MapSkillsTest {
             for(Hex h:w.development.parcels(c.id)){check(all.add(h),"parcel ownership unique");check(w.development.cityAt(h)==c,"tap parcel resolves correct city");if(h.distance(c.hex)>2)distant++;}
             check(c.hex.neighbors().stream().anyMatch(h->w.cost(h,World.Weapon.SPEAR)>0&&!all.contains(h)),"city has exit "+c.name);
         }
-        check(distant>300,"development districts are separated from city footprint");
-        check(w.sourceMapWidth>190&&w.height>190,"national map retains original coordinate scale");
+        check(distant>250,"development districts are separated from city footprint");
+        check(w.sourceMapWidth==100&&w.height==100,"restored v40 compact map uses 100 by 100 coordinates");
         int sea=0,water=0,voids=0;for(World.Terrain[] row:w.terrain)for(World.Terrain t:row){if(t==World.Terrain.SEA)sea++;if(t==World.Terrain.WATER)water++;if(t==World.Terrain.VOID)voids++;}
-        check(sea>3000&&water>1500&&voids>500,"coast, rivers and excluded theatre exist as terrain");
+        check(sea>1000&&water>900&&voids>190,"coast, rivers and excluded theatre exist as terrain");
         // The two main rivers are continuous between separately chosen known landmarks.
-        int oy=16-MapCoordinates.source(w.city(20000).hex,w.height).r;
-        for(int[] pair:new int[][]{{59,51,134,61},{44,127,163,93}}){
+        int oy=8-MapCoordinates.source(w.city(20000).hex,w.height).r;
+        for(int[] pair:new int[][]{{30,25,67,30},{21,67,82,47}}){
             Hex from=MapCoordinates.axial(pair[0],pair[1]-oy,w.height),to=MapCoordinates.axial(pair[2],pair[3]-oy,w.height);
             check(w.army.water(from)&&w.army.water(to),"river landmarks water "+from+"="+w.terrain[from.q][from.r]+" "+to+"="+w.terrain[to.q][to.r]);Set<Hex> seen=new HashSet<>();ArrayDeque<Hex> q=new ArrayDeque<>();q.add(from);seen.add(from);
             while(!q.isEmpty())for(Hex h:q.remove().neighbors())if(w.army.water(h)&&seen.add(h))q.add(h);

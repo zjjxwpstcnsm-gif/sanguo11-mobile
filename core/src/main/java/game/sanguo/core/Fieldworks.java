@@ -23,10 +23,10 @@ public final class Fieldworks {
         return found;
     }
 
-    public boolean trap(War.StructureKind kind){return kind==War.StructureKind.FIRE_SEED||kind.ordinal()>=War.StructureKind.FIRE_BALL.ordinal();}
+    public boolean trap(War.StructureKind kind){return kind==War.StructureKind.FIRE_SEED||(kind.ordinal()>=War.StructureKind.FIRE_BALL.ordinal()&&kind.ordinal()<=War.StructureKind.FIRE_SHIP.ordinal());}
     public boolean ball(War.StructureKind kind){return kind==War.StructureKind.FIRE_BALL||kind==War.StructureKind.FLAME_BALL||kind==War.StructureKind.INFERNO_BALL;}
     public boolean camp(War.StructureKind k){return k==War.StructureKind.CAMP||k==War.StructureKind.FORT||k==War.StructureKind.FORTRESS;}
-    private boolean military(War.StructureKind k){return !trap(k)&&k!=War.StructureKind.EARTH_WALL&&k!=War.StructureKind.STONE_WALL;}
+    private boolean military(War.StructureKind k){return !trap(k)&&k!=War.StructureKind.DAM&&k!=War.StructureKind.EARTH_WALL&&k!=War.StructureKind.STONE_WALL;}
     public War.StructureKind upgraded(int owner,War.StructureKind kind){
         if(camp(kind))return w.campaign.has(owner,Campaign.Tech.WALLS)?War.StructureKind.FORTRESS:w.campaign.has(owner,Campaign.Tech.FACILITY_REINFORCEMENT)?War.StructureKind.FORT:kind;
         if(kind==War.StructureKind.ARROW_TOWER&&w.campaign.has(owner,Campaign.Tech.FACILITY_REINFORCEMENT))return War.StructureKind.CROSSBOW_TOWER;
@@ -38,6 +38,7 @@ public final class Fieldworks {
     }
     private boolean unlocked(int owner,War.StructureKind k){
         switch(k){
+            case DAM:return false;
             case FORT:case CROSSBOW_TOWER:return w.campaign.has(owner,Campaign.Tech.FACILITY_REINFORCEMENT);
             case FORTRESS:return w.campaign.has(owner,Campaign.Tech.WALLS);
             case STONE_WALL:case STONE_MAZE:return w.campaign.has(owner,Campaign.Tech.STONE_BUILDING);
@@ -63,7 +64,7 @@ public final class Fieldworks {
         if(u.gold<kind.gold)return "部队携金不足，需要"+kind.gold+"金";
         if(target==null||!w.inside(target)||u.hex.distance(target)!=1)return "只能在部队相邻格设置";
         if(w.unitAt(target)!=null||w.cityAt(target)!=null||w.domestic.at(target)!=null||w.war.at(target)!=null||w.war.fireAt(target)!=null)return "目标地块已被占用或燃烧";
-        if(kind==War.StructureKind.FIRE_SHIP?!w.army.water(target):w.army.water(target)||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN_PATH||w.terrain[target.q][target.r]==World.Terrain.PLANK_ROAD||w.terrain[target.q][target.r]==World.Terrain.POISON||w.events.at(target)!=null)return "该地形不能设置此设施";
+        if(kind==War.StructureKind.FIRE_SHIP?!w.army.water(target):w.army.water(target)||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN_PATH||w.terrain[target.q][target.r]==World.Terrain.PLANK_ROAD||w.terrain[target.q][target.r]==World.Terrain.POISON||w.terrain[target.q][target.r]==World.Terrain.SWAMP||w.terrain[target.q][target.r]==World.Terrain.DAM||w.events.at(target)!=null)return "该地形不能设置此设施";
         for(World.City c:w.cities)if(c.hex.distance(target)<=2)return "据点两格以内不能设置";
         if(military(kind))for(War.Structure s:w.war.structures)if(military(s.kind)&&s.hex.distance(target)<=2)return "军事设施两格以内不能重复设置";
         if(w.war.structures.size()>=1000||w.war.nextStructureId>=10000000)return "军事设施达到上限";
@@ -133,7 +134,7 @@ public final class Fieldworks {
             World.Unit target=w.unitAt(h);if(target!=null&&(target.owner==source.owner||w.campaign.hostile(source.owner,target.owner))){
                 int hit=w.combat.physicalDamage(source,target,.75,true,new Random(w.strategy.nextInt(Integer.MAX_VALUE)));w.combatEffects.hit(source,target,hit,true,true);
             }
-            War.Structure s=w.war.at(h);if(s!=null&&(s.owner==source.owner||w.campaign.hostile(source.owner,s.owner))){s.hp-=w.campaign.constructionDamage(source,300);if(s.hp<=0)w.war.structures.remove(s);}
+            War.Structure s=w.war.at(h);if(s!=null&&(s.owner==source.owner||w.campaign.hostile(source.owner,s.owner))){s.hp-=w.campaign.constructionDamage(source,300);if(s.hp<=0)destroy(s);}
         }
     }
     private List<Hex> trapArea(War.Structure s){
@@ -182,7 +183,7 @@ public final class Fieldworks {
             War.Structure s=w.war.at(h);
             if(s!=null&&s.owner!=owner&&!w.campaign.hostile(owner,s.owner))continue;
             if(s!=null&&s.complete&&trap(s.kind)){
-                w.war.structures.remove(s);List<Hex> affected=trapArea(s);
+                destroy(s);List<Hex> affected=trapArea(s);
                 int base=CombatRules.trapBase(s.kind);
                 for(Hex next:affected){
                     if(s.kind==War.StructureKind.FIRE_SHIP?!w.army.water(next):w.army.water(next))continue;
@@ -214,5 +215,36 @@ public final class Fieldworks {
         War.Structure s=w.war.at(h);if(s!=null&&s.owner!=owner&&!w.campaign.hostile(owner,s.owner))return;
         War.Fire old=w.war.fireAt(h);if(old!=null)w.war.fires.remove(old);
         War.Fire f=new War.Fire(h,owner,2);f.power=power;f.trap=trap;w.war.fires.add(f);
+    }
+void destroy(War.Structure structure) {
+        World.Terrain t;
+        if (!this.w.war.structures.remove(structure) || structure.kind != War.StructureKind.DAM) {
+            return;
+        }
+        this.w.terrain[structure.hex.q][structure.hex.r] = World.Terrain.SHALLOWS;
+        this.w.terrainRevision++;
+        Set<Hex> flood = new HashSet<>();
+        flood.add(structure.hex);
+        List<Hex> edge = new ArrayList<>(flood);
+        for (int step = 0; step < 2; step++) {
+            List<Hex> next = new ArrayList<>();
+            for (Hex h : edge) {
+                for (Hex n : h.neighbors()) {
+                    if (this.w.inside(n) && !flood.contains(n) && ((t = this.w.terrain[n.q][n.r]) == World.Terrain.PLAIN || t == World.Terrain.SWAMP || t == World.Terrain.SHALLOWS || t == World.Terrain.WATER)) {
+                        flood.add(n);
+                        next.add(n);
+                    }
+                }
+            }
+            edge = next;
+        }
+        Iterator it = new ArrayList(this.w.fieldUnits()).iterator();
+        while (it.hasNext()) {
+            World.Unit unit = (World.Unit) it.next();
+            if (flood.contains(unit.hex)) {
+                this.w.combatEffects.hit(null, unit, 600, false, false);
+            }
+        }
+        this.w.battleOutcome("堤坝溃决：相连两格低地洪水，敌我部队各损600兵；坝址变为浅滩");
     }
 }

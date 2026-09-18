@@ -45,3 +45,10 @@ tasks.register('verifyPresentation', Exec) {
 }
 tasks.named('check').configure { dependsOn 'verifyPresentation' }
 tasks.matching { it.name == 'test' || it.name.endsWith('UnitTest') }.configureEach { dependsOn 'verifyPresentation' }
+
+// Prevent a numerically newer release from silently dropping the delivered map or sprite atlases.
+tasks.register('verifyMapRelease', Exec) {
+    workingDir rootProject.projectDir
+    commandLine 'python3', 'scripts/verify-map-release.py'
+}
+tasks.named('preBuild').configure { dependsOn 'verifyMapRelease' }
