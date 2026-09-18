@@ -1,0 +1,30 @@
+name: v044 development workbench
+on:
+  push:
+    branches: [agent/sand-river-ux-v044]
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Inspect map generation and rendering integration
+        run: |
+          find tools/content -maxdepth 2 -type f
+          grep -nE '黄河|新野|许昌|river|mountain|def .*map|revision=' tools/content/*.py || true
+          grep -nE 'Button button|new Button|terrainLabel|terrainName|Terrain|case DAM|case SWAMP' app/src/main/java/game/sanguo/mobile/{MainActivity,TerrainTiles,VisualGuide,MapView,MapOverview,MapModels}.java | head -160
+          grep -nE 'cost\(|case |terrainLabel|terrainName' core/src/main/java/game/sanguo/core/World.java
+          cat scripts/verify-map-release.py
+      - name: Export exact source for editing
+        run: |
+          mkdir -p /tmp/source
+          git archive --format=tar.gz HEAD > /tmp/source/sanguo11-source.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v044-source-baseline
+          path: /tmp/source/
+          retention-days: 2
