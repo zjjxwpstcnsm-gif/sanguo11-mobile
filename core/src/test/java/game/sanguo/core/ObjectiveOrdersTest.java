@@ -80,8 +80,8 @@ public final class ObjectiveOrdersTest {
     private static void packagedMaps()throws Exception{
         for(ScenarioCatalog.Summary s:ScenarioCatalog.summaries()){
             World w=ScenarioCatalog.load(s.id,0);World restored=SaveCodec.decode(SaveCodec.encode(w));check(restored.cities.size()==w.cities.size(),"scenario save round trip "+s.id);
-            World.City wu=w.city(20023),qu=w.city(20070);if(wu!=null&&qu!=null){check(wu.hex.distance(qu.hex)<=4,"QuA near Wu "+s.id);check(qu.hex.neighbors().stream().anyMatch(w.army::water),"QuA water frontage "+s.id);}
-            World.City j=w.city(20005),h=w.city(20042),y=w.city(20006);if(j!=null&&h!=null&&y!=null)check(j.hex.r<h.hex.r&&h.hex.r<y.hex.r,"Huguan lies between Jinyang and Ye "+s.id);
+            World.City wu=w.city(20023),qu=w.city(20070);if(wu!=null&&qu!=null){check(wu.hex.distance(qu.hex)<=6&&qu.hex.r<wu.hex.r,"QuA on the source northwestern Wu shore "+s.id);check(qu.hex.neighbors().stream().anyMatch(w.army::water),"QuA water frontage "+s.id);}
+            World.City j=w.city(20005),h=w.city(20042),y=w.city(20006);if(j!=null&&h!=null&&y!=null)check(h.hex.r-j.hex.r==9&&h.hex.r-y.hex.r==2,"Huguan follows the source road bend south of Ye "+s.id);
         }
     }
 }

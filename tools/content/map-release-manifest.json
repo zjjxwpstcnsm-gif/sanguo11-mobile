@@ -1,5 +1,5 @@
 {
-  "release": "0.45.0",
+  "release": "0.50.0",
   "baseline_manifest": "tools/content/map-v040-manifest.json",
   "files": [
     {
@@ -30,52 +30,52 @@
     {
       "apk_path": "scenarios/central-mobile-sandbox.properties",
       "source_path": "core/src/main/resources/scenarios/central-mobile-sandbox.properties",
-      "sha256": "ba256fd0b9179b9f588b8b7fd6ebd8841e78564fe69e36b46d5b9902840818af"
+      "sha256": "c1602d842c6b7c00b4e82c6f73ba1a637b4ce05cf877ad2a22d5164bb7c4eff9"
     },
     {
       "apk_path": "scenarios/chibi-207.properties",
       "source_path": "core/src/main/resources/scenarios/chibi-207.properties",
-      "sha256": "965c925a1dbfbbc3c05efaffbb74b097119332425a76fd6d60357acd718f39f2"
+      "sha256": "4e68a3091fafcba4fa00629a713366fc30b563b2f78b01b0e04d17b47db6ddee"
     },
     {
       "apk_path": "scenarios/coalition-190.properties",
       "source_path": "core/src/main/resources/scenarios/coalition-190.properties",
-      "sha256": "266de93b4fce814d8af1f487db7be3116280b2bc73bbff5f0f50ee9d2128863c"
+      "sha256": "38ec607bc57a6a3a7361ee78f1ebccdad9fcd2afac141e84c749de0cbb44683f"
     },
     {
       "apk_path": "scenarios/guandu-200.properties",
       "source_path": "core/src/main/resources/scenarios/guandu-200.properties",
-      "sha256": "4065a4d1aa280b2fa9d903a36fdbab85ef89f9423b8278517bdb5feae98d3eb3"
+      "sha256": "308befa4b0080183ba3b9b5492e2639689554ea074b8f88714abe35283607616"
     },
     {
       "apk_path": "scenarios/heroes-250.properties",
       "source_path": "core/src/main/resources/scenarios/heroes-250.properties",
-      "sha256": "01a66fcb733e735f0dcccecddb65d6436ce11f9abc839d80f0897f2d83da5ca4"
+      "sha256": "433c6bb17f26668ff86d09b393ef576f567cea00bd76c2bd1f910b4ec7e2cc88"
     },
     {
       "apk_path": "scenarios/heroes-mobile-sandbox.properties",
       "source_path": "core/src/main/resources/scenarios/heroes-mobile-sandbox.properties",
-      "sha256": "cb7dc3ea573859822410f983b92380bfde0cc5085ff199c352f194118c547681"
+      "sha256": "d1b95bfd62b9c0002a1ccf35d4346ff5d16dd8eb3a2b155da5075f3aece9a009"
     },
     {
       "apk_path": "scenarios/huangjin-184.properties",
       "source_path": "core/src/main/resources/scenarios/huangjin-184.properties",
-      "sha256": "6c400b9f43e5e58767626683bd359bf81c100c82e70562a1bfa858f0b49f78d7"
+      "sha256": "3708522657a52b842bc014f32a6070e81ddba8ef1367ecec39bc89723c4cfae1"
     },
     {
       "apk_path": "scenarios/index.txt",
       "source_path": "core/src/main/resources/scenarios/index.txt",
-      "sha256": "d2bba0180eeb1b151101b111ab22d41ed964c62ab24e96f49a8209d2c7ec3b17"
+      "sha256": "160fc05604fc3820156c7b4202f83bb236807f27759ee64ec488bc74e77af220"
     },
     {
       "apk_path": "scenarios/jingxiang-mobile-sandbox.properties",
       "source_path": "core/src/main/resources/scenarios/jingxiang-mobile-sandbox.properties",
-      "sha256": "d3b95a553845a8fe379ee73e057cea4fb773f9908c05fdacf7f6e67ff426cb8a"
+      "sha256": "c1607e6bbc2bfa147bd590c173847f05a1f11b3437836072a697b6a9fc4a6ebd"
     },
     {
       "apk_path": "scenarios/warlords-194.properties",
       "source_path": "core/src/main/resources/scenarios/warlords-194.properties",
-      "sha256": "72bad74108fc97034c5c947566d7e2b232af57f9e34fd74efb6e689aa705754e"
+      "sha256": "c1b965f2976254f8864b676f9240d3a2ae126208b1cbee6f94ff35331944436d"
     },
     {
       "apk_path": "assets/map/items-facilities-v040.png",
@@ -93,5 +93,6 @@
       "sha256": "8706a2095243fac24832b8bb736505b8d45687c7dcd42b39d5a4e1caa8e3f043"
     }
   ],
-  "baseline_commit": "c4bc410223365cd083d6d6196b0303255b740f1c"
+  "baseline_commit": "18b1c2d01d6ef5d0bc63fef8a3e483186a99e390",
+  "reference_data": "data/map/reference-v050.json"
 }
