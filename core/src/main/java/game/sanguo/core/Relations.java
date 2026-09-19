@@ -23,10 +23,10 @@ public final class Relations {
         if(kind==Kind.SWORN||kind==Kind.LIKE||kind==Kind.DISLIKE)return Collections.unmodifiableSet(kind==Kind.SWORN?p.sworn:kind==Kind.LIKE?p.likes:p.dislikes);
         int target=kind==Kind.FATHER?p.father:kind==Kind.MOTHER?p.mother:p.spouse;return target<0?Collections.emptySet():Collections.singleton(target);
     }
-    public boolean sworn(int a,int b){return links(a,Kind.SWORN).contains(b);}
+    public boolean sworn(int a,int b){Person p=people.get(a);return p!=null&&p.sworn.contains(b);}
     public boolean bonded(int a,int b){return a!=b&&(spouse(a)==b||sworn(a,b));}
-    public boolean dislikes(int a,int b){return links(a,Kind.DISLIKE).contains(b);}
-    public boolean likes(int a,int b){return links(a,Kind.LIKE).contains(b);}
+    public boolean dislikes(int a,int b){Person p=people.get(a);return p!=null&&p.dislikes.contains(b);}
+    public boolean likes(int a,int b){Person p=people.get(a);return p!=null&&p.likes.contains(b);}
     private Set<Integer> ancestors(int id){
         Set<Integer> seen=new HashSet<>();Deque<Integer> todo=new ArrayDeque<>();todo.add(id);
         while(!todo.isEmpty()){int v=todo.remove();if(!seen.add(v))continue;int f=parent(v,false),m=parent(v,true);if(f>=0)todo.add(f);if(m>=0)todo.add(m);}return seen;
@@ -34,16 +34,26 @@ public final class Relations {
     public boolean blood(int a,int b){if(a==b)return true;Set<Integer> aa=ancestors(a),bb=ancestors(b);aa.retainAll(bb);return !aa.isEmpty();}
     public boolean loyalBond(int target){
         World.Officer t=w.officer(target);if(t==null||t.owner<0||!w.alive(t.owner))return false;
-        for(World.Officer o:w.officers)if(o.owner==t.owner&&w.life.present(o.id)&&bonded(target,o.id))return true;return false;
+        Person p=people.get(target);if(p==null)return false;
+        if(p.spouse!=target&&ally(p.spouse,t.owner,true))return true;
+        for(int id:p.sworn)if(id!=target&&ally(id,t.owner,true))return true;return false;
     }
     public boolean refuses(int target,int recruiter,int owner){
         if(loyalBond(target))return true;
         if(dislikes(target,recruiter))return true;
-        for(World.Officer o:w.officers)if(o.owner==owner&&o.role==Strategy.Role.RULER&&dislikes(target,o.id))return true;return false;
+        Person p=people.get(target);if(p==null)return false;
+        for(int id:p.dislikes){World.Officer o=w.officer(id);if(o!=null&&o.owner==owner&&o.role==Strategy.Role.RULER)return true;}return false;
     }
     public int recruitmentBonus(int target,int recruiter,int owner){
         if(bonded(target,recruiter)||likes(target,recruiter))return 20;
-        for(World.Officer o:w.officers)if(o.owner==owner&&(bonded(target,o.id)||likes(target,o.id)))return 10;return 0;
+        Person p=people.get(target);if(p==null)return 0;
+        if(p.spouse!=target&&ally(p.spouse,owner,false))return 10;
+        for(int id:p.sworn)if(id!=target&&ally(id,owner,false))return 10;
+        for(int id:p.likes)if(ally(id,owner,false))return 10;return 0;
+    }
+    private boolean ally(int id,int owner,boolean present){
+        if(id<0)return false;World.Officer o=w.officer(id);
+        return o!=null&&o.owner==owner&&(!present||w.life.present(id));
     }
     /** Positive-gap fractions from published SAN11 experiments; two deputies never add their boosts. */
     public int contribution(int leader,int deputy,int leaderValue,int deputyValue){

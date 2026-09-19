@@ -8,7 +8,7 @@ public final class Skills {
     private final World w;
     Skills(World w){this.w=w;}
     public boolean has(World.Officer o,Skill s){return o!=null&&s.id.equals(o.skillId);}
-    public boolean has(World.Unit u,Skill s){if(u!=null)for(World.Officer o:w.army.crew(u))if(has(o,s))return true;return false;}
+    public boolean has(World.Unit u,Skill s){if(u==null)return false;if(has(w.officer(u.officerId),s))return true;for(int id:u.deputies)if(has(w.officer(id),s))return true;return false;}
     public boolean city(int city,Skill s){World.City c=w.city(city);if(c!=null)for(World.Officer o:w.officers)if(o.owner==c.owner&&o.cityId==city&&o.unitId<0&&has(o,s))return true;return false;}
     public int holderStat(World.Unit u,Skill s,boolean intelligence){int best=-1;if(u!=null)for(World.Officer o:w.army.crew(u))if(has(o,s))best=Math.max(best,intelligence?o.intelligence:o.war);return best;}
     public int plotCost(World.Unit u,War.Plot plot){return has(u,BAICHU)?1:plot.energy;}

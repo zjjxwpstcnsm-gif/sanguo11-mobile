@@ -21,25 +21,47 @@ import java.util.function.ToIntFunction;
 
 public final class PersonnelTravel {
     private Map<Integer, SortedSet<Integer>> links;
-    private int siteCount = -1;
+    // Per-world, non-serialized geography cache. Ownership is deliberately not a key:
+    // personnel travel is a city-hop rule, not army pathfinding.
+    private World.City[] geometrySites = new World.City[0];
+    private World.SiteKind[] geometryKinds = new World.SiteKind[0];
+    private int geometryRevision = Integer.MIN_VALUE;
+    private List<World.City> cachedHubs = Collections.emptyList();
+    private final Map<Hex,Integer> regions = new HashMap<>();
+    private final Map<Long,List<Integer>> routes = new HashMap<>();
+    private void geometry() {
+        boolean changed=geometryRevision!=w.terrainRevision||geometrySites.length!=w.cities.size();
+        if(!changed)for(int i=0;i<geometrySites.length;i++){
+            World.City c=w.cities.get(i);
+            if(c!=geometrySites[i]||c.kind!=geometryKinds[i]){changed=true;break;}
+        }
+        if(!changed)return;
+        geometryRevision=w.terrainRevision;geometrySites=w.cities.toArray(new World.City[0]);
+        geometryKinds=new World.SiteKind[geometrySites.length];cachedHubs=new ArrayList<>();
+        for(int i=0;i<geometrySites.length;i++){
+            World.City c=geometrySites[i];geometryKinds[i]=c.kind;
+            if(c.kind==World.SiteKind.CITY)cachedHubs.add(c);
+        }
+        if(cachedHubs.isEmpty())Collections.addAll(cachedHubs,geometrySites);
+        links=null;regions.clear();routes.clear();
+    }
     private final World w;
 
     PersonnelTravel(World w) {
         this.w = w;
     }
 
-    private List<World.City> hubs() {
-        List<World.City> list = new ArrayList<>();
-        for (World.City c : this.w.cities) {
-            if (c.kind == World.SiteKind.CITY) {
-                list.add(c);
-            }
-        }
-        return list.isEmpty() ? this.w.cities : list;
-    }
+    private List<World.City> hubs() { return cachedHubs; }
 
-    public World.City region(Hex h) {
-        return hubs().stream().min(Comparator.comparingInt((World.City c)->c.hex.distance(h)).thenComparingInt(c->c.id)).orElse(null);
+    public World.City region(Hex h) { geometry();return regionCached(h); }
+    private World.City regionCached(Hex h) {
+        Integer id=regions.get(h);if(id!=null)return w.city(id);
+        World.City best=null;int distance=Integer.MAX_VALUE;
+        for(World.City c:cachedHubs){int d=c.hex.distance(h);
+            if(d<distance||d==distance&&(best==null||c.id<best.id)){best=c;distance=d;}}
+        // A bounded cache also covers custom maps and externally supplied coordinates.
+        if(best!=null){if(regions.size()>=8192)regions.clear();regions.put(h,best.id);}
+        return best;
     }
 
     private void connect(int a, int b) {
@@ -51,10 +73,9 @@ public final class PersonnelTravel {
 
     private void build() {
         int distance;
-        if (this.links != null && this.siteCount == this.w.cities.size()) {
+        if (this.links != null) {
             return;
         }
-        this.siteCount = this.w.cities.size();
         this.links = new TreeMap();
         List<World.City> cities = hubs();
         Iterator<World.City> it = cities.iterator();
@@ -64,7 +85,7 @@ public final class PersonnelTravel {
         Territory territory = new Territory(this.w);
         Map<Integer, Integer> parent = new HashMap<>();
         for (World.City c : this.w.cities) {
-            parent.put(Integer.valueOf(c.id), Integer.valueOf(region(c.hex).id));
+            parent.put(Integer.valueOf(c.id), Integer.valueOf(regionCached(c.hex).id));
         }
         for (World.City c2 : this.w.cities) {
             Iterator<Integer> it2 = territory.neighbors(c2.id).iterator();
@@ -112,14 +133,17 @@ public final class PersonnelTravel {
     }
 
     public List<Integer> route(Hex from, int destination) {
+        geometry();
         int id;
         World.City target = this.w.city(destination);
-        World.City start = region(from);
+        World.City start = regionCached(from);
         if (target == null || start == null) {
             return Collections.emptyList();
         }
         build();
-        int end = region(target.hex).id;
+        int end = regionCached(target.hex).id;
+        long key=((long)start.id<<32)^(end&0xffffffffL);
+        List<Integer> cached=routes.get(key);if(cached!=null)return cached;
         Map<Integer, Integer> previous = new HashMap<>();
         ArrayDeque<Integer> queue = new ArrayDeque<>();
         queue.add(Integer.valueOf(start.id));
@@ -141,7 +165,7 @@ public final class PersonnelTravel {
         for (int id2 = end; id2 >= 0; id2 = previous.get(Integer.valueOf(id2)).intValue()) {
             result.addFirst(Integer.valueOf(id2));
         }
-        return result;
+        List<Integer> path=Collections.unmodifiableList(result);routes.put(key,path);return path;
     }
 
     public int turns(int source, int target) {

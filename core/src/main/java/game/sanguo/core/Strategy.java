@@ -155,7 +155,8 @@ public final class Strategy {
     public List<World.Officer> recruitmentTargets(int cityId) {
         List<World.Officer> result=new ArrayList<>();
         for(World.Officer o:w.officers)if(canRecruitTarget(cityId,o.id))result.add(o);
-        result.sort(Comparator.comparingInt((World.Officer o)->w.recruitment.travelTurns(cityId,o.id)).thenComparingInt(o->o.id));
+        Map<Integer,Integer> travel=new HashMap<>();for(World.Officer o:result)travel.put(o.id,w.recruitment.travelTurns(cityId,o.id));
+        result.sort(Comparator.comparingInt((World.Officer o)->travel.get(o.id)).thenComparingInt(o->o.id));
         return result;
     }
     public int recruitmentChance(int cityId, int officerId, int targetId) {
@@ -313,8 +314,8 @@ boolean recruitable(int owner,int targetId){
     }
 int recruitChance(int owner,int officerId,int targetId){
         World.Officer o=w.officer(officerId),target=w.officer(targetId);
-        if(o==null||o.owner!=owner||!recruitable(owner,targetId)||w.relations.refuses(targetId,officerId,owner)||w.loyalty.refusesRuler(target))return 0;
-        if(target.owner>=0&&target.loyalty+target.honor>96)return 0;
+        if(o==null||o.owner!=owner||target==null||target.owner>=0&&target.loyalty+target.honor>96)return 0;
+        if(!recruitable(owner,targetId)||w.relations.refuses(targetId,officerId,owner)||w.loyalty.refusesRuler(target))return 0;
         int base=StrategyRules.recruitmentChance(o.charm,o.politics,target.loyalty,target.owner<0,target.owner<0?0:factionRelation(owner,target.owner));
         return Math.max(0,Math.min(95,base+w.relations.recruitmentBonus(targetId,officerId,owner)+w.loyalty.recruitmentAdjustment(o,target,owner)));
     }

@@ -7,7 +7,17 @@ import java.util.*;
 public final class Loyalty {
     private final World w;
     Loyalty(World w){this.w=w;}
+    // A command-local read scope, never retained across a state change. Public lookups
+    // outside a read-only query still observe direct role/owner/lifecycle mutations.
+    private Map<Integer,World.Officer> queryRulers;
+    <T> T readRulers(java.util.function.Supplier<T> query){
+        if(queryRulers!=null)return query.get();
+        Map<Integer,World.Officer> rulers=new HashMap<>();
+        for(World.Officer o:w.officers)if(o.role==Strategy.Role.RULER&&w.life.present(o.id))rulers.putIfAbsent(o.owner,o);
+        queryRulers=rulers;try{return query.get();}finally{queryRulers=null;}
+    }
     public World.Officer ruler(int owner){
+        if(queryRulers!=null)return queryRulers.get(owner);
         for(World.Officer o:w.officers)if(o.owner==owner&&o.role==Strategy.Role.RULER&&w.life.present(o.id))return o;
         return null;
     }
@@ -67,10 +77,25 @@ public final class Loyalty {
         return compatibilityBonus(actor,target)+(gap<0?0:(35-gap)/5)-(target.owner<0?0:(target.honor-3)*4);
     }
     public List<World.Officer> recruitmentActors(int city,int target){
-        List<World.Officer> result=new ArrayList<>(w.idle(w.city(city)));
-        result.sort(Comparator.comparingInt((World.Officer o)->w.strategy.recruitmentChance(city,o.id,target)).reversed()
-            .thenComparingInt(o->{int d=distance(o,w.officer(target));return d<0?76:d;}).thenComparingInt(o->o.id));
-        return result;
+        return readRulers(()->{
+            List<RecruitScore> ranked=new ArrayList<>();World.Officer t=w.officer(target);
+            for(World.Officer o:w.idle(w.city(city)))ranked.add(new RecruitScore(o,w.strategy.recruitmentChance(city,o.id,target),distance(o,t)));
+            ranked.sort(RECRUIT_ORDER);List<World.Officer> result=new ArrayList<>(ranked.size());
+            for(RecruitScore score:ranked)result.add(score.officer);return result;
+        });
+    }
+    private static final class RecruitScore {
+        final World.Officer officer;final int chance,gap;
+        RecruitScore(World.Officer o,int chance,int gap){officer=o;this.chance=chance;this.gap=gap<0?76:gap;}
+    }
+    private static final Comparator<RecruitScore> RECRUIT_ORDER=Comparator.comparingInt((RecruitScore s)->s.chance).reversed().thenComparingInt(s->s.gap).thenComparingInt(s->s.officer.id);
+    World.Officer bestRecruiter(int city,int target,List<World.Officer> idle){
+        return readRulers(()->{
+            World.Officer t=w.officer(target);RecruitScore best=null;
+            for(World.Officer o:idle){RecruitScore score=new RecruitScore(o,w.strategy.recruitmentChance(city,o.id,target),distance(o,t));
+                if(best==null||RECRUIT_ORDER.compare(score,best)<0)best=score;}
+            return best==null?null:best.officer;
+        });
     }
     public String recommendation(int city,int target,int actor){
         World.City c=w.city(city);World.Officer adviser=c==null?null:w.government.advisor(c.owner),o=w.officer(actor);

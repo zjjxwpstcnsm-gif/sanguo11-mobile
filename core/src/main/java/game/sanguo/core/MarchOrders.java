@@ -209,7 +209,7 @@ public final class MarchOrders {
         String permission=error(u);if(permission!=null){pause(u,permission);return;}
         Plan route=plan(u,o,false,false);if(!route.valid()){pause(u,route.error);return;}
         if(route.stepsNow>0){
-            World.Result moved=w.orders.executeRoute(w.orders.previewMove(u.id,route.path.get(route.stepsNow)),route.path.subList(0,route.stepsNow+1));
+            World.Result moved=w.orders.executeImmediateRoute(u.id,route.path.subList(0,route.stepsNow+1));
             if(!moved.ok){pause(u,moved.message);return;}
             if(w.unit(u.id)!=u)return;
         }

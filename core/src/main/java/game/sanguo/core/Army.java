@@ -39,8 +39,8 @@ public final class Army {
     public boolean contains(World.Unit unit,int officer){if(unit.officerId==officer)return true;if(unit.deputies!=null)for(int id:unit.deputies)if(id==officer)return true;return false;}
     public int war(World.Unit unit){int leader=w.contests.war(w.officer(unit.officerId)),value=leader;for(int id:unit.deputies)value=Math.max(value,w.relations.contribution(unit.officerId,id,leader,w.contests.war(w.officer(id))));return value;}
     public int leadership(World.Unit unit){int leader=w.officer(unit.officerId).leadership,value=leader;for(int id:unit.deputies)value=Math.max(value,w.relations.contribution(unit.officerId,id,leader,w.officer(id).leadership));return value;}
-    public int intelligence(World.Unit unit){int value=0;for(World.Officer o:crew(unit))value=Math.max(value,o.intelligence);return value;}
-    public int aptitude(World.Unit unit){return aptitude(crew(unit),water(unit.hex)?5:category(unit.weapon));}
+    public int intelligence(World.Unit unit){int value=w.officer(unit.officerId).intelligence;for(int id:unit.deputies)value=Math.max(value,w.officer(id).intelligence);return Math.max(0,value);}
+    public int aptitude(World.Unit unit){int category=water(unit.hex)?5:category(unit.weapon);if(category<0)return 0;int value=w.officer(unit.officerId).aptitude[category];for(int id:unit.deputies)value=Math.max(value,w.officer(id).aptitude[category]);return Math.max(0,value);}
     public int aptitude(List<World.Officer> crew,int category){int value=0;if(category>=0)for(World.Officer o:crew)value=Math.max(value,o.aptitude[category]);return value;}
     public boolean water(Hex h){return h!=null&&w.inside(h)&&(w.terrain[h.q][h.r]==World.Terrain.WATER||w.terrain[h.q][h.r]==World.Terrain.SEA);}
     public String equipmentLabel(World.Unit u){if(u instanceof Domestic.Mission)return water(u.hex)?"运输队 · 走舸":"运输队";return water(u.hex)?u.ship.label+"（携"+u.weapon.label+"）":u.weapon.label;}
@@ -65,7 +65,17 @@ public final class Army {
     public boolean canEnterSite(World.Unit u, Hex from, World.City city) {
         return u!=null&&city!=null&&city.owner==u.owner&&from!=null&&from.distance(city.hex)==1&&moveCost(u,from,city.hex)>0;
     }
-    public int moveCost(World.Unit u, Hex from, Hex to) {
+    public int moveCost(World.Unit u, Hex from, Hex to) {return moveCost(u,from,to,null);}
+    /** One read-only graph query. Discard before executing any command or changing the world. */
+    final class MovementCosts {
+        private final World.Unit unit;private final byte[] land=new byte[w.width*w.height];
+        MovementCosts(World.Unit unit){this.unit=unit;}
+        int cost(Hex from,Hex to){return moveCost(unit,from,to,this);}
+        private int land(Hex h){int index=h.q*w.height+h.r;int encoded=land[index]&255;
+            if(encoded==0){encoded=w.fieldworks.landCost(h,unit.weapon,unit.owner)+2;land[index]=(byte)encoded;}return encoded-2;}
+    }
+    MovementCosts movementCosts(World.Unit unit){return new MovementCosts(unit);}
+    private int moveCost(World.Unit u, Hex from, Hex to,MovementCosts cache) {
         if (((u instanceof Domestic.Mission) && !((Domestic.Mission) u).sea && water(to)) || to == null || !this.w.inside(to) || this.w.terrain[to.q][to.r] == World.Terrain.MOUNTAIN) {
             return -1;
         }
@@ -76,7 +86,7 @@ public final class Army {
         if (water(to)) {
             return water(from) ? 1 : 2;
         }
-        int land = this.w.fieldworks.landCost(to, u.weapon, u.owner);
+        int land = cache==null?this.w.fieldworks.landCost(to, u.weapon, u.owner):cache.land(to);
         if (land < 0) {
             return -1;
         }
@@ -144,11 +154,14 @@ public final class Army {
     public int siegeRange(World.Unit u){return w.war.range(u);}
     public boolean canAttackUnit(World.Unit u){return !(u instanceof Domestic.Mission)&&(water(u.hex)||!siegeWeapon(u.weapon));}
     public boolean counter(World.Unit u){return !(u instanceof Domestic.Mission)&&!water(u.hex)&&!siegeWeapon(u.weapon)&&u.weapon!=World.Weapon.CROSSBOW;}
-    public List<Tactic> tactics(World.Unit u){
-        List<Tactic> result=new ArrayList<>();if(u instanceof Domestic.Mission)return result;
-        if(water(u.hex)){if(u.ship!=Ship.BOAT){result.add(Tactic.FIRE_ARROW);result.add(Tactic.RAM);}if(u.ship==Ship.WARSHIP)result.add(Tactic.STONE);}
-        else switch(u.weapon){case RAM:result.add(Tactic.RAM);break;case SIEGE_TOWER:result.add(Tactic.FIRE_ARROW);break;case WOODEN_BEAST:result.add(Tactic.FLAME);break;case CATAPULT:result.add(Tactic.STONE);break;default:break;}
-        return result;
+    private static final List<Tactic> NAVAL_TACTICS=Collections.unmodifiableList(Arrays.asList(Tactic.FIRE_ARROW,Tactic.RAM));
+    private static final List<Tactic> WARSHIP_TACTICS=Collections.unmodifiableList(Arrays.asList(Tactic.FIRE_ARROW,Tactic.RAM,Tactic.STONE));
+    private static final List<Tactic> RAM_TACTICS=Collections.singletonList(Tactic.RAM),ARROW_TACTICS=Collections.singletonList(Tactic.FIRE_ARROW),FLAME_TACTICS=Collections.singletonList(Tactic.FLAME),STONE_TACTICS=Collections.singletonList(Tactic.STONE);
+    public List<Tactic> tactics(World.Unit u){return new ArrayList<>(tacticOptions(u));}
+    List<Tactic> tacticOptions(World.Unit u){
+        if(u instanceof Domestic.Mission)return Collections.emptyList();
+        if(water(u.hex))return u.ship==Ship.WARSHIP?WARSHIP_TACTICS:u.ship==Ship.BOAT?Collections.emptyList():NAVAL_TACTICS;
+        switch(u.weapon){case RAM:return RAM_TACTICS;case SIEGE_TOWER:return ARROW_TACTICS;case WOODEN_BEAST:return FLAME_TACTICS;case CATAPULT:return STONE_TACTICS;default:return Collections.emptyList();}
     }
     public String tacticError(int unit,Hex target,Tactic tactic){
         World.Unit u=w.unit(unit);String actorError=w.orders.error(u);if(actorError!=null)return actorError;
@@ -157,7 +170,7 @@ public final class Army {
     /** Read-only legality for detached route/AI probes; execution still validates the actor. */
     String tacticPositionError(World.Unit u,Hex target,Tactic tactic){
         if(u instanceof Domestic.Mission)return "运输队不能施展战法";
-        if(tactic==null||!tactics(u).contains(tactic))return "当前兵装或舰船不能施展此战法";
+        if(tactic==null||!tacticOptions(u).contains(tactic))return "当前兵装或舰船不能施展此战法";
         if(water(u.hex)&&aptitude(u)<tactic.rank||u.energy<tactic.energy)return "适性或气力不足";
         int distance=target==null?0:u.hex.distance(target),max=tactic==Tactic.RAM?1:w.war.range(u);
         if(target==null||!w.inside(target)||distance<1||distance>max||!w.fieldworks.landTarget(u.owner,target))return "目标不在战法范围内";
@@ -190,6 +203,7 @@ public final class Army {
         Domestic.Facility facility=w.domestic.at(target);
         if(facility!=null){
             int amount=w.combat.structureDamage(u,true);
+            if(amount>0&&w.combat.critical(u,null,true))w.tacticCritical(u);
             amount=w.domestic.damage(facility,amount);w.battleImpact(target,facility.hp==0);
             if(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)w.war.ignite(target,u);if(tactic==Tactic.STONE)w.fieldworks.stoneSplash(u,target);
             w.campaign.earn(u.owner,20);return w.success(tactic.label+"命中"+facility.kind.label+"，耐久减少"+amount+"，剩余"+facility.hp);
@@ -198,6 +212,7 @@ public final class Army {
         if(structure!=null){
             if(structure.complete&&w.fieldworks.trap(structure.kind)&&(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)){w.war.ignite(target,u);w.checkVictory();return w.success(tactic.label+"引爆"+structure.kind.label);}
             int amount=w.combat.structureDamage(u,true);
+            if(amount>0&&w.combat.critical(u,null,true))w.tacticCritical(u);
             amount=Math.min(structure.hp,amount);structure.hp-=amount;if(structure.hp==0){w.fieldworks.destroy(structure);w.battleImpact(target,true);w.battleOutcome(structure.kind.label+"已摧毁，地块已释放");}
             if(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)w.war.ignite(target,u);if(tactic==Tactic.STONE)w.fieldworks.stoneSplash(u,target);
             w.campaign.earn(u.owner,20);return w.success(tactic.label+"命中"+structure.kind.label+"，耐久减少"+amount);

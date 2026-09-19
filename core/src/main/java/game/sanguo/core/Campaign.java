@@ -84,7 +84,7 @@ public final class Campaign {
     public int energyCap(int side){return has(side,Tech.LOGISTICS)?120:100;}
     public int points(int side){return points.getOrDefault(side,0);}
     void earn(int side,int amount){if(side>=0&&side<w.factions.length&&amount>0)points.put(side,Math.min(100000,points(side)+amount));}
-    public boolean has(int side,Tech tech){EnumSet<Tech> set=learned.getOrDefault(side,EnumSet.noneOf(Tech.class));return set.contains(tech)||tech==Tech.WARSHIP&&set.contains(Tech.CATAPULT);}
+    public boolean has(int side,Tech tech){EnumSet<Tech> set=learned.get(side);return set!=null&&(set.contains(tech)||tech==Tech.WARSHIP&&set.contains(Tech.CATAPULT));}
     boolean grandfathered(int side,Tech tech){return legacyTechs.getOrDefault(side,EnumSet.noneOf(Tech.class)).contains(tech);}
     public int defenseCap(World.City c){return Math.min(100000,c.baseDefense+(has(c.owner,Tech.WALLS)?3000:0));}
     public int goldCap(World.City c){return c.kind==World.SiteKind.CITY?1000000:has(c.owner,Tech.PORT_EXPANSION)?40000:10000;}
@@ -94,7 +94,8 @@ public final class Campaign {
     public int orderLoss(int owner,int base){return has(owner,Tech.ADMINISTRATION)?(base+1)/2:base;}
     public int loyaltyLoss(int owner,int base){return has(owner,Tech.POPULAR_SUPPORT)?(base+1)/2:base;}
     public Tech elite(World.Unit u){return eliteAt(u,u.hex);}
-    private Tech eliteAt(World.Unit u,Hex h){if(w.army.water(h)||u.weapon.ordinal()>3)return null;return new Tech[]{Tech.ELITE_SPEAR,Tech.ELITE_HALBERD,Tech.ELITE_CROSSBOW,Tech.ELITE_CAVALRY}[u.weapon.ordinal()];}
+    private static final Tech[] ELITE_TYPES={Tech.ELITE_SPEAR,Tech.ELITE_HALBERD,Tech.ELITE_CROSSBOW,Tech.ELITE_CAVALRY};
+    private Tech eliteAt(World.Unit u,Hex h){if(w.army.water(h)||u.weapon.ordinal()>3)return null;return ELITE_TYPES[u.weapon.ordinal()];}
     public boolean eliteUnit(World.Unit u){return eliteUnitAt(u,u.hex);}
     boolean eliteUnitAt(World.Unit u,Hex h){Tech t=eliteAt(u,h);return t!=null&&has(u.owner,t);}
     int constructionDamage(World.Unit u,int amount){return has(u.owner,Tech.SIEGE_LADDERS)?amount*(w.army.water(u.hex)||Army.siegeWeapon(u.weapon)?120:140)/100:amount;}

@@ -71,7 +71,8 @@ public final class World {
         public final String message;
         public final Feedback feedback;
         public final Hex impact;
-        private Result(boolean ok,String message,Feedback feedback,Hex impact) { this.ok=ok;this.message=message;this.feedback=feedback;this.impact=impact; }
+        public final CriticalHit critical;
+        private Result(boolean ok,String message,Feedback feedback,Hex impact,CriticalHit critical) { this.ok=ok;this.message=message;this.feedback=feedback;this.impact=impact;this.critical=critical; }
     }
     public final int width,height;
     public final Terrain[][] terrain;
@@ -79,13 +80,14 @@ public final class World {
     private static final class OfficerRoster extends AbstractList<Officer> implements RandomAccess {
         private final List<Officer> values=new ArrayList<>();
         private final Map<Integer,Officer> ids=new HashMap<>();
+        private final Officer[] smallIds=new Officer[8192];
         private boolean dirty=true;
         @Override public Officer get(int i){return values.get(i);}
         @Override public int size(){return values.size();}
         @Override public void add(int i,Officer o){values.add(i,o);dirty=true;modCount++;}
         @Override public Officer set(int i,Officer o){Officer old=values.set(i,o);dirty=true;return old;}
         @Override public Officer remove(int i){Officer old=values.remove(i);dirty=true;modCount++;return old;}
-        Officer byId(int id){if(dirty){ids.clear();for(Officer o:values)ids.putIfAbsent(o.id,o);dirty=false;}return ids.get(id);}
+        Officer byId(int id){if(dirty){ids.clear();Arrays.fill(smallIds,null);for(Officer o:values){if(o.id>=0&&o.id<smallIds.length){if(smallIds[o.id]==null)smallIds[o.id]=o;}else ids.putIfAbsent(o.id,o);}dirty=false;}return id>=0&&id<smallIds.length?smallIds[id]:ids.get(id);}
     }
     private static final class CityRoster extends AbstractList<City> implements RandomAccess {
         private final List<City> values=new ArrayList<>();
@@ -182,7 +184,14 @@ public final class World {
     public Unit unitAt(Hex h) {for(Unit u:units)if(u.hex.equals(h))return u;for(Domestic.Mission m:domestic.missions)if(m.transport&&!m.legacyOverlap&&m.hex.equals(h)&&cityAt(h)==null)return m;return null;}
     // Transient command feedback, never serialized or inferred by parsing translated log text.
     TurnJournal turnJournal;
-    void visualAction(TurnJournal.Kind kind,int actor,Hex target,String label){if(turnJournal!=null)turnJournal.mark(kind,actor,target,label);}
+    void visualAction(TurnJournal.Kind kind,int actor,Hex target,String label){actionLabel=label;if(turnJournal!=null)turnJournal.mark(kind,actor,target,label);}
+    private String actionLabel="战法";
+    private CriticalHit critical;
+    void tacticCritical(Unit source){
+        if(critical!=null)return;Officer o=officer(source.officerId);if(o==null)return;
+        critical=new CriticalHit(o,source,actionLabel);
+        if(turnJournal!=null)turnJournal.critical(critical);
+    }
     private Feedback feedback=Feedback.NONE;
     private Hex impact;
     private final List<String> battleOutcomes=new ArrayList<>();
@@ -192,8 +201,8 @@ public final class World {
     void battleOutcome(String text){battleOutcomes.add(text);note(text);}
     private Result result(boolean ok,String text){
         String message=text+(ok&&!battleOutcomes.isEmpty()?"\n"+String.join("\n",battleOutcomes):"");
-        Result result=new Result(ok,message,ok?feedback:Feedback.NONE,ok?impact:null);
-        feedback=Feedback.NONE;impact=null;battleOutcomes.clear();return result;
+        Result result=new Result(ok,message,ok?feedback:Feedback.NONE,ok?impact:null,ok?critical:null);
+        feedback=Feedback.NONE;impact=null;critical=null;actionLabel="战法";battleOutcomes.clear();return result;
     }
     Result fail(String text) { if(turnJournal!=null)turnJournal.cancel();return result(false,text); }
     private long commandRevision;
@@ -282,6 +291,7 @@ public final class World {
     Result resolveSiege(Unit u,City c,boolean tactic,boolean stoneSplash) {
         visualAction(tactic?TurnJournal.Kind.TACTIC:TurnJournal.Kind.ATTACK,u.id,c.hex,tactic?"攻城战法":"攻城");
         CombatRules.SiegeDamage damage=combat.siege(u,c,tactic);int hit=Math.min(c.defense,damage.wall),troopHit=Math.min(c.troops,damage.troops);
+        if(tactic&&(hit>0||troopHit>0)&&combat.critical(u,null,true))tacticCritical(u);
         c.defense=Math.max(0,c.defense-hit);c.troops=Math.max(0,c.troops-troopHit);
         battleImpact(c.hex,c.defense==0||c.troops==0);
         String message=officer(u.officerId).name+"攻城，城防−"+hit+"，守军−"+troopHit;

@@ -46,11 +46,12 @@ public final class UnitOrders {
         Paths result=new Paths();if(error(u)!=null)return result;
         PriorityQueue<Step> queue=new PriorityQueue<>(Comparator.comparingInt((Step s)->s.cost)
             .thenComparingInt(s->s.hex.q).thenComparingInt(s->s.hex.r));
+        Army.MovementCosts movementCosts=w.army.movementCosts(u);
         int budget=remaining(u);result.costs.put(u.hex,0);queue.add(new Step(u.hex,0));
         while(!queue.isEmpty()) {
             Step step=queue.remove();if(step.cost!=result.costs.get(step.hex))continue;
             for(Hex next:step.hex.neighbors()) {
-                int cost=w.army.moveCost(u,step.hex,next);
+                int cost=movementCosts.cost(step.hex,next);
                 if(cost<0||w.cityAt(next)!=null||w.domestic.at(next)!=null||w.war.at(next)!=null||avoidFire&&w.war.fireAt(next)!=null)continue;
                 World.Unit other=w.unitAt(next);if(other!=null&&other.id!=u.id)continue;
                 int total=step.cost+cost;
@@ -65,7 +66,14 @@ public final class UnitOrders {
     /** Map taps issue safe automatic marches, so their highlight must also avoid fire. */
     public Map<Hex,Integer> marchReachable(World.Unit u){return Collections.unmodifiableMap(paths(u,true).costs);}
     public Map<Hex,Integer> reachable(World.Unit u){return Collections.unmodifiableMap(paths(u).costs);}
-    public MovePlan previewMove(int unitId,Hex destination) {
+    public MovePlan previewMove(int unitId,Hex destination) {return planMove(unitId,destination,true);}
+    // Synchronous planner-only reads: no UI gap and no retained, mutable world snapshot.
+    MovePlan previewImmediateMove(int unitId,Hex destination){return planMove(unitId,destination,false);}
+    World.Result executeImmediateMove(int unitId,Hex destination){
+        MovePlan plan=planMove(unitId,destination,false);
+        return plan.valid()?commitMove(plan):w.fail(plan.error);
+    }
+    private MovePlan planMove(int unitId,Hex destination,boolean snapshot) {
         World.Unit u=w.unit(unitId);String error=error(u);
         Paths paths=error==null?paths(u):new Paths();
         if(error==null&&(destination==null||destination.equals(u.hex)||!paths.costs.containsKey(destination)))error="目标格不可达";
@@ -74,13 +82,16 @@ public final class UnitOrders {
         for(Hex h=destination;h!=null;h=paths.previous.get(h))route.addFirst(h);
         try {
             int cost=paths.costs.get(destination);
-            return new MovePlan(unitId,cost,remaining(u)-cost,route,null,SaveCodec.encode(w));
+            return new MovePlan(unitId,cost,remaining(u)-cost,route,null,snapshot?SaveCodec.encode(w):null);
         } catch(IOException e){return new MovePlan(unitId,0,0,Collections.emptyList(),"局面校验失败："+e.getMessage(),null);}
     }
     public World.Result execute(MovePlan plan) {
         if(plan==null||!plan.valid())return w.fail(plan==null?"移动预览无效":plan.error);
         try {if(!Arrays.equals(plan.snapshot,SaveCodec.encode(w)))return w.fail("局面已变化，请重新预览移动");}
         catch(IOException e){return w.fail("局面校验失败："+e.getMessage());}
+        return commitMove(plan);
+    }
+    private World.Result commitMove(MovePlan plan){
         World.Unit u=w.unit(plan.unitId);String error=error(u);if(error!=null)return w.fail(error);
         if(u.movementBudget<0)u.movementBudget=w.war.movement(u); // Freeze before any water/land conversion.
         w.marches.supersede(u);
@@ -89,7 +100,16 @@ public final class UnitOrders {
         u.movementSpent+=plan.cost;u.hex=plan.path.get(plan.path.size()-1);w.fieldworks.traveled(u,plan.path);
         return w.success(w.officer(u.officerId).name+"部队移动，剩余移动"+remaining(u)+"，仍可执行命令");
     }
-    World.Result executeRoute(MovePlan base,List<Hex> route) {
+    /** Worker-local plan is validated and executed in one synchronous call, with no UI gap.
+     * This avoids serializing the entire national world twice per AI move. User-facing
+     * previews above retain their byte snapshot and stale-preview rejection. */
+    World.Result executeImmediateRoute(int unit,List<Hex> route){
+        World.Unit u=w.unit(unit);String error=error(u);if(error!=null)return w.fail(error);
+        if(route==null||route.size()<2)return w.fail("目标格不可达");
+        return executeRoute(new MovePlan(unit,0,remaining(u),route,null,null),route,true);
+    }
+    World.Result executeRoute(MovePlan base,List<Hex> route){return executeRoute(base,route,false);}
+    private World.Result executeRoute(MovePlan base,List<Hex> route,boolean immediate) {
         if(base==null||!base.valid())return w.fail(base==null?"移动预览无效":base.error);
         World.Unit u=w.unit(base.unitId);int cost=0;
         if(u==null||route.isEmpty()||!route.get(0).equals(u.hex))return w.fail("路线起点已变化");
@@ -104,7 +124,8 @@ public final class UnitOrders {
             }
         }
         if(cost>remaining(u))return w.fail("本旬移动力不足");
-        return execute(new MovePlan(u.id,cost,remaining(u)-cost,route,null,base.snapshot));
+        MovePlan checked=new MovePlan(u.id,cost,remaining(u)-cost,route,null,base.snapshot);
+        return immediate?commitMove(checked):execute(checked);
     }
     void reset(World.Unit u){u.acted=false;u.movementBudget=-1;u.movementSpent=0;}
 }

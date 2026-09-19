@@ -31,7 +31,7 @@ public final class Domestic {
         public String waiting="";public int escortId=-1,movementTurn=-1;
 
         public int consumedFood,lastTick=-1;
-        public boolean contains(int officer){return officerId==officer||Arrays.stream(deputies).anyMatch(id->id==officer);}
+        public boolean contains(int officer){if(officerId==officer)return true;for(int id:deputies)if(id==officer)return true;return false;}
         public int[] crew(){int[] ids=new int[deputies.length+1];ids[0]=officerId;System.arraycopy(deputies,0,ids,1,deputies.length);return ids;}
         public final int[] equipment;
         Mission(int id,int owner,int officer,int source,int target,Hex hex,boolean transport,int gold,int food,int troops,int[] equipment){

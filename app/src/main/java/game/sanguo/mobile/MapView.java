@@ -37,6 +37,16 @@ public final class MapView extends View {
     private TurnJournal.Event replayEvent;
     private World.Unit replayActor;
     private float replayFraction;
+    private CriticalScene criticalScene;
+    private CriticalHit criticalHit;
+    private Runnable criticalSkip;
+    void setCriticalSkip(Runnable skip){criticalSkip=skip;}
+    private float criticalPhase;
+    void criticalFrame(CriticalHit hit,float phase){
+        criticalHit=hit;criticalPhase=phase;
+        if(criticalScene==null&&hit!=null)criticalScene=new CriticalScene(getContext());
+        if(criticalScene!=null)criticalScene.set(world,hit);invalidate();
+    }
     void replayFrame(TurnJournal.Event event,float fraction){
         if(replayEvent!=event){replayEvent=event;replayActor=event==null?null:event.actorCopy();}
         replayFraction=fraction;postInvalidateOnAnimation();
@@ -93,6 +103,20 @@ public final class MapView extends View {
     private final Map<Integer,String> cityNames=new HashMap<>();
     private final Set<Integer> frontlineCities=new HashSet<>();
     private int territoryMode;
+    private boolean openingPreview;
+    private int previewFaction=-1;
+    void previewMode(){openingPreview=true;showMini=false;}
+    void setPreviewFaction(int side){previewFaction=side;invalidate();}
+    private void drawPreviewSelection(Canvas c){
+        if(!openingPreview||previewFaction<0)return;
+        paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(2.5f*density);paint.setColor(0xffffdf9a);
+        for(World.City site:world.cities)if(site.owner==previewFaction){
+            float sx=x(site.hex)*camera.scale+camera.x,sy=y(site.hex)*camera.scale+camera.y;
+            if(sx<0||sy<0||sx>getWidth()||sy>getHeight())continue;
+            c.drawCircle(sx,sy,Math.max(7*density,RADIUS*camera.scale*(site.kind==World.SiteKind.CITY?1.2f:.7f)),paint);
+        }
+        paint.setStyle(Paint.Style.FILL);
+    }
     private String territoryOwners="";
     Territory territory(){return territory;}
     int territoryMode(){return territoryMode;}
@@ -312,6 +336,7 @@ public final class MapView extends View {
     private void applyPendingCamera(){if(pendingCamera!=null&&getWidth()>0&&getHeight()>0){if(pendingCamera.containsKey("cameraScaleDp"))camera.restoreScale(pendingCamera.getFloat("cameraScaleDp")*density,pendingCamera.getFloat("cameraX"),pendingCamera.getFloat("cameraY"));else camera.restore(pendingCamera.getFloat("cameraRatio",1),pendingCamera.getFloat("cameraX"),pendingCamera.getFloat("cameraY"));pendingCamera=null;invalidate();}}
     @Override public boolean onTouchEvent(MotionEvent e){
         if(!isEnabled())return true;
+        if(criticalHit!=null&&criticalSkip!=null){if(e.getActionMasked()==MotionEvent.ACTION_UP){criticalSkip.run();performClick();}return true;}
         if(e.getActionMasked()==MotionEvent.ACTION_DOWN){caughtMotion=cameraMoving();stopCamera();multiTouch=false;layoutNavigator();miniButtonGesture=miniButton.contains(e.getX(),e.getY());miniGesture=!miniButtonGesture&&showMini&&miniRect.contains(e.getX(),e.getY());}
         if(miniButtonGesture){
             if(e.getPointerCount()>1||e.getActionMasked()==MotionEvent.ACTION_CANCEL)multiTouch=true;
@@ -470,15 +495,17 @@ public final class MapView extends View {
         }
         canvas.restore();
         drawMapLabels(canvas,detail);
+        drawPreviewSelection(canvas);
         if(territoryMode>0){
-            String caption=territoryMode==1?"势力范围 · 橙圈接壤 · 红!敌军逼近":"据点辖区 · 橙圈接壤 · 红!敌军逼近";
+            String caption=openingPreview?"开局预览 · "+world.faction(previewFaction):territoryMode==1?"势力范围 · 橙圈接壤 · 红!敌军逼近":"据点辖区 · 橙圈接壤 · 红!敌军逼近";
             int site=territory.siteAt(selected);World.City city=cityIndex.get(site);
             if(city!=null)caption=city.name+"辖区 · "+world.faction(city.owner)+(territory.frontline(site)?" · 前线":"");
             paint.setColor(0xe612272b);canvas.drawRoundRect(8*density,8*density,Math.min(getWidth()-8*density,258*density),38*density,6*density,6*density,paint);
             paint.setTextAlign(Paint.Align.LEFT);paint.setTextSize(12*density);paint.setColor(PAPER);canvas.drawText(caption,16*density,28*density,paint);
         }
-        drawNavigator(canvas);
+        if(!openingPreview)drawNavigator(canvas);
         drawReplayCaption(canvas);
+        if(criticalHit!=null&&criticalScene!=null)criticalScene.draw(canvas,getWidth()-occludedRight,getHeight()-occludedBottom,criticalPhase);
 
         lastDrawNanos=System.nanoTime()-drawStart;
     }

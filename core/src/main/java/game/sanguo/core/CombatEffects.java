@@ -9,6 +9,7 @@ public final class CombatEffects {
     CombatEffects(World w){this.w=w;}
     int physical(World.Unit a,World.Unit b,double scale,boolean tactic){
         int amount=w.combat.physicalDamage(a,b,scale,tactic,new Random(w.strategy.nextInt(Integer.MAX_VALUE)));
+        if(tactic&&amount>0&&b.troops>0&&w.combat.critical(a,b,true))w.tacticCritical(a);
         return hit(a,b,amount,tactic,true);
     }
     int hit(World.Unit source,World.Unit target,int amount,boolean tactic,boolean triggerOnHit){

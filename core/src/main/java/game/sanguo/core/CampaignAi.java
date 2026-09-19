@@ -31,6 +31,14 @@ public final class CampaignAi {
     }
     private final World w;
     private Route selectedRoute;
+    private Hex[] routeCoordinates;
+    private static final int[] ROUTE_DQ={1,1,0,-1,-1,0},ROUTE_DR={0,-1,-1,0,1,1};
+    private Hex routeCoordinate(int q,int r){
+        if(q<0||r<0||q>=w.width||r>=w.height)return null;
+        if(routeCoordinates==null)routeCoordinates=new Hex[w.width*w.height];
+        int index=q*w.height+r;Hex h=routeCoordinates[index];
+        if(h==null)routeCoordinates[index]=h=new Hex(q,r);return h;
+    }
     private boolean actedProductively,formationWait;
     public CampaignAi(World w){this.w=Objects.requireNonNull(w);}
     private List<World.Unit> units(){List<World.Unit> out=new ArrayList<>(w.fieldUnits());out.sort(Comparator.comparingInt(u->u.id));return out;}
@@ -380,15 +388,12 @@ public final class CampaignAi {
         return result;
     }
     /** The range comes from the candidate tile's water/land mode, never from the origin alone. */
-    private boolean arrival(World.Unit u,Hex from,Hex goal,int range){
+    private boolean arrival(World.Unit u,World.Unit p,Hex from,Hex goal,int range,World.City city,World.Unit enemy,boolean hostileCity,boolean hostileUnit){
         if(from.equals(goal))return false;
-        World.City city=w.cityAt(goal);World.Unit enemy=w.unitAt(goal);
-        boolean hostileCity=city!=null&&w.campaign.hostile(u.owner,city.owner);
-        boolean hostileUnit=enemy!=null&&w.campaign.hostile(u.owner,enemy.owner);
         if(hostileCity||hostileUnit){
-            World.Unit p=at(u,from);p.energy=100; // Only a route probe; cannot create actual energy or change RNG.
+            p.hex=from; // One detached probe per search; never a world actor or a retained query result.
             if(hostileCity?w.siegePositionError(p,city)==null:w.war.attackPositionError(p,enemy)==null)return true;
-            for(Army.Tactic t:w.army.tactics(p))if(w.army.tacticPositionError(p,goal,t)==null)return true;
+            for(Army.Tactic t:w.army.tacticOptions(p))if(w.army.tacticPositionError(p,goal,t)==null)return true;
             return false;
         }
         return from.distance(goal)<=range&&(city==null||city.owner!=u.owner||range!=1||w.army.canEnterSite(u,from,city));
@@ -404,19 +409,22 @@ public final class CampaignAi {
         for(WorldEvents.Camp c:w.events.camps())blocked.add(c.hex);
         java.util.function.Predicate<Hex> zone=w.advancedBattle.zoneForSearch(u);
         Set<Hex> targets=new HashSet<>(goals);
-        Map<Hex,List<Hex>> arrivals=new HashMap<>();
+        Map<Hex,List<Hex>> arrivals=new HashMap<>();World.Unit probe=at(u,u.hex);probe.energy=100;
         for(Hex goal:targets){
             World.City city=w.cityAt(goal);World.Unit enemy=w.unitAt(goal);
-            boolean combat=city!=null&&w.campaign.hostile(u.owner,city.owner)||enemy!=null&&w.campaign.hostile(u.owner,enemy.owner);
-            int radius=combat?Math.max(Math.max(u.ship.range,4),range):range;
+            boolean hostileCity=city!=null&&w.campaign.hostile(u.owner,city.owner),hostileUnit=enemy!=null&&w.campaign.hostile(u.owner,enemy.owner);
+            int radius=hostileCity||hostileUnit?Math.max(Math.max(u.ship.range,4),range):range;
             for(int dq=-radius;dq<=radius;dq++)for(int dr=-radius;dr<=radius;dr++){
-                Hex h=new Hex(goal.q+dq,goal.r+dr);
-                if(w.inside(h)&&h.distance(goal)<=radius&&!blocked.contains(h)&&arrival(u,h,goal,range))arrivals.computeIfAbsent(h,x->new ArrayList<>()).add(goal);
+                Hex h=routeCoordinate(goal.q+dq,goal.r+dr);
+                if(w.inside(h)&&h.distance(goal)<=radius&&!blocked.contains(h)&&arrival(u,probe,h,goal,range,city,enemy,hostileCity,hostileUnit))arrivals.computeIfAbsent(h,x->new ArrayList<>()).add(goal);
             }
         }
         int[] costs=new int[w.width*w.height];Arrays.fill(costs,Integer.MAX_VALUE);Hex[] parents=new Hex[costs.length];
         PriorityQueue<Step> queue=new PriorityQueue<>(Comparator.comparingInt((Step s)->s.cost).thenComparingInt(s->s.h.q).thenComparingInt(s->s.h.r));
         queue.add(new Step(u.hex,0));costs[u.hex.q*w.height+u.hex.r]=0;
+        Army.MovementCosts movementCosts=w.army.movementCosts(u);
+        int landBudget=-1,waterBudget=-1,initialBudget=w.orders.remaining(u);
+        boolean fireImmune=w.skills.has(u,Skill.HUOSHEN),poisonImmune=w.skills.has(u,Skill.JIEDU),plankImmune=w.skills.has(u,Skill.TAPO);
         while(!queue.isEmpty()){
             Step s=queue.remove();if(costs[s.h.q*w.height+s.h.r]!=s.cost)continue;routeExpanded++;
             for(Hex goal:arrivals.getOrDefault(s.h,Collections.emptyList()))if(!result.containsKey(goal)&&!friendly.contains(s.h)){
@@ -424,11 +432,16 @@ public final class CampaignAi {
                 result.put(goal,new Route(path,s.cost,goal,range));if(firstOnly)return result;
             }
             if(result.size()==targets.size())break;
-            for(Hex h:s.h.neighbors()){
-                if(blocked.contains(h))continue;int step=w.army.moveCost(u,s.h,h);if(step<1)continue;
-                int budget=w.war.movementAt(u,s.h);if(s.h.equals(u.hex))budget=Math.max(budget,w.orders.remaining(u));
+            boolean water=w.army.water(s.h);int budget;
+            if(water){if(waterBudget<0)waterBudget=w.war.movementAt(u,s.h);budget=waterBudget;}else {if(landBudget<0)landBudget=w.war.movementAt(u,s.h);budget=landBudget;}
+            if(s.h.equals(u.hex))budget=Math.max(budget,initialBudget);
+            for(int direction=0;direction<6;direction++){
+                Hex h=routeCoordinate(s.h.q+ROUTE_DQ[direction],s.h.r+ROUTE_DR[direction]);
+                if(h==null||blocked.contains(h))continue;int step=movementCosts.cost(s.h,h);if(step<1)continue;
                 if(step>budget)continue; // Do not promise a forest/landing edge this unit can never pay for.
-                int cost=s.cost+step+hazard(u,h)+(zone.test(h)?3:0)+(friendly.contains(h)?3:0);
+                World.Terrain terrain=w.terrain[h.q][h.r];
+                int hazard=(!fireImmune&&w.war.fireAt(h)!=null?8:0)+(terrain==World.Terrain.POISON&&!poisonImmune?8:0)+(terrain==World.Terrain.PLANK_ROAD&&!plankImmune?3:0);
+                int cost=s.cost+step+hazard+(zone.test(h)?3:0)+(friendly.contains(h)?3:0);
                 if(cost>=costs[h.q*w.height+h.r])continue;
                 costs[h.q*w.height+h.r]=cost;parents[h.q*w.height+h.r]=s.h;queue.add(new Step(h,cost));
             }
@@ -443,8 +456,7 @@ public final class CampaignAi {
             prefix.add(h);if(w.advancedBattle.zone(u,h))break;
         }
         if(prefix.size()<2)return false;
-        UnitOrders.MovePlan plan=w.orders.previewMove(u.id,prefix.get(prefix.size()-1));
-        return plan.valid()&&w.orders.executeRoute(plan,prefix).ok;
+        return w.orders.executeImmediateRoute(u.id,prefix).ok;
     }
     private boolean canEnter(World.Unit u,World.City c){
         return c.owner==u.owner&&c.troops+u.troops<=w.campaign.troopCap(c)&&c.food+u.food<=w.campaign.foodCap(c)&&c.gold+u.gold<=w.campaign.goldCap(c)&&
@@ -487,7 +499,7 @@ public final class CampaignAi {
             int score=offense-exposure(u,e.getKey())*(w.war.range(probe)>1?100:55)/100-e.getValue()*8;
             if(score>bestScore||score==bestScore&&e.getKey().equals(u.hex)){bestScore=score;best=e.getKey();}
         }
-        if(!best.equals(u.hex))w.orders.execute(w.orders.previewMove(u.id,best));
+        if(!best.equals(u.hex))w.orders.executeImmediateMove(u.id,best);
     }
     /** Shared by computer factions and delegated districts. Attack permission is checked before every offensive action. */
     public void runUnit(World.Unit u,boolean attack,Predicate<World.City> objectives,Predicate<World.City> homes){
@@ -514,7 +526,7 @@ public final class CampaignAi {
         if(u.hex.distance(chosen.hex)>2)follow(u,route(u,chosen.hex,2));
         else{ // Do not camp on the next convoy route tile; yield only to a strictly lower-ID convoy.
             MarchOrders.Plan path=w.marches.convoyRoute(chosen);
-            if(path.path.contains(u.hex))for(Hex h:u.hex.neighbors())if(!path.path.contains(h)&&h.distance(chosen.hex)<=3&&w.orders.previewMove(u.id,h).valid()){w.orders.execute(w.orders.previewMove(u.id,h));break;}
+            if(path.path.contains(u.hex))for(Hex h:u.hex.neighbors())if(!path.path.contains(h)&&h.distance(chosen.hex)<=3&&w.orders.previewImmediateMove(u.id,h).valid()){w.orders.executeImmediateMove(u.id,h);break;}
         }
         formationWait=true;if(w.unit(u.id)!=null&&!u.acted)w.war.waitUnit(u.id);return true;
     }
@@ -524,15 +536,15 @@ public final class CampaignAi {
         for(World.Unit other:units())if(other.owner==u.owner&&other.id!=u.id&&u.hex.distance(other.hex)==1){
             AiOrders.Order plan=w.aiOrders.orders.get(other.id);if(plan==null||plan.target<0)continue;
             World.City target=w.city(plan.target);if(target==null||u.hex.distance(target.hex)>=other.hex.distance(target.hex))continue;
-            for(Hex h:u.hex.neighbors())if(w.unitAt(h)==null&&w.cityAt(h)==null&&h.distance(target.hex)>=u.hex.distance(target.hex)&&w.orders.previewMove(u.id,h).valid())
-                return w.orders.execute(w.orders.previewMove(u.id,h)).ok;
+            for(Hex h:u.hex.neighbors())if(w.unitAt(h)==null&&w.cityAt(h)==null&&h.distance(target.hex)>=u.hex.distance(target.hex)&&w.orders.previewImmediateMove(u.id,h).valid())
+                return w.orders.executeImmediateMove(u.id,h).ok;
         }return false;
     }
     private boolean yieldSiegeLane(World.Unit u){
         if(Army.siegeWeapon(u.weapon)||w.orders.remaining(u)==0)return false;
         for(World.City c:cities())if(w.campaign.hostile(u.owner,c.owner)&&u.hex.distance(c.hex)==1){
             boolean engine=false;for(World.Unit ally:w.units)if(ally.owner==u.owner&&Army.siegeWeapon(ally.weapon)&&ally.hex.distance(u.hex)<=3&&ally.hex.distance(c.hex)>w.army.siegeRange(ally))engine=true;
-            if(engine){for(Map.Entry<Hex,Integer> e:w.orders.reachable(u).entrySet())if(e.getKey().distance(c.hex)==2&&w.unitAt(e.getKey())==null&&exposure(u,e.getKey())<=exposure(u,u.hex))return w.orders.execute(w.orders.previewMove(u.id,e.getKey())).ok;}
+            if(engine){for(Map.Entry<Hex,Integer> e:w.orders.reachable(u).entrySet())if(e.getKey().distance(c.hex)==2&&w.unitAt(e.getKey())==null&&exposure(u,e.getKey())<=exposure(u,u.hex))return w.orders.executeImmediateMove(u.id,e.getKey()).ok;}
         }return false;
     }
     private boolean reinforcementsApproaching(World.Unit u,AiOrders.Order order){
@@ -564,7 +576,7 @@ public final class CampaignAi {
                 World.City rally=w.city(order.home);for(World.Unit ally:w.units){AiOrders.Order plan=w.aiOrders.orders.get(ally.id);if(ally.owner==u.owner&&plan!=null&&plan.target==order.target&&plan.home>=0&&w.city(plan.home).owner==u.owner){World.City candidate=w.city(plan.home),target=w.city(order.target);if(candidate.hex.distance(target.hex)<rally.hex.distance(target.hex)||candidate.hex.distance(target.hex)==rally.hex.distance(target.hex)&&candidate.id<rally.id)rally=candidate;}}
                 if(u.hex.distance(rally.hex)>4){follow(u,route(u,rally.hex,3));w.war.waitUnit(u.id);return;}
                 // Clear deployment exits while gathering. This is an ordinary paid movement, never teleportation.
-                World.City home=rally;if(u.hex.distance(home.hex)<=1)for(Hex h:w.orders.reachable(u).keySet())if(h.distance(home.hex)==3&&w.unitAt(h)==null){w.orders.execute(w.orders.previewMove(u.id,h));break;}
+                World.City home=rally;if(u.hex.distance(home.hex)<=1)for(Hex h:w.orders.reachable(u).keySet())if(h.distance(home.hex)==3&&w.unitAt(h)==null){w.orders.executeImmediateMove(u.id,h);break;}
                 w.war.waitUnit(u.id);return;
             }if(foodTurns(u)<6||assembled<resistance(w.city(order.target))&&order.stalled>=6){order.staging=false;order.target=-1;if(retreat(u,homes)){if(w.unit(u.id)!=null&&!u.acted)w.war.waitUnit(u.id);return;}}else{order.staging=false;for(World.Unit ally:w.units){AiOrders.Order plan=w.aiOrders.orders.get(ally.id);if(ally.owner==u.owner&&plan!=null&&plan.target==order.target&&ally.hex.distance(u.hex)<=8)plan.staging=false;}}
         }

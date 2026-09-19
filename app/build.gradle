@@ -34,6 +34,16 @@ android {
             keyPassword 'android'
         }
     }
+    buildTypes {
+        debug {
+            // Deliver normal ART execution, without debug-runtime overhead. Local source
+            // debugging remains available with -PdebuggablePlaytest=true; the same key is used.
+            def sourceDebug = providers.gradleProperty('debuggablePlaytest').map { it.toBoolean() }.getOrElse(false)
+            debuggable sourceDebug
+            minifyEnabled !sourceDebug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
     compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
 }
 dependencies { implementation project(':core') }

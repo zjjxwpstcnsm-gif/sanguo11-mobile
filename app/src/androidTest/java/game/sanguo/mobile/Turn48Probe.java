@@ -33,14 +33,14 @@ final class Turn48Probe {
         require(work.batchReady&&!work.done&&work.error==null,"first faction is presented before whole turn completion");
         require(field(activity,"playback")!=null,"playback starts while actual worker is unfinished");
         int batches=work.publishedBatches,cursor=work.cursor;SystemClock.sleep(180);
-        require(work.publishedBatches==batches&&work.cursor==cursor&&work.waitingForPlayback,"paused batch blocks next faction decisions, not UI thread");
-        require(Arrays.equals(initial,readAuto()),"incomplete turn only preserves initial authoritative save");
+        require(work.cursor==cursor&&work.paused&&!work.waitingForPlayback,"v52 presentation pause no longer blocks subsequent faction computation");
+        require(Arrays.equals(work.done?finalBytes:initial,readAuto()),"only complete authoritative worlds are saved");
         Button controls=(Button)field(activity,"nextTurn");require(controls.isEnabled(),"controls stay enabled during a streamed turn");
         ui(()->{work.speed=2;MapView map=(MapView)field(activity,"map");MapCamera camera=(MapCamera)field(map,"camera");camera.zoom(camera.maxScale,map.getWidth()/2f,map.getHeight()/2f);map.center(new Hex(9,8));float x=camera.x;camera.pan(-25,12);map.invalidate();require(camera.x!=x,"zoomed camera can move while phase is paused");});
         shot("01-stream-paused");
         ui(()->activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE));settle();activity=(MainActivity)field(test,"current");
         require(field(activity,"turnWork")==work&&work.paused&&work.speed==2,"rotation retains the same worker, cursor and speed");
-        require(Arrays.equals(initial,readAuto()),"rotation never serializes intermediate visual state");
+        require(Arrays.equals(work.done?finalBytes:initial,readAuto()),"rotation never serializes intermediate visual state");
         ui(()->activity.recreate());settle();activity=(MainActivity)field(test,"current");
         require(field(activity,"turnWork")==work&&work.paused&&work.speed==2&&!work.cancelled,"Activity recreation retains live producer and paused batch");
         ui(()->((TurnPlayback)field(activity,"playback")).skip());

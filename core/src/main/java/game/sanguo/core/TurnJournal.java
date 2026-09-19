@@ -12,6 +12,7 @@ public final class TurnJournal {
     }
     public static final class Event {
         public final Kind kind;
+        public final CriticalHit critical;
         public final int actorId,owner;
         public final Hex start,target;
         public final String label,message;
@@ -21,10 +22,10 @@ public final class TurnJournal {
         private final List<String> removed;
         private final World.Unit actor;
         Event(Kind kind,int id,int owner,Hex start,Hex target,String label,String message,List<Hex> path,
-              List<Impact> impacts,List<Node> changed,List<String> removed,World.Unit actor){
+              List<Impact> impacts,List<Node> changed,List<String> removed,World.Unit actor,CriticalHit critical){
             this.kind=kind;actorId=id;this.owner=owner;this.start=start;this.target=target;this.label=label;this.message=message;
             this.path=Collections.unmodifiableList(new ArrayList<>(path));this.impacts=Collections.unmodifiableList(impacts);
-            this.changed=changed;this.removed=removed;this.actor=actor;
+            this.changed=changed;this.removed=removed;this.actor=actor;this.critical=critical;
         }
         public World.Unit actorCopy(){return actor==null?null:copyUnit(actor);}
         public boolean visibleAction(){return kind!=Kind.CHANGE||!impacts.isEmpty();}
@@ -39,12 +40,14 @@ public final class TurnJournal {
     private Map<String,Node> previous;
     private final List<Event> events=new ArrayList<>();
     private Kind kind=Kind.CHANGE;
+    private CriticalHit critical;
+    void critical(CriticalHit hit){if(critical==null)critical=hit;}
     private int actorId=-1;
     private Hex target,sourceHex;
     private int sourceOwner=-1;
     private String label="";
     private List<Hex> path=Collections.emptyList();
-    public TurnJournal(World world){w=world;previous=snapshot(world);world.turnJournal=this;}
+    public TurnJournal(World world){w=world;previous=snapshot(world,Collections.emptyMap());world.turnJournal=this;}
     public List<Event> events(){return Collections.unmodifiableList(events);}
     /** Ownership transfer at a rule boundary: immutable events no longer retained by the producer. */
     public List<Event> drainEvents(){List<Event> batch=Collections.unmodifiableList(new ArrayList<>(events));events.clear();return batch;}
@@ -58,10 +61,10 @@ public final class TurnJournal {
         checkpoint("阶段结算");this.kind=kind;this.actorId=actor;this.target=target;this.label=label;
     }
     void movement(World.Unit u,List<Hex> route){mark(Kind.MOVE,u.id,route.get(route.size()-1),"行军");path=new ArrayList<>(route);}
-    void cancel(){kind=Kind.CHANGE;actorId=-1;target=null;sourceHex=null;sourceOwner=-1;label="";path=Collections.emptyList();}
+    void cancel(){critical=null;kind=Kind.CHANGE;actorId=-1;target=null;sourceHex=null;sourceOwner=-1;label="";path=Collections.emptyList();}
     public void checkpoint(String message){
-        Map<String,Node> next=snapshot(w);List<Node> changed=new ArrayList<>();List<String> removed=new ArrayList<>();List<Impact> impacts=new ArrayList<>();
-        for(Node n:next.values()){Node old=previous.get(n.key);if(old==null||!n.signature.equals(old.signature)){changed.add(n);impact(old,n,impacts);}}
+        Map<String,Node> next=snapshot(w,previous);List<Node> changed=new ArrayList<>();List<String> removed=new ArrayList<>();List<Impact> impacts=new ArrayList<>();
+        for(Node n:next.values()){Node old=previous.get(n.key);if(old!=n){changed.add(n);impact(old,n,impacts);}}
         for(Node old:previous.values())if(!next.containsKey(old.key)){removed.add(old.key);impact(old,null,impacts);}
         Node a=previous.get("u"+actorId);World.Unit actor=a!=null&&a.image instanceof World.Unit?(World.Unit)a.image:null;
         Kind eventKind=kind;Hex start=actor==null?sourceHex:actor.hex;Hex end=target;String name=label;List<Hex> route=path;
@@ -77,7 +80,7 @@ public final class TurnJournal {
         if(!changed.isEmpty()||!removed.isEmpty()||eventKind!=Kind.CHANGE){
             int id=actor==null?actorId:actor.id,owner=actor==null?(sourceOwner>=0?sourceOwner:w.active):actor.owner;
             if(name.isEmpty())name=impacts.isEmpty()?"结算":impacts.get(0).text;
-            events.add(new Event(eventKind,id,owner,start,end,name,message,route,impacts,changed,removed,actor));
+            events.add(new Event(eventKind,id,owner,start,end,name,message,route,impacts,changed,removed,actor,critical));
         }
         previous=next;cancel();
     }
@@ -101,8 +104,8 @@ public final class TurnJournal {
         }else if(a==null&&b instanceof War.Fire)out.add(new Impact(n.hex,"起火",true));
     }
     private static final class Node {
-        final String key,signature;final Hex hex;final Object image;
-        Node(String key,Hex hex,Object image,Object... signature){this.key=key;this.hex=hex;this.image=image;this.signature=Arrays.deepToString(signature);}
+        final String key;final Hex hex;final Object image;
+        Node(String key,Hex hex,Object image){this.key=key;this.hex=hex;this.image=image;}
         void add(World w){
             if(image instanceof Domestic.Mission)w.domestic.missions.add((Domestic.Mission)copyUnit((World.Unit)image));
             else if(image instanceof World.Unit)w.units.add(copyUnit((World.Unit)image));
@@ -112,16 +115,34 @@ public final class TurnJournal {
             else if(image instanceof War.Fire)w.war.fires.add(copyFire((War.Fire)image));
         }
     }
-    private static Map<String,Node> snapshot(World w){
-        Map<String,Node> map=new LinkedHashMap<>();List<World.Unit> units=new ArrayList<>(w.units);units.addAll(w.domestic.missions);
-        for(World.Unit u:units){Domestic.Mission m=u instanceof Domestic.Mission?(Domestic.Mission)u:null;
-            Node n=new Node("u"+u.id,u.hex,copyUnit(u),u.owner,u.officerId,u.hex,u.troops,u.energy,u.food,u.gold,u.status,u.statusTurns,u.acted,u.burning,u.ship,
-                u.deputies,m==null?"":m.waiting,m!=null&&m.stopped,m!=null&&m.transport,m==null?-1:m.targetCity);map.put(n.key,n);}
-        for(World.City c:w.cities){Node n=new Node("c"+c.id,c.hex,copyCity(c),c.owner,c.gold,c.food,c.troops,c.order,c.morale,c.defense,c.kind,c.equipment,c.ships);map.put(n.key,n);}
-        for(Domestic.Facility f:w.domestic.facilities){Node n=new Node("d"+f.id,f.hex,copyFacility(f),f.hp,f.builderId,f.remaining,f.level,f.upgradeTo);map.put(n.key,n);}
-        for(War.Structure s:w.war.structures){Node n=new Node("s"+s.id,s.hex,copyStructure(s),s.owner,s.kind,s.hp,s.builder,s.complete,s.direction);map.put(n.key,n);}
-        for(War.Fire f:w.war.fires){Node n=new Node("f"+f.hex.q+":"+f.hex.r,f.hex,copyFire(f),f.owner,f.remaining,f.power,f.trap);map.put(n.key,n);}
+    private static Map<String,Node> snapshot(World w,Map<String,Node> prior){
+        Map<String,Node> map=new LinkedHashMap<>();
+        for(World.Unit u:w.units)record(map,prior,"u"+u.id,u.hex,u);
+        for(Domestic.Mission m:w.domestic.missions)record(map,prior,"u"+m.id,m.hex,m);
+        for(World.City c:w.cities)record(map,prior,"c"+c.id,c.hex,c);
+        for(Domestic.Facility f:w.domestic.facilities)record(map,prior,"d"+f.id,f.hex,f);
+        for(War.Structure s:w.war.structures)record(map,prior,"s"+s.id,s.hex,s);
+        for(War.Fire f:w.war.fires)record(map,prior,"f"+f.hex.q+":"+f.hex.r,f.hex,f);
         return map;
+    }
+    private static void record(Map<String,Node> map,Map<String,Node> prior,String key,Hex h,Object source){
+        Node old=prior.get(key);
+        if(old!=null&&sameVisual(old.image,source)){map.put(key,old);return;}
+        Object image=source instanceof World.Unit?copyUnit((World.Unit)source):source instanceof World.City?copyCity((World.City)source):
+            source instanceof Domestic.Facility?copyFacility((Domestic.Facility)source):source instanceof War.Structure?copyStructure((War.Structure)source):copyFire((War.Fire)source);
+        map.put(key,new Node(key,h,image));
+    }
+    private static boolean sameVisual(Object left,Object right){
+        if(left.getClass()!=right.getClass())return false;
+        if(left instanceof World.Unit){World.Unit a=(World.Unit)left,b=(World.Unit)right;
+            if(a.owner!=b.owner||a.officerId!=b.officerId||!a.hex.equals(b.hex)||a.troops!=b.troops||a.energy!=b.energy||a.food!=b.food||a.gold!=b.gold||a.status!=b.status||a.statusTurns!=b.statusTurns||a.acted!=b.acted||a.burning!=b.burning||a.ship!=b.ship||!Arrays.equals(a.deputies,b.deputies))return false;
+            if(a instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)a,n=(Domestic.Mission)b;return Objects.equals(m.waiting,n.waiting)&&m.stopped==n.stopped&&m.transport==n.transport&&m.targetCity==n.targetCity;}
+            return true;
+        }
+        if(left instanceof World.City){World.City a=(World.City)left,b=(World.City)right;return a.owner==b.owner&&a.gold==b.gold&&a.food==b.food&&a.troops==b.troops&&a.order==b.order&&a.morale==b.morale&&a.defense==b.defense&&a.kind==b.kind&&Arrays.equals(a.equipment,b.equipment)&&Arrays.equals(a.ships,b.ships);}
+        if(left instanceof Domestic.Facility){Domestic.Facility a=(Domestic.Facility)left,b=(Domestic.Facility)right;return a.hp==b.hp&&a.builderId==b.builderId&&a.remaining==b.remaining&&a.level==b.level&&a.upgradeTo==b.upgradeTo;}
+        if(left instanceof War.Structure){War.Structure a=(War.Structure)left,b=(War.Structure)right;return a.owner==b.owner&&a.kind==b.kind&&a.hp==b.hp&&a.builder==b.builder&&a.complete==b.complete&&a.direction==b.direction;}
+        War.Fire a=(War.Fire)left,b=(War.Fire)right;return a.owner==b.owner&&a.remaining==b.remaining&&a.power==b.power&&a.trap==b.trap;
     }
     private static void remove(World w,String key){
         char type=key.charAt(0);if(type=='f'){w.war.fires.removeIf(f->key.equals("f"+f.hex.q+":"+f.hex.r));return;}

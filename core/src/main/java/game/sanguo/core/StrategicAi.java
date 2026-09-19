@@ -30,7 +30,8 @@ public final class StrategicAi {
     private void add(List<Decision> list,World.City c,World.Officer o,int target,Command command,int score,String reason){
         list.add(new Decision(c,o,target,command,score,reason));
     }
-    public Decision plan(int cityId,boolean emergency){
+    public Decision plan(int cityId,boolean emergency){return w.loyalty.readRulers(()->planReadOnly(cityId,emergency));}
+    private Decision planReadOnly(int cityId,boolean emergency){
         World.City c=w.city(cityId);
         if(c==null||c.owner!=w.active||w.gameOver()||w.actionPoints[w.active]<10)return null;
         List<World.Officer> idle=w.idle(c);if(idle.isEmpty())return null;
@@ -49,7 +50,7 @@ public final class StrategicAi {
         if(!emergency){
             if(c.gold>=Strategy.HIRE_COST)for(World.Officer target:w.strategy.recruitmentTargets(c.id)){
                 int travel=w.recruitment.travelTurns(c.id,target.id);if(travel>3||travel>0&&residents<3)continue;
-                World.Officer recruiter=w.loyalty.recruitmentActors(c.id,target.id).get(0);
+                World.Officer recruiter=w.loyalty.bestRecruiter(c.id,target.id,idle);
                 int chance=w.strategy.recruitmentChance(c.id,recruiter.id,target.id);
                 if(chance>=50)add(choices,c,recruiter,target.id,Command.HIRE,35+Math.max(0,3-residents)*20+chance/10-travel*8,"补充人才；按实际登用概率决策");
             }
