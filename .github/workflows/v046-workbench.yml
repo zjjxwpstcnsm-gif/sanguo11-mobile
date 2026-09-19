@@ -1,0 +1,133 @@
+name: v046 UI workbench
+run-name: v0.46 native polished UI APK and installed verification
+on:
+  push:
+    branches: [agent/ui-polish-v046-workbench]
+    paths: ['.github/workflows/v046-workbench.yml', '.ci/v046.*.b64']
+permissions:
+  contents: write
+concurrency:
+  group: v046-workbench
+  cancel-in-progress: true
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 12
+      - name: Verify and materialize reviewed source
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64,hashlib,json,lzma,pathlib,subprocess
+          expected=['8c2fd615c62bd869fd319d7f8e08ccc2a24252ba7905087f952b690db03c03e2','12e62894ec35ec78864c2677e341861076570780f50d9fb2a39c848bbadec770','024068158d717345449df7038c86e02dece8f2da614e2b69ccf2a614df491e5e']
+          chunks=[]
+          for i,want in enumerate(expected):
+              text=pathlib.Path(f'.ci/v046.{i}.b64').read_text().strip()
+              got=hashlib.sha256(text.encode()).hexdigest()
+              print('Chunk',i,len(text),got)
+              assert got==want, f'chunk {i} mismatch'
+              chunks.append(text)
+          raw=lzma.decompress(base64.b64decode(''.join(chunks),validate=True))
+          assert hashlib.sha256(raw).hexdigest()=='a6f00e1678fa08872362c3ab4be9e12e42edacd5e49bb3f719b73f45a578af6b'
+          items=json.loads(raw);hashes={}
+          for item in items:
+              p=pathlib.Path(item['path']);assert not p.is_absolute() and '..' not in p.parts
+              old=p.read_bytes() if p.exists() else None
+              assert (hashlib.sha256(old).hexdigest() if old is not None else None)==item['base'],str(p)+' base mismatch'
+              lines=[] if old is None else old.decode().splitlines(keepends=True)
+              for start,end,text in reversed(item['ops']):lines[start:end]=[text]
+              result=''.join(lines).encode();assert hashlib.sha256(result).hexdigest()==item['result'],str(p)+' output mismatch'
+              p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(result);hashes[str(p)]=item['result']
+          pathlib.Path('/tmp/SOURCE_CHECKSUMS.json').write_text(json.dumps(hashes,indent=2)+'\n')
+          for i in range(3):pathlib.Path(f'.ci/v046.{i}.b64').unlink()
+          pathlib.Path('.github/workflows/v046-workbench.yml').unlink()
+          subprocess.run(['git','add','-A'],check=True)
+          changed=subprocess.check_output(['git','diff','--cached','--name-only','e9600d4351f873ef03bffdf4217fb553d0ec275e'],text=True).splitlines()
+          assert sorted(changed)==sorted(hashes),'Unexpected source changes'
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          tree=$(git write-tree)
+          source=$(printf '%s\n' 'feat: polished native UI and fluid map interactions v0.46.0 [skip ci]' | git commit-tree "$tree" -p e9600d4351f873ef03bffdf4217fb553d0ec275e)
+          git checkout --detach "$source"
+          echo "SOURCE_COMMIT=$source" >> "$GITHUB_ENV"
+          mkdir -p dist
+          git rev-parse HEAD > dist/BUILD_COMMIT
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Install Android platform
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Focused model and asset checks
+        run: |
+          set -euo pipefail
+          bash scripts/test-ui-models.sh | tee dist/ui-model-checks.txt
+          python3 scripts/verify-map-release.py | tee dist/map-source-checks.txt
+      - name: Compile Android app and installed probe
+        run: ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest
+      - name: Package exact compiled APK
+        id: package
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_COMMIT"
+          git diff --exit-code
+          short=$(git rev-parse --short=12 HEAD)
+          name="sanguo11-mobile-v046-$short.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "dist/$name"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "dist/$name" | tee dist/SIGNATURE.txt
+          grep -Fq '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' dist/SIGNATURE.txt
+          python3 scripts/verify-map-release.py "dist/$name" | tee dist/map-apk-checks.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "dist/$name" > dist/APK_BADGING.txt
+          grep -Fq "versionCode='46' versionName='0.46.0'" dist/APK_BADGING.txt
+          cp /tmp/SOURCE_CHECKSUMS.json dist/SOURCE_CHECKSUMS.json
+          git diff --binary e9600d4351f873ef03bffdf4217fb553d0ec275e HEAD > dist/v046-source.patch
+          git archive --format=zip HEAD -o dist/v046-source.zip
+          (cd dist && sha256sum "$name" v046-source.zip v046-source.patch > SHA256SUMS)
+          echo "name=sanguo11-mobile-v046-$short" >> "$GITHUB_OUTPUT"
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Verify installed interaction and capture portrait/landscape
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: false
+          script: |
+            adb shell wm size 1080x1920
+            adb shell wm density 360
+            adb shell settings put system accelerometer_rotation 0
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb logcat -c
+            adb shell am instrument -w -r -e polish46 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner > dist/installed-probe.txt 2>&1
+            adb logcat -d > dist/logcat.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke dist/screenshots || true
+            cat dist/installed-probe.txt
+            grep -q 'POLISH46 PASS' dist/installed-probe.txt
+      - name: Publish verified source branch
+        run: git push origin "$SOURCE_COMMIT:refs/heads/agent/v046-ready"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ steps.package.outputs.name || 'sanguo11-mobile-v046-diagnostics' }}
+          path: dist/
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 0
