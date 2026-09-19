@@ -1,0 +1,153 @@
+name: v050 reference map fidelity
+run-name: v0.50 audited regional geography and installed Android verification
+on:
+  push:
+    branches: [agent/map-v050-workbench]
+    paths: ['.github/workflows/v050-workbench.yml', '.ci/v050.*.b64', '.ci/v050.fixes.json']
+permissions:
+  contents: write
+concurrency:
+  group: v050-workbench
+  cancel-in-progress: true
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 24
+      - name: Materialize hash-checked v50 changes on exact v49 base
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64,hashlib,json,lzma,pathlib,subprocess
+          base='18b1c2d01d6ef5d0bc63fef8a3e483186a99e390'
+          expected=['b306f49acba50220ed95aa834304dcfbe6bca77fb9a56e8c262452d3782b1ed5','0c880d5dc9b18d3ef0c64d1c0333fc80a73bdb5dcf81d422a81deeff3747240a','886a3d8900507d21173546757465ab7cff1e76583d49469dd12ff175bd04fb57','77f2b90e716c7d7ce66489cf02ad47b48b4dc48cf265b28a5b9fcbf390a019e8']
+          chunks=[]
+          for i,want in enumerate(expected):
+              text=pathlib.Path(f'.ci/v050.{i}.b64').read_text().strip()
+              assert hashlib.sha256(text.encode()).hexdigest()==want,f'chunk {i} mismatch'
+              chunks.append(text)
+          raw=lzma.decompress(base64.b64decode(''.join(chunks),validate=True))
+          assert hashlib.sha256(raw).hexdigest()=='3fda492b7a0b12bd5e20984859c2989ffa2fda45e12eb43b0730518ad60c84fa'
+          fixes=pathlib.Path('.ci/v050.fixes.json')
+          items=json.loads(raw)+(json.loads(fixes.read_text()) if fixes.exists() else [])
+          subprocess.run(['git','checkout','--detach',base],check=True)
+          hashes={}
+          for item in items:
+              p=pathlib.Path(item['path']);assert not p.is_absolute() and '..' not in p.parts
+              old=p.read_bytes() if p.exists() else None
+              assert (hashlib.sha256(old).hexdigest() if old is not None else None)==item['base'],str(p)+' base mismatch'
+              lines=[] if old is None else old.decode().splitlines(keepends=True)
+              for start,end,text in reversed(item['ops']):lines[start:end]=[text]
+              result=''.join(lines).encode();assert hashlib.sha256(result).hexdigest()==item['result'],str(p)+' output mismatch'
+              p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(result);hashes[str(p)]=item['result']
+          subprocess.run(['git','add','-A'],check=True)
+          changed=subprocess.check_output(['git','diff','--cached','--name-only',base],text=True).splitlines()
+          assert sorted(changed)==sorted(hashes),'Unexpected source changes'
+          pathlib.Path('/tmp/SOURCE_CHECKSUMS.json').write_text(json.dumps(hashes,indent=2)+'\n')
+          print('Verified source files:',len(hashes))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          tree=$(git write-tree)
+          source=$(printf '%s\n' 'feat: reference-registered regional map fidelity v0.50.0 [skip ci]' | git commit-tree "$tree" -p 18b1c2d01d6ef5d0bc63fef8a3e483186a99e390)
+          git checkout --detach "$source"
+          echo "SOURCE_COMMIT=$source" >> "$GITHUB_ENV"
+          mkdir -p dist
+          git rev-parse HEAD > dist/BUILD_COMMIT
+          cp /tmp/SOURCE_CHECKSUMS.json dist/SOURCE_CHECKSUMS.json
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Install Android platform
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Verify nine maps, actual routes and retained gameplay
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/test-map50.sh 2>&1 | tee dist/core-checks.txt
+          bash scripts/test-ui-models.sh 2>&1 | tee dist/ui-model-checks.txt
+          python3 scripts/verify-map-release.py | tee dist/map-source-checks.txt
+      - name: Compile Android app and installed probes
+        run: ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest
+      - name: Package exact compiled APK and source
+        id: package
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_COMMIT"
+          git diff --exit-code
+          short=$(git rev-parse --short=12 HEAD)
+          name="sanguo11-mobile-v050-$short.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "dist/$name"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "dist/$name" | tee dist/SIGNATURE.txt
+          grep -Fq '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' dist/SIGNATURE.txt
+          python3 scripts/verify-map-release.py "dist/$name" | tee dist/map-apk-checks.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "dist/$name" > dist/APK_BADGING.txt
+          grep -Fq "versionCode='50' versionName='0.50.0'" dist/APK_BADGING.txt
+          git diff --binary 18b1c2d01d6ef5d0bc63fef8a3e483186a99e390 HEAD > dist/v050-source.patch
+          git archive --format=zip HEAD -o dist/v050-source.zip
+          (cd dist && sha256sum "$name" v050-source.zip v050-source.patch > SHA256SUMS)
+          echo "name=sanguo11-mobile-v050-$short" >> "$GITHUB_OUTPUT"
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Verify installed geography, regional rendering and v49-v48 gameplay
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: false
+          script: |
+            adb shell wm size 1080x1920
+            adb shell wm density 360
+            adb shell settings put system accelerometer_rotation 0
+            adb shell settings put system user_rotation 0
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb logcat -c
+            adb shell am instrument -w -r -e map50 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner > dist/installed-map50.txt 2>&1
+            adb logcat -d > dist/logcat-map50.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke dist/screenshots || true
+            cat dist/installed-map50.txt
+            grep -q 'MAP50 PASS' dist/installed-map50.txt
+            adb shell am force-stop game.sanguo.mobile.dev
+            adb shell settings put system user_rotation 0
+            adb logcat -c
+            adb shell am instrument -w -r -e systems49 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner > dist/installed-systems49.txt 2>&1
+            adb logcat -d > dist/logcat-systems49.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke dist/screenshots-systems49 || true
+            cat dist/installed-systems49.txt
+            grep -q 'SYSTEMS49 PASS' dist/installed-systems49.txt
+            adb shell am force-stop game.sanguo.mobile.dev
+            adb shell settings put system user_rotation 0
+            adb logcat -c
+            adb shell am instrument -w -r -e flow48 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner > dist/installed-flow48.txt 2>&1
+            adb logcat -d > dist/logcat-flow48.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke dist/screenshots-flow48 || true
+            cat dist/installed-flow48.txt
+            grep -q 'FLOW48 PASS' dist/installed-flow48.txt
+      - name: Publish verified source branch
+        run: git push origin "$SOURCE_COMMIT:refs/heads/agent/v050-ready"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ steps.package.outputs.name || 'sanguo11-mobile-v050-diagnostics' }}
+          path: dist/
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 0
