@@ -7,7 +7,7 @@ import android.os.Bundle;
 import java.util.*;
 import game.sanguo.core.*;
 
-/** Original procedural debug renderer; not SAN11 artwork or final 3D renderer. */
+/** Cached national renderer with independent scene, selection and camera updates. */
 public final class MapView extends View {
     public interface TileListener {void tap(Hex tile);}
     private final TileListener listener;
@@ -117,6 +117,47 @@ public final class MapView extends View {
 
     }
     private final MapCamera camera=new MapCamera();
+    private final android.widget.OverScroller fling;
+    private android.animation.ValueAnimator cameraMotion;
+    private int flingX,flingY,occludedRight,occludedBottom;
+    private boolean caughtMotion;
+    private long renderedRevision=Long.MIN_VALUE;
+    private int renderedTurn=-1,renderedPlayer=-1,sceneBuilds,selectionBuilds;
+    private Hex touchHex;
+    private long touchUntil;
+    int sceneBuilds(){return sceneBuilds;}
+    int selectionBuilds(){return selectionBuilds;}
+    boolean cameraMoving(){return cameraMotion!=null||!fling.isFinished();}
+    void invalidateScene(){renderedRevision=Long.MIN_VALUE;}
+    void setPanelOcclusion(int right,int bottom){
+        right=Math.max(0,right);bottom=Math.max(0,bottom);
+        if(occludedRight==right&&occludedBottom==bottom)return;
+        occludedRight=right;occludedBottom=bottom;postInvalidateOnAnimation();
+    }
+    private void stopCamera(){
+        if(cameraMotion!=null){cameraMotion.cancel();cameraMotion=null;}
+        fling.abortAnimation();
+    }
+    @Override public void computeScroll(){
+        if(!fling.computeScrollOffset())return;
+        float ox=camera.x,oy=camera.y;
+        int dx=fling.getCurrX()-flingX,dy=fling.getCurrY()-flingY;
+        camera.pan(dx,dy);
+        flingX=fling.getCurrX();flingY=fling.getCurrY();
+        // A zero-distance first frame is not a boundary hit: preserve the fling.
+        if((dx!=0||dy!=0)&&Math.abs(camera.x-ox)<.01f&&Math.abs(camera.y-oy)<.01f)fling.abortAnimation();
+        postInvalidateOnAnimation();
+    }
+    private void glide(Runnable target){
+        stopCamera();float startScale=camera.scale,startX=camera.centerX(),startY=camera.centerY();
+        target.run();float endScale=camera.scale,endX=camera.centerX(),endY=camera.centerY();
+        if(!UiMotion.enabled()||!isAttachedToWindow()||Math.abs(endScale-startScale)<.00001f&&Math.abs(endX-startX)+Math.abs(endY-startY)<.01f){invalidate();return;}
+        camera.restoreScale(startScale,startX,startY);
+        android.animation.ValueAnimator motion=android.animation.ValueAnimator.ofFloat(0,1);cameraMotion=motion;
+        motion.setDuration(260);motion.setInterpolator(UiMotion.EASE);
+        motion.addUpdateListener(a->{float t=(float)a.getAnimatedValue();float scale=(float)(startScale*Math.pow(endScale/startScale,t));camera.restoreScale(scale,startX+(endX-startX)*t,startY+(endY-startY)*t);postInvalidateOnAnimation();});
+        motion.addListener(new android.animation.AnimatorListenerAdapter(){@Override public void onAnimationEnd(android.animation.Animator a){if(cameraMotion==a)cameraMotion=null;}});motion.start();
+    }
     private boolean draggingUnit;
     private Hex dragTarget;
     private java.util.function.Consumer<MarchOrders.Plan> unitDrop;
@@ -136,9 +177,22 @@ public final class MapView extends View {
         displayPrefs=context.getSharedPreferences("map-display",Context.MODE_PRIVATE);
         showMini=displayPrefs.getBoolean("navigator",true);showCommanders=displayPrefs.getBoolean("commanders",true);showUnitBars=displayPrefs.getBoolean("unitBars",true);
         BuildingAtlas.load(context);VisualAssets.load(context);
+        fling=new android.widget.OverScroller(context);fling.setFriction(.022f);
         gestures=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
             @Override public boolean onDown(MotionEvent e){return true;}
-            @Override public boolean onSingleTapConfirmed(MotionEvent e){if(!multiTouch&&!scaler.isInProgress()){performClick();listener.tap(hit(e.getX(),e.getY()));}return true;}
+            @Override public boolean onSingleTapUp(MotionEvent e){
+                if(!multiTouch&&!caughtMotion&&!scaler.isInProgress()){
+                    Hex h=hit(e.getX(),e.getY());touchHex=h;touchUntil=android.os.SystemClock.uptimeMillis()+180;
+                    performClick();listener.tap(h);postInvalidateOnAnimation();
+                }return true;
+            }
+            @Override public boolean onSingleTapConfirmed(MotionEvent e){return true;}
+            @Override public boolean onFling(MotionEvent a,MotionEvent b,float vx,float vy){
+                if(multiTouch||draggingUnit||scaler.isInProgress()||!UiMotion.enabled())return false;
+                flingX=flingY=0;float max=6000*density;
+                fling.fling(0,0,(int)Math.max(-max,Math.min(max,vx)),(int)Math.max(-max,Math.min(max,vy)),-1000000,1000000,-1000000,1000000);
+                postInvalidateOnAnimation();return true;
+            }
             @Override public boolean onScroll(MotionEvent a,MotionEvent b,float dx,float dy){if(!draggingUnit&&!multiTouch&&!scaler.isInProgress()){camera.pan(-dx,-dy);postInvalidateOnAnimation();}return true;}
             @Override public void onLongPress(MotionEvent e){
                 World.Unit u=world==null?null:world.unit(moving);
@@ -146,13 +200,26 @@ public final class MapView extends View {
                     draggingUnit=true;dragTarget=u.hex;dragPlan=null;performHapticFeedback(HapticFeedbackConstants.LONG_PRESS);invalidate();
                 }
             }
-            @Override public boolean onDoubleTap(MotionEvent e){if(!multiTouch){Hex h=hit(e.getX(),e.getY());if(h!=null&&world.cityAt(h)!=null&&moving<0){listener.tap(h);focus(h);}else zoom(camera.scale<camera.minScale*1.8f?camera.scale*1.8f:camera.minScale,e.getX(),e.getY());}return true;}
+            @Override public boolean onDoubleTap(MotionEvent e){
+                if(!multiTouch&&world!=null&&moving<0&&pickTargets==null){Hex h=hit(e.getX(),e.getY());
+                    if(h!=null&&world.cityAt(h)!=null)focus(h);
+                    else glide(()->camera.zoom(camera.scale<camera.minScale*1.8f?camera.scale*1.8f:camera.minScale,e.getX(),e.getY()));
+                }return true;
+            }
         });
         scaler=new ScaleGestureDetector(context,new ScaleGestureDetector.SimpleOnScaleGestureListener(){
             @Override public boolean onScale(ScaleGestureDetector d){zoom(camera.scale*d.getScaleFactor(),d.getFocusX(),d.getFocusY());return true;}
         });
     }
-    public void setWorld(World world,Hex selected,int moving){boolean changed=this.world==null||this.world.width!=world.width||this.world.height!=world.height||!this.world.scenarioId.equals(world.scenarioId);boolean newTerrain=this.world!=world||changed||seenTerrainRevision!=world.terrainRevision;seenTerrainRevision=world.terrainRevision;this.world=world;this.selected=selected;this.moving=moving;
+    public void setWorld(World world,Hex selected,int moving){
+        boolean selectionChanged=!Objects.equals(this.selected,selected),actorChanged=this.moving!=moving;
+        if(this.world==world&&renderedRevision==world.commandRevision()&&renderedTurn==world.turn&&renderedPlayer==world.player&&seenTerrainRevision==world.terrainRevision){
+            this.selected=selected;this.moving=moving;
+            if(selectionChanged||actorChanged)updateSelection(actorChanged);
+            invalidate();return;
+        }
+        sceneBuilds++;renderedRevision=world.commandRevision();renderedTurn=world.turn;renderedPlayer=world.player;
+        boolean changed=this.world==null||this.world.width!=world.width||this.world.height!=world.height||!this.world.scenarioId.equals(world.scenarioId);boolean newTerrain=this.world!=world||changed||seenTerrainRevision!=world.terrainRevision;seenTerrainRevision=world.terrainRevision;this.world=world;this.selected=selected;this.moving=moving;
         if(changed){tiles=new Hex[world.width][world.height];for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)tiles[q][r]=new Hex(q,r);}
         objectBuckets.clear();officerIndex.clear();cityIndex.clear();
         for(World.Officer o:world.officers)officerIndex.put(o.id,o);
@@ -191,8 +258,13 @@ public final class MapView extends View {
             String type=city.kind==World.SiteKind.CITY?"":city.kind==World.SiteKind.GATE?"关·":"港·";
             cityNames.put(city.id,relation+"·"+type+city.name+(threatenedCities.contains(city.id)?" !":""));
         }
+        updateSelection(true);
+        if(changed&&getWidth()>0){stopCamera();resizeCamera();camera.fit();}invalidate();
+    }
+    private void updateSelection(boolean actorChanged){
         World.City development=world.cityAt(selected);if(development==null)development=world.development.cityAt(selected);
         developmentSites=development!=null&&development.owner==world.player?new ArrayList<>(world.domestic.buildSites(development.id)):Collections.emptyList();
+        if(!actorChanged)return;selectionBuilds++;
         World.Unit actor=world.unit(moving);reachable=world.orders.marchReachable(actor);attackTargets.clear();
         if(world.orders.error(actor)==null){
             for(World.Unit target:world.fieldUnits())if(target.id!=actor.id)addAttackTarget(actor,target.hex,world.war.attackError(actor.id,target.id)==null);
@@ -200,27 +272,27 @@ public final class MapView extends View {
             for(Domestic.Facility f:world.domestic.facilities)addAttackTarget(actor,f.hex,world.war.facilityAttackError(actor.id,f.hex)==null);
             for(War.Structure s:world.war.structures())addAttackTarget(actor,s.hex,world.war.structureAttackError(actor.id,s.hex)==null);
         }
-        if(changed&&getWidth()>0){resizeCamera();fit();}invalidate();}
+    }
     @Override public boolean isOpaque(){return true;}
     @Override protected void onAttachedToWindow(){super.onAttachedToWindow();if(overview!=null)overview.start(this);}
-    @Override protected void onDetachedFromWindow(){if(overview!=null)overview.cancel();super.onDetachedFromWindow();}
+    @Override protected void onDetachedFromWindow(){stopCamera();if(overview!=null)overview.cancel();super.onDetachedFromWindow();}
     private float mapOffset(){return world!=null&&world.sourceMapWidth>0?(world.height-1)/2:0;}
     private float x(Hex h){return RADIUS*SQRT3*(h.q+h.r*.5f-mapOffset());}
     private float y(Hex h){return RADIUS*1.5f*h.r;}
     private float worldWidth(){return RADIUS*SQRT3*((world.sourceMapWidth>0?world.sourceMapWidth-0.5f:world.width-1+(world.height-1)*.5f))+RADIUS*2;}
     private float worldHeight(){return RADIUS*1.5f*(world.height-1)+RADIUS*2;}
     private void resizeCamera(){if(world!=null&&getWidth()>0&&getHeight()>0){camera.columnOffset=mapOffset();camera.resize(getWidth(),getHeight(),worldWidth(),worldHeight(),RADIUS,density);}}
-    @Override protected void onSizeChanged(int w,int h,int oldw,int oldh){super.onSizeChanged(w,h,oldw,oldh);resizeCamera();applyPendingCamera();}
-    public void fit(){pendingCamera=null;if(world==null||getWidth()==0)return;resizeCamera();camera.fit();invalidate();}
-    public void focus(Hex h){if(world==null||h==null)return;if(getWidth()==0){post(()->focus(h));return;}camera.focus(x(h),y(h));invalidate();}
-    public void center(Hex h){if(world!=null&&h!=null){camera.centerOn(x(h),y(h));invalidate();}}
-    private void zoom(float scale,float fx,float fy){camera.zoom(scale,fx,fy);postInvalidateOnAnimation();}
+    @Override protected void onSizeChanged(int w,int h,int oldw,int oldh){super.onSizeChanged(w,h,oldw,oldh);stopCamera();resizeCamera();applyPendingCamera();}
+    public void fit(){pendingCamera=null;if(world==null||getWidth()==0)return;resizeCamera();glide(camera::fit);}
+    public void focus(Hex h){if(world==null||h==null)return;if(getWidth()==0){post(()->focus(h));return;}glide(()->{camera.focus(x(h),y(h));camera.pan(-occludedRight/2f,-occludedBottom/2f);});}
+    public void center(Hex h){if(world!=null&&h!=null){stopCamera();camera.centerOn(x(h),y(h));invalidate();}}
+    private void zoom(float scale,float fx,float fy){stopCamera();camera.zoom(scale,fx,fy);postInvalidateOnAnimation();}
     void saveCamera(Bundle b){b.putBoolean("mapNavigator",showMini);b.putFloat("cameraRatio",camera.scale/camera.minScale);b.putFloat("cameraScaleDp",camera.scale/density);b.putFloat("cameraX",camera.centerX());b.putFloat("cameraY",camera.centerY());}
-    void restoreCamera(Bundle b){showMini=b.getBoolean("mapNavigator",showMini);pendingCamera=new Bundle(b);applyPendingCamera();}
+    void restoreCamera(Bundle b){stopCamera();showMini=b.getBoolean("mapNavigator",showMini);pendingCamera=new Bundle(b);applyPendingCamera();}
     private void applyPendingCamera(){if(pendingCamera!=null&&getWidth()>0&&getHeight()>0){if(pendingCamera.containsKey("cameraScaleDp"))camera.restoreScale(pendingCamera.getFloat("cameraScaleDp")*density,pendingCamera.getFloat("cameraX"),pendingCamera.getFloat("cameraY"));else camera.restore(pendingCamera.getFloat("cameraRatio",1),pendingCamera.getFloat("cameraX"),pendingCamera.getFloat("cameraY"));pendingCamera=null;invalidate();}}
     @Override public boolean onTouchEvent(MotionEvent e){
         if(!isEnabled())return true;
-        if(e.getActionMasked()==MotionEvent.ACTION_DOWN){multiTouch=false;layoutNavigator();miniButtonGesture=miniButton.contains(e.getX(),e.getY());miniGesture=!miniButtonGesture&&showMini&&miniRect.contains(e.getX(),e.getY());}
+        if(e.getActionMasked()==MotionEvent.ACTION_DOWN){caughtMotion=cameraMoving();stopCamera();multiTouch=false;layoutNavigator();miniButtonGesture=miniButton.contains(e.getX(),e.getY());miniGesture=!miniButtonGesture&&showMini&&miniRect.contains(e.getX(),e.getY());}
         if(miniButtonGesture){
             if(e.getPointerCount()>1||e.getActionMasked()==MotionEvent.ACTION_CANCEL)multiTouch=true;
             if(e.getActionMasked()==MotionEvent.ACTION_UP){if(!multiTouch&&miniButton.contains(e.getX(),e.getY())){toggleNavigator();performClick();}miniButtonGesture=false;}return true;
@@ -339,7 +411,12 @@ public final class MapView extends View {
                 if(!camera.visible(x(parcel),y(parcel),RADIUS*scale))continue;polygon(x(parcel),y(parcel),RADIUS-3);fill(canvas,0x3ae6bf77);stroke(canvas,0xffe6bf77,1.2f*density/scale);label(canvas,"＋",x(parcel),y(parcel)+6,18,0xffffe0a0);
             }
         }
-        if(selected!=null){polygon(x(selected),y(selected),RADIUS-2);stroke(canvas,GOLD,Math.max(2,2*density/scale));}
+        if(selected!=null){polygon(x(selected),y(selected),RADIUS-2);fill(canvas,0x20e6bf77);stroke(canvas,GOLD,Math.max(2,2*density/scale));}
+        long touchNow=android.os.SystemClock.uptimeMillis();
+        if(touchHex!=null&&touchNow<touchUntil&&UiMotion.enabled()){
+            float t=1-(touchUntil-touchNow)/180f;polygon(x(touchHex),y(touchHex),RADIUS*(1+t*.35f));
+            stroke(canvas,alpha(0xffa7ffe0,(int)(150*(1-t))),2*density/scale);postInvalidateOnAnimation();
+        }
         for(Object object:visibleObjects)if(object instanceof War.Fire){War.Fire f=(War.Fire)object;
             float cx=x(f.hex),cy=y(f.hex);polygon(cx,cy,RADIUS-2);fill(canvas,Color.argb(145,227,81,28));if(detail)label(canvas,"火",cx,cy+5,18,PAPER);
         }
@@ -399,7 +476,8 @@ public final class MapView extends View {
     private int miniColumn(Hex h){return world.sourceMapWidth>0?MapCoordinates.source(h,world.height).q:h.q;}
     private void layoutNavigator(){
         float mw=Math.min(144*density,getWidth()*.34f),mh=Math.min(126*density,getHeight()*.3f);
-        float right=getWidth()-8*density;
+        float right=getWidth()-occludedRight-8*density;
+        mw=Math.min(mw,Math.max(72*density,(getWidth()-occludedRight)*.42f));right=Math.max(mw+8*density,right);
         miniButton.set(right-Math.max(96*density,mw),6*density,right,46*density);
         miniRect.set(right-mw,48*density,right,48*density+mh);
     }

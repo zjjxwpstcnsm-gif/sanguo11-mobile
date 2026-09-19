@@ -18,7 +18,12 @@ public final class MainActivity extends Activity {
     private World world;
     private boolean unreadableAutosave;
     private MapView map;
-    private LinearLayout panel,root,body,commandDock,panelShell,primaryActions;
+    private LinearLayout panel,root,commandDock,panelShell,primaryActions;
+    private FrameLayout body;
+    private World navigatorWorld;
+    private long navigatorRevision=Long.MIN_VALUE;
+    private int navigatorTurn=-1,navigatorPlayer=-1;
+    private String panelIdentity="";
     private MarchOrders.Plan pendingMarch;
     private FrameLayout panelHost;
     private ScrollView panelScroll;
@@ -47,7 +52,7 @@ public final class MainActivity extends Activity {
     private final ClientState ui=new ClientState();
     private TurnWork turnWork;
     private final Map<String,Button> navigation=new LinkedHashMap<>();
-    final int ink=Color.rgb(13,22,32),paper=Color.rgb(235,241,247),gold=Color.rgb(109,220,197),muted=Color.rgb(155,176,195);
+    final int ink=UiTheme.INK,paper=UiTheme.TEXT,gold=UiTheme.JADE,muted=UiTheme.MUTED;
 
     @Override public void onCreate(Bundle state) {
         super.onCreate(state);boolean coldStart=state==null;ui.read(state);
@@ -98,11 +103,11 @@ public final class MainActivity extends Activity {
         territoryToggle.setOnClickListener(v->setTerritoryMode(map.territoryMode()==0?1:0));
         territoryToggle.setOnLongClickListener(v->{showTerritoryPicker();return true;});
         header.addView(territoryToggle,new LinearLayout.LayoutParams(dp(56),dp(48)));
-        Button full=button("全图",v->{closePanel();map.post(map::fit);});full.setContentDescription("显示全国地图");header.addView(full,new LinearLayout.LayoutParams(dp(56),dp(48)));
+        Button full=button("全图",v->{closePanel();map.post(map::fit);});full.setContentDescription("显示全国地图");UiTheme.icon(full,"map");header.addView(full,new LinearLayout.LayoutParams(dp(56),dp(48)));
         Button tools=button("视图",v->showMapTools());tools.setContentDescription("地图工具 · 全图、定位、导航图和屏幕方向");
-        header.addView(tools,new LinearLayout.LayoutParams(dp(56),dp(48)));root.addView(header);
-        body=new LinearLayout(this);map=new MapView(this,this::onTile);body.addView(map);map.setUnitDrop(this::dropUnit);map.setTerritoryMode(getPreferences(MODE_PRIVATE).getInt("territoryMode",0));refreshTerritoryToggle();
-        panelShell=new LinearLayout(this);panelShell.setOrientation(LinearLayout.VERTICAL);panelShell.setBackgroundColor(0xff131f2c);
+        UiTheme.icon(tools,"layers");header.addView(tools,new LinearLayout.LayoutParams(dp(56),dp(48)));header.setBackground(UiTheme.surface(this,0xff1b2b33,0xff101b24,0));root.addView(header);
+        body=new FrameLayout(this);map=new MapView(this,this::onTile);body.addView(map,new FrameLayout.LayoutParams(-1,-1));map.setUnitDrop(this::dropUnit);map.setTerritoryMode(getPreferences(MODE_PRIVATE).getInt("territoryMode",0));refreshTerritoryToggle();
+        panelShell=new LinearLayout(this);panelShell.setOrientation(LinearLayout.VERTICAL);UiTheme.panel(panelShell);
         panelShell.setVisibility(View.GONE);body.addView(panelShell);
         LinearLayout panelHeader=new LinearLayout(this);panelHeader.setPadding(dp(12),0,dp(4),0);panelHeader.setGravity(Gravity.CENTER_VERTICAL);
         returnList=button("列表",v->returnToCities());returnList.setContentDescription("返回全国列表");panelHeader.addView(returnList,new LinearLayout.LayoutParams(dp(48),dp(48)));
@@ -112,7 +117,7 @@ public final class MainActivity extends Activity {
         panelHeader.addView(expandPanel,new LinearLayout.LayoutParams(dp(56),dp(48)));
         closePanel=button("收起",v->closePanel());closePanel.setContentDescription("收起操作面板，返回大地图");
         panelHeader.addView(closePanel,new LinearLayout.LayoutParams(dp(56),dp(48)));panelShell.addView(panelHeader);
-        primaryActions=new LinearLayout(this);primaryActions.setPadding(dp(8),0,dp(8),dp(4));primaryActions.setBackgroundColor(0xff203b43);primaryActions.setVisibility(View.GONE);
+        primaryActions=new LinearLayout(this);primaryActions.setPadding(dp(8),0,dp(8),dp(4));primaryActions.setBackgroundColor(0x202f776a);primaryActions.setVisibility(View.GONE);
         panelShell.addView(primaryActions,new LinearLayout.LayoutParams(-1,-2));
         panelHost=new FrameLayout(this);panelShell.addView(panelHost,new LinearLayout.LayoutParams(-1,0,1));
         panelScroll=new ScrollView(this);panelScroll.setFillViewport(true);panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);panel.setPadding(dp(12),dp(4),dp(12),dp(10));panelScroll.addView(panel);
@@ -129,20 +134,21 @@ public final class MainActivity extends Activity {
         root.addView(battleBanner,new LinearLayout.LayoutParams(-1,-2));
         turnBanner=text("",13,paper);turnBanner.setPadding(dp(12),dp(5),dp(12),dp(5));turnBanner.setMaxLines(2);turnBanner.setBackgroundColor(0xff243e4b);turnBanner.setVisibility(View.GONE);turnBanner.setContentDescription("查看本旬结算摘要");turnBanner.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);turnBanner.setOnClickListener(v->showTurnReport());root.addView(turnBanner,new LinearLayout.LayoutParams(-1,-2));
         body.addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->{if(r-l!=or-ol||b-t!=ob-ot)layoutPanels();});
-        commandDock=new LinearLayout(this);commandDock.setPadding(dp(8),dp(4),dp(8),dp(4));commandDock.setBackgroundColor(0xff162934);root.addView(commandDock);
+        commandDock=new LinearLayout(this);commandDock.setPadding(dp(8),dp(4),dp(8),dp(4));UiTheme.panel(commandDock);body.addView(commandDock,new FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM));
+        commandDock.addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->{if(b-t!=ob-ot)layoutPanels();});
         turnProgress=text("",12,gold);turnProgress.setPadding(dp(12),dp(3),dp(12),dp(3));turnProgress.setBackgroundColor(0xff1c3340);turnProgress.setVisibility(View.GONE);turnProgress.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);root.addView(turnProgress,new LinearLayout.LayoutParams(-1,-2));
         quickCityStrip=new LinearLayout(this);quickCityStrip.setOrientation(LinearLayout.HORIZONTAL);root.addView(quickNavigatorRow("城池",quickCityStrip),new LinearLayout.LayoutParams(-1,dp(42)));
         quickUnitStrip=new LinearLayout(this);quickUnitStrip.setOrientation(LinearLayout.HORIZONTAL);root.addView(quickNavigatorRow("部队",quickUnitStrip),new LinearLayout.LayoutParams(-1,dp(42)));
         LinearLayout bottom=new LinearLayout(this);bottom.setPadding(dp(6),0,dp(6),0);bottom.setGravity(Gravity.CENTER_VERTICAL);
         Button functions=button("功能",v->showNavigation());functions.setContentDescription("打开功能导航 · 城市、武将、任务、菜单");
-        bottom.addView(functions,new LinearLayout.LayoutParams(dp(64),dp(48)));
+        UiTheme.icon(functions,"menu");bottom.addView(functions,new LinearLayout.LayoutParams(dp(72),dp(48)));
         selectionButton=button("点选城池",v->{ui.page="map";ui.panelVisible=!ui.panelVisible;refresh();revealPanel();});
         selectionButton.setMaxLines(1);selectionButton.setEllipsize(android.text.TextUtils.TruncateAt.END);
         bottom.addView(selectionButton,new LinearLayout.LayoutParams(0,dp(48),1));
         previousReady=button("‹",v->cycleReady(-1));previousReady.setContentDescription("上一个待行动部队");
         nextReady=button("›",v->cycleReady(1));nextReady.setContentDescription("下一个待行动部队");
         bottom.addView(previousReady,new LinearLayout.LayoutParams(dp(48),dp(48)));bottom.addView(nextReady,new LinearLayout.LayoutParams(dp(48),dp(48)));
-        nextTurn=button("下一旬  →",v->confirmTurn());nextTurn.setSelected(true);bottom.addView(nextTurn,new LinearLayout.LayoutParams(dp(104),dp(48)));root.addView(bottom);
+        nextTurn=button("下一旬  →",v->confirmTurn());nextTurn.setSelected(true);bottom.setBackground(UiTheme.surface(this,0xff1e3035,0xff142128,0));bottom.addView(nextTurn,new LinearLayout.LayoutParams(dp(104),dp(48)));root.addView(bottom);
         setContentView(root);root.requestApplyInsets();selected=world.home()==null?null:world.home().hex;
         if(state!=null){Hex h=new Hex(state.getInt("selectedQ",-1),state.getInt("selectedR",-1));selected=world.inside(h)?h:null;moving=state.getInt("moving",-1);}
         if(state!=null)unitCommand=state.getString("unitCommand","select");
@@ -155,32 +161,37 @@ public final class MainActivity extends Activity {
     private boolean portrait(){return getResources().getConfiguration().orientation!=Configuration.ORIENTATION_LANDSCAPE;}
     private void layoutPanels(){
         if(body==null||body.getWidth()==0||body.getHeight()==0)return;
-        boolean vertical=portrait();body.setOrientation(vertical?LinearLayout.VERTICAL:LinearLayout.HORIZONTAL);
-        LinearLayout.LayoutParams mapParams=new LinearLayout.LayoutParams(vertical?-1:0,vertical?0:-1,1);
-        LinearLayout.LayoutParams sheetParams=vertical
-            ?new LinearLayout.LayoutParams(-1,Math.round(body.getHeight()*(ui.page.equals("map")?(ui.panelExpanded?.78f:.38f):(ui.panelExpanded?.98f:.88f))))
-            :new LinearLayout.LayoutParams(Math.min(dp(ui.panelExpanded?460:312),Math.round(body.getWidth()*(ui.panelExpanded?.60f:.38f))),-1);
-        setPanelParams(map,mapParams);setPanelParams(panelShell,sheetParams);
+        boolean vertical=portrait();boolean visible=Boolean.TRUE.equals(panelShell.getTag());
+        int dock=commandDock!=null&&commandDock.getVisibility()==View.VISIBLE?commandDock.getHeight():0;
+        int available=Math.max(dp(80),body.getHeight()-dock-dp(16));
+        int height=vertical?Math.min(available,Math.round(body.getHeight()*(ui.page.equals("map")?(ui.panelExpanded?.80f:.43f):(ui.panelExpanded?.98f:.90f)))):available;
+        int width=vertical?body.getWidth()-dp(16):Math.min(dp(ui.panelExpanded?460:328),Math.round(body.getWidth()*(ui.panelExpanded?.64f:.42f)));
+        FrameLayout.LayoutParams params=new FrameLayout.LayoutParams(width,height,vertical?Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL:Gravity.TOP|Gravity.RIGHT);
+        params.setMargins(dp(8),dp(8),dp(8),dock+dp(8));
+        android.view.ViewGroup.LayoutParams current=panelShell.getLayoutParams();
+        if(!(current instanceof FrameLayout.LayoutParams)||current.width!=width||current.height!=height||((FrameLayout.LayoutParams)current).gravity!=params.gravity||((FrameLayout.LayoutParams)current).bottomMargin!=params.bottomMargin)panelShell.setLayoutParams(params);
+        if(commandDock!=null){FrameLayout.LayoutParams d=(FrameLayout.LayoutParams)commandDock.getLayoutParams();if(d.leftMargin!=dp(8)){d.setMargins(dp(8),0,dp(8),dp(4));commandDock.setLayoutParams(d);}}
+        map.setPanelOcclusion(visible&&!vertical?width+dp(16):0,dock+(visible&&vertical?height+dp(16):0));
         expandPanel.setText(ui.panelExpanded?"缩小":"展开");
-    }
-    private void setPanelParams(View view,LinearLayout.LayoutParams params){
-        android.view.ViewGroup.LayoutParams old=view.getLayoutParams();
-        if(!(old instanceof LinearLayout.LayoutParams)||old.width!=params.width||old.height!=params.height||((LinearLayout.LayoutParams)old).weight!=params.weight)view.setLayoutParams(params);
     }
     private void closePanel(){ui.panelVisible=false;ui.panelExpanded=false;ui.page="map";refresh();}
     private View quickNavigatorRow(String label,LinearLayout strip){
         LinearLayout row=new LinearLayout(this);row.setGravity(Gravity.CENTER_VERTICAL);row.setPadding(dp(6),0,dp(6),0);row.setBackgroundColor(0xff101d28);
         TextView name=text(label,12,gold);name.setGravity(Gravity.CENTER);row.addView(name,new LinearLayout.LayoutParams(dp(42),-1));
-        HorizontalScrollView scroll=new HorizontalScrollView(this);scroll.setHorizontalScrollBarEnabled(true);scroll.setFillViewport(false);scroll.addView(strip,new HorizontalScrollView.LayoutParams(-2,-1));row.addView(scroll,new LinearLayout.LayoutParams(0,-1,1));return row;
+        HorizontalScrollView scroll=new HorizontalScrollView(this);scroll.setHorizontalScrollBarEnabled(false);scroll.setFillViewport(false);scroll.setOverScrollMode(View.OVER_SCROLL_NEVER);scroll.addView(strip,new HorizontalScrollView.LayoutParams(-2,-1));row.addView(scroll,new LinearLayout.LayoutParams(0,-1,1));return row;
     }
     private void refreshQuickNavigator(){
         if(quickCityStrip==null||quickUnitStrip==null||world==null)return;
         View cityRow=(View)quickCityStrip.getParent().getParent();View unitRow=(View)quickUnitStrip.getParent().getParent();
-        boolean mapContext="map".equals(ui.page)&&!aiRunning&&!ui.panelVisible;
+        boolean mapContext="map".equals(ui.page);
         if(!mapContext){
-            quickCityStrip.removeAllViews();quickUnitStrip.removeAllViews();
             cityRow.setVisibility(View.GONE);unitRow.setVisibility(View.GONE);return;
         }
+        if(navigatorWorld==world&&navigatorRevision==world.commandRevision()&&navigatorTurn==world.turn&&navigatorPlayer==world.player){
+            cityRow.setVisibility(quickCityStrip.getChildCount()==0?View.GONE:View.VISIBLE);
+            unitRow.setVisibility(quickUnitStrip.getChildCount()==0?View.GONE:View.VISIBLE);return;
+        }
+        navigatorWorld=world;navigatorRevision=world.commandRevision();navigatorTurn=world.turn;navigatorPlayer=world.player;
         quickCityStrip.removeAllViews();quickUnitStrip.removeAllViews();
         List<World.City> ownCities=new ArrayList<>();for(World.City c:world.cities)if(c.owner==world.player)ownCities.add(c);ownCities.sort(Comparator.comparingInt(c->c.id));
         for(World.City c:ownCities){Button b=button(c.name+" · "+(c.troops/1000)+"k",v->selectObject(c.hex,-2,true));b.setTextSize(11);b.setContentDescription("定位己方据点 "+c.name);quickCityStrip.addView(b,new LinearLayout.LayoutParams(dp(104),-1));}
@@ -207,13 +218,13 @@ public final class MainActivity extends Activity {
             Button item=button(label,v->{navigationDialog.dismiss();ui.returnToCities=false;ui.page=page;ui.panelVisible=!page.equals("map");ui.panelExpanded=false;refresh();revealPanel();});
             item.setContentDescription("导航 · "+labels[i]);navigation.put(page,item);list.addView(item,new LinearLayout.LayoutParams(-1,dp(48)));
         }
-        navigationDialog.show();
+        navigationDialog.show();UiTheme.dialog(navigationDialog);
     }
     private void showMapTools(){
         if(mapPick!=null)cancelMapPick();
         String[] labels={"全图","定位","导航图","屏幕方向","战报","操作说明","战斗震动","兵种与建筑图例","领地着色 / 前线","势力领地图例","军团托管","全国城池总览","部队标注 / 双条"};
         new AlertDialog.Builder(this).setTitle("地图视图").setItems(labels,(d,index)->{
-            if(aiRunning)return;
+            if(aiRunning&&index!=0&&index!=1&&index!=2&&index!=3&&index!=12)return;
             if(index==0){closePanel();map.post(map::fit);}
             else if(index==1){closePanel();if(selected!=null)map.post(()->map.focus(selected));}
             else if(index==2){closePanel();map.toggleNavigator();}
@@ -278,7 +289,7 @@ public final class MainActivity extends Activity {
         setRequestedOrientation(mode==1?android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:mode==2?android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE:android.content.pm.ActivityInfo.SCREEN_ORIENTATION_FULL_USER);
     }
     @Override public void onConfigurationChanged(Configuration config){super.onConfigurationChanged(config);if(map!=null&&world!=null){layoutPanels();refreshCommandDock();}if(root!=null)root.requestApplyInsets();fitConfirmation();}
-    void trackDialog(AlertDialog dialog){confirmationDialog=dialog;fitConfirmation();}
+    void trackDialog(AlertDialog dialog){confirmationDialog=dialog;UiTheme.dialog(dialog);fitConfirmation();}
     private void fitConfirmation(){
         if(confirmationDialog==null||!confirmationDialog.isShowing())return;
         // A dialog opened during sensor rotation can retain the previous orientation's minimum width.
@@ -286,10 +297,10 @@ public final class MainActivity extends Activity {
         confirmationDialog.getWindow().setLayout(width,WindowManager.LayoutParams.WRAP_CONTENT);
     }
     int dp(float n){return Math.round(n*getResources().getDisplayMetrics().density);}
-    TextView text(String value,int size,int color){TextView t=new TextView(this);t.setText(value);t.setTextSize(size);t.setTextColor(color);t.setGravity(Gravity.CENTER_VERTICAL);return t;}
+    TextView text(String value,int size,int color){TextView t=new TextView(this);t.setText(value);t.setTextSize(size);t.setTextColor(color);t.setGravity(Gravity.CENTER_VERTICAL);UiTheme.text(t);return t;}
     Button button(String value,View.OnClickListener action){
         Button b=CompactButtons.create(this);b.setText(value);
-        b.setOnClickListener(v->{if(!aiRunning||value.equals("收起")||value.equals("展开")||value.equals("全图"))action.onClick(v);});return b;
+        b.setOnClickListener(v->{if(!aiRunning||value.equals("收起")||value.equals("展开")||value.equals("全图")||value.equals("视图"))action.onClick(v);});return b;
     }
     private void line(String value,int size,int color){TextView t=text(value,size,color);t.setPadding(0,dp(4),0,dp(4));panel.addView(t);}
     private void action(String label,View.OnClickListener click){Button b=button(label,click);b.setEnabled(!aiRunning);panel.addView(b,new LinearLayout.LayoutParams(-1,dp(48)));}
@@ -425,7 +436,7 @@ public final class MainActivity extends Activity {
     void applyResult(World.Result result){apply(result);}
     private void apply(World.Result result){
         if(!result.ok)message("命令未执行",result.message);
-        if(result.ok){clearTacticPreview();pendingMarch=null;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();pickTitle="";}
+        if(result.ok){map.invalidateScene();navigatorRevision=Long.MIN_VALUE;clearTacticPreview();pendingMarch=null;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();pickTitle="";}
         if(result.ok&&result.feedback==World.Feedback.NONE){lastBattleReport=result.message;battleReportWorld=world;reportLocation=null;battleBanner.setText("结果 · 点此展开\n"+result.message);battleBanner.setVisibility(View.VISIBLE);}
         if(result.ok&&result.feedback!=World.Feedback.NONE){
             lastBattleReport=result.message;battleReportWorld=world;reportLocation=result.impact;
@@ -445,24 +456,25 @@ public final class MainActivity extends Activity {
         if(ui.owner>=world.factions.length)ui.owner=-1;
         if(ui.cityOwner>=world.factions.length)ui.cityOwner=-1;
         title.setText(world.scenarioName+"  ·  "+world.faction(world.player)+"\n"+world.date()+" · 行动力 "+world.actionPoints[world.player]+(aiRunning?" · 结算中…":""));
-        title.setContentDescription("军情 · "+title.getText());
+        UiTheme.title(title);title.setContentDescription("军情 · "+title.getText());
         nextTurn.setEnabled(mapPick==null&&!aiRunning&&!world.gameOver()&&!world.commandsBlocked());nextTurn.setText(aiRunning?"结算中…":"下一旬  →");
         for(Map.Entry<String,Button> e:navigation.entrySet()){e.getValue().setEnabled(!aiRunning);e.getValue().setSelected(e.getKey().equals(ui.page));e.getValue().setTextColor(e.getKey().equals(ui.page)?gold:paper);}
         if(navigation.get("tasks")!=null)navigation.get("tasks").setText("任务"+(taskCount()>0?" "+taskCount():""));
         panelHost.removeAllViews();panel.removeAllViews();primaryActions.removeAllViews();primaryActions.setVisibility(View.GONE);
         boolean required=(world.life.pending()||world.contests.busy())&&!ui.page.equals("menu");
-        panelShell.setVisibility(ui.panelVisible||required?View.VISIBLE:View.GONE);closePanel.setEnabled(!required);
+        boolean showPanel=ui.panelVisible||required;UiMotion.surface(panelShell,showPanel,portrait());closePanel.setEnabled(!required);
         returnList.setVisibility(ui.returnToCities&&ui.page.equals("map")?View.VISIBLE:View.GONE);
         if(aiRunning||ui.summary.isEmpty())turnBanner.setVisibility(View.GONE);
         World.Unit selectedActor=selectedUnit();
         String selectedName=selectedActor!=null?world.officer(selectedActor.officerId).name:selected==null?"点选城池":world.cityAt(selected)!=null?world.cityAt(selected).name:"地块";
         int ready=UiModels.readyUnits(world).size();previousReady.setEnabled(!aiRunning&&mapPick==null);nextReady.setEnabled(!aiRunning&&mapPick==null);previousReady.setTooltipText("上一个待行动部队 · "+ready+"队");nextReady.setTooltipText("下一个待行动部队 · "+ready+"队");
-        selectionButton.setText(selectedName+(panelShell.getVisibility()==View.VISIBLE?" · 收起":" · 指令"));
+        selectionButton.setText(selectedName+(showPanel?" · 收起":" · 指令"));
         selectionButton.setContentDescription("选中对象指令 · "+selectedName);selectionButton.setEnabled(mapPick==null&&!aiRunning&&!required);
         panelTitle.setText(ui.page.equals("map")?selectedName+" · 指令":ui.page.equals("cities")?"城池一览":ui.page.equals("officers")?"武将一览":ui.page.equals("tasks")?"任务":ui.page.equals("menu")?"菜单":"资料");
         if(world.unit(moving)==null)moving=-1;
         map.setWorld(world,selected,moving);
-        if(world.life.pending()&&!ui.page.equals("menu")){panelHost.addView(new LifecycleUi(this,world,this::apply).succession());}
+        if(!showPanel){/* Hidden details are not inflated or measured. */}
+        else if(world.life.pending()&&!ui.page.equals("menu")){panelHost.addView(new LifecycleUi(this,world,this::apply).succession());}
         else if(world.contests.busy()&&!ui.page.equals("menu"))panelHost.addView(new ContestUi(this,world,this::apply).view());
         else if(ui.page.equals("cities"))panelHost.addView(new OverviewUi(this,world,ui).cities());
         else if(ui.page.equals("officers"))panelHost.addView(new OverviewUi(this,world,ui).officers());
@@ -474,6 +486,9 @@ public final class MainActivity extends Activity {
         map.setPickTargets(mapPick==null?null:pickTargets);map.setTacticPreview(tacticPreview);
         // onTile/dropUnit guard commands; panning/zooming and closing panels remain available during AI.
         map.setEnabled(true);refreshCommandDock();layoutPanels();
+        String identity=ui.page+"/"+selected+"/"+ui.selectedUnit+"/"+ui.group;
+        if(showPanel&&!identity.equals(panelIdentity))UiMotion.enter(panelHost,portrait());
+        panelIdentity=identity;
     }
     private void previewMarch(World.Unit unit,Hex target){
         pendingMarch=world.marches.preview(unit.id,target);ui.page="map";ui.panelVisible=false;refresh();
@@ -539,7 +554,7 @@ public final class MainActivity extends Activity {
     private void unitStats(World.Unit u){
         LinearLayout card=new LinearLayout(this);card.setOrientation(LinearLayout.VERTICAL);card.setPadding(dp(10),dp(6),dp(10),dp(6));
         android.graphics.drawable.GradientDrawable shape=new android.graphics.drawable.GradientDrawable();shape.setColor(0xff203346);shape.setCornerRadius(dp(12));card.setBackground(shape);
-        TextView stats=text("兵力 "+u.troops+"   气力 "+u.energy+"\n携粮 "+u.food,15,paper);card.addView(stats);
+        card.addView(CommandStats.unit(this,u),new LinearLayout.LayoutParams(-1,-2));
         ProgressBar energy=new ProgressBar(this,null,android.R.attr.progressBarStyleHorizontal);energy.setMax(world.campaign.energyCap(u.owner));energy.setProgress(u.energy);energy.setProgressTintList(android.content.res.ColorStateList.valueOf(gold));energy.setContentDescription("气力 "+u.energy);card.addView(energy,new LinearLayout.LayoutParams(-1,dp(10)));panel.addView(card);
     }
     private int taskCount(){return UiModels.tasks(world,0).size();}
@@ -586,19 +601,15 @@ public final class MainActivity extends Activity {
             else primaryAction("修复城防",()->campaignUi().repair(c));
         }
         panel.addView(visualHeader(c,c.name,world.faction(c.owner)+" · 太守 "+UiModels.governor(world,c.id),44));
-        if(!compact)line(world.cityDefense.describe(c),12,paper);
-        line(compact?"金 "+c.gold+" · 粮 "+c.food+" · 兵 "+c.troops:"金 "+c.gold+"    粮 "+c.food+"\n兵 "+c.troops+"    城防 "+c.defense,compact?13:15,paper);
+        if(compact)line("金 "+c.gold+" · 粮 "+c.food+" · 兵 "+c.troops,13,paper);else panel.addView(CommandStats.city(this,c),new LinearLayout.LayoutParams(-1,-2));
+        String[] groups={"概览","内政","武将","军事","调动","外交","研究"};
+        HorizontalScrollView tabs=new HorizontalScrollView(this);tabs.setHorizontalScrollBarEnabled(false);tabs.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        LinearLayout tabRow=new LinearLayout(this);tabs.addView(tabRow,new HorizontalScrollView.LayoutParams(-2,-1));
+        for(String name:groups){Button b=button(name,v->{ui.group=name;refresh();revealPanel();});b.setSelected(ui.group.equals(name));tabRow.addView(b,new LinearLayout.LayoutParams(dp(58),dp(48)));if(ui.group.equals(name))tabs.post(()->tabs.scrollTo(Math.max(0,b.getLeft()-dp(58)),0));}
+        tabs.setContentDescription("城池指令分组");
+        panel.addView(tabs,new LinearLayout.LayoutParams(-1,dp(48)));
         if(ui.group.equals("概览")){
             line("可用武将 "+world.idle(c).size()+" · 行动力 "+(world.districts.city(c.id)==null?world.actionPoints[world.player]:world.districts.city(c.id).points())+" · "+(world.districts.directCity(c.id)?"直属经营":"军团托管"),13,gold);
-        }
-        String[] groups={"概览","内政","武将","军事","调动","外交","研究"};
-        for(int first=0;first<groups.length;first+=4){
-            LinearLayout row=new LinearLayout(this);
-            for(int i=first;i<Math.min(first+4,groups.length);i++){
-                String name=groups[i];Button b=button(name,v->{ui.group=name;refresh();revealPanel();});b.setSelected(ui.group.equals(name));b.setTextColor(ui.group.equals(name)?gold:paper);
-                row.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
-            }
-            panel.addView(row);
         }
         Districts.District district=world.districts.city(c.id);if(district!=null)line("所属军团："+district.name()+" · "+district.policy().label,13,gold);
         String incident=world.events.cityStatus(c.id);if(!incident.equals("无灾害"))line(incident,12,muted);
@@ -646,6 +657,7 @@ public final class MainActivity extends Activity {
                 if(own){action("人员调动",v->domesticUi().transfer(c));action("资源运输",v->domesticUi().transport(c));action("水陆运输",v->domesticUi().transportSea(c));}else line("仅可从己方城池派遣",14,muted);
                 action("查看任务 / 在途",v->{ui.page="tasks";refresh();});break;
             default:
+                action("守备与反击规则",v->message(c.name+" · 城防",world.cityDefense.describe(c)));
                 Territory territory=map.territory();
                 if(territory!=null){StringBuilder border=new StringBuilder(c.name+"辖区 · "+territory.size(c.id)+"格 · "+(territory.frontline(c.id)?"前线":"非前线"));
                     for(int id:territory.neighbors(c.id)){World.City adjacent=world.city(id);border.append("\n邻接 ").append(adjacent.name).append(" · ").append(world.faction(adjacent.owner));}
@@ -876,7 +888,7 @@ public final class MainActivity extends Activity {
         world=completed.after;if(world.life.pending()){ui.page="map";ui.panelVisible=true;}ui.summary=completed.summary;pendingMarch=null;if(world.unit(moving)!=null)selected=world.unit(moving).hex;else moving=-1;refresh();save("auto",false);turnBanner.setText("旬结算完成 · 点此查看重要变化与待处理");turnBanner.setVisibility(View.VISIBLE);
     }
     @Override public Object onRetainNonConfigurationInstance(){if(turnWork!=null)turnWork.observe(null);return turnWork;}
-    @Override protected void onDestroy(){if(turnWork!=null)turnWork.observe(null);if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
+    @Override protected void onDestroy(){if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null)turnWork.observe(null);if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
     private void writeClientState(Bundle state){
         if(world==null||map==null)return;
         ui.write(state);state.putInt("selectedQ",selected==null?-1:selected.q);state.putInt("selectedR",selected==null?-1:selected.r);state.putInt("moving",moving);state.putString("unitCommand",unitCommand);
