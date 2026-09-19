@@ -70,7 +70,7 @@ public final class BalanceTest {
     private static void ratings(){
         World w=fixture(World.Weapon.SPEAR);World.Unit a=w.unit(1);
         double high=w.combat.attackRating(a),defense=w.combat.defenseRating(a);w.officer(1).leadership=40;
-        check(high>w.combat.attackRating(a)*1.2&&defense>w.combat.defenseRating(a)*1.4,"leadership matters to both attack and defense");
+        check(high==w.combat.attackRating(a)&&defense>w.combat.defenseRating(a)*1.4,"leadership controls defense; war independently controls attack");
         double low=w.combat.attackRating(a);w.officer(1).war=100;check(w.combat.attackRating(a)>low,"war improves offense");
         World.Unit b=new World.Unit(2,1,3,World.Weapon.HALBERD,new Hex(12,6),10000,30000);w.units.add(b);
         check(w.combat.spiralConfusionChance(a,b)<=40,"ordinary spiral cannot lock every action");

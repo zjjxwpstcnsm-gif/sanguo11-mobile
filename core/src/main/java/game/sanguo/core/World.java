@@ -37,6 +37,8 @@ public final class World {
         public Sex sex=Sex.UNKNOWN;
         public final int[] aptitude={1,1,1,1,1,1};
         public int loyalty=85, otherTaskTurns=0, lastRewardTurn=-1;
+        /** -1 denotes an unknown/custom or pre-v28 affinity; honor uses source levels 1–5. */
+        public int affinity=-1, honor=3;
         public Strategy.Role role=Strategy.Role.OFFICER;
         public String otherTask="";
         public Officer(int id,String name,int owner,int city,int l,int w,int i,int p,int c) {
@@ -123,6 +125,7 @@ public final class World {
     public final UnitOrders orders=new UnitOrders(this);
     public final MarchOrders marches=new MarchOrders(this);
     public final Skills skills=new Skills(this);
+    public final Loyalty loyalty=new Loyalty(this);
     public final CombatRules combat=new CombatRules(this);
     public final CombatEffects combatEffects=new CombatEffects(this);
     public final EnergyRules energy=new EnergyRules(this);
@@ -380,8 +383,8 @@ public final class World {
         progress.accept("火场、守备与武将");war.tick();cityDefense.tick();government.tick();treasures.tick();
         progress.accept("兵粮消耗与城池收入");
         for(Unit u:new ArrayList<>(units)) {
-            int consumption=fieldworks.foodUse(u,Math.max(1,(u.troops+19)/20));
-            if(u.food<consumption){u.food=0;u.troops-=Math.max(1,u.troops/10);note(officer(u.officerId).name+"部队断粮，兵力减少");}
+            int consumption=Logistics.foodUse(this,u);
+            if(u.food<consumption){int lost=Logistics.deserters(u.troops);u.food=0;u.troops-=lost;note(officer(u.officerId).name+"部队断粮，逃兵"+lost+"，剩余"+u.troops+"兵");}
             else u.food-=consumption;
             if(u.troops<=0)removeUnit(u);
         }

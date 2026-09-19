@@ -28,7 +28,7 @@ final class DeployWizard {
         final AlertDialog[] holder={null};final Runnable[] update={()->{}};
         int cap=cap(c);
         QuantityControl troops=new QuantityControl(a,"兵力",1000,Math.max(1000,cap),number("troops",Math.min(3000,Math.max(1000,cap))));
-        QuantityControl food=new QuantityControl(a,"粮食",0,Math.min(c.food,1000000),number("food",Math.min(c.food,6000)));
+        QuantityControl food=new QuantityControl(a,"粮食",0,Math.min(c.food,1000000),number("food",Logistics.defaultFood(troops.value(),c.food)));
         QuantityControl gold=new QuantityControl(a,"金钱",0,Math.min(c.gold,10000),number("gold",0));
         for(String key:new String[]{"troops","food","gold"})if(draft.containsKey(key))(key.equals("troops")?troops:key.equals("food")?food:gold).restoreValue(draft.getString(key));
         form.addView(a.text(c.name+" · 兵种直接点选，无需进入详情",14,a.gold));
@@ -43,6 +43,8 @@ final class DeployWizard {
             s->s.label+"\n"+(s==Army.Ship.BOAT?"免费携带":"库存 "+c.ships[s.ordinal()-1]),
             s->s==Army.Ship.BOAT||c.ships[s.ordinal()-1]>0,ship(),s->{draft.putInt("ship",s.ordinal());changed.run();});
         ships.setTag("deploy.ships");form.addView(ships);
+        troops.setTag("deploy.troops");food.setTag("deploy.food");
+        TextView ration=a.text("",12,a.gold);ration.setTag("deploy.rations");food.addView(ration,1);
         form.addView(troops);form.addView(food);form.addView(gold);
         form.addView(a.text("编队武将 · 主将必选，副将可选",12,a.muted));
         LinearLayout crew=new LinearLayout(a);form.addView(crew);
@@ -59,10 +61,16 @@ final class DeployWizard {
         update[0]=()->{
             draft.putString("troops",troops.draftValue());draft.putString("food",food.draftValue());draft.putString("gold",gold.draftValue());save();
             String error=error(c,troops,food,gold);
-            summary.setText(error==null?"留守：兵"+(c.troops-troops.value())+" / 粮"+(c.food-food.value())+" / 金"+(c.gold-gold.value())+"\n携粮约"+(food.value()/Math.max(1,(troops.value()+19)/20))+"旬；兵装消耗"+Army.equipmentNeeded(weapon(),troops.value())+"；行动力10":error);
+            int use=Logistics.baseUse(troops.value(),false);
+            ration.setText(use==0?"请填写有效兵力":"基础旬耗 "+use+" · 可支撑 "+Logistics.turns(food.value(),use)+" 旬");
+            String supplies=use==0?"请填写有效兵力":"旬耗粮 "+use+" · 携粮可支撑 "+Logistics.turns(food.value(),use)+" 旬（不计设施减耗）";
+            summary.setText(supplies+"\n调整兵力时携粮自动设为兵力×2，可再手动改粮。"+(2L*troops.value()>Math.min(c.food,1000000)?"\n库存 / 携带上限不足两倍粮；自动配粮受上限限制。":"")+"\n"+
+                (error==null?"留守：兵"+(c.troops-troops.value())+" / 粮"+(c.food-food.value())+" / 金"+(c.gold-gold.value())+"\n兵装消耗"+Army.equipmentNeeded(weapon(),troops.value())+"；行动力10":error));
             if(dialog.isShowing())dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(error==null);
         };
-        troops.onChange(update[0]);food.onChange(update[0]);gold.onChange(update[0]);dialog.setOnCancelListener(d->a.closeForm());
+        int[] previousTroops={troops.value()};
+        troops.onChange(()->{if(troops.valid()&&troops.value()!=previousTroops[0]){previousTroops[0]=troops.value();food.set(Logistics.defaultFood(troops.value(),c.food));}update[0].run();});
+        food.onChange(update[0]);gold.onChange(update[0]);dialog.setOnCancelListener(d->a.closeForm());
         final long revision=w.commandRevision();boolean[] submitted={false};dialog.setOnShowListener(v->{update[0].run();dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(view->{
             if(submitted[0]||!a.currentWorld(w)||error(c,troops,food,gold)!=null)return;
             if(revision!=w.commandRevision()){dialog.dismiss();show();return;}

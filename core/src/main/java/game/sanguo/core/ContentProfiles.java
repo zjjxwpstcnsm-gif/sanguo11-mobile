@@ -17,6 +17,7 @@ public final class ContentProfiles {
     }
     static void biography(World w,ContentCatalog catalog,int id,int home,boolean dated){
         ContentCatalog.Officer d=catalog.officer(id);Contests.Profile current=w.contests.profile(id);
+        w.officer(id).affinity=catalog.profile(id).affinity;w.officer(id).honor=catalog.profile(id).honor;
         int explicitGear=w.contests.profiles.containsKey(id)?w.contests.profiles.get(id).gearMask:0;
         w.contests.configure(id,new Contests.Profile(temper(d),current.talkMask,explicitGear));
         if(dated){

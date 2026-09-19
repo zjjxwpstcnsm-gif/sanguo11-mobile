@@ -34,7 +34,7 @@ public final class Relations {
     public boolean blood(int a,int b){if(a==b)return true;Set<Integer> aa=ancestors(a),bb=ancestors(b);aa.retainAll(bb);return !aa.isEmpty();}
     public boolean loyalBond(int target){
         World.Officer t=w.officer(target);if(t==null||t.owner<0||!w.alive(t.owner))return false;
-        for(World.Officer o:w.officers)if(o.owner==t.owner&&bonded(target,o.id))return true;return false;
+        for(World.Officer o:w.officers)if(o.owner==t.owner&&w.life.present(o.id)&&bonded(target,o.id))return true;return false;
     }
     public boolean refuses(int target,int recruiter,int owner){
         if(loyalBond(target))return true;
@@ -45,12 +45,12 @@ public final class Relations {
         if(bonded(target,recruiter)||likes(target,recruiter))return 20;
         for(World.Officer o:w.officers)if(o.owner==owner&&(bonded(target,o.id)||likes(target,o.id)))return 10;return 0;
     }
-    /** Prototype coefficients; relationship direction and precedence follow the documented mechanics. */
+    /** Positive-gap fractions from published SAN11 experiments; two deputies never add their boosts. */
     public int contribution(int leader,int deputy,int leaderValue,int deputyValue){
         if(deputyValue<=leaderValue||dislikes(leader,deputy)||dislikes(deputy,leader))return leaderValue;
         if(bonded(leader,deputy))return deputyValue;
-        int percent=likes(leader,deputy)||likes(deputy,leader)?75:blood(leader,deputy)?65:50;
-        return leaderValue+(deputyValue-leaderValue)*percent/100;
+        int divisor=likes(leader,deputy)||likes(deputy,leader)?2:blood(leader,deputy)?3:4;
+        return leaderValue+(deputyValue-leaderValue)/divisor;
     }
     public int supportChance(int helper,int leader){
         if(dislikes(helper,leader)||dislikes(leader,helper))return 0;

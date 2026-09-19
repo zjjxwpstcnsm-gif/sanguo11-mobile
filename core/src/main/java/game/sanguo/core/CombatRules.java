@@ -38,25 +38,35 @@ public final class CombatRules {
     int rawDamage(World.Unit a,World.Unit b,double scale,Random rng){return rawDamage(a,b,scale,rng,w.fieldworks.defensePercent(b));}
     private int rawDamage(World.Unit a,World.Unit b,double scale,Random rng,int defensePercent){
         int amount;
-        double ratio=Math.max(.35,Math.min(2.5,attackRating(a)/defenseRating(b)));
+        double ratio=Math.max(.35,Math.min(2.5,attackRating(a)/Math.max(1,defenseRating(b))));
         double counter=w.army.water(a.hex)||w.army.water(b.hex)?1:matchup(a.weapon,b.weapon);
         double raw=230*StrictMath.sqrt(Math.max(1,a.troops)/1000.0)*ratio*counter*scale;
         amount=(int)Math.max(1,Math.min(2500,Math.round(raw*(.9+.2*rng.nextDouble()))));
         amount=amount*(100-defensePercent)/100;
         return Math.max(1,amount);
     }
-    private static double attackFactor(World.Weapon weapon){switch(weapon){case SPEAR:return 1.05;case HALBERD:return .98;case CROSSBOW:return .95;case CAVALRY:return 1.15;case SWORD:return .70;case RAM:return .35;default:return .90;}}
-    private static double defenseFactor(World.Weapon weapon){switch(weapon){case SPEAR:return 1;case HALBERD:return 1.2;case CROSSBOW:return .85;case CAVALRY:return .95;case SWORD:return .75;default:return .65;}}
-    private double aptitudeFactor(World.Unit u){return .75+.1*Math.max(0,Math.min(3,w.army.aptitude(u)));}
-    public double attackRating(World.Unit u){
-        boolean water=w.army.water(u.hex);
-        return (40+.7*w.army.leadership(u)+.3*w.army.war(u))*aptitudeFactor(u)
-            *(water?u.ship.power/100.0:attackFactor(u.weapon)*terrainAttack(w.terrain[u.hex.q][u.hex.r]));
+    private static double attackFactor(World.Weapon k){switch(k){case SPEAR:return .95;case HALBERD:return .90;case CROSSBOW:return .85;case CAVALRY:return 1.05;case SWORD:return .36;case WOODEN_BEAST:return 1;case CATAPULT:return .95;default:return .90;}}
+    private static double defenseFactor(World.Weapon k){switch(k){case SPEAR:return .95;case HALBERD:return 1.05;case CROSSBOW:case CAVALRY:return .90;case SWORD:return .36;default:return .85;}}
+    private double aptitudeFactor(World.Unit u){return .7+.1*Math.max(0,Math.min(3,w.army.aptitude(u)));}
+    private double factor(World.Unit u,boolean attack){
+        if(u instanceof Domestic.Mission)return attack?.14:.12;
+        if(w.army.water(u.hex))return u.ship==Army.Ship.BOAT?.75:u.ship==Army.Ship.TOWER_SHIP?(attack?.90:.85):(attack?1:.95);
+        return attack?attackFactor(u.weapon):defenseFactor(u.weapon);
     }
-    public double defenseRating(World.Unit u){
-        boolean water=w.army.water(u.hex);
-        return (40+w.army.leadership(u))*aptitudeFactor(u)*(u instanceof Domestic.Mission?.5:1)
-            *(water?u.ship.power/100.0:defenseFactor(u.weapon)*terrainDefense(w.terrain[u.hex.q][u.hex.r]));
+    private double statAptitude(World.Unit u){return u instanceof Domestic.Mission||!w.army.water(u.hex)&&u.weapon==World.Weapon.SWORD?1:aptitudeFactor(u);}
+    public int baseAttack(World.Unit u){return (int)StrictMath.floor(w.army.war(u)*factor(u,true)*statAptitude(u)+1e-8);}
+    public int baseDefense(World.Unit u){return (int)StrictMath.floor(w.army.leadership(u)*factor(u,false)*statAptitude(u)+1e-8);}
+    public double attackRating(World.Unit u){return baseAttack(u)*(w.army.water(u.hex)?1:terrainAttack(w.terrain[u.hex.q][u.hex.r]));}
+    public double defenseRating(World.Unit u){return baseDefense(u)*(w.army.water(u.hex)?1:terrainDefense(w.terrain[u.hex.q][u.hex.r]));}
+    public String unitStats(World.Unit u){
+        return String.format(java.util.Locale.ROOT,"攻击 %.1f · 防御 %.1f\n基础攻击 %d · 基础防御 %d\n编队统率 %d · 武力 %d · 智力 %d",attackRating(u),defenseRating(u),baseAttack(u),baseDefense(u),w.army.leadership(u),w.army.war(u),w.army.intelligence(u));
+    }
+    public String statExplanation(World.Unit u){
+        StringBuilder text=new StringBuilder(unitStats(u));
+        text.append("\n\n攻击取编队武力，防御取编队统率，再乘兵装和适性系数。显示值含当前地形；科技、特技、设施、暴击等按实际交战条件另行结算。\n主将为基础，副将只补高于主将的差值；夫妻/义兄弟全额、亲爱1/2、血缘1/3、普通1/4、厌恶无补正。两名副将分别计算后取较高结果，不相加。\n部队智力、兵种适性取全队最高。\n");
+        World.Officer leader=w.officer(u.officerId);
+        for(int id:u.deputies){World.Officer deputy=w.officer(id);text.append("\n").append(deputy.name).append("：补正后统率 ").append(w.relations.contribution(leader.id,id,leader.leadership,deputy.leadership)).append(" / 武力 ").append(w.relations.contribution(leader.id,id,w.contests.war(leader),w.contests.war(deputy)));}
+        return text.append("\n\n伤害、地形与部分科技效果仍为移动版平衡规则，非原版伤害公式的逐位复刻。").toString();
     }
     private static double terrainAttack(World.Terrain t){if(t==World.Terrain.SWAMP)return 0.85;return t==World.Terrain.FOREST?.95:t==World.Terrain.MOUNTAIN?.9:1;}
     private static double terrainDefense(World.Terrain t){if(t==World.Terrain.SWAMP)return 0.9;return t==World.Terrain.FOREST?1.2:t==World.Terrain.MOUNTAIN?1.25:1;}

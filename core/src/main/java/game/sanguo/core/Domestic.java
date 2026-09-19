@@ -25,7 +25,7 @@ public final class Domestic {
     /** The mission IS the battlefield unit; cargo fields are inherited, never mirrored.
      * Battle IDs occupy a disjoint namespace; taskId preserves every historical save reference. */
     public static final class Mission extends World.Unit {
-        public final int taskId,sourceCity;public int targetCity;
+        public final int taskId;public int sourceCity,targetCity;
         public boolean transport,sea,returnOfficers,returning,stopped,legacyOverlap;
         public final int[] cargoShips=new int[2];
         public String waiting="";public int escortId=-1,movementTurn=-1;
@@ -344,8 +344,8 @@ public final class Domestic {
     private int estimate(List<Hex> path,Mission m){int turns=0,budget=0;for(Hex h:path){int cost=travelCost(h,m.owner,m.sea);if(budget<cost){turns++;budget=travelSpeed(m);}budget-=cost;}return turns;
     }
     private int travelSpeed(Mission m){return TRAVEL_SPEED+(m.transport&&w.campaign.has(m.owner,Campaign.Tech.WOODEN_OX)?1:0)+(m.transport&&Arrays.stream(m.crew()).anyMatch(id->w.skills.has(w.officer(id),Skill.YUNBAN))?2:0);}
-    /** Provisional engineering rate: same base ceil(troops/20) as field troops, not an original-game claim. */
-    public int foodUse(Mission m){return m.transport?(m.troops+19)/20:0;}
+    /** Transport rations use half the field-army base rate; current friendly camp auras apply. */
+    public int foodUse(Mission m){return Logistics.foodUse(w,m);}
     public int expectedFood(Mission m){int turns=eta(m);return turns<0?0:Math.max(0,m.food-turns*foodUse(m));}
     public String status(Mission m){
         World.City c=w.city(m.targetCity);if(c==null||c.owner!=m.owner)return "目的地失守，待选择可达己城";
@@ -369,7 +369,7 @@ public final class Domestic {
             if(m.lastTick==w.turn)continue;m.lastTick=w.turn;
             if(m.movementTurn!=w.turn){w.orders.reset(m);m.movementTurn=w.turn;}
             if(m.transport){int use=foodUse(m),paid=Math.min(m.food,use);m.food-=paid;m.consumedFood+=paid;
-                if(paid<use){int lost=Math.min(m.troops,Math.max(1,m.troops/10));m.troops-=lost;w.note(w.officer(m.officerId).name+"运输队断粮，损失"+lost+"兵；余粮"+m.food);
+                if(paid<use){int lost=Logistics.deserters(m.troops);m.troops-=lost;w.note(w.officer(m.officerId).name+"运输队断粮，损失"+lost+"兵；余粮"+m.food);
                     if(m.troops==0){w.removeUnit(m);continue;}}
             }
             World.City c=w.city(m.targetCity);

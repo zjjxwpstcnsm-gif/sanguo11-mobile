@@ -116,9 +116,9 @@ public final class Fieldworks {
         int tier=s.kind==War.StructureKind.FORTRESS?3:s.kind==War.StructureKind.FORT?2:1;
         if(s.hex.distance(u.hex)<=tier+1)best=Math.max(best,tier==3?35:tier==2?25:15);
     }return best;}
-    public int foodUse(World.Unit u,int base){int reduction=0;for(War.Structure s:w.war.structures)if(s.complete&&s.owner==u.owner&&camp(s.kind)){
+    public int foodUse(World.Unit u,int base){int reduction=0;for(War.Structure s:nearbyAuras(u.hex))if(s.complete&&s.owner==u.owner&&camp(s.kind)){
         int tier=s.kind==War.StructureKind.FORTRESS?3:s.kind==War.StructureKind.FORT?2:1;
-        if(s.hex.distance(u.hex)<=tier+1)reduction=Math.max(reduction,tier==3?50:tier==2?30:10);
+        if(s.hex.distance(u.hex)<=tier+1)reduction=Math.max(reduction,tier==3?50:tier==2?30:15);
     }return Math.max(1,base*(100-reduction)/100);}
     public boolean drum(World.Unit u){for(War.Structure s:nearbyAuras(u.hex))if(s.complete&&s.kind==War.StructureKind.DRUM&&s.owner==u.owner&&s.hex.distance(u.hex)<=2)return true;return false;}
     void counter(War.Structure s,World.Unit u){if(s.complete&&camp(s.kind)&&u.hex.distance(s.hex)==1&&w.army.counter(u)){

@@ -34,7 +34,7 @@ public final class War {
         Plot(String label,int energy,String effect){this.label=label;this.energy=energy;this.effect=effect;}
     }
     public enum StructureKind {
-        CAMP("阵",1500,1100,"2格内己军减伤15%、粮耗减少10%"), ARROW_TOWER("箭楼",600,700,"每旬射击2格内一支敌军"),
+        CAMP("阵",1500,1100,"2格内己军减伤15%、粮耗减少15%"), ARROW_TOWER("箭楼",600,700,"每旬射击2格内一支敌军"),
         MUSIC("军乐台",800,800,"每旬恢复2格内己军10气力"), FIRE_SEED("火种",200,200,"引爆相邻格，可能伤及己军"),
         FORT("砦",1500,1100,"3格内己军减伤25%、粮耗减少30%"), FORTRESS("城塞",1500,1100,"4格内己军减伤35%、粮耗减少50%"),
         CROSSBOW_TOWER("连弩楼",600,700,"每旬射击3格内一支敌军"), CATAPULT_TOWER("投石台",800,1000,"每旬攻击2至3格内一支敌军，邻接为盲区"),

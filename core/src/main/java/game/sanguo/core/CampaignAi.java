@@ -195,7 +195,7 @@ public final class CampaignAi {
     }
     public int incoming(World.City c){int troops=0;for(World.Unit u:w.units)if(w.campaign.hostile(c.owner,u.owner)&&u.hex.distance(c.hex)<=7)troops+=u.troops;return troops;}
     public int reserve(World.City c){return Math.min(w.campaign.troopCap(c),Math.max(6000,incoming(c)*2/3+4000));}
-    public int foodTurns(World.Unit u){int use=w.fieldworks.foodUse(u,Math.max(1,(u.troops+19)/20));return use==0?999:u.food/use;}
+    public int foodTurns(World.Unit u){int use=Logistics.foodUse(w,u);return use==0?999:u.food/use;}
     private int admin(World.Officer o){return o.politics*2+o.charm;}
     private int combatSkill(Skill s,int category){
         if(s==null)return 0;
@@ -544,7 +544,7 @@ public final class CampaignAi {
         for(Domestic.Mission m:w.domestic.missions)if(m.transport&&m.owner==u.owner){
             Districts.District source=w.districts.city(m.sourceCity);
             if(source!=receiver||source!=null&&!source.supplyEnabled)continue;
-            int ration=Math.max(1,(u.troops+19)/20),available=m.food-w.domestic.foodUse(m)*4;
+            int ration=Logistics.foodUse(w,u),available=m.food-w.domestic.foodUse(m)*4;
             if(m.hex.distance(u.hex)==1&&available>0&&w.supply.convoyTransfer(m.id,u.id,0,Math.min(ration*8-u.food,available),0).ok){actedProductively=true;return false;}
             World.City destination=w.city(m.targetCity);int eta=w.domestic.deliverableEta(m);
             if(destination!=null&&u.hex.distance(destination.hex)<=4&&eta>=0&&eta<=foodTurns(u)&&foodTurns(u)>1){formationWait=true;w.war.waitUnit(u.id);return true;}

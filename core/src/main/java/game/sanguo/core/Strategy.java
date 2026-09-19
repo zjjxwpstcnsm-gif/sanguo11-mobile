@@ -290,11 +290,12 @@ public final class Strategy {
         w.spend(c,o,TRAIN_COST);c.morale+=gain;return w.success(c.name+"训练，气力+"+gain);
     }
     void tick() {
+        w.loyalty.tick();
         for(World.Officer o:w.officers) {
             if(o.otherTaskTurns>0&&--o.otherTaskTurns==0){o.otherTask="";o.acted=true;w.note(o.name+"完成战略任务");}
             World.City c=w.city(o.cityId);
             if(!w.relations.loyalBond(o.id)&&!w.skills.city(o.cityId,Skill.RENZHENG)&&w.turn%3==0&&o.owner>=0&&o.role!=Role.RULER&&c!=null&&c.owner==o.owner&&(c.order<40||c.gold<200))
-                o.loyalty=Math.max(0,o.loyalty-w.campaign.loyaltyLoss(o.owner,2));
+                w.loyalty.lose(o,w.campaign.loyaltyLoss(o.owner,2));
         }
     }
     public StrategicAi.Decision planAi(int cityId) { return new StrategicAi(w).plan(cityId,false); }
@@ -303,36 +304,19 @@ public final class Strategy {
     void write(DataOutputStream out)throws IOException { StrategySave.write(this,out); }
     void read(DataInputStream in)throws IOException { StrategySave.read(this,in); }
     void validate()throws IOException { StrategySave.validate(this); }
-boolean recruitable(int owner, int targetId) {
-        World.Officer t = this.w.officer(targetId);
-        if (t == null || !this.w.life.present(t.id) || t.owner == owner || t.unitId >= 0 || busy(t.id) || this.w.domestic.busy(t.id) || this.w.city(t.cityId) == null || this.w.relations.loyalBond(targetId) || t.role == Role.RULER) {
-            return false;
-        }
-        if (t.owner < 0) {
-            if (t.role != Role.UNAFFILIATED) {
-                return false;
-            }
-        } else if (this.w.city(t.cityId).owner != t.owner) {
-            return false;
-        }
-        return true;
+boolean recruitable(int owner,int targetId){
+        World.Officer t=w.officer(targetId);if(t==null||!w.life.present(t.id)||t.owner==owner||w.government.captive(t.id)||busy(t.id)||t.role==Role.RULER||w.relations.loyalBond(t.id))return false;
+        World.Unit field=w.loyalty.fieldUnit(t.id);
+        if(field!=null)return t.owner>=0&&field.owner==t.owner;
+        if(w.domestic.busy(t.id)||w.city(t.cityId)==null)return false;
+        return t.owner<0?t.role==Role.UNAFFILIATED:w.city(t.cityId).owner==t.owner;
     }
-int recruitChance(int owner, int officerId, int targetId) {
-        World.Officer o = this.w.officer(officerId);
-        World.Officer target = this.w.officer(targetId);
-        if (o == null || !recruitable(owner, targetId) || this.w.relations.refuses(targetId, officerId, owner)) {
-            return 0;
-        }
-        return Math.max(0, Math.min(100, this.w.relations.recruitmentBonus(targetId, officerId, owner) + StrategyRules.recruitmentChance(o.charm, o.politics, target.loyalty, target.owner < 0, target.owner < 0 ? 0 : factionRelation(owner, target.owner))));
+int recruitChance(int owner,int officerId,int targetId){
+        World.Officer o=w.officer(officerId),target=w.officer(targetId);
+        if(o==null||o.owner!=owner||!recruitable(owner,targetId)||w.relations.refuses(targetId,officerId,owner)||w.loyalty.refusesRuler(target))return 0;
+        if(target.owner>=0&&target.loyalty+target.honor>96)return 0;
+        int base=StrategyRules.recruitmentChance(o.charm,o.politics,target.loyalty,target.owner<0,target.owner<0?0:factionRelation(owner,target.owner));
+        return Math.max(0,Math.min(95,base+w.relations.recruitmentBonus(targetId,officerId,owner)+w.loyalty.recruitmentAdjustment(o,target,owner)));
     }
-void join(World.Officer actor, World.Officer target, int city) {
-        releaseGovernor(target.id);
-        this.w.government.allegianceChanged(target.id);
-        target.owner = actor.owner;
-        target.cityId = city;
-        target.role = Role.OFFICER;
-        target.loyalty = Math.min(100, (actor.charm / 10) + 60 + (actor.politics / 5));
-        target.lastRewardTurn = -1;
-        target.acted = true;
-    }
+void join(World.Officer actor,World.Officer target,int city){w.loyalty.join(actor,target,city);}
 }

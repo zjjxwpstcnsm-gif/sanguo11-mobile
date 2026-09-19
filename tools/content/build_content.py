@@ -106,7 +106,7 @@ def build():
                 relation.append(k+'='+v[k])
         require(v['自然死'] in ['O','X'],'unknown natural-death flag')
         require(v['性格'] in ['小心','冷靜','剛膽','豬突'],'unknown personality')
-        profiles.append([o['projectId'],number(v['血緣'],0,1000000),number(v['相性'],0,149),v['自然死'],raw['source']])
+        profiles.append([o['projectId'],number(v['血緣'],0,1000000),number(v['相性'],0,149),v['自然死'],number(v['義理'],1,5),raw['source']])
         state='collected'
         if o['projectId'] in checks:
             check=checks[o['projectId']];require(stats==check['stats'] and apt==check['aptitudes'],'cross-source difference: '+o['name']);state='cross-checked'
@@ -122,7 +122,7 @@ def build():
     generated={}
     generated[OUT/'officers.tsv']=table(['id','sourceId','name','stats','aptitudes','birth','death','appearance','skillId','status','source','relationsRaw','personality','gender'],orows)
     generated[OUT/'relations.tsv']=table(['officerId','targetId','kind','field','raw','source'],relation_rows)
-    generated[OUT/'profiles.tsv']=table(['officerId','bloodline','affinity','naturalDeath','source'],profiles)
+    generated[OUT/'profiles.tsv']=table(['officerId','bloodline','affinity','naturalDeath','honor','source'],profiles)
     generated[OUT/'sites.tsv']=table(['id','name','kind','rawX','rawY','durability','coordinateStatus','source'],[[s[k] for k in ['id','name','kind','rawX','rawY','durability','coordinateStatus','source']] for s in sorted(sites,key=lambda s:s['id'])])
     generated[OUT/'skills.tsv']=table(['id','name','source'],[[s[k] for k in ['id','name','source']] for s in sorted(skills,key=lambda s:s['id'])])
     generated[OUT/'items.tsv']=table(['id','name','kind','value','holderRaw','locationRaw','scenarioId','source'],[[s['id'],s['name'],s['kind'],s['value'],s['rawHolder'] or '原表空白',s['rawLocation'] or '原表空白',None,s['source']] for s in sorted(items,key=lambda s:s['id'])])

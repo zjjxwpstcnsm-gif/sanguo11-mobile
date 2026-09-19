@@ -21,6 +21,8 @@ public final class Recruitment {
         public final int actor;
         public final int destination;
         public boolean joined;
+        public int fieldUnit=-1;
+        public boolean fieldJoined;
         public final int owner;
         public int remaining;
         public final int source;
@@ -57,7 +59,7 @@ public final class Recruitment {
                 if (m.actor == officer.id && officer.otherTask.equals("登用返程")) {
                     return true;
                 }
-                if (m.joined && m.target == officer.id && officer.otherTask.equals("登用返程")) {
+                if (m.joined && !m.fieldJoined && m.target == officer.id && officer.otherTask.equals("登用返程")) {
                     return true;
                 }
             }
@@ -67,7 +69,7 @@ public final class Recruitment {
 
     boolean returning(World.Officer officer) {
         for (Mission m : this.missions) {
-            if (m.joined && m.target == officer.id && m.owner == officer.owner && m.destination == officer.cityId && m.remaining > 0 && officer.otherTaskTurns > 0 && officer.otherTask.equals("登用返程")) {
+            if (m.joined && !m.fieldJoined && m.target == officer.id && m.owner == officer.owner && m.destination == officer.cityId && m.remaining > 0 && officer.otherTaskTurns > 0 && officer.otherTask.equals("登用返程")) {
                 return true;
             }
         }
@@ -83,29 +85,29 @@ public final class Recruitment {
         return false;
     }
 
-    public int travelTurns(int source, int target) {
-        World.City from = this.w.city(source);
-        World.Officer officer = this.w.officer(target);
-        World.City to = officer == null ? null : this.w.city(officer.cityId);
-        if (from == null || to == null || from == to) {
-            return 0;
-        }
-        return Math.min(50, Math.max(1, this.w.personnel.turns(from.id, to.id)));
+    public int travelTurns(int source,int target){
+        World.City from=w.city(source);World.Officer o=w.officer(target);if(from==null||o==null)return 0;
+        World.Unit field=w.loyalty.fieldUnit(target);
+        if(field!=null)return Math.min(50,Math.max(1,w.personnel.turns(field.hex,source)));
+        World.City to=w.city(o.cityId);return to==null||to==from?0:Math.min(50,Math.max(1,w.personnel.turns(from.id,to.id)));
     }
-
-    World.Result start(World.City source, World.Officer actor, World.Officer target) {
-        Mission m = new Mission(actor.id, target.id, source.id, target.cityId, source.owner, target.owner, travelTurns(source.id, target.id));
-        this.missions.add(m);
-        this.w.strategy.releaseGovernor(actor.id);
-        actor.otherTask = "出使登用：" + target.name.substring(0, Math.min(60, target.name.length()));
-        actor.otherTaskTurns = m.remaining;
-        return this.w.success(actor.name + "前往" + this.w.city(m.destination).name + "登用" + target.name + "，去程" + m.travel + "旬，往返" + m.remaining + "旬");
+    public String travelDescription(int source,int target){
+        World.Unit field=w.loyalty.fieldUnit(target);int turns=travelTurns(source,target);
+        if(field==null&&turns==0)return "本城交涉，当旬结算。";
+        return (field==null?"跨城登用":"野外登用：追踪当前部队编号，抵达时再次校验")+"；去程"+turns+"旬，往返"+(turns*2)+"旬。使者离城期间不可再执行命令。"
+            +(field==null?"":"主将接受登用将整队改旗；副将单独接受登用只离队，不带走原部队。");
     }
-
-    public String describe(Mission m) {
-        World.Officer actor = this.w.officer(m.actor);
-        World.Officer target = this.w.officer(m.target);
-        return (actor == null ? "使者" : actor.name) + " → " + (target == null ? "目标" : target.name) + " · " + this.w.city(m.destination).name + (m.remaining > m.travel ? " · 去程" : " · 返程") + " · 剩" + m.remaining + "旬" + (m.joined ? " · 已说服，同路返回" : "");
+    World.Result start(World.City source,World.Officer actor,World.Officer target){
+        World.Unit field=w.loyalty.fieldUnit(target.id);
+        World.City destination=field==null?w.city(target.cityId):w.personnel.region(field.hex);
+        Mission m=new Mission(actor.id,target.id,source.id,destination.id,source.owner,target.owner,travelTurns(source.id,target.id));
+        m.fieldUnit=field==null?-1:field.id;missions.add(m);w.strategy.releaseGovernor(actor.id);
+        actor.otherTask="出使登用："+target.name.substring(0,Math.min(60,target.name.length()));actor.otherTaskTurns=m.remaining;
+        return w.success(actor.name+"前往"+(field==null?destination.name:"野外部队")+"登用"+target.name+"，去程"+m.travel+"旬，往返"+m.remaining+"旬");
+    }
+    public String describe(Mission m){
+        return w.officer(m.actor).name+" → "+w.officer(m.target).name+" · "+(m.fieldUnit>=0?"野外部队":w.city(m.destination).name)
+            +(m.remaining>m.travel?" · 去程":" · 返程")+" · 剩"+m.remaining+"旬"+(m.joined?(m.fieldJoined?" · 部队已倒戈，使者独自返程":" · 已说服，同路返回"):"");
     }
 
     private boolean actorAvailable(Mission m, World.Officer actor) {
@@ -113,7 +115,7 @@ public final class Recruitment {
     }
 
     private void release(World.Officer officer, Mission m) {
-        if (officer == null || officer.owner != m.owner || !this.w.life.present(officer.id) || this.w.government.captive(officer.id) || officer.unitId >= 0) {
+        if (officer == null || officer.owner != m.owner || !this.w.life.present(officer.id) || this.w.government.captive(officer.id) || officer.unitId >= 0 || this.w.domestic.busy(officer.id)) {
             return;
         }
         if (officer.otherTaskTurns <= 0 || officer.otherTask.startsWith("出使登用：") || officer.otherTask.equals("登用返程")) {
@@ -140,7 +142,7 @@ public final class Recruitment {
                 World.Officer target = this.w.officer(m.target);
                 if (!actorAvailable(m, actor)) {
                     release(actor, m);
-                    if (m.joined) {
+                    if (m.joined && !m.fieldJoined) {
                         release(target, m);
                     }
                     this.missions.remove(m);
@@ -148,14 +150,16 @@ public final class Recruitment {
                 } else {
                     m.remaining--;
                     if (m.remaining == m.travel) {
-                        boolean valid = target != null && target.owner == m.targetOwner && target.cityId == m.destination && this.w.strategy.recruitable(m.owner, m.target);
+                        World.Unit field=target==null?null:w.loyalty.fieldUnit(target.id);
+                        boolean located=m.fieldUnit<0?target!=null&&target.cityId==m.destination:field!=null&&field.id==m.fieldUnit;
+                        boolean valid=target!=null&&target.owner==m.targetOwner&&located&&w.strategy.recruitable(m.owner,m.target);
                         int chance = valid ? this.w.strategy.recruitChance(m.owner, m.actor, m.target) : 0;
                         if (valid && chance > 0 && this.w.strategy.nextInt(100) < chance) {
                             this.w.strategy.join(actor, target, m.destination);
                             m.joined = true;
-                            target.otherTask = "登用返程";
-                            target.otherTaskTurns = m.remaining + 1;
-                            this.w.note(target.name + "接受登用，与" + actor.name + "返程，尚需" + m.remaining + "旬");
+                            m.fieldJoined=m.fieldUnit>=0&&w.loyalty.fieldUnit(target.id)!=null;
+                            if(!m.fieldJoined){target.otherTask="登用返程";target.otherTaskTurns=m.remaining+1;}
+                            w.note(target.name+(m.fieldJoined?"部队已加入；":"接受登用，一同返程；")+actor.name+"返程尚需"+m.remaining+"旬");
                         } else {
                             this.w.note(actor.name + (valid ? "登用未成功" : "抵达时目标已移动或不可登用") + "，返程尚需" + m.remaining + "旬");
                         }
@@ -163,7 +167,7 @@ public final class Recruitment {
                     }
                     if (m.remaining == 0) {
                         release(actor, m);
-                        if (m.joined) {
+                        if (m.joined && !m.fieldJoined) {
                             release(target, m);
                         }
                         this.missions.remove(m);
@@ -199,11 +203,24 @@ public final class Recruitment {
         }
     }
 
+    void writeField(DataOutputStream out)throws IOException{
+        out.writeInt(missions.size());for(Mission m:missions){out.writeInt(m.actor);out.writeInt(m.fieldUnit);out.writeBoolean(m.fieldJoined);}
+    }
+    void readField(DataInputStream in)throws IOException{
+        int n=in.readInt();if(n!=missions.size())throw new IOException("野外登用任务数量不一致");
+        Set<Integer> seen=new HashSet<>();for(int i=0;i<n;i++){
+            int actor=in.readInt();Mission match=null;for(Mission m:missions)if(m.actor==actor)match=m;
+            if(match==null||!seen.add(actor))throw new IOException("野外登用任务引用错误");
+            match.fieldUnit=in.readInt();match.fieldJoined=in.readBoolean();
+        }
+    }
+
     void validate() throws IOException {
         Set<Integer> actors=new HashSet<>();Set<String> targets=new HashSet<>();
         for(Mission m:missions) {
             if(w.officer(m.actor)==null||w.officer(m.target)==null||w.city(m.source)==null||w.city(m.destination)==null
-                ||m.source==m.destination||m.owner<0||m.owner>=w.factions.length||m.targetOwner< -1||m.targetOwner>=w.factions.length
+                ||m.source==m.destination&&m.fieldUnit<0||m.owner<0||m.owner>=w.factions.length||m.targetOwner< -1||m.targetOwner>=w.factions.length
+                ||m.fieldUnit< -1||m.fieldUnit==0||m.fieldUnit>=20000000||m.fieldJoined&&(!m.joined||m.fieldUnit<0)
                 ||m.travel<1||m.travel>50||m.remaining<1||m.remaining>m.travel*2||m.joined&&m.remaining>m.travel
                 ||!actors.add(m.actor)||!targets.add(m.owner+":"+m.target))throw new IOException("登用任务字段或引用无效");
         }

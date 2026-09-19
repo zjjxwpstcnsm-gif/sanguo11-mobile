@@ -69,7 +69,7 @@ public final class Government {
     public World.Result removeRank(int city,int actor,int target){
         World.City c=w.city(city);World.Officer o=w.officer(actor),t=w.officer(target);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
         if(t==null||t.owner!=c.owner||t.cityId!=city||t.unitId>=0||office(target)==null||w.strategy.busy(target)||w.domestic.busy(target))return w.fail("请选择本城可免官武将");
-        w.spend(c,o,0);ranks.remove(target);t.acted=true;t.loyalty=Math.max(0,t.loyalty-5);return w.success(t.name+"被免官，忠诚下降5");
+        w.spend(c,o,0);ranks.remove(target);t.acted=true;int lost=w.loyalty.lose(t,5);return w.success(t.name+"被免官，忠诚下降"+lost);
     }
     public World.Result appointAdvisor(int city,int actor,int target){
         World.City c=w.city(city);World.Officer o=w.officer(actor),t=w.officer(target);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
@@ -209,7 +209,7 @@ public final class Government {
     public int recruitChance(int actor,int target){
         World.Officer o=w.officer(actor),t=w.officer(target);Prisoner p=prisoner(target);
         if(o==null||t==null||p==null||w.relations.refuses(target,actor,o.owner)||o.owner!=p.captor||t.role==Strategy.Role.RULER&&w.alive(t.owner))return 0;
-        return Math.max(5,Math.min(95,20+w.relations.recruitmentBonus(target,actor,o.owner)+o.charm/2+o.politics/5-t.loyalty/2+(!w.alive(t.owner)?20:0)));
+        return Math.max(5,Math.min(95,20+w.relations.recruitmentBonus(target,actor,o.owner)+w.loyalty.recruitmentAdjustment(o,t,o.owner)+o.charm/2+o.politics/5-t.loyalty/2+(!w.alive(t.owner)?20:0)));
     }
     private String prisonerError(int city,int actor,int target,int gold){
         String error=w.cityError(w.city(city),w.officer(actor),gold);if(error!=null)return error;
@@ -252,13 +252,13 @@ public final class Government {
         relocatePrisoners();
         advisors.entrySet().removeIf(e->{World.Officer o=w.officer(e.getValue());return o==null||o.owner!=e.getKey()||captive(o.id);});
         for(Prisoner p:new ArrayList<>(prisoners.values())){
-            World.Officer o=w.officer(p.officerId);if(o.role!=Strategy.Role.RULER&&!w.relations.loyalBond(o.id))o.loyalty=Math.max(0,o.loyalty-2);
+            World.Officer o=w.officer(p.officerId);if(o.role!=Strategy.Role.RULER&&!w.relations.loyalBond(o.id))w.loyalty.lose(o,2);
             if(w.turn>p.capturedTurn&&w.strategy.nextInt(100)<5)free(p);
         }
         if(w.turn%3==0)for(Map.Entry<Integer,String> e:ranks.entrySet()){
             World.Officer o=w.officer(e.getKey());if(captive(o.id))continue;
             World.City c=o.cityId>=0?w.city(o.cityId):o.unitId>=0?refuge(o.owner,w.unit(o.unitId).hex):null;
-            if(c!=null){int pay=rank(e.getValue()).salary;if(c.gold>=pay)c.gold-=pay;else{if(!w.relations.loyalBond(o.id))o.loyalty=Math.max(0,o.loyalty-2);w.note(o.name+"俸禄不足，忠诚下降2");}}
+            if(c!=null){int pay=rank(e.getValue()).salary;if(c.gold>=pay)c.gold-=pay;else{int lost=w.relations.loyalBond(o.id)?0:w.loyalty.lose(o,2);w.note(o.name+"俸禄不足，忠诚下降"+lost);}}
         }
     }
     void runAi(){

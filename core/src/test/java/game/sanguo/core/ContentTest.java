@@ -45,7 +45,7 @@ public final class ContentTest {
         // Real player commands approach an AI unit and exchange damage, without teleporting.
         // This integration probe pursues the nearest enemy, including forests. Use a melee
         // force: an archer without 射手 cannot legally fire at the selected forest defender.
-        World battle=TestScenarios.load("officer-reference-drill",0);check(battle.deploy(100,1000,World.Weapon.SPEAR,6000).ok,"combat deployment");boolean fought=false;
+        World battle=TestScenarios.load("officer-reference-drill",0);check(battle.army.deploy(100,1001,new int[]{1000},World.Weapon.SPEAR,Army.Ship.BOAT,6000,12000).ok,"combat deployment");boolean fought=false;
         for(int turn=0;turn<60&&!battle.gameOver()&&!fought;turn++){
             for(World.Unit u:new ArrayList<>(battle.units))if(u.owner==battle.player&&!u.acted){
                 World.Unit enemy=battle.units.stream().filter(e->e.owner!=battle.player).min(Comparator.comparingInt(e->u.hex.distance(e.hex))).orElse(null);

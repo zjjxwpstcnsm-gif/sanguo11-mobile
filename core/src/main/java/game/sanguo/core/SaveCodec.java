@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=27, MAX_BYTES=4*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=28, MAX_BYTES=4*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -63,6 +63,7 @@ public final class SaveCodec {
         w.development.write(d);w.recruitment.write(d);w.envoys.write(d);
         w.domestic.writeUsage(d);
         w.marches.writeIntents(d);
+        w.loyalty.write(d);w.recruitment.writeField(d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
@@ -140,6 +141,7 @@ public final class SaveCodec {
         if(version>=24)w.envoys.read(d);
         if(version>=25)w.domestic.readUsage(d);
         if(version>=27)w.marches.readIntents(d);
+        if(version>=28){w.loyalty.read(d);w.recruitment.readField(d);}
         count=bounded(d.readInt(),0,40);for(int i=0;i<count;i++)w.log.add(d.readUTF());
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         validate(w);return w;
@@ -190,6 +192,7 @@ public final class SaveCodec {
         w.diplomacy.validate();
         w.domestic.validate();
         w.strategy.validate();
+        w.loyalty.validate();
         CampaignSave.validate(w);
         ArmySave.validate(w);
         RulesSave.validate(w);

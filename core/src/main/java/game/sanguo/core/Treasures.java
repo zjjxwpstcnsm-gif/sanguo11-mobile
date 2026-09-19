@@ -57,7 +57,7 @@ public final class Treasures {
         Item i=item(id);World.Officer t=i!=null&&i.place==Place.OFFICER?w.officer(i.holder):null;
         if(t==null||t.owner!=c.owner||t.cityId!=city||t.unitId>=0||w.government.captive(t.id)||w.strategy.busy(t.id)||w.domestic.busy(t.id))return w.fail("请选择本城无任务的己方持宝武将");
         w.spend(c,w.officer(actor),0);place(i.definition,Place.TREASURY,c.owner);
-        if(t.role!=Strategy.Role.RULER)t.loyalty=Math.max(0,t.loyalty-i.definition.value);
+        w.loyalty.lose(t,i.definition.value);
         return w.success("收回"+i.definition.name+"入府库，"+t.name+"忠诚"+t.loyalty);
     }
     /** Called only after a real search has paid and failed to discover an officer. */

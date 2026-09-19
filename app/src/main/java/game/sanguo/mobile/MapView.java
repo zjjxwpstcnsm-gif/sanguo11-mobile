@@ -593,7 +593,7 @@ public final class MapView extends View {
             World.Unit u=(World.Unit)object;if(replayHides(u))continue;if(u instanceof Domestic.Mission&&!((Domestic.Mission)u).transport)continue;
             boolean active=u.id==moving;World.Officer officer=officerIndex.get(u.officerId);if(officer==null)continue;
             String relation=u.owner==world.player?"我":world.campaign.hostile(world.player,u.owner)?"敌":"友";
-            String state=u.acted?"✓":u.food<(u.troops+19)/20*3?"粮!":u instanceof Domestic.Mission&&(((Domestic.Mission)u).stopped||!((Domestic.Mission)u).waiting.isEmpty())?"!":"";
+            String state=u.acted?"✓":u.food<Logistics.foodUse(world,u)*3?"粮!":u instanceof Domestic.Mission&&(((Domestic.Mission)u).stopped||!((Domestic.Mission)u).waiting.isEmpty())?"!":"";
             String name=relation+"·"+(u instanceof Domestic.Mission?"运":world.army.water(u.hex)?u.ship.label:u.weapon.label)+state;
             if(showCommanders)name+=" "+officer.name;
             if(active)name+=" "+u.troops+"兵 / "+u.energy+"气";
@@ -657,7 +657,7 @@ public final class MapView extends View {
         if(u.status!=War.Status.NORMAL)label(c,u.status.label.substring(0,1),cx+16,cy+15,12,Color.rgb(255,194,100));
 
         if(world.diplomacy.aidForUnit(u.id)!=null)label(c,"援",cx-17,cy-14,11,0xff91d3e0);
-        else if(u.food<(u.troops+19)/20*3)label(c,"粮!",cx-17,cy-14,10,0xffffb077);
+        else if(u.food<Logistics.foodUse(world,u)*3)label(c,"粮!",cx-17,cy-14,10,0xffffb077);
 
     }
 }

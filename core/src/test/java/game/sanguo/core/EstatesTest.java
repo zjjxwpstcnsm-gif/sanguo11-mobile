@@ -31,8 +31,8 @@ public final class EstatesTest {
         w.officer(3).loyalty=30;w.government.capture(w.officer(3),w.city(20));check(w.government.recruitChance(10,3)==0,"captured spouse loyal to living faction cannot be recruited");
     }
     private static void relationships()throws Exception{
-        World w=fixture();World.Unit u=w.unit(1);w.officer(6).war=50;w.officer(7).war=100;check(w.army.war(u)==75,"unrelated contribution");
-        edit(w,w.editor.relation(6,7,Relations.Kind.LIKE,false));check(w.army.war(u)==87,"like contribution");check(w.relations.supportChance(7,6)==0,"one-way liking does not grant reverse support");
+        World w=fixture();World.Unit u=w.unit(1);w.officer(6).war=50;w.officer(7).war=100;check(w.army.war(u)==62,"ordinary one-quarter contribution");
+        edit(w,w.editor.relation(6,7,Relations.Kind.LIKE,false));check(w.army.war(u)==75,"like one-half contribution");check(w.relations.supportChance(7,6)==0,"one-way liking does not grant reverse support");
         edit(w,w.editor.relation(7,6,Relations.Kind.LIKE,false));check(w.relations.supportChance(7,6)==30,"directed support");
         edit(w,w.editor.relation(6,7,Relations.Kind.SWORN,false));check(w.army.war(u)==100&&w.relations.supportChance(7,6)==50,"bonded maximum stat/support");
         rejectDraft(w,w.editor.relation(6,7,Relations.Kind.DISLIKE,false));

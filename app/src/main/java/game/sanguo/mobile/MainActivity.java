@@ -538,7 +538,7 @@ public final class MainActivity extends Activity {
         LinearLayout copy=new LinearLayout(this);copy.setOrientation(LinearLayout.VERTICAL);copy.setGravity(Gravity.CENTER_VERTICAL);
         TextView heading=text(pendingMarch.actionLabel+" · "+pendingMarch.label,14,paper);heading.setMaxLines(1);heading.setEllipsize(android.text.TextUtils.TruncateAt.END);copy.addView(heading);
         TextView hint=text(pendingMarch.valid()?(u.acted?"本旬已行动，下旬出发 · ":u.status!=War.Status.NORMAL?"异常状态，恢复后继续 · ":world.orders.remaining(u)==0?"移动力已用尽，下旬继续 · ":"本旬 "+pendingMarch.stepsNow+" 格 · ")+"行军预计再需 "+pendingMarch.estimatedTurns+" 旬 · "+pendingMarch.completion:pendingMarch.error,12,muted);hint.setMaxLines(3);hint.setEllipsize(android.text.TextUtils.TruncateAt.END);copy.addView(hint);
-        if(pendingMarch.valid())copy.addView(text("路线总耗移动 "+pendingMarch.cost+" · 本旬走"+pendingMarch.stepsNow+"格 · "+(u.food<Math.max(1,(u.troops+19)/20)*(pendingMarch.estimatedTurns+1)?"携粮可能不足":"携粮按现有兵力估算可支撑路线"),12,gold));
+        if(pendingMarch.valid())copy.addView(text("路线总耗移动 "+pendingMarch.cost+" · 本旬走"+pendingMarch.stepsNow+"格 · "+(u.food<Logistics.foodUse(world,u)*(pendingMarch.estimatedTurns+1)?"携粮可能不足":"携粮按现有兵力估算可支撑路线"),12,gold));
         commandDock.addView(copy,new LinearLayout.LayoutParams(portrait()?-1:0,-2,portrait()?0:1));
         LinearLayout actions=new LinearLayout(this);MarchOrders.Plan plan=pendingMarch;
         Button cancel=button("取消",v->{pendingMarch=null;unitCommand="select";refresh();});
@@ -705,6 +705,9 @@ public final class MainActivity extends Activity {
         if(u instanceof Domestic.Mission){showConvoy((Domestic.Mission)u);return;}
         World.Officer o=world.officer(u.officerId);panel.addView(visualHeader(o,o.name,world.faction(u.owner)+" · "+world.army.equipmentLabel(u),44));
         unitStats(u);
+        line(world.combat.unitStats(u),14,gold);
+        line(Logistics.describe(world,u),12,paper);
+        action("攻防与副将补正",v->message("部队数值组成",world.combat.statExplanation(u)));
         Diplomacy.Aid aid=world.diplomacy.aidForUnit(u.id);if(aid!=null)line("援军 · "+world.diplomacy.describe(aid),13,gold);
         if(u.owner==world.player){
             LinearLayout quick=new LinearLayout(this);
@@ -740,6 +743,8 @@ public final class MainActivity extends Activity {
         World.Officer leader=world.officer(m.officerId);
         panel.addView(visualHeader(leader,leader.name+"运输队",world.faction(m.owner)+" · "+(world.army.water(m.hex)?"水运 · 走舸":"陆运"),44));
         line("携兵 "+m.troops+" · 金 "+m.gold+" · 粮 "+m.food+" · 已耗粮 "+m.consumedFood,14,paper);
+        line(world.combat.unitStats(m),14,gold);
+        action("运输队攻防组成",v->message("运输队数值",world.combat.statExplanation(m)));
         line(world.domestic.status(m),14,gold);line("目的地："+world.city(m.targetCity).name+" · 当前 "+m.hex,14,paper);
         for(World.Weapon weapon:World.Weapon.values())if(m.equipment[weapon.ordinal()]>0)line(weapon.label+"货物 "+m.equipment[weapon.ordinal()],13,paper);
         line("舰船货物：楼船 "+m.cargoShips[0]+" / 斗舰 "+m.cargoShips[1]+"；当前走舸不入库存",13,paper);
@@ -764,7 +769,7 @@ public final class MainActivity extends Activity {
         if(world.contests.injury(o.id)>0)stats+="\n负伤 · 有效武力 "+world.contests.war(o)+" · 剩"+world.contests.injuryTurns(o.id)+"旬";
         Government.Rank office=world.government.office(o.id);stats+="\n功绩 "+world.government.merit(o.id)+" · 官职 "+(office==null?"未授官":office.id)+" · 统兵 "+world.government.commandLimit(o.id);
         stats+="\n适性：枪"+War.rankLabel(o.aptitude[0])+" 戟"+War.rankLabel(o.aptitude[1])+" 弩"+War.rankLabel(o.aptitude[2])+" 骑"+War.rankLabel(o.aptitude[3])+" 器"+War.rankLabel(o.aptitude[4])+" 水"+War.rankLabel(o.aptitude[5]);
-        stats+="\n"+world.life.describe(o.id);
+        stats+="\n"+world.life.describe(o.id)+"\n\n"+world.loyalty.describe(o);
         stats+="\n特技："+Skill.label(o.skillId)+"\n"+Skill.description(o.skillId)+"\n\n"+world.relations.describe(o.id)+"\n\n宝物：\n"+world.treasures.describe(o.id);
         LinearLayout content=new LinearLayout(this);content.setOrientation(LinearLayout.VERTICAL);content.setPadding(dp(20),dp(8),dp(20),dp(16));content.addView(visualHeader(o,o.name,o.role.label+" · 忠诚 "+o.loyalty,88));
         TextView description=text(stats+"\n身份："+o.role.label+" · 忠诚 "+o.loyalty+"\n\n所在地："+UiModels.location(world,o)+"\n状态："+UiModels.status(world,o),15,paper);content.addView(description);

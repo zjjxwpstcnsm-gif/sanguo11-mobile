@@ -39,9 +39,14 @@ final class StrategyUi {
         }
         if(n==6&&c.kind!=World.SiteKind.CITY){info("不能征兵","港口和关卡请从城市运输兵员。");return;}
         if(n==6&&w.domestic.operationError(c.id,Domestic.Kind.BARRACKS)!=null){info("不能征兵",w.domestic.operationError(c.id,Domestic.Kind.BARRACKS));return;}
-        if(n==2){choose("选择登用目标",w.strategy.recruitmentTargets(c.id),target->choose("选择执行武将",w.idle(c),o->confirm("登用"+target.name,
-            "消耗金100；成功率 "+w.strategy.recruitmentChance(c.id,o.id,target.id)+"%。\n"+(target.cityId==c.id?"本城交涉，当旬结算。":w.personnel.description(c.id,target.cityId)+"；往返期间使者不能执行其他命令，抵达后结算。"),()->apply.accept(w.strategy.recruitOfficer(c.id,o.id,target.id)))));return;}
-        if(n==3){List<World.Officer> targets=new ArrayList<>();for(World.Officer t:w.officers)if(t.owner==c.owner&&t.cityId==c.id&&t.role!=Strategy.Role.RULER&&t.loyalty<100&&t.lastRewardTurn!=w.turn&&!w.domestic.busy(t.id)&&!w.strategy.busy(t.id))targets.add(t);
+        if(n==2){choose("选择登用目标",w.strategy.recruitmentTargets(c.id),target->{
+            List<World.Officer> actors=w.loyalty.recruitmentActors(c.id,target.id);
+            chooseRecruiter(c,target,actors,
+                o->confirm("登用"+target.name,"消耗金100；当前成功率 "+w.strategy.recruitmentChance(c.id,o.id,target.id)+"%。\n"+
+                    w.loyalty.recommendation(c.id,target.id,o.id)+"\n"+w.recruitment.travelDescription(c.id,target.id)+
+                    "\n抵达时会按目标当时忠诚与归属重新判定，并非必然成功。",()->apply.accept(w.strategy.recruitOfficer(c.id,o.id,target.id))),null);
+        });return;}
+        if(n==3){List<World.Officer> targets=new ArrayList<>();for(World.Officer t:w.officers)if(t.owner==c.owner&&t.cityId==c.id&&t.unitId<0&&t.role!=Strategy.Role.RULER&&t.loyalty<100&&t.lastRewardTurn!=w.turn&&!w.domestic.busy(t.id)&&!w.strategy.busy(t.id))targets.add(t);
             choose("选择褒奖目标",targets,t->choose("选择执行武将",w.idle(c),o->confirm("褒奖"+t.name,"消耗金200；忠诚 +"+Math.min(100-t.loyalty,StrategyRules.rewardGain(t.politics,t.charm))+"。",()->apply.accept(w.strategy.rewardOfficer(c.id,o.id,t.id)))));return;}
         if(n==4){choose("选择太守",w.idle(c),t->choose("选择执行武将",w.idle(c),o->confirm("任命"+t.name,"金粮收入加成 "+(t.politics/4)+"%；执行者和新太守均消耗本旬行动。",()->apply.accept(w.strategy.appointGovernor(c.id,o.id,t.id)))));return;}
         if(n==8){List<World.Officer> targets=new ArrayList<>();for(World.Officer t:w.officers)if(t.cityId==c.id&&w.strategy.canRecruitTarget(c.id,t.id)&&!t.acted)targets.add(t);
@@ -55,6 +60,27 @@ final class StrategyUi {
                 default:break;
             }
         });
+    }
+
+    private void chooseRecruiter(World.City city,World.Officer target,List<World.Officer> options,Consumer<World.Officer> next,Runnable back){
+        final AlertDialog[] holder={null};int best=options.isEmpty()?-1:options.get(0).id;
+        List<DataTable.Column<World.Officer>> columns=new ArrayList<>();
+        columns.add(new DataTable.Column<>("姓名",86,o->(o.id==best?"★ ":"")+o.name,Comparator.comparing(o->o.name),false));
+        columns.add(new DataTable.Column<>("魅",36,o->""+o.charm,Comparator.comparingInt(o->o.charm),true));
+        columns.add(new DataTable.Column<>("政",36,o->""+o.politics,Comparator.comparingInt(o->o.politics),true));
+        columns.add(new DataTable.Column<>("相性差",64,o->{int gap=Loyalty.distance(o,target);return gap<0?"—":""+gap;},Comparator.comparingInt(o->{int gap=Loyalty.distance(o,target);return gap<0?76:gap;}),true));
+        columns.add(new DataTable.Column<>("成功率",68,o->w.strategy.recruitmentChance(city.id,o.id,target.id)+"%",Comparator.comparingInt(o->w.strategy.recruitmentChance(city.id,o.id,target.id)),true));
+        DataTable<World.Officer> table=new DataTable<>(activity,options,columns,new int[]{0,1,2,3,4},o->o.name+" "+w.loyalty.recommendation(city.id,target.id,o.id),o->o.id,
+            o->{if(activity instanceof MainActivity&&!((MainActivity)activity).currentWorld(w))return;holder[0].dismiss();next.accept(o);},o->{if(activity instanceof MainActivity)((MainActivity)activity).officerDetail(o);});
+        table.selection(o->o.id==best);
+        android.widget.LinearLayout host=new android.widget.LinearLayout(activity);host.setOrientation(android.widget.LinearLayout.VERTICAL);
+        android.widget.TextView advice=new android.widget.TextView(activity);UiTheme.text(advice);advice.setTextSize(14);advice.setPadding(16,12,16,12);advice.setTag("recruit.advice");
+        advice.setText(best<0?"没有本城可用执行者":w.loyalty.recommendation(city.id,target.id,best)+"\n优先人选："+w.officer(best).name+"；相性差越小越接近。概率会在抵达时重算。");host.addView(advice);
+        int height=Math.round(Math.max(160,Math.min(340,activity.getResources().getConfiguration().screenHeightDp-220))*activity.getResources().getDisplayMetrics().density);
+        host.addView(table,new android.widget.LinearLayout.LayoutParams(-1,height));
+        holder[0]=new AlertDialog.Builder(activity).setTitle("登用"+target.name+" · 选择执行者").setView(host).setNegativeButton("取消",null).create();holder[0].show();
+        if(activity instanceof MainActivity)((MainActivity)activity).trackDialog(holder[0]);
+        holder[0].getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN|android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
 
     private static String activityLabel(Strategy.Activity state){

@@ -8,11 +8,11 @@ import java.util.*;
 /** Immutable, source-pinned definitions. Never read by SaveCodec and never a second game state. */
 public final class ContentCatalog {
     public static final class Profile {
-        public final int officer,bloodline,affinity;
+        public final int officer,bloodline,affinity,honor;
         public final boolean naturalDeath;
         Profile(String[] c)throws IOException {
             officer=integer(c[0],0,1000000);bloodline=integer(c[1],0,1000000);affinity=integer(c[2],0,149);
-            require(c[3].equals("O")||c[3].equals("X"),"自然死标记错误");naturalDeath=c[3].equals("O");
+            require(c[3].equals("O")||c[3].equals("X"),"自然死标记错误");naturalDeath=c[3].equals("O");honor=integer(c[4],1,5);
         }
     }
     public static final class Relation {
@@ -95,8 +95,8 @@ public final class ContentCatalog {
         require(list.size()==670,"武将数量差异");officers=Collections.unmodifiableList(list);officerById=Collections.unmodifiableMap(byId);
         Map<Integer,String> names=new HashMap<>();for(String[] c:read(index,"aliases.tsv","id\talias")){int id=integer(c[0],0,1000000);require(byId.containsKey(id)&&names.put(id,c[1])==null,"别名ID错误");}aliases=Collections.unmodifiableMap(names);
         Map<Integer,Profile> details=new LinkedHashMap<>();
-        for(String[] c:read(index,"profiles.tsv","officerId\tbloodline\taffinity\tnaturalDeath\tsource")){
-            Profile p=new Profile(c);require(byId.containsKey(p.officer)&&details.put(p.officer,p)==null&&sources.contains(c[4]),"人物资料外键/重复错误");
+        for(String[] c:read(index,"profiles.tsv","officerId\tbloodline\taffinity\tnaturalDeath\thonor\tsource")){
+            Profile p=new Profile(c);require(byId.containsKey(p.officer)&&details.put(p.officer,p)==null&&sources.contains(c[5]),"人物资料外键/重复错误");
         }
         require(details.size()==officers.size(),"人物资料不完整");profiles=Collections.unmodifiableMap(details);
         List<Relation> links=new ArrayList<>();Set<String> linkIds=new HashSet<>();

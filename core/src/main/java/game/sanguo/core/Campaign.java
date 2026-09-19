@@ -208,7 +208,7 @@ public final class Campaign {
             target.order = Math.max(0, target.order - orderLoss(target.owner, 10));
             for (World.Officer t : this.w.officers) {
                 if (t.cityId == target.id && t.owner == target.owner && t.role != Strategy.Role.RULER && !this.w.relations.loyalBond(t.id)) {
-                    t.loyalty = Math.max(0, t.loyalty - loyaltyLoss(t.owner, 5));
+                    w.loyalty.lose(t,loyaltyLoss(t.owner,5));
                 }
             }
             earn(c.owner, 30);
