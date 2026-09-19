@@ -1,5 +1,5 @@
 name: v046 UI workbench
-run-name: v0.46 corrected native UI APK and installed verification
+run-name: v0.46 measured native UI APK and installed verification
 on:
   push:
     branches: [agent/ui-polish-v046-workbench]
@@ -27,9 +27,7 @@ jobs:
           chunks=[]
           for i,want in enumerate(expected):
               text=pathlib.Path(f'.ci/v046.{i}.b64').read_text().strip()
-              got=hashlib.sha256(text.encode()).hexdigest()
-              print('Chunk',i,len(text),got)
-              assert got==want, f'chunk {i} mismatch'
+              assert hashlib.sha256(text.encode()).hexdigest()==want, f'chunk {i} mismatch'
               chunks.append(text)
           raw=lzma.decompress(base64.b64decode(''.join(chunks),validate=True))
           assert hashlib.sha256(raw).hexdigest()=='a6f00e1678fa08872362c3ab4be9e12e42edacd5e49bb3f719b73f45a578af6b'
@@ -44,6 +42,23 @@ jobs:
               for start,end,text in reversed(item['ops']):lines[start:end]=[text]
               result=''.join(lines).encode();assert hashlib.sha256(result).hexdigest()==item['result'],str(p)+' output mismatch'
               p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(result);hashes[str(p)]=item['result']
+          p=pathlib.Path('app/src/main/java/game/sanguo/mobile/DataTable.java')
+          assert hashlib.sha256(p.read_bytes()).hexdigest()=='3f33ddf63d0bbd8292aed69bb6a9edc014cd5d31ddc8e6a22c4a8899cd1c44b7'
+          s=p.read_text()
+          old='grid=new LinearLayout(a);grid.setOrientation(VERTICAL);'
+          new='''grid=new LinearLayout(a){
+                      @Override protected void onMeasure(int width,int height){
+                          // HorizontalScrollView supplies UNSPECIFIED width; enforce our computed grid width.
+                          int exact=getLayoutParams()==null?0:getLayoutParams().width;
+                          super.onMeasure(exact>0?MeasureSpec.makeMeasureSpec(exact,MeasureSpec.EXACTLY):width,height);
+                      }
+                  };grid.setOrientation(VERTICAL);'''
+          assert s.count(old)==1;s=s.replace(old,new)
+          old='list=new ListView(a);list.setDivider('
+          new='list=new ListView(a);list.setPadding(0,0,0,0);list.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);list.setDivider('
+          assert s.count(old)==1;s=s.replace(old,new);p.write_text(s)
+          assert hashlib.sha256(p.read_bytes()).hexdigest()=='83c2f5d559b81e2c04e16921351fddf8102a91a0c1b1475b9b26630eaa258879'
+          hashes[str(p)]=hashlib.sha256(p.read_bytes()).hexdigest()
           pathlib.Path('/tmp/SOURCE_CHECKSUMS.json').write_text(json.dumps(hashes,indent=2)+'\n')
           for i in range(3):pathlib.Path(f'.ci/v046.{i}.b64').unlink()
           pathlib.Path('.ci/v046.fixes.json').unlink()
