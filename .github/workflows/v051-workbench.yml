@@ -1,0 +1,149 @@
+name: v051 regional map fidelity
+run-name: v0.51 northeast and southern geography, actual installed map
+on:
+  push:
+    branches: [agent/map-v051-workbench]
+    paths: ['.github/workflows/v051-workbench.yml', '.ci/v051.*.b64']
+permissions:
+  contents: write
+concurrency:
+  group: v051-workbench
+  cancel-in-progress: true
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 24
+      - name: Replay exact checked source on v50 and generate official maps
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64,hashlib,json,lzma,pathlib,shutil,subprocess
+          base='7a85a47cce2545a70b86d3c7e3b723bd8f3af0fc'
+          expected=['6cc82eb51028014463f79b637bfdc0cded78849926e1daf153cf0cde17a5a316','f865b9af74ae775acaf2420afdd6087ddde3bf3cd163a440765bf1637677bf03','0751984b15b6c645304def0984e9a1c31a47d4e3ec5858962d6eaf0e06df3624','493c82cb4f382c1eaf20f987c289a1d91096b1df2b2ec60fe79d4e58281f4a25']
+          chunks=[]
+          for i,want in enumerate(expected):
+              text=pathlib.Path(f'.ci/v051.{i}.b64').read_text().strip()
+              assert hashlib.sha256(text.encode()).hexdigest()==want,f'chunk {i} mismatch'
+              chunks.append(text)
+          raw=lzma.decompress(base64.b64decode(''.join(chunks),validate=True))
+          assert hashlib.sha256(raw).hexdigest()=='0da63a0010b5b03b66f9607ad40ffa5377db6e8ad3267c28f9322cf25ef57fbe'
+          payload=json.loads(raw)
+          main=subprocess.check_output(['git','ls-remote','origin','refs/heads/main'],text=True).split()[0]
+          assert main==base,'Main advanced; refusing to overwrite newer work'
+          subprocess.run(['git','checkout','--detach',base],check=True)
+          for item in payload['items']:
+              p=pathlib.Path(item['path']);assert not p.is_absolute() and '..' not in p.parts
+              old=p.read_bytes() if p.exists() else None
+              assert (hashlib.sha256(old).hexdigest() if old is not None else None)==item['base'],str(p)+' baseline mismatch'
+              lines=[] if old is None else old.decode().splitlines(keepends=True)
+              for start,end,text in reversed(item['ops']):lines[start:end]=[text]
+              result=''.join(lines).encode();assert hashlib.sha256(result).hexdigest()==item['result'],str(p)+' output mismatch'
+              p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(result)
+          shutil.copyfile('tools/content/map-release-manifest.json','tools/content/map-v050-manifest.json')
+          subprocess.run(['python3','tools/content/refine_geography_v051.py','--apply'],check=True)
+          subprocess.run(['python3','tools/content/map_reference_atlas.py','--index-only'],check=True)
+          for name,want in payload['expected'].items():
+              assert hashlib.sha256(pathlib.Path(name).read_bytes()).hexdigest()==want,name+' generated-source mismatch'
+          subprocess.run(['git','add','-A'],check=True)
+          changed=subprocess.check_output(['git','diff','--cached','--name-only',base],text=True).splitlines()
+          assert sorted(changed)==sorted(payload['expected']),'Unexpected source changes'
+          pathlib.Path('/tmp/SOURCE_CHECKSUMS.json').write_text(json.dumps(payload['expected'],indent=2)+'\n')
+          print('Verified source files:',len(changed))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          tree=$(git write-tree)
+          source=$(printf '%s\n' 'feat: city review atlas and northeast southern geography v0.51.0 [skip ci]' | git commit-tree "$tree" -p 7a85a47cce2545a70b86d3c7e3b723bd8f3af0fc)
+          git checkout --detach "$source"
+          echo "SOURCE_COMMIT=$source" >> "$GITHUB_ENV"
+          mkdir -p dist
+          git rev-parse HEAD > dist/BUILD_COMMIT
+          cp /tmp/SOURCE_CHECKSUMS.json dist/SOURCE_CHECKSUMS.json
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Install Android platform
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Verify official maps, full-development routes and retained gameplay
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/test-map51.sh --base 7a85a47cce2545a70b86d3c7e3b723bd8f3af0fc 2>&1 | tee dist/core-checks.txt
+          bash scripts/test-ui-models.sh 2>&1 | tee dist/ui-model-checks.txt
+      - name: Compile Android app and installed geography probe
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest 2>&1 | tee dist/android-build.txt
+      - name: Package exact APK and source with fixed signature
+        id: package
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_COMMIT"
+          git diff --exit-code
+          short=$(git rev-parse --short=12 HEAD)
+          name="sanguo11-mobile-v051-$short.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "dist/$name"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "dist/$name" | tee dist/SIGNATURE.txt
+          grep -Fq '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' dist/SIGNATURE.txt
+          python3 scripts/verify-map-release.py "dist/$name" | tee dist/map-apk-checks.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "dist/$name" > dist/APK_BADGING.txt
+          grep -Fq "versionCode='51' versionName='0.51.0'" dist/APK_BADGING.txt
+          git diff --binary 7a85a47cce2545a70b86d3c7e3b723bd8f3af0fc HEAD > dist/v051-source.patch
+          git archive --format=zip HEAD -o dist/v051-source.zip
+          (cd dist && sha256sum "$name" v051-source.zip v051-source.patch > SHA256SUMS)
+          echo "name=sanguo11-mobile-v051-$short" >> "$GITHUB_OUTPUT"
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install real app and inspect eight regions, overview and rotation
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: false
+          script: |
+            adb shell wm size 1080x1920
+            adb shell wm density 360
+            adb shell settings put system accelerometer_rotation 0
+            adb shell settings put system user_rotation 0
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb logcat -c
+            adb shell am instrument -w -r -e map51 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner > dist/installed-map51.txt 2>&1
+            adb logcat -d > dist/logcat-map51.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke dist/screenshots || true
+            cat dist/installed-map51.txt
+            grep -q 'MAP51 PASS' dist/installed-map51.txt
+      - name: Publish verified source as a fast-forward only
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = '7a85a47cce2545a70b86d3c7e3b723bd8f3af0fc'
+          git push origin "$SOURCE_COMMIT:refs/heads/main"
+          echo "$SOURCE_COMMIT" > dist/PUBLISHED_MAIN
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ steps.package.outputs.name || 'sanguo11-mobile-v051-diagnostics' }}
+          path: dist/
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 0
