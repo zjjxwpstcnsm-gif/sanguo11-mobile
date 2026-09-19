@@ -1,0 +1,152 @@
+name: v052 realm and turn verification
+run-name: v0.52 national 28-faction timing and real installed UI
+on:
+  push:
+    branches: [agent/realm-v052-workbench]
+    paths: ['.github/workflows/v052-workbench.yml', '.ci/v052.*']
+permissions:
+  contents: write
+concurrency:
+  group: v052-workbench
+  cancel-in-progress: true
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 24
+      - name: Replay checksummed source delta on exact v51
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64,hashlib,json,lzma,pathlib,subprocess
+          base='2ff086d25fffefc1ae4dd49805ce9201576b995d'
+          wanted=['db55f0a6adb08ff5a6ce9ccce92940a85b1d1eca774f6f2896ceb33b20de5f87','3505800b14cdfbcd3d48280cb8ea284bface8534a21ad9bb99b89ba5ad29f47e','1ef186db991e8a7443ae30e37db0265c0be00e2ae674ced516e46dbf7eca9441']
+          sha=lambda b:hashlib.sha256(b).hexdigest()
+          chunks=[]
+          for i,want in enumerate(wanted):
+              text=pathlib.Path(f'.ci/v052.{i}.b64').read_text().strip()
+              assert sha(text.encode())==want,f'transport chunk {i} mismatch'
+              chunks.append(text)
+          raw=lzma.decompress(base64.b64decode(''.join(chunks),validate=True))
+          assert sha(raw)=='b92132d837c5ad97d61855e745320898766591b3c39f9cd7b6a3aeb1aca3431b'
+          payload=json.loads(raw)
+          fixes=[json.loads(p.read_text()) for p in sorted(pathlib.Path('.ci').glob('v052.fix*.json'))]
+          assert subprocess.check_output(['git','ls-remote','origin','refs/heads/main'],text=True).split()[0]==base,'Main advanced; refusing to overwrite newer work'
+          subprocess.run(['git','checkout','--detach',base],check=True)
+          expected={}
+          for batch in [payload]+fixes:
+              for item in batch['items']:
+                  p=pathlib.Path(item['path']);assert not p.is_absolute() and '..' not in p.parts
+                  old=p.read_bytes() if p.exists() else None
+                  assert (sha(old) if old is not None else None)==item['base'],str(p)+' old source mismatch'
+                  lines=[] if old is None else old.decode().splitlines(keepends=True)
+                  for start,end,text in reversed(item['ops']):lines[start:end]=[text]
+                  result=''.join(lines).encode();assert sha(result)==item['result'],str(p)+' new source mismatch'
+                  p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(result)
+                  expected[str(p)]=item['result']
+          subprocess.run(['git','add','-A'],check=True)
+          changed=subprocess.check_output(['git','diff','--cached','--name-only',base],text=True).splitlines()
+          assert sorted(changed)==sorted(expected),'Unexpected source changes'
+          pathlib.Path('/tmp/SOURCE_CHECKSUMS.json').write_text(json.dumps(expected,indent=2)+'\n')
+          print('Verified changed source files:',len(changed))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          tree=$(git write-tree)
+          source=$(printf '%s\n' 'feat: national overview, bounded turn presentation and critical cut-ins v0.52.0 [skip ci]' | git commit-tree "$tree" -p 2ff086d25fffefc1ae4dd49805ce9201576b995d)
+          git checkout --detach "$source"
+          echo "SOURCE_COMMIT=$source" >> "$GITHUB_ENV"
+          mkdir -p dist
+          git rev-parse HEAD > dist/BUILD_COMMIT
+          cp /tmp/SOURCE_CHECKSUMS.json dist/SOURCE_CHECKSUMS.json
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Install Android platform
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Verify exact national turns, statistics, critical provenance and retained rules
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/test-realm52.sh 2>&1 | tee dist/core-checks.txt
+          bash scripts/test-ui-models.sh 2>&1 | tee dist/ui-model-checks.txt
+      - name: Compile actual app and installed probes
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest 2>&1 | tee dist/android-build.txt
+      - name: Package exact APK and sources
+        id: package
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_COMMIT"
+          git diff --exit-code
+          short=$(git rev-parse --short=12 HEAD)
+          name="sanguo11-mobile-v052-$short.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "dist/$name"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "dist/$name" | tee dist/SIGNATURE.txt
+          grep -Fq '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' dist/SIGNATURE.txt
+          python3 scripts/verify-map-release.py "dist/$name" | tee dist/map-apk-checks.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "dist/$name" > dist/APK_BADGING.txt
+          grep -Fq "versionCode='52' versionName='0.52.0'" dist/APK_BADGING.txt
+          git diff --binary 2ff086d25fffefc1ae4dd49805ce9201576b995d HEAD > dist/v052-source.patch
+          git archive --format=zip HEAD -o dist/v052-source.zip
+          (cd dist && sha256sum "$name" v052-source.zip v052-source.patch > SHA256SUMS)
+          echo "name=sanguo11-mobile-v052-$short" >> "$GITHUB_OUTPUT"
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install and measure complete national transitions and actual UI
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: false
+          script: |
+            adb shell wm size 1080x1920
+            adb shell wm density 360
+            adb shell settings put system accelerometer_rotation 0
+            adb shell settings put system user_rotation 0
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb logcat -c
+            adb shell am instrument -w -r -e realm52 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner > dist/installed-realm52.txt 2>&1
+            adb logcat -d > dist/logcat-realm52.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke dist/screenshots || true
+            cat dist/installed-realm52.txt
+            grep -q 'REALM52 PASS' dist/installed-realm52.txt
+            adb shell am instrument -w -r -e map51 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner > dist/installed-map51.txt 2>&1
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke dist/map-screenshots || true
+            cat dist/installed-map51.txt
+            grep -q 'MAP51 PASS' dist/installed-map51.txt
+      - name: Publish verified source fast-forward only
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git ls-remote origin refs/heads/main | cut -f1)" = '2ff086d25fffefc1ae4dd49805ce9201576b995d'
+          git push origin "$SOURCE_COMMIT:refs/heads/main"
+          echo "$SOURCE_COMMIT" > dist/PUBLISHED_MAIN
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ steps.package.outputs.name || 'sanguo11-mobile-v052-diagnostics' }}
+          path: dist/
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 0
