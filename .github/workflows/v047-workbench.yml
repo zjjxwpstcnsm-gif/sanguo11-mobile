@@ -1,0 +1,137 @@
+name: v047 ports and turn replay
+run-name: v0.47 port AI, city capture and visible turn replay verification
+on:
+  push:
+    branches: [agent/ports-replay-v047-workbench]
+    paths: ['.github/workflows/v047-workbench.yml', '.ci/v047.*.b64', '.ci/v047.fixes.json']
+permissions:
+  contents: write
+concurrency:
+  group: v047-workbench
+  cancel-in-progress: true
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 24
+      - name: Materialize checked changes on exact v46 base
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64,hashlib,json,lzma,pathlib,subprocess
+          base='598b30684395c3e898d15e01b274aec87571a00b'
+          expected=['5722a9aaf61d7559bf875f2006f7519dbeaaf32cdbdf257302bc39e6da943ce8','bc2367c972dab0b8fbee60cfcfdd2eae0f0c622baba32e52fe772ae20168b998','185508d9060d59542a6d3ece11fe45b8d1944b49d3282b0a79e3bc254a27a551']
+          chunks=[]
+          for i,want in enumerate(expected):
+              text=pathlib.Path(f'.ci/v047.{i}.b64').read_text().strip()
+              assert hashlib.sha256(text.encode()).hexdigest()==want,f'chunk {i} mismatch'
+              chunks.append(text)
+          raw=lzma.decompress(base64.b64decode(''.join(chunks),validate=True))
+          assert hashlib.sha256(raw).hexdigest()=='a78b2e0fdb001618367ff5ac6fd1300f969a9eac231b39742a472305eba2f373'
+          fixes=pathlib.Path('.ci/v047.fixes.json').read_bytes()
+          assert hashlib.sha256(fixes).hexdigest()=='50b805af1ce509d2109f100e1137fcb89d130f51b9642b5ff6ac2a67cf230ae5'
+          items=json.loads(raw)+json.loads(fixes)
+          subprocess.run(['git','checkout','--detach',base],check=True)
+          hashes={}
+          for item in items:
+              p=pathlib.Path(item['path']);assert not p.is_absolute() and '..' not in p.parts
+              old=p.read_bytes() if p.exists() else None
+              assert (hashlib.sha256(old).hexdigest() if old is not None else None)==item['base'],str(p)+' base mismatch'
+              lines=[] if old is None else old.decode().splitlines(keepends=True)
+              for start,end,text in reversed(item['ops']):lines[start:end]=[text]
+              result=''.join(lines).encode();assert hashlib.sha256(result).hexdigest()==item['result'],str(p)+' output mismatch'
+              p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(result);hashes[str(p)]=item['result']
+          subprocess.run(['git','add','-A'],check=True)
+          changed=subprocess.check_output(['git','diff','--cached','--name-only',base],text=True).splitlines()
+          assert sorted(changed)==sorted(hashes),'Unexpected source changes'
+          pathlib.Path('/tmp/SOURCE_CHECKSUMS.json').write_text(json.dumps(hashes,indent=2)+'\n')
+          print('Verified source files:',len(hashes))
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          tree=$(git write-tree)
+          source=$(printf '%s\n' 'fix: port-aware AI, city capture losses and visible turn replay v0.47.0 [skip ci]' | git commit-tree "$tree" -p 598b30684395c3e898d15e01b274aec87571a00b)
+          git checkout --detach "$source"
+          echo "SOURCE_COMMIT=$source" >> "$GITHUB_ENV"
+          mkdir -p dist
+          git rev-parse HEAD > dist/BUILD_COMMIT
+          cp /tmp/SOURCE_CHECKSUMS.json dist/SOURCE_CHECKSUMS.json
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Install Android platform
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Focused rules, UI models and map preservation
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/test-turn47.sh | tee dist/core-checks.txt
+          bash scripts/test-ui-models.sh | tee dist/ui-model-checks.txt
+          python3 scripts/verify-map-release.py | tee dist/map-source-checks.txt
+      - name: Compile Android application and installed probe
+        run: ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest
+      - name: Package exact compiled APK
+        id: package
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_COMMIT"
+          git diff --exit-code
+          short=$(git rev-parse --short=12 HEAD)
+          name="sanguo11-mobile-v047-$short.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "dist/$name"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "dist/$name" | tee dist/SIGNATURE.txt
+          grep -Fq '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' dist/SIGNATURE.txt
+          python3 scripts/verify-map-release.py "dist/$name" | tee dist/map-apk-checks.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "dist/$name" > dist/APK_BADGING.txt
+          grep -Fq "versionCode='47' versionName='0.47.0'" dist/APK_BADGING.txt
+          git diff --binary 598b30684395c3e898d15e01b274aec87571a00b HEAD > dist/v047-source.patch
+          git archive --format=zip HEAD -o dist/v047-source.zip
+          (cd dist && sha256sum "$name" v047-source.zip v047-source.patch > SHA256SUMS)
+          echo "name=sanguo11-mobile-v047-$short" >> "$GITHUB_OUTPUT"
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Verify installed movement, attacks, plots, pause, rotation and skip
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: false
+          script: |
+            adb shell wm size 1080x1920
+            adb shell wm density 360
+            adb shell settings put system accelerometer_rotation 0
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb logcat -c
+            adb shell am instrument -w -r -e replay47 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner > dist/installed-probe.txt 2>&1
+            adb logcat -d > dist/logcat.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke dist/screenshots || true
+            cat dist/installed-probe.txt
+            grep -q 'REPLAY47 PASS' dist/installed-probe.txt
+      - name: Publish verified source branch
+        run: git push origin "$SOURCE_COMMIT:refs/heads/agent/v047-ready"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ${{ steps.package.outputs.name || 'sanguo11-mobile-v047-diagnostics' }}
+          path: dist/
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 0
