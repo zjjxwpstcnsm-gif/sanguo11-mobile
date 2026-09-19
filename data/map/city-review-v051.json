@@ -1,0 +1,1771 @@
+{
+  "schema": 1,
+  "release": "0.51.0",
+  "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+  "source_size": [
+    7200,
+    6752
+  ],
+  "coordinate_frame": "100x100 odd-r; source coordinates shown before axial conversion",
+  "attribution": "X GOD / 艾克軋德，三國志11大地圖一覽1.0，2018-05-21；用户提供，原图不随公开代码或APK再分发。",
+  "reviewed_city_count": 13,
+  "cities": [
+    {
+      "id": 20000,
+      "name": "襄平",
+      "grid": [
+        87,
+        8
+      ],
+      "source_center": [
+        5782.0,
+        634.0
+      ],
+      "pixel_bounds": [
+        5162,
+        14,
+        6402,
+        1254
+      ],
+      "crop": "cities/20000.jpg",
+      "review": "v051-regional",
+      "region": "幽冀—辽东—北海",
+      "nearby_sites": [
+        {
+          "id": 20052,
+          "name": "安平港",
+          "grid": [
+            84,
+            14
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20001,
+      "name": "北平",
+      "grid": [
+        74,
+        10
+      ],
+      "source_center": [
+        4977.0,
+        781.5
+      ],
+      "pixel_bounds": [
+        4357,
+        161,
+        5597,
+        1401
+      ],
+      "crop": "cities/20001.jpg",
+      "review": "v051-regional",
+      "region": "幽冀—辽东—北海",
+      "nearby_sites": []
+    },
+    {
+      "id": 20002,
+      "name": "薊",
+      "grid": [
+        61,
+        8
+      ],
+      "source_center": [
+        4105.5,
+        639.5
+      ],
+      "pixel_bounds": [
+        3485,
+        19,
+        4725,
+        1259
+      ],
+      "crop": "cities/20002.jpg",
+      "review": "v051-regional",
+      "region": "幽冀—辽东—北海",
+      "nearby_sites": []
+    },
+    {
+      "id": 20003,
+      "name": "南皮",
+      "grid": [
+        69,
+        18
+      ],
+      "source_center": [
+        4623.5,
+        1315.5
+      ],
+      "pixel_bounds": [
+        4003,
+        695,
+        5243,
+        1935
+      ],
+      "crop": "cities/20003.jpg",
+      "review": "v051-regional",
+      "region": "幽冀—辽东—北海",
+      "nearby_sites": [
+        {
+          "id": 20053,
+          "name": "高唐港",
+          "grid": [
+            67,
+            28
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20057,
+          "name": "臨濟港",
+          "grid": [
+            72,
+            27
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20004,
+      "name": "平原",
+      "grid": [
+        64,
+        27
+      ],
+      "source_center": [
+        4336.0,
+        1880.5
+      ],
+      "pixel_bounds": [
+        3716,
+        1260,
+        4956,
+        2500
+      ],
+      "crop": "cities/20004.jpg",
+      "review": "v051-regional",
+      "region": "幽冀—辽东—北海",
+      "nearby_sites": [
+        {
+          "id": 20053,
+          "name": "高唐港",
+          "grid": [
+            67,
+            28
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20057,
+          "name": "臨濟港",
+          "grid": [
+            72,
+            27
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20061,
+          "name": "頓丘港",
+          "grid": [
+            61,
+            33
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20005,
+      "name": "晉陽",
+      "grid": [
+        45,
+        19
+      ],
+      "source_center": [
+        3108.0,
+        1398.0
+      ],
+      "pixel_bounds": [
+        2488,
+        778,
+        3728,
+        2018
+      ],
+      "crop": "cities/20005.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20042,
+          "name": "壺關",
+          "grid": [
+            46,
+            28
+          ],
+          "kind": "gate"
+        }
+      ]
+    },
+    {
+      "id": 20006,
+      "name": "鄴",
+      "grid": [
+        54,
+        26
+      ],
+      "source_center": [
+        3690.5,
+        1850.5
+      ],
+      "pixel_bounds": [
+        3070,
+        1230,
+        4310,
+        2470
+      ],
+      "crop": "cities/20006.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20042,
+          "name": "壺關",
+          "grid": [
+            46,
+            28
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20055,
+          "name": "白馬港",
+          "grid": [
+            55,
+            31
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20062,
+          "name": "官渡港",
+          "grid": [
+            50,
+            36
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20007,
+      "name": "北海",
+      "grid": [
+        80,
+        25
+      ],
+      "source_center": [
+        5335.0,
+        1764.5
+      ],
+      "pixel_bounds": [
+        4715,
+        1144,
+        5955,
+        2384
+      ],
+      "crop": "cities/20007.jpg",
+      "review": "v051-regional",
+      "region": "幽冀—辽东—北海",
+      "nearby_sites": [
+        {
+          "id": 20056,
+          "name": "昌陽港",
+          "grid": [
+            88,
+            24
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20057,
+          "name": "臨濟港",
+          "grid": [
+            72,
+            27
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20008,
+      "name": "下邳",
+      "grid": [
+        78,
+        38
+      ],
+      "source_center": [
+        5209.5,
+        2603.5
+      ],
+      "pixel_bounds": [
+        4589,
+        1983,
+        5829,
+        3223
+      ],
+      "crop": "cities/20008.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20058,
+          "name": "海陵港",
+          "grid": [
+            83,
+            39
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20009,
+      "name": "小沛",
+      "grid": [
+        68,
+        38
+      ],
+      "source_center": [
+        4563.5,
+        2605.5
+      ],
+      "pixel_bounds": [
+        3943,
+        1985,
+        5183,
+        3225
+      ],
+      "crop": "cities/20009.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20053,
+          "name": "高唐港",
+          "grid": [
+            67,
+            28
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20061,
+          "name": "頓丘港",
+          "grid": [
+            61,
+            33
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20010,
+      "name": "壽春",
+      "grid": [
+        70,
+        48
+      ],
+      "source_center": [
+        4695.5,
+        3217.5
+      ],
+      "pixel_bounds": [
+        4075,
+        2597,
+        5315,
+        3837
+      ],
+      "crop": "cities/20010.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20060,
+          "name": "濡須港",
+          "grid": [
+            74,
+            54
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20011,
+      "name": "濮陽",
+      "grid": [
+        60,
+        35
+      ],
+      "source_center": [
+        4048.5,
+        2425.5
+      ],
+      "pixel_bounds": [
+        3428,
+        1805,
+        4668,
+        3045
+      ],
+      "crop": "cities/20011.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20053,
+          "name": "高唐港",
+          "grid": [
+            67,
+            28
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20055,
+          "name": "白馬港",
+          "grid": [
+            55,
+            31
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20061,
+          "name": "頓丘港",
+          "grid": [
+            61,
+            33
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20012,
+      "name": "陳留",
+      "grid": [
+        54,
+        39
+      ],
+      "source_center": [
+        3660.5,
+        2672.5
+      ],
+      "pixel_bounds": [
+        3040,
+        2052,
+        4280,
+        3292
+      ],
+      "crop": "cities/20012.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20043,
+          "name": "虎牢關",
+          "grid": [
+            45,
+            38
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20055,
+          "name": "白馬港",
+          "grid": [
+            55,
+            31
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20061,
+          "name": "頓丘港",
+          "grid": [
+            61,
+            33
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20062,
+          "name": "官渡港",
+          "grid": [
+            50,
+            36
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20013,
+      "name": "許昌",
+      "grid": [
+        49,
+        46
+      ],
+      "source_center": [
+        3371.5,
+        3109.5
+      ],
+      "pixel_bounds": [
+        2751,
+        2489,
+        3991,
+        3729
+      ],
+      "crop": "cities/20013.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20043,
+          "name": "虎牢關",
+          "grid": [
+            45,
+            38
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20062,
+          "name": "官渡港",
+          "grid": [
+            50,
+            36
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20014,
+      "name": "汝南",
+      "grid": [
+        56,
+        53
+      ],
+      "source_center": [
+        3825.0,
+        3591.5
+      ],
+      "pixel_bounds": [
+        3205,
+        2971,
+        4445,
+        4211
+      ],
+      "crop": "cities/20014.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20077,
+          "name": "夏口港",
+          "grid": [
+            54,
+            61
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20015,
+      "name": "洛陽",
+      "grid": [
+        39,
+        38
+      ],
+      "source_center": [
+        2723.5,
+        2595.5
+      ],
+      "pixel_bounds": [
+        2103,
+        1975,
+        3343,
+        3215
+      ],
+      "crop": "cities/20015.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20043,
+          "name": "虎牢關",
+          "grid": [
+            45,
+            38
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20044,
+          "name": "潼關",
+          "grid": [
+            30,
+            38
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20045,
+          "name": "函谷關",
+          "grid": [
+            34,
+            38
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20046,
+          "name": "武關",
+          "grid": [
+            34,
+            43
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20063,
+          "name": "孟津港",
+          "grid": [
+            39,
+            34
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20064,
+          "name": "解縣港",
+          "grid": [
+            32,
+            32
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20065,
+          "name": "新豐港",
+          "grid": [
+            32,
+            36
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20016,
+      "name": "宛",
+      "grid": [
+        38,
+        46
+      ],
+      "source_center": [
+        2662.5,
+        3111.5
+      ],
+      "pixel_bounds": [
+        2042,
+        2491,
+        3282,
+        3731
+      ],
+      "crop": "cities/20016.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20045,
+          "name": "函谷關",
+          "grid": [
+            34,
+            38
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20046,
+          "name": "武關",
+          "grid": [
+            34,
+            43
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20078,
+          "name": "湖陽港",
+          "grid": [
+            40,
+            54
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20079,
+          "name": "中廬港",
+          "grid": [
+            35,
+            54
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20017,
+      "name": "長安",
+      "grid": [
+        26,
+        36
+      ],
+      "source_center": [
+        1886.0,
+        2501.5
+      ],
+      "pixel_bounds": [
+        1266,
+        1881,
+        2506,
+        3121
+      ],
+      "crop": "cities/20017.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20044,
+          "name": "潼關",
+          "grid": [
+            30,
+            38
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20045,
+          "name": "函谷關",
+          "grid": [
+            34,
+            38
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20064,
+          "name": "解縣港",
+          "grid": [
+            32,
+            32
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20065,
+          "name": "新豐港",
+          "grid": [
+            32,
+            36
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20066,
+          "name": "夏陽港",
+          "grid": [
+            29,
+            27
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20018,
+      "name": "上庸",
+      "grid": [
+        27,
+        51
+      ],
+      "source_center": [
+        1921.5,
+        3420.5
+      ],
+      "pixel_bounds": [
+        1301,
+        2800,
+        2541,
+        4040
+      ],
+      "crop": "cities/20018.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20067,
+          "name": "房陵港",
+          "grid": [
+            29,
+            52
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20079,
+          "name": "中廬港",
+          "grid": [
+            35,
+            54
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20019,
+      "name": "安定",
+      "grid": [
+        14,
+        27
+      ],
+      "source_center": [
+        1078.0,
+        1907.5
+      ],
+      "pixel_bounds": [
+        458,
+        1287,
+        1698,
+        2527
+      ],
+      "crop": "cities/20019.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": []
+    },
+    {
+      "id": 20020,
+      "name": "天水",
+      "grid": [
+        5,
+        35
+      ],
+      "source_center": [
+        497.0,
+        2425.5
+      ],
+      "pixel_bounds": [
+        0,
+        1805,
+        1117,
+        3045
+      ],
+      "crop": "cities/20020.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": []
+    },
+    {
+      "id": 20021,
+      "name": "武威",
+      "grid": [
+        4,
+        20
+      ],
+      "source_center": [
+        462.5,
+        1473.5
+      ],
+      "pixel_bounds": [
+        0,
+        853,
+        1082,
+        2093
+      ],
+      "crop": "cities/20021.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": []
+    },
+    {
+      "id": 20022,
+      "name": "建業",
+      "grid": [
+        81,
+        52
+      ],
+      "source_center": [
+        5404.0,
+        3473.5
+      ],
+      "pixel_bounds": [
+        4784,
+        2853,
+        6024,
+        4093
+      ],
+      "crop": "cities/20022.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20059,
+          "name": "江都港",
+          "grid": [
+            86,
+            44
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20060,
+          "name": "濡須港",
+          "grid": [
+            74,
+            54
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20068,
+          "name": "蕪湖港",
+          "grid": [
+            81,
+            54
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20069,
+          "name": "虎林港",
+          "grid": [
+            80,
+            61
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20070,
+          "name": "曲阿港",
+          "grid": [
+            88,
+            49
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20023,
+      "name": "吳",
+      "grid": [
+        91,
+        54
+      ],
+      "source_center": [
+        6050.0,
+        3632.5
+      ],
+      "pixel_bounds": [
+        5430,
+        3012,
+        6670,
+        4252
+      ],
+      "crop": "cities/20023.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20059,
+          "name": "江都港",
+          "grid": [
+            86,
+            44
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20068,
+          "name": "蕪湖港",
+          "grid": [
+            81,
+            54
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20070,
+          "name": "曲阿港",
+          "grid": [
+            88,
+            49
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20071,
+          "name": "句章港",
+          "grid": [
+            93,
+            59
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20024,
+      "name": "會稽",
+      "grid": [
+        92,
+        62
+      ],
+      "source_center": [
+        6115.5,
+        4148.5
+      ],
+      "pixel_bounds": [
+        5495,
+        3528,
+        6735,
+        4768
+      ],
+      "crop": "cities/20024.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20071,
+          "name": "句章港",
+          "grid": [
+            93,
+            59
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20025,
+      "name": "廬江",
+      "grid": [
+        73,
+        59
+      ],
+      "source_center": [
+        4889.0,
+        3926.5
+      ],
+      "pixel_bounds": [
+        4269,
+        3306,
+        5509,
+        4546
+      ],
+      "crop": "cities/20025.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20060,
+          "name": "濡須港",
+          "grid": [
+            74,
+            54
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20068,
+          "name": "蕪湖港",
+          "grid": [
+            81,
+            54
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20069,
+          "name": "虎林港",
+          "grid": [
+            80,
+            61
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20072,
+          "name": "皖口港",
+          "grid": [
+            71,
+            61
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20073,
+          "name": "九江港",
+          "grid": [
+            66,
+            64
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20026,
+      "name": "柴桑",
+      "grid": [
+        63,
+        66
+      ],
+      "source_center": [
+        4246.5,
+        4412.5
+      ],
+      "pixel_bounds": [
+        3626,
+        3792,
+        4866,
+        5032
+      ],
+      "crop": "cities/20026.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20073,
+          "name": "九江港",
+          "grid": [
+            66,
+            64
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20074,
+          "name": "陸口港",
+          "grid": [
+            57,
+            68
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20027,
+      "name": "江夏",
+      "grid": [
+        57,
+        60
+      ],
+      "source_center": [
+        3896.0,
+        4049.0
+      ],
+      "pixel_bounds": [
+        3276,
+        3429,
+        4516,
+        4669
+      ],
+      "crop": "cities/20027.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20074,
+          "name": "陸口港",
+          "grid": [
+            57,
+            68
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20077,
+          "name": "夏口港",
+          "grid": [
+            54,
+            61
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20028,
+      "name": "新野",
+      "grid": [
+        43,
+        54
+      ],
+      "source_center": [
+        2985.5,
+        3658.5
+      ],
+      "pixel_bounds": [
+        2365,
+        3038,
+        3605,
+        4278
+      ],
+      "crop": "cities/20028.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20078,
+          "name": "湖陽港",
+          "grid": [
+            40,
+            54
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20079,
+          "name": "中廬港",
+          "grid": [
+            35,
+            54
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20081,
+          "name": "漢津港",
+          "grid": [
+            44,
+            62
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20029,
+      "name": "襄陽",
+      "grid": [
+        38,
+        58
+      ],
+      "source_center": [
+        2663.5,
+        3917.5
+      ],
+      "pixel_bounds": [
+        2043,
+        3297,
+        3283,
+        4537
+      ],
+      "crop": "cities/20029.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20078,
+          "name": "湖陽港",
+          "grid": [
+            40,
+            54
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20079,
+          "name": "中廬港",
+          "grid": [
+            35,
+            54
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20081,
+          "name": "漢津港",
+          "grid": [
+            44,
+            62
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20082,
+          "name": "江津港",
+          "grid": [
+            36,
+            68
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20030,
+      "name": "江陵",
+      "grid": [
+        41,
+        68
+      ],
+      "source_center": [
+        2826.0,
+        4546.5
+      ],
+      "pixel_bounds": [
+        2206,
+        3926,
+        3446,
+        5166
+      ],
+      "crop": "cities/20030.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20080,
+          "name": "烏林港",
+          "grid": [
+            49,
+            66
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20081,
+          "name": "漢津港",
+          "grid": [
+            44,
+            62
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20082,
+          "name": "江津港",
+          "grid": [
+            36,
+            68
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20084,
+          "name": "洞庭港",
+          "grid": [
+            39,
+            77
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20085,
+          "name": "公安港",
+          "grid": [
+            37,
+            72
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20031,
+      "name": "長沙",
+      "grid": [
+        54,
+        82
+      ],
+      "source_center": [
+        3669.0,
+        5414.0
+      ],
+      "pixel_bounds": [
+        3049,
+        4794,
+        4289,
+        6034
+      ],
+      "crop": "cities/20031.jpg",
+      "review": "v051-regional",
+      "region": "武陵—长沙—零陵—桂阳",
+      "nearby_sites": [
+        {
+          "id": 20083,
+          "name": "羅縣港",
+          "grid": [
+            50,
+            74
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20032,
+      "name": "武陵",
+      "grid": [
+        34,
+        77
+      ],
+      "source_center": [
+        2411.5,
+        5144.0
+      ],
+      "pixel_bounds": [
+        1791,
+        4524,
+        3031,
+        5764
+      ],
+      "crop": "cities/20032.jpg",
+      "review": "v051-regional",
+      "region": "武陵—长沙—零陵—桂阳",
+      "nearby_sites": [
+        {
+          "id": 20082,
+          "name": "江津港",
+          "grid": [
+            36,
+            68
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20084,
+          "name": "洞庭港",
+          "grid": [
+            39,
+            77
+          ],
+          "kind": "port"
+        },
+        {
+          "id": 20085,
+          "name": "公安港",
+          "grid": [
+            37,
+            72
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20033,
+      "name": "桂陽",
+      "grid": [
+        49,
+        94
+      ],
+      "source_center": [
+        3381.0,
+        6205.5
+      ],
+      "pixel_bounds": [
+        2761,
+        5585,
+        4001,
+        6752
+      ],
+      "crop": "cities/20033.jpg",
+      "review": "v051-regional",
+      "region": "武陵—长沙—零陵—桂阳",
+      "nearby_sites": []
+    },
+    {
+      "id": 20034,
+      "name": "零陵",
+      "grid": [
+        35,
+        92
+      ],
+      "source_center": [
+        2444.5,
+        6095.5
+      ],
+      "pixel_bounds": [
+        1824,
+        5475,
+        3064,
+        6715
+      ],
+      "crop": "cities/20034.jpg",
+      "review": "v051-regional",
+      "region": "武陵—长沙—零陵—桂阳",
+      "nearby_sites": []
+    },
+    {
+      "id": 20035,
+      "name": "永安",
+      "grid": [
+        23,
+        64
+      ],
+      "source_center": [
+        1665.5,
+        4259.5
+      ],
+      "pixel_bounds": [
+        1045,
+        3639,
+        2285,
+        4879
+      ],
+      "crop": "cities/20035.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20086,
+          "name": "巫縣港",
+          "grid": [
+            27,
+            65
+          ],
+          "kind": "port"
+        }
+      ]
+    },
+    {
+      "id": 20036,
+      "name": "漢中",
+      "grid": [
+        13,
+        44
+      ],
+      "source_center": [
+        1049.0,
+        3020.0
+      ],
+      "pixel_bounds": [
+        429,
+        2400,
+        1669,
+        3640
+      ],
+      "crop": "cities/20036.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20047,
+          "name": "陽平關",
+          "grid": [
+            13,
+            41
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20048,
+          "name": "劍閣",
+          "grid": [
+            6,
+            48
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20049,
+          "name": "葭萌關",
+          "grid": [
+            11,
+            51
+          ],
+          "kind": "gate"
+        }
+      ]
+    },
+    {
+      "id": 20037,
+      "name": "梓潼",
+      "grid": [
+        8,
+        55
+      ],
+      "source_center": [
+        696.5,
+        3682.5
+      ],
+      "pixel_bounds": [
+        76,
+        3062,
+        1316,
+        4302
+      ],
+      "crop": "cities/20037.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20048,
+          "name": "劍閣",
+          "grid": [
+            6,
+            48
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20049,
+          "name": "葭萌關",
+          "grid": [
+            11,
+            51
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20050,
+          "name": "涪水關",
+          "grid": [
+            5,
+            59
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20051,
+          "name": "綿竹關",
+          "grid": [
+            4,
+            62
+          ],
+          "kind": "gate"
+        }
+      ]
+    },
+    {
+      "id": 20038,
+      "name": "江州",
+      "grid": [
+        15,
+        73
+      ],
+      "source_center": [
+        1151.5,
+        4874.5
+      ],
+      "pixel_bounds": [
+        531,
+        4254,
+        1771,
+        5494
+      ],
+      "crop": "cities/20038.jpg",
+      "review": "v051-regional",
+      "region": "江州南口—建宁—云南",
+      "nearby_sites": []
+    },
+    {
+      "id": 20039,
+      "name": "成都",
+      "grid": [
+        5,
+        66
+      ],
+      "source_center": [
+        504.0,
+        4392.5
+      ],
+      "pixel_bounds": [
+        0,
+        3772,
+        1124,
+        5012
+      ],
+      "crop": "cities/20039.jpg",
+      "review": "v050-anchor-retained",
+      "region": "沿用v50据点配准，未在本轮逐格重审",
+      "nearby_sites": [
+        {
+          "id": 20050,
+          "name": "涪水關",
+          "grid": [
+            5,
+            59
+          ],
+          "kind": "gate"
+        },
+        {
+          "id": 20051,
+          "name": "綿竹關",
+          "grid": [
+            4,
+            62
+          ],
+          "kind": "gate"
+        }
+      ]
+    },
+    {
+      "id": 20040,
+      "name": "建寧",
+      "grid": [
+        13,
+        87
+      ],
+      "source_center": [
+        1057.0,
+        5761.5
+      ],
+      "pixel_bounds": [
+        437,
+        5141,
+        1677,
+        6381
+      ],
+      "crop": "cities/20040.jpg",
+      "review": "v051-regional",
+      "region": "江州南口—建宁—云南",
+      "nearby_sites": []
+    },
+    {
+      "id": 20041,
+      "name": "雲南",
+      "grid": [
+        2,
+        95
+      ],
+      "source_center": [
+        350,
+        6312
+      ],
+      "pixel_bounds": [
+        0,
+        5692,
+        970,
+        6752
+      ],
+      "crop": "cities/20041.jpg",
+      "review": "v051-regional",
+      "region": "江州南口—建宁—云南",
+      "nearby_sites": []
+    }
+  ]
+}
