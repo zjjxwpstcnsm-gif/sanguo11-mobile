@@ -1,9 +1,9 @@
 name: v046 UI workbench
-run-name: v0.46 native polished UI APK and installed verification
+run-name: v0.46 corrected native UI APK and installed verification
 on:
   push:
     branches: [agent/ui-polish-v046-workbench]
-    paths: ['.github/workflows/v046-workbench.yml', '.ci/v046.*.b64']
+    paths: ['.github/workflows/v046-workbench.yml', '.ci/v046.*.b64', '.ci/v046.fixes.json']
 permissions:
   contents: write
 concurrency:
@@ -33,7 +33,9 @@ jobs:
               chunks.append(text)
           raw=lzma.decompress(base64.b64decode(''.join(chunks),validate=True))
           assert hashlib.sha256(raw).hexdigest()=='a6f00e1678fa08872362c3ab4be9e12e42edacd5e49bb3f719b73f45a578af6b'
-          items=json.loads(raw);hashes={}
+          fixes=pathlib.Path('.ci/v046.fixes.json').read_bytes()
+          assert hashlib.sha256(fixes).hexdigest()=='940f95b12672372dbf4ec1e6fbdccbc2edeec94c84a36f9084aef825c2dd7e76'
+          items=json.loads(raw)+json.loads(fixes);hashes={}
           for item in items:
               p=pathlib.Path(item['path']);assert not p.is_absolute() and '..' not in p.parts
               old=p.read_bytes() if p.exists() else None
@@ -44,6 +46,7 @@ jobs:
               p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(result);hashes[str(p)]=item['result']
           pathlib.Path('/tmp/SOURCE_CHECKSUMS.json').write_text(json.dumps(hashes,indent=2)+'\n')
           for i in range(3):pathlib.Path(f'.ci/v046.{i}.b64').unlink()
+          pathlib.Path('.ci/v046.fixes.json').unlink()
           pathlib.Path('.github/workflows/v046-workbench.yml').unlink()
           subprocess.run(['git','add','-A'],check=True)
           changed=subprocess.check_output(['git','diff','--cached','--name-only','e9600d4351f873ef03bffdf4217fb553d0ec275e'],text=True).splitlines()
