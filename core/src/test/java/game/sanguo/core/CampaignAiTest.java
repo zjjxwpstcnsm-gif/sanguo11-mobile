@@ -77,7 +77,7 @@ public final class CampaignAiTest {
         World poor=fixture();poor.city(10).troops=8000;check(new CampaignAi(poor).deployment(10,6000)==null,"do not empty an understrength garrison");
         poor.city(10).troops=24000;poor.city(10).food=6500;check(new CampaignAi(poor).deployment(10,6000)==null,"do not launch an army without food reserve");
         poor.city(10).food=150000;unit(poor,21,World.Weapon.SPEAR,5,3).troops=18000;check(new CampaignAi(poor).reserve(poor.city(10))>6000,"nearby invaders increase retained garrison");
-        World blocked=fixture();for(Hex h:blocked.city(20).hex.neighbors())blocked.terrain[h.q][h.r]=World.Terrain.MOUNTAIN;
+        World blocked=fixture();for(int q=0;q<blocked.width;q++)for(int r=0;r<blocked.height;r++)if(new Hex(q,r).distance(blocked.city(20).hex)>=1&&new Hex(q,r).distance(blocked.city(20).hex)<=4)blocked.terrain[q][r]=World.Terrain.MOUNTAIN;
         check(new CampaignAi(blocked).deployment(10,10000,c->c.id==20)==null,"unreachable designated district objective does not launch a pointless army toward another force");
     }
     private static void supply()throws Exception{

@@ -225,3 +225,10 @@ tasks.named('test') { dependsOn 'verifyMapSkills' }
     }
     tasks.named('check') { dependsOn "verify${suite}" }
 }
+
+tasks.register('verifyPortReplay', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PortReplayTest'
+}
+check.dependsOn verifyPortReplay

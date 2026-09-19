@@ -207,6 +207,20 @@ public final class Domestic {
             if(f.upgradeTo>0){f.remaining=0;f.builderId=-1;f.upgradeTo=0;}else facilities.remove(f);w.note("城池失守，"+f.kind.label+"建设中止");
         }
     }
+    /** Per surviving completed facility, independently. Engineering balance, not claimed PC parity. */
+    public static final int CAPTURE_DESTRUCTION_PERCENT=25;
+    List<String> sack(int city){
+        World.City c=w.city(city);List<String> lost=new ArrayList<>();
+        if(c==null||c.kind!=World.SiteKind.CITY)return lost;
+        List<Facility> candidates=new ArrayList<>();
+        for(Facility f:facilities)if(f.cityId==city&&f.remaining==0)candidates.add(f);
+        candidates.sort(Comparator.comparingInt(f->f.id)); // Stable across saves and list iteration order.
+        for(Facility f:candidates)if(w.strategy.nextInt(100)<CAPTURE_DESTRUCTION_PERCENT){
+            lost.add(f.kind.label);damage(f,f.hp); // Shared destruction releases the plot and dependent production.
+        }
+        if(!lost.isEmpty())w.note(c.name+"战乱损毁内政设施"+lost.size()+"座："+String.join("、",lost));
+        return lost;
+    }
     public World.Result transfer(int source,int target,int officer){return dispatch(source,target,officer,new int[0],false,0,0,0,new int[4],false,false);}
     public World.Result transport(int source,int target,int officer,int gold,int food,int troops,int[] equipment){return transport(source,target,officer,new int[0],gold,food,troops,equipment,false,false);}
     public World.Result transportSea(int source,int target,int officer,int gold,int food,int troops,int[] equipment){return transport(source,target,officer,new int[0],gold,food,troops,equipment,true,false);}
@@ -294,7 +308,7 @@ public final class Domestic {
             Step s=open.remove();if(s.cost!=distance.get(s.h))continue;
             if(s.h.equals(to)){LinkedList<Hex> result=new LinkedList<>();Hex h=to;while(!h.equals(from)){result.addFirst(h);h=previous.get(h);}return result;}
             for(Hex h:s.h.neighbors()){
-                int cost=travelCost(h,owner,sea);if(!w.army.water(s.h)&&w.army.water(h)&&w.army.embarkPort(owner,s.h,h)==null)continue;if(cost<0||!w.army.water(s.h)&&!w.army.water(h)&&w.gateBlocks(owner,s.h,h))continue;int total=s.cost+cost;
+                int cost=travelCost(h,owner,sea);if(w.army.water(s.h)!=w.army.water(h)&&w.army.transitionPort(owner,s.h,h)==null)continue;if(cost<0||!w.army.water(s.h)&&!w.army.water(h)&&w.gateBlocks(owner,s.h,h))continue;int total=s.cost+cost;
                 if(total<distance.getOrDefault(h,Integer.MAX_VALUE)){distance.put(h,total);previous.put(h,s.h);open.add(new Step(h,total));}
             }
         }
@@ -387,13 +401,13 @@ public final class Domestic {
             String threat=threatReason(m);if(!m.stopped&&threat!=null){m.waiting=threat;return;}
             if(m.march!=null){w.marches.advance(m);if(mission(m.id)!=m||!m.transport)return;if(m.march!=null){m.waiting=m.march.paused.isEmpty()?"":"道路受阻 / 等待："+m.march.paused;if(!m.waiting.isEmpty()){approachQueue(m);yieldConvoy(m);}return;}}
             if(m.stopped)return;
-            if(m.hex.distance(c.hex)>1){
+            if(m.hex.distance(c.hex)>1||!w.army.canEnterSite(m,m.hex,c)){
                 MarchOrders.Plan plan=routePlan(m);
                 if(!plan.valid()){m.waiting="道路受阻，等待改道："+plan.error;approachQueue(m);yieldConvoy(m);return;}
                 World.Result result=w.marches.execute(w.marches.preview(m,w.city(m.targetCity).hex));if(!result.ok){m.waiting=result.message;return;}
                 if(mission(m.id)!=m||!m.transport)return;
             }
-            if(m.hex.distance(c.hex)<=1){if(fits(m,c))deliver(m,c);else m.waiting="满仓等待，货物仍在队中";}
+            if(w.army.canEnterSite(m,m.hex,c)){if(fits(m,c))deliver(m,c);else m.waiting="满仓等待，货物仍在队中";}
         }finally{w.active=active;settling=previous;}
     }
     /** Near-term safety decision shared by manual automatic orders and delegated logistics. */
@@ -427,6 +441,7 @@ public final class Domestic {
         World.City c=w.city(city);
         if(mission(m.id)!=m||!m.transport||c==null||c.owner!=m.owner||m.hex.distance(c.hex)>1)return w.fail("请选择相邻己方城池");
         String permission=w.districts.dispatchError(m.sourceCity,city,true);if(permission!=null)return w.fail(permission);
+        if(!w.army.canEnterSite(m,m.hex,c))return w.fail("该方向不能卸货：上下河必须经过己方港口");
         if(!fits(m,c))return w.fail("城池库存容量不足，货物保留在运输队");
         deliver(m,c);return w.success("运输货物已一次入库");
     }

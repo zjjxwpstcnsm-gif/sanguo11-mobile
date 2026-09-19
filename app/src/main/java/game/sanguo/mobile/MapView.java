@@ -34,6 +34,26 @@ public final class MapView extends View {
     private World world;
     private Hex[][] tiles;
     private Hex selected;
+    private TurnJournal.Event replayEvent;
+    private World.Unit replayActor;
+    private float replayFraction;
+    void replayFrame(TurnJournal.Event event,float fraction){
+        if(replayEvent!=event){replayEvent=event;replayActor=event==null?null:event.actorCopy();}
+        replayFraction=fraction;postInvalidateOnAnimation();
+    }
+    boolean replayVisible(TurnJournal.Event event){
+        if(replayPoint(event.start)||replayPoint(event.target))return true;
+        for(Hex h:event.path)if(replayPoint(h))return true;
+        for(TurnJournal.Impact hit:event.impacts)if(replayPoint(hit.hex))return true;
+        return false;
+    }
+    private boolean replayPoint(Hex h){
+        if(h==null)return false;
+        float sx=x(h)*camera.scale+camera.x,sy=y(h)*camera.scale+camera.y;
+        return sx>=-12*density&&sy>=0&&sx<=getWidth()-occludedRight&&sy<=getHeight()-occludedBottom;
+    }
+    private boolean replayHides(World.Unit u){return replayEvent!=null&&replayActor!=null&&replayActor.id==u.id;}
+
     private Set<Hex> pickTargets;
     void setPickTargets(Set<Hex> targets){pickTargets=targets;invalidate();}
     private final android.util.SparseArray<List<Object>> objectBuckets=new android.util.SparseArray<>();
@@ -432,14 +452,15 @@ public final class MapView extends View {
         }
         for(Object object:visibleObjects)if(object instanceof WorldEvents.Camp){WorldEvents.Camp camp=(WorldEvents.Camp)object;float cx=x(camp.hex),cy=y(camp.hex);paint.setColor(Color.rgb(173,77,59));canvas.drawRect(cx-15,cy-15,cx+15,cy+15,paint);label(canvas,"寨",cx,cy+5,16,PAPER);if(detail)label(canvas,camp.tribe.label+" "+camp.troops,cx,cy-20,10,PAPER);}
         for(Object object:visibleObjects)if(object instanceof World.City)drawCity(canvas,(World.City)object,detail);
-        for(Object object:visibleObjects)if(object instanceof World.Unit&&!(object instanceof Domestic.Mission)){World.Unit u=(World.Unit)object;
+        for(Object object:visibleObjects)if(object instanceof World.Unit&&!(object instanceof Domestic.Mission)){World.Unit u=(World.Unit)object;if(replayHides(u))continue;
             if(detail)drawUnit(canvas,u);else {paint.setColor(factionColor(u.owner));canvas.drawCircle(x(u.hex),y(u.hex),14,paint);
                 if(scale*RADIUS>=5*density){canvas.save();canvas.translate(x(u.hex),y(u.hex));canvas.scale(.6f,.6f);if(world.army.water(u.hex))models.shipIcon(canvas,u.ship,PAPER);else models.weaponIcon(canvas,u.weapon,PAPER);canvas.restore();}}
         }
         for(Hex h:pickTargets==null?attackTargets:pickTargets)if(camera.visible(x(h),y(h),RADIUS)){
             polygon(x(h),y(h),RADIUS-1);if(pickTargets!=null)fill(canvas,0x555be6bf);stroke(canvas,pickTargets==null?0xffff987a:0xff70ffca,Math.max(2,2*density/scale));
         }
-        for(Object object:visibleObjects)if(object instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)object;if(m.owner!=world.player&&!m.transport)continue;float cx=x(m.hex),cy=y(m.hex);if(!detail){polygon(cx,cy,Math.max(8,3*density/scale));fill(canvas,factionColor(m.owner));stroke(canvas,PAPER,density/scale);continue;}paint.setColor(factionColor(m.owner));canvas.drawRoundRect(cx-17,cy-10,cx+17,cy+10,4,4,paint);paint.setColor(PAPER);canvas.drawCircle(cx-11,cy+13,4,paint);canvas.drawCircle(cx+11,cy+13,4,paint);label(canvas,m.transport?"运":"调",cx,cy+5,15,Color.BLACK);if(m.transport){if(m.stopped||!m.waiting.isEmpty())label(canvas,"!",cx+23,cy+4,16,GOLD);}}
+        for(Object object:visibleObjects)if(object instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)object;if(replayHides(m))continue;if(m.owner!=world.player&&!m.transport)continue;float cx=x(m.hex),cy=y(m.hex);if(!detail){polygon(cx,cy,Math.max(8,3*density/scale));fill(canvas,factionColor(m.owner));stroke(canvas,PAPER,density/scale);continue;}paint.setColor(factionColor(m.owner));canvas.drawRoundRect(cx-17,cy-10,cx+17,cy+10,4,4,paint);paint.setColor(PAPER);canvas.drawCircle(cx-11,cy+13,4,paint);canvas.drawCircle(cx+11,cy+13,4,paint);label(canvas,m.transport?"运":"调",cx,cy+5,15,Color.BLACK);if(m.transport){if(m.stopped||!m.waiting.isEmpty())label(canvas,"!",cx+23,cy+4,16,GOLD);}}
+        drawReplayWorld(canvas);
         drawTacticPreview(canvas);
         long remaining=impactUntil-android.os.SystemClock.uptimeMillis();
         if(impactHex!=null&&remaining>0){
@@ -457,8 +478,52 @@ public final class MapView extends View {
             paint.setTextAlign(Paint.Align.LEFT);paint.setTextSize(12*density);paint.setColor(PAPER);canvas.drawText(caption,16*density,28*density,paint);
         }
         drawNavigator(canvas);
+        drawReplayCaption(canvas);
 
         lastDrawNanos=System.nanoTime()-drawStart;
+    }
+    /** Animates detached sprites over the pre-action render state; the actual route is immutable. */
+    private void drawReplayWorld(Canvas c){
+        TurnJournal.Event e=replayEvent;if(e==null)return;float t=replayFraction,scale=camera.scale;
+        Hex from=e.start,to=e.target;float px=from==null?0:x(from),py=from==null?0:y(from);
+        if(replayActor!=null){
+            Hex tile=from;
+            if(e.kind==TurnJournal.Kind.MOVE&&e.path.size()>1){
+                float step=t*(e.path.size()-1);int i=Math.min(e.path.size()-2,(int)step);float part=step-i;
+                Hex a=e.path.get(i),b=e.path.get(i+1);tile=part<.5f?a:b;px=x(a)+(x(b)-x(a))*part;py=y(a)+(y(b)-y(a))*part;
+                paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(2*density/scale);paint.setColor(0x8873ead2);
+                for(int j=1;j<e.path.size();j++)c.drawLine(x(e.path.get(j-1)),y(e.path.get(j-1)),x(e.path.get(j)),y(e.path.get(j)),paint);
+                paint.setStyle(Paint.Style.FILL);
+            }else if(from!=null&&to!=null&&(e.kind==TurnJournal.Kind.ATTACK||e.kind==TurnJournal.Kind.TACTIC)){
+                float pulse=(float)Math.sin(Math.min(1,t/.55f)*Math.PI)*.22f;px+=(x(to)-px)*pulse;py+=(y(to)-py)*pulse;
+            }else if(from!=null&&to!=null&&e.kind==TurnJournal.Kind.ENTER){px+=(x(to)-px)*t;py+=(y(to)-py)*t;}
+            if(tile!=null){replayActor.hex=tile;c.save();c.translate(px-x(tile),py-y(tile));drawUnit(c,replayActor);c.restore();
+                World.Officer officer=officerIndex.get(replayActor.officerId);if(officer!=null)label(c,officer.name,px,py-30-3*density/scale,11*density/scale,GOLD);}
+        }
+        if(to!=null&&e.kind!=TurnJournal.Kind.MOVE&&e.kind!=TurnJournal.Kind.ENTER){
+            float tx=x(to),ty=y(to),pulse=(float)Math.sin(t*Math.PI);
+            if(from!=null){float travel=Math.min(1,t/.48f);float ax=x(from),ay=y(from);paint.setColor(e.kind==TurnJournal.Kind.PLOT?0xffbcadff:0xffffcc8c);paint.setStrokeWidth(2*density/scale);
+                c.drawLine(ax,ay,ax+(tx-ax)*travel,ay+(ty-ay)*travel,paint);c.drawCircle(ax+(tx-ax)*travel,ay+(ty-ay)*travel,4*density/scale,paint);}
+            paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth((1+2*pulse)*density/scale);paint.setColor(e.kind==TurnJournal.Kind.PLOT?0xffbeadff:0xffffae77);
+            c.drawCircle(tx,ty,(16+20*t)*density/scale,paint);paint.setStyle(Paint.Style.FILL);
+            label(c,e.label,tx,ty-24*density/scale,13*density/scale,e.kind==TurnJournal.Kind.PLOT?0xffd6caff:GOLD);
+        }
+        if(t>.35f){Map<Hex,Integer> lanes=new HashMap<>();
+            for(TurnJournal.Impact hit:e.impacts){if(!replayPoint(hit.hex))continue;int lane=lanes.getOrDefault(hit.hex,0);lanes.put(hit.hex,lane+1);
+                float cx=x(hit.hex),cy=y(hit.hex);if(hit.loss){paint.setColor(Color.argb((int)(95*Math.sin(t*Math.PI)),255,80,55));c.drawCircle(cx,cy,23,paint);}
+                label(c,hit.text,cx,cy-(35+lane*16+16*t)*density/scale,12*density/scale,hit.loss?0xffffaa91:0xffb6ffdf);
+            }
+        }
+    }
+    private void drawReplayCaption(Canvas c){
+        TurnJournal.Event e=replayEvent;if(e==null)return;
+        float left=8*density,right=getWidth()-occludedRight-8*density,bottom=getHeight()-occludedBottom-8*density;
+        if(right-left<100*density||bottom<45*density)return;
+        paint.setColor(0xee10242b);c.drawRoundRect(left,bottom-42*density,right,bottom,8*density,8*density,paint);
+        paint.setTextSize(12*getResources().getDisplayMetrics().scaledDensity);paint.setTextAlign(Paint.Align.LEFT);paint.setColor(PAPER);
+        String text=world.faction(e.owner)+" · "+e.label+"  "+e.message.replace('\n',' ');
+        int fit=paint.breakText(text,true,right-left-22*density,null);if(fit<text.length())text=text.substring(0,Math.max(0,fit-1))+"…";
+        c.drawText(text,left+10*density,bottom-16*density,paint);
     }
     private void drawRoute(Canvas c){
         if(route==null)return;float stroke=Math.max(2,3*density/camera.scale);
@@ -518,7 +583,7 @@ public final class MapView extends View {
         if(chosen!=null)cityName(c,chosen,true,detail);
         for(Object object:visibleObjects)if(object instanceof World.City&&object!=chosen)cityName(c,(World.City)object,false,detail);
         if(detail)for(Object object:visibleObjects)if(object instanceof World.Unit){
-            World.Unit u=(World.Unit)object;if(u instanceof Domestic.Mission&&!((Domestic.Mission)u).transport)continue;
+            World.Unit u=(World.Unit)object;if(replayHides(u))continue;if(u instanceof Domestic.Mission&&!((Domestic.Mission)u).transport)continue;
             boolean active=u.id==moving;World.Officer officer=officerIndex.get(u.officerId);if(officer==null)continue;
             String relation=u.owner==world.player?"我":world.campaign.hostile(world.player,u.owner)?"敌":"友";
             String state=u.acted?"✓":u.food<(u.troops+19)/20*3?"粮!":u instanceof Domestic.Mission&&(((Domestic.Mission)u).stopped||!((Domestic.Mission)u).waiting.isEmpty())?"!":"";

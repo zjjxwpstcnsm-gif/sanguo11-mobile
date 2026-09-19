@@ -46,9 +46,10 @@ public final class Army {
     public String equipmentLabel(World.Unit u){if(u instanceof Domestic.Mission)return water(u.hex)?"运输队 · 走舸":"运输队";return water(u.hex)?u.ship.label+"（携"+u.weapon.label+"）":u.weapon.label;}
     public int movement(World.Unit u){return water(u.hex)?u.ship.movement:u.weapon.movement;}
     public int range(World.Unit u){return water(u.hex)?u.ship.range:u.weapon==World.Weapon.CAVALRY&&(w.skills.has(u,Skill.BAIMA)||w.campaign.has(u.owner,Campaign.Tech.MOUNTED_ARCHERY))?2:u.weapon.range;}
-    /** The shore edge must touch the same owned port on both ends. */
-    public World.City embarkPort(int owner, Hex from, Hex to) {
-        if(from==null||to==null||water(from)||!water(to)||from.distance(to)!=1)return null;
+    /** A dock is a shore EDGE, not a remote destination test. Both directions use the same rule.
+     * Port cells remain occupied by the site; the two adjacent dock cells are the embarkation lane. */
+    public World.City transitionPort(int owner, Hex from, Hex to) {
+        if(from==null||to==null||!w.inside(from)||!w.inside(to)||water(from)==water(to)||from.distance(to)!=1)return null;
         World.City center=w.cityAt(from);
         if(center!=null&&center.kind==World.SiteKind.PORT&&center.owner==owner)return center;
         for(Hex h:from.neighbors()){
@@ -57,6 +58,13 @@ public final class Army {
         }
         return null;
     }
+    public World.City embarkPort(int owner, Hex from, Hex to) {
+        return !water(from)&&water(to)?transitionPort(owner,from,to):null;
+    }
+    /** Also applied to garrison/unload: an adjacent city must not become a wild landing shortcut. */
+    public boolean canEnterSite(World.Unit u, Hex from, World.City city) {
+        return u!=null&&city!=null&&city.owner==u.owner&&from!=null&&from.distance(city.hex)==1&&moveCost(u,from,city.hex)>0;
+    }
     public int moveCost(World.Unit u, Hex from, Hex to) {
         if (((u instanceof Domestic.Mission) && !((Domestic.Mission) u).sea && water(to)) || to == null || !this.w.inside(to) || this.w.terrain[to.q][to.r] == World.Terrain.MOUNTAIN) {
             return -1;
@@ -64,8 +72,8 @@ public final class Army {
         if (!water(from) && !water(to) && this.w.gateBlocks(u.owner, from, to)) {
             return -1;
         }
+        if(water(from)!=water(to)&&transitionPort(u.owner,from,to)==null)return -1;
         if (water(to)) {
-            if(!water(from)&&embarkPort(u.owner,from,to)==null)return -1;
             return water(from) ? 1 : 2;
         }
         int land = this.w.fieldworks.landCost(to, u.weapon, u.owner);
@@ -175,7 +183,7 @@ public final class Army {
     }
     public World.Result tactic(int unit,Hex target,Tactic tactic){
         String error=tacticError(unit,target,tactic);if(error!=null)return w.fail(error);
-        World.Unit u=w.unit(unit),enemy=w.unitAt(target);World.City city=w.cityAt(target);
+        World.Unit u=w.unit(unit),enemy=w.unitAt(target);World.City city=w.cityAt(target);w.visualAction(TurnJournal.Kind.TACTIC,unit,target,tactic.label);
         w.marches.supersede(u);u.acted=true;w.energy.change(u,-tactic.energy,EnergyRules.Reason.COMMAND);w.battleImpact(target,false);
         if(tacticChance(unit,target)<100&&w.strategy.nextInt(100)>=tacticChance(unit,target))return w.success(tactic.label+"未命中，消耗气力"+tactic.energy+"，本旬行动结束");
         if(city!=null)return w.resolveSiege(u,city,true,tactic==Tactic.STONE);

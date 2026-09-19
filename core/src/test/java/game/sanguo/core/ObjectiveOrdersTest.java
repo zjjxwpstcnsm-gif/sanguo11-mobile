@@ -28,7 +28,9 @@ public final class ObjectiveOrdersTest {
         Hex land=new Hex(10,6),water=new Hex(11,6);check(w.army.moveCost(a,land,water)<0,"manual movement also rejects wild shore");
         World.City p=new World.City(30,"渡口",new Hex(10,7),0);p.kind=World.SiteKind.PORT;w.cities.add(p);
         check(w.army.moveCost(a,land,water)>0,"same owned port dock edge permits embarking");
-        MarchOrders.Plan plan=w.marches.preview(1,new Hex(18,6));check(plan.valid(),"reachable via dock");
+        check(!w.marches.preview(1,new Hex(18,6)).valid(),"opposite shore also requires a port");
+        World.City landing=new World.City(31,"对岸港",new Hex(12,5),0);landing.kind=World.SiteKind.PORT;w.cities.add(landing);
+        MarchOrders.Plan plan=w.marches.preview(1,new Hex(18,6));check(plan.valid(),"reachable via both docks");
         boolean dock=false;for(int i=1;i<plan.path.size();i++)if(!w.army.water(plan.path.get(i-1))&&w.army.water(plan.path.get(i))){check(w.army.embarkPort(0,plan.path.get(i-1),plan.path.get(i))!=null,"route only uses legal port");dock=true;}check(dock,"route crosses river");
         p.owner=1;check(!w.marches.preview(1,new Hex(18,6)).valid(),"enemy port must be captured");p.owner=0;
         ok(w.marches.execute(w.marches.preview(1,new Hex(18,6))));for(int i=0;a.march!=null&&i<12;i++)reset(w);check(a.hex.equals(new Hex(18,6))&&a.march==null,"cross river and land, no teleport");

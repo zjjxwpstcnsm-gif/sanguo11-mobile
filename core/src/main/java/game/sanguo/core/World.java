@@ -178,6 +178,8 @@ public final class World {
     public City cityAt(Hex h){return ((CityRoster)cities).at(h);}
     public Unit unitAt(Hex h) {for(Unit u:units)if(u.hex.equals(h))return u;for(Domestic.Mission m:domestic.missions)if(m.transport&&!m.legacyOverlap&&m.hex.equals(h)&&cityAt(h)==null)return m;return null;}
     // Transient command feedback, never serialized or inferred by parsing translated log text.
+    TurnJournal turnJournal;
+    void visualAction(TurnJournal.Kind kind,int actor,Hex target,String label){if(turnJournal!=null)turnJournal.mark(kind,actor,target,label);}
     private Feedback feedback=Feedback.NONE;
     private Hex impact;
     private final List<String> battleOutcomes=new ArrayList<>();
@@ -190,11 +192,11 @@ public final class World {
         Result result=new Result(ok,message,ok?feedback:Feedback.NONE,ok?impact:null);
         feedback=Feedback.NONE;impact=null;battleOutcomes.clear();return result;
     }
-    Result fail(String text) { return result(false,text); }
+    Result fail(String text) { if(turnJournal!=null)turnJournal.cancel();return result(false,text); }
     private long commandRevision;
     /** Transient successful-command generation; identity plus generation guards open UI confirmations. */
     public long commandRevision(){return commandRevision;}
-    Result success(String text) {commandRevision++; fieldworks.cleanup();abilities.cleanup();districts.cleanup();diplomacy.cleanup();aiOrders.cleanup();note(text);return result(true,text); }
+    Result success(String text) {commandRevision++; fieldworks.cleanup();abilities.cleanup();districts.cleanup();diplomacy.cleanup();aiOrders.cleanup();note(text);Result r=result(true,text);if(turnJournal!=null)turnJournal.checkpoint(r.message);return r; }
     public void note(String text) { log.add(text);while(log.size()>40)log.remove(0); }
     private boolean available(Officer o,City c) { return !commandsBlocked()&&o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
     public int cityFoodUse(City c){return c.kind!=SiteKind.CITY&&skills.city(c.id,Skill.TUNTIAN)?0:(c.troops+49)/50;}
@@ -275,6 +277,7 @@ public final class World {
     /** Caller has validated and paid for the command. No nested public command or second payment. */
     Result resolveSiege(Unit u,City c,boolean tactic) {return resolveSiege(u,c,tactic,false);}
     Result resolveSiege(Unit u,City c,boolean tactic,boolean stoneSplash) {
+        visualAction(tactic?TurnJournal.Kind.TACTIC:TurnJournal.Kind.ATTACK,u.id,c.hex,tactic?"攻城战法":"攻城");
         CombatRules.SiegeDamage damage=combat.siege(u,c,tactic);int hit=Math.min(c.defense,damage.wall),troopHit=Math.min(c.troops,damage.troops);
         c.defense=Math.max(0,c.defense-hit);c.troops=Math.max(0,c.troops-troopHit);
         battleImpact(c.hex,c.defense==0||c.troops==0);
@@ -283,7 +286,8 @@ public final class World {
             int old=c.owner;c.owner=u.owner;domestic.captured(c.id);strategy.cityCaptured(c.id);c.defense=Math.max(1,campaign.defenseCap(c)/4);c.troops=0;c.morale=50;c.order=60;
             government.cityCaptured(c,old,u);treasures.fallenTreasury(old,u.owner);districts.captured(c,u);
             campaign.cleanupProjects();army.cleanup();campaign.earn(u.owner,100);
-            message=c.name+"被"+faction(u.owner)+"攻占";
+            List<String> ruined=domestic.sack(c.id);
+            message=c.name+"被"+faction(u.owner)+"攻占"+(ruined.isEmpty()?"":"；战乱损毁内政设施"+ruined.size()+"座（"+String.join("、",ruined)+"）");
         }
         else {int counter=cityDefense.counter(c,u);if(counter>0)message+="，据点反击−"+counter;}
         if(stoneSplash)fieldworks.stoneSplash(u,c.hex);
@@ -304,11 +308,13 @@ public final class World {
         if (c == null || c.owner != u.owner || u.hex.distance(c.hex) > 1) {
             return fail("请选择相邻己方城市、关卡或港口");
         }
+        if(!army.canEnterSite(u,u.hex,c))return fail("该方向不能进驻：上下河必须经过己方港口");
         int gear = Army.equipmentNeeded(u.weapon, u.troops);
         int cap = this.campaign.equipmentCap(c, u.weapon);
         if (c.troops + u.troops > this.campaign.troopCap(c) || c.equipment[u.weapon.ordinal()] + gear > cap || c.food + u.food > this.campaign.foodCap(c) || c.gold + u.gold > this.campaign.goldCap(c) || (u.ship != Army.Ship.BOAT && c.ships[u.ship.ordinal() - 1] >= 100)) {
             return fail("据点容量不足：兵余" + Math.max(0, this.campaign.troopCap(c) - c.troops) + "、粮余" + Math.max(0, this.campaign.foodCap(c) - c.food) + "、金余" + Math.max(0, this.campaign.goldCap(c) - c.gold) + "、所选兵装余" + Math.max(0, cap - c.equipment[u.weapon.ordinal()]));
         }
+        visualAction(TurnJournal.Kind.ENTER,u.id,c.hex,"进驻");
         marches.supersede(u);
         c.troops += u.troops;
         c.food += u.food;

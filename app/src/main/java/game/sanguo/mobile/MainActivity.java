@@ -51,6 +51,7 @@ public final class MainActivity extends Activity {
     private Button nextTurn;
     private final ClientState ui=new ClientState();
     private TurnWork turnWork;
+    private TurnPlayback playback;
     private final Map<String,Button> navigation=new LinkedHashMap<>();
     final int ink=UiTheme.INK,paper=UiTheme.TEXT,gold=UiTheme.JADE,muted=UiTheme.MUTED;
 
@@ -64,7 +65,7 @@ public final class MainActivity extends Activity {
         }
         if(state==null&&restored){state=readClientState();ui.read(state);}
         turnWork=(TurnWork)getLastNonConfigurationInstance();
-        if(turnWork!=null){world=turnWork.before;aiRunning=!turnWork.done;}
+        if(turnWork!=null){world=turnWork.before;aiRunning=true;}
         if(world==null){showStartScreen(restoreError);return;}
         buildGameUi(state,restored,coldStart);
     }
@@ -201,7 +202,8 @@ public final class MainActivity extends Activity {
     }
     private void refreshTurnProgress(){
         if(turnProgress==null)return;
-        if(aiRunning&&turnWork!=null&&!turnWork.done){turnProgress.setText(turnWork.status());turnProgress.setVisibility(View.VISIBLE);turnProgress.removeCallbacks(turnProgressTicker);turnProgress.postDelayed(turnProgressTicker,120);}
+        turnProgress.setOnClickListener(v->showPlaybackControls());
+        if(aiRunning&&turnWork!=null){turnProgress.setText(turnWork.status());turnProgress.setVisibility(View.VISIBLE);turnProgress.removeCallbacks(turnProgressTicker);turnProgress.postDelayed(turnProgressTicker,120);}
         else {turnProgress.removeCallbacks(turnProgressTicker);turnProgress.setVisibility(View.GONE);}
     }
     private final Runnable turnProgressTicker=()->refreshTurnProgress();
@@ -457,7 +459,7 @@ public final class MainActivity extends Activity {
         if(ui.cityOwner>=world.factions.length)ui.cityOwner=-1;
         title.setText(world.scenarioName+"  ·  "+world.faction(world.player)+"\n"+world.date()+" · 行动力 "+world.actionPoints[world.player]+(aiRunning?" · 结算中…":""));
         UiTheme.title(title);title.setContentDescription("军情 · "+title.getText());
-        nextTurn.setEnabled(mapPick==null&&!aiRunning&&!world.gameOver()&&!world.commandsBlocked());nextTurn.setText(aiRunning?"结算中…":"下一旬  →");
+        nextTurn.setEnabled(playback!=null||mapPick==null&&!aiRunning&&!world.gameOver()&&!world.commandsBlocked());nextTurn.setText(playback!=null?"演示控制":aiRunning?"结算中…":"下一旬  →");
         for(Map.Entry<String,Button> e:navigation.entrySet()){e.getValue().setEnabled(!aiRunning);e.getValue().setSelected(e.getKey().equals(ui.page));e.getValue().setTextColor(e.getKey().equals(ui.page)?gold:paper);}
         if(navigation.get("tasks")!=null)navigation.get("tasks").setText("任务"+(taskCount()>0?" "+taskCount():""));
         panelHost.removeAllViews();panel.removeAllViews();primaryActions.removeAllViews();primaryActions.setVisibility(View.GONE);
@@ -472,7 +474,7 @@ public final class MainActivity extends Activity {
         selectionButton.setContentDescription("选中对象指令 · "+selectedName);selectionButton.setEnabled(mapPick==null&&!aiRunning&&!required);
         panelTitle.setText(ui.page.equals("map")?selectedName+" · 指令":ui.page.equals("cities")?"城池一览":ui.page.equals("officers")?"武将一览":ui.page.equals("tasks")?"任务":ui.page.equals("menu")?"菜单":"资料");
         if(world.unit(moving)==null)moving=-1;
-        map.setWorld(world,selected,moving);
+        map.setWorld(playback!=null&&turnWork!=null?turnWork.visual:world,playback==null?selected:null,playback==null?moving:-1);
         if(!showPanel){/* Hidden details are not inflated or measured. */}
         else if(world.life.pending()&&!ui.page.equals("menu")){panelHost.addView(new LifecycleUi(this,world,this::apply).succession());}
         else if(world.contests.busy()&&!ui.page.equals("menu"))panelHost.addView(new ContestUi(this,world,this::apply).view());
@@ -881,21 +883,47 @@ public final class MainActivity extends Activity {
         if(aiRunning||world.gameOver()||world.commandsBlocked())return;int idle=0;for(World.City c:world.cities)if(c.owner==world.player)idle+=world.idle(c).size();
         confirm("结束 "+world.date()+"？\n还有 "+idle+" 名闲置武将、"+world.actionPoints[world.player]+" 点行动力。\n将执行电脑行动，推进建设、调动、运输与自动行军，并自动保存。",this::advanceTurn);
     }
-    private void advanceTurn(){if(aiRunning||world.gameOver()||world.commandsBlocked())return;aiRunning=true;turnWork=new TurnWork(world);turnWork.observe(this::finishTurn);refresh();turnWork.start();}
+    private void advanceTurn(){if(aiRunning||world.gameOver()||world.commandsBlocked())return;aiRunning=true;turnWork=new TurnWork(world);turnWork.speed=getPreferences(MODE_PRIVATE).getInt("turnPlaybackSpeed",1);turnWork.observe(this::finishTurn);refresh();turnWork.start();}
     private void finishTurn(){
-        if(turnWork==null||!turnWork.done||isFinishing()||isDestroyed())return;TurnWork completed=turnWork;completed.observe(null);turnWork=null;aiRunning=false;
-        if(completed.error!=null){refresh();showError("回合结算失败");return;}
-        world=completed.after;if(world.life.pending()){ui.page="map";ui.panelVisible=true;}ui.summary=completed.summary;pendingMarch=null;if(world.unit(moving)!=null)selected=world.unit(moving).hex;else moving=-1;refresh();save("auto",false);turnBanner.setText("旬结算完成 · 点此查看重要变化与待处理");turnBanner.setVisibility(View.VISIBLE);
+        if(turnWork==null||!turnWork.done||isFinishing()||isDestroyed()||playback!=null)return;
+        if(turnWork.error!=null){turnWork.observe(null);turnWork=null;aiRunning=false;refresh();showError("回合结算失败，原局面保留");return;}
+        // Commit the authoritative outcome before animation; process death must not reroll combat.
+        if(!turnWork.savedFinal){save("auto",false);turnWork.savedFinal=true;}
+        playback=new TurnPlayback(map,turnWork,()->refreshTurnProgress(),this::completeTurnPlayback);
+        nextTurn.setText("演示控制");nextTurn.setEnabled(true);nextTurn.setOnClickListener(v->showPlaybackControls());
+        playback.start();refreshTurnProgress();
     }
-    @Override public Object onRetainNonConfigurationInstance(){if(turnWork!=null)turnWork.observe(null);return turnWork;}
-    @Override protected void onDestroy(){if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null)turnWork.observe(null);if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
+    private void completeTurnPlayback(){
+        if(turnWork==null)return;TurnWork completed=turnWork;
+        if(playback!=null){playback.detach();playback=null;}map.replayFrame(null,0);
+        completed.observe(null);turnWork=null;aiRunning=false;world=completed.after;
+        if(world.life.pending()){ui.page="map";ui.panelVisible=true;}
+        ui.summary=completed.summary+"\n\n视野内行动记录（"+completed.visibleCount+"项）\n"+completed.actionReport;
+        pendingMarch=null;if(world.unit(moving)!=null)selected=world.unit(moving).hex;else moving=-1;
+        nextTurn.setOnClickListener(v->confirmTurn());refresh();save("auto",false);
+        turnBanner.setText("旬结算完成 · 点此查看战报与行动记录");turnBanner.setVisibility(View.VISIBLE);
+    }
+    private void showPlaybackControls(){
+        if(playback==null||turnWork==null)return;
+        new AlertDialog.Builder(this).setTitle("回合行动演示 · 只播放当前视野")
+            .setItems(new String[]{turnWork.paused?"继续演示":"暂停演示","1× 正常速度","2× 加速","4× 快速","跳过剩余演示"},(d,index)->{
+                if(playback==null||turnWork==null)return;
+                if(index==0)playback.pause(!turnWork.paused);
+                else if(index==4)playback.skip();
+                else {turnWork.speed=1<<(index-1);getPreferences(MODE_PRIVATE).edit().putInt("turnPlaybackSpeed",turnWork.speed).apply();}
+                refreshTurnProgress();
+            }).setNegativeButton("返回地图",null).show();
+    }
+    private World authoritativeSaveWorld(){return turnWork!=null&&turnWork.done&&turnWork.error==null?turnWork.after:world;}
+    @Override public Object onRetainNonConfigurationInstance(){if(playback!=null)playback.detach();if(turnWork!=null)turnWork.observe(null);return turnWork;}
+    @Override protected void onDestroy(){if(playback!=null)playback.detach();if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null)turnWork.observe(null);if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
     private void writeClientState(Bundle state){
         if(world==null||map==null)return;
         ui.write(state);state.putInt("selectedQ",selected==null?-1:selected.q);state.putInt("selectedR",selected==null?-1:selected.r);state.putInt("moving",moving);state.putString("unitCommand",unitCommand);
         if(pendingMarch!=null&&pendingMarch.target!=null){state.putInt("routeQ",pendingMarch.target.q);state.putInt("routeR",pendingMarch.target.r);}map.saveCamera(state);
     }
     @Override protected void onSaveInstanceState(Bundle state){super.onSaveInstanceState(state);writeClientState(state);save("auto",false);}
-    private String worldDigest()throws Exception{return android.util.Base64.encodeToString(java.security.MessageDigest.getInstance("SHA-256").digest(SaveCodec.encode(world)),android.util.Base64.NO_WRAP);}
+    private String worldDigest()throws Exception{return android.util.Base64.encodeToString(java.security.MessageDigest.getInstance("SHA-256").digest(SaveCodec.encode(authoritativeSaveWorld())),android.util.Base64.NO_WRAP);}
     private void persistClientState(){
         if(map==null)return;android.os.Parcel parcel=android.os.Parcel.obtain();
         try{Bundle state=new Bundle();writeClientState(state);parcel.writeBundle(state);String data=android.util.Base64.encodeToString(parcel.marshall(),android.util.Base64.NO_WRAP);if(!getPreferences(MODE_PRIVATE).edit().putString("clientWorld",worldDigest()).putString("clientState",data).commit())android.util.Log.w("UiRecovery","Could not persist UI hints");}
@@ -909,7 +937,7 @@ public final class MainActivity extends Activity {
     private AtomicFile file(String slot){return new AtomicFile(new File(getFilesDir(),slot+".sg11"));}
     private void save(String slot,boolean announce){
         if(world==null||unreadableAutosave)return;
-        AtomicFile f=file(slot);FileOutputStream out=null;try{byte[] bytes=SaveCodec.encode(world);out=f.startWrite();out.write(bytes);f.finishWrite(out);if(announce)Toast.makeText(this,"局面已保存",Toast.LENGTH_SHORT).show();}
+        AtomicFile f=file(slot);FileOutputStream out=null;try{byte[] bytes=SaveCodec.encode(authoritativeSaveWorld());out=f.startWrite();out.write(bytes);f.finishWrite(out);if(announce)Toast.makeText(this,"局面已保存",Toast.LENGTH_SHORT).show();}
         catch(IOException e){if(out!=null)f.failWrite(out);Toast.makeText(this,"保存失败，请检查设备存储空间后重试",Toast.LENGTH_LONG).show();}
     }
     private World readSave(AtomicFile f)throws IOException {try(FileInputStream in=f.openRead()){return SaveCodec.read(in);}}

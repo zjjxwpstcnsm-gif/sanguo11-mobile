@@ -116,7 +116,10 @@ public final class MarchOrders {
     private Set<Hex> goals(World.Unit u,Order o,Hex destination){
         Set<Hex> result=new HashSet<>();Intent intent=effective(u,o);
         if(intent==Intent.MOVE){result.add(destination);return result;}
-        if(intent!=Intent.ATTACK){result.addAll(destination.neighbors());return result;}
+        if(intent!=Intent.ATTACK){
+            for(Hex h:destination.neighbors())if(intent!=Intent.GARRISON||w.army.canEnterSite(u,h,w.city(o.targetId)))result.add(h);
+            return result;
+        }
         World.Unit p=probe(u);p.energy=100; // Route to a firing position; spent energy is recovered by waiting, not invented.
         int range=Math.max(6,Math.max(u.weapon.range,u.ship.range)+2);
         for(int q=-range;q<=range;q++)for(int r=Math.max(-range,-q-range);r<=Math.min(range,-q+range);r++){
@@ -155,7 +158,7 @@ public final class MarchOrders {
                     int total=s.cost+step;if(total<distance.getOrDefault(next,Integer.MAX_VALUE)){distance.put(next,total);previous.put(next,s.h);queue.add(new Step(next,total));}
                 }
             }
-            if(finish==null)problem=goals.isEmpty()?"当前兵种或适性不能攻击该目标（包括森林射击限制）":"没有可达路线：检查占格、火场、地形；下河必须经过己方港口";
+            if(finish==null)problem=goals.isEmpty()?"当前兵种或适性不能攻击该目标（包括森林射击限制）":"没有可达路线：检查占格、火场、地形；上下河必须经过己方港口";
             else{
                 LinkedList<Hex> route=new LinkedList<>();for(Hex h=finish;h!=null;h=previous.get(h))route.addFirst(h);path.addAll(route);
                 int available=w.orders.remaining(u),spent=0;boolean now=true;

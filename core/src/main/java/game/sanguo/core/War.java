@@ -110,6 +110,7 @@ public final class War {
     public World.Result attack(int actor,int target){
         String error=attackError(actor,target);if(error!=null)return w.fail(error);
         World.Unit a=w.unit(actor),b=w.unit(target);
+        w.visualAction(TurnJournal.Kind.ATTACK,actor,b.hex,"攻击");
         w.marches.supersede(a);a.acted=true;int dealt=0,counter=0;
         int attacks=w.skills.has(a,Skill.LIANZHAN)&&w.strategy.nextInt(100)<50?2:1;
         for(int i=0;i<attacks&&w.unit(a.id)!=null&&w.unit(b.id)!=null;i++){
@@ -187,7 +188,7 @@ public final class War {
     }
     public World.Result tactic(int actor,int target,Tactic tactic){
         String error=tacticError(actor,target,tactic);if(error!=null)return w.fail(error);
-        World.Unit a=w.unit(actor),b=w.unit(target);int chance=tacticChance(actor,target,tactic);w.marches.supersede(a);a.acted=true;w.energy.change(a,-tactic.energy,EnergyRules.Reason.COMMAND);w.battleImpact(b.hex,false);
+        World.Unit a=w.unit(actor),b=w.unit(target);w.visualAction(TurnJournal.Kind.TACTIC,actor,b.hex,tactic.label);int chance=tacticChance(actor,target,tactic);w.marches.supersede(a);a.acted=true;w.energy.change(a,-tactic.energy,EnergyRules.Reason.COMMAND);w.battleImpact(b.hex,false);
         if(w.strategy.nextInt(100)>=chance)return w.success(w.officer(a.officerId).name+"的"+tactic.label+"未命中，消耗气力"+tactic.energy+"，本旬行动结束");
         Hex origin=a.hex,targetHex=b.hex;List<World.Unit> victims=tacticVictims(a,b,tactic);
         double multiplier=tactic.multiplier;
@@ -244,7 +245,7 @@ public final class War {
     public int plotRange(int actor,Plot plot){World.Unit a=w.unit(actor);return a==null||plot==null?0:w.skills.plotRange(a,plot);}
     public World.Result plot(int actor,Hex target,Plot plot){
         String error=plotError(actor,target,plot);if(error!=null)return w.fail(error);
-        World.Unit a=w.unit(actor),b=w.unitAt(target);a.acted=true;w.energy.change(a,-plotCost(actor,plot),EnergyRules.Reason.COMMAND);
+        World.Unit a=w.unit(actor),b=w.unitAt(target);w.visualAction(TurnJournal.Kind.PLOT,actor,target,plot.label);a.acted=true;w.energy.change(a,-plotCost(actor,plot),EnergyRules.Reason.COMMAND);
         boolean success=resolvePlot(a,b,target,plot,true);
         if(success&&b!=null&&w.skills.has(a,Skill.LIANHUAN)&&(plot==Plot.CONFUSE||plot==Plot.MISLEAD||plot==Plot.FIRE)){
             List<World.Unit> adjacent=new ArrayList<>();
@@ -311,7 +312,7 @@ public final class War {
     public int facilityDamage(int unit){World.Unit u=w.unit(unit);return u==null?0:w.combat.structureDamage(u,false);}
     public World.Result attackFacility(int unit,Hex h){
         String error=facilityAttackError(unit,h);if(error!=null)return w.fail(error);
-        World.Unit u=w.unit(unit);Domestic.Facility f=w.domestic.at(h);w.marches.supersede(u);u.acted=true;
+        World.Unit u=w.unit(unit);Domestic.Facility f=w.domestic.at(h);w.visualAction(TurnJournal.Kind.ATTACK,unit,h,"攻击设施");w.marches.supersede(u);u.acted=true;
         int amount=w.domestic.damage(f,facilityDamage(unit));w.battleImpact(h,f.hp==0);w.campaign.earn(u.owner,20);
         return w.success("攻击"+f.kind.label+"，耐久减少"+amount+"，剩余"+f.hp+"/"+f.maxHp());
     }
@@ -331,7 +332,7 @@ public final class War {
         return null;
     }
     public World.Result attackStructure(int unit,Hex h){
-        String error=structureAttackError(unit,h);if(error!=null)return w.fail(error);World.Unit u=w.unit(unit);Structure s=at(h);
+        String error=structureAttackError(unit,h);if(error!=null)return w.fail(error);World.Unit u=w.unit(unit);Structure s=at(h);w.visualAction(TurnJournal.Kind.ATTACK,unit,h,"攻击工事");
         if(!w.army.canAttackUnit(u))return w.army.tactic(unit,h,w.army.tactics(u).get(0));
         w.marches.supersede(u);int damage=Math.min(s.hp,w.combat.structureDamage(u,false));u.acted=true;s.hp-=damage;
         w.battleImpact(h,s.hp<=0);if(s.hp<=0){w.fieldworks.destroy(s);w.battleOutcome(s.kind.label+"已摧毁，地块已释放");}else w.fieldworks.counter(s,u);w.campaign.earn(u.owner,20);return w.success("攻击"+s.kind.label+"，耐久减少"+damage);
