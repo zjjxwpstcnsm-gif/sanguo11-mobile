@@ -33,7 +33,7 @@ jobs:
           raw=lzma.decompress(base64.b64decode(''.join(chunks),validate=True))
           assert hashlib.sha256(raw).hexdigest()=='a78b2e0fdb001618367ff5ac6fd1300f969a9eac231b39742a472305eba2f373'
           fixes=pathlib.Path('.ci/v047.fixes.json').read_bytes()
-          assert hashlib.sha256(fixes).hexdigest()=='be6ed388cd16196194a4471da416c2fb69770ba905839eb5bf37ab6694558bd0'
+          assert hashlib.sha256(fixes).hexdigest()=='56d9b9d58fe4cd9f5a02f6e2f63c554a1c21581fd24416924a247beec25334b1'
           items=json.loads(raw)+json.loads(fixes)
           subprocess.run(['git','checkout','--detach',base],check=True)
           hashes={}
