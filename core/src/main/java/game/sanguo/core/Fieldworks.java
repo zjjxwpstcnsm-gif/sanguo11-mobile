@@ -56,6 +56,7 @@ public final class Fieldworks {
         int rate=100+politics*2+Math.min(100,u.troops/100);
         return w.skills.has(u,Skill.ZHUCHENG)?rate*2:rate;
     }
+    static boolean blockedMilitaryTerrain(World.Terrain terrain){return terrain==World.Terrain.FOREST||terrain==World.Terrain.SWAMP;}
     public String buildError(int unit,War.StructureKind kind,Hex target,int direction){
         World.Unit u=w.unit(unit);String error=w.orders.combatError(u);if(error!=null)return error;
         if(kind==null||!available(u.owner).contains(kind))return "需要前置技巧，或该设施已被强化版替代";
@@ -64,6 +65,8 @@ public final class Fieldworks {
         if(u.gold<kind.gold)return "部队携金不足，需要"+kind.gold+"金";
         if(target==null||!w.inside(target)||u.hex.distance(target)!=1)return "只能在部队相邻格设置";
         if(w.unitAt(target)!=null||w.cityAt(target)!=null||w.domestic.at(target)!=null||w.war.at(target)!=null||w.war.fireAt(target)!=null)return "目标地块已被占用或燃烧";
+        World.Terrain terrain=w.terrain[target.q][target.r];
+        if(blockedMilitaryTerrain(terrain))return "森林与湿地不能设置军事设施";
         if(kind==War.StructureKind.FIRE_SHIP?!w.army.water(target):w.army.water(target)||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN_PATH||w.terrain[target.q][target.r]==World.Terrain.PLANK_ROAD||w.terrain[target.q][target.r]==World.Terrain.POISON||w.terrain[target.q][target.r]==World.Terrain.SWAMP||w.terrain[target.q][target.r]==World.Terrain.DAM||w.events.at(target)!=null)return "该地形不能设置此设施";
         for(World.City c:w.cities)if(c.hex.distance(target)<=2)return "据点两格以内不能设置";
         if(military(kind))for(War.Structure s:w.war.structures)if(military(s.kind)&&s.hex.distance(target)<=2)return "军事设施两格以内不能重复设置";
@@ -119,13 +122,20 @@ public final class Fieldworks {
     }return Math.max(1,base*(100-reduction)/100);}
     public boolean drum(World.Unit u){for(War.Structure s:nearbyAuras(u.hex))if(s.complete&&s.kind==War.StructureKind.DRUM&&s.owner==u.owner&&s.hex.distance(u.hex)<=2)return true;return false;}
     void counter(War.Structure s,World.Unit u){if(s.complete&&camp(s.kind)&&u.hex.distance(s.hex)==1&&w.army.counter(u)){
-        int damage=w.campaign.has(s.owner,Campaign.Tech.DEFENSE_REINFORCEMENT)?400:200;w.combatEffects.hit(null,u,damage,false,false);
+        if(w.turnJournal!=null)w.turnJournal.facility(s,u.hex,TurnJournal.Kind.FACILITY_COUNTER,s.kind.label+"反击");
+        int before=u.troops,damage=w.campaign.has(s.owner,Campaign.Tech.DEFENSE_REINFORCEMENT)?400:200;w.combatEffects.hit(null,u,damage,false,false);
+        if(w.turnJournal!=null)w.turnJournal.checkpoint(s.kind.label+"反击，损失"+(before-u.troops)+"兵");
     }}
     void towers(){for(War.Structure s:new ArrayList<>(w.war.structures))if(s.complete){
         int min=1,max=s.kind==War.StructureKind.ARROW_TOWER?2:s.kind==War.StructureKind.CROSSBOW_TOWER?3:s.kind==War.StructureKind.CATAPULT_TOWER?3:0;
         if(s.kind==War.StructureKind.CATAPULT_TOWER)min=2;if(max==0)continue;
         World.Unit target=null;for(World.Unit u:w.fieldUnits()){int d=s.hex.distance(u.hex);if(d>=min&&d<=max&&w.campaign.hostile(s.owner,u.owner)&&landTarget(s.owner,u.hex)&&(target==null||u.id<target.id))target=u;}
-        if(target!=null){int damage=s.kind==War.StructureKind.CATAPULT_TOWER?300:200;w.combatEffects.hit(null,target,damage,false,false);w.note(s.kind.label+"射击敌军，损失"+damage+"兵");}
+        if(target!=null){
+            if(w.turnJournal!=null)w.turnJournal.facility(s,target.hex,TurnJournal.Kind.FACILITY_ATTACK,s.kind.label+"射击");
+            int before=target.troops,damage=s.kind==War.StructureKind.CATAPULT_TOWER?300:200;w.combatEffects.hit(null,target,damage,false,false);
+            String report=s.kind.label+"射击敌军，损失"+(before-target.troops)+"兵";w.note(report);
+            if(w.turnJournal!=null)w.turnJournal.checkpoint(report);
+        }
     }}
     boolean landTarget(int owner,Hex h){return w.army.water(h)||landCost(h,World.Weapon.SPEAR,owner)>0;}
     void stoneSplash(World.Unit source,Hex center){

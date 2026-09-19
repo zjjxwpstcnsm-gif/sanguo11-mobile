@@ -502,9 +502,16 @@ public final class MapView extends View {
         }
         if(to!=null&&e.kind!=TurnJournal.Kind.MOVE&&e.kind!=TurnJournal.Kind.ENTER){
             float tx=x(to),ty=y(to),pulse=(float)Math.sin(t*Math.PI);
-            if(from!=null){float travel=Math.min(1,t/.48f);float ax=x(from),ay=y(from);paint.setColor(e.kind==TurnJournal.Kind.PLOT?0xffbcadff:0xffffcc8c);paint.setStrokeWidth(2*density/scale);
+            boolean recovery=e.kind==TurnJournal.Kind.RECOVER;
+            int effectColor=recovery?0xff81e2c4:e.kind==TurnJournal.Kind.PLOT?0xffbcadff:0xffffcc8c;
+            if(from!=null&&(recovery||e.kind==TurnJournal.Kind.FACILITY_ATTACK||e.kind==TurnJournal.Kind.FACILITY_COUNTER)){
+                paint.setColor(effectColor);paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(2*density/scale);
+                c.drawCircle(x(from),y(from),(14+10*pulse)*density/scale,paint);paint.setStyle(Paint.Style.FILL);
+                if(recovery)label(c,"♪",x(from),y(from)-(18+12*t)*density/scale,20*density/scale,effectColor);
+            }
+            if(from!=null){float travel=Math.min(1,t/.48f);float ax=x(from),ay=y(from);paint.setColor(effectColor);paint.setStrokeWidth(2*density/scale);
                 c.drawLine(ax,ay,ax+(tx-ax)*travel,ay+(ty-ay)*travel,paint);c.drawCircle(ax+(tx-ax)*travel,ay+(ty-ay)*travel,4*density/scale,paint);}
-            paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth((1+2*pulse)*density/scale);paint.setColor(e.kind==TurnJournal.Kind.PLOT?0xffbeadff:0xffffae77);
+            paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth((1+2*pulse)*density/scale);paint.setColor(recovery?0xff81e2c4:e.kind==TurnJournal.Kind.PLOT?0xffbeadff:0xffffae77);
             c.drawCircle(tx,ty,(16+20*t)*density/scale,paint);paint.setStyle(Paint.Style.FILL);
             label(c,e.label,tx,ty-24*density/scale,13*density/scale,e.kind==TurnJournal.Kind.PLOT?0xffd6caff:GOLD);
         }

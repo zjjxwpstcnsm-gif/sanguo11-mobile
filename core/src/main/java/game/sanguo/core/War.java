@@ -289,7 +289,7 @@ public final class War {
     public List<Hex> buildSites(int city){
         World.City c=w.city(city);List<Hex> result=new ArrayList<>();if(c==null)return result;
         for(int q=Math.max(0,c.hex.q-3);q<=Math.min(w.width-1,c.hex.q+3);q++)for(int r=Math.max(0,c.hex.r-3);r<=Math.min(w.height-1,c.hex.r+3);r++){
-            Hex h=new Hex(q,r);if(c.hex.distance(h)<=3&&c.hex.distance(h)>=2&&vacant(h,World.Weapon.SPEAR)&&fireAt(h)==null&&w.cities.stream().noneMatch(other->other.hex.distance(h)<=1))result.add(h);
+            Hex h=new Hex(q,r);if(c.hex.distance(h)<=3&&c.hex.distance(h)>=2&&!Fieldworks.blockedMilitaryTerrain(w.terrain[q][r])&&vacant(h,World.Weapon.SPEAR)&&fireAt(h)==null&&w.cities.stream().noneMatch(other->other.hex.distance(h)<=1))result.add(h);
         }return result;
     }
     public World.Result build(int city,int officer,StructureKind kind,Hex h){

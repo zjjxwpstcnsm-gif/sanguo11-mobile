@@ -8,14 +8,14 @@ final class TurnPlayback {
     private final MapView map;
     private final TurnWork work;
     private final Runnable changed,finished;
-    private boolean detached,skip;
+    private boolean detached;
     private long last;
     private TurnJournal.Event current;
     TurnPlayback(MapView map,TurnWork work,Runnable changed,Runnable finished){this.map=map;this.work=work;this.changed=changed;this.finished=finished;}
     void start(){last=SystemClock.uptimeMillis();map.invalidateScene();map.setWorld(work.visual,null,-1);if(work.paused&&work.cursor<work.events.size())map.replayFrame(work.events.get(work.cursor),work.fraction);map.postOnAnimation(tick);}
     void detach(){detached=true;map.removeCallbacks(tick);}
     void pause(boolean paused){work.paused=paused;last=SystemClock.uptimeMillis();}
-    void skip(){skip=true;work.paused=false;work.fraction=1;}
+    void skip(){work.skipAnimations=true;work.paused=false;}
     private final Runnable tick=this::step;
     private void step(){
         if(detached)return;
@@ -25,7 +25,7 @@ final class TurnPlayback {
         while(work.cursor<work.events.size()){
             TurnJournal.Event event=work.events.get(work.cursor);
             if(current!=event){current=event;elapsed=0;}
-            boolean visible=!skip&&UiMotion.enabled()&&event.visibleAction()&&map.replayVisible(event);
+            boolean visible=!work.skipAnimations&&UiMotion.enabled()&&event.visibleAction()&&map.replayVisible(event);
             if(visible){
                 if(work.fraction==0){work.visibleCount++;if(work.actionReport.length()<20000)work.actionReport.append(work.before.faction(event.owner)).append(" · ").append(event.message).append('\n');}
                 // Preserve readable beats after GC, backgrounding or a slow frame; never jump a whole action.
@@ -37,7 +37,12 @@ final class TurnPlayback {
             if(SystemClock.uptimeMillis()>=deadline)break;
         }
         if(applied){map.invalidateScene();map.setWorld(work.visual,null,-1);changed.run();}
-        if(work.cursor>=work.events.size()){finished.run();return;}
+        if(work.cursor>=work.events.size()){
+            if(work.batchReady){work.consumeBatch();changed.run();}
+            if(work.done){finished.run();return;}
+            // A faction is computing on the worker, not a fake loading delay.
+            map.postDelayed(tick,24);return;
+        }
         map.postOnAnimation(tick);
     }
 }

@@ -348,7 +348,10 @@ public final class World {
     public Result nextTurn(){return nextTurn(p->{});}
     public static final class TurnProgress {
         public final int owner,completed,total; public final String phase;
-        public TurnProgress(int owner,int completed,int total,String phase){this.owner=owner;this.completed=completed;this.total=total;this.phase=phase;}
+        /** A completed rule phase: presentation may drain here, never inside an unfinished command. */
+        public final boolean boundary;
+        public TurnProgress(int owner,int completed,int total,String phase){this(owner,completed,total,phase,false);}
+        public TurnProgress(int owner,int completed,int total,String phase,boolean boundary){this.owner=owner;this.completed=completed;this.total=total;this.phase=phase;this.boundary=boundary;}
     }
     public Result nextTurn(Consumer<TurnProgress> progress){
         Objects.requireNonNull(progress);
@@ -358,14 +361,17 @@ public final class World {
         List<Integer> sides=new ArrayList<>();for(int offset=1;offset<factions.length;offset++){int side=(player+offset)%factions.length;if(alive(side))sides.add(side);}
         int total=sides.size()+3;progress.accept(new TurnProgress(player,0,total,"委任军团与太守"));
         districts.run();government.runDelegated();int completed=1;
+        progress.accept(new TurnProgress(player,completed,total,"委任军团行动完成",true));
         for(int side:sides){active=side;final int done=completed;
             if(alive(side)){progress.accept(new TurnProgress(side,done,total,"准备行动"));reset(side);runAi(phase->progress.accept(new TurnProgress(side,done,total,phase)));checkVictory();
+                progress.accept(new TurnProgress(side,done+1,total,"势力行动完成",true));
                 if(gameOver()){active=player;progress.accept(new TurnProgress(player,total,total,"战局结束"));return success(winner==player?"战场胜利":"我方势力已覆灭");}}
             completed++;
         }
         final int global=completed;settleGlobalTurn(phase->progress.accept(new TurnProgress(-1,global,total,phase)));
+        progress.accept(new TurnProgress(-1,completed+1,total,"设施与全局后勤完成",true));
         active=player;progress.accept(new TurnProgress(player,completed+1,total,"恢复行动与自动行军"));reset(player);checkVictory();if(!commandsBlocked())marches.advanceAll();
-        progress.accept(new TurnProgress(player,total,total,"结算完成"));return success(date()+" · 行动力恢复");
+        progress.accept(new TurnProgress(player,total,total,"结算完成",true));return success(date()+" · 行动力恢复");
     }
     /** Exactly once after all factions have acted. Keep this order stable across save replay. */
     private void settleGlobalTurn(Consumer<String> progress){

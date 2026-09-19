@@ -677,7 +677,7 @@ public final class MainActivity extends Activity {
     private static final class CityCommand {final String label;final Runnable run;CityCommand(String label,Runnable run){this.label=label;this.run=run;}}
     Bundle formDraft(){return ui.formDraft;}
     void rememberForm(Bundle draft){ui.formDraft=new Bundle(draft);}
-    void closeForm(){ui.formDraft.putBoolean("open",false);}
+    void closeForm(){ui.formDraft=new Bundle();}
     private void restoreFormDraft(){
         if(isFinishing()||isDestroyed()||aiRunning)return;
         Bundle draft=new Bundle(ui.formDraft);
@@ -883,12 +883,17 @@ public final class MainActivity extends Activity {
         if(aiRunning||world.gameOver()||world.commandsBlocked())return;int idle=0;for(World.City c:world.cities)if(c.owner==world.player)idle+=world.idle(c).size();
         confirm("结束 "+world.date()+"？\n还有 "+idle+" 名闲置武将、"+world.actionPoints[world.player]+" 点行动力。\n将执行电脑行动，推进建设、调动、运输与自动行军，并自动保存。",this::advanceTurn);
     }
-    private void advanceTurn(){if(aiRunning||world.gameOver()||world.commandsBlocked())return;aiRunning=true;turnWork=new TurnWork(world);turnWork.speed=getPreferences(MODE_PRIVATE).getInt("turnPlaybackSpeed",1);turnWork.observe(this::finishTurn);refresh();turnWork.start();}
+    private void advanceTurn(){if(aiRunning||world.gameOver()||world.commandsBlocked())return;save("auto",false);aiRunning=true;turnWork=new TurnWork(world);turnWork.speed=getPreferences(MODE_PRIVATE).getInt("turnPlaybackSpeed",1);turnWork.observe(this::finishTurn);refresh();turnWork.start();}
     private void finishTurn(){
-        if(turnWork==null||!turnWork.done||isFinishing()||isDestroyed()||playback!=null)return;
-        if(turnWork.error!=null){turnWork.observe(null);turnWork=null;aiRunning=false;refresh();showError("回合结算失败，原局面保留");return;}
-        // Commit the authoritative outcome before animation; process death must not reroll combat.
-        if(!turnWork.savedFinal){save("auto",false);turnWork.savedFinal=true;}
+        if(turnWork==null||isFinishing()||isDestroyed())return;
+        if(turnWork.error!=null){
+            if(playback!=null){playback.detach();playback=null;}map.replayFrame(null,0);
+            turnWork.cancel();turnWork=null;aiRunning=false;nextTurn.setOnClickListener(v->confirmTurn());
+            refresh();showError("回合结算失败，原局面保留");return;
+        }
+        // Never save the render world or a partially computed faction. Commit only the complete turn.
+        if(turnWork.done&&!turnWork.savedFinal){save("auto",false);turnWork.savedFinal=true;}
+        if(turnWork.visual==null||playback!=null)return;
         playback=new TurnPlayback(map,turnWork,()->refreshTurnProgress(),this::completeTurnPlayback);
         nextTurn.setText("演示控制");nextTurn.setEnabled(true);nextTurn.setOnClickListener(v->showPlaybackControls());
         playback.start();refreshTurnProgress();
@@ -898,7 +903,7 @@ public final class MainActivity extends Activity {
         if(playback!=null){playback.detach();playback=null;}map.replayFrame(null,0);
         completed.observe(null);turnWork=null;aiRunning=false;world=completed.after;
         if(world.life.pending()){ui.page="map";ui.panelVisible=true;}
-        ui.summary=completed.summary+"\n\n视野内行动记录（"+completed.visibleCount+"项）\n"+completed.actionReport;
+        ui.summary=completed.summary+"\n实际运算 "+String.format(java.util.Locale.ROOT,"%.2f",completed.computeMillis/1000.0)+" 秒（含局面复制，不含动作播放/暂停）"+"\n\n视野内行动记录（"+completed.visibleCount+"项）\n"+completed.actionReport;
         pendingMarch=null;if(world.unit(moving)!=null)selected=world.unit(moving).hex;else moving=-1;
         nextTurn.setOnClickListener(v->confirmTurn());refresh();save("auto",false);
         turnBanner.setText("旬结算完成 · 点此查看战报与行动记录");turnBanner.setVisibility(View.VISIBLE);
@@ -916,7 +921,7 @@ public final class MainActivity extends Activity {
     }
     private World authoritativeSaveWorld(){return turnWork!=null&&turnWork.done&&turnWork.error==null?turnWork.after:world;}
     @Override public Object onRetainNonConfigurationInstance(){if(playback!=null)playback.detach();if(turnWork!=null)turnWork.observe(null);return turnWork;}
-    @Override protected void onDestroy(){if(playback!=null)playback.detach();if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null)turnWork.observe(null);if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
+    @Override protected void onDestroy(){if(playback!=null)playback.detach();if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null){turnWork.observe(null);if(!isChangingConfigurations())turnWork.cancel();}if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
     private void writeClientState(Bundle state){
         if(world==null||map==null)return;
         ui.write(state);state.putInt("selectedQ",selected==null?-1:selected.q);state.putInt("selectedR",selected==null?-1:selected.r);state.putInt("moving",moving);state.putString("unitCommand",unitCommand);

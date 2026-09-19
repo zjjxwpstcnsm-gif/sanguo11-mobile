@@ -22,7 +22,7 @@ final class FieldworkUi {
         a.pickOnMap("设置"+k.label,u.hex,w.fieldworks.sites(u.id,k),h->{
             if(w.fieldworks.ball(k))a.pickOnMap("火球方向",h,h.neighbors().stream().filter(w::inside).collect(java.util.stream.Collectors.toList()),direction->place(u,k,h,h.neighbors().indexOf(direction)));
             else place(u,k,h,0);
-        }));}
+        },h->w.fieldworks.buildError(u.id,k,h,0)));}
     private void place(World.Unit u,War.StructureKind k,Hex h,int direction){
         confirm("设置"+k.label,k.effect+"\n消耗携金"+k.gold+"与部队本旬行动。\n施工 "+Math.min(k.hp,w.fieldworks.constructionRate(u))+"/"+k.hp+"；未完成时每旬自动补修，占用本部队行动。\n工地 "+h+(w.fieldworks.ball(k)?"，朝向"+h.neighbors().get(direction):""),()->apply.accept(w.fieldworks.build(u.id,k,h,direction)));
     }

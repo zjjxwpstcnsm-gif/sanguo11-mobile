@@ -20,5 +20,16 @@ public final class EnergyRules {
         return w.skills.has(u,Skill.ZOUYUE)?5:0;
     }
     /** World calls this once per global旬, never from owner reset or UI/restore. */
-    void settleTurn(){for(World.Unit u:w.units){int gain=recovery(u);change(u,gain,gain>=10?Reason.MUSIC:Reason.ZOUYUE);}}
+    void settleTurn(){for(World.Unit u:w.units){
+        int gain=recovery(u);Reason reason=gain>=10?Reason.MUSIC:Reason.ZOUYUE;
+        if(preview(u,gain,reason).actual==0)continue;
+        if(w.turnJournal!=null){
+            War.Structure source=null;
+            for(War.Structure s:w.war.structures)if(s.complete&&s.kind==War.StructureKind.MUSIC&&s.owner==u.owner&&s.hex.distance(u.hex)<=2){source=s;break;}
+            if(source!=null)w.turnJournal.facility(source,u.hex,TurnJournal.Kind.RECOVER,"军乐台恢复");
+            else w.turnJournal.mark(TurnJournal.Kind.RECOVER,u.id,u.hex,"奏乐恢复");
+        }
+        Change result=change(u,gain,reason);
+        if(w.turnJournal!=null)w.turnJournal.checkpoint((reason==Reason.MUSIC?"军乐台":"奏乐")+"：气力+"+result.actual);
+    }}
 }
