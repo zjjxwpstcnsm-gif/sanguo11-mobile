@@ -1,0 +1,157 @@
+name: Native200 city atlas installed delivery
+on:
+  push:
+    branches: [agent/native-map-200-city-art-v056]
+    paths: [.github/workflows/native56-delivery.yml, '.ci/native56-bundle-*.b64', .ci/native56-build-trigger]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: native56-installed-delivery
+  cancel-in-progress: false
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Restore source and create real checked-in resources
+        id: materialize
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/transport
+          python3 -m pip install 'Pillow==11.3.0'
+          if test -f .ci/native56-bundle-01.b64; then
+            cp .ci/native56-*.b64 out/transport/
+            git merge-base --is-ancestor bb8e58ebe32e96ddf453ee68fd23e21509f71247 HEAD
+            python3 - <<'PY'
+          import base64,hashlib,json,lzma
+          from pathlib import Path
+          encoded=''.join(p.read_text().strip() for p in sorted(Path('.ci').glob('native56-bundle-*.b64')))
+          data=lzma.decompress(base64.b64decode(encoded,validate=True))
+          assert hashlib.sha256(data).hexdigest()=='f685c42fae9d4b028d381ecd80530c92d6887d0323383c824b67f9ca0ec47b65'
+          files=json.loads(data)
+          assert set(files)=={'tools/content/build_city_atlas_v056.py','tools/content/migrate_native56_scenarios.py','tools/content/materialize_native56.py'}
+          for name,content in files.items():Path(name).write_text(content,encoding='utf-8')
+          PY
+            python3 tools/content/materialize_native56.py | tee out/materialize.txt
+            rm .ci/native56-bundle-*.b64
+            chmod +x scripts/test-native56.sh scripts/test-map56-coordinates.sh
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add -A -- . ':!out'
+            git commit -m 'feat(map): integrate native200 national scenarios and real multi-LOD city atlas'
+            git push origin HEAD:agent/native-map-200-city-art-v056 || echo 'Push failed; source archive and APK are still being built' > out/PUSH_FAILED
+          fi
+          git rev-parse HEAD > out/BUILD_COMMIT
+          cp version.properties out/VERSION
+          git status --porcelain > out/WORKTREE_STATUS
+          git archive --format=zip -o out/sanguo11-mobile-v056-source.zip HEAD
+          cp -r data/map/reference-v056 out/map-evidence
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Native map and preserved formal-path regressions
+        id: core
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/test-native56.sh | tee out/native56-core.txt
+          bash scripts/test-city55.sh | tee out/city55-regression.txt
+          bash scripts/test-ui-models.sh | tee out/ui-regression.txt
+          python3 scripts/verify-map-release.py | tee out/resources.txt
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Build actual final-commit APK and Android tests
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:testDebugUnitTest | tee out/gradle.txt
+          python3 tools/check_apk_content.py app/build/outputs/apk/debug/app-debug.apk | tee out/apk-content.txt
+          python3 scripts/verify-map-release.py app/build/outputs/apk/debug/app-debug.apk | tee -a out/apk-content.txt
+          sha=$(git rev-parse --short=12 HEAD)
+          apk="out/sanguo11-mobile-v0.56.0-$sha.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "$apk"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$apk" > out/SIGNATURE.txt
+          grep -q '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' out/SIGNATURE.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$apk" > out/APK_INFO.txt
+          grep -q "versionCode='56' versionName='0.56.0'" out/APK_INFO.txt
+          python3 - <<'PY'
+          import hashlib,json,zipfile
+          from pathlib import Path
+          apk=next(Path('out').glob('*.apk'))
+          with zipfile.ZipFile(apk) as z:
+              native=z.read('maps/national-map-v056.properties').decode()
+              assert 'columns=200\n' in native and 'rows=200\n' in native and 'revision=56\n' in native
+              art=[n for n in z.namelist() if n.startswith('assets/map/cities-v056/') and n.endswith('.png')]
+              assert len(art)==30
+              assert not any('MAP_SAN11' in n for n in z.namelist())
+          Path('out/APK_IDENTITY.json').write_text(json.dumps({'source_sha':Path('out/BUILD_COMMIT').read_text().strip(),'versionName':'0.56.0','versionCode':56,'sha256':hashlib.sha256(apk.read_bytes()).hexdigest(),'bytes':apk.stat().st_size,'native_map':True,'city_pngs':len(art)},indent=2)+'\n')
+          PY
+          (cd out; sha256sum *.apk *source.zip > SHA256SUMS)
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install and exercise real native200 UI
+        id: installed
+        continue-on-error: true
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          script: |
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb logcat -c
+            adb shell am instrument -w -e native56 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner | tee out/native56-instrumentation.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke out/android || true
+            adb logcat -d > out/android-logcat.txt
+            grep -q 'NATIVE56 ANDROID PASS:' out/native56-instrumentation.txt
+      - name: Record outcome without hiding failed validation
+        if: always()
+        env:
+          MATERIALIZE: ${{ steps.materialize.outcome }}
+          CORE: ${{ steps.core.outcome }}
+          BUILD: ${{ steps.build.outcome }}
+          INSTALLED: ${{ steps.installed.outcome }}
+        run: |
+          mkdir -p out
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          keys=['MATERIALIZE','CORE','BUILD','INSTALLED']
+          Path('out/VALIDATION_STATUS.json').write_text(json.dumps({k:os.environ.get(k,'unknown') for k in keys},indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native56-installed-delivery
+          path: out
+          retention-days: 14
+          if-no-files-found: error
+      - name: Require native core and installed checks for green delivery
+        if: always()
+        env:
+          CORE: ${{ steps.core.outcome }}
+          BUILD: ${{ steps.build.outcome }}
+          INSTALLED: ${{ steps.installed.outcome }}
+        run: test "$CORE" = success && test "$BUILD" = success && test "$INSTALLED" = success
