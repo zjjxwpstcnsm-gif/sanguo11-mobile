@@ -125,10 +125,13 @@ final class Reference59Probe extends MapTap57Harness {
     private void correctedMarch()throws Exception {
         World w=ScenarioCatalog.load("coalition-190",5,590L);World.City home=w.home();World.Officer officer=w.idle(home).get(0);
         require(w.army.deploy(home.id,officer.id,new int[0],World.Weapon.SPEAR,Army.Ship.BOAT,3000,12000,0).ok,"march fixture uses legal actual deployment");
-        World.Unit unit=w.unit(officer.unitId);Hex target=MapCoordinates.fromNationalSource(w,new SourceGridCoord(49,135)),start=null;
+        World.Unit unit=w.unit(officer.unitId);Hex target=MapCoordinates.fromNationalSource(w,new SourceGridCoord(52,134)),start=null;
+        require(w.terrain[target.q][target.r]==World.Terrain.ROAD,"verified source ROAD 52,134; never substitute terrain for a fixture");
+        Hex reviewedWater=MapCoordinates.fromNationalSource(w,new SourceGridCoord(51,134));
+        require(target.neighbors().contains(reviewedWater)&&w.terrain[reviewedWater.q][reviewedWater.r]==World.Terrain.NON_NAVIGABLE_WATER,"retained road is adjacent to this round's reviewed Q");
         for(Hex h:target.neighbors())if(w.inside(h)&&w.cityAt(h)==null&&w.unitAt(h)==null&&w.army.moveCost(unit,h,target)>0&&w.cost(h,unit.weapon)>0){start=h;break;}
         require(start!=null,"retained road next to new Q repairs has a valid land approach");unit.hex=start;
-        report.append("SYNTHETIC MARCH SETUP: legally deployed army relocated to adjacent unused land solely to exercise the actual MOVE UI beside reviewed (43..51,134..137) water on retained ROAD (49,135); no terrain/site substitutions.\n");
+        report.append("SYNTHETIC MARCH SETUP: legally deployed army relocated to adjacent unused land solely to exercise the actual MOVE UI beside reviewed Q (51,134) on retained ROAD (52,134); no terrain/site substitutions. The earlier target (49,135) is MOUNTAIN, not ROAD; the failed fixture was corrected without altering that mountain.\n");
         launch(w);final int id=unit.id;ui(()->{activity.selectUnitAndFocus(id);page();});settle();focus(target,3.4f);click("行军");tap(target);
         MarchOrders.Plan plan=(MarchOrders.Plan)field(activity,"pendingMarch");require(plan!=null&&plan.valid(),"real MOVE preview remains executable beside new Q repairs");shot("v059-reviewed-region-march-preview");click("确认任务");
         require(world().unit(id)!=null&&world().unit(id).hex.equals(target),"real MOVE confirmation reaches retained road in reviewed region");
