@@ -42,15 +42,24 @@ class MapTap57Harness {
     void send(long down,long time,int action,float x,float y){MotionEvent e=MotionEvent.obtain(down,time,action,x,y,0);test.sendPointerSync(e);e.recycle();}
     void pan()throws Exception{ui(this::page);settle();int[] loc=new int[2];map().getLocationOnScreen(loc);float x=loc[0]+map().getWidth()*.5f,y=loc[1]+map().getHeight()*.5f;long now=SystemClock.uptimeMillis();send(now,now,0,x,y);for(int i=1;i<=8;i++)send(now,now+i*45,2,x+12*i,y-8*i);send(now,now+410,1,x+96,y-64);settle();SystemClock.sleep(1000);}
     void pinch()throws Exception{
-        int[] loc=new int[2];map().getLocationOnScreen(loc);float x=loc[0]+map().getWidth()*.5f,y=loc[1]+map().getHeight()*.4f;
+        MapView v=map();int[]loc=new int[2];v.getLocationOnScreen(loc);
+        float cx=v.getWidth()*.5f+loc[0],cy=v.getHeight()*.5f+loc[1];
+        float start=v.getWidth()*.20f,end=v.getWidth()*.44f,before=camera().scale;
+        int minimum=Build.VERSION.SDK_INT>=29?ViewConfiguration.get(test.getTargetContext()).getScaledMinimumScalingSpan():-1;
+        report.append("PINCH minimumSpan=").append(minimum).append(" inputSpan=").append(start*2).append("..").append(end*2).append(" before=").append(before).append(" max=").append(camera().maxScale).append('\n');
         MotionEvent.PointerProperties[] pp={new MotionEvent.PointerProperties(),new MotionEvent.PointerProperties()};
         MotionEvent.PointerCoords[] pc={new MotionEvent.PointerCoords(),new MotionEvent.PointerCoords()};
-        for(int i=0;i<2;i++){pp[i].id=i;pp[i].toolType=MotionEvent.TOOL_TYPE_FINGER;pc[i].pressure=1;pc[i].size=1;pc[i].y=y;pc[i].x=x+(i==0?-45:45);}
-        long now=SystemClock.uptimeMillis();multi(now,now,MotionEvent.ACTION_DOWN,1,pp,pc);
-        multi(now,now+60,MotionEvent.ACTION_POINTER_DOWN+(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT),2,pp,pc);
-        for(int j=1;j<=8;j++){pc[0].x=x-45-8*j;pc[1].x=x+45+8*j;multi(now,now+60+j*50,MotionEvent.ACTION_MOVE,2,pp,pc);}
-        multi(now,now+510,MotionEvent.ACTION_POINTER_UP+(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT),2,pp,pc);
-        multi(now,now+560,MotionEvent.ACTION_UP,1,pp,pc);settle();
+        for(int i=0;i<2;i++){pp[i].id=i;pp[i].toolType=MotionEvent.TOOL_TYPE_FINGER;pc[i].pressure=1;pc[i].size=1;pc[i].y=cy;pc[i].x=cx+(i==0?-start:start);}
+        long t=SystemClock.uptimeMillis();multi(t,t,MotionEvent.ACTION_DOWN,1,pp,pc);SystemClock.sleep(40);
+        multi(t,SystemClock.uptimeMillis(),MotionEvent.ACTION_POINTER_DOWN|(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT),2,pp,pc);SystemClock.sleep(40);
+        for(int i=1;i<=16;i++){float half=start+(end-start)*i/16f;pc[0].x=cx-half;pc[1].x=cx+half;multi(t,SystemClock.uptimeMillis(),MotionEvent.ACTION_MOVE,2,pp,pc);SystemClock.sleep(35);}
+        multi(t,SystemClock.uptimeMillis(),MotionEvent.ACTION_POINTER_UP|(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT),2,pp,pc);SystemClock.sleep(40);
+        multi(t,SystemClock.uptimeMillis(),MotionEvent.ACTION_UP,1,pp,pc);settle();
+        report.append("PINCH after=").append(camera().scale).append('\n');
+    }
+    void navigator(boolean shown)throws Exception{
+        if(map().navigatorShown()!=shown){RectF b=(RectF)field(map(),"miniButton");tapPoint(b.centerX(),b.centerY());}
+        require(map().navigatorShown()==shown,"actual navigator button toggles "+shown);
     }
     void multi(long down,long time,int action,int n,MotionEvent.PointerProperties[] pp,MotionEvent.PointerCoords[] pc){MotionEvent e=MotionEvent.obtain(down,time,action,n,pp,pc,0,0,1,1,0,0,android.view.InputDevice.SOURCE_TOUCHSCREEN,0);test.sendPointerSync(e);e.recycle();}
     String panelText()throws Exception{return text((View)field(activity,"panel"));}

@@ -55,6 +55,7 @@ public final class MapTap57Test {
         for(int[] xy:fixed){Hex at=MapCoordinates.axial(w,new SourceGridCoord(xy[0],xy[1]));w.terrain[at.q][at.r]=World.Terrain.VOID;}
         byte[] legacy=SaveCodec.encode(w);World old=SaveCodec.decode(legacy);
         check(Arrays.equals(legacy,SaveCodec.encode(old)),"codec31/revision56 preserved byte-for-byte, no hidden migration");
+        check(MarchScale.base(old,7)==14,"legacy native200 preserves march budget despite terrain revision");
         check(old.mapRevision==56&&!NationalMap.compatibilityNotice(old).isEmpty(),"legacy explicit notice");
         check(NationalMap.compatibilityNotice(ScenarioCatalog.load("heroes-250",0,57L)).isEmpty(),"no old-map warning on new world");
         System.out.println("MAP57 CORE PASS: "+checks);

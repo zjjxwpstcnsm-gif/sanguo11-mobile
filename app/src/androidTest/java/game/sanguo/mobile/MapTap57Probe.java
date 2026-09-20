@@ -11,6 +11,7 @@ final class MapTap57Probe extends MapTap57Harness {
         try{
             byte[] old=readInternal("manual1.sg11");World legacy=SaveCodec.decode(old);
             require(legacy.mapRevision==56&&Arrays.equals(old,SaveCodec.encode(legacy)),"real baseline APK save accepted byte-for-byte");
+            require(MarchScale.base(legacy,7)==14,"actual old save keeps native200 march budget");
             launch(legacy);View notice=activity.getWindow().getDecorView().findViewWithTag("map.revision.notice");
             require(notice!=null&&notice.getVisibility()==View.VISIBLE,"visible old-map notice, no silent migration");
             pick(MapCoordinates.fromNationalSource(world(),new SourceGridCoord(77,76)),3.4f,"legacy-ROAD");showPanel();shot("v057-legacy-ROAD-fixed");
@@ -27,6 +28,7 @@ final class MapTap57Probe extends MapTap57Harness {
                 }
                 Hex road=find(w,World.Terrain.ROAD,true);require(road!=null,"distant ROAD sample avoiding far city-label hit areas");
                 for(float lod:new float[]{.15f,.9f,3.4f}){pick(road,lod,id+"-LOD"+lod);shot("v057-"+id+"-road-lod-"+lod);}
+                navigator(false);for(int corner=0;corner<4;corner++)pick(corner(w,corner),3.4f,id+"-national-corner"+corner);navigator(true);
                 focus(road,.9f);float previous=camera().centerX();pan();require(Math.abs(camera().centerX()-previous)>1,"actual pointer drag pans");float scale=camera().scale;pinch();require(camera().scale>scale,"actual two-finger pinch zooms");
                 pick(road,3.4f,id+"-after-pan-pinch");
                 for(int[] xy:new int[][]{{26,1},{21,3},{30,5},{28,6},{22,9},{30,9},{10,11},{22,11},{20,16},{47,155},{43,158}}){
@@ -38,6 +40,7 @@ final class MapTap57Probe extends MapTap57Harness {
             }
             for(String id:new String[]{"central-mobile-sandbox","jingxiang-mobile-sandbox"}){
                 launch(ScenarioCatalog.load(id,0,57L));World w=world();
+                navigator(false);
                 for(int edge=0;edge<4;edge++){Hex h=edge(w,edge);pick(h,3.4f,id+"-edge-"+edge);}
                 shot("v057-"+id+"-crop-edge");
             }
@@ -61,6 +64,13 @@ final class MapTap57Probe extends MapTap57Harness {
             if(away){boolean near=false;for(World.City c:w.cities)if(c.hex.distance(h)<32){near=true;break;}if(near||x<20||y<20||x>=w.sourceColumns()-20||y>=w.sourceRows()-20)continue;}
             return h;
         }return null;
+    }
+    Hex corner(World w,int corner){
+        for(int distance=0;distance<40;distance++)for(int dx=0;dx<=distance;dx++){
+            int dy=distance-dx,x=(corner&1)!=0?w.sourceColumns()-1-dx:dx,y=(corner&2)!=0?w.sourceRows()-1-dy:dy;
+            Hex h=MapCoordinates.axial(w,new SourceGridCoord(x,y));
+            if(w.inside(h)&&w.cityAt(h)==null&&w.unitAt(h)==null&&w.domestic.at(h)==null&&w.war.at(h)==null)return h;
+        }throw new AssertionError("no valid national corner sample "+corner);
     }
     Hex edge(World w,int edge){
         for(int k=0;k<Math.max(w.sourceColumns(),w.sourceRows());k++)for(int d=0;d<12;d++){

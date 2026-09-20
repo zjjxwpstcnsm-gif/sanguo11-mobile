@@ -6,7 +6,8 @@ package game.sanguo.core;
  * Only the native national map (including its crops) uses recalibrated base budgets. */
 public final class MarchScale {
     private MarchScale(){}
+    // Geography-only revisions must not halve movement in a compatible revision56 save.
     public static int base(World world,int mobileBase){
-        return NationalMap.ID.equals(world.mapId)&&NationalMap.REVISION==world.mapRevision?Math.multiplyExact(mobileBase,2):mobileBase;
+        return NationalMap.ID.equals(world.mapId)&&NationalMap.LAYOUT.equals(world.mapLayout)&&world.columnStaggered?Math.multiplyExact(mobileBase,2):mobileBase;
     }
 }
