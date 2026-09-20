@@ -15,7 +15,7 @@ public final class Development {
     public boolean configured(int city){return parcels.containsKey(city);}
     public List<Hex> parcels(int city){return parcels.getOrDefault(city,Collections.emptyList());}
     public int capacity(int city){return configured(city)?parcels(city).size():Domestic.CITY_SLOTS;}
-    public boolean contains(World.City city,Hex h){return configured(city.id)?parcels(city.id).contains(h):h.distance(city.hex)>=1&&h.distance(city.hex)<=2;}
+    public boolean contains(World.City city,Hex h){return configured(city.id)?parcels(city.id).contains(h):SiteFootprint.distance(city,h)>=1&&SiteFootprint.distance(city,h)<=2;}
     public World.City cityAt(Hex h){
         if(h==null)return null;
         for(Map.Entry<Integer,List<Hex>> e:parcels.entrySet())if(e.getValue().contains(h))return w.city(e.getKey());

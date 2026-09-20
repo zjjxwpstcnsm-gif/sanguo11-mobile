@@ -42,8 +42,12 @@ final class ArmyUi {
     }
     void production(Army.Production p){confirm(p.label(),w.city(p.cityId).name+" · "+w.officer(p.officerId).name+" · 剩余"+w.officer(p.officerId).otherTaskTurns+"旬\n是否中止？已付费用不退还。",()->apply.accept(w.army.cancelProduction(p.officerId)));}
     void tactics(World.Unit u){choose("兵器 / 水军战法",w.army.tactics(u),t->t.label+" · 气力"+t.energy,t->{
-        List<Hex> targets=new ArrayList<>();for(World.Unit enemy:w.fieldUnits())if(w.army.tacticError(u.id,enemy.hex,t)==null)targets.add(enemy.hex);for(World.City city:w.cities)if(w.army.tacticError(u.id,city.hex,t)==null)targets.add(city.hex);for(War.Structure structure:w.war.structures())if(w.army.tacticError(u.id,structure.hex,t)==null)targets.add(structure.hex);for(Domestic.Facility f:w.domestic.facilities)if(w.army.tacticError(u.id,f.hex,t)==null)targets.add(f.hex);
+        List<Hex> targets=new ArrayList<>();for(World.Unit enemy:w.fieldUnits())if(w.army.tacticError(u.id,enemy.hex,t)==null)targets.add(enemy.hex);for(World.City city:w.cities)if(w.army.tacticCityError(u.id,city.id,t)==null)for(Hex h:SiteFootprint.cells(city))if(h.equals(w.army.cityTacticHit(u,city,t,h)))targets.add(h);for(War.Structure structure:w.war.structures())if(w.army.tacticError(u.id,structure.hex,t)==null)targets.add(structure.hex);for(Domestic.Facility f:w.domestic.facilities)if(w.army.tacticError(u.id,f.hex,t)==null)targets.add(f.hex);
         if(targets.isEmpty()){World.Unit nearest=w.fieldUnits().stream().filter(x->w.campaign.hostile(u.owner,x.owner)).min(Comparator.comparingInt(x->u.hex.distance(x.hex))).orElse(null);info("不能发动"+t.label,w.army.tacticError(u.id,nearest==null?u.hex:nearest.hex,t));return;}
-        a.pickOnMap(t.label+" · 选择目标",u.hex,targets,h->a.showTacticPreview(w,w.army.tacticPreview(u.id,h,t),()->apply.accept(w.army.tactic(u.id,h,t))),h->h==null?"目标在地图范围外":w.army.tacticError(u.id,h,t));
+        a.pickOnMap(t.label+" · 选择目标",u.hex,targets,h->{World.City c=w.cityAt(h);World.Unit b=w.unitAt(h);
+            Runnable field=()->a.showTacticPreview(w,w.army.tacticPreview(u.id,h,t),()->apply.accept(w.army.tactic(u.id,h,t)));
+            Runnable site=()->a.showTacticPreview(w,w.army.tacticCityPreview(u.id,c.id,t),()->apply.accept(w.army.tacticCity(u.id,c.id,t)));
+            if(c!=null&&b!=null)new AlertDialog.Builder(a).setTitle("同格战法目标").setItems(new String[]{w.officer(b.officerId).name+" · 部队",c.name+" · 据点"},(d,i)->{if(i==0)field.run();else site.run();}).setNegativeButton("取消",null).show();
+            else if(c!=null)site.run();else field.run();},h->h==null?"目标在地图范围外":w.army.tacticError(u.id,h,t));
     });}
 }

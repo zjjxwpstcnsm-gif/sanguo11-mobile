@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=29, MAX_BYTES=32*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=30, MAX_BYTES=32*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -77,7 +77,7 @@ public final class SaveCodec {
         if(data==null||data.length<20||data.length>MAX_BYTES+20)throw new IOException("存档长度无效");
         DataInputStream d=new DataInputStream(new ByteArrayInputStream(data));
         if(d.readInt()!=MAGIC)throw new IOException("不是本项目存档");
-        int version=d.readInt();if(version<1||version>VERSION)throw new IOException("存档版本不支持");
+        int version=d.readInt();if(version<30)throw new IOException("此存档使用旧版单格城市地图，请保留原档并重新开局；未删除或改写原存档");if(version>VERSION)throw new IOException("存档版本不支持");
         int length=d.readInt();long expected=d.readLong();
         if(length!=data.length-20)throw new IOException("存档不完整");
         byte[] payload=new byte[length];d.readFully(payload);CRC32 crc=new CRC32();crc.update(payload);
@@ -153,6 +153,7 @@ public final class SaveCodec {
     private static int bounded(int n,int min,int max)throws IOException { if(n<min||n>max)throw new IOException("存档字段越界");return n; }
     private static void require(boolean ok,String message)throws IOException { if(!ok)throw new IOException(message); }
     public static void validate(World w)throws IOException {
+        w.invalidateSiteIndex();SiteFootprint.validate(w);
         w.aiOrders.validate();
         w.development.validate();w.recruitment.validate();w.envoys.validate();
         bounded(w.width,1,300);bounded(w.height,1,200);bounded(w.factions.length,2,32);
@@ -180,6 +181,7 @@ public final class SaveCodec {
             if(o.cityId>=0)require(o.unitId==-1&&w.city(o.cityId)!=null&&(o.owner==-1||w.city(o.cityId).owner==o.owner||w.recruitment.returning(o)),"武将城池归属错误");
             if(o.unitId>=0)require(o.cityId==-1&&w.unit(o.unitId)!=null&&w.army.contains(w.unit(o.unitId),o.id),"武将部队引用错误");
         }
+        occupied.clear(); // Field occupancy is independent of the site footprint.
         ids.clear();Set<Integer> assigned=new HashSet<>();
         for(World.Unit u:w.units) {
             require(ids.add(u.id)&&u.id>0&&u.id<w.nextUnitId,"部队ID重复或无效");bounded(u.owner,0,w.factions.length-1);

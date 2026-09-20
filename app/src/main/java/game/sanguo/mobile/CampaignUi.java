@@ -64,6 +64,6 @@ final class CampaignUi {
     void dismiss(World.City c){List<World.Officer> targets=new ArrayList<>();for(World.Officer t:w.officers)if(t.owner==c.owner&&t.cityId==c.id&&t.role!=Strategy.Role.RULER&&!w.domestic.busy(t.id)&&!w.strategy.busy(t.id))targets.add(t);
         choose("流放武将",targets,t->t.name,t->{List<World.Officer> actors=new ArrayList<>(w.idle(c));actors.removeIf(o->o.id==t.id);choose("选择执行武将",actors,o->o.name,o->confirm("流放"+t.name,"行动力10；解除太守任命并成为本城在野武将。",()->apply.accept(w.campaign.dismiss(c.id,o.id,t.id))));});}
     void buildMilitary(World.City c){info("部队设置", "请在编队出征时携带金，移动到工地相邻格，然后选择部队→设置军事设施。\n施工期间部队自动补修，完成后设施开始生效。");}
-    void structures(World.City c){List<War.Structure> options=new ArrayList<>();for(War.Structure s:w.war.structures())if(s.owner==c.owner&&s.hex.distance(c.hex)<=3)options.add(s);
+    void structures(World.City c){List<War.Structure> options=new ArrayList<>();for(War.Structure s:w.war.structures())if(s.owner==c.owner&&SiteFootprint.distance(c,s.hex)<=3)options.add(s);
         choose("军事设施管理",options,s->s.kind.label+" · "+s.hex+" · 耐久"+s.hp,s->officer(c,o->confirm("拆除"+s.kind.label,"行动力10，不退还建造费用。",()->apply.accept(w.war.removeStructure(c.id,o.id,s.id)))));}
 }

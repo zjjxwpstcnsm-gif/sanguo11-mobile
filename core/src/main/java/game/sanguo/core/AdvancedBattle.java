@@ -91,9 +91,10 @@ public final class AdvancedBattle {
         }
         if(p==War.Plot.LIGHTNING){
             List<Hex> area=new ArrayList<>(center.neighbors());area.add(center);
+            Set<Integer> struckCities=new HashSet<>();
             for(Hex h:area)if(w.inside(h)&&!w.army.water(h)&&w.terrain[h.q][h.r]!=World.Terrain.MOUNTAIN){
                 World.City city=w.cityAt(h);Domestic.Facility facility=w.domestic.at(h);War.Structure structure=w.war.at(h);
-                if(city!=null){if(city.owner==a.owner||w.campaign.hostile(a.owner,city.owner)){city.troops=Math.max(0,city.troops-800);city.defense=Math.max(1,city.defense-500);}continue;}
+                if(city!=null){if(struckCities.add(city.id)&&(city.owner==a.owner||w.campaign.hostile(a.owner,city.owner))){city.troops=Math.max(0,city.troops-800);city.defense=Math.max(1,city.defense-500);}continue;}
                 if(facility!=null){World.City home=w.city(facility.cityId);if(home.owner==a.owner||w.campaign.hostile(a.owner,home.owner)){if(facility.builderId>=0)w.officer(facility.builderId).acted=true;w.domestic.facilities.remove(facility);w.army.cleanup();}continue;}
                 if(structure!=null&&structure.owner!=a.owner&&!w.campaign.hostile(a.owner,structure.owner))continue;
                 if(w.war.fireAt(h)==null)w.war.fires.add(new War.Fire(h,a.owner,2));

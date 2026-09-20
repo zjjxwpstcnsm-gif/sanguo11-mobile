@@ -22,7 +22,7 @@ public final class MarchOrders {
         public final List<Hex> path;
         public final Hex target;
         public final String label,error,actionLabel,completion;
-        private final Order order;
+        public final Order order;
         private final byte[] snapshot;
         Plan(int unitId,Order order,Hex target,String label,List<Hex> path,int cost,int stepsNow,int turns,String error,byte[] snapshot){
             this.unitId=unitId;this.order=order;this.target=target;this.label=label;this.path=Collections.unmodifiableList(new ArrayList<>(path));
@@ -65,13 +65,19 @@ public final class MarchOrders {
     private static String completion(Intent i){switch(i){case ATTACK:return "进入有效射程后每旬攻击；目标消灭结束，据点攻占后自动进驻";case GARRISON:return "到达后自动进驻；容量不足则保留全部兵粮并等待";case REPAIR:return "到达后每旬补修，修满后停止";case APPROACH:return "接近后待命，不攻击、不自动宣战";case LEGACY:return "保留旧指令行为；重新选目标可启用连续攻击或修理";default:return "到达指定地块后停止";}}
     public String describe(World.Unit u){return u==null||u.march==null?"未设置任务":actionLabel(u.march.intent)+" → "+label(u.march)+"\n"+(u.march.paused.isEmpty()?completion(u.march.intent):"等待："+u.march.paused);}
     public Plan preview(int id,Hex tile){return preview(w.unit(id),tile);}
+    public Plan previewMove(int id,Hex tile){return plan(w.unit(id),tile==null?null:new Order(Kind.TILE,tile,-1,-1,Intent.MOVE),true,false);}
+    public Plan previewCity(int id,int city){
+        World.Unit u=w.unit(id);World.City c=w.city(city);
+        Intent intent=u!=null&&c!=null&&u.owner==c.owner?Intent.GARRISON:u!=null&&c!=null&&w.campaign.hostile(u.owner,c.owner)?Intent.ATTACK:Intent.APPROACH;
+        return plan(u,c==null?null:new Order(Kind.CITY,c.hex,c.id,c.owner,intent),true,false);
+    }
     public Plan preview(World.Unit u,Hex tile){
         Order o=null;
         if(tile!=null&&w.inside(tile)){
             World.City c=w.cityAt(tile);World.Unit other=w.unitAt(tile);War.Structure s=w.war.at(tile);Domestic.Facility f=w.domestic.at(tile);
-            Kind kind=c!=null?Kind.CITY:other!=null?Kind.UNIT:s!=null?Kind.STRUCTURE:f!=null?Kind.FACILITY:Kind.TILE;
-            int id=c!=null?c.id:other!=null?other.id:s!=null?s.id:f!=null?f.id:-1;
-            int owner=c!=null?c.owner:other!=null?other.owner:s!=null?s.owner:f!=null?w.city(f.cityId).owner:-1;
+            Kind kind=other!=null&&other!=u?Kind.UNIT:c!=null?Kind.CITY:other!=null?Kind.UNIT:s!=null?Kind.STRUCTURE:f!=null?Kind.FACILITY:Kind.TILE;
+            int id=kind==Kind.UNIT?other.id:c!=null?c.id:s!=null?s.id:f!=null?f.id:-1;
+            int owner=kind==Kind.UNIT?other.owner:c!=null?c.owner:s!=null?s.owner:f!=null?w.city(f.cityId).owner:-1;
             Intent intent=kind==Kind.TILE?Intent.MOVE:u!=null&&owner==u.owner&&kind==Kind.CITY?Intent.GARRISON:
                 u!=null&&owner==u.owner&&kind==Kind.STRUCTURE&&!(u instanceof Domestic.Mission)?Intent.REPAIR:
                 u!=null&&w.campaign.hostile(u.owner,owner)&&!(u instanceof Domestic.Mission)?Intent.ATTACK:Intent.APPROACH;
@@ -86,6 +92,7 @@ public final class MarchOrders {
     public String tileError(World.Unit u,Hex tile){
         if(tile==null||!w.inside(tile))return "目标在地图范围外";
         if(u==null)return "请选择己方部队";
+        World.City site=w.cityAt(tile);if(!SiteFootprint.transit(site,u.owner))return "该据点不能作为穿行地块；请选择进驻或攻击据点";
         Domestic.Facility f=w.domestic.at(tile);if(f!=null)return f.kind.label+"占据目标格，请选择旁边空地";
         War.Fire fire=w.war.fireAt(tile);if(fire!=null)return "目标格有火场（剩"+fire.remaining+"旬），自动行军避火";
         // This is a destination check, not an edge: a remote river tile may be reachable via a port.
@@ -110,14 +117,16 @@ public final class MarchOrders {
             default:return -2;
         }
         if(error==null)return -1;
-        for(Army.Tactic tactic:w.army.tactics(p))if(w.army.tacticPositionError(p,h,tactic)==null)return tactic.ordinal();
+        for(Army.Tactic tactic:w.army.tactics(p))if((o.kind==Kind.CITY?w.army.tacticCityPositionError(p,w.city(o.targetId),tactic):w.army.tacticPositionError(p,h,tactic))==null)return tactic.ordinal();
         return -2;
     }
     private Set<Hex> goals(World.Unit u,Order o,Hex destination){
         Set<Hex> result=new HashSet<>();Intent intent=effective(u,o);
         if(intent==Intent.MOVE){result.add(destination);return result;}
+        if(intent==Intent.GARRISON){result.addAll(SiteFootprint.entryGoals(w,u,w.city(o.targetId)));return result;}
         if(intent!=Intent.ATTACK){
-            for(Hex h:destination.neighbors())if(intent!=Intent.GARRISON||w.army.canEnterSite(u,h,w.city(o.targetId)))result.add(h);
+            if(o.kind==Kind.CITY)result.addAll(SiteFootprint.edge(w.city(o.targetId)));
+            else result.addAll(destination.neighbors());
             return result;
         }
         World.Unit p=probe(u);p.energy=100; // Route to a firing position; spent energy is recovered by waiting, not invented.
@@ -140,7 +149,7 @@ public final class MarchOrders {
         if(problem==null&&o.intent==Intent.REPAIR){War.Structure s=w.war.at(o.tile);if(s.hp>=s.kind.hp)problem="设施已完好，无需修理";else if(s.builder>=0&&s.builder!=u.id)problem="已有其他部队正在修理该设施";}
         if(problem==null){
             Set<Hex> goals=goals(u,o,destination),blocked=new HashSet<>();
-            for(World.City c:w.cities)blocked.add(c.hex);
+            // Site traversal is checked by Army.moveCost against the shared footprint index.
             for(World.Unit other:w.fieldUnits())if(other.id!=u.id&&(!queued||other.owner!=u.owner))blocked.add(other.hex);
             for(Domestic.Facility f:w.domestic.facilities)blocked.add(f.hex);
             for(War.Structure s:w.war.structures())blocked.add(s.hex);
@@ -233,13 +242,13 @@ public final class MarchOrders {
             return;
         }
         World.Result result;
-        if(choice>=0)result=w.army.tactic(u.id,target(o),Army.Tactic.values()[choice]);
+        if(choice>=0)result=o.kind==Kind.CITY?w.army.tacticCity(u.id,o.targetId,Army.Tactic.values()[choice]):w.army.tactic(u.id,target(o),Army.Tactic.values()[choice]);
         else switch(o.kind){case UNIT:result=w.attack(u.id,o.targetId);break;case CITY:result=w.siege(u.id,o.targetId);break;case STRUCTURE:result=w.war.attackStructure(u.id,o.tile);break;case FACILITY:result=w.war.attackFacility(u.id,o.tile);break;default:result=w.fail("无效攻击目标");}
         if(w.unit(u.id)!=u)return; // Counterattacks may destroy the marching unit.
         if(!result.ok){pause(u,result.message);return;}
         if(o.kind==Kind.CITY&&w.city(o.targetId).owner==u.owner){
             World.City c=w.city(o.targetId);u.march=new Order(Kind.CITY,c.hex,c.id,c.owner,Intent.GARRISON);
-            if(u.hex.distance(c.hex)<=1){World.Result entered=w.enterAfterCapture(u,c);if(entered.ok)u.march=null;else pause(u,entered.message);}
+            if(w.army.canEnterSite(u,u.hex,c)){World.Result entered=w.enterAfterCapture(u,c);if(entered.ok)u.march=null;else pause(u,entered.message);}
             else pause(u,"据点已攻占，下旬靠近并进驻");
         }else if(target(o)==null)finish(u,"目标已消灭，自动攻击完成");
         else pause(u,"已攻击，下旬继续");

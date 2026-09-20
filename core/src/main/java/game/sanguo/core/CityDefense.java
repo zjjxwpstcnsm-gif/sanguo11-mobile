@@ -9,7 +9,7 @@ public final class CityDefense {
     /** Range three includes ranged siege pressure; convoys and allies cannot stop repairs. */
     public boolean besieged(World.City c){
         if(c==null)return false;
-        for(World.Unit u:w.units)if(u.troops>0&&w.campaign.hostile(c.owner,u.owner)&&u.hex.distance(c.hex)<=3)return true;
+        for(World.Unit u:w.units)if(u.troops>0&&w.campaign.hostile(c.owner,u.owner)&&SiteFootprint.distance(c,u.hex)<=3)return true;
         return false;
     }
     public int recovery(World.City c){
@@ -24,7 +24,7 @@ public final class CityDefense {
     }
     public int range(World.City city){return city.kind==World.SiteKind.CITY?2:1;}
     private boolean ready(World.City c){return c!=null&&c.owner>=0&&c.troops>0&&c.food>0&&c.defense>0;}
-    public boolean inRange(World.City c,World.Unit u){return ready(c)&&u!=null&&w.campaign.hostile(c.owner,u.owner)&&c.hex.distance(u.hex)>0&&c.hex.distance(u.hex)<=range(c);}
+    public boolean inRange(World.City c,World.Unit u){return ready(c)&&u!=null&&w.campaign.hostile(c.owner,u.owner)&&SiteFootprint.hit(c,u.hex,1,range(c),null,h->w.inside(h))!=null;}
     /** Bounded output scales with remaining garrison, morale and wall condition. */
     public int strength(World.City c){
         if(!ready(c))return 0;

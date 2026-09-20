@@ -1,0 +1,127 @@
+name: City seven installed delivery
+on:
+  push:
+    branches: [agent/city-seven-guanluo-v055]
+    paths: [.github/workflows/city-seven-delivery.yml, .ci/corrections55.json]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: city-seven-v055-delivery
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Import checksum-verified source increment
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/transport
+          if test -f .ci/v055-1.b64; then
+            cp .ci/v055-*.b64 out/transport/
+            python3 - <<'PY'
+          import base64,gzip,hashlib,json
+          from pathlib import Path
+          s=''.join(p.read_text().strip() for p in sorted(Path('.ci').glob('v055-*.b64')))
+          # Correct transport transcription only; the original patch digest remains mandatory.
+          repairs=[['ogtTHHrmtKx','ogtTHrmtKx'],['krtfdf4aGuAK','krtfdf4GuAK']]
+          cp=Path('.ci/corrections55.json')
+          if cp.exists(): repairs+=json.loads(cp.read_text())
+          for a,b in repairs:
+              assert s.count(a)==1,(a,s.count(a))
+              s=s.replace(a,b)
+          patch=gzip.decompress(base64.b64decode(s,validate=True))
+          assert hashlib.sha256(patch).hexdigest()=='146b3a49c24bd4ca77b449b303317e2ee35498d6e3da27876233bfd4aaf5554e'
+          Path('/tmp/v055.patch').write_bytes(patch)
+          PY
+            git merge-base --is-ancestor 88768aff0def3b63500bb95b7ecc78fea84b946a HEAD
+            git apply --unidiff-zero --check /tmp/v055.patch
+            git apply --unidiff-zero /tmp/v055.patch
+            python3 tools/content/refine_geography_v055.py
+            python3 - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          p=Path('tools/content/map-release-manifest.json');d=json.loads(p.read_text());d['release']='0.55.0'
+          for f in d['files']:
+              sha=hashlib.sha256(Path(f['source_path']).read_bytes()).hexdigest()
+              if f['source_path'].startswith('core/src/main/resources/scenarios/'):f['sha256']=sha
+              else:assert f['sha256']==sha,f['source_path']
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+          PY
+            rm .ci/v055-*.b64
+            rm -f .ci/corrections55.json
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add -A -- . ':!out'
+            git commit -m 'feat: v0.55 seven-cell city rules, explicit transit and Guan-Luo map refinement'
+            git push origin HEAD:agent/city-seven-guanluo-v055
+          fi
+          git rev-parse HEAD > out/BUILD_COMMIT
+          cp version.properties out/VERSION
+          git archive --format=zip -o out/sanguo11-mobile-v055-source.zip HEAD
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Formal-path targeted regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/test-city55.sh | tee out/city55-core.txt
+          bash scripts/test-ui-models.sh | tee out/ui-check.txt
+          python3 scripts/verify-map-release.py | tee out/resource-check.txt
+          cp data/map/review-v055.json out/map-audit.json
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Compile actual APK and instrumentation
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest
+          python3 tools/check_apk_content.py app/build/outputs/apk/debug/app-debug.apk
+          sha=$(git rev-parse --short=12 HEAD)
+          apk="out/sanguo11-mobile-v0.55.0-$sha.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "$apk"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$apk" > out/SIGNATURE.txt
+          grep -q '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' out/SIGNATURE.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$apk" > out/APK_INFO.txt
+          grep -q "versionCode='55' versionName='0.55.0'" out/APK_INFO.txt
+          (cd out; sha256sum *.apk *source.zip > SHA256SUMS)
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install, exercise official scenario and capture real Android pixels
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          script: |
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb logcat -c
+            adb shell am instrument -w -e city55 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner | tee out/city55-instrumentation.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke out/android || true
+            adb logcat -d > out/android-logcat.txt
+            grep -q 'CITY55 ANDROID PASS:' out/city55-instrumentation.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: city-seven-v055-delivery
+          path: out
+          retention-days: 14
+          if-no-files-found: error

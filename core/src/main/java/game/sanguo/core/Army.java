@@ -63,9 +63,10 @@ public final class Army {
     }
     /** Also applied to garrison/unload: an adjacent city must not become a wild landing shortcut. */
     public boolean canEnterSite(World.Unit u, Hex from, World.City city) {
-        return u!=null&&city!=null&&city.owner==u.owner&&from!=null&&from.distance(city.hex)==1&&moveCost(u,from,city.hex)>0;
+        return SiteFootprint.entry(w,u,from,city)!=null;
     }
     public int moveCost(World.Unit u, Hex from, Hex to) {return moveCost(u,from,to,null);}
+    int entryCost(World.Unit u,Hex from,Hex to){return terrainMoveCost(u,from,to,null);}
     /** One read-only graph query. Discard before executing any command or changing the world. */
     final class MovementCosts {
         private final World.Unit unit;private final byte[] land=new byte[w.width*w.height];
@@ -76,6 +77,10 @@ public final class Army {
     }
     MovementCosts movementCosts(World.Unit unit){return new MovementCosts(unit);}
     private int moveCost(World.Unit u, Hex from, Hex to,MovementCosts cache) {
+        if(u==null||from==null||to==null||!SiteFootprint.mayStep(w,u,from,to))return -1;
+        return terrainMoveCost(u,from,to,cache);
+    }
+    private int terrainMoveCost(World.Unit u, Hex from, Hex to,MovementCosts cache) {
         if (((u instanceof Domestic.Mission) && !((Domestic.Mission) u).sea && water(to)) || to == null || !this.w.inside(to) || this.w.terrain[to.q][to.r] == World.Terrain.MOUNTAIN) {
             return -1;
         }
@@ -115,8 +120,7 @@ public final class Army {
     /** Read-only exit selection shared by preview and the real deployment command. */
     public Hex deploymentExit(World.City c,World.Weapon weapon){
         if(c==null||weapon==null)return null;
-        for(Hex h:c.hex.neighbors())if((w.fieldworks.landCost(h,weapon,c.owner)>0||c.kind==World.SiteKind.PORT&&water(h))&&w.unitAt(h)==null&&w.cityAt(h)==null&&w.domestic.at(h)==null&&w.war.at(h)==null&&w.war.fireAt(h)==null)return h;
-        return null;
+        return SiteFootprint.deploymentExit(w,c,weapon);
     }
     public World.Unit deploymentPreview(World.City c,int commander,int[] deputies,World.Weapon weapon,Ship ship,int troops,int food,int gold){
         if(w.officer(commander)==null||deputies==null||ship==null)return null;
@@ -181,12 +185,29 @@ public final class Army {
     }
     /** Read-only legality for detached route/AI probes; execution still validates the actor. */
     String tacticPositionError(World.Unit u,Hex target,Tactic tactic){
+        return tacticCellError(u,tacticHit(u,target,tactic,false),tactic,false);
+    }
+    public Hex cityTacticHit(World.Unit u,World.City city,Tactic tactic,Hex preferred){
+        return u==null||tactic==null?null:SiteFootprint.hit(city,u.hex,1,tactic==Tactic.RAM?1:w.war.range(u),preferred,
+            h->tacticCellError(u,h,tactic,true)==null);
+    }
+    public String tacticCityError(int unit,int city,Tactic tactic){
+        World.Unit u=w.unit(unit);String actor=w.orders.error(u);return actor!=null?actor:tacticCityPositionError(u,w.city(city),tactic);
+    }
+    String tacticCityPositionError(World.Unit u,World.City city,Tactic tactic){
+        return cityTacticHit(u,city,tactic,null)==null?"城市没有满足射程、适性、气力和地形条件的战法命中格":null;
+    }
+    private Hex tacticHit(World.Unit u,Hex target,Tactic tactic,boolean cityOnly){
+        World.City c=w.cityAt(target);
+        return c!=null&&(cityOnly||w.unitAt(target)==null)?cityTacticHit(u,c,tactic,target):target;
+    }
+    private String tacticCellError(World.Unit u,Hex target,Tactic tactic,boolean cityOnly){
         if(u instanceof Domestic.Mission)return "运输队不能施展战法";
         if(tactic==null||!tacticOptions(u).contains(tactic))return "当前兵装或舰船不能施展此战法";
         if(water(u.hex)&&aptitude(u)<tactic.rank||u.energy<tactic.energy)return "适性或气力不足";
         int distance=target==null?0:u.hex.distance(target),max=tactic==Tactic.RAM?1:w.war.range(u);
         if(target==null||!w.inside(target)||distance<1||distance>max||!w.fieldworks.landTarget(u.owner,target))return "目标不在战法范围内";
-        World.Unit enemy=w.unitAt(target);World.City city=w.cityAt(target);War.Structure structure=w.war.at(target);Domestic.Facility facility=w.domestic.at(target);
+        World.Unit enemy=cityOnly?null:w.unitAt(target);World.City city=enemy==null?w.cityAt(target):null;War.Structure structure=w.war.at(target);Domestic.Facility facility=w.domestic.at(target);
         if(enemy==null&&city==null&&structure==null&&facility==null||enemy!=null&&!w.campaign.hostile(u.owner,enemy.owner)||city!=null&&!w.campaign.hostile(u.owner,city.owner)||structure!=null&&!w.campaign.hostile(u.owner,structure.owner)||facility!=null&&!w.campaign.hostile(u.owner,w.city(facility.cityId).owner))return "请选择交战部队、城池或设施";
         if(enemy!=null&&!water(u.hex)&&u.weapon==World.Weapon.RAM)return "冲车只能攻击城池";
         if(enemy!=null&&tactic==Tactic.FIRE_ARROW&&!water(u.hex)&&w.terrain[target.q][target.r]==World.Terrain.FOREST&&!w.skills.has(u,Skill.SHESHOU))return "射向森林需要射手特技";
@@ -195,23 +216,37 @@ public final class Army {
     }
     public int tacticChance(int unit){World.Unit u=w.unit(unit);return u==null?0:!water(u.hex)&&siegeWeapon(u.weapon)?100:Math.min(95,75+aptitude(u)*5);}
     public int tacticChance(int unit,Hex target){World.Unit enemy=w.unitAt(target);return enemy!=null&&enemy.status!=War.Status.NORMAL?100:tacticChance(unit);}
-    public Displacement.Preview tacticPreview(int unit,Hex target,Tactic tactic){
-        World.Unit a=w.unit(unit),b=w.unitAt(target);String error=tacticError(unit,target,tactic);
-        String heading=(tactic==null?"未选择战法":tactic.label+" · 消耗气力"+tactic.energy)+" / 当前"+(a==null?0:a.energy)+"\n命中率"+tacticChance(unit,target)+"%；失败同样消耗气力和本旬行动。\n目标："+target;
+    public Displacement.Preview tacticPreview(int unit,Hex target,Tactic tactic){return tacticPreview(unit,target,tactic,false);}
+    public Displacement.Preview tacticCityPreview(int unit,int city,Tactic tactic){
+        World.City c=w.city(city);return tacticPreview(unit,c==null?null:c.hex,tactic,true);
+    }
+    private Displacement.Preview tacticPreview(int unit,Hex target,Tactic tactic,boolean cityOnly){
+        World.Unit a=w.unit(unit);target=tacticHit(a,target,tactic,cityOnly);
+        World.Unit b=cityOnly?null:w.unitAt(target);String error=w.orders.error(a);
+        if(error==null)error=tacticCellError(a,target,tactic,cityOnly);
+        String heading=(tactic==null?"未选择战法":tactic.label+" · 消耗气力"+tactic.energy)+" / 当前"+(a==null?0:a.energy)+"\n命中率"+(cityOnly?tacticChance(unit):tacticChance(unit,target))+"%；失败同样消耗气力和本旬行动。\n目标："+target;
         if(a!=null&&tactic!=null)heading+="\n射程：1–"+(tactic==Tactic.RAM?1:w.war.range(a))+"格；效果："+tactic.effect;
         if(error==null&&b!=null)heading+="\n"+w.combat.preview(a,b,tactic==Tactic.STONE?1.5:1.3,true).describe()+"\n"+w.energy.hitPreview(a,b);
         if(a!=null&&(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME))heading+="\n"+w.combat.firePreview(a,b,CombatRules.DIRECT_FIRE_BASE,false);
-        World.City city=w.cityAt(target);War.Structure structure=w.war.at(target);Domestic.Facility facility=w.domestic.at(target);
+        World.City city=b==null?w.cityAt(target):null;War.Structure structure=w.war.at(target);Domestic.Facility facility=w.domestic.at(target);
         heading+="\n实际对象："+(b!=null?w.officer(b.officerId).name:city!=null?city.name:structure!=null?structure.kind.label:facility!=null?facility.kind.label:"无");
         if(city!=null&&a!=null)heading+="\n"+w.combat.siegePreview(a,city,true);
+        if(city!=null&&a!=null&&target!=null)return new Displacement.Preview(error,heading,
+            Collections.singletonList(a.hex),Collections.singletonList(target),Collections.singletonList(target),null,false);
         return w.war.displacement.preview(a,b,tactic==Tactic.RAM&&a!=null&&water(a.hex)?Displacement.Kind.NAVAL:Displacement.Kind.NONE,error,heading);
     }
-    public World.Result tactic(int unit,Hex target,Tactic tactic){w.reports.prepare();
-        String error=tacticError(unit,target,tactic);if(error!=null)return w.fail(error);
-        World.Unit u=w.unit(unit),enemy=w.unitAt(target);World.City city=w.cityAt(target);w.visualAction(TurnJournal.Kind.TACTIC,unit,target,tactic.label);
+    public World.Result tactic(int unit,Hex target,Tactic tactic){return tactic(unit,target,tactic,false);}
+    public World.Result tacticCity(int unit,int city,Tactic tactic){
+        World.City c=w.city(city);return tactic(unit,c==null?null:c.hex,tactic,true);
+    }
+    private World.Result tactic(int unit,Hex target,Tactic tactic,boolean cityOnly){w.reports.prepare();
+        World.Unit u=w.unit(unit);String error=w.orders.error(u);if(error!=null)return w.fail(error);
+        target=tacticHit(u,target,tactic,cityOnly);error=tacticCellError(u,target,tactic,cityOnly);if(error!=null)return w.fail(error);
+        World.Unit enemy=cityOnly?null:w.unitAt(target);World.City city=enemy==null?w.cityAt(target):null;w.visualAction(TurnJournal.Kind.TACTIC,unit,target,tactic.label);
         w.marches.supersede(u);u.acted=true;w.energy.change(u,-tactic.energy,EnergyRules.Reason.COMMAND);w.battleImpact(target,false);
-        if(tacticChance(unit,target)<100&&w.strategy.nextInt(100)>=tacticChance(unit,target))return w.success(tactic.label+"未命中，消耗气力"+tactic.energy+"，本旬行动结束");
-        if(city!=null)return w.resolveSiege(u,city,true,tactic==Tactic.STONE);
+        int chance=cityOnly?tacticChance(unit):tacticChance(unit,target);
+        if(chance<100&&w.strategy.nextInt(100)>=chance)return w.success(tactic.label+"未命中，消耗气力"+tactic.energy+"，本旬行动结束");
+        if(city!=null)return w.resolveSiege(u,city,true,tactic==Tactic.STONE,target);
         Domestic.Facility facility=w.domestic.at(target);
         if(facility!=null){
             int amount=w.combat.structureDamage(u,true);

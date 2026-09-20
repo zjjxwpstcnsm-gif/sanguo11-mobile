@@ -52,7 +52,7 @@ public final class UnitOrders {
             Step step=queue.remove();if(step.cost!=result.costs.get(step.hex))continue;
             for(Hex next:step.hex.neighbors()) {
                 int cost=movementCosts.cost(step.hex,next);
-                if(cost<0||w.cityAt(next)!=null||w.domestic.at(next)!=null||w.war.at(next)!=null||avoidFire&&w.war.fireAt(next)!=null)continue;
+                if(cost<0||w.domestic.at(next)!=null||w.war.at(next)!=null||avoidFire&&w.war.fireAt(next)!=null)continue;
                 World.Unit other=w.unitAt(next);if(other!=null&&other.id!=u.id)continue;
                 int total=step.cost+cost;
                 if(total<=budget&&w.advancedBattle.zone(u,next))total=budget;
@@ -115,7 +115,7 @@ public final class UnitOrders {
         if(u==null||route.isEmpty()||!route.get(0).equals(u.hex))return w.fail("路线起点已变化");
         for(int i=1;i<route.size();i++){
             Hex from=route.get(i-1),to=route.get(i);int step=w.army.moveCost(u,from,to);
-            if(from.distance(to)!=1||step<1||w.unitAt(to)!=null||w.cityAt(to)!=null||w.domestic.at(to)!=null||w.war.at(to)!=null)return w.fail("路线已被阻挡");
+            if(from.distance(to)!=1||step<1||w.unitAt(to)!=null||w.domestic.at(to)!=null||w.war.at(to)!=null)return w.fail("路线已被阻挡");
             cost+=step;
             if(cost>remaining(u))return w.fail("本旬移动力不足");
             if(w.advancedBattle.zone(u,to)){
