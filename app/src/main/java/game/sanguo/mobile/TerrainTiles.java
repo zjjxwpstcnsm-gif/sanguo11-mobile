@@ -44,8 +44,9 @@ final class TerrainTiles {
             for(int d=0;d<6;d++)if((mask&(1<<d))==0){
                 int nq=q+TerrainConnections.DQ[d],nr=r+TerrainConnections.DR[d];
                 if(!TerrainConnections.inside(world,nq,nr)||world.terrain[nq][nr]==World.Terrain.VOID)continue;
-                double a=-d*Math.PI/3;float ex=TerrainConnections.edgeX(d),ey=TerrainConnections.edgeY(d),px=(float)-Math.sin(a)*12.5f,py=(float)Math.cos(a)*12.5f;
-                c.drawLine(x+ex-px,y+ey-py,x+ex+px,y+ey+py,coast);
+                int a=TileGeometry.start(d),b=TileGeometry.end(d);
+                c.drawLine(x+TileGeometry.CORNER_X[a]*25,y+TileGeometry.CORNER_Y[a]*25,
+                    x+TileGeometry.CORNER_X[b]*25,y+TileGeometry.CORNER_Y[b]*25,coast);
             }
         }
     }
@@ -63,8 +64,8 @@ final class TerrainTiles {
             p.setStrokeCap(Paint.Cap.BUTT);
             int directions=mask==0?9:mask;
             for(int d=0;d<6;d++)if((directions&(1<<d))!=0){
-                c.save();c.rotate(-60*d);
-                float end=mask==0?7:22;
+                c.save();c.rotate((float)Math.toDegrees(Math.atan2(TerrainConnections.edgeY(d),TerrainConnections.edgeX(d))));
+                float end=mask==0?7:(float)Math.hypot(TerrainConnections.edgeX(d),TerrainConnections.edgeY(d));
                 for(float pos=2;pos<end;pos+=2.25f){
                     p.setStrokeWidth(1.65f);p.setColor(((int)(pos*4)%3)==0?0xffa28c6e:0xff8c7b62);c.drawLine(pos,-3.3f,pos,3.3f,p);
                     p.setStrokeWidth(.35f);p.setColor(0xffc0aa86);c.drawLine(pos-.65f,-3.1f,pos-.65f,3.1f,p);
@@ -86,7 +87,7 @@ final class TerrainTiles {
     private Bitmap create(World.Terrain t,int variant){
         Bitmap bitmap=Bitmap.createBitmap(128,128,Bitmap.Config.ARGB_8888);Canvas c=new Canvas(bitmap);c.scale(2.56f,2.56f);c.translate(25,25);
         Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);Path hex=new Path();
-        for(int i=0;i<6;i++){double a=Math.toRadians(i*60-30);float x=(float)Math.cos(a)*25.05f,y=(float)Math.sin(a)*25.05f;if(i==0)hex.moveTo(x,y);else hex.lineTo(x,y);}hex.close();c.clipPath(hex);
+        for(int i=0;i<6;i++){float x=TileGeometry.CORNER_X[i]*25.05f,y=TileGeometry.CORNER_Y[i]*25.05f;if(i==0)hex.moveTo(x,y);else hex.lineTo(x,y);}hex.close();c.clipPath(hex);
         c.drawColor(color(t));
         if(VisualAssets.terrainReady()&&t!=World.Terrain.VOID&&t!=World.Terrain.SAND){
             VisualAssets.texture(c,TerrainConnections.road(t)?World.Terrain.MOUNTAIN:t,variant);return bitmap;

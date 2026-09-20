@@ -15,7 +15,7 @@ import java.util.concurrent.Future;
 /** Immutable geographical snapshot, rasterized off the UI thread. No live World access by workers. */
 final class MapOverview {
     static final int BACKGROUND=0xff172c2e;
-    private static final float RADIUS=25, DX=43.30127f, DY=37.5f;
+    private static final float RADIUS=TileGeometry.RADIUS, DX=TileGeometry.DX, DY=TileGeometry.DY;
     // Three complete modes together use at most 15 MiB, irrespective of map size or device density.
     private static final int MAX_PIXELS=1_300_000, MAX_SIDE=1536;
     private static final ExecutorService WORKER=Executors.newSingleThreadExecutor(r->{
@@ -85,10 +85,9 @@ final class MapOverview {
             if(Thread.currentThread().isInterrupted())return null;
             float r=(bounds.top+(y+.5f)*stepY)/DY;
             for(int x=0;x<w;x++){
-                float q=(bounds.left+(x+.5f)*stepX)/DX-r*.5f+offset,z=-q-r;
-                int iq=Math.round(q),ir=Math.round(r),iz=Math.round(z);
-                float dq=Math.abs(iq-q),dr=Math.abs(ir-r),dz=Math.abs(iz-z);
-                if(dq>dr&&dq>dz)iq=-ir-iz;else if(dr>dz)ir=-iq-iz;
+                float wx=bounds.left+(x+.5f)*stepX;
+                int ir=TileGeometry.row(bounds.top+(y+.5f)*stepY),iq=TileGeometry.column(wx,ir,offset);
+                float q=wx/DX-r*.5f+offset;
                 int cell=iq>=0&&iq<width&&ir>=0&&ir<height?ir*width+iq:-1;
                 cells[y*w+x]=cell;
                 int color=cell<0||terrain[cell]==0?BACKGROUND:terrain[cell];

@@ -21,10 +21,10 @@ final class MapCamera {
     void restoreScale(float value,float cx,float cy){scale=bounded(value);x=width/2-cx*scale;y=height/2-cy*scale;clamp();}
     float centerX(){return (width/2-x)/scale;} float centerY(){return (height/2-y)/scale;}
     // Conservative per-row axial bounds, including labels at the viewport edge.
-    int firstRow(int rows,float margin){return Math.max(0,(int)Math.floor((-y/scale-margin)/(radius*1.5f)));}
-    int lastRow(int rows,float margin){return Math.min(rows-1,(int)Math.ceil(((height-y)/scale+margin)/(radius*1.5f)));}
-    int firstColumn(int row,int columns,float margin){return Math.max(0,(int)Math.floor((-x/scale-margin)/(radius*1.7320508f)-row*.5f+columnOffset));}
-    int lastColumn(int row,int columns,float margin){return Math.min(columns-1,(int)Math.ceil(((width-x)/scale+margin)/(radius*1.7320508f)-row*.5f+columnOffset));}
+    int firstRow(int rows,float margin){return Math.max(0,(int)Math.floor((-y/scale-margin)/(radius*TileGeometry.SPAN)));}
+    int lastRow(int rows,float margin){return Math.min(rows-1,(int)Math.ceil(((height-y)/scale+margin)/(radius*TileGeometry.SPAN)));}
+    int firstColumn(int row,int columns,float margin){return Math.max(0,(int)Math.floor((-x/scale-margin)/(radius*TileGeometry.SPAN)-row*.5f+columnOffset));}
+    int lastColumn(int row,int columns,float margin){return Math.min(columns-1,(int)Math.ceil(((width-x)/scale+margin)/(radius*TileGeometry.SPAN)-row*.5f+columnOffset));}
     boolean visible(float wx,float wy,float margin){return wx*scale+x>=-margin&&wx*scale+x<=width+margin&&wy*scale+y>=-margin&&wy*scale+y<=height+margin;}
     void centerOn(float wx,float wy){x=width/2-wx*scale;y=height/2-wy*scale;clamp();}
     private float bounded(float s){return Math.max(minScale,Math.min(maxScale,s));}

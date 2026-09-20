@@ -43,8 +43,8 @@ public final class PresentationTest {
         check(FactionColors.color(colors,0)==0xff36ac54,"Liu Bei green");
         check(FactionColors.color(colors,2)==0xffe34843,"Sun Quan red");
         for(Hex h:new Hex[]{colors.city(20000).hex,colors.city(20017).hex,colors.city(20041).hex}){
-            MapCamera offset=new MapCamera();offset.columnOffset=(colors.height-1)/2;offset.resize(1080,1600,colors.sourceMapWidth*43.30127f,colors.height*37.5f,25,3);
-            offset.focus((h.q+h.r*.5f-offset.columnOffset)*43.30127f,h.r*37.5f);
+            MapCamera offset=new MapCamera();offset.columnOffset=(colors.height-1)/2;offset.resize(1080,1600,colors.sourceMapWidth*TileGeometry.DX,colors.height*TileGeometry.DY,25,3);
+            offset.focus((h.q+h.r*.5f-offset.columnOffset)*TileGeometry.DX,h.r*TileGeometry.DY);
             check(h.q>=offset.firstColumn(h.r,colors.width,50)&&h.q<=offset.lastColumn(h.r,colors.width,50),"odd-r camera retains distant city in visible column range");
         }
 
@@ -114,7 +114,7 @@ public final class PresentationTest {
             for(int n=0;n<25;n++){
                 c.focus(rng.nextFloat()*8200,rng.nextFloat()*4700);c.zoom(c.minScale+(c.maxScale-c.minScale)*rng.nextFloat(),width/2f,270);
                 int first=c.firstRow(128,50),last=c.lastRow(128,50),visited=0;
-                for(int r=0;r<128;r++)for(int q=0;q<128;q++)if(c.visible(25*1.7320508f*(q+r*.5f),37.5f*r,25*c.scale))check(r>=first&&r<=last&&q>=c.firstColumn(r,128,50)&&q<=c.lastColumn(r,128,50),"viewport never omits visible hex");
+                for(int r=0;r<128;r++)for(int q=0;q<128;q++)if(c.visible(TileGeometry.DX*(q+r*.5f),TileGeometry.DY*r,25*c.scale))check(r>=first&&r<=last&&q>=c.firstColumn(r,128,50)&&q<=c.lastColumn(r,128,50),"viewport never omits visible hex");
                 for(int r=first;r<=last;r++)visited+=Math.max(0,c.lastColumn(r,128,50)-c.firstColumn(r,128,50)+1);
                 if(c.scale>1)check(visited<128*128/4,"zoomed traversal bounded by viewport");
                 float scale=c.scale;c.centerOn(4100,2400);near(c.scale,scale,"navigator preserves zoom");

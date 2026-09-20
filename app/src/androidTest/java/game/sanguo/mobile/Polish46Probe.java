@@ -67,7 +67,7 @@ final class Polish46Probe {
         final boolean[] changed={false};
         test.runOnMainSync(()->{
             float qOffset=world.sourceMapWidth>0?(world.height-1)/2:0;
-            float x=25*1.7320508f*(world.home().hex.q+world.home().hex.r*.5f-qOffset)*camera.scale+camera.x;
+            float x=TileGeometry.DX*(world.home().hex.q+world.home().hex.r*.5f-qOffset)*camera.scale+camera.x;
             float y=25*1.5f*world.home().hex.r*camera.scale+camera.y;
             long now=SystemClock.uptimeMillis();
             MotionEvent down=MotionEvent.obtain(now,now,MotionEvent.ACTION_DOWN,x,y,0),up=MotionEvent.obtain(now,now+40,MotionEvent.ACTION_UP,x,y,0);

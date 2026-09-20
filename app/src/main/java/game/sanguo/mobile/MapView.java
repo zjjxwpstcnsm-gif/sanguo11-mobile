@@ -214,10 +214,10 @@ public final class MapView extends View {
     private Bundle pendingCamera;
     private final Typeface font=Typeface.create("sans-serif",Typeface.NORMAL);
     private final float density;
-    private static final float RADIUS=25,SQRT3=1.7320508f;
+    private static final float RADIUS=TileGeometry.RADIUS;
     private static final int PAPER=Color.rgb(232,224,199),GOLD=Color.rgb(230,191,119);
     public MapView(Context context,TileListener listener){
-        super(context);this.listener=listener;density=getResources().getDisplayMetrics().density;setContentDescription("六角格战略地图。拖动平移，双指缩放，点选城池或部队。");setFocusable(true);
+        super(context);this.listener=listener;density=getResources().getDisplayMetrics().density;setContentDescription("错列方格战略地图。拖动平移，双指缩放，点选城池或部队。");setFocusable(true);
         displayPrefs=context.getSharedPreferences("map-display",Context.MODE_PRIVATE);
         showMini=displayPrefs.getBoolean("navigator",true);showCommanders=displayPrefs.getBoolean("commanders",true);showUnitBars=displayPrefs.getBoolean("unitBars",true);
         BuildingAtlas.load(context);VisualAssets.load(context);
@@ -321,10 +321,10 @@ public final class MapView extends View {
     @Override protected void onAttachedToWindow(){super.onAttachedToWindow();if(overview!=null)overview.start(this);}
     @Override protected void onDetachedFromWindow(){stopCamera();if(overview!=null)overview.cancel();super.onDetachedFromWindow();}
     private float mapOffset(){return world!=null&&world.sourceMapWidth>0?(world.height-1)/2:0;}
-    private float x(Hex h){return RADIUS*SQRT3*(h.q+h.r*.5f-mapOffset());}
-    private float y(Hex h){return RADIUS*1.5f*h.r;}
-    private float worldWidth(){return RADIUS*SQRT3*((world.sourceMapWidth>0?world.sourceMapWidth-0.5f:world.width-1+(world.height-1)*.5f))+RADIUS*2;}
-    private float worldHeight(){return RADIUS*1.5f*(world.height-1)+RADIUS*2;}
+    private float x(Hex h){return TileGeometry.DX*(h.q+h.r*.5f-mapOffset());}
+    private float y(Hex h){return TileGeometry.DY*h.r;}
+    private float worldWidth(){return TileGeometry.DX*((world.sourceMapWidth>0?world.sourceMapWidth-0.5f:world.width-1+(world.height-1)*.5f))+RADIUS*2;}
+    private float worldHeight(){return TileGeometry.DY*(world.height-1)+RADIUS*2;}
     private void resizeCamera(){if(world!=null&&getWidth()>0&&getHeight()>0){camera.columnOffset=mapOffset();camera.resize(getWidth(),getHeight(),worldWidth(),worldHeight(),RADIUS,density);}}
     @Override protected void onSizeChanged(int w,int h,int oldw,int oldh){super.onSizeChanged(w,h,oldw,oldh);stopCamera();resizeCamera();applyPendingCamera();}
     public void fit(){pendingCamera=null;if(world==null||getWidth()==0)return;resizeCamera();glide(camera::fit);}
@@ -347,7 +347,7 @@ public final class MapView extends View {
             if(!multiTouch&&e.getPointerCount()==1&&(e.getActionMasked()==MotionEvent.ACTION_DOWN||e.getActionMasked()==MotionEvent.ACTION_MOVE)){
                 float q=Math.max(0,Math.min(miniWidth()-1,(e.getX()-miniRect.left)/miniRect.width()*miniWidth()));
                 float r=Math.max(0,Math.min(world.height-1,(e.getY()-miniRect.top)/miniRect.height()*world.height));
-                camera.centerOn(RADIUS*SQRT3*(world.sourceMapWidth>0?q:q+r*.5f),RADIUS*1.5f*r);invalidate();
+                camera.centerOn(TileGeometry.DX*(world.sourceMapWidth>0?q:q+r*.5f),TileGeometry.DY*r);invalidate();
             }
             if(e.getActionMasked()==MotionEvent.ACTION_UP)performClick();return true;
         }
@@ -377,9 +377,7 @@ public final class MapView extends View {
     private Hex hit(float px,float py){
         if(world==null)return null;
         float wx=(px-camera.x)/camera.scale,wy=(py-camera.y)/camera.scale;
-        float r=wy/(RADIUS*1.5f),q=wx/(RADIUS*SQRT3)-r*.5f+mapOffset(),z=-q-r;
-        int iq=Math.round(q),ir=Math.round(r),iz=Math.round(z);float dq=Math.abs(iq-q),dr=Math.abs(ir-r),dz=Math.abs(iz-z);
-        if(dq>dr&&dq>dz)iq=-ir-iz;else if(dr>dz)ir=-iq-iz;
+        int ir=TileGeometry.row(wy),iq=TileGeometry.column(wx,ir,mapOffset());
         Hex exact=new Hex(iq,ir);
         // Preserve precise tile commands while a unit is selected, including adjacent movement.
         if(moving>=0||pickTargets!=null)return world.inside(exact)?exact:null;
@@ -396,8 +394,8 @@ public final class MapView extends View {
         if(nearest!=null)return nearest.hex;
         return world.inside(exact)?exact:null;
     }
-    private static final float[] CORNER_X={.8660254f,.8660254f,0,-.8660254f,-.8660254f,0};
-    private static final float[] CORNER_Y={-.5f,.5f,1,.5f,-.5f,-1};
+    private static final float[] CORNER_X=TileGeometry.CORNER_X;
+    private static final float[] CORNER_Y=TileGeometry.CORNER_Y;
     private void polygon(float cx,float cy,float radius){path.rewind();for(int i=0;i<6;i++){float px=cx+CORNER_X[i]*radius,py=cy+CORNER_Y[i]*radius;if(i==0)path.moveTo(px,py);else path.lineTo(px,py);}path.close();}
     private void fill(Canvas c,int color){paint.setStyle(Paint.Style.FILL);paint.setColor(color);c.drawPath(path,paint);}
     private void stroke(Canvas c,int color,float width){paint.setStyle(Paint.Style.STROKE);paint.setColor(color);paint.setStrokeWidth(width);c.drawPath(path,paint);paint.setStyle(Paint.Style.FILL);}
@@ -581,10 +579,10 @@ public final class MapView extends View {
         miniRect.set(right-mw,48*density,right,48*density+mh);
     }
     private float miniX(float wx,float wy){
-        float r=wy/(RADIUS*1.5f),q=wx/(RADIUS*SQRT3)-(world.sourceMapWidth>0?0:r*.5f);
+        float r=wy/(TileGeometry.DY),q=wx/(TileGeometry.DX)-(world.sourceMapWidth>0?0:r*.5f);
         return miniRect.left+q/miniWidth()*miniRect.width();
     }
-    private float miniY(float wy){return miniRect.top+wy/(RADIUS*1.5f)/world.height*miniRect.height();}
+    private float miniY(float wy){return miniRect.top+wy/(TileGeometry.DY)/world.height*miniRect.height();}
     private void drawNavigator(Canvas c){
         layoutNavigator();paint.setColor(0xf010272b);c.drawRoundRect(miniButton,6*density,6*density,paint);
         label(c,showMini?"小地图  − 收起":"小地图  ＋ 展开",miniButton.centerX(),miniButton.centerY()+4*density,11*density,PAPER);
