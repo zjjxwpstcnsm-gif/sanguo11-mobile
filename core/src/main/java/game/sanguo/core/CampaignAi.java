@@ -183,7 +183,7 @@ public final class CampaignAi {
         return best;
     }
     private int controlValueNormal(World.Unit u){return 250+Math.min(700,u.troops/10);}
-    public World.Result execute(Action a){World.Result result=executeAction(a);if(result.ok)actedProductively=true;return result;}
+    public World.Result execute(Action a){w.reports.prepare();World.Result result=executeAction(a);if(result.ok)actedProductively=true;return result;}
     private World.Result executeAction(Action a){
         if(a==null)return w.fail("暂无可执行战术");
         switch(a.kind){

@@ -30,7 +30,7 @@ public final class WorldEvents {
     public Camp camp(int id){for(Camp c:camps)if(c.id==id)return c;return null;}
     public Tribe region(int city){return regions.getOrDefault(city,Tribe.BANDIT);}
     public String cityStatus(int city){Hazard h=hazards.get(city);String text=h==null?"无灾害":h.kind.label+" · 剩"+Math.max(0,h.until-w.turn)+"旬";for(Camp c:camps)if(c.city==city)text+=" · "+c.tribe.label+"营寨 "+c.troops+"兵";return text;}
-    public World.Result toggle(){
+    public World.Result toggle(){w.reports.prepare();
         if(w.commandsBlocked()||w.gameOver()||w.active!=w.player)return w.fail("当前不能变更灾害设置");
         enabled=!enabled;return w.success(enabled?"已开启季节灾害和月度贼患":"已停止产生新灾害和贼患；已有灾害和营寨仍会结算");
     }
@@ -62,7 +62,7 @@ public final class WorldEvents {
         World.Unit u=w.unit(unit);String error=w.orders.combatError(u);if(error!=null)return error;Camp c=camp(camp);
         return c==null||u.hex.distance(c.hex)<1||u.hex.distance(c.hex)>w.war.range(u)?"请选择射程内贼寨":null;
     }
-    public World.Result attack(int unit,int camp){
+    public World.Result attack(int unit,int camp){w.reports.prepare();
         String error=attackError(unit,camp);if(error!=null)return w.fail(error);World.Unit u=w.unit(unit);Camp c=camp(camp);u.acted=true;
         int hit=Math.min(c.troops,300+w.army.war(u)*6+u.troops/12);c.troops-=hit;
         w.battleImpact(c.hex,c.troops==0);int counter=0;if(c.troops==0){camps.remove(c);u.gold=Math.min(10000,u.gold+500);w.campaign.earn(u.owner,50);w.government.earn(u.officerId,200);}

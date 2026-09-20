@@ -57,7 +57,7 @@ public final class Government {
         return p.unitId>=0?(u==null?"押送部队失联":"随"+w.officer(u.officerId).name+"部队行军（"+u.hex.q+","+u.hex.r+"）"):(c==null?"关押地失联":c.name+"（关押）");
     }
     public String status(int officer){Prisoner p=prisoner(officer);return p==null?"":"被"+w.faction(p.captor)+"俘虏 · "+locationLabel(p);}
-    public World.Result appointRank(int city,int actor,int target,String rankId){
+    public World.Result appointRank(int city,int actor,int target,String rankId){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(actor),t=w.officer(target);Rank r=rank(rankId);
         String error=w.cityError(c,o,100);if(error!=null)return w.fail(error);
         if(t==null||t.owner!=c.owner||t.cityId!=city||t.unitId>=0||captive(target)||w.strategy.busy(target)||w.domestic.busy(target)||t.role==Strategy.Role.RULER)return w.fail("需本城未出征或执行任务的非君主武将");
@@ -66,12 +66,12 @@ public final class Government {
         w.spend(c,o,100);ranks.put(target,rankId);t.acted=true;t.loyalty=Math.min(100,t.loyalty+5);
         return w.success(t.name+"受任"+rankId+"，统兵上限"+r.troops+"，月俸"+r.salary);
     }
-    public World.Result removeRank(int city,int actor,int target){
+    public World.Result removeRank(int city,int actor,int target){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(actor),t=w.officer(target);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
         if(t==null||t.owner!=c.owner||t.cityId!=city||t.unitId>=0||office(target)==null||w.strategy.busy(target)||w.domestic.busy(target))return w.fail("请选择本城可免官武将");
         w.spend(c,o,0);ranks.remove(target);t.acted=true;int lost=w.loyalty.lose(t,5);return w.success(t.name+"被免官，忠诚下降"+lost);
     }
-    public World.Result appointAdvisor(int city,int actor,int target){
+    public World.Result appointAdvisor(int city,int actor,int target){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(actor),t=w.officer(target);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
         if(t==null||!w.idle(c).contains(t)||t.intelligence<70||t.role==Strategy.Role.RULER||advisor(c.owner)==t)return w.fail("军师须为本城未行动、智力至少70的非君主武将");
         w.spend(c,o,0);advisors.put(c.owner,target);t.acted=true;return w.success(t.name+"出任军师");
@@ -86,11 +86,11 @@ public final class Government {
         if(!w.strategy.recruitmentTargets(city).isEmpty())return name+"：本城附近有可登用人才。";
         return name+"：保持粮草和兵装储备，利用闲将建设、研究或训练。";
     }
-    public World.Result summon(int targetCity,int officer){
+    public World.Result summon(int targetCity,int officer){w.reports.prepare();
         World.Officer o=w.officer(officer);if(o==null||captive(officer))return w.fail("武将不可召唤");
         return w.domestic.transfer(o.cityId,targetCity,officer);
     }
-    public World.Result delegate(int city,int actor,Policy p){
+    public World.Result delegate(int city,int actor,Policy p){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(actor);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
         if(p==null||p==policy(city))return w.fail("委任方针未变化");
         w.spend(c,o,0);if(p==Policy.MANUAL)policies.remove(city);else policies.put(city,p);
@@ -215,7 +215,7 @@ public final class Government {
         String error=w.cityError(w.city(city),w.officer(actor),gold);if(error!=null)return error;
         Prisoner p=prisoner(target);return p==null||p.captor!=w.active||p.cityId!=city?"请选择本城关押的俘虏":null;
     }
-    public World.Result recruitPrisoner(int city,int actor,int target){
+    public World.Result recruitPrisoner(int city,int actor,int target){w.reports.prepare();
         String error=prisonerError(city,actor,target,100);if(error!=null)return w.fail(error);
         Prisoner p=prisoner(target);int chance=recruitChance(actor,target);
         if(chance==0||p.lastAttempt==w.turn)return w.fail("在位君主不降，且每名俘虏每旬只能尝试一次");
@@ -224,7 +224,7 @@ public final class Government {
         prisoners.remove(target);allegianceChanged(target);t.owner=c.owner;t.cityId=city;t.role=Strategy.Role.OFFICER;t.loyalty=70;t.lastRewardTurn=-1;t.acted=true;
         return w.success(t.name+"接受招降，加入"+w.faction(c.owner));
     }
-    public World.Result release(int city, int actor, int target) {
+    public World.Result release(int city, int actor, int target) {w.reports.prepare();
         String error = prisonerError(city, actor, target, 0);
         if (error != null) {
             return this.w.fail(error);
@@ -239,7 +239,7 @@ public final class Government {
         return this.w.success(old >= 0 ? "俘虏已释放，双方关系改善" : "俘虏已释放，成为在野武将");
     }
     public int ransomCost(int officer){World.Officer o=w.officer(officer);return o==null?0:500+10*Math.max(o.war,Math.max(o.intelligence,o.politics));}
-    public World.Result ransom(int city,int actor,int target){
+    public World.Result ransom(int city,int actor,int target){w.reports.prepare();
         World.City c=w.city(city);World.Officer t=w.officer(target);Prisoner p=prisoner(target);int cost=ransomCost(target);
         String error=w.cityError(c,w.officer(actor),cost);if(error!=null)return w.fail(error);
         if(p==null||t.owner!=c.owner||p.captor==c.owner)return w.fail("请选择被其他势力俘虏的己方武将");

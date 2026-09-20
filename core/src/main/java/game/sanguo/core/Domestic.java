@@ -146,7 +146,7 @@ public final class Domestic {
         Facility f=facility(target);List<Facility> result=new ArrayList<>();if(f==null||f.remaining>0||f.level>=3||!mergeable(f.kind))return result;
         for(Facility other:facilities)if(other.id!=f.id&&other.cityId==f.cityId&&other.kind==f.kind&&other.remaining==0&&other.level==1&&other.hex.distance(f.hex)==1)result.add(other);return result;
     }
-    public World.Result merge(int target,int consumed,int officer){
+    public World.Result merge(int target,int consumed,int officer){w.reports.prepare();
         Facility f=facility(target),material=facility(consumed);if(f==null||material==null||!mergeCandidates(target).contains(material))return w.fail("需要相邻同类Lv1设施，目标等级须低于Lv3");
         World.City c=w.city(f.cityId);World.Officer o=w.officer(officer);String error=w.cityError(c,o,200);if(error!=null)return w.fail(error);
         w.spend(c,o,200);facilities.remove(material);f.upgradeTo=f.level+1;f.builderId=o.id;f.remaining=2;
@@ -173,7 +173,7 @@ public final class Domestic {
         result.sort(Comparator.comparingInt((Hex h)->h.distance(c.hex)).thenComparingInt(h->h.q).thenComparingInt(h->h.r));
         return result;
     }
-    public World.Result build(int cityId,int officerId,Kind kind,Hex h){
+    public World.Result build(int cityId,int officerId,Kind kind,Hex h){w.reports.prepare();
         if(kind==null)return w.fail("设施类型无效");
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,kind.cost);
         if(error!=null)return w.fail(error);
@@ -188,14 +188,14 @@ public final class Domestic {
         facility.level=buildLevel(kind);facilities.add(facility);
         return w.success(o.name+"开始建设"+kind.label+" Lv"+facility.level+"，需要"+turns+"旬");
     }
-    public World.Result cancelBuild(int id){
+    public World.Result cancelBuild(int id){w.reports.prepare();
         Facility f=facility(id);
         if(w.commandsBlocked()||w.gameOver()||f==null||w.city(f.cityId).owner!=w.active||f.remaining==0)return w.fail("没有可取消的己方建设");
         w.officer(f.builderId).acted=true;
         if(f.upgradeTo>0){f.upgradeTo=0;f.remaining=0;f.builderId=-1;return w.success("已取消合并，保留原等级；费用和已吸收设施不退还");}
         facilities.remove(f);return w.success("已取消"+f.kind.label+"建设，不退还费用");
     }
-    public World.Result demolish(int id,int officerId){
+    public World.Result demolish(int id,int officerId){w.reports.prepare();
         Facility f=facility(id);if(f==null||f.remaining!=0)return w.fail("请选择已完成设施");
         World.City c=w.city(f.cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,0);
         if(error!=null)return w.fail(error);
@@ -221,14 +221,14 @@ public final class Domestic {
         if(!lost.isEmpty())w.note(c.name+"战乱损毁内政设施"+lost.size()+"座："+String.join("、",lost));
         return lost;
     }
-    public World.Result transfer(int source,int target,int officer){return dispatch(source,target,officer,new int[0],false,0,0,0,new int[4],false,false);}
-    public World.Result transport(int source,int target,int officer,int gold,int food,int troops,int[] equipment){return transport(source,target,officer,new int[0],gold,food,troops,equipment,false,false);}
-    public World.Result transportSea(int source,int target,int officer,int gold,int food,int troops,int[] equipment){return transport(source,target,officer,new int[0],gold,food,troops,equipment,true,false);}
-    public World.Result transport(int source,int target,int officer,int[] deputies,int gold,int food,int troops,int[] equipment,boolean sea,boolean returnOfficers){
+    public World.Result transfer(int source,int target,int officer){w.reports.prepare();return dispatch(source,target,officer,new int[0],false,0,0,0,new int[4],false,false);}
+    public World.Result transport(int source,int target,int officer,int gold,int food,int troops,int[] equipment){w.reports.prepare();return transport(source,target,officer,new int[0],gold,food,troops,equipment,false,false);}
+    public World.Result transportSea(int source,int target,int officer,int gold,int food,int troops,int[] equipment){w.reports.prepare();return transport(source,target,officer,new int[0],gold,food,troops,equipment,true,false);}
+    public World.Result transport(int source,int target,int officer,int[] deputies,int gold,int food,int troops,int[] equipment,boolean sea,boolean returnOfficers){w.reports.prepare();
         return dispatch(source,target,officer,deputies,true,gold,food,troops,equipment,sea,returnOfficers);
     }
     public String shipCargoError(int source,int[] ships){World.City c=w.city(source);if(c==null||ships==null||ships.length!=2)return "舰船货物无效";for(int i=0;i<2;i++)if(ships[i]<0||ships[i]>100||ships[i]>c.ships[i])return "舰船货物超过库存或100上限";return null;}
-    public World.Result transport(int source,int target,int officer,int[] deputies,int gold,int food,int troops,int[] equipment,boolean sea,boolean returning,int[] ships){
+    public World.Result transport(int source,int target,int officer,int[] deputies,int gold,int food,int troops,int[] equipment,boolean sea,boolean returning,int[] ships){w.reports.prepare();
         String error=shipCargoError(source,ships);if(error!=null)return w.fail(error);
         World.Result result=transport(source,target,officer,deputies,gold,food,troops,equipment,sea,returning);if(!result.ok)return result;
         Mission m=missions.get(missions.size()-1);for(int i=0;i<2;i++){m.cargoShips[i]=ships[i];w.city(source).ships[i]-=ships[i];}return result;
@@ -282,7 +282,7 @@ public final class Domestic {
         if(gold<0||gold>100000||food<0||food>200000||troops<0||troops>20000||equipment==null||(equipment.length!=4&&equipment.length!=World.Weapon.values().length))return false;
         for(int i=0;i<equipment.length;i++)if(equipment[i]<0||equipment[i]>(i==World.Weapon.SWORD.ordinal()?0:i>4?100:20000))return false;return true;
     }
-    public World.Result redirect(int id,int target){
+    public World.Result redirect(int id,int target){w.reports.prepare();
         Mission m=mission(id);World.City c=w.city(target);
         if(w.commandsBlocked()||w.gameOver()||m==null||m.owner!=w.active||c==null||c.owner!=m.owner||target==m.targetCity)return w.fail("请选择本势力在途任务与新的己方目的地");
         if(w.actionPoints[w.active]<10)return w.fail("行动力不足10");
@@ -437,7 +437,7 @@ public final class Domestic {
             }
         }
     }
-    public World.Result unload(Mission m,int city){
+    public World.Result unload(Mission m,int city){w.reports.prepare();
         World.City c=w.city(city);
         if(mission(m.id)!=m||!m.transport||c==null||c.owner!=m.owner||m.hex.distance(c.hex)>1)return w.fail("请选择相邻己方城池");
         String permission=w.districts.dispatchError(m.sourceCity,city,true);if(permission!=null)return w.fail(permission);

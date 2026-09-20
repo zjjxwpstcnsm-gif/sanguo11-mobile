@@ -80,7 +80,7 @@ public final class StrategicAi {
         choices.sort(Comparator.comparingInt((Decision d)->-d.priority).thenComparingInt(d->d.command.ordinal()).thenComparingInt(d->d.officerId).thenComparingInt(d->d.targetId));
         return choices.isEmpty()?null:choices.get(0);
     }
-    public World.Result execute(Decision d){
+    public World.Result execute(Decision d){w.reports.prepare();
         if(d==null)return w.fail("无可执行战略决策");
         switch(d.command){
             case SEARCH:return w.strategy.search(d.cityId,d.officerId);

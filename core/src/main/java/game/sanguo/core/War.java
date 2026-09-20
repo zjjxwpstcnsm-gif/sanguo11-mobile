@@ -107,7 +107,7 @@ public final class War {
         if(!w.army.water(a.hex)&&a.weapon==World.Weapon.CROSSBOW&&w.terrain[b.hex.q][b.hex.r]==World.Terrain.FOREST&&!w.skills.has(a,Skill.SHESHOU))return "射向森林需要射手特技";
         return null;
     }
-    public World.Result attack(int actor,int target){
+    public World.Result attack(int actor,int target){w.reports.prepare();
         String error=attackError(actor,target);if(error!=null)return w.fail(error);
         World.Unit a=w.unit(actor),b=w.unit(target);
         w.visualAction(TurnJournal.Kind.ATTACK,actor,b.hex,"攻击");
@@ -186,7 +186,7 @@ public final class War {
         if(friendly&&!p.friendlyRisk)text.append("\n警示：范围伤害会波及己方部队。");
         return new Displacement.Preview(null,text.toString(),p.actorPath,p.targetPath,risks,p.blocked,friendly);
     }
-    public World.Result tactic(int actor,int target,Tactic tactic){
+    public World.Result tactic(int actor,int target,Tactic tactic){w.reports.prepare();
         String error=tacticError(actor,target,tactic);if(error!=null)return w.fail(error);
         World.Unit a=w.unit(actor),b=w.unit(target);w.visualAction(TurnJournal.Kind.TACTIC,actor,b.hex,tactic.label);int chance=tacticChance(actor,target,tactic);w.marches.supersede(a);a.acted=true;w.energy.change(a,-tactic.energy,EnergyRules.Reason.COMMAND);w.battleImpact(b.hex,false);
         if(w.strategy.nextInt(100)>=chance)return w.success(w.officer(a.officerId).name+"的"+tactic.label+"未命中，消耗气力"+tactic.energy+"，本旬行动结束");
@@ -243,7 +243,7 @@ public final class War {
     }
     public int plotCost(int actor,Plot plot){World.Unit a=w.unit(actor);return a==null||plot==null?0:w.skills.plotCost(a,plot);}
     public int plotRange(int actor,Plot plot){World.Unit a=w.unit(actor);return a==null||plot==null?0:w.skills.plotRange(a,plot);}
-    public World.Result plot(int actor,Hex target,Plot plot){
+    public World.Result plot(int actor,Hex target,Plot plot){w.reports.prepare();
         String error=plotError(actor,target,plot);if(error!=null)return w.fail(error);
         World.Unit a=w.unit(actor),b=w.unitAt(target);w.visualAction(TurnJournal.Kind.PLOT,actor,target,plot.label);a.acted=true;w.energy.change(a,-plotCost(actor,plot),EnergyRules.Reason.COMMAND);
         boolean success=resolvePlot(a,b,target,plot,true);
@@ -292,7 +292,7 @@ public final class War {
             Hex h=new Hex(q,r);if(c.hex.distance(h)<=3&&c.hex.distance(h)>=2&&!Fieldworks.blockedMilitaryTerrain(w.terrain[q][r])&&vacant(h,World.Weapon.SPEAR)&&fireAt(h)==null&&w.cities.stream().noneMatch(other->other.hex.distance(h)<=1))result.add(h);
         }return result;
     }
-    public World.Result build(int city,int officer,StructureKind kind,Hex h){
+    public World.Result build(int city,int officer,StructureKind kind,Hex h){w.reports.prepare();
         if(kind==null)return w.fail("设施类型无效");World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,kind.gold);if(error!=null)return w.fail(error);
         if(structures.size()>=1000||nextStructureId>=10000000)return w.fail("军事设施已达上限");
         if(!buildSites(city).contains(h))return w.fail("请选择城池两至三格内空地，不可堵塞城池出口");
@@ -310,7 +310,7 @@ public final class War {
         return null;
     }
     public int facilityDamage(int unit){World.Unit u=w.unit(unit);return u==null?0:w.combat.structureDamage(u,false);}
-    public World.Result attackFacility(int unit,Hex h){
+    public World.Result attackFacility(int unit,Hex h){w.reports.prepare();
         String error=facilityAttackError(unit,h);if(error!=null)return w.fail(error);
         World.Unit u=w.unit(unit);Domestic.Facility f=w.domestic.at(h);w.visualAction(TurnJournal.Kind.ATTACK,unit,h,"攻击设施");w.marches.supersede(u);u.acted=true;
         int amount=w.domestic.damage(f,facilityDamage(unit));w.battleImpact(h,f.hp==0);w.campaign.earn(u.owner,20);
@@ -331,19 +331,19 @@ public final class War {
         if(!w.army.canAttackUnit(u))return "兵器需要使用战法";
         return null;
     }
-    public World.Result attackStructure(int unit,Hex h){
+    public World.Result attackStructure(int unit,Hex h){w.reports.prepare();
         String error=structureAttackError(unit,h);if(error!=null)return w.fail(error);World.Unit u=w.unit(unit);Structure s=at(h);w.visualAction(TurnJournal.Kind.ATTACK,unit,h,"攻击工事");
         if(!w.army.canAttackUnit(u))return w.army.tactic(unit,h,w.army.tactics(u).get(0));
         w.marches.supersede(u);int damage=Math.min(s.hp,w.combat.structureDamage(u,false));u.acted=true;s.hp-=damage;
         w.battleImpact(h,s.hp<=0);if(s.hp<=0){w.fieldworks.destroy(s);w.battleOutcome(s.kind.label+"已摧毁，地块已释放");}else w.fieldworks.counter(s,u);w.campaign.earn(u.owner,20);return w.success("攻击"+s.kind.label+"，耐久减少"+damage);
     }
-    public World.Result removeStructure(int city,int officer,int id){
+    public World.Result removeStructure(int city,int officer,int id){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
         Structure s=null;for(Structure item:structures)if(item.id==id)s=item;
         if(s==null||s.owner!=c.owner||s.hex.distance(c.hex)>3)return w.fail("请选择本城三格内己方军事设施");
         w.spend(c,o,0);w.fieldworks.destroy(s);return w.success("已拆除"+s.kind.label);
     }
-    public World.Result waitUnit(int unit){World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return w.fail(error);w.marches.supersede(u);u.acted=true;w.energy.change(u,5,EnergyRules.Reason.WAIT);return w.success("部队待命，恢复5气力");}
+    public World.Result waitUnit(int unit){w.reports.prepare();World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return w.fail(error);w.marches.supersede(u);u.acted=true;w.energy.change(u,5,EnergyRules.Reason.WAIT);return w.success("部队待命，恢复5气力");}
     void resetOwner(int owner){
         for(World.Unit u:new ArrayList<>(w.fieldUnits()))if(u.owner==owner&&u.status!=Status.NORMAL){
             if(u.statusTurns<=0){u.status=Status.NORMAL;continue;}

@@ -37,7 +37,7 @@ final class BattleReportUi {
         time.setOnItemSelectedListener(listener);scope.setOnItemSelectedListener(listener);kind.setOnItemSelectedListener(listener);
         search.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void onTextChanged(CharSequence s,int start,int before,int count){refresh();}public void afterTextChanged(Editable e){}});
         int selected=turns.indexOf(preferredTurn);time.setSelection(selected<0?0:selected);
-        dialog.setOnShowListener(v->{int height=Math.max(260,Math.min(720,a.getResources().getConfiguration().screenHeightDp-145));root.setLayoutParams(new FrameLayout.LayoutParams(-1,a.dp(height)));dialog.getWindow().setLayout(a.dp(Math.min(640,a.getResources().getConfiguration().screenWidthDp-16)),-2);dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(view->refresh());refresh();});
+        dialog.setOnShowListener(v->{int height=Math.max(260,Math.min(720,a.getResources().getConfiguration().screenHeightDp-145));ViewGroup.LayoutParams size=root.getLayoutParams();size.height=a.dp(height);root.setLayoutParams(size);dialog.getWindow().setLayout(a.dp(Math.min(640,a.getResources().getConfiguration().screenWidthDp-16)),-2);dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(view->refresh());refresh();});
         dialog.show();a.trackDialog(dialog);dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
     private Spinner spinner(List<String> values){Spinner result=new Spinner(a);ArrayAdapter<String> data=new ArrayAdapter<String>(a,android.R.layout.simple_spinner_item,values){

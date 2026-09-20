@@ -45,14 +45,14 @@ public final class Treasures {
     void place(Definition d,Place p,int holder){items.put(d.id,new Item(d,p,holder));}
     public String location(Item i){return i.place==Place.OFFICER?w.officer(i.holder).name:i.place==Place.TREASURY?w.faction(i.holder)+"府库":w.city(i.holder).name+"未发现";}
     public String describe(int officer){StringBuilder out=new StringBuilder();for(Item i:held(officer))out.append(i.definition.name).append(" · ").append(i.definition.kind.label).append('\n');return out.length()==0?"无已持有宝物":out.toString().trim();}
-    public World.Result award(int city,int actor,String id,int target){
+    public World.Result award(int city,int actor,String id,int target){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(actor),t=w.officer(target);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
         Item i=item(id);if(i==null||i.place!=Place.TREASURY||i.holder!=c.owner)return w.fail("请选择本势力府库中的宝物");
         if(t==null||t.owner!=c.owner||t.cityId!=city||t.unitId>=0||w.government.captive(target)||w.strategy.busy(target)||w.domestic.busy(target))return w.fail("请选择本城无任务的己方武将");
         w.spend(c,o,0);place(i.definition,Place.OFFICER,target);t.loyalty=Math.min(100,t.loyalty+i.definition.value);
         return w.success("赏赐"+t.name+"："+i.definition.name+"，忠诚提升至"+t.loyalty);
     }
-    public World.Result confiscate(int city,int actor,String id){
+    public World.Result confiscate(int city,int actor,String id){w.reports.prepare();
         World.City c=w.city(city);String error=w.cityError(c,w.officer(actor),0);if(error!=null)return w.fail(error);
         Item i=item(id);World.Officer t=i!=null&&i.place==Place.OFFICER?w.officer(i.holder):null;
         if(t==null||t.owner!=c.owner||t.cityId!=city||t.unitId>=0||w.government.captive(t.id)||w.strategy.busy(t.id)||w.domestic.busy(t.id))return w.fail("请选择本城无任务的己方持宝武将");

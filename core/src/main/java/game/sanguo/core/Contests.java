@@ -66,7 +66,7 @@ public final class Contests {
         World.Unit a=w.unit(actor),b=w.unit(target);if(a==null||b==null)return 0;
         return Math.max(15,Math.min(90,60+(war(w.officer(b.officerId))-war(w.officer(a.officerId)))/2));
     }
-    public World.Result challenge(int actor,int target){
+    public World.Result challenge(int actor,int target){w.reports.prepare();
         String error=duelError(actor,target);if(error!=null)return w.fail(error);
         World.Unit a=w.unit(actor),b=w.unit(target);int chance=acceptance(actor,target);
         w.energy.change(a,-10,EnergyRules.Reason.COMMAND);a.acted=true;
@@ -91,7 +91,7 @@ public final class Contests {
         }
         return null;
     }
-    public World.Result persuade(int city,int actor,int target){
+    public World.Result persuade(int city,int actor,int target){w.reports.prepare();
         String error=debateError(city,actor,target);if(error!=null)return w.fail(error);
         w.spend(w.city(city),w.officer(actor),100);w.officer(target).acted=true;
         session=new Session(nextId++,w.active,w.turn,actor,target,city);session.debate=new Debate(w,actor,target);
@@ -113,7 +113,7 @@ public final class Contests {
         if(session.owner!=w.active||session.turn!=w.turn||session.isDuel()!=duel)return "对局状态不匹配";
         return null;
     }
-    public World.Result duelMove(int id,int revision,Duel.Stance stance,Duel.Move move,int replacement){
+    public World.Result duelMove(int id,int revision,Duel.Stance stance,Duel.Move move,int replacement){w.reports.prepare();
         String error=currentError(id,revision,true);if(error!=null)return w.fail(error);
         if(stance==null)return w.fail("请选择行动方针");
         error=session.duel.error(w,0,move,replacement);if(error!=null)return w.fail(error);
@@ -121,20 +121,20 @@ public final class Contests {
         if(session.duel.winner!=-2)return finishDuel();
         return w.success(session.duel.report);
     }
-    public World.Result debateCard(int id,int revision,int index){
+    public World.Result debateCard(int id,int revision,int index){w.reports.prepare();
         String error=currentError(id,revision,false);if(error!=null)return w.fail(error);
         error=session.debate.error(index);if(error!=null)return w.fail(error);
         session.debate.play(w,index);session.revision++;
         return w.success(session.debate.report);
     }
-    public World.Result rethink(int id,int revision){
+    public World.Result rethink(int id,int revision){w.reports.prepare();
         String error=currentError(id,revision,false);if(error!=null)return w.fail(error);
         Debate d=session.debate;if(d.winner!=-2||!d.left.canRethink())return w.fail("目前不能再考，心理台阶下降后恢复一次机会");
         // Even a calm fury gets only one rethink per exchange. Reset is keyed to rounds, not clicks.
         if(d.left.fury>0&&d.left.temper==Debate.Temper.CALM&&!d.left.rethink)return w.fail("本合已经再考");
         d.rethink(w);session.revision++;return w.success(d.report);
     }
-    public World.Result finishDebate(int id,int revision,boolean mercy){
+    public World.Result finishDebate(int id,int revision,boolean mercy){w.reports.prepare();
         String error=currentError(id,revision,false);if(error!=null)return w.fail(error);
         Debate d=session.debate;if(d.winner==-2)return w.fail("请先完成舌战");
         World.Officer actor=w.officer(session.leftRef),target=w.officer(session.rightRef);
@@ -155,7 +155,7 @@ public final class Contests {
         session=null;lastResult=text;return w.success(text);
     }
     /** Conceding is a paid outcome, not cancelling the already-started command. */
-    public World.Result concede(int id,int revision){
+    public World.Result concede(int id,int revision){w.reports.prepare();
         if(session==null)return w.fail("没有正在进行的对局");
         String error=currentError(id,revision,session.isDuel());if(error!=null)return w.fail(error);
         if(session.isDuel()){

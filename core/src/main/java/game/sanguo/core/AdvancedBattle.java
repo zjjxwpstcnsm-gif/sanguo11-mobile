@@ -39,7 +39,7 @@ public final class AdvancedBattle {
         if(!group.contains(a)||group.size()<2)return "齐攻需要至少两支相邻、未行动的陆上近战部队";
         return null;
     }
-    public World.Result joint(int actor,int target){
+    public World.Result joint(int actor,int target){w.reports.prepare();
         String error=jointError(actor,target);if(error!=null)return w.fail(error);
         World.Unit a=w.unit(actor),b=w.unit(target);
         if(w.skills.has(b,Skill.TIEBI))return w.war.attack(actor,target);

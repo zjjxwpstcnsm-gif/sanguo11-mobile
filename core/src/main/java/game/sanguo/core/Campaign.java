@@ -109,7 +109,7 @@ public final class Campaign {
         return side<0||side>=w.factions.length||side==w.active||!w.alive(side)?"请选择另一个存活势力":null;
     }
     private void relation(int a,int b,int change){w.strategy.setFactionRelation(a,b,Math.max(-100,Math.min(100,w.strategy.factionRelation(a,b)+change)));}
-    public World.Result goodwill(int city, int officer, int side) {
+    public World.Result goodwill(int city, int officer, int side) {w.reports.prepare();
         World.City c = this.w.city(city);
         World.Officer o = this.w.officer(officer);
         String error = foreignError(c, o, side, 500);
@@ -131,7 +131,7 @@ public final class Campaign {
         World.Officer o=w.officer(officer);if(o==null||side<0||side>=w.factions.length||side==o.owner||kind==null)return 0;
         return Math.max(10,Math.min(95,35+o.politics/3+w.strategy.factionRelation(o.owner,side)/3+(kind==TreatyKind.CEASEFIRE?15:0)));
     }
-    public World.Result negotiate(int city, int officer, int side, TreatyKind kind, int turns) {
+    public World.Result negotiate(int city, int officer, int side, TreatyKind kind, int turns) {w.reports.prepare();
         StringBuilder sb;
         StringBuilder sbAppend;
         World.City c = this.w.city(city);
@@ -175,7 +175,7 @@ public final class Campaign {
     void concludeTreaty(int owner,int side,TreatyKind kind,int turns){
         treaties.removeIf(t->t.a==Math.min(owner,side)&&t.b==Math.max(owner,side));treaties.add(new Treaty(owner,side,kind,w.turn+turns));relation(owner,side,10);earn(owner,50);w.districts.cleanup();
     }
-    public World.Result breakTreaty(int city,int officer,int side){
+    public World.Result breakTreaty(int city,int officer,int side){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=foreignError(c,o,side,0);if(error!=null)return w.fail(error);
         Treaty t=treaty(c.owner,side);if(t==null)return w.fail("没有可解除的协定");
         w.spend(c,o,0);treaties.remove(t);relation(c.owner,side,-50);
@@ -187,7 +187,7 @@ public final class Campaign {
         int defense=40;for(World.Officer guard:w.officers)if(guard.owner==c.owner&&guard.cityId==c.id)defense=Math.max(defense,guard.intelligence);
         return Math.max(10,Math.min(90,60+(o.intelligence-defense)/2));
     }
-    public World.Result rumor(int city, int officer, int targetCity) {
+    public World.Result rumor(int city, int officer, int targetCity) {w.reports.prepare();
         World.City c = this.w.city(city);
         World.City target = this.w.city(targetCity);
         World.Officer o = this.w.officer(officer);
@@ -223,7 +223,7 @@ public final class Campaign {
         int ask=100+((month/3+c.id%3)%4)*20;return buy?ask:ask*4/5;
     }
     public int traded(int city){return traded.getOrDefault(city,0);}
-    public World.Result trade(int city,int officer,boolean buy,int food){
+    public World.Result trade(int city,int officer,boolean buy,int food){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(officer);
         if(food<1000||food>20000||food%1000!=0)return w.fail("交易量须为1000至20000的整千粮");
         int price=food/1000*foodPrice(city,buy);String error=w.cityError(c,o,buy?price:0);if(error!=null)return w.fail(error);
@@ -243,14 +243,14 @@ public final class Campaign {
         for(Project p:projects)if(p.owner==c.owner&&p.tech!=null)return "本势力已有进行中的技巧研究";
         return null;
     }
-    public World.Result research(int city,int officer,Tech tech){
+    public World.Result research(int city,int officer,Tech tech){w.reports.prepare();
         String error=researchError(city,officer,tech);if(error!=null)return w.fail(error);
         World.City c=w.city(city);World.Officer o=w.officer(officer);w.spend(c,o,w.skills.researchGold(officer,tech));points.put(c.owner,points(c.owner)-tech.points);
         Project project=new Project(c.owner,city,officer,tech,null);projects.add(project);o.otherTask=project.label();o.otherTaskTurns=tech.turns;
         return w.success(o.name+"开始"+project.label()+"，需要"+tech.turns+"旬");
     }
     public int researchGold(int officer,Tech tech){return w.skills.researchGold(officer,tech);}
-    public World.Result cancelProject(int officer){
+    public World.Result cancelProject(int officer){w.reports.prepare();
         Project p=projects.stream().filter(x->x.officerId==officer).findFirst().orElse(null);
         if(w.commandsBlocked()||w.gameOver()||p==null||p.owner!=w.active)return w.fail("请选择本势力研究或培养任务");
         projects.remove(p);if(p.tech!=null)legacyTechs.getOrDefault(p.owner,EnumSet.noneOf(Tech.class)).remove(p.tech);World.Officer o=w.officer(officer);o.otherTask="";o.otherTaskTurns=0;o.acted=true;
@@ -260,7 +260,7 @@ public final class Campaign {
         World.Officer o=w.officer(officer);if(o==null||study==null)return 0;
         switch(study){case LEADERSHIP:return o.leadership;case WAR:return o.war;case INTELLIGENCE:return o.intelligence;case POLITICS:return o.politics;case CHARM:return o.charm;default:return o.aptitude[study.index-5];}
     }
-    public World.Result study(int city,int officer,Study study){
+    public World.Result study(int city,int officer,Study study){w.reports.prepare();
         if(study==null)return w.fail("培养项目无效");
         for(AbilityResearch.Node n:w.abilities.visible(w.active))if(n.category!=AbilityResearch.Category.SKILL&&
             (n.category==AbilityResearch.Category.STAT?n.index:n.index+5)==study.index&&w.abilities.trainingError(city,officer,n.id,false)==null)
@@ -268,13 +268,13 @@ public final class Campaign {
         return w.fail("请先完成对应PK能力研究，并检查能力上限、培养次数和同类任务");
     }
 
-    public World.Result repair(int city,int officer){
+    public World.Result repair(int city,int officer){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,300);if(error!=null)return w.fail(error);
         if(c.defense>=defenseCap(c))return w.fail("城防已达到修复上限"+defenseCap(c));
         int amount=w.cityDefense.repairAmount(c,o);
         w.spend(c,o,300);c.defense+=amount;earn(c.owner,20);return w.success(c.name+"修复城防"+amount);
     }
-    public World.Result dismiss(int city,int officer,int target){
+    public World.Result dismiss(int city,int officer,int target){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(officer),t=w.officer(target);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
         if(t==null||t.id==o.id||t.owner!=c.owner||t.cityId!=city||t.unitId>=0||t.role==Strategy.Role.RULER||w.domestic.busy(t.id)||w.strategy.busy(t.id))return w.fail("不能流放君主、执行者或任务中的武将");
         w.spend(c,o,0);w.strategy.releaseGovernor(t.id);w.government.allegianceChanged(t.id);t.owner=-1;t.role=Strategy.Role.UNAFFILIATED;t.loyalty=0;t.acted=true;

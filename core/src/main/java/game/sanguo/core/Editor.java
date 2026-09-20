@@ -67,7 +67,7 @@ public final class Editor {
             return new Draft(summary,null,before,change);
         }catch(IOException|IllegalArgumentException|ArithmeticException e){return new Draft(summary,e.getMessage(),null,null);}
     }
-    public World.Result apply(Draft draft){
+    public World.Result apply(Draft draft){w.reports.prepare();
         if(draft==null||!draft.valid())return w.fail(draft==null?"没有编辑草稿":draft.error);
         try{if(!Arrays.equals(draft.before,SaveCodec.encode(w)))return w.fail("局面已变化，请重新预览");}catch(IOException e){return w.fail(e.getMessage());}
         draft.change.accept(w);edited=true;revision++;

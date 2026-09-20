@@ -73,7 +73,7 @@ public final class BattleReports {
     }
     /** Captures non-command effects at rule boundaries, separately per changed entity. */
     public synchronized void checkpoint(String label){
-        prepare();for(Change c:changes())append(eventTurn(),-1,c.related,c.kind,label+" · "+c.name,c.text,c.location);
+        prepare();for(Change c:changes())append(eventTurn(),-1,c.related,classify(label)==Kind.OTHER?c.kind:classify(label),label+" · "+c.name,c.text,c.location);clearAction();
     }
     private void append(int turn,int actor,long related,Kind kind,String title,String detail,Hex location){
         entries.addLast(new Entry(nextId++,turn,actor,related,kind,title,detail,location));prune();
@@ -128,9 +128,9 @@ public final class BattleReports {
         for(World.City c:w.cities){int[] v=new int[17];v[0]=c.gold;v[1]=c.food;v[2]=c.troops;v[3]=c.order;v[4]=c.morale;v[5]=c.defense;System.arraycopy(c.equipment,0,v,6,9);System.arraycopy(c.ships,0,v,15,2);out.put("c"+c.id,new State(c.owner,c.name,c.hex,Kind.ECONOMY,v,CITY,""));}
         for(World.Unit u:w.units)unit(out,u);
         for(Domestic.Mission u:w.domestic.missions)unit(out,u);
-        for(World.Officer o:w.officers){World.Unit u=w.unit(o.unitId);World.City c=w.city(o.cityId);Hex h=u!=null?u.hex:c==null?null:c.hex;
+        for(World.Officer o:w.officers){World.City c=o.cityId<0?null:w.city(o.cityId);
             // Unit movement is already recorded above; don't duplicate it for all three crew members.
-            String place=u!=null?"部队#"+u.id:c!=null?c.name:"在途 / 无驻地";
+            String place=o.unitId>=0?"部队#"+o.unitId:c!=null?c.name:"在途 / 无驻地";
             out.put("o"+o.id,new State(o.owner,o.name,null,Kind.PERSONNEL,new int[]{o.leadership,o.war,o.intelligence,o.politics,o.charm,o.loyalty,o.otherTaskTurns},OFFICER,place+" · "+Skill.label(o.skillId)+(o.otherTask.isEmpty()?"":" · "+o.otherTask)));}
         for(Domestic.Facility f:w.domestic.facilities){World.City c=w.city(f.cityId);out.put("d"+f.id,new State(c==null?-1:c.owner,(c==null?"":c.name)+f.kind.label,f.hex,Kind.ECONOMY,new int[]{f.hp,f.level,f.remaining},new String[]{"耐久","等级","剩余旬"},""));}
         for(War.Structure s:w.war.structures())out.put("s"+s.id,new State(s.owner,s.kind.label,s.hex,Kind.COMBAT,new int[]{s.hp,s.complete?1:0},new String[]{"耐久","完工"},""));

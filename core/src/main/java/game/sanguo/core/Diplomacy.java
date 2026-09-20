@@ -54,7 +54,7 @@ public final class Diplomacy {
         long ratio=Math.min(6,strength(o.owner)/Math.max(1,strength(side)));
         return clamp(5+o.charm/2+w.strategy.factionRelation(o.owner,side)/5+(int)ratio*5);
     }
-    public World.Result surrender(int city, int actor, int side) {
+    public World.Result surrender(int city, int actor, int side) {w.reports.prepare();
         String error = surrenderError(city, actor, side);
         if (error != null) {
             return this.w.fail(error);
@@ -94,7 +94,7 @@ public final class Diplomacy {
         int value=gold+(offered<0?0:w.government.ransomCost(offered));
         return clamp(35+o.politics/3+w.strategy.factionRelation(o.owner,p.captor)/5+(value-w.government.ransomCost(wanted))/50);
     }
-    public World.Result exchange(int city, int actor, int wanted, int offered, int gold) {
+    public World.Result exchange(int city, int actor, int wanted, int offered, int gold) {w.reports.prepare();
         String str;
         String error = exchangeError(city, actor, wanted, offered, gold);
         if (error != null) {
@@ -155,7 +155,7 @@ public final class Diplomacy {
         }catch(IOException e){return null;}
     }
     public int aidChance(int actor,int ally,int gold){World.Officer o=w.officer(actor);return o==null?0:clamp(30+o.politics/3+w.strategy.factionRelation(o.owner,ally)/4+gold/200);}
-    public World.Result requestAid(int city, int actor, int source, int target, int gold) {
+    public World.Result requestAid(int city, int actor, int source, int target, int gold) {w.reports.prepare();
         String error = aidError(city, actor, source, target, gold);
         if (error != null) {
             return this.w.fail(error);
@@ -177,7 +177,7 @@ public final class Diplomacy {
     }
     public String describe(Aid a){World.Unit u=w.unit(a.unit);return w.faction(a.ally)+" · "+w.city(a.source).name+" → "+w.city(a.target).name+"\n"+a.status+
         (u==null?"":" · "+w.officer(u.officerId).name+"率"+u.troops+"兵")+"\n"+(a.returning?"返程中":"剩余"+Math.max(0,a.expires-w.turn)+"旬");}
-    public World.Result cancelAid(int source){
+    public World.Result cancelAid(int source){w.reports.prepare();
         if(w.commandsBlocked()||w.gameOver())return w.fail("当前不能变更援军任务");
         for(Aid a:new ArrayList<>(aids))if(a.requester==w.active&&a.source==source&&!a.returning){end(a,"请求方结束援军任务");return w.success("援军任务结束，已出征部队返回盟军据点；礼金不退还");}
         return w.fail("没有可结束的本势力援军请求");

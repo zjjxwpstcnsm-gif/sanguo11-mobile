@@ -47,7 +47,7 @@ public final class Lifecycle {
         people.put(officer,new Life(officer,birth,appearance,death,home,state));
         if(state==State.UNAPPEARED){o.cityId=-1;o.role=Strategy.Role.UNAFFILIATED;o.loyalty=0;o.acted=true;}
     }
-    public World.Result toggle(){if(w.commandsBlocked()||w.active!=w.player||w.gameOver())return w.fail("当前不能更改寿命设置");naturalDeaths=!naturalDeaths;return w.success("自然死亡"+(naturalDeaths?"已开启，仅使用已配置的预计没年":"已关闭；已故武将不会复活"));}
+    public World.Result toggle(){w.reports.prepare();if(w.commandsBlocked()||w.active!=w.player||w.gameOver())return w.fail("当前不能更改寿命设置");naturalDeaths=!naturalDeaths;return w.success("自然死亡"+(naturalDeaths?"已开启，仅使用已配置的预计没年":"已关闭；已故武将不会复活"));}
     private int roll(){long z=(randomState+=0x9E3779B97F4A7C15L);z=(z^(z>>>30))*0xBF58476D1CE4E5B9L;z=(z^(z>>>27))*0x94D049BB133111EBL;return (int)(((z^(z>>>31))>>>1)%100);}
     /** Engineering hazard after expected death, not a claimed original executable formula. */
     public int deathChance(int officer){Life p=life(officer);if(!naturalDeaths||p==null||p.state!=State.ACTIVE||p.expectedDeath==0||year()<p.expectedDeath)return 0;return Math.min(100,10+10*(year()-p.expectedDeath));}
@@ -111,13 +111,13 @@ public final class Lifecycle {
         // Faction identity stays stable for treaties, districts, saves and targeted march orders.
         record(o.name+"继承"+w.faction(owner)+"君主之位");w.districts.cleanup();
     }
-    public World.Result inherit(int departed,int heir){
+    public World.Result inherit(int departed,int heir){w.reports.prepare();
         if(!pending()||departed!=pendingRuler||pendingOwner!=w.active||w.contests.busy())return w.fail("继承事件已变化，请刷新");
         World.Officer o=w.officer(heir);if(!successors().contains(o))return w.fail("请选择现存、未被俘的本势力武将");
         int owner=pendingOwner;pendingOwner=-1;pendingRuler=-1;crown(owner,o);w.checkVictory();
         return w.success("继承完成，可继续当前旬");
     }
-    public World.Result executePrisoner(int city,int actor,int target){
+    public World.Result executePrisoner(int city,int actor,int target){w.reports.prepare();
         World.City c=w.city(city);String error=w.cityError(c,w.officer(actor),0);if(error!=null)return w.fail(error);
         Government.Prisoner prisoner=w.government.prisoner(target);if(prisoner==null||prisoner.captor!=w.active||prisoner.cityId!=city)return w.fail("请选择本城关押的俘虏");
         World.Officer t=w.officer(target);int owner=t.owner;boolean ruler=t.role==Strategy.Role.RULER;

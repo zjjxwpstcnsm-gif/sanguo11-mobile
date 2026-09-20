@@ -85,7 +85,7 @@ public final class UnitOrders {
             return new MovePlan(unitId,cost,remaining(u)-cost,route,null,snapshot?SaveCodec.encode(w):null);
         } catch(IOException e){return new MovePlan(unitId,0,0,Collections.emptyList(),"局面校验失败："+e.getMessage(),null);}
     }
-    public World.Result execute(MovePlan plan) {
+    public World.Result execute(MovePlan plan) {w.reports.prepare();
         if(plan==null||!plan.valid())return w.fail(plan==null?"移动预览无效":plan.error);
         try {if(!Arrays.equals(plan.snapshot,SaveCodec.encode(w)))return w.fail("局面已变化，请重新预览移动");}
         catch(IOException e){return w.fail("局面校验失败："+e.getMessage());}

@@ -110,6 +110,7 @@ public final class World {
     public final List<Officer> officers=new OfficerRoster();
     public final List<Unit> units=new ArrayList<>();
     public final List<String> log=new ArrayList<>();
+    public final BattleReports reports=new BattleReports(this);
     public final Lifecycle life=new Lifecycle(this);
     public final Domestic domestic=new Domestic(this);
     public final Development development=new Development(this);
@@ -184,7 +185,7 @@ public final class World {
     public Unit unitAt(Hex h) {for(Unit u:units)if(u.hex.equals(h))return u;for(Domestic.Mission m:domestic.missions)if(m.transport&&!m.legacyOverlap&&m.hex.equals(h)&&cityAt(h)==null)return m;return null;}
     // Transient command feedback, never serialized or inferred by parsing translated log text.
     TurnJournal turnJournal;
-    void visualAction(TurnJournal.Kind kind,int actor,Hex target,String label){actionLabel=label;if(turnJournal!=null)turnJournal.mark(kind,actor,target,label);}
+    void visualAction(TurnJournal.Kind kind,int actor,Hex target,String label){reports.action(kind,actor,target,label);actionLabel=label;if(turnJournal!=null)turnJournal.mark(kind,actor,target,label);}
     private String actionLabel="战法";
     private CriticalHit critical;
     void tacticCritical(Unit source){
@@ -204,12 +205,12 @@ public final class World {
         Result result=new Result(ok,message,ok?feedback:Feedback.NONE,ok?impact:null,ok?critical:null);
         feedback=Feedback.NONE;impact=null;critical=null;actionLabel="战法";battleOutcomes.clear();return result;
     }
-    Result fail(String text) { if(turnJournal!=null)turnJournal.cancel();return result(false,text); }
+    Result fail(String text) { if(turnJournal!=null)turnJournal.cancel();reports.clearAction();return result(false,text); }
     private long commandRevision;
     /** Transient successful-command generation; identity plus generation guards open UI confirmations. */
     public long commandRevision(){return commandRevision;}
-    Result success(String text) {commandRevision++; fieldworks.cleanup();abilities.cleanup();districts.cleanup();diplomacy.cleanup();aiOrders.cleanup();note(text);Result r=result(true,text);if(turnJournal!=null)turnJournal.checkpoint(r.message);return r; }
-    public void note(String text) { log.add(text);while(log.size()>40)log.remove(0); }
+    Result success(String text) {commandRevision++; fieldworks.cleanup();abilities.cleanup();districts.cleanup();diplomacy.cleanup();aiOrders.cleanup();note(text);Result r=result(true,text);if(turnJournal!=null)turnJournal.checkpoint(r.message);reports.clearAction();return r; }
+    public void note(String text) { reports.note(text);log.add(text);while(log.size()>40)log.remove(0); }
     private boolean available(Officer o,City c) { return !commandsBlocked()&&o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
     public int cityFoodUse(City c){return c.kind!=SiteKind.CITY&&skills.city(c.id,Skill.TUNTIAN)?0:(c.troops+49)/50;}
     public List<Officer> idle(City c) {
@@ -230,11 +231,11 @@ public final class World {
     }
     void spend(City c,Officer o,int gold) { if(envoys.resolving(o.id))return; c.gold-=gold;actionPoints[active]-=10;o.acted=true;government.earn(o.id,100); }
     /** Compatibility entry points: UI, AI and callers share the strategy rules. */
-    public Result recruit(int cityId,int officerId) { return strategy.recruitSoldiers(cityId,officerId); }
-    public Result train(int cityId,int officerId) { return strategy.trainArmy(cityId,officerId); }
-    public Result patrol(int cityId,int officerId) { return strategy.patrol(cityId,officerId); }
+    public Result recruit(int cityId,int officerId) {reports.prepare(); return strategy.recruitSoldiers(cityId,officerId); }
+    public Result train(int cityId,int officerId) {reports.prepare(); return strategy.trainArmy(cityId,officerId); }
+    public Result patrol(int cityId,int officerId) {reports.prepare(); return strategy.patrol(cityId,officerId); }
     public int getArmyReadiness(int cityId) { return strategy.getArmyReadiness(cityId); }
-    public Result produce(int cityId,int officerId,Weapon weapon) {
+    public Result produce(int cityId,int officerId,Weapon weapon) {reports.prepare();
         City c=city(cityId);Officer o=officer(officerId);int gold=skills.productionGold(officerId,weapon);String error=cityError(c,o,gold);
         if(error!=null)return fail(error);
         if(c.kind!=SiteKind.CITY)return fail("港口和关卡不能生产军备");
@@ -247,7 +248,7 @@ public final class World {
         if(c.equipment[weapon.ordinal()]>campaign.equipmentCap(c,weapon)-amount)return fail("兵装已接近上限");
         spend(c,o,gold);domestic.use(cityId,facility);c.equipment[weapon.ordinal()]+=amount;return success(c.name+"生产"+amount+"份"+weapon.label+"兵装，金−"+gold);
     }
-    public Result deploy(int cityId,int officerId,Weapon weapon,int troops) {
+    public Result deploy(int cityId,int officerId,Weapon weapon,int troops) {reports.prepare();
         return army.deploy(cityId,officerId,new int[0],weapon,Army.Ship.BOAT,troops,troops*2);
     }
     public int cost(Hex h,Weapon weapon) {
@@ -266,8 +267,8 @@ public final class World {
         return orders.reachable(u);
     }
     private String unitError(Unit u) {return orders.error(u);}
-    public Result move(int unitId,Hex destination) {return orders.execute(orders.previewMove(unitId,destination));}
-    public Result attack(int attackerId,int targetId) {
+    public Result move(int unitId,Hex destination) {reports.prepare();return orders.execute(orders.previewMove(unitId,destination));}
+    public Result attack(int attackerId,int targetId) {reports.prepare();
         return war.attack(attackerId,targetId);
     }
     public String siegeError(int unitId,int cityId) {
@@ -281,7 +282,7 @@ public final class World {
         if(Army.siegeWeapon(u.weapon)&&!army.water(u.hex))return "兵器使用战法攻城";
         return null;
     }
-    public Result siege(int unitId,int cityId) {
+    public Result siege(int unitId,int cityId) {reports.prepare();
         String error=siegeError(unitId,cityId);if(error!=null)return fail(error);
         Unit u=unit(unitId);City c=city(cityId);
         marches.supersede(u);u.acted=true;return resolveSiege(u,c,false);
@@ -306,7 +307,7 @@ public final class World {
         if(stoneSplash)fieldworks.stoneSplash(u,c.hex);
         checkVictory();return success(message);
     }
-    public Result enter(int unitId, int cityId) {
+    public Result enter(int unitId, int cityId) {reports.prepare();
         return enterSite(unit(unitId),city(cityId),false);
     }
     Result enterAfterCapture(Unit u,City c){return enterSite(u,c,true);}
@@ -358,7 +359,7 @@ public final class World {
     }
     void removeUnit(Unit u) { government.defeated(u,null); }
     void defeatUnit(Unit u,Unit attacker){government.defeated(u,attacker);}
-    public Result nextTurn(){return nextTurn(p->{});}
+    public Result nextTurn(){reports.prepare();return nextTurn(p->{});}
     public static final class TurnProgress {
         public final int owner,completed,total; public final String phase;
         /** A completed rule phase: presentation may drain here, never inside an unfinished command. */
@@ -366,11 +367,12 @@ public final class World {
         public TurnProgress(int owner,int completed,int total,String phase){this(owner,completed,total,phase,false);}
         public TurnProgress(int owner,int completed,int total,String phase,boolean boundary){this.owner=owner;this.completed=completed;this.total=total;this.phase=phase;this.boundary=boundary;}
     }
-    public Result nextTurn(Consumer<TurnProgress> progress){
+    public Result nextTurn(Consumer<TurnProgress> progress){reports.prepare();
         Objects.requireNonNull(progress);
         if(commandsBlocked())return fail("请先完成当前对局或君主继承");
         if(gameOver())return fail("本局已结束，请重开");
         if(active!=player)return fail("等待电脑行动");
+        reports.beginTurn();try {
         List<Integer> sides=new ArrayList<>();for(int offset=1;offset<factions.length;offset++){int side=(player+offset)%factions.length;if(alive(side))sides.add(side);}
         int total=sides.size()+3;progress.accept(new TurnProgress(player,0,total,"委任军团与太守"));
         districts.run();government.runDelegated();int completed=1;
@@ -383,29 +385,34 @@ public final class World {
         }
         final int global=completed;settleGlobalTurn(phase->progress.accept(new TurnProgress(-1,global,total,phase)));
         progress.accept(new TurnProgress(-1,completed+1,total,"设施与全局后勤完成",true));
-        active=player;progress.accept(new TurnProgress(player,completed+1,total,"恢复行动与自动行军"));reset(player);checkVictory();if(!commandsBlocked())marches.advanceAll();
+        reports.nextPlayer();active=player;progress.accept(new TurnProgress(player,completed+1,total,"恢复行动与自动行军"));reset(player);checkVictory();if(!commandsBlocked())marches.advanceAll();
         progress.accept(new TurnProgress(player,total,total,"结算完成",true));return success(date()+" · 行动力恢复");
+        } finally { reports.endTurn(); }
     }
     /** Exactly once after all factions have acted. Keep this order stable across save replay. */
     private void settleGlobalTurn(Consumer<String> progress){
         progress.accept("运输、建设与生产");
-        turn++;contests.tick();domestic.tick();campaign.tick();army.tick();abilities.tick();recruitment.tick();envoys.tick();strategy.tick();
-        progress.accept("火场、守备与武将");war.tick();cityDefense.tick();government.tick();treasures.tick();
+        reports.globalPhase();turn++;contests.tick();reports.checkpoint("对局结算");domestic.tick();reports.checkpoint("建设运输结算");campaign.tick();reports.checkpoint("技巧研究结算");army.tick();reports.checkpoint("军备与持续伤害结算");abilities.tick();reports.checkpoint("能力研究结算");recruitment.tick();reports.checkpoint("登用结果结算");envoys.tick();reports.checkpoint("外交任务结算");strategy.tick();reports.checkpoint("人员内政结算");
+        progress.accept("火场、守备与武将");war.tick();reports.checkpoint("火场设施结算");cityDefense.tick();reports.checkpoint("据点守备结算");government.tick();reports.checkpoint("武将任职结算");treasures.tick();reports.checkpoint("宝物发现结算");
         progress.accept("兵粮消耗与城池收入");
         for(Unit u:new ArrayList<>(units)) {
             int consumption=Logistics.foodUse(this,u);
             if(u.food<consumption){int lost=Logistics.deserters(u.troops);u.food=0;u.troops-=lost;note(officer(u.officerId).name+"部队断粮，逃兵"+lost+"，剩余"+u.troops+"兵");}
             else u.food-=consumption;
-            if(u.troops<=0)removeUnit(u);
+            if(u.troops<=0)removeUnit(u);reports.checkpoint("部队兵粮消耗");
         }
         for(City c:cities) if(c.owner>=0) {
+            int reportFoodBefore=c.food;
             int consumption=cityFoodUse(c)-domestic.arrivalFoodCredit(c);
             if(c.food<consumption){c.food=0;c.troops=Math.max(0,c.troops-Math.max(1,c.troops/20));}
             else c.food-=consumption;
-            c.gold+=Math.min(Math.max(0,campaign.goldCap(c)-c.gold),domestic.goldIncome(c.id,turn));c.food+=Math.min(Math.max(0,campaign.foodCap(c)-c.food),domestic.foodIncome(c.id,turn));
+            int reportFoodUse=reportFoodBefore-c.food;
+            int goldIncome=Math.min(Math.max(0,campaign.goldCap(c)-c.gold),domestic.goldIncome(c.id,turn));int foodIncome=Math.min(Math.max(0,campaign.foodCap(c)-c.food),domestic.foodIncome(c.id,turn));
+            c.gold+=goldIncome;c.food+=foodIncome;
             c.defense+=cityDefense.recovery(c);
+            reports.note(c.name+"本旬收支：金收入+"+goldIncome+"，粮收入+"+foodIncome+"，驻军实际粮耗"+reportFoodUse);
         }
-        progress.accept("事件、寿命与外交");events.tick();life.tick();diplomacy.tick();
+        progress.accept("事件、寿命与外交");events.tick();reports.checkpoint("世界事件结算");life.tick();reports.checkpoint("武将生涯结算");diplomacy.tick();reports.checkpoint("外交变化结算");
     }
     private void reset(int owner) {
         this.actionPoints[owner] = 60;

@@ -113,7 +113,7 @@ public final class Strategy {
         return new OfficerState(o,activity,remaining,activity==Activity.IDLE&&o.owner==w.active&&!w.gameOver());
     }
     /** Reserved for future non-conflicting strategic assignments, with a real multi-turn lock. */
-    public World.Result beginAssignment(int cityId,int officerId,String label,int turns) {
+    public World.Result beginAssignment(int cityId,int officerId,String label,int turns) {w.reports.prepare();
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,0);
         if(error!=null)return w.fail(error);
         if(label==null||label.trim().isEmpty()||label.trim().startsWith("PK培养")||label.length()>80||turns<1||turns>12)return w.fail("任务名称或工期无效");
@@ -129,7 +129,7 @@ public final class Strategy {
         for(Talent t:talents)if(t.cityId==cityId&&t.availableTurn<=w.turn)list.add(t);
         list.sort(Comparator.comparingInt(t->t.id));return list;
     }
-    public World.Result search(int cityId,int officerId) { return searchTalent(cityId,officerId).result; }
+    public World.Result search(int cityId,int officerId) {w.reports.prepare(); return searchTalent(cityId,officerId).result; }
     public SearchResult searchTalent(int cityId,int officerId) {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,SEARCH_COST);
         if(error!=null)return new SearchResult(w.fail(error),SearchOutcome.REJECTED,-1,0);
@@ -166,7 +166,7 @@ public final class Strategy {
         }
         return recruitChance(city.owner, officerId, targetId);
     }
-    public World.Result recruitOfficer(int cityId, int officerId, int targetId) {
+    public World.Result recruitOfficer(int cityId, int officerId, int targetId) {w.reports.prepare();
         World.City c = this.w.city(cityId);
         World.Officer o = this.w.officer(officerId);
         String error = this.w.cityError(c, o, 100);
@@ -194,7 +194,7 @@ public final class Strategy {
         join(o, target, c.id);
         return this.w.success(target.name + "加入" + this.w.faction(c.owner) + "，本旬休整");
     }
-    public World.Result rewardOfficer(int cityId,int officerId,int targetId) {
+    public World.Result rewardOfficer(int cityId,int officerId,int targetId) {w.reports.prepare();
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,REWARD_COST);
         if(error!=null)return w.fail(error);
         World.Officer target=w.officer(targetId);
@@ -205,7 +205,7 @@ public final class Strategy {
         w.spend(c,o,REWARD_COST);target.loyalty+=gain;target.lastRewardTurn=w.turn;
         return w.success("褒奖"+target.name+"，忠诚+"+gain);
     }
-    public World.Result appointGovernor(int cityId,int officerId,int targetId) {
+    public World.Result appointGovernor(int cityId,int officerId,int targetId) {w.reports.prepare();
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,0);
         if(error!=null)return w.fail(error);
         World.Officer target=w.officer(targetId);
@@ -239,7 +239,7 @@ public final class Strategy {
             if(!hasRuler&&first!=null){first.role=Role.RULER;first.loyalty=100;}
         }
     }
-    public World.Result patrol(int cityId,int officerId) {
+    public World.Result patrol(int cityId,int officerId) {w.reports.prepare();
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,PATROL_COST);
         if(error!=null)return w.fail(error);
         if(c.order>=100)return w.fail("治安已满");
@@ -250,7 +250,7 @@ public final class Strategy {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);
         return c==null||o==null?0:Math.min(c.recruitReserve,StrategyRules.enlistment(w.domestic.recruitAmount(cityId),c.order,o.charm,c.recruitReserve)*(w.skills.has(o,Skill.MINGSHENG)?150:100)/100);
     }
-    public World.Result recruitSoldiers(int cityId, int officerId) {
+    public World.Result recruitSoldiers(int cityId, int officerId) {w.reports.prepare();
         World.City c = this.w.city(cityId);
         World.Officer o = this.w.officer(officerId);
         String error = this.w.cityError(c, o, RECRUIT_COST);
@@ -282,7 +282,7 @@ public final class Strategy {
     public int getArmyReadiness(int cityId) {
         World.City c=w.city(cityId);if(c==null)throw new IllegalArgumentException("城池不存在");return c.morale;
     }
-    public World.Result trainArmy(int cityId,int officerId) {
+    public World.Result trainArmy(int cityId,int officerId) {w.reports.prepare();
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,TRAIN_COST);
         if(error!=null)return w.fail(error);
         if(c.troops<=0)return w.fail("本城没有可训练的军队");

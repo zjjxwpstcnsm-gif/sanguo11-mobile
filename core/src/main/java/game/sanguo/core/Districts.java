@@ -50,7 +50,7 @@ public final class Districts {
         if(cargo)return !d.supplyEnabled?"军团禁止补给运输":d.supply>=0&&target!=d.supply?"军团限定运输目的地":null;
         return !d.transfer?"军团禁止调将":!d.cities.contains(target)?"调将超出军团范围":null;
     }
-    public World.Result settings(int id,int troops,int gold,int food,boolean transfer,boolean supply){
+    public World.Result settings(int id,int troops,int gold,int food,boolean transfer,boolean supply){w.reports.prepare();
         String error=manageError();if(error!=null)return w.fail(error);District d=get(id);
         if(d==null||d.owner!=w.active||troops<0||troops>100000||gold<0||gold>1000000||food<0||food>1000000)return w.fail("军团或留存数值无效");
         d.reserveTroops=troops;d.reserveGold=gold;d.reserveFood=food;d.transfer=transfer;d.supplyEnabled=supply;w.actionPoints[w.active]-=20;
@@ -64,7 +64,7 @@ public final class Districts {
         if(d.points<10)return new DistrictManagement.SupplyPlan(source,target,courier==null?-1:courier.id,0,0,0,new int[World.Weapon.values().length],false,"出发军团行动预算不足10");
         return plan;
     }
-    public World.Result requestSupport(int source,int target){
+    public World.Result requestSupport(int source,int target){w.reports.prepare();
         if(w.commandsBlocked()||w.gameOver()||w.active!=w.player||executing!=-1)return w.fail("当前不能申请军团支援");
         DistrictManagement.SupplyPlan p=supportPlan(source,target);if(p==null)return w.fail("请选择已授权的己方军团来源和目的地");if(!p.valid())return w.fail(p.reason);
         District d=city(source);int points=w.actionPoints[w.active];executing=d.id;w.actionPoints[w.active]=d.points;
@@ -98,7 +98,7 @@ public final class Districts {
         if(supply!=-1&&(w.city(supply)==null||w.city(supply).owner!=w.active))return "运输目的地必须是己方据点";
         return null;
     }
-    public World.Result configure(int id,String name,int[] members,Policy policy,int target,int supply,boolean attack,boolean produce){
+    public World.Result configure(int id,String name,int[] members,Policy policy,int target,int supply,boolean attack,boolean produce){w.reports.prepare();
         if(members==null)return w.fail("请选择军团据点");members=members.clone();
         String error=configureError(id,name,members,policy,target,supply);if(error!=null)return w.fail(error);
         District d=id<0?new District(nextId++,w.active,name.trim()):get(id);
@@ -106,7 +106,7 @@ public final class Districts {
         groups.put(d.id,d);units.entrySet().removeIf(e->{AiOrders.Order order=w.aiOrders.orders.get(e.getKey());return e.getValue()==d.id&&order!=null&&order.home>=0&&!d.cities.contains(order.home);});for(Map.Entry<Integer,Integer> e:units.entrySet())if(e.getValue()==d.id)w.aiOrders.orders.remove(e.getKey());w.actionPoints[w.active]-=20;chooseLeader(d);
         return w.success(d.name+"已编制 · "+policy.label+"；新军团下一旬取得行动力，直属部队与城务交由都督执行");
     }
-    public World.Result dissolve(int id){
+    public World.Result dissolve(int id){w.reports.prepare();
         String error=manageError();if(error!=null)return w.fail(error);District d=get(id);
         if(d==null||d.owner!=w.active)return w.fail("请选择己方委任军团");
         w.actionPoints[w.active]-=20;groups.remove(id);for(Map.Entry<Integer,Integer> e:units.entrySet())if(e.getValue()==id)w.aiOrders.orders.remove(e.getKey());units.values().removeIf(value->value==id);

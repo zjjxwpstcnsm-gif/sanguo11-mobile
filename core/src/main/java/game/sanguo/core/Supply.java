@@ -8,9 +8,9 @@ public final class Supply {
     Supply(World w){this.w=w;}
     public String raidError(int actor,int mission){Domestic.Mission m=w.domestic.mission(mission);return m==null||!m.transport?"请选择运输队":w.war.attackError(actor,m.id);}
     public int raidDamage(int actor,int mission){Domestic.Mission m=w.domestic.mission(mission);return m==null?0:w.war.previewDamage(actor,m.id);}
-    public World.Result raid(int actor,int mission){String error=raidError(actor,mission);return error==null?w.attack(actor,w.domestic.mission(mission).id):w.fail(error);}
+    public World.Result raid(int actor,int mission){w.reports.prepare();String error=raidError(actor,mission);return error==null?w.attack(actor,w.domestic.mission(mission).id):w.fail(error);}
     /** Official manual permits convoy-to-unit soldiers, gold and food. Matching weapon cargo equips supplied soldiers; this conversion is provisional. */
-    public World.Result convoyTransfer(int actor,int target,int troops,int food,int gold){
+    public World.Result convoyTransfer(int actor,int target,int troops,int food,int gold){w.reports.prepare();
         World.Unit a=w.unit(actor),b=w.unit(target);String error=w.orders.error(a);if(error!=null)return w.fail(error);
         if(!(a instanceof Domestic.Mission)||b==null||b instanceof Domestic.Mission||b.owner!=a.owner||a.hex.distance(b.hex)!=1)return w.fail("请选择相邻己方野战部队");
         if(troops<0||food<0||gold<0||troops+food+gold==0||troops>=a.troops||food>a.food||gold>a.gold||troops>w.government.commandLimit(b.officerId)-b.troops||food>1000000-b.food||gold>10000-b.gold)return w.fail("补给数量不足或超过接收容量；运输至少保留1兵");
@@ -18,7 +18,7 @@ public final class Supply {
         a.troops-=troops;a.food-=food;a.gold-=gold;b.troops+=troops;b.food+=food;b.gold+=gold;a.acted=true;
         return w.success("运输队补给"+w.officer(b.officerId).name+"：兵"+troops+" / 粮"+food+" / 金"+gold);
     }
-    public World.Result transfer(int actor,int target,int troops,int food){
+    public World.Result transfer(int actor,int target,int troops,int food){w.reports.prepare();
         World.Unit a=w.unit(actor),b=w.unit(target);if(a instanceof Domestic.Mission)return convoyTransfer(actor,target,troops,food,0);String error=w.orders.error(a);if(error!=null)return w.fail(error);
         if(b==null||b instanceof Domestic.Mission||b.id==a.id||b.owner!=a.owner||a.hex.distance(b.hex)!=1)return w.fail("请选择相邻己方部队");
         if(troops<0||food<0||troops>18000||food>1000000||troops+food==0)return w.fail("请指定有效兵粮数量");
@@ -27,7 +27,7 @@ public final class Supply {
         a.troops-=troops;b.troops+=troops;a.food-=food;b.food+=food;a.acted=true;
         return w.success("向"+w.officer(b.officerId).name+"移交"+troops+"兵、"+food+"粮");
     }
-    public World.Result replenish(int city,int officer,int target,int troops,int food){
+    public World.Result replenish(int city,int officer,int target,int troops,int food){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(officer);World.Unit u=w.unit(target);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
         if(w.districts.executing(city)&&!w.districts.city(city).supplyEnabled)return w.fail("军团禁止补给运输");
         if(w.districts.reserveError(c,0,food,troops)!=null)return w.fail(w.districts.reserveError(c,0,food,troops));

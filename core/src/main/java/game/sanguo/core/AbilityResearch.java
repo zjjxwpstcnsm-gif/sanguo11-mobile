@@ -142,13 +142,13 @@ public final class AbilityResearch {
         if(!unlocked(side,n)){StringJoiner required=new StringJoiner("、");for(String p:n.prerequisites)if(!learned(side,p))required.add(node(p).label);return "需先完成："+required;}
         return null;
     }
-    public World.Result startResearch(int city,String id){
+    public World.Result startResearch(int city,String id){w.reports.prepare();
         String error=researchError(city,id);if(error!=null)return w.fail(error);
         World.City c=w.city(city);Node n=node(id);c.gold-=300;w.actionPoints[c.owner]-=20;
         states[c.owner].research=new Research(city,id,n.turns);
         return w.success(w.faction(c.owner)+"开始研究"+n.label+"，需要"+n.turns+"旬");
     }
-    public World.Result cancelResearch(int side){
+    public World.Result cancelResearch(int side){w.reports.prepare();
         if(w.commandsBlocked()||w.gameOver()||side!=w.active||research(side)==null)return w.fail("没有可中止的本势力能力研究");
         states[side].research=null;return w.success("能力研究已中止，金与行动力不退还");
     }
@@ -169,13 +169,13 @@ public final class AbilityResearch {
         if(n.category==Category.SKILL){if(!skillAvailable(n.skill))return "当前版本暂不可培养此特技";if(n.skill.id.equals(o.skillId))return "已经拥有该特技";if(!"none".equals(o.skillId)&&!overwrite)return "请确认覆盖原有特技";}
         return null;
     }
-    public World.Result train(int city,int officer,String id,boolean overwrite){
+    public World.Result train(int city,int officer,String id,boolean overwrite){w.reports.prepare();
         String error=trainingError(city,officer,id,overwrite);if(error!=null)return w.fail(error);
         Node n=node(id);World.Officer o=w.officer(officer);Training t=new Training(o.owner,city,officer,id,value(officer,n),o.skillId);
         w.actionPoints[o.owner]-=20;o.acted=true;o.otherTask=t.label();o.otherTaskTurns=3;training.add(t);
         return w.success(o.name+"开始"+t.label()+"，3旬后完成");
     }
-    public World.Result cancelTraining(int officer){
+    public World.Result cancelTraining(int officer){w.reports.prepare();
         Training t=training.stream().filter(x->x.officerId==officer).findFirst().orElse(null);
         if(w.commandsBlocked()||w.gameOver()||t==null||t.owner!=w.active)return w.fail("没有可中止的本势力培养");
         release(t);return w.success("培养已中止，保留未完成的培养次数，行动力不退还");

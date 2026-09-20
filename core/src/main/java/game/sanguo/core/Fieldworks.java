@@ -74,23 +74,23 @@ public final class Fieldworks {
         return null;
     }
     public List<Hex> sites(int unit,War.StructureKind kind){List<Hex> out=new ArrayList<>();World.Unit u=w.unit(unit);if(u!=null)for(Hex h:u.hex.neighbors())if(buildError(unit,kind,h,0)==null)out.add(h);return out;}
-    public World.Result build(int unit,War.StructureKind kind,Hex target,int direction){
+    public World.Result build(int unit,War.StructureKind kind,Hex target,int direction){w.reports.prepare();
         String error=buildError(unit,kind,target,direction);if(error!=null)return w.fail(error);
         World.Unit u=w.unit(unit);w.marches.supersede(u);u.gold-=kind.gold;u.acted=true;
         War.Structure s=new War.Structure(w.war.nextStructureId++,u.owner,kind,target,0);s.complete=false;s.builder=unit;s.direction=direction;w.war.structures.add(s);advance(s,u);
         return w.success("设置"+kind.label+" · "+(s.complete?"已建成":"施工"+s.hp+"/"+kind.hp+"，后续自动补修"));
     }
-    public World.Result repair(int unit,int structure){
+    public World.Result repair(int unit,int structure){w.reports.prepare();
         World.Unit u=w.unit(unit);String error=w.orders.combatError(u);if(error!=null)return w.fail(error);War.Structure s=byId(structure);
         if(s==null||s.owner!=u.owner||u.hex.distance(s.hex)!=1||s.hp>=s.kind.hp||s.builder>=0&&s.builder!=unit||project(unit)!=null&&project(unit)!=s)return w.fail("请选择邻接、受损且无其他部队施工的己方设施");
         w.marches.supersede(u);u.acted=true;s.builder=unit;advance(s,u);return w.success("补修"+s.kind.label+" · 耐久"+s.hp+"/"+s.kind.hp);
     }
-    public World.Result stop(int unit){
+    public World.Result stop(int unit){w.reports.prepare();
         World.Unit u=w.unit(unit);War.Structure s=project(unit);
         if(w.commandsBlocked()||w.gameOver()||u==null||u.owner!=w.active||s==null)return w.fail("请选择己方施工部队");
         w.marches.supersede(u);s.builder=-1;return w.success("已中止施工，保留当前设施与耐久，费用不退还");
     }
-    public World.Result withdraw(int unit,int city,int gold){
+    public World.Result withdraw(int unit,int city,int gold){w.reports.prepare();
         World.Unit u=w.unit(unit);World.City c=w.city(city);String error=w.orders.combatError(u);if(error!=null)return w.fail(error);
         if(c==null||c.owner!=u.owner||u.hex.distance(c.hex)!=1||gold<=0||gold>10000||u.gold>10000-gold||c.gold<gold)return w.fail("需要相邻己方据点、足够金及部队携金容量（10000）");
         c.gold-=gold;u.gold+=gold;u.acted=true;return w.success("部队补充"+gold+"金");
@@ -122,7 +122,7 @@ public final class Fieldworks {
     }return Math.max(1,base*(100-reduction)/100);}
     public boolean drum(World.Unit u){for(War.Structure s:nearbyAuras(u.hex))if(s.complete&&s.kind==War.StructureKind.DRUM&&s.owner==u.owner&&s.hex.distance(u.hex)<=2)return true;return false;}
     void counter(War.Structure s,World.Unit u){if(s.complete&&camp(s.kind)&&u.hex.distance(s.hex)==1&&w.army.counter(u)){
-        if(w.turnJournal!=null)w.turnJournal.facility(s,u.hex,TurnJournal.Kind.FACILITY_COUNTER,s.kind.label+"反击");
+        w.reports.facility(s,u.hex,TurnJournal.Kind.FACILITY_COUNTER,s.kind.label+"反击");if(w.turnJournal!=null)w.turnJournal.facility(s,u.hex,TurnJournal.Kind.FACILITY_COUNTER,s.kind.label+"反击");
         int before=u.troops,damage=w.campaign.has(s.owner,Campaign.Tech.DEFENSE_REINFORCEMENT)?400:200;w.combatEffects.hit(null,u,damage,false,false);
         if(w.turnJournal!=null)w.turnJournal.checkpoint(s.kind.label+"反击，损失"+(before-u.troops)+"兵");
     }}
@@ -131,7 +131,7 @@ public final class Fieldworks {
         if(s.kind==War.StructureKind.CATAPULT_TOWER)min=2;if(max==0)continue;
         World.Unit target=null;for(World.Unit u:w.fieldUnits()){int d=s.hex.distance(u.hex);if(d>=min&&d<=max&&w.campaign.hostile(s.owner,u.owner)&&landTarget(s.owner,u.hex)&&(target==null||u.id<target.id))target=u;}
         if(target!=null){
-            if(w.turnJournal!=null)w.turnJournal.facility(s,target.hex,TurnJournal.Kind.FACILITY_ATTACK,s.kind.label+"射击");
+            w.reports.facility(s,target.hex,TurnJournal.Kind.FACILITY_ATTACK,s.kind.label+"射击");if(w.turnJournal!=null)w.turnJournal.facility(s,target.hex,TurnJournal.Kind.FACILITY_ATTACK,s.kind.label+"射击");
             int before=target.troops,damage=s.kind==War.StructureKind.CATAPULT_TOWER?300:200;w.combatEffects.hit(null,target,damage,false,false);
             String report=s.kind.label+"射击敌军，损失"+(before-target.troops)+"兵";w.note(report);
             if(w.turnJournal!=null)w.turnJournal.checkpoint(report);

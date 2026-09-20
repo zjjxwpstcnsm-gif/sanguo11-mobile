@@ -173,7 +173,7 @@ public final class MarchOrders {
         byte[] state=null;if(problem==null&&snapshot)try{state=SaveCodec.encode(w);}catch(IOException e){problem="局面无法保存："+e.getMessage();}
         return new Plan(u==null?-1:u.id,o,destination,label(o),path,cost,stepsNow,turns,problem,state);
     }
-    public World.Result execute(Plan plan){
+    public World.Result execute(Plan plan){w.reports.prepare();
         if(plan==null||!plan.valid()||plan.snapshot==null)return w.fail(plan==null?"请先选择目标":plan.error==null?"请重新预览路线":plan.error);
         try{if(!Arrays.equals(plan.snapshot,SaveCodec.encode(w)))return w.fail("局面已变化，请重新预览路线");}catch(IOException e){return w.fail("局面校验失败");}
         World.Unit u=w.unit(plan.unitId);String problem=error(u);if(problem!=null)return w.fail(problem);
@@ -187,7 +187,7 @@ public final class MarchOrders {
     private void releaseBuilder(World.Unit u){War.Structure s=w.fieldworks.project(u.id);if(s!=null&&u.march!=null&&u.march.intent==Intent.REPAIR&&s.id==u.march.targetId)s.builder=-1;}
     /** Called only after a manual command passes validation; never refunds action or resources. */
     void supersede(World.Unit u){if(!executing&&u!=null){releaseBuilder(u);u.march=null;}}
-    public World.Result stop(int id){
+    public World.Result stop(int id){w.reports.prepare();
         World.Unit u=w.unit(id);if(u==null||u.owner!=w.active||w.commandsBlocked())return w.fail("当前不能变更任务");
         if(u instanceof Domestic.Mission&&!w.domestic.commandable((Domestic.Mission)u)||!w.districts.directUnit(u.id))return w.fail("该部队由委任军团指挥");
         if(u.march==null&&!(u instanceof Domestic.Mission))return w.fail("部队没有自动任务");

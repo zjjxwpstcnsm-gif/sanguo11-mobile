@@ -115,7 +115,7 @@ public final class Relations {
         if(kind==Kind.SPOUSE&&w.officer(first).sex==w.officer(second).sex)return "婚姻需要一男一女";
         return w.campaign.points(w.active)<500?"仲介需要500技巧点":null;
     }
-    public World.Result mediate(int city,int first,int second,Kind kind){
+    public World.Result mediate(int city,int first,int second,Kind kind){w.reports.prepare();
         String error=mediateError(city,first,second,kind);if(error!=null)return w.fail(error);
         w.campaign.points.put(w.active,w.campaign.points(w.active)-500);link(first,second,kind);
         if(kind==Kind.SPOUSE&&(w.skills.has(w.officer(first),Skill.NEIZHU)||w.skills.has(w.officer(second),Skill.NEIZHU)))for(int id:new int[]{first,second}){

@@ -92,6 +92,7 @@ public final class MainActivity extends Activity {
         world=next;ui.read(new Bundle());pendingMarch=null;moving=-1;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();return true;
     }
     private void buildGameUi(Bundle state,boolean restored,boolean coldStart){
+        world.reports.prepare();
         root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(ink);
         root.setOnApplyWindowInsetsListener((v,insets)->{
             if(android.os.Build.VERSION.SDK_INT>=30){android.graphics.Insets safe=insets.getInsets(WindowInsets.Type.systemBars()|WindowInsets.Type.displayCutout());v.setPadding(safe.left,safe.top,safe.right,safe.bottom);}
@@ -106,6 +107,7 @@ public final class MainActivity extends Activity {
         title=text("",12,gold);title.setMaxLines(2);title.setEllipsize(android.text.TextUtils.TruncateAt.END);
         title.setOnClickListener(v->{if(!aiRunning)message("当前军情",world.scenarioName+" · "+world.faction(world.player)+"\n"+world.date()+" · 行动力 "+world.actionPoints[world.player]+"\n进行中任务 "+taskCount());});
         header.addView(title,new LinearLayout.LayoutParams(0,dp(48),1));
+        Button reportsButton=button("战报",v->new BattleReportUi(this,world).show());reportsButton.setTag("reports.entry");reportsButton.setContentDescription("战报中心：近三个月全部势力交互结果");header.addView(reportsButton,new LinearLayout.LayoutParams(dp(52),dp(48)));
         territoryToggle=CompactButtons.create(this);territoryToggle.setText("势力");
         territoryToggle.setOnClickListener(v->setTerritoryMode(map.territoryMode()==0?1:0));
         territoryToggle.setOnLongClickListener(v->{showTerritoryPicker();return true;});
@@ -901,9 +903,7 @@ public final class MainActivity extends Activity {
         }).setNegativeButton("取消",null).show();
     }
     private void showError(String title){message(title,"操作未完成，当前局面未改变。请检查存档是否损坏、版本是否兼容，以及设备存储空间后重试。");}
-    private void showTurnReport(){
-        new AlertDialog.Builder(this).setTitle("旬结算摘要").setMessage(ui.summary.isEmpty()?"结束一旬后显示结算结果。":ui.summary).setPositiveButton("当前待处理",(d,n)->showAttention()).setNegativeButton("返回",null).setNeutralButton("收起摘要",(d,n)->turnBanner.setVisibility(View.GONE)).show();
-    }
+    private void showTurnReport(){new BattleReportUi(this,world).show(Math.max(0,world.turn-1));}
     private void showAttention(){
         List<UiModels.Attention> items=UiModels.attention(world);
         if(items.isEmpty()){message("当前待处理","当前没有缺粮、受威胁或受阻异常。");return;}

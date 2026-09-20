@@ -91,7 +91,7 @@ public final class Envoys {
         }
     }
 
-    public World.Result dispatch(Kind kind, int source, int actor, int destination, int a, int b, int c, int fee, int gift, int ap) {
+    public World.Result dispatch(Kind kind, int source, int actor, int destination, int a, int b, int c, int fee, int gift, int ap) {w.reports.prepare();
         World.City from = this.w.city(source);
         World.City to = this.w.city(destination);
         if (to == null) {
