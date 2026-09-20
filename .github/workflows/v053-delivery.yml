@@ -36,17 +36,9 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - name: Compile rules and run report and formation regressions
+      - name: Compile rules and compare against actual v52 baseline
         shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p core/build/check
-          find core/src/main/java core/src/test/java core/src/testFixtures/java -name '*.java' > core/build/sources.txt
-          javac -encoding UTF-8 --release 17 -d core/build/check @core/build/sources.txt 2>&1 | tee dist/core-compile.txt
-          for suite in Reports53Test ArmyTest BattleFeedbackTest CoreTest; do
-            java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.$suite 2>&1 | tee -a dist/core-checks.txt
-          done
-          bash scripts/test-ui-models.sh 2>&1 | tee dist/ui-model-checks.txt
+        run: bash scripts/test-reports53.sh
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.11.1'
@@ -110,7 +102,7 @@ jobs:
         run: |
           set -euo pipefail
           tag="v0.53.0-$(git rev-parse --short=12 HEAD)"
-          { cat docs/BATTLE_REPORTS_SORTIE_V0_53.md; printf '\n构建提交：%s\n\n已通过：核心专项回归、UI模型、API29模拟器选将/筛选/旋转/实际出征、地图资源与稳定签名检查。未做ARM真机验收。\n' "$SOURCE_COMMIT"; cat dist/core-checks.txt; } > dist/RELEASE_NOTES.md
+          { cat docs/BATTLE_REPORTS_SORTIE_V0_53.md; printf '\n构建提交：%s\n\n已通过：战报与编队核心专项、UI模型、API29模拟器选将/筛选/旋转/实际出征、地图资源与稳定签名检查。历史回归与v52基线逐项对照，已存在的失败单列如下，不宣称全量历史测试通过。未做ARM真机验收。\n' "$SOURCE_COMMIT"; cat dist/core-checks.txt; } > dist/RELEASE_NOTES.md
           gh release create "$tag" "dist/$APK_NAME" dist/SHA256SUMS dist/BUILD_COMMIT dist/SIGNATURE.txt dist/sanguo11-mobile-v0.53.0-source.zip --target "$SOURCE_COMMIT" --title 'v0.53.0 战报中心与三页签出征' --notes-file dist/RELEASE_NOTES.md
           gh release view "$tag" --json url,assets,targetCommitish > dist/RELEASE.json
           cat dist/RELEASE.json
