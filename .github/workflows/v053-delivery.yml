@@ -1,0 +1,124 @@
+name: v053 battle reports and sortie APK
+run-name: v0.53 battle report center and three-tab sortie delivery
+on:
+  push:
+    branches: [agent/battle-reports-sortie-tabs-v053]
+permissions:
+  contents: write
+concurrency:
+  group: v053-delivery
+  cancel-in-progress: true
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 40
+      - name: Commit integrated production sources
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -f scripts/apply-v053.py ]; then python3 scripts/apply-v053.py; fi
+          if [ -f scripts/finalize-v053.py ]; then python3 scripts/finalize-v053.py; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m 'feat: wire persistent reports and shared three-tab sortie v0.53.0 [skip ci]'
+            git push origin HEAD:refs/heads/agent/battle-reports-sortie-tabs-v053
+          fi
+          echo "SOURCE_COMMIT=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+          mkdir -p dist
+          git rev-parse HEAD > dist/BUILD_COMMIT
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Compile rules and run report and formation regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p core/build/check
+          find core/src/main/java core/src/test/java core/src/testFixtures/java -name '*.java' > core/build/sources.txt
+          javac -encoding UTF-8 --release 17 -d core/build/check @core/build/sources.txt 2>&1 | tee dist/core-compile.txt
+          for suite in Reports53Test ArmyTest BattleFeedbackTest CoreTest; do
+            java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.$suite 2>&1 | tee -a dist/core-checks.txt
+          done
+          bash scripts/test-ui-models.sh 2>&1 | tee dist/ui-model-checks.txt
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Install Android platform
+        run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Build actual APK and installed test APK
+        shell: bash
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest 2>&1 | tee dist/android-build.txt
+      - name: Verify APK version, signature and retained map assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_COMMIT"
+          git diff --exit-code
+          short=$(git rev-parse --short=12 HEAD)
+          name="sanguo11-mobile-v0.53.0-$short.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "dist/$name"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "dist/$name" | tee dist/SIGNATURE.txt
+          grep -Fq '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' dist/SIGNATURE.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "dist/$name" > dist/APK_BADGING.txt
+          grep -Fq "versionCode='53' versionName='0.53.0'" dist/APK_BADGING.txt
+          python3 scripts/verify-map-release.py "dist/$name" | tee dist/map-apk-checks.txt
+          git archive --format=zip HEAD -o dist/sanguo11-mobile-v0.53.0-source.zip
+          (cd dist && sha256sum "$name" sanguo11-mobile-v0.53.0-source.zip > SHA256SUMS)
+          echo "APK_NAME=$name" >> "$GITHUB_ENV"
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Exercise installed report filters and three-tab sortie
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          script: |
+            adb shell wm size 1080x1920
+            adb shell wm density 360
+            adb shell settings put system accelerometer_rotation 0
+            adb shell settings put system user_rotation 0
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb logcat -c
+            adb shell am instrument -w -r -e reports53 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner > dist/installed-reports53.txt 2>&1
+            adb logcat -d > dist/logcat-reports53.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke dist/screenshots || true
+            cat dist/installed-reports53.txt
+            grep -q 'REPORTS53 PASS' dist/installed-reports53.txt
+      - name: Publish verified APK release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="v0.53.0-$(git rev-parse --short=12 HEAD)"
+          { cat docs/BATTLE_REPORTS_SORTIE_V0_53.md; printf '\n构建提交：%s\n\n已通过：核心专项回归、UI模型、API29模拟器选将/筛选/旋转/实际出征、地图资源与稳定签名检查。未做ARM真机验收。\n' "$SOURCE_COMMIT"; cat dist/core-checks.txt; } > dist/RELEASE_NOTES.md
+          gh release create "$tag" "dist/$APK_NAME" dist/SHA256SUMS dist/BUILD_COMMIT dist/SIGNATURE.txt dist/sanguo11-mobile-v0.53.0-source.zip --target "$SOURCE_COMMIT" --title 'v0.53.0 战报中心与三页签出征' --notes-file dist/RELEASE_NOTES.md
+          gh release view "$tag" --json url,assets,targetCommitish > dist/RELEASE.json
+          cat dist/RELEASE.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sanguo11-mobile-v053-delivery-${{ github.run_number }}
+          path: dist/
+          if-no-files-found: warn
+          retention-days: 14
+          compression-level: 0
