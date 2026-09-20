@@ -1,0 +1,3 @@
+v059 run2: verify actual source ROAD (52,134), adjacent reviewed Q (51,134).
+Test-only correction after run35523146866; (49,135) remains its actual MOUNTAIN.
+Rebuild final committed source and reinstall this exact APK before independent publication.
