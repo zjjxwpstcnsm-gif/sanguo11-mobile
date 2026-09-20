@@ -66,6 +66,14 @@ jobs:
             }
           }
           JAVA
+          python3 - <<'PY'
+          import subprocess
+          from pathlib import Path
+          p=Path('app/src/androidTest/java/game/sanguo/mobile/MapTap57Probe.java')
+          old=subprocess.check_output(['git','show','HEAD:'+str(p)]).decode()
+          # Keep shared find/corner/edge implementations needed by Reference58Probe.
+          p.write_text(p.read_text().rstrip()[:-1]+old[old.index('    Hex find('):])
+          PY
           sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
           ./gradlew --no-daemon :app:assembleDebugAndroidTest | tee out/build.txt
           git diff --name-only > out/TEST_ONLY_CHANGE
