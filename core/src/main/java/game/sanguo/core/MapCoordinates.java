@@ -6,8 +6,21 @@ import java.util.*;
 /** Explicit odd-row offset to axial conversion. It never invents terrain or claims source fidelity. */
 public final class MapCoordinates {
     private MapCoordinates(){}
-    public static Hex axial(int x,int y,int rows){return new Hex(x-(y-(y&1))/2+(rows-1)/2,y);}
-    public static Hex source(Hex h,int rows){return new Hex(h.q+(h.r-(h.r&1))/2-(rows-1)/2,h.r);}
+    /** Odd-row source to axial; algebra intentionally also supports off-map neighbors. */
+    public static Hex toAxial(SourceGridCoord s,int rows){
+        Objects.requireNonNull(s,"source");checkRows(rows);
+        return new Hex(s.x-(s.y-(s.y&1))/2+(rows-1)/2,s.y);
+    }
+    public static SourceGridCoord toSource(Hex h,int rows){
+        Objects.requireNonNull(h,"axial");checkRows(rows);
+        return new SourceGridCoord(h.q+(h.r-(h.r&1))/2-(rows-1)/2,h.r);
+    }
+    private static void checkRows(int rows){
+        if(rows<1||rows>200)throw new IllegalArgumentException("源地图行数必须在1..200之间");
+    }
+    /** Compatibility for existing callers; new source-grid code uses SourceGridCoord. */
+    public static Hex axial(int x,int y,int rows){return toAxial(new SourceGridCoord(x,y),rows);}
+    public static Hex source(Hex h,int rows){SourceGridCoord s=toSource(h,rows);return new Hex(s.x,s.y);}
     static int normalize(Properties p)throws IOException {
         String layout=(String)p.remove("coordinates");if(layout==null||layout.equals("axial"))return 0;
         if(!layout.equals("odd-r"))throw new IOException("不支持的格子坐标系");
@@ -24,7 +37,7 @@ public final class MapCoordinates {
             if(xIndex<0)continue;
             String[] f=p.getProperty(key).split("\\|",-1);if(f.length<=xIndex+1)throw new IOException("坐标对象列数错误");
             int x=Integer.parseInt(f[xIndex].trim()),y=Integer.parseInt(f[xIndex+1].trim());if(x<0||x>=width||y<0||y>=height)throw new IOException("原始坐标越界："+key);
-            Hex h=axial(x,y,height);f[xIndex]=Integer.toString(h.q);f[xIndex+1]=Integer.toString(h.r);p.remove(key);p.setProperty(key,String.join("|",f));
+            Hex h=toAxial(new SourceGridCoord(x,y).requireWithin(width,height),height);f[xIndex]=Integer.toString(h.q);f[xIndex+1]=Integer.toString(h.r);p.remove(key);p.setProperty(key,String.join("|",f));
         }
         p.remove("width");p.setProperty("width",Integer.toString(convertedWidth));return width;
     }

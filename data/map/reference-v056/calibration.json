@@ -1,0 +1,14 @@
+{
+  "status": "REFERENCE_IDENTITY_VERIFIED_CALIBRATION_PENDING",
+  "fileName": "MAP_SAN11.jpg",
+  "width": 7200,
+  "height": 6752,
+  "bytes": 34925627,
+  "sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+  "sourceGridTarget": {"columns": 200, "rows": 200},
+  "productionLayoutAtCheckpoint": "odd-r",
+  "referenceColumnStaggeringRequiresIndependentCalibration": true,
+  "anchors": [],
+  "nationalMigrationComplete": false,
+  "referenceImageDistributed": false
+}
