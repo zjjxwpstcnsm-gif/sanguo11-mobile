@@ -40,7 +40,7 @@ public final class Districts {
     public boolean directCity(int city){District d=city(city);return d==null||d.owner!=w.player||executing==d.id;}
     public boolean directUnit(int unit){District d=unit(unit);return d==null||d.owner!=w.player||executing==d.id;}
     boolean executing(int city){District d=city(city);return d!=null&&executing==d.id;}
-    String reserveError(World.City c,int gold,int food,int troops){District d=city(c.id);
+    public String reserveError(World.City c,int gold,int food,int troops){District d=city(c.id);
         if(d==null||executing!=d.id)return null;
         if(c.gold-gold<d.reserveGold||c.food-food<d.reserveFood||c.troops-troops<d.reserveTroops)return "军团金粮兵留存不足";return null;
     }
