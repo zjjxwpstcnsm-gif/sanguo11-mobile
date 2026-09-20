@@ -96,7 +96,14 @@ final class Reference58Probe extends MapTap57Harness {
         if(!panel.contains(expected))shot("v058-detail-failure");
         require(panel.contains(expected),"actual object-aware detail title "+expected);
     }
-    private void reject(Hex h,String label)throws Exception {focus(h,3.4f);navigator(false);Object prior=field(activity,"selected");tap(h);require(Objects.equals(prior,field(activity,"selected")),"non-selectable "+label);}
+    private void reject(Hex h,String label)throws Exception {
+        focus(h,3.4f);navigator(false);Object prior=field(activity,"selected");tap(h);
+        Object actual=field(activity,"selected"),hit=field(map(),"touchHex");
+        report.append("REJECT "+label+" prior="+prior+" actual="+actual+" MapView.touchHex="+hit+"\n");
+        if(actual!=null||hit!=null)shot("v058-rejected-hit-failure");
+        require(hit==null,"MapView delivers null, never a VOID/padding or label target "+label);
+        require(actual==null,"existing blank-map tap clears selection "+label);
+    }
     private void minimap(Hex target,Hex hole)throws Exception {
         focus(target,3.4f);navigator(true);MapRaster raster=(MapRaster)field(map(),"miniRaster");RectF r=(RectF)field(map(),"miniRect");
         float expectedX=camera().centerX(),expectedY=camera().centerY();
