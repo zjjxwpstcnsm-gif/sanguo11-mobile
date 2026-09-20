@@ -1,0 +1,27 @@
+package game.sanguo.mobile;
+
+import game.sanguo.core.World;
+
+/** One reviewed ground/connection plan, shared by close view and overview.
+ * No terrain code is ever an index into the military atlas. */
+final class TerrainArt {
+    enum Connection { NONE, ROAD, MOUNTAIN_PATH, PLANK }
+    private TerrainArt() {}
+    static Connection connection(World.Terrain terrain) {
+        return switch (terrain) {
+            case ROAD -> Connection.ROAD;
+            case MOUNTAIN_PATH -> Connection.MOUNTAIN_PATH;
+            case PLANK_ROAD -> Connection.PLANK;
+            default -> Connection.NONE;
+        };
+    }
+    static World.Terrain ground(World.Terrain terrain) {
+        return switch (terrain) {
+            case ROAD -> World.Terrain.PLAIN;
+            case MOUNTAIN_PATH, PLANK_ROAD -> World.Terrain.MOUNTAIN;
+            // The bank is ground; the one War.Structure supplies the physical dam.
+            case DAM -> World.Terrain.SHALLOWS;
+            default -> terrain;
+        };
+    }
+}

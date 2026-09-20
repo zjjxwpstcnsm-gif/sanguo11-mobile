@@ -49,7 +49,7 @@ final class MapOverview {
             if(world.terrain[q][r]==World.Terrain.VOID||!world.sourceInside(new game.sanguo.core.Hex(q,r)))continue;
             terrain[index]=TerrainTiles.color(world.terrain[q][r]);
             World.Terrain t=world.terrain[q][r];
-            styles[index]=VisualAssets.terrainCell(t==World.Terrain.ROAD?World.Terrain.PLAIN:TerrainConnections.road(t)?World.Terrain.MOUNTAIN:t,Math.floorMod(q*31+r*17,3));
+            styles[index]=VisualAssets.terrainCell(TerrainArt.ground(t),Math.floorMod(q*31+r*17,3));
             if(TerrainConnections.road(world.terrain[q][r]))roads[index]=(byte)(64|TerrainConnections.mask(world,q,r));
             sites[index]=territory.siteAt(q,r);owners[index]=territory.ownerAt(q,r);
             colors[index]=owners[index]<0?0xffa6a6a6:palette[owners[index]];

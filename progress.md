@@ -1,28 +1,26 @@
-# v0.56 native200 + city atlas — installed development build, acceptance in progress
+# v0.57 ROAD tap, void triage and terrain presentation
 
-Branch `agent/native-map-200-city-art-v056`, draft PR #44. Base main `bb8e58ebe32e96ddf453ee68fd23e21509f71247` is unchanged. Prior history is preserved in `docs/history/progress-through-v055.md`.
+Branch `agent/map-tap-void-terrain-fix-v057`; base main `7e3d88e5d91f3e398d843d6f8f44c7cab23ea1b5`.
+Previous progress is preserved in `docs/history/progress-through-v056.md`. No v055/map/art rollback.
 
 ## DONE
-- Formal native200 shared map, seven national scenarios and two explicit crops; 87 sites, 591 plots, 42 real seven-cell cities. Scenario political/personnel/resource fields retained.
-- Source/axial/screen conversion, camera/culling, runtime movement/combat/AI and SaveCodec31 map identity/old-save rejection.
-- All 42 cities bind the new CityArtCatalog/CityAtlas. Thirty real RGBA PNGs cover six city variants, independent Luoyang/Changan, gates/ports and all three LODs. Units render above cities; no old city-sprite fallback.
-- Source and assets materialized and pushed in `d352f48ca3e1a5e15624ef8c2e6959b6327edaaf`.
-- Delivery run 35509322568 passed targeted core/UI regression, Android build and actual installed Native56Probe: 92 checks, 29 screenshots, minimap, seven-cell touches, real sortie/transit/entry/edge attack, Next Turn, actual save/read and Activity recreation.
-- d352f48 APK verified: 0.56.0/56, 22,330,815 bytes, SHA256 `0e1359e49d1c41804c0565772eb3e2840934476563422f95c89c72d9e55d4c05`; map and 30 PNGs present, reference image absent; unchanged development signing certificate. Final rebuild's BUILD_COMMIT/APK_IDENTITY supersedes this initial successful artifact.
-- Region evidence corrected to include Jiangxia/Chaisang/Jiujiang/Lukou in the Jiang-Huai review envelope; validator checks all 87 coordinates against the actual national resource and regional membership. Evidence remains 48 calibrated / 39 estimated, not 87 visually confirmed.
-- Fixed ContentIntegrationTest's manually injected fixture report baseline; all 143 assertions now pass without weakening its byte-equal deterministic save assertion. Full historical suite is not claimed green.
+- Replace the ROAD ordinal-name crash with an exhaustive, shared TerrainPresentation used by details and legend. All 14 terrain codes and display definitions have targeted coverage; enum ordering and SaveCodec31 unchanged.
+- Verify actual parser alphabet: D = MOUNTAIN_PATH (161), H = DAM (0), R = ROAD (7315). Both national openings contain zero natural DAM entities, not 161. No real wall/dam blanket deletion.
+- Separate flat ROAD rendering from narrow mountain trails and elevated plank decks. Use one ground plan in near view and overview; a real DAM entity owns its physical model, avoiding duplicate terrain/model bodies. Neutral entity headers/icons use their own owner, not the player's.
+- Explicit opening-only, idempotent natural-dam seeding. Saves restore entity state; destroyed dams never regenerate on loading. Source/axial coordinate conversion is shared, not replaced.
+- Change only 11 isolated VOID cells with all six neighbors of one terrain: 9 to SAND and 2 to MOUNTAIN, each ESTIMATED, not image-confirmed. New revision57; all sites, 591 plots and 30 city PNG hashes retained. Independent audit tool verifies pre/post hashes and connectivity.
+- Accept revision56 saves without silently transplanting terrain or moving units; visible old-map notice explains that the 11 data edits require a new game. Saved files are not deleted; old political/army state remains intact.
+- Local targeted regressions passed: 671998 detail/code/save checks, 1986739 projection/connection checks, native200 formal paths and seven-cell city movement/garrison/combat/AI regressions. All 50 pinned map/art resources verified.
 
 ## IN PROGRESS
-- Rebuild this final checkpoint (region/fixture/validation documentation) and repeat installed checks. Read its artifact before reporting final APK identity.
-- Nationwide manual geographic review and visual quality acceptance.
+- Geographic acceptance: 955 interior VOID cells remain unresolved after the 11 small estimated corrections. Existing road/plank digitization density is not certified against the unavailable original image.
+- Exact-commit Android delivery is evaluated by `.github/workflows/map57-delivery.yml`. Its BUILD_COMMIT, APK_IDENTITY.json, VALIDATION_STATUS.json, before/after logcat and screenshots are authoritative; this source document does not predeclare a future CI result.
 
 ## TODO
-- Resolve noisy road/mountain/forest digitization and verify minor shoal/plank/dam features. Per-region records deliberately do not claim complete cell-by-cell visual confirmation.
-- Further port/ship march benchmarks and physical ARM-device profiling. Emulator frame intervals were around 50 ms; this is NOT evidence of 60 FPS on a real phone.
-- Historical ScenarioTest still expects automatic v1 migration, contrary to the explicit native200 old-save rejection policy. Other old workflow/fixture expectations need reconciliation; no tests were removed to create a green full-suite claim.
-- The old materialize_native56.py is a one-shot recovery record, not the authority for ongoing review edits. Do not rerun it over newer manual evidence; validate_native56_evidence.py detects incomplete memberships.
+- Review remaining interior VOID clusters, road/plank over-detection and original outer silhouette against the actual MAP_SAN11 reference, region by region. Do not rerun materialize_native56.py.
+- Physical ARM device testing and full historical regressions are not claimed. The emergency lane runs only the targeted map/city regressions plus real installed touch/sortie/turn/save paths.
 
-## BLOCKER / provenance
-- No shell GitHub DNS, local SDK or physical Android device; authenticated connector and Actions used. Main was not force-pushed.
-- Original transport lacked its tail. Only the complete first 48 file patches were applied after full SHA/post-image verification. Missing original extraction/calibration code was not invented. The original MAP_SAN11 image is outside the repository and APK.
-- See `docs/validation/v056/ANDROID.md`, `docs/MARCH_SCALE_V056.md`, `data/map/reference-v056/` and the delivery artifact. This is a working installed native-map/art checkpoint, not certification of perfect original-game geographic or artistic fidelity.
+## BLOCKER
+- Current shell has no GitHub DNS or Android SDK; complete baseline source recovered from authenticated Actions source artifact, exact tree verified. GitHub connector/Actions provide source push, build and emulator verification.
+- MAP_SAN11 attachment is not mounted in this session. Its recorded 7200x6752/hash is NOT independently verified here; no geographic edit is labelled CONFIRMED_VISIBLE.
+- See `docs/validation/v057/README.md`, `source-grid-audit.json`, and `data/map/reference-v057/terrain-corrections.json` for diagnosis, coordinates, provenance and unresolved work.

@@ -1,0 +1,6210 @@
+{
+  "map_revision": 57,
+  "map_sha256": "c66c0e2c3997efccf74c7329ccf406697bf21c53044b3c08fa04d515a72d1c31",
+  "source_grid": [
+    200,
+    200
+  ],
+  "axial_storage": [
+    299,
+    200
+  ],
+  "padding_cells": 19800,
+  "code_mapping": {
+    "P": "PLAIN",
+    "F": "FOREST",
+    "M": "MOUNTAIN",
+    "W": "WATER",
+    "D": "MOUNTAIN_PATH",
+    "S": "SHALLOWS",
+    "B": "PLANK_ROAD",
+    "X": "POISON",
+    "O": "SEA",
+    "V": "VOID",
+    "Z": "SWAMP",
+    "H": "DAM",
+    "A": "SAND",
+    "R": "ROAD"
+  },
+  "source_counts": {
+    "A": 1168,
+    "B": 167,
+    "D": 161,
+    "F": 6926,
+    "M": 9290,
+    "P": 6980,
+    "R": 7315,
+    "S": 2,
+    "V": 2410,
+    "W": 5397,
+    "X": 179,
+    "Z": 5
+  },
+  "terrain_counts": {
+    "SAND": 1168,
+    "PLANK_ROAD": 167,
+    "MOUNTAIN_PATH": 161,
+    "FOREST": 6926,
+    "MOUNTAIN": 9290,
+    "PLAIN": 6980,
+    "ROAD": 7315,
+    "SHALLOWS": 2,
+    "VOID": 2410,
+    "WATER": 5397,
+    "POISON": 179,
+    "SWAMP": 5
+  },
+  "natural_dam_source_cells": 0,
+  "road_samples": [
+    {
+      "source": [
+        77,
+        76
+      ],
+      "code": "R"
+    },
+    {
+      "source": [
+        81,
+        76
+      ],
+      "code": "R"
+    }
+  ],
+  "void_components": 243,
+  "interior_void_components": 228,
+  "interior_void_cells": 955,
+  "void_regions": [
+    {
+      "size": 871,
+      "touches_source_boundary": true,
+      "bounds": [
+        173,
+        129,
+        199,
+        199
+      ],
+      "sample": [
+        [
+          173,
+          198
+        ],
+        [
+          173,
+          199
+        ],
+        [
+          174,
+          197
+        ]
+      ],
+      "neighbor_codes": {
+        "B": 2,
+        "F": 2,
+        "M": 189,
+        "P": 3,
+        "R": 14,
+        "W": 12
+      }
+    },
+    {
+      "size": 504,
+      "touches_source_boundary": true,
+      "bounds": [
+        195,
+        20,
+        199,
+        122
+      ],
+      "sample": [
+        [
+          195,
+          21
+        ],
+        [
+          195,
+          22
+        ],
+        [
+          195,
+          23
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 31,
+        "P": 2,
+        "W": 196
+      }
+    },
+    {
+      "size": 98,
+      "touches_source_boundary": false,
+      "bounds": [
+        26,
+        9,
+        38,
+        32
+      ],
+      "sample": [
+        [
+          26,
+          32
+        ],
+        [
+          27,
+          30
+        ],
+        [
+          27,
+          31
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 10,
+        "F": 46,
+        "M": 73,
+        "P": 12,
+        "R": 35
+      }
+    },
+    {
+      "size": 78,
+      "touches_source_boundary": false,
+      "bounds": [
+        40,
+        9,
+        66,
+        37
+      ],
+      "sample": [
+        [
+          40,
+          14
+        ],
+        [
+          41,
+          13
+        ],
+        [
+          42,
+          13
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 1,
+        "F": 11,
+        "M": 151,
+        "P": 7,
+        "R": 29,
+        "W": 1
+      }
+    },
+    {
+      "size": 35,
+      "touches_source_boundary": false,
+      "bounds": [
+        118,
+        29,
+        127,
+        50
+      ],
+      "sample": [
+        [
+          118,
+          35
+        ],
+        [
+          118,
+          45
+        ],
+        [
+          118,
+          46
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 1,
+        "F": 1,
+        "M": 87,
+        "P": 9,
+        "R": 42
+      }
+    },
+    {
+      "size": 31,
+      "touches_source_boundary": false,
+      "bounds": [
+        172,
+        104,
+        178,
+        110
+      ],
+      "sample": [
+        [
+          172,
+          106
+        ],
+        [
+          172,
+          107
+        ],
+        [
+          172,
+          108
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 27,
+        "P": 5,
+        "R": 9
+      }
+    },
+    {
+      "size": 25,
+      "touches_source_boundary": true,
+      "bounds": [
+        57,
+        186,
+        64,
+        199
+      ],
+      "sample": [
+        [
+          57,
+          193
+        ],
+        [
+          58,
+          194
+        ],
+        [
+          59,
+          194
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 8,
+        "M": 54,
+        "P": 5,
+        "R": 11
+      }
+    },
+    {
+      "size": 24,
+      "touches_source_boundary": true,
+      "bounds": [
+        3,
+        0,
+        8,
+        7
+      ],
+      "sample": [
+        [
+          3,
+          0
+        ],
+        [
+          3,
+          1
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 23,
+        "M": 13,
+        "R": 19
+      }
+    },
+    {
+      "size": 21,
+      "touches_source_boundary": false,
+      "bounds": [
+        38,
+        134,
+        51,
+        137
+      ],
+      "sample": [
+        [
+          38,
+          137
+        ],
+        [
+          39,
+          136
+        ],
+        [
+          40,
+          136
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 32,
+        "P": 20,
+        "R": 1,
+        "W": 11
+      }
+    },
+    {
+      "size": 21,
+      "touches_source_boundary": false,
+      "bounds": [
+        77,
+        5,
+        84,
+        19
+      ],
+      "sample": [
+        [
+          77,
+          7
+        ],
+        [
+          77,
+          8
+        ],
+        [
+          77,
+          9
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 63,
+        "P": 6,
+        "R": 15
+      }
+    },
+    {
+      "size": 19,
+      "touches_source_boundary": false,
+      "bounds": [
+        104,
+        73,
+        116,
+        78
+      ],
+      "sample": [
+        [
+          104,
+          73
+        ],
+        [
+          105,
+          73
+        ],
+        [
+          106,
+          74
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 14,
+        "F": 11,
+        "M": 25,
+        "P": 2,
+        "W": 4
+      }
+    },
+    {
+      "size": 19,
+      "touches_source_boundary": false,
+      "bounds": [
+        136,
+        107,
+        142,
+        110
+      ],
+      "sample": [
+        [
+          136,
+          108
+        ],
+        [
+          137,
+          107
+        ],
+        [
+          137,
+          108
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 3,
+        "F": 4,
+        "M": 7,
+        "P": 5,
+        "R": 13,
+        "W": 2
+      }
+    },
+    {
+      "size": 16,
+      "touches_source_boundary": false,
+      "bounds": [
+        122,
+        92,
+        128,
+        98
+      ],
+      "sample": [
+        [
+          122,
+          92
+        ],
+        [
+          122,
+          93
+        ],
+        [
+          122,
+          94
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 12,
+        "M": 20,
+        "P": 9,
+        "R": 4,
+        "W": 1
+      }
+    },
+    {
+      "size": 13,
+      "touches_source_boundary": false,
+      "bounds": [
+        23,
+        180,
+        28,
+        189
+      ],
+      "sample": [
+        [
+          23,
+          180
+        ],
+        [
+          24,
+          181
+        ],
+        [
+          25,
+          181
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 18,
+        "M": 18,
+        "P": 11,
+        "R": 5,
+        "W": 2
+      }
+    },
+    {
+      "size": 13,
+      "touches_source_boundary": false,
+      "bounds": [
+        164,
+        161,
+        173,
+        165
+      ],
+      "sample": [
+        [
+          164,
+          162
+        ],
+        [
+          165,
+          161
+        ],
+        [
+          165,
+          162
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 4,
+        "M": 33,
+        "P": 1,
+        "R": 4,
+        "W": 2
+      }
+    },
+    {
+      "size": 11,
+      "touches_source_boundary": false,
+      "bounds": [
+        142,
+        86,
+        148,
+        90
+      ],
+      "sample": [
+        [
+          142,
+          87
+        ],
+        [
+          143,
+          86
+        ],
+        [
+          143,
+          87
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 21,
+        "P": 4,
+        "R": 3,
+        "W": 4
+      }
+    },
+    {
+      "size": 11,
+      "touches_source_boundary": false,
+      "bounds": [
+        168,
+        136,
+        173,
+        139
+      ],
+      "sample": [
+        [
+          168,
+          136
+        ],
+        [
+          168,
+          137
+        ],
+        [
+          169,
+          136
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 23,
+        "P": 2,
+        "R": 6
+      }
+    },
+    {
+      "size": 10,
+      "touches_source_boundary": false,
+      "bounds": [
+        10,
+        1,
+        15,
+        4
+      ],
+      "sample": [
+        [
+          10,
+          3
+        ],
+        [
+          10,
+          4
+        ],
+        [
+          11,
+          1
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 32,
+        "M": 3,
+        "R": 3
+      }
+    },
+    {
+      "size": 10,
+      "touches_source_boundary": false,
+      "bounds": [
+        40,
+        97,
+        45,
+        103
+      ],
+      "sample": [
+        [
+          40,
+          97
+        ],
+        [
+          41,
+          97
+        ],
+        [
+          41,
+          98
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 4,
+        "M": 26,
+        "P": 6,
+        "R": 6
+      }
+    },
+    {
+      "size": 10,
+      "touches_source_boundary": false,
+      "bounds": [
+        78,
+        188,
+        82,
+        195
+      ],
+      "sample": [
+        [
+          78,
+          188
+        ],
+        [
+          79,
+          188
+        ],
+        [
+          80,
+          189
+        ]
+      ],
+      "neighbor_codes": {
+        "B": 1,
+        "F": 8,
+        "M": 14,
+        "P": 8,
+        "R": 11
+      }
+    },
+    {
+      "size": 10,
+      "touches_source_boundary": false,
+      "bounds": [
+        163,
+        182,
+        166,
+        187
+      ],
+      "sample": [
+        [
+          163,
+          185
+        ],
+        [
+          163,
+          186
+        ],
+        [
+          164,
+          185
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 28,
+        "P": 4,
+        "R": 4
+      }
+    },
+    {
+      "size": 9,
+      "touches_source_boundary": false,
+      "bounds": [
+        183,
+        13,
+        186,
+        20
+      ],
+      "sample": [
+        [
+          183,
+          13
+        ],
+        [
+          183,
+          14
+        ],
+        [
+          183,
+          15
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 4,
+        "M": 16,
+        "P": 15,
+        "R": 1,
+        "W": 2
+      }
+    },
+    {
+      "size": 8,
+      "touches_source_boundary": true,
+      "bounds": [
+        0,
+        0,
+        1,
+        6
+      ],
+      "sample": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 3,
+        "M": 8,
+        "R": 5
+      }
+    },
+    {
+      "size": 8,
+      "touches_source_boundary": false,
+      "bounds": [
+        76,
+        24,
+        81,
+        28
+      ],
+      "sample": [
+        [
+          76,
+          24
+        ],
+        [
+          77,
+          24
+        ],
+        [
+          78,
+          25
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 10,
+        "M": 20,
+        "P": 1,
+        "R": 3
+      }
+    },
+    {
+      "size": 8,
+      "touches_source_boundary": false,
+      "bounds": [
+        112,
+        10,
+        113,
+        16
+      ],
+      "sample": [
+        [
+          112,
+          10
+        ],
+        [
+          113,
+          10
+        ],
+        [
+          113,
+          11
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 21,
+        "P": 1,
+        "R": 10,
+        "W": 1
+      }
+    },
+    {
+      "size": 8,
+      "touches_source_boundary": false,
+      "bounds": [
+        113,
+        143,
+        120,
+        147
+      ],
+      "sample": [
+        [
+          113,
+          143
+        ],
+        [
+          114,
+          144
+        ],
+        [
+          115,
+          144
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 6,
+        "M": 14,
+        "P": 9,
+        "R": 3,
+        "W": 2
+      }
+    },
+    {
+      "size": 8,
+      "touches_source_boundary": false,
+      "bounds": [
+        114,
+        108,
+        116,
+        114
+      ],
+      "sample": [
+        [
+          114,
+          114
+        ],
+        [
+          115,
+          113
+        ],
+        [
+          116,
+          108
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 10,
+        "P": 21,
+        "W": 2
+      }
+    },
+    {
+      "size": 8,
+      "touches_source_boundary": false,
+      "bounds": [
+        119,
+        101,
+        123,
+        106
+      ],
+      "sample": [
+        [
+          119,
+          106
+        ],
+        [
+          120,
+          106
+        ],
+        [
+          121,
+          105
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 15,
+        "P": 8,
+        "R": 10,
+        "W": 1
+      }
+    },
+    {
+      "size": 8,
+      "touches_source_boundary": false,
+      "bounds": [
+        171,
+        130,
+        178,
+        132
+      ],
+      "sample": [
+        [
+          171,
+          131
+        ],
+        [
+          172,
+          131
+        ],
+        [
+          173,
+          130
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 8,
+        "M": 6,
+        "P": 6,
+        "R": 10,
+        "W": 4
+      }
+    },
+    {
+      "size": 7,
+      "touches_source_boundary": false,
+      "bounds": [
+        11,
+        145,
+        13,
+        150
+      ],
+      "sample": [
+        [
+          11,
+          145
+        ],
+        [
+          11,
+          146
+        ],
+        [
+          11,
+          147
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 9,
+        "M": 18,
+        "P": 1,
+        "R": 1,
+        "W": 1
+      }
+    },
+    {
+      "size": 7,
+      "touches_source_boundary": false,
+      "bounds": [
+        16,
+        45,
+        22,
+        48
+      ],
+      "sample": [
+        [
+          16,
+          48
+        ],
+        [
+          17,
+          47
+        ],
+        [
+          18,
+          47
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 1,
+        "M": 13,
+        "P": 2,
+        "R": 13,
+        "W": 1
+      }
+    },
+    {
+      "size": 7,
+      "touches_source_boundary": false,
+      "bounds": [
+        28,
+        21,
+        31,
+        24
+      ],
+      "sample": [
+        [
+          28,
+          21
+        ],
+        [
+          29,
+          21
+        ],
+        [
+          29,
+          22
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 16,
+        "P": 6,
+        "R": 6
+      }
+    },
+    {
+      "size": 7,
+      "touches_source_boundary": false,
+      "bounds": [
+        28,
+        127,
+        31,
+        132
+      ],
+      "sample": [
+        [
+          28,
+          132
+        ],
+        [
+          29,
+          131
+        ],
+        [
+          30,
+          131
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 4,
+        "M": 8,
+        "P": 16,
+        "R": 2
+      }
+    },
+    {
+      "size": 7,
+      "touches_source_boundary": false,
+      "bounds": [
+        29,
+        182,
+        35,
+        185
+      ],
+      "sample": [
+        [
+          29,
+          182
+        ],
+        [
+          30,
+          183
+        ],
+        [
+          31,
+          183
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 13,
+        "P": 13,
+        "R": 2,
+        "W": 1
+      }
+    },
+    {
+      "size": 7,
+      "touches_source_boundary": false,
+      "bounds": [
+        39,
+        187,
+        44,
+        190
+      ],
+      "sample": [
+        [
+          39,
+          187
+        ],
+        [
+          40,
+          188
+        ],
+        [
+          41,
+          187
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 16,
+        "P": 8,
+        "R": 3,
+        "W": 1
+      }
+    },
+    {
+      "size": 7,
+      "touches_source_boundary": true,
+      "bounds": [
+        114,
+        193,
+        114,
+        199
+      ],
+      "sample": [
+        [
+          114,
+          193
+        ],
+        [
+          114,
+          194
+        ],
+        [
+          114,
+          195
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 22,
+        "P": 2,
+        "R": 5
+      }
+    },
+    {
+      "size": 7,
+      "touches_source_boundary": false,
+      "bounds": [
+        149,
+        86,
+        152,
+        88
+      ],
+      "sample": [
+        [
+          149,
+          87
+        ],
+        [
+          149,
+          88
+        ],
+        [
+          150,
+          87
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 6,
+        "P": 4,
+        "R": 8,
+        "W": 2
+      }
+    },
+    {
+      "size": 6,
+      "touches_source_boundary": false,
+      "bounds": [
+        12,
+        176,
+        14,
+        180
+      ],
+      "sample": [
+        [
+          12,
+          176
+        ],
+        [
+          13,
+          176
+        ],
+        [
+          13,
+          177
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 6,
+        "M": 16,
+        "P": 4
+      }
+    },
+    {
+      "size": 6,
+      "touches_source_boundary": false,
+      "bounds": [
+        14,
+        63,
+        19,
+        65
+      ],
+      "sample": [
+        [
+          14,
+          63
+        ],
+        [
+          15,
+          63
+        ],
+        [
+          16,
+          64
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 6,
+        "M": 18,
+        "R": 1,
+        "W": 1
+      }
+    },
+    {
+      "size": 6,
+      "touches_source_boundary": false,
+      "bounds": [
+        16,
+        152,
+        18,
+        155
+      ],
+      "sample": [
+        [
+          16,
+          152
+        ],
+        [
+          17,
+          152
+        ],
+        [
+          17,
+          153
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 11,
+        "P": 6,
+        "R": 2,
+        "W": 2
+      }
+    },
+    {
+      "size": 6,
+      "touches_source_boundary": false,
+      "bounds": [
+        36,
+        4,
+        38,
+        6
+      ],
+      "sample": [
+        [
+          36,
+          5
+        ],
+        [
+          37,
+          5
+        ],
+        [
+          37,
+          6
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 6,
+        "M": 6,
+        "P": 2,
+        "R": 8
+      }
+    },
+    {
+      "size": 6,
+      "touches_source_boundary": false,
+      "bounds": [
+        81,
+        36,
+        83,
+        40
+      ],
+      "sample": [
+        [
+          81,
+          36
+        ],
+        [
+          81,
+          37
+        ],
+        [
+          81,
+          38
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 14,
+        "P": 2,
+        "R": 8,
+        "W": 1
+      }
+    },
+    {
+      "size": 6,
+      "touches_source_boundary": false,
+      "bounds": [
+        82,
+        31,
+        83,
+        35
+      ],
+      "sample": [
+        [
+          82,
+          32
+        ],
+        [
+          82,
+          33
+        ],
+        [
+          82,
+          34
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 11,
+        "P": 8,
+        "R": 1,
+        "W": 1
+      }
+    },
+    {
+      "size": 6,
+      "touches_source_boundary": false,
+      "bounds": [
+        114,
+        19,
+        115,
+        23
+      ],
+      "sample": [
+        [
+          114,
+          19
+        ],
+        [
+          115,
+          19
+        ],
+        [
+          115,
+          20
+        ]
+      ],
+      "neighbor_codes": {
+        "D": 2,
+        "F": 1,
+        "M": 9,
+        "P": 7,
+        "R": 7
+      }
+    },
+    {
+      "size": 6,
+      "touches_source_boundary": false,
+      "bounds": [
+        144,
+        183,
+        147,
+        186
+      ],
+      "sample": [
+        [
+          144,
+          184
+        ],
+        [
+          145,
+          183
+        ],
+        [
+          145,
+          184
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 22,
+        "R": 1
+      }
+    },
+    {
+      "size": 6,
+      "touches_source_boundary": false,
+      "bounds": [
+        145,
+        12,
+        148,
+        13
+      ],
+      "sample": [
+        [
+          145,
+          12
+        ],
+        [
+          146,
+          12
+        ],
+        [
+          146,
+          13
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 4,
+        "M": 15,
+        "P": 1
+      }
+    },
+    {
+      "size": 6,
+      "touches_source_boundary": false,
+      "bounds": [
+        149,
+        79,
+        151,
+        82
+      ],
+      "sample": [
+        [
+          149,
+          80
+        ],
+        [
+          150,
+          81
+        ],
+        [
+          151,
+          79
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 10,
+        "P": 5,
+        "W": 6
+      }
+    },
+    {
+      "size": 6,
+      "touches_source_boundary": false,
+      "bounds": [
+        151,
+        71,
+        154,
+        74
+      ],
+      "sample": [
+        [
+          151,
+          73
+        ],
+        [
+          151,
+          74
+        ],
+        [
+          152,
+          73
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 4,
+        "M": 14,
+        "P": 3,
+        "R": 5
+      }
+    },
+    {
+      "size": 6,
+      "touches_source_boundary": false,
+      "bounds": [
+        168,
+        186,
+        171,
+        188
+      ],
+      "sample": [
+        [
+          168,
+          187
+        ],
+        [
+          168,
+          188
+        ],
+        [
+          169,
+          186
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 20,
+        "R": 2
+      }
+    },
+    {
+      "size": 5,
+      "touches_source_boundary": false,
+      "bounds": [
+        9,
+        6,
+        11,
+        8
+      ],
+      "sample": [
+        [
+          9,
+          7
+        ],
+        [
+          10,
+          6
+        ],
+        [
+          10,
+          7
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 4,
+        "M": 3,
+        "R": 11
+      }
+    },
+    {
+      "size": 5,
+      "touches_source_boundary": false,
+      "bounds": [
+        12,
+        15,
+        13,
+        18
+      ],
+      "sample": [
+        [
+          12,
+          15
+        ],
+        [
+          12,
+          16
+        ],
+        [
+          12,
+          17
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 14,
+        "R": 6
+      }
+    },
+    {
+      "size": 5,
+      "touches_source_boundary": false,
+      "bounds": [
+        20,
+        140,
+        20,
+        144
+      ],
+      "sample": [
+        [
+          20,
+          140
+        ],
+        [
+          20,
+          141
+        ],
+        [
+          20,
+          142
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 7,
+        "M": 12,
+        "P": 2,
+        "W": 1
+      }
+    },
+    {
+      "size": 5,
+      "touches_source_boundary": false,
+      "bounds": [
+        142,
+        161,
+        146,
+        163
+      ],
+      "sample": [
+        [
+          142,
+          161
+        ],
+        [
+          143,
+          161
+        ],
+        [
+          144,
+          162
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 7,
+        "M": 9,
+        "P": 3,
+        "R": 2,
+        "W": 1
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": true,
+      "bounds": [
+        16,
+        0,
+        17,
+        2
+      ],
+      "sample": [
+        [
+          16,
+          0
+        ],
+        [
+          16,
+          1
+        ],
+        [
+          16,
+          2
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 12
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        19,
+        195,
+        21,
+        197
+      ],
+      "sample": [
+        [
+          19,
+          197
+        ],
+        [
+          20,
+          197
+        ],
+        [
+          21,
+          195
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 5,
+        "M": 2,
+        "P": 7,
+        "R": 2,
+        "W": 2
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        24,
+        163,
+        27,
+        165
+      ],
+      "sample": [
+        [
+          24,
+          165
+        ],
+        [
+          25,
+          164
+        ],
+        [
+          26,
+          164
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 1,
+        "P": 4,
+        "R": 10
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        28,
+        9,
+        28,
+        12
+      ],
+      "sample": [
+        [
+          28,
+          9
+        ],
+        [
+          28,
+          10
+        ],
+        [
+          28,
+          11
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 18
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        32,
+        1,
+        32,
+        4
+      ],
+      "sample": [
+        [
+          32,
+          1
+        ],
+        [
+          32,
+          2
+        ],
+        [
+          32,
+          3
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 16,
+        "P": 2
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        36,
+        138,
+        36,
+        141
+      ],
+      "sample": [
+        [
+          36,
+          138
+        ],
+        [
+          36,
+          139
+        ],
+        [
+          36,
+          140
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 12,
+        "W": 3
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        46,
+        121,
+        49,
+        122
+      ],
+      "sample": [
+        [
+          46,
+          121
+        ],
+        [
+          47,
+          121
+        ],
+        [
+          48,
+          122
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 15
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        47,
+        190,
+        50,
+        191
+      ],
+      "sample": [
+        [
+          47,
+          190
+        ],
+        [
+          48,
+          191
+        ],
+        [
+          49,
+          190
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 17,
+        "R": 1
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        75,
+        47,
+        75,
+        50
+      ],
+      "sample": [
+        [
+          75,
+          47
+        ],
+        [
+          75,
+          48
+        ],
+        [
+          75,
+          49
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 14,
+        "R": 3
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        82,
+        175,
+        84,
+        177
+      ],
+      "sample": [
+        [
+          82,
+          177
+        ],
+        [
+          83,
+          175
+        ],
+        [
+          83,
+          176
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 7,
+        "M": 3,
+        "P": 8
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        86,
+        25,
+        87,
+        27
+      ],
+      "sample": [
+        [
+          86,
+          25
+        ],
+        [
+          86,
+          26
+        ],
+        [
+          86,
+          27
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 9,
+        "R": 6
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        108,
+        88,
+        111,
+        89
+      ],
+      "sample": [
+        [
+          108,
+          88
+        ],
+        [
+          109,
+          88
+        ],
+        [
+          110,
+          89
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 5,
+        "M": 7,
+        "P": 4,
+        "W": 2
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        110,
+        3,
+        111,
+        5
+      ],
+      "sample": [
+        [
+          110,
+          3
+        ],
+        [
+          110,
+          4
+        ],
+        [
+          110,
+          5
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 16,
+        "R": 2
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        117,
+        87,
+        120,
+        89
+      ],
+      "sample": [
+        [
+          117,
+          87
+        ],
+        [
+          118,
+          88
+        ],
+        [
+          119,
+          88
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 7,
+        "P": 5,
+        "R": 5,
+        "W": 1
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        133,
+        30,
+        136,
+        31
+      ],
+      "sample": [
+        [
+          133,
+          30
+        ],
+        [
+          134,
+          31
+        ],
+        [
+          135,
+          31
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 9,
+        "P": 1,
+        "R": 4,
+        "W": 1
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        153,
+        157,
+        156,
+        158
+      ],
+      "sample": [
+        [
+          153,
+          158
+        ],
+        [
+          154,
+          158
+        ],
+        [
+          155,
+          157
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 7,
+        "P": 2,
+        "R": 6
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        159,
+        143,
+        162,
+        145
+      ],
+      "sample": [
+        [
+          159,
+          143
+        ],
+        [
+          160,
+          144
+        ],
+        [
+          161,
+          144
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 7,
+        "P": 5,
+        "R": 3,
+        "W": 1
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        159,
+        185,
+        161,
+        186
+      ],
+      "sample": [
+        [
+          159,
+          185
+        ],
+        [
+          159,
+          186
+        ],
+        [
+          160,
+          186
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 15,
+        "R": 1
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        170,
+        127,
+        173,
+        128
+      ],
+      "sample": [
+        [
+          170,
+          127
+        ],
+        [
+          171,
+          127
+        ],
+        [
+          172,
+          128
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 10,
+        "P": 6,
+        "W": 2
+      }
+    },
+    {
+      "size": 4,
+      "touches_source_boundary": false,
+      "bounds": [
+        180,
+        23,
+        181,
+        25
+      ],
+      "sample": [
+        [
+          180,
+          24
+        ],
+        [
+          180,
+          25
+        ],
+        [
+          181,
+          23
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 4,
+        "P": 1,
+        "W": 9
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        1,
+        9,
+        2,
+        10
+      ],
+      "sample": [
+        [
+          1,
+          9
+        ],
+        [
+          1,
+          10
+        ],
+        [
+          2,
+          9
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 11,
+        "P": 1,
+        "R": 2
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        4,
+        20,
+        5,
+        21
+      ],
+      "sample": [
+        [
+          4,
+          20
+        ],
+        [
+          4,
+          21
+        ],
+        [
+          5,
+          20
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 5,
+        "M": 1,
+        "P": 4,
+        "R": 2
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        5,
+        175,
+        7,
+        176
+      ],
+      "sample": [
+        [
+          5,
+          176
+        ],
+        [
+          6,
+          176
+        ],
+        [
+          7,
+          175
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 4,
+        "P": 7,
+        "R": 1,
+        "W": 1,
+        "X": 1
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        7,
+        143,
+        9,
+        144
+      ],
+      "sample": [
+        [
+          7,
+          143
+        ],
+        [
+          8,
+          144
+        ],
+        [
+          9,
+          144
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 5,
+        "R": 5,
+        "W": 1
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        8,
+        12,
+        9,
+        13
+      ],
+      "sample": [
+        [
+          8,
+          12
+        ],
+        [
+          8,
+          13
+        ],
+        [
+          9,
+          12
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 9,
+        "M": 2,
+        "R": 1
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        16,
+        9,
+        16,
+        11
+      ],
+      "sample": [
+        [
+          16,
+          9
+        ],
+        [
+          16,
+          10
+        ],
+        [
+          16,
+          11
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 13,
+        "R": 1
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": true,
+      "bounds": [
+        16,
+        198,
+        17,
+        199
+      ],
+      "sample": [
+        [
+          16,
+          199
+        ],
+        [
+          17,
+          198
+        ],
+        [
+          17,
+          199
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 3,
+        "P": 2,
+        "R": 2,
+        "W": 1
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        17,
+        135,
+        18,
+        137
+      ],
+      "sample": [
+        [
+          17,
+          135
+        ],
+        [
+          17,
+          136
+        ],
+        [
+          18,
+          137
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 7,
+        "P": 1,
+        "R": 5,
+        "W": 1
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        23,
+        33,
+        25,
+        34
+      ],
+      "sample": [
+        [
+          23,
+          34
+        ],
+        [
+          24,
+          34
+        ],
+        [
+          25,
+          33
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 7,
+        "P": 1,
+        "R": 5,
+        "W": 1
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        24,
+        8,
+        24,
+        10
+      ],
+      "sample": [
+        [
+          24,
+          8
+        ],
+        [
+          24,
+          9
+        ],
+        [
+          24,
+          10
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 13,
+        "R": 1
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        26,
+        3,
+        26,
+        5
+      ],
+      "sample": [
+        [
+          26,
+          3
+        ],
+        [
+          26,
+          4
+        ],
+        [
+          26,
+          5
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 14
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        30,
+        1,
+        30,
+        3
+      ],
+      "sample": [
+        [
+          30,
+          1
+        ],
+        [
+          30,
+          2
+        ],
+        [
+          30,
+          3
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 14
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        35,
+        8,
+        36,
+        9
+      ],
+      "sample": [
+        [
+          35,
+          8
+        ],
+        [
+          36,
+          8
+        ],
+        [
+          36,
+          9
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 6,
+        "M": 5,
+        "R": 1
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        35,
+        41,
+        35,
+        43
+      ],
+      "sample": [
+        [
+          35,
+          41
+        ],
+        [
+          35,
+          42
+        ],
+        [
+          35,
+          43
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 3,
+        "R": 7,
+        "W": 1
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        35,
+        45,
+        35,
+        47
+      ],
+      "sample": [
+        [
+          35,
+          45
+        ],
+        [
+          35,
+          46
+        ],
+        [
+          35,
+          47
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 6,
+        "M": 6,
+        "P": 1,
+        "W": 1
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        38,
+        163,
+        40,
+        164
+      ],
+      "sample": [
+        [
+          38,
+          164
+        ],
+        [
+          39,
+          163
+        ],
+        [
+          40,
+          163
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 10,
+        "P": 2,
+        "R": 2
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        51,
+        64,
+        52,
+        66
+      ],
+      "sample": [
+        [
+          51,
+          64
+        ],
+        [
+          52,
+          65
+        ],
+        [
+          52,
+          66
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 7,
+        "P": 3,
+        "R": 2
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        51,
+        171,
+        52,
+        173
+      ],
+      "sample": [
+        [
+          51,
+          171
+        ],
+        [
+          51,
+          172
+        ],
+        [
+          52,
+          173
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 8,
+        "R": 4,
+        "W": 1
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        54,
+        167,
+        54,
+        169
+      ],
+      "sample": [
+        [
+          54,
+          167
+        ],
+        [
+          54,
+          168
+        ],
+        [
+          54,
+          169
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 6,
+        "P": 5,
+        "W": 1
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        58,
+        173,
+        60,
+        174
+      ],
+      "sample": [
+        [
+          58,
+          174
+        ],
+        [
+          59,
+          173
+        ],
+        [
+          60,
+          173
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 5,
+        "P": 2,
+        "R": 6,
+        "W": 1
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        59,
+        177,
+        59,
+        179
+      ],
+      "sample": [
+        [
+          59,
+          177
+        ],
+        [
+          59,
+          178
+        ],
+        [
+          59,
+          179
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 11,
+        "R": 2
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        63,
+        164,
+        63,
+        166
+      ],
+      "sample": [
+        [
+          63,
+          164
+        ],
+        [
+          63,
+          165
+        ],
+        [
+          63,
+          166
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 7,
+        "P": 5
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        81,
+        125,
+        83,
+        126
+      ],
+      "sample": [
+        [
+          81,
+          126
+        ],
+        [
+          82,
+          126
+        ],
+        [
+          83,
+          125
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 1,
+        "P": 13
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        86,
+        43,
+        88,
+        44
+      ],
+      "sample": [
+        [
+          86,
+          43
+        ],
+        [
+          87,
+          43
+        ],
+        [
+          88,
+          44
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 13,
+        "W": 1
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        168,
+        157,
+        169,
+        159
+      ],
+      "sample": [
+        [
+          168,
+          158
+        ],
+        [
+          168,
+          159
+        ],
+        [
+          169,
+          157
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 6,
+        "P": 4,
+        "R": 1,
+        "W": 3
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        171,
+        153,
+        171,
+        155
+      ],
+      "sample": [
+        [
+          171,
+          153
+        ],
+        [
+          171,
+          154
+        ],
+        [
+          171,
+          155
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 6,
+        "P": 3,
+        "R": 2,
+        "W": 2
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        178,
+        164,
+        180,
+        165
+      ],
+      "sample": [
+        [
+          178,
+          165
+        ],
+        [
+          179,
+          164
+        ],
+        [
+          180,
+          164
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 7,
+        "P": 3,
+        "R": 2
+      }
+    },
+    {
+      "size": 3,
+      "touches_source_boundary": false,
+      "bounds": [
+        188,
+        133,
+        190,
+        134
+      ],
+      "sample": [
+        [
+          188,
+          133
+        ],
+        [
+          189,
+          133
+        ],
+        [
+          190,
+          134
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 6,
+        "P": 1,
+        "R": 7
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        4,
+        9,
+        5,
+        10
+      ],
+      "sample": [
+        [
+          4,
+          10
+        ],
+        [
+          5,
+          9
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 3,
+        "P": 3,
+        "R": 4
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        6,
+        18,
+        6,
+        19
+      ],
+      "sample": [
+        [
+          6,
+          18
+        ],
+        [
+          6,
+          19
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 5,
+        "P": 4,
+        "R": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        7,
+        20,
+        8,
+        21
+      ],
+      "sample": [
+        [
+          7,
+          20
+        ],
+        [
+          8,
+          21
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 1,
+        "F": 2,
+        "M": 4,
+        "P": 3
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        11,
+        168,
+        12,
+        169
+      ],
+      "sample": [
+        [
+          11,
+          168
+        ],
+        [
+          12,
+          169
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 5,
+        "P": 2,
+        "W": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        12,
+        5,
+        12,
+        6
+      ],
+      "sample": [
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          6
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 7,
+        "M": 2,
+        "R": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        14,
+        5,
+        14,
+        6
+      ],
+      "sample": [
+        [
+          14,
+          5
+        ],
+        [
+          14,
+          6
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 7,
+        "M": 3
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        14,
+        11,
+        14,
+        12
+      ],
+      "sample": [
+        [
+          14,
+          11
+        ],
+        [
+          14,
+          12
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 9,
+        "M": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        14,
+        169,
+        15,
+        170
+      ],
+      "sample": [
+        [
+          14,
+          170
+        ],
+        [
+          15,
+          169
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 1,
+        "P": 5,
+        "R": 2,
+        "W": 2
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        16,
+        181,
+        17,
+        181
+      ],
+      "sample": [
+        [
+          16,
+          181
+        ],
+        [
+          17,
+          181
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 7,
+        "P": 3
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        18,
+        11,
+        18,
+        12
+      ],
+      "sample": [
+        [
+          18,
+          11
+        ],
+        [
+          18,
+          12
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 9,
+        "P": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        20,
+        12,
+        20,
+        13
+      ],
+      "sample": [
+        [
+          20,
+          12
+        ],
+        [
+          20,
+          13
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 9,
+        "M": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        22,
+        15,
+        22,
+        16
+      ],
+      "sample": [
+        [
+          22,
+          15
+        ],
+        [
+          22,
+          16
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 9,
+        "R": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        23,
+        192,
+        23,
+        193
+      ],
+      "sample": [
+        [
+          23,
+          192
+        ],
+        [
+          23,
+          193
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 3,
+        "P": 4,
+        "R": 1,
+        "W": 1,
+        "X": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        24,
+        12,
+        24,
+        13
+      ],
+      "sample": [
+        [
+          24,
+          12
+        ],
+        [
+          24,
+          13
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 10
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        24,
+        19,
+        24,
+        20
+      ],
+      "sample": [
+        [
+          24,
+          19
+        ],
+        [
+          24,
+          20
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 9,
+        "P": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": true,
+      "bounds": [
+        28,
+        0,
+        28,
+        1
+      ],
+      "sample": [
+        [
+          28,
+          0
+        ],
+        [
+          28,
+          1
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 7
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        35,
+        50,
+        35,
+        51
+      ],
+      "sample": [
+        [
+          35,
+          50
+        ],
+        [
+          35,
+          51
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 5,
+        "R": 4
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        35,
+        64,
+        36,
+        65
+      ],
+      "sample": [
+        [
+          35,
+          64
+        ],
+        [
+          36,
+          65
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 6,
+        "P": 1,
+        "W": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        36,
+        1,
+        36,
+        2
+      ],
+      "sample": [
+        [
+          36,
+          1
+        ],
+        [
+          36,
+          2
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 3,
+        "F": 1,
+        "P": 1,
+        "R": 5
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        39,
+        65,
+        40,
+        66
+      ],
+      "sample": [
+        [
+          39,
+          65
+        ],
+        [
+          40,
+          66
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 4,
+        "M": 5,
+        "R": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        52,
+        163,
+        52,
+        164
+      ],
+      "sample": [
+        [
+          52,
+          163
+        ],
+        [
+          52,
+          164
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 3,
+        "P": 1,
+        "R": 3
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        60,
+        184,
+        61,
+        184
+      ],
+      "sample": [
+        [
+          60,
+          184
+        ],
+        [
+          61,
+          184
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 4,
+        "P": 3,
+        "R": 3
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        74,
+        54,
+        74,
+        55
+      ],
+      "sample": [
+        [
+          74,
+          54
+        ],
+        [
+          74,
+          55
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 6,
+        "P": 2
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        75,
+        128,
+        76,
+        129
+      ],
+      "sample": [
+        [
+          75,
+          128
+        ],
+        [
+          76,
+          129
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 1,
+        "P": 5,
+        "R": 3,
+        "W": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        86,
+        29,
+        86,
+        30
+      ],
+      "sample": [
+        [
+          86,
+          29
+        ],
+        [
+          86,
+          30
+        ]
+      ],
+      "neighbor_codes": {
+        "B": 1,
+        "F": 3,
+        "M": 6
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        87,
+        173,
+        88,
+        173
+      ],
+      "sample": [
+        [
+          87,
+          173
+        ],
+        [
+          88,
+          173
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 1,
+        "P": 4,
+        "R": 1,
+        "S": 1,
+        "W": 3
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        105,
+        86,
+        106,
+        87
+      ],
+      "sample": [
+        [
+          105,
+          86
+        ],
+        [
+          106,
+          87
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 3,
+        "P": 3,
+        "W": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": true,
+      "bounds": [
+        107,
+        0,
+        108,
+        1
+      ],
+      "sample": [
+        [
+          107,
+          0
+        ],
+        [
+          108,
+          1
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 6,
+        "R": 3
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        107,
+        113,
+        108,
+        114
+      ],
+      "sample": [
+        [
+          107,
+          113
+        ],
+        [
+          108,
+          114
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 9
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        112,
+        7,
+        112,
+        8
+      ],
+      "sample": [
+        [
+          112,
+          7
+        ],
+        [
+          112,
+          8
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 7,
+        "P": 2,
+        "W": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        123,
+        75,
+        124,
+        76
+      ],
+      "sample": [
+        [
+          123,
+          75
+        ],
+        [
+          124,
+          76
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 1,
+        "F": 7,
+        "W": 2
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        124,
+        177,
+        124,
+        178
+      ],
+      "sample": [
+        [
+          124,
+          177
+        ],
+        [
+          124,
+          178
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 5,
+        "P": 1,
+        "R": 4
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        126,
+        174,
+        127,
+        175
+      ],
+      "sample": [
+        [
+          126,
+          175
+        ],
+        [
+          127,
+          174
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 6,
+        "M": 4
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        130,
+        174,
+        131,
+        175
+      ],
+      "sample": [
+        [
+          130,
+          175
+        ],
+        [
+          131,
+          174
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 6,
+        "P": 1,
+        "R": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        131,
+        93,
+        131,
+        94
+      ],
+      "sample": [
+        [
+          131,
+          93
+        ],
+        [
+          131,
+          94
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 4,
+        "P": 2,
+        "R": 3,
+        "W": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        134,
+        81,
+        135,
+        81
+      ],
+      "sample": [
+        [
+          134,
+          81
+        ],
+        [
+          135,
+          81
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 5,
+        "P": 4,
+        "W": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        151,
+        159,
+        151,
+        160
+      ],
+      "sample": [
+        [
+          151,
+          159
+        ],
+        [
+          151,
+          160
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 5,
+        "P": 2,
+        "R": 3
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        162,
+        133,
+        163,
+        134
+      ],
+      "sample": [
+        [
+          162,
+          134
+        ],
+        [
+          163,
+          133
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 1,
+        "P": 4,
+        "R": 2,
+        "W": 2
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        166,
+        131,
+        167,
+        132
+      ],
+      "sample": [
+        [
+          166,
+          132
+        ],
+        [
+          167,
+          131
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 4,
+        "P": 3,
+        "R": 1,
+        "W": 1
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        168,
+        8,
+        168,
+        9
+      ],
+      "sample": [
+        [
+          168,
+          8
+        ],
+        [
+          168,
+          9
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 3,
+        "P": 6
+      }
+    },
+    {
+      "size": 2,
+      "touches_source_boundary": false,
+      "bounds": [
+        184,
+        11,
+        184,
+        12
+      ],
+      "sample": [
+        [
+          184,
+          11
+        ],
+        [
+          184,
+          12
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 5,
+        "P": 2,
+        "R": 2,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": true,
+      "bounds": [
+        0,
+        17,
+        0,
+        17
+      ],
+      "sample": [
+        [
+          0,
+          17
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 1,
+        "F": 1,
+        "R": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": true,
+      "bounds": [
+        0,
+        175,
+        0,
+        175
+      ],
+      "sample": [
+        [
+          0,
+          175
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 2,
+        "X": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        1,
+        19,
+        1,
+        19
+      ],
+      "sample": [
+        [
+          1,
+          19
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 2,
+        "F": 2,
+        "P": 1,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        1,
+        140,
+        1,
+        140
+      ],
+      "sample": [
+        [
+          1,
+          140
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 4,
+        "P": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        2,
+        16,
+        2,
+        16
+      ],
+      "sample": [
+        [
+          2,
+          16
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 4,
+        "P": 1,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        2,
+        176,
+        2,
+        176
+      ],
+      "sample": [
+        [
+          2,
+          176
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 3,
+        "X": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        3,
+        7,
+        3,
+        7
+      ],
+      "sample": [
+        [
+          3,
+          7
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 5,
+        "M": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        5,
+        53,
+        5,
+        53
+      ],
+      "sample": [
+        [
+          5,
+          53
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 5,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        8,
+        9,
+        8,
+        9
+      ],
+      "sample": [
+        [
+          8,
+          9
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 3,
+        "R": 3
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        9,
+        167,
+        9,
+        167
+      ],
+      "sample": [
+        [
+          9,
+          167
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 2,
+        "P": 1,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        10,
+        15,
+        10,
+        15
+      ],
+      "sample": [
+        [
+          10,
+          15
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 5,
+        "M": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        10,
+        20,
+        10,
+        20
+      ],
+      "sample": [
+        [
+          10,
+          20
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 1,
+        "F": 1,
+        "M": 2,
+        "P": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        10,
+        159,
+        10,
+        159
+      ],
+      "sample": [
+        [
+          10,
+          159
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 1,
+        "P": 1,
+        "R": 4
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        11,
+        9,
+        11,
+        9
+      ],
+      "sample": [
+        [
+          11,
+          9
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 4,
+        "R": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        11,
+        12,
+        11,
+        12
+      ],
+      "sample": [
+        [
+          11,
+          12
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 5,
+        "P": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        13,
+        7,
+        13,
+        7
+      ],
+      "sample": [
+        [
+          13,
+          7
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 1,
+        "M": 2,
+        "R": 3
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        15,
+        7,
+        15,
+        7
+      ],
+      "sample": [
+        [
+          15,
+          7
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 3,
+        "M": 3
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        16,
+        15,
+        16,
+        15
+      ],
+      "sample": [
+        [
+          16,
+          15
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 5,
+        "M": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        16,
+        19,
+        16,
+        19
+      ],
+      "sample": [
+        [
+          16,
+          19
+        ]
+      ],
+      "neighbor_codes": {
+        "P": 1,
+        "R": 5
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        17,
+        3,
+        17,
+        3
+      ],
+      "sample": [
+        [
+          17,
+          3
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 5,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        18,
+        9,
+        18,
+        9
+      ],
+      "sample": [
+        [
+          18,
+          9
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 5,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        18,
+        19,
+        18,
+        19
+      ],
+      "sample": [
+        [
+          18,
+          19
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 2,
+        "P": 1,
+        "R": 3
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        18,
+        24,
+        18,
+        24
+      ],
+      "sample": [
+        [
+          18,
+          24
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 2,
+        "M": 3,
+        "P": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": true,
+      "bounds": [
+        19,
+        0,
+        19,
+        0
+      ],
+      "sample": [
+        [
+          19,
+          0
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 5
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        19,
+        7,
+        19,
+        7
+      ],
+      "sample": [
+        [
+          19,
+          7
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 4,
+        "P": 1,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        19,
+        134,
+        19,
+        134
+      ],
+      "sample": [
+        [
+          19,
+          134
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 1,
+        "P": 3,
+        "R": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        19,
+        180,
+        19,
+        180
+      ],
+      "sample": [
+        [
+          19,
+          180
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 2,
+        "R": 3
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        20,
+        19,
+        20,
+        19
+      ],
+      "sample": [
+        [
+          20,
+          19
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 1,
+        "M": 3,
+        "P": 1,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        20,
+        39,
+        20,
+        39
+      ],
+      "sample": [
+        [
+          20,
+          39
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 1,
+        "P": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        21,
+        66,
+        21,
+        66
+      ],
+      "sample": [
+        [
+          21,
+          66
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 3,
+        "R": 1,
+        "W": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": true,
+      "bounds": [
+        22,
+        0,
+        22,
+        0
+      ],
+      "sample": [
+        [
+          22,
+          0
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 3
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        22,
+        6,
+        22,
+        6
+      ],
+      "sample": [
+        [
+          22,
+          6
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 5,
+        "M": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        22,
+        41,
+        22,
+        41
+      ],
+      "sample": [
+        [
+          22,
+          41
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 2,
+        "P": 1,
+        "R": 1,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        24,
+        17,
+        24,
+        17
+      ],
+      "sample": [
+        [
+          24,
+          17
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 5,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        24,
+        23,
+        24,
+        23
+      ],
+      "sample": [
+        [
+          24,
+          23
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 2,
+        "P": 1,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        25,
+        24,
+        25,
+        24
+      ],
+      "sample": [
+        [
+          25,
+          24
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 4
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        25,
+        190,
+        25,
+        190
+      ],
+      "sample": [
+        [
+          25,
+          190
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 2,
+        "P": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        26,
+        12,
+        26,
+        12
+      ],
+      "sample": [
+        [
+          26,
+          12
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 5,
+        "M": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        26,
+        17,
+        26,
+        17
+      ],
+      "sample": [
+        [
+          26,
+          17
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 5,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        26,
+        152,
+        26,
+        152
+      ],
+      "sample": [
+        [
+          26,
+          152
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 5,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        30,
+        7,
+        30,
+        7
+      ],
+      "sample": [
+        [
+          30,
+          7
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 5,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        32,
+        66,
+        32,
+        66
+      ],
+      "sample": [
+        [
+          32,
+          66
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 4,
+        "P": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        33,
+        5,
+        33,
+        5
+      ],
+      "sample": [
+        [
+          33,
+          5
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "P": 5
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        33,
+        7,
+        33,
+        7
+      ],
+      "sample": [
+        [
+          33,
+          7
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 2,
+        "P": 1,
+        "R": 3
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        33,
+        154,
+        33,
+        154
+      ],
+      "sample": [
+        [
+          33,
+          154
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 2,
+        "R": 2,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        34,
+        2,
+        34,
+        2
+      ],
+      "sample": [
+        [
+          34,
+          2
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 5,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        35,
+        165,
+        35,
+        165
+      ],
+      "sample": [
+        [
+          35,
+          165
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 5,
+        "P": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        36,
+        54,
+        36,
+        54
+      ],
+      "sample": [
+        [
+          36,
+          54
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 2,
+        "P": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        36,
+        144,
+        36,
+        144
+      ],
+      "sample": [
+        [
+          36,
+          144
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 5,
+        "P": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        38,
+        9,
+        38,
+        9
+      ],
+      "sample": [
+        [
+          38,
+          9
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 2,
+        "P": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        39,
+        145,
+        39,
+        145
+      ],
+      "sample": [
+        [
+          39,
+          145
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 4,
+        "P": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        43,
+        161,
+        43,
+        161
+      ],
+      "sample": [
+        [
+          43,
+          161
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 4,
+        "R": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        50,
+        61,
+        50,
+        61
+      ],
+      "sample": [
+        [
+          50,
+          61
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 4,
+        "M": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        50,
+        160,
+        50,
+        160
+      ],
+      "sample": [
+        [
+          50,
+          160
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 1,
+        "P": 1,
+        "R": 3
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        51,
+        146,
+        51,
+        146
+      ],
+      "sample": [
+        [
+          51,
+          146
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 5,
+        "P": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        53,
+        165,
+        53,
+        165
+      ],
+      "sample": [
+        [
+          53,
+          165
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 5
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        54,
+        192,
+        54,
+        192
+      ],
+      "sample": [
+        [
+          54,
+          192
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 2,
+        "R": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        55,
+        65,
+        55,
+        65
+      ],
+      "sample": [
+        [
+          55,
+          65
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 4,
+        "R": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        57,
+        175,
+        57,
+        175
+      ],
+      "sample": [
+        [
+          57,
+          175
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 1,
+        "R": 4,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        62,
+        171,
+        62,
+        171
+      ],
+      "sample": [
+        [
+          62,
+          171
+        ]
+      ],
+      "neighbor_codes": {
+        "B": 1,
+        "M": 1,
+        "P": 2,
+        "R": 1,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        66,
+        58,
+        66,
+        58
+      ],
+      "sample": [
+        [
+          66,
+          58
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 2,
+        "M": 3,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        70,
+        57,
+        70,
+        57
+      ],
+      "sample": [
+        [
+          70,
+          57
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 4
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        72,
+        58,
+        72,
+        58
+      ],
+      "sample": [
+        [
+          72,
+          58
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 2,
+        "P": 2,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        73,
+        56,
+        73,
+        56
+      ],
+      "sample": [
+        [
+          73,
+          56
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 2,
+        "P": 1,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        73,
+        127,
+        73,
+        127
+      ],
+      "sample": [
+        [
+          73,
+          127
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 2,
+        "P": 1,
+        "W": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        80,
+        2,
+        80,
+        2
+      ],
+      "sample": [
+        [
+          80,
+          2
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 4,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        82,
+        197,
+        82,
+        197
+      ],
+      "sample": [
+        [
+          82,
+          197
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 3
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": true,
+      "bounds": [
+        82,
+        199,
+        82,
+        199
+      ],
+      "sample": [
+        [
+          82,
+          199
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 3
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        84,
+        23,
+        84,
+        23
+      ],
+      "sample": [
+        [
+          84,
+          23
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 4
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        95,
+        45,
+        95,
+        45
+      ],
+      "sample": [
+        [
+          95,
+          45
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 5,
+        "P": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        99,
+        46,
+        99,
+        46
+      ],
+      "sample": [
+        [
+          99,
+          46
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 5
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        102,
+        85,
+        102,
+        85
+      ],
+      "sample": [
+        [
+          102,
+          85
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 3,
+        "P": 1,
+        "R": 1,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        105,
+        41,
+        105,
+        41
+      ],
+      "sample": [
+        [
+          105,
+          41
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 2,
+        "W": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        105,
+        112,
+        105,
+        112
+      ],
+      "sample": [
+        [
+          105,
+          112
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 2,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        111,
+        113,
+        111,
+        113
+      ],
+      "sample": [
+        [
+          111,
+          113
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 3,
+        "R": 2,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        114,
+        37,
+        114,
+        37
+      ],
+      "sample": [
+        [
+          114,
+          37
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 2,
+        "P": 4
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        116,
+        37,
+        116,
+        37
+      ],
+      "sample": [
+        [
+          116,
+          37
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 4,
+        "P": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        121,
+        27,
+        121,
+        27
+      ],
+      "sample": [
+        [
+          121,
+          27
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 5,
+        "P": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        125,
+        144,
+        125,
+        144
+      ],
+      "sample": [
+        [
+          125,
+          144
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 1,
+        "R": 5
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        128,
+        74,
+        128,
+        74
+      ],
+      "sample": [
+        [
+          128,
+          74
+        ]
+      ],
+      "neighbor_codes": {
+        "A": 1,
+        "M": 1,
+        "P": 2,
+        "R": 1,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        138,
+        30,
+        138,
+        30
+      ],
+      "sample": [
+        [
+          138,
+          30
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 3,
+        "R": 1,
+        "W": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        139,
+        190,
+        139,
+        190
+      ],
+      "sample": [
+        [
+          139,
+          190
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 5,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        140,
+        29,
+        140,
+        29
+      ],
+      "sample": [
+        [
+          140,
+          29
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "M": 1,
+        "R": 2,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        142,
+        186,
+        142,
+        186
+      ],
+      "sample": [
+        [
+          142,
+          186
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 5,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        143,
+        3,
+        143,
+        3
+      ],
+      "sample": [
+        [
+          143,
+          3
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 2,
+        "R": 3,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        143,
+        30,
+        143,
+        30
+      ],
+      "sample": [
+        [
+          143,
+          30
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 3,
+        "P": 1,
+        "R": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        143,
+        82,
+        143,
+        82
+      ],
+      "sample": [
+        [
+          143,
+          82
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 2,
+        "R": 4
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        145,
+        9,
+        145,
+        9
+      ],
+      "sample": [
+        [
+          145,
+          9
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 4,
+        "R": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        147,
+        59,
+        147,
+        59
+      ],
+      "sample": [
+        [
+          147,
+          59
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 4,
+        "P": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        149,
+        140,
+        149,
+        140
+      ],
+      "sample": [
+        [
+          149,
+          140
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 2,
+        "P": 4
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        149,
+        161,
+        149,
+        161
+      ],
+      "sample": [
+        [
+          149,
+          161
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 2,
+        "P": 2,
+        "R": 1,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        152,
+        140,
+        152,
+        140
+      ],
+      "sample": [
+        [
+          152,
+          140
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 3,
+        "P": 2,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        153,
+        66,
+        153,
+        66
+      ],
+      "sample": [
+        [
+          153,
+          66
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 1,
+        "P": 1,
+        "R": 2,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        158,
+        132,
+        158,
+        132
+      ],
+      "sample": [
+        [
+          158,
+          132
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "P": 1,
+        "W": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        158,
+        182,
+        158,
+        182
+      ],
+      "sample": [
+        [
+          158,
+          182
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 2,
+        "P": 1,
+        "R": 2
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        161,
+        160,
+        161,
+        160
+      ],
+      "sample": [
+        [
+          161,
+          160
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 4,
+        "P": 1,
+        "R": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        167,
+        122,
+        167,
+        122
+      ],
+      "sample": [
+        [
+          167,
+          122
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 3,
+        "M": 3
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        168,
+        126,
+        168,
+        126
+      ],
+      "sample": [
+        [
+          168,
+          126
+        ]
+      ],
+      "neighbor_codes": {
+        "D": 1,
+        "F": 1,
+        "M": 3,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        170,
+        119,
+        170,
+        119
+      ],
+      "sample": [
+        [
+          170,
+          119
+        ]
+      ],
+      "neighbor_codes": {
+        "F": 1,
+        "M": 1,
+        "P": 3,
+        "W": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        173,
+        190,
+        173,
+        190
+      ],
+      "sample": [
+        [
+          173,
+          190
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 5,
+        "P": 1
+      }
+    },
+    {
+      "size": 1,
+      "touches_source_boundary": false,
+      "bounds": [
+        186,
+        134,
+        186,
+        134
+      ],
+      "sample": [
+        [
+          186,
+          134
+        ]
+      ],
+      "neighbor_codes": {
+        "M": 4,
+        "P": 2
+      }
+    }
+  ],
+  "estimated_fixes": 11,
+  "reference_available": false,
+  "unresolved": "Remaining VOID regions and noisy road/plank digitization require reference-image review; boundary connectivity is not proof of correctness."
+}

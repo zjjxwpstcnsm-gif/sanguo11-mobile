@@ -227,6 +227,7 @@ public final class MapView extends View {
             @Override public boolean onSingleTapUp(MotionEvent e){
                 if(!multiTouch&&!caughtMotion&&!scaler.isInProgress()){
                     Hex h=hit(e.getX(),e.getY());touchHex=h;touchUntil=android.os.SystemClock.uptimeMillis()+180;
+                    MapTapTrace.tap(world,h,e.getX(),e.getY(),camera.scale,density);
                     performClick();listener.tap(h);postInvalidateOnAnimation();
                 }return true;
             }

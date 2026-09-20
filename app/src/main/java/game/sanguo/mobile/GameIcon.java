@@ -12,11 +12,11 @@ import java.util.function.Function;
 final class GameIcon extends Drawable {
     private final Object item;private final MapModels models=new MapModels();private final Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG);private final int color;
     GameIcon(Object item,int color){this.item=item;this.color=color;}
-    static boolean supports(Object item){return item instanceof World.Officer||item instanceof World.City||item instanceof World.Weapon||item instanceof Army.Ship||item instanceof Domestic.Kind||item instanceof War.StructureKind||item instanceof Treasures.Definition||item instanceof Treasures.Item;}
+    static boolean supports(Object item){return item instanceof World.Officer||item instanceof World.City||item instanceof World.Weapon||item instanceof Army.Ship||item instanceof Domestic.Kind||item instanceof War.StructureKind||item instanceof War.Structure||item instanceof Treasures.Definition||item instanceof Treasures.Item;}
     static Drawable drawable(Context context,World w,Object item){
         BuildingAtlas.load(context);VisualAssets.load(context);CityAtlas.load(context);
         if(item instanceof World.Officer)return new OfficerPortrait(context,w,(World.Officer)item);
-        return new GameIcon(item,item instanceof World.City?FactionColors.color(w,((World.City)item).owner):item instanceof World.Unit?FactionColors.color(w,((World.Unit)item).owner):FactionColors.color(w,w.player));
+        return new GameIcon(item,item instanceof World.City?FactionColors.color(w,((World.City)item).owner):item instanceof War.Structure?FactionColors.color(w,((War.Structure)item).owner):item instanceof World.Unit?FactionColors.color(w,((World.Unit)item).owner):FactionColors.color(w,w.player));
     }
     static <T> ArrayAdapter<T> adapter(Context context,World w,List<T> items,Function<T,String> label){
         return new ArrayAdapter<T>(context,android.R.layout.select_dialog_item,items){
@@ -36,6 +36,7 @@ final class GameIcon extends Drawable {
         else if(item instanceof World.SiteKind)models.city(c,(World.SiteKind)item,color);
         else if(item instanceof Domestic.Facility)models.facility(c,((Domestic.Facility)item).kind,color);
         else if(item instanceof Domestic.Kind)models.facility(c,(Domestic.Kind)item,color);
+        else if(item instanceof War.Structure)models.structure(c,((War.Structure)item).kind,color);
         else if(item instanceof War.StructureKind)models.structure(c,(War.StructureKind)item,color);
         else if(item instanceof World.Weapon)models.weaponIcon(c,(World.Weapon)item,color);
         else if(item instanceof Army.Ship)models.shipIcon(c,(Army.Ship)item,color);
