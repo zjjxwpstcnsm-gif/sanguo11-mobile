@@ -15,5 +15,6 @@ javac -encoding UTF-8 --release 17 -cp "$CP" -d core/build/map57 \
  app/src/main/java/game/sanguo/mobile/TerrainConnections.java \
  app/src/test/java/game/sanguo/mobile/MapTap57ProjectionTest.java
 java -Xmx1500m -cp "$CP" game.sanguo.mobile.MapTap57ProjectionTest
-python3 tools/content/audit_native57.py --check
+python3 tools/content/audit_native58.py --check --baseline57 core/build/map57/baseline57.properties
+python3 tools/content/audit_native57.py --check --map-file core/build/map57/baseline57.properties
 python3 scripts/verify-map-release.py

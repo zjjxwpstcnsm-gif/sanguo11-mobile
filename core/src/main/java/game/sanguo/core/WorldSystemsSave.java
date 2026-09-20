@@ -41,7 +41,7 @@ final class WorldSystemsSave {
         for(WorldEvents.Camp c:e.camps){
             range(c.id,1,e.nextCamp-1);range(c.troops,1,6000);World.City city=w.city(c.city);
             require(ids.add(c.id)&&cities.add(c.city)&&c.tribe!=null&&city!=null&&w.inside(c.hex)&&cells.add(c.hex)&&c.hex.distance(city.hex)>=3&&c.hex.distance(city.hex)<=4,"贼寨引用或位置无效");
-            require(w.terrain[c.hex.q][c.hex.r]!=World.Terrain.MOUNTAIN&&!w.army.water(c.hex)&&w.cityAt(c.hex)==null&&w.unitAt(c.hex)==null&&w.domestic.at(c.hex)==null&&w.war.at(c.hex)==null,"贼寨地块冲突");
+            require(w.cost(c.hex,World.Weapon.SPEAR)>=0&&!w.army.water(c.hex)&&w.cityAt(c.hex)==null&&w.unitAt(c.hex)==null&&w.domestic.at(c.hex)==null&&w.war.at(c.hex)==null,"贼寨地块冲突");
         }
         Districts g=w.districts;range(g.nextId,1,10000000);require(g.groups.size()<=7,"军团数超过上限");cities.clear();
         for(Districts.District district:g.groups.values()){

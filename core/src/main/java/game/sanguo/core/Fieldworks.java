@@ -66,6 +66,7 @@ public final class Fieldworks {
         if(target==null||!w.inside(target)||u.hex.distance(target)!=1)return "只能在部队相邻格设置";
         if(w.unitAt(target)!=null||w.cityAt(target)!=null||w.domestic.at(target)!=null||w.war.at(target)!=null||w.war.fireAt(target)!=null)return "目标地块已被占用或燃烧";
         World.Terrain terrain=w.terrain[target.q][target.r];
+        if(terrain==World.Terrain.NON_NAVIGABLE_WATER)return "不可航水域不能设置设施";
         if(blockedMilitaryTerrain(terrain))return "森林与湿地不能设置军事设施";
         if(kind==War.StructureKind.FIRE_SHIP?!w.army.water(target):w.army.water(target)||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN_PATH||w.terrain[target.q][target.r]==World.Terrain.PLANK_ROAD||w.terrain[target.q][target.r]==World.Terrain.POISON||w.terrain[target.q][target.r]==World.Terrain.SWAMP||w.terrain[target.q][target.r]==World.Terrain.DAM||w.events.at(target)!=null)return "该地形不能设置此设施";
         for(World.City c:w.cities)if(SiteFootprint.distance(c,target)<=2)return "据点两格以内不能设置";
@@ -152,7 +153,7 @@ public final class Fieldworks {
         Hex h=s.hex;List<Hex> affected=new ArrayList<>();affected.add(h);
         if(ball(s.kind)){
             Hex delta=new Hex(0,0).neighbors().get(s.direction);int range=s.kind==War.StructureKind.FIRE_BALL?3:5;
-            for(int n=1;n<=range;n++){Hex next=new Hex(h.q+delta.q*n,h.r+delta.r*n);if(!w.inside(next)||w.terrain[next.q][next.r]==World.Terrain.MOUNTAIN||w.army.water(next))break;affected.add(next);if(w.war.at(next)!=null&&s.kind!=War.StructureKind.INFERNO_BALL)break;}
+            for(int n=1;n<=range;n++){Hex next=new Hex(h.q+delta.q*n,h.r+delta.r*n);if(!w.inside(next)||(w.terrain[next.q][next.r]==World.Terrain.MOUNTAIN||w.terrain[next.q][next.r]==World.Terrain.NON_NAVIGABLE_WATER)||w.army.water(next))break;affected.add(next);if(w.war.at(next)!=null&&s.kind!=War.StructureKind.INFERNO_BALL)break;}
         }else{
             int radius=s.kind==War.StructureKind.FIRE_SEED?1:2;
             for(int q=Math.max(0,h.q-radius);q<=Math.min(w.width-1,h.q+radius);q++)for(int r=Math.max(0,h.r-radius);r<=Math.min(w.height-1,h.r+radius);r++){Hex next=new Hex(q,r);if(!next.equals(h)&&h.distance(next)<=radius)affected.add(next);}

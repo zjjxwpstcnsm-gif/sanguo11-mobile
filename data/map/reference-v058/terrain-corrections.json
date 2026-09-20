@@ -1,0 +1,2783 @@
+{
+  "schema": 1,
+  "source_revision": 57,
+  "target_revision": 58,
+  "source_grid": [
+    200,
+    200
+  ],
+  "source_sha": "29c18ec127b7baeafaf9faf9f3b03ee5c1cd2a78",
+  "reference_available": true,
+  "reference": {
+    "file": "MAP_SAN11.jpg",
+    "width": 7200,
+    "height": 6752,
+    "bytes": 34925627,
+    "sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+    "distributed": false
+  },
+  "before_sha256": "c66c0e2c3997efccf74c7329ccf406697bf21c53044b3c08fa04d515a72d1c31",
+  "after_sha256": "327317cc28f662c93308a7c87d086842d4a4af98bc2105cf7fbc365f60cf9589",
+  "save_policy": "Codec31 unchanged; original terrain ordinals 0..13 unchanged, Q appended as ordinal14. Existing rev56/57 saves load byte-for-byte with a notice, never transplanted. A new game is required for the new map. Older apps cannot load new terrain values; do not downgrade a rev58 save.",
+  "cells": [
+    {
+      "source": [
+        108,
+        42
+      ],
+      "before": "B",
+      "before_terrain": "PLANK_ROAD",
+      "after": "P",
+      "after_terrain": "PLAIN",
+      "region": "ye-north-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Actual crop shows rough ground on the playable cell lattice, not elevated wooden deck. P is a conservative flat-land fallback; original rough-ground subtype remains unverified.",
+      "calibration_ref": "calibration-review.json#ye-north-ground",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ],
+      "reference_center": [
+        3656.697,
+        1479.94
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        109,
+        42
+      ],
+      "before": "B",
+      "before_terrain": "PLANK_ROAD",
+      "after": "P",
+      "after_terrain": "PLAIN",
+      "region": "ye-north-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Actual crop shows rough ground on the playable cell lattice, not elevated wooden deck. P is a conservative flat-land fallback; original rough-ground subtype remains unverified.",
+      "calibration_ref": "calibration-review.json#ye-north-ground",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ],
+      "reference_center": [
+        3689.006,
+        1495.965
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        111,
+        42
+      ],
+      "before": "B",
+      "before_terrain": "PLANK_ROAD",
+      "after": "P",
+      "after_terrain": "PLAIN",
+      "region": "ye-north-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Actual crop shows rough ground on the playable cell lattice, not elevated wooden deck. P is a conservative flat-land fallback; original rough-ground subtype remains unverified.",
+      "calibration_ref": "calibration-review.json#ye-north-ground",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ],
+      "reference_center": [
+        3753.52,
+        1495.762
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        110,
+        43
+      ],
+      "before": "B",
+      "before_terrain": "PLANK_ROAD",
+      "after": "P",
+      "after_terrain": "PLAIN",
+      "region": "ye-north-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Actual crop shows rough ground on the playable cell lattice, not elevated wooden deck. P is a conservative flat-land fallback; original rough-ground subtype remains unverified.",
+      "calibration_ref": "calibration-review.json#ye-north-ground",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ],
+      "reference_center": [
+        3721.314,
+        1511.99
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        108,
+        44
+      ],
+      "before": "B",
+      "before_terrain": "PLANK_ROAD",
+      "after": "P",
+      "after_terrain": "PLAIN",
+      "region": "ye-north-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Actual crop shows rough ground on the playable cell lattice, not elevated wooden deck. P is a conservative flat-land fallback; original rough-ground subtype remains unverified.",
+      "calibration_ref": "calibration-review.json#ye-north-ground",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ],
+      "reference_center": [
+        3656.902,
+        1544.445
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        110,
+        44
+      ],
+      "before": "B",
+      "before_terrain": "PLANK_ROAD",
+      "after": "P",
+      "after_terrain": "PLAIN",
+      "region": "ye-north-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Actual crop shows rough ground on the playable cell lattice, not elevated wooden deck. P is a conservative flat-land fallback; original rough-ground subtype remains unverified.",
+      "calibration_ref": "calibration-review.json#ye-north-ground",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ],
+      "reference_center": [
+        3721.416,
+        1544.242
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        105,
+        45
+      ],
+      "before": "B",
+      "before_terrain": "PLANK_ROAD",
+      "after": "P",
+      "after_terrain": "PLAIN",
+      "region": "ye-north-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Actual crop shows rough ground on the playable cell lattice, not elevated wooden deck. P is a conservative flat-land fallback; original rough-ground subtype remains unverified.",
+      "calibration_ref": "calibration-review.json#ye-north-ground",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ],
+      "reference_center": [
+        3560.283,
+        1593.128
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        111,
+        48
+      ],
+      "before": "B",
+      "before_terrain": "PLANK_ROAD",
+      "after": "P",
+      "after_terrain": "PLAIN",
+      "region": "ye-north-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Actual crop shows rough ground on the playable cell lattice, not elevated wooden deck. P is a conservative flat-land fallback; original rough-ground subtype remains unverified.",
+      "calibration_ref": "calibration-review.json#ye-north-ground",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ],
+      "reference_center": [
+        3754.134,
+        1689.276
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        110,
+        49
+      ],
+      "before": "B",
+      "before_terrain": "PLANK_ROAD",
+      "after": "P",
+      "after_terrain": "PLAIN",
+      "region": "ye-north-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Actual crop shows rough ground on the playable cell lattice, not elevated wooden deck. P is a conservative flat-land fallback; original rough-ground subtype remains unverified.",
+      "calibration_ref": "calibration-review.json#ye-north-ground",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ],
+      "reference_center": [
+        3721.927,
+        1705.504
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        104,
+        73
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3530.835,
+        2480.17
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        105,
+        73
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3563.143,
+        2496.195
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        106,
+        74
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3595.452,
+        2512.22
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        107,
+        74
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3627.76,
+        2528.244
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        109,
+        74
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3692.275,
+        2528.041
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        108,
+        75
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3660.069,
+        2544.269
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        109,
+        75
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3692.377,
+        2560.294
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        110,
+        75
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3724.584,
+        2544.066
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        111,
+        75
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3756.892,
+        2560.091
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        110,
+        76
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3724.686,
+        2576.319
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        111,
+        76
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3756.994,
+        2592.343
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        113,
+        76
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3821.509,
+        2592.14
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        112,
+        77
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3789.303,
+        2608.368
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        113,
+        77
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3821.612,
+        2624.393
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        114,
+        77
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3853.818,
+        2608.165
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        115,
+        77
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3886.126,
+        2624.19
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        118,
+        77
+      ],
+      "before": "R",
+      "before_terrain": "ROAD",
+      "after": "F",
+      "after_terrain": "FOREST",
+      "region": "chenliu-east-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Tree-covered surface in the reviewed crop; no linear road at the marked center. Restore forest and its ordinary movement cost.",
+      "calibration_ref": "calibration-review.json#chenliu-east-ground",
+      "pixel_crop": [
+        3339,
+        2513,
+        4013,
+        2881
+      ],
+      "reference_center": [
+        3982.847,
+        2607.759
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        114,
+        78
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3853.92,
+        2640.417
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        115,
+        78
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3886.229,
+        2656.442
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        116,
+        78
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible continuous narrow water surface inside both banks; replacing VOID must NOT open a naval route. Q is visible/selectable but remains blocked for all units.",
+      "calibration_ref": "calibration-review.json#chenliu-north",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3918.435,
+        2640.214
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        111,
+        79
+      ],
+      "before": "R",
+      "before_terrain": "ROAD",
+      "after": "M",
+      "after_terrain": "MOUNTAIN",
+      "region": "chenliu-east-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Cell center and surroundings lie on a visible rugged mountain mass, not the adjacent bright ground road. Restore rock; do not cut through mountain to preserve a digitization shortcut.",
+      "calibration_ref": "calibration-review.json#chenliu-east-ground",
+      "pixel_crop": [
+        3339,
+        2513,
+        4013,
+        2881
+      ],
+      "reference_center": [
+        3757.301,
+        2689.1
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        113,
+        79
+      ],
+      "before": "R",
+      "before_terrain": "ROAD",
+      "after": "M",
+      "after_terrain": "MOUNTAIN",
+      "region": "chenliu-east-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Cell center and surroundings lie on a visible rugged mountain mass, not the adjacent bright ground road. Restore rock; do not cut through mountain to preserve a digitization shortcut.",
+      "calibration_ref": "calibration-review.json#chenliu-east-ground",
+      "pixel_crop": [
+        3339,
+        2513,
+        4013,
+        2881
+      ],
+      "reference_center": [
+        3821.816,
+        2688.897
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        112,
+        80
+      ],
+      "before": "R",
+      "before_terrain": "ROAD",
+      "after": "M",
+      "after_terrain": "MOUNTAIN",
+      "region": "chenliu-east-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Cell center and surroundings lie on a visible rugged mountain mass, not the adjacent bright ground road. Restore rock; do not cut through mountain to preserve a digitization shortcut.",
+      "calibration_ref": "calibration-review.json#chenliu-east-ground",
+      "pixel_crop": [
+        3339,
+        2513,
+        4013,
+        2881
+      ],
+      "reference_center": [
+        3789.61,
+        2705.125
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        113,
+        80
+      ],
+      "before": "R",
+      "before_terrain": "ROAD",
+      "after": "M",
+      "after_terrain": "MOUNTAIN",
+      "region": "chenliu-east-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Cell center and surroundings lie on a visible rugged mountain mass, not the adjacent bright ground road. Restore rock; do not cut through mountain to preserve a digitization shortcut.",
+      "calibration_ref": "calibration-review.json#chenliu-east-ground",
+      "pixel_crop": [
+        3339,
+        2513,
+        4013,
+        2881
+      ],
+      "reference_center": [
+        3821.918,
+        2721.15
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        114,
+        80
+      ],
+      "before": "R",
+      "before_terrain": "ROAD",
+      "after": "M",
+      "after_terrain": "MOUNTAIN",
+      "region": "chenliu-east-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Cell center and surroundings lie on a visible rugged mountain mass, not the adjacent bright ground road. Restore rock; do not cut through mountain to preserve a digitization shortcut.",
+      "calibration_ref": "calibration-review.json#chenliu-east-ground",
+      "pixel_crop": [
+        3339,
+        2513,
+        4013,
+        2881
+      ],
+      "reference_center": [
+        3854.124,
+        2704.922
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        116,
+        80
+      ],
+      "before": "R",
+      "before_terrain": "ROAD",
+      "after": "M",
+      "after_terrain": "MOUNTAIN",
+      "region": "chenliu-east-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Cell center and surroundings lie on a visible rugged mountain mass, not the adjacent bright ground road. Restore rock; do not cut through mountain to preserve a digitization shortcut.",
+      "calibration_ref": "calibration-review.json#chenliu-east-ground",
+      "pixel_crop": [
+        3339,
+        2513,
+        4013,
+        2881
+      ],
+      "reference_center": [
+        3918.639,
+        2704.719
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        101,
+        81
+      ],
+      "before": "R",
+      "before_terrain": "ROAD",
+      "after": "F",
+      "after_terrain": "FOREST",
+      "region": "chenliu-east-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Tree-covered surface in the reviewed crop; no linear road at the marked center. Restore forest and its ordinary movement cost.",
+      "calibration_ref": "calibration-review.json#chenliu-east-ground",
+      "pixel_crop": [
+        3339,
+        2513,
+        4013,
+        2881
+      ],
+      "reference_center": [
+        3434.931,
+        2754.62
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        112,
+        82
+      ],
+      "before": "R",
+      "before_terrain": "ROAD",
+      "after": "M",
+      "after_terrain": "MOUNTAIN",
+      "region": "chenliu-east-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Cell center and surroundings lie on a visible rugged mountain mass, not the adjacent bright ground road. Restore rock; do not cut through mountain to preserve a digitization shortcut.",
+      "calibration_ref": "calibration-review.json#chenliu-east-ground",
+      "pixel_crop": [
+        3339,
+        2513,
+        4013,
+        2881
+      ],
+      "reference_center": [
+        3789.814,
+        2769.63
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        99,
+        83
+      ],
+      "before": "R",
+      "before_terrain": "ROAD",
+      "after": "F",
+      "after_terrain": "FOREST",
+      "region": "chenliu-east-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Tree-covered surface in the reviewed crop; no linear road at the marked center. Restore forest and its ordinary movement cost.",
+      "calibration_ref": "calibration-review.json#chenliu-east-ground",
+      "pixel_crop": [
+        3339,
+        2513,
+        4013,
+        2881
+      ],
+      "reference_center": [
+        3370.621,
+        2819.328
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        112,
+        84
+      ],
+      "before": "R",
+      "before_terrain": "ROAD",
+      "after": "M",
+      "after_terrain": "MOUNTAIN",
+      "region": "chenliu-east-ground",
+      "classification": "SOURCE_ROAD_MISCLASSIFICATION",
+      "reason": "Cell center and surroundings lie on a visible rugged mountain mass, not the adjacent bright ground road. Restore rock; do not cut through mountain to preserve a digitization shortcut.",
+      "calibration_ref": "calibration-review.json#chenliu-east-ground",
+      "pixel_crop": [
+        3339,
+        2513,
+        4013,
+        2881
+      ],
+      "reference_center": [
+        3790.018,
+        2834.135
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Terrain cost changes; regression checked, no site/plot relocation"
+      }
+    },
+    {
+      "source": [
+        102,
+        85
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-south",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible winding water surface in the reviewed southern strip; preserve previous navigation prohibition rather than filling river with land or navigable water.",
+      "calibration_ref": "calibration-review.json#chenliu-south",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3467.546,
+        2867.402
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        105,
+        86
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-south",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible winding water surface in the reviewed southern strip; preserve previous navigation prohibition rather than filling river with land or navigable water.",
+      "calibration_ref": "calibration-review.json#chenliu-south",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3564.472,
+        2915.476
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        106,
+        87
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-south",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible winding water surface in the reviewed southern strip; preserve previous navigation prohibition rather than filling river with land or navigable water.",
+      "calibration_ref": "calibration-review.json#chenliu-south",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3596.78,
+        2931.501
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        117,
+        87
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-south",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible winding water surface in the reviewed southern strip; preserve previous navigation prohibition rather than filling river with land or navigable water.",
+      "calibration_ref": "calibration-review.json#chenliu-south",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3951.663,
+        2946.51
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        108,
+        88
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-south",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible winding water surface in the reviewed southern strip; preserve previous navigation prohibition rather than filling river with land or navigable water.",
+      "calibration_ref": "calibration-review.json#chenliu-south",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3661.397,
+        2963.55
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        109,
+        88
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-south",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible winding water surface in the reviewed southern strip; preserve previous navigation prohibition rather than filling river with land or navigable water.",
+      "calibration_ref": "calibration-review.json#chenliu-south",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3693.706,
+        2979.575
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        118,
+        88
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-south",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible winding water surface in the reviewed southern strip; preserve previous navigation prohibition rather than filling river with land or navigable water.",
+      "calibration_ref": "calibration-review.json#chenliu-south",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3983.971,
+        2962.535
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        119,
+        88
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-south",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible winding water surface in the reviewed southern strip; preserve previous navigation prohibition rather than filling river with land or navigable water.",
+      "calibration_ref": "calibration-review.json#chenliu-south",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        4016.28,
+        2978.56
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        110,
+        89
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-south",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible winding water surface in the reviewed southern strip; preserve previous navigation prohibition rather than filling river with land or navigable water.",
+      "calibration_ref": "calibration-review.json#chenliu-south",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3726.014,
+        2995.6
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        111,
+        89
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-south",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible winding water surface in the reviewed southern strip; preserve previous navigation prohibition rather than filling river with land or navigable water.",
+      "calibration_ref": "calibration-review.json#chenliu-south",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        3758.323,
+        3011.624
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        120,
+        89
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-south",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible winding water surface in the reviewed southern strip; preserve previous navigation prohibition rather than filling river with land or navigable water.",
+      "calibration_ref": "calibration-review.json#chenliu-south",
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "reference_center": [
+        4048.588,
+        2994.584
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        174,
+        104
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5792.021,
+        3472.889
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        175,
+        104
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5824.33,
+        3488.913
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        173,
+        105
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5759.917,
+        3521.369
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        174,
+        105
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5792.124,
+        3505.141
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        175,
+        105
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5824.432,
+        3521.166
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        176,
+        105
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5856.638,
+        3504.938
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        177,
+        105
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5888.947,
+        3520.963
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        172,
+        106
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5727.711,
+        3537.596
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        173,
+        106
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5760.019,
+        3553.621
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        174,
+        106
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5792.226,
+        3537.393
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        175,
+        106
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5824.534,
+        3553.418
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        176,
+        106
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5856.741,
+        3537.19
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        177,
+        106
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5889.049,
+        3553.215
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        172,
+        107
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5727.813,
+        3569.849
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        173,
+        107
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5760.122,
+        3585.874
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        174,
+        107
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5792.328,
+        3569.646
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        175,
+        107
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5824.636,
+        3585.67
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        176,
+        107
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5856.843,
+        3569.443
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        177,
+        107
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5889.151,
+        3585.467
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        178,
+        107
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5921.358,
+        3569.24
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        172,
+        108
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5727.915,
+        3602.101
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        173,
+        108
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5760.224,
+        3618.126
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        174,
+        108
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5792.43,
+        3601.898
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        175,
+        108
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5824.739,
+        3617.923
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        176,
+        108
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5856.945,
+        3601.695
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        172,
+        109
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5728.018,
+        3634.354
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        173,
+        109
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5760.326,
+        3650.378
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        174,
+        109
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5792.532,
+        3634.151
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        175,
+        109
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5824.841,
+        3650.175
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        176,
+        109
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5857.047,
+        3633.948
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        174,
+        110
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-basin",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Visible closed water basin enclosed by a rocky bank. Selected cells are interior water, not reference text. Q preserves its non-navigable status; no artificial lake port or water route.",
+      "calibration_ref": "calibration-review.json#wu-basin",
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "reference_center": [
+        5792.635,
+        3666.403
+      ],
+      "evidence": "CONFIRMED_VISIBLE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        46,
+        121
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Smooth channel continuous through rocky banks; exact surface subtype cannot be fully certified from the composite. Preserve all-unit blockage using Q, not P or navigable W.",
+      "calibration_ref": "calibration-review.json#yongan-north",
+      "pixel_crop": [
+        1344,
+        3938,
+        1954,
+        4532
+      ],
+      "reference_center": [
+        1664.809,
+        4034.173
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        47,
+        121
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Smooth channel continuous through rocky banks; exact surface subtype cannot be fully certified from the composite. Preserve all-unit blockage using Q, not P or navigable W.",
+      "calibration_ref": "calibration-review.json#yongan-north",
+      "pixel_crop": [
+        1344,
+        3938,
+        1954,
+        4532
+      ],
+      "reference_center": [
+        1697.118,
+        4050.198
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        48,
+        122
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Smooth channel continuous through rocky banks; exact surface subtype cannot be fully certified from the composite. Preserve all-unit blockage using Q, not P or navigable W.",
+      "calibration_ref": "calibration-review.json#yongan-north",
+      "pixel_crop": [
+        1344,
+        3938,
+        1954,
+        4532
+      ],
+      "reference_center": [
+        1729.426,
+        4066.222
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        49,
+        122
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-north",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Smooth channel continuous through rocky banks; exact surface subtype cannot be fully certified from the composite. Preserve all-unit blockage using Q, not P or navigable W.",
+      "calibration_ref": "calibration-review.json#yongan-north",
+      "pixel_crop": [
+        1344,
+        3938,
+        1954,
+        4532
+      ],
+      "reference_center": [
+        1761.735,
+        4082.247
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        47,
+        155
+      ],
+      "before": "M",
+      "before_terrain": "MOUNTAIN",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-west",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "v057 six-neighbor M estimate conflicts with the smooth channel in the actual reference. Correct the representation to blocked water, retain original movement prohibition and mark subtype inferred.",
+      "calibration_ref": "calibration-review.json#wuling-west",
+      "pixel_crop": [
+        1412,
+        4955,
+        1860,
+        5403
+      ],
+      "reference_center": [
+        1700.592,
+        5146.779
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        43,
+        158
+      ],
+      "before": "M",
+      "before_terrain": "MOUNTAIN",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-west",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "v057 six-neighbor M estimate conflicts with the smooth channel in the actual reference. Correct the representation to blocked water, retain original movement prohibition and mark subtype inferred.",
+      "calibration_ref": "calibration-review.json#wuling-west",
+      "pixel_crop": [
+        1412,
+        4955,
+        1860,
+        5403
+      ],
+      "reference_center": [
+        1571.869,
+        5243.942
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        50,
+        160
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-west",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Continuous narrow channel in the reviewed crop; conservative blocked-water representation, no newly opened path.",
+      "calibration_ref": "calibration-review.json#wuling-west",
+      "pixel_crop": [
+        1412,
+        4955,
+        1860,
+        5403
+      ],
+      "reference_center": [
+        1797.824,
+        5291.61
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    },
+    {
+      "source": [
+        43,
+        161
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "Q",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-west",
+      "classification": "B_SOURCE_TERRAIN",
+      "reason": "Continuous narrow channel in the reviewed crop; conservative blocked-water representation, no newly opened path.",
+      "calibration_ref": "calibration-review.json#wuling-west",
+      "pixel_crop": [
+        1412,
+        4955,
+        1860,
+        5403
+      ],
+      "reference_center": [
+        1572.175,
+        5340.699
+      ],
+      "evidence": "ESTIMATED",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_structure": false,
+        "pathfinding": "Unchanged all-unit movement prohibition"
+      }
+    }
+  ]
+}

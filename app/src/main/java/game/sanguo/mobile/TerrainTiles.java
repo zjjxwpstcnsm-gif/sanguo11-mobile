@@ -17,6 +17,7 @@ final class TerrainTiles {
         switch(t){
             case FOREST:return 0xff395c43;
             case MOUNTAIN:return 0xff717774;
+            case NON_NAVIGABLE_WATER:return 0xff537f88;
             case WATER:return 0xff427f99;
             case SEA:return 0xff244b6c;
             case VOID:return 0xff152331;
@@ -123,7 +124,7 @@ final class TerrainTiles {
             case MOUNTAIN:case MOUNTAIN_PATH:case PLANK_ROAD:
                 for(int i=0;i<3;i++){float x=(i-1)*15,y=i%2*10-4;Path mountain=new Path();mountain.moveTo(x-12,y+15);mountain.lineTo(x,y-15);mountain.lineTo(x+14,y+15);mountain.close();p.setColor(0xffadb09d);c.drawPath(mountain,p);mountain.reset();mountain.moveTo(x,y-15);mountain.lineTo(x+14,y+15);mountain.lineTo(x-1,y+7);mountain.close();p.setColor(0xff535f5d);c.drawPath(mountain,p);}
                 break;
-            case SEA:case WATER:case SHALLOWS:
+            case SEA:case WATER:case NON_NAVIGABLE_WATER:case SHALLOWS:
                 if(t==World.Terrain.SHALLOWS){p.setColor(0xffb9bea0);c.drawOval(-24,-8,-4,12,p);c.drawOval(5,5,20,19,p);}
                 p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(.75f);p.setColor(t==World.Terrain.WATER?0xff779da9:0xffc4dfcc);
                 for(int i=0;i<6;i++){float y=i*8-20,x=(i+variant)%2*8-23;Path wave=new Path();wave.moveTo(x,y);wave.cubicTo(x+5,y-3,x+11,y+3,x+17,y);c.drawPath(wave,p);}p.setStyle(Paint.Style.FILL);break;

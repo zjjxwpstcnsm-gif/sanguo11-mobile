@@ -1,0 +1,630 @@
+{
+  "schema": 1,
+  "reference": {
+    "file": "MAP_SAN11.jpg",
+    "width": 7200,
+    "height": 6752,
+    "bytes": 34925627,
+    "sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+    "distributed": false
+  },
+  "transform_id": "native56-affine-rechecked58",
+  "formula": "[pixelX,pixelY] = axes * [sourceX, sourceY+0.5*(sourceX&1),1]",
+  "axes": [
+    [
+      32.25741426369938,
+      0.10217659392936329,
+      168.60500378341527
+    ],
+    [
+      -0.10151265669896248,
+      32.25239002901808,
+      136.30328379615418
+    ]
+  ],
+  "reused_fit_rms_pixels": 2.3668875119167923,
+  "accuracy_scope": "In-sample residual, not independent accuracy. Multiple local landmarks and grid phase checked. No image thresholding, OCR, or full-map rematerialization. Green lines are approximate administration overlays, not exact boundaries.",
+  "author_legend_source": "https://xgodgame.blogspot.com/2018/05/11.html",
+  "regions": [
+    {
+      "id": "chenliu-north",
+      "source_bounds": [
+        99,
+        68,
+        121,
+        84
+      ],
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "anchors": [
+        {
+          "site_id": 20011,
+          "name": "濮陽",
+          "source": [
+            120,
+            71
+          ],
+          "recorded_pixel": [
+            4048.5,
+            2425.5
+          ],
+          "predicted_pixel": [
+            4046.749,
+            2414.041
+          ],
+          "residual_pixels": 11.592,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20012,
+          "name": "陳留",
+          "source": [
+            108,
+            79
+          ],
+          "recorded_pixel": [
+            3660.5,
+            2672.5
+          ],
+          "predicted_pixel": [
+            3660.478,
+            2673.279
+          ],
+          "residual_pixels": 0.779,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20013,
+          "name": "許昌",
+          "source": [
+            99,
+            92
+          ],
+          "recorded_pixel": [
+            3371.5,
+            3109.5
+          ],
+          "predicted_pixel": [
+            3371.54,
+            3109.6
+          ],
+          "residual_pixels": 0.107,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        }
+      ],
+      "observation": "Continuous smooth narrow channel between visible banks connects towards the Guandu/Yellow River reach. No navigable cell lattice in the selected interior. Green administrative overlay is not used as a coast.",
+      "calibration_id": "native56-affine-rechecked58",
+      "max_reused_anchor_residual_pixels": 11.592,
+      "local_grid_check": "Cell-lattice phase and visible bank/peak turns checked in the listed crop; use only its source_bounds. No global coastline accuracy claim."
+    },
+    {
+      "id": "chenliu-south",
+      "source_bounds": [
+        99,
+        85,
+        121,
+        89
+      ],
+      "pixel_crop": [
+        3339,
+        2303,
+        4110,
+        3042
+      ],
+      "anchors": [
+        {
+          "site_id": 20011,
+          "name": "濮陽",
+          "source": [
+            120,
+            71
+          ],
+          "recorded_pixel": [
+            4048.5,
+            2425.5
+          ],
+          "predicted_pixel": [
+            4046.749,
+            2414.041
+          ],
+          "residual_pixels": 11.592,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20012,
+          "name": "陳留",
+          "source": [
+            108,
+            79
+          ],
+          "recorded_pixel": [
+            3660.5,
+            2672.5
+          ],
+          "predicted_pixel": [
+            3660.478,
+            2673.279
+          ],
+          "residual_pixels": 0.779,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20013,
+          "name": "許昌",
+          "source": [
+            99,
+            92
+          ],
+          "recorded_pixel": [
+            3371.5,
+            3109.5
+          ],
+          "predicted_pixel": [
+            3371.54,
+            3109.6
+          ],
+          "residual_pixels": 0.107,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        }
+      ],
+      "observation": "Same reviewed crop: continuous winding water surface south of Chenliu, not isolated black labels. Only the explicitly listed former V cells are changed; bank pixels and building outlines are excluded.",
+      "calibration_id": "native56-affine-rechecked58",
+      "max_reused_anchor_residual_pixels": 11.592,
+      "local_grid_check": "Cell-lattice phase and visible bank/peak turns checked in the listed crop; use only its source_bounds. No global coastline accuracy claim."
+    },
+    {
+      "id": "wu-basin",
+      "source_bounds": [
+        166,
+        100,
+        179,
+        114
+      ],
+      "pixel_crop": [
+        5503,
+        3314,
+        5984,
+        3841
+      ],
+      "anchors": [
+        {
+          "site_id": 20022,
+          "name": "建業",
+          "source": [
+            162,
+            104
+          ],
+          "recorded_pixel": [
+            5404.0,
+            3473.5
+          ],
+          "predicted_pixel": [
+            5404.932,
+            3474.107
+          ],
+          "residual_pixels": 1.113,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20023,
+          "name": "吳",
+          "source": [
+            182,
+            109
+          ],
+          "recorded_pixel": [
+            6050.0,
+            3632.5
+          ],
+          "predicted_pixel": [
+            6050.592,
+            3633.338
+          ],
+          "residual_pixels": 1.026,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20024,
+          "name": "會稽",
+          "source": [
+            184,
+            125
+          ],
+          "recorded_pixel": [
+            6115.5,
+            4148.5
+          ],
+          "predicted_pixel": [
+            6116.741,
+            4149.174
+          ],
+          "residual_pixels": 1.412,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        }
+      ],
+      "observation": "Closed smooth water basin with a continuous rocky shore west of Wu; 31 listed V cells lie inside the basin. No port or navigable lattice within it. This is not a military wall or a dam.",
+      "calibration_id": "native56-affine-rechecked58",
+      "max_reused_anchor_residual_pixels": 1.412,
+      "local_grid_check": "Cell-lattice phase and visible bank/peak turns checked in the listed crop; use only its source_bounds. No global coastline accuracy claim."
+    },
+    {
+      "id": "yongan-north",
+      "source_bounds": [
+        37,
+        119,
+        54,
+        135
+      ],
+      "pixel_crop": [
+        1344,
+        3938,
+        1954,
+        4532
+      ],
+      "anchors": [
+        {
+          "site_id": 20035,
+          "name": "永安",
+          "source": [
+            46,
+            128
+          ],
+          "recorded_pixel": [
+            1665.5,
+            4259.5
+          ],
+          "predicted_pixel": [
+            1665.525,
+            4259.94
+          ],
+          "residual_pixels": 0.44,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20037,
+          "name": "梓潼",
+          "source": [
+            16,
+            110
+          ],
+          "recorded_pixel": [
+            696.5,
+            3682.5
+          ],
+          "predicted_pixel": [
+            695.963,
+            3682.442
+          ],
+          "residual_pixels": 0.54,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20038,
+          "name": "江州",
+          "source": [
+            30,
+            147
+          ],
+          "recorded_pixel": [
+            1151.5,
+            4874.5
+          ],
+          "predicted_pixel": [
+            1151.347,
+            4874.359
+          ],
+          "residual_pixels": 0.208,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        }
+      ],
+      "observation": "Four narrow-channel interior cells in the north of Yongan. Water subtype is inferred from channel continuity, so these remain ESTIMATED; all movement remains blocked.",
+      "calibration_id": "native56-affine-rechecked58",
+      "max_reused_anchor_residual_pixels": 0.54,
+      "local_grid_check": "Cell-lattice phase and visible bank/peak turns checked in the listed crop; use only its source_bounds. No global coastline accuracy claim."
+    },
+    {
+      "id": "wuling-west",
+      "source_bounds": [
+        39,
+        150,
+        51,
+        162
+      ],
+      "pixel_crop": [
+        1412,
+        4955,
+        1860,
+        5403
+      ],
+      "anchors": [
+        {
+          "site_id": 20032,
+          "name": "武陵",
+          "source": [
+            69,
+            155
+          ],
+          "recorded_pixel": [
+            2411.5,
+            5144.0
+          ],
+          "predicted_pixel": [
+            2410.255,
+            5144.546
+          ],
+          "residual_pixels": 1.359,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20035,
+          "name": "永安",
+          "source": [
+            46,
+            128
+          ],
+          "recorded_pixel": [
+            1665.5,
+            4259.5
+          ],
+          "predicted_pixel": [
+            1665.525,
+            4259.94
+          ],
+          "residual_pixels": 0.44,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20038,
+          "name": "江州",
+          "source": [
+            30,
+            147
+          ],
+          "recorded_pixel": [
+            1151.5,
+            4874.5
+          ],
+          "predicted_pixel": [
+            1151.347,
+            4874.359
+          ],
+          "residual_pixels": 0.208,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        }
+      ],
+      "observation": "The two v057 M estimates lie in the same smooth winding channel as two remaining V cells, not on visible rock peaks. Replace all four with a blocked water representation; subtype remains ESTIMATED.",
+      "calibration_id": "native56-affine-rechecked58",
+      "max_reused_anchor_residual_pixels": 1.359,
+      "local_grid_check": "Cell-lattice phase and visible bank/peak turns checked in the listed crop; use only its source_bounds. No global coastline accuracy claim."
+    },
+    {
+      "id": "ye-north-ground",
+      "source_bounds": [
+        104,
+        42,
+        112,
+        49
+      ],
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ],
+      "anchors": [
+        {
+          "site_id": 20003,
+          "name": "南皮",
+          "source": [
+            138,
+            37
+          ],
+          "recorded_pixel": [
+            4623.5,
+            1315.5
+          ],
+          "predicted_pixel": [
+            4623.909,
+            1315.633
+          ],
+          "residual_pixels": 0.43,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20005,
+          "name": "晉陽",
+          "source": [
+            91,
+            39
+          ],
+          "recorded_pixel": [
+            3108.0,
+            1398.0
+          ],
+          "predicted_pixel": [
+            3108.066,
+            1401.035
+          ],
+          "residual_pixels": 3.036,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20006,
+          "name": "鄴",
+          "source": [
+            109,
+            53
+          ],
+          "recorded_pixel": [
+            3690.5,
+            1850.5
+          ],
+          "predicted_pixel": [
+            3690.13,
+            1850.741
+          ],
+          "residual_pixels": 0.442,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        }
+      ],
+      "observation": "The cyan B samples are ground-level rough/rocky land on the white playable lattice, with no wooden deck, supports or spanning structure. Plain is the conservative passable-land representation; exact original rough-ground subtype is not certified.",
+      "calibration_id": "native56-affine-rechecked58",
+      "max_reused_anchor_residual_pixels": 3.036,
+      "local_grid_check": "Cell-lattice phase and visible bank/peak turns checked in the listed crop; use only its source_bounds. No global coastline accuracy claim."
+    },
+    {
+      "id": "chenliu-east-ground",
+      "source_bounds": [
+        99,
+        75,
+        118,
+        84
+      ],
+      "pixel_crop": [
+        3339,
+        2513,
+        4013,
+        2881
+      ],
+      "anchors": [
+        {
+          "site_id": 20011,
+          "name": "濮陽",
+          "source": [
+            120,
+            71
+          ],
+          "recorded_pixel": [
+            4048.5,
+            2425.5
+          ],
+          "predicted_pixel": [
+            4046.749,
+            2414.041
+          ],
+          "residual_pixels": 11.592,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20012,
+          "name": "陳留",
+          "source": [
+            108,
+            79
+          ],
+          "recorded_pixel": [
+            3660.5,
+            2672.5
+          ],
+          "predicted_pixel": [
+            3660.478,
+            2673.279
+          ],
+          "residual_pixels": 0.779,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20013,
+          "name": "許昌",
+          "source": [
+            99,
+            92
+          ],
+          "recorded_pixel": [
+            3371.5,
+            3109.5
+          ],
+          "predicted_pixel": [
+            3371.54,
+            3109.6
+          ],
+          "residual_pixels": 0.107,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        }
+      ],
+      "observation": "Selected yellow R samples on clear rugged rock peaks east of Chenliu or tree canopies west of it are digitization mistakes, not roads. The real bright southbound city road is left intact.",
+      "calibration_id": "native56-affine-rechecked58",
+      "max_reused_anchor_residual_pixels": 11.592,
+      "local_grid_check": "Cell-lattice phase and visible bank/peak turns checked in the listed crop; use only its source_bounds. No global coastline accuracy claim."
+    },
+    {
+      "id": "northwest-prior-estimates",
+      "source_bounds": [
+        5,
+        0,
+        33,
+        19
+      ],
+      "pixel_crop": [
+        299,
+        119,
+        1265,
+        794
+      ],
+      "anchors": [
+        {
+          "site_id": 20019,
+          "name": "安定",
+          "source": [
+            28,
+            55
+          ],
+          "recorded_pixel": [
+            1078.0,
+            1907.5
+          ],
+          "predicted_pixel": [
+            1077.432,
+            1907.342
+          ],
+          "residual_pixels": 0.589,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20020,
+          "name": "天水",
+          "source": [
+            10,
+            71
+          ],
+          "recorded_pixel": [
+            497.0,
+            2425.5
+          ],
+          "predicted_pixel": [
+            498.434,
+            2425.208
+          ],
+          "residual_pixels": 1.463,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20021,
+          "name": "武威",
+          "source": [
+            9,
+            41
+          ],
+          "recorded_pixel": [
+            462.5,
+            1473.5
+          ],
+          "predicted_pixel": [
+            463.162,
+            1473.864
+          ],
+          "residual_pixels": 0.755,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        }
+      ],
+      "observation": "The title/legend and author overprint obscures the land. Six same-type neighbors do not prove original sand. Retain nine historical ESTIMATED corrections without upgrade; original terrain/outline remains UNRESOLVED.",
+      "calibration_id": "native56-affine-rechecked58",
+      "max_reused_anchor_residual_pixels": 1.463,
+      "local_grid_check": "Cell-lattice phase and visible bank/peak turns checked in the listed crop; use only its source_bounds. No global coastline accuracy claim."
+    }
+  ]
+}
