@@ -3,6 +3,7 @@ package game.sanguo.mobile;
 /** Pixel-space camera independent of engine work and Android gesture dispatch. */
 final class MapCamera {
     float columnOffset;
+    boolean columnStaggered;
     float scale=1, minScale=1, maxScale=4, x, y;
     private float width,height,worldWidth,worldHeight,density=1,radius;
     void resize(float width,float height,float worldWidth,float worldHeight,float radius,float density) {
@@ -21,10 +22,10 @@ final class MapCamera {
     void restoreScale(float value,float cx,float cy){scale=bounded(value);x=width/2-cx*scale;y=height/2-cy*scale;clamp();}
     float centerX(){return (width/2-x)/scale;} float centerY(){return (height/2-y)/scale;}
     // Conservative per-row axial bounds, including labels at the viewport edge.
-    int firstRow(int rows,float margin){return Math.max(0,(int)Math.floor((-y/scale-margin)/(radius*TileGeometry.SPAN)));}
-    int lastRow(int rows,float margin){return Math.min(rows-1,(int)Math.ceil(((height-y)/scale+margin)/(radius*TileGeometry.SPAN)));}
-    int firstColumn(int row,int columns,float margin){return Math.max(0,(int)Math.floor((-x/scale-margin)/(radius*TileGeometry.SPAN)-row*.5f+columnOffset));}
-    int lastColumn(int row,int columns,float margin){return Math.min(columns-1,(int)Math.ceil(((width-x)/scale+margin)/(radius*TileGeometry.SPAN)-row*.5f+columnOffset));}
+    int firstRow(int rows,float margin){return Math.max(0,(int)Math.floor((-(columnStaggered?x:y)/scale-margin)/(radius*TileGeometry.SPAN)));}
+    int lastRow(int rows,float margin){return Math.min(rows-1,(int)Math.ceil((((columnStaggered?width-x:height-y))/scale+margin)/(radius*TileGeometry.SPAN)));}
+    int firstColumn(int row,int columns,float margin){return Math.max(0,(int)Math.floor((-(columnStaggered?y:x)/scale-margin)/(radius*TileGeometry.SPAN)-row*.5f+columnOffset));}
+    int lastColumn(int row,int columns,float margin){return Math.min(columns-1,(int)Math.ceil((((columnStaggered?height-y:width-x))/scale+margin)/(radius*TileGeometry.SPAN)-row*.5f+columnOffset));}
     boolean visible(float wx,float wy,float margin){return wx*scale+x>=-margin&&wx*scale+x<=width+margin&&wy*scale+y>=-margin&&wy*scale+y<=height+margin;}
     void centerOn(float wx,float wy){x=width/2-wx*scale;y=height/2-wy*scale;clamp();}
     private float bounded(float s){return Math.max(minScale,Math.min(maxScale,s));}

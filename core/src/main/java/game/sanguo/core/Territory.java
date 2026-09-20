@@ -43,8 +43,7 @@ public final class Territory {
             for(int[] d:DIRECTIONS){int other=siteAt(q+d[0],r+d[1]);if(other>=0&&other!=site)neighbors.get(site).add(other);}
         }
     }
-    private boolean inside(int q,int r){return q>=0&&r>=0&&q<world.width&&r<world.height&&
-        (world.sourceMapWidth==0||q+(r-(r&1))/2-(world.height-1)/2>=0&&q+(r-(r&1))/2-(world.height-1)/2<world.sourceMapWidth);}
+    private boolean inside(int q,int r){return world.sourceInside(new Hex(q,r));}
     public int siteAt(int q,int r){return inside(q,r)?sites[q][r]:-1;}
     public int siteAt(Hex hex){return hex==null?-1:siteAt(hex.q,hex.r);}
     public int ownerAt(int q,int r){World.City c=cities.get(siteAt(q,r));return c==null?-1:c.owner;}

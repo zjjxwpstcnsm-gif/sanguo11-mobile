@@ -5,7 +5,7 @@ import game.sanguo.core.World;
 /** Same axial order as Hex.neighbors(): east, northeast, northwest, west, southwest, southeast. */
 final class TerrainConnections {
     static final int[] DQ={1,1,0,-1,-1,0},DR={0,-1,-1,0,1,1};
-    static boolean road(World.Terrain t){return t==World.Terrain.PLANK_ROAD||t==World.Terrain.MOUNTAIN_PATH;}
+    static boolean road(World.Terrain t){return t==World.Terrain.PLANK_ROAD||t==World.Terrain.MOUNTAIN_PATH||t==World.Terrain.ROAD;}
     static boolean water(World.Terrain t){return t==World.Terrain.WATER||t==World.Terrain.SEA||t==World.Terrain.SHALLOWS;}
     static boolean inside(World w,int q,int r){return q>=0&&r>=0&&q<w.width&&r<w.height;}
     static int mask(World w,int q,int r){
@@ -26,7 +26,7 @@ final class TerrainConnections {
         int best=-1,score=-1;
         for(int d=0;d<6;d++){
             int nq=q+DQ[d],nr=r+DR[d];if((used&(1<<d))!=0||!inside(w,nq,nr))continue;
-            World.Terrain t=w.terrain[nq][nr];if(t!=World.Terrain.PLAIN&&t!=World.Terrain.FOREST&&t!=World.Terrain.SHALLOWS)continue;
+            World.Terrain t=w.terrain[nq][nr];if(t!=World.Terrain.PLAIN&&t!=World.Terrain.FOREST&&t!=World.Terrain.SHALLOWS&&t!=World.Terrain.ROAD&&t!=World.Terrain.SAND)continue;
             int separation=from<0?0:Math.min(Math.abs(from-d),6-Math.abs(from-d));
             if(separation>score){best=d;score=separation;}
         }

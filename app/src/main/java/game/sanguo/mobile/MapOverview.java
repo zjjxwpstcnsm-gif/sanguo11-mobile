@@ -23,6 +23,7 @@ final class MapOverview {
     });
     private final int width,height;
     private final float offset;
+    private final boolean columnStaggered;
     private final int[] terrain,sites,owners,colors;
     private final byte[] roads;
     private final int[] styles;
@@ -35,7 +36,7 @@ final class MapOverview {
     private int generation;
 
     MapOverview(World world,Territory territory,float worldWidth,float worldHeight,float columnOffset){
-        width=world.width;height=world.height;offset=columnOffset;
+        width=world.width;height=world.height;offset=columnOffset;columnStaggered=world.columnStaggered;
         bounds=new RectF(-RADIUS,-RADIUS,worldWidth-RADIUS,worldHeight-RADIUS);
         int count=width*height;
         terrain=new int[count];sites=new int[count];owners=new int[count];colors=new int[count];
@@ -44,11 +45,11 @@ final class MapOverview {
         int[] palette=new int[world.factions.length];
         for(int i=0;i<palette.length;i++)palette[i]=FactionColors.color(world,i);
         for(int r=0;r<height;r++)for(int q=0;q<width;q++){
-            int source=q+(r-(r&1))/2-(height-1)/2,index=r*width+q;
-            if(world.terrain[q][r]==World.Terrain.VOID||world.sourceMapWidth>0&&(source<0||source>=world.sourceMapWidth))continue;
+            int index=r*width+q;
+            if(world.terrain[q][r]==World.Terrain.VOID||!world.sourceInside(new game.sanguo.core.Hex(q,r)))continue;
             terrain[index]=TerrainTiles.color(world.terrain[q][r]);
             World.Terrain t=world.terrain[q][r];
-            styles[index]=VisualAssets.terrainCell(TerrainConnections.road(t)?World.Terrain.MOUNTAIN:t,Math.floorMod(q*31+r*17,3));
+            styles[index]=VisualAssets.terrainCell(t==World.Terrain.ROAD?World.Terrain.PLAIN:TerrainConnections.road(t)?World.Terrain.MOUNTAIN:t,Math.floorMod(q*31+r*17,3));
             if(TerrainConnections.road(world.terrain[q][r]))roads[index]=(byte)(64|TerrainConnections.mask(world,q,r));
             sites[index]=territory.siteAt(q,r);owners[index]=territory.ownerAt(q,r);
             colors[index]=owners[index]<0?0xffa6a6a6:palette[owners[index]];
@@ -83,17 +84,19 @@ final class MapOverview {
         float stepX=bounds.width()/w,stepY=bounds.height()/h;
         for(int y=0;y<h;y++){
             if(Thread.currentThread().isInterrupted())return null;
-            float r=(bounds.top+(y+.5f)*stepY)/DY;
+            float wy=bounds.top+(y+.5f)*stepY;
             for(int x=0;x<w;x++){
                 float wx=bounds.left+(x+.5f)*stepX;
-                int ir=TileGeometry.row(bounds.top+(y+.5f)*stepY),iq=TileGeometry.column(wx,ir,offset);
-                float q=wx/DX-r*.5f+offset;
+                float r=(columnStaggered?wx:wy)/DY;
+                int ir=TileGeometry.projectedRow(wx,wy,columnStaggered),iq=TileGeometry.projectedColumn(wx,wy,ir,offset,columnStaggered);
+                float q=(columnStaggered?wy:wx)/DX-r*.5f+offset;
                 int cell=iq>=0&&iq<width&&ir>=0&&ir<height?ir*width+iq:-1;
                 cells[y*w+x]=cell;
                 int color=cell<0||terrain[cell]==0?BACKGROUND:terrain[cell];
                 if(cell>=0&&styles[cell]>=0&&artwork!=null){
                     int tx=Math.max(0,Math.min(63,(int)((((q-iq)+(r-ir)*.5f)*DX+RADIUS)*64/50)));
                     int ty=Math.max(0,Math.min(63,(int)(((r-ir)*DY+RADIUS)*64/50)));
+                    if(columnStaggered){int temp=tx;tx=ty;ty=temp;}
                     color=blend(color,artwork[styles[cell]][ty*64+tx],96);
                 }
                 ground[y*w+x]=color;
@@ -119,9 +122,9 @@ final class MapOverview {
             Canvas canvas=new Canvas(images[mode]);canvas.scale(w/bounds.width(),h/bounds.height());canvas.translate(-bounds.left,-bounds.top);
             Paint road=new Paint(Paint.ANTI_ALIAS_FLAG);road.setColor(0xffa18f73);road.setStrokeCap(Paint.Cap.ROUND);road.setStrokeWidth(Math.max(2.5f,.55f/scale));
             for(int r=0;r<height;r++)for(int q=0;q<width;q++)if(roads[r*width+q]!=0){
-                float cx=DX*(q+r*.5f-offset),cy=DY*r;
+                float cx=TileGeometry.projectedX(q,r,offset,columnStaggered),cy=TileGeometry.projectedY(q,r,offset,columnStaggered);
                 int mask=roads[r*width+q]&63;
-                for(int d=0;d<6;d++)if((mask&(1<<d))!=0)canvas.drawLine(cx,cy,cx+TerrainConnections.edgeX(d),cy+TerrainConnections.edgeY(d),road);
+                for(int d=0;d<6;d++)if((mask&(1<<d))!=0)canvas.drawLine(cx,cy,cx+(columnStaggered?TerrainConnections.edgeY(d):TerrainConnections.edgeX(d)),cy+(columnStaggered?TerrainConnections.edgeX(d):TerrainConnections.edgeY(d)),road);
             }
         }
         return images;

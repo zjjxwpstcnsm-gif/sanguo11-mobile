@@ -31,7 +31,7 @@ public final class MarchOrders {
         }
         public boolean valid(){return error==null;}
     }
-    private static final class Step {final Hex h;final int cost;Step(Hex h,int cost){this.h=h;this.cost=cost;}}
+    private static final class Step {final Hex h;final int cost,priority;Step(Hex h,int cost,int heuristic){this.h=h;this.cost=cost;this.priority=cost+heuristic;}}
     private final World w;
     private boolean executing;
     MarchOrders(World w){this.w=w;}
@@ -155,16 +155,20 @@ public final class MarchOrders {
             for(War.Structure s:w.war.structures())blocked.add(s.hex);
             for(War.Fire f:w.war.fires())blocked.add(f.hex);
             Map<Hex,Integer> distance=new HashMap<>();Map<Hex,Hex> previous=new HashMap<>();
-            PriorityQueue<Step> queue=new PriorityQueue<>(Comparator.comparingInt((Step s)->s.cost).thenComparingInt(s->s.h.q).thenComparingInt(s->s.h.r));
-            distance.put(u.hex,0);queue.add(new Step(u.hex,0));Hex finish=null;
+            // Consistent lower bound: one paid step per axial distance outside the goal radius.
+            // No full-map scan, and read-only per-query movement costs cannot become stale.
+            final int radius=goals.stream().mapToInt(h->h.distance(destination)).max().orElse(0);
+            Army.MovementCosts movementCosts=w.army.movementCosts(u);
+            PriorityQueue<Step> queue=new PriorityQueue<>(Comparator.comparingInt((Step s)->s.priority).thenComparingInt(s->s.cost).thenComparingInt(s->s.h.q).thenComparingInt(s->s.h.r));
+            distance.put(u.hex,0);queue.add(new Step(u.hex,0,Math.max(0,u.hex.distance(destination)-radius)));Hex finish=null;
             while(!queue.isEmpty()&&!goals.isEmpty()){
                 Step s=queue.remove();if(s.cost!=distance.get(s.h))continue;
                 if(goals.contains(s.h)){finish=s.h;cost=s.cost;break;}
                 for(Hex next:s.h.neighbors()){
-                    int step=w.army.moveCost(u,s.h,next);if(step<1||blocked.contains(next))continue;
+                    int step=movementCosts.cost(s.h,next);if(step<1||blocked.contains(next))continue;
                     int available=budget(u,s.h,budgets);if(s.h.equals(u.hex))available=Math.max(available,w.orders.remaining(u));
                     if(step>available)continue;
-                    int total=s.cost+step;if(total<distance.getOrDefault(next,Integer.MAX_VALUE)){distance.put(next,total);previous.put(next,s.h);queue.add(new Step(next,total));}
+                    int total=s.cost+step;if(total<distance.getOrDefault(next,Integer.MAX_VALUE)){distance.put(next,total);previous.put(next,s.h);queue.add(new Step(next,total,Math.max(0,next.distance(destination)-radius)));}
                 }
             }
             if(finish==null)problem=goals.isEmpty()?"当前兵种或适性不能攻击该目标（包括森林射击限制）":"没有可达路线：检查占格、火场、地形；上下河必须经过己方港口";

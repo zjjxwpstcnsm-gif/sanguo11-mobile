@@ -232,3 +232,12 @@ tasks.register('verifyPortReplay', JavaExec) {
     mainClass = 'game.sanguo.core.PortReplayTest'
 }
 check.dependsOn verifyPortReplay
+
+// Native map contracts are additive; historical regressions remain registered.
+tasks.register('verifyNative56', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.NativeMap56Test'
+    maxHeapSize = '1500m'
+}
+tasks.named('check') { dependsOn 'verifyNative56' }

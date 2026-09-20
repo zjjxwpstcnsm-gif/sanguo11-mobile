@@ -1,5 +1,5 @@
 {
-  "release": "0.55.0",
+  "release": "0.56.0",
   "baseline_manifest": "tools/content/map-v050-manifest.json",
   "files": [
     {
@@ -30,52 +30,52 @@
     {
       "apk_path": "scenarios/central-mobile-sandbox.properties",
       "source_path": "core/src/main/resources/scenarios/central-mobile-sandbox.properties",
-      "sha256": "1602db0926f6b16b7879a54f0b5d12cf00251f71be1c6215f91e6557aa74e55d"
+      "sha256": "a6d50e6037c567aae6be7229e01ed0c21fca1814abbe3302bbd9bbbfae85492d"
     },
     {
       "apk_path": "scenarios/chibi-207.properties",
       "source_path": "core/src/main/resources/scenarios/chibi-207.properties",
-      "sha256": "90b1104e45a66d196ade2f13aee40009dc39c85266255886e8288fe8d5632027"
+      "sha256": "6e979682ca6e9dea1cf4721e8b7584ff8bbc7fbc2d22177896073cdbd7b4e1f1"
     },
     {
       "apk_path": "scenarios/coalition-190.properties",
       "source_path": "core/src/main/resources/scenarios/coalition-190.properties",
-      "sha256": "a8c828d010737f2281087a2914ba2452038f01bc504aea5b79ff3e183bd7600c"
+      "sha256": "84bbe2aa8daba3be0d47e2f7fc2f700cbdd2b53c748e6f42f568a7115b04d8c8"
     },
     {
       "apk_path": "scenarios/guandu-200.properties",
       "source_path": "core/src/main/resources/scenarios/guandu-200.properties",
-      "sha256": "b86c8e56b68806099435e4500e77ed690f3024288c45c7ada8fe973abbf43013"
+      "sha256": "72df21e9b16bf3492e561ac81ee70dd89a0c64b4ddb0d7c35a88fe980369acd7"
     },
     {
       "apk_path": "scenarios/heroes-250.properties",
       "source_path": "core/src/main/resources/scenarios/heroes-250.properties",
-      "sha256": "0015414877c9b0e10fea0ab3deb5301fdc0a9a56b34a9c7356ce1008da924e70"
+      "sha256": "cef9f57976f059e5806154082a0250404ee14c350e66204594880e30d4df61cf"
     },
     {
       "apk_path": "scenarios/heroes-mobile-sandbox.properties",
       "source_path": "core/src/main/resources/scenarios/heroes-mobile-sandbox.properties",
-      "sha256": "4364f9607b07709cbe5f3d202078ad2adb516b6fad3e5d5e2ea9a3dd9f43d4e6"
+      "sha256": "feaaf673a9712fc04dfd37ab4865499be25e92eb2889332d742a5dbfa478a5a2"
     },
     {
       "apk_path": "scenarios/huangjin-184.properties",
       "source_path": "core/src/main/resources/scenarios/huangjin-184.properties",
-      "sha256": "6056cb0786a0665b9372cf5f680ad1c2cda1388afc7662b4e8df4a84d0a68711"
+      "sha256": "cb50051c2c0f0f1dbf08fbdb2ea787ab31e61b36f7ea1d6c3c7065cbb6dd518a"
     },
     {
       "apk_path": "scenarios/index.txt",
       "source_path": "core/src/main/resources/scenarios/index.txt",
-      "sha256": "7431433e8cbfb14d497739588b8fdb88967a7a2222724a53e35b5840ec216fa8"
+      "sha256": "1b4c20f6916b9cfec12c927def966dc0d14368cee5aea89272562d36d060b108"
     },
     {
       "apk_path": "scenarios/jingxiang-mobile-sandbox.properties",
       "source_path": "core/src/main/resources/scenarios/jingxiang-mobile-sandbox.properties",
-      "sha256": "8f947ddfdee71541d5afd4c51dc49a545e86103575a7ca94f2326c757ff52109"
+      "sha256": "ba781ce741cc24762f01ad68517dc191ce970d5b3880c7f0ed74f9aaf5e91663"
     },
     {
       "apk_path": "scenarios/warlords-194.properties",
       "source_path": "core/src/main/resources/scenarios/warlords-194.properties",
-      "sha256": "9e6e98a6731798d80a02a5d9eb0bfb2c967579662ca84daa9b0994bdd504173b"
+      "sha256": "2c8b2d466c199cca78bebf63ea66a0d17a4d15f52dfde08465fb0f5a6f154f8f"
     },
     {
       "apk_path": "assets/map/items-facilities-v040.png",
@@ -91,6 +91,166 @@
       "apk_path": "assets/map/units-v043.png",
       "source_path": "app/src/main/assets/map/units-v043.png",
       "sha256": "8706a2095243fac24832b8bb736505b8d45687c7dcd42b39d5a4e1caa8e3f043"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/capital-far.png",
+      "apk_path": "assets/map/cities-v056/capital-far.png",
+      "sha256": "17546d68fde45dcbc146c082d30005c72084f95288cd5d5f70fb394d16d289ef"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/capital-mid.png",
+      "apk_path": "assets/map/cities-v056/capital-mid.png",
+      "sha256": "124fec12243c6695d03212218a1e63b452064c7e70cc791f981d3a87542b64ca"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/capital-near.png",
+      "apk_path": "assets/map/cities-v056/capital-near.png",
+      "sha256": "133b79448d7b0f8030f9b892ed48374ce073686b34f35ef3adde2f48e80017b8"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/catalog.json",
+      "apk_path": "assets/map/cities-v056/catalog.json",
+      "sha256": "eb1f988e4f034fb421da753633851b0493d86fe61366ee46f3a9fbe988888403"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/changan-far.png",
+      "apk_path": "assets/map/cities-v056/changan-far.png",
+      "sha256": "aaa0f58c319bede2f1b15fb1c7453851d8e52902469d5f6697bd918ce8528686"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/changan-mid.png",
+      "apk_path": "assets/map/cities-v056/changan-mid.png",
+      "sha256": "df0d4d27f10e98d56d9fd025a5baa1aea635926a7bc7e20b020e8163f15900e3"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/changan-near.png",
+      "apk_path": "assets/map/cities-v056/changan-near.png",
+      "sha256": "b06214a3e7ef9c9869491d8e989027867a93e35b9e4022e8d23cd72c7819b763"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/gate-far.png",
+      "apk_path": "assets/map/cities-v056/gate-far.png",
+      "sha256": "7a37aa6a283ab2af1516d4aad146f61d0fdf7bd5ff922b6b360fc9525f719f55"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/gate-mid.png",
+      "apk_path": "assets/map/cities-v056/gate-mid.png",
+      "sha256": "0223ba25cecefc785c11627771a649a95c4bc084c02ba84b898b9e688cb58071"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/gate-near.png",
+      "apk_path": "assets/map/cities-v056/gate-near.png",
+      "sha256": "95cdce9fa2f8735218c7f40a0fc3787820c6a6b433fb701fa0e27642d2fd0491"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/large-far.png",
+      "apk_path": "assets/map/cities-v056/large-far.png",
+      "sha256": "a362c7bf940cc14ba63c759b74ee791ef69dfd89dd5982e25ca59c717bdcf994"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/large-mid.png",
+      "apk_path": "assets/map/cities-v056/large-mid.png",
+      "sha256": "c87388fa9ac34bc91e28fb89f5cc721839c08c0a4b019d2453c1fb81fce5a871"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/large-near.png",
+      "apk_path": "assets/map/cities-v056/large-near.png",
+      "sha256": "66923a80fe76b3c5a44f71c93350daf31f347ae2527e8907d7e74accdee49b4e"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/luoyang-far.png",
+      "apk_path": "assets/map/cities-v056/luoyang-far.png",
+      "sha256": "dd2c37fff1a3355feefdcde761e8c356dcfdfb443bed5e01172b3afe379e3f4b"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/luoyang-mid.png",
+      "apk_path": "assets/map/cities-v056/luoyang-mid.png",
+      "sha256": "67e76c053bcbc4e93974d4cc7fbfab24ad6824fbb7315e89ab567d7470259a26"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/luoyang-near.png",
+      "apk_path": "assets/map/cities-v056/luoyang-near.png",
+      "sha256": "0cdfb8bb91a4db835b5bfc8fbdecdeb148615eb60e7cb4ed9c8adf9560aa7bdd"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/mountain-far.png",
+      "apk_path": "assets/map/cities-v056/mountain-far.png",
+      "sha256": "75ba51679e3fb7a7a23cfb21b2c9fe8c33e93d26e755f61371f272d7615c10fc"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/mountain-mid.png",
+      "apk_path": "assets/map/cities-v056/mountain-mid.png",
+      "sha256": "5720e7afb1d891377f3057c7e1174852c627a671bcd463d14654dfd00ef797c4"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/mountain-near.png",
+      "apk_path": "assets/map/cities-v056/mountain-near.png",
+      "sha256": "dc409d5869b72493f02580cf2540df643f16db263e622017f8e4a1f18edcdcc2"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/port-far.png",
+      "apk_path": "assets/map/cities-v056/port-far.png",
+      "sha256": "bc00293cefc935ed72264b36e97785e2224d76bffe4653bec8bee84c726d81b8"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/port-mid.png",
+      "apk_path": "assets/map/cities-v056/port-mid.png",
+      "sha256": "5558d5dad72f618498e70d18054f8283116bf37762613cbf8e3cf7196ef7816e"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/port-near.png",
+      "apk_path": "assets/map/cities-v056/port-near.png",
+      "sha256": "6d6f08a56493654e0d118b91e2419a2779296fef9a563d187ab30e5352d802de"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/river-far.png",
+      "apk_path": "assets/map/cities-v056/river-far.png",
+      "sha256": "b965079658ab64125dcacf7b273c8fb7ce434a305fa2c5e84129821fb02abbdc"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/river-mid.png",
+      "apk_path": "assets/map/cities-v056/river-mid.png",
+      "sha256": "ecfa89976096ba9eb22295c785926f395d14c4cdbeacd8d479af2c9ada9cb587"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/river-near.png",
+      "apk_path": "assets/map/cities-v056/river-near.png",
+      "sha256": "396d51dec9072060058085a21aae72adf4bfac43e19b08a5a4b7c550ea53c8b3"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/southern-far.png",
+      "apk_path": "assets/map/cities-v056/southern-far.png",
+      "sha256": "1178cba83054e8dfaf9852733f37f09a24854a770229826271fbd7447bc324c2"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/southern-mid.png",
+      "apk_path": "assets/map/cities-v056/southern-mid.png",
+      "sha256": "a0e65910b4f8dbe1604e5393af929bd8b6b50f1a2f4bca9e389143261e98503a"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/southern-near.png",
+      "apk_path": "assets/map/cities-v056/southern-near.png",
+      "sha256": "156ff7f41766c58ac68a664ed74ce3f175f8da166cce0a4edc1cf94e2b2ab7e9"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/standard-far.png",
+      "apk_path": "assets/map/cities-v056/standard-far.png",
+      "sha256": "bbaa21dd22ddc5444e608671a8679477aeb2e7094e2c44f1b3310d879545a71b"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/standard-mid.png",
+      "apk_path": "assets/map/cities-v056/standard-mid.png",
+      "sha256": "45e1f16e4ffe67fca8be3e978464a5b9b87842050e921f6e69eacb7a1e5fe1d4"
+    },
+    {
+      "source_path": "app/src/main/assets/map/cities-v056/standard-near.png",
+      "apk_path": "assets/map/cities-v056/standard-near.png",
+      "sha256": "004d887b3917d6620eac0a48e95be8401ec50e1dec5514772435b23bf9d16eda"
+    },
+    {
+      "source_path": "core/src/main/resources/maps/national-map-v056.properties",
+      "apk_path": "maps/national-map-v056.properties",
+      "sha256": "cae6b7a84eb42b5e8897d0948ec45ee525ef0db480e515e8706329d14c863e94"
     }
   ],
   "baseline_commit": "18b1c2d01d6ef5d0bc63fef8a3e483186a99e390",

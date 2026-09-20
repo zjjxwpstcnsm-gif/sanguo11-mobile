@@ -98,7 +98,7 @@ final class VisualAssets {
             case INFERNO_BALL:return 13;case FIRE_SHIP:return 14;case DAM:return 15;default:return -1;}
     }
     static int terrainCell(World.Terrain t,int variant){
-        switch(t){case PLAIN:return variant;case FOREST:return 3+variant%2;case MOUNTAIN:return 5+variant%2;
+        switch(t){case ROAD:case PLAIN:return variant;case FOREST:return 3+variant%2;case MOUNTAIN:return 5+variant%2;
             case WATER:return 7;case SEA:return 8;case SHALLOWS:return 9;case SWAMP:return 10;case MOUNTAIN_PATH:return 11;
             case PLANK_ROAD:return 12;case POISON:return 13;case DAM:return 14;default:return -1;}
     }

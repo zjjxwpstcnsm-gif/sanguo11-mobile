@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 /** Engineering rules, NOT original SAN11 formulas. All commands validate before mutation. */
 public final class World {
     public enum Sex { UNKNOWN, MALE, FEMALE }
-    public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER, MOUNTAIN_PATH, SHALLOWS, PLANK_ROAD, POISON, SEA, VOID, SWAMP, DAM, SAND }
+    public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER, MOUNTAIN_PATH, SHALLOWS, PLANK_ROAD, POISON, SEA, VOID, SWAMP, DAM, SAND, ROAD }
     public enum SiteKind { CITY, GATE, PORT }
     public enum Weapon {
         SPEAR("枪兵",4,1,115), HALBERD("戟兵",3,1,105), CROSSBOW("弩兵",3,2,95), CAVALRY("骑兵",6,1,120),
@@ -148,7 +148,13 @@ public final class World {
     public final String[] factions;
     public final int[] actionPoints;
     public String scenarioId="m0-skirmish", scenarioName="基础演练", dataSource="engineering-original", dataHash="";
-    public int sourceMapWidth; // zero: axial; positive: original odd-r width
+    public int sourceMapWidth, sourceMapHeight, sourceOriginX, sourceOriginY;
+    public boolean columnStaggered;
+    public String mapId="custom", mapLayout="axial";
+    public int mapRevision;
+    public int sourceColumns(){return sourceMapWidth>0?sourceMapWidth:width;}
+    public int sourceRows(){return sourceMapHeight>0?sourceMapHeight:height;}
+    public boolean sourceInside(Hex h){return h!=null&&h.q>=0&&h.r>=0&&h.q<width&&h.r<height&&(sourceMapWidth==0||MapCoordinates.source(this,h).isInside(sourceColumns(),sourceRows()));}
     public int dataRevision=1, startYear=190, startMonth=1, player=0;
     public int turn=0, active=0, nextUnitId=1, winner=-1;
     public World(int width,int height) {
@@ -176,7 +182,7 @@ public final class World {
     public boolean commandsBlocked(){return contests.busy()||life.pending();}
     public boolean gameOver() { return winner>=0||!alive(player); }
     public City home() { for(City c:cities)if(c.owner==player)return c;return cities.isEmpty()?null:cities.get(0); }
-    public boolean inside(Hex h) { return h!=null&&h.q>=0&&h.r>=0&&h.q<width&&h.r<height&&terrain[h.q][h.r]!=Terrain.VOID; }
+    public boolean inside(Hex h) { return sourceInside(h)&&terrain[h.q][h.r]!=Terrain.VOID; }
     public City city(int id){return ((CityRoster)cities).byId(id);}
     public Officer officer(int id) { return ((OfficerRoster)officers).byId(id); }
     public Unit unit(int id) { for(Unit u:units) if(u.id==id) return u;

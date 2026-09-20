@@ -17,7 +17,7 @@ final class BuildingAtlas {
     };
     static void load(Context context){if(loaded)return;loaded=true;try(InputStream input=context.getAssets().open("map/buildings.png")){bitmap=BitmapFactory.decodeStream(input);}catch(IOException ignored){/* Native silhouettes remain available. */}}
     static boolean draw(Canvas canvas,int index){
-        if(bitmap==null||index<0||index>=SPRITES.length)return false;
+        if(bitmap==null||index<3||index>=SPRITES.length)return false;
         Rect source=SPRITES[index];float scale=Math.min(54f/source.width(),46f/source.height()),width=source.width()*scale,height=source.height()*scale;
         TARGET.set(-width/2,14-height,width/2,14);canvas.drawBitmap(bitmap,source,TARGET,PAINT);return true;
     }

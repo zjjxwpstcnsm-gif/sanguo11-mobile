@@ -15,6 +15,8 @@ public final class ContentIntegrationTest {
         World.Unit source=new World.Unit(w.nextUnitId++,0,1004,World.Weapon.SPEAR,new Hex(4,4),3000,12000);
         World.Unit target=new World.Unit(w.nextUnitId++,1,2000,World.Weapon.SPEAR,new Hex(5,4),3000,12000);
         for(World.Unit unit:Arrays.asList(source,target)){World.Officer o=w.officer(unit.officerId);w.strategy.releaseGovernor(o.id);o.cityId=-1;o.unitId=unit.id;w.units.add(unit);}
+        // Fixture injection is not a gameplay event. Align the report baseline before testing save determinism.
+        w.reports.rebase();
         check(w.war.plotChance(source.id,target.hex,War.Plot.CONFUSE)==100,"sourced 神算 beats sourced 虚实 intelligence");
         byte[] preview=SaveCodec.encode(w);w.war.plotChance(source.id,target.hex,War.Plot.CONFUSE);check(Arrays.equals(preview,SaveCodec.encode(w)),"combined data/rule preview is pure");
         World copy=SaveCodec.decode(preview);check(w.war.plot(source.id,target.hex,War.Plot.CONFUSE).ok&&copy.war.plot(source.id,target.hex,War.Plot.CONFUSE).ok,"real sourced plot executes");

@@ -22,6 +22,9 @@ public final class ScenarioData {
         };
         try {
             p.load(new InputStreamReader(new ByteArrayInputStream(raw),StandardCharsets.UTF_8.newDecoder().onMalformedInput(CodingErrorAction.REPORT)));
+            NationalMap.Selection national=NationalMap.attach(p);
+            boolean columnStaggered="odd-q".equals(p.getProperty("coordinates"));
+            int sourceHeight=Integer.parseInt(p.getProperty("height"));
             int sourceWidth=MapCoordinates.normalize(p);
             number(p,"format",1,1);
             String id=take(p,"id"),name=take(p,"name"),source=take(p,"source");
@@ -38,13 +41,13 @@ public final class ScenarioData {
             int width=number(p,"width",1,300),height=number(p,"height",1,200),sides=number(p,"factions",2,32);
             String[] factions=new String[sides];for(int i=0;i<sides;i++)factions[i]=take(p,"faction."+i);
             if(player<0||player>=sides)throw new IOException("选择的势力不存在");
-            World w=new World(width,height,factions);w.player=player;w.active=player;w.sourceMapWidth=sourceWidth;
+            World w=new World(width,height,factions);w.player=player;w.active=player;w.sourceMapWidth=sourceWidth;w.sourceMapHeight=sourceWidth>0?sourceHeight:0;w.columnStaggered=columnStaggered;if(national!=null)national.apply(w);
             w.scenarioId=id;w.scenarioName=name;w.dataSource=source;w.dataRevision=revision;w.startYear=year;w.startMonth=month;
             w.dataHash=hash(raw);
             for(int r=0;r<height;r++) {
                 String row=take(p,"terrain."+r);if(row.length()!=width)throw new IOException("地形行宽不匹配："+r);
                 for(int q=0;q<width;q++) {
-                    int index="PFMWDSBXOVZHA".indexOf(row.charAt(q));if(index<0)throw new IOException("未知地形："+row.charAt(q));
+                    int index="PFMWDSBXOVZHAR".indexOf(row.charAt(q));if(index<0)throw new IOException("未知地形："+row.charAt(q));
                     w.terrain[q][r]=World.Terrain.values()[index];
                 }
             }

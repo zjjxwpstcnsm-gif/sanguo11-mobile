@@ -9,3 +9,6 @@ java -m jdk.compiler/com.sun.tools.javac.Main -encoding UTF-8 --release 17 -cp a
 java -cp app/build/ui-check:core/src/main/resources:core/src/test/resources game.sanguo.mobile.PresentationTest
 java -cp app/build/ui-check game.sanguo.mobile.TerrainConnectionsTest
 java -cp app/build/ui-check game.sanguo.mobile.TileGeometryTest
+
+# Exhaustive typed source-grid contract used by the formal scenario loader.
+bash scripts/test-map56-coordinates.sh

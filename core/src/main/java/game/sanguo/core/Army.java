@@ -44,7 +44,7 @@ public final class Army {
     public int aptitude(List<World.Officer> crew,int category){int value=0;if(category>=0)for(World.Officer o:crew)value=Math.max(value,o.aptitude[category]);return value;}
     public boolean water(Hex h){return h!=null&&w.inside(h)&&(w.terrain[h.q][h.r]==World.Terrain.WATER||w.terrain[h.q][h.r]==World.Terrain.SEA);}
     public String equipmentLabel(World.Unit u){if(u instanceof Domestic.Mission)return water(u.hex)?"运输队 · 走舸":"运输队";return water(u.hex)?u.ship.label+"（携"+u.weapon.label+"）":u.weapon.label;}
-    public int movement(World.Unit u){return water(u.hex)?u.ship.movement:u.weapon.movement;}
+    public int movement(World.Unit u){return MarchScale.base(w,water(u.hex)?u.ship.movement:u.weapon.movement);}
     public int range(World.Unit u){return water(u.hex)?u.ship.range:u.weapon==World.Weapon.CAVALRY&&(w.skills.has(u,Skill.BAIMA)||w.campaign.has(u.owner,Campaign.Tech.MOUNTED_ARCHERY))?2:u.weapon.range;}
     /** A dock is a shore EDGE, not a remote destination test. Both directions use the same rule.
      * Port cells remain occupied by the site; the two adjacent dock cells are the embarkation lane. */
