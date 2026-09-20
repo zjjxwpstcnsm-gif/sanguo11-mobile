@@ -49,14 +49,10 @@ jobs:
           from pathlib import Path
           p=Path('docs/validation/v058/source-grid-audit.json')
           assert hashlib.sha256(p.read_bytes()).hexdigest()=='3776c90feef5e3a82836ff939b258f606dd72101d0553010a68cdc4e0bd7434f'
-          p=Path('.github/workflows/reference58-baseline.yml')
-          s=p.read_text();old="            '! grep -q \"FATAL EXCEPTION\" out/logcat.txt'"
-          assert old in s
-          p.write_text(s.replace(old,"            if grep -q 'FATAL EXCEPTION' out/logcat.txt; then exit 1; fi"))
           PY
             python3 scripts/verify-map-release.py
             rm .ci/reference58-payload-*.txt
-            git add .ci core/src/main/resources/maps/national-map-v056.properties tools/content/map-release-manifest.json docs/validation/v058/source-grid-audit.json .github/workflows/reference58-baseline.yml
+            git add .ci core/src/main/resources/maps/national-map-v056.properties tools/content/map-release-manifest.json docs/validation/v058/source-grid-audit.json
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
             git commit -m 'fix(map): v058 reviewed terrain, blocked water and unified minimap hit projection'
