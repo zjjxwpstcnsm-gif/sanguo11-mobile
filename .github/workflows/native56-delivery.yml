@@ -45,7 +45,8 @@ jobs:
             chmod +x scripts/test-native56.sh scripts/test-map56-coordinates.sh
             git config user.name 'github-actions[bot]'
             git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add -A -- . ':!out'
+            git add -A
+            if git diff --cached --name-only | grep -q '^out/'; then echo 'Build output must not be committed'; exit 1; fi
             git commit -m 'feat(map): integrate native200 national scenarios and real multi-LOD city atlas'
             git push origin HEAD:agent/native-map-200-city-art-v056 || echo 'Push failed; source archive and APK are still being built' > out/PUSH_FAILED
           fi
