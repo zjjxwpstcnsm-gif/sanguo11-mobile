@@ -40,9 +40,12 @@ def components(grid, code):
     return sorted(result,key=lambda c:(-c['size'],c['bounds']))
 
 def main():
-    parser=argparse.ArgumentParser(); parser.add_argument('--apply',action='store_true');parser.add_argument('--check',action='store_true');parser.add_argument('--report',type=Path)
-    args=parser.parse_args();plan=json.loads(PLAN.read_text());raw=MAP.read_bytes();text=raw.decode();p=properties(text)
+    parser=argparse.ArgumentParser(); parser.add_argument('--apply',action='store_true');parser.add_argument('--check',action='store_true');parser.add_argument('--report',type=Path);parser.add_argument('--map-file',type=Path)
+    args=parser.parse_args();plan=json.loads(PLAN.read_text());raw=(args.map_file or MAP).read_bytes();text=raw.decode();p=properties(text)
+    if args.map_file and args.apply:parser.error('--map-file is a read-only historical checkpoint')
     codes=dict(re.findall(r"case '([A-Z])' -> World\.Terrain\.([A-Z_]+)", (ROOT/'core/src/main/java/game/sanguo/core/TerrainCode.java').read_text()))
+    # Current decoder may append Q; the checkpoint must still have all original 14 codes.
+    if 'Q' in codes:assert codes.pop('Q')=='NON_NAVIGABLE_WATER'
     assert len(codes)==14 and codes['D']=='MOUNTAIN_PATH' and codes['H']=='DAM'
     assert p['columns']==p['rows']=='200'
     grid=[p[f'terrain.{y}'] for y in range(200)]

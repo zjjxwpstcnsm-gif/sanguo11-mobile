@@ -1,3 +1,15 @@
+# v0.58 — reference terrain / display-hit consistency
+
+- DONE: parent main29c18ec verified; original image actual hash/size and regional crops checked; fresh unchanged v057 Android baseline captured.
+- DONE: 89 unique reviewed map corrections (72 visible /17 estimated), explicit blocked-water identity, no inferred boat passages, resource revision58 and exact digest pins; 19800 padding kept separate.
+- DONE: shared projected minimap raster and inverse, reject VOID/padding before label fallback; city atlas56 and source grid retained.
+- DONE: local inherited map/city/gameplay checks and new model/projection/guard checks passed; actual v057 saves match independently compiled old encoder on same JVM.
+- IN PROGRESS: commit/push final source; build/install/hash-match new APK; actual Android regression and PR evidence.
+- TODO: remaining 888 internal source VOID and1455 boundary-connected VOID need further reference review; prior nine NW sand estimates remain unconfirmed; ARM physical device coverage.
+- BLOCKER: local network/Android SDK absent; using authenticated GitHub connector + Actions for real source push and installed build, not replacing work with a plan.
+
+---
+
 # v0.57 ROAD tap, void triage and terrain presentation
 
 Branch `agent/map-tap-void-terrain-fix-v057`; base main `7e3d88e5d91f3e398d843d6f8f44c7cab23ea1b5`.

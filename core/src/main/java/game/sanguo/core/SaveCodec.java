@@ -94,7 +94,7 @@ public final class SaveCodec {
             w.scenarioId=d.readUTF();w.scenarioName=d.readUTF();w.dataSource=d.readUTF();w.dataHash=d.readUTF();
         }
         for(int i=0;i<factions.length;i++)w.actionPoints[i]=bounded(d.readInt(),0,60);
-        for(int q=0;q<width;q++)for(int r=0;r<height;r++)w.terrain[q][r]=World.Terrain.values()[bounded(d.readUnsignedByte(),0,version>=31?13:version>=26?12:version>=24?11:version>=22?9:version>=13?7:version>=11?6:3)];
+        for(int q=0;q<width;q++)for(int r=0;r<height;r++)w.terrain[q][r]=World.Terrain.values()[bounded(d.readUnsignedByte(),0,version>=31?14:version>=26?12:version>=24?11:version>=22?9:version>=13?7:version>=11?6:3)];
         int count=bounded(d.readInt(),1,1000);
         for(int i=0;i<count;i++) {
             int id=d.readInt();String name=d.readUTF();Hex h=hex(d);int owner=d.readInt();
@@ -194,6 +194,11 @@ public final class SaveCodec {
         }
         bounded(w.sourceMapWidth,0,200);
         NationalMap.validateIdentity(w);
+        // Codec31's byte structure is unchanged. Ordinal14 is appended, not renumbered.
+        // An old native map identity must never disguise a new terrain value as migration.
+        if(NationalMap.ID.equals(w.mapId)&&w.mapRevision<58)
+            for(World.Terrain[] column:w.terrain)for(World.Terrain t:column)
+                require(t!=World.Terrain.NON_NAVIGABLE_WATER,"旧地图修订不能包含新水域类型；请保留原档重新开局");
         if(w.sourceMapWidth>0){
             int axisRows=w.columnStaggered?w.sourceMapWidth:w.sourceRows(),axisCols=w.columnStaggered?w.sourceRows():w.sourceMapWidth;
             require(w.height==axisRows&&w.width==axisCols+(axisRows-1)/2,"源地图与axial存储尺寸不匹配");

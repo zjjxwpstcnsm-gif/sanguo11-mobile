@@ -28,6 +28,7 @@ public final class TerrainPresentation {
             case SWAMP -> new Definition("沼泽", "步兵移动消耗2，骑兵与器械消耗4；不能建设军事设施");
             case DAM -> new Definition("堤坝", "堤坝地形；可破坏坝体由独立的中立设施表示");
             case SAND -> new Definition("沙地", "正常通行；枪兵不能施放战法，普通攻击不受影响");
+            case NON_NAVIGABLE_WATER -> new Definition("不可航水域", "窄水道或封闭水面；保持原格不可通行，陆军与舰船均不能进入，可查看地形");
             case ROAD -> new Definition("道路", "贴地通路，正常通行；不能占用必要通道开发");
         };
     }

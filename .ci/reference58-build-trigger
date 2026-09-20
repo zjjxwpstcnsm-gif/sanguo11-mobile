@@ -1,0 +1,3 @@
+reference58-camp-save-regression-3
+Fix production validation discovered by ordinary CI: never query cost() on a camp's own occupied hex; preserve prior M/W/SEA guards and explicitly exclude Q.
+Added occupied-camp exact save roundtrip and validation of all18 existing production/test scenarios. Rebuild and run both installed lanes from this functional source.

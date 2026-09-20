@@ -7,7 +7,7 @@ public final class MapTap57Test {
     private static int checks;
     private static void check(boolean value,String message){checks++;if(!value)throw new AssertionError(message);}
     public static void main(String[] args)throws Exception {
-        check(CityArtCatalog.ASSET_REVISION==56&&NationalMap.REVISION==57,"art ABI independent of terrain revision");
+        check(CityArtCatalog.ASSET_REVISION==56&&NationalMap.REVISION==58,"art ABI independent of terrain revision");
         for(World.Terrain t:World.Terrain.values()) {
             TerrainPresentation.Definition d=TerrainPresentation.of(t);
             check(!d.name().isBlank()&&!d.description().isBlank(),"complete presentation "+t);
@@ -33,8 +33,8 @@ public final class MapTap57Test {
             check(w.war.structures().stream().noneMatch(s->s.kind==War.StructureKind.DAM),"no H source -> zero natural dams");
             if(w.sourceColumns()==200) {
                 check(padding==19800,"source grid is not axial padding");
-                check(counts.get(World.Terrain.VOID)==2410,"eleven explicit void fixes only");
-                check(counts.get(World.Terrain.ROAD)==7315&&counts.get(World.Terrain.MOUNTAIN_PATH)==161,"roads/mountain paths not deleted as dams");
+                check(counts.get(World.Terrain.VOID)==2343,"audited v058 exact VOID count; inherited v057 fixes re-reviewed");
+                check(counts.get(World.Terrain.ROAD)==7304&&counts.get(World.Terrain.MOUNTAIN_PATH)==161,"roads/mountain paths not deleted as dams");
                 check(w.cities.size()==87,"87 sites preserved");
                 check(w.cities.stream().filter(c->c.kind==World.SiteKind.CITY).count()==42,"42 cities preserved");
                 for(int x:new int[]{77,81}){Hex h=MapCoordinates.fromNationalSource(w,new SourceGridCoord(x,76));check(w.terrain[h.q][h.r]==World.Terrain.ROAD&&w.war.at(h)==null&&w.cityAt(h)==null,"actual crash candidates are bare ROAD");}
@@ -50,7 +50,7 @@ public final class MapTap57Test {
         check(NaturalStructures.seedOpening(w)==0,"opening seed is idempotent");
         MapTap57Fixture.destroyDam(w,h[0]);
         World loaded=SaveCodec.decode(SaveCodec.encode(w));check(loaded.war.at(h[0])==null&&loaded.terrain[h[0].q][h[0].r]==World.Terrain.SHALLOWS,"destroyed dam does not respawn after save/read");
-        w=ScenarioCatalog.load("coalition-190",0,57L);w.mapRevision=56;
+        w=ScenarioCatalog.load("coalition-190",0,57L);Reference58Test.restore57(w);w.mapRevision=56;
         int[][] fixed={{26,1},{21,3},{30,5},{28,6},{22,9},{30,9},{10,11},{22,11},{20,16},{47,155},{43,158}};
         for(int[] xy:fixed){Hex at=MapCoordinates.axial(w,new SourceGridCoord(xy[0],xy[1]));w.terrain[at.q][at.r]=World.Terrain.VOID;}
         byte[] legacy=SaveCodec.encode(w);World old=SaveCodec.decode(legacy);

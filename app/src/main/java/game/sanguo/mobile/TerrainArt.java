@@ -17,6 +17,7 @@ final class TerrainArt {
     }
     static World.Terrain ground(World.Terrain terrain) {
         return switch (terrain) {
+            case NON_NAVIGABLE_WATER -> World.Terrain.WATER;
             case ROAD -> World.Terrain.PLAIN;
             case MOUNTAIN_PATH, PLANK_ROAD -> World.Terrain.MOUNTAIN;
             // The bank is ground; the one War.Structure supplies the physical dam.

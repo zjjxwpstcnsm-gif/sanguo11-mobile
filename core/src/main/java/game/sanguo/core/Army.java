@@ -81,7 +81,7 @@ public final class Army {
         return terrainMoveCost(u,from,to,cache);
     }
     private int terrainMoveCost(World.Unit u, Hex from, Hex to,MovementCosts cache) {
-        if (((u instanceof Domestic.Mission) && !((Domestic.Mission) u).sea && water(to)) || to == null || !this.w.inside(to) || this.w.terrain[to.q][to.r] == World.Terrain.MOUNTAIN) {
+        if (((u instanceof Domestic.Mission) && !((Domestic.Mission) u).sea && water(to)) || to == null || !this.w.inside(to) || (this.w.terrain[to.q][to.r] == World.Terrain.MOUNTAIN || this.w.terrain[to.q][to.r] == World.Terrain.NON_NAVIGABLE_WATER)) {
             return -1;
         }
         if (!water(from) && !water(to) && this.w.gateBlocks(u.owner, from, to)) {

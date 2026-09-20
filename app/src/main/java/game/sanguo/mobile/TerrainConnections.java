@@ -6,8 +6,8 @@ import game.sanguo.core.World;
 final class TerrainConnections {
     static final int[] DQ={1,1,0,-1,-1,0},DR={0,-1,-1,0,1,1};
     static boolean road(World.Terrain t){return t==World.Terrain.PLANK_ROAD||t==World.Terrain.MOUNTAIN_PATH||t==World.Terrain.ROAD;}
-    static boolean water(World.Terrain t){return t==World.Terrain.WATER||t==World.Terrain.SEA||t==World.Terrain.SHALLOWS;}
-    static boolean inside(World w,int q,int r){return q>=0&&r>=0&&q<w.width&&r<w.height;}
+    static boolean water(World.Terrain t){return t==World.Terrain.WATER||t==World.Terrain.SEA||t==World.Terrain.SHALLOWS||t==World.Terrain.NON_NAVIGABLE_WATER;}
+    static boolean inside(World w,int q,int r){return w.sourceInside(new game.sanguo.core.Hex(q,r));}
     static int mask(World w,int q,int r){
         World.Terrain terrain=w.terrain[q][r];int mask=0;
         for(int d=0;d<6;d++){

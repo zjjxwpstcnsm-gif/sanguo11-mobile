@@ -13,6 +13,7 @@ public final class TerrainCode {
             case 'O' -> World.Terrain.SEA; case 'V' -> World.Terrain.VOID;
             case 'Z' -> World.Terrain.SWAMP; case 'H' -> World.Terrain.DAM;
             case 'A' -> World.Terrain.SAND; case 'R' -> World.Terrain.ROAD;
+            case 'Q' -> World.Terrain.NON_NAVIGABLE_WATER;
             default -> throw new IllegalArgumentException("未知地形：" + code);
         };
     }
@@ -22,6 +23,7 @@ public final class TerrainCode {
             case MOUNTAIN_PATH -> 'D'; case SHALLOWS -> 'S'; case PLANK_ROAD -> 'B';
             case POISON -> 'X'; case SEA -> 'O'; case VOID -> 'V'; case SWAMP -> 'Z';
             case DAM -> 'H'; case SAND -> 'A'; case ROAD -> 'R';
+            case NON_NAVIGABLE_WATER -> 'Q';
         };
     }
 }

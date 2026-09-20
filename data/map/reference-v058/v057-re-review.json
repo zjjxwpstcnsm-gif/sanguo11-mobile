@@ -1,0 +1,151 @@
+{
+  "reference_actual_read": true,
+  "upgraded_to_confirmed": 0,
+  "corrected": 2,
+  "retained_estimated_unresolved": 9,
+  "cells": [
+    {
+      "source": [
+        26,
+        1
+      ],
+      "v057_after": "A",
+      "v057_evidence": "ESTIMATED",
+      "v058_after": "A",
+      "v058_evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED_OVERPRINT_RETAINED",
+      "reason": "Reference title/legend overprint; no independent support for upgrading the sand estimate. Not changed just to increase correction counts.",
+      "region": "northwest-prior-estimates"
+    },
+    {
+      "source": [
+        21,
+        3
+      ],
+      "v057_after": "A",
+      "v057_evidence": "ESTIMATED",
+      "v058_after": "A",
+      "v058_evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED_OVERPRINT_RETAINED",
+      "reason": "Reference title/legend overprint; no independent support for upgrading the sand estimate. Not changed just to increase correction counts.",
+      "region": "northwest-prior-estimates"
+    },
+    {
+      "source": [
+        30,
+        5
+      ],
+      "v057_after": "A",
+      "v057_evidence": "ESTIMATED",
+      "v058_after": "A",
+      "v058_evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED_OVERPRINT_RETAINED",
+      "reason": "Reference title/legend overprint; no independent support for upgrading the sand estimate. Not changed just to increase correction counts.",
+      "region": "northwest-prior-estimates"
+    },
+    {
+      "source": [
+        28,
+        6
+      ],
+      "v057_after": "A",
+      "v057_evidence": "ESTIMATED",
+      "v058_after": "A",
+      "v058_evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED_OVERPRINT_RETAINED",
+      "reason": "Reference title/legend overprint; no independent support for upgrading the sand estimate. Not changed just to increase correction counts.",
+      "region": "northwest-prior-estimates"
+    },
+    {
+      "source": [
+        22,
+        9
+      ],
+      "v057_after": "A",
+      "v057_evidence": "ESTIMATED",
+      "v058_after": "A",
+      "v058_evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED_OVERPRINT_RETAINED",
+      "reason": "Reference title/legend overprint; no independent support for upgrading the sand estimate. Not changed just to increase correction counts.",
+      "region": "northwest-prior-estimates"
+    },
+    {
+      "source": [
+        30,
+        9
+      ],
+      "v057_after": "A",
+      "v057_evidence": "ESTIMATED",
+      "v058_after": "A",
+      "v058_evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED_OVERPRINT_RETAINED",
+      "reason": "Reference title/legend overprint; no independent support for upgrading the sand estimate. Not changed just to increase correction counts.",
+      "region": "northwest-prior-estimates"
+    },
+    {
+      "source": [
+        10,
+        11
+      ],
+      "v057_after": "A",
+      "v057_evidence": "ESTIMATED",
+      "v058_after": "A",
+      "v058_evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED_OVERPRINT_RETAINED",
+      "reason": "Reference title/legend overprint; no independent support for upgrading the sand estimate. Not changed just to increase correction counts.",
+      "region": "northwest-prior-estimates"
+    },
+    {
+      "source": [
+        22,
+        11
+      ],
+      "v057_after": "A",
+      "v057_evidence": "ESTIMATED",
+      "v058_after": "A",
+      "v058_evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED_OVERPRINT_RETAINED",
+      "reason": "Reference title/legend overprint; no independent support for upgrading the sand estimate. Not changed just to increase correction counts.",
+      "region": "northwest-prior-estimates"
+    },
+    {
+      "source": [
+        20,
+        16
+      ],
+      "v057_after": "A",
+      "v057_evidence": "ESTIMATED",
+      "v058_after": "A",
+      "v058_evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED_OVERPRINT_RETAINED",
+      "reason": "Reference title/legend overprint; no independent support for upgrading the sand estimate. Not changed just to increase correction counts.",
+      "region": "northwest-prior-estimates"
+    },
+    {
+      "source": [
+        47,
+        155
+      ],
+      "v057_after": "M",
+      "v057_evidence": "ESTIMATED",
+      "v058_after": "Q",
+      "v058_evidence": "ESTIMATED",
+      "review_status": "CORRECTED_CHANNEL_REPRESENTATION",
+      "reason": "v057 six-neighbor M estimate conflicts with the smooth channel in the actual reference. Correct the representation to blocked water, retain original movement prohibition and mark subtype inferred.",
+      "region": "wuling-west"
+    },
+    {
+      "source": [
+        43,
+        158
+      ],
+      "v057_after": "M",
+      "v057_evidence": "ESTIMATED",
+      "v058_after": "Q",
+      "v058_evidence": "ESTIMATED",
+      "review_status": "CORRECTED_CHANNEL_REPRESENTATION",
+      "reason": "v057 six-neighbor M estimate conflicts with the smooth channel in the actual reference. Correct the representation to blocked water, retain original movement prohibition and mark subtype inferred.",
+      "region": "wuling-west"
+    }
+  ]
+}

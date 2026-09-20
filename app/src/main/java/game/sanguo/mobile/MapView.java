@@ -89,6 +89,7 @@ public final class MapView extends View {
     private int lastLabels;
     int labelsDrawn(){return lastLabels;}
     private Bitmap miniTerrain;
+    private MapRaster miniRaster;
     private int seenTerrainRevision=-1;
     private Bitmap miniTerritory;
     private Territory territory;
@@ -277,10 +278,11 @@ public final class MapView extends View {
         for(War.Structure b:world.war.structures())index(b,b.hex);
         for(WorldEvents.Camp c:world.events.camps())index(c,c.hex);
         if(newTerrain){
-            territory=new Territory(world);territoryOwners="";
+            territory=new Territory(world);territoryOwners="";miniRaster=new MapRaster(world);
             // Published bitmaps may still be referenced by a hardware display list; let Android release them.
             miniTerrain=Bitmap.createBitmap(miniWidth(),miniHeight(),Bitmap.Config.ARGB_8888);
-            for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++){Hex h=tiles[q][r];if(world.sourceInside(h))miniTerrain.setPixel(miniColumn(h),miniRow(h),TerrainTiles.color(world.terrain[q][r]));}
+            miniTerrain.eraseColor(MapOverview.BACKGROUND);
+            for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++){Hex h=tiles[q][r];if(world.inside(h))paintMini(miniTerrain,h,TerrainTiles.color(world.terrain[q][r]));}
         }
         StringBuilder owners=new StringBuilder();for(World.City city:world.cities)owners.append(city.id).append(':').append(city.owner).append(';');
         if(!territoryOwners.equals(owners.toString())){
@@ -288,7 +290,7 @@ public final class MapView extends View {
             miniTerritory=Bitmap.createBitmap(miniWidth(),miniHeight(),Bitmap.Config.ARGB_8888);
             factionEdges=new byte[world.width][world.height];siteEdges=new byte[world.width][world.height];
             for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)if(territory.siteAt(q,r)>=0){
-                miniTerritory.setPixel(miniColumn(tiles[q][r]),miniRow(tiles[q][r]),alpha(factionColor(territory.ownerAt(q,r)),155));
+                paintMini(miniTerritory,tiles[q][r],alpha(factionColor(territory.ownerAt(q,r)),155));
                 factionEdges[q][r]=(byte)territory.boundary(q,r,false);
                 siteEdges[q][r]=(byte)territory.boundary(q,r,true);
             }
@@ -347,10 +349,10 @@ public final class MapView extends View {
         if(miniGesture){
             if(e.getPointerCount()>1||e.getActionMasked()==MotionEvent.ACTION_CANCEL)multiTouch=true;
             if(!multiTouch&&e.getPointerCount()==1&&(e.getActionMasked()==MotionEvent.ACTION_DOWN||e.getActionMasked()==MotionEvent.ACTION_MOVE)){
-                float q=Math.max(0,Math.min(miniWidth()-1,(e.getX()-miniRect.left)/miniRect.width()*miniWidth()));
-                float r=Math.max(0,Math.min(miniHeight()-1,(e.getY()-miniRect.top)/miniRect.height()*miniHeight()));
-                Hex target=world.sourceMapWidth>0?MapCoordinates.axial(world,new SourceGridCoord((int)q,(int)r)):new Hex((int)q,(int)r);
-                camera.centerOn(x(target),y(target));invalidate();
+                float rx=(e.getX()-miniRect.left)/miniRect.width()*miniWidth();
+                float ry=(e.getY()-miniRect.top)/miniRect.height()*miniHeight();
+                Hex target=miniRaster.at(rx,ry);
+                if(target!=null){camera.centerOn(x(target),y(target));invalidate();}
             }
             if(e.getActionMasked()==MotionEvent.ACTION_UP)performClick();return true;
         }
@@ -382,6 +384,9 @@ public final class MapView extends View {
         float wx=(px-camera.x)/camera.scale,wy=(py-camera.y)/camera.scale;
         int ir=TileGeometry.projectedRow(wx,wy,world.columnStaggered),iq=TileGeometry.projectedColumn(wx,wy,ir,mapOffset(),world.columnStaggered);
         Hex exact=new Hex(iq,ir);
+        // A city label may not turn exterior/padding under the pointer into a tile.
+        // Valid impassable terrain remains selectable at every level of detail.
+        if(!world.inside(exact))return null;
         // Preserve precise tile commands while a unit is selected, including adjacent movement.
         if(moving>=0||pickTargets!=null)return world.inside(exact)?exact:null;
         if(world.inside(exact)&&(world.cityAt(exact)!=null||world.unitAt(exact)!=null||world.domestic.at(exact)!=null))return exact;
@@ -567,10 +572,14 @@ public final class MapView extends View {
         if(route.target!=null){float cx=x(route.target),cy=y(route.target);paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(stroke);paint.setColor(route.valid()?0xffebc979:0xffff927d);c.drawCircle(cx,cy,RADIUS*.8f,paint);paint.setStyle(Paint.Style.FILL);}
         if(!route.path.isEmpty()){Hex last=route.path.get(route.path.size()-1);paint.setColor(0xffebc979);c.drawCircle(x(last),y(last),stroke*1.5f,paint);}
     }
-    private int miniWidth(){return world.sourceColumns();}
-    private int miniHeight(){return world.sourceRows();}
-    private int miniColumn(Hex h){return MapCoordinates.source(world,h).x;}
-    private int miniRow(Hex h){return MapCoordinates.source(world,h).y;}
+    private int miniWidth(){return miniRaster.width;}
+    private int miniHeight(){return miniRaster.height;}
+    private void paintMini(Bitmap bitmap,Hex h,int color){
+        int x=miniRaster.left(h),y=miniRaster.top(h);
+        // All writes are derived from a valid source cell, never axial padding.
+        bitmap.setPixel(x,y,color);bitmap.setPixel(x+1,y,color);
+        bitmap.setPixel(x,y+1,color);bitmap.setPixel(x+1,y+1,color);
+    }
     private void layoutNavigator(){
         float mw=Math.min(144*density,getWidth()*.34f),mh=Math.min(126*density,getHeight()*.3f);
         float right=getWidth()-occludedRight-8*density;
@@ -579,10 +588,9 @@ public final class MapView extends View {
         miniRect.set(right-mw,48*density,right,48*density+mh);
     }
     private float miniX(float wx,float wy){
-        float r=wy/(TileGeometry.DY),q=wx/(TileGeometry.DX)-(world.sourceMapWidth>0?0:r*.5f);
-        return miniRect.left+q/miniWidth()*miniRect.width();
+        return miniRect.left+miniRaster.rasterX(wx)/miniWidth()*miniRect.width();
     }
-    private float miniY(float wy){return miniRect.top+wy/(TileGeometry.DY)/miniHeight()*miniRect.height();}
+    private float miniY(float wy){return miniRect.top+miniRaster.rasterY(wy)/miniHeight()*miniRect.height();}
     private void drawNavigator(Canvas c){
         layoutNavigator();paint.setColor(0xf010272b);c.drawRoundRect(miniButton,6*density,6*density,paint);
         label(c,showMini?"小地图  − 收起":"小地图  ＋ 展开",miniButton.centerX(),miniButton.centerY()+4*density,11*density,PAPER);
@@ -590,7 +598,15 @@ public final class MapView extends View {
         paint.setColor(0xee10272b);c.drawRect(miniRect.left-2,miniRect.top-2,miniRect.right+2,miniRect.bottom+2,paint);
         c.drawBitmap(miniTerrain,null,miniRect,paint);
         if(territoryMode>0&&miniTerritory!=null)c.drawBitmap(miniTerritory,null,miniRect,paint);
-        for(World.City city:world.cities){paint.setColor(factionColor(city.owner));for(Hex h:SiteFootprint.cells(city))c.drawRect(miniRect.left+miniColumn(h)/(float)miniWidth()*miniRect.width(),miniRect.top+miniRow(h)/(float)miniHeight()*miniRect.height(),miniRect.left+(miniColumn(h)+1f)/miniWidth()*miniRect.width(),miniRect.top+(miniRow(h)+1f)/miniHeight()*miniRect.height(),paint);c.drawCircle(miniRect.left+(miniColumn(city.hex)+.5f)/miniWidth()*miniRect.width(),miniRect.top+(miniRow(city.hex)+.5f)/miniHeight()*miniRect.height(),(city.kind==World.SiteKind.CITY?2:1)*density,paint);}
+        for(World.City city:world.cities){
+            paint.setColor(factionColor(city.owner));
+            for(Hex h:SiteFootprint.cells(city))if(world.inside(h)){
+                float cx=miniX(x(h),y(h)),cy=miniY(y(h));
+                float hx=miniRect.width()/miniWidth(),hy=miniRect.height()/miniHeight();
+                c.drawRect(cx-hx,cy-hy,cx+hx,cy+hy,paint);
+            }
+            c.drawCircle(miniX(x(city.hex),y(city.hex)),miniY(y(city.hex)),(city.kind==World.SiteKind.CITY?2:1)*density,paint);
+        }
         for(World.Unit unit:world.fieldUnits()){paint.setColor(factionColor(unit.owner));c.drawCircle(miniX(x(unit.hex),y(unit.hex)),miniY(y(unit.hex)),1.3f*density,paint);}
         // The actual viewport, projected with the same source/axial transform as taps.
         float left=-camera.x/camera.scale,top=-camera.y/camera.scale,right=(getWidth()-camera.x)/camera.scale,bottom=(getHeight()-camera.y)/camera.scale;

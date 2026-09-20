@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 /** Engineering rules, NOT original SAN11 formulas. All commands validate before mutation. */
 public final class World {
     public enum Sex { UNKNOWN, MALE, FEMALE }
-    public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER, MOUNTAIN_PATH, SHALLOWS, PLANK_ROAD, POISON, SEA, VOID, SWAMP, DAM, SAND, ROAD }
+    public enum Terrain { PLAIN, FOREST, MOUNTAIN, WATER, MOUNTAIN_PATH, SHALLOWS, PLANK_ROAD, POISON, SEA, VOID, SWAMP, DAM, SAND, ROAD, NON_NAVIGABLE_WATER }
     public enum SiteKind { CITY, GATE, PORT }
     public enum Weapon {
         SPEAR("枪兵",4,1,115), HALBERD("戟兵",3,1,105), CROSSBOW("弩兵",3,2,95), CAVALRY("骑兵",6,1,120),
@@ -264,7 +264,7 @@ public final class World {
     public int cost(Hex h,Weapon weapon) {
         if(h==null||weapon==null||!inside(h)||events.at(h)!=null)return -1;
         Terrain t=terrain[h.q][h.r];
-        if(t==Terrain.MOUNTAIN||t==Terrain.WATER||t==Terrain.SEA||t==Terrain.VOID)return -1;
+        if(t==Terrain.MOUNTAIN||t==Terrain.WATER||t==Terrain.SEA||t==Terrain.NON_NAVIGABLE_WATER||t==Terrain.VOID)return -1;
         if(t==Terrain.SWAMP)return weapon==Weapon.CAVALRY||Army.siegeWeapon(weapon)?4:2;
         return t==Terrain.DAM||t==Terrain.POISON?2:t==Terrain.FOREST?(weapon==Weapon.CAVALRY||Army.siegeWeapon(weapon)?3:2):1;
     }
