@@ -65,7 +65,7 @@ public final class DistrictManagement {
         if(d.supply<0&&!d.cities.contains(target.id))return blocked(source,target,officer,"没有跨军团支援授权");
         if(residents(source)<=2)return blocked(source,target,officer,"留守两将，等待返程/调将/登用");
         int danger=ai.incoming(source);if(danger>0&&d.supply<0)return blocked(source,target,officer,"出发城受威胁，未指定外运目的地");
-        for(World.Unit enemy:w.units)if(w.campaign.hostile(source.owner,enemy.owner)&&enemy.hex.distance(source.hex)<=2)return blocked(source,target,officer,"敌军围城，暂停外运");
+        for(World.Unit enemy:w.units)if(w.campaign.hostile(source.owner,enemy.owner)&&SiteFootprint.distance(source,enemy.hex)<=2)return blocked(source,target,officer,"敌军围城，暂停外运");
         int gold=target.gold,food=target.food,troops=target.troops;int[] equipment=target.equipment.clone();
         for(Domestic.Mission m:w.domestic.missions)if(m.owner==source.owner&&m.targetCity==target.id&&m.transport){gold+=m.gold;food+=m.food;troops+=m.troops;for(int i=0;i<equipment.length;i++)equipment[i]+=m.equipment[i];}
         int keep=Math.max(d.reserveTroops,Math.max(ai.reserve(source),danger+4000));

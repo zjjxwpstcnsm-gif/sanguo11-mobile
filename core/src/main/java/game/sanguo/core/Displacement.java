@@ -48,7 +48,7 @@ public final class Displacement {
     private String stepError(World.Unit mover,Hex from,Hex to,int ignoredUnit,boolean traps,World.Unit source){
         String error=terrainError(mover,from,to);if(error!=null)return error;
         World.Unit other=w.unitAt(to);if(other!=null&&other.id!=ignoredUnit&&other.id!=mover.id)return "被"+w.officer(other.officerId).name+"部队占据（"+w.campaign.relationLabel(source.owner,other.owner)+"）";
-        World.City c=w.cityAt(to);if(c!=null)return "被"+c.name+"据点占据";
+        World.City c=w.cityAt(to);if(c!=null&&!SiteFootprint.mayStep(w,mover,from,to))return "被"+c.name+"据点占据";
         Domestic.Facility f=w.domestic.at(to);if(f!=null)return "被"+f.kind.label+"占据";
         War.Structure s=w.war.at(to);if(s!=null&&!(traps&&trigger(s,source)))return "被"+s.kind.label+(affects(source.owner,s.owner)?"占据":"占据，受协定保护");
         return null;

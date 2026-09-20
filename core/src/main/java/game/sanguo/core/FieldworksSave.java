@@ -31,6 +31,7 @@ final class FieldworksSave {
         }
         Set<Integer> seen=new HashSet<>();require(d.readInt()==w.cities.size(),"据点类型数量错误");
         for(int i=0;i<w.cities.size();i++){World.City c=w.city(d.readInt());require(c!=null&&seen.add(c.id),"据点类型引用错误");try{c.kind=World.SiteKind.valueOf(d.readUTF());}catch(IllegalArgumentException e){throw new IOException("据点类型错误",e);}c.baseDefense=d.readInt();}
+        w.invalidateSiteIndex();
         seen.clear();require(d.readInt()==w.units.size(),"携金数量错误");for(int i=0;i<w.units.size();i++){World.Unit u=w.unit(d.readInt());require(u!=null&&seen.add(u.id),"携金部队引用错误");u.gold=d.readInt();}
         seen.clear();require(d.readInt()==w.war.structures.size(),"施工数量错误");for(int i=0;i<w.war.structures.size();i++){War.Structure s=w.fieldworks.byId(d.readInt());require(s!=null&&seen.add(s.id),"施工设施引用错误");s.complete=d.readBoolean();s.builder=d.readInt();s.direction=d.readInt();}
     }

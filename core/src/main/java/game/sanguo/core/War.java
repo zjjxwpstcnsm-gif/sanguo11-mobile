@@ -70,7 +70,6 @@ public final class War {
         return u instanceof Domestic.Mission?"运输队只能行军、补给、入库或待命":w.orders.error(u);
     }
     private String targetError(World.Unit a,World.Unit b,int min,int max){
-        if(b instanceof Domestic.Mission&&w.cityAt(b.hex)!=null)return "城内运输队受城防保护";
         if(b==null||!w.campaign.hostile(a.owner,b.owner))return "请选择交战势力的部队";
         if(!w.fieldworks.landTarget(a.owner,b.hex))return "需要难所行军才能攻击该地形上的目标";
         int distance=a.hex.distance(b.hex);return distance<min||distance>max?"敌军不在范围内":null;
@@ -340,7 +339,7 @@ public final class War {
     public World.Result removeStructure(int city,int officer,int id){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
         Structure s=null;for(Structure item:structures)if(item.id==id)s=item;
-        if(s==null||s.owner!=c.owner||s.hex.distance(c.hex)>3)return w.fail("请选择本城三格内己方军事设施");
+        if(s==null||s.owner!=c.owner||SiteFootprint.distance(c,s.hex)>3)return w.fail("请选择本城三格内己方军事设施");
         w.spend(c,o,0);w.fieldworks.destroy(s);return w.success("已拆除"+s.kind.label);
     }
     public World.Result waitUnit(int unit){w.reports.prepare();World.Unit u=w.unit(unit);String error=actorError(u);if(error!=null)return w.fail(error);w.marches.supersede(u);u.acted=true;w.energy.change(u,5,EnergyRules.Reason.WAIT);return w.success("部队待命，恢复5气力");}
@@ -350,7 +349,7 @@ public final class War {
             u.acted=true;u.statusTurns--;
             if(u.status==Status.MISLED){
                 World.City home=null;for(World.City c:w.cities)if(c.owner==owner&&(home==null||u.hex.distance(c.hex)<u.hex.distance(home.hex)))home=c;
-                if(home!=null){final Hex destination=home.hex;List<Hex> steps=u.hex.neighbors();steps.sort(Comparator.comparingInt(h->h.distance(destination)));for(Hex h:steps)if(h.distance(destination)<u.hex.distance(destination)&&w.army.moveCost(u,u.hex,h)>0&&w.cityAt(h)==null&&w.unitAt(h)==null&&w.domestic.at(h)==null&&at(h)==null){u.hex=h;break;}}
+                if(home!=null){final Hex destination=home.hex;List<Hex> steps=u.hex.neighbors();steps.sort(Comparator.comparingInt(h->h.distance(destination)));for(Hex h:steps)if(h.distance(destination)<u.hex.distance(destination)&&w.army.moveCost(u,u.hex,h)>0&&w.unitAt(h)==null&&w.domestic.at(h)==null&&at(h)==null){u.hex=h;break;}}
             }
             w.note(w.officer(u.officerId).name+"受"+u.status.label+"影响，本旬不能行动");
         }

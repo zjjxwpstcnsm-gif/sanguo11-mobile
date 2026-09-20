@@ -161,7 +161,7 @@ public final class MainActivity extends Activity {
         setContentView(root);root.requestApplyInsets();selected=world.home()==null?null:world.home().hex;
         if(state!=null){Hex h=new Hex(state.getInt("selectedQ",-1),state.getInt("selectedR",-1));selected=world.inside(h)?h:null;moving=state.getInt("moving",-1);}
         if(state!=null)unitCommand=state.getString("unitCommand","select");
-        if(state!=null&&state.containsKey("routeQ")&&world.unit(moving)!=null)pendingMarch=world.marches.preview(moving,new Hex(state.getInt("routeQ"),state.getInt("routeR")));
+        if(state!=null&&state.containsKey("routeQ")&&world.unit(moving)!=null)pendingMarch=state.getBoolean("routeMove")?world.marches.previewMove(moving,new Hex(state.getInt("routeQ"),state.getInt("routeR"))):state.getInt("routeCity",-1)>=0?world.marches.previewCity(moving,state.getInt("routeCity")):world.marches.preview(moving,new Hex(state.getInt("routeQ"),state.getInt("routeR")));
         refresh();if(state!=null){map.restoreCamera(state);if(!aiRunning&&!ui.summary.isEmpty()){turnBanner.setText("旬结算完成 · 点此查看重要变化与待处理");turnBanner.setVisibility(View.VISIBLE);}}
         if(turnWork!=null)turnWork.observe(this::finishTurn);
         if(state!=null&&!aiRunning&&ui.formDraft.getBoolean("open"))root.post(this::restoreFormDraft);
@@ -339,6 +339,11 @@ public final class MainActivity extends Activity {
         if(source!=null&&unitCommand.equals("march")){if(h.equals(source.hex)){clearUnitSelection();return;}previewMarch(source,h);return;}
         if(source!=null&&unitCommand.equals("attack")){
             List<World.Unit> candidates=new ArrayList<>();for(World.Unit u:world.fieldUnits())if(h.equals(u.hex)&&u.id!=source.id)candidates.add(u);
+            World.City underlying=world.cityAt(h);
+            if(underlying!=null&&!candidates.isEmpty()){
+                World.Unit field=candidates.get(0);
+                new AlertDialog.Builder(this).setTitle("同格攻击对象").setItems(new String[]{world.officer(field.officerId).name+" · 野战部队",underlying.name+" · 据点"},(d,i)->attackOnMap(source,h,i==0?field:null)).setNegativeButton("取消",null).show();return;
+            }
             if(candidates.size()>1){new AlertDialog.Builder(this).setTitle("选择攻击对象").setItems(candidates.stream().map(u->world.officer(u.officerId).name+" · "+world.army.equipmentLabel(u)).toArray(String[]::new),(d,i)->attackOnMap(source,h,candidates.get(i))).setNegativeButton("取消",null).show();return;}
             attackOnMap(source,h,candidates.isEmpty()?null:candidates.get(0));return;
         }
@@ -379,7 +384,7 @@ public final class MainActivity extends Activity {
         if(error!=null){message("无法攻击",error);return;}
         if(target!=null){warUi().attack(source,target);return;}
         if(facility!=null){confirm("攻击"+facility.kind.label+"？\n耐久 "+facility.hp+"/"+facility.maxHp()+" · 预计减少"+Math.min(facility.hp,world.war.facilityDamage(source.id))+"\n攻击结束本旬行动，摧毁后释放地块。",()->apply(world.war.attackFacility(source.id,h)));return;}
-        if(city!=null){confirm("攻击"+city.name+"？攻击结束本旬行动。\n"+world.combat.siegePreview(source,city,false),()->apply(world.siege(source.id,city.id)));return;}
+        if(city!=null){Hex hit=world.siegeHit(source,city,h);showTacticPreview(world,world.siegePreview(source.id,city.id,hit),()->apply(world.siege(source.id,city.id,hit)));return;}
         confirm("攻击军事设施？攻击结束本旬行动。",()->apply(world.war.attackStructure(source.id,h)));
     }
     private void selectObject(Hex h,int unitId,boolean focus){
@@ -507,8 +512,15 @@ public final class MainActivity extends Activity {
         panelIdentity=identity;
     }
     private void previewMarch(World.Unit unit,Hex target){
-        pendingMarch=world.marches.preview(unit.id,target);ui.page="map";ui.panelVisible=false;refresh();
+        World.City c=world.cityAt(target);
+        pendingMarch=c!=null&&c.owner==unit.owner?world.marches.previewMove(unit.id,target):world.marches.preview(unit.id,target);
+        ui.page="map";ui.panelVisible=false;refresh();
         if(!pendingMarch.valid())commandDock.announceForAccessibility(pendingMarch.error);
+    }
+    private void garrisonOnMap(World.Unit u){
+        List<Hex> targets=new ArrayList<>();for(World.City c:world.cities)if(c.owner==u.owner)targets.addAll(SiteFootprint.cells(c));
+        pickOnMap("进驻 · 点选己方据点（自动选择可达入口）",u.hex,targets,h->{World.City c=world.cityAt(h);if(c==null)return;
+            mapPick=null;pickTargets=Collections.emptySet();pendingMarch=world.marches.previewCity(u.id,c.id);ui.panelVisible=false;refresh();});
     }
     private void refreshCommandDock(){
         commandDock.removeAllViews();World.Unit u=world.unit(moving);
@@ -534,17 +546,18 @@ public final class MainActivity extends Activity {
         commandDock.setOrientation(portrait()?LinearLayout.VERTICAL:LinearLayout.HORIZONTAL);commandDock.setGravity(Gravity.CENTER_VERTICAL);
         if(pendingMarch==null){
             String error=world.orders.error(u);
-            String hint=unitCommand.equals("march")?"目标任务：点选攻击、进驻或修理目标":unitCommand.equals("attack")?"攻击：点红框敌军、城池或设施":error!=null?error:"青色为本旬可达范围 · 红框可攻击";
+            String hint=unitCommand.equals("march")?"行军：经过城格不进驻；入库请点进驻":unitCommand.equals("attack")?"攻击：点红框敌军、城池或设施":error!=null?error:"青色为本旬可达范围 · 红框可攻击";
             TextView state=text((u instanceof Domestic.Mission?"运输":"兵"+u.troops)+" · 携粮 "+u.food+" · "+hint+" · 剩余移动 "+world.orders.remaining(u),12,gold);state.setMaxLines(2);
             commandDock.addView(state,new LinearLayout.LayoutParams(portrait()?-1:0,-2,portrait()?0:1));
             LinearLayout actions=new LinearLayout(this);
             Button march=button("行军",v->{unitCommand="march";ui.panelVisible=false;refresh();});march.setSelected(unitCommand.equals("march"));
+            Button garrison=button("进驻",v->garrisonOnMap(u));
             Button attack=button("攻击",v->{if(error!=null){message("攻击暂不可用",error);return;}unitCommand="attack";ui.panelVisible=false;refresh();});attack.setSelected(unitCommand.equals("attack"));attack.setAlpha(error==null?1f:.55f);
             Button tactics=button("战法",v->showTactics(u));tactics.setAlpha(error==null?1f:.55f);
             Button plots=button("计略",v->{if(error!=null){message("计略暂不可用",error);return;}pendingMarch=null;unitCommand="select";refresh();warUi().plots(u);});plots.setAlpha(error==null?1f:.55f);
-            Button cancel=button("取消选中",v->clearUnitSelection());
+            Button cancel=button("取消",v->clearUnitSelection());
             if(u instanceof Domestic.Mission){attack.setText("补给");attack.setOnClickListener(v->{if(error!=null)message("补给暂不可用",error);else convoySupply((Domestic.Mission)u);});tactics.setText("停止");tactics.setOnClickListener(v->apply(world.marches.stop(u.id)));plots.setText("货物");plots.setOnClickListener(v->{ui.panelVisible=true;refresh();revealPanel();});}
-            for(Button b:new Button[]{march,attack,tactics,plots})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
+            for(Button b:new Button[]{march,garrison,attack,tactics,plots})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
             if(!(u instanceof Domestic.Mission)&&u.march!=null)actions.addView(button("停止任务",v->apply(world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
             actions.addView(cancel,new LinearLayout.LayoutParams(0,dp(48),1));
             commandDock.addView(actions,new LinearLayout.LayoutParams(portrait()?-1:dp(360),-2));return;
@@ -711,7 +724,7 @@ public final class MainActivity extends Activity {
     );}
     private void showUnit(World.Unit u){
         if(u.owner==world.player&&!world.gameOver()){
-            for(World.City base:world.cities)if(base.owner==u.owner&&u.hex.distance(base.hex)==1){
+            for(World.City base:world.cities)if(base.owner==u.owner&&world.army.canEnterSite(u,u.hex,base)){
                 primaryAction("进入"+base.name,()->confirm("进入"+base.name+"并归还兵装与粮草？",()->apply(world.enter(u.id,base.id))));break;
             }
             if(u.march!=null)primaryAction("停止任务",()->apply(world.marches.stop(u.id)));
@@ -743,7 +756,7 @@ public final class MainActivity extends Activity {
         line("部队武力 "+world.army.war(u)+" · 智力 "+world.army.intelligence(u),13,paper);
         if(u.burning>0)line("部队燃烧 · 剩"+u.burning+"旬",14,gold);
         action("编队特技",v->warUi().skills(u));
-        if(u.owner==world.player)action("入城",v->{List<Hex> targets=new ArrayList<>();for(World.City c:world.cities)if(c.owner==u.owner&&u.hex.distance(c.hex)==1)targets.add(c.hex);pickOnMap("入城 · 选择相邻己城",u.hex,targets,h->{World.City c=world.cityAt(h);if(c!=null)confirm("进入"+c.name+"并归还兵装与粮草？",()->apply(world.enter(u.id,c.id)));});});
+        if(u.owner==world.player)action("进驻据点 · 自动选择入口",v->garrisonOnMap(u));
         Districts.District district=world.districts.unit(u.id);if(district!=null)line("所属军团："+district.name()+" · 自动指挥",13,gold);
         if(u.owner==world.player){line(u.acted?"本旬已行动，攻击后不能再移动 · 可安排下旬行军":"底栏选择行军、攻击、战法；点空地或本队取消选中",14,paper);
             if(u.march!=null)line(world.marches.describe(u),14,gold);
@@ -965,7 +978,7 @@ public final class MainActivity extends Activity {
     private void writeClientState(Bundle state){
         if(world==null||map==null)return;
         ui.write(state);state.putInt("selectedQ",selected==null?-1:selected.q);state.putInt("selectedR",selected==null?-1:selected.r);state.putInt("moving",moving);state.putString("unitCommand",unitCommand);
-        if(pendingMarch!=null&&pendingMarch.target!=null){state.putInt("routeQ",pendingMarch.target.q);state.putInt("routeR",pendingMarch.target.r);}map.saveCamera(state);
+        if(pendingMarch!=null&&pendingMarch.target!=null){state.putInt("routeQ",pendingMarch.target.q);state.putInt("routeR",pendingMarch.target.r);state.putBoolean("routeMove",pendingMarch.order!=null&&pendingMarch.order.intent==MarchOrders.Intent.MOVE);state.putInt("routeCity",pendingMarch.order!=null&&pendingMarch.order.kind==MarchOrders.Kind.CITY?pendingMarch.order.targetId:-1);}map.saveCamera(state);
     }
     @Override protected void onSaveInstanceState(Bundle state){super.onSaveInstanceState(state);writeClientState(state);save("auto",false);}
     private String worldDigest()throws Exception{return android.util.Base64.encodeToString(java.security.MessageDigest.getInstance("SHA-256").digest(SaveCodec.encode(authoritativeSaveWorld())),android.util.Base64.NO_WRAP);}

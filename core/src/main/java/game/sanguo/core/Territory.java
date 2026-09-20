@@ -23,8 +23,10 @@ public final class Territory {
             .thenComparingInt(s->s.site).thenComparingInt(s->s.q).thenComparingInt(s->s.r));
         for(World.City city:world.cities){
             cities.put(city.id,city);neighbors.put(city.id,new TreeSet<>());
-            sites[city.hex.q][city.hex.r]=city.id;costs[city.hex.q][city.hex.r]=0;
-            queue.add(new Step(city.hex.q,city.hex.r,city.id,0));
+            for(Hex h:SiteFootprint.cells(city)){
+                sites[h.q][h.r]=city.id;costs[h.q][h.r]=0;
+                queue.add(new Step(h.q,h.r,city.id,0));
+            }
         }
         while(!queue.isEmpty()){
             Step s=queue.remove();if(costs[s.q][s.r]!=s.cost||sites[s.q][s.r]!=s.site)continue;

@@ -22,6 +22,8 @@ public final class World {
         public final Hex hex;
         public int owner, gold=5000, food=40000, troops=12000, order=90, morale=70, defense=3000;
         public SiteKind kind=SiteKind.CITY;
+        transient SiteKind footprintKind;
+        transient List<Hex> footprint=Collections.emptyList();
         public int baseDefense=3000;
         public int recruitReserve=20000, governorId=-1;
         public final int[] equipment={12000,12000,12000,12000,0,0,0,0,0};
@@ -101,7 +103,7 @@ public final class World {
         public City set(int i,City c){City old=values.set(i,c);dirty=true;return old;}
         public City remove(int i){City old=values.remove(i);dirty=true;modCount++;return old;}
         private void index(){if(!dirty)return;ids.clear();positions.clear();neighbors.clear();
-            for(City c:values){ids.putIfAbsent(c.id,c);positions.putIfAbsent(c.hex,c);for(Hex h:c.hex.neighbors())neighbors.computeIfAbsent(h,k->new ArrayList<>()).add(c);}dirty=false;}
+            for(City c:values){ids.putIfAbsent(c.id,c);for(Hex cell:SiteFootprint.cells(c))positions.putIfAbsent(cell,c);for(Hex h:SiteFootprint.edge(c))neighbors.computeIfAbsent(h,k->new ArrayList<>()).add(c);}dirty=false;}
         City byId(int id){index();return ids.get(id);}
         City at(Hex h){index();return positions.get(h);}
         List<City> near(Hex h){index();return neighbors.getOrDefault(h,Collections.emptyList());}
@@ -180,9 +182,11 @@ public final class World {
     public Unit unit(int id) { for(Unit u:units) if(u.id==id) return u;
         if(id>=10000000){Domestic.Mission m=domestic.mission(id);if(m!=null&&m.transport)return m;}return null; }
     /** Read-only union; mission and battlefield refer to the same cargo object. */
-    public List<Unit> fieldUnits(){List<Unit> all=new ArrayList<>(units);for(Domestic.Mission m:domestic.missions)if(m.transport&&!m.legacyOverlap&&cityAt(m.hex)==null)all.add(m);return all;}
+    public List<Unit> fieldUnits(){List<Unit> all=new ArrayList<>(units);for(Domestic.Mission m:domestic.missions)if(m.transport&&!m.legacyOverlap)all.add(m);return all;}
     public City cityAt(Hex h){return ((CityRoster)cities).at(h);}
-    public Unit unitAt(Hex h) {for(Unit u:units)if(u.hex.equals(h))return u;for(Domestic.Mission m:domestic.missions)if(m.transport&&!m.legacyOverlap&&m.hex.equals(h)&&cityAt(h)==null)return m;return null;}
+    /** Call after loading site kinds; ownership changes do not invalidate geometric indexing. */
+    public void invalidateSiteIndex(){((CityRoster)cities).dirty=true;}
+    public Unit unitAt(Hex h) {for(Unit u:units)if(u.hex.equals(h))return u;for(Domestic.Mission m:domestic.missions)if(m.transport&&!m.legacyOverlap&&m.hex.equals(h))return m;return null;}
     // Transient command feedback, never serialized or inferred by parsing translated log text.
     TurnJournal turnJournal;
     void visualAction(TurnJournal.Kind kind,int actor,Hex target,String label){reports.action(kind,actor,target,label);actionLabel=label;if(turnJournal!=null)turnJournal.mark(kind,actor,target,label);}
@@ -278,33 +282,45 @@ public final class World {
     String siegePositionError(Unit u,City c){
         if(u instanceof Domestic.Mission)return "运输队不能攻城";
         if(c==null||!campaign.hostile(u.owner,c.owner))return "请选择交战势力或未占领城池";
-        if(u.hex.distance(c.hex)>army.siegeRange(u))return "城池不在攻城射程内";
+        if(siegeHit(u,c)==null)return "城市没有处于合法攻城射程的占地格";
         if(Army.siegeWeapon(u.weapon)&&!army.water(u.hex))return "兵器使用战法攻城";
         return null;
     }
-    public Result siege(int unitId,int cityId) {reports.prepare();
+    public Hex siegeHit(Unit u,City c){return siegeHit(u,c,null);}
+    public Hex siegeHit(Unit u,City c,Hex preferred){return u==null?null:SiteFootprint.hit(c,u.hex,1,army.siegeRange(u),preferred,h->inside(h)&&fieldworks.landTarget(u.owner,h));}
+    public Displacement.Preview siegePreview(int unitId,int cityId,Hex preferred){
+        Unit u=unit(unitId);City c=city(cityId);String error=siegeError(unitId,cityId);Hex hit=siegeHit(u,c,preferred);
+        String text=error!=null?error:"攻击"+c.name+" · 命中格 "+hit+"（同一城市，仅结算一次）\n"+combat.siegePreview(u,c,false);
+        return new Displacement.Preview(error,text,u==null?Collections.emptyList():Collections.singletonList(u.hex),
+            hit==null?Collections.emptyList():Collections.singletonList(hit),hit==null?Collections.emptyList():Collections.singletonList(hit),null,false);
+    }
+    public Result siege(int unitId,int cityId){return siege(unitId,cityId,null);}
+    public Result siege(int unitId,int cityId,Hex preferred) {reports.prepare();
         String error=siegeError(unitId,cityId);if(error!=null)return fail(error);
-        Unit u=unit(unitId);City c=city(cityId);
-        marches.supersede(u);u.acted=true;return resolveSiege(u,c,false);
+        Unit u=unit(unitId);City c=city(cityId);Hex hit=siegeHit(u,c,preferred);
+        if(preferred!=null&&!preferred.equals(hit))return fail("预览命中格已失效，请重新选择");
+        marches.supersede(u);u.acted=true;return resolveSiege(u,c,false,false,hit);
     }
     /** Caller has validated and paid for the command. No nested public command or second payment. */
     Result resolveSiege(Unit u,City c,boolean tactic) {return resolveSiege(u,c,tactic,false);}
-    Result resolveSiege(Unit u,City c,boolean tactic,boolean stoneSplash) {
-        visualAction(tactic?TurnJournal.Kind.TACTIC:TurnJournal.Kind.ATTACK,u.id,c.hex,tactic?"攻城战法":"攻城");
+    Result resolveSiege(Unit u,City c,boolean tactic,boolean stoneSplash) {return resolveSiege(u,c,tactic,stoneSplash,siegeHit(u,c));}
+    Result resolveSiege(Unit u,City c,boolean tactic,boolean stoneSplash,Hex hitCell) {
+        if(!SiteFootprint.contains(c,hitCell))return fail("攻城命中格已失效");
+        visualAction(tactic?TurnJournal.Kind.TACTIC:TurnJournal.Kind.ATTACK,u.id,hitCell,tactic?"攻城战法":"攻城");
         CombatRules.SiegeDamage damage=combat.siege(u,c,tactic);int hit=Math.min(c.defense,damage.wall),troopHit=Math.min(c.troops,damage.troops);
         if(tactic&&(hit>0||troopHit>0)&&combat.critical(u,null,true))tacticCritical(u);
         c.defense=Math.max(0,c.defense-hit);c.troops=Math.max(0,c.troops-troopHit);
-        battleImpact(c.hex,c.defense==0||c.troops==0);
+        battleImpact(hitCell,c.defense==0||c.troops==0);
         String message=officer(u.officerId).name+"攻城，城防−"+hit+"，守军−"+troopHit;
         if(c.defense==0||c.troops==0) {
-            int old=c.owner;c.owner=u.owner;domestic.captured(c.id);strategy.cityCaptured(c.id);c.defense=Math.max(1,campaign.defenseCap(c)/4);c.troops=0;c.morale=50;c.order=60;
+            int old=c.owner;c.owner=u.owner;SiteFootprint.ownershipChanged(this,c);domestic.captured(c.id);strategy.cityCaptured(c.id);c.defense=Math.max(1,campaign.defenseCap(c)/4);c.troops=0;c.morale=50;c.order=60;
             government.cityCaptured(c,old,u);treasures.fallenTreasury(old,u.owner);districts.captured(c,u);
             campaign.cleanupProjects();army.cleanup();campaign.earn(u.owner,100);
             List<String> ruined=domestic.sack(c.id);
             message=c.name+"被"+faction(u.owner)+"攻占"+(ruined.isEmpty()?"":"；战乱损毁内政设施"+ruined.size()+"座（"+String.join("、",ruined)+"）");
         }
         else {int counter=cityDefense.counter(c,u);if(counter>0)message+="，据点反击−"+counter;}
-        if(stoneSplash)fieldworks.stoneSplash(u,c.hex);
+        if(stoneSplash)fieldworks.stoneSplash(u,hitCell);
         checkVictory();return success(message);
     }
     public Result enter(int unitId, int cityId) {reports.prepare();
@@ -319,7 +335,7 @@ public final class World {
         if (u instanceof Domestic.Mission) {
             return this.domestic.unload((Domestic.Mission) u, c==null?-1:c.id);
         }
-        if (c == null || c.owner != u.owner || u.hex.distance(c.hex) > 1) {
+        if (c == null || c.owner != u.owner || SiteFootprint.distance(c,u.hex) > 1) {
             return fail("请选择相邻己方城市、关卡或港口");
         }
         if(!army.canEnterSite(u,u.hex,c))return fail("该方向不能进驻：上下河必须经过己方港口");
@@ -328,7 +344,7 @@ public final class World {
         if (c.troops + u.troops > this.campaign.troopCap(c) || c.equipment[u.weapon.ordinal()] + gear > cap || c.food + u.food > this.campaign.foodCap(c) || c.gold + u.gold > this.campaign.goldCap(c) || (u.ship != Army.Ship.BOAT && c.ships[u.ship.ordinal() - 1] >= 100)) {
             return fail("据点容量不足：兵余" + Math.max(0, this.campaign.troopCap(c) - c.troops) + "、粮余" + Math.max(0, this.campaign.foodCap(c) - c.food) + "、金余" + Math.max(0, this.campaign.goldCap(c) - c.gold) + "、所选兵装余" + Math.max(0, cap - c.equipment[u.weapon.ordinal()]));
         }
-        visualAction(TurnJournal.Kind.ENTER,u.id,c.hex,"进驻");
+        visualAction(TurnJournal.Kind.ENTER,u.id,SiteFootprint.entry(this,u,u.hex,c),"进驻");
         marches.supersede(u);
         c.troops += u.troops;
         c.food += u.food;
@@ -456,13 +472,14 @@ public final class World {
     /** Plan beyond one turn so AI can detour around rivers and mountains. */
     boolean advance(Unit u,Hex target,int range) {
         Map<Hex,Integer> distances=new HashMap<>();Map<Hex,Hex> previous=new HashMap<>();
-        Set<Hex> blocked=new HashSet<>();for(City c:cities)blocked.add(c.hex);for(Domestic.Facility f:domestic.facilities)blocked.add(f.hex);for(Unit b:fieldUnits())if(b.id!=u.id)blocked.add(b.hex);
+        Set<Hex> blocked=new HashSet<>();for(Domestic.Facility f:domestic.facilities)blocked.add(f.hex);for(Unit b:fieldUnits())if(b.id!=u.id)blocked.add(b.hex);
         for(War.Structure s:war.structures())blocked.add(s.hex);
         PriorityQueue<Step> todo=new PriorityQueue<>(Comparator.comparingInt((Step s)->s.cost).thenComparingInt(s->s.hex.q).thenComparingInt(s->s.hex.r));
         distances.put(u.hex,0);todo.add(new Step(u.hex,0));
         while(!todo.isEmpty()) {
             Step step=todo.remove();if(step.cost!=distances.get(step.hex))continue;
-            if(step.hex.distance(target)<=range) {
+            City goalCity=cityAt(target);
+            if(goalCity==null?step.hex.distance(target)<=range:SiteFootprint.distance(goalCity,step.hex)<=range) {
                 Hex destination=step.hex;
                 Map<Hex,Integer> reachable=orders.reachable(u);
                 while(!reachable.containsKey(destination))destination=previous.get(destination);
@@ -497,8 +514,7 @@ public final class World {
         this.abilities.cleanup();
     }
     boolean gateBlocks(int owner,Hex from,Hex to){
-        if(from==null||to==null)return false;
-        for(City c:((CityRoster)cities).near(from))if(c.kind==SiteKind.GATE&&c.hex.distance(to)==1&&campaign.hostile(owner,c.owner))return true;
-        return false;
+        City c=cityAt(to);
+        return c!=null&&c.kind==SiteKind.GATE&&c.owner!=owner;
     }
 }

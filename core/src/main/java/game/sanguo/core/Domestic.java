@@ -155,9 +155,9 @@ public final class Domestic {
     private boolean site(World.City city,Hex h){
         if(city==null||h==null||!w.inside(h)||!w.development.contains(city,h))return false;
         if(w.terrain[h.q][h.r]!=World.Terrain.PLAIN||w.cityAt(h)!=null||w.unitAt(h)!=null||at(h)!=null||w.war.at(h)!=null||w.war.fireAt(h)!=null)return false;
-        for(World.City c:w.cities)if(c.hex.distance(h)==1){
+        for(World.City c:w.cities)if(SiteFootprint.distance(c,h)==1){
             boolean exit=false;
-            for(Hex n:c.hex.neighbors())if(!n.equals(h)&&w.cost(n,World.Weapon.SPEAR)>0&&w.cityAt(n)==null&&at(n)==null&&w.war.at(n)==null){exit=true;break;}
+            for(Hex n:SiteFootprint.edge(c))if(!n.equals(h)&&w.cost(n,World.Weapon.SPEAR)>0&&w.cityAt(n)==null&&at(n)==null&&w.war.at(n)==null){exit=true;break;}
             if(!exit)return false;
         }
         return true;
@@ -168,8 +168,8 @@ public final class Domestic {
         if(w.development.configured(cityId)){
             for(Hex h:w.development.parcels(cityId))if(site(c,h))result.add(h);return result;
         }
-        for(int q=Math.max(0,c.hex.q-2);q<=Math.min(w.width-1,c.hex.q+2);q++)
-            for(int r=Math.max(0,c.hex.r-2);r<=Math.min(w.height-1,c.hex.r+2);r++){Hex h=new Hex(q,r);if(site(c,h))result.add(h);}
+        for(int q=Math.max(0,c.hex.q-3);q<=Math.min(w.width-1,c.hex.q+3);q++)
+            for(int r=Math.max(0,c.hex.r-3);r<=Math.min(w.height-1,c.hex.r+3);r++){Hex h=new Hex(q,r);if(site(c,h))result.add(h);}
         result.sort(Comparator.comparingInt((Hex h)->h.distance(c.hex)).thenComparingInt(h->h.q).thenComparingInt(h->h.r));
         return result;
     }
@@ -250,7 +250,9 @@ public final class Domestic {
         if(cargo&&w.districts.reserveError(c,gold,food,troops)!=null)return w.districts.reserveError(c,gold,food,troops);
         for(int i=0;i<equipment.length;i++)if(c.equipment[i]<equipment[i])return "兵装库存不足";
 
-        if(cargo){Mission probe=new Mission(0,c.owner,officer,source,target,c.hex,true,gold,food,troops,equipment);probe.sea=sea;MarchOrders.Plan plan=routePlan(probe);if(!plan.valid())return plan.error;}else if(w.personnel.turns(source,target)<0)return "没有可用人员路线";
+        if(cargo){Mission probe=new Mission(0,c.owner,officer,source,target,c.hex,true,gold,food,troops,equipment);probe.sea=sea;
+            Hex exit=SiteFootprint.deploymentExit(w,c,probe);if(exit==null)return "据点边缘没有可用运输出发格";
+            probe.hex=exit;MarchOrders.Plan plan=routePlan(probe);if(!plan.valid())return plan.error;}else if(w.personnel.turns(source,target)<0)return "没有可用人员路线";
         if(nextMissionId>=10000000)return "任务编号已达上限";
         return null;
     }
@@ -259,6 +261,7 @@ public final class Domestic {
         World.City c=w.city(source),d=w.city(target);World.Officer o=w.officer(officer);
         Mission mission=new Mission(nextMissionId++,w.active,o.id,c.id,d.id,c.hex,cargo,gold,food,troops,equipment);
         mission.sea=sea;mission.deputies=deputies.clone();mission.returnOfficers=cargo&&returnOfficers;
+        if(cargo)mission.hex=SiteFootprint.deploymentExit(w,c,mission);
         w.spend(c,o,0);c.gold-=gold;c.food-=food;c.troops-=troops;for(int i=0;i<equipment.length;i++)c.equipment[i]-=equipment[i];
         for(int id:mission.crew()){World.Officer member=w.officer(id);w.strategy.releaseGovernor(id);member.cityId=-1;member.acted=true;}
         missions.add(mission);
@@ -269,7 +272,8 @@ public final class Domestic {
         String error=transportError(source,target,officer,deputies,gold,food,troops,equipment,sea);
         World.City c=w.city(source),d=w.city(target);if(c==null||d==null)return error;
         Mission probe=new Mission(0,c.owner,officer,source,target,c.hex,true,gold,food,troops,equipment==null?new int[4]:equipment);probe.sea=sea;probe.deputies=deputies==null?new int[0]:deputies;
-        int turns=eta(probe),use=foodUse(probe),cost=turns<0?0:turns*use;
+        Hex exit=SiteFootprint.deploymentExit(w,c,probe);if(exit!=null)probe.hex=exit;
+        int turns=exit==null?-1:eta(probe),use=foodUse(probe),cost=turns<0?0:turns*use;
         return "派遣费0金 · 行动力10 · 编队"+(probe.deputies.length+1)+"将\n"+
             "可运库存上限：金"+Math.min(100000,c.gold)+" / 粮"+Math.min(200000,c.food)+" / 兵"+Math.min(20000,c.troops)+"\n"+
             "目的地剩余容量：金"+Math.max(0,w.campaign.goldCap(d)-d.gold)+" / 粮"+Math.max(0,w.campaign.foodCap(d)-d.food)+" / 兵"+Math.max(0,w.campaign.troopCap(d)-d.troops)+"\n"+
@@ -351,7 +355,7 @@ public final class Domestic {
         World.City c=w.city(m.targetCity);if(c==null||c.owner!=m.owner)return "目的地失守，待选择可达己城";
         if(m.stopped)return m.march==null?"已停止，仍消耗携粮；选择地图目的地可继续":"按地图路线行军，到达后待命 · "+w.marches.label(m.march);
         if(!m.waiting.isEmpty())return m.waiting;
-        if(m.hex.distance(c.hex)<=1)return fits(m,c)?"已到达，等待结算":"满仓等待，货物仍在队中";
+        if(w.army.canEnterSite(m,m.hex,c))return fits(m,c)?"已到达，等待结算":"满仓等待，货物仍在队中";
         int turns=eta(m);if(turns<0)return "道路受阻 / 等待改道";
         return (m.returning?"人员返程 · ":"")+"预计"+turns+"旬（依当前道路与威胁）"+(m.transport?" · 旬耗粮"+foodUse(m)+" · "+(m.food<foodUse(m)?"已断粮，将损兵":"携粮可支撑"+(foodUse(m)==0?"无限":m.food/foodUse(m))+"旬"):"");
     }
@@ -401,7 +405,7 @@ public final class Domestic {
             String threat=threatReason(m);if(!m.stopped&&threat!=null){m.waiting=threat;return;}
             if(m.march!=null){w.marches.advance(m);if(mission(m.id)!=m||!m.transport)return;if(m.march!=null){m.waiting=m.march.paused.isEmpty()?"":"道路受阻 / 等待："+m.march.paused;if(!m.waiting.isEmpty()){approachQueue(m);yieldConvoy(m);}return;}}
             if(m.stopped)return;
-            if(m.hex.distance(c.hex)>1||!w.army.canEnterSite(m,m.hex,c)){
+            if(!w.army.canEnterSite(m,m.hex,c)){
                 MarchOrders.Plan plan=routePlan(m);
                 if(!plan.valid()){m.waiting="道路受阻，等待改道："+plan.error;approachQueue(m);yieldConvoy(m);return;}
                 World.Result result=w.marches.execute(w.marches.preview(m,w.city(m.targetCity).hex));if(!result.ok){m.waiting=result.message;return;}
@@ -429,17 +433,17 @@ public final class Domestic {
         if(end>0){Hex h=plan.path.get(end);if(w.orders.executeRoute(w.orders.previewMove(m.id,h),plan.path.subList(0,end+1)).ok)m.waiting="已到队列前端，等待前方友军通过";}
     }
     private void yieldConvoy(Mission m){
-        if(w.orders.remaining(m)==0||w.cityAt(m.hex)!=null)return;
+        if(w.orders.remaining(m)==0)return;
         for(Mission other:missions)if(other.transport&&other.owner==m.owner&&other.taskId<m.taskId&&m.hex.distance(other.hex)==1){
             Hex goal=w.city(other.targetCity).hex;
-            for(Hex h:m.hex.neighbors())if(h.distance(goal)>m.hex.distance(goal)&&w.unitAt(h)==null&&w.cityAt(h)==null){
+            for(Hex h:m.hex.neighbors())if(h.distance(goal)>m.hex.distance(goal)&&w.unitAt(h)==null&&SiteFootprint.transit(w.cityAt(h),m.owner)){
                 UnitOrders.MovePlan move=w.orders.previewMove(m.id,h);if(move.valid()&&w.orders.execute(move).ok){m.waiting="排队让行：为运输"+other.taskId+"让出狭口，下旬继续";return;}
             }
         }
     }
     public World.Result unload(Mission m,int city){w.reports.prepare();
         World.City c=w.city(city);
-        if(mission(m.id)!=m||!m.transport||c==null||c.owner!=m.owner||m.hex.distance(c.hex)>1)return w.fail("请选择相邻己方城池");
+        if(mission(m.id)!=m||!m.transport||c==null||c.owner!=m.owner||!w.army.canEnterSite(m,m.hex,c))return w.fail("请选择相邻己方城池");
         String permission=w.districts.dispatchError(m.sourceCity,city,true);if(permission!=null)return w.fail(permission);
         if(!w.army.canEnterSite(m,m.hex,c))return w.fail("该方向不能卸货：上下河必须经过己方港口");
         if(!fits(m,c))return w.fail("城池库存容量不足，货物保留在运输队");
@@ -546,7 +550,7 @@ public final class Domestic {
             require(m.waiting!=null&&m.waiting.length()<=600,"运输阻塞原因无效");for(int n:m.cargoShips)bound(n,0,100);
             bound(m.escortId,-1,9999999);require(m.transport||Arrays.stream(m.cargoShips).sum()==0,"返程不能携带舰船货物");
             bound(m.energy,0,150);bound(m.statusTurns,0,10);bound(m.burning,0,2);bound(m.burningOwner,-1,w.factions.length-1);bound(m.burningPower,1,2);
-            if(m.transport&&!m.legacyOverlap&&w.cityAt(m.hex)==null)require(w.unitAt(m.hex)==m&&w.domestic.at(m.hex)==null&&w.war.at(m.hex)==null,"运输占格冲突");
+            if(m.transport&&!m.legacyOverlap)require(w.unitAt(m.hex)==m&&w.domestic.at(m.hex)==null&&w.war.at(m.hex)==null,"运输占格冲突");
             if(m.march!=null)require(m.march.tile!=null&&w.inside(m.march.tile)&&m.march.paused.length()<=300,"运输行军目标无效");
             bound(m.lastTick,-1,w.turn);bound(m.consumedFood,0,200000);require(!m.returning||!m.transport,"返程不能重复携货");
             require(payload(m.gold,m.food,m.troops,m.equipment),"运输货物越界");int sum=m.gold+m.food+m.troops+Arrays.stream(m.equipment).sum();

@@ -109,6 +109,7 @@ public final class ScenarioData {
             if(p.containsKey("site-kinds")){
                 int countKinds=number(p,"site-kinds",0,1000);Set<Integer> seen=new HashSet<>();
                 for(int i=0;i<countKinds;i++){String[] data=fields(p,"site-kind."+i,3);World.City c=w.city(integer(data[0]));if(c==null||!seen.add(c.id))throw new IOException("据点类型引用错误");c.kind=World.SiteKind.valueOf(data[1]);c.baseDefense=integer(data[2]);}
+                w.invalidateSiteIndex();
             }
             if(p.containsKey("unit-gold")){
                 int countGold=number(p,"unit-gold",0,10000);Set<Integer> seen=new HashSet<>();
@@ -151,6 +152,7 @@ public final class ScenarioData {
                 w.war.structures.add(new War.Structure(w.war.nextStructureId++,-1,War.StructureKind.DAM,new Hex(q,r),War.StructureKind.DAM.hp));
             if(!p.isEmpty())throw new IOException("未知剧本字段："+p.keySet().iterator().next());
             if(reference!=null){ContentCatalog catalog=ContentCatalog.get();catalog.validateOpening(w);ContentRuntime.initializeOpening(w,catalog);if(referenceDetails)ContentProfiles.initialize(w,catalog,referenceDates);}
+            w.invalidateSiteIndex();
             w.strategy.initializeOffices();
             w.abilities.initialize(Objects.hash(w.scenarioId,w.startYear,w.startMonth));
             SaveCodec.validate(w);validateOpening(w);
@@ -183,10 +185,10 @@ public final class ScenarioData {
             for(World.Officer o:w.officers)if(o.owner==side&&o.cityId>=0)staffed=true;
             if(!w.alive(side)||!staffed)throw new IOException("开局势力缺少城池或在城武将："+side);
         }
-        Set<Hex> cities=new HashSet<>();for(World.City c:w.cities)cities.add(c.hex);
+        Set<Hex> cities=new HashSet<>();for(World.City c:w.cities)cities.addAll(SiteFootprint.cells(c));
         for(World.City c:w.cities) {
             boolean exit=false;
-            for(Hex h:c.hex.neighbors())if(w.cost(h,World.Weapon.SPEAR)>0&&!cities.contains(h))exit=true;
+            for(Hex h:SiteFootprint.edge(c))if(w.cost(h,World.Weapon.SPEAR)>0&&!cities.contains(h))exit=true;
             if(!exit)throw new IOException("城池没有可用出口："+c.name);
         }
         // Ignore city occupancy here: this checks geographic connectivity, not access through ownership.

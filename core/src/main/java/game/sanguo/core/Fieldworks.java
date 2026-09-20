@@ -68,7 +68,7 @@ public final class Fieldworks {
         World.Terrain terrain=w.terrain[target.q][target.r];
         if(blockedMilitaryTerrain(terrain))return "森林与湿地不能设置军事设施";
         if(kind==War.StructureKind.FIRE_SHIP?!w.army.water(target):w.army.water(target)||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN||w.terrain[target.q][target.r]==World.Terrain.MOUNTAIN_PATH||w.terrain[target.q][target.r]==World.Terrain.PLANK_ROAD||w.terrain[target.q][target.r]==World.Terrain.POISON||w.terrain[target.q][target.r]==World.Terrain.SWAMP||w.terrain[target.q][target.r]==World.Terrain.DAM||w.events.at(target)!=null)return "该地形不能设置此设施";
-        for(World.City c:w.cities)if(c.hex.distance(target)<=2)return "据点两格以内不能设置";
+        for(World.City c:w.cities)if(SiteFootprint.distance(c,target)<=2)return "据点两格以内不能设置";
         if(military(kind))for(War.Structure s:w.war.structures)if(military(s.kind)&&s.hex.distance(target)<=2)return "军事设施两格以内不能重复设置";
         if(w.war.structures.size()>=1000||w.war.nextStructureId>=10000000)return "军事设施达到上限";
         return null;
@@ -92,7 +92,7 @@ public final class Fieldworks {
     }
     public World.Result withdraw(int unit,int city,int gold){w.reports.prepare();
         World.Unit u=w.unit(unit);World.City c=w.city(city);String error=w.orders.combatError(u);if(error!=null)return w.fail(error);
-        if(c==null||c.owner!=u.owner||u.hex.distance(c.hex)!=1||gold<=0||gold>10000||u.gold>10000-gold||c.gold<gold)return w.fail("需要相邻己方据点、足够金及部队携金容量（10000）");
+        if(c==null||c.owner!=u.owner||!w.army.canEnterSite(u,u.hex,c)||gold<=0||gold>10000||u.gold>10000-gold||c.gold<gold)return w.fail("需要相邻己方据点、足够金及部队携金容量（10000）");
         c.gold-=gold;u.gold+=gold;u.acted=true;return w.success("部队补充"+gold+"金");
     }
     public War.Structure byId(int id){for(War.Structure s:w.war.structures)if(s.id==id)return s;return null;}

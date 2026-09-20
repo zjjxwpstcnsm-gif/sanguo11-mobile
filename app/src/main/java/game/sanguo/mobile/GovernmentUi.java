@@ -47,7 +47,7 @@ final class GovernmentUi {
     }
     private void amounts(String title,Consumer<int[]> next){choose(title,Arrays.asList(new int[]{0,1000},new int[]{0,5000},new int[]{1000,1000},new int[]{3000,5000}),v->v[0]+"兵 / "+v[1]+"粮",next);}
     private void replenish(World.City c){
-        List<World.Unit> list=new ArrayList<>();for(World.Unit u:w.units)if(u.owner==c.owner&&u.hex.distance(c.hex)<=1)list.add(u);
+        List<World.Unit> list=new ArrayList<>();for(World.Unit u:w.units)if(u.owner==c.owner&&w.army.canEnterSite(u,u.hex,c))list.add(u);
         choose("选择城外部队",list,u->w.officer(u.officerId).name+" · 兵"+u.troops,u->actor(c,o->amounts("补给兵粮",v->confirm("城池补给","消耗城池"+v[0]+"兵、"+v[1]+"粮及对应基础兵装；行动力10。",()->apply.accept(w.supply.replenish(c.id,o.id,u.id,v[0],v[1]))))));
     }
     void supply(World.Unit u){
