@@ -15,7 +15,7 @@ public final class TerrainConnectionsTest {
             check(TerrainConnections.mask(w,4,4)==mask,"all 64 topologies preserve actual adjacency: "+mask);
             for(int d=0;d<6;d++)if((mask&(1<<d))!=0){
                 Hex h=center.neighbors().get(d);check((TerrainConnections.mask(w,h.q,h.r)&(1<<((d+3)%6)))!=0,"neighbor has reciprocal branch");
-                float dx=(float)((h.q-4+(h.r-4)*.5)*25*Math.sqrt(3)),dy=(h.r-4)*37.5f;
+                float dx=(float)((h.q-4+(h.r-4)*.5)*TileGeometry.DX),dy=(h.r-4)*TileGeometry.DY;
                 check(Math.abs(TerrainConnections.edgeX(d)*2-dx)<.001&&Math.abs(TerrainConnections.edgeY(d)*2-dy)<.001,"branches meet exactly at shared edge");
             }
         }

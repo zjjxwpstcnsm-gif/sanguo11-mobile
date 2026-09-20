@@ -32,6 +32,6 @@ final class TerrainConnections {
         }
         return best;
     }
-    static float edgeX(int d){return (float)(Math.cos(-d*Math.PI/3)*25*Math.sqrt(3)/2);}
-    static float edgeY(int d){return (float)(Math.sin(-d*Math.PI/3)*25*Math.sqrt(3)/2);}
+    static float edgeX(int d){return TileGeometry.edgeX(d);}
+    static float edgeY(int d){return TileGeometry.edgeY(d);}
 }

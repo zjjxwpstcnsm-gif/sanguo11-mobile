@@ -169,14 +169,14 @@ public final class GameSmokeRunner extends Instrumentation {
         byte[] before=SaveCodec.encode(saved());float scale=camera(map).scale;RectF mini=mapRect(map,"miniRect");
         tapMapPoint(map,mini.left+mini.width()*.67f,mini.top+mini.height()*.35f);
         require(Math.abs(camera(map).scale-scale)<.001f,"minimap jump preserves close zoom");
-        float targetX=25*1.7320508f*200*.67f,targetY=37.5f*200*.35f;
+        float targetX=TileGeometry.DX*200*.67f,targetY=TileGeometry.DY*200*.35f;
         require(Math.abs(camera(map).centerX()-targetX)<80&&Math.abs(camera(map).centerY()-targetY)<80,"minimap uses the correct national coordinate frame");
         require(Arrays.equals(before,SaveCodec.encode(saved())),"minimap does not issue a map command");screenshot("v032-jump-viewport");
         int[] location=new int[2];MapView dragMapView=map;runOnMainSync(()->dragMapView.getLocationOnScreen(location));long dragTime=SystemClock.uptimeMillis();
         send(dragTime,dragTime,MotionEvent.ACTION_DOWN,location[0]+mini.centerX(),location[1]+mini.centerY());
         send(dragTime,dragTime+100,MotionEvent.ACTION_MOVE,location[0]+mini.left+mini.width()*.45f,location[1]+mini.top+mini.height()*.65f);
         send(dragTime,dragTime+180,MotionEvent.ACTION_UP,location[0]+mini.left+mini.width()*.45f,location[1]+mini.top+mini.height()*.65f);waitForIdleSync();
-        require(Math.abs(camera(map).scale-scale)<.001f&&Math.abs(camera(map).centerX()-25*1.7320508f*90)<80,"minimap drag preserves zoom and tracks position");
+        require(Math.abs(camera(map).scale-scale)<.001f&&Math.abs(camera(map).centerX()-TileGeometry.DX*90)<80,"minimap drag preserves zoom and tracks position");
         require(Arrays.equals(before,SaveCodec.encode(saved())),"minimap drag leaves authoritative save untouched");
         RectF button=mapRect(map,"miniButton");tapMapPoint(map,button.centerX(),button.centerY());require(!map.navigatorShown(),"one tap collapse");
         runOnMainSync(current::recreate);waitForIdleSync();map=mapView();require(!map.navigatorShown(),"collapse persists recreation");
@@ -271,10 +271,10 @@ public final class GameSmokeRunner extends Instrumentation {
             try{
                 MapOverview overview=(MapOverview)field.get(map);
                 float offset=copy.sourceMapWidth>0?(copy.height-1)/2:0;
-                float extent=43.30127f*(copy.sourceMapWidth>0?copy.sourceMapWidth-.5f:copy.width-1+(copy.height-1)*.5f)+50;
+                float extent=TileGeometry.DX*(copy.sourceMapWidth>0?copy.sourceMapWidth-.5f:copy.width-1+(copy.height-1)*.5f)+50;
                 float scale=1024/extent;
                 Bitmap bitmap=Bitmap.createBitmap(1024,1024,Bitmap.Config.ARGB_8888);Canvas c=new Canvas(bitmap);c.scale(scale,scale);c.translate(25,25);overview.draw(c,1);
-                int px=Math.round((43.30127f*(city.hex.q+city.hex.r*.5f-offset)+25)*scale),py=Math.round((37.5f*city.hex.r+25)*scale);
+                int px=Math.round((TileGeometry.DX*(city.hex.q+city.hex.r*.5f-offset)+25)*scale),py=Math.round((TileGeometry.DY*city.hex.r+25)*scale);
                 int actual=bitmap.getPixel(px,py),terrain=TerrainTiles.color(copy.terrain[city.hex.q][city.hex.r]),owner=FactionColors.color(copy,city.owner);
                 for(int shift:new int[]{0,8,16}){int expected=((terrain>>shift&255)*97+(owner>>shift&255)*158)/255;require(Math.abs((actual>>shift&255)-expected)<10,"overview displays new owner color");}
                 bitmap.recycle();
@@ -326,7 +326,7 @@ public final class GameSmokeRunner extends Instrumentation {
     }
     private void dragArmy(Hex from,Hex to,boolean cancel)throws Exception {
         MapView map=mapView();MapCamera c=camera(map);int[] pos=new int[2];float[] p=new float[4];
-        runOnMainSync(()->{map.getLocationOnScreen(pos);p[0]=pos[0]+25*1.7320508f*(from.q+from.r*.5f-c.columnOffset)*c.scale+c.x;p[1]=pos[1]+37.5f*from.r*c.scale+c.y;p[2]=pos[0]+25*1.7320508f*(to.q+to.r*.5f-c.columnOffset)*c.scale+c.x;p[3]=pos[1]+37.5f*to.r*c.scale+c.y;});
+        runOnMainSync(()->{map.getLocationOnScreen(pos);p[0]=pos[0]+TileGeometry.DX*(from.q+from.r*.5f-c.columnOffset)*c.scale+c.x;p[1]=pos[1]+TileGeometry.DY*from.r*c.scale+c.y;p[2]=pos[0]+TileGeometry.DX*(to.q+to.r*.5f-c.columnOffset)*c.scale+c.x;p[3]=pos[1]+TileGeometry.DY*to.r*c.scale+c.y;});
         long t=SystemClock.uptimeMillis();send(t,t,MotionEvent.ACTION_DOWN,p[0],p[1]);SystemClock.sleep(700);
         for(int i=1;i<=8;i++){send(t,SystemClock.uptimeMillis(),MotionEvent.ACTION_MOVE,p[0]+(p[2]-p[0])*i/8,p[1]+(p[3]-p[1])*i/8);SystemClock.sleep(35);}
         send(t,SystemClock.uptimeMillis(),cancel?MotionEvent.ACTION_CANCEL:MotionEvent.ACTION_UP,p[2],p[3]);SystemClock.sleep(500);waitForIdleSync();
@@ -1395,14 +1395,14 @@ public final class GameSmokeRunner extends Instrumentation {
     }
     private void tapHex(Hex h)throws Exception {
         MapView map=mapView();MapCamera c=camera(map);int[] pos=new int[2];float[] point=new float[2];
-        runOnMainSync(()->{map.getLocationOnScreen(pos);point[0]=pos[0]+25*1.7320508f*(h.q+h.r*.5f-c.columnOffset)*c.scale+c.x;point[1]=pos[1]+25*1.5f*h.r*c.scale+c.y;});
+        runOnMainSync(()->{map.getLocationOnScreen(pos);point[0]=pos[0]+TileGeometry.DX*(h.q+h.r*.5f-c.columnOffset)*c.scale+c.x;point[1]=pos[1]+25*1.5f*h.r*c.scale+c.y;});
         long t=SystemClock.uptimeMillis();send(t,t,MotionEvent.ACTION_DOWN,point[0],point[1]);send(t,t+80,MotionEvent.ACTION_UP,point[0],point[1]);SystemClock.sleep(500);waitForIdleSync();
     }
     private MapView findMap(android.view.View v){if(v instanceof MapView)return (MapView)v;if(v instanceof android.view.ViewGroup){android.view.ViewGroup g=(android.view.ViewGroup)v;for(int i=0;i<g.getChildCount();i++){MapView m=findMap(g.getChildAt(i));if(m!=null)return m;}}return null;}
     private MapCamera camera(MapView map)throws Exception {java.lang.reflect.Field f=MapView.class.getDeclaredField("camera");f.setAccessible(true);return (MapCamera)f.get(map);}
     private void tapCity(int id,int dxDp)throws Exception {
         World w=saved();MapView map=mapView();MapCamera c=camera(map);int[] pos=new int[2];float[] xy=new float[2];
-        runOnMainSync(()->{map.getLocationOnScreen(pos);Hex h=w.city(id).hex;xy[0]=pos[0]+25*1.7320508f*(h.q+h.r*.5f-c.columnOffset)*c.scale+c.x+dxDp*map.getResources().getDisplayMetrics().density;xy[1]=pos[1]+25*1.5f*h.r*c.scale+c.y;});
+        runOnMainSync(()->{map.getLocationOnScreen(pos);Hex h=w.city(id).hex;xy[0]=pos[0]+TileGeometry.DX*(h.q+h.r*.5f-c.columnOffset)*c.scale+c.x+dxDp*map.getResources().getDisplayMetrics().density;xy[1]=pos[1]+25*1.5f*h.r*c.scale+c.y;});
         long t=SystemClock.uptimeMillis();send(t,t,MotionEvent.ACTION_DOWN,xy[0],xy[1]);send(t,t+40,MotionEvent.ACTION_UP,xy[0],xy[1]);SystemClock.sleep(500);waitForIdleSync();
     }
     private void send(long down,long time,int action,float x,float y){MotionEvent e=MotionEvent.obtain(down,time,action,x,y,0);sendPointerSync(e);e.recycle();}
