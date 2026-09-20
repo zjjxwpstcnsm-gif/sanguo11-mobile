@@ -9,7 +9,7 @@ public final class Reports53Test {
     private static void require(boolean ok,String message){checks++;if(!ok)throw new AssertionError(message);}
     private static List<BattleReports.Entry> all(World w){return w.reports.query(-1,w.player,BattleReports.Scope.ALL,null,"");}
     public static void main(String[] args)throws Exception{
-        retention();ownership();roundTrip();turnOwnership();preview();
+        retention();ownership();roundTrip();turnOwnership();preview();facilities();
         System.out.println("REPORTS53 CORE PASS: "+checks+" checks");
     }
     private static void retention(){
@@ -64,5 +64,15 @@ public final class Reports53Test {
         require(move==w.war.movement(actual)&&range==w.war.range(actual)&&view.energy==actual.energy,"movement, range and energy match");require(Arrays.equals(actual.deputies,deputies),"three officers deployed in selected roles");
         require(!w.reports.query(-1,0,BattleReports.Scope.INITIATED,null,"出征").isEmpty(),"actual sortie automatically logged without animation journal");
         World loaded=SaveCodec.decode(SaveCodec.encode(w));require(loaded.unit(actual.id).deputies.length==2,"formation and its reports survive save");
+    }
+    private static void facilities(){
+        World w=Personnel49Fixture.world();World.Unit own=w.unit(2);War.Structure camp=new War.Structure(100,1,War.StructureKind.CAMP,new Hex(7,7),1100);w.war.structures.add(camp);w.reports.rebase();
+        World.Result attack=w.war.attackStructure(own.id,camp.hex);require(attack.ok,attack.message);
+        require(w.reports.query(-1,0,BattleReports.Scope.INITIATED,null,"攻击阵").size()==1,"original attack keeps player as initiator despite counterattack");
+        List<BattleReports.Entry> counters=w.reports.query(-1,0,BattleReports.Scope.RECEIVED,null,"阵反击");require(counters.size()==1&&counters.get(0).actor==1,"facility counter is independently attributed to enemy");
+        w.war.structures.clear();own.energy=40;w.war.structures.add(new War.Structure(101,0,War.StructureKind.MUSIC,new Hex(6,6),800));w.reports.rebase();w.energy.settleTurn();
+        require(own.energy==50,"actual music recovery performed");require(w.reports.query(-1,0,BattleReports.Scope.INITIATED,null,"军乐台：气力+10").size()==1,"actual music gain recorded once without animation journal");
+        w.war.structures.clear();w.war.structures.add(new War.Structure(102,1,War.StructureKind.ARROW_TOWER,new Hex(8,7),700));w.reports.rebase();w.fieldworks.towers();
+        require(w.reports.query(-1,0,BattleReports.Scope.RECEIVED,null,"箭楼射击").size()==1,"enemy arrow tower result remains incoming and ownership-aware");
     }
 }

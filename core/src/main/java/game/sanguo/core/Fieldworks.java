@@ -122,8 +122,9 @@ public final class Fieldworks {
     }return Math.max(1,base*(100-reduction)/100);}
     public boolean drum(World.Unit u){for(War.Structure s:nearbyAuras(u.hex))if(s.complete&&s.kind==War.StructureKind.DRUM&&s.owner==u.owner&&s.hex.distance(u.hex)<=2)return true;return false;}
     void counter(War.Structure s,World.Unit u){if(s.complete&&camp(s.kind)&&u.hex.distance(s.hex)==1&&w.army.counter(u)){
-        w.reports.facility(s,u.hex,TurnJournal.Kind.FACILITY_COUNTER,s.kind.label+"反击");if(w.turnJournal!=null)w.turnJournal.facility(s,u.hex,TurnJournal.Kind.FACILITY_COUNTER,s.kind.label+"反击");
+        BattleReports.ActionContext reportContext=w.reports.beginCounter(s,u.hex);if(w.turnJournal!=null)w.turnJournal.facility(s,u.hex,TurnJournal.Kind.FACILITY_COUNTER,s.kind.label+"反击");
         int before=u.troops,damage=w.campaign.has(s.owner,Campaign.Tech.DEFENSE_REINFORCEMENT)?400:200;w.combatEffects.hit(null,u,damage,false,false);
+        w.reports.finishCounter(reportContext,s.kind.label+"反击，损失"+(before-u.troops)+"兵");
         if(w.turnJournal!=null)w.turnJournal.checkpoint(s.kind.label+"反击，损失"+(before-u.troops)+"兵");
     }}
     void towers(){for(War.Structure s:new ArrayList<>(w.war.structures))if(s.complete){
@@ -133,7 +134,7 @@ public final class Fieldworks {
         if(target!=null){
             w.reports.facility(s,target.hex,TurnJournal.Kind.FACILITY_ATTACK,s.kind.label+"射击");if(w.turnJournal!=null)w.turnJournal.facility(s,target.hex,TurnJournal.Kind.FACILITY_ATTACK,s.kind.label+"射击");
             int before=target.troops,damage=s.kind==War.StructureKind.CATAPULT_TOWER?300:200;w.combatEffects.hit(null,target,damage,false,false);
-            String report=s.kind.label+"射击敌军，损失"+(before-target.troops)+"兵";w.note(report);
+            String report=s.kind.label+"射击敌军，损失"+(before-target.troops)+"兵";w.note(report);w.reports.clearAction();
             if(w.turnJournal!=null)w.turnJournal.checkpoint(report);
         }
     }}

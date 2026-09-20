@@ -30,6 +30,7 @@ public final class BattleReports {
     private final World w;
     private final ArrayDeque<Entry> entries=new ArrayDeque<>();
     private final Map<String,State> previous=new LinkedHashMap<>();
+    private final List<Change> pending=new ArrayList<>();
     private long nextId=1;
     private boolean primed,global;
     private int fixedTurn=-1,actionOwner=-1;
@@ -39,6 +40,18 @@ public final class BattleReports {
     private String actionName="";
     BattleReports(World w){this.w=w;}
     public synchronized String date(int turn){int month=w.startMonth-1+Math.max(0,turn)/3;return (w.startYear+month/12)+"年"+(month%12+1)+"月"+new String[]{"上旬","中旬","下旬"}[Math.max(0,turn)%3];}
+    /** Saves a parent command's deltas before a nested facility counter mutates its attacker. */
+    static final class ActionContext {
+        int actor;long related;Hex location;Kind kind;String name;List<Change> changes;
+    }
+    synchronized ActionContext beginCounter(War.Structure source,Hex target){
+        prepare();ActionContext context=new ActionContext();context.actor=actionOwner;context.related=actionRelated;context.location=actionLocation;context.kind=actionKind;context.name=actionName;context.changes=takeChanges();
+        facility(source,target,TurnJournal.Kind.FACILITY_COUNTER,source.kind.label+"反击");return context;
+    }
+    synchronized void finishCounter(ActionContext context,String result){
+        try{note(result);}finally{actionOwner=context.actor;actionRelated=context.related;actionLocation=context.location;actionKind=context.kind;actionName=context.name;pending.clear();pending.addAll(context.changes);}
+    }
+    private List<Change> takeChanges(){List<Change> result=new ArrayList<>(pending);pending.clear();result.addAll(changes());return result;}
     private static long bit(int owner){return owner>=0&&owner<32?1L<<owner:0;}
     private int eventTurn(){return fixedTurn>=0?fixedTurn:w.turn;}
     /** Called at command entry, before any mutation. Repeated nested calls are free. */
@@ -60,9 +73,9 @@ public final class BattleReports {
     public synchronized void facility(War.Structure source,Hex target,TurnJournal.Kind kind,String label){
         action(kind,-1,target,label);actionOwner=source.owner;actionRelated|=bit(source.owner);
     }
-    public synchronized void clearAction(){actionOwner=-1;actionRelated=0;actionLocation=null;actionKind=null;actionName="";}
+    public synchronized void clearAction(){actionOwner=-1;actionRelated=0;actionLocation=null;actionKind=null;actionName="";pending.clear();}
     public synchronized void note(String text){
-        prepare();List<Change> changes=changes();long related=actionRelated;Hex location=actionLocation;
+        prepare();List<Change> changes=takeChanges();long related=actionRelated;Hex location=actionLocation;
         int actor=actionOwner>=0?actionOwner:global?-1:w.active;
         if(!global||actionOwner>=0)related|=bit(actor);
         StringBuilder details=new StringBuilder(text);Kind inferred=classify(text);

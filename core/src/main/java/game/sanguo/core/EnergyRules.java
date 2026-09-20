@@ -23,13 +23,12 @@ public final class EnergyRules {
     void settleTurn(){for(World.Unit u:w.units){
         int gain=recovery(u);Reason reason=gain>=10?Reason.MUSIC:Reason.ZOUYUE;
         if(preview(u,gain,reason).actual==0)continue;
-        if(w.turnJournal!=null){
-            War.Structure source=null;
-            for(War.Structure s:w.war.structures)if(s.complete&&s.kind==War.StructureKind.MUSIC&&s.owner==u.owner&&s.hex.distance(u.hex)<=2){source=s;break;}
-            if(source!=null)w.turnJournal.facility(source,u.hex,TurnJournal.Kind.RECOVER,"军乐台恢复");
-            else w.turnJournal.mark(TurnJournal.Kind.RECOVER,u.id,u.hex,"奏乐恢复");
-        }
+        War.Structure source=null;
+        for(War.Structure s:w.war.structures)if(s.complete&&s.kind==War.StructureKind.MUSIC&&s.owner==u.owner&&s.hex.distance(u.hex)<=2){source=s;break;}
+        if(source!=null){w.reports.facility(source,u.hex,TurnJournal.Kind.RECOVER,"军乐台恢复");if(w.turnJournal!=null)w.turnJournal.facility(source,u.hex,TurnJournal.Kind.RECOVER,"军乐台恢复");}
+        else {w.reports.action(TurnJournal.Kind.RECOVER,u.id,u.hex,"奏乐恢复");if(w.turnJournal!=null)w.turnJournal.mark(TurnJournal.Kind.RECOVER,u.id,u.hex,"奏乐恢复");}
         Change result=change(u,gain,reason);
+        w.reports.note((reason==Reason.MUSIC?"军乐台":"奏乐")+"：气力+"+result.actual);w.reports.clearAction();
         if(w.turnJournal!=null)w.turnJournal.checkpoint((reason==Reason.MUSIC?"军乐台":"奏乐")+"：气力+"+result.actual);
     }}
 }
