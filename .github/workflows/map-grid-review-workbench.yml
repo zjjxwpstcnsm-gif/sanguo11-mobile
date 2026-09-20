@@ -1,0 +1,89 @@
+name: Map grid review APK
+on:
+  push:
+    branches: [agent/map-grid-review-20260920]
+    paths: [.github/workflows/map-grid-review-workbench.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Apply exact locally tested runtime patch
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64,zlib,hashlib
+          encoded='''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'''
+          data=zlib.decompress(base64.b64decode(encoded))
+          assert hashlib.sha256(data).hexdigest()=='b8b93ffbaa6c5680012b1a27c376cc3ec569931e6d86f2ec511f6552d929bfb0'
+          Path('/tmp/map-runtime.patch').write_bytes(data)
+          PY
+          git apply --check /tmp/map-runtime.patch
+          git apply /tmp/map-runtime.patch
+          rm .github/workflows/map-grid-review-workbench.yml
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'fix: staggered square rendering, picking and seams [skip ci]'
+          git push origin HEAD:refs/heads/agent/map-grid-review-20260920
+          mkdir -p out
+          git rev-parse HEAD > out/BUILD_COMMIT
+          cp /tmp/map-runtime.patch out/
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Verify geometry and existing gameplay
+        run: |
+          set -o pipefail
+          bash scripts/test-ui-models.sh | tee out/ui-check.txt
+          bash scripts/test-realm52.sh | tee out/rules-check.txt
+          python3 scripts/verify-map-release.py | tee out/resource-check.txt
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Build Android
+        run: |
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest
+          python3 tools/check_apk_content.py app/build/outputs/apk/debug/app-debug.apk
+          cp app/build/outputs/apk/debug/app-debug.apk out/sanguo11-mobile-map-review.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs out/sanguo11-mobile-map-review.apk > out/SIGNATURE.txt
+          grep -q '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' out/SIGNATURE.txt
+          sha256sum out/sanguo11-mobile-map-review.apk > out/SHA256SUMS
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Verify actual installed maps
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          script: |
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb shell am instrument -w -e map50 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner | tee out/map50-instrumentation.txt
+            grep -q 'INSTRUMENTATION_CODE: -1' out/map50-instrumentation.txt
+            adb shell am force-stop game.sanguo.mobile.dev
+            adb shell am instrument -w -e map51 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner | tee out/map51-instrumentation.txt
+            grep -q 'INSTRUMENTATION_CODE: -1' out/map51-instrumentation.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke out/installed-map-evidence
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: map-grid-review
+          path: out
+          retention-days: 14
+          if-no-files-found: error
