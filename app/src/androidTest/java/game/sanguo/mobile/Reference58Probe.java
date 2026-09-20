@@ -90,16 +90,21 @@ final class Reference58Probe extends MapTap57Harness {
     }
     private void pick(Hex h,float scale,String label)throws Exception {
         focus(h,scale);navigator(false);tap(h);require(h.equals(field(activity,"selected")),"actual MapView callback "+label+" -> "+h);
-        World w=world();War.Structure s=w.war.at(h);String expected=s==null?TerrainPresentation.of(w.terrain[h.q][h.r]).name():s.kind.label;
-        require(panelText().contains(expected),"detail title "+expected);report.append("CALLBACK "+field(activity,"selected")+" PANEL "+panelText()+"\n");
+        World w=world();World.Unit unit=w.unitAt(h);World.City city=w.cityAt(h);Domestic.Facility facility=w.domestic.at(h);War.Structure structure=w.war.at(h);
+        String expected=unit!=null?w.officer(unit.officerId).name:city!=null?city.name:facility!=null?facility.kind.label:structure!=null?structure.kind.label:TerrainPresentation.of(w.terrain[h.q][h.r]).name();
+        String panel=panelText();report.append("CALLBACK "+field(activity,"selected")+" expected="+expected+" city="+(city==null?"none":city.id)+" PANEL "+panel+"\n");
+        if(!panel.contains(expected))shot("v058-detail-failure");
+        require(panel.contains(expected),"actual object-aware detail title "+expected);
     }
     private void reject(Hex h,String label)throws Exception {focus(h,3.4f);navigator(false);Object prior=field(activity,"selected");tap(h);require(Objects.equals(prior,field(activity,"selected")),"non-selectable "+label);}
     private void minimap(Hex target,Hex hole)throws Exception {
         focus(target,3.4f);navigator(true);MapRaster raster=(MapRaster)field(map(),"miniRaster");RectF r=(RectF)field(map(),"miniRect");
+        float expectedX=camera().centerX(),expectedY=camera().centerY();
+        require(target.equals(raster.at(raster.rasterX(raster.worldX(target)),raster.rasterY(raster.worldY(target)))),"navigator projected point identifies the exact source tile before camera clamping");
         // Move away first, then use an actual navigator pointer at the shared projected center.
         ui(()->{camera().pan(120,-160);map().invalidate();});settle();
         float mx=r.left+raster.rasterX(raster.worldX(target))/raster.width*r.width(),my=r.top+raster.rasterY(raster.worldY(target))/raster.height*r.height();
-        tapPoint(mx,my);require(Math.abs(camera().centerX()-raster.worldX(target))<.2f&&Math.abs(camera().centerY()-raster.worldY(target))<.2f,"minimap terrain/marker/camera share exact tile center including column parity");
+        tapPoint(mx,my);require(Math.abs(camera().centerX()-expectedX)<.2f&&Math.abs(camera().centerY()-expectedY)<.2f,"minimap jump equals direct exact-tile focus including column parity and legitimate camera clamps");
         if(hole!=null){float cx=camera().centerX(),cy=camera().centerY();tapPoint(r.left+raster.rasterX(raster.worldX(hole))/raster.width*r.width(),r.top+raster.rasterY(raster.worldY(hole))/raster.height*r.height());require(Math.abs(camera().centerX()-cx)<.2f&&Math.abs(camera().centerY()-cy)<.2f,"minimap does not jump to source VOID");}
         shot("v058-"+world().scenarioId+"-shared-minimap");navigator(false);
     }
