@@ -12,7 +12,7 @@ public final class Reference58Test {
         InputStream in=Reference58Test.class.getResourceAsStream("/reference58-corrections.tsv");
         if(in==null)throw new IOException("Missing audited correction test data");
         try(BufferedReader r=new BufferedReader(new InputStreamReader(in,"UTF-8"))){
-            List<String[]> rows=new ArrayList<>();for(String s;(s=r.readLine())!=null;)rows.add(s.split("\\t"));return rows;
+            List<String[]> rows=new ArrayList<>();for(String s;(s=r.readLine())!=null;)rows.add(s.split("\t"));return rows;
         }
     }
     /** Test-only historical data reconstruction; production never migrates/replaces terrain. */
@@ -80,6 +80,25 @@ public final class Reference58Test {
         World fixture=ScenarioCatalog.load("coalition-190",0,580L);Hex[] danger=MapTap57Fixture.addDangerousObjects(fixture);
         check(fixture.war.at(danger[0]).owner==-1&&fixture.war.at(danger[2]).kind==War.StructureKind.EARTH_WALL&&fixture.war.at(danger[3]).kind==War.StructureKind.STONE_WALL,"labelled test-only real wall/dam identities survive");
         check(SaveCodec.decode(SaveCodec.encode(fixture)).war.structures().size()==3,"neutral entity save/restore");
+        campValidation();
         System.out.println("REFERENCE58 CORE PASS: "+checks+" actualLegacyFiles="+(!legacy.isEmpty()));
+    }
+    private static void campValidation()throws Exception {
+        World w=TestScenarios.load("world-drill",0);check(!w.events.camps().isEmpty(),"actual historical camp scenario loads");
+        WorldEvents.Camp camp=w.events.camps().get(0);World.Terrain ground=w.terrain[camp.hex.q][camp.hex.r];
+        check(w.cost(camp.hex,World.Weapon.SPEAR)<0,"existing camp blocks movement on itself, not save validity");
+        WorldSystemsSave.validate(w);check(true,"occupied camp is valid on existing land");
+        try {
+            for(World.Terrain forbidden:new World.Terrain[]{World.Terrain.NON_NAVIGABLE_WATER,World.Terrain.MOUNTAIN,World.Terrain.WATER,World.Terrain.SEA}) {
+                w.terrain[camp.hex.q][camp.hex.r]=forbidden;boolean rejected=false;
+                try{WorldSystemsSave.validate(w);}catch(IOException expected){rejected=true;}
+                check(rejected,"camp forbidden on "+forbidden+" without consulting self-occupancy");
+            }
+        } finally {w.terrain[camp.hex.q][camp.hex.r]=ground;}
+        byte[] encoded=SaveCodec.encode(w);check(Arrays.equals(encoded,SaveCodec.encode(SaveCodec.decode(encoded))),"existing camp retains exact save state");
+        int count=0;
+        for(World scenario:TestScenarios.all()){SaveCodec.validate(scenario);check(true,"all production/test-only scenario validation "+scenario.scenarioId);count++;}
+        check(count==18,"all nine production and nine existing test scenarios retained");
+        System.out.println("REFERENCE58 CAMP REGRESSION PASS: occupied camp roundtrip; Q/M/W/SEA rejected; all18 scenarios valid");
     }
 }

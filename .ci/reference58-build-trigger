@@ -1,3 +1,3 @@
-reference58-exterior-null-callback-verification-2
-Test the actual existing blank-map contract: MapView null hit and cleared selection, not an invented unchanged-selection requirement.
-Rebuild exact final commit and rerun both installed lanes. Production content remains 08102c8e2eb8164af62ab6d31e05c6438ad1b457.
+reference58-camp-save-regression-3
+Fix production validation discovered by ordinary CI: never query cost() on a camp's own occupied hex; preserve prior M/W/SEA guards and explicitly exclude Q.
+Added occupied-camp exact save roundtrip and validation of all18 existing production/test scenarios. Rebuild and run both installed lanes from this functional source.
