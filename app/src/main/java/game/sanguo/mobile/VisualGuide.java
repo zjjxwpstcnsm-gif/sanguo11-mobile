@@ -24,14 +24,15 @@ final class VisualGuide {
     }
     private static void terrain(Activity a){
         android.widget.LinearLayout rows=new android.widget.LinearLayout(a);rows.setOrientation(android.widget.LinearLayout.VERTICAL);
-        String[] labels={"平地 · 正常通行，可开发内政设施","森林 · 移动力消耗增加，可伏兵","山峰 · 无法通行","水面 · 使用舰船与水军战法","山路 · 需要难所行军，消耗3移动力","浅滩 · 需要难所行军，消耗2移动力","栈道 · 消耗3移动力，未解锁技巧可能损兵","毒泉 · 经过会损兵，解毒特技可免疫","海洋 · 舰船通行，不划入陆地势力范围","地图边界 · 不可进入","沼泽 · 步兵消耗2、骑兵和器械消耗4移动力","堤坝 · 击破后相邻低地受到洪水影响","沙地 · 正常通行；枪兵在此不能施放战法，普通攻击不受影响","道路 · 正常通行，禁止占用必要通道开发"};
         TerrainTiles tiles=new TerrainTiles();int size=Math.round(64*a.getResources().getDisplayMetrics().density);
         for(World.Terrain t:World.Terrain.values()){
-            World sample=new World(3,3);for(World.Terrain[] column:sample.terrain)java.util.Arrays.fill(column,t);
+            String label=TerrainPresentation.of(t).legend();
+            World sample=new World(3,3);sample.terrain[1][1]=t;NaturalStructures.seedOpening(sample);
+            MapModels models=new MapModels();
             android.widget.LinearLayout row=new android.widget.LinearLayout(a);row.setGravity(android.view.Gravity.CENTER_VERTICAL);
-            android.view.View preview=new android.view.View(a){protected void onDraw(android.graphics.Canvas canvas){canvas.save();canvas.translate(getWidth()/2f,getHeight()/2f);canvas.scale(size/56f,size/56f);tiles.draw(canvas,sample,1,1,0,0);canvas.restore();}};
-            preview.setContentDescription(labels[t.ordinal()]);row.addView(preview,new android.widget.LinearLayout.LayoutParams(size,size));
-            android.widget.TextView text=new android.widget.TextView(a);text.setText(labels[t.ordinal()]);text.setTextSize(14);row.addView(text,new android.widget.LinearLayout.LayoutParams(0,-2,1));rows.addView(row);
+            android.view.View preview=new android.view.View(a){protected void onDraw(android.graphics.Canvas canvas){canvas.save();canvas.translate(getWidth()/2f,getHeight()/2f);canvas.scale(size/56f,size/56f);tiles.draw(canvas,sample,1,1,0,0);if(t==World.Terrain.DAM)models.structure(canvas,War.StructureKind.DAM,FactionColors.color(sample,-1));canvas.restore();}};
+            preview.setContentDescription(label);row.addView(preview,new android.widget.LinearLayout.LayoutParams(size,size));
+            android.widget.TextView text=new android.widget.TextView(a);text.setText(label);text.setTextSize(14);row.addView(text,new android.widget.LinearLayout.LayoutParams(0,-2,1));rows.addView(row);
         }
         android.widget.ScrollView scroll=new android.widget.ScrollView(a);scroll.addView(rows);
         new AlertDialog.Builder(a).setTitle("地形与通行").setView(scroll).setPositiveButton("返回",null).show();

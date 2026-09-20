@@ -39,7 +39,7 @@ final class Native56Probe {
     private void page()throws Exception{ClientState state=(ClientState)field(activity,"ui");state.page="map";state.panelVisible=false;state.panelExpanded=false;activity.refresh();}
     private void focus(Hex h,float scale)throws Exception{ui(()->{page();map().focus(h);MapCamera camera=(MapCamera)field(map(),"camera");camera.zoom(scale,map().getWidth()/2f,map().getHeight()/2f);map().center(h);});settle();}
     private void geography()throws Exception{
-        World w=world();require(w.sourceColumns()==200&&w.sourceRows()==200&&w.mapRevision==56,"installed APK really loads native200/revision56");
+        World w=world();require(w.sourceColumns()==200&&w.sourceRows()==200&&w.mapRevision==NationalMap.REVISION,"installed APK really loads native200/revision56");
         require(w.cities.size()==87&&CityAtlas.bytes()>0,"87 sites and decoded new city atlas");byte[] before=SaveCodec.encode(w);
         shot("01-FAR-national");
         int[] ids={20015,20017,20039,20029,20022,20000,20041,20044,20065};

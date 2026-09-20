@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "source_revision": 56,
+  "target_revision": 57,
+  "reference_available": false,
+  "before_sha256": "cae6b7a84eb42b5e8897d0948ec45ee525ef0db480e515e8706329d14c863e94",
+  "after_sha256": "c66c0e2c3997efccf74c7329ccf406697bf21c53044b3c08fa04d515a72d1c31",
+  "save_policy": "Codec31 retained. Revision56 worlds load unchanged with a visible notice; new games use revision57. Never copy new terrain into a running legacy world.",
+  "cells": [
+    {
+      "source": [
+        26,
+        1
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "A",
+      "after_terrain": "SAND",
+      "evidence": "ESTIMATED",
+      "reason": "Isolated source VOID; all six odd-q neighbors are the same terrain. No reference image available. No city/site/plot moved."
+    },
+    {
+      "source": [
+        21,
+        3
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "A",
+      "after_terrain": "SAND",
+      "evidence": "ESTIMATED",
+      "reason": "Isolated source VOID; all six odd-q neighbors are the same terrain. No reference image available. No city/site/plot moved."
+    },
+    {
+      "source": [
+        30,
+        5
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "A",
+      "after_terrain": "SAND",
+      "evidence": "ESTIMATED",
+      "reason": "Isolated source VOID; all six odd-q neighbors are the same terrain. No reference image available. No city/site/plot moved."
+    },
+    {
+      "source": [
+        28,
+        6
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "A",
+      "after_terrain": "SAND",
+      "evidence": "ESTIMATED",
+      "reason": "Isolated source VOID; all six odd-q neighbors are the same terrain. No reference image available. No city/site/plot moved."
+    },
+    {
+      "source": [
+        22,
+        9
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "A",
+      "after_terrain": "SAND",
+      "evidence": "ESTIMATED",
+      "reason": "Isolated source VOID; all six odd-q neighbors are the same terrain. No reference image available. No city/site/plot moved."
+    },
+    {
+      "source": [
+        30,
+        9
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "A",
+      "after_terrain": "SAND",
+      "evidence": "ESTIMATED",
+      "reason": "Isolated source VOID; all six odd-q neighbors are the same terrain. No reference image available. No city/site/plot moved."
+    },
+    {
+      "source": [
+        10,
+        11
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "A",
+      "after_terrain": "SAND",
+      "evidence": "ESTIMATED",
+      "reason": "Isolated source VOID; all six odd-q neighbors are the same terrain. No reference image available. No city/site/plot moved."
+    },
+    {
+      "source": [
+        22,
+        11
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "A",
+      "after_terrain": "SAND",
+      "evidence": "ESTIMATED",
+      "reason": "Isolated source VOID; all six odd-q neighbors are the same terrain. No reference image available. No city/site/plot moved."
+    },
+    {
+      "source": [
+        20,
+        16
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "A",
+      "after_terrain": "SAND",
+      "evidence": "ESTIMATED",
+      "reason": "Isolated source VOID; all six odd-q neighbors are the same terrain. No reference image available. No city/site/plot moved."
+    },
+    {
+      "source": [
+        47,
+        155
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "M",
+      "after_terrain": "MOUNTAIN",
+      "evidence": "ESTIMATED",
+      "reason": "Isolated source VOID; all six odd-q neighbors are the same terrain. No reference image available. No city/site/plot moved."
+    },
+    {
+      "source": [
+        43,
+        158
+      ],
+      "before": "V",
+      "before_terrain": "VOID",
+      "after": "M",
+      "after_terrain": "MOUNTAIN",
+      "evidence": "ESTIMATED",
+      "reason": "Isolated source VOID; all six odd-q neighbors are the same terrain. No reference image available. No city/site/plot moved."
+    }
+  ]
+}

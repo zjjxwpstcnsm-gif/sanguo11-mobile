@@ -30,7 +30,7 @@ final class CityAtlas {
         Map<String,Sprite[]> pending=new HashMap<>();long bytes=0;
         try(InputStream input=context.getAssets().open("map/cities-v056/catalog.json")){
             JSONObject root=new JSONObject(new String(read(input),StandardCharsets.UTF_8));
-            if(root.getInt("map_revision")!=NationalMap.REVISION)throw new IOException("City atlas revision mismatch");
+            if(root.getInt("map_revision")!=CityArtCatalog.ASSET_REVISION)throw new IOException("City atlas asset revision mismatch");
             JSONObject variants=root.getJSONObject("variants");
             for(Iterator<String> keys=variants.keys();keys.hasNext();){String key=keys.next();JSONObject lods=variants.getJSONObject(key);Sprite[] sprites=new Sprite[3];
                 String[] names={"near","mid","far"};

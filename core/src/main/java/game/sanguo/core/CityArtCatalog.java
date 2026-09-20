@@ -2,6 +2,8 @@ package game.sanguo.core;
 
 /** Stable native-map visual identities. No legacy city-sprite fallback is allowed. */
 public final class CityArtCatalog {
+    /** Asset ABI stays at 56 when terrain-only map revisions advance. */
+    public static final int ASSET_REVISION = 56;
     public enum Variant { CAPITAL, LARGE, STANDARD, MOUNTAIN, RIVER, SOUTHERN }
     private CityArtCatalog(){}
     public static Variant variant(int cityId){

@@ -47,8 +47,7 @@ public final class ScenarioData {
             for(int r=0;r<height;r++) {
                 String row=take(p,"terrain."+r);if(row.length()!=width)throw new IOException("地形行宽不匹配："+r);
                 for(int q=0;q<width;q++) {
-                    int index="PFMWDSBXOVZHAR".indexOf(row.charAt(q));if(index<0)throw new IOException("未知地形："+row.charAt(q));
-                    w.terrain[q][r]=World.Terrain.values()[index];
+                    w.terrain[q][r]=TerrainCode.decode(row.charAt(q));
                 }
             }
             int cities=number(p,"cities",2,1000);
@@ -151,8 +150,7 @@ public final class ScenarioData {
                 for(int i=0;i<n;i++){String[] f=fields(p,"ruler."+i,2);int side=integer(f[0]);World.Officer o=w.officer(integer(f[1]));
                     if(side<0||side>=sides||!seen.add(side)||o==null||o.owner!=side||o.cityId<0)throw new IOException("君主配置无效");o.role=Strategy.Role.RULER;o.loyalty=100;}
             }
-            for(int q=0;q<w.width;q++)for(int r=0;r<w.height;r++)if(w.terrain[q][r]==World.Terrain.DAM)
-                w.war.structures.add(new War.Structure(w.war.nextStructureId++,-1,War.StructureKind.DAM,new Hex(q,r),War.StructureKind.DAM.hp));
+            NaturalStructures.seedOpening(w);
             if(!p.isEmpty())throw new IOException("未知剧本字段："+p.keySet().iterator().next());
             if(reference!=null){ContentCatalog catalog=ContentCatalog.get();catalog.validateOpening(w);ContentRuntime.initializeOpening(w,catalog);if(referenceDetails)ContentProfiles.initialize(w,catalog,referenceDates);}
             w.invalidateSiteIndex();
