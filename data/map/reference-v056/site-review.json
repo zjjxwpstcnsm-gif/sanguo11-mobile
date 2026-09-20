@@ -1,0 +1,2016 @@
+{
+  "map_id": "san11-national",
+  "revision": 56,
+  "sites": [
+    {
+      "id": 20000,
+      "name": "襄平",
+      "kind": "CITY",
+      "old_coord": [
+        87,
+        8
+      ],
+      "source_coord": [
+        174,
+        16
+      ],
+      "axial_coord": [
+        28,
+        174
+      ],
+      "reference_pixel": [
+        5782.0,
+        634.0
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20001,
+      "name": "北平",
+      "kind": "CITY",
+      "old_coord": [
+        74,
+        10
+      ],
+      "source_coord": [
+        149,
+        20
+      ],
+      "axial_coord": [
+        45,
+        149
+      ],
+      "reference_pixel": [
+        4977.0,
+        781.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20002,
+      "name": "薊",
+      "kind": "CITY",
+      "old_coord": [
+        61,
+        8
+      ],
+      "source_coord": [
+        122,
+        16
+      ],
+      "axial_coord": [
+        54,
+        122
+      ],
+      "reference_pixel": [
+        4105.5,
+        639.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20003,
+      "name": "南皮",
+      "kind": "CITY",
+      "old_coord": [
+        69,
+        18
+      ],
+      "source_coord": [
+        138,
+        37
+      ],
+      "axial_coord": [
+        67,
+        138
+      ],
+      "reference_pixel": [
+        4623.5,
+        1315.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20004,
+      "name": "平原",
+      "kind": "CITY",
+      "old_coord": [
+        64,
+        27
+      ],
+      "source_coord": [
+        129,
+        54
+      ],
+      "axial_coord": [
+        89,
+        129
+      ],
+      "reference_pixel": [
+        4336.0,
+        1880.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20005,
+      "name": "晉陽",
+      "kind": "CITY",
+      "old_coord": [
+        45,
+        19
+      ],
+      "source_coord": [
+        91,
+        39
+      ],
+      "axial_coord": [
+        93,
+        91
+      ],
+      "reference_pixel": [
+        3108.0,
+        1398.0
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20006,
+      "name": "鄴",
+      "kind": "CITY",
+      "old_coord": [
+        54,
+        26
+      ],
+      "source_coord": [
+        109,
+        53
+      ],
+      "axial_coord": [
+        98,
+        109
+      ],
+      "reference_pixel": [
+        3690.5,
+        1850.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20007,
+      "name": "北海",
+      "kind": "CITY",
+      "old_coord": [
+        80,
+        25
+      ],
+      "source_coord": [
+        160,
+        51
+      ],
+      "axial_coord": [
+        70,
+        160
+      ],
+      "reference_pixel": [
+        5335.0,
+        1764.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20008,
+      "name": "下邳",
+      "kind": "CITY",
+      "old_coord": [
+        78,
+        38
+      ],
+      "source_coord": [
+        156,
+        77
+      ],
+      "axial_coord": [
+        98,
+        156
+      ],
+      "reference_pixel": [
+        5209.5,
+        2603.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20009,
+      "name": "小沛",
+      "kind": "CITY",
+      "old_coord": [
+        68,
+        38
+      ],
+      "source_coord": [
+        136,
+        77
+      ],
+      "axial_coord": [
+        108,
+        136
+      ],
+      "reference_pixel": [
+        4563.5,
+        2605.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20010,
+      "name": "壽春",
+      "kind": "CITY",
+      "old_coord": [
+        70,
+        48
+      ],
+      "source_coord": [
+        140,
+        96
+      ],
+      "axial_coord": [
+        125,
+        140
+      ],
+      "reference_pixel": [
+        4695.5,
+        3217.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20011,
+      "name": "濮陽",
+      "kind": "CITY",
+      "old_coord": [
+        60,
+        35
+      ],
+      "source_coord": [
+        120,
+        71
+      ],
+      "axial_coord": [
+        110,
+        120
+      ],
+      "reference_pixel": [
+        4048.5,
+        2425.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20012,
+      "name": "陳留",
+      "kind": "CITY",
+      "old_coord": [
+        54,
+        39
+      ],
+      "source_coord": [
+        108,
+        79
+      ],
+      "axial_coord": [
+        124,
+        108
+      ],
+      "reference_pixel": [
+        3660.5,
+        2672.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20013,
+      "name": "許昌",
+      "kind": "CITY",
+      "old_coord": [
+        49,
+        46
+      ],
+      "source_coord": [
+        99,
+        92
+      ],
+      "axial_coord": [
+        142,
+        99
+      ],
+      "reference_pixel": [
+        3371.5,
+        3109.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20014,
+      "name": "汝南",
+      "kind": "CITY",
+      "old_coord": [
+        56,
+        53
+      ],
+      "source_coord": [
+        113,
+        107
+      ],
+      "axial_coord": [
+        150,
+        113
+      ],
+      "reference_pixel": [
+        3825.0,
+        3591.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20015,
+      "name": "洛陽",
+      "kind": "CITY",
+      "old_coord": [
+        39,
+        38
+      ],
+      "source_coord": [
+        79,
+        76
+      ],
+      "axial_coord": [
+        136,
+        79
+      ],
+      "reference_pixel": [
+        2723,
+        2596
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Existing independently measured v055 landmark retained; not a newly measured collision boundary."
+    },
+    {
+      "id": 20016,
+      "name": "宛",
+      "kind": "CITY",
+      "old_coord": [
+        38,
+        46
+      ],
+      "source_coord": [
+        77,
+        92
+      ],
+      "axial_coord": [
+        153,
+        77
+      ],
+      "reference_pixel": [
+        2662.5,
+        3111.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20017,
+      "name": "長安",
+      "kind": "CITY",
+      "old_coord": [
+        26,
+        36
+      ],
+      "source_coord": [
+        53,
+        73
+      ],
+      "axial_coord": [
+        146,
+        53
+      ],
+      "reference_pixel": [
+        1886,
+        2502
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Existing independently measured v055 landmark retained; not a newly measured collision boundary."
+    },
+    {
+      "id": 20018,
+      "name": "上庸",
+      "kind": "CITY",
+      "old_coord": [
+        27,
+        51
+      ],
+      "source_coord": [
+        54,
+        102
+      ],
+      "axial_coord": [
+        174,
+        54
+      ],
+      "reference_pixel": [
+        1921.5,
+        3420.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20019,
+      "name": "安定",
+      "kind": "CITY",
+      "old_coord": [
+        14,
+        27
+      ],
+      "source_coord": [
+        28,
+        55
+      ],
+      "axial_coord": [
+        140,
+        28
+      ],
+      "reference_pixel": [
+        1078.0,
+        1907.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20020,
+      "name": "天水",
+      "kind": "CITY",
+      "old_coord": [
+        5,
+        35
+      ],
+      "source_coord": [
+        10,
+        71
+      ],
+      "axial_coord": [
+        165,
+        10
+      ],
+      "reference_pixel": [
+        497.0,
+        2425.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20021,
+      "name": "武威",
+      "kind": "CITY",
+      "old_coord": [
+        4,
+        20
+      ],
+      "source_coord": [
+        9,
+        41
+      ],
+      "axial_coord": [
+        136,
+        9
+      ],
+      "reference_pixel": [
+        462.5,
+        1473.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20022,
+      "name": "建業",
+      "kind": "CITY",
+      "old_coord": [
+        81,
+        52
+      ],
+      "source_coord": [
+        162,
+        104
+      ],
+      "axial_coord": [
+        122,
+        162
+      ],
+      "reference_pixel": [
+        5404.0,
+        3473.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20023,
+      "name": "吳",
+      "kind": "CITY",
+      "old_coord": [
+        91,
+        54
+      ],
+      "source_coord": [
+        182,
+        109
+      ],
+      "axial_coord": [
+        117,
+        182
+      ],
+      "reference_pixel": [
+        6050.0,
+        3632.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20024,
+      "name": "會稽",
+      "kind": "CITY",
+      "old_coord": [
+        92,
+        62
+      ],
+      "source_coord": [
+        184,
+        125
+      ],
+      "axial_coord": [
+        132,
+        184
+      ],
+      "reference_pixel": [
+        6115.5,
+        4148.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20025,
+      "name": "廬江",
+      "kind": "CITY",
+      "old_coord": [
+        73,
+        59
+      ],
+      "source_coord": [
+        146,
+        118
+      ],
+      "axial_coord": [
+        144,
+        146
+      ],
+      "reference_pixel": [
+        4889.0,
+        3926.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20026,
+      "name": "柴桑",
+      "kind": "CITY",
+      "old_coord": [
+        63,
+        66
+      ],
+      "source_coord": [
+        126,
+        133
+      ],
+      "axial_coord": [
+        169,
+        126
+      ],
+      "reference_pixel": [
+        4246.5,
+        4412.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20027,
+      "name": "江夏",
+      "kind": "CITY",
+      "old_coord": [
+        57,
+        60
+      ],
+      "source_coord": [
+        115,
+        121
+      ],
+      "axial_coord": [
+        163,
+        115
+      ],
+      "reference_pixel": [
+        3896.0,
+        4049.0
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20028,
+      "name": "新野",
+      "kind": "CITY",
+      "old_coord": [
+        43,
+        54
+      ],
+      "source_coord": [
+        87,
+        109
+      ],
+      "axial_coord": [
+        165,
+        87
+      ],
+      "reference_pixel": [
+        2985.5,
+        3658.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20029,
+      "name": "襄陽",
+      "kind": "CITY",
+      "old_coord": [
+        38,
+        58
+      ],
+      "source_coord": [
+        77,
+        117
+      ],
+      "axial_coord": [
+        178,
+        77
+      ],
+      "reference_pixel": [
+        2663.5,
+        3917.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20030,
+      "name": "江陵",
+      "kind": "CITY",
+      "old_coord": [
+        41,
+        68
+      ],
+      "source_coord": [
+        82,
+        137
+      ],
+      "axial_coord": [
+        195,
+        82
+      ],
+      "reference_pixel": [
+        2826.0,
+        4546.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20031,
+      "name": "長沙",
+      "kind": "CITY",
+      "old_coord": [
+        54,
+        82
+      ],
+      "source_coord": [
+        108,
+        164
+      ],
+      "axial_coord": [
+        209,
+        108
+      ],
+      "reference_pixel": [
+        3669.0,
+        5414.0
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20032,
+      "name": "武陵",
+      "kind": "CITY",
+      "old_coord": [
+        34,
+        77
+      ],
+      "source_coord": [
+        69,
+        155
+      ],
+      "axial_coord": [
+        220,
+        69
+      ],
+      "reference_pixel": [
+        2411.5,
+        5144.0
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20033,
+      "name": "桂陽",
+      "kind": "CITY",
+      "old_coord": [
+        49,
+        94
+      ],
+      "source_coord": [
+        99,
+        188
+      ],
+      "axial_coord": [
+        238,
+        99
+      ],
+      "reference_pixel": [
+        3381.0,
+        6205.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20034,
+      "name": "零陵",
+      "kind": "CITY",
+      "old_coord": [
+        35,
+        92
+      ],
+      "source_coord": [
+        70,
+        185
+      ],
+      "axial_coord": [
+        249,
+        70
+      ],
+      "reference_pixel": [
+        2444.5,
+        6095.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20035,
+      "name": "永安",
+      "kind": "CITY",
+      "old_coord": [
+        23,
+        64
+      ],
+      "source_coord": [
+        46,
+        128
+      ],
+      "axial_coord": [
+        204,
+        46
+      ],
+      "reference_pixel": [
+        1665.5,
+        4259.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20036,
+      "name": "漢中",
+      "kind": "CITY",
+      "old_coord": [
+        13,
+        44
+      ],
+      "source_coord": [
+        27,
+        89
+      ],
+      "axial_coord": [
+        175,
+        27
+      ],
+      "reference_pixel": [
+        1049.0,
+        3020.0
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20037,
+      "name": "梓潼",
+      "kind": "CITY",
+      "old_coord": [
+        8,
+        55
+      ],
+      "source_coord": [
+        16,
+        110
+      ],
+      "axial_coord": [
+        201,
+        16
+      ],
+      "reference_pixel": [
+        696.5,
+        3682.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20038,
+      "name": "江州",
+      "kind": "CITY",
+      "old_coord": [
+        15,
+        73
+      ],
+      "source_coord": [
+        30,
+        147
+      ],
+      "axial_coord": [
+        231,
+        30
+      ],
+      "reference_pixel": [
+        1151.5,
+        4874.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20039,
+      "name": "成都",
+      "kind": "CITY",
+      "old_coord": [
+        5,
+        66
+      ],
+      "source_coord": [
+        10,
+        132
+      ],
+      "axial_coord": [
+        226,
+        10
+      ],
+      "reference_pixel": [
+        504.0,
+        4392.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20040,
+      "name": "建寧",
+      "kind": "CITY",
+      "old_coord": [
+        13,
+        87
+      ],
+      "source_coord": [
+        27,
+        174
+      ],
+      "axial_coord": [
+        260,
+        27
+      ],
+      "reference_pixel": [
+        1057.0,
+        5761.5
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20041,
+      "name": "雲南",
+      "kind": "CITY",
+      "old_coord": [
+        2,
+        95
+      ],
+      "source_coord": [
+        5,
+        191
+      ],
+      "axial_coord": [
+        288,
+        5
+      ],
+      "reference_pixel": [
+        350,
+        6312
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Recorded 42-city pixel anchor; same-anchor residual is NOT independent accuracy."
+    },
+    {
+      "id": 20042,
+      "name": "壺關",
+      "kind": "GATE",
+      "old_coord": [
+        46,
+        28
+      ],
+      "source_coord": [
+        92,
+        57
+      ],
+      "axial_coord": [
+        110,
+        92
+      ],
+      "reference_pixel": [
+        3142.111,
+        1965.35
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20043,
+      "name": "虎牢關",
+      "kind": "GATE",
+      "old_coord": [
+        45,
+        38
+      ],
+      "source_coord": [
+        90,
+        77
+      ],
+      "axial_coord": [
+        131,
+        90
+      ],
+      "reference_pixel": [
+        3079,
+        2609
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Existing independently measured v055 landmark retained; not a newly measured collision boundary."
+    },
+    {
+      "id": 20044,
+      "name": "潼關",
+      "kind": "GATE",
+      "old_coord": [
+        30,
+        38
+      ],
+      "source_coord": [
+        61,
+        77
+      ],
+      "axial_coord": [
+        146,
+        61
+      ],
+      "reference_pixel": [
+        2135,
+        2628
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Existing independently measured v055 landmark retained; not a newly measured collision boundary."
+    },
+    {
+      "id": 20045,
+      "name": "函谷關",
+      "kind": "GATE",
+      "old_coord": [
+        34,
+        38
+      ],
+      "source_coord": [
+        68,
+        78
+      ],
+      "axial_coord": [
+        143,
+        68
+      ],
+      "reference_pixel": [
+        2369,
+        2644
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Existing independently measured v055 landmark retained; not a newly measured collision boundary."
+    },
+    {
+      "id": 20046,
+      "name": "武關",
+      "kind": "GATE",
+      "old_coord": [
+        34,
+        43
+      ],
+      "source_coord": [
+        68,
+        86
+      ],
+      "axial_coord": [
+        151,
+        68
+      ],
+      "reference_pixel": [
+        2370.896,
+        2903.106
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20047,
+      "name": "陽平關",
+      "kind": "GATE",
+      "old_coord": [
+        13,
+        41
+      ],
+      "source_coord": [
+        26,
+        84
+      ],
+      "axial_coord": [
+        170,
+        26
+      ],
+      "reference_pixel": [
+        1015.881,
+        2842.865
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20048,
+      "name": "劍閣",
+      "kind": "GATE",
+      "old_coord": [
+        6,
+        48
+      ],
+      "source_coord": [
+        14,
+        97
+      ],
+      "axial_coord": [
+        189,
+        14
+      ],
+      "reference_pixel": [
+        630.12,
+        3263.364
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20049,
+      "name": "葭萌關",
+      "kind": "GATE",
+      "old_coord": [
+        11,
+        51
+      ],
+      "source_coord": [
+        23,
+        102
+      ],
+      "axial_coord": [
+        190,
+        23
+      ],
+      "reference_pixel": [
+        920.999,
+        3439.838
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20050,
+      "name": "涪水關",
+      "kind": "GATE",
+      "old_coord": [
+        5,
+        59
+      ],
+      "source_coord": [
+        11,
+        119
+      ],
+      "axial_coord": [
+        213,
+        11
+      ],
+      "reference_pixel": [
+        535.647,
+        3989.347
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20051,
+      "name": "綿竹關",
+      "kind": "GATE",
+      "old_coord": [
+        4,
+        62
+      ],
+      "source_coord": [
+        8,
+        125
+      ],
+      "axial_coord": [
+        220,
+        8
+      ],
+      "reference_pixel": [
+        439.436,
+        4167.04
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20052,
+      "name": "安平港",
+      "kind": "PORT",
+      "old_coord": [
+        84,
+        14
+      ],
+      "source_coord": [
+        168,
+        28
+      ],
+      "axial_coord": [
+        43,
+        168
+      ],
+      "reference_pixel": [
+        5590.712,
+        1022.316
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20053,
+      "name": "高唐港",
+      "kind": "PORT",
+      "old_coord": [
+        67,
+        28
+      ],
+      "source_coord": [
+        134,
+        57
+      ],
+      "axial_coord": [
+        89,
+        134
+      ],
+      "reference_pixel": [
+        4496.923,
+        1961.087
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20054,
+      "name": "西河港",
+      "kind": "PORT",
+      "old_coord": [
+        31,
+        24
+      ],
+      "source_coord": [
+        63,
+        49
+      ],
+      "axial_coord": [
+        117,
+        63
+      ],
+      "reference_pixel": [
+        2205.88,
+        1726.401
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20055,
+      "name": "白馬港",
+      "kind": "PORT",
+      "old_coord": [
+        55,
+        31
+      ],
+      "source_coord": [
+        110,
+        63
+      ],
+      "axial_coord": [
+        107,
+        110
+      ],
+      "reference_pixel": [
+        3723.358,
+        2157.037
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20056,
+      "name": "昌陽港",
+      "kind": "PORT",
+      "old_coord": [
+        88,
+        24
+      ],
+      "source_coord": [
+        176,
+        48
+      ],
+      "axial_coord": [
+        59,
+        176
+      ],
+      "reference_pixel": [
+        5850.814,
+        1666.552
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20057,
+      "name": "臨濟港",
+      "kind": "PORT",
+      "old_coord": [
+        72,
+        27
+      ],
+      "source_coord": [
+        145,
+        54
+      ],
+      "axial_coord": [
+        81,
+        145
+      ],
+      "reference_pixel": [
+        4851.499,
+        1879.339
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20058,
+      "name": "海陵港",
+      "kind": "PORT",
+      "old_coord": [
+        83,
+        39
+      ],
+      "source_coord": [
+        166,
+        78
+      ],
+      "axial_coord": [
+        94,
+        166
+      ],
+      "reference_pixel": [
+        5531.306,
+        2635.139
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20059,
+      "name": "江都港",
+      "kind": "PORT",
+      "old_coord": [
+        86,
+        44
+      ],
+      "source_coord": [
+        173,
+        87
+      ],
+      "axial_coord": [
+        100,
+        173
+      ],
+      "reference_pixel": [
+        5758.078,
+        2940.826
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20060,
+      "name": "濡須港",
+      "kind": "PORT",
+      "old_coord": [
+        74,
+        54
+      ],
+      "source_coord": [
+        148,
+        110
+      ],
+      "axial_coord": [
+        135,
+        148
+      ],
+      "reference_pixel": [
+        4953.942,
+        3669.042
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20061,
+      "name": "頓丘港",
+      "kind": "PORT",
+      "old_coord": [
+        61,
+        33
+      ],
+      "source_coord": [
+        123,
+        66
+      ],
+      "axial_coord": [
+        104,
+        123
+      ],
+      "reference_pixel": [
+        4143.062,
+        2268.601
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20062,
+      "name": "官渡港",
+      "kind": "PORT",
+      "old_coord": [
+        50,
+        36
+      ],
+      "source_coord": [
+        101,
+        72
+      ],
+      "axial_coord": [
+        121,
+        101
+      ],
+      "reference_pixel": [
+        3434.012,
+        2464.349
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20063,
+      "name": "孟津港",
+      "kind": "PORT",
+      "old_coord": [
+        39,
+        35
+      ],
+      "source_coord": [
+        79,
+        69
+      ],
+      "axial_coord": [
+        129,
+        79
+      ],
+      "reference_pixel": [
+        2724,
+        2401
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Existing independently measured v055 landmark retained; not a newly measured collision boundary."
+    },
+    {
+      "id": 20064,
+      "name": "解縣港",
+      "kind": "PORT",
+      "old_coord": [
+        32,
+        32
+      ],
+      "source_coord": [
+        65,
+        65
+      ],
+      "axial_coord": [
+        132,
+        65
+      ],
+      "reference_pixel": [
+        2272,
+        2239
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Existing independently measured v055 landmark retained; not a newly measured collision boundary."
+    },
+    {
+      "id": 20065,
+      "name": "新豐港",
+      "kind": "PORT",
+      "old_coord": [
+        32,
+        36
+      ],
+      "source_coord": [
+        64,
+        73
+      ],
+      "axial_coord": [
+        140,
+        64
+      ],
+      "reference_pixel": [
+        2239,
+        2516
+      ],
+      "evidence_level": "MULTI_ANCHOR_CALIBRATED",
+      "note": "Existing independently measured v055 landmark retained; not a newly measured collision boundary."
+    },
+    {
+      "id": 20066,
+      "name": "夏陽港",
+      "kind": "PORT",
+      "old_coord": [
+        29,
+        27
+      ],
+      "source_coord": [
+        59,
+        55
+      ],
+      "axial_coord": [
+        125,
+        59
+      ],
+      "reference_pixel": [
+        2077.463,
+        1920.322
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20067,
+      "name": "房陵港",
+      "kind": "PORT",
+      "old_coord": [
+        29,
+        52
+      ],
+      "source_coord": [
+        59,
+        105
+      ],
+      "axial_coord": [
+        175,
+        59
+      ],
+      "reference_pixel": [
+        2082.572,
+        3532.941
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20068,
+      "name": "蕪湖港",
+      "kind": "PORT",
+      "old_coord": [
+        81,
+        54
+      ],
+      "source_coord": [
+        162,
+        109
+      ],
+      "axial_coord": [
+        127,
+        162
+      ],
+      "reference_pixel": [
+        5405.443,
+        3635.369
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20069,
+      "name": "虎林港",
+      "kind": "PORT",
+      "old_coord": [
+        80,
+        61
+      ],
+      "source_coord": [
+        161,
+        122
+      ],
+      "axial_coord": [
+        141,
+        161
+      ],
+      "reference_pixel": [
+        5374.565,
+        4070.878
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20070,
+      "name": "曲阿港",
+      "kind": "PORT",
+      "old_coord": [
+        88,
+        49
+      ],
+      "source_coord": [
+        177,
+        101
+      ],
+      "axial_coord": [
+        112,
+        177
+      ],
+      "reference_pixel": [
+        5888.538,
+        3391.953
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20071,
+      "name": "句章港",
+      "kind": "PORT",
+      "old_coord": [
+        93,
+        59
+      ],
+      "source_coord": [
+        187,
+        117
+      ],
+      "axial_coord": [
+        123,
+        187
+      ],
+      "reference_pixel": [
+        6212.747,
+        3906.976
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20072,
+      "name": "皖口港",
+      "kind": "PORT",
+      "old_coord": [
+        71,
+        61
+      ],
+      "source_coord": [
+        143,
+        122
+      ],
+      "axial_coord": [
+        150,
+        143
+      ],
+      "reference_pixel": [
+        4793.932,
+        4072.705
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20073,
+      "name": "九江港",
+      "kind": "PORT",
+      "old_coord": [
+        66,
+        64
+      ],
+      "source_coord": [
+        132,
+        129
+      ],
+      "axial_coord": [
+        162,
+        132
+      ],
+      "reference_pixel": [
+        4439.764,
+        4283.462
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20074,
+      "name": "陸口港",
+      "kind": "PORT",
+      "old_coord": [
+        57,
+        68
+      ],
+      "source_coord": [
+        116,
+        137
+      ],
+      "axial_coord": [
+        178,
+        116
+      ],
+      "reference_pixel": [
+        3924.463,
+        4543.105
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20075,
+      "name": "鄱陽港",
+      "kind": "PORT",
+      "old_coord": [
+        73,
+        71
+      ],
+      "source_coord": [
+        146,
+        142
+      ],
+      "axial_coord": [
+        168,
+        146
+      ],
+      "reference_pixel": [
+        4892.697,
+        4701.322
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20076,
+      "name": "盧陵港",
+      "kind": "PORT",
+      "old_coord": [
+        69,
+        84
+      ],
+      "source_coord": [
+        138,
+        167
+      ],
+      "axial_coord": [
+        197,
+        138
+      ],
+      "reference_pixel": [
+        4637.192,
+        5508.444
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20077,
+      "name": "夏口港",
+      "kind": "PORT",
+      "old_coord": [
+        54,
+        61
+      ],
+      "source_coord": [
+        108,
+        123
+      ],
+      "axial_coord": [
+        168,
+        108
+      ],
+      "reference_pixel": [
+        3664.973,
+        4092.384
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20078,
+      "name": "湖陽港",
+      "kind": "PORT",
+      "old_coord": [
+        40,
+        54
+      ],
+      "source_coord": [
+        81,
+        109
+      ],
+      "axial_coord": [
+        168,
+        81
+      ],
+      "reference_pixel": [
+        2792.644,
+        3659.717
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20079,
+      "name": "中廬港",
+      "kind": "PORT",
+      "old_coord": [
+        35,
+        54
+      ],
+      "source_coord": [
+        70,
+        110
+      ],
+      "axial_coord": [
+        174,
+        70
+      ],
+      "reference_pixel": [
+        2437.863,
+        3676.96
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20080,
+      "name": "烏林港",
+      "kind": "PORT",
+      "old_coord": [
+        49,
+        66
+      ],
+      "source_coord": [
+        99,
+        133
+      ],
+      "axial_coord": [
+        183,
+        99
+      ],
+      "reference_pixel": [
+        3375.73,
+        4431.948
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20081,
+      "name": "漢津港",
+      "kind": "PORT",
+      "old_coord": [
+        44,
+        62
+      ],
+      "source_coord": [
+        89,
+        125
+      ],
+      "axial_coord": [
+        180,
+        89
+      ],
+      "reference_pixel": [
+        3052.338,
+        4174.944
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20082,
+      "name": "江津港",
+      "kind": "PORT",
+      "old_coord": [
+        36,
+        68
+      ],
+      "source_coord": [
+        73,
+        137
+      ],
+      "axial_coord": [
+        200,
+        73
+      ],
+      "reference_pixel": [
+        2537.446,
+        4563.596
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20083,
+      "name": "羅縣港",
+      "kind": "PORT",
+      "old_coord": [
+        50,
+        74
+      ],
+      "source_coord": [
+        100,
+        148
+      ],
+      "axial_coord": [
+        197,
+        100
+      ],
+      "reference_pixel": [
+        3409.469,
+        4899.506
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20084,
+      "name": "洞庭港",
+      "kind": "PORT",
+      "old_coord": [
+        39,
+        77
+      ],
+      "source_coord": [
+        79,
+        155
+      ],
+      "axial_coord": [
+        215,
+        79
+      ],
+      "reference_pixel": [
+        2732.829,
+        5143.53
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20085,
+      "name": "公安港",
+      "kind": "PORT",
+      "old_coord": [
+        37,
+        72
+      ],
+      "source_coord": [
+        74,
+        146
+      ],
+      "axial_coord": [
+        208,
+        74
+      ],
+      "reference_pixel": [
+        2570.571,
+        4837.64
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    },
+    {
+      "id": 20086,
+      "name": "巫縣港",
+      "kind": "PORT",
+      "old_coord": [
+        27,
+        65
+      ],
+      "source_coord": [
+        54,
+        130
+      ],
+      "axial_coord": [
+        202,
+        54
+      ],
+      "reference_pixel": [
+        1923.788,
+        4323.632
+      ],
+      "evidence_level": "ESTIMATED",
+      "note": "Prior reviewed mobile location and bank/pass topology; this pixel is fitted, not a measured landmark."
+    }
+  ],
+  "counts": {
+    "CITY": 42,
+    "GATE": 10,
+    "PORT": 35
+  },
+  "evidence_counts": {
+    "MULTI_ANCHOR_CALIBRATED": 48,
+    "ESTIMATED": 39
+  }
+}

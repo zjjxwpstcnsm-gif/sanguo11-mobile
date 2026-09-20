@@ -11,6 +11,8 @@ final class TerrainTiles {
     private final Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG);
     private final Paint coast=new Paint(Paint.ANTI_ALIAS_FLAG);
     private final RectF destination=new RectF();
+    private final Matrix transpose=new Matrix();
+    TerrainTiles(){transpose.setValues(new float[]{0,1,0,1,0,0,0,0,1});}
     static int color(World.Terrain t){
         switch(t){
             case FOREST:return 0xff395c43;
@@ -34,6 +36,7 @@ final class TerrainTiles {
         Bitmap tile=tiles[terrain.ordinal()][variant];
         if(tile==null)tiles[terrain.ordinal()][variant]=tile=create(terrain,variant);
         destination.set(x-25,y-25,x+25,y+25);c.drawBitmap(tile,null,destination,paint);
+        c.save();if(world.columnStaggered){c.translate(x,y);c.concat(transpose);c.translate(-x,-y);}
         if(TerrainConnections.road(terrain)){
             int kind=terrain==World.Terrain.PLANK_ROAD?0:1,mask=TerrainConnections.mask(world,q,r);
             Bitmap overlay=connections[kind][mask];
@@ -49,6 +52,7 @@ final class TerrainTiles {
                     x+TileGeometry.CORNER_X[b]*25,y+TileGeometry.CORNER_Y[b]*25,coast);
             }
         }
+        c.restore();
     }
     private Bitmap connection(boolean plank,int mask){
         Bitmap b=Bitmap.createBitmap(96,96,Bitmap.Config.ARGB_8888);Canvas c=new Canvas(b);c.scale(1.92f,1.92f);c.translate(25,25);
@@ -90,7 +94,7 @@ final class TerrainTiles {
         for(int i=0;i<6;i++){float x=TileGeometry.CORNER_X[i]*25.05f,y=TileGeometry.CORNER_Y[i]*25.05f;if(i==0)hex.moveTo(x,y);else hex.lineTo(x,y);}hex.close();c.clipPath(hex);
         c.drawColor(color(t));
         if(VisualAssets.terrainReady()&&t!=World.Terrain.VOID&&t!=World.Terrain.SAND){
-            VisualAssets.texture(c,TerrainConnections.road(t)?World.Terrain.MOUNTAIN:t,variant);return bitmap;
+            VisualAssets.texture(c,t==World.Terrain.ROAD?World.Terrain.PLAIN:TerrainConnections.road(t)?World.Terrain.MOUNTAIN:t,variant);return bitmap;
         }
         Random random=new Random(t.ordinal()*101+variant*29);
         for(int i=0;i<70;i++){p.setColor(i%2==0?0x11242e22:0x17d5d6ae);c.drawCircle(random.nextFloat()*50-25,random.nextFloat()*50-25,random.nextFloat()*2+1,p);}

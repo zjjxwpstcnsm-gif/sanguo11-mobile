@@ -31,7 +31,7 @@ public final class CoreTest {
         w.city(0).food=0;before=SaveCodec.encode(w);check(!w.deploy(0,2,World.Weapon.SPEAR,3000).ok,"cannot deploy without supply");
         check(Arrays.equals(before,SaveCodec.encode(w)),"failed deployment does not spend resources");
         w=DemoScenario.create();w.actionPoints[0]=0;check(!w.train(0,0).ok,"AP exhaustion");
-        w=DemoScenario.create();for(Hex n:w.city(0).hex.neighbors())w.terrain[n.q][n.r]=World.Terrain.MOUNTAIN;
+        w=DemoScenario.create();for(Hex n:SiteFootprint.edge(w.city(0)))w.terrain[n.q][n.r]=World.Terrain.MOUNTAIN;
         before=SaveCodec.encode(w);check(!w.deploy(0,0,World.Weapon.SPEAR,3000).ok,"blocked exit");check(Arrays.equals(before,SaveCodec.encode(w)),"blocked deployment atomic");
     }
     private static void movement()throws Exception {
@@ -40,7 +40,7 @@ public final class CoreTest {
         Map<Hex,Integer> reachable=w.reachable(u);
         for(Map.Entry<Hex,Integer> e:reachable.entrySet()) {
             check(e.getValue()<=u.weapon.movement,"path within budget");check(w.cost(e.getKey(),u.weapon)>0||w.army.water(e.getKey()),"land or navigable water, never mountain");
-            check(w.cityAt(e.getKey())==null,"cannot walk through cities");
+            check(w.cityAt(e.getKey())==null||w.cityAt(e.getKey()).owner==u.owner,"own city allows paid transit; enemy city is blocked");
         }
         Hex destination=null;for(Hex h:reachable.keySet())if(!h.equals(initial)){destination=h;break;}
         check(destination!=null&&w.move(1,destination).ok,"legal path move");check(!u.acted&&w.orders.remaining(u)<u.weapon.movement,"moving preserves command with reduced movement");

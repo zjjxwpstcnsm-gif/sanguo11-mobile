@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=30, MAX_BYTES=32*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=31, MAX_BYTES=32*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -54,6 +54,7 @@ public final class SaveCodec {
         w.marches.write(d);
         WorldSystemsSave.write(w,d);
         d.writeInt(w.sourceMapWidth);
+        d.writeInt(w.sourceMapHeight);d.writeBoolean(w.columnStaggered);d.writeUTF(w.mapId);d.writeUTF(w.mapLayout);d.writeInt(w.mapRevision);d.writeInt(w.sourceOriginX);d.writeInt(w.sourceOriginY);
         w.life.write(d);
         w.diplomacy.write(d);
         w.domestic.writeDurability(d);
@@ -77,7 +78,7 @@ public final class SaveCodec {
         if(data==null||data.length<20||data.length>MAX_BYTES+20)throw new IOException("存档长度无效");
         DataInputStream d=new DataInputStream(new ByteArrayInputStream(data));
         if(d.readInt()!=MAGIC)throw new IOException("不是本项目存档");
-        int version=d.readInt();if(version<30)throw new IOException("此存档使用旧版单格城市地图，请保留原档并重新开局；未删除或改写原存档");if(version>VERSION)throw new IOException("存档版本不支持");
+        int version=d.readInt();if(version<31)throw new IOException("旧版本地图存档无法继续使用，请保留原档并重新开局；未删除或改写原存档");if(version>VERSION)throw new IOException("存档版本不支持");
         int length=d.readInt();long expected=d.readLong();
         if(length!=data.length-20)throw new IOException("存档不完整");
         byte[] payload=new byte[length];d.readFully(payload);CRC32 crc=new CRC32();crc.update(payload);
@@ -93,7 +94,7 @@ public final class SaveCodec {
             w.scenarioId=d.readUTF();w.scenarioName=d.readUTF();w.dataSource=d.readUTF();w.dataHash=d.readUTF();
         }
         for(int i=0;i<factions.length;i++)w.actionPoints[i]=bounded(d.readInt(),0,60);
-        for(int q=0;q<width;q++)for(int r=0;r<height;r++)w.terrain[q][r]=World.Terrain.values()[bounded(d.readUnsignedByte(),0,version>=26?12:version>=24?11:version>=22?9:version>=13?7:version>=11?6:3)];
+        for(int q=0;q<width;q++)for(int r=0;r<height;r++)w.terrain[q][r]=World.Terrain.values()[bounded(d.readUnsignedByte(),0,version>=31?13:version>=26?12:version>=24?11:version>=22?9:version>=13?7:version>=11?6:3)];
         int count=bounded(d.readInt(),1,1000);
         for(int i=0;i<count;i++) {
             int id=d.readInt();String name=d.readUTF();Hex h=hex(d);int owner=d.readInt();
@@ -131,7 +132,8 @@ public final class SaveCodec {
             d.mark(4);int marker=d.readInt();d.reset();
             if(marker==WorldSystemsSave.MARKER)WorldSystemsSave.read(w,d);else w.marches.read(d);
         }
-        if(version>=15){w.sourceMapWidth=bounded(d.readInt(),0,200);w.life.read(d);}
+        if(version>=15){w.sourceMapWidth=bounded(d.readInt(),0,200);
+            w.sourceMapHeight=bounded(d.readInt(),0,200);w.columnStaggered=d.readBoolean();w.mapId=d.readUTF();w.mapLayout=d.readUTF();w.mapRevision=d.readInt();w.sourceOriginX=d.readInt();w.sourceOriginY=d.readInt();NationalMap.validateIdentity(w);w.life.read(d);}
         if(version>=17)w.diplomacy.read(d);
         if(version>=18)w.domestic.readDurability(d);
         if(version>=19)w.aiOrders.read(d);
@@ -191,7 +193,12 @@ public final class SaveCodec {
             bounded(u.troops,1,18000);bounded(u.food,0,1000000);bounded(u.energy,0,w.campaign.energyCap(u.owner));
         }
         bounded(w.sourceMapWidth,0,200);
-        if(w.sourceMapWidth>0){require(w.width==w.sourceMapWidth+(w.height-1)/2,"错行地图宽度不匹配");for(int q=0;q<w.width;q++)for(int r=0;r<w.height;r++){int x=MapCoordinates.source(new Hex(q,r),w.height).q;if(x<0||x>=w.sourceMapWidth)require(w.terrain[q][r]==World.Terrain.MOUNTAIN,"错行地图填充区必须不可通行");}}
+        NationalMap.validateIdentity(w);
+        if(w.sourceMapWidth>0){
+            int axisRows=w.columnStaggered?w.sourceMapWidth:w.sourceRows(),axisCols=w.columnStaggered?w.sourceRows():w.sourceMapWidth;
+            require(w.height==axisRows&&w.width==axisCols+(axisRows-1)/2,"源地图与axial存储尺寸不匹配");
+            for(int q=0;q<w.width;q++)for(int r=0;r<w.height;r++)if(!w.sourceInside(new Hex(q,r)))require(w.terrain[q][r]==World.Terrain.VOID,"地图填充区必须为VOID");
+        }
         w.life.validate();
         w.diplomacy.validate();
         w.domestic.validate();

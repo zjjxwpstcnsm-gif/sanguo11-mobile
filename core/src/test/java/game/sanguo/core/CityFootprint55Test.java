@@ -117,22 +117,22 @@ public final class CityFootprint55Test {
     private static boolean landPath(World w,World.Unit probe,Hex start,Hex goal,int minX,int maxX,int minY,int maxY){
         Set<Hex> seen=new HashSet<>();ArrayDeque<Hex> queue=new ArrayDeque<>();seen.add(start);queue.add(start);
         while(!queue.isEmpty()){Hex h=queue.remove();if(h.equals(goal))return true;for(Hex n:h.neighbors()){
-            if(!w.inside(n))continue;Hex source=MapCoordinates.source(n,w.height);
-            if(source.q<minX||source.q>maxX||source.r<minY||source.r>maxY||w.army.water(n)||w.army.moveCost(probe,h,n)<1||w.domestic.at(n)!=null||w.war.at(n)!=null)continue;
+            if(!w.inside(n))continue;SourceGridCoord source=MapCoordinates.source(w,n);
+            if(source.x<minX||source.x>maxX||source.y<minY||source.y>maxY||w.army.water(n)||w.army.moveCost(probe,h,n)<1||w.domestic.at(n)!=null||w.war.at(n)!=null)continue;
             if(seen.add(n))queue.add(n);
         }}return false;
     }
     private static void geographicRoutes()throws Exception{
         World w=ScenarioCatalog.load("coalition-190",5,55L);World.Unit probe=new World.Unit(-1,5,-1,World.Weapon.SPEAR,w.city(20017).hex,1,1);
-        check(landPath(w,probe,w.city(20017).hex,w.city(20015).hex,23,46,33,42),"real ChangAn-Tongguan-Hangu-Luoyang road connected through owned gates");
-        for(int id:new int[]{20044,20045,20043}){World.City gate=w.city(id);Hex source=MapCoordinates.source(gate.hex,w.height),left=MapCoordinates.axial(source.q-2,source.r,w.height),right=MapCoordinates.axial(source.q+2,source.r,w.height);int owner=gate.owner;
-            gate.owner=probe.owner;check(landPath(w,probe,left,right,source.q-3,source.q+3,34,42),"owned pass opens a physical road "+gate.name);
-            gate.owner=0;check(!landPath(w,probe,left,right,source.q-3,source.q+3,34,42),"no local around-gate land bypass "+gate.name);gate.owner=owner;
+        check(landPath(w,probe,w.city(20017).hex,w.city(20015).hex,45,96,60,90),"real ChangAn-Tongguan-Hangu-Luoyang road connected through owned gates");
+        for(int id:new int[]{20044,20045,20043}){World.City gate=w.city(id);SourceGridCoord source=MapCoordinates.source(w,gate.hex);Hex left=MapCoordinates.axial(w,new SourceGridCoord(source.x-2,source.y)),right=MapCoordinates.axial(w,new SourceGridCoord(source.x+2,source.y));int owner=gate.owner;
+            gate.owner=probe.owner;check(landPath(w,probe,left,right,source.x-4,source.x+4,source.y-5,source.y+5),"owned pass opens a physical road "+gate.name);
+            gate.owner=0;check(!landPath(w,probe,left,right,source.x-4,source.x+4,source.y-5,source.y+5),"no local around-gate land bypass "+gate.name);gate.owner=owner;
         }
-        World.City meng=w.city(20063);check(MapCoordinates.source(meng.hex,100).equals(new Hex(39,35)),"Mengjin corrected to observed bank");check(meng.hex.neighbors().stream().anyMatch(w.army::water),"Mengjin has actual water frontage");
+        World.City meng=w.city(20063);check(MapCoordinates.source(w,meng.hex).equals(new SourceGridCoord(79,69)),"Mengjin corrected to observed bank");check(meng.hex.neighbors().stream().anyMatch(w.army::water),"Mengjin has actual water frontage");
         int id=1;for(World.City c:w.cities)for(Hex h:w.development.parcels(c.id))w.domestic.facilities.add(new Domestic.Facility(id++,c.id,Domestic.Kind.FARM,h,-1,0));
         for(World.City c:w.cities)check(w.army.deploymentExit(c,World.Weapon.SPEAR)!=null,"all development built leaves a connected sortie "+c.name);
-        check(landPath(w,probe,w.city(20017).hex,w.city(20015).hex,23,46,33,42),"fully built economic plots preserve GuanLuo connection");
+        check(landPath(w,probe,w.city(20017).hex,w.city(20015).hex,45,96,60,90),"fully built economic plots preserve GuanLuo connection");
         System.out.println("GUANLUO55 PASS: connected regional roads, single-tile gate seals, Mengjin bank and all 591 plots built");
     }
     private static void ai(){

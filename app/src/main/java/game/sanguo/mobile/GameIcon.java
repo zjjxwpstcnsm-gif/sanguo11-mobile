@@ -14,7 +14,7 @@ final class GameIcon extends Drawable {
     GameIcon(Object item,int color){this.item=item;this.color=color;}
     static boolean supports(Object item){return item instanceof World.Officer||item instanceof World.City||item instanceof World.Weapon||item instanceof Army.Ship||item instanceof Domestic.Kind||item instanceof War.StructureKind||item instanceof Treasures.Definition||item instanceof Treasures.Item;}
     static Drawable drawable(Context context,World w,Object item){
-        BuildingAtlas.load(context);VisualAssets.load(context);
+        BuildingAtlas.load(context);VisualAssets.load(context);CityAtlas.load(context);
         if(item instanceof World.Officer)return new OfficerPortrait(context,w,(World.Officer)item);
         return new GameIcon(item,item instanceof World.City?FactionColors.color(w,((World.City)item).owner):item instanceof World.Unit?FactionColors.color(w,((World.Unit)item).owner):FactionColors.color(w,w.player));
     }
@@ -32,7 +32,7 @@ final class GameIcon extends Drawable {
         c.save();c.translate(b.exactCenterX(),b.exactCenterY()+b.height()*.10f);c.scale(b.width()/62f,b.height()/62f);
         if(item instanceof Treasures.Item)VisualAssets.draw(c,1,((Treasures.Item)item).definition.kind.ordinal(),51,52,18);
         else if(item instanceof Treasures.Definition)VisualAssets.draw(c,1,((Treasures.Definition)item).kind.ordinal(),51,52,18);
-        else if(item instanceof World.City)models.city(c,((World.City)item).kind,color);
+        else if(item instanceof World.City)models.city(c,(World.City)item,color);
         else if(item instanceof World.SiteKind)models.city(c,(World.SiteKind)item,color);
         else if(item instanceof Domestic.Facility)models.facility(c,((Domestic.Facility)item).kind,color);
         else if(item instanceof Domestic.Kind)models.facility(c,(Domestic.Kind)item,color);

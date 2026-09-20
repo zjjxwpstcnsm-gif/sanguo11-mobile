@@ -63,7 +63,7 @@ public final class MainActivity extends Activity {
         String restoreError=null;boolean restored=false;
         AtomicFile autosave=file("auto");
         if(present(autosave)) {
-            try{world=readSave(autosave);restored=true;}catch(IOException e){unreadableAutosave=true;restoreError="自动存档损坏或版本不兼容。原文件已保留；请选择手动存档、导入文件或新建游戏。";}
+            try{world=readSave(autosave);restored=true;}catch(IOException e){unreadableAutosave=true;restoreError="自动存档无法读取："+e.getMessage()+"。原文件已保留；请选择手动存档、导入文件或新建游戏。";}
         }
         if(state==null&&restored){state=readClientState();ui.read(state);}
         turnWork=(TurnWork)getLastNonConfigurationInstance();
@@ -1024,7 +1024,7 @@ public final class MainActivity extends Activity {
         try {
             if(request==IMPORT_SCENARIO){
                 final World imported;try(InputStream in=getContentResolver().openInputStream(data.getData())){imported=ScenarioData.read(in,0);}
-                new AlertDialog.Builder(this).setTitle("导入剧本 · 选择势力").setItems(imported.factions,(dialog,n)->confirm("开始“"+imported.scenarioName+"”？\n"+imported.faction(n)+" · "+(imported.sourceMapWidth>0?imported.sourceMapWidth:imported.width)+"×"+imported.height+"格 · "+imported.cities.size()+"据点 · "+imported.officers.size()+"武将\n将替换当前局面及自动存档，手动槽位保留。",()->{
+                new AlertDialog.Builder(this).setTitle("导入剧本 · 选择势力").setItems(imported.factions,(dialog,n)->confirm("开始“"+imported.scenarioName+"”？\n"+imported.faction(n)+" · "+imported.sourceColumns()+"×"+imported.sourceRows()+"格 · "+imported.cities.size()+"据点 · "+imported.officers.size()+"武将\n将替换当前局面及自动存档，手动槽位保留。",()->{
                     if(aiRunning)return;imported.player=n;imported.active=n;if(!activateWorld(imported))return;selectAndFocus(world.home().hex);save("auto",false);
                 })).setNegativeButton("取消",null).show();
             }else if(request==IMPORT_OFFICER){

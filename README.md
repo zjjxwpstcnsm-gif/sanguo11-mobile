@@ -1,3 +1,7 @@
+## v0.56 native200 national map
+
+全国权威地图、source/axial/screen坐标链、新城池Atlas与存档revision已正式接入。地形为恢复的原生格数字化数据，采样生成器尾部缺失且分类噪声尚待复核，仍有明确ESTIMATED项，不宣称百分之百原版逐格核实。Android交付与验证状态见 [v056实现与边界](docs/NATIVE_MAP_V056.md)、[行军缩尺](docs/MARCH_SCALE_V056.md)、progress.md；不要将旧版本下述APK作为v056。
+
 ## v0.55.0 · 七格城市与关洛地图专项
 
 基于完整主线 v0.54.0 `88768aff0def3b63500bb95b7ecc78fea84b946a`；PR #42 已合入，不以其旧分支覆盖主线。

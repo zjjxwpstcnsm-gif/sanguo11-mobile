@@ -1,0 +1,756 @@
+{
+  "source": "original procedural renderer",
+  "assets": [
+    {
+      "variant": "capital",
+      "lod": "near",
+      "file": "capital-near.png",
+      "rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pivot": [
+        256.0,
+        285.0
+      ],
+      "world_width": 136,
+      "bounds": [
+        39,
+        148,
+        472,
+        427
+      ],
+      "alpha_coverage": 0.277321,
+      "sha256": "133b79448d7b0f8030f9b892ed48374ce073686b34f35ef3adde2f48e80017b8",
+      "bytes": 153444
+    },
+    {
+      "variant": "capital",
+      "lod": "mid",
+      "file": "capital-mid.png",
+      "rect": [
+        0,
+        0,
+        256,
+        256
+      ],
+      "pivot": [
+        128.0,
+        142.5
+      ],
+      "world_width": 136,
+      "bounds": [
+        19,
+        73,
+        236,
+        214
+      ],
+      "alpha_coverage": 0.280563,
+      "sha256": "124fec12243c6695d03212218a1e63b452064c7e70cc791f981d3a87542b64ca",
+      "bytes": 49492
+    },
+    {
+      "variant": "capital",
+      "lod": "far",
+      "file": "capital-far.png",
+      "rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "pivot": [
+        48.0,
+        53.4375
+      ],
+      "world_width": 136,
+      "bounds": [
+        7,
+        26,
+        89,
+        80
+      ],
+      "alpha_coverage": 0.28776,
+      "sha256": "17546d68fde45dcbc146c082d30005c72084f95288cd5d5f70fb394d16d289ef",
+      "bytes": 8672
+    },
+    {
+      "variant": "large",
+      "lod": "near",
+      "file": "large-near.png",
+      "rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pivot": [
+        256.0,
+        285.0
+      ],
+      "world_width": 136,
+      "bounds": [
+        39,
+        148,
+        472,
+        427
+      ],
+      "alpha_coverage": 0.274509,
+      "sha256": "66923a80fe76b3c5a44f71c93350daf31f347ae2527e8907d7e74accdee49b4e",
+      "bytes": 153029
+    },
+    {
+      "variant": "large",
+      "lod": "mid",
+      "file": "large-mid.png",
+      "rect": [
+        0,
+        0,
+        256,
+        256
+      ],
+      "pivot": [
+        128.0,
+        142.5
+      ],
+      "world_width": 136,
+      "bounds": [
+        19,
+        73,
+        236,
+        214
+      ],
+      "alpha_coverage": 0.277054,
+      "sha256": "c87388fa9ac34bc91e28fb89f5cc721839c08c0a4b019d2453c1fb81fce5a871",
+      "bytes": 49104
+    },
+    {
+      "variant": "large",
+      "lod": "far",
+      "file": "large-far.png",
+      "rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "pivot": [
+        48.0,
+        53.4375
+      ],
+      "world_width": 136,
+      "bounds": [
+        7,
+        26,
+        89,
+        80
+      ],
+      "alpha_coverage": 0.284397,
+      "sha256": "a362c7bf940cc14ba63c759b74ee791ef69dfd89dd5982e25ca59c717bdcf994",
+      "bytes": 8647
+    },
+    {
+      "variant": "standard",
+      "lod": "near",
+      "file": "standard-near.png",
+      "rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pivot": [
+        256.0,
+        285.0
+      ],
+      "world_width": 136,
+      "bounds": [
+        39,
+        148,
+        472,
+        427
+      ],
+      "alpha_coverage": 0.274509,
+      "sha256": "004d887b3917d6620eac0a48e95be8401ec50e1dec5514772435b23bf9d16eda",
+      "bytes": 151321
+    },
+    {
+      "variant": "standard",
+      "lod": "mid",
+      "file": "standard-mid.png",
+      "rect": [
+        0,
+        0,
+        256,
+        256
+      ],
+      "pivot": [
+        128.0,
+        142.5
+      ],
+      "world_width": 136,
+      "bounds": [
+        19,
+        73,
+        236,
+        214
+      ],
+      "alpha_coverage": 0.277054,
+      "sha256": "45e1f16e4ffe67fca8be3e978464a5b9b87842050e921f6e69eacb7a1e5fe1d4",
+      "bytes": 48980
+    },
+    {
+      "variant": "standard",
+      "lod": "far",
+      "file": "standard-far.png",
+      "rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "pivot": [
+        48.0,
+        53.4375
+      ],
+      "world_width": 136,
+      "bounds": [
+        7,
+        26,
+        89,
+        80
+      ],
+      "alpha_coverage": 0.284397,
+      "sha256": "bbaa21dd22ddc5444e608671a8679477aeb2e7094e2c44f1b3310d879545a71b",
+      "bytes": 8646
+    },
+    {
+      "variant": "mountain",
+      "lod": "near",
+      "file": "mountain-near.png",
+      "rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pivot": [
+        256.0,
+        285.0
+      ],
+      "world_width": 136,
+      "bounds": [
+        48,
+        148,
+        456,
+        422
+      ],
+      "alpha_coverage": 0.257198,
+      "sha256": "dc409d5869b72493f02580cf2540df643f16db263e622017f8e4a1f18edcdcc2",
+      "bytes": 150977
+    },
+    {
+      "variant": "mountain",
+      "lod": "mid",
+      "file": "mountain-mid.png",
+      "rect": [
+        0,
+        0,
+        256,
+        256
+      ],
+      "pivot": [
+        128.0,
+        142.5
+      ],
+      "world_width": 136,
+      "bounds": [
+        24,
+        73,
+        228,
+        211
+      ],
+      "alpha_coverage": 0.25946,
+      "sha256": "5720e7afb1d891377f3057c7e1174852c627a671bcd463d14654dfd00ef797c4",
+      "bytes": 47892
+    },
+    {
+      "variant": "mountain",
+      "lod": "far",
+      "file": "mountain-far.png",
+      "rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "pivot": [
+        48.0,
+        53.4375
+      ],
+      "world_width": 136,
+      "bounds": [
+        9,
+        26,
+        86,
+        79
+      ],
+      "alpha_coverage": 0.26747,
+      "sha256": "75ba51679e3fb7a7a23cfb21b2c9fe8c33e93d26e755f61371f272d7615c10fc",
+      "bytes": 8285
+    },
+    {
+      "variant": "river",
+      "lod": "near",
+      "file": "river-near.png",
+      "rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pivot": [
+        256.0,
+        285.0
+      ],
+      "world_width": 136,
+      "bounds": [
+        39,
+        148,
+        472,
+        427
+      ],
+      "alpha_coverage": 0.274509,
+      "sha256": "396d51dec9072060058085a21aae72adf4bfac43e19b08a5a4b7c550ea53c8b3",
+      "bytes": 151724
+    },
+    {
+      "variant": "river",
+      "lod": "mid",
+      "file": "river-mid.png",
+      "rect": [
+        0,
+        0,
+        256,
+        256
+      ],
+      "pivot": [
+        128.0,
+        142.5
+      ],
+      "world_width": 136,
+      "bounds": [
+        19,
+        73,
+        236,
+        214
+      ],
+      "alpha_coverage": 0.277023,
+      "sha256": "ecfa89976096ba9eb22295c785926f395d14c4cdbeacd8d479af2c9ada9cb587",
+      "bytes": 49788
+    },
+    {
+      "variant": "river",
+      "lod": "far",
+      "file": "river-far.png",
+      "rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "pivot": [
+        48.0,
+        53.4375
+      ],
+      "world_width": 136,
+      "bounds": [
+        7,
+        26,
+        89,
+        80
+      ],
+      "alpha_coverage": 0.284071,
+      "sha256": "b965079658ab64125dcacf7b273c8fb7ce434a305fa2c5e84129821fb02abbdc",
+      "bytes": 8741
+    },
+    {
+      "variant": "southern",
+      "lod": "near",
+      "file": "southern-near.png",
+      "rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pivot": [
+        256.0,
+        285.0
+      ],
+      "world_width": 136,
+      "bounds": [
+        39,
+        148,
+        472,
+        427
+      ],
+      "alpha_coverage": 0.275593,
+      "sha256": "156ff7f41766c58ac68a664ed74ce3f175f8da166cce0a4edc1cf94e2b2ab7e9",
+      "bytes": 152946
+    },
+    {
+      "variant": "southern",
+      "lod": "mid",
+      "file": "southern-mid.png",
+      "rect": [
+        0,
+        0,
+        256,
+        256
+      ],
+      "pivot": [
+        128.0,
+        142.5
+      ],
+      "world_width": 136,
+      "bounds": [
+        19,
+        73,
+        236,
+        214
+      ],
+      "alpha_coverage": 0.278244,
+      "sha256": "a0e65910b4f8dbe1604e5393af929bd8b6b50f1a2f4bca9e389143261e98503a",
+      "bytes": 49358
+    },
+    {
+      "variant": "southern",
+      "lod": "far",
+      "file": "southern-far.png",
+      "rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "pivot": [
+        48.0,
+        53.4375
+      ],
+      "world_width": 136,
+      "bounds": [
+        7,
+        26,
+        89,
+        80
+      ],
+      "alpha_coverage": 0.285916,
+      "sha256": "1178cba83054e8dfaf9852733f37f09a24854a770229826271fbd7447bc324c2",
+      "bytes": 8667
+    },
+    {
+      "variant": "luoyang",
+      "lod": "near",
+      "file": "luoyang-near.png",
+      "rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pivot": [
+        256.0,
+        285.0
+      ],
+      "world_width": 136,
+      "bounds": [
+        39,
+        148,
+        472,
+        427
+      ],
+      "alpha_coverage": 0.277321,
+      "sha256": "0cdfb8bb91a4db835b5bfc8fbdecdeb148615eb60e7cb4ed9c8adf9560aa7bdd",
+      "bytes": 156677
+    },
+    {
+      "variant": "luoyang",
+      "lod": "mid",
+      "file": "luoyang-mid.png",
+      "rect": [
+        0,
+        0,
+        256,
+        256
+      ],
+      "pivot": [
+        128.0,
+        142.5
+      ],
+      "world_width": 136,
+      "bounds": [
+        19,
+        73,
+        236,
+        214
+      ],
+      "alpha_coverage": 0.280563,
+      "sha256": "67e76c053bcbc4e93974d4cc7fbfab24ad6824fbb7315e89ab567d7470259a26",
+      "bytes": 50015
+    },
+    {
+      "variant": "luoyang",
+      "lod": "far",
+      "file": "luoyang-far.png",
+      "rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "pivot": [
+        48.0,
+        53.4375
+      ],
+      "world_width": 136,
+      "bounds": [
+        7,
+        26,
+        89,
+        80
+      ],
+      "alpha_coverage": 0.28776,
+      "sha256": "dd2c37fff1a3355feefdcde761e8c356dcfdfb443bed5e01172b3afe379e3f4b",
+      "bytes": 8752
+    },
+    {
+      "variant": "changan",
+      "lod": "near",
+      "file": "changan-near.png",
+      "rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pivot": [
+        256.0,
+        285.0
+      ],
+      "world_width": 136,
+      "bounds": [
+        39,
+        148,
+        472,
+        427
+      ],
+      "alpha_coverage": 0.277321,
+      "sha256": "b06214a3e7ef9c9869491d8e989027867a93e35b9e4022e8d23cd72c7819b763",
+      "bytes": 156171
+    },
+    {
+      "variant": "changan",
+      "lod": "mid",
+      "file": "changan-mid.png",
+      "rect": [
+        0,
+        0,
+        256,
+        256
+      ],
+      "pivot": [
+        128.0,
+        142.5
+      ],
+      "world_width": 136,
+      "bounds": [
+        19,
+        73,
+        236,
+        214
+      ],
+      "alpha_coverage": 0.280563,
+      "sha256": "df0d4d27f10e98d56d9fd025a5baa1aea635926a7bc7e20b020e8163f15900e3",
+      "bytes": 49972
+    },
+    {
+      "variant": "changan",
+      "lod": "far",
+      "file": "changan-far.png",
+      "rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "pivot": [
+        48.0,
+        53.4375
+      ],
+      "world_width": 136,
+      "bounds": [
+        7,
+        26,
+        89,
+        80
+      ],
+      "alpha_coverage": 0.28776,
+      "sha256": "aaa0f58c319bede2f1b15fb1c7453851d8e52902469d5f6697bd918ce8528686",
+      "bytes": 8722
+    },
+    {
+      "variant": "gate",
+      "lod": "near",
+      "file": "gate-near.png",
+      "rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pivot": [
+        256.0,
+        285.0
+      ],
+      "world_width": 68,
+      "bounds": [
+        76,
+        162,
+        435,
+        394
+      ],
+      "alpha_coverage": 0.15329,
+      "sha256": "95cdce9fa2f8735218c7f40a0fc3787820c6a6b433fb701fa0e27642d2fd0491",
+      "bytes": 64230
+    },
+    {
+      "variant": "gate",
+      "lod": "mid",
+      "file": "gate-mid.png",
+      "rect": [
+        0,
+        0,
+        256,
+        256
+      ],
+      "pivot": [
+        128.0,
+        142.5
+      ],
+      "world_width": 68,
+      "bounds": [
+        38,
+        80,
+        217,
+        198
+      ],
+      "alpha_coverage": 0.157776,
+      "sha256": "0223ba25cecefc785c11627771a649a95c4bc084c02ba84b898b9e688cb58071",
+      "bytes": 24555
+    },
+    {
+      "variant": "gate",
+      "lod": "far",
+      "file": "gate-far.png",
+      "rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "pivot": [
+        48.0,
+        53.4375
+      ],
+      "world_width": 68,
+      "bounds": [
+        14,
+        28,
+        82,
+        74
+      ],
+      "alpha_coverage": 0.174479,
+      "sha256": "7a37aa6a283ab2af1516d4aad146f61d0fdf7bd5ff922b6b360fc9525f719f55",
+      "bytes": 5382
+    },
+    {
+      "variant": "port",
+      "lod": "near",
+      "file": "port-near.png",
+      "rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "pivot": [
+        256.0,
+        285.0
+      ],
+      "world_width": 72,
+      "bounds": [
+        71,
+        179,
+        432,
+        405
+      ],
+      "alpha_coverage": 0.17691,
+      "sha256": "6d6f08a56493654e0d118b91e2419a2779296fef9a563d187ab30e5352d802de",
+      "bytes": 76775
+    },
+    {
+      "variant": "port",
+      "lod": "mid",
+      "file": "port-mid.png",
+      "rect": [
+        0,
+        0,
+        256,
+        256
+      ],
+      "pivot": [
+        128.0,
+        142.5
+      ],
+      "world_width": 72,
+      "bounds": [
+        36,
+        90,
+        216,
+        203
+      ],
+      "alpha_coverage": 0.177887,
+      "sha256": "5558d5dad72f618498e70d18054f8283116bf37762613cbf8e3cf7196ef7816e",
+      "bytes": 28842
+    },
+    {
+      "variant": "port",
+      "lod": "far",
+      "file": "port-far.png",
+      "rect": [
+        0,
+        0,
+        96,
+        96
+      ],
+      "pivot": [
+        48.0,
+        53.4375
+      ],
+      "world_width": 72,
+      "bounds": [
+        13,
+        33,
+        81,
+        77
+      ],
+      "alpha_coverage": 0.19043,
+      "sha256": "bc00293cefc935ed72264b36e97785e2224d76bffe4653bec8bee84c726d81b8",
+      "bytes": 5965
+    }
+  ],
+  "decoded_bytes": 13475840
+}

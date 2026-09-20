@@ -1,0 +1,15 @@
+# v0.56 native map and original city atlas — validation boundaries
+
+Formal ScenarioData attaches `maps/national-map-v056.properties` before coordinate normalization. Seven national scenarios use 200 columns by 200 rows; two regional scenarios reference the same resource with explicit even-column crop offsets. Story/resource/officer/diplomacy fields are unchanged. The rectangular axial storage contains padding, which is VOID and is not an additional source cell.
+
+The original image is column-staggered; MapCoordinates explicitly converts source odd-q coordinates into internal Hex. TileGeometry, MapCamera, MapOverview and MapView project them back to geographic screen axes. Legacy odd-r APIs and their exhaustive tests remain. Source/axial/screen roundtrip, edges, culling and target hit testing use the same formal functions.
+
+National IDs: san11-national / native-200 / revision56. SaveCodec31 retains map identity/crop information and rejects prior versions; old files are retained for the user rather than silently relocating cities or armies. Real seven-cell cities, explicit garrison versus ordinary traversal, footprint attack range and entity-level AoE remain in place.
+
+42 cities bind CityArtCatalog; Luoyang and Changan are distinct. CityAtlas loads 30 original procedural RGBA PNGs (NEAR/MID/FAR for eight city variants plus gate/port), with explicit pivot, bounds, atlas rectangle, hashes and alpha audit. Far views still render buildings; armies draw later. Old buildings atlas remains solely for non-city facilities, not a city fallback. Art is stylized procedural isometric artwork, not copied original SAN11 textures or a claim of photorealism.
+
+MapView culls visible source ranges and entity buckets, and separates overview/static rendering from dynamic selection. AndroidProjectionTest visits 353 candidates in its near-view test, rather than 40,000. Decoded city atlas is 13,475,840 bytes. Actual pan/zoom frame intervals, Android memory, installed screenshots and APK identity must come from the Native56Probe Actions artifact; no fabricated screenshots are supplied.
+
+Reference identity was reverified from the user's archive. Existing 42-city pixel anchors and independently observed v055 Guan-Luo landmarks provide calibrated positions. Other ports/gates remain ESTIMATED. All 87 sites and 12 overlapping regional groups have records. The recovered native terrain is not nearest-neighbor 2x old terrain, but classification noise and unreviewed small features remain. The truncated original transport omitted its generator/calibration tail; 48 complete files were hash-verified, and the incomplete 49th file was discarded. **This checkpoint does not certify 100% nationwide geographic fidelity.**
+
+Local native contracts and the v055 movement/garrison/combat/AI/save regression passed. The old all-core suite has a baseline failure in ContentIntegrationTest (also reproduced against unmodified main); it is not labelled passed. Android build/install status is recorded separately in progress.md and CI evidence.

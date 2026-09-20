@@ -1,0 +1,201 @@
+{
+  "base": "bb8e58ebe32e96ddf453ee68fd23e21509f71247",
+  "transport_sha256": "cc28b9c4508726b49208999b606a83dda0354f0071f42ff54cc5b2055880e0c8",
+  "complete_patch_sha256": "219720bb79f277c0e5d0413613ab6f983b1dbfe310a60acf3ba314165d90f32c",
+  "complete_files": [
+    {
+      "path": ".gitignore",
+      "git_blob": "958355c3b8f770a8e5d9e9e34dfdea29600bb22f"
+    },
+    {
+      "path": "README.md",
+      "git_blob": "84b47ad9b2a9dea0f7fafa142a6286d9eea06cbc"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/GameSmokeRunner.java",
+      "git_blob": "3c13e9c1d59ef927f7733e7832b51c8b5179f63c"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/Native56Probe.java",
+      "git_blob": "5fa3d376ffa39542ecdbb65765ecd12f6731c78d"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/BuildingAtlas.java",
+      "git_blob": "82e8697376b08764d1a0f39f72a50c7aafa40c4a"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/CityAtlas.java",
+      "git_blob": "e8748185eab65cdd8e8a13dac473238a848dbd5f"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/GameIcon.java",
+      "git_blob": "127d704d6c3340face1e730ede19863da3140439"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "git_blob": "43f35a21733b61238283bdbaca3a839d3a710def"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapCamera.java",
+      "git_blob": "0ab296585131ac0f7ee4e9e9b037b1487b828e34"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapModels.java",
+      "git_blob": "1061ecd66484ce2affa3ab712a24a55775b198c4"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapOverview.java",
+      "git_blob": "967e6f223aae2c1a73cbfb91658d60389d6226da"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapView.java",
+      "git_blob": "045717e6f9d86ac49d445e338bb77bbc84a3b19f"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainConnections.java",
+      "git_blob": "4a81bab19001b105f546c373308bfaaa953f2e47"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainTiles.java",
+      "git_blob": "4ad07cc8db56c69c6b0a4441173a1573e4fca43c"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TileGeometry.java",
+      "git_blob": "7e3dd69e4424c0d9f1b31b9b82f230b2783f6f43"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/VisualAssets.java",
+      "git_blob": "7e27913ba7a49c4d4d2ea905d4a8afecdf473c0f"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/VisualGuide.java",
+      "git_blob": "6f12eb46453dd1f9f3f5be921f92b03bcc545814"
+    },
+    {
+      "path": "app/src/test/java/game/sanguo/mobile/AndroidProjectionTest.java",
+      "git_blob": "144640458753ad193609d54ad60f7e0ab3b84760"
+    },
+    {
+      "path": "core/build.gradle",
+      "git_blob": "a268b4c21a6884c6177149cbbb16fcdbb74dd6c0"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Army.java",
+      "git_blob": "d970c750ec5ccc199605022acea91f64667bfc6f"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CampaignAi.java",
+      "git_blob": "fef6966414627840dc1dbab589f0331db8521d48"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CityArtCatalog.java",
+      "git_blob": "2a7be4d7ce6328e256cb4dbfdd2d968bd5285dd1"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MapCoordinates.java",
+      "git_blob": "ce1aa500bf8c14a4999f9503e3d9d6acf893d0c4"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MarchOrders.java",
+      "git_blob": "fa65f4af230473c4414f81c2a861053f0704794a"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/MarchScale.java",
+      "git_blob": "fbbf31e0af93d3f87e5a7d7ac8c856cdcb9b7ad3"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/NationalMap.java",
+      "git_blob": "c982862a88c62633ee03d53164b5bf201e00321b"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "git_blob": "cb925329a09f49f4f0424d9bc0781d313301ecf6"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ScenarioData.java",
+      "git_blob": "750587498dad6af46cb42ac7f5e090f19e23739c"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SiteFootprint.java",
+      "git_blob": "1c696870a78d18ccbe7084b3654245ca3e22dfed"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SourceGridCoord.java",
+      "git_blob": "3e7c38fd85d63426d3d1423b1d1ed724997c23ba"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Territory.java",
+      "git_blob": "c508298e589904867f1064ca5bc24e2290a7c672"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/War.java",
+      "git_blob": "5ad64c8c92e78ee7200b26bbbaa8a8af7b514d4c"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/World.java",
+      "git_blob": "3c61a6894f6943337a1dc944452cd72f5e445d78"
+    },
+    {
+      "path": "core/src/main/resources/maps/national-map-v056.properties",
+      "git_blob": "f9a72464667da9436f9030764840f899d7ad4186"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/CityArtCatalogTest.java",
+      "git_blob": "a41f9325f9f1e0d0ffc7799459a1629e5541272b"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/CityFootprint55Test.java",
+      "git_blob": "d05f0c84ee04e268a7b8f526bc2e41a0232ed9e5"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/CoreTest.java",
+      "git_blob": "42d80b323cf5477b366574307751ad94c46a0dd1"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MapBoundsTest.java",
+      "git_blob": "2ebd4e0499fc8eb14c85930344edd62c1e11fc4a"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MapCoordinateTest.java",
+      "git_blob": "0b7b53ad0a41c01dab25c75cdcf5c6dcd9761ab4"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/MarchScale56Benchmark.java",
+      "git_blob": "3a0310f8f35785f245e89bdeed916c9d6a0713e1"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/NationalSiteCountTest.java",
+      "git_blob": "8fabf06b35e934a726591e182ae48439306cf2cf"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/Native56Checks.java",
+      "git_blob": "b8aa294890777f5e4e1067ebfa4d3cd82115ca12"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/NativeMap56Test.java",
+      "git_blob": "9426ad3c065dd7cefeda2c280be5ff4d100e7da6"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/NoLegacyCityFallbackTest.java",
+      "git_blob": "ec8f87757a9b04abcf3ae9319786869bdb956b33"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SaveMapRevisionTest.java",
+      "git_blob": "5e88be323e8c230df02aea23878ebea7fd09ef3a"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/ScenarioNationalMapTest.java",
+      "git_blob": "e8afe29f21640e87694f3f8178352b91076c01ef"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SiteFootprintTest.java",
+      "git_blob": "d522df39532afbae400db2f5a11291f8fa098115"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/SiteOverlapTest.java",
+      "git_blob": "4cb7725e9827f1aaaa98b10c7d20a0175060e8d6"
+    }
+  ],
+  "discarded": "Truncated 49th calibration.json section; never applied",
+  "original_stream_complete": false
+}

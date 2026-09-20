@@ -1,0 +1,66 @@
+[
+  {
+    "scenario": "huangjin-184",
+    "crop": null,
+    "preserved_non_map_fields": 1562,
+    "sha256": "cb50051c2c0f0f1dbf08fbdb2ea787ab31e61b36f7ea1d6c3c7065cbb6dd518a"
+  },
+  {
+    "scenario": "coalition-190",
+    "crop": null,
+    "preserved_non_map_fields": 1677,
+    "sha256": "84bbe2aa8daba3be0d47e2f7fc2f700cbdd2b53c748e6f42f568a7115b04d8c8"
+  },
+  {
+    "scenario": "warlords-194",
+    "crop": null,
+    "preserved_non_map_fields": 1478,
+    "sha256": "2c8b2d466c199cca78bebf63ea66a0d17a4d15f52dfde08465fb0f5a6f154f8f"
+  },
+  {
+    "scenario": "guandu-200",
+    "crop": null,
+    "preserved_non_map_fields": 1346,
+    "sha256": "72df21e9b16bf3492e561ac81ee70dd89a0c64b4ddb0d7c35a88fe980369acd7"
+  },
+  {
+    "scenario": "chibi-207",
+    "crop": null,
+    "preserved_non_map_fields": 1262,
+    "sha256": "6e979682ca6e9dea1cf4721e8b7584ff8bbc7fbc2d22177896073cdbd7b4e1f1"
+  },
+  {
+    "scenario": "heroes-250",
+    "crop": null,
+    "preserved_non_map_fields": 1589,
+    "sha256": "cef9f57976f059e5806154082a0250404ee14c350e66204594880e30d4df61cf"
+  },
+  {
+    "scenario": "heroes-mobile-sandbox",
+    "crop": null,
+    "preserved_non_map_fields": 1534,
+    "sha256": "feaaf673a9712fc04dfd37ab4865499be25e92eb2889332d742a5dbfa478a5a2"
+  },
+  {
+    "scenario": "central-mobile-sandbox",
+    "crop": [
+      38,
+      51,
+      154,
+      96
+    ],
+    "preserved_non_map_fields": 464,
+    "sha256": "a6d50e6037c567aae6be7229e01ed0c21fca1814abbe3302bbd9bbbfae85492d"
+  },
+  {
+    "scenario": "jingxiang-mobile-sandbox",
+    "crop": [
+      20,
+      80,
+      134,
+      116
+    ],
+    "preserved_non_map_fields": 316,
+    "sha256": "ba781ce741cc24762f01ad68517dc191ce970d5b3880c7f0ed74f9aaf5e91663"
+  }
+]

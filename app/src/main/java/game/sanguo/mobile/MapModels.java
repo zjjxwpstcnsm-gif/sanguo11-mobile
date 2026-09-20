@@ -94,17 +94,8 @@ final class MapModels {
         for(int x=-21;x<=21;x+=14){line(c,x,-17,x,17,1.5f,WOOD);line(c,x,-17,x+8,-23,1,WOOD);}
         line(c,-21,0,21,0,2,LIGHT);line(c,-21,12,21,12,2,LIGHT);line(c,-21,11,21,-15,1,WOOD);
     }
-    void city(Canvas c,World.SiteKind kind,int color){
-        if(VisualAssets.draw(c,0,kind==World.SiteKind.CITY?12:kind==World.SiteKind.GATE?13:14,60,52,17)){flag(c,color,22,-27);return;}
-
-        if(BuildingAtlas.draw(c,kind==World.SiteKind.CITY?0:kind==World.SiteKind.GATE?1:2)){flag(c,color,21,-27);return;}
-        base(c,color);
-        if(kind==World.SiteKind.PORT){box(c,-20,7,18,12,WOOD);for(int x=-16;x<=16;x+=8)line(c,x,8,x,19,2,WOOD);ship(c,color,0,false);house(c,color,-10,-3,7,9);return;}
-        poly(c,0xff70827e,-21,-3,19,-3,24,1,24,12,0,21,-21,12);box(c,-19,-3,19,12,LIGHT);box(c,-5,2,5,12,DARK);
-        if(kind==World.SiteKind.GATE){house(c,color,-13,4,5,13);house(c,color,13,4,5,13);box(c,-7,-6,7,-2,WOOD);}
-        else {house(c,color,-7,-6,9,9);house(c,color,8,0,10,14);for(int x=-18;x<=14;x+=6)box(c,x,-6,x+4,-1,STEEL);house(c,color,-17,6,4,8);house(c,color,18,6,4,8);}
-        flag(c,color,13,-30);
-    }
+    void city(Canvas c,World.SiteKind kind,int color){CityAtlas.drawIcon(c,kind,color);}
+    void city(Canvas c,World.City city,int color){CityAtlas.drawIcon(c,city,color);}
     void facility(Canvas c,Domestic.Kind kind,int color){
         int sheet=kind==Domestic.Kind.FARM?0:kind==Domestic.Kind.BRONZE_TERRACE?3:1;
         int cell=kind==Domestic.Kind.FARM?15:kind==Domestic.Kind.BRONZE_TERRACE?0:VisualAssets.facility(kind);

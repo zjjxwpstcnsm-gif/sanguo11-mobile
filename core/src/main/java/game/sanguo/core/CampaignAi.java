@@ -365,7 +365,7 @@ public final class CampaignAi {
         }
         return aptitude>=0&&c.equipment[preferred.ordinal()]<8000&&w.produce(c.id,o.id,preferred).ok;
     }
-    private static final class Step {final Hex h;final int cost;Step(Hex h,int c){this.h=h;cost=c;}}
+    private static final class Step {final Hex h;final int cost,priority;Step(Hex h,int c,int heuristic){this.h=h;cost=c;priority=c+heuristic;}}
     private static final class Route {
         final List<Hex> path;final int cost,range;final Hex goal;
         Route(List<Hex> p,int c,Hex goal,int range){path=p;cost=c;this.goal=goal;this.range=range;}
@@ -422,8 +422,10 @@ public final class CampaignAi {
             }
         }
         int[] costs=new int[w.width*w.height];Arrays.fill(costs,Integer.MAX_VALUE);Hex[] parents=new Hex[costs.length];
-        PriorityQueue<Step> queue=new PriorityQueue<>(Comparator.comparingInt((Step s)->s.cost).thenComparingInt(s->s.h.q).thenComparingInt(s->s.h.r));
-        queue.add(new Step(u.hex,0));costs[u.hex.q*w.height+u.hex.r]=0;
+        final Hex singleGoal=targets.size()==1?targets.iterator().next():null;
+        final int goalRadius=singleGoal==null?0:arrivals.keySet().stream().mapToInt(h->h.distance(singleGoal)).max().orElse(0);
+        PriorityQueue<Step> queue=new PriorityQueue<>(Comparator.comparingInt((Step s)->s.priority).thenComparingInt(s->s.cost).thenComparingInt(s->s.h.q).thenComparingInt(s->s.h.r));
+        queue.add(new Step(u.hex,0,singleGoal==null?0:Math.max(0,u.hex.distance(singleGoal)-goalRadius)));costs[u.hex.q*w.height+u.hex.r]=0;
         Army.MovementCosts movementCosts=w.army.movementCosts(u);
         int landBudget=-1,waterBudget=-1,initialBudget=w.orders.remaining(u);
         boolean fireImmune=w.skills.has(u,Skill.HUOSHEN),poisonImmune=w.skills.has(u,Skill.JIEDU),plankImmune=w.skills.has(u,Skill.TAPO);
@@ -445,7 +447,7 @@ public final class CampaignAi {
                 int hazard=(!fireImmune&&w.war.fireAt(h)!=null?8:0)+(terrain==World.Terrain.POISON&&!poisonImmune?8:0)+(terrain==World.Terrain.PLANK_ROAD&&!plankImmune?3:0);
                 int cost=s.cost+step+hazard+(zone.test(h)?3:0)+(friendly.contains(h)?3:0);
                 if(cost>=costs[h.q*w.height+h.r])continue;
-                costs[h.q*w.height+h.r]=cost;parents[h.q*w.height+h.r]=s.h;queue.add(new Step(h,cost));
+                costs[h.q*w.height+h.r]=cost;parents[h.q*w.height+h.r]=s.h;queue.add(new Step(h,cost,singleGoal==null?0:Math.max(0,h.distance(singleGoal)-goalRadius)));
             }
         }
         return result;

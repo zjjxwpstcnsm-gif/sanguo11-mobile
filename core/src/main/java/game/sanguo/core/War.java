@@ -65,7 +65,7 @@ public final class War {
     public static String rankLabel(int rank){return new String[]{"C","B","A","S"}[Math.max(0,Math.min(3,rank))];}
     public int range(World.Unit u){return w.army.range(u)+(w.skills.has(u,Skill.SHECHENG)&&!w.army.water(u.hex)&&(u.weapon==World.Weapon.SIEGE_TOWER||u.weapon==World.Weapon.CATAPULT)?1:0)+(!w.army.water(u.hex)&&u.weapon==World.Weapon.CROSSBOW&&w.campaign.has(u.owner,Campaign.Tech.STRONG_BOW)?1:0);}
     public int movement(World.Unit u){return movementAt(u,u.hex);}
-    public int movementAt(World.Unit u,Hex h){if(u instanceof Domestic.Mission)return 4+(w.campaign.has(u.owner,Campaign.Tech.WOODEN_OX)?1:0)+(w.skills.has(u,Skill.YUNBAN)?2:0);return (w.army.water(h)?u.ship.movement:u.weapon.movement)+w.skills.movementBonusAt(u,h)+(w.campaign.eliteUnitAt(u,h)?1:0)+(!w.army.water(h)&&Army.siegeWeapon(u.weapon)&&w.campaign.has(u.owner,Campaign.Tech.AXLE)?1:0)+(!w.army.water(h)&&u.weapon==World.Weapon.CAVALRY&&w.campaign.has(u.owner,Campaign.Tech.HORSE_BREEDING)?1:0);}
+    public int movementAt(World.Unit u,Hex h){if(u instanceof Domestic.Mission)return MarchScale.base(w,4)+(w.campaign.has(u.owner,Campaign.Tech.WOODEN_OX)?1:0)+(w.skills.has(u,Skill.YUNBAN)?2:0);return MarchScale.base(w,w.army.water(h)?u.ship.movement:u.weapon.movement)+w.skills.movementBonusAt(u,h)+(w.campaign.eliteUnitAt(u,h)?1:0)+(!w.army.water(h)&&Army.siegeWeapon(u.weapon)&&w.campaign.has(u.owner,Campaign.Tech.AXLE)?1:0)+(!w.army.water(h)&&u.weapon==World.Weapon.CAVALRY&&w.campaign.has(u.owner,Campaign.Tech.HORSE_BREEDING)?1:0);}
     private String actorError(World.Unit u){
         return u instanceof Domestic.Mission?"运输队只能行军、补给、入库或待命":w.orders.error(u);
     }

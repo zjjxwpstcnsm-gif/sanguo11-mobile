@@ -5,7 +5,7 @@ import java.util.*;
 import java.util.function.Predicate;
 
 /** Authoritative site geometry in axial coordinates. A radius-one city projects to 2/3/2
- * on the existing odd-row square grid; gates and ports are single cells. No ownership is cached. */
+ * on either odd-row or native odd-column source grids; gates and ports are single cells. No ownership is cached. */
 public final class SiteFootprint {
     private SiteFootprint() {}
     private static final Comparator<Hex> ORDER=Comparator.comparingInt((Hex h)->h.r).thenComparingInt(h->h.q);
