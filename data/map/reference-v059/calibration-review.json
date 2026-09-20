@@ -1,0 +1,499 @@
+{
+  "schema": 1,
+  "reference": {
+    "file": "MAP_SAN11.jpg",
+    "width": 7200,
+    "height": 6752,
+    "bytes": 34925627,
+    "sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+    "distributed": false
+  },
+  "actual_read": true,
+  "axes": [
+    [
+      32.25741426369938,
+      0.10217659392936329,
+      168.60500378341527
+    ],
+    [
+      -0.10151265669896248,
+      32.25239002901808,
+      136.30328379615418
+    ]
+  ],
+  "formula": "[pixelX,pixelY] = axes * [sourceX, sourceY+0.5*(sourceX&1),1]",
+  "transform_id": "native56-affine-rechecked59",
+  "inherited_fit_rms_pixels": 2.3668875119167923,
+  "accuracy_caveat": "No independent full-map accuracy claim; no single-anchor global rescaling. Raw reference and crops remain outside the repository and APK.",
+  "puyang_recheck": {
+    "source": [
+      120,
+      71
+    ],
+    "crop": [
+      3954,
+      2321,
+      4139,
+      2506
+    ],
+    "previous_recorded_pixel": [
+      4048.5,
+      2425.5
+    ],
+    "predicted_pixel": [
+      4046.749,
+      2414.041
+    ],
+    "new_approximate_visual_center": [
+      4046.5,
+      2414.0
+    ],
+    "measurement_uncertainty_pixels": 3,
+    "method": "Manual visual center of the visible city footprint against surrounding white cell edges in a 3x enlarged crop. Label centroid is not the tile center.",
+    "conclusion": "Inherited 11.59px record is not an instruction to shift the local grid; surrounding cell phase and approximate footprint center agree with the inherited transform. Do not report subpixel independent precision."
+  },
+  "regions": [
+    {
+      "id": "chenliu-southeast",
+      "source_bounds": [
+        117,
+        86,
+        136,
+        101
+      ],
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "parent_regions": [
+        "chenliu-north",
+        "chenliu-south"
+      ],
+      "anchors": [
+        {
+          "site_id": 20011,
+          "name": "濮陽",
+          "source": [
+            120,
+            71
+          ],
+          "recorded_pixel": [
+            4048.5,
+            2425.5
+          ],
+          "predicted_pixel": [
+            4046.749,
+            2414.041
+          ],
+          "residual_pixels": 11.592,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20012,
+          "name": "陳留",
+          "source": [
+            108,
+            79
+          ],
+          "recorded_pixel": [
+            3660.5,
+            2672.5
+          ],
+          "predicted_pixel": [
+            3660.478,
+            2673.279
+          ],
+          "residual_pixels": 0.779,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20013,
+          "name": "許昌",
+          "source": [
+            99,
+            92
+          ],
+          "recorded_pixel": [
+            3371.5,
+            3109.5
+          ],
+          "predicted_pixel": [
+            3371.54,
+            3109.6
+          ],
+          "residual_pixels": 0.107,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        }
+      ],
+      "local_residual": {
+        "kind": "visual_grid_phase_check",
+        "numeric_new_fit": false,
+        "acceptance": "Tile centers checked against visible local lattice, banks and cliff turns. No refit or shift; inherited fit residual is not an independent precision bound."
+      },
+      "observation": "Smooth continuous channel centers separated from the gridded banks; exposed jagged rock centers have no road/deck. Green administrative strokes and object silhouettes are not terrain evidence. Navigation legality in the original game remains unresolved."
+    },
+    {
+      "id": "yongan-south",
+      "source_bounds": [
+        35,
+        130,
+        58,
+        146
+      ],
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "parent_regions": [
+        "yongan-north"
+      ],
+      "anchors": [
+        {
+          "site_id": 20035,
+          "name": "永安",
+          "source": [
+            46,
+            128
+          ],
+          "recorded_pixel": [
+            1665.5,
+            4259.5
+          ],
+          "predicted_pixel": [
+            1665.525,
+            4259.94
+          ],
+          "residual_pixels": 0.44,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20037,
+          "name": "梓潼",
+          "source": [
+            16,
+            110
+          ],
+          "recorded_pixel": [
+            696.5,
+            3682.5
+          ],
+          "predicted_pixel": [
+            695.963,
+            3682.442
+          ],
+          "residual_pixels": 0.54,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20038,
+          "name": "江州",
+          "source": [
+            30,
+            147
+          ],
+          "recorded_pixel": [
+            1151.5,
+            4874.5
+          ],
+          "predicted_pixel": [
+            1151.347,
+            4874.359
+          ],
+          "residual_pixels": 0.208,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        }
+      ],
+      "local_residual": {
+        "kind": "visual_grid_phase_check",
+        "numeric_new_fit": false,
+        "acceptance": "Tile centers checked against visible local lattice, banks and cliff turns. No refit or shift; inherited fit residual is not an independent precision bound."
+      },
+      "observation": "Smooth continuous channel centers separated from the gridded banks; exposed jagged rock centers have no road/deck. Green administrative strokes and object silhouettes are not terrain evidence. Navigation legality in the original game remains unresolved."
+    },
+    {
+      "id": "ye-east",
+      "source_bounds": [
+        113,
+        38,
+        124,
+        55
+      ],
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "parent_regions": [
+        "ye-north-ground"
+      ],
+      "anchors": [
+        {
+          "site_id": 20003,
+          "name": "南皮",
+          "source": [
+            138,
+            37
+          ],
+          "recorded_pixel": [
+            4623.5,
+            1315.5
+          ],
+          "predicted_pixel": [
+            4623.909,
+            1315.633
+          ],
+          "residual_pixels": 0.43,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20005,
+          "name": "晉陽",
+          "source": [
+            91,
+            39
+          ],
+          "recorded_pixel": [
+            3108.0,
+            1398.0
+          ],
+          "predicted_pixel": [
+            3108.066,
+            1401.035
+          ],
+          "residual_pixels": 3.036,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20006,
+          "name": "鄴",
+          "source": [
+            109,
+            53
+          ],
+          "recorded_pixel": [
+            3690.5,
+            1850.5
+          ],
+          "predicted_pixel": [
+            3690.13,
+            1850.741
+          ],
+          "residual_pixels": 0.442,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        }
+      ],
+      "local_residual": {
+        "kind": "visual_grid_phase_check",
+        "numeric_new_fit": false,
+        "acceptance": "Tile centers checked against visible local lattice, banks and cliff turns. No refit or shift; inherited fit residual is not an independent precision bound."
+      },
+      "observation": "Smooth continuous channel centers separated from the gridded banks; exposed jagged rock centers have no road/deck. Green administrative strokes and object silhouettes are not terrain evidence. Navigation legality in the original game remains unresolved."
+    },
+    {
+      "id": "wu-south",
+      "source_bounds": [
+        164,
+        115,
+        177,
+        131
+      ],
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "parent_regions": [
+        "wu-basin"
+      ],
+      "anchors": [
+        {
+          "site_id": 20022,
+          "name": "建業",
+          "source": [
+            162,
+            104
+          ],
+          "recorded_pixel": [
+            5404.0,
+            3473.5
+          ],
+          "predicted_pixel": [
+            5404.932,
+            3474.107
+          ],
+          "residual_pixels": 1.113,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20023,
+          "name": "吳",
+          "source": [
+            182,
+            109
+          ],
+          "recorded_pixel": [
+            6050.0,
+            3632.5
+          ],
+          "predicted_pixel": [
+            6050.592,
+            3633.338
+          ],
+          "residual_pixels": 1.026,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20024,
+          "name": "會稽",
+          "source": [
+            184,
+            125
+          ],
+          "recorded_pixel": [
+            6115.5,
+            4148.5
+          ],
+          "predicted_pixel": [
+            6116.741,
+            4149.174
+          ],
+          "residual_pixels": 1.412,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        }
+      ],
+      "local_residual": {
+        "kind": "visual_grid_phase_check",
+        "numeric_new_fit": false,
+        "acceptance": "Tile centers checked against visible local lattice, banks and cliff turns. No refit or shift; inherited fit residual is not an independent precision bound."
+      },
+      "observation": "Smooth continuous channel centers separated from the gridded banks; exposed jagged rock centers have no road/deck. Green administrative strokes and object silhouettes are not terrain evidence. Navigation legality in the original game remains unresolved."
+    },
+    {
+      "id": "wuling-south",
+      "source_bounds": [
+        36,
+        158,
+        57,
+        175
+      ],
+      "pixel_crop": [
+        1318,
+        5200,
+        2053,
+        5818
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "parent_regions": [
+        "wuling-west"
+      ],
+      "anchors": [
+        {
+          "site_id": 20032,
+          "name": "武陵",
+          "source": [
+            69,
+            155
+          ],
+          "recorded_pixel": [
+            2411.5,
+            5144.0
+          ],
+          "predicted_pixel": [
+            2410.255,
+            5144.546
+          ],
+          "residual_pixels": 1.359,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20035,
+          "name": "永安",
+          "source": [
+            46,
+            128
+          ],
+          "recorded_pixel": [
+            1665.5,
+            4259.5
+          ],
+          "predicted_pixel": [
+            1665.525,
+            4259.94
+          ],
+          "residual_pixels": 0.44,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        },
+        {
+          "site_id": 20038,
+          "name": "江州",
+          "source": [
+            30,
+            147
+          ],
+          "recorded_pixel": [
+            1151.5,
+            4874.5
+          ],
+          "predicted_pixel": [
+            1151.347,
+            4874.359
+          ],
+          "residual_pixels": 0.208,
+          "measurement": "Reused reference-v056 anchor, visually cross-checked; not a new independent measurement"
+        }
+      ],
+      "local_residual": {
+        "kind": "visual_grid_phase_check",
+        "numeric_new_fit": false,
+        "acceptance": "Tile centers checked against visible local lattice, banks and cliff turns. No refit or shift; inherited fit residual is not an independent precision bound."
+      },
+      "observation": "Smooth continuous channel centers separated from the gridded banks; exposed jagged rock centers have no road/deck. Green administrative strokes and object silhouettes are not terrain evidence. Navigation legality in the original game remains unresolved."
+    }
+  ],
+  "supplementary_cross_checks": [
+    {
+      "kind": "GATE",
+      "site_id": 20042,
+      "name": "壺關",
+      "source": [
+        92,
+        57
+      ],
+      "pixel_crop": [
+        3051,
+        1874,
+        3232,
+        2056
+      ],
+      "predicted_pixel": [
+        3142.111,
+        1965.35
+      ],
+      "observed": "Central gate body matches the center local white-grid cell; vertical decorative ends are not additional occupied cells. Raw crop visually inspected at 2x. No new global transform fitted."
+    },
+    {
+      "kind": "PORT",
+      "site_id": 20086,
+      "name": "巫縣港",
+      "source": [
+        54,
+        130
+      ],
+      "predicted_pixel": [
+        1923.788,
+        4323.632
+      ],
+      "observed": "Port icon and adjacent white shore grid visually checked; text below icon is not an anchor center. Original crop inspected at 2x."
+    }
+  ]
+}

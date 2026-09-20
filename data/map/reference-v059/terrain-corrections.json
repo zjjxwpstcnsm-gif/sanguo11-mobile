@@ -1,0 +1,3943 @@
+{
+  "schema": 1,
+  "source_commit": "894fb37729a6425c670026616f0ee32efa795790",
+  "source_tree": "ac234f4986d7cbc2447376acb970c9e0504d420d",
+  "reference": {
+    "file": "MAP_SAN11.jpg",
+    "width": 7200,
+    "height": 6752,
+    "bytes": 34925627,
+    "sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+    "distributed": false
+  },
+  "source_revision": 58,
+  "target_revision": 59,
+  "before_sha256": "327317cc28f662c93308a7c87d086842d4a4af98bc2105cf7fbc365f60cf9589",
+  "after_sha256": "50ea7331d5b0a70cdb469ace3657f15f949ff645ea0e5f1d7255efab9c188cd3",
+  "cells": [
+    {
+      "source": [
+        122,
+        92
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4113.41,
+        3091.139
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        122,
+        93
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4113.512,
+        3123.391
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        131,
+        93
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4403.88,
+        3138.604
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        122,
+        94
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4113.614,
+        3155.643
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        123,
+        94
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4145.923,
+        3171.668
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        131,
+        94
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4403.982,
+        3170.856
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        123,
+        95
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4146.025,
+        3203.92
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        123,
+        96
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4146.127,
+        3236.173
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        124,
+        96
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4178.333,
+        3219.945
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        125,
+        96
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4210.642,
+        3235.97
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        126,
+        96
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4242.848,
+        3219.742
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        127,
+        96
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4275.157,
+        3235.767
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        128,
+        96
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4307.363,
+        3219.539
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        123,
+        97
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4146.229,
+        3268.425
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        124,
+        97
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4178.436,
+        3252.198
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        125,
+        97
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4210.744,
+        3268.222
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        126,
+        97
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4242.95,
+        3251.995
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        124,
+        98
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "chenliu-southeast",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4178.538,
+        3284.45
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        124,
+        92
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "chenliu-southeast",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4177.925,
+        3090.936
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        124,
+        94
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "chenliu-southeast",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3923,
+        2868,
+        4593,
+        3426
+      ],
+      "predicted_center_pixels": [
+        4178.129,
+        3155.44
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        48,
+        134
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1730.653,
+        4453.251
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        49,
+        134
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1762.961,
+        4469.276
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        51,
+        134
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1827.476,
+        4469.073
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        41,
+        135
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1505.004,
+        4502.34
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        42,
+        135
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1537.21,
+        4486.112
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        43,
+        135
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1569.519,
+        4502.137
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        45,
+        135
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1634.034,
+        4501.934
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        46,
+        135
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1666.24,
+        4485.706
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        47,
+        135
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1698.548,
+        4501.731
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        48,
+        135
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1730.755,
+        4485.503
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        50,
+        135
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1795.27,
+        4485.3
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        39,
+        136
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1440.591,
+        4534.796
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        40,
+        136
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1472.798,
+        4518.568
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        44,
+        136
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1601.827,
+        4518.162
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        45,
+        136
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1634.136,
+        4534.186
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        46,
+        136
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1666.342,
+        4517.959
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        47,
+        136
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1698.651,
+        4533.983
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        38,
+        137
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1408.385,
+        4551.023
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        46,
+        137
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1666.444,
+        4550.211
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        36,
+        138
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1343.972,
+        4583.479
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        36,
+        139
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1344.074,
+        4615.731
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        36,
+        140
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1344.177,
+        4647.983
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        36,
+        141
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1344.279,
+        4680.236
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        36,
+        144
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1344.585,
+        4776.993
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        39,
+        145
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1441.511,
+        4825.067
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        51,
+        146
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "yongan-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1828.702,
+        4856.101
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        50,
+        137
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1795.474,
+        4549.805
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        52,
+        137
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1859.989,
+        4549.602
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        48,
+        138
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1731.061,
+        4582.261
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        50,
+        138
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1795.576,
+        4582.057
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        52,
+        138
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1860.091,
+        4581.854
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        54,
+        138
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1924.606,
+        4581.651
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        50,
+        139
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1795.678,
+        4614.31
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        52,
+        139
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1860.193,
+        4614.107
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        54,
+        139
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1924.708,
+        4613.904
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        46,
+        140
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1666.751,
+        4646.968
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        48,
+        140
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1731.266,
+        4646.765
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        46,
+        141
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1666.853,
+        4679.221
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        48,
+        141
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1731.368,
+        4679.018
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        54,
+        141
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1924.912,
+        4678.409
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        42,
+        143
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1538.028,
+        4744.132
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        42,
+        144
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "yongan-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1282,
+        4295,
+        2082,
+        4885
+      ],
+      "predicted_center_pixels": [
+        1538.13,
+        4776.384
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        123,
+        40
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "ye-east",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        4140.405,
+        1430.039
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        123,
+        41
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "ye-east",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        4140.507,
+        1462.291
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        123,
+        42
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "ye-east",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        4140.609,
+        1494.544
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        121,
+        43
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "ye-east",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        4076.197,
+        1526.999
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        122,
+        43
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "ye-east",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        4108.403,
+        1510.772
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        119,
+        44
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "ye-east",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        4011.784,
+        1559.455
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        120,
+        44
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "ye-east",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        4043.99,
+        1543.227
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        118,
+        45
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "ye-east",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        3979.578,
+        1575.682
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        118,
+        46
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "ye-east",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        3979.68,
+        1607.935
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        118,
+        47
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "ye-east",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        3979.782,
+        1640.187
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        118,
+        48
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "ye-east",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        3979.884,
+        1672.44
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        118,
+        49
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "ye-east",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        3979.987,
+        1704.692
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        118,
+        50
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "ye-east",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        3980.089,
+        1736.944
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        116,
+        43
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "ye-east",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        3914.859,
+        1511.381
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        118,
+        43
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "ye-east",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        3979.373,
+        1511.178
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        116,
+        44
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "ye-east",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        3914.961,
+        1543.633
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        118,
+        44
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "ye-east",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        3789,
+        1321,
+        4202,
+        1942
+      ],
+      "predicted_center_pixels": [
+        3979.476,
+        1543.43
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        170,
+        119
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5664.524,
+        3957.081
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        167,
+        122
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5568.11,
+        4070.268
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        168,
+        126
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5600.725,
+        4183.05
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        170,
+        127
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5665.342,
+        4215.1
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        171,
+        127
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5697.65,
+        4231.124
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        172,
+        128
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5729.959,
+        4247.149
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        173,
+        128
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5762.267,
+        4263.174
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        173,
+        130
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5762.472,
+        4327.678
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        174,
+        130
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5794.678,
+        4311.451
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        175,
+        130
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5826.987,
+        4327.475
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        167,
+        131
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5569.029,
+        4360.54
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        171,
+        131
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5698.059,
+        4360.134
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        172,
+        131
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5730.265,
+        4343.906
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        176,
+        131
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5859.295,
+        4343.5
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        177,
+        131
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wu-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5891.604,
+        4359.525
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        166,
+        128
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "wu-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5536.414,
+        4247.758
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        167,
+        130
+      ],
+      "before": "R",
+      "after": "M",
+      "before_terrain": "ROAD",
+      "after_terrain": "MOUNTAIN",
+      "region": "wu-south",
+      "classification": "ROAD_ON_VISIBLE_CLIFF",
+      "reason": "Cell center lies on exposed jagged cliff in the reference, outside the adjacent visible road lattice; remove the spurious ground-road overlay and traversal. No wooden deck is visible.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        5442,
+        3800,
+        5919,
+        4387
+      ],
+      "predicted_center_pixels": [
+        5568.927,
+        4328.288
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "NOT_APPLICABLE",
+      "movement_policy": "CLOSE_UNSUPPORTED_CLIFF_ROAD",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": true
+      }
+    },
+    {
+      "source": [
+        39,
+        163
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1318,
+        5200,
+        2053,
+        5818
+      ],
+      "predicted_center_pixels": [
+        1443.35,
+        5405.61
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        40,
+        163
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1318,
+        5200,
+        2053,
+        5818
+      ],
+      "predicted_center_pixels": [
+        1475.556,
+        5389.382
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        52,
+        163
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1318,
+        5200,
+        2053,
+        5818
+      ],
+      "predicted_center_pixels": [
+        1862.645,
+        5388.164
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        38,
+        164
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1318,
+        5200,
+        2053,
+        5818
+      ],
+      "predicted_center_pixels": [
+        1411.144,
+        5421.838
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        52,
+        164
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1318,
+        5200,
+        2053,
+        5818
+      ],
+      "predicted_center_pixels": [
+        1862.748,
+        5420.417
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        53,
+        165
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1318,
+        5200,
+        2053,
+        5818
+      ],
+      "predicted_center_pixels": [
+        1895.158,
+        5468.694
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        54,
+        167
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1318,
+        5200,
+        2053,
+        5818
+      ],
+      "predicted_center_pixels": [
+        1927.569,
+        5516.971
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        54,
+        168
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1318,
+        5200,
+        2053,
+        5818
+      ],
+      "predicted_center_pixels": [
+        1927.671,
+        5549.223
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        54,
+        169
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1318,
+        5200,
+        2053,
+        5818
+      ],
+      "predicted_center_pixels": [
+        1927.773,
+        5581.476
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        51,
+        171
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1318,
+        5200,
+        2053,
+        5818
+      ],
+      "predicted_center_pixels": [
+        1831.256,
+        5662.411
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        51,
+        172
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1318,
+        5200,
+        2053,
+        5818
+      ],
+      "predicted_center_pixels": [
+        1831.359,
+        5694.663
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        52,
+        173
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1318,
+        5200,
+        2053,
+        5818
+      ],
+      "predicted_center_pixels": [
+        1863.667,
+        5710.688
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    },
+    {
+      "source": [
+        57,
+        175
+      ],
+      "before": "V",
+      "after": "Q",
+      "before_terrain": "VOID",
+      "after_terrain": "NON_NAVIGABLE_WATER",
+      "region": "wuling-south",
+      "classification": "B_SOURCE_VOID",
+      "reason": "Visible continuous smooth water surface between mapped banks; retain the existing all-unit obstruction, not a claim about original navigability.",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        1318,
+        5200,
+        2053,
+        5818
+      ],
+      "predicted_center_pixels": [
+        2025.21,
+        5790.812
+      ],
+      "calibration_id": "native56-affine-rechecked59",
+      "evidence": "CONFIRMED_VISIBLE",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": {
+        "site": false,
+        "development_plot": false,
+        "natural_facility": false,
+        "new_navigation": false,
+        "land_route_blocked": false
+      }
+    }
+  ]
+}

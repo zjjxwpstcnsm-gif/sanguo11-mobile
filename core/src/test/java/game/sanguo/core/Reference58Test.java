@@ -17,6 +17,7 @@ public final class Reference58Test {
     }
     /** Test-only historical data reconstruction; production never migrates/replaces terrain. */
     static void restore57(World w)throws IOException{
+        if(w.mapRevision==59)Reference59Test.restore58(w);
         for(String[] c:changes()){
             Hex h=MapCoordinates.fromNationalSource(w,new SourceGridCoord(Integer.parseInt(c[0]),Integer.parseInt(c[1])));
             if(w.sourceInside(h))w.terrain[h.q][h.r]=TerrainCode.decode(c[2].charAt(0));
@@ -27,7 +28,7 @@ public final class Reference58Test {
         String[] abi={"PLAIN","FOREST","MOUNTAIN","WATER","MOUNTAIN_PATH","SHALLOWS","PLANK_ROAD","POISON","SEA","VOID","SWAMP","DAM","SAND","ROAD"};
         for(int i=0;i<abi.length;i++)check(World.Terrain.values()[i].name().equals(abi[i]),"old terrain ordinal ABI "+i);
         check(World.Terrain.NON_NAVIGABLE_WATER.ordinal()==14,"new value appended, never renumbered");
-        check(NationalMap.REVISION==58&&CityArtCatalog.ASSET_REVISION==56,"separate resource versions");
+        check(NationalMap.REVISION==59&&CityArtCatalog.ASSET_REVISION==56,"separate resource versions");
         check(changes().size()==89,"89 unique source corrections, not multiplied by scenarios");
         World national=ScenarioCatalog.load("coalition-190",0,580L);int full=0,crops=0;
         for(ScenarioCatalog.Summary summary:ScenarioCatalog.summaries()){
@@ -55,7 +56,7 @@ public final class Reference58Test {
             check(valid==w.sourceColumns()*w.sourceRows(),"effective source dimensions");
             for(War.Structure s:w.war.structures())check(structures.add(s.hex),"no duplicate natural facilities");
             check(w.war.structures().stream().noneMatch(s->s.kind==War.StructureKind.DAM),"no natural H dam invented");
-            if(w.sourceColumns()==200){full++;check(padding==19800&&qcount==69,"national padding and blocked water exact counts");}
+            if(w.sourceColumns()==200){full++;check(padding==19800&&qcount==154,"national padding and blocked water exact counts");}
             else{crops++;check((w.sourceOriginX&1)==0,"crop odd-q parity preserved");}
             byte[] saved=SaveCodec.encode(w);check(saved[7]==31,"serialization structure stays Codec31");
             check(Arrays.equals(saved,SaveCodec.encode(SaveCodec.decode(saved))),"current data exact save/read");

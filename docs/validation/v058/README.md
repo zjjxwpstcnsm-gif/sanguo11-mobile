@@ -1,5 +1,9 @@
 # v0.58 reference terrain and projection validation
 
+## Final outcome addendum (verified during v059 handoff)
+
+DONE: functional source `82749b539bb912c03fa04519791e5a83776d4d53` built and installed successfully in run35518640828 (API29/x86_64). Standalone publication run35520413843 verified APK SHA256 `93e4f9b1ff0f32f1d336a98623ba2e2bc12e33f514a0465d3ad33325b9ff1c9f`,22,335,195bytes. PR46 merged as `894fb37729a6425c670026616f0ee32efa795790`, identical tree. Earlier IN PROGRESS paragraphs below are historical source-time notes, not evidence that058 was never built. This does not imply every historical CI or physical ARM test passed.
+
 ## Source and reference
 
 Parent main: `29c18ec127b7baeafaf9faf9f3b03ee5c1cd2a78` (PR45). Original JPG was actually extracted from user-supplied MAP_SAN11(1).rar and inspected in local crops. 7200 x 6752, SHA256 `a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0`. No reference image/crop is committed or packaged. `calibration-review.json` records the inherited affine model, local review scope, anchor residuals and uncertainty. In-sample anchor residuals are NOT an independent accuracy certificate; Puyang is an inherited 11.59px outlier. NW lettering obscures the nine prior sand estimates and they have NOT been upgraded to visible evidence.

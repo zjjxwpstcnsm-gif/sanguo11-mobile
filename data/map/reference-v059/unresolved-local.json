@@ -1,0 +1,68 @@
+{
+  "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+  "cells": [
+    {
+      "source": [
+        42,
+        134
+      ],
+      "reason": "Adjacent boulder-icon overprint; do not infer the hidden cell.",
+      "evidence": "UNRESOLVED",
+      "current": "V"
+    },
+    {
+      "source": [
+        47,
+        134
+      ],
+      "reason": "Boulder edge; center neighborhood partially obscured.",
+      "evidence": "UNRESOLVED",
+      "current": "V"
+    },
+    {
+      "source": [
+        124,
+        40
+      ],
+      "reason": "At the inspected crop edge; no coverage expansion just to count another cell.",
+      "evidence": "UNRESOLVED",
+      "current": "V"
+    },
+    {
+      "source": [
+        123,
+        101
+      ],
+      "reason": "End of current crop; retain pending a wider local inspection.",
+      "evidence": "UNRESOLVED",
+      "current": "V"
+    },
+    {
+      "source": [
+        114,
+        42
+      ],
+      "reason": "Gridded rough slope may not be an actual elevated plank deck, but subtype cannot be safely assigned.",
+      "evidence": "UNRESOLVED",
+      "current": "B"
+    },
+    {
+      "source": [
+        114,
+        43
+      ],
+      "reason": "Same rough-slope ambiguity as (114,42).",
+      "evidence": "UNRESOLVED",
+      "current": "B"
+    },
+    {
+      "source": [
+        117,
+        40
+      ],
+      "reason": "Cliff/rough-ground boundary ambiguous near grid edge; leave PLANK_ROAD pending further evidence.",
+      "evidence": "UNRESOLVED",
+      "current": "B"
+    }
+  ]
+}

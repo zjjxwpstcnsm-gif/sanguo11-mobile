@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
+# Current strict suite also reconstructs signed historical057/058 checkpoints.
+if grep -qx "versionName=0.59.0" version.properties; then exec bash scripts/test-map59.sh; fi
 # Preserve inherited gameplay/geometry checks, updating only exact current-map goldens.
 bash scripts/test-map57.sh
 CP=core/build/map57:core/src/main/resources:core/src/test/resources

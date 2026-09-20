@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: non-port garrison cannot bypass landing rule
+	at game.sanguo.core.PortReplayTest.check(PortReplayTest.java:9)
+	at game.sanguo.core.PortReplayTest.portEdges(PortReplayTest.java:36)
+	at game.sanguo.core.PortReplayTest.main(PortReplayTest.java:23)

@@ -32,7 +32,10 @@ public final class PortReplayTest {
         for(int i=1;i<p.path.size();i++)check(w.army.moveCost(u,p.path.get(i-1),p.path.get(i))>0,"every planned edge executable");
         u.hex=new Hex(10,6);east.owner=1;check(!w.enter(u.id,east.id).ok,"hostile port is not a landing shortcut");east.owner=0;
         check(w.army.canEnterSite(u,u.hex,east),"owned shore port entry");
-        World.City fakeCity=new World.City(40,"隔水城",new Hex(10,7),0);w.terrain[10][7]=World.Terrain.PLAIN;w.cities.add(fakeCity);
+        // The v47 single-cell fixture overlapped the boat and the owned dock after
+        // v55 introduced seven-cell cities. Use a legal seven-cell city away from docks.
+        u.hex=new Hex(10,10);World.City fakeCity=new World.City(40,"隔水城",new Hex(12,10),0);
+        for(Hex tile:SiteFootprint.cells(fakeCity))w.terrain[tile.q][tile.r]=World.Terrain.PLAIN;w.cities.add(fakeCity);
         check(!w.army.canEnterSite(u,u.hex,fakeCity),"non-port garrison cannot bypass landing rule");
         byte[] before=SaveCodec.encode(w);w.marches.preview(u.id,new Hex(17,6));check(Arrays.equals(before,SaveCodec.encode(w)),"preview preserves RNG and game state");
         west.owner=1;east.owner=1;check(!w.marches.preview(u.id,new Hex(17,6)).valid(),"port owner loss invalidates future path");
@@ -67,12 +70,12 @@ public final class PortReplayTest {
     private static void capture()throws Exception{
         int destroyed=0,total=0;
         for(int seed=0;seed<120;seed++){
-            World w=fixture();World.City c=w.city(20);w.unit(1).hex=new Hex(19,10);c.defense=1;c.troops=100;
-            int id=1;for(Hex h:c.hex.neighbors())if(!h.equals(w.unit(1).hex)){w.domestic.facilities.add(new Domestic.Facility(id++,20,Domestic.Kind.FARM,h,-1,0));}
+            World w=fixture();World.City c=w.city(20);w.unit(1).hex=new Hex(18,10);c.defense=1;c.troops=100;
+            int id=1;for(Hex h:SiteFootprint.edge(c))if(!h.equals(w.unit(1).hex)&&id<=5){w.domestic.facilities.add(new Domestic.Facility(id++,20,Domestic.Kind.FARM,h,-1,0));}
             w.domestic.nextFacilityId=id;w.strategy.setSeed(seed);World copy=SaveCodec.decode(SaveCodec.encode(w));int before=w.domestic.facilities.size();
             ok(w.siege(1,20));ok(copy.siege(1,20));check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(copy)),"capture saved RNG replay deterministic");
             destroyed+=before-w.domestic.facilities.size();total+=before;
-            for(Hex h:c.hex.neighbors())if(w.domestic.at(h)==null&&!h.equals(w.unit(1).hex))check(w.unitAt(h)==null&&w.war.at(h)==null&&w.army.moveCost(w.unit(1),c.hex,h)>0,"destroyed facilities release occupation");
+            for(Hex h:SiteFootprint.edge(c))if(w.domestic.at(h)==null&&!h.equals(w.unit(1).hex))check(w.unitAt(h)==null&&w.war.at(h)==null&&w.army.moveCost(w.unit(1),c.hex,h)>0,"destroyed facilities release occupation");
             byte[] after=SaveCodec.encode(w);check(!w.siege(1,20).ok&&Arrays.equals(after,SaveCodec.encode(w)),"repeated invalid attack does not roll another sack");
         }
         check(destroyed>total*.15&&destroyed<total*.35,"independent 25% loss distribution "+destroyed+"/"+total);

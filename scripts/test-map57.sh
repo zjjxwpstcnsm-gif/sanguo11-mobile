@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")/.."
+# Current strict suite also reconstructs signed historical057/058 checkpoints.
+if grep -qx "versionName=0.59.0" version.properties; then exec bash scripts/test-map59.sh; fi
 mkdir -p core/build/map57
 find core/src/main/java core/src/test/java core/src/testFixtures/java -name '*.java' > core/build/map57/sources.txt
 javac -encoding UTF-8 --release 17 -d core/build/map57 @core/build/map57/sources.txt
