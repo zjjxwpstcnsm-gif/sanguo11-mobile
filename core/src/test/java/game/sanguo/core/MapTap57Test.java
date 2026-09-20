@@ -7,6 +7,7 @@ public final class MapTap57Test {
     private static int checks;
     private static void check(boolean value,String message){checks++;if(!value)throw new AssertionError(message);}
     public static void main(String[] args)throws Exception {
+        check(CityArtCatalog.ASSET_REVISION==56&&NationalMap.REVISION==57,"art ABI independent of terrain revision");
         for(World.Terrain t:World.Terrain.values()) {
             TerrainPresentation.Definition d=TerrainPresentation.of(t);
             check(!d.name().isBlank()&&!d.description().isBlank(),"complete presentation "+t);

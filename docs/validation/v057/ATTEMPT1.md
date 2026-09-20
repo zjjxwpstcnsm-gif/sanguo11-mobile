@@ -1,0 +1,5 @@
+# First installed attempt and follow-up
+
+Run35512506691 reproduced the real v056 ROAD fatal: ArrayIndexOutOfBoundsException length=13/index=13 through MainActivity.showTerrain -> showSelection -> refresh -> onTile -> MapView.onSingleTapUp. It then correctly rejected the first v057 candidate at startup: CityAtlas compared its unchanged catalog map_revision=56 against NationalMap.REVISION=57. No missing PNG existed; all50 resource hashes had passed. CityArtCatalog.ASSET_REVISION now defines the independent asset ABI56; CityAtlas still validates that ABI, every42 city mapping, gate/port, alpha/rect and all LODs. The catalog and all30 PNGs are unchanged. This failed candidate is not the final deliverable.
+
+The test script now clears/reads all logcat buffers between stages, including the crash buffer, so the intentional baseline FATAL cannot contaminate fixed-APK results. Every follow-up rebuilds both APKs, preserves the real old save and repeats the touch/gameplay lanes; no earlier screenshot is substituted for current-run verification.

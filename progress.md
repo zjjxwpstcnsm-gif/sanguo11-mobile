@@ -4,13 +4,14 @@ Branch `agent/map-tap-void-terrain-fix-v057`; base main `7e3d88e5d91f3e398d843d6
 Previous progress is preserved in `docs/history/progress-through-v056.md`. No v055/map/art rollback.
 
 ## DONE
+- Actual Android run35512506691 reproduced the baseline ROAD fatal through normal MapView touch. Its initial v057 candidate exposed a startup atlas/map revision coupling; CityArtCatalog.ASSET_REVISION56 now validates the unchanged art independently of terrain revision57. First candidate is rejected, not delivered as tested. Follow-up installed status remains evidence-driven.
 - Replace the ROAD ordinal-name crash with an exhaustive, shared TerrainPresentation used by details and legend. All 14 terrain codes and display definitions have targeted coverage; enum ordering and SaveCodec31 unchanged.
 - Verify actual parser alphabet: D = MOUNTAIN_PATH (161), H = DAM (0), R = ROAD (7315). Both national openings contain zero natural DAM entities, not 161. No real wall/dam blanket deletion.
 - Separate flat ROAD rendering from narrow mountain trails and elevated plank decks. Use one ground plan in near view and overview; a real DAM entity owns its physical model, avoiding duplicate terrain/model bodies. Neutral entity headers/icons use their own owner, not the player's.
 - Explicit opening-only, idempotent natural-dam seeding. Saves restore entity state; destroyed dams never regenerate on loading. Source/axial coordinate conversion is shared, not replaced.
 - Change only 11 isolated VOID cells with all six neighbors of one terrain: 9 to SAND and 2 to MOUNTAIN, each ESTIMATED, not image-confirmed. New revision57; all sites, 591 plots and 30 city PNG hashes retained. Independent audit tool verifies pre/post hashes and connectivity.
 - Accept revision56 saves without silently transplanting terrain or moving units; visible old-map notice explains that the 11 data edits require a new game. Saved files are not deleted; old political/army state remains intact.
-- Local targeted regressions passed: 671998 detail/code/save checks, 1986739 projection/connection checks, native200 formal paths and seven-cell city movement/garrison/combat/AI regressions. All 50 pinned map/art resources verified.
+- Local targeted regressions passed: terrain detail/code/save checks, 1986739 projection/connection checks, native200 formal paths and seven-cell city movement/garrison/combat/AI regressions. All 50 pinned map/art resources verified.
 
 ## IN PROGRESS
 - Geographic acceptance: 955 interior VOID cells remain unresolved after the 11 small estimated corrections. Existing road/plank digitization density is not certified against the unavailable original image.
