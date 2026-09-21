@@ -12,6 +12,29 @@ final class TerrainTiles {
     private final Paint coast=new Paint(Paint.ANTI_ALIAS_FLAG);
     private final RectF destination=new RectF();
     private final Matrix transpose=new Matrix();
+    private static final Bitmap[] SAND=new Bitmap[4];
+    private static int[][] overviewSamples;
+    static synchronized void loadSand(android.content.Context context){
+        if(SAND[0]!=null)return;
+        String[] names={"fine","gravel","grass","ripple"};
+        Bitmap[] pending=new Bitmap[4];
+        int[][] old=VisualAssets.terrainSamples();
+        if(old==null)throw new IllegalStateException("Base terrain not loaded");
+        int[][] samples=java.util.Arrays.copyOf(old,20);
+        try{
+            for(int i=0;i<4;i++)try(java.io.InputStream input=context.getAssets().open("map/terrain-a063/sand-"+names[i]+".webp")){
+                Bitmap source=BitmapFactory.decodeStream(input);
+                if(source==null)throw new java.io.IOException("Cannot decode sand "+names[i]);
+                Bitmap small=Bitmap.createScaledBitmap(source,64,64,true);samples[16+i]=new int[4096];small.getPixels(samples[16+i],0,64,0,0,64,64);if(small!=source)small.recycle();
+                Bitmap tile=Bitmap.createBitmap(128,128,Bitmap.Config.ARGB_8888);Canvas canvas=new Canvas(tile);Path clip=new Path();
+                for(int c=0;c<6;c++){float x=64+TileGeometry.CORNER_X[c]*64.128f,y=64+TileGeometry.CORNER_Y[c]*64.128f;if(c==0)clip.moveTo(x,y);else clip.lineTo(x,y);}clip.close();canvas.clipPath(clip);
+                canvas.drawBitmap(source,null,new RectF(0,0,128,128),new Paint(Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG));source.recycle();pending[i]=tile;
+            }
+        }catch(java.io.IOException error){for(Bitmap b:pending)if(b!=null)b.recycle();throw new IllegalStateException("Generated sand resource missing",error);}
+        System.arraycopy(pending,0,SAND,0,4);overviewSamples=samples;
+    }
+    static int[][] overviewSamples(){if(overviewSamples==null)throw new IllegalStateException("Sand not loaded");return overviewSamples;}
+    static long sandBytes(){long n=4L*4096*4;for(Bitmap b:SAND)if(b!=null)n+=b.getAllocationByteCount();return n;}
     TerrainTiles(){transpose.setValues(new float[]{0,1,0,1,0,0,0,0,1});}
     static int color(World.Terrain t){
         switch(t){
@@ -36,7 +59,7 @@ final class TerrainTiles {
         if(terrain==World.Terrain.VOID)return;
         int variant=Math.floorMod(q*31+r*17,3);
         World.Terrain ground=terrain==World.Terrain.ROAD?World.Terrain.PLAIN:terrain;
-        Bitmap tile=tiles[ground.ordinal()][variant];
+        Bitmap tile=ground==World.Terrain.SAND?SAND[TerrainArt.sandVariant(world,q,r)]:tiles[ground.ordinal()][variant];
         if(tile==null)tiles[ground.ordinal()][variant]=tile=create(ground,variant);
         destination.set(x-25,y-25,x+25,y+25);c.drawBitmap(tile,null,destination,paint);
         c.save();if(world.columnStaggered){c.translate(x,y);c.concat(transpose);c.translate(-x,-y);}
@@ -101,23 +124,13 @@ final class TerrainTiles {
         Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);Path hex=new Path();
         for(int i=0;i<6;i++){float x=TileGeometry.CORNER_X[i]*25.05f,y=TileGeometry.CORNER_Y[i]*25.05f;if(i==0)hex.moveTo(x,y);else hex.lineTo(x,y);}hex.close();c.clipPath(hex);
         c.drawColor(color(t));
+        if(t==World.Terrain.SAND)throw new IllegalStateException("Sand must use preloaded generated tiles");
         if(VisualAssets.terrainReady()&&t!=World.Terrain.VOID&&t!=World.Terrain.SAND){
             VisualAssets.texture(c,TerrainArt.ground(t),variant);return bitmap;
         }
         Random random=new Random(t.ordinal()*101+variant*29);
         for(int i=0;i<70;i++){p.setColor(i%2==0?0x11242e22:0x17d5d6ae);c.drawCircle(random.nextFloat()*50-25,random.nextFloat()*50-25,random.nextFloat()*2+1,p);}
         switch(t){
-            case SAND:
-                p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(.65f);
-                for(int i=0;i<8;i++){
-                    float y=i*7-27+variant*1.5f,x=-28+random.nextFloat()*5;
-                    Path ridge=new Path();ridge.moveTo(x,y);ridge.cubicTo(x+15,y-3,x+28,y+5,x+54,y+1);
-                    p.setColor(0x507a684a);c.drawPath(ridge,p);
-                    c.save();c.translate(0,-1);p.setColor(0x68f4e5ba);c.drawPath(ridge,p);c.restore();
-                }
-                p.setStyle(Paint.Style.FILL);p.setColor(0x448b7957);
-                for(int i=0;i<35;i++)c.drawCircle(random.nextFloat()*50-25,random.nextFloat()*50-25,.35f,p);
-                break;
             case PLAIN:
                 p.setColor(0xff657b47);p.setStrokeWidth(.55f);
                 for(int i=0;i<15;i++){float x=random.nextFloat()*38-19,y=random.nextFloat()*36-18;c.drawLine(x-1,y,x,y-2,p);c.drawLine(x,y,x+1.3f,y-1.6f,p);}break;

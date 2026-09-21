@@ -221,7 +221,7 @@ public final class MapView extends View {
         super(context);this.listener=listener;density=getResources().getDisplayMetrics().density;setContentDescription("错列方格战略地图。拖动平移，双指缩放，点选城池或部队。");setFocusable(true);
         displayPrefs=context.getSharedPreferences("map-display",Context.MODE_PRIVATE);
         showMini=displayPrefs.getBoolean("navigator",true);showCommanders=displayPrefs.getBoolean("commanders",true);showUnitBars=displayPrefs.getBoolean("unitBars",true);
-        BuildingAtlas.load(context);VisualAssets.load(context);CityAtlas.load(context);
+        BuildingAtlas.load(context);VisualAssets.load(context);CityAtlas.load(context);TerrainTiles.loadSand(context);
         fling=new android.widget.OverScroller(context);fling.setFriction(.022f);
         gestures=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
             @Override public boolean onDown(MotionEvent e){return true;}
@@ -625,7 +625,7 @@ public final class MapView extends View {
     }
     private void drawCity(Canvas c,World.City city,boolean detail){float scale=camera.scale;float cx=x(city.hex),cy=y(city.hex);int owner=factionColor(city.owner);
         // Buildings remain visible at NEAR, MID and FAR. Troops draw later, above roofs.
-        CityAtlas.drawMap(c,city,cx,cy,scale,owner);
+        CityAtlas.drawMap(c,world,city,cx,cy,scale,owner);
         if(territoryMode>0&&frontlineCities.contains(city.id)){paint.setStyle(Paint.Style.STROKE);paint.setColor(0xffffbb65);paint.setStrokeWidth(2*density/scale);c.drawCircle(cx,cy,Math.max(24,5*density/scale),paint);paint.setStyle(Paint.Style.FILL);}
         if(territoryMode>0&&threatenedCities.contains(city.id))label(c,"!",cx,cy-20*density/scale,16*density/scale,0xffff5555);
         if(detail)bar(c,cx,cy+10,32,city.defense/(float)world.campaign.defenseCap(city),owner);

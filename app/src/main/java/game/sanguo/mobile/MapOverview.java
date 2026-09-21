@@ -40,7 +40,7 @@ final class MapOverview {
         bounds=new RectF(-RADIUS,-RADIUS,worldWidth-RADIUS,worldHeight-RADIUS);
         int count=width*height;
         terrain=new int[count];sites=new int[count];owners=new int[count];colors=new int[count];
-        roads=new byte[count];styles=new int[count];Arrays.fill(styles,-1);artwork=VisualAssets.terrainSamples();
+        roads=new byte[count];styles=new int[count];Arrays.fill(styles,-1);artwork=TerrainTiles.overviewSamples();
         Arrays.fill(sites,-1);Arrays.fill(owners,-1);
         int[] palette=new int[world.factions.length];
         for(int i=0;i<palette.length;i++)palette[i]=FactionColors.color(world,i);
@@ -49,7 +49,7 @@ final class MapOverview {
             World.Terrain t=TerrainConnections.appearance(world,q,r);
             if(t==World.Terrain.VOID)continue;
             terrain[index]=TerrainTiles.color(t);
-            styles[index]=VisualAssets.terrainCell(TerrainArt.ground(t),Math.floorMod(q*31+r*17,3));
+            styles[index]=t==World.Terrain.SAND?16+TerrainArt.sandVariant(world,q,r):VisualAssets.terrainCell(TerrainArt.ground(t),Math.floorMod(q*31+r*17,3));
             if(world.terrain[q][r]==World.Terrain.VOID)continue; // exterior: no owner/site/road/territory colour
             if(TerrainArt.connection(world.terrain[q][r])!=TerrainArt.Connection.NONE)roads[index]=(byte)(64|TerrainConnections.mask(world,q,r));
             sites[index]=territory.siteAt(q,r);owners[index]=territory.ownerAt(q,r);

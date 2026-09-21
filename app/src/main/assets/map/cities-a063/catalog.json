@@ -1,0 +1,1173 @@
+{
+  "schema": 2,
+  "asset_revision": 63,
+  "light": "upper-left diffuse daylight",
+  "variants": {
+    "luoyang": {
+      "near": {
+        "file": "luoyang-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 136,
+        "sha256": "58c22c03c2b08137c18cb954614772bf9f9c284fbc1a40d457fc20c25dc0513b",
+        "mother_id": "luoyang",
+        "bytes": 28046
+      },
+      "mid": {
+        "file": "luoyang-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 136,
+        "sha256": "47229549c630cf041087fcd9a1531c6fd47e4b35f635926945d55de221beb6dc",
+        "mother_id": "luoyang",
+        "bytes": 9364
+      },
+      "far": {
+        "file": "luoyang-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 136,
+        "sha256": "e099f51292ffa3a5919a864f0ba38e8219af9cc2a93d136f05e821f303960780",
+        "mother_id": "luoyang",
+        "bytes": 2018
+      }
+    },
+    "changan": {
+      "near": {
+        "file": "changan-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 136,
+        "sha256": "cf934022720a2a853208dd72b3b346da6d2c3bbb2ff8bad07264d56c63bd6a68",
+        "mother_id": "changan",
+        "bytes": 30846
+      },
+      "mid": {
+        "file": "changan-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 136,
+        "sha256": "00ed6a0bd85c897e59f292b4646e2f65abbdbce9319f87fd2826884095dc0d76",
+        "mother_id": "changan",
+        "bytes": 10242
+      },
+      "far": {
+        "file": "changan-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 136,
+        "sha256": "574d1f8e95870f149d81266b879be7d1e724ef54efbbf06189cca7113c703ab6",
+        "mother_id": "changan",
+        "bytes": 2222
+      }
+    },
+    "standard": {
+      "near": {
+        "file": "standard-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 136,
+        "sha256": "ee92dd32e00624a8f60cea47c03639804ecee41f3d0ae2e6ba00fd6daaed78d1",
+        "mother_id": "standard",
+        "bytes": 30066
+      },
+      "mid": {
+        "file": "standard-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 136,
+        "sha256": "b5f8278230202d0b19e449ea06aa57ae0d038cd8b00926d4e0d6ef00244bd4ff",
+        "mother_id": "standard",
+        "bytes": 9930
+      },
+      "far": {
+        "file": "standard-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 136,
+        "sha256": "e42ad788e21aa2804c59fa3621040ff685f4b795ba63e054ad3cae0977e1018b",
+        "mother_id": "standard",
+        "bytes": 2118
+      }
+    },
+    "large": {
+      "near": {
+        "file": "large-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 136,
+        "sha256": "ba9b03b17c2c0ac18ae876120d420efa9ae4400387f8bda969fee55fb64dd6bf",
+        "mother_id": "large",
+        "bytes": 29772
+      },
+      "mid": {
+        "file": "large-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 136,
+        "sha256": "889a0c5816beba231f890a3326dd46c57e215771c6987c2dc7327c5f42d267fa",
+        "mother_id": "large",
+        "bytes": 10024
+      },
+      "far": {
+        "file": "large-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 136,
+        "sha256": "7e81d9655e8d80833c76736c2f2432fda847bf67dbd8ee36baf8b19226c2aa3b",
+        "mother_id": "large",
+        "bytes": 2100
+      }
+    },
+    "mountain": {
+      "near": {
+        "file": "mountain-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 136,
+        "sha256": "8b6dbae9d76f561b74bc072f96232c25ad8946bea8ba1a0440de901ee58528f1",
+        "mother_id": "mountain",
+        "bytes": 31190
+      },
+      "mid": {
+        "file": "mountain-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 136,
+        "sha256": "e4d0adc738a35d781d9bed48bfd50442bee51b98c8c0bce1d85f7c1a6f7f552e",
+        "mother_id": "mountain",
+        "bytes": 10468
+      },
+      "far": {
+        "file": "mountain-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 136,
+        "sha256": "8b7825b334a0466861bd68149d98e563371bb491995f1b3aca3c9d25028d8d11",
+        "mother_id": "mountain",
+        "bytes": 2230
+      }
+    },
+    "river": {
+      "near": {
+        "file": "river-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 136,
+        "sha256": "73e495d4dbd4b4e23148163cef5ffe0fb53ede3a17f867e8ca49a49df03ff50b",
+        "mother_id": "river",
+        "bytes": 32060
+      },
+      "mid": {
+        "file": "river-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 136,
+        "sha256": "1b816d0bec6565ec060c6ac7d26b74f5b697bea8dd612481d5b569e90ab4bfc4",
+        "mother_id": "river",
+        "bytes": 10604
+      },
+      "far": {
+        "file": "river-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 136,
+        "sha256": "101800b7a9cb66fd29f055ef87004a290720223e92df53ab4c3e166f45253309",
+        "mother_id": "river",
+        "bytes": 2212
+      }
+    },
+    "southern": {
+      "near": {
+        "file": "southern-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 136,
+        "sha256": "7e4190543825d160f618a2b7203415b16415e2bc46ba9d300c069fa9494a21be",
+        "mother_id": "southern",
+        "bytes": 34066
+      },
+      "mid": {
+        "file": "southern-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 136,
+        "sha256": "9d6187d483761d5ab597e3e1b29d9f5f93c05de0b36595517f0852b2100bee4f",
+        "mother_id": "southern",
+        "bytes": 11068
+      },
+      "far": {
+        "file": "southern-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 136,
+        "sha256": "2959e81bd6a16cb1ba257c20ef250a25bdcadb4778247bce055a7459cb4f4b3e",
+        "mother_id": "southern",
+        "bytes": 2322
+      }
+    },
+    "port": {
+      "near": {
+        "file": "port-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 72,
+        "sha256": "97ff6d61a97d451212b789b54ce5ec312598c574def9b3fa520df707dce72a4f",
+        "mother_id": "port",
+        "bytes": 31374
+      },
+      "mid": {
+        "file": "port-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 72,
+        "sha256": "17823b2891141c57c73343709a5e2c3138168f8b3414fc19d676cfd6a58e36b5",
+        "mother_id": "port",
+        "bytes": 10498
+      },
+      "far": {
+        "file": "port-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 72,
+        "sha256": "971e274c31e33a39c1c2ac9558ae096972c286f0b79bfb9e832faac1b1e1a3fd",
+        "mother_id": "port",
+        "bytes": 2260
+      }
+    },
+    "port-n": {
+      "near": {
+        "file": "port-n-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 72,
+        "sha256": "7e111a1663f6462903dd7bcc719d1052229bd05ff76aea8ebf526a6a01db0e07",
+        "mother_id": "port-n",
+        "bytes": 34076
+      },
+      "mid": {
+        "file": "port-n-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 72,
+        "sha256": "1073fe43a5223db4074f8d27ebe3442cc0bca65a7fa9fbbb8246eae7eff1bf7e",
+        "mother_id": "port-n",
+        "bytes": 11794
+      },
+      "far": {
+        "file": "port-n-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 72,
+        "sha256": "6f92195f1e7ea76a72cbd8eab6e63cc9f98b8a2150694a046594ba4420bbe3c5",
+        "mother_id": "port-n",
+        "bytes": 2756
+      }
+    },
+    "port-s": {
+      "near": {
+        "file": "port-s-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 72,
+        "sha256": "2ad516067b2870bbe0160babd4190f7dd4cbd80f8d5bb898072bb65f175e8814",
+        "mother_id": "port-s",
+        "bytes": 33564
+      },
+      "mid": {
+        "file": "port-s-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 72,
+        "sha256": "d5447868753373487ba6560bbb431b88a0eb24759168f9ba43baaf2694e23506",
+        "mother_id": "port-s",
+        "bytes": 11534
+      },
+      "far": {
+        "file": "port-s-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 72,
+        "sha256": "745bf92097f0e249d4770620b4bfc8cd76c1203c38d5e0ed7d2bdbf37b4a9783",
+        "mother_id": "port-s",
+        "bytes": 2602
+      }
+    },
+    "port-e": {
+      "near": {
+        "file": "port-e-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 72,
+        "sha256": "b68d6506264a84fbf0957fae14b8ea32918de969bf598234afc2e9068aa1a6cb",
+        "mother_id": "port-e",
+        "bytes": 26222
+      },
+      "mid": {
+        "file": "port-e-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 72,
+        "sha256": "03e9806dde9d74623882c509a0d82fd7be1b087f5c0062255740d82c4d6c0af5",
+        "mother_id": "port-e",
+        "bytes": 9652
+      },
+      "far": {
+        "file": "port-e-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 72,
+        "sha256": "cdb31171dad4dbbccab27933135de24a9c921db94ee819ccf20a918c4ed34719",
+        "mother_id": "port-e",
+        "bytes": 2166
+      }
+    },
+    "port-w": {
+      "near": {
+        "file": "port-w-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 72,
+        "sha256": "3f2baebd7849172bd55717f1b33d0be31eb792e44587e1d51fc4a9171592b9cf",
+        "mother_id": "port-w",
+        "bytes": 27944
+      },
+      "mid": {
+        "file": "port-w-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 72,
+        "sha256": "d30fb467b7a0bddff98025d9526629c35a2dcad5717e40efecaba4384b058013",
+        "mother_id": "port-w",
+        "bytes": 10324
+      },
+      "far": {
+        "file": "port-w-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 72,
+        "sha256": "9e8fba9dfb761773db20b5772cc32069ec2c5364ad41d2b28067d8ab0cb5bd44",
+        "mother_id": "port-w",
+        "bytes": 2354
+      }
+    },
+    "port-ne": {
+      "near": {
+        "file": "port-ne-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 72,
+        "sha256": "c4615c6ed6fc1bc90e3e80861dbc4c16469a9f87515571e2e9951fec83422b3e",
+        "mother_id": "port-ne",
+        "bytes": 30880
+      },
+      "mid": {
+        "file": "port-ne-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 72,
+        "sha256": "153c28a14ab8c33ce95713d46644bab7d95d58dbba8f0ea2ad5a77610afbe6fd",
+        "mother_id": "port-ne",
+        "bytes": 10654
+      },
+      "far": {
+        "file": "port-ne-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 72,
+        "sha256": "4f094c44566ff04f7b2429cf831076ea38b18e2dc6645f6d4ed76d14bd9ca41e",
+        "mother_id": "port-ne",
+        "bytes": 2382
+      }
+    },
+    "port-nw": {
+      "near": {
+        "file": "port-nw-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 72,
+        "sha256": "1990223f7e6a554128cf1a399a9ed8e042a45f7289b30c908c7065e2a914d078",
+        "mother_id": "port-nw",
+        "bytes": 36760
+      },
+      "mid": {
+        "file": "port-nw-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 72,
+        "sha256": "7c4e66af8a64abdd10dad7ca9bcfb3ca852be8fe3afe3b8700cee55933270407",
+        "mother_id": "port-nw",
+        "bytes": 12572
+      },
+      "far": {
+        "file": "port-nw-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 72,
+        "sha256": "e819bf38489ec5792ef708cd4a1ecde0635b46c3c4eb3ae93916517f23e5746d",
+        "mother_id": "port-nw",
+        "bytes": 2622
+      }
+    },
+    "port-se": {
+      "near": {
+        "file": "port-se-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 72,
+        "sha256": "94d56d12674221dd1cada25293179f27731c9c5cb01804cf6a2a5d58a46d81ef",
+        "mother_id": "port-se",
+        "bytes": 22182
+      },
+      "mid": {
+        "file": "port-se-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 72,
+        "sha256": "7708a19eca33c2564ddcab0c0bee548b5ce05e06bfb139be2f1a41310993be19",
+        "mother_id": "port-se",
+        "bytes": 7942
+      },
+      "far": {
+        "file": "port-se-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 72,
+        "sha256": "b0323c62d5e66c5a4e8639cd9b83f880c961aea435be7c624c9c678b969716e4",
+        "mother_id": "port-se",
+        "bytes": 1914
+      }
+    },
+    "port-sw": {
+      "near": {
+        "file": "port-sw-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 72,
+        "sha256": "cb55853e6aa71ae595d8cc608ec3b1cb75bf741ff5c50f3277b5df7d87d18c26",
+        "mother_id": "port-sw",
+        "bytes": 24452
+      },
+      "mid": {
+        "file": "port-sw-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 72,
+        "sha256": "9b781ada52d576b94637236148d42f61394b07c2737936b3006acb97d8f84a72",
+        "mother_id": "port-sw",
+        "bytes": 8974
+      },
+      "far": {
+        "file": "port-sw-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 72,
+        "sha256": "caa4cae1c130708c4ad89ca04c07cbd70819ad7e3d2cbb226c824668b0d0cf83",
+        "mother_id": "port-sw",
+        "bytes": 2070
+      }
+    },
+    "gate-ns": {
+      "near": {
+        "file": "gate-ns-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 68,
+        "sha256": "b7124eeec3710c3ac1e4994c13ef741d5f4b583ae7774bfe3910b0b28c14af6f",
+        "mother_id": "gate-ns",
+        "bytes": 20920
+      },
+      "mid": {
+        "file": "gate-ns-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 68,
+        "sha256": "d738abd6c589ff7d7fa94429602f588cd7f84c54dcc13cc2dd106319cad72122",
+        "mother_id": "gate-ns",
+        "bytes": 7618
+      },
+      "far": {
+        "file": "gate-ns-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 68,
+        "sha256": "627907cf53ec466e40073ebcfcd17455cdb1363a8ccbe5303d488921d8cbce8b",
+        "mother_id": "gate-ns",
+        "bytes": 1816
+      }
+    },
+    "gate-ew": {
+      "near": {
+        "file": "gate-ew-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 68,
+        "sha256": "de1715adf629e52661f6ad71083260e9af168fcd6dd266ff840e02d9c1ea73ab",
+        "mother_id": "gate-ew",
+        "bytes": 24824
+      },
+      "mid": {
+        "file": "gate-ew-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 68,
+        "sha256": "d577adb925a006fae51a3265acc76d4a2ca9bb666228054437305bc6557b69ac",
+        "mother_id": "gate-ew",
+        "bytes": 8208
+      },
+      "far": {
+        "file": "gate-ew-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 68,
+        "sha256": "c9c148303ddea616f0865ed5e36e5256a1afc13dd09ef13e1b0b567abe307697",
+        "mother_id": "gate-ew",
+        "bytes": 1960
+      }
+    },
+    "gate-nesw": {
+      "near": {
+        "file": "gate-nesw-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 68,
+        "sha256": "a5452684660d552d25837fae89995653042ba8453f29b9f7c4ca004d6705ef79",
+        "mother_id": "gate-nesw",
+        "bytes": 33592
+      },
+      "mid": {
+        "file": "gate-nesw-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 68,
+        "sha256": "ce03164ecf0f4c3aad99263a2508819949bc47e735ec3a584ddafcac20faeec7",
+        "mother_id": "gate-nesw",
+        "bytes": 11222
+      },
+      "far": {
+        "file": "gate-nesw-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 68,
+        "sha256": "c9d883ca59139517e8177e684ce1fd1a2816d03b5e860d8e24c7868038a569b4",
+        "mother_id": "gate-nesw",
+        "bytes": 2462
+      }
+    },
+    "gate-nwse": {
+      "near": {
+        "file": "gate-nwse-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 68,
+        "sha256": "41befac43683db809a84c53e9cedc86ec958232f3440665807e08d8d27e8555c",
+        "mother_id": "gate-nwse",
+        "bytes": 32152
+      },
+      "mid": {
+        "file": "gate-nwse-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 68,
+        "sha256": "3b5d47a3ce3dc5c48f1abe2f94d2a6d28b3f38b024404db9e9f9bb8d52aff746",
+        "mother_id": "gate-nwse",
+        "bytes": 10276
+      },
+      "far": {
+        "file": "gate-nwse-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 68,
+        "sha256": "c5e58812154221350b0cf29cad0a550b72c1fdedc3603b4f92d357ebe0bb8299",
+        "mother_id": "gate-nwse",
+        "bytes": 2334
+      }
+    },
+    "capital": {
+      "near": {
+        "file": "luoyang-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 136,
+        "sha256": "58c22c03c2b08137c18cb954614772bf9f9c284fbc1a40d457fc20c25dc0513b",
+        "mother_id": "luoyang",
+        "bytes": 28046
+      },
+      "mid": {
+        "file": "luoyang-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 136,
+        "sha256": "47229549c630cf041087fcd9a1531c6fd47e4b35f635926945d55de221beb6dc",
+        "mother_id": "luoyang",
+        "bytes": 9364
+      },
+      "far": {
+        "file": "luoyang-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 136,
+        "sha256": "e099f51292ffa3a5919a864f0ba38e8219af9cc2a93d136f05e821f303960780",
+        "mother_id": "luoyang",
+        "bytes": 2018
+      }
+    },
+    "gate": {
+      "near": {
+        "file": "gate-ns-near.webp",
+        "rect": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pivot": [
+          192.0,
+          213.88800000000003
+        ],
+        "world_width": 68,
+        "sha256": "b7124eeec3710c3ac1e4994c13ef741d5f4b583ae7774bfe3910b0b28c14af6f",
+        "mother_id": "gate-ns",
+        "bytes": 20920
+      },
+      "mid": {
+        "file": "gate-ns-mid.webp",
+        "rect": [
+          0,
+          0,
+          192,
+          192
+        ],
+        "pivot": [
+          96.0,
+          106.94400000000002
+        ],
+        "world_width": 68,
+        "sha256": "d738abd6c589ff7d7fa94429602f588cd7f84c54dcc13cc2dd106319cad72122",
+        "mother_id": "gate-ns",
+        "bytes": 7618
+      },
+      "far": {
+        "file": "gate-ns-far.webp",
+        "rect": [
+          0,
+          0,
+          64,
+          64
+        ],
+        "pivot": [
+          32.0,
+          35.648
+        ],
+        "world_width": 68,
+        "sha256": "627907cf53ec466e40073ebcfcd17455cdb1363a8ccbe5303d488921d8cbce8b",
+        "mother_id": "gate-ns",
+        "bytes": 1816
+      }
+    }
+  }
+}

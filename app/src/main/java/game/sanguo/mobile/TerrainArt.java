@@ -7,6 +7,10 @@ import game.sanguo.core.World;
 final class TerrainArt {
     enum Connection { NONE, ROAD, MOUNTAIN_PATH, PLANK }
     private TerrainArt() {}
+    static int sandVariant(World world,int q,int r) {
+        game.sanguo.core.SourceGridCoord source=game.sanguo.core.MapCoordinates.nationalSource(world,new game.sanguo.core.Hex(q,r));
+        return Math.floorMod(source.x*31+source.y*17,4);
+    }
     static Connection connection(World.Terrain terrain) {
         return switch (terrain) {
             // ROAD is a rule identity only; its ground is indistinguishable from PLAIN.
