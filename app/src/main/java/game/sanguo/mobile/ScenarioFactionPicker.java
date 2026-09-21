@@ -35,7 +35,7 @@ final class ScenarioFactionPicker {
         details=a.button("查看势力详情 / 技巧树",v->new RealmUi(a,w,new ClientState()).factionDetail(selected,()->{dialog.dismiss();choose.accept(selected);}));details.setContentDescription("查看开局势力详情");card.addView(details,new LinearLayout.LayoutParams(-1,a.dp(42)));
         middle.addView(card,landscape?new LinearLayout.LayoutParams(a.dp(260),-1):new LinearLayout.LayoutParams(-1,-2));
         HorizontalScrollView scroll=new HorizontalScrollView(a);scroll.setHorizontalScrollBarEnabled(false);LinearLayout factions=new LinearLayout(a);scroll.addView(factions);root.addView(scroll,new LinearLayout.LayoutParams(-1,a.dp(48)));
-        for(int i=0;i<w.factions.length;i++){final int side=i;Button b=a.button(w.faction(i),v->select(side));b.setContentDescription("选择势力 · "+w.faction(i));b.setEnabled(w.alive(i));chips.add(b);factions.addView(b,new LinearLayout.LayoutParams(a.dp(88),a.dp(46)));}
+        for(int i=0;i<w.factions.length;i++){final int side=i;Button b=a.button(w.governance.label(i),v->select(side));b.setContentDescription("选择势力 · "+w.faction(i));b.setEnabled(w.alive(i));chips.add(b);factions.addView(b,new LinearLayout.LayoutParams(a.dp(88),a.dp(46)));}
         start=a.button("",v->{dialog.dismiss();choose.accept(selected);});start.setSelected(true);root.addView(start,new LinearLayout.LayoutParams(-1,a.dp(50)));
         dialog.setContentView(root);dialog.setOnDismissListener(d->{map.criticalFrame(null,0);});
         selected=w.player;for(int i=0;!w.alive(selected)&&i<w.factions.length;i++)selected=i;select(selected);
@@ -50,9 +50,9 @@ final class ScenarioFactionPicker {
         selected=side;RealmOverview.Faction f=overview.factions.get(side);World.Officer leader=null;
         for(World.Officer o:w.officers)if(o.owner==side&&o.role==Strategy.Role.RULER){leader=o;break;}
         portrait.setImageDrawable(leader==null?null:new OfficerPortrait(a,w,leader));
-        summary.setText(f.name+"  ·  "+(leader==null?"君主未定":leader.name)+"\n"+f.cities+"城  "+f.ports+"港  "+f.gates+"关  ·  "+f.officers+"将\n兵力 "+f.troops+"  ·  金 "+f.gold+" / 粮 "+f.food);
+        summary.setText(w.governance.label(side)+" · "+w.governance.title(side)+"\n军师 "+w.governance.advisor(side)+"\n"+f.cities+"城  "+f.ports+"港  "+f.gates+"关  ·  "+f.officers+"将\n兵力 "+f.troops+"  ·  金 "+f.gold+" / 粮 "+f.food);
         summary.setContentDescription("已选势力 · "+f.name+" · 城池"+f.cities+" · 武将"+f.officers);
-        start.setText("以「"+f.name+"」开始新局  →");start.setContentDescription("确认开局势力 · "+f.name);start.setEnabled(f.alive);
+        start.setText("以「"+w.governance.label(side)+"」开始新局  →");start.setContentDescription("确认开局势力 · "+f.name);start.setEnabled(f.alive);
         for(int i=0;i<chips.size();i++)chips.get(i).setSelected(i==side);map.setPreviewFaction(side);
     }
     void show(){dialog.show();if(dialog.getWindow()!=null){dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);dialog.getWindow().setLayout(-1,-1);}mapFit();}

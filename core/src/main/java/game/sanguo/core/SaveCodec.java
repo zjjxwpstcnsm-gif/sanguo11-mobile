@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=31, MAX_BYTES=32*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=32, MAX_BYTES=32*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -66,7 +66,7 @@ public final class SaveCodec {
         w.marches.writeIntents(d);
         w.loyalty.write(d);w.recruitment.writeField(d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
-        w.reports.write(d);
+        w.reports.write(d);w.governance.write(d);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
         CRC32 crc=new CRC32();crc.update(payload);
@@ -147,9 +147,10 @@ public final class SaveCodec {
         if(version>=28){w.loyalty.read(d);w.recruitment.readField(d);}
         count=bounded(d.readInt(),0,40);for(int i=0;i<count;i++)w.log.add(d.readUTF());
         if(version>=29)w.reports.read(d);else w.reports.rebase();
+        if(version>=32)w.governance.read(d);
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         w.districts.migrateLegacySites();
-        validate(w);return w;
+        validate(w);if(version<32)w.governance.reconcile(false);return w;
     }
     private static void hex(DataOutputStream d,Hex h)throws IOException { d.writeInt(h.q);d.writeInt(h.r); }
     private static Hex hex(DataInputStream d)throws IOException { return new Hex(d.readInt(),d.readInt()); }
@@ -209,7 +210,7 @@ public final class SaveCodec {
         w.diplomacy.validate();
         w.domestic.validate();
         w.strategy.validate();
-        w.loyalty.validate();
+        w.loyalty.validate();w.governance.validate();
         CampaignSave.validate(w);
         ArmySave.validate(w);
         RulesSave.validate(w);

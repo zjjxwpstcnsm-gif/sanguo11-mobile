@@ -154,7 +154,7 @@ public final class PresentationTest {
     }
     private static void personnelProjection()throws Exception {
         World w=TestScenarios.load("regional-sandbox",2);
-        check(UiModels.governor(w,300).equals("未任命"),"no invented governor before appointment");
+        check(w.city(300).governorId>=0&&UiModels.governor(w,300).equals(w.officer(w.city(300).governorId).name),"initial governor is an actual automatically appointed resident");
         check(w.strategy.search(300,3002).ok,"discover seeded talent");
         World.Officer talent=w.officer(910002);
         check(talent!=null&&UiModels.status(w,talent).equals("在野 · 待登用"),"unaffiliated talent is not an idle officer");
@@ -167,7 +167,8 @@ public final class PresentationTest {
         check(w.strategy.recruitOfficer(300,3000,talent.id).ok&&talent.owner==2,"seeded hire fixture");
         check(UiModels.officers(w,"",-2,-1,0).isEmpty()&&UiModels.officerCount(w,300)==4,"hire updates filters and stationed count");
         check(UiModels.status(w,talent).equals("本旬已行动"),"newly hired officer rests this turn");
-        check(w.strategy.appointGovernor(300,3001,3001).ok&&UiModels.governor(w,300).equals("周瑜"),"actual appointed governor displayed");
+        if(w.city(300).governorId!=3001)check(w.strategy.appointGovernor(300,3001,3001).ok,"manual governor appointment remains available");
+        check(UiModels.governor(w,300).equals("周瑜"),"actual resident governor displayed");
         World restored=SaveCodec.decode(SaveCodec.encode(w));
         check(UiModels.governor(restored,300).equals("周瑜")&&restored.officer(3001).role==Strategy.Role.GOVERNOR,"governor projection survives v4 round trip");
         World deployed=TestScenarios.load("regional-sandbox",2);

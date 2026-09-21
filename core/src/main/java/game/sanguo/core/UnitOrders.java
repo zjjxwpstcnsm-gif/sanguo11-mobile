@@ -98,7 +98,8 @@ public final class UnitOrders {
         if(u instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)u;m.legacyOverlap=false;m.waiting="";}
         if(w.turnJournal!=null)w.turnJournal.movement(u,plan.path);
         u.movementSpent+=plan.cost;u.hex=plan.path.get(plan.path.size()-1);w.fieldworks.traveled(u,plan.path);
-        return w.success(w.officer(u.officerId).name+"部队移动，剩余移动"+remaining(u)+"，仍可执行命令");
+        String arrival=w.autoEnter(u,null);
+        return w.success(arrival.isEmpty()?w.officer(u.officerId).name+"部队移动，剩余移动"+remaining(u)+"，仍可执行命令":arrival);
     }
     /** Worker-local plan is validated and executed in one synchronous call, with no UI gap.
      * This avoids serializing the entire national world twice per AI move. User-facing

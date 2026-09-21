@@ -46,8 +46,7 @@ final class StrategyUi {
                     w.loyalty.recommendation(c.id,target.id,o.id)+"\n"+w.recruitment.travelDescription(c.id,target.id)+
                     "\n抵达时会按目标当时忠诚与归属重新判定，并非必然成功。",()->apply.accept(w.strategy.recruitOfficer(c.id,o.id,target.id))),null);
         });return;}
-        if(n==3){List<World.Officer> targets=new ArrayList<>();for(World.Officer t:w.officers)if(t.owner==c.owner&&t.cityId==c.id&&t.unitId<0&&t.role!=Strategy.Role.RULER&&t.loyalty<100&&t.lastRewardTurn!=w.turn&&!w.domestic.busy(t.id)&&!w.strategy.busy(t.id))targets.add(t);
-            choose("选择褒奖目标",targets,t->choose("选择执行武将",w.idle(c),o->confirm("褒奖"+t.name,"消耗金200；忠诚 +"+Math.min(100-t.loyalty,StrategyRules.rewardGain(t.politics,t.charm))+"。",()->apply.accept(w.strategy.rewardOfficer(c.id,o.id,t.id)))));return;}
+        if(n==3){batchReward(c);return;}
         if(n==4){choose("选择太守",w.idle(c),t->choose("选择执行武将",w.idle(c),o->confirm("任命"+t.name,"金粮收入加成 "+(t.politics/4)+"%；执行者和新太守均消耗本旬行动。",()->apply.accept(w.strategy.appointGovernor(c.id,o.id,t.id)))));return;}
         if(n==8){List<World.Officer> targets=new ArrayList<>();for(World.Officer t:w.officers)if(t.cityId==c.id&&w.strategy.canRecruitTarget(c.id,t.id)&&!t.acted)targets.add(t);
             choose("选择舌战登用目标",targets,t->{List<World.Officer> actors=new ArrayList<>();for(World.Officer o:w.idle(c))if(w.contests.debateError(c.id,o.id,t.id)==null)actors.add(o);choose("选择执行武将",actors,o->confirm("舌战说服"+t.name,"消耗金100；获胜后加入本势力，失败不退费。",()->apply.accept(w.contests.persuade(c.id,o.id,t.id))));});return;}
@@ -60,6 +59,22 @@ final class StrategyUi {
                 default:break;
             }
         });
+    }
+
+    private void batchReward(World.City c){
+        List<World.Officer> targets=new ArrayList<>();for(World.Officer o:w.officers)if(w.strategy.rewardable(c,o))targets.add(o);
+        if(targets.isEmpty()){info("批量褒奖","本城没有符合条件的武将；在外、忠诚已满或本旬已褒奖者不可选。");return;}
+        Set<Integer> selected=new LinkedHashSet<>();android.widget.LinearLayout host=new android.widget.LinearLayout(activity);host.setOrientation(android.widget.LinearLayout.VERTICAL);
+        android.widget.TextView count=new android.widget.TextView(activity);UiTheme.text(count);count.setTextColor(UiTheme.JADE);count.setPadding(16,12,16,12);host.addView(count);
+        Runnable update=()->count.setText("已选 "+selected.size()+" / "+targets.size()+" 人 · 金 "+((long)selected.size()*Strategy.REWARD_COST)+" · 行动力 10");
+        DataTable<World.Officer> table=DataTable.officers(activity,w,targets,o->"忠诚 "+o.loyalty,o->{if(!selected.add(o.id))selected.remove(o.id);update.run();});
+        table.selection(o->selected.contains(o.id));table.list.setOnItemClickListener((parent,v,index,id)->{if(!selected.add((int)id))selected.remove((int)id);table.selection(o->selected.contains(o.id));update.run();});
+        host.addView(table,new android.widget.LinearLayout.LayoutParams(-1,Math.round(Math.min(380,Math.max(160,activity.getResources().getConfiguration().screenHeightDp-210))*activity.getResources().getDisplayMetrics().density)));
+        AlertDialog dialog=new AlertDialog.Builder(activity).setTitle("批量褒奖 · "+c.name).setView(host).setPositiveButton("确认选择",null).setNeutralButton("全选",null).setNegativeButton("取消",null).create();
+        dialog.show();update.run();UiTheme.dialog(dialog);
+        dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(v->{if(selected.size()==targets.size())selected.clear();else for(World.Officer o:targets)selected.add(o.id);table.selection(o->selected.contains(o.id));update.run();dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setText(selected.size()==targets.size()?"清空":"全选");});
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{if(activity instanceof MainActivity&&!((MainActivity)activity).currentWorld(w))return;if(selected.isEmpty()){count.setText("请至少选择一名武将");return;}
+            int[] ids=selected.stream().mapToInt(Integer::intValue).toArray();dialog.dismiss();choose("选择执行武将",w.idle(c),o->confirm("褒奖 "+ids.length+" 人","消耗金 "+((long)ids.length*Strategy.REWARD_COST)+"；同一武将每旬限一次。",()->{if(!(activity instanceof MainActivity)||((MainActivity)activity).currentWorld(w))apply.accept(w.strategy.rewardOfficers(c.id,o.id,ids));}));});
     }
 
     private void chooseRecruiter(World.City city,World.Officer target,List<World.Officer> options,Consumer<World.Officer> next,Runnable back){

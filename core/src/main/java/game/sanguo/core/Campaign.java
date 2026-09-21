@@ -276,9 +276,11 @@ public final class Campaign {
     }
     public World.Result dismiss(int city,int officer,int target){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(officer),t=w.officer(target);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
-        if(t==null||t.id==o.id||t.owner!=c.owner||t.cityId!=city||t.unitId>=0||t.role==Strategy.Role.RULER||w.domestic.busy(t.id)||w.strategy.busy(t.id))return w.fail("不能流放君主、执行者或任务中的武将");
+        if(t==null||t.id==o.id||t.owner!=c.owner||t.cityId!=city||t.unitId>=0||w.domestic.busy(t.id)||w.strategy.busy(t.id))return w.fail("不能流放执行者或任务中的武将");
+        boolean wasRuler=t.role==Strategy.Role.RULER;int oldOwner=t.owner;
         w.spend(c,o,0);w.strategy.releaseGovernor(t.id);w.government.allegianceChanged(t.id);t.owner=-1;t.role=Strategy.Role.UNAFFILIATED;t.loyalty=0;t.acted=true;
-        return w.success(t.name+"被流放，成为本城在野武将");
+        if(wasRuler)w.life.succession(oldOwner,t.id);
+        return w.success(t.name+"被流放，成为本城在野武将"+(wasRuler?"；君主继任事件已触发":""));
     }
     void cleanupProjects(){
         for(Project p:new ArrayList<>(projects)){

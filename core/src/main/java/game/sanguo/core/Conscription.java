@@ -32,6 +32,27 @@ public final class Conscription {
     public static int recovery(World w,World.City c){
         return Math.max(0,Math.min(quarterlyRecovery(w,c),reserveCap(w,c)-c.recruitReserve));
     }
+    /** Read-only faction totals; ports/gates have no separate recruiting population. */
+    public static final class Summary {
+        public final long reserve, cap, quarterlyGrowth, nextGrowth;
+        private Summary(long reserve,long cap,long quarterlyGrowth,long nextGrowth){
+            this.reserve=reserve;this.cap=cap;this.quarterlyGrowth=quarterlyGrowth;this.nextGrowth=nextGrowth;
+        }
+    }
+    public static Summary summary(World w,int owner){
+        long reserve=0,cap=0,growth=0,next=0;
+        if(owner>=0&&owner<w.factions.length)for(World.City c:w.cities){
+            if(c.owner!=owner||c.kind!=World.SiteKind.CITY)continue;
+            reserve+=Math.max(0,c.recruitReserve);cap+=reserveCap(w,c);
+            growth+=quarterlyRecovery(w,c);next+=recovery(w,c);
+        }
+        return new Summary(reserve,cap,growth,next);
+    }
+    public static String factionDescription(World w,int owner){
+        Summary s=summary(w,owner);
+        return "兵源 "+s.reserve+" / "+s.cap+" · 季增长 "+s.quarterlyGrowth+
+            "（按当前余量可恢复 "+s.nextGrowth+"）";
+    }
     public static String description(World w,World.City c){
         if(c.kind!=World.SiteKind.CITY)return "港关不征兵；兵员由所属城池运输";
         return "兵源 "+c.recruitReserve+" / "+reserveCap(w,c)+"；每季首月上旬恢复最多"+quarterlyRecovery(w,c)+

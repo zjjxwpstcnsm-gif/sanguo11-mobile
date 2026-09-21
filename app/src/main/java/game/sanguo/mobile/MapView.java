@@ -506,9 +506,9 @@ public final class MapView extends View {
         drawMapLabels(canvas,detail);
         drawPreviewSelection(canvas);
         if(territoryMode>0){
-            String caption=openingPreview?"开局预览 · "+world.faction(previewFaction):territoryMode==1?"势力范围 · 橙圈接壤 · 红!敌军逼近":"据点辖区 · 橙圈接壤 · 红!敌军逼近";
+            String caption=openingPreview?"开局预览 · "+world.governance.label(previewFaction):territoryMode==1?"势力范围 · 橙圈接壤 · 红!敌军逼近":"据点辖区 · 橙圈接壤 · 红!敌军逼近";
             int site=territory.siteAt(selected);World.City city=cityIndex.get(site);
-            if(city!=null)caption=city.name+"辖区 · "+world.faction(city.owner)+(territory.frontline(site)?" · 前线":"");
+            if(city!=null&&!openingPreview)caption=city.name+"辖区 · "+world.faction(city.owner)+(territory.frontline(site)?" · 前线":"");
             paint.setColor(0xe612272b);canvas.drawRoundRect(8*density,8*density,Math.min(getWidth()-8*density,258*density),38*density,6*density,6*density,paint);
             paint.setTextAlign(Paint.Align.LEFT);paint.setTextSize(12*density);paint.setColor(PAPER);canvas.drawText(caption,16*density,28*density,paint);
         }
@@ -639,7 +639,10 @@ public final class MapView extends View {
     }
 
     /** Text lives in screen coordinates: readable dp/sp size, collision rejection and edge clamping. */
+    String siteLabel(World.City city){return openingPreview?(city.owner<0?"":world.governance.label(city.owner)):cityNames.get(city.id);}
+    private final Set<Integer> previewLabels=new HashSet<>();
     private void drawMapLabels(Canvas c,boolean detail){
+        previewLabels.clear();
         labelBounds.clear();cityLabelBounds.clear();lastLabels=0;labelPoolUsed=0;
         if(territoryMode>0)labelBounds.add(labelBox(0,0,Math.min(getWidth(),266*density),42*density));
         layoutNavigator();labelBounds.add(labelBox(miniButton.left,0,getWidth(),showMini?miniRect.bottom+4*density:miniButton.bottom));
@@ -647,7 +650,7 @@ public final class MapView extends View {
         World.City chosen=selected==null?null:world.cityAt(selected);
         if(chosen!=null)cityName(c,chosen,true,detail);
         for(Object object:visibleObjects)if(object instanceof World.City&&object!=chosen)cityName(c,(World.City)object,false,detail);
-        if(detail)for(Object object:visibleObjects)if(object instanceof World.Unit){
+        if(detail&&!openingPreview)for(Object object:visibleObjects)if(object instanceof World.Unit){
             World.Unit u=(World.Unit)object;if(replayHides(u))continue;if(u instanceof Domestic.Mission&&!((Domestic.Mission)u).transport)continue;
             boolean active=u.id==moving;World.Officer officer=officerIndex.get(u.officerId);if(officer==null)continue;
             String relation=u.owner==world.player?"我":world.campaign.hostile(world.player,u.owner)?"敌":"友";
@@ -665,9 +668,12 @@ public final class MapView extends View {
     private void cityName(Canvas c,World.City city,boolean active,boolean detail){
         float sx=x(city.hex)*camera.scale+camera.x,sy=y(city.hex)*camera.scale+camera.y;
         if(sx<0||sy<0||sx>getWidth()||sy>getHeight())return;
-        String name=cityNames.get(city.id);
+        if(openingPreview&&(city.owner<0||previewLabels.contains(city.owner)))return;
+        String name=siteLabel(city);
+        int before=lastLabels;
         placeLabel(c,name,sx,sy+Math.max(8*density,16*camera.scale),active?GOLD:PAPER,city.id);
-        if(active&&detail)placeLabel(c,"金 "+city.gold+" · 粮 "+city.food+" · 兵 "+city.troops,sx,sy+Math.max(8*density,16*camera.scale)+25*density,PAPER,-1);
+        if(openingPreview&&lastLabels>before)previewLabels.add(city.owner);
+        if(active&&detail&&!openingPreview)placeLabel(c,"金 "+city.gold+" · 粮 "+city.food+" · 兵 "+city.troops,sx,sy+Math.max(8*density,16*camera.scale)+25*density,PAPER,-1);
     }
     private void placeLabel(Canvas c,String text,float sx,float sy,int color,int cityId){
         float fontSize=11*getResources().getDisplayMetrics().scaledDensity;

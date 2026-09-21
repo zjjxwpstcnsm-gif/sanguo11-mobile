@@ -10,7 +10,7 @@ public final class Logistics {
     }
     public static int foodUse(World w,World.Unit unit){
         if(unit instanceof Domestic.Mission&&!((Domestic.Mission)unit).transport)return 0;
-        int base=baseUse(unit.troops,unit instanceof Domestic.Mission);
+        int base=baseUse(unit.troops+unit.wounded,unit instanceof Domestic.Mission);
         return base==0?0:w.fieldworks.foodUse(unit,base);
     }
     /** Complete funded turns, assuming unchanged troop count and current supply auras. */
@@ -19,7 +19,7 @@ public final class Logistics {
     public static int deserters(int troops){return troops<=0?0:Math.min(troops,Math.max(1,troops/10));}
     public static String describe(World w,World.Unit u){
         int use=foodUse(w,u);
-        return "旬耗粮 "+use+" · "+(use==0?"无兵员粮耗":"携粮可支撑 "+turns(u.food,use)+" 旬")
+        return "战兵 "+u.troops+" · 伤兵 "+u.wounded+"（入城立即归队）\n旬耗粮 "+use+" · "+(use==0?"无兵员粮耗":"携粮可支撑 "+turns(u.food,use)+" 旬")
             +(use>u.food?" · 下次结算粮不足，逃兵10%（至少1兵）":"")+"\n按当前兵力与设施范围估算；兵力或位置变化后重算。";
     }
 }
