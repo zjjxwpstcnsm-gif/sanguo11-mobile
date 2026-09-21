@@ -12,14 +12,29 @@ final class TerrainTiles {
     private final Paint coast=new Paint(Paint.ANTI_ALIAS_FLAG);
     private final RectF destination=new RectF();
     private final Matrix transpose=new Matrix();
-    private static Bitmap sandFine;
+    private static final Bitmap[] SAND=new Bitmap[4];
+    private static int[][] overviewSamples;
     static synchronized void loadSand(android.content.Context context){
-        if(sandFine!=null)return;
-        try(java.io.InputStream input=context.getAssets().open("map/terrain-a063/sand-fine.webp")){
-            sandFine=BitmapFactory.decodeStream(input);
-            if(sandFine==null)throw new java.io.IOException("Cannot decode generated sand");
-        }catch(java.io.IOException error){throw new IllegalStateException("Generated sand resource missing",error);}
+        if(SAND[0]!=null)return;
+        String[] names={"fine","gravel","grass","ripple"};
+        Bitmap[] pending=new Bitmap[4];
+        int[][] old=VisualAssets.terrainSamples();
+        if(old==null)throw new IllegalStateException("Base terrain not loaded");
+        int[][] samples=java.util.Arrays.copyOf(old,20);
+        try{
+            for(int i=0;i<4;i++)try(java.io.InputStream input=context.getAssets().open("map/terrain-a063/sand-"+names[i]+".webp")){
+                Bitmap source=BitmapFactory.decodeStream(input);
+                if(source==null)throw new java.io.IOException("Cannot decode sand "+names[i]);
+                Bitmap small=Bitmap.createScaledBitmap(source,64,64,true);samples[16+i]=new int[4096];small.getPixels(samples[16+i],0,64,0,0,64,64);if(small!=source)small.recycle();
+                Bitmap tile=Bitmap.createBitmap(128,128,Bitmap.Config.ARGB_8888);Canvas canvas=new Canvas(tile);Path clip=new Path();
+                for(int c=0;c<6;c++){float x=64+TileGeometry.CORNER_X[c]*64.128f,y=64+TileGeometry.CORNER_Y[c]*64.128f;if(c==0)clip.moveTo(x,y);else clip.lineTo(x,y);}clip.close();canvas.clipPath(clip);
+                canvas.drawBitmap(source,null,new RectF(0,0,128,128),new Paint(Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG));source.recycle();pending[i]=tile;
+            }
+        }catch(java.io.IOException error){for(Bitmap b:pending)if(b!=null)b.recycle();throw new IllegalStateException("Generated sand resource missing",error);}
+        System.arraycopy(pending,0,SAND,0,4);overviewSamples=samples;
     }
+    static int[][] overviewSamples(){if(overviewSamples==null)throw new IllegalStateException("Sand not loaded");return overviewSamples;}
+    static long sandBytes(){long n=4L*4096*4;for(Bitmap b:SAND)if(b!=null)n+=b.getAllocationByteCount();return n;}
     TerrainTiles(){transpose.setValues(new float[]{0,1,0,1,0,0,0,0,1});}
     static int color(World.Terrain t){
         switch(t){
@@ -44,7 +59,7 @@ final class TerrainTiles {
         if(terrain==World.Terrain.VOID)return;
         int variant=Math.floorMod(q*31+r*17,3);
         World.Terrain ground=terrain==World.Terrain.ROAD?World.Terrain.PLAIN:terrain;
-        Bitmap tile=tiles[ground.ordinal()][variant];
+        Bitmap tile=ground==World.Terrain.SAND?SAND[TerrainArt.sandVariant(world,q,r)]:tiles[ground.ordinal()][variant];
         if(tile==null)tiles[ground.ordinal()][variant]=tile=create(ground,variant);
         destination.set(x-25,y-25,x+25,y+25);c.drawBitmap(tile,null,destination,paint);
         c.save();if(world.columnStaggered){c.translate(x,y);c.concat(transpose);c.translate(-x,-y);}
@@ -109,10 +124,7 @@ final class TerrainTiles {
         Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);Path hex=new Path();
         for(int i=0;i<6;i++){float x=TileGeometry.CORNER_X[i]*25.05f,y=TileGeometry.CORNER_Y[i]*25.05f;if(i==0)hex.moveTo(x,y);else hex.lineTo(x,y);}hex.close();c.clipPath(hex);
         c.drawColor(color(t));
-        if(t==World.Terrain.SAND){
-            if(sandFine==null)throw new IllegalStateException("Generated sand not loaded");
-            c.drawBitmap(sandFine,null,new RectF(-25,-25,25,25),paint);return bitmap;
-        }
+        if(t==World.Terrain.SAND)throw new IllegalStateException("Sand must use preloaded generated tiles");
         if(VisualAssets.terrainReady()&&t!=World.Terrain.VOID&&t!=World.Terrain.SAND){
             VisualAssets.texture(c,TerrainArt.ground(t),variant);return bitmap;
         }
