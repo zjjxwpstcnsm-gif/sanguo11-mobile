@@ -27,7 +27,11 @@ public final class MapTap57ProjectionTest {
                 check(h.r>=camera.firstRow(w.height,50)&&h.r<=camera.lastRow(w.height,50)&&h.q>=camera.firstColumn(h.r,w.width,50)&&h.q<=camera.lastColumn(h.r,w.width,50),"focused cell never culled");
             }
         }
-        check(TerrainArt.connection(World.Terrain.ROAD)==TerrainArt.Connection.ROAD,"ROAD has independent ground-only connection");
+        // v062 explicitly removes ordinary-road artwork, not its rule identity.
+        check(TerrainArt.connection(World.Terrain.ROAD)==TerrainArt.Connection.NONE,"ROAD has no dedicated ground connection overlay");
+        check(TerrainArt.ground(World.Terrain.ROAD)==World.Terrain.PLAIN,"ROAD and PLAIN share the exact visual ground identity");
+        check(TerrainConnections.road(World.Terrain.ROAD),"invisible ROAD still connects mountain paths and plank roads");
+        check(TerrainArt.connection(World.Terrain.MOUNTAIN_PATH)==TerrainArt.Connection.MOUNTAIN_PATH,"mountain-path appearance is not removed with ordinary roads");
         check(TerrainArt.connection(World.Terrain.PLANK_ROAD)==TerrainArt.Connection.PLANK,"plank retains elevated deck");
         check(TerrainArt.ground(World.Terrain.DAM)==World.Terrain.SHALLOWS,"dam physical body drawn only by entity");
         for(int mask=0;mask<64;mask++) {
@@ -35,6 +39,11 @@ public final class MapTap57ProjectionTest {
             w.terrain[2][2]=World.Terrain.ROAD;
             for(int d=0;d<6;d++)if((mask&(1<<d))!=0)w.terrain[2+TerrainConnections.DQ[d]][2+TerrainConnections.DR[d]]=World.Terrain.ROAD;
             check(TerrainConnections.mask(w,2,2)==mask,"all64 connection masks");
+            // Mixed intersections must keep the same six-way mask after ROAD becomes invisible.
+            w.terrain[2][2]=World.Terrain.MOUNTAIN_PATH;
+            check(TerrainConnections.mask(w,2,2)==mask,"all64 mountain-path to invisible-ROAD masks");
+            w.terrain[2][2]=World.Terrain.PLANK_ROAD;
+            check(TerrainConnections.mask(w,2,2)==mask,"all64 plank to invisible-ROAD masks");
             for(int d=0;d<6;d++) {
                 int opposite=(d+3)%6;
                 float nx=TileGeometry.x(TerrainConnections.DQ[d],TerrainConnections.DR[d],0),ny=TileGeometry.y(TerrainConnections.DR[d]);
