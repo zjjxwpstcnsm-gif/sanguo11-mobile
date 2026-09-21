@@ -42,7 +42,7 @@ final class Road62Probe extends MapTap57Harness {
                 List<Hex> roads=new ArrayList<>();
                 for(int q=0;q<w.width;q++)for(int r=0;r<w.height;r++){
                     Hex h=new Hex(q,r);
-                    if(w.sourceInside(h)&&w.terrain[q][r]==World.Terrain.ROAD&&w.war.at(h)==null&&!occupied(w,h))roads.add(h);
+                    if(w.sourceInside(h)&&w.terrain[q][r]==World.Terrain.ROAD&&!occupied(w,h))roads.add(h);
                 }
                 require(!roads.isEmpty(),"actual ROAD exists in "+id);
                 Set<Integer> variants=new HashSet<>();
@@ -79,8 +79,8 @@ final class Road62Probe extends MapTap57Harness {
     }
     private static boolean occupied(World w,Hex h){
         for(World.City city:w.cities)for(Hex cell:SiteFootprint.cells(city))if(cell.equals(h))return true;
-        for(Army.Unit unit:w.army.units)if(unit.hex.equals(h))return true;
-        return false;
+        // World.unitAt covers the actual combat-unit and transport containers.
+        return w.unitAt(h)!=null;
     }
     private void tileComparison(World w,Hex h,int variant)throws Exception{
         Bitmap[] pair=new Bitmap[2];
