@@ -2,7 +2,7 @@ name: Corners61 exact source APK install and publication
 on:
   push:
     branches: [agent/map-corners-boundary-v061]
-    paths: [.github/workflows/corners61-delivery.yml]
+    paths: [.github/workflows/corners61-delivery.yml, app/src/androidTest/java/game/sanguo/mobile/Reference61Probe.java]
 permissions:
   contents: write
   actions: read
