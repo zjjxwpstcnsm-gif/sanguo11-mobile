@@ -1,0 +1,18 @@
+{
+  "source_sha": "b67c14718ce3c9bbeb354482a99a66c918067d84",
+  "workflow_bootstrap_sha": "b67c14718ce3c9bbeb354482a99a66c918067d84",
+  "versionName": "0.59.0",
+  "versionCode": 59,
+  "sha256": "9b3bb71444b50add045c8b8113c013f4ab7bc6aeaa0492c7e1e9be8c9b5672a8",
+  "bytes": 22335187,
+  "native_map_revision": 59,
+  "map_sha256": "50ea7331d5b0a70cdb469ace3657f15f949ff645ea0e5f1d7255efab9c188cd3",
+  "city_pngs": 30,
+  "city_art_revision": 56,
+  "save_codec": 31,
+  "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+  "download_verified": true,
+  "same_bytes_as_installed": true,
+  "run_url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35523920466",
+  "apk_url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/releases/download/v0.59.0-b67c14718ce3/sanguo11-mobile-v0.59.0-b67c14718ce3.apk"
+}

@@ -40,6 +40,6 @@ The old PortReplay v47 fixture put a one-cell fake city over a water unit and ad
 
 ## Final installed acceptance status
 
-IN PROGRESS at this functional source commit: build the final pushed059 source, install that exact APK, run Reference59Probe plus retained Native56Probe, inspect paired screenshots, and publish standalone APK. Final run/APK identity and step outcomes are delivered in Release metadata and the PR completion comment; do not reuse058 results as059 acceptance.
+DONE — final v059 result rechecked during v060: source `b67c14718ce3c9bbeb354482a99a66c918067d84`, successful source/core/build/installed/publication run [35523920466](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35523920466), version0.59.0/code59, APK SHA256 `9b3bb71444b50add045c8b8113c013f4ab7bc6aeaa0492c7e1e9be8c9b5672a8`, 22,335,187 bytes. Release download was verified byte-identical to the installed APK. `final-publication.json` is the actual retrieved metadata. The prior IN PROGRESS text was stale pre-build documentation, not an unbuilt v059 release.
 
 Reference59Probe samples both national scenarios and both crop edges/corners, current Q/M fixes, retained ROAD/D/B, real neutral fixtures, LOD/pan/pinch, minimap/territory, four actual old058 saves and an actual MOVE command beside the reviewed Yongan channel. Synthetic entity/march setups are explicitly labelled and confined to androidTest. Native56Probe separately covers actual sortie/city transit/entry/combat/next turn/save. No physical ARM result or full historical CI pass is claimed.

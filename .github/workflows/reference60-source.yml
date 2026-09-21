@@ -1,0 +1,33 @@
+name: Reference60 verified source export
+on:
+  push:
+    branches: [agent/water-map-finalization-v060]
+    paths: [.github/workflows/reference60-source.yml]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Export exact inherited tree without replaying any transfer patches
+        shell: bash
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor origin/main HEAD
+          mkdir -p out
+          git rev-parse origin/main > out/BASE_COMMIT
+          git rev-parse origin/main^{tree} > out/BASE_TREE
+          git rev-parse HEAD > out/EXPORT_COMMIT
+          git archive --format=zip -o out/source.zip origin/main
+          sha256sum out/source.zip > out/SHA256SUMS
+          stat --printf='%s bytes\n' out/source.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: reference60-main-source
+          path: out
+          retention-days: 7
+          if-no-files-found: error

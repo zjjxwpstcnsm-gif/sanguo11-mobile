@@ -1,0 +1,52 @@
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO huangjin-184 corrected=109 natural=0 old58Preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO coalition-190 corrected=109 natural=0 old58Preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO warlords-194 corrected=109 natural=0 old58Preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO guandu-200 corrected=109 natural=0 old58Preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO chibi-207 corrected=109 natural=0 old58Preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO heroes-250 corrected=109 natural=0 old58Preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO heroes-mobile-sandbox corrected=109 natural=0 old58Preserved=true
+REFERENCE59 SCENARIO central-mobile-sandbox corrected=74 natural=0 old58Preserved=true
+REFERENCE59 SCENARIO jingxiang-mobile-sandbox corrected=75 natural=0 old58Preserved=true
+REFERENCE59 CORE PASS: 210006
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE60 SCENARIO huangjin-184 revised=987 padding=19800 old58/59-preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE60 SCENARIO coalition-190 revised=987 padding=19800 old58/59-preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE60 SCENARIO warlords-194 revised=987 padding=19800 old58/59-preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE60 SCENARIO guandu-200 revised=987 padding=19800 old58/59-preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE60 SCENARIO chibi-207 revised=987 padding=19800 old58/59-preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE60 SCENARIO heroes-250 revised=987 padding=19800 old58/59-preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE60 SCENARIO heroes-mobile-sandbox revised=987 padding=19800 old58/59-preserved=true
+REFERENCE60 SCENARIO central-mobile-sandbox revised=140 padding=11704 old58/59-preserved=true
+REFERENCE60 SCENARIO jingxiang-mobile-sandbox revised=210 padding=8844 old58/59-preserved=true
+REFERENCE60 RAW OLD APK SAVES NOT RUN locally: baseline artifacts required
+REFERENCE60 CORE PASS: 4203620 + inherited directed water/port/site checks=54026
+PASS v47: 1418 port, AI, capture and journal assertions
+MAP57 PROJECTION/ART PASS: 1986739
+REFERENCE58 RASTER coalition-190 400x401 painted=154916
+REFERENCE58 RASTER heroes-250 400x401 painted=154916
+REFERENCE58 RASTER central-mobile-sandbox 308x193 painted=59128
+REFERENCE58 RASTER jingxiang-mobile-sandbox 268x233 painted=62136
+REFERENCE58 RASTER m0-skirmish 42x18 painted=612
+REFERENCE58 RASTER m0-skirmish 35x18 painted=612
+REFERENCE58 PROJECTION PASS: 1525032
+REFERENCE60 WATER VISUAL JOINS coalition-190 4148; no movement permission inferred
+REFERENCE60 WATER VISUAL JOINS heroes-250 4148; no movement permission inferred
+REFERENCE60 WATER VISUAL JOINS central-mobile-sandbox 690; no movement permission inferred
+REFERENCE60 WATER VISUAL JOINS jingxiang-mobile-sandbox 599; no movement permission inferred
+REFERENCE60 PROJECTION PASS: 12700
+REFERENCE60 DATA PASS: {'unique_modified_national_cells': 987, 'transitions': {'V->Q': 987}, 'surface_evidence_counts': {'CONFIRMED_VISIBLE': 987}, 'original_navigation_evidence_counts': {'UNRESOLVED': 987}, 'axial_padding': 19800} remaining VOID= 1271
+REFERENCE60 GUARDS PASS: 24 negative cases; strict regional allowlist, full hashes, preimages, reference/evidence, protected objects, idempotency and inherited ledgers
+PASS: 50 pinned map/art resources in source
