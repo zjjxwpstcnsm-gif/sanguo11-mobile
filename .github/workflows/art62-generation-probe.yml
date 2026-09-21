@@ -1,0 +1,60 @@
+name: Art62 actual image generation representative probe
+on:
+  push:
+    branches: [agent/void-road-generated-art-v062]
+    paths: [.github/workflows/art62-generation-probe.yml]
+permissions:
+  contents: read
+jobs:
+  generation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install Pillow==11.3.0
+      - name: Generate real representative mother files, not procedural stand-ins
+        env:
+          POLLINATIONS_TOKEN: ${{ secrets.POLLINATIONS_TOKEN }}
+          AGNES_API_KEY: ${{ secrets.AGNES_API_KEY }}
+        run: |
+          mkdir -p out/generation
+          python3 - <<'PY'
+          import os,json,time,hashlib,urllib.request,urllib.parse,datetime,io
+          from pathlib import Path
+          from PIL import Image
+          out=Path('out/generation');records=[]
+          common='Historical Chinese Three Kingdoms strategy game 2.5D environment sprite, orthographic view from southeast looking down at 30 degrees, natural soft light from upper left, muted desaturated earth and grey-green tiles, realistic weathered materials and tiny fine details, coherent architecture. '
+          prompts={
+           'standard':common+'One complete compact ancient Chinese walled city, enclosing continuous stone and rammed-earth city wall with front city gate, small grey tiled roofs in courtyards, restrained administrative building, no giant palace. Whole city visible centered with generous empty margins. Single isolated object on a perfectly plain solid white background. City walls enclose the ground; absolutely no surrounding landscape, mountains, sea, platform, raised plinth, hex base, grid, captions, text, flag, UI, decorative border or people. Not cartoon, not plastic, not low-poly.',
+           'sand-fine':'Seamless full-frame overhead ground texture for a realistic historical strategy game, flat fine compact beige sand with subtly varied small grains, restrained weathering, very low relief, muted grey tan low-saturation palette, diffuse soft light from upper left, consistent illumination without a central hotspot. Texture fills every pixel edge to edge, no perspective horizon, no object, no frame, no hexagon, no giant dune, no text, no UI, no rocks larger than tiny gravel.'
+          }
+          (out/'capabilities.json').write_text(json.dumps({'agnes_key_configured':bool(os.environ.get('AGNES_API_KEY')),'pollinations_key_configured':bool(os.environ.get('POLLINATIONS_TOKEN'))},indent=2))
+          for key,prompt in prompts.items():
+           params={'width':1024,'height':1024,'model':'flux','seed':620001 if key=='standard' else 620002,'private':'true','nologo':'true','enhance':'false'}
+           url='https://image.pollinations.ai/prompt/'+urllib.parse.quote(prompt,safe='')+'?'+urllib.parse.urlencode(params)
+           item={'key':key,'provider':'Pollinations','model':'flux','prompt':prompt,'parameters':params,'requested_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':'REQUESTED'}
+           records.append(item)
+           headers={'User-Agent':'sanguo11-mobile-art-pipeline/0.62','Accept':'image/*'}
+           if os.environ.get('POLLINATIONS_TOKEN'):headers['Authorization']='Bearer '+os.environ['POLLINATIONS_TOKEN']
+           for attempt in range(2):
+            try:
+             with urllib.request.urlopen(urllib.request.Request(url,headers=headers),timeout=180) as r:
+              data=r.read();item['http_status']=r.status;item['content_type']=r.headers.get('content-type')
+             image=Image.open(io.BytesIO(data));image.load();assert min(image.size)>=512
+             file=key+'.'+('png' if image.format=='PNG' else 'jpg');(out/file).write_bytes(data)
+             item.update(status='GENERATED_FILE_OBTAINED_NOT_YET_APPROVED',file=file,size=list(image.size),sha256=hashlib.sha256(data).hexdigest(),bytes=len(data));break
+            except Exception as e:
+             item['status']='BLOCKED';item['error']=type(e).__name__+': '+str(e);time.sleep(20)
+           (out/'generation-record.json').write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+           time.sleep(16)
+          assert all(x['status']=='GENERATED_FILE_OBTAINED_NOT_YET_APPROVED' for x in records),'Real image generation failed; do not claim generated art exists'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: art62-generated-representatives
+          path: out/generation
+          retention-days: 14
