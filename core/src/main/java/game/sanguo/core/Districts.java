@@ -83,7 +83,7 @@ public final class Districts {
         Set<Integer> ids=new HashSet<>();int own=0;for(World.City c:w.cities)if(c.owner==w.active)own++;
         if(members.length>=own)return "第一军团必须保留至少一个据点";
         for(int member:members){World.City c=w.city(member);District other=city(member);
-            if(c==null||c.owner!=w.active||!ids.add(member)||other!=null&&other!=prior)return "据点重复、归属错误或已编入其他军团";
+            if(c==null||c.kind!=World.SiteKind.CITY||c.owner!=w.active||!ids.add(member)||other!=null&&other!=prior)return "只能选择己方城池，且不得重复或已编入其他军团；港口和关卡随所属城池托管";
             for(World.Officer o:w.officers)if(o.owner==w.active&&o.role==Strategy.Role.RULER&&o.cityId==member)return "君主所在据点应保留在第一军团";
         }
         boolean direct=false;for(World.City c:w.cities)if(c.owner==w.active&&!ids.contains(c.id)&&(city(c.id)==null||city(c.id)==prior))direct=true;
