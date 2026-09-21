@@ -116,6 +116,18 @@ final class Reference61Probe extends Reference60Probe {
   MarchOrders.Plan bad=(MarchOrders.Plan)field(activity,"pendingMarch");require(bad!=null&&!bad.valid()&&!button(activity.getWindow().getDecorView(),"确认任务").isEnabled(),"actual new61 Q cannot be confirmed as path/target");shot("v061-new-water-march-rejected");click("取消");
   focus(destination,3.4f);click("行军");tap(destination);MarchOrders.Plan plan=(MarchOrders.Plan)field(activity,"pendingMarch");require(plan!=null&&plan.valid(),"existing adjacent land remains reachable");
   require(plan.label.contains(MapCoordinates.display(world(),destination)),"march title now national source, same as terrain detail");shot("v061-source-coordinate-march-preview");click("确认任务");
-  require(world().unit(id).hex.equals(destination),"actual legal march completed beside new v061 region");World saved=SaveCodec.decode(readInternal("auto.sg11"));require(saved.mapRevision==61&&saved.unit(id).hex.equals(destination),"real autosave preserves current terrain and position");launch(saved);pick(destination,3.4f,"post-exit reload regional unit");shot("v061-regional-march-reloaded");
+  require(world().unit(id).hex.equals(destination),"actual legal march completed beside new v061 region");World saved=SaveCodec.decode(readInternal("auto.sg11"));require(saved.mapRevision==61&&saved.unit(id).hex.equals(destination),"real autosave preserves current terrain and position");launch(saved);
+  require(world().unit(id)!=null&&world().unit(id).hex.equals(destination),"reloaded actual unit retains its saved source position");
+  require("select".equals(field(activity,"unitCommand")),"completed march is not restored as an unfinished command");
+  ClientState restoredUi=(ClientState)field(activity,"ui");
+  report.append("RELOADED UNIT SELECTION: selected="+field(activity,"selected")+" selectedUnit="+restoredUi.selectedUnit+" expectedUnit="+id+"\n");
+  // Production restores matching UI hints. A tap on an already-selected unit deliberately toggles it off.
+  if(destination.equals(field(activity,"selected"))&&restoredUi.selectedUnit==id){
+   focus(destination,3.4f);navigator(false);tap(destination);
+   require(field(activity,"selected")==null&&((ClientState)field(activity,"ui")).selectedUnit==-1,"real tap toggles restored unit selection off");
+  }
+  pick(destination,3.4f,"post-exit reload regional unit");
+  require(((ClientState)field(activity,"ui")).selectedUnit==id,"real map tap selects exact reloaded unit identity");
+  shot("v061-regional-march-reloaded");
  }
 }
