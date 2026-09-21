@@ -9,7 +9,8 @@ final class TerrainArt {
     private TerrainArt() {}
     static Connection connection(World.Terrain terrain) {
         return switch (terrain) {
-            case ROAD -> Connection.ROAD;
+            // ROAD is a rule identity only; its ground is indistinguishable from PLAIN.
+            case ROAD -> Connection.NONE;
             case MOUNTAIN_PATH -> Connection.MOUNTAIN_PATH;
             case PLANK_ROAD -> Connection.PLANK;
             default -> Connection.NONE;

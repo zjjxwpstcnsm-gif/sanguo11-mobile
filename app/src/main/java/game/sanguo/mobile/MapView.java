@@ -431,7 +431,7 @@ public final class MapView extends View {
             boolean exterior=world.terrain[q][r]==World.Terrain.VOID;
             if(detail)terrainTiles.draw(canvas,world,q,r,cx,cy);
             else {polygon(cx,cy,RADIUS-.3f);fill(canvas,TerrainTiles.color(t));}
-            if(!exterior&&!TerrainConnections.road(t)){polygon(cx,cy,RADIUS-.3f);stroke(canvas,Color.argb(40,13,37,35),.7f);}
+            if(!exterior&&TerrainArt.connection(t)==TerrainArt.Connection.NONE){polygon(cx,cy,RADIUS-.3f);stroke(canvas,Color.argb(40,13,37,35),.7f);}
             if(!exterior)drawTerritory(canvas,q,r,cx,cy,scale);
         }
         if(detail&&territoryMode>0){
