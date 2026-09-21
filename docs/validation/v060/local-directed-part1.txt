@@ -1,0 +1,49 @@
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+coalition-190 source=200x200 padding=19800 counts={PLAIN=6989, FOREST=6929, MOUNTAIN=9320, WATER=5397, MOUNTAIN_PATH=161, SHALLOWS=2, PLANK_ROAD=158, POISON=179, VOID=1271, SWAMP=5, SAND=1168, ROAD=7280, NON_NAVIGABLE_WATER=1141} structures=0
+heroes-250 source=200x200 padding=19800 counts={PLAIN=6989, FOREST=6929, MOUNTAIN=9320, WATER=5397, MOUNTAIN_PATH=161, SHALLOWS=2, PLANK_ROAD=158, POISON=179, VOID=1271, SWAMP=5, SAND=1168, ROAD=7280, NON_NAVIGABLE_WATER=1141} structures=0
+central-mobile-sandbox source=154x96 padding=11704 counts={PLAIN=2908, FOREST=2697, MOUNTAIN=2294, WATER=3523, MOUNTAIN_PATH=20, PLANK_ROAD=25, VOID=2, SAND=314, ROAD=2742, NON_NAVIGABLE_WATER=259} structures=0
+jingxiang-mobile-sandbox source=134x116 padding=8844 counts={PLAIN=2995, FOREST=2900, MOUNTAIN=4027, WATER=1813, MOUNTAIN_PATH=13, SHALLOWS=2, PLANK_ROAD=72, POISON=74, VOID=10, SWAMP=5, SAND=34, ROAD=3313, NON_NAVIGABLE_WATER=286} structures=0
+MAP57 CORE PASS: 672002
+LegacyMapCoordinateCheckpointTest PASS: 1168801 assertions; 40000 source slots; odd-r six-direction topology. Terrain/map revision NOT certified.
+MapCoordinateTest PASS cumulative=898305
+MapBoundsTest PASS cumulative=918115
+SiteFootprintTest PASS cumulative=918583
+SiteOverlapTest PASS cumulative=920105
+NationalSiteCountTest PASS cumulative=920106
+ScenarioNationalMapTest PASS cumulative=1230453
+SaveMapRevisionTest PASS cumulative=1230457
+CityArtCatalogTest PASS cumulative=1230501
+NoLegacyCityFallbackTest PASS cumulative=1230589
+NATIVE56 PASS total=1230589
+GUANLUO55 PASS: connected regional roads, single-tile gate seals, Mengjin bank and all 591 plots built
+MAP55 huangjin-184 sites=87 cities=42 load+save_ms=159
+MAP55 coalition-190 sites=87 cities=42 load+save_ms=170
+MAP55 warlords-194 sites=87 cities=42 load+save_ms=198
+MAP55 guandu-200 sites=87 cities=42 load+save_ms=209
+MAP55 chibi-207 sites=87 cities=42 load+save_ms=96
+MAP55 heroes-250 sites=87 cities=42 load+save_ms=97
+MAP55 heroes-mobile-sandbox sites=87 cities=42 load+save_ms=122
+MAP55 central-mobile-sandbox sites=42 cities=18 load+save_ms=31
+MAP55 jingxiang-mobile-sandbox sites=28 cities=12 load+save_ms=38
+TURN55 heroes-250 turn=1 ms=4880
+TURN55 heroes-250 turn=2 ms=6210
+TURN55 heroes-250 turn=3 ms=3261
+CITY55 PASS: 11070 checks (formal movement, garrison, combat, AI, maps, turns and saves)
+REFERENCE58 SCENARIO huangjin-184 source=40000 padding=19800 blockedWater=1141 natural=0
+REFERENCE58 SCENARIO coalition-190 source=40000 padding=19800 blockedWater=1141 natural=0
+REFERENCE58 SCENARIO warlords-194 source=40000 padding=19800 blockedWater=1141 natural=0
+REFERENCE58 SCENARIO guandu-200 source=40000 padding=19800 blockedWater=1141 natural=0
+REFERENCE58 SCENARIO chibi-207 source=40000 padding=19800 blockedWater=1141 natural=0
+REFERENCE58 SCENARIO heroes-250 source=40000 padding=19800 blockedWater=1141 natural=0
+REFERENCE58 SCENARIO heroes-mobile-sandbox source=40000 padding=19800 blockedWater=1141 natural=0
+REFERENCE58 SCENARIO central-mobile-sandbox source=14784 padding=11704 blockedWater=259 natural=0
+REFERENCE58 SCENARIO jingxiang-mobile-sandbox source=15544 padding=8844 blockedWater=286 natural=0
+REFERENCE58 CAMP REGRESSION PASS: occupied camp roundtrip; Q/M/W/SEA rejected; all18 scenarios valid
+REFERENCE58 CORE PASS: 3301543 actualLegacyFiles=false
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO huangjin-184 corrected=109 natural=0 old58Preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO coalition-190 corrected=109 natural=0 old58Preserved=true

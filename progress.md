@@ -1,10 +1,23 @@
+# v0.60 — 批量水面恢复 / 岸线与通行验收
+
+- DONE: actual latest-main tree and uploaded original fingerprint verified; all54 nonempty v059 VOID blocks, 42 city and45 gate/port neighborhoods reviewed.
+- DONE:987 unique V→Q (504 eastern gridded sea +483 inland water); full strict per-cell ledger, source revision60 and exact map SHA. No old corrections recounted, no W made Q, no raw reference redistributed.
+- DONE: remaining1271 VOID individually classified; source topology/internal357/boundary914 is not a defect/legality count. Padding19800 separate. Old7 candidates:2 surface-only resolutions,5 retained; old26 estimates not counted again.
+- DONE: actual Q invalid-origin cost failure reproduced and fixed in common Army movement/entry query; port/research/ship rules preserved. Local directed models, mixed terrain/water projection, protected sites/plots, saves and24 apply-guard negative cases passed.
+- DONE: exact published059 APK four-scenario baseline sampling run35549692460 passed and generated raw old saves/before screenshots.
+- IN PROGRESS: final-source APK build, exact signed in-place install, current MapView/gameplay probes, true58/59 old-save encoder comparison, screenshot review and independent APK publication.
+- TODO: original navigation permissions, remaining outline/occlusion/subtype evidence and physical ARM/full historical CI. No nationwide100% claim.
+- BLOCKER (local environment only): no direct GitHub network/Android SDK; connected Actions are the active delivery path, not a reason to stop.
+
+---
+
 # v0.59 — five regional corrections / water and interaction acceptance
 
 - DONE: main894fb377 tree verified, original reference fingerprint actually read; exact released058 APK four-scenario baseline run35521913246 passed with raw saves and paired-coordinate screenshots.
 - DONE:109 new unique source cells in five regions (85 V→Q,24 R→M), strict reversible ledger, source revision59 and exact digest; D161/B158/H0 unchanged. VOID2258/internal803/boundary1455; padding19800 separately retained.
 - DONE: 26 prior estimates reviewed separately, no geographical edits/promotions overall; full national priority index and219 unresolved VOID components. No blanket fill, original navigation claims or invented cache fix.
 - DONE: model/coordinate/gameplay/water checks locally pass, including all9 scenarios, old58 geography preservation, city topology, dock-only W/SEA access, Difficult March prerequisite, Q exclusion, actual CampaignAi transit and1,418 port/replay assertions. Updated invalid pre-seven-cell test fixtures after reproducing the same failure on untouched058.
-- IN PROGRESS: push final functional source, exact APK build/install/screenshot review and standalone Release publication; final identity/outcomes will be recorded in PR and Release metadata.
+- DONE (v060 rechecked final v059 addendum): source b67c14718ce3, installed/published run35523920466, APK9b3bb71444b50add045c8b8113c013f4ab7bc6aeaa0492c7e1e9be8c9b5672a8; details in docs/validation/v059/final-publication.json.
 - TODO:2258 remaining source VOID, unresolved prior sand/ground/navigation evidence; ARM physical devices; full historical CI outside directed lane.
 - BLOCKER: local direct network and Android SDK unavailable; using connected GitHub Actions for actual commit/push/build/install, not deferring execution.
 

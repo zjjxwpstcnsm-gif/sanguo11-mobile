@@ -1,0 +1,12 @@
+{
+  "inherited_review": "data/map/reference-v059/prior-estimates-review.json",
+  "total": 26,
+  "new_terrain_changes": 0,
+  "new_evidence_promotions": 0,
+  "surface_support_already_inherited": 8,
+  "surface_and_navigation_confirmed": 0,
+  "still_unconfirmed_land_subtypes_near_ye": 9,
+  "still_unconfirmed_northwest_sand": 9,
+  "navigation_unresolved_for_inherited_surface_supported_Q": 8,
+  "note": "Not recounted as v060 new geography; northwest title/mountain review does not establish the old sand subtype."
+}

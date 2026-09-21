@@ -81,9 +81,14 @@ public final class Army {
         return terrainMoveCost(u,from,to,cache);
     }
     private int terrainMoveCost(World.Unit u, Hex from, Hex to,MovementCosts cache) {
-        if (((u instanceof Domestic.Mission) && !((Domestic.Mission) u).sea && water(to)) || to == null || !this.w.inside(to) || (this.w.terrain[to.q][to.r] == World.Terrain.MOUNTAIN || this.w.terrain[to.q][to.r] == World.Terrain.NON_NAVIGABLE_WATER)) {
-            return -1;
-        }
+        // A query must not use valid-looking but blocked water as a phantom origin.
+        // This also covers entryCost (explicit garrison) and source VOID/axial padding.
+        // Existing legal land/naval edges and old-save unit positions are unchanged.
+        if (u == null || from == null || to == null || !w.inside(from) || !w.inside(to)) return -1;
+        if (w.terrain[from.q][from.r] == World.Terrain.NON_NAVIGABLE_WATER ||
+            w.terrain[to.q][to.r] == World.Terrain.NON_NAVIGABLE_WATER ||
+            w.terrain[to.q][to.r] == World.Terrain.MOUNTAIN ||
+            ((u instanceof Domestic.Mission) && !((Domestic.Mission) u).sea && water(to))) return -1;
         if (!water(from) && !water(to) && this.w.gateBlocks(u.owner, from, to)) {
             return -1;
         }

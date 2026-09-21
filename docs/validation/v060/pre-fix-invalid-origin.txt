@@ -1,0 +1,3 @@
+Exception in thread "main" java.lang.AssertionError: Q cannot be an invalid route origin/intermediate
+	at game.sanguo.core.Reference60Test.check(Reference60Test.java:10)
+	at game.sanguo.core.Reference60Test.main(Reference60Test.java:52)
