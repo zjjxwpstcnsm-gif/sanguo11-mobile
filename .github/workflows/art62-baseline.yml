@@ -1,0 +1,130 @@
+name: Art62 exact v061 installed baseline
+on:
+  push:
+    branches: [agent/void-road-generated-art-v062]
+    paths: [.github/workflows/art62-baseline.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: a74955a3f6cb3f4ffcfa612d287b730362938da5
+          fetch-depth: 0
+      - name: Export actual inherited source
+        run: |
+          mkdir -p out/source
+          git rev-parse HEAD > out/source/BASE_COMMIT
+          git archive --format=zip -o out/source/source.zip HEAD
+          sha256sum core/src/main/resources/maps/national-map-v056.properties core/src/main/resources/maps/national-exterior-v061.properties > out/source/MAP_SHA256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: art62-inherited-main-source
+          path: out/source
+          retention-days: 7
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Compile test-only sampler; keep released production APK unchanged
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release download v0.61.0-9ad16d82c5a3 -R zjjxwpstcnsm-gif/sanguo11-mobile -p '*.apk' -D out
+          apk=$(find out -maxdepth 1 -name '*.apk')
+          echo "279290bc30c1c5f7e5f8b9d4b12d2cde951f8382cf975f71a585e2641d2d6905  $apk" | sha256sum -c -
+          sha256sum "$apk" > out/BASELINE_APK_SHA256
+          cat > app/src/androidTest/java/game/sanguo/mobile/Art62BaselineProbe.java <<'JAVA'
+          package game.sanguo.mobile;
+          import android.app.Instrumentation;
+          import game.sanguo.core.*;
+          import java.util.*;
+          import java.io.*;
+          final class Art62BaselineProbe extends MapTap57Harness {
+            Art62BaselineProbe(Instrumentation t){super(t);}
+            void run() throws Exception {
+              try {
+                int[][] holes={{18,24},{29,24},{30,24},{33,15},{34,15},{34,18},{35,14},{37,15},{37,20},{37,21},{37,22},{37,23},{37,24},{38,15}};
+                for(String id:new String[]{"coalition-190","heroes-250","central-mobile-sandbox","jingxiang-mobile-sandbox"}) {
+                  launch(ScenarioCatalog.load(id,id.endsWith("sandbox")?0:5,620L));
+                  World w=world();require(w.mapRevision==61,"released v061 map");
+                  byte[] original=SaveCodec.encode(w);navigator(false);
+                  int[][] centers={{28,20},{28,22},{185,174},{12,40},{28,55}};
+                  for(int[] s:centers) {
+                    Hex h=MapCoordinates.fromNationalSource(w,new SourceGridCoord(s[0],s[1]));
+                    if(!w.sourceInside(h))continue;
+                    for(float zoom:new float[]{.30f,.9f,3.4f}){
+                      focus(h,zoom);navigator(false);record(h,screen(h));
+                      shot("before-"+id+"-source-"+s[0]+"-"+s[1]+"-"+zoom);
+                    }
+                  }
+                  for(int[] s:holes){Hex h=MapCoordinates.fromNationalSource(w,new SourceGridCoord(s[0],s[1]));if(!w.sourceInside(h))continue;require(w.terrain[h.q][h.r]==World.Terrain.VOID,"old hole "+s[0]+","+s[1]);focus(h,3.4f);navigator(false);record(h,screen(h));shot("before-"+id+"-hole-"+s[0]+"-"+s[1]);}
+                  Set<String> keys=new HashSet<>();
+                  for(World.City city:w.cities){String key=CityArtCatalog.key(city);if(keys.add(key)){for(float zoom:new float[]{.3f,1.2f,3.4f}){focus(city.hex,zoom);navigator(false);shot("before-"+id+"-city-"+city.id+"-"+zoom);}}}
+                  ui(()->{camera().fit();map().invalidate();});settle();shot("before-"+id+"-national-fit");
+                  ui(()->map().setTerritoryMode(1));settle();shot("before-"+id+"-territory-fit");ui(()->map().setTerritoryMode(0));settle();
+                  require(Arrays.equals(original,SaveCodec.encode(w)),"baseline captures do not mutate world");
+                  try(OutputStream o=new FileOutputStream(new File(dir(),"baseline-v061-"+id+".sg11"))){o.write(original);}
+                }
+              }finally{flush("art62-baseline-checks.txt");}
+            }
+          }
+          JAVA
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('app/src/androidTest/java/game/sanguo/mobile/GameSmokeRunner.java');s=p.read_text();old='if(mapTap57){new MapTap57Probe(this).run();';assert old in s;p.write_text(s.replace(old,'if(mapTap57){new Art62BaselineProbe(this).run();'))
+          PY
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          ./gradlew --no-daemon :app:assembleDebugAndroidTest | tee out/build.txt
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install exact v061 and capture actual MapView
+        id: installed
+        continue-on-error: true
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          script: |
+            adb shell wm size 1080x2340
+            adb shell wm density 420
+            adb install -r $(find out -maxdepth 1 -name '*.apk')
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb logcat -b all -c
+            timeout 850 adb shell am instrument -w -e mapTap57 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner > out/instrumentation.txt
+            adb logcat -b all -d -v threadtime > out/logcat.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke out/android
+            grep -q 'MAP57 ANDROID PASS:' out/instrumentation.txt
+            if grep -q 'FATAL EXCEPTION' out/logcat.txt; then exit 1; fi
+      - name: Record result
+        if: always()
+        run: |
+          echo '${{ steps.installed.outcome }}' > out/BASELINE_INSTALLED_STATUS
+          rm -f out/*.apk
+          rm -rf out/source
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: art62-v061-installed-baseline
+          path: out
+          retention-days: 14
+      - name: Require installed baseline
+        if: always()
+        run: test '${{ steps.installed.outcome }}' = success
