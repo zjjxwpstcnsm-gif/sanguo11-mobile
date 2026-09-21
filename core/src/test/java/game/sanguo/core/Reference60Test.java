@@ -16,6 +16,7 @@ public final class Reference60Test {
     }
     /** Only test reconstruction, reversing actual terrain edits; never production migration. */
     static void restore59(World w)throws IOException {
+        if(w.mapRevision==61)Reference61Test.restore60(w);
         check(w.mapRevision==60,"only reverse a known revision60 test map");
         for(String[] c:changes()){
             Hex h=MapCoordinates.fromNationalSource(w,new SourceGridCoord(Integer.parseInt(c[0]),Integer.parseInt(c[1])));
@@ -24,13 +25,13 @@ public final class Reference60Test {
         w.mapRevision=59;
     }
     public static void main(String[] args)throws Exception {
-        check(NationalMap.REVISION==60&&CityArtCatalog.ASSET_REVISION==56,"independent map/art revisions");
+        check(NationalMap.REVISION==61&&CityArtCatalog.ASSET_REVISION==56,"independent map/art revisions");
         List<String[]> rows=changes();Set<SourceGridCoord> changed=new HashSet<>();
         for(String[] c:rows){check(changed.add(new SourceGridCoord(Integer.parseInt(c[0]),Integer.parseInt(c[1]))),"unique national source coordinate");check(c[2].equals("V")&&c[3].equals("Q"),"no existing water/rule change");}
         check(changed.size()==987,"987 new cells, not inherited109 or multiplied by eras");
         int scenarios=0,full=0,crops=0;
         for(ScenarioCatalog.Summary s:ScenarioCatalog.summaries()) {
-            World current=ScenarioCatalog.load(s.id,0,590L);World before=ScenarioCatalog.load(s.id,0,590L);restore59(before);
+            World current=ScenarioCatalog.load(s.id,0,590L);Reference61Test.restore60(current);World before=ScenarioCatalog.load(s.id,0,590L);restore59(before);
             int applied=0,padding=0;
             for(int q=0;q<current.width;q++)for(int r=0;r<current.height;r++) {
                 Hex h=new Hex(q,r);World.Terrain terrain=current.terrain[q][r];
@@ -60,12 +61,12 @@ public final class Reference60Test {
                 if(oldRevision==58)Reference59Test.restore58(before);
                 byte[] old=SaveCodec.encode(before);World loaded=SaveCodec.decode(old);
                 check(loaded.mapRevision==oldRevision&&Arrays.equals(old,SaveCodec.encode(loaded)),"old terrain/revision/units retained, never migrated");
-                check(NationalMap.compatibilityNotice(loaded).contains("修订60")&&MarchScale.base(loaded,7)==14,"new-game notice and old native200 march budget");
+                check(NationalMap.compatibilityNotice(loaded).contains("修订61")&&MarchScale.base(loaded,7)==14,"new-game notice and old native200 march budget");
             }
             System.out.println("REFERENCE60 SCENARIO "+s.id+" revised="+applied+" padding="+padding+" old58/59-preserved=true");scenarios++;
         }
         check(scenarios==9&&full==7&&crops==2,"all nine shipped scenarios");
-        for(int revision:new int[]{55,61,999}){World w=ScenarioCatalog.load("coalition-190",0,590L);w.mapRevision=revision;boolean rejected=false;try{SaveCodec.validate(w);}catch(IOException e){rejected=true;}check(rejected,"unknown revision explicitly rejected "+revision);}
+        for(int revision:new int[]{55,62,999}){World w=ScenarioCatalog.load("coalition-190",0,590L);w.mapRevision=revision;boolean rejected=false;try{SaveCodec.validate(w);}catch(IOException e){rejected=true;}check(rejected,"unknown revision explicitly rejected "+revision);}
         Reference59Test.waterEdges();invalidOrigins();rawOldSaves();
         System.out.println("REFERENCE60 CORE PASS: "+checks+" + inherited directed water/port/site checks="+Reference59Test.checks);
     }

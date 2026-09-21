@@ -11,16 +11,16 @@ import java.io.*;
 import java.util.*;
 
 /** Test APK only. Fresh shipped worlds, real window pointer dispatch and raw old saves. */
-final class Reference60Probe extends MapTap57Harness {
+class Reference60Probe extends MapTap57Harness {
     Reference60Probe(Instrumentation t){super(t);}
-    private Hex national(int x,int y)throws Exception{return MapCoordinates.fromNationalSource(world(),new SourceGridCoord(x,y));}
+    Hex national(int x,int y)throws Exception{return MapCoordinates.fromNationalSource(world(),new SourceGridCoord(x,y));}
     void run()throws Exception {
         try {
             oldSaves();
             normalNewGame();
             for(String id:new String[]{"coalition-190","heroes-250"}) {
                 launch(ScenarioCatalog.load(id,5,590L));World w=world();byte[] before=SaveCodec.encode(w);
-                require(w.mapRevision==60&&BuildConfig.VERSION_CODE==60,"fresh revision60 from this APK");
+                require(w.mapRevision==61&&BuildConfig.VERSION_CODE==61,"v060 retained regression on actual v061 APK");
                 require(w.war.structures().isEmpty(),"shipped natural dam count remains zero");
                 // Same coordinates/scales/seed as the exact released v059 APK baseline sampler.
                 for(int[] xy:new int[][]{{123,101},{124,40},{20,143},{42,101},{155,157},{196,55},{198,99},{196,24},{199,80},{52,65},{27,184},{113,143},{42,134},{47,134},{114,42},{26,1},{195,160},{168,163}}) {
@@ -79,8 +79,8 @@ final class Reference60Probe extends MapTap57Harness {
             report.append("TESTED APK "+BuildConfig.VERSION_NAME+"/"+BuildConfig.VERSION_CODE+" source="+BuildConfig.SOURCE_REVISION+"; API29 x86_64, not physical ARM.\n");
         } finally {flush("v060-installed-checks.txt");}
     }
-    private void oldSaves()throws Exception {
-        for(int revision:new int[]{58,59})for(String id:new String[]{"coalition-190","heroes-250","central-mobile-sandbox","jingxiang-mobile-sandbox"}) {
+    void oldSaves()throws Exception {
+        for(int revision:new int[]{58,59,60})for(String id:new String[]{"coalition-190","heroes-250","central-mobile-sandbox","jingxiang-mobile-sandbox"}) {
             File source=new File(test.getTargetContext().getExternalFilesDir(null),"legacy60/baseline-v0"+revision+"-"+id+".sg11");byte[] original;
             try(InputStream in=new FileInputStream(source);ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] b=new byte[16384];for(int n;(n=in.read(b))!=-1;)out.write(b,0,n);original=out.toByteArray();}
             World old=SaveCodec.decode(original);byte[] expected=SaveCodec.encode(old);
@@ -89,14 +89,15 @@ final class Reference60Probe extends MapTap57Harness {
             activity=(MainActivity)test.startActivitySync(new Intent(test.getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();ui(this::page);settle();
             require(world().mapRevision==revision&&Arrays.equals(expected,SaveCodec.encode(world())),"actual baseline APK raw save loads without terrain/units/cities migration "+id);
             Hex oldHole=national(123,101);
-            require(world().sourceInside(oldHole)&&world().terrain[oldHole.q][oldHole.r]==World.Terrain.VOID,"old black-channel terrain is not silently replaced");
+            require(world().sourceInside(oldHole)&&world().terrain[oldHole.q][oldHole.r]==(revision<60?World.Terrain.VOID:World.Terrain.NON_NAVIGABLE_WATER),"old real terrain retained exactly for each revision");
+            require(NationalExterior.surface(world(),national(0,0))==null,"v061 exterior never applied to actual older save");
             require(MarchScale.base(world(),7)==14,"old native200 movement budget retained");
             View notice=activity.getWindow().getDecorView().findViewWithTag("map.revision.notice");require(notice!=null&&notice.getVisibility()==View.VISIBLE,"old-map new-game notice visible");
             pick(new MapTap57Probe(test).find(world(),World.Terrain.ROAD,false),3.4f,"actual legacy ROAD");require(Arrays.equals(expected,SaveCodec.encode(world())),"legacy selection leaves canonical state unchanged");
             require(Arrays.equals(original,readInternal("manual1.sg11")),"original manual file is not overwritten/deleted");shot("v060-legacy-"+revision+"-"+id);
         }
     }
-    private void pick(Hex h,float scale,String label)throws Exception {
+    void pick(Hex h,float scale,String label)throws Exception {
         focus(h,scale);navigator(false);tap(h);require(h.equals(field(activity,"selected")),"actual MapView callback "+label+" -> "+h);
         World w=world();World.Unit unit=w.unitAt(h);World.City city=w.cityAt(h);Domestic.Facility facility=w.domestic.at(h);War.Structure structure=w.war.at(h);
         String expected=unit!=null?w.officer(unit.officerId).name:city!=null?city.name:facility!=null?facility.kind.label:structure!=null?structure.kind.label:TerrainPresentation.of(w.terrain[h.q][h.r]).name();
@@ -104,7 +105,7 @@ final class Reference60Probe extends MapTap57Harness {
         if(!panel.contains(expected))shot("v060-detail-failure");
         require(panel.contains(expected),"actual object-aware detail title "+expected);
     }
-    private void reject(Hex h,String label)throws Exception {
+    void reject(Hex h,String label)throws Exception {
         focus(h,3.4f);navigator(false);Object prior=field(activity,"selected");tap(h);
         Object actual=field(activity,"selected"),hit=field(map(),"touchHex");
         report.append("REJECT "+label+" prior="+prior+" actual="+actual+" MapView.touchHex="+hit+"\n");
@@ -112,7 +113,7 @@ final class Reference60Probe extends MapTap57Harness {
         require(hit==null,"MapView delivers null, never a VOID/padding or label target "+label);
         require(actual==null,"existing blank-map tap clears selection "+label);
     }
-    private void minimap(Hex target,Hex hole)throws Exception {
+    void minimap(Hex target,Hex hole)throws Exception {
         focus(target,3.4f);navigator(true);MapRaster raster=(MapRaster)field(map(),"miniRaster");RectF r=(RectF)field(map(),"miniRect");
         float expectedX=camera().centerX(),expectedY=camera().centerY();
         require(target.equals(raster.at(raster.rasterX(raster.worldX(target)),raster.rasterY(raster.worldY(target)))),"navigator projected point identifies the exact source tile before camera clamping");
@@ -123,7 +124,7 @@ final class Reference60Probe extends MapTap57Harness {
         if(hole!=null){float cx=camera().centerX(),cy=camera().centerY();tapPoint(r.left+raster.rasterX(raster.worldX(hole))/raster.width*r.width(),r.top+raster.rasterY(raster.worldY(hole))/raster.height*r.height());require(Math.abs(camera().centerX()-cx)<.2f&&Math.abs(camera().centerY()-cy)<.2f,"minimap does not jump to source VOID");}
         shot("v060-"+world().scenarioId+"-shared-minimap");navigator(false);
     }
-    private void correctedMarch()throws Exception {
+    void correctedMarch()throws Exception {
         World w=ScenarioCatalog.load("coalition-190",5,590L);World.City home=w.home();World.Officer officer=w.idle(home).get(0);
         require(w.army.deploy(home.id,officer.id,new int[0],World.Weapon.SPEAR,Army.Ship.BOAT,3000,12000,0).ok,"march setup uses legal actual deployment");
         World.Unit unit=w.unit(officer.unitId);Hex target=MapCoordinates.fromNationalSource(w,new SourceGridCoord(122,101)),start=null;
@@ -140,19 +141,19 @@ final class Reference60Probe extends MapTap57Harness {
         focus(target,3.4f);click("行军");tap(target);
         MarchOrders.Plan plan=(MarchOrders.Plan)field(activity,"pendingMarch");require(plan!=null&&plan.valid(),"real MOVE preview on unchanged road beside new Q");shot("v060-reviewed-region-march-preview");click("确认任务");
         require(world().unit(id)!=null&&world().unit(id).hex.equals(target),"real MOVE reaches retained road");
-        World loaded=SaveCodec.decode(readInternal("auto.sg11"));require(loaded.unit(id).hex.equals(target)&&loaded.mapRevision==60,"saved march retains map60 and exact position");shot("v060-reviewed-region-march-completed");
+        World loaded=SaveCodec.decode(readInternal("auto.sg11"));require(loaded.unit(id).hex.equals(target)&&loaded.mapRevision==61,"saved march retains map60 and exact position");shot("v060-reviewed-region-march-completed");
     }
-    private void normalNewGame()throws Exception {
+    void normalNewGame()throws Exception {
         byte[] manual=readInternal("manual1.sg11");
         ui(()->{ClientState state=(ClientState)field(activity,"ui");state.page="menu";state.panelVisible=true;activity.refresh();});settle();
         click("新游戏 / 选择势力");accessibleClick("190 讨伐董卓",false);accessibleClick("开始新局",false);accessibleClick("执行",true);
         long until=SystemClock.uptimeMillis()+120000;
-        while(SystemClock.uptimeMillis()<until){settle();if(world().mapRevision==60&&world().scenarioId.equals("coalition-190"))break;}
-        require(world().mapRevision==60&&world().scenarioId.equals("coalition-190"),"production scenario chooser/faction chooser/confirmation create current map");
+        while(SystemClock.uptimeMillis()<until){settle();if(world().mapRevision==61&&world().scenarioId.equals("coalition-190"))break;}
+        require(world().mapRevision==61&&world().scenarioId.equals("coalition-190"),"production scenario chooser/faction chooser/confirmation create current map");
         require(Arrays.equals(manual,readInternal("manual1.sg11")),"normal new-game UI retains manual old save");
         ui(this::page);settle();pick(national(123,101),3.4f,"new-game UI restored water");shot("v060-normal-new-game");
     }
-    private void accessibleClick(String label,boolean exact)throws Exception {
+    void accessibleClick(String label,boolean exact)throws Exception {
         long until=SystemClock.uptimeMillis()+120000;
         while(SystemClock.uptimeMillis()<until){
             android.view.accessibility.AccessibilityNodeInfo root=test.getUiAutomation().getRootInActiveWindow();
@@ -164,6 +165,6 @@ final class Reference60Probe extends MapTap57Harness {
         }
         throw new AssertionError("Actual accessible control not found: "+label);
     }
-    private void click(String label)throws Exception {View v=button(activity.getWindow().getDecorView(),label);require(v!=null,"real button "+label);ui(v::performClick);settle();}
-    private View button(View v,String label){if(v instanceof Button&&((Button)v).getText().toString().equals(label)&&v.getVisibility()==View.VISIBLE)return v;if(v instanceof ViewGroup){ViewGroup g=(ViewGroup)v;for(int i=0;i<g.getChildCount();i++){View b=button(g.getChildAt(i),label);if(b!=null)return b;}}return null;}
+    void click(String label)throws Exception {View v=button(activity.getWindow().getDecorView(),label);require(v!=null,"real button "+label);ui(v::performClick);settle();}
+    View button(View v,String label){if(v instanceof Button&&((Button)v).getText().toString().equals(label)&&v.getVisibility()==View.VISIBLE)return v;if(v instanceof ViewGroup){ViewGroup g=(ViewGroup)v;for(int i=0;i<g.getChildCount();i++){View b=button(g.getChildAt(i),label);if(b!=null)return b;}}return null;}
 }

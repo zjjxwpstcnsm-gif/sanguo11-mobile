@@ -1,6 +1,8 @@
 package game.sanguo.mobile;
 
 import game.sanguo.core.World;
+import game.sanguo.core.Hex;
+import game.sanguo.core.NationalExterior;
 
 /** Same axial order as Hex.neighbors(): east, northeast, northwest, west, southwest, southeast. */
 final class TerrainConnections {
@@ -8,11 +10,12 @@ final class TerrainConnections {
     static boolean road(World.Terrain t){return t==World.Terrain.PLANK_ROAD||t==World.Terrain.MOUNTAIN_PATH||t==World.Terrain.ROAD;}
     static boolean water(World.Terrain t){return t==World.Terrain.WATER||t==World.Terrain.SEA||t==World.Terrain.SHALLOWS||t==World.Terrain.NON_NAVIGABLE_WATER;}
     static boolean inside(World w,int q,int r){return w.sourceInside(new game.sanguo.core.Hex(q,r));}
+    static World.Terrain appearance(World w,int q,int r){return NationalExterior.appearance(w,new Hex(q,r));}
     static int mask(World w,int q,int r){
-        World.Terrain terrain=w.terrain[q][r];int mask=0;
+        World.Terrain terrain=appearance(w,q,r);int mask=0;
         for(int d=0;d<6;d++){
             int nq=q+DQ[d],nr=r+DR[d];if(!inside(w,nq,nr))continue;
-            World.Terrain neighbor=w.terrain[nq][nr];
+            World.Terrain neighbor=appearance(w,nq,nr);
             if(road(terrain)?road(neighbor):water(terrain)&&water(neighbor))mask|=1<<d;
         }
         if(!road(terrain)||Integer.bitCount(mask)>=2)return mask;

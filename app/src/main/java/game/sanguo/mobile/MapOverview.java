@@ -46,10 +46,11 @@ final class MapOverview {
         for(int i=0;i<palette.length;i++)palette[i]=FactionColors.color(world,i);
         for(int r=0;r<height;r++)for(int q=0;q<width;q++){
             int index=r*width+q;
-            if(world.terrain[q][r]==World.Terrain.VOID||!world.sourceInside(new game.sanguo.core.Hex(q,r)))continue;
-            terrain[index]=TerrainTiles.color(world.terrain[q][r]);
-            World.Terrain t=world.terrain[q][r];
+            World.Terrain t=TerrainConnections.appearance(world,q,r);
+            if(t==World.Terrain.VOID)continue;
+            terrain[index]=TerrainTiles.color(t);
             styles[index]=VisualAssets.terrainCell(TerrainArt.ground(t),Math.floorMod(q*31+r*17,3));
+            if(world.terrain[q][r]==World.Terrain.VOID)continue; // exterior: no owner/site/road/territory colour
             if(TerrainConnections.road(world.terrain[q][r]))roads[index]=(byte)(64|TerrainConnections.mask(world,q,r));
             sites[index]=territory.siteAt(q,r);owners[index]=territory.ownerAt(q,r);
             colors[index]=owners[index]<0?0xffa6a6a6:palette[owners[index]];

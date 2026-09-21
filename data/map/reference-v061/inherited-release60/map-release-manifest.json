@@ -1,5 +1,5 @@
 {
-  "release": "0.61.0",
+  "release": "0.60.0",
   "baseline_manifest": "tools/content/map-v050-manifest.json",
   "files": [
     {
@@ -250,12 +250,7 @@
     {
       "source_path": "core/src/main/resources/maps/national-map-v056.properties",
       "apk_path": "maps/national-map-v056.properties",
-      "sha256": "d5d5659e40a23619dd8515713d21997715733d20cc937a964662591e22f076c4"
-    },
-    {
-      "source_path": "core/src/main/resources/maps/national-exterior-v061.properties",
-      "apk_path": "maps/national-exterior-v061.properties",
-      "sha256": "451fed332f742aaef8a88e5781c15eda8e1ad0fd29ae7d20c3e0dbe82214a60f"
+      "sha256": "9b9e8dc7682c787d90717e53a57c9f68471706273c2939fe4f01501a77b8b47d"
     }
   ],
   "baseline_commit": "18b1c2d01d6ef5d0bc63fef8a3e483186a99e390",

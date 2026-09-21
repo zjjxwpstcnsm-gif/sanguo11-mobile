@@ -1,0 +1,49 @@
+name: Corners61 recover exact staged source
+on:
+  push:
+    branches: [agent/map-corners-boundary-v061]
+    paths: [.github/workflows/corners61-package-source.yml]
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Export source and inspect staged payload without executing it
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          git rev-parse HEAD > out/HEAD
+          git rev-parse origin/main > out/MAIN
+          git log -20 --format='%H %s' > out/COMMITS.txt
+          git archive --format=zip -o out/source.zip HEAD
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64,zlib,gzip,json,hashlib
+          paths=sorted(Path('.ci').glob('corners61-payload-*.txt'))
+          assert len(paths)==13, len(paths)
+          text=''.join(p.read_text().strip() for p in paths)
+          Path('out/payload-joined.txt').write_text(text)
+          print('payload length',len(text),'sha256',hashlib.sha256(text.encode()).hexdigest())
+          raw=base64.b64decode(text,validate=True)
+          for name,fn in [('raw',lambda b:b),('zlib',zlib.decompress),('gzip',gzip.decompress)]:
+            try:
+              data=fn(raw)
+              Path('out/payload-'+name+'.bin').write_bytes(data)
+              print(name,len(data),repr(data[:180]))
+              try:
+                j=json.loads(data)
+                print('JSON shape',type(j).__name__,list(j)[:30] if isinstance(j,dict) else len(j))
+                Path('out/payload-decoded.json').write_text(json.dumps(j,ensure_ascii=False,indent=2))
+              except (ValueError,UnicodeError): pass
+            except (ValueError,zlib.error,OSError): pass
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: corners61-current-source
+          path: out
+          retention-days: 7

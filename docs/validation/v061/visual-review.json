@@ -1,0 +1,26 @@
+{
+  "baseline_run":35554158663,
+  "final_run":35559224769,
+  "build_commit":"9ad16d82c5a33211d28fa84e677b53e155f535b5",
+  "screenshot_dimensions":[1080,2340],
+  "map_view_dimensions":[1080,1789],
+  "full_area_scale":0.3,
+  "whole_area_scope":[{"region":"NW","source_center":[28,22],"camera":[1634.9999,2816.6665],"exterior_cells_in_view":182},{"region":"SE","source_center":[169,167],"camera":[6324.9995,5163.333],"exterior_cells_in_view":869}],
+  "pairs":[
+    {"scenario":"coalition-190","region":"NW","before":"before-coalition-190-28-22-0.3.png","before_sha256":"e994b714687566cb93250f3e1854aad3f61508735ded676f3e83e719015faa96","after":"after-coalition-190-28-22-0.3.png","after_sha256":"07596eeaf05acf5956a5922838d46a117e115e8e41ea98d592253cded4bda58a"},
+    {"scenario":"coalition-190","region":"SE","before":"before-coalition-190-169-167-0.3.png","before_sha256":"994b09909f0eb6f06d2033922ff40551a185928702655f014fceb85533c928cf","after":"after-coalition-190-169-167-0.3.png","after_sha256":"bf1926fade95347752842dda51c3978501187bcda2f1f27773d123e00d18e2ab"},
+    {"scenario":"heroes-250","region":"NW","before":"before-heroes-250-28-22-0.3.png","before_sha256":"9c03b08c7716cfb80f374754a50aaae67d889ec9e7f3d3b4f2fefc0604148e73","after":"after-heroes-250-28-22-0.3.png","after_sha256":"970056320d1cb159f8fb317116647aebae3b28eac57593017a340d94ab8d42de"},
+    {"scenario":"heroes-250","region":"SE","before":"before-heroes-250-169-167-0.3.png","before_sha256":"4c910ff6f1a788df5e4b91e60e5712e5cee5ad1807c0941e219ad8d02ea53eed","after":"after-heroes-250-169-167-0.3.png","after_sha256":"c28ff13806677a8fb4ad52272de70b9892bb89743dc902747ec9435f10c25172"}
+  ],
+  "actual_visual_observations":{
+    "SE":"The large missing outer sea and inlet gaps visible in v060 are continuous water in both national scenarios. Map frame is retained. No unexplained large holes observed in paired full area and inspected coast midshots.",
+    "NW":"Large title-area fragmentation and missing stream are repaired with scoped arid/rock scenery and Q water. Remaining14 unknown cells still create visible local dark holes in source18..38,14..24, especially midshot36,12. Not fully closed out.",
+    "close_views":"Inspected actual final sea and rock exterior near views; they are untinted and remain excluded from selection/path. Existing tile material repetition is not claimed as original-art fidelity.",
+    "local_preview":"Actual local scenario crop is on neutral surrounding canvas, not falsely treated as national exterior.",
+    "reload":"Actual restored unit at saved destination is present and can be deselected/reselected; unit identity asserted."
+  },
+  "additional_actual_final_views_inspected":["after-coalition-190-36-12-0.9.png","after-coalition-190-185-174-0.9.png","v061-coalition-190-exterior-28,21-LOD-3.4.png","v061-coalition-190-exterior-195,160-LOD-3.4.png","v061-central-mobile-sandbox-production-opening-preview.png","v061-regional-march-reloaded.png"],
+  "raw_screenshot_counts":{"before":37,"after":254},
+  "review_scope_note":"Full-area and selected key views inspected; not all254 images claimed manually reviewed. Paired delivery composites paste entire original screenshots without cropping, retouching or hiding remaining defects.",
+  "release_archive":"https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/releases/download/v0.61.0-9ad16d82c5a3/corners61-screenshots-and-logs.zip"
+}

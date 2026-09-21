@@ -32,7 +32,8 @@ final class TerrainTiles {
         }
     }
     void draw(Canvas c,World world,int q,int r,float x,float y){
-        World.Terrain terrain=world.terrain[q][r];
+        World.Terrain terrain=TerrainConnections.appearance(world,q,r);
+        if(terrain==World.Terrain.VOID)return;
         int variant=Math.floorMod(q*31+r*17,3);
         Bitmap tile=tiles[terrain.ordinal()][variant];
         if(tile==null)tiles[terrain.ordinal()][variant]=tile=create(terrain,variant);
@@ -48,7 +49,7 @@ final class TerrainTiles {
             int mask=TerrainConnections.mask(world,q,r);coast.setStrokeWidth(1.2f);coast.setColor(0xffb5c3a0);
             for(int d=0;d<6;d++)if((mask&(1<<d))==0){
                 int nq=q+TerrainConnections.DQ[d],nr=r+TerrainConnections.DR[d];
-                if(!TerrainConnections.inside(world,nq,nr)||world.terrain[nq][nr]==World.Terrain.VOID)continue;
+                if(!TerrainConnections.inside(world,nq,nr)||TerrainConnections.appearance(world,nq,nr)==World.Terrain.VOID)continue;
                 int a=TileGeometry.start(d),b=TileGeometry.end(d);
                 c.drawLine(x+TileGeometry.CORNER_X[a]*25,y+TileGeometry.CORNER_Y[a]*25,
                     x+TileGeometry.CORNER_X[b]*25,y+TileGeometry.CORNER_Y[b]*25,coast);

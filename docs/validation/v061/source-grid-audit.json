@@ -1,0 +1,5461 @@
+{
+  "map_revision": 61,
+  "map_sha256": "d5d5659e40a23619dd8515713d21997715733d20cc937a964662591e22f076c4",
+  "baseline_sha256": "9b9e8dc7682c787d90717e53a57c9f68471706273c2939fe4f01501a77b8b47d",
+  "source_cells": 40000,
+  "axial_padding": 19800,
+  "unique_modified_national_cells": 206,
+  "transitions": {
+    "V->Q": 206
+  },
+  "areas": {
+    "NORTHERN_STREAM": 107,
+    "NW_STREAM": 56,
+    "YONGAN_INTERIOR": 2,
+    "SE_INLETS": 41
+  },
+  "existing_Q_W_rule_changes": 0,
+  "natural_facility_delta": 0,
+  "exterior_presentation_cells": 1051,
+  "exterior_styles": {
+    "ARID": 126,
+    "ROCK": 56,
+    "SEA": 869
+  },
+  "unresolved_coordinates": [
+    [
+      18,
+      24
+    ],
+    [
+      29,
+      24
+    ],
+    [
+      30,
+      24
+    ],
+    [
+      33,
+      15
+    ],
+    [
+      34,
+      15
+    ],
+    [
+      34,
+      18
+    ],
+    [
+      35,
+      14
+    ],
+    [
+      37,
+      15
+    ],
+    [
+      37,
+      20
+    ],
+    [
+      37,
+      21
+    ],
+    [
+      37,
+      22
+    ],
+    [
+      37,
+      23
+    ],
+    [
+      37,
+      24
+    ],
+    [
+      38,
+      15
+    ]
+  ],
+  "unresolved_cells": 14,
+  "appearance_evidence": {
+    "CONFIRMED_VISIBLE": 206
+  },
+  "navigation_evidence": {
+    "UNRESOLVED": 206
+  },
+  "exterior_surface_evidence": {
+    "ESTIMATED": 100,
+    "CONFIRMED_VISIBLE": 951
+  },
+  "boundary_basis": "Cartographic multi-cue review only, not extracted original engine enabled-hex flags",
+  "original_enabled_hex_table_obtained": false,
+  "before": {
+    "counts": {
+      "A": 1168,
+      "B": 158,
+      "D": 161,
+      "F": 6929,
+      "M": 9320,
+      "P": 6989,
+      "Q": 1141,
+      "R": 7280,
+      "S": 2,
+      "V": 1271,
+      "W": 5397,
+      "X": 179,
+      "Z": 5
+    },
+    "void_components": 84,
+    "interior_void_components": 75,
+    "interior_void_cells": 357,
+    "boundary_connected_void_cells": 914,
+    "void_regions": [
+      {
+        "size": 871,
+        "touches_source_boundary": true,
+        "bounds": [
+          173,
+          129,
+          199,
+          199
+        ],
+        "sample": [
+          [
+            173,
+            198
+          ],
+          [
+            173,
+            199
+          ],
+          [
+            174,
+            197
+          ]
+        ],
+        "neighbor_codes": {
+          "B": 2,
+          "F": 2,
+          "M": 189,
+          "P": 3,
+          "R": 14,
+          "W": 12
+        }
+      },
+      {
+        "size": 98,
+        "touches_source_boundary": false,
+        "bounds": [
+          26,
+          9,
+          38,
+          32
+        ],
+        "sample": [
+          [
+            26,
+            32
+          ],
+          [
+            27,
+            30
+          ],
+          [
+            27,
+            31
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 10,
+          "F": 46,
+          "M": 73,
+          "P": 12,
+          "R": 35
+        }
+      },
+      {
+        "size": 71,
+        "touches_source_boundary": false,
+        "bounds": [
+          40,
+          9,
+          66,
+          34
+        ],
+        "sample": [
+          [
+            40,
+            14
+          ],
+          [
+            41,
+            13
+          ],
+          [
+            42,
+            13
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 11,
+          "M": 138,
+          "P": 4,
+          "Q": 4,
+          "R": 23
+        }
+      },
+      {
+        "size": 24,
+        "touches_source_boundary": true,
+        "bounds": [
+          3,
+          0,
+          8,
+          7
+        ],
+        "sample": [
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 23,
+          "M": 13,
+          "R": 19
+        }
+      },
+      {
+        "size": 21,
+        "touches_source_boundary": false,
+        "bounds": [
+          77,
+          5,
+          84,
+          19
+        ],
+        "sample": [
+          [
+            77,
+            7
+          ],
+          [
+            77,
+            8
+          ],
+          [
+            77,
+            9
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 2,
+          "M": 63,
+          "P": 6,
+          "R": 15
+        }
+      },
+      {
+        "size": 10,
+        "touches_source_boundary": false,
+        "bounds": [
+          10,
+          1,
+          15,
+          4
+        ],
+        "sample": [
+          [
+            10,
+            3
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            11,
+            1
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 32,
+          "M": 3,
+          "R": 3
+        }
+      },
+      {
+        "size": 10,
+        "touches_source_boundary": false,
+        "bounds": [
+          163,
+          182,
+          166,
+          187
+        ],
+        "sample": [
+          [
+            163,
+            185
+          ],
+          [
+            163,
+            186
+          ],
+          [
+            164,
+            185
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 2,
+          "M": 28,
+          "P": 4,
+          "R": 4
+        }
+      },
+      {
+        "size": 8,
+        "touches_source_boundary": true,
+        "bounds": [
+          0,
+          0,
+          1,
+          6
+        ],
+        "sample": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 3,
+          "M": 8,
+          "R": 5
+        }
+      },
+      {
+        "size": 7,
+        "touches_source_boundary": false,
+        "bounds": [
+          28,
+          21,
+          31,
+          24
+        ],
+        "sample": [
+          [
+            28,
+            21
+          ],
+          [
+            29,
+            21
+          ],
+          [
+            29,
+            22
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 16,
+          "P": 6,
+          "R": 6
+        }
+      },
+      {
+        "size": 6,
+        "touches_source_boundary": false,
+        "bounds": [
+          36,
+          4,
+          38,
+          6
+        ],
+        "sample": [
+          [
+            36,
+            5
+          ],
+          [
+            37,
+            5
+          ],
+          [
+            37,
+            6
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 6,
+          "M": 6,
+          "P": 2,
+          "R": 8
+        }
+      },
+      {
+        "size": 6,
+        "touches_source_boundary": false,
+        "bounds": [
+          144,
+          183,
+          147,
+          186
+        ],
+        "sample": [
+          [
+            144,
+            184
+          ],
+          [
+            145,
+            183
+          ],
+          [
+            145,
+            184
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 1,
+          "M": 22,
+          "R": 1
+        }
+      },
+      {
+        "size": 6,
+        "touches_source_boundary": false,
+        "bounds": [
+          168,
+          163,
+          173,
+          165
+        ],
+        "sample": [
+          [
+            168,
+            163
+          ],
+          [
+            169,
+            163
+          ],
+          [
+            170,
+            164
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 1,
+          "M": 20,
+          "Q": 1,
+          "R": 4
+        }
+      },
+      {
+        "size": 6,
+        "touches_source_boundary": false,
+        "bounds": [
+          168,
+          186,
+          171,
+          188
+        ],
+        "sample": [
+          [
+            168,
+            187
+          ],
+          [
+            168,
+            188
+          ],
+          [
+            169,
+            186
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 20,
+          "R": 2
+        }
+      },
+      {
+        "size": 5,
+        "touches_source_boundary": false,
+        "bounds": [
+          9,
+          6,
+          11,
+          8
+        ],
+        "sample": [
+          [
+            9,
+            7
+          ],
+          [
+            10,
+            6
+          ],
+          [
+            10,
+            7
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 4,
+          "M": 3,
+          "R": 11
+        }
+      },
+      {
+        "size": 5,
+        "touches_source_boundary": false,
+        "bounds": [
+          12,
+          15,
+          13,
+          18
+        ],
+        "sample": [
+          [
+            12,
+            15
+          ],
+          [
+            12,
+            16
+          ],
+          [
+            12,
+            17
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 14,
+          "R": 6
+        }
+      },
+      {
+        "size": 4,
+        "touches_source_boundary": true,
+        "bounds": [
+          16,
+          0,
+          17,
+          2
+        ],
+        "sample": [
+          [
+            16,
+            0
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            16,
+            2
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 12
+        }
+      },
+      {
+        "size": 4,
+        "touches_source_boundary": false,
+        "bounds": [
+          28,
+          9,
+          28,
+          12
+        ],
+        "sample": [
+          [
+            28,
+            9
+          ],
+          [
+            28,
+            10
+          ],
+          [
+            28,
+            11
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 18
+        }
+      },
+      {
+        "size": 4,
+        "touches_source_boundary": false,
+        "bounds": [
+          32,
+          1,
+          32,
+          4
+        ],
+        "sample": [
+          [
+            32,
+            1
+          ],
+          [
+            32,
+            2
+          ],
+          [
+            32,
+            3
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 16,
+          "P": 2
+        }
+      },
+      {
+        "size": 4,
+        "touches_source_boundary": false,
+        "bounds": [
+          110,
+          3,
+          111,
+          5
+        ],
+        "sample": [
+          [
+            110,
+            3
+          ],
+          [
+            110,
+            4
+          ],
+          [
+            110,
+            5
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 16,
+          "R": 2
+        }
+      },
+      {
+        "size": 4,
+        "touches_source_boundary": false,
+        "bounds": [
+          159,
+          185,
+          161,
+          186
+        ],
+        "sample": [
+          [
+            159,
+            185
+          ],
+          [
+            159,
+            186
+          ],
+          [
+            160,
+            186
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 15,
+          "R": 1
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          1,
+          9,
+          2,
+          10
+        ],
+        "sample": [
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            9
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 11,
+          "P": 1,
+          "R": 2
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          4,
+          20,
+          5,
+          21
+        ],
+        "sample": [
+          [
+            4,
+            20
+          ],
+          [
+            4,
+            21
+          ],
+          [
+            5,
+            20
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 5,
+          "M": 1,
+          "P": 4,
+          "R": 2
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          8,
+          12,
+          9,
+          13
+        ],
+        "sample": [
+          [
+            8,
+            12
+          ],
+          [
+            8,
+            13
+          ],
+          [
+            9,
+            12
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 9,
+          "M": 2,
+          "R": 1
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          16,
+          9,
+          16,
+          11
+        ],
+        "sample": [
+          [
+            16,
+            9
+          ],
+          [
+            16,
+            10
+          ],
+          [
+            16,
+            11
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 13,
+          "R": 1
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          24,
+          8,
+          24,
+          10
+        ],
+        "sample": [
+          [
+            24,
+            8
+          ],
+          [
+            24,
+            9
+          ],
+          [
+            24,
+            10
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 13,
+          "R": 1
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          26,
+          3,
+          26,
+          5
+        ],
+        "sample": [
+          [
+            26,
+            3
+          ],
+          [
+            26,
+            4
+          ],
+          [
+            26,
+            5
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 14
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          30,
+          1,
+          30,
+          3
+        ],
+        "sample": [
+          [
+            30,
+            1
+          ],
+          [
+            30,
+            2
+          ],
+          [
+            30,
+            3
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 14
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          35,
+          8,
+          36,
+          9
+        ],
+        "sample": [
+          [
+            35,
+            8
+          ],
+          [
+            36,
+            8
+          ],
+          [
+            36,
+            9
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 6,
+          "M": 5,
+          "R": 1
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          178,
+          164,
+          180,
+          165
+        ],
+        "sample": [
+          [
+            178,
+            165
+          ],
+          [
+            179,
+            164
+          ],
+          [
+            180,
+            164
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 2,
+          "M": 7,
+          "P": 3,
+          "R": 2
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          4,
+          9,
+          5,
+          10
+        ],
+        "sample": [
+          [
+            4,
+            10
+          ],
+          [
+            5,
+            9
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 3,
+          "P": 3,
+          "R": 4
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          6,
+          18,
+          6,
+          19
+        ],
+        "sample": [
+          [
+            6,
+            18
+          ],
+          [
+            6,
+            19
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "P": 4,
+          "R": 1
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          7,
+          20,
+          8,
+          21
+        ],
+        "sample": [
+          [
+            7,
+            20
+          ],
+          [
+            8,
+            21
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 1,
+          "F": 2,
+          "M": 4,
+          "P": 3
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          12,
+          5,
+          12,
+          6
+        ],
+        "sample": [
+          [
+            12,
+            5
+          ],
+          [
+            12,
+            6
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 7,
+          "M": 2,
+          "R": 1
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          14,
+          5,
+          14,
+          6
+        ],
+        "sample": [
+          [
+            14,
+            5
+          ],
+          [
+            14,
+            6
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 7,
+          "M": 3
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          14,
+          11,
+          14,
+          12
+        ],
+        "sample": [
+          [
+            14,
+            11
+          ],
+          [
+            14,
+            12
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 9,
+          "M": 1
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          18,
+          11,
+          18,
+          12
+        ],
+        "sample": [
+          [
+            18,
+            11
+          ],
+          [
+            18,
+            12
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 9,
+          "P": 1
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          20,
+          12,
+          20,
+          13
+        ],
+        "sample": [
+          [
+            20,
+            12
+          ],
+          [
+            20,
+            13
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 9,
+          "M": 1
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          22,
+          15,
+          22,
+          16
+        ],
+        "sample": [
+          [
+            22,
+            15
+          ],
+          [
+            22,
+            16
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 9,
+          "R": 1
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          24,
+          12,
+          24,
+          13
+        ],
+        "sample": [
+          [
+            24,
+            12
+          ],
+          [
+            24,
+            13
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 10
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          24,
+          19,
+          24,
+          20
+        ],
+        "sample": [
+          [
+            24,
+            19
+          ],
+          [
+            24,
+            20
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 9,
+          "P": 1
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": true,
+        "bounds": [
+          28,
+          0,
+          28,
+          1
+        ],
+        "sample": [
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            1
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 7
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          36,
+          1,
+          36,
+          2
+        ],
+        "sample": [
+          [
+            36,
+            1
+          ],
+          [
+            36,
+            2
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 3,
+          "F": 1,
+          "P": 1,
+          "R": 5
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": true,
+        "bounds": [
+          107,
+          0,
+          108,
+          1
+        ],
+        "sample": [
+          [
+            107,
+            0
+          ],
+          [
+            108,
+            1
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 6,
+          "R": 3
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          112,
+          7,
+          112,
+          8
+        ],
+        "sample": [
+          [
+            112,
+            7
+          ],
+          [
+            112,
+            8
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 7,
+          "P": 2,
+          "W": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": true,
+        "bounds": [
+          0,
+          17,
+          0,
+          17
+        ],
+        "sample": [
+          [
+            0,
+            17
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 1,
+          "F": 1,
+          "R": 2
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          1,
+          19,
+          1,
+          19
+        ],
+        "sample": [
+          [
+            1,
+            19
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 2,
+          "F": 2,
+          "P": 1,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          2,
+          16,
+          2,
+          16
+        ],
+        "sample": [
+          [
+            2,
+            16
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 4,
+          "P": 1,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          3,
+          7,
+          3,
+          7
+        ],
+        "sample": [
+          [
+            3,
+            7
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "M": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          8,
+          9,
+          8,
+          9
+        ],
+        "sample": [
+          [
+            8,
+            9
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 3,
+          "R": 3
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          10,
+          15,
+          10,
+          15
+        ],
+        "sample": [
+          [
+            10,
+            15
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "M": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          10,
+          20,
+          10,
+          20
+        ],
+        "sample": [
+          [
+            10,
+            20
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 1,
+          "F": 1,
+          "M": 2,
+          "P": 2
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          11,
+          9,
+          11,
+          9
+        ],
+        "sample": [
+          [
+            11,
+            9
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 4,
+          "R": 2
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          11,
+          12,
+          11,
+          12
+        ],
+        "sample": [
+          [
+            11,
+            12
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "P": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          13,
+          7,
+          13,
+          7
+        ],
+        "sample": [
+          [
+            13,
+            7
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 1,
+          "M": 2,
+          "R": 3
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          15,
+          7,
+          15,
+          7
+        ],
+        "sample": [
+          [
+            15,
+            7
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 3,
+          "M": 3
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          16,
+          15,
+          16,
+          15
+        ],
+        "sample": [
+          [
+            16,
+            15
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "M": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          16,
+          19,
+          16,
+          19
+        ],
+        "sample": [
+          [
+            16,
+            19
+          ]
+        ],
+        "neighbor_codes": {
+          "P": 1,
+          "R": 5
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          17,
+          3,
+          17,
+          3
+        ],
+        "sample": [
+          [
+            17,
+            3
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          18,
+          9,
+          18,
+          9
+        ],
+        "sample": [
+          [
+            18,
+            9
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          18,
+          19,
+          18,
+          19
+        ],
+        "sample": [
+          [
+            18,
+            19
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 2,
+          "P": 1,
+          "R": 3
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          18,
+          24,
+          18,
+          24
+        ],
+        "sample": [
+          [
+            18,
+            24
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 2,
+          "M": 3,
+          "P": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": true,
+        "bounds": [
+          19,
+          0,
+          19,
+          0
+        ],
+        "sample": [
+          [
+            19,
+            0
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          19,
+          7,
+          19,
+          7
+        ],
+        "sample": [
+          [
+            19,
+            7
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 4,
+          "P": 1,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          20,
+          19,
+          20,
+          19
+        ],
+        "sample": [
+          [
+            20,
+            19
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 1,
+          "M": 3,
+          "P": 1,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": true,
+        "bounds": [
+          22,
+          0,
+          22,
+          0
+        ],
+        "sample": [
+          [
+            22,
+            0
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 3
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          22,
+          6,
+          22,
+          6
+        ],
+        "sample": [
+          [
+            22,
+            6
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "M": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          24,
+          17,
+          24,
+          17
+        ],
+        "sample": [
+          [
+            24,
+            17
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          24,
+          23,
+          24,
+          23
+        ],
+        "sample": [
+          [
+            24,
+            23
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 2,
+          "M": 2,
+          "P": 1,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          25,
+          24,
+          25,
+          24
+        ],
+        "sample": [
+          [
+            25,
+            24
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 2,
+          "M": 4
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          25,
+          33,
+          25,
+          33
+        ],
+        "sample": [
+          [
+            25,
+            33
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 3,
+          "Q": 1,
+          "R": 2
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          26,
+          12,
+          26,
+          12
+        ],
+        "sample": [
+          [
+            26,
+            12
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "M": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          26,
+          17,
+          26,
+          17
+        ],
+        "sample": [
+          [
+            26,
+            17
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          30,
+          7,
+          30,
+          7
+        ],
+        "sample": [
+          [
+            30,
+            7
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          33,
+          5,
+          33,
+          5
+        ],
+        "sample": [
+          [
+            33,
+            5
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 1,
+          "P": 5
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          33,
+          7,
+          33,
+          7
+        ],
+        "sample": [
+          [
+            33,
+            7
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 2,
+          "P": 1,
+          "R": 3
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          34,
+          2,
+          34,
+          2
+        ],
+        "sample": [
+          [
+            34,
+            2
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          38,
+          9,
+          38,
+          9
+        ],
+        "sample": [
+          [
+            38,
+            9
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 2,
+          "M": 2,
+          "P": 2
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          42,
+          134,
+          42,
+          134
+        ],
+        "sample": [
+          [
+            42,
+            134
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 1,
+          "P": 3,
+          "Q": 1,
+          "W": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          47,
+          134,
+          47,
+          134
+        ],
+        "sample": [
+          [
+            47,
+            134
+          ]
+        ],
+        "neighbor_codes": {
+          "P": 2,
+          "Q": 4
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          80,
+          2,
+          80,
+          2
+        ],
+        "sample": [
+          [
+            80,
+            2
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 1,
+          "M": 4,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          139,
+          190,
+          139,
+          190
+        ],
+        "sample": [
+          [
+            139,
+            190
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 5,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          142,
+          186,
+          142,
+          186
+        ],
+        "sample": [
+          [
+            142,
+            186
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 5,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          158,
+          182,
+          158,
+          182
+        ],
+        "sample": [
+          [
+            158,
+            182
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 1,
+          "M": 2,
+          "P": 1,
+          "R": 2
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          173,
+          190,
+          173,
+          190
+        ],
+        "sample": [
+          [
+            173,
+            190
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 5,
+          "P": 1
+        }
+      }
+    ]
+  },
+  "after": {
+    "counts": {
+      "A": 1168,
+      "B": 158,
+      "D": 161,
+      "F": 6929,
+      "M": 9320,
+      "P": 6989,
+      "Q": 1347,
+      "R": 7280,
+      "S": 2,
+      "V": 1065,
+      "W": 5397,
+      "X": 179,
+      "Z": 5
+    },
+    "void_components": 72,
+    "interior_void_components": 64,
+    "interior_void_cells": 158,
+    "boundary_connected_void_cells": 907,
+    "void_regions": [
+      {
+        "size": 866,
+        "touches_source_boundary": true,
+        "bounds": [
+          175,
+          129,
+          199,
+          199
+        ],
+        "sample": [
+          [
+            175,
+            191
+          ],
+          [
+            175,
+            195
+          ],
+          [
+            175,
+            196
+          ]
+        ],
+        "neighbor_codes": {
+          "B": 2,
+          "F": 2,
+          "M": 181,
+          "P": 3,
+          "Q": 6,
+          "R": 14,
+          "W": 12
+        }
+      },
+      {
+        "size": 24,
+        "touches_source_boundary": true,
+        "bounds": [
+          3,
+          0,
+          8,
+          7
+        ],
+        "sample": [
+          [
+            3,
+            0
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 23,
+          "M": 13,
+          "R": 19
+        }
+      },
+      {
+        "size": 10,
+        "touches_source_boundary": false,
+        "bounds": [
+          10,
+          1,
+          15,
+          4
+        ],
+        "sample": [
+          [
+            10,
+            3
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            11,
+            1
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 32,
+          "M": 3,
+          "R": 3
+        }
+      },
+      {
+        "size": 10,
+        "touches_source_boundary": false,
+        "bounds": [
+          33,
+          14,
+          37,
+          19
+        ],
+        "sample": [
+          [
+            33,
+            15
+          ],
+          [
+            33,
+            16
+          ],
+          [
+            34,
+            15
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 2,
+          "F": 7,
+          "M": 7,
+          "P": 2,
+          "Q": 20
+        }
+      },
+      {
+        "size": 9,
+        "touches_source_boundary": false,
+        "bounds": [
+          31,
+          9,
+          33,
+          13
+        ],
+        "sample": [
+          [
+            31,
+            13
+          ],
+          [
+            32,
+            10
+          ],
+          [
+            32,
+            11
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 3,
+          "F": 4,
+          "M": 1,
+          "P": 4,
+          "Q": 7,
+          "R": 7
+        }
+      },
+      {
+        "size": 8,
+        "touches_source_boundary": true,
+        "bounds": [
+          0,
+          0,
+          1,
+          6
+        ],
+        "sample": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 3,
+          "M": 8,
+          "R": 5
+        }
+      },
+      {
+        "size": 8,
+        "touches_source_boundary": false,
+        "bounds": [
+          37,
+          20,
+          38,
+          24
+        ],
+        "sample": [
+          [
+            37,
+            20
+          ],
+          [
+            37,
+            21
+          ],
+          [
+            37,
+            22
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 7,
+          "M": 9,
+          "Q": 10
+        }
+      },
+      {
+        "size": 7,
+        "touches_source_boundary": false,
+        "bounds": [
+          28,
+          21,
+          31,
+          24
+        ],
+        "sample": [
+          [
+            28,
+            21
+          ],
+          [
+            29,
+            21
+          ],
+          [
+            29,
+            22
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 16,
+          "P": 6,
+          "R": 6
+        }
+      },
+      {
+        "size": 6,
+        "touches_source_boundary": false,
+        "bounds": [
+          36,
+          4,
+          38,
+          6
+        ],
+        "sample": [
+          [
+            36,
+            5
+          ],
+          [
+            37,
+            5
+          ],
+          [
+            37,
+            6
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 6,
+          "M": 6,
+          "P": 2,
+          "R": 8
+        }
+      },
+      {
+        "size": 5,
+        "touches_source_boundary": false,
+        "bounds": [
+          9,
+          6,
+          11,
+          8
+        ],
+        "sample": [
+          [
+            9,
+            7
+          ],
+          [
+            10,
+            6
+          ],
+          [
+            10,
+            7
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 4,
+          "M": 3,
+          "R": 11
+        }
+      },
+      {
+        "size": 5,
+        "touches_source_boundary": false,
+        "bounds": [
+          12,
+          15,
+          13,
+          18
+        ],
+        "sample": [
+          [
+            12,
+            15
+          ],
+          [
+            12,
+            16
+          ],
+          [
+            12,
+            17
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 14,
+          "R": 6
+        }
+      },
+      {
+        "size": 4,
+        "touches_source_boundary": true,
+        "bounds": [
+          16,
+          0,
+          17,
+          2
+        ],
+        "sample": [
+          [
+            16,
+            0
+          ],
+          [
+            16,
+            1
+          ],
+          [
+            16,
+            2
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 12
+        }
+      },
+      {
+        "size": 4,
+        "touches_source_boundary": false,
+        "bounds": [
+          28,
+          9,
+          28,
+          12
+        ],
+        "sample": [
+          [
+            28,
+            9
+          ],
+          [
+            28,
+            10
+          ],
+          [
+            28,
+            11
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 18
+        }
+      },
+      {
+        "size": 4,
+        "touches_source_boundary": false,
+        "bounds": [
+          31,
+          20,
+          34,
+          22
+        ],
+        "sample": [
+          [
+            31,
+            20
+          ],
+          [
+            32,
+            21
+          ],
+          [
+            33,
+            21
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 2,
+          "F": 1,
+          "M": 2,
+          "P": 2,
+          "Q": 8,
+          "R": 3
+        }
+      },
+      {
+        "size": 4,
+        "touches_source_boundary": false,
+        "bounds": [
+          32,
+          1,
+          32,
+          4
+        ],
+        "sample": [
+          [
+            32,
+            1
+          ],
+          [
+            32,
+            2
+          ],
+          [
+            32,
+            3
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 16,
+          "P": 2
+        }
+      },
+      {
+        "size": 4,
+        "touches_source_boundary": false,
+        "bounds": [
+          36,
+          15,
+          38,
+          16
+        ],
+        "sample": [
+          [
+            36,
+            16
+          ],
+          [
+            37,
+            15
+          ],
+          [
+            38,
+            15
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 1,
+          "F": 1,
+          "M": 9,
+          "P": 1,
+          "Q": 4
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          1,
+          9,
+          2,
+          10
+        ],
+        "sample": [
+          [
+            1,
+            9
+          ],
+          [
+            1,
+            10
+          ],
+          [
+            2,
+            9
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 11,
+          "P": 1,
+          "R": 2
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          4,
+          20,
+          5,
+          21
+        ],
+        "sample": [
+          [
+            4,
+            20
+          ],
+          [
+            4,
+            21
+          ],
+          [
+            5,
+            20
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 5,
+          "M": 1,
+          "P": 4,
+          "R": 2
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          8,
+          12,
+          9,
+          13
+        ],
+        "sample": [
+          [
+            8,
+            12
+          ],
+          [
+            8,
+            13
+          ],
+          [
+            9,
+            12
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 9,
+          "M": 2,
+          "R": 1
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          16,
+          9,
+          16,
+          11
+        ],
+        "sample": [
+          [
+            16,
+            9
+          ],
+          [
+            16,
+            10
+          ],
+          [
+            16,
+            11
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 13,
+          "R": 1
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          24,
+          8,
+          24,
+          10
+        ],
+        "sample": [
+          [
+            24,
+            8
+          ],
+          [
+            24,
+            9
+          ],
+          [
+            24,
+            10
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 13,
+          "R": 1
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          26,
+          3,
+          26,
+          5
+        ],
+        "sample": [
+          [
+            26,
+            3
+          ],
+          [
+            26,
+            4
+          ],
+          [
+            26,
+            5
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 14
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          30,
+          1,
+          30,
+          3
+        ],
+        "sample": [
+          [
+            30,
+            1
+          ],
+          [
+            30,
+            2
+          ],
+          [
+            30,
+            3
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 14
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          36,
+          12,
+          38,
+          13
+        ],
+        "sample": [
+          [
+            36,
+            13
+          ],
+          [
+            37,
+            12
+          ],
+          [
+            38,
+            13
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 3,
+          "M": 6,
+          "Q": 2,
+          "R": 3
+        }
+      },
+      {
+        "size": 3,
+        "touches_source_boundary": false,
+        "bounds": [
+          178,
+          164,
+          180,
+          165
+        ],
+        "sample": [
+          [
+            178,
+            165
+          ],
+          [
+            179,
+            164
+          ],
+          [
+            180,
+            164
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 2,
+          "M": 7,
+          "P": 3,
+          "R": 2
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          4,
+          9,
+          5,
+          10
+        ],
+        "sample": [
+          [
+            4,
+            10
+          ],
+          [
+            5,
+            9
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 3,
+          "P": 3,
+          "R": 4
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          6,
+          18,
+          6,
+          19
+        ],
+        "sample": [
+          [
+            6,
+            18
+          ],
+          [
+            6,
+            19
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "P": 4,
+          "R": 1
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          7,
+          20,
+          8,
+          21
+        ],
+        "sample": [
+          [
+            7,
+            20
+          ],
+          [
+            8,
+            21
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 1,
+          "F": 2,
+          "M": 4,
+          "P": 3
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          12,
+          5,
+          12,
+          6
+        ],
+        "sample": [
+          [
+            12,
+            5
+          ],
+          [
+            12,
+            6
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 7,
+          "M": 2,
+          "R": 1
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          14,
+          5,
+          14,
+          6
+        ],
+        "sample": [
+          [
+            14,
+            5
+          ],
+          [
+            14,
+            6
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 7,
+          "M": 3
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          14,
+          11,
+          14,
+          12
+        ],
+        "sample": [
+          [
+            14,
+            11
+          ],
+          [
+            14,
+            12
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 9,
+          "M": 1
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          18,
+          11,
+          18,
+          12
+        ],
+        "sample": [
+          [
+            18,
+            11
+          ],
+          [
+            18,
+            12
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 9,
+          "P": 1
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          20,
+          12,
+          20,
+          13
+        ],
+        "sample": [
+          [
+            20,
+            12
+          ],
+          [
+            20,
+            13
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 9,
+          "M": 1
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          22,
+          15,
+          22,
+          16
+        ],
+        "sample": [
+          [
+            22,
+            15
+          ],
+          [
+            22,
+            16
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 9,
+          "R": 1
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          24,
+          12,
+          24,
+          13
+        ],
+        "sample": [
+          [
+            24,
+            12
+          ],
+          [
+            24,
+            13
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 10
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          24,
+          19,
+          24,
+          20
+        ],
+        "sample": [
+          [
+            24,
+            19
+          ],
+          [
+            24,
+            20
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 9,
+          "P": 1
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": true,
+        "bounds": [
+          28,
+          0,
+          28,
+          1
+        ],
+        "sample": [
+          [
+            28,
+            0
+          ],
+          [
+            28,
+            1
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 7
+        }
+      },
+      {
+        "size": 2,
+        "touches_source_boundary": false,
+        "bounds": [
+          36,
+          1,
+          36,
+          2
+        ],
+        "sample": [
+          [
+            36,
+            1
+          ],
+          [
+            36,
+            2
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 3,
+          "F": 1,
+          "P": 1,
+          "R": 5
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": true,
+        "bounds": [
+          0,
+          17,
+          0,
+          17
+        ],
+        "sample": [
+          [
+            0,
+            17
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 1,
+          "F": 1,
+          "R": 2
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          1,
+          19,
+          1,
+          19
+        ],
+        "sample": [
+          [
+            1,
+            19
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 2,
+          "F": 2,
+          "P": 1,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          2,
+          16,
+          2,
+          16
+        ],
+        "sample": [
+          [
+            2,
+            16
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 4,
+          "P": 1,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          3,
+          7,
+          3,
+          7
+        ],
+        "sample": [
+          [
+            3,
+            7
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "M": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          8,
+          9,
+          8,
+          9
+        ],
+        "sample": [
+          [
+            8,
+            9
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 3,
+          "R": 3
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          10,
+          15,
+          10,
+          15
+        ],
+        "sample": [
+          [
+            10,
+            15
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "M": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          10,
+          20,
+          10,
+          20
+        ],
+        "sample": [
+          [
+            10,
+            20
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 1,
+          "F": 1,
+          "M": 2,
+          "P": 2
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          11,
+          9,
+          11,
+          9
+        ],
+        "sample": [
+          [
+            11,
+            9
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 4,
+          "R": 2
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          11,
+          12,
+          11,
+          12
+        ],
+        "sample": [
+          [
+            11,
+            12
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "P": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          13,
+          7,
+          13,
+          7
+        ],
+        "sample": [
+          [
+            13,
+            7
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 1,
+          "M": 2,
+          "R": 3
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          15,
+          7,
+          15,
+          7
+        ],
+        "sample": [
+          [
+            15,
+            7
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 3,
+          "M": 3
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          16,
+          15,
+          16,
+          15
+        ],
+        "sample": [
+          [
+            16,
+            15
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "M": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          16,
+          19,
+          16,
+          19
+        ],
+        "sample": [
+          [
+            16,
+            19
+          ]
+        ],
+        "neighbor_codes": {
+          "P": 1,
+          "R": 5
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          17,
+          3,
+          17,
+          3
+        ],
+        "sample": [
+          [
+            17,
+            3
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          18,
+          9,
+          18,
+          9
+        ],
+        "sample": [
+          [
+            18,
+            9
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          18,
+          19,
+          18,
+          19
+        ],
+        "sample": [
+          [
+            18,
+            19
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 2,
+          "P": 1,
+          "R": 3
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          18,
+          24,
+          18,
+          24
+        ],
+        "sample": [
+          [
+            18,
+            24
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 2,
+          "M": 3,
+          "P": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": true,
+        "bounds": [
+          19,
+          0,
+          19,
+          0
+        ],
+        "sample": [
+          [
+            19,
+            0
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          19,
+          7,
+          19,
+          7
+        ],
+        "sample": [
+          [
+            19,
+            7
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 4,
+          "P": 1,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          20,
+          19,
+          20,
+          19
+        ],
+        "sample": [
+          [
+            20,
+            19
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 1,
+          "M": 3,
+          "P": 1,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": true,
+        "bounds": [
+          22,
+          0,
+          22,
+          0
+        ],
+        "sample": [
+          [
+            22,
+            0
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 3
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          22,
+          6,
+          22,
+          6
+        ],
+        "sample": [
+          [
+            22,
+            6
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "M": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          24,
+          17,
+          24,
+          17
+        ],
+        "sample": [
+          [
+            24,
+            17
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          24,
+          23,
+          24,
+          23
+        ],
+        "sample": [
+          [
+            24,
+            23
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 2,
+          "M": 2,
+          "P": 1,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          25,
+          24,
+          25,
+          24
+        ],
+        "sample": [
+          [
+            25,
+            24
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 2,
+          "M": 4
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          26,
+          12,
+          26,
+          12
+        ],
+        "sample": [
+          [
+            26,
+            12
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "M": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          26,
+          17,
+          26,
+          17
+        ],
+        "sample": [
+          [
+            26,
+            17
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          30,
+          7,
+          30,
+          7
+        ],
+        "sample": [
+          [
+            30,
+            7
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          30,
+          17,
+          30,
+          17
+        ],
+        "sample": [
+          [
+            30,
+            17
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 1,
+          "P": 1,
+          "Q": 2,
+          "R": 2
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          33,
+          5,
+          33,
+          5
+        ],
+        "sample": [
+          [
+            33,
+            5
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 1,
+          "P": 5
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          33,
+          7,
+          33,
+          7
+        ],
+        "sample": [
+          [
+            33,
+            7
+          ]
+        ],
+        "neighbor_codes": {
+          "M": 2,
+          "P": 1,
+          "R": 3
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          34,
+          2,
+          34,
+          2
+        ],
+        "sample": [
+          [
+            34,
+            2
+          ]
+        ],
+        "neighbor_codes": {
+          "A": 5,
+          "R": 1
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          36,
+          9,
+          36,
+          9
+        ],
+        "sample": [
+          [
+            36,
+            9
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 1,
+          "M": 3,
+          "Q": 2
+        }
+      },
+      {
+        "size": 1,
+        "touches_source_boundary": false,
+        "bounds": [
+          38,
+          9,
+          38,
+          9
+        ],
+        "sample": [
+          [
+            38,
+            9
+          ]
+        ],
+        "neighbor_codes": {
+          "F": 2,
+          "M": 2,
+          "P": 2
+        }
+      }
+    ]
+  },
+  "national_blocks": [
+    {
+      "source_bounds": [
+        0,
+        0,
+        24,
+        24
+      ],
+      "remaining_source_void": 117,
+      "near_site_void": 0,
+      "route_adjacent_void": 51,
+      "roads": 70,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-000-000"
+      ],
+      "review_priority": 219,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 0,
+      "remaining_categories": {
+        "NW_LEGEND_TERRAIN_OCCLUSION": 117
+      },
+      "v061_modified": 0,
+      "v061_exterior": 116,
+      "v061_unresolved": 1
+    },
+    {
+      "source_bounds": [
+        25,
+        0,
+        49,
+        24
+      ],
+      "remaining_source_void": 135,
+      "near_site_void": 0,
+      "route_adjacent_void": 44,
+      "roads": 73,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-025-000"
+      ],
+      "review_priority": 223,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 0,
+      "remaining_categories": {
+        "NW_MIXED_OUTER_TERRAIN": 135
+      },
+      "v061_modified": 56,
+      "v061_exterior": 66,
+      "v061_unresolved": 13
+    },
+    {
+      "source_bounds": [
+        50,
+        0,
+        74,
+        24
+      ],
+      "remaining_source_void": 34,
+      "near_site_void": 0,
+      "route_adjacent_void": 3,
+      "roads": 88,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-050-000"
+      ],
+      "review_priority": 40,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 0,
+      "remaining_categories": {
+        "NORTHERN_OUTER_CHANNEL_OR_BORDER": 34
+      },
+      "v061_modified": 34,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        75,
+        0,
+        99,
+        24
+      ],
+      "remaining_source_void": 22,
+      "near_site_void": 0,
+      "route_adjacent_void": 13,
+      "roads": 137,
+      "mountain_paths": 0,
+      "planks": 4,
+      "reviewed_regions": [
+        "block60-075-000"
+      ],
+      "review_priority": 51,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 3,
+      "remaining_categories": {
+        "NORTHERN_OUTER_CHANNEL_OR_BORDER": 22
+      },
+      "v061_modified": 22,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        100,
+        0,
+        124,
+        24
+      ],
+      "remaining_source_void": 8,
+      "near_site_void": 3,
+      "route_adjacent_void": 16,
+      "roads": 128,
+      "mountain_paths": 2,
+      "planks": 3,
+      "reviewed_regions": [
+        "block60-100-000"
+      ],
+      "review_priority": 66,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 14,
+      "remaining_categories": {
+        "NORTHERN_OUTER_CHANNEL_OR_BORDER": 8
+      },
+      "v061_modified": 8,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        125,
+        0,
+        149,
+        24
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 1,
+      "route_adjacent_void": 2,
+      "roads": 146,
+      "mountain_paths": 10,
+      "planks": 8,
+      "reviewed_regions": [
+        "block60-125-000"
+      ],
+      "review_priority": 16,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 8,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        150,
+        0,
+        174,
+        24
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 142,
+      "mountain_paths": 2,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-150-000"
+      ],
+      "review_priority": 2,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 2,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        175,
+        0,
+        199,
+        24
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 3,
+      "roads": 102,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-175-000"
+      ],
+      "review_priority": 40,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 34,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        0,
+        25,
+        24,
+        49
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 10,
+      "roads": 189,
+      "mountain_paths": 0,
+      "planks": 6,
+      "reviewed_regions": [
+        "block60-000-025"
+      ],
+      "review_priority": 31,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 11,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        25,
+        25,
+        49,
+        49
+      ],
+      "remaining_source_void": 22,
+      "near_site_void": 0,
+      "route_adjacent_void": 14,
+      "roads": 81,
+      "mountain_paths": 0,
+      "planks": 3,
+      "reviewed_regions": [
+        "block60-025-025"
+      ],
+      "review_priority": 56,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 6,
+      "remaining_categories": {
+        "NORTHERN_OUTER_CHANNEL_OR_BORDER": 22
+      },
+      "v061_modified": 22,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        50,
+        25,
+        74,
+        49
+      ],
+      "remaining_source_void": 21,
+      "near_site_void": 0,
+      "route_adjacent_void": 9,
+      "roads": 127,
+      "mountain_paths": 0,
+      "planks": 8,
+      "reviewed_regions": [
+        "block60-050-025"
+      ],
+      "review_priority": 46,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 7,
+      "remaining_categories": {
+        "NORTHERN_OUTER_CHANNEL_OR_BORDER": 21
+      },
+      "v061_modified": 21,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        75,
+        25,
+        99,
+        49
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 5,
+      "route_adjacent_void": 15,
+      "roads": 149,
+      "mountain_paths": 8,
+      "planks": 12,
+      "reviewed_regions": [
+        "block60-075-025"
+      ],
+      "review_priority": 82,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 32,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        100,
+        25,
+        124,
+        49
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 8,
+      "roads": 154,
+      "mountain_paths": 2,
+      "planks": 4,
+      "reviewed_regions": [
+        "block60-100-025"
+      ],
+      "review_priority": 58,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 12,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        125,
+        25,
+        149,
+        49
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 4,
+      "route_adjacent_void": 19,
+      "roads": 159,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-125-025"
+      ],
+      "review_priority": 75,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 21,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        150,
+        25,
+        174,
+        49
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 26,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [],
+      "review_priority": 0,
+      "status": "NO_BASELINE_VOID",
+      "v060_modified": 0,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        175,
+        25,
+        199,
+        49
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 3,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-175-025"
+      ],
+      "review_priority": 126,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 126,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        0,
+        50,
+        24,
+        74
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 3,
+      "roads": 162,
+      "mountain_paths": 0,
+      "planks": 8,
+      "reviewed_regions": [
+        "block60-000-050"
+      ],
+      "review_priority": 14,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 8,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        25,
+        50,
+        49,
+        74
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 3,
+      "route_adjacent_void": 3,
+      "roads": 172,
+      "mountain_paths": 0,
+      "planks": 9,
+      "reviewed_regions": [
+        "block60-025-050"
+      ],
+      "review_priority": 26,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 8,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        50,
+        50,
+        74,
+        74
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 2,
+      "route_adjacent_void": 2,
+      "roads": 70,
+      "mountain_paths": 2,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-050-050"
+      ],
+      "review_priority": 23,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 11,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        75,
+        50,
+        99,
+        74
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 1,
+      "roads": 135,
+      "mountain_paths": 0,
+      "planks": 2,
+      "reviewed_regions": [
+        "block60-075-050"
+      ],
+      "review_priority": 3,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 1,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        100,
+        50,
+        124,
+        74
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 143,
+      "mountain_paths": 0,
+      "planks": 1,
+      "reviewed_regions": [],
+      "review_priority": 30,
+      "status": "NO_BASELINE_VOID",
+      "v060_modified": 0,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        125,
+        50,
+        149,
+        74
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 2,
+      "route_adjacent_void": 1,
+      "roads": 87,
+      "mountain_paths": 4,
+      "planks": 4,
+      "reviewed_regions": [
+        "block60-125-050"
+      ],
+      "review_priority": 12,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 2,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        150,
+        50,
+        174,
+        74
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 6,
+      "route_adjacent_void": 5,
+      "roads": 102,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-150-050"
+      ],
+      "review_priority": 41,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 7,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        175,
+        50,
+        199,
+        74
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 0,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-175-050"
+      ],
+      "review_priority": 125,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 125,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        0,
+        75,
+        24,
+        99
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 182,
+      "mountain_paths": 57,
+      "planks": 3,
+      "reviewed_regions": [],
+      "review_priority": 0,
+      "status": "NO_BASELINE_VOID",
+      "v060_modified": 0,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        25,
+        75,
+        49,
+        99
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 3,
+      "roads": 188,
+      "mountain_paths": 0,
+      "planks": 5,
+      "reviewed_regions": [
+        "block60-025-075"
+      ],
+      "review_priority": 10,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 4,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        50,
+        75,
+        74,
+        99
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 133,
+      "mountain_paths": 0,
+      "planks": 2,
+      "reviewed_regions": [],
+      "review_priority": 0,
+      "status": "NO_BASELINE_VOID",
+      "v060_modified": 0,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        75,
+        75,
+        99,
+        99
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 167,
+      "mountain_paths": 0,
+      "planks": 1,
+      "reviewed_regions": [],
+      "review_priority": 0,
+      "status": "NO_BASELINE_VOID",
+      "v060_modified": 0,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        100,
+        75,
+        124,
+        99
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 2,
+      "route_adjacent_void": 0,
+      "roads": 120,
+      "mountain_paths": 2,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-100-075"
+      ],
+      "review_priority": 40,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 2,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        125,
+        75,
+        149,
+        99
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 3,
+      "route_adjacent_void": 5,
+      "roads": 125,
+      "mountain_paths": 0,
+      "planks": 5,
+      "reviewed_regions": [
+        "block60-125-075"
+      ],
+      "review_priority": 69,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 17,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        150,
+        75,
+        174,
+        99
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 5,
+      "route_adjacent_void": 3,
+      "roads": 62,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-150-075"
+      ],
+      "review_priority": 36,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 10,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        175,
+        75,
+        199,
+        99
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 44,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-175-075"
+      ],
+      "review_priority": 125,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 125,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        0,
+        100,
+        24,
+        124
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 185,
+      "mountain_paths": 57,
+      "planks": 1,
+      "reviewed_regions": [],
+      "review_priority": 0,
+      "status": "NO_BASELINE_VOID",
+      "v060_modified": 0,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        25,
+        100,
+        49,
+        124
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 3,
+      "roads": 209,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-025-100"
+      ],
+      "review_priority": 12,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 6,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        50,
+        100,
+        74,
+        124
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 120,
+      "mountain_paths": 5,
+      "planks": 0,
+      "reviewed_regions": [],
+      "review_priority": 0,
+      "status": "NO_BASELINE_VOID",
+      "v060_modified": 0,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        75,
+        100,
+        99,
+        124
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 134,
+      "mountain_paths": 0,
+      "planks": 2,
+      "reviewed_regions": [],
+      "review_priority": 0,
+      "status": "NO_BASELINE_VOID",
+      "v060_modified": 0,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        100,
+        100,
+        124,
+        124
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 12,
+      "route_adjacent_void": 10,
+      "roads": 160,
+      "mountain_paths": 0,
+      "planks": 1,
+      "reviewed_regions": [
+        "block60-100-100"
+      ],
+      "review_priority": 88,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 20,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        125,
+        100,
+        149,
+        124
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 8,
+      "route_adjacent_void": 8,
+      "roads": 134,
+      "mountain_paths": 4,
+      "planks": 1,
+      "reviewed_regions": [
+        "block60-125-100"
+      ],
+      "review_priority": 67,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 19,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        150,
+        100,
+        174,
+        124
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 76,
+      "mountain_paths": 1,
+      "planks": 0,
+      "reviewed_regions": [],
+      "review_priority": 30,
+      "status": "NO_BASELINE_VOID",
+      "v060_modified": 0,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        175,
+        100,
+        199,
+        124
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 4,
+      "route_adjacent_void": 0,
+      "roads": 141,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-175-100"
+      ],
+      "review_priority": 125,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 109,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        0,
+        125,
+        24,
+        149
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 2,
+      "route_adjacent_void": 7,
+      "roads": 111,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-000-125"
+      ],
+      "review_priority": 40,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 18,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        25,
+        125,
+        49,
+        149
+      ],
+      "remaining_source_void": 2,
+      "near_site_void": 2,
+      "route_adjacent_void": 2,
+      "roads": 132,
+      "mountain_paths": 0,
+      "planks": 2,
+      "reviewed_regions": [
+        "block60-025-125"
+      ],
+      "review_priority": 51,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 7,
+      "remaining_categories": {
+        "ICON_OCCLUDED_INTERIOR": 2
+      },
+      "v061_modified": 2,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        50,
+        125,
+        74,
+        149
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 137,
+      "mountain_paths": 0,
+      "planks": 2,
+      "reviewed_regions": [
+        "block60-050-125"
+      ],
+      "review_priority": 31,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 1,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        75,
+        125,
+        99,
+        149
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 3,
+      "route_adjacent_void": 2,
+      "roads": 138,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-075-125"
+      ],
+      "review_priority": 21,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 5,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        100,
+        125,
+        124,
+        149
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 4,
+      "route_adjacent_void": 3,
+      "roads": 87,
+      "mountain_paths": 2,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-100-125"
+      ],
+      "review_priority": 30,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 8,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        125,
+        125,
+        149,
+        149
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 1,
+      "route_adjacent_void": 1,
+      "roads": 120,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-125-125"
+      ],
+      "review_priority": 8,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 2,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        150,
+        125,
+        174,
+        149
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 1,
+      "route_adjacent_void": 9,
+      "roads": 91,
+      "mountain_paths": 1,
+      "planks": 2,
+      "reviewed_regions": [
+        "block60-150-125"
+      ],
+      "review_priority": 72,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 20,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        175,
+        125,
+        199,
+        149
+      ],
+      "remaining_source_void": 88,
+      "near_site_void": 0,
+      "route_adjacent_void": 11,
+      "roads": 87,
+      "mountain_paths": 0,
+      "planks": 1,
+      "reviewed_regions": [
+        "block60-175-125"
+      ],
+      "review_priority": 145,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 5,
+      "remaining_categories": {
+        "SE_OUTER_COAST_SEA": 88
+      },
+      "v061_modified": 0,
+      "v061_exterior": 88,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        0,
+        150,
+        24,
+        174
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 6,
+      "roads": 91,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-000-150"
+      ],
+      "review_priority": 27,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 15,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        25,
+        150,
+        49,
+        174
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 1,
+      "route_adjacent_void": 4,
+      "roads": 145,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-025-150"
+      ],
+      "review_priority": 48,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 6,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        50,
+        150,
+        74,
+        174
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 4,
+      "roads": 116,
+      "mountain_paths": 0,
+      "planks": 7,
+      "reviewed_regions": [
+        "block60-050-150"
+      ],
+      "review_priority": 45,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 7,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        75,
+        150,
+        99,
+        174
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 1,
+      "roads": 121,
+      "mountain_paths": 0,
+      "planks": 9,
+      "reviewed_regions": [
+        "block60-075-150"
+      ],
+      "review_priority": 4,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 2,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        100,
+        150,
+        124,
+        174
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 130,
+      "mountain_paths": 0,
+      "planks": 3,
+      "reviewed_regions": [],
+      "review_priority": 0,
+      "status": "NO_BASELINE_VOID",
+      "v060_modified": 0,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        125,
+        150,
+        149,
+        174
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 5,
+      "route_adjacent_void": 4,
+      "roads": 156,
+      "mountain_paths": 0,
+      "planks": 3,
+      "reviewed_regions": [
+        "block60-125-150"
+      ],
+      "review_priority": 36,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 8,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        150,
+        150,
+        174,
+        174
+      ],
+      "remaining_source_void": 6,
+      "near_site_void": 0,
+      "route_adjacent_void": 13,
+      "roads": 43,
+      "mountain_paths": 2,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-150-150"
+      ],
+      "review_priority": 52,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 20,
+      "remaining_categories": {
+        "SE_OUTER_VALLEY_OR_COAST_TRANSITION": 6
+      },
+      "v061_modified": 6,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        175,
+        150,
+        199,
+        174
+      ],
+      "remaining_source_void": 292,
+      "near_site_void": 0,
+      "route_adjacent_void": 8,
+      "roads": 13,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-175-150"
+      ],
+      "review_priority": 308,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 0,
+      "remaining_categories": {
+        "SE_OUTER_COAST_SEA": 292
+      },
+      "v061_modified": 0,
+      "v061_exterior": 292,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        0,
+        175,
+        24,
+        199
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 2,
+      "route_adjacent_void": 9,
+      "roads": 149,
+      "mountain_paths": 0,
+      "planks": 1,
+      "reviewed_regions": [
+        "block60-000-175"
+      ],
+      "review_priority": 51,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 25,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        25,
+        175,
+        49,
+        199
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 3,
+      "route_adjacent_void": 7,
+      "roads": 127,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-025-175"
+      ],
+      "review_priority": 55,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 29,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        50,
+        175,
+        74,
+        199
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 5,
+      "route_adjacent_void": 12,
+      "roads": 157,
+      "mountain_paths": 0,
+      "planks": 1,
+      "reviewed_regions": [
+        "block60-050-175"
+      ],
+      "review_priority": 106,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 32,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        75,
+        175,
+        99,
+        199
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 1,
+      "route_adjacent_void": 7,
+      "roads": 91,
+      "mountain_paths": 0,
+      "planks": 12,
+      "reviewed_regions": [
+        "block60-075-175"
+      ],
+      "review_priority": 34,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 16,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        100,
+        175,
+        124,
+        199
+      ],
+      "remaining_source_void": 0,
+      "near_site_void": 0,
+      "route_adjacent_void": 7,
+      "roads": 134,
+      "mountain_paths": 0,
+      "planks": 18,
+      "reviewed_regions": [
+        "block60-100-175"
+      ],
+      "review_priority": 23,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 9,
+      "remaining_categories": {},
+      "v061_modified": 0,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        125,
+        175,
+        149,
+        199
+      ],
+      "remaining_source_void": 8,
+      "near_site_void": 0,
+      "route_adjacent_void": 3,
+      "roads": 43,
+      "mountain_paths": 0,
+      "planks": 2,
+      "reviewed_regions": [
+        "block60-125-175"
+      ],
+      "review_priority": 16,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 2,
+      "remaining_categories": {
+        "SE_OUTER_VALLEY_OR_COAST_TRANSITION": 8
+      },
+      "v061_modified": 8,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        150,
+        175,
+        174,
+        199
+      ],
+      "remaining_source_void": 27,
+      "near_site_void": 0,
+      "route_adjacent_void": 8,
+      "roads": 29,
+      "mountain_paths": 0,
+      "planks": 2,
+      "reviewed_regions": [
+        "block60-150-175"
+      ],
+      "review_priority": 43,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 0,
+      "remaining_categories": {
+        "SE_OUTER_VALLEY_OR_COAST_TRANSITION": 27
+      },
+      "v061_modified": 27,
+      "v061_exterior": 0,
+      "v061_unresolved": 0
+    },
+    {
+      "source_bounds": [
+        175,
+        175,
+        199,
+        199
+      ],
+      "remaining_source_void": 489,
+      "near_site_void": 0,
+      "route_adjacent_void": 0,
+      "roads": 7,
+      "mountain_paths": 0,
+      "planks": 0,
+      "reviewed_regions": [
+        "block60-175-175"
+      ],
+      "review_priority": 489,
+      "status": "ALL_BASELINE_VOID_REVIEWED",
+      "v060_modified": 0,
+      "remaining_categories": {
+        "SE_OUTER_COAST_SEA": 489
+      },
+      "v061_modified": 0,
+      "v061_exterior": 489,
+      "v061_unresolved": 0
+    }
+  ],
+  "reference_crops_distributed": false,
+  "cache_or_LOD_hole_reproduced": false,
+  "caveat": "Not VOID=0 or 100% original boundaries/navigation. Fourteen mixed bank/wall cells remain unresolved and unpainted; old saves do not acquire v061 scenery."
+}

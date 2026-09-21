@@ -3,7 +3,9 @@
 import copy
 import audit_native59 as a
 import audit_native58 as old
-plan=a.ledger();after=a.MAP.read_bytes();before=a.old58(after)
+import audit_native60 as later
+import audit_native61 as current
+plan=a.ledger();after=later.old59(current.old60(a.MAP.read_bytes()));before=a.old58(after)
 assert a.apply_bytes(before,plan)==after and a.apply_bytes(after,plan)==after
 assert a.transform(after,plan,True)==before
 cases=[(before+b'\n',plan),(after+b'# altered baseline\n',plan)]

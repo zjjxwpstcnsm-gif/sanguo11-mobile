@@ -1,0 +1,123 @@
+Local JDK21 compiler --release17; local directed run reached test_audit60, then tool timeout. Remaining test_audit59 + map manifest checks rerun successfully below. Original per-test logs retained locally. Actual Android legacy files required in CI, not certified by this local run.
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE61 SCENARIO huangjin-184 changes=206 exterior=1051 unresolved=14 padding=19800
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE61 SCENARIO coalition-190 changes=206 exterior=1051 unresolved=14 padding=19800
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE61 SCENARIO warlords-194 changes=206 exterior=1051 unresolved=14 padding=19800
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE61 SCENARIO guandu-200 changes=206 exterior=1051 unresolved=14 padding=19800
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE61 SCENARIO chibi-207 changes=206 exterior=1051 unresolved=14 padding=19800
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE61 SCENARIO heroes-250 changes=206 exterior=1051 unresolved=14 padding=19800
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE61 SCENARIO heroes-mobile-sandbox changes=206 exterior=1051 unresolved=14 padding=19800
+REFERENCE61 SCENARIO central-mobile-sandbox changes=2 exterior=0 unresolved=0 padding=11704
+REFERENCE61 SCENARIO jingxiang-mobile-sandbox changes=10 exterior=0 unresolved=0 padding=8844
+REFERENCE61 REAL OLD FILES NOT RUN locally; CI must use actual 58/59/60 APK artifacts
+REFERENCE61 CORE PASS: 5322636 inherited port/connectivity checks=53105
+coalition-190 source=200x200 padding=19800 counts={PLAIN=6989, FOREST=6929, MOUNTAIN=9320, WATER=5397, MOUNTAIN_PATH=161, SHALLOWS=2, PLANK_ROAD=158, POISON=179, VOID=1065, SWAMP=5, SAND=1168, ROAD=7280, NON_NAVIGABLE_WATER=1347} structures=0
+heroes-250 source=200x200 padding=19800 counts={PLAIN=6989, FOREST=6929, MOUNTAIN=9320, WATER=5397, MOUNTAIN_PATH=161, SHALLOWS=2, PLANK_ROAD=158, POISON=179, VOID=1065, SWAMP=5, SAND=1168, ROAD=7280, NON_NAVIGABLE_WATER=1347} structures=0
+central-mobile-sandbox source=154x96 padding=11704 counts={PLAIN=2908, FOREST=2697, MOUNTAIN=2294, WATER=3523, MOUNTAIN_PATH=20, PLANK_ROAD=25, SAND=314, ROAD=2742, NON_NAVIGABLE_WATER=261} structures=0
+jingxiang-mobile-sandbox source=134x116 padding=8844 counts={PLAIN=2995, FOREST=2900, MOUNTAIN=4027, WATER=1813, MOUNTAIN_PATH=13, SHALLOWS=2, PLANK_ROAD=72, POISON=74, SWAMP=5, SAND=34, ROAD=3313, NON_NAVIGABLE_WATER=296} structures=0
+MAP57 CORE PASS: 672002
+LegacyMapCoordinateCheckpointTest PASS: 1168801 assertions; 40000 source slots; odd-r six-direction topology. Terrain/map revision NOT certified.
+MapCoordinateTest PASS cumulative=898305
+MapBoundsTest PASS cumulative=918115
+SiteFootprintTest PASS cumulative=918583
+SiteOverlapTest PASS cumulative=920105
+NationalSiteCountTest PASS cumulative=920106
+ScenarioNationalMapTest PASS cumulative=1230453
+SaveMapRevisionTest PASS cumulative=1230457
+CityArtCatalogTest PASS cumulative=1230501
+NoLegacyCityFallbackTest PASS cumulative=1230589
+NATIVE56 PASS total=1230589
+GUANLUO55 PASS: connected regional roads, single-tile gate seals, Mengjin bank and all 591 plots built
+MAP55 huangjin-184 sites=87 cities=42 load+save_ms=125
+MAP55 coalition-190 sites=87 cities=42 load+save_ms=85
+MAP55 warlords-194 sites=87 cities=42 load+save_ms=70
+MAP55 guandu-200 sites=87 cities=42 load+save_ms=46
+MAP55 chibi-207 sites=87 cities=42 load+save_ms=47
+MAP55 heroes-250 sites=87 cities=42 load+save_ms=40
+MAP55 heroes-mobile-sandbox sites=87 cities=42 load+save_ms=38
+MAP55 central-mobile-sandbox sites=42 cities=18 load+save_ms=18
+MAP55 jingxiang-mobile-sandbox sites=28 cities=12 load+save_ms=17
+TURN55 heroes-250 turn=1 ms=3641
+TURN55 heroes-250 turn=2 ms=3798
+TURN55 heroes-250 turn=3 ms=2106
+CITY55 PASS: 11070 checks (formal movement, garrison, combat, AI, maps, turns and saves)
+REFERENCE58 SCENARIO huangjin-184 source=40000 padding=19800 blockedWater=1347 natural=0
+REFERENCE58 SCENARIO coalition-190 source=40000 padding=19800 blockedWater=1347 natural=0
+REFERENCE58 SCENARIO warlords-194 source=40000 padding=19800 blockedWater=1347 natural=0
+REFERENCE58 SCENARIO guandu-200 source=40000 padding=19800 blockedWater=1347 natural=0
+REFERENCE58 SCENARIO chibi-207 source=40000 padding=19800 blockedWater=1347 natural=0
+REFERENCE58 SCENARIO heroes-250 source=40000 padding=19800 blockedWater=1347 natural=0
+REFERENCE58 SCENARIO heroes-mobile-sandbox source=40000 padding=19800 blockedWater=1347 natural=0
+REFERENCE58 SCENARIO central-mobile-sandbox source=14784 padding=11704 blockedWater=261 natural=0
+REFERENCE58 SCENARIO jingxiang-mobile-sandbox source=15544 padding=8844 blockedWater=296 natural=0
+REFERENCE58 CAMP REGRESSION PASS: occupied camp roundtrip; Q/M/W/SEA rejected; all18 scenarios valid
+REFERENCE58 CORE PASS: 3542960 actualLegacyFiles=false
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO huangjin-184 corrected=109 natural=0 old58Preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO coalition-190 corrected=109 natural=0 old58Preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO warlords-194 corrected=109 natural=0 old58Preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO guandu-200 corrected=109 natural=0 old58Preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO chibi-207 corrected=109 natural=0 old58Preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO heroes-250 corrected=109 natural=0 old58Preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE59 SCENARIO heroes-mobile-sandbox corrected=109 natural=0 old58Preserved=true
+REFERENCE59 SCENARIO central-mobile-sandbox corrected=74 natural=0 old58Preserved=true
+REFERENCE59 SCENARIO jingxiang-mobile-sandbox corrected=75 natural=0 old58Preserved=true
+REFERENCE59 CORE PASS: 210006
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE60 SCENARIO huangjin-184 revised=987 padding=19800 old58/59-preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE60 SCENARIO coalition-190 revised=987 padding=19800 old58/59-preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE60 SCENARIO warlords-194 revised=987 padding=19800 old58/59-preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE60 SCENARIO guandu-200 revised=987 padding=19800 old58/59-preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE60 SCENARIO chibi-207 revised=987 padding=19800 old58/59-preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE60 SCENARIO heroes-250 revised=987 padding=19800 old58/59-preserved=true
+REFERENCE59 SITE CONNECTIVITY 7569 ordered site pairs unchanged; not a substitute for dock ownership/path validation
+REFERENCE60 SCENARIO heroes-mobile-sandbox revised=987 padding=19800 old58/59-preserved=true
+REFERENCE60 SCENARIO central-mobile-sandbox revised=140 padding=11704 old58/59-preserved=true
+REFERENCE60 SCENARIO jingxiang-mobile-sandbox revised=210 padding=8844 old58/59-preserved=true
+REFERENCE60 RAW OLD APK SAVES NOT RUN locally: baseline artifacts required
+REFERENCE60 CORE PASS: 4203620 + inherited directed water/port/site checks=54026
+PASS v47: 1418 port, AI, capture and journal assertions
+MAP57 PROJECTION/ART PASS: 1986739
+REFERENCE58 RASTER coalition-190 400x401 painted=155740
+REFERENCE58 RASTER heroes-250 400x401 painted=155740
+REFERENCE58 RASTER central-mobile-sandbox 308x193 painted=59136
+REFERENCE58 RASTER jingxiang-mobile-sandbox 268x233 painted=62176
+REFERENCE58 RASTER m0-skirmish 42x18 painted=612
+REFERENCE58 RASTER m0-skirmish 35x18 painted=612
+REFERENCE58 PROJECTION PASS: 1529272
+REFERENCE61 PROJECTION coalition-190 exterior=1051
+REFERENCE61 PROJECTION heroes-250 exterior=1051
+REFERENCE61 PROJECTION central-mobile-sandbox exterior=0
+REFERENCE61 PROJECTION jingxiang-mobile-sandbox exterior=0
+REFERENCE60 WATER VISUAL JOINS coalition-190 4764; no movement permission inferred
+REFERENCE60 WATER VISUAL JOINS heroes-250 4764; no movement permission inferred
+REFERENCE60 WATER VISUAL JOINS central-mobile-sandbox 701; no movement permission inferred
+REFERENCE60 WATER VISUAL JOINS jingxiang-mobile-sandbox 622; no movement permission inferred
+REFERENCE60 PROJECTION PASS: 14390
+REFERENCE61 PROJECTION PASS: 191807 seaEdges=9612
+REFERENCE61 DATA PASS: {'unique_modified_national_cells': 206, 'transitions': {'V->Q': 206}, 'exterior_styles': {'ARID': 126, 'ROCK': 56, 'SEA': 869}, 'unresolved_cells': 14, 'axial_padding': 19800}
+REFERENCE61 GUARDS PASS: 48 negative cases; preimage/postimage/idempotency, terrain/evidence/region, exterior identity, unknown/padding exclusion
+REFERENCE60 GUARDS PASS: 24 negative cases; strict regional allowlist, full hashes, preimages, reference/evidence, protected objects, idempotency and inherited ledgers
+REFERENCE59 APPLY GUARDS PASS: exact pre/post, duplicate/outside/before/hash/corruption failures; full idempotency; inherited 89-cell ledger unchanged
+PASS: 51 pinned map/art resources in source
