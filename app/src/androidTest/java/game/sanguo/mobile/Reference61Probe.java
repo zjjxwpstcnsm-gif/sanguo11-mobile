@@ -30,7 +30,10 @@ final class Reference61Probe extends Reference60Probe {
      // Water/terrain sampling is real; no forced land or navigation flags are introduced.
      Hex water=new MapTap57Probe(test).find(w,World.Terrain.WATER,false);pick(water,3.4f,"existing navigable WATER unchanged");
      minimap(national(168,163),national(195,160));
-     pixelScenery(national(195,160));pixelScenery(national(28,6));
+     // (28,6) is not in the exterior ledger; preserve its real terrain instead of weakening the assertion.
+     require(NationalExterior.surface(w,national(28,10))==NationalExterior.Surface.ARID,"reviewed NW arid sample source 28,10");
+     require(NationalExterior.surface(w,national(28,21))==NationalExterior.Surface.ROCK,"reviewed NW rock sample source 28,21");
+     pixelScenery(national(195,160));pixelScenery(national(28,10));pixelScenery(national(28,21));
      actualPaddingTouch();
     }else{
      for(int edge=0;edge<4;edge++)pick(new MapTap57Probe(test).edge(w,edge),3.4f,"local crop edge, not national exterior");
