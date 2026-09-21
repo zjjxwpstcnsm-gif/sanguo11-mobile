@@ -19,13 +19,14 @@ jobs:
         env:
           POLLINATIONS_TOKEN: ${{ secrets.POLLINATIONS_TOKEN }}
         run: |
+          mkdir -p out/mothers
           python3 - <<'PY'
           import yaml,textwrap
           from pathlib import Path
           workflow=yaml.safe_load(Path('.github/workflows/v063-art-generation.yml').read_text())
           step=next(s for s in workflow['jobs']['generation']['steps'] if s.get('name','').startswith('Request new image files'))
           source=step['run'].split("python3 - <<'PY'\n",1)[1].rsplit('\nPY',1)[0]
-          marker='          for i,(key,prompt) in enumerate(prompts.items()):'.strip()
+          marker='for i,(key,prompt) in enumerate(prompts.items()):'
           assert source.count(marker)==1
           source=source.replace(marker,"prompts={k:prompts[k] for k in ('standard','sand-fine')}\n"+marker)
           source=source.replace('timeout=180','timeout=75').replace('range(2)','range(1)').replace('time.sleep(8)','time.sleep(1)')
