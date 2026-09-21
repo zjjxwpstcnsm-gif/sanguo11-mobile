@@ -83,6 +83,16 @@ def validate_exterior(raw,scenery=None,resource=None,remaining=None):
     assert Counter(styles.values())==Counter(SEA=869,ARID=126,ROCK=56)
     return styles,unknown
 
+def validate_known_application_identity(manifest):
+    """Map61 is unchanged; do not equate the application number with geography."""
+    versions={
+        'versionName=0.61.0\nversionCode=61\n':'0.61.0',
+        'versionName=0.62.0-road-candidate\nversionCode=62\n':'0.62.0-road-candidate',
+    }
+    actual=(ROOT/'version.properties').read_text()
+    assert actual in versions, 'Unknown application identity for map61 audit'
+    assert manifest['release']==versions[actual], 'Manifest/application mismatch'
+
 def audit(raw):
     plan=ledger();before=old60(raw);assert apply_bytes(before,plan)==raw and apply_bytes(raw,plan)==raw
     styles,unknown=validate_exterior(raw)
@@ -92,9 +102,9 @@ def audit(raw):
     assert len(codes)==15 and codes['Q']=='NON_NAVIGABLE_WATER' and codes['R']=='ROAD' and codes['D']=='MOUNTAIN_PATH' and codes['H']=='DAM'
     grid=[p[f'terrain.{y}']for y in range(200)];assert all(len(r)==200 and set(r)<=codes.keys()for r in grid)
     sites,plots=footprint(p);assert len(plots)==591 and sum(k.startswith('site.')for k in p)==87
-    manifest=json.loads((ROOT/'tools/content/map-release-manifest.json').read_text());assert manifest['release']=='0.61.0'
+    manifest=json.loads((ROOT/'tools/content/map-release-manifest.json').read_text());validate_known_application_identity(manifest)
     for path in(MAP,EXTERIOR):assert next(e for e in manifest['files']if e['source_path']==str(path.relative_to(ROOT)))['sha256']==digest(path.read_bytes())
-    assert (ROOT/'version.properties').read_text()=='versionName=0.61.0\nversionCode=61\n'
+    assert properties((ROOT/'version.properties').read_text())['versionName']==manifest['release']
     assert (ROOT/'core/src/test/resources/reference61-corrections.tsv').read_text()==''.join(f"{c['source'][0]}\t{c['source'][1]}\tV\tQ\n"for c in plan['cells'])
     historical=before
     for rev in(60,59,58):

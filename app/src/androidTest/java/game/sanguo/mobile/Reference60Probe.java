@@ -20,7 +20,7 @@ class Reference60Probe extends MapTap57Harness {
             normalNewGame();
             for(String id:new String[]{"coalition-190","heroes-250"}) {
                 launch(ScenarioCatalog.load(id,5,590L));World w=world();byte[] before=SaveCodec.encode(w);
-                require(w.mapRevision==61&&BuildConfig.VERSION_CODE==61,"v060 retained regression on actual v061 APK");
+                Map61InstalledIdentity.verify(this,w);
                 require(w.war.structures().isEmpty(),"shipped natural dam count remains zero");
                 // Same coordinates/scales/seed as the exact released v059 APK baseline sampler.
                 for(int[] xy:new int[][]{{123,101},{124,40},{20,143},{42,101},{155,157},{196,55},{198,99},{196,24},{199,80},{52,65},{27,184},{113,143},{42,134},{47,134},{114,42},{26,1},{195,160},{168,163}}) {

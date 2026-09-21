@@ -13,7 +13,7 @@ final class Reference61Probe extends Reference60Probe {
   try{
    for(String id:new String[]{"coalition-190","heroes-250","central-mobile-sandbox","jingxiang-mobile-sandbox"}){
     launch(ScenarioCatalog.load(id,id.endsWith("sandbox")?0:5,610L));World w=world();byte[] original=SaveCodec.encode(w);
-    require(w.mapRevision==61&&BuildConfig.VERSION_CODE==61,"actual final v061 identity");navigator(false);
+    Map61InstalledIdentity.verify(this,w);navigator(false);
     int[][] centers={{28,22},{169,167},{12,12},{36,12},{52,9},{26,26},{187,145},{185,174},{174,191},{157,178},{42,134},{47,134}};
     for(int n=0;n<centers.length;n++){
      Hex h=national(centers[n][0],centers[n][1]);if(!w.sourceInside(h))continue;
