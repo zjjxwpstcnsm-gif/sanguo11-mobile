@@ -1,3 +1,10 @@
+# v0.61 · 两角边界与连续外景
+- DONE：安全合并指定PR48，基线049652d；原图实际解压核验；206格V→Q；1051格明确白名单外景，未修改逻辑有效性；全国源坐标展示统一；定向本地模型/工具/投影通过。
+- DONE：真实v060安装对照 run35554158663，完整两角/两局部截图与四份真实60存档。
+- IN PROGRESS：本轮功能源提交、APK构建/安装验收、同哈希发布、待审PR、最终前后目视记录。
+- TODO：西北14格岸线/墙遮挡仍未解决，无外景遮罩。原版精确enabled-hex/航行表未取得；标题下材质仅估计；不宣称100%还原。
+- 验证与证据：docs/validation/v061/README.md；data/map/reference-v061/。
+
 # v0.60 — 批量水面恢复 / 岸线与通行验收
 
 - DONE: actual latest-main tree and uploaded original fingerprint verified; all54 nonempty v059 VOID blocks, 42 city and45 gate/port neighborhoods reviewed.

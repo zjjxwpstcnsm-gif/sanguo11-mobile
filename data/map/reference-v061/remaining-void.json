@@ -1,0 +1,380 @@
+{
+  "schema": "native61-remaining-void-v1",
+  "map_revision": 61,
+  "map_sha256": "d5d5659e40a23619dd8515713d21997715733d20cc937a964662591e22f076c4",
+  "raw_source_void": 1065,
+  "scoped_reviewed_exterior": 1051,
+  "unresolved_cells": [
+    {
+      "source": [
+        35,
+        14
+      ],
+      "before": "V",
+      "region": "block61-025-000",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        950,
+        122,
+        1777,
+        949
+      ],
+      "calibration_id": "native61-reviewed-native60-oddq-phase",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": "No site/plot/footprint/road/structure changes; no newly traversable cell.",
+      "current": "V",
+      "classification": "MIXED_BANK_OR_WALL_OVERLAY",
+      "evidence": "UNRESOLVED",
+      "surface": "Land/water centre lies on a mixed bank, grid-phase tolerance, or illustrated wall; exact material and effective/exterior classification unresolved.",
+      "validity_evidence": "UNRESOLVED",
+      "action": "RETAIN_VOID_WITHOUT_SCENERY",
+      "missing_evidence": "Local original terrain/enable-hex export or unobscured source view. No mask or guessed water/rock assignment."
+    },
+    {
+      "source": [
+        33,
+        15
+      ],
+      "before": "V",
+      "region": "block61-025-000",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        950,
+        122,
+        1777,
+        949
+      ],
+      "calibration_id": "native61-reviewed-native60-oddq-phase",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": "No site/plot/footprint/road/structure changes; no newly traversable cell.",
+      "current": "V",
+      "classification": "MIXED_BANK_OR_WALL_OVERLAY",
+      "evidence": "UNRESOLVED",
+      "surface": "Land/water centre lies on a mixed bank, grid-phase tolerance, or illustrated wall; exact material and effective/exterior classification unresolved.",
+      "validity_evidence": "UNRESOLVED",
+      "action": "RETAIN_VOID_WITHOUT_SCENERY",
+      "missing_evidence": "Local original terrain/enable-hex export or unobscured source view. No mask or guessed water/rock assignment."
+    },
+    {
+      "source": [
+        34,
+        15
+      ],
+      "before": "V",
+      "region": "block61-025-000",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        950,
+        122,
+        1777,
+        949
+      ],
+      "calibration_id": "native61-reviewed-native60-oddq-phase",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": "No site/plot/footprint/road/structure changes; no newly traversable cell.",
+      "current": "V",
+      "classification": "MIXED_BANK_OR_WALL_OVERLAY",
+      "evidence": "UNRESOLVED",
+      "surface": "Land/water centre lies on a mixed bank, grid-phase tolerance, or illustrated wall; exact material and effective/exterior classification unresolved.",
+      "validity_evidence": "UNRESOLVED",
+      "action": "RETAIN_VOID_WITHOUT_SCENERY",
+      "missing_evidence": "Local original terrain/enable-hex export or unobscured source view. No mask or guessed water/rock assignment."
+    },
+    {
+      "source": [
+        37,
+        15
+      ],
+      "before": "V",
+      "region": "block61-025-000",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        950,
+        122,
+        1777,
+        949
+      ],
+      "calibration_id": "native61-reviewed-native60-oddq-phase",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": "No site/plot/footprint/road/structure changes; no newly traversable cell.",
+      "current": "V",
+      "classification": "MIXED_BANK_OR_WALL_OVERLAY",
+      "evidence": "UNRESOLVED",
+      "surface": "Land/water centre lies on a mixed bank, grid-phase tolerance, or illustrated wall; exact material and effective/exterior classification unresolved.",
+      "validity_evidence": "UNRESOLVED",
+      "action": "RETAIN_VOID_WITHOUT_SCENERY",
+      "missing_evidence": "Local original terrain/enable-hex export or unobscured source view. No mask or guessed water/rock assignment."
+    },
+    {
+      "source": [
+        38,
+        15
+      ],
+      "before": "V",
+      "region": "block61-025-000",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        950,
+        122,
+        1777,
+        949
+      ],
+      "calibration_id": "native61-reviewed-native60-oddq-phase",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": "No site/plot/footprint/road/structure changes; no newly traversable cell.",
+      "current": "V",
+      "classification": "MIXED_BANK_OR_WALL_OVERLAY",
+      "evidence": "UNRESOLVED",
+      "surface": "Land/water centre lies on a mixed bank, grid-phase tolerance, or illustrated wall; exact material and effective/exterior classification unresolved.",
+      "validity_evidence": "UNRESOLVED",
+      "action": "RETAIN_VOID_WITHOUT_SCENERY",
+      "missing_evidence": "Local original terrain/enable-hex export or unobscured source view. No mask or guessed water/rock assignment."
+    },
+    {
+      "source": [
+        34,
+        18
+      ],
+      "before": "V",
+      "region": "block61-025-000",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        950,
+        122,
+        1777,
+        949
+      ],
+      "calibration_id": "native61-reviewed-native60-oddq-phase",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": "No site/plot/footprint/road/structure changes; no newly traversable cell.",
+      "current": "V",
+      "classification": "MIXED_BANK_OR_WALL_OVERLAY",
+      "evidence": "UNRESOLVED",
+      "surface": "Land/water centre lies on a mixed bank, grid-phase tolerance, or illustrated wall; exact material and effective/exterior classification unresolved.",
+      "validity_evidence": "UNRESOLVED",
+      "action": "RETAIN_VOID_WITHOUT_SCENERY",
+      "missing_evidence": "Local original terrain/enable-hex export or unobscured source view. No mask or guessed water/rock assignment."
+    },
+    {
+      "source": [
+        37,
+        20
+      ],
+      "before": "V",
+      "region": "block61-025-000",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        950,
+        122,
+        1777,
+        949
+      ],
+      "calibration_id": "native61-reviewed-native60-oddq-phase",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": "No site/plot/footprint/road/structure changes; no newly traversable cell.",
+      "current": "V",
+      "classification": "MIXED_BANK_OR_WALL_OVERLAY",
+      "evidence": "UNRESOLVED",
+      "surface": "Land/water centre lies on a mixed bank, grid-phase tolerance, or illustrated wall; exact material and effective/exterior classification unresolved.",
+      "validity_evidence": "UNRESOLVED",
+      "action": "RETAIN_VOID_WITHOUT_SCENERY",
+      "missing_evidence": "Local original terrain/enable-hex export or unobscured source view. No mask or guessed water/rock assignment."
+    },
+    {
+      "source": [
+        37,
+        21
+      ],
+      "before": "V",
+      "region": "block61-025-000",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        950,
+        122,
+        1777,
+        949
+      ],
+      "calibration_id": "native61-reviewed-native60-oddq-phase",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": "No site/plot/footprint/road/structure changes; no newly traversable cell.",
+      "current": "V",
+      "classification": "MIXED_BANK_OR_WALL_OVERLAY",
+      "evidence": "UNRESOLVED",
+      "surface": "Land/water centre lies on a mixed bank, grid-phase tolerance, or illustrated wall; exact material and effective/exterior classification unresolved.",
+      "validity_evidence": "UNRESOLVED",
+      "action": "RETAIN_VOID_WITHOUT_SCENERY",
+      "missing_evidence": "Local original terrain/enable-hex export or unobscured source view. No mask or guessed water/rock assignment."
+    },
+    {
+      "source": [
+        37,
+        22
+      ],
+      "before": "V",
+      "region": "block61-025-000",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        950,
+        122,
+        1777,
+        949
+      ],
+      "calibration_id": "native61-reviewed-native60-oddq-phase",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": "No site/plot/footprint/road/structure changes; no newly traversable cell.",
+      "current": "V",
+      "classification": "MIXED_BANK_OR_WALL_OVERLAY",
+      "evidence": "UNRESOLVED",
+      "surface": "Land/water centre lies on a mixed bank, grid-phase tolerance, or illustrated wall; exact material and effective/exterior classification unresolved.",
+      "validity_evidence": "UNRESOLVED",
+      "action": "RETAIN_VOID_WITHOUT_SCENERY",
+      "missing_evidence": "Local original terrain/enable-hex export or unobscured source view. No mask or guessed water/rock assignment."
+    },
+    {
+      "source": [
+        37,
+        23
+      ],
+      "before": "V",
+      "region": "block61-025-000",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        950,
+        122,
+        1777,
+        949
+      ],
+      "calibration_id": "native61-reviewed-native60-oddq-phase",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": "No site/plot/footprint/road/structure changes; no newly traversable cell.",
+      "current": "V",
+      "classification": "MIXED_BANK_OR_WALL_OVERLAY",
+      "evidence": "UNRESOLVED",
+      "surface": "Land/water centre lies on a mixed bank, grid-phase tolerance, or illustrated wall; exact material and effective/exterior classification unresolved.",
+      "validity_evidence": "UNRESOLVED",
+      "action": "RETAIN_VOID_WITHOUT_SCENERY",
+      "missing_evidence": "Local original terrain/enable-hex export or unobscured source view. No mask or guessed water/rock assignment."
+    },
+    {
+      "source": [
+        18,
+        24
+      ],
+      "before": "V",
+      "region": "block61-000-000",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        143,
+        108,
+        971,
+        936
+      ],
+      "calibration_id": "native61-reviewed-native60-oddq-phase",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": "No site/plot/footprint/road/structure changes; no newly traversable cell.",
+      "current": "V",
+      "classification": "MIXED_BANK_OR_WALL_OVERLAY",
+      "evidence": "UNRESOLVED",
+      "surface": "Land/water centre lies on a mixed bank, grid-phase tolerance, or illustrated wall; exact material and effective/exterior classification unresolved.",
+      "validity_evidence": "UNRESOLVED",
+      "action": "RETAIN_VOID_WITHOUT_SCENERY",
+      "missing_evidence": "Local original terrain/enable-hex export or unobscured source view. No mask or guessed water/rock assignment."
+    },
+    {
+      "source": [
+        29,
+        24
+      ],
+      "before": "V",
+      "region": "block61-025-000",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        950,
+        122,
+        1777,
+        949
+      ],
+      "calibration_id": "native61-reviewed-native60-oddq-phase",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": "No site/plot/footprint/road/structure changes; no newly traversable cell.",
+      "current": "V",
+      "classification": "MIXED_BANK_OR_WALL_OVERLAY",
+      "evidence": "UNRESOLVED",
+      "surface": "Land/water centre lies on a mixed bank, grid-phase tolerance, or illustrated wall; exact material and effective/exterior classification unresolved.",
+      "validity_evidence": "UNRESOLVED",
+      "action": "RETAIN_VOID_WITHOUT_SCENERY",
+      "missing_evidence": "Local original terrain/enable-hex export or unobscured source view. No mask or guessed water/rock assignment."
+    },
+    {
+      "source": [
+        30,
+        24
+      ],
+      "before": "V",
+      "region": "block61-025-000",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        950,
+        122,
+        1777,
+        949
+      ],
+      "calibration_id": "native61-reviewed-native60-oddq-phase",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": "No site/plot/footprint/road/structure changes; no newly traversable cell.",
+      "current": "V",
+      "classification": "MIXED_BANK_OR_WALL_OVERLAY",
+      "evidence": "UNRESOLVED",
+      "surface": "Land/water centre lies on a mixed bank, grid-phase tolerance, or illustrated wall; exact material and effective/exterior classification unresolved.",
+      "validity_evidence": "UNRESOLVED",
+      "action": "RETAIN_VOID_WITHOUT_SCENERY",
+      "missing_evidence": "Local original terrain/enable-hex export or unobscured source view. No mask or guessed water/rock assignment."
+    },
+    {
+      "source": [
+        37,
+        24
+      ],
+      "before": "V",
+      "region": "block61-025-000",
+      "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+      "pixel_crop": [
+        950,
+        122,
+        1777,
+        949
+      ],
+      "calibration_id": "native61-reviewed-native60-oddq-phase",
+      "original_navigation_evidence": "UNRESOLVED",
+      "movement_policy": "PRESERVE_PREEXISTING_BLOCKAGE",
+      "impact": "No site/plot/footprint/road/structure changes; no newly traversable cell.",
+      "current": "V",
+      "classification": "MIXED_BANK_OR_WALL_OVERLAY",
+      "evidence": "UNRESOLVED",
+      "surface": "Land/water centre lies on a mixed bank, grid-phase tolerance, or illustrated wall; exact material and effective/exterior classification unresolved.",
+      "validity_evidence": "UNRESOLVED",
+      "action": "RETAIN_VOID_WITHOUT_SCENERY",
+      "missing_evidence": "Local original terrain/enable-hex export or unobscured source view. No mask or guessed water/rock assignment."
+    }
+  ],
+  "classification_counts": {
+    "NW_OUTER_LAND": 182,
+    "SE_OUTER_SEA": 869,
+    "MIXED_BANK_OR_WALL_OVERLAY": 14
+  },
+  "original_enabled_hex_table_obtained": false,
+  "warning": "Raw VOID count includes explicit exterior. Unknown fringe cells are NOT scenery and remain visible. Scoped cartographic evidence is not original engine-wide enabled-hex/navigation certification."
+}

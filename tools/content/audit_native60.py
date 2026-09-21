@@ -49,7 +49,8 @@ def apply_bytes(raw,plan):
     validate_plan(raw,plan)
     return transform(raw,plan)
 def old59(raw):return transform(raw,ledger(),True)
-def audit(raw):
+def audit(raw, release_manifest=MANIFEST, release_version=ROOT/'version.properties'):
+    # Optional *exact* historical release identities for tests on later maps. Defaults remain current production.
     plan=ledger();assert digest(raw)==plan['after_sha256']
     before=old59(raw);assert apply_bytes(before,plan)==raw and apply_bytes(raw,plan)==raw
     p=properties(raw.decode());bp=properties(before.decode())
@@ -59,9 +60,9 @@ def audit(raw):
     assert len(codes)==15 and codes['Q']=='NON_NAVIGABLE_WATER' and codes['D']=='MOUNTAIN_PATH' and codes['H']=='DAM'
     grid=[p[f'terrain.{y}']for y in range(200)];assert all(len(row)==200 and set(row)<=codes.keys()for row in grid)
     sites,plots=footprint(p);assert len(plots)==591 and sum(k.startswith('site.')for k in p)==87
-    m=json.loads(MANIFEST.read_text());e=next(e for e in m['files']if e['source_path']==str(MAP.relative_to(ROOT)))
+    m=json.loads(release_manifest.read_text());e=next(e for e in m['files']if e['source_path']==str(MAP.relative_to(ROOT)))
     assert m['release']=='0.60.0' and e['sha256']==digest(raw)
-    assert (ROOT/'version.properties').read_text()=='versionName=0.60.0\nversionCode=60\n'
+    assert release_version.read_text()=='versionName=0.60.0\nversionCode=60\n'
     expected=''.join(f"{c['source'][0]}\t{c['source'][1]}\tV\tQ\n"for c in plan['cells'])
     assert (ROOT/'core/src/test/resources/reference60-corrections.tsv').read_text()==expected
     # Reverse the historical ledgers on bytes, not fabricated revision-only migrations.

@@ -27,6 +27,11 @@ public final class MapCoordinates {
     public static SourceGridCoord source(World w,Hex h){return w.columnStaggered?sourceColumn(h,w.sourceMapWidth):w.sourceMapWidth>0?sourceCoord(h,w.height):new SourceGridCoord(h.q,h.r);}
     public static SourceGridCoord nationalSource(World w,Hex h){SourceGridCoord s=source(w,h);return new SourceGridCoord(s.x+w.sourceOriginX,s.y+w.sourceOriginY);}
     public static Hex fromNationalSource(World w,SourceGridCoord s){return axial(w,new SourceGridCoord(s.x-w.sourceOriginX,s.y-w.sourceOriginY));}
+    /** A single user-facing coordinate convention for a point in national/cropped maps. */
+    public static String display(World w,Hex h){
+        if(h==null)return "未知坐标";
+        return (NationalMap.ID.equals(w.mapId)?"全国源坐标 ":"地图坐标 ")+nationalSource(w,h);
+    }
     static int normalize(Properties p)throws IOException {
         String layout=(String)p.remove("coordinates");if(layout==null||layout.equals("axial"))return 0;
         boolean columns=layout.equals("odd-q");if(!columns&&!layout.equals("odd-r"))throw new IOException("不支持的格子坐标系");

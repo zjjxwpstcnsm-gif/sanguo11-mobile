@@ -617,7 +617,7 @@ public final class MainActivity extends Activity {
             else {primaryAction("查看开发条件",()->message("暂不可开发",unavailable));line(reason,14,gold);}
             primaryAction("前往"+c.name,()->selectAndFocus(c.hex));
         }
-        line(detail.presentation().name()+" · 地块 "+detail.local(),18,paper);
+        line(detail.presentation().name()+" · "+MapCoordinates.display(world,h),18,paper);
         line(detail.presentation().description(),13,muted);
         if(c!=null)line(c.name+" · "+world.faction(c.owner)+"\n设施 "+world.domestic.count(c.id)+" / "+world.development.capacity(c.id)+" · 可用金 "+c.gold,14,paper);
         else line("此地不属于城市开发用地",14,muted);

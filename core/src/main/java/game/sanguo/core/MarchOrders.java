@@ -59,7 +59,7 @@ public final class MarchOrders {
         if(o.kind==Kind.UNIT&&w.unit(o.targetId)!=null)return w.officer(w.unit(o.targetId).officerId).name+"部队";
         if(o.kind==Kind.STRUCTURE&&w.war.at(o.tile)!=null)return w.war.at(o.tile).kind.label;
         if(o.kind==Kind.FACILITY&&w.domestic.facility(o.targetId)!=null)return w.domestic.facility(o.targetId).kind.label;
-        return "地块 "+o.tile;
+        return "地块 · "+MapCoordinates.display(w,o.tile);
     }
     private static String actionLabel(Intent i){switch(i){case ATTACK:return "自动攻击";case GARRISON:return "自动进驻";case REPAIR:return "自动修理";case APPROACH:return "接近目标";case LEGACY:return "原行军指令";default:return "自动行军";}}
     private static String completion(Intent i){switch(i){case ATTACK:return "进入有效射程后每旬攻击；目标消灭结束，据点攻占后自动进驻";case GARRISON:return "到达后自动进驻；容量不足则保留全部兵粮并等待";case REPAIR:return "到达后每旬补修，修满后停止";case APPROACH:return "接近后待命，不攻击、不自动宣战";case LEGACY:return "保留旧指令行为；重新选目标可启用连续攻击或修理";default:return "到达指定地块后停止";}}

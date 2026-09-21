@@ -24,7 +24,7 @@ public final class Reference59Test {
         w.mapRevision=58;
     }
     public static void main(String[] args)throws Exception{
-        check(NationalMap.REVISION==60&&CityArtCatalog.ASSET_REVISION==56,"current map60; reconstruct actual map59 ledger, unchanged CityAtlas56");
+        check(NationalMap.REVISION==61&&CityArtCatalog.ASSET_REVISION==56,"current map61; reconstruct actual map59 ledger, unchanged CityAtlas56");
         check(changes().size()==109,"109 unique current corrections, not previous89");
         Set<SourceGridCoord> unique=new HashSet<>();int vq=0,rm=0;
         for(String[] c:changes()){
@@ -54,13 +54,13 @@ public final class Reference59Test {
             check(current[7]==31&&Arrays.equals(current,SaveCodec.encode(loaded)),"Codec31 current exact roundtrip");
             restore58(w);byte[] historical=SaveCodec.encode(w);loaded=SaveCodec.decode(historical);
             check(loaded.mapRevision==58&&Arrays.equals(historical,SaveCodec.encode(loaded)),"Q-containing rev58 remains exact, no silent migration");
-            check(NationalMap.compatibilityNotice(loaded).contains("修订60")&&MarchScale.base(loaded,7)==14,"rev58 notice and movement budgets");
+            check(NationalMap.compatibilityNotice(loaded).contains("修订61")&&MarchScale.base(loaded,7)==14,"rev58 notice and movement budgets");
             check(w.war.structures().isEmpty(),"legacy structure count unchanged");
             if(w.sourceColumns()==200)siteConnectivity(w,ScenarioCatalog.load(s.id,0,590L));
             scenarios++;System.out.println("REFERENCE59 SCENARIO "+s.id+" corrected="+applied+" natural=0 old58Preserved=true");
         }
         check(scenarios==9,"all nine shipped scenarios");
-        for(int revision:new int[]{55,61,999}){
+        for(int revision:new int[]{55,62,999}){
             World w=ScenarioCatalog.load("coalition-190",0,590L);w.mapRevision=revision;boolean rejected=false;
             try{SaveCodec.validate(w);}catch(IOException e){rejected=true;}check(rejected,"unknown revision rejected, not relabelled "+revision);
         }

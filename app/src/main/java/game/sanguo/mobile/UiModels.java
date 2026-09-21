@@ -181,7 +181,7 @@ final class UiModels {
         if (!changed) s.append("本旬城池资源无变化\n");
         for (World.City b : after.cities) if (b.owner == after.player && before.city(b.id) != null && before.city(b.id).owner != before.player) s.append("占领 ").append(b.name).append('\n');
         for(World.Unit u:before.units)if(u.owner==before.player&&u.march!=null){
-            World.Unit next=after.unit(u.id);s.append("\n行军 · ").append(before.officer(u.officerId).name).append("：").append(next==null?"部队已解编":next.march==null?"行军结束":next.march.paused.isEmpty()?"已前进至 "+next.hex:next.march.paused).append('\n');
+            World.Unit next=after.unit(u.id);s.append("\n行军 · ").append(before.officer(u.officerId).name).append("：").append(next==null?"部队已解编":next.march==null?"行军结束":next.march.paused.isEmpty()?"已前进至 "+game.sanguo.core.MapCoordinates.display(after,next.hex):next.march.paused).append('\n');
         }
         s.append("\n建设 / 在途进展\n"); boolean progress = false;
         for (Domestic.Facility f : before.domestic.facilities) if (before.city(f.cityId).owner == before.player && f.remaining > 0) {

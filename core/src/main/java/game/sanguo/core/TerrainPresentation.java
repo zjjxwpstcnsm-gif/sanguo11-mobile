@@ -24,7 +24,7 @@ public final class TerrainPresentation {
             case PLANK_ROAD -> new Definition("栈道", "山地架设通路；未解锁相应技巧可能损兵");
             case POISON -> new Definition("毒泉", "经过可能损兵，解毒特技可免疫");
             case SEA -> new Definition("海域", "舰船通行，不划入陆地势力范围");
-            case VOID -> new Definition("界外", "地图轮廓之外，不可选择、通行或建设");
+            case VOID -> new Definition("未定义／界外", "未定义地形或界外区域，不可选择、通行或建设；不等同于已确认的原版地图边界");
             case SWAMP -> new Definition("沼泽", "步兵移动消耗2，骑兵与器械消耗4；不能建设军事设施");
             case DAM -> new Definition("堤坝", "堤坝地形；可破坏坝体由独立的中立设施表示");
             case SAND -> new Definition("沙地", "正常通行；枪兵不能施放战法，普通攻击不受影响");

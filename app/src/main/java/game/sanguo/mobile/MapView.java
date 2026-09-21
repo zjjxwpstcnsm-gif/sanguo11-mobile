@@ -282,7 +282,7 @@ public final class MapView extends View {
             // Published bitmaps may still be referenced by a hardware display list; let Android release them.
             miniTerrain=Bitmap.createBitmap(miniWidth(),miniHeight(),Bitmap.Config.ARGB_8888);
             miniTerrain.eraseColor(MapOverview.BACKGROUND);
-            for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++){Hex h=tiles[q][r];if(world.inside(h))paintMini(miniTerrain,h,TerrainTiles.color(world.terrain[q][r]));}
+            for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++){Hex h=tiles[q][r];World.Terrain visual=TerrainConnections.appearance(world,q,r);if(visual!=World.Terrain.VOID)paintMini(miniTerrain,h,TerrainTiles.color(visual));}
         }
         StringBuilder owners=new StringBuilder();for(World.City city:world.cities)owners.append(city.id).append(':').append(city.owner).append(';');
         if(!territoryOwners.equals(owners.toString())){
@@ -426,12 +426,13 @@ public final class MapView extends View {
         else for(int r=r0;r<=r1;r++)for(int q=camera.firstColumn(r,world.width,RADIUS*2);q<=camera.lastColumn(r,world.width,RADIUS*2);q++){
             lastTilesVisited++;Hex h=tiles[q][r];float cx=x(h),cy=y(h);float sx=cx*scale+offsetX,sy=cy*scale+offsetY;
             if(sx<-RADIUS*scale||sy<-RADIUS*scale||sx>getWidth()+RADIUS*scale||sy>getHeight()+RADIUS*scale)continue;
-            World.Terrain t=world.terrain[q][r];
-            if(t==World.Terrain.VOID||!world.sourceInside(h))continue;
+            World.Terrain t=TerrainConnections.appearance(world,q,r);
+            if(t==World.Terrain.VOID)continue;
+            boolean exterior=world.terrain[q][r]==World.Terrain.VOID;
             if(detail)terrainTiles.draw(canvas,world,q,r,cx,cy);
             else {polygon(cx,cy,RADIUS-.3f);fill(canvas,TerrainTiles.color(t));}
-            if(!TerrainConnections.road(t)){polygon(cx,cy,RADIUS-.3f);stroke(canvas,Color.argb(40,13,37,35),.7f);}
-            drawTerritory(canvas,q,r,cx,cy,scale);
+            if(!exterior&&!TerrainConnections.road(t)){polygon(cx,cy,RADIUS-.3f);stroke(canvas,Color.argb(40,13,37,35),.7f);}
+            if(!exterior)drawTerritory(canvas,q,r,cx,cy,scale);
         }
         if(detail&&territoryMode>0){
             // Only visible border segments: never send a continent-sized path to the GPU.
