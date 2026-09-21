@@ -262,7 +262,7 @@ public final class World {
         return army.deploy(cityId,officerId,new int[0],weapon,Army.Ship.BOAT,troops,troops*2);
     }
     public int cost(Hex h,Weapon weapon) {
-        if(h==null||weapon==null||!inside(h)||events.at(h)!=null)return -1;
+        if(h==null||weapon==null||!inside(h)||events.at(h)!=null||NationalMap.restricted(this,h))return -1;
         Terrain t=terrain[h.q][h.r];
         if(t==Terrain.MOUNTAIN||t==Terrain.WATER||t==Terrain.SEA||t==Terrain.NON_NAVIGABLE_WATER||t==Terrain.VOID)return -1;
         if(t==Terrain.SWAMP)return weapon==Weapon.CAVALRY||Army.siegeWeapon(weapon)?4:2;

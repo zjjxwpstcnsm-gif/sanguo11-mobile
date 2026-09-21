@@ -6,7 +6,7 @@ import java.util.*;
 
 /** Reviewed cartographic exterior ONLY. Never changes World.inside/sourceInside, terrain,
  * movement, territory or save state. Unknown VOID and axial padding have no fallback.
- * The explicit source mask is bound to revision 61; older saves keep their own map. */
+ * The explicit source mask is bound to known revisions 61 and 63; older saves keep their own map. */
 public final class NationalExterior {
     public static final int REVISION=61;
     public static final String MAP_SHA256="d5d5659e40a23619dd8515713d21997715733d20cc937a964662591e22f076c4";
@@ -49,7 +49,7 @@ public final class NationalExterior {
     /** Metadata query in national source coordinates, not an alternative validity function. */
     public static Surface sourceSurface(int x,int y){return x<0||y<0||x>=200||y>=200?null:Data.CELLS[y*200+x];}
     public static Surface surface(World w,Hex h){
-        if(w==null||h==null||w.mapRevision!=REVISION||!NationalMap.ID.equals(w.mapId)||!NationalMap.LAYOUT.equals(w.mapLayout)||!w.columnStaggered||!w.sourceInside(h)||w.terrain[h.q][h.r]!=World.Terrain.VOID)return null;
+        if(w==null||h==null||(w.mapRevision!=REVISION&&w.mapRevision!=63)||!NationalMap.ID.equals(w.mapId)||!NationalMap.LAYOUT.equals(w.mapLayout)||!w.columnStaggered||!w.sourceInside(h)||w.terrain[h.q][h.r]!=World.Terrain.VOID)return null;
         SourceGridCoord s=MapCoordinates.nationalSource(w,h);
         return sourceSurface(s.x,s.y);
     }

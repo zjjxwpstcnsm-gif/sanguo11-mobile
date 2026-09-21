@@ -84,7 +84,7 @@ public final class Army {
         // A query must not use valid-looking but blocked water as a phantom origin.
         // This also covers entryCost (explicit garrison) and source VOID/axial padding.
         // Existing legal land/naval edges and old-save unit positions are unchanged.
-        if (u == null || from == null || to == null || !w.inside(from) || !w.inside(to)) return -1;
+        if (u == null || from == null || to == null || !w.inside(from) || !w.inside(to) || NationalMap.restricted(w,from) || NationalMap.restricted(w,to)) return -1;
         if (w.terrain[from.q][from.r] == World.Terrain.NON_NAVIGABLE_WATER ||
             w.terrain[to.q][to.r] == World.Terrain.NON_NAVIGABLE_WATER ||
             w.terrain[to.q][to.r] == World.Terrain.MOUNTAIN ||
