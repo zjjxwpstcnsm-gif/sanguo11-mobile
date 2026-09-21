@@ -67,24 +67,13 @@ jobs:
               }
           }
           ''')
-          # Improve diagnostics only; no skipped tests or weakened failure gates.
-          wf=Path('.github/workflows/road62-candidate-delivery.yml');s=wf.read_text()
-          for command in ['bash scripts/test-ui-models.sh','bash scripts/test-map61.sh','python3 scripts/verify-map-release.py','./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest']:
-              s=once(s,command+' | tee',command+' 2>&1 | tee')
-          s=s.replace('          retention-days: 14','          retention-days: 14\n          overwrite: true')
-          old="          if status['PUBLICATION']=='success':\n              p=Path('progress.md')"
-          new="          if status['PUBLICATION']=='success':\n              scope=json.loads((d/'scope.json').read_text());scope['road']['status']='DONE_INSTALLED_AND_PUBLISHED';(d/'scope.json').write_text(json.dumps(scope,ensure_ascii=False,indent=2)+'\\n')\n              change=json.loads((d/'road-production-change.json').read_text());change['android_pixel_equivalence']='PASSED_INSTALLED_NEGATIVE_AND_POSITIVE_CONTROLS';change['result']='last-run.json';(d/'road-production-change.json').write_text(json.dumps(change,indent=2)+'\\n')\n              p=Path('progress.md')"
-          s=once(s,old,new)
-          s=once(s,'git add docs/validation/v062/last-run.json progress.md','git add docs/validation/v062/*.json progress.md')
-          wf.write_text(s)
-          # Geography and exterior stay exact. These are not application-version switches.
           protected={'core/src/main/resources/maps/national-map-v056.properties':'d5d5659e40a23619dd8515713d21997715733d20cc937a964662591e22f076c4','core/src/main/resources/maps/national-exterior-v061.properties':'451fed332f742aaef8a88e5781c15eda8e1ad0fd29ae7d20c3e0dbe82214a60f'}
           for path,sha in protected.items():assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==sha
           report={'reason':'The application is a road-only candidate while the inherited authoritative map remains61. Checking app61 unconditionally falsely couples independent identities.','allowed_applications':['0.61.0/code61','0.62.0-road-candidate/code62'],'allowed_geography':'unchanged map61; all original map, extent, file SHA, before-byte and old-save checks retained','changed_guards':records,'installed_identity_source':'Android PackageManager actual installed package, not test-inlined BuildConfig','physical_arm_claimed':False}
           Path('docs/validation/v062/identity-guard-change.json').write_text(json.dumps(report,indent=2)+'\n')
           PY
           python3 tools/content/audit_native61.py > out/map61-audit.txt
-          python3 tools/content/test_native61_audit.py > out/map61-negative-tests.txt
+          python3 tools/content/test_audit61.py > out/map61-negative-tests.txt
           python3 - <<'PY'
           import sys,tempfile
           from pathlib import Path
@@ -105,7 +94,7 @@ jobs:
           git diff --check
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tools/content/audit_native61.py app/src/androidTest/java/game/sanguo/mobile/Reference61Probe.java app/src/androidTest/java/game/sanguo/mobile/Reference60Probe.java app/src/androidTest/java/game/sanguo/mobile/Map61InstalledIdentity.java .github/workflows/road62-candidate-delivery.yml docs/validation/v062/identity-guard-change.json
+          git add tools/content/audit_native61.py app/src/androidTest/java/game/sanguo/mobile/Reference61Probe.java app/src/androidTest/java/game/sanguo/mobile/Reference60Probe.java app/src/androidTest/java/game/sanguo/mobile/Map61InstalledIdentity.java docs/validation/v062/identity-guard-change.json
           git commit -m 'test(v062): decouple explicit installed-app identity from fixed map61 invariants'
           git push origin HEAD:agent/void-road-generated-art-v062
       - uses: actions/upload-artifact@v4
