@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 9208ab0099a1d36f1285785ff59f0fa7f895b1e3
+          ref: 920827d015dbda2bd5f1606d51616e96f99b5cc6
           fetch-depth: 0
       - uses: actions/setup-java@v5
         with:
@@ -37,10 +37,10 @@ jobs:
           from pathlib import Path
           import hashlib,json,subprocess
           i=json.loads(Path('out/APK_IDENTITY.json').read_text());v=json.loads(Path('out/built/VALIDATION_STATUS.json').read_text())
-          assert i['build_commit']==subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()=='9208ab0099a1d36f1285785ff59f0fa7f895b1e3'
+          assert i['build_commit']==subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip()==Path('out/BUILD_COMMIT').read_text().strip()
           assert v['SOURCE']==v['CORE']==v['BUILD']=='success'
           assert i['versionName']=='0.62.0-road-candidate' and i['versionCode']==62 and i['mapRevision']==61 and i['assetRevision']==56 and i['SaveCodec']==31
-          apk=Path('out')/i['apk_file'];assert hashlib.sha256(apk.read_bytes()).hexdigest()==i['apk_sha256']=='22a8524d42fddc87385814219761969b077f0e7876d0c6b47fbb2d4fb9ff501f41'
+          apk=Path('out')/i['apk_file'];assert hashlib.sha256(apk.read_bytes()).hexdigest()==i['apk_sha256']=='22a85277660a68215c3d6bf7a259ece07bffe3597bb6dc0bf86c4c358ff2d1a0'
           assert apk.stat().st_size==i['apk_bytes']==22339175
           Path('out/BUILD_PROVENANCE.json').write_text(json.dumps({'build_and_model_test_run':'https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35565144168','build_commit':i['build_commit'],'install_workflow_commit':'${{ github.sha }}','apk_rebuilt_or_repacked':False,'prior_install_stage_passed':False,'full_v062_complete':False},indent=2)+'\n')
           PY
@@ -174,7 +174,7 @@ jobs:
           tag="v0.62.0-road-candidate-${sha:0:12}"
           apk=$(find out -maxdepth 1 -name 'sanguo11-mobile-v0.62.0-road-candidate-*.apk' -print -quit)
           sha256sum -c out/TESTED_APK_SHA256
-          gh release create "$tag" --target "$sha" --prerelease --title 'v0.62 道路修复候选包 — 完整任务未完成' --notes 'PARTIAL CANDIDATE, NOT completed v0.62. Ordinary ROAD now shares the complete PLAIN visual/cache/grid path and has no dedicated road overlay. R codes and gameplay remain unchanged. All14 VOID holes remain unresolved. Generated sand/city/gate/port art is NOT integrated: CityAtlas56 remains active, map61 and SaveCodec31 retained. Built from commit9208ab0099a1d36f1285785ff59f0fa7f895b1e3 in run35565144168. The exact built APK was installed on API29 x86_64, with old-APK negative/new-APK positive pixel comparisons across four scenarios, actual v061 save reads after signed in-place installation, inherited58/59/60 save and native200 tests. No physical ARM or complete visual-art acceptance claimed.'
+          gh release create "$tag" --target "$sha" --prerelease --title 'v0.62 道路修复候选包 — 完整任务未完成' --notes "PARTIAL CANDIDATE, NOT completed v0.62. Ordinary ROAD shares the complete PLAIN visual/cache/grid path and has no dedicated road overlay. R codes and gameplay stay unchanged. All14 VOID holes remain unresolved. Generated sand/city/gate/port art is NOT integrated: CityAtlas56, map61 and SaveCodec31 remain active. Built from $sha in run35565144168. The exact built APK was installed on API29 x86_64 with old-APK negative/new-APK positive pixel controls, four actual v061 save reads after signed in-place installation, inherited58/59/60 save and native200 tests. No physical ARM or complete visual-art acceptance claimed."
           gh release upload "$tag" "$apk" out/APK_IDENTITY.json out/BUILD_PROVENANCE.json out/ANDROID_STATUS.json out/CHECK_SUMMARY.json out/SIGNATURE.txt out/SHA256SUMS out/road62-candidate-source.zip out/road62-candidate-screenshots-and-logs.zip out/road-before.png out/road-after.png
           mkdir -p out/release-check
           gh release download "$tag" -p "$(basename "$apk")" -D out/release-check
@@ -188,9 +188,10 @@ jobs:
           PUBLICATION: ${{ steps.publication.outcome }}
         run: |
           set -euo pipefail
+          build=$(cat out/BUILD_COMMIT)
           git fetch origin agent/void-road-generated-art-v062
           git checkout --detach origin/agent/void-road-generated-art-v062
-          test -z "$(git diff --name-only 9208ab0099a1d36f1285785ff59f0fa7f895b1e3 HEAD -- app/src/main core/src/main version.properties app/build.gradle tools/content/map-release-manifest.json)"
+          test -z "$(git diff --name-only "$build" HEAD -- app/src/main core/src/main version.properties app/build.gradle tools/content/map-release-manifest.json)"
           python3 - <<'PY'
           import os,json
           from pathlib import Path
@@ -209,7 +210,7 @@ jobs:
           if status['PUBLICATION']=='success':
               scope=json.loads((d/'scope.json').read_text());scope['road']['status']='DONE_INSTALLED_AND_PUBLISHED';(d/'scope.json').write_text(json.dumps(scope,ensure_ascii=False,indent=2)+'\n')
               change=json.loads((d/'road-production-change.json').read_text());change['android_pixel_equivalence']='PASSED_INSTALLED_NEGATIVE_AND_POSITIVE_CONTROLS';change['result']='last-run.json';(d/'road-production-change.json').write_text(json.dumps(change,indent=2)+'\n')
-              p=Path('progress.md');s=p.read_text();s=s.replace('- IN PROGRESS: exact candidate build, signed in-place installation and ROAD/PLAIN pixel tests; see docs/validation/v062/last-run.json for final result.','- DONE: road-only candidate built from BUILD_COMMIT9208ab0099a1d36f1285785ff59f0fa7f895b1e3, installed and pixel-tested; standalone prerelease APK re-downloaded with identical hash. Full v0.62 remains BLOCKED.')
+              p=Path('progress.md');s=p.read_text();s=s.replace('- IN PROGRESS: exact candidate build, signed in-place installation and ROAD/PLAIN pixel tests; see docs/validation/v062/last-run.json for final result.','- DONE: road-only candidate built from the BUILD_COMMIT recorded in last-run.json, installed and pixel-tested; standalone prerelease APK re-downloaded with identical hash. Full v0.62 remains BLOCKED.')
               p.write_text(s)
           PY
           git config user.name 'github-actions[bot]'
