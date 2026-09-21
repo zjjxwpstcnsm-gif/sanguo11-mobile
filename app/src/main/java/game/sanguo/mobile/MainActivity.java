@@ -76,6 +76,7 @@ public final class MainActivity extends Activity {
         TextView heading=text("三国志 · 掌上战略",25,gold);root.addView(heading);
         TextView detail=text(error==null?"开始一个年代，或继续已有存档。":error,16,paper);detail.setPadding(0,dp(24),0,dp(24));root.addView(detail);
         root.addView(button("新建游戏 · 选择剧本",v->scenarioPicker()));
+        root.addView(button("武将自定义 · 模板与投放",v->startActivity(new Intent(this,CustomOfficerActivity.class))));
         root.addView(button("读取手动存档",v->saveSlots(true)));
         root.addView(button("导入存档文件",v->importSave()));
         if(error!=null)root.addView(button("重试自动存档",v->{try{World loaded=readSave(file("auto"));unreadableAutosave=false;world=loaded;buildGameUi(null,true,true);}catch(IOException e){showError("自动存档仍无法读取，原文件保留");}}));
