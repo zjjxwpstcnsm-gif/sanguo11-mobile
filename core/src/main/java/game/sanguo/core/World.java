@@ -25,7 +25,7 @@ public final class World {
         transient SiteKind footprintKind;
         transient List<Hex> footprint=Collections.emptyList();
         public int baseDefense=3000;
-        public int recruitReserve=20000, governorId=-1;
+        public int recruitReserve=Conscription.RESERVE_CAP, governorId=-1;
         public final int[] equipment={12000,12000,12000,12000,0,0,0,0,0};
         public final int[] ships={0,0};
         public City(int id,String name,Hex hex,int owner) { this.id=id;this.name=name;this.hex=hex;this.owner=owner; }
@@ -414,7 +414,7 @@ public final class World {
     /** Exactly once after all factions have acted. Keep this order stable across save replay. */
     private void settleGlobalTurn(Consumer<String> progress){
         progress.accept("运输、建设与生产");
-        reports.globalPhase();turn++;contests.tick();reports.checkpoint("对局结算");domestic.tick();reports.checkpoint("建设运输结算");campaign.tick();reports.checkpoint("技巧研究结算");army.tick();reports.checkpoint("军备与持续伤害结算");abilities.tick();reports.checkpoint("能力研究结算");recruitment.tick();reports.checkpoint("登用结果结算");envoys.tick();reports.checkpoint("外交任务结算");strategy.tick();reports.checkpoint("人员内政结算");
+        reports.globalPhase();turn++;Conscription.settle(this);contests.tick();reports.checkpoint("对局结算");domestic.tick();reports.checkpoint("建设运输结算");campaign.tick();reports.checkpoint("技巧研究结算");army.tick();reports.checkpoint("军备与持续伤害结算");abilities.tick();reports.checkpoint("能力研究结算");recruitment.tick();reports.checkpoint("登用结果结算");envoys.tick();reports.checkpoint("外交任务结算");strategy.tick();reports.checkpoint("人员内政结算");
         progress.accept("火场、守备与武将");war.tick();reports.checkpoint("火场设施结算");cityDefense.tick();reports.checkpoint("据点守备结算");government.tick();reports.checkpoint("武将任职结算");treasures.tick();reports.checkpoint("宝物发现结算");
         progress.accept("兵粮消耗与城池收入");
         for(Unit u:new ArrayList<>(units)) {

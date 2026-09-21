@@ -23,6 +23,55 @@ public final class Fieldworks {
         return found;
     }
 
+    /** Shared spatial contract for simulation and selection overlays. Zero means no radial aura. */
+    public static int range(War.StructureKind kind){
+        switch(kind){
+            case CAMP:case ARROW_TOWER:case MUSIC:case DRUM:return 2;
+            case FORT:case CROSSBOW_TOWER:case CATAPULT_TOWER:return 3;
+            case FORTRESS:return 4;
+            case STONE_MAZE:return 1;
+            default:return 0;
+        }
+    }
+    public static boolean tower(War.StructureKind kind){return kind==War.StructureKind.ARROW_TOWER||kind==War.StructureKind.CROSSBOW_TOWER||kind==War.StructureKind.CATAPULT_TOWER;}
+    public static int minRange(War.StructureKind kind){return kind==War.StructureKind.CATAPULT_TOWER?2:tower(kind)||kind==War.StructureKind.STONE_MAZE?1:0;}
+    public static boolean inRange(War.Structure s,Hex target){
+        if(s==null||target==null||range(s.kind)==0)return false;
+        int distance=s.hex.distance(target);return distance>=minRange(s.kind)&&distance<=range(s.kind);
+    }
+    /** Pure first-effect footprint. Unfinished structures show planned, not active, coverage.
+     * Trap chains depend on the igniting faction: use ignitionArea for their action preview.
+     */
+    public Set<Hex> coverage(War.Structure s){
+        LinkedHashSet<Hex> area=new LinkedHashSet<>();
+        if(s==null||w.war.at(s.hex)!=s)return Collections.emptySet();
+        if(trap(s.kind))area.addAll(trapArea(s));
+        else if(s.kind==War.StructureKind.DAM)area.addAll(floodArea(s.hex));
+        else {int radius=range(s.kind);
+            for(int q=Math.max(0,s.hex.q-radius);q<=Math.min(w.width-1,s.hex.q+radius);q++)
+                for(int r=Math.max(0,s.hex.r-radius);r<=Math.min(w.height-1,s.hex.r+radius);r++){
+                    Hex h=new Hex(q,r);if(inRange(s,h)&&(!tower(s.kind)||landTarget(s.owner,h)))area.add(h);
+                }
+        }
+        area.removeIf(h->!w.inside(h));return Collections.unmodifiableSet(area);
+    }
+    public String coverageDescription(War.Structure s){
+        if(s==null)return "";
+        if(range(s.kind)==0&&!trap(s.kind)&&s.kind!=War.StructureKind.DAM)return "此设施无范围效果";
+        String effect=trap(s.kind)?"首爆范围（连锁另计）":s.kind==War.StructureKind.DAM?"相连两格低地洪水范围":
+            tower(s.kind)?"射程 "+minRange(s.kind)+"–"+range(s.kind)+" 格":s.kind==War.StructureKind.STONE_MAZE?"邻接敌军干扰范围":"友军覆盖 "+range(s.kind)+" 格";
+        return (s.complete?"已高亮：":"建成后生效，预览：")+effect+" · "+coverage(s).size()+" 格";
+    }
+    private Set<Hex> floodArea(Hex origin){
+        Set<Hex> flood=new LinkedHashSet<>();flood.add(origin);List<Hex> edge=new ArrayList<>(flood);
+        for(int step=0;step<2;step++){
+            List<Hex> next=new ArrayList<>();for(Hex h:edge)for(Hex n:h.neighbors())if(w.inside(n)&&!flood.contains(n)){
+                World.Terrain t=w.terrain[n.q][n.r];
+                if(t==World.Terrain.PLAIN||t==World.Terrain.SWAMP||t==World.Terrain.SHALLOWS||t==World.Terrain.WATER){flood.add(n);next.add(n);}
+            }edge=next;
+        }return flood;
+    }
+
     public boolean trap(War.StructureKind kind){return kind==War.StructureKind.FIRE_SEED||(kind.ordinal()>=War.StructureKind.FIRE_BALL.ordinal()&&kind.ordinal()<=War.StructureKind.FIRE_SHIP.ordinal());}
     public boolean ball(War.StructureKind kind){return kind==War.StructureKind.FIRE_BALL||kind==War.StructureKind.FLAME_BALL||kind==War.StructureKind.INFERNO_BALL;}
     public boolean camp(War.StructureKind k){return k==War.StructureKind.CAMP||k==War.StructureKind.FORT||k==War.StructureKind.FORTRESS;}
@@ -111,17 +160,17 @@ public final class Fieldworks {
     void traveled(World.Unit u,List<Hex> path){
         if(u.troops>0&&!w.skills.has(u,Skill.JIEDU))for(int i=1;i<path.size();i++)if(w.terrain[path.get(i).q][path.get(i).r]==World.Terrain.POISON){int loss=Math.max(1,u.troops/20);u.troops=Math.max(1,u.troops-loss);w.note("经过毒泉，部队损失"+loss+"兵");}
         if(u.troops>0&&!w.campaign.has(u.owner,Campaign.Tech.DIFFICULT_MARCH))for(int i=1;i<path.size();i++)if(w.terrain[path.get(i).q][path.get(i).r]==World.Terrain.PLANK_ROAD&&!w.skills.has(u,Skill.TAPO))u.troops=Math.max(1,u.troops-Math.max(1,u.troops/100));
-        for(War.Structure s:w.war.structures)if(s.complete&&s.kind==War.StructureKind.STONE_MAZE&&w.campaign.hostile(s.owner,u.owner)&&s.hex.distance(u.hex)==1&&!w.skills.has(u,Skill.TAPO)&&!w.skills.has(u,Skill.DONGCHA)&&w.strategy.nextInt(100)<35){u.status=War.Status.CONFUSED;u.statusTurns=1;u.acted=true;break;}
+        for(War.Structure s:w.war.structures)if(s.complete&&s.kind==War.StructureKind.STONE_MAZE&&w.campaign.hostile(s.owner,u.owner)&&inRange(s,u.hex)&&!w.skills.has(u,Skill.TAPO)&&!w.skills.has(u,Skill.DONGCHA)&&w.strategy.nextInt(100)<35){u.status=War.Status.CONFUSED;u.statusTurns=1;u.acted=true;break;}
     }
     public int defensePercent(World.Unit u){int best=0;for(War.Structure s:nearbyAuras(u.hex))if(s.complete&&s.owner==u.owner&&camp(s.kind)){
         int tier=s.kind==War.StructureKind.FORTRESS?3:s.kind==War.StructureKind.FORT?2:1;
-        if(s.hex.distance(u.hex)<=tier+1)best=Math.max(best,tier==3?35:tier==2?25:15);
+        if(inRange(s,u.hex))best=Math.max(best,tier==3?35:tier==2?25:15);
     }return best;}
     public int foodUse(World.Unit u,int base){int reduction=0;for(War.Structure s:nearbyAuras(u.hex))if(s.complete&&s.owner==u.owner&&camp(s.kind)){
         int tier=s.kind==War.StructureKind.FORTRESS?3:s.kind==War.StructureKind.FORT?2:1;
-        if(s.hex.distance(u.hex)<=tier+1)reduction=Math.max(reduction,tier==3?50:tier==2?30:15);
+        if(inRange(s,u.hex))reduction=Math.max(reduction,tier==3?50:tier==2?30:15);
     }return Math.max(1,base*(100-reduction)/100);}
-    public boolean drum(World.Unit u){for(War.Structure s:nearbyAuras(u.hex))if(s.complete&&s.kind==War.StructureKind.DRUM&&s.owner==u.owner&&s.hex.distance(u.hex)<=2)return true;return false;}
+    public boolean drum(World.Unit u){for(War.Structure s:nearbyAuras(u.hex))if(s.complete&&s.kind==War.StructureKind.DRUM&&s.owner==u.owner&&inRange(s,u.hex))return true;return false;}
     void counter(War.Structure s,World.Unit u){if(s.complete&&camp(s.kind)&&u.hex.distance(s.hex)==1&&w.army.counter(u)){
         BattleReports.ActionContext reportContext=w.reports.beginCounter(s,u.hex);if(w.turnJournal!=null)w.turnJournal.facility(s,u.hex,TurnJournal.Kind.FACILITY_COUNTER,s.kind.label+"反击");
         int before=u.troops,damage=w.campaign.has(s.owner,Campaign.Tech.DEFENSE_REINFORCEMENT)?400:200;w.combatEffects.hit(null,u,damage,false,false);
@@ -129,9 +178,8 @@ public final class Fieldworks {
         if(w.turnJournal!=null)w.turnJournal.checkpoint(s.kind.label+"反击，损失"+(before-u.troops)+"兵");
     }}
     void towers(){for(War.Structure s:new ArrayList<>(w.war.structures))if(s.complete){
-        int min=1,max=s.kind==War.StructureKind.ARROW_TOWER?2:s.kind==War.StructureKind.CROSSBOW_TOWER?3:s.kind==War.StructureKind.CATAPULT_TOWER?3:0;
-        if(s.kind==War.StructureKind.CATAPULT_TOWER)min=2;if(max==0)continue;
-        World.Unit target=null;for(World.Unit u:w.fieldUnits()){int d=s.hex.distance(u.hex);if(d>=min&&d<=max&&w.campaign.hostile(s.owner,u.owner)&&landTarget(s.owner,u.hex)&&(target==null||u.id<target.id))target=u;}
+        if(!tower(s.kind))continue;
+        World.Unit target=null;for(World.Unit u:w.fieldUnits()){if(inRange(s,u.hex)&&w.campaign.hostile(s.owner,u.owner)&&landTarget(s.owner,u.hex)&&(target==null||u.id<target.id))target=u;}
         if(target!=null){
             w.reports.facility(s,target.hex,TurnJournal.Kind.FACILITY_ATTACK,s.kind.label+"射击");if(w.turnJournal!=null)w.turnJournal.facility(s,target.hex,TurnJournal.Kind.FACILITY_ATTACK,s.kind.label+"射击");
             int before=target.troops,damage=s.kind==War.StructureKind.CATAPULT_TOWER?300:200;w.combatEffects.hit(null,target,damage,false,false);
@@ -229,27 +277,12 @@ public final class Fieldworks {
         War.Fire f=new War.Fire(h,owner,2);f.power=power;f.trap=trap;w.war.fires.add(f);
     }
 void destroy(War.Structure structure) {
-        World.Terrain t;
         if (!this.w.war.structures.remove(structure) || structure.kind != War.StructureKind.DAM) {
             return;
         }
         this.w.terrain[structure.hex.q][structure.hex.r] = World.Terrain.SHALLOWS;
         this.w.terrainRevision++;
-        Set<Hex> flood = new HashSet<>();
-        flood.add(structure.hex);
-        List<Hex> edge = new ArrayList<>(flood);
-        for (int step = 0; step < 2; step++) {
-            List<Hex> next = new ArrayList<>();
-            for (Hex h : edge) {
-                for (Hex n : h.neighbors()) {
-                    if (this.w.inside(n) && !flood.contains(n) && ((t = this.w.terrain[n.q][n.r]) == World.Terrain.PLAIN || t == World.Terrain.SWAMP || t == World.Terrain.SHALLOWS || t == World.Terrain.WATER)) {
-                        flood.add(n);
-                        next.add(n);
-                    }
-                }
-            }
-            edge = next;
-        }
+        Set<Hex> flood = floodArea(structure.hex);
         Iterator it = new ArrayList(this.w.fieldUnits()).iterator();
         while (it.hasNext()) {
             World.Unit unit = (World.Unit) it.next();

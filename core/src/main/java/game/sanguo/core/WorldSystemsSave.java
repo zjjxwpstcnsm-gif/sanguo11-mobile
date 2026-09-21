@@ -47,14 +47,14 @@ final class WorldSystemsSave {
         Districts g=w.districts;range(g.nextId,1,10000000);require(g.groups.size()<=7,"军团数超过上限");cities.clear();
         for(Districts.District district:g.groups.values()){
             range(district.id,1,g.nextId-1);require(district.owner==w.player&&district.policy!=null&&district.name!=null&&!district.name.trim().isEmpty()&&district.name.length()<=30&&!district.cities.isEmpty(),"军团基本资料无效");range(district.points,0,60);range(district.actedTurn,-1,w.turn);
-            for(int id:district.cities){World.City c=w.city(id);require(c!=null&&c.owner==district.owner&&cities.add(id),"军团据点归属冲突");}
-            World.Officer leader=w.officer(district.leader);require(district.leader==-1||leader!=null&&leader.owner==district.owner&&!w.government.captive(leader.id)&&district.cities.contains(leader.cityId)&&leader.role!=Strategy.Role.RULER,"都督引用无效");
+            for(int id:district.cities){World.City c=w.city(id);require(c!=null&&c.kind==World.SiteKind.CITY&&c.owner==district.owner&&cities.add(id),"军团据点归属冲突");}
+            World.Officer leader=w.officer(district.leader);require(district.leader==-1||leader!=null&&leader.owner==district.owner&&!w.government.captive(leader.id)&&g.city(leader.cityId)==district&&leader.role!=Strategy.Role.RULER,"都督引用无效");
             if(district.policy==Districts.Policy.CITY_ATTACK)require(w.city(district.target)!=null,"军团目标据点无效");
             else if(district.policy==Districts.Policy.FORCE_ATTACK)range(district.target,0,w.factions.length-1);else require(district.target==-1,"不应存在攻略目标");
             require(district.supply==-1||w.city(district.supply)!=null&&w.city(district.supply).owner==district.owner,"军团运输目标无效");
         }
-        for(World.Officer o:w.officers)if(o.owner==w.player&&o.role==Strategy.Role.RULER)require(!cities.contains(o.cityId),"君主驻地被委任");
-        require(g.groups.isEmpty()||w.cities.stream().anyMatch(c->c.owner==w.player&&!cities.contains(c.id)),"第一军团无据点");
+        for(World.Officer o:w.officers)if(o.owner==w.player&&o.role==Strategy.Role.RULER)require(g.city(o.cityId)==null,"君主驻地被委任");
+        require(g.groups.isEmpty()||w.cities.stream().anyMatch(c->c.kind==World.SiteKind.CITY&&c.owner==w.player&&!cities.contains(c.id)),"第一军团无据点");
         for(Map.Entry<Integer,Integer> item:g.units.entrySet()){World.Unit u=w.unit(item.getKey());Districts.District district=g.get(item.getValue());require(u!=null&&district!=null&&u.owner==district.owner,"军团部队引用无效");}
         Contests.Session s=w.contests.session;if(s!=null){require(!s.isDuel()||!s.diplomatic(),"单挑不能具有外交目标");if(!s.diplomatic())require(s.foreign==-1&&s.duration==0,"非外交舌战具有外交字段");}
     }

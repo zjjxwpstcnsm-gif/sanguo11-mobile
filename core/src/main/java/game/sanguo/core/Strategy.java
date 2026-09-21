@@ -8,7 +8,7 @@ import java.util.*;
 public final class Strategy {
     public static final int SEARCH_COST=0, HIRE_COST=100, REWARD_COST=200;
     public static final int PATROL_COST=100, RECRUIT_COST=300, TRAIN_COST=100;
-    public static final int DEFAULT_RESERVE=20000, MAX_ENEMY_LOYALTY=60, RECRUIT_RANGE=6;
+    public static final int DEFAULT_RESERVE=Conscription.RESERVE_CAP, MAX_ENEMY_LOYALTY=60, RECRUIT_RANGE=6;
 
     public enum Role {
         RULER("君主"), GOVERNOR("太守"), OFFICER("普通武将"), UNAFFILIATED("在野");
@@ -274,10 +274,12 @@ public final class Strategy {
         }
         this.w.spend(c, o, RECRUIT_COST);
         w.domestic.use(cityId,Domestic.Kind.BARRACKS);
+        int moraleBefore=c.morale,orderBefore=c.order;
+        c.morale=Conscription.moraleAfter(c,amount);
         c.recruitReserve -= amount;
         c.troops += amount;
         c.order = Math.max(0, c.order - this.w.campaign.orderLoss(c.owner, this.w.skills.has(o, Skill.MINGSHENG) ? 7 : 5));
-        return this.w.success(c.name + "征得" + amount + "兵，治安−5，兵源剩余" + c.recruitReserve);
+        return this.w.success(c.name+"征得"+amount+"兵，治安−"+(orderBefore-c.order)+"；气力 "+moraleBefore+"→"+c.morale+"（新兵尚未训练）；兵源剩余"+c.recruitReserve);
     }
     public int getArmyReadiness(int cityId) {
         World.City c=w.city(cityId);if(c==null)throw new IllegalArgumentException("城池不存在");return c.morale;

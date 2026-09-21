@@ -148,6 +148,7 @@ public final class SaveCodec {
         count=bounded(d.readInt(),0,40);for(int i=0;i<count;i++)w.log.add(d.readUTF());
         if(version>=29)w.reports.read(d);else w.reports.rebase();
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
+        w.districts.migrateLegacySites();
         validate(w);return w;
     }
     private static void hex(DataOutputStream d,Hex h)throws IOException { d.writeInt(h.q);d.writeInt(h.r); }
