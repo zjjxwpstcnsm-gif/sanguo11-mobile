@@ -1,0 +1,249 @@
+name: Reference60 verified water map delivery
+on:
+  push:
+    branches: [agent/water-map-finalization-v060]
+    paths: [.github/workflows/reference60-delivery.yml]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: reference60-delivery
+  cancel-in-progress: false
+jobs:
+  delivery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply guarded new v060 delta and push final functional source
+        id: source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          git fetch origin main
+          git merge-base --is-ancestor origin/main HEAD
+          if test -f .ci/reference60-payload-01.txt; then
+            python3 - <<'PY'
+          import base64,hashlib,json,lzma,subprocess
+          from pathlib import Path
+          parts=sorted(Path('.ci').glob('reference60-payload-*.txt'))
+          assert len(parts)==7
+          raw=lzma.decompress(base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True))
+          assert hashlib.sha256(raw).hexdigest()=='bd0ad14c94f7b49e4b0c660d8d5166e71262033eda5f01d738c2697f52e33079'
+          plan=json.loads(raw);assert len(plan['files'])==31
+          assert plan['base_commit']=='db274a08f4ed5c877ee2d9799ed17c98522c3295'
+          for name,meta in plan['files'].items():
+              p=Path(name)
+              assert not p.is_absolute() and '..' not in p.parts and not p.is_symlink() and 'MAP_SAN11' not in name
+              assert name!='tools/content/materialize_native56.py'
+              assert (hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None)==meta['before'],name
+          subprocess.run(['git','apply','--check','--binary','-'],input=plan['patch'].encode(),check=True)
+          subprocess.run(['git','apply','--index','--binary','-'],input=plan['patch'].encode(),check=True)
+          assert set(subprocess.check_output(['git','diff','--cached','--name-only']).decode().splitlines())==set(plan['files'])
+          for name,meta in plan['files'].items():assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==meta['after'],name
+          Path('out/APPLIED_SOURCE.json').write_text(json.dumps(plan['files'],indent=2)+'\n')
+          # Non-debuggable shipping APK remains unchanged: seed this disposable rooted
+          # emulator's old manual file through adb root, never make the app debuggable.
+          p=Path('scripts/android-map60.sh');s=p.read_text()
+          s=s.replace('adb shell wm size 1080x2340','adb root\nadb wait-for-device\nadb shell wm size 1080x2340',1)
+          a=s.index('adb shell run-as game.sanguo.mobile.dev mkdir -p files')
+          b=s.index('adb install -r "$apk"',a)
+          s=s[:a]+'''adb shell mkdir -p /data/data/game.sanguo.mobile.dev/files
+          adb shell cp /data/local/tmp/legacy-v059.sg11 /data/data/game.sanguo.mobile.dev/files/manual1.sg11
+          uid=$(adb shell stat -c %u /data/data/game.sanguo.mobile.dev | tr -d '\\r')
+          adb shell chown "$uid:$uid" /data/data/game.sanguo.mobile.dev/files /data/data/game.sanguo.mobile.dev/files/manual1.sg11
+          adb shell chmod 700 /data/data/game.sanguo.mobile.dev/files
+          adb shell chmod 600 /data/data/game.sanguo.mobile.dev/files/manual1.sg11
+          adb shell sha256sum /data/data/game.sanguo.mobile.dev/files/manual1.sg11 > out/UPGRADE_SAVE_BEFORE
+          '''+s[b:]
+          old='adb shell run-as game.sanguo.mobile.dev sha256sum files/manual1.sg11 > out/UPGRADE_SAVE_AFTER'
+          assert old in s;s=s.replace(old,'adb shell sha256sum /data/data/game.sanguo.mobile.dev/files/manual1.sg11 > out/UPGRADE_SAVE_AFTER')
+          p.write_text(s)
+          PY
+            python3 tools/content/audit_native60.py --check
+            python3 tools/content/test_audit60.py
+            python3 scripts/verify-map-release.py
+            rm .ci/reference60-payload-*.txt
+            git add .ci scripts/android-map60.sh
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'feat(map): v0.60 restore 987 verified water cells and reject blocked route origins'
+            git push origin HEAD:agent/water-map-finalization-v060
+          fi
+          git rev-parse HEAD > out/BUILD_COMMIT
+          git status --porcelain > out/WORKTREE_STATUS
+          test ! -s out/WORKTREE_STATUS
+          cp version.properties out/VERSION
+          git archive --format=zip -o out/sanguo11-mobile-v060-source.zip HEAD
+          cp docs/validation/v060/source-grid-audit.json out/
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Obtain independent actual shipped v058 and v059 raw saves
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh run download 35521913246 -R zjjxwpstcnsm-gif/sanguo11-mobile -n reference59-v058-baseline -D out/baseline58
+          gh run download 35549692460 -R zjjxwpstcnsm-gif/sanguo11-mobile -n reference60-v059-baseline -D out/baseline59
+          test "$(cat out/baseline58/BASELINE_INSTALLED_STATUS)" = success
+          test "$(cat out/baseline59/BASELINE_INSTALLED_STATUS)" = success
+          gh release download v0.59.0-b67c14718ce3 -R zjjxwpstcnsm-gif/sanguo11-mobile -p '*.apk' -D out/old
+          mv out/old/*.apk out/upgrade-v059.apk
+          echo '9b3bb71444b50add045c8b8113c013f4ab7bc6aeaa0492c7e1e9be8c9b5672a8  out/upgrade-v059.apk' | sha256sum -c -
+          bash scripts/canonical-legacy60.sh
+      - name: Directed model coordinate port AI and eight real old-save checks
+        id: core
+        continue-on-error: true
+        env:
+          REFERENCE60_LEGACY: out/legacy60
+          REFERENCE60_REQUIRE_LEGACY: 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/test-map60.sh | tee out/reference60-core.txt
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Build exact final source and verify APK identity
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest | tee out/gradle.txt
+          python3 tools/check_apk_content.py app/build/outputs/apk/debug/app-debug.apk | tee out/apk-content.txt
+          python3 scripts/verify-map-release.py app/build/outputs/apk/debug/app-debug.apk | tee -a out/apk-content.txt
+          sha=$(git rev-parse --short=12 HEAD)
+          apk="out/sanguo11-mobile-v0.60.0-$sha.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "$apk"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$apk" > out/SIGNATURE.txt
+          grep -q '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' out/SIGNATURE.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$apk" > out/APK_INFO.txt
+          grep -q "versionCode='60' versionName='0.60.0'" out/APK_INFO.txt
+          python3 - <<'PY'
+          import hashlib,json,zipfile
+          from pathlib import Path
+          apk=next(Path('out').glob('sanguo11-mobile-v0.60.0-*.apk'))
+          sha=Path('out/BUILD_COMMIT').read_text().strip()
+          configs=list(Path('app/build/generated').rglob('BuildConfig.java'))
+          assert any(sha[:12] in p.read_text() and 'SOURCE_REVISION' in p.read_text() for p in configs)
+          with zipfile.ZipFile(apk) as z:
+              native=z.read('maps/national-map-v056.properties')
+              assert hashlib.sha256(native).hexdigest()=='9b9e8dc7682c787d90717e53a57c9f68471706273c2939fe4f01501a77b8b47d'
+              art=[n for n in z.namelist() if n.startswith('assets/map/cities-v056/') and n.endswith('.png')]
+              assert len(art)==30
+              for n in z.namelist():
+                  assert 'MAP_SAN11' not in n and 'reference60-corrections' not in n and 'reference-v060' not in n,n
+                  if n.endswith('.dex'):
+                      for symbol in [b'Lgame/sanguo/core/MapTap57Fixture;',b'Lgame/sanguo/mobile/Reference60Probe;']:assert symbol not in z.read(n),symbol
+          Path('out/APK_IDENTITY.json').write_text(json.dumps({'source_sha':sha,'workflow_bootstrap_sha':'${{ github.sha }}','versionName':'0.60.0','versionCode':60,'sha256':hashlib.sha256(apk.read_bytes()).hexdigest(),'bytes':apk.stat().st_size,'native_map_revision':60,'map_sha256':hashlib.sha256(native).hexdigest(),'city_pngs':len(art),'city_art_revision':56,'save_codec':31,'certificate_sha256':'8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24'},indent=2)+'\n')
+          PY
+          (cd out;sha256sum sanguo11*.apk *source.zip > SHA256SUMS)
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install exact signed APK and validate real touches old saves and game flow
+        id: installed
+        continue-on-error: true
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          script: bash scripts/android-map60.sh
+      - name: Preserve truthful outcomes and compact paired review records
+        if: always()
+        env:
+          SOURCE: ${{ steps.source.outcome }}
+          CORE: ${{ steps.core.outcome }}
+          BUILD: ${{ steps.build.outcome }}
+          INSTALLED: ${{ steps.installed.outcome }}
+        run: |
+          mkdir -p out review-stills apk-identity
+          python3 - <<'PY'
+          import os,json,shutil
+          from pathlib import Path
+          Path('out/VALIDATION_STATUS.json').write_text(json.dumps({k:os.environ.get(k,'unknown') for k in ['SOURCE','CORE','BUILD','INSTALLED']},indent=2)+'\n')
+          for root in [Path('out/baseline59/android'),Path('out/android/reference60')]:
+              if root.exists():
+                  for p in root.rglob('*.png'):
+                      if any(t in p.name for t in ['coalition-190-123-101-near','coalition-190-124-40-near','coalition-190-20-143-near','coalition-190-155-157-near','coalition-190-196-55-near','coalition-190-198-99-near','coalition-190-196-24-near','coalition-190-199-80-near','coalition-190-52-65-near','coalition-190-27-184-near','coalition-190-113-143-near','v060-fixture','-crop','march-','v060-coalition-190-LOD','corrected-123-101','v060-normal-new-game']):shutil.copy2(p,Path('review-stills')/p.name)
+          for p in Path('out').glob('*.txt'):shutil.copy2(p,Path('review-stills')/p.name)
+          for p in Path('out').glob('*.json'):shutil.copy2(p,Path('review-stills')/p.name)
+          for root in [Path('out/android'),Path('out/baseline59/android')]:
+              if root.exists():
+                  for p in root.rglob('*checks.txt'):shutil.copy2(p,Path('review-stills')/p.name)
+          PY
+      - name: Publish independently downloadable installed APK and verify release bytes
+        id: publication
+        if: steps.source.outcome == 'success' && steps.core.outcome == 'success' && steps.build.outcome == 'success' && steps.installed.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha=$(cat out/BUILD_COMMIT)
+          tag="v0.60.0-${sha:0:12}"
+          apk=$(find out -maxdepth 1 -name 'sanguo11-mobile-v0.60.0-*.apk')
+          sha256sum -c out/TESTED_APK_SHA256
+          if ! gh release view "$tag" >/dev/null 2>&1;then
+            gh release create "$tag" --target "$sha" --title 'v0.60.0 · 连续水域批量复原' --notes '987 unique source cells V to Q: visually confirmed water, original navigation unresolved, previous blockage preserved. New games only; actual old v058/v059 saves preserved. API29 x86_64 exact APK signed upgrade and real MapView tests passed. Retained 1271 VOID classified with unresolved outline/occlusion; no 100% historical fidelity claim. Physical ARM is not tested.'
+          fi
+          gh release upload "$tag" "$apk" out/APK_IDENTITY.json out/VALIDATION_STATUS.json out/ANDROID_STATUS.json out/SIGNATURE.txt out/SHA256SUMS out/sanguo11-mobile-v060-source.zip --clobber
+          gh release view "$tag" --json url,tagName,targetCommitish,assets > out/PUBLICATION.json
+          mkdir -p out/release-check
+          gh release download "$tag" -p "$(basename "$apk")" -D out/release-check
+          cmp "$apk" "out/release-check/$(basename "$apk")"
+          sha256sum "out/release-check/$(basename "$apk")" > out/RELEASE_VERIFIED_APK_SHA256
+          cp out/PUBLICATION.json review-stills/
+      - name: Collect compact identity artifact
+        if: always()
+        run: |
+          mkdir -p apk-identity
+          cp out/sanguo11-mobile-v0.60.0-*.apk apk-identity/ 2>/dev/null || true
+          for f in APK_IDENTITY.json VALIDATION_STATUS.json ANDROID_STATUS.json SIGNATURE.txt APK_INFO.txt BUILD_COMMIT VERSION SHA256SUMS TESTED_APK_SHA256 RELEASE_VERIFIED_APK_SHA256 PUBLICATION.json UPGRADE_SAVE_BEFORE UPGRADE_SAVE_AFTER LEGACY_SAVE_HASHES;do if test -f "out/$f";then cp "out/$f" apk-identity/;fi;done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reference60-apk-identity
+          path: apk-identity
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reference60-review-stills
+          path: review-stills
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reference60-installed-current
+          path: out/android
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reference60-source
+          path: out/sanguo11-mobile-v060-source.zip
+          retention-days: 14
+      - name: Require all real outcomes and verified publication
+        if: always()
+        run: |
+          test '${{ steps.source.outcome }}' = success
+          test '${{ steps.core.outcome }}' = success
+          test '${{ steps.build.outcome }}' = success
+          test '${{ steps.installed.outcome }}' = success
+          test '${{ steps.publication.outcome }}' = success
