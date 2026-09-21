@@ -1,0 +1,48 @@
+name: V063 first generated pair retrieval and endpoint diagnosis
+on:
+  push:
+    branches: [agent/generated-art-city-movement-ports-v063]
+    paths: [.github/workflows/v063-art-first-pair.yml]
+permissions:
+  contents: read
+jobs:
+  first-pair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install Pillow==11.3.0 PyYAML==6.0.2
+      - name: Retrieve first two exact new requests before waiting for full batch
+        env:
+          POLLINATIONS_TOKEN: ${{ secrets.POLLINATIONS_TOKEN }}
+        run: |
+          mkdir -p out/mothers
+          python3 - <<'PY'
+          import yaml,textwrap
+          from pathlib import Path
+          workflow=yaml.safe_load(Path('.github/workflows/v063-art-generation.yml').read_text())
+          step=next(s for s in workflow['jobs']['generation']['steps'] if s.get('name','').startswith('Request new image files'))
+          source=step['run'].split("python3 - <<'PY'\n",1)[1].rsplit('\nPY',1)[0]
+          marker='for i,(key,prompt) in enumerate(prompts.items()):'
+          assert source.count(marker)==1
+          source=source.replace(marker,"prompts={k:prompts[k] for k in ('standard','sand-fine')}\n"+marker)
+          source=source.replace('timeout=180','timeout=75').replace('range(2)','range(1)').replace('time.sleep(8)','time.sleep(1)')
+          exec(compile(source,'v063-first-pair-exact-requests','exec'))
+          PY
+      - name: Collect endpoint status without claiming authentication or image success
+        if: always()
+        run: |
+          mkdir -p out/diagnosis
+          for endpoint in https://image.pollinations.ai/models https://gen.pollinations.ai/image/models; do
+            file=$(echo "$endpoint" | tr '/:' '_')
+            curl -L --max-time 20 -sS -D "out/diagnosis/$file.headers" "$endpoint" -o "out/diagnosis/$file.body" || true
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v063-first-pair-actual-files-and-diagnosis
+          path: out/
+          retention-days: 14

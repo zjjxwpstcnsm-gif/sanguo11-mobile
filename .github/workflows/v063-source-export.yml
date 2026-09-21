@@ -1,0 +1,26 @@
+name: V063 exact baseline source export
+on:
+  push:
+    branches: [agent/generated-art-city-movement-ports-v063]
+    paths: [.github/workflows/v063-source-export.yml]
+permissions:
+  contents: read
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Export exact checked-out source and metadata
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          git rev-parse HEAD > out/BUILD_COMMIT.txt
+          git archive --format=zip HEAD -o out/source.zip
+          sha256sum core/src/main/resources/maps/national-map-v056.properties core/src/main/resources/maps/national-exterior-v061.properties > out/geography-sha256.txt
+          git ls-tree -r HEAD > out/source-tree.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v063-source-export
+          path: out/
+          retention-days: 7

@@ -1,0 +1,76 @@
+name: V063 real image generation mothers
+on:
+  push:
+    branches: [agent/generated-art-city-movement-ports-v063]
+    paths: [.github/workflows/v063-art-generation.yml]
+permissions:
+  contents: read
+jobs:
+  generation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install Pillow==11.3.0
+      - name: Request new image files; decoding is not visual approval
+        env:
+          POLLINATIONS_TOKEN: ${{ secrets.POLLINATIONS_TOKEN }}
+        run: |
+          mkdir -p out/mothers
+          python3 - <<'PY'
+          import os,io,json,time,hashlib,urllib.request,urllib.parse,datetime
+          from pathlib import Path
+          from PIL import Image
+          out=Path('out/mothers')
+          common='High quality realistic Chinese Three Kingdoms strategy game environment sprite. Orthographic aerial view, camera elevation 35 degrees, viewing equally the south and east sides, soft diffuse daylight from upper left, low saturation grey tile roofs, weathered pale grey masonry and tan rammed earth, extremely fine natural material detail. Single complete isolated architectural settlement on a pure uniform white empty background with a wide empty margin on every side. No perspective horizon, no mountains, no landscape, no water, no sky, no text, no banners, no logos, no diagram, no grid, no UI, no thick platform, no floating base. '
+          city='A WHOLE ANCIENT WALLED CITY seen from far enough away to see ALL FOUR complete low perimeter walls, all gates and dozens of very small buildings INSIDE the walls, many rooflines, lanes, courtyards and blocks. The enclosing city wall is low relative to the width of the whole city, NOT a giant tower and NOT a single castle. The city perimeter is a wide compact diamond. Entire object and all shadows fit well inside the image. '
+          prompts={
+            'standard':common+city+'A medium-sized Han-era prefectural city: an enclosed modest magistrate compound, small residential courtyards, busy-looking but empty streets, two clear front gates, restrained authentic tiled gatehouses.',
+            'sand-fine':'Texture scan of flat fine dry beige sandy soil viewed vertically from directly above. Photorealistic very small grains evenly distributed, uniform low-contrast muted grey beige colour, smooth flat surface, tiny natural grain variation. Diffuse even illumination. Seamless edge-to-edge ground material sample. No dunes, no ridges, no deep cracks, no footprints, no horizon, no frame, no object, no symbols, no lettering.',
+            'luoyang':common+city+'Luoyang imperial capital: a broad axial plan with a distinct smaller rectangular inner palace enclosure in the northern third, broad central avenue, three aligned courtyards, dense wards of small houses, twin front gate towers and grand but low surrounding walls. A complete CITY not one palace.',
+            'changan':common+city+'Changan imperial capital: an asymmetrical western palace compound and eastern residential wards, two parallel avenue spines, a large western administrative court, a kinked outer wall and multiple smaller gatehouses. Visibly different from the symmetrical Luoyang layout. Complete city not one palace.',
+            'large':common+city+'A prosperous large northern city: dense rectangular wards of dozens of small grey roofs, broad market square, substantial complete crenellated outer walls and several modest gatehouses.',
+            'mountain':common+city+'A compact fortified frontier mountain-region city on FLAT ground: irregular compact polygon perimeter, darker stone walls, closely packed smaller houses, terraced courtyards INSIDE the walls, rugged weathered masonry. No mountains or rocks outside the walls.',
+            'river':common+city+'A river-region city on DRY FLAT ground: pale plaster and dark grey tile houses, airy courtyards, long warehouses beside an internal market, wide southern city gate. NO river or lake in this image, no surrounding scenery.',
+            'southern':common+city+'A Jiangnan southern city: pale plaster dark tile courtyard houses, varied roof sizes, small internal gardens, elegant timber gatehouses and weathered low stone perimeter wall, refined dense irregular streets. No background scenery.',
+            'sand-gravel':'Seamless edge-to-edge photorealistic ground texture seen vertically from directly above: flat wind-eroded beige sandy soil with tiny scattered grey tan gravel, very small pebbles, subdued low-contrast grey beige colours, uniform diffuse illumination. No boulders, no deep cracks, no dunes, no horizon, no plants, no symbols, no text, no frame.',
+            'sand-grass':'Seamless edge-to-edge realistic ground texture seen vertically from directly above: flat muted beige sandy soil transitioning toward dry steppe, a FEW tiny sparse faded dry grass tufts and scattered fine grains. Mostly bare smooth sand, low relief and low contrast, evenly diffuse light. No dunes, no horizon, no large rocks, no text, no frame.',
+            'sand-ripples':'Seamless edge-to-edge realistic ground texture seen vertically from directly above: flat muted grey beige fine sand with extremely shallow tiny wind ripple lines and subtle grain detail. Low-relief material scan under diffuse even daylight. NOT giant dunes, not deep cracks, no rocks, no horizon, no object, no border, no text.'
+          }
+          for direction,desc in [('n','toward the top of the image behind the buildings'),('ne','toward the upper right of the image'),('se','toward the lower right of the image'),('s','toward the bottom of the image in front of the buildings'),('sw','toward the lower left of the image'),('nw','toward the upper left of the image')]:
+            prompts['port-'+direction]=common+'A small ancient Chinese river harbour: just two low grey tiled timber warehouses on the LANDWARD end, wooden dock piles and two slender projecting timber piers extending '+desc+'. The area under and beyond the piers is completely empty WHITE for later water compositing. NO water, no shoreline terrain base, no boat, no city wall, no castle. Clear readable wooden dock silhouette and natural tiny contact shadows. The whole dock is isolated, never cut off. Keep the camera fixed; only the harbour layout varies.'
+          for key,desc in [('gate-ns','road opening running from the lower left to the upper right'),('gate-ew','road opening running from the lower right to the upper left'),('gate-wide','road opening running from the bottom toward the top')]:
+            prompts[key]=common+'A single fortified ancient Chinese MOUNTAIN PASS GATE, not a city: a sturdy arched passage through a short defensive stone wall, one grey tiled double roof wooden gatehouse above the opening and short outward wall wings. The '+desc+'. No mountain scenery, no platform, no town, no external terrain. Compact footprint, authentic Han-era architectural proportions, full silhouette visible.'
+          records=[]
+          (out/'prompts.json').write_text(json.dumps(prompts,ensure_ascii=False,indent=2)+'\n')
+          for i,(key,prompt) in enumerate(prompts.items()):
+            params={'width':1024,'height':1024,'model':'flux','seed':630101+i,'private':'true','nologo':'true','enhance':'false'}
+            url='https://image.pollinations.ai/prompt/'+urllib.parse.quote(prompt,safe='')+'?'+urllib.parse.urlencode(params)
+            record={'key':key,'provider':'Pollinations','model_requested':'flux','prompt':prompt,'parameters':params,'requested_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'generation':'NEW_V063','status':'REQUESTED'};records.append(record)
+            headers={'User-Agent':'sanguo11-mobile-art-pipeline/0.63','Accept':'image/*'}
+            if os.environ.get('POLLINATIONS_TOKEN'):headers['Authorization']='Bearer '+os.environ['POLLINATIONS_TOKEN']
+            for attempt in range(2):
+              try:
+                with urllib.request.urlopen(urllib.request.Request(url,headers=headers),timeout=180) as r:
+                  data=r.read();record.update(http_status=r.status,content_type=r.headers.get('content-type'))
+                image=Image.open(io.BytesIO(data));image.load()
+                assert min(image.size)>=512 and image.width==image.height, str(image.size)
+                file=key+('.png' if image.format=='PNG' else '.jpg');(out/file).write_bytes(data)
+                record.update(status='FILE_OBTAINED_REVIEW_REQUIRED',file=file,dimensions=list(image.size),sha256=hashlib.sha256(data).hexdigest(),bytes=len(data));break
+              except Exception as e:
+                record.update(status='BLOCKER',error=type(e).__name__+': '+str(e));time.sleep(5)
+            (out/'generation-record.json').write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+            print(key,record['status'],record.get('sha256',''),flush=True)
+            time.sleep(8)
+          assert all(r['status']=='FILE_OBTAINED_REVIEW_REQUIRED' for r in records),'At least one required actual image was not obtained'
+          assert len({r['sha256'] for r in records})==len(records),'Duplicate API files require investigation'
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v063-new-generated-mothers-review-required
+          path: out/mothers/
+          retention-days: 14

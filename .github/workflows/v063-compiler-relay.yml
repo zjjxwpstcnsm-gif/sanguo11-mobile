@@ -1,0 +1,63 @@
+name: V063 bounded binary compiler relay
+on:
+  push:
+    branches: [agent/generated-art-city-movement-ports-v063]
+    paths: [.github/workflows/v063-compiler-relay.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: v063-road-baseline-apk-and-compiler
+          run-id: 35573809351
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: input/
+      - name: Split file bytes, never encode binary images/APKs in chat
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,json,shutil
+          source=Path('input/android-35.jar');raw=source.read_bytes();root=Path('out');root.mkdir(exist_ok=True)
+          chunks=[]
+          for i,start in enumerate(range(0,len(raw),8*1024*1024)):
+            part=raw[start:start+8*1024*1024];path=root/f'part-{i:02d}'/f'android-35.jar.part{i:02d}';path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(part)
+            chunks.append({'name':path.name,'bytes':len(part),'sha256':hashlib.sha256(part).hexdigest()})
+          logs=root/'logs';logs.mkdir()
+          (logs/'compiler-relay.json').write_text(json.dumps({'source_run':35573809351,'file':'android-35.jar','bytes':len(raw),'sha256':hashlib.sha256(raw).hexdigest(),'parts':chunks},indent=2)+'\n')
+          for path in Path('input').iterdir():
+            if path.is_file() and path.suffix not in ('.apk','.jar'):shutil.copy2(path,logs/path.name)
+          apk=Path('input/v062-exact-main-baseline.apk')
+          (logs/'baseline-apk.json').write_text(json.dumps({'bytes':apk.stat().st_size,'sha256':hashlib.sha256(apk.read_bytes()).hexdigest(),'build_commit':'38a0da98924bc1aba3a43cf63661be319d72fd7a'},indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v063-android-compiler-part-00
+          path: out/part-00/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v063-android-compiler-part-01
+          path: out/part-01/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v063-android-compiler-part-02
+          path: out/part-02/
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v063-android-compiler-part-03
+          path: out/part-03/
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v063-android-compiler-part-04
+          path: out/part-04/
+          if-no-files-found: ignore
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v063-baseline-small-logs
+          path: out/logs/
