@@ -1,0 +1,62 @@
+{
+  "capabilities": {
+    "agnes_key_configured": false,
+    "pollinations_key_configured": false
+  },
+  "records": [
+    {
+      "key": "standard",
+      "provider": "Pollinations",
+      "model": "flux",
+      "prompt": "Historical Chinese Three Kingdoms strategy game 2.5D environment sprite, orthographic view from southeast looking down at 30 degrees, natural soft light from upper left, muted desaturated earth and grey-green tiles, realistic weathered materials and tiny fine details, coherent architecture. One complete compact ancient Chinese walled city, enclosing continuous stone and rammed-earth city wall with front city gate, small grey tiled roofs in courtyards, restrained administrative building, no giant palace. Whole city visible centered with generous empty margins. Single isolated object on a perfectly plain solid white background. City walls enclose the ground; absolutely no surrounding landscape, mountains, sea, platform, raised plinth, hex base, grid, captions, text, flag, UI, decorative border or people. Not cartoon, not plastic, not low-poly.",
+      "parameters": {
+        "width": 1024,
+        "height": 1024,
+        "model": "flux",
+        "seed": 620001,
+        "private": "true",
+        "nologo": "true",
+        "enhance": "false"
+      },
+      "requested_at": "2026-09-21T04:41:30.079439+00:00",
+      "status": "GENERATED_FILE_OBTAINED_NOT_YET_APPROVED",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "file": "standard.jpg",
+      "size": [
+        768,
+        768
+      ],
+      "sha256": "aa5ace950b030bbdb45b42670c94638ecb3eb056f6d26d9c499e05f5f001a771",
+      "bytes": 52720
+    },
+    {
+      "key": "sand-fine",
+      "provider": "Pollinations",
+      "model": "flux",
+      "prompt": "Seamless full-frame overhead ground texture for a realistic historical strategy game, flat fine compact beige sand with subtly varied small grains, restrained weathering, very low relief, muted grey tan low-saturation palette, diffuse soft light from upper left, consistent illumination without a central hotspot. Texture fills every pixel edge to edge, no perspective horizon, no object, no frame, no hexagon, no giant dune, no text, no UI, no rocks larger than tiny gravel.",
+      "parameters": {
+        "width": 1024,
+        "height": 1024,
+        "model": "flux",
+        "seed": 620002,
+        "private": "true",
+        "nologo": "true",
+        "enhance": "false"
+      },
+      "requested_at": "2026-09-21T04:41:48.120356+00:00",
+      "status": "GENERATED_FILE_OBTAINED_NOT_YET_APPROVED",
+      "http_status": 200,
+      "content_type": "image/jpeg",
+      "file": "sand-fine.jpg",
+      "size": [
+        768,
+        768
+      ],
+      "sha256": "09bce3b25eb567678d2191d003cf83ac7c9c138db7d14d546476a9d90df4fa88",
+      "bytes": 58652
+    }
+  ],
+  "distinct_file_hashes": 2,
+  "visual_approval": "PENDING; successful HTTP/decode does not imply acceptable artwork"
+}
