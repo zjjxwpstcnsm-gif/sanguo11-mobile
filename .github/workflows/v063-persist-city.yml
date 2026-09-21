@@ -2,7 +2,7 @@ name: V063 persist city runtime
 on:
   push:
     branches: [agent/city-movement-ports-void-v063]
-    paths: [.ci/v063-city.patch.b64]
+    paths: [.ci/v063-city.patch.b64, .github/workflows/v063-persist-city.yml]
 permissions:
   contents: write
 jobs:
@@ -26,7 +26,13 @@ jobs:
           python3 - <<'PY'
           import base64,gzip,hashlib
           from pathlib import Path
-          raw=gzip.decompress(base64.b64decode(Path('.ci/v063-city.patch.b64').read_text(),validate=True))
+          text=Path('.ci/v063-city.patch.b64').read_text()
+          assert hashlib.sha256(text.encode()).hexdigest()=='26ede8a13a6155e52e85aa7e01f5f1935c9ce109bc470bf61eb5afc3efb5d615'
+          # Exact byte comparison of the downloaded relay artifact found these seven transcription errors.
+          for a,b,value in reversed([[231,232,''],[310,311,''],[411,412,''],[426,427,''],[458,459,''],[525,526,'H'],[2392,2393,'']]):
+              text=text[:a]+value+text[b:]
+          assert len(text)==10136
+          raw=gzip.decompress(base64.b64decode(text,validate=True))
           assert len(raw)==27070
           assert hashlib.sha256(raw).hexdigest()=='8294ef153cb761484559643ffa749c5d1de5ea597de76f9fdaea872ad517664a'
           Path('out/city.patch').write_bytes(raw)
@@ -37,12 +43,12 @@ jobs:
           javac -encoding UTF-8 -d out/classes @out/sources
           javac -encoding UTF-8 -cp out/classes -d out/classes core/src/test/java/game/sanguo/core/CityFootprint55Test.java core/src/test/java/game/sanguo/core/CityMovement63Test.java
           java -cp out/classes:core/src/main/resources:core/src/test/resources game.sanguo.core.CityMovement63Test | tee out/city63.txt
-      - name: Commit actual production files to the same PR branch, removing relay payload
+      - name: Commit actual production files to the same PR branch, removing all temporary relays
         run: |
           set -euo pipefail
           git diff --exit-code -- app/src/main/assets core/src/main/resources
-          rm .ci/v063-city.patch.b64 .github/workflows/v063-persist-city.yml
-          git add app/src/main/java core/src/main/java core/src/test/java/game/sanguo/core/CityMovement63Test.java .ci/v063-city.patch.b64 .github/workflows/v063-persist-city.yml
+          rm .ci/v063-city.patch.b64 .github/workflows/v063-persist-city.yml .github/workflows/v063-relay-diagnostics.yml
+          git add app/src/main/java core/src/main/java core/src/test/java/game/sanguo/core/CityMovement63Test.java .ci/v063-city.patch.b64 .github/workflows/v063-persist-city.yml .github/workflows/v063-relay-diagnostics.yml
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git commit -m 'fix(v063): bill weighted center departures across army transport and AI; persist seven-cell city objectives'
