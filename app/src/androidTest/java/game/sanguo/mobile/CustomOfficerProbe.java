@@ -23,6 +23,12 @@ final class CustomOfficerProbe {
     CustomOfficerProbe(Instrumentation test){this.test=test;}
     private android.content.Context context(){return test.getTargetContext();}
     void run(String mode)throws Exception{
+        try{runChecks(mode);}catch(Exception|AssertionError e){
+            try{shot("failure-"+mode);try(Writer out=new OutputStreamWriter(new FileOutputStream(new File(directory(),"failure.txt")),"UTF-8")){out.write(report.toString()+"\n"+e);}}catch(Exception ignored){}
+            throw e;
+        }
+    }
+    private void runChecks(String mode)throws Exception{
         if(mode.equals("restart")){restart();write("restart");return;}
         MainActivity main=(MainActivity)test.startActivitySync(new Intent(context(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();click("武将自定义 · 模板与投放",true);
         CustomOfficerActivity editor=(CustomOfficerActivity)current();click("新建武将",true);editText(editor,"name","手机自定义甲");shot("01-create-name");
@@ -47,7 +53,7 @@ final class CustomOfficerProbe {
         World commands=CustomOfficerSetup.apply(context(),fixture,testRoot);commands.city(10).order=50;ui(()->{call(game,"activateWorld",new Class<?>[]{World.class},commands);World.Result patrol=commands.patrol(10,firstId);check(patrol.ok,"installed custom officer completes domestic patrol");game.applyResult(patrol);});
         World.Result turn=commands.nextTurn();check(turn.ok,"real turn ends to restore action allowance");World.Result deploy=commands.army.deploy(10,firstId,new int[]{secondId},World.Weapon.SPEAR,Army.Ship.BOAT,3000,6000);check(deploy.ok,"installed real sortie with custom commander and deputy: "+deploy.message);World.Unit unit=commands.units.stream().filter(u->u.officerId==firstId).findFirst().orElseThrow();check(commands.war.plotCost(unit.id,War.Plot.CONFUSE)==1,"installed custom skill affects official cost");
         // Legal battlefield fixture; attack remains the normal public command, not a test formula.
-        World.Officer enemyOfficer=commands.officers.stream().filter(o->o.owner==1&&o.unitId<0&&o.role!=Strategy.Role.RULER).findFirst().orElseThrow();World.Unit enemy=new World.Unit(commands.nextUnitId++,1,enemyOfficer.id,World.Weapon.SPEAR,new Hex(13,12),5000,10000);enemyOfficer.cityId=-1;enemyOfficer.unitId=enemy.id;commands.units.add(enemy);unit.hex=new Hex(12,12);unit.acted=false;int enemyTroops=enemy.troops;World.Result hit=commands.attack(unit.id,enemy.id);check(hit.ok&&enemy.troops<enemyTroops,"installed real attack inflicts damage");ui(()->{game.selectUnitAndFocus(unit.id);game.applyResult(hit);});settle();shot("08-custom-crew-battle");
+        World.Officer enemyOfficer=new World.Officer(990001,"测试守军",1,-1,70,70,70,70,70);commands.officers.add(enemyOfficer);World.Unit enemy=new World.Unit(commands.nextUnitId++,1,enemyOfficer.id,World.Weapon.SPEAR,new Hex(13,12),5000,10000);enemyOfficer.cityId=-1;enemyOfficer.unitId=enemy.id;commands.units.add(enemy);unit.hex=new Hex(12,12);unit.acted=false;int enemyTroops=enemy.troops;World.Result hit=commands.attack(unit.id,enemy.id);check(hit.ok&&enemy.troops<enemyTroops,"installed real attack inflicts damage");ui(()->{game.selectUnitAndFocus(unit.id);game.applyResult(hit);});settle();shot("08-custom-crew-battle");
         byte[] save=SaveCodec.encode(commands);try(OutputStream out=context().openFileOutput("auto.sg11",0)){out.write(save);}check(CustomOfficers.portrait(commands,firstId).png.length>0,"campaign embeds portrait bytes");
         packs(first,second,save);draft();
         JSONObject expected=new JSONObject().put("first",firstId).put("name","手机自定义甲");try(Writer out=new OutputStreamWriter(context().openFileOutput("officer-restart-expect.json",0),"UTF-8")){out.write(expected.toString());}
