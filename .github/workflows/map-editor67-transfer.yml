@@ -17,38 +17,42 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Verify every prior blob before applying the source changes
+      - name: Verify prior blobs, apply source, fast-forward push
         shell: bash
         run: |
           set -euo pipefail
           python3 - <<'PY'
-          import base64,gzip,json,pathlib,subprocess
+          import base64,gzip,json,pathlib,subprocess,hashlib
           def git(*args):return subprocess.check_output(['git',*args]).decode().strip()
-          encoded=pathlib.Path('editor67-transfer.b64').read_bytes()
+          manifest=json.loads(pathlib.Path('editor67-transfer.b64').read_text())
+          names=manifest['parts']
+          assert 1<=len(names)<=30 and len(set(names))==len(names)
+          assert all(name==f'editor67-part-{i}.b64' for i,name in enumerate(names))
+          encoded=b''.join(pathlib.Path(name).read_bytes().strip() for name in names)
           if len(encoded)>400000:raise SystemExit('Oversized transfer')
-          raw=gzip.decompress(base64.b64decode(encoded,validate=True))
+          compressed=base64.b64decode(encoded,validate=True)
+          assert hashlib.sha256(compressed).hexdigest()==manifest['sha256'],'Transfer checksum mismatch'
+          raw=gzip.decompress(compressed)
           if len(raw)>2000000:raise SystemExit('Oversized decoded transfer')
-          data=json.loads(raw)
-          assert data['format']==1
+          data=json.loads(raw);assert data['format']==1
           subprocess.check_call(['git','merge-base','--is-ancestor',data['base'],'HEAD'])
           paths=set()
-          for entry in data['entries']:
-            name=entry['path'];p=pathlib.Path(name)
+          for e in data['entries']:
+            name=e['path'];p=pathlib.Path(name)
             assert name not in paths and not p.is_absolute() and '..' not in p.parts
             assert name.startswith(('core/','app/','scripts/','tools/','docs/')) or name=='version.properties'
             paths.add(name)
             actual=git('hash-object',name) if p.exists() else None
-            assert actual==entry['before'],f'Concurrent source change: {name}: {actual} != {entry["before"]}'
-          for entry in data['entries']:
-            p=pathlib.Path(entry['path'])
-            if 'patch' in entry:
-              subprocess.run(['git','apply','--check','-'],input=entry['patch'].encode(),check=True)
-              subprocess.run(['git','apply','-'],input=entry['patch'].encode(),check=True)
-            else:
-              p.parent.mkdir(parents=True,exist_ok=True);p.write_text(entry['content'],encoding='utf-8')
-            assert git('hash-object',str(p))==entry['after'],f'After hash mismatch: {p}'
+            assert actual==e['before'],f'Concurrent change: {name}: {actual} != {e["before"]}'
+          for e in data['entries']:
+            p=pathlib.Path(e['path'])
+            if 'patch' in e:
+              subprocess.run(['git','apply','--check','-'],input=e['patch'].encode(),check=True)
+              subprocess.run(['git','apply','-'],input=e['patch'].encode(),check=True)
+            else:p.parent.mkdir(parents=True,exist_ok=True);p.write_text(e['content'],encoding='utf-8')
+            assert git('hash-object',str(p))==e['after'],f'After hash mismatch: {p}'
           subprocess.check_call(['git','add','--',*sorted(paths)])
-          subprocess.check_call(['git','rm','--','editor67-transfer.b64'])
+          subprocess.check_call(['git','rm','--','editor67-transfer.b64',*names])
           PY
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -61,7 +65,7 @@ jobs:
         with:
           distribution: temurin
           java-version: '17'
-      - name: Run real map editor integration checks
+      - name: Real map editor integration checks
         shell: bash
         run: |
           set -euo pipefail
@@ -76,7 +80,7 @@ jobs:
         with:
           packages: ''
           log-accepted-android-sdk-licenses: false
-      - name: Compile the exact pushed source as an Android APK
+      - name: Android compile of exact pushed source
         shell: bash
         run: |
           set -euo pipefail
