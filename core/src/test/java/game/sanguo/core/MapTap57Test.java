@@ -7,7 +7,7 @@ public final class MapTap57Test {
     private static int checks;
     private static void check(boolean value,String message){checks++;if(!value)throw new AssertionError(message);}
     public static void main(String[] args)throws Exception {
-        check(CityArtCatalog.ASSET_REVISION==56&&NationalMap.REVISION==58,"art ABI independent of terrain revision");
+        check(CityArtCatalog.ASSET_REVISION==56&&NationalMap.REVISION==59,"art ABI independent of terrain revision");
         for(World.Terrain t:World.Terrain.values()) {
             TerrainPresentation.Definition d=TerrainPresentation.of(t);
             check(!d.name().isBlank()&&!d.description().isBlank(),"complete presentation "+t);
@@ -33,8 +33,8 @@ public final class MapTap57Test {
             check(w.war.structures().stream().noneMatch(s->s.kind==War.StructureKind.DAM),"no H source -> zero natural dams");
             if(w.sourceColumns()==200) {
                 check(padding==19800,"source grid is not axial padding");
-                check(counts.get(World.Terrain.VOID)==2343,"audited v058 exact VOID count; inherited v057 fixes re-reviewed");
-                check(counts.get(World.Terrain.ROAD)==7304&&counts.get(World.Terrain.MOUNTAIN_PATH)==161,"roads/mountain paths not deleted as dams");
+                check(counts.get(World.Terrain.VOID)==2258,"audited v059 exact VOID count; inherited fixes retained");
+                check(counts.get(World.Terrain.ROAD)==7280&&counts.get(World.Terrain.MOUNTAIN_PATH)==161,"roads/mountain paths not deleted as dams");
                 check(w.cities.size()==87,"87 sites preserved");
                 check(w.cities.stream().filter(c->c.kind==World.SiteKind.CITY).count()==42,"42 cities preserved");
                 for(int x:new int[]{77,81}){Hex h=MapCoordinates.fromNationalSource(w,new SourceGridCoord(x,76));check(w.terrain[h.q][h.r]==World.Terrain.ROAD&&w.war.at(h)==null&&w.cityAt(h)==null,"actual crash candidates are bare ROAD");}

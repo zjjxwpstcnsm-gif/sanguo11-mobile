@@ -1,0 +1,116 @@
+name: Reference59 exact v058 APK baseline
+on:
+  push:
+    branches: [agent/reference-terrain-regions-v059]
+    paths: [.github/workflows/reference59-baseline.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 894fb37729a6425c670026616f0ee32efa795790
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Fetch exact APK and prepare isolated test sampler
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          git rev-parse HEAD > out/BASELINE_COMMIT
+          gh release download v0.58.0-82749b539bb9 -R zjjxwpstcnsm-gif/sanguo11-mobile -p '*.apk' -D out
+          apk=$(find out -name '*.apk')
+          echo "93e4f9b1ff0f32f1d336a98623ba2e2bc12e33f514a0465d3ad33325b9ff1c9f  $apk" | sha256sum -c -
+          sha256sum "$apk" > out/BASELINE_APK_SHA256
+          cat > /tmp/baseline-body.txt <<'JAVA'
+          package game.sanguo.mobile;
+          import android.app.Instrumentation;
+          import game.sanguo.core.*;
+          import java.util.*;
+          final class MapTap57Probe extends MapTap57Harness {
+            MapTap57Probe(Instrumentation i){super(i);}
+            void run() throws Exception {
+              try {
+                for(String id:new String[]{"coalition-190","heroes-250","central-mobile-sandbox","jingxiang-mobile-sandbox"}) {
+                  launch(ScenarioCatalog.load(id,id.endsWith("sandbox")?0:5,590L));World w=world();
+                  require(w.mapRevision==58&&BuildConfig.VERSION_CODE==58,"exact shipped v058 fresh world");
+                  byte[] before=SaveCodec.encode(w);
+                  for(int[] xy:new int[][]{{43,135},{49,135},{45,137},{50,137},{170,119},{166,128},{118,47},{122,90},{122,92},{124,92},{52,164},{114,42},{26,1},{108,42}}) {
+                    Hex h=MapCoordinates.fromNationalSource(w,new SourceGridCoord(xy[0],xy[1]));
+                    if(!w.sourceInside(h))continue;
+                    focus(h,3.4f);navigator(false);record(h,screen(h));
+                    shot("before-"+id+"-"+xy[0]+"-"+xy[1]+"-near");tap(h);
+                    report.append("CALLBACK "+field(activity,"selected")+" PANEL "+panelText()+"\n");
+                    focus(h,.9f);shot("before-"+id+"-"+xy[0]+"-"+xy[1]+"-mid");
+                  }
+                  require(Arrays.equals(before,SaveCodec.encode(w)),"sampling never alters world");
+                  try(java.io.OutputStream o=new java.io.FileOutputStream(new java.io.File(dir(),"baseline-v058-"+id+".sg11"))){o.write(before);}
+                }
+              } finally {flush("reference59-baseline-checks.txt");}
+            }
+          JAVA
+          python3 - <<'PY'
+          import subprocess
+          from pathlib import Path
+          p=Path('app/src/androidTest/java/game/sanguo/mobile/MapTap57Probe.java')
+          old=subprocess.check_output(['git','show','HEAD:'+str(p)]).decode()
+          p.write_text(Path('/tmp/baseline-body.txt').read_text()+old[old.index('    Hex find('):])
+          PY
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          ./gradlew --no-daemon :app:assembleDebugAndroidTest | tee out/build.txt
+          git diff --name-only > out/TEST_ONLY_CHANGE
+          test "$(cat out/TEST_ONLY_CHANGE)" = app/src/androidTest/java/game/sanguo/mobile/MapTap57Probe.java
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install original APK and sample real MapView
+        id: installed
+        continue-on-error: true
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          script: |
+            adb shell wm size 1080x2340
+            adb shell wm density 420
+            adb install -r $(find out -name '*.apk')
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb logcat -b all -c
+            timeout 600 adb shell am instrument -w -e mapTap57 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner > out/instrumentation.txt
+            adb logcat -b all -d -v threadtime > out/logcat.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke out/android
+            grep -q 'MAP57 ANDROID PASS:' out/instrumentation.txt
+            if grep -q 'FATAL EXCEPTION' out/logcat.txt; then exit 1; fi
+      - name: Record status
+        if: always()
+        run: |
+          echo '${{ steps.installed.outcome }}' > out/BASELINE_INSTALLED_STATUS
+          rm -f out/*.apk
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reference59-v058-baseline
+          path: out
+          retention-days: 14
+      - name: Require actual result
+        if: always()
+        run: test '${{ steps.installed.outcome }}' = success

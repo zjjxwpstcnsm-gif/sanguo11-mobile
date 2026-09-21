@@ -1,5 +1,5 @@
 {
-  "release": "0.58.0",
+  "release": "0.59.0",
   "baseline_manifest": "tools/content/map-v050-manifest.json",
   "files": [
     {
@@ -250,7 +250,7 @@
     {
       "source_path": "core/src/main/resources/maps/national-map-v056.properties",
       "apk_path": "maps/national-map-v056.properties",
-      "sha256": "327317cc28f662c93308a7c87d086842d4a4af98bc2105cf7fbc365f60cf9589"
+      "sha256": "50ea7331d5b0a70cdb469ace3657f15f949ff645ea0e5f1d7255efab9c188cd3"
     }
   ],
   "baseline_commit": "18b1c2d01d6ef5d0bc63fef8a3e483186a99e390",

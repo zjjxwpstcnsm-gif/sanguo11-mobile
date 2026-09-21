@@ -1,10 +1,22 @@
+# v0.59 — five regional corrections / water and interaction acceptance
+
+- DONE: main894fb377 tree verified, original reference fingerprint actually read; exact released058 APK four-scenario baseline run35521913246 passed with raw saves and paired-coordinate screenshots.
+- DONE:109 new unique source cells in five regions (85 V→Q,24 R→M), strict reversible ledger, source revision59 and exact digest; D161/B158/H0 unchanged. VOID2258/internal803/boundary1455; padding19800 separately retained.
+- DONE: 26 prior estimates reviewed separately, no geographical edits/promotions overall; full national priority index and219 unresolved VOID components. No blanket fill, original navigation claims or invented cache fix.
+- DONE: model/coordinate/gameplay/water checks locally pass, including all9 scenarios, old58 geography preservation, city topology, dock-only W/SEA access, Difficult March prerequisite, Q exclusion, actual CampaignAi transit and1,418 port/replay assertions. Updated invalid pre-seven-cell test fixtures after reproducing the same failure on untouched058.
+- IN PROGRESS: push final functional source, exact APK build/install/screenshot review and standalone Release publication; final identity/outcomes will be recorded in PR and Release metadata.
+- TODO:2258 remaining source VOID, unresolved prior sand/ground/navigation evidence; ARM physical devices; full historical CI outside directed lane.
+- BLOCKER: local direct network and Android SDK unavailable; using connected GitHub Actions for actual commit/push/build/install, not deferring execution.
+
+---
+
 # v0.58 — reference terrain / display-hit consistency
 
 - DONE: parent main29c18ec verified; original image actual hash/size and regional crops checked; fresh unchanged v057 Android baseline captured.
 - DONE: 89 unique reviewed map corrections (72 visible /17 estimated), explicit blocked-water identity, no inferred boat passages, resource revision58 and exact digest pins; 19800 padding kept separate.
 - DONE: shared projected minimap raster and inverse, reject VOID/padding before label fallback; city atlas56 and source grid retained.
 - DONE: local inherited map/city/gameplay checks and new model/projection/guard checks passed; actual v057 saves match independently compiled old encoder on same JVM.
-- IN PROGRESS: commit/push final source; build/install/hash-match new APK; actual Android regression and PR evidence.
+- DONE (final verified addendum): source82749b539bb9 built/installed in35518640828; standalone APK hash93e4f9b1ff0f32f1d336a98623ba2e2bc12e33f514a0465d3ad33325b9ff1c9f published in35520413843. PR46 merged as894fb377; historical all-CI/ARM coverage not implied.
 - TODO: remaining 888 internal source VOID and1455 boundary-connected VOID need further reference review; prior nine NW sand estimates remain unconfirmed; ARM physical device coverage.
 - BLOCKER: local network/Android SDK absent; using authenticated GitHub connector + Actions for real source push and installed build, not replacing work with a plan.
 

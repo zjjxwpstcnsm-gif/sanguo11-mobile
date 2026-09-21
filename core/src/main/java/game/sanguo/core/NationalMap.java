@@ -8,7 +8,7 @@ import java.util.*;
  * officers, diplomacy and resources are never copied from another era. */
 public final class NationalMap {
     public static final String RESOURCE="national-map-v056", ID="san11-national", LAYOUT="native-200";
-    public static final int REVISION=58, COLUMNS=200, ROWS=200;
+    public static final int REVISION=59, COLUMNS=200, ROWS=200;
     private static Properties cached;
     private NationalMap(){}
     private static synchronized Properties data()throws IOException {
@@ -55,11 +55,11 @@ public final class NationalMap {
     private static String required(Properties p,String key)throws IOException{String v=p.getProperty(key);if(v==null)throw new IOException("全国据点记录缺失："+key);return v;}
     /** Legacy saves keep their own terrain. Never transplant a revised map under armies. */
     public static String compatibilityNotice(World w){
-        return ID.equals(w.mapId)&&(w.mapRevision==56||w.mapRevision==57)?
-            "旧地图修订"+w.mapRevision+"：保留存档原地形、城市与部队，不自动迁移。本次分区地形校准仅对新开局生效；显示与小地图修复对旧档同样生效。请保留手动存档后重新开局体验修订58。":"";
+        return ID.equals(w.mapId)&&(w.mapRevision==56||w.mapRevision==57||w.mapRevision==58)?
+            "旧地图修订"+w.mapRevision+"：保留存档原地形、城市与部队，不自动迁移。本次分区地形校准仅对新开局生效；显示与小地图修复对旧档同样生效。请保留手动存档后重新开局体验修订"+REVISION+"。":"";
     }
     public static void validateIdentity(World w)throws IOException {
         if(!ID.equals(w.mapId))return;
-        if(!LAYOUT.equals(w.mapLayout)||(w.mapRevision!=REVISION&&w.mapRevision!=57&&w.mapRevision!=56)||!w.columnStaggered||w.sourceMapWidth<1||w.sourceMapHeight<1||w.sourceOriginX<0||w.sourceOriginY<0||w.sourceOriginX+w.sourceMapWidth>COLUMNS||w.sourceOriginY+w.sourceMapHeight>ROWS)throw new IOException("旧版本地图存档无法继续使用，请保留原档并重新开局");
+        if(!LAYOUT.equals(w.mapLayout)||(w.mapRevision!=REVISION&&w.mapRevision!=58&&w.mapRevision!=57&&w.mapRevision!=56)||!w.columnStaggered||w.sourceMapWidth<1||w.sourceMapHeight<1||w.sourceOriginX<0||w.sourceOriginY<0||w.sourceOriginX+w.sourceMapWidth>COLUMNS||w.sourceOriginY+w.sourceMapHeight>ROWS)throw new IOException("旧版本地图存档无法继续使用，请保留原档并重新开局");
     }
 }

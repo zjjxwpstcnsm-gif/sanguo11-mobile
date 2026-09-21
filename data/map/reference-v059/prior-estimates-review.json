@@ -1,0 +1,494 @@
+{
+  "reference_sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+  "cells": [
+    {
+      "source": [
+        26,
+        1
+      ],
+      "origin_revision": 57,
+      "current": "A",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "reason": "Actually revisited the title/legend area; absence of an unobscured playable lattice/subtype legend prevents validating the sand assignment. Retained, not counted as a v059 modification.",
+      "pixel_crop": [
+        301,
+        121,
+        1263,
+        792
+      ]
+    },
+    {
+      "source": [
+        21,
+        3
+      ],
+      "origin_revision": 57,
+      "current": "A",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "reason": "Actually revisited the title/legend area; absence of an unobscured playable lattice/subtype legend prevents validating the sand assignment. Retained, not counted as a v059 modification.",
+      "pixel_crop": [
+        301,
+        121,
+        1263,
+        792
+      ]
+    },
+    {
+      "source": [
+        30,
+        5
+      ],
+      "origin_revision": 57,
+      "current": "A",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "reason": "Actually revisited the title/legend area; absence of an unobscured playable lattice/subtype legend prevents validating the sand assignment. Retained, not counted as a v059 modification.",
+      "pixel_crop": [
+        301,
+        121,
+        1263,
+        792
+      ]
+    },
+    {
+      "source": [
+        28,
+        6
+      ],
+      "origin_revision": 57,
+      "current": "A",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "reason": "Actually revisited the title/legend area; absence of an unobscured playable lattice/subtype legend prevents validating the sand assignment. Retained, not counted as a v059 modification.",
+      "pixel_crop": [
+        301,
+        121,
+        1263,
+        792
+      ]
+    },
+    {
+      "source": [
+        22,
+        9
+      ],
+      "origin_revision": 57,
+      "current": "A",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "reason": "Actually revisited the title/legend area; absence of an unobscured playable lattice/subtype legend prevents validating the sand assignment. Retained, not counted as a v059 modification.",
+      "pixel_crop": [
+        301,
+        121,
+        1263,
+        792
+      ]
+    },
+    {
+      "source": [
+        30,
+        9
+      ],
+      "origin_revision": 57,
+      "current": "A",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "reason": "Actually revisited the title/legend area; absence of an unobscured playable lattice/subtype legend prevents validating the sand assignment. Retained, not counted as a v059 modification.",
+      "pixel_crop": [
+        301,
+        121,
+        1263,
+        792
+      ]
+    },
+    {
+      "source": [
+        10,
+        11
+      ],
+      "origin_revision": 57,
+      "current": "A",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "reason": "Actually revisited the title/legend area; absence of an unobscured playable lattice/subtype legend prevents validating the sand assignment. Retained, not counted as a v059 modification.",
+      "pixel_crop": [
+        301,
+        121,
+        1263,
+        792
+      ]
+    },
+    {
+      "source": [
+        22,
+        11
+      ],
+      "origin_revision": 57,
+      "current": "A",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "reason": "Actually revisited the title/legend area; absence of an unobscured playable lattice/subtype legend prevents validating the sand assignment. Retained, not counted as a v059 modification.",
+      "pixel_crop": [
+        301,
+        121,
+        1263,
+        792
+      ]
+    },
+    {
+      "source": [
+        20,
+        16
+      ],
+      "origin_revision": 57,
+      "current": "A",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "reason": "Actually revisited the title/legend area; absence of an unobscured playable lattice/subtype legend prevents validating the sand assignment. Retained, not counted as a v059 modification.",
+      "pixel_crop": [
+        301,
+        121,
+        1263,
+        792
+      ]
+    },
+    {
+      "source": [
+        108,
+        42
+      ],
+      "origin_revision": 58,
+      "current": "P",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Rough ground in playable lattice; not enough evidence to identify original rough-ground subtype. Retain prior P fallback without re-counting it.",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ]
+    },
+    {
+      "source": [
+        109,
+        42
+      ],
+      "origin_revision": 58,
+      "current": "P",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Rough ground in playable lattice; not enough evidence to identify original rough-ground subtype. Retain prior P fallback without re-counting it.",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ]
+    },
+    {
+      "source": [
+        111,
+        42
+      ],
+      "origin_revision": 58,
+      "current": "P",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Rough ground in playable lattice; not enough evidence to identify original rough-ground subtype. Retain prior P fallback without re-counting it.",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ]
+    },
+    {
+      "source": [
+        110,
+        43
+      ],
+      "origin_revision": 58,
+      "current": "P",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Rough ground in playable lattice; not enough evidence to identify original rough-ground subtype. Retain prior P fallback without re-counting it.",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ]
+    },
+    {
+      "source": [
+        108,
+        44
+      ],
+      "origin_revision": 58,
+      "current": "P",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Rough ground in playable lattice; not enough evidence to identify original rough-ground subtype. Retain prior P fallback without re-counting it.",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ]
+    },
+    {
+      "source": [
+        110,
+        44
+      ],
+      "origin_revision": 58,
+      "current": "P",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Rough ground in playable lattice; not enough evidence to identify original rough-ground subtype. Retain prior P fallback without re-counting it.",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ]
+    },
+    {
+      "source": [
+        105,
+        45
+      ],
+      "origin_revision": 58,
+      "current": "P",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Rough ground in playable lattice; not enough evidence to identify original rough-ground subtype. Retain prior P fallback without re-counting it.",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ]
+    },
+    {
+      "source": [
+        111,
+        48
+      ],
+      "origin_revision": 58,
+      "current": "P",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Rough ground in playable lattice; not enough evidence to identify original rough-ground subtype. Retain prior P fallback without re-counting it.",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ]
+    },
+    {
+      "source": [
+        110,
+        49
+      ],
+      "origin_revision": 58,
+      "current": "P",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "UNRESOLVED",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Rough ground in playable lattice; not enough evidence to identify original rough-ground subtype. Retain prior P fallback without re-counting it.",
+      "pixel_crop": [
+        3497,
+        1449,
+        3816,
+        1736
+      ]
+    },
+    {
+      "source": [
+        46,
+        121
+      ],
+      "origin_revision": 58,
+      "current": "Q",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Water-like channel surface rechecked; original navigability/subtype remains unproved; retain conservative Q and the historical overall ESTIMATED label.",
+      "pixel_crop": [
+        1344,
+        3938,
+        1954,
+        4532
+      ]
+    },
+    {
+      "source": [
+        47,
+        121
+      ],
+      "origin_revision": 58,
+      "current": "Q",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Water-like channel surface rechecked; original navigability/subtype remains unproved; retain conservative Q and the historical overall ESTIMATED label.",
+      "pixel_crop": [
+        1344,
+        3938,
+        1954,
+        4532
+      ]
+    },
+    {
+      "source": [
+        48,
+        122
+      ],
+      "origin_revision": 58,
+      "current": "Q",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Water-like channel surface rechecked; original navigability/subtype remains unproved; retain conservative Q and the historical overall ESTIMATED label.",
+      "pixel_crop": [
+        1344,
+        3938,
+        1954,
+        4532
+      ]
+    },
+    {
+      "source": [
+        49,
+        122
+      ],
+      "origin_revision": 58,
+      "current": "Q",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Water-like channel surface rechecked; original navigability/subtype remains unproved; retain conservative Q and the historical overall ESTIMATED label.",
+      "pixel_crop": [
+        1344,
+        3938,
+        1954,
+        4532
+      ]
+    },
+    {
+      "source": [
+        47,
+        155
+      ],
+      "origin_revision": 58,
+      "current": "Q",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Water-like channel surface rechecked; original navigability/subtype remains unproved; retain conservative Q and the historical overall ESTIMATED label.",
+      "pixel_crop": [
+        1412,
+        4955,
+        1860,
+        5403
+      ]
+    },
+    {
+      "source": [
+        43,
+        158
+      ],
+      "origin_revision": 58,
+      "current": "Q",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Water-like channel surface rechecked; original navigability/subtype remains unproved; retain conservative Q and the historical overall ESTIMATED label.",
+      "pixel_crop": [
+        1412,
+        4955,
+        1860,
+        5403
+      ]
+    },
+    {
+      "source": [
+        50,
+        160
+      ],
+      "origin_revision": 58,
+      "current": "Q",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Water-like channel surface rechecked; original navigability/subtype remains unproved; retain conservative Q and the historical overall ESTIMATED label.",
+      "pixel_crop": [
+        1412,
+        4955,
+        1860,
+        5403
+      ]
+    },
+    {
+      "source": [
+        43,
+        161
+      ],
+      "origin_revision": 58,
+      "current": "Q",
+      "evidence": "ESTIMATED",
+      "review_status": "UNRESOLVED",
+      "surface_evidence": "CONFIRMED_VISIBLE",
+      "original_navigation_evidence": "UNRESOLVED",
+      "reason": "Water-like channel surface rechecked; original navigability/subtype remains unproved; retain conservative Q and the historical overall ESTIMATED label.",
+      "pixel_crop": [
+        1412,
+        4955,
+        1860,
+        5403
+      ]
+    }
+  ],
+  "new_terrain_modifications": 0,
+  "overall_promoted_to_confirmed": 0,
+  "retained_unresolved": 26,
+  "water_surface_rechecked": 8
+}

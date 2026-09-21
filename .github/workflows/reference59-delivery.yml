@@ -1,0 +1,227 @@
+name: Reference59 final source installed APK and independent release
+on:
+  push:
+    branches: [agent/reference-terrain-regions-v059]
+    paths: [.github/workflows/reference59-delivery.yml, .ci/reference59-build-trigger]
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: reference59-delivery
+  cancel-in-progress: false
+jobs:
+  deliver:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply only new guarded v059 source delta and audited terrain ledger
+        id: source
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          git merge-base --is-ancestor 894fb37729a6425c670026616f0ee32efa795790 HEAD
+          git merge-base --is-ancestor origin/main HEAD
+          if test -f .ci/reference59-payload-01.txt; then
+            python3 - <<'PY'
+          import base64,hashlib,json,lzma,subprocess
+          from pathlib import Path
+          parts=sorted(Path('.ci').glob('reference59-payload-*.txt'))
+          assert len(parts)==4
+          raw=lzma.decompress(base64.b64decode(''.join(p.read_text().strip() for p in parts),validate=True))
+          assert hashlib.sha256(raw).hexdigest()=='2a76316d2075afcf3773e8851d0f439fb96ed17a623801e0dac007d7f415792e'
+          bundle=json.loads(raw);assert len(bundle['files'])==25
+          assert bundle['base_commit']=='894fb37729a6425c670026616f0ee32efa795790'
+          for name,meta in bundle['files'].items():
+              p=Path(name)
+              assert not p.is_absolute() and '..' not in p.parts and name!='tools/content/materialize_native56.py'
+              assert (hashlib.sha256(p.read_bytes()).hexdigest() if p.exists() else None)==meta['before'],name
+          subprocess.run(['git','apply','--index','--unidiff-zero','--binary','-'],input=bundle['patch'].encode(),check=True)
+          assert set(subprocess.check_output(['git','diff','--cached','--name-only']).decode().splitlines())==set(bundle['files'])
+          for name,meta in bundle['files'].items():assert hashlib.sha256(Path(name).read_bytes()).hexdigest()==meta['after'],name
+          Path('out/APPLIED_SOURCE.json').write_text(json.dumps(bundle['files'],indent=2)+'\n')
+          PY
+            python3 tools/content/audit_native59.py --apply --report docs/validation/v059/source-grid-audit.json
+            echo 'bb6b0740b7484fddeefc390943559b4b44860ffb07860d0ce07ff4b0371c0555  docs/validation/v059/source-grid-audit.json' | sha256sum -c -
+            python3 scripts/verify-map-release.py
+            rm .ci/reference59-payload-*.txt
+            git add .ci core/src/main/resources/maps/national-map-v056.properties tools/content/map-release-manifest.json docs/validation/v059/source-grid-audit.json
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'fix(map): v059 five-region terrain corrections and actual v058 save compatibility'
+            git push origin HEAD:agent/reference-terrain-regions-v059
+          fi
+          git rev-parse HEAD > out/BUILD_COMMIT
+          git status --porcelain > out/WORKTREE_STATUS
+          test ! -s out/WORKTREE_STATUS
+          cp version.properties out/VERSION
+          git archive --format=zip -o out/sanguo11-mobile-v059-source.zip HEAD
+          cp docs/validation/v059/source-grid-audit.json out/
+          cp data/map/reference-v059/terrain-corrections.json out/
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Fetch independently sampled exact shipped v058 saves and before screenshots
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh run download 35521913246 -R zjjxwpstcnsm-gif/sanguo11-mobile -n reference59-v058-baseline -D out/baseline
+          test "$(cat out/baseline/BASELINE_INSTALLED_STATUS)" = success
+          bash scripts/canonical-legacy59.sh
+      - name: Directed model coordinates port AI and actual old save checks
+        id: core
+        continue-on-error: true
+        env:
+          REFERENCE59_LEGACY58: out/baseline/android
+          REFERENCE59_BASELINE_CANONICAL: out/baseline-canonical
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/test-map59.sh | tee out/reference59-core.txt
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Build this APK from final pushed source and verify identity
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest | tee out/gradle.txt
+          python3 tools/check_apk_content.py app/build/outputs/apk/debug/app-debug.apk | tee out/apk-content.txt
+          python3 scripts/verify-map-release.py app/build/outputs/apk/debug/app-debug.apk | tee -a out/apk-content.txt
+          sha=$(git rev-parse --short=12 HEAD)
+          apk="out/sanguo11-mobile-v0.59.0-$sha.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "$apk"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$apk" > out/SIGNATURE.txt
+          grep -q '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' out/SIGNATURE.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$apk" > out/APK_INFO.txt
+          grep -q "versionCode='59' versionName='0.59.0'" out/APK_INFO.txt
+          python3 - <<'PY'
+          import hashlib,json,zipfile
+          from pathlib import Path
+          apk=next(Path('out').glob('sanguo11*.apk'))
+          with zipfile.ZipFile(apk) as z:
+              native=z.read('maps/national-map-v056.properties')
+              assert hashlib.sha256(native).hexdigest()=='50ea7331d5b0a70cdb469ace3657f15f949ff645ea0e5f1d7255efab9c188cd3'
+              art=[n for n in z.namelist() if n.startswith('assets/map/cities-v056/') and n.endswith('.png')]
+              assert len(art)==30
+              for n in z.namelist():
+                  assert 'MAP_SAN11' not in n and 'reference59-corrections' not in n,n
+                  if n.endswith('.dex'):
+                      for symbol in [b'Lgame/sanguo/core/MapTap57Fixture;',b'Lgame/sanguo/mobile/Reference58Probe;',b'Lgame/sanguo/mobile/Reference59Probe;']:assert symbol not in z.read(n),symbol
+          Path('out/APK_IDENTITY.json').write_text(json.dumps({'source_sha':Path('out/BUILD_COMMIT').read_text().strip(),'workflow_bootstrap_sha':'${{ github.sha }}','versionName':'0.59.0','versionCode':59,'sha256':hashlib.sha256(apk.read_bytes()).hexdigest(),'bytes':apk.stat().st_size,'native_map_revision':59,'map_sha256':hashlib.sha256(native).hexdigest(),'city_pngs':len(art),'city_art_revision':56,'save_codec':31,'certificate_sha256':'8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24'},indent=2)+'\n')
+          PY
+          (cd out; sha256sum sanguo11*.apk *source.zip > SHA256SUMS)
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install exact APK and validate real MapView touches and retained game flow
+        id: installed
+        continue-on-error: true
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          script: bash scripts/android-map59.sh
+      - name: Record all outcomes and package representative before after stills
+        if: always()
+        env:
+          SOURCE: ${{ steps.source.outcome }}
+          CORE: ${{ steps.core.outcome }}
+          BUILD: ${{ steps.build.outcome }}
+          INSTALLED: ${{ steps.installed.outcome }}
+        run: |
+          mkdir -p out review-stills
+          python3 - <<'PY'
+          import os,json,shutil
+          from pathlib import Path
+          Path('out/VALIDATION_STATUS.json').write_text(json.dumps({k:os.environ.get(k,'unknown') for k in ['SOURCE','CORE','BUILD','INSTALLED']},indent=2)+'\n')
+          shutil.rmtree('out/legacy-encoder',ignore_errors=True)
+          for root in [Path('out/baseline/android'),Path('out/android/reference59')]:
+              if root.exists():
+                  for p in root.rglob('*.png'):
+                      name=p.name
+                      if any(t in name for t in ['coalition-190-43-135-near','coalition-190-170-119-near','coalition-190-118-47-near','coalition-190-122-92-near','coalition-190-52-164-near','coalition-190-50-137-near','coalition-190-166-128-near','coalition-190-124-92-near','v059-fixture','-crop','march-','v059-coalition-190-LOD','v059-coalition-190-NON_NAVIGABLE','corrected-122-92']):shutil.copy2(p,Path('review-stills')/name)
+          for p in Path('out').glob('*.txt'):shutil.copy2(p,Path('review-stills')/p.name)
+          for p in Path('out').glob('*.json'):shutil.copy2(p,Path('review-stills')/p.name)
+          for root in [Path('out/android/reference59'),Path('out/baseline/android')]:
+              if root.exists():
+                  for p in root.rglob('*checks.txt'):shutil.copy2(p,Path('review-stills')/p.name)
+          PY
+      - name: Publish independently downloadable tested APK
+        id: publication
+        if: steps.source.outcome == 'success' && steps.core.outcome == 'success' && steps.build.outcome == 'success' && steps.installed.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha=$(cat out/BUILD_COMMIT)
+          tag="v0.59.0-${sha:0:12}"
+          apk=$(find out -maxdepth 1 -name '*.apk')
+          sha256sum -c out/TESTED_APK_SHA256
+          if ! gh release view "$tag" >/dev/null 2>&1; then
+            gh release create "$tag" --target "$sha" --title "v0.59.0 · 五区域地图修订" --notes "109 unique national cells: 85 VOID to visually identified blocked water; 24 false ROAD to MOUNTAIN. New games only; old saves retained. API29 x86_64 installation and actual MapView tests passed for this exact APK. Source and evidence: https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/${{ github.run_id }} . Physical ARM devices and complete historical CI are not claimed."
+          fi
+          gh release upload "$tag" "$apk" out/APK_IDENTITY.json out/VALIDATION_STATUS.json out/ANDROID_STATUS.json out/BUILD_COMMIT out/SHA256SUMS out/SIGNATURE.txt out/APK_INFO.txt out/sanguo11-mobile-v059-source.zip --clobber
+          mkdir -p out/publication-check
+          gh release download "$tag" -p '*.apk' -D out/publication-check
+          cmp "$apk" "out/publication-check/$(basename "$apk")"
+          python3 - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          i=json.loads(Path('out/APK_IDENTITY.json').read_text());p=next(Path('out/publication-check').glob('*.apk'))
+          assert hashlib.sha256(p.read_bytes()).hexdigest()==i['sha256'] and p.stat().st_size==i['bytes']
+          i.update({'download_verified':True,'same_bytes_as_installed':True,'run_url':'https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/${{ github.run_id }}','apk_url':'https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/releases/download/v0.59.0-'+i['source_sha'][:12]+'/'+p.name})
+          Path('out/PUBLICATION.json').write_text(json.dumps(i,indent=2)+'\n')
+          PY
+          gh release upload "$tag" out/PUBLICATION.json --clobber
+          rm -rf out/publication-check
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reference59-installed-delivery
+          path: out
+          retention-days: 14
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reference59-review-stills
+          path: review-stills
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: steps.publication.outcome == 'success'
+        with:
+          name: reference59-independent-apk
+          path: |
+            out/*.apk
+            out/APK_IDENTITY.json
+            out/PUBLICATION.json
+            out/VALIDATION_STATUS.json
+            out/ANDROID_STATUS.json
+            out/SIGNATURE.txt
+            out/BUILD_COMMIT
+          retention-days: 14
+      - name: Require directed installed and publication results
+        if: always()
+        env:
+          CORE: ${{ steps.core.outcome }}
+          BUILD: ${{ steps.build.outcome }}
+          INSTALLED: ${{ steps.installed.outcome }}
+          PUBLICATION: ${{ steps.publication.outcome }}
+        run: test "$CORE" = success && test "$BUILD" = success && test "$INSTALLED" = success && test "$PUBLICATION" = success
