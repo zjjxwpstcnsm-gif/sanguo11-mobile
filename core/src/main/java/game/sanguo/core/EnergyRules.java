@@ -15,7 +15,7 @@ public final class EnergyRules {
     public String hitPreview(World.Unit source,World.Unit target){int drain=hitDrain(source);return drain==0?"命中无特技扣气。":"造成物理伤害时，目标气力至多−"+Math.min(target.energy,drain)+"（每目标一次；威风优先扫讨）。";}
     /** Live local structure query; no stale cache after movement, destruction or ownership changes. */
     public int recovery(World.Unit u){
-        for(War.Structure s:w.war.structures)if(s.complete&&s.kind==War.StructureKind.MUSIC&&s.owner==u.owner&&s.hex.distance(u.hex)<=2)
+        for(War.Structure s:w.war.structures)if(s.complete&&s.kind==War.StructureKind.MUSIC&&s.owner==u.owner&&Fieldworks.inRange(s,u.hex))
             return w.skills.has(u,Skill.SHIXIANG)?20:10;
         return w.skills.has(u,Skill.ZOUYUE)?5:0;
     }
@@ -24,7 +24,7 @@ public final class EnergyRules {
         int gain=recovery(u);Reason reason=gain>=10?Reason.MUSIC:Reason.ZOUYUE;
         if(preview(u,gain,reason).actual==0)continue;
         War.Structure source=null;
-        for(War.Structure s:w.war.structures)if(s.complete&&s.kind==War.StructureKind.MUSIC&&s.owner==u.owner&&s.hex.distance(u.hex)<=2){source=s;break;}
+        for(War.Structure s:w.war.structures)if(s.complete&&s.kind==War.StructureKind.MUSIC&&s.owner==u.owner&&Fieldworks.inRange(s,u.hex)){source=s;break;}
         if(source!=null){w.reports.facility(source,u.hex,TurnJournal.Kind.RECOVER,"军乐台恢复");if(w.turnJournal!=null)w.turnJournal.facility(source,u.hex,TurnJournal.Kind.RECOVER,"军乐台恢复");}
         else {w.reports.action(TurnJournal.Kind.RECOVER,u.id,u.hex,"奏乐恢复");if(w.turnJournal!=null)w.turnJournal.mark(TurnJournal.Kind.RECOVER,u.id,u.hex,"奏乐恢复");}
         Change result=change(u,gain,reason);

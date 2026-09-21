@@ -28,7 +28,7 @@ final class StrategyUi {
         World.Officer governor=w.officer(c.governorId);
         String title=c.name+" · 人事 / 城市治理";
         if(n==0){
-            StringBuilder text=new StringBuilder("太守："+(governor==null?"未任命":governor.name)+"\n兵源 "+c.recruitReserve+" / 守军 "+c.troops+"\n治安 "+c.order+" / 气力 "+w.strategy.getArmyReadiness(c.id)+"\n月金 "+w.domestic.monthlyGold(c.id)+" / 季粮 "+w.domestic.monthlyFood(c.id)+"\n");
+            StringBuilder text=new StringBuilder("太守："+(governor==null?"未任命":governor.name)+"\n"+Conscription.description(w,c)+"\n守军 "+c.troops+"\n治安 "+c.order+" / 气力 "+w.strategy.getArmyReadiness(c.id)+"\n月金 "+w.domestic.monthlyGold(c.id)+" / 季粮 "+w.domestic.monthlyFood(c.id)+"\n");
             for(World.Officer o:w.officers)if(o.cityId==c.id){
                 Strategy.OfficerState s=w.strategy.officerState(o.id);World.City location=w.city(o.cityId);
                 text.append('\n').append(o.name).append(" · ").append(o.role.label).append(" · 忠诚").append(o.loyalty)
@@ -55,7 +55,7 @@ final class StrategyUi {
             switch(n){
                 case 1:confirm("搜索人才","不消耗金；有适时隐士时发现概率 "+w.strategy.searchChance(o.id)+"%。\n也可能获得少量金或毫无发现。",()->apply.accept(w.strategy.search(c.id,o.id)));break;
                 case 5:confirm("巡察","消耗金100；治安 +"+Math.min(100-c.order,StrategyRules.patrolGain(o.politics,o.charm))+"。",()->apply.accept(w.strategy.patrol(c.id,o.id)));break;
-                case 6:confirm("征兵",w.domestic.usage(c.id,Domestic.Kind.BARRACKS)+"\n消耗金300、治安5；预计征兵 "+w.strategy.recruitAmount(c.id,o.id)+"，扣减等量兵源。当前兵源 "+c.recruitReserve+"。",()->apply.accept(w.strategy.recruitSoldiers(c.id,o.id)));break;
+                case 6:confirm("征兵",w.domestic.usage(c.id,Domestic.Kind.BARRACKS)+"\n消耗金300、治安"+Math.min(c.order,w.campaign.orderLoss(c.owner,w.skills.has(o,Skill.MINGSHENG)?7:5))+"；预计征兵 "+w.strategy.recruitAmount(c.id,o.id)+"，扣减等量兵源。\n气力 "+c.morale+"→"+Conscription.moraleAfter(c,w.strategy.recruitAmount(c.id,o.id))+"：新兵未训练，按新老兵人数加权。\n"+Conscription.description(w,c),()->apply.accept(w.strategy.recruitSoldiers(c.id,o.id)));break;
                 case 7:confirm("训练","消耗金100；气力 +"+Math.min(w.campaign.energyCap(c.owner)-c.morale,StrategyRules.trainingGain(o.leadership,o.war))+"，出征时作为初始部队气力。",()->apply.accept(w.strategy.trainArmy(c.id,o.id)));break;
                 default:break;
             }

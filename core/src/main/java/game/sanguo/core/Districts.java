@@ -28,10 +28,34 @@ public final class Districts {
     Districts(World w){this.w=w;}
     public List<District> all(){return Collections.unmodifiableList(new ArrayList<>(groups.values()));}
     public District get(int id){return groups.get(id);}
-    public District city(int city){for(District d:groups.values())if(d.cities.contains(city))return d;return null;}
+    /** Resolve effective membership without copying ports/gates into the saved anchor set. */
+    public District city(int id){
+        World.City site=w.city(id),parent=parentCity(id);
+        if(site==null||parent==null||site.owner!=parent.owner)return null;
+        for(District d:groups.values())if(d.owner==site.owner&&d.cities.contains(parent.id))return d;
+        return null;
+    }
+    public World.City parentCity(int id){return SiteAffiliation.parent(w,w.city(id));}
+    public boolean rulerCity(int id){
+        for(World.Officer o:w.officers)if(o.role==Strategy.Role.RULER){
+            World.City home=w.city(o.cityId),parent=parentCity(o.cityId);
+            if(home!=null&&parent!=null&&home.owner==o.owner&&parent.owner==o.owner&&parent.id==id)return true;
+        }
+        return false;
+    }
+    public Set<Integer> sites(District d){
+        SortedSet<Integer> ids=new TreeSet<>();
+        if(d!=null)for(World.City c:w.cities)if(city(c.id)==d)ids.add(c.id);
+        return Collections.unmodifiableSortedSet(ids);
+    }
+    public String affiliation(int id){
+        World.City c=w.city(id),parent=parentCity(id);if(c==null||c.kind==World.SiteKind.CITY)return "";
+        return parent==null?"无所属城池，保持直属":
+            "所属城池："+parent.name+(parent.owner==c.owner?"；随城池划入军团":"；城池与港关归属不同，保持直属");
+    }
     public District unit(int unit){return groups.get(units.getOrDefault(unit,-1));}
     public String status(District d){
-        int idle=0,people=0;for(int id:d.cities){World.City c=w.city(id);if(c!=null){idle+=w.idle(c).size();for(World.Officer o:w.officers)if(o.owner==d.owner&&o.cityId==id)people++;}}
+        int idle=0,people=0;for(int id:sites(d)){World.City c=w.city(id);if(c!=null){idle+=w.idle(c).size();for(World.Officer o:w.officers)if(o.owner==d.owner&&o.cityId==id)people++;}}
         if(people==0)return "缺少驻城武将，请先调入人才";
         if(d.points==0)return "等待下一旬恢复军团行动力";
         if(idle==0)return "驻城武将已行动或正在执行任务";
@@ -48,7 +72,7 @@ public final class Districts {
     String dispatchError(int source,int target,boolean cargo){District d=city(source);
         if(d==null||executing!=d.id)return null;
         if(cargo)return !d.supplyEnabled?"军团禁止补给运输":d.supply>=0&&target!=d.supply?"军团限定运输目的地":null;
-        return !d.transfer?"军团禁止调将":!d.cities.contains(target)?"调将超出军团范围":null;
+        return !d.transfer?"军团禁止调将":city(target)!=d?"调将超出军团范围":null;
     }
     public World.Result settings(int id,int troops,int gold,int food,boolean transfer,boolean supply){w.reports.prepare();
         String error=manageError();if(error!=null)return w.fail(error);District d=get(id);
@@ -80,14 +104,14 @@ public final class Districts {
         District prior=id<0?null:get(id);if(id>=0&&(prior==null||prior.owner!=w.active))return "军团不存在或不属于当前势力";
         if(id<0&&(nextId>=10000000||groups.values().stream().filter(d->d.owner==w.active).count()>=7))return "最多七个委任军团";
         if(name==null||name.trim().isEmpty()||name.length()>30||members==null||members.length==0||members.length>=w.cities.size()||policy==null)return "需要名称、方针和至少一个据点";
-        Set<Integer> ids=new HashSet<>();int own=0;for(World.City c:w.cities)if(c.owner==w.active)own++;
-        if(members.length>=own)return "第一军团必须保留至少一个据点";
+        Set<Integer> ids=new HashSet<>();int own=0;for(World.City c:w.cities)if(c.owner==w.active&&c.kind==World.SiteKind.CITY)own++;
+        if(members.length>=own)return "第一军团必须保留至少一座城池";
         for(int member:members){World.City c=w.city(member);District other=city(member);
-            if(c==null||c.owner!=w.active||!ids.add(member)||other!=null&&other!=prior)return "据点重复、归属错误或已编入其他军团";
-            for(World.Officer o:w.officers)if(o.owner==w.active&&o.role==Strategy.Role.RULER&&o.cityId==member)return "君主所在据点应保留在第一军团";
+            if(c==null||c.kind!=World.SiteKind.CITY||c.owner!=w.active||!ids.add(member)||other!=null&&other!=prior)return "只能选择己方城池，且不得重复或已编入其他军团；港口和关卡随所属城池托管";
+            if(rulerCity(member))return "君主所在城池及其附属港关应保留在第一军团";
         }
-        boolean direct=false;for(World.City c:w.cities)if(c.owner==w.active&&!ids.contains(c.id)&&(city(c.id)==null||city(c.id)==prior))direct=true;
-        if(!direct)return "第一军团必须保留至少一个据点";
+        boolean direct=false;for(World.City c:w.cities)if(c.kind==World.SiteKind.CITY&&c.owner==w.active&&!ids.contains(c.id)&&(city(c.id)==null||city(c.id)==prior))direct=true;
+        if(!direct)return "第一军团必须保留至少一座城池";
         // Groups need connected own territory; paths use the current passable map, never straight-line adjacency guesses.
         Set<Integer> linked=new HashSet<>();linked.add(members[0]);boolean changed=true;
         while(changed){changed=false;for(int member:members)if(!linked.contains(member))for(int from:new ArrayList<>(linked))if(w.domestic.route(w.city(from).hex,w.city(member).hex,w.active,true)!=null){linked.add(member);changed=true;break;}}
@@ -103,7 +127,7 @@ public final class Districts {
         String error=configureError(id,name,members,policy,target,supply);if(error!=null)return w.fail(error);
         District d=id<0?new District(nextId++,w.active,name.trim()):get(id);
         d.name=name.trim();d.policy=policy;d.target=target;d.supply=supply;d.attack=attack;d.produce=produce;d.cities.clear();for(int member:members){d.cities.add(member);w.government.policies.remove(member);}
-        groups.put(d.id,d);units.entrySet().removeIf(e->{AiOrders.Order order=w.aiOrders.orders.get(e.getKey());return e.getValue()==d.id&&order!=null&&order.home>=0&&!d.cities.contains(order.home);});for(Map.Entry<Integer,Integer> e:units.entrySet())if(e.getValue()==d.id)w.aiOrders.orders.remove(e.getKey());w.actionPoints[w.active]-=20;chooseLeader(d);
+        groups.put(d.id,d);for(int site:sites(d))w.government.policies.remove(site);units.entrySet().removeIf(e->{AiOrders.Order order=w.aiOrders.orders.get(e.getKey());return e.getValue()==d.id&&order!=null&&order.home>=0&&city(order.home)!=d;});for(Map.Entry<Integer,Integer> e:units.entrySet())if(e.getValue()==d.id)w.aiOrders.orders.remove(e.getKey());w.actionPoints[w.active]-=20;chooseLeader(d);
         return w.success(d.name+"已编制 · "+policy.label+"；新军团下一旬取得行动力，直属部队与城务交由都督执行");
     }
     public World.Result dissolve(int id){w.reports.prepare();
@@ -115,25 +139,31 @@ public final class Districts {
     void deployed(int city,World.Unit u){District d=city(city);if(d!=null)units.put(u.id,d.id);}
     void captured(World.City city,World.Unit u){
         for(District d:groups.values())d.cities.remove(city.id);
-        District d=unit(u.id);if(d!=null)d.cities.add(city.id);cleanup();
+        District d=unit(u.id);if(d!=null&&city.kind==World.SiteKind.CITY)d.cities.add(city.id);cleanup();
     }
     void cleanup(){
-        boolean hasDirect=false;for(World.City c:w.cities)if(c.owner==w.player&&city(c.id)==null)hasDirect=true;
-        if(!hasDirect)for(District d:groups.values()){Integer fallback=null;for(int city:d.cities)if(w.city(city)!=null&&w.city(city).owner==w.player){fallback=city;break;}if(fallback!=null){d.cities.remove(fallback);w.note(w.city(fallback).name+"接替第一军团驻地");break;}}
+        boolean hasDirect=false;for(World.City c:w.cities)if(c.kind==World.SiteKind.CITY&&c.owner==w.player&&city(c.id)==null)hasDirect=true;
+        if(!hasDirect)for(District d:groups.values()){Integer fallback=null;for(int city:d.cities)if(w.city(city)!=null&&w.city(city).kind==World.SiteKind.CITY&&w.city(city).owner==w.player){fallback=city;break;}if(fallback!=null){d.cities.remove(fallback);w.note(w.city(fallback).name+"接替第一军团驻地");break;}}
         for(District d:new ArrayList<>(groups.values())){
-            d.cities.removeIf(id->w.city(id)==null||w.city(id).owner!=d.owner);
+            d.cities.removeIf(id->w.city(id)==null||w.city(id).kind!=World.SiteKind.CITY||w.city(id).owner!=d.owner);
             // The ruler's residence always belongs to the first district.
-            for(World.Officer o:w.officers)if(o.owner==d.owner&&o.role==Strategy.Role.RULER)d.cities.remove(o.cityId);
+            d.cities.removeIf(this::rulerCity);
             if(d.cities.isEmpty()){groups.remove(d.id);continue;}
             if(d.supply>=0&&(w.city(d.supply)==null||w.city(d.supply).owner!=d.owner))d.supply=-1;
             if(d.policy==Policy.CITY_ATTACK&&(w.city(d.target)==null||!w.campaign.hostile(d.owner,w.city(d.target).owner))||d.policy==Policy.FORCE_ATTACK&&(!w.alive(d.target)||!w.campaign.hostile(d.owner,d.target))){d.policy=Policy.DEFENSE;d.target=-1;}
+            for(int site:sites(d))w.government.policies.remove(site);
             chooseLeader(d);
         }
         units.entrySet().removeIf(e->w.unit(e.getKey())==null||get(e.getValue())==null||w.unit(e.getKey()).owner!=get(e.getValue()).owner);
     }
+    void migrateLegacySites(){
+        boolean legacy=false;
+        for(District d:groups.values())for(int id:d.cities){World.City c=w.city(id);if(c!=null&&c.kind!=World.SiteKind.CITY)legacy=true;}
+        if(legacy)cleanup();
+    }
     private void chooseLeader(District d){
         World.Officer best=null;
-        for(World.Officer o:w.officers)if(o.owner==d.owner&&!w.government.captive(o.id)&&d.cities.contains(o.cityId)&&o.role!=Strategy.Role.RULER){
+        for(World.Officer o:w.officers)if(o.owner==d.owner&&!w.government.captive(o.id)&&city(o.cityId)==d&&o.role!=Strategy.Role.RULER){
             if(best==null||compareLeader(o,best)<0)best=o;
         }
         d.leader=best==null?-1:best.id;
@@ -149,7 +179,7 @@ public final class Districts {
         for(District d:new ArrayList<>(groups.values()))if(d.owner==owner&&d.actedTurn!=w.turn){
             d.actedTurn=w.turn;int mainPoints=w.actionPoints[owner];executing=d.id;w.actionPoints[owner]=d.points;
             try{
-                List<Integer> ordered=new ArrayList<>(d.cities);
+                List<Integer> ordered=new ArrayList<>(sites(d));
                 // Rotate equal-priority cities so a large district never starves high-ID holdings.
                 Collections.rotate(ordered,-(w.turn%ordered.size()));
                 CampaignAi planner=new CampaignAi(w);
@@ -164,7 +194,7 @@ public final class Districts {
                     }
                 }
                 for(World.Unit u:new ArrayList<>(w.units))if(Objects.equals(units.get(u.id),d.id)&&!u.acted)armyOrder(d,u);
-                for(int id:d.cities){String reason=new DistrictManagement(w).reason(w.city(id));if(!reason.isEmpty()&&d.report.length()<5000)d.report+=w.city(id).name+"："+reason+"\n";}
+                for(int id:sites(d)){String reason=new DistrictManagement(w).reason(w.city(id));if(!reason.isEmpty()&&d.report.length()<5000)d.report+=w.city(id).name+"："+reason+"\n";}
                 if(w.actionPoints[owner]<10)d.report+="行动预算不足10，剩余城务下旬轮换\n";
                 if(d.report.isEmpty())d.report="当前无可执行需求；留守、储备和权限限制继续生效";
                 if(startPoints>0)w.note(d.name+"自动经营完成 · 消耗"+(startPoints-w.actionPoints[owner])+"行动力 · 剩余"+w.actionPoints[owner]);
@@ -222,6 +252,6 @@ public final class Districts {
         boolean offensive=d.policy!=Policy.DEFENSE&&d.policy!=Policy.ECONOMY;
         new CampaignAi(w).runUnit(u,d.attack,
             c->offensive&&(d.policy!=Policy.CITY_ATTACK||c.id==d.target)&&(d.policy!=Policy.FORCE_ATTACK||c.owner==d.target),
-            c->c.owner==d.owner&&d.cities.contains(c.id));
+            c->c.owner==d.owner&&city(c.id)==d);
     }
 }

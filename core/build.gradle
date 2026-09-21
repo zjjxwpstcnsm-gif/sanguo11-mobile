@@ -241,3 +241,11 @@ tasks.register('verifyNative56', JavaExec) {
     maxHeapSize = '1500m'
 }
 tasks.named('check') { dependsOn 'verifyNative56' }
+
+// City delegation, recruiting and selected-facility coverage regressions.
+tasks.register('verifyUx64', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.Ux64Test'
+}
+tasks.named('check') { dependsOn 'verifyUx64' }

@@ -100,6 +100,8 @@ public final class MapView extends View {
     boolean overviewReady(){return overview!=null&&overview.ready();}
     int overviewBuilds(){return overviewBuilds;}
     long overviewBytes(){return overview==null?0:overview.bytes();}
+    private Set<Hex> facilityCoverage=Collections.emptySet();
+    Set<Hex> facilityCoverage(){return facilityCoverage;}
     private List<Hex> developmentSites=Collections.emptyList();
     private final Map<Integer,String> cityNames=new HashMap<>();
     private final Set<Integer> frontlineCities=new HashSet<>();
@@ -309,6 +311,7 @@ public final class MapView extends View {
         if(changed&&getWidth()>0){stopCamera();resizeCamera();camera.fit();}invalidate();
     }
     private void updateSelection(boolean actorChanged){
+        facilityCoverage=world.fieldworks.coverage(world.war.at(selected));
         World.City development=world.cityAt(selected);if(development==null)development=world.development.cityAt(selected);
         developmentSites=development!=null&&development.owner==world.player?new ArrayList<>(world.domestic.buildSites(development.id)):Collections.emptyList();
         if(!actorChanged)return;selectionBuilds++;
@@ -444,6 +447,10 @@ public final class MapView extends View {
         if(pickTargets==null)for(Map.Entry<Hex,Integer> entry:reachable.entrySet()){
             Hex h=entry.getKey();if(entry.getValue()<=0||!camera.visible(x(h),y(h),RADIUS*scale))continue;
             polygon(x(h),y(h),RADIUS-1);fill(canvas,0x6e3edad1);stroke(canvas,0xe175f4ea,Math.max(1,1.2f*density/scale));
+        }
+        if(pickTargets==null)for(Hex h:facilityCoverage){
+            if(!camera.visible(x(h),y(h),RADIUS*scale))continue;
+            polygon(x(h),y(h),RADIUS-1);fill(canvas,0x55f1bd62);stroke(canvas,0xfff1bd62,Math.max(1,1.4f*density/scale));
         }
         drawRoute(canvas);
         if(draggingUnit&&dragTarget!=null){

@@ -39,11 +39,11 @@ public final class DistrictManagement {
     public String forecast(World.City c){int famine=famineTurn(c);return "未来9旬预计收入 金"+income(c,9,false)+" / 粮"+income(c,9,true)+"；驻军旬耗"+w.cityFoodUse(c)+"\n"+
         (famine==999?"预计36旬内无断粮（按现驻军/工期）":"预计第"+famine+"旬缺粮（含可达在途援助）")+"；在途携粮"+incomingFood(c);}
     void balance(Districts.District d){
-        List<World.City> targets=new ArrayList<>();for(int id:d.cities)targets.add(w.city(id));
+        List<World.City> targets=new ArrayList<>();for(int id:w.districts.sites(d))targets.add(w.city(id));
         targets.sort(Comparator.comparingInt(this::residents).thenComparingInt(c->c.id));
         for(World.City target:targets){if(residents(target)+arriving(target)>=3||w.actionPoints[d.owner]<10)continue;
             World.Officer chosen=null;World.City source=null;int best=Integer.MIN_VALUE;
-            for(int id:d.cities){World.City c=w.city(id);if(id==target.id||residents(c)<=3||ai.incoming(c)>0)continue;
+            for(int id:w.districts.sites(d)){World.City c=w.city(id);if(id==target.id||residents(c)<=3||ai.incoming(c)>0)continue;
                 World.Officer candidate=null;for(World.Officer o:w.idle(c))if(o.role!=Strategy.Role.RULER&&o.role!=Strategy.Role.GOVERNOR&&(candidate==null||o.politics*2+o.charm>candidate.politics*2+candidate.charm))candidate=o;
                 if(candidate==null)continue;int score=candidate.politics*2+candidate.charm-c.hex.distance(target.hex)*2;
                 if(score>best&&w.domestic.route(c.hex,target.hex,c.owner)!=null){best=score;chosen=candidate;source=c;}
@@ -62,7 +62,7 @@ public final class DistrictManagement {
         if(officer==null)return blocked(source,target,null,"无可行动的运输武将");
         if(!d.supplyEnabled)return blocked(source,target,officer,"军团禁止补给运输");
         if(d.supply>=0&&target.id!=d.supply)return blocked(source,target,officer,"限定运输目的地");
-        if(d.supply<0&&!d.cities.contains(target.id))return blocked(source,target,officer,"没有跨军团支援授权");
+        if(d.supply<0&&w.districts.city(target.id)!=d)return blocked(source,target,officer,"没有跨军团支援授权");
         if(residents(source)<=2)return blocked(source,target,officer,"留守两将，等待返程/调将/登用");
         int danger=ai.incoming(source);if(danger>0&&d.supply<0)return blocked(source,target,officer,"出发城受威胁，未指定外运目的地");
         for(World.Unit enemy:w.units)if(w.campaign.hostile(source.owner,enemy.owner)&&SiteFootprint.distance(source,enemy.hex)<=2)return blocked(source,target,officer,"敌军围城，暂停外运");
@@ -87,11 +87,11 @@ public final class DistrictManagement {
     }
     World.Result send(SupplyPlan p){if(!p.valid())return w.fail(p.reason);return w.domestic.transport(p.source,p.target,p.officer,new int[0],p.gold,p.food,p.troops,p.equipment,p.sea,p.returning);}
     boolean supply(Districts.District d,World.City source,World.Officer officer){
-        List<World.City> targets=new ArrayList<>();for(World.City c:w.cities)if(c.owner==source.owner&&c.id!=source.id&&(d.supply>=0?c.id==d.supply:d.cities.contains(c.id)&&(ai.incoming(c)>0||foodTurns(c)<12)))targets.add(c);
+        List<World.City> targets=new ArrayList<>();for(World.City c:w.cities)if(c.owner==source.owner&&c.id!=source.id&&(d.supply>=0?c.id==d.supply:w.districts.city(c.id)==d&&(ai.incoming(c)>0||foodTurns(c)<12)))targets.add(c);
         targets.sort(Comparator.comparingInt((World.City c)->-ai.incoming(c)).thenComparingInt(this::foodTurns).thenComparingInt(c->c.id));
         for(World.City target:targets){SupplyPlan plan=plan(d,source,target,officer);if(plan.valid()){World.Result result=send(plan);if(result.ok)return true;if(d.report.length()<4000)d.report+=source.name+"→"+target.name+"："+result.message+"\n";}else if(d.report.length()<4000)d.report+=source.name+"→"+target.name+"："+plan.reason+"\n";}return false;
     }
-    public String cargo(Districts.District d){StringBuilder b=new StringBuilder();for(Domestic.Mission m:w.domestic.missions)if(m.owner==d.owner&&(d.cities.contains(m.sourceCity)||d.cities.contains(m.targetCity))){
+    public String cargo(Districts.District d){StringBuilder b=new StringBuilder();for(Domestic.Mission m:w.domestic.missions)if(m.owner==d.owner&&(w.districts.city(m.sourceCity)==d||w.districts.city(m.targetCity)==d)){
         b.append(w.officer(m.officerId).name).append(m.returning?"等将返程":m.transport?"运输":"调将").append("→").append(w.city(m.targetCity).name);
         if(m.transport)b.append(" 金").append(m.gold).append(" 粮").append(m.food).append(" 兵").append(m.troops).append(" 已耗粮").append(m.consumedFood);
         b.append(" · ").append(w.domestic.status(m)).append('\n');}return b.length()==0?"无在途任务":b.toString();}
