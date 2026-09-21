@@ -1,0 +1,299 @@
+name: Road62 partial candidate exact APK verification
+on:
+  push:
+    branches: [agent/void-road-generated-art-v062]
+    paths: [.github/workflows/road62-candidate-delivery.yml, app/src/androidTest/java/game/sanguo/mobile/Road62Probe.java]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: art62-production-writes
+  cancel-in-progress: false
+jobs:
+  delivery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/void-road-generated-art-v062
+          fetch-depth: 0
+      - name: Commit truthful candidate identity and installed test entry points
+        id: source
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          git fetch origin main
+          git merge-base --is-ancestor origin/main HEAD
+          python3 - <<'PY'
+          from pathlib import Path
+          import json,hashlib
+          version=Path('version.properties');s=version.read_text()
+          if 'versionName=0.61.0' in s:
+              assert s.count('versionName=0.61.0')==1 and s.count('versionCode=61')==1
+              version.write_text(s.replace('versionName=0.61.0','versionName=0.62.0-road-candidate').replace('versionCode=61','versionCode=62'))
+          else:assert 'versionName=0.62.0-road-candidate' in s and 'versionCode=62' in s
+          p=Path('app/src/androidTest/java/game/sanguo/mobile/GameSmokeRunner.java');s=p.read_text()
+          if 'private boolean road62,' not in s:
+              a='private boolean reference61,';assert s.count(a)==1;s=s.replace(a,'private boolean road62,road62Baseline,reference61,')
+              a='super.onCreate(arguments);reference61=';assert s.count(a)==1
+              s=s.replace(a,'super.onCreate(arguments);road62=arguments!=null&&"true".equals(arguments.getString("road62"));road62Baseline=arguments!=null&&"true".equals(arguments.getString("road62Baseline"));reference61=')
+              a='            if(reference61){';assert s.count(a)==1
+              b='            if(road62||road62Baseline){new Road62Probe(this,road62).run();result.putString("stream",road62?"ROAD62 ANDROID PASS: installed ordinary-road pixel equivalence and retained identity.\\n":"ROAD62 BASELINE PASS: exact old APK has distinct road pixels and preserved saves.\\n");finish(Activity.RESULT_OK,result);return;}\n'
+              s=s.replace(a,b+a);p.write_text(s)
+          m=Path('tools/content/map-release-manifest.json');data=json.loads(m.read_text());data['release']='0.62.0-road-candidate';m.write_text(json.dumps(data,indent=2)+'\n')
+          assert hashlib.sha256(Path('core/src/main/resources/maps/national-map-v056.properties').read_bytes()).hexdigest()=='d5d5659e40a23619dd8515713d21997715733d20cc937a964662591e22f076c4'
+          assert hashlib.sha256(Path('core/src/main/resources/maps/national-exterior-v061.properties').read_bytes()).hexdigest()=='451fed332f742aaef8a88e5781c15eda8e1ad0fd29ae7d20c3e0dbe82214a60f'
+          d=Path('docs/validation/v062');d.mkdir(parents=True,exist_ok=True)
+          status={'full_v062_complete':False,'candidate_scope':'ordinary-road rendering only; all inherited v061 production data and art retained','void':{'status':'BLOCKED_NOT_IMPLEMENTED','coordinates':[[18,24],[29,24],[30,24],[33,15],[34,15],[34,18],[35,14],[37,15],[37,20],[37,21],[37,22],[37,23],[37,24],[38,15]],'source_void':1065,'inherited_exterior':1051,'new_effective_cells':0,'new_exterior_cells':0,'still_unresolved':14},'road':{'status':'IMPLEMENTED_INSTALL_VALIDATION_PENDING','plain_visual':True,'rules_changed':False},'generated_art':{'status':'BLOCKED_NOT_INTEGRATED','api_representative_files_obtained':2,'approved_mothers':0,'new_runtime_resources':0,'native_generated_poster':'REJECTED: not game resources or truthful completion evidence'},'environment_blocker':'The local container, Python execution and image viewing repeatedly returned TransportTimeoutError after the baseline artifact retrieval. Do not claim visual review or reference-based cell restoration from unreadable files.','map_revision':61,'city_asset_revision':56,'save_codec':31,'versionName':'0.62.0-road-candidate','versionCode':62}
+          (d/'scope.json').write_text(json.dumps(status,ensure_ascii=False,indent=2)+'\n')
+          (d/'README.md').write_text('# v0.62 road-only candidate — full task NOT complete\n\nThis branch safely inherits merged PR49 and changes ordinary ROAD ground rendering in TerrainArt, TerrainTiles, MapOverview and MapView. TerrainConnections, the R map codes, movement rules, map revision61, exterior1051 and CityAtlas56 are retained.\n\n## Not completed\nAll14 northwest VOID coordinates remain unresolved and unchanged. New sand/city/gate/port artwork is NOT integrated. Two API representative files were obtained but could not be visually approved after the local runtime and image-view tools stopped responding. A native generated update poster is rejected and MUST NOT be treated as screenshots, an APK link or proof of completion. No generated file is shipped in this candidate.\n\n## Verification\nThe current workflow tests the same installed probe against the exact released v061 APK and this candidate, then runs inherited map/save/port/native200 probes. Scope and actual outcomes are written to last-run.json. A green candidate build does not mean the full v0.62 work is done.\n\n## Versions\nApplication 0.62.0-road-candidate/code62; geographic revision61; city asset56; SaveCodec31. Keeping these separate is intentional: no geography or building-art replacement was completed.\n')
+          p=Path('progress.md');old=p.read_text()
+          if not old.startswith('# v0.62 road-only candidate'):
+              p.write_text('# v0.62 road-only candidate — incomplete overall task\n\n- DONE: full v061 inherited by merging PR49 only; four production ordinary-road render paths changed; existing UI model regression passed.\n- IN PROGRESS: exact candidate build, signed in-place installation and ROAD/PLAIN pixel tests; see docs/validation/v062/last-run.json for final result.\n- BLOCKED: all14 VOID repairs and generated runtime art; do not claim completion or use the generated poster as evidence.\n- Geography61 / art56 / SaveCodec31 retained; branch PR must remain open.\n\n---\n\n'+old)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git diff --check
+          git add version.properties app/src/androidTest/java/game/sanguo/mobile/GameSmokeRunner.java tools/content/map-release-manifest.json docs/validation/v062 progress.md
+          if ! git diff --cached --quiet;then git commit -m 'chore(v062): identify partial road candidate and preserve honest unfinished scope';git push origin HEAD:agent/void-road-generated-art-v062;fi
+          git rev-parse HEAD > out/BUILD_COMMIT
+          git status --porcelain > out/WORKTREE_STATUS
+          test ! -s out/WORKTREE_STATUS
+          cp version.properties out/VERSION
+          git archive --format=zip -o out/road62-candidate-source.zip HEAD
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Retrieve real old installed saves and exact v061 APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run download 35521913246 -R zjjxwpstcnsm-gif/sanguo11-mobile -n reference59-v058-baseline -D out/baseline58
+          gh run download 35549692460 -R zjjxwpstcnsm-gif/sanguo11-mobile -n reference60-v059-baseline -D out/baseline59
+          gh run download 35554158663 -R zjjxwpstcnsm-gif/sanguo11-mobile -n corners61-v060-baseline -D out/baseline60
+          for revision in 58 59 60;do test "$(cat out/baseline$revision/BASELINE_INSTALLED_STATUS)" = success;done
+          gh release download v0.61.0-9ad16d82c5a3 -R zjjxwpstcnsm-gif/sanguo11-mobile -p '*.apk' -D out/old
+          mv out/old/*.apk out/upgrade-v061.apk
+          echo '279290bc30c1c5f7e5f8b9d4b12d2cde951f8382cf975f71a585e2641d2d6905  out/upgrade-v061.apk' | sha256sum -c -
+          bash scripts/canonical-legacy61.sh
+      - name: Directed unchanged-map and new presentation regressions
+        id: core
+        env:
+          REFERENCE61_LEGACY: out/legacy61
+          REFERENCE61_REQUIRE_LEGACY: 'true'
+        run: |
+          set -euo pipefail
+          bash scripts/test-ui-models.sh | tee out/presentation-tests.txt
+          bash scripts/test-map61.sh | tee out/unchanged-map61-tests.txt
+          python3 scripts/verify-map-release.py | tee out/source-resources.txt
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Assemble committed source and verify actual candidate identity
+        id: build
+        run: |
+          set -euo pipefail
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest | tee out/gradle.txt
+          python3 tools/check_apk_content.py app/build/outputs/apk/debug/app-debug.apk | tee out/apk-content.txt
+          python3 scripts/verify-map-release.py app/build/outputs/apk/debug/app-debug.apk | tee -a out/apk-content.txt
+          sha=$(cat out/BUILD_COMMIT)
+          apk="out/sanguo11-mobile-v0.62.0-road-candidate-${sha:0:12}.apk"
+          cp app/build/outputs/apk/debug/app-debug.apk "$apk"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$apk" > out/SIGNATURE.txt
+          grep -q '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' out/SIGNATURE.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$apk" > out/APK_INFO.txt
+          grep -q "versionCode='62' versionName='0.62.0-road-candidate'" out/APK_INFO.txt
+          grep -q "package: name='game.sanguo.mobile.dev'" out/APK_INFO.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,json,zipfile
+          apk=next(Path('out').glob('sanguo11-mobile-v0.62.0-road-candidate-*.apk'));sha=Path('out/BUILD_COMMIT').read_text().strip()
+          assert any(sha[:12] in p.read_text() and 'SOURCE_REVISION' in p.read_text() for p in Path('app/build/generated').rglob('BuildConfig.java'))
+          with zipfile.ZipFile(apk) as z:
+              native=z.read('maps/national-map-v056.properties');exterior=z.read('maps/national-exterior-v061.properties');catalog=z.read('assets/map/cities-v056/catalog.json')
+              assert hashlib.sha256(native).hexdigest()=='d5d5659e40a23619dd8515713d21997715733d20cc937a964662591e22f076c4'
+              assert hashlib.sha256(exterior).hexdigest()=='451fed332f742aaef8a88e5781c15eda8e1ad0fd29ae7d20c3e0dbe82214a60f'
+              assert len([n for n in z.namelist() if n.startswith('assets/map/cities-v056/') and n.endswith('.png')])==30
+              assert not any('MAP_SAN11' in n or 'reference-v062' in n or 'generation-record' in n or 'cities-v062' in n for n in z.namelist())
+              for n in z.namelist():
+                  if n.endswith('.dex'):assert b'Lgame/sanguo/mobile/Road62Probe;' not in z.read(n)
+          identity={'build_commit':sha,'workflow_bootstrap_sha':'${{ github.sha }}','versionName':'0.62.0-road-candidate','versionCode':62,'package':'game.sanguo.mobile.dev','apk_file':apk.name,'apk_sha256':hashlib.sha256(apk.read_bytes()).hexdigest(),'apk_bytes':apk.stat().st_size,'mapRevision':61,'assetRevision':56,'SaveCodec':31,'map_sha256':hashlib.sha256(native).hexdigest(),'exterior_sha256':hashlib.sha256(exterior).hexdigest(),'city_catalog_sha256':hashlib.sha256(catalog).hexdigest(),'resource_manifest_sha256':hashlib.sha256(Path('tools/content/map-release-manifest.json').read_bytes()).hexdigest(),'certificate_sha256':'8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24','full_v062_complete':False,'new_generated_runtime_assets':0,'unresolved_void':14}
+          Path('out/APK_IDENTITY.json').write_text(json.dumps(identity,indent=2)+'\n')
+          PY
+          (cd out;sha256sum sanguo11-mobile*.apk road62-candidate-source.zip > SHA256SUMS)
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Exact baseline, candidate pixel test, in-place upgrade and retained game flow
+        id: installed
+        continue-on-error: true
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          script: |
+            cat > /tmp/road62-installed.sh <<'SH'
+            #!/usr/bin/env bash
+            set -euo pipefail
+            mkdir -p out/android
+            apk=$(find out -maxdepth 1 -name 'sanguo11-mobile-v0.62.0-road-candidate-*.apk' -print -quit)
+            test -n "$apk"
+            sha256sum "$apk" > out/TESTED_APK_SHA256
+            cmp "$apk" app/build/outputs/apk/debug/app-debug.apk
+            adb root
+            adb wait-for-device
+            adb shell wm size 1080x2340
+            adb shell wm density 420
+            adb install -r out/upgrade-v061.apk > out/UPGRADE_BASE_INSTALL.txt
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            run_probe() {
+              name="$1"; argument="$2"; marker="$3"; limit="$4"
+              adb shell am force-stop game.sanguo.mobile.dev
+              adb shell rm -rf /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke
+              adb logcat -b all -c
+              set +e
+              timeout "$limit" adb shell am instrument -w -e "$argument" true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner > "out/$name-instrumentation.txt"
+              result=$?
+              set -e
+              adb logcat -b all -d -v threadtime > "out/$name-logcat.txt"
+              adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke "out/android/$name" || true
+              test "$result" -eq 0
+              grep -q "$marker" "out/$name-instrumentation.txt"
+              if grep -q 'FATAL EXCEPTION' "out/$name-logcat.txt";then exit 1;fi
+            }
+            run_probe road-before road62Baseline 'ROAD62 BASELINE PASS:' 700
+            # Copy a world encoded by the actually installed old APK, not a synthetic current-code save.
+            old_save=$(find out/android/road-before -name 'road62-before-coalition-190.sg11' -print -quit)
+            test -n "$old_save"
+            adb push "$old_save" /data/local/tmp/legacy-v061.sg11
+            adb shell mkdir -p /data/data/game.sanguo.mobile.dev/files
+            adb shell cp /data/local/tmp/legacy-v061.sg11 /data/data/game.sanguo.mobile.dev/files/manual1.sg11
+            uid=$(adb shell stat -c %u /data/data/game.sanguo.mobile.dev | tr -d '\r')
+            adb shell chown "$uid:$uid" /data/data/game.sanguo.mobile.dev/files/manual1.sg11
+            adb shell chmod 600 /data/data/game.sanguo.mobile.dev/files/manual1.sg11
+            adb shell sha256sum /data/data/game.sanguo.mobile.dev/files/manual1.sg11 > out/UPGRADE_SAVE_BEFORE
+            adb install -r "$apk" | tee out/INSTALL.txt
+            adb shell sha256sum /data/data/game.sanguo.mobile.dev/files/manual1.sg11 > out/UPGRADE_SAVE_AFTER
+            cmp out/UPGRADE_SAVE_BEFORE out/UPGRADE_SAVE_AFTER
+            adb shell dumpsys package game.sanguo.mobile.dev > out/INSTALLED_PACKAGE.txt
+            run_probe road-after road62 'ROAD62 ANDROID PASS:' 700
+            adb shell mkdir -p /sdcard/Android/data/game.sanguo.mobile.dev/files/legacy60
+            for file in out/legacy61/raw/*.sg11;do adb push "$file" /sdcard/Android/data/game.sanguo.mobile.dev/files/legacy60/;done
+            run_probe unchanged-map reference61 'REFERENCE61 ANDROID PASS:' 1100
+            run_probe retained-game native56 'NATIVE56 ANDROID PASS:' 400
+            sha256sum -c out/TESTED_APK_SHA256
+            printf '{"road_baseline_negative_control":true,"road_candidate_pixel_equivalence":true,"four_scenarios":true,"unchanged_map61_and_old58_59_60_saves":true,"retained_native200_gameplay":true,"in_place_upgrade_v061":true,"manual_save_bytes_preserved":true,"api":29,"abi":"x86_64","physical_arm_tested":false,"full_v062_complete":false}\n' > out/ANDROID_STATUS.json
+            SH
+            bash /tmp/road62-installed.sh
+      - name: Package actual screenshots and measurement logs
+        if: always()
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import shutil,json,re
+          root=Path('out');review=root/'review';review.mkdir(exist_ok=True)
+          if (root/'android').exists():shutil.copytree(root/'android',review/'android',dirs_exist_ok=True)
+          for p in root.glob('*'):
+              if p.is_file() and (p.suffix in ('.txt','.json') or p.name in ('BUILD_COMMIT','VERSION','TESTED_APK_SHA256','UPGRADE_SAVE_BEFORE','UPGRADE_SAVE_AFTER')):shutil.copy2(p,review/p.name)
+          stats={}
+          for p in (root/'android').rglob('*checks.txt'):
+              lines=p.read_text().splitlines();stats[str(p)]={'pass':sum(x.startswith('PASS ') for x in lines),'fail':sum(x.startswith('FAIL ') for x in lines),'measurements':[x for x in lines if x.startswith('MEASUREMENT ')]}
+          (root/'CHECK_SUMMARY.json').write_text(json.dumps(stats,indent=2)+'\n')
+          for phase in ('before','after'):
+              matches=list((root/'android'/('road-'+phase)).rglob('road62-'+phase+'-coalition-190-source-*-lod-1.2.png'))
+              if matches:shutil.copy2(matches[0],root/('road-'+phase+'.png'))
+          shutil.make_archive(str(root/'road62-candidate-screenshots-and-logs'),'zip',review)
+          PY
+      - name: Publish only if installed candidate gates pass; re-download exact APK
+        id: publication
+        if: steps.source.outcome == 'success' && steps.core.outcome == 'success' && steps.build.outcome == 'success' && steps.installed.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          sha=$(cat out/BUILD_COMMIT)
+          tag="v0.62.0-road-candidate-${sha:0:12}"
+          apk=$(find out -maxdepth 1 -name 'sanguo11-mobile-v0.62.0-road-candidate-*.apk' -print -quit)
+          sha256sum -c out/TESTED_APK_SHA256
+          gh release create "$tag" --target "$sha" --prerelease --title 'v0.62 道路修复候选包 — 完整任务未完成' --notes 'PARTIAL CANDIDATE, NOT the completed v0.62 request. Ordinary ROAD now uses the exact PLAIN ground/texture/cache/grid paths and has no road overlay in close view or overview; R codes and gameplay stay unchanged. All14 northwest VOID holes remain unresolved. Generated sand/city/gate/port art is NOT integrated; CityAtlas56 remains active. Map61 and SaveCodec31 retained. Exact released v061 and this candidate were installed on API29 x86_64; before-negative/after-positive pixel controls, four scenarios, older-save/map/native200 tests and signed in-place upgrade passed. No physical ARM or complete visual-art acceptance is claimed.'
+          gh release upload "$tag" "$apk" out/APK_IDENTITY.json out/ANDROID_STATUS.json out/CHECK_SUMMARY.json out/SIGNATURE.txt out/SHA256SUMS out/road62-candidate-source.zip out/road62-candidate-screenshots-and-logs.zip out/road-before.png out/road-after.png
+          mkdir -p out/release-check
+          gh release download "$tag" -p "$(basename "$apk")" -D out/release-check
+          cmp "$apk" "out/release-check/$(basename "$apk")"
+          sha256sum "out/release-check/$(basename "$apk")" > out/RELEASE_VERIFIED_APK_SHA256
+          gh release view "$tag" --json url,tagName,targetCommitish,assets > out/PUBLICATION.json
+      - name: Record actual outcome without touching production after build
+        if: always()
+        env:
+          SOURCE: ${{ steps.source.outcome }}
+          CORE: ${{ steps.core.outcome }}
+          BUILD: ${{ steps.build.outcome }}
+          INSTALLED: ${{ steps.installed.outcome }}
+          PUBLICATION: ${{ steps.publication.outcome }}
+        run: |
+          python3 - <<'PY'
+          import os,json
+          from pathlib import Path
+          out=Path('out');d=Path('docs/validation/v062');d.mkdir(parents=True,exist_ok=True)
+          status={k:os.environ.get(k,'unknown') for k in ['SOURCE','CORE','BUILD','INSTALLED','PUBLICATION']}
+          status.update(full_v062_complete=False,workflow_run='https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/${{ github.run_id }}')
+          for file in ['APK_IDENTITY.json','ANDROID_STATUS.json','CHECK_SUMMARY.json','PUBLICATION.json']:
+              if (out/file).exists():status[file]=json.loads((out/file).read_text())
+          status['failure_tails']={}
+          for p in out.glob('*'):
+              if p.is_file() and p.suffix=='.txt':
+                  text=p.read_text(errors='replace');lines=text.splitlines()
+                  if any('FAIL' in x or 'error:' in x or 'Exception' in x or 'AssertionError' in x for x in lines):status['failure_tails'][p.name]='\n'.join(lines[-80:])[-14000:]
+          if (out/'RELEASE_VERIFIED_APK_SHA256').exists():status['release_redownload_sha256']=(out/'RELEASE_VERIFIED_APK_SHA256').read_text().strip()
+          (d/'last-run.json').write_text(json.dumps(status,ensure_ascii=False,indent=2)+'\n')
+          (out/'VALIDATION_STATUS.json').write_text(json.dumps(status,ensure_ascii=False,indent=2)+'\n')
+          if status['PUBLICATION']=='success':
+              p=Path('progress.md');s=p.read_text();s=s.replace('- IN PROGRESS: exact candidate build, signed in-place installation and ROAD/PLAIN pixel tests; see docs/validation/v062/last-run.json for final result.','- DONE: road-only candidate built from the recorded BUILD_COMMIT, installed and pixel-tested; standalone prerelease APK re-downloaded with identical hash. See docs/validation/v062/last-run.json. Full v0.62 scope remains BLOCKED.')
+              p.write_text(s)
+          PY
+          git add docs/validation/v062/last-run.json progress.md
+          if ! git diff --cached --quiet;then git commit -m 'docs(v062): record actual candidate outcome, not full task completion [skip ci]';git push origin HEAD:agent/void-road-generated-art-v062;fi
+      - name: Collect compact identity artifact
+        if: always()
+        run: |
+          mkdir -p apk-identity
+          find out -maxdepth 1 -name 'sanguo11-mobile-v0.62.0-road-candidate-*.apk' -exec cp '{}' apk-identity/ \;
+          for f in APK_IDENTITY.json ANDROID_STATUS.json CHECK_SUMMARY.json VALIDATION_STATUS.json SIGNATURE.txt APK_INFO.txt BUILD_COMMIT VERSION SHA256SUMS TESTED_APK_SHA256 RELEASE_VERIFIED_APK_SHA256 PUBLICATION.json UPGRADE_SAVE_BEFORE UPGRADE_SAVE_AFTER;do if test -f "out/$f";then cp "out/$f" apk-identity/;fi;done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: road62-candidate-apk-identity
+          path: apk-identity
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: road62-candidate-review
+          path: out/review
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: road62-candidate-source
+          path: out/road62-candidate-source.zip
+          retention-days: 14
+      - name: Require candidate gates, not full-v062 status
+        if: always()
+        run: |
+          test '${{ steps.source.outcome }}' = success
+          test '${{ steps.core.outcome }}' = success
+          test '${{ steps.build.outcome }}' = success
+          test '${{ steps.installed.outcome }}' = success
+          test '${{ steps.publication.outcome }}' = success

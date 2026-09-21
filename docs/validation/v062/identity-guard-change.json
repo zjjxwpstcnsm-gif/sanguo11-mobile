@@ -1,0 +1,27 @@
+{
+  "reason": "The application is a road-only candidate while the inherited authoritative map remains61. Checking app61 unconditionally falsely couples independent identities.",
+  "allowed_applications": [
+    "0.61.0/code61",
+    "0.62.0-road-candidate/code62"
+  ],
+  "allowed_geography": "unchanged map61; all original map, extent, file SHA, before-byte and old-save checks retained",
+  "changed_guards": [
+    {
+      "path": "tools/content/audit_native61.py",
+      "before_sha256": "a035b0927cf80f35898c2048ffe239c94ad3ef6cc3d79a229d480ee01f61d8e1",
+      "after_sha256": "6007d2f7155704cd64e0e85c7801a78dd016e788ca6756707323490b1ebafae3"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/Reference61Probe.java",
+      "before_sha256": "80f39015d2525035e0134c7b586d9b59224064142b7652189efdc760ceae7626",
+      "after_sha256": "55b2dc6c18638127a37fe434b4a4b1330af6bd635603efd90842a1ae91de6019"
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/Reference60Probe.java",
+      "before_sha256": "fa97f026a102fd7ef953243919e04aa8378a693ce06b57cbab9f235713dc5fe4",
+      "after_sha256": "bd316fb105e59918b14df63769d8d88e1d68a76eb776b848bdd6f57bd58f7342"
+    }
+  ],
+  "installed_identity_source": "Android PackageManager actual installed package, not test-inlined BuildConfig",
+  "physical_arm_claimed": false
+}

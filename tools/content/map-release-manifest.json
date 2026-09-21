@@ -1,5 +1,5 @@
 {
-  "release": "0.61.0",
+  "release": "0.62.0-road-candidate",
   "baseline_manifest": "tools/content/map-v050-manifest.json",
   "files": [
     {

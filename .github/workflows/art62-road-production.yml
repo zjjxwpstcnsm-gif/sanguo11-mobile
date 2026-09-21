@@ -1,0 +1,117 @@
+name: Art62 production road rendering change
+on:
+  push:
+    branches: [agent/void-road-generated-art-v062]
+    paths: [.github/workflows/art62-road-production.yml]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: art62-production-writes
+  cancel-in-progress: false
+jobs:
+  production:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/void-road-generated-art-v062
+          fetch-depth: 0
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Guard inherited bytes, modify real renderer, preserve rule and map bytes
+        run: |
+          mkdir -p out
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess,hashlib,json
+          base='a74955a3f6cb3f4ffcfa612d287b730362938da5'
+          root=Path('app/src/main/java/game/sanguo/mobile')
+          names=['TerrainArt.java','TerrainTiles.java','MapOverview.java','MapView.java']
+          originals={}
+          for name in names:
+            p=root/name
+            old=subprocess.check_output(['git','show',base+':'+str(p)])
+            assert p.read_bytes()==old,'Unexpected production change; refusing to overwrite '+str(p)
+            originals[name]=old.decode()
+          changed={}
+          def once(s,a,b):
+            assert s.count(a)==1,'Expected exactly one matching production fragment: '+a[:100]
+            return s.replace(a,b)
+          s=originals['TerrainArt.java']
+          s=once(s,'case ROAD -> Connection.ROAD;','// ROAD is a rule identity only; its ground is indistinguishable from PLAIN.\n            case ROAD -> Connection.NONE;')
+          changed['TerrainArt.java']=s
+          s=originals['TerrainTiles.java']
+          s=once(s,'int variant=Math.floorMod(q*31+r*17,3);\n        Bitmap tile=tiles[terrain.ordinal()][variant];\n        if(tile==null)tiles[terrain.ordinal()][variant]=tile=create(terrain,variant);','int variant=Math.floorMod(q*31+r*17,3);\n        World.Terrain ground=terrain==World.Terrain.ROAD?World.Terrain.PLAIN:terrain;\n        Bitmap tile=tiles[ground.ordinal()][variant];\n        if(tile==null)tiles[ground.ordinal()][variant]=tile=create(ground,variant);')
+          s=once(s,'if(TerrainConnections.road(terrain)){','if(TerrainArt.connection(terrain)!=TerrainArt.Connection.NONE){')
+          s=once(s,'boolean plank=style==TerrainArt.Connection.PLANK,groundRoad=style==TerrainArt.Connection.ROAD;','if(style!=TerrainArt.Connection.PLANK&&style!=TerrainArt.Connection.MOUNTAIN_PATH)\n            throw new IllegalArgumentException("No visual connection for ordinary ground");\n        boolean plank=style==TerrainArt.Connection.PLANK;')
+          s=once(s,'// Only a plank deck is elevated. Ordinary roads have neither an offset shadow\n        // nor stone-wall rims: a broad, low-contrast worn surface lies on the ground.','// Only mountain paths and plank decks reach this renderer. Ordinary ROAD never does.')
+          s=once(s,'p.setStrokeWidth(plank?8.5f:groundRoad?9:5.5f);p.setColor(plank?0xff50483b:groundRoad?0x706f7858:0xff81785f);c.drawPath(deck,p);','p.setStrokeWidth(plank?8.5f:5.5f);p.setColor(plank?0xff50483b:0xff81785f);c.drawPath(deck,p);')
+          s=once(s,'p.setStrokeWidth(plank?6.8f:groundRoad?6.5f:3.6f);p.setColor(plank?0xff968268:groundRoad?0xffa69a77:0xffb0a083);c.drawPath(deck,p);','p.setStrokeWidth(plank?6.8f:3.6f);p.setColor(plank?0xff968268:0xffb0a083);c.drawPath(deck,p);')
+          s=once(s,'        if(groundRoad){p.setStrokeWidth(2.8f);p.setColor(0x40998c69);c.drawPath(deck,p);}\n','')
+          changed['TerrainTiles.java']=s
+          s=originals['MapOverview.java']
+          count=s.count('TerrainConnections.road(')
+          assert count==1,'Review overview connection call sites before changing: '+str(count)
+          import re
+          s,n=re.subn(r'TerrainConnections\.road\(([^()]+)\)',r'TerrainArt.connection(\1)!=TerrainArt.Connection.NONE',s)
+          assert n==1
+          changed['MapOverview.java']=s
+          s=originals['MapView.java']
+          s=once(s,'!TerrainConnections.road(t)','TerrainArt.connection(t)==TerrainArt.Connection.NONE')
+          changed['MapView.java']=s
+          records=[]
+          for name,s in changed.items():
+            p=root/name;p.write_text(s)
+            records.append({'path':str(p),'before_sha256':hashlib.sha256(originals[name].encode()).hexdigest(),'after_sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
+          # Gameplay and actual geodata are intentionally byte-identical.
+          protected=['core/src/main/resources/maps/national-map-v056.properties','core/src/main/resources/maps/national-exterior-v061.properties','core/src/main/java/game/sanguo/core/World.java','app/src/main/java/game/sanguo/mobile/TerrainConnections.java']
+          for file in protected:
+            assert Path(file).read_bytes()==subprocess.check_output(['git','show',base+':'+file]),file+' must not change for road artwork'
+          report={'baseline':base,'production_files':records,'protected_unchanged':protected,'ordinary_road_visual_connection':'NONE','tile_cache_identity':'ROAD uses the exact PLAIN entry, variant and creation path','overview':'only mountain paths and plank decks draw connection overlays','grid':'ROAD receives the same grid edge as PLAIN','gameplay':'unchanged; R codes, movement, details and neighbor connection masks retained','android_pixel_equivalence':'NOT_YET_TESTED'}
+          out=Path('docs/validation/v062');out.mkdir(parents=True,exist_ok=True)
+          (out/'road-production-change.json').write_text(json.dumps(report,indent=2)+'\n')
+          PY
+      - name: Commit real renderer changes, never staging source
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git diff --check
+          git add app/src/main/java/game/sanguo/mobile/TerrainArt.java app/src/main/java/game/sanguo/mobile/TerrainTiles.java app/src/main/java/game/sanguo/mobile/MapOverview.java app/src/main/java/game/sanguo/mobile/MapView.java docs/validation/v062/road-production-change.json
+          git commit -m 'fix(v062): render ordinary ROAD identically to PLAIN in tiles, overview and grid'
+          git push origin HEAD:agent/void-road-generated-art-v062
+          git rev-parse HEAD > out/PRODUCTION_COMMIT
+          git diff HEAD^ HEAD --stat > out/production-files.txt
+      - name: Inspect existing targeted presentation tests
+        run: |
+          find app core scripts -iname '*Terrain*Test*' -o -iname '*Presentation*Test*' > out/targeted-test-files.txt
+          grep -R -n 'TerrainArt.Connection.ROAD\|TerrainArt.connection\|TerrainConnections.road' app/src/test scripts > out/connection-test-locations.txt || test "$?" -eq 1
+          bash scripts/test-ui-models.sh > out/presentation-tests.txt 2>&1
+      - name: Audit actual image endpoint output before any approval
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p out/probe
+          gh run download 35561938399 -R zjjxwpstcnsm-gif/sanguo11-mobile -n art62-generated-representatives -D out/probe
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          records=json.loads(Path('out/probe/generation-record.json').read_text())
+          caps=json.loads(Path('out/probe/capabilities.json').read_text())
+          report={'capabilities':caps,'records':records,'distinct_file_hashes':len({x.get('sha256') for x in records}),'visual_approval':'PENDING; successful HTTP/decode does not imply acceptable artwork'}
+          p=Path('docs/validation/v062/generation-probe-audit.json');p.write_text(json.dumps(report,indent=2)+'\n')
+          PY
+          git add docs/validation/v062/generation-probe-audit.json
+          git commit -m 'docs(v062): record actual image endpoint bytes; visual approval still pending [skip ci]'
+          git push origin HEAD:agent/void-road-generated-art-v062
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: art62-road-production-results
+          path: out
+          retention-days: 14

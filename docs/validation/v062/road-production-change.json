@@ -1,0 +1,37 @@
+{
+  "baseline": "a74955a3f6cb3f4ffcfa612d287b730362938da5",
+  "production_files": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainArt.java",
+      "before_sha256": "6449e211d9a3a03678ac6b094aec863425996e9437048ce690628e5c9cc6bee1",
+      "after_sha256": "ceddaaf79d6638bee232c73a25111ad3a95a9dde274868e53c8709767c398d01"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainTiles.java",
+      "before_sha256": "5a82d9fcf5d1774b23208f836f4a440c5f9ce1e7aca1bf37a14d7bd439595799",
+      "after_sha256": "de5b95911398a63183ca6443d844fe50f8b8ce0662684ef4895825dd26880c32"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapOverview.java",
+      "before_sha256": "fb1b129f0f2cfb3d6d8e8c9c3b0754d083951a1df735a4de4f89f0c90582978e",
+      "after_sha256": "f77f6c2c4d0a10c0937c44d055ff9950ac18da982e8a7e29ec13f97023042d68"
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MapView.java",
+      "before_sha256": "903ddae7ea93ae005b84c5ce72300e4671631754b76727d4a170e350685df5d3",
+      "after_sha256": "dbbf61cd8295bd5e8cbd72d738ae963f76dc26489b3da369c6129fffd9335aa2"
+    }
+  ],
+  "protected_unchanged": [
+    "core/src/main/resources/maps/national-map-v056.properties",
+    "core/src/main/resources/maps/national-exterior-v061.properties",
+    "core/src/main/java/game/sanguo/core/World.java",
+    "app/src/main/java/game/sanguo/mobile/TerrainConnections.java"
+  ],
+  "ordinary_road_visual_connection": "NONE",
+  "tile_cache_identity": "ROAD uses the exact PLAIN entry, variant and creation path",
+  "overview": "only mountain paths and plank decks draw connection overlays",
+  "grid": "ROAD receives the same grid edge as PLAIN",
+  "gameplay": "unchanged; R codes, movement, details and neighbor connection masks retained",
+  "android_pixel_equivalence": "NOT_YET_TESTED"
+}

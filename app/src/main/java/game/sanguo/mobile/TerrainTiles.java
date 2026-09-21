@@ -35,11 +35,12 @@ final class TerrainTiles {
         World.Terrain terrain=TerrainConnections.appearance(world,q,r);
         if(terrain==World.Terrain.VOID)return;
         int variant=Math.floorMod(q*31+r*17,3);
-        Bitmap tile=tiles[terrain.ordinal()][variant];
-        if(tile==null)tiles[terrain.ordinal()][variant]=tile=create(terrain,variant);
+        World.Terrain ground=terrain==World.Terrain.ROAD?World.Terrain.PLAIN:terrain;
+        Bitmap tile=tiles[ground.ordinal()][variant];
+        if(tile==null)tiles[ground.ordinal()][variant]=tile=create(ground,variant);
         destination.set(x-25,y-25,x+25,y+25);c.drawBitmap(tile,null,destination,paint);
         c.save();if(world.columnStaggered){c.translate(x,y);c.concat(transpose);c.translate(-x,-y);}
-        if(TerrainConnections.road(terrain)){
+        if(TerrainArt.connection(terrain)!=TerrainArt.Connection.NONE){
             TerrainArt.Connection style=TerrainArt.connection(terrain);
             int kind=style.ordinal(),mask=TerrainConnections.mask(world,q,r);
             Bitmap overlay=connections[kind][mask];
@@ -58,19 +59,19 @@ final class TerrainTiles {
         c.restore();
     }
     private Bitmap connection(TerrainArt.Connection style,int mask){
-        boolean plank=style==TerrainArt.Connection.PLANK,groundRoad=style==TerrainArt.Connection.ROAD;
+        if(style!=TerrainArt.Connection.PLANK&&style!=TerrainArt.Connection.MOUNTAIN_PATH)
+            throw new IllegalArgumentException("No visual connection for ordinary ground");
+        boolean plank=style==TerrainArt.Connection.PLANK;
         Bitmap b=Bitmap.createBitmap(96,96,Bitmap.Config.ARGB_8888);Canvas c=new Canvas(b);c.scale(1.92f,1.92f);c.translate(25,25);
         Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);p.setStrokeCap(Paint.Cap.ROUND);
         Path deck=new Path();
         if(mask==0){deck.moveTo(-7,0);deck.lineTo(7,0);}
         else for(int d=0;d<6;d++)if((mask&(1<<d))!=0){deck.moveTo(0,0);deck.lineTo(TerrainConnections.edgeX(d)*1.03f,TerrainConnections.edgeY(d)*1.03f);}
         p.setStyle(Paint.Style.STROKE);p.setStrokeJoin(Paint.Join.ROUND);
-        // Only a plank deck is elevated. Ordinary roads have neither an offset shadow
-        // nor stone-wall rims: a broad, low-contrast worn surface lies on the ground.
+        // Only mountain paths and plank decks reach this renderer. Ordinary ROAD never does.
         if(plank){c.save();c.translate(.5f,2);p.setStrokeWidth(10);p.setColor(0x78242c27);c.drawPath(deck,p);c.restore();}
-        p.setStrokeWidth(plank?8.5f:groundRoad?9:5.5f);p.setColor(plank?0xff50483b:groundRoad?0x706f7858:0xff81785f);c.drawPath(deck,p);
-        p.setStrokeWidth(plank?6.8f:groundRoad?6.5f:3.6f);p.setColor(plank?0xff968268:groundRoad?0xffa69a77:0xffb0a083);c.drawPath(deck,p);
-        if(groundRoad){p.setStrokeWidth(2.8f);p.setColor(0x40998c69);c.drawPath(deck,p);}
+        p.setStrokeWidth(plank?8.5f:5.5f);p.setColor(plank?0xff50483b:0xff81785f);c.drawPath(deck,p);
+        p.setStrokeWidth(plank?6.8f:3.6f);p.setColor(plank?0xff968268:0xffb0a083);c.drawPath(deck,p);
         if(plank){
             p.setStrokeCap(Paint.Cap.BUTT);
             int directions=mask==0?9:mask;

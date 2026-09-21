@@ -1,0 +1,88 @@
+{
+  "full_v062_complete": false,
+  "candidate_scope": "ordinary-road rendering only; all inherited v061 production data and art retained",
+  "void": {
+    "status": "BLOCKED_NOT_IMPLEMENTED",
+    "coordinates": [
+      [
+        18,
+        24
+      ],
+      [
+        29,
+        24
+      ],
+      [
+        30,
+        24
+      ],
+      [
+        33,
+        15
+      ],
+      [
+        34,
+        15
+      ],
+      [
+        34,
+        18
+      ],
+      [
+        35,
+        14
+      ],
+      [
+        37,
+        15
+      ],
+      [
+        37,
+        20
+      ],
+      [
+        37,
+        21
+      ],
+      [
+        37,
+        22
+      ],
+      [
+        37,
+        23
+      ],
+      [
+        37,
+        24
+      ],
+      [
+        38,
+        15
+      ]
+    ],
+    "source_void": 1065,
+    "inherited_exterior": 1051,
+    "new_effective_cells": 0,
+    "new_exterior_cells": 0,
+    "still_unresolved": 14
+  },
+  "road": {
+    "status": "IMPLEMENTED_INSTALL_VALIDATION_PENDING",
+    "plain_visual": true,
+    "rules_changed": false
+  },
+  "generated_art": {
+    "status": "BLOCKED_NOT_INTEGRATED",
+    "api_representative_files_obtained": 2,
+    "approved_mothers": 0,
+    "new_runtime_resources": 0,
+    "native_generated_poster": "REJECTED: not game resources or truthful completion evidence"
+  },
+  "environment_blocker": "The local container, Python execution and image viewing repeatedly returned TransportTimeoutError after the baseline artifact retrieval. Do not claim visual review or reference-based cell restoration from unreadable files.",
+  "map_revision": 61,
+  "city_asset_revision": 56,
+  "save_codec": 31,
+  "versionName": "0.62.0-road-candidate",
+  "versionCode": 62
+}
