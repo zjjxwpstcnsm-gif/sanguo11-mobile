@@ -40,7 +40,7 @@ final class DataTable<T> extends LinearLayout {
         searchBar.addView(groupPicker,new LayoutParams(dp(100),dp(44)));addView(searchBar);
         groups=new LinearLayout(a);groups.setVisibility(GONE);addView(groups,new LayoutParams(-1,dp(44)));
         count=new TextView(a);UiTheme.text(count);count.setTextColor(UiTheme.MUTED);count.setTextSize(11);count.setPadding(dp(6),dp(4),dp(6),dp(4));count.setAccessibilityLiveRegion(ACCESSIBILITY_LIVE_REGION_POLITE);addView(count);if(compact)count.setVisibility(GONE);
-        horizontal=new HorizontalScrollView(a);horizontal.setFillViewport(true);horizontal.setOverScrollMode(OVER_SCROLL_NEVER);horizontal.setHorizontalScrollBarEnabled(false);addView(horizontal,new LayoutParams(-1,0,1));
+        horizontal=new HorizontalScrollView(a);horizontal.setFillViewport(true);horizontal.setOverScrollMode(OVER_SCROLL_NEVER);horizontal.setHorizontalScrollBarEnabled(true);addView(horizontal,new LayoutParams(-1,0,1));
         grid=new LinearLayout(a){
             @Override protected void onMeasure(int width,int height){
                 // HorizontalScrollView supplies UNSPECIFIED width; enforce our computed grid width.
@@ -99,7 +99,7 @@ final class DataTable<T> extends LinearLayout {
         int natural=0;for(int index:visible)natural+=dp(columns.get(index).width);
         float ratio=available>0?available/(float)Math.max(1,natural):1f;
         widths=new int[visible.length];int total=0;
-        for(int j=0;j<visible.length;j++){Column<T> c=columns.get(visible[j]);widths[j]=Math.max(dp(c.numeric?30:52),Math.round(dp(c.width)*ratio));total+=widths[j];}
+        for(int j=0;j<visible.length;j++){Column<T> c=columns.get(visible[j]);widths[j]=Math.max(dp(c.numeric?(c.width>=75?70:38):(c.width>=100?72:56)),Math.round(dp(c.width)*ratio));total+=widths[j];}
         if(available>0&&total>available&&total-available<=visible.length){widths[0]-=total-available;total=available;}
         if(available>total){widths[widths.length-1]+=available-total;total=available;}
         grid.setLayoutParams(new HorizontalScrollView.LayoutParams(total,-1));header.removeAllViews();headers.clear();
@@ -116,7 +116,7 @@ final class DataTable<T> extends LinearLayout {
     void refresh(){removeCallbacks(filterTask);shown.clear();String q=search.getText().toString().trim().toLowerCase(Locale.ROOT);
         for(T t:source)if(searchIndex.getOrDefault(key.applyAsLong(t),"").contains(q))shown.add(t);
         if(sort>=0&&sort<columns.size()){Comparator<T> c=columns.get(sort).order;shown.sort(descending?c.reversed():c);}
-        list.setContentDescription("概览列表 · 共 "+shown.size()+" 项");updateHeaders();count.setText(shown.isEmpty()?"没有符合条件的对象 · 可清空搜索重试":"共 "+shown.size()+" 项 · 点击列名排序 · 长按详情");adapter.notifyDataSetChanged();
+        list.setContentDescription("概览列表 · 共 "+shown.size()+" 项");updateHeaders();count.setText(shown.isEmpty()?"没有符合条件的对象 · 可清空搜索重试":"共 "+shown.size()+" 项 · 列名排序 · 左右滑动查看更多 · 长按详情");adapter.notifyDataSetChanged();
     }
     static List<Column<World.Officer>> officerColumns(World w){
         List<Column<World.Officer>> out=new ArrayList<>();out.add(new Column<>("姓名",78,o->o.name,Comparator.comparing(o->o.name),false));
@@ -125,11 +125,16 @@ final class DataTable<T> extends LinearLayout {
         out.add(new Column<>("特技",64,o->Skill.label(o.skillId),Comparator.comparing(o->Skill.label(o.skillId)),false));
         out.add(new Column<>("势力",86,o->UiModels.faction(w,o),Comparator.comparing(o->UiModels.faction(w,o)),false));
         out.add(new Column<>("所在地",120,o->UiModels.location(w,o),Comparator.comparing(o->UiModels.location(w,o)),false));
-        out.add(new Column<>("状态",150,o->UiModels.status(w,o),Comparator.comparing(o->UiModels.status(w,o)),false));return out;
+        out.add(new Column<>("状态",150,o->UiModels.status(w,o),Comparator.comparing(o->UiModels.status(w,o)),false));
+        out.add(new Column<>("功绩",82,o->""+w.government.merit(o.id),Comparator.comparingInt(o->w.government.merit(o.id)),true));
+        out.add(new Column<>("指挥兵数",86,o->""+w.government.commandLimit(o.id),Comparator.comparingInt(o->w.government.commandLimit(o.id)),true));
+        out.add(new Column<>("官职",104,o->w.governance.office(o),Comparator.comparing(o->w.governance.office(o)),false));
+        out.add(new Column<>("身份",66,o->o.role.label,Comparator.comparing(o->o.role.label),false));
+        out.add(new Column<>("宝物数",66,o->""+w.treasures.held(o.id).size(),Comparator.comparingInt(o->w.treasures.held(o.id).size()),true));return out;
     }
     static DataTable<World.Officer> officers(Activity a,World w,List<World.Officer> officers,Function<World.Officer,String> extra,Consumer<World.Officer> select){
-        DataTable<World.Officer> table=new DataTable<>(a,officers,officerColumns(w),new int[]{0,1,2,3,4,5,6},o->o.name+" "+Skill.label(o.skillId)+" "+UiModels.faction(w,o)+" "+UiModels.location(w,o)+" "+UiModels.status(w,o)+" "+extra.apply(o),o->o.id,select,o->{if(a instanceof MainActivity)((MainActivity)a).officerDetail(o);});
-        table.columnGroups(new String[]{"能力","归属 / 特技","任务状态"},new int[][]{{0,1,2,3,4,5,6},{0,7,8,9},{0,10,6}});return table;
+        DataTable<World.Officer> table=new DataTable<>(a,officers,officerColumns(w),new int[]{0,14,13,11,12,15,6},o->o.name+" "+o.role.label+" "+w.governance.office(o)+" 功绩"+w.government.merit(o.id)+" 指挥"+w.government.commandLimit(o.id)+" 宝物"+w.treasures.held(o.id).size()+" "+Skill.label(o.skillId)+" "+UiModels.faction(w,o)+" "+UiModels.location(w,o)+" "+UiModels.status(w,o)+" "+extra.apply(o),o->o.id,select,o->{if(a instanceof MainActivity)((MainActivity)a).officerDetail(o);});
+        table.columnGroups(new String[]{"履历 / 指挥","能力","归属 / 特技","任务状态"},new int[][]{{0,14,13,11,12,15,6},{0,1,2,3,4,5,6},{0,7,8,9},{0,10,6}});return table;
     }
     static void choose(Activity a,World w,String title,List<World.Officer> options,Function<World.Officer,String> extra,Consumer<World.Officer> next,Runnable back){
         final AlertDialog[] dialog={null};DataTable<World.Officer> table=officers(a,w,options,extra,o->{if(a instanceof MainActivity&&!((MainActivity)a).currentWorld(w))return;dialog[0].dismiss();next.accept(o);});

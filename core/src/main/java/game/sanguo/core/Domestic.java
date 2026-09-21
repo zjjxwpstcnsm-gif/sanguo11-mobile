@@ -365,7 +365,7 @@ public final class Domestic {
     }
     private boolean fits(Mission m,World.City c){
         for(int i=0;i<2;i++)if(c.ships[i]>100-m.cargoShips[i])return false;
-        if(c.gold>w.campaign.goldCap(c)-m.gold||c.food>w.campaign.foodCap(c)-m.food||c.troops>w.campaign.troopCap(c)-m.troops)return false;
+        if(c.gold>w.campaign.goldCap(c)-m.gold||c.food>w.campaign.foodCap(c)-m.food||c.troops>w.campaign.troopCap(c)-m.troops-m.wounded)return false;
         for(int i=0;i<m.equipment.length;i++)if(c.equipment[i]>w.campaign.equipmentCap(c,World.Weapon.values()[i])-m.equipment[i])return false;return true;
     }
     void tick(){
@@ -445,23 +445,25 @@ public final class Domestic {
             }
         }
     }
+    String arrivalError(Mission m,World.City c){
+        if(mission(m.id)!=m||!m.transport||c==null||c.owner!=m.owner)return "请选择己方据点";
+        String permission=w.districts.dispatchError(m.sourceCity,c.id,true);if(permission!=null)return permission;
+        return fits(m,c)?null:"据点容量不足，货物和伤兵保留在运输队";
+    }
+    String arrive(Mission m,World.City c){int healed=m.wounded;deliver(m,c);return "运输队抵达"+c.name+"，物资一次入库，伤兵"+healed+"立即归队";}
     public World.Result unload(Mission m,int city){w.reports.prepare();
-        World.City c=w.city(city);
-        if(mission(m.id)!=m||!m.transport||c==null||c.owner!=m.owner||!w.army.canEnterSite(m,m.hex,c))return w.fail("请选择相邻己方城池");
-        String permission=w.districts.dispatchError(m.sourceCity,city,true);if(permission!=null)return w.fail(permission);
-        if(!w.army.canEnterSite(m,m.hex,c))return w.fail("该方向不能卸货：上下河必须经过己方港口");
-        if(!fits(m,c))return w.fail("城池库存容量不足，货物保留在运输队");
-        deliver(m,c);return w.success("运输货物已一次入库");
+        World.City c=w.city(city);if(c==null||!w.army.canEnterSite(m,m.hex,c))return w.fail("尚未抵达合法入口");
+        String error=arrivalError(m,c);return error==null?w.success(arrive(m,c)):w.fail(error);
     }
     private void deliver(Mission m,World.City c){
         if(!missions.contains(m))return; // Receipt and cargo transfer are exactly once.
-        c.gold+=m.gold;c.food+=m.food;c.troops+=m.troops;
-        if(settling)arrivedTroops.merge(c.id,m.troops,Integer::sum);
+        c.gold+=m.gold;c.food+=m.food;c.troops+=m.troops+m.wounded;
+        if(settling)arrivedTroops.merge(c.id,m.troops+m.wounded,Integer::sum);
         for(int i=0;i<m.equipment.length;i++)c.equipment[i]+=m.equipment[i];
         for(int i=0;i<2;i++)c.ships[i]+=m.cargoShips[i];
-        String receipt="抵达"+c.name+"，入库：金 "+m.gold+" · 粮 "+m.food+" · 兵 "+m.troops+"；累计途中耗粮"+m.consumedFood;
+        String receipt="抵达"+c.name+"，入库：金 "+m.gold+" · 粮 "+m.food+" · 兵 "+m.troops+"，伤兵恢复 "+m.wounded+"；累计途中耗粮"+m.consumedFood;
         receipts.put(m.id,receipt);w.note(receipt);m.hex=c.hex;m.march=null;m.waiting="";
-        m.gold=0;m.food=0;m.troops=0;Arrays.fill(m.equipment,0);Arrays.fill(m.cargoShips,0);
+        m.gold=0;m.food=0;m.troops=0;m.wounded=0;m.woundRemainder=0;Arrays.fill(m.equipment,0);Arrays.fill(m.cargoShips,0);
         if(m.transport&&m.returnOfficers&&c.id!=m.sourceCity&&w.city(m.sourceCity).owner==m.owner){
             m.transport=false;m.returning=true;m.returnOfficers=false;m.stopped=false;m.targetCity=m.sourceCity;
             w.note(w.officer(m.officerId).name+"等"+m.crew().length+"将卸货返程，无返程物资");

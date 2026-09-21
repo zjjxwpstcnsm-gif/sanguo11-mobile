@@ -10,7 +10,9 @@ public final class RealmOverview {
         public final String name;
         public boolean alive;
         public int cities,ports,gates,officers,prisoners,units,convoys,techs,abilities,projects;
-        public long gold,food,troops,garrison,fieldTroops,cargoGold,cargoFood;
+        public long gold,food,troops,garrison,fieldTroops,cargoGold,cargoFood,wounded;
+        public long manpower,manpowerCap,quarterlyRecovery,nextRecovery;
+        public String advisor,ruler,rulerTitle;
         public long goldIncome,foodIncome,foodUse,monthGold,seasonFood;
         public final long goldUse=0; // Current engine has no automatic recurring gold upkeep.
         private Faction(int id,String name){this.id=id;this.name=name;}
@@ -37,13 +39,14 @@ public final class RealmOverview {
         for(World.Unit u:armies){if(u.owner<0||u.owner>=rows.size())continue;Faction f=rows.get(u.owner);
             f.units++;if(u instanceof Domestic.Mission)f.convoys++;
             f.gold+=u.gold;f.food+=u.food;f.cargoGold+=u.gold;f.cargoFood+=u.food;
-            f.troops+=u.troops;f.fieldTroops+=u.troops;f.foodUse+=Logistics.foodUse(w,u);
+            f.troops+=u.troops;f.fieldTroops+=u.troops;f.wounded+=u.wounded;f.foodUse+=Logistics.foodUse(w,u);
         }
         for(World.Officer o:w.officers)if(o.owner>=0&&o.owner<rows.size()&&w.life.present(o.id)){
             Faction f=rows.get(o.owner);f.officers++;if(w.government.captive(o.id))f.prisoners++;
         }
         for(Faction f:rows){
-            f.alive=w.alive(f.id);
+            f.alive=w.alive(f.id);f.advisor=w.governance.advisor(f.id);World.Officer ruler=w.loyalty.ruler(f.id);f.ruler=ruler==null?"未定":ruler.name;f.rulerTitle=w.governance.title(f.id);
+            Conscription.Summary manpower=Conscription.summary(w,f.id);f.manpower=manpower.reserve;f.manpowerCap=manpower.cap;f.quarterlyRecovery=manpower.quarterlyGrowth;f.nextRecovery=manpower.nextGrowth;
             for(Campaign.Tech t:Campaign.Tech.researchable())if(w.campaign.has(f.id,t))f.techs++;
             for(AbilityResearch.Node n:w.abilities.visible(f.id))if(w.abilities.learned(f.id,n.id))f.abilities++;
             for(Campaign.Project p:w.campaign.projects())if(p.owner==f.id)f.projects++;

@@ -55,6 +55,8 @@ public final class World {
         public final Weapon weapon;
         public Hex hex;
         public int troops, food, gold, energy=80;
+        /** Wounded do not fight; fractional hundredths persist to avoid rounding by hit size. */
+        public int wounded, woundRemainder;
         public boolean acted;
         public MarchOrders.Order march;
         public int movementBudget=-1, movementSpent;
@@ -139,6 +141,7 @@ public final class World {
     public final Districts districts=new Districts(this);
     public final AiOrders aiOrders=new AiOrders(this);
     public final Government government=new Government(this);
+    public final Governance governance=new Governance(this);
     public final Supply supply=new Supply(this);
     public final Contests contests=new Contests(this);
     public final Relations relations=new Relations(this);
@@ -167,7 +170,7 @@ public final class World {
         for (Terrain[] row:terrain) Arrays.fill(row,Terrain.PLAIN);
     }
     public String date() { int month=startMonth-1+turn/3;return (startYear+month/12)+"年 "+(month%12+1)+"月 "+new String[]{"上旬","中旬","下旬"}[turn%3]; }
-    public String faction(int owner) { return owner>=0&&owner<factions.length?factions[owner]:"空城"; }
+    public String faction(int owner) { return owner>=0&&owner<factions.length?(governance.nation(owner).isEmpty()?factions[owner]:governance.nation(owner)):"空城"; }
     public boolean alive(int owner) {
         if (owner < 0 || owner >= this.factions.length) {
             return false;
@@ -219,7 +222,7 @@ public final class World {
     private long commandRevision;
     /** Transient successful-command generation; identity plus generation guards open UI confirmations. */
     public long commandRevision(){return commandRevision;}
-    Result success(String text) {commandRevision++; fieldworks.cleanup();abilities.cleanup();districts.cleanup();diplomacy.cleanup();aiOrders.cleanup();note(text);Result r=result(true,text);if(turnJournal!=null)turnJournal.checkpoint(r.message);reports.clearAction();return r; }
+    Result success(String text) {commandRevision++;governance.reconcile(true); fieldworks.cleanup();abilities.cleanup();districts.cleanup();diplomacy.cleanup();aiOrders.cleanup();note(text);Result r=result(true,text);if(turnJournal!=null)turnJournal.checkpoint(r.message);reports.clearAction();return r; }
     public void note(String text) { reports.note(text);log.add(text);while(log.size()>40)log.remove(0); }
     private boolean available(Officer o,City c) { return !commandsBlocked()&&o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
     public int cityFoodUse(City c){return c.kind!=SiteKind.CITY&&skills.city(c.id,Skill.TUNTIAN)?0:(c.troops+49)/50;}
@@ -327,51 +330,55 @@ public final class World {
         }
         else {int counter=cityDefense.counter(c,u);if(counter>0)message+="，据点反击−"+counter;}
         if(stoneSplash)fieldworks.stoneSplash(u,hitCell);
+        if(c.owner==u.owner){String entered=autoEnter(u,c);if(!entered.isEmpty())message+="；"+entered;}
         checkVictory();return success(message);
     }
-    public Result enter(int unitId, int cityId) {reports.prepare();
-        return enterSite(unit(unitId),city(cityId),false);
+    public Result enter(int unitId,int cityId){reports.prepare();
+        Unit u=unit(unitId);City c=city(cityId);String error=unitError(u);if(error!=null)return fail(error);
+        Hex arrival=c==null?null:SiteFootprint.entry(this,u,u.hex,c);error=arrivalError(u,c,arrival);
+        return error==null?success(dock(u,c,arrival)):fail(error);
     }
-    Result enterAfterCapture(Unit u,City c){return enterSite(u,c,true);}
-    private Result enterSite(Unit u,City c,boolean captured) {
-        String error = captured?(u==null||unit(u.id)!=u||u.owner!=active?"攻城部队已失效":null):unitError(u);
-        if (error != null) {
-            return fail(error);
-        }
-        if (u instanceof Domestic.Mission) {
-            return this.domestic.unload((Domestic.Mission) u, c==null?-1:c.id);
-        }
-        if (c == null || c.owner != u.owner || SiteFootprint.distance(c,u.hex) > 1) {
-            return fail("请选择相邻己方城市、关卡或港口");
-        }
-        if(!army.canEnterSite(u,u.hex,c))return fail(c.kind==SiteKind.CITY?"尚未抵达城市合法占地格；请下达入城行军命令":"该方向不能进驻：上下河必须经过己方港口");
-        int gear = Army.equipmentNeeded(u.weapon, u.troops);
-        int cap = this.campaign.equipmentCap(c, u.weapon);
-        if (c.troops + u.troops > this.campaign.troopCap(c) || c.equipment[u.weapon.ordinal()] + gear > cap || c.food + u.food > this.campaign.foodCap(c) || c.gold + u.gold > this.campaign.goldCap(c) || (u.ship != Army.Ship.BOAT && c.ships[u.ship.ordinal() - 1] >= 100)) {
-            return fail("据点容量不足：兵余" + Math.max(0, this.campaign.troopCap(c) - c.troops) + "、粮余" + Math.max(0, this.campaign.foodCap(c) - c.food) + "、金余" + Math.max(0, this.campaign.goldCap(c) - c.gold) + "、所选兵装余" + Math.max(0, cap - c.equipment[u.weapon.ordinal()]));
-        }
-        visualAction(TurnJournal.Kind.ENTER,u.id,SiteFootprint.entry(this,u,u.hex,c),"进驻");
-        marches.supersede(u);
-        c.troops += u.troops;
-        c.food += u.food;
-        c.gold += u.gold;
-        int[] iArr = c.equipment;
-        int iOrdinal = u.weapon.ordinal();
-        iArr[iOrdinal] = iArr[iOrdinal] + gear;
-        if (u.ship != Army.Ship.BOAT) {
-            int[] iArr2 = c.ships;
-            int iOrdinal2 = u.ship.ordinal() - 1;
-            iArr2[iOrdinal2] = iArr2[iOrdinal2] + 1;
-        }
-        int prisoners = this.government.entered(u, c);
-        Officer o = officer(u.officerId);
-        for (Officer member : this.army.crew(u)) {
-            member.unitId = -1;
-            member.cityId = c.id;
-            member.acted = true;
-        }
-        this.units.remove(u);
-        return success(o.name + "入城休整" + (prisoners > 0 ? "；随军俘虏" + prisoners + "人已关押于" + c.name : ""));
+    /** Compatibility for persistent attack orders. Normal moves enter through autoEnter below. */
+    Result enterAfterCapture(Unit u,City c){
+        if(u==null||unit(u.id)!=u)return fail("攻城部队已失效");
+        Hex point=captureEntry(u,c);String error=arrivalError(u,c,point);
+        return error==null?success(dock(u,c,point)):fail(error);
+    }
+    private Hex captureEntry(Unit u,City c){
+        if(c==null||c.owner!=u.owner||SiteFootprint.distance(c,u.hex)>1)return null;
+        Hex normal=SiteFootprint.entry(this,u,u.hex,c);if(normal!=null)return normal;
+        // Adjacent conquest is the only automatic one-cell exception. Still obey shore and occupancy rules.
+        for(Hex h:SiteFootprint.cells(c))if(u.hex.distance(h)==1&&inside(h)&&(unitAt(h)==null||unitAt(h)==u)&&domestic.at(h)==null&&war.at(h)==null&&war.fireAt(h)==null&&army.entryCost(u,u.hex,h)>0)return h;
+        return null;
+    }
+    private String arrivalError(Unit u,City c,Hex point){
+        if(u==null||unit(u.id)!=u||u.troops<=0)return "部队已失效";
+        if(c==null||c.owner!=u.owner||point==null)return "尚未抵达合法据点入口（上下河须经港口）";
+        if(u instanceof Domestic.Mission)return domestic.arrivalError((Domestic.Mission)u,c);
+        int gear=Army.equipmentNeeded(u.weapon,u.troops),cap=campaign.equipmentCap(c,u.weapon);
+        if((long)c.troops+u.troops+u.wounded>campaign.troopCap(c)||c.equipment[u.weapon.ordinal()]+gear>cap||c.food+u.food>campaign.foodCap(c)||c.gold+u.gold>campaign.goldCap(c)||(u.ship!=Army.Ship.BOAT&&c.ships[u.ship.ordinal()-1]>=100))
+            return "据点容量不足，部队与伤兵、兵装、钱粮全部保留；腾出容量后再次行军入城";
+        return null;
+    }
+    /** Destination only: intermediate route cells remain traversable. No action-point payment. */
+    String autoEnter(Unit u,City conquered){
+        if(u==null||unit(u.id)!=u||u.troops<=0)return "";
+        City c=conquered==null?cityAt(u.hex):conquered;
+        if(c==null||c.owner!=u.owner||conquered==null&&!SiteFootprint.contains(c,u.hex)||conquered!=null&&SiteFootprint.distance(c,u.hex)>1)return "";
+        if(conquered==null&&!marches.arrivalDestination(u,c))return "";
+        Hex point=conquered==null?SiteFootprint.entry(this,u,u.hex,c):captureEntry(u,c);
+        String error=arrivalError(u,c,point);return error==null?dock(u,c,point):"自动入城暂缓："+error;
+    }
+    private String dock(Unit u,City c,Hex point){
+        visualAction(TurnJournal.Kind.ENTER,u.id,point,"自动入城");marches.supersede(u);
+        if(u instanceof Domestic.Mission)return domestic.arrive((Domestic.Mission)u,c);
+        int recovered=u.wounded,gear=Army.equipmentNeeded(u.weapon,u.troops);
+        c.troops+=u.troops+recovered;c.food+=u.food;c.gold+=u.gold;c.equipment[u.weapon.ordinal()]+=gear;
+        if(u.ship!=Army.Ship.BOAT)c.ships[u.ship.ordinal()-1]++;
+        int prisoners=government.entered(u,c);Officer commander=officer(u.officerId);
+        for(Officer member:army.crew(u)){member.unitId=-1;member.cityId=c.id;member.acted=true;}
+        u.wounded=0;u.woundRemainder=0;units.remove(u);
+        return commander.name+"已进入"+c.name+"，伤兵"+recovered+"立即归队"+(prisoners>0?"；俘虏"+prisoners+"人入狱":"");
     }
     void retreat(Officer o,Hex from) {
         strategy.releaseGovernor(o.id);o.otherTaskTurns=0;o.otherTask="";
@@ -414,7 +421,7 @@ public final class World {
     /** Exactly once after all factions have acted. Keep this order stable across save replay. */
     private void settleGlobalTurn(Consumer<String> progress){
         progress.accept("运输、建设与生产");
-        reports.globalPhase();turn++;Conscription.settle(this);contests.tick();reports.checkpoint("对局结算");domestic.tick();reports.checkpoint("建设运输结算");campaign.tick();reports.checkpoint("技巧研究结算");army.tick();reports.checkpoint("军备与持续伤害结算");abilities.tick();reports.checkpoint("能力研究结算");recruitment.tick();reports.checkpoint("登用结果结算");envoys.tick();reports.checkpoint("外交任务结算");strategy.tick();reports.checkpoint("人员内政结算");
+        reports.globalPhase();governance.reconcile(true);turn++;Conscription.settle(this);contests.tick();reports.checkpoint("对局结算");domestic.tick();reports.checkpoint("建设运输结算");campaign.tick();reports.checkpoint("技巧研究结算");army.tick();reports.checkpoint("军备与持续伤害结算");abilities.tick();reports.checkpoint("能力研究结算");recruitment.tick();reports.checkpoint("登用结果结算");envoys.tick();reports.checkpoint("外交任务结算");strategy.tick();reports.checkpoint("人员内政结算");
         progress.accept("火场、守备与武将");war.tick();reports.checkpoint("火场设施结算");cityDefense.tick();reports.checkpoint("据点守备结算");government.tick();reports.checkpoint("武将任职结算");treasures.tick();reports.checkpoint("宝物发现结算");
         progress.accept("兵粮消耗与城池收入");
         for(Unit u:new ArrayList<>(units)) {

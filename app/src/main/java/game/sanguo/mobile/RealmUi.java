@@ -37,7 +37,7 @@ final class RealmUi {
     private int owner(){return state.listPages.getInt(state.page+"Owner",-1);}
     private void ownerFilter(LinearLayout host){
         LinearLayout row=new LinearLayout(a);host.addView(row);
-        row.addView(a.button(owner()<0?"全部势力":w.faction(owner()),v->{String[] labels=new String[w.factions.length+1];labels[0]="全部势力";System.arraycopy(w.factions,0,labels,1,w.factions.length);
+        row.addView(a.button(owner()<0?"全部势力":w.faction(owner()),v->{String[] labels=new String[w.factions.length+1];labels[0]="全部势力";for(int side=0;side<w.factions.length;side++)labels[side+1]=w.faction(side);
             new AlertDialog.Builder(a).setTitle("按所属势力筛选").setItems(labels,(d,i)->{state.listPages.putInt(state.page+"Owner",i-1);a.refresh();}).show();}),new LinearLayout.LayoutParams(0,a.dp(40),1));
         row.addView(a.button("仅己方",v->{state.listPages.putInt(state.page+"Owner",w.player);a.refresh();}),new LinearLayout.LayoutParams(a.dp(76),a.dp(40)));
         row.addView(a.button("全部",v->{state.listPages.putInt(state.page+"Owner",-1);a.refresh();}),new LinearLayout.LayoutParams(a.dp(60),a.dp(40)));
@@ -48,10 +48,10 @@ final class RealmUi {
         List<DataTable.Column<RealmOverview.Faction>> cols=Arrays.asList(
             word("势力",88,f->f.name+(f.alive?"":"·灭亡")),value("兵力",90,f->f.troops),value("武将",55,f->f.officers),value("城池",50,f->f.cities),value("部队",55,f->f.units),
             value("总金",90,f->f.gold),value("总粮",95,f->f.food),value("预计金入",80,f->f.goldIncome),value("预计粮入",80,f->f.foodIncome),value("旬耗粮",80,f->f.foodUse),
-            value("港口",52,f->f.ports),value("关卡",52,f->f.gates),value("技巧",52,f->f.techs),value("能力",52,f->f.abilities),value("研究中",58,f->f.projects));
-        DataTable<RealmOverview.Faction> table=new DataTable<>(a,accounts().factions,cols,new int[]{0,1,2,3,4},f->f.name+" "+(f.alive?"存续":"灭亡")+" 兵力"+f.troops+" 武将"+f.officers,f->f.id,f->factionDetail(f.id),f->factionDetail(f.id));
-        table.search.setHint("搜索势力 / 存续 / 灭亡");table.search.setContentDescription("搜索全部势力");
-        table.columnGroups(new String[]{"军力","财赋","收支","领地 / 研究"},new int[][]{{0,1,2,3,4},{0,5,6},{0,7,8,9},{0,10,11,12,13,14}});
+            value("港口",52,f->f.ports),value("关卡",52,f->f.gates),value("技巧",52,f->f.techs),value("能力",52,f->f.abilities),value("研究中",58,f->f.projects),word("军师",78,f->f.advisor),value("兵源",90,f->f.manpower),value("兵源上限",95,f->f.manpowerCap),value("季度增长",95,f->f.quarterlyRecovery),word("君主",78,f->f.ruler),word("爵位",76,f->f.rulerTitle));
+        DataTable<RealmOverview.Faction> table=new DataTable<>(a,accounts().factions,cols,new int[]{0,19,15,16,17},f->f.name+" "+f.ruler+" "+f.advisor+" "+f.rulerTitle+" "+(f.alive?"存续":"灭亡")+" 兵力"+f.troops+" 武将"+f.officers,f->f.id,f->factionDetail(f.id),f->factionDetail(f.id));
+        table.search.setHint("搜索势力、君主、军师、爵位");table.search.setContentDescription("搜索全部势力");
+        table.columnGroups(new String[]{"人事 / 兵源","军力","财赋 / 收支","领地 / 研究"},new int[][]{{0,19,15,16,17,18,20},{0,1,2,3,4},{0,5,6,7,8,9},{0,10,11,12,13,14}});
         remember(table,"realmFactions");host.addView(table,new LinearLayout.LayoutParams(-1,0,1));return host;
     }
     View units(){
@@ -61,10 +61,10 @@ final class RealmUi {
             word("主将",76,u->RealmOverview.commander(w,u)),word("势力",76,u->w.faction(u.owner)),word("兵种",66,RealmOverview::unitType),value("兵力",85,u->u.troops),
             value("携粮",85,u->u.food),value("旬耗",70,u->Logistics.foodUse(w,u)),value("气力",55,u->u.energy),value("攻击",65,u->Math.round(w.combat.attackRating(u))),value("防御",65,u->Math.round(w.combat.defenseRating(u))),
             word("状态",82,u->u.status!=War.Status.NORMAL?u.status.label:u.acted?"已行动":"可行动"),word("位置 / 任务",120,this::unitLocation),
-            word("续航",65,u->Logistics.foodUse(w,u)==0?"不限":Logistics.turns(u.food,Logistics.foodUse(w,u))+"旬"));
-        DataTable<World.Unit> table=new DataTable<>(a,rows,cols,new int[]{0,1,2,3},u->RealmOverview.crew(w,u)+" "+w.faction(u.owner)+" "+RealmOverview.unitType(u)+" "+unitLocation(u)+" "+u.status.label,u->u.id,u->a.selectUnitAndFocus(u.id),this::unitDetail);
+            word("续航",65,u->Logistics.foodUse(w,u)==0?"不限":Logistics.turns(u.food,Logistics.foodUse(w,u))+"旬"),value("伤兵",80,u->u.wounded));
+        DataTable<World.Unit> table=new DataTable<>(a,rows,cols,new int[]{0,1,2,3,12},u->RealmOverview.crew(w,u)+" "+w.faction(u.owner)+" "+RealmOverview.unitType(u)+" "+unitLocation(u)+" "+u.status.label,u->u.id,u->a.selectUnitAndFocus(u.id),this::unitDetail);
         table.search.setHint("搜索主将、副将、势力、兵种、位置");table.search.setContentDescription("搜索全国部队");
-        table.columnGroups(new String[]{"编队","战力","粮秣","任务"},new int[][]{{0,1,2,3},{0,7,8,6},{0,4,5,11},{0,1,9,10}});remember(table,"realmUnits");
+        table.columnGroups(new String[]{"编队","战力","粮秣","任务"},new int[][]{{0,1,2,3,12},{0,7,8,6},{0,4,5,11},{0,1,9,10}});remember(table,"realmUnits");
         host.addView(table,new LinearLayout.LayoutParams(-1,0,1));return host;
     }
     private String unitLocation(World.Unit u){World.City region=w.personnel.region(u.hex);String where=(region==null?"":region.name+"附近 ")+u.hex.q+","+u.hex.r;
@@ -93,12 +93,13 @@ final class RealmUi {
         DataTable<Building> table=new DataTable<>(a,rows,cols,new int[]{0,1,2,3},b->b.name+" "+w.faction(b.owner)+" "+b.type+" "+b.place+" "+b.status,b->b.id,b->a.selectAndFocus(b.hex),b->new AlertDialog.Builder(a).setTitle(b.name).setMessage(b.effect+"\n"+b.status+" · 耐久"+b.hp).setPositiveButton("定位",(d,i)->a.selectAndFocus(b.hex)).setNegativeButton("返回",null).show());
         table.search.setHint("搜索名称、内政 / 军事、势力、地区");table.columnGroups(new String[]{"类别 / 耐久","位置 / 进度"},new int[][]{{0,1,2,3},{0,4,5}});remember(table,"realmFacilities");host.addView(table,new LinearLayout.LayoutParams(-1,0,1));return host;
     }
-    private World.Officer ruler(int side){for(World.Officer o:w.officers)if(o.owner==side&&o.role==Strategy.Role.RULER)return o;return null;}
+    private World.Officer ruler(int side){return w.loyalty.ruler(side);}
     void factionDetail(int side){factionDetail(side,null);}
     AlertDialog factionDetail(int side,Runnable choose){
         RealmOverview.Faction f=accounts().factions.get(side);LinearLayout sheet=column();LinearLayout hero=new LinearLayout(a);hero.setGravity(Gravity.CENTER_VERTICAL);sheet.addView(hero);
         World.Officer ruler=ruler(side);if(ruler!=null){ImageView portrait=new ImageView(a);portrait.setImageDrawable(new OfficerPortrait(a,w,ruler));hero.addView(portrait,new LinearLayout.LayoutParams(a.dp(66),a.dp(72)));}
-        TextView name=copy(f.name+"\n"+(ruler==null?"君主未定":"君主 · "+ruler.name)+"  "+(f.alive?"存续":"已灭亡"),18,a.paper);hero.addView(name,new LinearLayout.LayoutParams(0,-2,1));
+        TextView name=copy(f.name+"\n"+(ruler==null?"君主未定":w.governance.title(side)+" · "+ruler.name)+"\n军师 · "+f.advisor+"  "+(f.alive?"存续":"已灭亡"),18,a.paper);hero.addView(name,new LinearLayout.LayoutParams(0,-2,1));
+        if(choose==null&&side==w.player&&w.governance.grade(side)==5){Button nation=a.button("设定国号",v->nameNation(side));nation.setTag("faction.nation");sheet.addView(nation,new LinearLayout.LayoutParams(-1,a.dp(44)));}
         View color=new View(a);color.setBackgroundColor(FactionColors.color(w,side));hero.addView(color,new LinearLayout.LayoutParams(a.dp(6),a.dp(58)));
         LinearLayout tabs=new LinearLayout(a);sheet.addView(tabs);ScrollView scroll=new ScrollView(a);scroll.setFillViewport(true);LinearLayout content=column();scroll.addView(content);sheet.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
         String[] labels={"概况","收支","技巧树","能力研究"};Button[] buttons=new Button[labels.length];
@@ -112,11 +113,20 @@ final class RealmUi {
     }
     private void metric(LinearLayout host,String left,String right){LinearLayout row=new LinearLayout(a);row.setBackground(UiTheme.surface(a,0xff213a3c,0xff172a32,10));LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(-1,-2);lp.setMargins(0,a.dp(4),0,a.dp(4));host.addView(row,lp);row.addView(copy(left,14,a.paper),new LinearLayout.LayoutParams(0,-2,1));row.addView(copy(right,14,a.gold),new LinearLayout.LayoutParams(0,-2,1));}
     private void overview(LinearLayout host,RealmOverview.Faction f){
+        heading(host,"君主与军师");metric(host,f.ruler+" · "+f.rulerTitle,"军师 "+f.advisor);
+        World.Officer leader=ruler(f.id);if(leader!=null)metric(host,"君主指挥 "+w.government.commandLimit(leader.id),"国号 "+(w.governance.nation(f.id).isEmpty()?"尚未设定":w.governance.nation(f.id)));
+        heading(host,"兵源与伤兵");metric(host,"可征兵源 "+number(f.manpower),"上限 "+number(f.manpowerCap));metric(host,"季度增长 "+number(f.quarterlyRecovery),"当前可恢复 "+number(f.nextRecovery));metric(host,"在外伤兵 "+number(f.wounded),"入城立即恢复");
+        host.addView(copy("完成农场每座 +500/季；完成市场每座 +2000上限。季度按城池分别计算，港口和关卡不重复计数。",12,a.muted));
         heading(host,"领地与军力");metric(host,"城池 "+f.cities,"港口 "+f.ports+" / 关卡 "+f.gates);metric(host,"武将 "+f.officers,"其中被俘 "+f.prisoners);metric(host,"总兵力 "+number(f.troops),"驻军 "+number(f.garrison));metric(host,"部队 "+f.units,"其中运输队 "+f.convoys);
         metric(host,"总金 "+number(f.gold),"总粮 "+number(f.food));metric(host,"技巧点 "+w.campaign.points(f.id),"行动力 "+w.actionPoints[f.id]);
         heading(host,"研究进行中 · "+f.projects);host.addView(copy(RealmOverview.researchSummary(w,f.id),14,a.paper));
         heading(host,"领地明细");StringJoiner sites=new StringJoiner("  ·  ");for(World.City c:w.cities)if(c.owner==f.id)sites.add(c.name+"（"+RealmOverview.siteType(c.kind)+"）");host.addView(copy(sites.length()==0?"无据点":sites.toString(),13,a.muted));
         host.addView(copy("总量包含在途部队与未卸货运输队，不重复计算货物；武将计入已登场的所属武将（含被俘者）。",12,a.muted));
+    }
+    private void nameNation(int side){
+        EditText field=new EditText(a);field.setSingleLine(true);field.setText(w.governance.nation(side));field.setHint("输入1至8字国号");field.setContentDescription("皇帝国号");
+        AlertDialog dialog=new AlertDialog.Builder(a).setTitle("皇帝 · 设定国号").setMessage("仅修改展示国号，保留势力身份、城池与外交关系。").setView(field).setPositiveButton("确定",null).setNegativeButton("取消",null).create();dialog.show();UiTheme.dialog(dialog);
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{if(!a.currentWorld(w))return;World.Result r=w.governance.nameNation(side,field.getText().toString());if(!r.ok){field.setError(r.message);return;}dialog.dismiss();a.apply(r);});
     }
     private void economy(LinearLayout host,RealmOverview.Faction f){
         heading(host,"钱粮资产 · "+w.date());metric(host,"总金 "+number(f.gold),"总粮 "+number(f.food));metric(host,"其中在途金 "+number(f.cargoGold),"其中在途粮 "+number(f.cargoFood));

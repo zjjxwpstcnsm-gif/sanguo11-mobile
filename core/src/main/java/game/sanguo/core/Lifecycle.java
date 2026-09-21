@@ -59,11 +59,15 @@ public final class Lifecycle {
         Set<Integer> fallen=new TreeSet<>();Map<Integer,Integer> rulers=new TreeMap<>();
         for(Life p:people.values())if(deathChance(p.officer)>0&&roll()<deathChance(p.officer))fallen.add(p.officer);
         // Resolve the entire cohort before selecting successors, so an heir dying this month cannot inherit.
-        for(int id:fallen){World.Officer o=w.officer(id);if(o.role==Strategy.Role.RULER)rulers.put(o.owner,id);die(id,"寿终");}
+        for(int id:fallen){World.Officer o=w.officer(id);if(o.role==Strategy.Role.RULER)rulers.put(o.owner,id);dieWithoutSuccession(id,"寿终");}
         for(Map.Entry<Integer,Integer> e:rulers.entrySet())succession(e.getKey(),e.getValue());
         w.campaign.cleanupProjects();w.army.cleanup();w.abilities.cleanup();w.districts.cleanup();w.government.relocatePrisoners();
     }
     void die(int id,String reason){
+        World.Officer o=w.officer(id);if(o==null||!present(id))return;int owner=o.owner;boolean ruler=o.role==Strategy.Role.RULER;
+        dieWithoutSuccession(id,reason);if(ruler)succession(owner,id);w.governance.reconcile(true);
+    }
+    private void dieWithoutSuccession(int id,String reason){
         World.Officer o=w.officer(id);if(o==null||!present(id))return;
         int former=o.owner;World.City place=o.cityId>=0?w.city(o.cityId):o.unitId>=0?w.government.refuge(former,w.unit(o.unitId).hex):null;
         Life p=life(id);if(p==null){p=new Life(id,0,0,0,place==null?w.cities.get(0).id:place.id,State.ACTIVE);people.put(id,p);}
@@ -78,6 +82,7 @@ public final class Lifecycle {
             else if(u.deputies.length>0){
                 int heir=Arrays.stream(u.deputies).boxed().min(Comparator.comparingInt((Integer x)->-w.officer(x).leadership).thenComparingInt(x->x)).get();
                 World.Unit next=new World.Unit(u.id,u.owner,heir,u.weapon,u.hex,u.troops,u.food);
+                next.wounded=u.wounded;next.woundRemainder=u.woundRemainder;
                 next.deputies=Arrays.stream(u.deputies).filter(x->x!=heir).toArray();next.gold=u.gold;next.ship=u.ship;next.energy=u.energy;next.acted=u.acted;next.march=u.march;
                 next.movementBudget=u.movementBudget;next.movementSpent=u.movementSpent;next.status=u.status;next.statusTurns=u.statusTurns;next.burning=u.burning;next.burningOwner=u.burningOwner;next.burningPower=u.burningPower;
                 w.units.set(w.units.indexOf(u),next);record(w.officer(heir).name+"接掌"+o.name+"部队，兵粮与行军指令保留");
@@ -95,11 +100,11 @@ public final class Lifecycle {
     }
     private int priority(World.Officer o,int dead){return (w.relations.parent(o.id,false)==dead||w.relations.parent(o.id,true)==dead?1000000:w.relations.blood(o.id,dead)?500000:w.relations.bonded(o.id,dead)?200000:0)+Math.min(100000,w.government.merit(o.id))/10+o.leadership+o.politics+o.charm;}
     public List<World.Officer> successors(){return pending()?Collections.unmodifiableList(candidates(pendingOwner,pendingRuler)):Collections.emptyList();}
-    private void succession(int owner,int departed){
+    void succession(int owner,int departed){
         List<World.Officer> list=candidates(owner,departed);
         if(list.isEmpty()){
             for(World.City c:w.cities)if(c.owner==owner){c.owner=-1;c.governorId=-1;w.domestic.captured(c.id);w.government.policies.remove(c.id);}
-            for(Treasures.Item i:new ArrayList<>(w.treasures.owned(owner)))if(i.place==Treasures.Place.TREASURY)w.treasures.place(i.definition,Treasures.Place.HIDDEN,life(departed).home);
+            for(Treasures.Item i:new ArrayList<>(w.treasures.owned(owner)))if(i.place==Treasures.Place.TREASURY)w.treasures.place(i.definition,Treasures.Place.HIDDEN,life(departed)==null?w.cities.get(0).id:life(departed).home);
             record(w.faction(owner)+"无人继承，势力解散");return;
         }
         if(owner==w.player&&w.alive(owner)){pendingRuler=departed;pendingOwner=owner;record("请为"+w.faction(owner)+"选择继承人");}
@@ -108,6 +113,7 @@ public final class Lifecycle {
     private void crown(int owner,World.Officer o){
         w.strategy.releaseGovernor(o.id);w.government.allegianceChanged(o.id);
         o.role=Strategy.Role.RULER;o.loyalty=100;
+        w.loyalty.succession(owner,o);w.governance.reconcile(true);
         // Faction identity stays stable for treaties, districts, saves and targeted march orders.
         record(o.name+"继承"+w.faction(owner)+"君主之位");w.districts.cleanup();
     }
@@ -121,7 +127,7 @@ public final class Lifecycle {
         World.City c=w.city(city);String error=w.cityError(c,w.officer(actor),0);if(error!=null)return w.fail(error);
         Government.Prisoner prisoner=w.government.prisoner(target);if(prisoner==null||prisoner.captor!=w.active||prisoner.cityId!=city)return w.fail("请选择本城关押的俘虏");
         World.Officer t=w.officer(target);int owner=t.owner;boolean ruler=t.role==Strategy.Role.RULER;
-        w.spend(c,w.officer(actor),0);die(target,"处决");if(ruler)succession(owner,target);
+        w.spend(c,w.officer(actor),0);die(target,"处决");
         if(owner>=0&&owner!=w.active)w.strategy.setFactionRelation(w.active,owner,-100);
         w.government.relocatePrisoners();w.checkVictory();return w.success(t.name+"已被处决");
     }
@@ -146,7 +152,7 @@ public final class Lifecycle {
             if(p.state==State.UNAPPEARED)require(p.appearance>year(),"逾期未登场人物");
         }
         bound(pendingOwner,-1,w.factions.length-1);require(pendingRuler>=-1&&(pendingOwner<0)==(pendingRuler<0),"继承引用不完整");
-        if(pending())require(pendingOwner==w.player&&state(pendingRuler)==State.DEAD&&!successors().isEmpty()&&!w.contests.busy()&&w.officers.stream().noneMatch(o->o.owner==pendingOwner&&o.role==Strategy.Role.RULER),"继承事件无效");
+        if(pending())require(pendingOwner==w.player&&w.officer(pendingRuler)!=null&&(state(pendingRuler)==State.DEAD||w.officer(pendingRuler).owner!=pendingOwner)&&!successors().isEmpty()&&!w.contests.busy()&&w.officers.stream().noneMatch(o->o.owner==pendingOwner&&o.role==Strategy.Role.RULER),"继承事件无效");
         bound(history.size(),0,200);for(String s:history)require(s!=null&&!s.isEmpty()&&s.length()<=500,"生卒事件记录无效");
     }
     private static int bound(int n,int a,int b)throws IOException{require(n>=a&&n<=b,"生卒字段越界");return n;}

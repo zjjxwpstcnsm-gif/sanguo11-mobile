@@ -194,16 +194,18 @@ public final class Strategy {
         join(o, target, c.id);
         return this.w.success(target.name + "加入" + this.w.faction(c.owner) + "，本旬休整");
     }
-    public World.Result rewardOfficer(int cityId,int officerId,int targetId) {w.reports.prepare();
-        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,REWARD_COST);
-        if(error!=null)return w.fail(error);
-        World.Officer target=w.officer(targetId);
-        if(target==null||target.owner!=c.owner||target.cityId!=c.id||target.unitId>=0||busy(target.id)||w.domestic.busy(target.id))return w.fail("只能褒奖本城未执行长期任务的己方武将");
-        if(target.role==Role.RULER||target.loyalty>=100)return w.fail("目标忠诚已满或为君主");
-        if(target.lastRewardTurn==w.turn)return w.fail("同一武将每旬只能接受一次褒奖");
-        int gain=Math.min(100-target.loyalty,StrategyRules.rewardGain(target.politics,target.charm));
-        w.spend(c,o,REWARD_COST);target.loyalty+=gain;target.lastRewardTurn=w.turn;
-        return w.success("褒奖"+target.name+"，忠诚+"+gain);
+    public boolean rewardable(World.City c,World.Officer t){
+        return c!=null&&t!=null&&w.life.present(t.id)&&t.owner==c.owner&&t.cityId==c.id&&t.unitId<0&&!busy(t.id)&&!w.domestic.busy(t.id)&&t.role!=Role.RULER&&t.loyalty<100&&t.lastRewardTurn!=w.turn;
+    }
+    public World.Result rewardOfficer(int cityId,int officerId,int targetId){return rewardOfficers(cityId,officerId,new int[]{targetId});}
+    /** Validate the entire selection before spending: one action, 200 gold per unique recipient. */
+    public World.Result rewardOfficers(int cityId,int officerId,int[] targets){w.reports.prepare();
+        if(targets==null||targets.length==0||targets.length>w.officers.size())return w.fail("请选择至少一名可褒奖武将");
+        long price=(long)REWARD_COST*targets.length;if(price>Integer.MAX_VALUE)return w.fail("褒奖人数过多");
+        World.City c=w.city(cityId);World.Officer actor=w.officer(officerId);String error=w.cityError(c,actor,(int)price);if(error!=null)return w.fail(error);
+        Set<Integer> seen=new HashSet<>();for(int id:targets)if(!seen.add(id)||!rewardable(c,w.officer(id)))return w.fail("选择中有重复、已褒奖、忠诚已满或不在城的武将；未扣款");
+        w.spend(c,actor,(int)price);for(int id:targets){World.Officer t=w.officer(id);int gain=Math.min(100-t.loyalty,StrategyRules.rewardGain(t.politics,t.charm));t.loyalty+=gain;t.lastRewardTurn=w.turn;w.note("褒奖"+t.name+"，忠诚+"+gain);}
+        return w.success("批量褒奖"+targets.length+"人，金−"+price+"、行动力−10");
     }
     public World.Result appointGovernor(int cityId,int officerId,int targetId) {w.reports.prepare();
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,0);
@@ -218,7 +220,7 @@ public final class Strategy {
     }
     public int governorPolitics(int cityId) {
         World.City c=w.city(cityId);World.Officer o=c==null?null:w.officer(c.governorId);
-        return o!=null&&o.cityId==c.id&&o.unitId<0&&o.owner==c.owner&&(o.role==Role.GOVERNOR||o.role==Role.RULER)?o.politics:-1;
+        return w.governance.resident(o,c)&&(o.role==Role.GOVERNOR||o.role==Role.RULER)?o.politics:-1;
     }
     public int cityIncome(int cityId,int base) {
         World.City c=w.city(cityId);return c==null?0:StrategyRules.income(base,c.order,governorPolitics(cityId));
@@ -231,13 +233,14 @@ public final class Strategy {
         World.City c=w.city(cityId);if(c.governorId>=0)releaseGovernor(c.governorId);
         for(World.Officer o:w.officers)if(o.cityId==cityId&&o.owner!=c.owner&&!w.recruitment.returning(o)){o.otherTaskTurns=0;o.otherTask="";}
     }
-    /** Deterministic migration/default leadership. Does not auto-appoint a governor or invent talent. */
+    /** Deterministic migration/default leadership. Appoints existing residents only; never invents talent. */
     void initializeOffices() {
         for(int side=0;side<w.factions.length;side++) {
             World.Officer first=null;boolean hasRuler=false;
             for(World.Officer o:w.officers)if(o.owner==side){hasRuler|=o.role==Role.RULER;if(first==null||o.id<first.id)first=o;}
             if(!hasRuler&&first!=null){first.role=Role.RULER;first.loyalty=100;}
         }
+        w.governance.reconcile(false);
     }
     public World.Result patrol(int cityId,int officerId) {w.reports.prepare();
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,PATROL_COST);

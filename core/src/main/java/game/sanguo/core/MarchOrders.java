@@ -201,6 +201,12 @@ public final class MarchOrders {
         return w.success(name+" · "+(w.unit(u.id)==null?(u.troops<=0&&!(u instanceof Domestic.Mission)?"部队已被击破，任务终止":"已进驻据点 / 完成入库"):u.march==null?"目标任务已完成":describe(u)));
     }
     private void releaseBuilder(World.Unit u){War.Structure s=w.fieldworks.project(u.id);if(s!=null&&u.march!=null&&u.march.intent==Intent.REPAIR&&s.id==u.march.targetId)s.builder=-1;}
+    /** A long route may rest inside a friendly city without cancelling a destination beyond it. */
+    boolean arrivalDestination(World.Unit u,World.City c){
+        if(!executing||u.march==null)return true;
+        Intent intent=effective(u,u.march);
+        return intent==Intent.GARRISON&&u.march.targetId==c.id||intent==Intent.MOVE&&u.hex.equals(u.march.tile);
+    }
     /** Called only after a manual command passes validation; never refunds action or resources. */
     void supersede(World.Unit u){if(!executing&&u!=null){releaseBuilder(u);u.march=null;}}
     public World.Result stop(int id){w.reports.prepare();

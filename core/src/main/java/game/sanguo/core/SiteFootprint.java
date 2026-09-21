@@ -37,9 +37,9 @@ public final class SiteFootprint {
         return best;
     }
     private static boolean inRange(Hex a,Hex b,int min,int max){int d=a.distance(b);return d>=min&&d<=max;}
-    /** Own cities and gates are transit tiles, not implicit garrison commands. Port transit preserves
-     * the historical dock-edge rule (ports themselves are reserved, entered explicitly). */
-    public static boolean transit(World.City c,int owner){return c==null||c.owner==owner&&c.kind!=World.SiteKind.PORT;}
+    /** Friendly sites are traversable. Actual endpoint arrival docks; transit keeps its route.
+     * Army.terrainMoveCost still enforces port-only water/land transitions. */
+    public static boolean transit(World.City c,int owner){return c==null||c.owner==owner;}
     public static boolean mayStep(World w,World.Unit u,Hex from,Hex to){
         World.City destination=w.cityAt(to);if(transit(destination,u.owner))return true;
         // Ownership can change underneath field units. Keep them intact, permitting outward escape
@@ -73,7 +73,7 @@ public final class SiteFootprint {
     /** Candidate goals are fed to the existing Dijkstra, not selected by geometric proximity. */
     public static List<Hex> entryGoals(World w,World.Unit u,World.City c){
         List<Hex> goals=new ArrayList<>();if(u==null||c==null||c.owner!=u.owner)return goals;
-        if(c.kind==World.SiteKind.CITY||c.kind==World.SiteKind.GATE){
+        if(c.kind==World.SiteKind.CITY||c.kind==World.SiteKind.GATE||c.kind==World.SiteKind.PORT){
             for(Hex h:cells(c))if(legalEntryCell(w,u,h))goals.add(h);
         }else for(Hex h:edge(c))if(w.inside(h)&&entry(w,u,h,c)!=null)goals.add(h);
         return goals;

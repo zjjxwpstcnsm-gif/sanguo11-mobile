@@ -15,6 +15,8 @@ public final class CombatEffects {
     int hit(World.Unit source,World.Unit target,int amount,boolean tactic,boolean triggerOnHit){
         if(w.unit(target.id)!=target)return 0;
         int actual=Math.max(0,Math.min(target.troops,amount));target.troops-=actual;
+        long share=(long)actual*30+target.woundRemainder;
+        target.wounded+=(int)(share/100);target.woundRemainder=(int)(share%100);
         if(triggerOnHit)onHit(source,target,actual,tactic);
         if(target.troops==0)w.defeatUnit(target,source);
         return actual;

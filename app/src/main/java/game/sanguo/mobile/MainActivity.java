@@ -99,25 +99,25 @@ public final class MainActivity extends Activity {
             else v.setPadding(insets.getSystemWindowInsetLeft(),insets.getSystemWindowInsetTop(),insets.getSystemWindowInsetRight(),insets.getSystemWindowInsetBottom());
             return insets;
         });
-        LinearLayout header=new LinearLayout(this);header.setGravity(Gravity.CENTER_VERTICAL);header.setPadding(dp(12),0,dp(8),0);
+        LinearLayout header=new LinearLayout(this);header.setGravity(Gravity.CENTER_VERTICAL);header.setPadding(dp(8),0,dp(8),0);
+        header.setMinimumHeight(dp(56));header.setTag("hud.compact");
         actionPointsBadge=text("",12,paper);actionPointsBadge.setGravity(Gravity.CENTER);actionPointsBadge.setMaxLines(2);
         actionPointsBadge.setBackground(UiTheme.surface(this,0xff2a5146,0xff17352e,10));
-        actionPointsBadge.setOnClickListener(v->message("行动力",world.faction(world.player)+" · 当前行动力 "+world.actionPoints[world.player]+" 点\n始终显示玩家势力的行动力，下一旬完整结算后恢复。"));
-        LinearLayout.LayoutParams apParams=new LinearLayout.LayoutParams(dp(66),dp(42));apParams.setMargins(0,dp(3),dp(7),dp(3));header.addView(actionPointsBadge,apParams);
-        title=text("",12,gold);title.setMaxLines(2);title.setEllipsize(android.text.TextUtils.TruncateAt.END);
-        title.setOnClickListener(v->{if(!aiRunning)message("当前军情",world.scenarioName+" · "+world.faction(world.player)+"\n"+world.date()+" · 行动力 "+world.actionPoints[world.player]+"\n进行中任务 "+taskCount());});
-        header.addView(title,new LinearLayout.LayoutParams(0,dp(48),1));
-        Button reportsButton=button("战报",v->new BattleReportUi(this,world).show());reportsButton.setTag("reports.entry");reportsButton.setContentDescription("战报中心：近三个月全部势力交互结果");header.addView(reportsButton,new LinearLayout.LayoutParams(dp(52),dp(48)));
-        territoryToggle=CompactButtons.create(this);territoryToggle.setText("势力");
-        territoryToggle.setOnClickListener(v->setTerritoryMode(map.territoryMode()==0?1:0));
-        territoryToggle.setOnLongClickListener(v->{showTerritoryPicker();return true;});
-        header.addView(territoryToggle,new LinearLayout.LayoutParams(dp(56),dp(48)));
-        Button full=button("全图",v->{closePanel();map.post(map::fit);});full.setContentDescription("显示全国地图");UiTheme.icon(full,"map");header.addView(full,new LinearLayout.LayoutParams(dp(56),dp(48)));
-        Button tools=button("视图",v->showMapTools());tools.setContentDescription("地图工具 · 全图、定位、导航图和屏幕方向");
-        UiTheme.icon(tools,"layers");header.addView(tools,new LinearLayout.LayoutParams(dp(56),dp(48)));header.setBackground(UiTheme.surface(this,0xff1b2b33,0xff101b24,0));root.addView(header);
-        dateBanner=text("",14,gold);dateBanner.setTag("hud.date");
-        dateBanner.setPadding(dp(12),dp(3),dp(12),dp(3));dateBanner.setEllipsize(null);
-        root.addView(dateBanner,new LinearLayout.LayoutParams(-1,-2));
+        actionPointsBadge.setOnClickListener(v->message("行动力",world.faction(world.player)+" · 当前行动力 "+world.actionPoints[world.player]+" 点"));
+        LinearLayout.LayoutParams apParams=new LinearLayout.LayoutParams(dp(48),dp(44));apParams.setMargins(0,dp(4),dp(6),dp(4));header.addView(actionPointsBadge,apParams);
+        LinearLayout headline=new LinearLayout(this);headline.setOrientation(LinearLayout.VERTICAL);headline.setGravity(Gravity.CENTER_VERTICAL);
+        dateBanner=text("",16,gold);dateBanner.setTag("hud.date");dateBanner.setSingleLine(true);dateBanner.setEllipsize(null);dateBanner.setMinHeight(dp(24));
+        if(android.os.Build.VERSION.SDK_INT>=26)dateBanner.setAutoSizeTextTypeUniformWithConfiguration(11,16,1,android.util.TypedValue.COMPLEX_UNIT_SP);
+        headline.addView(dateBanner,new LinearLayout.LayoutParams(-1,dp(27)));
+        title=text("",11,muted);title.setSingleLine(true);title.setEllipsize(android.text.TextUtils.TruncateAt.END);
+        title.setOnClickListener(v->message("当前军情",world.scenarioName+" · "+world.faction(world.player)+"\n"+world.date()+" · 进行中任务 "+taskCount()));
+        headline.addView(title,new LinearLayout.LayoutParams(-1,dp(21)));header.addView(headline,new LinearLayout.LayoutParams(0,dp(52),1));
+        Button reportsButton=button("战报",v->new BattleReportUi(this,world).show());reportsButton.setTag("reports.entry");reportsButton.setTextSize(11);reportsButton.setContentDescription("战报中心：近三个月全部势力交互结果");header.addView(reportsButton,new LinearLayout.LayoutParams(dp(44),dp(52)));
+        territoryToggle=CompactButtons.create(this);territoryToggle.setTextSize(11);territoryToggle.setText("势力");
+        territoryToggle.setOnClickListener(v->setTerritoryMode(map.territoryMode()==0?1:0));territoryToggle.setOnLongClickListener(v->{showTerritoryPicker();return true;});
+        header.addView(territoryToggle,new LinearLayout.LayoutParams(dp(44),dp(52)));
+        Button tools=button("视图",v->showMapTools());tools.setTextSize(11);tools.setContentDescription("地图工具 · 全图、定位、导航图和屏幕方向");
+        header.addView(tools,new LinearLayout.LayoutParams(dp(44),dp(52)));header.setBackground(UiTheme.surface(this,0xff1b2b33,0xff101b24,0));root.addView(header,new LinearLayout.LayoutParams(-1,dp(56)));
         mapRevisionNotice=text("",11,gold);mapRevisionNotice.setTag("map.revision.notice");mapRevisionNotice.setPadding(dp(12),dp(3),dp(12),dp(3));
         mapRevisionNotice.setOnClickListener(v->message("地图存档版本",NationalMap.compatibilityNotice(world)));root.addView(mapRevisionNotice);
         body=new FrameLayout(this);map=new MapView(this,this::onTile);body.addView(map,new FrameLayout.LayoutParams(-1,-1));map.setUnitDrop(this::dropUnit);map.setTerritoryMode(getPreferences(MODE_PRIVATE).getInt("territoryMode",0));refreshTerritoryToggle();
@@ -454,7 +454,7 @@ public final class MainActivity extends Activity {
         pendingMarch=null;unitCommand="select";refresh();map.restoreCamera(saved);
     }
     void applyResult(World.Result result){apply(result);}
-    private void apply(World.Result result){
+    void apply(World.Result result){
         if(!result.ok)message("命令未执行",result.message);
         if(result.ok){map.invalidateScene();navigatorRevision=Long.MIN_VALUE;clearTacticPreview();pendingMarch=null;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();pickTitle="";}
         if(result.ok&&result.feedback==World.Feedback.NONE){lastBattleReport=result.message;battleReportWorld=world;reportLocation=null;battleBanner.setText("结果 · 点此展开\n"+result.message);battleBanner.setVisibility(View.VISIBLE);}
@@ -477,7 +477,7 @@ public final class MainActivity extends Activity {
         if(ui.owner>=world.factions.length)ui.owner=-1;
         if(ui.cityOwner>=world.factions.length)ui.cityOwner=-1;
         title.setText(world.faction(world.player)+" · "+world.scenarioName);
-        dateBanner.setText(world.date()+(aiRunning?" · 结算中…":""));
+        dateBanner.setText(world.date().replace(" ",""));dateBanner.setVisibility(View.VISIBLE);
         dateBanner.setContentDescription("当前日期 "+world.date());
         mapRevisionNotice.setText(NationalMap.compatibilityNotice(world));mapRevisionNotice.setVisibility(mapRevisionNotice.getText().length()==0?View.GONE:View.VISIBLE);
         actionPointsBadge.setText("行动力\n"+world.actionPoints[world.player]);actionPointsBadge.setContentDescription("玩家行动力 "+world.actionPoints[world.player]+" 点");
@@ -521,7 +521,7 @@ public final class MainActivity extends Activity {
     }
     private void previewMarch(World.Unit unit,Hex target){
         World.City c=world.cityAt(target);
-        pendingMarch=c!=null&&c.owner==unit.owner?world.marches.previewMove(unit.id,target):world.marches.preview(unit.id,target);
+        pendingMarch=c!=null&&c.owner==unit.owner?world.marches.previewCity(unit.id,c.id):world.marches.preview(unit.id,target);
         ui.page="map";ui.panelVisible=false;refresh();
         if(!pendingMarch.valid())commandDock.announceForAccessibility(pendingMarch.error);
     }
@@ -554,7 +554,7 @@ public final class MainActivity extends Activity {
         commandDock.setOrientation(portrait()?LinearLayout.VERTICAL:LinearLayout.HORIZONTAL);commandDock.setGravity(Gravity.CENTER_VERTICAL);
         if(pendingMarch==null){
             String error=world.orders.error(u);
-            String hint=unitCommand.equals("march")?"行军：经过城格不进驻；入库请点进驻":unitCommand.equals("attack")?"攻击：点红框敌军、城池或设施":error!=null?error:"青色为本旬可达范围 · 红框可攻击";
+            String hint=unitCommand.equals("march")?"终点为己方据点任意占地格即自动入城；途中可穿行":unitCommand.equals("attack")?"攻击：点红框敌军、城池或设施":error!=null?error:"青色为本旬可达范围 · 红框可攻击";
             TextView state=text((u instanceof Domestic.Mission?"运输":"兵"+u.troops)+" · 携粮 "+u.food+" · "+hint+" · 剩余移动 "+world.orders.remaining(u),12,gold);state.setMaxLines(2);
             LinearLayout summary=new LinearLayout(this);summary.setGravity(Gravity.CENTER_VERTICAL);
             summary.addView(state,new LinearLayout.LayoutParams(0,-2,1));
@@ -563,13 +563,12 @@ public final class MainActivity extends Activity {
             commandDock.addView(summary,new LinearLayout.LayoutParams(portrait()?-1:0,-2,portrait()?0:1));
             LinearLayout actions=new LinearLayout(this);
             Button march=button("行军",v->{unitCommand="march";ui.panelVisible=false;refresh();});march.setSelected(unitCommand.equals("march"));
-            Button garrison=button("进驻",v->garrisonOnMap(u));
             Button attack=button("攻击",v->{if(error!=null){message("攻击暂不可用",error);return;}unitCommand="attack";ui.panelVisible=false;refresh();});attack.setSelected(unitCommand.equals("attack"));attack.setAlpha(error==null?1f:.55f);
             Button tactics=button("战法",v->showTactics(u));tactics.setAlpha(error==null?1f:.55f);
             Button plots=button("计略",v->{if(error!=null){message("计略暂不可用",error);return;}pendingMarch=null;unitCommand="select";refresh();warUi().plots(u);});plots.setAlpha(error==null?1f:.55f);
             Button cancel=button("取消",v->clearUnitSelection());
             if(u instanceof Domestic.Mission){attack.setText("补给");attack.setOnClickListener(v->{if(error!=null)message("补给暂不可用",error);else convoySupply((Domestic.Mission)u);});tactics.setText("停止");tactics.setOnClickListener(v->apply(world.marches.stop(u.id)));plots.setText("货物");plots.setOnClickListener(v->{ui.panelVisible=true;refresh();revealPanel();});}
-            for(Button b:new Button[]{march,garrison,attack,tactics,plots})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
+            for(Button b:new Button[]{march,attack,tactics,plots})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
             if(!(u instanceof Domestic.Mission)&&u.march!=null)actions.addView(button("停止任务",v->apply(world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
             actions.addView(cancel,new LinearLayout.LayoutParams(0,dp(48),1));
             commandDock.addView(actions,new LinearLayout.LayoutParams(portrait()?-1:dp(360),-2));return;
@@ -773,7 +772,7 @@ public final class MainActivity extends Activity {
         line("部队武力 "+world.army.war(u)+" · 智力 "+world.army.intelligence(u),13,paper);
         if(u.burning>0)line("部队燃烧 · 剩"+u.burning+"旬",14,gold);
         action("编队特技",v->warUi().skills(u));
-        if(u.owner==world.player)action("进驻据点 · 自动选择入口",v->garrisonOnMap(u));
+        line("伤兵 "+u.wounded+" · 行军终点为己方据点时立即归队",13,gold);
         Districts.District district=world.districts.unit(u.id);if(district!=null)line("所属军团："+district.name()+" · 自动指挥",13,gold);
         if(u.owner==world.player){line(u.acted?"本旬已行动，攻击后不能再移动 · 可安排下旬行军":"底栏选择行军、攻击、战法；点空地或本队取消选中",14,paper);
             if(u.march!=null)line(world.marches.describe(u),14,gold);

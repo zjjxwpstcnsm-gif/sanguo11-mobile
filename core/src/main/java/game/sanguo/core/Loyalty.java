@@ -45,6 +45,13 @@ public final class Loyalty {
         if(o==null||o.owner<0||protectedLoyalty(o))return 0;
         int lost=Math.min(o.loyalty,Math.max(0,amount));o.loyalty-=lost;return lost;
     }
+    /** Once per actual coronation, not per load. Unknown affinity gets the neutral minimum. */
+    void succession(int owner,World.Officer ruler){
+        for(World.Officer o:w.officers)if(o.owner==owner&&w.life.present(o.id)&&o.id!=ruler.id){
+            int gap=distance(o,ruler),loss=lose(o,5+Math.max(0,gap)/5);
+            if(loss>0)w.note(o.name+"因君主更替，忠诚−"+loss+"（相性差"+(gap<0?"未知":gap)+"）");
+        }
+    }
     /** Season boundary is calendar-based, including scenarios that start outside January. */
     void tick(){
         if(w.turn==0||w.turn%3!=0||(w.life.month()-1)%3!=0)return;
