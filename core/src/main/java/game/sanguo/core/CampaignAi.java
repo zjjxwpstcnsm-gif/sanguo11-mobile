@@ -277,6 +277,8 @@ public final class CampaignAi {
             if(score<=bestScore)continue;
             Army.Ship ship=c.ships[1]>0?Army.Ship.WARSHIP:c.ships[0]>0?Army.Ship.TOWER_SHIP:Army.Ship.BOAT;
             probe.ship=ship;
+            SiteFootprint.Deployment departure=SiteFootprint.deployment(w,c,probe);
+            if(!departure.valid())continue;departure.apply(probe);
             List<Hex> goals=new ArrayList<>();for(World.City target:cities())if(w.campaign.hostile(c.owner,target.owner)&&objectives.test(target))goals.add(target.hex);
             if(incoming(c)==0&&routes(probe,goals,1,true).isEmpty()&&objective(probe,objectives,-1)==null)continue;
             bestScore=score;best=new Deployment(c.id,leader.id,troops,troops*3,reserve,weapon,ship,deputies);
@@ -286,7 +288,8 @@ public final class CampaignAi {
     public boolean deploy(int city,int minimumReserve){return deploy(city,minimumReserve,c->true);}
     boolean deploy(int city,int minimumReserve,Predicate<World.City> objectives){
         Deployment d=deployment(city,minimumReserve,objectives);if(d==null)return false;
-        World.City source=w.city(city);World.Unit probe=new World.Unit(-1,source.owner,d.leader,d.weapon,source.hex,d.troops,d.food);probe.ship=d.ship;
+        World.City source=w.city(city);World.Unit probe=w.army.deploymentPreview(source,d.leader,d.deputies(),d.weapon,d.ship,d.troops,d.food,0);
+        if(probe==null)return false;
         World.City target=objective(probe,objectives,-1);boolean defense=incoming(source)>0;
         if(!defense&&target==null)return false;
         if(!defense&&Army.siegeWeapon(d.weapon)&&escorts(probe)<3000){

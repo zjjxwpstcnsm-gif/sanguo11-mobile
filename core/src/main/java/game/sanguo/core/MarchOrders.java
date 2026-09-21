@@ -75,18 +75,21 @@ public final class MarchOrders {
         Order o=null;
         if(tile!=null&&w.inside(tile)){
             World.City c=w.cityAt(tile);World.Unit other=w.unitAt(tile);War.Structure s=w.war.at(tile);Domestic.Facility f=w.domestic.at(tile);
-            Kind kind=other!=null&&other!=u?Kind.UNIT:c!=null?Kind.CITY:other!=null?Kind.UNIT:s!=null?Kind.STRUCTURE:f!=null?Kind.FACILITY:Kind.TILE;
+            Kind kind=c!=null?Kind.CITY:other!=null?Kind.UNIT:s!=null?Kind.STRUCTURE:f!=null?Kind.FACILITY:Kind.TILE;
             int id=kind==Kind.UNIT?other.id:c!=null?c.id:s!=null?s.id:f!=null?f.id:-1;
             int owner=kind==Kind.UNIT?other.owner:c!=null?c.owner:s!=null?s.owner:f!=null?w.city(f.cityId).owner:-1;
             Intent intent=kind==Kind.TILE?Intent.MOVE:u!=null&&owner==u.owner&&kind==Kind.CITY?Intent.GARRISON:
                 u!=null&&owner==u.owner&&kind==Kind.STRUCTURE&&!(u instanceof Domestic.Mission)?Intent.REPAIR:
                 u!=null&&w.campaign.hostile(u.owner,owner)&&!(u instanceof Domestic.Mission)?Intent.ATTACK:Intent.APPROACH;
-            o=new Order(kind,tile,id,owner,intent);
+            o=new Order(kind,kind==Kind.CITY?c.hex:tile,id,owner,intent);
         }
         return plan(u,o,true,false);
     }
     private Order convoyOrder(Domestic.Mission m){World.City c=w.city(m.targetCity);return c==null?null:new Order(Kind.CITY,c.hex,c.id,c.owner,Intent.GARRISON);}
     Plan convoyRoute(Domestic.Mission m){return plan(m,convoyOrder(m),false,false);}
+    Plan convoyRoute(Domestic.Mission m,int cityId){World.City c=w.city(cityId);
+        return plan(m,c==null?null:new Order(Kind.CITY,c.hex,c.id,c.owner,Intent.GARRISON),false,false);
+    }
     Plan convoyQueueRoute(Domestic.Mission m){return plan(m,convoyOrder(m),false,true);}
     public Plan current(World.Unit u){return plan(u,u==null?null:u.march,false,false);}
     public String tileError(World.Unit u,Hex tile){
@@ -171,7 +174,7 @@ public final class MarchOrders {
                     int total=s.cost+step;if(total<distance.getOrDefault(next,Integer.MAX_VALUE)){distance.put(next,total);previous.put(next,s.h);queue.add(new Step(next,total,Math.max(0,next.distance(destination)-radius)));}
                 }
             }
-            if(finish==null)problem=goals.isEmpty()?"当前兵种或适性不能攻击该目标（包括森林射击限制）":"没有可达路线：检查占格、火场、地形；上下河必须经过己方港口";
+            if(finish==null)problem=goals.isEmpty()?(effective(u,o)==Intent.GARRISON?"城市所有合法入口均被阻挡或不可通行":"当前兵种或适性不能攻击该目标（包括森林射击限制）"):"没有可达路线：检查占格、火场、地形；上下河必须经过己方港口";
             else{
                 LinkedList<Hex> route=new LinkedList<>();for(Hex h=finish;h!=null;h=previous.get(h))route.addFirst(h);path.addAll(route);
                 int available=w.orders.remaining(u),spent=0;boolean now=true;

@@ -114,10 +114,12 @@ public final class Army {
         int equipment=equipmentNeeded(weapon,troops);
         if(c.troops<troops||c.food<food||c.equipment[weapon.ordinal()]<equipment||ship!=Ship.BOAT&&c.ships[ship.ordinal()-1]<1)return w.fail("兵力、携粮、兵装或舰船库存不足");
         if(w.nextUnitId>=10000000)return w.fail("部队编号达到上限");
-        Hex exit=deploymentExit(c,weapon);
-        if(exit==null)return w.fail("城外没有可用出征格");
+        World.Unit u=new World.Unit(w.nextUnitId,w.active,commander,weapon,c.hex,troops,food);
+        u.gold=gold;u.ship=ship;u.deputies=deputies.clone();u.energy=c.morale;
+        SiteFootprint.Deployment departure=SiteFootprint.deployment(w,c,u);
+        if(!departure.valid())return w.fail(departure.error);
         w.spend(c,leader,0);c.troops-=troops;c.food-=food;c.equipment[weapon.ordinal()]-=equipment;if(ship!=Ship.BOAT)c.ships[ship.ordinal()-1]--;
-        World.Unit u=new World.Unit(w.nextUnitId++,w.active,commander,weapon,exit,troops,food);u.gold=gold;c.gold-=gold;u.ship=ship;u.deputies=deputies.clone();u.energy=c.morale;w.units.add(u);
+        departure.apply(u);w.nextUnitId++;c.gold-=gold;w.units.add(u);
         for(World.Officer o:members){w.strategy.releaseGovernor(o.id);o.acted=true;o.cityId=-1;o.unitId=u.id;}
         w.districts.deployed(city,u);
         return w.success(leader.name+"率"+troops+weapon.label+"出征 · 编队"+members.size()+"将 · 携"+ship.label);
@@ -128,10 +130,11 @@ public final class Army {
         return SiteFootprint.deploymentExit(w,c,weapon);
     }
     public World.Unit deploymentPreview(World.City c,int commander,int[] deputies,World.Weapon weapon,Ship ship,int troops,int food,int gold){
-        if(w.officer(commander)==null||deputies==null||ship==null)return null;
+        if(c==null||weapon==null||w.officer(commander)==null||deputies==null||ship==null)return null;
         for(int id:deputies)if(w.officer(id)==null)return null;
-        Hex exit=deploymentExit(c,weapon);if(exit==null)return null;
-        World.Unit u=new World.Unit(-1,c.owner,commander,weapon,exit,troops,food);u.gold=gold;u.deputies=deputies.clone();u.ship=ship;u.energy=c.morale;return u;
+        World.Unit u=new World.Unit(-1,c.owner,commander,weapon,c.hex,troops,food);u.gold=gold;u.deputies=deputies.clone();u.ship=ship;u.energy=c.morale;
+        SiteFootprint.Deployment departure=SiteFootprint.deployment(w,c,u);if(!departure.valid())return null;
+        departure.apply(u);return u;
     }
     private boolean completed(int city,Domestic.Kind kind){return w.domestic.facilities.stream().anyMatch(f->f.cityId==city&&f.kind==kind&&f.remaining==0);}
     public String productionError(int city,int officer,World.Weapon weapon,Ship ship){
