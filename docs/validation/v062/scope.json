@@ -68,7 +68,7 @@
     "still_unresolved": 14
   },
   "road": {
-    "status": "IMPLEMENTED_INSTALL_VALIDATION_PENDING",
+    "status": "DONE_INSTALLED_AND_PUBLISHED",
     "plain_visual": true,
     "rules_changed": false
   },
