@@ -1,0 +1,130 @@
+name: Corners61 exact v060 installed baseline
+on:
+  push:
+    branches: [agent/map-corners-boundary-v061]
+    paths: [.github/workflows/corners61-baseline.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 049652d45641ff247c964ec30f70f5cff5c629f3
+          fetch-depth: 0
+      - name: Export actual inherited main
+        run: |
+          mkdir -p out/source
+          git rev-parse HEAD > out/source/BASE_COMMIT
+          git archive --format=zip -o out/source/source.zip HEAD
+          sha256sum core/src/main/resources/maps/national-map-v056.properties > out/source/MAP_SHA256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: corners61-main-source
+          path: out/source
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Test-only full-area sampler against unchanged released APK
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release download v0.60.0-fec13cba0906 -R zjjxwpstcnsm-gif/sanguo11-mobile -p '*.apk' -D out
+          apk=$(find out -maxdepth 1 -name '*.apk')
+          echo "50b2ed1df0dd405e6cc14b907c1968a69e837aee08f3af5f41c7fe34df88b412  $apk" | sha256sum -c -
+          sha256sum "$apk" > out/BASELINE_APK_SHA256
+          cat > app/src/androidTest/java/game/sanguo/mobile/Corner61BaselineProbe.java <<'JAVA'
+          package game.sanguo.mobile;
+          import android.app.Instrumentation;
+          import game.sanguo.core.*;
+          import java.util.*;
+          import java.io.*;
+          final class Corner61BaselineProbe extends MapTap57Harness {
+            Corner61BaselineProbe(Instrumentation t){super(t);}
+            void run() throws Exception {
+              try {
+                for(String id:new String[]{"coalition-190","heroes-250","central-mobile-sandbox","jingxiang-mobile-sandbox"}) {
+                  launch(ScenarioCatalog.load(id,id.endsWith("sandbox")?0:5,610L));
+                  World w=world();require(w.mapRevision==60,"released v060 map");
+                  byte[] original=SaveCodec.encode(w);navigator(false);
+                  int[][] centers={{28,22},{169,167},{12,12},{36,12},{52,9},{26,26},{187,145},{185,174},{174,191},{157,178},{42,134},{47,134}};
+                  for(int n=0;n<centers.length;n++) {
+                    Hex h=MapCoordinates.fromNationalSource(w,new SourceGridCoord(centers[n][0],centers[n][1]));
+                    if(!w.sourceInside(h))continue;
+                    float zoom=n<2?.30f:n<10?.9f:3.4f;
+                    focus(h,zoom);navigator(false);record(h,screen(h));
+                    report.append("VIEWPORT "+id+" center="+centers[n][0]+","+centers[n][1]+" camera="+camera().centerX()+","+camera().centerY()+" scale="+camera().scale+" size="+map().getWidth()+","+map().getHeight()+"\n");
+                    shot("before-"+id+"-"+centers[n][0]+"-"+centers[n][1]+"-"+zoom);
+                    if(n<2){ui(()->map().setTerritoryMode(1));settle();shot("before-"+id+"-"+centers[n][0]+"-"+centers[n][1]+"-territory");ui(()->map().setTerritoryMode(0));settle();}
+                  }
+                  ui(()->{camera().fit();map().invalidate();});settle();shot("before-"+id+"-national-fit");
+                  require(Arrays.equals(original,SaveCodec.encode(w)),"screenshots leave all terrain and state unchanged");
+                  try(OutputStream o=new FileOutputStream(new File(dir(),"baseline-v060-"+id+".sg11"))){o.write(original);}
+                }
+              }finally{flush("corners61-baseline-checks.txt");}
+            }
+          }
+          JAVA
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('app/src/androidTest/java/game/sanguo/mobile/GameSmokeRunner.java');s=p.read_text()
+          a='if(mapTap57){new MapTap57Probe(this).run();'
+          assert a in s;s=s.replace(a,'if(mapTap57){new Corner61BaselineProbe(this).run();')
+          p.write_text(s)
+          PY
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          ./gradlew --no-daemon :app:assembleDebugAndroidTest | tee out/build.txt
+          git diff --name-only > out/TEST_ONLY_CHANGES
+          test "$(cat out/TEST_ONLY_CHANGES)" = app/src/androidTest/java/game/sanguo/mobile/GameSmokeRunner.java
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install original v060 and capture actual full corner views
+        id: installed
+        continue-on-error: true
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          script: |
+            adb shell wm size 1080x2340
+            adb shell wm density 420
+            adb install -r $(find out -maxdepth 1 -name '*.apk')
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb logcat -b all -c
+            timeout 650 adb shell am instrument -w -e mapTap57 true game.sanguo.mobile.dev.test/game.sanguo.mobile.GameSmokeRunner > out/instrumentation.txt
+            adb logcat -b all -d -v threadtime > out/logcat.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke out/android
+            grep -q 'MAP57 ANDROID PASS:' out/instrumentation.txt
+            if grep -q 'FATAL EXCEPTION' out/logcat.txt; then exit 1; fi
+      - name: Record actual result
+        if: always()
+        run: |
+          echo '${{ steps.installed.outcome }}' > out/BASELINE_INSTALLED_STATUS
+          rm -f out/*.apk
+          rm -rf out/source
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: corners61-v060-baseline
+          path: out
+          retention-days: 14
+      - name: Require installed baseline
+        if: always()
+        run: test '${{ steps.installed.outcome }}' = success
