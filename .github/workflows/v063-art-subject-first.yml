@@ -1,0 +1,97 @@
+name: V063 subject-first real sprite and texture generation
+on:
+  push:
+    branches: [agent/generated-art-city-movement-ports-v063]
+    paths: [.github/workflows/v063-art-subject-first.yml]
+permissions:
+  contents: read
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install Pillow==11.3.0
+      - name: Write actual API generator with subject-first short prompts
+        run: |
+          mkdir -p out/mothers
+          cat > out/generate.py <<'PY'
+          import os,sys,json,io,time,hashlib,urllib.request,urllib.parse,datetime
+          from pathlib import Path
+          from PIL import Image
+          out=Path('out/mothers')
+          style=' Isolated on pure white. Orthographic oblique overhead view at 35 degrees, fine realistic weathered masonry, grey tile and timber, low saturation, diffuse upper-left light.'
+          prompts={
+           'standard':'Entire ancient Chinese walled town with MANY TINY HOUSES inside four complete perimeter walls. Narrow lanes, small courtyards, low grey tile roofs, one modest main gate. Compact wide diamond plan.'+style,
+           'sand-fine':'Seamless material texture of flat pale beige fine sand. Uniform tiny grains fill the whole image edge to edge. Flat top-down surface scan, diffuse even illumination, very low contrast, subtly irregular grain detail.',
+           'port-se':'Ancient Chinese timber river dock: two small low tiled warehouses behind three long slender wooden piers extending toward the lower right. Thin wooden pilings and flat planks. Empty white between the piers.'+style,
+           'gate-ns':'Ancient Chinese fortified pass gate: ONE arched gateway below a small tiled gatehouse, short stone wall wings to either side. Passage runs diagonally from lower left to upper right.'+style,
+           'luoyang':'Entire ancient Chinese imperial CITY with MANY TINY HOUSES and a SMALL inner palace enclosure in the northern third. Symmetric axial lanes and three small courtyards, broad low outer city walls, two front gates. Wide diamond footprint.'+style,
+           'changan':'Entire ancient Chinese imperial CITY containing MANY TINY HOUSES and a SMALL palace enclosure on the WEST side. Asymmetric outer city walls, two parallel avenues and dense eastern residential wards. Wide diamond footprint.'+style,
+           'large':'Entire ancient Chinese walled CITY of FORTY SMALL GREY TILED HOUSES. Dense rectangular residential wards, tiny central market square, complete low perimeter walls and modest gate towers. Wide diamond footprint.'+style,
+           'mountain':'Entire compact Chinese frontier CITY inside an irregular polygon of dark stone walls. MANY SMALL tightly packed grey-roofed houses and stepped tiny courtyards, modest fortified gates. Compact diamond footprint on level ground.'+style,
+           'river':'Entire Chinese river-region CITY inside complete low stone walls. MANY SMALL pale plaster houses with grey roofs, low warehouses, little courtyards, a broad internal market street and a wide front gate. Compact diamond footprint.'+style,
+           'southern':'Entire Jiangnan Chinese walled TOWN with MANY SMALL white plaster courtyard houses and dark grey tiled roofs. Small internal gardens, irregular lanes, low stone perimeter walls and modest timber gatehouses. Wide diamond footprint.'+style,
+           'sand-gravel':'Seamless flat pale beige sandy soil material texture with evenly scattered tiny tan and grey gravel grains. Very fine rough-grained ground detail, low contrast, uniform flat top-down surface scan with diffuse even lighting, edge-to-edge texture.',
+           'sand-grass':'Seamless flat pale beige sandy soil texture with a FEW TINY faded dry grass strands, very sparse and spread evenly. Mostly bare fine sand. Flat top-down scan, evenly lit edge-to-edge low-contrast ground material.',
+           'sand-ripples':'Seamless material texture of flat pale beige fine sand with FAINT SHALLOW horizontal micro-ripples. Subtle closely spaced grain patterns, very low contrast, even diffuse lighting, flat overhead surface scan filling the whole image.',
+           'port-n':'Ancient Chinese timber river dock: two small low tiled warehouses in FRONT of three long slender wooden piers extending toward the TOP of the image. Thin wooden pilings and flat planks. Empty white between piers.'+style,
+           'port-ne':'Ancient Chinese timber river dock: two small low tiled warehouses behind three long slender wooden piers extending toward the UPPER RIGHT. Thin wooden pilings and flat planks. Empty white between the piers.'+style,
+           'port-s':'Ancient Chinese timber river dock: two small low tiled warehouses BEHIND three long slender wooden piers extending toward the BOTTOM of the image. Thin wooden pilings and flat planks. Empty white between the piers.'+style,
+           'port-sw':'Ancient Chinese timber river dock: two small low tiled warehouses behind three long slender wooden piers extending toward the LOWER LEFT. Thin wooden pilings and flat planks. Empty white between the piers.'+style,
+           'port-nw':'Ancient Chinese timber river dock: two small low tiled warehouses in front of three long slender wooden piers extending toward the UPPER LEFT. Thin wooden pilings and flat planks. Empty white between the piers.'+style,
+           'gate-ew':'Ancient Chinese fortified pass gate: ONE arched gateway below a small tiled gatehouse, short stone wall wings to either side. Passage runs diagonally from lower right to upper left.'+style,
+           'gate-wide':'Ancient Chinese fortified pass gate: ONE arched gateway below a small grey-tiled gatehouse, short stone wall wings to either side. Passage runs from the BOTTOM toward the TOP of the image.'+style
+          }
+          (out/'prompts.json').write_text(json.dumps(prompts,ensure_ascii=False,indent=2)+'\n')
+          log=out/'generation-record.json';records=json.loads(log.read_text()) if log.exists() else []
+          for key in sys.argv[1:]:
+            i=list(prompts).index(key);prompt=prompts[key]
+            negative='text, watermark, logo, border, frame, grid, lettering, UI, people'
+            negative+=', horizon, footprints, deep cracks, dunes, holes, objects, mountains' if key.startswith('sand-') else ', landscape, terrain platform, island, floating base, giant pagoda, mountains, water background'
+            params={'width':1024,'height':1024,'model':'sana','seed':630201+i,'nologo':'true','enhance':'false','negative_prompt':negative}
+            url='https://image.pollinations.ai/prompt/'+urllib.parse.quote(prompt,safe='')+'?'+urllib.parse.urlencode(params)
+            record={'key':key,'generation':'NEW_V063_SUBJECT_FIRST','provider':'Pollinations legacy API','model_requested':'sana','model_actual':'not reported by response','prompt':prompt,'parameters':params,'requested_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':'REQUESTED'}
+            records=[r for r in records if r['key']!=key];records.append(record)
+            for attempt in range(2):
+              try:
+                with urllib.request.urlopen(urllib.request.Request(url,headers={'User-Agent':'sanguo11-mobile-art-pipeline/0.63','Accept':'image/*'}),timeout=180) as response:
+                  raw=response.read();record.update(http_status=response.status,content_type=response.headers.get('content-type'))
+                image=Image.open(io.BytesIO(raw));image.load();assert image.width>=512 and image.width==image.height
+                file=key+('.png' if image.format=='PNG' else '.jpg');(out/file).write_bytes(raw)
+                record.update(status='FILE_OBTAINED_VISUAL_REVIEW_REQUIRED',file=file,dimensions=list(image.size),sha256=hashlib.sha256(raw).hexdigest(),bytes=len(raw));break
+              except Exception as e:
+                record.update(status='BLOCKER',error=type(e).__name__+': '+str(e));time.sleep(15)
+            log.write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n');print(key,record['status'],record.get('sha256',''),flush=True);time.sleep(4)
+          assert all(r['status']=='FILE_OBTAINED_VISUAL_REVIEW_REQUIRED' for r in records)
+          PY
+      - name: Generate the first city and sand pair
+        timeout-minutes: 8
+        run: python3 out/generate.py standard sand-fine
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v063-subject-first-representative-pair
+          path: out/
+          retention-days: 14
+      - name: Generate purpose-built port and pass-gate representatives
+        timeout-minutes: 8
+        run: python3 out/generate.py port-se gate-ns
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v063-subject-first-four-types
+          path: out/
+          retention-days: 14
+      - name: Generate remaining city layouts, sand variants and fixed-camera directions
+        timeout-minutes: 25
+        run: python3 out/generate.py luoyang changan large mountain river southern sand-gravel sand-grass sand-ripples port-n port-ne port-s port-sw port-nw gate-ew gate-wide
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v063-subject-first-all-actual-mothers
+          path: out/
+          retention-days: 14
