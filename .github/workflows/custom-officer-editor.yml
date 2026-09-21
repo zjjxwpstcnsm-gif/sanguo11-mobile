@@ -4,6 +4,7 @@ on:
     branches: [agent/custom-officer-editor-20260922-b7e4]
     paths:
       - .github/workflows/custom-officer-editor.yml
+      - .ci/officer-apply.ready
       - tools/integrate-custom-officers.py
   workflow_dispatch:
 permissions:
@@ -15,31 +16,61 @@ jobs:
   verify:
     if: github.ref == 'refs/heads/agent/custom-officer-editor-20260922-b7e4'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
           fetch-depth: 1
-      - name: Guarded shared entry integration and non-forced branch push
+      - name: Apply bounded officer-only patch and push isolated branch
         shell: bash
         run: |
           set -euo pipefail
-          python3 tools/integrate-custom-officers.py
+          mkdir -p out/custom-officers
+          if test -f .ci/officer-apply.ready; then cp .ci/officer-* out/custom-officers/; fi
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64, gzip, hashlib, json, subprocess
+          ready=Path('.ci/officer-apply.ready')
+          if ready.exists():
+              meta=json.loads(ready.read_text())
+              assert 0 < meta['chunks'] <= 12
+              parts=[Path(f'.ci/officer-changes.{i:02}.b64') for i in range(meta['chunks'])]
+              encoded=''.join(p.read_text().strip() for p in parts)
+              assert len(encoded) < 1000000
+              patch=gzip.decompress(base64.b64decode(encoded,validate=True))
+              assert len(patch) < 2000000 and hashlib.sha256(patch).hexdigest()==meta['sha256']
+              allowed=meta['paths']
+              assert all(not p.startswith('/') and '..' not in p.split('/') and (p.startswith(('app/src/','core/src/','scripts/','docs/')) or p=='tools/integrate-custom-officers.py') for p in allowed)
+              target=Path('/tmp/officer-change.patch');target.write_bytes(patch)
+              subprocess.run(['git','apply','--check',str(target)],check=True)
+              subprocess.run(['git','apply',str(target)],check=True)
+              changed=subprocess.check_output(['git','diff','--name-only']).decode().splitlines()
+              assert set(changed)<=set(allowed)
+              subprocess.run(['git','add','--',*allowed],check=True)
+              subprocess.run(['git','rm','--',str(ready),*[str(p) for p in parts]],check=True)
+          else:
+              subprocess.run(['python3','tools/integrate-custom-officers.py'],check=True)
+              subprocess.run(['git','add','app/src/main/java/game/sanguo/mobile/MainActivity.java','app/src/main/java/game/sanguo/mobile/EditorUi.java'],check=True)
+          PY
           git config user.name 'Officer editor integration'
           git config user.email 'officer-editor@users.noreply.github.com'
-          git add app/src/main/java/game/sanguo/mobile/MainActivity.java app/src/main/java/game/sanguo/mobile/EditorUi.java
           if ! git diff --cached --quiet; then
-            git commit -m 'feat(officers): wire persistent officer editor into start screen and PK menu'
+            git commit -m 'feat(officers): compose reusable editor, portraits, packages, placement and self-contained saves'
             git push origin HEAD:refs/heads/agent/custom-officer-editor-20260922-b7e4
           fi
-          mkdir -p out/custom-officers
           git rev-parse HEAD | tee out/custom-officers/SOURCE_COMMIT.txt
           git archive --format=zip -o out/custom-officers/source.zip HEAD
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
+      - name: Core production command regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          if test -f scripts/test-custom-officers.sh; then bash scripts/test-custom-officers.sh 2>&1 | tee out/custom-officers/core-tests.txt; fi
+          bash scripts/test-v066.sh 2>&1 | tee out/custom-officers/governance-regression.txt
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.11.1'
@@ -47,14 +78,32 @@ jobs:
         with:
           packages: ''
           log-accepted-android-sdk-licenses: false
-      - name: Build production APK from pushed revision
+      - name: Build production APK and instrumentation from exact pushed source
         shell: bash
         run: |
           set -euo pipefail
           sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
-          gradle --no-daemon :app:assembleDebug 2>&1 | tee out/custom-officers/build.txt
+          cp "$ANDROID_HOME/platforms/android-35/android.jar" out/custom-officers/android-35.jar
+          gradle --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest 2>&1 | tee out/custom-officers/build.txt
           cp app/build/outputs/apk/debug/app-debug.apk out/custom-officers/sanguo11-custom-officers.apk
           sha256sum out/custom-officers/sanguo11-custom-officers.apk > out/custom-officers/APK_SHA256.txt
+      - name: Enable Android virtualization
+        if: hashFiles('scripts/verify-custom-officers-android.sh') != ''
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Installed Android editor, document handlers, gameplay and process restart
+        if: hashFiles('scripts/verify-custom-officers-android.sh') != ''
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          target: default
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-custom-officers-android.sh
       - uses: actions/upload-artifact@v4
         if: always()
         with:
