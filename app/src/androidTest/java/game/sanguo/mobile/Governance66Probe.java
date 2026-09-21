@@ -53,7 +53,7 @@ final class Governance66Probe {
     }
     private void nation()throws Exception{
         World w=new World(70,35,"甲势力","乙势力");for(int n=0;n<25;n++)w.cities.add(new World.City(n,"城"+n,new Hex(3+(n%10)*6,3+(n/10)*10),n<24?0:1));
-        w.officers.add(new World.Officer(0,"开国君主",0,0,90,90,90,90,90));w.officers.add(new World.Officer(1,"敌君主",1,24,80,80,80,80,80));w.strategy.initializeOffices();install(w);
+        w.officers.add(new World.Officer(0,"开国君主",0,0,90,90,90,90,90));w.officers.add(new World.Officer(1,"敌君主",1,24,80,80,80,80,80));call(w.strategy,"initializeOffices",new Class<?>[0]);install(w);
         AlertDialog[] dossier={null};ui(()->dossier[0]=new RealmUi(activity,w,(ClientState)field(activity,"ui")).factionDetail(0,null));settle();click("设定国号",true);settle();
         AccessibilityNodeInfo input=find(test.getUiAutomation().getRootInActiveWindow(),"皇帝国号");require(input!=null,"emperor has an actual editable nation field");
         Bundle args=new Bundle();args.putCharSequence(AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE,"大汉");require(input.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT,args),"nation field accepts input");
