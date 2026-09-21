@@ -1,0 +1,101 @@
+# Audited production enum references; checked by scripts/test-custom-officers.sh.
+san11.feijiang	AbilityResearch, AdvancedBattle, CampaignAi, CombatRules
+san11.dunzou	AbilityResearch, AdvancedBattle
+san11.qiangxing	Skills, AbilityResearch
+san11.changqu	Skills, AbilityResearch
+san11.tuijin	AdvancedBattle
+san11.caoduo	Skills
+san11.tapo	Fieldworks, AbilityResearch, CampaignAi, CombatRules
+san11.yunban	War, AbilityResearch, Domestic
+san11.jiedu	WorldEvents, Fieldworks, CampaignAi
+san11.saotao	CombatEffects, AbilityResearch, EnergyRules
+san11.weifeng	CombatEffects, EnergyRules, CampaignAi
+san11.angyang	CombatEffects, EnergyRules
+san11.lianzhan	War, AbilityResearch, AdvancedBattle, CampaignAi
+san11.jixi	Skills, War
+san11.qiangxi	Skills, War
+san11.luanzhan	AbilityResearch, CombatRules
+san11.gongcheng	AbilityResearch, CampaignAi, CombatRules
+san11.jijiao	AbilityResearch, AdvancedBattle, CampaignAi
+san11.bofu	Government, AbilityResearch, CampaignAi
+san11.jingmiao	Army, War
+san11.qiangduo	Treasures
+san11.xingong	CombatEffects, AbilityResearch, CampaignAi
+san11.quzhu	CombatRules
+san11.shecheng	War, AbilityResearch, CampaignAi
+san11.baima	Army, CampaignAi, CombatRules
+san11.fuzuo	Relations, AbilityResearch
+san11.qiangjiang	CampaignAi, CombatRules
+san11.jijiang	CampaignAi, CombatRules
+san11.gongjiang	CampaignAi, CombatRules
+san11.qijiang	CampaignAi, CombatRules
+san11.shuijiang	CampaignAi, CombatRules
+san11.yongjiang	AbilityResearch, CampaignAi, CombatRules
+san11.shenjiang	AbilityResearch, CampaignAi, CombatRules
+san11.doushen	AbilityResearch, CampaignAi, CombatRules
+san11.qiangshen	AbilityResearch, CampaignAi, CombatRules
+san11.jishen	AbilityResearch, CampaignAi, CombatRules
+san11.gongshen	War, AbilityResearch, CampaignAi, CombatRules
+san11.qishen	AbilityResearch, CampaignAi, CombatRules
+san11.gongshen_siege	AbilityResearch, CampaignAi, CombatRules
+san11.shuishen	AbilityResearch, CampaignAi, CombatRules
+san11.bawang	AbilityResearch, CampaignAi, CombatRules
+san11.jichi	Skills, AbilityResearch, CampaignAi
+san11.sheshou	Army, War, CampaignAi
+san11.mengzhe	Skills, AbilityResearch, CampaignAi
+san11.buqu	Skills, AbilityResearch
+san11.jingang	Skills, AbilityResearch
+san11.tiebi	AbilityResearch, AdvancedBattle, CampaignAi
+san11.nufa	CombatEffects, EnergyRules
+san11.tengjia	AbilityResearch, CombatRules
+san11.qiangyun	WorldEvents, Skills, Contests, Government, AbilityResearch, CampaignAi
+san11.xuelu	Contests, Government, AbilityResearch, CampaignAi
+san11.huwei	Skills, AbilityResearch, CampaignAi, CombatRules
+san11.daifu	Skills, AbilityResearch
+san11.huogong	Skills
+san11.yandu	Skills, CampaignAi
+san11.jilue	Skills, CampaignAi
+san11.guiji	Skills, CampaignAi
+san11.xushi	Skills, AbilityResearch, CampaignAi
+san11.miaoji	Skills
+san11.miji	Skills
+san11.kanpo	Skills, AbilityResearch, CampaignAi
+san11.dongcha	Skills, Fieldworks, AbilityResearch, CampaignAi
+san11.huoshen	Army, Skills, Fieldworks, AbilityResearch, CampaignAi, CombatRules
+san11.shensuan	Skills, AbilityResearch, CampaignAi
+san11.baichu	Skills, AbilityResearch, CampaignAi
+san11.guimou	Skills, AbilityResearch, CampaignAi
+san11.lianhuan	War, AbilityResearch, CampaignAi
+san11.shenmou	Skills, AbilityResearch, CampaignAi
+san11.fanji	War, AbilityResearch, AdvancedBattle, CampaignAi
+san11.qingguo	Skills
+san11.yaoshu	AdvancedBattle, CampaignAi
+san11.guimen	AbilityResearch, AdvancedBattle, CampaignAi
+san11.guilv	Skills
+san11.chenzhuo	Skills
+san11.mingjing	Skills, AbilityResearch, CampaignAi
+san11.zouyue	AbilityResearch, EnergyRules
+san11.shixiang	EnergyRules
+san11.zhucheng	Fieldworks, AbilityResearch
+san11.tuntian	AbilityResearch, World
+san11.mingsheng	AbilityResearch, Strategy
+san11.nengli	Skills, AbilityResearch
+san11.fanzhi	Skills, AbilityResearch
+san11.faming	Skills, AbilityResearch
+san11.zaochuan	Skills, AbilityResearch
+san11.zhidao	Skills, AbilityResearch
+san11.yanli	AbilityResearch, Strategy
+san11.lunke	ContestSave, Campaign, AbilityResearch
+san11.fuhao	Domestic
+san11.midao	AbilityResearch, DistrictManagement, Domestic
+san11.zhengshui	AbilityResearch, DistrictManagement, Domestic
+san11.zhengshou	AbilityResearch, Domestic
+san11.qinwu	WorldEvents
+san11.qinqiang	WorldEvents
+san11.qinyue	WorldEvents
+san11.qinman	WorldEvents
+san11.weiya	WorldEvents, AbilityResearch
+san11.renzheng	AbilityResearch, Loyalty, Strategy
+san11.fengshui	WorldEvents, AbilityResearch
+san11.qiyuan	WorldEvents, AbilityResearch
+san11.neizhu	Relations

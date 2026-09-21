@@ -20,7 +20,7 @@ final class EditorUi {
     }
     void menu(){
         if(w.contests.busy()){info("PK编辑","请先完成当前对局");return;}
-        new AlertDialog.Builder(a).setTitle("PK编辑 / 新武将").setItems(new String[]{"编辑武将","编辑据点","编辑势力","编辑部队","编辑人物关系","配置宝物","制作新武将模板","已保存新武将","导入新武将模板","导出新武将模板","武将自定义 · 新战局模板库"},(d,n)->{
+        new AlertDialog.Builder(a).setTitle("PK编辑 / 新武将").setItems(new String[]{"编辑武将","编辑据点","编辑势力","编辑部队","编辑人物关系","配置宝物","制作新武将模板","已保存新武将","导入新武将模板","导出新武将模板"},(d,n)->{
             switch(n){
                 case 0:choose("选择编辑武将",w.officers,o->o.name+" · "+w.faction(o.owner),this::officer);break;
                 case 1:choose("选择编辑据点",w.cities,c->c.name,this::city);break;
@@ -29,7 +29,6 @@ final class EditorUi {
                 case 4:relation();break;case 5:treasure();break;
                 case 6:templateForm();break;case 7:templates(false);break;
                 case 8:a.importOfficerTemplate();break;case 9:templates(true);break;
-                case 10:a.startActivity(new android.content.Intent(a,CustomOfficerActivity.class));break;
             }
         }).setNegativeButton("返回",null).show();
     }
@@ -90,15 +89,14 @@ final class EditorUi {
     private void templateForm(){PersonForm p=new PersonForm(new Editor.Template("新武将",new int[]{70,70,70,70,70},new int[]{1,1,1,1,1,1},World.Sex.MALE,"none",Debate.Temper.CALM,0),true);
         p.f.show("制作新武将模板","保存模板",()->{Editor.Template t=p.read("");try{store(a,t);info("模板已保存",t.name+"已加入新武将列表；可用于当前或之后的新游戏。");}catch(IOException e){info("保存失败",e.getMessage());}});}
     static void store(Activity a,Editor.Template t)throws IOException{
-        byte[] bytes=OfficerTemplateCodec.encode(t);File dir=new File(a.getFilesDir(),"officer-templates");if(!dir.exists()&&!dir.mkdirs())throw new IOException("无法创建模板目录");
-        try{byte[] hash=MessageDigest.getInstance("SHA-256").digest(bytes);StringBuilder id=new StringBuilder();for(byte b:hash)id.append(String.format(Locale.ROOT,"%02x",b&255));File path=new File(dir,id+".sgof");
-            if(path.exists())return;String[] files=dir.list();if(files!=null&&files.length>=150)throw new IOException("最多保存150份模板");
-            android.util.AtomicFile file=new android.util.AtomicFile(path);FileOutputStream out=null;try{out=file.startWrite();out.write(bytes);file.finishWrite(out);}catch(IOException e){if(out!=null)file.failWrite(out);throw e;}
-        }catch(NoSuchAlgorithmException e){throw new IOException(e);}
+        try{CustomOfficerLibrary library=new CustomOfficerLibrary(a);byte[] bytes=OfficerTemplateCodec.encode(t);
+            for(org.json.JSONObject o:library.entries())if(Arrays.equals(bytes,OfficerTemplateCodec.encode(CustomOfficerLibrary.template(o))))return;
+            library.save(CustomOfficerLibrary.definition(t));
+        }catch(org.json.JSONException|IllegalArgumentException e){throw new IOException("模板保存失败："+e.getMessage(),e);}
     }
-    private void templates(boolean export){List<Editor.Template> list=new ArrayList<>();File[] files=new File(a.getFilesDir(),"officer-templates").listFiles((d,n)->n.endsWith(".sgof"));
-        try{if(files!=null){Arrays.sort(files,Comparator.comparing(File::getName));for(File f:files)try(InputStream in=new FileInputStream(f)){list.add(OfficerTemplateCodec.read(in));}}}
-        catch(IOException e){info("模板读取失败",e.getMessage());return;}
+    private void templates(boolean export){List<Editor.Template> list=new ArrayList<>();
+        try{for(org.json.JSONObject o:new CustomOfficerLibrary(a).entries())list.add(CustomOfficerLibrary.template(o));}
+        catch(IOException|org.json.JSONException e){info("模板读取失败",e.getMessage());return;}
         choose(export?"导出新武将模板":"选择已保存新武将",list,t->t.name,t->{if(export)a.exportOfficerTemplate(t);else choose("新武将登场据点",w.cities,c->c.name,c->{
             List<Integer> owners=new ArrayList<>();if(c.owner>=0)owners.add(c.owner);owners.add(-1);
             choose("新武将身份",owners,o->o<0?"在野武将":w.faction(o),o->preview(w.editor.createOfficer(t,c.id,o)));

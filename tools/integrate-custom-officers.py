@@ -19,14 +19,3 @@ replace_once(
     '        root.addView(button("新建游戏 · 选择剧本",v->scenarioPicker()));\n'
     '        root.addView(button("武将自定义 · 模板与投放",v->startActivity(new Intent(this,CustomOfficerActivity.class))));',
 )
-replace_once(
-    "app/src/main/java/game/sanguo/mobile/EditorUi.java",
-    '"导入新武将模板","导出新武将模板"}',
-    '"导入新武将模板","导出新武将模板","武将自定义 · 新战局模板库"}',
-)
-replace_once(
-    "app/src/main/java/game/sanguo/mobile/EditorUi.java",
-    '                case 8:a.importOfficerTemplate();break;case 9:templates(true);break;',
-    '                case 8:a.importOfficerTemplate();break;case 9:templates(true);break;\n'
-    '                case 10:a.startActivity(new android.content.Intent(a,CustomOfficerActivity.class));break;',
-)

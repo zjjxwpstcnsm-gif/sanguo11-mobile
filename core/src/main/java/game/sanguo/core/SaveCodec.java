@@ -66,7 +66,7 @@ public final class SaveCodec {
         w.marches.writeIntents(d);
         w.loyalty.write(d);w.recruitment.writeField(d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
-        w.reports.write(d);w.governance.write(d);
+        w.reports.write(d);w.governance.write(d);w.extensions.write(d);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
         CRC32 crc=new CRC32();crc.update(payload);
@@ -148,6 +148,7 @@ public final class SaveCodec {
         count=bounded(d.readInt(),0,40);for(int i=0;i<count;i++)w.log.add(d.readUTF());
         if(version>=29)w.reports.read(d);else w.reports.rebase();
         if(version>=32)w.governance.read(d);
+        w.extensions.read(d);
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         w.districts.migrateLegacySites();
         validate(w);if(version<32)w.governance.reconcile(false);return w;
@@ -157,6 +158,7 @@ public final class SaveCodec {
     private static int bounded(int n,int min,int max)throws IOException { if(n<min||n>max)throw new IOException("存档字段越界");return n; }
     private static void require(boolean ok,String message)throws IOException { if(!ok)throw new IOException(message); }
     public static void validate(World w)throws IOException {
+        CustomOfficers.validateSnapshot(w);
         w.invalidateSiteIndex();SiteFootprint.validate(w);
         w.aiOrders.validate();
         w.development.validate();w.recruitment.validate();w.envoys.validate();

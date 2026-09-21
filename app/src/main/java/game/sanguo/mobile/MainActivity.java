@@ -864,6 +864,7 @@ public final class MainActivity extends Activity {
         action("生卒与继承",v->new LifecycleUi(this,world,this::apply).menu());
         action("天下总览 · 势力 / 部队 / 钱粮 / 技巧树",v->openRealmPage("factions",-1));
         action("军团与天下",v->new WorldUi(this,world,this::apply).menu());
+        action("武将自定义 · 新战局模板与投放",v->startActivity(new Intent(this,CustomOfficerActivity.class)));
         action("PK编辑 / 新武将",v->new EditorUi(this,world,this::apply).menu());
         if(world.editor.edited())line("当前局面已使用PK编辑",13,muted);
         if(world.life.pending())action("继续君主继承",v->{ui.page="map";refresh();});
@@ -912,9 +913,9 @@ public final class MainActivity extends Activity {
     private void startScenario(String id,int player){
         java.util.concurrent.atomic.AtomicBoolean canceled=new java.util.concurrent.atomic.AtomicBoolean();
         AlertDialog loading=new AlertDialog.Builder(this).setMessage("正在建立新局…").setNegativeButton("取消",(d,n)->canceled.set(true)).create();loading.setOnCancelListener(d->canceled.set(true));loading.show();
-        new Thread(()->{try{World next=ScenarioCatalog.load(id,player,System.nanoTime());runOnUiThread(()->{
+        new Thread(()->{try{World next=CustomOfficerSetup.apply(this,ScenarioCatalog.load(id,player,System.nanoTime()));runOnUiThread(()->{
             if(isFinishing()||isDestroyed()||canceled.get())return;loading.dismiss();if(!activateWorld(next))return;selectAndFocus(world.home().hex);closePanel();save("auto",false);
-        });}catch(IOException e){runOnUiThread(()->{if(!isFinishing()&&!isDestroyed()&&!canceled.get()){loading.dismiss();showError("无法开始剧本");}});}},"scenario-start").start();
+        });}catch(IOException e){runOnUiThread(()->{if(!isFinishing()&&!isDestroyed()&&!canceled.get()){loading.dismiss();showError("无法开始剧本："+e.getMessage());}});}},"scenario-start").start();
     }
     private String slotName(int index){return index==0?"manual":"manual"+(index+1);}
     private boolean present(AtomicFile f){return f.getBaseFile().exists()||new File(f.getBaseFile()+".bak").exists();}

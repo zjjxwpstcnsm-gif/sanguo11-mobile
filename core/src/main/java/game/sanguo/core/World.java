@@ -114,6 +114,7 @@ public final class World {
     public final List<Officer> officers=new OfficerRoster();
     public final List<Unit> units=new ArrayList<>();
     public final List<String> log=new ArrayList<>();
+    public final SaveExtensions extensions=new SaveExtensions();
     public final BattleReports reports=new BattleReports(this);
     public final Lifecycle life=new Lifecycle(this);
     public final Domestic domestic=new Domestic(this);

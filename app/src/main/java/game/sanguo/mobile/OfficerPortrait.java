@@ -10,10 +10,19 @@ import java.io.*;
 final class OfficerPortrait extends Drawable {
     private static final Bitmap[] atlases=new Bitmap[2];private static boolean loaded;
     private final World.Officer officer;private final int age,index,variant;
+    private final Bitmap customImage;
     private final Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG);
     private final Path path=new Path();private final Rect source=new Rect();private final RectF area=new RectF();
     OfficerPortrait(Context context,World w,World.Officer officer){
-        this.officer=officer;age=w.life.age(officer.id);index=PortraitCatalog.index(officer.name);variant=PortraitCatalog.variant(officer.id,officer.name);
+        this(context,w,officer,CustomOfficers.portrait(w,officer.id));
+    }
+    private OfficerPortrait(Context context,World w,World.Officer officer,CustomOfficers.Portrait portrait){
+        this(context,w,officer,portrait==null?"":portrait.ref,portrait==null?new byte[0]:portrait.png);
+    }
+    OfficerPortrait(Context context,World w,World.Officer officer,String ref,byte[] png){
+        this.officer=officer;age=w.life.age(officer.id);int selected=PortraitCatalog.index(officer.name);
+        if(ref.startsWith("builtin:"))try{int n=Integer.parseInt(ref.substring(8));if(n>=0&&n<PortraitCatalog.NAMES.length)selected=n;}catch(NumberFormatException ignored){}
+        index=selected;variant=PortraitCatalog.variant(officer.id,officer.name);customImage=ref.endsWith(".png")?CustomOfficerImages.bitmap(ref,png):null;
         if(!loaded){loaded=true;String[] files={"portraits/officers.png","portraits/officers-v040.png"};
             for(int i=0;i<files.length;i++)try(InputStream input=context.getAssets().open(files[i])){
                 atlases[i]=BitmapFactory.decodeStream(input);
@@ -26,7 +35,8 @@ final class OfficerPortrait extends Drawable {
     @Override public void draw(Canvas c){
         area.set(getBounds());c.save();path.reset();path.addRoundRect(area,area.width()*.1f,area.width()*.1f,Path.Direction.CW);c.clipPath(path);
         Bitmap atlas=index>=0?atlases[index/16]:null;
-        if(atlas!=null){int col=index%4,row=(index%16)/4;source.set(col*atlas.getWidth()/4,row*atlas.getHeight()/4,(col+1)*atlas.getWidth()/4,(row+1)*atlas.getHeight()/4);fill(Color.WHITE);c.drawBitmap(atlas,source,area,paint);}
+        if(customImage!=null){fill(Color.WHITE);c.drawBitmap(customImage,null,area,paint);}
+        else if(atlas!=null){int col=index%4,row=(index%16)/4;source.set(col*atlas.getWidth()/4,row*atlas.getHeight()/4,(col+1)*atlas.getWidth()/4,(row+1)*atlas.getHeight()/4);fill(Color.WHITE);c.drawBitmap(atlas,source,area,paint);}
         else {c.translate(area.left,area.top);c.scale(area.width()/100,area.height()/100);fallback(c);}
         c.restore();fill(0xffc9ae73);paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(Math.max(1,area.width()/70));c.drawRoundRect(area,area.width()*.1f,area.width()*.1f,paint);paint.setStyle(Paint.Style.FILL);
     }
