@@ -262,7 +262,7 @@ public final class World {
         return army.deploy(cityId,officerId,new int[0],weapon,Army.Ship.BOAT,troops,troops*2);
     }
     public int cost(Hex h,Weapon weapon) {
-        if(h==null||weapon==null||!inside(h)||events.at(h)!=null)return -1;
+        if(h==null||weapon==null||!inside(h)||events.at(h)!=null||NationalMap.restricted(this,h))return -1;
         Terrain t=terrain[h.q][h.r];
         if(t==Terrain.MOUNTAIN||t==Terrain.WATER||t==Terrain.SEA||t==Terrain.NON_NAVIGABLE_WATER||t==Terrain.VOID)return -1;
         if(t==Terrain.SWAMP)return weapon==Weapon.CAVALRY||Army.siegeWeapon(weapon)?4:2;
@@ -344,7 +344,7 @@ public final class World {
         if (c == null || c.owner != u.owner || SiteFootprint.distance(c,u.hex) > 1) {
             return fail("请选择相邻己方城市、关卡或港口");
         }
-        if(!army.canEnterSite(u,u.hex,c))return fail("该方向不能进驻：上下河必须经过己方港口");
+        if(!army.canEnterSite(u,u.hex,c))return fail(c.kind==SiteKind.CITY?"尚未抵达城市合法占地格；请下达入城行军命令":"该方向不能进驻：上下河必须经过己方港口");
         int gear = Army.equipmentNeeded(u.weapon, u.troops);
         int cap = this.campaign.equipmentCap(c, u.weapon);
         if (c.troops + u.troops > this.campaign.troopCap(c) || c.equipment[u.weapon.ordinal()] + gear > cap || c.food + u.food > this.campaign.foodCap(c) || c.gold + u.gold > this.campaign.goldCap(c) || (u.ship != Army.Ship.BOAT && c.ships[u.ship.ordinal() - 1] >= 100)) {

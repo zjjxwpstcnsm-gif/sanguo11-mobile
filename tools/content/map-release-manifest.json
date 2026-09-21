@@ -1,5 +1,5 @@
 {
-  "release": "0.62.0-road-candidate",
+  "release": "0.63.0",
   "baseline_manifest": "tools/content/map-v050-manifest.json",
   "files": [
     {
@@ -250,7 +250,7 @@
     {
       "source_path": "core/src/main/resources/maps/national-map-v056.properties",
       "apk_path": "maps/national-map-v056.properties",
-      "sha256": "d5d5659e40a23619dd8515713d21997715733d20cc937a964662591e22f076c4"
+      "sha256": "75bcd0e68187acc1832cf70f046879d6e5cdc5fb60a8ab2dab598fb18162d95d"
     },
     {
       "source_path": "core/src/main/resources/maps/national-exterior-v061.properties",

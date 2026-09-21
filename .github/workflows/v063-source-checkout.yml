@@ -1,0 +1,31 @@
+name: V063 exact source checkout
+on:
+  push:
+    branches: [agent/city-movement-ports-void-v063]
+    paths: [.github/workflows/v063-source-checkout.yml]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Export the exact checked-out source and baseline, without modifying either
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          git rev-parse HEAD > out/HEAD
+          git rev-parse origin/main > out/MAIN
+          git merge-base --is-ancestor 05f1c6821da1cae6d3f98bd48a3327e18cdeccff HEAD
+          git archive --format=zip -o out/source.zip HEAD
+          git archive --format=zip -o out/main.zip origin/main
+          git diff --stat origin/main HEAD > out/DIFF_STAT
+          sha256sum out/source.zip out/main.zip > out/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v063-exact-source
+          path: out/
+          retention-days: 7

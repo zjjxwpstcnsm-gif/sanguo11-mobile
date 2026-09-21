@@ -729,8 +729,8 @@ public final class MainActivity extends Activity {
     );}
     private void showUnit(World.Unit u){
         if(u.owner==world.player&&!world.gameOver()){
-            for(World.City base:world.cities)if(base.owner==u.owner&&world.army.canEnterSite(u,u.hex,base)){
-                primaryAction("进入"+base.name,()->confirm("进入"+base.name+"并归还兵装与粮草？",()->apply(world.enter(u.id,base.id))));break;
+            for(World.City base:world.cities)if(base.owner==u.owner&&(world.army.canEnterSite(u,u.hex,base)||base.kind==World.SiteKind.CITY&&SiteFootprint.distance(base,u.hex)<=1)){
+                primaryAction("进入"+base.name,()->confirm("沿合法入口进入"+base.name+"并归还兵装与粮草？移动消耗按实际路径计算。",()->apply(world.army.canEnterSite(u,u.hex,base)?world.enter(u.id,base.id):world.marches.execute(world.marches.previewCity(u.id,base.id)))));break;
             }
             if(u.march!=null)primaryAction("停止任务",()->apply(world.marches.stop(u.id)));
         }

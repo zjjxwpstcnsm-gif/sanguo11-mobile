@@ -250,9 +250,9 @@ public final class Domestic {
         if(cargo&&w.districts.reserveError(c,gold,food,troops)!=null)return w.districts.reserveError(c,gold,food,troops);
         for(int i=0;i<equipment.length;i++)if(c.equipment[i]<equipment[i])return "兵装库存不足";
 
-        if(cargo){Mission probe=new Mission(0,c.owner,officer,source,target,c.hex,true,gold,food,troops,equipment);probe.sea=sea;
-            Hex exit=SiteFootprint.deploymentExit(w,c,probe);if(exit==null)return "据点边缘没有可用运输出发格";
-            probe.hex=exit;MarchOrders.Plan plan=routePlan(probe);if(!plan.valid())return plan.error;}else if(w.personnel.turns(source,target)<0)return "没有可用人员路线";
+        if(cargo){Mission probe=new Mission(0,c.owner,officer,source,target,c.hex,true,gold,food,troops,equipment);probe.sea=sea;probe.deputies=deputies.clone();
+            SiteFootprint.Deployment departure=SiteFootprint.deployment(w,c,probe);if(!departure.valid())return departure.error;
+            departure.apply(probe);MarchOrders.Plan plan=routePlan(probe);if(!plan.valid())return plan.error;}else if(w.personnel.turns(source,target)<0)return "没有可用人员路线";
         if(nextMissionId>=10000000)return "任务编号已达上限";
         return null;
     }
@@ -261,7 +261,10 @@ public final class Domestic {
         World.City c=w.city(source),d=w.city(target);World.Officer o=w.officer(officer);
         Mission mission=new Mission(nextMissionId++,w.active,o.id,c.id,d.id,c.hex,cargo,gold,food,troops,equipment);
         mission.sea=sea;mission.deputies=deputies.clone();mission.returnOfficers=cargo&&returnOfficers;
-        if(cargo)mission.hex=SiteFootprint.deploymentExit(w,c,mission);
+        if(cargo){SiteFootprint.Deployment departure=SiteFootprint.deployment(w,c,mission);
+            if(!departure.valid()){nextMissionId--;return w.fail(departure.error);}
+            departure.apply(mission);mission.movementTurn=w.turn;
+        }
         w.spend(c,o,0);c.gold-=gold;c.food-=food;c.troops-=troops;for(int i=0;i<equipment.length;i++)c.equipment[i]-=equipment[i];
         for(int id:mission.crew()){World.Officer member=w.officer(id);w.strategy.releaseGovernor(id);member.cityId=-1;member.acted=true;}
         missions.add(mission);
@@ -272,9 +275,10 @@ public final class Domestic {
         String error=transportError(source,target,officer,deputies,gold,food,troops,equipment,sea);
         World.City c=w.city(source),d=w.city(target);if(c==null||d==null)return error;
         Mission probe=new Mission(0,c.owner,officer,source,target,c.hex,true,gold,food,troops,equipment==null?new int[4]:equipment);probe.sea=sea;probe.deputies=deputies==null?new int[0]:deputies;
-        Hex exit=SiteFootprint.deploymentExit(w,c,probe);if(exit!=null)probe.hex=exit;
-        int turns=exit==null?-1:eta(probe),use=foodUse(probe),cost=turns<0?0:turns*use;
+        SiteFootprint.Deployment departure=SiteFootprint.deployment(w,c,probe);if(departure.valid())departure.apply(probe);
+        int turns=departure.valid()?eta(probe):-1,use=foodUse(probe),cost=turns<0?0:turns*use;
         return "派遣费0金 · 行动力10 · 编队"+(probe.deputies.length+1)+"将\n"+
+            (departure.valid()?"从城市逻辑中心计费：出城已付"+departure.cost+" · 本旬剩余"+w.orders.remaining(probe):departure.error)+"\n"+
             "可运库存上限：金"+Math.min(100000,c.gold)+" / 粮"+Math.min(200000,c.food)+" / 兵"+Math.min(20000,c.troops)+"\n"+
             "目的地剩余容量：金"+Math.max(0,w.campaign.goldCap(d)-d.gold)+" / 粮"+Math.max(0,w.campaign.foodCap(d)-d.food)+" / 兵"+Math.max(0,w.campaign.troopCap(d)-d.troops)+"\n"+
             (turns<0?"路线不通":"预计"+turns+"旬，途中耗粮约"+cost+"，预计入库粮"+Math.max(0,food-cost))+"\n"+
@@ -293,7 +297,7 @@ public final class Domestic {
         String permission=w.districts.dispatchError(m.sourceCity,target,m.transport);if(permission!=null)return w.fail(permission);
         Districts.District control=w.districts.city(m.sourceCity);
         if(control!=null&&control.owner==w.player&&!w.districts.directCity(m.sourceCity))return w.fail("委任军团任务请先调整军团方针或撤销托管");
-        if(m.transport?route(m.hex,c.hex,m.owner,m.sea)==null:w.personnel.turns(m.hex,target)<0)return w.fail("没有可用路线");
+        if(m.transport?!w.marches.convoyRoute(m,target).valid():w.personnel.turns(m.hex,target)<0)return w.fail("没有可用路线");
         w.actionPoints[w.active]-=10;m.targetCity=target;m.stopped=false;m.march=null;if(target==m.sourceCity)m.returnOfficers=false;return w.success("任务已改道至"+c.name);
     }
     private static final class Step {final Hex h;final int cost;Step(Hex h,int c){this.h=h;cost=c;}}
@@ -380,7 +384,7 @@ public final class Domestic {
             if(c.owner!=m.owner){
                 World.City best=null;int bestCost=Integer.MAX_VALUE;
                 for(World.City d:w.cities)if(d.owner==m.owner){int cost;
-                    if(m.transport){List<Hex> path=route(m.hex,d.hex,m.owner,m.sea);if(path==null)continue;cost=0;for(Hex h:path)cost+=travelCost(h,m.owner,m.sea);}
+                    if(m.transport){MarchOrders.Plan path=w.marches.convoyRoute(m,d.id);if(!path.valid())continue;cost=path.cost;}
                     else {cost=w.personnel.turns(m.hex,d.id);if(cost<0)continue;}
                     if(cost<bestCost||(cost==bestCost&&(best==null||d.id<best.id))){best=d;bestCost=cost;}}
                 if(best==null)continue;m.targetCity=best.id;m.march=null;c=best;w.note(w.officer(m.officerId).name+"因目的地失守改道至"+c.name);
