@@ -9,7 +9,8 @@ import java.io.*;
 import java.util.*;
 
 /** One test APK runs against the exact released v061 and the road-only candidate.
- * This is NOT approval of the unfinished VOID or generated-art scope. */
+ * This is NOT approval of the unfinished VOID or generated-art scope.
+ * All three texture variants are mandatory in every scenario, not optional samples. */
 final class Road62Probe extends MapTap57Harness {
     private final boolean candidate;
     Road62Probe(Instrumentation test, boolean candidate){super(test);this.candidate=candidate;}
@@ -37,6 +38,7 @@ final class Road62Probe extends MapTap57Harness {
                     tileComparison(w,h,v);
                     if(variants.size()==3)break;
                 }
+                require(variants.size()==3,"all three stable texture variants actually compared in "+id);
                 Hex h=roads.get(roads.size()/2);
                 SourceGridCoord source=MapCoordinates.nationalSource(w,h);
                 overviewComparison(w,h);
