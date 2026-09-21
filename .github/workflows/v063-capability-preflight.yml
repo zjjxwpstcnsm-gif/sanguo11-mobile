@@ -1,0 +1,103 @@
+name: V063 exact baseline APK, Android compiler and direct-model image fallback
+on:
+  push:
+    branches: [agent/generated-art-city-movement-ports-v063]
+    paths: [.github/workflows/v063-capability-preflight.yml]
+permissions:
+  contents: read
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      BUILD_COMMIT: 38a0da98924bc1aba3a43cf63661be319d72fd7a
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 38a0da98924bc1aba3a43cf63661be319d72fd7a
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Build the exact inherited ROAD candidate, not a v063 deliverable
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          git rev-parse HEAD > out/BUILD_COMMIT
+          test "$(cat out/BUILD_COMMIT)" = "$BUILD_COMMIT"
+          chmod +x gradlew
+          ./gradlew :app:assembleDebug --no-daemon --max-workers=2 > out/baseline-build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/v062-exact-main-baseline.apk
+          cp "$ANDROID_HOME/platforms/android-35/android.jar" out/android-35.jar
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/v062-exact-main-baseline.apk > out/BASELINE_PACKAGE.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/v062-exact-main-baseline.apk > out/BASELINE_SIGNATURE.txt
+          sha256sum out/v062-exact-main-baseline.apk out/android-35.jar > out/SHA256SUMS
+          sha256sum core/src/main/resources/maps/national-map-v056.properties core/src/main/resources/maps/national-exterior-v061.properties > out/GEOGRAPHY_SHA256
+      - name: Diagnose inherited Android test compilation separately
+        if: success()
+        run: |
+          if ./gradlew :app:compileDebugAndroidTestJavaWithJavac --no-daemon --max-workers=2 > out/inherited-test-compile.log 2>&1; then
+            echo PASS > out/INHERITED_TEST_COMPILE_STATUS
+          else
+            echo BLOCKER_INHERITED_TEST_COMPILE > out/INHERITED_TEST_COMPILE_STATUS
+            grep -A7 -B2 'error:' out/inherited-test-compile.log || true
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v063-exact-road-baseline-and-android-compiler
+          path: out/
+          retention-days: 14
+  direct-model-representatives:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      HF_HUB_DISABLE_XET: '1'
+      HF_HUB_DOWNLOAD_TIMEOUT: '180'
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install pinned CPU diffusion runtime
+        run: |
+          python -m pip install torch==2.8.0 torchvision==0.23.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install diffusers==0.35.1 transformers==4.56.2 accelerate==1.10.1 huggingface_hub==0.35.3 safetensors==0.6.2 Pillow==11.3.0
+      - name: Actually run a diffusion model; files remain unapproved until visual review
+        run: |
+          mkdir -p out/mothers
+          python - <<'PY'
+          import json,time,hashlib,platform,datetime
+          from pathlib import Path
+          import torch,diffusers,transformers
+          from huggingface_hub import HfApi
+          from diffusers import DiffusionPipeline
+          out=Path('out/mothers');repo='SimianLuo/LCM_Dreamshaper_v7';revision=HfApi().model_info(repo).sha
+          meta={'provider':'direct CPU inference on GitHub Actions','model_repository':repo,'model_revision':revision,'model_card':'https://huggingface.co/SimianLuo/LCM_Dreamshaper_v7','device':'cpu','torch':torch.__version__,'diffusers':diffusers.__version__,'transformers':transformers.__version__,'cpu_threads':4,'status':'LOADING'}
+          (out/'runtime.json').write_text(json.dumps(meta,indent=2)+'\n')
+          torch.set_num_threads(4)
+          pipe=DiffusionPipeline.from_pretrained(repo,revision=revision,torch_dtype=torch.float32,use_safetensors=True,low_cpu_mem_usage=True)
+          pipe.to('cpu');pipe.enable_attention_slicing();pipe.enable_vae_slicing()
+          prompts={
+            'standard':'isometric game asset, isolated on white background, entire ancient Chinese walled city, thirty tiny grey tiled houses inside complete low perimeter walls, small courtyards, miniature distant overhead view, 35 degree camera, realistic weathered stone and timber, soft left light, muted natural colors',
+            'sand-fine':'seamless pale beige fine sand texture, completely flat straight top down view, uniform fine grain pattern, even diffuse light, subtle low contrast, realistic material surface scan, edge to edge',
+            'port-se':'isometric game asset, isolated on white background, small ancient Chinese wooden harbor, long thin timber piers extending lower right, two tiny grey tiled warehouses on the landward end, wooden piles, empty space between piers, high angle view, realistic wood, soft left light',
+            'gate-ns':'isometric game asset, isolated on white background, single ancient Chinese fortified pass gate, small grey tiled gatehouse above one arched stone opening, short stone wall wings, high angle oblique view, compact complete silhouette, realistic stone and timber, soft left light'
+          }
+          records=[]
+          for i,(key,prompt) in enumerate(prompts.items()):
+            start=time.time();generator=torch.Generator(device='cpu').manual_seed(630401+i)
+            result=pipe(prompt=prompt,num_inference_steps=6,guidance_scale=8.0,height=512,width=512,generator=generator)
+            if getattr(result,'nsfw_content_detected',None) and any(result.nsfw_content_detected):raise RuntimeError('Safety rejection: do not retry around it')
+            image=result.images[0];file=out/(key+'.png');image.save(file)
+            record={'key':key,'generation':'NEW_V063_DIRECT_MODEL','prompt':prompt,'seed':630401+i,'steps':6,'guidance_scale':8.0,'dimensions':list(image.size),'file':file.name,'sha256':hashlib.sha256(file.read_bytes()).hexdigest(),'seconds':round(time.time()-start,3),'status':'FILE_OBTAINED_VISUAL_REVIEW_REQUIRED'}
+            records.append(record);(out/'generation-record.json').write_text(json.dumps(records,indent=2)+'\n');print(json.dumps(record),flush=True)
+          meta['status']='FILES_OBTAINED_REVIEW_REQUIRED';(out/'runtime.json').write_text(json.dumps(meta,indent=2)+'\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: v063-direct-model-actual-representatives
+          path: out/
+          retention-days: 14
