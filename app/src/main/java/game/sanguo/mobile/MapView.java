@@ -221,7 +221,7 @@ public final class MapView extends View {
         super(context);this.listener=listener;density=getResources().getDisplayMetrics().density;setContentDescription("错列方格战略地图。拖动平移，双指缩放，点选城池或部队。");setFocusable(true);
         displayPrefs=context.getSharedPreferences("map-display",Context.MODE_PRIVATE);
         showMini=displayPrefs.getBoolean("navigator",true);showCommanders=displayPrefs.getBoolean("commanders",true);showUnitBars=displayPrefs.getBoolean("unitBars",true);
-        BuildingAtlas.load(context);VisualAssets.load(context);CityAtlas.load(context);
+        BuildingAtlas.load(context);VisualAssets.load(context);CityAtlas.load(context);TerrainTiles.loadSand(context);
         fling=new android.widget.OverScroller(context);fling.setFriction(.022f);
         gestures=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
             @Override public boolean onDown(MotionEvent e){return true;}

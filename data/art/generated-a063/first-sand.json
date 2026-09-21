@@ -1,0 +1,23 @@
+{
+  "status": "first production slice; remaining variants, buildings and Android validation pending",
+  "art_batch": "a063",
+  "baseline": "05f1c6821da1cae6d3f98bd48a3327e18cdeccff",
+  "tool": "image_gen.imagegen",
+  "model": "unknown (tool does not expose model id)",
+  "source_kind": "new generation in this session",
+  "source_file": "/workspace/scratch/90b3e7648154/generated_images/exec-524d80d1-d3bf-4857-a3fa-0751451361f2.png",
+  "source_size": [
+    1254,
+    1254
+  ],
+  "source_sha256": "625bd3ccdf9fceea01a6e15fa397176a268b32e04dd999b35f758b4c92829a73",
+  "runtime_file": "app/src/main/assets/map/terrain-a063/sand-fine.webp",
+  "runtime_size": [
+    256,
+    256
+  ],
+  "runtime_sha256": "0fe2c6c645145c027e33961cefb3b797cb26385f0a14854e1baf8bdef91ac006",
+  "runtime_entry": "MapView constructor -> TerrainTiles.loadSand; TerrainTiles.create(SAND)",
+  "postprocess": "Pillow RGB, LANCZOS 256x256, WebP quality=91 method=6",
+  "prompt": "Create one production game texture image, square 1024x1024. Asset type: seamless tileable fine sand ground albedo for a historical Chinese 2.5D strategy game. Flat continuous fine sandy soil with very subtle fine wind ripples and occasional tiny grains, restrained low saturation tan beige centered around #c6b184. Orthographic overhead material, diffuse soft light with extremely subtle upper left illumination. No large dunes, no scenery, no buildings, no rocks larger than tiny grains, no hexagonal tile frame, no pedestal, no text, no UI, no border. Entire image filled edge to edge by evenly distributed subtle texture, suitable for downsampling to 256 pixels and clipping to existing hex cells. This must be a usable texture file for integration into Android game assets, not a screenshot or poster. Return the generated file and its accessible local path if available."
+}
