@@ -1,6 +1,7 @@
 package game.sanguo.mobile;
 
 import android.app.Instrumentation;
+import android.content.pm.PackageInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Debug;
@@ -8,23 +9,34 @@ import game.sanguo.core.*;
 import java.io.*;
 import java.util.*;
 
-/** One test APK runs against the exact released v061 and the road-only candidate.
- * This is NOT approval of the unfinished VOID or generated-art scope.
- * All three texture variants are mandatory in every scenario, not optional samples. */
+/** The same test APK runs against the exact released v061 and the road-only candidate.
+ * The candidate reads four saves actually encoded by the installed old APK.
+ * This is NOT approval of the unfinished VOID or generated-art scope. */
 final class Road62Probe extends MapTap57Harness {
     private final boolean candidate;
     Road62Probe(Instrumentation test, boolean candidate){super(test);this.candidate=candidate;}
     private String phase(){return candidate?"after":"before";}
     void run() throws Exception {
         try {
+            PackageInfo installed=test.getTargetContext().getPackageManager().getPackageInfo(test.getTargetContext().getPackageName(),0);
+            require(installed.getLongVersionCode()==(candidate?62:61)&&(candidate?"0.62.0-road-candidate":"0.61.0").equals(installed.versionName),"actual installed APK identity for phase="+phase());
             require(TerrainArt.ground(World.Terrain.ROAD)==World.Terrain.PLAIN,"ROAD shares PLAIN ground mapping");
             require(TerrainConnections.road(World.Terrain.ROAD),"ROAD remains a neighbor connection identity");
             require(TerrainArt.connection(World.Terrain.ROAD)==(candidate?TerrainArt.Connection.NONE:TerrainArt.Connection.ROAD),"installed visual connection matches expected phase");
             require(TerrainArt.connection(World.Terrain.MOUNTAIN_PATH)==TerrainArt.Connection.MOUNTAIN_PATH,"mountain-path artwork retained");
             require(TerrainArt.connection(World.Terrain.PLANK_ROAD)==TerrainArt.Connection.PLANK,"plank artwork retained");
             for(String id:new String[]{"coalition-190","heroes-250","central-mobile-sandbox","jingxiang-mobile-sandbox"}) {
-                launch(ScenarioCatalog.load(id,id.endsWith("sandbox")?0:5,620L));
+                byte[] installedOld=null;
+                if(candidate){
+                    installedOld=readInternal("road62-real-v061-"+id+".sg11");
+                    require(installedOld!=null,"real old APK save survived installation: "+id);
+                    World decoded=SaveCodec.decode(installedOld);
+                    require(id.equals(decoded.scenarioId)&&decoded.mapRevision==61,"actual v061 save decodes with original scenario and geography");
+                    require(Arrays.equals(installedOld,SaveCodec.encode(decoded)),"actual v061 save has exact binary round trip");
+                    launch(decoded);
+                }else launch(ScenarioCatalog.load(id,id.endsWith("sandbox")?0:5,620L));
                 World w=world();byte[] original=SaveCodec.encode(w);
+                if(candidate)require(Arrays.equals(installedOld,original),"loading actual old save does not move entities or replace geography");
                 require(w.mapRevision==61,"road-only candidate truthfully retains map revision61");
                 require(CityArtCatalog.ASSET_REVISION==56,"unapproved generated art is NOT presented as installed art62");
                 List<Hex> roads=new ArrayList<>();
@@ -60,6 +72,7 @@ final class Road62Probe extends MapTap57Harness {
                 drawTiming(id);
                 require(Arrays.equals(original,SaveCodec.encode(w)),"all visual probes preserve world/save bytes "+id);
                 require(w.terrain[h.q][h.r]==World.Terrain.ROAD,"source ROAD identity restored after controlled comparison");
+                if(!candidate)writeInternal("road62-real-v061-"+id+".sg11",original);
                 try(OutputStream out=new FileOutputStream(new File(dir(),"road62-"+phase()+"-"+id+".sg11"))){out.write(original);}
             }
         } finally { flush("road62-"+phase()+"-checks.txt"); }
@@ -89,8 +102,8 @@ final class Road62Probe extends MapTap57Harness {
         }finally{for(Bitmap bitmap:pair)if(bitmap!=null)bitmap.recycle();}
     }
     private void overviewComparison(World w,Hex h)throws Exception{
-        // Hold the exact same Territory snapshot: gameplay catchments must not be altered
-        // merely to compare the appearance of two terrain identities.
+        // The Territory snapshot is fixed; substituting terrain solely for this comparison
+        // must not recompute gameplay catchments or change owner colors.
         Territory territory=new Territory(w);
         MapOverview[] pair=new MapOverview[2];
         ui(()->{
@@ -109,8 +122,8 @@ final class Road62Probe extends MapTap57Harness {
             require(Arrays.equals((int[])field(pair[0],"terrain"),(int[])field(pair[1],"terrain")),"overview ROAD/PLAIN base colors identical");
             require(Arrays.equals((int[])field(pair[0],"styles"),(int[])field(pair[1],"styles")),"overview ROAD/PLAIN texture indices identical");
             if(candidate){
-                // Neighbour path geometry is deliberately preserved; compare complete images
-                // only when substituting this cell leaves every path connection unchanged.
+                // Preserve mountain/plank connection semantics. Complete images must match
+                // whenever this controlled substitution leaves those neighbor masks unchanged.
                 boolean sameConnections=Arrays.equals((byte[])field(pair[0],"roads"),(byte[])field(pair[1],"roads"));
                 if(sameConnections){
                     Bitmap[] a=(Bitmap[])field(pair[0],"preview"),b=(Bitmap[])field(pair[1],"preview");
