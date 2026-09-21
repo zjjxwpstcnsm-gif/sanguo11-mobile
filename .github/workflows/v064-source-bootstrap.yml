@@ -1,0 +1,53 @@
+name: V064 source preparation
+on:
+  push:
+    branches: [agent/district-recruit-ui-v064]
+    paths: [.github/workflows/v064-source-bootstrap.yml]
+permissions:
+  contents: write
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/district-recruit-ui-v064
+          fetch-depth: 0
+      - name: Apply city-only delegation validation to production source
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('core/src/main/java/game/sanguo/core/Districts.java')
+          s = p.read_text()
+          old = 'if(c==null||c.owner!=w.active||!ids.add(member)||other!=null&&other!=prior)return "据点重复、归属错误或已编入其他军团";'
+          new = 'if(c==null||c.kind!=World.SiteKind.CITY||c.owner!=w.active||!ids.add(member)||other!=null&&other!=prior)return "只能选择己方城池，且不得重复或已编入其他军团；港口和关卡随所属城池托管";'
+          if old in s:
+              assert s.count(old) == 1
+              p.write_text(s.replace(old, new))
+          else:
+              assert new in s, 'Production source has changed: refusing an ambiguous edit'
+          PY
+          mkdir -p /tmp/v064-classes
+          find core/src/main/java -name '*.java' -print0 | xargs -0 javac -encoding UTF-8 -d /tmp/v064-classes
+          if ! git diff --quiet -- core/src/main/java/game/sanguo/core/Districts.java; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add core/src/main/java/game/sanguo/core/Districts.java
+            git commit -m 'fix(districts): reject ports and gates as independent delegation members [skip ci]'
+            git push origin HEAD:agent/district-recruit-ui-v064
+          fi
+      - name: Export exact source for focused development
+        run: |
+          mkdir -p out
+          git rev-parse HEAD > out/HEAD
+          git rev-parse origin/main > out/MAIN
+          git archive --format=zip -o out/source.zip HEAD
+          sha256sum out/source.zip > out/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v064-production-source
+          path: out/
+          retention-days: 7
