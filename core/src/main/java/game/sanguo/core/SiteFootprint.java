@@ -53,7 +53,11 @@ public final class SiteFootprint {
      * The same movement-edge check enforces dock-only water/land conversion. */
     public static Hex entry(World w,World.Unit u,Hex from,World.City c){
         if(u==null||c==null||c.owner!=u.owner||from==null)return null;
-        if(contains(c,from))return from;
+        // A city is entered only after movement actually reaches one of its seven cells.
+        // The old adjacent-cell shortcut removed a unit without paying its final movement edge.
+        // Ports and gates intentionally retain their historical single-cell docking semantics.
+        if(c.kind==World.SiteKind.CITY)return contains(c,from)&&legalEntryCell(w,u,from)?from:null;
+        if(contains(c,from))return legalEntryCell(w,u,from)?from:null;
         Hex best=null;int cheapest=Integer.MAX_VALUE;
         for(Hex h:cells(c))if(from.distance(h)==1){
             World.Unit occupant=w.unitAt(h);if(occupant!=null&&occupant.id!=u.id)continue;
@@ -61,11 +65,16 @@ public final class SiteFootprint {
             if(cost>0&&cost<cheapest){cheapest=cost;best=h;}}
         return best;
     }
+    private static boolean legalEntryCell(World w,World.Unit u,Hex h){
+        if(u==null||h==null||!w.inside(h)||w.domestic.at(h)!=null||w.war.at(h)!=null||w.war.fireAt(h)!=null)return false;
+        World.Unit occupant=w.unitAt(h);
+        return (occupant==null||occupant.id==u.id)&&w.army.entryCost(u,h,h)>0;
+    }
     /** Candidate goals are fed to the existing Dijkstra, not selected by geometric proximity. */
     public static List<Hex> entryGoals(World w,World.Unit u,World.City c){
-        List<Hex> goals=new ArrayList<>();if(c==null||c.owner!=u.owner)return goals;
+        List<Hex> goals=new ArrayList<>();if(u==null||c==null||c.owner!=u.owner)return goals;
         if(c.kind==World.SiteKind.CITY||c.kind==World.SiteKind.GATE){
-            for(Hex h:cells(c))if(w.inside(h))goals.add(h);
+            for(Hex h:cells(c))if(legalEntryCell(w,u,h))goals.add(h);
         }else for(Hex h:edge(c))if(w.inside(h)&&entry(w,u,h,c)!=null)goals.add(h);
         return goals;
     }
