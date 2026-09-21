@@ -1,0 +1,95 @@
+name: Reference60 verified documentation closeout
+on:
+  push:
+    branches: [agent/water-map-finalization-v060]
+    paths: [.github/workflows/reference60-closeout.yml]
+permissions:
+  contents: write
+  actions: read
+jobs:
+  closeout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify completed delivery and publish durable screenshot logs
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          gh run view 35551707443 --json conclusion,headSha > out/run.json
+          gh run download 35551707443 -n reference60-apk-identity -D out/identity
+          gh run download 35551707443 -n reference60-review-stills -D out/review
+          python3 - <<'PY'
+          import hashlib,json,zipfile
+          from pathlib import Path
+          run=json.loads(Path('out/run.json').read_text())
+          assert run['conclusion']=='success' and run['headSha']=='62ea911f5a8526e70e8afeba641a56da2de24bc9'
+          r=Path('out/identity');i=json.loads((r/'APK_IDENTITY.json').read_text());s=json.loads((r/'VALIDATION_STATUS.json').read_text());a=json.loads((r/'ANDROID_STATUS.json').read_text())
+          assert i['source_sha']=='fec13cba0906af101c3e76bbc397801797a9dfc9'
+          assert i['sha256']=='50b2ed1df0dd405e6cc14b907c1968a69e837aee08f3af5f41c7fe34df88b412'
+          assert i['map_sha256']=='9b9e8dc7682c787d90717e53a57c9f68471706273c2939fe4f01501a77b8b47d'
+          assert all(s[k]=='success' for k in ['SOURCE','CORE','BUILD','INSTALLED'])
+          assert a['reference60'] and a['retained_native200_gameplay'] and a['old_manual_save_byte_identical_after_install'] and not a['physical_arm_tested']
+          apk=next(r.glob('*.apk'));assert hashlib.sha256(apk.read_bytes()).hexdigest()==i['sha256'] and apk.stat().st_size==22335219
+          for n in ['TESTED_APK_SHA256','RELEASE_VERIFIED_APK_SHA256']:assert (r/n).read_text().split()[0]==i['sha256']
+          assert (r/'UPGRADE_SAVE_BEFORE').read_bytes()==(r/'UPGRADE_SAVE_AFTER').read_bytes()
+          assert hashlib.sha256(Path('core/src/main/resources/maps/national-map-v056.properties').read_bytes()).hexdigest()==i['map_sha256']
+          with zipfile.ZipFile('out/reference60-screenshots-and-logs.zip','w',zipfile.ZIP_DEFLATED,6) as z:
+              for p in sorted(Path('out/review').rglob('*')):
+                  if p.is_file():
+                      assert 'MAP_SAN11' not in p.name
+                      z.write(p,p.relative_to('out/review'))
+          PY
+          gh release upload v0.60.0-fec13cba0906 out/reference60-screenshots-and-logs.zip --clobber
+          gh release download v0.60.0-fec13cba0906 -p reference60-screenshots-and-logs.zip -D out/verify
+          cmp out/reference60-screenshots-and-logs.zip out/verify/reference60-screenshots-and-logs.zip
+          gh release view v0.60.0-fec13cba0906 --json url,tagName,targetCommitish,assets > out/release.json
+      - name: Record actual assertions visual review scope and qualified A B C conclusions
+        env:
+          BUILD_COMMIT: fec13cba0906af101c3e76bbc397801797a9dfc9
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib,json,os,subprocess
+          build=os.environ['BUILD_COMMIT'];changed=subprocess.check_output(['git','diff','--name-only',build,'HEAD']).decode().splitlines()
+          assert all(p=='progress.md' or p.startswith('docs/') or p=='.github/workflows/reference60-closeout.yml' for p in changed),changed
+          r=Path('out/identity');v=Path('docs/validation/v060');review=Path('out/review')
+          identity=json.loads((r/'APK_IDENTITY.json').read_text())
+          result={'status':'DONE','functional_build_commit':build,'workflow_bootstrap_commit':'62ea911f5a8526e70e8afeba641a56da2de24bc9','build_install_release_run':35551707443,'doc_publication_run':int('${{ github.run_id }}'),'identity':identity,'validation':json.loads((r/'VALIDATION_STATUS.json').read_text()),'android':json.loads((r/'ANDROID_STATUS.json').read_text()),'android_assertions':{'reference60':978,'preserved_native200_gameplay':92},'real_old_apk_saves':8,'old_manual_install_sha256':(r/'UPGRADE_SAVE_BEFORE').read_text().split()[0],'screenshots_logs_sha256':hashlib.sha256(Path('out/reference60-screenshots-and-logs.zip').read_bytes()).hexdigest(),'publication':json.loads(Path('out/release.json').read_text()),'documentation_only':True,'note':'Documentation/publication HEAD is not BUILD_COMMIT. No production source, map, art, or APK changed after installed validation.'}
+          (v/'final-publication.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+          names=[]
+          for xy in ['113-143','123-101','124-40','155-157','196-24','196-55','198-99','199-80','20-143','27-184','52-65']:
+              for prefix in ['before','after']:names.append(prefix+'-coalition-190-'+xy+'-near.png')
+          names+=['v060-coalition-190-corrected-123-101.png','v060-central-mobile-sandbox-crop.png','v060-jingxiang-mobile-sandbox-crop.png','v060-new-water-march-rejected.png','v060-reviewed-region-march-preview.png','v060-reviewed-region-march-completed.png','v060-normal-new-game.png','v060-fixture-0.png','v060-coalition-190-LOD-0.15.png']
+          hashes={n:hashlib.sha256((review/n).read_bytes()).hexdigest() for n in names}
+          visual={'mode':'Actual assistant visual examination in the development session; not automated assertions labelled as human inspection','paired_national_coordinates':11,'pairs_reviewed_via':'Labelled map-viewport montages of original baseline and current screenshots; same seed590, scale3.4, focus coordinate, device1080x2340/density420. Current 123,101 also opened full size. Originals are separately preserved.','additional_full_screenshot_review':'Eight UI screenshots reviewed in a labelled reduced-size sheet, full rejected-march screenshot and full far-LOD screenshot also opened.','observations':['All 11 reviewed old dark water gaps now show connected water; no Q/W false shoreline or black separating seam observed in these samples.','Q at source123,101 is selectable and shows NON_NAVIGABLE_WATER detail; movement onto it is rejected, neighboring unchanged road MOVE completes and saves.','Both actual local crops show correctly aligned selectable Q; normal new-game flow opens revision60.','DAM neutral fixture detail visible; fixture is androidTest-only, not a discovered natural dam.','Far view still contains retained northwestern/outer-outline VOID: no nationwide zero-hole or historical legality certification.','Inherited march preview title uses internal coordinate139,123 while terrain detail shows national source123,101. Recorded conversion and actual plan target agree; label convention is a remaining presentation inconsistency, not a new geography regression.'],'not_certified':['All 40000 rendered cells individually','Physical ARM device and frame-rate target','Unobserved per-frame transient visual artifacts','Original navigation rights for987 newly visible water cells','Every retained VOID being legally outside the original map'],'original_screenshot_sha256':hashes}
+          (v/'visual-review.json').write_text(json.dumps(visual,ensure_ascii=False,indent=2)+'\n')
+          readme=v/'README.md';text=readme.read_text()
+          old='**DONE: formal source/data and local directed checks. IN PROGRESS: exact-source signed APK, original old-save decode, Android installation and Release verification.**'
+          assert old in text
+          text=text.replace(old,'**DONE: formal source/data, exact-source signed APK, eight actual old-APK saves, Android installed checks and byte-verified independent Release publication.**\n\nFinal identity and publication: [final-publication.json](final-publication.json). Actual visual review scope: [visual-review.json](visual-review.json). Build/install/release run: https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35551707443 .')
+          text=text.replace('Local directed core, topology, city/plot guards, ports, AI and coordinate checks pass. Final actual installed APK is still IN PROGRESS.','Directed core/topology/site/plot/port/AI checks and installed API29 x86_64 checks pass: Reference60 978 assertions, retained native200 gameplay92; four requested scenarios, eight actual old58/59 saves, signed in-place upgrade and Release byte identity. Not a physical ARM or full-history test certification.')
+          old='- IN PROGRESS: signed build, APK identity, original old-save checks, actual install/review and independently downloadable Release APK. These remain conditional on real logs.'
+          assert old in text
+          text=text.replace(old,'- DONE: signed build, exact APK identity, eight original old-save checks, actual installed/reviewed samples and independent Release APK; source fec13cba0906af101c3e76bbc397801797a9dfc9, APK SHA256 50b2ed1df0dd405e6cc14b907c1968a69e837aee08f3af5f41c7fe34df88b412, 22335219 bytes.\n- DONE: durable paired screenshots/logs release asset; tested and released APK bytes identical.\n- TODO / BLOCKER for 100% fidelity: remaining outline/occlusion evidence, original navigation rights, prior estimates and plank subtypes. Inherited march-preview coordinate label convention remains a presentation inconsistency; actual transformed targets agree. Physical ARM/per-frame performance not certified.')
+          assert 'IN PROGRESS' not in text;readme.write_text(text)
+          p=Path('progress.md');s=p.read_text();s=s.replace('# Progress — v0.60 water-map finalization (functional source stage)','# Progress — v0.60 water-map delivery DONE (qualified A/B/C)')
+          old='- IN PROGRESS: exact final APK build, true v0.58/v0.59 raw-save artifacts, signed in-place upgrade, real Android four-scenario gestures/march/turn/save sampling, identity and standalone Release. Do not substitute the completed baseline run for this result.'
+          assert old in s
+          s=s.replace(old,'- DONE: exact final APK built/installed/published from fec13cba0906af101c3e76bbc397801797a9dfc9. Run35551707443 SUCCESS; 978 new Android checks +92 retained gameplay checks, eight original v058/v059 saves and signed in-place upgrade; old manual bytes unchanged. APK50b2ed1df0dd405e6cc14b907c1968a69e837aee08f3af5f41c7fe34df88b412,22335219bytes,code60.\n- DONE: 11 same-coordinate before/after screenshot pairs actually viewed, plus Q detail/local-crop/march/new-game/labelled-DAM/LOD samples; Release APK and screenshots/log archive downloaded back and byte-verified. See docs/validation/v060/final-publication.json and visual-review.json.\n- A: confirmed987 water cells restored; remaining1271 sourceVOID classified but not independently proven all legal exterior. B: directed installed scope PASS, not physical ARM/FPS/full-history certification. C: original nav/old-estimate/plank/outline uncertainties remain; no 100% fidelity claim.\n- Documentation/publication commits after the functional build do not alter source/map/art or replace BUILD_COMMIT. PR48 targets main; not merged by this task.')
+          p.write_text(s)
+          PY
+          git diff --check
+          git add progress.md docs/validation/v060
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'docs(map): close v060 delivery with actual installed hashes and qualified visual acceptance [skip ci]'
+          git push origin HEAD:agent/water-map-finalization-v060
+          git diff --exit-code fec13cba0906af101c3e76bbc397801797a9dfc9 -- app core data tools scripts version.properties
