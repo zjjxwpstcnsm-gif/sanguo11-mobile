@@ -33,5 +33,6 @@
   "overview": "only mountain paths and plank decks draw connection overlays",
   "grid": "ROAD receives the same grid edge as PLAIN",
   "gameplay": "unchanged; R codes, movement, details and neighbor connection masks retained",
-  "android_pixel_equivalence": "NOT_YET_TESTED"
+  "android_pixel_equivalence": "PASSED_INSTALLED_NEGATIVE_AND_POSITIVE_CONTROLS",
+  "result": "last-run.json"
 }

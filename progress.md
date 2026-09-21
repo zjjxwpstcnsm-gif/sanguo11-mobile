@@ -1,7 +1,7 @@
 # v0.62 road-only candidate — incomplete overall task
 
 - DONE: full v061 inherited by merging PR49 only; four production ordinary-road render paths changed; existing UI model regression passed.
-- IN PROGRESS: exact candidate build, signed in-place installation and ROAD/PLAIN pixel tests; see docs/validation/v062/last-run.json for final result.
+- DONE: road-only candidate built from the BUILD_COMMIT recorded in last-run.json, installed and pixel-tested; standalone prerelease APK re-downloaded with identical hash. Full v0.62 remains BLOCKED.
 - BLOCKED: all14 VOID repairs and generated runtime art; do not claim completion or use the generated poster as evidence.
 - Geography61 / art56 / SaveCodec31 retained; branch PR must remain open.
 
