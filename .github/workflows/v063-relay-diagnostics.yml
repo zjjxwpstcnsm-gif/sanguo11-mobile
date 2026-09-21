@@ -1,0 +1,19 @@
+name: V063 relay byte diagnostics
+on:
+  push:
+    branches: [agent/city-movement-ports-void-v063]
+    paths: [.github/workflows/v063-relay-diagnostics.yml]
+permissions:
+  contents: read
+jobs:
+  bytes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/upload-artifact@v4
+        with:
+          name: v063-received-relay-bytes
+          path: .ci/v063-city.patch.b64
+          include-hidden-files: true
+          retention-days: 1
