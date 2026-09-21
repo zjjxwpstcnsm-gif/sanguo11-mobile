@@ -1,0 +1,116 @@
+name: Road62 explicit identity maintenance
+on:
+  push:
+    branches: [agent/void-road-generated-art-v062]
+    paths: [.github/workflows/road62-identity-maintenance.yml]
+permissions:
+  contents: write
+concurrency:
+  group: art62-production-writes
+  cancel-in-progress: false
+jobs:
+  identity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/void-road-generated-art-v062
+          fetch-depth: 0
+      - name: Keep geographic guards; validate only two known application identities
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess,hashlib,json
+          def edit(path,expected,transform):
+              p=Path(path);assert subprocess.check_output(['git','hash-object',str(p)],text=True).strip()==expected,'Unexpected edit to '+path
+              before=p.read_bytes();after=transform(before.decode());assert after!=before.decode();p.write_text(after)
+              return {'path':path,'before_sha256':hashlib.sha256(before).hexdigest(),'after_sha256':hashlib.sha256(p.read_bytes()).hexdigest()}
+          def once(s,a,b):
+              assert s.count(a)==1,'Expected one source fragment '+a[:90];return s.replace(a,b)
+          records=[]
+          function='''def validate_known_application_identity(manifest):
+              """Map61 is unchanged; do not equate the application number with geography."""
+              versions={
+                  'versionName=0.61.0\\nversionCode=61\\n':'0.61.0',
+                  'versionName=0.62.0-road-candidate\\nversionCode=62\\n':'0.62.0-road-candidate',
+              }
+              actual=(ROOT/'version.properties').read_text()
+              assert actual in versions, 'Unknown application identity for map61 audit'
+              assert manifest['release']==versions[actual], 'Manifest/application mismatch'
+          
+          '''
+          def auditor(s):
+              s=once(s,'def audit(raw):',function+'def audit(raw):')
+              s=once(s,";assert manifest['release']=='0.61.0'",';validate_known_application_identity(manifest)')
+              s=once(s,"assert (ROOT/'version.properties').read_text()=='versionName=0.61.0\\nversionCode=61\\n'","assert properties((ROOT/'version.properties').read_text())['versionName']==manifest['release']")
+              return s
+          records.append(edit('tools/content/audit_native61.py','8501646bfb7b2cc9a2533f4860cb7f18b70a129a',auditor))
+          records.append(edit('app/src/androidTest/java/game/sanguo/mobile/Reference61Probe.java','0c3415f1331e612e88df9ff210f50ce162200b71',lambda s:once(s,'require(w.mapRevision==61&&BuildConfig.VERSION_CODE==61,"actual final v061 identity");','Map61InstalledIdentity.verify(this,w);')))
+          records.append(edit('app/src/androidTest/java/game/sanguo/mobile/Reference60Probe.java','dc2d164b6eef43969efc4ff11912fd6b26d79915',lambda s:once(s,'require(w.mapRevision==61&&BuildConfig.VERSION_CODE==61,"v060 retained regression on actual v061 APK");','Map61InstalledIdentity.verify(this,w);')))
+          helper=Path('app/src/androidTest/java/game/sanguo/mobile/Map61InstalledIdentity.java');assert not helper.exists()
+          helper.write_text('''package game.sanguo.mobile;
+          import android.content.Context;
+          import android.content.pm.PackageInfo;
+          import game.sanguo.core.World;
+          /** Reads the installed target package, not an inlined BuildConfig from the test APK. */
+          final class Map61InstalledIdentity {
+              static void verify(MapTap57Harness probe,World world)throws Exception {
+                  Context context=probe.test.getTargetContext();
+                  PackageInfo info=context.getPackageManager().getPackageInfo(context.getPackageName(),0);
+                  long code=info.getLongVersionCode();String name=info.versionName;
+                  probe.require("game.sanguo.mobile.dev".equals(info.packageName),"actual target package identity");
+                  probe.require(world.mapRevision==61,"unchanged formal map revision61");
+                  probe.require((code==61&&"0.61.0".equals(name))||(code==62&&"0.62.0-road-candidate".equals(name)),"explicit installed app identity: "+name+"/"+code);
+              }
+          }
+          ''')
+          # Improve diagnostics only; no skipped tests or weakened failure gates.
+          wf=Path('.github/workflows/road62-candidate-delivery.yml');s=wf.read_text()
+          for command in ['bash scripts/test-ui-models.sh','bash scripts/test-map61.sh','python3 scripts/verify-map-release.py','./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest']:
+              s=once(s,command+' | tee',command+' 2>&1 | tee')
+          s=s.replace('          retention-days: 14','          retention-days: 14\n          overwrite: true')
+          old="          if status['PUBLICATION']=='success':\n              p=Path('progress.md')"
+          new="          if status['PUBLICATION']=='success':\n              scope=json.loads((d/'scope.json').read_text());scope['road']['status']='DONE_INSTALLED_AND_PUBLISHED';(d/'scope.json').write_text(json.dumps(scope,ensure_ascii=False,indent=2)+'\\n')\n              change=json.loads((d/'road-production-change.json').read_text());change['android_pixel_equivalence']='PASSED_INSTALLED_NEGATIVE_AND_POSITIVE_CONTROLS';change['result']='last-run.json';(d/'road-production-change.json').write_text(json.dumps(change,indent=2)+'\\n')\n              p=Path('progress.md')"
+          s=once(s,old,new)
+          s=once(s,'git add docs/validation/v062/last-run.json progress.md','git add docs/validation/v062/*.json progress.md')
+          wf.write_text(s)
+          # Geography and exterior stay exact. These are not application-version switches.
+          protected={'core/src/main/resources/maps/national-map-v056.properties':'d5d5659e40a23619dd8515713d21997715733d20cc937a964662591e22f076c4','core/src/main/resources/maps/national-exterior-v061.properties':'451fed332f742aaef8a88e5781c15eda8e1ad0fd29ae7d20c3e0dbe82214a60f'}
+          for path,sha in protected.items():assert hashlib.sha256(Path(path).read_bytes()).hexdigest()==sha
+          report={'reason':'The application is a road-only candidate while the inherited authoritative map remains61. Checking app61 unconditionally falsely couples independent identities.','allowed_applications':['0.61.0/code61','0.62.0-road-candidate/code62'],'allowed_geography':'unchanged map61; all original map, extent, file SHA, before-byte and old-save checks retained','changed_guards':records,'installed_identity_source':'Android PackageManager actual installed package, not test-inlined BuildConfig','physical_arm_claimed':False}
+          Path('docs/validation/v062/identity-guard-change.json').write_text(json.dumps(report,indent=2)+'\n')
+          PY
+          python3 tools/content/audit_native61.py > out/map61-audit.txt
+          python3 tools/content/test_native61_audit.py > out/map61-negative-tests.txt
+          python3 - <<'PY'
+          import sys,tempfile
+          from pathlib import Path
+          sys.path.insert(0,'tools/content')
+          import audit_native61 as a
+          original=a.ROOT
+          cases=[('0.61.0',61,'0.61.0',True),('0.62.0-road-candidate',62,'0.62.0-road-candidate',True),('0.63.0',63,'0.63.0',False),('0.62.0',62,'0.62.0',False),('0.62.0-road-candidate',61,'0.62.0-road-candidate',False),('0.61.0',62,'0.61.0',False),('0.62.0-road-candidate',62,'0.61.0',False)]
+          with tempfile.TemporaryDirectory() as temp:
+              a.ROOT=Path(temp)
+              for name,code,release,valid in cases:
+                  (a.ROOT/'version.properties').write_text(f'versionName={name}\nversionCode={code}\n')
+                  try:a.validate_known_application_identity({'release':release});accepted=True
+                  except AssertionError:accepted=False
+                  assert accepted==valid,(name,code,release)
+          a.ROOT=original
+          print('PASS: 7 explicit application-identity positive/negative cases; unknown full-v062 and future versions rejected')
+          PY
+          git diff --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/content/audit_native61.py app/src/androidTest/java/game/sanguo/mobile/Reference61Probe.java app/src/androidTest/java/game/sanguo/mobile/Reference60Probe.java app/src/androidTest/java/game/sanguo/mobile/Map61InstalledIdentity.java .github/workflows/road62-candidate-delivery.yml docs/validation/v062/identity-guard-change.json
+          git commit -m 'test(v062): decouple explicit installed-app identity from fixed map61 invariants'
+          git push origin HEAD:agent/void-road-generated-art-v062
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: road62-explicit-identity-checks
+          path: out
+          retention-days: 14
