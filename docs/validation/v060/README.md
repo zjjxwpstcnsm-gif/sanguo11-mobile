@@ -42,7 +42,7 @@ DONE: 本地Java定向分段运行：MapTap57、NativeMap56、CityFootprint55、
 
 DONE: 本轮对照基线安装了**实际发布的v059 APK**，哈希 `9b3bb71444b50add045c8b8113c013f4ab7bc6aeaa0492c7e1e9be8c9b5672a8`，四剧本采样与原始存档通过：[35549692460](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35549692460)。与987修改中的代表坐标配对截图，不用地图数据示意图冒充运行截图。
 
-IN PROGRESS at this functional source commit: 最终APK构建、签名覆盖安装、当前Reference60Probe/Native56Probe安装断言、实际旧058/059八份Android存档与独立旧编码器比较、当前截图目视和独立Release发布。以完成后的Release APK_IDENTITY/PUBLICATION/VALIDATION_STATUS/ANDROID_STATUS和本目录交付补录为准，不拿前一轮安装结果冒充本轮。
+DONE: 实际功能源 fec13cba0906af101c3e76bbc397801797a9dfc9 已完成构建、同签名覆盖安装、八份真实旧058/059存档校验与独立APK发布。构建/安装/发布运行35551707443 SUCCESS；Reference60Probe978断言、保留Native56Probe92断言通过。APK SHA256 50b2ed1df0dd405e6cc14b907c1968a69e837aee08f3af5f41c7fe34df88b412，22335219字节；测试包与Release重新下载包字节一致。11组同坐标前后截图已实际目视。详见[最终身份记录](final-publication.json)和[目视范围及截图摘要](visual-review.json)。
 
 Reference60Probe包含四剧本、正常剧本/势力选择新开局、旧档提示与不覆盖手动档、多水域内部/岸线/界外交互、近中远LOD/平移/缩放、地图/小地图/势力色、Q非法路线拒绝与新水域邻近合法行军。Native56Probe继续实际三页签出征、七格穿城/显式进驻、攻城、下一旬、自动行军、保存/退出重建。实际ARM设备、全历史CI、全量每格触屏及每条原版水路考证不在已通过声明中。
 
@@ -50,6 +50,14 @@ Reference60Probe包含四剧本、正常剧本/势力选择新开局、旧档提
 
 A：已完成本轮可确认水面的完整批量恢复，所有原VOID有区域审阅记录；1271保留格的原版合法外框尚非全部独立确认，2个内部图标遮挡和部分过渡仍未排除视觉差异，不宣称全国全面清零。
 
-B：模型、通行、保存、投影定向检查通过；最终实际APK安装验收待本次运行结论补录。
+B：模型、通行、保存、投影定向检查与实际APK安装验收通过，范围为API29/x86_64、两个全国及两个局部剧本、八份真实旧档、正常MapView触摸及真实出征/下一旬/保存流程。不等于物理ARM、全历史CI或帧率目标认证。
 
 C：航行权限、18项旧陆地/沙地估计、3处栈道细分、遮挡/界外与部分港口图标落点仍有待考证，未达到逐格及规则100%。这不否定已落地987格水面恢复。
+
+## 发布后文档补录
+
+DONE: 截图与日志已单独发布为Release资产reference60-screenshots-and-logs.zip，并重新下载核验字节。原图与原图裁片未上传。文档/发布提交与实际BUILD_COMMIT分开；文档更新未改变app/core/data/tools/scripts/version.properties。
+
+TODO: 继承的行军预览标题仍显示内部格坐标（139,123），地形详情显示全国源坐标（123,101）；实际触摸、坐标变换和路径目标一致，但标题口径仍需统一。本轮未将其假称为新的命中修复。
+
+文档补录首次运行35552701139因旧草稿文本断言拒绝而停止；重新读取实际远端文档并固定blob摘要后重试，未放宽地图、测试或产物校验。

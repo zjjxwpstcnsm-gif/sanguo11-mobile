@@ -5,7 +5,10 @@
 - DONE: remaining1271 VOID individually classified; source topology/internal357/boundary914 is not a defect/legality count. Padding19800 separate. Old7 candidates:2 surface-only resolutions,5 retained; old26 estimates not counted again.
 - DONE: actual Q invalid-origin cost failure reproduced and fixed in common Army movement/entry query; port/research/ship rules preserved. Local directed models, mixed terrain/water projection, protected sites/plots, saves and24 apply-guard negative cases passed.
 - DONE: exact published059 APK four-scenario baseline sampling run35549692460 passed and generated raw old saves/before screenshots.
-- IN PROGRESS: final-source APK build, exact signed in-place install, current MapView/gameplay probes, true58/59 old-save encoder comparison, screenshot review and independent APK publication.
+- DONE: source fec13cba0906af101c3e76bbc397801797a9dfc9 built/installed/published in SUCCESS run35551707443; Reference60 Android978 + retained native200 gameplay92 assertions, eight real058/059 saves, signed in-place upgrade with old manual bytes unchanged. APK SHA25650b2ed1df0dd405e6cc14b907c1968a69e837aee08f3af5f41c7fe34df88b412,22335219bytes.
+- DONE:11 actual before/after paired-coordinate screenshots reviewed plus Q/local/march/new-game/labelled-DAM/LOD samples. Standalone APK and separate screenshot/log Release archive downloaded back and byte-verified. See docs/validation/v060/final-publication.json and visual-review.json.
+- A: confirmed987 water cells restored; retained1271 VOID classified but not all proven legal exterior. B: directed installed scope PASS, not physical ARM/FPS/full-history certification. C: original nav/old-estimate/plank/outline uncertainties remain.
+- Documentation/publication commits are not BUILD_COMMIT; no functional code/map/art changed after installation. PR48 targets main, not merged by this task.
 - TODO: original navigation permissions, remaining outline/occlusion/subtype evidence and physical ARM/full historical CI. No nationwide100% claim.
 - BLOCKER (local environment only): no direct GitHub network/Android SDK; connected Actions are the active delivery path, not a reason to stop.
 
