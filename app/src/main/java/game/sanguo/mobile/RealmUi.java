@@ -99,7 +99,7 @@ final class RealmUi {
         RealmOverview.Faction f=accounts().factions.get(side);LinearLayout sheet=column();LinearLayout hero=new LinearLayout(a);hero.setGravity(Gravity.CENTER_VERTICAL);sheet.addView(hero);
         World.Officer ruler=ruler(side);if(ruler!=null){ImageView portrait=new ImageView(a);portrait.setImageDrawable(new OfficerPortrait(a,w,ruler));hero.addView(portrait,new LinearLayout.LayoutParams(a.dp(66),a.dp(72)));}
         TextView name=copy(f.name+"\n"+(ruler==null?"君主未定":w.governance.title(side)+" · "+ruler.name)+"\n军师 · "+f.advisor+"  "+(f.alive?"存续":"已灭亡"),18,a.paper);hero.addView(name,new LinearLayout.LayoutParams(0,-2,1));
-        if(choose==null&&side==w.player&&w.governance.grade(side)==5){Button nation=a.button("设定国号",v->nameNation(side));nation.setTag("faction.nation");sheet.addView(nation,new LinearLayout.LayoutParams(-1,a.dp(44)));}
+        if(choose==null&&side==w.player&&w.governance.canNameNation(side)){Button nation=a.button("设定国号",v->nameNation(side));nation.setTag("faction.nation");sheet.addView(nation,new LinearLayout.LayoutParams(-1,a.dp(44)));}
         View color=new View(a);color.setBackgroundColor(FactionColors.color(w,side));hero.addView(color,new LinearLayout.LayoutParams(a.dp(6),a.dp(58)));
         LinearLayout tabs=new LinearLayout(a);sheet.addView(tabs);ScrollView scroll=new ScrollView(a);scroll.setFillViewport(true);LinearLayout content=column();scroll.addView(content);sheet.addView(scroll,new LinearLayout.LayoutParams(-1,0,1));
         String[] labels={"概况","收支","技巧树","能力研究"};Button[] buttons=new Button[labels.length];
@@ -115,6 +115,11 @@ final class RealmUi {
     private void overview(LinearLayout host,RealmOverview.Faction f){
         heading(host,"君主与军师");metric(host,f.ruler+" · "+f.rulerTitle,"军师 "+f.advisor);
         World.Officer leader=ruler(f.id);if(leader!=null)metric(host,"君主指挥 "+w.government.commandLimit(leader.id),"国号 "+(w.governance.nation(f.id).isEmpty()?"尚未设定":w.governance.nation(f.id)));
+        heading(host,"爵位与官职");
+        host.addView(copy(w.governance.titleProgress(f.id),13,a.paper));
+        metric(host,"已解锁官职 "+w.government.unlockedRanks(f.id).size()+"席","仍需功绩与空缺");
+        Button titles=a.button("查看爵位 / 文武官职对照",v->OfficePicker.showTitleTable(a));
+        titles.setTag("faction.title.table");host.addView(titles,new LinearLayout.LayoutParams(-1,a.dp(42)));
         heading(host,"兵源与伤兵");metric(host,"可征兵源 "+number(f.manpower),"上限 "+number(f.manpowerCap));metric(host,"季度增长 "+number(f.quarterlyRecovery),"当前可恢复 "+number(f.nextRecovery));metric(host,"在外伤兵 "+number(f.wounded),"入城立即恢复");
         host.addView(copy("完成农场每座 +500/季；完成市场每座 +2000上限。季度按城池分别计算，港口和关卡不重复计数。",12,a.muted));
         heading(host,"领地与军力");metric(host,"城池 "+f.cities,"港口 "+f.ports+" / 关卡 "+f.gates);metric(host,"武将 "+f.officers,"其中被俘 "+f.prisoners);metric(host,"总兵力 "+number(f.troops),"驻军 "+number(f.garrison));metric(host,"部队 "+f.units,"其中运输队 "+f.convoys);

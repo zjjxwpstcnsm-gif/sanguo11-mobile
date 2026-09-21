@@ -3,14 +3,20 @@ package game.sanguo.core;
 import java.util.*;
 
 /** Personnel outcomes live in the campaign, including captured officers who retain their old allegiance.
- * Rank table is community-sourced; capture/recruitment/payroll are explicit sandbox rules (GOVERNANCE_V0_9.md). */
+ * Title/office data and explicit mobile differences: docs/RULER_TITLES.md. */
 public final class Government {
     public enum Policy { MANUAL("直接管理"), ECONOMY("委任内政"), DEFENSE("委任守备");
         public final String label; Policy(String label){this.label=label;}
     }
     public static final class Rank {
         public final String id; public final int merit,troops,salary;
-        Rank(String id,int merit,int troops,int salary){this.id=id;this.merit=merit;this.troops=troops;this.salary=salary;}
+        public final RulerTitles.Title requiredTitle;
+        public final boolean civilian;
+        Rank(String id,int merit,int troops,int salary){this(id,merit,troops,salary,false);}
+        Rank(String id,int merit,int troops,int salary,boolean civilian){
+            this.id=id;this.merit=merit;this.troops=troops;this.salary=salary;
+            this.requiredTitle=RulerTitles.at(merit/4000);this.civilian=civilian;
+        }
     }
     private static final List<Rank> RANKS;
     static {
@@ -21,6 +27,15 @@ public final class Government {
             "安东将军,安西将军,安南将军,安北将军","镇东将军,镇西将军,镇南将军,镇北将军",
             "征东将军,征西将军,征南将军,征北将军","大都督,卫将军,骠骑将军,车骑将军"};
         for(int i=0;i<names.length;i++)for(String name:names[i].split(","))ranks.add(new Rank(name,i*4000,6000+i*1000,10+i*5));
+        // Keep the existing forty military IDs/order stable; add the forty civil offices.
+        String[] civil={"左仆射,右仆射,典农校尉,议郎","主簿,谏议大夫,侍郎,中郎",
+            "太乐令,大仓令,武库令,卫士令","郎中,从事中郎,长史,司马",
+            "谒者仆射,都尉,黄门侍郎,太史令","秘书令,侍中,留府长史,太学博士",
+            "中书令,御史中丞,执金吾,少府","尚书令,太仆,太常,大鸿胪",
+            "光禄勋,大司农,廷尉,卫尉","丞相,司空,太尉,司徒"};
+        int[] civilCommand={5000,6000,6000,7000,7000,8000,8000,9000,9000,15000};
+        for(int i=0;i<civil.length;i++)for(String name:civil[i].split(","))
+            ranks.add(new Rank(name,i*4000,civilCommand[i],i==9?60:10+i*5,true));
         RANKS=Collections.unmodifiableList(ranks);
     }
     public static List<Rank> ranks(){return RANKS;}
@@ -41,8 +56,46 @@ public final class Government {
     public int merit(int officer){return merits.getOrDefault(officer,0);}
     void earn(int officer,int amount){if(w.officer(officer)!=null&&amount>0)merits.put(officer,Math.min(1000000,merit(officer)+amount));}
     public Rank office(int officer){return rank(ranks.get(officer));}
-    /** Unappointed officers keep the existing sandbox's 10000 ceiling; assigning an office uses its real cap. */
-    public int commandLimit(int officer){Rank r=office(officer);World.Officer o=w.officer(officer);return (o!=null&&o.role==Strategy.Role.RULER?w.governance.rulerCommand(o.owner):r==null?10000:r.troops)+(o!=null&&w.campaign.has(o.owner,Campaign.Tech.MILITARY_REFORM)?3000:0);}
+    /** A formation uses its COMMANDER's ceiling, never a sum/max of its deputies. */
+    public int commandLimit(int officer){
+        World.Officer o=w.officer(officer);if(o==null)return 0;
+        return baseCommandLimit(officer)+(w.campaign.has(o.owner,Campaign.Tech.MILITARY_REFORM)?3000:0);
+    }
+    public int baseCommandLimit(int officer){
+        World.Officer o=w.officer(officer);if(o==null)return 0;Rank r=office(officer);
+        return o.role==Strategy.Role.RULER?w.governance.rulerCommand(o.owner):r==null?5000:r.troops;
+    }
+    public String commandDescription(int officer){
+        World.Officer o=w.officer(officer);if(o==null)return "武将不存在";Rank r=office(officer);
+        String source=o.role==Strategy.Role.RULER?"君主爵位·"+w.governance.title(o.owner):r==null?"未任官":r.id;
+        return source+"：基础"+baseCommandLimit(officer)+(w.campaign.has(o.owner,Campaign.Tech.MILITARY_REFORM)?" + 军制改革3000":"")+" = "+commandLimit(officer);
+    }
+    public boolean titleAllows(int side,String rankId){
+        Rank r=rank(rankId);return side>=0&&side<w.factions.length&&r!=null&&w.governance.grade(side)>=r.requiredTitle.grade();
+    }
+    /** Cumulative title unlocks, irrespective of candidate merit or current occupancy. */
+    public List<Rank> unlockedRanks(int side){
+        List<Rank> result=new ArrayList<>();for(Rank r:RANKS)if(titleAllows(side,r.id))result.add(r);
+        return Collections.unmodifiableList(result);
+    }
+    public World.Officer incumbent(int side,String rankId){
+        for(Map.Entry<Integer,String> e:ranks.entrySet())if(e.getValue().equals(rankId)){
+            World.Officer o=w.officer(e.getKey());if(o!=null&&o.owner==side)return o;
+        }
+        return null;
+    }
+    /** Read-only eligibility for both the official command and its UI; no spending or RNG. */
+    public String appointmentError(int city,int actor,int target,String rankId){
+        World.City c=w.city(city);World.Officer o=w.officer(actor),t=w.officer(target);Rank r=rank(rankId);
+        String error=w.cityError(c,o,100);if(error!=null)return error;
+        if(t==null||!w.life.present(target)||t.owner!=c.owner||t.cityId!=city||t.unitId>=0||captive(target)||w.strategy.busy(target)||w.domestic.busy(target)||t.role==Strategy.Role.RULER)
+            return "需本城未出征或执行任务的非君主武将";
+        if(r==null)return "官职无效";
+        if(!titleAllows(c.owner,rankId))return "君主爵位不足：任命"+rankId+"需"+r.requiredTitle.label+"（"+r.requiredTitle.cities+"城），当前为"+w.governance.title(c.owner);
+        if(merit(target)<r.merit)return "武将功绩不足：需要"+r.merit+"，当前"+merit(target);
+        World.Officer holder=incumbent(c.owner,rankId);
+        return holder==null?null:holder.id==target?"该武将已担任此官职":"本势力已有"+holder.name+"担任此官职";
+    }
     public World.Officer advisor(int side){World.Officer o=w.officer(advisors.getOrDefault(side,-1));return o!=null&&o.owner==side&&w.life.present(o.id)&&!captive(o.id)?o:null;}
     public Policy policy(int city){return policies.getOrDefault(city,Policy.MANUAL);}
     public List<Prisoner> escorted(int unit){
@@ -58,13 +111,10 @@ public final class Government {
     }
     public String status(int officer){Prisoner p=prisoner(officer);return p==null?"":"被"+w.faction(p.captor)+"俘虏 · "+locationLabel(p);}
     public World.Result appointRank(int city,int actor,int target,String rankId){w.reports.prepare();
+        String error=appointmentError(city,actor,target,rankId);if(error!=null)return w.fail(error);
         World.City c=w.city(city);World.Officer o=w.officer(actor),t=w.officer(target);Rank r=rank(rankId);
-        String error=w.cityError(c,o,100);if(error!=null)return w.fail(error);
-        if(t==null||t.owner!=c.owner||t.cityId!=city||t.unitId>=0||captive(target)||w.strategy.busy(target)||w.domestic.busy(target)||t.role==Strategy.Role.RULER)return w.fail("需本城未出征或执行任务的非君主武将");
-        if(r==null||merit(target)<r.merit)return w.fail("官职无效或武将功绩不足");
-        for(Map.Entry<Integer,String> e:ranks.entrySet())if(e.getValue().equals(rankId)&&w.officer(e.getKey()).owner==c.owner)return w.fail("本势力已有武将担任此官职");
         w.spend(c,o,100);ranks.put(target,rankId);t.acted=true;t.loyalty=Math.min(100,t.loyalty+5);
-        return w.success(t.name+"受任"+rankId+"，统兵上限"+r.troops+"，月俸"+r.salary);
+        return w.success(t.name+"受任"+rankId+"，"+commandDescription(target)+"，月俸"+r.salary);
     }
     public World.Result removeRank(int city,int actor,int target){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(actor),t=w.officer(target);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
@@ -261,7 +311,23 @@ public final class Government {
             if(c!=null){int pay=rank(e.getValue()).salary;if(c.gold>=pay)c.gold-=pay;else{int lost=w.relations.loyalBond(o.id)?0:w.loyalty.lose(o,2);w.note(o.name+"俸禄不足，忠诚下降"+lost);}}
         }
     }
+    /** AI uses the same title, merit, vacancy, gold and action checks as the player.
+     * At most one promotion, leaving at least 20 AP for its other commands. */
+    void appointAiRank(){
+        if(w.active==w.player||w.actionPoints[w.active]<30)return;
+        List<World.Officer> candidates=new ArrayList<>();
+        for(World.City c:w.cities)if(c.owner==w.active&&c.gold>=1500)candidates.addAll(w.idle(c));
+        candidates.sort(Comparator.comparingInt((World.Officer o)->-o.leadership).thenComparingInt(o->o.id));
+        for(World.Officer o:candidates){
+            if(o.role==Strategy.Role.RULER)continue;
+            Rank best=null;int current=baseCommandLimit(o.id);
+            for(Rank r:RANKS)if(!r.civilian&&r.troops>current&&(best==null||r.troops>best.troops)
+                    &&appointmentError(o.cityId,o.id,o.id,r.id)==null)best=r;
+            if(best!=null){appointRank(o.cityId,o.id,o.id,best.id);return;}
+        }
+    }
     void runAi(){
+        appointAiRank();
         for(Prisoner p:new ArrayList<>(prisoners.values()))if(p.captor==w.active&&p.unitId<0&&p.lastAttempt!=w.turn){
             World.City c=w.city(p.cityId);if(c.gold<100||w.idle(c).isEmpty())continue;
             World.Officer o=w.idle(c).stream().max(Comparator.comparingInt(x->x.charm)).get();
