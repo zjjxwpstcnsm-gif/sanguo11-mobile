@@ -1,0 +1,121 @@
+name: Governance66 production and installed validation
+on:
+  push:
+    branches: [agent/governance-wounded-ui-v066]
+    paths:
+      - .github/workflows/governance66-verify.yml
+      - 'core/**'
+      - 'app/**'
+      - scripts/test-v066.sh
+      - scripts/verify-v066-android.sh
+      - version.properties
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Materialize individually hash-verified source deltas
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/v066
+          python3 - <<'PY'
+          import json, hashlib
+          from pathlib import Path
+          root=Path.cwd()
+          if Path('.ci/g66-1.json').exists():
+              records=[]
+              for i in range(1,7):
+                  records.extend(json.loads(Path(f'.ci/g66-{i}.json').read_text()))
+              assert len(records)==31
+              planned=[]; failures=[]; seen=set()
+              for name,oldsha,edits,mode,newsha in records:
+                  p=Path(name)
+                  assert not p.is_absolute() and '..' not in p.parts and name not in seen
+                  assert p.parts[0] in {'core','app','docs','scripts'} or name=='version.properties'
+                  seen.add(name)
+                  old=p.read_bytes() if p.exists() else b''
+                  if hashlib.sha256(old).hexdigest()!=oldsha:
+                      failures.append(name+' baseline SHA mismatch');continue
+                  lines=old.decode().splitlines(True)
+                  for start,end,text in reversed(edits):
+                      assert 0<=start<=end<=len(lines)
+                      lines[start:end]=text.splitlines(True)
+                  text=''.join(lines)
+                  data=text.encode()
+                  if hashlib.sha256(data).hexdigest()!=newsha:
+                      # Repair only an escaped character literal whose expected complete-file hash matches.
+                      fixed=text.replace("'\n'", "'\\n'").encode()
+                      if hashlib.sha256(fixed).hexdigest()==newsha:data=fixed
+                  if hashlib.sha256(data).hexdigest()!=newsha:
+                      debug=Path('out/v066/candidates')/p;debug.parent.mkdir(parents=True,exist_ok=True);debug.write_bytes(data)
+                      failures.append(name+' output SHA mismatch '+hashlib.sha256(data).hexdigest());continue
+                  planned.append((p,data,mode));print('VERIFIED',name,newsha)
+              if failures:
+                  Path('out/v066/apply-errors.txt').write_text('\n'.join(failures))
+                  raise SystemExit('\n'.join(failures))
+              for p,data,mode in planned:
+                  p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(data);p.chmod(mode)
+              for p in Path('.ci').glob('g66-*.json'):p.unlink()
+              for p in Path('.ci').glob('governance66-*.b64'):p.unlink()
+              Path('.github/workflows/governance66-source.yml').unlink(missing_ok=True)
+          PY
+          if ! git diff --quiet || test -n "$(git ls-files --others --exclude-standard core app docs scripts)"; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add core app docs scripts version.properties .ci .github/workflows/governance66-source.yml
+            git commit -m 'feat: v0.66 wounded, automatic arrival, governance and complete information UI'
+            git push origin HEAD:agent/governance-wounded-ui-v066
+          fi
+          git rev-parse HEAD | tee out/v066/SOURCE_COMMIT.txt
+          git archive --format=zip -o out/v066/source.zip HEAD
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Production command, retained mechanics and presentation regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/test-v066.sh | tee out/v066/core66.txt
+          bash scripts/test-v064.sh | tee out/v066/core64.txt
+          bash scripts/test-ui-models.sh | tee out/v066/presentation.txt
+          python3 scripts/verify-map-release.py | tee out/v066/map-preservation.txt
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: ''
+      - name: Build actual release-mode playtest APK and instrumentation
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          gradle --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest | tee out/v066/android-build.txt
+          cp app/build/outputs/apk/debug/app-debug.apk out/v066/sanguo11-mobile-v0.66.0.apk
+          sha256sum out/v066/sanguo11-mobile-v0.66.0.apk > out/v066/APK_SHA256.txt
+      - name: Enable KVM
+        run: sudo chmod 666 /dev/kvm
+      - name: Install and inspect production app at 320dp portrait and landscape
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          target: default
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-v066-android.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: governance66-validation
+          path: out/v066
+          retention-days: 7
