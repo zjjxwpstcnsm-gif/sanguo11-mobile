@@ -86,6 +86,7 @@ final class SceneMesh {
         for(int r=0;r<g.height;r+=16)for(int q=0;q<g.width;q+=16){
             if(Thread.currentThread().isInterrupted())return Collections.emptyList();
             long fingerprint=1469598103934665603L ^ TerrainMaterialField.VERSION ^ TerrainSurface.METADATA_VERSION ^ WaterVisualField.VERSION;
+            fingerprint=(fingerprint^g.mapSeed)*1099511628211L;
             fingerprint=(fingerprint^g.width)*1099511628211L;fingerprint=(fingerprint^g.height)*1099511628211L;
             fingerprint=(fingerprint^Float.floatToIntBits(g.grid.offset))*1099511628211L;fingerprint=(fingerprint^(g.grid.staggered?1:0))*1099511628211L;
             for(int rr=r-8;rr<Math.min(r+24,g.height);rr++)for(int qq=q-8;qq<Math.min(q+24,g.width);qq++){

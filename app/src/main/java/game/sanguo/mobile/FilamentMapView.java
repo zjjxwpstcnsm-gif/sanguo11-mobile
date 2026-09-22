@@ -81,6 +81,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void setTacticPreview(Displacement.Preview value){tacticPreview=value;overlay.invalidate();}
     void labels(boolean commanders,boolean bars){showCommanders=commanders;showUnitBars=bars;overlay.invalidate();}
 
+    private boolean gridShown;
+    void setGridShown(boolean shown){gridShown=shown;overlay.invalidate();}
     private boolean editorGrid,editorCoords,editorFootprints;private Set<Hex> impassable=Collections.emptySet();
     private int territoryMode,previewFaction=-1;private boolean openingPreview;
     private MapSceneSnapshot.Ground territoryGround;private String territoryKey="";
@@ -628,7 +630,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         }
         @Override protected void onDraw(Canvas c){
             if(snapshot==null)return;
-            if(territoryColors!=null||editorGrid||editorCoords||!impassable.isEmpty()){
+            if(territoryColors!=null||((gridShown||editorGrid)&&camera.span<48)||editorCoords||!impassable.isEmpty()){
                 GridWorldTransform grid=snapshot.ground.grid;
                 float rx=camera.span*camera.width/camera.height+2,rz=(float)(camera.span/camera.sin())+4;
                 Hex a=grid.cell(camera.x-rx,camera.z-rz),b=grid.cell(camera.x+rx,camera.z+rz),d=grid.cell(camera.x-rx,camera.z+rz),e=grid.cell(camera.x+rx,camera.z-rz);
@@ -637,7 +639,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 for(int r=r0;r<=r1;r++)for(int q=q0;q<=q1;q++){
                     Hex h=new Hex(q,r);if(!snapshot.ground.valid(h))continue;
                     if(territoryColors!=null){int color=territoryColors[r*snapshot.ground.width+q];if(color!=0){cell(c,h,(color&0xffffff)|0x55000000);p.setStyle(Paint.Style.FILL);c.drawPath(cellPath,p);}}
-                    if(editorGrid&&camera.span<25)cell(c,h,0x99ffffff);
+                    if((gridShown||editorGrid)&&camera.span<48)cell(c,h,editorGrid?0x99ffffff:0x887d928a);
                     if(impassable.contains(h))cell(c,h,0x99ff6767);
                     if(editorCoords&&camera.span<7){p.setStyle(Paint.Style.FILL);p.setColor(0xffffffff);p.setTextSize(10*getResources().getDisplayMetrics().scaledDensity);c.drawText((int)Math.floor(grid.x(h))+","+(int)Math.floor(grid.z(h)),camera.screenX(grid.x(h)),camera.screenY(grid.z(h),snapshot.ground.surface.at(h)),p);}
                 }
