@@ -44,7 +44,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private MarchOrders.Plan route;
     private final GestureDetector gestures; private final ScaleGestureDetector scaler;
     private boolean multi;
-    private TurnJournal.Event replay;private float replayFraction;
+    private TurnJournal.Event replay;private float replayFraction;private Proxy animatedUnit;
     FilamentMapView(Context context,MapView.TileListener listener,Consumer<Throwable> failure) throws Exception {
         super(context);this.listener=listener;this.failure=failure;
         surface=new SurfaceView(context);addView(surface,new LayoutParams(-1,-1));overlay=new Overlay(context);addView(overlay,new LayoutParams(-1,-1));
@@ -152,19 +152,28 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         // Release faction proxy meshes after ownership changes, rather than retaining obsolete colors forever.
         Set<GpuMesh> used=new HashSet<>();for(Proxy p:objects.values()){used.add(p.shape);if(p.flagShape!=null)used.add(p.flagShape);if(p.baseShape!=null)used.add(p.baseShape);}
         Iterator<Map.Entry<String,GpuMesh>> meshes=shapes.entrySet().iterator();while(meshes.hasNext()){GpuMesh m=meshes.next().getValue();if(!used.contains(m)){m.destroy();meshes.remove();}}
+        animateReplay();
     }
     private void animateReplay(){
         if(snapshot==null)return;
-        for(Proxy p:objects.values())if(p.item.unit!=null){
-            p.motion.sample(replay!=null&&p.item.unit.id==replay.actorId?replay:null,replayFraction,snapshot.ground.grid);
-            p.position(p.motion.x,p.motion.z);
+        Proxy current=replay==null?null:objects.get("unit:"+replay.actorId);
+        if(animatedUnit!=null&&animatedUnit!=current&&objects.get(animatedUnit.item.key)==animatedUnit){
+            animatedUnit.motion.sample(null,0,snapshot.ground.grid);
+            animatedUnit.position(animatedUnit.motion.x,animatedUnit.motion.z);
+        }
+        animatedUnit=current;
+        if(current!=null){
+            current.motion.sample(replay,replayFraction,snapshot.ground.grid);
+            // Keep the cheap CPU pose for culling/hit tests, but avoid off-screen GPU updates.
+            if(inView(current.motion.x,current.motion.z,2))current.position(current.motion.x,current.motion.z);
         }
     }
+
     /** Resolve a visible moving model to its stable snapshot unit, never the terrain below it. */
     private Hex pickUnit(float sx,float sy){
         if(snapshot==null)return null;
         float radius=Math.max(14*getResources().getDisplayMetrics().density,
-            Math.min(36*getResources().getDisplayMetrics().density,camera.width/(2*camera.span)*.45f));
+            Math.min(36*getResources().getDisplayMetrics().density,camera.height/(2*camera.span)*.45f));
         Proxy nearest=null;float distance=radius*radius;
         for(Proxy p:objects.values())if(p.item.unit!=null&&p.shown){
             float dx=sx-camera.screenX(p.motion.x),dy=sy-camera.screenY(p.motion.z,p.y+.25f),d=dx*dx+dy*dy;
@@ -183,7 +192,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void saveCamera(Bundle b){b.putFloat("cameraX",camera.x*TileGeometry.DX);b.putFloat("cameraY",camera.z*TileGeometry.DY);b.putFloat("sceneSpan",camera.span);b.putFloat("sceneTilt",camera.tilt);b.putInt("sceneFacing",camera.facing);}
     void restoreCamera(Bundle b){camera.x=b.getFloat("cameraX")/TileGeometry.DX;camera.z=b.getFloat("cameraY")/TileGeometry.DY;camera.span=b.getFloat("sceneSpan",15);camera.tilt=b.getFloat("sceneTilt",55);camera.facing=b.getInt("sceneFacing",1)<0?-1:1;}
     void release(){
-        if(released)return;released=true;replay=null;generation++;cancelFrame();if(meshTask!=null)meshTask.cancel(true);worker.shutdownNow();surface.getHolder().removeCallback(this);
+        if(released)return;released=true;replay=null;animatedUnit=null;generation++;cancelFrame();if(meshTask!=null)meshTask.cancel(true);worker.shutdownNow();surface.getHolder().removeCallback(this);
         if(engine==null)return;
         if(displayHelper!=null)displayHelper.detach();
         if(swap!=null){engine.destroySwapChain(swap);swap=null;}
@@ -253,7 +262,13 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.coverage)cell(c,h,0xffcfad6e);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets)cell(c,h,0xffdd7661);cell(c,snapshot.selected,0xffffd576);
             for(MapSceneSnapshot.Item item:snapshot.items)if(item.site!=null&&item.site.cells.contains(snapshot.selected))for(Hex h:item.site.cells)cell(c,h,0xffffd576);
             // Ground rings remain visible through architecture; transit units cannot disappear behind walls.
-            for(MapSceneSnapshot.Item item:snapshot.items)if(item.kind==3&&visible(item.hex))cell(c,item.hex,item.color);
+            for(Proxy object:objects.values())if(object.item.unit!=null&&object.shown){
+                float x=camera.screenX(object.motion.x),y=camera.screenY(object.motion.z,object.y);
+                float radius=Math.max(3,camera.height/(2*camera.span)*.38f);
+                p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(2);
+                p.setColor(object.item.hex.equals(snapshot.selected)?0xffffd576:object.item.color);
+                c.drawOval(x-radius,y-radius*(float)camera.sin(),x+radius,y+radius*(float)camera.sin(),p);
+            }
             p.setStyle(Paint.Style.FILL);p.setTextSize(12*getResources().getDisplayMetrics().scaledDensity);p.setShadowLayer(2,0,1,0xff000000);
             for(Proxy object:objects.values()){
                 MapSceneSnapshot.Item item=object.item;

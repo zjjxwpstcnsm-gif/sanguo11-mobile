@@ -18,3 +18,9 @@ java -cp app/build/scene-check:core/src/main/resources game.sanguo.mobile.SceneF
 java -Xmx1g -cp app/build/scene-check:core/src/main/resources game.sanguo.mobile.TerrainSurfaceTest
 
 java -Xmx1g -cp app/build/scene-check:core/src/main/resources game.sanguo.mobile.SiteVisualTest
+
+java -m jdk.compiler/com.sun.tools.javac.Main -encoding UTF-8 --release 17 -cp app/build/scene-check -d app/build/scene-check core/src/testFixtures/java/game/sanguo/core/UnitMotionFixture.java app/src/test/java/game/sanguo/mobile/UnitMotionTest.java
+java -Xmx1g -cp app/build/scene-check:core/src/main/resources game.sanguo.mobile.UnitMotionTest
+
+java -m jdk.compiler/com.sun.tools.javac.Main -encoding UTF-8 --release 17 -cp app/build/scene-check -d app/build/scene-check core/src/test/java/game/sanguo/core/UnitJournalStateTest.java
+java -cp app/build/scene-check:core/src/main/resources game.sanguo.core.UnitJournalStateTest

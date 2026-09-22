@@ -139,7 +139,7 @@ public final class TurnJournal {
     private static boolean sameVisual(Object left,Object right){
         if(left.getClass()!=right.getClass())return false;
         if(left instanceof World.Unit){World.Unit a=(World.Unit)left,b=(World.Unit)right;
-            if(a.owner!=b.owner||a.officerId!=b.officerId||!a.hex.equals(b.hex)||a.troops!=b.troops||a.energy!=b.energy||a.food!=b.food||a.gold!=b.gold||a.status!=b.status||a.statusTurns!=b.statusTurns||a.acted!=b.acted||a.burning!=b.burning||a.ship!=b.ship||!Arrays.equals(a.deputies,b.deputies))return false;
+            if(a.owner!=b.owner||a.officerId!=b.officerId||!a.hex.equals(b.hex)||a.troops!=b.troops||a.wounded!=b.wounded||a.woundRemainder!=b.woundRemainder||a.energy!=b.energy||a.food!=b.food||a.gold!=b.gold||a.status!=b.status||a.statusTurns!=b.statusTurns||a.acted!=b.acted||a.burning!=b.burning||a.ship!=b.ship||!Arrays.equals(a.deputies,b.deputies))return false;
             if(a instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)a,n=(Domestic.Mission)b;return Objects.equals(m.waiting,n.waiting)&&m.stopped==n.stopped&&m.transport==n.transport&&m.targetCity==n.targetCity;}
             return true;
         }
@@ -163,7 +163,7 @@ public final class TurnJournal {
             v.sea=m.sea;v.returnOfficers=m.returnOfficers;v.returning=m.returning;v.stopped=m.stopped;v.legacyOverlap=m.legacyOverlap;v.waiting=m.waiting;
             v.cargoShips[0]=m.cargoShips[0];v.cargoShips[1]=m.cargoShips[1];v.escortId=m.escortId;n=v;
         }else n=new World.Unit(u.id,u.owner,u.officerId,u.weapon,u.hex,u.troops,u.food);
-        n.gold=u.gold;n.energy=u.energy;n.acted=u.acted;n.status=u.status;n.statusTurns=u.statusTurns;n.burning=u.burning;n.burningOwner=u.burningOwner;n.burningPower=u.burningPower;
+        n.wounded=u.wounded;n.woundRemainder=u.woundRemainder;n.gold=u.gold;n.energy=u.energy;n.acted=u.acted;n.status=u.status;n.statusTurns=u.statusTurns;n.burning=u.burning;n.burningOwner=u.burningOwner;n.burningPower=u.burningPower;
         n.deputies=u.deputies.clone();n.ship=u.ship;n.movementBudget=u.movementBudget;n.movementSpent=u.movementSpent;return n;
     }
     private static World.City copyCity(World.City c){World.City n=new World.City(c.id,c.name,c.hex,c.owner);n.gold=c.gold;n.food=c.food;n.troops=c.troops;n.order=c.order;n.morale=c.morale;n.defense=c.defense;n.kind=c.kind;n.baseDefense=c.baseDefense;n.recruitReserve=c.recruitReserve;n.governorId=c.governorId;System.arraycopy(c.equipment,0,n.equipment,0,c.equipment.length);System.arraycopy(c.ships,0,n.ships,0,c.ships.length);return n;}

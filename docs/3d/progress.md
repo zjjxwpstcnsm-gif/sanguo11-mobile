@@ -1,3 +1,18 @@
+# S05 — unit playback contract checkpoint
+
+Status: **PARTIAL / S04 art prerequisite BLOCKED**. Input `de8ef122a28b8f3ab2800b24ac46bc7636501769`.
+Continue PR #62 on `agent/3d-s01-renderer-foundation`; main not merged.
+S02/S03 have been recovered and pushed; the historical remote-blocked wording below is superseded.
+Production changes: detached real unit/equipment state; per-instance path/yaw poses;
+moving labels/rings/culling/picking; clear/skip pose settling; wounded journal copies.
+No final unit models, skeletal animation, formations or water-transition art is claimed.
+See [S05 status, coverage and verification](acceptance/s05-status.md).
+APK and Android test APK build; lint 0 errors / 73 warnings. No device attached.
+PortReplayTest's AI dock failure reproduces with the original input core class.
+Next: finish S04 art and installed gates before claiming S05 art/animation completion.
+
+---
+
 # S02 — continuous terrain checkpoint
 
 Status: **PARTIAL**, remote delivery **BLOCKED**. Continue existing PR #62 branch by explicit user request; main is not merged.

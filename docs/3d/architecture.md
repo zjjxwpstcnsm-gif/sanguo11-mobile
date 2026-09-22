@@ -133,3 +133,13 @@ the buildings so movement/entry semantics remain legible. Opaque textures avoid 
 Long press turns the restricted camera 180 degrees. Projection, panning, zoom anchoring,
 terrain rays, overlays, labels and saved direction use the same facing sign as lookAt.
 Directions are CPU-tested; actual native screenshots remain pending. View remains opt-in.
+
+## S05 playback contract repair
+
+UnitVisual captures actual core equipment and HUD values; UnitMotion belongs to each
+Filament Proxy and only consumes TurnJournal paths/fractions. No root motion feeds core.
+Moving hit tests return the snapshot cell of the same stable unit; the existing TileListener
+keeps command validation authoritative. Ground, labels and culling use the same pose.
+Only the current actor's GPU transform is animated in view; clear/replacement settles the
+previous actor. S01 unit silhouettes remain temporary; full asset/clip/formation coverage
+is explicitly tracked in acceptance/s05-status.md.

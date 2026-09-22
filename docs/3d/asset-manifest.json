@@ -1,5 +1,5 @@
 {
-  "stage": "S03 checkpoint PARTIAL",
+  "stage": "S05 playback contract PARTIAL; S04 art BLOCKED",
   "filament": "1.56.0",
   "matc": "1.56.0",
   "backend": "OpenGL ES",
@@ -35,5 +35,6 @@
       "compressionExtensions": false,
       "finalArtAccepted": false
     }
-  ]
+  ],
+  "unitCoverage": "docs/3d/acceptance/s05-status.md"
 }
