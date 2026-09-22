@@ -110,3 +110,24 @@ counts are not displayed FPS; callback timing is not GPU timing. Original opaque
 is 512×64 RGBA (128 KiB texel estimate); buffers and driver memory are separate.
 Do not claim full performance acceptance or enable 3D by default from these results.
 Next stages must retain shared core playback, stable IDs, default 2D and safe fallback.
+
+
+## Existing core regression comparison
+
+Only `core/.../TurnJournal.java` differs from the main gameplay source. Compiling the
+main version of that class into an isolated comparison classpath reproduces exactly
+the same output for CoreTest, PortReplayTest, CampaignAiTest, SandTerrainTest,
+ObjectiveOrdersTest and MarchOrdersTest failures (AI deployment/supply and older
+map/fixture expectations). No baseline gameplay code was changed to silence them.
+FacilityProductionTest (73) and Turn48Test (120) pass in both comparisons. This does
+not turn the failing legacy suite into a passing suite; the failures remain tracked.
+
+Native resource reporting labels scene primitives, indexed triangles, known uploaded
+buffer bytes and a bounded CPU submission-time P50/P95/P99 sample explicitly.
+These are not driver Draw Calls, present-frame FPS or GPU memory/frame-time measures.
+National terrain shading reuses half-cell height samples, avoiding redundant 63-cell
+filtering for interior triangle colors. Height/geometry and core coordinates are unchanged.
+
+The same height filter now reads precomputed immutable per-cell target/constraint arrays
+and primitive projected coordinates; this removes per-neighbor Hex and enum-array
+allocations. Terrain tests retain the same maximum height, topology and ray-pick results.

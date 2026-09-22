@@ -4,6 +4,24 @@
   "axes": "+Y up, +Z forward; one tile = 1 world span",
   "material": "shared opaque atlas, precompiled S03 material",
   "rig": "rigid-jointed modules, GLB rest geometry + rigs.json pivot/ranges + clips.json keyframes; no skinning or root motion",
+  "version": 1,
+  "auxiliary": [
+    {
+      "file": "atlas.png",
+      "bytes": 7993,
+      "sha256": "4e779ada834d32000cd805f199f8c33183b30deeeeb05af4dce156f3fc83eaf2"
+    },
+    {
+      "file": "rigs.json",
+      "bytes": 14780,
+      "sha256": "3801107a983b38330e097b1960bd450edeed7b97b6d7fc442455546038f34fdb"
+    },
+    {
+      "file": "clips.json",
+      "bytes": 19561,
+      "sha256": "ceaa60f89fc9b78355f58bafae954983d35997b805f3a75a738ea12f8c5070a9"
+    }
+  ],
   "clips": [
     "idle",
     "walk",

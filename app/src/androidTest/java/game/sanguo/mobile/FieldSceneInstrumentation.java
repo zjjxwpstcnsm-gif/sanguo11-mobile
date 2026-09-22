@@ -32,7 +32,8 @@ public final class FieldSceneInstrumentation extends SceneInstrumentation {
             runOnMainSync(view::resetMetrics);long start=SystemClock.uptimeMillis();long frames=(Long)field(view,"renderedFrames");SystemClock.sleep(2000);
             long delta=(Long)field(view,"renderedFrames")-frames;
             android.os.Debug.MemoryInfo memory=new android.os.Debug.MemoryInfo();android.os.Debug.getMemoryInfo(memory);
-            System.out.println("FIELD_STRESS units="+count+" forest="+forest+" facilities="+facilities+" span="+span+" rendered_submissions="+delta+" durationMs="+(SystemClock.uptimeMillis()-start)+" PSS_KB="+memory.getTotalPss()+" "+host.report().replace('\n',' '));
+            String[] metrics={""};runOnMainSync(()->metrics[0]=host.report());
+            System.out.println("FIELD_STRESS units="+count+" forest="+forest+" facilities="+facilities+" span="+span+" rendered_submissions="+delta+" durationMs="+(SystemClock.uptimeMillis()-start)+" PSS_KB="+memory.getTotalPss()+" "+metrics[0].replace('\n',' '));
             check(delta>0,"native frames submitted at every LOD");
             if(span==7)preview("field-"+count+"-"+forest+"-"+facilities);
         }
@@ -86,6 +87,7 @@ public final class FieldSceneInstrumentation extends SceneInstrumentation {
         runOnMainSync(()->{host.invalidateScene();host.setWorld(w,null,-1);});recording.close();
     }
     @Override public void onStart(){Bundle result=new Bundle();try{
+        try(OutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(FieldSceneFixture.create(0,false,false)));}
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();host=(MapHost)field(activity,"map");
         stress(50,false,true);stress(100,false,false);stress(0,true,false);stress(50,true,true);lifecycle();port();march();
         runOnMainSync(()->host.switchMode(false));check(!host.is3D(),"2D fallback remains available");

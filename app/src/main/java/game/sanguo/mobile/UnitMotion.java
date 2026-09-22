@@ -28,7 +28,7 @@ final class UnitMotion {
             float dx=grid.x(to)-grid.x(from),dz=grid.z(to)-grid.z(from);
             x=grid.x(from)+dx*t;z=grid.z(from)+dz*t;
             if(dx!=0||dz!=0)yaw=(float)Math.atan2(dx,dz);
-        } else if((event.kind==TurnJournal.Kind.ATTACK||event.kind==TurnJournal.Kind.TACTIC)&&event.target!=null) {
+        } else if((event.kind==TurnJournal.Kind.ATTACK||event.kind==TurnJournal.Kind.TACTIC||event.kind==TurnJournal.Kind.FACILITY_ATTACK)&&event.target!=null) {
             float dx=grid.x(event.target)-x,dz=grid.z(event.target)-z;
             if(dx!=0||dz!=0)yaw=(float)Math.atan2(dx,dz);
         }

@@ -5,6 +5,7 @@ import java.util.*;
 
 /** CPU-only mesh preparation; no Android or renderer references. */
 final class SceneMesh {
+    private static final World.Terrain[] TERRAIN_TYPES=World.Terrain.values();
     SceneMesh distant;
     long fingerprint; int chunkQ,chunkR;
     float[] uv; final float[] vertices; final int[] indices; final float x,z,radius;
@@ -31,7 +32,7 @@ final class SceneMesh {
     }
     static int shade(int c,float f){return 0xff000000|((int)(((c>>16)&255)*f)<<16)|((int)(((c>>8)&255)*f)<<8)|(int)((c&255)*f);}
     static int terrain(int ordinal){
-        switch(World.Terrain.values()[ordinal]){
+        switch(TERRAIN_TYPES[ordinal]){
             case WATER:case SEA:case SHALLOWS:case NON_NAVIGABLE_WATER:return 0xff496d78;
             case FOREST:return 0xff596c49;
             case MOUNTAIN:return 0xff77796d;

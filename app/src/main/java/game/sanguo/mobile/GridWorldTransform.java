@@ -10,8 +10,10 @@ final class GridWorldTransform {
     GridWorldTransform(float offset, boolean staggered) {
         this.offset=offset; this.staggered=staggered;
     }
-    float x(Hex h) { return TileGeometry.projectedX(h.q,h.r,offset,staggered)/TileGeometry.DX; }
-    float z(Hex h) { return TileGeometry.projectedY(h.q,h.r,offset,staggered)/TileGeometry.DY; }
+    float x(Hex h) { return x(h.q,h.r); }
+    float x(int q,int r) { return TileGeometry.projectedX(q,r,offset,staggered)/TileGeometry.DX; }
+    float z(Hex h) { return z(h.q,h.r); }
+    float z(int q,int r) { return TileGeometry.projectedY(q,r,offset,staggered)/TileGeometry.DY; }
     Hex cell(float x,float z) {
         int r=TileGeometry.projectedRow(x*TileGeometry.DX,z*TileGeometry.DY,staggered);
         return new Hex(TileGeometry.projectedColumn(x*TileGeometry.DX,z*TileGeometry.DY,r,offset,staggered),r);

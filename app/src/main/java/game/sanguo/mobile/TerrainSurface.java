@@ -10,12 +10,19 @@ final class TerrainSurface {
     static final float MAX_HEIGHT=2.6f;
     final MapSceneSnapshot.Ground ground;
     final Map<Hex,Float> overrides;
+    private final float[] targets;private final byte[] constraints;
     private final java.util.concurrent.ConcurrentHashMap<Long,Float> lattice=new java.util.concurrent.ConcurrentHashMap<>();
     TerrainSurface(MapSceneSnapshot.Ground g){this(g,Collections.emptyMap());}
     TerrainSurface(MapSceneSnapshot.Ground g,Map<Hex,Float> values){
         ground=g;Map<Hex,Float> copy=new HashMap<>();
         for(Map.Entry<Hex,Float> e:values.entrySet())if(g.valid(e.getKey())&&Float.isFinite(e.getValue()))copy.put(e.getKey(),Math.max(0,Math.min(MAX_HEIGHT,e.getValue())));
         overrides=Collections.unmodifiableMap(copy);
+        targets=new float[g.width*g.height];constraints=new byte[targets.length];
+        for(int r=0;r<g.height;r++)for(int q=0;q<g.width;q++){
+            Hex h=new Hex(q,r);int at=r*g.width+q;targets[at]=target(h);
+            if(!g.valid(h)||water(h)||g.bases.contains(h))constraints[at]=1;
+            else {World.Terrain t=TYPES[g.terrain[at]];if(t==World.Terrain.ROAD||t==World.Terrain.MOUNTAIN_PATH||t==World.Terrain.PLANK_ROAD)constraints[at]=2;}
+        }
     }
     boolean water(Hex h){if(!ground.valid(h))return false;switch(TYPES[ground.terrain[h.r*ground.width+h.q]]){
         case WATER:case SEA:case SHALLOWS:case NON_NAVIGABLE_WATER:return true;default:return false;}}
@@ -40,17 +47,12 @@ final class TerrainSurface {
         Hex cell=ground.grid.cell(x,z);float sum=0,weight=0,limit=MAX_HEIGHT;
         // Compact support includes all staggered neighbors, including both sides of chunk edges.
         for(int r=cell.r-3;r<=cell.r+3;r++)for(int q=cell.q-4;q<=cell.q+4;q++){
-            Hex h=new Hex(q,r);float dx=Math.abs(x-ground.grid.x(h)),dz=Math.abs(z-ground.grid.z(h));
+            float dx=Math.abs(x-ground.grid.x(q,r)),dz=Math.abs(z-ground.grid.z(q,r));
             float distance=(float)Math.sqrt(dx*dx+dz*dz);
-            if(distance<2.5f){float k=1-distance/2.5f;k=k*k*k;sum+=target(h)*k;weight+=k;}
-            if(!ground.valid(h)||water(h)||ground.bases.contains(h)){
-                float edge=Math.max(Math.max(dx-.5f,dz-.5f),0);limit=Math.min(limit,edge*.6f);
-            }else {
-                World.Terrain t=TYPES[ground.terrain[h.r*ground.width+h.q]];
-                if(t==World.Terrain.MOUNTAIN_PATH||t==World.Terrain.PLANK_ROAD||t==World.Terrain.ROAD){
-                    float edge=Math.max(Math.max(dx-.5f,dz-.5f),0);limit=Math.min(limit,.08f+edge*.6f);
-                }
-            }
+            int at=q>=0&&r>=0&&q<ground.width&&r<ground.height?r*ground.width+q:-1;
+            if(distance<2.5f){float k=1-distance/2.5f;k=k*k*k;sum+=(at<0?0:targets[at])*k;weight+=k;}
+            int constraint=at<0?1:constraints[at];
+            if(constraint!=0){float edge=Math.max(Math.max(dx-.5f,dz-.5f),0);limit=Math.min(limit,(constraint==1?0:.08f)+edge*.6f);}
         }
         return Math.min(limit,weight==0?0:sum/weight);
     }
