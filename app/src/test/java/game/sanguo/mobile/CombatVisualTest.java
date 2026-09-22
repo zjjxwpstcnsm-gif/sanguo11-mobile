@@ -8,13 +8,17 @@ public final class CombatVisualTest {
     static void check(boolean value,String message){checks++;if(!value)throw new AssertionError(message);}
     static World clone(World w)throws Exception{return SaveCodec.decode(SaveCodec.encode(w));}
     public static void main(String[] args)throws Exception{
-        for(String kind:new String[]{"melee","arrow","stone","charge","fire","trap-seed","trap-ball","trap-ship","lightning","critical","counter","defeat","enemy","facilities","site"})run(kind);
+        for(String kind:new String[]{"melee","arrow","stone","charge","fire","critical-fire","trap-seed","trap-ball","trap-ship","lightning","critical","counter","defeat","enemy","facilities","site"})run(kind);
         for(int i=0;i<6;i++){SceneMesh m=CombatVisual.mesh(i);check(m.indices.length>0,"effect geometry");for(float v:m.vertices)check(Float.isFinite(v),"finite asset");}
         System.out.println("PASS S06 "+checks+" combat timeline, read-only deltas, pools, real commands and state-hash checks");
     }
     static void run(String kind)throws Exception{
         World initial=clone(CombatSceneFixture.world(kind));World reference=clone(initial);CombatSceneFixture.action(reference,kind);
         byte[] expected=SaveCodec.encode(reference);int events=-1;
+        if(kind.equals("critical-fire")){
+            check(reference.war.fires().stream().anyMatch(f->f.remaining==3),"critical fire lasts three turns");
+            check(Arrays.equals(expected,SaveCodec.encode(clone(reference))),"critical fire full save roundtrip");
+        }
         for(int speed:new int[]{1,2,4,0}){
             World w=clone(initial),visual=clone(initial);TurnJournal journal=new TurnJournal(w);
             CombatSceneFixture.action(w,kind);journal.close();
