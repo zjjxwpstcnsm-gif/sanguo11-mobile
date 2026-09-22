@@ -71,7 +71,7 @@ public final class SceneInstrumentation extends Instrumentation {
         runOnMainSync(()->host.switchMode(true));settle();
         for(int i=0;i<10;i++){
             try(InputStream shell=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand("input keyevent KEYCODE_HOME"))){while(shell.read()!=-1){}}settle();check(!(Boolean)field(field(host,"spatial"),"queued"),"background removes frame callback");
-            getTargetContext().startActivity(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_REORDER_TO_FRONT));settle();check((Long)field(field(host,"spatial"),"lastFrame")>0,"foreground produces new rendered frame callback");
+            try(InputStream shell=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand("am start -W -f 0x10020000 -n game.sanguo.mobile.dev/game.sanguo.mobile.MainActivity"))){while(shell.read()!=-1){}}settle();check((Long)field(field(host,"spatial"),"lastFrame")>0,"foreground produces new rendered frame callback");
         }
         // Exact real Surface tap is routed through the same MainActivity onTile command entry.
         for(Hex cell:SiteFootprint.cells(city))if(world.inside(cell)){

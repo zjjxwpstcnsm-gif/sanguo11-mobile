@@ -25,6 +25,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private Future<?> meshTask;
     private int generation;
     private Engine engine; private Renderer renderer; private Scene scene;
+    private com.google.android.filament.android.DisplayHelper displayHelper;
+    private Skybox skybox;
     private com.google.android.filament.View view; private Camera lens; private Material material;
     private SwapChain swap; private int cameraEntity,light;
     private boolean released,resumed=true,queued,diagnostics;
@@ -55,6 +57,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         try{
             Filament.init();engine=Engine.create(Engine.Backend.OPENGL);
             renderer=engine.createRenderer();scene=engine.createScene();view=engine.createView();
+            displayHelper=new com.google.android.filament.android.DisplayHelper(context);
+            skybox=new Skybox.Builder().color(.075f,.10f,.11f,1).build(engine);scene.setSkybox(skybox);
             cameraEntity=EntityManager.get().create();lens=engine.createCamera(cameraEntity);view.setScene(scene);view.setCamera(lens);view.setPostProcessingEnabled(false);
             Renderer.ClearOptions clear=new Renderer.ClearOptions();clear.clear=true;clear.clearColor=new float[]{.075f,.10f,.11f,1};renderer.setClearOptions(clear);
             byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int count;while((count=in.read(block))!=-1)out.write(block,0,count);bytes=out.toByteArray();}
@@ -84,9 +88,9 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void resume(boolean value){resumed=value;if(value)schedule();else cancelFrame();}
     private void cancelFrame(){Choreographer.getInstance().removeFrameCallback(this);queued=false;lastFrame=0;}
     private void schedule(){if(!released&&resumed&&swap!=null&&!queued){queued=true;Choreographer.getInstance().postFrameCallback(this);}}
-    @Override public void surfaceCreated(SurfaceHolder holder){if(released)return;try{swap=engine.createSwapChain(holder.getSurface());schedule();}catch(RuntimeException|LinkageError e){failure.accept(e);}}
-    @Override public void surfaceChanged(SurfaceHolder h,int f,int w,int height){if(released)return;camera.width=Math.max(1,w);camera.height=Math.max(1,height);view.setViewport(new Viewport(0,0,w,height));schedule();}
-    @Override public void surfaceDestroyed(SurfaceHolder holder){cancelFrame();if(engine!=null&&swap!=null){engine.destroySwapChain(swap);swap=null;engine.flushAndWait();}}
+    @Override public void surfaceCreated(SurfaceHolder holder){if(released)return;try{swap=engine.createSwapChain(holder.getSurface());displayHelper.attach(renderer,surface.getDisplay());schedule();}catch(RuntimeException|LinkageError e){failure.accept(e);}}
+    @Override public void surfaceChanged(SurfaceHolder h,int f,int w,int height){if(released)return;camera.width=Math.max(1,w);camera.height=Math.max(1,height);view.setViewport(new Viewport(0,0,w,height));com.google.android.filament.android.FilamentHelper.synchronizePendingFrames(engine);schedule();}
+    @Override public void surfaceDestroyed(SurfaceHolder holder){cancelFrame();if(displayHelper!=null)displayHelper.detach();if(engine!=null&&swap!=null){engine.destroySwapChain(swap);swap=null;engine.flushAndWait();}}
     @Override public void doFrame(long time){
         queued=false;if(released||!resumed||swap==null)return;
         try{
@@ -133,10 +137,12 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void release(){
         if(released)return;released=true;generation++;cancelFrame();if(meshTask!=null)meshTask.cancel(true);worker.shutdownNow();surface.getHolder().removeCallback(this);
         if(engine==null)return;
+        if(displayHelper!=null)displayHelper.detach();
         if(swap!=null){engine.destroySwapChain(swap);swap=null;}
         for(Proxy p:objects.values())p.destroy();objects.clear();for(GpuMesh m:terrain.values())m.destroy();terrain.clear();for(GpuMesh m:shapes.values())m.destroy();shapes.clear();
         if(light!=0){scene.removeEntity(light);engine.destroyEntity(light);EntityManager.get().destroy(light);}
         if(material!=null)engine.destroyMaterial(material);
+        if(skybox!=null){scene.setSkybox(null);engine.destroySkybox(skybox);}
         if(view!=null)engine.destroyView(view);if(scene!=null)engine.destroyScene(scene);if(renderer!=null)engine.destroyRenderer(renderer);
         if(cameraEntity!=0){engine.destroyCameraComponent(cameraEntity);EntityManager.get().destroy(cameraEntity);}engine.flushAndWait();engine.destroy();engine=null;
     }
@@ -168,7 +174,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.coverage)cell(c,h,0xffcfad6e);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets)cell(c,h,0xffdd7661);cell(c,snapshot.selected,0xffffd576);
             p.setStyle(Paint.Style.FILL);p.setTextSize(12*getResources().getDisplayMetrics().scaledDensity);p.setShadowLayer(2,0,1,0xff000000);
             for(MapSceneSnapshot.Item item:snapshot.items)if((item.kind<3||camera.span<18)&&visible(item.hex)){float x=camera.screenX(snapshot.ground.grid.x(item.hex)),y=camera.screenY(snapshot.ground.grid.z(item.hex),1);p.setColor(item.color);c.drawText(item.label,x,y,p);}
-            p.setColor(0xfff0e5c8);c.drawText("3D 试验 · S01 过渡资源",12,24*getResources().getDisplayMetrics().density,p);
+            p.setColor(0xfff0e5c8);c.drawText((pending>0||renderedFrames<3)?"3D 地图准备中… · 可在视图切回 2D":"3D 试验 · S01 过渡资源",12,24*getResources().getDisplayMetrics().density,p);
             if(diagnostics){int y=65;for(String line:report().split("\n")){c.drawText(line,12,y,p);y+=22*getResources().getDisplayMetrics().density;}}
             p.clearShadowLayer();
         }
