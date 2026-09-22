@@ -19,22 +19,33 @@ public final class TerrainMaterialInstrumentation extends SceneInstrumentation {
         }
         throw new AssertionError("No actual national boundary for "+type);
     }
+    @Override void surfaceCapture()throws Exception{
+        super.surfaceCapture();
+        android.graphics.Bitmap bitmap=android.graphics.BitmapFactory.decodeFile(new File(getTargetContext().getExternalFilesDir("s01"),"surface.png").getAbsolutePath());
+        java.util.Set<Integer> colors=new java.util.HashSet<>();
+        for(int y=0;y<bitmap.getHeight();y+=8)for(int x=0;x<bitmap.getWidth();x+=8)colors.add(bitmap.getPixel(x,y));
+        bitmap.recycle();check(colors.size()>64,"Surface has real material variation, not a uniform post-process frame");
+    }
     @Override public void onStart(){Bundle result=new Bundle();try{
         World w=ScenarioCatalog.all().get(0);try(OutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(w));}
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();
         host=(MapHost)field(activity,"map");world=(World)field(activity,"world");byte[] original=SaveCodec.encode(world);
         Hex[] shots={boundary(World.Terrain.FOREST),boundary(World.Terrain.MOUNTAIN),boundary(World.Terrain.SAND),world.cities.get(0).hex};
         String[] names={"forest","rock","sand","city"};File dir=getTargetContext().getExternalFilesDir("s01");dir.mkdirs();
-        StringBuilder report=new StringBuilder("name,q,r,span,quality,facing,revision\n");
+        StringBuilder report=new StringBuilder("name,q,r,span,quality,facing,tilt,uiWidth,uiHeight,bufferWidth,bufferHeight,mapId,mapRevision,revision\n");
         for(String quality:new String[]{"MEDIUM","LOW","HIGH"}){
             runOnMainSync(()->{host.switchMode(false);getTargetContext().getSharedPreferences("map-renderer",0).edit().putString("quality",quality).commit();host.switchMode(true);});settle();ready();
             FilamentMapView spatial=(FilamentMapView)field(host,"spatial");
             check(field(spatial,"groundMaterial")!=null,"real ground material loaded");check(((List<?>)field(spatial,"groundTextures")).size()==8,"all texture layers loaded");
-            for(int i=0;i<shots.length;i++)for(float span:new float[]{4,10,24}){
-                final Hex h=shots[i];runOnMainSync(()->{activity.selectAndFocus(h);spatial.camera.span=span;spatial.camera.facing=1;});settle();ready();
+            for(int i=0;i<shots.length;i++)for(float span:new float[]{4,16,64}){
+                final Hex h=shots[i];runOnMainSync(()->activity.selectAndFocus(h));settle();
+                // selectAndFocus posts a second focus operation; set the shot only after that barrier.
+                runOnMainSync(()->{spatial.camera.span=span;spatial.camera.facing=1;});settle();ready();
+                check(spatial.camera.span==span,"fixed span survives deferred UI focus");
+                check((Boolean)field(spatial,"distantTerrain")== (span>48),"near/far terrain LOD actually selected");
                 surfaceCapture();String name="s10-"+names[i]+"-"+quality+"-"+(int)span;
                 Files.copy(new File(dir,"surface.png").toPath(),new File(dir,name+"-surface.png").toPath(),java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-                capture(name+"-selection");report.append(names[i]+","+h.q+","+h.r+","+span+","+quality+",1,"+BuildConfig.SOURCE_REVISION+"\n");
+                capture(name+"-selection");report.append(names[i]+","+h.q+","+h.r+","+spatial.camera.span+","+quality+",1,"+spatial.camera.tilt+","+spatial.camera.width+","+spatial.camera.height+","+field(spatial,"bufferWidth")+","+field(spatial,"bufferHeight")+","+world.mapId+","+world.mapRevision+","+BuildConfig.SOURCE_REVISION+"\n");
                 MapSceneSnapshot snap=(MapSceneSnapshot)field(spatial,"snapshot");float x=snap.ground.grid.x(h),z=snap.ground.grid.z(h);
                 check(h.equals(snap.ground.surface.pick(spatial.camera,spatial.camera.screenX(x),spatial.camera.screenY(z,snap.ground.surface.at(h)))),"rendered shot center picks same gameplay cell");
             }
