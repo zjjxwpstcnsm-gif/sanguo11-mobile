@@ -591,11 +591,14 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         final Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);
         final android.graphics.Path cellPath=new android.graphics.Path();
         Overlay(Context c){super(c);setClickable(false);}
-        void cell(Canvas c,Hex h,int color){
-            if(h==null||snapshot==null||!snapshot.ground.valid(h))return;GridWorldTransform g=snapshot.ground.grid;float x=g.x(h),z=g.z(h);
+        boolean cellPath(Hex h){
+            if(h==null||snapshot==null||!snapshot.ground.valid(h))return false;GridWorldTransform g=snapshot.ground.grid;float x=g.x(h),z=g.z(h);
             android.graphics.Path path=cellPath;path.rewind();int i=0;
             for(float[] edge:SceneMesh.EDGE){float wx=x+edge[0],wz=z+edge[1],sx=camera.screenX(wx),sy=camera.screenY(wz,snapshot.ground.surface.sample(wx,wz)+.015f);if(i++==0)path.moveTo(sx,sy);else path.lineTo(sx,sy);}
-            path.close();p.setColor(color);p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(2);c.drawPath(path,p);
+            path.close();return true;
+        }
+        void cell(Canvas c,Hex h,int color){
+            if(!cellPath(h))return;p.setColor(color);p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(2);c.drawPath(cellPath,p);
         }
         void drawCombat(Canvas c){
             float d=getResources().getDisplayMetrics().density;
@@ -638,7 +641,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 int r0=Math.max(0,Math.min(Math.min(a.r,b.r),Math.min(d.r,e.r))-2),r1=Math.min(snapshot.ground.height-1,Math.max(Math.max(a.r,b.r),Math.max(d.r,e.r))+2);
                 for(int r=r0;r<=r1;r++)for(int q=q0;q<=q1;q++){
                     Hex h=new Hex(q,r);if(!snapshot.ground.valid(h))continue;
-                    if(territoryColors!=null){int color=territoryColors[r*snapshot.ground.width+q];if(color!=0){cell(c,h,(color&0xffffff)|0x55000000);p.setStyle(Paint.Style.FILL);c.drawPath(cellPath,p);}}
+                    if(territoryColors!=null){int color=territoryColors[r*snapshot.ground.width+q];if(color!=0&&cellPath(h)){p.setColor((color&0xffffff)|0x55000000);p.setStyle(Paint.Style.FILL);c.drawPath(cellPath,p);}}
                     if((gridShown||editorGrid)&&camera.span<48)cell(c,h,editorGrid?0x99ffffff:0x887d928a);
                     if(impassable.contains(h))cell(c,h,0x99ff6767);
                     if(editorCoords&&camera.span<7){p.setStyle(Paint.Style.FILL);p.setColor(0xffffffff);p.setTextSize(10*getResources().getDisplayMetrics().scaledDensity);c.drawText((int)Math.floor(grid.x(h))+","+(int)Math.floor(grid.z(h)),camera.screenX(grid.x(h)),camera.screenY(grid.z(h),snapshot.ground.surface.at(h)),p);}
