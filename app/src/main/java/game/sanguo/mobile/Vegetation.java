@@ -5,7 +5,7 @@ import java.util.*;
 
 /** Opaque merged vegetation: one renderable per visible 8x8 chunk, never one per tree. */
 final class Vegetation {
-    static final int CHUNK=8,SEED=0x3111202;
+    static final int CHUNK=8,SEED=0x3111203;
     static Set<Hex> exclusions(MapSceneSnapshot snapshot){
         Set<Hex> result=new HashSet<>(snapshot.ground.bases);
         for(MapSceneSnapshot.Item item:snapshot.items)if(item.facility!=null)result.add(item.hex);
@@ -70,7 +70,7 @@ final class Vegetation {
             hash=mix(hash);
             float x=ground.grid.x(h)+(((hash>>>2)&1023)/1023f-.5f)*.82f;
             float z=ground.grid.z(h)+(((hash>>>12)&1023)/1023f-.5f)*.82f;
-            if((mix(hash^0x55ab)&65535)/65535f>density(ground,x,z)*.86f)continue;
+            if((mix(hash^0x55ab)&65535)/65535f>density(ground,x,z)*.70f)continue;
             float scale=.65f+((hash>>>4)&255)/255f*.30f,y=ground.surface.meshHeight(x,z);
             float angle=(hash&65535)/65535f*6.283185f,cs=(float)Math.cos(angle),sn=(float)Math.sin(angle);
             float region=.5f+.35f*(float)(Math.sin(x*.13)*Math.cos(z*.11));

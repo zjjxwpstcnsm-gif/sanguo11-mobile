@@ -197,11 +197,19 @@ for family,names in [('domestic',domestic),('military',military)]:
  for kind in names:
   for level in (range(1,4) if kind in ['MARKET','FARM','BARRACKS','SMITH','STABLE'] else [1]):
    for lod in range(3):save(Mesh().facility(kind,level,lod),f'{family}-{kind}-{level}-lod{lod}')
+def crown(m,x,y,z,rx,ry,rz,lod):
+ # Pole triangles avoid the degenerate quads of a latitude sphere and cap per-tree memory.
+ n=7 if lod==0 else 4
+ for i in range(n):
+  a=i*math.tau/n;b=(i+1)*math.tau/n
+  p=(x+rx*math.cos(a),y,z+rz*math.sin(a));q=(x+rx*math.cos(b),y,z+rz*math.sin(b))
+  m.face([(x,y-ry,z),q,p],6)
+  m.face([p,q,(x,y+ry,z)],6)
 for lod in range(2):
  m=Mesh();m.frustum(0,0,0,.025,.025,.40,.60,2,5)
  # Broad, asymmetric opaque crown lobes: same silhouette and height at both LODs.
  for x,y,z,rx,ry,rz in [(-.085,.43,.01,.15,.17,.14),(.09,.48,.035,.16,.19,.14),(0,.60,-.04,.14,.16,.13)]:
-  m.oval(x,y,z,rx,ry,rz,6,7 if lod==0 else 5,3 if lod==0 else 2)
+  crown(m,x,y,z,rx,ry,rz,lod)
  save(m,'tree-lod'+str(lod))
 # Tall open crown variant; smoothly mixed by canonical world region, not administrative borders.
 for lod in range(2):
@@ -209,7 +217,7 @@ for lod in range(2):
  for a,y in [(0,.43),(2.1,.52),(4.2,.62)]:
   x,z=.10*math.cos(a),.10*math.sin(a)
   m.beam((0,.28,0),(x,y,z),.025)
-  m.oval(x,y,z,.11,.16,.10,6,7 if lod==0 else 5,3 if lod==0 else 2)
+  crown(m,x,y,z,.11,.16,.10,lod)
  save(m,'tree-upland-lod'+str(lod))
 # Dedicated construction scaffold and opaque fire tongue modules (no alpha overdraw).
 m=Mesh()
