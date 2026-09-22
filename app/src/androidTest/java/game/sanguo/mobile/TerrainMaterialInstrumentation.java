@@ -55,5 +55,7 @@ public final class TerrainMaterialInstrumentation extends SceneInstrumentation {
         try(OutputStream out=new FileOutputStream(new File(dir,"s10-shots.csv"))){out.write(report.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));}
         runOnMainSync(()->host.switchMode(false));
         result.putString("stream","PASS S10 native materials: "+checks+" checks, 36 national Surface captures; emulator, not physical device.\n");finish(Activity.RESULT_OK,result);
-    }catch(Throwable e){result.putString("stream","FAIL S10 "+e+"\n"+android.util.Log.getStackTraceString(e));finish(Activity.RESULT_CANCELED,result);}}
+    }catch(Throwable e){
+        try{capture("s10-failure-ui");}catch(Throwable captureError){e.addSuppressed(captureError);}
+        result.putString("stream","FAIL S10 "+e+"\n"+android.util.Log.getStackTraceString(e));finish(Activity.RESULT_CANCELED,result);}}
 }

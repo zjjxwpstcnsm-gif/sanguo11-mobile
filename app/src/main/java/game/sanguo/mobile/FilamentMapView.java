@@ -44,6 +44,9 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private Material siteMaterial; private Texture siteAtlas,fieldAtlas;private FieldAssets fieldAssets;private MaterialInstance vegetationMaterial;
     private int siteLod=1; private final Set<String> missingAssets=new HashSet<>();
     private boolean srgbSwapChain;
+    private boolean outputProbePending,outputVerified;
+    private int uniformOutputCount;
+    private long lastOutputProbe;
     private SwapChain swap; private int cameraEntity,light;
     private boolean released,resumed=true,queued,diagnostics;
     private final long[] cpuSamples=new long[240];private int cpuCount,cpuCursor;
@@ -287,7 +290,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void resume(boolean value){resumed=value;if(value)schedule();else {clearEffects();cancelFrame();}}
     private void cancelFrame(){Choreographer.getInstance().removeFrameCallback(this);queued=false;lastFrame=0;pacer.reset();}
     private void schedule(){if(!released&&resumed&&swap!=null&&!queued){queued=true;Choreographer.getInstance().postFrameCallback(this);}}
-    @Override public void surfaceCreated(SurfaceHolder holder){if(released)return;try{swap=engine.createSwapChain(holder.getSurface(),srgbSwapChain?SwapChainFlags.CONFIG_SRGB_COLORSPACE:SwapChainFlags.CONFIG_DEFAULT);displayHelper.attach(renderer,surface.getDisplay());schedule();}catch(RuntimeException|LinkageError e){failure.accept(e);}}
+    @Override public void surfaceCreated(SurfaceHolder holder){if(released)return;try{outputVerified=false;uniformOutputCount=0;lastOutputProbe=0;swap=engine.createSwapChain(holder.getSurface(),srgbSwapChain?SwapChainFlags.CONFIG_SRGB_COLORSPACE:SwapChainFlags.CONFIG_DEFAULT);displayHelper.attach(renderer,surface.getDisplay());schedule();}catch(RuntimeException|LinkageError e){failure.accept(e);}}
     @Override public void surfaceChanged(SurfaceHolder h,int f,int w,int height){if(released)return;bufferWidth=w;bufferHeight=height;view.setViewport(new Viewport(0,0,w,height));com.google.android.filament.android.FilamentHelper.synchronizePendingFrames(engine);schedule();}
     @Override public void surfaceDestroyed(SurfaceHolder holder){cancelFrame();if(displayHelper!=null)displayHelper.detach();if(engine!=null&&swap!=null){engine.destroySwapChain(swap);swap=null;engine.flushAndWait();}}
     @Override public void doFrame(long time){
@@ -300,10 +303,39 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             lens.setProjection(Camera.Projection.ORTHO,-camera.span*aspect,camera.span*aspect,-camera.span,camera.span,.1,1000);
             lens.lookAt(camera.x,300*camera.sin(),camera.z+camera.facing*300*camera.cos(),camera.x,0,camera.z,0,1,0);
             animationTick=time/1_000_000;animateReplay();loadVisible();animateUnits();animateEffects();
-            if(renderer.beginFrame(swap,time)){renderer.render(view);renderer.endFrame();renderedFrames++;}
+            if(renderer.beginFrame(swap,time)){renderer.render(view);renderer.endFrame();renderedFrames++;checkSurfaceOutput();}
             overlay.invalidate();schedule();
             cpuSamples[cpuCursor++%cpuSamples.length]=System.nanoTime()-cpuStart;cpuCount=Math.min(cpuSamples.length,cpuCount+1);
         }catch(RuntimeException|LinkageError e){cancelFrame();failure.accept(e);}
+    }
+    /** Check actual display output once uploads settle. Driver failures can return no Java error.
+     * Only repeated, virtually identical extreme pixels trigger the existing safe 2D fallback. */
+    private void checkSurfaceOutput(){
+        long now=android.os.SystemClock.uptimeMillis();
+        if(outputVerified||outputProbePending||renderedFrames<20||pending!=0||visibleChunks==0
+                ||now-lastOutputProbe<1000||!surface.getHolder().getSurface().isValid())return;
+        lastOutputProbe=now;outputProbePending=true;
+        SwapChain probedSwap=swap;
+        android.graphics.Bitmap sample=android.graphics.Bitmap.createBitmap(32,32,android.graphics.Bitmap.Config.ARGB_8888);
+        try{
+            PixelCopy.request(surface,sample,result->{
+                outputProbePending=false;
+                try{
+                    if(released||!resumed||swap!=probedSwap||pending!=0)return;
+                    if(result!=PixelCopy.SUCCESS){uniformOutputCount=0;return;}
+                    int[] pixels=new int[1024];sample.getPixels(pixels,0,32,0,0,32,32);
+                    int minR=255,minG=255,minB=255,maxR=0,maxG=0,maxB=0;
+                    for(int pixel:pixels){int r=(pixel>>16)&255,g=(pixel>>8)&255,b=pixel&255;
+                        minR=Math.min(minR,r);minG=Math.min(minG,g);minB=Math.min(minB,b);
+                        maxR=Math.max(maxR,r);maxG=Math.max(maxG,g);maxB=Math.max(maxB,b);}
+                    boolean extreme=maxR+maxG+maxB<=24||minR+minG+minB>=735;
+                    boolean uniform=maxR-minR<=2&&maxG-minG<=2&&maxB-minB<=2;
+                    if(uniform&&extreme){
+                        if(++uniformOutputCount>=3)failure.accept(new IllegalStateException("Repeated blank 3D Surface output"));
+                    }else{uniformOutputCount=0;outputVerified=true;}
+                }finally{sample.recycle();}
+            },new android.os.Handler(android.os.Looper.getMainLooper()));
+        }catch(IllegalArgumentException e){outputProbePending=false;uniformOutputCount=0;sample.recycle();}
     }
     private boolean inView(float x,float z,float radius){return Math.abs(x-camera.x)<camera.span*camera.width/camera.height+radius+2&&Math.abs(z-camera.z)<camera.span/camera.sin()+radius+2;}
     private void loadVisible(){
