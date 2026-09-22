@@ -6,25 +6,22 @@ import java.util.*;
 public final class CityDefense {
     private final World w;
     CityDefense(World w){this.w=w;}
-    /** Range three includes ranged siege pressure; convoys and allies cannot stop repairs. */
-    public boolean besieged(World.City c){
-        if(c==null)return false;
-        for(World.Unit u:w.units)if(u.troops>0&&w.campaign.hostile(c.owner,u.owner)&&SiteFootprint.distance(c,u.hex)<=3)return true;
-        return false;
-    }
+    /** Same two exterior rings used by income, recruitment and selection overlays. */
+    public boolean besieged(World.City c){return SiegeRules.blockaded(w,c);}
     public int recovery(World.City c){
         if(c==null||c.owner<0||c.food<=0||besieged(c)||c.defense>=w.campaign.defenseCap(c))return 0;
         return Math.min(w.campaign.defenseCap(c)-c.defense,w.campaign.has(c.owner,Campaign.Tech.ENGINEERING)?40:20);
     }
     public int repairAmount(World.City c,World.Officer o){
         int amount=400+o.politics*4;
+        if(w.campaign.has(c.owner,Campaign.Tech.ENGINEERING))amount/=1;
         if(w.campaign.has(c.owner,Campaign.Tech.ENGINEERING))amount=amount*3/2;
         if(besieged(c))amount/=4;
         return Math.max(0,Math.min(w.campaign.defenseCap(c)-c.defense,amount));
     }
-    public int range(World.City city){return city.kind==World.SiteKind.CITY?2:1;}
+    public int range(World.City city){return SiegeRules.RANGE;}
     private boolean ready(World.City c){return c!=null&&c.owner>=0&&c.troops>0&&c.food>0&&c.defense>0;}
-    public boolean inRange(World.City c,World.Unit u){return ready(c)&&u!=null&&w.campaign.hostile(c.owner,u.owner)&&SiteFootprint.hit(c,u.hex,1,range(c),null,h->w.inside(h))!=null;}
+    public boolean inRange(World.City c,World.Unit u){return ready(c)&&SiegeRules.hostile(w,c,u);}
     /** Bounded output scales with remaining garrison, morale and wall condition. */
     public int strength(World.City c){
         if(!ready(c))return 0;
