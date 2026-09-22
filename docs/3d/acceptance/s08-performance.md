@@ -8,7 +8,7 @@ Normal game → 视图 → 3D 画质. Default renderer remains 2D; medium qualit
 
 - Low / medium / high: 30 / 30 / 60 fps, 70 / 85 / 100% Surface buffer resolution,
   native UI/input projection unchanged, atlas max 256 / 512 / 1024, lower forest
-  mesh and formation LOD on low, high-only 4x MSAA. No dynamic resolution or second
+  mesh and formation LOD on low, high-only 4x MSAA on GLES3.1+; GLES3.0 compatibility disables this optional resolve. No dynamic resolution or second
   scheduler. Fractional vsync pacing verified on 60/90/120/144 Hz. Android29+ severe thermal status caps 30fps / 70% scale through that same
   scheduler; recovery waits for light/none (hysteresis). Older devices report N/A. Switching quality rebuilds the engine through existing
   camera-preserving 2D/3D ownership path, without modifying World or saves.
@@ -75,3 +75,21 @@ Both decoded atlas base levels exceed 36 dB PSNR. Compressed mip payload is 30,1
 bytes vs 180,224 bytes for prior RGBA base levels (or 240,316 RGBA mip bytes).
 This is atlas GPU payload, not total process/GPU memory. PNG fallback adds only the
 existing small atlas files; no duplicate ASTC or full external content pack is included.
+
+
+## Native issue found during S08 acceptance
+
+`ed8a08a` reproduces a HIGH-first native SIGABRT on API29 / x86_64 / SwiftShader
+GLES3.0: Filament 1.56 `blitLow` fragment shader fails compilation (structure
+constructor mismatch) when MSAA adds an intermediate resolve. This is not Java OOM.
+The earlier LOW/MEDIUM passes prove real ETC2 texture uploads and Surface rendering,
+not full lifecycle acceptance. Keep native logs in the delivered evidence.
+MSAA now requires the conservative GLES3.1+ profile; GLES3.0 HIGH remains full 3D,
+full resolution, high LOD and 60fps cap, with AA disabled and reported in diagnostics.
+GLES3.1+ MSAA remains a physical-driver acceptance gate. No emulator-only model/map
+removal or permanent 2D fallback is used to mask the failure.
+Retired views now immediately drop CPU meshes/snapshot/rest cache ownership as well
+as releasing native resources; this independent lifetime improvement is retained.
+Concurrent S09 commits on this shared branch are preserved, including version76,
+critical-fire save validation and safe-restore latching. S08 APK source identity must
+therefore distinguish the integrated branch from the earlier S08-only measurements.

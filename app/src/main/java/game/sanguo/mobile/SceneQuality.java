@@ -10,6 +10,7 @@ enum SceneQuality {
         this.label=label;this.fps=fps;this.scale=scale;this.atlasSize=atlasSize;minSiteLod=sites;minUnitLod=units;poseCache=cache;
     }
     static SceneQuality from(Object value){try{return value instanceof String?valueOf((String)value):MEDIUM;}catch(IllegalArgumentException e){return MEDIUM;}}
+    boolean msaaSupported(int requestedGlesVersion){return this==HIGH&&requestedGlesVersion>=0x30001;}
     static final class Thermal {
         boolean constrained;
         void update(int status){if(status>=3)constrained=true;else if(status<=1)constrained=false;}

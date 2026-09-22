@@ -21,6 +21,8 @@ public final class PerformanceSceneInstrumentation extends SceneInstrumentation 
                 Bundle progress=new Bundle();progress.putString("stream","S08 cycle="+i+" quality="+q+"\n");sendStatus(1,progress);
                 runOnMainSync(()->{host.quality(q);host.switchMode(true);host.focus(world.home().hex);});settle();ready();
                 FilamentMapView view=(FilamentMapView)field(host,"spatial");
+                int gles=getTargetContext().getSystemService(android.app.ActivityManager.class).getDeviceConfigurationInfo().reqGlEsVersion;
+                check((Boolean)field(view,"msaaEnabled")==q.msaaSupported(gles),"AA capability policy without disabling 3D");
                 int width=(Integer)field(view,"bufferWidth"),height=(Integer)field(view,"bufferHeight");
                 check(width==Math.round(host.getWidth()*q.scale)&&height==Math.round(host.getHeight()*q.scale),"actual fixed Surface resolution "+q);
                 check(view.camera.width==host.getWidth()&&view.camera.height==host.getHeight(),"input projection remains UI resolution");

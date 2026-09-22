@@ -9,6 +9,7 @@ public final class SceneQualityTest {
             if(!p.due(120_000_000_000L,q.fps))throw new AssertionError("resume gap");
             p.reset();if(!p.due(0,q.fps))throw new AssertionError("reset");
         }
+        if(SceneQuality.HIGH.msaaSupported(0x30000)||!SceneQuality.HIGH.msaaSupported(0x30001)||SceneQuality.MEDIUM.msaaSupported(0x30002))throw new AssertionError("GLES capability gate");
         SceneQuality.Thermal thermal=new SceneQuality.Thermal();thermal.update(3);
         if(thermal.fps(SceneQuality.HIGH)!=30||thermal.scale(SceneQuality.HIGH)!=.70f)throw new AssertionError("thermal cap");
         thermal.update(2);if(!thermal.constrained)throw new AssertionError("thermal hysteresis");

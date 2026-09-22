@@ -20,6 +20,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private final SceneQuality quality;
     private final SceneQuality.Pacer pacer=new SceneQuality.Pacer();
     private int bufferWidth,bufferHeight;
+    private boolean msaaEnabled;
     private final SceneQuality.Thermal thermal=new SceneQuality.Thermal();
     private android.os.PowerManager thermalManager;
     private android.os.PowerManager.OnThermalStatusChangedListener thermalListener;
@@ -119,7 +120,11 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             displayHelper=new com.google.android.filament.android.DisplayHelper(context);
             skybox=new Skybox.Builder().color(.075f,.10f,.11f,1).build(engine);scene.setSkybox(skybox);
             cameraEntity=EntityManager.get().create();lens=engine.createCamera(cameraEntity);view.setScene(scene);view.setCamera(lens);view.setPostProcessingEnabled(false);
-            com.google.android.filament.View.MultiSampleAntiAliasingOptions msaa=new com.google.android.filament.View.MultiSampleAntiAliasingOptions();msaa.enabled=quality==SceneQuality.HIGH;msaa.sampleCount=4;view.setMultiSampleAntiAliasingOptions(msaa);
+            android.app.ActivityManager manager=context.getSystemService(android.app.ActivityManager.class);
+            // Filament 1.56 blitLow aborts in the GLES3.0 compatibility driver. Native aborts
+            // cannot be recovered by Java try/catch. Keep full 3D but gate this optional resolve.
+            msaaEnabled=manager!=null&&quality.msaaSupported(manager.getDeviceConfigurationInfo().reqGlEsVersion);
+            com.google.android.filament.View.MultiSampleAntiAliasingOptions msaa=new com.google.android.filament.View.MultiSampleAntiAliasingOptions();msaa.enabled=msaaEnabled;msaa.sampleCount=4;view.setMultiSampleAntiAliasingOptions(msaa);
             Renderer.ClearOptions clear=new Renderer.ClearOptions();clear.clear=true;clear.clearColor=new float[]{.075f,.10f,.11f,1};renderer.setClearOptions(clear);
             byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int count;while((count=in.read(block))!=-1)out.write(block,0,count);bytes=out.toByteArray();}
             ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();material=new Material.Builder().payload(payload,bytes.length).build(engine);
@@ -239,7 +244,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     boolean visible(TurnJournal.Event e){if(visible(e.start)||visible(e.target))return true;for(Hex h:e.path)if(visible(h))return true;for(TurnJournal.Impact i:e.impacts)if(visible(i.hex))return true;return false;}
     private boolean visible(Hex h){if(h==null||snapshot==null)return false;GridWorldTransform g=snapshot.ground.grid;return Math.abs(camera.screenX(g.x(h))-camera.width/2f)<camera.width*.6&&Math.abs(camera.screenY(g.z(h),snapshot.ground.surface.at(h))-camera.height/2f)<camera.height*.6;}
     void diagnostics(boolean value){diagnostics=value;overlay.invalidate();}
-    String report(){return "Filament 1.56.0 / OpenGL ES · "+quality.label+" thermal="+thermalStatus+" cap="+thermal.fps(quality)+"\n内部 "+bufferWidth+" × "+bufferHeight+" / UI "+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S06 战斗特效 / 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+" · 特效 "+combat.count+"/"+CombatVisual.CAPACITY+"\n"+resourceReport();}
+    String report(){return "Filament 1.56.0 / OpenGL ES · "+quality.label+" MSAA="+(msaaEnabled?"4x":"off / compatibility")+" thermal="+thermalStatus+" cap="+thermal.fps(quality)+"\n内部 "+bufferWidth+" × "+bufferHeight+" / UI "+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S06 战斗特效 / 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+" · 特效 "+combat.count+"/"+CombatVisual.CAPACITY+"\n"+resourceReport();}
     void resetMetrics(){cpuCount=cpuCursor=0;}
     private String resourceReport(){
         int primitives=0,triangles=0;long bufferBytes=0;
