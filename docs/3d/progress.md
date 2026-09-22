@@ -178,3 +178,12 @@ no main merge. Production camera/picking, no forced 2D tactic/label switches,
 are implemented. Entry: game → 视图 → 3D; editor → 切换3D / 视觉属性.
 See acceptance/s07-interaction.md for actual coverage and remaining installed/manual
 matrix. Default 2D, original gameplay/save bytes and prior-stage contracts retained.
+
+## S08 — performance / packaging candidate
+
+Same PR #62 branch; main untouched. Input `3439247`; production quality presets,
+coordinated pacing, primitive animation buffers, bounded rest/pose caches, ETC2 sRGB
+mips and ABI-selective builds implemented. Version 0.75.0-3d-s08 / 75.
+See acceptance/s08-performance.md, texture-compression.json and benchmarks/s08.
+Host geometry-equivalent pose allocations -78.7%, CPU -71.4%; not phone FPS.
+Device/thermal/power/20-minute and manual edit/save-cycle acceptance remain open.

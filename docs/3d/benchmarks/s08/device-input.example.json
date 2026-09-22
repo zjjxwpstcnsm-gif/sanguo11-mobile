@@ -1,0 +1,13 @@
+{
+  "sha": "REPLACE_WITH_PUSHED_SOURCE_SHA",
+  "apk_sha256": "REPLACE_WITH_ACTUAL_APK_SHA256",
+  "abi": "arm64-v8a",
+  "quality": "MEDIUM",
+  "frame_cap": 30,
+  "internal_resolution": "REPLACE_WITH_RENDERER_DIAGNOSTIC",
+  "save_sha256": "REPLACE_WITH_FIXED_SAVE_HASH",
+  "seed": "REPLACE_WITH_SCENARIO_SEED",
+  "route": "idle; pan/zoom; nationwide; forest; facilities; armies; fire/arrows; heroes250 turn; editor; scene switches",
+  "ambient_temperature_c": "MEASURE",
+  "build_type": "debug optimized non-debuggable R8, same development signing key"
+}

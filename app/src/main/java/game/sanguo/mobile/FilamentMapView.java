@@ -17,6 +17,13 @@ import java.util.function.Consumer;
  * Surface changes replace the swap chain, never the world, commands or replay cursor. */
 final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callback,Choreographer.FrameCallback {
     final SceneCamera camera=new SceneCamera();
+    private final SceneQuality quality;
+    private final SceneQuality.Pacer pacer=new SceneQuality.Pacer();
+    private int bufferWidth,bufferHeight;
+    private long textureBytes;
+    private String textureFormat="ETC2_SRGB8";
+    private long textureUploadCpuNanos;
+    private final Set<SceneMesh> activeTerrain=new HashSet<>(),wantedWood=new HashSet<>();
     private final SurfaceView surface;
     private final Overlay overlay;
     private final Consumer<Throwable> failure;
@@ -89,6 +96,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private TurnJournal.Event replay;private float replayFraction;private Proxy animatedUnit;
     FilamentMapView(Context context,MapView.TileListener listener,Consumer<Throwable> failure) throws Exception {
         super(context);this.listener=listener;this.failure=failure;
+        quality=SceneQuality.from(context.getSharedPreferences("map-renderer",0).getAll().get("quality"));
         surface=new SurfaceView(context);addView(surface,new LayoutParams(-1,-1));overlay=new Overlay(context);addView(overlay,new LayoutParams(-1,-1));
         gestures=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
             @Override public boolean onDown(MotionEvent e){return true;}
@@ -107,24 +115,67 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             displayHelper=new com.google.android.filament.android.DisplayHelper(context);
             skybox=new Skybox.Builder().color(.075f,.10f,.11f,1).build(engine);scene.setSkybox(skybox);
             cameraEntity=EntityManager.get().create();lens=engine.createCamera(cameraEntity);view.setScene(scene);view.setCamera(lens);view.setPostProcessingEnabled(false);
+            com.google.android.filament.View.MultiSampleAntiAliasingOptions msaa=new com.google.android.filament.View.MultiSampleAntiAliasingOptions();msaa.enabled=quality==SceneQuality.HIGH;msaa.sampleCount=4;view.setMultiSampleAntiAliasingOptions(msaa);
             Renderer.ClearOptions clear=new Renderer.ClearOptions();clear.clear=true;clear.clearColor=new float[]{.075f,.10f,.11f,1};renderer.setClearOptions(clear);
             byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int count;while((count=in.read(block))!=-1)out.write(block,0,count);bytes=out.toByteArray();}
             ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();material=new Material.Builder().payload(payload,bytes.length).build(engine);
             byte[] siteBytes;try(java.io.InputStream in=context.getAssets().open("3d/sites/site.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);siteBytes=out.toByteArray();}
             ByteBuffer sb=ByteBuffer.allocateDirect(siteBytes.length).order(ByteOrder.nativeOrder());sb.put(siteBytes).flip();siteMaterial=new Material.Builder().payload(sb,siteBytes.length).build(engine);
-            android.graphics.Bitmap atlas;try(java.io.InputStream in=context.getAssets().open("3d/sites/atlas.png")){atlas=android.graphics.BitmapFactory.decodeStream(in);}
-            if(atlas==null)throw new java.io.IOException("site atlas missing");
-            siteAtlas=new Texture.Builder().width(atlas.getWidth()).height(atlas.getHeight()).levels(1).sampler(Texture.Sampler.SAMPLER_2D).format(Texture.InternalFormat.SRGB8_A8).build(engine);
-            com.google.android.filament.android.TextureHelper.setBitmap(engine,siteAtlas,0,atlas);
+            siteAtlas=loadAtlas(context,"3d/sites/atlas.png");
             fieldAssets=new FieldAssets(name->context.getAssets().open("3d/field/"+name));
-            android.graphics.Bitmap fieldBitmap;try(java.io.InputStream in=context.getAssets().open("3d/field/atlas.png")){fieldBitmap=android.graphics.BitmapFactory.decodeStream(in);}
-            if(fieldBitmap==null)throw new java.io.IOException("field atlas missing");
-            fieldAtlas=new Texture.Builder().width(fieldBitmap.getWidth()).height(fieldBitmap.getHeight()).levels(1).sampler(Texture.Sampler.SAMPLER_2D).format(Texture.InternalFormat.SRGB8_A8).build(engine);
-            com.google.android.filament.android.TextureHelper.setBitmap(engine,fieldAtlas,0,fieldBitmap);
-            vegetationMaterial=siteMaterial.createInstance();vegetationMaterial.setParameter("atlas",fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));vegetationMaterial.setParameter("damage",0f);
+            fieldAtlas=loadAtlas(context,"3d/field/atlas.png");
+            vegetationMaterial=siteMaterial.createInstance();vegetationMaterial.setParameter("atlas",fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));vegetationMaterial.setParameter("damage",0f);
             light=EntityManager.get().create();new LightManager.Builder(LightManager.Type.DIRECTIONAL).direction(-1,-2,-1).color(1,.95f,.85f).intensity(50000).castShadows(false).build(engine,light);scene.addEntity(light);
             surface.getHolder().addCallback(this);
         }catch(Exception|LinkageError e){release();throw e;}
+    }
+    private Texture loadAtlas(Context context,String path)throws java.io.IOException {
+        long started=System.nanoTime();
+        if(Texture.isTextureFormatSupported(engine,Texture.InternalFormat.ETC2_SRGB8)){
+            try(java.io.DataInputStream in=new java.io.DataInputStream(context.getAssets().open(path.replace(".png",".etc2")))){
+                if(in.readInt()!=0x45544332)throw new java.io.IOException("ETC2 header");
+                int w=in.readInt(),h=in.readInt(),levels=in.readInt();
+                if(w<1||h<1||w>2048||h>2048||levels!=32-Integer.numberOfLeadingZeros(Math.max(w,h)))throw new java.io.IOException("ETC2 bounds");
+                int skip=0;while(Math.max(w>>skip,h>>skip)>quality.atlasSize)skip++;
+                // Validate all lengths before allocating a native resource.
+                java.util.List<byte[]> payloads=new ArrayList<>();
+                for(int level=0;level<levels;level++){
+                    int lw=Math.max(1,w>>level),lh=Math.max(1,h>>level),size=in.readInt();
+                    if(size!=((lw+3)/4)*((lh+3)/4)*8)throw new java.io.IOException("ETC2 level size");
+                    byte[] bytes=new byte[size];in.readFully(bytes);if(level>=skip)payloads.add(bytes);
+                }
+                if(in.read()!=-1)throw new java.io.IOException("ETC2 trailing bytes");
+                Texture texture=new Texture.Builder().width(Math.max(1,w>>skip)).height(Math.max(1,h>>skip)).levels(levels-skip).sampler(Texture.Sampler.SAMPLER_2D).format(Texture.InternalFormat.ETC2_SRGB8).build(engine);
+                try{
+                    for(int level=0;level<payloads.size();level++){
+                        byte[] bytes=payloads.get(level);ByteBuffer buffer=ByteBuffer.allocateDirect(bytes.length);buffer.put(bytes).flip();
+                        texture.setImage(engine,level,new Texture.PixelBufferDescriptor(buffer,Texture.CompressedFormat.ETC2_SRGB8,bytes.length));textureBytes+=bytes.length;
+                    }
+                    textureUploadCpuNanos+=System.nanoTime()-started;return texture;
+                }catch(RuntimeException error){engine.destroyTexture(texture);throw error;}
+            }
+        }
+        textureFormat="SRGB8_A8 fallback";
+        android.graphics.Bitmap bitmap;
+        android.graphics.BitmapFactory.Options options=new android.graphics.BitmapFactory.Options();
+        options.inJustDecodeBounds=true;
+        try(java.io.InputStream in=context.getAssets().open(path)){android.graphics.BitmapFactory.decodeStream(in,null,options);}
+        options.inSampleSize=1;while(Math.max(options.outWidth,options.outHeight)/options.inSampleSize>quality.atlasSize)options.inSampleSize*=2;
+        options.inJustDecodeBounds=false;
+        try(java.io.InputStream in=context.getAssets().open(path)){bitmap=android.graphics.BitmapFactory.decodeStream(in,null,options);}
+        if(bitmap==null)throw new java.io.IOException("atlas missing: "+path);
+        int levels=1,w=bitmap.getWidth(),h=bitmap.getHeight();
+        for(int size=Math.max(w,h);size>1;size>>=1)levels++;
+        Texture texture=new Texture.Builder().width(w).height(h).levels(levels).sampler(Texture.Sampler.SAMPLER_2D).format(Texture.InternalFormat.SRGB8_A8).build(engine);
+        com.google.android.filament.android.TextureHelper.setBitmap(engine,texture,0,bitmap);
+        texture.generateMipmaps(engine);
+        // TextureHelper's native upload retains the Bitmap until consumption; do not recycle early.
+        for(int level=0;level<levels;level++)textureBytes+=(long)Math.max(1,w>>level)*Math.max(1,h>>level)*4;
+        textureUploadCpuNanos+=System.nanoTime()-started;return texture;
+    }
+    @Override protected void onSizeChanged(int w,int h,int oldw,int oldh){
+        super.onSizeChanged(w,h,oldw,oldh);camera.width=Math.max(1,w);camera.height=Math.max(1,h);
+        if(w>0&&h>0)surface.getHolder().setFixedSize(Math.max(1,Math.round(w*quality.scale)),Math.max(1,Math.round(h*quality.scale)));
     }
     @Override public boolean onTouchEvent(MotionEvent e){
         if(!isEnabled())return true;
@@ -172,7 +223,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     boolean visible(TurnJournal.Event e){if(visible(e.start)||visible(e.target))return true;for(Hex h:e.path)if(visible(h))return true;for(TurnJournal.Impact i:e.impacts)if(visible(i.hex))return true;return false;}
     private boolean visible(Hex h){if(h==null||snapshot==null)return false;GridWorldTransform g=snapshot.ground.grid;return Math.abs(camera.screenX(g.x(h))-camera.width/2f)<camera.width*.6&&Math.abs(camera.screenY(g.z(h),snapshot.ground.surface.at(h))-camera.height/2f)<camera.height*.6;}
     void diagnostics(boolean value){diagnostics=value;overlay.invalidate();}
-    String report(){return "Filament 1.56.0 / OpenGL ES\n"+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S06 战斗特效 / 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+" · 特效 "+combat.count+"/"+CombatVisual.CAPACITY+"\n"+resourceReport();}
+    String report(){return "Filament 1.56.0 / OpenGL ES · "+quality.label+"\n内部 "+bufferWidth+" × "+bufferHeight+" / UI "+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S06 战斗特效 / 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+" · 特效 "+combat.count+"/"+CombatVisual.CAPACITY+"\n"+resourceReport();}
     void resetMetrics(){cpuCount=cpuCursor=0;}
     private String resourceReport(){
         int primitives=0,triangles=0;long bufferBytes=0;
@@ -182,17 +233,18 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         for(int i=0;i<effectEntities.length;i++)if(effectShown[i]){primitives++;triangles+=effectMeshes[effectKinds[i]].source.indices.length/3;}
         long[] times=Arrays.copyOf(cpuSamples,cpuCount);Arrays.sort(times);
         return "场景 primitives="+primitives+" triangles="+triangles+" buffers_bytes="+bufferBytes+" pose_cache="+shapes.size()+
-            " CPU提交ms P50/P95/P99="+percentile(times,.50)+"/"+percentile(times,.95)+"/"+percentile(times,.99)+" samples="+cpuCount+"（非驱动DrawCall/GPU帧时）";
+            " texture_estimate_bytes="+textureBytes+" "+textureFormat+" mip_upload_cpu_ms="+textureUploadCpuNanos/1e6+" CPU提交ms P50/P95/P99="+percentile(times,.50)+"/"+percentile(times,.95)+"/"+percentile(times,.99)+" samples="+cpuCount+"（非驱动DrawCall/GPU帧时）";
     }
     private static String percentile(long[] times,double p){return times.length==0?"N/A":String.format(java.util.Locale.ROOT,"%.2f",times[Math.min(times.length-1,(int)Math.ceil(times.length*p)-1)]/1e6);}
     void resume(boolean value){resumed=value;if(value)schedule();else {clearEffects();cancelFrame();}}
-    private void cancelFrame(){Choreographer.getInstance().removeFrameCallback(this);queued=false;lastFrame=0;}
+    private void cancelFrame(){Choreographer.getInstance().removeFrameCallback(this);queued=false;lastFrame=0;pacer.reset();}
     private void schedule(){if(!released&&resumed&&swap!=null&&!queued){queued=true;Choreographer.getInstance().postFrameCallback(this);}}
     @Override public void surfaceCreated(SurfaceHolder holder){if(released)return;try{swap=engine.createSwapChain(holder.getSurface());displayHelper.attach(renderer,surface.getDisplay());schedule();}catch(RuntimeException|LinkageError e){failure.accept(e);}}
-    @Override public void surfaceChanged(SurfaceHolder h,int f,int w,int height){if(released)return;camera.width=Math.max(1,w);camera.height=Math.max(1,height);view.setViewport(new Viewport(0,0,w,height));com.google.android.filament.android.FilamentHelper.synchronizePendingFrames(engine);schedule();}
+    @Override public void surfaceChanged(SurfaceHolder h,int f,int w,int height){if(released)return;bufferWidth=w;bufferHeight=height;view.setViewport(new Viewport(0,0,w,height));com.google.android.filament.android.FilamentHelper.synchronizePendingFrames(engine);schedule();}
     @Override public void surfaceDestroyed(SurfaceHolder holder){cancelFrame();if(displayHelper!=null)displayHelper.detach();if(engine!=null&&swap!=null){engine.destroySwapChain(swap);swap=null;engine.flushAndWait();}}
     @Override public void doFrame(long time){
         queued=false;if(released||!resumed||swap==null)return;
+        if(!pacer.due(time,quality.fps)){schedule();return;}
         long cpuStart=System.nanoTime();
         try{
             if(lastFrame!=0)callbackMillis=(time-lastFrame)/1e6;lastFrame=time;
@@ -207,9 +259,9 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private boolean inView(float x,float z,float radius){return Math.abs(x-camera.x)<camera.span*camera.width/camera.height+radius+2&&Math.abs(z-camera.z)<camera.span/camera.sin()+radius+2;}
     private void loadVisible(){
-        if(snapshot==null)return;int nextLod=SiteVisual.lod(camera.span,siteLod);if(nextLod!=siteLod){siteLod=nextLod;syncObjects();}int budget=2;visibleChunks=0;pending=meshTask!=null&&!meshTask.isDone()?1:0;
+        if(snapshot==null)return;int nextLod=Math.max(quality.minSiteLod,SiteVisual.lod(camera.span,siteLod));if(nextLod!=siteLod){siteLod=nextLod;syncObjects();}int budget=2;visibleChunks=0;pending=meshTask!=null&&!meshTask.isDone()?1:0;
         if(camera.span>48)distantTerrain=true;else if(camera.span<40)distantTerrain=false;
-        Set<SceneMesh> active=new HashSet<>();for(SceneMesh m:chunks)active.add(distantTerrain&&m.distant!=null?m.distant:m);
+        Set<SceneMesh> active=activeTerrain;active.clear();for(SceneMesh m:chunks)active.add(distantTerrain&&m.distant!=null?m.distant:m);
         for(SceneMesh m:new ArrayList<>(terrain.keySet()))if(!active.contains(m)){terrain.remove(m).destroy();}
         for(SceneMesh source:chunks){
             SceneMesh chunk=distantTerrain&&source.distant!=null?source.distant:source;
@@ -217,11 +269,11 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(shown){visibleChunks++;if(gpu==null){if(budget-->0){gpu=new GpuMesh(chunk);terrain.put(chunk,gpu);}else pending++;}}
             if(gpu!=null){gpu.show(shown);if(!shown&&!inView(chunk.x,chunk.z,chunk.radius+20)){gpu.destroy();terrain.remove(chunk);}}
         }
-        int nextUnitLod=camera.span<8?0:camera.span<22?1:2;
+        int nextUnitLod=Math.max(quality.minUnitLod,camera.span<8?0:camera.span<22?1:2);
         unitLod=nextUnitLod;visibleWood=0;
-        Set<SceneMesh> wantedWood=new HashSet<>();
+        wantedWood.clear();
         if(camera.span<38)for(SceneMesh source:woods){
-            SceneMesh chunk=camera.span<14?source:source.distant;if(chunk.indices.length==0)continue;
+            SceneMesh chunk=quality!=SceneQuality.LOW&&camera.span<14?source:source.distant;if(chunk.indices.length==0)continue;
             if(inView(chunk.x,chunk.z,chunk.radius)){wantedWood.add(chunk);visibleWood++;GpuMesh gpu=vegetation.get(chunk);
                 if(gpu==null){if(budget-->0){gpu=new GpuMesh(chunk);gpu.build(gpu.entity,vegetationMaterial);vegetation.put(chunk,gpu);}else pending++;}
                 if(gpu!=null)gpu.show(true);
@@ -258,9 +310,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         animateReplay();
     }
     private void trimShapes(){
+        if(shapes.size()<=quality.poseCache)return;
         Set<GpuMesh> used=new HashSet<>();for(Proxy p:objects.values()){used.add(p.shape);if(p.flagShape!=null)used.add(p.flagShape);if(p.baseShape!=null)used.add(p.baseShape);if(p.stateShape!=null)used.add(p.stateShape);}
         Iterator<Map.Entry<String,GpuMesh>> it=shapes.entrySet().iterator();
-        while(it.hasNext()&&shapes.size()>128){GpuMesh m=it.next().getValue();if(!used.contains(m)){m.destroy();it.remove();}}
+        while(it.hasNext()&&shapes.size()>quality.poseCache){GpuMesh m=it.next().getValue();if(!used.contains(m)){m.destroy();it.remove();}}
     }
     private void animateUnits(){
         if(snapshot==null)return;
@@ -384,7 +437,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         final int entity; GpuMesh shape; int flag,base,state; GpuMesh flagShape,baseShape,stateShape; MaterialInstance instance;
         MapSceneSnapshot.Item item;boolean shown;final UnitMotion motion=new UnitMotion();final UnitAnimation animation=new UnitAnimation();String poseKey;float y;
         Proxy(MapSceneSnapshot.Item item,GpuMesh shape){this.item=item;motion.settle(item.hex,snapshot.ground.grid);this.shape=shape;entity=EntityManager.get().create();
-            if(shape.source.uv!=null){instance=siteMaterial.createInstance();instance.setParameter("atlas",item.site!=null?siteAtlas:fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));instance.setParameter("damage",0f);shape.build(entity,instance);}else shape.build(entity);
+            if(shape.source.uv!=null){instance=siteMaterial.createInstance();instance.setParameter("atlas",item.site!=null?siteAtlas:fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));instance.setParameter("damage",0f);shape.build(entity,instance);}else shape.build(entity);
             if(item.site!=null||item.unit!=null||item.facility!=null){String key="flag:"+item.color;flagShape=shapes.get(key);if(flagShape==null){flagShape=new GpuMesh(SceneMesh.proxy(3,item.color));shapes.put(key,flagShape);}flag=EntityManager.get().create();flagShape.build(flag);}
             if(item.kind==0&&item.site!=null){
                 GridWorldTransform grid=snapshot.ground.grid;float x=grid.x(item.hex),z=grid.z(item.hex);StringBuilder key=new StringBuilder("base:");

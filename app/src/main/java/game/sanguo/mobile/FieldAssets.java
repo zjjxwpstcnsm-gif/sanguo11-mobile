@@ -10,7 +10,9 @@ final class FieldAssets {
     interface Source { InputStream open(String name)throws IOException; }
     private final Source source;
     private final JSONObject rigs,clips;
-    private final Map<String,SceneMesh> rest=new HashMap<>();
+    private final Map<String,SceneMesh> rest=new LinkedHashMap<>(32,.75f,true);
+    private long restBytes;
+    private static long bytes(SceneMesh m){return 4L*(m.vertices.length+m.indices.length+(m.uv==null?0:m.uv.length));}
     FieldAssets(Source source)throws Exception {
         this.source=source;rigs=json(source,"rigs.json").getJSONObject("rigs");clips=json(source,"clips.json").getJSONObject("clips");
     }
@@ -21,7 +23,8 @@ final class FieldAssets {
         }
     }
     SceneMesh mesh(String name)throws Exception{
-        SceneMesh value=rest.get(name);if(value==null){try(InputStream in=source.open(name+".glb")){value=SiteGlb.read(in);}rest.put(name,value);}return value;
+        SceneMesh value=rest.get(name);if(value==null){try(InputStream in=source.open(name+".glb")){value=SiteGlb.read(in);}rest.put(name,value);restBytes+=bytes(value);
+            Iterator<SceneMesh> entries=rest.values().iterator();while(restBytes>24L*1024*1024&&rest.size()>1){restBytes-=bytes(entries.next());entries.remove();}}return value;
     }
     static String facility(MapSceneSnapshot.FacilityState state,int lod){
         return state.type.replace('/','-')+"-"+Math.max(1,state.level)+"-lod"+lod;

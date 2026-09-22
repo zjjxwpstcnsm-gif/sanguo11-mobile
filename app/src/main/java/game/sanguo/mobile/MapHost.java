@@ -49,6 +49,13 @@ final class MapHost extends FrameLayout implements MapPresentation {
     void previewMode(){openingPreview=true;flat.previewMode();}
     void setPreviewFaction(int side){previewFaction=side;flat.setPreviewFaction(side);if(spatial!=null)spatial.previewFaction(side);}
     private void persistCamera(){if(spatial==null)return;Bundle b=new Bundle();spatial.saveCamera(b);prefs.edit().putInt("version",1).putFloat("tilt",b.getFloat("sceneTilt",55)).putInt("facing",b.getInt("sceneFacing",1)).apply();}
+    SceneQuality quality(){return SceneQuality.from(prefs.getAll().get("quality"));}
+    void quality(SceneQuality next){
+        if(next==quality())return;
+        boolean active=is3D();if(active)switchMode(false);
+        prefs.edit().putString("quality",next.name()).apply();
+        if(active)switchMode(true);
+    }
     boolean is3D(){return spatial!=null;}
     void switchMode(boolean use3D){
         if(use3D==is3D()||world==null)return;
@@ -68,7 +75,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
     private void leave3D(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);}if(flat.getParent()==null)addView(flat,new LayoutParams(-1,-1));prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}
     void release(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}}
     void resume(boolean value){if(!value)persistCamera();resumed=value;if(spatial!=null)spatial.resume(value);}
-    void toggleDiagnostics(){diagnostics=!diagnostics;if(spatial!=null)spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(world,editorGrid,editorCoords,editorPassability,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);android.util.Log.i("MapRenderer",report());}
+    void toggleDiagnostics(){diagnostics=!diagnostics;if(spatial!=null){spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(world,editorGrid,editorCoords,editorPassability,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);}android.util.Log.i("MapRenderer",report());}
     String report(){return spatial==null?"2D · "+getWidth()+" × "+getHeight():spatial.report();}
     @Override public void setWorld(World w,Hex s,int moving){
         boolean changed=world!=w||revision!=w.commandRevision()||turn!=w.turn||player!=w.player||terrainRevision!=w.terrainRevision||!Objects.equals(selected,s)||this.moving!=moving;

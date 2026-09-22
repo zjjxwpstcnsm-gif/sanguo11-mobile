@@ -1,4 +1,4 @@
-name: S01-S07 Filament scene acceptance
+name: S01-S08 Filament scene acceptance
 on:
   push:
     branches: [agent/3d-s01-renderer-foundation]
@@ -40,7 +40,11 @@ jobs:
           curl -fsSL https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/scene-json.jar
           JSON_TEST_JAR=/tmp/scene-json.jar bash scripts/test-3d-field.sh | tee evidence/field-assets.txt
           JSON_TEST_JAR=/tmp/scene-json.jar bash scripts/test-3d-combat.sh | tee evidence/combat-host.txt
-          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug
+          JSON_TEST_JAR=/tmp/scene-json.jar bash scripts/benchmark-3d-performance.sh | tee evidence/performance-host.txt
+          ./gradlew --no-daemon :app:assembleDebug -PtargetAbi=arm64-v8a
+          cp app/build/outputs/apk/debug/app-debug.apk evidence/sanguo11-arm64.apk
+          python3 scripts/audit-3d-apk.py evidence/sanguo11-arm64.apk --abi arm64-v8a > evidence/arm64-audit.json
+          ./gradlew --no-daemon -PtargetAbi=x86_64 :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug
           cp app/build/outputs/apk/debug/app-debug.apk evidence/sanguo11-s01.apk
           git rev-parse HEAD > evidence/BUILD_COMMIT
           sha256sum evidence/sanguo11-s01.apk > evidence/SHA256SUMS
@@ -86,6 +90,9 @@ jobs:
             adb pull /sdcard/interaction-scene.mp4 evidence/interaction-scene.mp4
             adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/interaction-images
             grep -q 'PASS S07' evidence/interaction-installed.txt
+            timeout 900 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.PerformanceSceneInstrumentation | tee evidence/performance-installed.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/performance-images
+            grep -q 'PASS S08' evidence/performance-installed.txt
             bash scripts/scene-full-native.sh "${{ inputs.full_native }}"
       - uses: actions/upload-artifact@v4
         if: always()
