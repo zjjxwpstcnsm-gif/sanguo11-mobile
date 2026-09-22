@@ -10,6 +10,7 @@ import android.widget.TextView;
 import game.sanguo.core.*;
 import java.io.*;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.*;
 
 /** Runs the actual activity and MapView from the installed APK, with screenshots. */
@@ -27,7 +28,7 @@ public final class SiegeInstrumentation extends Instrumentation {
             o.cityId=-1;o.unitId=fixture.nextUnitId;
             fixture.officers.add(o);fixture.units.add(new World.Unit(fixture.nextUnitId++,1,o.id,World.Weapon.SPEAR,new Hex(6,3),6000,20000));
             try(OutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(fixture));}
-            getTargetContext().getSharedPreferences("map-display",0).edit().clear().commit();
+            getTargetContext().getSharedPreferences("map-display",0).edit().clear().putBoolean("navigator",false).commit();
             activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();
             world=(World)field(activity,"world");map=(MapView)field(activity,"map");
             byte[] before=SaveCodec.encode(world);
@@ -37,8 +38,8 @@ public final class SiegeInstrumentation extends Instrumentation {
                     World.City c=world.city(id);
                     runOnMainSync(()->activity.selectAndFocus(c.hex));settle();
                     require(new HashSet<>(map.siegeCoverage()).equals(new HashSet<>(SiegeRules.cells(world,c))),"actual selected "+c.kind+" cells match simulation "+portrait);
-                    require(text(activity.getWindow().getDecorView(),"两圈围城范围"),"visible range legend "+c.kind);
-                    if(id==10){require(map.siegeEnemies().contains(new Hex(6,3)),"besieger red-cell model");require(text(activity.getWindow().getDecorView(),"钱粮−25%"),"visible siege penalty");}
+                    require(visibleText(activity.getWindow().getDecorView(),"两圈围城范围"),"visible range legend "+c.kind);
+                    if(id==10){require(map.siegeEnemies().contains(new Hex(6,3)),"besieger red-cell model");require(visibleText(activity.getWindow().getDecorView(),"钱粮−25%"),"visible siege penalty");}
                     shot((portrait?"portrait-":"landscape-")+c.kind.name());
                 }
                 World.City c=world.city(10);
@@ -53,9 +54,13 @@ public final class SiegeInstrumentation extends Instrumentation {
             require(Arrays.equals(before,SaveCodec.encode(world)),"selection and rotation never mutate authoritative world");
             // Native, shipped odd-column 200x200 geometry, not only a synthetic test map.
             World national=TestScenarios.load("heroes-250",0);
+            runOnMainSync(()->{
+                try{Method activate=MainActivity.class.getDeclaredMethod("activateWorld",World.class);activate.setAccessible(true);activate.invoke(activity,national);}
+                catch(Exception e){throw new IllegalStateException(e);}
+            });world=national;
             for(World.SiteKind kind:World.SiteKind.values()){
-                World.City c=national.cities.stream().filter(site->site.kind==kind).findFirst().orElseThrow();
-                runOnMainSync(()->{map.setWorld(national,c.hex,-1);map.focus(c.hex);});settle();
+                World.City c=national.cities.stream().filter(site->site.kind==kind).findFirst().orElseThrow(()->new AssertionError("Missing site kind "+kind));
+                runOnMainSync(()->activity.selectAndFocus(c.hex));settle();
                 require(map.siegeCoverage().equals(SiegeRules.cells(national,c)),"native national coordinates "+kind);shot("native-"+kind.name());
             }
             File dir=directory();try(Writer out=new OutputStreamWriter(new FileOutputStream(new File(dir,"siege-android-checks.txt")),"UTF-8")){out.write("PASS: "+checks+" installed Android checks\n"+report);}
@@ -67,5 +72,12 @@ public final class SiegeInstrumentation extends Instrumentation {
     private File directory()throws IOException{File dir=getTargetContext().getExternalFilesDir("smoke");if(dir==null)throw new IOException("No evidence directory");dir.mkdirs();return dir;}
     private void shot(String name)throws Exception{Bitmap image=getUiAutomation().takeScreenshot();require(image!=null,"screenshot "+name);try(OutputStream out=new FileOutputStream(new File(directory(),"siege-"+name+".png"))){image.compress(Bitmap.CompressFormat.PNG,100,out);}image.recycle();}
     private static Object field(Object target,String name)throws Exception{Field f=target.getClass().getDeclaredField(name);f.setAccessible(true);return f.get(target);}
-    private static boolean text(View v,String needle){if(v instanceof TextView&&((TextView)v).getText().toString().contains(needle))return true;if(v instanceof ViewGroup){ViewGroup g=(ViewGroup)v;for(int i=0;i<g.getChildCount();i++)if(text(g.getChildAt(i),needle))return true;}return false;}
+    private static boolean visibleText(View v,String needle){
+        if(v instanceof TextView&&((TextView)v).getText().toString().contains(needle)){
+            android.graphics.Rect bounds=new android.graphics.Rect();
+            return v.getGlobalVisibleRect(bounds)&&bounds.height()>=v.getHeight()/2;
+        }
+        if(v instanceof ViewGroup){ViewGroup group=(ViewGroup)v;for(int i=0;i<group.getChildCount();i++)if(visibleText(group.getChildAt(i),needle))return true;}
+        return false;
+    }
 }
