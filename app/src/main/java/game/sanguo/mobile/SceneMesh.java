@@ -55,6 +55,7 @@ final class SceneMesh {
             for(int rr=r-6;rr<Math.min(r+22,g.height);rr++)for(int qq=q-6;qq<Math.min(q+22,g.width);qq++){
                 Hex h=new Hex(qq,rr);int value=g.valid(h)?g.terrain[rr*g.width+qq]+(g.bases.contains(h)?64:0):-1;
                 fingerprint=(fingerprint^value)*1099511628211L;
+                fingerprint=(fingerprint^Float.floatToIntBits(g.surface.overrides.getOrDefault(h,-1f)))*1099511628211L;
             }
             SceneMesh retained=cached.get(q+":"+r);if(retained!=null&&retained.fingerprint==fingerprint){out.add(retained);continue;}
             Builder b=new Builder();float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;

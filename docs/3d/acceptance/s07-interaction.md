@@ -12,6 +12,8 @@ Implemented in production:
 - Tactic preview, unit labels, territory view and navigation stay in 3D. In 3D the
   navigator opens the full-map view. Existing native strategic command UI is retained.
 - Scenario faction preview has a 2D/3D toggle, ruler/realm labels and advisor card.
+  Its chosen renderer continues into the new game; restored UI mode respects the native
+  crash marker. Multiple map hosts share a process-local native health count.
 - Existing MapEditorActivity uses MapHost, including terrain brush, placement footprints,
   selection, metadata properties and undo/redo. No parallel editor implementation.
 - Optional format-2 visual metadata has a version, map UUID and logical content hash.
@@ -26,9 +28,11 @@ Implemented in production:
   an identity-checked presentation sidecar. Legacy strategic save exports explicitly
   warn that visual metadata requires the separate map JSON. Camera is never in core save.
 
-Host tests: 31 S07 checks and 136 existing map editor integration assertions pass.
-S01-S05 host foundation tests pass before final interaction integration; final rerun
-and APK/lint/native evidence are tracked in the delivery manifest and PR description.
+Host tests: 32 S07 checks and 136 existing map editor integration assertions pass.
+S01-S05 host foundation and field suites pass, including terrain ray/LOD and vegetation
+reuse. Optimized APK, test APK and lint pass. Exact final native/build evidence is
+tracked in the delivery manifest and PR description. Height-only overrides participate
+in both terrain and vegetation chunk fingerprints; a dedicated test prevents stale meshes.
 
 Still requires installed/manual acceptance: complete wizard-only new game/deploy/attack/
 turn/report/save/load flow, system document picker export/import in a separate clean

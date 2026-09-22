@@ -46,6 +46,13 @@ public final class FieldAssetsTest {
         List<SceneMesh> revisionTrees=Vegetation.build(revised,excluded,trees,assets.mesh("tree-lod0"),assets.mesh("tree-lod1"));
         check(!Arrays.equals(revisionTrees.get(0).vertices,trees.get(0).vertices),"different map version produces deterministic new vegetation");
         forest.mapRevision--;
+        forest.visualMap=new MapPatch("height-only fixture","0".repeat(64));forest.visualMap.heights.put(20*200+20,2400);
+        MapSceneSnapshot.Ground elevated=new MapSceneSnapshot.Ground(forest);
+        List<SceneMesh> lifted=Vegetation.build(elevated,excluded,trees,assets.mesh("tree-lod0"),assets.mesh("tree-lod1"));
+        long heightReused=lifted.stream().filter(trees::contains).count();
+        check(heightReused>trees.size()/2&&heightReused<trees.size(),"height-only edit rebuilds local forest chunks");
+        check(lifted.stream().anyMatch(m->!trees.contains(m)&&trees.stream().anyMatch(old->old.chunkQ==m.chunkQ&&old.chunkR==m.chunkR&&!Arrays.equals(old.vertices,m.vertices))),"height-only edit moves actual tree vertices");
+        forest.visualMap=null;
         excluded.add(new Hex(20,20));List<SceneMesh> patch=Vegetation.build(g,excluded,trees,assets.mesh("tree-lod0"),assets.mesh("tree-lod1"));
         int reused=0;for(SceneMesh tree:patch)if(trees.contains(tree))reused++;
         check(reused>=trees.size()-9,"facility patch rebuilds only bounded affected forest neighborhood");

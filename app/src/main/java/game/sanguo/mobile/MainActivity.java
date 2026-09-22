@@ -18,6 +18,9 @@ public final class MainActivity extends Activity {
     private World world;
     private boolean unreadableAutosave;
     private MapHost map;
+    private boolean nextScenario3D;
+    boolean current3D(){return map!=null&&map.is3D();}
+    void setNextScenario3D(boolean value){nextScenario3D=value;}
     private LinearLayout panel,root,commandDock,panelShell,primaryActions;
     private FrameLayout body;
     private World navigatorWorld;
@@ -934,7 +937,7 @@ public final class MainActivity extends Activity {
         java.util.concurrent.atomic.AtomicBoolean canceled=new java.util.concurrent.atomic.AtomicBoolean();
         AlertDialog loading=new AlertDialog.Builder(this).setMessage("正在建立新局…").setNegativeButton("取消",(d,n)->canceled.set(true)).create();loading.setOnCancelListener(d->canceled.set(true));loading.show();
         new Thread(()->{try{World resolved=pinned==null?ScenarioCatalog.load(id,player,System.nanoTime()):CustomMaps.load(pinned,id,player,System.nanoTime());World next=CustomOfficerSetup.apply(this,resolved);runOnUiThread(()->{
-            if(isFinishing()||isDestroyed()||canceled.get())return;loading.dismiss();if(!activateWorld(next))return;selectAndFocus(world.home().hex);closePanel();save("auto",false);
+            if(isFinishing()||isDestroyed()||canceled.get())return;loading.dismiss();if(!activateWorld(next))return;selectAndFocus(world.home().hex);map.switchMode(nextScenario3D);closePanel();save("auto",false);
         });}catch(IOException e){runOnUiThread(()->{if(!isFinishing()&&!isDestroyed()&&!canceled.get()){loading.dismiss();showError("无法开始剧本："+e.getMessage());}});}},"scenario-start").start();
     }
     private String slotName(int index){return index==0?"manual":"manual"+(index+1);}

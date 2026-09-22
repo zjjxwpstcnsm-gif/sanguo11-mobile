@@ -22,12 +22,14 @@ public final class InteractionEditorTest {
         MapPatch p=CustomMaps.base().fresh();MapEditSession session=new MapEditSession(p);Hex chosen=null;
         for(int x=30;x<160&&chosen==null;x++)for(int y=30;y<160;y++){Hex h=MapCoordinates.fromNationalSource(session.world(),new SourceGridCoord(x,y));if(!session.protectedAt(h)&&session.world().terrain[h.q][h.r]==World.Terrain.PLAIN){chosen=h;break;}}
         check(chosen!=null,"editable tile");SourceGridCoord at=MapCoordinates.nationalSource(session.world(),chosen);int cell=at.x*200+at.y;
+        MapSceneSnapshot.Ground originalGround=new MapSceneSnapshot.Ground(session.world());List<SceneMesh> originalChunks=SceneMesh.ground(originalGround);
         byte[] before=SaveCodec.encode(session.world());String logic=p.logicalFingerprint();p.heights.put(cell,2300);
         int city=session.world().home().id;p.appearances.put(city,new MapPatch.Appearance(2,90));
         MapPatch imported=MapPatch.decode(p.encode());check(imported.heights.equals(p.heights)&&imported.appearances.equals(p.appearances),"format2 roundtrip");
         check(imported.logicalFingerprint().equals(logic),"visuals excluded from logical fingerprint");
         session.replace("visual",imported);check(Arrays.equals(before,SaveCodec.encode(session.world())),"full gameplay save bytes unchanged by visuals");
         MapSceneSnapshot.Ground ground=new MapSceneSnapshot.Ground(session.world());check(ground.surface.overrides.get(chosen)==2.3f,"height reaches renderer");
+        List<SceneMesh> editedChunks=SceneMesh.ground(ground,originalChunks);long retained=editedChunks.stream().filter(originalChunks::contains).count();check(retained>originalChunks.size()/2&&retained<originalChunks.size(),"height-only edit rebuilds affected chunks and retains distant chunks");
         SiteVisual site=new SiteVisual(session.world(),session.world().home(),ground.grid);check(site.model.equals("city2")&&Math.abs(site.yaw-Math.PI/2)<.001,"whitelisted model and orientation applied");
         session.undo();check(session.patch().heights.isEmpty(),"visual undo");session.redo();check(session.patch().heights.containsKey(cell),"visual redo");
         session.paint("paint",Collections.singleton(chosen),World.Terrain.FOREST);check(!session.patch().heights.containsKey(cell),"terrain edit invalidates affected visual height");

@@ -14,7 +14,7 @@ permissions:
   contents: read
 concurrency:
   group: s01-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 jobs:
   verify:
     if: github.event_name != 'pull_request' || github.head_ref != 'agent/3d-s01-renderer-foundation'
@@ -81,6 +81,8 @@ jobs:
             adb logcat -d > evidence/logcat.txt
             grep -q 'PASS S06' evidence/combat-installed.txt
             timeout 600 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.InteractionSceneInstrumentation | tee evidence/interaction-installed.txt
+            adb shell pkill -2 screenrecord || true
+            sleep 2
             adb pull /sdcard/interaction-scene.mp4 evidence/interaction-scene.mp4
             adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/interaction-images
             grep -q 'PASS S07' evidence/interaction-installed.txt

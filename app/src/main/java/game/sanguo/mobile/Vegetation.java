@@ -21,6 +21,7 @@ final class Vegetation {
             for(int rr=r-6;rr<r+CHUNK+6;rr++)for(int qq=q-6;qq<q+CHUNK+6;qq++){
                 Hex h=new Hex(qq,rr);int t=ground.valid(h)?ground.terrain[rr*ground.width+qq]:-1;
                 fingerprint=(fingerprint^(t+1+(excluded.contains(h)?64:0)))*1099511628211L;
+                fingerprint=(fingerprint^Float.floatToIntBits(ground.surface.overrides.getOrDefault(h,-1f)))*1099511628211L;
             }
             fingerprint^=ground.grid.staggered?1:0;fingerprint^=Float.floatToIntBits(ground.grid.offset);
             SceneMesh prior=cache.get(q+":"+r);if(prior!=null&&prior.fingerprint==fingerprint){result.add(prior);continue;}

@@ -24,6 +24,8 @@ final class MapHost extends FrameLayout implements MapPresentation {
     private boolean dirty=true,diagnostics,resumed=true,openingPreview;
     private int previewFaction=-1;
     private World visualResolved;
+    private boolean safeMode;
+    private static int activeNativeHosts;
     private Bundle camera=new Bundle();
     private Set<Hex> targets=Collections.emptySet();
     private MarchOrders.Plan route;
@@ -32,7 +34,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
         super(context);this.listener=listener;prefs=context.getSharedPreferences("map-renderer",Context.MODE_PRIVATE);
         flat=new MapView(context,listener);addView(flat,new LayoutParams(-1,-1));
         // Default stays 2D. An interrupted native session is never restarted automatically.
-        if(Boolean.TRUE.equals(prefs.getAll().get("nativeSession")))Toast.makeText(context,"上次 3D 会话未正常结束，已安全回到 2D；可在视图中手动重试",Toast.LENGTH_LONG).show();
+        safeMode=activeNativeHosts==0&&Boolean.TRUE.equals(prefs.getAll().get("nativeSession"));if(safeMode)Toast.makeText(context,"上次 3D 会话未正常结束，已安全回到 2D；可在视图中手动重试",Toast.LENGTH_LONG).show();
     }
     private MapView.EditorStroke editorStroke;
     private boolean editorDrawing,editorGrid,editorCoords,editorPassability,editorFootprints,editorValid=true;
@@ -55,7 +57,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
         // Synchronous commit precedes native library load; catches native crashes next launch.
         if(!prefs.edit().putBoolean("nativeSession",true).commit()){Toast.makeText(getContext(),"无法保存 3D 启动健康标记，保留 2D",Toast.LENGTH_LONG).show();return;}
         try{
-            spatial=new FilamentMapView(getContext(),listener,this::fallback);
+            spatial=new FilamentMapView(getContext(),listener,this::fallback);activeNativeHosts++;safeMode=false;
             removeView(flat);addView(spatial,new LayoutParams(-1,-1));
             dirty=true;publish();
             Map<String,?> saved=prefs.getAll();if(!camera.containsKey("sceneTilt")&&saved.get("tilt") instanceof Float)camera.putFloat("sceneTilt",(Float)saved.get("tilt"));if(!camera.containsKey("sceneFacing")&&saved.get("facing") instanceof Integer)camera.putInt("sceneFacing",(Integer)saved.get("facing"));
@@ -63,8 +65,8 @@ final class MapHost extends FrameLayout implements MapPresentation {
         }catch(Exception|LinkageError e){fallback(e);}
     }
     private void fallback(Throwable e){android.util.Log.e("MapRenderer","Filament fallback to 2D",e);leave3D();if(world!=null)flat.setWorld(world,selected,moving);flat.restoreCamera(camera);Toast.makeText(getContext(),"3D 初始化或渲染失败，已返回 2D："+e.getClass().getSimpleName(),Toast.LENGTH_LONG).show();}
-    private void leave3D(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;}if(flat.getParent()==null)addView(flat,new LayoutParams(-1,-1));prefs.edit().putBoolean("nativeSession",false).commit();}
-    void release(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;prefs.edit().putBoolean("nativeSession",false).commit();}}
+    private void leave3D(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);}if(flat.getParent()==null)addView(flat,new LayoutParams(-1,-1));prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}
+    void release(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}}
     void resume(boolean value){if(!value)persistCamera();resumed=value;if(spatial!=null)spatial.resume(value);}
     void toggleDiagnostics(){diagnostics=!diagnostics;if(spatial!=null)spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(world,editorGrid,editorCoords,editorPassability,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);android.util.Log.i("MapRenderer",report());}
     String report(){return spatial==null?"2D · "+getWidth()+" × "+getHeight():spatial.report();}
@@ -79,8 +81,8 @@ final class MapHost extends FrameLayout implements MapPresentation {
     @Override public void fit(){if(spatial==null)flat.fit();else spatial.fit();}
     @Override public void focus(Hex h){if(spatial==null)flat.focus(h);else spatial.focus(h);}
     @Override public void center(Hex h){if(spatial==null)flat.center(h);else spatial.center(h);}
-    @Override public void saveCamera(Bundle b){if(spatial==null)flat.saveCamera(b);else spatial.saveCamera(b);}
-    @Override public void restoreCamera(Bundle b){camera=new Bundle(b);if(spatial==null)flat.restoreCamera(b);else spatial.restoreCamera(b);}
+    @Override public void saveCamera(Bundle b){b.putBoolean("sceneEnabled",is3D());if(spatial==null)flat.saveCamera(b);else spatial.saveCamera(b);}
+    @Override public void restoreCamera(Bundle b){camera=new Bundle(b);if(!safeMode&&Boolean.TRUE.equals(b.get("sceneEnabled"))&&spatial==null)switchMode(true);if(spatial==null)flat.restoreCamera(b);else spatial.restoreCamera(b);}
     @Override public void setEnabled(boolean enabled){super.setEnabled(enabled);if(flat!=null)flat.setEnabled(enabled);if(spatial!=null)spatial.setEnabled(enabled);}
     void setUnitDrop(Consumer<MarchOrders.Plan> drop){flat.setUnitDrop(drop);}
     void setRoute(MarchOrders.Plan value){route=value;flat.setRoute(value);if(spatial!=null)spatial.setRoute(value);}
