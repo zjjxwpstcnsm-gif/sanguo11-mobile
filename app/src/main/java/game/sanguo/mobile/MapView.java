@@ -355,8 +355,8 @@ public final class MapView extends View {
     @Override protected void onAttachedToWindow(){super.onAttachedToWindow();if(overview!=null)overview.start(this);}
     @Override protected void onDetachedFromWindow(){stopCamera();if(overview!=null)overview.cancel();super.onDetachedFromWindow();}
     private float mapOffset(){return world!=null&&world.sourceMapWidth>0?(world.height-1)/2:0;}
-    private float x(Hex h){return TileGeometry.projectedX(h.q,h.r,mapOffset(),world.columnStaggered);}
-    private float y(Hex h){return TileGeometry.projectedY(h.q,h.r,mapOffset(),world.columnStaggered);}
+    private float x(Hex h){return new GridWorldTransform(mapOffset(),world.columnStaggered).x(h)*TileGeometry.DX;}
+    private float y(Hex h){return new GridWorldTransform(mapOffset(),world.columnStaggered).z(h)*TileGeometry.DY;}
     private float worldWidth(){if(world.columnStaggered)return TileGeometry.DX*(world.sourceColumns()-1)+RADIUS*2;return TileGeometry.DX*((world.sourceMapWidth>0?world.sourceMapWidth-0.5f:world.width-1+(world.height-1)*.5f))+RADIUS*2;}
     private float worldHeight(){return TileGeometry.DY*(world.columnStaggered?world.sourceRows()-.5f:world.height-1)+RADIUS*2;}
     private void resizeCamera(){if(world!=null&&getWidth()>0&&getHeight()>0){camera.columnOffset=mapOffset();camera.columnStaggered=world.columnStaggered;camera.resize(getWidth(),getHeight(),worldWidth(),worldHeight(),RADIUS,density);}}
