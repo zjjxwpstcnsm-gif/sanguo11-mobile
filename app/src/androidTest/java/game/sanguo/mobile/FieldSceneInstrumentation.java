@@ -108,9 +108,15 @@ public final class FieldSceneInstrumentation extends SceneInstrumentation {
         ParcelFileDescriptor recording=getUiAutomation().executeShellCommand("screenrecord --time-limit 30 /sdcard/field-port.mp4");World.Unit u=w.units.get(0);World reference=SaveCodec.decode(SaveCodec.encode(w));World visual=SaveCodec.decode(SaveCodec.encode(w));
         TurnJournal journal=new TurnJournal(w);Hex target=new Hex(21,19);
         World.Result move=w.move(u.id,target);check(move.ok,"actual port move: "+move.message);journal.close();check(reference.move(u.id,target).ok,"reference port move");
-        runOnMainSync(()->{host.invalidateScene();host.setWorld(visual,u.hex,u.id);host.focus(new Hex(19,19));});settle();
+        runOnMainSync(()->{host.invalidateScene();host.setWorld(visual,u.hex,u.id);host.focus(new Hex(19,19));try{((FilamentMapView)field(host,"spatial")).camera.span=4;}catch(Exception e){throw new RuntimeException(e);}});settle();
         for(TurnJournal.Event event:journal.events()){
-            for(int frame=0;frame<=36;frame++){final float f=frame/36f;runOnMainSync(()->host.replayFrame(event,f));SystemClock.sleep(70);}
+            for(int frame=0;frame<=36;frame++){final float f=frame/36f;runOnMainSync(()->host.replayFrame(event,f));SystemClock.sleep(100);
+                if(event.kind==TurnJournal.Kind.MOVE&&frame==18){settle();
+                    runOnMainSync(()->{try{FilamentMapView view=(FilamentMapView)field(host,"spatial");Object proxy=((Map<?,?>)field(view,"objects")).get("unit:"+u.id);
+                        check(((UnitAnimation)field(proxy,"animation")).naval&&((String)field(proxy,"poseKey")).startsWith("unit-TOWER_SHIP"),"actual tower ship renderable at legal water node");
+                    }catch(Exception e){throw new RuntimeException(e);}});preview("field-port-water");
+                }
+            }
             event.applyVisual(visual);runOnMainSync(()->{host.replayFrame(null,0);host.invalidateScene();host.setWorld(visual,null,-1);});
         }
         check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(reference)),"port replay keeps exact authoritative result");preview("field-port-arrival");

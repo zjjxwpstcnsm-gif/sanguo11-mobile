@@ -360,16 +360,31 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 float x=camera.screenX(object.motion.x),y=camera.screenY(object.motion.z,object.y);
                 float radius=Math.max(3,camera.height/(2*camera.span)*.38f);
                 p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(2);
-                p.setColor(object.item.hex.equals(snapshot.selected)?0xffffd576:object.item.color);
+                p.setColor(object.item.hex.equals(snapshot.selected)?0xffffd576:(object.item.color&0xffffff)|0x88000000);
                 c.drawOval(x-radius,y-radius*(float)camera.sin(),x+radius,y+radius*(float)camera.sin(),p);
             }
             p.setStyle(Paint.Style.FILL);p.setTextSize(12*getResources().getDisplayMetrics().scaledDensity);p.setShadowLayer(2,0,1,0xff000000);
-            for(Proxy object:objects.values()){
-                MapSceneSnapshot.Item item=object.item;
-                if((item.kind<3||camera.span<18||item.hex.equals(snapshot.selected))&&object.shown){
-                    float x=camera.screenX(object.motion.x),y=camera.screenY(object.motion.z,object.y+1);
-                    p.setColor(item.color);c.drawText(item.displayLabel(),x,y,p);
-                }
+            List<Proxy> labels=new ArrayList<>();
+            for(Proxy object:objects.values())if(object.shown&&(object.item.kind<3||camera.span<18||object.item.hex.equals(snapshot.selected)))labels.add(object);
+            labels.sort(Comparator.<Proxy>comparingInt(o->o.item.hex.equals(snapshot.selected)?0:o.item.site!=null?1:2)
+                .thenComparingDouble(o->Math.abs(o.motion.x-camera.x)+Math.abs(o.motion.z-camera.z)).thenComparing(o->o.item.key));
+            List<android.graphics.RectF> occupied=new ArrayList<>();float font=p.getTextSize(),pad=font*.22f;
+            for(Proxy object:labels){
+                MapSceneSnapshot.Item item=object.item;boolean selected=item.hex.equals(snapshot.selected);
+                String first=item.displayLabel(),second=null;
+                if(item.unit!=null){UnitVisual u=item.unit;
+                    first=selected?u.commander+" · "+u.equipment:u.commander+" · "+u.troops;
+                    if(selected)second=u.troops+"兵 · 气"+u.energy+(u.status==War.Status.NORMAL?"":" · "+u.status.label)+(u.burning>0?" · 起火":"");
+                }else if(item.facility!=null&&!selected){MapSceneSnapshot.FacilityState f=item.facility;first=item.label+(f.level>0?" Lv"+f.level:"")+(f.burning?" · 火":!f.complete?" · 建":"");}
+                float width=p.measureText(first);if(second!=null)width=Math.max(width,p.measureText(second));
+                float x=camera.screenX(object.motion.x)-width/2,y=camera.screenY(object.motion.z,object.y+1);
+                x=Math.max(pad,Math.min(camera.width-width-pad,x));
+                android.graphics.RectF box=new android.graphics.RectF(x-pad,y-font-pad,x+width+pad,y+(second==null?pad:font*1.2f+pad));
+                if(box.bottom<font*2||box.top>camera.height||box.right<0||box.left>camera.width)continue;
+                boolean overlap=false;for(android.graphics.RectF used:occupied)if(android.graphics.RectF.intersects(used,box)){overlap=true;break;}
+                if(overlap&&!selected)continue;occupied.add(box);
+                p.setColor(selected?0xe61b2f37:0xb3122027);c.drawRoundRect(box,pad,pad,p);
+                p.setColor(selected?0xffffd576:item.color);c.drawText(first,x,y,p);if(second!=null)c.drawText(second,x,y+font*1.2f,p);
             }
             p.setColor(0xfff0e5c8);c.drawText((pending>0)?"3D 地形装载中… · 可在视图切回 2D":"3D 试验 · 设施植被 / 部队编队 · 长按反向查看",12,24*getResources().getDisplayMetrics().density,p);
             if(diagnostics){float y=48*getResources().getDisplayMetrics().density;for(String line:report().split("\n")){c.drawText(line,12,y,p);y+=22*getResources().getDisplayMetrics().density;}}

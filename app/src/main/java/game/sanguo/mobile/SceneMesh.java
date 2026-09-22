@@ -103,7 +103,7 @@ final class SceneMesh {
             case 2:
                 b.box(-.45f,-.2f,.25f,.4f,.6f,color);b.box(.2f,-.2f,.25f,.4f,.6f,color);b.quad(-.45f,.6f,-.2f,.9f,.4f,color);break;
             case 3:
-                b.box(-.23f,-.2f,.46f,.4f,.16f,0xffafa798);b.box(-.025f,-.025f,.05f,.05f,.9f,0xffd8c8a5);
+                b.box(-.025f,-.025f,.05f,.05f,.9f,0xffd8c8a5);
                 b.face(new float[]{0,.9f,0,.4f,.9f,0,.4f,.55f,0,0,.55f,0},color);break;
             case 4:
                 b.box(-.3f,-.3f,.6f,.6f,.15f,color);for(int j=0;j<3;j++)b.box(-.25f+j*.18f,-.25f,.08f,.5f,.2f,0xff687e45);break;
