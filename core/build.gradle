@@ -249,3 +249,11 @@ tasks.register('verifyUx64', JavaExec) {
     mainClass = 'game.sanguo.core.Ux64Test'
 }
 tasks.named('check') { dependsOn 'verifyUx64' }
+
+// Research-backed title and appointment contracts, additive to the existing checks.
+tasks.register('verifyRulerTitles', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.RulerTitleTest'
+}
+tasks.named('check') { dependsOn 'verifyRulerTitles' }

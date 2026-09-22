@@ -34,9 +34,10 @@ public final class GovernmentTest {
         System.out.println("PASS: "+checks+" governance assertions: rank caps/payroll, captive crew and immunity, recruit/release/ransom/rescue, delegation, real v7 migration and long campaigns.");
     }
     static void ranks()throws Exception{
-        World w=world();check(Government.ranks().size()==40,"40 named military offices");
+        World w=world();check(Government.ranks().size()==80,"40 military and 40 civil offices");
         rejected(w,()->w.government.appointRank(0,0,1,"大都督"));
-        w.government.earn(1,36000);ok(w.government.appointRank(0,0,1,"大都督"));
+        w.government.earn(1,36000);rejected(w,()->w.government.appointRank(0,0,1,"大都督"));
+        w.governance.grades.put(0,RulerTitles.Title.EMPEROR.grade());ok(w.government.appointRank(0,0,1,"大都督"));
         check(w.government.commandLimit(1)==15000&&w.officer(1).acted,"office expands cap and consumes target action");
         refresh(w);w.government.earn(2,36000);rejected(w,()->w.government.appointRank(0,0,2,"大都督"));
         ok(w.army.deploy(0,1,new int[]{2},World.Weapon.SPEAR,Army.Ship.BOAT,15000,30000));

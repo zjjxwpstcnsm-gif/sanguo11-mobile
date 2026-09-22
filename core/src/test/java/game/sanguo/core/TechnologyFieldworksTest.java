@@ -101,7 +101,7 @@ public final class TechnologyFieldworksTest {
             check(elite.war.previewDamage(x.id,y.id)>plain.war.previewDamage(x.id,y.id)&&elite.war.movement(elite.unit(x.id))>plain.war.movement(x),"elite research improves actual damage and movement "+weapon);
         }
         w=fixture();a=unit(w,1,World.Weapon.CATAPULT,new Hex(7,6));b=unit(w,6,World.Weapon.SPEAR,new Hex(9,6));World.Unit collateral=unit(w,2,World.Weapon.SPEAR,new Hex(10,6));learn(w,0,Campaign.Tech.THUNDERBOLT);ok(w.army.tactic(a.id,b.hex,Army.Tactic.STONE));check(collateral.troops<5000,"thunderbolt actually hits friendly neighboring troop");
-        w=fixture();learn(w,0,Campaign.Tech.MILITARY_REFORM);check(w.government.commandLimit(1)==13000,"military reform adds3000 to real command limit");ok(w.army.deploy(0,1,new int[0],World.Weapon.SWORD,Army.Ship.BOAT,13000,26000));check(copy(w).unit(1).troops==13000,"larger formation deploys and persists");
+        w=fixture();learn(w,0,Campaign.Tech.MILITARY_REFORM);check(w.government.commandLimit(1)==8000,"military reform adds3000 to unappointed5000");ok(w.army.deploy(0,1,new int[0],World.Weapon.SWORD,Army.Ship.BOAT,8000,16000));check(copy(w).unit(1).troops==8000,"larger formation deploys and persists");
     }
     private static void traps()throws Exception{
         World w=fixture();World.Unit engineer=unit(w,1,World.Weapon.SPEAR,new Hex(7,6));engineer.gold=3000;Hex h=new Hex(8,6);
