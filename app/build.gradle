@@ -48,7 +48,7 @@ android {
 }
 dependencies {
     implementation project(':core')
-    implementation 'com.google.android.filament:filament-android:1.77.0'
+    implementation 'com.google.android.filament:filament-android:1.56.0'
 }
 
 // Execute plain Java presentation regressions without adding a runtime/test framework dependency.

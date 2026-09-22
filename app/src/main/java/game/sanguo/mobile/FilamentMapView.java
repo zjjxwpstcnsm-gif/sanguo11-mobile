@@ -56,8 +56,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             Filament.init();engine=Engine.create(Engine.Backend.OPENGL);
             renderer=engine.createRenderer();scene=engine.createScene();view=engine.createView();
             cameraEntity=EntityManager.get().create();lens=engine.createCamera(cameraEntity);view.setScene(scene);view.setCamera(lens);view.setPostProcessingEnabled(false);
-            Renderer.ClearOptions clear=new Renderer.ClearOptions();clear.clear=true;clear.clearColor=new double[]{.075f,.10f,.11f,1};renderer.setClearOptions(clear);
-            byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain.filamat")){bytes=in.readAllBytes();}
+            Renderer.ClearOptions clear=new Renderer.ClearOptions();clear.clear=true;clear.clearColor=new float[]{.075f,.10f,.11f,1};renderer.setClearOptions(clear);
+            byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int count;while((count=in.read(block))!=-1)out.write(block,0,count);bytes=out.toByteArray();}
             ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();material=new Material.Builder().payload(payload,bytes.length).build(engine);
             light=EntityManager.get().create();new LightManager.Builder(LightManager.Type.DIRECTIONAL).direction(-1,-2,-1).color(1,.95f,.85f).intensity(50000).castShadows(false).build(engine,light);scene.addEntity(light);
             surface.getHolder().addCallback(this);
@@ -80,7 +80,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     boolean visible(TurnJournal.Event e){return visible(e.start)||visible(e.target);}
     private boolean visible(Hex h){if(h==null||snapshot==null)return false;GridWorldTransform g=snapshot.ground.grid;return Math.abs(camera.screenX(g.x(h))-camera.width/2f)<camera.width*.6&&Math.abs(camera.screenY(g.z(h),0)-camera.height/2f)<camera.height*.6;}
     void diagnostics(boolean value){diagnostics=value;overlay.invalidate();}
-    String report(){return "Filament 1.77.0 / OpenGL ES\n"+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S01 过渡代理资源";}
+    String report(){return "Filament 1.56.0 / OpenGL ES\n"+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S01 过渡代理资源";}
     void resume(boolean value){resumed=value;if(value)schedule();else cancelFrame();}
     private void cancelFrame(){Choreographer.getInstance().removeFrameCallback(this);queued=false;lastFrame=0;}
     private void schedule(){if(!released&&resumed&&swap!=null&&!queued){queued=true;Choreographer.getInstance().postFrameCallback(this);}}
