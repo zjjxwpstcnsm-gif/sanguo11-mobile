@@ -41,3 +41,21 @@ asset fallback, dense label art review and midrange arm64 timing/PSS/GPU/battery
 Automated tests calling real commands are not equivalent to all wizard touches.
 A native S07 suite is wired into scene CI and records the actual Surface/editor.
 Default remains 2D. S06's critical-fire save restriction remains outside this visual task.
+
+## Installed checkpoint cc9fe1a
+
+Run 35708092421 succeeded: S07 138 installed checks and S06 140 native checks.
+The actual S07 recording is 159.130822 seconds (28,431,411 bytes). PixelCopy and
+screenshots confirm the live Filament Surface and production editor. The test performs
+real deployment/movement, shared next-turn playback and autosave reload, a real 3D
+brush event, height invalidation/undo, library publication and save-sidecar restoration.
+These check counts include readiness polling, not 138 distinct user workflows.
+
+Subsequent source adds height-only mesh/forest cache invalidation, clean-directory
+map import and start-game renderer continuity. Latest exact-source CI status belongs
+in the final PR/build manifest. Territory caching now retains detached colors, labels,
+and immutable Ground identity, never a World/Territory reference in FilamentMapView.
+
+A separate legacy experience workflow fails looking for the old unconditional
+"收起" unit panel (run 35707736230); it does not establish an S07 regression and has
+not been marked passed. Full-project green CI is not claimed.

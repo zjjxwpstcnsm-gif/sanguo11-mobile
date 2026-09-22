@@ -62,7 +62,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
 
     private boolean editorGrid,editorCoords,editorFootprints;private Set<Hex> impassable=Collections.emptySet();
     private int territoryMode,previewFaction=-1;private boolean openingPreview;
-    private World layerWorld;private Territory layerTerritory;private int layerRevision=-1;
+    private MapSceneSnapshot.Ground territoryGround;private String territoryKey="";
     private int[] territoryColors;private final Map<String,String> factionLabels=new HashMap<>();
     private final Map<String,Integer> siteOwners=new HashMap<>();
     void editorLayers(World w,boolean grid,boolean coords,boolean passability,boolean footprints){
@@ -74,8 +74,9 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         territoryMode=mode;openingPreview=preview;previewFaction=side;
         factionLabels.clear();siteOwners.clear();for(World.City c:w.cities){String key="site:"+c.id;siteOwners.put(key,c.owner);factionLabels.put(key,c.owner<0?"":w.governance.label(c.owner));}
         if(mode==0){territoryColors=null;return;}
-        if(layerWorld!=w||layerRevision!=w.terrainRevision){layerWorld=w;layerRevision=w.terrainRevision;layerTerritory=new Territory(w);}
-        Territory t=layerTerritory;territoryColors=new int[w.width*w.height];
+        StringBuilder key=new StringBuilder();for(World.City c:w.cities)key.append(c.id).append(':').append(c.owner).append(':').append(c.hex.q).append(':').append(c.hex.r).append(';');
+        String identity=key.toString();if(territoryColors!=null&&territoryGround==snapshot.ground&&identity.equals(territoryKey))return;
+        territoryGround=snapshot.ground;territoryKey=identity;Territory t=new Territory(w);territoryColors=new int[w.width*w.height];
         for(int y=0;y<w.height;y++)for(int x=0;x<w.width;x++){int owner=t.ownerAt(x,y);if(owner>=0)territoryColors[y*w.width+x]=FactionColors.color(w,owner);}
     }
     private final CombatVisual combat=new CombatVisual();
