@@ -25,12 +25,16 @@ final class MapSceneSnapshot {
     }
     static final class Item {
         final String key,label; final Hex hex; final int kind,color;
-        final FacilityState facility; final SiteVisual site;
+        final FacilityState facility; final SiteVisual site; final UnitVisual unit;
         Item(String key,String label,Hex hex,int kind,int color,FacilityState facility){
-            this.key=key;this.label=label;this.hex=hex;this.kind=kind;this.color=color;this.facility=facility;this.site=null;
+            this.key=key;this.label=label;this.hex=hex;this.kind=kind;this.color=color;this.facility=facility;this.site=null;this.unit=null;
         }
         Item(String key,String label,Hex hex,int kind,int color,SiteVisual site){
-            this.key=key;this.label=label;this.hex=hex;this.kind=kind;this.color=color;this.site=site;this.facility=null;
+            this.key=key;this.label=label;this.hex=hex;this.kind=kind;this.color=color;this.site=site;this.facility=null;this.unit=null;
+        }
+        Item(World w,World.Unit u){
+            key="unit:"+u.id;hex=u.hex;kind=3;color=FactionColors.color(w,u.owner);
+            facility=null;site=null;unit=new UnitVisual(w,u);label=unit.label();
         }
         // Transition meshes are shared by silhouette/color only; status does not create GPU variants.
         String shapeKey(){return kind+":"+color;}
@@ -57,7 +61,7 @@ final class MapSceneSnapshot {
     MapSceneSnapshot(Ground ground,World w,Hex selected,int moving) {
         this.ground=ground;this.selected=selected;List<Item> list=new ArrayList<>();
         for(World.City c:w.cities){Item item=new Item("site:"+c.id,c.name,c.hex,c.kind==World.SiteKind.CITY?0:c.kind==World.SiteKind.PORT?1:2,FactionColors.color(w,c.owner),new SiteVisual(w,c,ground.grid));list.add(item);}
-        for(World.Unit u:w.fieldUnits())list.add(new Item("unit:"+u.id,u.weapon.label,u.hex,3,FactionColors.color(w,u.owner)));
+        for(World.Unit u:w.fieldUnits())list.add(new Item(w,u));
         for(Domestic.Facility f:w.domestic.facilities){
             World.City home=w.city(f.cityId);int owner=home==null?-1:home.owner;
             list.add(new Item("domestic:"+f.id,f.kind.label,f.hex,4,FactionColors.color(w,owner),

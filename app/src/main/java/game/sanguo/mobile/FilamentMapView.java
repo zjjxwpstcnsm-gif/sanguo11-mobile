@@ -52,7 +52,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             @Override public boolean onDown(MotionEvent e){return true;}
             @Override public boolean onScroll(MotionEvent a,MotionEvent b,float dx,float dy){if(!scaler.isInProgress()){camera.pan(-dx,-dy);clampCamera();}return true;}
             @Override public boolean onSingleTapUp(MotionEvent e){
-                if(!multi&&snapshot!=null){Hex h=snapshot.ground.surface.pick(camera,e.getX(),e.getY());if(snapshot.ground.valid(h)){performClick();listener.tap(h);}}return true;
+                if(!multi&&snapshot!=null){Hex h=pickUnit(e.getX(),e.getY());if(h==null)h=snapshot.ground.surface.pick(camera,e.getX(),e.getY());if(snapshot.ground.valid(h)){performClick();listener.tap(h);}}return true;
             }
             @Override public void onLongPress(MotionEvent e){camera.facing=-camera.facing;overlay.invalidate();}
             @Override public boolean onDoubleTap(MotionEvent e){camera.zoom(1.7f,e.getX(),e.getY());return true;}
@@ -90,8 +90,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     void setTargets(Set<Hex> value){targets=value==null?Collections.emptySet():new HashSet<>(value);overlay.invalidate();}
     void setRoute(MarchOrders.Plan value){route=value;overlay.invalidate();}
-    void replay(TurnJournal.Event e,float fraction){replay=e;replayFraction=fraction;}
-    boolean visible(TurnJournal.Event e){return visible(e.start)||visible(e.target);}
+    void replay(TurnJournal.Event e,float fraction){
+        replay=e;replayFraction=fraction;animateReplay();overlay.invalidate();schedule();
+    }
+    boolean visible(TurnJournal.Event e){if(visible(e.start)||visible(e.target))return true;for(Hex h:e.path)if(visible(h))return true;return false;}
     private boolean visible(Hex h){if(h==null||snapshot==null)return false;GridWorldTransform g=snapshot.ground.grid;return Math.abs(camera.screenX(g.x(h))-camera.width/2f)<camera.width*.6&&Math.abs(camera.screenY(g.z(h),snapshot.ground.surface.at(h))-camera.height/2f)<camera.height*.6;}
     void diagnostics(boolean value){diagnostics=value;overlay.invalidate();}
     String report(){return "Filament 1.56.0 / OpenGL ES\n"+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S03 城港关 · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+"";}
@@ -108,7 +110,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             double aspect=camera.width/(double)camera.height;
             lens.setProjection(Camera.Projection.ORTHO,-camera.span*aspect,camera.span*aspect,-camera.span,camera.span,.1,1000);
             lens.lookAt(camera.x,300*camera.sin(),camera.z+camera.facing*300*camera.cos(),camera.x,0,camera.z,0,1,0);
-            loadVisible();animateReplay();
+            animateReplay();loadVisible();
             if(renderer.beginFrame(swap,time)){renderer.render(view);renderer.endFrame();renderedFrames++;}
             overlay.invalidate();schedule();
         }catch(RuntimeException|LinkageError e){cancelFrame();failure.accept(e);}
@@ -126,7 +128,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(gpu!=null){gpu.show(shown);if(!shown&&!inView(chunk.x,chunk.z,chunk.radius+20)){gpu.destroy();terrain.remove(chunk);}}
         }
         visibleObjects=0;
-        for(Proxy p:objects.values()){boolean shown=inView(snapshot.ground.grid.x(p.item.hex),snapshot.ground.grid.z(p.item.hex),2);if(shown)visibleObjects++;if(shown!=p.shown){p.show(shown);}}
+        for(Proxy p:objects.values()){boolean shown=inView(p.motion.x,p.motion.z,2);if(shown)visibleObjects++;if(shown!=p.shown){p.show(shown);}}
     }
     private GpuMesh shape(MapSceneSnapshot.Item item){
         String key=item.site==null?item.kind+":"+item.color:item.site.model+":"+siteLod;
@@ -144,7 +146,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             alive.add(item.key);Proxy p=objects.get(item.key);GpuMesh geometry=shape(item);
             if(p!=null&&(p.shape!=geometry||p.item.color!=item.color)){p.destroy();objects.remove(item.key);p=null;}
             if(p==null){p=new Proxy(item,geometry);objects.put(item.key,p);}
-            p.item=item;p.position(snapshot.ground.grid.x(item.hex),snapshot.ground.grid.z(item.hex));p.updateDamage();
+            p.item=item;p.motion.settle(item.hex,snapshot.ground.grid);p.position(p.motion.x,p.motion.z);p.updateDamage();
         }
         Iterator<Map.Entry<String,Proxy>> it=objects.entrySet().iterator();while(it.hasNext()){Map.Entry<String,Proxy> e=it.next();if(!alive.contains(e.getKey())){e.getValue().destroy();it.remove();}}
         // Release faction proxy meshes after ownership changes, rather than retaining obsolete colors forever.
@@ -152,8 +154,23 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         Iterator<Map.Entry<String,GpuMesh>> meshes=shapes.entrySet().iterator();while(meshes.hasNext()){GpuMesh m=meshes.next().getValue();if(!used.contains(m)){m.destroy();meshes.remove();}}
     }
     private void animateReplay(){
-        if(replay==null||snapshot==null)return;World.Unit actor=replay.actorCopy();if(actor==null)return;Proxy p=objects.get("unit:"+actor.id);if(p==null)return;
-        Hex a=replay.start,b=replay.target;if(!replay.path.isEmpty()){float t=replayFraction*Math.max(0,replay.path.size()-1);int i=Math.min((int)t,replay.path.size()-1);a=replay.path.get(i);b=replay.path.get(Math.min(i+1,replay.path.size()-1));t-=i;if(a!=null&&b!=null){GridWorldTransform g=snapshot.ground.grid;p.position(g.x(a)+(g.x(b)-g.x(a))*t,g.z(a)+(g.z(b)-g.z(a))*t);}}
+        if(snapshot==null)return;
+        for(Proxy p:objects.values())if(p.item.unit!=null){
+            p.motion.sample(replay!=null&&p.item.unit.id==replay.actorId?replay:null,replayFraction,snapshot.ground.grid);
+            p.position(p.motion.x,p.motion.z);
+        }
+    }
+    /** Resolve a visible moving model to its stable snapshot unit, never the terrain below it. */
+    private Hex pickUnit(float sx,float sy){
+        if(snapshot==null)return null;
+        float radius=Math.max(14*getResources().getDisplayMetrics().density,
+            Math.min(36*getResources().getDisplayMetrics().density,camera.width/(2*camera.span)*.45f));
+        Proxy nearest=null;float distance=radius*radius;
+        for(Proxy p:objects.values())if(p.item.unit!=null&&p.shown){
+            float dx=sx-camera.screenX(p.motion.x),dy=sy-camera.screenY(p.motion.z,p.y+.25f),d=dx*dx+dy*dy;
+            if(d<distance||(d==distance&&nearest!=null&&p.item.unit.id<nearest.item.unit.id)){nearest=p;distance=d;}
+        }
+        return nearest==null?null:nearest.item.hex;
     }
     void focus(Hex h){if(snapshot==null||h==null)return;camera.x=snapshot.ground.grid.x(h);camera.z=snapshot.ground.grid.z(h);camera.span=10;}
     void center(Hex h){if(snapshot!=null&&h!=null){camera.x=snapshot.ground.grid.x(h);camera.z=snapshot.ground.grid.z(h);}}
@@ -166,7 +183,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void saveCamera(Bundle b){b.putFloat("cameraX",camera.x*TileGeometry.DX);b.putFloat("cameraY",camera.z*TileGeometry.DY);b.putFloat("sceneSpan",camera.span);b.putFloat("sceneTilt",camera.tilt);b.putInt("sceneFacing",camera.facing);}
     void restoreCamera(Bundle b){camera.x=b.getFloat("cameraX")/TileGeometry.DX;camera.z=b.getFloat("cameraY")/TileGeometry.DY;camera.span=b.getFloat("sceneSpan",15);camera.tilt=b.getFloat("sceneTilt",55);camera.facing=b.getInt("sceneFacing",1)<0?-1:1;}
     void release(){
-        if(released)return;released=true;generation++;cancelFrame();if(meshTask!=null)meshTask.cancel(true);worker.shutdownNow();surface.getHolder().removeCallback(this);
+        if(released)return;released=true;replay=null;generation++;cancelFrame();if(meshTask!=null)meshTask.cancel(true);worker.shutdownNow();surface.getHolder().removeCallback(this);
         if(engine==null)return;
         if(displayHelper!=null)displayHelper.detach();
         if(swap!=null){engine.destroySwapChain(swap);swap=null;}
@@ -195,8 +212,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private final class Proxy {
         final int entity; final GpuMesh shape; int flag,base; GpuMesh flagShape,baseShape; MaterialInstance instance;
-        MapSceneSnapshot.Item item;boolean shown;
-        Proxy(MapSceneSnapshot.Item item,GpuMesh shape){this.item=item;this.shape=shape;entity=EntityManager.get().create();
+        MapSceneSnapshot.Item item;boolean shown;final UnitMotion motion=new UnitMotion();float y;
+        Proxy(MapSceneSnapshot.Item item,GpuMesh shape){this.item=item;motion.settle(item.hex,snapshot.ground.grid);this.shape=shape;entity=EntityManager.get().create();
             if(shape.source.uv!=null){instance=siteMaterial.createInstance();instance.setParameter("atlas",siteAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));instance.setParameter("damage",0f);shape.build(entity,instance);}else shape.build(entity);
             if(item.site!=null){String key="flag:"+item.color;flagShape=shapes.get(key);if(flagShape==null){flagShape=new GpuMesh(SceneMesh.proxy(3,item.color));shapes.put(key,flagShape);}flag=EntityManager.get().create();flagShape.build(flag);}
             if(item.kind==0&&item.site!=null){
@@ -211,8 +228,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         }
         void updateDamage(){if(instance!=null)instance.setParameter("damage",item.site.damage*.5f);}
         void position(float x,float z){
-            float y=snapshot.ground.surface.meshHeight(x,z)+.02f;
-            float angle=item.site==null?0:item.site.yaw,scale=item.site==null?1:item.site.scale;
+            y=snapshot.ground.surface.meshHeight(x,z)+.02f;
+            float angle=item.site==null?motion.yaw:item.site.yaw,scale=item.site==null?1:item.site.scale;
             float c=(float)Math.cos(angle)*scale,s=(float)Math.sin(angle)*scale;
             float[] matrix={c,0,-s,0,0,scale,0,0,s,0,c,0,x,y,z,1};TransformManager tm=engine.getTransformManager();tm.setTransform(tm.getInstance(entity),matrix);
             if(base!=0){float[] baseMatrix={1,0,0,0,0,1,0,0,0,0,1,0,x,y,z,1};tm.setTransform(tm.getInstance(base),baseMatrix);}
@@ -238,7 +255,13 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             // Ground rings remain visible through architecture; transit units cannot disappear behind walls.
             for(MapSceneSnapshot.Item item:snapshot.items)if(item.kind==3&&visible(item.hex))cell(c,item.hex,item.color);
             p.setStyle(Paint.Style.FILL);p.setTextSize(12*getResources().getDisplayMetrics().scaledDensity);p.setShadowLayer(2,0,1,0xff000000);
-            for(MapSceneSnapshot.Item item:snapshot.items)if((item.kind<3||camera.span<18||item.hex.equals(snapshot.selected))&&visible(item.hex)){float x=camera.screenX(snapshot.ground.grid.x(item.hex)),y=camera.screenY(snapshot.ground.grid.z(item.hex),snapshot.ground.surface.at(item.hex)+1);p.setColor(item.color);c.drawText(item.displayLabel(),x,y,p);}
+            for(Proxy object:objects.values()){
+                MapSceneSnapshot.Item item=object.item;
+                if((item.kind<3||camera.span<18||item.hex.equals(snapshot.selected))&&object.shown){
+                    float x=camera.screenX(object.motion.x),y=camera.screenY(object.motion.z,object.y+1);
+                    p.setColor(item.color);c.drawText(item.displayLabel(),x,y,p);
+                }
+            }
             p.setColor(0xfff0e5c8);c.drawText((pending>0)?"3D 地形装载中… · 可在视图切回 2D":"3D 试验 · S03 城港关 · 长按反向查看",12,24*getResources().getDisplayMetrics().density,p);
             if(diagnostics){float y=48*getResources().getDisplayMetrics().density;for(String line:report().split("\n")){c.drawText(line,12,y,p);y+=22*getResources().getDisplayMetrics().density;}}
             p.clearShadowLayer();
