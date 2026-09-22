@@ -25,6 +25,13 @@ public final class CustomOfficerTest {
         World w=apply(initial,Arrays.asList(a,b,ai),Arrays.asList(put(a,0,77),put(b,-1,77),put(ai,1,991)));check(Arrays.equals(before,SaveCodec.encode(initial)),"composition leaves base untouched");
         World.Officer o=w.officer(a.runtimeId);check(o.leadership==95&&o.affinity==75&&o.honor==3&&o.role==Strategy.Role.OFFICER&&!o.acted,"actual officer instance contains base traits and legal defaults");
         check(w.contests.profile(o.id).temper==Debate.Temper.BOLD&&w.contests.profile(o.id).talkMask==7,"personality and talk enter contest model");
+        int loyalty=o.loyalty,gold=w.city(77).gold;
+        ok(w.strategy.rewardOfficer(77,10,o.id));check(o.loyalty>loyalty&&w.city(77).gold<gold,"custom officer really rewarded with ordinary resource cost");reset(w);
+        check(!w.strategy.rewardOfficer(77,10,o.id).ok,"custom officer cannot repeat same-turn reward");
+        Government.Rank rank=Government.ranks().get(0);ok(w.government.appointRank(77,10,o.id,rank.id));check(w.government.commandLimit(o.id)==rank.troops&&o.acted,"custom officer rank enforces real command ceiling and action");reset(w);
+        ok(w.government.appointAdvisor(77,10,o.id));check(w.government.advisor(0).id==o.id&&o.acted,"custom officer appointed through real advisor command");reset(w);
+        ok(w.strategy.appointGovernor(77,10,o.id));check(w.city(77).governorId==o.id&&w.strategy.governorPolitics(77)==o.politics,"custom governor contributes actual city income politics");reset(w);
+        World appointments=SaveCodec.decode(SaveCodec.encode(w));check(appointments.government.office(o.id).id.equals(rank.id)&&appointments.government.advisor(0).id==o.id&&appointments.city(77).governorId==o.id,"all appointment references survive a real save roundtrip");
         int order=w.city(77).order;ok(w.patrol(77,o.id));check(w.city(77).order>order&&o.acted,"real domestic command changes city and consumes action");check(!w.patrol(77,o.id).ok,"no unlimited actions");reset(w);
         check(w.strategy.recruitmentTargets(77).stream().anyMatch(x->x.id==b.runtimeId),"custom wild officer in ordinary recruitment candidates");
         int chance=w.strategy.recruitmentChance(77,o.id,b.runtimeId);for(int seed=0;seed<10000;seed++){w.strategy.setSeed(seed);if(w.strategy.nextInt(100)<chance){w.strategy.setSeed(seed);break;}}

@@ -652,9 +652,10 @@ public final class MainActivity extends Activity {
         tabs.setContentDescription("城池指令分组");
         panel.addView(tabs,new LinearLayout.LayoutParams(-1,dp(48)));
         if(ui.group.equals("概览")){
-        line(Conscription.description(world,c),13,gold);
-        if(c.kind!=World.SiteKind.CITY)line(world.districts.affiliation(c.id),13,muted);
-
+            line(Conscription.description(world,c),13,gold);
+            if(c.kind!=World.SiteKind.CITY){
+                line(world.districts.affiliation(c.id),13,muted);
+            }
             line("可用武将 "+world.idle(c).size()+" · 行动力 "+(world.districts.city(c.id)==null?world.actionPoints[world.player]:world.districts.city(c.id).points())+" · "+(world.districts.directCity(c.id)?"直属经营":"军团托管"),13,gold);
         }
         Districts.District district=world.districts.city(c.id);if(district!=null)line("所属军团："+district.name()+" · "+district.policy().label,13,gold);

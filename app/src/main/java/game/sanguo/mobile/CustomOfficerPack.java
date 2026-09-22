@@ -35,7 +35,7 @@ final class CustomOfficerPack {
         if(bytes.length>0&&bytes[0]=='{')files.put("manifest.json",bytes);
         else files.putAll(OfficerPackArchive.read(bytes));
         if(!files.containsKey("manifest.json"))throw new IOException("数据包缺少manifest.json");JSONObject root=new JSONObject(new String(files.remove("manifest.json"),StandardCharsets.UTF_8));
-        if(root.getInt("packageVersion")!=1)throw new IOException("数据包版本不支持");CustomOfficerLibrary.validate(root);
+        Object packageVersion=root.get("packageVersion");if(!(packageVersion instanceof Number)||((Number)packageVersion).doubleValue()!=1)throw new IOException("数据包版本不支持");CustomOfficerLibrary.validate(root);
         Map<String,byte[]> images=new HashMap<>();for(Map.Entry<String,byte[]> e:files.entrySet()){String name=e.getKey().substring(10);if(!name.equals(CustomOfficerImages.digest(e.getValue())+".png"))throw new IOException("头像摘要不匹配");CustomOfficerImages.validate(e.getValue());images.put(name,e.getValue());}
         int overlaps=0,overrides=0;JSONArray entries=root.getJSONArray("entries");for(int i=0;i<entries.length();i++){JSONObject o=entries.getJSONObject(i);if(library.find(o.getString("id"))!=null)overlaps++;if(o.optInt("targetId",-1)>=0)overrides++;String image=o.optString("portrait");if(image.endsWith(".png")&&!images.containsKey(image))throw new IOException("包内缺少头像："+o.getString("name"));}
         String warnings=root.optInt("baseCatalogRevision",-1)!=ContentCatalog.get().revision?"\n基础资料修订不同，已逐个校验历史覆盖目标ID和姓名。":"";

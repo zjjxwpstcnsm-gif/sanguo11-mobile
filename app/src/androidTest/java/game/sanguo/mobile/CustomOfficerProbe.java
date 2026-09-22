@@ -64,6 +64,8 @@ final class CustomOfficerProbe {
         CustomOfficerLibrary library=new CustomOfficerLibrary(context());byte[] bytes=CustomOfficerPack.exportPack(context(),library.snapshot());CustomOfficerPack.Preview p=CustomOfficerPack.preview(context(),new ByteArrayInputStream(bytes),library);check(p.images.size()==1&&p.root.getJSONArray("entries").length()==2,"portable ZIP has actual portrait and people");
         String unchanged=library.snapshot().toString();
         try{CustomOfficerPack.preview(context(),new ByteArrayInputStream(Arrays.copyOf(bytes,bytes.length-22)),library);throw new AssertionError("truncated central directory accepted");}catch(IOException expected){check(unchanged.equals(library.snapshot().toString()),"truncated ZIP rejected before any library change");}
+        JSONObject wrongVersion=new JSONObject(p.root.toString());wrongVersion.put("packageVersion",1.5);
+        try{CustomOfficerPack.preview(context(),new ByteArrayInputStream(wrongVersion.toString().getBytes("UTF-8")),library);throw new AssertionError("fractional package version accepted");}catch(IOException expected){check(unchanged.equals(library.snapshot().toString()),"fractional package version rejected atomically");}
         for(String field:new String[]{"honor","talkMask"}){
             JSONObject fractional=library.snapshot();fractional.getJSONArray("entries").getJSONObject(0).put(field,1.5);
             try{library.replace(fractional);throw new AssertionError("fractional "+field+" accepted");}catch(IllegalArgumentException expected){check(unchanged.equals(library.snapshot().toString()),"fractional "+field+" rejected atomically");}
