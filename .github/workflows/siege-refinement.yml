@@ -12,25 +12,15 @@ jobs:
   verify:
     runs-on: ubuntu-latest
     timeout-minutes: 25
-    permissions:
-      contents: write
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.sha }}
+          persist-credentials: false
       - name: Archive exact committed sources
         run: |
           set -euo pipefail
           git diff --check
-          if [ -f .ci/polish-siege-ui.py ]; then
-            test "$GITHUB_REF_NAME" = 'agent/siege-refinement-20260922'
-            python3 .ci/polish-siege-ui.py
-            git diff --check
-            git rm .ci/polish-siege-ui.py
-            git add app core docs
-            git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'fix: expose siege status in collapsed panels and distinguish range from development plots'
-            git push origin HEAD:refs/heads/agent/siege-refinement-20260922
-          fi
           mkdir -p evidence
           git rev-parse HEAD | tee evidence/BUILD_COMMIT
           git archive --format=zip HEAD -o evidence/source.zip
