@@ -71,8 +71,9 @@ effect primitives and known buffer bytes, not driver GPU-memory estimates.
   detach/rebind/background and skip, all checked against a separately computed turn.
   CI status and exact source/APK identity belong in the final delivery report.
 
-No attached Android/KVM device locally. Native checks and video are **pending until CI
-actually passes**. Physical arm64 midrange FPS/PSS/GPU/thermal/battery, installed size,
+No attached Android/KVM device locally. S06 native checks **145 PASS** on f8eff1d; a 149.65-second native recording is
+available. The workflow then failed in its optional multiline shell wrapper, now
+moved to a standalone script; this was after all S06 assertions passed. Physical arm64 midrange FPS/PSS/GPU/thermal/battery, installed size,
 long sessions and artistic acceptance remain **UNMEASURED**, not passed. Do not claim
 full S06 acceptance or enable 3D by default on that basis. Generic status effects remain
 stylized, not individual cinematics; there is no additional rule for passive drum auras.
@@ -96,3 +97,14 @@ enables animator scale 1, asserts that precondition, tests reduced mode separate
 and restores scale 1 before actual TurnPlayback tests. Only this changed test needs
 a native rerun; the unchanged S01/S04/S05 runtime results above remain evidence.
 The workflow's `full_native` manual option retains those suites for future regressions.
+
+## Native S06 checkpoint f8eff1d
+
+Run 35705409051 passed all 145 installed S06 checks, including actual shared turn
+playback, 1/2/4x, skip, pause/detach/background, and reduced motion. Screenshots
+confirm rendered fire, damage feedback and the skippable portrait card. The
+recording is 149.65 seconds. Small-fixture emulator total times were 5901 ms (2D
+1x), 1090 ms (3D 4x), 1574 ms (3D 2x with interruption), and 244 ms (3D skip).
+Visibility and playback differ: these are correctness evidence, not a fair speed
+comparison or a 250-officer phone benchmark. S06 remains PARTIAL for the physical
+device and existing critical-fire save gates above.
