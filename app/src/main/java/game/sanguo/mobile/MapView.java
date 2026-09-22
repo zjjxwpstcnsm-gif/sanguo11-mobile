@@ -482,16 +482,6 @@ public final class MapView extends View {
                 if(edges[q][r]!=0)addBorders(path,edges[q][r],x(tiles[q][r]),y(tiles[q][r]));
             stroke(canvas,0xbfe3ebcf,Math.max(1,density/scale));
         }
-        if(!editorMode&&!openingPreview&&moving<0&&pickTargets==null&&siegeOverlay!=null){
-            for(Hex h:siegeOverlay.cells){
-                if(!camera.visible(x(h),y(h),RADIUS*scale))continue;
-                boolean enemy=siegeOverlay.enemies.contains(h);
-                boolean inner=SiteFootprint.distance(siegeOverlay.site,h)==1;
-                polygon(x(h),y(h),RADIUS-1);
-                fill(canvas,enemy?0x66ea625d:inner?0x44edb75b:0x24edb75b);
-                stroke(canvas,enemy?0xfff77870:inner?0xcce8b760:0x88e8b760,Math.max(1,1.2f*density/scale));
-            }
-        }
         if(pickTargets==null)for(Map.Entry<Hex,Integer> entry:reachable.entrySet()){
             Hex h=entry.getKey();if(entry.getValue()<=0||!camera.visible(x(h),y(h),RADIUS*scale))continue;
             polygon(x(h),y(h),RADIUS-1);fill(canvas,0x6e3edad1);stroke(canvas,0xe175f4ea,Math.max(1,1.2f*density/scale));
@@ -509,6 +499,16 @@ public final class MapView extends View {
         if(detail&&moving<0&&pickTargets==null){
             for(Hex parcel:developmentSites){
                 if(!camera.visible(x(parcel),y(parcel),RADIUS*scale))continue;polygon(x(parcel),y(parcel),RADIUS-3);fill(canvas,0x3ae6bf77);stroke(canvas,0xffe6bf77,1.2f*density/scale);label(canvas,"＋",x(parcel),y(parcel)+6,18,0xffffe0a0);
+            }
+        }
+        if(!editorMode&&!openingPreview&&moving<0&&pickTargets==null&&siegeOverlay!=null){
+            for(Hex h:siegeOverlay.cells){
+                if(!camera.visible(x(h),y(h),RADIUS*scale))continue;
+                boolean enemy=siegeOverlay.enemies.contains(h);
+                boolean inner=SiteFootprint.distance(siegeOverlay.site,h)==1;
+                polygon(x(h),y(h),RADIUS-1);
+                fill(canvas,enemy?0x66ea625d:inner?0x4454d5df:0x2454d5df);
+                stroke(canvas,enemy?0xfff77870:inner?0xe866e5ed:0xb866e5ed,Math.max(1,1.2f*density/scale));
             }
         }
         if(selected!=null&&world.cityAt(selected)==null){polygon(x(selected),y(selected),RADIUS-2);fill(canvas,0x20e6bf77);stroke(canvas,GOLD,Math.max(2,2*density/scale));}

@@ -644,9 +644,9 @@ public final class MainActivity extends Activity {
             if(c.kind==World.SiteKind.CITY)primaryAction("设施开发",()->domesticUi().build(c));
             else primaryAction("修复城防",()->campaignUi().repair(c));
         }
+        line(SiegeRules.summary(world,c)+"\n青格：两圈围城范围 · 红格：敌军",12,SiegeRules.blockaded(world,c)?0xffff9a82:gold);
         panel.addView(visualHeader(c,c.name,world.faction(c.owner)+" · 太守 "+UiModels.governor(world,c.id),44));
         if(compact)line("金 "+c.gold+" · 粮 "+c.food+" · 兵 "+c.troops,13,paper);else panel.addView(CommandStats.city(this,c),new LinearLayout.LayoutParams(-1,-2));
-        line(SiegeRules.summary(world,c)+"\n琥珀格：两圈围城范围 · 红格：敌军",12,SiegeRules.blockaded(world,c)?0xffff9a82:gold);
         String[] groups={"概览","内政","武将","军事","调动","外交","研究"};
         HorizontalScrollView tabs=new HorizontalScrollView(this);tabs.setHorizontalScrollBarEnabled(false);tabs.setOverScrollMode(View.OVER_SCROLL_NEVER);
         LinearLayout tabRow=new LinearLayout(this);tabs.addView(tabRow,new HorizontalScrollView.LayoutParams(-2,-1));

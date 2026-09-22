@@ -6,7 +6,7 @@
 
 《Romance of the Three Kingdoms XI》原版手册的 How to Conquer Bases 段落记载：部队进入据点两格内，会阻止据点气力恢复，并造成逐回合兵力下降。此次读取的是手册的网页转录镜像，不是已下载、校验过的官方 PDF：
 
-https://www.studocu.vn/vn/document/truong-dai-hoc-luat-thanh-pho-chi-minh/luat-hop-dong/romance-of-the-three-kingdoms-xi-rtkxi-manual-gameplay-strategies-guide/150545887
+https://www.studocu.vn/vn/document/truong-dai-hoc-luat-thanh-pho-ho-chi-minh/luat-hop-dong/romance-of-the-three-kingdoms-xi-rtkxi-manual-gameplay-strategies-guide/150545887
 
 该段没有给出钱粮、征兵减益百分比，也未明确七格城市中心与边缘的距离口径。不能据此宣称下述数值是原版精确公式，更不能将 PK2.2 等 MOD 参数冒充原版。
 
@@ -24,7 +24,7 @@ https://www.studocu.vn/vn/document/truong-dai-hoc-luat-thanh-pho-chi-minh/luat-h
 
 ## 界面
 
-正常 MapView 使用缓存的 SiegeOverlay 显示两圈琥珀色范围、范围内红色敌军格；不在每帧扫描全国地图。移动/目标选择、地图编辑器及开局势力预览不覆盖战术提示。城市面板有围城状态、减益、图例、下旬钱粮预测与守备详情。选择非据点时清空覆盖层。
+正常 MapView 使用缓存的 SiegeOverlay 显示两圈青色范围、范围内红色敌军格；不在每帧扫描全国地图。移动/目标选择、地图编辑器及开局势力预览不覆盖战术提示。城市面板有围城状态、减益、图例、下旬钱粮预测与守备详情。选择非据点时清空覆盖层。
 
 ## 验证
 
@@ -35,3 +35,7 @@ https://www.studocu.vn/vn/document/truong-dai-hoc-luat-thanh-pho-chi-minh/luat-h
 完整旧脚本 scripts/test-core.sh 在 CoreTest.logistics 的 AI uses deployment commands 断言失败；对未修改 main 的独立源码编译、运行后复现同样错误。保留失败，没有跳过或删除旧断言，不能称全套回归绿色。围城相关旧射程断言已按新需求更新。
 
 Android 构建、安装和横竖屏/城市港关/七格点击/全国地图投影由 SiegeInstrumentation 验证；结果以对应工作流实际产物为准，BUILD_COMMIT 标识实际构建源提交。CI 没有运行完成前，不应将此文档当作 Android 通过证明。
+
+补充回归记录：Reports53NationalTest 的历史 v52 存档哈希在本轮与未修改 main 上均为 0c3b8525f3b9aff98b37b4cda14380577933987ae04791a85f363b6289899357，均不匹配其旧 golden。NavigationDefenseTest 的旧地图路径断言 [20036,20017] 返回 -1，在原始 main 上直接执行 geography 同样复现。这些旧断言没有被删除或改成无条件通过，补充工作流分别保留诊断输出，并与本轮必须通过的专项及相邻回归区分。
+
+首轮正式 Android 验证（ff4fb5c3ca55）完成构建、Lint、安装和47项界面检查。截图复核后进一步将围城状态前置到折叠面板可见区域，青色范围与金色开发用地区分，并新增可见区域检查；最终结果仍以最新构建证据为准。
