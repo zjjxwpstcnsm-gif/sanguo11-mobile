@@ -76,7 +76,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             for(GpuMesh m:terrain.values())m.destroy();terrain.clear();chunks=Collections.emptyList();pending=1;
             meshTask=worker.submit(()->{List<SceneMesh> built=SceneMesh.ground(next.ground);post(()->{if(released||token!=generation)return;chunks=built;pending=0;schedule();});});
         }
-        syncObjects();overlay.invalidate();schedule();
+        syncObjects(groundChanged);overlay.invalidate();schedule();
     }
     void setTargets(Set<Hex> value){targets=value==null?Collections.emptySet():new HashSet<>(value);overlay.invalidate();}
     void setRoute(MarchOrders.Plan value){route=value;overlay.invalidate();}
@@ -114,15 +114,20 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         visibleObjects=0;
         for(Proxy p:objects.values()){boolean shown=inView(snapshot.ground.grid.x(p.item.hex),snapshot.ground.grid.z(p.item.hex),2);if(shown)visibleObjects++;if(shown!=p.shown){if(shown)scene.addEntity(p.entity);else scene.removeEntity(p.entity);p.shown=shown;}}
     }
-    private void syncObjects(){
-        if(engine==null||snapshot==null)return;Set<String> alive=new HashSet<>();
+    private void syncObjects(boolean groundChanged){
+        if(engine==null||snapshot==null)return;Set<String> alive=new HashSet<>(),usedShapes=new HashSet<>();
         for(MapSceneSnapshot.Item item:snapshot.items){
-            alive.add(item.key);Proxy p=objects.get(item.key);
+            alive.add(item.key);usedShapes.add(item.shapeKey());Proxy p=objects.get(item.key);
             if(p!=null&&(p.item.kind!=item.kind||p.item.color!=item.color)){p.destroy();objects.remove(item.key);p=null;}
-            if(p==null){String shape=item.kind+":"+item.color;GpuMesh mesh=shapes.get(shape);if(mesh==null){mesh=new GpuMesh(SceneMesh.proxy(item.kind,item.color));shapes.put(shape,mesh);}p=new Proxy(item,mesh);objects.put(item.key,p);}
-            if(!p.item.hex.equals(item.hex))p.position(snapshot.ground.grid.x(item.hex),snapshot.ground.grid.z(item.hex));p.item=item;
+            if(p==null){String shape=item.shapeKey();GpuMesh mesh=shapes.get(shape);if(mesh==null){mesh=new GpuMesh(SceneMesh.proxy(item.kind,item.color));shapes.put(shape,mesh);}p=new Proxy(item,mesh);objects.put(item.key,p);}
+            if(groundChanged||!p.item.hex.equals(item.hex))p.position(snapshot.ground.grid.x(item.hex),snapshot.ground.grid.z(item.hex));p.item=item;
         }
         Iterator<Map.Entry<String,Proxy>> it=objects.entrySet().iterator();while(it.hasNext()){Map.Entry<String,Proxy> e=it.next();if(!alive.contains(e.getKey())){e.getValue().destroy();it.remove();}}
+        // Destroy all referencing renderables before releasing their shared buffers.
+        Iterator<Map.Entry<String,GpuMesh>> unused=shapes.entrySet().iterator();
+        while(unused.hasNext()){Map.Entry<String,GpuMesh> entry=unused.next();
+            if(!usedShapes.contains(entry.getKey())){entry.getValue().destroy();unused.remove();}
+        }
     }
     private void animateReplay(){
         if(replay==null||snapshot==null)return;World.Unit actor=replay.actorCopy();if(actor==null)return;Proxy p=objects.get("unit:"+actor.id);if(p==null)return;
@@ -173,7 +178,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(route!=null)for(Hex h:route.path)cell(c,h,0xffffd576);
             for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.coverage)cell(c,h,0xffcfad6e);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets)cell(c,h,0xffdd7661);cell(c,snapshot.selected,0xffffd576);
             p.setStyle(Paint.Style.FILL);p.setTextSize(12*getResources().getDisplayMetrics().scaledDensity);p.setShadowLayer(2,0,1,0xff000000);
-            for(MapSceneSnapshot.Item item:snapshot.items)if((item.kind<3||camera.span<18)&&visible(item.hex)){float x=camera.screenX(snapshot.ground.grid.x(item.hex)),y=camera.screenY(snapshot.ground.grid.z(item.hex),1);p.setColor(item.color);c.drawText(item.label,x,y,p);}
+            for(MapSceneSnapshot.Item item:snapshot.items)if((item.kind<3||camera.span<18||item.hex.equals(snapshot.selected))&&visible(item.hex)){float x=camera.screenX(snapshot.ground.grid.x(item.hex)),y=camera.screenY(snapshot.ground.grid.z(item.hex),1);p.setColor(item.color);c.drawText(item.displayLabel(),x,y,p);}
             p.setColor(0xfff0e5c8);c.drawText((pending>0)?"3D 地形装载中… · 可在视图切回 2D":"3D 试验 · S01 过渡资源",12,24*getResources().getDisplayMetrics().density,p);
             if(diagnostics){float y=48*getResources().getDisplayMetrics().density;for(String line:report().split("\n")){c.drawText(line,12,y,p);y+=22*getResources().getDisplayMetrics().density;}}
             p.clearShadowLayer();

@@ -21,15 +21,45 @@ final class MapSceneSnapshot {
     }
     static final class Item {
         final String key,label; final Hex hex; final int kind,color;
-        Item(String key,String label,Hex hex,int kind,int color){this.key=key;this.label=label;this.hex=hex;this.kind=kind;this.color=color;}
+        final FacilityState facility;
+        Item(String key,String label,Hex hex,int kind,int color,FacilityState facility){
+            this.key=key;this.label=label;this.hex=hex;this.kind=kind;this.color=color;this.facility=facility;
+        }
+        // Transition meshes are shared by silhouette/color only; status does not create GPU variants.
+        String shapeKey(){return kind+":"+color;}
+        String displayLabel(){return facility==null?label:label+facility.status();}
+        Item(String key,String label,Hex hex,int kind,int color){this(key,label,hex,kind,color,null);}
+    }
+    /** Exact detached state, ready for S03's future asset resolver; never retains a core entity. */
+    static final class FacilityState {
+        final String type; final int owner,level,upgradeTo,hp,maxHp,remaining,direction;
+        final boolean complete,burning;
+        FacilityState(String type,int owner,int level,int upgradeTo,int hp,int maxHp,
+                      int remaining,int direction,boolean complete,boolean burning){
+            this.type=type;this.owner=owner;this.level=level;this.upgradeTo=upgradeTo;
+            this.hp=hp;this.maxHp=maxHp;this.remaining=remaining;this.direction=direction;
+            this.complete=complete;this.burning=burning;
+        }
+        String status(){
+            return (level>0?" Lv"+level:"")+(upgradeTo>0?" → Lv"+upgradeTo:"")
+                +(!complete?(upgradeTo>0?" 升级中":" 建造中")+(remaining>0?"("+remaining+"旬)":""):"")
+                +(hp<maxHp?" 耐久"+hp+"/"+maxHp:"")+(burning?" 起火":"");
+        }
     }
     final Ground ground; final List<Item> items; final Hex selected; final Set<Hex> reachable,siege,coverage;
     MapSceneSnapshot(Ground ground,World w,Hex selected,int moving) {
         this.ground=ground;this.selected=selected;List<Item> list=new ArrayList<>();
         for(World.City c:w.cities)list.add(new Item("site:"+c.id,c.name,c.hex,c.kind==World.SiteKind.CITY?0:c.kind==World.SiteKind.PORT?1:2,FactionColors.color(w,c.owner)));
         for(World.Unit u:w.fieldUnits())list.add(new Item("unit:"+u.id,u.weapon.label,u.hex,3,FactionColors.color(w,u.owner)));
-        for(Domestic.Facility f:w.domestic.facilities)list.add(new Item("domestic:"+f.id,f.kind.label,f.hex,4,0xffad9b69));
-        for(War.Structure s:w.war.structures())list.add(new Item("structure:"+s.id,s.kind.label,s.hex,5,FactionColors.color(w,s.owner)));
+        for(Domestic.Facility f:w.domestic.facilities){
+            World.City home=w.city(f.cityId);int owner=home==null?-1:home.owner;
+            list.add(new Item("domestic:"+f.id,f.kind.label,f.hex,4,FactionColors.color(w,owner),
+                new FacilityState("domestic/"+f.kind.name(),owner,f.level,f.upgradeTo,f.hp,f.maxHp(),
+                    f.remaining,0,f.remaining==0,w.war.fireAt(f.hex)!=null)));
+        }
+        for(War.Structure s:w.war.structures())list.add(new Item("structure:"+s.id,s.kind.label,s.hex,5,FactionColors.color(w,s.owner),
+            new FacilityState("military/"+s.kind.name(),s.owner,0,0,s.hp,s.kind.hp,0,s.direction,
+                s.complete,w.war.fireAt(s.hex)!=null)));
         items=Collections.unmodifiableList(list);
         reachable=Collections.unmodifiableSet(new HashSet<>(w.orders.marchReachable(w.unit(moving)).keySet()));
         coverage=Collections.unmodifiableSet(new HashSet<>(w.fieldworks.coverage(w.war.at(selected))));
