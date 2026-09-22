@@ -12,21 +12,27 @@ public final class TurnJournal {
     }
     public static final class Event {
         public final Kind kind;
+        /** Stable identity and equipment captured before the action; presentation only. */
+        public final String sourceKey,sourceType;
         public final CriticalHit critical;
         public final int actorId,owner;
         public final Hex start,target;
         public final String label,message;
         public final List<Hex> path;
         public final List<Impact> impacts;
+        public final List<StateChange> states;
+        public final List<Strike> strikes;
         private final List<Node> changed;
         private final List<String> removed;
         private final World.Unit actor;
         Event(Kind kind,int id,int owner,Hex start,Hex target,String label,String message,List<Hex> path,
-              List<Impact> impacts,List<Node> changed,List<String> removed,World.Unit actor,CriticalHit critical){
+              List<Impact> impacts,List<Node> changed,List<String> removed,World.Unit actor,CriticalHit critical,String sourceKey,String sourceType,List<StateChange> states,List<Strike> strikes){
+            this.sourceKey=sourceKey;this.sourceType=sourceType;this.states=Collections.unmodifiableList(states);this.strikes=Collections.unmodifiableList(strikes);
             this.kind=kind;actorId=id;this.owner=owner;this.start=start;this.target=target;this.label=label;this.message=message;
             this.path=Collections.unmodifiableList(new ArrayList<>(path));this.impacts=Collections.unmodifiableList(impacts);
             this.changed=changed;this.removed=removed;this.actor=actor;this.critical=critical;
         }
+        public boolean removesUnit(int id){return removed.contains("u"+id);}
         public World.Unit actorCopy(){return actor==null?null:copyUnit(actor);}
         public boolean visibleAction(){return kind!=Kind.CHANGE||!impacts.isEmpty();}
         /** Apply to a dedicated render World ONLY. Never call command APIs, validate or save it. */
@@ -34,8 +40,39 @@ public final class TurnJournal {
             for(String key:removed)remove(visual,key);
             for(Node n:changed){remove(visual,n.key);n.add(visual);}
         }
-        public int durationMillis(){return kind==Kind.MOVE?Math.min(1300,Math.max(300,(path.size()-1)*145)):kind==Kind.PLOT?700:600;}
+        public int durationMillis(){return kind==Kind.MOVE?Math.min(1300,Math.max(300,(path.size()-1)*145)):kind==Kind.PLOT?700:600*Math.max(1,Math.min(3,strikes.size()));}
     }
+    /** Scalar before/after image, safe even after the authoritative entity has disappeared. */
+    public static final class State {
+        public final String key,type,status; public final Hex hex;
+        public final int owner,troops,hp,energy,remaining;
+        private State(Node n){
+            key=n.key;hex=n.hex;Object o=n.image;
+            World.Unit u=o instanceof World.Unit?(World.Unit)o:null;
+            World.City c=o instanceof World.City?(World.City)o:null;
+            War.Structure s=o instanceof War.Structure?(War.Structure)o:null;
+            War.Fire f=o instanceof War.Fire?(War.Fire)o:null;
+            Domestic.Facility d=o instanceof Domestic.Facility?(Domestic.Facility)o:null;
+            type=u!=null?u.weapon.name():c!=null?c.kind.name():s!=null?s.kind.name():d!=null?d.kind.name():"FIRE";
+            owner=u!=null?u.owner:c!=null?c.owner:s!=null?s.owner:f!=null?f.owner:-1;
+            troops=u!=null?u.troops:c!=null?c.troops:0;
+            hp=c!=null?c.defense:s!=null?s.hp:d!=null?d.hp:0;
+            energy=u==null?0:u.energy;status=u==null?"":u.status.name();
+            remaining=f!=null?f.remaining:u!=null?u.burning:d!=null?d.remaining:0;
+        }
+    }
+    public static final class StateChange {
+        public final State before,after;
+        private StateChange(Node before,Node after){this.before=before==null?null:new State(before);this.after=after==null?null:new State(after);}
+    }
+    /** Ordered applied physical hits, including actual counters/support, never inferred from HP. */
+    public static final class Strike {
+        public final int actorId,targetId,owner,beforeTroops,afterTroops;
+        public final Hex start,target;public final String type;
+        Strike(World.Unit a,World.Unit b,int before,int after){actorId=a.id;targetId=b.id;owner=a.owner;start=a.hex;target=b.hex;type=a.weapon.name();beforeTroops=before;afterTroops=after;}
+    }
+    private List<Strike> strikes=new ArrayList<>();
+    void strike(World.Unit a,World.Unit b,int before,int after){strikes.add(new Strike(a,b,before,after));}
     private final World w;
     private Map<String,Node> previous;
     private final List<Event> events=new ArrayList<>();
@@ -45,7 +82,7 @@ public final class TurnJournal {
     private int actorId=-1;
     private Hex target,sourceHex;
     private int sourceOwner=-1;
-    private String label="";
+    private String label="",sourceKey="",sourceType="";
     private List<Hex> path=Collections.emptyList();
     public TurnJournal(World world){w=world;previous=snapshot(world,Collections.emptyMap());world.turnJournal=this;}
     public List<Event> events(){return Collections.unmodifiableList(events);}
@@ -54,18 +91,20 @@ public final class TurnJournal {
     void facility(War.Structure source,Hex target,Kind kind,String label){
         checkpoint("阶段结算");this.kind=kind;this.actorId=-1;this.sourceHex=source.hex;
         this.sourceOwner=source.owner;this.target=target;this.label=label;
+        this.sourceKey="s"+source.id;this.sourceType=source.kind.name();
     }
     void site(World.City source,Hex target,Kind kind,String label){
         checkpoint("阶段结算");this.kind=kind;this.actorId=-1;this.sourceHex=source.hex;
         this.sourceOwner=source.owner;this.target=target;this.label=label;
+        this.sourceKey="c"+source.id;this.sourceType=source.kind.name();
     }
     public void close(){checkpoint("阶段结算");w.turnJournal=null;}
     void mark(Kind kind,int actor,Hex target,String label){
-        if(this.kind!=Kind.CHANGE&&this.actorId==actor&&Objects.equals(this.target,target))return;
+        if(this.kind==kind&&this.kind!=Kind.CHANGE&&this.actorId==actor&&Objects.equals(this.target,target))return;
         checkpoint("阶段结算");this.kind=kind;this.actorId=actor;this.target=target;this.label=label;
     }
     void movement(World.Unit u,List<Hex> route){mark(Kind.MOVE,u.id,route.get(route.size()-1),"行军");path=new ArrayList<>(route);}
-    void cancel(){critical=null;kind=Kind.CHANGE;actorId=-1;target=null;sourceHex=null;sourceOwner=-1;label="";path=Collections.emptyList();}
+    void cancel(){critical=null;kind=Kind.CHANGE;actorId=-1;target=null;sourceHex=null;sourceOwner=-1;label="";sourceKey="";sourceType="";strikes=new ArrayList<>();path=Collections.emptyList();}
     public void checkpoint(String message){
         Map<String,Node> next=snapshot(w,previous);List<Node> changed=new ArrayList<>();List<String> removed=new ArrayList<>();List<Impact> impacts=new ArrayList<>();
         for(Node n:next.values()){Node old=previous.get(n.key);if(old!=n){changed.add(n);impact(old,n,impacts);}}
@@ -84,7 +123,10 @@ public final class TurnJournal {
         if(!changed.isEmpty()||!removed.isEmpty()||eventKind!=Kind.CHANGE){
             int id=actor==null?actorId:actor.id,owner=actor==null?(sourceOwner>=0?sourceOwner:w.active):actor.owner;
             if(name.isEmpty())name=impacts.isEmpty()?"结算":impacts.get(0).text;
-            events.add(new Event(eventKind,id,owner,start,end,name,message,route,impacts,changed,removed,actor,critical));
+            List<StateChange> states=new ArrayList<>();
+            for(Node n:changed)states.add(new StateChange(previous.get(n.key),n));
+            for(String key:removed)states.add(new StateChange(previous.get(key),null));
+            events.add(new Event(eventKind,id,owner,start,end,name,message,route,impacts,changed,removed,actor,critical,actor==null?sourceKey:"u"+actor.id,actor==null?sourceType:actor.weapon.name(),states,new ArrayList<>(strikes)));
         }
         previous=next;cancel();
     }
@@ -139,7 +181,7 @@ public final class TurnJournal {
     private static boolean sameVisual(Object left,Object right){
         if(left.getClass()!=right.getClass())return false;
         if(left instanceof World.Unit){World.Unit a=(World.Unit)left,b=(World.Unit)right;
-            if(a.owner!=b.owner||a.officerId!=b.officerId||!a.hex.equals(b.hex)||a.troops!=b.troops||a.energy!=b.energy||a.food!=b.food||a.gold!=b.gold||a.status!=b.status||a.statusTurns!=b.statusTurns||a.acted!=b.acted||a.burning!=b.burning||a.ship!=b.ship||!Arrays.equals(a.deputies,b.deputies))return false;
+            if(a.owner!=b.owner||a.officerId!=b.officerId||!a.hex.equals(b.hex)||a.troops!=b.troops||a.wounded!=b.wounded||a.woundRemainder!=b.woundRemainder||a.energy!=b.energy||a.food!=b.food||a.gold!=b.gold||a.status!=b.status||a.statusTurns!=b.statusTurns||a.acted!=b.acted||a.burning!=b.burning||a.ship!=b.ship||!Arrays.equals(a.deputies,b.deputies))return false;
             if(a instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)a,n=(Domestic.Mission)b;return Objects.equals(m.waiting,n.waiting)&&m.stopped==n.stopped&&m.transport==n.transport&&m.targetCity==n.targetCity;}
             return true;
         }
@@ -163,7 +205,7 @@ public final class TurnJournal {
             v.sea=m.sea;v.returnOfficers=m.returnOfficers;v.returning=m.returning;v.stopped=m.stopped;v.legacyOverlap=m.legacyOverlap;v.waiting=m.waiting;
             v.cargoShips[0]=m.cargoShips[0];v.cargoShips[1]=m.cargoShips[1];v.escortId=m.escortId;n=v;
         }else n=new World.Unit(u.id,u.owner,u.officerId,u.weapon,u.hex,u.troops,u.food);
-        n.gold=u.gold;n.energy=u.energy;n.acted=u.acted;n.status=u.status;n.statusTurns=u.statusTurns;n.burning=u.burning;n.burningOwner=u.burningOwner;n.burningPower=u.burningPower;
+        n.wounded=u.wounded;n.woundRemainder=u.woundRemainder;n.gold=u.gold;n.energy=u.energy;n.acted=u.acted;n.status=u.status;n.statusTurns=u.statusTurns;n.burning=u.burning;n.burningOwner=u.burningOwner;n.burningPower=u.burningPower;
         n.deputies=u.deputies.clone();n.ship=u.ship;n.movementBudget=u.movementBudget;n.movementSpent=u.movementSpent;return n;
     }
     private static World.City copyCity(World.City c){World.City n=new World.City(c.id,c.name,c.hex,c.owner);n.gold=c.gold;n.food=c.food;n.troops=c.troops;n.order=c.order;n.morale=c.morale;n.defense=c.defense;n.kind=c.kind;n.baseDefense=c.baseDefense;n.recruitReserve=c.recruitReserve;n.governorId=c.governorId;System.arraycopy(c.equipment,0,n.equipment,0,c.equipment.length);System.arraycopy(c.ships,0,n.ships,0,c.ships.length);return n;}

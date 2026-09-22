@@ -1,0 +1,108 @@
+{
+  "stage": "S06 combat runtime implemented; native and physical-device acceptance tracked separately",
+  "filament": "1.56.0",
+  "matc": "1.56.0",
+  "backend": "OpenGL ES",
+  "assets": [
+    {
+      "path": "app/src/main/assets/3d/terrain.filamat",
+      "sha256": "ec5a3a545265a4a9caf6c6de0ef378e6e98aaf64bae96de1746035f4087714d7",
+      "bytes": 25512,
+      "source": "tools/3d/terrain.mat",
+      "license": "project source",
+      "textures": 0
+    },
+    {
+      "generator": "app/src/main/java/game/sanguo/mobile/SceneMesh.java + TerrainSurface.java",
+      "role": "terrain, faction flags and explicit missing-site fallback geometry",
+      "license": "original project geometry",
+      "uv": false,
+      "textures": 0,
+      "animation": "none",
+      "lod": "terrain: 24 near / 8 far triangles per valid cell",
+      "final_art": false
+    },
+    {
+      "path": "app/src/main/assets/3d/sites",
+      "generator": "tools/3d/build_sites.py",
+      "assetReport": "docs/3d/site-assets.json",
+      "idMapping": "docs/3d/site-mapping.tsv",
+      "license": "CC0-1.0 original geometry and atlas",
+      "runtime": "SiteGlb static subset; Filament 1.56.0 offline site.filamat; shared SRGB atlas; unlit with baked directional vertex shading",
+      "textureSha256": "5cbd94d992d58c7a5a9f305a17c6dcb789911b1547fb6223303d09c35e57dcd5",
+      "materialSha256": "930b35fea463e42ab67647a8c8e47ffacf15590ae63cb14a2ffacc41ca512eab",
+      "animations": false,
+      "compressionExtensions": false,
+      "finalArtAccepted": false
+    },
+    {
+      "path": "app/src/main/assets/3d/field",
+      "generator": "tools/3d/build_field_assets.py",
+      "assetReport": "docs/3d/field-assets.json",
+      "license": "CC0-1.0 original geometry, texture and clips",
+      "runtime": "SiteGlb static rest mesh + FieldAssets rigid-joint vertex posing; shared opaque atlas and precompiled site material",
+      "glbCount": 150,
+      "facilityTypeLevelCombinations": 40,
+      "facilityLods": 3,
+      "unitTypes": 13,
+      "unitMeshLods": 2,
+      "animationData": [
+        "rigs.json",
+        "clips.json"
+      ],
+      "clips": [
+        "idle",
+        "walk",
+        "turn",
+        "prepare",
+        "attack",
+        "hit",
+        "defeat",
+        "enter"
+      ],
+      "formationCounts": {
+        "infantry": [
+          8,
+          4,
+          1
+        ],
+        "cavalry": [
+          4,
+          2,
+          1
+        ],
+        "vehicles": [
+          1,
+          1,
+          1
+        ]
+      },
+      "batching": "one merged body mesh per formation; opaque trees merged in 8x8 chunks; not GPU skinning or GPU instancing",
+      "finalArtAccepted": false
+    },
+    {
+      "generator": "app/src/main/java/game/sanguo/mobile/CombatVisual.java#mesh",
+      "role": "six original opaque shared effect meshes: arrow, debris/stone, flame, slash, lightning, recovery",
+      "license": "CC0 original geometry",
+      "uv": false,
+      "textures": 0,
+      "materials": 1,
+      "pool_capacity": 48,
+      "persistent_fire_budget": 16,
+      "source_sha256": "7db12a28e836d79ce6decfd51bbf1bf37393c745b628aaee1d0bf0ec273f9ee0",
+      "animation": "deterministic event fraction; existing core fire duration",
+      "lod": "bounded/cull offscreen, no added texture LOD",
+      "final_art": false
+    }
+  ],
+  "unitCoverage": "docs/3d/acceptance/s05-status.md",
+  "performanceAssets": {
+    "stage": "S08 runtime; physical-device acceptance remains open",
+    "atlasReport": "docs/3d/texture-compression.json",
+    "generator": "tools/3d/compress_atlases.py",
+    "toolLock": "tools/3d/texture-requirements.txt",
+    "nativeUploadEvidence": "docs/3d/benchmarks/s08/native-checkpoint.json",
+    "format": "ETC2_SRGB8 complete mip chains; SRGB8_A8 fallback",
+    "license": "same original CC0 atlas sources"
+  }
+}

@@ -17,7 +17,10 @@ import game.sanguo.core.*;
 public final class MainActivity extends Activity {
     private World world;
     private boolean unreadableAutosave;
-    private MapView map;
+    private MapHost map;
+    private boolean nextScenario3D;
+    boolean current3D(){return map!=null&&map.is3D();}
+    void setNextScenario3D(boolean value){nextScenario3D=value;}
     private LinearLayout panel,root,commandDock,panelShell,primaryActions;
     private FrameLayout body;
     private World navigatorWorld;
@@ -122,7 +125,7 @@ public final class MainActivity extends Activity {
         header.addView(tools,new LinearLayout.LayoutParams(dp(44),dp(52)));header.setBackground(UiTheme.surface(this,0xff1b2b33,0xff101b24,0));root.addView(header,new LinearLayout.LayoutParams(-1,dp(56)));
         mapRevisionNotice=text("",11,gold);mapRevisionNotice.setTag("map.revision.notice");mapRevisionNotice.setPadding(dp(12),dp(3),dp(12),dp(3));
         mapRevisionNotice.setOnClickListener(v->message("地图存档版本",NationalMap.compatibilityNotice(world)));root.addView(mapRevisionNotice);
-        body=new FrameLayout(this);map=new MapView(this,this::onTile);body.addView(map,new FrameLayout.LayoutParams(-1,-1));map.setUnitDrop(this::dropUnit);map.setTerritoryMode(getPreferences(MODE_PRIVATE).getInt("territoryMode",0));refreshTerritoryToggle();
+        body=new FrameLayout(this);if(map!=null)map.release();map=new MapHost(this,this::onTile);body.addView(map,new FrameLayout.LayoutParams(-1,-1));map.setUnitDrop(this::dropUnit);map.setTerritoryMode(getPreferences(MODE_PRIVATE).getInt("territoryMode",0));refreshTerritoryToggle();
         panelShell=new LinearLayout(this);panelShell.setOrientation(LinearLayout.VERTICAL);UiTheme.panel(panelShell);
         panelShell.setVisibility(View.GONE);body.addView(panelShell);
         LinearLayout panelHeader=new LinearLayout(this);panelHeader.setPadding(dp(12),0,dp(4),0);panelHeader.setGravity(Gravity.CENTER_VERTICAL);
@@ -239,13 +242,18 @@ public final class MainActivity extends Activity {
     }
     private void showMapTools(){
         if(mapPick!=null)cancelMapPick();
-        String[] labels={"全图","定位","导航图","屏幕方向","战报","操作说明","战斗震动","兵种与建筑图例","领地着色 / 前线","势力领地图例","军团托管","全国城池总览","部队标注 / 双条"};
+        String[] labels={"全图","定位","导航图","屏幕方向","战报","操作说明","战斗震动","兵种与建筑图例","领地着色 / 前线","势力领地图例","军团托管","全国城池总览","部队标注 / 双条","2D / 3D 试验模式","渲染诊断","3D 镜头回正","3D 反向查看","3D 画质"};
         new AlertDialog.Builder(this).setTitle("地图视图").setItems(labels,(d,index)->{
-            if(aiRunning&&index!=0&&index!=1&&index!=2&&index!=3&&index!=12)return;
+            if(aiRunning&&index!=0&&index!=1&&index!=2&&index!=3&&index!=12){if(index==13)message("渲染模式","请等待本旬演示结束后切换，避免中断当前事件游标。");return;}
             if(index==0){closePanel();map.post(map::fit);}
             else if(index==1){closePanel();if(selected!=null)map.post(()->map.focus(selected));}
             else if(index==2){closePanel();map.toggleNavigator();}
             else if(index==3)showOrientationPicker();
+            else if(index==13){new AlertDialog.Builder(this).setTitle("地图渲染模式").setSingleChoiceItems(new String[]{"2D · 兼容模式","3D · 战略地图（试验）"},map.is3D()?1:0,(dialog,which)->{map.switchMode(which==1);dialog.dismiss();}).setNegativeButton("返回",null).show();}
+            else if(index==17){new AlertDialog.Builder(this).setTitle("3D 画质（切换时重载场景）").setSingleChoiceItems(new String[]{SceneQuality.LOW.label,SceneQuality.MEDIUM.label,SceneQuality.HIGH.label},map.quality().ordinal(),(dialog,which)->{map.quality(SceneQuality.values()[which]);dialog.dismiss();}).setNegativeButton("返回",null).show();}
+            else if(index==15){map.resetOrientation();}
+            else if(index==16){map.reverseOrientation();}
+            else if(index==14){map.toggleDiagnostics();message("渲染诊断",map.report());}
             else if(index==4)showTurnReport();
             else if(index==6){boolean enabled=getPreferences(MODE_PRIVATE).getBoolean("battleHaptics",true);
                 new AlertDialog.Builder(this).setTitle("战斗震动").setSingleChoiceItems(new String[]{"开启（遵循系统触感设置）","关闭"},enabled?0:1,(dialog,which)->{getPreferences(MODE_PRIVATE).edit().putBoolean("battleHaptics",which==0).apply();dialog.dismiss();}).setNegativeButton("返回",null).show();}
@@ -930,7 +938,7 @@ public final class MainActivity extends Activity {
         java.util.concurrent.atomic.AtomicBoolean canceled=new java.util.concurrent.atomic.AtomicBoolean();
         AlertDialog loading=new AlertDialog.Builder(this).setMessage("正在建立新局…").setNegativeButton("取消",(d,n)->canceled.set(true)).create();loading.setOnCancelListener(d->canceled.set(true));loading.show();
         new Thread(()->{try{World resolved=pinned==null?ScenarioCatalog.load(id,player,System.nanoTime()):CustomMaps.load(pinned,id,player,System.nanoTime());World next=CustomOfficerSetup.apply(this,resolved);runOnUiThread(()->{
-            if(isFinishing()||isDestroyed()||canceled.get())return;loading.dismiss();if(!activateWorld(next))return;selectAndFocus(world.home().hex);closePanel();save("auto",false);
+            if(isFinishing()||isDestroyed()||canceled.get())return;loading.dismiss();if(!activateWorld(next))return;selectAndFocus(world.home().hex);map.switchMode(nextScenario3D);closePanel();save("auto",false);
         });}catch(IOException e){runOnUiThread(()->{if(!isFinishing()&&!isDestroyed()&&!canceled.get()){loading.dismiss();showError("无法开始剧本："+e.getMessage());}});}},"scenario-start").start();
     }
     private String slotName(int index){return index==0?"manual":"manual"+(index+1);}
@@ -1008,7 +1016,7 @@ public final class MainActivity extends Activity {
     }
     private World authoritativeSaveWorld(){return turnWork!=null&&turnWork.done&&turnWork.error==null?turnWork.after:world;}
     @Override public Object onRetainNonConfigurationInstance(){if(playback!=null)playback.detach();if(turnWork!=null)turnWork.observe(null);return turnWork;}
-    @Override protected void onDestroy(){if(playback!=null)playback.detach();if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null){turnWork.observe(null);if(!isChangingConfigurations())turnWork.cancel();}if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
+    @Override protected void onDestroy(){if(map!=null)map.release();if(playback!=null)playback.detach();if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null){turnWork.observe(null);if(!isChangingConfigurations())turnWork.cancel();}if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
     private void writeClientState(Bundle state){
         if(world==null||map==null)return;
         ui.write(state);state.putInt("selectedQ",selected==null?-1:selected.q);state.putInt("selectedR",selected==null?-1:selected.r);state.putInt("moving",moving);state.putString("unitCommand",unitCommand);
@@ -1029,7 +1037,7 @@ public final class MainActivity extends Activity {
     private AtomicFile file(String slot){return new AtomicFile(new File(getFilesDir(),slot+".sg11"));}
     private boolean save(String slot,boolean announce){
         if(world==null||unreadableAutosave)return false;
-        AtomicFile f=file(slot);FileOutputStream out=null;try{byte[] bytes=SaveCodec.encode(authoritativeSaveWorld());out=f.startWrite();out.write(bytes);f.finishWrite(out);if(announce)Toast.makeText(this,"局面已保存",Toast.LENGTH_SHORT).show();return true;}
+        AtomicFile f=file(slot);FileOutputStream out=null;try{byte[] bytes=SaveCodec.encode(authoritativeSaveWorld());new MapLibrary(this).rememberVisual(authoritativeSaveWorld());out=f.startWrite();out.write(bytes);f.finishWrite(out);if(announce)Toast.makeText(this,"局面已保存",Toast.LENGTH_SHORT).show();return true;}
         catch(IOException e){if(out!=null)f.failWrite(out);Toast.makeText(this,"保存失败，请检查设备存储空间后重试",Toast.LENGTH_LONG).show();return false;}
     }
     private World readSave(AtomicFile f)throws IOException {try(FileInputStream in=f.openRead()){return SaveCodec.read(in);}}
@@ -1071,7 +1079,7 @@ public final class MainActivity extends Activity {
                 try(OutputStream out=getContentResolver().openOutputStream(data.getData(),"wt")){if(out==null)throw new IOException("无法写入模板");out.write(OfficerTemplateCodec.encode(template));}
                 pending.delete();message("模板已导出",template.name+"可导入其他安装包或存留备用");
             }else if(request==EXPORT_SAVE){
-                byte[] bytes=SaveCodec.encode(world);
+                byte[] bytes=SaveCodec.encode(world);if(world.visualMap!=null&&(!world.visualMap.heights.isEmpty()||!world.visualMap.appearances.isEmpty()))Toast.makeText(this,"旧格式战局不包含3D视觉属性；请同时从地图编辑器导出地图JSON",Toast.LENGTH_LONG).show();
                 try(OutputStream out=getContentResolver().openOutputStream(data.getData(),"wt")){
                     if(out==null)throw new IOException("无法写入文件");out.write(bytes);
                 }
@@ -1089,7 +1097,8 @@ public final class MainActivity extends Activity {
         }catch(IOException|SecurityException e){showError(request==EXPORT_SAVE?"导出失败":"导入失败");}
     }
     private void loadSlot(String slot){try{World restored=readSave(file(slot));if(!activateWorld(restored))return;selectAndFocus(world.home().hex);save("auto",false);Toast.makeText(this,"已读取存档 · "+world.date(),Toast.LENGTH_SHORT).show();}catch(IOException e){showError("读取失败");}}
-    @Override protected void onPause(){super.onPause();if(world!=null){save("auto",false);persistClientState();}}
+    @Override protected void onResume(){super.onResume();if(map!=null)map.resume(true);}
+    @Override protected void onPause(){if(map!=null)map.resume(false);super.onPause();if(world!=null){save("auto",false);persistClientState();}}
     @Override public void onBackPressed(){
         if(criticalFlash!=null){criticalFlash.dismiss();return;}
         if(world==null){finish();return;}

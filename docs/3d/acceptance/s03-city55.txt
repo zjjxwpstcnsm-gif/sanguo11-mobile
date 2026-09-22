@@ -1,0 +1,18 @@
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+GUANLUO55 PASS: connected regional roads, single-tile gate seals, Mengjin bank and all 591 plots built
+MAP55 huangjin-184 sites=87 cities=42 load+save_ms=275
+MAP55 coalition-190 sites=87 cities=42 load+save_ms=448
+MAP55 warlords-194 sites=87 cities=42 load+save_ms=177
+MAP55 guandu-200 sites=87 cities=42 load+save_ms=88
+MAP55 chibi-207 sites=87 cities=42 load+save_ms=61
+MAP55 heroes-250 sites=87 cities=42 load+save_ms=124
+MAP55 heroes-mobile-sandbox sites=87 cities=42 load+save_ms=141
+MAP55 central-mobile-sandbox sites=42 cities=18 load+save_ms=60
+MAP55 jingxiang-mobile-sandbox sites=28 cities=12 load+save_ms=42
+TURN55 heroes-250 turn=1 ms=5262
+TURN55 heroes-250 turn=2 ms=5135
+TURN55 heroes-250 turn=3 ms=4739
+CITY55 PASS: 11070 checks (formal movement, garrison, combat, AI, maps, turns and saves)

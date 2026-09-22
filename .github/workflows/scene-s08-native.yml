@@ -1,0 +1,76 @@
+name: S08 targeted native lifecycle
+on:
+  push:
+    branches: [agent/3d-s01-renderer-foundation]
+    paths:
+      - 'app/src/main/java/game/sanguo/mobile/FilamentMapView.java'
+      - 'app/src/main/java/game/sanguo/mobile/SceneQuality.java'
+      - 'app/src/androidTest/java/game/sanguo/mobile/PerformanceSceneInstrumentation.java'
+      - 'app/proguard-rules.pro'
+      - '.github/workflows/scene-s08-native.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: s08-native-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - run: |
+          mkdir -p evidence
+          git rev-parse HEAD > evidence/BUILD_COMMIT
+          ./gradlew --no-daemon -PtargetAbi=x86_64 :app:assembleDebug :app:assembleDebugAndroidTest
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: |
+            for attempt in 1 2 3; do adb root || true; adb wait-for-device; adb shell id | grep -q uid=0 && break; done
+            adb shell id | grep -q uid=0
+            adb shell setprop dalvik.vm.heapgrowthlimit 256m
+            adb shell setprop dalvik.vm.heapsize 512m
+            adb shell setprop sys.boot_completed 0
+            adb shell stop
+            adb shell start
+            adb shell 'for i in $(seq 1 60); do [ "$(getprop sys.boot_completed)" = "1" ] && exit 0; sleep 1; done; exit 1'
+            adb shell getprop dalvik.vm.heapgrowthlimit > evidence/java-heap-growth-limit.txt
+            adb shell getprop dalvik.vm.heapsize > evidence/java-heap-max.txt
+            adb shell input keyevent 82
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb logcat -G 16M
+            adb shell settings put global animator_duration_scale 1
+            timeout 900 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.PerformanceSceneInstrumentation | tee evidence/performance-installed.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/performance-images
+            adb logcat -d > evidence/performance-logcat.txt
+            adb shell dumpsys meminfo game.sanguo.mobile.dev > evidence/performance-meminfo.txt
+            grep -q 'PASS S08' evidence/performance-installed.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: s08-native-${{ github.sha }}
+          path: evidence
+          if-no-files-found: error

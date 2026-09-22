@@ -10,7 +10,10 @@ public final class CombatEffects {
     int physical(World.Unit a,World.Unit b,double scale,boolean tactic){
         int amount=w.combat.physicalDamage(a,b,scale,tactic,new Random(w.strategy.nextInt(Integer.MAX_VALUE)));
         if(tactic&&amount>0&&b.troops>0&&w.combat.critical(a,b,true))w.tacticCritical(a);
-        return hit(a,b,amount,tactic,true);
+        int before=b.troops;
+        int actual=hit(a,b,amount,tactic,true);
+        if(w.turnJournal!=null)w.turnJournal.strike(a,b,before,b.troops);
+        return actual;
     }
     int hit(World.Unit source,World.Unit target,int amount,boolean tactic,boolean triggerOnHit){
         if(w.unit(target.id)!=target)return 0;

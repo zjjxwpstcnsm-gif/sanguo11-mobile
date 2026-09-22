@@ -1,0 +1,3037 @@
+{
+  "license": "CC0-1.0 original geometry, texture and animation keyframes",
+  "generator": "tools/3d/build_field_assets.py",
+  "axes": "+Y up, +Z forward; one tile = 1 world span",
+  "material": "shared opaque atlas, precompiled S03 material",
+  "rig": "rigid-jointed modules, GLB rest geometry + rigs.json pivot/ranges + clips.json keyframes; no skinning or root motion",
+  "version": 1,
+  "auxiliary": [
+    {
+      "file": "atlas.png",
+      "bytes": 7993,
+      "sha256": "4e779ada834d32000cd805f199f8c33183b30deeeeb05af4dce156f3fc83eaf2"
+    },
+    {
+      "file": "rigs.json",
+      "bytes": 14780,
+      "sha256": "3801107a983b38330e097b1960bd450edeed7b97b6d7fc442455546038f34fdb"
+    },
+    {
+      "file": "clips.json",
+      "bytes": 19561,
+      "sha256": "ceaa60f89fc9b78355f58bafae954983d35997b805f3a75a738ea12f8c5070a9"
+    }
+  ],
+  "clips": [
+    "idle",
+    "walk",
+    "turn",
+    "prepare",
+    "attack",
+    "hit",
+    "defeat",
+    "enter"
+  ],
+  "assets": [
+    {
+      "file": "domestic-MARKET-1-lod0.glb",
+      "sha256": "f042082580a28195e9eebd26af5622e3716c1f0a90438081c077db36d7d1d8d6",
+      "bytes": 26592,
+      "triangles": 208,
+      "vertices": 416,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43000000000000005,
+        0,
+        -0.37,
+        0.37,
+        0.28,
+        -0.09
+      ]
+    },
+    {
+      "file": "domestic-MARKET-1-lod1.glb",
+      "sha256": "cd86b7ff2570894302536f57cf3d093f9dafc1d8831f9b9012a87884866524f1",
+      "bytes": 14492,
+      "triangles": 64,
+      "vertices": 128,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43000000000000005,
+        0,
+        -0.37,
+        0.37,
+        0.28,
+        -0.09
+      ]
+    },
+    {
+      "file": "domestic-MARKET-1-lod2.glb",
+      "sha256": "cd86b7ff2570894302536f57cf3d093f9dafc1d8831f9b9012a87884866524f1",
+      "bytes": 14492,
+      "triangles": 64,
+      "vertices": 128,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43000000000000005,
+        0,
+        -0.37,
+        0.37,
+        0.28,
+        -0.09
+      ]
+    },
+    {
+      "file": "domestic-MARKET-2-lod0.glb",
+      "sha256": "b32bb76cccfcd2994dbbbe35708acc31b22524d978a79b57e18446b6a8d5a087",
+      "bytes": 35324,
+      "triangles": 312,
+      "vertices": 624,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43000000000000005,
+        0,
+        -0.37,
+        0.37,
+        0.28,
+        0.35
+      ]
+    },
+    {
+      "file": "domestic-MARKET-2-lod1.glb",
+      "sha256": "0fb0ea028150105e53b23bb59f4d6cca9aec7924645a9200fa170a944e62b47f",
+      "bytes": 17180,
+      "triangles": 96,
+      "vertices": 192,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43000000000000005,
+        0,
+        -0.37,
+        0.37,
+        0.28,
+        0.35
+      ]
+    },
+    {
+      "file": "domestic-MARKET-2-lod2.glb",
+      "sha256": "0fb0ea028150105e53b23bb59f4d6cca9aec7924645a9200fa170a944e62b47f",
+      "bytes": 17180,
+      "triangles": 96,
+      "vertices": 192,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43000000000000005,
+        0,
+        -0.37,
+        0.37,
+        0.28,
+        0.35
+      ]
+    },
+    {
+      "file": "domestic-MARKET-3-lod0.glb",
+      "sha256": "3da113662a2a22cb9786d24899d9f89e2cef318cbe8228c9a844f619a5b9bf1e",
+      "bytes": 44064,
+      "triangles": 416,
+      "vertices": 832,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43000000000000005,
+        0,
+        -0.37,
+        0.37,
+        0.28,
+        0.35
+      ]
+    },
+    {
+      "file": "domestic-MARKET-3-lod1.glb",
+      "sha256": "d531356eea9d80db43f722aa43a95213f2e0e1f088d65e2bdee0836d86bd773e",
+      "bytes": 19868,
+      "triangles": 128,
+      "vertices": 256,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43000000000000005,
+        0,
+        -0.37,
+        0.37,
+        0.28,
+        0.35
+      ]
+    },
+    {
+      "file": "domestic-MARKET-3-lod2.glb",
+      "sha256": "d531356eea9d80db43f722aa43a95213f2e0e1f088d65e2bdee0836d86bd773e",
+      "bytes": 19868,
+      "triangles": 128,
+      "vertices": 256,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43000000000000005,
+        0,
+        -0.37,
+        0.37,
+        0.28,
+        0.35
+      ]
+    },
+    {
+      "file": "domestic-FARM-1-lod0.glb",
+      "sha256": "cf261b37b4c7e3768e65ab0d30ba7d3a68e3e1e6bacd45e3d8f5ce519de5a817",
+      "bytes": 39980,
+      "triangles": 346,
+      "vertices": 742,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.43,
+        0.29600000000000004,
+        0.4
+      ]
+    },
+    {
+      "file": "domestic-FARM-1-lod1.glb",
+      "sha256": "ffa11757603ad62e60175f772250c83b1ce5e55359c5482c21943280df475ec7",
+      "bytes": 22796,
+      "triangles": 162,
+      "vertices": 326,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.43,
+        0.29600000000000004,
+        0.4
+      ]
+    },
+    {
+      "file": "domestic-FARM-1-lod2.glb",
+      "sha256": "2e12b7333a410c854062fdd2409dc5827fb464f543d08f3ae89091664477d2f3",
+      "bytes": 16576,
+      "triangles": 88,
+      "vertices": 178,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.43,
+        0.29600000000000004,
+        0.4
+      ]
+    },
+    {
+      "file": "domestic-FARM-2-lod0.glb",
+      "sha256": "67ac0323597331e50686279ca0c36fa166cc240dc1db841cb54308ee3ebeb3bd",
+      "bytes": 44280,
+      "triangles": 392,
+      "vertices": 846,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.43,
+        0.29600000000000004,
+        0.4
+      ]
+    },
+    {
+      "file": "domestic-FARM-2-lod1.glb",
+      "sha256": "a60dbdf061327fce2d93b12c4932fe5e7c8a794fec257d3405de069472e3b307",
+      "bytes": 23636,
+      "triangles": 172,
+      "vertices": 346,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.43,
+        0.29600000000000004,
+        0.4
+      ]
+    },
+    {
+      "file": "domestic-FARM-2-lod2.glb",
+      "sha256": "da3db7efa901393b74543955b05ae792a9bbe6807d77938977efafd414791bb2",
+      "bytes": 17416,
+      "triangles": 98,
+      "vertices": 198,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.43,
+        0.29600000000000004,
+        0.4
+      ]
+    },
+    {
+      "file": "domestic-FARM-3-lod0.glb",
+      "sha256": "29c06b4d797134f98de04339786a62a2ac7022d8531eef421db14205349562fc",
+      "bytes": 48576,
+      "triangles": 438,
+      "vertices": 950,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.43,
+        0.29600000000000004,
+        0.4
+      ]
+    },
+    {
+      "file": "domestic-FARM-3-lod1.glb",
+      "sha256": "3fcf6508574d42b33159fc1defd14ebdc47647011d4afbb8be99a1d77a37cd1b",
+      "bytes": 24476,
+      "triangles": 182,
+      "vertices": 366,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.43,
+        0.29600000000000004,
+        0.4
+      ]
+    },
+    {
+      "file": "domestic-FARM-3-lod2.glb",
+      "sha256": "52c24e7a849629fec61b1fe7179d913e923bd75a05cfb6ca6f2f4b7395f095e5",
+      "bytes": 18256,
+      "triangles": 108,
+      "vertices": 218,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.43,
+        0.29600000000000004,
+        0.4
+      ]
+    },
+    {
+      "file": "domestic-BARRACKS-1-lod0.glb",
+      "sha256": "bc45fd30a10573d34073384c1019c41857870b9ff91aea80475a3e67c1fe7e9d",
+      "bytes": 22536,
+      "triangles": 158,
+      "vertices": 320,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0,
+        -0.327,
+        0.355,
+        0.5130000000000001,
+        0.32
+      ]
+    },
+    {
+      "file": "domestic-BARRACKS-1-lod1.glb",
+      "sha256": "bd2d70e7a64e3e736136867ae49c684ea645f2e647c21163c875c4e9d4cc96c5",
+      "bytes": 19176,
+      "triangles": 118,
+      "vertices": 240,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0,
+        -0.327,
+        0.355,
+        0.5130000000000001,
+        0.32
+      ]
+    },
+    {
+      "file": "domestic-BARRACKS-1-lod2.glb",
+      "sha256": "f2244137c55024d8a1a20824a8fba27f706ddbd1b73f4d912133e73869c33900",
+      "bytes": 12952,
+      "triangles": 44,
+      "vertices": 92,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0,
+        -0.327,
+        0.355,
+        0.5130000000000001,
+        0.32
+      ]
+    },
+    {
+      "file": "domestic-BARRACKS-2-lod0.glb",
+      "sha256": "48049dff27771a191f81794af6251d5f796534f68090f7b2f38778b786301dd7",
+      "bytes": 35396,
+      "triangles": 310,
+      "vertices": 626,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0,
+        -0.327,
+        0.39375000000000004,
+        0.604,
+        0.43499999999999994
+      ]
+    },
+    {
+      "file": "domestic-BARRACKS-2-lod1.glb",
+      "sha256": "b74d9e79ccc998800bec9f8ffc56975a3e99f6bd36cf3f5f75acdebf96f94dd3",
+      "bytes": 28660,
+      "triangles": 230,
+      "vertices": 466,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0,
+        -0.327,
+        0.39375000000000004,
+        0.604,
+        0.3825
+      ]
+    },
+    {
+      "file": "domestic-BARRACKS-2-lod2.glb",
+      "sha256": "74514cb4d5d2cc3a53a0a79299068f48c6a03fca7e3f507e30fa269f7f03c600",
+      "bytes": 16224,
+      "triangles": 82,
+      "vertices": 170,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0,
+        -0.327,
+        0.39375000000000004,
+        0.604,
+        0.3825
+      ]
+    },
+    {
+      "file": "domestic-BARRACKS-3-lod0.glb",
+      "sha256": "210ccfa08e2832b746fc8f33257b2ea4470a8abafe27c0ffe3bc9d02d18fd562",
+      "bytes": 41268,
+      "triangles": 380,
+      "vertices": 766,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.42,
+        0.6950000000000001,
+        0.43499999999999994
+      ]
+    },
+    {
+      "file": "domestic-BARRACKS-3-lod1.glb",
+      "sha256": "e93966f8d35988307c887035e42ac408a0789c0079c3ce25320dc975b8c859e3",
+      "bytes": 29492,
+      "triangles": 240,
+      "vertices": 486,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.42,
+        0.6950000000000001,
+        0.3825
+      ]
+    },
+    {
+      "file": "domestic-BARRACKS-3-lod2.glb",
+      "sha256": "5a00a5dee44bb2845ba2d7c3724533158d30bd1f38ab368efefe2764792d2281",
+      "bytes": 17060,
+      "triangles": 92,
+      "vertices": 190,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.42,
+        0.6950000000000001,
+        0.3825
+      ]
+    },
+    {
+      "file": "domestic-SMITH-1-lod0.glb",
+      "sha256": "151341947a68d3a9b571d83de1bc50b293caf7a30765e0fb25b18d39e969c22e",
+      "bytes": 27396,
+      "triangles": 210,
+      "vertices": 438,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0,
+        -0.327,
+        0.345,
+        0.53,
+        0.35
+      ]
+    },
+    {
+      "file": "domestic-SMITH-1-lod1.glb",
+      "sha256": "e34e35d1e032951a550b22e52164820f80444868093da2a99ecd45236938af4d",
+      "bytes": 24036,
+      "triangles": 170,
+      "vertices": 358,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0,
+        -0.327,
+        0.345,
+        0.53,
+        0.35
+      ]
+    },
+    {
+      "file": "domestic-SMITH-1-lod2.glb",
+      "sha256": "83a31798a52043b0fe3e2841d99a330a2187648b0afc0bede54f8db79aabf240",
+      "bytes": 17816,
+      "triangles": 96,
+      "vertices": 210,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0,
+        -0.327,
+        0.345,
+        0.53,
+        0.35
+      ]
+    },
+    {
+      "file": "domestic-SMITH-2-lod0.glb",
+      "sha256": "023a47866a15a5d13d13dd4c3a2df7bc7385aaccfc5ff8447a6a077223b90379",
+      "bytes": 40268,
+      "triangles": 362,
+      "vertices": 744,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0,
+        -0.327,
+        0.39375000000000004,
+        0.604,
+        0.43499999999999994
+      ]
+    },
+    {
+      "file": "domestic-SMITH-2-lod1.glb",
+      "sha256": "31e52b44ec409afea27d848b38af90955b538b5a111fd0990ead6bc21f9e7698",
+      "bytes": 33532,
+      "triangles": 282,
+      "vertices": 584,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0,
+        -0.327,
+        0.39375000000000004,
+        0.604,
+        0.3825
+      ]
+    },
+    {
+      "file": "domestic-SMITH-2-lod2.glb",
+      "sha256": "7e98e3939673c6e7fc5e2e4221af099812b79a613af256be9177541117f70da3",
+      "bytes": 21100,
+      "triangles": 134,
+      "vertices": 288,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0,
+        -0.327,
+        0.39375000000000004,
+        0.604,
+        0.3825
+      ]
+    },
+    {
+      "file": "domestic-SMITH-3-lod0.glb",
+      "sha256": "84f31b9c55066b8550c892fb552c0d6eaa53520045d23a4ae597c24d9d053ec9",
+      "bytes": 46144,
+      "triangles": 432,
+      "vertices": 884,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.42,
+        0.6950000000000001,
+        0.43499999999999994
+      ]
+    },
+    {
+      "file": "domestic-SMITH-3-lod1.glb",
+      "sha256": "8efa438d64d793f26525adb82407041f4747ff8f60233f39c7c117b6e50194ef",
+      "bytes": 34364,
+      "triangles": 292,
+      "vertices": 604,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.42,
+        0.6950000000000001,
+        0.3825
+      ]
+    },
+    {
+      "file": "domestic-SMITH-3-lod2.glb",
+      "sha256": "e98656879d66aa6c5bf51a22f62dbe5012c48cf06298f933ca2501a76e7d0021",
+      "bytes": 21932,
+      "triangles": 144,
+      "vertices": 308,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.42,
+        0.6950000000000001,
+        0.3825
+      ]
+    },
+    {
+      "file": "domestic-MINT-1-lod0.glb",
+      "sha256": "a4fe100f0473927d84f25223f1ddb853da369aa7774872ae1bcb26ebf47640cf",
+      "bytes": 26600,
+      "triangles": 200,
+      "vertices": 418,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0.01,
+        -0.327,
+        0.20124999999999998,
+        0.5130000000000001,
+        0.32999999999999996
+      ]
+    },
+    {
+      "file": "domestic-MINT-1-lod1.glb",
+      "sha256": "1a3702e4805655358862ecad0473da5645859e170782a5b97310895407199f27",
+      "bytes": 23240,
+      "triangles": 160,
+      "vertices": 338,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0.01,
+        -0.327,
+        0.20124999999999998,
+        0.5130000000000001,
+        0.32999999999999996
+      ]
+    },
+    {
+      "file": "domestic-MINT-1-lod2.glb",
+      "sha256": "07de65dfa987b1109d1f8591cf9ae33cd947f57daf7f8f060b807ecacfc301cc",
+      "bytes": 17024,
+      "triangles": 86,
+      "vertices": 190,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0.01,
+        -0.327,
+        0.20124999999999998,
+        0.5130000000000001,
+        0.32999999999999996
+      ]
+    },
+    {
+      "file": "domestic-GRANARY-1-lod0.glb",
+      "sha256": "7df18cdd41311a07c91662f384733895787a1f936e6414d8134dddce5c43e5b5",
+      "bytes": 16572,
+      "triangles": 80,
+      "vertices": 180,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.42000000000000004,
+        0.04,
+        -0.23,
+        0.42000000000000004,
+        0.56,
+        0.23
+      ]
+    },
+    {
+      "file": "domestic-GRANARY-1-lod1.glb",
+      "sha256": "7df18cdd41311a07c91662f384733895787a1f936e6414d8134dddce5c43e5b5",
+      "bytes": 16572,
+      "triangles": 80,
+      "vertices": 180,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.42000000000000004,
+        0.04,
+        -0.23,
+        0.42000000000000004,
+        0.56,
+        0.23
+      ]
+    },
+    {
+      "file": "domestic-GRANARY-1-lod2.glb",
+      "sha256": "7df18cdd41311a07c91662f384733895787a1f936e6414d8134dddce5c43e5b5",
+      "bytes": 16572,
+      "triangles": 80,
+      "vertices": 180,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.42000000000000004,
+        0.04,
+        -0.23,
+        0.42000000000000004,
+        0.56,
+        0.23
+      ]
+    },
+    {
+      "file": "domestic-STABLE-1-lod0.glb",
+      "sha256": "45977351870e9c22e415b94adedaccc7c083db9736b9d11412f19a66abe5e532",
+      "bytes": 28364,
+      "triangles": 228,
+      "vertices": 458,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0.01,
+        -0.327,
+        0.28,
+        0.5130000000000001,
+        0.29750000000000004
+      ]
+    },
+    {
+      "file": "domestic-STABLE-1-lod1.glb",
+      "sha256": "34ea48d1e7489fa7d39636e616e8d18168e7360c6de6f5f33105f1bacfbb119d",
+      "bytes": 25004,
+      "triangles": 188,
+      "vertices": 378,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0.01,
+        -0.327,
+        0.28,
+        0.5130000000000001,
+        0.29750000000000004
+      ]
+    },
+    {
+      "file": "domestic-STABLE-1-lod2.glb",
+      "sha256": "00b9333e8e653fd92bf7cdb960bfe1c8a18a01ac2ff5c475cb05dbce4ddfad3f",
+      "bytes": 18784,
+      "triangles": 114,
+      "vertices": 230,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0.01,
+        -0.327,
+        0.28,
+        0.5130000000000001,
+        0.29750000000000004
+      ]
+    },
+    {
+      "file": "domestic-STABLE-2-lod0.glb",
+      "sha256": "2f02f116ed448cab7520611de735aa92e8e6f89ac137b6ade5ca919d555eb2d6",
+      "bytes": 41208,
+      "triangles": 380,
+      "vertices": 764,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0.01,
+        -0.327,
+        0.39375000000000004,
+        0.604,
+        0.43499999999999994
+      ]
+    },
+    {
+      "file": "domestic-STABLE-2-lod1.glb",
+      "sha256": "0e380f8e47f702d3d9c8317ef3d75ee50a40e69ae543515c51444f386ea5153a",
+      "bytes": 34472,
+      "triangles": 300,
+      "vertices": 604,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0.01,
+        -0.327,
+        0.39375000000000004,
+        0.604,
+        0.3825
+      ]
+    },
+    {
+      "file": "domestic-STABLE-2-lod2.glb",
+      "sha256": "2aa9bb34bcbc1a0ff6161157d147979b00039c1971a556c4d5e34dc6b740d398",
+      "bytes": 22040,
+      "triangles": 152,
+      "vertices": 308,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0.01,
+        -0.327,
+        0.39375000000000004,
+        0.604,
+        0.3825
+      ]
+    },
+    {
+      "file": "domestic-STABLE-3-lod0.glb",
+      "sha256": "63d7d6a3d1d7ebbab7f3679ef8eeffb1a00e3e527ca190a52dd9e1bc273deb64",
+      "bytes": 47080,
+      "triangles": 450,
+      "vertices": 904,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.42,
+        0.6950000000000001,
+        0.43499999999999994
+      ]
+    },
+    {
+      "file": "domestic-STABLE-3-lod1.glb",
+      "sha256": "336f4c170f4aa6c843fb08ebb9f8b17dbc6142cf155eab01923026ab0a2a8e4f",
+      "bytes": 35300,
+      "triangles": 310,
+      "vertices": 624,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.42,
+        0.6950000000000001,
+        0.3825
+      ]
+    },
+    {
+      "file": "domestic-STABLE-3-lod2.glb",
+      "sha256": "40ea9941e64026322cfe716263cd9a52f785dc379947811b82f306a1fe6b5ff7",
+      "bytes": 22868,
+      "triangles": 162,
+      "vertices": 328,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.4,
+        0.42,
+        0.6950000000000001,
+        0.3825
+      ]
+    },
+    {
+      "file": "domestic-BLACK_MARKET-1-lod0.glb",
+      "sha256": "ac801066d73145b40681275a56da9808fae7245c84382dc724b28c916c78c36a",
+      "bytes": 26592,
+      "triangles": 208,
+      "vertices": 416,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43000000000000005,
+        0,
+        -0.37,
+        0.37,
+        0.28,
+        -0.09
+      ]
+    },
+    {
+      "file": "domestic-BLACK_MARKET-1-lod1.glb",
+      "sha256": "add026dff78754536072aad78a843354824779411e928d1543dc846181a9179b",
+      "bytes": 14492,
+      "triangles": 64,
+      "vertices": 128,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43000000000000005,
+        0,
+        -0.37,
+        0.37,
+        0.28,
+        -0.09
+      ]
+    },
+    {
+      "file": "domestic-BLACK_MARKET-1-lod2.glb",
+      "sha256": "add026dff78754536072aad78a843354824779411e928d1543dc846181a9179b",
+      "bytes": 14492,
+      "triangles": 64,
+      "vertices": 128,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43000000000000005,
+        0,
+        -0.37,
+        0.37,
+        0.28,
+        -0.09
+      ]
+    },
+    {
+      "file": "domestic-WORKSHOP-1-lod0.glb",
+      "sha256": "652c3d083fd70eefef90cb74a6152828ebb81c922e21916f46ee7773e34ee71f",
+      "bytes": 45768,
+      "triangles": 394,
+      "vertices": 886,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0.0,
+        -0.327,
+        0.20124999999999998,
+        0.5130000000000001,
+        0.245
+      ]
+    },
+    {
+      "file": "domestic-WORKSHOP-1-lod1.glb",
+      "sha256": "b01aad4036ec0769143b6b6fae4f590e94a1210d0ae74cea0fb2f557009b943c",
+      "bytes": 35876,
+      "triangles": 290,
+      "vertices": 646,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0.0,
+        -0.327,
+        0.20124999999999998,
+        0.5130000000000001,
+        0.245
+      ]
+    },
+    {
+      "file": "domestic-WORKSHOP-1-lod2.glb",
+      "sha256": "8fc38d4f89dca93717fe481bccecbd5f459f4ff37268878318d6152b7a53191c",
+      "bytes": 29660,
+      "triangles": 216,
+      "vertices": 498,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.36125,
+        0.0,
+        -0.327,
+        0.20124999999999998,
+        0.5130000000000001,
+        0.245
+      ]
+    },
+    {
+      "file": "domestic-SHIPYARD-1-lod0.glb",
+      "sha256": "8805338ddaf0e006b9a355e54822631f8b2f28185e43c55d1eeba01269fb2a46",
+      "bytes": 26832,
+      "triangles": 210,
+      "vertices": 422,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.4075,
+        0,
+        -0.43,
+        0.325,
+        0.45000000000000007,
+        0.45
+      ]
+    },
+    {
+      "file": "domestic-SHIPYARD-1-lod1.glb",
+      "sha256": "18babf87d22d22f78be4eb6b00d40ebb927dae13aec84eb405fc683c6a2e5ca7",
+      "bytes": 23472,
+      "triangles": 170,
+      "vertices": 342,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.4075,
+        0,
+        -0.43,
+        0.325,
+        0.45000000000000007,
+        0.45
+      ]
+    },
+    {
+      "file": "domestic-SHIPYARD-1-lod2.glb",
+      "sha256": "b52d62b2854bde12666d796e0bba8562ee06e7f9ad300548c73cb41a0fa9fe03",
+      "bytes": 17252,
+      "triangles": 96,
+      "vertices": 194,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.4075,
+        0,
+        -0.43,
+        0.325,
+        0.45000000000000007,
+        0.45
+      ]
+    },
+    {
+      "file": "domestic-BRONZE_TERRACE-1-lod0.glb",
+      "sha256": "d0b481c63444bdc78e9f73c9af8247522937ef39fc3b4a8b12213fead06424b0",
+      "bytes": 28328,
+      "triangles": 228,
+      "vertices": 458,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.38,
+        0.0,
+        -0.34,
+        0.38,
+        0.8,
+        0.34
+      ]
+    },
+    {
+      "file": "domestic-BRONZE_TERRACE-1-lod1.glb",
+      "sha256": "693665aee444444d32626ce3daf191ea7cd21e0ce6b352af3ecb024a9c9fbb50",
+      "bytes": 24968,
+      "triangles": 188,
+      "vertices": 378,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.38,
+        0.0,
+        -0.34,
+        0.38,
+        0.8,
+        0.34
+      ]
+    },
+    {
+      "file": "domestic-BRONZE_TERRACE-1-lod2.glb",
+      "sha256": "6d987cc4183606ac23c6c143545e1d428a5b5d46cf505e72a7ad198e9c6c473a",
+      "bytes": 18748,
+      "triangles": 114,
+      "vertices": 230,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.38,
+        0.0,
+        -0.34,
+        0.38,
+        0.8,
+        0.34
+      ]
+    },
+    {
+      "file": "military-CAMP-1-lod0.glb",
+      "sha256": "0dbd140fde07e277f854ba2552a4948acb162a3e98a42cd7a287bb2dd725f015",
+      "bytes": 52928,
+      "triangles": 456,
+      "vertices": 1064,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.40103444185374865,
+        0,
+        -0.404727469423674,
+        0.406,
+        0.27,
+        0.404727469423674
+      ]
+    },
+    {
+      "file": "military-CAMP-1-lod1.glb",
+      "sha256": "5b8e952dbf671d1d333ebd810624d04b076ae818c5f537e42b8dc0ae66e0ae1d",
+      "bytes": 35640,
+      "triangles": 276,
+      "vertices": 644,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.40103444185374865,
+        0,
+        -0.404727469423674,
+        0.406,
+        0.27,
+        0.404727469423674
+      ]
+    },
+    {
+      "file": "military-CAMP-1-lod2.glb",
+      "sha256": "5b8e952dbf671d1d333ebd810624d04b076ae818c5f537e42b8dc0ae66e0ae1d",
+      "bytes": 35640,
+      "triangles": 276,
+      "vertices": 644,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.40103444185374865,
+        0,
+        -0.404727469423674,
+        0.406,
+        0.27,
+        0.404727469423674
+      ]
+    },
+    {
+      "file": "military-ARROW_TOWER-1-lod0.glb",
+      "sha256": "01c521c615f1ebc4cbd7c755614f1c9d1e1e8037cd63739c3298d226ccba3bc1",
+      "bytes": 17240,
+      "triangles": 96,
+      "vertices": 194,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.265,
+        0,
+        -0.265,
+        0.265,
+        0.88,
+        0.265
+      ]
+    },
+    {
+      "file": "military-ARROW_TOWER-1-lod1.glb",
+      "sha256": "01c521c615f1ebc4cbd7c755614f1c9d1e1e8037cd63739c3298d226ccba3bc1",
+      "bytes": 17240,
+      "triangles": 96,
+      "vertices": 194,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.265,
+        0,
+        -0.265,
+        0.265,
+        0.88,
+        0.265
+      ]
+    },
+    {
+      "file": "military-ARROW_TOWER-1-lod2.glb",
+      "sha256": "01c521c615f1ebc4cbd7c755614f1c9d1e1e8037cd63739c3298d226ccba3bc1",
+      "bytes": 17240,
+      "triangles": 96,
+      "vertices": 194,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.265,
+        0,
+        -0.265,
+        0.265,
+        0.88,
+        0.265
+      ]
+    },
+    {
+      "file": "military-MUSIC-1-lod0.glb",
+      "sha256": "e91d5729f84ed3b0843551ec99c15f5bfbb306564648a078e2ab9ec3ad0458d4",
+      "bytes": 21680,
+      "triangles": 136,
+      "vertices": 304,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.28,
+        0,
+        -0.24,
+        0.28,
+        0.4825,
+        0.24
+      ]
+    },
+    {
+      "file": "military-MUSIC-1-lod1.glb",
+      "sha256": "e91d5729f84ed3b0843551ec99c15f5bfbb306564648a078e2ab9ec3ad0458d4",
+      "bytes": 21680,
+      "triangles": 136,
+      "vertices": 304,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.28,
+        0,
+        -0.24,
+        0.28,
+        0.4825,
+        0.24
+      ]
+    },
+    {
+      "file": "military-MUSIC-1-lod2.glb",
+      "sha256": "e91d5729f84ed3b0843551ec99c15f5bfbb306564648a078e2ab9ec3ad0458d4",
+      "bytes": 21680,
+      "triangles": 136,
+      "vertices": 304,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.28,
+        0,
+        -0.24,
+        0.28,
+        0.4825,
+        0.24
+      ]
+    },
+    {
+      "file": "military-FIRE_SEED-1-lod0.glb",
+      "sha256": "e71789d4955890094982cd68cdb7ffef0587e8d2f922bc469ddd47b7d00952d8",
+      "bytes": 12268,
+      "triangles": 34,
+      "vertices": 76,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.195,
+        0,
+        -0.10750000000000001,
+        -0.045,
+        0.2718190171877725,
+        0.075
+      ]
+    },
+    {
+      "file": "military-FIRE_SEED-1-lod1.glb",
+      "sha256": "e71789d4955890094982cd68cdb7ffef0587e8d2f922bc469ddd47b7d00952d8",
+      "bytes": 12268,
+      "triangles": 34,
+      "vertices": 76,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.195,
+        0,
+        -0.10750000000000001,
+        -0.045,
+        0.2718190171877725,
+        0.075
+      ]
+    },
+    {
+      "file": "military-FIRE_SEED-1-lod2.glb",
+      "sha256": "e71789d4955890094982cd68cdb7ffef0587e8d2f922bc469ddd47b7d00952d8",
+      "bytes": 12268,
+      "triangles": 34,
+      "vertices": 76,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.195,
+        0,
+        -0.10750000000000001,
+        -0.045,
+        0.2718190171877725,
+        0.075
+      ]
+    },
+    {
+      "file": "military-FORT-1-lod0.glb",
+      "sha256": "88f0df2eb1a5526f812077dcfd10f33d21b3792f41f17bf29b9bc745c6c2e492",
+      "bytes": 54080,
+      "triangles": 468,
+      "vertices": 1092,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.40103444185374865,
+        0,
+        -0.404727469423674,
+        0.406,
+        0.27,
+        0.404727469423674
+      ]
+    },
+    {
+      "file": "military-FORT-1-lod1.glb",
+      "sha256": "622ded240f007bcc557eb67932cbc95af8086822dab6130a0d405c6bb0b19340",
+      "bytes": 36792,
+      "triangles": 288,
+      "vertices": 672,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.40103444185374865,
+        0,
+        -0.404727469423674,
+        0.406,
+        0.27,
+        0.404727469423674
+      ]
+    },
+    {
+      "file": "military-FORT-1-lod2.glb",
+      "sha256": "622ded240f007bcc557eb67932cbc95af8086822dab6130a0d405c6bb0b19340",
+      "bytes": 36792,
+      "triangles": 288,
+      "vertices": 672,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.40103444185374865,
+        0,
+        -0.404727469423674,
+        0.406,
+        0.27,
+        0.404727469423674
+      ]
+    },
+    {
+      "file": "military-FORTRESS-1-lod0.glb",
+      "sha256": "5a9ea3682108990bfbd770a7555de809bdc333eccffd4df3d4149f6cf7a16285",
+      "bytes": 43848,
+      "triangles": 410,
+      "vertices": 828,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.42,
+        0,
+        -0.4,
+        0.42000000000000004,
+        0.548,
+        0.4
+      ]
+    },
+    {
+      "file": "military-FORTRESS-1-lod1.glb",
+      "sha256": "6ad40816dde12e67b56210e49b33b7a810dc3922b4ebf9058403a1d6ecf52938",
+      "bytes": 24524,
+      "triangles": 180,
+      "vertices": 368,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.42,
+        0,
+        -0.4,
+        0.42000000000000004,
+        0.548,
+        0.4
+      ]
+    },
+    {
+      "file": "military-FORTRESS-1-lod2.glb",
+      "sha256": "cd274e9421cdb1744c831c84e8cd011ff82adc3411965f233d7130a3e390d9a3",
+      "bytes": 18304,
+      "triangles": 106,
+      "vertices": 220,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.42,
+        0,
+        -0.4,
+        0.42000000000000004,
+        0.548,
+        0.4
+      ]
+    },
+    {
+      "file": "military-CROSSBOW_TOWER-1-lod0.glb",
+      "sha256": "c893a773027af13fad138b53eb5b9a327ed156fabab516f67fcf7e25fa088886",
+      "bytes": 18080,
+      "triangles": 106,
+      "vertices": 214,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.265,
+        0,
+        -0.265,
+        0.265,
+        0.88,
+        0.265
+      ]
+    },
+    {
+      "file": "military-CROSSBOW_TOWER-1-lod1.glb",
+      "sha256": "c893a773027af13fad138b53eb5b9a327ed156fabab516f67fcf7e25fa088886",
+      "bytes": 18080,
+      "triangles": 106,
+      "vertices": 214,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.265,
+        0,
+        -0.265,
+        0.265,
+        0.88,
+        0.265
+      ]
+    },
+    {
+      "file": "military-CROSSBOW_TOWER-1-lod2.glb",
+      "sha256": "c893a773027af13fad138b53eb5b9a327ed156fabab516f67fcf7e25fa088886",
+      "bytes": 18080,
+      "triangles": 106,
+      "vertices": 214,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.265,
+        0,
+        -0.265,
+        0.265,
+        0.88,
+        0.265
+      ]
+    },
+    {
+      "file": "military-CATAPULT_TOWER-1-lod0.glb",
+      "sha256": "28eba9e2618dce280a672b25f70127a41cef09ea7a1139358aaf985251a328cc",
+      "bytes": 18860,
+      "triangles": 116,
+      "vertices": 232,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.23,
+        0,
+        -0.23,
+        0.23,
+        0.845,
+        0.29000000000000004
+      ]
+    },
+    {
+      "file": "military-CATAPULT_TOWER-1-lod1.glb",
+      "sha256": "28eba9e2618dce280a672b25f70127a41cef09ea7a1139358aaf985251a328cc",
+      "bytes": 18860,
+      "triangles": 116,
+      "vertices": 232,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.23,
+        0,
+        -0.23,
+        0.23,
+        0.845,
+        0.29000000000000004
+      ]
+    },
+    {
+      "file": "military-CATAPULT_TOWER-1-lod2.glb",
+      "sha256": "28eba9e2618dce280a672b25f70127a41cef09ea7a1139358aaf985251a328cc",
+      "bytes": 18860,
+      "triangles": 116,
+      "vertices": 232,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.23,
+        0,
+        -0.23,
+        0.23,
+        0.845,
+        0.29000000000000004
+      ]
+    },
+    {
+      "file": "military-DRUM-1-lod0.glb",
+      "sha256": "d58b65cc42068832c4c3d5247e21ecb6e8134b2b40cc50dac0583d1bf0e06188",
+      "bytes": 14548,
+      "triangles": 58,
+      "vertices": 132,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.28,
+        0,
+        -0.24,
+        0.28,
+        0.325,
+        0.24
+      ]
+    },
+    {
+      "file": "military-DRUM-1-lod1.glb",
+      "sha256": "d58b65cc42068832c4c3d5247e21ecb6e8134b2b40cc50dac0583d1bf0e06188",
+      "bytes": 14548,
+      "triangles": 58,
+      "vertices": 132,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.28,
+        0,
+        -0.24,
+        0.28,
+        0.325,
+        0.24
+      ]
+    },
+    {
+      "file": "military-DRUM-1-lod2.glb",
+      "sha256": "d58b65cc42068832c4c3d5247e21ecb6e8134b2b40cc50dac0583d1bf0e06188",
+      "bytes": 14548,
+      "triangles": 58,
+      "vertices": 132,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.28,
+        0,
+        -0.24,
+        0.28,
+        0.325,
+        0.24
+      ]
+    },
+    {
+      "file": "military-STONE_MAZE-1-lod0.glb",
+      "sha256": "173f330c80eefb4995447ff291ff7bef3794a3a4e27961cfc760a3d24622d29e",
+      "bytes": 20680,
+      "triangles": 120,
+      "vertices": 280,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.3366311896062464,
+        0,
+        -0.3275528258147577,
+        0.35000000000000003,
+        0.24,
+        0.3275528258147577
+      ]
+    },
+    {
+      "file": "military-STONE_MAZE-1-lod1.glb",
+      "sha256": "173f330c80eefb4995447ff291ff7bef3794a3a4e27961cfc760a3d24622d29e",
+      "bytes": 20680,
+      "triangles": 120,
+      "vertices": 280,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.3366311896062464,
+        0,
+        -0.3275528258147577,
+        0.35000000000000003,
+        0.24,
+        0.3275528258147577
+      ]
+    },
+    {
+      "file": "military-STONE_MAZE-1-lod2.glb",
+      "sha256": "173f330c80eefb4995447ff291ff7bef3794a3a4e27961cfc760a3d24622d29e",
+      "bytes": 20680,
+      "triangles": 120,
+      "vertices": 280,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.3366311896062464,
+        0,
+        -0.3275528258147577,
+        0.35000000000000003,
+        0.24,
+        0.3275528258147577
+      ]
+    },
+    {
+      "file": "military-EARTH_WALL-1-lod0.glb",
+      "sha256": "41ff14b5bc1817fc077d1a26878cebc9b5008df92737cd899e0e5898e7673681",
+      "bytes": 10240,
+      "triangles": 12,
+      "vertices": 28,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.18,
+        0.43,
+        0.26,
+        0.18
+      ]
+    },
+    {
+      "file": "military-EARTH_WALL-1-lod1.glb",
+      "sha256": "41ff14b5bc1817fc077d1a26878cebc9b5008df92737cd899e0e5898e7673681",
+      "bytes": 10240,
+      "triangles": 12,
+      "vertices": 28,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.18,
+        0.43,
+        0.26,
+        0.18
+      ]
+    },
+    {
+      "file": "military-EARTH_WALL-1-lod2.glb",
+      "sha256": "41ff14b5bc1817fc077d1a26878cebc9b5008df92737cd899e0e5898e7673681",
+      "bytes": 10240,
+      "triangles": 12,
+      "vertices": 28,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.18,
+        0.43,
+        0.26,
+        0.18
+      ]
+    },
+    {
+      "file": "military-STONE_WALL-1-lod0.glb",
+      "sha256": "20a84e3513678487799f6fd5255a5f9f04bcce0afdf776e72f415e44f1563116",
+      "bytes": 15288,
+      "triangles": 72,
+      "vertices": 148,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.18,
+        0.43,
+        0.3,
+        0.18
+      ]
+    },
+    {
+      "file": "military-STONE_WALL-1-lod1.glb",
+      "sha256": "20a84e3513678487799f6fd5255a5f9f04bcce0afdf776e72f415e44f1563116",
+      "bytes": 15288,
+      "triangles": 72,
+      "vertices": 148,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.18,
+        0.43,
+        0.3,
+        0.18
+      ]
+    },
+    {
+      "file": "military-STONE_WALL-1-lod2.glb",
+      "sha256": "20a84e3513678487799f6fd5255a5f9f04bcce0afdf776e72f415e44f1563116",
+      "bytes": 15288,
+      "triangles": 72,
+      "vertices": 148,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        0,
+        -0.18,
+        0.43,
+        0.3,
+        0.18
+      ]
+    },
+    {
+      "file": "military-FIRE_BALL-1-lod0.glb",
+      "sha256": "00a2fb6dd44fa368d5ab23254c53accf4dd612f6192de130a317b8570d91c184",
+      "bytes": 17044,
+      "triangles": 94,
+      "vertices": 188,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.20668844482055784,
+        -0.009999999999999981,
+        -0.19,
+        0.20668844482055784,
+        0.35,
+        0.19
+      ]
+    },
+    {
+      "file": "military-FIRE_BALL-1-lod1.glb",
+      "sha256": "00a2fb6dd44fa368d5ab23254c53accf4dd612f6192de130a317b8570d91c184",
+      "bytes": 17044,
+      "triangles": 94,
+      "vertices": 188,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.20668844482055784,
+        -0.009999999999999981,
+        -0.19,
+        0.20668844482055784,
+        0.35,
+        0.19
+      ]
+    },
+    {
+      "file": "military-FIRE_BALL-1-lod2.glb",
+      "sha256": "00a2fb6dd44fa368d5ab23254c53accf4dd612f6192de130a317b8570d91c184",
+      "bytes": 17044,
+      "triangles": 94,
+      "vertices": 188,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.20668844482055784,
+        -0.009999999999999981,
+        -0.19,
+        0.20668844482055784,
+        0.35,
+        0.19
+      ]
+    },
+    {
+      "file": "military-FLAME_SEED-1-lod0.glb",
+      "sha256": "994c5a77ac6f9f9160ac038b3b3c240b1eef0f9f80e9c1b9747816e7558a86b2",
+      "bytes": 15420,
+      "triangles": 68,
+      "vertices": 152,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.195,
+        0,
+        -0.10750000000000001,
+        0.075,
+        0.2718190171877725,
+        0.075
+      ]
+    },
+    {
+      "file": "military-FLAME_SEED-1-lod1.glb",
+      "sha256": "994c5a77ac6f9f9160ac038b3b3c240b1eef0f9f80e9c1b9747816e7558a86b2",
+      "bytes": 15420,
+      "triangles": 68,
+      "vertices": 152,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.195,
+        0,
+        -0.10750000000000001,
+        0.075,
+        0.2718190171877725,
+        0.075
+      ]
+    },
+    {
+      "file": "military-FLAME_SEED-1-lod2.glb",
+      "sha256": "994c5a77ac6f9f9160ac038b3b3c240b1eef0f9f80e9c1b9747816e7558a86b2",
+      "bytes": 15420,
+      "triangles": 68,
+      "vertices": 152,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.195,
+        0,
+        -0.10750000000000001,
+        0.075,
+        0.2718190171877725,
+        0.075
+      ]
+    },
+    {
+      "file": "military-FLAME_BALL-1-lod0.glb",
+      "sha256": "195ac7dd572a97a20702925dd535a45aea83ea9e5de9d1823749b629f2bc158d",
+      "bytes": 17884,
+      "triangles": 104,
+      "vertices": 208,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.20668844482055784,
+        -0.009999999999999981,
+        -0.19,
+        0.20668844482055784,
+        0.35,
+        0.19
+      ]
+    },
+    {
+      "file": "military-FLAME_BALL-1-lod1.glb",
+      "sha256": "195ac7dd572a97a20702925dd535a45aea83ea9e5de9d1823749b629f2bc158d",
+      "bytes": 17884,
+      "triangles": 104,
+      "vertices": 208,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.20668844482055784,
+        -0.009999999999999981,
+        -0.19,
+        0.20668844482055784,
+        0.35,
+        0.19
+      ]
+    },
+    {
+      "file": "military-FLAME_BALL-1-lod2.glb",
+      "sha256": "195ac7dd572a97a20702925dd535a45aea83ea9e5de9d1823749b629f2bc158d",
+      "bytes": 17884,
+      "triangles": 104,
+      "vertices": 208,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.20668844482055784,
+        -0.009999999999999981,
+        -0.19,
+        0.20668844482055784,
+        0.35,
+        0.19
+      ]
+    },
+    {
+      "file": "military-INFERNO_SEED-1-lod0.glb",
+      "sha256": "5c7a78b1886a79feddc1d2c728f4f563d2282456d7ba137c6f394ac37be162c0",
+      "bytes": 18564,
+      "triangles": 102,
+      "vertices": 228,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.195,
+        0,
+        -0.10750000000000001,
+        0.195,
+        0.2718190171877725,
+        0.075
+      ]
+    },
+    {
+      "file": "military-INFERNO_SEED-1-lod1.glb",
+      "sha256": "5c7a78b1886a79feddc1d2c728f4f563d2282456d7ba137c6f394ac37be162c0",
+      "bytes": 18564,
+      "triangles": 102,
+      "vertices": 228,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.195,
+        0,
+        -0.10750000000000001,
+        0.195,
+        0.2718190171877725,
+        0.075
+      ]
+    },
+    {
+      "file": "military-INFERNO_SEED-1-lod2.glb",
+      "sha256": "5c7a78b1886a79feddc1d2c728f4f563d2282456d7ba137c6f394ac37be162c0",
+      "bytes": 18564,
+      "triangles": 102,
+      "vertices": 228,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.195,
+        0,
+        -0.10750000000000001,
+        0.195,
+        0.2718190171877725,
+        0.075
+      ]
+    },
+    {
+      "file": "military-INFERNO_BALL-1-lod0.glb",
+      "sha256": "c0f6a2334624b02cbed2478e25bfdd776e272dc46b7020966dd1d5c225b59c2d",
+      "bytes": 18724,
+      "triangles": 114,
+      "vertices": 228,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.20668844482055784,
+        -0.009999999999999981,
+        -0.19,
+        0.20668844482055784,
+        0.35,
+        0.19
+      ]
+    },
+    {
+      "file": "military-INFERNO_BALL-1-lod1.glb",
+      "sha256": "c0f6a2334624b02cbed2478e25bfdd776e272dc46b7020966dd1d5c225b59c2d",
+      "bytes": 18724,
+      "triangles": 114,
+      "vertices": 228,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.20668844482055784,
+        -0.009999999999999981,
+        -0.19,
+        0.20668844482055784,
+        0.35,
+        0.19
+      ]
+    },
+    {
+      "file": "military-INFERNO_BALL-1-lod2.glb",
+      "sha256": "c0f6a2334624b02cbed2478e25bfdd776e272dc46b7020966dd1d5c225b59c2d",
+      "bytes": 18724,
+      "triangles": 114,
+      "vertices": 228,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.20668844482055784,
+        -0.009999999999999981,
+        -0.19,
+        0.20668844482055784,
+        0.35,
+        0.19
+      ]
+    },
+    {
+      "file": "military-FIRE_SHIP-1-lod0.glb",
+      "sha256": "23a9b444c4183a24f2e7a9ffb4eab797abdaf7cc52b25e1519baea3c21b31665",
+      "bytes": 16060,
+      "triangles": 76,
+      "vertices": 168,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.15,
+        0,
+        -0.43,
+        0.15,
+        0.36,
+        0.45
+      ]
+    },
+    {
+      "file": "military-FIRE_SHIP-1-lod1.glb",
+      "sha256": "23a9b444c4183a24f2e7a9ffb4eab797abdaf7cc52b25e1519baea3c21b31665",
+      "bytes": 16060,
+      "triangles": 76,
+      "vertices": 168,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.15,
+        0,
+        -0.43,
+        0.15,
+        0.36,
+        0.45
+      ]
+    },
+    {
+      "file": "military-FIRE_SHIP-1-lod2.glb",
+      "sha256": "23a9b444c4183a24f2e7a9ffb4eab797abdaf7cc52b25e1519baea3c21b31665",
+      "bytes": 16060,
+      "triangles": 76,
+      "vertices": 168,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.15,
+        0,
+        -0.43,
+        0.15,
+        0.36,
+        0.45
+      ]
+    },
+    {
+      "file": "military-DAM-1-lod0.glb",
+      "sha256": "97667b8baff2368c835c003abbac5ab8870309e711bf1eba497d40666ad126c0",
+      "bytes": 12800,
+      "triangles": 42,
+      "vertices": 88,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        -0.017224965550103347,
+        -0.18,
+        0.43,
+        0.42,
+        0.27755994488016533
+      ]
+    },
+    {
+      "file": "military-DAM-1-lod1.glb",
+      "sha256": "97667b8baff2368c835c003abbac5ab8870309e711bf1eba497d40666ad126c0",
+      "bytes": 12800,
+      "triangles": 42,
+      "vertices": 88,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        -0.017224965550103347,
+        -0.18,
+        0.43,
+        0.42,
+        0.27755994488016533
+      ]
+    },
+    {
+      "file": "military-DAM-1-lod2.glb",
+      "sha256": "97667b8baff2368c835c003abbac5ab8870309e711bf1eba497d40666ad126c0",
+      "bytes": 12800,
+      "triangles": 42,
+      "vertices": 88,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.43,
+        -0.017224965550103347,
+        -0.18,
+        0.43,
+        0.42,
+        0.27755994488016533
+      ]
+    },
+    {
+      "file": "tree-lod0.glb",
+      "sha256": "6095cd9f9b41e3dfc9db4ccfdfd4f5be24368c1758c8d228fc03aee330112775",
+      "bytes": 16632,
+      "triangles": 78,
+      "vertices": 182,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.14415501886438706,
+        0,
+        -0.15598846594909177,
+        0.16,
+        0.71,
+        0.15598846594909177
+      ]
+    },
+    {
+      "file": "tree-lod1.glb",
+      "sha256": "85f93c09733fe41761ede76bd2f25a07c443b8d1377677473a3b5cc11d17bd2c",
+      "bytes": 13476,
+      "triangles": 45,
+      "vertices": 105,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.1294427190999916,
+        0,
+        -0.15216904260722458,
+        0.16,
+        0.5800000000000001,
+        0.15216904260722458
+      ]
+    },
+    {
+      "file": "scaffold.glb",
+      "sha256": "74c7017147827f2451bf70627284dbf33ae260ec7d99366e042ce32feeb30ee9",
+      "bytes": 15860,
+      "triangles": 80,
+      "vertices": 160,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.4,
+        0,
+        -0.41250000000000003,
+        0.42500000000000004,
+        0.5,
+        0.42500000000000004
+      ]
+    },
+    {
+      "file": "fire.glb",
+      "sha256": "948d6ff3ae9335bdec29334ed6a583fd73d3f892abf46f0767ecd10c99df9c4e",
+      "bytes": 13460,
+      "triangles": 45,
+      "vertices": 105,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.22281152949374528,
+        0,
+        -0.21657395614066077,
+        0.19,
+        0.4,
+        0.19657395614066075
+      ]
+    },
+    {
+      "file": "unit-SPEAR-lod0.glb",
+      "sha256": "6891e5a1582bc979d695d9db65db9caf3926f37e3645bb786a26003f071d03a9",
+      "bytes": 53336,
+      "triangles": 492,
+      "vertices": 1064,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.098,
+        0,
+        -0.044,
+        0.08800000000000001,
+        0.565,
+        0.054
+      ]
+    },
+    {
+      "file": "unit-SPEAR-lod1.glb",
+      "sha256": "7460a996945ab15bf7342edba3ed6043a6ad571cabb4359a7e2033932b46758a",
+      "bytes": 44092,
+      "triangles": 382,
+      "vertices": 844,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.098,
+        0,
+        -0.044,
+        0.08800000000000001,
+        0.565,
+        0.054
+      ]
+    },
+    {
+      "file": "unit-HALBERD-lod0.glb",
+      "sha256": "8c8afc169fc1edb06b7f1b6f62e89ccf438732b3b8f787422707b0975b1871fd",
+      "bytes": 54344,
+      "triangles": 504,
+      "vertices": 1088,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.11000000000000001,
+        0,
+        -0.044,
+        0.115,
+        0.565,
+        0.054
+      ]
+    },
+    {
+      "file": "unit-HALBERD-lod1.glb",
+      "sha256": "743109c22f1c5123266b7019681fd081dfe9c8e70dd3d2f1479a0d78cbe94dbc",
+      "bytes": 45100,
+      "triangles": 394,
+      "vertices": 868,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.11000000000000001,
+        0,
+        -0.044,
+        0.115,
+        0.565,
+        0.054
+      ]
+    },
+    {
+      "file": "unit-CROSSBOW-lod0.glb",
+      "sha256": "87e39699bb6241766c84cf5940792d064ee0a2efc90240f1b873800dde0708db",
+      "bytes": 52720,
+      "triangles": 487,
+      "vertices": 1049,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.098,
+        0,
+        -0.044,
+        0.14,
+        0.448,
+        0.1
+      ]
+    },
+    {
+      "file": "unit-CROSSBOW-lod1.glb",
+      "sha256": "0187e05043957e435ab310e0c740a89130adec8ef045cf088200dc22625700a4",
+      "bytes": 43476,
+      "triangles": 377,
+      "vertices": 829,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.098,
+        0,
+        -0.044,
+        0.14,
+        0.448,
+        0.1
+      ]
+    },
+    {
+      "file": "unit-CAVALRY-lod0.glb",
+      "sha256": "92f91e9f9069f40f9b73a29f81a73a45a9f9cce686d2fea32952245d7cf5af0f",
+      "bytes": 80128,
+      "triangles": 800,
+      "vertices": 1704,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.10900000000000001,
+        0,
+        -0.2374740931868366,
+        0.10900000000000001,
+        0.7050000000000001,
+        0.2362916512459885
+      ]
+    },
+    {
+      "file": "unit-CAVALRY-lod1.glb",
+      "sha256": "d51c9f89399de6a2b2d34bd1f8d45a1c2414a31f44cf74c63c6a77a6b6e61d6b",
+      "bytes": 70888,
+      "triangles": 690,
+      "vertices": 1484,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.10900000000000001,
+        0,
+        -0.2374740931868366,
+        0.10900000000000001,
+        0.7050000000000001,
+        0.2362916512459885
+      ]
+    },
+    {
+      "file": "unit-SWORD-lod0.glb",
+      "sha256": "5f2104c873146b769c380a419add5db504662da5f1899e8e53d25dbd35fbd383",
+      "bytes": 52752,
+      "triangles": 487,
+      "vertices": 1049,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.11000000000000001,
+        0,
+        -0.044,
+        0.08800000000000001,
+        0.448,
+        0.054
+      ]
+    },
+    {
+      "file": "unit-SWORD-lod1.glb",
+      "sha256": "7df2288ec6c3bb76bc0def2a6abec6b828669be5b16908cfe8687c98d0b5e6dc",
+      "bytes": 43504,
+      "triangles": 377,
+      "vertices": 829,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.11000000000000001,
+        0,
+        -0.044,
+        0.08800000000000001,
+        0.448,
+        0.054
+      ]
+    },
+    {
+      "file": "unit-RAM-lod0.glb",
+      "sha256": "1b70054fdc9de1895c2d118f8e9f0b28081f2200cfa05f4cd96b89fb24788dc9",
+      "bytes": 42772,
+      "triangles": 356,
+      "vertices": 816,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.1925,
+        0.0,
+        -0.27,
+        0.1925,
+        0.35837991228691,
+        0.365
+      ]
+    },
+    {
+      "file": "unit-RAM-lod1.glb",
+      "sha256": "d47e288be50c4e6796d35aa0d5b73c0f6cea83b513ce9c9f02c2f1b543fd7c3e",
+      "bytes": 36244,
+      "triangles": 292,
+      "vertices": 656,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.1925,
+        0.0,
+        -0.27,
+        0.1925,
+        0.35837991228691,
+        0.365
+      ]
+    },
+    {
+      "file": "unit-SIEGE_TOWER-lod0.glb",
+      "sha256": "0572fa0b1b0e5e6b056f9c524136ef8ef5e17d60b8e083dbc535806522a351b4",
+      "bytes": 55312,
+      "triangles": 508,
+      "vertices": 1114,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.2,
+        0.0,
+        -0.245,
+        0.2,
+        0.83,
+        0.245
+      ]
+    },
+    {
+      "file": "unit-SIEGE_TOWER-lod1.glb",
+      "sha256": "8d4538e68c1f2016e432bc19c7ffbda9150eb0c708ed87f9de82ffbc18182364",
+      "bytes": 44580,
+      "triangles": 394,
+      "vertices": 854,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.2,
+        0.0,
+        -0.245,
+        0.2,
+        0.83,
+        0.245
+      ]
+    },
+    {
+      "file": "unit-WOODEN_BEAST-lod0.glb",
+      "sha256": "bd26c694dce45803b36cdfbcaef8fe5909437b4786577c8df9555c924dda9300",
+      "bytes": 43432,
+      "triangles": 364,
+      "vertices": 832,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.1925,
+        0.0,
+        -0.245,
+        0.1925,
+        0.38,
+        0.31
+      ]
+    },
+    {
+      "file": "unit-WOODEN_BEAST-lod1.glb",
+      "sha256": "c5fd5dd208eb7ac6e0b441f9820d017c33846cd3f9c33fa193050985bbb37c9b",
+      "bytes": 36904,
+      "triangles": 300,
+      "vertices": 672,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.1925,
+        0.0,
+        -0.245,
+        0.1925,
+        0.38,
+        0.31
+      ]
+    },
+    {
+      "file": "unit-CATAPULT-lod0.glb",
+      "sha256": "44ee4811bd2a7540dfba57b3ddc617180eb6a3adb951abbbe97b491a503cb233",
+      "bytes": 43484,
+      "triangles": 368,
+      "vertices": 832,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.1925,
+        0.0,
+        -0.245,
+        0.1925,
+        0.545,
+        0.2725
+      ]
+    },
+    {
+      "file": "unit-CATAPULT-lod1.glb",
+      "sha256": "a7c3935646cfff8949980d913ba9c4d8a9d695b95d18cb725c96dad1699aa2b5",
+      "bytes": 36952,
+      "triangles": 304,
+      "vertices": 672,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.1925,
+        0.0,
+        -0.245,
+        0.1925,
+        0.545,
+        0.2725
+      ]
+    },
+    {
+      "file": "unit-transport-lod0.glb",
+      "sha256": "4483ea84c59cd3fabf8e0c6f438a321c9c8552d2faa362f12932faabd349dba3",
+      "bytes": 40864,
+      "triangles": 330,
+      "vertices": 772,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.1925,
+        0.0,
+        -0.245,
+        0.1925,
+        0.32,
+        0.245
+      ]
+    },
+    {
+      "file": "unit-transport-lod1.glb",
+      "sha256": "4ecfc5c7d074c38e9f3856cc6b96c7a5b4202b27a1f70d2612df476b5d625068",
+      "bytes": 34336,
+      "triangles": 266,
+      "vertices": 612,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.1925,
+        0.0,
+        -0.245,
+        0.1925,
+        0.32,
+        0.245
+      ]
+    },
+    {
+      "file": "unit-BOAT-lod0.glb",
+      "sha256": "46c7e64f2c1fc7299b7951a7ddb117f00242e669adebfa384191bc5d83374c28",
+      "bytes": 18200,
+      "triangles": 108,
+      "vertices": 216,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.32432043852133025,
+        0,
+        -0.43,
+        0.32432043852133025,
+        0.2,
+        0.45
+      ]
+    },
+    {
+      "file": "unit-BOAT-lod1.glb",
+      "sha256": "46c7e64f2c1fc7299b7951a7ddb117f00242e669adebfa384191bc5d83374c28",
+      "bytes": 18200,
+      "triangles": 108,
+      "vertices": 216,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.32432043852133025,
+        0,
+        -0.43,
+        0.32432043852133025,
+        0.2,
+        0.45
+      ]
+    },
+    {
+      "file": "unit-TOWER_SHIP-lod0.glb",
+      "sha256": "e7eec0d3f73d8d6064866c5ab2ade30c0b4d0bfde9bfd1425402b44d0e840aed",
+      "bytes": 31060,
+      "triangles": 260,
+      "vertices": 522,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.32432043852133025,
+        0,
+        -0.43,
+        0.32432043852133025,
+        0.4920000000000001,
+        0.45
+      ]
+    },
+    {
+      "file": "unit-TOWER_SHIP-lod1.glb",
+      "sha256": "f25ca9245bb2be2797d26030e7e3d5edcfc6fb6c9cbb0c3a0f865029d490f627",
+      "bytes": 27700,
+      "triangles": 220,
+      "vertices": 442,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.32432043852133025,
+        0,
+        -0.43,
+        0.32432043852133025,
+        0.4920000000000001,
+        0.45
+      ]
+    },
+    {
+      "file": "unit-WARSHIP-lod0.glb",
+      "sha256": "db4deb6a0f5b4f3e6a4461169d1dd391cdf98ec241e5d91397cc9800f7e9d628",
+      "bytes": 31212,
+      "triangles": 262,
+      "vertices": 526,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.32432043852133025,
+        0,
+        -0.43,
+        0.32432043852133025,
+        0.65,
+        0.45
+      ]
+    },
+    {
+      "file": "unit-WARSHIP-lod1.glb",
+      "sha256": "e13b764d9eb47f1c60cf4bde7882a8a308f711c5bf057497a236b833022af3ba",
+      "bytes": 27852,
+      "triangles": 222,
+      "vertices": 446,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.32432043852133025,
+        0,
+        -0.43,
+        0.32432043852133025,
+        0.65,
+        0.45
+      ]
+    }
+  ]
+}

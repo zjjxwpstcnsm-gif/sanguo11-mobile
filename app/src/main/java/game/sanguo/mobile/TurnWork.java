@@ -56,6 +56,7 @@ final class TurnWork {
             try{
                 byte[] initial=SaveCodec.encode(before);
                 computed=SaveCodec.decode(initial);final World render=SaveCodec.decode(initial);
+                if(before.visualMap!=null){computed.visualMap=before.visualMap.copy();render.visualMap=before.visualMap.copy();}
                 cloneMillis=(System.nanoTime()-started)/1000000L;working=computed;
                 main.post(()->{if(cancelled)return;visual=render;notifyObserver();});
                 journal=new TurnJournal(computed);final TurnJournal recording=journal;

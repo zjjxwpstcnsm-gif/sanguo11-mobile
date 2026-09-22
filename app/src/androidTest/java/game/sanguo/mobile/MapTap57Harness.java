@@ -27,7 +27,7 @@ class MapTap57Harness {
     void writeInternal(String name,byte[] bytes)throws Exception{try(OutputStream o=test.getTargetContext().openFileOutput(name,0)){o.write(bytes);}}
     byte[] readInternal(String name)throws Exception{try(InputStream in=test.getTargetContext().openFileInput(name);ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] b=new byte[16384];for(int n;(n=in.read(b))!=-1;)out.write(b,0,n);return out.toByteArray();}}
     World world()throws Exception{return (World)field(activity,"world");}
-    MapView map()throws Exception{return (MapView)field(activity,"map");}
+    MapView map()throws Exception{return (MapView)field(field(activity,"map"),"flat");}
     MapCamera camera()throws Exception{return (MapCamera)field(map(),"camera");}
     void page()throws Exception{ClientState ui=(ClientState)field(activity,"ui");ui.page="map";ui.panelVisible=false;ui.panelExpanded=false;activity.refresh();}
     void focus(Hex h,float scale)throws Exception{ui(()->{page();map().focus(h);camera().zoom(scale,map().getWidth()/2f,map().getHeight()/2f);map().center(h);});settle();}

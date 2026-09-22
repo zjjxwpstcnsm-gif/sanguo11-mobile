@@ -8,7 +8,7 @@ import java.util.*;
 import game.sanguo.core.*;
 
 /** Cached national renderer with independent scene, selection and camera updates. */
-public final class MapView extends View {
+public final class MapView extends View implements MapPresentation {
     public interface TileListener {void tap(Hex tile);}
     private final TileListener listener;
     /** Editor-only gesture stream. Existing campaign gestures and hit rules remain unchanged. */
@@ -293,7 +293,7 @@ public final class MapView extends View {
             invalidate();return;
         }
         sceneBuilds++;renderedRevision=world.commandRevision();renderedTurn=world.turn;renderedPlayer=world.player;
-        boolean changed=this.world==null||this.world.width!=world.width||this.world.height!=world.height||!this.world.scenarioId.equals(world.scenarioId);boolean newTerrain=this.world!=world||changed||seenTerrainRevision!=world.terrainRevision;seenTerrainRevision=world.terrainRevision;this.world=world;this.selected=selected;this.moving=moving;CORNER_X=world.columnStaggered?TileGeometry.CORNER_Y:TileGeometry.CORNER_X;CORNER_Y=world.columnStaggered?TileGeometry.CORNER_X:TileGeometry.CORNER_Y;
+        boolean changed=this.world==null||this.world.width!=world.width||this.world.height!=world.height||!this.world.scenarioId.equals(world.scenarioId);boolean newTerrain=this.world!=world||changed||seenTerrainRevision!=world.terrainRevision;seenTerrainRevision=world.terrainRevision;this.world=world;grid=new GridWorldTransform(mapOffset(),world.columnStaggered);this.selected=selected;this.moving=moving;CORNER_X=world.columnStaggered?TileGeometry.CORNER_Y:TileGeometry.CORNER_X;CORNER_Y=world.columnStaggered?TileGeometry.CORNER_X:TileGeometry.CORNER_Y;
         if(changed){tiles=new Hex[world.width][world.height];for(int q=0;q<world.width;q++)for(int r=0;r<world.height;r++)tiles[q][r]=new Hex(q,r);}
         objectBuckets.clear();officerIndex.clear();cityIndex.clear();
         for(World.Officer o:world.officers)officerIndex.put(o.id,o);
@@ -354,9 +354,10 @@ public final class MapView extends View {
     @Override public boolean isOpaque(){return true;}
     @Override protected void onAttachedToWindow(){super.onAttachedToWindow();if(overview!=null)overview.start(this);}
     @Override protected void onDetachedFromWindow(){stopCamera();if(overview!=null)overview.cancel();super.onDetachedFromWindow();}
+    private GridWorldTransform grid;
     private float mapOffset(){return world!=null&&world.sourceMapWidth>0?(world.height-1)/2:0;}
-    private float x(Hex h){return TileGeometry.projectedX(h.q,h.r,mapOffset(),world.columnStaggered);}
-    private float y(Hex h){return TileGeometry.projectedY(h.q,h.r,mapOffset(),world.columnStaggered);}
+    private float x(Hex h){return grid.x(h)*TileGeometry.DX;}
+    private float y(Hex h){return grid.z(h)*TileGeometry.DY;}
     private float worldWidth(){if(world.columnStaggered)return TileGeometry.DX*(world.sourceColumns()-1)+RADIUS*2;return TileGeometry.DX*((world.sourceMapWidth>0?world.sourceMapWidth-0.5f:world.width-1+(world.height-1)*.5f))+RADIUS*2;}
     private float worldHeight(){return TileGeometry.DY*(world.columnStaggered?world.sourceRows()-.5f:world.height-1)+RADIUS*2;}
     private void resizeCamera(){if(world!=null&&getWidth()>0&&getHeight()>0){camera.columnOffset=mapOffset();camera.columnStaggered=world.columnStaggered;camera.resize(getWidth(),getHeight(),worldWidth(),worldHeight(),RADIUS,density);}}
@@ -365,8 +366,8 @@ public final class MapView extends View {
     public void focus(Hex h){if(world==null||h==null)return;if(getWidth()==0){post(()->focus(h));return;}glide(()->{camera.focus(x(h),y(h));camera.pan(-occludedRight/2f,-occludedBottom/2f);});}
     public void center(Hex h){if(world!=null&&h!=null){stopCamera();camera.centerOn(x(h),y(h));invalidate();}}
     private void zoom(float scale,float fx,float fy){stopCamera();camera.zoom(scale,fx,fy);postInvalidateOnAnimation();}
-    void saveCamera(Bundle b){b.putBoolean("mapNavigator",showMini);b.putFloat("cameraRatio",camera.scale/camera.minScale);b.putFloat("cameraScaleDp",camera.scale/density);b.putFloat("cameraX",camera.centerX());b.putFloat("cameraY",camera.centerY());}
-    void restoreCamera(Bundle b){stopCamera();showMini=b.getBoolean("mapNavigator",showMini);pendingCamera=new Bundle(b);applyPendingCamera();}
+    public void saveCamera(Bundle b){b.putBoolean("mapNavigator",showMini);b.putFloat("cameraRatio",camera.scale/camera.minScale);b.putFloat("cameraScaleDp",camera.scale/density);b.putFloat("cameraX",camera.centerX());b.putFloat("cameraY",camera.centerY());}
+    public void restoreCamera(Bundle b){stopCamera();showMini=b.getBoolean("mapNavigator",showMini);pendingCamera=new Bundle(b);applyPendingCamera();}
     private void applyPendingCamera(){if(pendingCamera!=null&&getWidth()>0&&getHeight()>0){if(pendingCamera.containsKey("cameraScaleDp"))camera.restoreScale(pendingCamera.getFloat("cameraScaleDp")*density,pendingCamera.getFloat("cameraX"),pendingCamera.getFloat("cameraY"));else camera.restore(pendingCamera.getFloat("cameraRatio",1),pendingCamera.getFloat("cameraX"),pendingCamera.getFloat("cameraY"));pendingCamera=null;invalidate();}}
     @Override public boolean onTouchEvent(MotionEvent e){
         if(!isEnabled())return true;
@@ -422,8 +423,7 @@ public final class MapView extends View {
     private Hex hit(float px,float py){
         if(world==null)return null;
         float wx=(px-camera.x)/camera.scale,wy=(py-camera.y)/camera.scale;
-        int ir=TileGeometry.projectedRow(wx,wy,world.columnStaggered),iq=TileGeometry.projectedColumn(wx,wy,ir,mapOffset(),world.columnStaggered);
-        Hex exact=new Hex(iq,ir);
+        Hex exact=grid.cell(wx/TileGeometry.DX,wy/TileGeometry.DY);
         // A city label may not turn exterior/padding under the pointer into a tile.
         // Valid impassable terrain remains selectable at every level of detail.
         if(editorMode)return world.sourceInside(exact)?exact:null;

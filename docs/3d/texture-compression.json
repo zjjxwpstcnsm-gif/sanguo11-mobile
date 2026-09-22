@@ -1,0 +1,34 @@
+[
+  {
+    "asset": "app/src/main/assets/3d/sites/atlas.etc2",
+    "source_sha256": "5cbd94d992d58c7a5a9f305a17c6dcb789911b1547fb6223303d09c35e57dcd5",
+    "sha256": "173717408681d2ca222482268f57281a8c09004c10e6346875858396f9a3a05a",
+    "width": 192,
+    "height": 64,
+    "levels": 8,
+    "format": "ETC2_SRGB8",
+    "gpu_payload_bytes": 8216,
+    "rgba_mip_bytes": 65536,
+    "alpha": "opaque",
+    "mip_filter": "linear-light BOX",
+    "encoder": "etcpak 0.9.15",
+    "level0_psnr_db": 36.381538388655514,
+    "gpu_upload_verified": false
+  },
+  {
+    "asset": "app/src/main/assets/3d/field/atlas.etc2",
+    "source_sha256": "4e779ada834d32000cd805f199f8c33183b30deeeeb05af4dce156f3fc83eaf2",
+    "sha256": "0df2ba520c7d123ee1a654defe9c3f431179f0eb535cbebd8d8cd0178e653a70",
+    "width": 512,
+    "height": 64,
+    "levels": 10,
+    "format": "ETC2_SRGB8",
+    "gpu_payload_bytes": 21896,
+    "rgba_mip_bytes": 174780,
+    "alpha": "opaque",
+    "mip_filter": "linear-light BOX",
+    "encoder": "etcpak 0.9.15",
+    "level0_psnr_db": 36.53715372113224,
+    "gpu_upload_verified": false
+  }
+]

@@ -51,7 +51,7 @@ final class MapEditor67Probe {
         }finally{try{shot("last-window");}catch(Exception ignored){}Files.write(new File(directory(),"checks.txt").toPath(),report.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));}
     }
     MapEditSession session()throws Exception{return (MapEditSession)field(editor,"session");}
-    MapView map()throws Exception{return (MapView)field(editor,"map");}
+    MapView map()throws Exception{return (MapView)field(field(editor,"map"),"flat");}
     void ready()throws Exception{await(()->field(editor,"session")!=null&&!((Boolean)field(editor,"busy")),120000);settle();}
     static Object field(Object object,String name)throws Exception{Class<?> type=object.getClass();while(type!=null){try{Field f=type.getDeclaredField(name);f.setAccessible(true);return f.get(object);}catch(NoSuchFieldException e){type=type.getSuperclass();}}throw new NoSuchFieldException(name);}
     Object call(Object object,String name,Class<?>[] types,Object... args)throws Exception{Method m=object.getClass().getDeclaredMethod(name,types);m.setAccessible(true);return m.invoke(object,args);}

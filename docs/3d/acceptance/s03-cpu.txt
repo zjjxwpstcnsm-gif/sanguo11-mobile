@@ -1,0 +1,6 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+PASS S01: 3116362 assertions, 38949 valid cells, 177 chunks, 87 objects
+PASS S02: 902230 assertions; triangles near=934776, far=311592; water=6746; ray picks=400; patched chunks reused=175/177; max height=2.472594
+PASS S03: 1645 checks; 87 national sites mapped; 5 model families; custom fallback, ownership, damage, deletion, reverse-camera picks
+PASS S03 GLB: 38032 checks; all 15 real runtime GLBs loaded; invalid/truncated/nonfinite files rejected

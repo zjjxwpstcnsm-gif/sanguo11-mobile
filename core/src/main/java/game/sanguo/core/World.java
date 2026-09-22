@@ -158,6 +158,8 @@ public final class World {
     public int mapRevision;
     public String customMapId="",customMapName="",customMapBase="",customMapFingerprint="";
     public int customMapRevision;
+    /** Optional presentation only; never consumed by strategic rules or SaveCodec. */
+    public transient MapPatch visualMap;
     public final SortedMap<Integer,Integer> siteParents=new TreeMap<>();
     public int sourceColumns(){return sourceMapWidth>0?sourceMapWidth:width;}
     public int sourceRows(){return sourceMapHeight>0?sourceMapHeight:height;}

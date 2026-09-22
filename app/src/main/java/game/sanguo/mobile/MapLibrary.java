@@ -52,6 +52,13 @@ final class MapLibrary {
         if(!p.id.equals(m.group(1))||p.revision!=number(m.group(2)))throw new IOException("不可变版本内容与文件身份不一致，原文件保留");return p;
     }
     void archiveDraft()throws IOException {synchronized(MapLibrary.class){if(present(path("draft.json")))write("draft-recovery-"+System.currentTimeMillis()+".json",read("draft.json"));}}
+    void rememberVisual(World w)throws IOException {if(w.visualMap==null)return;synchronized(MapLibrary.class){if(!w.visualMap.logicalFingerprint().equals(w.customMapFingerprint))throw new IOException("视觉地图内容与战局不一致");write("visual-"+w.customMapFingerprint+".json",w.visualMap.encode());}}
+    MapPatch visual(World w)throws IOException {synchronized(MapLibrary.class){
+        if(!w.customMapFingerprint.matches("[0-9a-f]{64}"))return null;
+        String name="visual-"+w.customMapFingerprint+".json";
+        MapPatch p=present(path(name))?MapPatch.decode(read(name)):load(new Entry(w.customMapId,w.customMapRevision,w.customMapName));
+        return p.id.equals(w.customMapId)&&p.logicalFingerprint().equals(w.customMapFingerprint)?p:null;
+    }}
     MapPatch draft()throws IOException {synchronized(MapLibrary.class){if(present(path("draft.json"))){MapPatch p=MapPatch.decode(read("draft.json"));CustomMaps.verifyBase(p);return p;}if(present(legacy))return migrateLegacy();return CustomMaps.base().fresh();}}
     private MapPatch migrateLegacy()throws IOException {
         try{

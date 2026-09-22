@@ -4,3 +4,8 @@
 -dontobfuscate
 -keep,allowoptimization class game.sanguo.** { *; }
 -keepattributes Signature,InnerClasses,EnclosingMethod,*Annotation*
+# Installed texture-format verification invokes this API from the separate test APK.
+# Keep its binary signature even when normal rendering does not query it.
+-keepclassmembers class com.google.android.filament.Texture {
+    public com.google.android.filament.Texture$InternalFormat getFormat();
+}

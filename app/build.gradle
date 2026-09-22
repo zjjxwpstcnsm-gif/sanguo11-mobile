@@ -25,6 +25,10 @@ android {
         versionName release.getProperty('versionName')
         buildConfigField 'String', 'SOURCE_REVISION', '"' + (revision ?: 'source-archive') + '"'
     }
+    // Explicit opt-in ABI build keeps the existing universal compatibility artifact available.
+    def targetAbi = providers.gradleProperty('targetAbi').getOrElse('universal')
+    if (!(targetAbi in ['universal','arm64-v8a','x86_64','armeabi-v7a','x86'])) throw new GradleException('Unsupported targetAbi: ' + targetAbi)
+    if (targetAbi != 'universal') defaultConfig.ndk.abiFilters.add(targetAbi)
     signingConfigs {
         debug {
             // Public development-only key. Never use for production or privileged distribution.
@@ -46,7 +50,10 @@ android {
     }
     compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
 }
-dependencies { implementation project(':core') }
+dependencies {
+    implementation project(':core')
+    implementation 'com.google.android.filament:filament-android:1.56.0'
+}
 
 // Execute plain Java presentation regressions without adding a runtime/test framework dependency.
 tasks.register('verifyPresentation', Exec) {

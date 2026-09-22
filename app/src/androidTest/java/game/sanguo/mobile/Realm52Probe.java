@@ -36,7 +36,7 @@ final class Realm52Probe {
     private void nationalTurns()throws Exception{
         String[] hashes={"1ae4521c16defb8c43250e35da3cc81019112816e6271e4f84b66c38b8e0826a","2374c4549c7ab176cfda91566486fad5e69da955c153b2cfda13d8b656e7438b","da27cfd72068a454ee5b43b196c68387b5451a3a0db83e4eafa4f92e2c5dce68","032a45c1054516902ea6fea62fdfd03e686bd3981f1b0881560e3d9cd5fa0851","d3cf0274fa0ed2b00d2a1fca56d43a02979783755cbb6700f0f56051b7c32d2a","ee828a3292c29b67ef3c78f5d5b0ffb3673ef55667a8e94c8e284502d78bd079"};
         for(int n=0;n<hashes.length;n++){
-            ui(()->{ClientState state=(ClientState)field(activity,"ui");state.page="map";state.panelVisible=false;activity.refresh();((MapView)field(activity,"map")).fit();});settle();
+            ui(()->{ClientState state=(ClientState)field(activity,"ui");state.page="map";state.panelVisible=false;activity.refresh();((MapView)field(field(activity,"map"),"flat")).fit();});settle();
             TurnWork[] work={null};long external=SystemClock.elapsedRealtime();
             ui(()->{call(activity,"advanceTurn");work[0]=(TurnWork)field(activity,"turnWork");});
             // Final acceptance measures ordinary play, not a stack-sampling session.
@@ -104,7 +104,7 @@ final class Realm52Probe {
     }
     private void critical()throws Exception{
         World before=Realm52Fixture.criticalWorld(true);
-        ui(()->{call(activity,"activateWorld",new Class[]{World.class},before);activity.selectUnitAndFocus(1);ClientState s=(ClientState)field(activity,"ui");s.panelVisible=false;activity.refresh();((MapView)field(activity,"map")).center(before.unit(1).hex);});settle();
+        ui(()->{call(activity,"activateWorld",new Class[]{World.class},before);activity.selectUnitAndFocus(1);ClientState s=(ClientState)field(activity,"ui");s.panelVisible=false;activity.refresh();((MapView)field(field(activity,"map"),"flat")).center(before.unit(1).hex);});settle();
         byte[][] resultBytes={null};ui(()->{World.Result r=Realm52Fixture.criticalCommand(before);require(r.ok&&r.critical!=null,"actual paid tactic produced typed critical hit");activity.applyResult(r);resultBytes[0]=SaveCodec.encode(before);});
         await(()->{Object flash=field(activity,"criticalFlash");return flash!=null&&(Long)field(flash,"began")>0;},2000,"player critical portrait reached a real rendered frame");
         criticalScreenshot();
@@ -112,7 +112,7 @@ final class Realm52Probe {
         World initial=Realm52Fixture.criticalWorld(true),after=SaveCodec.decode(SaveCodec.encode(initial));TurnJournal journal=new TurnJournal(after);Realm52Fixture.criticalCommand(after);journal.close();
         TurnWork work=new TurnWork(initial);work.after=after;work.visual=SaveCodec.decode(SaveCodec.encode(initial));work.events=journal.events();work.batchReady=true;work.done=true;work.fullReplay=true;work.summary="真实战法暴击回放";
         ui(()->{set(activity,"world",initial);set(activity,"turnWork",work);set(activity,"aiRunning",true);call(activity,"finishTurn");});
-        await(()->field(field(activity,"map"),"criticalHit")!=null,4000,"AI/replay pipeline displays the actual critical event");
+        await(()->field(field(field(activity,"map"),"flat"),"criticalHit")!=null,4000,"AI/replay pipeline displays the actual critical event");
         ui(()->((TurnPlayback)field(activity,"playback")).skip());await(()->!(Boolean)field(activity,"aiRunning"),5000,"critical cut-in respects skip");
         require(Arrays.equals(SaveCodec.encode(after),SaveCodec.encode(world())),"replayed critical preserves the exact final state");
     }

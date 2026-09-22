@@ -1,3 +1,10 @@
+## 2026-09-22 S05 checkpoint — PARTIAL
+
+Continue PR #62 / agent/3d-s01-renderer-foundation; main unchanged.
+Delivered moving-unit pose/selection/labels and detached real equipment/state, plus
+wounded playback clone correction. S04 final art and full S05 models/clips remain blocked.
+See docs/3d/acceptance/s05-status.md for exact coverage, regression results and untested gates.
+
 # v0.62 road-only candidate — incomplete overall task
 
 - DONE: full v061 inherited by merging PR49 only; four production ordinary-road render paths changed; existing UI model regression passed.

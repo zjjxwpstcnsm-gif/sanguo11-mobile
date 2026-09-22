@@ -30,7 +30,7 @@ public final class SiegeInstrumentation extends Instrumentation {
             try(OutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(fixture));}
             getTargetContext().getSharedPreferences("map-display",0).edit().clear().putBoolean("navigator",false).commit();
             activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();
-            world=(World)field(activity,"world");map=(MapView)field(activity,"map");
+            world=(World)field(activity,"world");map=(MapView)field(field(activity,"map"),"flat");
             byte[] before=SaveCodec.encode(world);
             for(boolean portrait:new boolean[]{true,false}){
                 runOnMainSync(()->activity.setRequestedOrientation(portrait?ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE));settle();

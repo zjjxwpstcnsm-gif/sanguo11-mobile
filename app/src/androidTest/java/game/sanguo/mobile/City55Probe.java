@@ -34,7 +34,7 @@ final class City55Probe {
         ui(()->{page();map().fit();});settle();
     }
     private World world()throws Exception{return (World)field(activity,"world");}
-    private MapView map()throws Exception{return (MapView)field(activity,"map");}
+    private MapView map()throws Exception{return (MapView)field(field(activity,"map"),"flat");}
     private void page()throws Exception{ClientState state=(ClientState)field(activity,"ui");state.page="map";state.panelVisible=false;state.panelExpanded=false;activity.refresh();}
     private void focus(Hex h,float scale)throws Exception{ui(()->{page();map().focus(h);MapCamera camera=(MapCamera)field(map(),"camera");camera.zoom(scale,map().getWidth()/2f,map().getHeight()/2f);map().center(h);});settle();}
     private void geography()throws Exception{
