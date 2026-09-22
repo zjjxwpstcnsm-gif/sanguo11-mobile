@@ -15,6 +15,10 @@ public final class SiteAffiliation {
     public static World.City parent(World w,World.City site) {
         if(site==null)return null;
         if(site.kind==World.SiteKind.CITY)return site;
+        if(w.siteParents.containsKey(site.id)){
+            World.City parent=w.city(w.siteParents.get(site.id));
+            return parent!=null&&parent.kind==World.SiteKind.CITY?parent:null;
+        }
         int i=site.id-20042;
         if(i>=0&&i<NATIONAL_PARENTS.length){
             World.City parent=w.city(20000+NATIONAL_PARENTS[i]);
