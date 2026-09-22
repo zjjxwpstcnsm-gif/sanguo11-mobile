@@ -1,0 +1,25 @@
+name: Map editor read-only reconciliation snapshot
+on:
+  push:
+    branches: [agent/in-game-map-editor-v067]
+    paths: [.github/workflows/editor67-review-snapshot.yml]
+permissions:
+  contents: read
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/in-game-map-editor-v067
+      - name: Archive actual source and transfer state without applying or writing
+        run: |
+          mkdir -p out/editor67-reconcile
+          git rev-parse HEAD > out/editor67-reconcile/SOURCE_COMMIT.txt
+          git archive --format=zip HEAD > out/editor67-reconcile/source.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: editor67-reconciliation
+          path: out/editor67-reconcile
+          retention-days: 3
