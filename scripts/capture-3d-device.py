@@ -3,7 +3,7 @@
 Run separately for original-2d / current-2d / current-3d on the SAME phone and route.
 SurfaceFlinger latency is optional evidence, not a substitute for trace FrameTimeline analysis.
 """
-import argparse,json,subprocess,time,statistics
+import argparse,json,subprocess,time,shlex
 from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('--mode',choices=['original-2d','current-2d','current-3d'],required=True);p.add_argument('--layer',required=True);p.add_argument('--seconds',type=int,default=1200);p.add_argument('--output',type=Path,required=True);p.add_argument('--manifest',type=Path,required=True);a=p.parse_args()
 manifest=json.loads(a.manifest.read_text())
@@ -23,7 +23,7 @@ traceproc=subprocess.Popen(['adb','shell','perfetto','-o',trace,'-t',str(a.secon
 start=time.monotonic();present=set();samples=[]
 with (a.output/'samples.jsonl').open('w') as out:
  while time.monotonic()-start<a.seconds:
-  now=time.monotonic()-start;latency=adb('shell','dumpsys','SurfaceFlinger','--latency',a.layer)
+  now=time.monotonic()-start;latency=adb('shell','dumpsys','SurfaceFlinger','--latency',shlex.quote(a.layer))
   row=dict(elapsed=now,surface_latency_raw=latency)
   for line in latency.splitlines():
    fields=line.split()

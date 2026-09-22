@@ -25,7 +25,7 @@ public final class PerformanceSceneInstrumentation extends SceneInstrumentation 
                 check(view.camera.width==host.getWidth()&&view.camera.height==host.getHeight(),"input projection remains UI resolution");
                 check(((com.google.android.filament.Texture)field(view,"siteAtlas")).getFormat()==com.google.android.filament.Texture.InternalFormat.ETC2_SRGB8,"actual texture upload format");
                 check(((com.google.android.filament.Texture)field(view,"fieldAtlas")).getFormat()==com.google.android.filament.Texture.InternalFormat.ETC2_SRGB8,"field texture upload format");
-                if(i<3){capture("s08-"+q);surfaceCapture();}
+                if(i<3)capture("s08-"+q);surfaceCapture();
                 runOnMainSync(host::fit);settle();ready();runOnMainSync(()->host.focus(world.home().hex));settle();
                 Debug.MemoryInfo memory=new Debug.MemoryInfo();Debug.getMemoryInfo(memory);
                 String[] report={""};runOnMainSync(()->report[0]=host.report().replace('\n',' '));
