@@ -1,0 +1,48 @@
+name: Merged main APK delivery
+on:
+  push:
+    branches: [agent/custom-officer-editor-20260922-b7e4]
+    paths: [.github/workflows/merge-all-main-delivery.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Inspect exact integration conflicts
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'Integration build'
+          git config user.email 'integration@users.noreply.github.com'
+          test "$(git rev-parse origin/main)" = '25d5ae49cde789ac421a8584bf941ecce19fe921'
+          mkdir -p /tmp/integration-context
+          git merge --no-commit --no-ff origin/main || true
+          git diff --name-only --diff-filter=U | tee /tmp/integration-context/CONFLICTS.txt
+          python3 - <<'PY'
+          import pathlib, subprocess, re
+          root=pathlib.Path('/tmp/integration-context')
+          for name in (root/'CONFLICTS.txt').read_text().splitlines():
+              path=root/name
+              path.parent.mkdir(parents=True,exist_ok=True)
+              path.write_bytes(pathlib.Path(name).read_bytes())
+              for stage in (1,2,3):
+                  data=subprocess.check_output(['git','show',f':{stage}:{name}'])
+                  pathlib.Path(str(path)+f'.stage{stage}').write_bytes(data)
+              print('\nFILE:',name)
+              text=path.read_text()
+              for block in re.findall(r'<<<<<<< .*?\n.*?>>>>>>> .*?(?:\n|$)',text,re.S):
+                  print(block)
+          PY
+          git merge --abort
+      - uses: actions/upload-artifact@v4
+        with:
+          name: main-integration-conflicts
+          path: /tmp/integration-context
+          if-no-files-found: error
+          retention-days: 7
