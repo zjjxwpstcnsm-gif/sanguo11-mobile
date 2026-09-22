@@ -35,7 +35,7 @@
   "assets": [
     {
       "file": "domestic-MARKET-1-lod0.glb",
-      "sha256": "f042082580a28195e9eebd26af5622e3716c1f0a90438081c077db36d7d1d8d6",
+      "sha256": "e85cc4c0626fc3b934ac8ce23f4d5146c676a8a55e89f4cbe7f06b736fe99a08",
       "bytes": 26592,
       "triangles": 208,
       "vertices": 416,
@@ -55,7 +55,7 @@
     },
     {
       "file": "domestic-MARKET-1-lod1.glb",
-      "sha256": "cd86b7ff2570894302536f57cf3d093f9dafc1d8831f9b9012a87884866524f1",
+      "sha256": "214b8d91cf2db3afaa4d3999190916b7879acc4b0cc5d6dd4f874f4466e97a7c",
       "bytes": 14492,
       "triangles": 64,
       "vertices": 128,
@@ -75,7 +75,7 @@
     },
     {
       "file": "domestic-MARKET-1-lod2.glb",
-      "sha256": "cd86b7ff2570894302536f57cf3d093f9dafc1d8831f9b9012a87884866524f1",
+      "sha256": "214b8d91cf2db3afaa4d3999190916b7879acc4b0cc5d6dd4f874f4466e97a7c",
       "bytes": 14492,
       "triangles": 64,
       "vertices": 128,
@@ -95,7 +95,7 @@
     },
     {
       "file": "domestic-MARKET-2-lod0.glb",
-      "sha256": "b32bb76cccfcd2994dbbbe35708acc31b22524d978a79b57e18446b6a8d5a087",
+      "sha256": "e6254601abe92f52f5da2b8d1fe9eea8e5d4dd729c397645060e924bc473b6a4",
       "bytes": 35324,
       "triangles": 312,
       "vertices": 624,
@@ -115,7 +115,7 @@
     },
     {
       "file": "domestic-MARKET-2-lod1.glb",
-      "sha256": "0fb0ea028150105e53b23bb59f4d6cca9aec7924645a9200fa170a944e62b47f",
+      "sha256": "7e429f559a5d3a2c52e312867553a60820b96bd5a6650bbef707ec510de65159",
       "bytes": 17180,
       "triangles": 96,
       "vertices": 192,
@@ -135,7 +135,7 @@
     },
     {
       "file": "domestic-MARKET-2-lod2.glb",
-      "sha256": "0fb0ea028150105e53b23bb59f4d6cca9aec7924645a9200fa170a944e62b47f",
+      "sha256": "7e429f559a5d3a2c52e312867553a60820b96bd5a6650bbef707ec510de65159",
       "bytes": 17180,
       "triangles": 96,
       "vertices": 192,
@@ -155,7 +155,7 @@
     },
     {
       "file": "domestic-MARKET-3-lod0.glb",
-      "sha256": "3da113662a2a22cb9786d24899d9f89e2cef318cbe8228c9a844f619a5b9bf1e",
+      "sha256": "b01504681ae444e66da1b44dd8dc261d6622c3e138de3aa4763b810496caf7fa",
       "bytes": 44064,
       "triangles": 416,
       "vertices": 832,
@@ -175,7 +175,7 @@
     },
     {
       "file": "domestic-MARKET-3-lod1.glb",
-      "sha256": "d531356eea9d80db43f722aa43a95213f2e0e1f088d65e2bdee0836d86bd773e",
+      "sha256": "57ac50d10bbc4a7b4374a8cb3a5f3991fec527eea700d80f57b697393452d2a2",
       "bytes": 19868,
       "triangles": 128,
       "vertices": 256,
@@ -195,7 +195,7 @@
     },
     {
       "file": "domestic-MARKET-3-lod2.glb",
-      "sha256": "d531356eea9d80db43f722aa43a95213f2e0e1f088d65e2bdee0836d86bd773e",
+      "sha256": "57ac50d10bbc4a7b4374a8cb3a5f3991fec527eea700d80f57b697393452d2a2",
       "bytes": 19868,
       "triangles": 128,
       "vertices": 256,
@@ -215,7 +215,7 @@
     },
     {
       "file": "domestic-FARM-1-lod0.glb",
-      "sha256": "cf261b37b4c7e3768e65ab0d30ba7d3a68e3e1e6bacd45e3d8f5ce519de5a817",
+      "sha256": "c963f9509e45601a3f3c5fca25dc097fa28bb4a1a27fb84c9e9ec9079484d280",
       "bytes": 39980,
       "triangles": 346,
       "vertices": 742,
@@ -235,7 +235,7 @@
     },
     {
       "file": "domestic-FARM-1-lod1.glb",
-      "sha256": "ffa11757603ad62e60175f772250c83b1ce5e55359c5482c21943280df475ec7",
+      "sha256": "48fba14a811bb97aca6043e5c773c3d6f7de48f260723d924787f92bbb263750",
       "bytes": 22796,
       "triangles": 162,
       "vertices": 326,
@@ -255,7 +255,7 @@
     },
     {
       "file": "domestic-FARM-1-lod2.glb",
-      "sha256": "2e12b7333a410c854062fdd2409dc5827fb464f543d08f3ae89091664477d2f3",
+      "sha256": "3dba4a973a58eec6263336c6327eac1d36b4beda7b9cf01d94bfe0a6e10d8f46",
       "bytes": 16576,
       "triangles": 88,
       "vertices": 178,
@@ -275,7 +275,7 @@
     },
     {
       "file": "domestic-FARM-2-lod0.glb",
-      "sha256": "67ac0323597331e50686279ca0c36fa166cc240dc1db841cb54308ee3ebeb3bd",
+      "sha256": "ae5b47bce91905c23c5c9a048a7fcc8984b8964a8d7150a24dcc3fb7326aa4ce",
       "bytes": 44280,
       "triangles": 392,
       "vertices": 846,
@@ -295,7 +295,7 @@
     },
     {
       "file": "domestic-FARM-2-lod1.glb",
-      "sha256": "a60dbdf061327fce2d93b12c4932fe5e7c8a794fec257d3405de069472e3b307",
+      "sha256": "c46602988cba087ca3252389f10d03af7588e6a05b80591b290d383792c6ffd6",
       "bytes": 23636,
       "triangles": 172,
       "vertices": 346,
@@ -315,7 +315,7 @@
     },
     {
       "file": "domestic-FARM-2-lod2.glb",
-      "sha256": "da3db7efa901393b74543955b05ae792a9bbe6807d77938977efafd414791bb2",
+      "sha256": "a2d2ccba75ca5a85318fb41639349e6cdbf6d8fab94b50529f677cf722aa35a8",
       "bytes": 17416,
       "triangles": 98,
       "vertices": 198,
@@ -335,7 +335,7 @@
     },
     {
       "file": "domestic-FARM-3-lod0.glb",
-      "sha256": "29c06b4d797134f98de04339786a62a2ac7022d8531eef421db14205349562fc",
+      "sha256": "f3fdea74738755a89f675bf732b48d640159e15f5b9e927d29e60bde7bf12434",
       "bytes": 48576,
       "triangles": 438,
       "vertices": 950,
@@ -355,7 +355,7 @@
     },
     {
       "file": "domestic-FARM-3-lod1.glb",
-      "sha256": "3fcf6508574d42b33159fc1defd14ebdc47647011d4afbb8be99a1d77a37cd1b",
+      "sha256": "0926bcb77e8fcbe2ad1fc3c4316cd8416311b2047f4921d130acf5443597d812",
       "bytes": 24476,
       "triangles": 182,
       "vertices": 366,
@@ -375,7 +375,7 @@
     },
     {
       "file": "domestic-FARM-3-lod2.glb",
-      "sha256": "52c24e7a849629fec61b1fe7179d913e923bd75a05cfb6ca6f2f4b7395f095e5",
+      "sha256": "2764740b17b015dead8bda20a3ad0b3f03baed8464ed8601bac3b93c6821937b",
       "bytes": 18256,
       "triangles": 108,
       "vertices": 218,
@@ -395,7 +395,7 @@
     },
     {
       "file": "domestic-BARRACKS-1-lod0.glb",
-      "sha256": "bc45fd30a10573d34073384c1019c41857870b9ff91aea80475a3e67c1fe7e9d",
+      "sha256": "6a44ea97144b88459707d716a0b9c3a7ee0670acc0705943216c1225940905fd",
       "bytes": 22536,
       "triangles": 158,
       "vertices": 320,
@@ -415,7 +415,7 @@
     },
     {
       "file": "domestic-BARRACKS-1-lod1.glb",
-      "sha256": "bd2d70e7a64e3e736136867ae49c684ea645f2e647c21163c875c4e9d4cc96c5",
+      "sha256": "61424a59a2728756b85f4ebc963d8aeaa559f8010a178f920fc01e84c2d66bae",
       "bytes": 19176,
       "triangles": 118,
       "vertices": 240,
@@ -435,7 +435,7 @@
     },
     {
       "file": "domestic-BARRACKS-1-lod2.glb",
-      "sha256": "f2244137c55024d8a1a20824a8fba27f706ddbd1b73f4d912133e73869c33900",
+      "sha256": "741a1a8a62e3b5ede8017571381be711053e5f8480437f325a0f87511f7522ed",
       "bytes": 12952,
       "triangles": 44,
       "vertices": 92,
@@ -455,7 +455,7 @@
     },
     {
       "file": "domestic-BARRACKS-2-lod0.glb",
-      "sha256": "48049dff27771a191f81794af6251d5f796534f68090f7b2f38778b786301dd7",
+      "sha256": "756e227d8de0a01545945d256772732f7f6581e12d82876b48b0c9bd8cea842e",
       "bytes": 35396,
       "triangles": 310,
       "vertices": 626,
@@ -475,7 +475,7 @@
     },
     {
       "file": "domestic-BARRACKS-2-lod1.glb",
-      "sha256": "b74d9e79ccc998800bec9f8ffc56975a3e99f6bd36cf3f5f75acdebf96f94dd3",
+      "sha256": "5e76356c7cd19a27920f6cbb366ce39fe4be6f036622df7bc64cd7bc514022e1",
       "bytes": 28660,
       "triangles": 230,
       "vertices": 466,
@@ -495,7 +495,7 @@
     },
     {
       "file": "domestic-BARRACKS-2-lod2.glb",
-      "sha256": "74514cb4d5d2cc3a53a0a79299068f48c6a03fca7e3f507e30fa269f7f03c600",
+      "sha256": "3a71b58bdada5bcf2900acc8de0f238da346a64bf97e8315ee40476721150d42",
       "bytes": 16224,
       "triangles": 82,
       "vertices": 170,
@@ -515,7 +515,7 @@
     },
     {
       "file": "domestic-BARRACKS-3-lod0.glb",
-      "sha256": "210ccfa08e2832b746fc8f33257b2ea4470a8abafe27c0ffe3bc9d02d18fd562",
+      "sha256": "253b49cfdba433d5f7da346f99693399b10526a60a1f9e0cdd44ac2a7c8e867f",
       "bytes": 41268,
       "triangles": 380,
       "vertices": 766,
@@ -535,7 +535,7 @@
     },
     {
       "file": "domestic-BARRACKS-3-lod1.glb",
-      "sha256": "e93966f8d35988307c887035e42ac408a0789c0079c3ce25320dc975b8c859e3",
+      "sha256": "8c6828515c24909d9a3c9cbbf9055bad35ee1b245fe7a42be38841dd8c4ac5b1",
       "bytes": 29492,
       "triangles": 240,
       "vertices": 486,
@@ -555,7 +555,7 @@
     },
     {
       "file": "domestic-BARRACKS-3-lod2.glb",
-      "sha256": "5a00a5dee44bb2845ba2d7c3724533158d30bd1f38ab368efefe2764792d2281",
+      "sha256": "00f55272d649bbce34899b2567765c468458ed7f07de4cab4005debeedd2b04b",
       "bytes": 17060,
       "triangles": 92,
       "vertices": 190,
@@ -575,7 +575,7 @@
     },
     {
       "file": "domestic-SMITH-1-lod0.glb",
-      "sha256": "151341947a68d3a9b571d83de1bc50b293caf7a30765e0fb25b18d39e969c22e",
+      "sha256": "fcb9bafdb43c781ad7fe69fa12fc328eaa97e31187d8d93f82ae3cea7bc7d098",
       "bytes": 27396,
       "triangles": 210,
       "vertices": 438,
@@ -595,7 +595,7 @@
     },
     {
       "file": "domestic-SMITH-1-lod1.glb",
-      "sha256": "e34e35d1e032951a550b22e52164820f80444868093da2a99ecd45236938af4d",
+      "sha256": "9ef5a77898a9fdaef689fae15587b4e5fe927accc18191cfa6a177177fd5ae33",
       "bytes": 24036,
       "triangles": 170,
       "vertices": 358,
@@ -615,7 +615,7 @@
     },
     {
       "file": "domestic-SMITH-1-lod2.glb",
-      "sha256": "83a31798a52043b0fe3e2841d99a330a2187648b0afc0bede54f8db79aabf240",
+      "sha256": "f8f0363c9404a6923d92a7f1dca88fc8b9e0a46a75f9b0a0e72e5a6db458ce82",
       "bytes": 17816,
       "triangles": 96,
       "vertices": 210,
@@ -635,7 +635,7 @@
     },
     {
       "file": "domestic-SMITH-2-lod0.glb",
-      "sha256": "023a47866a15a5d13d13dd4c3a2df7bc7385aaccfc5ff8447a6a077223b90379",
+      "sha256": "e07e0c8816fd56d72358fee483706506c0c7e502e0e6b955665460b08159e0a3",
       "bytes": 40268,
       "triangles": 362,
       "vertices": 744,
@@ -655,7 +655,7 @@
     },
     {
       "file": "domestic-SMITH-2-lod1.glb",
-      "sha256": "31e52b44ec409afea27d848b38af90955b538b5a111fd0990ead6bc21f9e7698",
+      "sha256": "35a531559bd728962989978d2b0d929dab3ab15929a3257d9c6ad173ecd44020",
       "bytes": 33532,
       "triangles": 282,
       "vertices": 584,
@@ -675,7 +675,7 @@
     },
     {
       "file": "domestic-SMITH-2-lod2.glb",
-      "sha256": "7e98e3939673c6e7fc5e2e4221af099812b79a613af256be9177541117f70da3",
+      "sha256": "2de21166589f9eade30da617c0c58e0bba4487505d9e62ad60decdd9cfcaa7af",
       "bytes": 21100,
       "triangles": 134,
       "vertices": 288,
@@ -695,7 +695,7 @@
     },
     {
       "file": "domestic-SMITH-3-lod0.glb",
-      "sha256": "84f31b9c55066b8550c892fb552c0d6eaa53520045d23a4ae597c24d9d053ec9",
+      "sha256": "2be6e8df2b032a5aac6d1420d3d0e276eb981e70ba526a6a11f2ec9bddcb4a95",
       "bytes": 46144,
       "triangles": 432,
       "vertices": 884,
@@ -715,7 +715,7 @@
     },
     {
       "file": "domestic-SMITH-3-lod1.glb",
-      "sha256": "8efa438d64d793f26525adb82407041f4747ff8f60233f39c7c117b6e50194ef",
+      "sha256": "b5719110cf13c82efb68d1dfb69e0e01daea8b75fee30b6cc68381e8319f94c8",
       "bytes": 34364,
       "triangles": 292,
       "vertices": 604,
@@ -735,7 +735,7 @@
     },
     {
       "file": "domestic-SMITH-3-lod2.glb",
-      "sha256": "e98656879d66aa6c5bf51a22f62dbe5012c48cf06298f933ca2501a76e7d0021",
+      "sha256": "8d0bf836d5e2fff636fe9b329199aa78a76cf1a8ec36d9b85e94803bb9db8842",
       "bytes": 21932,
       "triangles": 144,
       "vertices": 308,
@@ -755,7 +755,7 @@
     },
     {
       "file": "domestic-MINT-1-lod0.glb",
-      "sha256": "a4fe100f0473927d84f25223f1ddb853da369aa7774872ae1bcb26ebf47640cf",
+      "sha256": "465724fc8df6d691c035a67bec1d921842f32fde9878dd68e48ca84459aca523",
       "bytes": 26600,
       "triangles": 200,
       "vertices": 418,
@@ -775,7 +775,7 @@
     },
     {
       "file": "domestic-MINT-1-lod1.glb",
-      "sha256": "1a3702e4805655358862ecad0473da5645859e170782a5b97310895407199f27",
+      "sha256": "ca4555e59d27e4f6b512306cbcf036ef40fe9ddeb4883942b2a4dbaaa0dfe5c7",
       "bytes": 23240,
       "triangles": 160,
       "vertices": 338,
@@ -795,7 +795,7 @@
     },
     {
       "file": "domestic-MINT-1-lod2.glb",
-      "sha256": "07de65dfa987b1109d1f8591cf9ae33cd947f57daf7f8f060b807ecacfc301cc",
+      "sha256": "d397f15f7d5a2f24dc301cf3e7613f0fa1a76e5b2b6d36c69fbf3c6e4c928d31",
       "bytes": 17024,
       "triangles": 86,
       "vertices": 190,
@@ -815,7 +815,7 @@
     },
     {
       "file": "domestic-GRANARY-1-lod0.glb",
-      "sha256": "7df18cdd41311a07c91662f384733895787a1f936e6414d8134dddce5c43e5b5",
+      "sha256": "be925eeea66243dff1032e340953ce4de8cfbf518569fbb3bc939497978f53c8",
       "bytes": 16572,
       "triangles": 80,
       "vertices": 180,
@@ -835,7 +835,7 @@
     },
     {
       "file": "domestic-GRANARY-1-lod1.glb",
-      "sha256": "7df18cdd41311a07c91662f384733895787a1f936e6414d8134dddce5c43e5b5",
+      "sha256": "be925eeea66243dff1032e340953ce4de8cfbf518569fbb3bc939497978f53c8",
       "bytes": 16572,
       "triangles": 80,
       "vertices": 180,
@@ -855,7 +855,7 @@
     },
     {
       "file": "domestic-GRANARY-1-lod2.glb",
-      "sha256": "7df18cdd41311a07c91662f384733895787a1f936e6414d8134dddce5c43e5b5",
+      "sha256": "be925eeea66243dff1032e340953ce4de8cfbf518569fbb3bc939497978f53c8",
       "bytes": 16572,
       "triangles": 80,
       "vertices": 180,
@@ -875,7 +875,7 @@
     },
     {
       "file": "domestic-STABLE-1-lod0.glb",
-      "sha256": "45977351870e9c22e415b94adedaccc7c083db9736b9d11412f19a66abe5e532",
+      "sha256": "e7458971da57ce862f1c7df9bc524c79776586d70ab9b229adbba5299e10cdd8",
       "bytes": 28364,
       "triangles": 228,
       "vertices": 458,
@@ -895,7 +895,7 @@
     },
     {
       "file": "domestic-STABLE-1-lod1.glb",
-      "sha256": "34ea48d1e7489fa7d39636e616e8d18168e7360c6de6f5f33105f1bacfbb119d",
+      "sha256": "3c38184fb066e7eb5de59a491823d537e29dc7d199a9d571bc5cbb412e6d5fad",
       "bytes": 25004,
       "triangles": 188,
       "vertices": 378,
@@ -915,7 +915,7 @@
     },
     {
       "file": "domestic-STABLE-1-lod2.glb",
-      "sha256": "00b9333e8e653fd92bf7cdb960bfe1c8a18a01ac2ff5c475cb05dbce4ddfad3f",
+      "sha256": "8529c9354418f032e6e843775a6a2b8deca7572d936166d6d9fd90963c582969",
       "bytes": 18784,
       "triangles": 114,
       "vertices": 230,
@@ -935,7 +935,7 @@
     },
     {
       "file": "domestic-STABLE-2-lod0.glb",
-      "sha256": "2f02f116ed448cab7520611de735aa92e8e6f89ac137b6ade5ca919d555eb2d6",
+      "sha256": "66223efcc1d2981f3bc89b413c152aedc7f5b794591e36b7771079564fd7d3fe",
       "bytes": 41208,
       "triangles": 380,
       "vertices": 764,
@@ -955,7 +955,7 @@
     },
     {
       "file": "domestic-STABLE-2-lod1.glb",
-      "sha256": "0e380f8e47f702d3d9c8317ef3d75ee50a40e69ae543515c51444f386ea5153a",
+      "sha256": "82cdfeebd62c327ce22baff6a81f177fecaaeb7933957908d8ce835dee3fe3bc",
       "bytes": 34472,
       "triangles": 300,
       "vertices": 604,
@@ -975,7 +975,7 @@
     },
     {
       "file": "domestic-STABLE-2-lod2.glb",
-      "sha256": "2aa9bb34bcbc1a0ff6161157d147979b00039c1971a556c4d5e34dc6b740d398",
+      "sha256": "44ddc41d40fadbbaec545f1927736618facb07a9842696eb89ebae33927d0c99",
       "bytes": 22040,
       "triangles": 152,
       "vertices": 308,
@@ -995,7 +995,7 @@
     },
     {
       "file": "domestic-STABLE-3-lod0.glb",
-      "sha256": "63d7d6a3d1d7ebbab7f3679ef8eeffb1a00e3e527ca190a52dd9e1bc273deb64",
+      "sha256": "60edf38d04629647cd6e5ac33b275e2ffdfbf0aa5a2e5944595f3d4d3577eb8a",
       "bytes": 47080,
       "triangles": 450,
       "vertices": 904,
@@ -1015,7 +1015,7 @@
     },
     {
       "file": "domestic-STABLE-3-lod1.glb",
-      "sha256": "336f4c170f4aa6c843fb08ebb9f8b17dbc6142cf155eab01923026ab0a2a8e4f",
+      "sha256": "8037051c1673d392f1423bdf60fdf56742306e76a4bf69b40d068041510477ee",
       "bytes": 35300,
       "triangles": 310,
       "vertices": 624,
@@ -1035,7 +1035,7 @@
     },
     {
       "file": "domestic-STABLE-3-lod2.glb",
-      "sha256": "40ea9941e64026322cfe716263cd9a52f785dc379947811b82f306a1fe6b5ff7",
+      "sha256": "93cbe836c1b4c79197b5ae32e6f36c52c7d5bec189dfd3a967413781e5de5454",
       "bytes": 22868,
       "triangles": 162,
       "vertices": 328,
@@ -1055,7 +1055,7 @@
     },
     {
       "file": "domestic-BLACK_MARKET-1-lod0.glb",
-      "sha256": "ac801066d73145b40681275a56da9808fae7245c84382dc724b28c916c78c36a",
+      "sha256": "e26a2423283a0e665d8b185c537524993f2415aea0e62f9d43087a98843b7292",
       "bytes": 26592,
       "triangles": 208,
       "vertices": 416,
@@ -1075,7 +1075,7 @@
     },
     {
       "file": "domestic-BLACK_MARKET-1-lod1.glb",
-      "sha256": "add026dff78754536072aad78a843354824779411e928d1543dc846181a9179b",
+      "sha256": "8e7edb6ffc43282fa18d24e912dd5ffd83822e005a777379e0e8d163a7d40eaf",
       "bytes": 14492,
       "triangles": 64,
       "vertices": 128,
@@ -1095,7 +1095,7 @@
     },
     {
       "file": "domestic-BLACK_MARKET-1-lod2.glb",
-      "sha256": "add026dff78754536072aad78a843354824779411e928d1543dc846181a9179b",
+      "sha256": "8e7edb6ffc43282fa18d24e912dd5ffd83822e005a777379e0e8d163a7d40eaf",
       "bytes": 14492,
       "triangles": 64,
       "vertices": 128,
@@ -1115,7 +1115,7 @@
     },
     {
       "file": "domestic-WORKSHOP-1-lod0.glb",
-      "sha256": "652c3d083fd70eefef90cb74a6152828ebb81c922e21916f46ee7773e34ee71f",
+      "sha256": "23d770aedafc98c87fef5c657a0768967f58ef05156c4b41f48e257cf2b9e29b",
       "bytes": 45768,
       "triangles": 394,
       "vertices": 886,
@@ -1135,7 +1135,7 @@
     },
     {
       "file": "domestic-WORKSHOP-1-lod1.glb",
-      "sha256": "b01aad4036ec0769143b6b6fae4f590e94a1210d0ae74cea0fb2f557009b943c",
+      "sha256": "f5dfab73787b227cbe19078d53a80e3f73d883ec5eaf915207e26ccedb833b59",
       "bytes": 35876,
       "triangles": 290,
       "vertices": 646,
@@ -1155,7 +1155,7 @@
     },
     {
       "file": "domestic-WORKSHOP-1-lod2.glb",
-      "sha256": "8fc38d4f89dca93717fe481bccecbd5f459f4ff37268878318d6152b7a53191c",
+      "sha256": "4695a483d14acf9b9200e2eb17a0aef4ec3a48fa306ef0cafca8cf4e9e51f242",
       "bytes": 29660,
       "triangles": 216,
       "vertices": 498,
@@ -1175,7 +1175,7 @@
     },
     {
       "file": "domestic-SHIPYARD-1-lod0.glb",
-      "sha256": "8805338ddaf0e006b9a355e54822631f8b2f28185e43c55d1eeba01269fb2a46",
+      "sha256": "b0ed83f79e764cdb32f280a093f5d48cbe509ecf4a6016e945fc14b5cc55cbd3",
       "bytes": 26832,
       "triangles": 210,
       "vertices": 422,
@@ -1195,7 +1195,7 @@
     },
     {
       "file": "domestic-SHIPYARD-1-lod1.glb",
-      "sha256": "18babf87d22d22f78be4eb6b00d40ebb927dae13aec84eb405fc683c6a2e5ca7",
+      "sha256": "959a0185aec823c1285e761a9cc59995027c5b96fc78d456d520347f88f87e86",
       "bytes": 23472,
       "triangles": 170,
       "vertices": 342,
@@ -1215,7 +1215,7 @@
     },
     {
       "file": "domestic-SHIPYARD-1-lod2.glb",
-      "sha256": "b52d62b2854bde12666d796e0bba8562ee06e7f9ad300548c73cb41a0fa9fe03",
+      "sha256": "1a0401b63fdb97adbe5c70e5d33db03f29c36f977169d752918962ad57edaa1d",
       "bytes": 17252,
       "triangles": 96,
       "vertices": 194,
@@ -1235,7 +1235,7 @@
     },
     {
       "file": "domestic-BRONZE_TERRACE-1-lod0.glb",
-      "sha256": "d0b481c63444bdc78e9f73c9af8247522937ef39fc3b4a8b12213fead06424b0",
+      "sha256": "635836e6110489745ce8cc1194aa1f3afd6c7448f12517b9a6a20ea65c46398e",
       "bytes": 28328,
       "triangles": 228,
       "vertices": 458,
@@ -1255,7 +1255,7 @@
     },
     {
       "file": "domestic-BRONZE_TERRACE-1-lod1.glb",
-      "sha256": "693665aee444444d32626ce3daf191ea7cd21e0ce6b352af3ecb024a9c9fbb50",
+      "sha256": "13cfbcdc6faab0507a109b9f5113a3d5739cdd9c18aa4566e6931e9de5ccdd1b",
       "bytes": 24968,
       "triangles": 188,
       "vertices": 378,
@@ -1275,7 +1275,7 @@
     },
     {
       "file": "domestic-BRONZE_TERRACE-1-lod2.glb",
-      "sha256": "6d987cc4183606ac23c6c143545e1d428a5b5d46cf505e72a7ad198e9c6c473a",
+      "sha256": "2ecdac23d387662b34a9d01252ee8e4584280b0f74f8dee2f0d7f9829a67eaf8",
       "bytes": 18748,
       "triangles": 114,
       "vertices": 230,
@@ -1295,7 +1295,7 @@
     },
     {
       "file": "military-CAMP-1-lod0.glb",
-      "sha256": "0dbd140fde07e277f854ba2552a4948acb162a3e98a42cd7a287bb2dd725f015",
+      "sha256": "5aac57db5c03d3bfe196fd133109b3f30659ed3a1bc9192583e9e0fb08f7d1db",
       "bytes": 52928,
       "triangles": 456,
       "vertices": 1064,
@@ -1315,7 +1315,7 @@
     },
     {
       "file": "military-CAMP-1-lod1.glb",
-      "sha256": "5b8e952dbf671d1d333ebd810624d04b076ae818c5f537e42b8dc0ae66e0ae1d",
+      "sha256": "1cd2e724a5b6de6e9528245473210a56fdf59be9ec78b5af1bde38acdc0ebdb0",
       "bytes": 35640,
       "triangles": 276,
       "vertices": 644,
@@ -1335,7 +1335,7 @@
     },
     {
       "file": "military-CAMP-1-lod2.glb",
-      "sha256": "5b8e952dbf671d1d333ebd810624d04b076ae818c5f537e42b8dc0ae66e0ae1d",
+      "sha256": "1cd2e724a5b6de6e9528245473210a56fdf59be9ec78b5af1bde38acdc0ebdb0",
       "bytes": 35640,
       "triangles": 276,
       "vertices": 644,
@@ -1355,7 +1355,7 @@
     },
     {
       "file": "military-ARROW_TOWER-1-lod0.glb",
-      "sha256": "01c521c615f1ebc4cbd7c755614f1c9d1e1e8037cd63739c3298d226ccba3bc1",
+      "sha256": "9c9a38d30e14dba7a519d80afc71c34009d8f0a414a993156d4535bfda552865",
       "bytes": 17240,
       "triangles": 96,
       "vertices": 194,
@@ -1375,7 +1375,7 @@
     },
     {
       "file": "military-ARROW_TOWER-1-lod1.glb",
-      "sha256": "01c521c615f1ebc4cbd7c755614f1c9d1e1e8037cd63739c3298d226ccba3bc1",
+      "sha256": "9c9a38d30e14dba7a519d80afc71c34009d8f0a414a993156d4535bfda552865",
       "bytes": 17240,
       "triangles": 96,
       "vertices": 194,
@@ -1395,7 +1395,7 @@
     },
     {
       "file": "military-ARROW_TOWER-1-lod2.glb",
-      "sha256": "01c521c615f1ebc4cbd7c755614f1c9d1e1e8037cd63739c3298d226ccba3bc1",
+      "sha256": "9c9a38d30e14dba7a519d80afc71c34009d8f0a414a993156d4535bfda552865",
       "bytes": 17240,
       "triangles": 96,
       "vertices": 194,
@@ -1415,7 +1415,7 @@
     },
     {
       "file": "military-MUSIC-1-lod0.glb",
-      "sha256": "e91d5729f84ed3b0843551ec99c15f5bfbb306564648a078e2ab9ec3ad0458d4",
+      "sha256": "fe68630d42067c5dd034aff9521f6aa437e4864c8954abdcf39112978eb39f06",
       "bytes": 21680,
       "triangles": 136,
       "vertices": 304,
@@ -1435,7 +1435,7 @@
     },
     {
       "file": "military-MUSIC-1-lod1.glb",
-      "sha256": "e91d5729f84ed3b0843551ec99c15f5bfbb306564648a078e2ab9ec3ad0458d4",
+      "sha256": "fe68630d42067c5dd034aff9521f6aa437e4864c8954abdcf39112978eb39f06",
       "bytes": 21680,
       "triangles": 136,
       "vertices": 304,
@@ -1455,7 +1455,7 @@
     },
     {
       "file": "military-MUSIC-1-lod2.glb",
-      "sha256": "e91d5729f84ed3b0843551ec99c15f5bfbb306564648a078e2ab9ec3ad0458d4",
+      "sha256": "fe68630d42067c5dd034aff9521f6aa437e4864c8954abdcf39112978eb39f06",
       "bytes": 21680,
       "triangles": 136,
       "vertices": 304,
@@ -1475,7 +1475,7 @@
     },
     {
       "file": "military-FIRE_SEED-1-lod0.glb",
-      "sha256": "e71789d4955890094982cd68cdb7ffef0587e8d2f922bc469ddd47b7d00952d8",
+      "sha256": "e9ba9e76695eec79424101ad3d366890643771c4abb345010df9134f9d637f85",
       "bytes": 12268,
       "triangles": 34,
       "vertices": 76,
@@ -1495,7 +1495,7 @@
     },
     {
       "file": "military-FIRE_SEED-1-lod1.glb",
-      "sha256": "e71789d4955890094982cd68cdb7ffef0587e8d2f922bc469ddd47b7d00952d8",
+      "sha256": "e9ba9e76695eec79424101ad3d366890643771c4abb345010df9134f9d637f85",
       "bytes": 12268,
       "triangles": 34,
       "vertices": 76,
@@ -1515,7 +1515,7 @@
     },
     {
       "file": "military-FIRE_SEED-1-lod2.glb",
-      "sha256": "e71789d4955890094982cd68cdb7ffef0587e8d2f922bc469ddd47b7d00952d8",
+      "sha256": "e9ba9e76695eec79424101ad3d366890643771c4abb345010df9134f9d637f85",
       "bytes": 12268,
       "triangles": 34,
       "vertices": 76,
@@ -1535,7 +1535,7 @@
     },
     {
       "file": "military-FORT-1-lod0.glb",
-      "sha256": "88f0df2eb1a5526f812077dcfd10f33d21b3792f41f17bf29b9bc745c6c2e492",
+      "sha256": "47e180ea6a35c79ccd1c88a12ac34a13ebb85d6ce4e8c6e6dacf8eb5cd5d452e",
       "bytes": 54080,
       "triangles": 468,
       "vertices": 1092,
@@ -1555,7 +1555,7 @@
     },
     {
       "file": "military-FORT-1-lod1.glb",
-      "sha256": "622ded240f007bcc557eb67932cbc95af8086822dab6130a0d405c6bb0b19340",
+      "sha256": "02fc7672a98c6a411f8470a9a2a08f9719274657dd7456096f7c45a5ca599af6",
       "bytes": 36792,
       "triangles": 288,
       "vertices": 672,
@@ -1575,7 +1575,7 @@
     },
     {
       "file": "military-FORT-1-lod2.glb",
-      "sha256": "622ded240f007bcc557eb67932cbc95af8086822dab6130a0d405c6bb0b19340",
+      "sha256": "02fc7672a98c6a411f8470a9a2a08f9719274657dd7456096f7c45a5ca599af6",
       "bytes": 36792,
       "triangles": 288,
       "vertices": 672,
@@ -1595,7 +1595,7 @@
     },
     {
       "file": "military-FORTRESS-1-lod0.glb",
-      "sha256": "5a9ea3682108990bfbd770a7555de809bdc333eccffd4df3d4149f6cf7a16285",
+      "sha256": "84c2572131731a7323d51a374b8c051a4cb433fde45579ab515ddaa7c7d864d8",
       "bytes": 43848,
       "triangles": 410,
       "vertices": 828,
@@ -1615,7 +1615,7 @@
     },
     {
       "file": "military-FORTRESS-1-lod1.glb",
-      "sha256": "6ad40816dde12e67b56210e49b33b7a810dc3922b4ebf9058403a1d6ecf52938",
+      "sha256": "8fa44808a19ad753ba7815268551db0249094e328b4d9d8fdd58059a3fce2fad",
       "bytes": 24524,
       "triangles": 180,
       "vertices": 368,
@@ -1635,7 +1635,7 @@
     },
     {
       "file": "military-FORTRESS-1-lod2.glb",
-      "sha256": "cd274e9421cdb1744c831c84e8cd011ff82adc3411965f233d7130a3e390d9a3",
+      "sha256": "b85da25ccd7dbd363c41cb810a83fc13ccd6ff6bec4ee3616ce1ca9bbd379ba4",
       "bytes": 18304,
       "triangles": 106,
       "vertices": 220,
@@ -1655,7 +1655,7 @@
     },
     {
       "file": "military-CROSSBOW_TOWER-1-lod0.glb",
-      "sha256": "c893a773027af13fad138b53eb5b9a327ed156fabab516f67fcf7e25fa088886",
+      "sha256": "479040635df2790189c051746c0f2463348488ef0e8c391e32821b839c729cf4",
       "bytes": 18080,
       "triangles": 106,
       "vertices": 214,
@@ -1675,7 +1675,7 @@
     },
     {
       "file": "military-CROSSBOW_TOWER-1-lod1.glb",
-      "sha256": "c893a773027af13fad138b53eb5b9a327ed156fabab516f67fcf7e25fa088886",
+      "sha256": "479040635df2790189c051746c0f2463348488ef0e8c391e32821b839c729cf4",
       "bytes": 18080,
       "triangles": 106,
       "vertices": 214,
@@ -1695,7 +1695,7 @@
     },
     {
       "file": "military-CROSSBOW_TOWER-1-lod2.glb",
-      "sha256": "c893a773027af13fad138b53eb5b9a327ed156fabab516f67fcf7e25fa088886",
+      "sha256": "479040635df2790189c051746c0f2463348488ef0e8c391e32821b839c729cf4",
       "bytes": 18080,
       "triangles": 106,
       "vertices": 214,
@@ -1715,7 +1715,7 @@
     },
     {
       "file": "military-CATAPULT_TOWER-1-lod0.glb",
-      "sha256": "28eba9e2618dce280a672b25f70127a41cef09ea7a1139358aaf985251a328cc",
+      "sha256": "e31c2e6403d0c9028b766c7bbdc16f7b6fdfe45334aab33fbb57eb2dbc90da62",
       "bytes": 18860,
       "triangles": 116,
       "vertices": 232,
@@ -1735,7 +1735,7 @@
     },
     {
       "file": "military-CATAPULT_TOWER-1-lod1.glb",
-      "sha256": "28eba9e2618dce280a672b25f70127a41cef09ea7a1139358aaf985251a328cc",
+      "sha256": "e31c2e6403d0c9028b766c7bbdc16f7b6fdfe45334aab33fbb57eb2dbc90da62",
       "bytes": 18860,
       "triangles": 116,
       "vertices": 232,
@@ -1755,7 +1755,7 @@
     },
     {
       "file": "military-CATAPULT_TOWER-1-lod2.glb",
-      "sha256": "28eba9e2618dce280a672b25f70127a41cef09ea7a1139358aaf985251a328cc",
+      "sha256": "e31c2e6403d0c9028b766c7bbdc16f7b6fdfe45334aab33fbb57eb2dbc90da62",
       "bytes": 18860,
       "triangles": 116,
       "vertices": 232,
@@ -1775,7 +1775,7 @@
     },
     {
       "file": "military-DRUM-1-lod0.glb",
-      "sha256": "d58b65cc42068832c4c3d5247e21ecb6e8134b2b40cc50dac0583d1bf0e06188",
+      "sha256": "5ab0a3b496c20dd697f07f9f6153b7592936215e9fbda6a4feea1c687bc1b1f7",
       "bytes": 14548,
       "triangles": 58,
       "vertices": 132,
@@ -1795,7 +1795,7 @@
     },
     {
       "file": "military-DRUM-1-lod1.glb",
-      "sha256": "d58b65cc42068832c4c3d5247e21ecb6e8134b2b40cc50dac0583d1bf0e06188",
+      "sha256": "5ab0a3b496c20dd697f07f9f6153b7592936215e9fbda6a4feea1c687bc1b1f7",
       "bytes": 14548,
       "triangles": 58,
       "vertices": 132,
@@ -1815,7 +1815,7 @@
     },
     {
       "file": "military-DRUM-1-lod2.glb",
-      "sha256": "d58b65cc42068832c4c3d5247e21ecb6e8134b2b40cc50dac0583d1bf0e06188",
+      "sha256": "5ab0a3b496c20dd697f07f9f6153b7592936215e9fbda6a4feea1c687bc1b1f7",
       "bytes": 14548,
       "triangles": 58,
       "vertices": 132,
@@ -1835,7 +1835,7 @@
     },
     {
       "file": "military-STONE_MAZE-1-lod0.glb",
-      "sha256": "173f330c80eefb4995447ff291ff7bef3794a3a4e27961cfc760a3d24622d29e",
+      "sha256": "4da79ae35df5e0624b1664a2598c8d32423505ef0da28385d0de7e926d014041",
       "bytes": 20680,
       "triangles": 120,
       "vertices": 280,
@@ -1855,7 +1855,7 @@
     },
     {
       "file": "military-STONE_MAZE-1-lod1.glb",
-      "sha256": "173f330c80eefb4995447ff291ff7bef3794a3a4e27961cfc760a3d24622d29e",
+      "sha256": "4da79ae35df5e0624b1664a2598c8d32423505ef0da28385d0de7e926d014041",
       "bytes": 20680,
       "triangles": 120,
       "vertices": 280,
@@ -1875,7 +1875,7 @@
     },
     {
       "file": "military-STONE_MAZE-1-lod2.glb",
-      "sha256": "173f330c80eefb4995447ff291ff7bef3794a3a4e27961cfc760a3d24622d29e",
+      "sha256": "4da79ae35df5e0624b1664a2598c8d32423505ef0da28385d0de7e926d014041",
       "bytes": 20680,
       "triangles": 120,
       "vertices": 280,
@@ -1895,7 +1895,7 @@
     },
     {
       "file": "military-EARTH_WALL-1-lod0.glb",
-      "sha256": "41ff14b5bc1817fc077d1a26878cebc9b5008df92737cd899e0e5898e7673681",
+      "sha256": "ba482548dfeef7b22ea22ce40e4d7d717f6abdc212cce5b7fa1284d9d5a0f804",
       "bytes": 10240,
       "triangles": 12,
       "vertices": 28,
@@ -1915,7 +1915,7 @@
     },
     {
       "file": "military-EARTH_WALL-1-lod1.glb",
-      "sha256": "41ff14b5bc1817fc077d1a26878cebc9b5008df92737cd899e0e5898e7673681",
+      "sha256": "ba482548dfeef7b22ea22ce40e4d7d717f6abdc212cce5b7fa1284d9d5a0f804",
       "bytes": 10240,
       "triangles": 12,
       "vertices": 28,
@@ -1935,7 +1935,7 @@
     },
     {
       "file": "military-EARTH_WALL-1-lod2.glb",
-      "sha256": "41ff14b5bc1817fc077d1a26878cebc9b5008df92737cd899e0e5898e7673681",
+      "sha256": "ba482548dfeef7b22ea22ce40e4d7d717f6abdc212cce5b7fa1284d9d5a0f804",
       "bytes": 10240,
       "triangles": 12,
       "vertices": 28,
@@ -1955,7 +1955,7 @@
     },
     {
       "file": "military-STONE_WALL-1-lod0.glb",
-      "sha256": "20a84e3513678487799f6fd5255a5f9f04bcce0afdf776e72f415e44f1563116",
+      "sha256": "1ce308d3096ae8fc0510467f9c2638a71ceaa3be435ba30d282f1dc63b4b32a1",
       "bytes": 15288,
       "triangles": 72,
       "vertices": 148,
@@ -1975,7 +1975,7 @@
     },
     {
       "file": "military-STONE_WALL-1-lod1.glb",
-      "sha256": "20a84e3513678487799f6fd5255a5f9f04bcce0afdf776e72f415e44f1563116",
+      "sha256": "1ce308d3096ae8fc0510467f9c2638a71ceaa3be435ba30d282f1dc63b4b32a1",
       "bytes": 15288,
       "triangles": 72,
       "vertices": 148,
@@ -1995,7 +1995,7 @@
     },
     {
       "file": "military-STONE_WALL-1-lod2.glb",
-      "sha256": "20a84e3513678487799f6fd5255a5f9f04bcce0afdf776e72f415e44f1563116",
+      "sha256": "1ce308d3096ae8fc0510467f9c2638a71ceaa3be435ba30d282f1dc63b4b32a1",
       "bytes": 15288,
       "triangles": 72,
       "vertices": 148,
@@ -2015,7 +2015,7 @@
     },
     {
       "file": "military-FIRE_BALL-1-lod0.glb",
-      "sha256": "00a2fb6dd44fa368d5ab23254c53accf4dd612f6192de130a317b8570d91c184",
+      "sha256": "a94b7d01b117b00df5da7f83269bee85e4d1997508756d5eca2e5d0825885481",
       "bytes": 17044,
       "triangles": 94,
       "vertices": 188,
@@ -2035,7 +2035,7 @@
     },
     {
       "file": "military-FIRE_BALL-1-lod1.glb",
-      "sha256": "00a2fb6dd44fa368d5ab23254c53accf4dd612f6192de130a317b8570d91c184",
+      "sha256": "a94b7d01b117b00df5da7f83269bee85e4d1997508756d5eca2e5d0825885481",
       "bytes": 17044,
       "triangles": 94,
       "vertices": 188,
@@ -2055,7 +2055,7 @@
     },
     {
       "file": "military-FIRE_BALL-1-lod2.glb",
-      "sha256": "00a2fb6dd44fa368d5ab23254c53accf4dd612f6192de130a317b8570d91c184",
+      "sha256": "a94b7d01b117b00df5da7f83269bee85e4d1997508756d5eca2e5d0825885481",
       "bytes": 17044,
       "triangles": 94,
       "vertices": 188,
@@ -2075,7 +2075,7 @@
     },
     {
       "file": "military-FLAME_SEED-1-lod0.glb",
-      "sha256": "994c5a77ac6f9f9160ac038b3b3c240b1eef0f9f80e9c1b9747816e7558a86b2",
+      "sha256": "3d7bb780faa61b0892884dd9f20463771441fc7d4d23d05109a981b4cb37d472",
       "bytes": 15420,
       "triangles": 68,
       "vertices": 152,
@@ -2095,7 +2095,7 @@
     },
     {
       "file": "military-FLAME_SEED-1-lod1.glb",
-      "sha256": "994c5a77ac6f9f9160ac038b3b3c240b1eef0f9f80e9c1b9747816e7558a86b2",
+      "sha256": "3d7bb780faa61b0892884dd9f20463771441fc7d4d23d05109a981b4cb37d472",
       "bytes": 15420,
       "triangles": 68,
       "vertices": 152,
@@ -2115,7 +2115,7 @@
     },
     {
       "file": "military-FLAME_SEED-1-lod2.glb",
-      "sha256": "994c5a77ac6f9f9160ac038b3b3c240b1eef0f9f80e9c1b9747816e7558a86b2",
+      "sha256": "3d7bb780faa61b0892884dd9f20463771441fc7d4d23d05109a981b4cb37d472",
       "bytes": 15420,
       "triangles": 68,
       "vertices": 152,
@@ -2135,7 +2135,7 @@
     },
     {
       "file": "military-FLAME_BALL-1-lod0.glb",
-      "sha256": "195ac7dd572a97a20702925dd535a45aea83ea9e5de9d1823749b629f2bc158d",
+      "sha256": "683af254c1818e282e5f734d24398661df3ed4d477b3ad01935ad1d50afe45c6",
       "bytes": 17884,
       "triangles": 104,
       "vertices": 208,
@@ -2155,7 +2155,7 @@
     },
     {
       "file": "military-FLAME_BALL-1-lod1.glb",
-      "sha256": "195ac7dd572a97a20702925dd535a45aea83ea9e5de9d1823749b629f2bc158d",
+      "sha256": "683af254c1818e282e5f734d24398661df3ed4d477b3ad01935ad1d50afe45c6",
       "bytes": 17884,
       "triangles": 104,
       "vertices": 208,
@@ -2175,7 +2175,7 @@
     },
     {
       "file": "military-FLAME_BALL-1-lod2.glb",
-      "sha256": "195ac7dd572a97a20702925dd535a45aea83ea9e5de9d1823749b629f2bc158d",
+      "sha256": "683af254c1818e282e5f734d24398661df3ed4d477b3ad01935ad1d50afe45c6",
       "bytes": 17884,
       "triangles": 104,
       "vertices": 208,
@@ -2195,7 +2195,7 @@
     },
     {
       "file": "military-INFERNO_SEED-1-lod0.glb",
-      "sha256": "5c7a78b1886a79feddc1d2c728f4f563d2282456d7ba137c6f394ac37be162c0",
+      "sha256": "58223a67776d71266342a64240d4cba88d8d037e2616d31a90137b81907d2308",
       "bytes": 18564,
       "triangles": 102,
       "vertices": 228,
@@ -2215,7 +2215,7 @@
     },
     {
       "file": "military-INFERNO_SEED-1-lod1.glb",
-      "sha256": "5c7a78b1886a79feddc1d2c728f4f563d2282456d7ba137c6f394ac37be162c0",
+      "sha256": "58223a67776d71266342a64240d4cba88d8d037e2616d31a90137b81907d2308",
       "bytes": 18564,
       "triangles": 102,
       "vertices": 228,
@@ -2235,7 +2235,7 @@
     },
     {
       "file": "military-INFERNO_SEED-1-lod2.glb",
-      "sha256": "5c7a78b1886a79feddc1d2c728f4f563d2282456d7ba137c6f394ac37be162c0",
+      "sha256": "58223a67776d71266342a64240d4cba88d8d037e2616d31a90137b81907d2308",
       "bytes": 18564,
       "triangles": 102,
       "vertices": 228,
@@ -2255,7 +2255,7 @@
     },
     {
       "file": "military-INFERNO_BALL-1-lod0.glb",
-      "sha256": "c0f6a2334624b02cbed2478e25bfdd776e272dc46b7020966dd1d5c225b59c2d",
+      "sha256": "7f03fc96613fe7a55bdad0e5b652ec1b68efd276649507e0039f2084465a7705",
       "bytes": 18724,
       "triangles": 114,
       "vertices": 228,
@@ -2275,7 +2275,7 @@
     },
     {
       "file": "military-INFERNO_BALL-1-lod1.glb",
-      "sha256": "c0f6a2334624b02cbed2478e25bfdd776e272dc46b7020966dd1d5c225b59c2d",
+      "sha256": "7f03fc96613fe7a55bdad0e5b652ec1b68efd276649507e0039f2084465a7705",
       "bytes": 18724,
       "triangles": 114,
       "vertices": 228,
@@ -2295,7 +2295,7 @@
     },
     {
       "file": "military-INFERNO_BALL-1-lod2.glb",
-      "sha256": "c0f6a2334624b02cbed2478e25bfdd776e272dc46b7020966dd1d5c225b59c2d",
+      "sha256": "7f03fc96613fe7a55bdad0e5b652ec1b68efd276649507e0039f2084465a7705",
       "bytes": 18724,
       "triangles": 114,
       "vertices": 228,
@@ -2315,7 +2315,7 @@
     },
     {
       "file": "military-FIRE_SHIP-1-lod0.glb",
-      "sha256": "23a9b444c4183a24f2e7a9ffb4eab797abdaf7cc52b25e1519baea3c21b31665",
+      "sha256": "ec16d28aacd5619a9aab03e19c75dac1fcb4cbae81b8dc41b580cee7e7a5ba89",
       "bytes": 16060,
       "triangles": 76,
       "vertices": 168,
@@ -2335,7 +2335,7 @@
     },
     {
       "file": "military-FIRE_SHIP-1-lod1.glb",
-      "sha256": "23a9b444c4183a24f2e7a9ffb4eab797abdaf7cc52b25e1519baea3c21b31665",
+      "sha256": "ec16d28aacd5619a9aab03e19c75dac1fcb4cbae81b8dc41b580cee7e7a5ba89",
       "bytes": 16060,
       "triangles": 76,
       "vertices": 168,
@@ -2355,7 +2355,7 @@
     },
     {
       "file": "military-FIRE_SHIP-1-lod2.glb",
-      "sha256": "23a9b444c4183a24f2e7a9ffb4eab797abdaf7cc52b25e1519baea3c21b31665",
+      "sha256": "ec16d28aacd5619a9aab03e19c75dac1fcb4cbae81b8dc41b580cee7e7a5ba89",
       "bytes": 16060,
       "triangles": 76,
       "vertices": 168,
@@ -2375,7 +2375,7 @@
     },
     {
       "file": "military-DAM-1-lod0.glb",
-      "sha256": "97667b8baff2368c835c003abbac5ab8870309e711bf1eba497d40666ad126c0",
+      "sha256": "4ccd83e7c7c1f667a43f893919e52f764456da73b38e69c22d89d6bb3c7536da",
       "bytes": 12800,
       "triangles": 42,
       "vertices": 88,
@@ -2395,7 +2395,7 @@
     },
     {
       "file": "military-DAM-1-lod1.glb",
-      "sha256": "97667b8baff2368c835c003abbac5ab8870309e711bf1eba497d40666ad126c0",
+      "sha256": "4ccd83e7c7c1f667a43f893919e52f764456da73b38e69c22d89d6bb3c7536da",
       "bytes": 12800,
       "triangles": 42,
       "vertices": 88,
@@ -2415,7 +2415,7 @@
     },
     {
       "file": "military-DAM-1-lod2.glb",
-      "sha256": "97667b8baff2368c835c003abbac5ab8870309e711bf1eba497d40666ad126c0",
+      "sha256": "4ccd83e7c7c1f667a43f893919e52f764456da73b38e69c22d89d6bb3c7536da",
       "bytes": 12800,
       "triangles": 42,
       "vertices": 88,
@@ -2435,47 +2435,47 @@
     },
     {
       "file": "tree-lod0.glb",
-      "sha256": "6095cd9f9b41e3dfc9db4ccfdfd4f5be24368c1758c8d228fc03aee330112775",
-      "bytes": 16632,
-      "triangles": 78,
-      "vertices": 182,
+      "sha256": "fb731f14ffbe01b399ac40f2e97f197f474ad598436c91757f9be70ca5b2d7a4",
+      "bytes": 21184,
+      "triangles": 141,
+      "vertices": 287,
       "materials": 1,
       "texture": [
         512,
         64
       ],
       "bounds": [
-        -0.14415501886438706,
+        -0.20203928914336017,
         0,
-        -0.15598846594909177,
-        0.16,
-        0.71,
-        0.15598846594909177
+        -0.14976060404503788,
+        0.22856406460551018,
+        0.76,
+        0.15320372743311772
       ]
     },
     {
       "file": "tree-lod1.glb",
-      "sha256": "85f93c09733fe41761ede76bd2f25a07c443b8d1377677473a3b5cc11d17bd2c",
-      "bytes": 13476,
-      "triangles": 45,
-      "vertices": 105,
+      "sha256": "010db3a001268ac00f255e4a407fd1a30e15b2274da367ad63541179b16553c5",
+      "bytes": 15624,
+      "triangles": 75,
+      "vertices": 155,
       "materials": 1,
       "texture": [
         512,
         64
       ],
       "bounds": [
-        -0.1294427190999916,
+        -0.20635254915624213,
         0,
-        -0.15216904260722458,
-        0.16,
-        0.5800000000000001,
-        0.15216904260722458
+        -0.16363734711836997,
+        0.25,
+        0.76,
+        0.1681479122813215
       ]
     },
     {
       "file": "scaffold.glb",
-      "sha256": "74c7017147827f2451bf70627284dbf33ae260ec7d99366e042ce32feeb30ee9",
+      "sha256": "3fc84a216a6e74450e307a2f822057d06ba5a74e58543ffe30d7338ab5ca0ee6",
       "bytes": 15860,
       "triangles": 80,
       "vertices": 160,
@@ -2495,7 +2495,7 @@
     },
     {
       "file": "fire.glb",
-      "sha256": "948d6ff3ae9335bdec29334ed6a583fd73d3f892abf46f0767ecd10c99df9c4e",
+      "sha256": "78cb710e8629e6f257e87d89392ca8dcda1bf506a40aca5ab3f817a6125daf00",
       "bytes": 13460,
       "triangles": 45,
       "vertices": 105,
@@ -2515,7 +2515,7 @@
     },
     {
       "file": "unit-SPEAR-lod0.glb",
-      "sha256": "6891e5a1582bc979d695d9db65db9caf3926f37e3645bb786a26003f071d03a9",
+      "sha256": "e4c594e2be6dda62643af721b0dfe378eb0367ca488357e419ff8108fec284c5",
       "bytes": 53336,
       "triangles": 492,
       "vertices": 1064,
@@ -2535,7 +2535,7 @@
     },
     {
       "file": "unit-SPEAR-lod1.glb",
-      "sha256": "7460a996945ab15bf7342edba3ed6043a6ad571cabb4359a7e2033932b46758a",
+      "sha256": "91378c9894731d7a302a835b45ced980c4fb9ca25024e69c7276bab29cd15d9f",
       "bytes": 44092,
       "triangles": 382,
       "vertices": 844,
@@ -2555,7 +2555,7 @@
     },
     {
       "file": "unit-HALBERD-lod0.glb",
-      "sha256": "8c8afc169fc1edb06b7f1b6f62e89ccf438732b3b8f787422707b0975b1871fd",
+      "sha256": "612905e768cf345f6e75b1447733c3bbcf3082481d6051e88b27e171c705036d",
       "bytes": 54344,
       "triangles": 504,
       "vertices": 1088,
@@ -2575,7 +2575,7 @@
     },
     {
       "file": "unit-HALBERD-lod1.glb",
-      "sha256": "743109c22f1c5123266b7019681fd081dfe9c8e70dd3d2f1479a0d78cbe94dbc",
+      "sha256": "247979d0a0aa805ac5b70b761f20a0633a36b0bd923cd31ee09e07368cc9d401",
       "bytes": 45100,
       "triangles": 394,
       "vertices": 868,
@@ -2595,7 +2595,7 @@
     },
     {
       "file": "unit-CROSSBOW-lod0.glb",
-      "sha256": "87e39699bb6241766c84cf5940792d064ee0a2efc90240f1b873800dde0708db",
+      "sha256": "80f60f5cef2b98ccc0be5176996c85e6961507434e38089d98c79936b25295cd",
       "bytes": 52720,
       "triangles": 487,
       "vertices": 1049,
@@ -2615,7 +2615,7 @@
     },
     {
       "file": "unit-CROSSBOW-lod1.glb",
-      "sha256": "0187e05043957e435ab310e0c740a89130adec8ef045cf088200dc22625700a4",
+      "sha256": "501d6ffdeb31c9fbc607704204524ab016063b578d813d7359b92513c9196059",
       "bytes": 43476,
       "triangles": 377,
       "vertices": 829,
@@ -2635,7 +2635,7 @@
     },
     {
       "file": "unit-CAVALRY-lod0.glb",
-      "sha256": "92f91e9f9069f40f9b73a29f81a73a45a9f9cce686d2fea32952245d7cf5af0f",
+      "sha256": "0c3a492379ccd4667a45a03d6012ec71908be7755bb114b42e20314c4eadc920",
       "bytes": 80128,
       "triangles": 800,
       "vertices": 1704,
@@ -2655,7 +2655,7 @@
     },
     {
       "file": "unit-CAVALRY-lod1.glb",
-      "sha256": "d51c9f89399de6a2b2d34bd1f8d45a1c2414a31f44cf74c63c6a77a6b6e61d6b",
+      "sha256": "857c50d7711315e81d4fcfe3be8256ffe7f85ec79dc708ae9ed512d2250728a8",
       "bytes": 70888,
       "triangles": 690,
       "vertices": 1484,
@@ -2675,7 +2675,7 @@
     },
     {
       "file": "unit-SWORD-lod0.glb",
-      "sha256": "5f2104c873146b769c380a419add5db504662da5f1899e8e53d25dbd35fbd383",
+      "sha256": "71f8ec96b916199e101f5629667e3643f4aa3f45b9523bfc0ee8b4b03c70c6c3",
       "bytes": 52752,
       "triangles": 487,
       "vertices": 1049,
@@ -2695,7 +2695,7 @@
     },
     {
       "file": "unit-SWORD-lod1.glb",
-      "sha256": "7df2288ec6c3bb76bc0def2a6abec6b828669be5b16908cfe8687c98d0b5e6dc",
+      "sha256": "7ed788553a910829057f51accf785226c88cdd30b203c28b524a9dbd68a81fbe",
       "bytes": 43504,
       "triangles": 377,
       "vertices": 829,
@@ -2715,7 +2715,7 @@
     },
     {
       "file": "unit-RAM-lod0.glb",
-      "sha256": "1b70054fdc9de1895c2d118f8e9f0b28081f2200cfa05f4cd96b89fb24788dc9",
+      "sha256": "a55a9fccfaf585feb1a2a8b68a116a9146a618682646c5c7431756ed98c8607f",
       "bytes": 42772,
       "triangles": 356,
       "vertices": 816,
@@ -2735,7 +2735,7 @@
     },
     {
       "file": "unit-RAM-lod1.glb",
-      "sha256": "d47e288be50c4e6796d35aa0d5b73c0f6cea83b513ce9c9f02c2f1b543fd7c3e",
+      "sha256": "043ba51f5554b9ffc07b1dbb41711dc060603b5a699207b8cc859cdafadb2e4a",
       "bytes": 36244,
       "triangles": 292,
       "vertices": 656,
@@ -2755,7 +2755,7 @@
     },
     {
       "file": "unit-SIEGE_TOWER-lod0.glb",
-      "sha256": "0572fa0b1b0e5e6b056f9c524136ef8ef5e17d60b8e083dbc535806522a351b4",
+      "sha256": "8ffed5b03b132a5cc8352131432a3e3a728005c81c4d87d6886c5b5c87722480",
       "bytes": 55312,
       "triangles": 508,
       "vertices": 1114,
@@ -2775,7 +2775,7 @@
     },
     {
       "file": "unit-SIEGE_TOWER-lod1.glb",
-      "sha256": "8d4538e68c1f2016e432bc19c7ffbda9150eb0c708ed87f9de82ffbc18182364",
+      "sha256": "0caf515d4f6e698df5ecb3a0b66fb4e5287921250d09170d34573ff9ca17520f",
       "bytes": 44580,
       "triangles": 394,
       "vertices": 854,
@@ -2795,7 +2795,7 @@
     },
     {
       "file": "unit-WOODEN_BEAST-lod0.glb",
-      "sha256": "bd26c694dce45803b36cdfbcaef8fe5909437b4786577c8df9555c924dda9300",
+      "sha256": "caae159226187635af2b69c0c51a70b50c1cc0173d3da3d1b1b69ac048210422",
       "bytes": 43432,
       "triangles": 364,
       "vertices": 832,
@@ -2815,7 +2815,7 @@
     },
     {
       "file": "unit-WOODEN_BEAST-lod1.glb",
-      "sha256": "c5fd5dd208eb7ac6e0b441f9820d017c33846cd3f9c33fa193050985bbb37c9b",
+      "sha256": "90d1210ddce2fd4b35093ed7da5f717292b62b12ff49bb074069c73be63980ca",
       "bytes": 36904,
       "triangles": 300,
       "vertices": 672,
@@ -2835,7 +2835,7 @@
     },
     {
       "file": "unit-CATAPULT-lod0.glb",
-      "sha256": "44ee4811bd2a7540dfba57b3ddc617180eb6a3adb951abbbe97b491a503cb233",
+      "sha256": "d309d41fdfdb5bc8c33d6f180a442ca995529887bb5f92d9fcf8beadd04c8937",
       "bytes": 43484,
       "triangles": 368,
       "vertices": 832,
@@ -2855,7 +2855,7 @@
     },
     {
       "file": "unit-CATAPULT-lod1.glb",
-      "sha256": "a7c3935646cfff8949980d913ba9c4d8a9d695b95d18cb725c96dad1699aa2b5",
+      "sha256": "00de39ac7071da26b7df1a348bb447b267a53b86e105337aed9358efb8ae5bcd",
       "bytes": 36952,
       "triangles": 304,
       "vertices": 672,
@@ -2875,7 +2875,7 @@
     },
     {
       "file": "unit-transport-lod0.glb",
-      "sha256": "4483ea84c59cd3fabf8e0c6f438a321c9c8552d2faa362f12932faabd349dba3",
+      "sha256": "c3998ae7319048e7cd07e97f95e427191ab12f0a99441d25ad33170e1538213b",
       "bytes": 40864,
       "triangles": 330,
       "vertices": 772,
@@ -2895,7 +2895,7 @@
     },
     {
       "file": "unit-transport-lod1.glb",
-      "sha256": "4ecfc5c7d074c38e9f3856cc6b96c7a5b4202b27a1f70d2612df476b5d625068",
+      "sha256": "9d8586206e620e643562ad8e620bb7aec0ef0651fce4dbdfb850835edda2f1eb",
       "bytes": 34336,
       "triangles": 266,
       "vertices": 612,
@@ -2915,7 +2915,7 @@
     },
     {
       "file": "unit-BOAT-lod0.glb",
-      "sha256": "46c7e64f2c1fc7299b7951a7ddb117f00242e669adebfa384191bc5d83374c28",
+      "sha256": "c9e7f85b8ecbeb53fff8fb8570ff415ec004b0cc030c6012e4523edc5f525266",
       "bytes": 18200,
       "triangles": 108,
       "vertices": 216,
@@ -2935,7 +2935,7 @@
     },
     {
       "file": "unit-BOAT-lod1.glb",
-      "sha256": "46c7e64f2c1fc7299b7951a7ddb117f00242e669adebfa384191bc5d83374c28",
+      "sha256": "c9e7f85b8ecbeb53fff8fb8570ff415ec004b0cc030c6012e4523edc5f525266",
       "bytes": 18200,
       "triangles": 108,
       "vertices": 216,
@@ -2955,7 +2955,7 @@
     },
     {
       "file": "unit-TOWER_SHIP-lod0.glb",
-      "sha256": "e7eec0d3f73d8d6064866c5ab2ade30c0b4d0bfde9bfd1425402b44d0e840aed",
+      "sha256": "bd0f85b71d374ff361b0e4e348fcef736dda83d45877fbfd8c0c281b346a739c",
       "bytes": 31060,
       "triangles": 260,
       "vertices": 522,
@@ -2975,7 +2975,7 @@
     },
     {
       "file": "unit-TOWER_SHIP-lod1.glb",
-      "sha256": "f25ca9245bb2be2797d26030e7e3d5edcfc6fb6c9cbb0c3a0f865029d490f627",
+      "sha256": "569eee10aecc09fec628c5895aebd61fe51672708b9bd5d2dc0d415103643d6e",
       "bytes": 27700,
       "triangles": 220,
       "vertices": 442,
@@ -2995,7 +2995,7 @@
     },
     {
       "file": "unit-WARSHIP-lod0.glb",
-      "sha256": "db4deb6a0f5b4f3e6a4461169d1dd391cdf98ec241e5d91397cc9800f7e9d628",
+      "sha256": "6f278542ea2d961120a30d525a91950d97ba6d15fb1e2d7bf42eaa5067d1347b",
       "bytes": 31212,
       "triangles": 262,
       "vertices": 526,
@@ -3015,7 +3015,7 @@
     },
     {
       "file": "unit-WARSHIP-lod1.glb",
-      "sha256": "e13b764d9eb47f1c60cf4bde7882a8a308f711c5bf057497a236b833022af3ba",
+      "sha256": "9ca5e0323dc1fe211c97696878565f3feb08af1b8fc2b5afa0d7d0c96b166670",
       "bytes": 27852,
       "triangles": 222,
       "vertices": 446,

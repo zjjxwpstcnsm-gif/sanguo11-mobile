@@ -12,7 +12,7 @@ final class FieldAssets {
     private final JSONObject rigs,clips;
     private final Map<String,SceneMesh> rest=new LinkedHashMap<>(32,.75f,true);
     private long restBytes;
-    private static long bytes(SceneMesh m){return 4L*(m.vertices.length+m.indices.length+(m.uv==null?0:m.uv.length));}
+    private static long bytes(SceneMesh m){return 4L*(m.vertices.length+m.indices.length+(m.uv==null?0:m.uv.length)+(m.tangents==null?0:m.tangents.length));}
     FieldAssets(Source source)throws Exception {
         this.source=source;rigs=json(source,"rigs.json").getJSONObject("rigs");clips=json(source,"clips.json").getJSONObject("clips");
     }
@@ -67,7 +67,7 @@ final class FieldAssets {
             for(int i=0;i<source.indices.length;i++)indices[member*source.indices.length+i]=source.indices[i]+member*(posed.length/7);
             System.arraycopy(source.uv,0,uv,member*source.uv.length,source.uv.length);
         }
-        SceneMesh mesh=new SceneMesh(vertices,indices,0,0,1);mesh.uv=uv;return mesh;
+        SceneMesh mesh=new SceneMesh(vertices,indices,0,0,1);mesh.uv=uv;mesh.generateTangents();return mesh;
     }
     private static float[] rotation(float x,float y,float z,float px,float py,float pz){
         float cx=(float)Math.cos(x),sx=(float)Math.sin(x),cy=(float)Math.cos(y),sy=(float)Math.sin(y),cz=(float)Math.cos(z),sz=(float)Math.sin(z);

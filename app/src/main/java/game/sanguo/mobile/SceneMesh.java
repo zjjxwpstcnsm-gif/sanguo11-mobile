@@ -10,7 +10,7 @@ final class SceneMesh {
     // Disjoint index ranges share the same surface and buffers, but never draw water as land.
     int landIndexCount=-1;
     long fingerprint; int chunkQ,chunkR;
-    float[] surfaceData; float[] uv; final float[] vertices; final int[] indices; final float x,z,radius;
+    float[] tangents; float[] surfaceData; float[] uv; final float[] vertices; final int[] indices; final float x,z,radius;
     SceneMesh(List<Float> v,List<Integer> i,float x,float z,float radius){
         vertices=new float[v.size()];for(int n=0;n<v.size();n++)vertices[n]=v.get(n);
         indices=new int[i.size()];for(int n=0;n<i.size();n++)indices[n]=i.get(n);
@@ -18,6 +18,36 @@ final class SceneMesh {
     }
     SceneMesh(float[] vertices,int[] indices,float x,float z,float radius){
         this.vertices=vertices;this.indices=indices;this.x=x;this.z=z;this.radius=radius;
+    }
+    /** Area-weighted normals respect split face vertices; generated on cache misses only.
+     * No normal-map sampling on object materials, so a normal-aligned frame is sufficient. */
+    void generateTangents(){
+        int count=vertices.length/7;float[] normals=new float[count*3];
+        for(int t=0;t<indices.length;t+=3){
+            int a=indices[t]*7,b=indices[t+1]*7,c=indices[t+2]*7;
+            float ax=vertices[b]-vertices[a],ay=vertices[b+1]-vertices[a+1],az=vertices[b+2]-vertices[a+2];
+            float bx=vertices[c]-vertices[a],by=vertices[c+1]-vertices[a+1],bz=vertices[c+2]-vertices[a+2];
+            float nx=ay*bz-az*by,ny=az*bx-ax*bz,nz=ax*by-ay*bx;
+            for(int k=0;k<3;k++){int v=indices[t+k]*3;normals[v]+=nx;normals[v+1]+=ny;normals[v+2]+=nz;}
+        }
+        setNormals(normals);
+    }
+    void setNormals(float[] normals){
+        int count=vertices.length/7;
+        if(normals.length!=count*3)throw new IllegalArgumentException("normal count");
+        tangents=new float[count*4];
+        for(int i=0;i<count;i++){
+            float x=normals[i*3],y=normals[i*3+1],z=normals[i*3+2];
+            float len=(float)Math.sqrt(x*x+y*y+z*z);
+            if(!Float.isFinite(len))throw new IllegalArgumentException("nonfinite normal");
+            if(len<1e-8f){x=0;y=1;z=0;}else{x/=len;y/=len;z/=len;}
+            // Stable shortest arc from +Z, including exactly backward-facing walls.
+            float w=(float)Math.sqrt(Math.max(0,(1+z)*.5f));
+            if(w<.0001f){tangents[i*4]=1; tangents[i*4+3]=.00001f;}
+            else{tangents[i*4]=-y*.5f/w;tangents[i*4+1]=x*.5f/w;tangents[i*4+3]=w;}
+            float qlen=0;for(int k=0;k<4;k++)qlen+=tangents[i*4+k]*tangents[i*4+k];
+            qlen=(float)Math.sqrt(qlen);for(int k=0;k<4;k++)tangents[i*4+k]/=qlen;
+        }
     }
     static final class Builder {
         final List<Float> v=new ArrayList<>();final List<Integer> i=new ArrayList<>();

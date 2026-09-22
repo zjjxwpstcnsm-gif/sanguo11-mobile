@@ -20,9 +20,9 @@ for y in range(64):
 im.save(OUT/'atlas.png',optimize=True)
 class Mesh(Base):
  def face(self,points,mat=0,shade=1):
-  n=len(self.p);self.p.extend(points);self.c.extend([(shade,shade,shade,1)]*len(points))
+  n=len(self.p);self.p.extend(points);self.c.extend([(shade if shade<.5 else 1,)*3+(1,)]*len(points))
   self.uv.extend([((mat+u*.94+.03)/8,v*.94+.03) for u,v in [(0,0),(1,0),(1,1),(0,1)][:len(points)]])
-  for i in range(1,len(points)-1):self.idx.extend([n,n+i,n+i+1])
+  for i in range(1,len(points)-1):self.idx.extend([n,n+i+1,n+i])
  def hall(self,x,z,w,d,h,lod):
   super().hall(x,z,w,d,h,lod)
   self.box(x-w*.53,.01,z-d*.52,w*1.06,.055,d*1.04,0)
@@ -198,8 +198,10 @@ for family,names in [('domestic',domestic),('military',military)]:
   for level in (range(1,4) if kind in ['MARKET','FARM','BARRACKS','SMITH','STABLE'] else [1]):
    for lod in range(3):save(Mesh().facility(kind,level,lod),f'{family}-{kind}-{level}-lod{lod}')
 for lod in range(2):
- m=Mesh();m.frustum(0,0,0,.027,.027,.32,.65,2,5)
- for y,r in [(.20,.16),(.34,.13),(.47,.09)][:3-lod]:m.frustum(0,y,0,r,r,.24,0,6,7 if lod==0 else 5)
+ m=Mesh();m.frustum(0,0,0,.025,.025,.40,.60,2,5)
+ # Broad, asymmetric opaque crown lobes: same silhouette and height at both LODs.
+ for x,y,z,rx,ry,rz in [(-.085,.43,.01,.15,.17,.14),(.09,.48,.035,.16,.19,.14),(0,.60,-.04,.14,.16,.13)]:
+  m.oval(x,y,z,rx,ry,rz,6,7 if lod==0 else 5,3 if lod==0 else 2)
  save(m,'tree-lod'+str(lod))
 # Dedicated construction scaffold and opaque fire tongue modules (no alpha overdraw).
 m=Mesh()

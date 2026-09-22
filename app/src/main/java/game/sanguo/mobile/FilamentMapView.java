@@ -43,6 +43,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private Material waterMaterial;
     private double waterSeconds;private long waterLastTick;
     private Material groundMaterial; private final List<Texture> groundTextures=new ArrayList<>();
+    private boolean environmentShadows;
+    private IndirectLight skyLight;
     private Material siteMaterial; private Texture siteAtlas,fieldAtlas;private FieldAssets fieldAssets;private MaterialInstance vegetationMaterial;
     private int siteLod=1; private final Set<String> missingAssets=new HashSet<>();
     private boolean srgbSwapChain;
@@ -130,7 +132,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             // Pinned SwapChain.h explicitly supports post-processing off with CONFIG_SRGB_COLORSPACE.
             srgbSwapChain=SwapChain.isSRGBSwapChainSupported(engine);
             view.setPostProcessingEnabled(!srgbSwapChain);
-            lens.setExposure(11f,1f/125f,100f); // Fixed daylight exposure for the existing 50,000-lux sun.
+            EnvironmentProfile.exposure(lens); // Fixed daylight exposure for the existing 50,000-lux sun.
             view.setAntiAliasing(com.google.android.filament.View.AntiAliasing.NONE);
             android.app.ActivityManager manager=context.getSystemService(android.app.ActivityManager.class);
             // Filament 1.56 blitLow aborts in the GLES3.0 compatibility driver. Native aborts
@@ -148,7 +150,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             fieldAssets=new FieldAssets(name->context.getAssets().open("3d/field/"+name));
             fieldAtlas=loadAtlas(context,"3d/field/atlas.png");
             vegetationMaterial=siteMaterial.createInstance();vegetationMaterial.setParameter("atlas",fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));vegetationMaterial.setParameter("damage",0f);
-            light=EntityManager.get().create();new LightManager.Builder(LightManager.Type.DIRECTIONAL).direction(-1,-2,-1).color(1,.95f,.85f).intensity(50000).castShadows(false).build(engine,light);scene.addEntity(light);
+            light=EntityManager.get().create();environmentShadows=quality!=SceneQuality.LOW&&manager!=null&&manager.getDeviceConfigurationInfo().reqGlEsVersion>=0x30001;EnvironmentProfile.sun(engine,light,quality,environmentShadows);scene.addEntity(light);
+            skyLight=EnvironmentProfile.sky(engine);scene.setIndirectLight(skyLight);
             surface.getHolder().addCallback(this);
             if(android.os.Build.VERSION.SDK_INT>=29){
                 thermalManager=context.getSystemService(android.os.PowerManager.class);
@@ -289,7 +292,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private String resourceReport(){
         int primitives=0,triangles=0;long bufferBytes=0;
         Set<GpuMesh> resident=new HashSet<>(shapes.values());resident.addAll(terrain.values());resident.addAll(vegetation.values());for(GpuMesh effect:effectMeshes)if(effect!=null)resident.add(effect);
-        for(GpuMesh m:resident){bufferBytes+=(long)m.source.vertices.length*4+(long)m.source.indices.length*4+(m.source.uv==null?0:(long)m.source.uv.length*4)+(m.source.surfaceData==null?0:(long)m.source.surfaceData.length*4);if(m.shown){primitives+=m.source.landIndexCount>0&&m.source.landIndexCount<m.source.indices.length?2:1;triangles+=m.source.indices.length/3;}}
+        for(GpuMesh m:resident){bufferBytes+=(long)m.source.vertices.length*4+(long)m.source.indices.length*4+(m.source.uv==null?0:(long)m.source.uv.length*4)+(m.source.surfaceData==null?0:(long)m.source.surfaceData.length*4)+(m.source.tangents==null?0:(long)m.source.tangents.length*4);if(m.shown){primitives+=m.source.landIndexCount>0&&m.source.landIndexCount<m.source.indices.length?2:1;triangles+=m.source.indices.length/3;}}
         for(Proxy p:objects.values())if(p.shown){primitives++;triangles+=p.shape.source.indices.length/3;for(GpuMesh m:new GpuMesh[]{p.flagShape,p.baseShape,p.stateShape})if(m!=null){primitives++;triangles+=m.source.indices.length/3;}}
         for(int i=0;i<effectEntities.length;i++)if(effectShown[i]){primitives++;triangles+=effectMeshes[effectKinds[i]].source.indices.length/3;}
         long[] times=Arrays.copyOf(cpuSamples,cpuCount);Arrays.sort(times);
@@ -351,7 +354,9 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private boolean inView(float x,float z,float radius){return Math.abs(x-camera.x)<camera.span*camera.width/camera.height+radius+2&&Math.abs(z-camera.z)<camera.span/camera.sin()+radius+2;}
     private void loadVisible(){
-        if(snapshot==null)return;int nextLod=Math.max(quality.minSiteLod,SiteVisual.lod(camera.span,siteLod));if(nextLod!=siteLod){siteLod=nextLod;syncObjects();}int budget=2;visibleChunks=0;pending=meshTask!=null&&!meshTask.isDone()?1:0;
+        if(snapshot==null)return;
+        engine.getLightManager().setShadowCaster(engine.getLightManager().getInstance(light),environmentShadows&&!thermal.constrained&&camera.span<22);
+        int nextLod=Math.max(quality.minSiteLod,SiteVisual.lod(camera.span,siteLod));if(nextLod!=siteLod){siteLod=nextLod;syncObjects();}int budget=2;visibleChunks=0;pending=meshTask!=null&&!meshTask.isDone()?1:0;
         if(camera.span>48)distantTerrain=true;else if(camera.span<40)distantTerrain=false;
         Set<SceneMesh> active=activeTerrain;active.clear();for(SceneMesh m:chunks)active.add(distantTerrain&&m.distant!=null?m.distant:m);
         for(SceneMesh m:new ArrayList<>(terrain.keySet()))if(!active.contains(m)){terrain.remove(m).destroy();}
@@ -509,6 +514,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         for(Proxy p:objects.values())p.destroy();objects.clear();for(GpuMesh m:terrain.values())m.destroy();terrain.clear();for(GpuMesh m:vegetation.values())m.destroy();vegetation.clear();for(GpuMesh m:shapes.values())m.destroy();shapes.clear();
         clearEffects();for(int entity:effectEntities)if(entity!=0){engine.destroyEntity(entity);EntityManager.get().destroy(entity);}
         for(GpuMesh mesh:effectMeshes)if(mesh!=null)mesh.destroy();criticalHit=null;criticalPortrait=null;criticalSkip=null;
+        if(skyLight!=null){scene.setIndirectLight(null);engine.destroyIndirectLight(skyLight);skyLight=null;}
         if(light!=0){scene.removeEntity(light);engine.destroyEntity(light);EntityManager.get().destroy(light);}
         if(vegetationMaterial!=null)engine.destroyMaterialInstance(vegetationMaterial);if(fieldAtlas!=null)engine.destroyTexture(fieldAtlas);if(siteMaterial!=null)engine.destroyMaterial(siteMaterial);if(siteAtlas!=null)engine.destroyTexture(siteAtlas);
         if(waterMaterial!=null)engine.destroyMaterial(waterMaterial);
@@ -522,11 +528,13 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private final class GpuMesh {
         final VertexBuffer vb;final IndexBuffer ib;final int entity;final SceneMesh source;boolean shown;
         GpuMesh(SceneMesh m){source=m;
-            VertexBuffer.Builder builder=new VertexBuffer.Builder().vertexCount(m.vertices.length/7).bufferCount(m.surfaceData!=null?2:m.uv==null?1:2).attribute(VertexBuffer.VertexAttribute.POSITION,0,VertexBuffer.AttributeType.FLOAT3,0,28).attribute(VertexBuffer.VertexAttribute.COLOR,0,VertexBuffer.AttributeType.FLOAT4,12,28);
+            VertexBuffer.Builder builder=new VertexBuffer.Builder().vertexCount(m.vertices.length/7).bufferCount(m.tangents!=null?3:m.surfaceData!=null?2:m.uv==null?1:2).attribute(VertexBuffer.VertexAttribute.POSITION,0,VertexBuffer.AttributeType.FLOAT3,0,28).attribute(VertexBuffer.VertexAttribute.COLOR,0,VertexBuffer.AttributeType.FLOAT4,12,28);
             if(m.surfaceData!=null)builder.attribute(VertexBuffer.VertexAttribute.UV0,1,VertexBuffer.AttributeType.FLOAT2,0,32).attribute(VertexBuffer.VertexAttribute.TANGENTS,1,VertexBuffer.AttributeType.FLOAT4,8,32).attribute(VertexBuffer.VertexAttribute.UV1,1,VertexBuffer.AttributeType.FLOAT2,24,32);
+            if(m.tangents!=null)builder.attribute(VertexBuffer.VertexAttribute.TANGENTS,2,VertexBuffer.AttributeType.FLOAT4,0,16);
             if(m.uv!=null)builder.attribute(VertexBuffer.VertexAttribute.UV0,1,VertexBuffer.AttributeType.FLOAT2,0,8);vb=builder.build(engine);
             if(m.surfaceData!=null){FloatBuffer data=ByteBuffer.allocateDirect(m.surfaceData.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();data.put(m.surfaceData).flip();vb.setBufferAt(engine,1,data);}
             if(m.uv!=null){FloatBuffer uv=ByteBuffer.allocateDirect(m.uv.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();uv.put(m.uv).flip();vb.setBufferAt(engine,1,uv);}
+            if(m.tangents!=null){FloatBuffer t=ByteBuffer.allocateDirect(m.tangents.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();t.put(m.tangents).flip();vb.setBufferAt(engine,2,t);}
             FloatBuffer v=ByteBuffer.allocateDirect(m.vertices.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();v.put(m.vertices).flip();vb.setBufferAt(engine,0,v);
             ib=new IndexBuffer.Builder().indexCount(m.indices.length).bufferType(IndexBuffer.Builder.IndexType.UINT).build(engine);IntBuffer i=ByteBuffer.allocateDirect(m.indices.length*4).order(ByteOrder.nativeOrder()).asIntBuffer();i.put(m.indices).flip();ib.setBuffer(engine,i);
             entity=EntityManager.get().create();if(m.uv==null)build(entity);
@@ -535,13 +543,13 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(source.surfaceData==null||source.landIndexCount<0){build(target,material.getDefaultInstance());return;}
             int land=source.landIndexCount,water=source.indices.length-land;
             RenderableManager.Builder b=new RenderableManager.Builder(land>0&&water>0?2:1)
-                .boundingBox(new Box(source.x,1.3f,source.z,source.radius,2.7f,source.radius)).castShadows(false).receiveShadows(false);
+                .boundingBox(new Box(source.x,1.3f,source.z,source.radius,2.7f,source.radius)).castShadows(false).receiveShadows(environmentShadows);
             int slot=0;
             if(land>0)b.material(slot,groundMaterial.getDefaultInstance()).geometry(slot++,RenderableManager.PrimitiveType.TRIANGLES,vb,ib,0,land);
             if(water>0)b.material(slot,waterMaterial.getDefaultInstance()).geometry(slot,RenderableManager.PrimitiveType.TRIANGLES,vb,ib,land,water);
             b.build(engine,target);
         }
-        void build(int target,MaterialInstance instance){new RenderableManager.Builder(1).boundingBox(new Box(source.x,1.3f,source.z,source.radius,2.7f,source.radius)).material(0,instance).geometry(0,RenderableManager.PrimitiveType.TRIANGLES,vb,ib).castShadows(false).receiveShadows(false).build(engine,target);}
+        void build(int target,MaterialInstance instance){new RenderableManager.Builder(1).boundingBox(new Box(source.x,1.3f,source.z,source.radius,2.7f,source.radius)).material(0,instance).geometry(0,RenderableManager.PrimitiveType.TRIANGLES,vb,ib).castShadows(environmentShadows&&source.uv!=null&&(source.fingerprint==0||quality==SceneQuality.HIGH)).receiveShadows(environmentShadows&&source.uv!=null).build(engine,target);}
         void show(boolean value){if(shown==value)return;shown=value;if(value)scene.addEntity(entity);else scene.removeEntity(entity);}
         void destroy(){scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);engine.destroyVertexBuffer(vb);engine.destroyIndexBuffer(ib);}
     }
@@ -551,14 +559,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         Proxy(MapSceneSnapshot.Item item,GpuMesh shape){this.item=item;motion.settle(item.hex,snapshot.ground.grid);this.shape=shape;entity=EntityManager.get().create();
             if(shape.source.uv!=null){instance=siteMaterial.createInstance();instance.setParameter("atlas",item.site!=null?siteAtlas:fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));instance.setParameter("damage",0f);shape.build(entity,instance);}else shape.build(entity);
             if(item.site!=null||item.unit!=null||item.facility!=null){String key="flag:"+item.color;flagShape=shapes.get(key);if(flagShape==null){flagShape=new GpuMesh(SceneMesh.proxy(3,item.color));shapes.put(key,flagShape);}flag=EntityManager.get().create();flagShape.build(flag);}
-            if(item.kind==0&&item.site!=null){
-                GridWorldTransform grid=snapshot.ground.grid;float x=grid.x(item.hex),z=grid.z(item.hex);StringBuilder key=new StringBuilder("base:");
-                for(Hex h:item.site.cells)key.append(grid.x(h)-x).append(',').append(grid.z(h)-z).append(';');
-                baseShape=shapes.get(key.toString());if(baseShape==null){SceneMesh.Builder b=new SceneMesh.Builder();
-                    for(Hex h:item.site.cells){float cx=grid.x(h)-x,cz=grid.z(h)-z;for(int k=0;k<SceneMesh.EDGE.length;k++){float[] a=SceneMesh.EDGE[k],e=SceneMesh.EDGE[(k+1)%SceneMesh.EDGE.length];int n=b.v.size()/7;b.vertex(cx,.006f,cz,0xff9b9581);b.vertex(cx+a[0],.006f,cz+a[1],0xff9b9581);b.vertex(cx+e[0],.006f,cz+e[1],0xff9b9581);Collections.addAll(b.i,n,n+1,n+2);}}
-                    baseShape=new GpuMesh(b.mesh(0,0,2));shapes.put(key.toString(),baseShape);
-                }base=EntityManager.get().create();baseShape.build(base);
-            }
+            // Seven-cell occupancy is shown by the selection overlay; ground blends in the terrain field.
             if(item.facility!=null&&(!item.facility.complete||item.facility.burning)){
                 String stateKey=item.facility.burning?"fire":"scaffold";stateShape=shapes.get(stateKey);
                 if(stateShape==null){try{stateShape=new GpuMesh(fieldAssets.mesh(stateKey));}catch(Exception e){throw new IllegalStateException(e);}shapes.put(stateKey,stateShape);}

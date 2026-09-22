@@ -1,0 +1,13 @@
+# Environment v1 — S12 candidate
+
+Normal game entry uses EnvironmentProfile v1: sun direction (-1,-2,-1), linear warm white (1,.95,.85), 50,000 lux; constant sky SH (.72,.80,1), intensity 16,000; exposure f/11, 1/125s, ISO100. One shared indirect light, no cubemap or new sky texture, no bloom/DOF/fog. This is a diffuse sky approximation, not image-based glossy reflection.
+
+Architecture, facilities, units and opaque vegetation use the same lit material, roughness .88, metallic0, reflectance .25. Atlas pixels are sRGB. Geometry colors are white except dark doorway/window recesses (<.5) retained as local occlusion; removed face-direction shading. Outward winding is regenerated with unchanged vertex order and rig ranges. Loader accepts optional float NORMAL, otherwise area-weighted normals on authored split vertices; object shader has no normal map. Tangent quaternion stream costs16 bytes/vertex. Cache-miss posed geometry computes normals after rigid transforms, never rebuilds nationwide per frame. Rest-cache accounting includes this stream.
+
+Low: shared sky and lit objects, no projected shadows. Medium: one512 shadow map, object casters only. High: one1024 shadow map, merged forests may cast. Both gated on GLES3.1 and span<22, disabled during thermal constraint. Range28 world units, stable projection, normal bias .4, constant bias .001. No per-tree entities or cascades. These are configured budgets, not measured GPU allocation or phone performance.
+
+Forests use a compact1.6-world-unit density field on the authoritative forest mask, deterministic coordinate hashes, up to2 accepted candidates/cell, root positions identical across two LODs, varied yaw/scale(.65–.95). Three asymmetric broad crown lobes replace cone stacks. Opaque crowns avoid alpha overdraw. Chunked merged draws retained; this is not instancing. Roads, water, sites and facilities retain exclusion margins; unit movement does not modify distribution. Root heights use the same mesh surface as picking. Maximum tree height remains below .8 world units.
+
+City seven-cell trays and rectangular model plinths removed. Existing continuous soil weights around protected site cells provide the courtyard and compacted perimeter with global material UVs. Gate/port geometry and orientation remain. Normal roads now use82% grass/18% soil kernel, preserving low contrast. No new gameplay objects, crops, map edits or save fields.
+
+Still subject to native inspection: small model detail, port foundations, shadow stability/bias, broadleaf crown quality, low-quality root contact. Shoreline silhouette rounding remains S11 debt. No photographic realism acceptance claimed.
