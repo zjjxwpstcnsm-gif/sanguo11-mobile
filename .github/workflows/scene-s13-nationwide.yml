@@ -21,6 +21,7 @@ jobs:
       fail-fast: false
       matrix:
         gpu: [swangle]
+        quality: [LOW, MEDIUM, HIGH]
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
@@ -71,7 +72,7 @@ jobs:
             adb shell input keyevent 82
             adb install -r app/build/outputs/apk/debug/app-debug.apk
             adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
-            timeout 1500 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.NationwideInstrumentation > evidence/native.txt
+            native_status=0; timeout 1500 adb shell am instrument -w -e quality ${{ matrix.quality }} game.sanguo.mobile.dev.test/game.sanguo.mobile.NationwideInstrumentation > evidence/native.txt || native_status=$?; if [ "$native_status" -ne 0 ]; then adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/partial-images; adb logcat -d > evidence/logcat-failed.txt; exit "$native_status"; fi
             adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/images
             adb logcat -d > evidence/logcat.txt
             adb shell dumpsys meminfo game.sanguo.mobile.dev > evidence/meminfo.txt
@@ -79,6 +80,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: s13-native-environment-evidence-${{ matrix.gpu }}
+          name: s13-native-environment-evidence-${{ matrix.gpu }}-${{ matrix.quality }}
           path: evidence
           retention-days: 14

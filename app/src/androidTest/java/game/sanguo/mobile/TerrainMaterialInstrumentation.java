@@ -36,6 +36,7 @@ public class TerrainMaterialInstrumentation extends SceneInstrumentation {
     Hex[] shots(){return new Hex[]{boundary(World.Terrain.FOREST),boundary(World.Terrain.MOUNTAIN),boundary(World.Terrain.SAND),world.cities.get(0).hex};}
     String[] names(){return new String[]{"forest","rock","sand","city"};}
     String stage(){return "S10";}
+    String[] qualities(){return new String[]{"MEDIUM","LOW","HIGH"};}
     void extra(FilamentMapView spatial)throws Exception{}
     @Override public void onStart(){Bundle result=new Bundle();try{
         World w=ScenarioCatalog.all().get(0);try(OutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(w));}
@@ -44,7 +45,7 @@ public class TerrainMaterialInstrumentation extends SceneInstrumentation {
         Hex[] shots=shots();
         String[] names=names();File dir=getTargetContext().getExternalFilesDir("s01");dir.mkdirs();
         StringBuilder report=new StringBuilder("name,q,r,span,quality,facing,tilt,uiWidth,uiHeight,bufferWidth,bufferHeight,mapId,mapRevision,revision\n");
-        for(String quality:new String[]{"MEDIUM","LOW","HIGH"}){
+        for(String quality:qualities()){
             runOnMainSync(()->{host.switchMode(false);getTargetContext().getSharedPreferences("map-renderer",0).edit().putString("quality",quality).commit();host.switchMode(true);});settle();ready();
             FilamentMapView spatial=(FilamentMapView)field(host,"spatial");
             check(field(spatial,"groundMaterial")!=null,"real ground material loaded");check(((List<?>)field(spatial,"groundTextures")).size()==8,"all texture layers loaded");
@@ -66,7 +67,7 @@ public class TerrainMaterialInstrumentation extends SceneInstrumentation {
         check(Arrays.equals(original,SaveCodec.encode(world)),"all shots and quality switches preserve full save");
         try(OutputStream out=new FileOutputStream(new File(dir,stage().toLowerCase()+"-shots.csv"))){out.write(report.toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));}
         runOnMainSync(()->host.switchMode(false));
-        result.putString("stream","PASS "+stage()+" native materials: "+checks+" checks, "+(shots.length*9)+" national Surface captures; emulator, not physical device.\n");finish(Activity.RESULT_OK,result);
+        result.putString("stream","PASS "+stage()+" native materials: "+checks+" checks, "+(shots.length*3*qualities().length)+" national Surface captures; emulator, not physical device.\n");finish(Activity.RESULT_OK,result);
     }catch(Throwable e){
         try{capture("s10-failure-ui");}catch(Throwable captureError){e.addSuppressed(captureError);}
         result.putString("stream","FAIL S10 "+e+"\n"+android.util.Log.getStackTraceString(e));finish(Activity.RESULT_CANCELED,result);}}

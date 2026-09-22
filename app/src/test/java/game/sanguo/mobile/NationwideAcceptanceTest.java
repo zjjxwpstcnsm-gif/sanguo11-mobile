@@ -8,6 +8,15 @@ public final class NationwideAcceptanceTest {
     static void check(boolean ok,String why){checks++;if(!ok)throw new AssertionError(why);}
     static void audit(World world)throws Exception{
         byte[] save=SaveCodec.encode(world);MapSceneSnapshot.Ground g=new MapSceneSnapshot.Ground(world);
+        SceneMesh scenery=SceneMesh.backdrop(g);check(scenery!=null,"exterior scenery exists");
+        check(4L*(scenery.vertices.length+scenery.indices.length+scenery.surfaceData.length)<1024*1024,"exterior under one MiB");
+        for(int i=0;i<scenery.vertices.length/7;i++){check(scenery.vertices[i*7+1]<0,"scenery below land and water");check(scenery.surfaceData[i*8]==scenery.vertices[i*7]&&scenery.surfaceData[i*8+1]==-scenery.vertices[i*7+2],"scenery world UV");}
+        for(int i:scenery.indices)check(i>=0&&i<scenery.vertices.length/7,"exterior legal index");
+        SceneCamera overhead=new SceneCamera();overhead.width=1080;overhead.height=1080;overhead.tilt=90;
+        int voidSamples=0;
+        for(int r=0;r<g.height;r+=7)for(int q=0;q<g.width;q+=7){Hex h=new Hex(q,r);if(g.valid(h))continue;
+            overhead.x=g.grid.x(h);overhead.z=g.grid.z(h);check(g.surface.pick(overhead,540,540)==null,"scenery does not create clickable VOID");voidSamples++;}
+        check(voidSamples>0,"VOID picking exercised");
         List<SceneMesh> meshes=SceneMesh.ground(g);Map<String,float[]> shared=new HashMap<>();
         for(SceneMesh fine:meshes){chunks++;
             for(SceneMesh m:new SceneMesh[]{fine,fine.distant}){
