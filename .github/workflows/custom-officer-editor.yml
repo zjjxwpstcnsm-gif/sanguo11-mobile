@@ -36,6 +36,9 @@ jobs:
             git commit -m 'fix(officers): validate Android editor and portable identity transactions'
             git push origin HEAD:refs/heads/agent/custom-officer-editor-20260922-b7e4
           fi
+          git fetch --depth=1 origin main
+          test "$(git rev-parse FETCH_HEAD)" = '83530fbac7d04df9cbeacc293f627ce51fa47bc6'
+          git worktree add --detach /tmp/officer-main-baseline FETCH_HEAD
           git rev-parse HEAD | tee out/custom-officers/SOURCE_COMMIT.txt
           git archive --format=zip -o out/custom-officers/source.zip HEAD
       - uses: actions/setup-java@v4
@@ -47,7 +50,13 @@ jobs:
         run: |
           set -euo pipefail
           bash scripts/test-custom-officers.sh 2>&1 | tee out/custom-officers/core-tests.txt
+          bash scripts/test-v064.sh 2>&1 | tee out/custom-officers/ux-regression.txt
           bash scripts/test-v066.sh 2>&1 | tee out/custom-officers/governance-regression.txt
+      - name: Compare legacy regressions with the unchanged main baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 scripts/audit-officer-baseline.py /tmp/officer-main-baseline | tee out/custom-officers/legacy-comparison.txt
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.11.1'
@@ -60,9 +69,11 @@ jobs:
         run: |
           set -euo pipefail
           sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
-          gradle --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest 2>&1 | tee out/custom-officers/build.txt
+          gradle --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug 2>&1 | tee out/custom-officers/build.txt
           cp app/build/outputs/apk/debug/app-debug.apk out/custom-officers/sanguo11-custom-officers.apk
           sha256sum out/custom-officers/sanguo11-custom-officers.apk > out/custom-officers/APK_SHA256.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/custom-officers/sanguo11-custom-officers.apk > out/custom-officers/signature.txt
+          cp app/build/reports/lint-results-debug.html out/custom-officers/
       - name: Enable Android virtualization
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
