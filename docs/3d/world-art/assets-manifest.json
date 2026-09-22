@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "scale": "one repeat per projected world unit",
+  "resolutionReason": "256 texels per tile exceeds typical strategic screen footprint; 8 textures ~2.67 MiB with mipmaps",
+  "assets": [
+    {
+      "path": "app/src/main/assets/3d/terrain/grass_color.png",
+      "sha256": "b521ecf2d836321f8408ee7627bb403123a50ac8594131ac7faa2c6064b6b7de",
+      "bytes": 62017,
+      "resolution": [
+        256,
+        256
+      ],
+      "colorSpace": "sRGB",
+      "channels": "RGB albedo",
+      "license": "CC0-1.0",
+      "source": "Original procedural build_terrain_materials.py",
+      "consumer": "FilamentMapView.loadGroundMaterials",
+      "mips": "runtime generateMipmaps; full periodic texture per sampler; REPEAT",
+      "compression": "PNG lossless / GPU SRGB8_A8 or RGBA8"
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/grass_normal_roughness.png",
+      "sha256": "aee10a76d2bf2dd066b145deb9c993497c5de7a1d8b3bd2b8974cb3830dced83",
+      "bytes": 149060,
+      "resolution": [
+        256,
+        256
+      ],
+      "colorSpace": "linear",
+      "channels": "RGB tangent normal; A roughness",
+      "license": "CC0-1.0",
+      "source": "Original procedural build_terrain_materials.py",
+      "consumer": "FilamentMapView.loadGroundMaterials",
+      "mips": "runtime generateMipmaps; full periodic texture per sampler; REPEAT",
+      "compression": "PNG lossless / GPU SRGB8_A8 or RGBA8"
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/soil_color.png",
+      "sha256": "1d0a4c765102abc7c496cd35c79bee7ae9f81e58b5d34c3aa3685a88dd1729c3",
+      "bytes": 75855,
+      "resolution": [
+        256,
+        256
+      ],
+      "colorSpace": "sRGB",
+      "channels": "RGB albedo",
+      "license": "CC0-1.0",
+      "source": "Original procedural build_terrain_materials.py",
+      "consumer": "FilamentMapView.loadGroundMaterials",
+      "mips": "runtime generateMipmaps; full periodic texture per sampler; REPEAT",
+      "compression": "PNG lossless / GPU SRGB8_A8 or RGBA8"
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/soil_normal_roughness.png",
+      "sha256": "091a7162094ce5c6cee705a0dae0516bcd9f9080fd2e2dc360326fcf5871657c",
+      "bytes": 173254,
+      "resolution": [
+        256,
+        256
+      ],
+      "colorSpace": "linear",
+      "channels": "RGB tangent normal; A roughness",
+      "license": "CC0-1.0",
+      "source": "Original procedural build_terrain_materials.py",
+      "consumer": "FilamentMapView.loadGroundMaterials",
+      "mips": "runtime generateMipmaps; full periodic texture per sampler; REPEAT",
+      "compression": "PNG lossless / GPU SRGB8_A8 or RGBA8"
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/sand_color.png",
+      "sha256": "caa95cd6d51eae21d46f4e631616269c9959a49c06d90969e146baf623477c3d",
+      "bytes": 47862,
+      "resolution": [
+        256,
+        256
+      ],
+      "colorSpace": "sRGB",
+      "channels": "RGB albedo",
+      "license": "CC0-1.0",
+      "source": "Original procedural build_terrain_materials.py",
+      "consumer": "FilamentMapView.loadGroundMaterials",
+      "mips": "runtime generateMipmaps; full periodic texture per sampler; REPEAT",
+      "compression": "PNG lossless / GPU SRGB8_A8 or RGBA8"
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/sand_normal_roughness.png",
+      "sha256": "6d66cb26359f126a8a2685ede7720e87eb5c7a2b23b821e5369b39718b9a5018",
+      "bytes": 78679,
+      "resolution": [
+        256,
+        256
+      ],
+      "colorSpace": "linear",
+      "channels": "RGB tangent normal; A roughness",
+      "license": "CC0-1.0",
+      "source": "Original procedural build_terrain_materials.py",
+      "consumer": "FilamentMapView.loadGroundMaterials",
+      "mips": "runtime generateMipmaps; full periodic texture per sampler; REPEAT",
+      "compression": "PNG lossless / GPU SRGB8_A8 or RGBA8"
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/rock_color.png",
+      "sha256": "59e71ac923045db0a35195b58c0469926ed293159243c0b3cc285c6862a6eef2",
+      "bytes": 50318,
+      "resolution": [
+        256,
+        256
+      ],
+      "colorSpace": "sRGB",
+      "channels": "RGB albedo",
+      "license": "CC0-1.0",
+      "source": "Original procedural build_terrain_materials.py",
+      "consumer": "FilamentMapView.loadGroundMaterials",
+      "mips": "runtime generateMipmaps; full periodic texture per sampler; REPEAT",
+      "compression": "PNG lossless / GPU SRGB8_A8 or RGBA8"
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/rock_normal_roughness.png",
+      "sha256": "9f709b5f1ede11d9fe46293b6a985a2119928e35b47678ed97193de0a8bfbfdc",
+      "bytes": 122512,
+      "resolution": [
+        256,
+        256
+      ],
+      "colorSpace": "linear",
+      "channels": "RGB tangent normal; A roughness",
+      "license": "CC0-1.0",
+      "source": "Original procedural build_terrain_materials.py",
+      "consumer": "FilamentMapView.loadGroundMaterials",
+      "mips": "runtime generateMipmaps; full periodic texture per sampler; REPEAT",
+      "compression": "PNG lossless / GPU SRGB8_A8 or RGBA8"
+    }
+  ]
+}

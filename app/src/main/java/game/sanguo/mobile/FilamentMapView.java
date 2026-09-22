@@ -40,6 +40,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private com.google.android.filament.android.DisplayHelper displayHelper;
     private Skybox skybox;
     private com.google.android.filament.View view; private Camera lens; private Material material;
+    private Material groundMaterial; private final List<Texture> groundTextures=new ArrayList<>();
     private Material siteMaterial; private Texture siteAtlas,fieldAtlas;private FieldAssets fieldAssets;private MaterialInstance vegetationMaterial;
     private int siteLod=1; private final Set<String> missingAssets=new HashSet<>();
     private SwapChain swap; private int cameraEntity,light;
@@ -130,6 +131,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();material=new Material.Builder().payload(payload,bytes.length).build(engine);
             byte[] siteBytes;try(java.io.InputStream in=context.getAssets().open("3d/sites/site.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);siteBytes=out.toByteArray();}
             ByteBuffer sb=ByteBuffer.allocateDirect(siteBytes.length).order(ByteOrder.nativeOrder());sb.put(siteBytes).flip();siteMaterial=new Material.Builder().payload(sb,siteBytes.length).build(engine);
+            loadGroundMaterials(context);
             siteAtlas=loadAtlas(context,"3d/sites/atlas.png");
             fieldAssets=new FieldAssets(name->context.getAssets().open("3d/field/"+name));
             fieldAtlas=loadAtlas(context,"3d/field/atlas.png");
@@ -141,6 +143,25 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 if(thermalManager!=null){thermalListener=this::thermalChanged;thermalManager.addThermalStatusListener(context.getMainExecutor(),thermalListener);thermalChanged(thermalManager.getCurrentThermalStatus());}
             }
         }catch(Exception|LinkageError e){release();throw e;}
+    }
+    private void loadGroundMaterials(Context context)throws java.io.IOException {
+        byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain/ground.filamat")){bytes=in.readAllBytes();}
+        ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();
+        groundMaterial=new Material.Builder().payload(payload,bytes.length).build(engine);
+        TextureSampler sampler=new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.REPEAT);
+        for(String layer:new String[]{"grass","soil","sand","rock"})for(boolean normal:new boolean[]{false,true}){
+            android.graphics.Bitmap bitmap;
+            android.graphics.BitmapFactory.Options options=new android.graphics.BitmapFactory.Options();options.inScaled=false;options.inPremultiplied=false;
+            try(java.io.InputStream in=context.getAssets().open("3d/terrain/"+layer+(normal?"_normal_roughness.png":"_color.png"))){bitmap=android.graphics.BitmapFactory.decodeStream(in,null,options);}
+            if(bitmap==null)throw new java.io.IOException("Missing terrain texture "+layer);
+            int w=bitmap.getWidth(),h=bitmap.getHeight(),levels=1+(int)(Math.log(Math.max(w,h))/Math.log(2));
+            Texture texture=new Texture.Builder().width(w).height(h).levels(levels).sampler(Texture.Sampler.SAMPLER_2D).format(normal?Texture.InternalFormat.RGBA8:Texture.InternalFormat.SRGB8_A8).build(engine);
+            groundTextures.add(texture); // Own immediately, so initialization failures release partial uploads.
+            com.google.android.filament.android.TextureHelper.setBitmap(engine,texture,0,bitmap);
+            texture.generateMipmaps(engine);textureBytes+=(long)w*h*4*4/3;
+            groundMaterial.getDefaultInstance().setParameter(layer+(normal?"Normal":"Color"),texture,sampler);
+        }
+        groundMaterial.getDefaultInstance().setParameter("normalStrength",quality==SceneQuality.LOW?0f:.65f);
     }
     private Texture loadAtlas(Context context,String path)throws java.io.IOException {
         long started=System.nanoTime();
@@ -249,7 +270,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private String resourceReport(){
         int primitives=0,triangles=0;long bufferBytes=0;
         Set<GpuMesh> resident=new HashSet<>(shapes.values());resident.addAll(terrain.values());resident.addAll(vegetation.values());for(GpuMesh effect:effectMeshes)if(effect!=null)resident.add(effect);
-        for(GpuMesh m:resident){bufferBytes+=(long)m.source.vertices.length*4+(long)m.source.indices.length*4+(m.source.uv==null?0:(long)m.source.uv.length*4);if(m.shown){primitives++;triangles+=m.source.indices.length/3;}}
+        for(GpuMesh m:resident){bufferBytes+=(long)m.source.vertices.length*4+(long)m.source.indices.length*4+(m.source.uv==null?0:(long)m.source.uv.length*4)+(m.source.surfaceData==null?0:(long)m.source.surfaceData.length*4);if(m.shown){primitives++;triangles+=m.source.indices.length/3;}}
         for(Proxy p:objects.values())if(p.shown){primitives++;triangles+=p.shape.source.indices.length/3;for(GpuMesh m:new GpuMesh[]{p.flagShape,p.baseShape,p.stateShape})if(m!=null){primitives++;triangles+=m.source.indices.length/3;}}
         for(int i=0;i<effectEntities.length;i++)if(effectShown[i]){primitives++;triangles+=effectMeshes[effectKinds[i]].source.indices.length/3;}
         long[] times=Arrays.copyOf(cpuSamples,cpuCount);Arrays.sort(times);
@@ -440,6 +461,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         for(GpuMesh mesh:effectMeshes)if(mesh!=null)mesh.destroy();criticalHit=null;criticalPortrait=null;criticalSkip=null;
         if(light!=0){scene.removeEntity(light);engine.destroyEntity(light);EntityManager.get().destroy(light);}
         if(vegetationMaterial!=null)engine.destroyMaterialInstance(vegetationMaterial);if(fieldAtlas!=null)engine.destroyTexture(fieldAtlas);if(siteMaterial!=null)engine.destroyMaterial(siteMaterial);if(siteAtlas!=null)engine.destroyTexture(siteAtlas);
+        if(groundMaterial!=null)engine.destroyMaterial(groundMaterial);
+        for(Texture texture:groundTextures)engine.destroyTexture(texture);groundTextures.clear();
         if(material!=null)engine.destroyMaterial(material);
         if(skybox!=null){scene.setSkybox(null);engine.destroySkybox(skybox);}
         if(view!=null)engine.destroyView(view);if(scene!=null)engine.destroyScene(scene);if(renderer!=null)engine.destroyRenderer(renderer);
@@ -448,14 +471,16 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private final class GpuMesh {
         final VertexBuffer vb;final IndexBuffer ib;final int entity;final SceneMesh source;boolean shown;
         GpuMesh(SceneMesh m){source=m;
-            VertexBuffer.Builder builder=new VertexBuffer.Builder().vertexCount(m.vertices.length/7).bufferCount(m.uv==null?1:2).attribute(VertexBuffer.VertexAttribute.POSITION,0,VertexBuffer.AttributeType.FLOAT3,0,28).attribute(VertexBuffer.VertexAttribute.COLOR,0,VertexBuffer.AttributeType.FLOAT4,12,28);
+            VertexBuffer.Builder builder=new VertexBuffer.Builder().vertexCount(m.vertices.length/7).bufferCount(m.surfaceData!=null?2:m.uv==null?1:2).attribute(VertexBuffer.VertexAttribute.POSITION,0,VertexBuffer.AttributeType.FLOAT3,0,28).attribute(VertexBuffer.VertexAttribute.COLOR,0,VertexBuffer.AttributeType.FLOAT4,12,28);
+            if(m.surfaceData!=null)builder.attribute(VertexBuffer.VertexAttribute.UV0,1,VertexBuffer.AttributeType.FLOAT2,0,32).attribute(VertexBuffer.VertexAttribute.TANGENTS,1,VertexBuffer.AttributeType.FLOAT4,8,32).attribute(VertexBuffer.VertexAttribute.UV1,1,VertexBuffer.AttributeType.FLOAT2,24,32);
             if(m.uv!=null)builder.attribute(VertexBuffer.VertexAttribute.UV0,1,VertexBuffer.AttributeType.FLOAT2,0,8);vb=builder.build(engine);
+            if(m.surfaceData!=null){FloatBuffer data=ByteBuffer.allocateDirect(m.surfaceData.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();data.put(m.surfaceData).flip();vb.setBufferAt(engine,1,data);}
             if(m.uv!=null){FloatBuffer uv=ByteBuffer.allocateDirect(m.uv.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();uv.put(m.uv).flip();vb.setBufferAt(engine,1,uv);}
             FloatBuffer v=ByteBuffer.allocateDirect(m.vertices.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();v.put(m.vertices).flip();vb.setBufferAt(engine,0,v);
             ib=new IndexBuffer.Builder().indexCount(m.indices.length).bufferType(IndexBuffer.Builder.IndexType.UINT).build(engine);IntBuffer i=ByteBuffer.allocateDirect(m.indices.length*4).order(ByteOrder.nativeOrder()).asIntBuffer();i.put(m.indices).flip();ib.setBuffer(engine,i);
             entity=EntityManager.get().create();if(m.uv==null)build(entity);
         }
-        void build(int target){build(target,material.getDefaultInstance());}
+        void build(int target){build(target,(source.surfaceData!=null?groundMaterial:material).getDefaultInstance());}
         void build(int target,MaterialInstance instance){new RenderableManager.Builder(1).boundingBox(new Box(source.x,1.3f,source.z,source.radius,2.7f,source.radius)).material(0,instance).geometry(0,RenderableManager.PrimitiveType.TRIANGLES,vb,ib).castShadows(false).receiveShadows(false).build(engine,target);}
         void show(boolean value){if(shown==value)return;shown=value;if(value)scene.addEntity(entity);else scene.removeEntity(entity);}
         void destroy(){scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);engine.destroyVertexBuffer(vb);engine.destroyIndexBuffer(ib);}

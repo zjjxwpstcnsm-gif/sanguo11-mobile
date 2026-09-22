@@ -8,7 +8,7 @@ final class SceneMesh {
     private static final World.Terrain[] TERRAIN_TYPES=World.Terrain.values();
     SceneMesh distant;
     long fingerprint; int chunkQ,chunkR;
-    float[] uv; final float[] vertices; final int[] indices; final float x,z,radius;
+    float[] surfaceData; float[] uv; final float[] vertices; final int[] indices; final float x,z,radius;
     SceneMesh(List<Float> v,List<Integer> i,float x,float z,float radius){
         vertices=new float[v.size()];for(int n=0;n<v.size();n++)vertices[n]=v.get(n);
         indices=new int[i.size()];for(int n=0;n<i.size();n++)indices[n]=i.get(n);
@@ -52,7 +52,7 @@ final class SceneMesh {
         for(SceneMesh m:previous)cached.put(m.chunkQ+":"+m.chunkR,m);
         for(int r=0;r<g.height;r+=16)for(int q=0;q<g.width;q+=16){
             if(Thread.currentThread().isInterrupted())return Collections.emptyList();
-            long fingerprint=1469598103934665603L;
+            long fingerprint=1469598103934665603L ^ TerrainMaterialField.VERSION;
             fingerprint=(fingerprint^g.width)*1099511628211L;fingerprint=(fingerprint^g.height)*1099511628211L;
             fingerprint=(fingerprint^Float.floatToIntBits(g.grid.offset))*1099511628211L;fingerprint=(fingerprint^(g.grid.staggered?1:0))*1099511628211L;
             for(int rr=r-6;rr<Math.min(r+22,g.height);rr++)for(int qq=q-6;qq<Math.min(q+22,g.width);qq++){
@@ -72,6 +72,7 @@ final class SceneMesh {
             }
             if(!b.i.isEmpty()){
                 SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+1);
+                new TerrainMaterialField(g).attach(m);
                 SceneMesh fine=detail(m,g);
                 fine.chunkQ=q;fine.chunkR=r;fine.fingerprint=fingerprint;out.add(fine);
             }
@@ -86,11 +87,18 @@ final class SceneMesh {
             float x=(coarse.vertices[a*7]+coarse.vertices[c*7]+coarse.vertices[d*7])/3,
                 y=(coarse.vertices[a*7+1]+coarse.vertices[c*7+1]+coarse.vertices[d*7+1])/3,
                 z=(coarse.vertices[a*7+2]+coarse.vertices[c*7+2]+coarse.vertices[d*7+2])/3;
-            Hex h=g.grid.cell(x,z);int color=terrain(g.terrain[h.r*g.width+h.q]);
-            b.vertex(x,y,z,g.surface.color(x,z,color,g.surface.water(h)));
+            b.vertex(x,y,z,0xffffffff);
+            for(int j=3;j<7;j++)b.v.set(n*7+j,(coarse.vertices[a*7+j]+coarse.vertices[c*7+j]+coarse.vertices[d*7+j])/3);
             Collections.addAll(b.i,a,c,n,c,d,n,d,a,n);
         }
-        SceneMesh fine=b.mesh(coarse.x,coarse.z,coarse.radius);fine.distant=coarse;return fine;
+        SceneMesh fine=b.mesh(coarse.x,coarse.z,coarse.radius);fine.distant=coarse;
+        if(coarse.surfaceData!=null){
+            fine.surfaceData=Arrays.copyOf(coarse.surfaceData,fine.vertices.length/7*8);
+            int start=coarse.vertices.length/7;
+            for(int t=0;t<coarse.indices.length;t+=3)for(int j=0;j<8;j++)
+                fine.surfaceData[(start+t/3)*8+j]=(coarse.surfaceData[coarse.indices[t]*8+j]+coarse.surfaceData[coarse.indices[t+1]*8+j]+coarse.surfaceData[coarse.indices[t+2]*8+j])/3;
+        }
+        return fine;
     }
     /** Explicit temporary silhouettes: walled city, pier, gate, standard, farm, tower. */
     static SceneMesh proxy(int kind,int color){

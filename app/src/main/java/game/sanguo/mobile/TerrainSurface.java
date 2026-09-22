@@ -85,12 +85,6 @@ final class TerrainSurface {
         }return Float.NaN;
     }
     int color(float x,float z,int base,boolean water){
-        // Shading normals use the cached half-cell lattice. Interior subdivision must not
-        // redo 63-neighbor height filtering five times for every new triangle vertex.
-        float sx=Math.round(x*2)*.5f,sz=Math.round(z*2)*.5f;
-        float dx=sample(sx+.5f,sz)-sample(sx-.5f,sz),dz=sample(sx,sz+.5f)-sample(sx,sz-.5f);
-        float light=water?.93f+.035f*(float)Math.sin(x*7+Math.sin(z*3)):
-            .88f+Math.max(-.18f,Math.min(.12f,(-dx-dz)*.3f))+.025f*(float)(Math.sin(x*2.3+z*.7)*Math.cos(z*1.9));
-        return SceneMesh.shade(base,light);
+        return water?SceneMesh.shade(base,.93f):base;
     }
 }
