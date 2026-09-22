@@ -4,7 +4,7 @@ cd "$(dirname "$0")/.."
 : "${JSON_TEST_JAR:?Set JSON_TEST_JAR to org.json host test jar}"
 mkdir -p app/build/field-check
 find core/src/main/java -name '*.java' > app/build/field-sources.txt
-for name in TileGeometry GridWorldTransform SceneCamera SceneMesh SiteVisual TerrainSurface MapSceneSnapshot FactionColors SiegeOverlay UnitVisual UnitMotion UnitAnimation SiteGlb FieldAssets Vegetation; do
+for name in TileGeometry GridWorldTransform SceneCamera SceneMesh SiteVisual TerrainSurface MapSceneSnapshot FactionColors SiegeOverlay UnitVisual UnitMotion UnitAnimation CombatVisual SiteGlb FieldAssets Vegetation; do
   echo "app/src/main/java/game/sanguo/mobile/$name.java" >> app/build/field-sources.txt
 done
 printf '%s\n' core/src/testFixtures/java/game/sanguo/core/SceneFacilityFixture.java app/src/test/java/game/sanguo/mobile/FieldAssetsTest.java >> app/build/field-sources.txt

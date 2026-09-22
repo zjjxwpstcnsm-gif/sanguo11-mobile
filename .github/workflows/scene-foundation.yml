@@ -1,4 +1,4 @@
-name: S01-S05 Filament scene acceptance
+name: S01-S06 Filament scene acceptance
 on:
   push:
     branches: [agent/3d-s01-renderer-foundation]
@@ -32,6 +32,7 @@ jobs:
           bash scripts/test-ui-models.sh | tee evidence/ui.txt
           curl -fsSL https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/scene-json.jar
           JSON_TEST_JAR=/tmp/scene-json.jar bash scripts/test-3d-field.sh | tee evidence/field-assets.txt
+          JSON_TEST_JAR=/tmp/scene-json.jar bash scripts/test-3d-combat.sh | tee evidence/combat-host.txt
           ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug
           cp app/build/outputs/apk/debug/app-debug.apk evidence/sanguo11-s01.apk
           git rev-parse HEAD > evidence/BUILD_COMMIT
@@ -67,6 +68,8 @@ jobs:
             adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
             adb logcat -G 16M
             adb shell screenrecord --time-limit 150 /sdcard/field-scene.mp4 >/dev/null 2>&1 &
+            timeout 600 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.CombatSceneInstrumentation | tee evidence/combat-installed.txt
+            adb pull /sdcard/combat-scene.mp4 evidence/combat-scene.mp4
             timeout 600 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.FieldSceneInstrumentation | tee evidence/field-installed.txt
             timeout 600 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.SceneInstrumentation | tee evidence/installed.txt
             adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/installed
@@ -75,6 +78,7 @@ jobs:
             adb pull /sdcard/field-scene.mp4 evidence/field-scene.mp4
             adb pull /sdcard/field-port.mp4 evidence/field-port.mp4
             grep -q 'PASS S04 S05' evidence/field-installed.txt
+            grep -q 'PASS S06' evidence/combat-installed.txt
             grep -q 'PASS S01' evidence/installed.txt
       - uses: actions/upload-artifact@v4
         if: always()

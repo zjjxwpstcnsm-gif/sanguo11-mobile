@@ -19,14 +19,14 @@ final class UnitAnimation {
                         Hex h=event.path.get(Math.min(event.path.size()-1,Math.round(f*(event.path.size()-1))));
                         if(ground.valid(h)){int t=ground.terrain[h.r*ground.width+h.q];naval=t==World.Terrain.WATER.ordinal()||t==World.Terrain.SEA.ordinal();}
                     }break;
-                case ATTACK:case TACTIC:case FACILITY_ATTACK:clip=f<.25f?"prepare":"attack";frame=Math.min(11,(int)((f<.25f?f*4:(f-.25f)/.75f)*11));break;
+                case ATTACK:case TACTIC:case FACILITY_ATTACK:case FACILITY_COUNTER:clip=f<.25f?"prepare":"attack";frame=Math.min(11,(int)((f<.25f?f*4:(f-.25f)/.75f)*11));break;
                 case ENTER:clip="enter";frame=(int)(f*11);scale=1-f*.9f;break;
                 default:break;
             }
         }
-        for(TurnJournal.Impact impact:event.impacts)if(impact.hex.equals(item.hex)&&impact.loss){
-            clip=event.removesUnit(u.id)?"defeat":"hit";frame=Math.min(11,(int)(f*11));
-            if(clip.equals("defeat"))scale=1-f*.8f;break;
+        for(TurnJournal.Impact impact:event.impacts)if(f>=CombatVisual.HIT&&impact.hex.equals(item.hex)&&impact.loss){
+            clip=event.removesUnit(u.id)?"defeat":"hit";float hit=(f-CombatVisual.HIT)/(1-CombatVisual.HIT);frame=Math.min(11,(int)(hit*11));
+            if(clip.equals("defeat"))scale=1-hit*.8f;break;
         }
     }
 }

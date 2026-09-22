@@ -20,12 +20,13 @@ public final class TurnJournal {
         public final String label,message;
         public final List<Hex> path;
         public final List<Impact> impacts;
+        public final List<StateChange> states;
         private final List<Node> changed;
         private final List<String> removed;
         private final World.Unit actor;
         Event(Kind kind,int id,int owner,Hex start,Hex target,String label,String message,List<Hex> path,
-              List<Impact> impacts,List<Node> changed,List<String> removed,World.Unit actor,CriticalHit critical,String sourceKey,String sourceType){
-            this.sourceKey=sourceKey;this.sourceType=sourceType;
+              List<Impact> impacts,List<Node> changed,List<String> removed,World.Unit actor,CriticalHit critical,String sourceKey,String sourceType,List<StateChange> states){
+            this.sourceKey=sourceKey;this.sourceType=sourceType;this.states=Collections.unmodifiableList(states);
             this.kind=kind;actorId=id;this.owner=owner;this.start=start;this.target=target;this.label=label;this.message=message;
             this.path=Collections.unmodifiableList(new ArrayList<>(path));this.impacts=Collections.unmodifiableList(impacts);
             this.changed=changed;this.removed=removed;this.actor=actor;this.critical=critical;
@@ -39,6 +40,29 @@ public final class TurnJournal {
             for(Node n:changed){remove(visual,n.key);n.add(visual);}
         }
         public int durationMillis(){return kind==Kind.MOVE?Math.min(1300,Math.max(300,(path.size()-1)*145)):kind==Kind.PLOT?700:600;}
+    }
+    /** Scalar before/after image, safe even after the authoritative entity has disappeared. */
+    public static final class State {
+        public final String key,type,status; public final Hex hex;
+        public final int owner,troops,hp,energy,remaining;
+        private State(Node n){
+            key=n.key;hex=n.hex;Object o=n.image;
+            World.Unit u=o instanceof World.Unit?(World.Unit)o:null;
+            World.City c=o instanceof World.City?(World.City)o:null;
+            War.Structure s=o instanceof War.Structure?(War.Structure)o:null;
+            War.Fire f=o instanceof War.Fire?(War.Fire)o:null;
+            Domestic.Facility d=o instanceof Domestic.Facility?(Domestic.Facility)o:null;
+            type=u!=null?u.weapon.name():c!=null?c.kind.name():s!=null?s.kind.name():d!=null?d.kind.name():"FIRE";
+            owner=u!=null?u.owner:c!=null?c.owner:s!=null?s.owner:f!=null?f.owner:-1;
+            troops=u!=null?u.troops:c!=null?c.troops:0;
+            hp=c!=null?c.defense:s!=null?s.hp:d!=null?d.hp:0;
+            energy=u==null?0:u.energy;status=u==null?"":u.status.name();
+            remaining=f!=null?f.remaining:u!=null?u.burning:d!=null?d.remaining:0;
+        }
+    }
+    public static final class StateChange {
+        public final State before,after;
+        private StateChange(Node before,Node after){this.before=before==null?null:new State(before);this.after=after==null?null:new State(after);}
     }
     private final World w;
     private Map<String,Node> previous;
@@ -90,7 +114,10 @@ public final class TurnJournal {
         if(!changed.isEmpty()||!removed.isEmpty()||eventKind!=Kind.CHANGE){
             int id=actor==null?actorId:actor.id,owner=actor==null?(sourceOwner>=0?sourceOwner:w.active):actor.owner;
             if(name.isEmpty())name=impacts.isEmpty()?"结算":impacts.get(0).text;
-            events.add(new Event(eventKind,id,owner,start,end,name,message,route,impacts,changed,removed,actor,critical,actor==null?sourceKey:"u"+actor.id,actor==null?sourceType:actor.weapon.name()));
+            List<StateChange> states=new ArrayList<>();
+            for(Node n:changed)states.add(new StateChange(previous.get(n.key),n));
+            for(String key:removed)states.add(new StateChange(previous.get(key),null));
+            events.add(new Event(eventKind,id,owner,start,end,name,message,route,impacts,changed,removed,actor,critical,actor==null?sourceKey:"u"+actor.id,actor==null?sourceType:actor.weapon.name(),states));
         }
         previous=next;cancel();
     }

@@ -28,9 +28,13 @@ final class UnitMotion {
             float dx=grid.x(to)-grid.x(from),dz=grid.z(to)-grid.z(from);
             x=grid.x(from)+dx*t;z=grid.z(from)+dz*t;
             if(dx!=0||dz!=0)yaw=(float)Math.atan2(dx,dz);
-        } else if((event.kind==TurnJournal.Kind.ATTACK||event.kind==TurnJournal.Kind.TACTIC||event.kind==TurnJournal.Kind.FACILITY_ATTACK)&&event.target!=null) {
+        } else if((event.kind==TurnJournal.Kind.ATTACK||event.kind==TurnJournal.Kind.TACTIC||event.kind==TurnJournal.Kind.FACILITY_ATTACK||event.kind==TurnJournal.Kind.FACILITY_COUNTER)&&event.target!=null) {
             float dx=grid.x(event.target)-x,dz=grid.z(event.target)-z;
             if(dx!=0||dz!=0)yaw=(float)Math.atan2(dx,dz);
+            if(CombatVisual.style(event)==CombatVisual.Style.CHARGE){
+                float length=(float)Math.sqrt(dx*dx+dz*dz),pulse=f<CombatVisual.HIT?f/CombatVisual.HIT:(1-f)/(1-CombatVisual.HIT);
+                if(length>0){float travel=Math.min(.65f,length*.35f)*Math.max(0,pulse);x+=dx/length*travel;z+=dz/length*travel;}
+            }
         }
     }
 }

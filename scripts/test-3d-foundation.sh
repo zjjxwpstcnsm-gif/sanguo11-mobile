@@ -3,7 +3,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 mkdir -p app/build/scene-check
 find core/src/main/java -name '*.java' > app/build/scene-sources.txt
-for name in TileGeometry GridWorldTransform SceneCamera SceneMesh UnitVisual UnitMotion SiteVisual TerrainSurface MapSceneSnapshot FactionColors SiegeOverlay; do
+for name in TileGeometry GridWorldTransform SceneCamera SceneMesh UnitVisual UnitMotion CombatVisual SiteVisual TerrainSurface MapSceneSnapshot FactionColors SiegeOverlay; do
   echo "app/src/main/java/game/sanguo/mobile/$name.java" >> app/build/scene-sources.txt
 done
 echo app/src/test/java/game/sanguo/mobile/SceneFoundationTest.java >> app/build/scene-sources.txt

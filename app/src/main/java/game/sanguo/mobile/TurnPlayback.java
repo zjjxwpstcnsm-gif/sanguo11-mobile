@@ -35,7 +35,7 @@ final class TurnPlayback {
             if(visible){
                 if(event.critical!=null&&work.criticalElapsed<CriticalScene.DURATION){
                     if(work.criticalElapsed==0)work.criticalsShown++;
-                    work.criticalElapsed+=Math.max(1,Math.min(50,elapsed));
+                    work.criticalElapsed+=Math.max(1,Math.min(50,elapsed))*Math.max(1,work.speed);
                     map.replayFrame(event,0);map.criticalFrame(event.critical,work.criticalElapsed/CriticalScene.DURATION);
                     if(applied){map.invalidateScene();map.setWorld(work.visual,null,-1);}
                     map.postOnAnimation(tick);return;

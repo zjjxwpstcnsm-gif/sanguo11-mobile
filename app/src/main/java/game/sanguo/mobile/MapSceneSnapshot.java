@@ -57,6 +57,11 @@ final class MapSceneSnapshot {
                 +(hp<maxHp?" 耐久"+hp+"/"+maxHp:"")+(burning?" 起火":"");
         }
     }
+    static final class FireState {
+        final Hex hex;final int remaining;
+        FireState(War.Fire f){hex=f.hex;remaining=f.remaining;}
+    }
+    final List<FireState> fires;
     final Ground ground; final List<Item> items; final Hex selected; final Set<Hex> reachable,siege,coverage;
     MapSceneSnapshot(Ground ground,World w,Hex selected,int moving) {
         this.ground=ground;this.selected=selected;List<Item> list=new ArrayList<>();
@@ -72,6 +77,7 @@ final class MapSceneSnapshot {
             new FacilityState("military/"+s.kind.name(),s.owner,0,0,s.hp,s.kind.hp,0,s.direction,
                 s.complete,w.war.fireAt(s.hex)!=null)));
         items=Collections.unmodifiableList(list);
+        List<FireState> fireList=new ArrayList<>();for(War.Fire f:w.war.fires())if(f.remaining>0)fireList.add(new FireState(f));fires=Collections.unmodifiableList(fireList);
         reachable=Collections.unmodifiableSet(new HashSet<>(w.orders.marchReachable(w.unit(moving)).keySet()));
         coverage=Collections.unmodifiableSet(new HashSet<>(w.fieldworks.coverage(w.war.at(selected))));
         siege=Collections.unmodifiableSet(new HashSet<>(SiegeOverlay.selected(w,selected).cells));
