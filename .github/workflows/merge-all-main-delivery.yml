@@ -1,0 +1,163 @@
+name: Merged main APK delivery
+on:
+  push:
+    branches: [agent/custom-officer-editor-20260922-b7e4, main]
+    paths:
+      - .github/workflows/merge-all-main-delivery.yml
+      - 'core/**'
+      - 'app/**'
+      - 'scripts/**'
+      - version.properties
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: merged-main-delivery-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.ref == 'refs/heads/agent/custom-officer-editor-20260922-b7e4'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Merge reviewed main and resolve the four audited conflict blocks
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/main-integration
+          git config user.name 'Integration build'
+          git config user.email 'integration@users.noreply.github.com'
+          test "$(git rev-parse origin/main)" = '25d5ae49cde789ac421a8584bf941ecce19fe921'
+          git merge-base --is-ancestor 111bfb3b86bb1889268ddc8d79394930e60d8f50 HEAD
+          git merge --no-commit --no-ff origin/main || true
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, re, subprocess
+          resolutions = {
+              'app/src/main/java/game/sanguo/mobile/MainActivity.java': (
+                  'fe54965ac0beb9e24f851dbfd87c623da8436d199e3d3ce2c6218d76fd6830ff',
+                  ['        new Thread(()->{try{World resolved=pinned==null?ScenarioCatalog.load(id,player,System.nanoTime()):CustomMaps.load(pinned,id,player,System.nanoTime());World next=CustomOfficerSetup.apply(this,resolved);runOnUiThread(()->{\n']),
+              'core/src/main/java/game/sanguo/core/SaveCodec.java': (
+                  '6d64110a2bebb5c38695f598cb58b5d3a0d79925f7dd28335e192b61928d7cf8',
+                  ['        w.reports.write(d);w.governance.write(d);CustomMapSave.write(w,d);w.extensions.write(d);\n',
+                   '        if(version>=33)CustomMapSave.read(w,d);\n        w.extensions.read(d);\n',
+                   '        CustomOfficers.validateSnapshot(w);\n        w.invalidateSiteIndex();SiteFootprint.validate(w);CustomMapSave.validate(w);\n'])
+          }
+          conflicts = set(subprocess.check_output(['git','diff','--name-only','--diff-filter=U'],text=True).splitlines())
+          assert conflicts == set(resolutions), f'Unexpected conflicts: {conflicts}'
+          for name,(digest,replacements) in resolutions.items():
+              path=Path(name)
+              assert hashlib.sha256(path.read_bytes()).hexdigest()==digest, 'Unreviewed conflict content: '+name
+              text=path.read_text()
+              pattern=r'<<<<<<< .*?\n.*?>>>>>>> .*?(?:\n|$)'
+              assert len(re.findall(pattern,text,re.S))==len(replacements)
+              values=iter(replacements)
+              path.write_text(re.sub(pattern,lambda m:next(values),text,flags=re.S))
+          # The other shipped branch advanced the codec to v33. Keep the assertion exact,
+          # updating its branch-local expectation instead of weakening or deleting it.
+          path=Path('core/src/test/java/game/sanguo/core/CustomOfficerTest.java')
+          text=path.read_text()
+          before='readInt()==32,"global save version stays32"'
+          after='readInt()==33,"merged save version is33"'
+          assert text.count(before)==1
+          path.write_text(text.replace(before,after))
+          PY
+          git add app/src/main/java/game/sanguo/mobile/MainActivity.java core/src/main/java/game/sanguo/core/SaveCodec.java core/src/test/java/game/sanguo/core/CustomOfficerTest.java
+          test -z "$(git diff --name-only --diff-filter=U)"
+      - name: Verify composed production modules before pushing the merge
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/test-custom-officers.sh 2>&1 | tee out/main-integration/officers.txt
+          bash scripts/test-map-editor67.sh 2>&1 | tee out/main-integration/maps.txt
+          bash scripts/test-ruler-titles.sh 2>&1 | tee out/main-integration/rulers.txt
+          bash scripts/test-v066.sh 2>&1 | tee out/main-integration/governance.txt
+          javac -encoding UTF-8 --release 17 -cp core/build/editor67:core/build/custom-officers -d core/build/editor67 core/src/test/java/game/sanguo/core/EditorMergeIntegrationTest.java
+          java -Xmx768m -cp core/build/editor67:core/build/custom-officers:core/src/main/resources game.sanguo.core.EditorMergeIntegrationTest | tee out/main-integration/composition.txt
+      - name: Commit integration and fast-forward the existing PR branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git commit -m 'Merge main into officer editor: preserve map resolution, officer snapshots and v33 compatibility'
+          git push origin HEAD:refs/heads/agent/custom-officer-editor-20260922-b7e4
+          git rev-parse HEAD | tee out/main-integration/SOURCE_COMMIT.txt
+          git archive --format=zip -o out/main-integration/source.zip HEAD
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: editor-main-integration
+          path: out/main-integration
+          if-no-files-found: error
+          retention-days: 7
+  build-main:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+      - name: Record exact main source
+        run: |
+          mkdir -p out/main-apk
+          git rev-parse HEAD | tee out/main-apk/SOURCE_COMMIT.txt
+          git archive --format=zip -o out/main-apk/source.zip HEAD
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Verify merged modules and retained gameplay
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/test-custom-officers.sh 2>&1 | tee out/main-apk/officers.txt
+          bash scripts/test-map-editor67.sh 2>&1 | tee out/main-apk/maps.txt
+          bash scripts/test-ruler-titles.sh 2>&1 | tee out/main-apk/rulers.txt
+          bash scripts/test-v066.sh 2>&1 | tee out/main-apk/governance.txt
+          bash scripts/test-v064.sh 2>&1 | tee out/main-apk/retained-rules.txt
+          bash scripts/test-ui-models.sh 2>&1 | tee out/main-apk/presentation.txt
+          javac -encoding UTF-8 --release 17 -cp core/build/editor67:core/build/custom-officers -d core/build/editor67 core/src/test/java/game/sanguo/core/EditorMergeIntegrationTest.java
+          java -Xmx768m -cp core/build/editor67:core/build/custom-officers:core/src/main/resources game.sanguo.core.EditorMergeIntegrationTest | tee out/main-apk/composition.txt
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Build the unmodified checked-out main
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          gradle --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug 2>&1 | tee out/main-apk/build.txt
+          test -z "$(git status --porcelain --untracked-files=no)"
+      - name: Verify APK signature, content and provenance
+        shell: bash
+        run: |
+          set -euo pipefail
+          APK="app/build/outputs/apk/debug/app-debug.apk"
+          python3 tools/check_apk_content.py "$APK" | tee out/main-apk/content.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose --print-certs "$APK" | tee out/main-apk/SIGNATURE.txt
+          grep -q '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' out/main-apk/SIGNATURE.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging "$APK" > out/main-apk/APK_METADATA.txt
+          cp "$APK" "out/main-apk/sanguo11-mobile-main-$(git rev-parse --short=12 HEAD).apk"
+          cd out/main-apk
+          sha256sum sanguo11-mobile-main-*.apk | tee SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sanguo11-mobile-merged-main-${{ github.sha }}
+          path: out/main-apk
+          if-no-files-found: error
+          retention-days: 30

@@ -76,6 +76,7 @@ public final class MainActivity extends Activity {
         TextView heading=text("三国志 · 掌上战略",25,gold);root.addView(heading);
         TextView detail=text(error==null?"开始一个年代，或继续已有存档。":error,16,paper);detail.setPadding(0,dp(24),0,dp(24));root.addView(detail);
         root.addView(button("新建游戏 · 选择剧本",v->scenarioPicker()));
+        root.addView(button("武将自定义 · 模板与投放",v->startActivity(new Intent(this,CustomOfficerActivity.class))));
         root.addView(button("读取手动存档",v->saveSlots(true)));
         root.addView(button("导入存档文件",v->importSave()));
         root.addView(button("地图编辑器 · 自定义地图",v->new MapEditorUi(this).show()));
@@ -652,9 +653,10 @@ public final class MainActivity extends Activity {
         tabs.setContentDescription("城池指令分组");
         panel.addView(tabs,new LinearLayout.LayoutParams(-1,dp(48)));
         if(ui.group.equals("概览")){
-        line(Conscription.description(world,c),13,gold);
-        if(c.kind!=World.SiteKind.CITY)line(world.districts.affiliation(c.id),13,muted);
-
+            line(Conscription.description(world,c),13,gold);
+            if(c.kind!=World.SiteKind.CITY){
+                line(world.districts.affiliation(c.id),13,muted);
+            }
             line("可用武将 "+world.idle(c).size()+" · 行动力 "+(world.districts.city(c.id)==null?world.actionPoints[world.player]:world.districts.city(c.id).points())+" · "+(world.districts.directCity(c.id)?"直属经营":"军团托管"),13,gold);
         }
         Districts.District district=world.districts.city(c.id);if(district!=null)line("所属军团："+district.name()+" · "+district.policy().label,13,gold);
@@ -864,6 +866,7 @@ public final class MainActivity extends Activity {
         action("生卒与继承",v->new LifecycleUi(this,world,this::apply).menu());
         action("天下总览 · 势力 / 部队 / 钱粮 / 技巧树",v->openRealmPage("factions",-1));
         action("军团与天下",v->new WorldUi(this,world,this::apply).menu());
+        action("武将自定义 · 新战局模板与投放",v->startActivity(new Intent(this,CustomOfficerActivity.class)));
         action("PK编辑 / 新武将",v->new EditorUi(this,world,this::apply).menu());
         if(world.editor.edited())line("当前局面已使用PK编辑",13,muted);
         if(world.life.pending())action("继续君主继承",v->{ui.page="map";refresh();});
@@ -923,7 +926,7 @@ public final class MainActivity extends Activity {
     private void startScenario(String id,int player,MapPatch pinned){
         java.util.concurrent.atomic.AtomicBoolean canceled=new java.util.concurrent.atomic.AtomicBoolean();
         AlertDialog loading=new AlertDialog.Builder(this).setMessage("正在建立新局…").setNegativeButton("取消",(d,n)->canceled.set(true)).create();loading.setOnCancelListener(d->canceled.set(true));loading.show();
-        new Thread(()->{try{World next=pinned==null?ScenarioCatalog.load(id,player,System.nanoTime()):CustomMaps.load(pinned,id,player,System.nanoTime());runOnUiThread(()->{
+        new Thread(()->{try{World resolved=pinned==null?ScenarioCatalog.load(id,player,System.nanoTime()):CustomMaps.load(pinned,id,player,System.nanoTime());World next=CustomOfficerSetup.apply(this,resolved);runOnUiThread(()->{
             if(isFinishing()||isDestroyed()||canceled.get())return;loading.dismiss();if(!activateWorld(next))return;selectAndFocus(world.home().hex);closePanel();save("auto",false);
         });}catch(IOException e){runOnUiThread(()->{if(!isFinishing()&&!isDestroyed()&&!canceled.get()){loading.dismiss();showError("无法开始剧本："+e.getMessage());}});}},"scenario-start").start();
     }
