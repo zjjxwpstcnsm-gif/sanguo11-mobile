@@ -24,7 +24,7 @@ final class Map51Probe {
         try(OutputStream out=test.getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(opening));}
         test.getTargetContext().getSharedPreferences("map-display",0).edit().clear().commit();
         activity=(MainActivity)test.startActivitySync(new Intent(test.getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();
-        world=(World)field(activity,"world");map=(MapView)field(activity,"map");
+        world=(World)field(activity,"world");map=(MapView)field(field(activity,"map"),"flat");
         require(world.height==100&&world.sourceMapWidth==100&&world.cities.size()==87,"official 100x100 87-site map loaded");
         require(MapCoordinates.source(world.city(20048).hex,100).equals(new Hex(6,48)),"corrected Jiange appears in installed game");
         require(MapCoordinates.source(world.city(20050).hex,100).equals(new Hex(5,59)),"corrected Fushui appears in installed game");

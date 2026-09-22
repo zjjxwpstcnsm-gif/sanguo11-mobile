@@ -1,0 +1,12 @@
+material {
+    name : StrategicVertexColor,
+    shadingModel : unlit,
+    doubleSided : true,
+    requires : [ color ]
+}
+fragment {
+    void material(inout MaterialInputs material) {
+        prepareMaterial(material);
+        material.baseColor = getColor();
+    }
+}

@@ -33,7 +33,7 @@ final class Turn47Probe {
         require(after.war.plot(1,after.unit(2).hex,War.Plot.CONFUSE).ok,"fixture real plot");journal.close();require(journal.events().stream().anyMatch(e->e.kind==TurnJournal.Kind.PLOT),"real plot records explicit presentation event");byte[] expected=SaveCodec.encode(after);
         TurnWork work=new TurnWork((World)field(activity,"world"));work.after=after;work.visual=SaveCodec.decode(initial);work.events=journal.events();work.done=true;work.summary="演示验证";
         test.runOnMainSync(()->{try{
-            set(activity,"turnWork",work);set(activity,"aiRunning",true);((MapView)field(activity,"map")).center(new Hex(5,6));call(activity,"finishTurn");
+            set(activity,"turnWork",work);set(activity,"aiRunning",true);((MapView)field(field(activity,"map"),"flat")).center(new Hex(5,6));call(activity,"finishTurn");
         }catch(Exception e){throw new RuntimeException(e);}});
         SystemClock.sleep(100);test.runOnMainSync(()->work.paused=true);settle();
         require(Arrays.equals(expected,readAuto()),"final authoritative result saved before playback");
@@ -48,8 +48,8 @@ final class Turn47Probe {
         activity=(MainActivity)field(test,"current");
         require(field(activity,"turnWork")==work&&work.paused&&work.cursor==cursor,"rotation retains same job and paused cursor");
         require(Arrays.equals(expected,readAuto()),"rotation never saves intermediate render state");shot("02-landscape-paused");
-        test.runOnMainSync(()->{try{((MapView)field(activity,"map")).focus(new Hex(5,6));}catch(Exception e){throw new RuntimeException(e);}});settle();
-        test.runOnMainSync(()->{try{MapCamera camera=(MapCamera)field(field(activity,"map"),"camera");float x=camera.x;camera.pan(-35,20);require(camera.x!=x,"camera can pan during playback");((MapView)field(activity,"map")).invalidate();}catch(Exception e){throw new RuntimeException(e);}});
+        test.runOnMainSync(()->{try{((MapView)field(field(activity,"map"),"flat")).focus(new Hex(5,6));}catch(Exception e){throw new RuntimeException(e);}});settle();
+        test.runOnMainSync(()->{try{MapCamera camera=(MapCamera)field(field(field(activity,"map"),"flat"),"camera");float x=camera.x;camera.pan(-35,20);require(camera.x!=x,"camera can pan during playback");((MapView)field(field(activity,"map"),"flat")).invalidate();}catch(Exception e){throw new RuntimeException(e);}});
         test.runOnMainSync(()->{work.speed=1;work.paused=false;});
         boolean[] captured={false,false};long deadline=SystemClock.uptimeMillis()+20000;
         while(SystemClock.uptimeMillis()<deadline&&(Boolean)field(activity,"aiRunning")){
@@ -57,7 +57,7 @@ final class Turn47Probe {
             // Pause on the UI thread before taking/compressing a screenshot: this can take longer
             // than a complete animation on a cold emulator and must not skip the next event.
             test.runOnMainSync(()->{try{
-                MapView map=(MapView)field(activity,"map");TurnJournal.Event e=(TurnJournal.Event)field(map,"replayEvent");float f=(Float)field(map,"replayFraction");
+                MapView map=(MapView)field(field(activity,"map"),"flat");TurnJournal.Event e=(TurnJournal.Event)field(map,"replayEvent");float f=(Float)field(map,"replayFraction");
                 if(e!=null&&f>.35f){int index=e.kind==TurnJournal.Kind.ATTACK?0:e.kind==TurnJournal.Kind.PLOT?1:-1;
                     if(index>=0&&!captured[index]){work.paused=true;shotKind[0]=index;captured[index]=true;}}
             }catch(Exception e){throw new RuntimeException(e);}});

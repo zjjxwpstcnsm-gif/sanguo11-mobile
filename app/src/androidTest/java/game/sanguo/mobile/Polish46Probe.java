@@ -26,7 +26,7 @@ final class Polish46Probe {
         try(OutputStream out=test.getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(national));}
         test.getTargetContext().getSharedPreferences("map-display",0).edit().clear().commit();
         activity=(MainActivity)test.startActivitySync(new Intent(test.getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();
-        world=(World)field(activity,"world");map=(MapView)field(activity,"map");
+        world=(World)field(activity,"world");map=(MapView)field(field(activity,"map"),"flat");
         byte[] before=SaveCodec.encode(world);
         for(boolean portrait:new boolean[]{true,false}){
             test.runOnMainSync(()->activity.setRequestedOrientation(portrait?ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE));settle();
