@@ -27,6 +27,7 @@ public final class TurnJournal {
             this.path=Collections.unmodifiableList(new ArrayList<>(path));this.impacts=Collections.unmodifiableList(impacts);
             this.changed=changed;this.removed=removed;this.actor=actor;this.critical=critical;
         }
+        public boolean removesUnit(int id){return removed.contains("u"+id);}
         public World.Unit actorCopy(){return actor==null?null:copyUnit(actor);}
         public boolean visibleAction(){return kind!=Kind.CHANGE||!impacts.isEmpty();}
         /** Apply to a dedicated render World ONLY. Never call command APIs, validate or save it. */

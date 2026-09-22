@@ -28,17 +28,20 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private com.google.android.filament.android.DisplayHelper displayHelper;
     private Skybox skybox;
     private com.google.android.filament.View view; private Camera lens; private Material material;
-    private Material siteMaterial; private Texture siteAtlas;
+    private Material siteMaterial; private Texture siteAtlas,fieldAtlas;private FieldAssets fieldAssets;private MaterialInstance vegetationMaterial;
     private int siteLod=1; private final Set<String> missingAssets=new HashSet<>();
     private SwapChain swap; private int cameraEntity,light;
     private boolean released,resumed=true,queued,diagnostics;
     private long lastFrame; private long renderedFrames; private double callbackMillis;
     private MapSceneSnapshot snapshot;
     private boolean distantTerrain;
-    private List<SceneMesh> chunks=Collections.emptyList();
+    private List<SceneMesh> chunks=Collections.emptyList(),woods=Collections.emptyList();
+    private Set<Hex> woodExcluded=Collections.emptySet();
+    private final Map<SceneMesh,GpuMesh> vegetation=new HashMap<>();
+    private int visibleWood,unitLod=1;private long animationTick;
     private final Map<SceneMesh,GpuMesh> terrain=new HashMap<>();
     private final Map<String,Proxy> objects=new HashMap<>();
-    private final Map<String,GpuMesh> shapes=new HashMap<>();
+    private final Map<String,GpuMesh> shapes=new LinkedHashMap<>(128,.75f,true);
     private int pending,visibleChunks,visibleObjects;
     private Set<Hex> targets=Collections.emptySet();
     private MarchOrders.Plan route;
@@ -73,6 +76,12 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(atlas==null)throw new java.io.IOException("site atlas missing");
             siteAtlas=new Texture.Builder().width(atlas.getWidth()).height(atlas.getHeight()).levels(1).sampler(Texture.Sampler.SAMPLER_2D).format(Texture.InternalFormat.SRGB8_A8).build(engine);
             com.google.android.filament.android.TextureHelper.setBitmap(engine,siteAtlas,0,atlas);
+            fieldAssets=new FieldAssets(name->context.getAssets().open("3d/field/"+name));
+            android.graphics.Bitmap fieldBitmap;try(java.io.InputStream in=context.getAssets().open("3d/field/atlas.png")){fieldBitmap=android.graphics.BitmapFactory.decodeStream(in);}
+            if(fieldBitmap==null)throw new java.io.IOException("field atlas missing");
+            fieldAtlas=new Texture.Builder().width(fieldBitmap.getWidth()).height(fieldBitmap.getHeight()).levels(1).sampler(Texture.Sampler.SAMPLER_2D).format(Texture.InternalFormat.SRGB8_A8).build(engine);
+            com.google.android.filament.android.TextureHelper.setBitmap(engine,fieldAtlas,0,fieldBitmap);
+            vegetationMaterial=siteMaterial.createInstance();vegetationMaterial.setParameter("atlas",fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));vegetationMaterial.setParameter("damage",0f);
             light=EntityManager.get().create();new LightManager.Builder(LightManager.Type.DIRECTIONAL).direction(-1,-2,-1).color(1,.95f,.85f).intensity(50000).castShadows(false).build(engine,light);scene.addEntity(light);
             surface.getHolder().addCallback(this);
         }catch(Exception|LinkageError e){release();throw e;}
@@ -81,10 +90,20 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     @Override public boolean performClick(){super.performClick();return true;}
     void snapshot(MapSceneSnapshot next){
         boolean groundChanged=snapshot==null||snapshot.ground!=next.ground;snapshot=next;
-        if(groundChanged){
-            int token=++generation;if(meshTask!=null)meshTask.cancel(true);
-            List<SceneMesh> previous=chunks;pending=1;
-            meshTask=worker.submit(()->{List<SceneMesh> built=SceneMesh.ground(next.ground,previous);post(()->{if(released||token!=generation)return;for(SceneMesh old:new ArrayList<>(terrain.keySet()))if(!built.contains(old)&&built.stream().noneMatch(m->m.distant==old)){terrain.remove(old).destroy();}chunks=built;pending=0;schedule();});});
+        Set<Hex> excluded=Vegetation.exclusions(next);boolean woodsChanged=groundChanged||!excluded.equals(woodExcluded);
+        if(groundChanged||woodsChanged){
+            woodExcluded=excluded;int token=++generation;if(meshTask!=null)meshTask.cancel(true);
+            List<SceneMesh> previous=chunks,oldWoods=woods;pending=1;
+            final SceneMesh tree,farTree;
+            try{tree=fieldAssets.mesh("tree-lod0");farTree=fieldAssets.mesh("tree-lod1");}catch(Exception e){failure.accept(e);return;}
+            meshTask=worker.submit(()->{
+                List<SceneMesh> built=SceneMesh.ground(next.ground,previous);
+                List<SceneMesh> trees=Vegetation.build(next.ground,excluded,oldWoods,tree,farTree);
+                post(()->{if(released||token!=generation)return;
+                    for(SceneMesh old:new ArrayList<>(terrain.keySet()))if(!built.contains(old)&&built.stream().noneMatch(m->m.distant==old)){terrain.remove(old).destroy();}
+                    for(GpuMesh gpu:vegetation.values())gpu.destroy();vegetation.clear();
+                    chunks=built;woods=trees;pending=0;schedule();});
+            });
         }
         syncObjects();overlay.invalidate();schedule();
     }
@@ -96,7 +115,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     boolean visible(TurnJournal.Event e){if(visible(e.start)||visible(e.target))return true;for(Hex h:e.path)if(visible(h))return true;return false;}
     private boolean visible(Hex h){if(h==null||snapshot==null)return false;GridWorldTransform g=snapshot.ground.grid;return Math.abs(camera.screenX(g.x(h))-camera.width/2f)<camera.width*.6&&Math.abs(camera.screenY(g.z(h),snapshot.ground.surface.at(h))-camera.height/2f)<camera.height*.6;}
     void diagnostics(boolean value){diagnostics=value;overlay.invalidate();}
-    String report(){return "Filament 1.56.0 / OpenGL ES\n"+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S03 城港关 · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+"";}
+    String report(){return "Filament 1.56.0 / OpenGL ES\n"+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S04 设施植被 / S05 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+"";}
     void resume(boolean value){resumed=value;if(value)schedule();else cancelFrame();}
     private void cancelFrame(){Choreographer.getInstance().removeFrameCallback(this);queued=false;lastFrame=0;}
     private void schedule(){if(!released&&resumed&&swap!=null&&!queued){queued=true;Choreographer.getInstance().postFrameCallback(this);}}
@@ -110,7 +129,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             double aspect=camera.width/(double)camera.height;
             lens.setProjection(Camera.Projection.ORTHO,-camera.span*aspect,camera.span*aspect,-camera.span,camera.span,.1,1000);
             lens.lookAt(camera.x,300*camera.sin(),camera.z+camera.facing*300*camera.cos(),camera.x,0,camera.z,0,1,0);
-            animateReplay();loadVisible();
+            animationTick=time/1_000_000;animateReplay();loadVisible();animateUnits();
             if(renderer.beginFrame(swap,time)){renderer.render(view);renderer.endFrame();renderedFrames++;}
             overlay.invalidate();schedule();
         }catch(RuntimeException|LinkageError e){cancelFrame();failure.accept(e);}
@@ -127,14 +146,29 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(shown){visibleChunks++;if(gpu==null){if(budget-->0){gpu=new GpuMesh(chunk);terrain.put(chunk,gpu);}else pending++;}}
             if(gpu!=null){gpu.show(shown);if(!shown&&!inView(chunk.x,chunk.z,chunk.radius+20)){gpu.destroy();terrain.remove(chunk);}}
         }
+        int nextUnitLod=camera.span<8?0:camera.span<22?1:2;
+        unitLod=nextUnitLod;visibleWood=0;
+        Set<SceneMesh> wantedWood=new HashSet<>();
+        if(camera.span<38)for(SceneMesh source:woods){
+            SceneMesh chunk=camera.span<14?source:source.distant;if(chunk.indices.length==0)continue;
+            if(inView(chunk.x,chunk.z,chunk.radius)){wantedWood.add(chunk);visibleWood++;GpuMesh gpu=vegetation.get(chunk);
+                if(gpu==null){if(budget-->0){gpu=new GpuMesh(chunk);gpu.build(gpu.entity,vegetationMaterial);vegetation.put(chunk,gpu);}else pending++;}
+                if(gpu!=null)gpu.show(true);
+            }
+        }
+        for(SceneMesh old:new ArrayList<>(vegetation.keySet()))if(!wantedWood.contains(old)){vegetation.remove(old).destroy();}
         visibleObjects=0;
         for(Proxy p:objects.values()){boolean shown=inView(p.motion.x,p.motion.z,2);if(shown)visibleObjects++;if(shown!=p.shown){p.show(shown);}}
     }
     private GpuMesh shape(MapSceneSnapshot.Item item){
-        String key=item.site==null?item.kind+":"+item.color:item.site.model+":"+siteLod;
+        String field=item.facility!=null?FieldAssets.facility(item.facility,siteLod):item.unit!=null?FieldAssets.unit(item.unit,item.unit.naval,unitLod):null;
+        String key=field!=null?field+(item.unit==null?"":":idle:0:"+FieldAssets.count(item.unit,item.unit.naval,unitLod)):item.site==null?item.kind+":"+item.color:item.site.model+":"+siteLod;
         GpuMesh mesh=shapes.get(key);if(mesh!=null)return mesh;
         SceneMesh source;
-        if(item.site!=null){
+        if(field!=null){
+            try{source=item.unit==null?fieldAssets.mesh(field):fieldAssets.pose(field,"idle",0,FieldAssets.count(item.unit,item.unit.naval,unitLod));}
+            catch(Exception e){throw new IllegalStateException("Missing field asset "+field,e);}
+        }else if(item.site!=null){
             try(java.io.InputStream in=getContext().getAssets().open("3d/sites/"+item.site.model+"-lod"+siteLod+".glb")){source=SiteGlb.read(in);}
             catch(Exception e){missingAssets.add(key);source=SiteVisual.fallback(item.kind);android.util.Log.w("Sanguo3D","Site fallback "+key,e);}
         }else source=SceneMesh.proxy(item.kind,item.color);
@@ -144,15 +178,34 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(engine==null||snapshot==null)return;Set<String> alive=new HashSet<>();
         for(MapSceneSnapshot.Item item:snapshot.items){
             alive.add(item.key);Proxy p=objects.get(item.key);GpuMesh geometry=shape(item);
-            if(p!=null&&(p.shape!=geometry||p.item.color!=item.color)){p.destroy();objects.remove(item.key);p=null;}
+            if(p!=null&&((item.unit==null&&p.shape!=geometry)||p.item.color!=item.color||!p.stateKey().equals(item.facility==null?"":item.facility.burning?"fire":!item.facility.complete?"scaffold":""))){p.destroy();objects.remove(item.key);p=null;}
             if(p==null){p=new Proxy(item,geometry);objects.put(item.key,p);}
             p.item=item;p.motion.settle(item.hex,snapshot.ground.grid);p.position(p.motion.x,p.motion.z);p.updateDamage();
         }
         Iterator<Map.Entry<String,Proxy>> it=objects.entrySet().iterator();while(it.hasNext()){Map.Entry<String,Proxy> e=it.next();if(!alive.contains(e.getKey())){e.getValue().destroy();it.remove();}}
-        // Release faction proxy meshes after ownership changes, rather than retaining obsolete colors forever.
-        Set<GpuMesh> used=new HashSet<>();for(Proxy p:objects.values()){used.add(p.shape);if(p.flagShape!=null)used.add(p.flagShape);if(p.baseShape!=null)used.add(p.baseShape);}
-        Iterator<Map.Entry<String,GpuMesh>> meshes=shapes.entrySet().iterator();while(meshes.hasNext()){GpuMesh m=meshes.next().getValue();if(!used.contains(m)){m.destroy();meshes.remove();}}
+        trimShapes();
         animateReplay();
+    }
+    private void trimShapes(){
+        Set<GpuMesh> used=new HashSet<>();for(Proxy p:objects.values()){used.add(p.shape);if(p.flagShape!=null)used.add(p.flagShape);if(p.baseShape!=null)used.add(p.baseShape);if(p.stateShape!=null)used.add(p.stateShape);}
+        Iterator<Map.Entry<String,GpuMesh>> it=shapes.entrySet().iterator();
+        while(it.hasNext()&&shapes.size()>128){GpuMesh m=it.next().getValue();if(!used.contains(m)){m.destroy();it.remove();}}
+    }
+    private void animateUnits(){
+        if(snapshot==null)return;
+        for(Proxy p:objects.values())if(p.item.unit!=null&&p.shown){
+            p.animation.sample(p.item,snapshot.ground,replay,replayFraction,animationTick,unitLod);
+            String model=FieldAssets.unit(p.item.unit,p.animation.naval,unitLod);
+            int count=FieldAssets.count(p.item.unit,p.animation.naval,unitLod);
+            String key=model+":"+p.animation.clip+":"+p.animation.frame+":"+count;
+            if(!key.equals(p.poseKey)){
+                GpuMesh mesh=shapes.get(key);
+                if(mesh==null){try{mesh=new GpuMesh(fieldAssets.pose(model,p.animation.clip,p.animation.frame,count));}catch(Exception e){throw new IllegalStateException("unit pose "+key,e);}shapes.put(key,mesh);}
+                p.replace(mesh);p.poseKey=key;
+            }
+            p.position(p.motion.x,p.motion.z);
+        }
+        trimShapes();
     }
     private void animateReplay(){
         if(snapshot==null)return;
@@ -196,9 +249,9 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(engine==null)return;
         if(displayHelper!=null)displayHelper.detach();
         if(swap!=null){engine.destroySwapChain(swap);swap=null;}
-        for(Proxy p:objects.values())p.destroy();objects.clear();for(GpuMesh m:terrain.values())m.destroy();terrain.clear();for(GpuMesh m:shapes.values())m.destroy();shapes.clear();
+        for(Proxy p:objects.values())p.destroy();objects.clear();for(GpuMesh m:terrain.values())m.destroy();terrain.clear();for(GpuMesh m:vegetation.values())m.destroy();vegetation.clear();for(GpuMesh m:shapes.values())m.destroy();shapes.clear();
         if(light!=0){scene.removeEntity(light);engine.destroyEntity(light);EntityManager.get().destroy(light);}
-        if(siteMaterial!=null)engine.destroyMaterial(siteMaterial);if(siteAtlas!=null)engine.destroyTexture(siteAtlas);
+        if(vegetationMaterial!=null)engine.destroyMaterialInstance(vegetationMaterial);if(fieldAtlas!=null)engine.destroyTexture(fieldAtlas);if(siteMaterial!=null)engine.destroyMaterial(siteMaterial);if(siteAtlas!=null)engine.destroyTexture(siteAtlas);
         if(material!=null)engine.destroyMaterial(material);
         if(skybox!=null){scene.setSkybox(null);engine.destroySkybox(skybox);}
         if(view!=null)engine.destroyView(view);if(scene!=null)engine.destroyScene(scene);if(renderer!=null)engine.destroyRenderer(renderer);
@@ -220,11 +273,11 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         void destroy(){scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);engine.destroyVertexBuffer(vb);engine.destroyIndexBuffer(ib);}
     }
     private final class Proxy {
-        final int entity; final GpuMesh shape; int flag,base; GpuMesh flagShape,baseShape; MaterialInstance instance;
-        MapSceneSnapshot.Item item;boolean shown;final UnitMotion motion=new UnitMotion();float y;
+        final int entity; GpuMesh shape; int flag,base,state; GpuMesh flagShape,baseShape,stateShape; MaterialInstance instance;
+        MapSceneSnapshot.Item item;boolean shown;final UnitMotion motion=new UnitMotion();final UnitAnimation animation=new UnitAnimation();String poseKey;float y;
         Proxy(MapSceneSnapshot.Item item,GpuMesh shape){this.item=item;motion.settle(item.hex,snapshot.ground.grid);this.shape=shape;entity=EntityManager.get().create();
-            if(shape.source.uv!=null){instance=siteMaterial.createInstance();instance.setParameter("atlas",siteAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));instance.setParameter("damage",0f);shape.build(entity,instance);}else shape.build(entity);
-            if(item.site!=null){String key="flag:"+item.color;flagShape=shapes.get(key);if(flagShape==null){flagShape=new GpuMesh(SceneMesh.proxy(3,item.color));shapes.put(key,flagShape);}flag=EntityManager.get().create();flagShape.build(flag);}
+            if(shape.source.uv!=null){instance=siteMaterial.createInstance();instance.setParameter("atlas",item.site!=null?siteAtlas:fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));instance.setParameter("damage",0f);shape.build(entity,instance);}else shape.build(entity);
+            if(item.site!=null||item.unit!=null||item.facility!=null){String key="flag:"+item.color;flagShape=shapes.get(key);if(flagShape==null){flagShape=new GpuMesh(SceneMesh.proxy(3,item.color));shapes.put(key,flagShape);}flag=EntityManager.get().create();flagShape.build(flag);}
             if(item.kind==0&&item.site!=null){
                 GridWorldTransform grid=snapshot.ground.grid;float x=grid.x(item.hex),z=grid.z(item.hex);StringBuilder key=new StringBuilder("base:");
                 for(Hex h:item.site.cells)key.append(grid.x(h)-x).append(',').append(grid.z(h)-z).append(';');
@@ -233,19 +286,29 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                     baseShape=new GpuMesh(b.mesh(0,0,2));shapes.put(key.toString(),baseShape);
                 }base=EntityManager.get().create();baseShape.build(base);
             }
+            if(item.facility!=null&&(!item.facility.complete||item.facility.burning)){
+                String stateKey=item.facility.burning?"fire":"scaffold";stateShape=shapes.get(stateKey);
+                if(stateShape==null){try{stateShape=new GpuMesh(fieldAssets.mesh(stateKey));}catch(Exception e){throw new IllegalStateException(e);}shapes.put(stateKey,stateShape);}
+                state=EntityManager.get().create();stateShape.build(state,vegetationMaterial);
+            }
             position(snapshot.ground.grid.x(item.hex),snapshot.ground.grid.z(item.hex));updateDamage();
         }
-        void updateDamage(){if(instance!=null)instance.setParameter("damage",item.site.damage*.5f);}
+        void replace(GpuMesh mesh){
+            engine.getRenderableManager().destroy(entity);shape=mesh;shape.build(entity,instance);if(shown)scene.addEntity(entity);
+        }
+        void updateDamage(){if(instance!=null)instance.setParameter("damage",item.site!=null?item.site.damage*.5f:item.facility!=null?1-item.facility.hp/(float)Math.max(1,item.facility.maxHp):0);}
+        String stateKey(){return item.facility==null?"":item.facility.burning?"fire":!item.facility.complete?"scaffold":"";}
         void position(float x,float z){
-            y=snapshot.ground.surface.meshHeight(x,z)+.02f;
-            float angle=item.site==null?motion.yaw:item.site.yaw,scale=item.site==null?1:item.site.scale;
+            y=item.unit!=null&&animation.naval?.02f:snapshot.ground.surface.meshHeight(x,z)+.02f;
+            float angle=item.site==null?(item.facility!=null?item.facility.direction*(float)Math.PI/3:motion.yaw):item.site.yaw,scale=item.site==null?(item.unit==null?1:animation.scale):item.site.scale;
             float c=(float)Math.cos(angle)*scale,s=(float)Math.sin(angle)*scale;
             float[] matrix={c,0,-s,0,0,scale,0,0,s,0,c,0,x,y,z,1};TransformManager tm=engine.getTransformManager();tm.setTransform(tm.getInstance(entity),matrix);
+            if(state!=0)tm.setTransform(tm.getInstance(state),matrix);
             if(base!=0){float[] baseMatrix={1,0,0,0,0,1,0,0,0,0,1,0,x,y,z,1};tm.setTransform(tm.getInstance(base),baseMatrix);}
-            if(flag!=0){float[] f={.42f,0,0,0,0,.42f,0,0,0,0,.42f,0,x,y+(item.kind==0?.82f:.66f),z,1};tm.setTransform(tm.getInstance(flag),f);}
+            if(flag!=0){float[] f={.42f,0,0,0,0,.42f,0,0,0,0,.42f,0,x,y+(item.kind==0?.82f:item.unit!=null?.25f:.46f),z,1};tm.setTransform(tm.getInstance(flag),f);}
         }
-        void show(boolean value){shown=value;if(value){scene.addEntity(entity);if(flag!=0)scene.addEntity(flag);if(base!=0)scene.addEntity(base);}else{scene.removeEntity(entity);if(flag!=0)scene.removeEntity(flag);if(base!=0)scene.removeEntity(base);}}
-        void destroy(){scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);if(flag!=0){scene.removeEntity(flag);engine.destroyEntity(flag);EntityManager.get().destroy(flag);}if(base!=0){scene.removeEntity(base);engine.destroyEntity(base);EntityManager.get().destroy(base);}if(instance!=null)engine.destroyMaterialInstance(instance);}
+        void show(boolean value){shown=value;if(value){scene.addEntity(entity);if(flag!=0)scene.addEntity(flag);if(base!=0)scene.addEntity(base);if(state!=0)scene.addEntity(state);}else{scene.removeEntity(entity);if(flag!=0)scene.removeEntity(flag);if(base!=0)scene.removeEntity(base);if(state!=0)scene.removeEntity(state);}}
+        void destroy(){scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);if(flag!=0){scene.removeEntity(flag);engine.destroyEntity(flag);EntityManager.get().destroy(flag);}if(base!=0){scene.removeEntity(base);engine.destroyEntity(base);EntityManager.get().destroy(base);}if(state!=0){scene.removeEntity(state);engine.destroyEntity(state);EntityManager.get().destroy(state);}if(instance!=null)engine.destroyMaterialInstance(instance);}
     }
     private final class Overlay extends android.view.View {
         final Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -277,7 +340,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                     p.setColor(item.color);c.drawText(item.displayLabel(),x,y,p);
                 }
             }
-            p.setColor(0xfff0e5c8);c.drawText((pending>0)?"3D 地形装载中… · 可在视图切回 2D":"3D 试验 · S03 城港关 · 长按反向查看",12,24*getResources().getDisplayMetrics().density,p);
+            p.setColor(0xfff0e5c8);c.drawText((pending>0)?"3D 地形装载中… · 可在视图切回 2D":"3D 试验 · 设施植被 / 部队编队 · 长按反向查看",12,24*getResources().getDisplayMetrics().density,p);
             if(diagnostics){float y=48*getResources().getDisplayMetrics().density;for(String line:report().split("\n")){c.drawText(line,12,y,p);y+=22*getResources().getDisplayMetrics().density;}}
             p.clearShadowLayer();
         }
