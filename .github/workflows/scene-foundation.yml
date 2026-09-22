@@ -67,8 +67,8 @@ jobs:
             adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
             adb logcat -G 16M
             adb shell screenrecord --time-limit 150 /sdcard/field-scene.mp4 >/dev/null 2>&1 &
-            adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.FieldSceneInstrumentation | tee evidence/field-installed.txt
-            adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.SceneInstrumentation | tee evidence/installed.txt
+            timeout 600 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.FieldSceneInstrumentation | tee evidence/field-installed.txt
+            timeout 600 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.SceneInstrumentation | tee evidence/installed.txt
             adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/installed
             adb logcat -d > evidence/logcat.txt
             python3 scripts/field-ci-summary.py evidence/logcat.txt

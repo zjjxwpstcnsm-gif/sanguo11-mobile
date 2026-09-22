@@ -41,7 +41,8 @@ public class SceneInstrumentation extends Instrumentation {
         runOnMainSync(()->{invoke("activateWorld",new Class<?>[]{World.class},loaded);activity.refresh();});
         world=(World)field(activity,"world");check(host.is3D(),"load uses same 3D host");capture("04-3d-after-turn-load");
     }
-    void settle(){waitForIdleSync();SystemClock.sleep(500);}
+    // Continuous 3D animation need not make the Looper globally idle. Queue a UI barrier.
+    void settle(){runOnMainSync(()->{});SystemClock.sleep(500);}
     void ready()throws Exception{
         long deadline=SystemClock.uptimeMillis()+120000;
         while(SystemClock.uptimeMillis()<deadline){

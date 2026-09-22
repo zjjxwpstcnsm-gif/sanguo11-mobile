@@ -41,6 +41,11 @@ public final class FieldAssetsTest {
         for(SceneMesh tree:trees){mesh(tree);if(tree.distant.indices.length>0)mesh(tree.distant);}
         List<SceneMesh> same=Vegetation.build(g,excluded,trees,assets.mesh("tree-lod0"),assets.mesh("tree-lod1"));
         check(same.equals(trees),"unchanged forest chunks are reused");
+        forest.mapRevision++;MapSceneSnapshot.Ground revised=new MapSceneSnapshot.Ground(forest);
+        check(!g.matches(forest),"map revision invalidates visual seed");
+        List<SceneMesh> revisionTrees=Vegetation.build(revised,excluded,trees,assets.mesh("tree-lod0"),assets.mesh("tree-lod1"));
+        check(!Arrays.equals(revisionTrees.get(0).vertices,trees.get(0).vertices),"different map version produces deterministic new vegetation");
+        forest.mapRevision--;
         excluded.add(new Hex(20,20));List<SceneMesh> patch=Vegetation.build(g,excluded,trees,assets.mesh("tree-lod0"),assets.mesh("tree-lod1"));
         int reused=0;for(SceneMesh tree:patch)if(trees.contains(tree))reused++;
         check(reused>=trees.size()-9,"facility patch rebuilds only bounded affected forest neighborhood");

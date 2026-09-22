@@ -15,7 +15,7 @@ public final class FieldFlowTest {
         }
         check(sea&&land,"actual legal route switches model sea and back to land");
         check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(reference)),"journal/animation preserves exact rule result");
-        for(int n:new int[]{50,100}){World fixture=FieldSceneFixture.create(n,true,true);SaveCodec.encode(fixture);check(fixture.units.size()==n,"stress count exact");Set<Hex> occupied=new HashSet<>();for(World.Unit unit:fixture.units)check(occupied.add(unit.hex),"unique unit cells");for(War.Structure s:fixture.war.structures())check(!occupied.contains(s.hex),"stress fixtures do not overlap units/facilities");}
+        for(int n:new int[]{50,100}){World fixture=FieldSceneFixture.create(n,true,true);SaveCodec.encode(fixture);World trial=SaveCodec.decode(SaveCodec.encode(fixture));check(trial.move(1,new Hex(11,14)).ok,"native stress movement fixture legal");check(fixture.units.size()==n,"stress count exact");Set<Hex> occupied=new HashSet<>();for(World.Unit unit:fixture.units)check(occupied.add(unit.hex),"unique unit cells");for(War.Structure s:fixture.war.structures())check(!occupied.contains(s.hex),"stress fixtures do not overlap units/facilities");}
         World a=FieldLifecycleFixture.start(),b=SaveCodec.decode(SaveCodec.encode(a));
         @SuppressWarnings("unchecked") java.util.function.Consumer<World>[] actions=new java.util.function.Consumer[]{
             (java.util.function.Consumer<World>)FieldLifecycleFixture::build,

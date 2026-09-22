@@ -56,7 +56,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             @Override public boolean onDown(MotionEvent e){return true;}
             @Override public boolean onScroll(MotionEvent a,MotionEvent b,float dx,float dy){if(!scaler.isInProgress()){camera.pan(-dx,-dy);clampCamera();}return true;}
             @Override public boolean onSingleTapUp(MotionEvent e){
-                if(!multi&&snapshot!=null){Hex h=pickUnit(e.getX(),e.getY());if(h==null)h=snapshot.ground.surface.pick(camera,e.getX(),e.getY());if(snapshot.ground.valid(h)){performClick();listener.tap(h);}}return true;
+                if(!multi&&snapshot!=null){Hex h=pickUnit(e.getX(),e.getY());if(h==null)h=pickFacility(e.getX(),e.getY());if(h==null)h=snapshot.ground.surface.pick(camera,e.getX(),e.getY());if(snapshot.ground.valid(h)){performClick();listener.tap(h);}}return true;
             }
             @Override public void onLongPress(MotionEvent e){camera.facing=-camera.facing;overlay.invalidate();}
             @Override public boolean onDoubleTap(MotionEvent e){camera.zoom(1.7f,e.getX(),e.getY());return true;}
@@ -251,6 +251,19 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(d<distance||(d==distance&&nearest!=null&&p.item.unit.id<nearest.item.unit.id)){nearest=p;distance=d;}
         }
         return nearest==null?null:nearest.item.hex;
+    }
+    /** Roof/tower taps select the real facility tile; vegetation never steals input. */
+    private Hex pickFacility(float sx,float sy){
+        Proxy chosen=null;float nearest=Float.MAX_VALUE;
+        for(Proxy p:objects.values())if(p.shown&&p.item.facility!=null){
+            float angle=p.item.facility.direction*(float)Math.PI/3,c=(float)Math.cos(angle),s=(float)Math.sin(angle);
+            float minX=Float.MAX_VALUE,minY=minX,maxX=-minX,maxY=-minX;
+            float[] v=p.shape.source.vertices;
+            for(int i=0;i<v.length;i+=7){float x=p.motion.x+c*v[i]+s*v[i+2],z=p.motion.z-s*v[i]+c*v[i+2];
+                float px=camera.screenX(x),py=camera.screenY(z,p.y+v[i+1]);minX=Math.min(minX,px);maxX=Math.max(maxX,px);minY=Math.min(minY,py);maxY=Math.max(maxY,py);}
+            if(sx>=minX&&sx<=maxX&&sy>=minY&&sy<=maxY){float dx=sx-(minX+maxX)/2,dy=sy-(minY+maxY)/2,d=dx*dx+dy*dy;if(d<nearest){nearest=d;chosen=p;}}
+        }
+        return chosen==null?null:chosen.item.hex;
     }
     void focus(Hex h){if(snapshot==null||h==null)return;camera.x=snapshot.ground.grid.x(h);camera.z=snapshot.ground.grid.z(h);camera.span=10;}
     void center(Hex h){if(snapshot!=null&&h!=null){camera.x=snapshot.ground.grid.x(h);camera.z=snapshot.ground.grid.z(h);}}

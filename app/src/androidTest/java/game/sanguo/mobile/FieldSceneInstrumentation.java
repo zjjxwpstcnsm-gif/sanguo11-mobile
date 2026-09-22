@@ -25,6 +25,7 @@ public final class FieldSceneInstrumentation extends SceneInstrumentation {
         small.recycle();b.recycle();surfaceCapture();
     }
     private void stress(int count,boolean forest,boolean facilities)throws Exception{
+        android.util.Log.i("SceneAcceptance","BEGIN field units="+count+" forest="+forest+" facilities="+facilities);
         World fixture=FieldSceneFixture.create(count,forest,facilities);byte[] before=SaveCodec.encode(fixture);activate(fixture);
         FilamentMapView view=(FilamentMapView)field(host,"spatial");
         for(float span:new float[]{7,15,28}){
@@ -38,13 +39,40 @@ public final class FieldSceneInstrumentation extends SceneInstrumentation {
             if(span==7)preview("field-"+count+"-"+forest+"-"+facilities);
         }
         check(Arrays.equals(before,SaveCodec.encode(fixture)),"all LOD/animation samples preserve fixture resources and RNG");
+        if(count==50&&!forest)independentActions(fixture,view);
         runOnMainSync(()->{fixture.units.clear();host.invalidateScene();host.setWorld(fixture,null,-1);});settle();
         Map<?,?> objects=(Map<?,?>)field(view,"objects");check(objects.keySet().stream().noneMatch(k->k.toString().startsWith("unit:")),"removed units leave no renderable or label");
     }
+    private void independentActions(World w,FilamentMapView view)throws Exception{
+        World reference=SaveCodec.decode(SaveCodec.encode(w)),visual=SaveCodec.decode(SaveCodec.encode(w));
+        TurnJournal log=new TurnJournal(w);check(w.move(1,new Hex(11,14)).ok,"stress actor legal movement");log.close();check(reference.move(1,new Hex(11,14)).ok,"same command reference");
+        runOnMainSync(()->{host.invalidateScene();host.setWorld(visual,null,-1);host.focus(new Hex(18,18));view.camera.span=15;});settle();
+        boolean compared=false;
+        for(TurnJournal.Event event:log.events()){
+            if(event.kind==TurnJournal.Kind.MOVE){
+                runOnMainSync(()->host.replayFrame(event,.4f));settle();
+                runOnMainSync(()->{try{
+                    Map<?,?> proxies=(Map<?,?>)field(view,"objects");UnitAnimation actor=(UnitAnimation)field(proxies.get("unit:1"),"animation"),other=(UnitAnimation)field(proxies.get("unit:10"),"animation");
+                    check("walk".equals(actor.clip)&&"idle".equals(other.clip),"two actual SPEAR formations simultaneously walk and idle");
+                }catch(Exception e){throw new RuntimeException(e);}});compared=true;preview("field-independent-actions");
+            }
+            event.applyVisual(visual);runOnMainSync(()->{host.replayFrame(null,0);host.invalidateScene();host.setWorld(visual,null,-1);});
+        }
+        check(compared&&Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(reference)),"independent playback preserves full authoritative state");
+        runOnMainSync(()->{host.invalidateScene();host.setWorld(w,null,-1);});
+    }
     private void lifecycle()throws Exception{
+        android.util.Log.i("SceneAcceptance","BEGIN facility lifecycle");
         World w=FieldLifecycleFixture.start();activate(w);
         FilamentMapView view=(FilamentMapView)field(host,"spatial");
         runOnMainSync(()->{host.focus(new Hex(13,14));view.camera.span=3;FieldLifecycleFixture.build(w);host.invalidateScene();host.setWorld(w,null,-1);});settle();preview("field-construction");
+        runOnMainSync(()->{
+            try{MapSceneSnapshot snap=(MapSceneSnapshot)field(view,"snapshot");Hex tile=new Hex(13,14);
+                float x=view.camera.screenX(snap.ground.grid.x(tile)),y=view.camera.screenY(snap.ground.grid.z(tile),snap.ground.surface.at(tile)+.15f);
+                long t=SystemClock.uptimeMillis();android.view.MotionEvent down=android.view.MotionEvent.obtain(t,t,0,x,y,0),up=android.view.MotionEvent.obtain(t,t+40,1,x,y,0);
+                view.onTouchEvent(down);view.onTouchEvent(up);down.recycle();up.recycle();
+            }catch(Exception e){throw new RuntimeException(e);}
+        });settle();check(new Hex(13,14).equals(field(activity,"selected")),"tap real construction model selects exact facility tile");
         runOnMainSync(()->{FieldLifecycleFixture.finish(w);FieldLifecycleFixture.upgrade(w);FieldLifecycleFixture.damage(w);host.invalidateScene();host.setWorld(w,null,-1);});settle();preview("field-upgrade-damage");
         runOnMainSync(()->{FieldLifecycleFixture.repair(w);FieldLifecycleFixture.destroy(w);host.invalidateScene();host.setWorld(w,null,-1);});settle();
         Map<?,?> remaining=(Map<?,?>)field(view,"objects");check(remaining.keySet().stream().noneMatch(k->k.toString().startsWith("structure:")),"real destruction removes native facility");
@@ -53,6 +81,7 @@ public final class FieldSceneInstrumentation extends SceneInstrumentation {
         check(((Map<?,?>)field(view,"objects")).keySet().stream().noneMatch(k->k.toString().startsWith("domestic:")),"real demolition removes native facility");
     }
     private void march()throws Exception{
+        android.util.Log.i("SceneAcceptance","BEGIN automatic march/convoy");
         World w=SaveCodec.decode(SaveCodec.encode(FieldSceneFixture.march()));activate(w);
         World reference=SaveCodec.decode(SaveCodec.encode(w));FieldSceneFixture.depart(w);FieldSceneFixture.depart(reference);
         int turns=0;boolean entered=false;
@@ -74,6 +103,7 @@ public final class FieldSceneInstrumentation extends SceneInstrumentation {
         runOnMainSync(()->{host.invalidateScene();host.setWorld(w,null,-1);host.focus(w.city(2).hex);});settle();preview("field-garrison-convoy");
     }
     private void port()throws Exception{
+        android.util.Log.i("SceneAcceptance","BEGIN port replay");
         World w=FieldSceneFixture.port();activate(w);
         ParcelFileDescriptor recording=getUiAutomation().executeShellCommand("screenrecord --time-limit 30 /sdcard/field-port.mp4");World.Unit u=w.units.get(0);World reference=SaveCodec.decode(SaveCodec.encode(w));World visual=SaveCodec.decode(SaveCodec.encode(w));
         TurnJournal journal=new TurnJournal(w);Hex target=new Hex(21,19);

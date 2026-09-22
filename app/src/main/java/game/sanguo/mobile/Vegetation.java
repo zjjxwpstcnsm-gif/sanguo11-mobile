@@ -16,7 +16,7 @@ final class Vegetation {
         List<SceneMesh> result=new ArrayList<>();
         for(int r=0;r<ground.height;r+=CHUNK)for(int q=0;q<ground.width;q+=CHUNK){
             if(Thread.currentThread().isInterrupted())return Collections.emptyList();
-            long fingerprint=SEED;List<Hex> cells=new ArrayList<>();
+            long fingerprint=SEED^ground.mapSeed;List<Hex> cells=new ArrayList<>();
             // Height sampling has a bounded neighborhood; include it in invalidation.
             for(int rr=r-6;rr<r+CHUNK+6;rr++)for(int qq=q-6;qq<q+CHUNK+6;qq++){
                 Hex h=new Hex(qq,rr);int t=ground.valid(h)?ground.terrain[rr*ground.width+qq]:-1;
@@ -46,7 +46,7 @@ final class Vegetation {
         List<Float> vertices=new ArrayList<>();List<Integer> indices=new ArrayList<>();List<Float> tex=new ArrayList<>();
         float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
         for(Hex h:cells){
-            int hash=(h.q*73856093)^(h.r*19349663)^SEED;hash^=hash>>>16;
+            int hash=(h.q*73856093)^(h.r*19349663)^SEED^ground.mapSeed;hash^=hash>>>16;
             if(far&&(hash&1)!=0)continue;
             float x=ground.grid.x(h)+((hash&1)==0?-.24f:.24f),z=ground.grid.z(h)+((hash&2)==0?-.24f:.24f);
             float scale=.66f+((hash>>>4)&7)*.035f,y=ground.surface.meshHeight(x,z);
