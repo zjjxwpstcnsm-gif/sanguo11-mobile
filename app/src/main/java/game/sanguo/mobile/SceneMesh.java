@@ -14,6 +14,9 @@ final class SceneMesh {
         indices=new int[i.size()];for(int n=0;n<i.size();n++)indices[n]=i.get(n);
         this.x=x;this.z=z;this.radius=radius;
     }
+    SceneMesh(float[] vertices,int[] indices,float x,float z,float radius){
+        this.vertices=vertices;this.indices=indices;this.x=x;this.z=z;this.radius=radius;
+    }
     static final class Builder {
         final List<Float> v=new ArrayList<>();final List<Integer> i=new ArrayList<>();
         void vertex(float x,float y,float z,int color){Collections.addAll(v,x,y,z,((color>>16)&255)/255f,((color>>8)&255)/255f,(color&255)/255f,1f);}

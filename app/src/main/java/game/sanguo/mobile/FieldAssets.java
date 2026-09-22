@@ -54,13 +54,14 @@ final class FieldAssets {
             }
         }
         // One merged draw per formation. No entity for each soldier; no troop-count expansion.
-        List<Float> vertices=new ArrayList<>(posed.length*count);List<Integer> indices=new ArrayList<>(source.indices.length*count);
+        float[] vertices=new float[posed.length*count];int[] indices=new int[source.indices.length*count];
         float[] uv=new float[source.uv.length*count];float scale=count>1?.78f:1;
         for(int member=0;member<count;member++){
             int columns=count==8?4:2;float dx=count==1?0:(member%columns-(columns-1)*.5f)*(count==8?.21f:.32f);
             float dz=count==1?0:(member/columns-(count/columns-1)*.5f)*.31f;
-            for(int v=0;v<posed.length;v+=7){vertices.add(posed[v]*scale+dx);vertices.add(posed[v+1]*scale);vertices.add(posed[v+2]*scale+dz);for(int k=3;k<7;k++)vertices.add(posed[v+k]);}
-            for(int index:source.indices)indices.add(index+member*(posed.length/7));
+            int offset=member*posed.length;System.arraycopy(posed,0,vertices,offset,posed.length);
+            for(int v=0;v<posed.length;v+=7){vertices[offset+v]=posed[v]*scale+dx;vertices[offset+v+1]=posed[v+1]*scale;vertices[offset+v+2]=posed[v+2]*scale+dz;}
+            for(int i=0;i<source.indices.length;i++)indices[member*source.indices.length+i]=source.indices[i]+member*(posed.length/7);
             System.arraycopy(source.uv,0,uv,member*source.uv.length,source.uv.length);
         }
         SceneMesh mesh=new SceneMesh(vertices,indices,0,0,1);mesh.uv=uv;return mesh;
