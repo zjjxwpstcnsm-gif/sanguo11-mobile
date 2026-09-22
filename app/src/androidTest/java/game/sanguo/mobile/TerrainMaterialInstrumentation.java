@@ -31,7 +31,7 @@ public final class TerrainMaterialInstrumentation extends SceneInstrumentation {
             FilamentMapView spatial=(FilamentMapView)field(host,"spatial");
             check(field(spatial,"groundMaterial")!=null,"real ground material loaded");check(((List<?>)field(spatial,"groundTextures")).size()==8,"all texture layers loaded");
             for(int i=0;i<shots.length;i++)for(float span:new float[]{4,10,24}){
-                final Hex h=shots[i];runOnMainSync(()->{host.focus(h);spatial.camera.span=span;spatial.camera.facing=1;});settle();ready();
+                final Hex h=shots[i];runOnMainSync(()->{activity.selectAndFocus(h);spatial.camera.span=span;spatial.camera.facing=1;});settle();ready();
                 surfaceCapture();String name="s10-"+names[i]+"-"+quality+"-"+(int)span;
                 Files.copy(new File(dir,"surface.png").toPath(),new File(dir,name+"-surface.png").toPath(),java.nio.file.StandardCopyOption.REPLACE_EXISTING);
                 capture(name+"-selection");report.append(names[i]+","+h.q+","+h.r+","+span+","+quality+",1,"+BuildConfig.SOURCE_REVISION+"\n");

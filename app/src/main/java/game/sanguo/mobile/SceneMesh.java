@@ -68,7 +68,8 @@ final class SceneMesh {
                 int color=terrain(g.terrain[rr*g.width+qq]),n=b.v.size()/7;boolean water=g.surface.water(h);
                 b.vertex(x,g.surface.sample(x,z),z,g.surface.color(x,z,color,water));
                 for(float[] edge:EDGE){float vx=x+edge[0],vz=z+edge[1];b.vertex(vx,g.surface.sample(vx,vz),vz,g.surface.color(vx,vz,color,water));}
-                for(int j=0;j<8;j++)Collections.addAll(b.i,n,n+1+j,n+1+(j+1)%8);
+                // +Y facing winding: lit double-sided shading otherwise flips the valid +Y tangent normal.
+                for(int j=0;j<8;j++)Collections.addAll(b.i,n,n+1+(j+1)%8,n+1+j);
             }
             if(!b.i.isEmpty()){
                 SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+1);

@@ -24,6 +24,9 @@ public final class TerrainMaterialFieldTest {
                 for(int j=0;j<8;j++)check(coarse.surfaceData[s+j]==fine.surfaceData[s+j],"LOD boundary stream identical");
             }
             for(int t=0;t<coarse.indices.length;t+=3){int n=coarse.vertices.length/7+t/3;
+                int a=coarse.indices[t]*7,b=coarse.indices[t+1]*7,c=coarse.indices[t+2]*7;
+                float up=(coarse.vertices[b+2]-coarse.vertices[a+2])*(coarse.vertices[c]-coarse.vertices[a])-(coarse.vertices[b]-coarse.vertices[a])*(coarse.vertices[c+2]-coarse.vertices[a+2]);
+                check(up>0,"ground front face agrees with +Y tangent normal");
                 for(int k=3;k<7;k++){float expected=0;for(int j=0;j<3;j++)expected+=coarse.vertices[coarse.indices[t+j]*7+k];check(Math.abs(fine.vertices[n*7+k]-expected/3)<1e-6,"interior subdivision preserves field not owning-cell color");}
             }
         }
