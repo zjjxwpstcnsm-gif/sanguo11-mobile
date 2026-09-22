@@ -26,7 +26,8 @@ public final class FieldSceneInstrumentation extends SceneInstrumentation {
     }
     private void stress(int count,boolean forest,boolean facilities)throws Exception{
         android.util.Log.i("SceneAcceptance","BEGIN field units="+count+" forest="+forest+" facilities="+facilities);
-        World fixture=FieldSceneFixture.create(count,forest,facilities);byte[] before=SaveCodec.encode(fixture);activate(fixture);
+        // Use the same loaded-save normalization for the renderer and command reference.
+        World fixture=SaveCodec.decode(SaveCodec.encode(FieldSceneFixture.create(count,forest,facilities)));byte[] before=SaveCodec.encode(fixture);activate(fixture);
         FilamentMapView view=(FilamentMapView)field(host,"spatial");
         for(float span:new float[]{7,15,28}){
             runOnMainSync(()->view.camera.span=span);settle();ready();

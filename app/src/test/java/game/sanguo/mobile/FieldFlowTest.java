@@ -16,6 +16,13 @@ public final class FieldFlowTest {
         check(sea&&land,"actual legal route switches model sea and back to land");
         check(Arrays.equals(SaveCodec.encode(w),SaveCodec.encode(reference)),"journal/animation preserves exact rule result");
         for(int n:new int[]{50,100}){World fixture=FieldSceneFixture.create(n,true,true);SaveCodec.encode(fixture);World trial=SaveCodec.decode(SaveCodec.encode(fixture));check(trial.move(1,new Hex(11,14)).ok,"native stress movement fixture legal");check(fixture.units.size()==n,"stress count exact");Set<Hex> occupied=new HashSet<>();for(World.Unit unit:fixture.units)check(occupied.add(unit.hex),"unique unit cells");for(War.Structure s:fixture.war.structures())check(!occupied.contains(s.hex),"stress fixtures do not overlap units/facilities");}
+        World independent=SaveCodec.decode(SaveCodec.encode(FieldSceneFixture.create(50,false,true)));
+        World independentReference=SaveCodec.decode(SaveCodec.encode(independent));
+        check(Arrays.equals(SaveCodec.encode(independent),SaveCodec.encode(independentReference)),"independent actors start from identical normalized saves");
+        TurnJournal independentJournal=new TurnJournal(independent);
+        check(independent.move(1,new Hex(11,14)).ok,"independent actor legal move");independentJournal.close();
+        check(independentReference.move(1,new Hex(11,14)).ok,"independent reference legal move");
+        check(Arrays.equals(SaveCodec.encode(independent),SaveCodec.encode(independentReference)),"independent journal keeps full authoritative state");
         World a=FieldLifecycleFixture.start(),b=SaveCodec.decode(SaveCodec.encode(a));
         @SuppressWarnings("unchecked") java.util.function.Consumer<World>[] actions=new java.util.function.Consumer[]{
             (java.util.function.Consumer<World>)FieldLifecycleFixture::build,
