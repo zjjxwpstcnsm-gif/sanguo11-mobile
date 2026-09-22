@@ -133,8 +133,8 @@
     },
     {
       "path": "tools/3d/ground.mat",
-      "sha256": "96c22d808974a8042e4bc729bf483f78fbf460f2fdc21c1149a88e60c98e3c8b",
-      "bytes": 1805,
+      "sha256": "a0adcde8f1e00d35b31730b8dbec2b0f8d0d6fc0d001fc1f93afef95c5ea4bb6",
+      "bytes": 1800,
       "kind": "material",
       "source": "tools/3d/ground.mat; official matc v1.56.0 (56), mobile OpenGL",
       "license": "original shader CC0-1.0; Filament compiler Apache-2.0",
@@ -142,12 +142,30 @@
     },
     {
       "path": "app/src/main/assets/3d/terrain/ground.filamat",
-      "sha256": "40b4ed145588116e8b09f5a1f9385716e2c7106b5ecde5f52c4e44b99173ab91",
-      "bytes": 517702,
+      "sha256": "54c04c612691673cb6dacf277cff56eb95221de6810cd9f62fd71a6f91071d07",
+      "bytes": 517670,
       "kind": "material",
       "source": "tools/3d/ground.mat; official matc v1.56.0 (56), mobile OpenGL",
       "license": "original shader CC0-1.0; Filament compiler Apache-2.0",
       "consumer": "FilamentMapView.loadGroundMaterials"
+    },
+    {
+      "path": "tools/3d/water.mat",
+      "sha256": "b0ad1c428ef8951d0644523cbe4494c71938a9d4503da56842dae93a42bc670d",
+      "bytes": 1770,
+      "kind": "material",
+      "source": "tools/3d/water.mat; official matc v1.56.0 (56), mobile OpenGL",
+      "license": "original shader CC0-1.0; Filament compiler Apache-2.0",
+      "consumer": "FilamentMapView.loadWaterMaterial"
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/water.filamat",
+      "sha256": "da24123d25e501fedf84d9d879f68f82e4163b40218d7be9923565b12e437f9d",
+      "bytes": 511954,
+      "kind": "material",
+      "source": "tools/3d/water.mat; official matc v1.56.0 (56), mobile OpenGL",
+      "license": "original shader CC0-1.0; Filament compiler Apache-2.0",
+      "consumer": "FilamentMapView.loadWaterMaterial"
     }
   ]
 }

@@ -8,3 +8,7 @@ Runtime candidate: `1be4ddc2642c63a04a4ab0bd4fafeb0c57eed1ca`, version 0.77.0-3d
 Implemented: four periodic albedos + normal/roughness textures; compact global normalized material field; dedicated ground lit material and tangent stream; world UV; stable shared cell/chunk samples; slope exposure; exactly interpolated near LOD data; bounded halo invalidation and unchanged ground/picking geometry. Existing unlit proxy/site materials and the GLES MSAA gate remain intact.
 
 Validation and remaining work: see `acceptance/s10.md`. Read `handoffs/s10.md` before S11.
+
+## S11 candidate
+
+Continues e64992d on the user-requested PR #63 branch. Regional constrained landforms and disjoint water material batches are implemented in the normal game renderer. Exact footprint, material shoreline bands and local shape-derived flow preserve water topology. Candidate tests/build/native evidence in progress; see handoffs/s11.md and acceptance/s11.md. No main merge.

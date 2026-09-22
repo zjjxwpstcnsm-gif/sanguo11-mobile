@@ -4,11 +4,12 @@ import game.sanguo.core.*;
 
 /** Compact global material field; immutable snapshot input, no gameplay RNG or camera state. */
 final class TerrainMaterialField {
-    static final int VERSION=1;
+    static final int VERSION=2;
     static final float RADIUS=1.65f;
     private static final World.Terrain[] TYPES=World.Terrain.values();
     final MapSceneSnapshot.Ground ground;
-    TerrainMaterialField(MapSceneSnapshot.Ground ground){this.ground=ground;}
+    final WaterVisualField waterField;
+    TerrainMaterialField(MapSceneSnapshot.Ground ground){this.ground=ground;this.waterField=new WaterVisualField(ground);}
     float[] sample(float x,float z){return sample(x,z,0);}
     float[] sample(float x,float z,float slope){
         float[] w=new float[4];
@@ -42,6 +43,7 @@ final class TerrainMaterialField {
             int v=i*7,s=i*8;float x=mesh.vertices[v],z=mesh.vertices[v+2];
             boolean water=mesh.vertices[v+5]>mesh.vertices[v+3];
 
+
             mesh.surfaceData[s]=x;mesh.surfaceData[s+1]=-z;
             float dx=(ground.surface.sample(x+.25f,z)-ground.surface.sample(x-.25f,z))*2;
             float dz=(ground.surface.sample(x,z+.25f)-ground.surface.sample(x,z-.25f))*2;
@@ -51,9 +53,9 @@ final class TerrainMaterialField {
             float qw=(float)Math.sqrt((1+nz)*.5f),scale=.5f/qw;
             mesh.surfaceData[s+2]=-ny*scale;mesh.surfaceData[s+3]=nx*scale;
             mesh.surfaceData[s+4]=0;mesh.surfaceData[s+5]=qw;
-            // Water keeps the authoritative cell mask; water shading is replaced in S11.
-            mesh.surfaceData[s+6]=water?1:0;
-            mesh.surfaceData[s+7]=.96f+.04f*(float)(Math.sin(x*.19)*Math.cos(z*.17));
+            // Signed visual shore distance, NOT gameplay water depth. Shared by both batches.
+            mesh.surfaceData[s+6]=waterField.distance(x,z);
+            mesh.surfaceData[s+7]=water?waterField.flowAngle(x,z):.96f+.04f*(float)(Math.sin(x*.19)*Math.cos(z*.17));
         }
     }
 }

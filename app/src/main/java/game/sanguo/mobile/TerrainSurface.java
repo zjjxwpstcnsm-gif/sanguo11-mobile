@@ -5,9 +5,10 @@ import java.util.*;
 
 /** Deterministic presentation-only field. Coordinates are projected world units, never axial indices. */
 final class TerrainSurface {
-    static final int METADATA_VERSION=1;
+    static final int METADATA_VERSION=2;
     private static final World.Terrain[] TYPES=World.Terrain.values();
     static final float MAX_HEIGHT=2.6f;
+    static final float LANDFORM_RADIUS=3.4f;
     final MapSceneSnapshot.Ground ground;
     final Map<Hex,Float> overrides;
     private final float[] targets;private final byte[] constraints;
@@ -30,7 +31,11 @@ final class TerrainSurface {
         if(!ground.valid(h)||water(h)||ground.bases.contains(h))return 0;
         Float override=overrides.get(h);if(override!=null)return override;
         switch(TYPES[ground.terrain[h.r*ground.width+h.q]]){
-            case MOUNTAIN:return 1.8f+(float)(Math.sin(ground.grid.x(h)*.23)*Math.cos(ground.grid.z(h)*.19))*.7f;
+            case MOUNTAIN:
+                float x=ground.grid.x(h),z=ground.grid.z(h);
+                // Broad, world-anchored ridges; the existing mountain mask supplies the region.
+                float ridge=1-Math.abs((float)Math.sin(x*.16+z*.11+.7*Math.sin(z*.08)));
+                return 1.6f+ridge*.9f;
             case FOREST:return .22f;
             case SAND:return .12f;
             case MOUNTAIN_PATH:case PLANK_ROAD:case ROAD:return .03f;
@@ -46,15 +51,20 @@ final class TerrainSurface {
     private float compute(float x,float z){
         Hex cell=ground.grid.cell(x,z);float sum=0,weight=0,limit=MAX_HEIGHT;
         // Compact support includes all staggered neighbors, including both sides of chunk edges.
-        for(int r=cell.r-3;r<=cell.r+3;r++)for(int q=cell.q-4;q<=cell.q+4;q++){
+        for(int r=cell.r-5;r<=cell.r+5;r++)for(int q=cell.q-7;q<=cell.q+7;q++){
             float dx=Math.abs(x-ground.grid.x(q,r)),dz=Math.abs(z-ground.grid.z(q,r));
             float distance=(float)Math.sqrt(dx*dx+dz*dz);
             int at=q>=0&&r>=0&&q<ground.width&&r<ground.height?r*ground.width+q:-1;
-            if(distance<2.5f){float k=1-distance/2.5f;k=k*k*k;sum+=(at<0?0:targets[at])*k;weight+=k;}
+            if(distance<LANDFORM_RADIUS){float k=1-distance/LANDFORM_RADIUS;k=k*k*k;sum+=(at<0?0:targets[at])*k;weight+=k;}
             int constraint=at<0?1:constraints[at];
             if(constraint!=0){float edge=Math.max(Math.max(dx-.5f,dz-.5f),0);limit=Math.min(limit,(constraint==1?0:.08f)+edge*.6f);}
         }
-        return Math.min(limit,weight==0?0:sum/weight);
+        float value=weight==0?0:sum/weight;
+        // Explicit height paint wins at its center, smoothly joining the regional field.
+        Float painted=overrides.get(cell);
+        if(painted!=null){float dx=x-ground.grid.x(cell),dz=z-ground.grid.z(cell);
+            float k=Math.max(0,1-(float)Math.sqrt(dx*dx+dz*dz)/.5f);k=k*k*(3-2*k);value=value*(1-k)+painted*k;}
+        return Math.min(limit,value);
     }
     float at(Hex h){return sample(ground.grid.x(h),ground.grid.z(h));}
     // Exact piecewise-linear height of the eight-triangle cell fan, shared with the mesh and ray picker.

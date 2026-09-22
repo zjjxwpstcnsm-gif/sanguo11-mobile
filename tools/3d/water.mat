@@ -1,0 +1,39 @@
+material {
+    name : ContinuousWaterV1,
+    flipUV : false,
+    shadingModel : lit,
+    doubleSided : true,
+    requires : [ color, uv0, uv1 ],
+    parameters : [
+        { type : float, name : waveTime },
+        { type : float, name : waveStrength }
+    ]
+}
+fragment {
+    void material(inout MaterialInputs material) {
+        float2 world = getUV0();
+        float visualDepth = max(0.0,getUV1().x);
+        float deep = smoothstep(0.0,1.5,visualDepth);
+        // A coherent world-space visual current; not a hydrological or navigation model.
+        // The phase closes at 4096s; pause/reduced motion never touches core game time.
+        float phase = materialParams.waveTime * (6.28318530718 / 4096.0);
+        float angle=getUV1().y;
+        float2 direction=float2(cos(angle),sin(angle));
+        float2 current=float2(dot(world,direction),dot(world,float2(-direction.y,direction.x)));
+        float bend = 0.7*sin(world.x*0.19+world.y*0.13);
+        float wave1 = sin(current.x*8.0+current.y*4.0+bend-phase*128.0);
+        float wave2 = cos(current.x*3.0-current.y*7.0+phase*96.0);
+        float strength = materialParams.waveStrength*mix(0.35,1.0,deep);
+        material.normal = normalize(float3(wave1*strength,wave2*strength,1.0));
+        prepareMaterial(material);
+        float4 shore = max(getColor(),float4(0.0));
+        shore /= max(dot(shore,float4(1.0)),0.0001);
+        float3 bank = mix(float3(0.08,0.135,0.12),float3(0.19,0.18,0.12),shore.z);
+        bank = mix(bank,float3(0.105,0.14,0.145),shore.w);
+        float3 water = mix(bank,float3(0.025,0.082,0.105),deep);
+        material.baseColor = float4(water,1.0);
+        material.roughness = mix(0.48,0.27,deep);
+        material.reflectance = 0.35;
+        material.metallic = 0.0;
+    }
+}

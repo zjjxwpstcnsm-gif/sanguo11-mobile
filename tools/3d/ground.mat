@@ -32,11 +32,11 @@ fragment {
                 + texture(materialParams_sandNormal,uv)*w.z
                 + texture(materialParams_rockNormal,uv)*w.w;
         }
-        float water = getUV1().x;
-        material.normal = normalize(mix(float3(0.0,0.0,1.0),nr.xyz*2.0-1.0,materialParams.normalStrength*(1.0-water)));
+        float wet = 1.0-smoothstep(0.0,0.38,abs(getUV1().x));
+        material.normal = normalize(mix(float3(0.0,0.0,1.0),nr.xyz*2.0-1.0,materialParams.normalStrength));
         prepareMaterial(material);
-        material.baseColor = float4(mix(color*getUV1().y,float3(0.069,0.153,0.188),water),1.0);
-        material.roughness = mix(nr.a,0.72,water);
+        material.baseColor = float4(color*getUV1().y*mix(1.0,0.64,wet),1.0);
+        material.roughness = mix(nr.a,0.48,wet);
         material.metallic = 0.0;
         material.reflectance = 0.25;
     }

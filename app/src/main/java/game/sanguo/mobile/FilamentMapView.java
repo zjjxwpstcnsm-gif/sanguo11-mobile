@@ -40,6 +40,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private com.google.android.filament.android.DisplayHelper displayHelper;
     private Skybox skybox;
     private com.google.android.filament.View view; private Camera lens; private Material material;
+    private Material waterMaterial;
+    private double waterSeconds;private long waterLastTick;
     private Material groundMaterial; private final List<Texture> groundTextures=new ArrayList<>();
     private Material siteMaterial; private Texture siteAtlas,fieldAtlas;private FieldAssets fieldAssets;private MaterialInstance vegetationMaterial;
     private int siteLod=1; private final Set<String> missingAssets=new HashSet<>();
@@ -141,6 +143,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             byte[] siteBytes;try(java.io.InputStream in=context.getAssets().open("3d/sites/site.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);siteBytes=out.toByteArray();}
             ByteBuffer sb=ByteBuffer.allocateDirect(siteBytes.length).order(ByteOrder.nativeOrder());sb.put(siteBytes).flip();siteMaterial=new Material.Builder().payload(sb,siteBytes.length).build(engine);
             loadGroundMaterials(context);
+            loadWaterMaterial(context);
             siteAtlas=loadAtlas(context,"3d/sites/atlas.png");
             fieldAssets=new FieldAssets(name->context.getAssets().open("3d/field/"+name));
             fieldAtlas=loadAtlas(context,"3d/field/atlas.png");
@@ -171,6 +174,13 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             groundMaterial.getDefaultInstance().setParameter(layer+(normal?"Normal":"Color"),texture,sampler);
         }
         groundMaterial.getDefaultInstance().setParameter("normalStrength",quality==SceneQuality.LOW?0f:.65f);
+    }
+    private void loadWaterMaterial(Context context)throws java.io.IOException {
+        byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain/water.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);bytes=out.toByteArray();}
+        ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();
+        waterMaterial=new Material.Builder().payload(payload,bytes.length).build(engine);
+        waterMaterial.getDefaultInstance().setParameter("waveTime",0f);
+        waterMaterial.getDefaultInstance().setParameter("waveStrength",quality==SceneQuality.LOW?.035f:.065f);
     }
     private Texture loadAtlas(Context context,String path)throws java.io.IOException {
         long started=System.nanoTime();
@@ -279,7 +289,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private String resourceReport(){
         int primitives=0,triangles=0;long bufferBytes=0;
         Set<GpuMesh> resident=new HashSet<>(shapes.values());resident.addAll(terrain.values());resident.addAll(vegetation.values());for(GpuMesh effect:effectMeshes)if(effect!=null)resident.add(effect);
-        for(GpuMesh m:resident){bufferBytes+=(long)m.source.vertices.length*4+(long)m.source.indices.length*4+(m.source.uv==null?0:(long)m.source.uv.length*4)+(m.source.surfaceData==null?0:(long)m.source.surfaceData.length*4);if(m.shown){primitives++;triangles+=m.source.indices.length/3;}}
+        for(GpuMesh m:resident){bufferBytes+=(long)m.source.vertices.length*4+(long)m.source.indices.length*4+(m.source.uv==null?0:(long)m.source.uv.length*4)+(m.source.surfaceData==null?0:(long)m.source.surfaceData.length*4);if(m.shown){primitives+=m.source.landIndexCount>0&&m.source.landIndexCount<m.source.indices.length?2:1;triangles+=m.source.indices.length/3;}}
         for(Proxy p:objects.values())if(p.shown){primitives++;triangles+=p.shape.source.indices.length/3;for(GpuMesh m:new GpuMesh[]{p.flagShape,p.baseShape,p.stateShape})if(m!=null){primitives++;triangles+=m.source.indices.length/3;}}
         for(int i=0;i<effectEntities.length;i++)if(effectShown[i]){primitives++;triangles+=effectMeshes[effectKinds[i]].source.indices.length/3;}
         long[] times=Arrays.copyOf(cpuSamples,cpuCount);Arrays.sort(times);
@@ -288,7 +298,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private static String percentile(long[] times,double p){return times.length==0?"N/A":String.format(java.util.Locale.ROOT,"%.2f",times[Math.min(times.length-1,(int)Math.ceil(times.length*p)-1)]/1e6);}
     void resume(boolean value){resumed=value;if(value)schedule();else {clearEffects();cancelFrame();}}
-    private void cancelFrame(){Choreographer.getInstance().removeFrameCallback(this);queued=false;lastFrame=0;pacer.reset();}
+    private void cancelFrame(){Choreographer.getInstance().removeFrameCallback(this);queued=false;lastFrame=0;waterLastTick=0;pacer.reset();}
     private void schedule(){if(!released&&resumed&&swap!=null&&!queued){queued=true;Choreographer.getInstance().postFrameCallback(this);}}
     @Override public void surfaceCreated(SurfaceHolder holder){if(released)return;try{outputVerified=false;uniformOutputCount=0;lastOutputProbe=0;swap=engine.createSwapChain(holder.getSurface(),srgbSwapChain?SwapChainFlags.CONFIG_SRGB_COLORSPACE:SwapChainFlags.CONFIG_DEFAULT);displayHelper.attach(renderer,surface.getDisplay());schedule();}catch(RuntimeException|LinkageError e){failure.accept(e);}}
     @Override public void surfaceChanged(SurfaceHolder h,int f,int w,int height){if(released)return;bufferWidth=w;bufferHeight=height;view.setViewport(new Viewport(0,0,w,height));com.google.android.filament.android.FilamentHelper.synchronizePendingFrames(engine);schedule();}
@@ -302,6 +312,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             double aspect=camera.width/(double)camera.height;
             lens.setProjection(Camera.Projection.ORTHO,-camera.span*aspect,camera.span*aspect,-camera.span,camera.span,.1,1000);
             lens.lookAt(camera.x,300*camera.sin(),camera.z+camera.facing*300*camera.cos(),camera.x,0,camera.z,0,1,0);
+            if(waterLastTick!=0&&UiMotion.enabled())waterSeconds+=Math.min(.1,(time-waterLastTick)/1e9);
+            waterLastTick=time;waterMaterial.getDefaultInstance().setParameter("waveTime",(float)(waterSeconds%4096));
             animationTick=time/1_000_000;animateReplay();loadVisible();animateUnits();animateEffects();
             if(renderer.beginFrame(swap,time)){renderer.render(view);renderer.endFrame();renderedFrames++;checkSurfaceOutput();}
             overlay.invalidate();schedule();
@@ -499,6 +511,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         for(GpuMesh mesh:effectMeshes)if(mesh!=null)mesh.destroy();criticalHit=null;criticalPortrait=null;criticalSkip=null;
         if(light!=0){scene.removeEntity(light);engine.destroyEntity(light);EntityManager.get().destroy(light);}
         if(vegetationMaterial!=null)engine.destroyMaterialInstance(vegetationMaterial);if(fieldAtlas!=null)engine.destroyTexture(fieldAtlas);if(siteMaterial!=null)engine.destroyMaterial(siteMaterial);if(siteAtlas!=null)engine.destroyTexture(siteAtlas);
+        if(waterMaterial!=null)engine.destroyMaterial(waterMaterial);
         if(groundMaterial!=null)engine.destroyMaterial(groundMaterial);
         for(Texture texture:groundTextures)engine.destroyTexture(texture);groundTextures.clear();
         if(material!=null)engine.destroyMaterial(material);
@@ -518,7 +531,16 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             ib=new IndexBuffer.Builder().indexCount(m.indices.length).bufferType(IndexBuffer.Builder.IndexType.UINT).build(engine);IntBuffer i=ByteBuffer.allocateDirect(m.indices.length*4).order(ByteOrder.nativeOrder()).asIntBuffer();i.put(m.indices).flip();ib.setBuffer(engine,i);
             entity=EntityManager.get().create();if(m.uv==null)build(entity);
         }
-        void build(int target){build(target,(source.surfaceData!=null?groundMaterial:material).getDefaultInstance());}
+        void build(int target){
+            if(source.surfaceData==null||source.landIndexCount<0){build(target,material.getDefaultInstance());return;}
+            int land=source.landIndexCount,water=source.indices.length-land;
+            RenderableManager.Builder b=new RenderableManager.Builder(land>0&&water>0?2:1)
+                .boundingBox(new Box(source.x,1.3f,source.z,source.radius,2.7f,source.radius)).castShadows(false).receiveShadows(false);
+            int slot=0;
+            if(land>0)b.material(slot,groundMaterial.getDefaultInstance()).geometry(slot++,RenderableManager.PrimitiveType.TRIANGLES,vb,ib,0,land);
+            if(water>0)b.material(slot,waterMaterial.getDefaultInstance()).geometry(slot,RenderableManager.PrimitiveType.TRIANGLES,vb,ib,land,water);
+            b.build(engine,target);
+        }
         void build(int target,MaterialInstance instance){new RenderableManager.Builder(1).boundingBox(new Box(source.x,1.3f,source.z,source.radius,2.7f,source.radius)).material(0,instance).geometry(0,RenderableManager.PrimitiveType.TRIANGLES,vb,ib).castShadows(false).receiveShadows(false).build(engine,target);}
         void show(boolean value){if(shown==value)return;shown=value;if(value)scene.addEntity(entity);else scene.removeEntity(entity);}
         void destroy(){scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);engine.destroyVertexBuffer(vb);engine.destroyIndexBuffer(ib);}

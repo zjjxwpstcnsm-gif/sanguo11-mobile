@@ -7,6 +7,8 @@ import java.util.*;
 final class SceneMesh {
     private static final World.Terrain[] TERRAIN_TYPES=World.Terrain.values();
     SceneMesh distant;
+    // Disjoint index ranges share the same surface and buffers, but never draw water as land.
+    int landIndexCount=-1;
     long fingerprint; int chunkQ,chunkR;
     float[] surfaceData; float[] uv; final float[] vertices; final int[] indices; final float x,z,radius;
     SceneMesh(List<Float> v,List<Integer> i,float x,float z,float radius){
@@ -52,16 +54,16 @@ final class SceneMesh {
         for(SceneMesh m:previous)cached.put(m.chunkQ+":"+m.chunkR,m);
         for(int r=0;r<g.height;r+=16)for(int q=0;q<g.width;q+=16){
             if(Thread.currentThread().isInterrupted())return Collections.emptyList();
-            long fingerprint=1469598103934665603L ^ TerrainMaterialField.VERSION;
+            long fingerprint=1469598103934665603L ^ TerrainMaterialField.VERSION ^ TerrainSurface.METADATA_VERSION ^ WaterVisualField.VERSION;
             fingerprint=(fingerprint^g.width)*1099511628211L;fingerprint=(fingerprint^g.height)*1099511628211L;
             fingerprint=(fingerprint^Float.floatToIntBits(g.grid.offset))*1099511628211L;fingerprint=(fingerprint^(g.grid.staggered?1:0))*1099511628211L;
-            for(int rr=r-6;rr<Math.min(r+22,g.height);rr++)for(int qq=q-6;qq<Math.min(q+22,g.width);qq++){
+            for(int rr=r-8;rr<Math.min(r+24,g.height);rr++)for(int qq=q-8;qq<Math.min(q+24,g.width);qq++){
                 Hex h=new Hex(qq,rr);int value=g.valid(h)?g.terrain[rr*g.width+qq]+(g.bases.contains(h)?64:0):-1;
                 fingerprint=(fingerprint^value)*1099511628211L;
                 fingerprint=(fingerprint^Float.floatToIntBits(g.surface.overrides.getOrDefault(h,-1f)))*1099511628211L;
             }
             SceneMesh retained=cached.get(q+":"+r);if(retained!=null&&retained.fingerprint==fingerprint){out.add(retained);continue;}
-            Builder b=new Builder();float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
+            Builder b=new Builder();List<Integer> waterIndices=new ArrayList<>();float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
             for(int rr=r;rr<Math.min(r+16,g.height);rr++)for(int qq=q;qq<Math.min(q+16,g.width);qq++){
                 Hex h=new Hex(qq,rr);if(!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);
                 minX=Math.min(minX,x);maxX=Math.max(maxX,x);minZ=Math.min(minZ,z);maxZ=Math.max(maxZ,z);
@@ -69,10 +71,12 @@ final class SceneMesh {
                 b.vertex(x,g.surface.sample(x,z),z,g.surface.color(x,z,color,water));
                 for(float[] edge:EDGE){float vx=x+edge[0],vz=z+edge[1];b.vertex(vx,g.surface.sample(vx,vz),vz,g.surface.color(vx,vz,color,water));}
                 // +Y facing winding: lit double-sided shading otherwise flips the valid +Y tangent normal.
-                for(int j=0;j<8;j++)Collections.addAll(b.i,n,n+1+(j+1)%8,n+1+j);
+                for(int j=0;j<8;j++)Collections.addAll(water?waterIndices:b.i,n,n+1+(j+1)%8,n+1+j);
             }
+            int landCount=b.i.size();b.i.addAll(waterIndices);
             if(!b.i.isEmpty()){
                 SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+1);
+                m.landIndexCount=landCount;
                 new TerrainMaterialField(g).attach(m);
                 SceneMesh fine=detail(m,g);
                 fine.chunkQ=q;fine.chunkR=r;fine.fingerprint=fingerprint;out.add(fine);
@@ -92,7 +96,7 @@ final class SceneMesh {
             for(int j=3;j<7;j++)b.v.set(n*7+j,(coarse.vertices[a*7+j]+coarse.vertices[c*7+j]+coarse.vertices[d*7+j])/3);
             Collections.addAll(b.i,a,c,n,c,d,n,d,a,n);
         }
-        SceneMesh fine=b.mesh(coarse.x,coarse.z,coarse.radius);fine.distant=coarse;
+        SceneMesh fine=b.mesh(coarse.x,coarse.z,coarse.radius);fine.distant=coarse;fine.landIndexCount=coarse.landIndexCount<0?-1:coarse.landIndexCount*3;
         if(coarse.surfaceData!=null){
             fine.surfaceData=Arrays.copyOf(coarse.surfaceData,fine.vertices.length/7*8);
             int start=coarse.vertices.length/7;
