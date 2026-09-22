@@ -9,7 +9,8 @@ final class TerrainMaterialField {
     private static final World.Terrain[] TYPES=World.Terrain.values();
     final MapSceneSnapshot.Ground ground;
     TerrainMaterialField(MapSceneSnapshot.Ground ground){this.ground=ground;}
-    float[] sample(float x,float z){
+    float[] sample(float x,float z){return sample(x,z,0);}
+    float[] sample(float x,float z,float slope){
         float[] w=new float[4];
         if(!Float.isFinite(x)||!Float.isFinite(z))return new float[]{0,1,0,0};
         Hex center=ground.grid.cell(x,z);
@@ -29,6 +30,9 @@ final class TerrainMaterialField {
         }
         float sum=w[0]+w[1]+w[2]+w[3];if(sum<1e-8f)return new float[]{0,1,0,0};
         for(int j=0;j<4;j++)w[j]/=sum;
+        // Slope exposes existing rock/soil, without exporting mountain colors into desert interiors.
+        float exposed=Math.min(.55f,Math.max(0,slope-.12f))*(1-w[2]);
+        float transfer=w[0]*exposed;w[0]-=transfer;w[1]+=transfer*.4f;w[3]+=transfer*.6f;
         return w;
     }
     /** Separate terrain-only stream: canonical UV, tangent quaternion, water mask and macro tone. */
@@ -37,16 +41,17 @@ final class TerrainMaterialField {
         for(int i=0;i<count;i++){
             int v=i*7,s=i*8;float x=mesh.vertices[v],z=mesh.vertices[v+2];
             boolean water=mesh.vertices[v+5]>mesh.vertices[v+3];
-            float[] w=sample(x,z);System.arraycopy(w,0,mesh.vertices,v+3,4);
+
             mesh.surfaceData[s]=x;mesh.surfaceData[s+1]=-z;
             float dx=(ground.surface.sample(x+.25f,z)-ground.surface.sample(x-.25f,z))*2;
             float dz=(ground.surface.sample(x,z+.25f)-ground.surface.sample(x,z-.25f))*2;
+            float[] w=sample(x,z,(float)Math.sqrt(dx*dx+dz*dz));System.arraycopy(w,0,mesh.vertices,v+3,4);
             // Rotation from +Z to the global surface normal. Positive quaternion handedness.
             float len=(float)Math.sqrt(dx*dx+1+dz*dz),nx=-dx/len,ny=1/len,nz=-dz/len;
             float qw=(float)Math.sqrt((1+nz)*.5f),scale=.5f/qw;
             mesh.surfaceData[s+2]=-ny*scale;mesh.surfaceData[s+3]=nx*scale;
             mesh.surfaceData[s+4]=0;mesh.surfaceData[s+5]=qw;
-            // Saved by ground() before colors become material weights; preserve exact water mask.
+            // Water keeps the authoritative cell mask; water shading is replaced in S11.
             mesh.surfaceData[s+6]=water?1:0;
             mesh.surfaceData[s+7]=.96f+.04f*(float)(Math.sin(x*.19)*Math.cos(z*.17));
         }

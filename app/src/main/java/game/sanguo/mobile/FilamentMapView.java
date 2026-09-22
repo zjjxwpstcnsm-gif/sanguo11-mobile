@@ -145,7 +145,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         }catch(Exception|LinkageError e){release();throw e;}
     }
     private void loadGroundMaterials(Context context)throws java.io.IOException {
-        byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain/ground.filamat")){bytes=in.readAllBytes();}
+        byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain/ground.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);bytes=out.toByteArray();}
         ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();
         groundMaterial=new Material.Builder().payload(payload,bytes.length).build(engine);
         TextureSampler sampler=new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.REPEAT);

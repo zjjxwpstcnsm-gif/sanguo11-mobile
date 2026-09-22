@@ -24,3 +24,6 @@ java -Xmx1g -cp app/build/scene-check:core/src/main/resources game.sanguo.mobile
 
 java -m jdk.compiler/com.sun.tools.javac.Main -encoding UTF-8 --release 17 -cp app/build/scene-check -d app/build/scene-check core/src/test/java/game/sanguo/core/UnitJournalStateTest.java
 java -cp app/build/scene-check:core/src/main/resources game.sanguo.core.UnitJournalStateTest
+
+java -m jdk.compiler/com.sun.tools.javac.Main --release 17 -cp app/build/scene-check -d app/build/scene-check app/src/test/java/game/sanguo/mobile/TerrainMaterialFieldTest.java
+java -Xmx2g -cp app/build/scene-check:core/src/main/resources game.sanguo.mobile.TerrainMaterialFieldTest
