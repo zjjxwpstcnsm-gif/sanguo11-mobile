@@ -10,7 +10,7 @@ on:
       - scripts/verify-map-editor67-android.sh
   workflow_dispatch:
 permissions:
-  contents: write
+  contents: read
 concurrency:
   group: map-editor67-installed-verification
   cancel-in-progress: true
@@ -22,33 +22,8 @@ jobs:
       JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Preserve v31 migration fixture while accounting for appended v33 map section
-        shell: bash
+      - name: Record exact checked out source without modifying it
         run: |
-          set -euo pipefail
-          python3 - <<'PY'
-          from pathlib import Path
-          import hashlib
-          p=Path('core/src/test/java/game/sanguo/core/Governance66Test.java')
-          s=p.read_text()
-          old='byte[] encoded=SaveCodec.encode(w);int extensionSize=8+w.fieldUnits().size()*12+4+w.factions.length*6;'
-          if old in s:
-              b=p.read_bytes()
-              assert hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()=='035d7b5b93fc0ad35ef216744fa0090cbd474497','Concurrent fixture edit'
-              new='byte[] encoded=SaveCodec.encode(w);ByteArrayOutputStream mapExtension=new ByteArrayOutputStream();CustomMapSave.write(w,new DataOutputStream(mapExtension));\n        int extensionSize=8+w.fieldUnits().size()*12+4+w.factions.length*6+mapExtension.size();'
-              p.write_text(s.replace(old,new))
-          else:
-              assert 'CustomMapSave.write(w,new DataOutputStream(mapExtension))' in s,'Unrecognized fixture'
-          PY
-          if ! git diff --quiet; then
-            git config user.name 'github-actions[bot]'
-            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-            git add core/src/test/java/game/sanguo/core/Governance66Test.java
-            git commit -m 'test(save): preserve v31 migration fixture after appended custom-map section'
-            git push origin HEAD:refs/heads/agent/in-game-map-editor-v067
-          fi
           mkdir -p out/editor67
           git rev-parse HEAD | tee out/editor67/SOURCE_COMMIT.txt
           git archive --format=zip HEAD > out/editor67/source.zip
@@ -72,15 +47,19 @@ jobs:
         with:
           packages: ''
           log-accepted-android-sdk-licenses: false
-      - name: Build exact pushed source and instrumentation
+      - name: Build exact source and selected instrumentation
         shell: bash
         run: |
           set -euo pipefail
           sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
           cp "$ANDROID_HOME/platforms/android-35/android.jar" out/editor67/android-platform.jar
-          gradle --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest 2>&1 | tee out/editor67/android-build.txt
+          gradle --no-daemon -PmapEditorProbe=true :app:assembleDebug :app:assembleDebugAndroidTest 2>&1 | tee out/editor67/android-build.txt
           cp app/build/outputs/apk/debug/app-debug.apk out/editor67/sanguo11-mobile-map-editor67.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/editor67/editor67-test.apk
           sha256sum out/editor67/sanguo11-mobile-map-editor67.apk > out/editor67/APK_SHA256.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/editor67/sanguo11-mobile-map-editor67.apk > out/editor67/APK_SIGNATURE.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/editor67/sanguo11-mobile-map-editor67.apk > out/editor67/APK_INFO.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump xmltree out/editor67/editor67-test.apk AndroidManifest.xml > out/editor67/TEST_MANIFEST.txt
       - name: Enable KVM
         run: sudo chmod 666 /dev/kvm
       - name: Install and operate the real Android editor
