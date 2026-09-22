@@ -2270,5 +2270,17 @@
       "compression": "GLB uncompressed float / uint32; atlas ETC2 SRGB8 plus PNG fallback; no normal-map textures",
       "mips": "atlas baked linear-light BOX; PNG fallback runtime mip chain"
     }
-  ]
+  ],
+  "s13Verification": {
+    "runtimeSource": "8757d71aa4965e03be54464b64d95e9fdeccd5a6",
+    "assetChanges": false,
+    "terrainTextures": 8,
+    "environmentEntries": 175,
+    "checks": [
+      "scripts/verify-terrain-materials.py",
+      "scripts/verify-environment-assets.py"
+    ],
+    "result": "PASS",
+    "note": "Grid uses existing Canvas overlay; no new texture, model, shader or GPU mesh."
+  }
 }
