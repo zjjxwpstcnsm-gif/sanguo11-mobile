@@ -9,6 +9,10 @@ public final class SceneQualityTest {
             if(!p.due(120_000_000_000L,q.fps))throw new AssertionError("resume gap");
             p.reset();if(!p.due(0,q.fps))throw new AssertionError("reset");
         }
+        SceneQuality.Thermal thermal=new SceneQuality.Thermal();thermal.update(3);
+        if(thermal.fps(SceneQuality.HIGH)!=30||thermal.scale(SceneQuality.HIGH)!=.70f)throw new AssertionError("thermal cap");
+        thermal.update(2);if(!thermal.constrained)throw new AssertionError("thermal hysteresis");
+        thermal.update(1);if(thermal.fps(SceneQuality.HIGH)!=60)throw new AssertionError("thermal recovery");
         System.out.println("PASS S08 pacing: 30/60fps on 60/90/120/144Hz; gap, reset and invalid preferences");
     }
 }

@@ -10,6 +10,12 @@ enum SceneQuality {
         this.label=label;this.fps=fps;this.scale=scale;this.atlasSize=atlasSize;minSiteLod=sites;minUnitLod=units;poseCache=cache;
     }
     static SceneQuality from(Object value){try{return value instanceof String?valueOf((String)value):MEDIUM;}catch(IllegalArgumentException e){return MEDIUM;}}
+    static final class Thermal {
+        boolean constrained;
+        void update(int status){if(status>=3)constrained=true;else if(status<=1)constrained=false;}
+        int fps(SceneQuality quality){return constrained?30:quality.fps;}
+        float scale(SceneQuality quality){return constrained?Math.min(.70f,quality.scale):quality.scale;}
+    }
     static final class Pacer {
         private long deadline;
         void reset(){deadline=0;}

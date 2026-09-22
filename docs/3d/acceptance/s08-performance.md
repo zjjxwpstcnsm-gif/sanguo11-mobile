@@ -9,8 +9,8 @@ Normal game → 视图 → 3D 画质. Default renderer remains 2D; medium qualit
 - Low / medium / high: 30 / 30 / 60 fps, 70 / 85 / 100% Surface buffer resolution,
   native UI/input projection unchanged, atlas max 256 / 512 / 1024, lower forest
   mesh and formation LOD on low, high-only 4x MSAA. No dynamic resolution or second
-  scheduler. Fractional vsync pacing verified on 60/90/120/144 Hz. No thermal
-  automatic adaptation yet. Switching quality rebuilds the engine through existing
+  scheduler. Fractional vsync pacing verified on 60/90/120/144 Hz. Android29+ severe thermal status caps 30fps / 70% scale through that same
+  scheduler; recovery waits for light/none (hysteresis). Older devices report N/A. Switching quality rebuilds the engine through existing
   camera-preserving 2D/3D ownership path, without modifying World or saves.
 - Primitive pose buffers replace Float/Integer lists: same geometry hash across
   600 poses. Host median 286.70 → 81.92 ms (-71.4%); allocations 1,086,301,200 →

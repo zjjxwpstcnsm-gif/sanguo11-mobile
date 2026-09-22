@@ -14,7 +14,7 @@ permissions:
   contents: read
 concurrency:
   group: s01-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   verify:
     if: github.event_name != 'pull_request' || github.head_ref != 'agent/3d-s01-renderer-foundation'
@@ -43,7 +43,7 @@ jobs:
           JSON_TEST_JAR=/tmp/scene-json.jar bash scripts/benchmark-3d-performance.sh | tee evidence/performance-host.txt
           ./gradlew --no-daemon :app:assembleDebug -PtargetAbi=arm64-v8a
           cp app/build/outputs/apk/debug/app-debug.apk evidence/sanguo11-arm64.apk
-          python3 scripts/audit-3d-apk.py evidence/sanguo11-arm64.apk --abi arm64-v8a > evidence/arm64-audit.json
+          python3 scripts/audit-3d-apk.py evidence/sanguo11-arm64.apk --abi arm64-v8a --require-16k > evidence/arm64-audit.json
           ./gradlew --no-daemon -PtargetAbi=x86_64 :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug
           cp app/build/outputs/apk/debug/app-debug.apk evidence/sanguo11-s01.apk
           git rev-parse HEAD > evidence/BUILD_COMMIT
@@ -79,6 +79,9 @@ jobs:
             adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
             adb logcat -G 16M
             adb shell settings put global animator_duration_scale 1
+            timeout 900 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.PerformanceSceneInstrumentation | tee evidence/performance-installed.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/performance-images
+            grep -q 'PASS S08' evidence/performance-installed.txt
             timeout 600 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.CombatSceneInstrumentation | tee evidence/combat-installed.txt
             adb pull /sdcard/combat-scene.mp4 evidence/combat-scene.mp4
             adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/installed
@@ -90,9 +93,6 @@ jobs:
             adb pull /sdcard/interaction-scene.mp4 evidence/interaction-scene.mp4
             adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/interaction-images
             grep -q 'PASS S07' evidence/interaction-installed.txt
-            timeout 900 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.PerformanceSceneInstrumentation | tee evidence/performance-installed.txt
-            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/performance-images
-            grep -q 'PASS S08' evidence/performance-installed.txt
             bash scripts/scene-full-native.sh "${{ inputs.full_native }}"
       - uses: actions/upload-artifact@v4
         if: always()

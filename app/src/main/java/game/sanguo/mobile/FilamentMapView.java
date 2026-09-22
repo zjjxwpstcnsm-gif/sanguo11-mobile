@@ -20,6 +20,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private final SceneQuality quality;
     private final SceneQuality.Pacer pacer=new SceneQuality.Pacer();
     private int bufferWidth,bufferHeight;
+    private final SceneQuality.Thermal thermal=new SceneQuality.Thermal();
+    private android.os.PowerManager thermalManager;
+    private android.os.PowerManager.OnThermalStatusChangedListener thermalListener;
+    private int thermalStatus=-1;
     private long textureBytes;
     private String textureFormat="ETC2_SRGB8";
     private long textureUploadCpuNanos;
@@ -127,6 +131,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             vegetationMaterial=siteMaterial.createInstance();vegetationMaterial.setParameter("atlas",fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));vegetationMaterial.setParameter("damage",0f);
             light=EntityManager.get().create();new LightManager.Builder(LightManager.Type.DIRECTIONAL).direction(-1,-2,-1).color(1,.95f,.85f).intensity(50000).castShadows(false).build(engine,light);scene.addEntity(light);
             surface.getHolder().addCallback(this);
+            if(android.os.Build.VERSION.SDK_INT>=29){
+                thermalManager=context.getSystemService(android.os.PowerManager.class);
+                if(thermalManager!=null){thermalListener=this::thermalChanged;thermalManager.addThermalStatusListener(context.getMainExecutor(),thermalListener);thermalChanged(thermalManager.getCurrentThermalStatus());}
+            }
         }catch(Exception|LinkageError e){release();throw e;}
     }
     private Texture loadAtlas(Context context,String path)throws java.io.IOException {
@@ -173,9 +181,17 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         for(int level=0;level<levels;level++)textureBytes+=(long)Math.max(1,w>>level)*Math.max(1,h>>level)*4;
         textureUploadCpuNanos+=System.nanoTime()-started;return texture;
     }
+    private void thermalChanged(int status){
+        if(released)return;thermalStatus=status;boolean before=thermal.constrained;thermal.update(status);
+        if(before!=thermal.constrained){pacer.reset();resizeSurface();}
+    }
+    private void resizeSurface(){
+        int w=getWidth(),h=getHeight();float scale=thermal.scale(quality);
+        if(w>0&&h>0)surface.getHolder().setFixedSize(Math.max(1,Math.round(w*scale)),Math.max(1,Math.round(h*scale)));
+    }
     @Override protected void onSizeChanged(int w,int h,int oldw,int oldh){
         super.onSizeChanged(w,h,oldw,oldh);camera.width=Math.max(1,w);camera.height=Math.max(1,h);
-        if(w>0&&h>0)surface.getHolder().setFixedSize(Math.max(1,Math.round(w*quality.scale)),Math.max(1,Math.round(h*quality.scale)));
+        resizeSurface();
     }
     @Override public boolean onTouchEvent(MotionEvent e){
         if(!isEnabled())return true;
@@ -223,7 +239,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     boolean visible(TurnJournal.Event e){if(visible(e.start)||visible(e.target))return true;for(Hex h:e.path)if(visible(h))return true;for(TurnJournal.Impact i:e.impacts)if(visible(i.hex))return true;return false;}
     private boolean visible(Hex h){if(h==null||snapshot==null)return false;GridWorldTransform g=snapshot.ground.grid;return Math.abs(camera.screenX(g.x(h))-camera.width/2f)<camera.width*.6&&Math.abs(camera.screenY(g.z(h),snapshot.ground.surface.at(h))-camera.height/2f)<camera.height*.6;}
     void diagnostics(boolean value){diagnostics=value;overlay.invalidate();}
-    String report(){return "Filament 1.56.0 / OpenGL ES · "+quality.label+"\n内部 "+bufferWidth+" × "+bufferHeight+" / UI "+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S06 战斗特效 / 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+" · 特效 "+combat.count+"/"+CombatVisual.CAPACITY+"\n"+resourceReport();}
+    String report(){return "Filament 1.56.0 / OpenGL ES · "+quality.label+" thermal="+thermalStatus+" cap="+thermal.fps(quality)+"\n内部 "+bufferWidth+" × "+bufferHeight+" / UI "+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S06 战斗特效 / 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+" · 特效 "+combat.count+"/"+CombatVisual.CAPACITY+"\n"+resourceReport();}
     void resetMetrics(){cpuCount=cpuCursor=0;}
     private String resourceReport(){
         int primitives=0,triangles=0;long bufferBytes=0;
@@ -244,7 +260,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     @Override public void surfaceDestroyed(SurfaceHolder holder){cancelFrame();if(displayHelper!=null)displayHelper.detach();if(engine!=null&&swap!=null){engine.destroySwapChain(swap);swap=null;engine.flushAndWait();}}
     @Override public void doFrame(long time){
         queued=false;if(released||!resumed||swap==null)return;
-        if(!pacer.due(time,quality.fps)){schedule();return;}
+        if(!pacer.due(time,thermal.fps(quality))){schedule();return;}
         long cpuStart=System.nanoTime();
         try{
             if(lastFrame!=0)callbackMillis=(time-lastFrame)/1e6;lastFrame=time;
@@ -405,6 +421,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void restoreCamera(Bundle b){try{camera.x=b.getFloat("cameraX")/TileGeometry.DX;camera.z=b.getFloat("cameraY")/TileGeometry.DY;camera.span=b.getFloat("sceneSpan",15);camera.tilt=b.getFloat("sceneTilt",55);camera.facing=b.getInt("sceneFacing",1)<0?-1:1;camera.sanitize();clampCamera();}catch(RuntimeException bad){camera.x=0;camera.z=0;camera.span=15;camera.tilt=55;camera.facing=1;clampCamera();}}
     void release(){
         if(released)return;released=true;replay=null;animatedUnit=null;generation++;cancelFrame();if(meshTask!=null)meshTask.cancel(true);worker.shutdownNow();surface.getHolder().removeCallback(this);
+        if(android.os.Build.VERSION.SDK_INT>=29&&thermalManager!=null&&thermalListener!=null){thermalManager.removeThermalStatusListener(thermalListener);thermalListener=null;}
         if(engine==null)return;
         if(displayHelper!=null)displayHelper.detach();
         if(swap!=null){engine.destroySwapChain(swap);swap=null;}
