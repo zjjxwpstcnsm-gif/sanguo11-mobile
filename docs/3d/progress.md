@@ -32,7 +32,10 @@ and failed SaveCodec decoding with OOM. The verification AVD now explicitly uses
 256 MiB Java growth limit / 512 MiB maximum, records those properties and Runtime.maxMemory,
 and restarts zygote before installing. This changes only the test device, not app heap flags.
 First-frame screenshots also wait for actual GPU output; native PixelCopy confirms real
-terrain pixels. Updated loading status uses swapchain completion callbacks.
+terrain pixels. Loading status reports pending terrain uploads; native pixel readiness is checked separately
+by PixelCopy, rather than assuming optional driver completion callbacks are supported.
+Checkpoint d28a1349 passed all 93 installed checks; the subsequent screenshot review corrected
+status/diagnostic text overlap and waits for all national chunks before the overview capture.
 
 Remaining gates: final installed rerun (see PR), wizard touch-through manual acceptance, physical
 midrange/arm64 device frame-time percentiles, PSS/native/GPU memory, long-run leaks, battery,
