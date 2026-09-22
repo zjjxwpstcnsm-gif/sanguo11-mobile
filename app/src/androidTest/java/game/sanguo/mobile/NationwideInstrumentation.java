@@ -16,9 +16,9 @@ public final class NationwideInstrumentation extends TerrainMaterialInstrumentat
         check(field(spatial,"backdrop")!=null,"non-playable exterior GPU scenery installed");
         byte[] save=SaveCodec.encode(world);int territory=host.territoryMode();
         android.view.View toggle=activity.findViewById(android.R.id.content).findViewWithTag("map.grid.toggle");check(toggle!=null,"actual toolbar grid toggle");
-        runOnMainSync(()->{host.setGridShown(false);spatial.camera.span=16;toggle.performClick();});settle();
+        runOnMainSync(()->{host.setGridShown(false);spatial.camera.span=16;toggle.performClick();});settle();ready();
         check(host.gridShown()&&(Boolean)field(spatial,"gridShown"),"toolbar enables native grid");capture("s13-grid-on-"+host.quality());
-        runOnMainSync(()->toggle.performClick());settle();check(!host.gridShown()&&!(Boolean)field(spatial,"gridShown"),"toolbar hides native grid");capture("s13-grid-off-"+host.quality());
+        runOnMainSync(()->toggle.performClick());settle();ready();check(!host.gridShown()&&!(Boolean)field(spatial,"gridShown"),"toolbar hides native grid");capture("s13-grid-off-"+host.quality());
         check(host.territoryMode()==territory,"grid independent of territory");
         runOnMainSync(()->host.setGridShown(true));settle();
         check(((MapView)field(host,"flat")).gridShown(),"2D backing view retains grid state");
