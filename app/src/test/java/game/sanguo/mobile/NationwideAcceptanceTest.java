@@ -42,10 +42,10 @@ public final class NationwideAcceptanceTest {
     }
     public static void main(String[] args)throws Exception{
         seedRegression();audit(ScenarioCatalog.all().get(0));
-        for(boolean staggered:new boolean[]{false,true})for(int offset:new int[]{0,1}){
-            World w=new World(35,27);w.columnStaggered=staggered;w.sourceMapWidth=offset==0?0:35;
-            for(int q=0;q<w.width;q++)for(int r=0;r<w.height;r++)w.terrain[q][r]=(q+r)%11==0?World.Terrain.VOID:q==16?World.Terrain.WATER:q<10?World.Terrain.FOREST:q<22?World.Terrain.MOUNTAIN:World.Terrain.SAND;
-            w.terrain[5][5]=World.Terrain.PLAIN;w.cities.add(new World.City(0,"Test",new Hex(5,5),0));
+        for(int layout=0;layout<3;layout++)for(int origin:new int[]{0,5}){
+            World w=new World(layout==0?35:layout==1?48:44,layout==2?35:27);w.columnStaggered=layout==2;w.sourceMapWidth=layout==0?0:35;w.sourceMapHeight=layout==0?0:27;w.sourceOriginX=origin;w.sourceOriginY=origin;
+            for(int q=0;q<w.width;q++)for(int r=0;r<w.height;r++)w.terrain[q][r]=!w.sourceInside(new Hex(q,r))||(q+r)%11==0?World.Terrain.VOID:q==16?World.Terrain.WATER:q<10?World.Terrain.FOREST:q<22?World.Terrain.MOUNTAIN:World.Terrain.SAND;
+            World.City site=new World.City(0,"Test",new Hex(20,13),0);w.cities.add(site);for(Hex h:SiteFootprint.cells(site))w.terrain[h.q][h.r]=World.Terrain.PLAIN;
             audit(w);
         }
         System.out.println("PASS S13 nationwide: "+checks+" checks, "+chunks+" chunks, "+vertices+" vertices, "+triangles+" triangles");
