@@ -1,0 +1,66 @@
+name: Map editor67 integrated source and APK
+on:
+  push:
+    branches: [agent/in-game-map-editor-v067]
+    paths: [.github/workflows/map-editor67-integration.yml]
+permissions:
+  contents: write
+concurrency:
+  group: map-editor67-source-sync
+  cancel-in-progress: false
+jobs:
+  integrate-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Guard complete source entries, integrate and test
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out/editor67
+          python3 tools/content/finish_map_editor67.py 2>&1 | tee out/editor67/integration.txt
+          bash scripts/test-map-editor67.sh out/editor67/phone-export-fixture.json 2>&1 | tee out/editor67/editor-tests.txt
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- app/src/main core/src/main version.properties
+          git commit -m 'feat(map-editor): production editor, real sites, playable custom maps and pinned saves'
+          git push origin HEAD:refs/heads/agent/in-game-map-editor-v067
+          git rev-parse HEAD | tee out/editor67/SOURCE_COMMIT.txt
+          git archive --format=zip HEAD > out/editor67/source.zip
+      - name: Retained rules and map preservation
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/test-v066.sh 2>&1 | tee out/editor67/core66.txt
+          bash scripts/test-v064.sh 2>&1 | tee out/editor67/core64.txt
+          bash scripts/test-ui-models.sh 2>&1 | tee out/editor67/ui-models.txt
+          python3 scripts/verify-map-release.py 2>&1 | tee out/editor67/map-preservation.txt
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Compile APK from exact pushed source
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          cp "$ANDROID_HOME/platforms/android-35/android.jar" out/editor67/android-platform.jar
+          gradle --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest 2>&1 | tee out/editor67/android-build.txt
+          cp app/build/outputs/apk/debug/app-debug.apk out/editor67/sanguo11-mobile-map-editor67.apk
+          sha256sum out/editor67/sanguo11-mobile-map-editor67.apk > out/editor67/APK_SHA256.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: editor67-integrated-build
+          path: out/editor67
+          retention-days: 7

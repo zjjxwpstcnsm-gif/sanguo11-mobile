@@ -78,6 +78,7 @@ public final class MainActivity extends Activity {
         root.addView(button("新建游戏 · 选择剧本",v->scenarioPicker()));
         root.addView(button("读取手动存档",v->saveSlots(true)));
         root.addView(button("导入存档文件",v->importSave()));
+        root.addView(button("地图编辑器 · 自定义地图",v->new MapEditorUi(this).show()));
         if(error!=null)root.addView(button("重试自动存档",v->{try{World loaded=readSave(file("auto"));unreadableAutosave=false;world=loaded;buildGameUi(null,true,true);}catch(IOException e){showError("自动存档仍无法读取，原文件保留");}}));
         ScrollView startScroll=new ScrollView(this);startScroll.setFillViewport(true);startScroll.setBackgroundColor(ink);startScroll.addView(root,new ScrollView.LayoutParams(-1,-2));setContentView(startScroll);
     }
@@ -891,29 +892,40 @@ public final class MainActivity extends Activity {
     LinearLayout shell=new LinearLayout(this);shell.setOrientation(LinearLayout.VERTICAL);
     shell.addView(scroll,new LinearLayout.LayoutParams(-1,Math.min(target,cap)));
     holder[0]=new AlertDialog.Builder(this).setTitle("选择剧本 · 六个年代与自制沙盘").setView(shell).setNegativeButton("取消",null).show();
-        }catch(IOException e){showError("剧本读取失败");}
+        }catch(IOException e){showError("剧本读取失败："+e.getMessage());}
     }
     private void chooseScenarioTemplate(String id){
+        new Thread(()->{try{java.util.List<MapLibrary.Entry> entries=new MapLibrary(this).entries();runOnUiThread(()->{
+            if(isFinishing()||isDestroyed())return;if(entries.isEmpty()){chooseScenarioTemplate(id,null);return;}
+            String[] labels=new String[entries.size()+1];labels[0]="原版全国地图（始终保留）";for(int i=0;i<entries.size();i++)labels[i+1]=entries.get(i).label();
+            new AlertDialog.Builder(this).setTitle("选择本局地图版本").setItems(labels,(d,n)->{if(n==0){chooseScenarioTemplate(id,null);return;}
+                new Thread(()->{try{MapPatch pinned=new MapLibrary(this).load(entries.get(n-1));runOnUiThread(()->{if(!isFinishing()&&!isDestroyed())chooseScenarioTemplate(id,pinned);});}catch(IOException e){runOnUiThread(()->showError("地图版本读取失败："+e.getMessage()));}},"custom-map-version").start();
+            }).setNegativeButton("取消",null).show();
+        });}catch(IOException e){runOnUiThread(()->{if(!isFinishing()&&!isDestroyed())new AlertDialog.Builder(this).setTitle("自定义地图库读取失败").setMessage(e.getMessage()+"；原文件保留，原版仍可选择。").setPositiveButton("使用原版",(d,n)->chooseScenarioTemplate(id,null)).setNegativeButton("取消",null).show();});}},"custom-map-list").start();
+    }
+    private void chooseScenarioTemplate(String id,MapPatch pinned){
         java.util.concurrent.atomic.AtomicBoolean canceled=new java.util.concurrent.atomic.AtomicBoolean();
         AlertDialog loading=new AlertDialog.Builder(this).setMessage("正在读取剧本…").setNegativeButton("取消",(d,n)->canceled.set(true)).create();
         loading.setOnCancelListener(d->canceled.set(true));loading.show();
-        new Thread(()->{try {World template=ScenarioCatalog.load(id,0);runOnUiThread(()->{
+        new Thread(()->{try {World template=pinned==null?ScenarioCatalog.load(id,0):CustomMaps.preview(pinned,id);if(pinned!=null)for(CustomMaps.Issue issue:CustomMaps.diagnose(template,pinned,id))if(issue.blocking())throw new IOException(issue.message());runOnUiThread(()->{
             if(isFinishing()||isDestroyed()||canceled.get())return;loading.dismiss();
-            new ScenarioFactionPicker(this,template,side->confirm(openingInfo(template,side)+"\n\n以"+template.faction(side)+"开始新局？当前自动存档将更新，手动存档保留；损坏的自动存档会另存备份。",()->startScenario(template.scenarioId,side))).show();
-        });}catch(IOException e){runOnUiThread(()->{if(!isFinishing()&&!isDestroyed()&&!canceled.get()){loading.dismiss();showError("剧本读取失败");}});}},"scenario-preview").start();
+            new ScenarioFactionPicker(this,template,side->confirm(openingInfo(template,side)+"\n\n以"+template.faction(side)+"开始新局？当前自动存档将更新，手动存档保留；损坏的自动存档会另存备份。",()->startScenario(template.scenarioId,side,pinned))).show();
+        });}catch(IOException e){runOnUiThread(()->{if(!isFinishing()&&!isDestroyed()&&!canceled.get()){loading.dismiss();showError("剧本读取失败："+e.getMessage());}});}},"scenario-preview").start();
     }
 
     private String openingInfo(World w,int side){
         StringBuilder b=new StringBuilder(w.date()+" · "+w.width+"×"+w.height+"格\n");int people=0;for(World.Officer o:w.officers)if(o.owner==side)people++;
+        if(!w.customMapId.isEmpty())b.append("自定义地图：").append(w.customMapName).append(" r").append(w.customMapRevision).append("（版本随存档固定）\n");
         b.append(people).append("名武将 · 领地：");for(World.City c:w.cities)if(c.owner==side)b.append(c.name).append(" ");
         b.append(w.dataSource.equals("community-reference")?"\n能力/适性来自公开资料；地图、领地与资源为历史重建或定制。群英类跨时代配置不按生卒年退场。":"\n重建或定制开局；官方完整资源、事件与归属仍待核验。");return b.toString();
     }
-    private void startScenario(String id,int player){
+    private void startScenario(String id,int player){startScenario(id,player,null);}
+    private void startScenario(String id,int player,MapPatch pinned){
         java.util.concurrent.atomic.AtomicBoolean canceled=new java.util.concurrent.atomic.AtomicBoolean();
         AlertDialog loading=new AlertDialog.Builder(this).setMessage("正在建立新局…").setNegativeButton("取消",(d,n)->canceled.set(true)).create();loading.setOnCancelListener(d->canceled.set(true));loading.show();
-        new Thread(()->{try{World next=ScenarioCatalog.load(id,player,System.nanoTime());runOnUiThread(()->{
+        new Thread(()->{try{World next=pinned==null?ScenarioCatalog.load(id,player,System.nanoTime()):CustomMaps.load(pinned,id,player,System.nanoTime());runOnUiThread(()->{
             if(isFinishing()||isDestroyed()||canceled.get())return;loading.dismiss();if(!activateWorld(next))return;selectAndFocus(world.home().hex);closePanel();save("auto",false);
-        });}catch(IOException e){runOnUiThread(()->{if(!isFinishing()&&!isDestroyed()&&!canceled.get()){loading.dismiss();showError("无法开始剧本");}});}},"scenario-start").start();
+        });}catch(IOException e){runOnUiThread(()->{if(!isFinishing()&&!isDestroyed()&&!canceled.get()){loading.dismiss();showError("无法开始剧本："+e.getMessage());}});}},"scenario-start").start();
     }
     private String slotName(int index){return index==0?"manual":"manual"+(index+1);}
     private boolean present(AtomicFile f){return f.getBaseFile().exists()||new File(f.getBaseFile()+".bak").exists();}

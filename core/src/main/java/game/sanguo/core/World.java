@@ -155,6 +155,9 @@ public final class World {
     public boolean columnStaggered;
     public String mapId="custom", mapLayout="axial";
     public int mapRevision;
+    public String customMapId="",customMapName="",customMapBase="",customMapFingerprint="";
+    public int customMapRevision;
+    public final SortedMap<Integer,Integer> siteParents=new TreeMap<>();
     public int sourceColumns(){return sourceMapWidth>0?sourceMapWidth:width;}
     public int sourceRows(){return sourceMapHeight>0?sourceMapHeight:height;}
     public boolean sourceInside(Hex h){return h!=null&&h.q>=0&&h.r>=0&&h.q<width&&h.r<height&&(sourceMapWidth==0||MapCoordinates.source(this,h).isInside(sourceColumns(),sourceRows()));}

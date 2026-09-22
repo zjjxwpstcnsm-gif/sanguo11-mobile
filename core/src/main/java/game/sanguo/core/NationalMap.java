@@ -63,12 +63,13 @@ public final class NationalMap {
         for(String key:scenario.stringPropertyNames())if(key.startsWith("terrain.")||key.startsWith("development-plot")||key.equals("coordinates")||key.equals("width")||key.equals("height"))throw new IOException("引用全国地图的剧本禁止内嵌旧地形："+key);
         Properties map=data();scenario.setProperty("coordinates","odd-q");scenario.setProperty("width",""+width);scenario.setProperty("height",""+height);
         for(int r=0;r<height;r++)scenario.setProperty("terrain."+r,map.getProperty("terrain."+(y+r)).substring(x,x+width));
-        int plot=0;
+        int plot=0,parentCount=0;Set<String> presentIds=new HashSet<>();for(String key:scenario.stringPropertyNames())if(key.matches("city\\.\\d+"))presentIds.add(scenario.getProperty(key).split("\\|",-1)[0]);
         for(String key:new TreeSet<>(scenario.stringPropertyNames()))if(key.matches("city\\.\\d+")){
             String[] city=scenario.getProperty(key).split("\\|",-1);String[] pos=required(map,"site."+city[0]).split(",");
             int sx=Integer.parseInt(pos[0])-x,sy=Integer.parseInt(pos[1])-y;
             if(sx<0||sy<0||sx>=width||sy>=height)throw new IOException("剧本据点不在全国裁区："+city[1]);
             city[2]=""+sx;city[3]=""+sy;scenario.remove(key);scenario.setProperty(key,String.join("|",city));
+            String parent=map.getProperty("parent."+city[0]);if(parent!=null&&presentIds.contains(parent))scenario.setProperty("site-parent."+parentCount++,city[0]+"|"+parent);
             String plots=map.getProperty("plots."+city[0],"");
             if(!plots.isEmpty())for(String item:plots.split(";")){
                 String[] xy=item.split(",");int px=Integer.parseInt(xy[0])-x,py=Integer.parseInt(xy[1])-y;
@@ -76,7 +77,7 @@ public final class NationalMap {
                 scenario.setProperty("development-plot."+plot++,city[0]+"|"+px+"|"+py);
             }
         }
-        scenario.setProperty("development-plots",""+plot);
+        scenario.setProperty("development-plots",""+plot);scenario.setProperty("site-parents",""+parentCount);
         return new Selection(x,y,width,height);
     }
     private static String required(Properties p,String key)throws IOException{String v=p.getProperty(key);if(v==null)throw new IOException("全国据点记录缺失："+key);return v;}
