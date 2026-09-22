@@ -16,7 +16,10 @@
 ## Runtime / performance
 
 Installed native correctness uses Android 29 x86_64 emulator, SwiftShader OpenGL ES 3,
-1080x1920 display. Surface dimensions appear in the app diagnostic report, separately from
+1080x1920 display. The final correctness AVD explicitly uses 4 GiB RAM and a 256 MiB
+Java growth limit / 512 MiB maximum; runtime heap properties are archived. The system-image
+default previously clamped the heap to 16 MiB after backgrounding, causing a SaveCodec OOM
+during the test that holds an additional reference World. This is not a phone RAM result. Surface dimensions appear in the app diagnostic report, separately from
 display size. This is NOT a phone performance benchmark. Initial test collected 2D/3D
 screenshots and exercised ten switches before a test sampling issue; final acceptance is
 tracked separately.

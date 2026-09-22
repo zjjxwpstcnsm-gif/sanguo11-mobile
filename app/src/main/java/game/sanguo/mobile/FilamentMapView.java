@@ -30,7 +30,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private com.google.android.filament.View view; private Camera lens; private Material material;
     private SwapChain swap; private int cameraEntity,light;
     private boolean released,resumed=true,queued,diagnostics;
-    private long lastFrame; private long renderedFrames; private double callbackMillis;
+    private long lastFrame; private long renderedFrames,completedFrames; private double callbackMillis;
     private MapSceneSnapshot snapshot;
     private List<SceneMesh> chunks=Collections.emptyList();
     private final Map<SceneMesh,GpuMesh> terrain=new HashMap<>();
@@ -88,7 +88,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void resume(boolean value){resumed=value;if(value)schedule();else cancelFrame();}
     private void cancelFrame(){Choreographer.getInstance().removeFrameCallback(this);queued=false;lastFrame=0;}
     private void schedule(){if(!released&&resumed&&swap!=null&&!queued){queued=true;Choreographer.getInstance().postFrameCallback(this);}}
-    @Override public void surfaceCreated(SurfaceHolder holder){if(released)return;try{swap=engine.createSwapChain(holder.getSurface());displayHelper.attach(renderer,surface.getDisplay());schedule();}catch(RuntimeException|LinkageError e){failure.accept(e);}}
+    @Override public void surfaceCreated(SurfaceHolder holder){if(released)return;try{swap=engine.createSwapChain(holder.getSurface());completedFrames=0;SwapChain owned=swap;swap.setFrameCompletedCallback(new android.os.Handler(android.os.Looper.getMainLooper()),()->{if(!released&&swap==owned)completedFrames++;});displayHelper.attach(renderer,surface.getDisplay());schedule();}catch(RuntimeException|LinkageError e){failure.accept(e);}}
     @Override public void surfaceChanged(SurfaceHolder h,int f,int w,int height){if(released)return;camera.width=Math.max(1,w);camera.height=Math.max(1,height);view.setViewport(new Viewport(0,0,w,height));com.google.android.filament.android.FilamentHelper.synchronizePendingFrames(engine);schedule();}
     @Override public void surfaceDestroyed(SurfaceHolder holder){cancelFrame();if(displayHelper!=null)displayHelper.detach();if(engine!=null&&swap!=null){engine.destroySwapChain(swap);swap=null;engine.flushAndWait();}}
     @Override public void doFrame(long time){
@@ -174,7 +174,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.coverage)cell(c,h,0xffcfad6e);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets)cell(c,h,0xffdd7661);cell(c,snapshot.selected,0xffffd576);
             p.setStyle(Paint.Style.FILL);p.setTextSize(12*getResources().getDisplayMetrics().scaledDensity);p.setShadowLayer(2,0,1,0xff000000);
             for(MapSceneSnapshot.Item item:snapshot.items)if((item.kind<3||camera.span<18)&&visible(item.hex)){float x=camera.screenX(snapshot.ground.grid.x(item.hex)),y=camera.screenY(snapshot.ground.grid.z(item.hex),1);p.setColor(item.color);c.drawText(item.label,x,y,p);}
-            p.setColor(0xfff0e5c8);c.drawText((pending>0||renderedFrames<3)?"3D 地图准备中… · 可在视图切回 2D":"3D 试验 · S01 过渡资源",12,24*getResources().getDisplayMetrics().density,p);
+            p.setColor(0xfff0e5c8);c.drawText((pending>0||completedFrames<3)?"3D 地图准备中… · 可在视图切回 2D":"3D 试验 · S01 过渡资源",12,24*getResources().getDisplayMetrics().density,p);
             if(diagnostics){int y=65;for(String line:report().split("\n")){c.drawText(line,12,y,p);y+=22*getResources().getDisplayMetrics().density;}}
             p.clearShadowLayer();
         }

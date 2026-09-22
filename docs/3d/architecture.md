@@ -56,6 +56,8 @@ geometry is reused per type/color; this is resource sharing, NOT a claim of inst
 All Filament calls run on the Android main Looper, including initialization, uploads,
 rendering, resize and destruction. CPU generation never touches World or the engine.
 Generation tokens reject obsolete worker results. SurfaceHolder owns the swapchain;
+DisplayHelper records display timing; resize synchronizes pending native frames. Swapchain
+completion callbacks control the loading label (submission is not presentation).
 onPause cancels Choreographer callbacks, onResume restores a single loop, and release
 cancels workers and destroys entities/buffers/materials/camera/view/scene/renderer/engine.
 Native-session health is committed before library loading and cleared only after normal

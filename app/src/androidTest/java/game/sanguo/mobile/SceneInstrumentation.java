@@ -56,6 +56,7 @@ public final class SceneInstrumentation extends Instrumentation {
     }
     void capture(String name)throws Exception{android.graphics.Bitmap b=getUiAutomation().takeScreenshot();if(b==null)throw new AssertionError("screenshot unavailable");File dir=getTargetContext().getExternalFilesDir("s01");dir.mkdirs();try(OutputStream out=new FileOutputStream(new File(dir,name+".png"))){b.compress(android.graphics.Bitmap.CompressFormat.PNG,100,out);}b.recycle();}
     @Override public void onStart(){Bundle result=new Bundle();try{
+        android.util.Log.i("SceneAcceptance","maxJavaHeapBytes="+Runtime.getRuntime().maxMemory());
         World w=ScenarioCatalog.all().get(0);try(OutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(w));}
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();
         host=(MapHost)field(activity,"map");world=(World)field(activity,"world");byte[] initial=SaveCodec.encode(world);
@@ -71,7 +72,7 @@ public final class SceneInstrumentation extends Instrumentation {
         runOnMainSync(()->host.switchMode(true));settle();
         for(int i=0;i<10;i++){
             try(InputStream shell=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand("input keyevent KEYCODE_HOME"))){while(shell.read()!=-1){}}settle();check(!(Boolean)field(field(host,"spatial"),"queued"),"background removes frame callback");
-            try(InputStream shell=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand("am start -W -f 0x10020000 -n game.sanguo.mobile.dev/game.sanguo.mobile.MainActivity"))){while(shell.read()!=-1){}}settle();check((Long)field(field(host,"spatial"),"lastFrame")>0,"foreground produces new rendered frame callback");
+            try(InputStream shell=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand("am start -W -f 0x10020000 -n game.sanguo.mobile.dev/game.sanguo.mobile.MainActivity"))){while(shell.read()!=-1){}}settle();long readyBy=SystemClock.uptimeMillis()+10000;while((Long)field(field(host,"spatial"),"lastFrame")==0&&SystemClock.uptimeMillis()<readyBy)settle();check((Long)field(field(host,"spatial"),"lastFrame")>0,"foreground produces new rendered frame callback");
         }
         // Exact real Surface tap is routed through the same MainActivity onTile command entry.
         for(Hex cell:SiteFootprint.cells(city))if(world.inside(cell)){

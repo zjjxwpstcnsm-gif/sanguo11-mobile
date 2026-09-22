@@ -67,7 +67,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
     void setRoute(MarchOrders.Plan value){route=value;flat.setRoute(value);if(spatial!=null)spatial.setRoute(value);}
     void setPickTargets(Set<Hex> value){targets=value;flat.setPickTargets(value);if(spatial!=null)spatial.setTargets(value);}
     void setTacticPreview(Displacement.Preview value){if(value!=null&&spatial!=null)switchMode(false);flat.setTacticPreview(value);}
-    void battleFeedback(World.Result result,boolean haptics){flat.battleFeedback(result,haptics);}
+    void battleFeedback(World.Result result,boolean haptics){if(spatial==null)flat.battleFeedback(result,haptics);else if(haptics&&result.feedback!=World.Feedback.NONE)performHapticFeedback(android.view.HapticFeedbackConstants.CONTEXT_CLICK);}
     void setPanelOcclusion(int right,int bottom){flat.setPanelOcclusion(right,bottom);}
     void setTerritoryMode(int value){if(spatial!=null)switchMode(false);flat.setTerritoryMode(value);}
     int territoryMode(){return flat.territoryMode();}
