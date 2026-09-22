@@ -123,6 +123,9 @@ public final class MapView extends View {
     boolean overviewReady(){return overview!=null&&overview.ready();}
     int overviewBuilds(){return overviewBuilds;}
     long overviewBytes(){return overview==null?0:overview.bytes();}
+    private SiegeOverlay siegeOverlay;
+    List<Hex> siegeCoverage(){return siegeOverlay==null?Collections.emptyList():siegeOverlay.cells;}
+    Set<Hex> siegeEnemies(){return siegeOverlay==null?Collections.emptySet():siegeOverlay.enemies;}
     private Set<Hex> facilityCoverage=Collections.emptySet();
     Set<Hex> facilityCoverage(){return facilityCoverage;}
     private List<Hex> developmentSites=Collections.emptyList();
@@ -334,6 +337,7 @@ public final class MapView extends View {
         if(changed&&getWidth()>0){stopCamera();resizeCamera();camera.fit();}invalidate();
     }
     private void updateSelection(boolean actorChanged){
+        siegeOverlay=SiegeOverlay.selected(world,selected);
         facilityCoverage=world.fieldworks.coverage(world.war.at(selected));
         World.City development=world.cityAt(selected);if(development==null)development=world.development.cityAt(selected);
         developmentSites=development!=null&&development.owner==world.player?new ArrayList<>(world.domestic.buildSites(development.id)):Collections.emptyList();
@@ -477,6 +481,16 @@ public final class MapView extends View {
             for(int r=r0;r<=r1;r++)for(int q=camera.firstColumn(r,world.width,RADIUS*2);q<=camera.lastColumn(r,world.width,RADIUS*2);q++)
                 if(edges[q][r]!=0)addBorders(path,edges[q][r],x(tiles[q][r]),y(tiles[q][r]));
             stroke(canvas,0xbfe3ebcf,Math.max(1,density/scale));
+        }
+        if(!editorMode&&!openingPreview&&moving<0&&pickTargets==null&&siegeOverlay!=null){
+            for(Hex h:siegeOverlay.cells){
+                if(!camera.visible(x(h),y(h),RADIUS*scale))continue;
+                boolean enemy=siegeOverlay.enemies.contains(h);
+                boolean inner=SiteFootprint.distance(siegeOverlay.site,h)==1;
+                polygon(x(h),y(h),RADIUS-1);
+                fill(canvas,enemy?0x66ea625d:inner?0x44edb75b:0x24edb75b);
+                stroke(canvas,enemy?0xfff77870:inner?0xcce8b760:0x88e8b760,Math.max(1,1.2f*density/scale));
+            }
         }
         if(pickTargets==null)for(Map.Entry<Hex,Integer> entry:reachable.entrySet()){
             Hex h=entry.getKey();if(entry.getValue()<=0||!camera.visible(x(h),y(h),RADIUS*scale))continue;

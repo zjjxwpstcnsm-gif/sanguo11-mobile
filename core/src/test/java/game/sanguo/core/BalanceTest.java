@@ -56,7 +56,8 @@ public final class BalanceTest {
         check(!w.cityDefense.besieged(c)&&w.cityDefense.recovery(c)==20,"peace recovers only twenty");
         check(w.cityDefense.repairAmount(c,w.officer(3))==blocked*4,"siege reduces manual repair to one quarter");
         c.food=0;check(w.cityDefense.recovery(c)==0,"no food means no free wall repair");c.food=20000;
-        w.unit(1).hex=new Hex(11,6);check(w.cityDefense.besieged(c),"ranged siege at three tiles blocks repair");
+        w.unit(1).hex=new Hex(11,6);check(!w.cityDefense.besieged(c),"third exterior ring does not blockade a harbor");
+        w.unit(1).hex=new Hex(12,6);check(w.cityDefense.besieged(c),"second exterior ring blocks repair");
         w.campaign.concludeTreaty(0,1,Campaign.TreatyKind.ALLIANCE,12);check(!w.cityDefense.besieged(c),"allies do not besiege");
         w.campaign.treaties.clear();w.active=1;int wall=c.defense,gold=c.gold,ap=w.actionPoints[1];
         check(w.campaign.repair(20,3).ok,"actual repair command");check(c.defense-wall==blocked&&gold-c.gold==300&&ap-w.actionPoints[1]==10,"repair preview and paid effect match");

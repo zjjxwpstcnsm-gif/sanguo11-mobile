@@ -19,7 +19,7 @@ public final class NavigationDefenseTest {
             World.Unit u=enemy(w,1,new Hex(10+distance,10),weapon);w.active=1;int energy=u.energy;
             World.Result r=Army.siegeWeapon(weapon)?w.army.tactic(u.id,w.city(10).hex,w.army.tactics(u).get(0)):w.siege(u.id,10);
             check(r.ok,"real city attack "+weapon);check(w.city(10).troops<24000,"garrison damaged "+weapon);
-            check(distance==3?u.troops==6000:u.troops<6000&&u.troops>=5640,"bounded counter including tactic/crossbow "+weapon);
+            check(u.troops<6000&&u.troops>=5640,"bounded footprint-aware counter including outer-ring catapult "+weapon);
             check(u.acted&&u.energy==(Army.siegeWeapon(weapon)?energy-w.army.tactics(u).get(0).energy:energy),"counter charges no extra action or energy");
             SaveCodec.validate(w);
         }
@@ -31,14 +31,15 @@ public final class NavigationDefenseTest {
         World safe=defenseFixture();World.Unit target=enemy(safe,1,new Hex(11,10),World.Weapon.SPEAR);
         safe.campaign.concludeTreaty(0,1,Campaign.TreatyKind.ALLIANCE,12);safe.cityDefense.tick();check(target.troops==6000,"allies immune");safe.campaign.treaties.clear();
         safe.city(10).food=0;safe.cityDefense.tick();check(target.troops==6000,"starved city cannot shoot");safe.city(10).food=10000;safe.city(10).troops=0;safe.cityDefense.tick();check(target.troops==6000,"empty garrison cannot shoot");
-        safe.city(10).troops=24000;safe.city(10).kind=World.SiteKind.GATE;target.hex=new Hex(12,10);safe.cityDefense.tick();check(target.troops==6000,"gate range is one");
+        safe.city(10).troops=24000;safe.city(10).kind=World.SiteKind.GATE;target.hex=new Hex(12,10);safe.cityDefense.tick();check(target.troops<6000,"gate second exterior ring now defended");
         target.hex=new Hex(11,10);target.troops=1;safe.cityDefense.tick();check(safe.unit(1)==null&&safe.officer(2).unitId==-1,"lethal volley releases tile and crew once");SaveCodec.validate(safe);
         World weak=defenseFixture();int strong=weak.cityDefense.strength(weak.city(10));weak.city(10).troops=1000;weak.city(10).defense=100;weak.city(10).morale=20;check(weak.cityDefense.strength(weak.city(10))<strong/3,"damaged small garrison weakens defense");
         World capture=defenseFixture();World.Unit conqueror=enemy(capture,1,new Hex(11,10),World.Weapon.SPEAR);capture.city(10).defense=1;capture.active=1;check(capture.siege(1,10).ok&&capture.city(10).owner==1&&conqueror.troops==6000,"fallen city cannot counter its conqueror");
         // A completed real global turn must shoot exactly once even though every faction resets.
         World round=defenseFixture();World.Unit fixed=enemy(round,1,new Hex(11,10),World.Weapon.SPEAR);fixed.status=War.Status.CONFUSED;fixed.statusTurns=3;
         for(World.City c:round.cities)c.gold=0;round.city(20).troops=0;round.city(20).food=0;
-        int expected=Math.min(round.cityDefense.strength(round.city(10)),round.cityDefense.strength(round.city(10))*150/190);int troops=fixed.troops;
+        int garrison=round.city(10).troops;round.city(10).troops-=SiegeRules.attrition(round.city(10),SiegeRules.state(round,round.city(10)));
+        int expected=round.cityDefense.counterDamage(round.city(10),fixed);round.city(10).troops=garrison;int troops=fixed.troops;
         check(round.nextTurn().ok,"normal end turn runs defense");check(round.unit(1).troops==troops-expected,"one automatic volley per global turn");
         check(copy(round).unit(1).troops==round.unit(1).troops,"loading does not fire again");
     }

@@ -22,8 +22,10 @@ public final class Conscription {
     public static int reserveCap(World w,World.City c){
         return c.kind==World.SiteKind.CITY?RESERVE_CAP+MARKET_CAP*w.domestic.capacity(c.id,Domestic.Kind.MARKET):0;
     }
-    public static int quarterlyRecovery(World w,World.City c){
-        return c.kind==World.SiteKind.CITY?QUARTERLY_RECOVERY+FARM_RECOVERY*w.domestic.capacity(c.id,Domestic.Kind.FARM):0;
+    public static int quarterlyRecovery(World w,World.City c){return quarterlyRecovery(w,c,SiegeRules.blockaded(w,c));}
+    static int quarterlyRecovery(World w,World.City c,boolean blockaded){
+        int raw=c.kind==World.SiteKind.CITY?QUARTERLY_RECOVERY+FARM_RECOVERY*w.domestic.capacity(c.id,Domestic.Kind.FARM):0;
+        return SiegeRules.adjusted(raw,blockaded?SiegeRules.RECRUIT_PERCENT:100);
     }
     /** Base-policy helper retained for callers without a world; gameplay uses the world-aware overload. */
     public static int recovery(World.City c){
@@ -61,9 +63,11 @@ public final class Conscription {
     }
     /** Called once from global turn settlement, never from faction resets or save loading.
      * Removing a market stops growth above the new cap, but does not delete existing people. */
-    static void settle(World w){
+    static void settle(World w){settle(w,SiegeRules.snapshot(w));}
+    static void settle(World w,java.util.Map<Integer,SiegeRules.State> states){
         if(!quarterBegins(w,w.turn))return;
-        for(World.City c:w.cities){int gain=recovery(w,c);if(gain==0)continue;
+        for(World.City c:w.cities){if(c.owner<0)continue;
+            int gain=Math.max(0,Math.min(quarterlyRecovery(w,c,SiegeRules.blocked(states,c)),reserveCap(w,c)-c.recruitReserve));if(gain==0)continue;
             c.recruitReserve+=gain;
             w.note(c.name+"季度兵源恢复+"+gain+"（"+c.recruitReserve+"/"+reserveCap(w,c)+"）");
         }

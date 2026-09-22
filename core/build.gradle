@@ -257,3 +257,11 @@ tasks.register('verifyRulerTitles', JavaExec) {
     mainClass = 'game.sanguo.core.RulerTitleTest'
 }
 tasks.named('check') { dependsOn 'verifyRulerTitles' }
+
+// Unified siege simulation and UI contracts.
+tasks.register('verifySiege', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.SiegeRulesTest'
+}
+tasks.named('check') { dependsOn 'verifySiege' }

@@ -48,6 +48,14 @@ public final class BattleReports {
         prepare();ActionContext context=new ActionContext();context.actor=actionOwner;context.related=actionRelated;context.location=actionLocation;context.kind=actionKind;context.name=actionName;context.changes=takeChanges();
         facility(source,target,TurnJournal.Kind.FACILITY_COUNTER,source.kind.label+"反击");return context;
     }
+    synchronized ActionContext beginSite(World.City source,Hex target,TurnJournal.Kind kind,String label){
+        prepare();ActionContext context=new ActionContext();context.actor=actionOwner;context.related=actionRelated;
+        context.location=actionLocation;context.kind=actionKind;context.name=actionName;context.changes=takeChanges();
+        action(kind,-1,target,label);actionOwner=source.owner;
+        actionRelated=bit(source.owner);World.Unit enemy=w.unitAt(target);
+        if(enemy!=null)actionRelated|=bit(enemy.owner);
+        return context;
+    }
     synchronized void finishCounter(ActionContext context,String result){
         try{note(result);}finally{actionOwner=context.actor;actionRelated=context.related;actionLocation=context.location;actionKind=context.kind;actionName=context.name;pending.clear();pending.addAll(context.changes);}
     }

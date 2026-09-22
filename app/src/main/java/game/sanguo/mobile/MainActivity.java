@@ -646,6 +646,7 @@ public final class MainActivity extends Activity {
         }
         panel.addView(visualHeader(c,c.name,world.faction(c.owner)+" · 太守 "+UiModels.governor(world,c.id),44));
         if(compact)line("金 "+c.gold+" · 粮 "+c.food+" · 兵 "+c.troops,13,paper);else panel.addView(CommandStats.city(this,c),new LinearLayout.LayoutParams(-1,-2));
+        line(SiegeRules.summary(world,c)+"\n琥珀格：两圈围城范围 · 红格：敌军",12,SiegeRules.blockaded(world,c)?0xffff9a82:gold);
         String[] groups={"概览","内政","武将","军事","调动","外交","研究"};
         HorizontalScrollView tabs=new HorizontalScrollView(this);tabs.setHorizontalScrollBarEnabled(false);tabs.setOverScrollMode(View.OVER_SCROLL_NEVER);
         LinearLayout tabRow=new LinearLayout(this);tabs.addView(tabRow,new HorizontalScrollView.LayoutParams(-2,-1));
@@ -653,6 +654,8 @@ public final class MainActivity extends Activity {
         tabs.setContentDescription("城池指令分组");
         panel.addView(tabs,new LinearLayout.LayoutParams(-1,dp(48)));
         if(ui.group.equals("概览")){
+            action("围城与守备详情",v->message(c.name+" · 围城",world.cityDefense.describe(c)));
+            line(world.domestic.incomeSchedule(c.id),13,muted);
             line(Conscription.description(world,c),13,gold);
             if(c.kind!=World.SiteKind.CITY){
                 line(world.districts.affiliation(c.id),13,muted);

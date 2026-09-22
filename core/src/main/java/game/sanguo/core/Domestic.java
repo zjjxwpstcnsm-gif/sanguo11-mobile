@@ -112,18 +112,20 @@ public final class Domestic {
     public int monthlyGold(int city){return w.strategy.cityIncome(city,800+this.yield(city,Kind.MARKET,400)+this.yield(city,Kind.BLACK_MARKET,200));}
     public int monthlyFood(int city){return w.strategy.cityIncome(city,5000+this.yield(city,Kind.FARM,2500));}
     /** Scheduled income, including the PC month/season-only interaction of wealth and tax skills. */
-    public int goldIncome(int city,int turn){
+    public int goldIncome(int city,int turn){return goldIncome(city,turn,SiegeRules.blockaded(w,w.city(city)));}
+    int goldIncome(int city,int turn,boolean blockaded){
         int base=monthlyGold(city);boolean monthly=turn%3==0,tax=w.skills.city(city,Skill.ZHENGSHUI);
         if(!monthly&&!tax)return 0;
         int amount=tax?base/2:base;
-        return monthly&&w.skills.city(city,Skill.FUHAO)?amount*3/2:amount;
+        return SiegeRules.adjusted(monthly&&w.skills.city(city,Skill.FUHAO)?amount*3/2:amount,blockaded?SiegeRules.INCOME_PERCENT:100);
     }
-    public int foodIncome(int city,int turn){
+    public int foodIncome(int city,int turn){return foodIncome(city,turn,SiegeRules.blockaded(w,w.city(city)));}
+    int foodIncome(int city,int turn,boolean blockaded){
         if(turn%3!=0)return 0;boolean season=(w.startMonth-1+turn/3)%3==0,tax=w.skills.city(city,Skill.ZHENGSHOU);
         if(!season&&!tax)return 0;int amount=tax?monthlyFood(city)/2:monthlyFood(city);
-        return season&&w.skills.city(city,Skill.MIDAO)?amount*3/2:amount;
+        return SiegeRules.adjusted(season&&w.skills.city(city,Skill.MIDAO)?amount*3/2:amount,blockaded?SiegeRules.INCOME_PERCENT:100);
     }
-    public String incomeSchedule(int city){return "月初基准金 "+monthlyGold(city)+" / 季初基准粮 "+monthlyFood(city)+"\n下旬结算 金 "+goldIncome(city,w.turn+1)+" / 粮 "+foodIncome(city,w.turn+1);}
+    public String incomeSchedule(int city){return "未计围城的月初基准金 "+monthlyGold(city)+" / 季初基准粮 "+monthlyFood(city)+"\n下旬结算 金 "+goldIncome(city,w.turn+1)+" / 粮 "+foodIncome(city,w.turn+1);}
     public int recruitAmount(int city){return 2000+this.yield(city,Kind.BARRACKS,500);}
     public int produceAmount(int city){return 2000+this.yield(city,Kind.SMITH,500);}
     public int produceAmount(int city,World.Weapon weapon){return 2000+this.yield(city,weapon==World.Weapon.CAVALRY?Kind.STABLE:Kind.SMITH,500);}
