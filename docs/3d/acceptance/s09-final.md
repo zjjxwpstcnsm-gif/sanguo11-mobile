@@ -67,3 +67,22 @@ finished, remove trial labeling or turn on 3D for all devices.
 Final APK is explicitly the PR-head arm64 candidate, not a main build. Source SHA,
 SHA-256, signing certificate, exact bytes, ABI and build results belong to the
 artifact-side manifest to avoid self-referential commit hashes.
+
+## Host execution result
+
+Final matrix checkpoint: 13 PASS / 2 FAIL. map61 stops at its hard-coded revision61
+assertion (current national map is revision63); turn48 wrapper stops in historical
+CoreTest (AI deployment). The direct Turn48Test passes separately. These failures
+remain FAIL; the CI enforcement step runs after native probes so useful device
+results are still collected without turning the matrix green.
+
+Full `:core:check --continue`: 31 failing tasks. Replacing only CampaignSave with
+the S08 original in an isolated classpath reproduces the same first exception for
+all 31. This isolates this turn's only production-core change; it is not an audit
+of every historical failure or proof that the old failures are harmless. Raw
+comparison is delivered with the candidate. Do not call the full project green.
+
+Concurrent S08 commit ed8a08a was retained before final integration: retired native
+scene CPU references are released and crash diagnostics are collected. No remote
+history was overwritten. Final native CI, APK audit and build identities are
+reported with the downloadable artifacts rather than predicted in this document.
