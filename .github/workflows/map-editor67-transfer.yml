@@ -1,0 +1,97 @@
+name: Map editor67 guarded source sync and compile
+on:
+  push:
+    branches: [agent/in-game-map-editor-v067]
+    paths: [editor67-transfer.b64, .github/workflows/map-editor67-transfer.yml]
+permissions:
+  contents: write
+concurrency:
+  group: map-editor67-source-sync
+  cancel-in-progress: false
+jobs:
+  sync-and-compile:
+    if: github.ref == 'refs/heads/agent/in-game-map-editor-v067'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify prior blobs, apply source, fast-forward push
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import base64,gzip,json,pathlib,subprocess,hashlib
+          def git(*args):return subprocess.check_output(['git',*args]).decode().strip()
+          manifest=json.loads(pathlib.Path('editor67-transfer.b64').read_text())
+          names=manifest['parts']
+          assert 1<=len(names)<=30 and len(set(names))==len(names)
+          assert all(name==f'editor67-part-{i}.b64' for i,name in enumerate(names))
+          encoded=b''.join(pathlib.Path(name).read_bytes().strip() for name in names)
+          if len(encoded)>400000:raise SystemExit('Oversized transfer')
+          compressed=base64.b64decode(encoded,validate=True)
+          assert hashlib.sha256(compressed).hexdigest()==manifest['sha256'],'Transfer checksum mismatch'
+          raw=gzip.decompress(compressed)
+          if len(raw)>2000000:raise SystemExit('Oversized decoded transfer')
+          data=json.loads(raw);assert data['format']==1
+          subprocess.check_call(['git','merge-base','--is-ancestor',data['base'],'HEAD'])
+          paths=set()
+          for e in data['entries']:
+            name=e['path'];p=pathlib.Path(name)
+            assert name not in paths and not p.is_absolute() and '..' not in p.parts
+            assert name.startswith(('core/','app/','scripts/','tools/','docs/')) or name=='version.properties'
+            paths.add(name)
+            actual=git('hash-object',name) if p.exists() else None
+            assert actual==e['before'],f'Concurrent change: {name}: {actual} != {e["before"]}'
+          for e in data['entries']:
+            p=pathlib.Path(e['path'])
+            if 'patch' in e:
+              subprocess.run(['git','apply','--check','-'],input=e['patch'].encode(),check=True)
+              subprocess.run(['git','apply','-'],input=e['patch'].encode(),check=True)
+            else:p.parent.mkdir(parents=True,exist_ok=True);p.write_text(e['content'],encoding='utf-8')
+            assert git('hash-object',str(p))==e['after'],f'After hash mismatch: {p}'
+          subprocess.check_call(['git','add','--',*sorted(paths)])
+          subprocess.check_call(['git','rm','--','editor67-transfer.b64',*names])
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'feat(map-editor): isolated terrain transactions, real sites, immutable maps and production scenario integration'
+          git push origin HEAD:refs/heads/agent/in-game-map-editor-v067
+          mkdir -p out/v067
+          git rev-parse HEAD | tee out/v067/SOURCE_COMMIT.txt
+          git archive --format=zip -o out/v067/source.zip HEAD
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Real map editor integration checks
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/test-v067.sh out/v067/phone-export-fixture.json 2>&1 | tee out/v067/core67.txt
+          bash scripts/test-v066.sh 2>&1 | tee out/v067/core66.txt
+          bash scripts/test-v064.sh 2>&1 | tee out/v067/core64.txt
+          python3 scripts/verify-map-release.py 2>&1 | tee out/v067/map-preservation.txt
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Android compile of exact pushed source
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          cp "$ANDROID_HOME/platforms/android-35/android.jar" out/v067/android-platform.jar
+          gradle --no-daemon :app:assembleDebug 2>&1 | tee out/v067/android-build.txt
+          cp app/build/outputs/apk/debug/app-debug.apk out/v067/map-editor67-milestone.apk
+          sha256sum out/v067/map-editor67-milestone.apk > out/v067/APK_SHA256.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: map-editor67-source-and-compile
+          path: out/v067
+          retention-days: 7

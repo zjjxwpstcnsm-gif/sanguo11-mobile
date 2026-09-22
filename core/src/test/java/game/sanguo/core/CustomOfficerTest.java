@@ -68,7 +68,7 @@ public final class CustomOfficerTest {
     }
     static void snapshots()throws Exception{
         CustomOfficers.Definition d=person(100040,"持久将");d.portrait="builtin:3";World w=apply(base(),Collections.singletonList(d),Collections.singletonList(put(d,0,77)));byte[] file=SaveCodec.encode(w);d.template=person(100040,"后来改名").template;World restored=SaveCodec.decode(file);check(restored.officer(100040).name.equals("持久将")&&CustomOfficers.portrait(restored,100040).ref.equals("builtin:3"),"saved definition and portrait survive template mutation/deletion");
-        World vanilla=base();byte[] old=SaveCodec.encode(vanilla);check(new java.io.DataInputStream(new ByteArrayInputStream(Arrays.copyOfRange(old,4,8))).readInt()==32,"global save version stays32");check(Arrays.equals(old,SaveCodec.encode(SaveCodec.decode(old))),"old plain save roundtrip unchanged");
+        World vanilla=base();byte[] old=SaveCodec.encode(vanilla);check(new java.io.DataInputStream(new ByteArrayInputStream(Arrays.copyOfRange(old,4,8))).readInt()==33,"merged save version is33");check(Arrays.equals(old,SaveCodec.encode(SaveCodec.decode(old))),"old plain save roundtrip unchanged");
         w.extensions.put("customMaps",new byte[]{1,2,3});World combined=SaveCodec.decode(SaveCodec.encode(w));check(Arrays.equals(combined.extensions.get("customMaps"),new byte[]{1,2,3}),"unknown optional module roundtrip is composable (not map-agent integration)");
         reject(()->{World corrupt=base();corrupt.extensions.put(CustomOfficers.NAMESPACE,new byte[]{0,0,0,9});SaveCodec.encode(corrupt);},"bad module version");
     }

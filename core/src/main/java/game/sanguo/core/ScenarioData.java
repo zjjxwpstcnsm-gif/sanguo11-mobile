@@ -129,6 +129,7 @@ public final class ScenarioData {
                 int n=number(p,"relations",0,10000);
                 for(int i=0;i<n;i++){String[] data=fields(p,"relation."+i,3);int a=integer(data[0]),b=integer(data[1]);Relations.Kind k=Relations.Kind.valueOf(data[2]);String error=w.relations.linkError(a,b,k);if(error!=null)throw new IOException(error);w.relations.link(a,b,k);}
             }
+            if(p.containsKey("site-parents")){int n=number(p,"site-parents",0,1000);for(int i=0;i<n;i++){String[] entry=fields(p,"site-parent."+i,2);int site=integer(entry[0]),parent=integer(entry[1]);World.City child=w.city(site),city=w.city(parent);if(child==null||child.kind==World.SiteKind.CITY||city==null||city.kind!=World.SiteKind.CITY||w.siteParents.put(site,parent)!=null)throw new IOException("据点行政关联无效");}}
             if(p.containsKey("treasures")){
                 int n=number(p,"treasures",0,43);Set<String> seen=new HashSet<>();
                 for(int i=0;i<n;i++){String[] data=fields(p,"treasure."+i,3);if(!seen.add(data[0]))throw new IOException("宝物重复");w.treasures.place(Treasures.definition(data[0]),Treasures.Place.valueOf(data[1]),integer(data[2]));}

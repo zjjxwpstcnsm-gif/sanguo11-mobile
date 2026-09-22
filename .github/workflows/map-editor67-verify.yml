@@ -1,0 +1,91 @@
+name: Map editor67 installed verification
+on:
+  push:
+    branches: [agent/in-game-map-editor-v067]
+    paths:
+      - .github/workflows/map-editor67-verify.yml
+      - 'app/**'
+      - 'core/**'
+      - 'tools/content/MapPatchRepository.java'
+      - 'tools/content/map_patch.py'
+      - 'tools/content/test_map_patch.py'
+      - docs/MAP_EDITOR_V067.md
+      - scripts/test-map-editor67.sh
+      - scripts/verify-map-editor67-android.sh
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: map-editor67-installed-verification
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      JAVA_TOOL_OPTIONS: -Dfile.encoding=UTF-8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Record exact checked out source without modifying it
+        run: |
+          mkdir -p out/editor67
+          git rev-parse HEAD | tee out/editor67/SOURCE_COMMIT.txt
+          git archive --format=zip HEAD > out/editor67/source.zip
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Production map and retained gameplay tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          bash scripts/test-map-editor67.sh out/editor67/phone-export-fixture.json 2>&1 | tee out/editor67/editor-tests.txt
+          bash scripts/test-v066.sh 2>&1 | tee out/editor67/core66.txt
+          bash scripts/test-v064.sh 2>&1 | tee out/editor67/core64.txt
+          bash scripts/test-ui-models.sh 2>&1 | tee out/editor67/ui-models.txt
+          python3 scripts/verify-map-release.py 2>&1 | tee out/editor67/map-preservation.txt
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v3
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Build exact source and selected instrumentation
+        shell: bash
+        run: |
+          set -euo pipefail
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          cp "$ANDROID_HOME/platforms/android-35/android.jar" out/editor67/android-platform.jar
+          gradle --no-daemon -PmapEditorProbe=true :app:assembleDebug :app:assembleDebugAndroidTest 2>&1 | tee out/editor67/android-build.txt
+          cp app/build/outputs/apk/debug/app-debug.apk out/editor67/sanguo11-mobile-map-editor67.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/editor67/editor67-test.apk
+          sha256sum out/editor67/sanguo11-mobile-map-editor67.apk > out/editor67/APK_SHA256.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/editor67/sanguo11-mobile-map-editor67.apk > out/editor67/APK_SIGNATURE.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/editor67/sanguo11-mobile-map-editor67.apk > out/editor67/APK_INFO.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump xmltree out/editor67/editor67-test.apk AndroidManifest.xml > out/editor67/TEST_MANIFEST.txt
+      - name: Enable KVM
+        run: sudo chmod 666 /dev/kvm
+      - name: Install and operate the real Android editor
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          target: default
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-map-editor67-android.sh
+      - name: Merge the actual Android-exported Patch in an isolated repository
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 tools/content/test_map_patch.py out/editor67/android/editor67/phone-roundtrip.json 2>&1 | tee out/editor67/repository-patch-tests.txt
+          test -z "$(git status --porcelain --untracked-files=no)"
+          test "$(cat out/editor67/SOURCE_COMMIT.txt)" = "$(git rev-parse HEAD)"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: map-editor67-installed
+          path: out/editor67
+          retention-days: 7

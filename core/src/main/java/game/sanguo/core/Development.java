@@ -12,6 +12,9 @@ public final class Development {
         if(parcels.containsKey(city))throw new IllegalArgumentException("开发地重复");
         parcels.put(city,Collections.unmodifiableList(new ArrayList<>(sites)));
     }
+    /** Used only by the isolated geographic resolver, before a new campaign is published. */
+    void replace(int city,List<Hex> sites){parcels.remove(city);if(!sites.isEmpty())configure(city,sites);}
+    void remove(int city){parcels.remove(city);}
     public boolean configured(int city){return parcels.containsKey(city);}
     public List<Hex> parcels(int city){return parcels.getOrDefault(city,Collections.emptyList());}
     public int capacity(int city){return configured(city)?parcels(city).size():Domestic.CITY_SLOTS;}

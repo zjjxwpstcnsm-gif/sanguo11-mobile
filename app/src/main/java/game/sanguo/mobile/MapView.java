@@ -11,6 +11,29 @@ import game.sanguo.core.*;
 public final class MapView extends View {
     public interface TileListener {void tap(Hex tile);}
     private final TileListener listener;
+    /** Editor-only gesture stream. Existing campaign gestures and hit rules remain unchanged. */
+    interface EditorStroke {void event(int action,Hex tile);}
+    private EditorStroke editorStroke;
+    private boolean editorMode,editorDrawing,editorCapturing;
+    private float editorFocusX,editorFocusY;
+    private boolean editorTwoFingers;
+    private Set<Hex> editorPreview=Collections.emptySet();
+    private boolean editorPreviewValid=true,editorGrid,editorCoordinates,editorPassability,editorFootprints;
+    void editorMode(EditorStroke listener){editorMode=true;editorStroke=listener;}
+    void editorDrawing(boolean value){editorDrawing=value;editorCapturing=false;}
+    void editorPreview(Set<Hex> hexes,boolean valid){editorPreview=hexes;editorPreviewValid=valid;postInvalidateOnAnimation();}
+    void editorLayers(boolean grid,boolean coordinates,boolean passability,boolean footprints){editorGrid=grid;editorCoordinates=coordinates;editorPassability=passability;editorFootprints=footprints;invalidate();}
+    private void drawEditor(Canvas canvas,int firstRow,int lastRow,boolean detail){
+        if(!editorMode)return;
+        for(int r=firstRow;r<=lastRow;r++)for(int q=camera.firstColumn(r,world.width,RADIUS*2);q<=camera.lastColumn(r,world.width,RADIUS*2);q++){
+            Hex h=tiles[q][r];if(!world.sourceInside(h))continue;
+            if(editorPreview.contains(h)){polygon(x(h),y(h),RADIUS-1);fill(canvas,editorPreviewValid?0x8057dfa1:0x80f66c65);stroke(canvas,editorPreviewValid?0xff83ffc2:0xffff8c83,Math.max(1,density/camera.scale));}
+            if(detail&&editorGrid){polygon(x(h),y(h),RADIUS);stroke(canvas,0xaaffffff,Math.max(.5f,.5f*density/camera.scale));}
+            if(detail&&editorPassability){int cost=world.cost(h,World.Weapon.SPEAR);if(cost<1){polygon(x(h),y(h),RADIUS-2);fill(canvas,0x559c2530);}}
+            if(detail&&editorCoordinates&&camera.scale*RADIUS>=24*density){SourceGridCoord source=MapCoordinates.nationalSource(world,h);label(canvas,source.x+","+source.y,x(h),y(h)+4,8*density/camera.scale,0xffffffff);}
+        }
+        if(editorFootprints)for(Object o:visibleObjects)if(o instanceof World.City){siteBoundary((World.City)o);stroke(canvas,0xff89e5ff,Math.max(1,1.5f*density/camera.scale));}
+    }
     private final Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Path path=new Path();
     private final MapModels models=new MapModels();
@@ -359,6 +382,16 @@ public final class MapView extends View {
             }
             if(e.getActionMasked()==MotionEvent.ACTION_UP)performClick();return true;
         }
+        if(editorMode){
+            int action=e.getActionMasked();
+            if(action==MotionEvent.ACTION_DOWN){editorTwoFingers=false;editorCapturing=editorDrawing;if(editorCapturing){scaler.onTouchEvent(e);editorStroke.event(MotionEvent.ACTION_DOWN,hit(e.getX(),e.getY()));return true;}}
+            if(e.getPointerCount()>1){
+                if(editorCapturing){editorStroke.event(MotionEvent.ACTION_CANCEL,null);editorCapturing=false;}
+                float fx=0,fy=0;for(int i=0;i<e.getPointerCount();i++){fx+=e.getX(i);fy+=e.getY(i);}fx/=e.getPointerCount();fy/=e.getPointerCount();
+                if(editorTwoFingers&&action==MotionEvent.ACTION_MOVE)camera.pan(fx-editorFocusX,fy-editorFocusY);editorFocusX=fx;editorFocusY=fy;editorTwoFingers=true;multiTouch=true;
+            }
+            if(editorCapturing){scaler.onTouchEvent(e);editorStroke.event(action,hit(e.getX(),e.getY()));if(action==MotionEvent.ACTION_UP||action==MotionEvent.ACTION_CANCEL){editorCapturing=false;performClick();}return true;}
+        }
         if(e.getPointerCount()>1){multiTouch=true;draggingUnit=false;dragTarget=null;dragPlan=null;invalidate();}
         if(draggingUnit){
             int action=e.getActionMasked();
@@ -389,6 +422,7 @@ public final class MapView extends View {
         Hex exact=new Hex(iq,ir);
         // A city label may not turn exterior/padding under the pointer into a tile.
         // Valid impassable terrain remains selectable at every level of detail.
+        if(editorMode)return world.sourceInside(exact)?exact:null;
         if(!world.inside(exact))return null;
         // Preserve precise tile commands while a unit is selected, including adjacent movement.
         if(moving>=0||pickTargets!=null)return world.inside(exact)?exact:null;
@@ -496,6 +530,7 @@ public final class MapView extends View {
         for(Object object:visibleObjects)if(object instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)object;if(replayHides(m))continue;if(m.owner!=world.player&&!m.transport)continue;float cx=x(m.hex),cy=y(m.hex);if(!detail){polygon(cx,cy,Math.max(8,3*density/scale));fill(canvas,factionColor(m.owner));stroke(canvas,PAPER,density/scale);continue;}paint.setColor(factionColor(m.owner));canvas.drawRoundRect(cx-17,cy-10,cx+17,cy+10,4,4,paint);paint.setColor(PAPER);canvas.drawCircle(cx-11,cy+13,4,paint);canvas.drawCircle(cx+11,cy+13,4,paint);label(canvas,m.transport?"运":"调",cx,cy+5,15,Color.BLACK);if(m.transport){if(m.stopped||!m.waiting.isEmpty())label(canvas,"!",cx+23,cy+4,16,GOLD);}}
         drawReplayWorld(canvas);
         drawTacticPreview(canvas);
+        drawEditor(canvas,r0,r1,detail);
         long remaining=impactUntil-android.os.SystemClock.uptimeMillis();
         if(impactHex!=null&&remaining>0){
             float progress=1-remaining/450f;paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(defeatImpact?3:2);

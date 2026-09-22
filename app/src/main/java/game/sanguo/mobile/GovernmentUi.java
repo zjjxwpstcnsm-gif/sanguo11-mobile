@@ -15,6 +15,7 @@ final class GovernmentUi {
     private <T> void choose(String title,List<T> values,java.util.function.Function<T,String> label,Consumer<T> next){ChoiceDialog.show(a,w,title,values,label,next);}
     private String officer(World.Officer o){Government.Rank r=w.government.office(o.id);return o.name+" · 功绩"+w.government.merit(o.id)+(r==null?"":" · "+r.id);}
     private List<World.Officer> residents(World.City c){List<World.Officer> list=new ArrayList<>();for(World.Officer o:w.officers)if(o.cityId==c.id&&o.owner==c.owner&&!w.government.captive(o.id))list.add(o);return list;}
+    private List<World.Officer> rankCandidates(World.City c){List<World.Officer> list=residents(c);list.removeIf(o->o.role==Strategy.Role.RULER||o.unitId>=0||!w.life.present(o.id)||w.strategy.busy(o.id)||w.domestic.busy(o.id));return list;}
     private void actor(World.City c,Consumer<World.Officer> next){choose("选择执行武将",w.idle(c),this::officer,next);}
     void city(World.City c){
         String[] commands={"军师建议","任命军师","授予官职","免除官职","俘虏处置","赎回己将","召唤武将","城池委任","补给城外部队"};
@@ -22,8 +23,8 @@ final class GovernmentUi {
             switch(n){
                 case 0:info("军师建议",w.government.advice(c.id));break;
                 case 1:actor(c,o->choose("选择军师",w.idle(c),t->t.name+" · 智"+t.intelligence,t->confirm("任命军师","需要智力70，执行者和军师消耗本旬行动、行动力10。",()->apply.accept(w.government.appointAdvisor(c.id,o.id,t.id)))));break;
-                case 2:actor(c,o->choose("选择受任武将",residents(c),this::officer,t->choose("选择武官职位",Government.ranks(),r->r.id+" · 功绩"+r.merit+" · 统兵"+r.troops,r->confirm("授予"+r.id,
-                    t.name+"\n需要功绩"+r.merit+"，统兵上限"+r.troops+"，月俸"+r.salary+"金。\n同势力同一官职限一人。金100、行动力10；受任者本旬休整。",()->apply.accept(w.government.appointRank(c.id,o.id,t.id,r.id))))));break;
+                case 2:actor(c,o->choose("选择受任武将",rankCandidates(c),this::officer,t->OfficePicker.show(a,w,c,o,t,r->confirm("授予"+r.id,
+                    t.name+"\n君主至少为"+r.requiredTitle.label+"，武将功绩至少"+r.merit+"。\n基础统兵"+r.troops+"，月俸"+r.salary+"金；军制改革另加3000。\n同势力同一官职限一人。金100、行动力10；受任者本旬休整。",()->apply.accept(w.government.appointRank(c.id,o.id,t.id,r.id))))));break;
                 case 3:actor(c,o->choose("选择免官武将",residents(c),this::officer,t->confirm("免除官职","行动力10，忠诚下降5；已出征部队不受影响。",()->apply.accept(w.government.removeRank(c.id,o.id,t.id)))));break;
                 case 4:prisoners(c);break;
                 case 5:{List<Government.Prisoner> list=new ArrayList<>();for(Government.Prisoner p:w.government.prisoners())if(w.officer(p.officerId).owner==c.owner)list.add(p);

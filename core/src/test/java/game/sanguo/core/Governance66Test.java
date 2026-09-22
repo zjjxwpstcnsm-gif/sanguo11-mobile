@@ -108,21 +108,22 @@ public final class Governance66Test {
         Conscription.Summary before=Conscription.summary(w,0);w.city(13).recruitReserve=999999;w.city(14).recruitReserve=999999;Conscription.Summary after=Conscription.summary(w,0);
         check(before.reserve==after.reserve&&before.cap==after.cap,"ports and gates excluded from manpower aggregate");w.city(13).recruitReserve=20000;w.city(14).recruitReserve=20000;
         RealmOverview.Faction f=new RealmOverview(w).factions.get(0);check(f.manpower==after.reserve&&f.manpowerCap==after.cap&&f.advisor.equals("未任命"),"real overview exposes advisor and manpower");
-        int[] thresholds={1,2,4,10,20,24};String[] titles={"君主","刺史","州牧","大将军","王","皇帝"};
+        int[] thresholds={1,2,4,6,8,12,14,18,20,24};String[] titles={"无爵位","州刺史","州牧","羽林中郎将","五官中郎将","大将军","大司马","公","王","皇帝"};int[] caps={10000,11000,11000,12000,12000,13000,13000,14000,14000,15000};
         World empire=new World(70,35,"甲","乙");for(int i=0;i<25;i++)empire.cities.add(new World.City(i,"城"+i,new Hex(4+(i%10)*6,4+(i/10)*8),i==0?0:1));
         empire.officers.add(new World.Officer(0,"甲君",0,0,90,90,90,90,90));empire.officers.add(new World.Officer(1,"乙君",1,24,90,90,90,90,90));empire.strategy.initializeOffices();
         for(int g=0;g<thresholds.length;g++){
             for(World.City site:empire.cities)site.owner=site.id<thresholds[g]?0:1;
-            empire.governance.reconcile(false);check(empire.governance.title(0).equals(titles[g]),"city threshold "+thresholds[g]);check(empire.government.commandLimit(0)==10000+g*1000,"ruler troop cap rises with grade");
-            if(g<5)check(!empire.governance.nameNation(0,"大汉").ok,"non-emperor cannot name nation");
+            empire.governance.reconcile(false);check(empire.governance.title(0).equals(titles[g]),"city threshold "+thresholds[g]);check(empire.government.commandLimit(0)==caps[g],"ruler command follows researched non-linear title table");
+            if(g<9)check(!empire.governance.nameNation(0,"大汉").ok,"non-emperor cannot name nation");
         }
         ok(empire.governance.nameNation(0,"大汉"));check(empire.governance.label(0).equals("大汉")&&empire.faction(0).equals("大汉")&&empire.factions[0].equals("甲"),"national title preserves underlying identity");
         empire.city(23).owner=1;empire.governance.reconcile(false);check(empire.governance.title(0).equals("皇帝"),"earned titles do not oscillate on city loss");roundtrip(empire);
         byte[] invalidBefore=SaveCodec.encode(empire);check(!empire.governance.nameNation(0,"坏\\n名").ok,"control character rejected");check(Arrays.equals(invalidBefore,SaveCodec.encode(empire)),"invalid title atomic");
-        byte[] encoded=SaveCodec.encode(w);int extensionSize=8+w.fieldUnits().size()*12+4+w.factions.length*6;
+        byte[] encoded=SaveCodec.encode(w);ByteArrayOutputStream mapExtension=new ByteArrayOutputStream();CustomMapSave.write(w,new DataOutputStream(mapExtension));
+        int extensionSize=8+w.fieldUnits().size()*12+4+w.factions.length*6+mapExtension.size();
         byte[] legacyPayload=Arrays.copyOfRange(encoded,20,encoded.length-extensionSize);CRC32 crc=new CRC32();crc.update(legacyPayload);ByteArrayOutputStream bytes=new ByteArrayOutputStream();DataOutputStream out=new DataOutputStream(bytes);
         out.writeInt(0x53473131);out.writeInt(31);out.writeInt(legacyPayload.length);out.writeLong(crc.getValue());out.write(legacyPayload);
-        World old=SaveCodec.decode(bytes.toByteArray());check(old.governance.title(0).equals("刺史")&&old.city(10).governorId>=0,"v31 migration defaults zero wounded and initializes governance");roundtrip(old);
+        World old=SaveCodec.decode(bytes.toByteArray());check(old.governance.title(0).equals("州刺史")&&old.city(10).governorId>=0,"v31 migration defaults zero wounded and initializes governance");roundtrip(old);
     }
     private static void national()throws Exception{
         World w=ScenarioCatalog.load("heroes-250",0,12345L);check(w.factions.length==28&&w.sourceColumns()==200&&w.sourceRows()==200,"national 200x200 / 28-faction scenario retained");
