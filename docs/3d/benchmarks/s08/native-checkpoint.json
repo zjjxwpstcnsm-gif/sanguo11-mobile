@@ -1,0 +1,20 @@
+{
+  "source_sha": "7c70a3a039fdc96e467771b4c4b89643e32f25ff",
+  "run_id": 35714682829,
+  "result": "PASS",
+  "checks_including_readiness_polling": 1234,
+  "cycles": 20,
+  "device": "Android API29 x86_64 emulator, SwiftShader GLES3.0",
+  "physical_device": false,
+  "texture_format": "ETC2_SRGB8",
+  "msaa": "disabled on GLES3.0 compatibility profile",
+  "pss_mib": {
+    "first": 266.6376953125,
+    "last": 244.541015625,
+    "min": 241.6171875,
+    "max": 270.6162109375
+  },
+  "gpu_frame_time": null,
+  "battery_energy": null,
+  "twenty_minute_phone_acceptance": false
+}

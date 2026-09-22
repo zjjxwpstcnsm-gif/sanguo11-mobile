@@ -199,3 +199,14 @@ mips and ABI-selective builds implemented. Version 0.75.0-3d-s08 / 75.
 See acceptance/s08-performance.md, texture-compression.json and benchmarks/s08.
 Host geometry-equivalent pose allocations -78.7%, CPU -71.4%; not phone FPS.
 Device/thermal/power/20-minute and manual edit/save-cycle acceptance remain open.
+
+
+### S08 installed closeout (integrated with concurrent S09)
+
+Runtime checkpoint 7c70a3a / run35714682829: PASS 20 native lifecycle/quality cycles,
+1234 checks including polling, ETC2 format and actual Surface pixels. Emulator PSS
+241.62–270.62 MiB, last244.54; no physical-device performance claim. GLES3.0 MSAA
+native shader crash fixed by capability policy; all 3D gameplay/models remain active.
+Idle host pose allocation -78.7%, geometry hash unchanged. S09 commits/version76
+preserved; main never merged. Physical 20-minute/thermal/power/3.1+ MSAA and full
+manual/editor/art acceptance remain PARTIAL. See acceptance/s08-performance.md.

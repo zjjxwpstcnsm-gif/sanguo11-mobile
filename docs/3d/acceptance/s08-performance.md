@@ -93,3 +93,23 @@ as releasing native resources; this independent lifetime improvement is retained
 Concurrent S09 commits on this shared branch are preserved, including version76,
 critical-fire save validation and safe-restore latching. S08 APK source identity must
 therefore distinguish the integrated branch from the earlier S08-only measurements.
+
+
+## Installed acceptance checkpoint 7c70a3a (2026-09-22)
+
+Run 35714682829 PASSED: 20 complete HIGH/LOW/MEDIUM cycles, 1234 checks including
+readiness polling (not 1234 independent workflows), actual compressed texture formats,
+PixelCopy at every cycle, buffer/UI coordinate dimensions, unchanged SaveCodec bytes,
+worker shutdown and immediate CPU/native ownership release. HIGH-first no longer
+crashes on SwiftShader GLES3.0. Screenshots retain the actual production game scene.
+PSS ranged 241.62–270.62 MiB; first 266.64, last 244.54. No monotonic growth was
+observed across these 20 samples. This is emulator instrumentation-process PSS, not a
+phone measurement, GPU memory, 20-minute soak or proof against every possible leak.
+Raw samples: benchmarks/s08/native-cycles.tsv; metadata: native-checkpoint.json.
+
+An idle-host rerun (JDK21, no other local CPU build) gave 275.17 → 86.13 ms per
+600 poses (-68.7%); allocated bytes remain -78.7%, with identical geometry hash.
+Both initial and idle measurements are retained. No phone FPS conclusion follows.
+The final handoff commit only records evidence/manifests after this runtime checkpoint.
+Overall status remains PARTIAL for the physical-device/manual/art gates listed above.
+S09's unrelated full-core historical failures remain visible in s09-final.md.

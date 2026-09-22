@@ -181,3 +181,17 @@ events. `CombatVisual` is an Android-free bounded sampler. Filament owns 48 reus
 entities and six shared opaque geometry buffers; the existing overlay draws exact
 impact values and a compact portrait card. Historical snapshots are not authoritative
 saves. See `acceptance/s06-combat.md` for timeline, event matrix, budgets and open gates.
+
+
+## S08 quality and resource ownership
+
+SceneQuality owns the only vsync deadline policy: LOW/MEDIUM 30fps, HIGH 60fps.
+SurfaceHolder fixed-size buffers supply 70/85/100% internal resolution while the
+camera and native UI retain view-pixel coordinates. Android29+ severe thermal state
+caps 30fps/70%; recovery waits for light/none. HIGH MSAA requires GLES3.1+ because
+Filament1.56 blitLow compilation aborts on the GLES3.0 compatibility driver.
+CPU rest meshes use a 24MiB LRU budget; GPU pose caches trim only unreferenced meshes.
+Retired views clear CPU geometry/snapshot references immediately after canceling work.
+Opaque atlases use ETC2_SRGB8 compressed mip uploads, with versioned offline generation
+and a separate texture-compression manifest. CPU upload time and geometry/texture byte
+estimates are never labeled as measured GPU duration or process memory.

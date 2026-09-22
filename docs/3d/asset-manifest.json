@@ -95,5 +95,14 @@
       "final_art": false
     }
   ],
-  "unitCoverage": "docs/3d/acceptance/s05-status.md"
+  "unitCoverage": "docs/3d/acceptance/s05-status.md",
+  "performanceAssets": {
+    "stage": "S08 runtime; physical-device acceptance remains open",
+    "atlasReport": "docs/3d/texture-compression.json",
+    "generator": "tools/3d/compress_atlases.py",
+    "toolLock": "tools/3d/texture-requirements.txt",
+    "nativeUploadEvidence": "docs/3d/benchmarks/s08/native-checkpoint.json",
+    "format": "ETC2_SRGB8 complete mip chains; SRGB8_A8 fallback",
+    "license": "same original CC0 atlas sources"
+  }
 }
