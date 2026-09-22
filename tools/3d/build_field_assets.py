@@ -23,6 +23,18 @@ class Mesh(Base):
   n=len(self.p);self.p.extend(points);self.c.extend([(shade,shade,shade,1)]*len(points))
   self.uv.extend([((mat+u*.94+.03)/8,v*.94+.03) for u,v in [(0,0),(1,0),(1,1),(0,1)][:len(points)]])
   for i in range(1,len(points)-1):self.idx.extend([n,n+i,n+i+1])
+ def hall(self,x,z,w,d,h,lod):
+  super().hall(x,z,w,d,h,lod)
+  self.box(x-w*.53,.01,z-d*.52,w*1.06,.055,d*1.04,0)
+  # Recessed doorway, lintel and slatted windows remain legible at tactical zoom.
+  front=z+d/2+.003
+  self.face([(x-w*.11,.07,front),(x+w*.11,.07,front),(x+w*.11,h*.77,front),(x-w*.11,h*.77,front)],2,.38)
+  if lod<2:
+   for side in [-1,1]:
+    xx=x+side*w*.31
+    self.face([(xx-w*.075,h*.35,front),(xx+w*.075,h*.35,front),(xx+w*.075,h*.70,front),(xx-w*.075,h*.70,front)],4,.40)
+    for bar in [-1,0,1]:self.box(xx+bar*w*.046,h*.35,front+.003,w*.014,h*.35,.006,2)
+   self.box(x-w*.15,h*.77,front,w*.30,.022,.018,2)
  def frustum(self,x,y,z,rx,rz,h,top=.8,mat=2,n=8):
   for i in range(n):
    a=i*math.tau/n;b=(i+1)*math.tau/n
@@ -74,7 +86,7 @@ class Mesh(Base):
    for z in [-.16,.16]:self.wheel(x,.085,z,.085,lod=lod)
   if kind=='RAM':
    for x in [-.12,.12]:self.beam((x,.13,-.12),(x,.35,0),.035);self.beam((x,.13,.12),(x,.35,0),.035)
-   self.beam((0,.24,-.27),(0,.24,.34),.07);self.frustum(0,.2,.33,.055,.035,.09,1,4)
+   pass # suspended ram supplied by articulated module
   elif kind=='SIEGE_TOWER':
    for y in [.13,.32,.51]:
     self.box(-.15,y,-.16,.3,.03,.32,2)
@@ -206,7 +218,7 @@ save(m,'fire')
 # rotation keyframes. Each vertex belongs to exactly one pivoted part, no root motion.
 rigs={}
 def humanoid(m,bone,lod,cavalry=False,weapon='SWORD'):
- oy=.23 if cavalry else 0
+ oy=.14 if cavalry else 0
  def part(name,parent,pivot,fn):bone(name,parent,(pivot[0],pivot[1]+oy,pivot[2]),fn)
  def body():
   m.frustum(0,.16+oy,0,.065,.036,.14,.80,4,8);m.frustum(0,.13+oy,0,.070,.044,.045,.85,3,8)
@@ -216,7 +228,7 @@ def humanoid(m,bone,lod,cavalry=False,weapon='SWORD'):
   m.frustum(0,.403+oy,0,.012,.012,.045,0,3,5)
   if lod==0:
    for yy in [.20,.23,.26]:
-    for xx in [-.032,0,.032]:m.box(xx-.012,yy,.033,.024,.021,.006,4)
+    for xx in [-.032,0,.032]:m.box(xx-.012,yy+oy,.033,.024,.021,.006,4)
    for xx in [-.015,.015]:m.box(xx-.005,.36+oy,.034,.008,.006,.006,2)
  part('body',-1,(0,0,0),body)
  for side in [-1,1]:
@@ -235,7 +247,7 @@ def humanoid(m,bone,lod,cavalry=False,weapon='SWORD'):
    elif weapon in ['SWORD','HALBERD']:
     m.box(x-.04,.15+oy,.02,.065,.11,.014,2)
   part('hand'+suffix,'arm'+suffix,(x,.21,0),hand)
-  x=side*.029
+  x=side*(.085 if cavalry else .029)
   part('leg'+suffix,'body',(x,.16,0),lambda x=x:m.frustum(x,.075+oy,0,.024,.026,.085,.9,3,6))
   def shin(x=x):m.frustum(x,.017+oy,0,.019,.02,.06,1,4,6);m.box(x-.022,oy,.0,.044,.026,.054,2)
   part('shin'+suffix,'leg'+suffix,(x,.08,0),shin)
@@ -267,11 +279,18 @@ for kind in weapons:
   else:
    # Wheels and working arm are separate moving modules, chassis is shared.
    bone('chassis',-1,(0,0,0),lambda:m.engine(kind,lod))
-   for x in [-.185,.185]:
-    def spokes(x=x):
-     for z in [-.16,.16]:
+   for side,x in enumerate([-.185,.185]):
+    for axle,z in enumerate([-.16,.16]):
+     def spokes(x=x,z=z):
       m.beam((x,.015,z),(x,.155,z),.015,4);m.beam((x,.085,z-.07),(x,.085,z+.07),.015,4)
-    bone('wheelL' if x<0 else 'wheelR','chassis',(x,.085,0),spokes)
+     bone('wheel'+str(side)+str(axle),'chassis',(x,.085,z),spokes)
+   if kind=='RAM':
+    def ram():m.beam((0,.24,-.27),(0,.24,.34),.07);m.frustum(0,.2,.33,.055,.035,.09,1,4)
+    bone('ram','chassis',(0,.35,0),ram)
+   if kind=='WOODEN_BEAST':
+    bone('jaw','chassis',(0,.23,.15),lambda:m.beam((0,.20,.16),(0,.20,.31),.075,4))
+   if kind=='SIEGE_TOWER':
+    bone('launcher','chassis',(0,.6,.13),lambda:m.beam((-.14,.6,.15),(.14,.6,.15),.025,4))
    if kind=='CATAPULT':
     def arm():m.beam((0,.16,-.2),(0,.52,.22),.035);m.oval(0,.52,.22,.065,.025,.07,2,6,3)
     bone('lever','chassis',(0,.30,0),arm)
@@ -290,11 +309,13 @@ for clip in ['idle','walk','turn','prepare','attack','hit','defeat','enter']:
    for i,s in enumerate(['L','R']):
     v=wave*(1 if i==0 else -1);rot('arm'+s,v*.55);rot('leg'+s,-v*.65);rot('shin'+s,max(0,v)*.8)
    for i in range(4):rot('horseLeg'+str(i),math.sin(t*math.tau+(i%2)*math.pi)*.65)
-   rot('wheelL',t*math.tau);rot('wheelR',t*math.tau)
+
+   for i in range(2):
+    for j in range(2):rot('wheel'+str(i)+str(j),t*math.tau)
    rot('oarsL',0,.35*wave);rot('oarsR',0,-.35*wave)
   elif clip in ['prepare','attack']:
    a=t if clip=='prepare' else (math.sin(t*math.pi))
-   rot('armR',-a*1.35);rot('handR',-a*.4);rot('armL',-a*.35);rot('body',0,a*.22);rot('lever',-a*.9);rot('hull',0,a*.04)
+   rot('armR',-a*1.35);rot('handR',-a*.4);rot('armL',-a*.35);rot('body',0,a*.22);rot('lever',-a*.9);rot('ram',-a*.6);rot('jaw',-a*.5);rot('launcher',0,a*.3);rot('hull',0,a*.04)
   elif clip=='hit':rot('body',-.3*math.sin(t*math.pi));rot('horse',-.08*math.sin(t*math.pi));rot('hull',0,0,.10*math.sin(t*math.pi));rot('chassis',-.07*math.sin(t*math.pi))
   elif clip=='defeat':rot('body',0,0,t*1.45);rot('horse',0,0,t*.8);rot('hull',0,0,t*.55);rot('chassis',0,0,t*.7)
   elif clip=='turn':rot('body',0,.15*wave);rot('horse',0,.06*wave)

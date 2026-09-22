@@ -40,7 +40,7 @@ final class FieldAssets {
         float[] posed=source.vertices.clone();
         for(int i=0;i<parts.length();i++){
             JSONObject part=parts.getJSONObject(i);int parent=part.getInt("parent"),first=part.getInt("first"),length=part.getInt("count");
-            if(parent>=i||parent< -1||first<0||length<0||(long)(first+length)*7>posed.length)throw new IOException("rig range/parent");
+            if(parent>=i||parent< -1||first<0||length<0||((long)first+length)*7>posed.length)throw new IOException("rig range/parent");
             JSONArray pivot=part.getJSONArray("pivot"),angles=keys.optJSONArray(part.getString("name"));
             float rx=angles==null?0:(float)angles.getDouble(0),ry=angles==null?0:(float)angles.getDouble(1),rz=angles==null?0:(float)angles.getDouble(2);
             float[] local=rotation(rx,ry,rz,(float)pivot.getDouble(0),(float)pivot.getDouble(1),(float)pivot.getDouble(2));

@@ -10,7 +10,7 @@ import java.lang.reflect.*;
 import java.util.*;
 
 /** Installed production activity, real national scenario, native Surface and lifecycle checks. */
-public final class SceneInstrumentation extends Instrumentation {
+public class SceneInstrumentation extends Instrumentation {
     MainActivity activity;MapHost host;World world;int checks;
     @Override public void onCreate(Bundle b){super.onCreate(b);start();}
     static Object field(Object o,String name)throws Exception{Field f=o.getClass().getDeclaredField(name);f.setAccessible(true);return f.get(o);}
@@ -42,7 +42,21 @@ public final class SceneInstrumentation extends Instrumentation {
         world=(World)field(activity,"world");check(host.is3D(),"load uses same 3D host");capture("04-3d-after-turn-load");
     }
     void settle(){waitForIdleSync();SystemClock.sleep(500);}
+    void ready()throws Exception{
+        long deadline=SystemClock.uptimeMillis()+120000;
+        while(SystemClock.uptimeMillis()<deadline){
+            check(host.is3D(),"renderer has not fallen back while loading");
+            FilamentMapView view=(FilamentMapView)field(host,"spatial");
+            if(!((List<?>)field(view,"chunks")).isEmpty()&&(Integer)field(view,"pending")==0){
+                runOnMainSync(()->{try{((com.google.android.filament.Engine)field(view,"engine")).flushAndWait();}catch(Exception e){throw new RuntimeException(e);}});
+                settle();return;
+            }
+            settle();
+        }
+        throw new AssertionError("scene readiness timeout: "+host.report());
+    }
     void surfaceCapture()throws Exception{
+        ready();
         FilamentMapView spatial=(FilamentMapView)field(host,"spatial");
         android.view.SurfaceView surface=(android.view.SurfaceView)field(spatial,"surface");
         android.graphics.Bitmap b=android.graphics.Bitmap.createBitmap(surface.getWidth(),surface.getHeight(),android.graphics.Bitmap.Config.ARGB_8888);

@@ -1,4 +1,4 @@
-name: S01 Filament foundation
+name: S01-S05 Filament scene acceptance
 on:
   push:
     branches: [agent/3d-s01-renderer-foundation]
@@ -30,6 +30,8 @@ jobs:
           mkdir -p evidence
           bash scripts/test-3d-foundation.sh | tee evidence/scene.txt
           bash scripts/test-ui-models.sh | tee evidence/ui.txt
+          curl -fsSL https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/scene-json.jar
+          JSON_TEST_JAR=/tmp/scene-json.jar bash scripts/test-3d-field.sh | tee evidence/field-assets.txt
           ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug
           cp app/build/outputs/apk/debug/app-debug.apk evidence/sanguo11-s01.apk
           git rev-parse HEAD > evidence/BUILD_COMMIT
@@ -63,9 +65,15 @@ jobs:
             adb shell input keyevent 82
             adb install -r app/build/outputs/apk/debug/app-debug.apk
             adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb logcat -G 16M
+            adb shell screenrecord --time-limit 150 /sdcard/field-scene.mp4 >/dev/null 2>&1 &
+            adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.FieldSceneInstrumentation | tee evidence/field-installed.txt
             adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.SceneInstrumentation | tee evidence/installed.txt
             adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/installed
             adb logcat -d > evidence/logcat.txt
+            python3 scripts/field-ci-summary.py evidence/logcat.txt
+            adb pull /sdcard/field-scene.mp4 evidence/field-scene.mp4
+            grep -q 'PASS S04 S05' evidence/field-installed.txt
             grep -q 'PASS S01' evidence/installed.txt
       - uses: actions/upload-artifact@v4
         if: always()

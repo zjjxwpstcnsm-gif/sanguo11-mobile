@@ -14,7 +14,7 @@ final class UnitAnimation {
         if(event.actorId==u.id){
             switch(event.kind){
                 case MOVE:
-                    clip="walk";frame=(int)(f*Math.max(1,event.path.size()-1)*6)%12;
+                    clip=f<.06f?"turn":"walk";frame=(int)(f*Math.max(1,event.path.size()-1)*6)%12;
                     if(!event.path.isEmpty()){
                         Hex h=event.path.get(Math.min(event.path.size()-1,Math.round(f*(event.path.size()-1))));
                         if(ground.valid(h)){int t=ground.terrain[h.r*ground.width+h.q];naval=t==World.Terrain.WATER.ordinal()||t==World.Terrain.SEA.ordinal();}

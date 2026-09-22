@@ -96,13 +96,14 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             List<SceneMesh> previous=chunks,oldWoods=woods;pending=1;
             final SceneMesh tree,farTree;
             try{tree=fieldAssets.mesh("tree-lod0");farTree=fieldAssets.mesh("tree-lod1");}catch(Exception e){failure.accept(e);return;}
-            meshTask=worker.submit(()->{
+            meshTask=worker.submit(()->{try{
                 List<SceneMesh> built=SceneMesh.ground(next.ground,previous);
                 List<SceneMesh> trees=Vegetation.build(next.ground,excluded,oldWoods,tree,farTree);
                 post(()->{if(released||token!=generation)return;
                     for(SceneMesh old:new ArrayList<>(terrain.keySet()))if(!built.contains(old)&&built.stream().noneMatch(m->m.distant==old)){terrain.remove(old).destroy();}
-                    for(GpuMesh gpu:vegetation.values())gpu.destroy();vegetation.clear();
+                    for(SceneMesh old:new ArrayList<>(vegetation.keySet()))if(!trees.contains(old)&&trees.stream().noneMatch(m->m.distant==old)){vegetation.remove(old).destroy();}
                     chunks=built;woods=trees;pending=0;schedule();});
+                }catch(RuntimeException|OutOfMemoryError e){post(()->{if(!released&&token==generation)failure.accept(e);});}
             });
         }
         syncObjects();overlay.invalidate();schedule();
