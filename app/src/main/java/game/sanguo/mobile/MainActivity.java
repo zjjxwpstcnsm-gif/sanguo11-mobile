@@ -241,7 +241,7 @@ public final class MainActivity extends Activity {
         if(mapPick!=null)cancelMapPick();
         String[] labels={"全图","定位","导航图","屏幕方向","战报","操作说明","战斗震动","兵种与建筑图例","领地着色 / 前线","势力领地图例","军团托管","全国城池总览","部队标注 / 双条","2D / 3D 试验模式","渲染诊断"};
         new AlertDialog.Builder(this).setTitle("地图视图").setItems(labels,(d,index)->{
-            if(aiRunning&&index!=0&&index!=1&&index!=2&&index!=3&&index!=12)return;
+            if(aiRunning&&index!=0&&index!=1&&index!=2&&index!=3&&index!=12){if(index==13)message("渲染模式","请等待本旬演示结束后切换，避免中断当前事件游标。");return;}
             if(index==0){closePanel();map.post(map::fit);}
             else if(index==1){closePanel();if(selected!=null)map.post(()->map.focus(selected));}
             else if(index==2){closePanel();map.toggleNavigator();}

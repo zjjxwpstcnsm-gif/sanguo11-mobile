@@ -28,7 +28,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private com.google.android.filament.View view; private Camera lens; private Material material;
     private SwapChain swap; private int cameraEntity,light;
     private boolean released,resumed=true,queued,diagnostics;
-    private long lastFrame; private double callbackMillis;
+    private long lastFrame; private long renderedFrames; private double callbackMillis;
     private MapSceneSnapshot snapshot;
     private List<SceneMesh> chunks=Collections.emptyList();
     private final Map<SceneMesh,GpuMesh> terrain=new HashMap<>();
@@ -95,7 +95,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             lens.setProjection(Camera.Projection.ORTHO,-camera.span*aspect,camera.span*aspect,-camera.span,camera.span,.1,1000);
             lens.lookAt(camera.x,300*camera.sin(),camera.z+300*camera.cos(),camera.x,0,camera.z,0,1,0);
             loadVisible();animateReplay();
-            if(renderer.beginFrame(swap,time)){renderer.render(view);renderer.endFrame();}
+            if(renderer.beginFrame(swap,time)){renderer.render(view);renderer.endFrame();renderedFrames++;}
             overlay.invalidate();schedule();
         }catch(RuntimeException|LinkageError e){cancelFrame();failure.accept(e);}
     }
@@ -116,7 +116,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             alive.add(item.key);Proxy p=objects.get(item.key);
             if(p!=null&&(p.item.kind!=item.kind||p.item.color!=item.color)){p.destroy();objects.remove(item.key);p=null;}
             if(p==null){String shape=item.kind+":"+item.color;GpuMesh mesh=shapes.get(shape);if(mesh==null){mesh=new GpuMesh(SceneMesh.proxy(item.kind,item.color));shapes.put(shape,mesh);}p=new Proxy(item,mesh);objects.put(item.key,p);}
-            p.item=item;p.position(snapshot.ground.grid.x(item.hex),snapshot.ground.grid.z(item.hex));
+            if(!p.item.hex.equals(item.hex))p.position(snapshot.ground.grid.x(item.hex),snapshot.ground.grid.z(item.hex));p.item=item;
         }
         Iterator<Map.Entry<String,Proxy>> it=objects.entrySet().iterator();while(it.hasNext()){Map.Entry<String,Proxy> e=it.next();if(!alive.contains(e.getKey())){e.getValue().destroy();it.remove();}}
     }
@@ -154,7 +154,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private final class Proxy {
         final int entity;MapSceneSnapshot.Item item;boolean shown;
-        Proxy(MapSceneSnapshot.Item item,GpuMesh shape){this.item=item;entity=EntityManager.get().create();shape.build(entity);}
+        Proxy(MapSceneSnapshot.Item item,GpuMesh shape){this.item=item;entity=EntityManager.get().create();shape.build(entity);position(snapshot.ground.grid.x(item.hex),snapshot.ground.grid.z(item.hex));}
         void position(float x,float z){float[] matrix={1,0,0,0,0,1,0,0,0,0,1,0,x,.02f,z,1};TransformManager tm=engine.getTransformManager();tm.setTransform(tm.getInstance(entity),matrix);}
         void destroy(){scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);}
     }
@@ -165,7 +165,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         @Override protected void onDraw(Canvas c){
             if(snapshot==null)return;
             if(route!=null)for(Hex h:route.path)cell(c,h,0xffffd576);
-            for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets)cell(c,h,0xffdd7661);cell(c,snapshot.selected,0xffffd576);
+            for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.coverage)cell(c,h,0xffcfad6e);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets)cell(c,h,0xffdd7661);cell(c,snapshot.selected,0xffffd576);
             p.setStyle(Paint.Style.FILL);p.setTextSize(12*getResources().getDisplayMetrics().scaledDensity);p.setShadowLayer(2,0,1,0xff000000);
             for(MapSceneSnapshot.Item item:snapshot.items)if((item.kind<3||camera.span<18)&&visible(item.hex)){float x=camera.screenX(snapshot.ground.grid.x(item.hex)),y=camera.screenY(snapshot.ground.grid.z(item.hex),1);p.setColor(item.color);c.drawText(item.label,x,y,p);}
             p.setColor(0xfff0e5c8);c.drawText("3D 试验 · S01 过渡资源",12,24*getResources().getDisplayMetrics().density,p);

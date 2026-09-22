@@ -1,0 +1,26 @@
+{
+  "stage": "S01",
+  "filament": "1.56.0",
+  "matc": "1.56.0",
+  "backend": "OpenGL ES",
+  "assets": [
+    {
+      "path": "app/src/main/assets/3d/terrain.filamat",
+      "sha256": "ec5a3a545265a4a9caf6c6de0ef378e6e98aaf64bae96de1746035f4087714d7",
+      "bytes": 25512,
+      "source": "tools/3d/terrain.mat",
+      "license": "project source",
+      "textures": 0
+    },
+    {
+      "generator": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
+      "role": "temporary city/port/gate/unit/facility/tower geometry and terrain chunks",
+      "license": "original project geometry",
+      "uv": false,
+      "textures": 0,
+      "animation": "visual event path translation only",
+      "lod": "chunk visibility and residency; no mesh LOD yet",
+      "final_art": false
+    }
+  ]
+}

@@ -55,7 +55,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
         world=w;selected=s;this.moving=moving;revision=w.commandRevision();turn=w.turn;player=w.player;
         if(spatial==null)flat.setWorld(w,s,moving);else if(changed||dirty)publish();
     }
-    private void publish(){if(spatial==null||world==null)return;if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){ground=new MapSceneSnapshot.Ground(world);groundWorld=world;terrainRevision=world.terrainRevision;}spatial.snapshot(new MapSceneSnapshot(ground,world,selected,moving));dirty=false;}
+    private void publish(){if(spatial==null||world==null)return;if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){if(ground==null||!ground.matches(world))ground=new MapSceneSnapshot.Ground(world);groundWorld=world;terrainRevision=world.terrainRevision;}spatial.snapshot(new MapSceneSnapshot(ground,world,selected,moving));dirty=false;}
     void invalidateScene(){dirty=true;flat.invalidateScene();}
     @Override public void fit(){if(spatial==null)flat.fit();else spatial.fit();}
     @Override public void focus(Hex h){if(spatial==null)flat.focus(h);else spatial.focus(h);}
@@ -66,17 +66,17 @@ final class MapHost extends FrameLayout implements MapPresentation {
     void setUnitDrop(Consumer<MarchOrders.Plan> drop){flat.setUnitDrop(drop);}
     void setRoute(MarchOrders.Plan value){route=value;flat.setRoute(value);if(spatial!=null)spatial.setRoute(value);}
     void setPickTargets(Set<Hex> value){targets=value;flat.setPickTargets(value);if(spatial!=null)spatial.setTargets(value);}
-    void setTacticPreview(Displacement.Preview value){flat.setTacticPreview(value);}
+    void setTacticPreview(Displacement.Preview value){if(value!=null&&spatial!=null)switchMode(false);flat.setTacticPreview(value);}
     void battleFeedback(World.Result result,boolean haptics){flat.battleFeedback(result,haptics);}
     void setPanelOcclusion(int right,int bottom){flat.setPanelOcclusion(right,bottom);}
-    void setTerritoryMode(int value){flat.setTerritoryMode(value);}
+    void setTerritoryMode(int value){if(spatial!=null)switchMode(false);flat.setTerritoryMode(value);}
     int territoryMode(){return flat.territoryMode();}
     Territory territory(){if(spatial!=null&&world!=null)flat.setWorld(world,selected,moving);return flat.territory();}
     void toggleNavigator(){if(spatial!=null){switchMode(false);Toast.makeText(getContext(),"导航图使用 2D 视图",Toast.LENGTH_SHORT).show();}flat.toggleNavigator();}
     boolean commandersShown(){return flat.commandersShown();}
     boolean unitBarsShown(){return flat.unitBarsShown();}
-    void setCommandersShown(boolean value){flat.setCommandersShown(value);}
-    void setUnitBarsShown(boolean value){flat.setUnitBarsShown(value);}
+    void setCommandersShown(boolean value){if(spatial!=null)switchMode(false);flat.setCommandersShown(value);}
+    void setUnitBarsShown(boolean value){if(spatial!=null)switchMode(false);flat.setUnitBarsShown(value);}
     void setCriticalSkip(Runnable skip){flat.setCriticalSkip(skip);}
     void criticalFrame(CriticalHit hit,float phase){if(spatial==null)flat.criticalFrame(hit,phase);}
     void replayFrame(TurnJournal.Event e,float fraction){if(spatial==null)flat.replayFrame(e,fraction);else spatial.replay(e,fraction);}
