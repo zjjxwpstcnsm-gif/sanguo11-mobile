@@ -1,6 +1,6 @@
 material {
     name : StrategicArchitecture,
-    shadingModel : unlit,
+    shadingModel : lit,
     doubleSided : true,
     requires : [ color, uv0 ],
     parameters : [ { type : sampler2d, name : atlas }, { type : float, name : damage } ]
@@ -9,6 +9,9 @@ fragment {
     void material(inout MaterialInputs material) {
         prepareMaterial(material);
         float3 base = texture(materialParams_atlas, getUV0()).rgb * getColor().rgb;
+        material.roughness = 0.88;
+        material.metallic = 0.0;
+        material.reflectance = 0.25;
         material.baseColor = float4(base * (1.0 - materialParams.damage * 0.32), 1.0);
     }
 }

@@ -1,0 +1,84 @@
+name: S12 environment and sites native acceptance
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'core/**'
+      - 'tools/3d/**'
+      - 'scripts/*terrain*'
+      - '.github/workflows/scene-s12-environment.yml'
+      - 'version.properties'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: s12-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  materials:
+    strategy:
+      fail-fast: false
+      matrix:
+        gpu: [swangle]
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - run: |
+          set -euo pipefail
+          mkdir -p evidence
+          python3 -m pip install numpy Pillow
+          python3 scripts/verify-terrain-materials.py | tee evidence/material-assets.txt
+          bash scripts/test-3d-foundation.sh | tee evidence/host.txt
+          python3 scripts/verify-environment-assets.py | tee evidence/environment-assets.txt
+          curl -fsSL https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/scene-json.jar
+          JSON_TEST_JAR=/tmp/scene-json.jar bash scripts/test-3d-environment.sh | tee evidence/environment-host.txt
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PtargetAbi=x86_64
+          git rev-parse HEAD > evidence/SOURCE_SHA
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: true
+          emulator-options: -no-window -gpu ${{ matrix.gpu }} -noaudio -no-boot-anim -camera-back none
+          script: |
+            adb root
+            adb wait-for-device
+            adb shell setprop dalvik.vm.heapgrowthlimit 256m
+            adb shell setprop dalvik.vm.heapsize 512m
+            adb shell setprop sys.boot_completed 0
+            adb shell stop
+            adb shell start
+            adb shell 'for i in $(seq 1 60); do [ "$(getprop sys.boot_completed)" = "1" ] && exit 0; sleep 1; done; exit 1'
+            adb shell input keyevent 82
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            timeout 900 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.EnvironmentInstrumentation > evidence/native.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/images
+            adb logcat -d > evidence/logcat.txt
+            adb shell dumpsys meminfo game.sanguo.mobile.dev > evidence/meminfo.txt
+            grep -q 'PASS S12 native' evidence/native.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: s12-native-environment-evidence-${{ matrix.gpu }}
+          path: evidence
+          retention-days: 14

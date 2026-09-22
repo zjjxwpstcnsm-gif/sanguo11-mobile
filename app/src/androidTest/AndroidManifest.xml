@@ -9,4 +9,8 @@
     <instrumentation android:name="game.sanguo.mobile.InteractionSceneInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
     <instrumentation android:name="game.sanguo.mobile.PerformanceSceneInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
     <instrumentation android:name="game.sanguo.mobile.FinalSceneInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
+    <instrumentation android:name="game.sanguo.mobile.TerrainMaterialInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
+    <instrumentation android:name="game.sanguo.mobile.WaterLandformInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
+    <instrumentation android:name="game.sanguo.mobile.EnvironmentInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
+    <instrumentation android:name="game.sanguo.mobile.NationwideInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
 </manifest>

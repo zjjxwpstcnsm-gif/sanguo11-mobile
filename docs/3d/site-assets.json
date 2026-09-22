@@ -6,10 +6,10 @@
   "assets": [
     {
       "file": "city0-lod0.glb",
-      "sha256": "e8ca05c118c8388c8694a12533929b7f4c6f8cbdeda845ec505fe30d27a3faa3",
-      "bytes": 115704,
-      "triangles": 1318,
-      "vertices": 2662,
+      "sha256": "016d6d79ccb46882290daf00b85b9f9265accb4d182e7379743caf8878b690d1",
+      "bytes": 114864,
+      "triangles": 1308,
+      "vertices": 2642,
       "materials": 1,
       "texture": [
         192,
@@ -26,10 +26,10 @@
     },
     {
       "file": "city0-lod1.glb",
-      "sha256": "a8db2946fd3a5f4ad98fbd7ec506529b6b17dcdbb1388e27753fe213bd795579",
-      "bytes": 24024,
-      "triangles": 232,
-      "vertices": 478,
+      "sha256": "d1610e55b28d0a4c5390b07425b966481fc1e0ed11de86e826099be8e337e851",
+      "bytes": 23184,
+      "triangles": 222,
+      "vertices": 458,
       "materials": 1,
       "texture": [
         192,
@@ -46,10 +46,10 @@
     },
     {
       "file": "city0-lod2.glb",
-      "sha256": "fd145f58116afd5420c94249ccf93841dde1a98188d02256ca316c5570de5a60",
-      "bytes": 12732,
-      "triangles": 102,
-      "vertices": 208,
+      "sha256": "7ffd6889130d1ed7b918af74da39a8ad0c2fad171794d385d0e5740be8c2772b",
+      "bytes": 11892,
+      "triangles": 92,
+      "vertices": 188,
       "materials": 1,
       "texture": [
         192,
@@ -66,10 +66,10 @@
     },
     {
       "file": "city1-lod0.glb",
-      "sha256": "732e9b0556c0167e5e6f5fafd650b26253c08c2de77e752ef050da8e92116306",
-      "bytes": 110940,
-      "triangles": 1262,
-      "vertices": 2548,
+      "sha256": "2afb0141ac7b94058040713ab07f026fd96931a63e81870674637a7f05d326c0",
+      "bytes": 110100,
+      "triangles": 1252,
+      "vertices": 2528,
       "materials": 1,
       "texture": [
         192,
@@ -86,10 +86,10 @@
     },
     {
       "file": "city1-lod1.glb",
-      "sha256": "5dff0dde2d9bc544e3190cd6508db43c5bc6147702d76382b80836a2bcf300d0",
-      "bytes": 27132,
-      "triangles": 268,
-      "vertices": 552,
+      "sha256": "1c724f6869ff9de0985e8dc642ca4b07350d5ca4b2cbec54f24c43eb36c2053c",
+      "bytes": 26292,
+      "triangles": 258,
+      "vertices": 532,
       "materials": 1,
       "texture": [
         192,
@@ -106,10 +106,10 @@
     },
     {
       "file": "city1-lod2.glb",
-      "sha256": "71ebd1c8f53f1cbb27066998c74ef3bea0fda33861a012ae52f11e088dbf51a0",
-      "bytes": 12732,
-      "triangles": 102,
-      "vertices": 208,
+      "sha256": "3cfa41f6cbab075eb2f9edd9dedfabb0396a90b5c323fb0501706b6a730ca6a3",
+      "bytes": 11892,
+      "triangles": 92,
+      "vertices": 188,
       "materials": 1,
       "texture": [
         192,
@@ -126,10 +126,10 @@
     },
     {
       "file": "city2-lod0.glb",
-      "sha256": "7c1bbb0906f2cf440c1642e2a0e4f919bf4508ec0ae05c86da97ab140da9eeb9",
-      "bytes": 112308,
-      "triangles": 1280,
-      "vertices": 2580,
+      "sha256": "6d2a469be6dee6ab396231f41da4e896e12925a443f965ac2494cee7f37c20cc",
+      "bytes": 111468,
+      "triangles": 1270,
+      "vertices": 2560,
       "materials": 1,
       "texture": [
         192,
@@ -146,10 +146,10 @@
     },
     {
       "file": "city2-lod1.glb",
-      "sha256": "688dbcfeb1a7fe5fb7be56c6027a8c9cd2e53da5da357bce0d000c445e90caa2",
-      "bytes": 23460,
-      "triangles": 226,
-      "vertices": 464,
+      "sha256": "2ca451c075ba6df644ea737d3ca48d86d8fa6bc962933bf45afda0a31d5c26bd",
+      "bytes": 22620,
+      "triangles": 216,
+      "vertices": 444,
       "materials": 1,
       "texture": [
         192,
@@ -166,10 +166,10 @@
     },
     {
       "file": "city2-lod2.glb",
-      "sha256": "8222a78f205dc21fa8be06db9fb8e622a744757554ef7677e37481c4a7b6e865",
-      "bytes": 12732,
-      "triangles": 102,
-      "vertices": 208,
+      "sha256": "0f1df0852c259461437edc509c6b2283328cf67e2fa993ab5ca57e9b9be04162",
+      "bytes": 11892,
+      "triangles": 92,
+      "vertices": 188,
       "materials": 1,
       "texture": [
         192,
@@ -186,7 +186,7 @@
     },
     {
       "file": "port-lod0.glb",
-      "sha256": "1d392976a2a9495e72a9d5c320c4fa7b09c2e74112ba62a542eeecc8675286bb",
+      "sha256": "b4c084ccd1284f0c164a1d587ad393e6195282661d8807a57b8e6d5cca5e433a",
       "bytes": 17216,
       "triangles": 156,
       "vertices": 314,
@@ -206,7 +206,7 @@
     },
     {
       "file": "port-lod1.glb",
-      "sha256": "ff4845b4cfd50038885c789a5308582c4ddf66cfe625347cee64d80217d17c87",
+      "sha256": "3db606b8bab48e50f114f4ed6bd8aa8d60eb0174762d315d890f10cc5b62e747",
       "bytes": 12172,
       "triangles": 96,
       "vertices": 194,
@@ -226,7 +226,7 @@
     },
     {
       "file": "port-lod2.glb",
-      "sha256": "6bd730c2e76e6018e5d03716e15cba8b5ef1c873cbbc271158e283609a1857dc",
+      "sha256": "fca8c70d487a8b70e825713db1d0a54111c7ccde0702f6ba3d96102b3df6cdda",
       "bytes": 8808,
       "triangles": 56,
       "vertices": 114,
@@ -246,7 +246,7 @@
     },
     {
       "file": "gate-lod0.glb",
-      "sha256": "d958934e5acabe2bb32b2d3ca51bc8668ac769b09c93e253bb48cd0b15d258fb",
+      "sha256": "0ad13d71c91c160c567564bacb1a86e12c1c24d29b7848c280489fa0edd189db",
       "bytes": 12996,
       "triangles": 106,
       "vertices": 214,
@@ -266,7 +266,7 @@
     },
     {
       "file": "gate-lod1.glb",
-      "sha256": "b3e84fd0baa9a2e89318a06b8b0c4b3085f0571e6c52d2cbeae69d9bc7ed4fa4",
+      "sha256": "6c785b0cb530e75d5a8b873f3c7eead8e174503101a0c965ecdceb3185ae9f0c",
       "bytes": 7948,
       "triangles": 46,
       "vertices": 94,
@@ -286,7 +286,7 @@
     },
     {
       "file": "gate-lod2.glb",
-      "sha256": "1345331658d5e6007405b5e71e260e9f1f925ef507a9dfb7a11fe67bc0bd95f7",
+      "sha256": "10ca51eaba4d513cb8eff28c04192b31a573eaaab38b726f57daaa3b615447cb",
       "bytes": 6528,
       "triangles": 30,
       "vertices": 60,

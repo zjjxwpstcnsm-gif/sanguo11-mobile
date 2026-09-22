@@ -34,7 +34,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
     private Runnable criticalSkip;
     MapHost(Context context,MapView.TileListener listener){
         super(context);this.listener=listener;prefs=context.getSharedPreferences("map-renderer",Context.MODE_PRIVATE);
-        flat=new MapView(context,listener);addView(flat,new LayoutParams(-1,-1));
+        flat=new MapView(context,listener);flat.setGridShown(Boolean.TRUE.equals(prefs.getAll().get("gridShown")));addView(flat,new LayoutParams(-1,-1));
         // Default stays 2D. An interrupted native session is never restarted automatically.
         if(interruptedSession==null)interruptedSession=Boolean.TRUE.equals(prefs.getAll().get("nativeSession"));
         safeMode=interruptedSession;if(safeMode)Toast.makeText(context,"上次 3D 会话未正常结束，已安全回到 2D；可在视图中手动重试",Toast.LENGTH_LONG).show();
@@ -77,7 +77,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
             removeView(flat);addView(spatial,new LayoutParams(-1,-1));
             dirty=true;publish();
             Map<String,?> saved=prefs.getAll();if(!camera.containsKey("sceneTilt")&&saved.get("tilt") instanceof Float)camera.putFloat("sceneTilt",(Float)saved.get("tilt"));if(!camera.containsKey("sceneFacing")&&saved.get("facing") instanceof Integer)camera.putInt("sceneFacing",(Integer)saved.get("facing"));
-            spatial.restoreCamera(camera);spatial.setTargets(targets);spatial.setRoute(route);spatial.resume(resumed);spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(world,editorGrid,editorCoords,editorPassability,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);
+            spatial.setGridShown(gridShown());spatial.restoreCamera(camera);spatial.setTargets(targets);spatial.setRoute(route);spatial.resume(resumed);spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(world,editorGrid,editorCoords,editorPassability,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);
         }catch(Exception|LinkageError e){fallback(e);}
     }
     private void fallback(Throwable e){safeMode=true;interruptedSession=true;prefs.edit().putString("lastFailure",e.getClass().getSimpleName()).putLong("lastFailureTime",System.currentTimeMillis()).commit();android.util.Log.e("MapRenderer","Filament fallback to 2D",e);leave3D();if(world!=null)flat.setWorld(world,selected,moving);flat.restoreCamera(camera);Toast.makeText(getContext(),"3D 初始化或渲染失败，已返回 2D："+e.getClass().getSimpleName(),Toast.LENGTH_LONG).show();}
@@ -107,6 +107,8 @@ final class MapHost extends FrameLayout implements MapPresentation {
     void battleFeedback(World.Result result,boolean haptics){if(spatial==null)flat.battleFeedback(result,haptics);else if(haptics&&result.feedback!=World.Feedback.NONE)performHapticFeedback(android.view.HapticFeedbackConstants.CONTEXT_CLICK);}
     void setPanelOcclusion(int right,int bottom){panelRight=right;panelBottom=bottom;flat.setPanelOcclusion(right,bottom);if(spatial!=null)spatial.setPanelOcclusion(right,bottom);}
     void setTerritoryMode(int value){flat.setTerritoryMode(value);if(spatial!=null&&world!=null)spatial.mapLayers(world,flat.territoryMode(),openingPreview,previewFaction);}
+    boolean gridShown(){return flat.gridShown();}
+    void setGridShown(boolean shown){flat.setGridShown(shown);if(spatial!=null)spatial.setGridShown(shown);prefs.edit().putBoolean("gridShown",shown).apply();}
     int territoryMode(){return flat.territoryMode();}
     Territory territory(){if(spatial!=null&&world!=null)flat.setWorld(world,selected,moving);return flat.territory();}
     void toggleNavigator(){if(spatial!=null){spatial.fit();return;}flat.toggleNavigator();}

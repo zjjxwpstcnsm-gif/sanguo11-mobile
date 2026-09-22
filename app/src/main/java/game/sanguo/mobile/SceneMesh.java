@@ -7,8 +7,11 @@ import java.util.*;
 final class SceneMesh {
     private static final World.Terrain[] TERRAIN_TYPES=World.Terrain.values();
     SceneMesh distant;
+    boolean vegetation;
+    // Disjoint index ranges share the same surface and buffers, but never draw water as land.
+    int landIndexCount=-1;
     long fingerprint; int chunkQ,chunkR;
-    float[] uv; final float[] vertices; final int[] indices; final float x,z,radius;
+    float[] tangents; float[] surfaceData; float[] uv; final float[] vertices; final int[] indices; final float x,z,radius;
     SceneMesh(List<Float> v,List<Integer> i,float x,float z,float radius){
         vertices=new float[v.size()];for(int n=0;n<v.size();n++)vertices[n]=v.get(n);
         indices=new int[i.size()];for(int n=0;n<i.size();n++)indices[n]=i.get(n);
@@ -16,6 +19,36 @@ final class SceneMesh {
     }
     SceneMesh(float[] vertices,int[] indices,float x,float z,float radius){
         this.vertices=vertices;this.indices=indices;this.x=x;this.z=z;this.radius=radius;
+    }
+    /** Area-weighted normals respect split face vertices; generated on cache misses only.
+     * No normal-map sampling on object materials, so a normal-aligned frame is sufficient. */
+    void generateTangents(){
+        int count=vertices.length/7;float[] normals=new float[count*3];
+        for(int t=0;t<indices.length;t+=3){
+            int a=indices[t]*7,b=indices[t+1]*7,c=indices[t+2]*7;
+            float ax=vertices[b]-vertices[a],ay=vertices[b+1]-vertices[a+1],az=vertices[b+2]-vertices[a+2];
+            float bx=vertices[c]-vertices[a],by=vertices[c+1]-vertices[a+1],bz=vertices[c+2]-vertices[a+2];
+            float nx=ay*bz-az*by,ny=az*bx-ax*bz,nz=ax*by-ay*bx;
+            for(int k=0;k<3;k++){int v=indices[t+k]*3;normals[v]+=nx;normals[v+1]+=ny;normals[v+2]+=nz;}
+        }
+        setNormals(normals);
+    }
+    void setNormals(float[] normals){
+        int count=vertices.length/7;
+        if(normals.length!=count*3)throw new IllegalArgumentException("normal count");
+        tangents=new float[count*4];
+        for(int i=0;i<count;i++){
+            float x=normals[i*3],y=normals[i*3+1],z=normals[i*3+2];
+            float len=(float)Math.sqrt(x*x+y*y+z*z);
+            if(!Float.isFinite(len))throw new IllegalArgumentException("nonfinite normal");
+            if(len<1e-8f){x=0;y=1;z=0;}else{x/=len;y/=len;z/=len;}
+            // Stable shortest arc from +Z, including exactly backward-facing walls.
+            float w=(float)Math.sqrt(Math.max(0,(1+z)*.5f));
+            if(w<.0001f){tangents[i*4]=1; tangents[i*4+3]=.00001f;}
+            else{tangents[i*4]=-y*.5f/w;tangents[i*4+1]=x*.5f/w;tangents[i*4+3]=w;}
+            float qlen=0;for(int k=0;k<4;k++)qlen+=tangents[i*4+k]*tangents[i*4+k];
+            qlen=(float)Math.sqrt(qlen);for(int k=0;k<4;k++)tangents[i*4+k]/=qlen;
+        }
     }
     static final class Builder {
         final List<Float> v=new ArrayList<>();final List<Integer> i=new ArrayList<>();
@@ -46,32 +79,60 @@ final class SceneMesh {
         }
     }
     static final float[][] EDGE={{-.5f,-.5f},{0,-.5f},{.5f,-.5f},{.5f,0},{.5f,.5f},{0,.5f},{-.5f,.5f},{-.5f,0}};
+    /** Coarse non-playable scenery beneath the authoritative surface; never a picking input.
+     * Fills VOID perforations and the exterior margin without manufacturing playable tiles. */
+    static SceneMesh backdrop(MapSceneSnapshot.Ground g){
+        float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
+        for(int r=0;r<g.height;r++)for(int q=0;q<g.width;q++)if(g.valid(new Hex(q,r))){
+            float x=g.grid.x(q,r),z=g.grid.z(q,r);minX=Math.min(minX,x);maxX=Math.max(maxX,x);minZ=Math.min(minZ,z);maxZ=Math.max(maxZ,z);
+        }
+        if(minX==Float.MAX_VALUE)return null;
+        minX=(float)Math.floor((minX-16)/8)*8;minZ=(float)Math.floor((minZ-16)/8)*8;maxX+=16;maxZ+=16;
+        Builder b=new Builder();
+        for(float z=minZ;z<maxZ;z+=8)for(float x=minX;x<maxX;x+=8){
+            int n=b.v.size()/7;b.vertex(x,-.04f,z,0xffffffff);b.vertex(x,-.04f,z+8,0xffffffff);b.vertex(x+8,-.04f,z+8,0xffffffff);b.vertex(x+8,-.04f,z,0xffffffff);
+            Collections.addAll(b.i,n,n+1,n+2,n,n+2,n+3);
+        }
+        SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+8);m.landIndexCount=m.indices.length;
+        m.surfaceData=new float[m.vertices.length/7*8];TerrainMaterialField field=new TerrainMaterialField(g);
+        for(int i=0;i<m.vertices.length/7;i++){
+            float x=m.vertices[i*7],z=m.vertices[i*7+2];float[] w=field.sample(x,z);System.arraycopy(w,0,m.vertices,i*7+3,4);
+            int at=i*8;m.surfaceData[at]=x;m.surfaceData[at+1]=-z;m.surfaceData[at+2]=-.70710677f;m.surfaceData[at+5]=.70710677f;
+            m.surfaceData[at+6]=-8;m.surfaceData[at+7]=.86f;
+        }
+        return m;
+    }
     static List<SceneMesh> ground(MapSceneSnapshot.Ground g){return ground(g,Collections.emptyList());}
     static List<SceneMesh> ground(MapSceneSnapshot.Ground g,List<SceneMesh> previous){
         List<SceneMesh> out=new ArrayList<>();Map<String,SceneMesh> cached=new HashMap<>();
         for(SceneMesh m:previous)cached.put(m.chunkQ+":"+m.chunkR,m);
         for(int r=0;r<g.height;r+=16)for(int q=0;q<g.width;q+=16){
             if(Thread.currentThread().isInterrupted())return Collections.emptyList();
-            long fingerprint=1469598103934665603L;
+            long fingerprint=1469598103934665603L ^ TerrainMaterialField.VERSION ^ TerrainSurface.METADATA_VERSION ^ WaterVisualField.VERSION;
+            fingerprint=(fingerprint^g.mapSeed)*1099511628211L;
             fingerprint=(fingerprint^g.width)*1099511628211L;fingerprint=(fingerprint^g.height)*1099511628211L;
             fingerprint=(fingerprint^Float.floatToIntBits(g.grid.offset))*1099511628211L;fingerprint=(fingerprint^(g.grid.staggered?1:0))*1099511628211L;
-            for(int rr=r-6;rr<Math.min(r+22,g.height);rr++)for(int qq=q-6;qq<Math.min(q+22,g.width);qq++){
+            for(int rr=r-8;rr<Math.min(r+24,g.height);rr++)for(int qq=q-8;qq<Math.min(q+24,g.width);qq++){
                 Hex h=new Hex(qq,rr);int value=g.valid(h)?g.terrain[rr*g.width+qq]+(g.bases.contains(h)?64:0):-1;
                 fingerprint=(fingerprint^value)*1099511628211L;
                 fingerprint=(fingerprint^Float.floatToIntBits(g.surface.overrides.getOrDefault(h,-1f)))*1099511628211L;
             }
             SceneMesh retained=cached.get(q+":"+r);if(retained!=null&&retained.fingerprint==fingerprint){out.add(retained);continue;}
-            Builder b=new Builder();float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
+            Builder b=new Builder();List<Integer> waterIndices=new ArrayList<>();float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
             for(int rr=r;rr<Math.min(r+16,g.height);rr++)for(int qq=q;qq<Math.min(q+16,g.width);qq++){
                 Hex h=new Hex(qq,rr);if(!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);
                 minX=Math.min(minX,x);maxX=Math.max(maxX,x);minZ=Math.min(minZ,z);maxZ=Math.max(maxZ,z);
                 int color=terrain(g.terrain[rr*g.width+qq]),n=b.v.size()/7;boolean water=g.surface.water(h);
                 b.vertex(x,g.surface.sample(x,z),z,g.surface.color(x,z,color,water));
                 for(float[] edge:EDGE){float vx=x+edge[0],vz=z+edge[1];b.vertex(vx,g.surface.sample(vx,vz),vz,g.surface.color(vx,vz,color,water));}
-                for(int j=0;j<8;j++)Collections.addAll(b.i,n,n+1+j,n+1+(j+1)%8);
+                // +Y facing winding: lit double-sided shading otherwise flips the valid +Y tangent normal.
+                for(int j=0;j<8;j++)Collections.addAll(water?waterIndices:b.i,n,n+1+(j+1)%8,n+1+j);
             }
+            int landCount=b.i.size();b.i.addAll(waterIndices);
             if(!b.i.isEmpty()){
                 SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+1);
+                m.landIndexCount=landCount;
+                new TerrainMaterialField(g).attach(m);
                 SceneMesh fine=detail(m,g);
                 fine.chunkQ=q;fine.chunkR=r;fine.fingerprint=fingerprint;out.add(fine);
             }
@@ -86,11 +147,18 @@ final class SceneMesh {
             float x=(coarse.vertices[a*7]+coarse.vertices[c*7]+coarse.vertices[d*7])/3,
                 y=(coarse.vertices[a*7+1]+coarse.vertices[c*7+1]+coarse.vertices[d*7+1])/3,
                 z=(coarse.vertices[a*7+2]+coarse.vertices[c*7+2]+coarse.vertices[d*7+2])/3;
-            Hex h=g.grid.cell(x,z);int color=terrain(g.terrain[h.r*g.width+h.q]);
-            b.vertex(x,y,z,g.surface.color(x,z,color,g.surface.water(h)));
+            b.vertex(x,y,z,0xffffffff);
+            for(int j=3;j<7;j++)b.v.set(n*7+j,(coarse.vertices[a*7+j]+coarse.vertices[c*7+j]+coarse.vertices[d*7+j])/3);
             Collections.addAll(b.i,a,c,n,c,d,n,d,a,n);
         }
-        SceneMesh fine=b.mesh(coarse.x,coarse.z,coarse.radius);fine.distant=coarse;return fine;
+        SceneMesh fine=b.mesh(coarse.x,coarse.z,coarse.radius);fine.distant=coarse;fine.landIndexCount=coarse.landIndexCount<0?-1:coarse.landIndexCount*3;
+        if(coarse.surfaceData!=null){
+            fine.surfaceData=Arrays.copyOf(coarse.surfaceData,fine.vertices.length/7*8);
+            int start=coarse.vertices.length/7;
+            for(int t=0;t<coarse.indices.length;t+=3)for(int j=0;j<8;j++)
+                fine.surfaceData[(start+t/3)*8+j]=(coarse.surfaceData[coarse.indices[t]*8+j]+coarse.surfaceData[coarse.indices[t+1]*8+j]+coarse.surfaceData[coarse.indices[t+2]*8+j])/3;
+        }
+        return fine;
     }
     /** Explicit temporary silhouettes: walled city, pier, gate, standard, farm, tower. */
     static SceneMesh proxy(int kind,int color){

@@ -23,9 +23,9 @@ im.save(OUT/'atlas.png',optimize=True)
 class Mesh:
  def __init__(self): self.p=[]; self.c=[]; self.uv=[]; self.idx=[]
  def face(self,points,mat=0,shade=1):
-  n=len(self.p); self.p.extend(points);self.c.extend([(shade,shade,shade,1)]*len(points))
+  n=len(self.p); self.p.extend(points);self.c.extend([(shade if shade<.5 else 1,)*3+(1,)]*len(points))
   self.uv.extend([((mat+(u*.94+.03))/3,v*.94+.03) for u,v in [(0,0),(1,0),(1,1),(0,1)][:len(points)]])
-  for i in range(1,len(points)-1):self.idx.extend([n,n+i,n+i+1])
+  for i in range(1,len(points)-1):self.idx.extend([n,n+i+1,n+i])
  def box(self,x,y,z,w,h,d,mat=0):
   X,Y,Z=x+w,y+h,z+d
   self.face([(x,Y,z),(X,Y,z),(X,Y,Z),(x,Y,Z)],mat,1)
@@ -54,7 +54,7 @@ class Mesh:
  def build(self,kind,lod):
   if kind.startswith('city'):
    v=int(kind[-1]);w=2.12 if v!=1 else 1.96;d=1.65 if v!=2 else 1.5
-   self.box(-w/2,0,-d/2,w,.04,d)
+   # Courtyard is the continuous ground material, not an opaque rectangular plinth.
    self.wall(-w/2,-d/2,w,.10,lod);self.wall(-w/2,-d/2,.10,d,lod);self.wall(w/2-.10,-d/2,.10,d,lod)
    self.wall(-w/2,d/2-.10,w/2-.16,.10,lod);self.wall(.16,d/2-.10,w/2-.16,.10,lod)
    self.box(-.2,.25,d/2-.13,.4,.12,.16);self.roof(0,d/2-.04,.5,.32,.4,.12)

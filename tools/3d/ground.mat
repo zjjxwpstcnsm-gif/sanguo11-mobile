@@ -1,0 +1,43 @@
+material {
+    name : ContinuousGroundV1,
+    flipUV : false,
+    shadingModel : lit,
+    doubleSided : true,
+    requires : [ color, uv0, uv1 ],
+    parameters : [
+        { type : sampler2d, name : grassColor },
+        { type : sampler2d, name : soilColor },
+        { type : sampler2d, name : sandColor },
+        { type : sampler2d, name : rockColor },
+        { type : sampler2d, name : grassNormal },
+        { type : sampler2d, name : soilNormal },
+        { type : sampler2d, name : sandNormal },
+        { type : sampler2d, name : rockNormal },
+        { type : float, name : normalStrength }
+    ]
+}
+fragment {
+    void material(inout MaterialInputs material) {
+        float2 uv = getUV0();
+        float4 w = max(getColor(), float4(0.0));
+        w /= max(dot(w,float4(1.0)),0.00001);
+        float3 color = texture(materialParams_grassColor,uv).rgb*w.x
+            + texture(materialParams_soilColor,uv).rgb*w.y
+            + texture(materialParams_sandColor,uv).rgb*w.z
+            + texture(materialParams_rockColor,uv).rgb*w.w;
+        float4 nr = float4(0.5,0.5,1.0,0.9);
+        if(materialParams.normalStrength > 0.0) {
+            nr = texture(materialParams_grassNormal,uv)*w.x
+                + texture(materialParams_soilNormal,uv)*w.y
+                + texture(materialParams_sandNormal,uv)*w.z
+                + texture(materialParams_rockNormal,uv)*w.w;
+        }
+        float wet = 1.0-smoothstep(0.0,0.38,abs(getUV1().x));
+        material.normal = normalize(mix(float3(0.0,0.0,1.0),nr.xyz*2.0-1.0,materialParams.normalStrength));
+        prepareMaterial(material);
+        material.baseColor = float4(color*getUV1().y*mix(1.0,0.64,wet),1.0);
+        material.roughness = mix(nr.a,0.48,wet);
+        material.metallic = 0.0;
+        material.reflectance = 0.25;
+    }
+}

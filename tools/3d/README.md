@@ -46,3 +46,14 @@ on host (org.json:json:20240303, reference implementation; Android provides its 
 The test jar is not a runtime dependency. Counts, SHA256, bounds, materials, texture size and
 LOD reports: docs/3d/site-assets.json. National IDs: docs/3d/site-mapping.tsv. Unknown IDs map
 by type; malformed/missing individual GLBs fall back visibly to S01 geometry with diagnostics.
+
+## S10 continuous ground
+
+`MATC=/path/to/filament-v1.56.0/bin/matc bash tools/3d/build_ground_material.sh`
+regenerates the four original CC0 periodic material layers, compiled mobile OpenGL
+material and SHA256 manifest. Requires Python3, numpy and Pillow. All pixel sources
+are in build_terrain_materials.py. No external downloaded image, strong directional
+shadow or atlas island is used. Vertex COLOR is weights only on terrain meshes;
+existing terrain.filamat remains the old proxy material. The formal ground consumer
+loads 3d/terrain/ground.filamat, eight complete periodic textures and a ground-only
+UV/tangent frame/mask stream. See docs/3d/world-art/handoffs/s10.md.

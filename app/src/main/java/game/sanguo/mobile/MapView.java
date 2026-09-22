@@ -132,6 +132,9 @@ public final class MapView extends View implements MapPresentation {
     private final Map<Integer,String> cityNames=new HashMap<>();
     private final Set<Integer> frontlineCities=new HashSet<>();
     private int territoryMode;
+    private boolean gridShown;
+    boolean gridShown(){return gridShown;}
+    void setGridShown(boolean shown){gridShown=shown;invalidate();}
     private boolean openingPreview;
     private int previewFaction=-1;
     void previewMode(){openingPreview=true;showMini=false;}
@@ -472,7 +475,7 @@ public final class MapView extends View implements MapPresentation {
             boolean exterior=world.terrain[q][r]==World.Terrain.VOID;
             if(detail)terrainTiles.draw(canvas,world,q,r,cx,cy);
             else {polygon(cx,cy,RADIUS-.3f);fill(canvas,TerrainTiles.color(t));}
-            if(!exterior&&TerrainArt.connection(t)==TerrainArt.Connection.NONE){polygon(cx,cy,RADIUS-.3f);stroke(canvas,Color.argb(40,13,37,35),.7f);}
+            if(gridShown&&!exterior){polygon(cx,cy,RADIUS);stroke(canvas,0x887d928a,Math.max(.7f,density/scale));}
             if(!exterior)drawTerritory(canvas,q,r,cx,cy,scale);
         }
         if(detail&&territoryMode>0){

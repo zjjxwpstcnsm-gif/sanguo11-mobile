@@ -34,7 +34,10 @@ final class SiteGlb {
         int ni=index.getInt("count");if(ni<3||ni%3!=0)throw new IOException("triangle index count");
         ByteBuffer ib=access(doc,b,start,bl,index,ni,4);List<Integer> indices=new ArrayList<>();
         for(int i=0;i<ni;i++){int value=ib.getInt();if(value<0||value>=count)throw new IOException("index range");indices.add(value);}
-        SceneMesh mesh=new SceneMesh(v,indices,0,0,2);mesh.uv=uv;return mesh;
+        SceneMesh mesh=new SceneMesh(v,indices,0,0,2);mesh.uv=uv;
+        if(a.has("NORMAL"))mesh.setNormals(floats(doc,b,start,bl,a.getInt("NORMAL"),3,"VEC3"));
+        else mesh.generateTangents(); // Legal missing NORMAL; authored split edges stay hard.
+        return mesh;
     }
     private static float[] floats(JSONObject doc,ByteBuffer b,int start,int length,int id,int width,String type)throws Exception{
         JSONObject a=doc.getJSONArray("accessors").getJSONObject(id);if(a.getInt("componentType")!=5126||!a.getString("type").equals(type))throw new IOException("float attribute required");
