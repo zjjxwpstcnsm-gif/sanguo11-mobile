@@ -84,6 +84,9 @@ public final class CustomMaps {
         }
         w.customMapId=p.id;w.customMapName=p.name;w.customMapRevision=p.revision;w.customMapBase=p.base;w.customMapFingerprint=p.fingerprint();w.terrainRevision++;
         w.governance.reconcile(false);w.invalidateSiteIndex();
+        // This is a new opening, not an in-progress geographic/capture event.
+        // Reset the report comparison baseline after all geographic/state redirects.
+        w.reports.rebase();
     }
     private static int redirect(MapPatch p,World w,int from,String label)throws IOException {Integer to=p.redirect(w.scenarioId,from);if(to==null||w.city(to)==null)throw new IOException(label+"仍引用删除/禁用或变更归属的据点 #"+from+"；必须确认迁移");return to;}
     private static Hex shift(Hex h,Hex d){return new Hex(h.q+d.q,h.r+d.r);}
