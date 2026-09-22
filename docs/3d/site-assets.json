@@ -1,0 +1,308 @@
+{
+  "license": "CC0-1.0 original project geometry and atlas",
+  "unit": "1 projected tile span",
+  "origin": "ground center, +Y up, port +Z points to water",
+  "loader": "SiteGlb: static triangle POSITION/COLOR_0/TEXCOORD_0, uint32 indices; one embedded PNG; no animation/compression/extensions",
+  "assets": [
+    {
+      "file": "city0-lod0.glb",
+      "sha256": "e8ca05c118c8388c8694a12533929b7f4c6f8cbdeda845ec505fe30d27a3faa3",
+      "bytes": 115704,
+      "triangles": 1318,
+      "vertices": 2662,
+      "materials": 1,
+      "texture": [
+        192,
+        64
+      ],
+      "bounds": [
+        -1.12125,
+        0,
+        -0.8915,
+        1.12125,
+        0.9,
+        0.9499999999999998
+      ]
+    },
+    {
+      "file": "city0-lod1.glb",
+      "sha256": "a8db2946fd3a5f4ad98fbd7ec506529b6b17dcdbb1388e27753fe213bd795579",
+      "bytes": 24024,
+      "triangles": 232,
+      "vertices": 478,
+      "materials": 1,
+      "texture": [
+        192,
+        64
+      ],
+      "bounds": [
+        -1.12125,
+        0,
+        -0.8915,
+        1.12125,
+        0.9,
+        0.945
+      ]
+    },
+    {
+      "file": "city0-lod2.glb",
+      "sha256": "fd145f58116afd5420c94249ccf93841dde1a98188d02256ca316c5570de5a60",
+      "bytes": 12732,
+      "triangles": 102,
+      "vertices": 208,
+      "materials": 1,
+      "texture": [
+        192,
+        64
+      ],
+      "bounds": [
+        -1.06,
+        0,
+        -0.825,
+        1.06,
+        0.6,
+        0.945
+      ]
+    },
+    {
+      "file": "city1-lod0.glb",
+      "sha256": "732e9b0556c0167e5e6f5fafd650b26253c08c2de77e752ef050da8e92116306",
+      "bytes": 110940,
+      "triangles": 1262,
+      "vertices": 2548,
+      "materials": 1,
+      "texture": [
+        192,
+        64
+      ],
+      "bounds": [
+        -1.04125,
+        0,
+        -0.8915,
+        1.04125,
+        0.6320000000000001,
+        0.9499999999999998
+      ]
+    },
+    {
+      "file": "city1-lod1.glb",
+      "sha256": "5dff0dde2d9bc544e3190cd6508db43c5bc6147702d76382b80836a2bcf300d0",
+      "bytes": 27132,
+      "triangles": 268,
+      "vertices": 552,
+      "materials": 1,
+      "texture": [
+        192,
+        64
+      ],
+      "bounds": [
+        -1.04125,
+        0,
+        -0.8915,
+        1.04125,
+        0.6320000000000001,
+        0.945
+      ]
+    },
+    {
+      "file": "city1-lod2.glb",
+      "sha256": "71ebd1c8f53f1cbb27066998c74ef3bea0fda33861a012ae52f11e088dbf51a0",
+      "bytes": 12732,
+      "triangles": 102,
+      "vertices": 208,
+      "materials": 1,
+      "texture": [
+        192,
+        64
+      ],
+      "bounds": [
+        -0.98,
+        0,
+        -0.825,
+        0.98,
+        0.6,
+        0.945
+      ]
+    },
+    {
+      "file": "city2-lod0.glb",
+      "sha256": "7c1bbb0906f2cf440c1642e2a0e4f919bf4508ec0ae05c86da97ab140da9eeb9",
+      "bytes": 112308,
+      "triangles": 1280,
+      "vertices": 2580,
+      "materials": 1,
+      "texture": [
+        192,
+        64
+      ],
+      "bounds": [
+        -1.12125,
+        0,
+        -0.8165,
+        1.12125,
+        0.6320000000000001,
+        0.8749999999999999
+      ]
+    },
+    {
+      "file": "city2-lod1.glb",
+      "sha256": "688dbcfeb1a7fe5fb7be56c6027a8c9cd2e53da5da357bce0d000c445e90caa2",
+      "bytes": 23460,
+      "triangles": 226,
+      "vertices": 464,
+      "materials": 1,
+      "texture": [
+        192,
+        64
+      ],
+      "bounds": [
+        -1.12125,
+        0,
+        -0.8165,
+        1.12125,
+        0.6320000000000001,
+        0.87
+      ]
+    },
+    {
+      "file": "city2-lod2.glb",
+      "sha256": "8222a78f205dc21fa8be06db9fb8e622a744757554ef7677e37481c4a7b6e865",
+      "bytes": 12732,
+      "triangles": 102,
+      "vertices": 208,
+      "materials": 1,
+      "texture": [
+        192,
+        64
+      ],
+      "bounds": [
+        -1.06,
+        0,
+        -0.75,
+        1.06,
+        0.6,
+        0.87
+      ]
+    },
+    {
+      "file": "port-lod0.glb",
+      "sha256": "1d392976a2a9495e72a9d5c320c4fa7b09c2e74112ba62a542eeecc8675286bb",
+      "bytes": 17216,
+      "triangles": 156,
+      "vertices": 314,
+      "materials": 1,
+      "texture": [
+        192,
+        64
+      ],
+      "bounds": [
+        -0.38,
+        -0.08,
+        -0.38,
+        0.38,
+        0.4640000000000001,
+        0.87
+      ]
+    },
+    {
+      "file": "port-lod1.glb",
+      "sha256": "ff4845b4cfd50038885c789a5308582c4ddf66cfe625347cee64d80217d17c87",
+      "bytes": 12172,
+      "triangles": 96,
+      "vertices": 194,
+      "materials": 1,
+      "texture": [
+        192,
+        64
+      ],
+      "bounds": [
+        -0.38,
+        -0.08,
+        -0.38,
+        0.38,
+        0.4640000000000001,
+        0.87
+      ]
+    },
+    {
+      "file": "port-lod2.glb",
+      "sha256": "6bd730c2e76e6018e5d03716e15cba8b5ef1c873cbbc271158e283609a1857dc",
+      "bytes": 8808,
+      "triangles": 56,
+      "vertices": 114,
+      "materials": 1,
+      "texture": [
+        192,
+        64
+      ],
+      "bounds": [
+        -0.38,
+        0,
+        -0.38,
+        0.38,
+        0.4640000000000001,
+        0.87
+      ]
+    },
+    {
+      "file": "gate-lod0.glb",
+      "sha256": "d958934e5acabe2bb32b2d3ca51bc8668ac769b09c93e253bb48cd0b15d258fb",
+      "bytes": 12996,
+      "triangles": 106,
+      "vertices": 214,
+      "materials": 1,
+      "texture": [
+        192,
+        64
+      ],
+      "bounds": [
+        -0.48,
+        0,
+        -0.25,
+        0.48,
+        0.71,
+        0.25
+      ]
+    },
+    {
+      "file": "gate-lod1.glb",
+      "sha256": "b3e84fd0baa9a2e89318a06b8b0c4b3085f0571e6c52d2cbeae69d9bc7ed4fa4",
+      "bytes": 7948,
+      "triangles": 46,
+      "vertices": 94,
+      "materials": 1,
+      "texture": [
+        192,
+        64
+      ],
+      "bounds": [
+        -0.48,
+        0,
+        -0.25,
+        0.48,
+        0.71,
+        0.25
+      ]
+    },
+    {
+      "file": "gate-lod2.glb",
+      "sha256": "1345331658d5e6007405b5e71e260e9f1f925ef507a9dfb7a11fe67bc0bd95f7",
+      "bytes": 6528,
+      "triangles": 30,
+      "vertices": 60,
+      "materials": 1,
+      "texture": [
+        192,
+        64
+      ],
+      "bounds": [
+        -0.48,
+        0,
+        -0.16,
+        0.48,
+        0.48,
+        0.16
+      ]
+    }
+  ]
+}

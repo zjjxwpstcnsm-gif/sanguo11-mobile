@@ -1,3 +1,7 @@
+> Superseded preflight: S02 and S03 were subsequently recovered from other local workspaces
+> and integrated on the same branch. The absence statements below describe the earlier
+> remote-only inspection, not the current source tree. Installed/art/performance gates remain.
+
 # S04 preflight and facility state repair — PARTIAL / BLOCKED
 
 2026-09-22. Requested branch: `agent/3d-s01-renderer-foundation`, existing PR #62.

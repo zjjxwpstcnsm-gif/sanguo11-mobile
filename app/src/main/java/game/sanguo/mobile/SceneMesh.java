@@ -5,7 +5,9 @@ import java.util.*;
 
 /** CPU-only mesh preparation; no Android or renderer references. */
 final class SceneMesh {
-    final float[] vertices; final int[] indices; final float x,z,radius;
+    SceneMesh distant;
+    long fingerprint; int chunkQ,chunkR;
+    float[] uv; final float[] vertices; final int[] indices; final float x,z,radius;
     SceneMesh(List<Float> v,List<Integer> i,float x,float z,float radius){
         vertices=new float[v.size()];for(int n=0;n<v.size();n++)vertices[n]=v.get(n);
         indices=new int[i.size()];for(int n=0;n<i.size();n++)indices[n]=i.get(n);
@@ -32,26 +34,58 @@ final class SceneMesh {
         switch(World.Terrain.values()[ordinal]){
             case WATER:case SEA:case SHALLOWS:case NON_NAVIGABLE_WATER:return 0xff496d78;
             case FOREST:return 0xff596c49;
-            case MOUNTAIN:case MOUNTAIN_PATH:case PLANK_ROAD:return 0xff77796d;
+            case MOUNTAIN:return 0xff77796d;
             case SAND:return 0xffad9e78;
+            case DAM:return 0xff858276;
             case SWAMP:case POISON:return 0xff69755c;
             default:return 0xff889576;
         }
     }
-    static List<SceneMesh> ground(MapSceneSnapshot.Ground g){
-        List<SceneMesh> out=new ArrayList<>();
+    static final float[][] EDGE={{-.5f,-.5f},{0,-.5f},{.5f,-.5f},{.5f,0},{.5f,.5f},{0,.5f},{-.5f,.5f},{-.5f,0}};
+    static List<SceneMesh> ground(MapSceneSnapshot.Ground g){return ground(g,Collections.emptyList());}
+    static List<SceneMesh> ground(MapSceneSnapshot.Ground g,List<SceneMesh> previous){
+        List<SceneMesh> out=new ArrayList<>();Map<String,SceneMesh> cached=new HashMap<>();
+        for(SceneMesh m:previous)cached.put(m.chunkQ+":"+m.chunkR,m);
         for(int r=0;r<g.height;r+=16)for(int q=0;q<g.width;q+=16){
             if(Thread.currentThread().isInterrupted())return Collections.emptyList();
+            long fingerprint=1469598103934665603L;
+            fingerprint=(fingerprint^g.width)*1099511628211L;fingerprint=(fingerprint^g.height)*1099511628211L;
+            fingerprint=(fingerprint^Float.floatToIntBits(g.grid.offset))*1099511628211L;fingerprint=(fingerprint^(g.grid.staggered?1:0))*1099511628211L;
+            for(int rr=r-6;rr<Math.min(r+22,g.height);rr++)for(int qq=q-6;qq<Math.min(q+22,g.width);qq++){
+                Hex h=new Hex(qq,rr);int value=g.valid(h)?g.terrain[rr*g.width+qq]+(g.bases.contains(h)?64:0):-1;
+                fingerprint=(fingerprint^value)*1099511628211L;
+            }
+            SceneMesh retained=cached.get(q+":"+r);if(retained!=null&&retained.fingerprint==fingerprint){out.add(retained);continue;}
             Builder b=new Builder();float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
             for(int rr=r;rr<Math.min(r+16,g.height);rr++)for(int qq=q;qq<Math.min(q+16,g.width);qq++){
                 Hex h=new Hex(qq,rr);if(!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);
                 minX=Math.min(minX,x);maxX=Math.max(maxX,x);minZ=Math.min(minZ,z);maxZ=Math.max(maxZ,z);
-                int color=terrain(g.terrain[rr*g.width+qq]);
-                b.quad(x-.5f,0,z-.5f,1,1,shade(color,((qq*31+rr*17)&3)*.012f+.96f));
+                int color=terrain(g.terrain[rr*g.width+qq]),n=b.v.size()/7;boolean water=g.surface.water(h);
+                b.vertex(x,g.surface.sample(x,z),z,g.surface.color(x,z,color,water));
+                for(float[] edge:EDGE){float vx=x+edge[0],vz=z+edge[1];b.vertex(vx,g.surface.sample(vx,vz),vz,g.surface.color(vx,vz,color,water));}
+                for(int j=0;j<8;j++)Collections.addAll(b.i,n,n+1+j,n+1+(j+1)%8);
             }
-            if(!b.i.isEmpty())out.add(b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+1));
+            if(!b.i.isEmpty()){
+                SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+1);
+                SceneMesh fine=detail(m,g);
+                fine.chunkQ=q;fine.chunkR=r;fine.fingerprint=fingerprint;out.add(fine);
+            }
         }
         return Collections.unmodifiableList(out);
+    }
+    /** Interior subdivision adds close-range material detail; boundary geometry is identical at both LODs. */
+    static SceneMesh detail(SceneMesh coarse,MapSceneSnapshot.Ground g){
+        Builder b=new Builder();for(float f:coarse.vertices)b.v.add(f);
+        for(int t=0;t<coarse.indices.length;t+=3){
+            int a=coarse.indices[t],c=coarse.indices[t+1],d=coarse.indices[t+2],n=b.v.size()/7;
+            float x=(coarse.vertices[a*7]+coarse.vertices[c*7]+coarse.vertices[d*7])/3,
+                y=(coarse.vertices[a*7+1]+coarse.vertices[c*7+1]+coarse.vertices[d*7+1])/3,
+                z=(coarse.vertices[a*7+2]+coarse.vertices[c*7+2]+coarse.vertices[d*7+2])/3;
+            Hex h=g.grid.cell(x,z);int color=terrain(g.terrain[h.r*g.width+h.q]);
+            b.vertex(x,y,z,g.surface.color(x,z,color,g.surface.water(h)));
+            Collections.addAll(b.i,a,c,n,c,d,n,d,a,n);
+        }
+        SceneMesh fine=b.mesh(coarse.x,coarse.z,coarse.radius);fine.distant=coarse;return fine;
     }
     /** Explicit temporary silhouettes: walled city, pier, gate, standard, farm, tower. */
     static SceneMesh proxy(int kind,int color){

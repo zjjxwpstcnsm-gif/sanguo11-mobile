@@ -1,3 +1,15 @@
+# S02 — continuous terrain checkpoint
+
+Status: **PARTIAL**, remote delivery **BLOCKED**. Continue existing PR #62 branch by explicit user request; main is not merged.
+Production entry remains game → 视图 → 3D 试验模式. Version 0.69.0-3d-s02 / 69.
+See [S02 acceptance](acceptance/s02-status.md) and [CPU checks](acceptance/s02-cpu.txt).
+Terrain, water mask, site bases, height-aware picking/overlays, seam-safe two-level meshes
+and local chunk invalidation are implemented. Core and national map data are untouched.
+No S02 on-device or performance acceptance is claimed. S03 must retain this branch and
+resolve S02 remote/device/visual acceptance before treating the stage as complete.
+
+---
+
 # S01 — renderer foundation
 
 - Input main: `1a883a4ffd1098ca85f7da38464b7c5fbfdc000f` (merged prior PR #61 as requested).
@@ -65,3 +77,36 @@ it must not declare the pending hardware/performance gates complete.
   screenshots, CPU/GPU/frame percentiles, PSS, texture memory and density stress tests remain unmeasured.
 - No new final models, forest placement, vegetation LOD/instancing or dirty-region updates are claimed.
   Remain on this branch; resume S04 only after actual S02/S03 delivery and preflight verification.
+
+## S03 — PARTIAL, remote delivery BLOCKED
+
+- User override: continue existing PR #62 branch, never merge main.
+- Remote starting head df1c1f94210bd558b1be9abcf8ff564ce4783dc2; main remains
+  1a883a4ffd1098ca85f7da38464b7c5fbfdc000f. Local committed S02 prerequisite
+  5c8c8239f067 was fast-forwarded from the prior clean workspace; no uncommitted work taken.
+- S03 normal production entry now loads textured runtime GLBs: 3 city layouts, port, gate,
+  3 LODs, exact seven-cell foundation, 87 national mappings, custom default, navigable-water
+  port orientation, faction flags, damage, incremental ownership/removal, reverse view.
+- Version 0.70.0-3d-s03 / 70; same package/development signing key.
+- Test/build evidence and open gates: acceptance/s03-status.md. Asset contract and counts:
+  site-assets.json; tools/3d/build_sites.py is the complete reproducible source.
+- Git push failed with missing HTTPS credentials; GitHub app failed HTTP 400 Invalid MCP
+  request metadata. Local commits/APK are NOT the remote PR head. Do not claim remote delivery.
+- S02 water animation/quality toggle/shore quality and device gates remain unpassed. S03
+  physical-device/installed visual review cannot be waived based on compilation. Do not
+  declare S03 fully accepted or promote 3D as default. S04 can inspect code but retains gates.
+
+## Local S02/S03 recovery and integration
+
+The earlier S04 preflight inspected only its checkout and remote, missing other local
+workspaces. On user request we found clean local S02 commits afdfd55 / 5c8c823 and S03
+commits 9a50d1d / 606b4f1, integrated them with the remote S04 facility-state fixes, and
+resolved snapshot/renderer/test/progress conflicts. This supersedes the earlier assertion
+that prerequisite implementation was unavailable: code and runtime assets are now present.
+Previous installed-art/performance acceptance gaps still apply; S04 art is not completed.
+Same PR #62 branch; main is not merged or modified. Remote delivery identity is in PR #62.
+
+Integrated verification: foundation 3,116,362, terrain 902,230, site semantics 1,645,
+facility state 133 and actual GLB loader 38,032 checks passed. All 15 GLBs loaded.
+Android APK/test APK/lint build and existing presentation regressions passed locally.
+No installed visual/performance acceptance is inferred from these checks.

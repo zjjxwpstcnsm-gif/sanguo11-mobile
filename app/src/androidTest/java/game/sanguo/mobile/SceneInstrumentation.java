@@ -55,6 +55,22 @@ public final class SceneInstrumentation extends Instrumentation {
         b.recycle();check(bright>total/50,"Surface contains actual terrain pixels, not a black/clear-only frame");
     }
     void capture(String name)throws Exception{android.graphics.Bitmap b=getUiAutomation().takeScreenshot();if(b==null)throw new AssertionError("screenshot unavailable");File dir=getTargetContext().getExternalFilesDir("s01");dir.mkdirs();try(OutputStream out=new FileOutputStream(new File(dir,name+".png"))){b.compress(android.graphics.Bitmap.CompressFormat.PNG,100,out);}b.recycle();}
+    void siteModels()throws Exception{
+        FilamentMapView spatial=(FilamentMapView)field(host,"spatial");
+        for(World.SiteKind kind:World.SiteKind.values()){
+            World.City chosen=null;for(World.City c:world.cities)if(c.kind==kind){chosen=c;break;}
+            check(chosen!=null,"national site kind "+kind);final World.City site=chosen;
+            for(int facing:new int[]{1,-1}){
+                runOnMainSync(()->{activity.selectAndFocus(site.hex);spatial.camera.span=3;spatial.camera.facing=facing;});settle();
+                check(((Set<?>)field(spatial,"missingAssets")).isEmpty(),"actual GLB loads without fallback");
+                Map<?,?> objects=(Map<?,?>)field(spatial,"objects");Object proxy=objects.get("site:"+site.id);
+                check(proxy!=null&&field(proxy,"instance")!=null,"site has textured native material");
+                check((Integer)field(proxy,"flag")!=0,"site faction flag exists");
+                capture("s03-"+kind+"-"+facing);surfaceCapture();
+            }
+        }
+        runOnMainSync(()->spatial.camera.facing=1);
+    }
     @Override public void onStart(){Bundle result=new Bundle();try{
         android.util.Log.i("SceneAcceptance","maxJavaHeapBytes="+Runtime.getRuntime().maxMemory());
         World w=ScenarioCatalog.all().get(0);try(OutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(w));}
@@ -65,7 +81,7 @@ public final class SceneInstrumentation extends Instrumentation {
             runOnMainSync(()->host.switchMode(true));settle();check(host.is3D(),"Filament active, no fallback cycle "+i);
             FilamentMapView spatial=(FilamentMapView)field(host,"spatial");
             check(field(spatial,"swap")!=null,"native swapchain exists");check((Long)field(spatial,"lastFrame")>0,"native frame loop running");
-            if(i==0){SystemClock.sleep(2000);runOnMainSync(()->host.focus(city.hex));settle();SystemClock.sleep(5000);capture("02-3d-city");surfaceCapture();}
+            if(i==0){SystemClock.sleep(2000);runOnMainSync(()->host.focus(city.hex));settle();SystemClock.sleep(5000);capture("02-3d-city");surfaceCapture();siteModels();}
             runOnMainSync(()->host.switchMode(false));settle();check(!host.is3D(),"returned to 2D");check((Boolean)field(spatial,"released"),"old engine released");
         }
         check(Arrays.equals(initial,SaveCodec.encode(world)),"ten switches leave authoritative state identical");

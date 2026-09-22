@@ -26,7 +26,7 @@ public final class SceneFoundationTest {
         List<SceneMesh> meshes=SceneMesh.ground(ground);int cells=0;
         for(int r=0;r<w.height;r++)for(int q=0;q<w.width;q++)if(w.inside(new Hex(q,r)))cells++;
         int triangles=0;for(SceneMesh m:meshes){triangles+=m.indices.length/3;for(int i:m.indices)check(i>=0&&i<m.vertices.length/7,"valid mesh index");}
-        check(triangles==cells*2,"exact two triangles per actual cell, excluding VOID");
+        check(triangles==cells*24,"exact twenty-four near triangles per actual cell, excluding VOID");
         Set<String> ids=new HashSet<>();for(MapSceneSnapshot.Item item:snap.items)check(ids.add(item.key),"stable disjoint ids");
         for(World.City site:w.cities)for(Hex h:SiteFootprint.cells(site))if(w.inside(h))check(w.cityAt(ground.grid.cell(ground.grid.x(h),ground.grid.z(h)))==site,"seven-cell same city");
         check(Arrays.equals(before,SaveCodec.encode(w)),"snapshot/mesh/camera do not mutate serialized authoritative state");

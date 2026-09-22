@@ -1,5 +1,5 @@
 {
-  "stage": "S01",
+  "stage": "S03 checkpoint PARTIAL",
   "filament": "1.56.0",
   "matc": "1.56.0",
   "backend": "OpenGL ES",
@@ -13,14 +13,27 @@
       "textures": 0
     },
     {
-      "generator": "app/src/main/java/game/sanguo/mobile/SceneMesh.java",
-      "role": "temporary city/port/gate/unit/facility/tower geometry and terrain chunks",
+      "generator": "app/src/main/java/game/sanguo/mobile/SceneMesh.java + TerrainSurface.java",
+      "role": "terrain plus transitional unit/facility/tower geometry",
       "license": "original project geometry",
       "uv": false,
       "textures": 0,
       "animation": "visual event path translation only",
-      "lod": "chunk visibility and residency; no mesh LOD yet",
+      "lod": "terrain: 24 near / 8 far triangles per valid cell",
       "final_art": false
+    },
+    {
+      "path": "app/src/main/assets/3d/sites",
+      "generator": "tools/3d/build_sites.py",
+      "assetReport": "docs/3d/site-assets.json",
+      "idMapping": "docs/3d/site-mapping.tsv",
+      "license": "CC0-1.0 original geometry and atlas",
+      "runtime": "SiteGlb static subset; Filament 1.56.0 offline site.filamat; shared SRGB atlas; unlit with baked directional vertex shading",
+      "textureSha256": "5cbd94d992d58c7a5a9f305a17c6dcb789911b1547fb6223303d09c35e57dcd5",
+      "materialSha256": "930b35fea463e42ab67647a8c8e47ffacf15590ae63cb14a2ffacc41ca512eab",
+      "animations": false,
+      "compressionExtensions": false,
+      "finalArtAccepted": false
     }
   ]
 }

@@ -89,3 +89,47 @@ Diagnostic overlay is off by default; view menu toggles it and writes MapRendere
 It reports Surface dimensions, visible/GPU chunks, objects, pending uploads and callback
 interval, NOT GPU timing or presented FPS. Physical-device performance and resource leak
 profiling remain required before defaulting to 3D.
+
+
+## S02 update (supersedes S01 flat terrain paragraphs)
+
+TerrainSurface is a CPU-only visual field; Ground snapshots site footprints as well as
+terrain. Sample coordinates come exclusively from GridWorldTransform. Surface is bounded
+to 0..2.6 world units, deterministic, and constrained to zero throughout water/site cells.
+Road and pass corridors have bounded low relief. No world mutators or gameplay RNG are used.
+
+SceneMesh uses eight split boundary vertices, with a center fan and interior subdivisions.
+Far geometry uses eight triangles/cell; close geometry uses 24 coplanar triangles/cell for
+additional color detail. Thus LOD switches cannot open boundary cracks or move pick surfaces.
+Normals are baked directional shading from shared-field derivatives; existing unlit Filament
+material is retained. There are no UV textures or realtime normal lighting claims.
+
+Six-cell chunk dependency halos include terrain, invalid mask, bases and projection. Patch
+updates reuse unchanged mesh identities, retaining matching GPU resources. Sample caching is
+scoped to the immutable Ground; initial generation still prepares both CPU LODs nationwide.
+
+Ray picking intersects the same piecewise-linear fan via bounded top-down ray marching and
+bisection. Proxy transforms, labels and polygon outlines use the same field. No nationwide
+triangle traversal occurs on a tap. Native/Surface ownership and 2D recovery are unchanged.
+
+## S03 architecture
+
+SiteVisual snapshots model family, terrain-informed variant, scale, water/gate-derived yaw,
+logical footprint and quantized durability without changing World. Existing item stable IDs
+still control removal/replacement. SiteGlb validates bounded static GLB buffers before GPU
+upload. CPU asset geometry/UV and GPU buffers are shared per family/LOD; texture is shared
+across all objects. Each site has an independent material instance for damage. Ownership
+changes replace the small flag geometry; obsolete shapes/material instances are destroyed.
+World replacement, load, custom site type changes and deletion reuse the same sync path.
+
+GPU sharing is NOT instancing: each visible city has model + flag + footprint draws; port
+and gate have model + flag. Modular submeshes are baked into a single triangle primitive
+per exported model. Runtime draw-call measurement is unavailable; this is the submission
+structure, not a measured driver count. LOD hysteresis spans 15/19 and 42/48; LOD uses the
+same logical anchor and the same independent seven-cell foundation. There is no new collider.
+Core ground picking is retained; selected seven-cell outlines and unit ground rings overlay
+the buildings so movement/entry semantics remain legible. Opaque textures avoid alpha sorting.
+
+Long press turns the restricted camera 180 degrees. Projection, panning, zoom anchoring,
+terrain rays, overlays, labels and saved direction use the same facing sign as lookAt.
+Directions are CPU-tested; actual native screenshots remain pending. View remains opt-in.
