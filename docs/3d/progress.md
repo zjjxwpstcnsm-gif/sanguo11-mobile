@@ -147,3 +147,17 @@ checks pass. Native emulator tests are separate gates; final CI and artifact ide
 belong to the final report/PR. Physical device performance and visual art acceptance
 remain open; source/build checks never replace those gates. Do not mark all S01–S05
 accepted merely because the missing S04/S05 implementation is present.
+
+## S06 combat implementation (same PR #62)
+
+Source entry: normal game → view → 3D. Version 0.73.0-3d-s06 / 73. Main remains
+`1a883a4ffd1098ca85f7da38464b7c5fbfdc000f`; no merge. Includes concurrent fixture
+fix 1bd28d9. Shared TurnJournal/TurnWork/TurnPlayback now feed bounded native combat,
+ordered actual counter/support hits, exact damage/status text, persistent core fires,
+compact critical portraits and cleanup. No gameplay formulas or report APIs replaced.
+
+Host combat/full-save equivalence and S01–S05 suites pass; APK/test APK/lint pass at
+implementation checkpoints. Final source identity and exact gate output accompany the
+APK. Native recording/installed checks run in CI; hardware and art acceptance remain
+open. See acceptance/s06-combat.md. S07 must preserve this shared historical playback,
+object-pool ownership, default 2D and all existing rule/editor contracts.

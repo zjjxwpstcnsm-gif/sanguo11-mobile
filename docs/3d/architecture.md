@@ -172,3 +172,12 @@ shadows are disabled; there are no transparent leaf billboards or per-tree entit
 Facility selection and ranges still use core coverage. Actual type/level selects three
 GLB LODs; construction/fire modules and HP tint reflect live snapshots. Destroyed
 facilities release renderables before their shared buffers become eligible for eviction.
+
+## S06 combat presentation
+
+`TurnJournal.StateChange` exposes only detached scalar before/after values;
+`Strike` records the existing physical hits in execution order without new business
+events. `CombatVisual` is an Android-free bounded sampler. Filament owns 48 reusable
+entities and six shared opaque geometry buffers; the existing overlay draws exact
+impact values and a compact portrait card. Historical snapshots are not authoritative
+saves. See `acceptance/s06-combat.md` for timeline, event matrix, budgets and open gates.

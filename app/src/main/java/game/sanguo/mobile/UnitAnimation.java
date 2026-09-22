@@ -11,6 +11,15 @@ final class UnitAnimation {
         // Instance-specific phase; distant idle poses are static and off-screen poses unscheduled.
         frame=lod==2?0:(int)Math.floorMod(time/(lod==0?83:167)+u.id*7L,12);
         if(event==null)return;
+        TurnJournal.Strike strike=CombatVisual.strike(event,f);
+        if(strike!=null){
+            float phase=CombatVisual.phase(event,f);
+            if(strike.actorId==u.id){clip=phase<CombatVisual.LAUNCH?"prepare":"attack";frame=Math.min(11,(int)(phase*11));}
+            if(strike.targetId==u.id&&phase>=CombatVisual.HIT&&strike.afterTroops<strike.beforeTroops){
+                float hit=(phase-CombatVisual.HIT)/(1-CombatVisual.HIT);clip=strike.afterTroops==0?"defeat":"hit";frame=Math.min(11,(int)(hit*11));if(strike.afterTroops==0)scale=1-hit*.8f;
+            }
+            return;
+        }
         if(event.actorId==u.id){
             switch(event.kind){
                 case MOVE:

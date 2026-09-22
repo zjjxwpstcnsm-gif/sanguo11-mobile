@@ -21,12 +21,13 @@ public final class TurnJournal {
         public final List<Hex> path;
         public final List<Impact> impacts;
         public final List<StateChange> states;
+        public final List<Strike> strikes;
         private final List<Node> changed;
         private final List<String> removed;
         private final World.Unit actor;
         Event(Kind kind,int id,int owner,Hex start,Hex target,String label,String message,List<Hex> path,
-              List<Impact> impacts,List<Node> changed,List<String> removed,World.Unit actor,CriticalHit critical,String sourceKey,String sourceType,List<StateChange> states){
-            this.sourceKey=sourceKey;this.sourceType=sourceType;this.states=Collections.unmodifiableList(states);
+              List<Impact> impacts,List<Node> changed,List<String> removed,World.Unit actor,CriticalHit critical,String sourceKey,String sourceType,List<StateChange> states,List<Strike> strikes){
+            this.sourceKey=sourceKey;this.sourceType=sourceType;this.states=Collections.unmodifiableList(states);this.strikes=Collections.unmodifiableList(strikes);
             this.kind=kind;actorId=id;this.owner=owner;this.start=start;this.target=target;this.label=label;this.message=message;
             this.path=Collections.unmodifiableList(new ArrayList<>(path));this.impacts=Collections.unmodifiableList(impacts);
             this.changed=changed;this.removed=removed;this.actor=actor;this.critical=critical;
@@ -39,7 +40,7 @@ public final class TurnJournal {
             for(String key:removed)remove(visual,key);
             for(Node n:changed){remove(visual,n.key);n.add(visual);}
         }
-        public int durationMillis(){return kind==Kind.MOVE?Math.min(1300,Math.max(300,(path.size()-1)*145)):kind==Kind.PLOT?700:600;}
+        public int durationMillis(){return kind==Kind.MOVE?Math.min(1300,Math.max(300,(path.size()-1)*145)):kind==Kind.PLOT?700:600*Math.max(1,Math.min(3,strikes.size()));}
     }
     /** Scalar before/after image, safe even after the authoritative entity has disappeared. */
     public static final class State {
@@ -64,6 +65,14 @@ public final class TurnJournal {
         public final State before,after;
         private StateChange(Node before,Node after){this.before=before==null?null:new State(before);this.after=after==null?null:new State(after);}
     }
+    /** Ordered applied physical hits, including actual counters/support, never inferred from HP. */
+    public static final class Strike {
+        public final int actorId,targetId,owner,beforeTroops,afterTroops;
+        public final Hex start,target;public final String type;
+        Strike(World.Unit a,World.Unit b,int before,int after){actorId=a.id;targetId=b.id;owner=a.owner;start=a.hex;target=b.hex;type=a.weapon.name();beforeTroops=before;afterTroops=after;}
+    }
+    private List<Strike> strikes=new ArrayList<>();
+    void strike(World.Unit a,World.Unit b,int before,int after){strikes.add(new Strike(a,b,before,after));}
     private final World w;
     private Map<String,Node> previous;
     private final List<Event> events=new ArrayList<>();
@@ -95,7 +104,7 @@ public final class TurnJournal {
         checkpoint("阶段结算");this.kind=kind;this.actorId=actor;this.target=target;this.label=label;
     }
     void movement(World.Unit u,List<Hex> route){mark(Kind.MOVE,u.id,route.get(route.size()-1),"行军");path=new ArrayList<>(route);}
-    void cancel(){critical=null;kind=Kind.CHANGE;actorId=-1;target=null;sourceHex=null;sourceOwner=-1;label="";sourceKey="";sourceType="";path=Collections.emptyList();}
+    void cancel(){critical=null;kind=Kind.CHANGE;actorId=-1;target=null;sourceHex=null;sourceOwner=-1;label="";sourceKey="";sourceType="";strikes=new ArrayList<>();path=Collections.emptyList();}
     public void checkpoint(String message){
         Map<String,Node> next=snapshot(w,previous);List<Node> changed=new ArrayList<>();List<String> removed=new ArrayList<>();List<Impact> impacts=new ArrayList<>();
         for(Node n:next.values()){Node old=previous.get(n.key);if(old!=n){changed.add(n);impact(old,n,impacts);}}
@@ -117,7 +126,7 @@ public final class TurnJournal {
             List<StateChange> states=new ArrayList<>();
             for(Node n:changed)states.add(new StateChange(previous.get(n.key),n));
             for(String key:removed)states.add(new StateChange(previous.get(key),null));
-            events.add(new Event(eventKind,id,owner,start,end,name,message,route,impacts,changed,removed,actor,critical,actor==null?sourceKey:"u"+actor.id,actor==null?sourceType:actor.weapon.name(),states));
+            events.add(new Event(eventKind,id,owner,start,end,name,message,route,impacts,changed,removed,actor,critical,actor==null?sourceKey:"u"+actor.id,actor==null?sourceType:actor.weapon.name(),states,new ArrayList<>(strikes)));
         }
         previous=next;cancel();
     }

@@ -53,8 +53,8 @@ jobs:
           disable-animations: true
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           script: |
-            adb root
-            adb wait-for-device
+            for attempt in 1 2 3; do adb root || true; adb wait-for-device; adb shell id | grep -q uid=0 && break; done
+            adb shell id | grep -q uid=0
             adb shell setprop dalvik.vm.heapgrowthlimit 256m
             adb shell setprop dalvik.vm.heapsize 512m
             adb shell setprop sys.boot_completed 0

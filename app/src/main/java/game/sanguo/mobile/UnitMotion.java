@@ -10,6 +10,15 @@ final class UnitMotion {
     void settle(Hex hex, GridWorldTransform grid) {
         authoritative=hex;x=grid.x(hex);z=grid.z(hex);
     }
+    void strike(TurnJournal.Strike strike,float fraction,GridWorldTransform grid){
+        x=grid.x(strike.start);z=grid.z(strike.start);
+        float dx=grid.x(strike.target)-x,dz=grid.z(strike.target)-z;
+        if(dx!=0||dz!=0)yaw=(float)Math.atan2(dx,dz);
+        if(strike.type.equals("CAVALRY")){float length=(float)Math.sqrt(dx*dx+dz*dz),f=CombatVisual.fraction(fraction);
+            float pulse=f<CombatVisual.HIT?f/CombatVisual.HIT:(1-f)/(1-CombatVisual.HIT);
+            if(length>0){float travel=Math.min(.65f,length*.35f)*Math.max(0,pulse);x+=dx/length*travel;z+=dz/length*travel;}
+        }
+    }
     void sample(TurnJournal.Event event,float fraction,GridWorldTransform grid) {
         if(authoritative==null)return;
         // Every sample starts from the snapshot. Ending/replacing a clip cannot leave a stale pose.

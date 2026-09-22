@@ -50,7 +50,7 @@ public final class CombatSceneInstrumentation extends SceneInstrumentation {
         World initial=CombatSceneFixture.world("critical");try(OutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(initial));}
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();host=(MapHost)field(activity,"map");
         ParcelFileDescriptor recording=getUiAutomation().executeShellCommand("screenrecord --time-limit 150 /sdcard/combat-scene.mp4");
-        for(String kind:new String[]{"critical","arrow","stone","charge","fire","lightning","defeat","enemy","facilities","site"})sequence(kind);
+        for(String kind:new String[]{"critical","arrow","stone","charge","fire","trap-ball","lightning","counter","defeat","enemy","facilities","site"})sequence(kind);
         recording.close();
         turn(false,1,false,false);turn(true,4,false,false);turn(true,2,false,true);turn(true,1,true,false);
         result.putString("stream","PASS S06 native combat "+checks+" checks\n");finish(Activity.RESULT_OK,result);

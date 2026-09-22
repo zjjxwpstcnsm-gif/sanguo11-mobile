@@ -27,12 +27,23 @@ final class CombatVisual {
         if(e.sourceKey.startsWith("c")||e.sourceType.contains("BOW")||e.sourceType.equals("ARROW_TOWER")||e.sourceType.equals("SIEGE_TOWER"))return Style.ARROW;
         return Style.MELEE;
     }
+    static TurnJournal.Strike strike(TurnJournal.Event e,float fraction){
+        return e==null||e.strikes.isEmpty()?null:e.strikes.get(Math.min(e.strikes.size()-1,(int)(fraction(fraction)*e.strikes.size())));
+    }
+    static float phase(TurnJournal.Event e,float fraction){
+        float f=fraction(fraction);if(e==null||e.strikes.size()<2)return f;
+        float scaled=f*e.strikes.size();return f==1?1:scaled-(int)scaled;
+    }
+    static Style strikeStyle(TurnJournal.Strike s){
+        return s.type.equals("CATAPULT")?Style.STONE:s.type.equals("CAVALRY")?Style.CHARGE:s.type.equals("CROSSBOW")||s.type.equals("SIEGE_TOWER")?Style.ARROW:Style.MELEE;
+    }
     void sample(TurnJournal.Event e,float fraction,MapSceneSnapshot.Ground g){
-        count=0;if(e==null||g==null)return;float f=fraction(fraction);Style style=style(e);
+        count=0;if(e==null||g==null)return;float f=phase(e,fraction);Style style=style(e);TurnJournal.Strike strike=strike(e,fraction);
+        if(strike!=null)style=strikeStyle(strike);
         if(style==Style.NONE)return;
-        Hex target=e.target!=null?e.target:!e.impacts.isEmpty()?e.impacts.get(0).hex:e.start;
+        Hex target=strike!=null?strike.target:e.target!=null?e.target:!e.impacts.isEmpty()?e.impacts.get(0).hex:e.start;
         if(target==null||!g.valid(target))return;
-        Hex start=e.start!=null&&g.valid(e.start)?e.start:target;
+        Hex start=strike!=null?strike.start:e.start!=null&&g.valid(e.start)?e.start:target;
         float ax=g.grid.x(start),az=g.grid.z(start),bx=g.grid.x(target),bz=g.grid.z(target);
         float ay=g.surface.at(start)+.35f,by=g.surface.at(target)+.3f;
         if(f>=LAUNCH&&f<HIT){
@@ -50,6 +61,10 @@ final class CombatVisual {
         if(f>=HIT&&f<1){
             float t=(f-HIT)/(1-HIT);
             // Only recorded changes produce hit bursts; a failed plot has no invented damage.
+            if(strike!=null){
+                if(strike.afterTroops<strike.beforeTroops)for(int i=0;i<6;i++){double a=i*Math.PI/3;add(1,bx+(float)Math.cos(a)*t*.6f,by+(float)Math.sin(t*Math.PI)*.4f,bz+(float)Math.sin(a)*t*.6f,(1-t)*.3f,0);}
+                return;
+            }
             int targets=0;
             for(TurnJournal.StateChange delta:e.states){
                 TurnJournal.State before=delta.before,after=delta.after;

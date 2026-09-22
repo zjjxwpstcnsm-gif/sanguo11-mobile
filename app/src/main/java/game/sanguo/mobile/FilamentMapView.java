@@ -132,9 +132,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void resetMetrics(){cpuCount=cpuCursor=0;}
     private String resourceReport(){
         int primitives=0,triangles=0;long bufferBytes=0;
-        Set<GpuMesh> resident=new HashSet<>(shapes.values());resident.addAll(terrain.values());resident.addAll(vegetation.values());
+        Set<GpuMesh> resident=new HashSet<>(shapes.values());resident.addAll(terrain.values());resident.addAll(vegetation.values());for(GpuMesh effect:effectMeshes)if(effect!=null)resident.add(effect);
         for(GpuMesh m:resident){bufferBytes+=(long)m.source.vertices.length*4+(long)m.source.indices.length*4+(m.source.uv==null?0:(long)m.source.uv.length*4);if(m.shown){primitives++;triangles+=m.source.indices.length/3;}}
         for(Proxy p:objects.values())if(p.shown){primitives++;triangles+=p.shape.source.indices.length/3;for(GpuMesh m:new GpuMesh[]{p.flagShape,p.baseShape,p.stateShape})if(m!=null){primitives++;triangles+=m.source.indices.length/3;}}
+        for(int i=0;i<effectEntities.length;i++)if(effectShown[i]){primitives++;triangles+=effectMeshes[effectKinds[i]].source.indices.length/3;}
         long[] times=Arrays.copyOf(cpuSamples,cpuCount);Arrays.sort(times);
         return "场景 primitives="+primitives+" triangles="+triangles+" buffers_bytes="+bufferBytes+" pose_cache="+shapes.size()+
             " CPU提交ms P50/P95/P99="+percentile(times,.50)+"/"+percentile(times,.95)+"/"+percentile(times,.99)+" samples="+cpuCount+"（非驱动DrawCall/GPU帧时）";
@@ -235,14 +236,15 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private void animateReplay(){
         if(snapshot==null)return;
-        Proxy current=replay==null?null:objects.get("unit:"+replay.actorId);
+        TurnJournal.Strike strike=CombatVisual.strike(replay,replayFraction);
+        Proxy current=replay==null?null:objects.get("unit:"+(strike==null?replay.actorId:strike.actorId));
         if(animatedUnit!=null&&animatedUnit!=current&&objects.get(animatedUnit.item.key)==animatedUnit){
             animatedUnit.motion.sample(null,0,snapshot.ground.grid);
             animatedUnit.position(animatedUnit.motion.x,animatedUnit.motion.z);
         }
         animatedUnit=current;
         if(current!=null){
-            current.motion.sample(replay,replayFraction,snapshot.ground.grid);
+            if(strike==null)current.motion.sample(replay,replayFraction,snapshot.ground.grid);else current.motion.strike(strike,CombatVisual.phase(replay,replayFraction),snapshot.ground.grid);
             // Keep the cheap CPU pose for culling/hit tests, but avoid off-screen GPU updates.
             if(inView(current.motion.x,current.motion.z,2))current.position(current.motion.x,current.motion.z);
         }
@@ -392,11 +394,18 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         }
         void drawCombat(Canvas c){
             float d=getResources().getDisplayMetrics().density;
-            if(replay!=null&&replayFraction>=CombatVisual.FEEDBACK){
+            TurnJournal.Strike strike=CombatVisual.strike(replay,replayFraction);
+            float phase=CombatVisual.phase(replay,replayFraction);
+            if(strike!=null&&phase>=CombatVisual.FEEDBACK&&visible(strike.target)&&strike.beforeTroops>strike.afterTroops){
+                p.setStyle(Paint.Style.FILL);p.setTextAlign(Paint.Align.CENTER);p.setTextSize(15*d);p.setColor(0xffffbb90);
+                c.drawText("−"+(strike.beforeTroops-strike.afterTroops)+"兵",camera.screenX(snapshot.ground.grid.x(strike.target)),camera.screenY(snapshot.ground.grid.z(strike.target),snapshot.ground.surface.at(strike.target)+1)-(phase-CombatVisual.FEEDBACK)*50*d,p);
+                p.setTextAlign(Paint.Align.LEFT);
+            }
+            if(replay!=null&&replayFraction>=CombatVisual.FEEDBACK&&(strike==null||strike==replay.strikes.get(replay.strikes.size()-1))){
                 int count=0;float progress=(replayFraction-CombatVisual.FEEDBACK)/(1-CombatVisual.FEEDBACK);
                 p.setStyle(Paint.Style.FILL);p.setTextAlign(Paint.Align.CENTER);p.setTextSize(15*d);
                 for(TurnJournal.Impact hit:replay.impacts){
-                    if(!visible(hit.hex))continue;if(count++>=CombatVisual.TEXT_BUDGET)break;
+                    if(!visible(hit.hex)||(strike!=null&&hit.text.endsWith("兵")))continue;if(count++>=CombatVisual.TEXT_BUDGET)break;
                     float x=camera.screenX(snapshot.ground.grid.x(hit.hex));
                     float y=camera.screenY(snapshot.ground.grid.z(hit.hex),snapshot.ground.surface.at(hit.hex)+.9f)-progress*28*d;
                     // Different lines at the same tile stay readable (troops, morale, status).
@@ -437,8 +446,11 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 MapSceneSnapshot.Item item=object.item;boolean selected=item.hex.equals(snapshot.selected);
                 String first=item.displayLabel(),second=null;
                 if(item.unit!=null){UnitVisual u=item.unit;
-                    first=selected?u.commander+" · "+u.equipment:u.commander+" · "+u.troops;
-                    if(selected)second=u.troops+"兵 · 气"+u.energy+(u.status==War.Status.NORMAL?"":" · "+u.status.label)+(u.burning>0?" · 起火":"");
+                    int shownTroops=u.troops;
+                    if(replay!=null){int active=Math.min(replay.strikes.size()-1,(int)(CombatVisual.fraction(replayFraction)*replay.strikes.size()));
+                        for(int k=0;k<replay.strikes.size();k++){TurnJournal.Strike hit=replay.strikes.get(k);if(hit.targetId==u.id&&(k<active||k==active&&CombatVisual.phase(replay,replayFraction)>=CombatVisual.HIT))shownTroops=hit.afterTroops;}}
+                    first=selected?u.commander+" · "+u.equipment:u.commander+" · "+shownTroops;
+                    if(selected)second=shownTroops+"兵 · 气"+u.energy+(u.status==War.Status.NORMAL?"":" · "+u.status.label)+(u.burning>0?" · 起火":"");
                 }else if(item.facility!=null&&!selected){MapSceneSnapshot.FacilityState f=item.facility;first=item.label+(f.level>0?" Lv"+f.level:"")+(f.burning?" · 火":!f.complete?" · 建":"");}
                 float width=p.measureText(first);if(second!=null)width=Math.max(width,p.measureText(second));
                 float x=camera.screenX(object.motion.x)-width/2,y=camera.screenY(object.motion.z,object.y+1);

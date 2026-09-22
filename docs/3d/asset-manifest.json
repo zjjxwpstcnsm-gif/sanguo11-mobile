@@ -1,5 +1,5 @@
 {
-  "stage": "S04/S05 runtime assets and articulated animation implemented; installed and hardware acceptance tracked separately",
+  "stage": "S06 combat runtime implemented; native and physical-device acceptance tracked separately",
   "filament": "1.56.0",
   "matc": "1.56.0",
   "backend": "OpenGL ES",
@@ -79,6 +79,20 @@
       },
       "batching": "one merged body mesh per formation; opaque trees merged in 8x8 chunks; not GPU skinning or GPU instancing",
       "finalArtAccepted": false
+    },
+    {
+      "generator": "app/src/main/java/game/sanguo/mobile/CombatVisual.java#mesh",
+      "role": "six original opaque shared effect meshes: arrow, debris/stone, flame, slash, lightning, recovery",
+      "license": "CC0 original geometry",
+      "uv": false,
+      "textures": 0,
+      "materials": 1,
+      "pool_capacity": 48,
+      "persistent_fire_budget": 16,
+      "source_sha256": "7db12a28e836d79ce6decfd51bbf1bf37393c745b628aaee1d0bf0ec273f9ee0",
+      "animation": "deterministic event fraction; existing core fire duration",
+      "lod": "bounded/cull offscreen, no added texture LOD",
+      "final_art": false
     }
   ],
   "unitCoverage": "docs/3d/acceptance/s05-status.md"
