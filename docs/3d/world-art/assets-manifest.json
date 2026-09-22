@@ -2272,7 +2272,7 @@
     }
   ],
   "s13Verification": {
-    "runtimeSource": "8757d71aa4965e03be54464b64d95e9fdeccd5a6",
+    "runtimeSource": "72ee184e2d2a740bf2be88fb9362c9994e9dc160",
     "assetChanges": false,
     "terrainTextures": 8,
     "environmentEntries": 175,
@@ -2281,6 +2281,14 @@
       "scripts/verify-environment-assets.py"
     ],
     "result": "PASS",
-    "note": "Grid uses existing Canvas overlay; no new texture, model, shader or GPU mesh."
+    "note": "Existing ground shader and textures also serve the procedural non-playable backdrop; no new disk assets.",
+    "proceduralBackdrop": {
+      "source": "SceneMesh.backdrop",
+      "vertices": 3364,
+      "triangles": 1682,
+      "nominalBufferBytes": 222024,
+      "newTextureBytes": 0,
+      "picking": false
+    }
   }
 }
