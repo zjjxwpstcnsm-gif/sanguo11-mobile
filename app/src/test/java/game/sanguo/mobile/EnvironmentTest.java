@@ -12,9 +12,17 @@ public final class EnvironmentTest {
             float len=0;for(int k=0;k<4;k++){float v=m.tangents[i+k];check(Float.isFinite(v),"finite frame");len+=v*v;}
             check(Math.abs(len-1)<.001,"unit quaternion");
         }
-        // Compare decoded normal with area-weighted geometry; this also checks posed joint frames.
-        float[] saved=m.tangents.clone();m.generateTangents();
-        for(int i=0;i<saved.length;i++)check(Math.abs(saved[i]-m.tangents[i])<.001,"frame follows geometry");
+        // Decode the actual quaternion and check geometric facing independently of generation.
+        for(int t=0;t<m.indices.length;t+=3){
+            int ia=m.indices[t],a=ia*7,b=m.indices[t+1]*7,c=m.indices[t+2]*7;
+            double ux=m.vertices[b]-m.vertices[a],uy=m.vertices[b+1]-m.vertices[a+1],uz=m.vertices[b+2]-m.vertices[a+2];
+            double vx=m.vertices[c]-m.vertices[a],vy=m.vertices[c+1]-m.vertices[a+1],vz=m.vertices[c+2]-m.vertices[a+2];
+            double nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx,len=Math.sqrt(nx*nx+ny*ny+nz*nz);
+            if(len<1e-10)continue; // Existing latitude-pole triangles may have zero area.
+            float x=m.tangents[ia*4],y=m.tangents[ia*4+1],z=m.tangents[ia*4+2],w=m.tangents[ia*4+3];
+            double qx=2*(x*z+w*y),qy=2*(y*z-w*x),qz=1-2*(x*x+y*y);
+            check((nx*qx+ny*qy+nz*qz)/len>.5,"decoded normal follows rendered triangle winding");
+        }
     }
     public static void main(String[] args)throws Exception{
         int meshes=0;
