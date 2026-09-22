@@ -7,6 +7,7 @@ import java.util.*;
 final class SceneMesh {
     private static final World.Terrain[] TERRAIN_TYPES=World.Terrain.values();
     SceneMesh distant;
+    boolean vegetation;
     // Disjoint index ranges share the same surface and buffers, but never draw water as land.
     int landIndexCount=-1;
     long fingerprint; int chunkQ,chunkR;

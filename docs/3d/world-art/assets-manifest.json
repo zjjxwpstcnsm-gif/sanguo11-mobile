@@ -1935,6 +1935,30 @@
       "mips": "atlas baked linear-light BOX; PNG fallback runtime mip chain"
     },
     {
+      "path": "app/src/main/assets/3d/field/tree-upland-lod0.glb",
+      "sha256": "e9d9ccdbbcda4403ec492ed49cecb06b69b1837f6fc89aa141934a603427fb1b",
+      "bytes": 23704,
+      "source": "tools/3d/build_environment.sh; original modular CC0 geometry; matc 1.56.0 (56)",
+      "license": "CC0-1.0 assets; Apache-2.0 compiler",
+      "consumer": "FilamentMapView / SiteGlb / FieldAssets",
+      "colorSpace": "sRGB atlas; linear vertex colors and normal-aligned quaternion frames",
+      "normals": "Generated on split face vertices at load; regenerate once per cached CPU pose",
+      "compression": "GLB uncompressed float / uint32; atlas ETC2 SRGB8 plus PNG fallback; no normal-map textures",
+      "mips": "atlas baked linear-light BOX; PNG fallback runtime mip chain"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/tree-upland-lod1.glb",
+      "sha256": "7c97aaed01cd01ef3a8099601aef01c39b6c0e96b9a66b53811fa20c0165460f",
+      "bytes": 18156,
+      "source": "tools/3d/build_environment.sh; original modular CC0 geometry; matc 1.56.0 (56)",
+      "license": "CC0-1.0 assets; Apache-2.0 compiler",
+      "consumer": "FilamentMapView / SiteGlb / FieldAssets",
+      "colorSpace": "sRGB atlas; linear vertex colors and normal-aligned quaternion frames",
+      "normals": "Generated on split face vertices at load; regenerate once per cached CPU pose",
+      "compression": "GLB uncompressed float / uint32; atlas ETC2 SRGB8 plus PNG fallback; no normal-map textures",
+      "mips": "atlas baked linear-light BOX; PNG fallback runtime mip chain"
+    },
+    {
       "path": "app/src/main/assets/3d/field/unit-BOAT-lod0.glb",
       "sha256": "c9e7f85b8ecbeb53fff8fb8570ff415ec004b0cc030c6012e4523edc5f525266",
       "bytes": 18200,

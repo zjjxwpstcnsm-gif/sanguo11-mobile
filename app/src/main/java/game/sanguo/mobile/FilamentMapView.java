@@ -262,13 +262,13 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(groundChanged||woodsChanged){
             woodExcluded=excluded;int token=++generation;if(meshTask!=null)meshTask.cancel(true);
             List<SceneMesh> previous=chunks,oldWoods=woods;pending=1;
-            final SceneMesh tree,farTree;
-            try{tree=fieldAssets.mesh("tree-lod0");farTree=fieldAssets.mesh("tree-lod1");}catch(Exception e){failure.accept(e);return;}
+            final SceneMesh tree,farTree,upland,farUpland;
+            try{tree=fieldAssets.mesh("tree-lod0");farTree=fieldAssets.mesh("tree-lod1");upland=fieldAssets.mesh("tree-upland-lod0");farUpland=fieldAssets.mesh("tree-upland-lod1");}catch(Exception e){failure.accept(e);return;}
             meshTask=worker.submit(()->{try{
                 long started=android.os.SystemClock.elapsedRealtime();
                 List<SceneMesh> built=SceneMesh.ground(next.ground,previous);
                 android.util.Log.i("Sanguo3D","Ground CPU ready chunks="+built.size()+" ms="+(android.os.SystemClock.elapsedRealtime()-started));
-                List<SceneMesh> trees=Vegetation.build(next.ground,excluded,oldWoods,tree,farTree);
+                List<SceneMesh> trees=Vegetation.build(next.ground,excluded,oldWoods,tree,farTree,upland,farUpland);
                 android.util.Log.i("Sanguo3D","Field CPU ready forestChunks="+trees.size()+" totalMs="+(android.os.SystemClock.elapsedRealtime()-started));
                 post(()->{if(released||token!=generation)return;
                     for(SceneMesh old:new ArrayList<>(terrain.keySet()))if(!built.contains(old)&&built.stream().noneMatch(m->m.distant==old)){terrain.remove(old).destroy();}
@@ -549,7 +549,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(water>0)b.material(slot,waterMaterial.getDefaultInstance()).geometry(slot,RenderableManager.PrimitiveType.TRIANGLES,vb,ib,land,water);
             b.build(engine,target);
         }
-        void build(int target,MaterialInstance instance){new RenderableManager.Builder(1).boundingBox(new Box(source.x,1.3f,source.z,source.radius,2.7f,source.radius)).material(0,instance).geometry(0,RenderableManager.PrimitiveType.TRIANGLES,vb,ib).castShadows(environmentShadows&&source.uv!=null&&(source.fingerprint==0||quality==SceneQuality.HIGH)).receiveShadows(environmentShadows&&source.uv!=null).build(engine,target);}
+        void build(int target,MaterialInstance instance){new RenderableManager.Builder(1).boundingBox(new Box(source.x,1.3f,source.z,source.radius,2.7f,source.radius)).material(0,instance).geometry(0,RenderableManager.PrimitiveType.TRIANGLES,vb,ib).castShadows(environmentShadows&&source.uv!=null&&(!source.vegetation||quality==SceneQuality.HIGH)).receiveShadows(environmentShadows&&source.uv!=null).build(engine,target);}
         void show(boolean value){if(shown==value)return;shown=value;if(value)scene.addEntity(entity);else scene.removeEntity(entity);}
         void destroy(){scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);engine.destroyVertexBuffer(vb);engine.destroyIndexBuffer(ib);}
     }

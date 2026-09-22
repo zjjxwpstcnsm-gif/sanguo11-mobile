@@ -203,6 +203,14 @@ for lod in range(2):
  for x,y,z,rx,ry,rz in [(-.085,.43,.01,.15,.17,.14),(.09,.48,.035,.16,.19,.14),(0,.60,-.04,.14,.16,.13)]:
   m.oval(x,y,z,rx,ry,rz,6,7 if lod==0 else 5,3 if lod==0 else 2)
  save(m,'tree-lod'+str(lod))
+# Tall open crown variant; smoothly mixed by canonical world region, not administrative borders.
+for lod in range(2):
+ m=Mesh();m.frustum(0,0,0,.023,.023,.52,.5,2,5)
+ for a,y in [(0,.43),(2.1,.52),(4.2,.62)]:
+  x,z=.10*math.cos(a),.10*math.sin(a)
+  m.beam((0,.28,0),(x,y,z),.025)
+  m.oval(x,y,z,.11,.16,.10,6,7 if lod==0 else 5,3 if lod==0 else 2)
+ save(m,'tree-upland-lod'+str(lod))
 # Dedicated construction scaffold and opaque fire tongue modules (no alpha overdraw).
 m=Mesh()
 for x in [-.4,.4]:

@@ -31,13 +31,13 @@ public final class EnvironmentTest {
         up.generateTangents();check(Math.abs(up.tangents[0]+.7071068f)<.0001,"up facing frame");
         World w=new World(24,24,"甲","乙");for(World.Terrain[] row:w.terrain)Arrays.fill(row,World.Terrain.FOREST);
         MapSceneSnapshot.Ground g=new MapSceneSnapshot.Ground(w);byte[] before=g.terrain.clone();
-        List<SceneMesh> forest=Vegetation.build(g,Collections.emptySet(),Collections.emptyList(),assets.mesh("tree-lod0"),assets.mesh("tree-lod1"));
-        for(SceneMesh m:forest){frames(m);frames(m.distant);check(m.radius==m.distant.radius&&m.x==m.distant.x&&m.z==m.distant.z,"same tree centers at LOD");}
+        List<SceneMesh> forest=Vegetation.build(g,Collections.emptySet(),Collections.emptyList(),assets.mesh("tree-lod0"),assets.mesh("tree-lod1"),assets.mesh("tree-upland-lod0"),assets.mesh("tree-upland-lod1"));
+        for(SceneMesh m:forest){frames(m);frames(m.distant);check(m.vegetation&&m.distant.vegetation,"both forest LODs use forest shadow budget");check(m.radius==m.distant.radius&&m.x==m.distant.x&&m.z==m.distant.z,"same tree centers at LOD");}
         Set<Hex> removed=new HashSet<>();removed.add(new Hex(12,12));
-        List<SceneMesh> excluded=Vegetation.build(g,removed,forest,assets.mesh("tree-lod0"),assets.mesh("tree-lod1"));
+        List<SceneMesh> excluded=Vegetation.build(g,removed,forest,assets.mesh("tree-lod0"),assets.mesh("tree-lod1"),assets.mesh("tree-upland-lod0"),assets.mesh("tree-upland-lod1"));
         check(!Vegetation.eligible(g,removed,new Hex(12,12)),"site footprint excluded");
         check(!Vegetation.eligible(g,removed,new Hex(13,12)),"site margin excluded");
-        List<SceneMesh> restored=Vegetation.build(g,Collections.emptySet(),excluded,assets.mesh("tree-lod0"),assets.mesh("tree-lod1"));
+        List<SceneMesh> restored=Vegetation.build(g,Collections.emptySet(),excluded,assets.mesh("tree-lod0"),assets.mesh("tree-lod1"),assets.mesh("tree-upland-lod0"),assets.mesh("tree-upland-lod1"));
         for(int i=0;i<forest.size();i++)check(Arrays.equals(forest.get(i).vertices,restored.get(i).vertices),"delete restores deterministic tree distribution");
         check(Arrays.equals(before,new MapSceneSnapshot.Ground(w).terrain),"terrain neutral");
         System.out.println("PASS S12 environment: "+checks+" assertions; "+meshes+" authored meshes, posed frames, LOD centers, site edit restore, terrain neutrality");

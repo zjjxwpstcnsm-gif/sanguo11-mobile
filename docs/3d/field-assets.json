@@ -2474,6 +2474,46 @@
       ]
     },
     {
+      "file": "tree-upland-lod0.glb",
+      "sha256": "e9d9ccdbbcda4403ec492ed49cecb06b69b1837f6fc89aa141934a603427fb1b",
+      "bytes": 23704,
+      "triangles": 171,
+      "vertices": 347,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.13631342249844988,
+        0,
+        -0.17158881112215718,
+        0.19526279441628824,
+        0.78,
+        0.17075217054568576
+      ]
+    },
+    {
+      "file": "tree-upland-lod1.glb",
+      "sha256": "7c97aaed01cd01ef3a8099601aef01c39b6c0e96b9a66b53811fa20c0165460f",
+      "bytes": 18156,
+      "triangles": 105,
+      "vertices": 215,
+      "materials": 1,
+      "texture": [
+        512,
+        64
+      ],
+      "bounds": [
+        -0.13947647984123,
+        0,
+        -0.1822632288708742,
+        0.21000000000000002,
+        0.78,
+        0.18142658829440272
+      ]
+    },
+    {
       "file": "scaffold.glb",
       "sha256": "3fc84a216a6e74450e307a2f822057d06ba5a74e58543ffe30d7338ab5ca0ee6",
       "bytes": 15860,

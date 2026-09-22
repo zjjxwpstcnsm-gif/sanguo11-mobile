@@ -5,13 +5,16 @@ import java.util.*;
 
 /** Opaque merged vegetation: one renderable per visible 8x8 chunk, never one per tree. */
 final class Vegetation {
-    static final int CHUNK=8,SEED=0x3111201;
+    static final int CHUNK=8,SEED=0x3111202;
     static Set<Hex> exclusions(MapSceneSnapshot snapshot){
         Set<Hex> result=new HashSet<>(snapshot.ground.bases);
         for(MapSceneSnapshot.Item item:snapshot.items)if(item.facility!=null)result.add(item.hex);
         return result;
     }
     static List<SceneMesh> build(MapSceneSnapshot.Ground ground,Set<Hex> excluded,List<SceneMesh> previous,SceneMesh tree,SceneMesh farTree){
+        return build(ground,excluded,previous,tree,farTree,tree,farTree);
+    }
+    static List<SceneMesh> build(MapSceneSnapshot.Ground ground,Set<Hex> excluded,List<SceneMesh> previous,SceneMesh tree,SceneMesh farTree,SceneMesh upland,SceneMesh farUpland){
         Map<String,SceneMesh> cache=new HashMap<>();for(SceneMesh m:previous)cache.put(m.chunkQ+":"+m.chunkR,m);
         List<SceneMesh> result=new ArrayList<>();
         for(int r=0;r<ground.height;r+=CHUNK)for(int q=0;q<ground.width;q+=CHUNK){
@@ -29,7 +32,7 @@ final class Vegetation {
                 Hex h=new Hex(qq,rr);if(eligible(ground,excluded,h))cells.add(h);
             }
             if(cells.isEmpty())continue;
-            SceneMesh near=merge(ground,cells,tree,false),far=merge(ground,cells,farTree,true);
+            SceneMesh near=merge(ground,cells,tree,upland),far=merge(ground,cells,farTree,farUpland);
             near.chunkQ=q;near.chunkR=r;near.fingerprint=fingerprint;near.distant=far;result.add(near);
         }
         return Collections.unmodifiableList(result);
@@ -57,7 +60,7 @@ final class Vegetation {
         }
         return total==0?0:forest/total;
     }
-    private static SceneMesh merge(MapSceneSnapshot.Ground ground,List<Hex> cells,SceneMesh tree,boolean far){
+    private static SceneMesh merge(MapSceneSnapshot.Ground ground,List<Hex> cells,SceneMesh broadleaf,SceneMesh upland){
         List<Float> vertices=new ArrayList<>();List<Integer> indices=new ArrayList<>();List<Float> tex=new ArrayList<>();
         float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
         for(Hex h:cells){
@@ -70,6 +73,8 @@ final class Vegetation {
             if((mix(hash^0x55ab)&65535)/65535f>density(ground,x,z)*.86f)continue;
             float scale=.65f+((hash>>>4)&255)/255f*.30f,y=ground.surface.meshHeight(x,z);
             float angle=(hash&65535)/65535f*6.283185f,cs=(float)Math.cos(angle),sn=(float)Math.sin(angle);
+            float region=.5f+.35f*(float)(Math.sin(x*.13)*Math.cos(z*.11));
+            SceneMesh tree=((hash>>>22)&255)/255f<region?broadleaf:upland;
             int offset=vertices.size()/7;
             for(int v=0;v<tree.vertices.length;v+=7){vertices.add((tree.vertices[v]*cs+tree.vertices[v+2]*sn)*scale+x);vertices.add(tree.vertices[v+1]*scale+y);vertices.add((-tree.vertices[v]*sn+tree.vertices[v+2]*cs)*scale+z);for(int k=3;k<7;k++)vertices.add(tree.vertices[v+k]);}
             for(int i:tree.indices)indices.add(offset+i);for(float uv:tree.uv)tex.add(uv);
@@ -78,6 +83,6 @@ final class Vegetation {
         }
         if(vertices.isEmpty()){minX=ground.grid.x(cells.get(0));maxX=minX;minZ=ground.grid.z(cells.get(0));maxZ=minZ;}
         SceneMesh mesh=new SceneMesh(vertices,indices,(minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+1);
-        mesh.uv=new float[tex.size()];for(int i=0;i<tex.size();i++)mesh.uv[i]=tex.get(i);mesh.generateTangents();return mesh;
+        mesh.vegetation=true;mesh.uv=new float[tex.size()];for(int i=0;i<tex.size();i++)mesh.uv[i]=tex.get(i);mesh.generateTangents();return mesh;
     }
 }
