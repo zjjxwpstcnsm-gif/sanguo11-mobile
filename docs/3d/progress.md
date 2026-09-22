@@ -43,3 +43,25 @@ cold-start and installed-data measurements. Do not infer these from emulator tim
 Choreographer callback intervals. 3D art remains S01 transition quality. 2D-only overlays
 and editors remain available through compatibility fallback. S02 reuses this foundation;
 it must not declare the pending hardware/performance gates complete.
+
+# S04 request — prerequisite BLOCKED; facility state repair delivered
+
+- Input branch SHA: `df1c1f94210bd558b1be9abcf8ff564ce4783dc2`; main remains
+  `1a883a4ffd1098ca85f7da38464b7c5fbfdc000f`. Same branch and PR #62, no merge.
+- Remote preflight found S01 only: S02 terrain and S03 site assets/model contract are absent.
+  Do not treat the user's earlier stage requests as delivered code. S04 remains **PARTIAL/BLOCKED**.
+- Production repair: detached facility type/level/construction/upgrade/HP/fire/owner/direction
+  state; visible status labels and domestic ownership color; unreferenced GPU mesh reclamation;
+  reposition surviving objects when the ground projection changes. Existing shared core coverage remains.
+- Coverage matrix and exact blockers: `acceptance/s04-preflight.md` (11 domestic + 19 military types).
+  All final facility art remains explicitly blocked, not passed off as placeholder coverage.
+- Local verification: existing S01 545,728 assertions; new facility-state 133 assertions;
+  UI 49,018, terrain connections 451, tile geometry 1,136,811, coordinate checkpoint 1,168,801,
+  map coordinate cumulative 898,305, siege rules 11,371 and overlay 14 all pass.
+- Offline Gradle APK, Android test APK and lintDebug passed using installed JDK21 with Java17
+  source/target and the existing Android35 SDK/Filament1.56.0. Final APK source identity and
+  checksum are recorded beside the exported artifact and in PR #62, not in a self-referential commit.
+- No attached device or local emulator/KVM: installed state transitions, native resource lifetime,
+  screenshots, CPU/GPU/frame percentiles, PSS, texture memory and density stress tests remain unmeasured.
+- No new final models, forest placement, vegetation LOD/instancing or dirty-region updates are claimed.
+  Remain on this branch; resume S04 only after actual S02/S03 delivery and preflight verification.
