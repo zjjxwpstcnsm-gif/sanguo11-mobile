@@ -34,7 +34,7 @@ public final class CustomMaps {
         for(var e:p.scenarioBases.entrySet())if(!Objects.equals(b.scenarioHashes.get(e.getKey()),e.getValue()))throw new IOException("剧本内容基线冲突："+e.getKey());
         for(MapPatch.Cell c:p.terrain.values())if(b.restricted(c.x(),c.y())||b.terrain(c.x(),c.y())!=c.before())throw new IOException("地形前置值冲突："+c.x()+","+c.y());
         for(MapPatch.SiteChange c:p.sites.values())if(!Objects.equals(b.sites.get(c.id()),c.before()))throw new IOException("据点前置值或ID冲突："+c.id());
-        SortedMap<Integer,MapPatch.Site> geo=sites(p);if(geo.size()>1000||geo.isEmpty())throw new IOException("有效据点数量必须在1—1000之间");
+        SortedMap<Integer,MapPatch.Site> geo=sites(p);for(int id:p.appearances.keySet())if(!geo.containsKey(id))throw new IOException("视觉元数据引用不存在的据点 #"+id);for(int cell:p.heights.keySet())if(b.restricted(cell/200,cell%200)||b.terrain(cell/200,cell%200)==World.Terrain.VOID)throw new IOException("不能给地图边界设置高度");if(geo.size()>1000||geo.isEmpty())throw new IOException("有效据点数量必须在1—1000之间");
         for(MapPatch.Site s:geo.values())if(s.kind()!=World.SiteKind.CITY){MapPatch.Site parent=geo.get(s.parent());if(parent==null||parent.kind()!=World.SiteKind.CITY)throw new IOException(s.name()+"的关联城市无效");}
         for(var e:p.scenarios.entrySet()){if(!b.scenarioHashes.containsKey(e.getKey()))throw new IOException("未知剧本覆盖");for(int id:e.getValue().keySet())if(!geo.containsKey(id))throw new IOException("剧本覆盖引用已删除据点："+id);}
         for(var e:p.redirects.entrySet())for(var r:e.getValue().entrySet())if(!geo.containsKey(r.getValue())||r.getKey().equals(r.getValue()))throw new IOException("引用迁移目的地无效");
@@ -82,7 +82,7 @@ public final class CustomMaps {
             if(w.events.hazards.containsKey(id))throw new IOException("删除/禁用受阻：初始灾害引用该据点");
             w.development.remove(id);w.events.regions.remove(id);
         }
-        w.customMapId=p.id;w.customMapName=p.name;w.customMapRevision=p.revision;w.customMapBase=p.base;w.customMapFingerprint=p.fingerprint();w.terrainRevision++;
+        w.customMapId=p.id;w.customMapName=p.name;w.customMapRevision=p.revision;w.customMapBase=p.base;w.customMapFingerprint=p.logicalFingerprint();w.visualMap=p.copy();w.terrainRevision++;
         w.governance.reconcile(false);w.invalidateSiteIndex();
         // This is a new opening, not an in-progress geographic/capture event.
         // Reset the report comparison baseline after all geographic/state redirects.
@@ -135,7 +135,7 @@ public final class CustomMaps {
             World w=preview(current,scenario);World.City c=w.city(id);if(c!=null){World.City best=relocation(w,id,parentReplacement);if(best!=null)next.redirects.computeIfAbsent(scenario,k->new TreeMap<>()).put(id,best.id);}
             SortedMap<Integer,MapPatch.Initial> states=next.scenarios.get(scenario);if(states!=null){states.remove(id);if(states.isEmpty())next.scenarios.remove(scenario);}
         }
-        if(base().sites.containsKey(id))next.putSite(base().sites.get(id),null);else next.sites.remove(id);
+        if(base().sites.containsKey(id))next.putSite(base().sites.get(id),null);else next.sites.remove(id);next.appearances.remove(id);
         // Redirects to an entity being deleted are redirected too, atomically with this deletion.
         for(var e:next.redirects.entrySet())for(var r:new ArrayList<>(e.getValue().entrySet()))if(r.getValue()==id){Integer destination=e.getValue().get(id);if(destination==null)throw new IOException("其他已删除据点仍迁移到此处，须先改引用");e.getValue().put(r.getKey(),destination);}
         for(String scenario:base().scenarioHashes.keySet())preview(next,scenario);return next;

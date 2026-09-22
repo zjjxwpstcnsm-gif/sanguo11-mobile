@@ -18,7 +18,7 @@ public final class MapEditorActivity extends Activity {
     private final ExecutorService worker=Executors.newSingleThreadExecutor();
     private MapLibrary library;
     private MapEditSession session;
-    private MapView map;
+    private MapHost map;
     private LinearLayout tools;
     private TextView coordinate,status;
     private ProgressBar progress;
@@ -39,14 +39,24 @@ public final class MapEditorActivity extends Activity {
     private Button button(String label,Runnable run){Button b=CompactButtons.create(this);b.setText(label);b.setTextSize(11);b.setOnClickListener(v->{if(!busy&&session!=null)run.run();});return b;}
     private void build(){LinearLayout root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(0xff14252d);coordinate=text("地图编辑器 · 读取草稿",13);coordinate.setMaxLines(2);root.addView(coordinate);status=text("",11);status.setMaxLines(2);root.addView(status);
         progress=new ProgressBar(this,null,android.R.attr.progressBarStyleHorizontal);progress.setIndeterminate(true);progress.setVisibility(View.GONE);root.addView(progress,new LinearLayout.LayoutParams(-1,dp(3)));
-        map=new MapView(this,this::tap);map.editorMode(this::strokeEvent);root.addView(map,new LinearLayout.LayoutParams(-1,0,1));
+        map=new MapHost(this,this::tap);map.editorMode(this::strokeEvent);root.addView(map,new LinearLayout.LayoutParams(-1,0,1));
         LinearLayout tabs=new LinearLayout(this);root.addView(tabs);String[] names={"地形","据点","检查"};for(int i=0;i<names.length;i++){final int index=i;tabs.addView(button(names[i],()->{cancelPlacement();tab=index;toolbar();}),new LinearLayout.LayoutParams(0,dp(44),1));}
         HorizontalScrollView scrolling=new HorizontalScrollView(this);scrolling.setHorizontalScrollBarEnabled(false);tools=new LinearLayout(this);scrolling.addView(tools);root.addView(scrolling,new LinearLayout.LayoutParams(-1,dp(48)));
         LinearLayout common=new LinearLayout(this);root.addView(common);common.addView(button("撤销",()->change("撤销",()->{session.undo();return null;})),new LinearLayout.LayoutParams(0,dp(44),1));common.addView(button("重做",()->change("重做",()->{session.redo();return null;})),new LinearLayout.LayoutParams(0,dp(44),1));common.addView(button("定位",this::locate),new LinearLayout.LayoutParams(0,dp(44),1));common.addView(button("地图",this::libraryMenu),new LinearLayout.LayoutParams(0,dp(44),1));setContentView(root);toolbar();}
-    private void toolbar(){tools.removeAllViews();if(tab==0){add(drawing?"绘制中":"浏览",()->{drawing=!drawing;rectangleStart=null;map.editorDrawing(drawing&&"连续画笔".equals(tool));toolbar();refresh(drawing?"绘制：单指操作；双指只平移/缩放":"浏览：单指平移，点击选格");});add(TerrainPresentation.of(brush).name(),this::chooseTerrain);add(tool,this::chooseTool);add("范围 "+(radius==0?"1格":radius==1?"7格":"19格"),()->{radius=(radius+1)%3;toolbar();});add("辅助层",this::layers);}
+    private void toolbar(){tools.removeAllViews();add(map.is3D()?"切换2D":"切换3D",()->{map.switchMode(!map.is3D());toolbar();});add("回正",map::resetOrientation);add("视觉属性",this::visualProperties);if(tab==0){add(drawing?"绘制中":"浏览",()->{drawing=!drawing;rectangleStart=null;map.editorDrawing(drawing&&"连续画笔".equals(tool));toolbar();refresh(drawing?"绘制：单指操作；双指只平移/缩放":"浏览：单指平移，点击选格");});add(TerrainPresentation.of(brush).name(),this::chooseTerrain);add(tool,this::chooseTool);add("范围 "+(radius==0?"1格":radius==1?"7格":"19格"),()->{radius=(radius+1)%3;toolbar();});add("辅助层",this::layers);}
         else if(tab==1){add("新增",this::addSite);add("据点列表",this::siteList);add("属性",this::selectedProperties);add("移动",()->selectedSite(s->place(s,"移动")));add("复制",()->selectedSite(s->{try{place(s.copy(session.newId()),"复制");}catch(Exception e){error(e);}}));add("删除",()->selectedSite(this::deleteSite));add("取消放置",this::cancelPlacement);}
         else{add("检查地图",this::validateMap);add("诊断列表 "+issues.size(),this::showIssues);add("预览剧本",this::chooseScenario);add("主水系",this::waterInfo);add("辅助层",this::layers);add("全图",map::fit);}
         map.editorDrawing(tab==0&&drawing&&"连续画笔".equals(tool));}
+    private void visualProperties(){
+        if(selected==null||!session.world().inside(selected)){status.setText("先选中有效地块");return;}
+        MapPatch patch=session.patch();SourceGridCoord source=MapCoordinates.nationalSource(session.world(),selected);int cell=source.x*200+source.y;
+        World.City site=session.world().cityAt(selected);MapPatch.Appearance appearance=site==null?null:patch.appearances.get(site.id);
+        LinearLayout form=form();form.addView(text("仅改变3D外观。水面和据点占地保持水平；地形重绘会清除此格高度。旧版应用不支持带视觉字段的格式2。",12));
+        EditText height=input(form,"视觉高度 0—2600（千分之一格）",String.valueOf(patch.heights.getOrDefault(cell,60)),true);
+        EditText variant=site==null?null:input(form,"城市模型变体 0—2",String.valueOf(appearance==null?0:appearance.variant()),true);
+        EditText angle=site==null?null:input(form,"模型朝向 0—359度",String.valueOf(appearance==null?0:appearance.degrees()),true);
+        new AlertDialog.Builder(this).setTitle("视觉属性 · 可撤销").setView(scroll(form)).setNegativeButton("取消",null).setNeutralButton("恢复默认",(d,n)->change("重置视觉",()->{MapPatch next=session.patch();next.heights.remove(cell);if(site!=null)next.appearances.remove(site.id);session.replace("重置视觉",next);return "已恢复默认外观";})).setPositiveButton("应用",(d,n)->{try{int h=number(height);if(h<0||h>2600)throw new IOException("高度必须在0—2600");MapPatch next=session.patch();next.heights.put(cell,h);if(site!=null){int v=number(variant),a=number(angle);if(v<0||v>2||a<0||a>359)throw new IOException("变体或朝向超出范围");next.appearances.put(site.id,new MapPatch.Appearance(v,a));}change("视觉属性",()->{session.replace("视觉属性",next);return "外观已更新；逻辑规则不变";});}catch(Exception e){error(e);}}).show();
+    }
     private void add(String label,Runnable run){tools.addView(button(label,run),new LinearLayout.LayoutParams(-2,-1));}
     private void refresh(String message){if(session==null)return;World w=session.world();map.setWorld(w,selected,-1);map.editorLayers(grid,coords,passability,footprints);MapPatch p=session.patch();String at=selected!=null&&w.sourceInside(selected)?MapCoordinates.display(w,selected)+" · "+TerrainPresentation.of(w.terrain[selected.q][selected.r]).name():"点选地图格子";coordinate.setText(at+"\n"+p.name+" r"+p.revision+" · "+w.scenarioName);status.setText(message);toolbar();}
     private void tap(Hex h){if(busy||session==null||h==null)return;selected=h;
@@ -115,6 +125,7 @@ public final class MapEditorActivity extends Activity {
     private void error(Exception e){map.setVisibility(View.VISIBLE);status.setText("操作未完成："+e.getMessage());AlertDialog.Builder dialog=new AlertDialog.Builder(this).setTitle("操作失败，请检查草稿保存状态").setMessage(e.getMessage()==null?e.toString():e.getMessage()).setPositiveButton("返回",null);if(session==null)dialog.setNeutralButton("保留旧文件并新建",(d,n)->work("保留恢复副本并建立新草稿",()->{library.archiveDraft();MapPatch fresh=CustomMaps.base().fresh();library.saveDraft(fresh);return new MapEditSession(fresh);},s->{session=s;refresh("旧草稿文件保留为恢复副本；已创建新的原版副本");map.post(map::fit);}));dialog.show();}
     @Override public void onBackPressed(){if(busy){status.setText("当前事务尚未结束，返回未执行");return;}if(session==null){finish();return;}if(!session.dirty()){finish();return;}new AlertDialog.Builder(this).setTitle("保存修改后退出？").setNegativeButton("取消",null).setNeutralButton("不保存退出",(d,n)->{discardOnExit=true;finish();}).setPositiveButton("保存并退出",(d,n)->{MapPatch p=session.patch();work("保存草稿",()->{library.saveDraft(p);return true;},done->finish());}).show();}
     @Override protected void onSaveInstanceState(Bundle out){if(map!=null)map.saveCamera(out);super.onSaveInstanceState(out);}
-    @Override protected void onPause(){super.onPause();if(session!=null&&!discardOnExit){MapPatch snapshot;long expected;synchronized(session){snapshot=session.patch();expected=session.generation();}worker.execute(()->{try{if(session.generation()==expected)library.saveDraft(snapshot);}catch(IOException ignored){/* Every edit already saves atomically; foreground save surfaces errors. */}});}}
-    @Override protected void onDestroy(){destroyed=true;worker.shutdown();super.onDestroy();}
+    @Override protected void onResume(){super.onResume();if(map!=null)map.resume(true);}
+    @Override protected void onPause(){super.onPause();if(map!=null)map.resume(false);if(session!=null&&!discardOnExit){MapPatch snapshot;long expected;synchronized(session){snapshot=session.patch();expected=session.generation();}worker.execute(()->{try{if(session.generation()==expected)library.saveDraft(snapshot);}catch(IOException ignored){/* Every edit already saves atomically; foreground save surfaces errors. */}});}}
+    @Override protected void onDestroy(){destroyed=true;if(map!=null)map.release();worker.shutdown();super.onDestroy();}
 }

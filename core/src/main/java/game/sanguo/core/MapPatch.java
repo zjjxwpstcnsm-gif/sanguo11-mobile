@@ -9,7 +9,11 @@ import static game.sanguo.core.MapJson.*;
 /** Editable geographic delta. No running campaign objects or current captures enter this file.
  * Coordinates are national SOURCE coordinates, not renderer pixels or axial array indexes. */
 public final class MapPatch {
-    public static final int FORMAT=1;
+    public static final int FORMAT=2;
+    /** Presentation metadata: integer millimetres/degrees and bundled model variants only. */
+    public final SortedMap<Integer,Integer> heights=new TreeMap<>();
+    public record Appearance(int variant,int degrees){}
+    public final SortedMap<Integer,Appearance> appearances=new TreeMap<>();
     public record Cell(int x,int y,World.Terrain before,World.Terrain after) {
         public int key(){return x*200+y;}
         Object json(){return obj("x",x,"y",y,"before",before.name(),"after",after.name());}
@@ -39,17 +43,28 @@ public final class MapPatch {
     /** Explicit per-scenario reference migration, never inferred at load time. */
     public final SortedMap<String,SortedMap<Integer,Integer>> redirects=new TreeMap<>();
     public MapPatch(String name,String base){this.id=UUID.randomUUID().toString();this.name=name;this.base=base;}
-    public MapPatch copy(){MapPatch p=new MapPatch(name,base);p.id=id;p.revision=revision;p.preview=preview;p.terrain.putAll(terrain);p.sites.putAll(sites);p.scenarioBases.putAll(scenarioBases);for(var e:scenarios.entrySet())p.scenarios.put(e.getKey(),new TreeMap<>(e.getValue()));for(var e:redirects.entrySet())p.redirects.put(e.getKey(),new TreeMap<>(e.getValue()));return p;}
+    public MapPatch copy(){MapPatch p=new MapPatch(name,base);p.id=id;p.revision=revision;p.preview=preview;p.heights.putAll(heights);p.appearances.putAll(appearances);p.terrain.putAll(terrain);p.sites.putAll(sites);p.scenarioBases.putAll(scenarioBases);for(var e:scenarios.entrySet())p.scenarios.put(e.getKey(),new TreeMap<>(e.getValue()));for(var e:redirects.entrySet())p.redirects.put(e.getKey(),new TreeMap<>(e.getValue()));return p;}
     public void putSite(Site original,Site value){int key=original==null?value.id():original.id();if(Objects.equals(original,value))sites.remove(key);else sites.put(key,new SiteChange(original,value));}
     public Initial initial(String scenario,int site){return scenarios.getOrDefault(scenario,Collections.emptySortedMap()).get(site);}
     public Integer redirect(String scenario,int site){return redirects.getOrDefault(scenario,Collections.emptySortedMap()).get(site);}
     public String summary(){int added=0,moved=0,removed=0,updated=0;for(SiteChange c:sites.values()){if(c.before==null)added++;else if(c.after==null)removed++;else if(c.before.x!=c.after.x||c.before.y!=c.after.y)moved++;else updated++;}return "地形 "+terrain.size()+" 格 · 新增 "+added+" · 移动 "+moved+" · 修改 "+updated+" · 删除 "+removed+" 据点\n剧本覆盖 "+scenarios.keySet()+" · 引用迁移 "+redirects.keySet();}
-    public byte[] encode(){List<Object> cells=new ArrayList<>(),entities=new ArrayList<>(),states=new ArrayList<>(),refs=new ArrayList<>();for(Cell c:terrain.values())cells.add(c.json());for(SiteChange c:sites.values())entities.add(c.json());for(var e:scenarios.entrySet())for(var x:e.getValue().entrySet())states.add(obj("scenario",e.getKey(),"id",x.getKey(),"state",x.getValue().json()));for(var e:redirects.entrySet())for(var x:e.getValue().entrySet())refs.add(obj("scenario",e.getKey(),"from",x.getKey(),"to",x.getValue()));return bytes(obj("format",FORMAT,"baseFingerprint",base,"mapId",id,"name",name,"revision",revision,"previewScenario",preview,"scenarioFingerprints",new TreeMap<>(scenarioBases),"terrain",cells,"sites",entities,"initialStates",states,"redirects",refs));}
+    private byte[] geography(){List<Object> cells=new ArrayList<>(),entities=new ArrayList<>(),states=new ArrayList<>(),refs=new ArrayList<>();for(Cell c:terrain.values())cells.add(c.json());for(SiteChange c:sites.values())entities.add(c.json());for(var e:scenarios.entrySet())for(var x:e.getValue().entrySet())states.add(obj("scenario",e.getKey(),"id",x.getKey(),"state",x.getValue().json()));for(var e:redirects.entrySet())for(var x:e.getValue().entrySet())refs.add(obj("scenario",e.getKey(),"from",x.getKey(),"to",x.getValue()));return bytes(obj("format",1,"baseFingerprint",base,"mapId",id,"name",name,"revision",revision,"previewScenario",preview,"scenarioFingerprints",new TreeMap<>(scenarioBases),"terrain",cells,"sites",entities,"initialStates",states,"redirects",refs));}
+    public String logicalFingerprint(){return hash(geography());}
+    public byte[] encode(){
+        if(heights.isEmpty()&&appearances.isEmpty())return geography();
+        try{
+            Map<String,Object> m=object(MapJson.parse(geography()));m.put("format",FORMAT);
+            List<Object> hs=new ArrayList<>(),ss=new ArrayList<>();
+            for(var e:heights.entrySet())hs.add(obj("cell",e.getKey(),"height",e.getValue()));
+            for(var e:appearances.entrySet())ss.add(obj("id",e.getKey(),"variant",e.getValue().variant(),"degrees",e.getValue().degrees()));
+            m.put("visual",obj("version",1,"mapId",id,"contentHash",logicalFingerprint(),"heights",hs,"sites",ss));return bytes(m);
+        }catch(IOException e){throw new IllegalStateException(e);}
+    }
     public static MapPatch read(InputStream in)throws IOException {return decodeObject(MapJson.read(in));}
     public static MapPatch decode(byte[] bytes)throws IOException{return decodeObject(MapJson.parse(bytes));}
     private static MapPatch decodeObject(Object value)throws IOException {
         try{
-            Map<String,Object> m=object(value);keys(m,"format","baseFingerprint","mapId","name","revision","previewScenario","scenarioFingerprints","terrain","sites","initialStates","redirects");integer(m.get("format"),FORMAT,FORMAT);
+            Map<String,Object> m=object(value);int format=integer(m.get("format"),1,FORMAT);if(format==2)keys(m,"format","baseFingerprint","mapId","name","revision","previewScenario","scenarioFingerprints","terrain","sites","initialStates","redirects","visual");else keys(m,"format","baseFingerprint","mapId","name","revision","previewScenario","scenarioFingerprints","terrain","sites","initialStates","redirects");
             MapPatch p=new MapPatch(string(m.get("name"),60),fingerprint(m.get("baseFingerprint")));p.id=string(m.get("mapId"),36);if(!p.id.matches("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"))throw new IOException("地图标识必须是规范UUID");p.revision=integer(m.get("revision"),1,1000000);p.preview=scenario(m.get("previewScenario"));
             Map<String,Object> bases=object(m.get("scenarioFingerprints"));if(bases.size()>100)throw new IOException("剧本数量过多");for(var e:bases.entrySet())p.scenarioBases.put(scenario(e.getKey()),fingerprint(e.getValue()));
             for(Object item:array(m.get("terrain"))){Map<String,Object> c=object(item);keys(c,"x","y","before","after");Cell cell=new Cell(integer(c.get("x"),0,199),integer(c.get("y"),0,199),World.Terrain.valueOf(string(c.get("before"),30)),World.Terrain.valueOf(string(c.get("after"),30)));if(cell.before==cell.after||cell.before==World.Terrain.VOID||cell.after==World.Terrain.VOID||p.terrain.put(cell.key(),cell)!=null)throw new IOException("地形增量重复、无效或试图改变边界");}
@@ -58,6 +73,13 @@ public final class MapPatch {
             if(p.sites.size()>1000)throw new IOException("据点增量过多");
             for(Object item:array(m.get("initialStates"))){Map<String,Object> c=object(item);keys(c,"scenario","id","state");String s=scenario(c.get("scenario"));int id=integer(c.get("id"),0,Integer.MAX_VALUE);Initial state=state(c.get("state"));if(p.scenarios.computeIfAbsent(s,k->new TreeMap<>()).put(id,state)!=null)throw new IOException("剧本据点状态重复");}
             for(Object item:array(m.get("redirects"))){Map<String,Object> c=object(item);keys(c,"scenario","from","to");String s=scenario(c.get("scenario"));int from=integer(c.get("from"),0,Integer.MAX_VALUE),to=integer(c.get("to"),0,Integer.MAX_VALUE);if(from==to||p.redirects.computeIfAbsent(s,k->new TreeMap<>()).put(from,to)!=null)throw new IOException("引用迁移重复或循环");}
+            if(format==2){
+                Map<String,Object> v=object(m.get("visual"));keys(v,"version","mapId","contentHash","heights","sites");integer(v.get("version"),1,1);
+                if(!p.id.equals(string(v.get("mapId"),36))||!p.logicalFingerprint().equals(fingerprint(v.get("contentHash"))))throw new IOException("视觉元数据地图身份或内容哈希不匹配");
+                for(Object raw:array(v.get("heights"))){Map<String,Object> h=object(raw);keys(h,"cell","height");int cell=integer(h.get("cell"),0,39999);if(p.heights.put(cell,integer(h.get("height"),0,2600))!=null)throw new IOException("重复视觉高度");}
+                for(Object raw:array(v.get("sites"))){Map<String,Object> a=object(raw);keys(a,"id","variant","degrees");int site=integer(a.get("id"),0,Integer.MAX_VALUE);if(p.appearances.put(site,new Appearance(integer(a.get("variant"),0,2),integer(a.get("degrees"),0,359)))!=null)throw new IOException("重复模型外观");}
+                if(p.appearances.size()>1000)throw new IOException("模型外观过多");
+            }else if(m.containsKey("visual"))throw new IOException("旧版Patch不接受视觉字段");
             for(String s:p.scenarios.keySet())if(!p.scenarioBases.containsKey(s))throw new IOException("剧本状态缺少基线指纹："+s);for(String s:p.redirects.keySet())if(!p.scenarioBases.containsKey(s))throw new IOException("引用迁移缺少剧本指纹："+s);return p;
         }catch(IllegalArgumentException e){throw new IOException("地图枚举或数值不合法："+e.getMessage(),e);}
     }

@@ -169,3 +169,12 @@ without concurrent Gradle. Contended samples and the idle repeat are both retain
 in benchmarks/s06. Critical-fire 3-turn save validation is an existing separate
 core blocker; see acceptance/s06-combat.md. Native CI first failed during adb root
 reconnection before app install; bounded reconnect + explicit uid verification added.
+
+## S07 — interaction/editor candidate
+
+Input main 1a883a4ffd1098ca85f7da38464b7c5fbfdc000f; same branch and draft PR #62,
+no main merge. Production camera/picking, no forced 2D tactic/label switches,
+3D faction preview, existing editor integration and bounded format-2 visual metadata
+are implemented. Entry: game → 视图 → 3D; editor → 切换3D / 视觉属性.
+See acceptance/s07-interaction.md for actual coverage and remaining installed/manual
+matrix. Default 2D, original gameplay/save bytes and prior-stage contracts retained.

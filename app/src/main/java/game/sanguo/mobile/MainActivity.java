@@ -239,14 +239,16 @@ public final class MainActivity extends Activity {
     }
     private void showMapTools(){
         if(mapPick!=null)cancelMapPick();
-        String[] labels={"全图","定位","导航图","屏幕方向","战报","操作说明","战斗震动","兵种与建筑图例","领地着色 / 前线","势力领地图例","军团托管","全国城池总览","部队标注 / 双条","2D / 3D 试验模式","渲染诊断"};
+        String[] labels={"全图","定位","导航图","屏幕方向","战报","操作说明","战斗震动","兵种与建筑图例","领地着色 / 前线","势力领地图例","军团托管","全国城池总览","部队标注 / 双条","2D / 3D 试验模式","渲染诊断","3D 镜头回正","3D 反向查看"};
         new AlertDialog.Builder(this).setTitle("地图视图").setItems(labels,(d,index)->{
             if(aiRunning&&index!=0&&index!=1&&index!=2&&index!=3&&index!=12){if(index==13)message("渲染模式","请等待本旬演示结束后切换，避免中断当前事件游标。");return;}
             if(index==0){closePanel();map.post(map::fit);}
             else if(index==1){closePanel();if(selected!=null)map.post(()->map.focus(selected));}
             else if(index==2){closePanel();map.toggleNavigator();}
             else if(index==3)showOrientationPicker();
-            else if(index==13){new AlertDialog.Builder(this).setTitle("地图渲染模式").setSingleChoiceItems(new String[]{"2D · 兼容模式","3D · 试验模式（S01 过渡资源）"},map.is3D()?1:0,(dialog,which)->{map.switchMode(which==1);dialog.dismiss();}).setNegativeButton("返回",null).show();}
+            else if(index==13){new AlertDialog.Builder(this).setTitle("地图渲染模式").setSingleChoiceItems(new String[]{"2D · 兼容模式","3D · 战略地图（试验）"},map.is3D()?1:0,(dialog,which)->{map.switchMode(which==1);dialog.dismiss();}).setNegativeButton("返回",null).show();}
+            else if(index==15){map.resetOrientation();}
+            else if(index==16){map.reverseOrientation();}
             else if(index==14){map.toggleDiagnostics();message("渲染诊断",map.report());}
             else if(index==4)showTurnReport();
             else if(index==6){boolean enabled=getPreferences(MODE_PRIVATE).getBoolean("battleHaptics",true);
@@ -1031,7 +1033,7 @@ public final class MainActivity extends Activity {
     private AtomicFile file(String slot){return new AtomicFile(new File(getFilesDir(),slot+".sg11"));}
     private boolean save(String slot,boolean announce){
         if(world==null||unreadableAutosave)return false;
-        AtomicFile f=file(slot);FileOutputStream out=null;try{byte[] bytes=SaveCodec.encode(authoritativeSaveWorld());out=f.startWrite();out.write(bytes);f.finishWrite(out);if(announce)Toast.makeText(this,"局面已保存",Toast.LENGTH_SHORT).show();return true;}
+        AtomicFile f=file(slot);FileOutputStream out=null;try{byte[] bytes=SaveCodec.encode(authoritativeSaveWorld());new MapLibrary(this).rememberVisual(authoritativeSaveWorld());out=f.startWrite();out.write(bytes);f.finishWrite(out);if(announce)Toast.makeText(this,"局面已保存",Toast.LENGTH_SHORT).show();return true;}
         catch(IOException e){if(out!=null)f.failWrite(out);Toast.makeText(this,"保存失败，请检查设备存储空间后重试",Toast.LENGTH_LONG).show();return false;}
     }
     private World readSave(AtomicFile f)throws IOException {try(FileInputStream in=f.openRead()){return SaveCodec.read(in);}}
@@ -1073,7 +1075,7 @@ public final class MainActivity extends Activity {
                 try(OutputStream out=getContentResolver().openOutputStream(data.getData(),"wt")){if(out==null)throw new IOException("无法写入模板");out.write(OfficerTemplateCodec.encode(template));}
                 pending.delete();message("模板已导出",template.name+"可导入其他安装包或存留备用");
             }else if(request==EXPORT_SAVE){
-                byte[] bytes=SaveCodec.encode(world);
+                byte[] bytes=SaveCodec.encode(world);if(world.visualMap!=null&&(!world.visualMap.heights.isEmpty()||!world.visualMap.appearances.isEmpty()))Toast.makeText(this,"旧格式战局不包含3D视觉属性；请同时从地图编辑器导出地图JSON",Toast.LENGTH_LONG).show();
                 try(OutputStream out=getContentResolver().openOutputStream(data.getData(),"wt")){
                     if(out==null)throw new IOException("无法写入文件");out.write(bytes);
                 }

@@ -1,4 +1,4 @@
-name: S01-S06 Filament scene acceptance
+name: S01-S07 Filament scene acceptance
 on:
   push:
     branches: [agent/3d-s01-renderer-foundation]
@@ -33,6 +33,7 @@ jobs:
       - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
       - run: |
           mkdir -p evidence
+          bash scripts/test-3d-interaction.sh | tee evidence/interaction-host.txt
           bash scripts/test-3d-foundation.sh | tee evidence/scene.txt
           bash scripts/test-ui-models.sh | tee evidence/ui.txt
           curl -fsSL https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/scene-json.jar
@@ -78,6 +79,10 @@ jobs:
             adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/installed
             adb logcat -d > evidence/logcat.txt
             grep -q 'PASS S06' evidence/combat-installed.txt
+            timeout 600 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.InteractionSceneInstrumentation | tee evidence/interaction-installed.txt
+            adb pull /sdcard/interaction-scene.mp4 evidence/interaction-scene.mp4
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/interaction-images
+            grep -q 'PASS S07' evidence/interaction-installed.txt
             bash scripts/scene-full-native.sh "${{ inputs.full_native }}"
       - uses: actions/upload-artifact@v4
         if: always()

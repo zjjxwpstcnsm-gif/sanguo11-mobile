@@ -13,9 +13,12 @@ final class MapSceneSnapshot {
             Set<Hex> flat=new HashSet<>();for(World.City c:w.cities)flat.addAll(SiteFootprint.cells(c));bases=Collections.unmodifiableSet(flat);
             terrain=new byte[width*height];
             for(int r=0;r<height;r++)for(int q=0;q<width;q++)terrain[r*width+q]=(byte)(w.inside(new Hex(q,r))?w.terrain[q][r].ordinal():World.Terrain.VOID.ordinal());
-            surface=new TerrainSurface(this);
+            Map<Hex,Float> heights=new HashMap<>();
+            if(w.visualMap!=null)for(var e:w.visualMap.heights.entrySet())heights.put(MapCoordinates.fromNationalSource(w,new SourceGridCoord(e.getKey()/200,e.getKey()%200)),e.getValue()/1000f);
+            surface=new TerrainSurface(this,heights);
         }
         boolean matches(World w){
+            Map<Hex,Float> expected=new HashMap<>();if(w.visualMap!=null)for(var e:w.visualMap.heights.entrySet())expected.put(MapCoordinates.fromNationalSource(w,new SourceGridCoord(e.getKey()/200,e.getKey()%200)),e.getValue()/1000f);if(!surface.overrides.equals(expected))return false;
             Set<Hex> flat=new HashSet<>();for(World.City c:w.cities)flat.addAll(SiteFootprint.cells(c));if(!flat.equals(bases))return false;
             if(mapSeed!=31*w.mapId.hashCode()+w.mapRevision||width!=w.width||height!=w.height||grid.staggered!=w.columnStaggered||grid.offset!=(w.sourceMapWidth>0?(w.height-1)/2:0))return false;
             for(int r=0;r<height;r++)for(int q=0;q<width;q++)if(terrain[r*width+q]!=(w.inside(new Hex(q,r))?w.terrain[q][r].ordinal():World.Terrain.VOID.ordinal()))return false;
