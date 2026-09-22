@@ -83,6 +83,8 @@ jobs:
             adb shell settings put global animator_duration_scale 1
             timeout 900 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.PerformanceSceneInstrumentation | tee evidence/performance-installed.txt
             adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/performance-images
+            adb logcat -d > evidence/performance-logcat.txt
+            adb shell dumpsys meminfo game.sanguo.mobile.dev > evidence/performance-meminfo.txt
             grep -q 'PASS S08' evidence/performance-installed.txt
             timeout 600 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.CombatSceneInstrumentation | tee evidence/combat-installed.txt
             adb pull /sdcard/combat-scene.mp4 evidence/combat-scene.mp4

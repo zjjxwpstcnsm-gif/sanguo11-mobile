@@ -420,7 +420,12 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void saveCamera(Bundle b){b.putFloat("cameraX",camera.x*TileGeometry.DX);b.putFloat("cameraY",camera.z*TileGeometry.DY);b.putFloat("sceneSpan",camera.span);b.putFloat("sceneTilt",camera.tilt);b.putInt("sceneFacing",camera.facing);}
     void restoreCamera(Bundle b){try{camera.x=b.getFloat("cameraX")/TileGeometry.DX;camera.z=b.getFloat("cameraY")/TileGeometry.DY;camera.span=b.getFloat("sceneSpan",15);camera.tilt=b.getFloat("sceneTilt",55);camera.facing=b.getInt("sceneFacing",1)<0?-1:1;camera.sanitize();clampCamera();}catch(RuntimeException bad){camera.x=0;camera.z=0;camera.span=15;camera.tilt=55;camera.facing=1;clampCamera();}}
     void release(){
-        if(released)return;released=true;replay=null;animatedUnit=null;generation++;cancelFrame();if(meshTask!=null)meshTask.cancel(true);worker.shutdownNow();surface.getHolder().removeCallback(this);
+        if(released)return;released=true;replay=null;animatedUnit=null;generation++;cancelFrame();if(meshTask!=null)meshTask.cancel(true);worker.shutdownNow();meshTask=null;surface.getHolder().removeCallback(this);
+        // A detached View may remain referenced by the framework or an outstanding probe.
+        // Release heavyweight CPU ownership immediately, rather than waiting for View GC.
+        chunks=Collections.emptyList();woods=Collections.emptyList();snapshot=null;fieldAssets=null;
+        activeTerrain.clear();wantedWood.clear();woodExcluded=Collections.emptySet();
+        territoryGround=null;territoryColors=null;targets=Collections.emptySet();editorCells=Collections.emptySet();impassable=Collections.emptySet();
         if(android.os.Build.VERSION.SDK_INT>=29&&thermalManager!=null&&thermalListener!=null){thermalManager.removeThermalStatusListener(thermalListener);thermalListener=null;}
         if(engine==null)return;
         if(displayHelper!=null)displayHelper.detach();

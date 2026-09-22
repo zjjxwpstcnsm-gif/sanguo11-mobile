@@ -17,7 +17,8 @@ public final class PerformanceSceneInstrumentation extends SceneInstrumentation 
         try(PrintWriter log=new PrintWriter(out)){
             log.println("cycle\tquality\tpss_kib\tjava_used_bytes\tnative_heap_bytes\tdiagnostics");
             for(int i=0;i<20;i++){
-                SceneQuality q=SceneQuality.values()[i%3];
+                SceneQuality q=SceneQuality.values()[(i+2)%3];
+                Bundle progress=new Bundle();progress.putString("stream","S08 cycle="+i+" quality="+q+"\n");sendStatus(1,progress);
                 runOnMainSync(()->{host.quality(q);host.switchMode(true);host.focus(world.home().hex);});settle();ready();
                 FilamentMapView view=(FilamentMapView)field(host,"spatial");
                 int width=(Integer)field(view,"bufferWidth"),height=(Integer)field(view,"bufferHeight");
@@ -33,6 +34,7 @@ public final class PerformanceSceneInstrumentation extends SceneInstrumentation 
                 check(Arrays.equals(before,SaveCodec.encode(world)),"quality/camera does not change strategic save");
                 runOnMainSync(()->host.switchMode(false));settle();
                 check((Boolean)field(view,"released")&&field(view,"engine")==null,"native engine released");
+                check(((List<?>)field(view,"chunks")).isEmpty()&&((List<?>)field(view,"woods")).isEmpty()&&field(view,"snapshot")==null,"released view drops CPU scene ownership");
                 check(((java.util.concurrent.ExecutorService)field(view,"worker")).isShutdown(),"mesh worker shutdown");
             }
         }
