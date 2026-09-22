@@ -119,7 +119,8 @@ public final class Governance66Test {
         ok(empire.governance.nameNation(0,"大汉"));check(empire.governance.label(0).equals("大汉")&&empire.faction(0).equals("大汉")&&empire.factions[0].equals("甲"),"national title preserves underlying identity");
         empire.city(23).owner=1;empire.governance.reconcile(false);check(empire.governance.title(0).equals("皇帝"),"earned titles do not oscillate on city loss");roundtrip(empire);
         byte[] invalidBefore=SaveCodec.encode(empire);check(!empire.governance.nameNation(0,"坏\\n名").ok,"control character rejected");check(Arrays.equals(invalidBefore,SaveCodec.encode(empire)),"invalid title atomic");
-        byte[] encoded=SaveCodec.encode(w);int extensionSize=8+w.fieldUnits().size()*12+4+w.factions.length*6;
+        byte[] encoded=SaveCodec.encode(w);ByteArrayOutputStream mapExtension=new ByteArrayOutputStream();CustomMapSave.write(w,new DataOutputStream(mapExtension));
+        int extensionSize=8+w.fieldUnits().size()*12+4+w.factions.length*6+mapExtension.size();
         byte[] legacyPayload=Arrays.copyOfRange(encoded,20,encoded.length-extensionSize);CRC32 crc=new CRC32();crc.update(legacyPayload);ByteArrayOutputStream bytes=new ByteArrayOutputStream();DataOutputStream out=new DataOutputStream(bytes);
         out.writeInt(0x53473131);out.writeInt(31);out.writeInt(legacyPayload.length);out.writeLong(crc.getValue());out.write(legacyPayload);
         World old=SaveCodec.decode(bytes.toByteArray());check(old.governance.title(0).equals("刺史")&&old.city(10).governorId>=0,"v31 migration defaults zero wounded and initializes governance");roundtrip(old);
