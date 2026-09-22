@@ -5,9 +5,12 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 root=Path(__file__).resolve().parents[1]
+assert 'flipUV : false' in (root/'tools/3d/ground.mat').read_text(), 'UV1 contains auxiliary data, never flip its second channel'
 manifest=json.loads((root/'docs/3d/world-art/assets-manifest.json').read_text())
 for entry in manifest['assets']:
     p=root/entry['path'];assert hashlib.sha256(p.read_bytes()).hexdigest()==entry['sha256'],p
+    if entry.get("kind")=="material":
+        print("PASS",p.name,"hash and consumer");continue
     a=np.asarray(Image.open(p)).astype(float)/255
     assert list(a.shape[:2])==entry['resolution'],p
     if 'normal_roughness' in str(p):

@@ -1,5 +1,6 @@
 material {
     name : ContinuousGroundV1,
+    flipUV : false,
     shadingModel : lit,
     doubleSided : true,
     requires : [ color, uv0, uv1 ],

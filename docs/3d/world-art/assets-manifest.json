@@ -130,6 +130,24 @@
       "consumer": "FilamentMapView.loadGroundMaterials",
       "mips": "runtime generateMipmaps; full periodic texture per sampler; REPEAT",
       "compression": "PNG lossless / GPU SRGB8_A8 or RGBA8"
+    },
+    {
+      "path": "tools/3d/ground.mat",
+      "sha256": "96c22d808974a8042e4bc729bf483f78fbf460f2fdc21c1149a88e60c98e3c8b",
+      "bytes": 1805,
+      "kind": "material",
+      "source": "tools/3d/ground.mat; official matc v1.56.0 (56), mobile OpenGL",
+      "license": "original shader CC0-1.0; Filament compiler Apache-2.0",
+      "consumer": "FilamentMapView.loadGroundMaterials"
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/ground.filamat",
+      "sha256": "40b4ed145588116e8b09f5a1f9385716e2c7106b5ecde5f52c4e44b99173ab91",
+      "bytes": 517702,
+      "kind": "material",
+      "source": "tools/3d/ground.mat; official matc v1.56.0 (56), mobile OpenGL",
+      "license": "original shader CC0-1.0; Filament compiler Apache-2.0",
+      "consumer": "FilamentMapView.loadGroundMaterials"
     }
   ]
 }

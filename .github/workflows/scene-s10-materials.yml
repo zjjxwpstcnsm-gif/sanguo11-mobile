@@ -17,6 +17,10 @@ concurrency:
   cancel-in-progress: true
 jobs:
   materials:
+    strategy:
+      fail-fast: false
+      matrix:
+        gpu: [swangle, swiftshader_indirect]
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
@@ -51,7 +55,7 @@ jobs:
           ram-size: 4096M
           heap-size: 512M
           disable-animations: true
-          emulator-options: -no-window -gpu swiftshader -noaudio -no-boot-anim -camera-back none
+          emulator-options: -no-window -gpu ${{ matrix.gpu }} -noaudio -no-boot-anim -camera-back none
           script: |
             adb root
             adb wait-for-device
@@ -72,6 +76,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: s10-native-material-evidence
+          name: s10-native-material-evidence-${{ matrix.gpu }}
           path: evidence
           retention-days: 14
