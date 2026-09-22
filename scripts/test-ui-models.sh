@@ -12,3 +12,6 @@ java -cp app/build/ui-check game.sanguo.mobile.TileGeometryTest
 
 # Exhaustive typed source-grid contract used by the formal scenario loader.
 bash scripts/test-map56-coordinates.sh
+
+# Shared selected-base overlay.
+bash scripts/test-siege.sh

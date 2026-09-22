@@ -55,6 +55,10 @@ public final class TurnJournal {
         checkpoint("阶段结算");this.kind=kind;this.actorId=-1;this.sourceHex=source.hex;
         this.sourceOwner=source.owner;this.target=target;this.label=label;
     }
+    void site(World.City source,Hex target,Kind kind,String label){
+        checkpoint("阶段结算");this.kind=kind;this.actorId=-1;this.sourceHex=source.hex;
+        this.sourceOwner=source.owner;this.target=target;this.label=label;
+    }
     public void close(){checkpoint("阶段结算");w.turnJournal=null;}
     void mark(Kind kind,int actor,Hex target,String label){
         if(this.kind!=Kind.CHANGE&&this.actorId==actor&&Objects.equals(this.target,target))return;

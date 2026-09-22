@@ -251,7 +251,8 @@ public final class Strategy {
     }
     public int recruitAmount(int cityId,int officerId) {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);
-        return c==null||o==null?0:Math.min(c.recruitReserve,StrategyRules.enlistment(w.domestic.recruitAmount(cityId),c.order,o.charm,c.recruitReserve)*(w.skills.has(o,Skill.MINGSHENG)?150:100)/100);
+        return c==null||o==null?0:Math.min(c.recruitReserve,SiegeRules.recruitment(w,c,
+            StrategyRules.enlistment(w.domestic.recruitAmount(cityId),c.order,o.charm,1000000)*(w.skills.has(o,Skill.MINGSHENG)?150:100)/100));
     }
     public World.Result recruitSoldiers(int cityId, int officerId) {w.reports.prepare();
         World.City c = this.w.city(cityId);

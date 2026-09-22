@@ -123,6 +123,9 @@ public final class MapView extends View {
     boolean overviewReady(){return overview!=null&&overview.ready();}
     int overviewBuilds(){return overviewBuilds;}
     long overviewBytes(){return overview==null?0:overview.bytes();}
+    private SiegeOverlay siegeOverlay;
+    List<Hex> siegeCoverage(){return siegeOverlay==null?Collections.emptyList():siegeOverlay.cells;}
+    Set<Hex> siegeEnemies(){return siegeOverlay==null?Collections.emptySet():siegeOverlay.enemies;}
     private Set<Hex> facilityCoverage=Collections.emptySet();
     Set<Hex> facilityCoverage(){return facilityCoverage;}
     private List<Hex> developmentSites=Collections.emptyList();
@@ -334,6 +337,7 @@ public final class MapView extends View {
         if(changed&&getWidth()>0){stopCamera();resizeCamera();camera.fit();}invalidate();
     }
     private void updateSelection(boolean actorChanged){
+        siegeOverlay=SiegeOverlay.selected(world,selected);
         facilityCoverage=world.fieldworks.coverage(world.war.at(selected));
         World.City development=world.cityAt(selected);if(development==null)development=world.development.cityAt(selected);
         developmentSites=development!=null&&development.owner==world.player?new ArrayList<>(world.domestic.buildSites(development.id)):Collections.emptyList();
@@ -495,6 +499,16 @@ public final class MapView extends View {
         if(detail&&moving<0&&pickTargets==null){
             for(Hex parcel:developmentSites){
                 if(!camera.visible(x(parcel),y(parcel),RADIUS*scale))continue;polygon(x(parcel),y(parcel),RADIUS-3);fill(canvas,0x3ae6bf77);stroke(canvas,0xffe6bf77,1.2f*density/scale);label(canvas,"＋",x(parcel),y(parcel)+6,18,0xffffe0a0);
+            }
+        }
+        if(!editorMode&&!openingPreview&&moving<0&&pickTargets==null&&siegeOverlay!=null){
+            for(Hex h:siegeOverlay.cells){
+                if(!camera.visible(x(h),y(h),RADIUS*scale))continue;
+                boolean enemy=siegeOverlay.enemies.contains(h);
+                boolean inner=SiteFootprint.distance(siegeOverlay.site,h)==1;
+                polygon(x(h),y(h),RADIUS-1);
+                fill(canvas,enemy?0x66ea625d:inner?0x4454d5df:0x2454d5df);
+                stroke(canvas,enemy?0xfff77870:inner?0xe866e5ed:0xb866e5ed,Math.max(1,1.2f*density/scale));
             }
         }
         if(selected!=null&&world.cityAt(selected)==null){polygon(x(selected),y(selected),RADIUS-2);fill(canvas,0x20e6bf77);stroke(canvas,GOLD,Math.max(2,2*density/scale));}

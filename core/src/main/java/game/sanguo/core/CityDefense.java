@@ -6,14 +6,11 @@ import java.util.*;
 public final class CityDefense {
     private final World w;
     CityDefense(World w){this.w=w;}
-    /** Range three includes ranged siege pressure; convoys and allies cannot stop repairs. */
-    public boolean besieged(World.City c){
-        if(c==null)return false;
-        for(World.Unit u:w.units)if(u.troops>0&&w.campaign.hostile(c.owner,u.owner)&&SiteFootprint.distance(c,u.hex)<=3)return true;
-        return false;
-    }
-    public int recovery(World.City c){
-        if(c==null||c.owner<0||c.food<=0||besieged(c)||c.defense>=w.campaign.defenseCap(c))return 0;
+    /** Same two exterior rings used by income, recruitment and selection overlays. */
+    public boolean besieged(World.City c){return SiegeRules.blockaded(w,c);}
+    public int recovery(World.City c){return recovery(c,besieged(c));}
+    int recovery(World.City c,boolean blockaded){
+        if(c==null||c.owner<0||c.food<=0||blockaded||c.defense>=w.campaign.defenseCap(c))return 0;
         return Math.min(w.campaign.defenseCap(c)-c.defense,w.campaign.has(c.owner,Campaign.Tech.ENGINEERING)?40:20);
     }
     public int repairAmount(World.City c,World.Officer o){
@@ -22,9 +19,9 @@ public final class CityDefense {
         if(besieged(c))amount/=4;
         return Math.max(0,Math.min(w.campaign.defenseCap(c)-c.defense,amount));
     }
-    public int range(World.City city){return city.kind==World.SiteKind.CITY?2:1;}
+    public int range(World.City city){return SiegeRules.RANGE;}
     private boolean ready(World.City c){return c!=null&&c.owner>=0&&c.troops>0&&c.food>0&&c.defense>0;}
-    public boolean inRange(World.City c,World.Unit u){return ready(c)&&u!=null&&w.campaign.hostile(c.owner,u.owner)&&SiteFootprint.hit(c,u.hex,1,range(c),null,h->w.inside(h))!=null;}
+    public boolean inRange(World.City c,World.Unit u){return ready(c)&&SiegeRules.hostile(w,c,u);}
     /** Bounded output scales with remaining garrison, morale and wall condition. */
     public int strength(World.City c){
         if(!ready(c))return 0;
@@ -40,25 +37,35 @@ public final class CityDefense {
     }
     public int counterDamage(World.City c,World.Unit attacker){return inRange(c,attacker)?Math.min(attacker.troops,against(attacker,strength(c)*2/3)):0;}
     public String preview(World.City c,World.Unit u){int n=counterDamage(c,u);return n>0?"据点存续时反击：至多 "+n+" 兵（随剩余守军降低）；防御射程 "+range(c)+" 格。":"当前距离或守备状态下无据点反击。";}
-    public String describe(World.City c){return "守备射程 "+range(c)+" 格 · 每旬对范围内敌军自动射击\n单队基础伤害 ≤"+strength(c)+"，全城每旬总量 ≤"+(strength(c)*2)+"；反击约为单队伤害的⅔。缺粮或无守军停射。\n"+(besieged(c)?"受围攻：自动修复暂停，主动补修为平时的¼。":"城防自然恢复：每旬 +"+recovery(c)+"（需粮食）。");}
-    private int hurt(World.City c,World.Unit u,int damage,String reason){
+    public String describe(World.City c){return SiegeRules.description(w,c)+"\n守备射程：占地外"+range(c)+"圈。每旬自动射击与被动反击共用伤害公式；多目标均摊、总伤害不超过两次最高单体反击。守军、气力、耐久、守备科技与目标统率影响伤害；缺粮、无守军或城防归零时停射。";}
+    private int hurt(World.City c,World.Unit u,int damage,boolean counter){
         if(w.unit(u.id)!=u||damage<=0)return 0;
+        String reason=counter?"反击":"自动射击",label=c.name+reason;
+        TurnJournal.Kind kind=counter?TurnJournal.Kind.FACILITY_COUNTER:TurnJournal.Kind.FACILITY_ATTACK;
+        BattleReports.ActionContext context=w.reports.beginSite(c,u.hex,kind,label);
+        if(w.turnJournal!=null)w.turnJournal.site(c,u.hex,kind,label);
+        World.Officer officer=w.officer(u.officerId);
         int actual=w.combatEffects.hit(null,u,damage,false,false);
         w.battleImpact(u.hex,u.troops==0);
-        w.note(c.name+reason+"，"+w.officer(u.officerId).name+"部队损失"+actual);
+        String message=label+"，"+(officer==null?"敌军":officer.name)+"部队损失"+actual;
+        // Preserve the parent attack's report context during a nested city counterattack.
+        w.reports.finishCounter(context,message);
+        w.log.add(message);while(w.log.size()>40)w.log.remove(0);
+        if(w.turnJournal!=null)w.turnJournal.checkpoint(message);
         return actual;
     }
-    int counter(World.City c,World.Unit u){return hurt(c,u,counterDamage(c,u),"反击");}
-    /** Called exactly once at the end of a completed global turn. No action/reset hook. */
+    int counter(World.City c,World.Unit u){return hurt(c,u,counterDamage(c,u),true);}
+    /** Exactly one global-turn volley. Stable rotation avoids permanent low-ID favoritism. */
     void tick(){
         for(World.City c:w.cities){
-            int power=strength(c);if(power==0)continue;
-            List<World.Unit> enemies=new ArrayList<>();for(World.Unit u:w.fieldUnits())if(inRange(c,u))enemies.add(u);
-            enemies.sort(Comparator.comparingInt(u->u.id));if(enemies.isEmpty())continue;
-            int budget=power*2,share=Math.min(power,budget/enemies.size()),extra=budget%enemies.size();
+            if(!ready(c))continue;
+            List<World.Unit> enemies=SiegeRules.defendersTargets(w,c);if(enemies.isEmpty())continue;
+            Collections.rotate(enemies,-Math.floorMod(w.turn,enemies.size()));
+            int peak=0;for(World.Unit u:enemies)peak=Math.max(peak,counterDamage(c,u));
+            int budget=peak*2,share=budget/enemies.size(),extra=budget%enemies.size();
             for(int i=0;i<enemies.size();i++){
-                World.Unit u=enemies.get(i);int allocated=Math.min(power,share+(i<extra?1:0));
-                hurt(c,u,Math.min(allocated,against(u,allocated)),"自动射击");
+                World.Unit u=enemies.get(i);int damage=Math.min(counterDamage(c,u),share+(i<extra?1:0));
+                hurt(c,u,damage,false);
             }
         }
     }

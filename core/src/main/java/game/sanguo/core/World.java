@@ -425,8 +425,11 @@ public final class World {
     /** Exactly once after all factions have acted. Keep this order stable across save replay. */
     private void settleGlobalTurn(Consumer<String> progress){
         progress.accept("运输、建设与生产");
-        reports.globalPhase();governance.reconcile(true);turn++;Conscription.settle(this);contests.tick();reports.checkpoint("对局结算");domestic.tick();reports.checkpoint("建设运输结算");campaign.tick();reports.checkpoint("技巧研究结算");army.tick();reports.checkpoint("军备与持续伤害结算");abilities.tick();reports.checkpoint("能力研究结算");recruitment.tick();reports.checkpoint("登用结果结算");envoys.tick();reports.checkpoint("外交任务结算");strategy.tick();reports.checkpoint("人员内政结算");
-        progress.accept("火场、守备与武将");war.tick();reports.checkpoint("火场设施结算");cityDefense.tick();reports.checkpoint("据点守备结算");government.tick();reports.checkpoint("武将任职结算");treasures.tick();reports.checkpoint("宝物发现结算");
+        reports.globalPhase();governance.reconcile(true);turn++;contests.tick();reports.checkpoint("对局结算");domestic.tick();reports.checkpoint("建设运输结算");campaign.tick();reports.checkpoint("技巧研究结算");army.tick();reports.checkpoint("军备与持续伤害结算");abilities.tick();reports.checkpoint("能力研究结算");recruitment.tick();reports.checkpoint("登用结果结算");envoys.tick();reports.checkpoint("外交任务结算");strategy.tick();reports.checkpoint("人员内政结算");
+        progress.accept("火场、守备与武将");war.tick();reports.checkpoint("火场设施结算");
+        Map<Integer,SiegeRules.State> siege=SiegeRules.snapshot(this);
+        Conscription.settle(this,siege);SiegeRules.settleAttrition(this,siege);reports.checkpoint("围城与季度兵源结算");
+        cityDefense.tick();reports.checkpoint("据点守备结算");government.tick();reports.checkpoint("武将任职结算");treasures.tick();reports.checkpoint("宝物发现结算");
         progress.accept("兵粮消耗与城池收入");
         for(Unit u:new ArrayList<>(units)) {
             int consumption=Logistics.foodUse(this,u);
@@ -440,10 +443,10 @@ public final class World {
             if(c.food<consumption){c.food=0;c.troops=Math.max(0,c.troops-Math.max(1,c.troops/20));}
             else c.food-=consumption;
             int reportFoodUse=reportFoodBefore-c.food;
-            int goldIncome=Math.min(Math.max(0,campaign.goldCap(c)-c.gold),domestic.goldIncome(c.id,turn));int foodIncome=Math.min(Math.max(0,campaign.foodCap(c)-c.food),domestic.foodIncome(c.id,turn));
+            int goldIncome=Math.min(Math.max(0,campaign.goldCap(c)-c.gold),domestic.goldIncome(c.id,turn,SiegeRules.blocked(siege,c)));int foodIncome=Math.min(Math.max(0,campaign.foodCap(c)-c.food),domestic.foodIncome(c.id,turn,SiegeRules.blocked(siege,c)));
             c.gold+=goldIncome;c.food+=foodIncome;
-            c.defense+=cityDefense.recovery(c);
-            reports.note(c.name+"本旬收支：金收入+"+goldIncome+"，粮收入+"+foodIncome+"，驻军实际粮耗"+reportFoodUse);
+            c.defense+=cityDefense.recovery(c,SiegeRules.blocked(siege,c));
+            reports.note(c.name+"本旬收支：金收入+"+goldIncome+"，粮收入+"+foodIncome+"，驻军实际粮耗"+reportFoodUse+(SiegeRules.blocked(siege,c)?"（围城：本次钱粮收入已减25%）":""));
         }
         progress.accept("事件、寿命与外交");events.tick();reports.checkpoint("世界事件结算");life.tick();reports.checkpoint("武将生涯结算");diplomacy.tick();reports.checkpoint("外交变化结算");
     }

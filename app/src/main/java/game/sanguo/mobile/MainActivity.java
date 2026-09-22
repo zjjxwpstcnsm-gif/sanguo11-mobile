@@ -644,6 +644,7 @@ public final class MainActivity extends Activity {
             if(c.kind==World.SiteKind.CITY)primaryAction("设施开发",()->domesticUi().build(c));
             else primaryAction("修复城防",()->campaignUi().repair(c));
         }
+        line(SiegeRules.summary(world,c)+"\n青格：两圈围城范围 · 红格：敌军",12,SiegeRules.blockaded(world,c)?0xffff9a82:gold);
         panel.addView(visualHeader(c,c.name,world.faction(c.owner)+" · 太守 "+UiModels.governor(world,c.id),44));
         if(compact)line("金 "+c.gold+" · 粮 "+c.food+" · 兵 "+c.troops,13,paper);else panel.addView(CommandStats.city(this,c),new LinearLayout.LayoutParams(-1,-2));
         String[] groups={"概览","内政","武将","军事","调动","外交","研究"};
@@ -653,6 +654,8 @@ public final class MainActivity extends Activity {
         tabs.setContentDescription("城池指令分组");
         panel.addView(tabs,new LinearLayout.LayoutParams(-1,dp(48)));
         if(ui.group.equals("概览")){
+            action("围城与守备详情",v->message(c.name+" · 围城",world.cityDefense.describe(c)));
+            line(world.domestic.incomeSchedule(c.id),13,muted);
             line(Conscription.description(world,c),13,gold);
             if(c.kind!=World.SiteKind.CITY){
                 line(world.districts.affiliation(c.id),13,muted);

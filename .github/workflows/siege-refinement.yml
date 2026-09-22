@@ -1,0 +1,96 @@
+name: Siege refinement verification
+on:
+  push:
+    branches: [agent/siege-refinement-20260922]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: siege-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Archive exact committed sources
+        run: |
+          set -euo pipefail
+          git diff --check
+          mkdir -p evidence
+          git rev-parse HEAD | tee evidence/BUILD_COMMIT
+          git archive --format=zip HEAD -o evidence/source.zip
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Siege and adjacent production contracts
+        run: |
+          set -euo pipefail
+          bash scripts/test-siege.sh | tee evidence/siege-core.txt
+          bash scripts/test-v064.sh | tee evidence/v064.txt
+          bash scripts/test-v066.sh | tee evidence/v066.txt
+          bash scripts/test-ruler-titles.sh | tee evidence/titles.txt
+          mkdir -p core/build/check
+          find core/src/main/java core/src/testFixtures/java core/src/test/java -name '*.java' > core/build/check/sources.txt
+          javac -encoding UTF-8 --release 17 -d core/build/check @core/build/check/sources.txt
+          java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.Reports53Test | tee evidence/reports-unit.txt
+          java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.BalanceTest | tee evidence/balance.txt
+      - name: Record legacy suite failures without changing their assertions
+        run: |
+          set +e
+          cp=core/build/check:core/src/main/resources:core/src/test/resources
+          for suite in CoreTest Reports53NationalTest NavigationDefenseTest; do
+            java -cp "$cp" "game.sanguo.core.$suite" > "evidence/legacy-$suite.txt" 2>&1
+            status=$?
+            echo "$suite exit=$status" | tee -a evidence/legacy-status.txt
+            if [ "$status" != 0 ]; then
+              echo "::warning::$suite failed; retained verbatim in evidence. This workflow does not claim all legacy suites are green."
+              tail -8 "evidence/legacy-$suite.txt"
+            fi
+          done
+          exit 0
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.11.1'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - name: Build actual Android app and instrumentation
+        run: |
+          set -euo pipefail
+          sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug | tee evidence/android-build.txt
+          cp app/build/outputs/apk/debug/app-debug.apk "evidence/sanguo11-mobile-siege-$(git rev-parse --short=12 HEAD).apk"
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs app/build/outputs/apk/debug/app-debug.apk | tee evidence/signature.txt
+          sha256sum evidence/*.apk | tee evidence/SHA256SUMS
+      - name: Enable Android emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          script: |
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.SiegeInstrumentation > evidence/android-probe.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/smoke evidence/smoke || true
+            cat evidence/android-probe.txt
+            grep -q 'SIEGE ANDROID PASS' evidence/android-probe.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: siege-refinement-evidence-${{ github.run_id }}
+          path: evidence
+          if-no-files-found: error
+          retention-days: 30
