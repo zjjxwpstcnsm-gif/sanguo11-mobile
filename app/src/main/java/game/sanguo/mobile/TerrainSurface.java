@@ -6,6 +6,7 @@ import java.util.*;
 /** Deterministic presentation-only field. Coordinates are projected world units, never axial indices. */
 final class TerrainSurface {
     static final int METADATA_VERSION=1;
+    private static final World.Terrain[] TYPES=World.Terrain.values();
     static final float MAX_HEIGHT=2.6f;
     final MapSceneSnapshot.Ground ground;
     final Map<Hex,Float> overrides;
@@ -16,12 +17,12 @@ final class TerrainSurface {
         for(Map.Entry<Hex,Float> e:values.entrySet())if(g.valid(e.getKey())&&Float.isFinite(e.getValue()))copy.put(e.getKey(),Math.max(0,Math.min(MAX_HEIGHT,e.getValue())));
         overrides=Collections.unmodifiableMap(copy);
     }
-    boolean water(Hex h){if(!ground.valid(h))return false;switch(World.Terrain.values()[ground.terrain[h.r*ground.width+h.q]]){
+    boolean water(Hex h){if(!ground.valid(h))return false;switch(TYPES[ground.terrain[h.r*ground.width+h.q]]){
         case WATER:case SEA:case SHALLOWS:case NON_NAVIGABLE_WATER:return true;default:return false;}}
     float target(Hex h){
         if(!ground.valid(h)||water(h)||ground.bases.contains(h))return 0;
         Float override=overrides.get(h);if(override!=null)return override;
-        switch(World.Terrain.values()[ground.terrain[h.r*ground.width+h.q]]){
+        switch(TYPES[ground.terrain[h.r*ground.width+h.q]]){
             case MOUNTAIN:return 1.8f+(float)(Math.sin(ground.grid.x(h)*.23)*Math.cos(ground.grid.z(h)*.19))*.7f;
             case FOREST:return .22f;
             case SAND:return .12f;
@@ -45,7 +46,7 @@ final class TerrainSurface {
             if(!ground.valid(h)||water(h)||ground.bases.contains(h)){
                 float edge=Math.max(Math.max(dx-.5f,dz-.5f),0);limit=Math.min(limit,edge*.6f);
             }else {
-                World.Terrain t=World.Terrain.values()[ground.terrain[h.r*ground.width+h.q]];
+                World.Terrain t=TYPES[ground.terrain[h.r*ground.width+h.q]];
                 if(t==World.Terrain.MOUNTAIN_PATH||t==World.Terrain.PLANK_ROAD||t==World.Terrain.ROAD){
                     float edge=Math.max(Math.max(dx-.5f,dz-.5f),0);limit=Math.min(limit,.08f+edge*.6f);
                 }
@@ -78,7 +79,10 @@ final class TerrainSurface {
         }return null;
     }
     int color(float x,float z,int base,boolean water){
-        float y=sample(x,z),dx=sample(x+.5f,z)-sample(x-.5f,z),dz=sample(x,z+.5f)-sample(x,z-.5f);
+        // Shading normals use the cached half-cell lattice. Interior subdivision must not
+        // redo 63-neighbor height filtering five times for every new triangle vertex.
+        float sx=Math.round(x*2)*.5f,sz=Math.round(z*2)*.5f;
+        float dx=sample(sx+.5f,sz)-sample(sx-.5f,sz),dz=sample(sx,sz+.5f)-sample(sx,sz-.5f);
         float light=water?.93f+.035f*(float)Math.sin(x*7+Math.sin(z*3)):
             .88f+Math.max(-.18f,Math.min(.12f,(-dx-dz)*.3f))+.025f*(float)(Math.sin(x*2.3+z*.7)*Math.cos(z*1.9));
         return SceneMesh.shade(base,light);

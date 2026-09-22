@@ -1,3 +1,6 @@
+> Historical checkpoint. Superseded for current S04/S05 implementation by
+> [s04-s05-runtime.md](s04-s05-runtime.md); retain this file as the earlier record.
+
 # S05 — unit playback contract repair (PARTIAL / art prerequisite BLOCKED)
 
 2026-09-22. Input branch `de8ef122a28b8f3ab2800b24ac46bc7636501769`;

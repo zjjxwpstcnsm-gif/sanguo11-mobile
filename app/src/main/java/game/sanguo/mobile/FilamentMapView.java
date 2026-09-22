@@ -32,6 +32,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private int siteLod=1; private final Set<String> missingAssets=new HashSet<>();
     private SwapChain swap; private int cameraEntity,light;
     private boolean released,resumed=true,queued,diagnostics;
+    private final long[] cpuSamples=new long[240];private int cpuCount,cpuCursor;
     private long lastFrame; private long renderedFrames; private double callbackMillis;
     private MapSceneSnapshot snapshot;
     private boolean distantTerrain;
@@ -116,7 +117,18 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     boolean visible(TurnJournal.Event e){if(visible(e.start)||visible(e.target))return true;for(Hex h:e.path)if(visible(h))return true;return false;}
     private boolean visible(Hex h){if(h==null||snapshot==null)return false;GridWorldTransform g=snapshot.ground.grid;return Math.abs(camera.screenX(g.x(h))-camera.width/2f)<camera.width*.6&&Math.abs(camera.screenY(g.z(h),snapshot.ground.surface.at(h))-camera.height/2f)<camera.height*.6;}
     void diagnostics(boolean value){diagnostics=value;overlay.invalidate();}
-    String report(){return "Filament 1.56.0 / OpenGL ES\n"+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S04 设施植被 / S05 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+"";}
+    String report(){return "Filament 1.56.0 / OpenGL ES\n"+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S04 设施植被 / S05 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+"\n"+resourceReport();}
+    void resetMetrics(){cpuCount=cpuCursor=0;}
+    private String resourceReport(){
+        int primitives=0,triangles=0;long bufferBytes=0;
+        Set<GpuMesh> resident=new HashSet<>(shapes.values());resident.addAll(terrain.values());resident.addAll(vegetation.values());
+        for(GpuMesh m:resident){bufferBytes+=(long)m.source.vertices.length*4+(long)m.source.indices.length*4+(m.source.uv==null?0:(long)m.source.uv.length*4);if(m.shown){primitives++;triangles+=m.source.indices.length/3;}}
+        for(Proxy p:objects.values())if(p.shown){primitives++;triangles+=p.shape.source.indices.length/3;for(GpuMesh m:new GpuMesh[]{p.flagShape,p.baseShape,p.stateShape})if(m!=null){primitives++;triangles+=m.source.indices.length/3;}}
+        long[] times=Arrays.copyOf(cpuSamples,cpuCount);Arrays.sort(times);
+        return "场景 primitives="+primitives+" triangles="+triangles+" buffers_bytes="+bufferBytes+" pose_cache="+shapes.size()+
+            " CPU提交ms P50/P95/P99="+percentile(times,.50)+"/"+percentile(times,.95)+"/"+percentile(times,.99)+" samples="+cpuCount+"（非驱动DrawCall/GPU帧时）";
+    }
+    private static String percentile(long[] times,double p){return times.length==0?"N/A":String.format(java.util.Locale.ROOT,"%.2f",times[Math.min(times.length-1,(int)Math.ceil(times.length*p)-1)]/1e6);}
     void resume(boolean value){resumed=value;if(value)schedule();else cancelFrame();}
     private void cancelFrame(){Choreographer.getInstance().removeFrameCallback(this);queued=false;lastFrame=0;}
     private void schedule(){if(!released&&resumed&&swap!=null&&!queued){queued=true;Choreographer.getInstance().postFrameCallback(this);}}
@@ -125,6 +137,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     @Override public void surfaceDestroyed(SurfaceHolder holder){cancelFrame();if(displayHelper!=null)displayHelper.detach();if(engine!=null&&swap!=null){engine.destroySwapChain(swap);swap=null;engine.flushAndWait();}}
     @Override public void doFrame(long time){
         queued=false;if(released||!resumed||swap==null)return;
+        long cpuStart=System.nanoTime();
         try{
             if(lastFrame!=0)callbackMillis=(time-lastFrame)/1e6;lastFrame=time;
             double aspect=camera.width/(double)camera.height;
@@ -133,6 +146,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             animationTick=time/1_000_000;animateReplay();loadVisible();animateUnits();
             if(renderer.beginFrame(swap,time)){renderer.render(view);renderer.endFrame();renderedFrames++;}
             overlay.invalidate();schedule();
+            cpuSamples[cpuCursor++%cpuSamples.length]=System.nanoTime()-cpuStart;cpuCount=Math.min(cpuSamples.length,cpuCount+1);
         }catch(RuntimeException|LinkageError e){cancelFrame();failure.accept(e);}
     }
     private boolean inView(float x,float z,float radius){return Math.abs(x-camera.x)<camera.span*camera.width/camera.height+radius+2&&Math.abs(z-camera.z)<camera.span/camera.sin()+radius+2;}

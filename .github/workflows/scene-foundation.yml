@@ -73,6 +73,7 @@ jobs:
             adb logcat -d > evidence/logcat.txt
             python3 scripts/field-ci-summary.py evidence/logcat.txt
             adb pull /sdcard/field-scene.mp4 evidence/field-scene.mp4
+            adb pull /sdcard/field-port.mp4 evidence/field-port.mp4
             grep -q 'PASS S04 S05' evidence/field-installed.txt
             grep -q 'PASS S01' evidence/installed.txt
       - uses: actions/upload-artifact@v4

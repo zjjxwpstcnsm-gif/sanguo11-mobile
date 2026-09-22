@@ -1,5 +1,5 @@
 {
-  "stage": "S05 playback contract PARTIAL; S04 art BLOCKED",
+  "stage": "S04/S05 runtime assets and articulated animation implemented; installed and hardware acceptance tracked separately",
   "filament": "1.56.0",
   "matc": "1.56.0",
   "backend": "OpenGL ES",
@@ -14,11 +14,11 @@
     },
     {
       "generator": "app/src/main/java/game/sanguo/mobile/SceneMesh.java + TerrainSurface.java",
-      "role": "terrain plus transitional unit/facility/tower geometry",
+      "role": "terrain, faction flags and explicit missing-site fallback geometry",
       "license": "original project geometry",
       "uv": false,
       "textures": 0,
-      "animation": "visual event path translation only",
+      "animation": "none",
       "lod": "terrain: 24 near / 8 far triangles per valid cell",
       "final_art": false
     },
@@ -33,6 +33,51 @@
       "materialSha256": "930b35fea463e42ab67647a8c8e47ffacf15590ae63cb14a2ffacc41ca512eab",
       "animations": false,
       "compressionExtensions": false,
+      "finalArtAccepted": false
+    },
+    {
+      "path": "app/src/main/assets/3d/field",
+      "generator": "tools/3d/build_field_assets.py",
+      "assetReport": "docs/3d/field-assets.json",
+      "license": "CC0-1.0 original geometry, texture and clips",
+      "runtime": "SiteGlb static rest mesh + FieldAssets rigid-joint vertex posing; shared opaque atlas and precompiled site material",
+      "glbCount": 150,
+      "facilityTypeLevelCombinations": 40,
+      "facilityLods": 3,
+      "unitTypes": 13,
+      "unitMeshLods": 2,
+      "animationData": [
+        "rigs.json",
+        "clips.json"
+      ],
+      "clips": [
+        "idle",
+        "walk",
+        "turn",
+        "prepare",
+        "attack",
+        "hit",
+        "defeat",
+        "enter"
+      ],
+      "formationCounts": {
+        "infantry": [
+          8,
+          4,
+          1
+        ],
+        "cavalry": [
+          4,
+          2,
+          1
+        ],
+        "vehicles": [
+          1,
+          1,
+          1
+        ]
+      },
+      "batching": "one merged body mesh per formation; opaque trees merged in 8x8 chunks; not GPU skinning or GPU instancing",
       "finalArtAccepted": false
     }
   ],

@@ -62,7 +62,7 @@ public final class TurnJournal {
     }
     public void close(){checkpoint("阶段结算");w.turnJournal=null;}
     void mark(Kind kind,int actor,Hex target,String label){
-        if(this.kind!=Kind.CHANGE&&this.actorId==actor&&Objects.equals(this.target,target))return;
+        if(this.kind==kind&&this.kind!=Kind.CHANGE&&this.actorId==actor&&Objects.equals(this.target,target))return;
         checkpoint("阶段结算");this.kind=kind;this.actorId=actor;this.target=target;this.label=label;
     }
     void movement(World.Unit u,List<Hex> route){mark(Kind.MOVE,u.id,route.get(route.size()-1),"行军");path=new ArrayList<>(route);}

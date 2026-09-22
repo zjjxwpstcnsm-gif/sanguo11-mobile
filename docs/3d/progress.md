@@ -125,3 +125,25 @@ Integrated verification: foundation 3,116,362, terrain 902,230, site semantics 1
 facility state 133 and actual GLB loader 38,032 checks passed. All 15 GLBs loaded.
 Android APK/test APK/lint build and existing presentation regressions passed locally.
 No installed visual/performance acceptance is inferred from these checks.
+
+
+## S04/S05 runtime implementation recovery (2026-09-22)
+
+The remaining facility/vegetation/unit implementation is now present on the same PR
+#62 branch. This supersedes earlier claims that these runtime assets were absent.
+150 original textured GLBs cover 40 facility type/level combinations at three LODs,
+13 unit/vehicle/ship types at two mesh LODs, trees and state modules. Articulation uses
+shared rigid-joint keyframes, independent instance phases and 8/4/1 formations.
+Opaque vegetation merges in 8x8 chunks with local reuse and road/site exclusions.
+See `acceptance/s04-s05-runtime.md` and `field-assets.json` for exact coverage and limits.
+
+Main input remains `1a883a4ffd1098ca85f7da38464b7c5fbfdc000f`; user explicitly overrides
+archive instructions to create a new branch or merge predecessors. Keep existing branch
+`agent/3d-s01-renderer-foundation`, leave main untouched. Runtime entry is the production
+3D view toggle, not a demo. Version is 0.72.0-3d-s04-s05 / 72.
+
+5,957,590 geometry/animation checks and real lifecycle/port/automatic garrison/convoy
+checks pass. Native emulator tests are separate gates; final CI and artifact identities
+belong to the final report/PR. Physical device performance and visual art acceptance
+remain open; source/build checks never replace those gates. Do not mark all S01–S05
+accepted merely because the missing S04/S05 implementation is present.

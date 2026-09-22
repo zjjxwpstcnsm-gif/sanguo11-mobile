@@ -143,3 +143,32 @@ keeps command validation authoritative. Ground, labels and culling use the same 
 Only the current actor's GPU transform is animated in view; clear/replacement settles the
 previous actor. S01 unit silhouettes remain temporary; full asset/clip/formation coverage
 is explicitly tracked in acceptance/s05-status.md.
+
+
+## S04/S05 actual field asset pipeline
+
+`tools/3d/build_field_assets.py` emits original UV-mapped GLBs, opaque atlas,
+rig part ranges/pivots and twelve-frame local rotation tracks. Runtime assets and
+checksums/bounds/triangle budgets are in `field-assets.json`. `FieldAssets` loads
+rest data once; `UnitAnimation` chooses a clip and per-instance phase using the
+shared TurnJournal cursor. `UnitMotion` retains authoritative versus visual position.
+No root motion, terrain slope cost, command completion callback or model-driven RNG.
+
+Articulation is CPU rigid-part posing, not glTF skeletal animation. Infantry limbs,
+horse legs, individual vehicle wheel axles, siege levers/ram and ship oars have actual
+vertex motion. Soldiers merge into one formation mesh (8/4/1 infantry, 4/2/1 cavalry).
+Posed GPU buffers share a bounded 128-entry LRU excluding live references; each proxy
+retains its entity and material. The bound may exceed 128 for distinct live shapes.
+Only visible proxies schedule pose changes. Each formation plus flag still contributes
+two renderable primitives; shared files do not constitute GPU instancing.
+
+Vegetation merges opaque trees by 8x8 source tile chunk. Stable cell hash and visual
+seed control placement; true facilities, site footprints, water, boundary and adjacent
+road corridors exclude trees. Two mesh LODs give way to terrain color at far distance.
+Snapshot changes fingerprint bounded dependency halos and retain unchanged CPU/GPU
+chunks. Camera LOD/culling never rebuilds or scans all terrain cells. Tree/formation
+shadows are disabled; there are no transparent leaf billboards or per-tree entities.
+
+Facility selection and ranges still use core coverage. Actual type/level selects three
+GLB LODs; construction/fire modules and HP tint reflect live snapshots. Destroyed
+facilities release renderables before their shared buffers become eligible for eviction.

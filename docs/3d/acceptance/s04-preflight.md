@@ -1,3 +1,6 @@
+> Historical checkpoint. Superseded for current S04/S05 implementation by
+> [s04-s05-runtime.md](s04-s05-runtime.md); retain this file as the earlier record.
+
 > Superseded preflight: S02 and S03 were subsequently recovered from other local workspaces
 > and integrated on the same branch. The absence statements below describe the earlier
 > remote-only inspection, not the current source tree. Installed/art/performance gates remain.

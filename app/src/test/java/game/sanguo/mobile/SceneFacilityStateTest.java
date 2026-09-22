@@ -49,6 +49,6 @@ public final class SceneFacilityStateTest {
         check(changed.facility.type.equals("military/FORTRESS")&&!changed.facility.complete&&changed.facility.direction==4&&changed.facility.hp==210,"military upgrade and direction synchronise");
         SceneFacilityFixture.remove(w,s);check(item(snapshot(w,g,null),key)==null,"deleted structure disappears");
         check(g.matches(w),"facility changes reuse static terrain");
-        System.out.println("PASS facility snapshot: "+checks+" assertions; "+types.size()+" actual types; models remain S01 placeholders");
+        System.out.println("PASS facility snapshot: "+checks+" assertions; "+types.size()+" actual types; detached live state verified (asset coverage tested separately)");
     }
 }
