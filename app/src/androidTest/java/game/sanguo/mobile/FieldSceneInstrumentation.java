@@ -31,12 +31,21 @@ public final class FieldSceneInstrumentation extends SceneInstrumentation {
         FilamentMapView view=(FilamentMapView)field(host,"spatial");
         for(float span:new float[]{7,15,28}){
             runOnMainSync(()->view.camera.span=span);settle();ready();
-            runOnMainSync(view::resetMetrics);long start=SystemClock.uptimeMillis();long frames=(Long)field(view,"renderedFrames");SystemClock.sleep(2000);
-            long delta=(Long)field(view,"renderedFrames")-frames;
+            long[] frames={0,0};runOnMainSync(()->{view.resetMetrics();try{frames[0]=(Long)field(view,"renderedFrames");}catch(Exception e){throw new RuntimeException(e);}});
+            long start=SystemClock.uptimeMillis();SystemClock.sleep(2000);
+            runOnMainSync(()->{try{frames[1]=(Long)field(view,"renderedFrames");}catch(Exception e){throw new RuntimeException(e);}});
+            long delta=frames[1]-frames[0];
             android.os.Debug.MemoryInfo memory=new android.os.Debug.MemoryInfo();android.os.Debug.getMemoryInfo(memory);
             String[] metrics={""};runOnMainSync(()->metrics[0]=host.report());
             System.out.println("FIELD_STRESS units="+count+" forest="+forest+" facilities="+facilities+" span="+span+" rendered_submissions="+delta+" durationMs="+(SystemClock.uptimeMillis()-start)+" PSS_KB="+memory.getTotalPss()+" "+metrics[0].replace('\n',' '));
-            check(delta>0,"native frames submitted at every LOD");
+            // Keep the fixed short sample, including zero submissions, in the report.
+            // Liveness is a separate bounded gate on a shared software GPU runner.
+            long waitStart=SystemClock.uptimeMillis();
+            while(frames[1]==frames[0]&&SystemClock.uptimeMillis()-waitStart<10000){
+                SystemClock.sleep(250);runOnMainSync(()->{try{frames[1]=(Long)field(view,"renderedFrames");}catch(Exception e){throw new RuntimeException(e);}});
+            }
+            System.out.println("FIELD_LIVENESS span="+span+" extraWaitMs="+(SystemClock.uptimeMillis()-waitStart)+" advanced="+(frames[1]>frames[0]));
+            check(frames[1]>frames[0],"native renderer advances at every LOD within bounded wait");
             if(span==7)preview("field-"+count+"-"+forest+"-"+facilities);
         }
         check(Arrays.equals(before,SaveCodec.encode(fixture)),"all LOD/animation samples preserve fixture resources and RNG");
