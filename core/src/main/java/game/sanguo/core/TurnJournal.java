@@ -12,6 +12,8 @@ public final class TurnJournal {
     }
     public static final class Event {
         public final Kind kind;
+        /** Stable identity and equipment captured before the action; presentation only. */
+        public final String sourceKey,sourceType;
         public final CriticalHit critical;
         public final int actorId,owner;
         public final Hex start,target;
@@ -22,7 +24,8 @@ public final class TurnJournal {
         private final List<String> removed;
         private final World.Unit actor;
         Event(Kind kind,int id,int owner,Hex start,Hex target,String label,String message,List<Hex> path,
-              List<Impact> impacts,List<Node> changed,List<String> removed,World.Unit actor,CriticalHit critical){
+              List<Impact> impacts,List<Node> changed,List<String> removed,World.Unit actor,CriticalHit critical,String sourceKey,String sourceType){
+            this.sourceKey=sourceKey;this.sourceType=sourceType;
             this.kind=kind;actorId=id;this.owner=owner;this.start=start;this.target=target;this.label=label;this.message=message;
             this.path=Collections.unmodifiableList(new ArrayList<>(path));this.impacts=Collections.unmodifiableList(impacts);
             this.changed=changed;this.removed=removed;this.actor=actor;this.critical=critical;
@@ -46,7 +49,7 @@ public final class TurnJournal {
     private int actorId=-1;
     private Hex target,sourceHex;
     private int sourceOwner=-1;
-    private String label="";
+    private String label="",sourceKey="",sourceType="";
     private List<Hex> path=Collections.emptyList();
     public TurnJournal(World world){w=world;previous=snapshot(world,Collections.emptyMap());world.turnJournal=this;}
     public List<Event> events(){return Collections.unmodifiableList(events);}
@@ -55,10 +58,12 @@ public final class TurnJournal {
     void facility(War.Structure source,Hex target,Kind kind,String label){
         checkpoint("阶段结算");this.kind=kind;this.actorId=-1;this.sourceHex=source.hex;
         this.sourceOwner=source.owner;this.target=target;this.label=label;
+        this.sourceKey="s"+source.id;this.sourceType=source.kind.name();
     }
     void site(World.City source,Hex target,Kind kind,String label){
         checkpoint("阶段结算");this.kind=kind;this.actorId=-1;this.sourceHex=source.hex;
         this.sourceOwner=source.owner;this.target=target;this.label=label;
+        this.sourceKey="c"+source.id;this.sourceType=source.kind.name();
     }
     public void close(){checkpoint("阶段结算");w.turnJournal=null;}
     void mark(Kind kind,int actor,Hex target,String label){
@@ -66,7 +71,7 @@ public final class TurnJournal {
         checkpoint("阶段结算");this.kind=kind;this.actorId=actor;this.target=target;this.label=label;
     }
     void movement(World.Unit u,List<Hex> route){mark(Kind.MOVE,u.id,route.get(route.size()-1),"行军");path=new ArrayList<>(route);}
-    void cancel(){critical=null;kind=Kind.CHANGE;actorId=-1;target=null;sourceHex=null;sourceOwner=-1;label="";path=Collections.emptyList();}
+    void cancel(){critical=null;kind=Kind.CHANGE;actorId=-1;target=null;sourceHex=null;sourceOwner=-1;label="";sourceKey="";sourceType="";path=Collections.emptyList();}
     public void checkpoint(String message){
         Map<String,Node> next=snapshot(w,previous);List<Node> changed=new ArrayList<>();List<String> removed=new ArrayList<>();List<Impact> impacts=new ArrayList<>();
         for(Node n:next.values()){Node old=previous.get(n.key);if(old!=n){changed.add(n);impact(old,n,impacts);}}
@@ -85,7 +90,7 @@ public final class TurnJournal {
         if(!changed.isEmpty()||!removed.isEmpty()||eventKind!=Kind.CHANGE){
             int id=actor==null?actorId:actor.id,owner=actor==null?(sourceOwner>=0?sourceOwner:w.active):actor.owner;
             if(name.isEmpty())name=impacts.isEmpty()?"结算":impacts.get(0).text;
-            events.add(new Event(eventKind,id,owner,start,end,name,message,route,impacts,changed,removed,actor,critical));
+            events.add(new Event(eventKind,id,owner,start,end,name,message,route,impacts,changed,removed,actor,critical,actor==null?sourceKey:"u"+actor.id,actor==null?sourceType:actor.weapon.name()));
         }
         previous=next;cancel();
     }

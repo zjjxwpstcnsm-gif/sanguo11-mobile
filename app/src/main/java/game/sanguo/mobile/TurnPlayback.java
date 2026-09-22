@@ -13,7 +13,7 @@ final class TurnPlayback {
     private TurnJournal.Event current;
     TurnPlayback(MapHost map,TurnWork work,Runnable changed,Runnable finished){this.map=map;this.work=work;this.changed=changed;this.finished=finished;}
     void start(){map.setCriticalSkip(()->{work.criticalElapsed=CriticalScene.DURATION;map.criticalFrame(null,0);});last=SystemClock.uptimeMillis();map.invalidateScene();map.setWorld(work.visual,null,-1);map.postOnAnimation(tick);}
-    void detach(){detached=true;map.removeCallbacks(tick);map.setCriticalSkip(null);map.criticalFrame(null,0);}
+    void detach(){detached=true;map.removeCallbacks(tick);map.setCriticalSkip(null);map.criticalFrame(null,0);map.replayFrame(null,0);}
     void pause(boolean paused){work.pause(paused);last=SystemClock.uptimeMillis();}
     void skip(){work.skipAnimations=true;work.pause(false);}
     private final Runnable tick=this::step;
