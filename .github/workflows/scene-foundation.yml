@@ -25,6 +25,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-java@v5
         with:
           distribution: temurin
@@ -33,6 +34,7 @@ jobs:
       - uses: android-actions/setup-android@v4
       - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
       - run: |
+          set -euo pipefail
           mkdir -p evidence
           bash scripts/test-3d-interaction.sh | tee evidence/interaction-host.txt
           bash scripts/test-3d-foundation.sh | tee evidence/scene.txt

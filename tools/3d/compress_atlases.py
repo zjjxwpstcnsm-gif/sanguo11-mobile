@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Offline ETC2 sRGB mip chains. pip install etcpak==0.9.15 Pillow==11.3.0 numpy==2.2.6 texture2ddecoder==1.0.6"""
+"""Offline ETC2 sRGB mip chains. pip install etcpak==0.9.15 Pillow==12.3.0 numpy==2.3.5 texture2ddecoder==1.0.6"""
 import hashlib, json, math, struct
 from pathlib import Path
 import etcpak

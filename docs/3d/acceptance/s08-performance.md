@@ -69,3 +69,9 @@ The collector records these gates; it does not synthesize results or drive every
 No midrange 30fps, 60fps, <800MiB PSS or leak-free claim is made. S06/S07 manual/art
 limits remain open. Preserve default 2D and same branch; S09 cannot mark full acceptance
 until those gates and actual visual review pass.
+
+The exact texture tool versions are pinned in `tools/3d/texture-requirements.txt`.
+Both decoded atlas base levels exceed 36 dB PSNR. Compressed mip payload is 30,112
+bytes vs 180,224 bytes for prior RGBA base levels (or 240,316 RGBA mip bytes).
+This is atlas GPU payload, not total process/GPU memory. PNG fallback adds only the
+existing small atlas files; no duplicate ASTC or full external content pack is included.
