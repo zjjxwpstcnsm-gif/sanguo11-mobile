@@ -161,3 +161,11 @@ implementation checkpoints. Final source identity and exact gate output accompan
 APK. Native recording/installed checks run in CI; hardware and art acceptance remain
 open. See acceptance/s06-combat.md. S07 must preserve this shared historical playback,
 object-pool ownership, default 2D and all existing rule/editor contracts.
+
+Final host S06 suite: 20,835 checks; Turn48: 120. All speed/skip runs keep full
+canonical bytes and business-event counts. heroes-250/28-faction host benchmark
+keeps 197 events and an identical save hash; median 2189.48 → 2195.75 ms (+0.29%)
+without concurrent Gradle. Contended samples and the idle repeat are both retained
+in benchmarks/s06. Critical-fire 3-turn save validation is an existing separate
+core blocker; see acceptance/s06-combat.md. Native CI first failed during adb root
+reconnection before app install; bounded reconnect + explicit uid verification added.

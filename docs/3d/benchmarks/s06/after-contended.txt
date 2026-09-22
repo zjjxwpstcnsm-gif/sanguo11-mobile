@@ -1,0 +1,4 @@
+heroes-250 factions=28 run=0 computeMs=5081.12 events=197 hash=2b6e2d25d2a1c5e9bfe9e1e8d95e743c44994c3b9f919a0b2555b2efea87b3e4
+heroes-250 factions=28 run=1 computeMs=4436.93 events=197 hash=2b6e2d25d2a1c5e9bfe9e1e8d95e743c44994c3b9f919a0b2555b2efea87b3e4
+heroes-250 factions=28 run=2 computeMs=3310.66 events=197 hash=2b6e2d25d2a1c5e9bfe9e1e8d95e743c44994c3b9f919a0b2555b2efea87b3e4
+heroes-250 factions=28 run=3 computeMs=3778.54 events=197 hash=2b6e2d25d2a1c5e9bfe9e1e8d95e743c44994c3b9f919a0b2555b2efea87b3e4

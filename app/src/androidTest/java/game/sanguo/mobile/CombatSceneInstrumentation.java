@@ -31,6 +31,17 @@ public final class CombatSceneInstrumentation extends SceneInstrumentation {
         surfaceCapture();
         System.out.println("S06_NATIVE case="+kind+" events="+journal.events().size());
     }
+    void reducedMotion()throws Exception{
+        World initial=SaveCodec.decode(SaveCodec.encode(CombatSceneFixture.world("critical")));
+        World computed=SaveCodec.decode(SaveCodec.encode(initial));TurnJournal journal=new TurnJournal(computed);CombatSceneFixture.action(computed,"critical");journal.close();activate(initial);
+        try(InputStream input=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand("settings put global animator_duration_scale 0"))){while(input.read()!=-1){}}
+        SystemClock.sleep(1000);check(!UiMotion.enabled(),"system reduced motion enabled");
+        TurnJournal.Event event=journal.events().get(0);runOnMainSync(()->host.replayFrame(event,.4f));settle();
+        FilamentMapView view=(FilamentMapView)field(host,"spatial");check(((CombatVisual)field(view,"combat")).count==0,"reduced motion omits transient combat");
+        runOnMainSync(()->host.replayFrame(null,0));
+        try(InputStream input=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand("settings put global animator_duration_scale 1"))){while(input.read()!=-1){}}
+        SystemClock.sleep(1000);check(UiMotion.enabled(),"restore motion for actual playback tests");
+    }
     void turn(boolean spatial,int speed,boolean skip,boolean interrupt)throws Exception{
         World before=SaveCodec.decode(SaveCodec.encode(Turn48Fixture.world()));World reference=SaveCodec.decode(SaveCodec.encode(before));
         long begin=SystemClock.elapsedRealtime();check(reference.nextTurn().ok,"reference next turn");long referenceMs=SystemClock.elapsedRealtime()-begin;
@@ -47,11 +58,12 @@ public final class CombatSceneInstrumentation extends SceneInstrumentation {
         System.out.println("S06_TURN spatial="+spatial+" speed="+speed+" skip="+skip+" interrupt="+interrupt+" referenceMs="+referenceMs+" computeMs="+work.computeMillis+" totalMs="+work.totalMillis+" visible="+work.visibleCount+" batches="+work.publishedBatches);
     }
     @Override public void onStart(){Bundle result=new Bundle();try{
+        check(UiMotion.enabled(),"combat acceptance requires animator_duration_scale=1; reduced mode tested separately");
         World initial=CombatSceneFixture.world("critical");try(OutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(initial));}
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();host=(MapHost)field(activity,"map");
         ParcelFileDescriptor recording=getUiAutomation().executeShellCommand("screenrecord --time-limit 150 /sdcard/combat-scene.mp4");
         for(String kind:new String[]{"critical","arrow","stone","charge","fire","trap-ball","lightning","counter","defeat","enemy","facilities","site"})sequence(kind);
-        recording.close();
+        recording.close();reducedMotion();
         turn(false,1,false,false);turn(true,4,false,false);turn(true,2,false,true);turn(true,1,true,false);
         result.putString("stream","PASS S06 native combat "+checks+" checks\n");finish(Activity.RESULT_OK,result);
     }catch(Throwable e){e.printStackTrace();result.putString("stream","FAIL S06 "+e+"\n");finish(Activity.RESULT_CANCELED,result);}}

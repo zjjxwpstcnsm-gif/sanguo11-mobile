@@ -1,4 +1,4 @@
-# S06 event-driven combat — implementation complete, native/hardware gates pending
+# S06 event-driven combat — implementation delivered, acceptance PARTIAL
 
 User override: same PR #62 and `agent/3d-s01-renderer-foundation`, no main merge.
 Input main: `1a883a4ffd1098ca85f7da38464b7c5fbfdc000f`; starting branch:
@@ -86,3 +86,13 @@ fire, all three trap types and the other listed cases use exact full-save hashes
 FIRE_SHIP causes its actual explosion but `Fieldworks.flame` deliberately does not
 persist water fires; the renderer follows that behavior. A follow-up core/save repair
 is required before claiming all critical-fire scenarios accepted.
+
+## Installed checkpoint 95de86a
+
+CI run 35704121970: S01 **173** and S04/S05 **124** installed checks pass. S06
+correctly omitted transient effects because the emulator action disables Android
+animators, causing its visible-effect assertion to fail. The S06 runner now explicitly
+enables animator scale 1, asserts that precondition, tests reduced mode separately,
+and restores scale 1 before actual TurnPlayback tests. Only this changed test needs
+a native rerun; the unchanged S01/S04/S05 runtime results above remain evidence.
+The workflow's `full_native` manual option retains those suites for future regressions.
