@@ -1,3 +1,15 @@
+# S09 — final candidate (PARTIAL)
+
+Continue PR #62 on the existing branch; no main merge. Input S08 `4091035`.
+Version 0.76.0-3d-s09-rc1 / 76. Repairs legal three-turn critical-fire saves and
+process-wide unsafe renderer restoration, adds ES3 preflight and failure metadata.
+See [final acceptance matrix](acceptance/s09-final.md). Final artifact manifest and
+raw logs distinguish host checks, installed CI, untested manual/physical-device gates.
+Default remains 2D and explicit 3D trial. Earlier stage records below are historical;
+current runtime assets exist, but full art/performance acceptance remains open.
+
+---
+
 # S05 — unit playback contract checkpoint
 
 Status: **PARTIAL / S04 art prerequisite BLOCKED**. Input `de8ef122a28b8f3ab2800b24ac46bc7636501769`.

@@ -18,6 +18,9 @@ public final class CombatVisualTest {
         if(kind.equals("critical-fire")){
             check(reference.war.fires().stream().anyMatch(f->f.remaining==3),"critical fire lasts three turns");
             check(Arrays.equals(expected,SaveCodec.encode(clone(reference))),"critical fire full save roundtrip");
+            World corrupt=clone(reference);corrupt.war.fires().get(0).remaining=4;
+            boolean rejected=false;try{SaveCodec.encode(corrupt);}catch(java.io.IOException e){rejected=true;}
+            check(rejected,"out-of-range fire still rejected");
         }
         for(int speed:new int[]{1,2,4,0}){
             World w=clone(initial),visual=clone(initial);TurnJournal journal=new TurnJournal(w);

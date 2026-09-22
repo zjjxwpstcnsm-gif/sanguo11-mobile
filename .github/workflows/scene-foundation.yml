@@ -1,7 +1,5 @@
-name: S01-S08 Filament scene acceptance
+name: S01-S09 Filament scene acceptance
 on:
-  push:
-    branches: [agent/3d-s01-renderer-foundation]
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -17,9 +15,9 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
-    if: github.event_name != 'pull_request' || github.head_ref != 'agent/3d-s01-renderer-foundation'
+    if: github.event_name == 'workflow_dispatch' || github.head_ref == 'agent/3d-s01-renderer-foundation'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v4
         with:
@@ -51,6 +49,10 @@ jobs:
           git rev-parse HEAD > evidence/BUILD_COMMIT
           sha256sum evidence/sanguo11-s01.apk > evidence/SHA256SUMS
           stat -c '%s' evidence/sanguo11-s01.apk > evidence/APK_BYTES
+      - name: Final host matrix (retain failures while native probes run)
+        id: final_host
+        continue-on-error: true
+        run: JSON_TEST_JAR=/tmp/scene-json.jar bash scripts/test-3d-final.sh evidence/final-host
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -97,7 +99,13 @@ jobs:
             adb pull /sdcard/interaction-scene.mp4 evidence/interaction-scene.mp4
             adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/interaction-images
             grep -q 'PASS S07' evidence/interaction-installed.txt
-            bash scripts/scene-full-native.sh "${{ inputs.full_native }}"
+            timeout 300 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.FinalSceneInstrumentation | tee evidence/final-recovery-installed.txt
+            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 evidence/final-images
+            grep -q 'PASS S09' evidence/final-recovery-installed.txt
+            bash scripts/scene-full-native.sh true
+      - name: Enforce final host matrix result
+        if: always() && steps.final_host.outcome == 'failure'
+        run: exit 1
       - uses: actions/upload-artifact@v4
         if: always()
         with:
