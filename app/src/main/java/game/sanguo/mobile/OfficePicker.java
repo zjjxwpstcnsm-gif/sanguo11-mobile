@@ -20,8 +20,9 @@ final class OfficePicker {
         TextView summary=new TextView(a);summary.setText(w.governance.titleProgress(city.owner)+"\n"+target.name+" · 功绩"+w.government.merit(target.id)+"\n"+w.government.commandDescription(target.id));summary.setTextSize(13);host.addView(summary);
         RadioGroup filters=new RadioGroup(a);filters.setOrientation(LinearLayout.HORIZONTAL);
         String[] names={"可任命","武官","文官","全部"};
-        for(int i=0;i<names.length;i++){RadioButton radio=new RadioButton(a);radio.setId(i+1);radio.setText(names[i]);radio.setTextSize(12);filters.addView(radio,new RadioGroup.LayoutParams(0,-2,1));}
-        filters.check(1);host.addView(filters);
+        int[] filterIds=new int[names.length];
+        for(int i=0;i<names.length;i++){RadioButton radio=new RadioButton(a);filterIds[i]=View.generateViewId();radio.setId(filterIds[i]);radio.setText(names[i]);radio.setTextSize(12);filters.addView(radio,new RadioGroup.LayoutParams(0,-2,1));}
+        filters.check(filterIds[0]);host.addView(filters);
         EditText query=new EditText(a);query.setSingleLine();query.setHint("搜索官职 / 所需爵位 / 功绩");host.addView(query);
         List<Government.Rank> rows=new ArrayList<>();
         ArrayAdapter<Government.Rank> adapter=new ArrayAdapter<Government.Rank>(a,android.R.layout.simple_list_item_1,rows){
@@ -41,7 +42,7 @@ final class OfficePicker {
             rows.clear();int filter=filters.getCheckedRadioButtonId();String needle=query.getText().toString().trim();
             for(Government.Rank r:Government.ranks()){
                 String error=w.government.appointmentError(city.id,actor.id,target.id,r.id);
-                if(filter==1&&error!=null||filter==2&&r.civilian||filter==3&&!r.civilian)continue;
+                if(filter==filterIds[0]&&error!=null||filter==filterIds[1]&&r.civilian||filter==filterIds[2]&&!r.civilian)continue;
                 if(!(r.id+" "+r.requiredTitle.label+" "+r.merit+" "+(error==null?"可任命":error)).contains(needle))continue;
                 rows.add(r);
             }
