@@ -35,11 +35,13 @@ final class MapHost extends FrameLayout implements MapPresentation {
         if(Boolean.TRUE.equals(prefs.getAll().get("nativeSession")))Toast.makeText(context,"上次 3D 会话未正常结束，已安全回到 2D；可在视图中手动重试",Toast.LENGTH_LONG).show();
     }
     private MapView.EditorStroke editorStroke;
-    private boolean editorDrawing;
+    private boolean editorDrawing,editorGrid,editorCoords,editorPassability,editorFootprints,editorValid=true;
+    private Set<Hex> editorCells=Collections.emptySet();
+    private Displacement.Preview tacticPreview;private int panelRight,panelBottom;
     void editorMode(MapView.EditorStroke value){editorStroke=value;flat.editorMode(value);if(spatial!=null)spatial.editorMode(value);}
     void editorDrawing(boolean value){editorDrawing=value;flat.editorDrawing(value);if(spatial!=null)spatial.editorDrawing(value);}
-    void editorPreview(Set<Hex> cells,boolean valid){flat.editorPreview(cells,valid);if(spatial!=null)spatial.editorPreview(cells,valid);}
-    void editorLayers(boolean grid,boolean coords,boolean passability,boolean footprints){flat.editorLayers(grid,coords,passability,footprints);if(spatial!=null)spatial.editorLayers(world,grid,coords,passability,footprints);}
+    void editorPreview(Set<Hex> cells,boolean valid){editorCells=new HashSet<>(cells);editorValid=valid;flat.editorPreview(cells,valid);if(spatial!=null)spatial.editorPreview(cells,valid);}
+    void editorLayers(boolean grid,boolean coords,boolean passability,boolean footprints){editorGrid=grid;editorCoords=coords;editorPassability=passability;editorFootprints=footprints;flat.editorLayers(grid,coords,passability,footprints);if(spatial!=null)spatial.editorLayers(world,grid,coords,passability,footprints);}
     void resetOrientation(){if(spatial!=null)spatial.resetOrientation();}
     void reverseOrientation(){if(spatial!=null)spatial.reverseOrientation();}
     void previewMode(){openingPreview=true;flat.previewMode();}
@@ -57,14 +59,14 @@ final class MapHost extends FrameLayout implements MapPresentation {
             removeView(flat);addView(spatial,new LayoutParams(-1,-1));
             dirty=true;publish();
             Map<String,?> saved=prefs.getAll();if(!camera.containsKey("sceneTilt")&&saved.get("tilt") instanceof Float)camera.putFloat("sceneTilt",(Float)saved.get("tilt"));if(!camera.containsKey("sceneFacing")&&saved.get("facing") instanceof Integer)camera.putInt("sceneFacing",(Integer)saved.get("facing"));
-            spatial.restoreCamera(camera);spatial.setTargets(targets);spatial.setRoute(route);spatial.resume(resumed);spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.criticalSkip(criticalSkip);
+            spatial.restoreCamera(camera);spatial.setTargets(targets);spatial.setRoute(route);spatial.resume(resumed);spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(world,editorGrid,editorCoords,editorPassability,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);
         }catch(Exception|LinkageError e){fallback(e);}
     }
     private void fallback(Throwable e){android.util.Log.e("MapRenderer","Filament fallback to 2D",e);leave3D();if(world!=null)flat.setWorld(world,selected,moving);flat.restoreCamera(camera);Toast.makeText(getContext(),"3D 初始化或渲染失败，已返回 2D："+e.getClass().getSimpleName(),Toast.LENGTH_LONG).show();}
     private void leave3D(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;}if(flat.getParent()==null)addView(flat,new LayoutParams(-1,-1));prefs.edit().putBoolean("nativeSession",false).commit();}
     void release(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;prefs.edit().putBoolean("nativeSession",false).commit();}}
     void resume(boolean value){if(!value)persistCamera();resumed=value;if(spatial!=null)spatial.resume(value);}
-    void toggleDiagnostics(){diagnostics=!diagnostics;if(spatial!=null)spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.criticalSkip(criticalSkip);android.util.Log.i("MapRenderer",report());}
+    void toggleDiagnostics(){diagnostics=!diagnostics;if(spatial!=null)spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(world,editorGrid,editorCoords,editorPassability,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);android.util.Log.i("MapRenderer",report());}
     String report(){return spatial==null?"2D · "+getWidth()+" × "+getHeight():spatial.report();}
     @Override public void setWorld(World w,Hex s,int moving){
         boolean changed=world!=w||revision!=w.commandRevision()||turn!=w.turn||player!=w.player||terrainRevision!=w.terrainRevision||!Objects.equals(selected,s)||this.moving!=moving;
@@ -83,9 +85,9 @@ final class MapHost extends FrameLayout implements MapPresentation {
     void setUnitDrop(Consumer<MarchOrders.Plan> drop){flat.setUnitDrop(drop);}
     void setRoute(MarchOrders.Plan value){route=value;flat.setRoute(value);if(spatial!=null)spatial.setRoute(value);}
     void setPickTargets(Set<Hex> value){targets=value;flat.setPickTargets(value);if(spatial!=null)spatial.setTargets(value);}
-    void setTacticPreview(Displacement.Preview value){flat.setTacticPreview(value);if(spatial!=null)spatial.setTacticPreview(value);}
+    void setTacticPreview(Displacement.Preview value){tacticPreview=value;flat.setTacticPreview(value);if(spatial!=null)spatial.setTacticPreview(value);}
     void battleFeedback(World.Result result,boolean haptics){if(spatial==null)flat.battleFeedback(result,haptics);else if(haptics&&result.feedback!=World.Feedback.NONE)performHapticFeedback(android.view.HapticFeedbackConstants.CONTEXT_CLICK);}
-    void setPanelOcclusion(int right,int bottom){flat.setPanelOcclusion(right,bottom);if(spatial!=null)spatial.setPanelOcclusion(right,bottom);}
+    void setPanelOcclusion(int right,int bottom){panelRight=right;panelBottom=bottom;flat.setPanelOcclusion(right,bottom);if(spatial!=null)spatial.setPanelOcclusion(right,bottom);}
     void setTerritoryMode(int value){flat.setTerritoryMode(value);if(spatial!=null&&world!=null)spatial.mapLayers(world,flat.territoryMode(),openingPreview,previewFaction);}
     int territoryMode(){return flat.territoryMode();}
     Territory territory(){if(spatial!=null&&world!=null)flat.setWorld(world,selected,moving);return flat.territory();}

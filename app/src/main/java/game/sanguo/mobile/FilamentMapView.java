@@ -62,6 +62,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
 
     private boolean editorGrid,editorCoords,editorFootprints;private Set<Hex> impassable=Collections.emptySet();
     private int territoryMode,previewFaction=-1;private boolean openingPreview;
+    private World layerWorld;private Territory layerTerritory;private int layerRevision=-1;
     private int[] territoryColors;private final Map<String,String> factionLabels=new HashMap<>();
     private final Map<String,Integer> siteOwners=new HashMap<>();
     void editorLayers(World w,boolean grid,boolean coords,boolean passability,boolean footprints){
@@ -73,7 +74,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         territoryMode=mode;openingPreview=preview;previewFaction=side;
         factionLabels.clear();siteOwners.clear();for(World.City c:w.cities){String key="site:"+c.id;siteOwners.put(key,c.owner);factionLabels.put(key,c.owner<0?"":w.governance.label(c.owner));}
         if(mode==0){territoryColors=null;return;}
-        Territory t=new Territory(w);territoryColors=new int[w.width*w.height];
+        if(layerWorld!=w||layerRevision!=w.terrainRevision){layerWorld=w;layerRevision=w.terrainRevision;layerTerritory=new Territory(w);}
+        Territory t=layerTerritory;territoryColors=new int[w.width*w.height];
         for(int y=0;y<w.height;y++)for(int x=0;x<w.width;x++){int owner=t.ownerAt(x,y);if(owner>=0)territoryColors[y*w.width+x]=FactionColors.color(w,owner);}
     }
     private final CombatVisual combat=new CombatVisual();
@@ -90,7 +92,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         gestures=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
             @Override public boolean onDown(MotionEvent e){return true;}
             @Override public boolean onScroll(MotionEvent a,MotionEvent b,float dx,float dy){if(!multi&&!scaler.isInProgress()&&!editorDrawing){camera.pan(-dx,-dy);clampCamera();}return true;}
-            @Override public boolean onSingleTapUp(MotionEvent e){
+            @Override public boolean onSingleTapConfirmed(MotionEvent e){
                 if(criticalHit!=null&&criticalSkip!=null){criticalSkip.run();return true;}
                 if(!multi&&!editorDrawing&&snapshot!=null){Hex h=targets.isEmpty()&&snapshot.reachable.isEmpty()?pickObject(e.getX(),e.getY()):null;if(h==null)h=snapshot.ground.surface.pick(camera,e.getX(),e.getY());if(snapshot.ground.valid(h)){performClick();listener.tap(h);}}return true;
             }
@@ -155,7 +157,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 post(()->{if(released||token!=generation)return;
                     for(SceneMesh old:new ArrayList<>(terrain.keySet()))if(!built.contains(old)&&built.stream().noneMatch(m->m.distant==old)){terrain.remove(old).destroy();}
                     for(SceneMesh old:new ArrayList<>(vegetation.keySet()))if(!trees.contains(old)&&trees.stream().noneMatch(m->m.distant==old)){vegetation.remove(old).destroy();}
-                    chunks=built;woods=trees;pending=0;schedule();});
+                    chunks=built;woods=trees;pending=0;clampCamera();schedule();});
                 }catch(RuntimeException|OutOfMemoryError e){post(()->{if(!released&&token==generation)failure.accept(e);});}
             });
         }
@@ -322,15 +324,14 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
 
     private Hex pickObject(float sx,float sy){
-        Proxy chosen=null;float best=Float.NEGATIVE_INFINITY;
+        Proxy chosen=null;float best=Float.NEGATIVE_INFINITY;float foreground=snapshot.ground.surface.rayHeight(camera,sx,sy);
         for(Proxy p:objects.values())if(p.shown){
             MapSceneSnapshot.Item item=p.item;
             float yaw=item.site!=null?item.site.yaw:item.facility!=null?item.facility.direction*(float)Math.PI/3:p.motion.yaw;
             float scale=item.site!=null?item.site.scale:1;
             float hit=ScenePicking.hit(camera,p.shape.source,p.motion.x,p.y,p.motion.z,yaw,scale,sx,sy);
             if(!Float.isFinite(hit))continue;
-            float x=camera.worldX(sx),z=camera.worldZ(sy)+hit*(float)(camera.cos()/camera.sin())*camera.facing;
-            if(snapshot.ground.surface.meshHeight(x,z)>hit+.03f)continue;
+            if(Float.isFinite(foreground)&&foreground>hit+.03f)continue;
             if(hit>best||(hit==best&&chosen!=null&&item.key.compareTo(chosen.item.key)<0)){best=hit;chosen=p;}
         }
         return chosen==null?null:chosen.item.hex;
@@ -347,7 +348,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(!chunks.isEmpty()){camera.x=Math.max(minX,Math.min(maxX,camera.x));camera.z=Math.max(minZ,Math.min(maxZ,camera.z));}
     }
     void saveCamera(Bundle b){b.putFloat("cameraX",camera.x*TileGeometry.DX);b.putFloat("cameraY",camera.z*TileGeometry.DY);b.putFloat("sceneSpan",camera.span);b.putFloat("sceneTilt",camera.tilt);b.putInt("sceneFacing",camera.facing);}
-    void restoreCamera(Bundle b){camera.x=b.getFloat("cameraX")/TileGeometry.DX;camera.z=b.getFloat("cameraY")/TileGeometry.DY;camera.span=b.getFloat("sceneSpan",15);camera.tilt=b.getFloat("sceneTilt",55);camera.facing=b.getInt("sceneFacing",1)<0?-1:1;camera.sanitize();clampCamera();}
+    void restoreCamera(Bundle b){try{camera.x=b.getFloat("cameraX")/TileGeometry.DX;camera.z=b.getFloat("cameraY")/TileGeometry.DY;camera.span=b.getFloat("sceneSpan",15);camera.tilt=b.getFloat("sceneTilt",55);camera.facing=b.getInt("sceneFacing",1)<0?-1:1;camera.sanitize();clampCamera();}catch(RuntimeException bad){camera.x=0;camera.z=0;camera.span=15;camera.tilt=55;camera.facing=1;clampCamera();}}
     void release(){
         if(released)return;released=true;replay=null;animatedUnit=null;generation++;cancelFrame();if(meshTask!=null)meshTask.cancel(true);worker.shutdownNow();surface.getHolder().removeCallback(this);
         if(engine==null)return;

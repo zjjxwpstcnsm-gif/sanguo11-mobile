@@ -70,15 +70,19 @@ final class TerrainSurface {
         return sample(cx,cz)*(1-scale)+boundary*scale;
     }
     Hex pick(SceneCamera camera,float sx,float sy){
+        float y=rayHeight(camera,sx,sy);if(!Float.isFinite(y))return null;
+        Hex h=ground.grid.cell(camera.worldX(sx),camera.worldZ(sy)+y*(float)(camera.cos()/camera.sin())*camera.facing);return ground.valid(h)?h:null;
+    }
+    float rayHeight(SceneCamera camera,float sx,float sy){
         float x=camera.worldX(sx),base=camera.worldZ(sy),cot=(float)(camera.cos()/camera.sin())*camera.facing;
         // Bounded ray march independent of national triangle count; select first visible surface.
         float previous=MAX_HEIGHT,previousF=previous-meshHeight(x,base+previous*cot);
         for(int n=1;n<=104;n++){
             float y=MAX_HEIGHT*(1-n/104f),f=y-meshHeight(x,base+y*cot);
             if(f<=0&&previousF>=0){float lo=y,hi=previous;for(int j=0;j<14;j++){float mid=(lo+hi)*.5f;if(mid>meshHeight(x,base+mid*cot))hi=mid;else lo=mid;}
-                Hex h=ground.grid.cell(x,base+(lo+hi)*.5f*cot);return ground.valid(h)?h:null;}
+                return (lo+hi)*.5f;}
             previous=y;previousF=f;
-        }return null;
+        }return Float.NaN;
     }
     int color(float x,float z,int base,boolean water){
         // Shading normals use the cached half-cell lattice. Interior subdivision must not
