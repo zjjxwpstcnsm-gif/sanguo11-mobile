@@ -120,7 +120,11 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             renderer=engine.createRenderer();scene=engine.createScene();view=engine.createView();
             displayHelper=new com.google.android.filament.android.DisplayHelper(context);
             skybox=new Skybox.Builder().color(.075f,.10f,.11f,1).build(engine);scene.setSkybox(skybox);
-            cameraEntity=EntityManager.get().create();lens=engine.createCamera(cameraEntity);view.setScene(scene);view.setCamera(lens);view.setPostProcessingEnabled(false);
+            cameraEntity=EntityManager.get().create();lens=engine.createCamera(cameraEntity);view.setScene(scene);view.setCamera(lens);// Lit textures are linear-light inputs. Filament's final color pass provides gamma encoding;
+            // disabling it (the old unlit preview setting) writes near-black linear values to the display.
+            view.setPostProcessingEnabled(true);
+            lens.setExposure(11f,1f/125f,100f); // Fixed daylight exposure for the existing 50,000-lux sun.
+            view.setAntiAliasing(com.google.android.filament.View.AntiAliasing.NONE);
             android.app.ActivityManager manager=context.getSystemService(android.app.ActivityManager.class);
             // Filament 1.56 blitLow aborts in the GLES3.0 compatibility driver. Native aborts
             // cannot be recovered by Java try/catch. Keep full 3D but gate this optional resolve.
