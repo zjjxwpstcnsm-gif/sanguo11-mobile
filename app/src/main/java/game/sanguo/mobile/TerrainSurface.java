@@ -25,7 +25,8 @@ final class TerrainSurface {
             else {World.Terrain t=TYPES[g.terrain[at]];if(t==World.Terrain.ROAD||t==World.Terrain.MOUNTAIN_PATH||t==World.Terrain.PLANK_ROAD)constraints[at]=2;}
         }
     }
-    boolean water(Hex h){if(!ground.valid(h))return false;switch(TYPES[ground.terrain[h.r*ground.width+h.q]]){
+    boolean water(Hex h){return h!=null&&water(h.q,h.r);}
+    boolean water(int q,int r){if(q<0||r<0||q>=ground.width||r>=ground.height)return false;switch(TYPES[ground.terrain[r*ground.width+q]]){
         case WATER:case SEA:case SHALLOWS:case NON_NAVIGABLE_WATER:return true;default:return false;}}
     float target(Hex h){
         if(!ground.valid(h)||water(h)||ground.bases.contains(h))return 0;

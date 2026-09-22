@@ -16,11 +16,11 @@ final class TerrainMaterialField {
         if(!Float.isFinite(x)||!Float.isFinite(z))return new float[]{0,1,0,0};
         Hex center=ground.grid.cell(x,z);
         for(int r=center.r-3;r<=center.r+3;r++)for(int q=center.q-4;q<=center.q+4;q++){
-            Hex h=new Hex(q,r);if(!ground.valid(h)||ground.surface.water(h))continue;
-            float dx=x-ground.grid.x(h),dz=z-ground.grid.z(h),d2=(dx*dx+dz*dz)/(RADIUS*RADIUS);
+            if(q<0||r<0||q>=ground.width||r>=ground.height||TYPES[ground.terrain[r*ground.width+q]]==World.Terrain.VOID||ground.surface.water(q,r))continue;
+            float dx=x-ground.grid.x(q,r),dz=z-ground.grid.z(q,r),d2=(dx*dx+dz*dz)/(RADIUS*RADIUS);
             if(d2>=1)continue;
             float k=(1-d2)*(1-d2)*(1-d2);
-            if(ground.bases.contains(h)){w[1]+=k;continue;}
+            if(ground.bases.contains(new Hex(q,r))){w[1]+=k;continue;}
             switch(TYPES[ground.terrain[r*ground.width+q]]){
                 case SAND:w[2]+=k;break;
                 case MOUNTAIN:case DAM:w[3]+=.9f*k;w[1]+=.1f*k;break;

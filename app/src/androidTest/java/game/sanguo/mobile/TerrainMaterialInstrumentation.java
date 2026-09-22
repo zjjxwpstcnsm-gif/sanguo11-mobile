@@ -20,11 +20,18 @@ public class TerrainMaterialInstrumentation extends SceneInstrumentation {
         throw new AssertionError("No actual national boundary for "+type);
     }
     @Override void surfaceCapture()throws Exception{
+        ready();
+        FilamentMapView spatial=(FilamentMapView)field(host,"spatial");
+        // Static art evidence must not race continuously submitted software-GPU frames.
+        // Freeze only presentation; ready()/flushAndWait below drains the last real frame.
+        runOnMainSync(()->spatial.resume(false));
+        try{
         super.surfaceCapture();
         android.graphics.Bitmap bitmap=android.graphics.BitmapFactory.decodeFile(new File(getTargetContext().getExternalFilesDir("s01"),"surface.png").getAbsolutePath());
         java.util.Set<Integer> colors=new java.util.HashSet<>();
         for(int y=0;y<bitmap.getHeight();y+=8)for(int x=0;x<bitmap.getWidth();x+=8)colors.add(bitmap.getPixel(x,y));
         bitmap.recycle();check(colors.size()>64,"Surface has real material variation, not a uniform post-process frame");
+        }finally{runOnMainSync(()->spatial.resume(true));}
     }
     Hex[] shots(){return new Hex[]{boundary(World.Terrain.FOREST),boundary(World.Terrain.MOUNTAIN),boundary(World.Terrain.SAND),world.cities.get(0).hex};}
     String[] names(){return new String[]{"forest","rock","sand","city"};}
