@@ -11,4 +11,4 @@ Validation and remaining work: see `acceptance/s10.md`. Read `handoffs/s10.md` b
 
 ## S11 candidate
 
-Continues e64992d on the user-requested PR #63 branch. Regional constrained landforms and disjoint water material batches are implemented in the normal game renderer. Exact footprint, material shoreline bands and local shape-derived flow preserve water topology. Candidate tests/build/native evidence in progress; see handoffs/s11.md and acceptance/s11.md. No main merge.
+Continues e64992d on the user-requested PR #63 branch. Regional constrained landforms and disjoint water material batches are implemented in the normal game renderer. Exact footprint, material shoreline bands and local shape-derived flow preserve water topology. Host geometry/material/water/editor/port regressions and clean APK/signature/lint checks PASS. Native SwANGLE PASS:681 assertions and54 same-runtime Surface captures inspected across all three qualities; stage remains PARTIAL due to conservative exact shore silhouettes, physical-device and manual acceptance gaps. See handoffs/s11.md and acceptance/s11.md. No main merge.
