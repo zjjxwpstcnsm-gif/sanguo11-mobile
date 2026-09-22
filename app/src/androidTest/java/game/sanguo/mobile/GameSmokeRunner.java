@@ -73,7 +73,7 @@ public final class GameSmokeRunner extends Instrumentation {
             Intent launch=new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Activity activity=startActivitySync(launch);click("新建游戏 · 选择剧本",true);waitText("选择剧本",false);
             screenshot("01-scenarios");
-            click("190 讨伐董卓",false);waitText("选择势力",false,180000);click("曹操军",true);click("开始新局",false);
+            click("190 讨伐董卓",false);waitText("选择势力",false,180000);click("选择势力 · 曹操军",true);click("开始新局",false);
             for(int orientation:new int[]{android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT,android.content.pm.ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE}){
                 runOnMainSync(()->current.setRequestedOrientation(orientation));assertOrientation(orientation==android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 getUiAutomation().waitForIdle(800,5000);waitForIdleSync();
@@ -159,7 +159,7 @@ public final class GameSmokeRunner extends Instrumentation {
         runOnMainSync(current::recreate);waitText("自动存档损坏",false);
         require(Arrays.equals(corrupt,java.nio.file.Files.readAllBytes(getTargetContext().getFileStreamPath("auto.sg11").toPath())),"recreation preserves corrupt bytes");
         click("新建游戏 · 选择剧本",true);waitText("选择剧本",false);require(ScenarioCatalog.summaries().size()==9,"only six eras and three player sandboxes");screenshot("v033-production-catalog");
-        click("190 讨伐董卓",false);waitText("选择势力",false,180000);click("曹操军",true);click("执行",true);waitText("190 讨伐董卓 · 重建  ·",false,180000);waitForIdleSync();require(saved().scenarioId.equals("coalition-190"),"explicit new game");
+        click("190 讨伐董卓",false);waitText("选择势力",false,180000);click("选择势力 · 曹操军",true);click("执行",true);waitText("190 讨伐董卓 · 重建  ·",false,180000);waitForIdleSync();require(saved().scenarioId.equals("coalition-190"),"explicit new game");
         boolean backed=false;for(File f:getTargetContext().getFilesDir().listFiles())if(f.getName().startsWith("auto-unreadable-"))backed|=Arrays.equals(corrupt,java.nio.file.Files.readAllBytes(f.toPath()));require(backed,"corrupt archive retains exact original");
         checkpoint("corrupt backup and historical new game verified");
         World base=ArchitectureFixture.create();base.scenarioName="规则架构验证";base.officer(0).skillId=Skill.HUOSHEN.id;base.officer(1).skillId=Skill.WEIFENG.id;base.officer(2).skillId=Skill.SHENJIANG.id;base.officer(2).war=100;
@@ -203,7 +203,7 @@ public final class GameSmokeRunner extends Instrumentation {
         runOnMainSync(()->landscape.focus(national.city(20077).hex));waitForIdleSync();screenshot("v032-xiakou-port");
         require(Arrays.equals(before,SaveCodec.encode(saved())),"navigation/toggles/orientation leave game state unchanged");
         clickNav("菜单");click("新游戏 / 选择势力",true);screenshot("v032-scenarios");
-        click("190 讨伐董卓",false);waitText("选择势力",false,180000);screenshot("v032-coalition-factions");click("曹操军",true);click("执行",true);waitText("190 讨伐董卓 · 重建  ·",false,180000);waitForIdleSync();
+        click("190 讨伐董卓",false);waitText("选择势力",false,180000);screenshot("v032-coalition-factions");click("选择势力 · 曹操军",true);click("执行",true);waitText("190 讨伐董卓 · 重建  ·",false,180000);waitForIdleSync();
         World opening=saved();require(opening.scenarioId.equals("coalition-190")&&opening.city(20012).owner==opening.player&&opening.cities.size()==87,"real new-game entry creates selected historical force");
         runOnMainSync(current::recreate);waitText("190 讨伐董卓 · 重建  ·",false,180000);waitForIdleSync();require(saved().scenarioId.equals("coalition-190"),"new opening survives recreation");screenshot("v032-coalition-start");
     }
@@ -1466,7 +1466,7 @@ public final class GameSmokeRunner extends Instrumentation {
     private AccessibilityNodeInfo find(AccessibilityNodeInfo node,String text,boolean exact) {
         if(node==null)return null;
         CharSequence value=node.getText();
-        if(text.equals("返回全国列表")||text.startsWith("导航 · ")||text.startsWith("选中对象指令 ·")||text.endsWith("待行动部队")||(text.equals("下一页")||text.equals("上一页"))&&node.getContentDescription()!=null)value=node.getContentDescription();
+        if(text.startsWith("选择势力 · ")||text.equals("返回全国列表")||text.startsWith("导航 · ")||text.startsWith("选中对象指令 ·")||text.endsWith("待行动部队")||(text.equals("下一页")||text.equals("上一页"))&&node.getContentDescription()!=null)value=node.getContentDescription();
         if(value!=null&&(exact?value.toString().equals(text):value.toString().contains(text))&&node.isVisibleToUser())return node;
         for(int i=0;i<node.getChildCount();i++){AccessibilityNodeInfo found=find(node.getChild(i),text,exact);if(found!=null)return found;}return null;
     }

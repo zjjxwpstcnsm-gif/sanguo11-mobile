@@ -42,7 +42,8 @@ public final class CoreTest {
             check(e.getValue()<=u.weapon.movement,"path within budget");check(w.cost(e.getKey(),u.weapon)>0||w.army.water(e.getKey()),"land or navigable water, never mountain");
             check(w.cityAt(e.getKey())==null||w.cityAt(e.getKey()).owner==u.owner,"own city allows paid transit; enemy city is blocked");
         }
-        Hex destination=null;for(Hex h:reachable.keySet())if(!h.equals(initial)){destination=h;break;}
+        // This checks field commands; landing inside a seven-cell city legitimately auto-enters.
+        Hex destination=null;for(Hex h:reachable.keySet())if(!h.equals(initial)&&w.cityAt(h)==null){destination=h;break;}
         check(destination!=null&&w.move(1,destination).ok,"legal path move");check(!u.acted&&w.orders.remaining(u)<u.weapon.movement,"moving preserves command with reduced movement");
         check(w.war.waitUnit(u.id).ok&&!w.move(1,initial).ok,"finished action cannot move again");
         w=deployed();u=w.unit(1);for(Hex n:u.hex.neighbors())if(w.inside(n))w.terrain[n.q][n.r]=World.Terrain.MOUNTAIN;
@@ -61,7 +62,9 @@ public final class CoreTest {
         check(w.siege(1,2).ok&&w.city(2).owner==0,"capture neutral city");check(w.city(2).defense>0,"captured defense restored");
         SaveCodec.validate(w);
         w=deployed();int troops=w.city(0).troops+w.unit(1).troops, food=w.city(0).food+w.unit(1).food;
-        check(w.enter(1,0).ok&&w.units.isEmpty(),"enter adjacent friendly city");check(w.city(0).troops==troops&&w.city(0).food==food,"return conserves resources");
+        check(!w.enter(1,0).ok,"cannot enter before reaching the city footprint");
+        w.unit(1).hex=w.city(0).hex;
+        check(w.enter(1,0).ok&&w.units.isEmpty(),"enter reached friendly city footprint");check(w.city(0).troops==troops&&w.city(0).food==food,"return conserves resources");
         check(w.officer(0).cityId==0&&w.officer(0).acted,"returned officer cannot redeploy same turn");
     }
     private static void logistics()throws Exception {

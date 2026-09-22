@@ -72,13 +72,13 @@ final class CustomOfficerLibrary {
     }
     static void validate(JSONObject root)throws JSONException{
         if(!"sg11-custom-officers".equals(root.getString("format"))||root.getInt("version")!=VERSION)throw new IllegalArgumentException("不支持的武将库格式版本");
-        UUID.fromString(root.getString("libraryId"));JSONArray values=root.getJSONArray("entries");if(values.length()>MAX_ENTRIES)throw new IllegalArgumentException("武将数量超限");
+        UUID.fromString(root.getString("libraryId"));strictInt(root.get("version"));strictInt(root.get("nextId"));if(root.has("libraryRevision"))strictInt(root.get("libraryRevision"));JSONArray values=root.getJSONArray("entries");if(values.length()>MAX_ENTRIES)throw new IllegalArgumentException("武将数量超限");
         Set<String> ids=new HashSet<>();Set<Integer> runtimeIds=new HashSet<>();int max=99999;
         for(int i=0;i<values.length();i++){
             JSONObject o=values.getJSONObject(i);template(o);
-            for(String key:new String[]{"runtimeId","revision","targetId","birth","appearance","death","affinity"})strictInt(o.get(key));
+            for(String key:new String[]{"runtimeId","revision","targetId","birth","appearance","death","affinity","honor","talkMask"})strictInt(o.get(key));
             for(String array:new String[]{"stats","aptitudes"})for(int j=0;j<o.getJSONArray(array).length();j++)strictInt(o.getJSONArray(array).get(j));
-            String id=o.getString("id");UUID.fromString(id);
+            String id=o.getString("id");UUID.fromString(id);if(o.has("origin"))UUID.fromString(o.getString("origin"));
             int rid=o.getInt("runtimeId");if(!ids.add(id)||!runtimeIds.add(rid)||rid<100000||rid>1000000||o.getInt("revision")<1)throw new IllegalArgumentException("人物ID重复或非法");max=Math.max(max,rid);
             int affinity=o.optInt("affinity",75);if(affinity<0||affinity>149)throw new IllegalArgumentException("相性须为0—149");
             String portrait=o.optString("portrait","");if(!portrait.isEmpty()&&!portrait.matches("(?:builtin:[A-Za-z0-9_-]+|[a-f0-9]{64}\\.png)"))throw new IllegalArgumentException("头像引用无效");

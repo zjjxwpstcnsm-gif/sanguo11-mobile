@@ -3,9 +3,10 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 mkdir -p core/build/custom-officers
 find core/src/main/java -name '*.java' > core/build/custom-officers-sources.txt
-printf '%s\n' core/src/test/java/game/sanguo/core/CustomOfficerTest.java >> core/build/custom-officers-sources.txt
+printf '%s\n' core/src/test/java/game/sanguo/core/CustomOfficerTest.java core/src/test/java/game/sanguo/core/OfficerPackArchiveTest.java >> core/build/custom-officers-sources.txt
 javac -encoding UTF-8 --release 17 -d core/build/custom-officers @core/build/custom-officers-sources.txt
 java -cp core/build/custom-officers:core/src/main/resources game.sanguo.core.CustomOfficerTest
+java -cp core/build/custom-officers:core/src/main/resources game.sanguo.core.OfficerPackArchiveTest
 python3 - <<'PY'
 from pathlib import Path
 import re

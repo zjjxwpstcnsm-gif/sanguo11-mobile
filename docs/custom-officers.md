@@ -88,3 +88,11 @@ bash scripts/verify-custom-officers-android.sh
 Android 脚本安装正式 APK 和测试 APK，在 API 29 模拟器操作实际编辑控件、头像裁剪、关系选择、投放及正式新局入口，再执行正常玩法命令和强制停止后的重启读档；产物包含运行日志和实际截图。图片输入使用真实 provider URI 调用正式 Activity 返回处理器，不冒充已手点完所有厂商系统文件选择器。未进行实体手机、多系统版本或地图 PR 组合验收。以具体构建的日志、退出结果和 `SOURCE_COMMIT.txt` 为准；构建成功不单独代表 Android 测试通过。
 
 测试人物、图片、地图和极端数值只在 test / androidTest 中产生，不写入正式默认资料。
+
+## 本次收尾与全量回归边界
+
+- 人物 ZIP 经 `OfficerPackArchive` 同时检查尾目录、本地条目、文件名、偏移、长度与 CRC；拒绝截断、分卷、ZIP64、加密、异常路径及超限解压。除有清单的 ZIP 外，旧 JSON 配置入口保留。新增纯 Java 数据包回归及 Android 库原子性回归。
+- 义理、话术掩码、分配器和修订号必须为真正整数；来源标识须为 UUID，不再接受 JSON 小数的隐式截断。
+- 旧 CoreTest 行军检查避开会自动进驻的城市占地，回城检查先到达合法占地。安卓势力选择回归按稳定的“选择势力 · 曹操军”无障碍描述定位，不要求显示文案退回旧势力名。
+- `scripts/audit-officer-baseline.py <main-worktree>` 以相同现行测试和 fixture 分别编译 main 与候选正式核心，记录每一项历史套件的退出状态与首个异常。对新增/改变的失败和超时失败，不删除原 `test-core.sh` / Gradle check，也不把已有失败包装为全量通过。
+- 旧回归还包含早期存档迁移、单格据点 fixture 和旧 AI 行为预期等问题。本轮不回退现行地图/存档规则来迎合过时测试；具体范围以本次构建的 `legacy-audit/comparison.json` 和日志为准。

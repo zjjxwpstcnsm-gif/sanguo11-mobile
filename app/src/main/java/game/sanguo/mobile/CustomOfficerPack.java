@@ -33,7 +33,7 @@ final class CustomOfficerPack {
     static Preview preview(Context c,InputStream input,CustomOfficerLibrary library)throws IOException,JSONException{
         byte[] bytes=CustomOfficerLibrary.readBounded(input,MAX_PACK);Map<String,byte[]> files=new LinkedHashMap<>();int total=0;
         if(bytes.length>0&&bytes[0]=='{')files.put("manifest.json",bytes);
-        else try(ZipInputStream zip=new ZipInputStream(new ByteArrayInputStream(bytes))){ZipEntry e;while((e=zip.getNextEntry())!=null){String name=e.getName();if(e.isDirectory()||!name.equals("manifest.json")&&!name.matches("portraits/[a-f0-9]{64}\\.png")||files.containsKey(name)||files.size()>1000)throw new IOException("ZIP包含非法/重复路径或过多文件");int max=name.equals("manifest.json")?CustomOfficerLibrary.MAX_BYTES:CustomOfficers.MAX_PORTRAIT;byte[] file=CustomOfficerLibrary.readBounded(zip,max);total+=file.length;if(total>MAX_PACK)throw new IOException("解压内容超过20MiB限制");files.put(name,file);zip.closeEntry();}}
+        else files.putAll(OfficerPackArchive.read(bytes));
         if(!files.containsKey("manifest.json"))throw new IOException("数据包缺少manifest.json");JSONObject root=new JSONObject(new String(files.remove("manifest.json"),StandardCharsets.UTF_8));
         if(root.getInt("packageVersion")!=1)throw new IOException("数据包版本不支持");CustomOfficerLibrary.validate(root);
         Map<String,byte[]> images=new HashMap<>();for(Map.Entry<String,byte[]> e:files.entrySet()){String name=e.getKey().substring(10);if(!name.equals(CustomOfficerImages.digest(e.getValue())+".png"))throw new IOException("头像摘要不匹配");CustomOfficerImages.validate(e.getValue());images.put(name,e.getValue());}
