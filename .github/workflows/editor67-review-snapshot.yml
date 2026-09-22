@@ -2,7 +2,7 @@ name: Map editor read-only reconciliation snapshot
 on:
   push:
     branches: [agent/in-game-map-editor-v067]
-    paths: [.github/workflows/editor67-review-snapshot.yml]
+    paths: [editor67-transfer.b64, .github/workflows/editor67-review-snapshot.yml]
 permissions:
   contents: read
 jobs:
