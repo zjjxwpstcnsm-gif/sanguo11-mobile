@@ -24,6 +24,8 @@ android {
         versionCode release.getProperty('versionCode').toInteger()
         versionName release.getProperty('versionName')
         buildConfigField 'String', 'SOURCE_REVISION', '"' + (revision ?: 'source-archive') + '"'
+        buildConfigField 'boolean', 'UNITY_ENABLED', (findProject(':unityLibrary') != null).toString()
+        manifestPlaceholders.unityTrialEnabled = (findProject(':unityLibrary') != null).toString()
     }
     // Explicit opt-in ABI build keeps the existing universal compatibility artifact available.
     def targetAbi = providers.gradleProperty('targetAbi').getOrElse('universal')
@@ -53,6 +55,7 @@ android {
 dependencies {
     implementation project(':core')
     implementation 'com.google.android.filament:filament-android:1.56.0'
+    if (findProject(':unityLibrary') != null) implementation project(':unityLibrary')
 }
 
 // Execute plain Java presentation regressions without adding a runtime/test framework dependency.

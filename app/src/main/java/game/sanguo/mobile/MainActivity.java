@@ -882,6 +882,7 @@ public final class MainActivity extends Activity {
     DomesticUi domesticUi(){return new DomesticUi(this,world,this::apply,this::selectAndFocus);}
     private void showMenu(){
         line("军政菜单",22,gold);
+        action("Unity 试用 · 全屏预览",v->launchUnityTrial());
         action("屏幕方向 / 横竖屏",v->showOrientationPicker());
         action("地图视图与操作",v->showMapTools());
         action("生卒与继承",v->new LifecycleUi(this,world,this::apply).menu());
@@ -897,6 +898,25 @@ public final class MainActivity extends Activity {
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
         action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("v"+BuildConfig.VERSION_NAME+" · 天下总览与快速旬结算", "构建 "+BuildConfig.VERSION_CODE+" · 源码 "+BuildConfig.SOURCE_REVISION+"\n全国势力/部队/武将/城池/港关/设施列表；左上角常驻行动力。开局支持实际地图点选势力与技巧树预览。\n旬结算单线程顺序执行规则，动画与计算解耦；默认8秒演示预算、10秒总耗时目标（主动暂停和完整演示除外）。不会截断AI或规则。\n收支为下旬定期收入与兵粮需求预测，不是所有命令开销的历史流水。战法暴击使用现有头像图集展示680ms高光。\n保留v51逐城精修与全部美术。西北绿洲道路、许新森林、吴附近曲阿港及邺晋间壶关；地形更新需新开局。\n下河须经过己方港口；目标任务支持持续攻击、攻占后进驻和连续修理，可随时停止。\n港口、关卡、城市使用不同攻城系数；器械伤害随兵力增长。围攻停止自然修复，主动补修降为¼。\n地块开发、城市出征与运输固定在面板顶部；结算期间仍可拖动地图与收起面板。\n栈道与山径按六方向连接，河岸连续描边。\n每座兵舍/生产设施每旬1次；枪戟弩共用锻冶所次数，战马使用厩舍。部队按2500兵一档显示1至5个模型，万人以上5个。新开局为开发基线。\n历史重建/定制剧本，完整官方数据及精确公式仍待核验。"));
+    }
+    private void launchUnityTrial(){
+        if(world==null){message("Unity 试用","请先选择剧本并进入正式游戏。");return;}
+        if(aiRunning){message("Unity 试用","本旬结算结束后再进入。");return;}
+        if(!BuildConfig.UNITY_ENABLED){message("Unity 试用","当前 APK 未包含 Unity Player；需用已验证的 Unity 导出重新打包。");return;}
+        // Only the Android host owns World. Unity receives read-only identity data for U00.
+        // Release Filament's EGL resources before launching the full-screen Unity activity.
+        if(map!=null&&map.is3D())map.switchMode(false);
+        try{
+            Intent intent=new Intent(this,Class.forName("com.unity3d.player.UnityPlayerActivity"));
+            intent.putExtra("sanguo.scenario",world.scenarioName);
+            intent.putExtra("sanguo.width",world.sourceColumns());
+            intent.putExtra("sanguo.height",world.sourceRows());
+            intent.putExtra("sanguo.source",BuildConfig.SOURCE_REVISION);
+            startActivity(intent);
+        }catch(ClassNotFoundException|android.content.ActivityNotFoundException e){
+            android.util.Log.e("UnityTrial","Unity player activity is unavailable",e);
+            message("Unity 试用","Unity 入口不可用："+e.getClass().getSimpleName());
+        }
     }
     private void scenarioPicker(){
         try {

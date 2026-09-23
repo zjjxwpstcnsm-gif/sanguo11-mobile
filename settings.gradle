@@ -1,4 +1,15 @@
 pluginManagement { repositories { google(); mavenCentral(); gradlePluginPortal() } }
-dependencyResolutionManagement { repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS); repositories { google(); mavenCentral() } }
+def unityExport = providers.gradleProperty('unityExport').orNull
+dependencyResolutionManagement {
+    repositoriesMode.set(unityExport == null ? RepositoriesMode.FAIL_ON_PROJECT_REPOS : RepositoriesMode.PREFER_PROJECT)
+    repositories { google(); mavenCentral() }
+}
 rootProject.name = 'sanguo11-mobile'
 include ':core', ':app'
+// Opt in only after a verified Unity as a Library export; the default native build is unchanged.
+if (unityExport != null) {
+    def libraryDir = file(unityExport).toPath().toAbsolutePath().normalize().resolve('unityLibrary').toFile()
+    if (!new File(libraryDir, 'build.gradle').isFile()) throw new GradleException("Unity export missing unityLibrary/build.gradle: ${libraryDir}")
+    include ':unityLibrary'
+    project(':unityLibrary').projectDir = libraryDir
+}

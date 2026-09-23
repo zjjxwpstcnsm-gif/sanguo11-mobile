@@ -9,3 +9,6 @@
 -keepclassmembers class com.google.android.filament.Texture {
     public com.google.android.filament.Texture$InternalFormat getFormat();
 }
+# Unity Player is opened through a class name after an opt-in export. Retain its
+# Android/JNI entry points when the host's debug minifier is enabled.
+-keep class com.unity3d.player.** { *; }
