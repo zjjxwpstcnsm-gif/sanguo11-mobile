@@ -34,7 +34,16 @@ public class SceneInstrumentation extends Instrumentation {
         runOnMainSync(()->invoke("advanceTurn",new Class<?>[0]));
         check(reference.nextTurn().ok,"reference next turn");long deadline=SystemClock.uptimeMillis()+120000;
         while((Boolean)field(activity,"aiRunning")&&SystemClock.uptimeMillis()<deadline)settle();
-        check(!(Boolean)field(activity,"aiRunning"),"installed next turn finished");world=(World)field(activity,"world");check(host.is3D(),"next turn remains in 3D");
+        check(!(Boolean)field(activity,"aiRunning"),"installed next turn finished");
+        // completeTurnPlayback clears aiRunning before bindSession on the same main-thread callback.
+        // A background reflective read in that interval can observe the old draft. Keep the
+        // full equality assertion, but capture after the owner has completed that callback.
+        runOnMainSync(()->world=SessionProbe.view(activity));check(host.is3D(),"next turn remains in 3D");
+        if(!Arrays.equals(SaveCodec.encode(world),SaveCodec.encode(reference))){
+            File evidence=getTargetContext().getExternalFilesDir("s01");
+            try(OutputStream out=new FileOutputStream(new File(evidence,"turn-observed.sg11"))){out.write(SaveCodec.encode(world));}
+            try(OutputStream out=new FileOutputStream(new File(evidence,"turn-expected.sg11"))){out.write(SaveCodec.encode(reference));}
+        }
         check(Arrays.equals(SaveCodec.encode(world),SaveCodec.encode(reference)),"3D full playback and headless next-turn state equivalent");
         World loaded;try(InputStream in=getTargetContext().openFileInput("auto.sg11")){loaded=SaveCodec.read(in);}
         check(Arrays.equals(SaveCodec.encode(world),SaveCodec.encode(loaded)),"actual autosave reload equal");

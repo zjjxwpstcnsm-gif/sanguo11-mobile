@@ -37,8 +37,12 @@ public final class NativeR03Instrumentation extends SceneInstrumentation {
         runOnMainSync(()->{v.center(target);v.camera.span=8;v.camera.yaw=0;v.setGridShown(true);});settle();ready();shot("r03-seam-grid-on");
         runOnMainSync(()->v.setGridShown(false));
         for(int step=0;step<4;step++){
-            runOnMainSync(()->{long t=SystemClock.uptimeMillis();float x=v.getWidth()*.4f,y=v.getHeight()*.4f;
-                for(int i=0;i<=12;i++){int action=i==0?MotionEvent.ACTION_DOWN:i==12?MotionEvent.ACTION_UP:MotionEvent.ACTION_MOVE;MotionEvent e=MotionEvent.obtain(t,t+i*25,action,x+i*15,y+i*5,0);v.onTouchEvent(e);e.recycle();}});
+            long t=SystemClock.uptimeMillis();float x=v.getWidth()*.4f,y=v.getHeight()*.4f;
+            for(int i=0;i<=12;i++){
+                final int point=i;runOnMainSync(()->{int action=point==0?MotionEvent.ACTION_DOWN:point==12?MotionEvent.ACTION_UP:MotionEvent.ACTION_MOVE;
+                    MotionEvent e=MotionEvent.obtain(t,SystemClock.uptimeMillis(),action,x+point*15,y+point*5,0);v.onTouchEvent(e);e.recycle();});
+                SystemClock.sleep(40); // Let the actual render loop run between gesture events.
+            }
             settle();ready();shot("r03-drag-"+step);
         }
         commandFlow();shot("r03-command-result");
