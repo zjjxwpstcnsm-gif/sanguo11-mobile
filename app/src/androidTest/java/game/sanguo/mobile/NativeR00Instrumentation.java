@@ -24,11 +24,15 @@ public final class NativeR00Instrumentation extends SceneInstrumentation {
         // PixelCopy captures a completed Surface while uploads continue. Pausing before
         // surfaceCapture() can deadlock its readiness check when the viewport/LOD changes.
         surfaceCapture();
+        // Pause only AFTER readiness/PixelCopy, so reporting cannot race cache mutation.
+        runOnMainSync(()->spatial.resume(false));
+        try{
             android.graphics.Bitmap pixels=android.graphics.BitmapFactory.decodeFile(new File(getTargetContext().getExternalFilesDir("s01"),"surface.png").getAbsolutePath());
             Set<Integer> colors=new HashSet<>();for(int y=0;y<pixels.getHeight();y+=8)for(int x=0;x<pixels.getWidth();x+=8)colors.add(pixels.getPixel(x,y));pixels.recycle();
             check(colors.size()>64,"Surface is not ordinary colored background (not art approval)");
             java.nio.file.Files.copy(new File(getTargetContext().getExternalFilesDir("s01"),"surface.png").toPath(),new File(getTargetContext().getExternalFilesDir("s01"),mode+"-"+name+"-surface.png").toPath(),java.nio.file.StandardCopyOption.REPLACE_EXISTING);capture(name+"-ui");
             try(OutputStream out=new FileOutputStream(new File(getTargetContext().getExternalFilesDir("s01"),mode+"-"+name+"-scene.txt"))){out.write((host.report()+"\nscenario="+world.scenarioId+" map="+world.mapId+" revision="+world.mapRevision).getBytes(java.nio.charset.StandardCharsets.UTF_8));}
+        }finally{runOnMainSync(()->spatial.resume(true));}
     }
     @Override public void onStart(){Bundle result=new Bundle();try{
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();capture("00-launch");
