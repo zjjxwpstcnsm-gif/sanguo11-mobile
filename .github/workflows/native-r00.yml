@@ -1,5 +1,8 @@
 name: Native R00 exact-source build and visibility
 on:
+  pull_request:
+    branches: [main]
+    paths: ['app/**', 'settings.gradle', 'version.properties', 'scripts/*r00*', '.github/workflows/native-r00.yml']
   push:
     branches: [agent/native-pc-visual]
     paths: ['app/**', 'settings.gradle', 'version.properties', 'scripts/*r00*', '.github/workflows/native-r00.yml']
@@ -15,7 +18,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.sha }}
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
       - uses: actions/setup-java@v5
         with:
