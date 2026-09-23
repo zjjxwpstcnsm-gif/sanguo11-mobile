@@ -20,7 +20,7 @@ android {
         applicationId 'game.sanguo.mobile.dev'
         minSdk 26
         targetSdk 35
-        testInstrumentationRunner providers.gradleProperty('mapEditorProbe').map { it.toBoolean() ? 'game.sanguo.mobile.MapEditor67Instrumentation' : 'game.sanguo.mobile.GameSmokeRunner' }.getOrElse('game.sanguo.mobile.GameSmokeRunner')
+        testInstrumentationRunner providers.gradleProperty('unityBridgeProbe').map { it.toBoolean() ? 'game.sanguo.mobile.UnityBridgeInstrumentation' : providers.gradleProperty('mapEditorProbe').map { it.toBoolean() ? 'game.sanguo.mobile.MapEditor67Instrumentation' : 'game.sanguo.mobile.GameSmokeRunner' }.getOrElse('game.sanguo.mobile.GameSmokeRunner') }.getOrElse('game.sanguo.mobile.GameSmokeRunner')
         versionCode release.getProperty('versionCode').toInteger()
         versionName release.getProperty('versionName')
         buildConfigField 'String', 'SOURCE_REVISION', '"' + (revision ?: 'source-archive') + '"'

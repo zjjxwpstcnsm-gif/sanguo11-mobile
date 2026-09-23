@@ -25,7 +25,7 @@ public static class ExportAndroid
         EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
         EditorUserBuildSettings.exportAsGoogleAndroidProject = true;
         PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.Android, "game.sanguo.mobile.dev");
-        PlayerSettings.bundleVersion = "0.81.0-unity-u00-trial";
+        PlayerSettings.bundleVersion = "0.82.0-unity-u01-bridge";
         PlayerSettings.SetScriptingBackend(NamedBuildTarget.Android, ScriptingImplementation.IL2CPP);
         PlayerSettings.Android.targetArchitectures = AndroidArchitecture.ARM64;
         PlayerSettings.Android.minSdkVersion = AndroidSdkVersions.AndroidApiLevel26;

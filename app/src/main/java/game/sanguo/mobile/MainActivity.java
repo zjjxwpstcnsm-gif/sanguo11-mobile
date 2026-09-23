@@ -65,7 +65,9 @@ public final class MainActivity extends Activity {
         applyOrientationPreference();
         String restoreError=null;boolean restored=false;
         AtomicFile autosave=file("auto");
-        if(present(autosave)) {
+        World liveSession=state==null?null:UnityBridge.currentWorld();
+        if(liveSession!=null){world=liveSession;restored=true;}
+        else if(present(autosave)) {
             try{world=readSave(autosave);restored=true;}catch(IOException e){unreadableAutosave=true;restoreError="自动存档无法读取："+e.getMessage()+"。原文件已保留；请选择手动存档、导入文件或新建游戏。";}
         }
         if(state==null&&restored){state=readClientState();ui.read(state);}
@@ -94,9 +96,10 @@ public final class MainActivity extends Activity {
             catch(IOException e){showError("无法保留损坏存档，本次没有替换局面");return false;}
             unreadableAutosave=false;
         }
-        world=next;ui.read(new Bundle());pendingMarch=null;moving=-1;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();return true;
+        world=next;UnityBridge.attach(this,next);ui.read(new Bundle());pendingMarch=null;moving=-1;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();return true;
     }
     private void buildGameUi(Bundle state,boolean restored,boolean coldStart){
+        UnityBridge.attach(this,world);
         world.reports.prepare();
         root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(ink);
         root.setOnApplyWindowInsetsListener((v,insets)->{
@@ -485,7 +488,7 @@ public final class MainActivity extends Activity {
             map.battleFeedback(result,getPreferences(MODE_PRIVATE).getBoolean("battleHaptics",true));
         }
         if(result.ok&&moving>=0&&world.unit(moving)!=null)selected=world.unit(moving).hex;
-        refresh();if(result.ok)save("auto",false);
+        refresh();if(result.ok){UnityBridge.changed(world);save("auto",false);}
         if(result.ok&&result.critical!=null)showCritical(result.critical);
         if(result.ok&&world.gameOver())message(world.winner==world.player?"战场胜利":"战场战败","本局结束，可从菜单重新选择剧本。");
     }
@@ -907,7 +910,9 @@ public final class MainActivity extends Activity {
         // Release Filament's EGL resources before launching the full-screen Unity activity.
         if(map!=null&&map.is3D())map.switchMode(false);
         try{
+            UnityBridge.attach(this,world);
             Intent intent=new Intent(this,Class.forName("com.unity3d.player.UnityPlayerActivity"));
+            intent.putExtra("sanguo.session",UnityBridge.sessionId());
             intent.putExtra("sanguo.scenario",world.scenarioName);
             intent.putExtra("sanguo.width",world.sourceColumns());
             intent.putExtra("sanguo.height",world.sourceRows());
@@ -917,6 +922,11 @@ public final class MainActivity extends Activity {
             android.util.Log.e("UnityTrial","Unity player activity is unavailable",e);
             message("Unity 试用","Unity 入口不可用："+e.getClass().getSimpleName());
         }
+    }
+    boolean bridgeBusy(){return aiRunning||world==null||world.commandsBlocked();}
+    void bridgeCommandApplied(){
+        if(map!=null)map.invalidateScene();
+        navigatorRevision=Long.MIN_VALUE;refresh();save("auto",false);
     }
     private void scenarioPicker(){
         try {
@@ -1021,7 +1031,7 @@ public final class MainActivity extends Activity {
     private void completeTurnPlayback(){
         if(turnWork==null)return;TurnWork completed=turnWork;
         if(playback!=null){playback.detach();playback=null;}map.replayFrame(null,0);
-        completed.observe(null);turnWork=null;aiRunning=false;world=completed.after;
+        completed.observe(null);turnWork=null;aiRunning=false;world=completed.after;UnityBridge.attach(this,world);
         if(world.life.pending()){ui.page="map";ui.panelVisible=true;}
         ui.summary=completed.summary+"\n\n视野内已演示行动（"+completed.visibleCount+"项）\n"+completed.actionReport;
         pendingMarch=null;if(world.unit(moving)!=null)selected=world.unit(moving).hex;else moving=-1;
@@ -1046,7 +1056,7 @@ public final class MainActivity extends Activity {
     }
     private World authoritativeSaveWorld(){return turnWork!=null&&turnWork.done&&turnWork.error==null?turnWork.after:world;}
     @Override public Object onRetainNonConfigurationInstance(){if(playback!=null)playback.detach();if(turnWork!=null)turnWork.observe(null);return turnWork;}
-    @Override protected void onDestroy(){if(map!=null)map.release();if(playback!=null)playback.detach();if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null){turnWork.observe(null);if(!isChangingConfigurations())turnWork.cancel();}if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
+    @Override protected void onDestroy(){UnityBridge.detach(this);if(map!=null)map.release();if(playback!=null)playback.detach();if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null){turnWork.observe(null);if(!isChangingConfigurations())turnWork.cancel();}if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
     private void writeClientState(Bundle state){
         if(world==null||map==null)return;
         ui.write(state);state.putInt("selectedQ",selected==null?-1:selected.q);state.putInt("selectedR",selected==null?-1:selected.r);state.putInt("moving",moving);state.putString("unitCommand",unitCommand);

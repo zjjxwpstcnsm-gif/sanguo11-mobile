@@ -1,0 +1,76 @@
+name: U01 bridge host validation
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  native-host:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Same-scenario Java rule and bridge parity
+        run: bash scripts/test-unity-u01.sh
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Compile host and Android instrumentation, native diagnostic APK only
+        run: ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest -PunityBridgeProbe=true
+      - name: Verify APK and record exact source
+        run: |
+          test -s app/build/outputs/apk/debug/app-debug.apk
+          python3 - <<'PY'
+          import zipfile
+          with zipfile.ZipFile('app/build/outputs/apk/debug/app-debug.apk') as apk:
+              assert not any(name.endswith('/libunity.so') for name in apk.namelist()), 'Native diagnostic misidentified as Unity Player'
+          PY
+          git rev-parse HEAD > app/build/outputs/apk/debug/SOURCE_COMMIT
+          sha256sum app/build/outputs/apk/debug/app-debug.apk > app/build/outputs/apk/debug/SHA256SUMS.txt
+      - name: Android Java host protocol on emulator (not Unity JNI or ARM64)
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          script: |
+            adb install app/build/outputs/apk/debug/app-debug.apk
+            adb install app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            mkdir -p out/unity-u01
+            adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.UnityBridgeInstrumentation | tee out/unity-u01/android-host-probe.txt
+            grep -q 'u01=PASS' out/unity-u01/android-host-probe.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: u01-native-host-diagnostic-not-unity
+          path: |
+            app/build/outputs/apk/debug/app-debug.apk
+            app/build/outputs/apk/debug/SOURCE_COMMIT
+            app/build/outputs/apk/debug/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: u01-android-host-probe-not-unity
+          path: out/unity-u01/android-host-probe.txt
+  unity-player:
+    runs-on: [self-hosted, linux, unity-android]
+    if: github.event_name == 'workflow_dispatch'
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Licensed Unity export and Android assembly
+        env:
+          UNITY_EDITOR: ${{ vars.UNITY_EDITOR_PATH }}
+        run: bash scripts/build-unity-u01.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: u01-unity-player-evidence
+          path: out/unity-u01/
