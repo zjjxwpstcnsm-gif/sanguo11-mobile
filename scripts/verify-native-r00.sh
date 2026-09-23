@@ -17,6 +17,25 @@ adb shell stop
 adb shell start
 adb shell 'for i in $(seq 1 60); do [ "$(getprop sys.boot_completed)" = "1" ] && exit 0; sleep 1; done; exit 1'
 adb shell input keyevent 82
+# Baseline reproduction uses the verified pre-R00 APK and a fixed real official save,
+# independently of the candidate's normal-new-game test below.
+adb install /tmp/r00-baseline/sanguo11-architecture-native.apk
+adb shell am start -W -n game.sanguo.mobile.dev/game.sanguo.mobile.MainActivity > out/r00/baseline-menu-launch.txt
+sleep 5
+adb exec-out screencap -p > out/r00/baseline-menu.png
+adb shell am force-stop game.sanguo.mobile.dev
+adb push /tmp/r00-baseline.sg11 /data/user/0/game.sanguo.mobile.dev/files/auto.sg11
+app_uid=$(adb shell stat -c %u /data/user/0/game.sanguo.mobile.dev | tr -d '\r')
+adb shell chown "$app_uid:$app_uid" /data/user/0/game.sanguo.mobile.dev/files/auto.sg11
+adb shell chmod 600 /data/user/0/game.sanguo.mobile.dev/files/auto.sg11
+adb logcat -c
+adb shell am start -n game.sanguo.mobile.dev/game.sanguo.mobile.MainActivity > out/r00/baseline-save-launch.txt
+sleep 3
+adb exec-out screencap -p > out/r00/baseline-save-3s.png
+sleep 15
+adb exec-out screencap -p > out/r00/baseline-save-18s.png
+adb logcat -d > out/r00/baseline-cold-logcat.txt
+adb uninstall game.sanguo.mobile.dev
 adb install -r app/build/outputs/apk/debug/app-debug.apk
 adb install -r app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
 adb logcat -c

@@ -20,7 +20,11 @@ public final class NativeR00Instrumentation extends SceneInstrumentation {
         check((Integer)field(spatial,"visibleChunks")>0,"visible terrain chunks");
         check((Integer)field(spatial,"visibleObjects")>0,"visible map objects");
         runOnMainSync(()->spatial.resume(false));
-        try{surfaceCapture();java.nio.file.Files.copy(new File(getTargetContext().getExternalFilesDir("s01"),"surface.png").toPath(),new File(getTargetContext().getExternalFilesDir("s01"),name+"-surface.png").toPath(),java.nio.file.StandardCopyOption.REPLACE_EXISTING);capture(name+"-ui");}
+        try{surfaceCapture();
+            android.graphics.Bitmap pixels=android.graphics.BitmapFactory.decodeFile(new File(getTargetContext().getExternalFilesDir("s01"),"surface.png").getAbsolutePath());
+            Set<Integer> colors=new HashSet<>();for(int y=0;y<pixels.getHeight();y+=8)for(int x=0;x<pixels.getWidth();x+=8)colors.add(pixels.getPixel(x,y));pixels.recycle();
+            check(colors.size()>64,"Surface is not ordinary colored background (not art approval)");
+            java.nio.file.Files.copy(new File(getTargetContext().getExternalFilesDir("s01"),"surface.png").toPath(),new File(getTargetContext().getExternalFilesDir("s01"),name+"-surface.png").toPath(),java.nio.file.StandardCopyOption.REPLACE_EXISTING);capture(name+"-ui");}
         finally{runOnMainSync(()->spatial.resume(true));}
     }
     @Override public void onStart(){Bundle result=new Bundle();try{

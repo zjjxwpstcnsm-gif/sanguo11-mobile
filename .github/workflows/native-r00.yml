@@ -10,7 +10,7 @@ permissions:
   contents: read
 concurrency:
   group: native-r00
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -66,6 +66,19 @@ jobs:
           name: native-r00-apk-source
           path: out/r00/
           retention-days: 14
+      - name: Exact pre-R00 APK for independent cold-start reproduction
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10739931636/zip > /tmp/r00-baseline.zip
+          unzip -j /tmp/r00-baseline.zip sanguo11-architecture-native.apk -d /tmp/r00-baseline
+          echo '108cc216b974f3523392d63ab36d3b2fffdb387abdea6c0c4a769cc4cccfb589  /tmp/r00-baseline/sanguo11-architecture-native.apk' | sha256sum -c -
+          cat > /tmp/R00Save.java <<'JAVA'
+          import game.sanguo.core.*;
+          public class R00Save { public static void main(String[] args)throws Exception {java.nio.file.Files.write(java.nio.file.Path.of("/tmp/r00-baseline.sg11"),SaveCodec.encode(ScenarioCatalog.load("coalition-190",0,20260923L)));}}
+          JAVA
+          javac -cp core/build/check -d /tmp /tmp/R00Save.java
+          java -cp /tmp:core/build/check:core/src/main/resources R00Save
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
