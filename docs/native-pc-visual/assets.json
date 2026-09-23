@@ -1,5 +1,5 @@
 {
-  "stage": "R01",
+  "stage": "R02",
   "new_or_replaced_assets": [],
   "runtime_assets": "Existing app/src/main/assets/3d cohort, unchanged from bdc685679f81796cf8c19b0dd657ffcae44b7419",
   "source_manifests": [
@@ -9,7 +9,7 @@
     "docs/3d/world-art/assets-manifest.json"
   ],
   "backend": "Filament 1.56.0 / OpenGL",
-  "acceptance": "Resource ownership/lifecycle task. Existing art retained; PC reference missing.",
+  "acceptance": "Camera/picking/input only; existing assets unchanged. PC reference missing.",
   "manifest_hashes": {
     "docs/3d/asset-manifest.json": "9a41710c4ad679d4ad82dcb55979bad92855810f92d61db6493d2eb4be8dd316",
     "docs/3d/site-assets.json": "f8e440da550308e8385a513f5acd2c0bcfd57eb85e790094d91abc0da5b1cf78",

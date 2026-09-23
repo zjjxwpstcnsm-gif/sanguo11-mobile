@@ -18,3 +18,14 @@ Final source 8744cb00ff90077dddff849874602957c8cf0295: native build/lint PASS;
 R01 emulator 1,225 checks / 20+20 cycles PASS (35855187043); normal startup
 fresh 285 / reload 192 PASS (35855186990). Stage remains PARTIAL for documented
 implementation, fault-matrix, physical-device and visual-reference gaps.
+
+R02: PARTIAL. Continuous camera, actual fan ray picking, rotated overlays/culling,
+height anchor and command-safe input integrated in the normal game. No new art or
+rule/map edits. Source 2965bcddd50564f80cb194aa71127767d822dd10. Host suites pass;
+Android build/lint passes. Final runtime/device scope and artifact identity are in
+evidence/R02.json and reports/R02.md. R03 remains NOT_STARTED.
+
+R02 final CI35865854066: build/lint and 1,043 installed checks PASS, all three
+quality captures. Same-source R00 startup CI35865854274 PASS. First HIGH capture
+failure retained; retries were not needed in the final passing run. Physical, PC
+reference and complete hand-operated interaction/performance gates still open.
