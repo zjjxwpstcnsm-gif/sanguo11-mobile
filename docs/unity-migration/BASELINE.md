@@ -14,6 +14,7 @@
 - Its failed run did not publish a main APK artifact. This checkout has no Android SDK, Gradle distribution cache, `javac` executable, Unity Editor, active Unity build authorization, Android Build Support, `adb`, or connected ARM64 device. Native main APK bytes and startup PSS therefore remain **unmeasured** here.
 - The first `bash scripts/test-ui-models.sh` attempt stopped after 49,018 UI, 451 terrain and 1,136,811 geometry checks because the image has no `javac` executable. A temporary `/tmp` shim invoking the installed `jdk.compiler` module then let the **entire script pass**: additionally 1,168,801 legacy coordinate assertions, 898,305 map coordinate checks, 11,371 siege checks and 14 overlay checks. The shim was not added to the repository or substituted for Android/Unity compilation.
 - `bash scripts/test-core.sh` with the same compiler shim stops at `CoreTest.logistics` assertion `AI uses deployment commands`. U00 has no changes under `core/`; this is a current-main rule-test failure, not evidence of a Unity bridge regression.
+- After isolating the Unity-only activity Manifest, PR #65 [S11 native acceptance run 35807175409](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35807175409) completed its `:app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PtargetAbi=x86_64` step successfully on source `a59c1c4`. The subsequent emulator step was still running when this report was written. This is a **native-only** APK build and cannot stand in for a Unity APK.
 
 ## U00 comparison slots
 
