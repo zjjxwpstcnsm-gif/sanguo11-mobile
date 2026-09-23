@@ -10,6 +10,7 @@ public sealed class TrialEntry : MonoBehaviour
 
     private void Start()
     {
+#if UNITY_ANDROID && !UNITY_EDITOR
         using (var player = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
         using (var activity = player.GetStatic<AndroidJavaObject>("currentActivity"))
         using (var intent = activity.Call<AndroidJavaObject>("getIntent"))
@@ -19,6 +20,7 @@ public sealed class TrialEntry : MonoBehaviour
             columns = intent.Call<int>("getIntExtra", "sanguo.width", 0);
             rows = intent.Call<int>("getIntExtra", "sanguo.height", 0);
         }
+#endif
     }
 
     private void OnGUI()

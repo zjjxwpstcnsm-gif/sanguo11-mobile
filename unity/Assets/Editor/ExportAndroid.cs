@@ -35,7 +35,7 @@ public static class ExportAndroid
             scenes = new[] { scenePath },
             locationPathName = output,
             target = BuildTarget.Android,
-            options = BuildOptions.AcceptExternalModificationsToPlayer
+            options = BuildOptions.None
         });
         if (report.summary.result != BuildResult.Succeeded || !File.Exists(Path.Combine(output, "unityLibrary", "build.gradle")))
             throw new InvalidOperationException("Unity as a Library export failed: " + report.summary.result);

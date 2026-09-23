@@ -5,8 +5,5 @@
             <intent-filter><action android:name="android.intent.action.MAIN"/><category android:name="android.intent.category.LAUNCHER"/></intent-filter>
         </activity>
         <activity android:name=".MapEditorActivity" android:exported="false" android:screenOrientation="fullUser" android:configChanges="orientation|screenSize|keyboardHidden"/>
-        <activity android:name="com.unity3d.player.UnityPlayerActivity" android:exported="false" android:enabled="${unityTrialEnabled}" android:theme="@android:style/Theme.Material.NoActionBar.Fullscreen" android:configChanges="density|fontScale|keyboard|keyboardHidden|layoutDirection|locale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:screenOrientation="fullUser">
-            <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
-        </activity>
     </application>
 </manifest>

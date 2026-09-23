@@ -25,12 +25,16 @@ android {
         versionName release.getProperty('versionName')
         buildConfigField 'String', 'SOURCE_REVISION', '"' + (revision ?: 'source-archive') + '"'
         buildConfigField 'boolean', 'UNITY_ENABLED', (findProject(':unityLibrary') != null).toString()
-        manifestPlaceholders.unityTrialEnabled = (findProject(':unityLibrary') != null).toString()
     }
     // Explicit opt-in ABI build keeps the existing universal compatibility artifact available.
     def targetAbi = providers.gradleProperty('targetAbi').getOrElse('universal')
     if (!(targetAbi in ['universal','arm64-v8a','x86_64','armeabi-v7a','x86'])) throw new GradleException('Unsupported targetAbi: ' + targetAbi)
     if (targetAbi != 'universal') defaultConfig.ndk.abiFilters.add(targetAbi)
+    if (findProject(':unityLibrary') != null) {
+        // Merge the Unity Activity only when the exported Player classes are on the classpath.
+        sourceSets.debug.manifest.srcFile 'src/unity/AndroidManifest.xml'
+        sourceSets.release.manifest.srcFile 'src/unity/AndroidManifest.xml'
+    }
     signingConfigs {
         debug {
             // Public development-only key. Never use for production or privileged distribution.
