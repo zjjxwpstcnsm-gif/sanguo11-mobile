@@ -1,4 +1,8 @@
-package game.sanguo.core;
+package game.sanguo.runtime.bridge;
+
+import game.sanguo.core.*;
+import game.sanguo.api.bridge.BridgeEntity;
+import game.sanguo.api.bridge.BridgeMessage;
 
 /** Records an actual Java scenario snapshot for Unity Editor preview; never runs commands. */
 public final class BridgeFixtureRecorder {
@@ -15,12 +19,12 @@ public final class BridgeFixtureRecorder {
     public static void main(String[] args)throws Exception{
         World world=ScenarioCatalog.load("coalition-190",0,20260923L);
         BridgeSession session=new BridgeSession(world);session.snapshot();
-        BridgeSession.Message m=session.drain().get(0);
+        BridgeMessage m=session.drain().get(0);
         StringBuilder out=new StringBuilder("{\"status\":\"OK\",\"dropped\":0,\"messages\":[{\"type\":\"snapshot\",\"sessionId\":\"EDITOR-FIXTURE-READ-ONLY\",\"schemaVersion\":1,\"sequence\":1,\"revision\":0,\"mapRevision\":")
             .append(m.mapRevision).append(",\"width\":").append(m.width).append(",\"height\":").append(m.height)
             .append(",\"turn\":").append(m.turn).append(",\"player\":").append(m.player)
             .append(",\"terrain\":").append(quote(m.terrain)).append(",\"entities\":[");
-        for(BridgeSession.Entity e:m.entities){
+        for(BridgeEntity e:m.entities){
             if(out.charAt(out.length()-1)=='}')out.append(',');
             out.append("{\"entityId\":").append(quote(e.entityId)).append(",\"kind\":").append(quote(e.kind))
                 .append(",\"name\":").append(quote(e.name)).append(",\"q\":").append(e.q)

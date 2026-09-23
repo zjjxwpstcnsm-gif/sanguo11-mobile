@@ -57,7 +57,9 @@ android {
     compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
 }
 dependencies {
-    implementation project(':core')
+    implementation project(':core') // Explicit legacy presentation/editor migration dependency.
+    implementation project(':game-api')
+    implementation project(':game-runtime')
     implementation 'com.google.android.filament:filament-android:1.56.0'
     if (findProject(':unityLibrary') != null) implementation project(':unityLibrary')
 }

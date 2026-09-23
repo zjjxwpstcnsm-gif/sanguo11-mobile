@@ -1,4 +1,8 @@
-package game.sanguo.core;
+package game.sanguo.runtime.bridge;
+
+import game.sanguo.core.*;
+import game.sanguo.api.bridge.BridgeEntity;
+import game.sanguo.api.bridge.BridgeMessage;
 
 import java.security.MessageDigest;
 import java.util.*;
@@ -15,7 +19,7 @@ public final class BridgeSessionTest {
         World bridged=ScenarioCatalog.load("coalition-190",0,20260923L);
         check(hash(direct).equals(hash(bridged)),"seed baseline");
         BridgeSession session=new BridgeSession(bridged);
-        session.snapshot();List<BridgeSession.Message> initial=session.drain();
+        session.snapshot();List<BridgeMessage> initial=session.drain();
         check(initial.size()==1&&initial.get(0).terrain.length()==bridged.width*bridged.height,"real full map");
         check(initial.get(0).entities.size()>=bridged.cities.size(),"real sites");
         World.City c=null;World.Officer officer=null;
@@ -24,14 +28,14 @@ public final class BridgeSessionTest {
         }
         check(c!=null,"real patrol entry");
         String before=hash(bridged);
-        BridgeSession.Message rejected=session.command("bad",1,0,"patrol",c.id,-1);
+        BridgeMessage rejected=session.command("bad",1,0,"patrol",c.id,-1);
         check(rejected.error!=null&&before.equals(hash(bridged)),"invalid officer leaves save unchanged");
         session.drain();
         World.Result old=direct.patrol(c.id,officer.id);
-        BridgeSession.Message accepted=session.command("one",2,0,"patrol",c.id,officer.id);
+        BridgeMessage accepted=session.command("one",2,0,"patrol",c.id,officer.id);
         check(old.ok&&accepted.error==null,"both paths accept real command");
         check(hash(direct).equals(hash(bridged)),"canonical SaveCodec state and RNG bytes match");
-        List<BridgeSession.Message> update=session.drain();
+        List<BridgeMessage> update=session.drain();
         check(update.stream().anyMatch(m->m.type.equals("delta")),"incremental change emitted");
         check(update.stream().anyMatch(m->m.type.equals("event")&&m.detail!=null),"confirmed Java event emitted");
         String after=hash(bridged);

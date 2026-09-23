@@ -5,7 +5,7 @@ dependencyResolutionManagement {
     repositories { google(); mavenCentral() }
 }
 rootProject.name = 'sanguo11-mobile'
-include ':core', ':app'
+include ':core', ':game-api', ':game-runtime', ':app'
 // Opt in only after a verified Unity as a Library export; the default native build is unchanged.
 if (unityExport != null) {
     def libraryDir = file(unityExport).toPath().toAbsolutePath().normalize().resolve('unityLibrary').toFile()
