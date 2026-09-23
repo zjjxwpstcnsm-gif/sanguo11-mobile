@@ -145,7 +145,7 @@ final class OverviewUi {
             AlertDialog.Builder dialog=new AlertDialog.Builder(a).setTitle(t.title).setMessage(t.detail).setNegativeButton("返回",null);
             if(t.recruitment!=null||t.envoy!=null){dialog.setPositiveButton("定位目的地",(d,n)->a.selectAndFocus(t.location));}
             else if(t.aid!=null){dialog.setPositiveButton("定位援军",(d,n)->a.selectAndFocus(t.location));dialog.setNeutralButton("援军详情",(d,n)->new DiplomacyUi(a,w,a::applyResult).missions(t.aid.ally));}
-            else if(t.marching!=null){dialog.setPositiveButton("定位部队",(d,n)->a.selectAndFocus(t.location));dialog.setNeutralButton("停止行军",(d,n)->a.applyResult(w.marches.stop(t.marching.id)));}
+            else if(t.marching!=null){dialog.setPositiveButton("定位部队",(d,n)->a.selectAndFocus(t.location));dialog.setNeutralButton("停止行军",(d,n)->a.applyResult(w,()->w.marches.stop(t.marching.id)));}
             else if(t.facility!=null) {dialog.setPositiveButton("定位城池",(d,n)->a.selectAndFocus(w.city(t.facility.cityId).hex));dialog.setNeutralButton("管理设施",(d,n)->a.domesticUi().facility(t.facility));}
             else if(t.production!=null){dialog.setPositiveButton("制造详情",(d,n)->new ArmyUi(a,w,a::applyResult,a::selectAndFocus).production(t.production));}
             else if(t.project!=null){dialog.setPositiveButton("定位研究城市",(d,n)->a.selectAndFocus(w.city(t.project.cityId).hex));}

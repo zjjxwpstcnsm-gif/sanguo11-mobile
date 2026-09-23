@@ -12,8 +12,8 @@ import java.util.function.Consumer;
 
 /** Native command forms; every confirmed mutation goes through the validated core. */
 final class DomesticUi {
-    private final MainActivity activity;private final World w;private final Consumer<World.Result> apply;private final Consumer<Hex> focus;
-    DomesticUi(MainActivity a,World w,Consumer<World.Result> apply,Consumer<Hex> focus){activity=a;this.w=w;this.apply=apply;this.focus=focus;}
+    private final MainActivity activity;private final World w;private final LegacyCommandSink apply;private final Consumer<Hex> focus;
+    DomesticUi(MainActivity a,World w,LegacyCommandSink apply,Consumer<Hex> focus){activity=a;this.w=w;this.apply=apply;this.focus=focus;}
     private void message(String title,String text){new AlertDialog.Builder(activity).setTitle(title).setMessage(text).setPositiveButton("返回",null).show();}
     private void confirm(String title,String text,String positive,Runnable run){activity.commandDialog(title,text,positive,w,run);}
     private void officer(World.City c,Consumer<World.Officer> next){DataTable.choose(activity,w,"执行武将",w.idle(c),o->"",next,null);}
@@ -24,10 +24,10 @@ final class DomesticUi {
     void build(World.City c){
         ChoiceDialog.show(activity,w,"设施开发 · 直接最高级",Arrays.asList(Domestic.Kind.values()),k->k.label+" · Lv"+Domestic.buildLevel(k)+" · 金"+k.cost,kind->{
             List<Hex> sites=w.domestic.buildSites(c.id);if(kind==Domestic.Kind.SHIPYARD)sites.removeIf(h->h.neighbors().stream().noneMatch(w.army::water));if(sites.isEmpty()){message("无法开发","没有可用开发地或已达到本城设施上限。");return;}
-            activity.pickOnMap("建设"+kind.label,c.hex,sites,h->officer(c,o->confirm("建设"+kind.label,c.name+" · "+o.name+"\n金"+kind.cost+" / 行动力10 / "+(o.politics>=80?2:3)+"旬\n建成即最高等级 Lv"+Domestic.buildLevel(kind)+"："+Domestic.buildEffect(kind),"开工",()->apply.accept(w.domestic.build(c.id,o.id,kind,h)))));
+            activity.pickOnMap("建设"+kind.label,c.hex,sites,h->officer(c,o->confirm("建设"+kind.label,c.name+" · "+o.name+"\n金"+kind.cost+" / 行动力10 / "+(o.politics>=80?2:3)+"旬\n建成即最高等级 Lv"+Domestic.buildLevel(kind)+"："+Domestic.buildEffect(kind),"开工",()->apply.execute(w,()->w.domestic.build(c.id,o.id,kind,h)))));
         });
     }
-    void transfer(World.City c){destination(c.owner,c.id,d->officer(c,o->confirm("人员调动",o.name+"："+c.name+" → "+d.name+"\n"+w.personnel.description(c.id,d.id)+"\n行动力10；在途期间不可执行其他命令。","出发",()->apply.accept(w.domestic.transfer(c.id,d.id,o.id)))));}
+    void transfer(World.City c){destination(c.owner,c.id,d->officer(c,o->confirm("人员调动",o.name+"："+c.name+" → "+d.name+"\n"+w.personnel.description(c.id,d.id)+"\n行动力10；在途期间不可执行其他命令。","出发",()->apply.execute(w,()->w.domestic.transfer(c.id,d.id,o.id)))));}
     void transport(World.City c){destination(c.owner,c.id,d->cargo(c,d,false));}
     void transportSea(World.City c){destination(c.owner,c.id,d->cargo(c,d,true));}
     void restoreDraft(Bundle draft){World.City c=w.city(draft.getInt("city")),d=w.city(draft.getInt("target"));if(c==null||d==null||c.owner!=w.player||d.owner!=w.player){activity.closeForm();return;}cargo(c,d,draft.getBoolean("sea"));}
@@ -80,7 +80,7 @@ final class DomesticUi {
             String shipPreview="\n舰船货物：楼船"+ships[0]+" / 斗舰"+ships[1]+"；目的地余量：楼船"+Math.max(0,100-d.ships[0])+" / 斗舰"+Math.max(0,100-d.ships[1])+"\n"+(d.ships[0]+ships[0]>100||d.ships[1]+ships[1]>100?"目的地舰船仓不足，抵达后保留货物等待":"舰船货物不会改变当前使用的走舸");
             boolean large=values[0]>=1000||values[1]>=10000||values[2]>=3000;for(int i=3;i<count;i++)large|=values[i]>=3000;
             confirm(large?"确认大额运输":"确认运输",o.name+"："+c.name+" → "+d.name+"\n金 "+values[0]+" / 粮 "+values[1]+" / 兵 "+values[2]+"\n"+preview+shipPreview,"确认发送",()->{
-                World.Result result=w.domestic.transport(c.id,d.id,o.id,deputies,values[0],values[1],values[2],equipment,sea,returning.isChecked(),ships);apply.accept(result);if(result.ok){activity.closeForm();dialog.dismiss();}
+                World.Result result=apply.execute(w,()->w.domestic.transport(c.id,d.id,o.id,deputies,values[0],values[1],values[2],equipment,sea,returning.isChecked(),ships));if(result.ok){activity.closeForm();dialog.dismiss();}
             });
             },null);
         }));dialog.show();update[0].run();activity.trackDialog(dialog);dialog.getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN|android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
@@ -97,8 +97,8 @@ final class DomesticUi {
         focus.accept(f.hex);World.City c=w.city(f.cityId);
         AlertDialog.Builder dialog=new AlertDialog.Builder(activity).setTitle(c.name+" · "+f.kind.label+" Lv"+f.level).setMessage("耐久 "+f.hp+"/"+f.maxHp()+"\n"+(f.level==3?Domestic.buildEffect(f.kind):f.kind.effect)+"\n新建设施直接最高级，无需吸收合并。\n"+(f.remaining==0?"已建成":w.officer(f.builderId).name+(f.upgradeTo>0?"合并中":"建设中")+"，剩"+f.remaining+"旬")+"\n坐标 "+f.hex.q+", "+f.hex.r).setNegativeButton("返回",null);
         if(c.owner==w.player&&!w.gameOver()){
-            if(f.remaining>0)dialog.setPositiveButton("取消建设",(d,n)->confirm("取消建设","不会退还建设费用，本旬不能重复使用武将。","确定取消",()->apply.accept(w.domestic.cancelBuild(f.id))));
-            else dialog.setPositiveButton("拆除",(d,n)->officer(c,o->confirm("拆除设施","需要一名闲置武将与行动力10，不退还费用。","确定拆除",()->apply.accept(w.domestic.demolish(f.id,o.id)))));
+            if(f.remaining>0)dialog.setPositiveButton("取消建设",(d,n)->confirm("取消建设","不会退还建设费用，本旬不能重复使用武将。","确定取消",()->apply.execute(w,()->w.domestic.cancelBuild(f.id))));
+            else dialog.setPositiveButton("拆除",(d,n)->officer(c,o->confirm("拆除设施","需要一名闲置武将与行动力10，不退还费用。","确定拆除",()->apply.execute(w,()->w.domestic.demolish(f.id,o.id)))));
         }
         dialog.show();
     }
@@ -110,7 +110,7 @@ final class DomesticUi {
         detail.append("\n累计途中耗粮："+m.consumedFood+"；"+(m.returnOfficers?"卸货后人员返程":m.returning?"仅人员返程，无返程物资":"抵达留驻"));
         detail.append("\n\n运输队可被截击；城内受城防保护。目的地失守自动选择可达己城；无路则等待。满仓保留货物，下一旬重试。");
         AlertDialog.Builder d=new AlertDialog.Builder(activity).setTitle(m.transport?"运输详情":"调动详情").setMessage(detail).setNegativeButton("返回",null);
-        if(!w.gameOver())d.setPositiveButton("改道 / 返回",(dialog,n)->destination(m.owner,m.targetCity,c->confirm("任务改道","改道至"+c.name+"，消耗行动力10。","执行",()->apply.accept(w.domestic.redirect(m.id,c.id)))));
+        if(!w.gameOver())d.setPositiveButton("改道 / 返回",(dialog,n)->destination(m.owner,m.targetCity,c->confirm("任务改道","改道至"+c.name+"，消耗行动力10。","执行",()->apply.execute(w,()->w.domestic.redirect(m.id,c.id)))));
         d.show();
     }
 }

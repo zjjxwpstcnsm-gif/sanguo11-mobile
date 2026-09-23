@@ -8,8 +8,8 @@ import java.util.function.*;
 
 /** Four research branches and finite training share the actual saved world and command validation. */
 final class AbilityUi {
-    private final Activity a;private final World w;private final Consumer<World.Result> apply;
-    AbilityUi(Activity a,World w,Consumer<World.Result> apply){this.a=a;this.w=w;this.apply=apply;}
+    private final Activity a;private final World w;private final LegacyCommandSink apply;
+    AbilityUi(Activity a,World w,LegacyCommandSink apply){this.a=a;this.w=w;this.apply=apply;}
     private void info(String title,String message){new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("返回",null).show();}
     private void confirm(String title,String message,Runnable run){new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("执行",(d,n)->run.run()).setNegativeButton("取消",null).show();}
     private <T> void choose(String title,List<T> values,java.util.function.Function<T,String> label,Consumer<T> next){ChoiceDialog.show(a,w,title,values,label,next);}
@@ -23,7 +23,7 @@ final class AbilityUi {
                 if(n.category==AbilityResearch.Category.SKILL&&!AbilityResearch.skillAvailable(n.skill))description+="\n此特技当前暂不可培养，可研究以解锁后续能力。";
                 String error=w.abilities.researchError(city.id,n.id);
                 if(error!=null){info(n.label,error+"\n\n"+description);return;}
-                confirm("研究"+n.label,description,()->apply.accept(w.abilities.startResearch(city.id,n.id)));
+                confirm("研究"+n.label,description,()->apply.execute(w,()->w.abilities.startResearch(city.id,n.id)));
             });
         });
     }
@@ -35,7 +35,7 @@ final class AbilityUi {
                 String description=o.name+"："+n.effect()+"\n行动力20，培养3旬，期间不能执行其他命令。\n完成消耗1次；本势力每个类别同时培养一人。";
                 if(category==AbilityResearch.Category.STAT)description+="\n此项研究成长已增加"+w.abilities.gained(o.id,n.index)+"点；达到20点后不能继续培养。";
                 if(category==AbilityResearch.Category.SKILL)description+="\n原特技「"+Skill.label(o.skillId)+"」将被「"+n.skill.label+"」覆盖。";
-                confirm("培养"+n.label,description,()->apply.accept(w.abilities.train(city.id,o.id,n.id,true)));
+                confirm("培养"+n.label,description,()->apply.execute(w,()->w.abilities.train(city.id,o.id,n.id,true)));
             }));
         });
     }
@@ -46,8 +46,8 @@ final class AbilityUi {
         List<AbilityResearch.Training> own=new ArrayList<>();for(AbilityResearch.Training t:w.abilities.training())if(t.owner==city.owner){own.add(t);text.append("\n").append(w.officer(t.officerId).name).append(" · ").append(t.label()).append(" · 剩").append(w.officer(t.officerId).otherTaskTurns).append("旬");}
         for(AbilityResearch.Node n:w.abilities.visible(city.owner))if(w.abilities.learned(city.owner,n.id))text.append("\n").append(n.label).append(" · 剩").append(w.abilities.remaining(city.owner,n.id)).append("次");
         AlertDialog.Builder b=new AlertDialog.Builder(a).setTitle("PK研究与培养进度").setMessage(text.toString()).setPositiveButton("返回",null);
-        if(city.owner==w.active&&r!=null)b.setNeutralButton("中止研究",(d,i)->confirm("中止能力研究","已付金与行动力不退还。",()->apply.accept(w.abilities.cancelResearch(city.owner))));
-        if(city.owner==w.active&&!own.isEmpty())b.setNegativeButton("中止培养",(d,i)->choose("中止培养",own,t->w.officer(t.officerId).name+" · "+t.label(),t->confirm("中止培养","本次未完成，不消耗培养次数；行动力不退还。",()->apply.accept(w.abilities.cancelTraining(t.officerId)))));
+        if(city.owner==w.active&&r!=null)b.setNeutralButton("中止研究",(d,i)->confirm("中止能力研究","已付金与行动力不退还。",()->apply.execute(w,()->w.abilities.cancelResearch(city.owner))));
+        if(city.owner==w.active&&!own.isEmpty())b.setNegativeButton("中止培养",(d,i)->choose("中止培养",own,t->w.officer(t.officerId).name+" · "+t.label(),t->confirm("中止培养","本次未完成，不消耗培养次数；行动力不退还。",()->apply.execute(w,()->w.abilities.cancelTraining(t.officerId)))));
         b.show();
     }
 }

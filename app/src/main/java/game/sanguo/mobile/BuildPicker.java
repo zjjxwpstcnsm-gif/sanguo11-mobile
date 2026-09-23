@@ -45,7 +45,7 @@ final class BuildPicker {
             dialog.dismiss();
             if(!officers){draft.putInt("facility",((Domestic.Kind)selected).ordinal());draft.putInt("page",0);show();return;}
             World.Officer o=(World.Officer)selected;Domestic.Kind kind=Domestic.Kind.values()[draft.getInt("facility")];
-            a.closeForm();a.commandDialog("建设"+kind.label,c.name+" · "+o.name+" · 地块"+h+"\n金"+kind.cost+" / 行动力10 / "+(o.politics>=80?2:3)+"旬\n"+Domestic.buildEffect(kind)+"\n建设期间占用武将，取消建设不退款。","开工",w,()->a.applyResult(w.domestic.build(c.id,o.id,kind,h)));
+            a.closeForm();a.commandDialog("建设"+kind.label,c.name+" · "+o.name+" · 地块"+h+"\n金"+kind.cost+" / 行动力10 / "+(o.politics>=80?2:3)+"旬\n"+Domestic.buildEffect(kind)+"\n建设期间占用武将，取消建设不退款。","开工",w,()->a.applyResult(w,()->w.domestic.build(c.id,o.id,kind,h)));
         });
         previous.setOnClickListener(v->{current[0]--;refresh.run();});next.setOnClickListener(v->{current[0]++;refresh.run();});
         query.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void onTextChanged(CharSequence s,int start,int before,int count){}public void afterTextChanged(Editable s){draft.putString(officers?"officerQuery":"facilityQuery",s.toString());current[0]=0;refresh.run();}});

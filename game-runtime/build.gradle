@@ -12,3 +12,11 @@ tasks.register('verifyBridge', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyBridge' }
 tasks.named('test') { dependsOn 'verifyBridge' }
+tasks.register('verifySession', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.runtime.GameSessionTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifySession' }
+tasks.named('test') { dependsOn 'verifySession' }

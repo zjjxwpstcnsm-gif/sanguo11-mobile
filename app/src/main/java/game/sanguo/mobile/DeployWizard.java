@@ -45,7 +45,7 @@ final class DeployWizard {
             tab(Math.max(0,Math.min(2,draft.getInt("tab",0))));update();dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTag("deploy.confirm");dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(view->{
                 if(submitted[0]||!a.currentWorld(w)||error()!=null)return;
                 if(revision[0]!=w.commandRevision()){revision[0]=w.commandRevision();available=new ArrayList<>(w.idle(city));filter();update();Toast.makeText(a,"局面已更新，请核对后出征",Toast.LENGTH_SHORT).show();return;}
-                submitted[0]=true;int commander=leader();World.Result result=w.army.deploy(city.id,commander,deputies(),weapon(),ship(),troops.value(),food.value(),gold.value());a.applyResult(result);
+                submitted[0]=true;int commander=leader();World.Result result=a.applyResult(w,()->w.army.deploy(city.id,commander,deputies(),weapon(),ship(),troops.value(),food.value(),gold.value()));
                 if(result.ok){a.closeForm();dialog.dismiss();World.Officer officer=w.officer(commander);World.Unit unit=officer==null?null:w.unit(officer.unitId);if(unit!=null)a.selectAndFocus(unit.hex);}else{submitted[0]=false;update();}
             });
         });dialog.show();a.trackDialog(dialog);dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);

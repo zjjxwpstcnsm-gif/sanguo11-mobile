@@ -1,6 +1,7 @@
 package game.sanguo.runtime.bridge;
 
 import game.sanguo.core.*;
+import game.sanguo.runtime.GameSession;
 import game.sanguo.api.bridge.BridgeEntity;
 import game.sanguo.api.bridge.BridgeMessage;
 
@@ -18,7 +19,7 @@ public final class BridgeFixtureRecorder {
     }
     public static void main(String[] args)throws Exception{
         World world=ScenarioCatalog.load("coalition-190",0,20260923L);
-        BridgeSession session=new BridgeSession(world);session.snapshot();
+        BridgeSession session=new BridgeSession(new GameSession(world));session.snapshot();
         BridgeMessage m=session.drain().get(0);
         StringBuilder out=new StringBuilder("{\"status\":\"OK\",\"dropped\":0,\"messages\":[{\"type\":\"snapshot\",\"sessionId\":\"EDITOR-FIXTURE-READ-ONLY\",\"schemaVersion\":1,\"sequence\":1,\"revision\":0,\"mapRevision\":")
             .append(m.mapRevision).append(",\"width\":").append(m.width).append(",\"height\":").append(m.height)
