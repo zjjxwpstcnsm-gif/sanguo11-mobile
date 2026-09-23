@@ -34,6 +34,13 @@ jobs:
           PY
           git rev-parse HEAD > app/build/outputs/apk/debug/SOURCE_COMMIT
           sha256sum app/build/outputs/apk/debug/app-debug.apk > app/build/outputs/apk/debug/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: u01-native-host-diagnostic-before-emulator-not-unity
+          path: |
+            app/build/outputs/apk/debug/app-debug.apk
+            app/build/outputs/apk/debug/SOURCE_COMMIT
+            app/build/outputs/apk/debug/SHA256SUMS.txt
       - name: Enable KVM for x86 emulator
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
