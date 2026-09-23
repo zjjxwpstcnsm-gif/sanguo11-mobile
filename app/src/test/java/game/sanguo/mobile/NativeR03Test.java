@@ -30,6 +30,10 @@ public final class NativeR03Test {
     public static void main(String[] args)throws Exception{
         World w=ScenarioCatalog.all().get(0);byte[] authority=SaveCodec.encode(w);MapSceneSnapshot.Ground g=new MapSceneSnapshot.Ground(w);
         float x=g.grid.x(w.home().hex),z=g.grid.z(w.home().hex);
+        SceneCamera focus=new SceneCamera();focus.x=x;focus.z=z;focus.clampTo(g);
+        near(focus.x,x,"focus X independent of old CPU window");near(focus.z,z,"focus Z independent of old CPU window");
+        for(World.City site:w.cities){focus.x=g.grid.x(site.hex);focus.z=g.grid.z(site.hex);focus.clampTo(g);near(focus.x,g.grid.x(site.hex),"all site focus X");near(focus.z,g.grid.z(site.hex),"all site focus Z");}
+        focus.x=-10000;focus.z=10000;focus.clampTo(g);near(focus.x,g.minX,"whole-map west bound");near(focus.z,g.maxZ,"whole-map south bound");
         for(float span:new float[]{8,24,70}){
             SceneMesh.TerrainWindow window=new SceneMesh.TerrainWindow(x,z,span,span,span);
             List<SceneMesh> meshes=SceneMesh.ground(g,Collections.emptyList(),window);geometry(g,meshes);

@@ -8,12 +8,20 @@ import java.util.*;
 final class MapSceneSnapshot {
     static final class Ground {
         final Set<Hex> bases; final TerrainSurface surface;
-        final int width,height,mapSeed,mapIdentity; final byte[] terrain; final GridWorldTransform grid;
+        final int width,height,mapSeed,mapIdentity; final float minX,minZ,maxX,maxZ; final byte[] terrain; final GridWorldTransform grid;
         Ground(World w) {
             width=w.width;height=w.height;mapIdentity=w.mapId.hashCode();mapSeed=31*w.mapId.hashCode()+w.mapRevision;grid=new GridWorldTransform(w.sourceMapWidth>0?(w.height-1)/2:0,w.columnStaggered);
             Set<Hex> flat=new HashSet<>();for(World.City c:w.cities)flat.addAll(SiteFootprint.cells(c));bases=Collections.unmodifiableSet(flat);
             terrain=new byte[width*height];
-            for(int r=0;r<height;r++)for(int q=0;q<width;q++)terrain[r*width+q]=(byte)(w.inside(new Hex(q,r))?w.terrain[q][r].ordinal():World.Terrain.VOID.ordinal());
+            float loX=Float.MAX_VALUE,loZ=loX,hiX=-loX,hiZ=-loX;
+            for(int r=0;r<height;r++)for(int q=0;q<width;q++){
+                terrain[r*width+q]=(byte)(w.inside(new Hex(q,r))?w.terrain[q][r].ordinal():World.Terrain.VOID.ordinal());
+                if(terrain[r*width+q]!=World.Terrain.VOID.ordinal()){
+                    float x=grid.x(q,r),z=grid.z(q,r);loX=Math.min(loX,x-.5f);loZ=Math.min(loZ,z-.5f);hiX=Math.max(hiX,x+.5f);hiZ=Math.max(hiZ,z+.5f);
+                }
+            }
+            minX=loX==Float.MAX_VALUE?0:loX;minZ=loZ==Float.MAX_VALUE?0:loZ;
+            maxX=hiX==-Float.MAX_VALUE?0:hiX;maxZ=hiZ==-Float.MAX_VALUE?0:hiZ;
             Map<Hex,Float> heights=new HashMap<>();
             if(w.visualMap!=null)for(var e:w.visualMap.heights.entrySet())heights.put(MapCoordinates.fromNationalSource(w,new SourceGridCoord(e.getKey()/200,e.getKey()%200)),e.getValue()/1000f);
             surface=new TerrainSurface(this,heights);

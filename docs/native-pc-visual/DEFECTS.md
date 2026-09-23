@@ -29,3 +29,4 @@
 | R02-COMPOSITOR | observed software-emulator limitation | PARTIAL | Immediate post-gesture UI capture can retain old overlay while Surface advances; settled MEDIUM aligns. Physical-device frame/presentation latency NOT_RUN. |
 | R03-VEGETATION-REGRESSION | new, fixed | PASS | CI35869690421 FieldAssetsTest rejected changed version-dependent vegetation contract; production seed restored, assertion unchanged; full CI retest required. |
 | R03-PROBE | new, fixed | PARTIAL | S10/S11/S12 installed probes reflected removed distantTerrain field. Retained it as an actual accepted-chunk all-coarse diagnostic, exposed in report; assertions unchanged. Rebuild/retest required. |
+| R03-FOCUS | new, fixed | PARTIAL | Manual inspection of 38eddcf found initial city focus clamped to the first streamed window. Bounds now come from complete immutable Ground, with all-site host and installed initial-focus assertions; new source rebuild/retest required. |

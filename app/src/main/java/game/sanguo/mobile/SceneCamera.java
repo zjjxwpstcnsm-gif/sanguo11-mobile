@@ -19,6 +19,10 @@ final class SceneCamera {
     float worldZ(float sy){return worldZ(width*.5f,sy,0);}
     void pan(float dx,float dy){x-=(dx*rightX()+dy/sin()*backX())/pixels();z-=(-dx*backX()+dy/sin()*rightX())/pixels();}
     void sanitize(){x=Float.isFinite(x)?x:0;z=Float.isFinite(z)?z:0;span=Float.isFinite(span)?Math.max(3,Math.min(160,span)):15;tilt=Float.isFinite(tilt)?Math.max(40,Math.min(70,tilt)):55;yaw=Float.isFinite(yaw)?((yaw%360)+360)%360:0;facing=facing<0?-1:1;}
+    /** Camera bounds belong to the complete immutable map, never the transient chunk cache. */
+    void clampTo(MapSceneSnapshot.Ground ground){
+        sanitize();x=Math.max(ground.minX,Math.min(ground.maxX,x));z=Math.max(ground.minZ,Math.min(ground.maxZ,z));
+    }
     void zoom(float factor,float sx,float sy){zoom(factor,sx,sy,0);}
     void zoom(float factor,float sx,float sy,float groundY){
         if(!Float.isFinite(factor)||factor<=0)return;sanitize();

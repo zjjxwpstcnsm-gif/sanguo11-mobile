@@ -21,7 +21,7 @@ implementation, fault-matrix, physical-device and visual-reference gaps.
 
 R02: PARTIAL. Source 2965bcddd50564f80cb194aa71127767d822dd10; latest exact-source
 CI35865854066 PASS. Prior HIGH PixelCopy failure and physical/reference/manual
-matrix gaps remain historical evidence. R02 report/handoff absent on inherited HEAD.
+matrix gaps remain historical evidence. R02 report/handoff were absent at initial HEAD, then synchronized from 943ddcf.
 
 R03: PARTIAL. TerrainSurface v3, production view-window CPU meshes, three planar
 LOD levels, local revision-safe terrain halo invalidation; legacy vegetation seed retained.

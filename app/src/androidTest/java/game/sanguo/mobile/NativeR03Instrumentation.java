@@ -23,6 +23,7 @@ public final class NativeR03Instrumentation extends SceneInstrumentation {
         runOnMainSync(()->{host.switchMode(true);host.quality(SceneQuality.MEDIUM);activity.selectAndFocus(world.home().hex);});ready();
         FilamentMapView v=spatial();runOnMainSync(()->{v.camera.span=10;v.camera.tilt=55;v.camera.yaw=0;v.setGridShown(false);});settle();ready();shot("r03-home-baseline-comparable");
         MapSceneSnapshot.Ground g=((MapSceneSnapshot)field(v,"snapshot")).ground;
+        check(Math.abs(v.camera.x-g.grid.x(world.home().hex))<.001f&&Math.abs(v.camera.z-g.grid.z(world.home().hex))<.001f,"initial city focus survives first streamed window acceptance");
         Hex mountain=null;float best=-1;
         // Real official-map ridge nearest a chunk seam, chosen deterministically, never edited.
         for(int r=16;r<g.height-16;r+=16)for(int q=16;q<g.width-16;q+=16){Hex h=new Hex(q,r);if(g.valid(h)&&g.surface.at(h)>best){best=g.surface.at(h);mountain=h;}}
