@@ -939,7 +939,7 @@ public final class MainActivity extends Activity {
     DomesticUi domesticUi(){return new DomesticUi(this,world,this::apply,this::selectAndFocus);}
     private void showMenu(){
         line("军政菜单",22,gold);
-        action("Unity 试用 · 全屏预览",v->launchUnityTrial());
+        if(BuildConfig.UNITY_ENABLED)action("Unity 试用 · 全屏预览",v->launchUnityTrial());
         action("屏幕方向 / 横竖屏",v->showOrientationPicker());
         action("地图视图与操作",v->showMapTools());
         action("生卒与继承",v->new LifecycleUi(this,world,this::apply).menu());

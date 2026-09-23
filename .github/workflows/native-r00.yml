@@ -1,0 +1,87 @@
+name: Native R00 exact-source build and visibility
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['app/**', 'settings.gradle', 'version.properties', 'scripts/*r00*', '.github/workflows/native-r00.yml']
+permissions:
+  contents: read
+concurrency:
+  group: native-r00
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Exact source and environment
+        run: |
+          mkdir -p out/r00
+          git rev-parse HEAD > out/r00/SOURCE_SHA
+          git merge-base --is-ancestor ac29b458325b52d6e302ca44270d16552de4ed7f HEAD
+          git bundle create out/r00/source.bundle HEAD
+          { java -version; ./gradlew --version; command -v adb; adb devices -l; command -v blender || true; command -v matc || true; } > out/r00/environment.txt 2>&1
+      - name: Affected architecture and native regressions
+        run: |
+          set -o pipefail
+          for suite in test-architecture-baseline test-architecture test-ui-models test-3d-foundation test-3d-interaction test-map-editor67 test-custom-officers test-siege; do
+            bash scripts/$suite.sh 2>&1 | tee out/r00/$suite.log
+          done
+      - name: Reproduce inherited core failure without changing assertions
+        continue-on-error: true
+        run: |
+          set -o pipefail
+          bash scripts/test-core.sh 2>&1 | tee out/r00/core.log
+      - name: Native build, instrumentation and lint
+        run: |
+          set -o pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true 2>&1 | tee out/r00/build.log
+          cp app/build/outputs/apk/debug/app-debug.apk out/r00/sanguo11-native-r00.apk
+          sha256sum out/r00/sanguo11-native-r00.apk > out/r00/APK_SHA256
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/r00/sanguo11-native-r00.apk > out/r00/apk-metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/r00/sanguo11-native-r00.apk > out/r00/signature.txt
+          python3 - <<'PY'
+          import zipfile
+          with zipfile.ZipFile('out/r00/sanguo11-native-r00.apk') as z:
+              assert not any(n.endswith('/libunity.so') for n in z.namelist())
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r00-apk-source
+          path: out/r00/
+          retention-days: 14
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Real native startup and restored game
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: true
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-native-r00.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-r00-runtime-evidence
+          path: out/r00/
+          retention-days: 14
