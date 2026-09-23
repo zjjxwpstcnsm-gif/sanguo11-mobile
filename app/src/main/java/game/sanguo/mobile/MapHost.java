@@ -70,7 +70,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
     void reverseOrientation(){if(spatial!=null)spatial.reverseOrientation();}
     void previewMode(){openingPreview=true;flat.previewMode();}
     void setPreviewFaction(int side){previewFaction=side;flat.setPreviewFaction(side);if(spatial!=null)spatial.previewFaction(side);}
-    private void persistCamera(){if(spatial==null)return;Bundle b=new Bundle();spatial.saveCamera(b);prefs.edit().putInt("version",1).putFloat("tilt",b.getFloat("sceneTilt",55)).putInt("facing",b.getInt("sceneFacing",1)).apply();}
+    private void persistCamera(){if(spatial==null)return;Bundle b=new Bundle();spatial.saveCamera(b);prefs.edit().putInt("version",2).putFloat("tilt",b.getFloat("sceneTilt",55)).putInt("facing",b.getInt("sceneFacing",1)).putFloat("yaw",b.getFloat("sceneYaw",0)).apply();}
     SceneQuality quality(){return SceneQuality.from(prefs.getAll().get("quality"));}
     void quality(SceneQuality next){
         if(next==quality())return;
@@ -100,7 +100,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
             if(manual)interruptedSession=false;
             removeView(flat);addView(spatial,new LayoutParams(-1,-1));
             dirty=true;publish();
-            Map<String,?> saved=prefs.getAll();if(!camera.containsKey("sceneTilt")&&saved.get("tilt") instanceof Float)camera.putFloat("sceneTilt",(Float)saved.get("tilt"));if(!camera.containsKey("sceneFacing")&&saved.get("facing") instanceof Integer)camera.putInt("sceneFacing",(Integer)saved.get("facing"));
+            Map<String,?> saved=prefs.getAll();if(!camera.containsKey("sceneYaw")&&saved.get("yaw") instanceof Float)camera.putFloat("sceneYaw",(Float)saved.get("yaw"));if(!camera.containsKey("sceneTilt")&&saved.get("tilt") instanceof Float)camera.putFloat("sceneTilt",(Float)saved.get("tilt"));if(!camera.containsKey("sceneFacing")&&saved.get("facing") instanceof Integer)camera.putInt("sceneFacing",(Integer)saved.get("facing"));
             spatial.setGridShown(gridShown());spatial.restoreCamera(camera);spatial.setTargets(targets);spatial.setRoute(route);spatial.resume(resumed);spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(projection.blocked(world,editorPassability),editorGrid,editorCoords,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);
         }catch(Exception|LinkageError|OutOfMemoryError e){fallback(e);}
     }
@@ -124,7 +124,7 @@ if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){if(
     @Override public void fit(){if(spatial==null)flat.fit();else spatial.fit();}
     @Override public void focus(Hex h){if(spatial==null)flat.focus(h);else spatial.focus(h);}
     @Override public void center(Hex h){if(spatial==null)flat.center(h);else spatial.center(h);}
-    @Override public void saveCamera(Bundle b){b.putBoolean("sceneEnabled",is3D());if(spatial==null)flat.saveCamera(b);else spatial.saveCamera(b);}
+    @Override public void saveCamera(Bundle b){b.putBoolean("sceneEnabled",is3D());if(spatial==null){for(String key:new String[]{"sceneSpan","sceneTilt","sceneYaw"})if(camera.containsKey(key))b.putFloat(key,camera.getFloat(key));if(camera.containsKey("sceneFacing"))b.putInt("sceneFacing",camera.getInt("sceneFacing"));flat.saveCamera(b);}else spatial.saveCamera(b);}
     @Override public void restoreCamera(Bundle b){camera=new Bundle(b);if(!safeMode&&Boolean.TRUE.equals(b.get("sceneEnabled"))&&spatial==null)switchMode(true,false);if(spatial==null)flat.restoreCamera(b);else spatial.restoreCamera(b);}
     @Override public void setEnabled(boolean enabled){super.setEnabled(enabled);if(flat!=null)flat.setEnabled(enabled);if(spatial!=null)spatial.setEnabled(enabled);}
     void setUnitDrop(Consumer<MarchOrders.Plan> drop){flat.setUnitDrop(drop);}

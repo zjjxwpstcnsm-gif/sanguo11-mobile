@@ -82,18 +82,38 @@ final class TerrainSurface {
     }
     Hex pick(SceneCamera camera,float sx,float sy){
         float y=rayHeight(camera,sx,sy);if(!Float.isFinite(y))return null;
-        Hex h=ground.grid.cell(camera.worldX(sx),camera.worldZ(sy)+y*(float)(camera.cos()/camera.sin())*camera.facing);return ground.valid(h)?h:null;
+        Hex h=ground.grid.cell(camera.worldX(sx,sy,y),camera.worldZ(sx,sy,y));return ground.valid(h)?h:null;
     }
     float rayHeight(SceneCamera camera,float sx,float sy){
-        float x=camera.worldX(sx),base=camera.worldZ(sy),cot=(float)(camera.cos()/camera.sin())*camera.facing;
-        // Bounded ray march independent of national triangle count; select first visible surface.
-        float previous=MAX_HEIGHT,previousF=previous-meshHeight(x,base+previous*cot);
-        for(int n=1;n<=104;n++){
-            float y=MAX_HEIGHT*(1-n/104f),f=y-meshHeight(x,base+y*cot);
-            if(f<=0&&previousF>=0){float lo=y,hi=previous;for(int j=0;j<14;j++){float mid=(lo+hi)*.5f;if(mid>meshHeight(x,base+mid*cot))hi=mid;else lo=mid;}
-                return (lo+hi)*.5f;}
-            previous=y;previousF=f;
-        }return Float.NaN;
+        float x=camera.worldX(sx,sy,0),base=camera.worldZ(sx,sy,0);
+        float cotX=(float)(camera.cos()/camera.sin()*camera.backX()),cotZ=(float)(camera.cos()/camera.sin()*camera.rightX());
+        // Test the actual eight-triangle fan (both display LODs share its planes).
+        // The bounded height interval crosses only a small rectangle of source cells.
+        float endX=x+MAX_HEIGHT*cotX,endZ=base+MAX_HEIGHT*cotZ;
+        int minQ=Integer.MAX_VALUE,minR=minQ,maxQ=Integer.MIN_VALUE,maxR=maxQ;
+        for(float wx:new float[]{Math.min(x,endX)-1,Math.max(x,endX)+1})
+            for(float wz:new float[]{Math.min(base,endZ)-1,Math.max(base,endZ)+1}){
+                Hex h=ground.grid.cell(wx,wz);minQ=Math.min(minQ,h.q);maxQ=Math.max(maxQ,h.q);minR=Math.min(minR,h.r);maxR=Math.max(maxR,h.r);
+            }
+        float best=Float.NEGATIVE_INFINITY;
+        for(int r=minR;r<=maxR;r++)for(int q=minQ;q<=maxQ;q++){
+            Hex h=new Hex(q,r);if(!ground.valid(h))continue;
+            float hx=ground.grid.x(h),hz=ground.grid.z(h),hy=sample(hx,hz);
+            for(int i=0;i<8;i++){
+                float[] a=SceneMesh.EDGE[i],b=SceneMesh.EDGE[(i+1)%8];
+                float ay=sample(hx+a[0],hz+a[1])-hy,by=sample(hx+b[0],hz+b[1])-hy;
+                float det=a[0]*b[1]-b[0]*a[1];
+                float slopeX=(ay*b[1]-by*a[1])/det,slopeZ=(a[0]*by-b[0]*ay)/det;
+                float denominator=1-slopeX*cotX-slopeZ*cotZ;
+                if(Math.abs(denominator)<1e-7f)continue;
+                float y=(hy+slopeX*(x-hx)+slopeZ*(base-hz))/denominator;
+                if(y<-.0001f||y>MAX_HEIGHT+.0001f||y<best)continue;
+                float dx=x+y*cotX-hx,dz=base+y*cotZ-hz;
+                float u=(dx*b[1]-dz*b[0])/det,v=(a[0]*dz-a[1]*dx)/det;
+                if(u>=-.00001f&&v>=-.00001f&&u+v<=1.00001f)best=Math.max(best,y);
+            }
+        }
+        return Float.isFinite(best)?Math.max(0,best):Float.NaN;
     }
     int color(float x,float z,int base,boolean water){
         return water?SceneMesh.shade(base,.93f):base;
