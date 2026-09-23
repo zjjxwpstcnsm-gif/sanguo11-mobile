@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><OutputType>Exe</OutputType><TargetFramework>net8.0</TargetFramework><ImplicitUsings>enable</ImplicitUsings><Nullable>disable</Nullable><EnableDefaultCompileItems>false</EnableDefaultCompileItems></PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../unity/Assets/Sanguo/Contracts/*.cs" />
+    <Compile Include="../../unity/Assets/Sanguo/Client/**/*.cs" />
+    <Compile Include="../../unity/Assets/Sanguo/Transport/Fixtures/*.cs" />
+    <Compile Include="Program.cs" />
+  </ItemGroup>
+</Project>

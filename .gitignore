@@ -27,3 +27,7 @@ unity-export/
 *.ulf
 *.ulf.json
 __pycache__/
+
+# Platform-free C# protocol verification outputs
+tools/architecture-client/bin/
+tools/architecture-client/obj/

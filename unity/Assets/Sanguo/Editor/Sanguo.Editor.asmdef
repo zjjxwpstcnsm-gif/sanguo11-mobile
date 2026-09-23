@@ -1,0 +1,10 @@
+{
+  "name": "Sanguo.Editor",
+  "references": [
+    "Sanguo.Bootstrap"
+  ],
+  "noEngineReferences": false,
+  "includePlatforms": [
+    "Editor"
+  ]
+}

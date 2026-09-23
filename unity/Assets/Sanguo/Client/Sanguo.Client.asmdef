@@ -1,0 +1,7 @@
+{
+  "name": "Sanguo.Client",
+  "references": [
+    "Sanguo.Contracts"
+  ],
+  "noEngineReferences": true
+}

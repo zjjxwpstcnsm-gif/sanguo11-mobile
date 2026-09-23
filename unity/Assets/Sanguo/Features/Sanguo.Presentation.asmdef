@@ -1,0 +1,8 @@
+{
+  "name": "Sanguo.Presentation",
+  "references": [
+    "Sanguo.Contracts",
+    "Sanguo.Client"
+  ],
+  "noEngineReferences": false
+}

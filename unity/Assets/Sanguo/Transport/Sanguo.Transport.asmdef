@@ -1,0 +1,7 @@
+{
+  "name": "Sanguo.Transport",
+  "references": [
+    "Sanguo.Contracts"
+  ],
+  "noEngineReferences": false
+}
