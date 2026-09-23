@@ -24,7 +24,7 @@ CI35865854066 PASS. Prior HIGH PixelCopy failure and physical/reference/manual
 matrix gaps remain historical evidence. R02 report/handoff absent on inherited HEAD.
 
 R03: PARTIAL. TerrainSurface v3, production view-window CPU meshes, three planar
-LOD levels, local revision-safe halo invalidation and stable vegetation placement.
+LOD levels, local revision-safe terrain halo invalidation; legacy vegetation seed retained.
 See reports/R03.md and handoffs/R03.md. No R04 started; await exact-source runtime.
 R02: PARTIAL. Continuous camera, actual fan ray picking, rotated overlays/culling,
 height anchor and command-safe input integrated in the normal game. No new art or

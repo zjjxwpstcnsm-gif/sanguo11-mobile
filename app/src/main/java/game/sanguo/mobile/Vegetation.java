@@ -19,7 +19,7 @@ final class Vegetation {
         List<SceneMesh> result=new ArrayList<>();
         for(int r=0;r<ground.height;r+=CHUNK)for(int q=0;q<ground.width;q+=CHUNK){
             if(Thread.currentThread().isInterrupted())return Collections.emptyList();
-            long fingerprint=SEED^ground.mapIdentity^ground.width*31L^ground.height;List<Hex> cells=new ArrayList<>();
+            long fingerprint=SEED^ground.mapSeed^ground.width*31L^ground.height;List<Hex> cells=new ArrayList<>();
             // Height sampling has a bounded neighborhood; include it in invalidation.
             for(int rr=r-8;rr<r+CHUNK+8;rr++)for(int qq=q-8;qq<q+CHUNK+8;qq++){
                 Hex h=new Hex(qq,rr);int t=ground.valid(h)?ground.terrain[rr*ground.width+qq]:-1;
@@ -66,7 +66,7 @@ final class Vegetation {
         for(Hex h:cells){
             // Global coordinate hash; stable phase across chunks, LODs and camera changes.
             for(int candidate=0;candidate<2;candidate++){
-            int hash=(Float.floatToIntBits(ground.grid.x(h))*73856093)^(Float.floatToIntBits(ground.grid.z(h))*19349663)^SEED^ground.mapIdentity^(candidate*83492791);
+            int hash=(Float.floatToIntBits(ground.grid.x(h))*73856093)^(Float.floatToIntBits(ground.grid.z(h))*19349663)^SEED^ground.mapSeed^(candidate*83492791);
             hash=mix(hash);
             float x=ground.grid.x(h)+(((hash>>>2)&1023)/1023f-.5f)*.82f;
             float z=ground.grid.z(h)+(((hash>>>12)&1023)/1023f-.5f)*.82f;
