@@ -17,6 +17,13 @@ public final class NativeR01Instrumentation extends SceneInstrumentation {
         runOnMainSync(()->invoke("startScenario",new Class<?>[]{String.class,int.class},"coalition-190",0));
         long limit=SystemClock.uptimeMillis()+90000;while(field(activity,"map")==null&&SystemClock.uptimeMillis()<limit)settle();
         host=(MapHost)field(activity,"map");world=(World)field(activity,"world");check(host!=null,"normal campaign opened");byte[] saved=authority();
+        runOnMainSync(()->{
+            boolean failed=false;
+            try{new FilamentMapView(new android.content.ContextWrapper(activity){
+                @Override public android.content.res.AssetManager getAssets(){return null;}
+            },h->{},e->{throw new AssertionError(e);});}catch(Exception e){failed=true;}
+            check(failed,"missing asset provider fails after partial engine construction");
+        });
         for(int i=0;i<20;i++){
             runOnMainSync(()->{host.switchMode(true);activity.selectAndFocus(world.home().hex);});ready();
             FilamentMapView spatial=(FilamentMapView)field(host,"spatial");

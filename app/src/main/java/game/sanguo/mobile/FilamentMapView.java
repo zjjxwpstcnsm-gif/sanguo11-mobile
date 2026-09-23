@@ -175,7 +175,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 thermalManager=context.getSystemService(android.os.PowerManager.class);
                 if(thermalManager!=null){thermalListener=this::thermalChanged;thermalManager.addThermalStatusListener(context.getMainExecutor(),thermalListener);thermalChanged(thermalManager.getCurrentThermalStatus());}
             }
-        }catch(Exception|LinkageError e){release();throw e;}
+        }catch(Exception|LinkageError|OutOfMemoryError e){release();throw e;}
     }
     private void loadGroundMaterials(Context context)throws java.io.IOException {
         byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain/ground.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);bytes=out.toByteArray();}
@@ -326,9 +326,12 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         for(GpuMesh m:resident){bufferBytes+=(long)m.source.vertices.length*4+(long)m.source.indices.length*4+(m.source.uv==null?0:(long)m.source.uv.length*4)+(m.source.surfaceData==null?0:(long)m.source.surfaceData.length*4)+(m.source.tangents==null?0:(long)m.source.tangents.length*4);if(m.shown){primitives+=m.source.landIndexCount>0&&m.source.landIndexCount<m.source.indices.length?2:1;triangles+=m.source.indices.length/3;}}
         for(Proxy p:objects.values())if(p.shown){primitives++;triangles+=p.shape.source.indices.length/3;for(GpuMesh m:new GpuMesh[]{p.flagShape,p.baseShape,p.stateShape})if(m!=null){primitives++;triangles+=m.source.indices.length/3;}}
         for(int i=0;i<effectEntities.length;i++)if(effectShown[i]){primitives++;triangles+=effectMeshes[effectKinds[i]].source.indices.length/3;}
+        int entities=resident.size()+(cameraEntity==0?0:1)+(light==0?0:1),instances=vegetationMaterial==null?0:1;
+        for(Proxy p:objects.values()){entities+=1+(p.flag==0?0:1)+(p.base==0?0:1)+(p.state==0?0:1);if(p.instance!=null)instances++;}
+        for(int entity:effectEntities)if(entity!=0)entities++;
         long[] times=Arrays.copyOf(cpuSamples,cpuCount);Arrays.sort(times);
         return "场景 primitives="+primitives+" triangles="+triangles+" buffers_bytes="+bufferBytes+" pose_cache="+shapes.size()+
-            " mesh_live="+resident.size()+" texture_live="+(groundTextures.size()+(siteAtlas==null?0:1)+(fieldAtlas==null?0:1))+
+            " entity_live="+entities+" material_instance_live="+instances+" mesh_live="+resident.size()+" texture_live="+(groundTextures.size()+(siteAtlas==null?0:1)+(fieldAtlas==null?0:1))+
             " material_live="+((material==null?0:1)+(groundMaterial==null?0:1)+(waterMaterial==null?0:1)+(siteMaterial==null?0:1))+
             " worker_pending="+meshWork.pending()+" worker_waiting="+meshWork.waiting()+" discarded="+meshWork.discarded()+
             " frame_queued="+queued+" texture_estimate_bytes="+textureBytes+" "+textureFormat+" mip_upload_cpu_ms="+textureUploadCpuNanos/1e6+" CPU提交ms P50/P95/P99="+percentile(times,.50)+"/"+percentile(times,.95)+"/"+percentile(times,.99)+" samples="+cpuCount+"（非驱动DrawCall/GPU帧时）";
@@ -358,7 +361,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(bufferWidth>0&&bufferHeight>0&&renderer.beginFrame(swap,time)){renderer.render(view);renderer.endFrame();renderedFrames++;surfaceFrames++;if(surfaceFrames==1)android.util.Log.i("Sanguo3D","First submission (not visibility proof): "+startupReport());checkSurfaceOutput();}
             overlay.invalidate();schedule();
             cpuSamples[cpuCursor++%cpuSamples.length]=System.nanoTime()-cpuStart;cpuCount=Math.min(cpuSamples.length,cpuCount+1);
-        }catch(RuntimeException|LinkageError e){cancelFrame();failure.accept(e);}
+        }catch(RuntimeException|LinkageError|OutOfMemoryError e){cancelFrame();failure.accept(e);}
     }
     /** Check actual display output once uploads settle. Driver failures can return no Java error.
      * Only repeated, virtually identical extreme pixels trigger the existing safe 2D fallback. */
@@ -396,7 +399,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(snapshot==null)return;
         if(backdrop==null&&backdropSource!=null){backdrop=new GpuMesh(backdropSource);backdrop.show(true);}
         engine.getLightManager().setShadowCaster(engine.getLightManager().getInstance(light),environmentShadows&&!thermal.constrained&&camera.span<22);
-        int nextLod=Math.max(quality.minSiteLod,SiteVisual.lod(camera.span,siteLod));if(nextLod!=siteLod){siteLod=nextLod;syncObjects();}int budget=2;visibleChunks=0;pending=meshTask!=null&&!meshTask.isDone()?1:0;
+        int nextLod=Math.max(quality.minSiteLod,SiteVisual.lod(camera.span,siteLod));if(nextLod!=siteLod){siteLod=nextLod;syncObjects();}int budget=2;visibleChunks=0;pending=meshWork.pending();
         if(camera.span>48)distantTerrain=true;else if(camera.span<40)distantTerrain=false;
         Set<SceneMesh> active=activeTerrain;active.clear();for(SceneMesh m:chunks)active.add(distantTerrain&&m.distant!=null?m.distant:m);
         for(SceneMesh m:new ArrayList<>(terrain.keySet()))if(!active.contains(m)){terrain.remove(m).destroy();}
@@ -566,6 +569,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(skybox!=null){scene.setSkybox(null);engine.destroySkybox(skybox);}
         if(view!=null)engine.destroyView(view);if(scene!=null)engine.destroyScene(scene);if(renderer!=null)engine.destroyRenderer(renderer);
         if(cameraEntity!=0){engine.destroyCameraComponent(cameraEntity);EntityManager.get().destroy(cameraEntity);}engine.flushAndWait();engine.destroy();engine=null;
+        renderer=null;scene=null;view=null;lens=null;skybox=null;displayHelper=null;
+        material=null;waterMaterial=null;groundMaterial=null;siteMaterial=null;vegetationMaterial=null;
+        siteAtlas=null;fieldAtlas=null;textureBytes=0;cameraEntity=light=0;
+        Arrays.fill(effectMeshes,null);Arrays.fill(effectEntities,0);
     }
     private final class GpuMesh {
         VertexBuffer vb;IndexBuffer ib;int entity;final SceneMesh source;boolean shown;
@@ -598,7 +605,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private final class Proxy {
         final int entity; GpuMesh shape; int flag,base,state; GpuMesh flagShape,baseShape,stateShape; MaterialInstance instance;
         MapSceneSnapshot.Item item;boolean shown;final UnitMotion motion=new UnitMotion();final UnitAnimation animation=new UnitAnimation();String poseKey;float y;
-        Proxy(MapSceneSnapshot.Item item,GpuMesh shape){this.item=item;motion.settle(item.hex,snapshot.ground.grid);this.shape=shape;entity=EntityManager.get().create();
+        Proxy(MapSceneSnapshot.Item item,GpuMesh shape){this.item=item;motion.settle(item.hex,snapshot.ground.grid);this.shape=shape;entity=EntityManager.get().create();try{
             if(shape.source.uv!=null){instance=siteMaterial.createInstance();instance.setParameter("atlas",item.site!=null?siteAtlas:fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));instance.setParameter("damage",0f);shape.build(entity,instance);}else shape.build(entity);
             if(item.site!=null||item.unit!=null||item.facility!=null){String key="flag:"+item.color;flagShape=shapes.get(key);if(flagShape==null){flagShape=new GpuMesh(SceneMesh.proxy(3,item.color));shapes.put(key,flagShape);}flag=EntityManager.get().create();flagShape.build(flag);}
             // Seven-cell occupancy is shown by the selection overlay; ground blends in the terrain field.
@@ -608,7 +615,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 state=EntityManager.get().create();stateShape.build(state,vegetationMaterial);
             }
             position(snapshot.ground.grid.x(item.hex),snapshot.ground.grid.z(item.hex));updateDamage();
-        }
+        }catch(RuntimeException|LinkageError|OutOfMemoryError error){destroy();throw error;}}
         void replace(GpuMesh mesh){
             engine.getRenderableManager().destroy(entity);shape=mesh;shape.build(entity,instance);if(shown)scene.addEntity(entity);
         }
