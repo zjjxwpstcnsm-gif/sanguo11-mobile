@@ -14,6 +14,7 @@ import org.json.*;
 
 /** Installed native host probe. This is NOT evidence of a Unity Player or C# JNI execution. */
 public final class UnityBridgeInstrumentation extends Instrumentation {
+    @Override public void onCreate(Bundle args){super.onCreate(args);start();}
     @Override public void onStart(){
         Bundle report=new Bundle();MainActivity activity=null;
         try{

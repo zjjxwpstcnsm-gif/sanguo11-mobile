@@ -83,6 +83,7 @@ public final class GameSession implements GameApi, AutoCloseable {
     public World.Result legacy(World draft,Supplier<World.Result> operation){
         write();StateToken expected=views.remove(draft);CommandResult.Error error=invalid(expected,false);
         if(error!=CommandResult.Error.NONE)return World.Result.rejected(error.name());
+        if(authority.commandsBlocked())return World.Result.rejected("HOST_BUSY");
         try{
             World.Result result=Objects.requireNonNull(operation.get());
             if(!result.ok)return result;

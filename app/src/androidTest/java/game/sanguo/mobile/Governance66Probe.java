@@ -64,8 +64,8 @@ final class Governance66Probe {
         World w=Ux64Fixture.create();World.Unit u=new World.Unit(1,0,5,World.Weapon.SPEAR,new Hex(5,3),3000,6000);u.wounded=200;w.nextUnitId=2;w.units.add(u);w.officer(5).unitId=1;w.officer(5).cityId=-1;
         install(w);ui(()->activity.selectUnitAndFocus(1));settle();shot("09-selected-unit-wounded");
         require(!visibleText(activity.getWindow().getDecorView(),"进驻"),"selected unit has no separate garrison button");int soldiers=w.city(10).troops;
-        ui(()->{World.Result result=w.move(1,new Hex(4,3));require(result.ok,"installed core accepts legal footprint move");activity.applyResult(result);});settle();
-        require(w.unit(1)==null&&w.city(10).troops==soldiers+3200&&w.officer(5).cityId==10,"installed app movement auto-enters and heals exactly once");shot("10-auto-arrival-healed");
+        ui(()->{World.Result result=SessionProbe.command(activity,draft->draft.move(1,new Hex(4,3)));require(result.ok,"installed core accepts legal footprint move");});settle();
+        World arrived=SessionProbe.view(activity);require(arrived.unit(1)==null&&arrived.city(10).troops==soldiers+3200&&arrived.officer(5).cityId==10,"installed app movement auto-enters and heals exactly once");shot("10-auto-arrival-healed");
     }
     private void install(World w)throws Exception{ui(()->{call(activity,"activateWorld",new Class<?>[]{World.class},w);activity.selectAndFocus(w.home().hex);activity.refresh();});settle();}
     private void assertColumns(DataTable<?> table,String... expected)throws Exception{
