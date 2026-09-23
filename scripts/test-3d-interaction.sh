@@ -2,7 +2,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/.."
 mkdir -p app/build/interaction-check
-find core/src/main/java -name '*.java' > app/build/interaction-sources.txt
+find core/src/main/java game-api/src/main/java -name '*.java' > app/build/interaction-sources.txt
 for name in TileGeometry GridWorldTransform SceneCamera ScenePicking SceneMesh UnitVisual UnitMotion CombatVisual SiteVisual TerrainSurface WaterVisualField TerrainMaterialField MapSceneSnapshot FactionColors SiegeOverlay; do
   echo "app/src/main/java/game/sanguo/mobile/$name.java" >> app/build/interaction-sources.txt
 done

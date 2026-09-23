@@ -20,3 +20,11 @@ tasks.register('verifySession', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifySession' }
 tasks.named('test') { dependsOn 'verifySession' }
+
+tasks.register('verifyGridLayout', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.runtime.GridLayoutTest'
+}
+tasks.named('check') { dependsOn 'verifyGridLayout' }
+tasks.named('test') { dependsOn 'verifyGridLayout' }
