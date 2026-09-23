@@ -1,4 +1,5 @@
 package game.sanguo.mobile;
+import game.sanguo.core.map.SourceGridCoord;
 
 import android.app.Instrumentation;
 import android.content.pm.PackageInfo;

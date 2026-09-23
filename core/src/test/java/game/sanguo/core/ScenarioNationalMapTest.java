@@ -1,4 +1,5 @@
 package game.sanguo.core;
+import game.sanguo.core.map.SourceGridCoord;
 import static game.sanguo.core.Native56Checks.*;
 public final class ScenarioNationalMapTest {
  public static void main(String[] args)throws Exception {

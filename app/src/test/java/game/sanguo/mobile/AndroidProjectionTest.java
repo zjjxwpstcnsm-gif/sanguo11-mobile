@@ -1,4 +1,5 @@
 package game.sanguo.mobile;
+import game.sanguo.core.map.SourceGridCoord;
 import game.sanguo.core.*;
 
 /** Uses the exact renderer/camera/picker functions, without a separate projection demo. */

@@ -1,4 +1,5 @@
 package game.sanguo.core;
+import game.sanguo.core.map.SourceGridCoord;
 import java.util.*;
 import static game.sanguo.core.Native56Checks.*;
 public final class MapCoordinateTest {

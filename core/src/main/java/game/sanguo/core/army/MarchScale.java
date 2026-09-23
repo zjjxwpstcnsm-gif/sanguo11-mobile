@@ -1,4 +1,6 @@
-package game.sanguo.core;
+package game.sanguo.core.army;
+
+import game.sanguo.core.*;
 
 /** Engineering map-scale policy, NOT a claim about an original SAN11 movement formula.
  * Costs, attack ranges, skill/technology bonuses and ten-day ration rules are unchanged.
