@@ -1,0 +1,49 @@
+name: Architecture boundaries and native build
+on:
+  pull_request:
+    branches: [main, agent/unity-pc-visual]
+    paths: ['core/**', 'game-api/**', 'game-runtime/**', 'app/**', 'unity/**', 'scripts/**', 'tools/architecture-client/**', '**/*.gradle', '.github/workflows/architecture-check.yml']
+  push:
+    branches: [agent/architecture-foundation]
+    paths: ['core/**', 'game-api/**', 'game-runtime/**', 'app/**', 'unity/**', 'scripts/**', 'tools/architecture-client/**', '**/*.gradle', '.github/workflows/architecture-check.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - run: bash scripts/test-architecture-baseline.sh
+      - run: bash scripts/test-architecture.sh
+      - run: bash scripts/test-client-contracts.sh
+      - run: bash scripts/test-ui-models.sh
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - run: ./gradlew --no-daemon :game-api:check :game-runtime:check :app:assembleDebug :app:assembleDebugAndroidTest -PunityBridgeProbe=true
+      - name: Stamp exact source and native-only artifact
+        run: |
+          mkdir -p out/architecture-ci
+          git rev-parse HEAD > out/architecture-ci/SOURCE_COMMIT
+          cp app/build/outputs/apk/debug/app-debug.apk out/architecture-ci/sanguo11-architecture-native.apk
+          sha256sum out/architecture-ci/*.apk > out/architecture-ci/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: architecture-native-apk
+          path: out/architecture-ci/
