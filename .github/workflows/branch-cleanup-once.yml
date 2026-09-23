@@ -1,0 +1,28 @@
+name: One-time branch cleanup
+on:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/branch-cleanup-once.yml
+permissions:
+  contents: write
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Delete non-main branches
+        shell: bash
+        run: |
+          set -euo pipefail
+          git ls-remote --heads origin | while read -r sha ref; do
+            branch="${ref#refs/heads/}"
+            if [[ "$branch" == main ]]; then
+              continue
+            fi
+            echo "Deleting $branch ($sha)"
+            git push origin ":$ref"
+          done
+          echo "Remaining heads:"
+          git ls-remote --heads origin
