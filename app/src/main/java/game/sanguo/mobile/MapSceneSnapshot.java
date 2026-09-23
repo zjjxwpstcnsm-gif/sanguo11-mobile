@@ -8,9 +8,9 @@ import java.util.*;
 final class MapSceneSnapshot {
     static final class Ground {
         final Set<Hex> bases; final TerrainSurface surface;
-        final int width,height,mapSeed; final byte[] terrain; final GridWorldTransform grid;
+        final int width,height,mapSeed,mapIdentity; final byte[] terrain; final GridWorldTransform grid;
         Ground(World w) {
-            width=w.width;height=w.height;mapSeed=31*w.mapId.hashCode()+w.mapRevision;grid=new GridWorldTransform(w.sourceMapWidth>0?(w.height-1)/2:0,w.columnStaggered);
+            width=w.width;height=w.height;mapIdentity=w.mapId.hashCode();mapSeed=31*w.mapId.hashCode()+w.mapRevision;grid=new GridWorldTransform(w.sourceMapWidth>0?(w.height-1)/2:0,w.columnStaggered);
             Set<Hex> flat=new HashSet<>();for(World.City c:w.cities)flat.addAll(SiteFootprint.cells(c));bases=Collections.unmodifiableSet(flat);
             terrain=new byte[width*height];
             for(int r=0;r<height;r++)for(int q=0;q<width;q++)terrain[r*width+q]=(byte)(w.inside(new Hex(q,r))?w.terrain[q][r].ordinal():World.Terrain.VOID.ordinal());

@@ -10,7 +10,7 @@ final class SceneMesh {
     boolean vegetation;
     // Disjoint index ranges share the same surface and buffers, but never draw water as land.
     int landIndexCount=-1;
-    long fingerprint; int chunkQ,chunkR;
+    long fingerprint; int chunkQ,chunkR,terrainLod;
     float[] tangents; float[] surfaceData; float[] uv; final float[] vertices; final int[] indices; final float x,z,radius;
     SceneMesh(List<Float> v,List<Integer> i,float x,float z,float radius){
         vertices=new float[v.size()];for(int n=0;n<v.size();n++)vertices[n]=v.get(n);
@@ -102,14 +102,36 @@ final class SceneMesh {
         }
         return m;
     }
+    /** A view request retains only visible chunks plus a prefetch margin. All levels
+     * preserve the canonical fan planes/edges, so arbitrary adjacent levels stitch exactly. */
+    static final class TerrainWindow {
+        final float x,z,ex,ez,span;
+        TerrainWindow(float x,float z,float ex,float ez,float span){this.x=x;this.z=z;this.ex=ex+16;this.ez=ez+16;this.span=span;}
+        boolean covers(float cx,float cz,float vx,float vz,float nextSpan){
+            return Math.abs(cx-x)+vx<=ex-4&&Math.abs(cz-z)+vz<=ez-4&&level(nextSpan)==level(span);
+        }
+        static int level(float span){return span<14?0:span<40?1:2;}
+        int lod(float cx,float cz){return Math.min(2,Math.max(level(span),(int)(Math.max(Math.abs(cx-x),Math.abs(cz-z))/32)));}
+        boolean contains(float cx,float cz,float radius){return Math.abs(cx-x)<=ex+radius&&Math.abs(cz-z)<=ez+radius;}
+    }
     static List<SceneMesh> ground(MapSceneSnapshot.Ground g){return ground(g,Collections.emptyList());}
     static List<SceneMesh> ground(MapSceneSnapshot.Ground g,List<SceneMesh> previous){
+        return ground(g,previous,null);
+    }
+    static List<SceneMesh> ground(MapSceneSnapshot.Ground g,List<SceneMesh> previous,TerrainWindow window){
         List<SceneMesh> out=new ArrayList<>();Map<String,SceneMesh> cached=new HashMap<>();
         for(SceneMesh m:previous)cached.put(m.chunkQ+":"+m.chunkR,m);
-        for(int r=0;r<g.height;r+=16)for(int q=0;q<g.width;q+=16){
+        List<int[]> requests=new ArrayList<>();
+        for(int r=0;r<g.height;r+=16)for(int q=0;q<g.width;q+=16)requests.add(new int[]{q,r});
+        if(window!=null)requests.sort(Comparator.comparingDouble(a->Math.hypot(g.grid.x(a[0]+8,a[1]+8)-window.x,g.grid.z(a[0]+8,a[1]+8)-window.z)));
+        for(int[] request:requests){
+            int q=request[0],r=request[1];float cx=g.grid.x(q+8,r+8),cz=g.grid.z(q+8,r+8);
+            if(window!=null&&!window.contains(cx,cz,13))continue;
+            int lod=window==null?1:window.lod(cx,cz);
             if(Thread.currentThread().isInterrupted())return Collections.emptyList();
             long fingerprint=1469598103934665603L ^ TerrainMaterialField.VERSION ^ TerrainSurface.METADATA_VERSION ^ WaterVisualField.VERSION;
-            fingerprint=(fingerprint^g.mapSeed)*1099511628211L;
+            fingerprint=(fingerprint^(window==null?g.mapSeed:g.mapIdentity))*1099511628211L;
+            fingerprint=(fingerprint^lod)*1099511628211L;
             fingerprint=(fingerprint^g.width)*1099511628211L;fingerprint=(fingerprint^g.height)*1099511628211L;
             fingerprint=(fingerprint^Float.floatToIntBits(g.grid.offset))*1099511628211L;fingerprint=(fingerprint^(g.grid.staggered?1:0))*1099511628211L;
             for(int rr=r-8;rr<Math.min(r+24,g.height);rr++)for(int qq=q-8;qq<Math.min(q+24,g.width);qq++){
@@ -133,7 +155,11 @@ final class SceneMesh {
                 SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+1);
                 m.landIndexCount=landCount;
                 new TerrainMaterialField(g).attach(m);
-                SceneMesh fine=detail(m,g);
+                SceneMesh fine=lod==2?m:detail(m,g);
+                if(lod==0)fine=detail(fine,g);
+                fine.terrainLod=lod;
+                // Production holds only the requested precision, not a nationwide LOD pyramid.
+                if(window!=null)fine.distant=null;
                 fine.chunkQ=q;fine.chunkR=r;fine.fingerprint=fingerprint;out.add(fine);
             }
         }

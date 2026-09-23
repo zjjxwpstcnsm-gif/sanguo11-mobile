@@ -18,6 +18,10 @@
 | LEGACY-S11 | inherited timeout | PARTIAL | WaterLandformInstrumentation exceeds 900 s on baseline job 107134794758 and candidate 107148278864. Do not equate timeout with successful full water validation. |
 | PERF-R01 | environment/validation limitation | PARTIAL | Software-emulator CPU submit tails exceed 1 s in lifecycle logs. No handset timing pass. Post-instrumentation dumpsys reports no process, so PSS is unavailable, not zero. |
 | PROBE-PAUSE | newly observed, pre-existing probe ordering | PASS | 04521e8 startup run 35853388195 timed out with worker_pending=0 and pending=6 after the probe paused rendering. Fixed capture-before-pause order in 8744cb0; all assertions retained. Retest 35855186990 passed fresh 285/reload 192. |
+| R02-DOC | inherited, resolved | PASS | R02 reports arrived in concurrent documentation commit 943ddcf and were merged intact during R03. |
+| R03-SHORE | inherited constraint limit | PARTIAL | Smooth cap release retains exact water/site/path footprints; minimum caps and cell shoreline outlines can still crease; R05 acceptance required. |
+| R03-VEGETATION | inherited memory debt | PARTIAL | Terrain now view-bounded; vegetation still retains nationwide CPU meshes. |
+| R03-PERF | validation gap | PARTIAL | Two uploads/frame is not a 2ms guarantee; 3-level geometry preserves planes and near subdivisions need handset profiling. |
 | R02-INPUT | new, fixed | PASS | Continuous camera basis now shared by render/projection/picking; long press no longer invokes armed command tap. See R02_COORDINATES.md. |
 | R02-NUMERIC | validation finding | PASS | Initial new zoom test assumed 0.001 pixel despite float world storage; observed 0.0012 pixel rounding at high zoom. Explicit 0.01 view-pixel bound; existing assertions unchanged. Independent world-height oracle retains 0.001 world-unit tolerance. |
 | R02-MANUAL | validation gap | PARTIAL | Full hand-operated attack preview, moving-unit/label occlusion, notch/landscape, long-press and three-finger phone matrix not yet accepted. Automated emulator scope reported separately. |

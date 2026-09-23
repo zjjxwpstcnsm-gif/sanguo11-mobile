@@ -5,7 +5,7 @@ import java.util.*;
 
 /** Deterministic presentation-only field. Coordinates are projected world units, never axial indices. */
 final class TerrainSurface {
-    static final int METADATA_VERSION=2;
+    static final int METADATA_VERSION=3;
     private static final World.Terrain[] TYPES=World.Terrain.values();
     static final float MAX_HEIGHT=2.6f;
     static final float LANDFORM_RADIUS=3.4f;
@@ -47,7 +47,7 @@ final class TerrainSurface {
         int ix=Math.round(x*2),iz=Math.round(z*2);
         if(Math.abs(x*2-ix)>.00001f||Math.abs(z*2-iz)>.00001f)return compute(x,z);
         long key=((long)ix<<32)^(iz&0xffffffffL);Float v=lattice.get(key);if(v!=null)return v;
-        float value=compute(x,z);lattice.putIfAbsent(key,value);return value;
+        float value=compute(x,z);if(lattice.size()>=32768)lattice.clear();lattice.putIfAbsent(key,value);return value;
     }
     private float compute(float x,float z){
         Hex cell=ground.grid.cell(x,z);float sum=0,weight=0,limit=MAX_HEIGHT;
@@ -56,9 +56,10 @@ final class TerrainSurface {
             float dx=Math.abs(x-ground.grid.x(q,r)),dz=Math.abs(z-ground.grid.z(q,r));
             float distance=(float)Math.sqrt(dx*dx+dz*dz);
             int at=q>=0&&r>=0&&q<ground.width&&r<ground.height?r*ground.width+q:-1;
-            if(distance<LANDFORM_RADIUS){float k=1-distance/LANDFORM_RADIUS;k=k*k*k;sum+=(at<0?0:targets[at])*k;weight+=k;}
+            if(distance<LANDFORM_RADIUS){float t=distance/LANDFORM_RADIUS,k=1-t;k=k*k*k*k*(1+4*t);sum+=(at<0?0:targets[at])*k;weight+=k;}
             int constraint=at<0?1:constraints[at];
-            if(constraint!=0){float edge=Math.max(Math.max(dx-.5f,dz-.5f),0);limit=Math.min(limit,(constraint==1?0:.08f)+edge*.6f);}
+            if(constraint!=0){float edge=Math.max(Math.max(dx-.5f,dz-.5f),0);float t=Math.min(1,edge/4.5f);
+                limit=Math.min(limit,(constraint==1?0:.08f)+MAX_HEIGHT*t*t*(3-2*t));}
         }
         float value=weight==0?0:sum/weight;
         // Explicit height paint wins at its center, smoothly joining the regional field.

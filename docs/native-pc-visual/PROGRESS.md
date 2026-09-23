@@ -19,6 +19,13 @@ R01 emulator 1,225 checks / 20+20 cycles PASS (35855187043); normal startup
 fresh 285 / reload 192 PASS (35855186990). Stage remains PARTIAL for documented
 implementation, fault-matrix, physical-device and visual-reference gaps.
 
+R02: PARTIAL. Source 2965bcddd50564f80cb194aa71127767d822dd10; latest exact-source
+CI35865854066 PASS. Prior HIGH PixelCopy failure and physical/reference/manual
+matrix gaps remain historical evidence. R02 report/handoff absent on inherited HEAD.
+
+R03: PARTIAL. TerrainSurface v3, production view-window CPU meshes, three planar
+LOD levels, local revision-safe halo invalidation and stable vegetation placement.
+See reports/R03.md and handoffs/R03.md. No R04 started; await exact-source runtime.
 R02: PARTIAL. Continuous camera, actual fan ray picking, rotated overlays/culling,
 height anchor and command-safe input integrated in the normal game. No new art or
 rule/map edits. Source 2965bcddd50564f80cb194aa71127767d822dd10. Host suites pass;

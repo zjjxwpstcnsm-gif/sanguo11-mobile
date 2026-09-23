@@ -76,7 +76,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private final long[] cpuSamples=new long[240];private int cpuCount,cpuCursor;
     private long lastFrame; private long renderedFrames; private double callbackMillis;
     private MapSceneSnapshot snapshot;
-    private boolean distantTerrain;
+    private SceneMesh.TerrainWindow terrainWindow;
     private GpuMesh backdrop;private SceneMesh backdropSource;
     private List<SceneMesh> chunks=Collections.emptyList(),woods=Collections.emptyList();
     private Set<Hex> woodExcluded=Collections.emptySet();
@@ -324,10 +324,12 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             List<SceneMesh> previous=chunks,oldWoods=woods;pending=1;
             final SceneMesh tree,farTree,upland,farUpland;
             try{tree=fieldAssets.mesh("tree-lod0");farTree=fieldAssets.mesh("tree-lod1");upland=fieldAssets.mesh("tree-upland-lod0");farUpland=fieldAssets.mesh("tree-upland-lod1");}catch(Exception e){failure.accept(e);return;}
+            terrainWindow=new SceneMesh.TerrainWindow(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span);
+            SceneMesh.TerrainWindow requested=terrainWindow;
             meshWork.submit(()->{
                 long started=android.os.SystemClock.elapsedRealtime();
                 SceneMesh scenery=SceneMesh.backdrop(next.ground);
-                List<SceneMesh> built=SceneMesh.ground(next.ground,previous);
+                List<SceneMesh> built=SceneMesh.ground(next.ground,previous,requested);
                 android.util.Log.i("Sanguo3D","Ground CPU ready chunks="+built.size()+" ms="+(android.os.SystemClock.elapsedRealtime()-started));
                 List<SceneMesh> trees=Vegetation.build(next.ground,excluded,oldWoods,tree,farTree,upland,farUpland);
                 android.util.Log.i("Sanguo3D","Field CPU ready forestChunks="+trees.size()+" totalMs="+(android.os.SystemClock.elapsedRealtime()-started));
@@ -338,8 +340,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private void acceptMeshes(MeshResult result){
         if(released)return;
-        if(backdrop!=null){backdrop.destroy();backdrop=null;}backdropSource=result.scenery;
-        for(SceneMesh old:new ArrayList<>(terrain.keySet()))if(!result.ground.contains(old)&&result.ground.stream().noneMatch(m->m.distant==old))terrain.remove(old).destroy();
+        if(backdropSource!=result.scenery){if(backdrop!=null){backdrop.destroy();backdrop=null;}backdropSource=result.scenery;}
+        // Keep a displayed old level until its replacement finishes the bounded upload.
         for(SceneMesh old:new ArrayList<>(vegetation.keySet()))if(!result.trees.contains(old)&&result.trees.stream().noneMatch(m->m.distant==old))vegetation.remove(old).destroy();
         chunks=result.ground;woods=result.trees;pending=0;clampCamera();
     }
@@ -440,14 +442,24 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(backdrop==null&&backdropSource!=null){backdrop=new GpuMesh(backdropSource);backdrop.show(true);}
         engine.getLightManager().setShadowCaster(engine.getLightManager().getInstance(light),environmentShadows&&!thermal.constrained&&camera.span<22);
         int nextLod=Math.max(quality.minSiteLod,SiteVisual.lod(camera.span,siteLod));if(nextLod!=siteLod){siteLod=nextLod;syncObjects();}int budget=2;visibleChunks=0;pending=meshWork.pending();
-        if(camera.span>48)distantTerrain=true;else if(camera.span<40)distantTerrain=false;
-        Set<SceneMesh> active=activeTerrain;active.clear();for(SceneMesh m:chunks)active.add(distantTerrain&&m.distant!=null?m.distant:m);
-        for(SceneMesh m:new ArrayList<>(terrain.keySet()))if(!active.contains(m)){terrain.remove(m).destroy();}
+        if(meshWork.pending()==0&&(terrainWindow==null||!terrainWindow.covers(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span))){
+            terrainWindow=new SceneMesh.TerrainWindow(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span);
+            SceneMesh.TerrainWindow requested=terrainWindow;MapSceneSnapshot.Ground ground=snapshot.ground;
+            List<SceneMesh> previous=chunks,trees=woods;SceneMesh scenery=backdropSource;
+            meshWork.submit(()->new MeshResult(scenery,SceneMesh.ground(ground,previous,requested),trees));
+        }
+        Set<SceneMesh> active=activeTerrain;active.clear();for(SceneMesh m:chunks)active.add(m);
+
         for(SceneMesh source:chunks){
-            SceneMesh chunk=distantTerrain&&source.distant!=null?source.distant:source;
+            SceneMesh chunk=source;
             boolean shown=inView(chunk.x,chunk.z,chunk.radius);GpuMesh gpu=terrain.get(chunk);
             if(shown){visibleChunks++;if(gpu==null){if(budget-->0){gpu=new GpuMesh(chunk);terrain.put(chunk,gpu);}else pending++;}}
             if(gpu!=null){gpu.show(shown);if(!shown&&!inView(chunk.x,chunk.z,chunk.radius+20)){gpu.destroy();terrain.remove(chunk);}}
+        }
+        for(SceneMesh old:new ArrayList<>(terrain.keySet()))if(!active.contains(old)){
+            SceneMesh replacement=null;for(SceneMesh m:chunks)if(m.chunkQ==old.chunkQ&&m.chunkR==old.chunkR){replacement=m;break;}
+            if(replacement==null||terrain.containsKey(replacement)){terrain.remove(old).destroy();}
+            else terrain.get(old).show(inView(old.x,old.z,old.radius));
         }
         int nextUnitLod=Math.max(quality.minUnitLod,camera.span<8?0:camera.span<22?1:2);
         unitLod=nextUnitLod;visibleWood=0;
