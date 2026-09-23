@@ -1,4 +1,6 @@
-package game.sanguo.core;
+package game.sanguo.core.map;
+
+import game.sanguo.core.*;
 
 import java.util.*;
 

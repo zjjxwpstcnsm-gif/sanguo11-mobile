@@ -14,4 +14,20 @@ local.properties
 
 /dist/
 /out/
+unity/Library/
+unity/Temp/
+unity/Obj/
+unity/Logs/
+unity/UserSettings/
+unity/Build/
+unity/.vs/
+unity/*.sln
+unity/*.csproj
+unity-export/
+*.ulf
+*.ulf.json
 __pycache__/
+
+# Platform-free C# protocol verification outputs
+tools/architecture-client/bin/
+tools/architecture-client/obj/

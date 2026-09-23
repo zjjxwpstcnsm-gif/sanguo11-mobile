@@ -1,0 +1,31 @@
+name: Architecture source and baseline
+on:
+  push:
+    branches: [agent/architecture-foundation]
+    paths: [.github/workflows/architecture-source.yml]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Capture exact repository objects, without credentials or caches
+        run: |
+          mkdir -p /tmp/architecture-source
+          git bundle create /tmp/architecture-source/source.bundle HEAD refs/remotes/origin/main refs/remotes/origin/agent/unity-pc-visual
+          git rev-parse HEAD > /tmp/architecture-source/SOURCE_COMMIT
+      - uses: actions/upload-artifact@v4
+        with:
+          name: architecture-source
+          path: /tmp/architecture-source/
+          retention-days: 3
+      - name: Unmodified U01 Java baseline
+        run: bash scripts/test-unity-u01.sh

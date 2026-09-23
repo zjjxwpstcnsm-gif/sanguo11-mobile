@@ -1,4 +1,6 @@
 package game.sanguo.mobile;
+import game.sanguo.core.map.SourceGridCoord;
+import game.sanguo.core.army.MarchScale;
 
 import android.app.Instrumentation;
 import android.content.Intent;

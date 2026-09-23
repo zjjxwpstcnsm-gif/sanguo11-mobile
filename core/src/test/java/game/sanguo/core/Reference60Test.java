@@ -1,4 +1,7 @@
 package game.sanguo.core;
+import game.sanguo.core.map.TerrainCode;
+import game.sanguo.core.map.SourceGridCoord;
+import game.sanguo.core.army.MarchScale;
 
 import java.io.*;
 import java.nio.file.*;

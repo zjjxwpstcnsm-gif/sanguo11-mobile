@@ -20,15 +20,21 @@ android {
         applicationId 'game.sanguo.mobile.dev'
         minSdk 26
         targetSdk 35
-        testInstrumentationRunner providers.gradleProperty('mapEditorProbe').map { it.toBoolean() ? 'game.sanguo.mobile.MapEditor67Instrumentation' : 'game.sanguo.mobile.GameSmokeRunner' }.getOrElse('game.sanguo.mobile.GameSmokeRunner')
+        testInstrumentationRunner providers.gradleProperty('unityBridgeProbe').map { it.toBoolean() ? 'game.sanguo.mobile.UnityBridgeInstrumentation' : providers.gradleProperty('mapEditorProbe').map { it.toBoolean() ? 'game.sanguo.mobile.MapEditor67Instrumentation' : 'game.sanguo.mobile.GameSmokeRunner' }.getOrElse('game.sanguo.mobile.GameSmokeRunner') }.getOrElse('game.sanguo.mobile.GameSmokeRunner')
         versionCode release.getProperty('versionCode').toInteger()
         versionName release.getProperty('versionName')
         buildConfigField 'String', 'SOURCE_REVISION', '"' + (revision ?: 'source-archive') + '"'
+        buildConfigField 'boolean', 'UNITY_ENABLED', (findProject(':unityLibrary') != null).toString()
     }
     // Explicit opt-in ABI build keeps the existing universal compatibility artifact available.
     def targetAbi = providers.gradleProperty('targetAbi').getOrElse('universal')
     if (!(targetAbi in ['universal','arm64-v8a','x86_64','armeabi-v7a','x86'])) throw new GradleException('Unsupported targetAbi: ' + targetAbi)
     if (targetAbi != 'universal') defaultConfig.ndk.abiFilters.add(targetAbi)
+    if (findProject(':unityLibrary') != null) {
+        // Merge the Unity Activity only when the exported Player classes are on the classpath.
+        sourceSets.debug.manifest.srcFile 'src/unity/AndroidManifest.xml'
+        sourceSets.release.manifest.srcFile 'src/unity/AndroidManifest.xml'
+    }
     signingConfigs {
         debug {
             // Public development-only key. Never use for production or privileged distribution.
@@ -51,8 +57,11 @@ android {
     compileOptions { sourceCompatibility JavaVersion.VERSION_17; targetCompatibility JavaVersion.VERSION_17 }
 }
 dependencies {
-    implementation project(':core')
+    implementation project(':core') // Explicit legacy presentation/editor migration dependency.
+    implementation project(':game-api')
+    implementation project(':game-runtime')
     implementation 'com.google.android.filament:filament-android:1.56.0'
+    if (findProject(':unityLibrary') != null) implementation project(':unityLibrary')
 }
 
 // Execute plain Java presentation regressions without adding a runtime/test framework dependency.

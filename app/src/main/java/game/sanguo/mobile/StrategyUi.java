@@ -11,8 +11,8 @@ import java.util.function.Consumer;
 final class StrategyUi {
     private final Activity activity;
     private final World w;
-    private final Consumer<World.Result> apply;
-    StrategyUi(Activity activity,World w,Consumer<World.Result> apply){this.activity=activity;this.w=w;this.apply=apply;}
+    private final LegacyCommandSink apply;
+    StrategyUi(Activity activity,World w,LegacyCommandSink apply){this.activity=activity;this.w=w;this.apply=apply;}
     private void info(String title,String text){new AlertDialog.Builder(activity).setTitle(title).setMessage(text).setPositiveButton("返回",null).show();}
     private void confirm(String title,String text,Runnable action){
         new AlertDialog.Builder(activity).setTitle(title).setMessage(text+"\n消耗行动力10，执行武将本旬不可再次行动。")
@@ -44,18 +44,18 @@ final class StrategyUi {
             chooseRecruiter(c,target,actors,
                 o->confirm("登用"+target.name,"消耗金100；当前成功率 "+w.strategy.recruitmentChance(c.id,o.id,target.id)+"%。\n"+
                     w.loyalty.recommendation(c.id,target.id,o.id)+"\n"+w.recruitment.travelDescription(c.id,target.id)+
-                    "\n抵达时会按目标当时忠诚与归属重新判定，并非必然成功。",()->apply.accept(w.strategy.recruitOfficer(c.id,o.id,target.id))),null);
+                    "\n抵达时会按目标当时忠诚与归属重新判定，并非必然成功。",()->apply.execute(w,()->w.strategy.recruitOfficer(c.id,o.id,target.id))),null);
         });return;}
         if(n==3){batchReward(c);return;}
-        if(n==4){choose("选择太守",w.idle(c),t->choose("选择执行武将",w.idle(c),o->confirm("任命"+t.name,"金粮收入加成 "+(t.politics/4)+"%；执行者和新太守均消耗本旬行动。",()->apply.accept(w.strategy.appointGovernor(c.id,o.id,t.id)))));return;}
+        if(n==4){choose("选择太守",w.idle(c),t->choose("选择执行武将",w.idle(c),o->confirm("任命"+t.name,"金粮收入加成 "+(t.politics/4)+"%；执行者和新太守均消耗本旬行动。",()->apply.execute(w,()->w.strategy.appointGovernor(c.id,o.id,t.id)))));return;}
         if(n==8){List<World.Officer> targets=new ArrayList<>();for(World.Officer t:w.officers)if(t.cityId==c.id&&w.strategy.canRecruitTarget(c.id,t.id)&&!t.acted)targets.add(t);
-            choose("选择舌战登用目标",targets,t->{List<World.Officer> actors=new ArrayList<>();for(World.Officer o:w.idle(c))if(w.contests.debateError(c.id,o.id,t.id)==null)actors.add(o);choose("选择执行武将",actors,o->confirm("舌战说服"+t.name,"消耗金100；获胜后加入本势力，失败不退费。",()->apply.accept(w.contests.persuade(c.id,o.id,t.id))));});return;}
+            choose("选择舌战登用目标",targets,t->{List<World.Officer> actors=new ArrayList<>();for(World.Officer o:w.idle(c))if(w.contests.debateError(c.id,o.id,t.id)==null)actors.add(o);choose("选择执行武将",actors,o->confirm("舌战说服"+t.name,"消耗金100；获胜后加入本势力，失败不退费。",()->apply.execute(w,()->w.contests.persuade(c.id,o.id,t.id))));});return;}
         choose("选择执行武将",w.idle(c),o->{
             switch(n){
-                case 1:confirm("搜索人才","不消耗金；有适时隐士时发现概率 "+w.strategy.searchChance(o.id)+"%。\n也可能获得少量金或毫无发现。",()->apply.accept(w.strategy.search(c.id,o.id)));break;
-                case 5:confirm("巡察","消耗金100；治安 +"+Math.min(100-c.order,StrategyRules.patrolGain(o.politics,o.charm))+"。",()->apply.accept(w.strategy.patrol(c.id,o.id)));break;
-                case 6:confirm("征兵",w.domestic.usage(c.id,Domestic.Kind.BARRACKS)+"\n消耗金300、治安"+Math.min(c.order,w.campaign.orderLoss(c.owner,w.skills.has(o,Skill.MINGSHENG)?7:5))+"；预计征兵 "+w.strategy.recruitAmount(c.id,o.id)+"，扣减等量兵源。\n气力 "+c.morale+"→"+Conscription.moraleAfter(c,w.strategy.recruitAmount(c.id,o.id))+"：新兵未训练，按新老兵人数加权。\n"+Conscription.description(w,c),()->apply.accept(w.strategy.recruitSoldiers(c.id,o.id)));break;
-                case 7:confirm("训练","消耗金100；气力 +"+Math.min(w.campaign.energyCap(c.owner)-c.morale,StrategyRules.trainingGain(o.leadership,o.war))+"，出征时作为初始部队气力。",()->apply.accept(w.strategy.trainArmy(c.id,o.id)));break;
+                case 1:confirm("搜索人才","不消耗金；有适时隐士时发现概率 "+w.strategy.searchChance(o.id)+"%。\n也可能获得少量金或毫无发现。",()->apply.execute(w,()->w.strategy.search(c.id,o.id)));break;
+                case 5:confirm("巡察","消耗金100；治安 +"+Math.min(100-c.order,StrategyRules.patrolGain(o.politics,o.charm))+"。",()->((MainActivity)activity).executeCity(w,game.sanguo.api.GameCommand.Operation.PATROL,c.id,o.id));break;
+                case 6:confirm("征兵",w.domestic.usage(c.id,Domestic.Kind.BARRACKS)+"\n消耗金300、治安"+Math.min(c.order,w.campaign.orderLoss(c.owner,w.skills.has(o,Skill.MINGSHENG)?7:5))+"；预计征兵 "+w.strategy.recruitAmount(c.id,o.id)+"，扣减等量兵源。\n气力 "+c.morale+"→"+Conscription.moraleAfter(c,w.strategy.recruitAmount(c.id,o.id))+"：新兵未训练，按新老兵人数加权。\n"+Conscription.description(w,c),()->((MainActivity)activity).executeCity(w,game.sanguo.api.GameCommand.Operation.RECRUIT,c.id,o.id));break;
+                case 7:confirm("训练","消耗金100；气力 +"+Math.min(w.campaign.energyCap(c.owner)-c.morale,StrategyRules.trainingGain(o.leadership,o.war))+"，出征时作为初始部队气力。",()->apply.execute(w,()->w.strategy.trainArmy(c.id,o.id)));break;
                 default:break;
             }
         });
@@ -74,7 +74,7 @@ final class StrategyUi {
         dialog.show();update.run();UiTheme.dialog(dialog);
         dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(v->{if(selected.size()==targets.size())selected.clear();else for(World.Officer o:targets)selected.add(o.id);table.selection(o->selected.contains(o.id));update.run();dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setText(selected.size()==targets.size()?"清空":"全选");});
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{if(activity instanceof MainActivity&&!((MainActivity)activity).currentWorld(w))return;if(selected.isEmpty()){count.setText("请至少选择一名武将");return;}
-            int[] ids=selected.stream().mapToInt(Integer::intValue).toArray();dialog.dismiss();choose("选择执行武将",w.idle(c),o->confirm("褒奖 "+ids.length+" 人","消耗金 "+((long)ids.length*Strategy.REWARD_COST)+"；同一武将每旬限一次。",()->{if(!(activity instanceof MainActivity)||((MainActivity)activity).currentWorld(w))apply.accept(w.strategy.rewardOfficers(c.id,o.id,ids));}));});
+            int[] ids=selected.stream().mapToInt(Integer::intValue).toArray();dialog.dismiss();choose("选择执行武将",w.idle(c),o->confirm("褒奖 "+ids.length+" 人","消耗金 "+((long)ids.length*Strategy.REWARD_COST)+"；同一武将每旬限一次。",()->{if(!(activity instanceof MainActivity)||((MainActivity)activity).currentWorld(w))apply.execute(w,()->w.strategy.rewardOfficers(c.id,o.id,ids));}));});
     }
 
     private void chooseRecruiter(World.City city,World.Officer target,List<World.Officer> options,Consumer<World.Officer> next,Runnable back){

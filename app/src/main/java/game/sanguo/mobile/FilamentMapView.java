@@ -1,4 +1,5 @@
 package game.sanguo.mobile;
+import game.sanguo.mobile.presentation.MapLayerData;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -84,24 +85,19 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
 
     private boolean gridShown;
     void setGridShown(boolean shown){gridShown=shown;overlay.invalidate();}
-    private boolean editorGrid,editorCoords,editorFootprints;private Set<Hex> impassable=Collections.emptySet();
+    private boolean editorGrid,editorCoords,editorFootprints;private Set<Long> impassable=Collections.emptySet();
     private int territoryMode,previewFaction=-1;private boolean openingPreview;
-    private MapSceneSnapshot.Ground territoryGround;private String territoryKey="";
     private int[] territoryColors;private final Map<String,String> factionLabels=new HashMap<>();
     private final Map<String,Integer> siteOwners=new HashMap<>();
-    void editorLayers(World w,boolean grid,boolean coords,boolean passability,boolean footprints){
+    void editorLayers(Set<Long> blocked,boolean grid,boolean coords,boolean footprints){
         editorGrid=grid;editorCoords=coords;editorFootprints=footprints;
-        Set<Hex> blocked=new HashSet<>();if(passability&&w!=null)for(int r=0;r<w.height;r++)for(int q=0;q<w.width;q++){Hex h=new Hex(q,r);if(w.inside(h)&&w.cost(h,World.Weapon.SPEAR)<1)blocked.add(h);}impassable=blocked;overlay.invalidate();
+        impassable=Set.copyOf(blocked);overlay.invalidate();
     }
     void previewFaction(int side){previewFaction=side;overlay.invalidate();}
-    void mapLayers(World w,int mode,boolean preview,int side){
+    void mapLayers(MapLayerData data,int mode,boolean preview,int side){
         territoryMode=mode;openingPreview=preview;previewFaction=side;
-        factionLabels.clear();siteOwners.clear();for(World.City c:w.cities){String key="site:"+c.id;siteOwners.put(key,c.owner);factionLabels.put(key,c.owner<0?"":w.governance.label(c.owner));}
-        if(mode==0){territoryColors=null;return;}
-        StringBuilder key=new StringBuilder();for(World.City c:w.cities)key.append(c.id).append(':').append(c.owner).append(':').append(c.hex.q).append(':').append(c.hex.r).append(';');
-        String identity=key.toString();if(territoryColors!=null&&territoryGround==snapshot.ground&&identity.equals(territoryKey))return;
-        territoryGround=snapshot.ground;territoryKey=identity;Territory t=new Territory(w);territoryColors=new int[w.width*w.height];
-        for(int y=0;y<w.height;y++)for(int x=0;x<w.width;x++){int owner=t.ownerAt(x,y);if(owner>=0)territoryColors[y*w.width+x]=FactionColors.color(w,owner);}
+        factionLabels.clear();factionLabels.putAll(data.factionLabels);
+        siteOwners.clear();siteOwners.putAll(data.siteOwners);territoryColors=data.colors();
     }
     private final CombatVisual combat=new CombatVisual();
     private final GpuMesh[] effectMeshes=new GpuMesh[6];
@@ -450,8 +446,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         }
     }
 
-    void critical(World world,CriticalHit hit,float phase){
-        if(hit!=criticalHit){criticalPortrait=hit==null?null:new OfficerPortrait(getContext(),world,hit.officerCopy());}
+    void critical(CriticalHit hit,float phase,android.graphics.drawable.Drawable portrait){
+        criticalPortrait=portrait;
         criticalHit=hit;criticalPhase=phase;overlay.invalidate();
     }
     void criticalSkip(Runnable skip){criticalSkip=skip;}
@@ -512,7 +508,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         // Release heavyweight CPU ownership immediately, rather than waiting for View GC.
         chunks=Collections.emptyList();woods=Collections.emptyList();snapshot=null;fieldAssets=null;backdropSource=null;
         activeTerrain.clear();wantedWood.clear();woodExcluded=Collections.emptySet();
-        territoryGround=null;territoryColors=null;targets=Collections.emptySet();editorCells=Collections.emptySet();impassable=Collections.emptySet();
+        territoryColors=null;targets=Collections.emptySet();editorCells=Collections.emptySet();impassable=Collections.emptySet();
         if(android.os.Build.VERSION.SDK_INT>=29&&thermalManager!=null&&thermalListener!=null){thermalManager.removeThermalStatusListener(thermalListener);thermalListener=null;}
         if(engine==null)return;
         if(displayHelper!=null)displayHelper.detach();
@@ -648,7 +644,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                     Hex h=new Hex(q,r);if(!snapshot.ground.valid(h))continue;
                     if(territoryColors!=null){int color=territoryColors[r*snapshot.ground.width+q];if(color!=0&&cellPath(h)){p.setColor((color&0xffffff)|0x55000000);p.setStyle(Paint.Style.FILL);c.drawPath(cellPath,p);}}
                     if((gridShown||editorGrid)&&camera.span<48)cell(c,h,editorGrid?0x99ffffff:0x887d928a);
-                    if(impassable.contains(h))cell(c,h,0x99ff6767);
+                    if(impassable.contains(MapLayerData.cellKey(h.q,h.r)))cell(c,h,0x99ff6767);
                     if(editorCoords&&camera.span<7){p.setStyle(Paint.Style.FILL);p.setColor(0xffffffff);p.setTextSize(10*getResources().getDisplayMetrics().scaledDensity);c.drawText((int)Math.floor(grid.x(h))+","+(int)Math.floor(grid.z(h)),camera.screenX(grid.x(h)),camera.screenY(grid.z(h),snapshot.ground.surface.at(h)),p);}
                 }
             }

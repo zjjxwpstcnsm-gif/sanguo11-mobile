@@ -31,7 +31,7 @@ final class Turn47Probe {
         World after=SaveCodec.decode(initial);TurnJournal journal=new TurnJournal(after);
         require(after.move(1,new Hex(5,6)).ok,"fixture move uses real command");require(after.attack(1,2).ok,"fixture real attack");Method reset=UnitOrders.class.getDeclaredMethod("reset",World.Unit.class);reset.setAccessible(true);reset.invoke(after.orders,after.unit(1));
         require(after.war.plot(1,after.unit(2).hex,War.Plot.CONFUSE).ok,"fixture real plot");journal.close();require(journal.events().stream().anyMatch(e->e.kind==TurnJournal.Kind.PLOT),"real plot records explicit presentation event");byte[] expected=SaveCodec.encode(after);
-        TurnWork work=new TurnWork((World)field(activity,"world"));work.after=after;work.visual=SaveCodec.decode(initial);work.events=journal.events();work.done=true;work.summary="演示验证";
+        TurnWork work=SessionProbe.replay(test,activity,(World)field(activity,"world"),after);work.after=after;work.visual=SaveCodec.decode(initial);work.events=journal.events();work.done=true;work.summary="演示验证";
         test.runOnMainSync(()->{try{
             set(activity,"turnWork",work);set(activity,"aiRunning",true);((MapView)field(field(activity,"map"),"flat")).center(new Hex(5,6));call(activity,"finishTurn");
         }catch(Exception e){throw new RuntimeException(e);}});

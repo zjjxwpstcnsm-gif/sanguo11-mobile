@@ -23,12 +23,12 @@ public class SceneInstrumentation extends Instrumentation {
             if(probe.deploy(site.id,officer,World.Weapon.SWORD,1000).ok){cityId=site.id;officerId=officer;break;}
         }
         check(cityId>=0,"real national scenario deployment available");final int c=cityId,o=officerId;
-        runOnMainSync(()->{World.Result r=world.deploy(c,o,World.Weapon.SWORD,1000);check(r.ok,"3D command deployment");activity.apply(r);});
+        runOnMainSync(()->{World.Result r=SessionProbe.command(activity,w->w.deploy(c,o,World.Weapon.SWORD,1000));check(r.ok,"3D command deployment");world=SessionProbe.view(activity);});
         check(reference.deploy(c,o,World.Weapon.SWORD,1000).ok,"reference deployment");
         World.Unit unit=world.units.get(world.units.size()-1);runOnMainSync(()->activity.selectUnitAndFocus(unit.id));settle();
         Hex destination=null;for(Hex target:world.orders.marchReachable(unit).keySet())if(!target.equals(unit.hex)&&world.orders.previewMove(unit.id,target).valid()){destination=target;break;}
         check(destination!=null,"legal move available");final Hex target=destination;
-        runOnMainSync(()->{World.Result r=world.move(unit.id,target);check(r.ok,"3D command movement");activity.apply(r);});
+        runOnMainSync(()->{World.Result r=SessionProbe.command(activity,w->w.move(unit.id,target));check(r.ok,"3D command movement");world=SessionProbe.view(activity);});
         check(reference.move(unit.id,target).ok,"reference movement");
         check(Arrays.equals(SaveCodec.encode(world),SaveCodec.encode(reference)),"3D deployment/movement equal headless commands");
         runOnMainSync(()->invoke("advanceTurn",new Class<?>[0]));

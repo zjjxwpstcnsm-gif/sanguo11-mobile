@@ -1,0 +1,30 @@
+plugins { id 'java-library' }
+java { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
+tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
+dependencies {
+    api project(':game-api')
+    implementation project(':core')
+}
+tasks.register('verifyBridge', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.runtime.bridge.BridgeSessionTest'
+}
+tasks.named('check') { dependsOn 'verifyBridge' }
+tasks.named('test') { dependsOn 'verifyBridge' }
+tasks.register('verifySession', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.runtime.GameSessionTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifySession' }
+tasks.named('test') { dependsOn 'verifySession' }
+
+tasks.register('verifyGridLayout', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.runtime.GridLayoutTest'
+}
+tasks.named('check') { dependsOn 'verifyGridLayout' }
+tasks.named('test') { dependsOn 'verifyGridLayout' }

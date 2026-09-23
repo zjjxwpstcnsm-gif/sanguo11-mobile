@@ -4,6 +4,8 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
 import game.sanguo.core.*;
+import game.sanguo.runtime.GameSession;
+import game.sanguo.runtime.TurnTicket;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -38,7 +40,12 @@ final class TurnWork {
         final List<TurnJournal.Event> events;final int owner;
         Batch(List<TurnJournal.Event> events,int owner){this.events=events;this.owner=owner;}
     }
-    TurnWork(World before){this.before=before;}
+    private final GameSession session;
+    private final TurnTicket ticket;
+    private final Runnable committed;
+    TurnWork(World before,GameSession session,TurnTicket ticket,Runnable committed){
+        this.before=before;this.session=session;this.ticket=ticket;this.committed=committed;
+    }
     void observe(Runnable observer){this.observer=observer;if(observer!=null&&(visual!=null||done))observer.run();}
     private void notifyObserver(){if(!cancelled&&observer!=null)observer.run();}
     long activeMillis(){return Math.max(0,SystemClock.elapsedRealtime()-startedAt-pausedMillis-(paused?SystemClock.elapsedRealtime()-pauseStarted:0));}
@@ -54,7 +61,7 @@ final class TurnWork {
             World computed=null;TurnJournal journal=null;String report=null;Exception failure=null;
             StringBuilder profile=new StringBuilder();long started=System.nanoTime();final long[] stage={started};
             try{
-                byte[] initial=SaveCodec.encode(before);
+                byte[] initial=ticket.initial();
                 computed=SaveCodec.decode(initial);final World render=SaveCodec.decode(initial);
                 if(before.visualMap!=null){computed.visualMap=before.visualMap.copy();render.visualMap=before.visualMap.copy();}
                 cloneMillis=(System.nanoTime()-started)/1000000L;working=computed;
@@ -72,7 +79,16 @@ final class TurnWork {
             finally{if(journal!=null)try{journal.close();}catch(Exception closing){if(failure==null)failure=closing;else failure.addSuppressed(closing);}}
             computeMillis=Math.max(0,(System.nanoTime()-started)/1000000L);
             final World result=computed;final String text=report,profileText=profile.toString();final Exception problem=failure;
-            main.post(()->{if(cancelled)return;after=result;summary=text;error=problem;timings=profileText;done=true;working=null;notifyObserver();});
+            main.post(()->{
+                if(cancelled)return;
+                after=result;summary=text;error=problem;timings=profileText;working=null;
+                if(error==null)try{
+                    if(!session.commitTurn(ticket,result))error=new IllegalStateException("Stale turn result discarded");
+                    else committed.run();
+                }catch(Exception failureToCommit){error=failureToCommit;}
+                if(error!=null)session.cancelTurn(ticket);
+                done=true;notifyObserver();
+            });
         },"strategy-turn");worker.start();
     }
     private void publish(List<TurnJournal.Event> batch,int owner){
@@ -92,7 +108,7 @@ final class TurnWork {
         playedEvents+=cursor;queuedEvents.addAndGet(-events.size());events=Collections.emptyList();cursor=0;fraction=0;criticalElapsed=0;batchReady=false;selectBatch();
     }
     void clearPresentation(){pending.clear();events=Collections.emptyList();cursor=0;batchReady=false;queuedEvents.set(0);}
-    void cancel(){cancelled=true;observer=null;clearPresentation();if(worker!=null)worker.interrupt();}
+    void cancel(){session.cancelTurn(ticket);cancelled=true;observer=null;clearPresentation();if(worker!=null)worker.interrupt();}
     String status(){
         if(batchReady&&!fastForward()){
             String owner=batchOwner<0?"全局设施与后勤":before.faction(batchOwner);

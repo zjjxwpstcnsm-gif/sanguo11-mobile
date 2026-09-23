@@ -11,8 +11,8 @@ import java.util.function.*;
 
 /** Bounded native editor and reusable custom-officer library. No changes before confirmation. */
 final class EditorUi {
-    private final MainActivity a;private final World w;private final Consumer<World.Result> apply;
-    EditorUi(MainActivity a,World w,Consumer<World.Result> apply){this.a=a;this.w=w;this.apply=apply;}
+    private final MainActivity a;private final World w;private final LegacyCommandSink apply;
+    EditorUi(MainActivity a,World w,LegacyCommandSink apply){this.a=a;this.w=w;this.apply=apply;}
     private void info(String title,String message){new AlertDialog.Builder(a).setTitle(title).setMessage(message).setPositiveButton("返回",null).show();}
     private <T> void choose(String title,List<T> values,Function<T,String> label,Consumer<T> next){
         if(values.isEmpty()){info(title,"没有可选对象");return;}String[] names=new String[values.size()];for(int i=0;i<names.length;i++)names[i]=label.apply(values.get(i));
@@ -36,7 +36,7 @@ final class EditorUi {
     private void preview(Editor.Draft draft){
         if(!draft.valid()){info("编辑未通过",draft.error);return;}
         new AlertDialog.Builder(a).setTitle("确认PK编辑").setMessage(draft.summary+"\n\n应用到当前局面，不消耗行动力；存档将标记已编辑。")
-            .setPositiveButton("应用修改",(d,n)->apply.accept(w.editor.apply(draft))).setNegativeButton("取消",null).show();
+            .setPositiveButton("应用修改",(d,n)->apply.execute(w,()->w.editor.apply(draft))).setNegativeButton("取消",null).show();
     }
     private final class Form {
         final LinearLayout box=new LinearLayout(a);

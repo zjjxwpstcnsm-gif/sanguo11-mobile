@@ -105,12 +105,12 @@ final class Realm52Probe {
     private void critical()throws Exception{
         World before=Realm52Fixture.criticalWorld(true);
         ui(()->{call(activity,"activateWorld",new Class[]{World.class},before);activity.selectUnitAndFocus(1);ClientState s=(ClientState)field(activity,"ui");s.panelVisible=false;activity.refresh();((MapView)field(field(activity,"map"),"flat")).center(before.unit(1).hex);});settle();
-        byte[][] resultBytes={null};ui(()->{World.Result r=Realm52Fixture.criticalCommand(before);require(r.ok&&r.critical!=null,"actual paid tactic produced typed critical hit");activity.applyResult(r);resultBytes[0]=SaveCodec.encode(before);});
+        byte[][] resultBytes={null};ui(()->{World.Result r=SessionProbe.command(activity,Realm52Fixture::criticalCommand);require(r.ok&&r.critical!=null,"actual paid tactic produced typed critical hit");resultBytes[0]=SaveCodec.encode(SessionProbe.view(activity));});
         await(()->{Object flash=field(activity,"criticalFlash");return flash!=null&&(Long)field(flash,"began")>0;},2000,"player critical portrait reached a real rendered frame");
         criticalScreenshot();
         await(()->field(activity,"criticalFlash")==null,2500,"critical freeze automatically ends without blocking UI");require(Arrays.equals(resultBytes[0],SaveCodec.encode(world())),"cut-in does not apply combat a second time");
         World initial=Realm52Fixture.criticalWorld(true),after=SaveCodec.decode(SaveCodec.encode(initial));TurnJournal journal=new TurnJournal(after);Realm52Fixture.criticalCommand(after);journal.close();
-        TurnWork work=new TurnWork(initial);work.after=after;work.visual=SaveCodec.decode(SaveCodec.encode(initial));work.events=journal.events();work.batchReady=true;work.done=true;work.fullReplay=true;work.summary="真实战法暴击回放";
+        TurnWork work=SessionProbe.replay(test,activity,initial,after);work.after=after;work.visual=SaveCodec.decode(SaveCodec.encode(initial));work.events=journal.events();work.batchReady=true;work.done=true;work.fullReplay=true;work.summary="真实战法暴击回放";
         ui(()->{set(activity,"world",initial);set(activity,"turnWork",work);set(activity,"aiRunning",true);call(activity,"finishTurn");});
         await(()->field(field(field(activity,"map"),"flat"),"criticalHit")!=null,4000,"AI/replay pipeline displays the actual critical event");
         ui(()->((TurnPlayback)field(activity,"playback")).skip());await(()->!(Boolean)field(activity,"aiRunning"),5000,"critical cut-in respects skip");

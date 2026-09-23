@@ -1,4 +1,5 @@
 package game.sanguo.core;
+import game.sanguo.core.army.MarchScale;
 
 import java.util.*;
 

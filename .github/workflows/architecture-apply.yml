@@ -1,0 +1,115 @@
+name: Architecture exact-source delivery
+on:
+  push:
+    branches: [agent/architecture-foundation]
+    paths: [.ci/architecture-change.py, .github/workflows/architecture-apply.yml]
+permissions:
+  contents: write
+concurrency:
+  group: architecture-source-delivery
+  cancel-in-progress: false
+jobs:
+  deliver:
+    if: github.ref == 'refs/heads/agent/architecture-foundation'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Commit verified production changes and clean delivery scaffolding
+        run: |
+          git config user.name 'Architecture Agent'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          python3 .ci/architecture-change.py
+          git diff --check
+          git push origin HEAD:refs/heads/agent/architecture-foundation
+          mkdir -p out/architecture
+          git rev-parse HEAD > out/architecture/SOURCE_COMMIT
+          git bundle create out/architecture/source.bundle HEAD
+          git log -6 --oneline > out/architecture/CHANGES.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: architecture-final-source
+          path: |
+            out/architecture/source.bundle
+            out/architecture/SOURCE_COMMIT
+            out/architecture/CHANGES.txt
+          retention-days: 3
+      - name: Independent old-source parity, Java boundaries and real pure-CSharp client tests
+        run: |
+          set -o pipefail
+          { bash scripts/test-architecture-baseline.sh; bash scripts/test-architecture.sh; bash scripts/test-client-contracts.sh; } 2>&1 | tee out/architecture/architecture-tests.log
+      - name: Existing affected presentation and editor regressions
+        run: |
+          set -o pipefail
+          for suite in test-ui-models test-3d-foundation test-3d-interaction test-map-editor67 test-custom-officers test-siege; do
+            bash scripts/$suite.sh 2>&1 | tee out/architecture/$suite.log
+          done
+      - name: Fresh Unity capability inspection, not a Player verification
+        run: |
+          { command -v Unity || true; command -v unity-editor || true; find /opt /usr/local -maxdepth 5 -type f -name Unity -print 2>/dev/null || true; } > out/architecture/unity-capability.txt
+          echo 'No Unity compile/export/Player validation is claimed by this native workflow.' >> out/architecture/unity-capability.txt
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+          log-accepted-android-sdk-licenses: false
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Build exact committed native Android application and all instrumentation
+        run: |
+          set -o pipefail
+          ./gradlew --no-daemon :game-api:check :game-runtime:check :app:assembleDebug :app:assembleDebugAndroidTest -PunityBridgeProbe=true 2>&1 | tee out/architecture/android-build.log
+          cp app/build/outputs/apk/debug/app-debug.apk out/architecture/sanguo11-architecture-native.apk
+          sha256sum out/architecture/sanguo11-architecture-native.apk > out/architecture/SHA256SUMS.txt
+          stat -c %s out/architecture/sanguo11-architecture-native.apk > out/architecture/APK_BYTES
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/architecture/sanguo11-architecture-native.apk > out/architecture/APK_METADATA.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/architecture/sanguo11-architecture-native.apk > out/architecture/APK_SIGNING.txt
+          python3 - <<'PY'
+          import zipfile
+          with zipfile.ZipFile('out/architecture/sanguo11-architecture-native.apk') as apk:
+              assert not any(n.endswith('/libunity.so') for n in apk.namelist())
+          PY
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Native runtime, Activity recreation and presentation switching
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          disable-animations: true
+          script: |
+            adb install app/build/outputs/apk/debug/app-debug.apk
+            adb install app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+            adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.UnityBridgeInstrumentation | tee out/architecture/android-runtime.log
+            adb logcat -d > out/architecture/logcat.txt
+            adb shell am start -n game.sanguo.mobile.dev/game.sanguo.mobile.MainActivity
+            sleep 3
+            adb exec-out screencap -p > out/architecture/native-screen.png
+            grep -q 'u01=PASS' out/architecture/android-runtime.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: architecture-native-apk-and-evidence
+          path: |
+            out/architecture/*.apk
+            out/architecture/*.txt
+            out/architecture/*.log
+            out/architecture/*.png
+            out/architecture/SOURCE_COMMIT
+          retention-days: 14

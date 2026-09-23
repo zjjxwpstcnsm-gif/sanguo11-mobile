@@ -7,13 +7,13 @@ import java.util.*;
 import java.util.function.*;
 
 final class WorldUi {
-    private final Activity a;private final World w;private final Consumer<World.Result> apply;
-    WorldUi(Activity a,World w,Consumer<World.Result> apply){this.a=a;this.w=w;this.apply=apply;}
+    private final Activity a;private final World w;private final LegacyCommandSink apply;
+    WorldUi(Activity a,World w,LegacyCommandSink apply){this.a=a;this.w=w;this.apply=apply;}
     private void info(String title,String text){new AlertDialog.Builder(a).setTitle(title).setMessage(text).setPositiveButton("返回",null).show();}
     private void confirm(String title,String text,Runnable action){((MainActivity)a).commandDialog(title,text,"执行",w,action);}
     private <T> void choose(String title,List<T> values,java.util.function.Function<T,String> label,Consumer<T> next){ChoiceDialog.show(a,w,title,values,label,next);}
     void menu(){new AlertDialog.Builder(a).setTitle("军团与天下").setItems(new String[]{"军团编制","灾害与贼患","随机事件 · "+(w.events.enabled()?"已开启":"已关闭"),"军情评估"},(d,n)->{
-        if(n==0)districts();else if(n==1)events();else if(n==3)assessment();else confirm("随机事件",w.events.enabled()?"停止产生新灾害和贼患？现有灾害、营寨继续结算。":"开启月度贼患、季节灾害与七月丰收？风水、祈愿和亲族特技将影响发生条件。",()->apply.accept(w.events.toggle()));
+        if(n==0)districts();else if(n==1)events();else if(n==3)assessment();else confirm("随机事件",w.events.enabled()?"停止产生新灾害和贼患？现有灾害、营寨继续结算。":"开启月度贼患、季节灾害与七月丰收？风水、祈愿和亲族特技将影响发生条件。",()->apply.execute(w,()->w.events.toggle()));
     }).setNegativeButton("返回",null).show();}
     private void assessment(){
         CampaignAi ai=new CampaignAi(w);StringBuilder text=new StringBuilder();
@@ -45,7 +45,7 @@ final class WorldUi {
                 Set<Integer> members=new TreeSet<>(group.cities());members.add(c.id);int[] ids=members.stream().mapToInt(i->i).toArray();
                 String error=w.districts.configureError(group.id,group.name(),ids,group.policy(),group.target(),group.supply());
                 if(error!=null){info("无法编制",error);return;}
-                confirm("编入"+group.name(),c.name+"交由军团经营，消耗第一军团20行动力。现有方针和军团行动力不变。",()->apply.accept(w.districts.configure(group.id,group.name(),ids,group.policy(),group.target(),group.supply(),group.attack(),group.produce())));
+                confirm("编入"+group.name(),c.name+"交由军团经营，消耗第一军团20行动力。现有方针和军团行动力不变。",()->apply.execute(w,()->w.districts.configure(group.id,group.name(),ids,group.policy(),group.target(),group.supply(),group.attack(),group.produce())));
             });else members(null);
         }).setNegativeButton("返回",null).show();
     }
@@ -63,7 +63,7 @@ final class WorldUi {
         if(error!=null){info("无法编制",error);return;}
         StringBuilder text=new StringBuilder();for(int id:members){World.City c=w.city(id);text.append(c.name).append(" · 闲将").append(w.idle(c).size()).append('\n');}
         text.append("内政优先，允许兵装生产，不主动进攻。消耗第一军团20行动力；下一旬恢复本团60行动力后，结束旬时自动经营。缺少驻城武将的据点需要先调入人才。可随时重编或撤销。");
-        confirm(name+" · 快速托管",text.toString(),()->apply.accept(w.districts.configure(-1,name,members,Districts.Policy.ECONOMY,-1,-1,false,true)));
+        confirm(name+" · 快速托管",text.toString(),()->apply.execute(w,()->w.districts.configure(-1,name,members,Districts.Policy.ECONOMY,-1,-1,false,true)));
     }
     private String describe(Districts.District d){StringBuilder b=new StringBuilder(d.policy().label+"\n都督："+(d.leader()<0?"暂无在城武将":w.officer(d.leader()).name)+"\n军团行动力："+d.points()+" / 60\n");
         b.append(w.districts.status(d)).append('\n');
@@ -80,7 +80,7 @@ final class WorldUi {
     private void detail(Districts.District d){ScrollView scroll=new ScrollView(a);TextView body=new TextView(a);body.setText(describe(d));body.setTextSize(16);body.setPadding(24,16,24,16);LinearLayout panel=new LinearLayout(a);panel.setOrientation(LinearLayout.VERTICAL);panel.addView(body);Button settings=CompactButtons.create(a);settings.setText("经营设置");settings.setOnClickListener(v->settings(d));panel.addView(settings);
         Button support=CompactButtons.create(a);support.setText("支援申请 / 可执行预览");support.setOnClickListener(v->support(d,()->body.setText(describe(d))));panel.addView(support);
         Button locate=CompactButtons.create(a);locate.setText("定位在途任务");locate.setOnClickListener(v->{List<Domestic.Mission> tasks=new ArrayList<>();for(Domestic.Mission m:w.domestic.missions)if(d.cities().contains(m.sourceCity)||d.cities().contains(m.targetCity))tasks.add(m);choose("选择在途任务",tasks,m->w.officer(m.officerId).name+" → "+w.city(m.targetCity).name,m->{if(a instanceof MainActivity)((MainActivity)a).domesticUi().mission(m);});});panel.addView(locate);
-        scroll.addView(panel);new AlertDialog.Builder(a).setTitle(d.name()).setView(scroll).setPositiveButton("重编",(dialog,n)->members(d)).setNeutralButton("撤销军团",(dialog,n)->confirm("撤销"+d.name(),"消耗第一军团20行动力。全部据点、部队恢复直接指挥，余下军团行动力作废。",()->apply.accept(w.districts.dissolve(d.id)))).setNegativeButton("返回",null).show();}
+        scroll.addView(panel);new AlertDialog.Builder(a).setTitle(d.name()).setView(scroll).setPositiveButton("重编",(dialog,n)->members(d)).setNeutralButton("撤销军团",(dialog,n)->confirm("撤销"+d.name(),"消耗第一军团20行动力。全部据点、部队恢复直接指挥，余下军团行动力作废。",()->apply.execute(w,()->w.districts.dissolve(d.id)))).setNegativeButton("返回",null).show();}
     private void support(Districts.District d,Runnable refresh){
         if(d.supply()<0){info("支援申请","请先在重编中指定运输目的地，以明确授权本军团向该城支援。未授权时不会抽调其他军团。");return;}
         List<World.City> sources=new ArrayList<>();for(int id:w.districts.sites(d))if(id!=d.supply())sources.add(w.city(id));
@@ -88,7 +88,7 @@ final class WorldUi {
             if(p==null){info("支援不可执行","来源或目的地已改变");return;}
             String body=c.name+" → "+w.city(p.target).name+"\n"+(p.valid()?"可派送：金"+p.gold+" / 粮"+p.food+" / 兵"+p.troops+"\n执行武将："+w.officer(p.officer).name+"；军团行动力10，派遣费0金\n"+(p.returning?"卸货后人员返程":"武将抵达留驻"):"不能执行："+p.reason)+"\n"+new DistrictManagement(w).forecast(c);
             if(!p.valid()){info("支援不可执行",body);return;}
-            confirm("支援执行预览",body,()->{apply.accept(w.districts.requestSupport(p.source,p.target));refresh.run();});
+            confirm("支援执行预览",body,()->{apply.execute(w,()->w.districts.requestSupport(p.source,p.target));refresh.run();});
         });
     }
     void batch(List<World.City> visible){
@@ -108,7 +108,7 @@ final class WorldUi {
                 String error=w.districts.configureError(g==null?-1:g.id,name,all,policy,target,supply);
                 if(error!=null){info("批量不可执行",preview+"\n"+error);return;}
                 if(g!=null&&members.equals(g.cities())){info("批量无变更",preview.toString());return;}
-                confirm("批量执行预览",preview+"\n消耗第一军团20行动力；仅执行可划入据点。",()->apply.accept(w.districts.configure(g==null?-1:g.id,name,all,policy,target,supply,g!=null&&g.attack(),g==null||g.produce())));
+                confirm("批量执行预览",preview+"\n消耗第一军团20行动力；仅执行可划入据点。",()->apply.execute(w,()->w.districts.configure(g==null?-1:g.id,name,all,policy,target,supply,g!=null&&g.attack(),g==null||g.produce())));
             });
         }).setNegativeButton("取消",null).show();
     }
@@ -121,7 +121,7 @@ final class WorldUi {
         ScrollView scroll=new ScrollView(a);scroll.addView(panel);
         new AlertDialog.Builder(a).setTitle("军团经营设置").setView(scroll).setPositiveButton("预览设置",(dialog,n)->{try{
             int t=Integer.parseInt(troops.getText().toString()),g=Integer.parseInt(gold.getText().toString()),f=Integer.parseInt(food.getText().toString());
-            confirm("保存经营设置","兵 / 金 / 粮留存："+t+" / "+g+" / "+f+"\n消耗第一军团20行动力。已出发任务按原货物继续运抵。",()->apply.accept(w.districts.settings(d.id,t,g,f,transfer.isChecked(),supply.isChecked())));
+            confirm("保存经营设置","兵 / 金 / 粮留存："+t+" / "+g+" / "+f+"\n消耗第一军团20行动力。已出发任务按原货物继续运抵。",()->apply.execute(w,()->w.districts.settings(d.id,t,g,f,transfer.isChecked(),supply.isChecked())));
         }catch(NumberFormatException ex){info("数值无效","请输入范围内的非负整数");}}).setNegativeButton("取消",null).show();
     }
     private void members(Districts.District old){
@@ -151,7 +151,7 @@ final class WorldUi {
             int id=old==null?-1:old.id;String title=name.getText().toString();String error=w.districts.configureError(id,title,members,p,target,supply);if(error!=null){info("无法编制",error);return;}
             try{byte[] before=SaveCodec.encode(w);StringBuilder text=new StringBuilder(p.label+"\n所选城池的同势力港关将一并托管。\n城池：");for(int city:members)text.append(w.city(city).name).append(' ');
                 text.append("\n消耗第一军团20行动力。新军团下一旬开始获得60行动力；军团指令消耗本团预算。\n自动运输保留5000金、40000粮；出兵保留至少10000守军，附近敌兵较多时增加留守。按兵装适性编队并携带足够粮草，低兵力或将要断粮时回城。");
-                confirm(title,text.toString(),()->{try{if(!Arrays.equals(before,SaveCodec.encode(w))){info("局面变化","请重新编制");return;}apply.accept(w.districts.configure(id,title,members,p,target,supply,attack.isChecked(),produce.isChecked()));}catch(java.io.IOException ex){info("编制失败",ex.getMessage());}});
+                confirm(title,text.toString(),()->{try{if(!Arrays.equals(before,SaveCodec.encode(w))){info("局面变化","请重新编制");return;}apply.execute(w,()->w.districts.configure(id,title,members,p,target,supply,attack.isChecked(),produce.isChecked()));}catch(java.io.IOException ex){info("编制失败",ex.getMessage());}});
             }catch(java.io.IOException ex){info("编制失败",ex.getMessage());}
         }).setNegativeButton("取消",null).show();
     }
@@ -160,5 +160,5 @@ final class WorldUi {
     }
     void camp(WorldEvents.Camp c){info(c.tribe.label+"营寨",w.city(c.city).name+"附近 · "+c.hex+"\n兵力 "+c.troops+"\n每月劫掠粮草、降低治安，可能破坏设施。选中己方部队后可讨伐，摧毁营寨停止其活动。");}
     void raids(World.Unit u){List<WorldEvents.Camp> list=new ArrayList<>();for(WorldEvents.Camp c:w.events.camps())if(w.events.attackError(u.id,c.id)==null)list.add(c);choose("讨伐贼寨",list,c->c.tribe.label+" · 兵"+c.troops,c->attack(u,c));}
-    void attack(World.Unit u,WorldEvents.Camp c){confirm("讨伐"+c.tribe.label,"营寨兵力"+c.troops+"。消耗部队本旬行动；邻接时可能受到反击。",()->apply.accept(w.events.attack(u.id,c.id)));}
+    void attack(World.Unit u,WorldEvents.Camp c){confirm("讨伐"+c.tribe.label,"营寨兵力"+c.troops+"。消耗部队本旬行动；邻接时可能受到反击。",()->apply.execute(w,()->w.events.attack(u.id,c.id)));}
 }

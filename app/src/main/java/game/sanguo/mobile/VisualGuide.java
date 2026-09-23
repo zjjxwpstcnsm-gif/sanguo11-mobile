@@ -1,4 +1,5 @@
 package game.sanguo.mobile;
+import game.sanguo.core.army.MarchScale;
 
 import android.app.*;
 import game.sanguo.core.*;

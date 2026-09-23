@@ -1,4 +1,5 @@
 package game.sanguo.core;
+import game.sanguo.core.map.SourceGridCoord;
 
 /** Opening-only materialization. Save loading restores entities and never calls this:
  * destroyed dams must not respawn. Terrain owns the ground; Structure owns the one

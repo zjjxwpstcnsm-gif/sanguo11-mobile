@@ -1,0 +1,17 @@
+{
+  "name": "Sanguo.Tests",
+  "references": [
+    "Sanguo.Contracts",
+    "Sanguo.Client"
+  ],
+  "noEngineReferences": false,
+  "includePlatforms": [
+    "Editor"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "defineConstraints": [
+    "UNITY_INCLUDE_TESTS"
+  ]
+}

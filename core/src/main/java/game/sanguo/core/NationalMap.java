@@ -1,4 +1,6 @@
 package game.sanguo.core;
+import game.sanguo.core.map.TerrainCode;
+import game.sanguo.core.map.SourceGridCoord;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;

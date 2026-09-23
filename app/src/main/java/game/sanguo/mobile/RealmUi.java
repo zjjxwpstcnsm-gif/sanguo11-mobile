@@ -131,7 +131,7 @@ final class RealmUi {
     private void nameNation(int side){
         EditText field=new EditText(a);field.setSingleLine(true);field.setText(w.governance.nation(side));field.setHint("输入1至8字国号");field.setContentDescription("皇帝国号");
         AlertDialog dialog=new AlertDialog.Builder(a).setTitle("皇帝 · 设定国号").setMessage("仅修改展示国号，保留势力身份、城池与外交关系。").setView(field).setPositiveButton("确定",null).setNegativeButton("取消",null).create();dialog.show();UiTheme.dialog(dialog);
-        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{if(!a.currentWorld(w))return;World.Result r=w.governance.nameNation(side,field.getText().toString());if(!r.ok){field.setError(r.message);return;}dialog.dismiss();a.apply(r);});
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{if(!a.currentWorld(w))return;World.Result r=a.apply(w,()->w.governance.nameNation(side,field.getText().toString()));if(!r.ok){dialog.dismiss();return;}dialog.dismiss();});
     }
     private void economy(LinearLayout host,RealmOverview.Faction f){
         heading(host,"钱粮资产 · "+w.date());metric(host,"总金 "+number(f.gold),"总粮 "+number(f.food));metric(host,"其中在途金 "+number(f.cargoGold),"其中在途粮 "+number(f.cargoFood));

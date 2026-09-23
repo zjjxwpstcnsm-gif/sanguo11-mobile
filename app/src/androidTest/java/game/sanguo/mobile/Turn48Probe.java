@@ -55,7 +55,7 @@ final class Turn48Probe {
     private void facilities()throws Exception{
         World before=Turn48Fixture.world(),after=SaveCodec.decode(SaveCodec.encode(before));TurnJournal journal=new TurnJournal(after);
         Turn48Fixture.facilityCommands(after);journal.close();
-        TurnWork work=new TurnWork(before);work.after=after;work.visual=SaveCodec.decode(SaveCodec.encode(before));work.events=journal.events();work.done=true;work.summary="设施动作实装验证";
+        TurnWork work=SessionProbe.replay(test,activity,before,after);work.after=after;work.visual=SaveCodec.decode(SaveCodec.encode(before));work.events=journal.events();work.done=true;work.summary="设施动作实装验证";
         ui(()->{set(activity,"world",before);set(activity,"turnWork",work);set(activity,"aiRunning",true);((MapView)field(field(activity,"map"),"flat")).center(new Hex(9,8));call(activity,"finishTurn");});
         Set<TurnJournal.Kind> captured=new HashSet<>();long deadline=SystemClock.uptimeMillis()+20000;
         while(SystemClock.uptimeMillis()<deadline&&(Boolean)field(activity,"aiRunning")){

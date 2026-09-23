@@ -1,0 +1,23 @@
+name: Unity U00 Android export
+on:
+  workflow_dispatch:
+jobs:
+  unity-u00:
+    # Only a provisioned, authorized Unity runner can satisfy this label.
+    runs-on: [self-hosted, linux, unity-android]
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify installed Editor and SDK, export and assemble
+        env:
+          UNITY_EDITOR: ${{ vars.UNITY_EDITOR_PATH }}
+        run: bash scripts/build-unity-u00.sh
+      - name: Signer and package identity
+        run: |
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/unity-u00/sanguo11-mobile-unity-u00.apk > out/unity-u00/signature.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/unity-u00/sanguo11-mobile-unity-u00.apk > out/unity-u00/package.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unity-u00-evidence
+          path: out/unity-u00/

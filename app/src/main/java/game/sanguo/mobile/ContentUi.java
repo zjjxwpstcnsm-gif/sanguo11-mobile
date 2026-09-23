@@ -74,7 +74,7 @@ final class ContentUi {
         new AlertDialog.Builder(a).setTitle("加入资料武将 · "+o.name).setView(form).setNegativeButton("取消",null).setPositiveButton("预览",(d,n)->{
             Editor.Draft draft=w.editor.sourceOfficer(o.id,cities.get(city.getSelectedItemPosition()).id,dated.isChecked(),links.isChecked());
             AlertDialog.Builder preview=new AlertDialog.Builder(a).setTitle(draft.valid()?"确认加入资料武将":"无法加入").setMessage(draft.valid()?draft.summary:draft.error).setNegativeButton("返回",null);
-            if(draft.valid())preview.setPositiveButton("确认加入",(p,b)->a.applyResult(w.editor.apply(draft)));preview.show();
+            if(draft.valid())preview.setPositiveButton("确认加入",(p,b)->a.applyResult(w,()->w.editor.apply(draft)));preview.show();
         }).show();
     }
     private void preview(){

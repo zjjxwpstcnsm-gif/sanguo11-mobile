@@ -13,9 +13,37 @@ import java.io.*;
 import java.text.DateFormat;
 import java.util.*;
 import game.sanguo.core.*;
+import game.sanguo.api.*;
+import game.sanguo.runtime.*;
+import game.sanguo.runtime.save.SessionSaves;
+import java.util.function.Supplier;
+import java.lang.ref.WeakReference;
 
 public final class MainActivity extends Activity {
+    // Detached compatibility view only; authoritative ownership is in GameSession.
     private World world;
+    private NativeGameHost gameHost;
+    private LegacyView legacyView;
+    private GameApi.Subscription sessionSubscription;
+    private GameSession boundSession;
+    private boolean dispatchingCommand,replacingSession;
+    private void bindSession(){
+        GameSession current=gameHost.session();
+        if(current!=boundSession){
+            if(sessionSubscription!=null)sessionSubscription.close();
+            boundSession=current;
+            WeakReference<MainActivity> weak=new WeakReference<>(this);
+            sessionSubscription=current.subscribe(event->{
+                MainActivity page=weak.get();
+                if(page!=null&&!page.isDestroyed()&&!page.isFinishing())page.sessionChanged(event);
+            });
+        }
+        legacyView=current.legacyView();world=legacyView.draft;
+    }
+    private void sessionChanged(GameEvent event){
+        if(event.kind==GameEvent.Kind.CLOSED||dispatchingCommand||replacingSession||aiRunning)return;
+        bindSession();if(map!=null){map.invalidateScene();navigatorRevision=Long.MIN_VALUE;refresh();save("auto",false);}
+    }
     private boolean unreadableAutosave;
     private MapHost map;
     private boolean nextScenario3D;
@@ -61,16 +89,17 @@ public final class MainActivity extends Activity {
     final int ink=UiTheme.INK,paper=UiTheme.TEXT,gold=UiTheme.JADE,muted=UiTheme.MUTED;
 
     @Override public void onCreate(Bundle state) {
-        super.onCreate(state);boolean coldStart=state==null;ui.read(state);
+        super.onCreate(state);gameHost=((GameApplication)getApplication()).host();boolean coldStart=state==null;ui.read(state);
         applyOrientationPreference();
         String restoreError=null;boolean restored=false;
         AtomicFile autosave=file("auto");
-        if(present(autosave)) {
-            try{world=readSave(autosave);restored=true;}catch(IOException e){unreadableAutosave=true;restoreError="自动存档无法读取："+e.getMessage()+"。原文件已保留；请选择手动存档、导入文件或新建游戏。";}
+        if(gameHost.session()!=null){bindSession();restored=true;}
+        else if(present(autosave)) {
+            try{gameHost.install(readSave(autosave));bindSession();restored=true;}catch(IOException e){unreadableAutosave=true;restoreError="自动存档无法读取："+e.getMessage()+"。原文件已保留；请选择手动存档、导入文件或新建游戏。";}
         }
         if(state==null&&restored){state=readClientState();ui.read(state);}
-        turnWork=(TurnWork)getLastNonConfigurationInstance();
-        if(turnWork!=null){world=turnWork.before;aiRunning=true;}
+        turnWork=gameHost.turn;
+        if(turnWork!=null){aiRunning=true;}
         if(world==null){showStartScreen(restoreError);return;}
         buildGameUi(state,restored,coldStart);
     }
@@ -83,7 +112,7 @@ public final class MainActivity extends Activity {
         root.addView(button("读取手动存档",v->saveSlots(true)));
         root.addView(button("导入存档文件",v->importSave()));
         root.addView(button("地图编辑器 · 自定义地图",v->new MapEditorUi(this).show()));
-        if(error!=null)root.addView(button("重试自动存档",v->{try{World loaded=readSave(file("auto"));unreadableAutosave=false;world=loaded;buildGameUi(null,true,true);}catch(IOException e){showError("自动存档仍无法读取，原文件保留");}}));
+        if(error!=null)root.addView(button("重试自动存档",v->{try{World loaded=readSave(file("auto"));unreadableAutosave=false;if(activateWorld(loaded))buildGameUi(null,true,true);}catch(IOException e){showError("自动存档仍无法读取，原文件保留");}}));
         ScrollView startScroll=new ScrollView(this);startScroll.setFillViewport(true);startScroll.setBackgroundColor(ink);startScroll.addView(root,new ScrollView.LayoutParams(-1,-2));setContentView(startScroll);
     }
     /** Called only after a user-confirmed replacement; unreadable bytes remain recoverable. */
@@ -94,9 +123,15 @@ public final class MainActivity extends Activity {
             catch(IOException e){showError("无法保留损坏存档，本次没有替换局面");return false;}
             unreadableAutosave=false;
         }
-        world=next;ui.read(new Bundle());pendingMarch=null;moving=-1;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();return true;
+        replacingSession=true;
+        try{gameHost.install(next);bindSession();}
+        catch(IOException e){showError("新局面校验失败，原局面保留");return false;}
+        finally{replacingSession=false;}
+        if(playback!=null){playback.detach();playback=null;}turnWork=null;aiRunning=false;
+        ui.read(new Bundle());pendingMarch=null;moving=-1;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();return true;
     }
     private void buildGameUi(Bundle state,boolean restored,boolean coldStart){
+        if(gameHost.session()==null)throw new IllegalStateException("No game session");
         world.reports.prepare();
         root=new LinearLayout(this);root.setOrientation(LinearLayout.VERTICAL);root.setBackgroundColor(ink);
         root.setOnApplyWindowInsetsListener((v,insets)->{
@@ -394,7 +429,7 @@ public final class MainActivity extends Activity {
         if(aiRunning||world.commandsBlocked()||plan==null||plan.unitId!=moving)return;
         World.Unit u=world.unit(moving);if(world.orders.error(u)!=null)return;
         if(!world.orders.marchReachable(u).containsKey(plan.target)||plan.stepsNow!=plan.path.size()-1)return;
-        pendingMarch=null;unitCommand="select";apply(world.marches.execute(plan));
+        pendingMarch=null;unitCommand="select";apply(()->world.marches.execute(plan));
     }
     private void attackOnMap(World.Unit source,Hex h,World.Unit target){
         String error=world.orders.combatError(source);
@@ -408,9 +443,9 @@ public final class MainActivity extends Activity {
         }
         if(error!=null){message("无法攻击",error);return;}
         if(target!=null){warUi().attack(source,target);return;}
-        if(facility!=null){confirm("攻击"+facility.kind.label+"？\n耐久 "+facility.hp+"/"+facility.maxHp()+" · 预计减少"+Math.min(facility.hp,world.war.facilityDamage(source.id))+"\n攻击结束本旬行动，摧毁后释放地块。",()->apply(world.war.attackFacility(source.id,h)));return;}
-        if(city!=null){Hex hit=world.siegeHit(source,city,h);showTacticPreview(world,world.siegePreview(source.id,city.id,hit),()->apply(world.siege(source.id,city.id,hit)));return;}
-        confirm("攻击军事设施？攻击结束本旬行动。",()->apply(world.war.attackStructure(source.id,h)));
+        if(facility!=null){confirm("攻击"+facility.kind.label+"？\n耐久 "+facility.hp+"/"+facility.maxHp()+" · 预计减少"+Math.min(facility.hp,world.war.facilityDamage(source.id))+"\n攻击结束本旬行动，摧毁后释放地块。",()->apply(()->world.war.attackFacility(source.id,h)));return;}
+        if(city!=null){Hex hit=world.siegeHit(source,city,h);showTacticPreview(world,world.siegePreview(source.id,city.id,hit),()->apply(()->world.siege(source.id,city.id,hit)));return;}
+        confirm("攻击军事设施？攻击结束本旬行动。",()->apply(()->world.war.attackStructure(source.id,h)));
     }
     private void selectObject(Hex h,int unitId,boolean focus){
         pendingMarch=null;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();
@@ -473,8 +508,30 @@ public final class MainActivity extends Activity {
         Bundle saved=reportReturn;reportReturn=null;if(saved==null)return;ui.read(saved);moving=saved.getInt("moving",-1);selected=new Hex(saved.getInt("selectedQ",-1),saved.getInt("selectedR",-1));if(!world.inside(selected))selected=null;
         pendingMarch=null;unitCommand="select";refresh();map.restoreCamera(saved);
     }
-    void applyResult(World.Result result){apply(result);}
-    void apply(World.Result result){
+    World.Result applyResult(World expected,Supplier<World.Result> operation){return apply(expected,operation);}
+    void apply(Supplier<World.Result> operation){apply(world,operation);}
+    World.Result apply(World expected,Supplier<World.Result> operation){
+        if(!currentWorld(expected)){World.Result rejected=World.Result.rejected("局面已变化，请重新选择");showResult(rejected);return rejected;}
+        dispatchingCommand=true;
+        World.Result result;
+        try{result=gameHost.session().legacy(expected,operation);bindSession();}
+        finally{dispatchingCommand=false;}
+        showResult(result);return result;
+    }
+    void executeCity(World expected,GameCommand.Operation operation,int city,int officer){
+        if(!currentWorld(expected)){message("命令未执行","局面已变化，请重新选择");return;}
+        dispatchingCommand=true;CommandResult result;
+        try{result=gameHost.session().execute(new GameCommand(operation,legacyView.state,city,officer));bindSession();}
+        finally{dispatchingCommand=false;}
+        if(!result.ok()){message("命令未执行",result.detail);refresh();return;}
+        // Structured operation/event is available; text is display-only, never parsed for rules.
+        map.invalidateScene();navigatorRevision=Long.MIN_VALUE;clearTacticPreview();pendingMarch=null;
+        unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();pickTitle="";
+        lastBattleReport=result.detail;battleReportWorld=world;reportLocation=null;
+        battleBanner.setText("结果 · 点此展开\n"+result.detail);battleBanner.setVisibility(View.VISIBLE);
+        refresh();save("auto",false);
+    }
+    private void showResult(World.Result result){
         if(!result.ok)message("命令未执行",result.message);
         if(result.ok){map.invalidateScene();navigatorRevision=Long.MIN_VALUE;clearTacticPreview();pendingMarch=null;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();pickTitle="";}
         if(result.ok&&result.feedback==World.Feedback.NONE){lastBattleReport=result.message;battleReportWorld=world;reportLocation=null;battleBanner.setText("结果 · 点此展开\n"+result.message);battleBanner.setVisibility(View.VISIBLE);}
@@ -485,7 +542,7 @@ public final class MainActivity extends Activity {
             map.battleFeedback(result,getPreferences(MODE_PRIVATE).getBoolean("battleHaptics",true));
         }
         if(result.ok&&moving>=0&&world.unit(moving)!=null)selected=world.unit(moving).hex;
-        refresh();if(result.ok)save("auto",false);
+        refresh();if(result.ok){save("auto",false);}
         if(result.ok&&result.critical!=null)showCritical(result.critical);
         if(result.ok&&world.gameOver())message(world.winner==world.player?"战场胜利":"战场战败","本局结束，可从菜单重新选择剧本。");
     }
@@ -587,9 +644,9 @@ public final class MainActivity extends Activity {
             Button tactics=button("战法",v->showTactics(u));tactics.setAlpha(error==null?1f:.55f);
             Button plots=button("计略",v->{if(error!=null){message("计略暂不可用",error);return;}pendingMarch=null;unitCommand="select";refresh();warUi().plots(u);});plots.setAlpha(error==null?1f:.55f);
             Button cancel=button("取消",v->clearUnitSelection());
-            if(u instanceof Domestic.Mission){attack.setText("补给");attack.setOnClickListener(v->{if(error!=null)message("补给暂不可用",error);else convoySupply((Domestic.Mission)u);});tactics.setText("停止");tactics.setOnClickListener(v->apply(world.marches.stop(u.id)));plots.setText("货物");plots.setOnClickListener(v->{ui.panelVisible=true;refresh();revealPanel();});}
+            if(u instanceof Domestic.Mission){attack.setText("补给");attack.setOnClickListener(v->{if(error!=null)message("补给暂不可用",error);else convoySupply((Domestic.Mission)u);});tactics.setText("停止");tactics.setOnClickListener(v->apply(()->world.marches.stop(u.id)));plots.setText("货物");plots.setOnClickListener(v->{ui.panelVisible=true;refresh();revealPanel();});}
             for(Button b:new Button[]{march,attack,tactics,plots})actions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));
-            if(!(u instanceof Domestic.Mission)&&u.march!=null)actions.addView(button("停止任务",v->apply(world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
+            if(!(u instanceof Domestic.Mission)&&u.march!=null)actions.addView(button("停止任务",v->apply(()->world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
             actions.addView(cancel,new LinearLayout.LayoutParams(0,dp(48),1));
             commandDock.addView(actions,new LinearLayout.LayoutParams(portrait()?-1:dp(360),-2));return;
         }
@@ -600,7 +657,7 @@ public final class MainActivity extends Activity {
         commandDock.addView(copy,new LinearLayout.LayoutParams(portrait()?-1:0,-2,portrait()?0:1));
         LinearLayout actions=new LinearLayout(this);MarchOrders.Plan plan=pendingMarch;
         Button cancel=button("取消",v->{pendingMarch=null;unitCommand="select";refresh();});
-        Button execute=button("确认任务",v->apply(world.marches.execute(plan)));execute.setTextColor(gold);execute.setEnabled(plan.valid()&&!aiRunning);
+        Button execute=button("确认任务",v->apply(()->world.marches.execute(plan)));execute.setTextColor(gold);execute.setEnabled(plan.valid()&&!aiRunning);
         actions.addView(cancel,new LinearLayout.LayoutParams(0,dp(48),1));actions.addView(execute,new LinearLayout.LayoutParams(0,dp(48),1));
         commandDock.addView(actions,new LinearLayout.LayoutParams(portrait()?-1:dp(208),-2));
     }
@@ -765,9 +822,9 @@ public final class MainActivity extends Activity {
     private void showUnit(World.Unit u){
         if(u.owner==world.player&&!world.gameOver()){
             for(World.City base:world.cities)if(base.owner==u.owner&&(world.army.canEnterSite(u,u.hex,base)||base.kind==World.SiteKind.CITY&&SiteFootprint.distance(base,u.hex)<=1)){
-                primaryAction("进入"+base.name,()->confirm("沿合法入口进入"+base.name+"并归还兵装与粮草？移动消耗按实际路径计算。",()->apply(world.army.canEnterSite(u,u.hex,base)?world.enter(u.id,base.id):world.marches.execute(world.marches.previewCity(u.id,base.id)))));break;
+                primaryAction("进入"+base.name,()->confirm("沿合法入口进入"+base.name+"并归还兵装与粮草？移动消耗按实际路径计算。",()->apply(()->world.army.canEnterSite(u,u.hex,base)?world.enter(u.id,base.id):world.marches.execute(world.marches.previewCity(u.id,base.id)))));break;
             }
-            if(u.march!=null)primaryAction("停止任务",()->apply(world.marches.stop(u.id)));
+            if(u.march!=null)primaryAction("停止任务",()->apply(()->world.marches.stop(u.id)));
         }
         if(u instanceof Domestic.Mission){showConvoy((Domestic.Mission)u);return;}
         World.Officer o=world.officer(u.officerId);panel.addView(visualHeader(o,o.name,world.faction(u.owner)+" · "+world.army.equipmentLabel(u),44));
@@ -780,7 +837,7 @@ public final class MainActivity extends Activity {
             LinearLayout quick=new LinearLayout(this);
             quick.addView(button("选择目标",v->{unitCommand="march";closePanel();}),new LinearLayout.LayoutParams(0,dp(48),1));
             quick.addView(button("下一部队",v->nextUnit()),new LinearLayout.LayoutParams(0,dp(48),1));
-            if(u.march!=null)quick.addView(button("停止任务",v->apply(world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
+            if(u.march!=null)quick.addView(button("停止任务",v->apply(()->world.marches.stop(u.id))),new LinearLayout.LayoutParams(0,dp(48),1));
             panel.addView(quick);
         }
         line("统率 "+o.leadership+"  武力 "+o.war,13,paper);line("剩余移动 "+world.orders.remaining(u)+"  射程 "+world.war.range(u),13,paper);
@@ -802,7 +859,7 @@ public final class MainActivity extends Activity {
             if(u.march!=null)line(world.marches.describe(u),14,gold);
             if(world.fieldworks.project(u.id)!=null)action("中止施工",v->new FieldworkUi(this,world,this::apply).stop(u));
             if(!u.acted&&u.status==War.Status.NORMAL){action("设置军事设施",v->new FieldworkUi(this,world,this::apply).build(u));action("补修军事设施",v->new FieldworkUi(this,world,this::apply).repair(u));action("补充携金",v->new FieldworkUi(this,world,this::apply).fund(u));action("单挑",v->new ContestUi(this,world,this::apply).challenge(u));action("齐攻",v->warUi().joint(u));action("讨伐贼寨",v->new WorldUi(this,world,this::apply).raids(u));action("截击运输队",v->governmentUi().raid(u));action("移交兵粮",v->governmentUi().supply(u));action("部队战法详情",v->showTactics(u));
-                if(u.burning>0)action("部队灭火 · 气力5",v->confirm("扑灭本部队火焰？",()->apply(world.army.extinguish(u.id))));action("部队计略",v->{moving=u.id;warUi().plots(u);});action("待命 · 恢复5气力",v->confirm("本旬待命并恢复5气力？",()->apply(world.war.waitUnit(u.id))));}
+                if(u.burning>0)action("部队灭火 · 气力5",v->confirm("扑灭本部队火焰？",()->apply(()->world.army.extinguish(u.id))));action("部队计略",v->{moving=u.id;warUi().plots(u);});action("待命 · 恢复5气力",v->confirm("本旬待命并恢复5气力？",()->apply(()->world.war.waitUnit(u.id))));}
             for(Domestic.Mission convoy:world.domestic.missions)if(convoy.transport&&convoy.escortId==u.id)action("定位护送运输队",v->selectAndFocus(convoy.hex));
             action("取消部队选择",v->clearUnitSelection());}
     }
@@ -817,7 +874,7 @@ public final class MainActivity extends Activity {
         line("舰船货物：楼船 "+m.cargoShips[0]+" / 斗舰 "+m.cargoShips[1]+"；当前走舸不入库存",13,paper);
         for(int id:m.crew())iconAction("编队 · "+world.officer(id).name,world.officer(id),v->officerDetail(world.officer(id)));
         line("剩余移动 "+world.orders.remaining(m)+"；路线和到达时间依赖当前道路、占格和威胁",13,muted);
-        if(m.owner==world.player){action("地图选择目的地 / 改道",v->{unitCommand="march";moving=m.id;closePanel();});action("停止运输",v->apply(world.marches.stop(m.id)));action("地图补给友军",v->convoySupply(m));
+        if(m.owner==world.player){action("地图选择目的地 / 改道",v->{unitCommand="march";moving=m.id;closePanel();});action("停止运输",v->apply(()->world.marches.stop(m.id)));action("地图补给友军",v->convoySupply(m));
             action("定位目的地",v->selectAndFocus(world.city(m.targetCity).hex));
             if(world.unit(m.escortId)!=null)action("定位护送部队",v->selectAndFocus(world.unit(m.escortId).hex));
         }
@@ -828,7 +885,7 @@ public final class MainActivity extends Activity {
             LinearLayout form=new LinearLayout(this);form.setOrientation(LinearLayout.VERTICAL);form.setPadding(dp(16),dp(8),dp(16),dp(8));
             EditText[] fields=new EditText[3];String[] names={"兵","粮","金"};for(int i=0;i<3;i++){fields[i]=new EditText(this);fields[i].setInputType(android.text.InputType.TYPE_CLASS_NUMBER);fields[i].setHint(names[i]+"数量（0为不移交）");fields[i].setContentDescription("运输补给"+names[i]);form.addView(fields[i]);}
             ScrollView scroll=new ScrollView(this);scroll.addView(form);
-            AlertDialog dialog=new AlertDialog.Builder(this).setTitle("补给"+world.officer(target.officerId).name).setView(scroll).setNegativeButton("取消",null).setPositiveButton("预览",(d,n)->{try{int[] amount=new int[3];for(int i=0;i<3;i++)amount[i]=fields[i].getText().toString().isEmpty()?0:Integer.parseInt(fields[i].getText().toString());confirm("移交兵"+amount[0]+"、粮"+amount[1]+"、金"+amount[2]+"；确认后运输队结束本旬行动",()->apply(world.supply.convoyTransfer(m.id,target.id,amount[0],amount[1],amount[2])));}catch(NumberFormatException e){message("数量无效","请输入有效整数");}}).show();dialog.getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+            AlertDialog dialog=new AlertDialog.Builder(this).setTitle("补给"+world.officer(target.officerId).name).setView(scroll).setNegativeButton("取消",null).setPositiveButton("预览",(d,n)->{try{int[] amount=new int[3];for(int i=0;i<3;i++)amount[i]=fields[i].getText().toString().isEmpty()?0:Integer.parseInt(fields[i].getText().toString());confirm("移交兵"+amount[0]+"、粮"+amount[1]+"、金"+amount[2]+"；确认后运输队结束本旬行动",()->apply(()->world.supply.convoyTransfer(m.id,target.id,amount[0],amount[1],amount[2])));}catch(NumberFormatException e){message("数量无效","请输入有效整数");}}).show();dialog.getWindow().setSoftInputMode(android.view.WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         });
     }
     void officerDetail(World.Officer o){
@@ -882,6 +939,7 @@ public final class MainActivity extends Activity {
     DomesticUi domesticUi(){return new DomesticUi(this,world,this::apply,this::selectAndFocus);}
     private void showMenu(){
         line("军政菜单",22,gold);
+        action("Unity 试用 · 全屏预览",v->launchUnityTrial());
         action("屏幕方向 / 横竖屏",v->showOrientationPicker());
         action("地图视图与操作",v->showMapTools());
         action("生卒与继承",v->new LifecycleUi(this,world,this::apply).menu());
@@ -897,6 +955,27 @@ public final class MainActivity extends Activity {
         action("全国资料 / 核验目录",v->{ui.page="content";refresh();});action("势力一览",v->{ui.page="factions";refresh();});
         action("战报",v->message("战报",String.join("\n",world.log)));
         action("新游戏 / 选择势力",v->scenarioPicker());action("版本与范围",v->message("v"+BuildConfig.VERSION_NAME+" · 天下总览与快速旬结算", "构建 "+BuildConfig.VERSION_CODE+" · 源码 "+BuildConfig.SOURCE_REVISION+"\n全国势力/部队/武将/城池/港关/设施列表；左上角常驻行动力。开局支持实际地图点选势力与技巧树预览。\n旬结算单线程顺序执行规则，动画与计算解耦；默认8秒演示预算、10秒总耗时目标（主动暂停和完整演示除外）。不会截断AI或规则。\n收支为下旬定期收入与兵粮需求预测，不是所有命令开销的历史流水。战法暴击使用现有头像图集展示680ms高光。\n保留v51逐城精修与全部美术。西北绿洲道路、许新森林、吴附近曲阿港及邺晋间壶关；地形更新需新开局。\n下河须经过己方港口；目标任务支持持续攻击、攻占后进驻和连续修理，可随时停止。\n港口、关卡、城市使用不同攻城系数；器械伤害随兵力增长。围攻停止自然修复，主动补修降为¼。\n地块开发、城市出征与运输固定在面板顶部；结算期间仍可拖动地图与收起面板。\n栈道与山径按六方向连接，河岸连续描边。\n每座兵舍/生产设施每旬1次；枪戟弩共用锻冶所次数，战马使用厩舍。部队按2500兵一档显示1至5个模型，万人以上5个。新开局为开发基线。\n历史重建/定制剧本，完整官方数据及精确公式仍待核验。"));
+    }
+    private void launchUnityTrial(){
+        if(world==null){message("Unity 试用","请先选择剧本并进入正式游戏。");return;}
+        if(aiRunning){message("Unity 试用","本旬结算结束后再进入。");return;}
+        if(!BuildConfig.UNITY_ENABLED){message("Unity 试用","当前 APK 未包含 Unity Player；需用已验证的 Unity 导出重新打包。");return;}
+        // Only the Android host owns World. Unity receives read-only identity data for U00.
+        // Release Filament's EGL resources before launching the full-screen Unity activity.
+        if(map!=null&&map.is3D())map.switchMode(false);
+        try{
+            if(gameHost.session()==null)throw new IllegalStateException("No game session");
+            Intent intent=new Intent(this,Class.forName("com.unity3d.player.UnityPlayerActivity"));
+            intent.putExtra("sanguo.session",UnityBridge.sessionId());
+            intent.putExtra("sanguo.scenario",world.scenarioName);
+            intent.putExtra("sanguo.width",world.sourceColumns());
+            intent.putExtra("sanguo.height",world.sourceRows());
+            intent.putExtra("sanguo.source",BuildConfig.SOURCE_REVISION);
+            startActivity(intent);
+        }catch(ClassNotFoundException|android.content.ActivityNotFoundException e){
+            android.util.Log.e("UnityTrial","Unity player activity is unavailable",e);
+            message("Unity 试用","Unity 入口不可用："+e.getClass().getSimpleName());
+        }
     }
     private void scenarioPicker(){
         try {
@@ -983,12 +1062,12 @@ public final class MainActivity extends Activity {
         if(aiRunning||world.gameOver()||world.commandsBlocked())return;int idle=0;for(World.City c:world.cities)if(c.owner==world.player)idle+=world.idle(c).size();
         confirm("结束 "+world.date()+"？\n还有 "+idle+" 名闲置武将、"+world.actionPoints[world.player]+" 点行动力。\n将执行电脑行动，推进建设、调动、运输与自动行军，并自动保存。",this::advanceTurn);
     }
-    private void advanceTurn(){if(aiRunning||world.gameOver()||world.commandsBlocked())return;turnWork=new TurnWork(world);long saving=android.os.SystemClock.elapsedRealtime();save("auto",false);turnWork.saveMillis=android.os.SystemClock.elapsedRealtime()-saving;aiRunning=true;turnWork.speed=getPreferences(MODE_PRIVATE).getInt("turnPlaybackSpeed",1);turnWork.observe(this::finishTurn);refresh();turnWork.start();}
+    private void advanceTurn(){if(aiRunning||world.gameOver()||world.commandsBlocked())return;try{turnWork=gameHost.beginTurn(world);}catch(IOException|RuntimeException e){showError("无法开始结算，原局面保留");return;}long saving=android.os.SystemClock.elapsedRealtime();save("auto",false);turnWork.saveMillis=android.os.SystemClock.elapsedRealtime()-saving;aiRunning=true;turnWork.speed=getPreferences(MODE_PRIVATE).getInt("turnPlaybackSpeed",1);turnWork.observe(this::finishTurn);refresh();turnWork.start();}
     private void finishTurn(){
         if(turnWork==null||isFinishing()||isDestroyed())return;
         if(turnWork.error!=null){
             if(playback!=null){playback.detach();playback=null;}map.replayFrame(null,0);
-            turnWork.cancel();turnWork=null;aiRunning=false;nextTurn.setOnClickListener(v->confirmTurn());
+            turnWork.cancel();gameHost.playbackFinished(turnWork);turnWork=null;aiRunning=false;bindSession();nextTurn.setOnClickListener(v->confirmTurn());
             refresh();showError("回合结算失败，原局面保留");return;
         }
         // Never save the render world or a partially computed faction. Commit only the complete turn.
@@ -1001,7 +1080,7 @@ public final class MainActivity extends Activity {
     private void completeTurnPlayback(){
         if(turnWork==null)return;TurnWork completed=turnWork;
         if(playback!=null){playback.detach();playback=null;}map.replayFrame(null,0);
-        completed.observe(null);turnWork=null;aiRunning=false;world=completed.after;
+        completed.observe(null);gameHost.playbackFinished(completed);turnWork=null;aiRunning=false;bindSession();
         if(world.life.pending()){ui.page="map";ui.panelVisible=true;}
         ui.summary=completed.summary+"\n\n视野内已演示行动（"+completed.visibleCount+"项）\n"+completed.actionReport;
         pendingMarch=null;if(world.unit(moving)!=null)selected=world.unit(moving).hex;else moving=-1;
@@ -1024,16 +1103,15 @@ public final class MainActivity extends Activity {
                 refreshTurnProgress();
             }).setNegativeButton("返回地图",null).show();
     }
-    private World authoritativeSaveWorld(){return turnWork!=null&&turnWork.done&&turnWork.error==null?turnWork.after:world;}
     @Override public Object onRetainNonConfigurationInstance(){if(playback!=null)playback.detach();if(turnWork!=null)turnWork.observe(null);return turnWork;}
-    @Override protected void onDestroy(){if(map!=null)map.release();if(playback!=null)playback.detach();if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null){turnWork.observe(null);if(!isChangingConfigurations())turnWork.cancel();}if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
+    @Override protected void onDestroy(){if(sessionSubscription!=null){sessionSubscription.close();sessionSubscription=null;}if(map!=null)map.release();if(playback!=null)playback.detach();if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null){turnWork.observe(null);}if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
     private void writeClientState(Bundle state){
         if(world==null||map==null)return;
         ui.write(state);state.putInt("selectedQ",selected==null?-1:selected.q);state.putInt("selectedR",selected==null?-1:selected.r);state.putInt("moving",moving);state.putString("unitCommand",unitCommand);
         if(pendingMarch!=null&&pendingMarch.target!=null){state.putInt("routeQ",pendingMarch.target.q);state.putInt("routeR",pendingMarch.target.r);state.putBoolean("routeMove",pendingMarch.order!=null&&pendingMarch.order.intent==MarchOrders.Intent.MOVE);state.putInt("routeCity",pendingMarch.order!=null&&pendingMarch.order.kind==MarchOrders.Kind.CITY?pendingMarch.order.targetId:-1);}map.saveCamera(state);
     }
     @Override protected void onSaveInstanceState(Bundle state){super.onSaveInstanceState(state);writeClientState(state);save("auto",false);}
-    private String worldDigest()throws Exception{return android.util.Base64.encodeToString(java.security.MessageDigest.getInstance("SHA-256").digest(SaveCodec.encode(authoritativeSaveWorld())),android.util.Base64.NO_WRAP);}
+    private String worldDigest()throws Exception{return android.util.Base64.encodeToString(java.security.MessageDigest.getInstance("SHA-256").digest(gameHost.capture()),android.util.Base64.NO_WRAP);}
     private void persistClientState(){
         if(map==null)return;android.os.Parcel parcel=android.os.Parcel.obtain();
         try{Bundle state=new Bundle();writeClientState(state);parcel.writeBundle(state);String data=android.util.Base64.encodeToString(parcel.marshall(),android.util.Base64.NO_WRAP);if(!getPreferences(MODE_PRIVATE).edit().putString("clientWorld",worldDigest()).putString("clientState",data).commit())android.util.Log.w("UiRecovery","Could not persist UI hints");}
@@ -1044,13 +1122,13 @@ public final class MainActivity extends Activity {
         try{if(!worldDigest().equals(getPreferences(MODE_PRIVATE).getString("clientWorld",""))){android.util.Log.i("UiRecovery","No UI hints matching authoritative world");return null;}String encoded=getPreferences(MODE_PRIVATE).getString("clientState","");if(encoded.length()>100000)return null;byte[] bytes=android.util.Base64.decode(encoded,android.util.Base64.DEFAULT);parcel.unmarshall(bytes,0,bytes.length);parcel.setDataPosition(0);return parcel.readBundle(getClassLoader());}
         catch(Exception e){android.util.Log.w("UiRecovery","Could not restore UI hints",e);return null;}finally{parcel.recycle();}
     }
-    private AtomicFile file(String slot){return new AtomicFile(new File(getFilesDir(),slot+".sg11"));}
+    private AtomicFile file(String slot){return gameHost.store().file(slot);}
     private boolean save(String slot,boolean announce){
         if(world==null||unreadableAutosave)return false;
-        AtomicFile f=file(slot);FileOutputStream out=null;try{byte[] bytes=SaveCodec.encode(authoritativeSaveWorld());new MapLibrary(this).rememberVisual(authoritativeSaveWorld());out=f.startWrite();out.write(bytes);f.finishWrite(out);if(announce)Toast.makeText(this,"局面已保存",Toast.LENGTH_SHORT).show();return true;}
-        catch(IOException e){if(out!=null)f.failWrite(out);Toast.makeText(this,"保存失败，请检查设备存储空间后重试",Toast.LENGTH_LONG).show();return false;}
+        try{byte[] bytes=gameHost.capture();new MapLibrary(this).rememberVisual(world);gameHost.store().write(slot,bytes);if(announce)Toast.makeText(this,"局面已保存",Toast.LENGTH_SHORT).show();return true;}
+        catch(IOException e){Toast.makeText(this,"保存失败，请检查设备存储空间后重试",Toast.LENGTH_LONG).show();return false;}
     }
-    private World readSave(AtomicFile f)throws IOException {try(FileInputStream in=f.openRead()){return SaveCodec.read(in);}}
+    private World readSave(AtomicFile file)throws IOException {try(FileInputStream in=file.openRead()){return SessionSaves.readPrepared(in);}}
     private static final int EXPORT_SAVE=911, IMPORT_SAVE=912, EXPORT_OFFICER=913, IMPORT_OFFICER=914, IMPORT_SCENARIO=915;
     void importOfficerTemplate(){if(!aiRunning)startActivityForResult(new Intent(Intent.ACTION_OPEN_DOCUMENT).addCategory(Intent.CATEGORY_OPENABLE).setType("*/*"),IMPORT_OFFICER);}
     void exportOfficerTemplate(Editor.Template template){
@@ -1089,14 +1167,14 @@ public final class MainActivity extends Activity {
                 try(OutputStream out=getContentResolver().openOutputStream(data.getData(),"wt")){if(out==null)throw new IOException("无法写入模板");out.write(OfficerTemplateCodec.encode(template));}
                 pending.delete();message("模板已导出",template.name+"可导入其他安装包或存留备用");
             }else if(request==EXPORT_SAVE){
-                byte[] bytes=SaveCodec.encode(world);if(world.visualMap!=null&&(!world.visualMap.heights.isEmpty()||!world.visualMap.appearances.isEmpty()))Toast.makeText(this,"旧格式战局不包含3D视觉属性；请同时从地图编辑器导出地图JSON",Toast.LENGTH_LONG).show();
+                byte[] bytes=gameHost.capture();if(world.visualMap!=null&&(!world.visualMap.heights.isEmpty()||!world.visualMap.appearances.isEmpty()))Toast.makeText(this,"旧格式战局不包含3D视觉属性；请同时从地图编辑器导出地图JSON",Toast.LENGTH_LONG).show();
                 try(OutputStream out=getContentResolver().openOutputStream(data.getData(),"wt")){
                     if(out==null)throw new IOException("无法写入文件");out.write(bytes);
                 }
                 message("存档已导出","可通过“导入存档文件”在另一安装包中恢复此局面。");
             }else if(request==IMPORT_SAVE){
                 final World imported;
-                try(InputStream in=getContentResolver().openInputStream(data.getData())){imported=SaveCodec.read(in);}
+                try(InputStream in=getContentResolver().openInputStream(data.getData())){imported=SessionSaves.readPrepared(in);}
                 if(imported.active!=imported.player)throw new IOException("非玩家回合存档");
                 confirm("导入“"+imported.scenarioName+"”？\n"+imported.faction(imported.player)+" · "+imported.date()+"\n将替换当前局面和自动存档，手动槽位保留。",()->{
                     if(aiRunning)return;
@@ -1121,6 +1199,6 @@ public final class MainActivity extends Activity {
         if(!ui.page.equals("map")||ui.panelVisible){closePanel();return;}
         if(moving>=0){clearUnitSelection();return;}
         if(ui.returnToCities){returnToCities();return;}
-        confirm("退出游戏？当前局面将自动保存。",this::finish);
+        confirm("退出游戏？当前局面将自动保存。",()->{if(save("auto",false)){gameHost.exit();world=null;finish();}});
     }
 }

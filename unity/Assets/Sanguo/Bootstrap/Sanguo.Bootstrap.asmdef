@@ -1,0 +1,10 @@
+{
+  "name": "Sanguo.Bootstrap",
+  "references": [
+    "Sanguo.Contracts",
+    "Sanguo.Client",
+    "Sanguo.Transport",
+    "Sanguo.Presentation"
+  ],
+  "noEngineReferences": false
+}

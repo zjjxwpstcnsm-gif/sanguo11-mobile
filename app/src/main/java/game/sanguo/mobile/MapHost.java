@@ -15,6 +15,9 @@ final class MapHost extends FrameLayout implements MapPresentation {
     private final MapView.TileListener listener;
     private final SharedPreferences prefs;
     private FilamentMapView spatial;
+    private final MapProjectionQuery projection=new MapProjectionQuery();
+    private CriticalHit projectedCritical;
+    private android.graphics.drawable.Drawable projectedPortrait;
     private World world,groundWorld;
     private int terrainRevision=-1,moving=-1;
     private Hex selected;
@@ -46,7 +49,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
     void editorMode(MapView.EditorStroke value){editorStroke=value;flat.editorMode(value);if(spatial!=null)spatial.editorMode(value);}
     void editorDrawing(boolean value){editorDrawing=value;flat.editorDrawing(value);if(spatial!=null)spatial.editorDrawing(value);}
     void editorPreview(Set<Hex> cells,boolean valid){editorCells=new HashSet<>(cells);editorValid=valid;flat.editorPreview(cells,valid);if(spatial!=null)spatial.editorPreview(cells,valid);}
-    void editorLayers(boolean grid,boolean coords,boolean passability,boolean footprints){editorGrid=grid;editorCoords=coords;editorPassability=passability;editorFootprints=footprints;flat.editorLayers(grid,coords,passability,footprints);if(spatial!=null)spatial.editorLayers(world,grid,coords,passability,footprints);}
+    void editorLayers(boolean grid,boolean coords,boolean passability,boolean footprints){editorGrid=grid;editorCoords=coords;editorPassability=passability;editorFootprints=footprints;flat.editorLayers(grid,coords,passability,footprints);if(spatial!=null)spatial.editorLayers(projection.blocked(world,passability),grid,coords,footprints);}
     void resetOrientation(){if(spatial!=null)spatial.resetOrientation();}
     void reverseOrientation(){if(spatial!=null)spatial.reverseOrientation();}
     void previewMode(){openingPreview=true;flat.previewMode();}
@@ -77,14 +80,14 @@ final class MapHost extends FrameLayout implements MapPresentation {
             removeView(flat);addView(spatial,new LayoutParams(-1,-1));
             dirty=true;publish();
             Map<String,?> saved=prefs.getAll();if(!camera.containsKey("sceneTilt")&&saved.get("tilt") instanceof Float)camera.putFloat("sceneTilt",(Float)saved.get("tilt"));if(!camera.containsKey("sceneFacing")&&saved.get("facing") instanceof Integer)camera.putInt("sceneFacing",(Integer)saved.get("facing"));
-            spatial.setGridShown(gridShown());spatial.restoreCamera(camera);spatial.setTargets(targets);spatial.setRoute(route);spatial.resume(resumed);spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(world,editorGrid,editorCoords,editorPassability,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);
+            spatial.setGridShown(gridShown());spatial.restoreCamera(camera);spatial.setTargets(targets);spatial.setRoute(route);spatial.resume(resumed);spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(projection.blocked(world,editorPassability),editorGrid,editorCoords,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);
         }catch(Exception|LinkageError e){fallback(e);}
     }
     private void fallback(Throwable e){safeMode=true;interruptedSession=true;prefs.edit().putString("lastFailure",e.getClass().getSimpleName()).putLong("lastFailureTime",System.currentTimeMillis()).commit();android.util.Log.e("MapRenderer","Filament fallback to 2D",e);leave3D();if(world!=null)flat.setWorld(world,selected,moving);flat.restoreCamera(camera);Toast.makeText(getContext(),"3D 初始化或渲染失败，已返回 2D："+e.getClass().getSimpleName(),Toast.LENGTH_LONG).show();}
     private void leave3D(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);}if(flat.getParent()==null)addView(flat,new LayoutParams(-1,-1));prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}
     void release(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}}
     void resume(boolean value){if(!value)persistCamera();resumed=value;if(spatial!=null)spatial.resume(value);}
-    void toggleDiagnostics(){diagnostics=!diagnostics;if(spatial!=null){spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(world,editorGrid,editorCoords,editorPassability,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);}android.util.Log.i("MapRenderer",report());}
+    void toggleDiagnostics(){diagnostics=!diagnostics;if(spatial!=null){spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(projection.blocked(world,editorPassability),editorGrid,editorCoords,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);}android.util.Log.i("MapRenderer",report());}
     String report(){return spatial==null?"2D · "+getWidth()+" × "+getHeight():spatial.report();}
     @Override public void setWorld(World w,Hex s,int moving){
         boolean changed=world!=w||revision!=w.commandRevision()||turn!=w.turn||player!=w.player||terrainRevision!=w.terrainRevision||!Objects.equals(selected,s)||this.moving!=moving;
@@ -92,7 +95,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
         world=w;selected=s;this.moving=moving;revision=w.commandRevision();turn=w.turn;player=w.player;
         if(spatial==null)flat.setWorld(w,s,moving);else if(changed||dirty)publish();
     }
-    private void publish(){if(spatial==null||world==null)return;if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){if(ground==null||!ground.matches(world))ground=new MapSceneSnapshot.Ground(world);groundWorld=world;terrainRevision=world.terrainRevision;}spatial.snapshot(new MapSceneSnapshot(ground,world,selected,moving));spatial.mapLayers(world,flat.territoryMode(),openingPreview,previewFaction);dirty=false;}
+    private void publish(){if(spatial==null||world==null)return;if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){if(ground==null||!ground.matches(world))ground=new MapSceneSnapshot.Ground(world);groundWorld=world;terrainRevision=world.terrainRevision;}spatial.snapshot(new MapSceneSnapshot(ground,world,selected,moving));spatial.mapLayers(projection.layers(world,ground,flat.territoryMode()),flat.territoryMode(),openingPreview,previewFaction);dirty=false;}
     void invalidateScene(){dirty=true;flat.invalidateScene();}
     @Override public void fit(){if(spatial==null)flat.fit();else spatial.fit();}
     @Override public void focus(Hex h){if(spatial==null)flat.focus(h);else spatial.focus(h);}
@@ -106,7 +109,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
     void setTacticPreview(Displacement.Preview value){tacticPreview=value;flat.setTacticPreview(value);if(spatial!=null)spatial.setTacticPreview(value);}
     void battleFeedback(World.Result result,boolean haptics){if(spatial==null)flat.battleFeedback(result,haptics);else if(haptics&&result.feedback!=World.Feedback.NONE)performHapticFeedback(android.view.HapticFeedbackConstants.CONTEXT_CLICK);}
     void setPanelOcclusion(int right,int bottom){panelRight=right;panelBottom=bottom;flat.setPanelOcclusion(right,bottom);if(spatial!=null)spatial.setPanelOcclusion(right,bottom);}
-    void setTerritoryMode(int value){flat.setTerritoryMode(value);if(spatial!=null&&world!=null)spatial.mapLayers(world,flat.territoryMode(),openingPreview,previewFaction);}
+    void setTerritoryMode(int value){flat.setTerritoryMode(value);if(spatial!=null&&world!=null)spatial.mapLayers(projection.layers(world,ground,flat.territoryMode()),flat.territoryMode(),openingPreview,previewFaction);}
     boolean gridShown(){return flat.gridShown();}
     void setGridShown(boolean shown){flat.setGridShown(shown);if(spatial!=null)spatial.setGridShown(shown);prefs.edit().putBoolean("gridShown",shown).apply();}
     int territoryMode(){return flat.territoryMode();}
@@ -117,7 +120,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
     void setCommandersShown(boolean value){flat.setCommandersShown(value);if(spatial!=null)spatial.labels(value,flat.unitBarsShown());}
     void setUnitBarsShown(boolean value){flat.setUnitBarsShown(value);if(spatial!=null)spatial.labels(flat.commandersShown(),value);}
     void setCriticalSkip(Runnable skip){criticalSkip=skip;flat.setCriticalSkip(skip);if(spatial!=null)spatial.criticalSkip(skip);}
-    void criticalFrame(CriticalHit hit,float phase){if(spatial==null)flat.criticalFrame(hit,phase);else spatial.critical(world,hit,phase);}
+    void criticalFrame(CriticalHit hit,float phase){if(spatial==null)flat.criticalFrame(hit,phase);else {if(projectedCritical!=hit){projectedCritical=hit;projectedPortrait=hit==null?null:new OfficerPortrait(getContext(),world,hit.officerCopy());}spatial.critical(hit,phase,projectedPortrait);}}
     void replayFrame(TurnJournal.Event e,float fraction){if(spatial==null)flat.replayFrame(e,fraction);else spatial.replay(e,fraction);}
     boolean replayVisible(TurnJournal.Event e){return spatial==null?flat.replayVisible(e):spatial.visible(e);}
 }

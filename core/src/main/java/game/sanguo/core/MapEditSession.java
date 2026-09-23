@@ -1,4 +1,6 @@
 package game.sanguo.core;
+import game.sanguo.core.map.SourceGridCoord;
+import game.sanguo.core.map.MapBrushGeometry;
 
 import java.io.*;
 import java.util.*;

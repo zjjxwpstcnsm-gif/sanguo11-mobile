@@ -1,4 +1,5 @@
 package game.sanguo.mobile;
+import game.sanguo.core.map.SourceGridCoord;
 
 import game.sanguo.core.World;
 
@@ -8,7 +9,7 @@ final class TerrainArt {
     enum Connection { NONE, ROAD, MOUNTAIN_PATH, PLANK }
     private TerrainArt() {}
     static int sandVariant(World world,int q,int r) {
-        game.sanguo.core.SourceGridCoord source=game.sanguo.core.MapCoordinates.nationalSource(world,new game.sanguo.core.Hex(q,r));
+        game.sanguo.core.map.SourceGridCoord source=game.sanguo.core.MapCoordinates.nationalSource(world,new game.sanguo.core.Hex(q,r));
         return Math.floorMod(source.x*31+source.y*17,4);
     }
     static Connection connection(World.Terrain terrain) {

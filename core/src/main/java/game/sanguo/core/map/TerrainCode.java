@@ -1,4 +1,6 @@
-package game.sanguo.core;
+package game.sanguo.core.map;
+
+import game.sanguo.core.*;
 
 /** Stable source-file alphabet. In particular D is a mountain path, H is a dam.
  * This is independent of the ordinal ABI used by SaveCodec31. */

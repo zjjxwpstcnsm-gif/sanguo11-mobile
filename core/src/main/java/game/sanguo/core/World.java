@@ -71,6 +71,8 @@ public final class World {
     }
     public enum Feedback { NONE, ATTACK, DEFEAT }
     public static final class Result {
+        /** Rejection produced by a session guard before any rule executes. */
+        public static Result rejected(String message){return new Result(false,message,Feedback.NONE,null,null);}
         public final boolean ok;
         public final String message;
         public final Feedback feedback;
