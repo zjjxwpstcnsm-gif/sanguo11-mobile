@@ -1,0 +1,20 @@
+# Native defects
+
+| ID | Classification | Status | Evidence / next action |
+|---|---|---|---|
+| R00-REPORT | inherited | PARTIAL | R00 report/ledger/handoff absent at bdc6856; current audit recovers real CI evidence, does not invent historical authoring. |
+| ART-01 | inherited | PARTIAL | Actual R00 Surface has stepped shorelines and coarse/repetitive assets; retain for later art stages. |
+| REF-01 | inherited | BLOCKED | REFERENCE_MISSING: no matching PC screenshots supplied; similarity not accepted. |
+| DEVICE-01 | environment | BLOCKED | No physical ARM64 Adreno/Mali phone; long-run native memory, thermal and performance NOT_RUN. |
+| RULE-01 | inherited | PARTIAL | Old reports record core AI deployment failures. No core/rule/map changes in R01. Full Android legacy workflows have independent baseline failures; do not relabel as R01 pass. |
+| R01-BUILD-01 | new, fixed | PASS | First CI found one remaining meshTask reference in loadVisible; replaced with bounded queue.pending, retained failure run 35850696246. |
+| R01-DECODE | inherited | PARTIAL | Mesh generation is bounded/off-thread. Existing asset/pose decode and texture initialization still execute on owner; moving entire decode pipeline is not claimed complete. |
+| R01-FAULTS | validation gap | PARTIAL | Injected worker failure and missing asset-provider constructor exercised by installed suite; actual corrupt texture/native upload failure and native abort recovery require broader fault matrix. |
+| R01-REVISION | implementation limit | PARTIAL | Session/generation and content invalidation connected. Asset revision fixed to bundled cohort; no hot reload. Standalone editor does not own GameSession; content identity still invalidates mesh but full editor replacement/event coverage needs R13. |
+| LEGACY-UI | inherited, reproduced by baseline/candidate CI | PARTIAL | experience: `UI content not reachable by scrolling: 收起`, baseline run 35846793585 and candidate 35850964174. |
+| LEGACY-SAVE | inherited, reproduced by baseline/candidate CI | PARTIAL | displacement pinned v0.28: old map save rejected by existing policy, baseline 35846793583 and candidate 35850964238. No policy/assertion change. |
+| LEGACY-UI-TITLE | inherited | PARTIAL | Android workflow smoke expects `190 讨伐董卓 · 重建  ·`; same assertion fails in baseline job 107134769785 and candidate 107148279521. |
+| DRIVER-S10 | inherited observed failure; root cause unresolved | PARTIAL | swiftshader_indirect instrument gate exits 1 on baseline job 107134800174 and candidate 107148278723; SwANGLE material job passes. No blanket driver compatibility claim. |
+| LEGACY-S11 | inherited timeout | PARTIAL | WaterLandformInstrumentation exceeds 900 s on baseline job 107134794758 and candidate 107148278864. Do not equate timeout with successful full water validation. |
+| PERF-R01 | environment/validation limitation | PARTIAL | Software-emulator CPU submit tails exceed 1 s in lifecycle logs. No handset timing pass. Post-instrumentation dumpsys reports no process, so PSS is unavailable, not zero. |
+| PROBE-PAUSE | newly observed, pre-existing probe ordering | PASS | 04521e8 startup run 35853388195 timed out with worker_pending=0 and pending=6 after the probe paused rendering. Fixed capture-before-pause order in 8744cb0; all assertions retained. Retest 35855186990 passed fresh 285/reload 192. |
