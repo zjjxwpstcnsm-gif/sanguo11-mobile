@@ -32,7 +32,8 @@ public final class NativeR01Instrumentation extends SceneInstrumentation {
             log("switch="+i+" "+host.report());
             runOnMainSync(()->host.switchMode(false));
             check((Boolean)field(spatial,"released"),"retired view released");check(!(Boolean)field(spatial,"queued"),"no retired frame callback");
-            check(field(spatial,"engine")==null,"retired engine gone");check((Integer)field(host,"activeNativeHosts")==0,"no background native host");
+            check(field(spatial,"engine")==null,"retired engine gone");
+            check(((ExecutorService)field(field(spatial,"meshWork"),"executor")).isShutdown(),"retired worker shutdown");check((Integer)field(host,"activeNativeHosts")==0,"no background native host");
             check(Arrays.equals(saved,authority()),"switch preserves authority and RNG");
         }
         runOnMainSync(()->{host.switchMode(true);activity.selectAndFocus(world.home().hex);});ready();
