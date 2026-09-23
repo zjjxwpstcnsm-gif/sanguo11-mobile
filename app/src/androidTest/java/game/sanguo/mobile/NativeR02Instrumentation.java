@@ -11,6 +11,7 @@ import java.util.*;
 
 /** Actual normal-game host, Surface captures, gestures and independent authoritative comparison. */
 public final class NativeR02Instrumentation extends SceneInstrumentation {
+    @Override void check(boolean value,String label){super.check(value,label);android.util.Log.i("NativeR02","PASS "+label);}
     private FilamentMapView spatial()throws Exception{return (FilamentMapView)field(host,"spatial");}
     private byte[] authority(){final byte[][] b={null};runOnMainSync(()->{try{b[0]=((GameApplication)activity.getApplication()).host().capture();}catch(IOException e){throw new RuntimeException(e);}});return b[0];}
     private void shot(String name)throws Exception{
@@ -60,13 +61,15 @@ public final class NativeR02Instrumentation extends SceneInstrumentation {
         runOnMainSync(()->{host.setPanelOcclusion(140,120);touch(v,v.getWidth()-25,v.getHeight()*.5f,-50,30,false);});settle();
         check(oldX==v.camera.x&&oldZ==v.camera.z,"panel drag cannot move camera");check(Objects.equals(selected,field(activity,"selected")),"panel tap cannot select");
         runOnMainSync(()->host.setPanelOcclusion(0,0));
+        Throwable captureFailure=null;
         for(SceneQuality quality:SceneQuality.values()){
             runOnMainSync(()->host.quality(quality));ready();FilamentMapView next=spatial();
             check(Math.abs(next.camera.yaw-v.camera.yaw)<.001f,"quality recreates native orientation");
             runOnMainSync(()->host.focus(world.home().hex));settle();
             final Hex[] pick={null};runOnMainSync(()->pick[0]=next.pick(next.camera.width*.5f,next.camera.height*.5f,false));
-            check(world.home().hex.equals(pick[0]),"internal resolution touch invariant "+quality.scale);shot("r02-resolution-"+quality);
+            check(world.home().hex.equals(pick[0]),"internal resolution touch invariant "+quality.scale);try{shot("r02-resolution-"+quality);}catch(AssertionError error){captureFailure=error;android.util.Log.e("NativeR02","Quality capture failed; remaining independent command tests still run",error);}
         }
+        runOnMainSync(()->host.quality(SceneQuality.MEDIUM));ready();
         FilamentMapView restored=spatial();float yaw=restored.camera.yaw,tilt=restored.camera.tilt,span=restored.camera.span;
         runOnMainSync(()->host.switchMode(false));settle();capture("r02-03-2d");check(Arrays.equals(saved,authority()),"2D retains authority/RNG");
         runOnMainSync(()->host.switchMode(true));ready();check(spatial().camera.yaw==yaw&&spatial().camera.tilt==tilt&&spatial().camera.span==span,"2D/3D restores full orientation/span");
@@ -74,6 +77,7 @@ public final class NativeR02Instrumentation extends SceneInstrumentation {
         // Existing independent deployment/movement/turn/autosave equivalence, not merely picking maths.
         commandFlow();shot("r02-04-command-result");
         try(OutputStream out=new FileOutputStream(new File(getTargetContext().getExternalFilesDir("s01"),"r02.txt"))){out.write(("source="+BuildConfig.SOURCE_REVISION+"\nchecks="+checks+"\n"+host.report()).getBytes(java.nio.charset.StandardCharsets.UTF_8));}
+        if(captureFailure!=null)throw new AssertionError("Quality Surface gate failed; command/mode checks completed",captureFailure);
         result.putString("stream","PASS R02 "+checks+" installed checks; emulator only\n");finish(Activity.RESULT_OK,result);
     }catch(Throwable error){try{capture("r02-failure");}catch(Throwable ignored){}result.putString("stream","FAIL R02 "+android.util.Log.getStackTraceString(error));finish(Activity.RESULT_CANCELED,result);}}
 }

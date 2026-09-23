@@ -61,9 +61,24 @@ public class SceneInstrumentation extends Instrumentation {
         FilamentMapView spatial=(FilamentMapView)field(host,"spatial");
         android.view.SurfaceView surface=(android.view.SurfaceView)field(spatial,"surface");
         android.graphics.Bitmap b=android.graphics.Bitmap.createBitmap(surface.getWidth(),surface.getHeight(),android.graphics.Bitmap.Config.ARGB_8888);
-        java.util.concurrent.CountDownLatch ready=new java.util.concurrent.CountDownLatch(1);int[] status={-1};
-        runOnMainSync(()->android.view.PixelCopy.request(surface,b,r->{status[0]=r;ready.countDown();},new Handler(Looper.getMainLooper())));
-        check(ready.await(20,java.util.concurrent.TimeUnit.SECONDS)&&status[0]==android.view.PixelCopy.SUCCESS,"read actual rendered Surface");
+        int[] status={-1};boolean completed=false;
+        for(int attempt=1;attempt<=3;attempt++){
+            java.util.concurrent.CountDownLatch copied=new java.util.concurrent.CountDownLatch(1);status[0]=-1;
+            runOnMainSync(()->android.view.PixelCopy.request(surface,b,r->{status[0]=r;copied.countDown();},new Handler(Looper.getMainLooper())));
+            completed=copied.await(20,java.util.concurrent.TimeUnit.SECONDS);
+            android.util.Log.i("SceneAcceptance","PixelCopy attempt="+attempt+" completed="+completed+" status="+status[0]);
+            if(!completed||status[0]==android.view.PixelCopy.SUCCESS)break;
+            // A submitted frame can still be in flight on the software emulator after a resize.
+            // Retry only explicit transient copy states, with the same surface/size/quality.
+            if(status[0]!=android.view.PixelCopy.ERROR_TIMEOUT&&status[0]!=android.view.PixelCopy.ERROR_SOURCE_NO_DATA)break;
+            settle();
+        }
+        if(!completed||status[0]!=android.view.PixelCopy.SUCCESS){
+            // A timed-out callback may still own the destination; do not recycle it early.
+            if(completed)b.recycle();
+            check(false,"read actual rendered Surface completed="+completed+" PixelCopy status="+status[0]);
+        }
+        check(completed&&status[0]==android.view.PixelCopy.SUCCESS,"read actual rendered Surface");
         File dir=getTargetContext().getExternalFilesDir("s01");dir.mkdirs();try(OutputStream out=new FileOutputStream(new File(dir,"surface.png"))){b.compress(android.graphics.Bitmap.CompressFormat.PNG,100,out);}
         int bright=0,total=0;for(int y=0;y<b.getHeight();y+=8)for(int x=0;x<b.getWidth();x+=8){int color=b.getPixel(x,y);total++;if(((color>>8)&255)>65)bright++;}
         android.util.Log.i("SceneAcceptance",host.report()+" surface bright="+bright+"/"+total);
