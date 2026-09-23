@@ -12,6 +12,8 @@ import java.util.*;
 /** Uses the production startScenario/loadSlot handlers, never a demo World or test Activity. */
 public final class NativeR00Instrumentation extends SceneInstrumentation {
     private String mode;
+    @Override void capture(String name)throws Exception{super.capture(mode+"-"+name);}
+    @Override void check(boolean value,String label){super.check(value,label);android.util.Log.i("NativeR00",mode+" PASS "+label);}
     @Override public void onCreate(Bundle args){mode=args==null?null:args.getString("mode");super.onCreate(args);}
     private byte[] authority(){final byte[][] bytes={null};runOnMainSync(()->{try{bytes[0]=((GameApplication)activity.getApplication()).host().capture();}catch(IOException e){throw new RuntimeException(e);}});return bytes[0];}
     private void bind()throws Exception{host=(MapHost)field(activity,"map");world=(World)field(activity,"world");check(host!=null&&world!=null,"normal game UI/session loaded");}
@@ -24,7 +26,8 @@ public final class NativeR00Instrumentation extends SceneInstrumentation {
             android.graphics.Bitmap pixels=android.graphics.BitmapFactory.decodeFile(new File(getTargetContext().getExternalFilesDir("s01"),"surface.png").getAbsolutePath());
             Set<Integer> colors=new HashSet<>();for(int y=0;y<pixels.getHeight();y+=8)for(int x=0;x<pixels.getWidth();x+=8)colors.add(pixels.getPixel(x,y));pixels.recycle();
             check(colors.size()>64,"Surface is not ordinary colored background (not art approval)");
-            java.nio.file.Files.copy(new File(getTargetContext().getExternalFilesDir("s01"),"surface.png").toPath(),new File(getTargetContext().getExternalFilesDir("s01"),name+"-surface.png").toPath(),java.nio.file.StandardCopyOption.REPLACE_EXISTING);capture(name+"-ui");}
+            java.nio.file.Files.copy(new File(getTargetContext().getExternalFilesDir("s01"),"surface.png").toPath(),new File(getTargetContext().getExternalFilesDir("s01"),mode+"-"+name+"-surface.png").toPath(),java.nio.file.StandardCopyOption.REPLACE_EXISTING);capture(name+"-ui");
+            try(OutputStream out=new FileOutputStream(new File(getTargetContext().getExternalFilesDir("s01"),mode+"-"+name+"-scene.txt"))){out.write((host.report()+"\nscenario="+world.scenarioId+" map="+world.mapId+" revision="+world.mapRevision).getBytes(java.nio.charset.StandardCharsets.UTF_8));}}
         finally{runOnMainSync(()->spatial.resume(true));}
     }
     @Override public void onStart(){Bundle result=new Bundle();try{

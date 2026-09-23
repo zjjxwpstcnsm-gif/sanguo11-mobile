@@ -29,7 +29,8 @@ final class MapHost extends FrameLayout implements MapPresentation {
     private World visualResolved;
     private boolean safeMode;
     private static int activeNativeHosts;
-    // Latch once per process: another host must not erase interrupted-session evidence.
+    // Latch per process until an explicit successful manual retry. Creating another host
+    // must not erase evidence; a successful retry may restore 3D across Activity recreation.
     private static Boolean interruptedSession;
     private Bundle camera=new Bundle();
     private Set<Hex> targets=Collections.emptySet();
@@ -77,6 +78,11 @@ final class MapHost extends FrameLayout implements MapPresentation {
         if(!prefs.edit().putBoolean("nativeSession",true).commit()){Toast.makeText(getContext(),"无法保存 3D 启动健康标记，保留 2D",Toast.LENGTH_LONG).show();return;}
         try{
             spatial=new FilamentMapView(getContext(),listener,this::fallback);activeNativeHosts++;safeMode=false;
+            // The user explicitly retried the native renderer. Do not let the previous
+            // process's interruption veto later Activity restoration in this process.
+            // Keep nativeSession=true on disk until normal release so a new crash still
+            // starts safely in 2D; fallback() also reinstates the in-process latch.
+            if(manual)interruptedSession=false;
             removeView(flat);addView(spatial,new LayoutParams(-1,-1));
             dirty=true;publish();
             Map<String,?> saved=prefs.getAll();if(!camera.containsKey("sceneTilt")&&saved.get("tilt") instanceof Float)camera.putFloat("sceneTilt",(Float)saved.get("tilt"));if(!camera.containsKey("sceneFacing")&&saved.get("facing") instanceof Integer)camera.putInt("sceneFacing",(Integer)saved.get("facing"));

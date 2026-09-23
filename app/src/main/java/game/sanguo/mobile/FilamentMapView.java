@@ -261,6 +261,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         boolean groundChanged=snapshot==null||snapshot.ground!=next.ground;snapshot=next;
         Set<Hex> excluded=Vegetation.exclusions(next);boolean woodsChanged=groundChanged||!excluded.equals(woodExcluded);
         if(groundChanged||woodsChanged){
+            outputVerified=false;outputStatus="WAITING_MESH";uniformOutputCount=0;
             woodExcluded=excluded;int token=++generation;if(meshTask!=null)meshTask.cancel(true);
             List<SceneMesh> previous=chunks,oldWoods=woods;pending=1;
             final SceneMesh tree,farTree,upland,farUpland;
@@ -338,13 +339,13 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(outputVerified||outputProbePending||surfaceFrames<20||pending!=0||visibleChunks==0
                 ||now-lastOutputProbe<1000||!surface.getHolder().getSurface().isValid())return;
         lastOutputProbe=now;outputProbePending=true;
-        SwapChain probedSwap=swap;
+        SwapChain probedSwap=swap;int probedGeneration=generation;
         android.graphics.Bitmap sample=android.graphics.Bitmap.createBitmap(32,32,android.graphics.Bitmap.Config.ARGB_8888);
         try{
             PixelCopy.request(surface,sample,result->{
                 outputProbePending=false;
                 try{
-                    if(released||!resumed||swap!=probedSwap||pending!=0)return;
+                    if(released||!resumed||swap!=probedSwap||generation!=probedGeneration||pending!=0)return;
                     if(result!=PixelCopy.SUCCESS){outputStatus="COPY_ERROR_"+result;uniformOutputCount=0;return;}
                     int[] pixels=new int[1024];sample.getPixels(pixels,0,32,0,0,32,32);
                     int minR=255,minG=255,minB=255,maxR=0,maxG=0,maxB=0;
