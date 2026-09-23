@@ -41,7 +41,22 @@ final class MapHost extends FrameLayout implements MapPresentation {
         flat=new MapView(context,listener);flat.setGridShown(Boolean.TRUE.equals(prefs.getAll().get("gridShown")));addView(flat,new LayoutParams(-1,-1));
         // Default stays 2D. An interrupted native session is never restarted automatically.
         if(interruptedSession==null)interruptedSession=Boolean.TRUE.equals(prefs.getAll().get("nativeSession"));
-        safeMode=interruptedSession;if(safeMode)Toast.makeText(context,"上次 3D 会话未正常结束，已安全回到 2D；可在视图中手动重试",Toast.LENGTH_LONG).show();
+        safeMode=interruptedSession;if(safeMode){String reason=interruptedReason(context);prefs.edit().putString("lastExitReason",reason).apply();android.util.Log.w("MapRenderer","Previous native session: "+reason);Toast.makeText(context,"上次 3D 会话未正常结束（"+reason+"），已安全回到 2D；可手动重试",Toast.LENGTH_LONG).show();}
+    }
+    private static String interruptedReason(Context context){
+        if(android.os.Build.VERSION.SDK_INT>=30){
+            android.app.ActivityManager manager=context.getSystemService(android.app.ActivityManager.class);
+            if(manager!=null)for(android.app.ApplicationExitInfo exit:manager.getHistoricalProcessExitReasons(context.getPackageName(),0,1)){
+                switch(exit.getReason()){
+                    case android.app.ApplicationExitInfo.REASON_CRASH_NATIVE:return "native crash";
+                    case android.app.ApplicationExitInfo.REASON_CRASH:return "Java crash";
+                    case android.app.ApplicationExitInfo.REASON_USER_REQUESTED:return "user stopped process";
+                    case android.app.ApplicationExitInfo.REASON_LOW_MEMORY:return "system low memory";
+                    default:return "process death / reason="+exit.getReason();
+                }
+            }
+        }
+        return "unknown interruption"; // A health marker alone cannot identify a native crash.
     }
     private MapView.EditorStroke editorStroke;
     private boolean editorDrawing,editorGrid,editorCoords,editorPassability,editorFootprints,editorValid=true;
@@ -89,7 +104,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
             spatial.setGridShown(gridShown());spatial.restoreCamera(camera);spatial.setTargets(targets);spatial.setRoute(route);spatial.resume(resumed);spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(projection.blocked(world,editorPassability),editorGrid,editorCoords,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);
         }catch(Exception|LinkageError e){fallback(e);}
     }
-    private void fallback(Throwable e){safeMode=true;interruptedSession=true;prefs.edit().putString("lastFailure",e.getClass().getSimpleName()).putLong("lastFailureTime",System.currentTimeMillis()).commit();android.util.Log.e("MapRenderer","Filament fallback to 2D",e);leave3D();if(world!=null)flat.setWorld(world,selected,moving);flat.restoreCamera(camera);Toast.makeText(getContext(),"3D 初始化或渲染失败，已返回 2D："+e.getClass().getSimpleName(),Toast.LENGTH_LONG).show();}
+    private void fallback(Throwable e){safeMode=true;interruptedSession=true;prefs.edit().putString("lastExitReason","Java initialization/render failure").putString("lastFailure",e.getClass().getSimpleName()).putLong("lastFailureTime",System.currentTimeMillis()).commit();android.util.Log.e("MapRenderer","Filament fallback to 2D",e);leave3D();if(world!=null)flat.setWorld(world,selected,moving);flat.restoreCamera(camera);Toast.makeText(getContext(),"3D 初始化或渲染失败，已返回 2D："+e.getClass().getSimpleName(),Toast.LENGTH_LONG).show();}
     private void leave3D(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);}if(flat.getParent()==null)addView(flat,new LayoutParams(-1,-1));prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}
     void release(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}}
     void resume(boolean value){if(!value)persistCamera();resumed=value;if(spatial!=null)spatial.resume(value);}
@@ -101,7 +116,10 @@ final class MapHost extends FrameLayout implements MapPresentation {
         world=w;selected=s;this.moving=moving;revision=w.commandRevision();turn=w.turn;player=w.player;
         if(spatial==null)flat.setWorld(w,s,moving);else if(changed||dirty)publish();
     }
-    private void publish(){if(spatial==null||world==null)return;if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){if(ground==null||!ground.matches(world))ground=new MapSceneSnapshot.Ground(world);groundWorld=world;terrainRevision=world.terrainRevision;}spatial.snapshot(new MapSceneSnapshot(ground,world,selected,moving));spatial.mapLayers(projection.layers(world,ground,flat.territoryMode()),flat.territoryMode(),openingPreview,previewFaction);dirty=false;}
+    private void publish(){if(spatial==null||world==null)return;
+        android.content.Context app=getContext().getApplicationContext();
+        if(app instanceof GameApplication){var session=((GameApplication)app).host().session();if(session!=null)spatial.sceneIdentity(session.state());}
+if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){if(ground==null||!ground.matches(world))ground=new MapSceneSnapshot.Ground(world);groundWorld=world;terrainRevision=world.terrainRevision;}spatial.snapshot(new MapSceneSnapshot(ground,world,selected,moving));spatial.mapLayers(projection.layers(world,ground,flat.territoryMode()),flat.territoryMode(),openingPreview,previewFaction);dirty=false;}
     void invalidateScene(){dirty=true;flat.invalidateScene();}
     @Override public void fit(){if(spatial==null)flat.fit();else spatial.fit();}
     @Override public void focus(Hex h){if(spatial==null)flat.focus(h);else spatial.focus(h);}

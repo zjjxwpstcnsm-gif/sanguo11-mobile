@@ -17,6 +17,9 @@ text=(root/"app/src/main/java/game/sanguo/mobile/bridge/AndroidGameBridge.java")
 require("MainActivity" not in text,"JNI adapter must not call Activity business methods")
 text=(root/"app/src/main/java/game/sanguo/mobile/FilamentMapView.java").read_text()
 require(not re.search(r"\bWorld\b",text),"Filament renderer cannot accept or query World")
+for name in ['SceneWorkQueue.java']:
+    text=(root/'app/src/main/java/game/sanguo/mobile'/name).read_text()
+    require(not any(x in text for x in ['game.sanguo.core','android.','filament.','GameSession']),"CPU work queue must remain data-only: "+name)
 bootstrap=(root/"unity/Assets/Sanguo/Bootstrap/TrialEntry.cs").read_text()
 require(len(bootstrap.splitlines())<65,"bootstrap must remain composition, not state/rules/transport")
 assemblies={}
