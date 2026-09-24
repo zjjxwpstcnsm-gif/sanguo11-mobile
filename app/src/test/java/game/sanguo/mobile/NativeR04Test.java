@@ -31,6 +31,13 @@ public final class NativeR04Test {
             check(Math.abs(roadCentre[1]-.18f)<.0001,"ordinary road retains prior continuous biome identity");
             check(grass[0]>.85,"grass region identity");check(sand[2]>.98,"sand not converted into generic mud by slope");
             check(rock[3]>.85,"rock identity");check(path[1]>.70,"hard path centre remains soil");
+            SceneMesh scenery=SceneMesh.backdrop(g);
+            for(int i=0;i<scenery.vertices.length/7;i++){
+                float x=scenery.vertices[i*7],z=scenery.vertices[i*7+2];
+                float tone=.96f+.04f*(float)(Math.sin(x*.19)*Math.cos(z*.17));
+                check(Math.abs(scenery.surfaceData[i*8+7]-tone)<1e-6,"background has no separate dark cell mask");
+                check(scenery.vertices[i*7+1]<0,"scenery remains below authority and never raises VOID");
+            }
             check(before.equals(Arrays.deepToString(w.terrain)),"synthetic map unchanged");
         }
         World official=ScenarioCatalog.all().get(0);byte[] save=SaveCodec.encode(official);

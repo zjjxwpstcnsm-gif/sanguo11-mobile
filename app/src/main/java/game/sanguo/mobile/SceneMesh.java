@@ -89,17 +89,16 @@ final class SceneMesh {
         if(minX==Float.MAX_VALUE)return null;
         minX=(float)Math.floor((minX-16)/8)*8;minZ=(float)Math.floor((minZ-16)/8)*8;maxX+=16;maxZ+=16;
         Builder b=new Builder();
-        for(float z=minZ;z<maxZ;z+=8)for(float x=minX;x<maxX;x+=8){
-            int n=b.v.size()/7;b.vertex(x,-.04f,z,0xffffffff);b.vertex(x,-.04f,z+8,0xffffffff);b.vertex(x+8,-.04f,z+8,0xffffffff);b.vertex(x+8,-.04f,z,0xffffffff);
+        // Sample the shared field densely enough to avoid coarse background colour islands
+        // showing through authoritative VOID cells. This never adds playable cells.
+        final float step=2;
+        for(float z=minZ;z<maxZ;z+=step)for(float x=minX;x<maxX;x+=step){
+            int n=b.v.size()/7;b.vertex(x,-.04f,z,0xffffffff);b.vertex(x,-.04f,z+step,0xffffffff);b.vertex(x+step,-.04f,z+step,0xffffffff);b.vertex(x+step,-.04f,z,0xffffffff);
             Collections.addAll(b.i,n,n+1,n+2,n,n+2,n+3);
         }
         SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+8);m.landIndexCount=m.indices.length;
-        m.surfaceData=new float[m.vertices.length/7*8];TerrainMaterialField field=new TerrainMaterialField(g);
-        for(int i=0;i<m.vertices.length/7;i++){
-            float x=m.vertices[i*7],z=m.vertices[i*7+2];float[] w=field.sample(x,z);System.arraycopy(w,0,m.vertices,i*7+3,4);
-            int at=i*8;m.surfaceData[at]=x;m.surfaceData[at+1]=-z;m.surfaceData[at+2]=-.70710677f;m.surfaceData[at+5]=.70710677f;
-            m.surfaceData[at+6]=-8;m.surfaceData[at+7]=.86f;
-        }
+        // Identical weights, lighting frame, macro tone and shore data to the foreground.
+        new TerrainMaterialField(g).attach(m);
         return m;
     }
     /** A view request retains only visible chunks plus a prefetch margin. All levels
