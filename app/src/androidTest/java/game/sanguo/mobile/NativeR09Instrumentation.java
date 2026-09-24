@@ -78,14 +78,36 @@ public final class NativeR09Instrumentation extends SceneInstrumentation {
   command("embark official water128,79",w->w.move(unit,new Hex(128,79)));check(world.army.water(world.unit(unit).hex),"unit really in navigable water");camera(new Hex(128,79),5,0);shot("r09-embarked");
   // Real rejected attack is logged separately; no nearby hostile unit is fabricated.
   byte[] pre=SaveCodec.encode(world);World.Result[] rejection={null};runOnMainSync(()->rejection[0]=SessionProbe.command(activity,w->w.siege(unit,20015)));
-  check(!rejection[0].ok,"friendly city attack rejected");parity("rejected friendly attack");check(Arrays.equals(pre,SaveCodec.encode(world)),"rejected attack no mutation");log("successful-hostile-attack\tNOT_RUN\tno legal hostile target along this official port route");
+  check(!rejection[0].ok,"friendly city attack rejected");parity("rejected friendly attack");check(Arrays.equals(pre,SaveCodec.encode(world)),"rejected attack no mutation");log("friendly-attack-rejection\tPASS");
   command("land/garrison official Mengjin20063",w->w.enter(unit,20063));check(world.unit(unit)==null,"unit garrisoned through normal rules");shot("r09-landed-port");
+  // Continue the same official campaign. Normal attack-march meets real advancing
+  // enemies south of Hulao; no synthetic enemy, turn reset or modified force budget.
+  int officer=world.idle(world.city(20015)).get(0).id;
+  command("deploy real Hulao combat column",w->w.deploy(20015,officer,World.Weapon.SWORD,5000));
+  int army=world.units.get(world.units.size()-1).id;
+  command("normal attack-march toward Xuchang",w->w.marches.execute(w.marches.previewCity(army,20013)));
+  int enemy=-1;
+  for(int round=0;round<5&&enemy<0;round++){
+   check(world.unit(army)!=null,"real combat column survives until player attack");
+   for(World.Unit foe:world.units)if(foe.owner!=world.player){
+    World probe=SaveCodec.decode(SaveCodec.encode(world));if(probe.attack(army,foe.id).ok){enemy=foe.id;break;}
+   }
+   if(enemy>=0)break;
+   camera(world.unit(army).hex,5,0);shot("r09-attack-march-"+round);turn();
+  }
+  check(enemy>=0,"legal real hostile target reached inside sample");
+  final int foeId=enemy;Hex target=world.unit(foeId).hex;
+  check(target.q>=120&&target.q<=151&&target.r>=68&&target.r<=99,"hostile encounter inside frozen region");
+  int enemyTroops=world.unit(foeId).troops;
+  command("successful attack on real hostile unit "+foeId,w->w.attack(army,foeId));
+  check(world.unit(foeId)==null||world.unit(foeId).troops<enemyTroops,"real attack inflicts authoritative damage");
+  camera(target,5,90);shot("r09-hostile-attack");
   // Actual application store and normal load activation, using the existing save path.
   runOnMainSync(()->invoke("save",new Class<?>[]{String.class,boolean.class},"manual",false));
   try(InputStream in=getTargetContext().openFileInput("manual.sg11")){check(Arrays.equals(SaveCodec.encode(SaveCodec.read(in)),SaveCodec.encode(world)),"actual manual save bytes");}
   runOnMainSync(()->invoke("loadSlot",new Class<?>[]{String.class},"manual"));parity("load actual manual save");camera(new Hex(129,79),5,90);shot("r09-loaded");
   try(FileOutputStream out=new FileOutputStream(new File(dir,"r09-final.sg11"))){out.write(SaveCodec.encode(world));}
   log("save-load-complete");
-  result.putString("stream","PASS R09 "+checks+" installed checks; successful hostile attack/PC/ARM64 acceptance incomplete\n");finish(Activity.RESULT_OK,result);
+  result.putString("stream","PASS R09 "+checks+" installed checks; official commands/attack/save parity; PC/ARM64 acceptance incomplete\n");finish(Activity.RESULT_OK,result);
  }catch(Throwable e){try{capture("r09-failure");}catch(Throwable ignored){}result.putString("stream","FAIL R09 "+android.util.Log.getStackTraceString(e));finish(Activity.RESULT_CANCELED,result);}}
 }
