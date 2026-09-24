@@ -1,0 +1,169 @@
+name: R12 exact evidence packaging
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-r12-evidence.yml']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  startup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read completed same-source startup artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh run download 36047504121 --name native-r00-runtime-evidence --dir /tmp/startup
+      - name: Package inspection files without duplicate binaries or video
+        run: |
+          mkdir -p out
+          python3 - <<'PYCODE'
+          import zipfile
+          from pathlib import Path
+          with zipfile.ZipFile('out/startup-inspection.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in Path('/tmp/startup').rglob('*'):
+                  if p.is_file() and p.suffix.lower() in ['.png','.txt','.json','.log','.tsv','.csv'] and p.stat().st_size<15000000:
+                      z.write(p,p.relative_to('/tmp/startup'))
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r12-startup-inspection
+          path: out/startup-inspection.zip
+          retention-days: 14
+  runtime:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - name: Wait for exact R12 runtime artifact and download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 90); do
+            found=$(gh api repos/$GITHUB_REPOSITORY/actions/runs/36047497184/artifacts --jq '[.artifacts[] | select(.name=="native-r12-evidence")] | length')
+            if test "$found" -gt 0; then break; fi
+            sleep 30
+          done
+          gh run download 36047497184 --name native-r12-evidence --dir /tmp/runtime
+      - name: Preserve all raw evidence in bounded transfer parts
+        run: |
+          mkdir -p out
+          python3 - <<'PYCODE'
+          import zipfile,hashlib,json
+          from pathlib import Path
+          root=Path('/tmp/runtime');source=(root/'SOURCE_COMMIT').read_text().strip()
+          assert source=='a57d3f2e13cbaa9a4da3dca781b4f6ae7de103ec',source
+          target=Path('/tmp/r12-evidence.zip')
+          with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED) as z:
+              for p in root.rglob('*'):
+                  if p.is_file() and p.suffix!='.apk': z.write(p,p.relative_to(root))
+          payload=target.read_bytes();step=24*1024*1024
+          assert len(payload)<=step*16,'evidence exceeds declared part budget'
+          parts=[]
+          for i,offset in enumerate(range(0,len(payload),step)):
+              p=Path(f'out/part-{i:02}.bin');p.write_bytes(payload[offset:offset+step]);parts.append({'name':p.name,'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size})
+          Path('out/parts.json').write_text(json.dumps({'source':source,'sha256':hashlib.sha256(payload).hexdigest(),'bytes':len(payload),'parts':parts},indent=2))
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: r12-evidence-parts-manifest
+          path: out/parts.json
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-00.bin') != ''
+        with:
+          name: r12-evidence-part-00
+          path: out/part-00.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-01.bin') != ''
+        with:
+          name: r12-evidence-part-01
+          path: out/part-01.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-02.bin') != ''
+        with:
+          name: r12-evidence-part-02
+          path: out/part-02.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-03.bin') != ''
+        with:
+          name: r12-evidence-part-03
+          path: out/part-03.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-04.bin') != ''
+        with:
+          name: r12-evidence-part-04
+          path: out/part-04.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-05.bin') != ''
+        with:
+          name: r12-evidence-part-05
+          path: out/part-05.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-06.bin') != ''
+        with:
+          name: r12-evidence-part-06
+          path: out/part-06.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-07.bin') != ''
+        with:
+          name: r12-evidence-part-07
+          path: out/part-07.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-08.bin') != ''
+        with:
+          name: r12-evidence-part-08
+          path: out/part-08.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-09.bin') != ''
+        with:
+          name: r12-evidence-part-09
+          path: out/part-09.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-10.bin') != ''
+        with:
+          name: r12-evidence-part-10
+          path: out/part-10.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-11.bin') != ''
+        with:
+          name: r12-evidence-part-11
+          path: out/part-11.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-12.bin') != ''
+        with:
+          name: r12-evidence-part-12
+          path: out/part-12.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-13.bin') != ''
+        with:
+          name: r12-evidence-part-13
+          path: out/part-13.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-14.bin') != ''
+        with:
+          name: r12-evidence-part-14
+          path: out/part-14.bin
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: hashFiles('out/part-15.bin') != ''
+        with:
+          name: r12-evidence-part-15
+          path: out/part-15.bin
+          retention-days: 14
