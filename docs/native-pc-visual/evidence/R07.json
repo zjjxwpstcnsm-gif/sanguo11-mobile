@@ -1,0 +1,11 @@
+{
+  "stage": "R07",
+  "status": "PARTIAL",
+  "base": "50bb8833230b63a67cf86ab421cdcad804afccad",
+  "backend": "Filament 1.56.0 OPENGL",
+  "host": "PASS",
+  "android": "PENDING",
+  "physical": "NOT_RUN",
+  "pcComparison": "REFERENCE_MISSING",
+  "art": "TRANSITIONAL_ART"
+}

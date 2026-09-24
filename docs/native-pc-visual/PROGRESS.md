@@ -65,3 +65,8 @@ R06: PARTIAL, current execution. Strict GLB/PNG/rig subset, bounded asynchronous
 object decode and owner upload, shared GPU references, deterministic production
 asset pipeline and gate/tree/catapult sample improvements. Host/Khronos PASS;
 exact-source Android build/runtime pending. No R07 or main merge.
+
+R07: PARTIAL. Regional city/port/gate production GLBs and facility joinery improved;
+terrain-derived region and diagonal gate approach, live catalog/enum coverage.
+See reports/R07.md. R06 CI35950156358 now SUCCESS; its prior pending text is historical.
+R07 exact-source build/runtime pending; do not merge main or begin R08.

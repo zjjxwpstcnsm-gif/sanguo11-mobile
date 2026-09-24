@@ -52,47 +52,106 @@ class Mesh:
   if lod==0:
    n=max(1,int(max(w,d)/.14))
    for k in range(n):self.box(x+(k*w/n if w>d else 0),.27,z+(k*d/n if d>=w else 0),min(w,.075),.065,min(d,.075))
+ def curved_roof(self,x,z,w,d,y,h,lod):
+  # Three hip rings: raised eave tips, concave slope and shortened ridge.
+  rings=[(w*.5,d*.5,y+.035),(w*.36,d*.34,y+h*.25),(w*.23,0,y+h)]
+  if lod==2:rings=[rings[0],rings[-1]]
+  for (rx,rz,yy),(tx,tz,Y) in zip(rings,rings[1:]):
+   lower=[(x-rx,yy,z-rz),(x+rx,yy,z-rz),(x+rx,yy,z+rz),(x-rx,yy,z+rz)]
+   upper=[(x-tx,Y,z-tz),(x+tx,Y,z-tz),(x+tx,Y,z+tz),(x-tx,Y,z+tz)]
+   for i in range(4):
+    j=(i+1)%4
+    self.face([lower[i],lower[j],upper[j]] if upper[i]==upper[j] else [lower[i],lower[j],upper[j],upper[i]],1)
+  self.box(x-w*.26,y+h,z-.017,w*.52,.026,.034,1)
+ def pavilion(self,x,z,w,d,h,lod,base=.045):
+  self.box(x-w*.54,base-.045,z-d*.54,w*1.08,.06,d*1.08)
+  self.box(x-w/2,base,z-d/2,w,h,d,2)
+  self.curved_roof(x,z,w*1.22,d*1.27,base+h,h*.40,lod)
+  if lod<2:
+   front=z+d/2+.002
+   self.face([(x-w*.13,base,front),(x+w*.13,base,front),(x+w*.13,base+h*.72,front),(x-w*.13,base+h*.72,front)],2,.35)
+   for xx in [x-w*.40,x+w*.40]:self.box(xx-.009,base,front,.018,h,.024,2)
+   for side in [-1,1]:
+    xx=x+side*w*.30
+    self.face([(xx-w*.065,base+h*.35,front),(xx+w*.065,base+h*.35,front),(xx+w*.065,base+h*.68,front),(xx-w*.065,base+h*.68,front)],2,.36)
+   if lod==0:
+    for k in range(3):self.box(x-w*.19,base-.045+k*.015,z+d*.54+(2-k)*.025,w*.38,.015,.025)
+ def segment(self,a,b,lod):
+  # Wall follows a chamfered perimeter; a battered foot embeds into the flat city pad.
+  dx,dz=b[0]-a[0],b[1]-a[1];length=math.hypot(dx,dz);ux,uz=dx/length,dz/length
+  nx,nz=-uz,ux
+  def point(t,n,y):return(a[0]+ux*t+nx*n,y,a[1]+uz*t+nz*n)
+  for sign in [-1,1]:self.face([point(0,sign*.065,-.035),point(length,sign*.065,-.035),point(length,sign*.045,.27),point(0,sign*.045,.27)])
+  self.face([point(0,-.045,.27),point(length,-.045,.27),point(length,.045,.27),point(0,.045,.27)])
+  for t in [0,length]:self.face([point(t,-.065,-.035),point(t,.065,-.035),point(t,.045,.27),point(t,-.045,.27)])
+  if lod==0:
+   n=max(1,int(length/.14))
+   for k in range(n):
+    t=(k+.5)*length/n;pts=[point(t+u,v,y) for y in [.27,.33] for u,v in [(-.035,-.048),(.035,-.048),(.035,.048),(-.035,.048)]]
+    self.face(pts[4:]);
+    for i in range(4):self.face([pts[i],pts[(i+1)%4],pts[(i+1)%4+4],pts[i+4]])
  def build(self,kind,lod):
   if kind.startswith('city'):
-   v=int(kind[-1]);w=2.12 if v!=1 else 1.96;d=1.65 if v!=2 else 1.5
-   # Courtyard is the continuous ground material, not an opaque rectangular plinth.
-   self.wall(-w/2,-d/2,w,.10,lod);self.wall(-w/2,-d/2,.10,d,lod);self.wall(w/2-.10,-d/2,.10,d,lod)
-   self.wall(-w/2,d/2-.10,w/2-.16,.10,lod);self.wall(.16,d/2-.10,w/2-.16,.10,lod)
-   self.box(-.2,.25,d/2-.13,.4,.12,.16);self.roof(0,d/2-.04,.5,.32,.4,.12)
-   if lod<2:
-    for x in [-w/2+.07,w/2-.07]:
-     for z in [-d/2+.07,d/2-.07]:self.hall(x,z,.21,.21,.38,lod)
-    self.hall(0,-.28,.65 if v!=1 else .42,.44,.5 if v==0 else .38,lod)
-    if v==0:self.roof(0,-.28,.53,.4,.72,.15)
-    if v==1:
-     self.hall(-.56,-.1,.31,.38,.28,lod);self.hall(.56,-.1,.31,.38,.28,lod)
-    if v==2:self.wall(-.85,-.13,1.7,.065,lod)
-    if lod==0:
-     for x in [-.64,-.33,.33,.64]:self.hall(x,.34,.20,.26,.18,lod)
-     if v==0:self.hall(-.65,-.45,.23,.22,.22,lod);self.hall(.65,-.45,.23,.22,.22,lod)
-   else:self.roof(0,-.25,.75,.5,.35,.22)
-  elif kind=='port':
-   self.box(-.37,0,-.38,.74,.06,.58)
-   self.hall(0,-.18,.46,.29,.26,lod)
-   self.box(-.12,.015,.12,.24,.05,.75,2)
-   self.box(-.38,.015,.69,.76,.05,.16,2)
-   if lod<2:
-    for x in [-.3,.3]:
-     for z in [.3,.75]:self.box(x,-.08,z,.05,.2,.05,2)
-    if lod==0:
-     self.box(.2,.07,-.2,.12,.12,.12,2);self.box(.23,.02,.42,.15,.055,.3,2)
-  else:
-   for x in [-.48,.18]:self.wall(x,-.16,.30,.32,lod)
-   self.box(-.2,.3,-.16,.4,.18,.32)
-   if lod<2:self.roof(0,0,.65,.5,.5,.18)
+   v=int(kind[-1]);w=[1.04,.96,.90][v];d=[.78,.78,.71][v];cut=.20 if v!=2 else .32
+   perimeter=[(-w+cut,-d),(w-cut,-d),(w,-d+cut),(w,d-cut),(w-cut,d),(-w+cut,d),(-w,d-cut),(-w,-d+cut)]
+   for i,a in enumerate(perimeter):
+    b=perimeter[(i+1)%8]
+    # Four open axial streets rather than an opaque front door or collision proxy.
+    if i%2==0:
+     mx,mz=(a[0]+b[0])/2,(a[1]+b[1])/2;dx,dz=b[0]-a[0],b[1]-a[1];ln=math.hypot(dx,dz);ux,uz=dx/ln,dz/ln
+     self.segment(a,(mx-ux*.13,mz-uz*.13),lod);self.segment((mx+ux*.13,mz+uz*.13),b,lod)
+     first=len(self.p);self.pavilion(0,0,.33,.18,.15,lod,.29)
+     angle=math.atan2(uz,ux);c,s=math.cos(angle),math.sin(angle)
+     self.p[first:]=[(mx+c*x-s*z,y,mz+s*x+c*z) for x,y,z in self.p[first:]]
+    else:self.segment(a,b,lod)
+   # Common height and readable towers persist at all LODs.
+   for x,z in [(-w+cut/2,-d+cut/2),(w-cut/2,-d+cut/2),(-w+cut/2,d-cut/2),(w-cut/2,d-cut/2)]:
+    self.pavilion(x,z,.21,.21,.30,lod)
+   if v==0: # Broad central hall and axial courtyards of the plains.
+    self.pavilion(0,-.28,.62,.38,.43,lod)
+    self.curved_roof(0,-.28,.50,.34,.63,.13,lod)
+    houses=[(-.58,-.27,.24,.30),(.58,-.27,.24,.30),(-.57,.27,.27,.21),(.57,.27,.27,.21)]
+   elif v==1: # Low waterside lanes and paired long warehouses.
+    self.pavilion(-.34,-.29,.30,.44,.28,lod);self.pavilion(.34,-.29,.30,.44,.28,lod)
+    houses=[(-.55,.23,.24,.32),(.55,.23,.24,.32),(-.19,.31,.22,.20),(.19,.31,.22,.20)]
+   else: # Compact basin settlement, stepped inner citadel, tall watch hall.
+    self.box(-.40,-.025,-.57,.80,.12,.47)
+    self.pavilion(0,-.32,.48,.34,.49,lod,.095)
+    self.curved_roof(0,-.32,.39,.30,.70,.14,lod)
+    houses=[(-.50,.02,.23,.25),(.50,.02,.23,.25),(-.38,.35,.25,.20),(.38,.35,.25,.20)]
+   for x,z,ww,dd in houses:self.pavilion(x,z,ww,dd,.16 if v==1 else .20,lod)
    if lod==0:
-    for x in [-.42,.34]:self.box(x,.3,-.13,.08,.1,.26)
-    # R06 open arch surround: stepped voussoirs, inset timber lintel and twin roof tiers.
+    for x in [-.27,.27]:self.pavilion(x,.10,.17,.15,.13,lod)
+  elif kind=='port':
+   # +Z is navigable water. Buildings remain behind shore, piles meet the water.
+   self.box(-.37,-.055,-.38,.74,.11,.47)
+   self.pavilion(-.08,-.19,.43,.27,.25,lod)
+   self.box(-.10,.005,.08,.20,.055,.74,2)
+   self.box(-.36,.005,.65,.72,.055,.13,2)
+   if lod<2:
+    for x in [-.32,.29]:
+     for z in [.66,.75]:self.box(x,-.13,z,.035,.23,.035,2)
+    for z in [.22,.44,.78]:
+     for x in [-.085,.055]:self.box(x,-.13,z,.03,.23,.03,2)
+    if lod==0:
+     for z in [.12,.20,.28,.36,.44,.52,.60,.68,.76]:self.box(-.102,.061,z,.204,.008,.012,2)
+     self.pavilion(.23,-.18,.19,.22,.16,lod)
+     # Timber hoist and diagonal brace, away from the central landing path.
+     self.box(-.31,.055,.51,.026,.34,.026,2);self.box(-.31,.365,.51,.20,.025,.025,2)
+     self.face([(-.31,.24,.51),(-.18,.365,.51),(-.21,.365,.51),(-.31,.28,.51)],2)
+  else:
+   for x in [-.46,.17]:self.wall(x,-.16,.29,.32,lod)
+   # Battered ends visually join terrain without extending into adjacent cell centres.
+   for side in [-1,1]:
+    self.face([(side*.48,-.04,-.18),(side*.48,-.04,.18),(side*.42,.27,.14),(side*.42,.27,-.14)])
+   self.box(-.18,.30,-.16,.36,.15,.32)
+   self.curved_roof(0,0,.63,.46,.45,.17,lod)
+   if lod<2:self.curved_roof(0,0,.50,.36,.61,.12,lod)
+   if lod==0:
     for side in [-1,1]:
-     for step in range(3):self.box(side*(.19-step*.022)-.018,.19+step*.04,.165,.036,.04,.035,0)
-    self.box(-.18,.31,.165,.36,.035,.04,2)
-    self.roof(0,0,.54,.42,.62,.14)
-    for x in [-.29,.27]:self.box(x,.39,.18,.022,.13,.022,2)
+     for step in range(4):self.box(side*(.175-step*.020)-.016,.17+step*.035,.163,.032,.035,.035)
+     self.box(side*.25-.012,.33,.17,.024,.15,.024,2)
+    self.box(-.14,.31,.164,.28,.025,.035,2)
   return self
  def write(self,name):
   arrays=[(self.p,'f',5126,'VEC3'),(self.c,'f',5126,'VEC4'),(self.uv,'f',5126,'VEC2'),(self.idx,'I',5125,'SCALAR')]

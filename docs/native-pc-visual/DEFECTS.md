@@ -78,3 +78,8 @@
 
 | R06-INIT | implementation limit | PARTIAL | Geometry decode off owner; small rigid JSON/atlas initialization remains owner-thread. Texture streaming not claimed. |
 | R06-ART | validation gap | PARTIAL | Gate/tree/catapult samples replace production resources; whole-map final art, matching PC views and ARM64 remain unaccepted. |
+
+| R07-ART | art validation gap | PARTIAL | All site/facility IDs in R07 mappings explicitly transitional; low-resolution shared atlas reused, matching PC comparison missing. |
+| R07-CONTACT | implementation gap | PARTIAL | City pad/embedded walls and port piles retained; arbitrary custom slope and explicit port rotations not fully conformed; actual multi-angle review required. |
+| R07-DEVICE | environment | BLOCKED | Physical ARM64 Adreno/Mali, thermal and handset performance NOT_RUN. |
+| R07-REGION | new, fixed in candidate | PASS | Initial one-ring terrain region missed water-city family; existing five-family assertion retained; three rings passes. |

@@ -29,6 +29,9 @@ class Mesh(Base):
   n=len(self.p);self.p.extend(points);self.c.extend([(shade if shade<.5 else 1,)*3+(1,)]*len(points))
   self.uv.extend([((mat+u*.94+.03)/8,v*.94+.03) for u,v in [(0,0),(1,0),(1,1),(0,1)][:len(points)]])
   for i in range(1,len(points)-1):self.idx.extend([n,n+i+1,n+i])
+ def roof(self,x,z,w,d,y,h):
+  if hasattr(self,'facility_lod'):self.curved_roof(x,z,w,d,y,h,self.facility_lod)
+  else:super().roof(x,z,w,d,y,h)
  def hall(self,x,z,w,d,h,lod):
   super().hall(x,z,w,d,h,lod)
   self.box(x-w*.53,.01,z-d*.52,w*1.06,.055,d*1.04,0)
@@ -107,6 +110,7 @@ class Mesh(Base):
   else:
    for x in [-.07,.06]:self.frustum(x,.14,0,.065,.09,.18,.85,3)
  def facility(self,kind,level,lod):
+  self.facility_lod=lod
   if kind=='FARM':
    self.box(-.43,0,-.4,.86,.025,.8,7)
    for i in range(3+level):
@@ -190,6 +194,34 @@ class Mesh(Base):
    elif kind=='MINT':
     for x in [-.22,.1]:self.frustum(x,.02,.24,.09,.09,.06,1,4)
    elif kind=='WORKSHOP':self.engine('CATAPULT',lod)
+  # Structural joinery and type-specific working equipment; never changes collision.
+  if lod<2:
+   if kind in ['ARROW_TOWER','CROSSBOW_TOWER','CATAPULT_TOWER']:
+    for side in [-1,1]:
+     self.beam((side*.17,.10,-.16),(side*.17,.47,.16),.023)
+     self.beam((side*.17,.10,.16),(side*.17,.47,-.16),.023)
+    for y in [.12,.21,.30,.39,.48]:self.box(-.08,y,-.25,.16,.018,.024,2)
+   elif kind in ['CAMP','FORT','FORTRESS']:
+    self.beam((-.11,0,.30),(-.11,.32,.30),.027);self.beam((.11,0,.30),(.11,.32,.30),.027)
+    self.beam((-.13,.32,.30),(.13,.32,.30),.027)
+   elif kind in ['FARM','MARKET','BLACK_MARKET','BARRACKS','SMITH','MINT','GRANARY','STABLE','WORKSHOP','SHIPYARD','BRONZE_TERRACE']:
+    if kind=='FARM':
+     # Open ditch edges and a small irrigation wheel, leaving crop lanes legible.
+     for x in [-.43,.40]:self.box(x,.025,-.36,.025,.025,.70,0)
+     if lod==0:self.wheel(-.36,.10,.28,.085,2,lod)
+    elif kind in ['MARKET','BLACK_MARKET']:
+     self.frustum(.05,.01,-.30,.055,.055,.12,.75,2,8)
+    elif kind=='STABLE':
+     self.box(.12,.01,.34,.24,.075,.045,2)
+    elif kind=='SMITH':
+     self.beam((-.23,.12,.22),(-.05,.12,.22),.055,4)
+    else:
+     self.frustum(-.32,.005,.26,.052,.052,.10,.85,2,8)
+   elif kind in ['MUSIC','DRUM','STONE_MAZE','EARTH_WALL','STONE_WALL','DAM']:
+    for i in range(3):self.box(-.14,.005+i*.025,.24-i*.025,.28,.025,.05,0)
+   elif kind.endswith('SEED') or kind.endswith('BALL') or kind=='FIRE_SHIP':
+    # Lashings keep the explosive bundle readable at mid distance.
+    self.beam((-.13,.10,-.08),(.13,.10,.08),.014,3)
   return self
 
 report=[]
