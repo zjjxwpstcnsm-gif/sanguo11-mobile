@@ -18,6 +18,22 @@ public final class MapEditSession {
     private Set<Hex> protectedCells;
     private record Change(String label,Map<Integer,MapPatch.Cell> before,Map<Integer,MapPatch.Cell> after,MapPatch oldMetadata,MapPatch newMetadata,long bytes){}
     public MapEditSession(MapPatch initial)throws IOException {patch=MapPatch.decode(initial.encode());world=CustomMaps.preview(patch,patch.preview);savedFingerprint=patch.fingerprint();rebuildProtection();}
+    @FunctionalInterface public interface DraftWriter { void write(MapPatch value)throws IOException; }
+    /** Publish an edit and its history only if durable draft storage succeeds. The editor
+     * holds this monitor throughout; renderers keep their preceding immutable projection. */
+    public synchronized <T> T persist(java.util.concurrent.Callable<T> edit,DraftWriter writer)throws Exception {
+        MapPatch previous=patch;World previousWorld=world;
+        ArrayDeque<Change> oldUndo=new ArrayDeque<>(undo),oldRedo=new ArrayDeque<>(redo);
+        long oldBytes=historyBytes,oldGeneration=generation;String oldSaved=savedFingerprint;
+        try {
+            T result=edit.call();MapPatch next=patch.copy();writer.write(next);
+            savedFingerprint=next.fingerprint();return result;
+        } catch(Exception failure) {
+            patch=previous;world=previousWorld;undo.clear();undo.addAll(oldUndo);redo.clear();redo.addAll(oldRedo);
+            historyBytes=oldBytes;generation=oldGeneration;savedFingerprint=oldSaved;rebuildProtection();
+            throw failure;
+        }
+    }
     public synchronized MapPatch patch(){return patch.copy();}
     public synchronized World world(){return world;}
     public synchronized long generation(){return generation;}

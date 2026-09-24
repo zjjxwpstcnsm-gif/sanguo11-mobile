@@ -8,9 +8,9 @@ import java.util.*;
 final class MapSceneSnapshot {
     static final class Ground {
         final Set<Hex> bases; final TerrainSurface surface;
-        final int width,height,mapSeed,mapIdentity; final float minX,minZ,maxX,maxZ; final byte[] terrain; final GridWorldTransform grid;
+        final int width,height,mapSeed,mapIdentity,sourceMapWidth,sourceOriginX,sourceOriginY; final float minX,minZ,maxX,maxZ; final byte[] terrain; final GridWorldTransform grid;
         Ground(World w) {
-            width=w.width;height=w.height;mapIdentity=w.mapId.hashCode();mapSeed=31*w.mapId.hashCode()+w.mapRevision;grid=new GridWorldTransform(w.sourceMapWidth>0?(w.height-1)/2:0,w.columnStaggered);
+            width=w.width;height=w.height;sourceMapWidth=w.sourceMapWidth;sourceOriginX=w.sourceOriginX;sourceOriginY=w.sourceOriginY;mapIdentity=w.mapId.hashCode();mapSeed=31*w.mapId.hashCode()+w.mapRevision;grid=new GridWorldTransform(w.sourceMapWidth>0?(w.height-1)/2:0,w.columnStaggered);
             Set<Hex> flat=new HashSet<>();for(World.City c:w.cities)flat.addAll(SiteFootprint.cells(c));bases=Collections.unmodifiableSet(flat);
             terrain=new byte[width*height];
             float loX=Float.MAX_VALUE,loZ=loX,hiX=-loX,hiZ=-loX;
@@ -26,7 +26,12 @@ final class MapSceneSnapshot {
             if(w.visualMap!=null)for(var e:w.visualMap.heights.entrySet())heights.put(MapCoordinates.fromNationalSource(w,new SourceGridCoord(e.getKey()/200,e.getKey()%200)),e.getValue()/1000f);
             surface=new TerrainSurface(this,heights);
         }
+        SourceGridCoord source(Hex h){
+            SourceGridCoord local=grid.staggered?MapCoordinates.sourceColumn(h,sourceMapWidth):sourceMapWidth>0?MapCoordinates.sourceCoord(h,height):new SourceGridCoord(h.q,h.r);
+            return new SourceGridCoord(local.x+sourceOriginX,local.y+sourceOriginY);
+        }
         boolean matches(World w){
+            if(sourceMapWidth!=w.sourceMapWidth||sourceOriginX!=w.sourceOriginX||sourceOriginY!=w.sourceOriginY)return false;
             Map<Hex,Float> expected=new HashMap<>();if(w.visualMap!=null)for(var e:w.visualMap.heights.entrySet())expected.put(MapCoordinates.fromNationalSource(w,new SourceGridCoord(e.getKey()/200,e.getKey()%200)),e.getValue()/1000f);if(!surface.overrides.equals(expected))return false;
             Set<Hex> flat=new HashSet<>();for(World.City c:w.cities)flat.addAll(SiteFootprint.cells(c));if(!flat.equals(bases))return false;
             if(mapSeed!=31*w.mapId.hashCode()+w.mapRevision||width!=w.width||height!=w.height||grid.staggered!=w.columnStaggered||grid.offset!=(w.sourceMapWidth>0?(w.height-1)/2:0))return false;

@@ -1165,7 +1165,8 @@ public final class MainActivity extends Activity {
     private AtomicFile file(String slot){return gameHost.store().file(slot);}
     private boolean save(String slot,boolean announce){
         if(world==null||unreadableAutosave)return false;
-        try{byte[] bytes=gameHost.capture();new MapLibrary(this).rememberVisual(world);gameHost.store().write(slot,bytes);if(announce)Toast.makeText(this,"局面已保存",Toast.LENGTH_SHORT).show();return true;}
+        try{byte[] bytes=gameHost.capture();gameHost.store().write(slot,bytes);
+            try{new MapLibrary(this).rememberVisual(world);}catch(IOException styleFailure){android.util.Log.w("MapRenderer","Campaign saved; optional visual sidecar unavailable",styleFailure);if(announce)Toast.makeText(this,"局面已保存；视觉设置未保存，将使用默认外观",Toast.LENGTH_LONG).show();return true;}if(announce)Toast.makeText(this,"局面已保存",Toast.LENGTH_SHORT).show();return true;}
         catch(IOException e){Toast.makeText(this,"保存失败，请检查设备存储空间后重试",Toast.LENGTH_LONG).show();return false;}
     }
     private World readSave(AtomicFile file)throws IOException {try(FileInputStream in=file.openRead()){return SessionSaves.readPrepared(in);}}
