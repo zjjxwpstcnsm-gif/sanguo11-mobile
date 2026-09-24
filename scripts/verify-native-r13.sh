@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 mkdir -p out/r13
+legacy_status=0
+bash scripts/verify-map-editor67-android.sh || legacy_status=$?
+printf '%s\n' "$legacy_status" > out/r13/legacy-editor-exit.txt
+adb shell pm clear game.sanguo.mobile.dev
 collect(){
  adb shell pkill -INT screenrecord || true
  if [ -n "${record_job:-}" ]; then kill "$record_job" 2>/dev/null || true; fi
@@ -25,3 +29,5 @@ adb logcat -c
 record_job=$!
 timeout 2200 adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.NativeR13Instrumentation > out/r13/interaction.txt
 grep -q 'PASS R13' out/r13/interaction.txt
+
+test "$legacy_status" = 0

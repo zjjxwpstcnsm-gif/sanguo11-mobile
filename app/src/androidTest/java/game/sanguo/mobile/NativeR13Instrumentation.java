@@ -16,12 +16,13 @@ import java.util.concurrent.Callable;
 public final class NativeR13Instrumentation extends SceneInstrumentation {
     private MapEditorActivity editor;private File dir;
     interface Ui {void run()throws Exception;}
+    static void writeText(Path path,String text)throws IOException{Files.write(path,text.getBytes(java.nio.charset.StandardCharsets.UTF_8));}
     void ui(Ui r){runOnMainSync(()->{try{r.run();}catch(Exception e){throw new RuntimeException(e);}});}
     MapEditSession session()throws Exception{return (MapEditSession)field(editor,"session");}
     void call(Object target,String name,Class<?>[] types,Object... args)throws Exception{Method m=target.getClass().getDeclaredMethod(name,types);m.setAccessible(true);m.invoke(target,args);}
     void editorReady()throws Exception{long end=SystemClock.uptimeMillis()+120000;while(SystemClock.uptimeMillis()<end){boolean[] done={false};ui(()->done[0]=field(editor,"session")!=null&&!(Boolean)field(editor,"busy"));if(done[0])return;settle();}throw new AssertionError("editor transaction timeout");}
     void edit(String name,Callable<?> action)throws Exception{ui(()->call(editor,"change",new Class<?>[]{String.class,Callable.class},name,action));editorReady();check(!session().dirty(),"durable "+name);}
-    void shot(String name)throws Exception{ready();surfaceCapture();capture(name+"-ui");Files.copy(new File(dir,"surface.png").toPath(),new File(dir,name+"-surface.png").toPath(),StandardCopyOption.REPLACE_EXISTING);Files.writeString(new File(dir,name+".txt").toPath(),BuildConfig.SOURCE_REVISION+"\n"+host.report());}
+    void shot(String name)throws Exception{ready();surfaceCapture();capture(name+"-ui");Files.copy(new File(dir,"surface.png").toPath(),new File(dir,name+"-surface.png").toPath(),StandardCopyOption.REPLACE_EXISTING);writeText(new File(dir,name+".txt").toPath(),BuildConfig.SOURCE_REVISION+"\n"+host.report());}
     void tap(FilamentMapView view,Hex h)throws Exception{float x=view.camera.screenX(viewSnapshot(view).ground.grid.x(h),viewSnapshot(view).ground.grid.z(h)),y=view.camera.screenY(viewSnapshot(view).ground.grid.x(h),viewSnapshot(view).ground.grid.z(h),viewSnapshot(view).ground.surface.at(h));ui(()->{long now=SystemClock.uptimeMillis();MotionEvent d=MotionEvent.obtain(now,now,0,x,y,0),u=MotionEvent.obtain(now,now+80,1,x,y,0);view.dispatchTouchEvent(d);view.dispatchTouchEvent(u);d.recycle();u.recycle();});}
     MapSceneSnapshot viewSnapshot(FilamentMapView v)throws Exception{return (MapSceneSnapshot)field(v,"snapshot");}
     @Override public void onStart(){Bundle result=new Bundle();try{
@@ -45,7 +46,7 @@ public final class NativeR13Instrumentation extends SceneInstrumentation {
         check(Arrays.equals(persisted,library.draft().encode()),"close editor keeps exact draft");
         // Corrupt optional style: fall back to the validated pinned revision, never alter save bytes.
         World pinned=CustomMaps.load(published,published.preview,0,17L);library.rememberVisual(pinned);
-        File sidecar=new File(getTargetContext().getFilesDir(),"custom-maps-v1/visual-"+pinned.customMapFingerprint+".json");Files.writeString(sidecar.toPath(),"broken visual JSON");
+        File sidecar=new File(getTargetContext().getFilesDir(),"custom-maps-v1/visual-"+pinned.customMapFingerprint+".json");writeText(sidecar.toPath(),"broken visual JSON");
         byte[] pinnedSave=SaveCodec.encode(pinned);check(library.visual(pinned)!=null,"damaged sidecar falls back to pinned map");check(Arrays.equals(pinnedSave,SaveCodec.encode(pinned)),"style recovery preserves save");
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();host=(MapHost)field(activity,"map");
         ui(()->invoke("startScenario",new Class<?>[]{String.class,int.class,MapPatch.class},published.preview,0,published));
@@ -53,5 +54,5 @@ public final class NativeR13Instrumentation extends SceneInstrumentation {
         check(world!=null&&world.customMapId.equals(published.id),"normal startScenario installs published custom map");ui(()->{host.switchMode(true);host.focus(world.home().hex);invoke("closePanel",new Class<?>[0]);});shot("r13-custom-campaign");
         commandFlow();shot("r13-custom-after-turn-load");
         result.putString("stream","PASS R13 installed checks="+checks+"; procedural custom fixture; physical/manual/PC art NOT_RUN\n");finish(Activity.RESULT_OK,result);
-    }catch(Throwable e){try{Files.writeString(new File(dir,"r13-failure.txt").toPath(),android.util.Log.getStackTraceString(e));}catch(Exception ignored){}result.putString("stream","FAIL R13 "+android.util.Log.getStackTraceString(e));finish(Activity.RESULT_CANCELED,result);}}
+    }catch(Throwable e){try{writeText(new File(dir,"r13-failure.txt").toPath(),android.util.Log.getStackTraceString(e));}catch(Exception ignored){}result.putString("stream","FAIL R13 "+android.util.Log.getStackTraceString(e));finish(Activity.RESULT_CANCELED,result);}}
 }

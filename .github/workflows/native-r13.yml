@@ -1,5 +1,5 @@
-name: Native R13 interaction and overview
-# R13 target-selection and shared attack preview follow-up
+name: Native R13 editor and custom save integration
+# Exact-source editor, graphics and custom-campaign delivery
 on:
   push:
     branches: [agent/native-pc-visual]
@@ -79,10 +79,7 @@ jobs:
           heap-size: 512M
           disable-animations: false
           emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
-          script: |
-            bash scripts/verify-map-editor67-android.sh
-            adb shell pm clear game.sanguo.mobile.dev
-            bash scripts/verify-native-r13.sh
+          script: bash scripts/verify-native-r13.sh
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -106,9 +103,10 @@ jobs:
           with zipfile.ZipFile('out/r13-evidence.zip','w',zipfile.ZIP_DEFLATED) as z:
               for p in root.rglob('*'):
                   if p.is_file() and p.suffix!='.apk': z.write(p,p.relative_to(root))
+              for p in Path('out/editor67').rglob('*'):
+                  if p.is_file(): z.write(p,Path('editor67')/p.relative_to('out/editor67'))
           PY
           tag="native-r13-${GITHUB_SHA:0:12}"
           printf 'R13 source %s. PARTIAL candidate: inspect interaction.txt for installed outcome. Physical ARM64 and PC art NOT accepted. No main merge.\n' "$GITHUB_SHA" > out/r13-release.txt
           gh release create "$tag" --target "$GITHUB_SHA" --prerelease --title "Native R13 ${GITHUB_SHA:0:12}" --notes-file out/r13-release.txt out/r13/sanguo11-native-r13.apk out/r13-evidence.zip
-# R13 preserve the 2D no-explicit-target sentinel and suppress unrelated move fill during targeting.
-# Cache tactical terrain visibility until camera/ground changes, rather than raycasting every animation frame.
+# Android API-compatible instrumentation writes; retain independent legacy/native installed outcomes.
