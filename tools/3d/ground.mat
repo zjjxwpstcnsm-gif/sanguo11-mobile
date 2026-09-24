@@ -1,5 +1,5 @@
 material {
-    name : ContinuousGroundV1,
+    name : ContinuousGroundR04,
     flipUV : false,
     shadingModel : lit,
     doubleSided : true,
@@ -18,13 +18,26 @@ material {
 }
 fragment {
     void material(inout MaterialInputs material) {
-        float2 uv = getUV0();
+        // UV remains absolute world X/-Z, including chunks and outer scenery.
+        float2 worldUV = getUV0();
+        float2 uv = worldUV * 0.35;
+        float2 uvB = float2(uv.x*0.8-uv.y*0.6,uv.x*0.6+uv.y*0.8)*0.731+float2(0.317,0.619);
         float4 w = max(getColor(), float4(0.0));
-        w /= max(dot(w,float4(1.0)),0.00001);
+        float total = dot(w,float4(1.0));
+        w = total > 0.00001 ? w/total : float4(0.0,1.0,0.0,0.0);
         float3 color = texture(materialParams_grassColor,uv).rgb*w.x
             + texture(materialParams_soilColor,uv).rgb*w.y
             + texture(materialParams_sandColor,uv).rgb*w.z
             + texture(materialParams_rockColor,uv).rgb*w.w;
+        // Second incommensurate scale breaks tiling with no new textures/samplers.
+        // Same albedo in LOW; quality only removes normal reads.
+        float3 broad = texture(materialParams_grassColor,uvB).rgb*w.x
+            + texture(materialParams_soilColor,uvB).rgb*w.y
+            + texture(materialParams_sandColor,uvB).rgb*w.z
+            + texture(materialParams_rockColor,uvB).rgb*w.w;
+        color = mix(color,broad,0.38);
+        float macro = 0.97 + 0.025*sin(worldUV.x*0.113+sin(worldUV.y*0.071))
+            + 0.015*cos(worldUV.y*0.139-worldUV.x*0.047);
         float4 nr = float4(0.5,0.5,1.0,0.9);
         if(materialParams.normalStrength > 0.0) {
             nr = texture(materialParams_grassNormal,uv)*w.x
@@ -33,9 +46,9 @@ fragment {
                 + texture(materialParams_rockNormal,uv)*w.w;
         }
         float wet = 1.0-smoothstep(0.0,0.38,abs(getUV1().x));
-        material.normal = normalize(mix(float3(0.0,0.0,1.0),nr.xyz*2.0-1.0,materialParams.normalStrength));
+        material.normal = normalize(mix(float3(0.0,0.0,1.0),nr.xyz*2.0-1.0,materialParams.normalStrength*0.55));
         prepareMaterial(material);
-        material.baseColor = float4(color*getUV1().y*mix(1.0,0.64,wet),1.0);
+        material.baseColor = float4(color*macro*getUV1().y*mix(1.0,0.64,wet),1.0);
         material.roughness = mix(nr.a,0.48,wet);
         material.metallic = 0.0;
         material.reflectance = 0.25;

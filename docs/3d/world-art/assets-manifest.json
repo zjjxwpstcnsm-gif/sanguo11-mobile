@@ -1,15 +1,15 @@
 {
-  "version": 1,
-  "scale": "one repeat per projected world unit",
-  "resolutionReason": "256 texels per tile exceeds typical strategic screen footprint; 8 textures ~2.67 MiB with mipmaps",
+  "version": 2,
+  "scale": "world UV: primary .35 repeats/unit, secondary rotated .35*.731; identical all qualities",
+  "resolutionReason": "512 texels, ~179 texels/world unit primary; 8 RGBA8 textures with full mip chains ~10.67 MiB",
   "assets": [
     {
       "path": "app/src/main/assets/3d/terrain/grass_color.png",
-      "sha256": "b521ecf2d836321f8408ee7627bb403123a50ac8594131ac7faa2c6064b6b7de",
-      "bytes": 62017,
+      "sha256": "9ff5ca4c401ece5e6f6e836dc837e3ec956a8f5300e0b35aa4da13dd831c2078",
+      "bytes": 181007,
       "resolution": [
-        256,
-        256
+        512,
+        512
       ],
       "colorSpace": "sRGB",
       "channels": "RGB albedo",
@@ -21,11 +21,11 @@
     },
     {
       "path": "app/src/main/assets/3d/terrain/grass_normal_roughness.png",
-      "sha256": "aee10a76d2bf2dd066b145deb9c993497c5de7a1d8b3bd2b8974cb3830dced83",
-      "bytes": 149060,
+      "sha256": "2b0b3d793d810e709f02c1cca947203371d4342d4f6eae4d89f49a18a253f55a",
+      "bytes": 404677,
       "resolution": [
-        256,
-        256
+        512,
+        512
       ],
       "colorSpace": "linear",
       "channels": "RGB tangent normal; A roughness",
@@ -37,11 +37,11 @@
     },
     {
       "path": "app/src/main/assets/3d/terrain/soil_color.png",
-      "sha256": "1d0a4c765102abc7c496cd35c79bee7ae9f81e58b5d34c3aa3685a88dd1729c3",
-      "bytes": 75855,
+      "sha256": "9c8b249d6c85b5823591d6fc4d0814a27a84fe6c0be6cb252010776ac7a0aefe",
+      "bytes": 198858,
       "resolution": [
-        256,
-        256
+        512,
+        512
       ],
       "colorSpace": "sRGB",
       "channels": "RGB albedo",
@@ -53,11 +53,11 @@
     },
     {
       "path": "app/src/main/assets/3d/terrain/soil_normal_roughness.png",
-      "sha256": "091a7162094ce5c6cee705a0dae0516bcd9f9080fd2e2dc360326fcf5871657c",
-      "bytes": 173254,
+      "sha256": "cc0433722d76bcb8a2769c1c642efa3c0645e17f26784a4b0b6bdde59d374ef6",
+      "bytes": 405360,
       "resolution": [
-        256,
-        256
+        512,
+        512
       ],
       "colorSpace": "linear",
       "channels": "RGB tangent normal; A roughness",
@@ -69,11 +69,11 @@
     },
     {
       "path": "app/src/main/assets/3d/terrain/sand_color.png",
-      "sha256": "caa95cd6d51eae21d46f4e631616269c9959a49c06d90969e146baf623477c3d",
-      "bytes": 47862,
+      "sha256": "782501271c1c5ea4e5a81d63bae8b2b0bbe6ee88aee3db9a0e3f905330808691",
+      "bytes": 142291,
       "resolution": [
-        256,
-        256
+        512,
+        512
       ],
       "colorSpace": "sRGB",
       "channels": "RGB albedo",
@@ -85,11 +85,11 @@
     },
     {
       "path": "app/src/main/assets/3d/terrain/sand_normal_roughness.png",
-      "sha256": "6d66cb26359f126a8a2685ede7720e87eb5c7a2b23b821e5369b39718b9a5018",
-      "bytes": 78679,
+      "sha256": "3d5f15af24a99783b897c2a01f91673215a5cfe2cf349519552b658e058a6a54",
+      "bytes": 252666,
       "resolution": [
-        256,
-        256
+        512,
+        512
       ],
       "colorSpace": "linear",
       "channels": "RGB tangent normal; A roughness",
@@ -101,11 +101,11 @@
     },
     {
       "path": "app/src/main/assets/3d/terrain/rock_color.png",
-      "sha256": "59e71ac923045db0a35195b58c0469926ed293159243c0b3cc285c6862a6eef2",
-      "bytes": 50318,
+      "sha256": "efa5006a5651709999412bf0622a4321b656d78d7d0bce74ca5db71a1ec443f2",
+      "bytes": 136932,
       "resolution": [
-        256,
-        256
+        512,
+        512
       ],
       "colorSpace": "sRGB",
       "channels": "RGB albedo",
@@ -117,11 +117,11 @@
     },
     {
       "path": "app/src/main/assets/3d/terrain/rock_normal_roughness.png",
-      "sha256": "9f709b5f1ede11d9fe46293b6a985a2119928e35b47678ed97193de0a8bfbfdc",
-      "bytes": 122512,
+      "sha256": "3f9cc725d4fd6e80319618a0fc377567419de348b6af60e9bbff25bb5cf62d77",
+      "bytes": 276461,
       "resolution": [
-        256,
-        256
+        512,
+        512
       ],
       "colorSpace": "linear",
       "channels": "RGB tangent normal; A roughness",
@@ -133,8 +133,8 @@
     },
     {
       "path": "tools/3d/ground.mat",
-      "sha256": "a0adcde8f1e00d35b31730b8dbec2b0f8d0d6fc0d001fc1f93afef95c5ea4bb6",
-      "bytes": 1800,
+      "sha256": "1173e53fbac1c77f7708a251d1656ea4f306fea01313e2ebc38af50ea8307916",
+      "bytes": 2660,
       "kind": "material",
       "source": "tools/3d/ground.mat; official matc v1.56.0 (56), mobile OpenGL",
       "license": "original shader CC0-1.0; Filament compiler Apache-2.0",
@@ -142,8 +142,8 @@
     },
     {
       "path": "app/src/main/assets/3d/terrain/ground.filamat",
-      "sha256": "54c04c612691673cb6dacf277cff56eb95221de6810cd9f62fd71a6f91071d07",
-      "bytes": 517670,
+      "sha256": "0e8d598529f96db8ea36a53cb8da3b5fe227ed9e6dbb62ad8a55ae563b6eae49",
+      "bytes": 532615,
       "kind": "material",
       "source": "tools/3d/ground.mat; official matc v1.56.0 (56), mobile OpenGL",
       "license": "original shader CC0-1.0; Filament compiler Apache-2.0",

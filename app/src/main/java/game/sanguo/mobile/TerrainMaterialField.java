@@ -4,8 +4,8 @@ import game.sanguo.core.*;
 
 /** Compact global material field; immutable snapshot input, no gameplay RNG or camera state. */
 final class TerrainMaterialField {
-    static final int VERSION=3;
-    static final float RADIUS=1.65f;
+    static final int VERSION=4;
+    static final float RADIUS=3.2f;
     private static final World.Terrain[] TYPES=World.Terrain.values();
     final MapSceneSnapshot.Ground ground;
     final WaterVisualField waterField;
@@ -15,11 +15,12 @@ final class TerrainMaterialField {
         float[] w=new float[4];
         if(!Float.isFinite(x)||!Float.isFinite(z))return new float[]{0,1,0,0};
         Hex center=ground.grid.cell(x,z);
-        for(int r=center.r-3;r<=center.r+3;r++)for(int q=center.q-4;q<=center.q+4;q++){
+        for(int r=center.r-5;r<=center.r+5;r++)for(int q=center.q-5;q<=center.q+5;q++){
             if(q<0||r<0||q>=ground.width||r>=ground.height||TYPES[ground.terrain[r*ground.width+q]]==World.Terrain.VOID||ground.surface.water(q,r))continue;
             float dx=x-ground.grid.x(q,r),dz=z-ground.grid.z(q,r),d2=(dx*dx+dz*dz)/(RADIUS*RADIUS);
             if(d2>=1)continue;
-            float k=(1-d2)*(1-d2)*(1-d2);
+            float distance=(float)Math.sqrt(d2),t=1-distance;
+            float k=t*t*t*t*(1+4*distance); // C2 support shared in world space, not cell-owned tint.
             if(ground.bases.contains(new Hex(q,r))){w[1]+=k;continue;}
             switch(TYPES[ground.terrain[r*ground.width+q]]){
                 case SAND:w[2]+=k;break;
@@ -30,12 +31,33 @@ final class TerrainMaterialField {
                 default:w[0]+=.9f*k;w[1]+=.1f*k;
             }
         }
-        float sum=w[0]+w[1]+w[2]+w[3];if(sum<1e-8f)return new float[]{0,1,0,0};
-        for(int j=0;j<4;j++)w[j]/=sum;
+        normalize(w);
         // Slope exposes existing rock/soil, without exporting mountain colors into desert interiors.
-        float exposed=Math.min(.55f,Math.max(0,slope-.12f))*(1-w[2]);
+        float safeSlope=Float.isFinite(slope)?Math.max(0,slope):0;
+        float exposed=Math.min(.55f,Math.max(0,safeSlope-.12f))*(1-w[2]);
         float transfer=w[0]*exposed;w[0]-=transfer;w[1]+=transfer*.4f;w[3]+=transfer*.6f;
+        // Keep site/path centres recognisable. These local masks are NOT widened with
+        // the biome filter, and never modify the independent hard land/water footprint.
+        float constraint=0;
+        for(int r=center.r-1;r<=center.r+1;r++)for(int q=center.q-1;q<=center.q+1;q++){
+            Hex h=new Hex(q,r);if(!ground.valid(h)||ground.surface.water(h))continue;
+            World.Terrain type=TYPES[ground.terrain[r*ground.width+q]];
+            boolean site=ground.bases.contains(h);
+            if(!site&&type!=World.Terrain.ROAD&&type!=World.Terrain.MOUNTAIN_PATH&&type!=World.Terrain.PLANK_ROAD)continue;
+            float dx=x-ground.grid.x(h),dz=z-ground.grid.z(h);
+            float radius=site?.8f:.55f;
+            float t=Math.max(0,1-(dx*dx+dz*dz)/(radius*radius));
+            constraint=Math.max(constraint,t*t*(3-2*t)*(site?.90f:.72f));
+        }
+        for(int j=0;j<4;j++)w[j]*=1-constraint;
+        w[1]+=constraint;
+        normalize(w);
         return w;
+    }
+    static void normalize(float[] w){
+        float sum=0;for(int i=0;i<4;i++){w[i]=Float.isFinite(w[i])?Math.max(0,w[i]):0;sum+=w[i];}
+        if(!Float.isFinite(sum)||sum<1e-8f){w[0]=w[2]=w[3]=0;w[1]=1;return;}
+        for(int i=0;i<4;i++)w[i]/=sum;
     }
     /** Separate terrain-only stream: canonical UV, tangent quaternion, water mask and macro tone. */
     void attach(SceneMesh mesh){
