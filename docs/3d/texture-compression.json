@@ -30,5 +30,21 @@
     "encoder": "etcpak 0.9.15",
     "level0_psnr_db": 35.8871331763145,
     "gpu_upload_verified": false
+  },
+  {
+    "asset": "app/src/main/assets/3d/field/unit-atlas.etc2",
+    "source_sha256": "a47a03a989dd8ea1a1d8337b7593421c07e32baaa10a5d2c8b25b1c28a5f7bb3",
+    "sha256": "9b3a2908efe89a4a35c94a452c1511309021b6c7da85c48c903845a0f43ee5e6",
+    "width": 512,
+    "height": 64,
+    "levels": 10,
+    "format": "ETC2_SRGB8",
+    "gpu_payload_bytes": 21896,
+    "rgba_mip_bytes": 174780,
+    "alpha": "opaque",
+    "mip_filter": "linear-light BOX",
+    "encoder": "etcpak 0.9.15",
+    "level0_psnr_db": 36.975024174093306,
+    "gpu_upload_verified": false
   }
 ]

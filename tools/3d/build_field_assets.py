@@ -24,6 +24,22 @@ for y in range(64):
    if leaf and abs(v0-u0*.35)<1:c=(103,121,65)
   im.putpixel((x,y),tuple(max(0,min(255,int(v*(.65 if seam else 1))+n)) for v in c))
 im.save(OUT/'atlas.png',optimize=True)
+# R10 unit-only lamellar, woven cloth, wood grain and restrained skin panels.
+# Environment's atlas and GLBs remain byte-identical to the prior cohort.
+unit_im=im.copy()
+for y in range(64):
+ for x in range(512):
+  k=x//64;u=x%64;n=(u*11+y*17)%7-3
+  if k==4:
+   edge=y%8==0 or (u+(4 if y//8%2 else 0))%8==0
+   rivet=y%8==2 and (u+(4 if y//8%2 else 0))%8==3
+   c=(45,55,61) if edge else (163,157,130) if rivet else (91,106,114)
+  elif k==3:c=(151,137,115) if u%3==0 or y%3==0 else (169,156,132)
+  elif k==2:c=(107+(u//3%4)*5,72+(u//3%4)*4,40+(u//3%4)*3)
+  elif k==5:c=(188,151,117)
+  else:continue
+  unit_im.putpixel((x,y),tuple(max(0,min(255,v+n)) for v in c))
+unit_im.save(OUT/'unit-atlas.png',optimize=True)
 class Mesh(Base):
  def face(self,points,mat=0,shade=1):
   n=len(self.p);self.p.extend(points);self.c.extend([(shade if shade<.5 else 1,)*3+(1,)]*len(points))
@@ -91,8 +107,9 @@ class Mesh(Base):
   else:self.box(-.11,.13,-.12,.22,.07,.24,2)
  def engine(self,kind,lod):
   self.box(-.15,.07,-.22,.3,.07,.44,2)
-  for x in [-.17,.17]:
-   for z in [-.16,.16]:self.wheel(x,.085,z,.085,lod=lod)
+  if not getattr(self,'unit_rig',False):
+   for x in [-.17,.17]:
+    for z in [-.16,.16]:self.wheel(x,.085,z,.085,lod=lod)
   if kind=='RAM':
    for x in [-.12,.12]:self.beam((x,.13,-.12),(x,.35,0),.035);self.beam((x,.13,.12),(x,.35,0),.035)
    pass # suspended ram supplied by articulated module
@@ -226,6 +243,7 @@ class Mesh(Base):
 
 report=[]
 def save(mesh,name):
+ if name.startswith('unit-'):mesh.atlas_file='unit-atlas.png'
  r=mesh.write(name);r['texture']=[512,64];report.append(r)
 
 # Names and upgradeability are checked against Java enums by the asset contract test.
@@ -301,7 +319,13 @@ def humanoid(m,bone,lod,cavalry=False,weapon='SWORD'):
   m.oval(0,.354+oy,0,.042,.05,.037,5,8,4)
   m.oval(0,.387+oy,-.003,.047,.026,.042,4,8,3)
   m.frustum(0,.403+oy,0,.012,.012,.045,0,3,5)
+  # Neck guard, shoulder plates and helmet nasal guard identify an armoured soldier.
+  for side in [-1,1]:
+   m.oval(side*.063,.283+oy,0,.030,.023,.046,4,6,3)
+   m.box(side*.031-.006,.345+oy,-.033,.012,.052,.010,4)
+  m.box(-.004,.350+oy,.037,.008,.041,.008,4)
   if lod==0:
+   m.box(-.037,.316+oy,-.040,.074,.045,.009,4)
    for yy in [.20,.23,.26]:
     for xx in [-.032,0,.032]:m.box(xx-.012,yy+oy,.033,.024,.021,.006,4)
    for xx in [-.015,.015]:m.box(xx-.005,.36+oy,.034,.008,.006,.006,2)
@@ -317,10 +341,14 @@ def humanoid(m,bone,lod,cavalry=False,weapon='SWORD'):
      m.frustum(x,.50+oy,.035,.018,.012,.065,0,4,5)
      if weapon=='HALBERD':m.face([(x,.48+oy,.035),(x+.045,.49+oy,.035),(x+.035,.55+oy,.035),(x,.53+oy,.035)],4)
     elif weapon=='CROSSBOW':
-     m.beam((x-.07,.16+oy,.03),(x+.07,.16+oy,.03),.013,2);m.beam((x,.16+oy,-.03),(x,.16+oy,.10),.015,2)
-    else:m.beam((x,.16+oy,.02),(x,.34+oy,.04),.016,4)
+     m.beam((x-.08,.16+oy,.03),(x,.16+oy,.055),.013,2);m.beam((x,.16+oy,.055),(x+.08,.16+oy,.03),.013,2);m.beam((x,.16+oy,-.05),(x,.16+oy,.13),.015,2);m.beam((x-.08,.16+oy,.03),(x+.08,.16+oy,.03),.004,3);m.beam((x,.173+oy,0),(x,.173+oy,.16),.005,4)
+    else:
+     m.beam((x,.16+oy,.02),(x,.36+oy,.04),.022,4);m.beam((x-.027,.18+oy,.024),(x+.027,.18+oy,.024),.01,4)
    elif weapon in ['SWORD','HALBERD']:
     m.box(x-.04,.15+oy,.02,.065,.11,.014,2)
+    if lod==0:
+     for xx in [x-.042,x+.019]:m.box(xx,.15+oy,.035,.007,.11,.005,4)
+     m.oval(x-.008,.205+oy,.038,.014,.016,.009,4,6,3)
   part('hand'+suffix,'arm'+suffix,(x,.21,0),hand)
   x=side*(.085 if cavalry else .029)
   part('leg'+suffix,'body',(x,.16,0),lambda x=x:m.frustum(x,.075+oy,0,.024,.026,.085,.9,3,6))
@@ -341,22 +369,52 @@ for kind in weapons:
     def horse():
      m.oval(0,.20,0,.067,.085,.16,2,8,4);m.oval(0,.28,.13,.045,.09,.055,2,8,4);m.oval(0,.33,.18,.04,.04,.065,2,8,3)
      m.box(-.05,.26,-.055,.1,.035,.11,3);m.beam((0,.21,-.15),(0,.12,-.23),.02)
+     m.oval(0,.23,.045,.073,.095,.095,2,8,4)
+     for side in [-1,1]:
+      m.frustum(side*.022,.36,.175,.012,.018,.048,0,2,5)
+      m.beam((side*.041,.335,.15),(side*.043,.32,.225),.006,4)
+      if lod==0:m.beam((side*.043,.32,.225),(side*.060,.36,.005),.005,2)
+     for zz in [.08,.11,.14]:m.frustum(0,.31,zz,.012,.015,.065,.4,4,5)
     bone('horse',-1,(0,0,0),horse)
     for i,(x,z) in enumerate([(-.04,-.1),(.04,-.1),(-.04,.1),(.04,.1)]):
-     def leg(x=x,z=z):m.frustum(x,.015,z,.017,.018,.16,.85,2,6);m.box(x-.02,0,z-.015,.04,.025,.055,4)
-     bone('horseLeg'+str(i),'horse',(x,.16,z),leg)
+     def leg(x=x,z=z):m.frustum(x,.082,z,.021,.020,.093,.75,2,6)
+     bone('horseLeg'+str(i),'horse',(x,.17,z),leg)
+     def shin(x=x,z=z):m.frustum(x,.02,z,.015,.018,.070,.9,2,6);m.box(x-.02,0,z-.015,.04,.025,.055,4)
+     bone('horseShin'+str(i),'horseLeg'+str(i),(x,.084,z),shin)
   elif kind in ['BOAT','TOWER_SHIP','WARSHIP']:
-   bone('hull',-1,(0,0,0),lambda:m.boat(tower=0 if kind=='BOAT' else 1 if kind=='TOWER_SHIP' else 2,lod=lod))
+   def hull():
+    m.boat(tower=0 if kind=='BOAT' else 1 if kind=='TOWER_SHIP' else 2,lod=lod)
+    for side in [-1,1]:
+     m.beam((side*.15,.15,-.28),(side*.15,.15,.23),.016,2)
+     if lod==0:
+      for zz in [-.25,-.12,.01,.14]:m.beam((side*.145,.12,zz),(side*.145,.21,zz),.009,2)
+    m.beam((0,.12,-.39),(0,.23,-.44),.018,2)
+   bone('hull',-1,(0,0,0),hull)
    for side in [-1,1]:
     def oars(side=side):
-     for z in [-.22,-.07,.08,.23]:m.beam((side*.13,.10,z),(side*.32,.03,z-.06),.014)
+     for z in [-.22,-.07,.08,.23]:
+      m.beam((side*.13,.10,z),(side*.33,.03,z-.06),.010)
+      m.beam((side*.28,.048,z-.045),(side*.36,.018,z-.07),.023)
     bone('oarsL' if side<0 else 'oarsR','hull',(side*.13,.1,0),oars)
   else:
    # Wheels and working arm are separate moving modules, chassis is shared.
-   bone('chassis',-1,(0,0,0),lambda:m.engine(kind,lod))
+   m.unit_rig=True
+   def chassis():
+    m.engine(kind,lod)
+    for side in [-1,1]:m.beam((side*.13,.13,-.2),(side*.13,.13,.2),.015,4)
+    if kind=='transport':
+     for side in [-1,1]:m.beam((side*.13,.12,.20),(side*.13,.10,.55),.024,2)
+     if lod==0:
+      for zz in [-.12,0,.12]:m.beam((-.13,.19,zz),(.13,.19,zz),.008,3)
+    if kind=='WOODEN_BEAST':
+     for side in [-1,1]:m.beam((side*.08,.33,.13),(side*.11,.43,.16),.018,4)
+    if kind=='SIEGE_TOWER' and lod==0:
+     for side in [-1,1]:m.beam((side*.13,.55,.13),(side*.13,.65,.13),.015,2)
+   bone('chassis',-1,(0,0,0),chassis)
    for side,x in enumerate([-.185,.185]):
     for axle,z in enumerate([-.16,.16]):
      def spokes(x=x,z=z):
+      m.wheel(x,.085,z,.085,lod=lod)
       m.beam((x,.015,z),(x,.155,z),.015,4);m.beam((x,.085,z-.07),(x,.085,z+.07),.015,4)
      bone('wheel'+str(side)+str(axle),'chassis',(x,.085,z),spokes)
    if kind=='RAM':
@@ -389,7 +447,8 @@ for clip in ['idle','walk','turn','prepare','attack','hit','defeat','enter']:
   if clip=='walk':
    for i,s in enumerate(['L','R']):
     v=wave*(1 if i==0 else -1);rot('arm'+s,v*.55);rot('leg'+s,-v*.65);rot('shin'+s,max(0,v)*.8)
-   for i in range(4):rot('horseLeg'+str(i),math.sin(t*math.tau+(i%2)*math.pi)*.65)
+   for i in range(4):
+    v=math.sin(t*math.tau+(0 if i in [0,3] else math.pi));rot('horseLeg'+str(i),v*.48);rot('horseShin'+str(i),max(0,-v)*.9)
 
    for i in range(2):
     for j in range(2):rot('wheel'+str(i)+str(j),t*math.tau)
@@ -404,5 +463,5 @@ for clip in ['idle','walk','turn','prepare','attack','hit','defeat','enter']:
   frames.append(poses)
  clips[clip]=frames
 (OUT/'clips.json').write_text(json.dumps({'version':1,'fps':12,'clips':clips},separators=(',',':'))+'\n')
-(ROOT/'docs/3d/field-assets.json').write_text(json.dumps({'license':'CC0-1.0 original geometry, texture and animation keyframes','generator':'tools/3d/build_field_assets.py','axes':'+Y up, +Z forward; one tile = 1 world span','material':'shared opaque atlas, precompiled S03 material','rig':'rigid-jointed modules, GLB rest geometry + rigs.json pivot/ranges + clips.json keyframes; no skinning or root motion','version':1,'auxiliary':[{'file':name,'bytes':(OUT/name).stat().st_size,'sha256':hashlib.sha256((OUT/name).read_bytes()).hexdigest()} for name in ['atlas.png','rigs.json','clips.json']],'clips':list(clips),'assets':report},indent=2)+'\n')
+(ROOT/'docs/3d/field-assets.json').write_text(json.dumps({'license':'CC0-1.0 original geometry, texture and animation keyframes','generator':'tools/3d/build_field_assets.py','axes':'+Y up, +Z forward; one tile = 1 world span','material':'shared opaque atlas, precompiled S03 material','rig':'rigid-jointed modules, GLB rest geometry + rigs.json pivot/ranges + clips.json keyframes; no skinning or root motion','version':1,'auxiliary':[{'file':name,'bytes':(OUT/name).stat().st_size,'sha256':hashlib.sha256((OUT/name).read_bytes()).hexdigest()} for name in ['atlas.png','unit-atlas.png','rigs.json','clips.json']],'clips':list(clips),'assets':report},indent=2)+'\n')
 print('Generated',len(report),'field GLBs;',sum(a['bytes'] for a in report),'bytes')

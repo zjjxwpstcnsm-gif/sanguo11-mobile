@@ -1,0 +1,52 @@
+// Filament 1.56.0 / matc56, OpenGL mobile. Articulation is rigid CPU pose caching.
+material {
+    name : StrategicUnitFormation,
+    shadingModel : lit,
+    doubleSided : true,
+    instanced : true,
+    requires : [color,uv0],
+    parameters : [
+        { type : sampler2d, name : atlas },
+        { type : float, name : damage },
+        { type : float4, name : member0 },
+        { type : float2, name : grade0 },
+        { type : float4, name : member1 },
+        { type : float2, name : grade1 },
+        { type : float4, name : member2 },
+        { type : float2, name : grade2 },
+        { type : float4, name : member3 },
+        { type : float2, name : grade3 },
+        { type : float4, name : member4 },
+        { type : float2, name : grade4 },
+        { type : float4, name : member5 },
+        { type : float2, name : grade5 },
+        { type : float4, name : member6 },
+        { type : float2, name : grade6 },
+        { type : float4, name : member7 },
+        { type : float2, name : grade7 }
+    ]
+}
+vertex {
+    void materialVertex(inout MaterialVertexInputs material) {
+        int i=getInstanceIndex();
+        float4 m=i==0 ? materialParams.member0 : i==1 ? materialParams.member1 : i==2 ? materialParams.member2 : i==3 ? materialParams.member3 : i==4 ? materialParams.member4 : i==5 ? materialParams.member5 : i==6 ? materialParams.member6 : materialParams.member7;
+        float2 grade=i==0 ? materialParams.grade0 : i==1 ? materialParams.grade1 : i==2 ? materialParams.grade2 : i==3 ? materialParams.grade3 : i==4 ? materialParams.grade4 : i==5 ? materialParams.grade5 : i==6 ? materialParams.grade6 : materialParams.grade7;
+        float3 p=getPosition().xyz*m.w;
+        p.y+=dot(grade,p.xz);
+        material.worldPosition=getWorldFromModelMatrix()*float4(p+m.xyz,1.0);
+        // Inverse-transpose of the contact shear. No normal map uses a stale tangent.
+        float3 n=transpose(mat3(getWorldFromModelMatrix()))*material.worldNormal;
+        n.xz-=grade*n.y;
+        material.worldNormal=normalize(getWorldFromModelNormalMatrix()*n);
+    }
+}
+fragment {
+    void material(inout MaterialInputs material) {
+        prepareMaterial(material);
+        float3 base=texture(materialParams_atlas,getUV0()).rgb*getColor().rgb;
+        material.roughness=.88;
+        material.metallic=0.0;
+        material.reflectance=.25;
+        material.baseColor=float4(base*(1.0-materialParams.damage*.32),1.0);
+    }
+}

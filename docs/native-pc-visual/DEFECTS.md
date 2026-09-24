@@ -109,3 +109,9 @@
 | R09-PERF-DEVICE | environment/validation | PARTIAL | swangle CPU submission P99 up to994.49ms in F03, not handset FPS; final meminfo no process; physical ARM64/PSS/thermal NOT_RUN. |
 | R09-REFERENCE | source limitation | PARTIAL | User02 retrieved unchanged640x372; exact version/season/multi-view UNKNOWN. User01 proxy/origin returned194-byte1x1 placeholder data. Raw TXT missing-reference field corrected in index, original preserved. |
 | R09-LEGACY-CI | inherited and unresolved environment validation | PARTIAL | Core AI deployment failure independently reproduced on R08 and candidate. Old UI-title/collapse/save-map failures retained. S10 swiftshader material variation FAIL; S10/S11 swangle900s timeouts; no assertions disabled. |
+
+| R10-ART | validation gap | PARTIAL | All13 categories enhanced but procedural rigid low-poly models/flags/gait are not PC-matched final art; no blanket category acceptance. |
+| R10-CONTACT | implementation limit | PARTIAL | Per-member sampled contact plane, not per-foot IK; sharp terrain/city/port clip/slide review requires actual motion footage. |
+| R10-CPU-POSE | implementation disclosure | PARTIAL | GPU instanced drawing uses shared CPU-cached rigid pose; not GPU skeletal animation. Cache/load measurements must be inspected at50/100 units. |
+| R10-TOOLCHAIN | environment, recovered | PASS | Initial Maven403; bounded dependency fetch36003391892 succeeded. Local etcpak transitive archspec missing; full CI dependencies/reproduction required. |
+| R10-DEVICE | environment | NOT_RUN | No physical ARM64 Adreno/Mali, sustained FPS/thermal/manual or matched PC formation acceptance. |

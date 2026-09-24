@@ -162,7 +162,7 @@ class Mesh:
    a={'bufferView':len(views)-1,'componentType':typ,'count':len(arr),'type':shape}
    if shape=='VEC3':a.update(min=[min(p[i] for p in arr) for i in range(3)],max=[max(p[i] for p in arr) for i in range(3)])
    access.append(a)
-  png=(OUT/'atlas.png').read_bytes();views.append({'buffer':0,'byteOffset':len(data),'byteLength':len(png)});data+=png;data+=b'\0'*((-len(data))%4)
+  png=(OUT/getattr(self,'atlas_file','atlas.png')).read_bytes();views.append({'buffer':0,'byteOffset':len(data),'byteLength':len(png)});data+=png;data+=b'\0'*((-len(data))%4)
   doc={'asset':{'version':'2.0','generator':'sanguo11 original modular architecture CC0'},'scene':0,'scenes':[{'nodes':[0]}],'nodes':[{'mesh':0}], 'meshes':[{'primitives':[{'attributes':{'POSITION':0,'COLOR_0':1,'TEXCOORD_0':2},'indices':3,'material':0,'mode':4}]}], 'buffers':[{'byteLength':len(data)}],'bufferViews':views,'accessors':access,'images':[{'bufferView':4,'mimeType':'image/png'}],'textures':[{'source':0}],'materials':[{'doubleSided':True,'pbrMetallicRoughness':{'baseColorTexture':{'index':0},'metallicFactor':0,'roughnessFactor':1}}]}
   js=json.dumps(doc,separators=(',',':')).encode();js+=b' '*((-len(js))%4)
   glb=struct.pack('<III',0x46546c67,2,28+len(js)+len(data))+struct.pack('<II',len(js),0x4e4f534a)+js+struct.pack('<II',len(data),0x004e4942)+data

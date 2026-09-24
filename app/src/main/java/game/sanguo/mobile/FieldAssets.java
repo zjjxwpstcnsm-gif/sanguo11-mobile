@@ -49,8 +49,7 @@ final class FieldAssets {
         return "unit-"+(naval?(unit.mission?Army.Ship.BOAT:unit.ship).name():unit.mission?"transport":unit.weapon.name())+"-lod"+Math.min(1,lod);
     }
     static int count(UnitVisual unit,boolean naval,int lod){
-        if(naval||unit.mission||Army.siegeWeapon(unit.weapon))return 1;
-        return lod==2?1:unit.weapon==World.Weapon.CAVALRY?(lod==0?4:2):(lod==0?8:4);
+        return unit.representatives(naval,unit.troops,lod);
     }
     synchronized SceneMesh pose(String model,String clip,int frame,int count)throws Exception{
         if(count<1||count>8)throw new IOException("formation budget");
@@ -78,6 +77,15 @@ final class FieldAssets {
             }
         }
         if(covered!=posed.length/7)throw new IOException("incomplete rigid coverage");
+        if(!clip.equals("defeat")&&!clip.equals("hit")){
+            float contact=Float.POSITIVE_INFINITY;boolean mounted=model.contains("CAVALRY");
+            for(int i=0;i<parts.length();i++){JSONObject part=parts.getJSONObject(i);String name=part.getString("name");
+                if(mounted?name.startsWith("horseShin"):name.startsWith("shin"))
+                    for(int v=part.getInt("first"),end=v+part.getInt("count");v<end;v++)contact=Math.min(contact,posed[v*7+1]);
+            }
+            if(Float.isFinite(contact))for(int v=1;v<posed.length;v+=7)posed[v]-=contact;
+        }
+        // Legacy CPU merged API is retained for compatibility tests; R10 runtime requests count=1.
         // One merged draw per formation. No entity for each soldier; no troop-count expansion.
         float[] vertices=new float[posed.length*count];int[] indices=new int[source.indices.length*count];
         float[] uv=new float[source.uv.length*count];float scale=count>1?.78f:1;

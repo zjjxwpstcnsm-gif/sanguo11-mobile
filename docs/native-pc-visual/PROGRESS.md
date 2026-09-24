@@ -98,3 +98,12 @@ V2 FAIL, UI/overlay/modal flow FAIL; three-quality identity preserved but visual
 switch acceptance incomplete. Full motion/physical ARM64/thermal NOT_RUN.
 Exact APK hash0970bfbb9bda2a0bf0f16e36c7a83cab300adc61feebeb9db41e123598d7da31.
 See R09 report, ten-item V2 table, figures and handoff. Same draft PR67; no merge/R10.
+
+## R10 current execution
+PARTIAL candidate. Real all-category unit asset upgrades, troop-count instancing,
+per-member height/contact, journal-synchronized loss/HUD and legal-segment heading,
+LOD hysteresis, stable-ID picking integrated. Filament/OpenGL and architecture
+retained, no core/map production changes. Local R10 2,221,136 / field9,862,760 /
+R06 199 checks and architecture PASS. matc56 unit material compiled. Exact Android
+build/runtime evidence pending; see reports/R10.md. R09 V2/overlay/manual/device
+and all inherited failures remain open. No merge, no R11.

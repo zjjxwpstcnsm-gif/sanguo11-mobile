@@ -162,7 +162,7 @@ public final class MainActivity extends Activity {
         header.addView(tools,new LinearLayout.LayoutParams(dp(44),dp(52)));header.setBackground(UiTheme.surface(this,0xff1b2b33,0xff101b24,0));root.addView(header,new LinearLayout.LayoutParams(-1,dp(56)));
         mapRevisionNotice=text("",11,gold);mapRevisionNotice.setTag("map.revision.notice");mapRevisionNotice.setPadding(dp(12),dp(3),dp(12),dp(3));
         mapRevisionNotice.setOnClickListener(v->message("地图存档版本",NationalMap.compatibilityNotice(world)));root.addView(mapRevisionNotice);
-        body=new FrameLayout(this);if(map!=null)map.release();map=new MapHost(this,this::onTile);body.addView(map,new FrameLayout.LayoutParams(-1,-1));map.setUnitDrop(this::dropUnit);map.setTerritoryMode(getPreferences(MODE_PRIVATE).getInt("territoryMode",0));refreshTerritoryToggle();refreshGridToggle();
+        body=new FrameLayout(this);if(map!=null)map.release();map=new MapHost(this,new MapView.TileListener(){public void tap(Hex h){onTile(h);}public void unit(int id,Hex h){onUnitTile(id,h);}});body.addView(map,new FrameLayout.LayoutParams(-1,-1));map.setUnitDrop(this::dropUnit);map.setTerritoryMode(getPreferences(MODE_PRIVATE).getInt("territoryMode",0));refreshTerritoryToggle();refreshGridToggle();
         panelShell=new LinearLayout(this);panelShell.setOrientation(LinearLayout.VERTICAL);UiTheme.panel(panelShell);
         panelShell.setVisibility(View.GONE);body.addView(panelShell);
         LinearLayout panelHeader=new LinearLayout(this);panelHeader.setPadding(dp(12),0,dp(4),0);panelHeader.setGravity(Gravity.CENTER_VERTICAL);
@@ -386,6 +386,16 @@ public final class MainActivity extends Activity {
         if(selected==null||ui.selectedUnit==-2)return null;
         World.Unit u=world.unit(ui.selectedUnit);if(u!=null&&selected.equals(u.hex))return u;
         return ui.selectedUnit>=0?null:world.unitAt(selected);
+    }
+    private void onUnitTile(int id,Hex displayCell) {
+        if(aiRunning||world.commandsBlocked())return;
+        // Commands retain their existing cell target validation; object selection uses the stable ID.
+        if(mapPick!=null||moving>=0){onTile(displayCell);return;}
+        World.Unit target=world.unit(id);
+        if(target==null)for(Domestic.Mission mission:world.domestic.missions)if(mission.id==id&&mission.transport){target=mission;break;}
+        if(target==null)return;
+        if(ui.selectedUnit==id&&target.hex.equals(selected)){clearUnitSelection();return;}
+        selectObject(target.hex,id,false);
     }
     private void onTile(Hex h) {
         if(aiRunning||world.commandsBlocked())return;

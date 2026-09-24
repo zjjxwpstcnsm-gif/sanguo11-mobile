@@ -16,8 +16,8 @@ def mip(image, size):
     return Image.fromarray(np.uint8(np.clip(srgb*255+.5,0,255)),'RGB')
 
 reports=[]
-for group in ['sites','field']:
-    path=ROOT/'app/src/main/assets/3d'/group/'atlas.png'
+for group,name in [('sites','atlas.png'),('field','atlas.png'),('field','unit-atlas.png')]:
+    path=ROOT/'app/src/main/assets/3d'/group/name
     source=Image.open(path).convert('RGBA')
     assert source.getextrema()[3]==(255,255), 'opaque ETC2 RGB pipeline must not discard alpha'
     width,height=source.size;levels=1+int(math.log2(max(width,height)))
