@@ -92,5 +92,10 @@
 | R08-PERF | environment/validation | PARTIAL | Host geometry bytes/timing are estimates, not GPU/physical FPS; wide-view and ARM64 long-run budgets unaccepted. |
 | R07-MANIFEST-RETEST | inherited, resolved | PASS | Final R07 CI35961885126 SUCCESS, including manifest and installed acceptance; original failed runs retained. |
 
-| R08-ROAD-LATTICE | new, reproduced in actual APK, corrected source | PARTIAL |1a728e6 R00 raw Surface shows triangular ribbons on wide ordinary ROAD. Removed invented area adjacency lines; ordinary ROAD keeps R04 continuous grass/soil. Explicit mountain/plank strips remain. Rebuild/visual retest required. |
-| R08-READY | newly observed test ordering race, corrected source | PARTIAL | R00 fails visible terrain after Activity recreation: CPU pending cleared before visible GPU frame. Wait on owner for uploaded terrain/submitted Surface; original assertion/timeout retained. Retest required. |
+| R08-ROAD-LATTICE | new, reproduced and corrected | PASS |1a728e6 R00 raw Surface shows triangular ribbons on wide ordinary ROAD. Removed invented area adjacency lines; ordinary ROAD keeps R04 continuous grass/soil. Explicit mountain/plank strips remain. Final source284ee89 R00 CI35982640008 PASS; fresh/recreated actual Surface reviewed, lattice absent. |
+| R08-READY | newly observed test ordering race, corrected | PASS | R00 fails visible terrain after Activity recreation: CPU pending cleared before visible GPU frame. Wait on owner for uploaded terrain/submitted Surface; original assertion/timeout retained. Final source284ee89 R00 fresh130/reload79 PASS with recreated terrain visible. |
+
+| R08-RUNTIME | exact final source | PASS | CI35982639814 installed1399;18 matrix/24 total Surface shots,9 recordings. Automatic checks only. |
+| R08-PATH-ART | observed visual gap | PARTIAL | Final captures retain blunt brown Y/triangle joins on explicit mountain/plank paths; ordinary ROAD lattice removed. Weak forest-road contrast. |
+| R08-LOADING | observed runtime/validation gap | PARTIAL | Sampled recording has static waits and black loading during recreation; final Surface populated. CPU P99 up to2664.76ms on swangle. Continuous motion/physical responsiveness unaccepted. |
+| R08-MEMINFO | evidence limitation | PARTIAL | Post-instrumentation dumpsys says No process found; no process PSS result claimed. Geometry/texture estimates only. |

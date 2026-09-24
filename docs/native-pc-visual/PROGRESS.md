@@ -75,3 +75,13 @@ R08: PARTIAL. Stable world-space clustered tree/shrub/rock scatter, view-window 
 residency, conforming logical roads and farm meshes on normal Filament path.
 R07 final CI35961885126 SUCCESS. R08 exact-source CI outcomes pending; see R08 report.
 No main merge or R09 execution. Art/PC/ARM64/manual gates remain separate and open.
+
+### R08 final delivery
+PARTIAL. Source284ee89042e28ecabd0685f426a6faf8066e1233, CI35982639814 SUCCESS,
+exact APK e4360075b85cdec265c75ec1b456aa301b70b066b808767cbe54787c28276e26.
+R08 host9,870,055 / installed1,399 checks PASS; 18 required views and24 total
+Surface captures reviewed;9 video segments retained (sample-frame review only).
+Stable visible-window forest chunks, conifer/shrub/rock assets, terrain-conforming
+explicit paths/farms integrated into normal game; ordinary ROAD lattice corrected.
+PC art FAIL/REFERENCE_MISSING, full motion and ARM64/performance NOT_RUN.
+Same draft PR67; final docs-only SHA in evidence delivery. No merge or R09.
