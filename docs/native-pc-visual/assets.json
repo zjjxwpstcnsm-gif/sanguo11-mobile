@@ -34,5 +34,24 @@
     "depth_band_world_units": 1.5,
     "owner": "groundTextures; water borrows until material destroyed",
     "acceptance": "PARTIAL, installed evidence pending"
+  },
+  "R04": {
+    "generator": "tools/3d/build_terrain_materials.py",
+    "generator_sha256": "b86f32a1aa5828ddda1d0b67f5eba3271f67ab25b442787b7e7c0ab2c3a94da3",
+    "license": "Original procedural CC0-1.0 textures/shader; no KOEI runtime imagery",
+    "texture_manifest": "docs/3d/world-art/assets-manifest.json",
+    "runtime": "FilamentMapView.loadGroundMaterials → SceneMesh ground batches",
+    "textures": "four 512x512 sRGB albedos; four linear RGBA normal/roughness; generated full mips; repeat",
+    "compiler": "official Filament v1.56.0 matc --version 56; mobile OpenGL",
+    "compiler_archive_sha256": "393dcc066987345282f4b5c3f525ab053d9c21087141cdc8015f403cddf455f0",
+    "ground_gpu_bytes_estimated": 11184800,
+    "base_upload_bytes": 8388608,
+    "samplers": 8,
+    "fragment_reads_low": 8,
+    "fragment_reads_medium_high": 12,
+    "reference_index": "REFERENCE_INDEX.csv",
+    "visual_acceptance": "PARTIAL: candidate b78566b runtime reviewed; final2c87b4c runtime cancelled by concurrent R05 push",
+    "source_sha": "2c87b4c96e33fe3dca764dada98c8b4b6fd058ec",
+    "manifest_sha256": "4d9ebab2992cb3c6c53f2aaa14f31496729f15725fe3aee644d70d778fa90a50"
   }
 }

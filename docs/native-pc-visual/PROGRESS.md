@@ -42,3 +42,14 @@ sampling integrated. R05/S11/R04/R03/architecture host checks PASS. Legacy port 
 replay fails identically on R04 baseline; not relabeled PASS. Android exact-source
 build/installed evidence pending; physical/PC/boat/edit acceptance open. See R05
 report and handoff. Do not start R06 or merge main.
+
+## R04 current execution
+
+PARTIAL. R04 source2c87b4c96e33fe3dca764dada98c8b4b6fd058ec; final host/material/
+APK/lint PASS, CI35943061193. Runtime cancelled by concurrent external R05 commit
+ d40ea743; exact-source R03 launch also blocked by emulator ZIP failure. NOT_RUN
+for final installed acceptance. Candidate b78566b R04 PASS643 with actual farm.
+R04 host87683/S13 nationwide33829951 pass, original budget and rules preserved.
+PC reference found; V1/complete visual acceptance FAIL, ARM64/performance NOT_RUN.
+This execution did not start R05; upstream R05 progress above is preserved as external.
+See reports/R04.md, handoffs/R04.md and evidence/R04.json.

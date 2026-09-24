@@ -34,3 +34,40 @@
 | R05-PORT-AI | inherited, reproduced | PARTIAL | PortReplayTest.aiDocks(false): AI completes embark/sail/land fails trace [7,6, 10,5] on both untouched b78566b and R05; no rule changes. |
 | R05-CONTOUR | implementation/visual gap | PARTIAL | Shared bank textures and true interior distances implemented; exact step silhouette is retained. Curved geometric coast and PC comparison not accepted. |
 | R05-DEVICE | validation gap | PARTIAL | ARM64, installed boat embark/sail/landing recording and edited-map continued travel remain NOT_RUN. |
+
+
+## R04 audit updates
+
+- R03-PROBE / R03-FOCUS / R03-TURN-PROBE: final bf687c7 CI35874694865 PASS423. Earlier failure logs remain valid history.
+- REF-01: official PC manual 小沛/farm reference recovered (REFERENCE_INDEX.csv). Exact camera/season-matched screenshots remain missing; similarity/V1 not automatically PASS.
+- R04-GENERATOR (inherited, fixed): old terrain generator erased unrelated environment manifest fields. Preserve these fields; reproducibility verified separately.
+- R04-TEST-FIXTURE (new, fixed): synthetic no-city World cannot be saved by valid SaveCodec policy. Map invariance tested directly; complete official save remains strictly compared.
+- R04-V1 (validation gap): actual exact-source image and video review pending CI, not replaced by numeric texture statistics.
+- R04-DEVICE (environment): physical ARM64/performance/thermal NOT_RUN; ground sampler bandwidth and residency have increased.
+
+- R04-RUNNER (new, fixed; retest pending): CI35937501014 installed APKs, then INSTRUMENTATION_FAILED before any scene because NativeR04Instrumentation was missing from androidTest Manifest. Registered in8d916b2; no production rules changed. Prior failure is retained, not relabelled a renderer pass.
+
+### R04 actual-image corrections
+- NEW / FIXED IN SOURCE: ordinary ROAD centre soil stamps created repeated dots.
+  Removed those stamps; retained continuous road biome identity and added regression.
+- INHERITED / FIXED IN SOURCE: VOID backdrop coarse8-unit weights and .86 tone
+  showed square patches. Shared foreground attributes and2-unit sampling; final
+  APK review required. No map/VOID/picking edits.
+- NEW TEST COVERAGE: real farm now built via normal authority and turns, with
+  full reference SaveCodec parity; no fixture injection. Await final CI result.
+- PC reference found (official manual 小沛, spring195). Exact camera/content
+  matching remains open; reference is comparison-only, never a runtime asset.
+
+- R04-BUDGET (NEW, source corrected): b78566b dense duplicated backdrop exceeds
+  existing1MiB S13 gate. Shared vertices and2.25 spacing pass unmodified national
+  budget; R04 CI now requires national suite. Final-source rebuild/runtime pending.
+
+### R04 final checkpoint
+- R04-BUDGET: final host PASS33829951 with original<1MiB assertion. Runtime pending
+  was superseded by cancellation, not success.
+- R04-CONCURRENT: external R05 d40ea743 cancelled final R04 CI35943061193.
+  Final-source installed matrix NOT_RUN; do not replace with candidate643PASS.
+- R04-EMULATOR: final R03 CI35943061138 failed Android Emulator archive download,
+  `Error on ZipFile unknown archive`, before game launch (environment).
+- V1 complete visual acceptance FAIL; remaining backdrop tonal edges/shore geometry,
+  PC mismatch and full motion review remain. ARM64/handset performance NOT_RUN.
