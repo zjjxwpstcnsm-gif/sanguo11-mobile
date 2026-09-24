@@ -90,5 +90,10 @@
     "opaque_depth_write": true,
     "external_assets": "none; R10 GLBs/materials/textures retained byte-for-byte",
     "art_acceptance": "PARTIAL; opaque low-poly effects, PC comparison NOT_RUN"
+  },
+  "R12": {
+    "resources": "existing R11 binary assets retained byte-for-byte",
+    "runtime": "native overview bitmap generated from detached Ground and MapLayerData; no new external artwork",
+    "visual_status": "PARTIAL"
   }
 }

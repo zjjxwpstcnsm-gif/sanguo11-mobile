@@ -160,11 +160,20 @@ public final class MainActivity extends Activity {
         gridToggle=button("网格",v->{map.setGridShown(!map.gridShown());refreshGridToggle();});gridToggle.setTag("map.grid.toggle");gridToggle.setTextSize(11);
         header.addView(gridToggle,new LinearLayout.LayoutParams(dp(44),dp(52)));
         Button tools=button("视图",v->showMapTools());tools.setTextSize(11);tools.setContentDescription("地图工具 · 全图、定位、导航图和屏幕方向");
-        header.addView(tools,new LinearLayout.LayoutParams(dp(44),dp(52)));header.setBackground(UiTheme.surface(this,0xff1b2b33,0xff101b24,0));root.addView(header,new LinearLayout.LayoutParams(-1,dp(56)));
+        header.addView(tools,new LinearLayout.LayoutParams(dp(44),dp(52)));header.setBackground(UiTheme.surface(this,0xff1b2b33,0xff101b24,0));
+        // Reserve the whole first row for the always-visible date on narrow screens.
+        if(getResources().getConfiguration().screenWidthDp<480){
+            header.removeView(actionPointsBadge);header.removeView(headline);
+            LinearLayout dateRow=new LinearLayout(this);dateRow.setPadding(dp(8),0,dp(8),0);dateRow.setGravity(Gravity.CENTER_VERTICAL);
+            dateRow.addView(actionPointsBadge,apParams);dateRow.addView(headline,new LinearLayout.LayoutParams(0,dp(52),1));
+            root.addView(dateRow,new LinearLayout.LayoutParams(-1,dp(52)));
+            header.setGravity(Gravity.RIGHT|Gravity.CENTER_VERTICAL);
+            root.addView(header,new LinearLayout.LayoutParams(-1,dp(48)));
+        }else root.addView(header,new LinearLayout.LayoutParams(-1,dp(56)));
         mapRevisionNotice=text("",11,gold);mapRevisionNotice.setTag("map.revision.notice");mapRevisionNotice.setPadding(dp(12),dp(3),dp(12),dp(3));
         mapRevisionNotice.setOnClickListener(v->message("地图存档版本",NationalMap.compatibilityNotice(world)));root.addView(mapRevisionNotice);
-        body=new FrameLayout(this);if(map!=null)map.release();map=new MapHost(this,new MapView.TileListener(){public void tap(Hex h){onTile(h);}public void unit(int id,Hex h){onUnitTile(id,h);}});body.addView(map,new FrameLayout.LayoutParams(-1,-1));map.setUnitDrop(this::dropUnit);map.setTerritoryMode(getPreferences(MODE_PRIVATE).getInt("territoryMode",0));refreshTerritoryToggle();refreshGridToggle();
-        panelShell=new LinearLayout(this);panelShell.setOrientation(LinearLayout.VERTICAL);UiTheme.panel(panelShell);
+        body=new FrameLayout(this);if(map!=null)map.release();map=new MapHost(this,new MapView.TileListener(){public void tap(Hex h){onTile(h);}public void unit(int id,Hex h){onUnitTile(id,h);}});body.addView(map,new FrameLayout.LayoutParams(-1,-1));map.setUnitDrop(this::dropUnit);refreshTerritoryToggle();refreshGridToggle();
+        panelShell=new LinearLayout(this);panelShell.setOrientation(LinearLayout.VERTICAL);panelShell.setClickable(true);UiTheme.panel(panelShell);
         panelShell.setVisibility(View.GONE);body.addView(panelShell);
         LinearLayout panelHeader=new LinearLayout(this);panelHeader.setPadding(dp(12),0,dp(4),0);panelHeader.setGravity(Gravity.CENTER_VERTICAL);
         returnList=button("列表",v->returnToCities());returnList.setContentDescription("返回全国列表");panelHeader.addView(returnList,new LinearLayout.LayoutParams(dp(48),dp(48)));
@@ -193,7 +202,7 @@ public final class MainActivity extends Activity {
         root.addView(battleBanner,new LinearLayout.LayoutParams(-1,-2));
         turnBanner=text("",13,paper);turnBanner.setPadding(dp(12),dp(5),dp(12),dp(5));turnBanner.setMaxLines(2);turnBanner.setBackgroundColor(0xff243e4b);turnBanner.setVisibility(View.GONE);turnBanner.setContentDescription("查看本旬结算摘要");turnBanner.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);turnBanner.setOnClickListener(v->showTurnReport());root.addView(turnBanner,new LinearLayout.LayoutParams(-1,-2));
         body.addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->{if(r-l!=or-ol||b-t!=ob-ot)layoutPanels();});
-        commandDock=new LinearLayout(this);commandDock.setPadding(dp(8),dp(4),dp(8),dp(4));UiTheme.panel(commandDock);body.addView(commandDock,new FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM));
+        commandDock=new LinearLayout(this);commandDock.setClickable(true);commandDock.setPadding(dp(8),dp(4),dp(8),dp(4));UiTheme.panel(commandDock);body.addView(commandDock,new FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM));
         commandDock.addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->{if(b-t!=ob-ot)layoutPanels();});
         turnProgress=text("",12,gold);turnProgress.setPadding(dp(12),dp(3),dp(12),dp(3));turnProgress.setBackgroundColor(0xff1c3340);turnProgress.setVisibility(View.GONE);turnProgress.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);root.addView(turnProgress,new LinearLayout.LayoutParams(-1,-2));
         quickCityStrip=new LinearLayout(this);quickCityStrip.setOrientation(LinearLayout.HORIZONTAL);root.addView(quickNavigatorRow("城池",quickCityStrip),new LinearLayout.LayoutParams(-1,dp(42)));
@@ -393,7 +402,7 @@ public final class MainActivity extends Activity {
     private void onUnitTile(int id,Hex displayCell) {
         if(aiRunning||world.commandsBlocked())return;
         // Commands retain their existing cell target validation; object selection uses the stable ID.
-        if(mapPick!=null||moving>=0){onTile(displayCell);return;}
+        if(mapPick!=null||(moving>=0&&!unitCommand.equals("select"))){onTile(displayCell);return;}
         World.Unit target=world.unit(id);
         if(target==null)for(Domestic.Mission mission:world.domestic.missions)if(mission.id==id&&mission.transport){target=mission;break;}
         if(target==null)return;

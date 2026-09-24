@@ -129,3 +129,12 @@
   volumetric/textured PC equivalents; original comparison and full-motion review open.
 - R11-MATRIX (validation gap): complete plot variants, physical ARM6420-cycle,
   thermal/performance and full manual national gameplay remain NOT_RUN.
+
+## R12 audit
+- R12-NAV inherited, source fixed: 3D navigator previously only called fit; now actual interactive overview.
+- R12-PREF inherited, source fixed: territory persistence belonged only to Activity; host handles migration and excludes temporary preview/editor changes.
+- R12-BORDER inherited, source fixed: both territory modes previously projected identical fill without jurisdiction boundaries; immutable authoritative masks now drive separate borders.
+- R12-SELECT inherited, source fixed: moving selection could bypass stable-ID tap and open same-cell arbitration without an armed command.
+- R12-UI source fixes awaiting installed verification: panel/dock blank-area interception, date row, labels respect occlusion/overview.
+- R12-OVERLAY PARTIAL: sampled Canvas edges with centre-based tactical occlusion/dashes; no per-fragment clipping, grid/tint remain x-ray.
+- R12-DEVICE NOT_RUN: physical Adreno/Mali, full orientation/device-size matrix, long-run performance and manual touch-only walkthrough.

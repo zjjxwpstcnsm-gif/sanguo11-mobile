@@ -96,7 +96,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private MarchOrders.Plan route;
     private final GestureDetector gestures; private final ScaleGestureDetector scaler;
     private boolean multi,panelGesture;private int panelRight,panelBottom;
-    void setPanelOcclusion(int right,int bottom){panelRight=Math.max(0,right);panelBottom=Math.max(0,bottom);}
+    void setPanelOcclusion(int right,int bottom){panelRight=Math.max(0,right);panelBottom=Math.max(0,bottom);overlay.invalidate();}
     private float multiX=Float.NaN,multiY,multiAngle;
     private String lastPick="none";
     private long suppressedGesture=-1;
@@ -110,11 +110,13 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void setTacticPreview(Displacement.Preview value){tacticPreview=value;overlay.invalidate();}
     void labels(boolean commanders,boolean bars){showCommanders=commanders;showUnitBars=bars;overlay.invalidate();}
 
+    private boolean navigatorShown=true,miniGesture;
+    void navigator(boolean shown){navigatorShown=shown;overlay.invalidate();}
     private boolean gridShown;
     void setGridShown(boolean shown){gridShown=shown;overlay.invalidate();}
     private boolean editorGrid,editorCoords,editorFootprints;private Set<Long> impassable=Collections.emptySet();
     private int territoryMode,previewFaction=-1;private boolean openingPreview;
-    private int[] territoryColors;private final Map<String,String> factionLabels=new HashMap<>();
+    private int[] territoryColors,territoryBorders;private final Map<String,String> factionLabels=new HashMap<>();
     private final Map<String,Integer> siteOwners=new HashMap<>();
     void editorLayers(Set<Long> blocked,boolean grid,boolean coords,boolean footprints){
         editorGrid=grid;editorCoords=coords;editorFootprints=footprints;
@@ -124,7 +126,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void mapLayers(MapLayerData data,int mode,boolean preview,int side){
         territoryMode=mode;openingPreview=preview;previewFaction=side;
         factionLabels.clear();factionLabels.putAll(data.factionLabels);
-        siteOwners.clear();siteOwners.putAll(data.siteOwners);territoryColors=data.colors();
+        siteOwners.clear();siteOwners.putAll(data.siteOwners);territoryColors=data.colors();territoryBorders=data.boundaries();overlay.miniDirty=true;overlay.invalidate();
     }
     private final CombatVisual combat=new CombatVisual();
     private final GpuMesh[] effectMeshes=new GpuMesh[CombatVisual.MESH_COUNT];
@@ -281,6 +283,14 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     @Override public boolean onTouchEvent(MotionEvent e){
         if(!isEnabled())return true;
         int action=e.getActionMasked();
+        overlay.layoutMini();
+        if(action==MotionEvent.ACTION_DOWN)miniGesture=!openingPreview&&navigatorShown&&overlay.miniRect.contains(e.getX(),e.getY())&&!blocked(e.getX(),e.getY());
+        if(miniGesture){
+            suppressedGesture=e.getDownTime();
+            if(e.getPointerCount()==1&&(action==MotionEvent.ACTION_DOWN||action==MotionEvent.ACTION_MOVE)&&!blocked(e.getX(),e.getY()))overlay.navigate(e.getX(),e.getY());
+            if(action==MotionEvent.ACTION_UP||action==MotionEvent.ACTION_CANCEL)miniGesture=false;
+            return true;
+        }
         if(action==MotionEvent.ACTION_DOWN){multi=false;multiX=Float.NaN;panelGesture=blocked(e.getX(),e.getY());}
         for(int i=0;i<e.getPointerCount();i++)if(blocked(e.getX(i),e.getY(i)))panelGesture=true;
         if(panelGesture||action==MotionEvent.ACTION_CANCEL){
@@ -652,8 +662,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private void clampCamera(){
         camera.sanitize();if(snapshot!=null)camera.clampTo(snapshot.ground);
     }
-    void saveCamera(Bundle b){b.putFloat("cameraX",camera.x*TileGeometry.DX);b.putFloat("cameraY",camera.z*TileGeometry.DY);b.putFloat("sceneSpan",camera.span);b.putFloat("sceneTilt",camera.tilt);b.putInt("sceneFacing",camera.facing);b.putFloat("sceneYaw",camera.yaw);}
-    void restoreCamera(Bundle b){try{camera.x=b.getFloat("cameraX")/TileGeometry.DX;camera.z=b.getFloat("cameraY")/TileGeometry.DY;camera.span=b.getFloat("sceneSpan",15);camera.tilt=b.getFloat("sceneTilt",55);camera.yaw=b.getFloat("sceneYaw",0);camera.facing=b.getInt("sceneFacing",1)<0?-1:1;camera.sanitize();clampCamera();}catch(RuntimeException bad){camera.x=0;camera.z=0;camera.span=15;camera.tilt=55;camera.yaw=0;camera.facing=1;clampCamera();}}
+    void saveCamera(Bundle b){b.putBoolean("mapNavigator",navigatorShown);b.putFloat("cameraX",camera.x*TileGeometry.DX);b.putFloat("cameraY",camera.z*TileGeometry.DY);b.putFloat("sceneSpan",camera.span);b.putFloat("sceneTilt",camera.tilt);b.putInt("sceneFacing",camera.facing);b.putFloat("sceneYaw",camera.yaw);}
+    void restoreCamera(Bundle b){navigatorShown=b.getBoolean("mapNavigator",navigatorShown);try{camera.x=b.getFloat("cameraX")/TileGeometry.DX;camera.z=b.getFloat("cameraY")/TileGeometry.DY;camera.span=b.getFloat("sceneSpan",15);camera.tilt=b.getFloat("sceneTilt",55);camera.yaw=b.getFloat("sceneYaw",0);camera.facing=b.getInt("sceneFacing",1)<0?-1:1;camera.sanitize();clampCamera();}catch(RuntimeException bad){camera.x=0;camera.z=0;camera.span=15;camera.tilt=55;camera.yaw=0;camera.facing=1;clampCamera();}}
     void release(){
         meshWork.owner();
         if(released)return;released=true;replay=null;animatedUnit=null;generation++;cancelFrame();meshWork.close();assetWork.close();pending=0;surface.getHolder().removeCallback(this);
@@ -766,14 +776,83 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         final Map<String,android.graphics.RectF> labelHits=new LinkedHashMap<>();
         final android.graphics.Path cellPath=new android.graphics.Path();
         Overlay(Context c){super(c);setClickable(false);}
+        final android.graphics.RectF miniRect=new android.graphics.RectF();
+        private android.graphics.Bitmap miniBitmap;
+        private MapSceneSnapshot.Ground miniGround;
+        private NavigatorTransform miniTransform;
+        boolean miniDirty=true;
+        private final android.graphics.DashPathEffect hiddenDash=new android.graphics.DashPathEffect(new float[]{5,5},0);
+        private final Map<Hex,Boolean> hiddenCells=new HashMap<>();
+        void layoutMini(){
+            float d=getResources().getDisplayMetrics().density;
+            float availableW=getWidth()-panelRight,availableH=getHeight()-panelBottom;
+            float width=Math.min(144*d,availableW*.32f),height=Math.min(118*d,availableH*.26f);
+            if(availableW<120*d||availableH<140*d){miniRect.setEmpty();return;}
+            miniRect.set(availableW-width-8*d,34*d,availableW-8*d,34*d+height);
+        }
+        void navigate(float sx,float sy){
+            if(miniTransform==null||snapshot==null||miniRect.isEmpty())return;
+            camera.x=miniTransform.x((sx-miniRect.left)/miniRect.width());camera.z=miniTransform.z((sy-miniRect.top)/miniRect.height());
+            clampCamera();invalidate(); // camera only: never select a unit or issue a command
+        }
+        float miniX(float x){return miniRect.left+miniTransform.u(x)*miniRect.width();}
+        float miniY(float z){return miniRect.top+miniTransform.v(z)*miniRect.height();}
+        void drawMini(Canvas c){
+            layoutMini();if(openingPreview||!navigatorShown||miniRect.isEmpty())return;
+            MapSceneSnapshot.Ground g=snapshot.ground;
+            if(miniGround!=g||miniDirty){
+                miniGround=g;miniDirty=false;miniTransform=new NavigatorTransform(g.minX,g.minZ,g.maxX,g.maxZ);
+                if(miniBitmap==null)miniBitmap=android.graphics.Bitmap.createBitmap(256,256,android.graphics.Bitmap.Config.ARGB_8888);
+                int[] pixels=new int[256*256];
+                for(int y=0;y<256;y++)for(int x=0;x<256;x++){
+                    Hex h=g.grid.cell(miniTransform.x((x+.5f)/256),miniTransform.z((y+.5f)/256));
+                    int color=0xff18282b;
+                    if(g.valid(h)){int index=h.r*g.width+h.q;color=SceneMesh.terrain(g.terrain[index]);
+                        if(territoryColors!=null&&territoryColors[index]!=0){int t=territoryColors[index];color=0xff000000|((((color>>16)&255)+((t>>16)&255))/2<<16)|((((color>>8)&255)+((t>>8)&255))/2<<8)|((color&255)+(t&255))/2;}}
+                    pixels[y*256+x]=color;
+                }
+                miniBitmap.setPixels(pixels,0,256,0,0,256,256);
+            }
+            p.setStyle(Paint.Style.FILL);p.setColor(0xff18282b);c.drawRect(miniRect.left-2,miniRect.top-2,miniRect.right+2,miniRect.bottom+2,p);
+            c.drawBitmap(miniBitmap,null,miniRect,p);c.save();c.clipRect(miniRect);
+            for(MapSceneSnapshot.Item item:snapshot.items)if(item.site!=null||item.unit!=null){p.setColor(item.color);c.drawCircle(miniX(g.grid.x(item.hex)),miniY(g.grid.z(item.hex)),item.site!=null?3:2,p);}
+            android.graphics.Path viewport=new android.graphics.Path();
+            float[][] corners={{0,0},{camera.width-panelRight,0},{camera.width-panelRight,camera.height-panelBottom},{0,camera.height-panelBottom}};
+            for(int i=0;i<4;i++){float sx=corners[i][0],sy=corners[i][1],h=g.surface.rayHeight(camera,sx,sy);if(!Float.isFinite(h))h=0;
+                float x=miniX(camera.worldX(sx,sy,h)),y=miniY(camera.worldZ(sx,sy,h));if(i==0)viewport.moveTo(x,y);else viewport.lineTo(x,y);}
+            viewport.close();p.setColor(0xffffd576);p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(2);c.drawPath(viewport,p);c.restore();
+            p.setStyle(Paint.Style.FILL);p.setTextSize(10*getResources().getDisplayMetrics().scaledDensity);p.setColor(0xfff0e5c8);c.drawText("北 ↑ · 点按/拖动定位",miniRect.left,miniRect.bottom+13*getResources().getDisplayMetrics().density,p);
+        }
         boolean cellPath(Hex h){
-            if(h==null||snapshot==null||!snapshot.ground.valid(h))return false;GridWorldTransform g=snapshot.ground.grid;float x=g.x(h),z=g.z(h);
-            android.graphics.Path path=cellPath;path.rewind();int i=0;
-            for(float[] edge:SceneMesh.EDGE){float wx=x+edge[0],wz=z+edge[1],sx=camera.screenX(wx,wz),sy=camera.screenY(wx,wz,snapshot.ground.surface.sample(wx,wz)+.015f);if(i++==0)path.moveTo(sx,sy);else path.lineTo(sx,sy);}
-            path.close();return true;
+            if(h==null||snapshot==null||!snapshot.ground.valid(h))return false;
+            GridWorldTransform g=snapshot.ground.grid;float x=g.x(h),z=g.z(h);cellPath.rewind();
+            // Sample every eighth cell along edges from the same terrain surface as picking.
+            int n=0;for(int edge=0;edge<SceneMesh.EDGE.length;edge++){
+                float[] a=SceneMesh.EDGE[edge],b=SceneMesh.EDGE[(edge+1)%SceneMesh.EDGE.length];
+                for(int step=0,steps=camera.span<24?4:1;step<steps;step++){float t=step/(float)steps,wx=x+a[0]+(b[0]-a[0])*t,wz=z+a[1]+(b[1]-a[1])*t;
+                    float sx=camera.screenX(wx,wz),sy=camera.screenY(wx,wz,snapshot.ground.surface.sample(wx,wz)+.015f);
+                    if(n++==0)cellPath.moveTo(sx,sy);else cellPath.lineTo(sx,sy);}}
+            cellPath.close();return true;
+        }
+        boolean hidden(Hex h){
+            return hiddenCells.computeIfAbsent(h,key->{GridWorldTransform g=snapshot.ground.grid;float x=g.x(key),z=g.z(key),y=snapshot.ground.surface.at(key);
+                float front=snapshot.ground.surface.rayHeight(camera,camera.screenX(x,z),camera.screenY(x,z,y));return Float.isFinite(front)&&front>y+.06f;});
         }
         void cell(Canvas c,Hex h,int color){
-            if(!cellPath(h))return;p.setColor(color);p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(2);c.drawPath(cellPath,p);
+            if(!visible(h)||!cellPath(h))return;p.setColor(color);p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(2);
+            // Tactical x-ray is deliberate: dashed means terrain-obscured, never extra reachability.
+            p.setPathEffect(hidden(h)?hiddenDash:null);c.drawPath(cellPath,p);p.setPathEffect(null);
+        }
+        void border(Canvas c,Hex h,int mask){
+            if(mask==0)return;GridWorldTransform g=snapshot.ground.grid;float x=g.x(h),z=g.z(h);
+            p.setColor(territoryMode==2?0x997fd1c7:0x88e4c88d);p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(1.5f);
+            for(int dir=0;dir<6;dir++)if((mask&(1<<dir))!=0){
+                int a=TileGeometry.start(dir),b=TileGeometry.end(dir);cellPath.rewind();
+                for(int i=0;i<=8;i++){float t=i/8f,ox=(TileGeometry.CORNER_X[a]*(1-t)+TileGeometry.CORNER_X[b]*t)/TileGeometry.SPAN,oz=(TileGeometry.CORNER_Y[a]*(1-t)+TileGeometry.CORNER_Y[b]*t)/TileGeometry.SPAN;
+                    float wx=x+(g.staggered?oz:ox),wz=z+(g.staggered?ox:oz),sx=camera.screenX(wx,wz),sy=camera.screenY(wx,wz,snapshot.ground.surface.sample(wx,wz)+.015f);
+                    if(i==0)cellPath.moveTo(sx,sy);else cellPath.lineTo(sx,sy);}
+                c.drawPath(cellPath,p);
+            }
         }
         void drawCombat(Canvas c){
             float d=getResources().getDisplayMetrics().density;
@@ -809,6 +888,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         }
         @Override protected void onDraw(Canvas c){
             if(snapshot==null)return;
+            hiddenCells.clear();layoutMini();c.save();c.clipRect(0,0,Math.max(0,camera.width-panelRight),Math.max(0,camera.height-panelBottom));
             if(territoryColors!=null||((gridShown||editorGrid)&&camera.span<48)||editorCoords||!impassable.isEmpty()){
                 GridWorldTransform grid=snapshot.ground.grid;
                 float rx=camera.extentX()+2,rz=camera.extentZ()+4;
@@ -817,8 +897,9 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 int r0=Math.max(0,Math.min(Math.min(a.r,b.r),Math.min(d.r,e.r))-2),r1=Math.min(snapshot.ground.height-1,Math.max(Math.max(a.r,b.r),Math.max(d.r,e.r))+2);
                 for(int r=r0;r<=r1;r++)for(int q=q0;q<=q1;q++){
                     Hex h=new Hex(q,r);if(!snapshot.ground.valid(h))continue;
-                    if(territoryColors!=null){int color=territoryColors[r*snapshot.ground.width+q];if(color!=0&&cellPath(h)){p.setColor((color&0xffffff)|0x55000000);p.setStyle(Paint.Style.FILL);c.drawPath(cellPath,p);}}
-                    if((gridShown||editorGrid)&&camera.span<48)cell(c,h,editorGrid?0x99ffffff:0x887d928a);
+                    if(territoryColors!=null){int color=territoryColors[r*snapshot.ground.width+q];if(color!=0&&cellPath(h)){p.setColor((color&0xffffff)|0x30000000);p.setStyle(Paint.Style.FILL);c.drawPath(cellPath,p);}}
+                    if((gridShown||editorGrid)&&camera.span<48&&cellPath(h)){p.setColor(editorGrid?0x99ffffff:((((int)(104*Math.min(1,(48-camera.span)/24)))<<24)|0x7d928a));p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(1);c.drawPath(cellPath,p);}
+                    if(territoryBorders!=null)border(c,h,territoryBorders[r*snapshot.ground.width+q]);
                     if(impassable.contains(MapLayerData.cellKey(h.q,h.r)))cell(c,h,0x99ff6767);
                     if(editorCoords&&camera.span<7){p.setStyle(Paint.Style.FILL);p.setColor(0xffffffff);p.setTextSize(10*getResources().getDisplayMetrics().scaledDensity);c.drawText((int)Math.floor(grid.x(h))+","+(int)Math.floor(grid.z(h)),camera.screenX(grid.x(h),grid.z(h)),camera.screenY(grid.x(h),grid.z(h),snapshot.ground.surface.at(h)),p);}
                 }
@@ -867,13 +948,13 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 android.graphics.RectF box=new android.graphics.RectF(x-pad,y-font-pad,x+width+pad,y+(second==null?pad:font*1.2f+pad));
                 if(box.bottom<font*2||box.top>camera.height||box.right<0||box.left>camera.width)continue;
                 boolean overlap=false;for(android.graphics.RectF used:occupied)if(android.graphics.RectF.intersects(used,box)){overlap=true;break;}
-                if((overlap&&!selected)||!labelVisible(object))continue;occupied.add(box);labelHits.put(item.key,box);if(openingPreview&&item.site!=null)namedFactions.add(siteOwners.getOrDefault(item.key,-1));
+                if((overlap&&!selected)||!labelVisible(object)||box.right>camera.width-panelRight||box.bottom>camera.height-panelBottom||(!openingPreview&&navigatorShown&&android.graphics.RectF.intersects(box,miniRect)))continue;occupied.add(box);labelHits.put(item.key,box);if(openingPreview&&item.site!=null)namedFactions.add(siteOwners.getOrDefault(item.key,-1));
                 p.setColor(selected?0xe61b2f37:0xb3122027);c.drawRoundRect(box,pad,pad,p);
                 p.setColor(selected?0xffffd576:item.color);c.drawText(first,x,y,p);if(second!=null)c.drawText(second,x,y+font*1.2f,p);
             }
-            p.setColor(0xfff0e5c8);c.drawText((pending>0)?"3D 地形装载中… · 可在视图切回 2D":"双指缩放/旋转 · 三指倾角 · 长按定位",12,24*getResources().getDisplayMetrics().density,p);
+            p.setColor(0xfff0e5c8);c.drawText((pending>0)?"3D 地形装载中… · 可在视图切回 2D":(editorGrid?"编辑网格临时显示 · 不修改游戏网格设置":"双指缩放/旋转 · 范围虚线＝山体遮挡"),12,24*getResources().getDisplayMetrics().density,p);
             if(diagnostics){float y=48*getResources().getDisplayMetrics().density;for(String line:report().split("\n")){c.drawText(line,12,y,p);y+=22*getResources().getDisplayMetrics().density;}}
-            drawCombat(c);p.clearShadowLayer();
+            drawCombat(c);drawMini(c);p.clearShadowLayer();c.restore();
         }
     }
 }

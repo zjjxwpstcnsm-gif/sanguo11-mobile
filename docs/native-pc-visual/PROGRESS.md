@@ -117,3 +117,6 @@ pause/skip/cancellation are integrated. HostR11 99,443 / combat25,470 PASS;
 independent R10 full-save golden parity16/16. Exact Android build/runtime pending.
 R10 installed run was actually FAIL at removed RAM actor probe; source probe repaired,
 not retroactively passed. R09 visual/UI and legacy rule/device defects remain open.
+
+## R12 current execution — PARTIAL candidate
+Native north-up overview/input, independent host preferences, authoritative faction/site boundaries, sampled/dashed tactical overlays, stable-ID selection and panel/date layout fixes. R11 CI36019140571 verified success; old pending prose is historical. Exact R12 build/runtime pending; preserve all R09 art and physical/manual gates. No main merge or R13.
