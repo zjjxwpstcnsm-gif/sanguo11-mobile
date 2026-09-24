@@ -71,7 +71,7 @@ final class Vegetation {
                     if(detailed)near.append(models[a.family][0],a);far.append(models[a.family][1],a);
                 }
             }
-            SceneMesh distant=far.mesh(cx,cz);SceneMesh m=detailed?near.mesh(cx,cz):distant;m.distant=distant;m.chunkQ=q;m.chunkR=r;m.fingerprint=hash;result.add(m);
+            SceneMesh distant=far.mesh(cx,cz);distant.chunkQ=q;distant.chunkR=r;SceneMesh m=detailed?near.mesh(cx,cz):distant;m.distant=distant;m.chunkQ=q;m.chunkR=r;m.fingerprint=hash;result.add(m);
         }
         return Collections.unmodifiableList(result);
     }

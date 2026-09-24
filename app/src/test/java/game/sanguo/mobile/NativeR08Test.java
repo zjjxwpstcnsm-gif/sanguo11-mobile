@@ -6,7 +6,7 @@ public final class NativeR08Test {
  static int checks;
  static void check(boolean ok,String message){checks++;if(!ok)throw new AssertionError(message);}
  static SceneMesh.TerrainWindow window(float x,float z){return new SceneMesh.TerrainWindow(x,z,7,7,10);}
- static long bytes(List<SceneMesh> list){long n=0;for(SceneMesh m:list)for(SceneMesh a:new SceneMesh[]{m,m.distant})n+=4L*(a.vertices.length+a.indices.length+a.uv.length+a.tangents.length);return n;}
+ static long bytes(List<SceneMesh> list){long n=0;Set<SceneMesh> unique=Collections.newSetFromMap(new IdentityHashMap<>());for(SceneMesh m:list){unique.add(m);unique.add(m.distant);}for(SceneMesh a:unique)n+=4L*(a.vertices.length+a.indices.length+a.uv.length+a.tangents.length);return n;}
  public static void main(String[] args)throws Exception{
   FieldAssets assets=new FieldAssets(n->new FileInputStream("app/src/main/assets/3d/field/"+n));
   World w=new World(96,96,"甲","乙");for(World.Terrain[] row:w.terrain)Arrays.fill(row,World.Terrain.FOREST);
@@ -34,6 +34,7 @@ public final class NativeR08Test {
   for(int i=0;i<3;i++)check(families[i]>0,"broadleaf/conifer/shrub present");
   Set<Hex> unitExclusion=Vegetation.exclusions(new MapSceneSnapshot(g,w,null,-1));check(unitExclusion.containsAll(g.bases),"site footprint exclusion");
   for(SceneMesh m:patch)for(SceneMesh a:new SceneMesh[]{m,m.distant}){
+   check(a.chunkQ==m.chunkQ&&a.chunkR==m.chunkR,"both LODs have stable replacement identity");
    check(a.uv.length==a.vertices.length/7*2,"merged UV count");for(int index:a.indices)check(index>=0&&index<a.vertices.length/7,"bounded index");
    for(float v:a.vertices)check(Float.isFinite(v),"finite geometry");
    check(a.indices.length%3==0,"triangles");

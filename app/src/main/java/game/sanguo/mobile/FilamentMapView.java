@@ -336,13 +336,13 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             outputVerified=false;outputStatus="WAITING_MESH";uniformOutputCount=0;
             woodExcluded=excluded;generation++;
             List<SceneMesh> previous=chunks,oldWoods=woods;pending=1;
-            final FieldAssets assets=fieldAssets;
+            final FieldAssets assets=fieldAssets;final SceneMesh oldScenery=backdropSource;
             terrainWindow=new SceneMesh.TerrainWindow(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span);
             SceneMesh.TerrainWindow requested=terrainWindow;
             meshWork.submit(()->{
                 long started=android.os.SystemClock.elapsedRealtime();
 
-                SceneMesh scenery=SceneMesh.backdrop(next.ground);
+                SceneMesh scenery=groundChanged?SceneMesh.backdrop(next.ground):oldScenery;
                 List<SceneMesh> built=SceneMesh.ground(next.ground,previous,requested);
                 android.util.Log.i("Sanguo3D","Ground CPU ready chunks="+built.size()+" ms="+(android.os.SystemClock.elapsedRealtime()-started));
                 List<SceneMesh> trees=Vegetation.buildWindow(next.ground,excluded,oldWoods,assets,requested);
@@ -356,7 +356,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(released)return;
         if(backdropSource!=result.scenery){if(backdrop!=null){backdrop.destroy();backdrop=null;}backdropSource=result.scenery;}
         // Keep a displayed old level until its replacement finishes the bounded upload.
-        for(SceneMesh old:new ArrayList<>(vegetation.keySet()))if(!result.trees.contains(old)&&result.trees.stream().noneMatch(m->m.distant==old))vegetation.remove(old).destroy();
+        // Environment meshes transfer in loadVisible only after replacement upload.
         chunks=result.ground;distantTerrain=!chunks.isEmpty()&&chunks.stream().allMatch(m->m.terrainLod==2);
         woods=result.trees;pending=0;clampCamera();
     }
@@ -490,7 +490,13 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 if(gpu!=null)gpu.show(true);
             }
         }
-        for(SceneMesh old:new ArrayList<>(vegetation.keySet()))if(!wantedWood.contains(old)){vegetation.remove(old).destroy();}
+        for(SceneMesh old:new ArrayList<>(vegetation.keySet()))if(!wantedWood.contains(old)){
+            SceneMesh replacement=null;
+            for(SceneMesh wanted:wantedWood)if(wanted.chunkQ==old.chunkQ&&wanted.chunkR==old.chunkR){replacement=wanted;break;}
+            // Keep the previous LOD visible during the two-upload/frame queue.
+            if(replacement==null||vegetation.containsKey(replacement))vegetation.remove(old).destroy();
+            else vegetation.get(old).show(inView(old.x,old.z,old.radius));
+        }
         visibleObjects=0;
         for(Proxy p:objects.values()){boolean shown=inView(p.motion.x,p.motion.z,2);if(shown)visibleObjects++;if(shown!=p.shown){p.show(shown);}}
     }

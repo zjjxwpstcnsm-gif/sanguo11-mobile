@@ -69,16 +69,24 @@ public final class NativeR08Instrumentation extends SceneInstrumentation {
   MapSceneSnapshot snapshot=(MapSceneSnapshot)field(view(),"snapshot");
   MapSceneSnapshot.Item gate=snapshot.items.stream().filter(i->i.site!=null&&i.kind==2).findFirst().orElseThrow();
   views(gate.hex,"valley-gate","coalition-190 official; "+gate.label+"; "+gate.hex);
-  Hex forestRoad=null;
-  outer:for(int r=2;r<snapshot.ground.height-2;r++)for(int q=2;q<snapshot.ground.width-2;q++){
-   Hex h=new Hex(q,r);if(Vegetation.path(snapshot.ground,h))for(Hex n:h.neighbors())if(snapshot.ground.valid(n)&&snapshot.ground.terrain[n.r*snapshot.ground.width+n.q]==World.Terrain.FOREST.ordinal()){forestRoad=h;break outer;}
+  Hex forestRoad=null;int bestForest=-1;
+  for(int r=4;r<snapshot.ground.height-4;r++)for(int q=4;q<snapshot.ground.width-4;q++){
+   Hex h=new Hex(q,r);if(!Vegetation.path(snapshot.ground,h))continue;
+   int forest=0;boolean edge=false;
+   for(Hex n:h.neighbors())if(snapshot.ground.valid(n)&&snapshot.ground.terrain[n.r*snapshot.ground.width+n.q]==World.Terrain.FOREST.ordinal())edge=true;
+   if(!edge)continue;
+   for(int rr=r-4;rr<=r+4;rr++)for(int qq=q-4;qq<=q+4;qq++)if(snapshot.ground.terrain[rr*snapshot.ground.width+qq]==World.Terrain.FOREST.ordinal())forest++;
+   if(forest>bestForest){forestRoad=h;bestForest=forest;}
   }
   check(forestRoad!=null,"official forest-road region exists");views(forestRoad,"forest-road","coalition-190 official; "+forestRoad);
   // Compare cached production placement after a camera trip; no second World/session.
   final Hex focus=forestRoad;
   Map<Long,Long> beforeMeshes=new HashMap<>();
   runOnMainSync(()->{try{for(SceneMesh m:(List<SceneMesh>)field(view(),"woods"))beforeMeshes.put(((long)m.chunkR<<32)|m.chunkQ,m.fingerprint);}catch(Exception e){throw new RuntimeException(e);}});
-  views(gate.hex,"return-valley","coalition-190 official");views(focus,"return-forest","coalition-190 official");
+  for(Hex at:new Hex[]{gate.hex,focus}){
+   runOnMainSync(()->{try{FilamentMapView v=view();v.center(at);v.camera.span=60;v.camera.yaw=90;}catch(Exception e){throw new RuntimeException(e);}});
+   shot(at.equals(focus)?"r08-return-forest":"r08-return-valley","coalition-190 official; "+at);
+  }
   runOnMainSync(()->{try{for(SceneMesh m:(List<SceneMesh>)field(view(),"woods")){Long hash=beforeMeshes.get(((long)m.chunkR<<32)|m.chunkQ);if(hash!=null)check(hash==m.fingerprint,"camera travel preserves forest fingerprint");}}catch(Exception e){throw new RuntimeException(e);}});
   references();runOnMainSync(()->world=SessionProbe.view(activity));check(Arrays.equals(before,SaveCodec.encode(world)),"site cameras preserve authority");
   runOnMainSync(()->{try{view().setGridShown(true);}catch(Exception e){throw new RuntimeException(e);}});shot("r08-gate-grid","coalition-190 official gate");
