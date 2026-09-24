@@ -91,10 +91,14 @@ final class SceneMesh {
         Builder b=new Builder();
         // Sample the shared field densely enough to avoid coarse background colour islands
         // showing through authoritative VOID cells. This never adds playable cells.
-        final float step=2;
-        for(float z=minZ;z<maxZ;z+=step)for(float x=minX;x<maxX;x+=step){
-            int n=b.v.size()/7;b.vertex(x,-.04f,z,0xffffffff);b.vertex(x,-.04f,z+step,0xffffffff);b.vertex(x+step,-.04f,z+step,0xffffffff);b.vertex(x+step,-.04f,z,0xffffffff);
-            Collections.addAll(b.i,n,n+1,n+2,n,n+2,n+3);
+        final float step=2.25f;
+        int columns=(int)Math.ceil((maxX-minX)/step),rows=(int)Math.ceil((maxZ-minZ)/step);
+        // The regular background has no split normals: adjacent quads share payloads.
+        for(int r=0;r<=rows;r++)for(int q=0;q<=columns;q++)
+            b.vertex(minX+q*step,-.04f,minZ+r*step,0xffffffff);
+        for(int r=0;r<rows;r++)for(int q=0;q<columns;q++){
+            int n=r*(columns+1)+q,next=n+columns+1;
+            Collections.addAll(b.i,n,next,next+1,n,next+1,n+1);
         }
         SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+8);m.landIndexCount=m.indices.length;
         // Identical weights, lighting frame, macro tone and shore data to the foreground.

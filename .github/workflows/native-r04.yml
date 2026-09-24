@@ -31,7 +31,7 @@ jobs:
           mkdir -p out/r04
           git rev-parse HEAD > out/r04/SOURCE_SHA
           set -o pipefail
-          for suite in test-native-r04 test-native-r03 test-native-r02 test-native-r01 test-architecture test-3d-foundation test-3d-interaction; do
+          for suite in test-native-r04 test-native-r03 test-native-r02 test-native-r01 test-architecture test-3d-nationwide test-3d-interaction; do
             bash scripts/$suite.sh 2>&1 | tee out/r04/$suite.log
           done
       - name: Verify textures and exact material compiler
