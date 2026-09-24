@@ -73,10 +73,10 @@ public final class NativeR13Instrumentation extends SceneInstrumentation {
         World pinned=CustomMaps.load(published,published.preview,0,17L);library.rememberVisual(pinned);
         File sidecar=new File(getTargetContext().getFilesDir(),"custom-maps-v1/visual-"+pinned.customMapFingerprint+".json");writeText(sidecar.toPath(),"broken visual JSON");
         byte[] pinnedSave=SaveCodec.encode(pinned);check(library.visual(pinned)!=null,"damaged sidecar falls back to pinned map");check(Arrays.equals(pinnedSave,SaveCodec.encode(pinned)),"style recovery preserves save");
-        activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();host=(MapHost)field(activity,"map");
+        activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();
         ui(()->invoke("startScenario",new Class<?>[]{String.class,int.class,MapPatch.class},published.preview,0,published));
         long deadline=SystemClock.uptimeMillis()+120000;do{settle();ui(()->world=SessionProbe.view(activity));}while((world==null||!world.customMapId.equals(published.id))&&SystemClock.uptimeMillis()<deadline);
-        check(world!=null&&world.customMapId.equals(published.id),"normal startScenario installs published custom map");ui(()->{host.switchMode(true);host.focus(world.home().hex);invoke("closePanel",new Class<?>[0]);});shot("r13-custom-campaign");
+        check(world!=null&&world.customMapId.equals(published.id),"normal startScenario installs published custom map");host=(MapHost)field(activity,"map");ui(()->{host.switchMode(true);host.focus(world.home().hex);invoke("closePanel",new Class<?>[0]);});shot("r13-custom-campaign");
         commandFlow();shot("r13-custom-after-turn-load");
         result.putString("stream","PASS R13 installed checks="+checks+"; procedural custom fixture; physical/manual/PC art NOT_RUN\n");finish(Activity.RESULT_OK,result);
     }catch(Throwable e){try{writeText(new File(dir,"r13-failure.txt").toPath(),android.util.Log.getStackTraceString(e));}catch(Exception ignored){}result.putString("stream","FAIL R13 "+android.util.Log.getStackTraceString(e));finish(Activity.RESULT_CANCELED,result);}}
