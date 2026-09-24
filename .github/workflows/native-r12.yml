@@ -105,3 +105,4 @@ jobs:
           tag="native-r12-${GITHUB_SHA:0:12}"
           printf 'R12 source %s. PARTIAL candidate: inspect interaction.txt for installed outcome. Physical ARM64 and PC art NOT accepted. No main merge.\n' "$GITHUB_SHA" > out/r12-release.txt
           gh release create "$tag" --target "$GITHUB_SHA" --prerelease --title "Native R12 ${GITHUB_SHA:0:12}" --notes-file out/r12-release.txt out/r12/sanguo11-native-r12.apk out/r12-evidence.zip
+# R12 preserve the 2D no-explicit-target sentinel and suppress unrelated move fill during targeting.

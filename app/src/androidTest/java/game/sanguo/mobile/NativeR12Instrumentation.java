@@ -79,7 +79,7 @@ public final class NativeR12Instrumentation extends SceneInstrumentation {
         check(!snap.attackTargets.isEmpty(),"counter fixture has highlighted ordinary attack targets");
         runOnMainSync(()->((MapView)unchecked(host,"flat")).setWorld(world,unit.hex,unit.id));
         check(snap.attackTargets.equals(field(field(host,"flat"),"attackTargets")),"installed 2D/3D exact attack target equality");
-        Set<Hex> targets=new HashSet<>();targets.add(unit.hex);runOnMainSync(()->host.setPickTargets(targets));targets.clear();check(((Set<?>)field(spatial(),"targets")).size()==1,"input target snapshot detached");runOnMainSync(()->host.setPickTargets(Collections.emptySet()));
+        Set<Hex> targets=new HashSet<>();targets.add(unit.hex);runOnMainSync(()->host.setPickTargets(targets));targets.clear();check(((Set<?>)field(spatial(),"targets")).size()==1,"input target snapshot detached");runOnMainSync(()->host.setPickTargets(null));check(field(field(host,"flat"),"pickTargets")==null,"2D null sentinel keeps ordinary move/attack previews");
         check(NativeR11Fixture.command(reference,"counter").ok,"reference attack");runOnMainSync(()->{check(SessionProbe.command(activity,w->NativeR11Fixture.command(w,"counter")).ok,"normal Activity attack");host.cancelCommandEffects();});
         check(Arrays.equals(SaveCodec.encode(reference),authority()),"attack full authority matches");shot("r12-explicit-fixture-attack");note("PASS explicit combat fixture selection/no auto command, move preview, attack full-save parity");
     }

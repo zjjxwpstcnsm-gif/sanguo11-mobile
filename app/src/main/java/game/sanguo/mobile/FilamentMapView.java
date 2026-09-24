@@ -915,7 +915,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 cell(c,tacticPreview.blocked,0xffff3333);
             }
             if(route!=null)for(Hex h:route.path)cell(c,h,0xffffd576);
-            for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.coverage)cell(c,h,0xffcfad6e);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets.isEmpty()?snapshot.attackTargets:targets)cell(c,h,0xffdd7661);cell(c,snapshot.selected,0xffffd576);
+            if(targets.isEmpty())for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.coverage)cell(c,h,0xffcfad6e);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets.isEmpty()?snapshot.attackTargets:targets)cell(c,h,0xffdd7661);cell(c,snapshot.selected,0xffffd576);
             for(MapSceneSnapshot.Item item:snapshot.items)if(item.site!=null&&item.site.cells.contains(snapshot.selected))for(Hex h:item.site.cells)cell(c,h,0xffffd576);
             // Ground rings remain visible through architecture; transit units cannot disappear behind walls.
             for(Proxy object:objects.values())if(object.item.unit!=null&&object.shown){

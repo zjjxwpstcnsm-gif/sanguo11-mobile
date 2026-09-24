@@ -170,7 +170,7 @@ if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){if(
     @Override public void setEnabled(boolean enabled){super.setEnabled(enabled);if(flat!=null)flat.setEnabled(enabled);if(spatial!=null)spatial.setEnabled(enabled);}
     void setUnitDrop(Consumer<MarchOrders.Plan> drop){flat.setUnitDrop(drop);}
     void setRoute(MarchOrders.Plan value){route=value;flat.setRoute(value);if(spatial!=null)spatial.setRoute(value);}
-    void setPickTargets(Set<Hex> value){targets=value==null?Collections.emptySet():Set.copyOf(value);flat.setPickTargets(targets);if(spatial!=null)spatial.setTargets(value);}
+    void setPickTargets(Set<Hex> value){targets=value==null?Collections.emptySet():Set.copyOf(value);flat.setPickTargets(value==null?null:targets);if(spatial!=null)spatial.setTargets(value);}
     void setTacticPreview(Displacement.Preview value){tacticPreview=value;flat.setTacticPreview(value);if(spatial!=null)spatial.setTacticPreview(value);}
     void battleFeedback(World.Result result,boolean haptics){if(spatial==null)flat.battleFeedback(result,haptics);else if(haptics&&result.feedback!=World.Feedback.NONE)performHapticFeedback(android.view.HapticFeedbackConstants.CONTEXT_CLICK);}
     void setPanelOcclusion(int right,int bottom){panelRight=right;panelBottom=bottom;flat.setPanelOcclusion(right,bottom);if(spatial!=null)spatial.setPanelOcclusion(right,bottom);}
