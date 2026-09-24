@@ -3,7 +3,7 @@ name: Native R13 editor and custom save integration
 on:
   push:
     branches: [agent/native-pc-visual]
-    paths: ['.github/workflows/native-r13.yml']
+    paths: ['.github/workflows/native-r13.yml', 'app/src/**', 'core/src/**', 'scripts/*r13*', 'version.properties']
 permissions:
   contents: write
 concurrency:
