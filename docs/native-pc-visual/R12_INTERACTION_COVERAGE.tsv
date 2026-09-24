@@ -1,15 +1,15 @@
 feature	production_path	verification	acceptance
-opening faction/start	ScenarioFactionPicker -> MapHost -> startScenario	installed R12 preview/start	PENDING_CI
-unit selection	Filament picking -> stable ID -> onUnitTile	installed selection/no command	PENDING_CI
-deployment/movement	MainActivity.apply -> GameSession	installed official commandFlow	PENDING_CI
+opening faction/start	ScenarioFactionPicker -> MapHost -> startScenario	installed preview readiness timeout; start not reached	FAIL / NOT_RUN
+unit selection	Filament picking -> stable ID -> onUnitTile	installed fixture not reached	NOT_RUN
+deployment/movement	MainActivity.apply -> GameSession	installed commandFlow not reached after preview failure	NOT_RUN
 move range	MapSceneSnapshot <- orders.marchReachable	host fixture + installed	HOST_PASS
 attack/war displacement	WarUi -> pickOnMap/setTacticPreview -> MapHost	retained interaction host; full touch tactics matrix missing	PARTIAL
 facility/siege	MapSceneSnapshot <- fieldworks/SiegeOverlay	host direct set equality	HOST_PASS
-grid/territory	MapHost independent preferences	installed four-combination + recreate + 2D	PENDING_CI
+grid/territory	MapHost independent preferences	installed four-combination + recreate + 2D	PASS
 jurisdiction boundary	MapProjectionQuery <- Territory.boundary	host all official cells	HOST_PASS
-minimap	Filament Overlay -> same SceneCamera	installed tap/yaw/no command	PENDING_CI
+minimap	Filament Overlay -> same SceneCamera	installed tap/yaw/no command	PASS
 list/overview location	MainActivity.selectAndFocus -> MapHost.focus	existing flow retained; every list not separately exercised	PARTIAL
 pan/zoom/rotation/scale	SceneCamera/view-pixel input	retained interaction host; full device gestures missing	PARTIAL
 panels/date	MainActivity + native label exclusion	installed panel/date smoke; size/orientation matrix missing	PARTIAL
-reports/next turn/save/load	MainActivity -> GameSession/TurnWork	installed official flow; manual report touch flow missing	PARTIAL
+reports/next turn/save/load	MainActivity -> GameSession/TurnWork	R12 installed flow not reached; same-source R00 load smoke PASS; manual report flow missing	PARTIAL
 editor override	MapHost.editorLayers -> Filament Overlay	installed temporary override; full editor reserved R13	PARTIAL

@@ -120,3 +120,19 @@ not retroactively passed. R09 visual/UI and legacy rule/device defects remain op
 
 ## R12 current execution — PARTIAL candidate
 Native north-up overview/input, independent host preferences, authoritative faction/site boundaries, sampled/dashed tactical overlays, stable-ID selection and panel/date layout fixes. R11 CI36019140571 verified success; old pending prose is historical. Exact R12 build/runtime pending; preserve all R09 art and physical/manual gates. No main merge or R13.
+
+## Final inspected delivery — PARTIAL (2026-09-24)
+
+APK source: `a57d3f2e13cbaa9a4da3dca781b4f6ae7de103ec`. Later commits only package evidence and update reports; no runtime changes. APK SHA-256: `1964899b3969f9d71e8a9c7a2350860c5c7c64bcd4e786600f14f875506fb6ae`, 37,346,041 bytes. Application `game.sanguo.mobile.dev`, version95 / 0.95.0-native-r12; arm64-v8a, armeabi-v7a, x86, x86_64. Filament1.56/OpenGL; installed evidence is API29 x86_64 Pixel2, 1080x1920, SwANGLE/SwiftShader, not physical GPU evidence. Certificate SHA256: `8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24`.
+
+Build/androidTest/lint PASS in run36047497184. R12 host395124, retained interaction32/editor136, R11 99443, combat25470 and architecture suites PASS. Full core retains `CoreTest.logistics:75: AI uses deployment commands` FAIL, independently also present in R11 logs; the workflow continue-on-error does not make this test pass.
+
+Installed R12 overall FAIL: four grid/territory combinations, 2D parity, Activity recreation, temporary editor override, full-save equality, north-up minimap with yaw67/no command leakage, panel interception and date width PASS. Opening preview then timed out in SceneInstrumentation.ready (NativeR12Instrumentation.preview:64): span86.256714, submitted21, pending654, output WAITING_FRAME. This is a real unresolved large-view loading/readiness problem under software rendering; root cause and physical-device behavior are unproven. No assertion was removed, timeout enlarged, or 2D fallback counted. Downstream scenario start, official deployment/move/turn/autosave/load and explicit attack fixture were NOT_RUN in this R12 attempt. Host range equality is not a substitute for that flow.
+
+Same-source separate R00 run36047504121 PASS fresh139/reload97; its screenshots confirm native scene/startup/load only, not R12 end-to-end acceptance and not binary identity with the delivered APK. R03 run36047504298 success. R12 release publication succeeded: https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/releases/tag/native-r12-a57d3f2e13cb . Earlier superseded run release403 is not the final result.
+
+Evidence: raw installed UI/surface captures, six operation recording segments, interaction failure stack, runtime diagnostics/logcat and build/host logs retained. Transfer packaging run36049535452 succeeded; reconstructed raw ZIP verified SHA256025f7f5dd6618ca04198c1a455cf622184200269173d9c6fdae5f258fd246e4f. No full-video or touch-only acceptance is claimed.
+
+Visual inspection sampled actual composed four-combination/panel images and R00 fresh/load: date and action buttons readable at this size, terrain/city/ports and north-up overview visible; minimap is noisy and changes aspect ratio with panel viewport, coastline remains visibly stepped, vegetation sparse. One four-combination image retains loading text despite content detection. Labels still cover parts of sites. Grid/faction Canvas annotations are not per-fragment depth tested; centre-ray dashed tactical outlines do not solve partial-cell occlusion. R09 V2/PC-art acceptance remains open.
+
+Physical Adreno/Mali, full touch-only tactics/facility/siege/report flow, all lists, small/large landscape/portrait matrix, dynamic-resolution touch parity, cold restart preference matrix and long-duration performance remain NOT_RUN or partial. Preserve these gates before declaring R12 complete. Do not merge main or start R13.

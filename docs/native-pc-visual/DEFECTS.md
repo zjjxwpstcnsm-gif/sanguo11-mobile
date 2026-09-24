@@ -141,3 +141,8 @@
 
 - R12-ATTACK inherited, source fixed: ordinary attack targets were absent from the native snapshot; 2D/3D now share the original exact rule queries.
 - R12-INPUT inherited, source fixed: reachability was incorrectly used as an armed-command signal; explicit host commandTargeting now controls entity/cell picking.
+
+## R12 final open gates
+- NEW OBSERVED: exact-source installed run36047497184 FAIL at opening full-map preview readiness (pending654 / WAITING_FRAME); subsequent real command chain NOT_RUN. Four-combination/recreation/minimap/panel gates passed before failure. Do not classify as inherited without further evidence.
+- R12 Canvas depth occlusion remains approximate; noisy/aspect-changing minimap, some loading text and label/site overlap remain visually unaccepted.
+- INHERITED: CoreTest.logistics:75 AI uses deployment commands fails both R11 and R12. R09 V2 art and physical GPU/manual/device matrix remain open.

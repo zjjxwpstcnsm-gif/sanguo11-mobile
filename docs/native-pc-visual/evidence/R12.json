@@ -1,8 +1,22 @@
 {
   "stage": "R12",
   "status": "PARTIAL",
-  "source": "pending commit",
-  "apk": "pending exact-source CI",
+  "source": "a57d3f2e13cbaa9a4da3dca781b4f6ae7de103ec",
+  "apk_sha256": "1964899b3969f9d71e8a9c7a2350860c5c7c64bcd4e786600f14f875506fb6ae",
+  "app": "game.sanguo.mobile.dev",
+  "version": "0.95.0-native-r12 (95)",
+  "abi": [
+    "arm64-v8a",
+    "armeabi-v7a",
+    "x86",
+    "x86_64"
+  ],
+  "backend": "Filament 1.56 OpenGL",
+  "run": 36047497184,
+  "build": "PASS",
+  "installed": "FAIL preview readiness; prior combinations/recreation/minimap/panel PASS; subsequent commands NOT_RUN",
   "physical": "NOT_RUN",
-  "visual": "PARTIAL"
+  "visual": "PARTIAL",
+  "inherited_core_failure": "CoreTest.logistics:75 AI uses deployment commands",
+  "release": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/releases/tag/native-r12-a57d3f2e13cb"
 }
