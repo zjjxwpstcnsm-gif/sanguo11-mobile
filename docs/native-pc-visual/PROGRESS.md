@@ -36,3 +36,9 @@ R02 final CI35865854066: build/lint and 1,043 installed checks PASS, all three
 quality captures. Same-source R00 startup CI35865854274 PASS. First HIGH capture
 failure retained; retries were not needed in the final passing run. Physical, PC
 reference and complete hand-operated interaction/performance gates still open.
+
+R05: PARTIAL. Shared textured bank/shallow/deep water and actual interior shore/flow
+sampling integrated. R05/S11/R04/R03/architecture host checks PASS. Legacy port AI
+replay fails identically on R04 baseline; not relabeled PASS. Android exact-source
+build/installed evidence pending; physical/PC/boat/edit acceptance open. See R05
+report and handoff. Do not start R06 or merge main.

@@ -187,6 +187,18 @@ final class SceneMesh {
             for(int t=0;t<coarse.indices.length;t+=3)for(int j=0;j<8;j++)
                 fine.surfaceData[(start+t/3)*8+j]=(coarse.surfaceData[coarse.indices[t]*8+j]+coarse.surfaceData[coarse.indices[t+1]*8+j]+coarse.surfaceData[coarse.indices[t+2]*8+j])/3;
         }
+        // R05: resample only newly introduced interior vertices. Shared edge samples
+        // remain byte-identical across chunks/LODs; geometry and ray picking do not move.
+        // Interpolating the old field here added triangles but no shoreline detail.
+        if(fine.surfaceData!=null){
+            WaterVisualField field=new WaterVisualField(g);
+            int start=coarse.vertices.length/7;
+            for(int t=0;t<coarse.indices.length;t+=3){
+                int i=start+t/3;float x=fine.vertices[i*7],z=fine.vertices[i*7+2];
+                fine.surfaceData[i*8+6]=field.distance(x,z);
+                if(t>=coarse.landIndexCount)fine.surfaceData[i*8+7]=field.flowAngle(x,z);
+            }
+        }
         return fine;
     }
     /** Explicit temporary silhouettes: walled city, pier, gate, standard, farm, tower. */

@@ -208,6 +208,11 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain/water.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);bytes=out.toByteArray();}
         ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();
         waterMaterial=new Material.Builder().payload(payload,bytes.length).build(engine);
+        // Borrow the four existing sRGB albedos; ownership stays with groundTextures.
+        // No duplicate uploads, normal maps, reflection targets or transparent water pass.
+        TextureSampler bankSampler=new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.REPEAT);
+        String[] layers={"grass","soil","sand","rock"};
+        for(int i=0;i<layers.length;i++)waterMaterial.getDefaultInstance().setParameter(layers[i]+"Color",groundTextures.get(i*2),bankSampler);
         waterMaterial.getDefaultInstance().setParameter("waveTime",0f);
         waterMaterial.getDefaultInstance().setParameter("waveStrength",quality==SceneQuality.LOW?.035f:.065f);
     }

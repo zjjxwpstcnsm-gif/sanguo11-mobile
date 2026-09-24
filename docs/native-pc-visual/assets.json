@@ -22,5 +22,17 @@
     "runtime": "FilamentMapView → SceneMesh.ground window",
     "resources": "Existing terrain/site/field assets unchanged",
     "visual_acceptance": "PENDING"
+  },
+  "R05": {
+    "source": "tools/3d/water.mat",
+    "runtime": "app/src/main/assets/3d/terrain/water.filamat",
+    "sha256": "4af4782a314faa11228454b5c72d470dee7948f8019bd985f38b2a1b26a80bb7",
+    "compiler": "matc 1.56.0 (56), mobile OpenGL",
+    "textures": "borrowed R04 grass/soil/sand/rock sRGB albedos; no new allocation",
+    "opaque": true,
+    "shore_band_world_units": 0.32,
+    "depth_band_world_units": 1.5,
+    "owner": "groundTextures; water borrows until material destroyed",
+    "acceptance": "PARTIAL, installed evidence pending"
   }
 }

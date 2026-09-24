@@ -151,19 +151,19 @@
     },
     {
       "path": "tools/3d/water.mat",
-      "sha256": "b0ad1c428ef8951d0644523cbe4494c71938a9d4503da56842dae93a42bc670d",
+      "sha256": "4155aa9cd4eedab3614e1123239fb2ad4e30e1ce59d8bcad015a1240c3e5f0b3",
       "bytes": 1770,
       "kind": "material",
-      "source": "tools/3d/water.mat; official matc v1.56.0 (56), mobile OpenGL",
+      "source": "R05 original water/bank shading; shared R04 albedo; matc 1.56.0 (56) mobile OpenGL",
       "license": "original shader CC0-1.0; Filament compiler Apache-2.0",
       "consumer": "FilamentMapView.loadWaterMaterial"
     },
     {
       "path": "app/src/main/assets/3d/terrain/water.filamat",
-      "sha256": "da24123d25e501fedf84d9d879f68f82e4163b40218d7be9923565b12e437f9d",
+      "sha256": "4af4782a314faa11228454b5c72d470dee7948f8019bd985f38b2a1b26a80bb7",
       "bytes": 511954,
       "kind": "material",
-      "source": "tools/3d/water.mat; official matc v1.56.0 (56), mobile OpenGL",
+      "source": "R05 original water/bank shading; shared R04 albedo; matc 1.56.0 (56) mobile OpenGL",
       "license": "original shader CC0-1.0; Filament compiler Apache-2.0",
       "consumer": "FilamentMapView.loadWaterMaterial"
     }
