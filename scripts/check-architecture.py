@@ -43,4 +43,8 @@ for p in (root/"unity/Assets").rglob('*.meta'):
     require(g not in guids,"duplicate GUID: "+g);guids[g]=str(p.relative_to(root))
 for path,digest in {'unity/Assets/Sanguo/Bootstrap/TrialEntry.cs.meta': 'e4905cce44043964544a26875204eb9e18b7ce75962e96ef0356bfe596ae38eb', 'unity/Assets/Sanguo/Editor/ExportAndroid.cs.meta': '0a2a1272ecfcf30a428f1a8a173fed94f757233c3dd7d3aa08fceb4992d443bd', 'unity/Assets/Sanguo/Bootstrap.meta': 'fa671069c25a6c10769b90830b53bf62fd41aaa955b24097950daf4bd25c0e16', 'unity/Assets/Sanguo/Editor.meta': '711262dfb857fa26c5b9cdcda179e2f757c96861e2faaf2a38da2c7f8a7d2d24'}.items():
     require(hashlib.sha256((root/path).read_bytes()).hexdigest()==digest,"original moved meta changed: "+path)
+for name in ['CombatReplayLedger.java','CombatSequence.java']:
+    text=(root/'app/src/main/java/game/sanguo/mobile'/name).read_text()
+    require(re.findall(r'import (game\.sanguo\.[^;]+);',text)==['game.sanguo.core.TurnJournal'],"combat consumer accepts immutable journal only: "+name)
+    require(not any(x in text for x in ['SaveCodec.','GameSession.','World.','java.util.Random','new Random']),"combat consumer must not call authority: "+name)
 print("Architecture boundary PASS: reviewed legacy consumers, pure modules, JNI location, assembly DAG and preserved meta identities")

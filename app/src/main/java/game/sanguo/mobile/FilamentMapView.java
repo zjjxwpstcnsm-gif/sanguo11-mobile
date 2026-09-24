@@ -87,7 +87,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private List<SceneMesh> chunks=Collections.emptyList(),woods=Collections.emptyList();
     private Set<Hex> woodExcluded=Collections.emptySet();
     private final Map<SceneMesh,GpuMesh> vegetation=new HashMap<>();
-    private int visibleWood,unitLod=1;private long animationTick;
+    private int visibleWood,unitLod=1;private long animationTick;private boolean effectsPaused;private long pausedEffectTick;
     private final Map<SceneMesh,GpuMesh> terrain=new HashMap<>();
     private final Map<String,Proxy> objects=new HashMap<>();
     private final Map<String,GpuMesh> shapes=new LinkedHashMap<>(128,.75f,true);
@@ -127,7 +127,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         siteOwners.clear();siteOwners.putAll(data.siteOwners);territoryColors=data.colors();
     }
     private final CombatVisual combat=new CombatVisual();
-    private final GpuMesh[] effectMeshes=new GpuMesh[6];
+    private final GpuMesh[] effectMeshes=new GpuMesh[CombatVisual.MESH_COUNT];
     private final int[] effectEntities=new int[CombatVisual.CAPACITY],effectKinds=new int[CombatVisual.CAPACITY];
     private final boolean[] effectShown=new boolean[CombatVisual.CAPACITY];
     private final float[] effectMatrix=new float[16];
@@ -366,6 +366,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     void setTargets(Set<Hex> value){targets=value==null?Collections.emptySet():new HashSet<>(value);overlay.invalidate();}
     void setRoute(MarchOrders.Plan value){route=value;overlay.invalidate();}
+    void pauseEffects(boolean value){if(value&&!effectsPaused)pausedEffectTick=animationTick;effectsPaused=value;}
     void replay(TurnJournal.Event e,float fraction){
         replay=e;replayFraction=CombatVisual.fraction(fraction);if(e==null)clearEffects();animateReplay();overlay.invalidate();schedule();
     }
@@ -603,10 +604,11 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private void animateEffects(){
         if(snapshot==null)return;
+        combat.detail(quality==SceneQuality.LOW||thermal.constrained?0:quality==SceneQuality.MEDIUM?1:2);
         combat.sample(UiMotion.enabled()?replay:null,replayFraction,snapshot.ground);
         int fires=0;for(MapSceneSnapshot.FireState fire:snapshot.fires)if(visible(fire.hex)){
             if(fires++==CombatVisual.FIRE_BUDGET)break;
-            combat.fire(fire,snapshot.ground,animationTick,UiMotion.enabled());
+            combat.fire(fire,snapshot.ground,effectsPaused?pausedEffectTick:animationTick,UiMotion.enabled());
         }
         for(int i=0;i<effectEntities.length;i++){
             if(i>=combat.count){if(effectShown[i]){scene.removeEntity(effectEntities[i]);effectShown[i]=false;}continue;}
@@ -616,7 +618,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(effectEntities[i]==0){effectEntities[i]=EntityManager.get().create();effectKinds[i]=-1;}
             if(effectKinds[i]!=p.mesh){engine.getRenderableManager().destroy(effectEntities[i]);effectMeshes[p.mesh].build(effectEntities[i]);effectKinds[i]=p.mesh;}
             float c=(float)Math.cos(p.yaw)*p.scale,s=(float)Math.sin(p.yaw)*p.scale;
-            Arrays.fill(effectMatrix,0);effectMatrix[0]=c;effectMatrix[2]=-s;effectMatrix[5]=p.scale;effectMatrix[8]=s;effectMatrix[10]=c;effectMatrix[12]=p.x;effectMatrix[13]=p.y;effectMatrix[14]=p.z;effectMatrix[15]=1;
+            float cp=(float)Math.cos(p.pitch),sp=(float)Math.sin(p.pitch);
+            Arrays.fill(effectMatrix,0);effectMatrix[0]=c;effectMatrix[2]=-s;effectMatrix[4]=-s*sp;effectMatrix[5]=p.scale*cp;effectMatrix[6]=-c*sp;effectMatrix[8]=s*cp;effectMatrix[9]=p.scale*sp;effectMatrix[10]=c*cp;effectMatrix[12]=p.x;effectMatrix[13]=p.y;effectMatrix[14]=p.z;effectMatrix[15]=1;
             TransformManager tm=engine.getTransformManager();tm.setTransform(tm.getInstance(effectEntities[i]),effectMatrix);
             if(!effectShown[i]){scene.addEntity(effectEntities[i]);effectShown[i]=true;}
         }
@@ -781,16 +784,17 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 c.drawText("−"+(strike.beforeTroops-strike.afterTroops)+"兵",camera.screenX(snapshot.ground.grid.x(strike.target),snapshot.ground.grid.z(strike.target)),camera.screenY(snapshot.ground.grid.x(strike.target),snapshot.ground.grid.z(strike.target),snapshot.ground.surface.at(strike.target)+1)-(phase-CombatVisual.FEEDBACK)*50*d,p);
                 p.setTextAlign(Paint.Align.LEFT);
             }
-            if(replay!=null&&replayFraction>=CombatVisual.FEEDBACK&&(strike==null||strike==replay.strikes.get(replay.strikes.size()-1))){
-                int count=0;float progress=(replayFraction-CombatVisual.FEEDBACK)/(1-CombatVisual.FEEDBACK);
+            if(replay!=null&&phase>=CombatVisual.FEEDBACK&&(strike==null||strike==replay.strikes.get(replay.strikes.size()-1))){
+                int count=0;float progress=(phase-CombatVisual.FEEDBACK)/(1-CombatVisual.FEEDBACK);
                 p.setStyle(Paint.Style.FILL);p.setTextAlign(Paint.Align.CENTER);p.setTextSize(15*d);
                 for(TurnJournal.Impact hit:replay.impacts){
-                    if(!visible(hit.hex)||(strike!=null&&hit.text.endsWith("兵")))continue;if(count++>=CombatVisual.TEXT_BUDGET)break;
+                    String text=CombatVisual.feedback(replay,hit);
+                    if(!visible(hit.hex)||text.isEmpty())continue;if(count++>=CombatVisual.TEXT_BUDGET)break;
                     float x=camera.screenX(snapshot.ground.grid.x(hit.hex),snapshot.ground.grid.z(hit.hex));
                     float y=camera.screenY(snapshot.ground.grid.x(hit.hex),snapshot.ground.grid.z(hit.hex),snapshot.ground.surface.at(hit.hex)+.9f)-progress*28*d;
                     // Different lines at the same tile stay readable (troops, morale, status).
                     int line=0;for(int j=0;j<replay.impacts.indexOf(hit);j++)if(replay.impacts.get(j).hex.equals(hit.hex))line++;
-                    p.setColor(hit.loss?0xffffbb90:0xffa5eed0);c.drawText(hit.text,x,y-line*17*d,p);
+                    p.setColor(hit.loss?0xffffbb90:0xffa5eed0);c.drawText(text,x,y-line*17*d,p);
                 }
                 p.setTextAlign(Paint.Align.LEFT);
             }

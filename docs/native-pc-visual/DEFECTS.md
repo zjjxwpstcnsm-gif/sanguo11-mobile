@@ -115,3 +115,17 @@
 | R10-CPU-POSE | implementation disclosure | PARTIAL | GPU instanced drawing uses shared CPU-cached rigid pose; not GPU skeletal animation. Cache/load measurements must be inspected at50/100 units. |
 | R10-TOOLCHAIN | environment, recovered | PASS | Initial Maven403; bounded dependency fetch36003391892 succeeded. Local etcpak transitive archspec missing; full CI dependencies/reproduction required. |
 | R10-DEVICE | environment | NOT_RUN | No physical ARM64 Adreno/Mali, sustained FPS/thermal/manual or matched PC formation acceptance. |
+
+## R11 audit / candidate
+- R10-PROBE-REMOVED (inherited, source fixed): actual CI36006013111 stops at
+  UnitR10Fixture.actor after RAM auto-garrison. NativeR10Instrumentation now retains
+  the former cell when actor is absent. Old complete run remains FAIL/uncompleted.
+- R11-IMMEDIATE (inherited, source fixed; installed pending): player commands lacked
+  journal playback. Normal validated transaction now records once and starts read-only
+  effects only after committed autosave; old targets preserved in immutable snapshot.
+- R11-TYPING (inherited, host PASS): Chinese label dispatch and duplicate aggregate
+  numbers replaced with typed tactic/metric/entity payload; no mechanics changes.
+- R11-ART (remaining): opaque procedural smoke/splash and low-poly effects are not
+  volumetric/textured PC equivalents; original comparison and full-motion review open.
+- R11-MATRIX (validation gap): complete plot variants, physical ARM6420-cycle,
+  thermal/performance and full manual national gameplay remain NOT_RUN.

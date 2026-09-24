@@ -28,6 +28,7 @@ public final class MainActivity extends Activity {
     private GameSession boundSession;
     private boolean dispatchingCommand,replacingSession;
     private void bindSession(){
+        if(map!=null)map.cancelCommandEffects();
         GameSession current=gameHost.session();
         if(current!=boundSession){
             if(sessionSubscription!=null)sessionSubscription.close();
@@ -181,6 +182,8 @@ public final class MainActivity extends Activity {
         battleBanner=text("",13,paper);battleBanner.setMaxLines(2);battleBanner.setEllipsize(android.text.TextUtils.TruncateAt.END);
         battleBanner.setPadding(dp(12),dp(6),dp(12),dp(6));battleBanner.setBackgroundColor(0xff30443b);battleBanner.setVisibility(View.GONE);
         battleBanner.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);
+        battleBanner.setOnLongClickListener(v->{showPlaybackControls();return true;});
+        battleBanner.setContentDescription("战斗结果，点击查看战报，长按控制演示");
         battleBanner.setOnClickListener(v->{
             AlertDialog.Builder report=new AlertDialog.Builder(this).setTitle(reportLocation==null?"操作结果":"战斗结果").setMessage(lastBattleReport)
                 .setPositiveButton("返回",null).setNeutralButton("收起战果",(d,n)->battleBanner.setVisibility(View.GONE));
@@ -524,9 +527,19 @@ public final class MainActivity extends Activity {
         if(!currentWorld(expected)){World.Result rejected=World.Result.rejected("局面已变化，请重新选择");showResult(rejected);return rejected;}
         dispatchingCommand=true;
         World.Result result;
-        try{result=gameHost.session().legacy(expected,operation);bindSession();}
+        final MapSceneSnapshot before=map==null?null:map.captureCombatSnapshot();
+        final List<TurnJournal.Event> effects=new ArrayList<>();
+        try{result=gameHost.session().legacy(expected,()->{
+            // Executed once, inside the validated command ticket. Journal captures facts only.
+            TurnJournal journal=new TurnJournal(expected);
+            try{return operation.get();}
+            finally{journal.close();effects.addAll(journal.events());}
+        });bindSession();}
         finally{dispatchingCommand=false;}
-        showResult(result);return result;
+        showResult(result);
+        // showResult has already bound and autosaved committed authority. Effects cannot gate it.
+        if(result.ok&&map!=null){map.playCommandEffects(effects,before);map.commandEffectSpeed(getPreferences(MODE_PRIVATE).getInt("turnPlaybackSpeed",1));}
+        return result;
     }
     void executeCity(World expected,GameCommand.Operation operation,int city,int officer){
         if(!currentWorld(expected)){message("命令未执行","局面已变化，请重新选择");return;}
@@ -1072,7 +1085,7 @@ public final class MainActivity extends Activity {
         if(aiRunning||world.gameOver()||world.commandsBlocked())return;int idle=0;for(World.City c:world.cities)if(c.owner==world.player)idle+=world.idle(c).size();
         confirm("结束 "+world.date()+"？\n还有 "+idle+" 名闲置武将、"+world.actionPoints[world.player]+" 点行动力。\n将执行电脑行动，推进建设、调动、运输与自动行军，并自动保存。",this::advanceTurn);
     }
-    private void advanceTurn(){if(aiRunning||world.gameOver()||world.commandsBlocked())return;try{turnWork=gameHost.beginTurn(world);}catch(IOException|RuntimeException e){showError("无法开始结算，原局面保留");return;}long saving=android.os.SystemClock.elapsedRealtime();save("auto",false);turnWork.saveMillis=android.os.SystemClock.elapsedRealtime()-saving;aiRunning=true;turnWork.speed=getPreferences(MODE_PRIVATE).getInt("turnPlaybackSpeed",1);turnWork.observe(this::finishTurn);refresh();turnWork.start();}
+    private void advanceTurn(){if(aiRunning||world.gameOver()||world.commandsBlocked())return;if(map!=null)map.cancelCommandEffects();try{turnWork=gameHost.beginTurn(world);}catch(IOException|RuntimeException e){showError("无法开始结算，原局面保留");return;}long saving=android.os.SystemClock.elapsedRealtime();save("auto",false);turnWork.saveMillis=android.os.SystemClock.elapsedRealtime()-saving;aiRunning=true;turnWork.speed=getPreferences(MODE_PRIVATE).getInt("turnPlaybackSpeed",1);turnWork.observe(this::finishTurn);refresh();turnWork.start();}
     private void finishTurn(){
         if(turnWork==null||isFinishing()||isDestroyed())return;
         if(turnWork.error!=null){
@@ -1102,7 +1115,15 @@ public final class MainActivity extends Activity {
         turnBanner.setText("旬结算完成 · "+String.format(java.util.Locale.ROOT,"%.1f",completed.totalMillis/1000.0)+"秒 · 点此查看战报");turnBanner.setVisibility(View.VISIBLE);
     }
     private void showPlaybackControls(){
-        if(playback==null||turnWork==null)return;
+        if(playback==null||turnWork==null){
+            if(map==null||!map.commandEffectsActive())return;
+            new AlertDialog.Builder(this).setTitle("战斗演示 · 结果已提交并自动保存")
+                .setItems(new String[]{map.commandEffectsPaused()?"继续演示":"暂停演示","1× 正常速度","2× 加速","4× 快速","跳过剩余演示"},(d,index)->{
+                    if(index==0)map.pauseCommandEffects(!map.commandEffectsPaused());
+                    else if(index==4)map.cancelCommandEffects();
+                    else{int speed=1<<(index-1);map.commandEffectSpeed(speed);getPreferences(MODE_PRIVATE).edit().putInt("turnPlaybackSpeed",speed).apply();}
+                }).setNegativeButton("返回地图",null).show();return;
+        }
         new AlertDialog.Builder(this).setTitle("回合行动演示 · 默认总演示预算8秒")
             .setItems(new String[]{turnWork.paused?"继续演示":"暂停演示","1× 正常速度","2× 加速","4× 快速","跳过剩余演示","完整演示（本旬不限时）"},(d,index)->{
                 if(playback==null||turnWork==null)return;

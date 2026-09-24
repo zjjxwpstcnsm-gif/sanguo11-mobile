@@ -36,6 +36,44 @@ final class MapHost extends FrameLayout implements MapPresentation {
     private Set<Hex> targets=Collections.emptySet();
     private MarchOrders.Plan route;
     private Runnable criticalSkip;
+    private CombatSequence commandEffects;
+    private MapSceneSnapshot publishedSnapshot,commandFinalSnapshot;
+    MapSceneSnapshot captureCombatSnapshot(){return spatial==null?null:publishedSnapshot;}
+    private long commandEffectTime;
+    private final CombatReplayLedger localLedger=new CombatReplayLedger();
+    private CombatReplayLedger combatLedger(){
+        Context app=getContext().getApplicationContext();
+        return app instanceof GameApplication?((GameApplication)app).host().combatLedger:localLedger;
+    }
+    void pauseEffects(boolean paused){if(spatial!=null)spatial.pauseEffects(paused);}
+    void finishReplay(TurnJournal.Event event){combatLedger().finish(event);}
+    void playCommandEffects(List<TurnJournal.Event> events,MapSceneSnapshot before){
+        cancelCommandEffects();
+        if(!resumed||!UiMotion.enabled()){for(var event:events)finishReplay(event);return;}
+        commandEffects=new CombatSequence(events,combatLedger());
+        if(spatial!=null&&before!=null&&publishedSnapshot!=null&&before.ground==publishedSnapshot.ground){
+            commandFinalSnapshot=publishedSnapshot;spatial.snapshot(before);
+        }
+        commandEffectTime=android.os.SystemClock.uptimeMillis();postOnAnimation(commandEffectTick);
+    }
+    void cancelCommandEffects(){
+        removeCallbacks(commandEffectTick);
+        if(commandEffects!=null){commandEffects.skip();commandEffects=null;replayFrame(null,0);}
+        if(commandFinalSnapshot!=null){if(spatial!=null)spatial.snapshot(commandFinalSnapshot);commandFinalSnapshot=null;}
+        pauseEffects(false);
+    }
+    void pauseCommandEffects(boolean value){if(commandEffects!=null)commandEffects.pause(value);pauseEffects(value);commandEffectTime=android.os.SystemClock.uptimeMillis();}
+    boolean commandEffectsActive(){return commandEffects!=null;}
+    boolean commandEffectsPaused(){return commandEffects!=null&&commandEffects.paused();}
+    void commandEffectSpeed(int value){if(commandEffects!=null)commandEffects.speed(value);}
+    private final Runnable commandEffectTick=this::advanceCommandEffects;
+    private void advanceCommandEffects(){
+        if(commandEffects==null)return;
+        long now=android.os.SystemClock.uptimeMillis();
+        commandEffects.advance(now-commandEffectTime,this::replayVisible);commandEffectTime=now;
+        if(commandEffects.done()){cancelCommandEffects();return;}
+        replayFrame(commandEffects.current(),commandEffects.fraction());postOnAnimation(commandEffectTick);
+    }
     MapHost(Context context,MapView.TileListener listener){
         super(context);this.listener=listener;prefs=context.getSharedPreferences("map-renderer",Context.MODE_PRIVATE);
         flat=new MapView(context,listener);flat.setGridShown(Boolean.TRUE.equals(prefs.getAll().get("gridShown")));addView(flat,new LayoutParams(-1,-1));
@@ -82,7 +120,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
     void switchMode(boolean use3D){switchMode(use3D,true);}
     private void switchMode(boolean use3D,boolean manual){
         if(use3D==is3D()||world==null)return;
-        replayFrame(null,0);criticalFrame(null,0);saveCamera(camera);
+        cancelCommandEffects();replayFrame(null,0);criticalFrame(null,0);saveCamera(camera);
         if(!use3D){leave3D();flat.setWorld(world,selected,moving);flat.restoreCamera(camera);return;}
         android.app.ActivityManager manager=(android.app.ActivityManager)getContext().getSystemService(Context.ACTIVITY_SERVICE);
         if(manager==null||manager.getDeviceConfigurationInfo().reqGlEsVersion<0x30000){
@@ -106,8 +144,8 @@ final class MapHost extends FrameLayout implements MapPresentation {
     }
     private void fallback(Throwable e){safeMode=true;interruptedSession=true;prefs.edit().putString("lastExitReason","Java initialization/render failure").putString("lastFailure",e.getClass().getSimpleName()).putLong("lastFailureTime",System.currentTimeMillis()).commit();android.util.Log.e("MapRenderer","Filament fallback to 2D",e);leave3D();if(world!=null)flat.setWorld(world,selected,moving);flat.restoreCamera(camera);Toast.makeText(getContext(),"3D 初始化或渲染失败，已返回 2D："+e.getClass().getSimpleName(),Toast.LENGTH_LONG).show();}
     private void leave3D(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);}if(flat.getParent()==null)addView(flat,new LayoutParams(-1,-1));prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}
-    void release(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}}
-    void resume(boolean value){if(!value)persistCamera();resumed=value;if(spatial!=null)spatial.resume(value);}
+    void release(){cancelCommandEffects();persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}}
+    void resume(boolean value){if(!value){cancelCommandEffects();persistCamera();}resumed=value;if(spatial!=null)spatial.resume(value);}
     void toggleDiagnostics(){diagnostics=!diagnostics;if(spatial!=null){spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(projection.blocked(world,editorPassability),editorGrid,editorCoords,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);}android.util.Log.i("MapRenderer",report());}
     String report(){return spatial==null?"2D · "+getWidth()+" × "+getHeight():spatial.report();}
     @Override public void setWorld(World w,Hex s,int moving){
@@ -117,9 +155,10 @@ final class MapHost extends FrameLayout implements MapPresentation {
         if(spatial==null)flat.setWorld(w,s,moving);else if(changed||dirty)publish();
     }
     private void publish(){if(spatial==null||world==null)return;
+        cancelCommandEffects();
         android.content.Context app=getContext().getApplicationContext();
         if(app instanceof GameApplication){var session=((GameApplication)app).host().session();if(session!=null)spatial.sceneIdentity(session.state());}
-if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){if(ground==null||!ground.matches(world))ground=new MapSceneSnapshot.Ground(world);groundWorld=world;terrainRevision=world.terrainRevision;}spatial.snapshot(new MapSceneSnapshot(ground,world,selected,moving));spatial.mapLayers(projection.layers(world,ground,flat.territoryMode()),flat.territoryMode(),openingPreview,previewFaction);dirty=false;}
+if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){if(ground==null||!ground.matches(world))ground=new MapSceneSnapshot.Ground(world);groundWorld=world;terrainRevision=world.terrainRevision;}publishedSnapshot=new MapSceneSnapshot(ground,world,selected,moving);spatial.snapshot(publishedSnapshot);spatial.mapLayers(projection.layers(world,ground,flat.territoryMode()),flat.territoryMode(),openingPreview,previewFaction);dirty=false;}
     void invalidateScene(){dirty=true;flat.invalidateScene();}
     @Override public void fit(){if(spatial==null)flat.fit();else spatial.fit();}
     @Override public void focus(Hex h){if(spatial==null)flat.focus(h);else spatial.focus(h);}
@@ -145,6 +184,6 @@ if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){if(
     void setUnitBarsShown(boolean value){flat.setUnitBarsShown(value);if(spatial!=null)spatial.labels(flat.commandersShown(),value);}
     void setCriticalSkip(Runnable skip){criticalSkip=skip;flat.setCriticalSkip(skip);if(spatial!=null)spatial.criticalSkip(skip);}
     void criticalFrame(CriticalHit hit,float phase){if(spatial==null)flat.criticalFrame(hit,phase);else {if(projectedCritical!=hit){projectedCritical=hit;projectedPortrait=hit==null?null:new OfficerPortrait(getContext(),world,hit.officerCopy());}spatial.critical(hit,phase,projectedPortrait);}}
-    void replayFrame(TurnJournal.Event e,float fraction){if(spatial==null)flat.replayFrame(e,fraction);else spatial.replay(e,fraction);}
+    void replayFrame(TurnJournal.Event e,float fraction){if(combatLedger().completed(e))e=null;if(spatial==null)flat.replayFrame(e,fraction);else spatial.replay(e,fraction);}
     boolean replayVisible(TurnJournal.Event e){return spatial==null?flat.replayVisible(e):spatial.visible(e);}
 }

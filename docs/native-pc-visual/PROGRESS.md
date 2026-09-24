@@ -107,3 +107,13 @@ retained, no core/map production changes. Local R10 2,221,136 / field9,862,760 /
 R06 199 checks and architecture PASS. matc56 unit material compiled. Exact Android
 build/runtime evidence pending; see reports/R10.md. R09 V2/overlay/manual/device
 and all inherited failures remain open. No merge, no R11.
+
+## R11 current execution — PARTIAL candidate
+Continue exact R10 source5df81a04; mainac29b458/architecture66 retained. Typed
+journal IDs/tactics/naval/scalar impacts, eight-mesh64-particle terrain-aligned
+combat sampler, normal player-command presentation after authority autosave,
+immutable before/final snapshots, bounded retained de-duplication and immediate
+pause/skip/cancellation are integrated. HostR11 99,443 / combat25,470 PASS;
+independent R10 full-save golden parity16/16. Exact Android build/runtime pending.
+R10 installed run was actually FAIL at removed RAM actor probe; source probe repaired,
+not retroactively passed. R09 visual/UI and legacy rule/device defects remain open.

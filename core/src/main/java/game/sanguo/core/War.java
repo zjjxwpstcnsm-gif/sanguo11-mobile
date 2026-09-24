@@ -188,7 +188,7 @@ public final class War {
     }
     public World.Result tactic(int actor,int target,Tactic tactic){w.reports.prepare();
         String error=tacticError(actor,target,tactic);if(error!=null)return w.fail(error);
-        World.Unit a=w.unit(actor),b=w.unit(target);w.visualAction(TurnJournal.Kind.TACTIC,actor,b.hex,tactic.label);int chance=tacticChance(actor,target,tactic);w.marches.supersede(a);a.acted=true;w.energy.change(a,-tactic.energy,EnergyRules.Reason.COMMAND);w.battleImpact(b.hex,false);
+        World.Unit a=w.unit(actor),b=w.unit(target);w.visualAction(TurnJournal.Kind.TACTIC,actor,b.hex,tactic.label);if(w.turnJournal!=null)w.turnJournal.tactic(tactic);int chance=tacticChance(actor,target,tactic);w.marches.supersede(a);a.acted=true;w.energy.change(a,-tactic.energy,EnergyRules.Reason.COMMAND);w.battleImpact(b.hex,false);
         if(w.strategy.nextInt(100)>=chance)return w.success(w.officer(a.officerId).name+"的"+tactic.label+"未命中，消耗气力"+tactic.energy+"，本旬行动结束");
         Hex origin=a.hex,targetHex=b.hex;List<World.Unit> victims=tacticVictims(a,b,tactic);
         double multiplier=tactic.multiplier;
@@ -245,7 +245,7 @@ public final class War {
     public int plotRange(int actor,Plot plot){World.Unit a=w.unit(actor);return a==null||plot==null?0:w.skills.plotRange(a,plot);}
     public World.Result plot(int actor,Hex target,Plot plot){w.reports.prepare();
         String error=plotError(actor,target,plot);if(error!=null)return w.fail(error);
-        World.Unit a=w.unit(actor),b=w.unitAt(target);w.visualAction(TurnJournal.Kind.PLOT,actor,target,plot.label);a.acted=true;w.energy.change(a,-plotCost(actor,plot),EnergyRules.Reason.COMMAND);
+        World.Unit a=w.unit(actor),b=w.unitAt(target);w.visualAction(TurnJournal.Kind.PLOT,actor,target,plot.label);if(w.turnJournal!=null)w.turnJournal.plot(plot);a.acted=true;w.energy.change(a,-plotCost(actor,plot),EnergyRules.Reason.COMMAND);
         boolean success=resolvePlot(a,b,target,plot,true);
         if(success&&b!=null&&w.skills.has(a,Skill.LIANHUAN)&&(plot==Plot.CONFUSE||plot==Plot.MISLEAD||plot==Plot.FIRE)){
             List<World.Unit> adjacent=new ArrayList<>();

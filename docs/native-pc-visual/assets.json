@@ -79,5 +79,16 @@
     "sourceCommit": "dd11eeaaf7866ed2695e16ee3a093d05291b011a",
     "reference": "PC-LUOYANG-USER-02-R09; comparison only, no external reference art packaged",
     "figures": "evidence/R09-FIGURES.csv"
+  },
+  "R11": {
+    "source": "app/src/main/java/game/sanguo/mobile/CombatVisual.java",
+    "sha256": "8f9bede8473a8f3c385baeb3fd9240eb324e7498458aa83abfda1d354da1f349",
+    "runtime": "MainActivity/MapHost/CombatSequence/FilamentMapView",
+    "shared_meshes": 8,
+    "particle_capacity": 64,
+    "license": "Original project procedural CC0 effect geometry; modified in source",
+    "opaque_depth_write": true,
+    "external_assets": "none; R10 GLBs/materials/textures retained byte-for-byte",
+    "art_acceptance": "PARTIAL; opaque low-poly effects, PC comparison NOT_RUN"
   }
 }

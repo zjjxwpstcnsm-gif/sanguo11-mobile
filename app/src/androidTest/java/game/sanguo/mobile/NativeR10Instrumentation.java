@@ -84,7 +84,7 @@ public final class NativeR10Instrumentation extends SceneInstrumentation {
         runOnMainSync(()->{world=SessionProbe.view(activity);host.invalidateScene();host.setWorld(world,null,-1);});
         check(Arrays.equals(expected,SaveCodec.encode(world)),"drawing phases cannot change GameSession authority");
         // A real SaveCodec round-trip is installed through the same normal session activation.
-        World loaded=SaveCodec.decode(expected);activate(loaded,UnitR10Fixture.actor(control).hex,3.4f);
+        World loaded=SaveCodec.decode(expected);activate(loaded,control.unit(actor)!=null?control.unit(actor).hex:before.unit(actor)!=null?before.unit(actor).hex:before.cities.get(0).hex,3.4f);
         check(Arrays.equals(expected,SaveCodec.encode(SessionProbe.view(activity))),"load converges to final authority");
         shot(name+"-after","EXPLICIT fixture; exact post-command save loaded; unit="+actor);
     }
