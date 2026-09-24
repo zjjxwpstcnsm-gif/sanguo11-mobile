@@ -47,6 +47,14 @@ public final class NativeR08Test {
   MapSceneSnapshot.Ground rg=new MapSceneSnapshot.Ground(roads);
   for(SceneMesh m:Vegetation.buildWindow(rg,Set.of(),List.of(),assets,window(12,12)))for(int i=0;i<m.vertices.length;i+=7)
    check(Math.abs(m.vertices[i+1]-rg.surface.meshHeight(m.vertices[i],m.vertices[i+2])-.012f)<.00001f,"road follows ground");
+  List<SceneMesh> wide=Vegetation.buildWindow(rg,Set.of(),List.of(),assets,window(12,12));
+  check(wide.stream().allMatch(m->m.indices.length==0),"wide ROAD areas never manufacture a triangular centreline lattice");
+  for(World.Terrain[] row:roads.terrain)Arrays.fill(row,World.Terrain.MOUNTAIN_PATH);
+  MapSceneSnapshot.Ground corridor=new MapSceneSnapshot.Ground(roads);
+  List<SceneMesh> paths=Vegetation.buildWindow(corridor,Set.of(),List.of(),assets,window(12,12));
+  check(paths.stream().anyMatch(m->m.indices.length>0),"explicit mountain routes have real geometry");
+  for(SceneMesh m:paths)for(int i=0;i<m.vertices.length;i+=7)
+   check(Math.abs(m.vertices[i+1]-corridor.surface.meshHeight(m.vertices[i],m.vertices[i+2])-.012f)<.00001f,"explicit route follows canonical ground");
   // No visual mutation of terrain/revision by construction.
   check(w.mapRevision==1&&w.terrain[24][24]==World.Terrain.ROAD,"authority unchanged");
   System.out.println("PASS R08 "+checks+" checks; mergedChunks="+first.size()+" CPU_mesh_bytes_estimate="+bytes(first)+" build_ms="+elapsed/1e6+" reusedAfterEdit="+reuse+" (host, not GPU/device performance)");

@@ -131,6 +131,11 @@ final class Vegetation {
             for(int i:model.indices)indices.add(offset+i);for(float f:model.uv)uv.add(f);
         }
         void road(Hex h,Hex n){
+            // ROAD is an area classification, not an authored centreline graph. Connecting
+            // every adjacent ROAD cell paints triangular lattice scars over wide plains.
+            // Its continuous grass/soil field remains the production surface; only explicit
+            // mountain/plank routes need a structural ribbon and a short approach segment.
+            if(g.terrain[h.r*g.width+h.q]==World.Terrain.ROAD.ordinal()&&g.terrain[n.r*g.width+n.q]==World.Terrain.ROAD.ordinal())return;
             float x=g.grid.x(h),z=g.grid.z(h),dx=g.grid.x(n)-x,dz=g.grid.z(n)-z;
             float len=(float)Math.hypot(dx,dz),nx=-dz/len*.13f,nz=dx/len*.13f;
             boolean plank=g.terrain[h.r*g.width+h.q]==World.Terrain.PLANK_ROAD.ordinal()||g.terrain[n.r*g.width+n.q]==World.Terrain.PLANK_ROAD.ordinal();

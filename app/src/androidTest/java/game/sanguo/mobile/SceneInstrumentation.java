@@ -57,7 +57,14 @@ public class SceneInstrumentation extends Instrumentation {
         while(SystemClock.uptimeMillis()<deadline){
             check(host.is3D(),"renderer has not fallen back while loading");
             FilamentMapView view=(FilamentMapView)field(host,"spatial");
-            if(!((List<?>)field(view,"chunks")).isEmpty()&&(Integer)field(view,"pending")==0){
+            boolean[] presented={false};
+            runOnMainSync(()->{try{
+                presented[0]=!((List<?>)field(view,"chunks")).isEmpty()&&(Integer)field(view,"pending")==0
+                    &&(Integer)field(view,"visibleChunks")>0&&(Long)field(view,"surfaceFrames")>0;
+            }catch(Exception e){throw new RuntimeException(e);}});
+            // CPU acceptance sets pending=0 before the following frame uploads visible GPU
+            // chunks. Preserve all original assertions; wait for their actual prerequisite.
+            if(presented[0]){
                 runOnMainSync(()->{try{((com.google.android.filament.Engine)field(view,"engine")).flushAndWait();}catch(Exception e){throw new RuntimeException(e);}});
                 settle();return;
             }

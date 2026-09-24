@@ -91,3 +91,6 @@
 | R08-MOTION | validation gap | PARTIAL | Stable LOD anchors and unit exclusion implemented; motion popping, in-between marching anchors and arbitrary slope contacts need actual review. |
 | R08-PERF | environment/validation | PARTIAL | Host geometry bytes/timing are estimates, not GPU/physical FPS; wide-view and ARM64 long-run budgets unaccepted. |
 | R07-MANIFEST-RETEST | inherited, resolved | PASS | Final R07 CI35961885126 SUCCESS, including manifest and installed acceptance; original failed runs retained. |
+
+| R08-ROAD-LATTICE | new, reproduced in actual APK, corrected source | PARTIAL |1a728e6 R00 raw Surface shows triangular ribbons on wide ordinary ROAD. Removed invented area adjacency lines; ordinary ROAD keeps R04 continuous grass/soil. Explicit mountain/plank strips remain. Rebuild/visual retest required. |
+| R08-READY | newly observed test ordering race, corrected source | PARTIAL | R00 fails visible terrain after Activity recreation: CPU pending cleared before visible GPU frame. Wait on owner for uploaded terrain/submitted Surface; original assertion/timeout retained. Retest required. |
