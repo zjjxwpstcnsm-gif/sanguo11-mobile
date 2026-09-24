@@ -25,6 +25,28 @@ public final class NativeR13Instrumentation extends SceneInstrumentation {
     void shot(String name)throws Exception{ready();surfaceCapture();capture(name+"-ui");Files.copy(new File(dir,"surface.png").toPath(),new File(dir,name+"-surface.png").toPath(),StandardCopyOption.REPLACE_EXISTING);writeText(new File(dir,name+".txt").toPath(),BuildConfig.SOURCE_REVISION+"\n"+host.report());}
     void tap(FilamentMapView view,Hex h)throws Exception{float x=view.camera.screenX(viewSnapshot(view).ground.grid.x(h),viewSnapshot(view).ground.grid.z(h)),y=view.camera.screenY(viewSnapshot(view).ground.grid.x(h),viewSnapshot(view).ground.grid.z(h),viewSnapshot(view).ground.surface.at(h));ui(()->{long now=SystemClock.uptimeMillis();MotionEvent d=MotionEvent.obtain(now,now,0,x,y,0),u=MotionEvent.obtain(now,now+80,1,x,y,0);view.dispatchTouchEvent(d);view.dispatchTouchEvent(u);d.recycle();u.recycle();});}
     MapSceneSnapshot viewSnapshot(FilamentMapView v)throws Exception{return (MapSceneSnapshot)field(v,"snapshot");}
+    void siteCrud(int id)throws Exception{
+        MapPatch.Site definition=CustomMaps.sites(session().patch()).get(id);
+        edit("rename "+id,()->{session().replace("rename",session().putSite(definition.renamed(definition.name()+"改")));return null;});
+        MapPatch.Site destination=null;
+        for(int radius=1;radius<=24&&destination==null;radius++)for(int dx=-radius;dx<=radius&&destination==null;dx++)for(int dy=-radius;dy<=radius;dy++){
+            if(Math.max(Math.abs(dx),Math.abs(dy))!=radius)continue;
+            MapPatch.Site candidate=definition.at(definition.x()+dx,definition.y()+dy);
+            if(candidate.x()<0||candidate.y()<0||candidate.x()>199||candidate.y()>199)continue;
+            if(CustomMaps.placement(session().world(),candidate,id)==null){destination=candidate;break;}
+        }
+        check(destination!=null,"legal move for "+definition.kind());final MapPatch.Site moved=destination;
+        edit("move "+id,()->{session().replace("move",session().putSite(moved));return null;});
+        check(session().world().city(id).hex.equals(moved.hex(session().world())),"real moved site "+id);
+        ui(()->host.focus(session().world().city(id).hex));shot("r13-moved-"+id);
+        edit("undo move "+id,()->{session().undo();return null;});
+        MapPatch deleted=CustomMaps.deletionProposal(session().patch(),id,session().world().home().id);
+        edit("delete "+id,()->{session().replace("delete",deleted);return null;});ready();
+        check(session().world().city(id)==null&&!((Map<?,?>)field(field(host,"spatial"),"objects")).containsKey("site:"+id),"deleted authority and native proxy "+id);
+        edit("undo delete "+id,()->{session().undo();return null;});
+        edit("redo delete "+id,()->{session().redo();return null;});check(session().world().city(id)==null,"redo site removal "+id);
+        edit("restore "+id,()->{session().undo();return null;});check(session().world().city(id)!=null,"site restored "+id);
+    }
     @Override public void onStart(){Bundle result=new Bundle();try{
         dir=getTargetContext().getExternalFilesDir("s01");dir.mkdirs();MapLibrary library=new MapLibrary(getTargetContext());
         MapPatch fixture;try(InputStream in=new FileInputStream(new File(getTargetContext().getExternalFilesDir(null),"editor67/fixture.json"))){fixture=MapPatch.read(in);}library.saveDraft(fixture);
@@ -44,6 +66,7 @@ public final class NativeR13Instrumentation extends SceneInstrumentation {
         SourceGridCoord source=MapCoordinates.nationalSource(session().world(),cell);MapPatch visual=session().patch();visual.heights.put(source.x*200+source.y,1400);byte[] before=SaveCodec.encode(session().world());
         edit("visual height",()->{session().replace("height",visual);return null;});check(Arrays.equals(before,SaveCodec.encode(session().world())),"visual edit preserves full save");shot("r13-height");
         for(int id:new int[]{100006701,100006702,100006703}){World.City site=session().world().city(id);ui(()->host.focus(site.hex));shot("r13-custom-site-"+id);check(((Map<?,?>)field(field(host,"spatial"),"objects")).containsKey("site:"+id),"custom entity GPU mapping");}
+        for(int id:new int[]{100006701,100006702,100006703})siteCrud(id);
         MapPatch published=library.publish(session().patch());byte[] persisted=session().patch().encode();ui(editor::finish);
         check(Arrays.equals(persisted,library.draft().encode()),"close editor keeps exact draft");
         // Corrupt optional style: fall back to the validated pinned revision, never alter save bytes.

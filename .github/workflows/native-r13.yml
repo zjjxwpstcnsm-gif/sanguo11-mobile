@@ -112,3 +112,5 @@ jobs:
 # Android API-compatible instrumentation writes; retain independent legacy/native installed outcomes.
 
 # Register the retained editor runner via its existing Gradle selector.
+
+# Verify native custom city/port/gate move, rename, delete and repeated undo/redo.
