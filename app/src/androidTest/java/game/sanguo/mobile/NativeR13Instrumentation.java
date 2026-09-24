@@ -32,9 +32,11 @@ public final class NativeR13Instrumentation extends SceneInstrumentation {
         editor=(MapEditorActivity)startActivitySync(new Intent(getTargetContext(),MapEditorActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));editorReady();host=(MapHost)field(editor,"map");
         Hex chosen=null;for(int x=40;x<150&&chosen==null;x++)for(int y=40;y<150;y++){Hex h=MapCoordinates.fromNationalSource(session().world(),new SourceGridCoord(x,y));if(!session().protectedAt(h)&&session().world().terrain[h.q][h.r]==World.Terrain.PLAIN){chosen=h;break;}}
         check(chosen!=null,"editable fixture land");final Hex cell=chosen;
-        ui(()->{host.focus(cell);host.switchMode(true);((FilamentMapView)field(host,"spatial")).camera.span=5;});ready();
+        ui(()->{host.switchMode(true);host.focus(cell);((FilamentMapView)field(host,"spatial")).camera.span=5;});ready();
         FilamentMapView view=(FilamentMapView)field(host,"spatial");Object swap=field(view,"swap");byte[] original=session().patch().encode();
         ui(()->{Field d=MapEditorActivity.class.getDeclaredField("drawing");d.setAccessible(true);d.setBoolean(editor,true);host.editorDrawing(true);view.camera.yaw=47;view.camera.tilt=55;Field b=MapEditorActivity.class.getDeclaredField("brush");b.setAccessible(true);b.set(editor,World.Terrain.FOREST);});
+        shot("r13-before-brush");
+        check(cell.equals(view.pick(view.camera.screenX(viewSnapshot(view).ground.grid.x(cell),viewSnapshot(view).ground.grid.z(cell)),view.camera.screenY(viewSnapshot(view).ground.grid.x(cell),viewSnapshot(view).ground.grid.z(cell),viewSnapshot(view).ground.surface.at(cell)),false)),"brush oracle hits intended visible cell");
         tap(view,cell);editorReady();check(session().world().terrain[cell.q][cell.r]==World.Terrain.FOREST,"actual rotated 3D touch paints correct cell");ready();check(field(view,"swap")==swap,"edit retains same Surface swapchain");shot("r13-native-brush");
         edit("undo",()->{session().undo();return null;});check(Arrays.equals(original,session().patch().encode()),"native brush undo exact");
         edit("redo",()->{session().redo();return null;});

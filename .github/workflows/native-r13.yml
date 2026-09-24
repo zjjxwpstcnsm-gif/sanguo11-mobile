@@ -53,7 +53,7 @@ jobs:
       - name: Build source-matched APK, tests and lint
         run: |
           set -euo pipefail
-          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true 2>&1 | tee out/r13/build.log
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true 2>&1 | tee out/r13/build.log
           cp app/build/outputs/apk/debug/app-debug.apk out/r13/sanguo11-native-r13.apk
           sha256sum out/r13/*.apk > out/r13/APK_SHA256
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/r13/sanguo11-native-r13.apk > out/r13/apk-metadata.txt
@@ -110,3 +110,5 @@ jobs:
           printf 'R13 source %s. PARTIAL candidate: inspect interaction.txt for installed outcome. Physical ARM64 and PC art NOT accepted. No main merge.\n' "$GITHUB_SHA" > out/r13-release.txt
           gh release create "$tag" --target "$GITHUB_SHA" --prerelease --title "Native R13 ${GITHUB_SHA:0:12}" --notes-file out/r13-release.txt out/r13/sanguo11-native-r13.apk out/r13-evidence.zip
 # Android API-compatible instrumentation writes; retain independent legacy/native installed outcomes.
+
+# Register the retained editor runner via its existing Gradle selector.
