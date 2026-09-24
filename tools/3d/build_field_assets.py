@@ -251,14 +251,31 @@ for lod in range(2):
  if lod==0:
   for x,z in [(-.10,.02),(.10,.04),(0,-.08)]:m.beam((0,.20,0),(x,.45,z),.018)
  save(m,'tree-lod'+str(lod))
-# Tall open crown variant; smoothly mixed by canonical world region, not administrative borders.
+# R08 conifer: tapered whorls and exposed trunk, coherent at near/far LOD.
 for lod in range(2):
- m=Mesh();m.frustum(0,0,0,.023,.023,.52,.5,2,5)
- for a,y in [(0,.43),(2.1,.52),(4.2,.62)]:
-  x,z=.10*math.cos(a),.10*math.sin(a)
-  m.beam((0,.28,0),(x,y,z),.025)
-  crown(m,x,y,z,.11,.16,.10,lod)
+ m=Mesh();m.frustum(0,0,0,.024,.022,.71,.35,2,5)
+ for y,r in [(.20,.20),(.34,.175),(.47,.14),(.59,.10)]:
+  m.frustum(.015*math.sin(y*17),y,0,r,r*.87,.23,.035,6,7 if lod==0 else 4)
+ if lod==0:
+  for a in [0,2.1,4.2]:m.beam((0,.21,0),(.17*math.cos(a),.29,.17*math.sin(a)),.015)
  save(m,'tree-upland-lod'+str(lod))
+# Low opaque forest-edge family and embedded, tilted sedimentary rock shelves.
+for lod in range(2):
+ m=Mesh()
+ for x,z,r in [(-.07,0,.10),(.06,.05,.12),(0,-.07,.085)]:
+  crown(m,x,.12,z,r,.11,r*.8,lod)
+ save(m,'shrub-lod'+str(lod))
+ m=Mesh()
+ for layer in range(3 if lod==0 else 2):
+  y=layer*.09;r=.29-layer*.055;n=7 if lod==0 else 5
+  top=[];bottom=[]
+  for i in range(n):
+   a=i*math.tau/n;rr=r*(1+.12*math.sin(i*7+layer))
+   x,z=rr*math.cos(a)+layer*.025,rr*.65*math.sin(a)
+   bottom.append((x,y+x*.16,z));top.append((x*.86,y+.105+x*.16,z*.86))
+  for i in range(1,n-1):m.face([top[0],top[i],top[i+1]],0)
+  for i in range(n):m.face([bottom[i],bottom[(i+1)%n],top[(i+1)%n],top[i]],0,.75)
+ save(m,'rock-strata-lod'+str(lod))
 # Dedicated construction scaffold and opaque fire tongue modules (no alpha overdraw).
 m=Mesh()
 for x in [-.4,.4]:

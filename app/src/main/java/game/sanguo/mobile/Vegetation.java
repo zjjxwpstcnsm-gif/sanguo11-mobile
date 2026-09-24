@@ -8,7 +8,7 @@ final class Vegetation {
     static final int CHUNK=8,SEED=0x3111203;
     static Set<Hex> exclusions(MapSceneSnapshot snapshot){
         Set<Hex> result=new HashSet<>(snapshot.ground.bases);
-        for(MapSceneSnapshot.Item item:snapshot.items)if(item.facility!=null)result.add(item.hex);
+        for(MapSceneSnapshot.Item item:snapshot.items)if(item.facility!=null||item.unit!=null)result.add(item.hex);
         return result;
     }
     static List<SceneMesh> build(MapSceneSnapshot.Ground ground,Set<Hex> excluded,List<SceneMesh> previous,SceneMesh tree,SceneMesh farTree){
@@ -36,6 +36,113 @@ final class Vegetation {
             near.chunkQ=q;near.chunkR=r;near.fingerprint=fingerprint;near.distant=far;result.add(near);
         }
         return Collections.unmodifiableList(result);
+    }
+    /** Production streaming path. The legacy offline overload above retains its versioned
+     * export contract; live edits use map identity and bounded content fingerprints. */
+    static List<SceneMesh> buildWindow(MapSceneSnapshot.Ground g,Set<Hex> excluded,
+            List<SceneMesh> previous,FieldAssets assets,SceneMesh.TerrainWindow window)throws Exception {
+        SceneMesh[][] models=new SceneMesh[4][2];
+        String[] names={"tree","tree-upland","shrub","rock-strata"};
+        for(int i=0;i<names.length;i++)for(int lod=0;lod<2;lod++)models[i][lod]=assets.mesh(names[i]+"-lod"+lod);
+        Map<Long,SceneMesh> cache=new HashMap<>();for(SceneMesh m:previous)cache.put(key(m.chunkQ,m.chunkR),m);
+        List<SceneMesh> result=new ArrayList<>();
+        for(int r=0;r<g.height;r+=CHUNK)for(int q=0;q<g.width;q+=CHUNK){
+            if(Thread.currentThread().isInterrupted())return Collections.emptyList();
+            float cx=g.grid.x(q+4,r+4),cz=g.grid.z(q+4,r+4);
+            if(!window.contains(cx,cz,7))continue;
+            boolean detailed=window.span<14&&Math.hypot(cx-window.x,cz-window.z)<20;
+            long hash=SEED^g.mapIdentity^g.width*31L^g.height^(detailed?0x808:0);
+            hash=(hash^Float.floatToIntBits(g.grid.offset))*1099511628211L;hash^=g.grid.staggered?1:0;
+            for(int rr=r-8;rr<r+CHUNK+8;rr++)for(int qq=q-8;qq<q+CHUNK+8;qq++){
+                Hex h=new Hex(qq,rr);int t=g.valid(h)?g.terrain[rr*g.width+qq]:-1;
+                hash=(hash^(t+1+(excluded.contains(h)?64:0)+(g.bases.contains(h)?128:0)))*1099511628211L;
+                hash=(hash^Float.floatToIntBits(g.surface.overrides.getOrDefault(h,-1f)))*1099511628211L;
+            }
+            SceneMesh prior=cache.get(key(q,r));if(prior!=null&&prior.fingerprint==hash){result.add(prior);continue;}
+            Batch near=new Batch(g),far=new Batch(g);
+            for(int rr=r;rr<Math.min(r+CHUNK,g.height);rr++)for(int qq=q;qq<Math.min(q+CHUNK,g.width);qq++){
+                Hex h=new Hex(qq,rr);if(!g.valid(h))continue;
+                // Only existing adjacent logical road cells connect. Each undirected edge
+                // belongs to its lower cell ID, including edges that cross a chunk boundary.
+                if(path(g,h))for(Hex n:h.neighbors())if(g.valid(n)&&path(g,n)&&key(h.q,h.r)<key(n.q,n.r)){
+                    near.road(h,n);far.road(h,n);
+                }
+                for(Placement a:placements(g,excluded,h)){
+                    if(detailed)near.append(models[a.family][0],a);far.append(models[a.family][1],a);
+                }
+            }
+            SceneMesh distant=far.mesh(cx,cz);SceneMesh m=detailed?near.mesh(cx,cz):distant;m.distant=distant;m.chunkQ=q;m.chunkR=r;m.fingerprint=hash;result.add(m);
+        }
+        return Collections.unmodifiableList(result);
+    }
+    private static long key(int q,int r){return ((long)r<<32)|(q&0xffffffffL);}
+    static boolean path(MapSceneSnapshot.Ground g,Hex h){
+        if(!g.valid(h))return false;int t=g.terrain[h.r*g.width+h.q];
+        return t==World.Terrain.ROAD.ordinal()||t==World.Terrain.PLANK_ROAD.ordinal()||t==World.Terrain.MOUNTAIN_PATH.ordinal();
+    }
+    static final class Placement {
+        final float x,z,scale,angle;final int family;
+        Placement(float x,float z,float scale,float angle,int family){this.x=x;this.z=z;this.scale=scale;this.angle=angle;this.family=family;}
+    }
+    /** Opaque silhouettes keep alpha-test/mip overdraw out of the foliage path. */
+    static List<Placement> placements(MapSceneSnapshot.Ground g,Set<Hex> excluded,Hex h){
+        List<Placement> out=new ArrayList<>();if(!g.valid(h))return out;
+        int type=g.terrain[h.r*g.width+h.q];boolean rock=type==World.Terrain.MOUNTAIN.ordinal();
+        if(!rock&&type!=World.Terrain.FOREST.ordinal()&&type!=World.Terrain.PLAIN.ordinal())return out;
+        float hx=g.grid.x(h),hz=g.grid.z(h);
+        for(int i=0;i<(rock?1:3);i++){
+            int hash=mix(Float.floatToIntBits(hx)*73856093^Float.floatToIntBits(hz)*19349663^SEED^g.mapIdentity^i*83492791);
+            float x=hx+(((hash>>>2)&1023)/1023f-.5f)*.70f,z=hz+(((hash>>>12)&1023)/1023f-.5f)*.70f;
+            // Candidate must belong to this cell: no duplicate ownership at block/hex seams.
+            if(!h.equals(g.grid.cell(x,z))||!clear(g,excluded,h,x,z))continue;
+            float cluster=.58f+.24f*(float)(Math.sin(x*.71+1.7)*Math.cos(z*.57-2));
+            float chance=rock?.24f:density(g,x,z)*cluster;
+            if((mix(hash^0x55ab)&65535)/65535f>chance)continue;
+            float regional=.5f+.35f*(float)(Math.sin(x*.055)*Math.cos(z*.047));
+            int family=rock?3:i==2?2:((hash>>>22)&255)/255f<regional?0:1;
+            out.add(new Placement(x,z,.65f+((hash>>>4)&255)/255f*.30f,(hash&65535)/65535f*6.283185f,family));
+        }
+        return out;
+    }
+    static boolean clear(MapSceneSnapshot.Ground g,Set<Hex> excluded,Hex h,float x,float z){
+        // One-cell safety apron includes the full opaque crown, port approaches and unit anchors.
+        for(int r=h.r-2;r<=h.r+2;r++)for(int q=h.q-2;q<=h.q+2;q++){
+            Hex n=new Hex(q,r);float dx=g.grid.x(n)-x,dz=g.grid.z(n)-z;
+            if(dx*dx+dz*dz>2.1f)continue;
+            if(!g.valid(n)||excluded.contains(n)||g.bases.contains(n)||path(g,n)||g.surface.water(n))return false;
+        }
+        return true;
+    }
+    private static final class Batch {
+        final MapSceneSnapshot.Ground g;final List<Float> v=new ArrayList<>(),uv=new ArrayList<>();final List<Integer> indices=new ArrayList<>();
+        Batch(MapSceneSnapshot.Ground g){this.g=g;}
+        void vertex(float x,float y,float z,int mat,float u,float t){Collections.addAll(v,x,y,z,1f,1f,1f,1f);Collections.addAll(uv,(mat+.03f+.94f*u)/8,.03f+.94f*t);}
+        void append(SceneMesh model,Placement a){
+            int offset=v.size()/7;float cs=(float)Math.cos(a.angle),sn=(float)Math.sin(a.angle);
+            float base=g.surface.meshHeight(a.x,a.z);
+            for(int i=0;i<model.vertices.length;i+=7){
+                float x=(model.vertices[i]*cs+model.vertices[i+2]*sn)*a.scale+a.x;
+                float z=(-model.vertices[i]*sn+model.vertices[i+2]*cs)*a.scale+a.z;
+                // Rock foot conforms per vertex, embedding the bottom below the canonical surface.
+                float y=a.family==3?g.surface.meshHeight(x,z)-.035f:base-.015f;
+                Collections.addAll(v,x,model.vertices[i+1]*a.scale+y,z);
+                for(int k=3;k<7;k++)v.add(model.vertices[i+k]);
+            }
+            for(int i:model.indices)indices.add(offset+i);for(float f:model.uv)uv.add(f);
+        }
+        void road(Hex h,Hex n){
+            float x=g.grid.x(h),z=g.grid.z(h),dx=g.grid.x(n)-x,dz=g.grid.z(n)-z;
+            float len=(float)Math.hypot(dx,dz),nx=-dz/len*.13f,nz=dx/len*.13f;
+            boolean plank=g.terrain[h.r*g.width+h.q]==World.Terrain.PLANK_ROAD.ordinal()||g.terrain[n.r*g.width+n.q]==World.Terrain.PLANK_ROAD.ordinal();
+            // Fine segments follow actual terrain triangles; no long floating road boards.
+            for(int k=0;k<12;k++){
+                float t=k/12f,T=(k+1)/12f;int o=v.size()/7;
+                float[][] points={{x+dx*t-nx,z+dz*t-nz},{x+dx*T-nx,z+dz*T-nz},{x+dx*T+nx,z+dz*T+nz},{x+dx*t+nx,z+dz*t+nz}};
+                for(int j=0;j<4;j++)vertex(points[j][0],g.surface.meshHeight(points[j][0],points[j][1])+.012f,points[j][1],plank?2:7,j<2?0:1,j==0||j==3?0:1);
+                Collections.addAll(indices,o,o+2,o+1,o,o+3,o+2);
+            }
+        }
+        SceneMesh mesh(float x,float z){SceneMesh m=new SceneMesh(v,indices,x,z,7);m.vegetation=true;m.uv=new float[uv.size()];for(int i=0;i<uv.size();i++)m.uv[i]=uv.get(i);m.generateTangents();return m;}
     }
     static boolean eligible(MapSceneSnapshot.Ground g,Set<Hex> excluded,Hex h){
         if(!g.valid(h)||excluded.contains(h))return false;

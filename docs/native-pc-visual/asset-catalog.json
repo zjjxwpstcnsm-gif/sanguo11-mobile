@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "cohort": "R07-v3",
+  "cohort": "R08-v4",
   "generatorDependencies": {
     "python": "3.11+",
     "Pillow": "12.3.0",
@@ -11,13 +11,13 @@
   },
   "sourceHashes": {
     "tools/3d/build_sites.py": "a7625fde8df252e2c8f61b4c83dda804758e6f689be519deef190fed5c915cb1",
-    "tools/3d/build_field_assets.py": "493295779fa911390af83400ff10d9e894e254524380228d9b1ff5cf3322ab58",
+    "tools/3d/build_field_assets.py": "6dc1e6c947e8cf5b53788b1864486f7de5a1d308b4c02a503e4a1a45455443a1",
     "tools/3d/compress_atlases.py": "0c4eedcf702ed1521926a95520d2e6772b450fb240f887d971088136df32e8ec"
   },
   "assets": [
     {
       "id": "sites/city0-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/sites/city0-lod0.glb",
       "sha256": "81ea10fe72a59bb5befdcd1b20b66b583abb5d206bf86743d6ea03e1cf63cf17",
       "bytes": 176896,
@@ -50,7 +50,7 @@
     },
     {
       "id": "sites/city0-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/sites/city0-lod1.glb",
       "sha256": "acd4f0e3d388dacaa1fed8158eaea741ece38af9ac6330e42939ee730df018b6",
       "bytes": 93588,
@@ -83,7 +83,7 @@
     },
     {
       "id": "sites/city0-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/sites/city0-lod2.glb",
       "sha256": "22c5202a0b1b6e653d9f5e0b76c7507e0cf103828d8a7443566cd75b7342413b",
       "bytes": 55788,
@@ -116,7 +116,7 @@
     },
     {
       "id": "sites/city1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/sites/city1-lod0.glb",
       "sha256": "1360f9f9532ed3cbcd9d31c1d44c34175a93191281af662da0783e20f16bd790",
       "bytes": 179936,
@@ -149,7 +149,7 @@
     },
     {
       "id": "sites/city1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/sites/city1-lod1.glb",
       "sha256": "68bb5f23f561a89451135634623690fe33225426cebc27197461ce7a9214dbe9",
       "bytes": 97468,
@@ -182,7 +182,7 @@
     },
     {
       "id": "sites/city1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/sites/city1-lod2.glb",
       "sha256": "d62d661edf3cf0ce8a1e63573c98a34ba90682917cf4356746c74cb3ed856d66",
       "bytes": 57480,
@@ -215,7 +215,7 @@
     },
     {
       "id": "sites/city2-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/sites/city2-lod0.glb",
       "sha256": "1bed0f77971249673809b6c69349ab48f26f46a0f8e4302773e50bb10eee2f2b",
       "bytes": 167680,
@@ -248,7 +248,7 @@
     },
     {
       "id": "sites/city2-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/sites/city2-lod1.glb",
       "sha256": "739018bcec5da746cdb8c9ce11b6ed456358d3fb460229a8f65539bfa33164e1",
       "bytes": 94452,
@@ -281,7 +281,7 @@
     },
     {
       "id": "sites/city2-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/sites/city2-lod2.glb",
       "sha256": "fbf6f8db38b640235c1b6251e07c6bb90fa48edb1a151291ad8e062cc101d2de",
       "bytes": 56652,
@@ -314,7 +314,7 @@
     },
     {
       "id": "sites/gate-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/sites/gate-lod0.glb",
       "sha256": "94e52b597e7227c288fa34943877cc6e4faa012b7f908572dd1280d6ec637843",
       "bytes": 23660,
@@ -347,7 +347,7 @@
     },
     {
       "id": "sites/gate-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/sites/gate-lod1.glb",
       "sha256": "350ee79f5cb661057a4f441c97235b6209edee89eb63b5808a0c03d147ad46ab",
       "bytes": 11056,
@@ -380,7 +380,7 @@
     },
     {
       "id": "sites/gate-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/sites/gate-lod2.glb",
       "sha256": "39078d14d2090b9772fcc9f4da82c97191a0f06e785802ed4f6864b520c45537",
       "bytes": 8292,
@@ -413,7 +413,7 @@
     },
     {
       "id": "sites/port-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/sites/port-lod0.glb",
       "sha256": "752e4bf07aa7f231446228c96de4bd5478233786f47592b6f8b22916b337123f",
       "bytes": 41316,
@@ -446,7 +446,7 @@
     },
     {
       "id": "sites/port-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/sites/port-lod1.glb",
       "sha256": "e3a0a04ec855fb0292c9f7b443e1ffc70a19b9bbba48f0ec130ce9348b892525",
       "bytes": 20912,
@@ -479,7 +479,7 @@
     },
     {
       "id": "sites/port-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/sites/port-lod2.glb",
       "sha256": "2ebe72411eec6d0bebf2e239cf61057a8b7e9c9cfaab1b6d7e22aeabb05623e0",
       "bytes": 9652,
@@ -512,7 +512,7 @@
     },
     {
       "id": "field/domestic-BARRACKS-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-BARRACKS-1-lod0.glb",
       "sha256": "075af2f19a01b22b008f6fd6dd7aedd4397618dd093cb2d55b9d33cb12a4ed32",
       "bytes": 28000,
@@ -545,7 +545,7 @@
     },
     {
       "id": "field/domestic-BARRACKS-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-BARRACKS-1-lod1.glb",
       "sha256": "937a6f95002954d8bd8e2f4068adf0b0c252c429aba0021d09c3ff85115fb1c1",
       "bytes": 24640,
@@ -578,7 +578,7 @@
     },
     {
       "id": "field/domestic-BARRACKS-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-BARRACKS-1-lod2.glb",
       "sha256": "1d656ea153a1ce4099d5f1a12037f004f7c94a230450a837ddff754f65aaa879",
       "bytes": 15444,
@@ -611,7 +611,7 @@
     },
     {
       "id": "field/domestic-BARRACKS-2-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-BARRACKS-2-lod0.glb",
       "sha256": "e2e21cfbe7fc8734f098b6d2330ce5dbe98f28a85d41f38ca6cef46165b6c9f9",
       "bytes": 41528,
@@ -644,7 +644,7 @@
     },
     {
       "id": "field/domestic-BARRACKS-2-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-BARRACKS-2-lod1.glb",
       "sha256": "11ef8bc9d734f36c279f902517896da57afe9fc687d175e6312a9aeef8025db8",
       "bytes": 34792,
@@ -677,7 +677,7 @@
     },
     {
       "id": "field/domestic-BARRACKS-2-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-BARRACKS-2-lod2.glb",
       "sha256": "7564d933bdf31fa1e6890e56685a0600f48d46cad9da2a826c55f75e41ba194e",
       "bytes": 18712,
@@ -710,7 +710,7 @@
     },
     {
       "id": "field/domestic-BARRACKS-3-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-BARRACKS-3-lod0.glb",
       "sha256": "94815ffc8a3fbd2cd7294b8a419d2d333eeda8c0b67f9ba6b23af8051255fe05",
       "bytes": 47408,
@@ -743,7 +743,7 @@
     },
     {
       "id": "field/domestic-BARRACKS-3-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-BARRACKS-3-lod1.glb",
       "sha256": "c0a24d34a1a477b87d9261be75fc77466442b5261f0d7f8cee1e2a89b1c078fa",
       "bytes": 35632,
@@ -776,7 +776,7 @@
     },
     {
       "id": "field/domestic-BARRACKS-3-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-BARRACKS-3-lod2.glb",
       "sha256": "917258131c45586f1f05041565e758fc10c0a351814b60eb406a5f76ae5f1730",
       "bytes": 19548,
@@ -809,7 +809,7 @@
     },
     {
       "id": "field/domestic-BLACK_MARKET-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-BLACK_MARKET-1-lod0.glb",
       "sha256": "77f2556584df098445e64fd4ac837b4d19178bf821a9d6622f5861eb28beb98e",
       "bytes": 31384,
@@ -842,7 +842,7 @@
     },
     {
       "id": "field/domestic-BLACK_MARKET-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-BLACK_MARKET-1-lod1.glb",
       "sha256": "eb9be7715cd2b380e36eb578b87ce4a8fdcdaecb4828ef8d33ec564a71cf2d78",
       "bytes": 19284,
@@ -875,7 +875,7 @@
     },
     {
       "id": "field/domestic-BLACK_MARKET-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-BLACK_MARKET-1-lod2.glb",
       "sha256": "dfa7d202757a890e96b34ac6209e80899fa48c5e20d01c5c623a617b58129e6f",
       "bytes": 16980,
@@ -908,7 +908,7 @@
     },
     {
       "id": "field/domestic-BRONZE_TERRACE-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-BRONZE_TERRACE-1-lod0.glb",
       "sha256": "d5cc2bcae453f0d4c08a80e0657cfaca8192d6ff15eca71ba1f14515300de83e",
       "bytes": 33792,
@@ -941,7 +941,7 @@
     },
     {
       "id": "field/domestic-BRONZE_TERRACE-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-BRONZE_TERRACE-1-lod1.glb",
       "sha256": "04d27612412a44b7dba5e1d15497bc71832c559a6bc414268754a60c0d60bdf4",
       "bytes": 30432,
@@ -974,7 +974,7 @@
     },
     {
       "id": "field/domestic-BRONZE_TERRACE-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-BRONZE_TERRACE-1-lod2.glb",
       "sha256": "7fea5da3295e6adced36722ea77ca8b852c3c7146995db1324b439f6d5aeba76",
       "bytes": 21236,
@@ -1007,7 +1007,7 @@
     },
     {
       "id": "field/domestic-FARM-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-FARM-1-lod0.glb",
       "sha256": "89add7fec0306aebd5075dd7552fd86cc8d5437f329eba4f4be062c512f6f622",
       "bytes": 49720,
@@ -1040,7 +1040,7 @@
     },
     {
       "id": "field/domestic-FARM-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-FARM-1-lod1.glb",
       "sha256": "4bdc288411944bec615fd2a9944a0d4c1851fa6e95446bd80065ce204fb3e60c",
       "bytes": 27636,
@@ -1073,7 +1073,7 @@
     },
     {
       "id": "field/domestic-FARM-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-FARM-1-lod2.glb",
       "sha256": "68d82981622c8c5a83bcae7d2190648719510d10e5ced9fb73105d7d37be5134",
       "bytes": 19064,
@@ -1106,7 +1106,7 @@
     },
     {
       "id": "field/domestic-FARM-2-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-FARM-2-lod0.glb",
       "sha256": "8df566e2262489d3dda9ffb8706658059f20a645c04bdfa7d1689ab538d37e69",
       "bytes": 54020,
@@ -1139,7 +1139,7 @@
     },
     {
       "id": "field/domestic-FARM-2-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-FARM-2-lod1.glb",
       "sha256": "10ed9a4c076f2b6e59f9f56123ed7e23a66998c9fe7f29873fcb6e7e80260b5b",
       "bytes": 28476,
@@ -1172,7 +1172,7 @@
     },
     {
       "id": "field/domestic-FARM-2-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-FARM-2-lod2.glb",
       "sha256": "1e5015f4c956c36b2a4ae7fe635957596dab08e7dba9849e681c2523bf42eb7f",
       "bytes": 19904,
@@ -1205,7 +1205,7 @@
     },
     {
       "id": "field/domestic-FARM-3-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-FARM-3-lod0.glb",
       "sha256": "e3daefa86f79cedb79ea11ff8ba225b677ccce6206d083d7e2e775c4ef99fabd",
       "bytes": 58316,
@@ -1238,7 +1238,7 @@
     },
     {
       "id": "field/domestic-FARM-3-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-FARM-3-lod1.glb",
       "sha256": "819a2557468ff99102953142135dc4669f8963ecb2c29c44e68f65cb66ade0b2",
       "bytes": 29316,
@@ -1271,7 +1271,7 @@
     },
     {
       "id": "field/domestic-FARM-3-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-FARM-3-lod2.glb",
       "sha256": "6deaa2836c7f48d8be111b1338eff644433efd080212701c818d980190fc61b4",
       "bytes": 20744,
@@ -1304,7 +1304,7 @@
     },
     {
       "id": "field/domestic-GRANARY-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-GRANARY-1-lod0.glb",
       "sha256": "afa983a37fa54236f490b4ae875eb0550d1071040bedc4bdeaf3aec6844efac9",
       "bytes": 22712,
@@ -1337,7 +1337,7 @@
     },
     {
       "id": "field/domestic-GRANARY-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-GRANARY-1-lod1.glb",
       "sha256": "afa983a37fa54236f490b4ae875eb0550d1071040bedc4bdeaf3aec6844efac9",
       "bytes": 22712,
@@ -1370,7 +1370,7 @@
     },
     {
       "id": "field/domestic-GRANARY-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-GRANARY-1-lod2.glb",
       "sha256": "86b14ee6fd283666b44107413f4d727c9d328cfa449a95fc476cccbeeffb76a9",
       "bytes": 19060,
@@ -1403,7 +1403,7 @@
     },
     {
       "id": "field/domestic-MARKET-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-MARKET-1-lod0.glb",
       "sha256": "e8833af27297db9cd98fd9bf25e5a3e89e783ea711a6ead9fe5d293e2516f6dc",
       "bytes": 31384,
@@ -1436,7 +1436,7 @@
     },
     {
       "id": "field/domestic-MARKET-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-MARKET-1-lod1.glb",
       "sha256": "899bb16bb1988deaedc331421c54bb6313ac0ca11a641dbcde5996d76ad0b072",
       "bytes": 19284,
@@ -1469,7 +1469,7 @@
     },
     {
       "id": "field/domestic-MARKET-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-MARKET-1-lod2.glb",
       "sha256": "e3bbc117b59c0d91d19c28dbce645d3fcb9a4e3a724d16d0d5a9fed58ab011b0",
       "bytes": 16980,
@@ -1502,7 +1502,7 @@
     },
     {
       "id": "field/domestic-MARKET-2-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-MARKET-2-lod0.glb",
       "sha256": "28024f59af3d0762c77c25480ea561ff58b5df6304e3527ea886692b97bc9f60",
       "bytes": 40120,
@@ -1535,7 +1535,7 @@
     },
     {
       "id": "field/domestic-MARKET-2-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-MARKET-2-lod1.glb",
       "sha256": "ffefe1683803bf8056d0361d993ddb137c39f4e9fce990555eb9dd7fb10fca00",
       "bytes": 21972,
@@ -1568,7 +1568,7 @@
     },
     {
       "id": "field/domestic-MARKET-2-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-MARKET-2-lod2.glb",
       "sha256": "0f43ffe3fc3b62198dd292353d8150f2af918438d2093c73435ae16ef3e172d1",
       "bytes": 19668,
@@ -1601,7 +1601,7 @@
     },
     {
       "id": "field/domestic-MARKET-3-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-MARKET-3-lod0.glb",
       "sha256": "20020765b50c86ed0f89084f0ed3579dac4895f489d21344ed16ef7e51e7e3d3",
       "bytes": 48860,
@@ -1634,7 +1634,7 @@
     },
     {
       "id": "field/domestic-MARKET-3-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-MARKET-3-lod1.glb",
       "sha256": "d5a6f4ad27b2eb02d827da35b4bb236f28f4a21bcbfdfc0c7a155b40e0848387",
       "bytes": 24660,
@@ -1667,7 +1667,7 @@
     },
     {
       "id": "field/domestic-MARKET-3-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-MARKET-3-lod2.glb",
       "sha256": "a34b18e09cd01298d277b2c30d78295107a34c732572cff2701da8a1d45b8ddf",
       "bytes": 22356,
@@ -1700,7 +1700,7 @@
     },
     {
       "id": "field/domestic-MINT-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-MINT-1-lod0.glb",
       "sha256": "7b75a56ac8e1e51e76bdf8498475e45060dc61f1a90be7378c0b9d2cb233a130",
       "bytes": 32064,
@@ -1733,7 +1733,7 @@
     },
     {
       "id": "field/domestic-MINT-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-MINT-1-lod1.glb",
       "sha256": "bd5e71cbb7209233f2023f312c0f1fbdbadd95a310382a6e6ddb49e44d83463f",
       "bytes": 28704,
@@ -1766,7 +1766,7 @@
     },
     {
       "id": "field/domestic-MINT-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-MINT-1-lod2.glb",
       "sha256": "a103796c9122c840505db7866ca96782c743944f960ad44325fc2a25002c10d8",
       "bytes": 19512,
@@ -1799,7 +1799,7 @@
     },
     {
       "id": "field/domestic-SHIPYARD-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-SHIPYARD-1-lod0.glb",
       "sha256": "c3aae92b614d00ecf54b85532ca1d12598c077deece58e3d47aef0f7cb8978b6",
       "bytes": 32296,
@@ -1832,7 +1832,7 @@
     },
     {
       "id": "field/domestic-SHIPYARD-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-SHIPYARD-1-lod1.glb",
       "sha256": "4ea71681b4c985a7a939f1655d92f6f36e0a074b3fbde64d9ab83f5f16b18424",
       "bytes": 28936,
@@ -1865,7 +1865,7 @@
     },
     {
       "id": "field/domestic-SHIPYARD-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-SHIPYARD-1-lod2.glb",
       "sha256": "b406fb9d8787e1a349cb87e8686f2c0e8584a877ea11dbdf90f3fa23575fe2d1",
       "bytes": 19744,
@@ -1898,7 +1898,7 @@
     },
     {
       "id": "field/domestic-SMITH-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-SMITH-1-lod0.glb",
       "sha256": "683e94228f0c32f819628f8cd4a42f5ff311c92c87ba4efb3ea4e2fbeb7d9c27",
       "bytes": 31396,
@@ -1931,7 +1931,7 @@
     },
     {
       "id": "field/domestic-SMITH-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-SMITH-1-lod1.glb",
       "sha256": "37e12b81b0ebc6ab5330f07661831b572b3e4fe400ba95c9585cf72d396c4f5e",
       "bytes": 28036,
@@ -1964,7 +1964,7 @@
     },
     {
       "id": "field/domestic-SMITH-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-SMITH-1-lod2.glb",
       "sha256": "6076520a40c94491d5988ac70ff51c01e1bce3ba53bcd4291d368c555fe79c7d",
       "bytes": 20304,
@@ -1997,7 +1997,7 @@
     },
     {
       "id": "field/domestic-SMITH-2-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-SMITH-2-lod0.glb",
       "sha256": "3eab1ddcd9dd4bef35ac2946789a0b39e7f221ff5325b6cc21106f51130208e0",
       "bytes": 44940,
@@ -2030,7 +2030,7 @@
     },
     {
       "id": "field/domestic-SMITH-2-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-SMITH-2-lod1.glb",
       "sha256": "1e86146aca62e1d6a9429ea7e08957b5630a2f54dadc94abf079de95fac1e9d4",
       "bytes": 38204,
@@ -2063,7 +2063,7 @@
     },
     {
       "id": "field/domestic-SMITH-2-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-SMITH-2-lod2.glb",
       "sha256": "d49110f0b4353d8fe252c7bb835d771b28629e41d8b4e5cc74f3f2f275587f2e",
       "bytes": 23588,
@@ -2096,7 +2096,7 @@
     },
     {
       "id": "field/domestic-SMITH-3-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-SMITH-3-lod0.glb",
       "sha256": "3953b01001289be80b9f0380db88ca7824de51ba79f91f8caf0e59a5afb4346a",
       "bytes": 50816,
@@ -2129,7 +2129,7 @@
     },
     {
       "id": "field/domestic-SMITH-3-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-SMITH-3-lod1.glb",
       "sha256": "c1acfe08ca0018886deff4075be15c250a47bddb82f495a2232f155cc010705b",
       "bytes": 39040,
@@ -2162,7 +2162,7 @@
     },
     {
       "id": "field/domestic-SMITH-3-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-SMITH-3-lod2.glb",
       "sha256": "abc91166e53cf8caa9db9821222c1ee83d7a9fa201376cd1410cd544a6495af1",
       "bytes": 24420,
@@ -2195,7 +2195,7 @@
     },
     {
       "id": "field/domestic-STABLE-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-STABLE-1-lod0.glb",
       "sha256": "3ad75f92c053a88898ec54def5d8bd322ff385c6a6cb775e906af5c94fafe49a",
       "bytes": 32348,
@@ -2228,7 +2228,7 @@
     },
     {
       "id": "field/domestic-STABLE-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-STABLE-1-lod1.glb",
       "sha256": "a6e4405a93acf856258b0df3d61d2458267a11baf9206875bf6e386e4c4e1e60",
       "bytes": 28988,
@@ -2261,7 +2261,7 @@
     },
     {
       "id": "field/domestic-STABLE-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-STABLE-1-lod2.glb",
       "sha256": "5863a3fdcbb56f438da26f0994efaa8cda448fabace08e4339e4b56ed4b35ff6",
       "bytes": 21272,
@@ -2294,7 +2294,7 @@
     },
     {
       "id": "field/domestic-STABLE-2-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-STABLE-2-lod0.glb",
       "sha256": "9808502fc25f347269c96e0ddbf4907446b5e8843f33aef97935f2634dcc11dc",
       "bytes": 45876,
@@ -2327,7 +2327,7 @@
     },
     {
       "id": "field/domestic-STABLE-2-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-STABLE-2-lod1.glb",
       "sha256": "d3cee14a2809514b7fea23347daee91e05c22c84fa3b29411ff8275015b05c9b",
       "bytes": 39144,
@@ -2360,7 +2360,7 @@
     },
     {
       "id": "field/domestic-STABLE-2-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-STABLE-2-lod2.glb",
       "sha256": "c9808ed95b88d9201cc984c8ddf96c6e00aec10f513f04d567750188a14de4f3",
       "bytes": 24524,
@@ -2393,7 +2393,7 @@
     },
     {
       "id": "field/domestic-STABLE-3-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-STABLE-3-lod0.glb",
       "sha256": "3aae1e609eafc66fd7de1831f727a64c93580f49604b0e1595946a2be9263d42",
       "bytes": 51752,
@@ -2426,7 +2426,7 @@
     },
     {
       "id": "field/domestic-STABLE-3-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-STABLE-3-lod1.glb",
       "sha256": "2e62b714626cdb909d03f465260baf5ac30172ac2ce327713ef94d93e7e04767",
       "bytes": 39976,
@@ -2459,7 +2459,7 @@
     },
     {
       "id": "field/domestic-STABLE-3-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-STABLE-3-lod2.glb",
       "sha256": "f5e1c65ceeb6ed185d02a887076837694a3e60f4a1eab1a3fb439f7f6587ac3c",
       "bytes": 25356,
@@ -2492,7 +2492,7 @@
     },
     {
       "id": "field/domestic-WORKSHOP-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-WORKSHOP-1-lod0.glb",
       "sha256": "d4f1a92ec07676dcb1f9944ce13f3d6f6898ec517918ed5b0ddf0ea9d2d5da65",
       "bytes": 51228,
@@ -2525,7 +2525,7 @@
     },
     {
       "id": "field/domestic-WORKSHOP-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-WORKSHOP-1-lod1.glb",
       "sha256": "ef62ecd0a9366835f2b61b308289cc80b218ecd6882a9a7c7b89ce5e0cf5dc0f",
       "bytes": 41340,
@@ -2558,7 +2558,7 @@
     },
     {
       "id": "field/domestic-WORKSHOP-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/domestic-WORKSHOP-1-lod2.glb",
       "sha256": "0b87c725fc885669652b3f115dbf4d4c463d3ed7e137518cdcf8183659fe9780",
       "bytes": 32148,
@@ -2591,7 +2591,7 @@
     },
     {
       "id": "field/fire",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/fire.glb",
       "sha256": "2c43bf96022cf5c1cf9a054c8d457b95ed54d99d98705c3c7c2bf4684e478c51",
       "bytes": 15952,
@@ -2624,7 +2624,7 @@
     },
     {
       "id": "field/military-ARROW_TOWER-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-ARROW_TOWER-1-lod0.glb",
       "sha256": "ed922a7650f20254e162c996b9c756655d367fc49141a524970e697d4f1dacd2",
       "bytes": 27964,
@@ -2657,7 +2657,7 @@
     },
     {
       "id": "field/military-ARROW_TOWER-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-ARROW_TOWER-1-lod1.glb",
       "sha256": "ed922a7650f20254e162c996b9c756655d367fc49141a524970e697d4f1dacd2",
       "bytes": 27964,
@@ -2690,7 +2690,7 @@
     },
     {
       "id": "field/military-ARROW_TOWER-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-ARROW_TOWER-1-lod2.glb",
       "sha256": "f36c329e8bf7216b76f0f3048becbfde0343ee3053712c89500c943a58643d26",
       "bytes": 19728,
@@ -2723,7 +2723,7 @@
     },
     {
       "id": "field/military-CAMP-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-CAMP-1-lod0.glb",
       "sha256": "c845ff50dd3bdd9d0115518db748be55e6cc5b20fd1f001d3cc88ebf4d6b3a87",
       "bytes": 57940,
@@ -2756,7 +2756,7 @@
     },
     {
       "id": "field/military-CAMP-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-CAMP-1-lod1.glb",
       "sha256": "5bc9f195dee03b1353fa8a7be6e59376f19ad615bbcb3d5c9ef6e82f09654a33",
       "bytes": 40652,
@@ -2789,7 +2789,7 @@
     },
     {
       "id": "field/military-CAMP-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-CAMP-1-lod2.glb",
       "sha256": "91175c91f5c7294e0f6f194d74842c2a2a200b05afa3ea50e0aa5450e2ca180f",
       "bytes": 38132,
@@ -2822,7 +2822,7 @@
     },
     {
       "id": "field/military-CATAPULT_TOWER-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-CATAPULT_TOWER-1-lod0.glb",
       "sha256": "796056dd6e225518897119af8a0dcde10f5bb94e2d064f9944688cf0f503893f",
       "bytes": 28912,
@@ -2855,7 +2855,7 @@
     },
     {
       "id": "field/military-CATAPULT_TOWER-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-CATAPULT_TOWER-1-lod1.glb",
       "sha256": "796056dd6e225518897119af8a0dcde10f5bb94e2d064f9944688cf0f503893f",
       "bytes": 28912,
@@ -2888,7 +2888,7 @@
     },
     {
       "id": "field/military-CATAPULT_TOWER-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-CATAPULT_TOWER-1-lod2.glb",
       "sha256": "498c2c531bf314cabe9a06a49f7cddfe6a89152072dc3658991f81f4930aa662",
       "bytes": 21348,
@@ -2921,7 +2921,7 @@
     },
     {
       "id": "field/military-CROSSBOW_TOWER-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-CROSSBOW_TOWER-1-lod0.glb",
       "sha256": "5688f0f49308dcb54170a709d04c2c650a55de8bf96a97cbb7c8970a18ea6ea6",
       "bytes": 28804,
@@ -2954,7 +2954,7 @@
     },
     {
       "id": "field/military-CROSSBOW_TOWER-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-CROSSBOW_TOWER-1-lod1.glb",
       "sha256": "5688f0f49308dcb54170a709d04c2c650a55de8bf96a97cbb7c8970a18ea6ea6",
       "bytes": 28804,
@@ -2987,7 +2987,7 @@
     },
     {
       "id": "field/military-CROSSBOW_TOWER-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-CROSSBOW_TOWER-1-lod2.glb",
       "sha256": "d40224a6829e5d557e3a6f47e6620b65c40457c0e1062f956e0dc6f69746640c",
       "bytes": 20568,
@@ -3020,7 +3020,7 @@
     },
     {
       "id": "field/military-DAM-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-DAM-1-lod0.glb",
       "sha256": "59624661697a47d3a3808506ebbaef99ef7c75dffe7c845dc366c677d6395403",
       "bytes": 17800,
@@ -3053,7 +3053,7 @@
     },
     {
       "id": "field/military-DAM-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-DAM-1-lod1.glb",
       "sha256": "59624661697a47d3a3808506ebbaef99ef7c75dffe7c845dc366c677d6395403",
       "bytes": 17800,
@@ -3086,7 +3086,7 @@
     },
     {
       "id": "field/military-DAM-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-DAM-1-lod2.glb",
       "sha256": "6498ffc130c152d1f39c05035d2ec74675bbe9589666dda35c3b39af601c2a8a",
       "bytes": 15292,
@@ -3119,7 +3119,7 @@
     },
     {
       "id": "field/military-DRUM-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-DRUM-1-lod0.glb",
       "sha256": "b58360f4afafada0fdb912573347a93f3a7fa7a1a23ce68c349222751f252f29",
       "bytes": 19556,
@@ -3152,7 +3152,7 @@
     },
     {
       "id": "field/military-DRUM-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-DRUM-1-lod1.glb",
       "sha256": "b58360f4afafada0fdb912573347a93f3a7fa7a1a23ce68c349222751f252f29",
       "bytes": 19556,
@@ -3185,7 +3185,7 @@
     },
     {
       "id": "field/military-DRUM-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-DRUM-1-lod2.glb",
       "sha256": "9dcf602447c999ec69e971d618f3612787e274ac573f7e45c9e1835a582f1613",
       "bytes": 17036,
@@ -3218,7 +3218,7 @@
     },
     {
       "id": "field/military-EARTH_WALL-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-EARTH_WALL-1-lod0.glb",
       "sha256": "ba8e75aee87ea2ace97c87cbf05e12c38f65d35db2c78616b193c63649fc1596",
       "bytes": 15256,
@@ -3251,7 +3251,7 @@
     },
     {
       "id": "field/military-EARTH_WALL-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-EARTH_WALL-1-lod1.glb",
       "sha256": "ba8e75aee87ea2ace97c87cbf05e12c38f65d35db2c78616b193c63649fc1596",
       "bytes": 15256,
@@ -3284,7 +3284,7 @@
     },
     {
       "id": "field/military-EARTH_WALL-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-EARTH_WALL-1-lod2.glb",
       "sha256": "b0c2c2b00777807aed4b87e776361845cf355e9f97a031c3665117e6c9c21cf3",
       "bytes": 12732,
@@ -3317,7 +3317,7 @@
     },
     {
       "id": "field/military-FIRE_BALL-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FIRE_BALL-1-lod0.glb",
       "sha256": "05625f1e590422d7bbf8ce932c4a29f09ad5d13c55eeb133020a5af68765aa1d",
       "bytes": 20376,
@@ -3350,7 +3350,7 @@
     },
     {
       "id": "field/military-FIRE_BALL-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FIRE_BALL-1-lod1.glb",
       "sha256": "05625f1e590422d7bbf8ce932c4a29f09ad5d13c55eeb133020a5af68765aa1d",
       "bytes": 20376,
@@ -3383,7 +3383,7 @@
     },
     {
       "id": "field/military-FIRE_BALL-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FIRE_BALL-1-lod2.glb",
       "sha256": "6a9c2f69715644c2fd875b5b181fd52d7b4f8d39800c00edfc304c694368ef61",
       "bytes": 19536,
@@ -3416,7 +3416,7 @@
     },
     {
       "id": "field/military-FIRE_SEED-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FIRE_SEED-1-lod0.glb",
       "sha256": "f9d9f7d43b154df09223d10182e7dbb787881b5cef9351d76e4ed137eb7dab90",
       "bytes": 15628,
@@ -3449,7 +3449,7 @@
     },
     {
       "id": "field/military-FIRE_SEED-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FIRE_SEED-1-lod1.glb",
       "sha256": "f9d9f7d43b154df09223d10182e7dbb787881b5cef9351d76e4ed137eb7dab90",
       "bytes": 15628,
@@ -3482,7 +3482,7 @@
     },
     {
       "id": "field/military-FIRE_SEED-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FIRE_SEED-1-lod2.glb",
       "sha256": "4999c6575404f60019c2daaac08e73e19907dbb968f65eb0aacf69ce2ff0a14a",
       "bytes": 14760,
@@ -3515,7 +3515,7 @@
     },
     {
       "id": "field/military-FIRE_SHIP-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FIRE_SHIP-1-lod0.glb",
       "sha256": "e22c86352e6b3ca96bdd536b545253d9194eba8a3369c3202e80fb98e0975f15",
       "bytes": 19388,
@@ -3548,7 +3548,7 @@
     },
     {
       "id": "field/military-FIRE_SHIP-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FIRE_SHIP-1-lod1.glb",
       "sha256": "e22c86352e6b3ca96bdd536b545253d9194eba8a3369c3202e80fb98e0975f15",
       "bytes": 19388,
@@ -3581,7 +3581,7 @@
     },
     {
       "id": "field/military-FIRE_SHIP-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FIRE_SHIP-1-lod2.glb",
       "sha256": "e1a8eba392938b7f88fd1fc5f03c085157b7e9171075c0db259dae467ace612b",
       "bytes": 18548,
@@ -3614,7 +3614,7 @@
     },
     {
       "id": "field/military-FLAME_BALL-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FLAME_BALL-1-lod0.glb",
       "sha256": "be3bf8929df3973722e5f5edb27173950d24094651f726e8ab08409c9763f852",
       "bytes": 21216,
@@ -3647,7 +3647,7 @@
     },
     {
       "id": "field/military-FLAME_BALL-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FLAME_BALL-1-lod1.glb",
       "sha256": "be3bf8929df3973722e5f5edb27173950d24094651f726e8ab08409c9763f852",
       "bytes": 21216,
@@ -3680,7 +3680,7 @@
     },
     {
       "id": "field/military-FLAME_BALL-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FLAME_BALL-1-lod2.glb",
       "sha256": "3d654ee6e5891018dd255506b3d51f3049b82632fde857c25d8056c80e7c413b",
       "bytes": 20376,
@@ -3713,7 +3713,7 @@
     },
     {
       "id": "field/military-FLAME_SEED-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FLAME_SEED-1-lod0.glb",
       "sha256": "eea0e25eb292af0c61603b805794fcc6316acd7c99ccaaa056d583d570f0938d",
       "bytes": 18776,
@@ -3746,7 +3746,7 @@
     },
     {
       "id": "field/military-FLAME_SEED-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FLAME_SEED-1-lod1.glb",
       "sha256": "eea0e25eb292af0c61603b805794fcc6316acd7c99ccaaa056d583d570f0938d",
       "bytes": 18776,
@@ -3779,7 +3779,7 @@
     },
     {
       "id": "field/military-FLAME_SEED-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FLAME_SEED-1-lod2.glb",
       "sha256": "11f1b4e23006a2a5d80ff993679b01815faab17a6b89cfa2e2f2c77a8d24ab43",
       "bytes": 17908,
@@ -3812,7 +3812,7 @@
     },
     {
       "id": "field/military-FORT-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FORT-1-lod0.glb",
       "sha256": "069c2cd9efaec0c4b3379338c793d7cd8b277b9634458519e7a0e0694ef2b3a6",
       "bytes": 59092,
@@ -3845,7 +3845,7 @@
     },
     {
       "id": "field/military-FORT-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FORT-1-lod1.glb",
       "sha256": "d4b489e8327244734b3e9adf1295c84bbe0f82dea6d63e04ab98c95d811fb948",
       "bytes": 41804,
@@ -3878,7 +3878,7 @@
     },
     {
       "id": "field/military-FORT-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FORT-1-lod2.glb",
       "sha256": "c65f68210a3653903f20537d921338d772f0b12bd6e41df509369232855d87ff",
       "bytes": 39284,
@@ -3911,7 +3911,7 @@
     },
     {
       "id": "field/military-FORTRESS-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FORTRESS-1-lod0.glb",
       "sha256": "5c5fd084a7b602a206b7cc2871f36f6c2caddf17b04780fc61ea6b9d4cab20e8",
       "bytes": 49528,
@@ -3944,7 +3944,7 @@
     },
     {
       "id": "field/military-FORTRESS-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FORTRESS-1-lod1.glb",
       "sha256": "c20857bf9756bdf9fa1ffcd905f58f34b6fda85f23e8184197c2f9558d096ead",
       "bytes": 30204,
@@ -3977,7 +3977,7 @@
     },
     {
       "id": "field/military-FORTRESS-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-FORTRESS-1-lod2.glb",
       "sha256": "c5ee4c7babae3fcb82479723070a3a4bd74a9108c5a5f14a928648bb7d89c7ca",
       "bytes": 20796,
@@ -4010,7 +4010,7 @@
     },
     {
       "id": "field/military-INFERNO_BALL-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-INFERNO_BALL-1-lod0.glb",
       "sha256": "edd3edb0da756c1e2257d3681aadbd586a95e7f9814d2a4b88cafd23752d42fa",
       "bytes": 22056,
@@ -4043,7 +4043,7 @@
     },
     {
       "id": "field/military-INFERNO_BALL-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-INFERNO_BALL-1-lod1.glb",
       "sha256": "edd3edb0da756c1e2257d3681aadbd586a95e7f9814d2a4b88cafd23752d42fa",
       "bytes": 22056,
@@ -4076,7 +4076,7 @@
     },
     {
       "id": "field/military-INFERNO_BALL-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-INFERNO_BALL-1-lod2.glb",
       "sha256": "6d69a46af3f98e7fec701b38bd7ef4f7efc119e685c7711377d876d18104f193",
       "bytes": 21216,
@@ -4109,7 +4109,7 @@
     },
     {
       "id": "field/military-INFERNO_SEED-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-INFERNO_SEED-1-lod0.glb",
       "sha256": "acea8e9c1e7e542f0d1565e998e676b9dc4ab5113b38c4e4d395cabc9ec8235a",
       "bytes": 21908,
@@ -4142,7 +4142,7 @@
     },
     {
       "id": "field/military-INFERNO_SEED-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-INFERNO_SEED-1-lod1.glb",
       "sha256": "acea8e9c1e7e542f0d1565e998e676b9dc4ab5113b38c4e4d395cabc9ec8235a",
       "bytes": 21908,
@@ -4175,7 +4175,7 @@
     },
     {
       "id": "field/military-INFERNO_SEED-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-INFERNO_SEED-1-lod2.glb",
       "sha256": "d880420bff8b3edaa1f69d1a6cfd3cabca3de087092ac5c4ec65ca09756bcd12",
       "bytes": 21052,
@@ -4208,7 +4208,7 @@
     },
     {
       "id": "field/military-MUSIC-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-MUSIC-1-lod0.glb",
       "sha256": "b93433820e2d5b264e1a5a8209cd685e6b383ae5ef1079f6ba20e44078b7b2ac",
       "bytes": 26688,
@@ -4241,7 +4241,7 @@
     },
     {
       "id": "field/military-MUSIC-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-MUSIC-1-lod1.glb",
       "sha256": "b93433820e2d5b264e1a5a8209cd685e6b383ae5ef1079f6ba20e44078b7b2ac",
       "bytes": 26688,
@@ -4274,7 +4274,7 @@
     },
     {
       "id": "field/military-MUSIC-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-MUSIC-1-lod2.glb",
       "sha256": "4a1c0f5caed1cfefe61eb822537fd41a7bd89e81ea420e43b38b0d7372b4d6f0",
       "bytes": 24168,
@@ -4307,7 +4307,7 @@
     },
     {
       "id": "field/military-STONE_MAZE-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-STONE_MAZE-1-lod0.glb",
       "sha256": "3b51242d2393eb514dce9dda8ade19145fed0a2641204170348ed87596680c0e",
       "bytes": 25688,
@@ -4340,7 +4340,7 @@
     },
     {
       "id": "field/military-STONE_MAZE-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-STONE_MAZE-1-lod1.glb",
       "sha256": "3b51242d2393eb514dce9dda8ade19145fed0a2641204170348ed87596680c0e",
       "bytes": 25688,
@@ -4373,7 +4373,7 @@
     },
     {
       "id": "field/military-STONE_MAZE-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-STONE_MAZE-1-lod2.glb",
       "sha256": "ada1a58d4d766ba85aee598da45bc77bc698800cd80e680183c6c12d491fe295",
       "bytes": 23168,
@@ -4406,7 +4406,7 @@
     },
     {
       "id": "field/military-STONE_WALL-1-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-STONE_WALL-1-lod0.glb",
       "sha256": "74b8bb437a7b275ab626b05a1bf163dd8c8f791d69ee15e4b4d74e34f725f837",
       "bytes": 20300,
@@ -4439,7 +4439,7 @@
     },
     {
       "id": "field/military-STONE_WALL-1-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-STONE_WALL-1-lod1.glb",
       "sha256": "74b8bb437a7b275ab626b05a1bf163dd8c8f791d69ee15e4b4d74e34f725f837",
       "bytes": 20300,
@@ -4472,7 +4472,7 @@
     },
     {
       "id": "field/military-STONE_WALL-1-lod2",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/military-STONE_WALL-1-lod2.glb",
       "sha256": "1ae8554083655c6af07ad5a53b7632a76ea49729f6c4fa98abdd51efeaf7c970",
       "bytes": 17780,
@@ -4504,8 +4504,74 @@
       "mapping": "FieldAssets.unit/facility; construction/fire state"
     },
     {
+      "id": "field/rock-strata-lod0",
+      "version": 4,
+      "runtime": "app/src/main/assets/3d/field/rock-strata-lod0.glb",
+      "sha256": "613042f716a3ce430ecfcb32cefbaf86840fd22d0515e9ac2e65feb0bdd08910",
+      "bytes": 16992,
+      "triangles": 57,
+      "primitives": 1,
+      "lod": 0,
+      "bounds": [
+        -0.2875132354766665,
+        -0.04600211767626664,
+        -0.17433125496785598,
+        0.29,
+        0.32494253190710953,
+        0.2056196460618933
+      ],
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "axes": "+Y up / +Z forward",
+      "unit": "one projected tile span",
+      "license": "CC0-1.0",
+      "author": "project procedural asset source",
+      "source": "tools/3d/build_field_assets.py",
+      "texture": "3d/field/atlas.png",
+      "textureSha256": "89b21a3564359170b41e58c9f907c52c5d9d5a37339bd1a47de2aca309f870ea",
+      "colorSpace": "sRGB",
+      "animation": "static",
+      "mapping": "Vegetation.build"
+    },
+    {
+      "id": "field/rock-strata-lod1",
+      "version": 4,
+      "runtime": "app/src/main/assets/3d/field/rock-strata-lod1.glb",
+      "sha256": "41d4b84fadc401e9fb6ede5bf536a423fd03cfb5788b6643a8220c20e690f589",
+      "bytes": 14060,
+      "triangles": 26,
+      "primitives": 1,
+      "lod": 1,
+      "bounds": [
+        -0.26250428122448194,
+        -0.04200068499591711,
+        -0.18510212202109533,
+        0.29,
+        0.24039671708345323,
+        0.19340783926911315
+      ],
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "axes": "+Y up / +Z forward",
+      "unit": "one projected tile span",
+      "license": "CC0-1.0",
+      "author": "project procedural asset source",
+      "source": "tools/3d/build_field_assets.py",
+      "texture": "3d/field/atlas.png",
+      "textureSha256": "89b21a3564359170b41e58c9f907c52c5d9d5a37339bd1a47de2aca309f870ea",
+      "colorSpace": "sRGB",
+      "animation": "static",
+      "mapping": "Vegetation.build"
+    },
+    {
       "id": "field/scaffold",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/scaffold.glb",
       "sha256": "87d5df1460b2921bdd04eb081b884d6412cc62c8114e5dbca4aaad87d0bd0e17",
       "bytes": 18352,
@@ -4537,8 +4603,74 @@
       "mapping": "FieldAssets.unit/facility; construction/fire state"
     },
     {
+      "id": "field/shrub-lod0",
+      "version": 4,
+      "runtime": "app/src/main/assets/3d/field/shrub-lod0.glb",
+      "sha256": "a24f00b37342e5297e727cc228afa674c627510d265070822aaf36a4064e75ee",
+      "bytes": 16708,
+      "triangles": 42,
+      "primitives": 1,
+      "lod": 0,
+      "bounds": [
+        -0.16009688679024192,
+        0.009999999999999995,
+        -0.13629509802836404,
+        0.18,
+        0.22999999999999998,
+        0.14359307956945508
+      ],
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "axes": "+Y up / +Z forward",
+      "unit": "one projected tile span",
+      "license": "CC0-1.0",
+      "author": "project procedural asset source",
+      "source": "tools/3d/build_field_assets.py",
+      "texture": "3d/field/atlas.png",
+      "textureSha256": "89b21a3564359170b41e58c9f907c52c5d9d5a37339bd1a47de2aca309f870ea",
+      "colorSpace": "sRGB",
+      "animation": "static",
+      "mapping": "Vegetation.build"
+    },
+    {
+      "id": "field/shrub-lod1",
+      "version": 4,
+      "runtime": "app/src/main/assets/3d/field/shrub-lod1.glb",
+      "sha256": "624707ceec9e282700ec78f255b846af9ddcad77f52850fda96fea6cabd76cb1",
+      "bytes": 14512,
+      "triangles": 24,
+      "primitives": 1,
+      "lod": 1,
+      "bounds": [
+        -0.17,
+        0.009999999999999995,
+        -0.138,
+        0.18,
+        0.22999999999999998,
+        0.14600000000000002
+      ],
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "axes": "+Y up / +Z forward",
+      "unit": "one projected tile span",
+      "license": "CC0-1.0",
+      "author": "project procedural asset source",
+      "source": "tools/3d/build_field_assets.py",
+      "texture": "3d/field/atlas.png",
+      "textureSha256": "89b21a3564359170b41e58c9f907c52c5d9d5a37339bd1a47de2aca309f870ea",
+      "colorSpace": "sRGB",
+      "animation": "static",
+      "mapping": "Vegetation.build"
+    },
+    {
       "id": "field/tree-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/tree-lod0.glb",
       "sha256": "2ce052ae26a78547e9107548efa175fb6657dd79b70813b5622021b4bc7fe491",
       "bytes": 20632,
@@ -4571,7 +4703,7 @@
     },
     {
       "id": "field/tree-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/tree-lod1.glb",
       "sha256": "c0c4d6f746fa9d77d7e7124b76be4241ee59e14726c04c574d50b89d5740548b",
       "bytes": 15924,
@@ -4604,20 +4736,20 @@
     },
     {
       "id": "field/tree-upland-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/tree-upland-lod0.glb",
-      "sha256": "a59ff47253194958c86c982ab09966683614cfa0efd8d6c07f3b1128cf5332b1",
-      "bytes": 20648,
-      "triangles": 87,
+      "sha256": "0625516ee4883b15becc33ff9325763358d670de15e41364d71d4cb137e7be03",
+      "bytes": 23672,
+      "triangles": 129,
       "primitives": 1,
       "lod": 0,
       "bounds": [
-        -0.14959118592925186,
+        -0.1840268901108863,
         0,
-        -0.1846503684595412,
-        0.21000000000000002,
-        0.78,
-        0.18381372788306977
+        -0.16963745671963731,
+        0.19616688346959754,
+        0.82,
+        0.16963745671963731
       ],
       "pivot": [
         0,
@@ -4637,20 +4769,20 @@
     },
     {
       "id": "field/tree-upland-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/tree-upland-lod1.glb",
-      "sha256": "05c5682e965171d8f2dfcb3a70edeae235c959509c7edb853156cce0b556fa9c",
-      "bytes": 18488,
-      "triangles": 69,
+      "sha256": "0920068eead8e0a1987a8bcc59079cd1ef75f4414572fc39b895e52f35d4843a",
+      "bytes": 17696,
+      "triangles": 63,
       "primitives": 1,
       "lod": 1,
       "bounds": [
-        -0.16048461045998574,
+        -0.20383311653040248,
         0,
-        -0.18715757724135884,
-        0.21000000000000002,
-        0.78,
-        0.1863209366648874
+        -0.17400000000000002,
+        0.19616688346959754,
+        0.82,
+        0.17400000000000002
       ],
       "pivot": [
         0,
@@ -4670,7 +4802,7 @@
     },
     {
       "id": "field/unit-BOAT-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-BOAT-lod0.glb",
       "sha256": "0a6fa0e0fc45cd8fc3cae179704aabd7050b28ca3260d5330516606651a9a805",
       "bytes": 20688,
@@ -4703,7 +4835,7 @@
     },
     {
       "id": "field/unit-BOAT-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-BOAT-lod1.glb",
       "sha256": "0a6fa0e0fc45cd8fc3cae179704aabd7050b28ca3260d5330516606651a9a805",
       "bytes": 20688,
@@ -4736,7 +4868,7 @@
     },
     {
       "id": "field/unit-CATAPULT-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-CATAPULT-lod0.glb",
       "sha256": "73794ba0d74213dfd0e1be76d9a392a055016d3cc1528640450eda6831a70363",
       "bytes": 49516,
@@ -4769,7 +4901,7 @@
     },
     {
       "id": "field/unit-CATAPULT-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-CATAPULT-lod1.glb",
       "sha256": "c8eb49b5a5c75072279925ef8df17f4c218b2a772663b4ce0f5e9801dbf483e6",
       "bytes": 41304,
@@ -4802,7 +4934,7 @@
     },
     {
       "id": "field/unit-CAVALRY-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-CAVALRY-lod0.glb",
       "sha256": "53a7c0e2fc13c556bb7101f6485fc78f7db7f69156f0b7ca7371d43feb635105",
       "bytes": 82616,
@@ -4835,7 +4967,7 @@
     },
     {
       "id": "field/unit-CAVALRY-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-CAVALRY-lod1.glb",
       "sha256": "e223c71669e917c17a62a43b07d989de5cc75f4205f264dcfe50ffd55fc802c7",
       "bytes": 73376,
@@ -4868,7 +5000,7 @@
     },
     {
       "id": "field/unit-CROSSBOW-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-CROSSBOW-lod0.glb",
       "sha256": "7788b069e187de5573eea63e44ba52d1290910445b1ac3d66b60bf9230ada40a",
       "bytes": 55208,
@@ -4901,7 +5033,7 @@
     },
     {
       "id": "field/unit-CROSSBOW-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-CROSSBOW-lod1.glb",
       "sha256": "bbc8e906d891fdc49e8ce8bade5c226467f61c4a27c4a9694d7fb61686b6b8a1",
       "bytes": 45964,
@@ -4934,7 +5066,7 @@
     },
     {
       "id": "field/unit-HALBERD-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-HALBERD-lod0.glb",
       "sha256": "74a74ce711737672b036b6d772061ec618595ae438983919b9323ccdb1df4ab6",
       "bytes": 56832,
@@ -4967,7 +5099,7 @@
     },
     {
       "id": "field/unit-HALBERD-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-HALBERD-lod1.glb",
       "sha256": "046582b7b2da8252d0d39a001bf0d4bf83093f79b4098d65b70aaea09bede1c7",
       "bytes": 47592,
@@ -5000,7 +5132,7 @@
     },
     {
       "id": "field/unit-RAM-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-RAM-lod0.glb",
       "sha256": "4ddfc1aca073057172066315ba99fc5cae13c21bd99eec00470889a796ea6086",
       "bytes": 45260,
@@ -5033,7 +5165,7 @@
     },
     {
       "id": "field/unit-RAM-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-RAM-lod1.glb",
       "sha256": "731c53fe576f91ff8331e90776944eed96c8f6a109fc0c5dffdc586cac06c0df",
       "bytes": 38732,
@@ -5066,7 +5198,7 @@
     },
     {
       "id": "field/unit-SIEGE_TOWER-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-SIEGE_TOWER-lod0.glb",
       "sha256": "846e00063f2a8eba1237095f8315ba91b17cc009d8c990fc2c71ea968cd060d7",
       "bytes": 57800,
@@ -5099,7 +5231,7 @@
     },
     {
       "id": "field/unit-SIEGE_TOWER-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-SIEGE_TOWER-lod1.glb",
       "sha256": "f89a7756e464aa46d2a3addf62fdf9d9d9dcdffedd875c4eeeba7c806a88cf15",
       "bytes": 47068,
@@ -5132,7 +5264,7 @@
     },
     {
       "id": "field/unit-SPEAR-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-SPEAR-lod0.glb",
       "sha256": "379c1518bb3a09f09134860dc31f3fed61d83feaf517855cbaabdbcc1ba6cf25",
       "bytes": 55824,
@@ -5165,7 +5297,7 @@
     },
     {
       "id": "field/unit-SPEAR-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-SPEAR-lod1.glb",
       "sha256": "d7eac0c4dcbea01fb459ab5a11dc27ba635503d6df11b664bc144b7b9c4675a0",
       "bytes": 46584,
@@ -5198,7 +5330,7 @@
     },
     {
       "id": "field/unit-SWORD-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-SWORD-lod0.glb",
       "sha256": "2a18c3a3f7d63f8354c0d7e512de3318e003d4b97eb33fbfa96e0db998cea8a5",
       "bytes": 55240,
@@ -5231,7 +5363,7 @@
     },
     {
       "id": "field/unit-SWORD-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-SWORD-lod1.glb",
       "sha256": "b62319ead2f0f097a64e4082e96591e668b25860c0ca308e75588f5d720a9789",
       "bytes": 45996,
@@ -5264,7 +5396,7 @@
     },
     {
       "id": "field/unit-TOWER_SHIP-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-TOWER_SHIP-lod0.glb",
       "sha256": "865d016fade743155dc0d1d3e50362df69381a09e7b28a57e6c28f20fda581c7",
       "bytes": 33548,
@@ -5297,7 +5429,7 @@
     },
     {
       "id": "field/unit-TOWER_SHIP-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-TOWER_SHIP-lod1.glb",
       "sha256": "d567db6fda93df4b24c7757c50378e4fc51804cdbefd159a84d6ac056c725e23",
       "bytes": 30188,
@@ -5330,7 +5462,7 @@
     },
     {
       "id": "field/unit-WARSHIP-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-WARSHIP-lod0.glb",
       "sha256": "b44c15adea686438010033fc8db2d5d7a133a11f04eafbb7af13b5783cb6141e",
       "bytes": 33700,
@@ -5363,7 +5495,7 @@
     },
     {
       "id": "field/unit-WARSHIP-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-WARSHIP-lod1.glb",
       "sha256": "def5cae38c931c6cc9821e1cc743a08049eb08e6db316e9335a9341c644a7192",
       "bytes": 30340,
@@ -5396,7 +5528,7 @@
     },
     {
       "id": "field/unit-WOODEN_BEAST-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-WOODEN_BEAST-lod0.glb",
       "sha256": "e688751ba41eae1dfe7b43e8983a778faff28be28446f5a3365e4c8def09124d",
       "bytes": 45920,
@@ -5429,7 +5561,7 @@
     },
     {
       "id": "field/unit-WOODEN_BEAST-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-WOODEN_BEAST-lod1.glb",
       "sha256": "3f0eca7caddf2f3760d838fdc264ebc5b5c3c6bbb3b05900c6b16bede394992b",
       "bytes": 39392,
@@ -5462,7 +5594,7 @@
     },
     {
       "id": "field/unit-transport-lod0",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-transport-lod0.glb",
       "sha256": "d3e7edde61b1c6c8bd1d99742c80dcab63aac965cd8e748544702afeb4aa2ff3",
       "bytes": 43352,
@@ -5495,7 +5627,7 @@
     },
     {
       "id": "field/unit-transport-lod1",
-      "version": 3,
+      "version": 4,
       "runtime": "app/src/main/assets/3d/field/unit-transport-lod1.glb",
       "sha256": "392780a1022a455509cfce3ed42f29dafc1af1180413efdbdbbb72af733650b5",
       "bytes": 36824,

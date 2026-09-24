@@ -70,3 +70,8 @@ R07: PARTIAL. Regional city/port/gate production GLBs and facility joinery impro
 terrain-derived region and diagonal gate approach, live catalog/enum coverage.
 See reports/R07.md. R06 CI35950156358 now SUCCESS; its prior pending text is historical.
 R07 exact-source build/runtime pending; do not merge main or begin R08.
+
+R08: PARTIAL. Stable world-space clustered tree/shrub/rock scatter, view-window CPU
+residency, conforming logical roads and farm meshes on normal Filament path.
+R07 final CI35961885126 SUCCESS. R08 exact-source CI outcomes pending; see R08 report.
+No main merge or R09 execution. Art/PC/ARM64/manual gates remain separate and open.

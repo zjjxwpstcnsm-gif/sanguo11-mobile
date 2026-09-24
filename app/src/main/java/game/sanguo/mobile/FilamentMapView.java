@@ -341,11 +341,11 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             SceneMesh.TerrainWindow requested=terrainWindow;
             meshWork.submit(()->{
                 long started=android.os.SystemClock.elapsedRealtime();
-                SceneMesh tree=assets.mesh("tree-lod0"),farTree=assets.mesh("tree-lod1"),upland=assets.mesh("tree-upland-lod0"),farUpland=assets.mesh("tree-upland-lod1");
+
                 SceneMesh scenery=SceneMesh.backdrop(next.ground);
                 List<SceneMesh> built=SceneMesh.ground(next.ground,previous,requested);
                 android.util.Log.i("Sanguo3D","Ground CPU ready chunks="+built.size()+" ms="+(android.os.SystemClock.elapsedRealtime()-started));
-                List<SceneMesh> trees=Vegetation.build(next.ground,excluded,oldWoods,tree,farTree,upland,farUpland);
+                List<SceneMesh> trees=Vegetation.buildWindow(next.ground,excluded,oldWoods,assets,requested);
                 android.util.Log.i("Sanguo3D","Field CPU ready forestChunks="+trees.size()+" totalMs="+(android.os.SystemClock.elapsedRealtime()-started));
                 return new MeshResult(scenery,built,trees);
             });
@@ -373,7 +373,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         +"\nsnapshot="+(snapshot!=null)+" surface="+(swap!=null)+" viewport="+bufferWidth+"x"+bufferHeight
         +" session="+(sceneToken==null?"editor":sceneToken.sessionId+":"+sceneToken.generation+":"+sceneToken.revision)+" assetRevision=1.56.0/R06"
         +" asset_pending="+assetWork.pending()+" asset_cpu_bytes="+assetWork.bytes()+" terrain_all_coarse="+distantTerrain+" mapVisualKey="+(snapshot==null?"none":snapshot.ground.mapSeed+":"+snapshot.ground.surface.overrides.hashCode())
-        +" meshGeneration="+generation+" cpuChunks="+chunks.size()+" pending="+pending+" submitted="+surfaceFrames
+        +" environmentCpuChunks="+woods.size()+" environmentMode=opaque-merged-not-instanced meshGeneration="+generation+" cpuChunks="+chunks.size()+" pending="+pending+" submitted="+surfaceFrames
         +" output="+outputStatus+"\ncamera="+camera.x+","+camera.z+" span="+camera.span+" tilt="+camera.tilt+" facing="+camera.facing+" yaw="+camera.yaw+"\npick="+lastPick;}
     String report(){return startupReport()+"\nFilament 1.56.0 / OpenGL ES · "+quality.label+" color="+(srgbSwapChain?"sRGB framebuffer":"post-process gamma")+" MSAA="+(msaaEnabled?"4x":"off / compatibility")+" thermal="+thermalStatus+" cap="+thermal.fps(quality)+"\n内部 "+bufferWidth+" × "+bufferHeight+" / UI "+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S06 战斗特效 / 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+" · 特效 "+combat.count+"/"+CombatVisual.CAPACITY+"\n"+resourceReport();}
     void resetMetrics(){cpuCount=cpuCursor=0;}
@@ -464,7 +464,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             terrainWindow=new SceneMesh.TerrainWindow(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span);
             SceneMesh.TerrainWindow requested=terrainWindow;MapSceneSnapshot.Ground ground=snapshot.ground;
             List<SceneMesh> previous=chunks,trees=woods;SceneMesh scenery=backdropSource;
-            meshWork.submit(()->new MeshResult(scenery,SceneMesh.ground(ground,previous,requested),trees));
+            Set<Hex> excluded=woodExcluded;FieldAssets assets=fieldAssets;
+            meshWork.submit(()->new MeshResult(scenery,SceneMesh.ground(ground,previous,requested),Vegetation.buildWindow(ground,excluded,trees,assets,requested)));
         }
         Set<SceneMesh> active=activeTerrain;active.clear();for(SceneMesh m:chunks)active.add(m);
 
@@ -482,7 +483,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         int nextUnitLod=Math.max(quality.minUnitLod,camera.span<8?0:camera.span<22?1:2);
         unitLod=nextUnitLod;visibleWood=0;
         wantedWood.clear();
-        if(camera.span<38)for(SceneMesh source:woods){
+        for(SceneMesh source:woods){
             SceneMesh chunk=quality!=SceneQuality.LOW&&camera.span<14?source:source.distant;if(chunk.indices.length==0)continue;
             if(inView(chunk.x,chunk.z,chunk.radius)){wantedWood.add(chunk);visibleWood++;GpuMesh gpu=vegetation.get(chunk);
                 if(gpu==null){if(budget-->0){gpu=new GpuMesh(chunk);gpu.build(gpu.entity,vegetationMaterial);vegetation.put(chunk,gpu);}else pending++;}
@@ -495,11 +496,12 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private GpuMesh shape(MapSceneSnapshot.Item item){
         String field=item.facility!=null?FieldAssets.facility(item.facility,siteLod):item.unit!=null?FieldAssets.unit(item.unit,item.unit.naval,unitLod):null;
-        String key=field!=null?field+(item.unit==null?"":":idle:0:"+FieldAssets.count(item.unit,item.unit.naval,unitLod)):item.site==null?item.kind+":"+item.color:item.site.model+":"+siteLod;
+        final MapSceneSnapshot.Ground assetGround=snapshot.ground;
+        String key=field!=null?field+(FieldAssets.farm(item)?":"+item.hex+":"+FieldAssets.farmSurfaceKey(assetGround,item.hex):"")+(item.unit==null?"":":idle:0:"+FieldAssets.count(item.unit,item.unit.naval,unitLod)):item.site==null?item.kind+":"+item.color:item.site.model+":"+siteLod;
         GpuMesh mesh=shapes.get(key);if(mesh!=null)return mesh;
         final FieldAssets assets=fieldAssets;final int requestedLod=unitLod;final android.content.res.AssetManager manager=getContext().getAssets();
         SceneMesh source=assetWork.request(key,()->{
-            if(field!=null)return item.unit==null?assets.mesh(field):assets.pose(field,"idle",0,FieldAssets.count(item.unit,item.unit.naval,requestedLod));
+            if(field!=null){SceneMesh model=item.unit==null?assets.mesh(field):assets.pose(field,"idle",0,FieldAssets.count(item.unit,item.unit.naval,requestedLod));return FieldAssets.farm(item)?FieldAssets.conformFarm(model,assetGround,item.hex):model;}
             if(item.site!=null)try(java.io.InputStream in=manager.open("3d/sites/"+item.site.model+"-lod"+key.substring(key.lastIndexOf(':')+1)+".glb")){return SiteGlb.read(in);}
             return SceneMesh.proxy(item.kind,item.color);
         });

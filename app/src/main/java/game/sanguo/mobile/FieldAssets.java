@@ -29,6 +29,19 @@ final class FieldAssets {
         SceneMesh value=rest.get(name);if(value==null){try(InputStream in=source.open(name+".glb")){value=SiteGlb.read(in);}rest.put(name,value);restBytes+=bytes(value);
             Iterator<SceneMesh> entries=rest.values().iterator();while(restBytes>24L*1024*1024&&rest.size()>1){restBytes-=bytes(entries.next());entries.remove();}}return value;
     }
+    static boolean farm(MapSceneSnapshot.Item item){return item.facility!=null&&item.facility.type.equals("domestic/FARM");}
+    static long farmSurfaceKey(MapSceneSnapshot.Ground ground,Hex at){
+        long key=1469598103934665603L;
+        float x=ground.grid.x(at),z=ground.grid.z(at);
+        for(int r=-4;r<=4;r++)for(int q=-4;q<=4;q++)key=(key^Float.floatToIntBits(ground.surface.meshHeight(x+q*.125f,z+r*.125f)))*1099511628211L;
+        return key;
+    }
+    /** Farm earth/rows use a conforming instance mesh; the shared rest GLB stays immutable. */
+    static SceneMesh conformFarm(SceneMesh source,MapSceneSnapshot.Ground ground,Hex at){
+        float[] vertices=source.vertices.clone();float x=ground.grid.x(at),z=ground.grid.z(at),base=ground.surface.meshHeight(x,z);
+        for(int i=0;i<vertices.length;i+=7)vertices[i+1]+=ground.surface.meshHeight(x+vertices[i],z+vertices[i+2])-base;
+        SceneMesh mesh=new SceneMesh(vertices,source.indices,source.x,source.z,source.radius);mesh.uv=source.uv;mesh.generateTangents();return mesh;
+    }
     static String facility(MapSceneSnapshot.FacilityState state,int lod){
         return state.type.replace('/','-')+"-"+Math.max(1,state.level)+"-lod"+lod;
     }

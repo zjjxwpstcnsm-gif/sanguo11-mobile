@@ -85,3 +85,9 @@
 | R07-REGION | new, fixed in candidate | PASS | Initial one-ring terrain region missed water-city family; existing five-family assertion retained; three rings passes. |
 
 | R07-MANIFEST | new, fixed; CI retest pending | PARTIAL | Initial candidate left old S12 environment sizes/hashes after intentional GLB replacement. Existing generator refreshes metadata; pipeline now checks this manifest too. Original assertions retained; first failure jobs107510218388/107510218248 preserved. |
+
+| R08-ART | validation gap | PARTIAL | New opaque conifer/shrub/rock families remain transitional; shared atlas reused; matching PC forest/valley/farm missing. |
+| R08-STRUCTURES | implementation limit | PARTIAL | Surface-conforming plank strips do not include full hanging trestle structure; embedded rocks are not complete cliff walls. |
+| R08-MOTION | validation gap | PARTIAL | Stable LOD anchors and unit exclusion implemented; motion popping, in-between marching anchors and arbitrary slope contacts need actual review. |
+| R08-PERF | environment/validation | PARTIAL | Host geometry bytes/timing are estimates, not GPU/physical FPS; wide-view and ARM64 long-run budgets unaccepted. |
+| R07-MANIFEST-RETEST | inherited, resolved | PASS | Final R07 CI35961885126 SUCCESS, including manifest and installed acceptance; original failed runs retained. |
