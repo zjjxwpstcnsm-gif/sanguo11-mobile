@@ -63,5 +63,18 @@
     "changed": "gate LOD0, leaf atlas and tree branches, catapult lever/counterweight; shared ETC2 mips regenerated",
     "formatValidation": "Khronos 2.0.0-dev.3.10:167 models,0 errors/0 warnings",
     "runtimeAcceptance": "PENDING exact-source APK"
+  },
+  "R09": {
+    "profile": "central-plains-r09-v1",
+    "source": "app/src/main/java/game/sanguo/mobile/LandscapeProfile.java",
+    "sourceSha256": "ae6e52f29ec5be73a97703e7b1a2d1c608f72345921d91a5876b366bc20e6a5c",
+    "generator": "Vegetation.Batch road/junction; world-space canonical height; CC0 project procedural geometry",
+    "cohort": "existing R08-v4 GLBs and atlases unchanged",
+    "runtime": "ordinary FilamentMapView -> Vegetation.buildWindow",
+    "canopyScale": 0.86,
+    "pathHalfWidth": 0.085,
+    "plankHalfWidth": 0.105,
+    "region": "profiles/luoyang-r09.json",
+    "acceptance": "PARTIAL; pending exact APK review; V2 not accepted"
   }
 }

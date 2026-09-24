@@ -51,7 +51,7 @@ final class Vegetation {
             float cx=g.grid.x(q+4,r+4),cz=g.grid.z(q+4,r+4);
             if(!window.contains(cx,cz,7))continue;
             boolean detailed=window.span<14&&Math.hypot(cx-window.x,cz-window.z)<20;
-            long hash=SEED^g.mapIdentity^g.width*31L^g.height^(detailed?0x808:0);
+            long hash=SEED^LandscapeProfile.VERSION^g.mapIdentity^g.width*31L^g.height^(detailed?0x808:0);
             hash=(hash^Float.floatToIntBits(g.grid.offset))*1099511628211L;hash^=g.grid.staggered?1:0;
             for(int rr=r-8;rr<r+CHUNK+8;rr++)for(int qq=q-8;qq<q+CHUNK+8;qq++){
                 Hex h=new Hex(qq,rr);int t=g.valid(h)?g.terrain[rr*g.width+qq]:-1;
@@ -67,6 +67,7 @@ final class Vegetation {
                 if(path(g,h))for(Hex n:h.neighbors())if(g.valid(n)&&path(g,n)&&key(h.q,h.r)<key(n.q,n.r)){
                     near.road(h,n);far.road(h,n);
                 }
+                if(path(g,h)){near.junction(h);far.junction(h);}
                 for(Placement a:placements(g,excluded,h)){
                     if(detailed)near.append(models[a.family][0],a);far.append(models[a.family][1],a);
                 }
@@ -100,7 +101,7 @@ final class Vegetation {
             if((mix(hash^0x55ab)&65535)/65535f>chance)continue;
             float regional=.5f+.35f*(float)(Math.sin(x*.055)*Math.cos(z*.047));
             int family=rock?3:i==2?2:((hash>>>22)&255)/255f<regional?0:1;
-            out.add(new Placement(x,z,.65f+((hash>>>4)&255)/255f*.30f,(hash&65535)/65535f*6.283185f,family));
+            out.add(new Placement(x,z,LandscapeProfile.sceneryScale(family,.65f+((hash>>>4)&255)/255f*.30f),(hash&65535)/65535f*6.283185f,family));
         }
         return out;
     }
@@ -130,21 +131,63 @@ final class Vegetation {
             }
             for(int i:model.indices)indices.add(offset+i);for(float f:model.uv)uv.add(f);
         }
+        boolean connection(Hex h,Hex n){
+            return path(g,n)&&!(g.terrain[h.r*g.width+h.q]==World.Terrain.ROAD.ordinal()
+                &&g.terrain[n.r*g.width+n.q]==World.Terrain.ROAD.ordinal());
+        }
+        boolean plank(Hex h,Hex n){return g.terrain[h.r*g.width+h.q]==World.Terrain.PLANK_ROAD.ordinal()||g.terrain[n.r*g.width+n.q]==World.Terrain.PLANK_ROAD.ordinal();}
+        void pathVertex(float x,float z,boolean timber,float u,float t){
+            vertex(x,g.surface.meshHeight(x,z)+LandscapeProfile.SURFACE_LIFT,z,timber?2:7,u,t);
+            // Temper orange timber/soil to the shared earth palette, without another light source.
+            int o=v.size()-7;v.set(o+3,.76f);v.set(o+4,.82f);v.set(o+5,.74f);
+        }
         void road(Hex h,Hex n){
-            // ROAD is an area classification, not an authored centreline graph. Connecting
-            // every adjacent ROAD cell paints triangular lattice scars over wide plains.
-            // Its continuous grass/soil field remains the production surface; only explicit
-            // mountain/plank routes need a structural ribbon and a short approach segment.
-            if(g.terrain[h.r*g.width+h.q]==World.Terrain.ROAD.ordinal()&&g.terrain[n.r*g.width+n.q]==World.Terrain.ROAD.ordinal())return;
+            if(!connection(h,n))return;
             float x=g.grid.x(h),z=g.grid.z(h),dx=g.grid.x(n)-x,dz=g.grid.z(n)-z;
-            float len=(float)Math.hypot(dx,dz),nx=-dz/len*.13f,nz=dx/len*.13f;
-            boolean plank=g.terrain[h.r*g.width+h.q]==World.Terrain.PLANK_ROAD.ordinal()||g.terrain[n.r*g.width+n.q]==World.Terrain.PLANK_ROAD.ordinal();
-            // Fine segments follow actual terrain triangles; no long floating road boards.
+            float len=(float)Math.hypot(dx,dz);boolean timber=plank(h,n);
+            float width=LandscapeProfile.pathWidth(timber),nx=-dz/len*width,nz=dx/len*width;
+            float trim=Math.min(.30f,LandscapeProfile.JUNCTION_TRIM/len);
+            // Trim each edge at its node. The single node patch below fills every socket;
+            // edge ribbons no longer overlap and z-fight at Y/T/cross intersections.
             for(int k=0;k<12;k++){
-                float t=k/12f,T=(k+1)/12f;int o=v.size()/7;
+                float t=trim+(1-2*trim)*k/12f,T=trim+(1-2*trim)*(k+1)/12f;int o=v.size()/7;
                 float[][] points={{x+dx*t-nx,z+dz*t-nz},{x+dx*T-nx,z+dz*T-nz},{x+dx*T+nx,z+dz*T+nz},{x+dx*t+nx,z+dz*t+nz}};
-                for(int j=0;j<4;j++)vertex(points[j][0],g.surface.meshHeight(points[j][0],points[j][1])+.012f,points[j][1],plank?2:7,j<2?0:1,j==0||j==3?0:1);
+                for(int j=0;j<4;j++)pathVertex(points[j][0],points[j][1],timber,j<2?0:1,j==0||j==3?t:T);
                 Collections.addAll(indices,o,o+2,o+1,o,o+3,o+2);
+            }
+        }
+        void junction(Hex h){
+            List<float[]> boundary=new ArrayList<>();float x=g.grid.x(h),z=g.grid.z(h);boolean timber=false;
+            List<float[]> sockets=new ArrayList<>();
+            for(Hex n:h.neighbors())if(g.valid(n)&&connection(h,n)){
+                float dx=g.grid.x(n)-x,dz=g.grid.z(n)-z,len=(float)Math.hypot(dx,dz);
+                boolean wood=plank(h,n);timber|=wood;float w=LandscapeProfile.pathWidth(wood);
+                float trim=Math.min(len*.30f,LandscapeProfile.JUNCTION_TRIM),ux=dx/len,uz=dz/len;
+                sockets.add(new float[]{ux,uz,trim,w});
+                boundary.add(new float[]{x+ux*trim-uz*w,z+uz*trim+ux*w});
+                boundary.add(new float[]{x+ux*trim+uz*w,z+uz*trim-ux*w});
+            }
+            if(sockets.isEmpty())return;
+            // Rounded exposed ends/gaps, omitting arc samples inside a socket's mouth.
+            float radius=LandscapeProfile.PATH_HALF_WIDTH;
+            for(int i=0;i<24;i++){
+                double angle=i*Math.PI/12;float dx=radius*(float)Math.cos(angle),dz=radius*(float)Math.sin(angle);boolean mouth=false;
+                for(float[] a:sockets)if(dx*a[0]+dz*a[1]>0&&Math.abs(-dx*a[1]+dz*a[0])<a[3]){mouth=true;break;}
+                if(!mouth)boundary.add(new float[]{x+dx,z+dz});
+            }
+            boundary.sort(Comparator.comparingDouble(a->Math.atan2(a[1]-z,a[0]-x)));
+            // A star-shaped patch, with radial subdivision sampled from canonical terrain.
+            // Adjacent branch meshes share the same socket endpoints at all LODs.
+            for(int i=0;i<boundary.size();i++){
+                float[] a=boundary.get(i),b=boundary.get((i+1)%boundary.size());
+                for(int ring=0;ring<3;ring++){
+                    float t=ring/3f,T=(ring+1)/3f;int o=v.size()/7;
+                    pathVertex(x+(a[0]-x)*t,z+(a[1]-z)*t,timber,.5f,.5f);
+                    pathVertex(x+(a[0]-x)*T,z+(a[1]-z)*T,timber,0,1);
+                    pathVertex(x+(b[0]-x)*T,z+(b[1]-z)*T,timber,1,1);
+                    if(ring==0)Collections.addAll(indices,o,o+2,o+1);
+                    else {pathVertex(x+(b[0]-x)*t,z+(b[1]-z)*t,timber,.5f,0);Collections.addAll(indices,o,o+2,o+1,o,o+3,o+2);}
+                }
             }
         }
         SceneMesh mesh(float x,float z){SceneMesh m=new SceneMesh(v,indices,x,z,7);m.vegetation=true;m.uv=new float[uv.size()];for(int i=0;i<uv.size();i++)m.uv[i]=uv.get(i);m.generateTangents();return m;}

@@ -85,3 +85,9 @@ Stable visible-window forest chunks, conifer/shrub/rock assets, terrain-conformi
 explicit paths/farms integrated into normal game; ordinary ROAD lattice corrected.
 PC art FAIL/REFERENCE_MISSING, full motion and ARM64/performance NOT_RUN.
 Same draft PR67; final docs-only SHA in evidence delivery. No merge or R09.
+
+## R09 current execution
+PARTIAL. Frozen official Luoyang/Hulao/Mengjin 32x32 region; normal production
+landscape profile, terrain-conforming joined paths and coordinated canopy proportions.
+Inherited R08 host gates pass; exact-source build/runtime pending. V2 NOT accepted,
+matched PC references and physical ARM64 missing. No main merge or R10 execution.

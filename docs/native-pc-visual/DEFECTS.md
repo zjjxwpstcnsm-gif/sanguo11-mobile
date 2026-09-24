@@ -99,3 +99,7 @@
 | R08-PATH-ART | observed visual gap | PARTIAL | Final captures retain blunt brown Y/triangle joins on explicit mountain/plank paths; ordinary ROAD lattice removed. Weak forest-road contrast. |
 | R08-LOADING | observed runtime/validation gap | PARTIAL | Sampled recording has static waits and black loading during recreation; final Surface populated. CPU P99 up to2664.76ms on swangle. Continuous motion/physical responsiveness unaccepted. |
 | R08-MEMINFO | evidence limitation | PARTIAL | Post-instrumentation dumpsys says No process found; no process PSS result claimed. Geometry/texture estimates only. |
+
+| R09-PATH-JUNCTION | inherited visual defect, candidate corrected | PARTIAL | R08 overlapping brown crossed ribbons replaced by narrower trimmed sockets and one conforming node patch; exact APK review pending. |
+| R09-V2 | inherited/validation gate | PARTIAL | Luoyang sample frozen; matched PC reference missing, shoreline steps/coarse art remain. V2 cannot PASS. |
+| R09-HOSTILE-ATTACK | validation gap | PARTIAL | Official peaceful port route has no nearby hostile unit. Successful hostile attack NOT_RUN; friendly rejection checked separately. |
