@@ -20,7 +20,7 @@ public final class NativeR04Instrumentation extends SceneInstrumentation {
         java.nio.file.Files.copy(new File(dir,"surface.png").toPath(),new File(dir,name+"-surface.png").toPath(),java.nio.file.StandardCopyOption.REPLACE_EXISTING);
         FilamentMapView v=spatial();
         check(field(v,"groundMaterial")!=null,"dedicated lit ground material exists; no unlit fallback");
-        try(FileWriter out=new FileWriter(new File(dir,name+".txt"))){out.write("source="+BuildConfig.SOURCE_REVISION+"\nscenario=coalition-190\ncamera="+v.camera.x+","+v.camera.z+","+v.camera.span+","+v.camera.yaw+","+v.camera.tilt+"\n"+host.report());}
+        try(FileWriter out=new FileWriter(new File(dir,name+".txt"))){out.write("source="+BuildConfig.SOURCE_REVISION+"\nscenario=coalition-190\ndate="+world.date()+"\ncamera="+v.camera.x+","+v.camera.z+","+v.camera.span+","+v.camera.yaw+","+v.camera.tilt+"\n"+host.report());}
     }
     @Override public void onStart(){Bundle result=new Bundle();try{
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();
@@ -42,7 +42,9 @@ public final class NativeR04Instrumentation extends SceneInstrumentation {
             if(plain==null&&type==World.Terrain.PLAIN)plain=h;
         }
         check(ridge!=null&&sand!=null&&plain!=null,"real cross-chunk rock/sand/grass regions");
-        Hex[] targets={ridge,sand,plain};String[] names={"ridge","sand","grass-soil"};
+        Hex xiaopei=null;for(World.City city:world.cities)if(city.name.equals("小沛"))xiaopei=city.hex;
+        check(xiaopei!=null,"official manual reference region Xiaopei exists");
+        Hex[] targets={ridge,sand,plain,xiaopei};String[] names={"ridge","sand","grass-soil","pc-reference-xiaopei"};
         for(int j=0;j<targets.length;j++)for(float span:new float[]{8,24,70})for(float yaw:new float[]{0,90}){
             final Hex target=targets[j];runOnMainSync(()->{v.center(target);v.camera.span=span;v.camera.yaw=yaw;v.setGridShown(false);});
             shot("r04-"+names[j]+"-"+(int)span+"-"+(int)yaw+"-grid-off");
@@ -63,7 +65,11 @@ public final class NativeR04Instrumentation extends SceneInstrumentation {
         // Use a real farm if supplied by official scenario/turn; otherwise report missing,
         // never turn an empty plot or an injected fixture into accepted farmland evidence.
         Hex farm=null;for(Domestic.Facility f:world.domestic.facilities)if(f.kind==Domestic.Kind.FARM){farm=f.hex;break;}
-        if(farm!=null){final Hex target=farm;FilamentMapView fv=spatial();runOnMainSync(()->{fv.center(target);fv.camera.span=8;});shot("r04-farm-actual");}
+        if(farm!=null){final Hex target=farm;FilamentMapView fv=spatial();
+            for(float span:new float[]{8,24,70})for(float yaw:new float[]{0,90}){
+                runOnMainSync(()->{fv.center(target);fv.camera.span=span;fv.camera.yaw=yaw;});shot("r04-farm-actual-"+(int)span+"-"+(int)yaw);
+            }
+        }
         try(FileWriter out=new FileWriter(new File(getTargetContext().getExternalFilesDir("s01"),"farm-status.txt"))){out.write(farm==null?"NOT_RUN: no actual farm in scenario/first turn":"CAPTURED: actual farm "+farm);}
         result.putString("stream","PASS R04 "+checks+" installed checks; V1 needs manual review; software emulator only\n");finish(Activity.RESULT_OK,result);
     }catch(Throwable e){try{capture("r04-failure");}catch(Throwable ignored){}result.putString("stream","FAIL R04 "+android.util.Log.getStackTraceString(e));finish(Activity.RESULT_CANCELED,result);}}

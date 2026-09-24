@@ -29,6 +29,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private long textureBytes;
     private String textureFormat="ETC2_SRGB8";
     private long textureUploadCpuNanos;
+    private long groundLoadCpuNanos,groundTextureBytes;
     private final Set<SceneMesh> activeTerrain=new HashSet<>(),wantedWood=new HashSet<>();
     private final SurfaceView surface;
     private final Overlay overlay;
@@ -182,6 +183,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         }catch(Exception|LinkageError|OutOfMemoryError e){release();throw e;}
     }
     private void loadGroundMaterials(Context context)throws java.io.IOException {
+        long groundStarted=System.nanoTime();
         byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain/ground.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);bytes=out.toByteArray();}
         ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();
         groundMaterial=new Material.Builder().payload(payload,bytes.length).build(engine);
@@ -195,10 +197,12 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             Texture texture=new Texture.Builder().width(w).height(h).levels(levels).sampler(Texture.Sampler.SAMPLER_2D).format(normal?Texture.InternalFormat.RGBA8:Texture.InternalFormat.SRGB8_A8).build(engine);
             groundTextures.add(texture); // Own immediately, so initialization failures release partial uploads.
             com.google.android.filament.android.TextureHelper.setBitmap(engine,texture,0,bitmap);
-            texture.generateMipmaps(engine);textureBytes+=(long)w*h*4*4/3;
+            texture.generateMipmaps(engine);long mipBytes=0;for(int level=0;level<levels;level++)mipBytes+=(long)Math.max(1,w>>level)*Math.max(1,h>>level)*4;
+            textureBytes+=mipBytes;groundTextureBytes+=mipBytes;
             groundMaterial.getDefaultInstance().setParameter(layer+(normal?"Normal":"Color"),texture,sampler);
         }
         groundMaterial.getDefaultInstance().setParameter("normalStrength",quality==SceneQuality.LOW?0f:.65f);
+        groundLoadCpuNanos=System.nanoTime()-groundStarted;
     }
     private void loadWaterMaterial(Context context)throws java.io.IOException {
         byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain/water.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);bytes=out.toByteArray();}
@@ -379,6 +383,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             " entity_live="+entities+" material_instance_live="+instances+" mesh_live="+resident.size()+" texture_live="+(groundTextures.size()+(siteAtlas==null?0:1)+(fieldAtlas==null?0:1))+
             " material_live="+((material==null?0:1)+(groundMaterial==null?0:1)+(waterMaterial==null?0:1)+(siteMaterial==null?0:1))+
             " worker_pending="+meshWork.pending()+" worker_waiting="+meshWork.waiting()+" discarded="+meshWork.discarded()+
+            " ground_load_cpu_ms="+groundLoadCpuNanos/1e6+" ground_texture_estimate_bytes="+groundTextureBytes+" ground_uploads="+groundTextures.size()+" ground_fragment_samples="+(quality==SceneQuality.LOW?8:12)+
             " frame_queued="+queued+" texture_estimate_bytes="+textureBytes+" "+textureFormat+" mip_upload_cpu_ms="+textureUploadCpuNanos/1e6+" CPU提交ms P50/P95/P99="+percentile(times,.50)+"/"+percentile(times,.95)+"/"+percentile(times,.99)+" samples="+cpuCount+"（非驱动DrawCall/GPU帧时）";
     }
     private static String percentile(long[] times,double p){return times.length==0?"N/A":String.format(java.util.Locale.ROOT,"%.2f",times[Math.min(times.length-1,(int)Math.ceil(times.length*p)-1)]/1e6);}
