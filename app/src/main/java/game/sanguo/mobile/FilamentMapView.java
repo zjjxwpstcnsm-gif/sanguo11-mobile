@@ -112,6 +112,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
 
     private boolean navigatorShown=true,miniGesture;
     void navigator(boolean shown){navigatorShown=shown;overlay.invalidate();}
+    private boolean commandTargeting;
+    void commandTargeting(boolean active){commandTargeting=active;}
     private boolean gridShown;
     void setGridShown(boolean shown){gridShown=shown;overlay.invalidate();}
     private boolean editorGrid,editorCoords,editorFootprints;private Set<Long> impassable=Collections.emptySet();
@@ -145,7 +147,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             @Override public boolean onScroll(MotionEvent a,MotionEvent b,float dx,float dy){if(!multi&&!scaler.isInProgress()&&!editorDrawing){camera.pan(-dx,-dy);clampCamera();}return true;}
             @Override public boolean onSingleTapConfirmed(MotionEvent e){
                 if(criticalHit!=null&&criticalSkip!=null){criticalSkip.run();return true;}
-                if(!multi&&e.getDownTime()!=suppressedGesture&&!blocked(e.getX(),e.getY())&&!editorDrawing&&snapshot!=null){Hex h=pick(e.getX(),e.getY(),targets.isEmpty()&&snapshot.reachable.isEmpty());if(snapshot.ground.valid(h)){performClick();if(pickedUnitId>=0)listener.unit(pickedUnitId,h);else listener.tap(h);}}return true;
+                if(!multi&&e.getDownTime()!=suppressedGesture&&!blocked(e.getX(),e.getY())&&!editorDrawing&&snapshot!=null){Hex h=pick(e.getX(),e.getY(),!commandTargeting);if(snapshot.ground.valid(h)){performClick();if(pickedUnitId>=0)listener.unit(pickedUnitId,h);else listener.tap(h);}}return true;
             }
             @Override public void onLongPress(MotionEvent e){if(!multi&&!editorDrawing&&!blocked(e.getX(),e.getY())&&snapshot!=null){suppressedGesture=e.getDownTime();Hex h=pick(e.getX(),e.getY(),false);if(h!=null){center(h);performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);}}}
             @Override public boolean onDoubleTap(MotionEvent e){if(!multi&&!blocked(e.getX(),e.getY()))zoomAt(1.7f,e.getX(),e.getY());return true;}
@@ -913,7 +915,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 cell(c,tacticPreview.blocked,0xffff3333);
             }
             if(route!=null)for(Hex h:route.path)cell(c,h,0xffffd576);
-            for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.coverage)cell(c,h,0xffcfad6e);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets)cell(c,h,0xffdd7661);cell(c,snapshot.selected,0xffffd576);
+            for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.coverage)cell(c,h,0xffcfad6e);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets.isEmpty()?snapshot.attackTargets:targets)cell(c,h,0xffdd7661);cell(c,snapshot.selected,0xffffd576);
             for(MapSceneSnapshot.Item item:snapshot.items)if(item.site!=null&&item.site.cells.contains(snapshot.selected))for(Hex h:item.site.cells)cell(c,h,0xffffd576);
             // Ground rings remain visible through architecture; transit units cannot disappear behind walls.
             for(Proxy object:objects.values())if(object.item.unit!=null&&object.shown){

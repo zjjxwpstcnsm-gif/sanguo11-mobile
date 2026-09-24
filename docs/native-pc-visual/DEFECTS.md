@@ -138,3 +138,6 @@
 - R12-UI source fixes awaiting installed verification: panel/dock blank-area interception, date row, labels respect occlusion/overview.
 - R12-OVERLAY PARTIAL: sampled Canvas edges with centre-based tactical occlusion/dashes; no per-fragment clipping, grid/tint remain x-ray.
 - R12-DEVICE NOT_RUN: physical Adreno/Mali, full orientation/device-size matrix, long-run performance and manual touch-only walkthrough.
+
+- R12-ATTACK inherited, source fixed: ordinary attack targets were absent from the native snapshot; 2D/3D now share the original exact rule queries.
+- R12-INPUT inherited, source fixed: reachability was incorrectly used as an armed-command signal; explicit host commandTargeting now controls entity/cell picking.

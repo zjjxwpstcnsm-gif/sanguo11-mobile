@@ -74,8 +74,11 @@ public final class NativeR12Instrumentation extends SceneInstrumentation {
         runOnMainSync(()->{SessionProbe.install(activity,fixture);activity.refresh();world=SessionProbe.view(activity);host.switchMode(true);});ready();
         World.Unit unit=world.fieldUnits().stream().filter(u->u.owner==world.player).findFirst().orElseThrow();byte[] before=authority();
         runOnMainSync(()->invoke("onUnitTile",new Class<?>[]{int.class,Hex.class},unit.id,unit.hex));settle();
-        ClientState ui=(ClientState)field(activity,"ui");check(!ui.panelVisible,"unit selects without blocking details");check("select".equals(field(activity,"unitCommand")),"selection not command");check(Arrays.equals(before,authority()),"selection keeps full authority");
+        ClientState ui=(ClientState)field(activity,"ui");check(!ui.panelVisible,"unit selects without blocking details");check("select".equals(field(activity,"unitCommand")),"selection not command");check(!(Boolean)field(spatial(),"commandTargeting"),"reachable selection does not disable stable-ID picking");check(Arrays.equals(before,authority()),"selection keeps full authority");
         MapSceneSnapshot snap=(MapSceneSnapshot)field(spatial(),"snapshot");check(snap.reachable.equals(world.orders.marchReachable(world.unit(unit.id)).keySet()),"installed move preview authority set");
+        check(!snap.attackTargets.isEmpty(),"counter fixture has highlighted ordinary attack targets");
+        runOnMainSync(()->((MapView)unchecked(host,"flat")).setWorld(world,unit.hex,unit.id));
+        check(snap.attackTargets.equals(field(field(host,"flat"),"attackTargets")),"installed 2D/3D exact attack target equality");
         Set<Hex> targets=new HashSet<>();targets.add(unit.hex);runOnMainSync(()->host.setPickTargets(targets));targets.clear();check(((Set<?>)field(spatial(),"targets")).size()==1,"input target snapshot detached");runOnMainSync(()->host.setPickTargets(Collections.emptySet()));
         check(NativeR11Fixture.command(reference,"counter").ok,"reference attack");runOnMainSync(()->{check(SessionProbe.command(activity,w->NativeR11Fixture.command(w,"counter")).ok,"normal Activity attack");host.cancelCommandEffects();});
         check(Arrays.equals(SaveCodec.encode(reference),authority()),"attack full authority matches");shot("r12-explicit-fixture-attack");note("PASS explicit combat fixture selection/no auto command, move preview, attack full-save parity");

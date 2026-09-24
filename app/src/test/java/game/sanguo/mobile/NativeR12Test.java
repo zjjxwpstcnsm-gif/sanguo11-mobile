@@ -22,7 +22,13 @@ public final class NativeR12Test {
         // Full actual official site/structure coverage uses authority; no renderer range derivation.
         for(World.City c:w.cities){MapSceneSnapshot s=new MapSceneSnapshot(g,w,c.hex,-1);check(s.siege.equals(new HashSet<>(SiegeOverlay.selected(w,c.hex).cells)),"siege authority cells");}
         World fixture=FieldSceneFixture.create(8,false,true);MapSceneSnapshot.Ground fg=new MapSceneSnapshot.Ground(fixture);
-        for(World.Unit u:fixture.fieldUnits()){MapSceneSnapshot s=new MapSceneSnapshot(fg,fixture,u.hex,u.id);check(s.reachable.equals(fixture.orders.marchReachable(u).keySet()),"move authority cells");}
+        for(World.Unit u:fixture.fieldUnits()){MapSceneSnapshot s=new MapSceneSnapshot(fg,fixture,u.hex,u.id);check(s.reachable.equals(fixture.orders.marchReachable(u).keySet()),"move authority cells");
+            Set<Hex> expected=new HashSet<>();if(fixture.orders.error(u)==null){
+                for(World.Unit target:fixture.fieldUnits())if(target.id!=u.id&&fixture.war.attackError(u.id,target.id)==null)expected.add(target.hex);
+                for(World.City city:fixture.cities)if(fixture.siegeError(u.id,city.id)==null)for(Hex h:SiteFootprint.cells(city))if(h.equals(fixture.siegeHit(u,city,h)))expected.add(h);
+                for(Domestic.Facility f:fixture.domestic.facilities)if(fixture.war.facilityAttackError(u.id,f.hex)==null)expected.add(f.hex);
+                for(War.Structure st:fixture.war.structures())if(fixture.war.structureAttackError(u.id,st.hex)==null)expected.add(st.hex);
+            }check(s.attackTargets.equals(expected),"unchanged 2D attack-target queries");}
         for(War.Structure structure:fixture.war.structures()){MapSceneSnapshot s=new MapSceneSnapshot(fg,fixture,structure.hex,-1);check(s.coverage.equals(new HashSet<>(fixture.fieldworks.coverage(structure))),"facility authority cells");}
         check(Arrays.equals(before,SaveCodec.encode(w)),"whole save and RNG unchanged");
         System.out.println("NativeR12Test PASS "+checks+" checks; official boundaries/navigation, fixture ranges, full save unchanged");

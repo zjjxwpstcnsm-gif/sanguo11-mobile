@@ -189,10 +189,6 @@ public final class MapView extends View implements MapPresentation {
     private Map<Hex,Integer> reachable=Collections.emptyMap();
     private final Set<Hex> attackTargets=new HashSet<>();
     int reachableCount(){return reachable.size();}
-    private void addAttackTarget(World.Unit u,Hex h,boolean normal){
-        if(normal){attackTargets.add(h);return;}
-
-    }
     private final MapCamera camera=new MapCamera();
     private final android.widget.OverScroller fling;
     private android.animation.ValueAnimator cameraMotion;
@@ -347,13 +343,7 @@ public final class MapView extends View implements MapPresentation {
         developmentSites=development!=null&&development.owner==world.player?new ArrayList<>(world.domestic.buildSites(development.id)):Collections.emptyList();
         if(!actorChanged)return;selectionBuilds++;
         World.Unit actor=world.unit(moving);reachable=world.orders.marchReachable(actor);attackTargets.clear();
-        if(world.orders.error(actor)==null){
-            for(World.Unit target:world.fieldUnits())if(target.id!=actor.id)addAttackTarget(actor,target.hex,world.war.attackError(actor.id,target.id)==null);
-            for(World.City city:world.cities)if(world.siegeError(actor.id,city.id)==null)
-                for(Hex h:SiteFootprint.cells(city))addAttackTarget(actor,h,h.equals(world.siegeHit(actor,city,h)));
-            for(Domestic.Facility f:world.domestic.facilities)addAttackTarget(actor,f.hex,world.war.facilityAttackError(actor.id,f.hex)==null);
-            for(War.Structure s:world.war.structures())addAttackTarget(actor,s.hex,world.war.structureAttackError(actor.id,s.hex)==null);
-        }
+        attackTargets.addAll(MapSceneSnapshot.attackTargets(world,moving));
     }
     @Override public boolean isOpaque(){return true;}
     @Override protected void onAttachedToWindow(){super.onAttachedToWindow();if(overview!=null)overview.start(this);}

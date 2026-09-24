@@ -621,7 +621,7 @@ public final class MainActivity extends Activity {
         else if(ui.page.equals("tasks"))panelHost.addView(new OverviewUi(this,world,ui).tasks());
         else {panelHost.addView(panelScroll);if(ui.page.equals("menu"))showMenu();else showSelection();}
         map.setRoute(pendingMarch!=null?pendingMarch:world.unit(moving)!=null&&world.unit(moving).march!=null?world.marches.current(world.unit(moving)):null);
-        map.setPickTargets(mapPick==null?null:pickTargets);map.setTacticPreview(tacticPreview);
+        map.setCommandTargeting(mapPick!=null||!unitCommand.equals("select"));map.setPickTargets(mapPick==null?null:pickTargets);map.setTacticPreview(tacticPreview);
         // onTile/dropUnit guard commands; panning/zooming and closing panels remain available during AI.
         map.setEnabled(true);refreshCommandDock();layoutPanels();
         String identity=ui.page+"/"+selected+"/"+ui.selectedUnit+"/"+ui.group;

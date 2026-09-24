@@ -74,7 +74,7 @@ final class MapSceneSnapshot {
         FireState(War.Fire f){hex=f.hex;remaining=f.remaining;}
     }
     final List<FireState> fires;
-    final Ground ground; final List<Item> items; final Hex selected; final Set<Hex> reachable,siege,coverage;
+    final Ground ground; final List<Item> items; final Hex selected; final Set<Hex> reachable,siege,coverage,attackTargets;
     MapSceneSnapshot(Ground ground,World w,Hex selected,int moving) {
         this.ground=ground;this.selected=selected;List<Item> list=new ArrayList<>();
         for(World.City c:w.cities){Item item=new Item("site:"+c.id,c.name,c.hex,c.kind==World.SiteKind.CITY?0:c.kind==World.SiteKind.PORT?1:2,FactionColors.color(w,c.owner),new SiteVisual(w,c,ground.grid));list.add(item);}
@@ -91,7 +91,21 @@ final class MapSceneSnapshot {
         items=Collections.unmodifiableList(list);
         List<FireState> fireList=new ArrayList<>();for(War.Fire f:w.war.fires())if(f.remaining>0)fireList.add(new FireState(f));fires=Collections.unmodifiableList(fireList);
         reachable=Collections.unmodifiableSet(new HashSet<>(w.orders.marchReachable(w.unit(moving)).keySet()));
+        attackTargets=attackTargets(w,moving);
         coverage=Collections.unmodifiableSet(new HashSet<>(w.fieldworks.coverage(w.war.at(selected))));
         siege=Collections.unmodifiableSet(new HashSet<>(SiegeOverlay.selected(w,selected).cells));
     }
+    /** Exact existing 2D authority queries, shared by both presentation paths. */
+    static Set<Hex> attackTargets(World w,int moving){
+        Set<Hex> targets=new HashSet<>();World.Unit actor=w.unit(moving);
+        if(w.orders.error(actor)==null){
+            for(World.Unit target:w.fieldUnits())if(target.id!=actor.id&&w.war.attackError(actor.id,target.id)==null)targets.add(target.hex);
+            for(World.City city:w.cities)if(w.siegeError(actor.id,city.id)==null)
+                for(Hex h:SiteFootprint.cells(city))if(h.equals(w.siegeHit(actor,city,h)))targets.add(h);
+            for(Domestic.Facility f:w.domestic.facilities)if(w.war.facilityAttackError(actor.id,f.hex)==null)targets.add(f.hex);
+            for(War.Structure structure:w.war.structures())if(w.war.structureAttackError(actor.id,structure.hex)==null)targets.add(structure.hex);
+        }
+        return Collections.unmodifiableSet(targets);
+    }
+
 }
