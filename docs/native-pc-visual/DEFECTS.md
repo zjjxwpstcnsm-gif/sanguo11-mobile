@@ -146,3 +146,23 @@
 - NEW OBSERVED: exact-source installed run36047497184 FAIL at opening full-map preview readiness (pending654 / WAITING_FRAME); subsequent real command chain NOT_RUN. Four-combination/recreation/minimap/panel gates passed before failure. Do not classify as inherited without further evidence.
 - R12 Canvas depth occlusion remains approximate; noisy/aspect-changing minimap, some loading text and label/site overlap remain visually unaccepted.
 - INHERITED: CoreTest.logistics:75 AI uses deployment commands fails both R11 and R12. R09 V2 art and physical GPU/manual/device matrix remain open.
+
+## R13 audit
+- R13-DRAFT-WRITE inherited, fixed in source: failed AtomicFile save could leave changed memory/history. Production persist transaction restores exact prior state; host failure injection PASS.
+- R13-SURFACE inherited, fixed in source: every edit hid the Surface and recreated the swapchain. Keep prior immutable rendering until saved publication; installed same-swapchain assertion PASS in CI36059464649.
+- R13-PICK inherited, fixed in source: native editor single-tap selected object triangles; now same ground picker as brush. Source coordinate labels no longer floor projected axes.
+- R13-STYLE-SAVE inherited, fixed in source: optional visual sidecar failure prevented campaign saving. Campaign save now independent; corrupt optional sidecar falls back to pinned map/default.
+- R13-SAF remaining: local private files atomic, external document-provider export replacement is not guaranteed atomic; full interruption matrix NOT_RUN.
+- R13-COVERAGE remaining: all-kind CRUD through native touch, full cold-process/portrait/SAF/manual and ARM64 matrix NOT_RUN pending explicit evidence. Existing API/host tests are not these gates.
+- R12-READINESS remains open: full-map preview pending654 timeout on prior source; not relabelled passed by local editor views.
+- CoreTest.logistics:75 AI uses deployment commands independently reproduced on R12 predecessor0fdd96f and R13 candidate; no rule/assertion changes.
+
+## R13 final open gates
+- NEW OBSERVED performance: Turn52 total137728ms / compute132585ms on API29 swangle;
+  functionality/reference equality PASS, latency NOT_ACCEPTED; origin unproven.
+- NEW OBSERVED presentation gap: final after-turn composed capture still shows upper
+  period / earlier clock. Probe does not assert date-widget advancement; inspect UI
+  freshness manually. Do not count full visual turn UI as accepted.
+- Final scoped installed PASS348, legacy editor PASS; five valid raw MP4 segments.
+- All-touch native CRUD, full SAF interruption/cold-reopen/portrait and physical GPU
+  matrix remain NOT_RUN. R12 full-preview and R09 V2/PC art remain unresolved.

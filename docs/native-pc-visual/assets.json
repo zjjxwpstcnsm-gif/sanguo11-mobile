@@ -19,7 +19,7 @@
   "R03": {
     "generator": "TerrainSurface.METADATA_VERSION=3",
     "source": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
-    "runtime": "FilamentMapView \u2192 SceneMesh.ground window",
+    "runtime": "FilamentMapView → SceneMesh.ground window",
     "resources": "Existing terrain/site/field assets unchanged",
     "visual_acceptance": "PENDING"
   },
@@ -40,7 +40,7 @@
     "generator_sha256": "b86f32a1aa5828ddda1d0b67f5eba3271f67ab25b442787b7e7c0ab2c3a94da3",
     "license": "Original procedural CC0-1.0 textures/shader; no KOEI runtime imagery",
     "texture_manifest": "docs/3d/world-art/assets-manifest.json",
-    "runtime": "FilamentMapView.loadGroundMaterials \u2192 SceneMesh ground batches",
+    "runtime": "FilamentMapView.loadGroundMaterials → SceneMesh ground batches",
     "textures": "four 512x512 sRGB albedos; four linear RGBA normal/roughness; generated full mips; repeat",
     "compiler": "official Filament v1.56.0 matc --version 56; mobile OpenGL",
     "compiler_archive_sha256": "393dcc066987345282f4b5c3f525ab053d9c21087141cdc8015f403cddf455f0",
@@ -96,5 +96,12 @@
     "runtime": "native overview bitmap generated from detached Ground and MapLayerData; no new external artwork",
     "visual_status": "PARTIAL; sampled installed UI inspected; noisy/aspect-changing minimap, stepped coast, sparse vegetation; PC/physical NOT_RUN",
     "sourceCommit": "a57d3f2e13cbaa9a4da3dca781b4f6ae7de103ec"
+  },
+  "R13": {
+    "new_or_replaced_assets": [],
+    "reused": "R06-R10 bundled site, formation and landscape assets",
+    "custom_mapping": "Normal SiteVisual/FieldAssets mapping by kind; fixture IDs100006701/2/3 are test additions only",
+    "visual_format": "MapPatch format2 / visual.version1, bounded height/variant/yaw, logical fingerprint binding retained",
+    "art_status": "PARTIAL; R09 V2 not accepted"
   }
 }

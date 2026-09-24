@@ -136,3 +136,14 @@ Evidence: raw installed UI/surface captures, six operation recording segments, i
 Visual inspection sampled actual composed four-combination/panel images and R00 fresh/load: date and action buttons readable at this size, terrain/city/ports and north-up overview visible; minimap is noisy and changes aspect ratio with panel viewport, coastline remains visibly stepped, vegetation sparse. One four-combination image retains loading text despite content detection. Labels still cover parts of sites. Grid/faction Canvas annotations are not per-fragment depth tested; centre-ray dashed tactical outlines do not solve partial-cell occlusion. R09 V2/PC-art acceptance remains open.
 
 Physical Adreno/Mali, full touch-only tactics/facility/siege/report flow, all lists, small/large landscape/portrait matrix, dynamic-resolution touch parity, cold restart preference matrix and long-duration performance remain NOT_RUN or partial. Preserve these gates before declaring R12 complete. Do not merge main or start R13.
+
+## R13 — delivered PARTIAL
+Source a9d444e13332c6f0103c664d89db56070c27a273; CI36059464649 scoped installed PASS348
+and legacy MAP_EDITOR67 ANDROID PASS, host suites/build/APK/lint PASS. Actual editor
+persistence rollback, surface retention, ground picking/source labels and optional
+visual recovery/save independence are integrated. Custom scenario command/turn/save/load
+reference equality passed. Turn latency137728ms on software emulator is NOT_ACCEPTED;
+composed date freshness is unverified. CoreTest.logistics inherited FAIL remains.
+R12 full-map preview and R09 V2/physical/manual gates remain open. reports/R13.md,
+handoffs/R13.md, R13_FORMAT.md and R13_COVERAGE.tsv contain exact scope and identity.
+No R14 or main merge. Final evidence-only commit does not change the runtime tree.
