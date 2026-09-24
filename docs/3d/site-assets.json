@@ -246,10 +246,10 @@
     },
     {
       "file": "gate-lod0.glb",
-      "sha256": "0ad13d71c91c160c567564bacb1a86e12c1c24d29b7848c280489fa0edd189db",
-      "bytes": 12996,
-      "triangles": 106,
-      "vertices": 214,
+      "sha256": "605bb7919750909728618db84e9a7ae3b8619808715ee049fe4c9c5ec2aa772a",
+      "bytes": 21976,
+      "triangles": 212,
+      "vertices": 428,
       "materials": 1,
       "texture": [
         192,
@@ -260,7 +260,7 @@
         0,
         -0.25,
         0.48,
-        0.71,
+        0.79,
         0.25
       ]
     },

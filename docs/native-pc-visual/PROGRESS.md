@@ -60,3 +60,8 @@ R00 fresh183/reload110 PASS. Shared textured bank improves color contact; steppe
 silhouette remains VISUAL FAIL. Synthetic boat commands/save parity PASS, but stale
 UI over fixture Surface observed; full motion/editor/PC/physical gates remain open.
 APK88/0.88.0-native-r05; see R05 report/evidence. PR67 draft, no merge, no R06.
+
+R06: PARTIAL, current execution. Strict GLB/PNG/rig subset, bounded asynchronous
+object decode and owner upload, shared GPU references, deterministic production
+asset pipeline and gate/tree/catapult sample improvements. Host/Khronos PASS;
+exact-source Android build/runtime pending. No R07 or main merge.

@@ -75,3 +75,6 @@
 | R05-FIXTURE-UI | observed validation gap | PARTIAL | CI35943948593 segment7: synthetic Surface with retained official UI/header labels. Authority parity passes; UI synchronization and physical reproduction not accepted. |
 | R05-METADATA | probe metadata limitation | PARTIAL | Synthetic shot TXT hardcodes coalition-190; raw files retained and corrected shot-index explicitly marks fixture; no official-map art claim for fixture. |
 | R05-RUNTIME | automated runtime | PASS | Exact b97e01c CI35943948593 PASS542,32 first-attempt PixelCopy captures; scoped automatic checks, not full manual/physical acceptance. |
+
+| R06-INIT | implementation limit | PARTIAL | Geometry decode off owner; small rigid JSON/atlas initialization remains owner-thread. Texture streaming not claimed. |
+| R06-ART | validation gap | PARTIAL | Gate/tree/catapult samples replace production resources; whole-map final art, matching PC views and ARM64 remain unaccepted. |

@@ -2,10 +2,10 @@
 """CC0 original Han-inspired field assets + rigid-joint animation library.
 No external service, licensed stock model, or Blender dependency. Shared S03 GLB subset.
 """
-import runpy, math, json, hashlib
+import runpy, math, json, hashlib, os
 from pathlib import Path
 from PIL import Image
-ROOT=Path(__file__).resolve().parents[2]
+ROOT=Path(os.environ.get('ASSET_OUTPUT_ROOT',Path(__file__).resolve().parents[2]))
 base=runpy.run_path(str(Path(__file__).with_name('build_sites.py')))
 Base=base['Mesh']; OUT=ROOT/'app/src/main/assets/3d/field';OUT.mkdir(parents=True,exist_ok=True)
 Base.write.__globals__['OUT']=OUT
@@ -16,6 +16,12 @@ for y in range(64):
  for x in range(512):
   k=x//64;u=x%64;c=palette[k];n=((x*37+y*71+x*y*3)%17)-8
   seam=(y%12<2 or (u+(8 if y//12%2 else 0))%24<2) if k==0 else (u%8<2 or y%13<2) if k==1 else u%13<1 if k==2 else (u%4==0 or y%4==0) if k==3 else (y%8==0 and u%8<3) if k==4 else False
+  if k==6:
+   # R06 authored opaque leaf clusters, veins and inter-leaf shadows in the shared atlas.
+   u0=(u+(y//16%2)*8)%16-8;v0=y%16-8
+   leaf=(u0*u0/49+v0*v0/30)<1
+   c=(78,107,51) if leaf else (39,65,35)
+   if leaf and abs(v0-u0*.35)<1:c=(103,121,65)
   im.putpixel((x,y),tuple(max(0,min(255,int(v*(.65 if seam else 1))+n)) for v in c))
 im.save(OUT/'atlas.png',optimize=True)
 class Mesh(Base):
@@ -210,6 +216,8 @@ for lod in range(2):
  # Broad, asymmetric opaque crown lobes: same silhouette and height at both LODs.
  for x,y,z,rx,ry,rz in [(-.085,.43,.01,.15,.17,.14),(.09,.48,.035,.16,.19,.14),(0,.60,-.04,.14,.16,.13)]:
   crown(m,x,y,z,rx,ry,rz,lod)
+ if lod==0:
+  for x,z in [(-.10,.02),(.10,.04),(0,-.08)]:m.beam((0,.20,0),(x,.45,z),.018)
  save(m,'tree-lod'+str(lod))
 # Tall open crown variant; smoothly mixed by canonical world region, not administrative borders.
 for lod in range(2):
@@ -310,7 +318,13 @@ for kind in weapons:
    if kind=='SIEGE_TOWER':
     bone('launcher','chassis',(0,.6,.13),lambda:m.beam((-.14,.6,.15),(.14,.6,.15),.025,4))
    if kind=='CATAPULT':
-    def arm():m.beam((0,.16,-.2),(0,.52,.22),.035);m.oval(0,.52,.22,.065,.025,.07,2,6,3)
+    def arm():
+     m.beam((0,.16,-.2),(0,.52,.22),.045)
+     m.oval(0,.52,.22,.075,.035,.08,2,8,3)
+     # Counterweight moves with the actual lever rig, never gameplay root motion.
+     m.box(-.07,.13,-.23,.14,.08,.09,0)
+     if lod==0:
+      for x in [-.035,.035]:m.beam((x,.18,-.19),(x,.48,.19),.009,4)
     bone('lever','chassis',(0,.30,0),arm)
   name='unit-'+kind+'-lod'+str(lod);save(m,name)
   rigs[name]={'parts':parts,'formation':8 if infantry and kind!='CAVALRY' else 4 if kind=='CAVALRY' else 1,'frames':12}

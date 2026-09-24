@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Original CC0 strategic architecture. No Blender/service needed; deterministic GLB 2.0 export."""
-import json, math, struct, hashlib
+import json, math, struct, hashlib, os
 from pathlib import Path
 from PIL import Image
-ROOT=Path(__file__).resolve().parents[2]
+ROOT=Path(os.environ.get('ASSET_OUTPUT_ROOT',Path(__file__).resolve().parents[2]))
+(ROOT/'docs/3d').mkdir(parents=True,exist_ok=True)
 OUT=ROOT/'app/src/main/assets/3d/sites'
 OUT.mkdir(parents=True,exist_ok=True)
 # Shared stone / roof tile / timber atlas: restrained repeatable texture, no external source.
@@ -86,6 +87,12 @@ class Mesh:
    if lod<2:self.roof(0,0,.65,.5,.5,.18)
    if lod==0:
     for x in [-.42,.34]:self.box(x,.3,-.13,.08,.1,.26)
+    # R06 open arch surround: stepped voussoirs, inset timber lintel and twin roof tiers.
+    for side in [-1,1]:
+     for step in range(3):self.box(side*(.19-step*.022)-.018,.19+step*.04,.165,.036,.04,.035,0)
+    self.box(-.18,.31,.165,.36,.035,.04,2)
+    self.roof(0,0,.54,.42,.62,.14)
+    for x in [-.29,.27]:self.box(x,.39,.18,.022,.13,.022,2)
   return self
  def write(self,name):
   arrays=[(self.p,'f',5126,'VEC3'),(self.c,'f',5126,'VEC4'),(self.uv,'f',5126,'VEC2'),(self.idx,'I',5125,'SCALAR')]

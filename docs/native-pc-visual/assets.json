@@ -19,7 +19,7 @@
   "R03": {
     "generator": "TerrainSurface.METADATA_VERSION=3",
     "source": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
-    "runtime": "FilamentMapView → SceneMesh.ground window",
+    "runtime": "FilamentMapView \u2192 SceneMesh.ground window",
     "resources": "Existing terrain/site/field assets unchanged",
     "visual_acceptance": "PENDING"
   },
@@ -40,7 +40,7 @@
     "generator_sha256": "b86f32a1aa5828ddda1d0b67f5eba3271f67ab25b442787b7e7c0ab2c3a94da3",
     "license": "Original procedural CC0-1.0 textures/shader; no KOEI runtime imagery",
     "texture_manifest": "docs/3d/world-art/assets-manifest.json",
-    "runtime": "FilamentMapView.loadGroundMaterials → SceneMesh ground batches",
+    "runtime": "FilamentMapView.loadGroundMaterials \u2192 SceneMesh ground batches",
     "textures": "four 512x512 sRGB albedos; four linear RGBA normal/roughness; generated full mips; repeat",
     "compiler": "official Filament v1.56.0 matc --version 56; mobile OpenGL",
     "compiler_archive_sha256": "393dcc066987345282f4b5c3f525ab053d9c21087141cdc8015f403cddf455f0",
@@ -53,5 +53,15 @@
     "visual_acceptance": "PARTIAL: candidate b78566b runtime reviewed; final2c87b4c runtime cancelled by concurrent R05 push",
     "source_sha": "2c87b4c96e33fe3dca764dada98c8b4b6fd058ec",
     "manifest_sha256": "4d9ebab2992cb3c6c53f2aaa14f31496729f15725fe3aee644d70d778fa90a50"
+  },
+  "R06": {
+    "catalog": "asset-catalog.json",
+    "contract": "R06_ASSET_CONTRACT.md",
+    "cohort": "R06-v2",
+    "models": 167,
+    "license": "CC0-1.0 original project scripts, geometry, atlas and rigid clips",
+    "changed": "gate LOD0, leaf atlas and tree branches, catapult lever/counterweight; shared ETC2 mips regenerated",
+    "formatValidation": "Khronos 2.0.0-dev.3.10:167 models,0 errors/0 warnings",
+    "runtimeAcceptance": "PENDING exact-source APK"
   }
 }

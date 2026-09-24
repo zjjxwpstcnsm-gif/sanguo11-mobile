@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """Offline ETC2 sRGB mip chains. pip install etcpak==0.9.15 Pillow==12.3.0 numpy==2.3.5 texture2ddecoder==1.0.6"""
-import hashlib, json, math, struct
+import hashlib, json, math, struct, os
 from pathlib import Path
 import etcpak
 import texture2ddecoder
 import numpy as np
 from PIL import Image
-ROOT=Path(__file__).resolve().parents[2]
+ROOT=Path(os.environ.get('ASSET_OUTPUT_ROOT',Path(__file__).resolve().parents[2]))
 
 def mip(image, size):
     rgb=np.asarray(image.convert('RGB'),dtype=np.float32)/255

@@ -17,8 +17,8 @@
   },
   {
     "asset": "app/src/main/assets/3d/field/atlas.etc2",
-    "source_sha256": "4e779ada834d32000cd805f199f8c33183b30deeeeb05af4dce156f3fc83eaf2",
-    "sha256": "0df2ba520c7d123ee1a654defe9c3f431179f0eb535cbebd8d8cd0178e653a70",
+    "source_sha256": "89b21a3564359170b41e58c9f907c52c5d9d5a37339bd1a47de2aca309f870ea",
+    "sha256": "22f6fd2112be817a73a913af0fa421e2aad1815a5b0d5b4f74a4409cead90ea5",
     "width": 512,
     "height": 64,
     "levels": 10,
@@ -28,7 +28,7 @@
     "alpha": "opaque",
     "mip_filter": "linear-light BOX",
     "encoder": "etcpak 0.9.15",
-    "level0_psnr_db": 36.53715372113224,
+    "level0_psnr_db": 35.8871331763145,
     "gpu_upload_verified": false
   }
 ]
