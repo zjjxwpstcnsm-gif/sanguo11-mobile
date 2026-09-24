@@ -86,8 +86,15 @@ explicit paths/farms integrated into normal game; ordinary ROAD lattice correcte
 PC art FAIL/REFERENCE_MISSING, full motion and ARM64/performance NOT_RUN.
 Same draft PR67; final docs-only SHA in evidence delivery. No merge or R09.
 
-## R09 current execution
-PARTIAL. Frozen official Luoyang/Hulao/Mengjin 32x32 region; normal production
-landscape profile, terrain-conforming joined paths and coordinated canopy proportions.
-Inherited R08 host gates pass; exact-source build/runtime pending. V2 NOT accepted,
-matched PC references and physical ARM64 missing. No main merge or R10 execution.
+## R09 final delivery — PARTIAL
+Source dd11eeaaf7866ed2695e16ee3a093d05291b011a; CI35993038671 SUCCESS.
+Official coalition-190/player5 Luoyang/Hulao/Mengjin 32x32 sample, production
+LandscapeProfile, joined terrain-contact paths and .86 canopy proportions.
+Host R09 1602 / retained R08 9,942,677; installed R09 522 checks PASS, including
+real enemy22 attack damage, embark/garrison, turn, 2D/3D and full save/RNG parity.
+28 Surface /29 UI captures,6 original recordings retained; sampled video review.
+User reference02 recovered (640x372); reference01 returned placeholder data.
+V2 FAIL, UI/overlay/modal flow FAIL; three-quality identity preserved but visual
+switch acceptance incomplete. Full motion/physical ARM64/thermal NOT_RUN.
+Exact APK hash0970bfbb9bda2a0bf0f16e36c7a83cab300adc61feebeb9db41e123598d7da31.
+See R09 report, ten-item V2 table, figures and handoff. Same draft PR67; no merge/R10.

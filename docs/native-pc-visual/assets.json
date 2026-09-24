@@ -19,7 +19,7 @@
   "R03": {
     "generator": "TerrainSurface.METADATA_VERSION=3",
     "source": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
-    "runtime": "FilamentMapView \u2192 SceneMesh.ground window",
+    "runtime": "FilamentMapView → SceneMesh.ground window",
     "resources": "Existing terrain/site/field assets unchanged",
     "visual_acceptance": "PENDING"
   },
@@ -40,7 +40,7 @@
     "generator_sha256": "b86f32a1aa5828ddda1d0b67f5eba3271f67ab25b442787b7e7c0ab2c3a94da3",
     "license": "Original procedural CC0-1.0 textures/shader; no KOEI runtime imagery",
     "texture_manifest": "docs/3d/world-art/assets-manifest.json",
-    "runtime": "FilamentMapView.loadGroundMaterials \u2192 SceneMesh ground batches",
+    "runtime": "FilamentMapView.loadGroundMaterials → SceneMesh ground batches",
     "textures": "four 512x512 sRGB albedos; four linear RGBA normal/roughness; generated full mips; repeat",
     "compiler": "official Filament v1.56.0 matc --version 56; mobile OpenGL",
     "compiler_archive_sha256": "393dcc066987345282f4b5c3f525ab053d9c21087141cdc8015f403cddf455f0",
@@ -75,6 +75,9 @@
     "pathHalfWidth": 0.085,
     "plankHalfWidth": 0.105,
     "region": "profiles/luoyang-r09.json",
-    "acceptance": "PARTIAL; pending exact APK review; V2 not accepted"
+    "acceptance": "PARTIAL; exact-source CI35993038671 PASS522; V2 FAIL, UI overlay/modal FAIL, ARM64 NOT_RUN",
+    "sourceCommit": "dd11eeaaf7866ed2695e16ee3a093d05291b011a",
+    "reference": "PC-LUOYANG-USER-02-R09; comparison only, no external reference art packaged",
+    "figures": "evidence/R09-FIGURES.csv"
   }
 }

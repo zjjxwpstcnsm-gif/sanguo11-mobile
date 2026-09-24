@@ -100,6 +100,12 @@
 | R08-LOADING | observed runtime/validation gap | PARTIAL | Sampled recording has static waits and black loading during recreation; final Surface populated. CPU P99 up to2664.76ms on swangle. Continuous motion/physical responsiveness unaccepted. |
 | R08-MEMINFO | evidence limitation | PARTIAL | Post-instrumentation dumpsys says No process found; no process PSS result claimed. Geometry/texture estimates only. |
 
-| R09-PATH-JUNCTION | inherited visual defect, candidate corrected | PARTIAL | R08 overlapping brown crossed ribbons replaced by narrower trimmed sockets and one conforming node patch; exact APK review pending. |
-| R09-V2 | inherited/validation gate | PARTIAL | Luoyang sample frozen; matched PC reference missing, shoreline steps/coarse art remain. V2 cannot PASS. |
-| R09-HOSTILE-ATTACK | validation gap | PARTIAL | Official peaceful port route has no nearby hostile unit. Successful hostile attack NOT_RUN; friendly rejection checked separately. |
+| R09-PATH-JUNCTION | inherited, partially corrected | PARTIAL | Trimmed shared sockets/rounded ends replace overlap, host geometry PASS; F09S/F10S still show isolated brown L-shaped plank, art remains FAIL. |
+| R09-V2 | inherited visual gate | PARTIAL | User PC reference02 recovered; ten-item table FAIL, low relief/stepped banks/coarse buildings/sparse scenery remain. No nationwide art claim. |
+| R09-HOSTILE-ATTACK | command validation resolved | PASS | Exact source dd11eeaa / CI35993038671 successful real enemy22 damage in frozen sample; SaveCodec/RNG parity. UI combat acceptance excluded. |
+| R09-OVERLAY | newly observed in R09; root cause unresolved | PARTIAL | F11U/F14U and V03 show stale labels/loading hint despite current Surface/settled queues; grid/territory display not proven. App invalidation vs software composition not isolated. |
+| R09-MODAL-FLOW | new test coverage defect | PARTIAL | Friendly siege rejection leaves normal error dialog open during later API commands. F27U/V05 show modal and stale header; command parity cannot count as uninterrupted manual UI acceptance. |
+| R09-MOTION | runtime/visual gap | PARTIAL | Six recordings, eight sampled frames; V03 45s black Surface during quality recreation, 85s overlay drift. Complete motion/flicker/LOD review NOT_RUN. |
+| R09-PERF-DEVICE | environment/validation | PARTIAL | swangle CPU submission P99 up to994.49ms in F03, not handset FPS; final meminfo no process; physical ARM64/PSS/thermal NOT_RUN. |
+| R09-REFERENCE | source limitation | PARTIAL | User02 retrieved unchanged640x372; exact version/season/multi-view UNKNOWN. User01 proxy/origin returned194-byte1x1 placeholder data. Raw TXT missing-reference field corrected in index, original preserved. |
+| R09-LEGACY-CI | inherited and unresolved environment validation | PARTIAL | Core AI deployment failure independently reproduced on R08 and candidate. Old UI-title/collapse/save-map failures retained. S10 swiftshader material variation FAIL; S10/S11 swangle900s timeouts; no assertions disabled. |
