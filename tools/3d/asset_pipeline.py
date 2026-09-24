@@ -38,4 +38,5 @@ if __name__=='__main__':
   path=ROOT/'docs/native-pc-visual/asset-catalog.json';text=json.dumps(catalog,indent=2)+'\n'
   if args.check:assert path.read_text()==text,'stale catalog'
   else:path.write_text(text)
+ subprocess.run([sys.executable,str(ROOT/('scripts/verify-environment-assets.py' if args.check else 'tools/3d/environment_manifest.py'))],check=True)
  print(f'PASS reproducibility: {len(first)} byte-identical outputs; {len(catalog["assets"])} models; embedded/shared atlases match')

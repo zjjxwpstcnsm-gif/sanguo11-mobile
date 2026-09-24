@@ -83,3 +83,5 @@
 | R07-CONTACT | implementation gap | PARTIAL | City pad/embedded walls and port piles retained; arbitrary custom slope and explicit port rotations not fully conformed; actual multi-angle review required. |
 | R07-DEVICE | environment | BLOCKED | Physical ARM64 Adreno/Mali, thermal and handset performance NOT_RUN. |
 | R07-REGION | new, fixed in candidate | PASS | Initial one-ring terrain region missed water-city family; existing five-family assertion retained; three rings passes. |
+
+| R07-MANIFEST | new, fixed; CI retest pending | PARTIAL | Initial candidate left old S12 environment sizes/hashes after intentional GLB replacement. Existing generator refreshes metadata; pipeline now checks this manifest too. Original assertions retained; first failure jobs107510218388/107510218248 preserved. |

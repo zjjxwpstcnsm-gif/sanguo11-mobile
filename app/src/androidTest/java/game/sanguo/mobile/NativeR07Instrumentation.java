@@ -22,9 +22,11 @@ public final class NativeR07Instrumentation extends SceneInstrumentation {
   try(FileWriter out=new FileWriter(new File(dir,name+".txt"))){out.write("scenario="+scenario+"\n"+report[0]);}
  }
  private void views(Hex at,String name,String scenario)throws Exception{
-  for(float span:new float[]{5,12,28})for(float yaw:new float[]{0,90}){
+  for(float span:new float[]{5,24,60})for(float yaw:new float[]{0,90}){
    runOnMainSync(()->{try{FilamentMapView v=view();v.center(at);v.camera.span=span;v.camera.yaw=yaw;v.setGridShown(false);}catch(Exception e){throw new RuntimeException(e);}});
    shot("r07-"+name+"-"+(int)span+"-"+(int)yaw,scenario);
+   final int expected=span<15?0:span>48?2:1;
+   runOnMainSync(()->{try{check((Integer)field(view(),"siteLod")==expected,"actual near/mid/far site LOD");}catch(Exception e){throw new RuntimeException(e);}});
   }
  }
  private void references()throws Exception{
@@ -69,6 +71,21 @@ public final class NativeR07Instrumentation extends SceneInstrumentation {
    MapSceneSnapshot.Item item=snapshot.items.stream().filter(i->i.site!=null&&i.site.model.equals(family)).findFirst().orElseThrow();
    views(item.hex,family+"-"+item.key.replace(':','-'),"coalition-190 official; "+item.label+"; "+item.hex);
   }
+  // Find the most compact real city/port/gate trio from the official projection.
+  MapSceneSnapshot.Item[] trio=null;float best=Float.MAX_VALUE;
+  GridWorldTransform grid=snapshot.ground.grid;
+  for(MapSceneSnapshot.Item city:snapshot.items)if(city.site!=null&&city.kind==0)
+   for(MapSceneSnapshot.Item port:snapshot.items)if(port.site!=null&&port.kind==1)
+    for(MapSceneSnapshot.Item gate:snapshot.items)if(gate.site!=null&&gate.kind==2){
+     float minX=Math.min(grid.x(city.hex),Math.min(grid.x(port.hex),grid.x(gate.hex))),maxX=Math.max(grid.x(city.hex),Math.max(grid.x(port.hex),grid.x(gate.hex)));
+     float minZ=Math.min(grid.z(city.hex),Math.min(grid.z(port.hex),grid.z(gate.hex))),maxZ=Math.max(grid.z(city.hex),Math.max(grid.z(port.hex),grid.z(gate.hex)));
+     float extent=Math.max(maxX-minX,maxZ-minZ);
+     if(extent<best){best=extent;trio=new MapSceneSnapshot.Item[]{city,port,gate};}
+    }
+  check(trio!=null,"official city/port/gate region");
+  final MapSceneSnapshot.Item[] region=trio;final float span=Math.max(12,best*2+4);
+  runOnMainSync(()->{try{FilamentMapView v=view();v.camera.x=(grid.x(region[0].hex)+grid.x(region[1].hex)+grid.x(region[2].hex))/3;v.camera.z=(grid.z(region[0].hex)+grid.z(region[1].hex)+grid.z(region[2].hex))/3;v.camera.span=span;v.camera.yaw=0;}catch(Exception e){throw new RuntimeException(e);}});
+  shot("r07-official-trio","coalition-190 official: "+region[0].label+" / "+region[1].label+" / "+region[2].label);
   references();runOnMainSync(()->world=SessionProbe.view(activity));check(Arrays.equals(before,SaveCodec.encode(world)),"site cameras preserve authority");
   runOnMainSync(()->{try{view().setGridShown(true);}catch(Exception e){throw new RuntimeException(e);}});shot("r07-gate-grid","coalition-190 official gate");
   commandFlow();shot("r07-command-load","coalition-190 official commands/save/load");
