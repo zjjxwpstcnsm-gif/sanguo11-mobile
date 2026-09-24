@@ -785,6 +785,14 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         boolean miniDirty=true;
         private final android.graphics.DashPathEffect hiddenDash=new android.graphics.DashPathEffect(new float[]{5,5},0);
         private final Map<Hex,Boolean> hiddenCells=new HashMap<>();
+        private MapSceneSnapshot.Ground hiddenGround;
+        private float hiddenX,hiddenZ,hiddenSpan,hiddenYaw,hiddenTilt;
+        private int hiddenWidth,hiddenHeight,hiddenFacing;
+        void updateOcclusionCache(){
+            if(hiddenGround!=snapshot.ground||hiddenX!=camera.x||hiddenZ!=camera.z||hiddenSpan!=camera.span||hiddenYaw!=camera.yaw||hiddenTilt!=camera.tilt||hiddenWidth!=camera.width||hiddenHeight!=camera.height||hiddenFacing!=camera.facing){
+                hiddenCells.clear();hiddenGround=snapshot.ground;hiddenX=camera.x;hiddenZ=camera.z;hiddenSpan=camera.span;hiddenYaw=camera.yaw;hiddenTilt=camera.tilt;hiddenWidth=camera.width;hiddenHeight=camera.height;hiddenFacing=camera.facing;
+            }
+        }
         void layoutMini(){
             float d=getResources().getDisplayMetrics().density;
             float availableW=getWidth()-panelRight,availableH=getHeight()-panelBottom;
@@ -890,7 +898,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         }
         @Override protected void onDraw(Canvas c){
             if(snapshot==null)return;
-            hiddenCells.clear();layoutMini();c.save();c.clipRect(0,0,Math.max(0,camera.width-panelRight),Math.max(0,camera.height-panelBottom));
+            updateOcclusionCache();layoutMini();c.save();c.clipRect(0,0,Math.max(0,camera.width-panelRight),Math.max(0,camera.height-panelBottom));
             if(territoryColors!=null||((gridShown||editorGrid)&&camera.span<48)||editorCoords||!impassable.isEmpty()){
                 GridWorldTransform grid=snapshot.ground.grid;
                 float rx=camera.extentX()+2,rz=camera.extentZ()+4;
