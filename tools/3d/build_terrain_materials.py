@@ -39,11 +39,14 @@ for name,base,rough in [('grass',[105,116,78],.91),('soil',[123,108,86],.96),('s
             cx,cy=rng.random(2);dx=(x-cx+.5)%1-.5;dy=(y-cy+.5)%1-.5
             h+=rng.uniform(.03,.12)*np.exp(-(dx*dx+dy*dy)/rng.uniform(.000003,.00002))
     else:
-        points=rng.random((35,2));dist=[]
+        points=rng.random((65,2));dist=[]
+        # Periodic domain warp fractures stone without straight Voronoi slab edges.
+        rock_x=x+.018*np.sin(2*np.pi*(3*y+2*x))+.010*np.sin(2*np.pi*7*y)
+        rock_y=y+.016*np.sin(2*np.pi*(4*x-y))+.008*np.sin(2*np.pi*9*x)
         for cx,cy in points:
-            dx=(x-cx+.5)%1-.5;dy=(y-cy+.5)%1-.5;dist.append(dx*dx+dy*dy)
+            dx=(rock_x-cx+.5)%1-.5;dy=(rock_y-cy+.5)%1-.5;dist.append(dx*dx+dy*dy)
         nearest=np.sort(dist,axis=0)[:2];crack=np.exp(-(nearest[1]-nearest[0])*2000)
-        h=.4*macro+.17*fine-.65*crack
+        h=.4*macro+.24*fine-.32*crack
     rgb=np.clip(np.array(base)[None,None,:]*(1+h[:,:,None]*.28),0,255).astype('uint8')
     # Central wrap derivatives ensure matching periodic normal detail across repeat seam.
     dx=(np.roll(h,-1,axis=1)-np.roll(h,1,axis=1))*1.1

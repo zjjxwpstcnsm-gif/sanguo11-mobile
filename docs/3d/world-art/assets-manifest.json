@@ -101,8 +101,8 @@
     },
     {
       "path": "app/src/main/assets/3d/terrain/rock_color.png",
-      "sha256": "efa5006a5651709999412bf0622a4321b656d78d7d0bce74ca5db71a1ec443f2",
-      "bytes": 136932,
+      "sha256": "6370f0ad4a132817f4d9a1cba560c508a3809a7d617244e66380f1c9397a4723",
+      "bytes": 148992,
       "resolution": [
         512,
         512
@@ -117,8 +117,8 @@
     },
     {
       "path": "app/src/main/assets/3d/terrain/rock_normal_roughness.png",
-      "sha256": "3f9cc725d4fd6e80319618a0fc377567419de348b6af60e9bbff25bb5cf62d77",
-      "bytes": 276461,
+      "sha256": "2fd1c11fe23e816562243f55f51f39b4bfa24914a3105240d81b1adf8affa702",
+      "bytes": 304940,
       "resolution": [
         512,
         512

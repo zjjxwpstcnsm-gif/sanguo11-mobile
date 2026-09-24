@@ -36,14 +36,15 @@ final class TerrainMaterialField {
         float safeSlope=Float.isFinite(slope)?Math.max(0,slope):0;
         float exposed=Math.min(.55f,Math.max(0,safeSlope-.12f))*(1-w[2]);
         float transfer=w[0]*exposed;w[0]-=transfer;w[1]+=transfer*.4f;w[3]+=transfer*.6f;
-        // Keep site/path centres recognisable. These local masks are NOT widened with
+        // Keep site/mountain-path centres recognisable. Ordinary ROAD retains its
+        // existing grass/soil biome treatment: centre stamps make dense road regions polka-dotted. These local masks are NOT widened with
         // the biome filter, and never modify the independent hard land/water footprint.
         float constraint=0;
         for(int r=center.r-1;r<=center.r+1;r++)for(int q=center.q-1;q<=center.q+1;q++){
             Hex h=new Hex(q,r);if(!ground.valid(h)||ground.surface.water(h))continue;
             World.Terrain type=TYPES[ground.terrain[r*ground.width+q]];
             boolean site=ground.bases.contains(h);
-            if(!site&&type!=World.Terrain.ROAD&&type!=World.Terrain.MOUNTAIN_PATH&&type!=World.Terrain.PLANK_ROAD)continue;
+            if(!site&&type!=World.Terrain.MOUNTAIN_PATH&&type!=World.Terrain.PLANK_ROAD)continue;
             float dx=x-ground.grid.x(h),dz=z-ground.grid.z(h);
             float radius=site?.8f:.55f;
             float t=Math.max(0,1-(dx*dx+dz*dz)/(radius*radius));

@@ -11,7 +11,7 @@ public final class NativeR04Test {
         for(float[] a:new float[][]{{0,0,0,0},{-1,Float.NaN,Float.POSITIVE_INFINITY,0},{2,3,1,4}}){TerrainMaterialField.normalize(a);weights(a);}
         for(boolean staggered:new boolean[]{false,true}){
             World w=new World(64,64);w.columnStaggered=staggered;
-            for(int q=0;q<64;q++)for(int r=0;r<64;r++)w.terrain[q][r]=q<16?World.Terrain.PLAIN:q<32?World.Terrain.SAND:q<48?World.Terrain.MOUNTAIN:World.Terrain.FOREST;
+            for(int q=0;q<64;q++)for(int r=0;r<64;r++)w.terrain[q][r]=q<16?World.Terrain.PLAIN:q<32?World.Terrain.SAND:q<48?World.Terrain.MOUNTAIN:World.Terrain.ROAD;
             for(int q=0;q<64;q++)w.terrain[q][8]=World.Terrain.WATER;
             for(int r=16;r<48;r++)w.terrain[40][r]=World.Terrain.MOUNTAIN_PATH;
             String before=Arrays.deepToString(w.terrain);MapSceneSnapshot.Ground g=new MapSceneSnapshot.Ground(w);TerrainMaterialField f=new TerrainMaterialField(g);
@@ -25,6 +25,10 @@ public final class NativeR04Test {
             float[] sand=f.sample(g.grid.x(24,32),g.grid.z(24,32),1);
             float[] rock=f.sample(g.grid.x(35,32),g.grid.z(35,32));
             float[] path=f.sample(g.grid.x(40,32),g.grid.z(40,32));
+            float roadX=g.grid.x(56,32),roadZ=g.grid.z(56,32);
+            float[] roadCentre=f.sample(roadX,roadZ),roadBetween=f.sample(roadX+.3f,roadZ+.2f);
+            for(int k=0;k<4;k++)check(Math.abs(roadCentre[k]-roadBetween[k])<.0001,"dense ordinary road has no repeated centre stamp");
+            check(Math.abs(roadCentre[1]-.18f)<.0001,"ordinary road retains prior continuous biome identity");
             check(grass[0]>.85,"grass region identity");check(sand[2]>.98,"sand not converted into generic mud by slope");
             check(rock[3]>.85,"rock identity");check(path[1]>.70,"hard path centre remains soil");
             check(before.equals(Arrays.deepToString(w.terrain)),"synthetic map unchanged");

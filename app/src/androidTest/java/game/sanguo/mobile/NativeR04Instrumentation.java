@@ -62,9 +62,32 @@ public final class NativeR04Instrumentation extends SceneInstrumentation {
         }
         runOnMainSync(()->world=SessionProbe.view(activity));check(Arrays.equals(before,SaveCodec.encode(world)),"all render qualities and cameras preserve full authority bytes");
         commandFlow();shot("r04-command-result");
-        // Use a real farm if supplied by official scenario/turn; otherwise report missing,
-        // never turn an empty plot or an injected fixture into accepted farmland evidence.
-        Hex farm=null;for(Domestic.Facility f:world.domestic.facilities)if(f.kind==Domestic.Kind.FARM){farm=f.hex;break;}
+        // Build through the normal authoritative command if the official start has no farm.
+        // Never inject a fixture or repaint the map to manufacture farmland evidence.
+        Hex farm=null;for(Domestic.Facility f:world.domestic.facilities)if(f.kind==Domestic.Kind.FARM&&f.remaining==0){farm=f.hex;break;}
+        if(farm==null){
+            int cityId=-1,officerId=-1;Hex plot=null;
+            outer:for(World.City city:world.cities)if(city.owner==world.player){
+                for(World.Officer officer:world.idle(city))for(Hex h:world.domestic.buildSites(city.id)){
+                    World probe=SaveCodec.decode(SaveCodec.encode(world));
+                    if(probe.domestic.build(city.id,officer.id,Domestic.Kind.FARM,h).ok){cityId=city.id;officerId=officer.id;plot=h;break outer;}
+                }
+            }
+            check(plot!=null,"legal ordinary farm construction available");
+            final int c=cityId,o=officerId;final Hex h=plot;
+            World reference=SaveCodec.decode(SaveCodec.encode(world));check(reference.domestic.build(c,o,Domestic.Kind.FARM,h).ok,"reference farm build");
+            runOnMainSync(()->{check(SessionProbe.command(activity,w->w.domestic.build(c,o,Domestic.Kind.FARM,h)).ok,"normal GameSession farm build");world=SessionProbe.view(activity);});
+            check(Arrays.equals(SaveCodec.encode(reference),SaveCodec.encode(world)),"farm build preserves command parity");
+            for(int turn=0;turn<4&&world.domestic.at(h).remaining>0;turn++){
+                runOnMainSync(()->invoke("advanceTurn",new Class<?>[0]));check(reference.nextTurn().ok,"reference construction turn");
+                long deadline=SystemClock.uptimeMillis()+120000;
+                while((Boolean)field(activity,"aiRunning")&&SystemClock.uptimeMillis()<deadline)settle();
+                check(!(Boolean)field(activity,"aiRunning"),"farm construction turn finished");
+                runOnMainSync(()->world=SessionProbe.view(activity));
+                check(Arrays.equals(SaveCodec.encode(reference),SaveCodec.encode(world)),"farm construction full-turn parity");
+            }
+            check(world.domestic.at(h)!=null&&world.domestic.at(h).remaining==0,"actual farm completed by normal turns");farm=h;
+        }
         if(farm!=null){final Hex target=farm;FilamentMapView fv=spatial();
             for(float span:new float[]{8,24,70})for(float yaw:new float[]{0,90}){
                 runOnMainSync(()->{fv.center(target);fv.camera.span=span;fv.camera.yaw=yaw;});shot("r04-farm-actual-"+(int)span+"-"+(int)yaw);
