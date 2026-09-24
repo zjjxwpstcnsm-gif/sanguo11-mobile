@@ -71,3 +71,7 @@
   `Error on ZipFile unknown archive`, before game launch (environment).
 - V1 complete visual acceptance FAIL; remaining backdrop tonal edges/shore geometry,
   PC mismatch and full motion review remain. ARM64/handset performance NOT_RUN.
+
+| R05-FIXTURE-UI | observed validation gap | PARTIAL | CI35943948593 segment7: synthetic Surface with retained official UI/header labels. Authority parity passes; UI synchronization and physical reproduction not accepted. |
+| R05-METADATA | probe metadata limitation | PARTIAL | Synthetic shot TXT hardcodes coalition-190; raw files retained and corrected shot-index explicitly marks fixture; no official-map art claim for fixture. |
+| R05-RUNTIME | automated runtime | PASS | Exact b97e01c CI35943948593 PASS542,32 first-attempt PixelCopy captures; scoped automatic checks, not full manual/physical acceptance. |

@@ -53,3 +53,10 @@ R04 host87683/S13 nationwide33829951 pass, original budget and rules preserved.
 PC reference found; V1/complete visual acceptance FAIL, ARM64/performance NOT_RUN.
 This execution did not start R05; upstream R05 progress above is preserved as external.
 See reports/R04.md, handoffs/R04.md and evidence/R04.json.
+
+R05 final: PARTIAL. Source b97e01c, CI35943948593 build/lint/runtime SUCCESS;
+542 installed assertions,32 raw Surface captures,7 operation recordings. Same-source
+R00 fresh183/reload110 PASS. Shared textured bank improves color contact; stepped
+silhouette remains VISUAL FAIL. Synthetic boat commands/save parity PASS, but stale
+UI over fixture Surface observed; full motion/editor/PC/physical gates remain open.
+APK88/0.88.0-native-r05; see R05 report/evidence. PR67 draft, no merge, no R06.

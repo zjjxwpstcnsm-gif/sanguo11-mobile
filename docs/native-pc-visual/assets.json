@@ -33,7 +33,7 @@
     "shore_band_world_units": 0.32,
     "depth_band_world_units": 1.5,
     "owner": "groundTextures; water borrows until material destroyed",
-    "acceptance": "PARTIAL, installed evidence pending"
+    "acceptance": "CI35943948593 compiled/installed PASS542; actual visual FAIL staircase silhouette; ARM64 NOT_RUN"
   },
   "R04": {
     "generator": "tools/3d/build_terrain_materials.py",
