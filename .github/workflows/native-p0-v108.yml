@@ -1,0 +1,209 @@
+name: Native P0 v108 exact-source verification
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-p0-v108.yml]
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: native-p0-v108-delivery
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      source: ${{ steps.source.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - name: Validate exact transport and apply tested production diff
+        run: |
+          set -euo pipefail
+          mkdir -p out/build
+          cp .ci/native-p0-v108.patch.b64 out/build/transport.b64
+          python3 - <<'PY'
+          from pathlib import Path
+          import base64,gzip,hashlib,subprocess
+          p=Path('.ci/native-p0-v108.patch.b64')
+          # A transport transcription can never alter production: the decoded
+          # patch must match the locally tested complete SHA before git apply.
+          text=p.read_text().strip().replace('P/FT/5zppiRs','P/FT/5ppiRs',1)
+          patch=gzip.decompress(base64.b64decode(text,validate=True))
+          digest=hashlib.sha256(patch).hexdigest()
+          print('decoded patch SHA256',digest,flush=True)
+          assert digest=='586d50ef29c26ee9f9449deb29dad1683ecf3702143a0f2f292559fa38cb8d78',digest
+          Path('out/build/production.patch').write_bytes(patch)
+          subprocess.run(['git','apply','--check','out/build/production.patch'],check=True)
+          subprocess.run(['git','apply','out/build/production.patch'],check=True)
+          p.write_text(text+'\n')
+          PY
+          git diff --check
+          git diff --exit-code -- core game-api game-runtime data app/src/main/assets unity
+          python3 scripts/check-native-protected-assets.py | tee out/build/protected-assets.log
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: ''}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Verify affected production code before committing
+        run: |
+          set -euo pipefail
+          bash scripts/test-native-ground-stream.sh 2>&1 | tee out/build/ground-stream-precommit.log
+          ./gradlew --no-daemon :app:compileDebugJavaWithJavac -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true 2>&1 | tee out/build/compile-precommit.log
+      - name: Commit and normal fast-forward push on the continuing branch only
+        id: source
+        run: |
+          set -euo pipefail
+          git fetch origin agent/native-pc-visual main
+          test "$(git rev-parse origin/agent/native-pc-visual)" = "$GITHUB_SHA"
+          git merge-base --is-ancestor origin/main HEAD
+          git config user.name 'Native P0 Repair Agent'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .ci/native-p0-v108.patch.b64 app/src/main/java/game/sanguo/mobile/SceneMesh.java app/src/main/java/game/sanguo/mobile/SceneWorkQueue.java app/src/main/java/game/sanguo/mobile/MapSceneSnapshot.java app/src/main/java/game/sanguo/mobile/TerrainMaterialField.java app/src/main/java/game/sanguo/mobile/FilamentMapView.java app/src/test/java/game/sanguo/mobile/NativeGroundStreamTest.java app/src/androidTest/java/game/sanguo/mobile/NativeR12Instrumentation.java scripts/test-native-ground-stream.sh version.properties
+          git diff --cached --check
+          git commit -m 'fix(native-p0): stream exact national ground before scenery through bounded owner mailbox'
+          git push origin HEAD:refs/heads/agent/native-pc-visual
+          sha=$(git rev-parse HEAD)
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "$sha" > out/build/SOURCE_COMMIT
+          git log -3 --oneline > out/build/COMMITS.txt
+          git diff HEAD^ HEAD --stat > out/build/PRODUCTION_DIFF_STAT.txt
+      - name: Build one exact committed APK for all runtime probes
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$(cat out/build/SOURCE_COMMIT)"
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true 2>&1 | tee out/build/build.log
+          cp app/build/outputs/apk/debug/app-debug.apk out/build/sanguo11-mobile-v108.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/build/app-debug-androidTest.apk
+          sha256sum out/build/*.apk > out/build/APK_SHA256.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/build/sanguo11-mobile-v108.apk > out/build/APK_METADATA.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/build/sanguo11-mobile-v108.apk > out/build/APK_SIGNATURE.txt
+          grep -q '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' out/build/APK_SIGNATURE.txt
+          grep -q "name='game.sanguo.mobile.dev' versionCode='108'" out/build/APK_METADATA.txt
+          unzip -l out/build/sanguo11-mobile-v108.apk > out/build/APK_CONTENTS.txt
+          git diff --exit-code
+      - name: Inspect current Release capability without bypassing restrictions
+        if: success()
+        env: {GH_TOKEN: '${{ github.token }}', GH_REPO: '${{ github.repository }}'}
+        run: |
+          set +e
+          gh api repos/$GH_REPO --jq '.permissions' > out/build/RELEASE_PERMISSIONS.json 2> out/build/RELEASE_PERMISSIONS.stderr
+          source=$(cat out/build/SOURCE_COMMIT)
+          gh release create native-p0-v108-${source:0:12} out/build/sanguo11-mobile-v108.apk --target "$source" --prerelease --title 'v108 P0 ground streaming candidate (PARTIAL)' --notes 'Exact-source candidate. Runtime acceptance remains in the linked CI and PR67; this release does not claim all P0 issues closed.' > out/build/RELEASE_STDOUT.txt 2> out/build/RELEASE_STDERR.txt
+          echo $? > out/build/RELEASE_EXIT.txt
+          gh api repos/$GH_REPO/releases/tags/native-p0-v108-${source:0:12} > out/build/RELEASE_LOOKUP.json 2> out/build/RELEASE_LOOKUP.stderr
+          echo $? > out/build/RELEASE_LOOKUP_EXIT.txt
+          exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: p0-v108-build, path: out/build, retention-days: 14}
+  host:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ needs.build.outputs.source }}', fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - name: Exact-source protection and host dependencies
+        run: |
+          mkdir -p out/host/logs
+          git rev-parse HEAD origin/main > out/host/REFS.txt
+          git diff --exit-code c1174548e3ad66dd10f69044a7c2efb3445de630 HEAD -- core game-api game-runtime data app/src/main/assets unity > out/host/protected.log
+          python3 scripts/check-native-protected-assets.py > out/host/protected-assets.log
+          curl -fSL --retry 3 https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/json.jar
+          echo JSON_TEST_JAR=/tmp/json.jar >> "$GITHUB_ENV"
+      - name: All original host suites plus new bounded ground regression
+        run: |
+          failed=0
+          for suite in test-native-r00-r14-audit $(printf 'test-native-r%02d ' $(seq 1 14)) test-architecture test-native-ground-stream; do
+            code=0
+            bash scripts/$suite.sh > out/host/logs/$suite.log 2>&1 || code=$?
+            printf '%s\t%s\n' "$suite" "$code" | tee -a out/host/HOST_EXIT_CODES.tsv
+            if [ "$code" -ne 0 ]; then failed=1; fi
+          done
+          exit "$failed"
+      - name: Full input and candidate core, preserving the inherited failure
+        if: always()
+        run: |
+          mkdir -p out/host
+          git worktree add --detach /tmp/p0-input c1174548e3ad66dd10f69044a7c2efb3445de630
+          baseline=0; (cd /tmp/p0-input && bash scripts/test-core.sh) > out/host/core-input.log 2>&1 || baseline=$?
+          candidate=0; bash scripts/test-core.sh > out/host/core-candidate.log 2>&1 || candidate=$?
+          printf 'input=%s\ncandidate=%s\n' "$baseline" "$candidate" > out/host/CORE_EXIT_CODES.txt
+          test "$baseline" -eq 1 && test "$candidate" -eq 1
+          grep -q 'AI uses deployment commands' out/host/core-input.log
+          grep -q 'AI uses deployment commands' out/host/core-candidate.log
+          grep -q 'CoreTest.logistics(CoreTest.java:75)' out/host/core-input.log
+          grep -q 'CoreTest.logistics(CoreTest.java:75)' out/host/core-candidate.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: p0-v108-host, path: out/host, retention-days: 14}
+  runtime:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix: {api: [29, 35], scope: [all, cold-only]}
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ needs.build.outputs.source }}'}
+      - uses: actions/download-artifact@v4
+        with: {name: p0-v108-build, path: out/build}
+      - name: Install paths, exact identity and independent device information
+        run: |
+          set -euo pipefail
+          sha256sum -c out/build/APK_SHA256.txt
+          mkdir -p app/build/outputs/apk/debug app/build/outputs/apk/androidTest/debug out/remediation
+          cp out/build/sanguo11-mobile-v108.apk app/build/outputs/apk/debug/app-debug.apk
+          cp out/build/app-debug-androidTest.apk app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+          cp out/build/SOURCE_COMMIT out/remediation/SOURCE_COMMIT
+          cp out/build/APK_SHA256.txt out/remediation/APK_SHA256.txt
+          echo '${{ matrix.api }} x86_64 swangle; scope=${{ matrix.scope }}; fresh emulator; physical ARM64 NOT_RUN' > out/remediation/DEVICE_SCOPE.txt
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api }}
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: |
+            adb shell getprop > out/remediation/DEVICE_PROPERTIES.txt
+            adb shell dumpsys SurfaceFlinger > out/remediation/SURFACEFLINGER_START.txt
+            bash scripts/verify-native-remediation.sh candidate ${{ matrix.scope }}
+      - name: Preserve raw screenshots and validate every recording segment
+        if: always()
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+          mkdir -p out/remediation
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess,json,zipfile
+          root=Path('out/remediation');clips=[]
+          for p in root.rglob('*.mp4'):
+              probe=subprocess.run(['ffprobe','-v','error','-show_streams','-show_format','-of','json',str(p)],capture_output=True,text=True)
+              p.with_suffix('.mp4.ffprobe.json').write_text(probe.stdout)
+              p.with_suffix('.mp4.ffprobe.stderr').write_text(probe.stderr)
+              decode=subprocess.run(['ffmpeg','-v','error','-i',str(p),'-f','null','-'],capture_output=True,text=True)
+              p.with_suffix('.mp4.decode.log').write_text(decode.stderr)
+              clips.append({'path':str(p.relative_to(root)),'probe_exit':probe.returncode,'decode_exit':decode.returncode,'bytes':p.stat().st_size})
+          (root/'VIDEO_RESULTS.json').write_text(json.dumps(clips,indent=2))
+          with zipfile.ZipFile('out/raw-v108.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in root.rglob('*'):
+                  if p.is_file():z.write(p,p.relative_to(root))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'p0-v108-api${{ matrix.api }}-${{ matrix.scope }}-raw', path: out/raw-v108.zip, retention-days: 14}
