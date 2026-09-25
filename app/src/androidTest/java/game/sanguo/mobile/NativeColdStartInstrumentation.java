@@ -26,12 +26,19 @@ public final class NativeColdStartInstrumentation extends SceneInstrumentation {
  }
  private View await(Predicate<View> match)throws Exception{
   long deadline=SystemClock.uptimeMillis()+30000;
-  while(SystemClock.uptimeMillis()<deadline){View[] hit={null};runOnMainSync(()->{List<View> roots=WindowInspector.getGlobalWindowViews();for(int i=roots.size()-1;i>=0;i--){hit[0]=find(roots.get(i),match);if(hit[0]!=null)break;}});if(hit[0]!=null)return hit[0];settle();}
+  while(SystemClock.uptimeMillis()<deadline){View[] hit={null};runOnMainSync(()->{List<View> roots=WindowInspector.getGlobalWindowViews();for(int i=roots.size()-1;i>=0;i--){View root=roots.get(i);if(!root.isAttachedToWindow()||!root.hasWindowFocus()||root.isLayoutRequested())continue;hit[0]=find(root,match);if(hit[0]!=null)break;}});if(hit[0]!=null)return hit[0];settle();}
   capture("cold-missing-control");throw new AssertionError("visible UI control not found");
  }
  private void tap(View v)throws Exception{
-  Rect rect=new Rect();int[] screen=new int[2];runOnMainSync(()->{check(v.isEnabled(),"control enabled");check(v.getLocalVisibleRect(rect),"control has visible bounds");v.getLocationOnScreen(screen);rect.offset(screen[0],screen[1]);});
-  note("TOUCH screenRect="+rect+" control="+v.getClass().getSimpleName());
+  Rect rect=new Rect(),previous=new Rect();long deadline=SystemClock.uptimeMillis()+30000;boolean stable=false;int samples=0;
+  while(SystemClock.uptimeMillis()<deadline){
+   boolean[] interactive={false};int[] screen=new int[2];
+   runOnMainSync(()->{View root=v.getRootView();interactive[0]=v.isAttachedToWindow()&&v.isShown()&&v.isEnabled()&&v.hasWindowFocus()&&root.hasWindowFocus()&&!root.isLayoutRequested()&&v.getLocalVisibleRect(rect);if(interactive[0]){v.getLocationOnScreen(screen);rect.offset(screen[0],screen[1]);}});
+   if(interactive[0]&&rect.equals(previous)){stable=true;break;}
+   previous.set(interactive[0]?rect:new Rect());samples++;settle();
+  }
+  check(stable,"touch target belongs to focused window with stable screen bounds");
+  note("TOUCH focused=true stableSamples="+samples+" screenRect="+rect+" control="+v.getClass().getSimpleName());
   long time=SystemClock.uptimeMillis();MotionEvent down=MotionEvent.obtain(time,time,MotionEvent.ACTION_DOWN,rect.exactCenterX(),rect.exactCenterY(),0),up=MotionEvent.obtain(time,time+80,MotionEvent.ACTION_UP,rect.exactCenterX(),rect.exactCenterY(),0);
   sendPointerSync(down);sendPointerSync(up);down.recycle();up.recycle();settle();
  }
