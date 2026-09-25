@@ -1,3 +1,13 @@
+# v107 当前续作入口 / PARTIAL
+
+当前 APK source `a4b09058c6b1ab8c80f57d96f1e22425673de94c`，v107。详细正式修改、原 v105 独立前测、候选结果及未到达操作见 [R00-R14-P0-v107.md](../reports/R00-R14-P0-v107.md).
+
+本轮削减全国重复法线/材质计算并合并远景批次，全部几何和规则字节保持；增加真实队列、CPU、提交与Surface采样诊断。日期实际画面、完整纯触控链、20轮设备生命周期、完整模式RNG矩阵仍未闭合。原213条不因主机套件通过而自动升级。
+
+v106新增API29 CPU超时在v107全国ready回归中通过；API29实际UI停绘、API35原R12下一旬超时仍FAIL。完整触控链NOT_RUN。详见当前报告最终结果表。
+
+以下为v105及更早历史，保留追溯，不代表当前APK：
+
 # 当前续作入口：v105 / PARTIAL
 
 先读 reports/R00-R14-CONTINUATION.md、DEFECTS.md及213项清单。生产源码 ef54951dbb7056beaa782f97a3486eefa3a88ef9，最终文档/证据HEAD另见交付REMOTE_DELIVERY.json及实时远端。v103首次布局后全国fit、v104有界上传、v105相机/布局先于首个CPU任务均已接入正式路径，未建立第二套加载器。保持同一分支/PR67，不回退、不合main、不force push、不进入R15。

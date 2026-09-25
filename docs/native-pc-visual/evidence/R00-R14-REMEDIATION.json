@@ -1,19 +1,19 @@
 {
   "schema": 2,
-  "status": "PARTIAL",
-  "input_head": "a5119b869f710949731781b35f13858cc87809c0",
+  "status": "PARTIAL_P0_RUNTIME_OPEN",
+  "input_head": "312532ea2a4d623f50c71becee119fbe06532d11",
   "main_at_start": "ac29b458325b52d6e302ca44270d16552de4ed7f",
-  "source": "ef54951dbb7056beaa782f97a3486eefa3a88ef9",
-  "verification_commit": "ef54951dbb7056beaa782f97a3486eefa3a88ef9",
+  "source": "a4b09058c6b1ab8c80f57d96f1e22425673de94c",
+  "verification_commit": "a4b09058c6b1ab8c80f57d96f1e22425673de94c",
   "branch": "agent/native-pc-visual",
   "pr": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/67",
   "input_zip_sha256": "6a3e6ba271e8e84dec367d76bee49f23bbe1d68b782741d243f511b56ba66bb2",
   "apk": {
-    "versionCode": 105,
-    "versionName": "0.105.0-native-first-work",
+    "versionCode": 107,
+    "versionName": "0.107.0-native-preview-cache",
     "applicationId": "game.sanguo.mobile.dev",
-    "sha256": "2b38ca4741b60650be58555ec118350f2aeff292765f6b3754adc138c1fdf55c",
-    "size_bytes": 37370473,
+    "sha256": "0ad4cc9b9e57a4535cddedf2939541a60433bc02c74d0703e6640696172da486",
+    "size_bytes": 37370481,
     "abi": [
       "arm64-v8a",
       "armeabi-v7a",
@@ -21,15 +21,16 @@
       "x86_64"
     ],
     "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
-    "delivery": "Independent APK in final response; build identity and parts retained in CI36108363433"
+    "delivery": "Independent sanguo11-mobile-v107.apk; exact-source build parts in CI36120063732"
   },
   "open_fail": [
-    "AUDIT-02 full cold-start touch chain",
-    "AUDIT-03 stale actual UI/date/playback",
-    "AUDIT-04 V1 unclosed/V2 FAIL",
-    "AUDIT-05 owner CPU asset decode and lifecycle gaps",
-    "AUDIT-06 inherited full-core AI failure",
-    "API29 national preview readiness not closed; see separate v103/v104/v105 results"
+    "API29 actual stale date/playback/window redraw; independent cold live-overlay FAIL",
+    "API35 v107 original NativeR12 installed next turn finished timeout; candidate failure unresolved",
+    "Full pure-touch opening through battle and manual save/load not completed",
+    "V1/V2 and R10/R11/R13 inherited open items",
+    "Full-core inherited AI uses deployment commands / CoreTest.logistics:75",
+    "Capture chain: v107 API29 empty segment; inherited v105 damaged segment; DTS warnings",
+    "Overall P0 not closed despite scoped national ready improvement"
   ],
   "not_run": [
     "full R02/R12 viewport/touch/authority matrix",
@@ -42,38 +43,36 @@
   ],
   "tests": {
     "host_suites": 16,
-    "host_exit_codes": "all 0 in CI36108363433",
+    "host_exit_codes": "all16 exit0 CI36120063732",
     "full_core": {
       "baseline": 1,
       "candidate": 1,
       "failure": "AI uses deployment commands / CoreTest.logistics:75"
     },
-    "build_lint": "PASS exact ef54951 source",
+    "build_lint": "PASS exact a4b09058 source",
     "asset_byte_comparison": "PASS all 298",
     "runtime": {
-      "API29": {
-        "focused": 0,
-        "original_r12": 1,
-        "cold_start": 1,
-        "date_pixels": "FAIL",
-        "r12_pending": 494,
-        "cold_pending": 473,
-        "first_ground_chunks": 177,
-        "cold_ground_ms": 102327,
-        "first_epoch_assertion": "NOT_REACHED"
+      "ci36120063732": {
+        "api29": {
+          "focused": 0,
+          "r12": 0,
+          "cold": 0,
+          "actual_date": "FAIL"
+        },
+        "api35": {
+          "focused": 0,
+          "r12": 1,
+          "failure": "installed next turn finished; original 120s; not classified inherited",
+          "cold": 0,
+          "actual_july": "PASS already PASS unchanged v105"
+        }
       },
-      "API35": {
-        "focused": 0,
-        "original_r12": 0,
-        "cold_start": 1,
-        "date_1_7_4_pixels": "PASS scoped, unchanged original APK also passes",
-        "first_epoch_assertion": "NOT_REACHED"
+      "ci36120858785": {
+        "api29": "national ready then FAIL live overlay",
+        "api35": "PASS cold through actual new game"
       },
-      "video_ffprobe": {
-        "valid": 14,
-        "total": 15,
-        "corrupt": "API35 candidate/r12-full/remediation-5.mp4"
-      }
+      "full_pure_touch_chain": "NOT_RUN",
+      "first_cpu_epoch_coarse": "REACHED final cold both APIs"
     },
     "physical": "NOT_RUN"
   },
@@ -84,7 +83,14 @@
     "unchanged_v104_cold_recording": 36106664924,
     "initial_work_final": 36108363433,
     "raw_transfer": 36109036703,
-    "failed_v104_export": 36107300056
+    "failed_v104_export": 36107300056,
+    "v105_independent_original": 36115487008,
+    "v106_candidate": 36117420833,
+    "v105_without_recorder": 36118135967,
+    "v106_isolated_cold": 36119354028,
+    "original_candidate_focused_touch": 36119737791,
+    "v107_candidate": 36120063732,
+    "v107_isolated_cold": 36120858785
   },
   "artifacts": {
     "v103_original_run": 36104156087,
@@ -105,8 +111,8 @@
     "physical_model_api_driver": "NOT_RUN"
   },
   "requirements": "R00-R14-remediation-checklist.json (213 exact original requirements with previous/current full-acceptance states)",
-  "raw_evidence_release": "v103 only: https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/releases/tag/native-remediation-5d9384f9cba7",
-  "full_delivery": "Standalone v105 APK; v105 evidence ZIP with six original v104/v105 runtime archives; separate original v102/v103 comparison ZIP. REMOTE_DELIVERY.json records final reread separately from source.",
+  "raw_evidence_release": "v107 release HTTP403; tag reread404; independent files and CI artifacts only",
+  "full_delivery": "Standalone v107 APK plus sanguo11-R00-R14-v107-P0-evidence.zip and sanguo11-v107-delivery.json; final remote HEAD recorded outside self-referencing commit.",
   "scope": "No gameplay/map/RNG/SaveCodec/production-asset changes. No main merge, force push, other PR action, or R15. Final verification/docs HEAD is not APK source.",
   "previous_remediation": {
     "schema": 1,
@@ -201,15 +207,15 @@
     "AUDIT-09 obsolete asset protection gate"
   ],
   "new_closed_scoped": [
-    "REMED-03 default local first-camera conversion: v102 outside37406/38949 vs v103 API35 outside0 and real new-session confirmation. Fix retained; final v105 full cold acceptance FAIL, not closed."
+    "Exact duplicate national normal/material evaluation and unnecessary far-scene batch work reduced with bounded caches; full terrain/triangle goldens unchanged; final national ready reached under original timeout on both APIs. Original timeout root not fully closed.",
+    "v106 boxed cache/per-vertex instrumentation overhead regression corrected in v107 primitive bounded cache/sparse clocks; API29 national CPU result delivered in final R12 and independent cold.",
+    "Focused-window stable real-pointer test targeting gap covered by paired unchanged v105/v106 API35; no production click root claim."
   ],
-  "report": "reports/R00-R14-CONTINUATION.md",
-  "delivery_failures": {
-    "v104_release": "HTTP403 Resource not accessible by integration; fresh tag GET404",
-    "independent_v104_recording": "NOT_RUN: exact APK URL404, shell exit22 before emulator",
-    "v104_release_export": "FAIL: tag absent; original Actions artifacts preserved",
-    "v105_release": "HTTP403 Resource not accessible by integration; fresh tag GET404. Independent APK and original runtime archives preserved and hash-verified."
-  },
+  "report": "reports/R00-R14-P0-v107.md",
+  "delivery_failures": [
+    "v107 Release HTTP403; tag404; independent file delivery",
+    "API35 original R12 FAIL and API29 actual UI FAIL preserved"
+  ],
   "raw_transfer": {
     "run": 36109036703,
     "conclusion": "success",
@@ -251,5 +257,123 @@
         "size": 69230704
       }
     ]
+  },
+  "v105_previous_delivery": {
+    "source": "ef54951dbb7056beaa782f97a3486eefa3a88ef9",
+    "apk": {
+      "versionCode": 105,
+      "versionName": "0.105.0-native-first-work",
+      "applicationId": "game.sanguo.mobile.dev",
+      "sha256": "2b38ca4741b60650be58555ec118350f2aeff292765f6b3754adc138c1fdf55c",
+      "size_bytes": 37370473,
+      "abi": [
+        "arm64-v8a",
+        "armeabi-v7a",
+        "x86",
+        "x86_64"
+      ],
+      "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+      "delivery": "Independent APK in final response; build identity and parts retained in CI36108363433"
+    },
+    "tests": {
+      "host_suites": 16,
+      "host_exit_codes": "all 0 in CI36108363433",
+      "full_core": {
+        "baseline": 1,
+        "candidate": 1,
+        "failure": "AI uses deployment commands / CoreTest.logistics:75"
+      },
+      "build_lint": "PASS exact ef54951 source",
+      "asset_byte_comparison": "PASS all 298",
+      "runtime": {
+        "API29": {
+          "focused": 0,
+          "original_r12": 1,
+          "cold_start": 1,
+          "date_pixels": "FAIL",
+          "r12_pending": 494,
+          "cold_pending": 473,
+          "first_ground_chunks": 177,
+          "cold_ground_ms": 102327,
+          "first_epoch_assertion": "NOT_REACHED"
+        },
+        "API35": {
+          "focused": 0,
+          "original_r12": 0,
+          "cold_start": 1,
+          "date_1_7_4_pixels": "PASS scoped, unchanged original APK also passes",
+          "first_epoch_assertion": "NOT_REACHED"
+        },
+        "video_ffprobe": {
+          "valid": 14,
+          "total": 15,
+          "corrupt": "API35 candidate/r12-full/remediation-5.mp4"
+        }
+      },
+      "physical": "NOT_RUN"
+    },
+    "ci": {
+      "camera_comparison": 36104156087,
+      "camera_raw_export": 36105792621,
+      "upload_comparison": 36106137919,
+      "unchanged_v104_cold_recording": 36106664924,
+      "initial_work_final": 36108363433,
+      "raw_transfer": 36109036703,
+      "failed_v104_export": 36107300056
+    }
+  },
+  "api35_apk_sha256": "5e3e4f606250beb8db8e4fe1b0d5b9fd774ce788c0612df4362de86815997262",
+  "api_apk_comparison": "All uncompressed ZIP entries identical; different archive hashes; independent cold CI installs delivered 0ad4 APK on both APIs",
+  "current_report": "docs/native-pc-visual/reports/R00-R14-P0-v107.md",
+  "v106_content_regression": {
+    "national_ground_chunks": 177,
+    "national_ground_sha256": "e716c21a20f7043eed4ef2acaf6d77bc8c56a522a7fa61db65b89f6ab0a70b48",
+    "landscape_triangles": 236375,
+    "landscape_triangle_sha256": "6fd66849a26cc23b509b753745920f673f3f9dc2aa20313e4759f31c225a8275",
+    "host_full_window_chunks_before": 950,
+    "host_full_window_chunks_after": 247,
+    "new_normal_cache_bytes_max": 524288,
+    "scoped_status": "host exact content PASS; not mobile performance"
+  },
+  "v106_failed_candidate": {
+    "source": "452f874144ad9893fdfce8188a375ee604c4f906",
+    "apk": {
+      "versionCode": 106,
+      "versionName": "0.106.0-native-preview-work",
+      "applicationId": "game.sanguo.mobile.dev",
+      "sha256": "5a25e4a789ef46b6171dd35a3e1fd7aecefac1c97392f26bbc461113c93c0dba",
+      "size_bytes": 37370477,
+      "abi": [
+        "arm64-v8a",
+        "armeabi-v7a",
+        "x86",
+        "x86_64"
+      ],
+      "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+      "delivery": "Independent sanguo11-mobile-v106.apk; exact-source build parts in CI36117420833"
+    },
+    "api35_apk_sha256": "e00d5a88fc7b1c02d1a86d164728bda9c550d00d4e1c01fa7b1fa26741b372bf",
+    "ci": 36117420833,
+    "API29": {
+      "focused": 0,
+      "original_r12": 1,
+      "cold_start": 1,
+      "cpu_chunks_on_timeout": 0,
+      "worker_pending": 1,
+      "date_pixels": "FAIL"
+    },
+    "API35": {
+      "focused": 0,
+      "original_r12": 0,
+      "cold_start": 1,
+      "date_pixels": "PASS scoped; unchanged v105 also correct"
+    }
+  },
+  "video_review": {
+    "v107_full_api29": "7 content segments / 8; empty focused-window/remediation-2.mp4 FAIL",
+    "v107_full_api35": "9/9 decoded and sampled contents inspected",
+    "v107_independent": "2/2",
+    "inherited_v105": "14/15 valid; damaged original retained",
+    "note": "not full-flow/art PASS; raw DTS warnings retained"
   }
 }

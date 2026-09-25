@@ -1,8 +1,8 @@
 {
   "schema": 2,
   "status": "PARTIAL",
-  "source": "ef54951dbb7056beaa782f97a3486eefa3a88ef9",
-  "input_head": "a5119b869f710949731781b35f13858cc87809c0",
+  "source": "a4b09058c6b1ab8c80f57d96f1e22425673de94c",
+  "input_head": "312532ea2a4d623f50c71becee119fbe06532d11",
   "requirements": [
     {
       "id": "R00.I01",
@@ -14,7 +14,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R00.I02",
@@ -26,7 +27,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R00.I03",
@@ -38,7 +40,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R00.I04",
@@ -50,7 +53,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R00.I05",
@@ -62,7 +66,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R00.I06",
@@ -74,7 +79,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R00.I07",
@@ -86,7 +92,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R00.I08",
@@ -98,7 +105,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R00.V01",
@@ -110,7 +118,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R00.V02",
@@ -122,7 +131,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R00.V03",
@@ -134,7 +144,8 @@
       "previous_status": "PASS",
       "status": "PASS",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "精确ef54951源码CI assembleDebug/assembleDebugAndroidTest/lintDebug成功；完整core输入和候选原始exit1分别保留并分类，未修改断言。见continuation-ef5495131/build及host-ci。"
+      "continuation_note": "精确ef54951源码CI assembleDebug/assembleDebugAndroidTest/lintDebug成功；完整core输入和候选原始exit1分别保留并分类，未修改断言。见continuation-ef5495131/build及host-ci。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R00.V04",
@@ -146,7 +157,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R00.V05",
@@ -158,7 +170,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R00.G01",
@@ -170,7 +183,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R00.D01",
@@ -182,7 +196,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R01.I01",
@@ -194,7 +209,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R01.I02",
@@ -206,7 +222,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R01.I03",
@@ -218,7 +235,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R01.I04",
@@ -230,7 +248,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R01.I05",
@@ -242,7 +261,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R01.I06",
@@ -254,7 +274,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R01.I07",
@@ -266,7 +287,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R01.V01",
@@ -278,7 +300,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R01.V02",
@@ -290,7 +313,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R01.V03",
@@ -302,7 +326,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R01.V04",
@@ -314,7 +339,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R01.V05",
@@ -326,7 +352,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R01.G01",
@@ -338,7 +365,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R01.D01",
@@ -350,7 +378,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R02.I01",
@@ -362,7 +391,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R02.I02",
@@ -374,7 +404,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R02.I03",
@@ -386,7 +417,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R02.I04",
@@ -398,7 +430,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R02.I05",
@@ -410,7 +443,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R02.I06",
@@ -422,7 +456,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R02.I07",
@@ -434,7 +469,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R02.V01",
@@ -446,7 +482,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R02.V02",
@@ -458,7 +495,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R02.V03",
@@ -470,7 +508,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R02.V04",
@@ -482,7 +521,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R02.V05",
@@ -494,7 +534,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R02.G01",
@@ -506,7 +547,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R02.D01",
@@ -518,7 +560,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R03.I01",
@@ -530,7 +573,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R03.I02",
@@ -542,7 +586,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R03.I03",
@@ -554,7 +599,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R03.I04",
@@ -566,7 +612,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R03.I05",
@@ -578,7 +625,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R03.I06",
@@ -590,7 +638,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R03.I07",
@@ -602,7 +651,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R03.I08",
@@ -614,7 +664,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R03.V01",
@@ -626,7 +677,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R03.V02",
@@ -638,7 +690,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R03.V03",
@@ -650,7 +703,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R03.V04",
@@ -662,7 +716,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R03.V05",
@@ -674,7 +729,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R03.G01",
@@ -686,7 +742,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R03.D01",
@@ -698,7 +755,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R04.I01",
@@ -710,7 +768,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R04.I02",
@@ -722,7 +781,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R04.I03",
@@ -734,7 +794,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R04.I04",
@@ -746,7 +807,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R04.I05",
@@ -758,7 +820,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R04.I06",
@@ -770,7 +833,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R04.I07",
@@ -782,7 +846,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R04.V01",
@@ -794,7 +859,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R04.V02",
@@ -806,7 +872,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R04.V03",
@@ -818,7 +885,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R04.V04",
@@ -830,7 +898,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R04.V05",
@@ -842,7 +911,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R04.G01",
@@ -854,7 +924,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R04.D01",
@@ -866,7 +937,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R05.I01",
@@ -878,7 +950,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R05.I02",
@@ -890,7 +963,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R05.I03",
@@ -902,7 +976,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R05.I04",
@@ -914,7 +989,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R05.I05",
@@ -926,7 +1002,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R05.I06",
@@ -938,7 +1015,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R05.I07",
@@ -950,7 +1028,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R05.V01",
@@ -962,7 +1041,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R05.V02",
@@ -974,7 +1054,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R05.V03",
@@ -986,7 +1067,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R05.V04",
@@ -998,7 +1080,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R05.V05",
@@ -1010,7 +1093,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R05.G01",
@@ -1022,7 +1106,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R05.D01",
@@ -1034,7 +1119,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R06.I01",
@@ -1046,7 +1132,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R06.I02",
@@ -1058,7 +1145,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R06.I03",
@@ -1070,7 +1158,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R06.I04",
@@ -1082,7 +1171,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R06.I05",
@@ -1094,7 +1184,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R06.I06",
@@ -1106,7 +1197,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R06.I07",
@@ -1118,7 +1210,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R06.V01",
@@ -1130,7 +1223,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R06.V02",
@@ -1142,7 +1236,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R06.V03",
@@ -1154,7 +1249,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R06.V04",
@@ -1166,7 +1262,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R06.V05",
@@ -1178,7 +1275,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R06.G01",
@@ -1190,7 +1288,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R06.D01",
@@ -1202,7 +1301,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R07.I01",
@@ -1214,7 +1314,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R07.I02",
@@ -1226,7 +1327,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R07.I03",
@@ -1238,7 +1340,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R07.I04",
@@ -1250,7 +1353,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R07.I05",
@@ -1262,7 +1366,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R07.I06",
@@ -1274,7 +1379,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R07.I07",
@@ -1286,7 +1392,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R07.I08",
@@ -1298,7 +1405,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R07.V01",
@@ -1310,7 +1418,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R07.V02",
@@ -1322,7 +1431,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R07.V03",
@@ -1334,7 +1444,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R07.V04",
@@ -1346,7 +1457,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R07.V05",
@@ -1358,7 +1470,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R07.G01",
@@ -1370,7 +1483,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R07.D01",
@@ -1382,7 +1496,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R08.I01",
@@ -1394,7 +1509,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R08.I02",
@@ -1406,7 +1522,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R08.I03",
@@ -1418,7 +1535,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R08.I04",
@@ -1430,7 +1548,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R08.I05",
@@ -1442,7 +1561,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R08.I06",
@@ -1454,7 +1574,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R08.I07",
@@ -1466,7 +1587,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R08.V01",
@@ -1478,7 +1600,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R08.V02",
@@ -1490,7 +1613,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R08.V03",
@@ -1502,7 +1626,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R08.V04",
@@ -1514,7 +1639,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R08.V05",
@@ -1526,7 +1652,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R08.G01",
@@ -1538,7 +1665,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R08.D01",
@@ -1550,7 +1678,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R09.I01",
@@ -1562,7 +1691,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R09.I02",
@@ -1574,7 +1704,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R09.I03",
@@ -1586,7 +1717,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R09.I04",
@@ -1598,7 +1730,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R09.I05",
@@ -1610,7 +1743,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R09.I06",
@@ -1622,7 +1756,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R09.I07",
@@ -1634,7 +1769,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R09.V01",
@@ -1646,7 +1782,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R09.V02",
@@ -1658,7 +1795,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R09.V03",
@@ -1670,7 +1808,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R09.V04",
@@ -1682,7 +1821,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R09.V05",
@@ -1694,7 +1834,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R09.G01",
@@ -1706,7 +1847,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R09.D01",
@@ -1718,7 +1860,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R10.I01",
@@ -1730,7 +1873,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R10.I02",
@@ -1742,7 +1886,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R10.I03",
@@ -1754,7 +1899,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R10.I04",
@@ -1766,7 +1912,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R10.I05",
@@ -1778,7 +1925,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R10.I06",
@@ -1790,7 +1938,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R10.I07",
@@ -1802,7 +1951,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R10.V01",
@@ -1814,7 +1964,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R10.V02",
@@ -1826,7 +1977,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R10.V03",
@@ -1838,7 +1990,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R10.V04",
@@ -1850,7 +2003,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R10.V05",
@@ -1862,7 +2016,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R10.G01",
@@ -1874,7 +2029,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R10.D01",
@@ -1886,7 +2042,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R11.I01",
@@ -1898,7 +2055,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R11.I02",
@@ -1910,7 +2068,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R11.I03",
@@ -1922,7 +2081,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R11.I04",
@@ -1934,7 +2094,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R11.I05",
@@ -1946,7 +2107,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R11.I06",
@@ -1958,7 +2120,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R11.I07",
@@ -1970,7 +2133,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R11.V01",
@@ -1982,7 +2146,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R11.V02",
@@ -1994,7 +2159,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R11.V03",
@@ -2006,7 +2172,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R11.V04",
@@ -2018,7 +2185,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R11.V05",
@@ -2030,7 +2198,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R11.G01",
@@ -2042,7 +2211,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R11.D01",
@@ -2054,7 +2224,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R12.I01",
@@ -2066,7 +2237,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R12.I02",
@@ -2078,7 +2250,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R12.I03",
@@ -2090,7 +2263,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R12.I04",
@@ -2102,7 +2276,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R12.I05",
@@ -2114,7 +2289,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R12.I06",
@@ -2126,7 +2302,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R12.I07",
@@ -2138,7 +2315,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R12.V01",
@@ -2150,7 +2328,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R12.V02",
@@ -2162,7 +2341,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R12.V03",
@@ -2174,7 +2354,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R12.V04",
@@ -2186,7 +2367,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R12.V05",
@@ -2198,7 +2380,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R12.G01",
@@ -2210,7 +2393,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R12.D01",
@@ -2222,7 +2406,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R13.I01",
@@ -2234,7 +2419,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R13.I02",
@@ -2246,7 +2432,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R13.I03",
@@ -2258,7 +2445,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R13.I04",
@@ -2270,7 +2458,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R13.I05",
@@ -2282,7 +2471,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R13.I06",
@@ -2294,7 +2484,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R13.I07",
@@ -2306,7 +2497,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R13.V01",
@@ -2318,7 +2510,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R13.V02",
@@ -2330,7 +2523,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R13.V03",
@@ -2342,7 +2536,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R13.V04",
@@ -2354,7 +2549,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R13.V05",
@@ -2366,7 +2562,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R13.G01",
@@ -2378,7 +2575,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R13.D01",
@@ -2390,7 +2588,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R14.I01",
@@ -2402,7 +2601,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R14.I02",
@@ -2414,7 +2614,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R14.I03",
@@ -2426,7 +2627,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R14.I04",
@@ -2438,7 +2640,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R14.I05",
@@ -2450,7 +2653,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R14.I06",
@@ -2462,7 +2666,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R14.I07",
@@ -2474,7 +2679,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R14.V01",
@@ -2486,7 +2692,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R14.V02",
@@ -2498,7 +2705,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R14.V03",
@@ -2510,7 +2718,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R14.V04",
@@ -2522,7 +2731,8 @@
       "previous_status": "FAIL",
       "status": "FAIL",
       "previous_remediation_status": "FAIL",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R14.V05",
@@ -2534,7 +2744,8 @@
       "previous_status": "PASS",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R14.G01",
@@ -2546,7 +2757,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     },
     {
       "id": "R14.D01",
@@ -2558,7 +2770,8 @@
       "previous_status": "NOT_RUN",
       "status": "NOT_RUN",
       "previous_remediation_status": "NOT_RUN",
-      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。"
+      "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
+      "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。"
     }
   ],
   "note": "逐条保留全部213原文、原文件/行号及历史状态；本轮完整复合条款不因局部修复升级。具体关闭的小缺陷另见remediation report。",
@@ -2571,5 +2784,6 @@
   "historical_details": "输入 sanguo11-native-r00-r14-audit-evidence.zip/checklist/R00-R14-checklist.json，完整原scope/source_paths/historical_evidence原样保留于交付input目录。",
   "scoped_remediation": "reports/R00-R14-CONTINUATION.md；首次原生预览相机修复单列，不以局部关闭提升其他复合条款。",
   "prior_source": "96719e971d74aa2b3f18d66a7f23832148a6dc8b",
-  "prior_input_head": "47e5db471e6dadb22d4c782522f97c113601461e"
+  "prior_input_head": "47e5db471e6dadb22d4c782522f97c113601461e",
+  "p0_report": "reports/R00-R14-P0-v107.md"
 }
