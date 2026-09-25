@@ -1,0 +1,29 @@
+name: Native R14 source and pinned material compiler
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-r14-source.yml]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Export tracked source and pinned compiler
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/r14
+          git bundle create /tmp/r14/source.bundle HEAD refs/remotes/origin/main refs/remotes/origin/agent/native-pc-visual
+          git rev-parse HEAD > /tmp/r14/SOURCE_COMMIT
+          curl -fL --retry 3 https://github.com/google/filament/releases/download/v1.56.0/filament-v1.56.0-linux.tgz -o /tmp/r14/filament.tgz
+          sha256sum /tmp/r14/* > /tmp/r14/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r14-source
+          path: /tmp/r14/
+          retention-days: 3
