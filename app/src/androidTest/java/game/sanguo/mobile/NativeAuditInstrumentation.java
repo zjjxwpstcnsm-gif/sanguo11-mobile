@@ -66,7 +66,7 @@ public final class NativeAuditInstrumentation extends SceneInstrumentation {
             activity.getWindow().getDecorView().getViewTreeObserver().addOnDrawListener(()->{uiDraws++;lastUiDrawNanos=System.nanoTime();});
             activity.getWindow().addOnFrameMetricsAvailableListener((window,metrics,dropped)->{windowFrames++;lastVsyncNanos=metrics.getMetric(android.view.FrameMetrics.INTENDED_VSYNC_TIMESTAMP);lastFrameDuration=metrics.getMetric(android.view.FrameMetrics.TOTAL_DURATION);},new Handler(Looper.getMainLooper()));
         });
-        note("SOURCE="+BuildConfig.SOURCE_REVISION+"; API29 x86_64 software renderer; physical NOT_RUN");modalCycles();calendar();
+        note("SOURCE="+BuildConfig.class.getField("SOURCE_REVISION").get(null)+"; package="+getTargetContext().getPackageManager().getPackageInfo(getTargetContext().getPackageName(),0).versionName+"; API29 x86_64 software renderer; physical NOT_RUN");modalCycles();calendar();
         note("PASS AUDIT installed checks="+checks+" (includes readiness polls; not independent user actions)");result.putString("stream","PASS AUDIT installed checks="+checks+"\n");finish(Activity.RESULT_OK,result);
     }catch(Throwable e){try{note("FAIL "+android.util.Log.getStackTraceString(e));}catch(Exception ignored){}result.putString("stream","FAIL AUDIT "+android.util.Log.getStackTraceString(e));finish(Activity.RESULT_CANCELED,result);}}
 }
