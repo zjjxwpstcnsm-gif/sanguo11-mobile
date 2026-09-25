@@ -1,4 +1,4 @@
-name: Native R00-R14 continuation preview and window diagnostics
+name: Native R00-R14 bounded upload continuation
 on:
   push:
     branches: [agent/native-pc-visual]
@@ -98,9 +98,9 @@ jobs:
       - name: Unchanged input APK byte control
         if: matrix.mode == 'baseline'
         run: |
-          curl -fL --retry 3 https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/releases/download/native-remediation-96719e971d74/sanguo11-native-remediation.apk -o app/build/outputs/apk/debug/app-debug.apk
-          echo 'ab87acc3f151594260ee8c07b802b39ff8bb354712e959c54252dc51680cd2ba  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
-          echo 96719e971d74aa2b3f18d66a7f23832148a6dc8b > out/remediation/SOURCE_COMMIT
+          curl -fL --retry 3 https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/releases/download/native-remediation-5d9384f9cba7/sanguo11-native-remediation.apk -o app/build/outputs/apk/debug/app-debug.apk
+          echo 'a481246a45969e73c0ef78697f3b43da2ef60c0e2a4ad95062d095a0bac35db4  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
+          echo 5d9384f9cba7810ebe9158d531a1c0ec4d6b9659 > out/remediation/SOURCE_COMMIT
       - uses: actions/upload-artifact@v4
         if: matrix.mode == 'candidate'
         with: {name: "native-remediation-api${{ matrix.api }}-apk-00", path: out/remediation-apk-part-00, retention-days: 14}

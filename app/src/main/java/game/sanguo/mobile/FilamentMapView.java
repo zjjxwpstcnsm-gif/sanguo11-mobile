@@ -76,6 +76,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private long lastOutputProbe;
     private String outputStatus="WAITING_SURFACE";
     private long surfaceFrames;
+    private int lastMeshUploads;
+    private long lastMeshUploadNanos;
     private SwapChain swap; private int cameraEntity,light;
     private boolean released,resumed=true,queued,diagnostics;
     private final long[] cpuSamples=new long[240];private int cpuCount,cpuCursor;
@@ -410,6 +412,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         +" shadows="+environmentShadows+" shadowFar=380 hazeOpaqueCap=0.08"
         +" season="+(season==null?"none":season.name)+" seasonUpdates="+seasonUpdates+" artProfile="+SeasonStyle.ID+" worldMonth="+(snapshot==null?0:snapshot.month)
         +" overlayDraws="+overlay.draws+" territoryBuilds="+overlay.territoryBuilds+" territoryBuildMs="+overlay.territoryBuildNanos/1e6
+        +" meshUploads="+lastMeshUploads+" meshUploadCpuMs="+lastMeshUploadNanos/1e6+" meshUploadMax=8 meshUploadBudgetMs=4"
         +" output="+outputStatus+"\ncamera="+camera.x+","+camera.z+" span="+camera.span+" tilt="+camera.tilt+" facing="+camera.facing+" yaw="+camera.yaw+"\npick="+lastPick;}
     String report(){return "landscape="+LandscapeProfile.ID+"\n"+startupReport()+"\nFilament 1.56.0 / OpenGL ES · "+quality.label+" color="+(srgbSwapChain?"sRGB framebuffer":"post-process gamma")+" MSAA="+(msaaEnabled?"4x":"off / compatibility")+" thermal="+thermalStatus+" cap="+thermal.fps(quality)+"\n内部 "+bufferWidth+" × "+bufferHeight+" / UI "+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S06 战斗特效 / 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+" · 特效 "+combat.count+"/"+CombatVisual.CAPACITY+"\n"+resourceReport();}
     void resetMetrics(){cpuCount=cpuCursor=0;}
@@ -495,7 +498,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(snapshot==null)return;
         if(backdrop==null&&backdropSource!=null){backdrop=new GpuMesh(backdropSource);backdrop.show(true);}
         engine.getLightManager().setShadowCaster(engine.getLightManager().getInstance(light),environmentShadows&&!thermal.constrained&&camera.span<22);
-        int nextLod=Math.max(quality.minSiteLod,SiteVisual.lod(camera.span,siteLod));if(nextLod!=siteLod){siteLod=nextLod;syncObjects();}int budget=2;visibleChunks=0;pending=meshWork.pending();
+        int nextLod=Math.max(quality.minSiteLod,SiteVisual.lod(camera.span,siteLod));if(nextLod!=siteLod){siteLod=nextLod;syncObjects();}int budget=8;long uploadNanos=0;visibleChunks=0;pending=meshWork.pending();
         if(meshWork.pending()==0&&(terrainWindow==null||!terrainWindow.covers(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span))){
             terrainWindow=new SceneMesh.TerrainWindow(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span);
             SceneMesh.TerrainWindow requested=terrainWindow;MapSceneSnapshot.Ground ground=snapshot.ground;
@@ -503,12 +506,15 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             Set<Hex> excluded=woodExcluded;FieldAssets assets=fieldAssets;
             meshWork.submit(()->new MeshResult(scenery,SceneMesh.ground(ground,previous,requested),Vegetation.buildWindow(ground,excluded,trees,assets,requested)));
         }
+        // Bound upload work by measured owner CPU time and count. Charge only
+        // actual uploads, so scanning existing residents cannot starve the queue.
+        // A single non-preemptible upload may exceed the time budget.
         Set<SceneMesh> active=activeTerrain;active.clear();for(SceneMesh m:chunks)active.add(m);
 
         for(SceneMesh source:chunks){
             SceneMesh chunk=source;
             boolean shown=inView(chunk.x,chunk.z,chunk.radius);GpuMesh gpu=terrain.get(chunk);
-            if(shown){visibleChunks++;if(gpu==null){if(budget-->0){gpu=new GpuMesh(chunk);terrain.put(chunk,gpu);}else pending++;}}
+            if(shown){visibleChunks++;if(gpu==null){if(budget>0&&uploadNanos<4_000_000L){long started=System.nanoTime();gpu=new GpuMesh(chunk);terrain.put(chunk,gpu);uploadNanos+=System.nanoTime()-started;budget--;}else pending++;}}
             if(gpu!=null){gpu.show(shown);if(!shown&&!inView(chunk.x,chunk.z,chunk.radius+20)){gpu.destroy();terrain.remove(chunk);}}
         }
         for(SceneMesh old:new ArrayList<>(terrain.keySet()))if(!active.contains(old)){
@@ -522,17 +528,18 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         for(SceneMesh source:woods){
             SceneMesh chunk=quality!=SceneQuality.LOW&&camera.span<14?source:source.distant;if(chunk.indices.length==0)continue;
             if(inView(chunk.x,chunk.z,chunk.radius)){wantedWood.add(chunk);visibleWood++;GpuMesh gpu=vegetation.get(chunk);
-                if(gpu==null){if(budget-->0){gpu=new GpuMesh(chunk);gpu.build(gpu.entity,vegetationMaterial);vegetation.put(chunk,gpu);}else pending++;}
+                if(gpu==null){if(budget>0&&uploadNanos<4_000_000L){long started=System.nanoTime();gpu=new GpuMesh(chunk);gpu.build(gpu.entity,vegetationMaterial);vegetation.put(chunk,gpu);uploadNanos+=System.nanoTime()-started;budget--;}else pending++;}
                 if(gpu!=null)gpu.show(true);
             }
         }
         for(SceneMesh old:new ArrayList<>(vegetation.keySet()))if(!wantedWood.contains(old)){
             SceneMesh replacement=null;
             for(SceneMesh wanted:wantedWood)if(wanted.chunkQ==old.chunkQ&&wanted.chunkR==old.chunkR){replacement=wanted;break;}
-            // Keep the previous LOD visible during the two-upload/frame queue.
+            // Keep the previous LOD visible until its replacement is uploaded.
             if(replacement==null||vegetation.containsKey(replacement))vegetation.remove(old).destroy();
             else vegetation.get(old).show(inView(old.x,old.z,old.radius));
         }
+        lastMeshUploads=8-budget;lastMeshUploadNanos=uploadNanos;
         visibleObjects=0;
         for(Proxy p:objects.values()){boolean shown=inView(p.motion.x,p.motion.z,2);if(shown)visibleObjects++;if(shown!=p.shown){p.show(shown);}}
     }
