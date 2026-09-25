@@ -17,7 +17,7 @@ import java.util.function.Predicate;
  * never writes auto.sg11 or invokes scenarioPicker/startScenario directly. */
 public final class NativeColdStartInstrumentation extends SceneInstrumentation {
  private File dir;
- private void note(String s)throws Exception{Files.writeString(new File(dir,"cold-runtime.txt").toPath(),s+"\n",StandardOpenOption.CREATE,StandardOpenOption.APPEND);}
+ private void note(String s)throws Exception{Files.write(new File(dir,"cold-runtime.txt").toPath(),(s+"\n").getBytes(java.nio.charset.StandardCharsets.UTF_8),StandardOpenOption.CREATE,StandardOpenOption.APPEND);}
  private View find(View v,Predicate<View> match){
   if(!v.isShown())return null;
   if(match.test(v))return v;

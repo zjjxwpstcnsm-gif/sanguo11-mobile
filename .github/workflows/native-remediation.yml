@@ -67,7 +67,7 @@ jobs:
   android:
     strategy:
       fail-fast: false
-      matrix: {mode: [baseline, candidate]}
+      matrix: {mode: [candidate]} # unchanged-input runs 36095728029 / 36096452481 retain baseline evidence
     runs-on: ubuntu-latest
     timeout-minutes: 75
     steps:
