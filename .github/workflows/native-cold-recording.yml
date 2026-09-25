@@ -1,4 +1,4 @@
-name: Native exact v105 independent P0 baseline
+name: Native exact v106 isolated cold start
 on:
   push:
     branches: [agent/native-pc-visual]
@@ -28,12 +28,12 @@ jobs:
       - name: Build instrumentation only; preserve exact published production APK
         run: |
           ./gradlew --no-daemon :app:assembleDebugAndroidTest -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true
-          mkdir -p app/build/outputs/apk/debug out/remediation /tmp/v105-apk
-          gh run download 36108363433 -n native-remediation-api29-apk-00 -D /tmp/v105-apk
-          gh run download 36108363433 -n native-remediation-api29-apk-01 -D /tmp/v105-apk
-          cat /tmp/v105-apk/remediation-apk-part-00 /tmp/v105-apk/remediation-apk-part-01 > app/build/outputs/apk/debug/app-debug.apk
-          echo '2b38ca4741b60650be58555ec118350f2aeff292765f6b3754adc138c1fdf55c  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
-          echo ef54951dbb7056beaa782f97a3486eefa3a88ef9 > out/remediation/SOURCE_COMMIT
+          mkdir -p app/build/outputs/apk/debug out/remediation /tmp/v106-apk
+          gh run download 36117420833 -n native-remediation-api29-apk-00 -D /tmp/v106-apk
+          gh run download 36117420833 -n native-remediation-api29-apk-01 -D /tmp/v106-apk
+          cat /tmp/v106-apk/remediation-apk-part-00 /tmp/v106-apk/remediation-apk-part-01 > app/build/outputs/apk/debug/app-debug.apk
+          echo '5a25e4a789ef46b6171dd35a3e1fd7aecefac1c97392f26bbc461113c93c0dba  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
+          echo 452f874144ad9893fdfce8188a375ee604c4f906 > out/remediation/SOURCE_COMMIT
           echo "$GITHUB_SHA" > out/remediation/INSTRUMENTATION_COMMIT
       - name: Enable KVM
         run: |
@@ -49,7 +49,7 @@ jobs:
           heap-size: 512M
           disable-animations: false
           emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
-          script: bash scripts/verify-native-remediation.sh baseline
+          script: bash scripts/verify-native-remediation.sh baseline cold-only
       - name: Preserve and validate exact original recording bytes
         if: always()
         run: |
@@ -61,8 +61,8 @@ jobs:
           done
           echo "$failed" > out/remediation/VIDEO_EXIT.txt
           cd out/remediation
-          zip -qr ../v105-p0-baseline.zip .
+          zip -qr ../v106-p0-baseline.zip .
           exit "$failed"
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: "exact-v105-p0-baseline-api${{ matrix.api }}", path: out/v105-p0-baseline.zip, retention-days: 14}
+        with: {name: "exact-v106-p0-baseline-api${{ matrix.api }}", path: out/v106-p0-baseline.zip, retention-days: 14}
