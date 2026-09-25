@@ -123,8 +123,8 @@ final class SceneMesh {
         return ground(g,previous,null);
     }
     static final class BuildStats {
-        long geometryNanos,heightNanos,blendNanos,shoreNanos;int sharedSamples;
-        @Override public String toString(){return "geometryWallMs="+geometryNanos/1e6+" normalHeightWallMs="+heightNanos/1e6+" blendWallMs="+blendNanos/1e6+" shoreWallMs="+shoreNanos/1e6+" reusedFieldSamples="+sharedSamples;}
+        long geometryNanos,heightNanos,blendNanos,shoreNanos;int sharedSamples,timedFieldSamples,builtChunks;Runnable progress;
+        @Override public String toString(){return "geometryWallMs="+geometryNanos/1e6+" sampledNormalHeightWallMs="+heightNanos/1e6+" sampledBlendWallMs="+blendNanos/1e6+" sampledShoreWallMs="+shoreNanos/1e6+" reusedFieldSamples="+sharedSamples+" timedFieldSamples="+timedFieldSamples;}
     }
     static List<SceneMesh> ground(MapSceneSnapshot.Ground g,List<SceneMesh> previous,TerrainWindow window){
         return ground(g,previous,window,null);
@@ -174,6 +174,7 @@ final class SceneMesh {
                 // Production holds only the requested precision, not a nationwide LOD pyramid.
                 if(window!=null)fine.distant=null;
                 fine.chunkQ=q;fine.chunkR=r;fine.fingerprint=fingerprint;out.add(fine);
+                if(stats!=null&&++stats.builtChunks%32==0&&stats.progress!=null)stats.progress.run();
             }
         }
         return Collections.unmodifiableList(out);

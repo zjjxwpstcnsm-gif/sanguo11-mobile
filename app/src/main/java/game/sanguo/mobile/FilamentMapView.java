@@ -387,6 +387,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(changed)scenery=SceneMesh.backdrop(ground);
         long backgroundDone=System.nanoTime(),backgroundCpu=android.os.Debug.threadCpuTimeNanos();
         SceneMesh.BuildStats stats=new SceneMesh.BuildStats();
+        stats.progress=()->android.util.Log.i("Sanguo3D","Ground progress builtChunks="+stats.builtChunks+" elapsedWallMs="+(System.nanoTime()-started)/1e6+" threadCpuMs="+(android.os.Debug.threadCpuTimeNanos()-cpu)/1e6+" "+stats);
         List<SceneMesh> built=SceneMesh.ground(ground,previous,window,stats);
         long groundDone=System.nanoTime(),groundCpu=android.os.Debug.threadCpuTimeNanos();
         android.util.Log.i("Sanguo3D","Ground CPU ready chunks="+built.size()+" ms="+(groundDone-started)/1e6
