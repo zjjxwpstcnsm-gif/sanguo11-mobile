@@ -87,7 +87,7 @@ public final class NativeR12Instrumentation extends SceneInstrumentation {
         World initial=ScenarioCatalog.load("coalition-190",0,20260924L);try(OutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(initial));}
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();host=(MapHost)field(activity,"map");world=SessionProbe.view(activity);dir=getTargetContext().getExternalFilesDir("s01");dir.mkdirs();
         runOnMainSync(()->{host.switchMode(true);invoke("closePanel",new Class<?>[0]);});ready();
-        note("SOURCE="+BuildConfig.SOURCE_REVISION+" emulator API29 x86_64 SwANGLE; no physical-device/PC-art claim");
+        note("SOURCE="+BuildConfig.SOURCE_REVISION+" device="+android.os.Build.MODEL+" api="+android.os.Build.VERSION.SDK_INT+" abi="+java.util.Arrays.toString(android.os.Build.SUPPORTED_ABIS)+"; no physical-device/PC-art claim");
         combinations();navigatorAndPanels();preview();
         commandFlow();note("PASS official deployment/movement/next-turn/autosave/load parity; invoked normal Activity transaction, not full manual walkthrough");
         combatAndSelection();note("PASS R12 checks="+checks+"; full manual touch walkthrough, orientation matrix, Adreno/Mali NOT_RUN");

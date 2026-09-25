@@ -67,6 +67,31 @@ final class SceneMesh {
         }
         SceneMesh mesh(float x,float z,float radius){return new SceneMesh(v,i,x,z,radius);}
     }
+    /** Fixed-capacity primitive scratch for one surface chunk (or the bounded backdrop).
+     * The fan, winding, vertex order, color arithmetic and land/water partition are unchanged.
+     * Avoid retaining millions of Float/Integer objects during a national first load. */
+    private static final class SurfaceBuilder {
+        final float[] vertices;
+        final int[] land;
+        int[] water;
+        int vertexCount,landCount,waterCount;
+        SurfaceBuilder(int maxVertices,int maxIndices){vertices=new float[maxVertices*7];land=new int[maxIndices];}
+        void vertex(float x,float y,float z,int color){
+            int n=vertexCount++*7;vertices[n]=x;vertices[n+1]=y;vertices[n+2]=z;
+            vertices[n+3]=((color>>16)&255)/255f;vertices[n+4]=((color>>8)&255)/255f;
+            vertices[n+5]=(color&255)/255f;vertices[n+6]=1f;
+        }
+        void triangle(boolean wet,int a,int b,int c){
+            if(wet){if(water==null)water=new int[land.length];water[waterCount++]=a;water[waterCount++]=b;water[waterCount++]=c;}
+            else{land[landCount++]=a;land[landCount++]=b;land[landCount++]=c;}
+        }
+        SceneMesh mesh(float x,float z,float radius){
+            int[] indices=Arrays.copyOf(land,landCount+waterCount);
+            if(waterCount!=0)System.arraycopy(water,0,indices,landCount,waterCount);
+            SceneMesh mesh=new SceneMesh(Arrays.copyOf(vertices,vertexCount*7),indices,x,z,radius);
+            mesh.landIndexCount=landCount;return mesh;
+        }
+    }
     static int shade(int c,float f){return 0xff000000|((int)(((c>>16)&255)*f)<<16)|((int)(((c>>8)&255)*f)<<8)|(int)((c&255)*f);}
     static int terrain(int ordinal){
         switch(TERRAIN_TYPES[ordinal]){
@@ -89,17 +114,17 @@ final class SceneMesh {
         }
         if(minX==Float.MAX_VALUE)return null;
         minX=(float)Math.floor((minX-16)/8)*8;minZ=(float)Math.floor((minZ-16)/8)*8;maxX+=16;maxZ+=16;
-        Builder b=new Builder();
         // Sample the shared field densely enough to avoid coarse background colour islands
         // showing through authoritative VOID cells. This never adds playable cells.
         final float step=2.25f;
         int columns=(int)Math.ceil((maxX-minX)/step),rows=(int)Math.ceil((maxZ-minZ)/step);
+        SurfaceBuilder b=new SurfaceBuilder((columns+1)*(rows+1),columns*rows*6);
         // The regular background has no split normals: adjacent quads share payloads.
         for(int r=0;r<=rows;r++)for(int q=0;q<=columns;q++)
             b.vertex(minX+q*step,-.04f,minZ+r*step,0xffffffff);
         for(int r=0;r<rows;r++)for(int q=0;q<columns;q++){
             int n=r*(columns+1)+q,next=n+columns+1;
-            Collections.addAll(b.i,n,next,next+1,n,next+1,n+1);
+            b.triangle(false,n,next,next+1);b.triangle(false,n,next+1,n+1);
         }
         SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+8);m.landIndexCount=m.indices.length;
         // Identical weights, lighting frame, macro tone and shore data to the foreground.
@@ -124,6 +149,7 @@ final class SceneMesh {
     }
     static final class BuildStats {
         long geometryNanos,heightNanos,blendNanos,shoreNanos;int sharedSamples,timedFieldSamples,builtChunks;Runnable progress;
+        java.util.function.Consumer<List<SceneMesh>> firstLoadBatch;
         @Override public String toString(){return "geometryWallMs="+geometryNanos/1e6+" sampledNormalHeightWallMs="+heightNanos/1e6+" sampledBlendWallMs="+blendNanos/1e6+" sampledShoreWallMs="+shoreNanos/1e6+" reusedFieldSamples="+sharedSamples+" timedFieldSamples="+timedFieldSamples;}
     }
     static List<SceneMesh> ground(MapSceneSnapshot.Ground g,List<SceneMesh> previous,TerrainWindow window){
@@ -152,18 +178,19 @@ final class SceneMesh {
             }
             SceneMesh retained=cached.get(q+":"+r);if(retained!=null&&retained.fingerprint==fingerprint){out.add(retained);continue;}
             long geometryStarted=stats==null?0:System.nanoTime();
-            Builder b=new Builder();List<Integer> waterIndices=new ArrayList<>();float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
+            int cells=Math.min(16,g.width-q)*Math.min(16,g.height-r);
+            SurfaceBuilder b=new SurfaceBuilder(cells*9,cells*24);float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
             for(int rr=r;rr<Math.min(r+16,g.height);rr++)for(int qq=q;qq<Math.min(q+16,g.width);qq++){
                 Hex h=new Hex(qq,rr);if(!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);
                 minX=Math.min(minX,x);maxX=Math.max(maxX,x);minZ=Math.min(minZ,z);maxZ=Math.max(maxZ,z);
-                int color=terrain(g.terrain[rr*g.width+qq]),n=b.v.size()/7;boolean water=g.surface.water(h);
+                int color=terrain(g.terrain[rr*g.width+qq]),n=b.vertexCount;boolean water=g.surface.water(h);
                 b.vertex(x,g.surface.sample(x,z),z,g.surface.color(x,z,color,water));
                 for(float[] edge:EDGE){float vx=x+edge[0],vz=z+edge[1];b.vertex(vx,g.surface.sample(vx,vz),vz,g.surface.color(vx,vz,color,water));}
                 // +Y facing winding: lit double-sided shading otherwise flips the valid +Y tangent normal.
-                for(int j=0;j<8;j++)Collections.addAll(water?waterIndices:b.i,n,n+1+(j+1)%8,n+1+j);
+                for(int j=0;j<8;j++)b.triangle(water,n,n+1+(j+1)%8,n+1+j);
             }
-            int landCount=b.i.size();b.i.addAll(waterIndices);
-            if(!b.i.isEmpty()){
+            int landCount=b.landCount;
+            if(landCount+b.waterCount>0){
                 SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+1);
                 m.landIndexCount=landCount;
                 if(stats!=null)stats.geometryNanos+=System.nanoTime()-geometryStarted;
@@ -174,6 +201,8 @@ final class SceneMesh {
                 // Production holds only the requested precision, not a nationwide LOD pyramid.
                 if(window!=null)fine.distant=null;
                 fine.chunkQ=q;fine.chunkR=r;fine.fingerprint=fingerprint;out.add(fine);
+                if(stats!=null&&stats.firstLoadBatch!=null&&out.size()%8==0)
+                    stats.firstLoadBatch.accept(Collections.unmodifiableList(new ArrayList<>(out)));
                 if(stats!=null&&++stats.builtChunks%32==0&&stats.progress!=null)stats.progress.run();
             }
         }

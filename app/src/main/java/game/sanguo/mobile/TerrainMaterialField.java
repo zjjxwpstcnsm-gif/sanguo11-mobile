@@ -21,7 +21,7 @@ final class TerrainMaterialField {
             if(d2>=1)continue;
             float distance=(float)Math.sqrt(d2),t=1-distance;
             float k=t*t*t*t*(1+4*distance); // C2 support shared in world space, not cell-owned tint.
-            if(ground.bases.contains(new Hex(q,r))){w[1]+=k;continue;}
+            if(ground.isBase(q,r)){w[1]+=k;continue;}
             switch(TYPES[ground.terrain[r*ground.width+q]]){
                 case SAND:w[2]+=k;break;
                 case MOUNTAIN:case DAM:w[3]+=.9f*k;w[1]+=.1f*k;break;

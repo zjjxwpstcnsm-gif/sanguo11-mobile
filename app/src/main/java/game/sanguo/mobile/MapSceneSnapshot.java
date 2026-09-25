@@ -8,10 +8,12 @@ import java.util.*;
 final class MapSceneSnapshot {
     static final class Ground {
         final Set<Hex> bases; final TerrainSurface surface;
+        private final BitSet baseCells;
         final int width,height,mapSeed,mapIdentity,sourceMapWidth,sourceOriginX,sourceOriginY; final float minX,minZ,maxX,maxZ; final byte[] terrain; final GridWorldTransform grid;
         Ground(World w) {
             width=w.width;height=w.height;sourceMapWidth=w.sourceMapWidth;sourceOriginX=w.sourceOriginX;sourceOriginY=w.sourceOriginY;mapIdentity=w.mapId.hashCode();mapSeed=31*w.mapId.hashCode()+w.mapRevision;grid=new GridWorldTransform(w.sourceMapWidth>0?(w.height-1)/2:0,w.columnStaggered);
             Set<Hex> flat=new HashSet<>();for(World.City c:w.cities)flat.addAll(SiteFootprint.cells(c));bases=Collections.unmodifiableSet(flat);
+            baseCells=new BitSet(width*height);for(Hex h:flat)if(h.q>=0&&h.r>=0&&h.q<width&&h.r<height)baseCells.set(h.r*width+h.q);
             terrain=new byte[width*height];
             float loX=Float.MAX_VALUE,loZ=loX,hiX=-loX,hiZ=-loX;
             for(int r=0;r<height;r++)for(int q=0;q<width;q++){
@@ -38,6 +40,8 @@ final class MapSceneSnapshot {
             for(int r=0;r<height;r++)for(int q=0;q<width;q++)if(terrain[r*width+q]!=(w.inside(new Hex(q,r))?w.terrain[q][r].ordinal():World.Terrain.VOID.ordinal()))return false;
             return true;
         }
+        /** Exact immutable membership, without allocating a Hex in each material sample. */
+        boolean isBase(int q,int r){return q>=0&&r>=0&&q<width&&r<height&&baseCells.get(r*width+q);}
         boolean valid(Hex h){return h!=null&&h.q>=0&&h.r>=0&&h.q<width&&h.r<height&&terrain[h.r*width+h.q]!=World.Terrain.VOID.ordinal();}
     }
     static final class Item {
