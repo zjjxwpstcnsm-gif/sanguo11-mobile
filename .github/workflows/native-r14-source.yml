@@ -21,9 +21,34 @@ jobs:
           git bundle create /tmp/r14/source.bundle HEAD refs/remotes/origin/main refs/remotes/origin/agent/native-pc-visual
           git rev-parse HEAD > /tmp/r14/SOURCE_COMMIT
           curl -fL --retry 3 https://github.com/google/filament/releases/download/v1.56.0/filament-v1.56.0-linux.tgz -o /tmp/r14/filament.tgz
-          sha256sum /tmp/r14/* > /tmp/r14/SHA256SUMS
+          tar -czf /tmp/r14-transport.tgz -C /tmp/r14 .\n          split -b 24M -d /tmp/r14-transport.tgz /tmp/r14-part-
       - uses: actions/upload-artifact@v4
         with:
-          name: native-r14-source
-          path: /tmp/r14/
+          name: native-r14-part-00
+          path: /tmp/r14-part-00
+          if-no-files-found: ignore
+          retention-days: 3
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r14-part-01
+          path: /tmp/r14-part-01
+          if-no-files-found: ignore
+          retention-days: 3
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r14-part-02
+          path: /tmp/r14-part-02
+          if-no-files-found: ignore
+          retention-days: 3
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r14-part-03
+          path: /tmp/r14-part-03
+          if-no-files-found: ignore
+          retention-days: 3
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r14-part-04
+          path: /tmp/r14-part-04
+          if-no-files-found: ignore
           retention-days: 3
