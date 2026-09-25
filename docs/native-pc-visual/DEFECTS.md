@@ -166,3 +166,10 @@
 - Final scoped installed PASS348, legacy editor PASS; five valid raw MP4 segments.
 - All-touch native CRUD, full SAF interruption/cold-reopen/portrait and physical GPU
   matrix remain NOT_RUN. R12 full-preview and R09 V2/PC art remain unresolved.
+
+## R14 candidate audit
+- R14-SEASON inherited, source fixed: no calendar in native snapshot; month now copied without World retention and controls uniform-only profiles.
+- R14-SHADOW inherited, source fixed: shadowFar28 was before the scene centre at camera distance300; corrected380, actual acne/floating/flicker acceptance pending.
+- R14-REFERENCE: season-matched PC sample absent; winter snow not invented. V2 remains FAIL.
+- R14-DEVICE: ARM64 Adreno/Mali, GPU overdraw/frame/thermal and full manual UI NOT_RUN.
+- R14-TRANSPORT: initial split workflow newline formatting failed36080186445, corrected36080270530. Not a production failure.

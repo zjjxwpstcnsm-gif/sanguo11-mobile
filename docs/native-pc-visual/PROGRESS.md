@@ -147,3 +147,6 @@ composed date freshness is unverified. CoreTest.logistics inherited FAIL remains
 R12 full-map preview and R09 V2/physical/manual gates remain open. reports/R13.md,
 handoffs/R13.md, R13_FORMAT.md and R13_COVERAGE.tsv contain exact scope and identity.
 No R14 or main merge. Final evidence-only commit does not change the runtime tree.
+
+## R14 current candidate — PARTIAL
+Authoritative month projection, shared seasonal environment and separate grass/foliage/crop/water material response integrated; uniform-only date updates preserve terrain resources. Pinned matc56 compiled four production materials. Local R14 host590 and material manifests PASS. Exact Android/runtime evidence pending; R09/R12/R13 legacy gaps and physical/PC gates remain. See reports/R14.md. No main merge or R15.

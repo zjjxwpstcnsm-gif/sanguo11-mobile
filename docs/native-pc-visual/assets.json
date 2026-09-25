@@ -19,7 +19,7 @@
   "R03": {
     "generator": "TerrainSurface.METADATA_VERSION=3",
     "source": "app/src/main/java/game/sanguo/mobile/TerrainSurface.java",
-    "runtime": "FilamentMapView → SceneMesh.ground window",
+    "runtime": "FilamentMapView \u2192 SceneMesh.ground window",
     "resources": "Existing terrain/site/field assets unchanged",
     "visual_acceptance": "PENDING"
   },
@@ -40,7 +40,7 @@
     "generator_sha256": "b86f32a1aa5828ddda1d0b67f5eba3271f67ab25b442787b7e7c0ab2c3a94da3",
     "license": "Original procedural CC0-1.0 textures/shader; no KOEI runtime imagery",
     "texture_manifest": "docs/3d/world-art/assets-manifest.json",
-    "runtime": "FilamentMapView.loadGroundMaterials → SceneMesh ground batches",
+    "runtime": "FilamentMapView.loadGroundMaterials \u2192 SceneMesh ground batches",
     "textures": "four 512x512 sRGB albedos; four linear RGBA normal/roughness; generated full mips; repeat",
     "compiler": "official Filament v1.56.0 matc --version 56; mobile OpenGL",
     "compiler_archive_sha256": "393dcc066987345282f4b5c3f525ab053d9c21087141cdc8015f403cddf455f0",
@@ -103,5 +103,68 @@
     "custom_mapping": "Normal SiteVisual/FieldAssets mapping by kind; fixture IDs100006701/2/3 are test additions only",
     "visual_format": "MapPatch format2 / visual.version1, bounded height/variant/yaw, logical fingerprint binding retained",
     "art_status": "PARTIAL; R09 V2 not accepted"
+  },
+  "R14": {
+    "profile": "ink-landscape-r14-v1",
+    "compiler": "Filament1.56.0/matc56, mobile OpenGL",
+    "source": "Original project art parameters and shaders; not KOEI algorithms",
+    "license": "CC0-1.0 shaders / Apache-2.0 compiler",
+    "consumer": "normal FilamentMapView date projection and material instances",
+    "colorSpace": "linear material constants, existing sRGB albedos",
+    "textures": "existing R04/R10 textures retained; zero added sampler/texture/transparent pass",
+    "snow": "none: no reliable geographic/season reference",
+    "art_status": "PARTIAL; PC seasonal references and physical GPU missing",
+    "files": [
+      {
+        "path": "app/src/main/java/game/sanguo/mobile/SeasonStyle.java",
+        "sha256": "cfd341ccf745d2d45044532c62ddebb20c7edd3ae6eabf9a914aa7afff93b9c9",
+        "bytes": 1920
+      },
+      {
+        "path": "app/src/main/java/game/sanguo/mobile/EnvironmentProfile.java",
+        "sha256": "2a6645b4ea27d0e571ce109030580734a752922ddfdacdb9f35e1ad421fd9cf6",
+        "bytes": 1715
+      },
+      {
+        "path": "tools/3d/ground.mat",
+        "sha256": "2044ad3456b53928b49c4ffc4abea050f3f786eceb47076f8248a1a3f4af071f",
+        "bytes": 3024
+      },
+      {
+        "path": "app/src/main/assets/3d/terrain/ground.filamat",
+        "sha256": "f42aa786ea9fff5c9f8f43c7eb103671b11506ff5890fcd05aa3d52038c959bb",
+        "bytes": 540454
+      },
+      {
+        "path": "tools/3d/water.mat",
+        "sha256": "007ea2d3c1391dc353cc5f28d2247ccb0a6352ef40b11bf896e984f837d0ada5",
+        "bytes": 3890
+      },
+      {
+        "path": "app/src/main/assets/3d/terrain/water.filamat",
+        "sha256": "f0c27cebf48137e12c7f50d6e26a4355ea533c64abde06d0a99f5d143b74c21c",
+        "bytes": 548065
+      },
+      {
+        "path": "tools/3d/site.mat",
+        "sha256": "d38a9b09924533f0ecda35c070a6062323ef50b3fc5e6748bdd0801cacd7b4fa",
+        "bytes": 1026
+      },
+      {
+        "path": "app/src/main/assets/3d/sites/site.filamat",
+        "sha256": "b4489c980aa59f8094b951874dc6550345f98a263db9fd64c100aefb05977b11",
+        "bytes": 476290
+      },
+      {
+        "path": "tools/3d/unit.mat",
+        "sha256": "c9c733e3757be1ac9b790426591c501bf2823b87338893bc9f5aaa3897bfa746",
+        "bytes": 2864
+      },
+      {
+        "path": "app/src/main/assets/3d/field/unit.filamat",
+        "sha256": "5e4330b35069f7e21a2bfad2c456d6af6b8dfced35440e7c56ccaf6bf497034a",
+        "bytes": 519959
+      }
+    ]
   }
 }

@@ -1,0 +1,13 @@
+{
+  "stage": "R14",
+  "status": "PARTIAL",
+  "baseline": "83699a4864fb63364d187824ff65b28074d14cc8",
+  "main": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "backend": "Filament1.56.0/OpenGL",
+  "host": "PASS590",
+  "materials": "matc56 compilation and manifest validation PASS",
+  "android": "NOT_RUN pending candidate CI",
+  "physical": "NOT_RUN",
+  "pc_season_reference": "REFERENCE_MISSING except January spring convention",
+  "runtime": "NOT_RUN pending candidate CI"
+}

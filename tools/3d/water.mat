@@ -5,6 +5,9 @@ material {
     doubleSided : true,
     requires : [ color, uv0, uv1 ],
     parameters : [
+        { type : float3, name : artTint },
+        { type : float3, name : plantTint },
+        { type : float3, name : waterTint },
         { type : sampler2d, name : grassColor },
         { type : sampler2d, name : soilColor },
         { type : sampler2d, name : sandColor },
@@ -50,15 +53,18 @@ fragment {
         float macro=0.97+0.025*sin(world.x*0.113+sin(world.y*0.071))
             +0.015*cos(world.y*0.139-world.x*0.047);
         float tone=0.96+0.04*sin(world.x*0.19)*cos(world.y*0.17);
-        bank=mix(bank,broad,0.38)*macro*tone*0.64;
+        bank=mix(bank,broad,0.38)*mix(float3(1.0),materialParams.plantTint,shore.x)*materialParams.artTint*macro*tone*0.64;
         float3 shallow=mix(float3(0.065,0.115,0.105),float3(0.12,0.14,0.095),shore.z);
         shallow=mix(shallow,float3(0.075,0.115,0.12),shore.w);
         float3 water=mix(shallow,float3(0.035,0.082,0.09),deep);
         // Subtle subsurface sediment/ripples, never bright foam outlining every cell.
+        water*=materialParams.waterTint*materialParams.artTint;
         water*=1.0+0.018*wave1*contact*(1.0-deep);
         material.baseColor=float4(mix(bank,water,contact),1.0);
         material.roughness=mix(0.48,mix(0.46,0.36,deep),contact);
         material.reflectance=mix(0.25,0.30,contact);
         material.metallic = 0.0;
+        float haze=smoothstep(320.0,410.0,length(getWorldPosition()-getWorldCameraPosition()))*0.08;
+        material.baseColor.rgb=mix(material.baseColor.rgb,float3(0.22,0.25,0.24),haze);
     }
 }

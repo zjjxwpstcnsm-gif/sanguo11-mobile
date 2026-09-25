@@ -78,9 +78,11 @@ final class MapSceneSnapshot {
         final Hex hex;final int remaining;
         FireState(War.Fire f){hex=f.hex;remaining=f.remaining;}
     }
+    final int month;
     final List<FireState> fires;
     final Ground ground; final List<Item> items; final Hex selected; final Set<Hex> reachable,siege,coverage,attackTargets;
     MapSceneSnapshot(Ground ground,World w,Hex selected,int moving) {
+        month=(w.startMonth-1+w.turn/3)%12+1;
         this.ground=ground;this.selected=selected;List<Item> list=new ArrayList<>();
         for(World.City c:w.cities){Item item=new Item("site:"+c.id,c.name,c.hex,c.kind==World.SiteKind.CITY?0:c.kind==World.SiteKind.PORT?1:2,FactionColors.color(w,c.owner),new SiteVisual(w,c,ground.grid));list.add(item);}
         for(World.Unit u:w.fieldUnits())list.add(new Item(w,u));

@@ -5,6 +5,8 @@ material {
     doubleSided : true,
     requires : [ color, uv0, uv1 ],
     parameters : [
+        { type : float3, name : artTint },
+        { type : float3, name : plantTint },
         { type : sampler2d, name : grassColor },
         { type : sampler2d, name : soilColor },
         { type : sampler2d, name : sandColor },
@@ -36,6 +38,7 @@ fragment {
             + texture(materialParams_sandColor,uvB).rgb*w.z
             + texture(materialParams_rockColor,uvB).rgb*w.w;
         color = mix(color,broad,0.38);
+        color *= mix(float3(1.0),materialParams.plantTint,w.x);
         float macro = 0.97 + 0.025*sin(worldUV.x*0.113+sin(worldUV.y*0.071))
             + 0.015*cos(worldUV.y*0.139-worldUV.x*0.047);
         float4 nr = float4(0.5,0.5,1.0,0.9);
@@ -48,9 +51,11 @@ fragment {
         float wet = 1.0-smoothstep(0.0,0.38,abs(getUV1().x));
         material.normal = normalize(mix(float3(0.0,0.0,1.0),nr.xyz*2.0-1.0,materialParams.normalStrength*0.55));
         prepareMaterial(material);
-        material.baseColor = float4(color*macro*getUV1().y*mix(1.0,0.64,wet),1.0);
+        material.baseColor = float4(color*materialParams.artTint*macro*getUV1().y*mix(1.0,0.64,wet),1.0);
         material.roughness = mix(nr.a,0.48,wet);
         material.metallic = 0.0;
         material.reflectance = 0.25;
+        float haze=smoothstep(320.0,410.0,length(getWorldPosition()-getWorldCameraPosition()))*0.08;
+        material.baseColor.rgb=mix(material.baseColor.rgb,float3(0.22,0.25,0.24),haze);
     }
 }

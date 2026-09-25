@@ -66,6 +66,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private Material groundMaterial; private final List<Texture> groundTextures=new ArrayList<>();
     private boolean environmentShadows;
     private IndirectLight skyLight;
+    private SeasonStyle season;private int seasonUpdates;
     private Material siteMaterial,unitMaterial; private Texture siteAtlas,fieldAtlas,unitAtlas;private FieldAssets fieldAssets;private MaterialInstance vegetationMaterial;
     private boolean assetSyncPending;private int assetUploadBudget=2;
     private int siteLod=1; private final Set<String> missingAssets=new HashSet<>();
@@ -185,6 +186,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             vegetationMaterial=siteMaterial.createInstance();vegetationMaterial.setParameter("atlas",fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));vegetationMaterial.setParameter("damage",0f);
             light=EntityManager.get().create();environmentShadows=quality!=SceneQuality.LOW&&manager!=null&&manager.getDeviceConfigurationInfo().reqGlEsVersion>=0x30001;EnvironmentProfile.sun(engine,light,quality,environmentShadows);scene.addEntity(light);
             skyLight=EnvironmentProfile.sky(engine);scene.setIndirectLight(skyLight);
+            applySeason(SeasonStyle.SPRING);
             surface.getHolder().addCallback(this);
             if(android.os.Build.VERSION.SDK_INT>=29){
                 thermalManager=context.getSystemService(android.os.PowerManager.class);
@@ -347,6 +349,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void snapshot(MapSceneSnapshot next){
         meshWork.owner();if(released)return;
         boolean groundChanged=snapshot==null||snapshot.ground!=next.ground;snapshot=next;
+        applySeason(SeasonStyle.forMonth(next.month));
         Set<Hex> excluded=Vegetation.exclusions(next);boolean woodsChanged=groundChanged||!excluded.equals(woodExcluded);
         if(groundChanged||woodsChanged){
             outputVerified=false;outputStatus="WAITING_MESH";uniformOutputCount=0;
@@ -367,6 +370,16 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             });
         }
         syncObjects();overlay.invalidate();schedule();
+    }
+    private void applySeason(SeasonStyle next){
+        if(season==next)return;
+        season=next;seasonUpdates++;
+        EnvironmentProfile.apply(engine,light,skyLight,next);
+        EnvironmentProfile.pigment(groundMaterial.getDefaultInstance(),next,true);
+        EnvironmentProfile.pigment(waterMaterial.getDefaultInstance(),next,true);
+        waterMaterial.getDefaultInstance().setParameter("waterTint",next.waterR,next.waterG,next.waterB);
+        EnvironmentProfile.pigment(vegetationMaterial,next,true);
+        for(Proxy p:objects.values())p.updateSeason();
     }
     private void acceptMeshes(MeshResult result){
         if(released)return;
@@ -391,6 +404,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         +" session="+(sceneToken==null?"editor":sceneToken.sessionId+":"+sceneToken.generation+":"+sceneToken.revision)+" assetRevision=1.56.0/R06"
         +" asset_pending="+assetWork.pending()+" asset_cpu_bytes="+assetWork.bytes()+" terrain_all_coarse="+distantTerrain+" mapVisualKey="+(snapshot==null?"none":snapshot.ground.mapSeed+":"+snapshot.ground.surface.overrides.hashCode())
         +" environmentCpuChunks="+woods.size()+" environmentMode=opaque-merged-not-instanced meshGeneration="+generation+" cpuChunks="+chunks.size()+" pending="+pending+" submitted="+surfaceFrames
+        +" shadows="+environmentShadows+" shadowFar=380 hazeOpaqueCap=0.08"
+        +" season="+(season==null?"none":season.name)+" seasonUpdates="+seasonUpdates+" artProfile="+SeasonStyle.ID+" worldMonth="+(snapshot==null?0:snapshot.month)
         +" output="+outputStatus+"\ncamera="+camera.x+","+camera.z+" span="+camera.span+" tilt="+camera.tilt+" facing="+camera.facing+" yaw="+camera.yaw+"\npick="+lastPick;}
     String report(){return "landscape="+LandscapeProfile.ID+"\n"+startupReport()+"\nFilament 1.56.0 / OpenGL ES · "+quality.label+" color="+(srgbSwapChain?"sRGB framebuffer":"post-process gamma")+" MSAA="+(msaaEnabled?"4x":"off / compatibility")+" thermal="+thermalStatus+" cap="+thermal.fps(quality)+"\n内部 "+bufferWidth+" × "+bufferHeight+" / UI "+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S06 战斗特效 / 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+" · 特效 "+combat.count+"/"+CombatVisual.CAPACITY+"\n"+resourceReport();}
     void resetMetrics(){cpuCount=cpuCursor=0;}
@@ -739,11 +754,12 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 stateShape.references++;
                 state=EntityManager.get().create();if(stateShape.source.uv!=null)stateShape.build(state,vegetationMaterial);else stateShape.build(state);
             }
-            position(snapshot.ground.grid.x(item.hex),snapshot.ground.grid.z(item.hex));updateDamage();
+            updateSeason();position(snapshot.ground.grid.x(item.hex),snapshot.ground.grid.z(item.hex));updateDamage();
         }catch(RuntimeException|LinkageError|OutOfMemoryError error){destroy();throw error;}}
         void replace(GpuMesh mesh){
             engine.getRenderableManager().destroy(entity);shape.references--;shape=mesh;shape.references++;if(instance==null)shape.build(entity);else shape.build(entity,instance,memberCount);if(shown)scene.addEntity(entity);
         }
+        void updateSeason(){if(instance!=null)EnvironmentProfile.pigment(instance,season,item.facility!=null&&item.facility.type.equals("domestic/FARM"));}
         void updateDamage(){if(instance!=null)instance.setParameter("damage",item.site!=null?item.site.damage*.5f:item.facility!=null?1-item.facility.hp/(float)Math.max(1,item.facility.maxHp):0);}
         String stateKey(){return item.facility==null?"":item.facility.burning?"fire":!item.facility.complete?"scaffold":"";}
         void position(float x,float z){

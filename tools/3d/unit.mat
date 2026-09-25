@@ -6,6 +6,8 @@ material {
     instanced : true,
     requires : [color,uv0],
     parameters : [
+        { type : float3, name : artTint },
+        { type : float3, name : plantTint },
         { type : sampler2d, name : atlas },
         { type : float, name : damage },
         { type : float4, name : member0 },
@@ -44,9 +46,13 @@ fragment {
     void material(inout MaterialInputs material) {
         prepareMaterial(material);
         float3 base=texture(materialParams_atlas,getUV0()).rgb*getColor().rgb;
+        float leaf=smoothstep(0.0,0.055,base.g-max(base.r,base.b));
+        base*=materialParams.artTint*mix(float3(1.0),materialParams.plantTint,leaf);
         material.roughness=.88;
         material.metallic=0.0;
         material.reflectance=.25;
         material.baseColor=float4(base*(1.0-materialParams.damage*.32),1.0);
+        float haze=smoothstep(320.0,410.0,length(getWorldPosition()-getWorldCameraPosition()))*0.08;
+        material.baseColor.rgb=mix(material.baseColor.rgb,float3(0.22,0.25,0.24),haze);
     }
 }
