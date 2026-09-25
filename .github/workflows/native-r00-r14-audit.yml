@@ -1,0 +1,54 @@
+name: Native R00-R14 audit source and verification
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-r00-r14-audit.yml', 'scripts/*r00-r14*']
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Preserve exact audit input and ancestry
+        run: |
+          set -euo pipefail
+          mkdir -p out/audit-source
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git merge-base --is-ancestor ac29b458325b52d6e302ca44270d16552de4ed7f HEAD
+          git rev-parse HEAD origin/main > out/audit-source/refs.txt
+          git log --format='%H %s' origin/main..HEAD > out/audit-source/commits.txt
+          git diff --stat origin/main..HEAD > out/audit-source/diff-stat.txt
+          git diff --name-status origin/main..HEAD > out/audit-source/changed-files.txt
+          git archive --format=tar.gz HEAD > out/audit-source/source.tar.gz
+          sha256sum out/audit-source/source.tar.gz > out/audit-source/SHA256SUMS
+          split -b 18M -d out/audit-source/source.tar.gz out/source-part-
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r00-r14-source-00
+          path: out/source-part-00
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r00-r14-source-01
+          path: out/source-part-01
+          if-no-files-found: ignore
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r00-r14-source-02
+          path: out/source-part-02
+          if-no-files-found: ignore
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r00-r14-source-metadata
+          path: |
+            out/audit-source/*.txt
+            out/audit-source/SHA256SUMS
+          retention-days: 14
