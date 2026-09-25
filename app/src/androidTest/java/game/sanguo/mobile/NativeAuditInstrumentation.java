@@ -19,7 +19,7 @@ public final class NativeAuditInstrumentation extends SceneInstrumentation {
         android.view.View decor=activity.getWindow().getDecorView();
         android.graphics.Bitmap bitmap=android.graphics.Bitmap.createBitmap(decor.getWidth(),decor.getHeight(),android.graphics.Bitmap.Config.ARGB_8888);
         java.util.concurrent.CountDownLatch latch=new java.util.concurrent.CountDownLatch(1);int[] status={-1};
-        runOnMainSync(()->android.view.PixelCopy.request(activity.getWindow(),bitmap,r->{status[0]=r;latch.countDown();},new Handler(Looper.getMainLooper())));
+        runOnMainSync(()->{try{android.view.PixelCopy.request(activity.getWindow(),bitmap,r->{status[0]=r;latch.countDown();},new Handler(Looper.getMainLooper()));}catch(IllegalArgumentException unavailable){status[0]=-2;android.util.Log.w("RemediationCapture","Window PixelCopy unavailable; retain independent whole-screen captures",unavailable);latch.countDown();}});
         boolean completed=latch.await(20,java.util.concurrent.TimeUnit.SECONDS);
         note(name+" windowPixelCopy="+status[0]+" completed="+completed+" drawCount="+uiDraws+" lastDrawNanos="+lastUiDrawNanos+" windowFrames="+windowFrames+" intendedVsync="+lastVsyncNanos+" frameDuration="+lastFrameDuration);
         if(completed&&status[0]==android.view.PixelCopy.SUCCESS)try(OutputStream out=new FileOutputStream(new File(dir,name+"-window.png"))){bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,out);}
