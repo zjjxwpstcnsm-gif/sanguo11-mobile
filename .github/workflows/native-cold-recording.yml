@@ -1,0 +1,64 @@
+name: Native exact v104 cold-start recording control
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-cold-recording.yml']
+permissions:
+  actions: read
+  contents: write
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: ''}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Build instrumentation only; preserve exact published production APK
+        run: |
+          ./gradlew --no-daemon :app:assembleDebugAndroidTest -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true
+          gh run watch 36106137919 --interval 30 || true
+          mkdir -p app/build/outputs/apk/debug out/remediation
+          curl -fL --retry 3 https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/releases/download/native-remediation-a9d944310249/sanguo11-native-remediation.apk -o app/build/outputs/apk/debug/app-debug.apk
+          echo 'd57cf80d3747fcb65cb7c982ad0abe1e2bf4e61750e9fe6fd6a4f5e81a703690  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
+          echo a9d944310249b26ab3167ea5407f8111758a29c8 > out/remediation/SOURCE_COMMIT
+          echo "$GITHUB_SHA" > out/remediation/INSTRUMENTATION_COMMIT
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-native-remediation.sh candidate cold-only
+      - name: Preserve and validate exact original recording bytes
+        if: always()
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          failed=0
+          for video in out/remediation/candidate/cold-start/*.mp4; do
+            ffprobe -v error -show_format -show_streams "$video" > "$video.ffprobe.txt" 2>&1 || failed=1
+          done
+          echo "$failed" > out/remediation/VIDEO_EXIT.txt
+          cd out/remediation
+          zip -qr ../v104-cold-recording.zip .
+          gh release upload native-remediation-a9d944310249 ../v104-cold-recording.zip
+          exit "$failed"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: exact-v104-cold-recording, path: out/v104-cold-recording.zip, retention-days: 14}

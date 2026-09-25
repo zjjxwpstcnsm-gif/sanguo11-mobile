@@ -17,15 +17,20 @@ run_probe(){
   adb shell am force-stop game.sanguo.mobile.dev
   adb shell pm clear game.sanguo.mobile.dev
   adb logcat -c
-  (for part in {1..10}; do adb shell screenrecord --time-limit 180 "/sdcard/remediation-$part.mp4"; done) > "$root/$label/recording.txt" 2>&1 &
+  local stop_file="$root/$label/recording.stop"
+  rm -f "$stop_file"
+  (for part in {1..10}; do [[ -e "$stop_file" ]] && break; adb shell screenrecord --time-limit 180 "/sdcard/remediation-$part.mp4"; done) > "$root/$label/recording.txt" 2>&1 &
   local recorder=$!
   set +e
   timeout 2200 adb shell am instrument -w "game.sanguo.mobile.dev.test/game.sanguo.mobile.$cls" > "$root/$label/interaction.txt" 2>&1
   local rc=$?
   set -e
   printf '%s\n' "$rc" > "$root/$label/shell-exit.txt"
+  # Let MediaMuxer write the final moov atom before pulling bytes.
+  touch "$stop_file"
   adb shell pkill -INT screenrecord || true
-  kill "$recorder" 2>/dev/null || true
+  wait "$recorder" || true
+  rm -f "$stop_file"
   for part in {1..10}; do adb pull "/sdcard/remediation-$part.mp4" "$root/$label/" >/dev/null 2>&1 || true; done
   adb shell rm -f '/sdcard/remediation-*.mp4'
   adb shell pidof game.sanguo.mobile.dev > "$root/$label/pid.txt" || true
@@ -33,6 +38,11 @@ run_probe(){
   adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 "$root/$label/images" || true
   adb shell dumpsys meminfo game.sanguo.mobile.dev > "$root/$label/meminfo.txt"
 }
+if [[ "${2:-all}" = cold-only ]]; then
+  run_probe NativeColdStartInstrumentation cold-start
+  grep -q "PASS COLD_START" "$root/cold-start/interaction.txt"
+  exit $?
+fi
 run_probe NativeAuditInstrumentation focused-window
 audit_rc=0; grep -q 'PASS AUDIT' "$root/focused-window/interaction.txt" || audit_rc=1
 run_probe NativeR12Instrumentation r12-full
