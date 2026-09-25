@@ -154,7 +154,6 @@ final class MapHost extends FrameLayout implements MapPresentation {
             // starts safely in 2D; fallback() also reinstates the in-process latch.
             if(manual)interruptedSession=false;
             removeView(flat);addView(spatial,new LayoutParams(-1,-1));
-            dirty=true;publish();
             Map<String,?> saved=prefs.getAll();if(!camera.containsKey("sceneYaw")&&saved.get("yaw") instanceof Float)camera.putFloat("sceneYaw",(Float)saved.get("yaw"));if(!camera.containsKey("sceneTilt")&&saved.get("tilt") instanceof Float)camera.putFloat("sceneTilt",(Float)saved.get("tilt"));if(!camera.containsKey("sceneFacing")&&saved.get("facing") instanceof Integer)camera.putInt("sceneFacing",(Integer)saved.get("facing"));
             // A Canvas camera has no native span. The opening preview must fit the
             // national map once the new native view has its real layout dimensions.
@@ -162,6 +161,9 @@ final class MapHost extends FrameLayout implements MapPresentation {
             boolean firstNativePreview=openingPreview&&!camera.containsKey("sceneSpan");
             spatial.commandTargeting(commandTargeting);spatial.setGridShown(gridShown());spatial.navigator(flat.navigatorShown());spatial.restoreCamera(camera);spatial.setTargets(targets);spatial.setRoute(route);spatial.resume(renderGate.active());spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(projection.blocked(world,editorPassability),editorGrid,editorCoords,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);
             if(firstNativePreview)spatial.fit();
+            // Publish after restoring/requesting the initial camera, so CPU work
+            // is generated for the actual preview instead of a default local view.
+            dirty=true;publish();
         }catch(Exception|LinkageError|OutOfMemoryError e){fallback(e);}
     }
     private void fallback(Throwable e){safeMode=true;interruptedSession=true;prefs.edit().putString("lastExitReason","Java initialization/render failure").putString("lastFailure",e.getClass().getSimpleName()).putLong("lastFailureTime",System.currentTimeMillis()).commit();android.util.Log.e("MapRenderer","Filament fallback to 2D",e);leave3D();if(world!=null)flat.setWorld(world,selected,moving);flat.restoreCamera(camera);Toast.makeText(getContext(),"3D 初始化或渲染失败，已返回 2D："+e.getClass().getSimpleName(),Toast.LENGTH_LONG).show();}

@@ -87,6 +87,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     // Actual accepted-mesh summary retained for existing native acceptance probes.
     private boolean distantTerrain;
     private boolean pendingFit;
+    private MapSceneSnapshot pendingLayoutSnapshot;
     private GpuMesh backdrop;private SceneMesh backdropSource;
     private List<SceneMesh> chunks=Collections.emptyList(),woods=Collections.emptyList();
     private Set<Hex> woodExcluded=Collections.emptySet();
@@ -286,7 +287,9 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     @Override protected void onSizeChanged(int w,int h,int oldw,int oldh){
         super.onSizeChanged(w,h,oldw,oldh);camera.width=Math.max(1,w);camera.height=Math.max(1,h);
         resizeSurface();
-        if(pendingFit)fit();
+        if(pendingLayoutSnapshot!=null&&w>0&&h>0){
+            MapSceneSnapshot next=pendingLayoutSnapshot;pendingLayoutSnapshot=null;snapshot(next);
+        }else if(pendingFit)fit();
     }
     @Override public boolean onTouchEvent(MotionEvent e){
         if(!isEnabled())return true;
@@ -352,6 +355,9 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     @Override public boolean performClick(){super.performClick();return true;}
     void snapshot(MapSceneSnapshot next){
         meshWork.owner();if(released)return;
+        // A national fit requested before layout must precede the first CPU job.
+        // Retain only the latest immutable display snapshot until dimensions exist.
+        if(pendingFit&&(getWidth()==0||getHeight()==0)){pendingLayoutSnapshot=next;return;}
         boolean groundChanged=snapshot==null||snapshot.ground!=next.ground;snapshot=next;
         if(pendingFit)fit();
         applySeason(SeasonStyle.forMonth(next.month));
@@ -694,7 +700,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void restoreCamera(Bundle b){pendingFit=false;navigatorShown=b.getBoolean("mapNavigator",navigatorShown);try{camera.x=b.getFloat("cameraX")/TileGeometry.DX;camera.z=b.getFloat("cameraY")/TileGeometry.DY;camera.span=b.getFloat("sceneSpan",15);camera.tilt=b.getFloat("sceneTilt",55);camera.yaw=b.getFloat("sceneYaw",0);camera.facing=b.getInt("sceneFacing",1)<0?-1:1;camera.sanitize();clampCamera();}catch(RuntimeException bad){camera.x=0;camera.z=0;camera.span=15;camera.tilt=55;camera.yaw=0;camera.facing=1;clampCamera();}}
     void release(){
         meshWork.owner();
-        if(released)return;released=true;replay=null;animatedUnit=null;generation++;cancelFrame();meshWork.close();assetWork.close();pending=0;surface.getHolder().removeCallback(this);
+        if(released)return;released=true;pendingLayoutSnapshot=null;pendingFit=false;replay=null;animatedUnit=null;generation++;cancelFrame();meshWork.close();assetWork.close();pending=0;surface.getHolder().removeCallback(this);
         // A detached View may remain referenced by the framework or an outstanding probe.
         // Release heavyweight CPU ownership immediately, rather than waiting for View GC.
         chunks=Collections.emptyList();woods=Collections.emptyList();snapshot=null;fieldAssets=null;backdropSource=null;

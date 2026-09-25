@@ -1,4 +1,4 @@
-name: Native R00-R14 bounded upload continuation
+name: Native R00-R14 initial preview work continuation
 on:
   push:
     branches: [agent/native-pc-visual]
@@ -64,8 +64,6 @@ jobs:
         include:
           - {mode: candidate, api: 29}
           - {mode: candidate, api: 35}
-          - {mode: baseline, api: 29}
-          - {mode: baseline, api: 35}
     runs-on: ubuntu-latest
     timeout-minutes: 75
     steps:

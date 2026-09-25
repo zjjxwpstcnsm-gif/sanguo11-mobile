@@ -57,6 +57,10 @@ public final class NativeColdStartInstrumentation extends SceneInstrumentation {
    }
    note("FIRST_NATIVE_PREVIEW total="+total+" outside="+outside+" span="+camera.span+" viewport="+camera.width+"x"+camera.height);
    check(total>0&&outside==0,"first native preview includes every valid national cell without an extra fit command");
+   long initialJobs=(Long)field(field(nativeView,"meshWork"),"epoch");
+   note("FIRST_PREVIEW_CPU_EPOCH="+initialJobs+" allCoarse="+field(nativeView,"distantTerrain"));
+   check(initialJobs==1L,"first stable national preview requires only one CPU request, without a discarded local warmup");
+   check((Boolean)field(nativeView,"distantTerrain"),"first national preview uses coarse terrain");
   }catch(Exception e){throw new RuntimeException(e);}});
   Object overlay=field(field(host,"spatial"),"overlay");long builds=(Long)field(overlay,"territoryBuilds"),draws=(Long)field(overlay,"draws");
   settle();settle();check((Long)field(overlay,"territoryBuilds")==builds,"stationary full-map territory is reused across frames");check((Long)field(overlay,"draws")>draws,"UI overlay continues drawing live labels");
