@@ -17,6 +17,11 @@ public final class NativeAuditInstrumentation extends SceneInstrumentation {
     private volatile long uiDraws,lastUiDrawNanos,windowFrames,lastVsyncNanos,lastFrameDuration;
     private void windowCapture(String name)throws Exception{
         android.view.View decor=activity.getWindow().getDecorView();
+        runOnMainSync(()->{try{
+            note(name+" WINDOW attached="+decor.isAttachedToWindow()+" shown="+decor.isShown()+" focus="+decor.hasWindowFocus()+" visibility="+decor.getWindowVisibility()+" token="+decor.getWindowToken()+" activityDestroyed="+activity.isDestroyed()+" finishing="+activity.isFinishing()+" hardware="+decor.isHardwareAccelerated()+" layoutRequested="+decor.isLayoutRequested());
+        }catch(Exception e){throw new RuntimeException(e);}});
+        for(String service:new String[]{"window","SurfaceFlinger"})try(ParcelFileDescriptor fd=getUiAutomation().executeShellCommand("dumpsys "+service);InputStream in=new ParcelFileDescriptor.AutoCloseInputStream(fd);OutputStream out=new FileOutputStream(new File(dir,name+"-"+service+".txt"))){byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);}
+
         android.graphics.Bitmap bitmap=android.graphics.Bitmap.createBitmap(decor.getWidth(),decor.getHeight(),android.graphics.Bitmap.Config.ARGB_8888);
         java.util.concurrent.CountDownLatch latch=new java.util.concurrent.CountDownLatch(1);int[] status={-1};
         runOnMainSync(()->{try{android.view.PixelCopy.request(activity.getWindow(),bitmap,r->{status[0]=r;latch.countDown();},new Handler(Looper.getMainLooper()));}catch(IllegalArgumentException unavailable){status[0]=-2;android.util.Log.w("RemediationCapture","Window PixelCopy unavailable; retain independent whole-screen captures",unavailable);latch.countDown();}});

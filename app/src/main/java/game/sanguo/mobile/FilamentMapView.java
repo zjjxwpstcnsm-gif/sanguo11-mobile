@@ -84,6 +84,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private SceneMesh.TerrainWindow terrainWindow;
     // Actual accepted-mesh summary retained for existing native acceptance probes.
     private boolean distantTerrain;
+    private boolean pendingFit;
     private GpuMesh backdrop;private SceneMesh backdropSource;
     private List<SceneMesh> chunks=Collections.emptyList(),woods=Collections.emptyList();
     private Set<Hex> woodExcluded=Collections.emptySet();
@@ -283,6 +284,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     @Override protected void onSizeChanged(int w,int h,int oldw,int oldh){
         super.onSizeChanged(w,h,oldw,oldh);camera.width=Math.max(1,w);camera.height=Math.max(1,h);
         resizeSurface();
+        if(pendingFit)fit();
     }
     @Override public boolean onTouchEvent(MotionEvent e){
         if(!isEnabled())return true;
@@ -349,6 +351,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void snapshot(MapSceneSnapshot next){
         meshWork.owner();if(released)return;
         boolean groundChanged=snapshot==null||snapshot.ground!=next.ground;snapshot=next;
+        if(pendingFit)fit();
         applySeason(SeasonStyle.forMonth(next.month));
         Set<Hex> excluded=Vegetation.exclusions(next);boolean woodsChanged=groundChanged||!excluded.equals(woodExcluded);
         if(groundChanged||woodsChanged){
@@ -674,14 +677,14 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     void focus(Hex h){if(snapshot==null||h==null)return;camera.x=snapshot.ground.grid.x(h);camera.z=snapshot.ground.grid.z(h);camera.span=10;}
     void center(Hex h){if(snapshot!=null&&h!=null){camera.x=snapshot.ground.grid.x(h);camera.z=snapshot.ground.grid.z(h);}}
-    void fit(){if(snapshot==null)return;MapSceneSnapshot.Ground g=snapshot.ground;float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;for(int r=0;r<g.height;r++)for(int q=0;q<g.width;q++){Hex h=new Hex(q,r);if(g.valid(h)){float x=g.grid.x(h),z=g.grid.z(h);minX=Math.min(minX,x);minZ=Math.min(minZ,z);maxX=Math.max(maxX,x);maxZ=Math.max(maxZ,z);}}if(minX==Float.MAX_VALUE)return;camera.x=(minX+maxX)/2;camera.z=(minZ+maxZ)/2;float dx=maxX-minX+3,dz=maxZ-minZ+3;camera.span=(float)Math.max((dx*Math.abs(camera.rightX())+dz*Math.abs(camera.backX()))*camera.height/camera.width,(dx*Math.abs(camera.backX())+dz*Math.abs(camera.rightX()))*camera.sin())*.52f;camera.sanitize();}
+    void fit(){pendingFit=true;if(snapshot==null||getWidth()==0||getHeight()==0)return;pendingFit=false;MapSceneSnapshot.Ground g=snapshot.ground;float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;for(int r=0;r<g.height;r++)for(int q=0;q<g.width;q++){Hex h=new Hex(q,r);if(g.valid(h)){float x=g.grid.x(h),z=g.grid.z(h);minX=Math.min(minX,x);minZ=Math.min(minZ,z);maxX=Math.max(maxX,x);maxZ=Math.max(maxZ,z);}}if(minX==Float.MAX_VALUE)return;camera.x=(minX+maxX)/2;camera.z=(minZ+maxZ)/2;float dx=maxX-minX+3,dz=maxZ-minZ+3;camera.span=(float)Math.max((dx*Math.abs(camera.rightX())+dz*Math.abs(camera.backX()))*camera.height/camera.width,(dx*Math.abs(camera.backX())+dz*Math.abs(camera.rightX()))*camera.sin())*.52f;camera.sanitize();}
     void resetOrientation(){camera.facing=1;camera.yaw=0;camera.tilt=55;clampCamera();overlay.invalidate();}
     void reverseOrientation(){camera.facing=-camera.facing;overlay.invalidate();}
     private void clampCamera(){
         camera.sanitize();if(snapshot!=null)camera.clampTo(snapshot.ground);
     }
     void saveCamera(Bundle b){b.putBoolean("mapNavigator",navigatorShown);b.putFloat("cameraX",camera.x*TileGeometry.DX);b.putFloat("cameraY",camera.z*TileGeometry.DY);b.putFloat("sceneSpan",camera.span);b.putFloat("sceneTilt",camera.tilt);b.putInt("sceneFacing",camera.facing);b.putFloat("sceneYaw",camera.yaw);}
-    void restoreCamera(Bundle b){navigatorShown=b.getBoolean("mapNavigator",navigatorShown);try{camera.x=b.getFloat("cameraX")/TileGeometry.DX;camera.z=b.getFloat("cameraY")/TileGeometry.DY;camera.span=b.getFloat("sceneSpan",15);camera.tilt=b.getFloat("sceneTilt",55);camera.yaw=b.getFloat("sceneYaw",0);camera.facing=b.getInt("sceneFacing",1)<0?-1:1;camera.sanitize();clampCamera();}catch(RuntimeException bad){camera.x=0;camera.z=0;camera.span=15;camera.tilt=55;camera.yaw=0;camera.facing=1;clampCamera();}}
+    void restoreCamera(Bundle b){pendingFit=false;navigatorShown=b.getBoolean("mapNavigator",navigatorShown);try{camera.x=b.getFloat("cameraX")/TileGeometry.DX;camera.z=b.getFloat("cameraY")/TileGeometry.DY;camera.span=b.getFloat("sceneSpan",15);camera.tilt=b.getFloat("sceneTilt",55);camera.yaw=b.getFloat("sceneYaw",0);camera.facing=b.getInt("sceneFacing",1)<0?-1:1;camera.sanitize();clampCamera();}catch(RuntimeException bad){camera.x=0;camera.z=0;camera.span=15;camera.tilt=55;camera.yaw=0;camera.facing=1;clampCamera();}}
     void release(){
         meshWork.owner();
         if(released)return;released=true;replay=null;animatedUnit=null;generation++;cancelFrame();meshWork.close();assetWork.close();pending=0;surface.getHolder().removeCallback(this);

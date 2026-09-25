@@ -46,6 +46,18 @@ public final class NativeColdStartInstrumentation extends SceneInstrumentation {
   text("新建游戏 · 选择剧本");description("选择剧本 ");
   host=(MapHost)await(v->v instanceof MapHost);
   text("2D/3D");check(host.is3D(),"user switches actual full-map preview to 3D");shot("cold-national-preview");
+  runOnMainSync(()->{try{
+   FilamentMapView nativeView=(FilamentMapView)field(host,"spatial");
+   MapSceneSnapshot.Ground ground=((MapSceneSnapshot)field(nativeView,"snapshot")).ground;
+   SceneCamera camera=nativeView.camera;int outside=0,total=0;
+   for(int r=0;r<ground.height;r++)for(int q=0;q<ground.width;q++){
+    Hex h=new Hex(q,r);if(!ground.valid(h))continue;total++;
+    float x=ground.grid.x(h),z=ground.grid.z(h),sx=camera.screenX(x,z),sy=camera.screenY(x,z,ground.surface.at(h));
+    if(sx<0||sy<0||sx>camera.width||sy>camera.height)outside++;
+   }
+   note("FIRST_NATIVE_PREVIEW total="+total+" outside="+outside+" span="+camera.span+" viewport="+camera.width+"x"+camera.height);
+   check(total>0&&outside==0,"first native preview includes every valid national cell without an extra fit command");
+  }catch(Exception e){throw new RuntimeException(e);}});
   Object overlay=field(field(host,"spatial"),"overlay");long builds=(Long)field(overlay,"territoryBuilds"),draws=(Long)field(overlay,"draws");
   settle();settle();check((Long)field(overlay,"territoryBuilds")==builds,"stationary full-map territory is reused across frames");check((Long)field(overlay,"draws")>draws,"UI overlay continues drawing live labels");
   description("选择势力 · ");shot("cold-faction-selected");

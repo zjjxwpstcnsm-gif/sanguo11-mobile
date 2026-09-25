@@ -1,4 +1,4 @@
-name: Native R00-R14 remediation, cold UI and exact APK
+name: Native R00-R14 continuation preview and window diagnostics
 on:
   push:
     branches: [agent/native-pc-visual]
@@ -43,14 +43,7 @@ jobs:
         if: always()
         run: |
           set -euo pipefail
-          git worktree add --detach /tmp/audit-core-baseline 47e5db471e6dadb22d4c782522f97c113601461e
-          (cd /tmp/audit-core-baseline && bash scripts/test-native-r03.sh) > out/remediation/cache-baseline-build.log 2>&1
-          java -m jdk.compiler/com.sun.tools.javac.Main --release 17 -cp /tmp/audit-core-baseline/app/build/r03-check -d /tmp/audit-core-baseline/app/build/r03-check app/src/test/java/game/sanguo/mobile/NativeOverviewCacheTest.java
-          cache_rc=0
-          java -cp /tmp/audit-core-baseline/app/build/r03-check:/tmp/audit-core-baseline/core/src/main/resources game.sanguo.mobile.NativeOverviewCacheTest > out/remediation/cache-baseline.log 2>&1 || cache_rc=$?
-          echo "$cache_rc" > out/remediation/cache-baseline-exit.txt
-          test "$cache_rc" -ne 0
-          grep -q 'national sweep evicts first sample' out/remediation/cache-baseline.log
+          git worktree add --detach /tmp/audit-core-baseline a5119b869f710949731781b35f13858cc87809c0
           baseline=0
           (cd /tmp/audit-core-baseline && bash scripts/test-core.sh) > out/remediation/core-baseline.log 2>&1 || baseline=$?
           candidate=0
@@ -67,7 +60,12 @@ jobs:
   android:
     strategy:
       fail-fast: false
-      matrix: {mode: [candidate]} # unchanged baseline production with independent screen capture: run 36096986283
+      matrix:
+        include:
+          - {mode: candidate, api: 29}
+          - {mode: candidate, api: 35}
+          - {mode: baseline, api: 29}
+          - {mode: baseline, api: 35}
     runs-on: ubuntu-latest
     timeout-minutes: 75
     steps:
@@ -85,22 +83,7 @@ jobs:
           set -euo pipefail
           mkdir -p out/remediation
           echo "$GITHUB_SHA" > out/remediation/CANDIDATE_COMMIT
-          if [ "$MODE" = baseline ]; then
-            cp app/src/androidTest/java/game/sanguo/mobile/NativeAuditInstrumentation.java /tmp/NativeAuditInstrumentation.java
-            cp scripts/verify-native-remediation.sh /tmp/verify-native-remediation.sh
-            git checkout --detach 47e5db471e6dadb22d4c782522f97c113601461e
-            cp /tmp/NativeAuditInstrumentation.java app/src/androidTest/java/game/sanguo/mobile/
-            cp /tmp/verify-native-remediation.sh scripts/
-            python3 - <<'PY'
-          from pathlib import Path
-          p=Path('app/src/androidTest/AndroidManifest.xml')
-          assert 'NativeAuditInstrumentation' in p.read_text()
-          PY
-            git diff --exit-code -- app/src/main core game-api game-runtime data
-            git diff > out/remediation/BASELINE_TEST_ONLY.patch
-          else
-            test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
-          fi
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           git rev-parse HEAD > out/remediation/SOURCE_COMMIT
           ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true 2>&1 | tee out/remediation/build.log
           if [ "$MODE" = candidate ]; then
@@ -112,16 +95,22 @@ jobs:
             split -b 18M -d out/remediation/sanguo11-native-remediation.apk out/remediation-apk-part-
             git diff --exit-code
           fi
+      - name: Unchanged input APK byte control
+        if: matrix.mode == 'baseline'
+        run: |
+          curl -fL --retry 3 https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/releases/download/native-remediation-96719e971d74/sanguo11-native-remediation.apk -o app/build/outputs/apk/debug/app-debug.apk
+          echo 'ab87acc3f151594260ee8c07b802b39ff8bb354712e959c54252dc51680cd2ba  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
+          echo 96719e971d74aa2b3f18d66a7f23832148a6dc8b > out/remediation/SOURCE_COMMIT
       - uses: actions/upload-artifact@v4
         if: matrix.mode == 'candidate'
-        with: {name: native-remediation-apk-00, path: out/remediation-apk-part-00, retention-days: 14}
+        with: {name: "native-remediation-api${{ matrix.api }}-apk-00", path: out/remediation-apk-part-00, retention-days: 14}
       - uses: actions/upload-artifact@v4
         if: matrix.mode == 'candidate'
-        with: {name: native-remediation-apk-01, path: out/remediation-apk-part-01, retention-days: 14}
+        with: {name: "native-remediation-api${{ matrix.api }}-apk-01", path: out/remediation-apk-part-01, retention-days: 14}
       - uses: actions/upload-artifact@v4
         if: matrix.mode == 'candidate'
         with:
-          name: native-remediation-build-identity
+          name: native-remediation-api${{ matrix.api }}-build-identity
           path: |
             out/remediation/SOURCE_COMMIT
             out/remediation/CANDIDATE_COMMIT
@@ -137,7 +126,7 @@ jobs:
           sudo udevadm trigger --name-match=kvm
       - uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
+          api-level: ${{ matrix.api }}
           arch: x86_64
           profile: pixel_2
           ram-size: 4096M
@@ -147,7 +136,7 @@ jobs:
           script: bash scripts/verify-native-remediation.sh ${{ matrix.mode }}
       - name: Package raw outcomes and actual capture review
         if: always()
-        env: {MODE: '${{ matrix.mode }}'}
+        env: {MODE: '${{ matrix.mode }}', DEVICE_API: '${{ matrix.api }}'}
         run: |
           python3 -m pip install --user Pillow
           python3 - <<'PY'
@@ -155,7 +144,7 @@ jobs:
           from pathlib import Path
           from PIL import Image
           root=Path('out/remediation'); review=Path('out/remediation-review'); review.mkdir(exist_ok=True)
-          (root/'manifest.json').write_text(json.dumps({'candidate':os.environ['GITHUB_SHA'],'mode':os.environ['MODE'],'run':os.environ['GITHUB_RUN_ID'],'device':'API29 x86_64 SwANGLE','physical':'NOT_RUN','art':'NOT_ACCEPTED','note':'Baseline instrumentation failure is retained, not a gameplay PASS.'},indent=2))
+          (root/'manifest.json').write_text(json.dumps({'candidate':os.environ['GITHUB_SHA'],'mode':os.environ['MODE'],'run':os.environ['GITHUB_RUN_ID'],'device':'API'+os.environ['DEVICE_API']+' x86_64 SwANGLE','physical':'NOT_RUN','art':'NOT_ACCEPTED','note':'Baseline instrumentation failure is retained, not a gameplay PASS.'},indent=2))
           for p in root.rglob('*'):
               if not p.is_file():continue
               name='__'.join(p.relative_to(root).parts)
@@ -170,17 +159,17 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: native-remediation-${{ matrix.mode }}-evidence
+          name: native-remediation-${{ matrix.mode }}-api${{ matrix.api }}-evidence
           path: out/remediation-evidence.zip
           retention-days: 14
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: native-remediation-${{ matrix.mode }}-review
+          name: native-remediation-${{ matrix.mode }}-api${{ matrix.api }}-review
           path: out/remediation-review/
           retention-days: 14
       - name: Publish exact-source candidate with raw failed gates preserved
-        if: always() && matrix.mode == 'candidate'
+        if: always() && matrix.mode == 'candidate' && matrix.api == 29
         env: {GH_TOKEN: '${{ github.token }}'}
         run: |
           set -euo pipefail
