@@ -1,4 +1,4 @@
-name: Native exact v104 cold-start recording control
+name: Native exact v105 independent P0 baseline
 on:
   push:
     branches: [agent/native-pc-visual]
@@ -8,6 +8,10 @@ permissions:
   contents: write
 jobs:
   record:
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [29, 35]
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
@@ -24,11 +28,12 @@ jobs:
       - name: Build instrumentation only; preserve exact published production APK
         run: |
           ./gradlew --no-daemon :app:assembleDebugAndroidTest -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true
-          gh run watch 36106137919 --interval 30 || true
-          mkdir -p app/build/outputs/apk/debug out/remediation
-          curl -fL --retry 3 https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/releases/download/native-remediation-a9d944310249/sanguo11-native-remediation.apk -o app/build/outputs/apk/debug/app-debug.apk
-          echo 'd57cf80d3747fcb65cb7c982ad0abe1e2bf4e61750e9fe6fd6a4f5e81a703690  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
-          echo a9d944310249b26ab3167ea5407f8111758a29c8 > out/remediation/SOURCE_COMMIT
+          mkdir -p app/build/outputs/apk/debug out/remediation /tmp/v105-apk
+          gh run download 36108363433 -n native-remediation-api29-apk-00 -D /tmp/v105-apk
+          gh run download 36108363433 -n native-remediation-api29-apk-01 -D /tmp/v105-apk
+          cat /tmp/v105-apk/remediation-apk-part-00 /tmp/v105-apk/remediation-apk-part-01 > app/build/outputs/apk/debug/app-debug.apk
+          echo '2b38ca4741b60650be58555ec118350f2aeff292765f6b3754adc138c1fdf55c  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
+          echo ef54951dbb7056beaa782f97a3486eefa3a88ef9 > out/remediation/SOURCE_COMMIT
           echo "$GITHUB_SHA" > out/remediation/INSTRUMENTATION_COMMIT
       - name: Enable KVM
         run: |
@@ -37,28 +42,27 @@ jobs:
           sudo udevadm trigger --name-match=kvm
       - uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 35
+          api-level: ${{ matrix.api }}
           arch: x86_64
           profile: pixel_2
           ram-size: 4096M
           heap-size: 512M
           disable-animations: false
           emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
-          script: bash scripts/verify-native-remediation.sh candidate cold-only
+          script: bash scripts/verify-native-remediation.sh baseline
       - name: Preserve and validate exact original recording bytes
         if: always()
         run: |
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg
           failed=0
-          for video in out/remediation/candidate/cold-start/*.mp4; do
+          for video in out/remediation/baseline/*/*.mp4; do
             ffprobe -v error -show_format -show_streams "$video" > "$video.ffprobe.txt" 2>&1 || failed=1
           done
           echo "$failed" > out/remediation/VIDEO_EXIT.txt
           cd out/remediation
-          zip -qr ../v104-cold-recording.zip .
-          gh release upload native-remediation-a9d944310249 ../v104-cold-recording.zip
+          zip -qr ../v105-p0-baseline.zip .
           exit "$failed"
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: exact-v104-cold-recording, path: out/v104-cold-recording.zip, retention-days: 14}
+        with: {name: exact-v105-p0-baseline-api${{ matrix.api }}, path: out/v105-p0-baseline.zip, retention-days: 14}
