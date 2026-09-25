@@ -14,18 +14,20 @@ import java.util.*;
  * The same test is compiled against baseline and candidate; no new API is required. */
 public final class NativeAuditInstrumentation extends SceneInstrumentation {
     private File dir;
-    private volatile long uiDraws,lastUiDrawNanos;
+    private volatile long uiDraws,lastUiDrawNanos,windowFrames,lastVsyncNanos,lastFrameDuration;
     private void windowCapture(String name)throws Exception{
         android.view.View decor=activity.getWindow().getDecorView();
         android.graphics.Bitmap bitmap=android.graphics.Bitmap.createBitmap(decor.getWidth(),decor.getHeight(),android.graphics.Bitmap.Config.ARGB_8888);
         java.util.concurrent.CountDownLatch latch=new java.util.concurrent.CountDownLatch(1);int[] status={-1};
         runOnMainSync(()->android.view.PixelCopy.request(activity.getWindow(),bitmap,r->{status[0]=r;latch.countDown();},new Handler(Looper.getMainLooper())));
         boolean completed=latch.await(20,java.util.concurrent.TimeUnit.SECONDS);
-        note(name+" windowPixelCopy="+status[0]+" completed="+completed+" drawCount="+uiDraws+" lastDrawNanos="+lastUiDrawNanos);
+        note(name+" windowPixelCopy="+status[0]+" completed="+completed+" drawCount="+uiDraws+" lastDrawNanos="+lastUiDrawNanos+" windowFrames="+windowFrames+" intendedVsync="+lastVsyncNanos+" frameDuration="+lastFrameDuration);
         if(completed&&status[0]==android.view.PixelCopy.SUCCESS)try(OutputStream out=new FileOutputStream(new File(dir,name+"-window.png"))){bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,out);}
         if(completed)bitmap.recycle();
+        try(ParcelFileDescriptor fd=getUiAutomation().executeShellCommand("screencap -p");InputStream in=new ParcelFileDescriptor.AutoCloseInputStream(fd);OutputStream out=new FileOutputStream(new File(dir,name+"-screencap.png"))){byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);}
+        note(name+" captured shell screencap; drawCount="+uiDraws+" lastDrawNanos="+lastUiDrawNanos+" windowFrames="+windowFrames+" intendedVsync="+lastVsyncNanos+" frameDuration="+lastFrameDuration);
     }
-    private void note(String text)throws Exception{Files.write(new File(dir,"audit-runtime.txt").toPath(),(text+"\n").getBytes(java.nio.charset.StandardCharsets.UTF_8),StandardOpenOption.CREATE,StandardOpenOption.APPEND);}
+    private void note(String text)throws Exception{android.util.Log.i("RemediationCapture",text);Files.write(new File(dir,"audit-runtime.txt").toPath(),(text+"\n").getBytes(java.nio.charset.StandardCharsets.UTF_8),StandardOpenOption.CREATE,StandardOpenOption.APPEND);}
     private FilamentMapView view()throws Exception{return (FilamentMapView)field(host,"spatial");}
     private void shot(String name)throws Exception{surfaceCapture();capture(name+"-ui");windowCapture(name);note(name+"\n"+host.report());Files.copy(new File(dir,"surface.png").toPath(),new File(dir,name+"-surface.png").toPath(),StandardCopyOption.REPLACE_EXISTING);}
     private void modalCycles()throws Exception{
@@ -60,7 +62,10 @@ public final class NativeAuditInstrumentation extends SceneInstrumentation {
         getTargetContext().getSharedPreferences("map-renderer",0).edit().putBoolean("enabled",false).commit();
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();host=(MapHost)field(activity,"map");
         runOnMainSync(()->{world=SessionProbe.view(activity);host.switchMode(true);host.quality(SceneQuality.MEDIUM);host.setGridShown(false);host.setTerritoryMode(0);invoke("closePanel",new Class<?>[0]);});ready();
-        runOnMainSync(()->activity.getWindow().getDecorView().getViewTreeObserver().addOnDrawListener(()->{uiDraws++;lastUiDrawNanos=System.nanoTime();}));
+        runOnMainSync(()->{
+            activity.getWindow().getDecorView().getViewTreeObserver().addOnDrawListener(()->{uiDraws++;lastUiDrawNanos=System.nanoTime();});
+            activity.getWindow().addOnFrameMetricsAvailableListener((window,metrics,dropped)->{windowFrames++;lastVsyncNanos=metrics.getMetric(android.view.FrameMetrics.INTENDED_VSYNC_TIMESTAMP);lastFrameDuration=metrics.getMetric(android.view.FrameMetrics.TOTAL_DURATION);},new Handler(Looper.getMainLooper()));
+        });
         note("SOURCE="+BuildConfig.SOURCE_REVISION+"; API29 x86_64 software renderer; physical NOT_RUN");modalCycles();calendar();
         note("PASS AUDIT installed checks="+checks+" (includes readiness polls; not independent user actions)");result.putString("stream","PASS AUDIT installed checks="+checks+"\n");finish(Activity.RESULT_OK,result);
     }catch(Throwable e){try{note("FAIL "+android.util.Log.getStackTraceString(e));}catch(Exception ignored){}result.putString("stream","FAIL AUDIT "+android.util.Log.getStackTraceString(e));finish(Activity.RESULT_CANCELED,result);}}

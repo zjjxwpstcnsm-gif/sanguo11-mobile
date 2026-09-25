@@ -38,4 +38,10 @@ audit_rc=0; grep -q 'PASS AUDIT' "$root/focused-window/interaction.txt" || audit
 run_probe NativeR12Instrumentation r12-full
 r12_rc=0; grep -q 'PASS R12' "$root/r12-full/interaction.txt" || r12_rc=1
 printf 'focused-window=%s\nr12-full=%s\n' "$audit_rc" "$r12_rc" > "$root/EXIT_CODES.txt"
-test "$audit_rc" = 0 && test "$r12_rc" = 0
+cold_rc=0
+if [[ "$mode" = candidate ]]; then
+  run_probe NativeColdStartInstrumentation cold-start
+  grep -q 'PASS COLD_START' "$root/cold-start/interaction.txt" || cold_rc=1
+  printf 'cold-start=%s\n' "$cold_rc" >> "$root/EXIT_CODES.txt"
+fi
+test "$audit_rc" = 0 && test "$r12_rc" = 0 && test "$cold_rc" = 0

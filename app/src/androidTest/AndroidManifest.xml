@@ -29,4 +29,5 @@
     <instrumentation android:name="game.sanguo.mobile.NativeR13Instrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
     <instrumentation android:name="game.sanguo.mobile.NativeR14Instrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
     <instrumentation android:name="game.sanguo.mobile.NativeAuditInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
+<instrumentation android:name="game.sanguo.mobile.NativeColdStartInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
 </manifest>

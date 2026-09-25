@@ -1,4 +1,4 @@
-name: Native R00-R14 remediation and exact APK
+name: Native R00-R14 remediation, cold UI and exact APK
 on:
   push:
     branches: [agent/native-pc-visual]
@@ -25,6 +25,7 @@ jobs:
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           git merge-base --is-ancestor origin/main HEAD
           git diff --exit-code 47e5db471e6dadb22d4c782522f97c113601461e HEAD -- core game-api game-runtime data app/src/main/assets unity > out/remediation/protected.log
+          python3 scripts/check-native-protected-assets.py > out/remediation/protected-assets.log
           curl -fSL --retry 3 https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/json.jar
           echo JSON_TEST_JAR=/tmp/json.jar >> "$GITHUB_ENV"
       - name: Execute all R01-R14 host suites and architecture

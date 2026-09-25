@@ -30,7 +30,7 @@ jobs:
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           git fetch origin main
           git merge-base --is-ancestor origin/main HEAD
-          git diff --exit-code 0fdd96fe18a70a5617a250a4bb31650e7cae0705 HEAD -- game-api game-runtime data app/src/main/assets core/src/main/java/game/sanguo/core/SaveCodec.java > out/r13/protected-cohorts.log
+          python3 scripts/check-native-protected-assets.py > out/r13/protected-cohorts.log
           git diff --stat e581b27064d71ebea4d476c6f7abaa7281de34c8 HEAD > out/r13/source-changes.txt
           curl -fSL --retry 3 https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/json.jar
           echo JSON_TEST_JAR=/tmp/json.jar >> "$GITHUB_ENV"
