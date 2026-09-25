@@ -11,7 +11,7 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: native-r00-r14-audit
+  group: native-r00-r14-audit-${{ github.sha }}
   cancel-in-progress: false
 jobs:
   host:
@@ -34,11 +34,11 @@ jobs:
           echo JSON_TEST_JAR=/tmp/json.jar >> "$GITHUB_ENV"
       - name: Execute all R01-R14 host suites and architecture
         run: |
-          set -uo pipefail
+          set -euo pipefail
           failed=0
           for suite in test-native-r00-r14-audit $(printf 'test-native-r%02d ' $(seq 1 14)) test-architecture; do
-            bash "scripts/$suite.sh" > "out/audit/host-logs/$suite.log" 2>&1
-            code=$?
+            code=0
+            bash "scripts/$suite.sh" > "out/audit/host-logs/$suite.log" 2>&1 || code=$?
             printf '%s\t%s\n' "$suite" "$code" | tee -a out/audit/HOST_EXIT_CODES.tsv
             if [ "$code" -ne 0 ]; then failed=1; fi
           done
@@ -46,14 +46,15 @@ jobs:
       - name: Independently retain baseline and candidate full-core outcomes
         if: always()
         run: |
-          set -uo pipefail
+          set -euo pipefail
           git worktree add --detach /tmp/audit-core-baseline eeb09b4b0037a482b440816ec2fe718c9701ab75
-          (cd /tmp/audit-core-baseline && bash scripts/test-core.sh) > out/audit/core-baseline.log 2>&1
-          baseline=$?
-          bash scripts/test-core.sh > out/audit/core-candidate.log 2>&1
-          candidate=$?
+          baseline=0
+          (cd /tmp/audit-core-baseline && bash scripts/test-core.sh) > out/audit/core-baseline.log 2>&1 || baseline=$?
+          candidate=0
+          bash scripts/test-core.sh > out/audit/core-candidate.log 2>&1 || candidate=$?
           printf 'baseline=%s\ncandidate=%s\n' "$baseline" "$candidate" > out/audit/CORE_EXIT_CODES.txt
-          # Preserve the nonzero exits and exact assertion. This classification is not an all-core PASS.
+          # Classification checks only: both raw full-core failures remain failures.
+          test "$baseline" -ne 0
           test "$baseline" -eq "$candidate"
           grep -q 'AI uses deployment commands' out/audit/core-baseline.log
           grep -q 'AI uses deployment commands' out/audit/core-candidate.log
@@ -114,6 +115,18 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: matrix.mode == 'candidate'
         with: {name: native-audit-apk-01, path: out/audit-apk-part-01, retention-days: 14}
+      - uses: actions/upload-artifact@v4
+        if: matrix.mode == 'candidate'
+        with:
+          name: native-audit-build-identity
+          path: |
+            out/audit/SOURCE_COMMIT
+            out/audit/CANDIDATE_COMMIT
+            out/audit/APK_SHA256
+            out/audit/apk-*.txt
+            out/audit/signature.txt
+            out/audit/build.log
+          retention-days: 14
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
