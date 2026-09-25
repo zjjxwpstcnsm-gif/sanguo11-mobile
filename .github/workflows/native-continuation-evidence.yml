@@ -1,11 +1,11 @@
-name: Preserve exact R00-R14 continuation raw evidence
+name: Preserve v104-v105 original runtime evidence
 on:
   push:
     branches: [agent/native-pc-visual]
     paths: ['.github/workflows/native-continuation-evidence.yml']
 permissions:
   actions: read
-  contents: write
+  contents: read
 jobs:
   preserve:
     runs-on: ubuntu-latest
@@ -14,30 +14,173 @@ jobs:
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
     steps:
-      - name: Wait for the exact source run, preserving its failure conclusion
-        run: gh run watch 36106137919 --interval 30 || true
-      - name: Export original PNG, recordings, logs and exit codes without rebuilding
+      - name: Wait for exact final-source run without changing its conclusion
+        run: gh run watch 36108363433 --interval 30 || true
+      - name: Preserve original bytes in bounded transfer parts
         run: |
           set -euo pipefail
-          mkdir -p downloaded release
-          gh run download 36106137919 --pattern 'native-remediation-*-evidence' --dir downloaded
-          for mode in baseline candidate; do
-            for api in 29 35; do
-              name="native-remediation-$mode-api$api-evidence"
-              test -f "downloaded/$name/remediation-evidence.zip"
-              cp "downloaded/$name/remediation-evidence.zip" "release/$name.zip"
-            done
+          mkdir -p raw parts
+          for run in 36106137919 36108363433; do
+            mkdir -p raw/$run
+            gh run download "$run" --pattern 'native-remediation-*-evidence' --dir raw/$run
+            gh api repos/$GH_REPO/actions/runs/$run > raw/$run/SOURCE_RUN.json
           done
-          sha256sum release/*.zip > release/RAW_SHA256.txt
-          gh api repos/$GH_REPO/actions/runs/36106137919 > release/SOURCE_RUN.json
-          tag=native-remediation-a9d944310249
-          gh release view "$tag" >/dev/null
-          gh release upload "$tag" release/*
+          find raw -type f -print0 | sort -z | xargs -0 sha256sum > RAW_SHA256.txt
+          tar -cf original-evidence.tar raw RAW_SHA256.txt
+          sha256sum original-evidence.tar > parts/TRANSFER_SHA256.txt
+          split -b 18M -d original-evidence.tar parts/part-
       - uses: actions/upload-artifact@v4
-        if: always()
         with:
-          name: continuation-export-identity
-          path: |
-            release/RAW_SHA256.txt
-            release/SOURCE_RUN.json
-          retention-days: 14
+          name: continuation-transfer-identity
+          path: parts/TRANSFER_SHA256.txt
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-00
+          path: parts/part-00
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-01
+          path: parts/part-01
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-02
+          path: parts/part-02
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-03
+          path: parts/part-03
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-04
+          path: parts/part-04
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-05
+          path: parts/part-05
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-06
+          path: parts/part-06
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-07
+          path: parts/part-07
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-08
+          path: parts/part-08
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-09
+          path: parts/part-09
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-10
+          path: parts/part-10
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-11
+          path: parts/part-11
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-12
+          path: parts/part-12
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-13
+          path: parts/part-13
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-14
+          path: parts/part-14
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-15
+          path: parts/part-15
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-16
+          path: parts/part-16
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-17
+          path: parts/part-17
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-18
+          path: parts/part-18
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-19
+          path: parts/part-19
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-20
+          path: parts/part-20
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-21
+          path: parts/part-21
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-22
+          path: parts/part-22
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-23
+          path: parts/part-23
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: continuation-raw-part-24
+          path: parts/part-24
+          if-no-files-found: ignore
+          retention-days: 30
