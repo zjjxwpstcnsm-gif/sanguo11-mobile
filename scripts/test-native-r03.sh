@@ -9,3 +9,5 @@ done
 echo app/src/test/java/game/sanguo/mobile/NativeR03Test.java >> app/build/r03-sources.txt
 java -m jdk.compiler/com.sun.tools.javac.Main -encoding UTF-8 --release 17 -d app/build/r03-check @app/build/r03-sources.txt
 java -Xmx2g -cp app/build/r03-check:core/src/main/resources game.sanguo.mobile.NativeR03Test
+java -m jdk.compiler/com.sun.tools.javac.Main --release 17 -cp app/build/r03-check -d app/build/r03-check app/src/test/java/game/sanguo/mobile/NativeOverviewCacheTest.java
+java -Xmx1200m -cp app/build/r03-check:core/src/main/resources game.sanguo.mobile.NativeOverviewCacheTest

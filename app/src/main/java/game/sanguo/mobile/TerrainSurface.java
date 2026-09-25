@@ -12,10 +12,22 @@ final class TerrainSurface {
     final MapSceneSnapshot.Ground ground;
     final Map<Hex,Float> overrides;
     private final float[] targets;private final byte[] constraints;
-    private final java.util.concurrent.ConcurrentHashMap<Long,Float> lattice=new java.util.concurrent.ConcurrentHashMap<>();
+    // One bounded, immutable-ground cache shared by CPU workers and the UI. The old
+    // 32768-entry map cleared itself during every national sweep, so both consumers
+    // continually recomputed the same surface. Zero is the empty slot; bits+1 stores
+    // all non-negative finite heights (including zero) without a second validity array.
+    private static final int MAX_LATTICE_SAMPLES=262144; // <= 1 MiB per Ground
+    private final java.util.concurrent.atomic.AtomicIntegerArray lattice;
+    private final int latticeX,latticeZ,latticeWidth,latticeHeight;
     TerrainSurface(MapSceneSnapshot.Ground g){this(g,Collections.emptyMap());}
     TerrainSurface(MapSceneSnapshot.Ground g,Map<Hex,Float> values){
-        ground=g;Map<Hex,Float> copy=new HashMap<>();
+        ground=g;
+        latticeX=(int)Math.floor(g.minX*2)-2;latticeZ=(int)Math.floor(g.minZ*2)-2;
+        latticeWidth=(int)Math.ceil(g.maxX*2)-latticeX+3;
+        latticeHeight=(int)Math.ceil(g.maxZ*2)-latticeZ+3;
+        long samples=(long)latticeWidth*latticeHeight;
+        lattice=new java.util.concurrent.atomic.AtomicIntegerArray(samples>0&&samples<=MAX_LATTICE_SAMPLES?(int)samples:0);
+        Map<Hex,Float> copy=new HashMap<>();
         for(Map.Entry<Hex,Float> e:values.entrySet())if(g.valid(e.getKey())&&Float.isFinite(e.getValue()))copy.put(e.getKey(),Math.max(0,Math.min(MAX_HEIGHT,e.getValue())));
         overrides=Collections.unmodifiableMap(copy);
         targets=new float[g.width*g.height];constraints=new byte[targets.length];
@@ -46,8 +58,11 @@ final class TerrainSurface {
     float sample(float x,float z){
         int ix=Math.round(x*2),iz=Math.round(z*2);
         if(Math.abs(x*2-ix)>.00001f||Math.abs(z*2-iz)>.00001f)return compute(x,z);
-        long key=((long)ix<<32)^(iz&0xffffffffL);Float v=lattice.get(key);if(v!=null)return v;
-        float value=compute(x,z);if(lattice.size()>=32768)lattice.clear();lattice.putIfAbsent(key,value);return value;
+        int q=ix-latticeX,r=iz-latticeZ;
+        if(lattice.length()==0||q<0||r<0||q>=latticeWidth||r>=latticeHeight)return compute(x,z);
+        int key=r*latticeWidth+q,encoded=lattice.get(key);
+        if(encoded!=0)return Float.intBitsToFloat(encoded-1);
+        float value=compute(x,z);lattice.compareAndSet(key,0,Float.floatToIntBits(value)+1);return value;
     }
     private float compute(float x,float z){
         Hex cell=ground.grid.cell(x,z);float sum=0,weight=0,limit=MAX_HEIGHT;

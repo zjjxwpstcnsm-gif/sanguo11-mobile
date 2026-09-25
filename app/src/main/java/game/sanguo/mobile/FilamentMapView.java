@@ -406,6 +406,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         +" environmentCpuChunks="+woods.size()+" environmentMode=opaque-merged-not-instanced meshGeneration="+generation+" cpuChunks="+chunks.size()+" pending="+pending+" submitted="+surfaceFrames
         +" shadows="+environmentShadows+" shadowFar=380 hazeOpaqueCap=0.08"
         +" season="+(season==null?"none":season.name)+" seasonUpdates="+seasonUpdates+" artProfile="+SeasonStyle.ID+" worldMonth="+(snapshot==null?0:snapshot.month)
+        +" overlayDraws="+overlay.draws+" territoryBuilds="+overlay.territoryBuilds+" territoryBuildMs="+overlay.territoryBuildNanos/1e6
         +" output="+outputStatus+"\ncamera="+camera.x+","+camera.z+" span="+camera.span+" tilt="+camera.tilt+" facing="+camera.facing+" yaw="+camera.yaw+"\npick="+lastPick;}
     String report(){return "landscape="+LandscapeProfile.ID+"\n"+startupReport()+"\nFilament 1.56.0 / OpenGL ES · "+quality.label+" color="+(srgbSwapChain?"sRGB framebuffer":"post-process gamma")+" MSAA="+(msaaEnabled?"4x":"off / compatibility")+" thermal="+thermalStatus+" cap="+thermal.fps(quality)+"\n内部 "+bufferWidth+" × "+bufferHeight+" / UI "+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S06 战斗特效 / 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+" · 特效 "+combat.count+"/"+CombatVisual.CAPACITY+"\n"+resourceReport();}
     void resetMetrics(){cpuCount=cpuCursor=0;}
@@ -688,6 +689,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         // Release heavyweight CPU ownership immediately, rather than waiting for View GC.
         chunks=Collections.emptyList();woods=Collections.emptyList();snapshot=null;fieldAssets=null;backdropSource=null;
         activeTerrain.clear();wantedWood.clear();woodExcluded=Collections.emptySet();
+        overlay.territoryBitmap=null;overlay.territoryGround=null;overlay.cachedColors=null;overlay.cachedBorders=null;
         territoryColors=null;targets=Collections.emptySet();editorCells=Collections.emptySet();impassable=Collections.emptySet();
         if(android.os.Build.VERSION.SDK_INT>=29&&thermalManager!=null&&thermalListener!=null){thermalManager.removeThermalStatusListener(thermalListener);thermalListener=null;}
         if(engine==null)return;
@@ -799,6 +801,45 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         private MapSceneSnapshot.Ground miniGround;
         private NavigatorTransform miniTransform;
         boolean miniDirty=true;
+        // Cache only the static territory layer, at exact UI pixel resolution. Labels,
+        // tactical ranges, playback and editor overlays remain live. Never cache the UI.
+        private android.graphics.Bitmap territoryBitmap;
+        private MapSceneSnapshot.Ground territoryGround;
+        private int[] cachedColors,cachedBorders;
+        private float[] territoryCamera;
+        private int cachedTerritoryMode;
+        long draws,territoryBuilds,territoryBuildNanos;
+        void drawTerritory(Canvas target){
+            if(territoryColors==null&&territoryBorders==null){territoryBitmap=null;territoryGround=null;return;}
+            int w=getWidth(),h=getHeight();
+            if(w<=0||h<=0)return;
+            // Oversized windows use the original path instead of an unbounded bitmap.
+            if((long)w*h>4194304){territoryBitmap=null;paintTerritory(target);return;}
+            float[] pose={camera.x,camera.z,camera.span,camera.yaw,camera.tilt,camera.facing,camera.width,camera.height,w,h};
+            if(territoryBitmap==null||territoryGround!=snapshot.ground||cachedColors!=territoryColors
+                    ||cachedBorders!=territoryBorders||cachedTerritoryMode!=territoryMode||!Arrays.equals(pose,territoryCamera)){
+                long started=System.nanoTime();
+                if(territoryBitmap==null||territoryBitmap.getWidth()!=w||territoryBitmap.getHeight()!=h)
+                    territoryBitmap=android.graphics.Bitmap.createBitmap(w,h,android.graphics.Bitmap.Config.ARGB_8888);
+                territoryBitmap.eraseColor(android.graphics.Color.TRANSPARENT);
+                paintTerritory(new Canvas(territoryBitmap));
+                territoryGround=snapshot.ground;cachedColors=territoryColors;cachedBorders=territoryBorders;
+                cachedTerritoryMode=territoryMode;territoryCamera=pose;territoryBuilds++;territoryBuildNanos=System.nanoTime()-started;
+            }
+            target.drawBitmap(territoryBitmap,0,0,null);
+        }
+        void paintTerritory(Canvas c){
+            GridWorldTransform grid=snapshot.ground.grid;
+            float rx=camera.extentX()+2,rz=camera.extentZ()+4;
+            Hex a=grid.cell(camera.x-rx,camera.z-rz),b=grid.cell(camera.x+rx,camera.z+rz),d=grid.cell(camera.x-rx,camera.z+rz),e=grid.cell(camera.x+rx,camera.z-rz);
+            int q0=Math.max(0,Math.min(Math.min(a.q,b.q),Math.min(d.q,e.q))-2),q1=Math.min(snapshot.ground.width-1,Math.max(Math.max(a.q,b.q),Math.max(d.q,e.q))+2);
+            int r0=Math.max(0,Math.min(Math.min(a.r,b.r),Math.min(d.r,e.r))-2),r1=Math.min(snapshot.ground.height-1,Math.max(Math.max(a.r,b.r),Math.max(d.r,e.r))+2);
+            for(int r=r0;r<=r1;r++)for(int q=q0;q<=q1;q++){
+                Hex cell=new Hex(q,r);if(!snapshot.ground.valid(cell))continue;
+                if(territoryColors!=null){int color=territoryColors[r*snapshot.ground.width+q];if(color!=0&&cellPath(cell)){p.setColor((color&0xffffff)|0x30000000);p.setStyle(Paint.Style.FILL);c.drawPath(cellPath,p);}}
+                if(territoryBorders!=null)border(c,cell,territoryBorders[r*snapshot.ground.width+q]);
+            }
+        }
         private final android.graphics.DashPathEffect hiddenDash=new android.graphics.DashPathEffect(new float[]{5,5},0);
         private final Map<Hex,Boolean> hiddenCells=new HashMap<>();
         private MapSceneSnapshot.Ground hiddenGround;
@@ -914,8 +955,9 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         }
         @Override protected void onDraw(Canvas c){
             if(snapshot==null)return;
-            updateOcclusionCache();layoutMini();c.save();c.clipRect(0,0,Math.max(0,camera.width-panelRight),Math.max(0,camera.height-panelBottom));
-            if(territoryColors!=null||((gridShown||editorGrid)&&camera.span<48)||editorCoords||!impassable.isEmpty()){
+            draws++;updateOcclusionCache();layoutMini();c.save();c.clipRect(0,0,Math.max(0,camera.width-panelRight),Math.max(0,camera.height-panelBottom));
+            drawTerritory(c);
+            if(((gridShown||editorGrid)&&camera.span<48)||editorCoords||!impassable.isEmpty()){
                 GridWorldTransform grid=snapshot.ground.grid;
                 float rx=camera.extentX()+2,rz=camera.extentZ()+4;
                 Hex a=grid.cell(camera.x-rx,camera.z-rz),b=grid.cell(camera.x+rx,camera.z+rz),d=grid.cell(camera.x-rx,camera.z+rz),e=grid.cell(camera.x+rx,camera.z-rz);
@@ -923,9 +965,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 int r0=Math.max(0,Math.min(Math.min(a.r,b.r),Math.min(d.r,e.r))-2),r1=Math.min(snapshot.ground.height-1,Math.max(Math.max(a.r,b.r),Math.max(d.r,e.r))+2);
                 for(int r=r0;r<=r1;r++)for(int q=q0;q<=q1;q++){
                     Hex h=new Hex(q,r);if(!snapshot.ground.valid(h))continue;
-                    if(territoryColors!=null){int color=territoryColors[r*snapshot.ground.width+q];if(color!=0&&cellPath(h)){p.setColor((color&0xffffff)|0x30000000);p.setStyle(Paint.Style.FILL);c.drawPath(cellPath,p);}}
                     if((gridShown||editorGrid)&&camera.span<48&&cellPath(h)){p.setColor(editorGrid?0x99ffffff:((((int)(104*Math.min(1,(48-camera.span)/24)))<<24)|0x7d928a));p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(1);c.drawPath(cellPath,p);}
-                    if(territoryBorders!=null)border(c,h,territoryBorders[r*snapshot.ground.width+q]);
                     if(impassable.contains(MapLayerData.cellKey(h.q,h.r)))cell(c,h,0x99ff6767);
                     if(editorCoords&&camera.span<7){p.setStyle(Paint.Style.FILL);p.setColor(0xffffffff);p.setTextSize(10*getResources().getDisplayMetrics().scaledDensity);c.drawText(snapshot.ground.source(h).toString(),camera.screenX(grid.x(h),grid.z(h)),camera.screenY(grid.x(h),grid.z(h),snapshot.ground.surface.at(h)),p);}
                 }

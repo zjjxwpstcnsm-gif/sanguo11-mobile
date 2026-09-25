@@ -1,0 +1,189 @@
+name: Native R00-R14 remediation and exact APK
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-remediation.yml']
+permissions:
+  contents: write
+concurrency:
+  group: native-remediation-${{ github.sha }}
+  cancel-in-progress: false
+jobs:
+  host:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - name: Exact source, ancestry and immutable rules/assets
+        run: |
+          set -euo pipefail
+          mkdir -p out/remediation/host-logs
+          git rev-parse HEAD origin/main > out/remediation/refs.txt
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git merge-base --is-ancestor origin/main HEAD
+          git diff --exit-code 47e5db471e6dadb22d4c782522f97c113601461e HEAD -- core game-api game-runtime data app/src/main/assets unity > out/remediation/protected.log
+          curl -fSL --retry 3 https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/json.jar
+          echo JSON_TEST_JAR=/tmp/json.jar >> "$GITHUB_ENV"
+      - name: Execute all R01-R14 host suites and architecture
+        run: |
+          set -euo pipefail
+          failed=0
+          for suite in test-native-r00-r14-audit $(printf 'test-native-r%02d ' $(seq 1 14)) test-architecture; do
+            code=0
+            bash "scripts/$suite.sh" > "out/remediation/host-logs/$suite.log" 2>&1 || code=$?
+            printf '%s\t%s\n' "$suite" "$code" | tee -a out/remediation/HOST_EXIT_CODES.tsv
+            if [ "$code" -ne 0 ]; then failed=1; fi
+          done
+          exit "$failed"
+      - name: Independently retain baseline and candidate full-core outcomes
+        if: always()
+        run: |
+          set -euo pipefail
+          git worktree add --detach /tmp/audit-core-baseline 47e5db471e6dadb22d4c782522f97c113601461e
+          (cd /tmp/audit-core-baseline && bash scripts/test-native-r03.sh) > out/remediation/cache-baseline-build.log 2>&1
+          java -m jdk.compiler/com.sun.tools.javac.Main --release 17 -cp /tmp/audit-core-baseline/app/build/r03-check -d /tmp/audit-core-baseline/app/build/r03-check app/src/test/java/game/sanguo/mobile/NativeOverviewCacheTest.java
+          cache_rc=0
+          java -cp /tmp/audit-core-baseline/app/build/r03-check:/tmp/audit-core-baseline/core/src/main/resources game.sanguo.mobile.NativeOverviewCacheTest > out/remediation/cache-baseline.log 2>&1 || cache_rc=$?
+          echo "$cache_rc" > out/remediation/cache-baseline-exit.txt
+          test "$cache_rc" -ne 0
+          grep -q 'national sweep evicts first sample' out/remediation/cache-baseline.log
+          baseline=0
+          (cd /tmp/audit-core-baseline && bash scripts/test-core.sh) > out/remediation/core-baseline.log 2>&1 || baseline=$?
+          candidate=0
+          bash scripts/test-core.sh > out/remediation/core-candidate.log 2>&1 || candidate=$?
+          printf 'baseline=%s\ncandidate=%s\n' "$baseline" "$candidate" > out/remediation/CORE_EXIT_CODES.txt
+          # Classification checks only: both raw full-core failures remain failures.
+          test "$baseline" -ne 0
+          test "$baseline" -eq "$candidate"
+          grep -q 'AI uses deployment commands' out/remediation/core-baseline.log
+          grep -q 'AI uses deployment commands' out/remediation/core-candidate.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-remediation-host, path: out/remediation/, retention-days: 14}
+  android:
+    strategy:
+      fail-fast: false
+      matrix: {mode: [baseline, candidate]}
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: ''}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Exact candidate or unchanged-production baseline reproduction
+        env: {MODE: '${{ matrix.mode }}'}
+        run: |
+          set -euo pipefail
+          mkdir -p out/remediation
+          echo "$GITHUB_SHA" > out/remediation/CANDIDATE_COMMIT
+          if [ "$MODE" = baseline ]; then
+            cp app/src/androidTest/java/game/sanguo/mobile/NativeAuditInstrumentation.java /tmp/NativeAuditInstrumentation.java
+            cp scripts/verify-native-remediation.sh /tmp/verify-native-remediation.sh
+            git checkout --detach 47e5db471e6dadb22d4c782522f97c113601461e
+            cp /tmp/NativeAuditInstrumentation.java app/src/androidTest/java/game/sanguo/mobile/
+            cp /tmp/verify-native-remediation.sh scripts/
+            python3 - <<'PY'
+          from pathlib import Path
+          p=Path('app/src/androidTest/AndroidManifest.xml')
+          assert 'NativeAuditInstrumentation' in p.read_text()
+          PY
+            git diff --exit-code -- app/src/main core game-api game-runtime data
+            git diff > out/remediation/BASELINE_TEST_ONLY.patch
+          else
+            test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          fi
+          git rev-parse HEAD > out/remediation/SOURCE_COMMIT
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true 2>&1 | tee out/remediation/build.log
+          if [ "$MODE" = candidate ]; then
+            cp app/build/outputs/apk/debug/app-debug.apk out/remediation/sanguo11-native-remediation.apk
+            sha256sum out/remediation/*.apk > out/remediation/APK_SHA256
+            "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/remediation/*.apk > out/remediation/apk-metadata.txt
+            "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/remediation/*.apk > out/remediation/signature.txt
+            unzip -l out/remediation/*.apk > out/remediation/apk-contents.txt
+            split -b 18M -d out/remediation/sanguo11-native-remediation.apk out/remediation-apk-part-
+            git diff --exit-code
+          fi
+      - uses: actions/upload-artifact@v4
+        if: matrix.mode == 'candidate'
+        with: {name: native-remediation-apk-00, path: out/remediation-apk-part-00, retention-days: 14}
+      - uses: actions/upload-artifact@v4
+        if: matrix.mode == 'candidate'
+        with: {name: native-remediation-apk-01, path: out/remediation-apk-part-01, retention-days: 14}
+      - uses: actions/upload-artifact@v4
+        if: matrix.mode == 'candidate'
+        with:
+          name: native-remediation-build-identity
+          path: |
+            out/remediation/SOURCE_COMMIT
+            out/remediation/CANDIDATE_COMMIT
+            out/remediation/APK_SHA256
+            out/remediation/apk-*.txt
+            out/remediation/signature.txt
+            out/remediation/build.log
+          retention-days: 14
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-native-remediation.sh ${{ matrix.mode }}
+      - name: Package raw outcomes and actual capture review
+        if: always()
+        env: {MODE: '${{ matrix.mode }}'}
+        run: |
+          python3 -m pip install --user Pillow
+          python3 - <<'PY'
+          import os,json,zipfile
+          from pathlib import Path
+          from PIL import Image
+          root=Path('out/remediation'); review=Path('out/remediation-review'); review.mkdir(exist_ok=True)
+          (root/'manifest.json').write_text(json.dumps({'candidate':os.environ['GITHUB_SHA'],'mode':os.environ['MODE'],'run':os.environ['GITHUB_RUN_ID'],'device':'API29 x86_64 SwANGLE','physical':'NOT_RUN','art':'NOT_ACCEPTED','note':'Baseline instrumentation failure is retained, not a gameplay PASS.'},indent=2))
+          for p in root.rglob('*'):
+              if not p.is_file():continue
+              name='__'.join(p.relative_to(root).parts)
+              if p.suffix=='.png':
+                  im=Image.open(p).convert('RGB');im.thumbnail((1600,1600));im.save(review/(name+'.jpg'),quality=90)
+              elif p.suffix in ('.txt','.log','.json','.tsv','.patch') or p.name in ('SOURCE_COMMIT','CANDIDATE_COMMIT','APK_SHA256'):
+                  (review/name).write_bytes(p.read_bytes())
+          with zipfile.ZipFile('out/remediation-evidence.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in root.rglob('*'):
+                  if p.is_file() and p.suffix!='.apk':z.write(p,p.relative_to(root))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-remediation-${{ matrix.mode }}-evidence
+          path: out/remediation-evidence.zip
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-remediation-${{ matrix.mode }}-review
+          path: out/remediation-review/
+          retention-days: 14
+      - name: Publish exact-source candidate with raw failed gates preserved
+        if: always() && matrix.mode == 'candidate'
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -euo pipefail
+          test -f out/remediation/sanguo11-native-remediation.apk || exit 0
+          tag="native-remediation-${GITHUB_SHA:0:12}"
+          printf 'R00-R14 remediation candidate source %s. PARTIAL: consult raw runtime and audit report. Physical ARM64 and PC-art acceptance are not claimed. No main merge or R15.\n' "$GITHUB_SHA" > out/remediation-release.txt
+          gh release create "$tag" --target "$GITHUB_SHA" --prerelease --title "R00-R14 remediation ${GITHUB_SHA:0:12}" --notes-file out/remediation-release.txt out/remediation/sanguo11-native-remediation.apk out/remediation-evidence.zip
