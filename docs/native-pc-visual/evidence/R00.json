@@ -1,0 +1,16 @@
+{
+  "stage": "R00",
+  "status": "PARTIAL",
+  "recorded_by": "2026-09-25 R00-R14 audit retrospective index",
+  "missing_in_input_eeb09": true,
+  "historical_run_id": 35846793589,
+  "historical_reported_fresh_checks": 246,
+  "historical_reported_reload_checks": 149,
+  "historical_apk_sha256": null,
+  "historical_delivery_chain_recertified": false,
+  "current_audit_manifest": "R00-R14-AUDIT.json",
+  "current_apk_source": "badd7e56308b4f6a47d60353d49023be8fc492a2",
+  "current_apk_does_not_replace_historical_identity": true,
+  "physical": "NOT_RUN",
+  "note": "This fills a missing navigation/record gap, not a fabricated original R00 PASS or APK hash. Actual current scoped baseline/modal/full-core outcomes are separately retained."
+}

@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "audit_source": "badd7e56308b4f6a47d60353d49023be8fc492a2",
+  "input_source": "eeb09b4b0037a482b440816ec2fe718c9701ab75",
+  "production_assets_modified": [],
+  "production_assets_added": [],
+  "asset_files_byte_compared_with_apk": 298,
+  "all_compared_files_equal": true,
+  "full_inventory_file_in_delivered_evidence": "production-assets.json",
+  "full_inventory_sha256": "0369981960291c7e55e55cff5f3588bc2055c16c34eba7109aff06d47c30aa2d",
+  "existing_catalogs_preserved": ["assets.json", "asset-catalog.json", "R07-site-mapping.tsv", "R07-facility-mapping.tsv", "R10-unit-coverage.tsv"],
+  "backend": "Filament1.56.0/OpenGL",
+  "asset_reexport_this_audit": "NOT_RUN; no production asset changed",
+  "visual_acceptance": "FAIL V2; existing model/texture presence is not final art approval",
+  "provenance": "Existing runtime resources reused unchanged; PC references remain reference-only and are not imported into APK"
+}
