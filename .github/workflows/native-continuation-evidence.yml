@@ -1,0 +1,43 @@
+name: Preserve exact R00-R14 continuation raw evidence
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-continuation-evidence.yml']
+permissions:
+  actions: read
+  contents: write
+jobs:
+  preserve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Wait for the exact source run, preserving its failure conclusion
+        run: gh run watch 36104156087 --interval 30 || true
+      - name: Export original PNG, recordings, logs and exit codes without rebuilding
+        run: |
+          set -euo pipefail
+          mkdir -p downloaded release
+          gh run download 36104156087 --pattern 'native-remediation-*-evidence' --dir downloaded
+          for mode in baseline candidate; do
+            for api in 29 35; do
+              name="native-remediation-$mode-api$api-evidence"
+              test -f "downloaded/$name/remediation-evidence.zip"
+              cp "downloaded/$name/remediation-evidence.zip" "release/$name.zip"
+            done
+          done
+          sha256sum release/*.zip > release/RAW_SHA256.txt
+          gh api repos/$GH_REPO/actions/runs/36104156087 > release/SOURCE_RUN.json
+          tag=native-remediation-5d9384f9cba7
+          gh release view "$tag" >/dev/null
+          gh release upload "$tag" release/*
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: continuation-export-identity
+          path: |
+            release/RAW_SHA256.txt
+            release/SOURCE_RUN.json
+          retention-days: 14
