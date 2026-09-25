@@ -1,0 +1,13 @@
+Architecture boundary PASS: reviewed legacy consumers, pure modules, JNI location, assembly DAG and preserved meta identities
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+GameSessionTest PASS: 1673 assertions; old-source full-save parity, native/bridge commands, isolation, lifecycle, turns and protocol.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+BridgeSessionTest passed; actual scenario, rule parity, dedup, reorder and stale revision
+Note: app/src/main/java/game/sanguo/mobile/FactionColors.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+MapProjectionTest PASS: 119600 exact old-query comparisons; detached values and unchanged complete save
+GridLayoutTest PASS: 32 shared Java/C# coordinate assertions

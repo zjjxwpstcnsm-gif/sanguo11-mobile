@@ -1,0 +1,163 @@
+[
+  {
+    "archive": "native-remediation-baseline-api29-evidence",
+    "path": "baseline/cold-start/remediation-1.mp4",
+    "exit": 1,
+    "duration": null,
+    "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x56418ee363c0] moov atom not found\n/workspace/scratch/ffd774293b86/evidence/v104/runtime/native-remediation-baseline-api29-evidence/baseline/cold-start/remediation-1.mp4: Invalid data found when processing input\n"
+  },
+  {
+    "archive": "native-remediation-baseline-api29-evidence",
+    "path": "baseline/focused-window/remediation-1.mp4",
+    "exit": 0,
+    "duration": "180.171289",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-baseline-api29-evidence",
+    "path": "baseline/focused-window/remediation-2.mp4",
+    "exit": 1,
+    "duration": null,
+    "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x55c21eeae3c0] moov atom not found\n/workspace/scratch/ffd774293b86/evidence/v104/runtime/native-remediation-baseline-api29-evidence/baseline/focused-window/remediation-2.mp4: Invalid data found when processing input\n"
+  },
+  {
+    "archive": "native-remediation-baseline-api29-evidence",
+    "path": "baseline/r12-full/remediation-1.mp4",
+    "exit": 0,
+    "duration": "179.220600",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-baseline-api29-evidence",
+    "path": "baseline/r12-full/remediation-2.mp4",
+    "exit": 0,
+    "duration": "179.922967",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-baseline-api29-evidence",
+    "path": "baseline/r12-full/remediation-3.mp4",
+    "exit": 0,
+    "duration": "177.969311",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-baseline-api29-evidence",
+    "path": "baseline/r12-full/remediation-4.mp4",
+    "exit": 0,
+    "duration": "174.654244",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-baseline-api29-evidence",
+    "path": "baseline/r12-full/remediation-5.mp4",
+    "exit": 0,
+    "duration": "33.517667",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-baseline-api35-evidence",
+    "path": "baseline/cold-start/remediation-1.mp4",
+    "exit": 0,
+    "duration": "5.710856",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-baseline-api35-evidence",
+    "path": "baseline/focused-window/remediation-1.mp4",
+    "exit": 1,
+    "duration": null,
+    "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x55ce869353c0] moov atom not found\n/workspace/scratch/ffd774293b86/evidence/v104/runtime/native-remediation-baseline-api35-evidence/baseline/focused-window/remediation-1.mp4: Invalid data found when processing input\n"
+  },
+  {
+    "archive": "native-remediation-baseline-api35-evidence",
+    "path": "baseline/r12-full/remediation-1.mp4",
+    "exit": 1,
+    "duration": null,
+    "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x556622d883c0] moov atom not found\n/workspace/scratch/ffd774293b86/evidence/v104/runtime/native-remediation-baseline-api35-evidence/baseline/r12-full/remediation-1.mp4: Invalid data found when processing input\n"
+  },
+  {
+    "archive": "native-remediation-candidate-api29-evidence",
+    "path": "candidate/cold-start/remediation-1.mp4",
+    "exit": 1,
+    "duration": null,
+    "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x55d7aa2e93c0] moov atom not found\n/workspace/scratch/ffd774293b86/evidence/v104/runtime/native-remediation-candidate-api29-evidence/candidate/cold-start/remediation-1.mp4: Invalid data found when processing input\n"
+  },
+  {
+    "archive": "native-remediation-candidate-api29-evidence",
+    "path": "candidate/focused-window/remediation-1.mp4",
+    "exit": 0,
+    "duration": "179.937944",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api29-evidence",
+    "path": "candidate/focused-window/remediation-2.mp4",
+    "exit": 1,
+    "duration": null,
+    "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x55f7b20683c0] moov atom not found\n/workspace/scratch/ffd774293b86/evidence/v104/runtime/native-remediation-candidate-api29-evidence/candidate/focused-window/remediation-2.mp4: Invalid data found when processing input\n"
+  },
+  {
+    "archive": "native-remediation-candidate-api29-evidence",
+    "path": "candidate/r12-full/remediation-1.mp4",
+    "exit": 0,
+    "duration": "179.025722",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api29-evidence",
+    "path": "candidate/r12-full/remediation-2.mp4",
+    "exit": 0,
+    "duration": "130.236656",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api29-evidence",
+    "path": "candidate/r12-full/remediation-3.mp4",
+    "exit": 0,
+    "duration": "176.694622",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api29-evidence",
+    "path": "candidate/r12-full/remediation-4.mp4",
+    "exit": 0,
+    "duration": "176.531678",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api29-evidence",
+    "path": "candidate/r12-full/remediation-5.mp4",
+    "exit": 0,
+    "duration": "11.178156",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api35-evidence",
+    "path": "candidate/cold-start/remediation-1.mp4",
+    "exit": 1,
+    "duration": null,
+    "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x56168eeed3c0] moov atom not found\n/workspace/scratch/ffd774293b86/evidence/v104/runtime/native-remediation-candidate-api35-evidence/candidate/cold-start/remediation-1.mp4: Invalid data found when processing input\n"
+  },
+  {
+    "archive": "native-remediation-candidate-api35-evidence",
+    "path": "candidate/focused-window/remediation-1.mp4",
+    "exit": 0,
+    "duration": "166.264167",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api35-evidence",
+    "path": "candidate/focused-window/remediation-2.mp4",
+    "exit": 0,
+    "duration": "73.974033",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api35-evidence",
+    "path": "candidate/r12-full/remediation-1.mp4",
+    "exit": 1,
+    "duration": null,
+    "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x560a710323c0] moov atom not found\n/workspace/scratch/ffd774293b86/evidence/v104/runtime/native-remediation-candidate-api35-evidence/candidate/r12-full/remediation-1.mp4: Invalid data found when processing input\n"
+  }
+]

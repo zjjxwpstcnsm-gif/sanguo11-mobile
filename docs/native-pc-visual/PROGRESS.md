@@ -1,8 +1,8 @@
 # 原生 PC 视觉进度 — R00–R14 整改复验 / PARTIAL
 
-2026-09-25。本轮已修改正式 `TerrainSurface` 和 `FilamentMapView.Overlay`，修复全国采样缓存整表淘汰和静止势力层每帧重算，并修正R13精确资产保护。不是再次仅审计，也不是全部阶段完成。
+2026-09-25。本次修改正式 `MapHost` 与 `FilamentMapView` 的首次原生预览相机适配、首次CPU任务顺序与有界上传预算，保留已交付的全国采样缓存、静止势力层缓存和R13精确资产保护。新增 API29/API35 的原APK对照和实际窗口诊断；全部阶段仍未完成。
 
-当前交付APK源码 `96719e971d74aa2b3f18d66a7f23832148a6dc8b`，版本102 / 0.102.0-native-remediation。继续同一串行分支 / PR67；保留原生3D、MapHost/SceneRenderGate及已合架构。没有合并main、force push、其他PR操作或R15扩展。APK之后的提交只涉及复验/证据，不能当作APK源码。
+当前交付APK源码 `ef54951dbb7056beaa782f97a3486eefa3a88ef9`，版本105 / 0.105.0-native-first-work；本次从实时 a5119 续作，正式修改首次原生预览的布局后全图适配和4ms/最多8块的上传预算。旧缓存和资产门禁修复是已继承成果，不计为本次新增。继续同一串行分支 / PR67；保留原生3D、MapHost/SceneRenderGate及已合架构。没有合并main、force push、其他PR操作或R15扩展。APK之后的提交只涉及复验/证据，不能当作APK源码。
 
 | 阶段 | 整体 | 本轮结果及未闭合范围 |
 |---|---|---|
@@ -18,10 +18,12 @@
 | R09 | PARTIAL | V2仍FAIL；未扩散全国模板 |
 | R10 | PARTIAL | 刚体动画符合允许的实现路线；全兵种装备、脚滑漂浮、靠岸和LOD实拍未闭合 |
 | R11 | PARTIAL | 全事件（含CALM/EXTINGUISH）、暂停/倍速/跳过/重建完整矩阵未闭合 |
-| R12 | PARTIAL | 修复前输入原R12超时、修复后多次原R12到达全部断言；完整触控链和真实日期/覆盖层仍不能认证 |
+| R12 | PARTIAL | 分轮原R12结果见当前报告；最终v105 API35原R12通过/冷启动切3D失败；API29原R12及冷启动均预览超时；完整触控链、日期/覆盖层仍不能认证 |
 | R13 | PARTIAL | 旧资产门禁已改为298项精确哈希与4项历史合法材质白名单；真实UI编辑/SAF失败恢复闭环未完成 |
 | R14 | PARTIAL | 权威/月字段正确仍不足以验收；实际整屏日期陈旧FAIL，四季动态/PC/真机未完成 |
 
-本轮16组主机套件PASS；输入与候选完整core独立同败 `AI uses deployment commands / CoreTest.logistics:75`，未改AI或断言。API29 x86_64 SwANGLE是模拟器，ARM64真机与30分钟长稳NOT_RUN；No process found不算零内存。
+本次 CI36108363433 的16组主机套件PASS；输入与候选完整core独立同败 `AI uses deployment commands / CoreTest.logistics:75`，未改AI或断言。API29 x86_64 SwANGLE是模拟器，ARM64真机与30分钟长稳NOT_RUN；No process found不算零内存。
 
-当前结果以 [整改报告](reports/R00-R14-REMEDIATION.md)、[缺陷](DEFECTS.md)、[213项复验清单](evidence/R00-R14-remediation-checklist.json)、[manifest](evidence/R00-R14-REMEDIATION.json)、[续作交接](handoffs/R00-R14-REMEDIATION.md) 为准。逐项复合验收不由局部主机通过自动升级。原总审计原文另存history/R00-R14-audit-PROGRESS.md与对应DEFECTS；原阶段报告保留并增加当前状态索引，不倒填历史PASS。
+当前结果以 [本次续作报告](reports/R00-R14-CONTINUATION.md)、[上轮整改历史](reports/R00-R14-REMEDIATION.md)、[缺陷](DEFECTS.md)、[213项复验清单](evidence/R00-R14-remediation-checklist.json)、[manifest](evidence/R00-R14-REMEDIATION.json)、[续作交接](handoffs/R00-R14-REMEDIATION.md) 为准。逐项复合验收不由局部主机通过自动升级。原总审计原文另存history/R00-R14-audit-PROGRESS.md与对应DEFECTS；原阶段报告保留并增加当前状态索引，不倒填历史PASS。
+
+最终v105 CI36108363433：API29 focused=0/r12=1/cold=1，API35 focused=0/r12=0/cold=1。API29实屏日期仍FAIL；v105录像14/15可解析，一段损坏保留。Release发布403，独立APK及六份原始运行ZIP已核验交付，不链接不存在的Release。

@@ -1,3 +1,5 @@
+> 续作更新：以下保留 v102 历史记录；2026-09-25 在实时 a5119 之后的正式相机修复、v103 与当前复验见 [R00-R14-CONTINUATION.md](../reports/R00-R14-CONTINUATION.md)。不要将历史结论或旧 APK 当成本次结果。
+
 # R00–R14 整改与复验 — PARTIAL，禁止合并
 
 2026-09-25。本轮实际修改正式渲染源码并构建新 APK；不是全阶段关闭。输入远端 `47e5db471e6dadb22d4c782522f97c113601461e`，main `ac29b458325b52d6e302ca44270d16552de4ed7f`，继续 PR67 / agent/native-pc-visual。未合并 main、未 force push、未处理其他 PR、未启动 R15。原提示词、全局契约与213项原文保留；历史报告不倒填为通过。

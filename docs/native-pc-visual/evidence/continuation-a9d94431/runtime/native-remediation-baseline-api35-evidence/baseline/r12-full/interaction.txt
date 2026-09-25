@@ -1,0 +1,14 @@
+FAIL R12 java.lang.AssertionError: scene readiness timeout: landscape=central-plains-r09-v1
+source=5d9384f9cba7810ebe9158d531a1c0ec4d6b9659 profile=native device=Android SDK built for x86_64 api=35 abi=[x86_64]
+snapshot=true surface=true viewport=918x1047 session=011bb428-d067-4987-a4cf-3f06cad3f9d0:0:0 assetRevision=1.56.0/R06 asset_pending=5 asset_cpu_bytes=0 terrain_all_coarse=false mapVisualKey=471842112:0 environmentCpuChunks=0 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=0 pending=1 submitted=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 overlayDraws=1 territoryBuilds=0 territoryBuildMs=0.0 output=WAITING_FRAME
+camera=99.5,99.75 span=15.0 tilt=55.0 facing=1 yaw=0.0
+pick=none
+Filament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30
+内部 918 × 1047 / UI 1080 × 1232 · chunks 0 / GPU 0 · objects 0
+帧回调间隔 0.0 ms（非 GPU/FPS 实测）
+待装载 1 · S06 战斗特效 / 部队 · 林块 0 · LOD 1 · 资产回退 0 · 特效 0/64
+场景 primitives=0 triangles=0 buffers_bytes=0 pose_cache=0 entity_live=2 material_instance_live=1 mesh_live=0 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=5 worker_pending=1 worker_waiting=0 discarded=0 ground_load_cpu_ms=154.459687 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=false texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=3.460863 CPU提交ms P50/P95/P99=N/A/N/A/N/A samples=0（非驱动DrawCall/GPU帧时）
+	at game.sanguo.mobile.SceneInstrumentation.ready(SceneInstrumentation.java:73)
+	at game.sanguo.mobile.NativeR12Instrumentation.onStart(NativeR12Instrumentation.java:89)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+

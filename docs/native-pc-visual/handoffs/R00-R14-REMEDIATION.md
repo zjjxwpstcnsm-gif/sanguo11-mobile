@@ -1,3 +1,15 @@
+# 当前续作入口：v105 / PARTIAL
+
+先读 reports/R00-R14-CONTINUATION.md、DEFECTS.md及213项清单。生产源码 ef54951dbb7056beaa782f97a3486eefa3a88ef9，最终文档/证据HEAD另见交付REMOTE_DELIVERY.json及实时远端。v103首次布局后全国fit、v104有界上传、v105相机/布局先于首个CPU任务均已接入正式路径，未建立第二套加载器。保持同一分支/PR67，不回退、不合main、不force push、不进入R15。
+
+最终v105：API29 focused=0/R12=1/cold=1；API35 focused=0/R12=0/cold=1。API29地形worker102327ms，之后GPU地形177齐全但景观pending494/473；日期整屏仍一月。API35冷启动录像从剧本加载进入2D预览，但触点未切到3D；新增epoch断言未到达。继续优先排查API29全国ready与实际窗口日期：用原完整R12和pm-clear冷启动分别复验；不得借用v103 API35曾通过当作最终候选通过。日期有原APK和候选两份独立整屏陈旧证据，decor/Window可见而窗口帧不前进、3D仍出帧，尚未证明是纯采集故障。v104 API35 Quickstep ANR只用于该次对照分类。之后补冷启动后出征/移动/攻击/战报/旬/手动存读完整真实触控链，再做异步生命周期、V1/V2、R10/R11/R13原清单。
+
+CI36108363433保留v105精确APK和原始运行结果；CI36109036703保存v104/v105原始证据的分片，按序连接并核对TRANSFER_SHA256，tar内逐项核对RAW_SHA256。v104 Release发布403，独立重录下载404未运行，不应继续引用不存在的Release或宣称采集修复已通过。最终制品与证据由本次交付独立文件提供；保留损坏录像并标注，禁止用缩略图替代整屏原图。
+
+以下是上轮v102历史交接，仅供追溯，不是当前结果：
+
+> 续作更新：以下保留 v102 历史记录；2026-09-25 在实时 a5119 之后的正式相机修复、v103 与当前复验见 [R00-R14-CONTINUATION.md](../reports/R00-R14-CONTINUATION.md)。不要将历史结论或旧 APK 当成本次结果。
+
 # R00–R14整改续作交接 / PARTIAL
 
 先读当前reports/R00-R14-REMEDIATION.md、DEFECTS.md及evidence/R00-R14-remediation-checklist.json；原EXECUTE_PROMPT和原提示词在交付ZIP的input中。继续同一串行分支/PR67，先读取实时远端，不回退到这里的检查点，不合main、不force push、不开始R15。

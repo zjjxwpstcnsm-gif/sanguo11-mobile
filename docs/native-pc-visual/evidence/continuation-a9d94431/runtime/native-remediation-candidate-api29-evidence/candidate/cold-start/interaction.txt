@@ -1,0 +1,15 @@
+FAIL COLD_START java.lang.AssertionError: scene readiness timeout: landscape=central-plains-r09-v1
+source=a9d944310249b26ab3167ea5407f8111758a29c8 profile=native device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]
+snapshot=true surface=true viewport=874x630 session=editor assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=642384 terrain_all_coarse=false mapVisualKey=471842112:0 environmentCpuChunks=119 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=22 pending=1 submitted=2 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 overlayDraws=468 territoryBuilds=1 territoryBuildMs=543.35764 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=4 output=WAITING_FRAME
+camera=99.5,99.75 span=86.256714 tilt=55.0 facing=1 yaw=0.0
+pick=none
+Filament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30
+内部 874 × 630 / UI 1028 × 741 · chunks 22 / GPU 22 · objects 87
+帧回调间隔 166.7 ms（非 GPU/FPS 实测）
+待装载 1 · S06 战斗特效 / 部队 · 林块 47 · LOD 2 · 资产回退 0 · 特效 0/64
+场景 primitives=259 triangles=167461 buffers_bytes=9652144 pose_cache=15 entity_live=261 material_instance_live=88 mesh_live=85 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=2 material_live=5 worker_pending=1 worker_waiting=0 discarded=0 ground_load_cpu_ms=122.40899 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=1.77865 CPU提交ms P50/P95/P99=0.25/0.58/23.78 samples=240（非驱动DrawCall/GPU帧时）
+	at game.sanguo.mobile.SceneInstrumentation.ready(SceneInstrumentation.java:73)
+	at game.sanguo.mobile.NativeColdStartInstrumentation.shot(NativeColdStartInstrumentation.java:40)
+	at game.sanguo.mobile.NativeColdStartInstrumentation.onStart(NativeColdStartInstrumentation.java:48)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)
+
