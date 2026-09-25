@@ -173,3 +173,10 @@
 - R14-REFERENCE: season-matched PC sample absent; winter snow not invented. V2 remains FAIL.
 - R14-DEVICE: ARM64 Adreno/Mali, GPU overdraw/frame/thermal and full manual UI NOT_RUN.
 - R14-TRANSPORT: initial split workflow newline formatting failed36080186445, corrected36080270530. Not a production failure.
+
+## R14 final open gates
+- R14-UI inherited/reobserved: July screenshot still January; April after-turn screenshot still March-lower/playback40%. Authority/native month correct. HWUI dequeueBuffer -110 observed; compositor vs app root cause unproven.
+- R14-PERF inherited/reobserved: API29 swangle turn75333ms, compute71194ms; CPU submission P95 126.29/P99 1593.35ms. Not phone/GPU performance. No valid PSS (process already absent).
+- R14-ART: autumn/winter tint visible; sparse trees, blocky buildings, stepped shores remain. Seasonal PC reference missing/V2 FAIL.
+- R14-SHADOW/DEVICE: enabled flags do not prove temporal quality; physical GPU/thermal/manual matrix NOT_RUN.
+- CoreTest.logistics:75 reproduced baseline and R14 FAIL. Old R13 workflow asset guard fails on deliberate R14 material updates; preserved, separately documented.

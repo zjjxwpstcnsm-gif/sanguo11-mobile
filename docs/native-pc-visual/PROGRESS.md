@@ -150,3 +150,6 @@ No R14 or main merge. Final evidence-only commit does not change the runtime tre
 
 ## R14 current candidate — PARTIAL
 Authoritative month projection, shared seasonal environment and separate grass/foliage/crop/water material response integrated; uniform-only date updates preserve terrain resources. Pinned matc56 compiled four production materials. Local R14 host590 and material manifests PASS. Exact Android/runtime evidence pending; R09/R12/R13 legacy gaps and physical/PC gates remain. See reports/R14.md. No main merge or R15.
+
+## R14 final delivery — PARTIAL
+Source32f278ff8c56cc6e898f1553468751173228797a; CI36081028678 SUCCESS, host590/installed909 scoped PASS; APK97 built and verified. Four-season uniforms, stable resources and real quarter turn/save/load verified. 37 paired captures reviewed. UI date/playback freshness FAIL, software turn75.333s NOT accepted; PC V2/physical/temporal shadows remain open. Core inherited FAIL retained. See reports/R14.md and evidence/R14.json. No merge or R15.
