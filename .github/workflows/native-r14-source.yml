@@ -21,7 +21,8 @@ jobs:
           git bundle create /tmp/r14/source.bundle HEAD refs/remotes/origin/main refs/remotes/origin/agent/native-pc-visual
           git rev-parse HEAD > /tmp/r14/SOURCE_COMMIT
           curl -fL --retry 3 https://github.com/google/filament/releases/download/v1.56.0/filament-v1.56.0-linux.tgz -o /tmp/r14/filament.tgz
-          tar -czf /tmp/r14-transport.tgz -C /tmp/r14 .\n          split -b 24M -d /tmp/r14-transport.tgz /tmp/r14-part-
+          tar -czf /tmp/r14-transport.tgz -C /tmp/r14 .
+          split -b 24M -d /tmp/r14-transport.tgz /tmp/r14-part-
       - uses: actions/upload-artifact@v4
         with:
           name: native-r14-part-00
