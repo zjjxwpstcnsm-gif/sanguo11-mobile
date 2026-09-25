@@ -1,40 +1,55 @@
-name: Native exact v107 isolated cold start
+name: Native P0 untouched v105 and input v107 controls
 on:
   push:
     branches: [agent/native-pc-visual]
     paths: ['.github/workflows/native-cold-recording.yml']
 permissions:
   actions: read
-  contents: write
+  contents: read
 jobs:
   record:
     strategy:
       fail-fast: false
       matrix:
         api: [29, 35]
+        version: [105, 107]
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
+      CONTROL_VERSION: ${{ matrix.version }}
     steps:
       - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
       - uses: actions/setup-java@v5
         with: {distribution: temurin, java-version: '17'}
       - uses: gradle/actions/setup-gradle@v4
       - uses: android-actions/setup-android@v4
         with: {packages: ''}
       - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
-      - name: Build instrumentation only; preserve exact published production APK
+      - name: Instrumentation only; install unmodified archived APK bytes
         run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           ./gradlew --no-daemon :app:assembleDebugAndroidTest -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true
-          mkdir -p app/build/outputs/apk/debug out/remediation /tmp/v107-apk
-          gh run download 36120063732 -n native-remediation-api29-apk-00 -D /tmp/v107-apk
-          gh run download 36120063732 -n native-remediation-api29-apk-01 -D /tmp/v107-apk
-          cat /tmp/v107-apk/remediation-apk-part-00 /tmp/v107-apk/remediation-apk-part-01 > app/build/outputs/apk/debug/app-debug.apk
-          echo '0ad4cc9b9e57a4535cddedf2939541a60433bc02c74d0703e6640696172da486  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
-          echo a4b09058c6b1ab8c80f57d96f1e22425673de94c > out/remediation/SOURCE_COMMIT
+          mkdir -p app/build/outputs/apk/debug out/remediation /tmp/control-apk
+          if [ "$CONTROL_VERSION" = 105 ]; then
+            run=36108363433
+            digest=2b38ca4741b60650be58555ec118350f2aeff292765f6b3754adc138c1fdf55c
+            source=ef54951dbb7056beaa782f97a3486eefa3a88ef9
+          else
+            run=36120063732
+            digest=0ad4cc9b9e57a4535cddedf2939541a60433bc02c74d0703e6640696172da486
+            source=a4b09058c6b1ab8c80f57d96f1e22425673de94c
+          fi
+          gh run download "$run" -n native-remediation-api29-apk-00 -D /tmp/control-apk
+          gh run download "$run" -n native-remediation-api29-apk-01 -D /tmp/control-apk
+          cat /tmp/control-apk/remediation-apk-part-00 /tmp/control-apk/remediation-apk-part-01 > app/build/outputs/apk/debug/app-debug.apk
+          echo "$digest  app/build/outputs/apk/debug/app-debug.apk" | sha256sum -c -
+          echo "$source" > out/remediation/SOURCE_COMMIT
           echo "$GITHUB_SHA" > out/remediation/INSTRUMENTATION_COMMIT
+          sha256sum app/build/outputs/apk/debug/app-debug.apk > out/remediation/APK_SHA256
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -49,20 +64,34 @@ jobs:
           heap-size: 512M
           disable-animations: false
           emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
-          script: bash scripts/verify-native-remediation.sh baseline cold-only
-      - name: Preserve and validate exact original recording bytes
+          script: bash scripts/verify-native-remediation.sh baseline
+      - name: Preserve raw PNG Surface video logs and independent decode results
         if: always()
         run: |
+          set -uo pipefail
+          mkdir -p out/remediation
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg
           failed=0
-          for video in out/remediation/baseline/*/*.mp4; do
-            ffprobe -v error -show_format -show_streams "$video" > "$video.ffprobe.txt" 2>&1 || failed=1
-          done
-          echo "$failed" > out/remediation/VIDEO_EXIT.txt
-          cd out/remediation
-          zip -qr ../v107-p0-baseline.zip .
+          found=0
+          while IFS= read -r -d '' video; do
+            found=$((found+1))
+            code=0
+            ffprobe -v error -show_format -show_streams "$video" > "$video.ffprobe.txt" 2>&1 || code=$?
+            echo "$code" > "$video.ffprobe.exit"
+            [ "$code" = 0 ] || failed=1
+            code=0
+            ffmpeg -v warning -i "$video" -f null - > "$video.decode.txt" 2>&1 || code=$?
+            echo "$code" > "$video.decode.exit"
+            [ "$code" = 0 ] || failed=1
+          done < <(find out/remediation -name '*.mp4' -print0)
+          [ "$found" -gt 0 ] || failed=1
+          printf 'videos=%s\nfailed=%s\n' "$found" "$failed" > out/remediation/VIDEO_EXIT.txt
+          (cd out/remediation && zip -qr ../p0-control.zip .)
           exit "$failed"
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: "exact-v107-p0-baseline-api${{ matrix.api }}", path: out/v107-p0-baseline.zip, retention-days: 14}
+        with:
+          name: "p0-control-v${{ matrix.version }}-api${{ matrix.api }}"
+          path: out/p0-control.zip
+          retention-days: 14
