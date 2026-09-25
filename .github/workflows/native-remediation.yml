@@ -1,4 +1,4 @@
-name: Native R00-R14 initial preview work continuation
+name: Native R00-R14 v106 bounded national preview work
 on:
   push:
     branches: [agent/native-pc-visual]
@@ -43,7 +43,7 @@ jobs:
         if: always()
         run: |
           set -euo pipefail
-          git worktree add --detach /tmp/audit-core-baseline a5119b869f710949731781b35f13858cc87809c0
+          git worktree add --detach /tmp/audit-core-baseline 312532ea2a4d623f50c71becee119fbe06532d11
           baseline=0
           (cd /tmp/audit-core-baseline && bash scripts/test-core.sh) > out/remediation/core-baseline.log 2>&1 || baseline=$?
           candidate=0

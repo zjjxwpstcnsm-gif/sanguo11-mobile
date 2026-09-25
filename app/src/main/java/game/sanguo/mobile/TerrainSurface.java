@@ -18,6 +18,9 @@ final class TerrainSurface {
     // all non-negative finite heights (including zero) without a second validity array.
     private static final int MAX_LATTICE_SAMPLES=262144; // <= 1 MiB per Ground
     private final java.util.concurrent.atomic.AtomicIntegerArray lattice;
+    // Fixed 512 KiB direct-mapped cache for the quarter-grid normal stencil.
+    // Key and value publish atomically; collisions replace one slot, never clear a map.
+    private final java.util.concurrent.atomic.AtomicLongArray normalLattice=new java.util.concurrent.atomic.AtomicLongArray(65536);
     private final int latticeX,latticeZ,latticeWidth,latticeHeight;
     TerrainSurface(MapSceneSnapshot.Ground g){this(g,Collections.emptyMap());}
     TerrainSurface(MapSceneSnapshot.Ground g,Map<Hex,Float> values){
@@ -57,12 +60,25 @@ final class TerrainSurface {
     }
     float sample(float x,float z){
         int ix=Math.round(x*2),iz=Math.round(z*2);
-        if(Math.abs(x*2-ix)>.00001f||Math.abs(z*2-iz)>.00001f)return compute(x,z);
+        if(Math.abs(x*2-ix)>.00001f||Math.abs(z*2-iz)>.00001f)return quarterSample(x,z);
         int q=ix-latticeX,r=iz-latticeZ;
         if(lattice.length()==0||q<0||r<0||q>=latticeWidth||r>=latticeHeight)return compute(x,z);
         int key=r*latticeWidth+q,encoded=lattice.get(key);
         if(encoded!=0)return Float.intBitsToFloat(encoded-1);
         float value=compute(x,z);lattice.compareAndSet(key,0,Float.floatToIntBits(value)+1);return value;
+    }
+    private float quarterSample(float x,float z){
+        int ix=Math.round(x*4),iz=Math.round(z*4);
+        if(x*4!=ix||z*4!=iz)return compute(x,z);
+        long q=(long)ix-2L*latticeX,r=(long)iz-2L*latticeZ,width=2L*latticeWidth;
+        if(q<0||r<0||q>=width||r>=2L*latticeHeight)return compute(x,z);
+        long key=r*width+q+1;
+        if(key>0x7fffffffL)return compute(x,z);
+        int slot=(int)key&(normalLattice.length()-1);long encoded=normalLattice.get(slot);
+        if((encoded>>>32)==key)return Float.intBitsToFloat((int)encoded);
+        float value=compute(x,z);
+        normalLattice.set(slot,(key<<32)|(Float.floatToIntBits(value)&0xffffffffL));
+        return value;
     }
     private float compute(float x,float z){
         Hex cell=ground.grid.cell(x,z);float sum=0,weight=0,limit=MAX_HEIGHT;

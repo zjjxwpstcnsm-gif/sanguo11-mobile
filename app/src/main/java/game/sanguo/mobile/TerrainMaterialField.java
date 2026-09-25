@@ -61,25 +61,45 @@ final class TerrainMaterialField {
         for(int i=0;i<4;i++)w[i]/=sum;
     }
     /** Separate terrain-only stream: canonical UV, tangent quaternion, water mask and macro tone. */
-    void attach(SceneMesh mesh){
+    void attach(SceneMesh mesh){attach(mesh,null);}
+    void attach(SceneMesh mesh,SceneMesh.BuildStats stats){
         int count=mesh.vertices.length/7;mesh.surfaceData=new float[count*8];
+        // Chunk-local memo only: shared fan vertices have identical field inputs.
+        // Preserve separate wet/dry flow channels at the same shore coordinate.
+        java.util.Map<Long,Integer> samples=new java.util.HashMap<>();
+        boolean[] wet=new boolean[count];
         for(int i=0;i<count;i++){
             int v=i*7,s=i*8;float x=mesh.vertices[v],z=mesh.vertices[v+2];
-            boolean water=mesh.vertices[v+5]>mesh.vertices[v+3];
+            boolean water=mesh.vertices[v+5]>mesh.vertices[v+3];wet[i]=water;
+            long key=((long)Float.floatToIntBits(x)<<32)|(Float.floatToIntBits(z)&0xffffffffL);
+            Integer prior=samples.get(key);
+            if(prior!=null){
+                if(stats!=null)stats.sharedSamples++;
+                System.arraycopy(mesh.vertices,prior*7+3,mesh.vertices,v+3,4);
+                System.arraycopy(mesh.surfaceData,prior*8,mesh.surfaceData,s,8);
+                if(wet[prior]!=water)mesh.surfaceData[s+7]=water?waterField.flowAngle(x,z):.96f+.04f*(float)(Math.sin(x*.19)*Math.cos(z*.17));
+                continue;
+            }
+            if(samples.size()<4096)samples.put(key,i);
 
 
             mesh.surfaceData[s]=x;mesh.surfaceData[s+1]=-z;
+            long sectionStarted=stats==null?0:System.nanoTime();
             float dx=(ground.surface.sample(x+.25f,z)-ground.surface.sample(x-.25f,z))*2;
             float dz=(ground.surface.sample(x,z+.25f)-ground.surface.sample(x,z-.25f))*2;
+            if(stats!=null){stats.heightNanos+=System.nanoTime()-sectionStarted;sectionStarted=System.nanoTime();}
             float[] w=sample(x,z,(float)Math.sqrt(dx*dx+dz*dz));System.arraycopy(w,0,mesh.vertices,v+3,4);
+            if(stats!=null)stats.blendNanos+=System.nanoTime()-sectionStarted;
             // Rotation from +Z to the global surface normal. Positive quaternion handedness.
             float len=(float)Math.sqrt(dx*dx+1+dz*dz),nx=-dx/len,ny=1/len,nz=-dz/len;
             float qw=(float)Math.sqrt((1+nz)*.5f),scale=.5f/qw;
             mesh.surfaceData[s+2]=-ny*scale;mesh.surfaceData[s+3]=nx*scale;
             mesh.surfaceData[s+4]=0;mesh.surfaceData[s+5]=qw;
             // Signed visual shore distance, NOT gameplay water depth. Shared by both batches.
+            sectionStarted=stats==null?0:System.nanoTime();
             mesh.surfaceData[s+6]=waterField.distance(x,z);
             mesh.surfaceData[s+7]=water?waterField.flowAngle(x,z):.96f+.04f*(float)(Math.sin(x*.19)*Math.cos(z*.17));
+            if(stats!=null)stats.shoreNanos+=System.nanoTime()-sectionStarted;
         }
     }
 }

@@ -8,6 +8,7 @@ final class SceneMesh {
     private static final World.Terrain[] TERRAIN_TYPES=World.Terrain.values();
     SceneMesh distant;
     boolean vegetation;
+    int landscapeChunkSize=8;
     // Disjoint index ranges share the same surface and buffers, but never draw water as land.
     int landIndexCount=-1;
     long fingerprint; int chunkQ,chunkR,terrainLod;
@@ -121,7 +122,14 @@ final class SceneMesh {
     static List<SceneMesh> ground(MapSceneSnapshot.Ground g,List<SceneMesh> previous){
         return ground(g,previous,null);
     }
+    static final class BuildStats {
+        long geometryNanos,heightNanos,blendNanos,shoreNanos;int sharedSamples;
+        @Override public String toString(){return "geometryWallMs="+geometryNanos/1e6+" normalHeightWallMs="+heightNanos/1e6+" blendWallMs="+blendNanos/1e6+" shoreWallMs="+shoreNanos/1e6+" reusedFieldSamples="+sharedSamples;}
+    }
     static List<SceneMesh> ground(MapSceneSnapshot.Ground g,List<SceneMesh> previous,TerrainWindow window){
+        return ground(g,previous,window,null);
+    }
+    static List<SceneMesh> ground(MapSceneSnapshot.Ground g,List<SceneMesh> previous,TerrainWindow window,BuildStats stats){
         List<SceneMesh> out=new ArrayList<>();Map<String,SceneMesh> cached=new HashMap<>();
         for(SceneMesh m:previous)cached.put(m.chunkQ+":"+m.chunkR,m);
         List<int[]> requests=new ArrayList<>();
@@ -143,6 +151,7 @@ final class SceneMesh {
                 fingerprint=(fingerprint^Float.floatToIntBits(g.surface.overrides.getOrDefault(h,-1f)))*1099511628211L;
             }
             SceneMesh retained=cached.get(q+":"+r);if(retained!=null&&retained.fingerprint==fingerprint){out.add(retained);continue;}
+            long geometryStarted=stats==null?0:System.nanoTime();
             Builder b=new Builder();List<Integer> waterIndices=new ArrayList<>();float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
             for(int rr=r;rr<Math.min(r+16,g.height);rr++)for(int qq=q;qq<Math.min(q+16,g.width);qq++){
                 Hex h=new Hex(qq,rr);if(!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);
@@ -157,7 +166,8 @@ final class SceneMesh {
             if(!b.i.isEmpty()){
                 SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+1);
                 m.landIndexCount=landCount;
-                new TerrainMaterialField(g).attach(m);
+                if(stats!=null)stats.geometryNanos+=System.nanoTime()-geometryStarted;
+                new TerrainMaterialField(g).attach(m,stats);
                 SceneMesh fine=lod==2?m:detail(m,g);
                 if(lod==0)fine=detail(fine,g);
                 fine.terrainLod=lod;

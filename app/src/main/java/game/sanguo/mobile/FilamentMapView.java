@@ -39,6 +39,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private final SceneWorkQueue<MeshResult> meshWork=new SceneWorkQueue<>();
     private static final class MeshResult {
         final SceneMesh scenery; final List<SceneMesh> ground,trees;
+        final long completedNanos=System.nanoTime();
         MeshResult(SceneMesh scenery,List<SceneMesh> ground,List<SceneMesh> trees){this.scenery=scenery;this.ground=ground;this.trees=trees;}
     }
     private game.sanguo.api.StateToken sceneToken;
@@ -76,6 +77,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private long lastOutputProbe;
     private String outputStatus="WAITING_SURFACE";
     private long surfaceFrames;
+    private long frameCallbacks,beginAttempts,beginSkipped,outputCopies,lastWorkLog;
     private int lastMeshUploads;
     private long lastMeshUploadNanos;
     private SwapChain swap; private int cameraEntity,light;
@@ -369,18 +371,35 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             final FieldAssets assets=fieldAssets;final SceneMesh oldScenery=backdropSource;
             terrainWindow=new SceneMesh.TerrainWindow(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span);
             SceneMesh.TerrainWindow requested=terrainWindow;
-            meshWork.submit(()->{
-                long started=android.os.SystemClock.elapsedRealtime();
-
-                SceneMesh scenery=groundChanged?SceneMesh.backdrop(next.ground):oldScenery;
-                List<SceneMesh> built=SceneMesh.ground(next.ground,previous,requested);
-                android.util.Log.i("Sanguo3D","Ground CPU ready chunks="+built.size()+" ms="+(android.os.SystemClock.elapsedRealtime()-started));
-                List<SceneMesh> trees=Vegetation.buildWindow(next.ground,excluded,oldWoods,assets,requested);
-                android.util.Log.i("Sanguo3D","Field CPU ready forestChunks="+trees.size()+" totalMs="+(android.os.SystemClock.elapsedRealtime()-started));
-                return new MeshResult(scenery,built,trees);
-            });
+            long queuedAt=System.nanoTime();
+            meshWork.submit(()->buildMeshes(next.ground,groundChanged,oldScenery,previous,oldWoods,assets,excluded,requested,queuedAt));
         }
         syncObjects();overlay.invalidate();schedule();
+    }
+    private static long runtimeCounter(String key){
+        try{String value=android.os.Debug.getRuntimeStat(key);return value==null?-1:Long.parseLong(value);}catch(RuntimeException e){return -1;}
+    }
+    private static MeshResult buildMeshes(MapSceneSnapshot.Ground ground,boolean changed,SceneMesh scenery,
+            List<SceneMesh> previous,List<SceneMesh> trees,FieldAssets assets,Set<Hex> excluded,
+            SceneMesh.TerrainWindow window,long queuedAt)throws Exception {
+        long started=System.nanoTime(),cpu=android.os.Debug.threadCpuTimeNanos();
+        long gc=runtimeCounter("art.gc.gc-time"),allocated=runtimeCounter("art.gc.bytes-allocated");
+        if(changed)scenery=SceneMesh.backdrop(ground);
+        long backgroundDone=System.nanoTime(),backgroundCpu=android.os.Debug.threadCpuTimeNanos();
+        SceneMesh.BuildStats stats=new SceneMesh.BuildStats();
+        List<SceneMesh> built=SceneMesh.ground(ground,previous,window,stats);
+        long groundDone=System.nanoTime(),groundCpu=android.os.Debug.threadCpuTimeNanos();
+        android.util.Log.i("Sanguo3D","Ground CPU ready chunks="+built.size()+" ms="+(groundDone-started)/1e6
+            +" queueWaitWallMs="+(started-queuedAt)/1e6+" backdropWallMs="+(backgroundDone-started)/1e6
+            +" backdropCpuMs="+(backgroundCpu-cpu)/1e6+" groundWallMs="+(groundDone-backgroundDone)/1e6
+            +" groundCpuMs="+(groundCpu-backgroundCpu)/1e6+" "+stats);
+        List<SceneMesh> forest=Vegetation.buildWindow(ground,excluded,trees,assets,window);
+        long done=System.nanoTime(),endGc=runtimeCounter("art.gc.gc-time"),endAllocated=runtimeCounter("art.gc.bytes-allocated");
+        android.util.Log.i("Sanguo3D","Field CPU ready forestChunks="+forest.size()+" totalMs="+(done-started)/1e6
+            +" sceneryWallMs="+(done-groundDone)/1e6+" sceneryCpuMs="+(android.os.Debug.threadCpuTimeNanos()-groundCpu)/1e6
+            +" processGcMs="+(gc<0||endGc<0?-1:endGc-gc)+" processAllocatedBytes="+(allocated<0||endAllocated<0?-1:endAllocated-allocated)
+            +" interrupted="+Thread.currentThread().isInterrupted());
+        return new MeshResult(scenery,built,forest);
     }
     private void applySeason(SeasonStyle next){
         if(season==next)return;
@@ -394,6 +413,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private void acceptMeshes(MeshResult result){
         if(released)return;
+        android.util.Log.i("Sanguo3D","Mesh owner delivery waitWallMs="+(System.nanoTime()-result.completedNanos)/1e6+" generation="+generation+" discarded="+meshWork.discarded());
         if(backdropSource!=result.scenery){if(backdrop!=null){backdrop.destroy();backdrop=null;}backdropSource=result.scenery;}
         // Keep a displayed old level until its replacement finishes the bounded upload.
         // Environment meshes transfer in loadVisible only after replacement upload.
@@ -419,6 +439,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         +" season="+(season==null?"none":season.name)+" seasonUpdates="+seasonUpdates+" artProfile="+SeasonStyle.ID+" worldMonth="+(snapshot==null?0:snapshot.month)
         +" overlayDraws="+overlay.draws+" territoryBuilds="+overlay.territoryBuilds+" territoryBuildMs="+overlay.territoryBuildNanos/1e6
         +" meshUploads="+lastMeshUploads+" meshUploadCpuMs="+lastMeshUploadNanos/1e6+" meshUploadMax=8 meshUploadBudgetMs=4"
+        +" frameCallbacks="+frameCallbacks+" beginAttempts="+beginAttempts+" beginSkipped="+beginSkipped+" surfaceCopies="+outputCopies
         +" output="+outputStatus+"\ncamera="+camera.x+","+camera.z+" span="+camera.span+" tilt="+camera.tilt+" facing="+camera.facing+" yaw="+camera.yaw+"\npick="+lastPick;}
     String report(){return "landscape="+LandscapeProfile.ID+"\n"+startupReport()+"\nFilament 1.56.0 / OpenGL ES · "+quality.label+" color="+(srgbSwapChain?"sRGB framebuffer":"post-process gamma")+" MSAA="+(msaaEnabled?"4x":"off / compatibility")+" thermal="+thermalStatus+" cap="+thermal.fps(quality)+"\n内部 "+bufferWidth+" × "+bufferHeight+" / UI "+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S06 战斗特效 / 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+" · 特效 "+combat.count+"/"+CombatVisual.CAPACITY+"\n"+resourceReport();}
     void resetMetrics(){cpuCount=cpuCursor=0;}
@@ -448,7 +469,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     @Override public void surfaceChanged(SurfaceHolder h,int f,int w,int height){if(released)return;bufferWidth=w;bufferHeight=height;view.setViewport(new Viewport(0,0,w,height));com.google.android.filament.android.FilamentHelper.synchronizePendingFrames(engine);schedule();}
     @Override public void surfaceDestroyed(SurfaceHolder holder){cancelFrame();if(displayHelper!=null)displayHelper.detach();if(engine!=null&&swap!=null){engine.destroySwapChain(swap);swap=null;engine.flushAndWait();}}
     @Override public void doFrame(long time){
-        queued=false;if(released||!resumed||swap==null)return;
+        frameCallbacks++;queued=false;if(released||!resumed||swap==null)return;
         if(!pacer.due(time,thermal.fps(quality))){schedule();return;}
         long cpuStart=System.nanoTime();
         try{
@@ -463,7 +484,11 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(waterLastTick!=0&&UiMotion.enabled())waterSeconds+=Math.min(.1,(time-waterLastTick)/1e9);
             waterLastTick=time;waterMaterial.getDefaultInstance().setParameter("waveTime",(float)(waterSeconds%4096));
             animationTick=time/1_000_000;animateReplay();loadVisible();animateUnits();animateEffects();
-            if(bufferWidth>0&&bufferHeight>0&&renderer.beginFrame(swap,time)){renderer.render(view);renderer.endFrame();renderedFrames++;surfaceFrames++;if(surfaceFrames==1)android.util.Log.i("Sanguo3D","First submission (not visibility proof): "+startupReport());checkSurfaceOutput();}
+            boolean begun=false;
+            if(bufferWidth>0&&bufferHeight>0){beginAttempts++;begun=renderer.beginFrame(swap,time);if(!begun)beginSkipped++;}
+            if(begun){renderer.render(view);renderer.endFrame();renderedFrames++;surfaceFrames++;if(surfaceFrames==1)android.util.Log.i("Sanguo3D","First submission (not visibility proof): "+startupReport());checkSurfaceOutput();}
+            long now=android.os.SystemClock.uptimeMillis();
+            if(!outputVerified&&now-lastWorkLog>=1000){lastWorkLog=now;android.util.Log.i("Sanguo3D","Load progress "+startupReport());}
             overlay.invalidate();schedule();
             cpuSamples[cpuCursor++%cpuSamples.length]=System.nanoTime()-cpuStart;cpuCount=Math.min(cpuSamples.length,cpuCount+1);
         }catch(RuntimeException|LinkageError|OutOfMemoryError e){cancelFrame();failure.accept(e);}
@@ -483,6 +508,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 try{
                     if(released||!resumed||swap!=probedSwap||generation!=probedGeneration||pending!=0)return;
                     if(result!=PixelCopy.SUCCESS){outputStatus="COPY_ERROR_"+result;uniformOutputCount=0;return;}
+                    outputCopies++;
                     int[] pixels=new int[1024];sample.getPixels(pixels,0,32,0,0,32,32);
                     int minR=255,minG=255,minB=255,maxR=0,maxG=0,maxB=0;
                     for(int pixel:pixels){int r=(pixel>>16)&255,g=(pixel>>8)&255,b=pixel&255;
@@ -510,7 +536,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             SceneMesh.TerrainWindow requested=terrainWindow;MapSceneSnapshot.Ground ground=snapshot.ground;
             List<SceneMesh> previous=chunks,trees=woods;SceneMesh scenery=backdropSource;
             Set<Hex> excluded=woodExcluded;FieldAssets assets=fieldAssets;
-            meshWork.submit(()->new MeshResult(scenery,SceneMesh.ground(ground,previous,requested),Vegetation.buildWindow(ground,excluded,trees,assets,requested)));
+            long queuedAt=System.nanoTime();
+            meshWork.submit(()->buildMeshes(ground,false,scenery,previous,trees,assets,excluded,requested,queuedAt));
         }
         // Bound upload work by measured owner CPU time and count. Charge only
         // actual uploads, so scanning existing residents cannot starve the queue.
@@ -539,10 +566,9 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             }
         }
         for(SceneMesh old:new ArrayList<>(vegetation.keySet()))if(!wantedWood.contains(old)){
-            SceneMesh replacement=null;
-            for(SceneMesh wanted:wantedWood)if(wanted.chunkQ==old.chunkQ&&wanted.chunkR==old.chunkR){replacement=wanted;break;}
-            // Keep the previous LOD visible until its replacement is uploaded.
-            if(replacement==null||vegetation.containsKey(replacement))vegetation.remove(old).destroy();
+            // A national batch may overlap four old close batches (and vice versa).
+            // Retain it until every visible overlapping replacement has uploaded.
+            if(!Vegetation.replacementPending(old,wantedWood,vegetation.keySet()))vegetation.remove(old).destroy();
             else vegetation.get(old).show(inView(old.x,old.z,old.radius));
         }
         lastMeshUploads=8-budget;lastMeshUploadNanos=uploadNanos;
