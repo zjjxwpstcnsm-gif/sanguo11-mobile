@@ -17,6 +17,7 @@ import java.util.function.Predicate;
  * never writes auto.sg11 or invokes scenarioPicker/startScenario directly. */
 public final class NativeColdStartInstrumentation extends SceneInstrumentation {
  private File dir;
+ private long touchDeadline;
  private void note(String s)throws Exception{Files.write(new File(dir,"cold-runtime.txt").toPath(),(s+"\n").getBytes(java.nio.charset.StandardCharsets.UTF_8),StandardOpenOption.CREATE,StandardOpenOption.APPEND);}
  private View find(View v,Predicate<View> match){
   if(!v.isShown())return null;
@@ -25,12 +26,12 @@ public final class NativeColdStartInstrumentation extends SceneInstrumentation {
   return null;
  }
  private View await(Predicate<View> match)throws Exception{
-  long deadline=SystemClock.uptimeMillis()+30000;
+  long deadline=SystemClock.uptimeMillis()+30000;touchDeadline=deadline;
   while(SystemClock.uptimeMillis()<deadline){View[] hit={null};runOnMainSync(()->{List<View> roots=WindowInspector.getGlobalWindowViews();for(int i=roots.size()-1;i>=0;i--){View root=roots.get(i);if(!root.isAttachedToWindow()||!root.hasWindowFocus()||root.isLayoutRequested())continue;hit[0]=find(root,match);if(hit[0]!=null)break;}});if(hit[0]!=null)return hit[0];settle();}
   capture("cold-missing-control");throw new AssertionError("visible UI control not found");
  }
  private void tap(View v)throws Exception{
-  Rect rect=new Rect(),previous=new Rect();long deadline=SystemClock.uptimeMillis()+30000;boolean stable=false;int samples=0;
+  Rect rect=new Rect(),previous=new Rect();long deadline=touchDeadline;boolean stable=false;int samples=0;
   while(SystemClock.uptimeMillis()<deadline){
    boolean[] interactive={false};int[] screen=new int[2];
    runOnMainSync(()->{View root=v.getRootView();interactive[0]=v.isAttachedToWindow()&&v.isShown()&&v.isEnabled()&&v.hasWindowFocus()&&root.hasWindowFocus()&&!root.isLayoutRequested()&&v.getLocalVisibleRect(rect);if(interactive[0]){v.getLocationOnScreen(screen);rect.offset(screen[0],screen[1]);}});

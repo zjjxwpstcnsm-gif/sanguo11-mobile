@@ -1,4 +1,4 @@
-name: Native exact v106 isolated cold start
+name: Native exact v107 isolated cold start
 on:
   push:
     branches: [agent/native-pc-visual]
@@ -28,12 +28,12 @@ jobs:
       - name: Build instrumentation only; preserve exact published production APK
         run: |
           ./gradlew --no-daemon :app:assembleDebugAndroidTest -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true
-          mkdir -p app/build/outputs/apk/debug out/remediation /tmp/v106-apk
-          gh run download 36117420833 -n native-remediation-api29-apk-00 -D /tmp/v106-apk
-          gh run download 36117420833 -n native-remediation-api29-apk-01 -D /tmp/v106-apk
-          cat /tmp/v106-apk/remediation-apk-part-00 /tmp/v106-apk/remediation-apk-part-01 > app/build/outputs/apk/debug/app-debug.apk
-          echo '5a25e4a789ef46b6171dd35a3e1fd7aecefac1c97392f26bbc461113c93c0dba  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
-          echo 452f874144ad9893fdfce8188a375ee604c4f906 > out/remediation/SOURCE_COMMIT
+          mkdir -p app/build/outputs/apk/debug out/remediation /tmp/v107-apk
+          gh run download 36120063732 -n native-remediation-api29-apk-00 -D /tmp/v107-apk
+          gh run download 36120063732 -n native-remediation-api29-apk-01 -D /tmp/v107-apk
+          cat /tmp/v107-apk/remediation-apk-part-00 /tmp/v107-apk/remediation-apk-part-01 > app/build/outputs/apk/debug/app-debug.apk
+          echo '0ad4cc9b9e57a4535cddedf2939541a60433bc02c74d0703e6640696172da486  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
+          echo a4b09058c6b1ab8c80f57d96f1e22425673de94c > out/remediation/SOURCE_COMMIT
           echo "$GITHUB_SHA" > out/remediation/INSTRUMENTATION_COMMIT
       - name: Enable KVM
         run: |
@@ -61,8 +61,8 @@ jobs:
           done
           echo "$failed" > out/remediation/VIDEO_EXIT.txt
           cd out/remediation
-          zip -qr ../v106-p0-baseline.zip .
+          zip -qr ../v107-p0-baseline.zip .
           exit "$failed"
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: "exact-v106-p0-baseline-api${{ matrix.api }}", path: out/v106-p0-baseline.zip, retention-days: 14}
+        with: {name: "exact-v107-p0-baseline-api${{ matrix.api }}", path: out/v107-p0-baseline.zip, retention-days: 14}
