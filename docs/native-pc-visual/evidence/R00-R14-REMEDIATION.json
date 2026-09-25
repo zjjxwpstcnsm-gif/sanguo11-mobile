@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "status": "PARTIAL",
+  "input_head": "47e5db471e6dadb22d4c782522f97c113601461e",
+  "main_at_start": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "source": "96719e971d74aa2b3f18d66a7f23832148a6dc8b",
+  "verification_commit": "abca2dd2f97924528ce9d1cbc3a63d3571bf6ef5",
+  "branch": "agent/native-pc-visual",
+  "pr": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/67",
+  "input_zip_sha256": "6a3e6ba271e8e84dec367d76bee49f23bbe1d68b782741d243f511b56ba66bb2",
+  "apk": {
+    "versionCode": 102,
+    "versionName": "0.102.0-native-remediation",
+    "applicationId": "game.sanguo.mobile.dev",
+    "sha256": "ab87acc3f151594260ee8c07b802b39ff8bb354712e959c54252dc51680cd2ba",
+    "size_bytes": 37370473,
+    "abi": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/releases/download/native-remediation-96719e971d74/sanguo11-native-remediation.apk"
+  },
+  "closed_scoped": [
+    "REMED-01 national lattice cache full eviction",
+    "REMED-02 repeated stationary territory rasterization",
+    "AUDIT-09 obsolete asset protection gate"
+  ],
+  "open_fail": [
+    "AUDIT-02 full cold-start touch chain",
+    "AUDIT-03 stale actual UI/date/playback",
+    "REMED-03 first cold 3D preview remains local span15",
+    "AUDIT-04 V1 unclosed/V2 FAIL",
+    "AUDIT-05 owner CPU asset decode and lifecycle gaps",
+    "AUDIT-06 inherited full-core AI failure"
+  ],
+  "not_run": [
+    "full R02/R12 viewport/touch/authority matrix",
+    "20 real 2D/3D and lifecycle cycles, delayed/bad worker recovery",
+    "full R10 unit/equipment/action/shore/LOD capture",
+    "full R11 event/pause/speed/skip/rebuild matrix incl CALM/EXTINGUISH",
+    "full R13 UI CRUD/custom officer/portrait/SAF failure matrix",
+    "full identical-state RNG comparison for 2D/3D and all animation modes",
+    "ARM64 physical device and 30 minute thermal/PSS/GPU performance"
+  ],
+  "tests": {
+    "host_suites": 16,
+    "host_exit_codes": "all 0 in exact-source CI",
+    "full_core": {
+      "baseline": 1,
+      "candidate": 1,
+      "failure": "AI uses deployment commands / CoreTest.logistics:75"
+    },
+    "build_lint_install": "PASS",
+    "original_r12": "PASS checks60370 (includes polling, not user actions)",
+    "cold_start": "FAIL live overlay stopped; faction confirmation and following touch chain NOT_REACHED; span15 is not national overview",
+    "focused_mechanical": "PASS; not visual acceptance",
+    "actual_date_pixels": "FAIL",
+    "physical": "NOT_RUN"
+  },
+  "ci": {
+    "first_comparison": 36095728029,
+    "enhanced_baseline": 36096986283,
+    "final_apk": 36097729262,
+    "original_apk_no_recording": 36098809236
+  },
+  "artifacts": {
+    "final_raw": 10848596499,
+    "final_review": 10848491595,
+    "final_host": 10847304676,
+    "final_build_identity": 10847923889,
+    "baseline_raw": 10848790377,
+    "old_apk_no_recording": 10849000668
+  },
+  "device": {
+    "model": "Android SDK built for x86_64 / Pixel2 configured AVD",
+    "api": 29,
+    "gpu": "OpenGL ES3.1 / ANGLE2.1.17841 / SwiftShader5.0.0 software",
+    "physical_model_api_driver": "NOT_RUN"
+  },
+  "requirements": "R00-R14-remediation-checklist.json (213 exact original requirements with previous/current full-acceptance states)",
+  "raw_evidence_release": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/releases/download/native-remediation-96719e971d74/remediation-evidence.zip",
+  "full_delivery": "Standalone APK plus sanguo11-R00-R14-remediation-evidence.zip supplied with this session. MANIFEST.json lists file hashes; REMOTE_DELIVERY.json records final remote HEAD after docs commit.",
+  "scope": "No gameplay/map/RNG/SaveCodec/production-asset changes. No main merge, force push, other PR action, or R15. Final verification/docs HEAD is not APK source."
+}

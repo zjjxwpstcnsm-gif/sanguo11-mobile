@@ -1,0 +1,2146 @@
+{
+  "schema": 2,
+  "status": "PARTIAL",
+  "source": "96719e971d74aa2b3f18d66a7f23832148a6dc8b",
+  "input_head": "47e5db471e6dadb22d4c782522f97c113601461e",
+  "requirements": [
+    {
+      "id": "R00.I01",
+      "stage": "R00",
+      "kind": "I",
+      "prompt": "prompts/R00_PROMPT.md",
+      "line": 30,
+      "requirement": "检查本地工作区、分支、远端、未提交内容与既有串行 PR；建立已知基线祖先检查和当前源码清单。盘点 S01–S13 每项：存在的正式源码/资源、实际入口、已测/未测、可复用/需修复，禁止把旧成果整体删除。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R00.I02",
+      "stage": "R00",
+      "kind": "I",
+      "prompt": "prompts/R00_PROMPT.md",
+      "line": 31,
+      "requirement": "实测 JDK/Gradle/SDK、依赖取得、Filament 1.56.0 matc、可用建模/贴图工具、adb/模拟器/ARM64 设备、GitHub 读写与 CI 制品能力。缺真机只标设备门槛，Unity Editor/授权不再成为原生构建依赖。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R00.I03",
+      "stage": "R00",
+      "kind": "I",
+      "prompt": "prompts/R00_PROMPT.md",
+      "line": 32,
+      "requirement": "从正常启动进入正式剧本和存档，切到原生 3D，重现并定位 PR #66 提到的纯背景/冷启动缺口。分开判断会话是否载入、相机/投影、mesh 队列、Surface 首帧、色彩/着色器、截图方法，不预判根因。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R00.I04",
+      "stage": "R00",
+      "kind": "I",
+      "prompt": "prompts/R00_PROMPT.md",
+      "line": 33,
+      "requirement": "修复实际启动/入口/Surface/资源或构建阻塞；建立实际地图首帧可见性和后端诊断。禁止依靠强制进入 demo 场景、隐藏失败提示或只渲染背景骗过检测。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R00.I05",
+      "stage": "R00",
+      "kind": "I",
+      "prompt": "prompts/R00_PROMPT.md",
+      "line": 34,
+      "requirement": "默认锁定现有 Filament/OpenGL，保留固定版本与历史兼容门控。只在可复现底层阻塞满足全局规则时执行纯 GLES 候选；写明失败证据、复用范围、迁移成本和真实地图可运行对比，不能在后续继续摇摆。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R00.I06",
+      "stage": "R00",
+      "kind": "I",
+      "prompt": "prompts/R00_PROMPT.md",
+      "line": 35,
+      "requirement": "隔离 Unity 的默认入口/构建路径，不删除已合并架构和可用历史工程；标准原生 assemble 不应寻找 Unity Editor/Player。若本来已可独立构建，增加明确 profile/入口诊断与自动防回归，不无意义重写。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R00.I07",
+      "stage": "R00",
+      "kind": "I",
+      "prompt": "prompts/R00_PROMPT.md",
+      "line": 36,
+      "requirement": "建立 reference/scenes 索引：选真实区域、稳定剧本/存档、相机和截图命名；启动 PC 参考收集，缺失字段明确记录。后端/设备信息进入 APK 可查看诊断。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R00.I08",
+      "stage": "R00",
+      "kind": "I",
+      "prompt": "prompts/R00_PROMPT.md",
+      "line": 37,
+      "requirement": "把基线失败真实跑一遍并分组，写 DEFECTS；修本轮受影响阻塞，其余留明示债务。完成真实源码修复后创建本路线首个代码 PR。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R00.V01",
+      "stage": "R00",
+      "kind": "V",
+      "prompt": "prompts/R00_PROMPT.md",
+      "line": 41,
+      "requirement": "正常冷启动、新开剧本、读既有档，实际看见地形/至少一个据点和部队，拖动/缩放可以改变视野；运行日志与录屏同属本阶段 APK。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R00.V02",
+      "stage": "R00",
+      "kind": "V",
+      "prompt": "prompts/R00_PROMPT.md",
+      "line": 42,
+      "requirement": "2D/3D 切换前后权威状态一致；无新增 World/无重复命令。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R00.V03",
+      "stage": "R00",
+      "kind": "V",
+      "prompt": "prompts/R00_PROMPT.md",
+      "line": 43,
+      "requirement": "干净环境或精确 SHA CI 构建 app、instrumentation、lint；继承失败单独记录，不改退出码。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R00.V04",
+      "stage": "R00",
+      "kind": "V",
+      "prompt": "prompts/R00_PROMPT.md",
+      "line": 44,
+      "requirement": "后台恢复/Activity 重建能重现已保存场景；至少一次 Surface 截图验证非纯背景且人工确认确实是地图。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R00.V05",
+      "stage": "R00",
+      "kind": "V",
+      "prompt": "prompts/R00_PROMPT.md",
+      "line": 45,
+      "requirement": "最终远端 SHA、PR、APK source SHA/哈希一致，原生包不依赖 Unity Player。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R00.G01",
+      "stage": "R00",
+      "kind": "G",
+      "prompt": "prompts/R00_PROMPT.md",
+      "line": 51,
+      "requirement": "V0：实际正常游戏地图可见且可操作。无运行环境可继续提交环境/源码修复，但阶段为 BLOCKED/PARTIAL，不通过 V0；截图纯背景仍失败。后端决定必须锁定且具理由。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R00.D01",
+      "stage": "R00",
+      "kind": "D",
+      "prompt": "prompts/R00_PROMPT.md",
+      "line": 57,
+      "requirement": "本阶段 APK/证据；BACKEND_DECISION.md、BASELINE.md、ENVIRONMENT.md、SCENE_INDEX.json、REFERENCE_INDEX.csv、基线测试矩阵，以及 R00 报告/交接；至少一项正式源码或正式运行配置改动。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R01.I01",
+      "stage": "R01",
+      "kind": "I",
+      "prompt": "prompts/R01_PROMPT.md",
+      "line": 30,
+      "requirement": "沿用 GameSession 与现有不可变投影，把场景提交、资源缓存、Surface 生命周期、相机输入等不同职责从单体 renderer 有限拆出；用真实调用替换，不生成一排空 service/interface。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R01.I02",
+      "stage": "R01",
+      "kind": "I",
+      "prompt": "prompts/R01_PROMPT.md",
+      "line": 31,
+      "requirement": "明确并测试 session/generation/map/visual/asset revision；世界替换时旧 mesh/解码任务、事件订阅和回调全部失效。快照合并可以 latest-wins，权威展示事件保留实际序列与取消语义。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R01.I03",
+      "stage": "R01",
+      "kind": "I",
+      "prompt": "prompts/R01_PROMPT.md",
+      "line": 32,
+      "requirement": "现有 Filament owner thread 不随意迁移；CPU 生成/解码使用有界执行队列，上传和销毁回原所有者；纯 GLES 分支依其已锁定线程模型。记录 CPU buffer 何时可以复用/释放，不能在异步上传结束前回收。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R01.I04",
+      "stage": "R01",
+      "kind": "I",
+      "prompt": "prompts/R01_PROMPT.md",
+      "line": 33,
+      "requirement": "资源生命周期覆盖创建中失败、Surface 重建、view detach、pause/resume、显式退出、world replacement。禁止同一地图两个常驻帧循环/两个持续绘制的后台视图。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R01.I05",
+      "stage": "R01",
+      "kind": "I",
+      "prompt": "prompts/R01_PROMPT.md",
+      "line": 34,
+      "requirement": "为 mesh/texture/material/entity 建立可观测的 live/cache/pending 计数和内存估计；限制缓存，引用存活对象不能驱逐。诊断不能把估计内存称作实测 GPU 占用。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R01.I06",
+      "stage": "R01",
+      "kind": "I",
+      "prompt": "prompts/R01_PROMPT.md",
+      "line": 35,
+      "requirement": "保留并增强 2D 安全回退和上次异常启动保护；区分用户取消、进程死亡、native crash 和 Java 初始化失败。错误可诊断，不能吞掉异常后显示永久 loading。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R01.I07",
+      "stage": "R01",
+      "kind": "I",
+      "prompt": "prompts/R01_PROMPT.md",
+      "line": 36,
+      "requirement": "增加真实边界测试，防止 renderer 新增 World 写入或把引擎类型塞进 game-api；已有直接 core 白名单只收敛不盲目扩大。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R01.V01",
+      "stage": "R01",
+      "kind": "V",
+      "prompt": "prompts/R01_PROMPT.md",
+      "line": 40,
+      "requirement": "2D/3D 反复切换 20 次与前后台 20 次，只有一个有效渲染循环，计数回到稳定区间。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R01.V02",
+      "stage": "R01",
+      "kind": "V",
+      "prompt": "prompts/R01_PROMPT.md",
+      "line": 41,
+      "requirement": "快速读档/新剧本/退出再进时故意延迟 worker，旧任务不得回灌；无 use-after-free 或 native crash。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R01.V03",
+      "stage": "R01",
+      "kind": "V",
+      "prompt": "prompts/R01_PROMPT.md",
+      "line": 42,
+      "requirement": "相同命令/RNG 的 2D/3D 权威状态与基线一致；renderer 不能新增规则调用。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R01.V04",
+      "stage": "R01",
+      "kind": "V",
+      "prompt": "prompts/R01_PROMPT.md",
+      "line": 43,
+      "requirement": "资源缺失/解码失败/构造中失败路径能释放部分资源并回到可玩界面。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R01.V05",
+      "stage": "R01",
+      "kind": "V",
+      "prompt": "prompts/R01_PROMPT.md",
+      "line": 44,
+      "requirement": "受影响主机测试、APK 构建和实际地图渲染回归。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R01.G01",
+      "stage": "R01",
+      "kind": "G",
+      "prompt": "prompts/R01_PROMPT.md",
+      "line": 50,
+      "requirement": "运行与所有权门槛通过；允许保持 R00 美术，但不得因拆分类破坏已有模型/水体/覆盖层。物理机未测必须单列，不能用计数稳定证明所有 native 泄漏都不存在。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R01.D01",
+      "stage": "R01",
+      "kind": "D",
+      "prompt": "prompts/R01_PROMPT.md",
+      "line": 56,
+      "requirement": "正式拆分/接入源码和边界测试、资源/线程所有权说明、20 次生命周期日志、实际地图 APK/截图、R01 报告及交接。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R02.I01",
+      "stage": "R02",
+      "kind": "I",
+      "prompt": "prompts/R02_PROMPT.md",
+      "line": 30,
+      "requirement": "明确 source grid、存储行列、Hex、world X/Z/Y、view pixels、render pixels 变换；沿用已有交错/转置/偏移约定，建立当前全国有效格中心金样本与负坐标/边界样本。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R02.I02",
+      "stage": "R02",
+      "kind": "I",
+      "prompt": "prompts/R02_PROMPT.md",
+      "line": 31,
+      "requirement": "在真实相机内实现平移、锚点缩放、有界倾角和连续旋转（若旧 UI 只翻转方向，升级为可控旋转并保持旧快捷行为）；默认使用参考驱动的策略视角，不凭空声称 PC 的精确 FOV。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R02.I03",
+      "stage": "R02",
+      "kind": "I",
+      "prompt": "prompts/R02_PROMPT.md",
+      "line": 32,
+      "requirement": "使用实际场景 ray 与同源地形/水面/模型选择规则，替换仍然只用平面逆投影的路径。明确最近可见命中、地面格定位和遮挡优先级；远处山背后的格子不能穿透误选。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R02.I04",
+      "stage": "R02",
+      "kind": "I",
+      "prompt": "prompts/R02_PROMPT.md",
+      "line": 33,
+      "requirement": "统一城市七格、部队实际/动画展示位置、港口水面和设施标签的 picking；视觉包围盒只用于选择辅助，不扩充权威占地/射程。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R02.I05",
+      "stage": "R02",
+      "kind": "I",
+      "prompt": "prompts/R02_PROMPT.md",
+      "line": 34,
+      "requirement": "面板/状态栏/刘海/安全区不接收地图命令；区分单击、拖动、双指、长按和双击，拖镜头不能误发攻击。保留“先选部队，再下命令”的现有体验。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R02.I06",
+      "stage": "R02",
+      "kind": "I",
+      "prompt": "prompts/R02_PROMPT.md",
+      "line": 35,
+      "requirement": "动态分辨率/横竖屏/视口改变时保持相机焦点和选中对象，内部 buffer 缩放不改变触点含义。相机配置与存档/规则分离，3D→2D→3D 可恢复。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R02.I07",
+      "stage": "R02",
+      "kind": "I",
+      "prompt": "prompts/R02_PROMPT.md",
+      "line": 36,
+      "requirement": "给诊断加入世界点、格坐标、拾取表面/高度/实体和相机状态；调试层默认关闭。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R02.V01",
+      "stage": "R02",
+      "kind": "V",
+      "prompt": "prompts/R02_PROMPT.md",
+      "line": 40,
+      "requirement": "所有有效格中心投影/反投影；代表性边界、负坐标、VOID、行列转置、七格城市入口回归。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R02.V02",
+      "stage": "R02",
+      "kind": "V",
+      "prompt": "prompts/R02_PROMPT.md",
+      "line": 41,
+      "requirement": "至少 3 个缩放档 × 4 个方向 × 3 个倾角的自动格选择抽查；展示 LOD 与拾取误差有明确上限。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R02.V03",
+      "stage": "R02",
+      "kind": "V",
+      "prompt": "prompts/R02_PROMPT.md",
+      "line": 42,
+      "requirement": "点击坡顶、山后、水面、港口、移动中部队和 UI 边缘；实际命令与原 2D 验证一致。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R02.V04",
+      "stage": "R02",
+      "kind": "V",
+      "prompt": "prompts/R02_PROMPT.md",
+      "line": 43,
+      "requirement": "0.7/0.85/1.0 内部分辨率或项目等价档位下，同一 view-pixel 触点选择一致。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R02.V05",
+      "stage": "R02",
+      "kind": "V",
+      "prompt": "prompts/R02_PROMPT.md",
+      "line": 44,
+      "requirement": "录屏显示浏览、选军、移动/攻击预览、切换 2D 后状态不变。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R02.G01",
+      "stage": "R02",
+      "kind": "G",
+      "prompt": "prompts/R02_PROMPT.md",
+      "line": 50,
+      "requirement": "镜头可浏览、拾取不误导、命令未重复；不能仅靠平面数学单测证明实际高低地形命中正确。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R02.D01",
+      "stage": "R02",
+      "kind": "D",
+      "prompt": "prompts/R02_PROMPT.md",
+      "line": 56,
+      "requirement": "相机/拾取/输入生产代码、金样本与测试、相机参数/手势说明、3D 实操录屏与 APK、R02 交接。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R03.I01",
+      "stage": "R03",
+      "kind": "I",
+      "prompt": "prompts/R03_PROMPT.md",
+      "line": 30,
+      "requirement": "审计现有连续场仍呈现棋盘/阶梯的原因：采样依格量化、格中心鼓包、边缘约束、材质边界还是资产遮盖。只修改确有问题的部分，不重建已经共享的分块系统。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R03.I02",
+      "stage": "R03",
+      "kind": "I",
+      "prompt": "prompts/R03_PROMPT.md",
+      "line": 31,
+      "requirement": "建立同源全局高度场 H 和约束层：水面、城池基础、道路/关隘可走带、地图有效边界；区域山脊/盆地参数可复现。噪声只作细节，不把随机噪声当山系设计。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R03.I03",
+      "stage": "R03",
+      "kind": "I",
+      "prompt": "prompts/R03_PROMPT.md",
+      "line": 32,
+      "requirement": "以连续 X/Z 采样网格或现有网格的连续化实现正式地形；分块只是加载单位。跨块边缘使用全局采样与必要 halo，法线也跨边统一；不能每格独立法线/凸起。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R03.I04",
+      "stage": "R03",
+      "kind": "I",
+      "prompt": "prompts/R03_PROMPT.md",
+      "line": 33,
+      "requirement": "城池地基平整采用受限局部过渡；道路/关口保留可读通路，水域/港口保持既有拓扑。保留可行动格中心与视觉地形一致；修视觉不改 source terrain、城港关坐标或兵种地形规则。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R03.I05",
+      "stage": "R03",
+      "kind": "I",
+      "prompt": "prompts/R03_PROMPT.md",
+      "line": 34,
+      "requirement": "实现近/中/远地形 LOD、邻块级别约束与接缝处理，保持表面锚点/拾取同步；不能一次缓存全国所有精度网格。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R03.I06",
+      "stage": "R03",
+      "kind": "I",
+      "prompt": "prompts/R03_PROMPT.md",
+      "line": 35,
+      "requirement": "局部 patch 只失效受影响 halo；缓存键包括 map/constraint/generator revision；worker 可取消，上传分帧，摄像机移出后优先级下降。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R03.I07",
+      "stage": "R03",
+      "kind": "I",
+      "prompt": "prompts/R03_PROMPT.md",
+      "line": 36,
+      "requirement": "地图外和 VOID 可加不可交互远景补全，但与玩法格严格分离；不能让背景变为可选择的虚构大陆。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R03.I08",
+      "stage": "R03",
+      "kind": "I",
+      "prompt": "prompts/R03_PROMPT.md",
+      "line": 37,
+      "requirement": "在一个真实跨块代表区实拍山脉/谷地/平原改造前后，并输出关闭网格视角；对未平滑的硬约束边界明确记录后续 R05。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R03.V01",
+      "stage": "R03",
+      "kind": "V",
+      "prompt": "prompts/R03_PROMPT.md",
+      "line": 41,
+      "requirement": "分块共享边顶点/高度/法线/材质坐标一致；LOD 邻接组合无 NaN/索引越界/可见裂缝。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R03.V02",
+      "stage": "R03",
+      "kind": "V",
+      "prompt": "prompts/R03_PROMPT.md",
+      "line": 42,
+      "requirement": "地形单点编辑后，未受影响块 identity/hash 不变；变化只限约定邻域。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R03.V03",
+      "stage": "R03",
+      "kind": "V",
+      "prompt": "prompts/R03_PROMPT.md",
+      "line": 43,
+      "requirement": "全地图逻辑地形、可达性、据点坐标、占地、规则 RNG 哈希与基线一致。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R03.V04",
+      "stage": "R03",
+      "kind": "V",
+      "prompt": "prompts/R03_PROMPT.md",
+      "line": 44,
+      "requirement": "城门/港口/关隘路面可实际走；拾取与渲染表面一致，近远 LOD 不使单位突然升降。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R03.V05",
+      "stage": "R03",
+      "kind": "V",
+      "prompt": "prompts/R03_PROMPT.md",
+      "line": 45,
+      "requirement": "实际 APK 连续拖动跨块/缩放，观察无孔洞、山体周期性跳变或大面积加载停顿。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R03.G01",
+      "stage": "R03",
+      "kind": "G",
+      "prompt": "prompts/R03_PROMPT.md",
+      "line": 51,
+      "requirement": "地形几何连续且可玩；允许暂用 R00 材质，但不能用纯色贴图模糊几何问题。若实际地图仍每格山包，阶段不可 PASS。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R03.D01",
+      "stage": "R03",
+      "kind": "D",
+      "prompt": "prompts/R03_PROMPT.md",
+      "line": 57,
+      "requirement": "连续场/约束/LOD/增量更新源码与测试、区域参数和生成器版本、跨块实拍/录屏、APK、R03 交接与剩余地貌缺陷。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R04.I01",
+      "stage": "R04",
+      "kind": "I",
+      "prompt": "prompts/R04_PROMPT.md",
+      "line": 30,
+      "requirement": "检查当前四层材质为什么仍出现补丁：权重边界、世界 UV 尺度、过强色差、纹理周期、法线/曝光错误分别定位，不能只再增加一张噪声图。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R04.I02",
+      "stage": "R04",
+      "kind": "I",
+      "prompt": "prompts/R04_PROMPT.md",
+      "line": 31,
+      "requirement": "为草/土/岩/沙生产或合法取得实际可平铺贴图并统一色板、尺度与细节；补最必要的林下/泥岸/农田表现时控制采样成本。旧纹理可复用，但证明其视觉质量，不靠改文件名。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R04.I03",
+      "stage": "R04",
+      "kind": "I",
+      "prompt": "prompts/R04_PROMPT.md",
+      "line": 32,
+      "requirement": "完善全局非负归一化权重、坡度/高度/区域约束与平滑过渡；不要把硬性水陆/城路约束一起高斯模糊。各类地貌仍应可辨，不能全图混成同一泥色。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R04.I04",
+      "stage": "R04",
+      "kind": "I",
+      "prompt": "prompts/R04_PROMPT.md",
+      "line": 33,
+      "requirement": "使用 world-space UV 与宏观低频颜色/受控细节去重复；跨格/块同一尺度。法线、roughness、数据图保持线性，颜色贴图 sRGB，检查输出编码不重复。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R04.I05",
+      "stage": "R04",
+      "kind": "I",
+      "prompt": "prompts/R04_PROMPT.md",
+      "line": 34,
+      "requirement": "配合当前后端正式材质实现，Filament 用同版本 matc 离线编译，纯 GLES 用对应 GLSL；将源码、编译脚本、hash、实际加载路径写清。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R04.I06",
+      "stage": "R04",
+      "kind": "I",
+      "prompt": "prompts/R04_PROMPT.md",
+      "line": 35,
+      "requirement": "低/中/高画质保持相同地貌身份；低档可以省法线/细节，不能退回整块纯色棋盘。测量新增采样、上传和纹理内存估算。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R04.I07",
+      "stage": "R04",
+      "kind": "I",
+      "prompt": "prompts/R04_PROMPT.md",
+      "line": 36,
+      "requirement": "选真实跨块场景做至少草土/山岩/沙地/农田过渡对照；完成 V1 的 PC 参考与 APK 原始截图，记录尚缺的建筑/水岸元素，不夸称整体 PC 效果已完成。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R04.V01",
+      "stage": "R04",
+      "kind": "V",
+      "prompt": "prompts/R04_PROMPT.md",
+      "line": 40,
+      "requirement": "权重非负/归一化/全零兜底、边界共享、UV 连续、mip、色彩空间和质量分档测试。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R04.V02",
+      "stage": "R04",
+      "kind": "V",
+      "prompt": "prompts/R04_PROMPT.md",
+      "line": 41,
+      "requirement": "相同地区近/中/远景、至少两方向，移动录屏无强烈棋盘、重复波纹或纹理闪烁。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R04.V03",
+      "stage": "R04",
+      "kind": "V",
+      "prompt": "prompts/R04_PROMPT.md",
+      "line": 42,
+      "requirement": "Shader/材质在实际设备或声明的模拟器后端可创建/绘制；失败不能静默回 unlit 而声称通过。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R04.V04",
+      "stage": "R04",
+      "kind": "V",
+      "prompt": "prompts/R04_PROMPT.md",
+      "line": 43,
+      "requirement": "材质变化不修改 terrain type/map hash/行军与战斗结果。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R04.V05",
+      "stage": "R04",
+      "kind": "V",
+      "prompt": "prompts/R04_PROMPT.md",
+      "line": 44,
+      "requirement": "与基线比较资源/包体变化并记录，有 reference 缺失则明确阻塞视觉对照。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R04.G01",
+      "stage": "R04",
+      "kind": "G",
+      "prompt": "prompts/R04_PROMPT.md",
+      "line": 50,
+      "requirement": "V1：真实 APK 跨块地形在关网格时不再有明显逐格纯色补丁。代码能混合不等于效果过关；仍像棋盘就继续修。无 PC 参考不能宣称 PC 对照通过。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R04.D01",
+      "stage": "R04",
+      "kind": "D",
+      "prompt": "prompts/R04_PROMPT.md",
+      "line": 56,
+      "requirement": "实际纹理/材质及生产源/许可清单、shader 构建/校验、V1 对照与缺陷、APK、R04 交接。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R05.I01",
+      "stage": "R05",
+      "kind": "I",
+      "prompt": "prompts/R05_PROMPT.md",
+      "line": 30,
+      "requirement": "从正式不可变地图投影取得水域连通分量、岸边、港口邻接与可航行格；视觉系统不得自己定义新的长江/黄河路线或移动港口。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R05.I02",
+      "stage": "R05",
+      "kind": "I",
+      "prompt": "prompts/R05_PROMPT.md",
+      "line": 31,
+      "requirement": "用 water mask 派生连续轮廓、signed distance/岸距、必要的受约束曲线；现有河网若可复用就完善。曲线只细化既有水域及允许的岸边过渡带，不穿陆格中心、不填断水格通道。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R05.I03",
+      "stage": "R05",
+      "kind": "I",
+      "prompt": "prompts/R05_PROMPT.md",
+      "line": 32,
+      "requirement": "对阶梯岸线采用约束简化/细化和过渡带；水域中心可航行性、关隘咽喉和最窄河道保持可读。极端窄口优先玩法清晰，不能用大曲率硬平滑。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R05.I04",
+      "stage": "R05",
+      "kind": "I",
+      "prompt": "prompts/R05_PROMPT.md",
+      "line": 33,
+      "requirement": "建立岸底/浅水/深水的颜色和深度层次，协调泥岸、沙岸、岩岸材质与地形；湖面、河段共享必要接点，块接缝不露缝。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R05.I05",
+      "stage": "R05",
+      "kind": "I",
+      "prompt": "prompts/R05_PROMPT.md",
+      "line": 34,
+      "requirement": "完善波纹/流向/岸边细节，处理透明/排序/反射成本；先采用移动端稳定简化，不强制实时平面反射或屏幕空间折射。风格不能蓝得像发光塑料。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R05.I06",
+      "stage": "R05",
+      "kind": "I",
+      "prompt": "prompts/R05_PROMPT.md",
+      "line": 35,
+      "requirement": "港口栈桥/船只水位和地形锚点接入同源表面；水面拾取、船路径显示、浮标/标签采用一致高度。视觉船只不因为平滑岸线穿陆。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R05.I07",
+      "stage": "R05",
+      "kind": "I",
+      "prompt": "prompts/R05_PROMPT.md",
+      "line": 36,
+      "requirement": "地图编辑改水陆时重建受影响水域/岸线并使旧后台任务失效，不能留下旧河段；记录必要的局部/连通分量重建范围。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R05.V01",
+      "stage": "R05",
+      "kind": "V",
+      "prompt": "prompts/R05_PROMPT.md",
+      "line": 40,
+      "requirement": "水域连通性、可航行格中心、港口邻接、陆路/关口通行矩阵与基线一致。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R05.V02",
+      "stage": "R05",
+      "kind": "V",
+      "prompt": "prompts/R05_PROMPT.md",
+      "line": 41,
+      "requirement": "直河/弯道/合流/湖岸/孤立水块/窄河/地图边缘/跨 chunk、编辑增删水块回归。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R05.V03",
+      "stage": "R05",
+      "kind": "V",
+      "prompt": "prompts/R05_PROMPT.md",
+      "line": 42,
+      "requirement": "岸线无自交/错误 winding/裂缝，水面和 terrain 不严重 z-fight；网格开关后各格语义清楚。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R05.V04",
+      "stage": "R05",
+      "kind": "V",
+      "prompt": "prompts/R05_PROMPT.md",
+      "line": 43,
+      "requirement": "实际部队上下船、船行经弯道与港口、读档/编辑后继续通行。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R05.V05",
+      "stage": "R05",
+      "kind": "V",
+      "prompt": "prompts/R05_PROMPT.md",
+      "line": 44,
+      "requirement": "近中远实拍和沿河拖动录屏，至少一段 PC 参考对应的水岸对照。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R05.G01",
+      "stage": "R05",
+      "kind": "G",
+      "prompt": "prompts/R05_PROMPT.md",
+      "line": 50,
+      "requirement": "连续岸线和水体在正常玩法内成立，且没有一个视觉平滑改动导致通行/港口语义错误；纯蓝 Hex 或曲线穿陆不可通过。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R05.D01",
+      "stage": "R05",
+      "kind": "D",
+      "prompt": "prompts/R05_PROMPT.md",
+      "line": 56,
+      "requirement": "正式水面/岸线生成与材质、约束/拓扑测试、港口/船路径录屏、纹理/参数清单、APK、R05 交接。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R06.I01",
+      "stage": "R06",
+      "kind": "I",
+      "prompt": "prompts/R06_PROMPT.md",
+      "line": 30,
+      "requirement": "盘点现有 site/field/environment 资源的真实格式与加载子集，列可复用资产和明确占位物；不要先写第二个通用 glTF loader。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R06.I02",
+      "stage": "R06",
+      "kind": "I",
+      "prompt": "prompts/R06_PROMPT.md",
+      "line": 31,
+      "requirement": "固定资产目录、ID/版本/来源/许可/hash、LOD、pivot/单位/朝向、材质/动画支持和正式映射。原始源文件/脚本与 runtime 输出分离；记录可用建模/纹理工具及版本。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R06.I03",
+      "stage": "R06",
+      "kind": "I",
+      "prompt": "prompts/R06_PROMPT.md",
+      "line": 32,
+      "requirement": "实现可重复 CLI 导出/转换：实际支持静态网格与当前刚体动画子集；需要新格式/动画时定义必要最小扩展。保持现有 runtime 和离线材质工具版本匹配。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R06.I04",
+      "stage": "R06",
+      "kind": "I",
+      "prompt": "prompts/R06_PROMPT.md",
+      "line": 33,
+      "requirement": "增加 glTF 格式检查和项目子集检查：长度/索引/offset/stride/component/node transform/数值有界、贴图存在、primitive/预算、所需扩展。支持范围外离线转换或明确拒绝，不静默删骨骼/材质。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R06.I05",
+      "stage": "R06",
+      "kind": "I",
+      "prompt": "prompts/R06_PROMPT.md",
+      "line": 34,
+      "requirement": "加载流程异步解码、共享 CPU rest data/GPU 几何/贴图、按需上传、可取消并引用计数释放；异常资源有诊断和可识别回退，不能直接导致 native crash。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R06.I06",
+      "stage": "R06",
+      "kind": "I",
+      "prompt": "prompts/R06_PROMPT.md",
+      "line": 35,
+      "requirement": "做真实示范资产：至少一个有城门/屋顶轮廓的据点组件、一个带实际纹理的树族、一个带运动部件的部队/器械，替换其正式映射并截图；流水线不是只在检视器里可用。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R06.I07",
+      "stage": "R06",
+      "kind": "I",
+      "prompt": "prompts/R06_PROMPT.md",
+      "line": 36,
+      "requirement": "为生成资源/材质建立 clean checkout 可再现校验；若某外部美术工具非构建必需，应随源码提交必要运行时产物，使 Agent 能直接构建 APK。无许可/不支持文件不能偷偷打包。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R06.V01",
+      "stage": "R06",
+      "kind": "V",
+      "prompt": "prompts/R06_PROMPT.md",
+      "line": 40,
+      "requirement": "实际生成/导出→验证→打包→地图加载全链条；重复导出在约定归一化后 hash/结构稳定。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R06.V02",
+      "stage": "R06",
+      "kind": "V",
+      "prompt": "prompts/R06_PROMPT.md",
+      "line": 41,
+      "requirement": "损坏 header/截断 buffer/越界 index/不支持 required extension/超限纹理/路径穿越输入全部安全拒绝。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R06.V03",
+      "stage": "R06",
+      "kind": "V",
+      "prompt": "prompts/R06_PROMPT.md",
+      "line": 42,
+      "requirement": "多实例共用资源，删除/读档/切换世界后正确释放，不把共享缓存认作真正 instancing。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R06.V04",
+      "stage": "R06",
+      "kind": "V",
+      "prompt": "prompts/R06_PROMPT.md",
+      "line": 43,
+      "requirement": "代表资源在实际 APK 不缺面、不翻转、不黑材质，锚点/比例正确，源文件可复查。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R06.V05",
+      "stage": "R06",
+      "kind": "V",
+      "prompt": "prompts/R06_PROMPT.md",
+      "line": 44,
+      "requirement": "验证库/工具版本与 CI 实际可安装可执行，不只写 requirements。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R06.G01",
+      "stage": "R06",
+      "kind": "G",
+      "prompt": "prompts/R06_PROMPT.md",
+      "line": 50,
+      "requirement": "资产流水线实际跑通且产物进入正式地图；加载器支持范围、许可、预算清楚。三件示范资产不等于全部建筑/部队美术完成。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R06.D01",
+      "stage": "R06",
+      "kind": "D",
+      "prompt": "prompts/R06_PROMPT.md",
+      "line": 56,
+      "requirement": "导出/校验/加载正式工具与代码、实际示范资产、资产清单/许可/来源、失败输入测试、APK/截图、R06 交接。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R07.I01",
+      "stage": "R07",
+      "kind": "I",
+      "prompt": "prompts/R07_PROMPT.md",
+      "line": 30,
+      "requirement": "从正式地图/剧本/自定义数据汇总所有实际据点和设施类别，不硬编码旧统计。建立每个对象到资产族/地区变体/等级/损毁状态的可验证映射。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R07.I02",
+      "stage": "R07",
+      "kind": "I",
+      "prompt": "prompts/R07_PROMPT.md",
+      "line": 31,
+      "requirement": "制作或提升城池模型：城墙、城门、角楼/主楼、内城建筑密度和地基结构；至少三类区域风格的轮廓/屋顶/布局有实质差异。可共享模块，不允许全图同一方盒换旗色。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R07.I03",
+      "stage": "R07",
+      "kind": "I",
+      "prompt": "prompts/R07_PROMPT.md",
+      "line": 32,
+      "requirement": "为港口制作岸上建筑、码头、栈桥/泊位；为关卡制作墙体/门洞/山口连接；外观朝向由真实岸线/通道和约束决定，不随机摆向水外或封死道路。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R07.I04",
+      "stage": "R07",
+      "kind": "I",
+      "prompt": "prompts/R07_PROMPT.md",
+      "line": 33,
+      "requirement": "所有基座贴合连续地形，城市平整区边缘自然过渡；超出权威占地的装饰不形成虚假可行动区域，也不遮住周围可走格/港口上下船口。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R07.I05",
+      "stage": "R07",
+      "kind": "I",
+      "prompt": "prompts/R07_PROMPT.md",
+      "line": 34,
+      "requirement": "改善现有内政/军事设施全类型/等级模型与贴图；实际建造中、完成、受损/火烧/摧毁由现有状态驱动。不得新增生产/伤害规则。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R07.I06",
+      "stage": "R07",
+      "kind": "I",
+      "prompt": "prompts/R07_PROMPT.md",
+      "line": 35,
+      "requirement": "统一地图尺度、texel density、旗帜/势力标识与远近 LOD；远景轮廓可读，近景不暴露严重穿插。阵营改换只更新显示参数/旗帜，不重复创建整个 terrain。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R07.I07",
+      "stage": "R07",
+      "kind": "I",
+      "prompt": "prompts/R07_PROMPT.md",
+      "line": 36,
+      "requirement": "实现全量覆盖检查、资源缺失诊断与默认族兜底；自定义新增据点也能用正确资产族。清楚列出仍为临时资源的 ID，不能藏进“兼容模型”。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R07.I08",
+      "stage": "R07",
+      "kind": "I",
+      "prompt": "prompts/R07_PROMPT.md",
+      "line": 37,
+      "requirement": "为普通平原城、水边港、山口关和至少两种设施做 PC 对照与 APK 多角度实拍，记录比例、地形接缝和轮廓缺陷。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R07.V01",
+      "stage": "R07",
+      "kind": "V",
+      "prompt": "prompts/R07_PROMPT.md",
+      "line": 41,
+      "requirement": "当前全部据点/设施映射无空引用，资产通过规范与预算检查。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R07.V02",
+      "stage": "R07",
+      "kind": "V",
+      "prompt": "prompts/R07_PROMPT.md",
+      "line": 42,
+      "requirement": "城市七格六向出入/攻击/进驻、港口上下船、关卡通过的权威结果不变。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R07.V03",
+      "stage": "R07",
+      "kind": "V",
+      "prompt": "prompts/R07_PROMPT.md",
+      "line": 43,
+      "requirement": "据点新增/移动/类型修改/删除/易主/受损/读档后正确显示并释放旧资源。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R07.V04",
+      "stage": "R07",
+      "kind": "V",
+      "prompt": "prompts/R07_PROMPT.md",
+      "line": 44,
+      "requirement": "实际相机近中远与多个方向检查地基悬空、屋顶黑面、LOD 跳变、码头穿岸。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R07.V05",
+      "stage": "R07",
+      "kind": "V",
+      "prompt": "prompts/R07_PROMPT.md",
+      "line": 45,
+      "requirement": "在至少一个真实城港关组合区域内运行，不以单独 model viewer 代替。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R07.G01",
+      "stage": "R07",
+      "kind": "G",
+      "prompt": "prompts/R07_PROMPT.md",
+      "line": 51,
+      "requirement": "主建筑轮廓与贴图达到 04_VISUAL_ACCEPTANCE 的局部质量要求；全覆盖可先共享合格资产族，不要求每城独一模型，但明显占位资产必须明示且相关项不可 PASS。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R07.D01",
+      "stage": "R07",
+      "kind": "D",
+      "prompt": "prompts/R07_PROMPT.md",
+      "line": 57,
+      "requirement": "正式 GLB/运行时模型与源工程、贴图材质、全据点/设施映射、许可/预算、实拍对照、APK、R07 美术缺陷与交接。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R08.I01",
+      "stage": "R08",
+      "kind": "I",
+      "prompt": "prompts/R08_PROMPT.md",
+      "line": 30,
+      "requirement": "提升至少针叶/阔叶或符合实际地区的树族、灌木、山石资产，建立轮廓/材质统一的家族与 LOD；数量按现有地貌需要，不为凑清单乱加景观。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R08.I02",
+      "stage": "R08",
+      "kind": "I",
+      "prompt": "prompts/R08_PROMPT.md",
+      "line": 31,
+      "requirement": "采用世界空间稳定散布和簇/林缘/空地规则，跨格/块同源且不变种。避开城市占地、实际设施、道路/关口、港口入口、单位锚点和水域；林区身份与逻辑地图对应。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R08.I03",
+      "stage": "R08",
+      "kind": "I",
+      "prompt": "prompts/R08_PROMPT.md",
+      "line": 32,
+      "requirement": "延续现有合批/分块，按可见度/距离选择密度和 LOD；只有真正使用 instanced draw 才称 GPU instancing。透明叶片评估 alpha test/mip/过绘，不让一屏树海拖垮正常档。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R08.I04",
+      "stage": "R08",
+      "kind": "I",
+      "prompt": "prompts/R08_PROMPT.md",
+      "line": 33,
+      "requirement": "道路、栈道、农田边界/田垄与地形连续结合；道路跟随既有逻辑通路，不新增绕关捷径，不能把可走路画成断崖。农田使用组合网格/贴花/纹理合适方式，不每格一个浮板。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R08.I05",
+      "stage": "R08",
+      "kind": "I",
+      "prompt": "prompts/R08_PROMPT.md",
+      "line": 34,
+      "requirement": "山脊岩层/陡壁可用附加 mesh 弥补高度场侧面，但与主地形接缝可靠；远景轮廓与真实可交互区域分开。不要把全图都铺满遮挡细节的石块。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R08.I06",
+      "stage": "R08",
+      "kind": "I",
+      "prompt": "prompts/R08_PROMPT.md",
+      "line": 35,
+      "requirement": "区域差异来自配色、地形轮廓和植被密度，不是每个 chunk 换独立风格。季节接口预留但不在此重写季节驱动。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R08.I07",
+      "stage": "R08",
+      "kind": "I",
+      "prompt": "prompts/R08_PROMPT.md",
+      "line": 36,
+      "requirement": "编辑树区/道路/设施后局部更新散布，固定 seed 不让整片森林重新随机；卸载无引用资源。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R08.V01",
+      "stage": "R08",
+      "kind": "V",
+      "prompt": "prompts/R08_PROMPT.md",
+      "line": 40,
+      "requirement": "确定性散布、跨块不重复/不留整齐边界；相同地图重载分布一致且不消费规则 RNG。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R08.V02",
+      "stage": "R08",
+      "kind": "V",
+      "prompt": "prompts/R08_PROMPT.md",
+      "line": 41,
+      "requirement": "所有硬排除区和真实行军通路的可读性测试；地图编辑后只失效必要邻域。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R08.V03",
+      "stage": "R08",
+      "kind": "V",
+      "prompt": "prompts/R08_PROMPT.md",
+      "line": 42,
+      "requirement": "实际相机平移/旋转/缩放无严重树叶闪烁、成片突然弹出、穿插城墙/道路。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R08.V04",
+      "stage": "R08",
+      "kind": "V",
+      "prompt": "prompts/R08_PROMPT.md",
+      "line": 43,
+      "requirement": "比较对象数/提交量/CPU 时间/显存估计，区分合批和实例化。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R08.V05",
+      "stage": "R08",
+      "kind": "V",
+      "prompt": "prompts/R08_PROMPT.md",
+      "line": 44,
+      "requirement": "至少森林道路、山谷关口、平原农田三组 APK 多角度实拍。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R08.G01",
+      "stage": "R08",
+      "kind": "G",
+      "prompt": "prompts/R08_PROMPT.md",
+      "line": 50,
+      "requirement": "景观成片连续、有疏密与林缘，玩法通路清晰；用树海盖住地图色块或用雾盖住穿插不通过。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R08.D01",
+      "stage": "R08",
+      "kind": "D",
+      "prompt": "prompts/R08_PROMPT.md",
+      "line": 56,
+      "requirement": "正式环境资产与生成/散布/合批代码、道路/岩壁接入、排除区/确定性测试、实拍与性能初值、APK、R08 交接。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R09.I01",
+      "stage": "R09",
+      "kind": "I",
+      "prompt": "prompts/R09_PROMPT.md",
+      "line": 30,
+      "requirement": "冻结一块约 24×24 至 40×40 逻辑格或等价可操作视域的样板区域，使用正常剧本和既有数据；至少覆盖多个 chunk 和一处水陆/山地/据点组合，不能另做摆拍场景。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R09.I02",
+      "stage": "R09",
+      "kind": "I",
+      "prompt": "prompts/R09_PROMPT.md",
+      "line": 31,
+      "requirement": "建立 PC 参考与当前 APK 的同区域近似相机组，核对地形轮廓、色板、城池/树/人的尺度、河宽、景观密度与 UI 留白。缺参考只标缺失，不自己画一张假原版。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R09.I03",
+      "stage": "R09",
+      "kind": "I",
+      "prompt": "prompts/R09_PROMPT.md",
+      "line": 32,
+      "requirement": "逐项修复视觉冲突：地形已细腻但城像积木、树比城高、港口离岸、道路浮空、阴影与曝光不一、格子边界依旧可见等；必须在正式资源/材质/生成代码落地。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R09.I04",
+      "stage": "R09",
+      "kind": "I",
+      "prompt": "prompts/R09_PROMPT.md",
+      "line": 33,
+      "requirement": "将合格的区域参数/资产族/材质组合提炼为可扩展 profile，不要硬编码为仅某镜头的一张背景或额外 demo 分支。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R09.I05",
+      "stage": "R09",
+      "kind": "I",
+      "prompt": "prompts/R09_PROMPT.md",
+      "line": 34,
+      "requirement": "在样板区实际选城、出征、移动、攻击、上下水（若有）、下一旬、存读档与相机浏览。动画/低画质可暂沿用旧实现，但不能因此丢命令/资源。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R09.I06",
+      "stage": "R09",
+      "kind": "I",
+      "prompt": "prompts/R09_PROMPT.md",
+      "line": 35,
+      "requirement": "交付网格/势力着色开关、近中远、两方向和连续镜头录屏；图片只证明画面，命令/状态日志另证玩法。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R09.I07",
+      "stage": "R09",
+      "kind": "I",
+      "prompt": "prompts/R09_PROMPT.md",
+      "line": 36,
+      "requirement": "完成 V2 清单，逐项指出与 PC 仍不同的具体对象。局部美术不合格先修，不把问题复制到全国；与其无关的后续工程可继续但保持 V2 未通过。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R09.V01",
+      "stage": "R09",
+      "kind": "V",
+      "prompt": "prompts/R09_PROMPT.md",
+      "line": 40,
+      "requirement": "样板位于正式地图、正常入口可达，无只在 benchmark/调试页启用的专用美化代码。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R09.V02",
+      "stage": "R09",
+      "kind": "V",
+      "prompt": "prompts/R09_PROMPT.md",
+      "line": 41,
+      "requirement": "V2 十项视觉表逐条有图号和结论，不以“看起来不错”取代缺陷记录。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R09.V03",
+      "stage": "R09",
+      "kind": "V",
+      "prompt": "prompts/R09_PROMPT.md",
+      "line": 42,
+      "requirement": "真实游戏操作完整连贯，2D/3D 状态对等，无重建世界。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R09.V04",
+      "stage": "R09",
+      "kind": "V",
+      "prompt": "prompts/R09_PROMPT.md",
+      "line": 43,
+      "requirement": "三画质保留相同地貌/资产身份，低档不变成纯色拼图。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R09.V05",
+      "stage": "R09",
+      "kind": "V",
+      "prompt": "prompts/R09_PROMPT.md",
+      "line": 44,
+      "requirement": "所有改动在独立 APK 可见；参考和截图的版本/日期/镜头字段完整或明确 UNKNOWN。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R09.G01",
+      "stage": "R09",
+      "kind": "G",
+      "prompt": "prompts/R09_PROMPT.md",
+      "line": 50,
+      "requirement": "V2 为硬门槛：连续地形、水岸、建筑、植被、光照在同一真实场景内合格。明显占位/关键参考缺失/只离线渲染时不能 PASS，不能以阶段编号跳过。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R09.D01",
+      "stage": "R09",
+      "kind": "D",
+      "prompt": "prompts/R09_PROMPT.md",
+      "line": 56,
+      "requirement": "样板正式修正源码/资源、区域 profile、V2 对照报告/原始截图/录屏、完整玩法日志、APK、R09 未闭合美术清单。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R10.I01",
+      "stage": "R10",
+      "kind": "I",
+      "prompt": "prompts/R10_PROMPT.md",
+      "line": 30,
+      "requirement": "汇总所有实际兵种/装备/船型/器械/运输类别及已有资源，逐项标已合格、需升级、缺失；不只做一个步兵模板就称全部完成。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R10.I02",
+      "stage": "R10",
+      "kind": "I",
+      "prompt": "prompts/R10_PROMPT.md",
+      "line": 31,
+      "requirement": "通过 R06 流水线提升模型轮廓、武器、马匹/器械/船体、纹理和旗帜；统一与城市/树木的屏幕尺度。必要的精细度用近景 LOD，远景保持类别可辨。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R10.I03",
+      "stage": "R10",
+      "kind": "I",
+      "prompt": "prompts/R10_PROMPT.md",
+      "line": 32,
+      "requirement": "完善待机、行军、攻击、受击/撤退或项目既有状态的动作；刚性部件与骨骼按已锁定格式使用，明确实际技术。骑兵腿/马体、车轮/投石臂/冲车、船桨等要有真实运动。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R10.I04",
+      "stage": "R10",
+      "kind": "I",
+      "prompt": "prompts/R10_PROMPT.md",
+      "line": 33,
+      "requirement": "将视觉姿态/动画 phase 与权威路径和当前播放事件绑定；脚/车轮贴地、水军贴水，转弯平滑但不抄近路穿山/城墙。根运动不改变格坐标和行军完成时点。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R10.I05",
+      "stage": "R10",
+      "kind": "I",
+      "prompt": "prompts/R10_PROMPT.md",
+      "line": 34,
+      "requirement": "兵力变化驱动代表性编队规模/损员，不要求一兵一模型；分组/合批/实例化选合适策略，不能每帧 CPU 全量重建所有士兵网格。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R10.I06",
+      "stage": "R10",
+      "kind": "I",
+      "prompt": "prompts/R10_PROMPT.md",
+      "line": 35,
+      "requirement": "选中范围/旗帜/数字标签随展示位置同步，点击移动中编队映射回同一稳定 unit ID，命令仍由现有权威验证；敌我视觉标识不得依赖只有颜色。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R10.I07",
+      "stage": "R10",
+      "kind": "I",
+      "prompt": "prompts/R10_PROMPT.md",
+      "line": 36,
+      "requirement": "LOD/动画降频/远景代理使用滞回，避免缩放时编队跳位置或重新播攻击；换兵装、上下水、死亡/撤走、读档/跳过播放正确收敛。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R10.V01",
+      "stage": "R10",
+      "kind": "V",
+      "prompt": "prompts/R10_PROMPT.md",
+      "line": 40,
+      "requirement": "全类别资产映射、动作状态切换、LOD/phase/确定性测试，缺失项显式列出。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R10.V02",
+      "stage": "R10",
+      "kind": "V",
+      "prompt": "prompts/R10_PROMPT.md",
+      "line": 41,
+      "requirement": "同一行军/攻击序列在无动画、正常、倍速/跳过下权威状态一致。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R10.V03",
+      "stage": "R10",
+      "kind": "V",
+      "prompt": "prompts/R10_PROMPT.md",
+      "line": 42,
+      "requirement": "实际平地/山路/城门/港口/弯道的脚滑、穿模、漂浮、朝向和水位目视检查。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R10.V04",
+      "stage": "R10",
+      "kind": "V",
+      "prompt": "prompts/R10_PROMPT.md",
+      "line": 43,
+      "requirement": "大量可见部队测试资源共享、提交量、帧时间，区分 CPU 变形与 GPU 动画。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R10.V05",
+      "stage": "R10",
+      "kind": "V",
+      "prompt": "prompts/R10_PROMPT.md",
+      "line": 44,
+      "requirement": "实拍至少步兵、骑兵、器械/运输和水军的移动/攻击；真实类别不足用标注过的测试存档。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R10.G01",
+      "stage": "R10",
+      "kind": "G",
+      "prompt": "prompts/R10_PROMPT.md",
+      "line": 50,
+      "requirement": "现有游戏全部正式部队类别有可用且明确状态的表现；主类型仍是占位几何或只有模型没有行动姿态时相关项不通过。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R10.D01",
+      "stage": "R10",
+      "kind": "D",
+      "prompt": "prompts/R10_PROMPT.md",
+      "line": 56,
+      "requirement": "正式部队模型/贴图/动画与源文件、类型覆盖/clip 表、运行时同步/LOD 代码与测试、动作录屏、APK、R10 交接。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R11.I01",
+      "stage": "R11",
+      "kind": "I",
+      "prompt": "prompts/R11_PROMPT.md",
+      "line": 30,
+      "requirement": "盘点实际可产生的表现事件，建立事件 ID→效果/数字/镜头/音效（如已有）映射，复用类型化字段，不解析中文战报来驱动规则。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R11.I02",
+      "stage": "R11",
+      "kind": "I",
+      "prompt": "prompts/R11_PROMPT.md",
+      "line": 31,
+      "requirement": "升级箭矢/投射、枪戟/骑兵冲击、器械、船战、火焰烟尘、受击闪烁与必要计谋效果；效果在真实目标/地形位置，不穿地或始终贴屏幕中心。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R11.I03",
+      "stage": "R11",
+      "kind": "I",
+      "prompt": "prompts/R11_PROMPT.md",
+      "line": 32,
+      "requirement": "动画节奏与 TurnJournal 路径/impact 对齐，伤害数字来自实际计算结果；特效何时结束不能决定伤害/攻陷是否执行。暂停/倍速/跳过立即、安全收敛。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R11.I04",
+      "stage": "R11",
+      "kind": "I",
+      "prompt": "prompts/R11_PROMPT.md",
+      "line": 33,
+      "requirement": "粒子池/mesh/贴图合批有界，透明排序与深度处理清楚；降低质量可削粒子，不漏敌我状态/伤害反馈。远景不必播放所有细粒子。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R11.I05",
+      "stage": "R11",
+      "kind": "I",
+      "prompt": "prompts/R11_PROMPT.md",
+      "line": 34,
+      "requirement": "保留暴击头像/战法高光、设施反击、战报和实际收益变化显示；同一个事件不能因 view 重建或相机进入视野重复播放/叠伤害。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R11.I06",
+      "stage": "R11",
+      "kind": "I",
+      "prompt": "prompts/R11_PROMPT.md",
+      "line": 35,
+      "requirement": "火场/持续状态从正式状态重建，world replacement/读档/后台恢复后不残留旧火，也不把展示快照写回存档。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R11.I07",
+      "stage": "R11",
+      "kind": "I",
+      "prompt": "prompts/R11_PROMPT.md",
+      "line": 36,
+      "requirement": "避免强制镜头运动和慢演示阻碍操作；镜头可打断，跳过不需等全部 GPU 效果自然结束。对已有音频只同步必要触发，不扩大为新声音工程。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R11.V01",
+      "stage": "R11",
+      "kind": "V",
+      "prompt": "prompts/R11_PROMPT.md",
+      "line": 40,
+      "requirement": "每个实际事件类别有覆盖测试和真实截图/录屏，事件未出现的测试不能算该类已通过。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R11.V02",
+      "stage": "R11",
+      "kind": "V",
+      "prompt": "prompts/R11_PROMPT.md",
+      "line": 41,
+      "requirement": "正常/暂停/倍速/跳过/离开视野/重建界面下比较最终权威状态、事件次数和自动存档。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R11.V03",
+      "stage": "R11",
+      "kind": "V",
+      "prompt": "prompts/R11_PROMPT.md",
+      "line": 42,
+      "requirement": "火场跨读档/回合、攻陷/单位消失、播放取消时清理正确。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R11.V04",
+      "stage": "R11",
+      "kind": "V",
+      "prompt": "prompts/R11_PROMPT.md",
+      "line": 43,
+      "requirement": "多组同时特效下池容量/内存稳定，无 OOM/漏回调/无限播放。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R11.V05",
+      "stage": "R11",
+      "kind": "V",
+      "prompt": "prompts/R11_PROMPT.md",
+      "line": 44,
+      "requirement": "低/中/高档都能辨认攻击对象和结果，数值与战报一致。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R11.G01",
+      "stage": "R11",
+      "kind": "G",
+      "prompt": "prompts/R11_PROMPT.md",
+      "line": 50,
+      "requirement": "表现真实对应既有战斗；不新增伤害规则、不以延迟演示控制回合。特效很华丽但卡住下一旬或重复反馈仍失败。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R11.D01",
+      "stage": "R11",
+      "kind": "D",
+      "prompt": "prompts/R11_PROMPT.md",
+      "line": 56,
+      "requirement": "正式效果资源/采样与同步代码、事件覆盖表、状态一致性测试、战斗实拍、APK、R11 交接。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R12.I01",
+      "stage": "R12",
+      "kind": "I",
+      "prompt": "prompts/R12_PROMPT.md",
+      "line": 30,
+      "requirement": "核查所有既有地图入口和操作是否完整走 3D，包括新剧本势力预览、选城选军、出征、路线/行动范围、战法位移、设施覆盖、围城范围、地图定位和小地图；不可缺项后偷偷退 2D 当实现。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R12.I02",
+      "stage": "R12",
+      "kind": "I",
+      "prompt": "prompts/R12_PROMPT.md",
+      "line": 31,
+      "requirement": "保持“网格”和“势力着色”两个独立持久化开关：四种组合均可用，关网格不改变点击/范围，开势力不强制画所有边线。编辑模式临时强制网格要有明示和恢复策略。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R12.I03",
+      "stage": "R12",
+      "kind": "I",
+      "prompt": "prompts/R12_PROMPT.md",
+      "line": 32,
+      "requirement": "网格/行动范围/路线使用同源地形高度；近处贴地无 z-fight，远景控制视觉密度，颜色不淹没材质。山背后范围的可见策略应明确，不能误以为可穿山。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R12.I04",
+      "stage": "R12",
+      "kind": "I",
+      "prompt": "prompts/R12_PROMPT.md",
+      "line": 33,
+      "requirement": "选择部队只选中，移动/攻击等仍由既有命令流显式触发；预览格集合必须直接来自权威规则，不用渲染器重算射程/可达性。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R12.I05",
+      "stage": "R12",
+      "kind": "I",
+      "prompt": "prompts/R12_PROMPT.md",
+      "line": 34,
+      "requirement": "新开剧本势力着色遵守现有君主/国号、军师等显示语义；城市标签/部队条/目标优先级防重叠，原生 UI 不因 3D Surface 遮挡失效。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R12.I06",
+      "stage": "R12",
+      "kind": "I",
+      "prompt": "prompts/R12_PROMPT.md",
+      "line": 35,
+      "requirement": "顶部日期/年月旬、行动力、常用导航和底部操作条在不同屏幕可读；保留现有现代 UI，修布局不大改功能树。面板打开不吞掉必要地图视域或漏触到地图。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R12.I07",
+      "stage": "R12",
+      "kind": "I",
+      "prompt": "prompts/R12_PROMPT.md",
+      "line": 36,
+      "requirement": "小地图/总览/列表定位与 3D 相机一致；读档/重建保持选择/开关设定。可保留二维 UI 绘制，禁止假装全部 UI 也必须 3D。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R12.V01",
+      "stage": "R12",
+      "kind": "V",
+      "prompt": "prompts/R12_PROMPT.md",
+      "line": 40,
+      "requirement": "网格×势力四组合、退出重进/重建/读档/切换 2D 的持久化与状态对等。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R12.V02",
+      "stage": "R12",
+      "kind": "V",
+      "prompt": "prompts/R12_PROMPT.md",
+      "line": 41,
+      "requirement": "移动/攻击/战法位移/设施范围/围城范围与旧 2D/权威集合逐项一致。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R12.V03",
+      "stage": "R12",
+      "kind": "V",
+      "prompt": "prompts/R12_PROMPT.md",
+      "line": 42,
+      "requirement": "大屏/小屏、横竖屏支持范围、面板遮挡、缩放/旋转、动态分辨率触点一致性。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R12.V04",
+      "stage": "R12",
+      "kind": "V",
+      "prompt": "prompts/R12_PROMPT.md",
+      "line": 43,
+      "requirement": "实際新剧本选势力→开局→选军→移动/攻击→战报→下一旬流程。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R12.V05",
+      "stage": "R12",
+      "kind": "V",
+      "prompt": "prompts/R12_PROMPT.md",
+      "line": 44,
+      "requirement": "标签没有大面积遮住城港关/可操作区域，辅助显示关闭后连续世界仍成立。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R12.G01",
+      "stage": "R12",
+      "kind": "G",
+      "prompt": "prompts/R12_PROMPT.md",
+      "line": 50,
+      "requirement": "本阶段范围内的既有地图交互全部可用，不依靠暗中回退 2D。因明确硬件不支持而回退可以，但不能计入 3D 功能通过。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R12.D01",
+      "stage": "R12",
+      "kind": "D",
+      "prompt": "prompts/R12_PROMPT.md",
+      "line": 56,
+      "requirement": "正式 Overlay/输入/UI 接入与修复、功能覆盖矩阵、四组合与实操录屏、APK、R12 交接。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R13.I01",
+      "stage": "R13",
+      "kind": "I",
+      "prompt": "prompts/R13_PROMPT.md",
+      "line": 30,
+      "requirement": "逐项核验既有地图编辑：地形笔刷、城港关新增/移动/修改/删除、撤销重做（已有则保留）、保存自定义地图、新开剧本实际游玩和增量 patch 导入导出。不能只保留编辑 UI 不更新正式 3D。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R13.I02",
+      "stage": "R13",
+      "kind": "I",
+      "prompt": "prompts/R13_PROMPT.md",
+      "line": 31,
+      "requirement": "笔刷/选区与 R02 拾取、R12 Overlay 同源，倾斜/旋转视图不误刷；UI 面板/手势切换不漏编辑。提交通过已有编辑事务/校验，不让 renderer 直接改 World。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R13.I03",
+      "stage": "R13",
+      "kind": "I",
+      "prompt": "prompts/R13_PROMPT.md",
+      "line": 32,
+      "requirement": "完善编辑后的有界增量更新：地形高度/材质、水岸/连通分量、道路/植被、建筑地基/朝向同时失效，旧任务被 generation 拒绝，未受影响块保持缓存。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R13.I04",
+      "stage": "R13",
+      "kind": "I",
+      "prompt": "prompts/R13_PROMPT.md",
+      "line": 33,
+      "requirement": "为实际需要的纯视觉参数提供版本化记录：区域 profile、视觉高度/材质覆盖、装饰 seed/密度等。复用已有存储，不新增无用的第二套编辑器；逻辑 patch 与 visual patch 区分并共享明确地图指纹。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R13.I05",
+      "stage": "R13",
+      "kind": "I",
+      "prompt": "prompts/R13_PROMPT.md",
+      "line": 34,
+      "requirement": "保留普通/旧版/自定义存档及武将自定义/头像导入内容。纯视觉版本升级不能强制重开局、搬动城市或覆盖旧存档；视觉数据缺失/损坏可回默认风格，原游戏数据不损坏。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R13.I06",
+      "stage": "R13",
+      "kind": "I",
+      "prompt": "prompts/R13_PROMPT.md",
+      "line": 35,
+      "requirement": "导入导出设置大小、数量、版本/枚举、路径/URI 和数值边界，拒绝不支持/恶意输入；原子保存，失败不能留下半份地图或污染会话。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R13.I07",
+      "stage": "R13",
+      "kind": "I",
+      "prompt": "prompts/R13_PROMPT.md",
+      "line": 36,
+      "requirement": "测试新建自定义城/港/关在 3D 资源映射和玩法中的真实可用性，地图更名/复制/不同剧本重用不会碰撞缓存键；自定义武将不因渲染改造丢属性/关系/头像。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R13.V01",
+      "stage": "R13",
+      "kind": "V",
+      "prompt": "prompts/R13_PROMPT.md",
+      "line": 40,
+      "requirement": "地形编辑、全部据点 CRUD、连续撤销/重做、导入导出、关闭重开、作为新剧本游玩的端到端矩阵。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R13.V02",
+      "stage": "R13",
+      "kind": "V",
+      "prompt": "prompts/R13_PROMPT.md",
+      "line": 41,
+      "requirement": "2D 编辑→3D 看、3D 编辑→2D 看一致；权威 patch 结果不受视角影响。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R13.V03",
+      "stage": "R13",
+      "kind": "V",
+      "prompt": "prompts/R13_PROMPT.md",
+      "line": 42,
+      "requirement": "旧存档/自定义地图/武将覆盖与头像导入回归，失败导入不修改现有会话。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R13.V04",
+      "stage": "R13",
+      "kind": "V",
+      "prompt": "prompts/R13_PROMPT.md",
+      "line": 43,
+      "requirement": "修改一格只重建必要 halo；频繁拖笔刷不积压无界 worker 或把旧结果覆盖新编辑。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R13.V05",
+      "stage": "R13",
+      "kind": "V",
+      "prompt": "prompts/R13_PROMPT.md",
+      "line": 44,
+      "requirement": "断写/超限/未知版本/路径穿越/损坏视觉数据安全拒绝或明确回退。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R13.G01",
+      "stage": "R13",
+      "kind": "G",
+      "prompt": "prompts/R13_PROMPT.md",
+      "line": 50,
+      "requirement": "编辑后的自定义地图能真实开局和游玩，旧数据不丢；只显示编辑预览却未保存/未接新剧本不得通过。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R13.D01",
+      "stage": "R13",
+      "kind": "D",
+      "prompt": "prompts/R13_PROMPT.md",
+      "line": 56,
+      "requirement": "正式编辑/可视 patch/缓存/保存接入代码与测试、格式与迁移说明、CRUD/开局录屏、APK、R13 交接。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R14.I01",
+      "stage": "R14",
+      "kind": "I",
+      "prompt": "prompts/R14_PROMPT.md",
+      "line": 30,
+      "requirement": "从 V2 对照归纳统一色板、明暗层次、材质粗糙度、轮廓与远近景层次；明确项目自选艺术实现，不宣称原版内部 Shader 的精确算法。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R14.I02",
+      "stage": "R14",
+      "kind": "I",
+      "prompt": "prompts/R14_PROMPT.md",
+      "line": 31,
+      "requirement": "在选定后端完善柔和方向光/环境填光，统一地形与对象材质响应。阴影优先稳定且经济的方案，控制 acne/peter-panning、远景闪烁与边界；低档可用合适简化，但不能全部悬浮无接地感。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R14.I03",
+      "stage": "R14",
+      "kind": "I",
+      "prompt": "prompts/R14_PROMPT.md",
+      "line": 32,
+      "requirement": "彩墨处理优先来自资产与材质，结合适度调色/轮廓强化/距离或高度雾；避免全屏重描边、塑料反光、纯灰大雾和过曝。UI 和数字不被世界后处理染糊。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R14.I04",
+      "stage": "R14",
+      "kind": "I",
+      "prompt": "prompts/R14_PROMPT.md",
+      "line": 33,
+      "requirement": "雾层/云层按深度、距离与场景约束实现，不能遮住主操作区、掩盖接缝/缺模或让近景与 PC 对照不可比；记录透明过绘成本和低档策略。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R14.I05",
+      "stage": "R14",
+      "kind": "I",
+      "prompt": "prompts/R14_PROMPT.md",
+      "line": 34,
+      "requirement": "四季由现有日期/季节投影驱动，统一地表色、树叶/农田、环境光与必要雪覆盖；变化不得改变 water/terrain type、行军/收入规则，不能每旬重载全国全部资源。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R14.I06",
+      "stage": "R14",
+      "kind": "I",
+      "prompt": "prompts/R14_PROMPT.md",
+      "line": 35,
+      "requirement": "季节读取/跳转/读档后状态一致；调试强制季节只属于显示测试，不反写权威年月。仅在参考/原有规则支持时表现冰雪，不因视觉冻结河面改变通行。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R14.I07",
+      "stage": "R14",
+      "kind": "I",
+      "prompt": "prompts/R14_PROMPT.md",
+      "line": 36,
+      "requirement": "增加稳定的艺术 profile/参数校验和截图基线，三画质保持相同风格，性能降级不把整个世界回退为普通纯色低模。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R14.V01",
+      "stage": "R14",
+      "kind": "V",
+      "prompt": "prompts/R14_PROMPT.md",
+      "line": 40,
+      "requirement": "四季状态切换与读档/新剧本一致，权威哈希和地图规则不受影响。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R14.V02",
+      "stage": "R14",
+      "kind": "V",
+      "prompt": "prompts/R14_PROMPT.md",
+      "line": 41,
+      "requirement": "同区域四季、近中远、网格关/开对照；参照来源不能确定季节时明示。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R14.V03",
+      "stage": "R14",
+      "kind": "V",
+      "prompt": "prompts/R14_PROMPT.md",
+      "line": 42,
+      "requirement": "阴影稳定性、法线/曝光、色彩编码、雾排序、透明过绘的实际设备检查。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R14.V04",
+      "stage": "R14",
+      "kind": "V",
+      "prompt": "prompts/R14_PROMPT.md",
+      "line": 43,
+      "requirement": "UI/标签/数值可读，攻击范围不因后处理失真。",
+      "previous_status": "FAIL",
+      "status": "FAIL"
+    },
+    {
+      "id": "R14.V05",
+      "stage": "R14",
+      "kind": "V",
+      "prompt": "prompts/R14_PROMPT.md",
+      "line": 44,
+      "requirement": "多季节连续切换资源计数稳定，无每帧/每旬全图解码上传。",
+      "previous_status": "PASS",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R14.G01",
+      "stage": "R14",
+      "kind": "G",
+      "prompt": "prompts/R14_PROMPT.md",
+      "line": 50,
+      "requirement": "整体彩墨/古代山河风格来自统一资源和照明，四季实际接入；只加一层褐色滤镜不能通过。无季节参考时可通过功能，PC 季节相似性仍 PENDING。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    },
+    {
+      "id": "R14.D01",
+      "stage": "R14",
+      "kind": "D",
+      "prompt": "prompts/R14_PROMPT.md",
+      "line": 56,
+      "requirement": "正式环境/季节/材质代码与资源、艺术 profile、四季图组与状态对等测试、APK、R14 交接。",
+      "previous_status": "NOT_RUN",
+      "status": "NOT_RUN"
+    }
+  ],
+  "note": "逐条保留全部213原文、原文件/行号及历史状态；本轮完整复合条款不因局部修复升级。具体关闭的小缺陷另见remediation report。",
+  "status_semantics": {
+    "FAIL": "原失败未被本轮完整闭合",
+    "NOT_RUN": "本轮未完成该条全部复合验收；不表示旧实现不存在。历史状态独立保留。"
+  },
+  "host_evidence": "CI36097729262 / native-remediation-host: 16 suites PASS in logged host scope only",
+  "historical_details": "输入 sanguo11-native-r00-r14-audit-evidence.zip/checklist/R00-R14-checklist.json，完整原scope/source_paths/historical_evidence原样保留于交付input目录。",
+  "scoped_remediation": "reports/R00-R14-REMEDIATION.md；缓存淘汰、静态势力重复计算和资产保护小缺陷的关闭不能自动升级完整复合条款。"
+}
