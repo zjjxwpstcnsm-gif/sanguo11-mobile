@@ -67,7 +67,7 @@ jobs:
   android:
     strategy:
       fail-fast: false
-      matrix: {mode: [baseline, candidate]} # collect independent whole-screen evidence even when Window PixelCopy is unavailable
+      matrix: {mode: [candidate]} # unchanged baseline production with independent screen capture: run 36096986283
     runs-on: ubuntu-latest
     timeout-minutes: 75
     steps:

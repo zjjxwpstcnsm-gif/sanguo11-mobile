@@ -30,7 +30,8 @@ public final class NativeColdStartInstrumentation extends SceneInstrumentation {
   capture("cold-missing-control");throw new AssertionError("visible UI control not found");
  }
  private void tap(View v)throws Exception{
-  Rect rect=new Rect();runOnMainSync(()->{check(v.isEnabled(),"control enabled");check(v.getGlobalVisibleRect(rect),"control has visible bounds");});
+  Rect rect=new Rect();int[] screen=new int[2];runOnMainSync(()->{check(v.isEnabled(),"control enabled");check(v.getLocalVisibleRect(rect),"control has visible bounds");v.getLocationOnScreen(screen);rect.offset(screen[0],screen[1]);});
+  note("TOUCH screenRect="+rect+" control="+v.getClass().getSimpleName());
   long time=SystemClock.uptimeMillis();MotionEvent down=MotionEvent.obtain(time,time,MotionEvent.ACTION_DOWN,rect.exactCenterX(),rect.exactCenterY(),0),up=MotionEvent.obtain(time,time+80,MotionEvent.ACTION_UP,rect.exactCenterX(),rect.exactCenterY(),0);
   sendPointerSync(down);sendPointerSync(up);down.recycle();up.recycle();settle();
  }
