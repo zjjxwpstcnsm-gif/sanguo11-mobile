@@ -5,7 +5,7 @@
   "main_at_start": "ac29b458325b52d6e302ca44270d16552de4ed7f",
   "source": "5f8997ebfef15f4680931d40532411a336506d0d",
   "verification_commit": "5f8997ebfef15f4680931d40532411a336506d0d",
-  "final_remote_head_location": "sanguo11-v112-delivery.json (written after final push and remote reread)",
+  "final_remote_head_location": "sanguo11-R00-R14-full-acceptance-delivery.json and REMOTE_VERIFY.json, written after final push",
   "branch": "agent/native-pc-visual",
   "pr": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/67",
   "apk": {
@@ -32,24 +32,28 @@
     "original_v105": 36208888111,
     "inherited_v111": 36212043685,
     "original_window_causal": 36210927099,
-    "software_control": 36213832901
+    "software_control": 36213832901,
+    "full_acceptance": 36222182595,
+    "compatible_parity": 36222424271
   },
   "acceptance": {
-    "first_asset_lod_order": "FIXED_SCOPED: input extracted production path FAIL, candidate PASS; installed national firstCPU and farLOD checks reached on both APIs; cache231704bytes",
-    "api29_cold": "FAIL: original120s readiness, pending322 GPU16 submitted2; FIRST_CPU_DELIVERY reached; faction confirmation NOT_REACHED",
-    "api35_cold": "FAIL: original120s readiness, pending307 GPU31 submitted5; FIRST_CPU_DELIVERY reached; faction confirmation NOT_REACHED",
-    "api29_r12_full": "FAIL at initial scene readiness before national preview",
-    "api29_calendar": "NOT_REACHED on v112; inherited v111 actual whole-image stale calendar remains FAIL",
-    "api35_r12_full": "FAIL at NativeR12Instrumentation.recreate:22/combinations:32/onStart:91: pending5 submitted9 beginAttempts609/skipped600; national preview NOT_REACHED",
-    "api35_parity": "PASS 12cases/310checks; 50 entire expected/observed SaveCodec byte pairs independently equal, including RNG, committed/finished attack, next-turn and2recreations; explicit fixtures/API commands, NOT full cold touch chain",
-    "api35_lifecycle20": "NOT_RUN_COMPLETE: job108325858061 still in_progress at latest snapshot; no completed20-cycle installed raw evidence",
-    "full_touch_new_game": "FAIL_BLOCKED_AT_NATIONAL_PREVIEW; selection/confirmation/deploy/move/attack/report/next-turn/manual-save-load NOT_REACHED",
-    "core": "FAIL inherited; input/candidate entry exit1 CoreTest.logistics:75; all42 invocation exit matrices identical (12pass30fail)",
-    "host": "PASS 20 suites; not installed acceptance",
-    "build_lint": "PASS exactsource assembleDebug assembleDebugAndroidTest lintDebug",
-    "arm64_physical": "NOT_RUN unavailable",
-    "release": "403; no Release created",
-    "api35_calendar": "SCOPED PASS: focused installed186checks and original whole-screen Jan/Jul/Apr correct; representative May/cross-year/recreation originals correct. Unmodified old APK API35 also correct, so not proof of fixing API29 stale UI"
+    "as_of": "2026-09-26",
+    "all_original_requirements_satisfied": false,
+    "authoritative_matrix": "full-acceptance/matrix.json",
+    "runtime": "full-acceptance/runtime-summary.json",
+    "api29_cold": "FAIL original120s readiness",
+    "api35_cold": "FAIL original120s readiness",
+    "api29_r12_full": "FAIL initial readiness",
+    "api35_r12_full": "FAIL initial readiness",
+    "api29_lifecycle": "FAIL 17 switch / 0 background",
+    "api35_lifecycle": "FAIL 20 switch / 13 background",
+    "original_ci_lifecycle_final": "FAIL 20 switch / 18 background",
+    "api29_api35_fixture_parity": "PASS each12 combinations and50 full byte pairs; explicit fixture/API only",
+    "full_touch_new_game": "FAIL; downstream NOT_REACHED",
+    "core": "Both input/candidate original42 calls:12 exit0/30 exit1; inherited failures",
+    "calendar": "Formal scenario stale-date closure NOT_REACHED; fixture visible months scoped PASS",
+    "physical_arm64": "NOT_RUN",
+    "release_write": "Unavailable current connector; historical403 only"
   },
   "artifacts": [
     {
@@ -356,5 +360,40 @@
     "gpu": "SwANGLE; separate software controls never replace acceptance results",
     "physical_arm64": "NOT_RUN"
   },
-  "scope": "No main merge, force push, other PR, R15, gameplay/map topology/AI/RNG/SaveCodec or production asset changes relative to input. Not all P0 defects closed."
+  "scope": "No main merge, force push, other PR, R15, gameplay/map topology/AI/RNG/SaveCodec or production asset changes relative to input. Not all P0 defects closed.",
+  "full_acceptance_20260926": {
+    "all_original_requirements_satisfied": false,
+    "counts": {
+      "PARTIAL": 172,
+      "FAIL": 16,
+      "PASS": 9,
+      "NOT_REACHED": 5,
+      "NOT_RUN": 233
+    },
+    "total": 435,
+    "manifest": "full-acceptance/manifest.json",
+    "report": "reports/R00-R14-FULL-ACCEPTANCE.md",
+    "lifecycle_current": {
+      "api29": "FAIL：模式切换日志17/20，前后台0/20；下一次ready超时",
+      "api35": "FAIL：模式切换日志20/20，前后台13/20；background frame loop stopped"
+    },
+    "original_lifecycle_final": "FAIL 20 switch + 18 background, then background frame loop stopped"
+  },
+  "historical_v112_acceptance_before_full_audit": {
+    "first_asset_lod_order": "FIXED_SCOPED: input extracted production path FAIL, candidate PASS; installed national firstCPU and farLOD checks reached on both APIs; cache231704bytes",
+    "api29_cold": "FAIL: original120s readiness, pending322 GPU16 submitted2; FIRST_CPU_DELIVERY reached; faction confirmation NOT_REACHED",
+    "api35_cold": "FAIL: original120s readiness, pending307 GPU31 submitted5; FIRST_CPU_DELIVERY reached; faction confirmation NOT_REACHED",
+    "api29_r12_full": "FAIL at initial scene readiness before national preview",
+    "api29_calendar": "NOT_REACHED on v112; inherited v111 actual whole-image stale calendar remains FAIL",
+    "api35_r12_full": "FAIL at NativeR12Instrumentation.recreate:22/combinations:32/onStart:91: pending5 submitted9 beginAttempts609/skipped600; national preview NOT_REACHED",
+    "api35_parity": "PASS 12cases/310checks; 50 entire expected/observed SaveCodec byte pairs independently equal, including RNG, committed/finished attack, next-turn and2recreations; explicit fixtures/API commands, NOT full cold touch chain",
+    "api35_lifecycle20": "NOT_RUN_COMPLETE: job108325858061 still in_progress at latest snapshot; no completed20-cycle installed raw evidence",
+    "full_touch_new_game": "FAIL_BLOCKED_AT_NATIONAL_PREVIEW; selection/confirmation/deploy/move/attack/report/next-turn/manual-save-load NOT_REACHED",
+    "core": "FAIL inherited; input/candidate entry exit1 CoreTest.logistics:75; all42 invocation exit matrices identical (12pass30fail)",
+    "host": "PASS 20 suites; not installed acceptance",
+    "build_lint": "PASS exactsource assembleDebug assembleDebugAndroidTest lintDebug",
+    "arm64_physical": "NOT_RUN unavailable",
+    "release": "403; no Release created",
+    "api35_calendar": "SCOPED PASS: focused installed186checks and original whole-screen Jan/Jul/Apr correct; representative May/cross-year/recreation originals correct. Unmodified old APK API35 also correct, so not proof of fixing API29 stale UI"
+  }
 }

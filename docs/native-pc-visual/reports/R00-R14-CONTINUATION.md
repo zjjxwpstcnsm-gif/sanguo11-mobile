@@ -134,3 +134,15 @@ v105发布Release再次HTTP403 Resource not accessible by integration，复读ta
 本轮容量内交付上述正式小范围改动及三轮复验，没有留下新的渲染引擎、第二套加载器或待接入异步重构。后续第一优先仍是API29全国CPU生成/景观首屏与真实UI窗口不再出帧，并定位API35首次触点未切入3D；先完成正常冷启动整链，再按原顺序补异步生命周期、美术和其余矩阵。V1未闭合、V2 FAIL，R15未开始。
 
 独立文件：`sanguo11-native-first-work-v105-ef54951d.apk`；`sanguo11-R00-R14-v105-evidence.zip`（本次报告、213条、源码patch、输入包、v104/v105六份原始运行ZIP、日志、退出码、图像/录像及最终远端复读）；`sanguo11-R00-R14-v102-v103-comparison.zip`（四份未修改的第一轮对照原始ZIP）。各包自带manifest。最终远端HEAD以REMOTE_DELIVERY.json记录，独立于APK source。
+
+## 2026-09-26 原始要求全量验收（本次结论，保留以下历史记录）
+
+**R00–R14是否全部满足原始开发要求：否。** 正式APK source `5f8997ebfef15f4680931d40532411a336506d0d`，APK SHA256 `6ba2211d961567b2aa396ba19e3018c1dc44780fa4351a807db099fc643bd058`，v112原包复验，未改生产源码/资产/规则。
+
+原213 + 补充222 = 435复合来源条款：PARTIAL=172；FAIL=16；PASS=9；NOT_REACHED=5；NOT_RUN=233。原文、历史、调用链和逐条证据见 [完整报告](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/blob/agent/native-pc-visual/docs/native-pc-visual/reports/R00-R14-FULL-ACCEPTANCE.md) 与 `evidence/full-acceptance/matrix.json`。
+
+当前API29生命周期：FAIL：模式切换日志17/20，前后台0/20；下一次ready超时；API35：FAIL：模式切换日志20/20，前后台13/20；background frame loop stopped。原CI108325858061最终是20次切换/18次前后台后FAIL，不再保持未出结果状态。两API独立全国冷启动及原完整R12初始ready均FAIL；完整纯触控新开局未通过，下游NOT_REACHED。兼容测试探针的API29/35权威fixture各12组合、50对完整字节一致；不是纯触控、PC美术或真机验收。ARM64真机NOT_RUN。
+
+V1/V2、R10/R11/R13缺口未关闭；本次正常平原Surface确认R05阶梯岸线缺陷。core原42调用双方12退出0/30退出1，继承失败保留，无规则修改。最优先修复正常全国预览CPU→上传→beginFrame→Surface链，再修生命周期/日期实际合成。保留MapHost/SceneRenderGate/有界队列与缓存，不开始R15。
+
+CI：36222182595（原v112严格复验）、36222424271（仅测试API29兼容修正，全部成功）。唯一测试改动为完整流读取替代API29无readAllBytes；不降断言/超时。完整证据包含原始PNG/MP4、logcat、全存档字节及哈希；详见交付manifest。

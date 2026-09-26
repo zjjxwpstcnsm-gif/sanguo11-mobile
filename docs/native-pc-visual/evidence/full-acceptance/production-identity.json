@@ -1,0 +1,31 @@
+{
+  "apk_source_sha": "5f8997ebfef15f4680931d40532411a336506d0d",
+  "inspected_head": "33e49a3b915bd003dcc2c0cbe989adc638e27320",
+  "sha256": "6ba2211d961567b2aa396ba19e3018c1dc44780fa4351a807db099fc643bd058",
+  "size": 37387038,
+  "zip_crc": null,
+  "abis": [
+    "arm64-v8a",
+    "armeabi-v7a",
+    "x86",
+    "x86_64"
+  ],
+  "unity_libraries": [],
+  "asset_count": 300,
+  "asset_mismatches": [],
+  "all_changes": [
+    ".github/workflows/native-acceptance-parity.yml",
+    ".github/workflows/native-p0-software-control.yml",
+    ".github/workflows/native-r00-r14-acceptance.yml",
+    "app/src/androidTest/java/game/sanguo/mobile/NativeP0ParityInstrumentation.java",
+    "docs/native-pc-visual/DEFECTS.md",
+    "docs/native-pc-visual/PROGRESS.md",
+    "docs/native-pc-visual/evidence/R00-R14-REMEDIATION.json",
+    "docs/native-pc-visual/evidence/R00-R14-remediation-checklist.json",
+    "docs/native-pc-visual/handoffs/R00-R14-REMEDIATION.md",
+    "docs/native-pc-visual/history/R00-R14-v107-manifest.json",
+    "docs/native-pc-visual/reports/R00-R14-CONTINUATION.md",
+    "docs/native-pc-visual/reports/R00-R14-P0-v112.md"
+  ],
+  "non_docs_workflow_androidTest_changes": []
+}

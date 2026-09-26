@@ -1,0 +1,5 @@
+{
+  "scheme_block": "APK v2",
+  "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+  "note": "DER fingerprint independently extracted; exact APK hash matches original apksigner-verified build; not a separate cryptographic verification implementation."
+}
