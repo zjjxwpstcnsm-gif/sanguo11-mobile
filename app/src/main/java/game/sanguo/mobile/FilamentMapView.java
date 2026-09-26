@@ -77,7 +77,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private long lastOutputProbe;
     private String outputStatus="WAITING_SURFACE";
     private long surfaceFrames;
-    private long frameCallbacks,beginAttempts,beginSkipped,outputCopies,lastWorkLog;
+    private long frameCallbacks,beginAttempts,beginSkipped,outputCopies,lastWorkLog,gpuPreparationFrames;
     private int lastMeshUploads;
     private long lastMeshUploadNanos;
     private SwapChain swap; private int cameraEntity,light;
@@ -362,7 +362,6 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(pendingFit&&(getWidth()==0||getHeight()==0)){pendingLayoutSnapshot=next;return;}
         boolean groundChanged=snapshot==null||snapshot.ground!=next.ground;snapshot=next;
         if(pendingFit)fit();
-        applySeason(SeasonStyle.forMonth(next.month));
         Set<Hex> excluded=Vegetation.exclusions(next);boolean woodsChanged=groundChanged||!excluded.equals(woodExcluded);
         if(groundChanged||woodsChanged){
             outputVerified=false;outputStatus="WAITING_MESH";uniformOutputCount=0;
@@ -374,7 +373,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             long queuedAt=System.nanoTime();
             meshWork.submitPhased(publish->buildMeshes(next.ground,groundChanged,oldScenery,previous,oldWoods,assets,excluded,requested,queuedAt,publish));
         }
-        syncObjects();overlay.invalidate();schedule();
+        // The owner accepts immutable state now; GPU updates wait for frame admission.
+        assetSyncPending=true;refreshPendingMeshes();overlay.invalidate();schedule();
     }
     private static long runtimeCounter(String key){
         try{String value=android.os.Debug.getRuntimeStat(key);return value==null?-1:Long.parseLong(value);}catch(RuntimeException e){return -1;}
@@ -424,17 +424,19 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private void acceptMeshes(MeshResult result){
         if(released)return;
         android.util.Log.i("Sanguo3D","Mesh owner delivery waitWallMs="+(System.nanoTime()-result.completedNanos)/1e6+" generation="+generation+" cpuChunks="+result.ground.size()+" phase="+(result.trees==null?"GROUND":"COMPLETE")+" discarded="+meshWork.discarded()+" delivered="+meshWork.delivered()+" backpressureWallMs="+meshWork.backpressureNanos()/1e6);
-        if(backdropSource!=result.scenery){if(backdrop!=null){backdrop.destroy();backdrop=null;}backdropSource=result.scenery;}
+        // CPU mailbox delivery must not bypass renderer backpressure.
+        // Keep the old backdrop alive until an admitted frame uploads its replacement.
+        backdropSource=result.scenery;
         // Keep a displayed old level until its replacement finishes the bounded upload.
         // Environment meshes transfer in loadVisible only after replacement upload.
         chunks=result.ground;distantTerrain=!chunks.isEmpty()&&chunks.stream().allMatch(m->m.terrainLod==2);
-        if(result.trees!=null)woods=result.trees;pending=meshWork.pending();clampCamera();
+        if(result.trees!=null)woods=result.trees;clampCamera();refreshPendingMeshes();
     }
     void setTargets(Set<Hex> value){targets=value==null?Collections.emptySet():new HashSet<>(value);overlay.invalidate();}
     void setRoute(MarchOrders.Plan value){route=value;overlay.invalidate();}
     void pauseEffects(boolean value){if(value&&!effectsPaused)pausedEffectTick=animationTick;effectsPaused=value;}
     void replay(TurnJournal.Event e,float fraction){
-        replay=e;replayFraction=CombatVisual.fraction(fraction);if(e==null)clearEffects();animateReplay();overlay.invalidate();schedule();
+        replay=e;replayFraction=CombatVisual.fraction(fraction);if(e==null)clearEffects();overlay.invalidate();schedule();
     }
     boolean visible(TurnJournal.Event e){if(visible(e.start)||visible(e.target))return true;for(Hex h:e.path)if(visible(h))return true;for(TurnJournal.Impact i:e.impacts)if(visible(i.hex))return true;return false;}
     private boolean visible(Hex h){if(h==null||snapshot==null)return false;GridWorldTransform g=snapshot.ground.grid;return Math.abs(camera.screenX(g.x(h),g.z(h))-camera.width/2f)<camera.width*.6&&Math.abs(camera.screenY(g.x(h),g.z(h),snapshot.ground.surface.at(h))-camera.height/2f)<camera.height*.6;}
@@ -450,7 +452,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         +" overlayDraws="+overlay.draws+" territoryBuilds="+overlay.territoryBuilds+" territoryBuildMs="+overlay.territoryBuildNanos/1e6
         +" meshUploads="+lastMeshUploads+" meshUploadCpuMs="+lastMeshUploadNanos/1e6+" meshUploadMax=8 meshUploadBudgetMs=4"
         +" workerDeliveries="+meshWork.delivered()+" workerBackpressureWallMs="+meshWork.backpressureNanos()/1e6
-        +" frameCallbacks="+frameCallbacks+" beginAttempts="+beginAttempts+" beginSkipped="+beginSkipped+" surfaceCopies="+outputCopies
+        +" frameCallbacks="+frameCallbacks+" beginAttempts="+beginAttempts+" beginSkipped="+beginSkipped+" gpuPreparationFrames="+gpuPreparationFrames+" lifetimeSubmissions="+renderedFrames+" surfaceCopies="+outputCopies
         +" output="+outputStatus+"\ncamera="+camera.x+","+camera.z+" span="+camera.span+" tilt="+camera.tilt+" facing="+camera.facing+" yaw="+camera.yaw+"\npick="+lastPick;}
     String report(){return "landscape="+LandscapeProfile.ID+"\n"+startupReport()+"\nFilament 1.56.0 / OpenGL ES · "+quality.label+" color="+(srgbSwapChain?"sRGB framebuffer":"post-process gamma")+" MSAA="+(msaaEnabled?"4x":"off / compatibility")+" thermal="+thermalStatus+" cap="+thermal.fps(quality)+"\n内部 "+bufferWidth+" × "+bufferHeight+" / UI "+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S06 战斗特效 / 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+" · 特效 "+combat.count+"/"+CombatVisual.CAPACITY+"\n"+resourceReport();}
     void resetMetrics(){cpuCount=cpuCursor=0;}
@@ -483,23 +485,40 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         frameCallbacks++;queued=false;if(released||!resumed||swap==null)return;
         if(!pacer.due(time,thermal.fps(quality))){schedule();return;}
         long cpuStart=System.nanoTime();
+        lastMeshUploads=0;lastMeshUploadNanos=0;
         try{
+            // Bounded CPU delivery is independent of GPU admission. A rejected frame
+            // must not strand the producer on its one-slot result mailbox.
             meshWork.drain(this::acceptMeshes,e->{pending=0;failure.accept(e);});
             if(released)return;
-            boolean assetsChanged=assetWork.drain();assetUploadBudget=2;
-            if(assetsChanged||assetSyncPending)syncObjects();
+            if(assetWork.drain())assetSyncPending=true;
+            refreshPendingMeshes();
             if(lastFrame!=0)callbackMillis=(time-lastFrame)/1e6;lastFrame=time;
-            double aspect=camera.width/(double)camera.height;
-            lens.setProjection(Camera.Projection.ORTHO,-camera.span*aspect,camera.span*aspect,-camera.span,camera.span,.1,1000);
-            lens.lookAt(camera.x+camera.backX()*300*camera.cos(),300*camera.sin(),camera.z+camera.rightX()*300*camera.cos(),camera.x,0,camera.z,0,1,0);
-            if(waterLastTick!=0&&UiMotion.enabled())waterSeconds+=Math.min(.1,(time-waterLastTick)/1e9);
-            waterLastTick=time;waterMaterial.getDefaultInstance().setParameter("waveTime",(float)(waterSeconds%4096));
-            animationTick=time/1_000_000;animateReplay();loadVisible();animateUnits();animateEffects();
             boolean begun=false;
             if(bufferWidth>0&&bufferHeight>0){beginAttempts++;begun=renderer.beginFrame(swap,time);if(!begun)beginSkipped++;}
-            if(begun){renderer.render(view);renderer.endFrame();renderedFrames++;surfaceFrames++;if(surfaceFrames==1)android.util.Log.i("Sanguo3D","First submission (not visibility proof): "+startupReport());checkSurfaceOutput();}
+            if(begun){
+                try{
+                    // Filament's beginFrame(false) is backpressure, not permission
+                    // to enqueue uploads/transforms and only skip render().
+                    gpuPreparationFrames++;assetUploadBudget=2;
+                    if(snapshot!=null)applySeason(SeasonStyle.forMonth(snapshot.month));
+                    if(assetSyncPending)syncObjects();
+                    double aspect=camera.width/(double)camera.height;
+                    lens.setProjection(Camera.Projection.ORTHO,-camera.span*aspect,camera.span*aspect,-camera.span,camera.span,.1,1000);
+                    lens.lookAt(camera.x+camera.backX()*300*camera.cos(),300*camera.sin(),camera.z+camera.rightX()*300*camera.cos(),camera.x,0,camera.z,0,1,0);
+                    if(waterLastTick!=0&&UiMotion.enabled())waterSeconds+=Math.min(.1,(time-waterLastTick)/1e9);
+                    waterLastTick=time;waterMaterial.getDefaultInstance().setParameter("waveTime",(float)(waterSeconds%4096));
+                    animationTick=time/1_000_000;animateReplay();loadVisible();animateUnits();animateEffects();
+                    renderer.render(view);
+                }finally{renderer.endFrame();}
+                renderedFrames++;surfaceFrames++;
+                if(surfaceFrames==1)android.util.Log.i("Sanguo3D","First submission (not visibility proof): "+startupReport());
+                checkSurfaceOutput();
+            }
             long now=android.os.SystemClock.uptimeMillis();
             if(!outputVerified&&now-lastWorkLog>=1000){lastWorkLog=now;android.util.Log.i("Sanguo3D","Load progress "+startupReport());}
+            // HWUI labels/progress and the next opportunity remain live even when
+            // the separate Filament Surface cannot accept another frame.
             overlay.invalidate();schedule();
             cpuSamples[cpuCursor++%cpuSamples.length]=System.nanoTime()-cpuStart;cpuCount=Math.min(cpuSamples.length,cpuCount+1);
         }catch(RuntimeException|LinkageError|OutOfMemoryError e){cancelFrame();failure.accept(e);}
@@ -537,9 +556,26 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         }catch(IllegalArgumentException e){outputProbePending=false;outputStatus="COPY_UNAVAILABLE";uniformOutputCount=0;sample.recycle();}
     }
     private boolean inView(float x,float z,float radius){return Math.abs(x-camera.x)<camera.extentX()+radius+2&&Math.abs(z-camera.z)<camera.extentZ()+radius+2;}
+    /** Count real visible CPU results not resident on the GPU, even when frame
+     * admission is rejected. No GPU writes, synthetic READY or ignored mailbox. */
+    private void refreshPendingMeshes(){
+        int remaining=meshWork.pending();
+        if(snapshot!=null){
+            if(backdropSource!=null&&(backdrop==null||backdrop.source!=backdropSource))remaining++;
+            for(SceneMesh chunk:chunks)if(inView(chunk.x,chunk.z,chunk.radius)&&!terrain.containsKey(chunk))remaining++;
+            for(SceneMesh source:woods){
+                SceneMesh chunk=quality!=SceneQuality.LOW&&camera.span<14?source:source.distant;
+                if(chunk.indices.length>0&&inView(chunk.x,chunk.z,chunk.radius)&&!vegetation.containsKey(chunk))remaining++;
+            }
+        }
+        pending=remaining;
+    }
     private void loadVisible(){
         if(snapshot==null)return;
-        if(backdrop==null&&backdropSource!=null){backdrop=new GpuMesh(backdropSource);backdrop.show(true);}
+        if(backdropSource!=null&&(backdrop==null||backdrop.source!=backdropSource)){
+            GpuMesh replacement=new GpuMesh(backdropSource);replacement.show(true);
+            GpuMesh old=backdrop;backdrop=replacement;if(old!=null)old.destroy();
+        }
         engine.getLightManager().setShadowCaster(engine.getLightManager().getInstance(light),environmentShadows&&!thermal.constrained&&camera.span<22);
         int nextLod=Math.max(quality.minSiteLod,SiteVisual.lod(camera.span,siteLod));if(nextLod!=siteLod){siteLod=nextLod;syncObjects();}int budget=8;long uploadNanos=0;visibleChunks=0;pending=meshWork.pending();
         if(meshWork.pending()==0&&(terrainWindow==null||!terrainWindow.covers(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span))){
