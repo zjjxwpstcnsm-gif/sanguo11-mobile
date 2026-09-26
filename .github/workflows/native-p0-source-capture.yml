@@ -1,0 +1,32 @@
+name: Native P0 immutable source capture
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-p0-source-capture.yml]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 2cabdc369418a3e6a34f71dde1d700bc5565ad03
+          fetch-depth: 1
+          persist-credentials: false
+      - name: Capture tracked source and exact identity (no production mutation)
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/native-p0-source
+          git rev-parse HEAD > /tmp/native-p0-source/SOURCE_COMMIT
+          git rev-parse HEAD^{tree} > /tmp/native-p0-source/TREE_COMMIT
+          git ls-tree -r HEAD > /tmp/native-p0-source/TRACKED_OBJECTS.tsv
+          git archive --format=tar HEAD | gzip -1 > /tmp/native-p0-source/source.tar.gz
+          sha256sum /tmp/native-p0-source/source.tar.gz > /tmp/native-p0-source/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-p0-source-2cabdc369418
+          path: /tmp/native-p0-source/
+          compression-level: 0
+          retention-days: 7
