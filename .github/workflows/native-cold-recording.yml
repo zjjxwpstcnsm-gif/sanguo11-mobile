@@ -1,4 +1,4 @@
-name: Native P0 untouched v105 and input v107 controls
+name: Native P0 untouched v105 reproducible controls
 on:
   push:
     branches: [agent/native-pc-visual]
@@ -11,14 +11,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        api: [29, 35]
-        version: [105, 107]
+        include:
+          - {api: 29, mode: cold-only}
+          - {api: 29, mode: all}
+          - {api: 35, mode: all}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
-      CONTROL_VERSION: ${{ matrix.version }}
+      REMEDIATION_MODE: ${{ matrix.mode }}
     steps:
       - uses: actions/checkout@v4
         with: {ref: '${{ github.sha }}', fetch-depth: 0}
@@ -26,28 +28,18 @@ jobs:
         with: {distribution: temurin, java-version: '17'}
       - uses: gradle/actions/setup-gradle@v4
       - uses: android-actions/setup-android@v4
-        with: {packages: ''}
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
       - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
-      - name: Instrumentation only; install unmodified archived APK bytes
+      - name: Install byte-identical original v105; only build instrumentation
         run: |
           set -euo pipefail
-          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           ./gradlew --no-daemon :app:assembleDebugAndroidTest -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true
           mkdir -p app/build/outputs/apk/debug out/remediation /tmp/control-apk
-          if [ "$CONTROL_VERSION" = 105 ]; then
-            run=36108363433
-            digest=2b38ca4741b60650be58555ec118350f2aeff292765f6b3754adc138c1fdf55c
-            source=ef54951dbb7056beaa782f97a3486eefa3a88ef9
-          else
-            run=36120063732
-            digest=0ad4cc9b9e57a4535cddedf2939541a60433bc02c74d0703e6640696172da486
-            source=a4b09058c6b1ab8c80f57d96f1e22425673de94c
-          fi
-          gh run download "$run" -n native-remediation-api29-apk-00 -D /tmp/control-apk
-          gh run download "$run" -n native-remediation-api29-apk-01 -D /tmp/control-apk
+          gh run download 36108363433 -n native-remediation-api29-apk-00 -D /tmp/control-apk
+          gh run download 36108363433 -n native-remediation-api29-apk-01 -D /tmp/control-apk
           cat /tmp/control-apk/remediation-apk-part-00 /tmp/control-apk/remediation-apk-part-01 > app/build/outputs/apk/debug/app-debug.apk
-          echo "$digest  app/build/outputs/apk/debug/app-debug.apk" | sha256sum -c -
-          echo "$source" > out/remediation/SOURCE_COMMIT
+          echo '2b38ca4741b60650be58555ec118350f2aeff292765f6b3754adc138c1fdf55c  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
+          echo ef54951dbb7056beaa782f97a3486eefa3a88ef9 > out/remediation/SOURCE_COMMIT
           echo "$GITHUB_SHA" > out/remediation/INSTRUMENTATION_COMMIT
           sha256sum app/build/outputs/apk/debug/app-debug.apk > out/remediation/APK_SHA256
       - name: Enable KVM
@@ -65,33 +57,27 @@ jobs:
           disable-animations: false
           emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
           script: bash scripts/verify-native-remediation.sh baseline
-      - name: Preserve raw PNG Surface video logs and independent decode results
+      - name: Preserve untouched raw evidence even if any later validator fails
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p0-v105-api${{ matrix.api }}-${{ matrix.mode }}-raw
+          path: out/remediation/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Validate each raw video without interactive stdin
         if: always()
         run: |
-          set -uo pipefail
-          mkdir -p out/remediation
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg
-          failed=0
-          found=0
-          while IFS= read -r -d '' video; do
-            found=$((found+1))
-            code=0
-            ffprobe -v error -show_format -show_streams "$video" > "$video.ffprobe.txt" 2>&1 || code=$?
-            echo "$code" > "$video.ffprobe.exit"
-            [ "$code" = 0 ] || failed=1
-            code=0
-            ffmpeg -v warning -i "$video" -f null - > "$video.decode.txt" 2>&1 || code=$?
-            echo "$code" > "$video.decode.exit"
-            [ "$code" = 0 ] || failed=1
-          done < <(find out/remediation -name '*.mp4' -print0)
-          [ "$found" -gt 0 ] || failed=1
-          printf 'videos=%s\nfailed=%s\n' "$found" "$failed" > out/remediation/VIDEO_EXIT.txt
-          (cd out/remediation && zip -qr ../p0-control.zip .)
-          exit "$failed"
+          python3 scripts/verify-p0-videos.py out/remediation
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: "p0-control-v${{ matrix.version }}-api${{ matrix.api }}"
-          path: out/p0-control.zip
+          name: p0-v105-api${{ matrix.api }}-${{ matrix.mode }}-video-validation
+          path: |
+            out/remediation/**/*.ffprobe.json*
+            out/remediation/**/*.decode.log*
+            out/remediation/VIDEO_*
+          if-no-files-found: error
           retention-days: 14
