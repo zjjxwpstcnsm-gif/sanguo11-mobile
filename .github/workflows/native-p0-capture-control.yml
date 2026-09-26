@@ -11,16 +11,12 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - {api: 29, version: 105}
-          - {api: 29, version: 108}
-          - {api: 35, version: 108}
+        api: [29, 35]
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
-      VERSION: ${{ matrix.version }}
     steps:
       - uses: actions/checkout@v4
         with: {ref: '${{ github.sha }}', fetch-depth: 0}
@@ -28,9 +24,9 @@ jobs:
         with: {distribution: temurin, java-version: '17'}
       - uses: gradle/actions/setup-gradle@v4
       - uses: android-actions/setup-android@v4
-        with: {packages: ''}
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
       - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
-      - name: Declare single test-only variable; preserve every assertion and timeout
+      - name: Single declared instrumentation variable, not a replacement for original R12
         run: |
           set -euo pipefail
           mkdir -p out/remediation
@@ -40,32 +36,23 @@ jobs:
           s=p.read_text()
           old='runOnMainSync(()->{try{((com.google.android.filament.Engine)field(view,"engine")).flushAndWait();}catch(Exception e){throw new RuntimeException(e);}});'
           assert s.count(old)==1
-          s=s.replace(old,'android.util.Log.i("SceneAcceptance", "CONTROL passive readiness: no test-only blocking GPU drain; actual Surface PixelCopy still required");')
-          p.write_text(s)
+          p.write_text(s.replace(old,'android.util.Log.i("SceneAcceptance", "CONTROL passive readiness: no blocking test GPU drain; actual Surface PixelCopy remains required");'))
           PY
           git diff --check
           git diff --exit-code -- app/src/main core game-api game-runtime data version.properties
           git diff > out/remediation/TEST_ONLY_CAPTURE_CONTROL.patch
           echo "$GITHUB_SHA" > out/remediation/INSTRUMENTATION_BASE_COMMIT
-          echo 'Only the test-only main-thread flushAndWait in ready() is absent. All readiness, UI draw, actual Surface, real-touch assertions and 120s timeout remain. This is an isolation control, not a substitute for original R12 acceptance.' > out/remediation/CONTROL_SCOPE.txt
-      - name: Build instrumentation, install byte-identical archived production APK
+          echo 'Only the test main-thread flushAndWait in ready() is absent. All readiness, UI draw, actual Surface, real-touch assertions and original timeout remain. This is an isolation control, not original R12 acceptance.' > out/remediation/CONTROL_SCOPE.txt
+      - name: Build instrumentation and install unchanged archived v108 production APK
         run: |
           set -euo pipefail
           ./gradlew --no-daemon :app:assembleDebugAndroidTest -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true
           mkdir -p app/build/outputs/apk/debug /tmp/input-apk
-          if [ "$VERSION" = 105 ]; then
-            gh run download 36108363433 -n native-remediation-api29-apk-00 -D /tmp/input-apk
-            gh run download 36108363433 -n native-remediation-api29-apk-01 -D /tmp/input-apk
-            cat /tmp/input-apk/remediation-apk-part-00 /tmp/input-apk/remediation-apk-part-01 > app/build/outputs/apk/debug/app-debug.apk
-            echo '2b38ca4741b60650be58555ec118350f2aeff292765f6b3754adc138c1fdf55c  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
-            echo ef54951dbb7056beaa782f97a3486eefa3a88ef9 > out/remediation/SOURCE_COMMIT
-          else
-            gh run download 36140301821 -n p0-v108-build -D /tmp/input-apk
-            test "$(cat /tmp/input-apk/SOURCE_COMMIT)" = 76c51ece009b6ebeff58b5a05adce4d769a41f30
-            (cd /tmp/input-apk && sed 's@out/build/@@g' APK_SHA256.txt | sha256sum -c -)
-            cp /tmp/input-apk/sanguo11-mobile-v108.apk app/build/outputs/apk/debug/app-debug.apk
-            cp /tmp/input-apk/SOURCE_COMMIT out/remediation/SOURCE_COMMIT
-          fi
+          gh run download 36140301821 -n p0-v108-build -D /tmp/input-apk
+          test "$(cat /tmp/input-apk/SOURCE_COMMIT)" = 76c51ece009b6ebeff58b5a05adce4d769a41f30
+          (cd /tmp/input-apk && sed 's@out/build/@@g' APK_SHA256.txt | sha256sum -c -)
+          cp /tmp/input-apk/sanguo11-mobile-v108.apk app/build/outputs/apk/debug/app-debug.apk
+          cp /tmp/input-apk/SOURCE_COMMIT out/remediation/SOURCE_COMMIT
           sha256sum app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk > out/remediation/APK_SHA256.txt
       - name: Enable KVM
         run: |
@@ -82,30 +69,27 @@ jobs:
           disable-animations: false
           emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
           script: bash scripts/verify-native-remediation.sh baseline
-      - name: Preserve raw outputs and full video decode results
+      - name: Preserve raw data independently of all validators
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p0-passive-v108-api${{ matrix.api }}-raw
+          path: out/remediation/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Validate each raw video without interactive stdin
         if: always()
         run: |
-          set -uo pipefail
-          mkdir -p out/remediation
           sudo apt-get update -qq
           sudo apt-get install -y ffmpeg
-          failed=0
-          while IFS= read -r -d '' video; do
-            rc=0
-            ffprobe -v error -show_format -show_streams "$video" > "$video.ffprobe.txt" 2>&1 || rc=$?
-            echo "$rc" > "$video.ffprobe.exit"
-            [ "$rc" = 0 ] || failed=1
-            rc=0
-            ffmpeg -v warning -i "$video" -f null - > "$video.decode.txt" 2>&1 || rc=$?
-            echo "$rc" > "$video.decode.exit"
-            [ "$rc" = 0 ] || failed=1
-          done < <(find out/remediation -name '*.mp4' -print0)
-          echo "$failed" > out/remediation/VIDEO_EXIT.txt
-          (cd out/remediation && zip -qr ../passive-control.zip .)
-          exit "$failed"
+          python3 scripts/verify-p0-videos.py out/remediation
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: p0-passive-v${{ matrix.version }}-api${{ matrix.api }}
-          path: out/passive-control.zip
+          name: p0-passive-v108-api${{ matrix.api }}-video-validation
+          path: |
+            out/remediation/**/*.ffprobe.json*
+            out/remediation/**/*.decode.log*
+            out/remediation/VIDEO_*
+          if-no-files-found: error
           retention-days: 14
