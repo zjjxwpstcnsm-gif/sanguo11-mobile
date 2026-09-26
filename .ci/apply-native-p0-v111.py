@@ -25,7 +25,7 @@ edit('app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java',[
  ('void show(){dialog.show();if(a.current3D())', 'void show(){dialog.show();if(dialog.getWindow()!=null)windowSurfaceRecovery=new WindowSurfaceRecovery(dialog.getWindow());if(a.current3D())')])
 edit('app/src/main/java/game/sanguo/mobile/FilamentMapView.java',[
  ('            overlay.invalidate();schedule();\n            cpuSamples', '            overlay.invalidate();WindowSurfaceRecovery.changed(this);schedule();\n            cpuSamples'),
- ('    String report(){return "landscape="+LandscapeProfile.ID+"\n"+startupReport()', '    String report(){return "landscape="+LandscapeProfile.ID+"\n"+WindowSurfaceRecovery.report(this)+"\n"+startupReport()')])
+ ('    String report(){return "landscape="', '    String report(){return WindowSurfaceRecovery.report(this)+" | landscape="')])
 edit('scripts/test-native-frame-admission.py',[
  ('  static final class UiMotion {static boolean enabled(){return true;}}', '  static final class UiMotion {static boolean enabled(){return true;}}\n  static final class WindowSurfaceRecovery {static void changed(Object view){}}')])
 (r/'version.properties').write_text('versionCode=111\nversionName=0.111.0-native-window-surface-recovery\n')
