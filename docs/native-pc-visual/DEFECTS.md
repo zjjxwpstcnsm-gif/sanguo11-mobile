@@ -1,3 +1,13 @@
+# v112 P0 运行续作 / PARTIAL
+
+当前 APK source `5f8997ebfef15f4680931d40532411a336506d0d`；最终证据 HEAD 另见远端与独立交付 JSON。详情见 [v112 实测报告](reports/R00-R14-P0-v112.md)。
+
+正式修复首次资产同步前的 site/unit LOD 选择；输入真实方法回归失败、候选通过。继承 v108–v111 有界流水线与 Window 恢复；不把继承成果计作本次新修复。
+
+API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。
+
+未闭合项继续 FAIL/NOT_RUN；213条原文与历史状态保留。以下全部为历史，不代表 v112：
+
 # v107 缺陷续作 / PARTIAL
 
 当前 APK source `a4b09058c6b1ab8c80f57d96f1e22425673de94c`，v107。详细正式修改、原 v105 独立前测、候选结果及未到达操作见 [R00-R14-P0-v107.md](reports/R00-R14-P0-v107.md).
