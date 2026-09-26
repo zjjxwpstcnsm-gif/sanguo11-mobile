@@ -1,0 +1,80 @@
+[
+  {
+    "device": "api29",
+    "interaction": "FAIL R01 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=13324 backingCopies=23 confirmedLosses=23 relayouts=23 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1\nsource=5f8997ebfef15f4680931d40532411a336506d0d profile=native device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]\nsnapshot=true surface=true viewport=918x1047 session=76ac7c00-c085-4247-a3f7-227417060a73:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=786320 terrain_all_coarse=false mapVisualKey=471842112:0 environmentCpuChunks=76 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=27 pending=19 submitted=5 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 overlayDraws=1232 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=4 workerDeliveries=5 workerBackpressureWallMs=0.0 frameCallbacks=1252 beginAttempts=1231 beginSkipped=1226 gpuPreparationFrames=5 lifetimeSubmissions=5 surfaceCopies=0 output=WAITING_FRAME\ncamera=129.0,54.5 span=10.0 tilt=55.0 facing=1 yaw=0.0\npick=none\nFilament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30\n内部 918 × 1047 / UI 1080 × 1232 · chunks 11 / GPU 10 · objects 5\n帧回调间隔 100.0 ms（非 GPU/FPS 实测）\n待装载 19 · S06 战斗特效 / 部队 · 林块 18 · LOD 0 · 资产回退 0 · 特效 0/64\n场景 primitives=31 triangles=212614 buffers_bytes=10214840 pose_cache=24 entity_live=211 material_instance_live=88 mesh_live=35 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=57.310573 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=0.454494 CPU提交ms P50/P95/P99=0.13/0.23/3.16 samples=240（非驱动DrawCall/GPU帧时）\n\tat game.sanguo.mobile.SceneInstrumentation.ready(SceneInstrumentation.java:75)\n\tat game.sanguo.mobile.NativeR01Instrumentation.onStart(NativeR01Instrumentation.java:28)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\n\n",
+    "shell_exit": "0",
+    "switch_logged": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16"
+    ],
+    "background_logged": [],
+    "screens": [
+      "r01-cycle-0.png",
+      "surface.png",
+      "r01-failure.png"
+    ]
+  },
+  {
+    "device": "api35",
+    "interaction": "FAIL R01 java.lang.AssertionError: background frame loop stopped\n\tat game.sanguo.mobile.SceneInstrumentation.check(SceneInstrumentation.java:17)\n\tat game.sanguo.mobile.NativeR01Instrumentation.onStart(NativeR01Instrumentation.java:42)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)\n\n",
+    "shell_exit": "0",
+    "switch_logged": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13",
+      "14",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19"
+    ],
+    "background_logged": [
+      "0",
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12"
+    ],
+    "screens": [
+      "r01-cycle-19.png",
+      "r01-cycle-0.png",
+      "surface.png",
+      "r01-failure.png"
+    ]
+  }
+]

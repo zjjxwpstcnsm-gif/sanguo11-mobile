@@ -1,0 +1,6 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+PASS S07 interaction/editor: 32 checks
+PASS 136 custom-map production integration assertions
+NativeR12Test PASS 395124 checks; official boundaries/navigation, fixture ranges, full save unchanged
+Architecture boundary PASS: reviewed legacy consumers, pure modules, JNI location, assembly DAG and preserved meta identities

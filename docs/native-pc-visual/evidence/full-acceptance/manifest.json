@@ -1,0 +1,364 @@
+{
+  "schema": 1,
+  "all_requirements_satisfied": false,
+  "counts": {
+    "PARTIAL": 172,
+    "FAIL": 16,
+    "PASS": 9,
+    "NOT_REACHED": 5,
+    "NOT_RUN": 233
+  },
+  "total_requirements": 435,
+  "original_count": 213,
+  "supplemental_count": 222,
+  "apk": {
+    "apk_source_sha": "5f8997ebfef15f4680931d40532411a336506d0d",
+    "inspected_head": "33e49a3b915bd003dcc2c0cbe989adc638e27320",
+    "sha256": "6ba2211d961567b2aa396ba19e3018c1dc44780fa4351a807db099fc643bd058",
+    "size": 37387038,
+    "zip_crc": null,
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "unity_libraries": [],
+    "asset_count": 300,
+    "asset_mismatches": [],
+    "all_changes": [
+      ".github/workflows/native-acceptance-parity.yml",
+      ".github/workflows/native-p0-software-control.yml",
+      ".github/workflows/native-r00-r14-acceptance.yml",
+      "app/src/androidTest/java/game/sanguo/mobile/NativeP0ParityInstrumentation.java",
+      "docs/native-pc-visual/DEFECTS.md",
+      "docs/native-pc-visual/PROGRESS.md",
+      "docs/native-pc-visual/evidence/R00-R14-REMEDIATION.json",
+      "docs/native-pc-visual/evidence/R00-R14-remediation-checklist.json",
+      "docs/native-pc-visual/handoffs/R00-R14-REMEDIATION.md",
+      "docs/native-pc-visual/history/R00-R14-v107-manifest.json",
+      "docs/native-pc-visual/reports/R00-R14-CONTINUATION.md",
+      "docs/native-pc-visual/reports/R00-R14-P0-v112.md"
+    ],
+    "non_docs_workflow_androidTest_changes": []
+  },
+  "certificate": {
+    "scheme_block": "APK v2",
+    "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "note": "DER fingerprint independently extracted; exact APK hash matches original apksigner-verified build; not a separate cryptographic verification implementation."
+  },
+  "application_id": "game.sanguo.mobile.dev",
+  "version_code": 112,
+  "version_name": "0.112.0-native-first-asset-lod",
+  "production_changed": false,
+  "test_apk_source_sha": "33e49a3b915bd003dcc2c0cbe989adc638e27320",
+  "test_apk_sha256": "84bb557495495e2d415b83d292679e06fff39c9b21d5ea2845ab2f29e4232a65",
+  "input_head": "fbd26d83fdacca89033c9d053babb25450e18b47",
+  "final_remote_head_location": "containing commit; external delivery manifest and REMOTE_VERIFY.json pin final pushed HEAD after creation",
+  "inputs": [
+    {
+      "file": "sanguo11-native-pc-visual-agent-prompts.zip",
+      "bytes": 136443,
+      "sha256": "74e794192d71311b84fed6dfbfd8f25c54a1aa334fbd8234d9e36d145640d03c",
+      "crc_error": null,
+      "entries": 65,
+      "library_file_id": "libfile_0fe16373601881918646f9bb71478d2a",
+      "download_url": "https://chatgpt.com/api/library/files/libfile_0fe16373601881918646f9bb71478d2a/download"
+    },
+    {
+      "file": "sanguo11-R00-R14-remediation-handoff.zip",
+      "bytes": 33596963,
+      "sha256": "6a3e6ba271e8e84dec367d76bee49f23bbe1d68b782741d243f511b56ba66bb2",
+      "crc_error": null,
+      "entries": 5,
+      "library_file_id": "libfile_87bab229cce8819195013012d1c786f7",
+      "download_url": "https://chatgpt.com/api/library/files/libfile_87bab229cce8819195013012d1c786f7/download"
+    },
+    {
+      "file": "sanguo11-R00-R14-v105-evidence.zip",
+      "bytes": 316172494,
+      "sha256": "50b386f8aab9cb43ed1adbb399c72333a9fbda1d81e255c0fb1aa6cb2dd381ce",
+      "crc_error": null,
+      "entries": 369,
+      "library_file_id": "libfile_100f04203ac48191ba8af2020a2f3f95",
+      "download_url": "https://chatgpt.com/api/library/files/libfile_100f04203ac48191ba8af2020a2f3f95/download"
+    },
+    {
+      "file": "sanguo11-v112-delivery.json",
+      "bytes": 3590,
+      "sha256": "dfc7df40afb17a9ddbab10097104c752a4bc2b0e18a575d1c0bc59242df78511",
+      "library_file_id": "libfile_bd7b0a250a348191a898e5e69db862f2",
+      "download_url": "https://chatgpt.com/api/library/files/libfile_bd7b0a250a348191a898e5e69db862f2/download"
+    },
+    {
+      "file": "sanguo11-R00-R14-v102-v103-comparison.zip",
+      "bytes": 291288779,
+      "sha256": "ca40741e2a5e95e5f67645d4b8e5ee20b344cc127ff8f556b62213506fc697a1",
+      "crc_error": null,
+      "entries": 8,
+      "library_file_id": "libfile_79e7a620200481919ed83ac285b7edea",
+      "download_url": "https://chatgpt.com/api/library/files/libfile_79e7a620200481919ed83ac285b7edea/download"
+    },
+    {
+      "file": "sanguo11-v112-P0-evidence.zip",
+      "bytes": 450483100,
+      "sha256": "6acb30290b13c3e70c844904789609ab34dd07039a06c9b2a4f684fff18e93f0",
+      "crc_error": null,
+      "entries": 1164,
+      "library_file_id": "libfile_e1715b0c319c8191901ff092b22b2502",
+      "download_url": "https://chatgpt.com/api/library/files/libfile_e1715b0c319c8191901ff092b22b2502/download"
+    }
+  ],
+  "ci_runs": [
+    36213760665,
+    36222182595,
+    36222424271
+  ],
+  "ci_artifacts": [
+    {
+      "id": 10900260540,
+      "name": "acceptance-v112-api29-lifecycle-raw",
+      "size_in_bytes": 157436821,
+      "digest": "sha256:8b15ec6007191155c66366e180303d582e3ba089d3e63292e176c6e6a6ceafd1",
+      "expires_at": "2026-10-10T06:28:35Z"
+    },
+    {
+      "id": 10900047091,
+      "name": "acceptance-v112-api35-lifecycle-video-validation",
+      "size_in_bytes": 35639,
+      "digest": "sha256:d12fb6f4b022ff0c1ee3e516600d9b912afed007495d55299981b8290cb926d8",
+      "expires_at": "2026-10-10T06:25:41Z"
+    },
+    {
+      "id": 10900045861,
+      "name": "acceptance-v112-api35-parity-video-validation",
+      "size_in_bytes": 11880,
+      "digest": "sha256:3328f8520b1a457ae9630713ed578ac92f2ba7ae6f4386acdfea14b0230b4688",
+      "expires_at": "2026-10-10T06:10:16Z"
+    },
+    {
+      "id": 10899981130,
+      "name": "acceptance-v112-api35-parity-raw",
+      "size_in_bytes": 94588458,
+      "digest": "sha256:31077a1a5d6396f6df13d6cd60f1919791dbf150b619084ad565bb0605bf1e4d",
+      "expires_at": "2026-10-10T06:09:53Z"
+    },
+    {
+      "id": 10899905451,
+      "name": "acceptance-v112-api29-cold-only-raw",
+      "size_in_bytes": 2099711,
+      "digest": "sha256:0e2882025613d2a19b8b0b72836fec6ff9f16db8f87102706016114760b86895",
+      "expires_at": "2026-10-10T05:58:47Z"
+    },
+    {
+      "id": 10899855957,
+      "name": "acceptance-v112-api35-all-video-validation",
+      "size_in_bytes": 8363,
+      "digest": "sha256:105061520eb0389a55b339f8f61981a22b75f3ba6cfe570d08f2d2c1dc00c6eb",
+      "expires_at": "2026-10-10T06:03:31Z"
+    },
+    {
+      "id": 10899850729,
+      "name": "acceptance-v112-api35-cold-only-raw",
+      "size_in_bytes": 2557978,
+      "digest": "sha256:2c22a274d3ac387f4fab4430856e329c732d35b98028d3debe765e7b1ec9b2b4",
+      "expires_at": "2026-10-10T05:58:40Z"
+    },
+    {
+      "id": 10899845723,
+      "name": "acceptance-v112-api35-cold-only-video-validation",
+      "size_in_bytes": 2972,
+      "digest": "sha256:940af3ac612e457f1930f05c62a42b3eb1663780cfa60470b771204bd45eda81",
+      "expires_at": "2026-10-10T05:58:58Z"
+    },
+    {
+      "id": 10899742952,
+      "name": "acceptance-v112-api35-lifecycle-raw",
+      "size_in_bytes": 36734767,
+      "digest": "sha256:2d36099cb6168cac35aff05c39e17b30447273b2d2312f2dba992d2cbc137345",
+      "expires_at": "2026-10-10T06:24:47Z"
+    },
+    {
+      "id": 10899686353,
+      "name": "acceptance-v112-api35-all-raw",
+      "size_in_bytes": 7795515,
+      "digest": "sha256:35a73bb18a86f1968474cdc6ccceecbc380646be9cf1d38fa8d34636f5ef4e28",
+      "expires_at": "2026-10-10T06:03:08Z"
+    },
+    {
+      "id": 10899678391,
+      "name": "acceptance-v112-api29-lifecycle-video-validation",
+      "size_in_bytes": 30421,
+      "digest": "sha256:f98e60d7d61c8e650e7f8ee9fffabf3fae9cd6d61a16b465b3eb6c4271b90012",
+      "expires_at": "2026-10-10T06:29:21Z"
+    },
+    {
+      "id": 10899507151,
+      "name": "acceptance-v112-api29-parity-raw",
+      "size_in_bytes": 846269,
+      "digest": "sha256:9fbe132b72962c9b29c36bfe745ccb25b5b738b4dd34588b25c5c4833318cefb",
+      "expires_at": "2026-10-10T05:56:29Z"
+    },
+    {
+      "id": 10899482482,
+      "name": "acceptance-v112-api29-cold-only-video-validation",
+      "size_in_bytes": 2859,
+      "digest": "sha256:a8fb5e375fd383a46af373f9e97b8d0fa378abfdaf784e4b214181686923b78c",
+      "expires_at": "2026-10-10T05:59:08Z"
+    },
+    {
+      "id": 10899472368,
+      "name": "acceptance-v112-api29-parity-video-validation",
+      "size_in_bytes": 2274,
+      "digest": "sha256:5dd336ccb9a76ed3d90ee301bda535971271065b0d669029a50bcc8d5749784f",
+      "expires_at": "2026-10-10T05:56:49Z"
+    },
+    {
+      "id": 10898464534,
+      "name": "acceptance-v112-api29-all-video-validation",
+      "size_in_bytes": 7858,
+      "digest": "sha256:c61c38ca0e996f2c0f43a56767ae1fe98b48371abb22d36d74034213f44581e2",
+      "expires_at": "2026-10-10T06:03:37Z"
+    },
+    {
+      "id": 10898424695,
+      "name": "acceptance-v112-api29-all-raw",
+      "size_in_bytes": 15493736,
+      "digest": "sha256:d7aff59df1a15d825f70c7a354e73ad121fd438ccb6a8c823a84287f265a65be",
+      "expires_at": "2026-10-10T06:03:12Z"
+    },
+    {
+      "id": 10900031897,
+      "name": "acceptance-parity-fixed-api35-parity-video-validation",
+      "size_in_bytes": 12281,
+      "digest": "sha256:541eefae555c439c98db78575a18293aec13a2077dd4cfe923729ee640a9f4ce",
+      "expires_at": "2026-10-10T06:22:41Z"
+    },
+    {
+      "id": 10899772586,
+      "name": "acceptance-parity-fixed-api35-parity-raw",
+      "size_in_bytes": 95477064,
+      "digest": "sha256:3cbe36f41b6034bc4ee8b124bbe86802083fcb3365f5db6d513bdc01f6062d21",
+      "expires_at": "2026-10-10T06:22:15Z"
+    },
+    {
+      "id": 10899353399,
+      "name": "acceptance-parity-harness",
+      "size_in_bytes": 425336,
+      "digest": "sha256:f5476df32b58e81f96f1e5386b624ec757dc24a4ba6b0accee54fb3801458d6a",
+      "expires_at": "2026-10-10T06:01:42Z"
+    },
+    {
+      "id": 10898919959,
+      "name": "acceptance-parity-fixed-api29-parity-video-validation",
+      "size_in_bytes": 8263,
+      "digest": "sha256:a4963b8c995fa1eb7adfcfce98e904d0eb9af60d3b6695934b1c854bd6e21e6c",
+      "expires_at": "2026-10-10T06:17:19Z"
+    },
+    {
+      "id": 10898679796,
+      "name": "acceptance-parity-fixed-api29-parity-raw",
+      "size_in_bytes": 96135112,
+      "digest": "sha256:12a49b05c7ce4712cd94d54d2fcc1ecee4e616ae375a00e1624e8cdaf77717d7",
+      "expires_at": "2026-10-10T06:16:54Z"
+    }
+  ],
+  "lifecycle": [
+    {
+      "device": "api29",
+      "interaction": "FAIL R01 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=13324 backingCopies=23 confirmedLosses=23 relayouts=23 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1\nsource=5f8997ebfef15f4680931d40532411a336506d0d profile=native device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]\nsnapshot=true surface=true viewport=918x1047 session=76ac7c00-c085-4247-a3f7-227417060a73:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=786320 terrain_all_coarse=false mapVisualKey=471842112:0 environmentCpuChunks=76 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=27 pending=19 submitted=5 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 overlayDraws=1232 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=4 workerDeliveries=5 workerBackpressureWallMs=0.0 frameCallbacks=1252 beginAttempts=1231 beginSkipped=1226 gpuPreparationFrames=5 lifetimeSubmissions=5 surfaceCopies=0 output=WAITING_FRAME\ncamera=129.0,54.5 span=10.0 tilt=55.0 facing=1 yaw=0.0\npick=none\nFilament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30\n内部 918 × 1047 / UI 1080 × 1232 · chunks 11 / GPU 10 · objects 5\n帧回调间隔 100.0 ms（非 GPU/FPS 实测）\n待装载 19 · S06 战斗特效 / 部队 · 林块 18 · LOD 0 · 资产回退 0 · 特效 0/64\n场景 primitives=31 triangles=212614 buffers_bytes=10214840 pose_cache=24 entity_live=211 material_instance_live=88 mesh_live=35 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=57.310573 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=0.454494 CPU提交ms P50/P95/P99=0.13/0.23/3.16 samples=240（非驱动DrawCall/GPU帧时）\n\tat game.sanguo.mobile.SceneInstrumentation.ready(SceneInstrumentation.java:75)\n\tat game.sanguo.mobile.NativeR01Instrumentation.onStart(NativeR01Instrumentation.java:28)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\n\n",
+      "shell_exit": "0",
+      "switch_logged": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16"
+      ],
+      "background_logged": [],
+      "screens": [
+        "r01-cycle-0.png",
+        "surface.png",
+        "r01-failure.png"
+      ]
+    },
+    {
+      "device": "api35",
+      "interaction": "FAIL R01 java.lang.AssertionError: background frame loop stopped\n\tat game.sanguo.mobile.SceneInstrumentation.check(SceneInstrumentation.java:17)\n\tat game.sanguo.mobile.NativeR01Instrumentation.onStart(NativeR01Instrumentation.java:42)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)\n\n",
+      "shell_exit": "0",
+      "switch_logged": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19"
+      ],
+      "background_logged": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10",
+        "11",
+        "12"
+      ],
+      "screens": [
+        "r01-cycle-19.png",
+        "r01-cycle-0.png",
+        "surface.png",
+        "r01-failure.png"
+      ]
+    }
+  ],
+  "pure_touch_complete": false,
+  "physical_arm64": "NOT_RUN",
+  "reports": [
+    "docs/native-pc-visual/reports/R00-R14-FULL-ACCEPTANCE.md",
+    "docs/native-pc-visual/evidence/full-acceptance/MATRIX.md"
+  ],
+  "matrix": "docs/native-pc-visual/evidence/full-acceptance/matrix.json",
+  "raw_evidence_root": "audit/ (inside independent evidence ZIP)",
+  "release_capability": {
+    "read": "PASS",
+    "create_upload_write": "NOT_AVAILABLE via current connector; historical403 not represented as a fresh test"
+  },
+  "limitations": [
+    "Full PC reference/multi-distance/device matrices remain incomplete as explicitly classified",
+    "53 original videos decoded; manual content review is sampled, not frame-by-frame; 10-part recorder limit does not cover every lifecycle tail",
+    "No process found memory=NOT_AVAILABLE, never zero",
+    "Fixture parity is not pure-touch gameplay acceptance"
+  ]
+}

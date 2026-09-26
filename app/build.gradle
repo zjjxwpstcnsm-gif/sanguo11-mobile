@@ -3,7 +3,7 @@ def release = new Properties()
 rootProject.file('version.properties').withInputStream { release.load(it) }
 def revision = providers.exec {
     workingDir rootProject.projectDir
-    commandLine 'git', 'rev-parse', '--short=12', 'HEAD'
+    commandLine 'git', 'rev-parse', 'HEAD'
     ignoreExitValue = true
 }.standardOutput.asText.get().trim()
 android {

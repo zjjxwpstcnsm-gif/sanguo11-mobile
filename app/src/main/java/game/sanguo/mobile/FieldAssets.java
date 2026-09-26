@@ -14,7 +14,9 @@ final class FieldAssets {
     private long restBytes;
     private static long bytes(SceneMesh m){return 4L*(m.vertices.length+m.indices.length+(m.uv==null?0:m.uv.length)+(m.tangents==null?0:m.tangents.length));}
     FieldAssets(Source source)throws Exception {
-        this.source=source;rigs=json(source,"rigs.json").getJSONObject("rigs");clips=json(source,"clips.json").getJSONObject("clips");
+        this.source=source;JSONObject r=json(source,"rigs.json"),c=json(source,"clips.json");
+        if(r.getInt("version")!=1||c.getInt("version")!=1||c.getInt("fps")!=12)throw new IOException("unsupported rigid animation version");
+        rigs=r.getJSONObject("rigs");clips=c.getJSONObject("clips");
     }
     private static JSONObject json(Source source,String name)throws Exception{
         try(InputStream in=source.open(name);ByteArrayOutputStream out=new ByteArrayOutputStream()){
@@ -22,9 +24,23 @@ final class FieldAssets {
             return new JSONObject(out.toString("UTF-8"));
         }
     }
-    SceneMesh mesh(String name)throws Exception{
+    synchronized SceneMesh mesh(String name)throws Exception{
+        if(!name.matches("[A-Za-z0-9_-]{1,100}"))throw new IOException("asset ID rejected");
         SceneMesh value=rest.get(name);if(value==null){try(InputStream in=source.open(name+".glb")){value=SiteGlb.read(in);}rest.put(name,value);restBytes+=bytes(value);
             Iterator<SceneMesh> entries=rest.values().iterator();while(restBytes>24L*1024*1024&&rest.size()>1){restBytes-=bytes(entries.next());entries.remove();}}return value;
+    }
+    static boolean farm(MapSceneSnapshot.Item item){return item.facility!=null&&item.facility.type.equals("domestic/FARM");}
+    static long farmSurfaceKey(MapSceneSnapshot.Ground ground,Hex at){
+        long key=1469598103934665603L;
+        float x=ground.grid.x(at),z=ground.grid.z(at);
+        for(int r=-4;r<=4;r++)for(int q=-4;q<=4;q++)key=(key^Float.floatToIntBits(ground.surface.meshHeight(x+q*.125f,z+r*.125f)))*1099511628211L;
+        return key;
+    }
+    /** Farm earth/rows use a conforming instance mesh; the shared rest GLB stays immutable. */
+    static SceneMesh conformFarm(SceneMesh source,MapSceneSnapshot.Ground ground,Hex at){
+        float[] vertices=source.vertices.clone();float x=ground.grid.x(at),z=ground.grid.z(at),base=ground.surface.meshHeight(x,z);
+        for(int i=0;i<vertices.length;i+=7)vertices[i+1]+=ground.surface.meshHeight(x+vertices[i],z+vertices[i+2])-base;
+        SceneMesh mesh=new SceneMesh(vertices,source.indices,source.x,source.z,source.radius);mesh.uv=source.uv;mesh.generateTangents();return mesh;
     }
     static String facility(MapSceneSnapshot.FacilityState state,int lod){
         return state.type.replace('/','-')+"-"+Math.max(1,state.level)+"-lod"+lod;
@@ -33,18 +49,22 @@ final class FieldAssets {
         return "unit-"+(naval?(unit.mission?Army.Ship.BOAT:unit.ship).name():unit.mission?"transport":unit.weapon.name())+"-lod"+Math.min(1,lod);
     }
     static int count(UnitVisual unit,boolean naval,int lod){
-        if(naval||unit.mission||Army.siegeWeapon(unit.weapon))return 1;
-        return lod==2?1:unit.weapon==World.Weapon.CAVALRY?(lod==0?4:2):(lod==0?8:4);
+        return unit.representatives(naval,unit.troops,lod);
     }
-    SceneMesh pose(String model,String clip,int frame,int count)throws Exception{
+    synchronized SceneMesh pose(String model,String clip,int frame,int count)throws Exception{
+        if(count<1||count>8)throw new IOException("formation budget");
         SceneMesh source=mesh(model);JSONObject rig=rigs.getJSONObject(model);JSONArray parts=rig.getJSONArray("parts");
         JSONArray frames=clips.getJSONArray(clip);JSONObject keys=frames.getJSONObject(Math.floorMod(frame,frames.length()));
         float[][] matrices=new float[parts.length()][];
-        float[] posed=source.vertices.clone();
+        if(parts.length()<1||parts.length()>128||frames.length()!=12)throw new IOException("rig/clip budget");
+        float[] posed=source.vertices.clone();int covered=0;
         for(int i=0;i<parts.length();i++){
             JSONObject part=parts.getJSONObject(i);int parent=part.getInt("parent"),first=part.getInt("first"),length=part.getInt("count");
+            if(first!=covered)throw new IOException("overlapping or missing rigid range");covered+=length;
             if(parent>=i||parent< -1||first<0||length<0||((long)first+length)*7>posed.length)throw new IOException("rig range/parent");
             JSONArray pivot=part.getJSONArray("pivot"),angles=keys.optJSONArray(part.getString("name"));
+            if(pivot.length()!=3||angles!=null&&angles.length()!=3)throw new IOException("rig vector width");
+            for(int k=0;k<3;k++)if(!Double.isFinite(pivot.getDouble(k))||Math.abs(pivot.getDouble(k))>64||angles!=null&&(!Double.isFinite(angles.getDouble(k))||Math.abs(angles.getDouble(k))>Math.PI*4))throw new IOException("rig numeric bounds");
             float rx=angles==null?0:(float)angles.getDouble(0),ry=angles==null?0:(float)angles.getDouble(1),rz=angles==null?0:(float)angles.getDouble(2);
             float[] local=rotation(rx,ry,rz,(float)pivot.getDouble(0),(float)pivot.getDouble(1),(float)pivot.getDouble(2));
             matrices[i]=parent<0?local:multiply(matrices[parent],local);
@@ -56,6 +76,16 @@ final class FieldAssets {
                 posed[v*7+2]=m[2]*x+m[6]*y+m[10]*z+m[14];
             }
         }
+        if(covered!=posed.length/7)throw new IOException("incomplete rigid coverage");
+        if(!clip.equals("defeat")&&!clip.equals("hit")){
+            float contact=Float.POSITIVE_INFINITY;boolean mounted=model.contains("CAVALRY");
+            for(int i=0;i<parts.length();i++){JSONObject part=parts.getJSONObject(i);String name=part.getString("name");
+                if(mounted?name.startsWith("horseShin"):name.startsWith("shin"))
+                    for(int v=part.getInt("first"),end=v+part.getInt("count");v<end;v++)contact=Math.min(contact,posed[v*7+1]);
+            }
+            if(Float.isFinite(contact))for(int v=1;v<posed.length;v+=7)posed[v]-=contact;
+        }
+        // Legacy CPU merged API is retained for compatibility tests; R10 runtime requests count=1.
         // One merged draw per formation. No entity for each soldier; no troop-count expansion.
         float[] vertices=new float[posed.length*count];int[] indices=new int[source.indices.length*count];
         float[] uv=new float[source.uv.length*count];float scale=count>1?.78f:1;

@@ -251,7 +251,7 @@ public final class Army {
     private World.Result tactic(int unit,Hex target,Tactic tactic,boolean cityOnly){w.reports.prepare();
         World.Unit u=w.unit(unit);String error=w.orders.error(u);if(error!=null)return w.fail(error);
         target=tacticHit(u,target,tactic,cityOnly);error=tacticCellError(u,target,tactic,cityOnly);if(error!=null)return w.fail(error);
-        World.Unit enemy=cityOnly?null:w.unitAt(target);World.City city=enemy==null?w.cityAt(target):null;w.visualAction(TurnJournal.Kind.TACTIC,unit,target,tactic.label);
+        World.Unit enemy=cityOnly?null:w.unitAt(target);World.City city=enemy==null?w.cityAt(target):null;w.visualAction(TurnJournal.Kind.TACTIC,unit,target,tactic.label);if(w.turnJournal!=null)w.turnJournal.tactic(tactic);
         w.marches.supersede(u);u.acted=true;w.energy.change(u,-tactic.energy,EnergyRules.Reason.COMMAND);w.battleImpact(target,false);
         int chance=cityOnly?tacticChance(unit):tacticChance(unit,target);
         if(chance<100&&w.strategy.nextInt(100)>=chance)return w.success(tactic.label+"未命中，消耗气力"+tactic.energy+"，本旬行动结束");

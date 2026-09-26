@@ -37,7 +37,7 @@ public final class PerformanceSceneInstrumentation extends SceneInstrumentation 
                 runOnMainSync(()->host.switchMode(false));settle();
                 check((Boolean)field(view,"released")&&field(view,"engine")==null,"native engine released");
                 check(((List<?>)field(view,"chunks")).isEmpty()&&((List<?>)field(view,"woods")).isEmpty()&&field(view,"snapshot")==null,"released view drops CPU scene ownership");
-                check(((java.util.concurrent.ExecutorService)field(view,"worker")).isShutdown(),"mesh worker shutdown");
+                check(((java.util.concurrent.ExecutorService)field(field(view,"meshWork"),"executor")).isShutdown(),"mesh worker shutdown");
             }
         }
         result.putString("stream","PASS S08 "+checks+" checks; 20 lifecycle cycles; performance is NOT physical-device acceptance\n");finish(Activity.RESULT_OK,result);

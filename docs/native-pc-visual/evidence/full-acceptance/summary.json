@@ -1,0 +1,164 @@
+{
+  "total": 435,
+  "counts": {
+    "PARTIAL": 172,
+    "FAIL": 16,
+    "PASS": 9,
+    "NOT_REACHED": 5,
+    "NOT_RUN": 233
+  },
+  "stages": [
+    {
+      "stage": "R00",
+      "status": "FAIL",
+      "counts": {
+        "PARTIAL": 9,
+        "FAIL": 3,
+        "PASS": 3,
+        "NOT_RUN": 13
+      },
+      "gap": "正常新剧本全国3D readiness在API29/35原120秒超时；存档/镜头完整流程未闭合。"
+    },
+    {
+      "stage": "R01",
+      "status": "FAIL",
+      "counts": {
+        "PARTIAL": 8,
+        "FAIL": 3,
+        "PASS": 1,
+        "NOT_REACHED": 2,
+        "NOT_RUN": 3
+      },
+      "gap": "旧最终20次切换/18次前后台后失败；本次API29完成17次切换、0次前后台，下一次ready失败；API35完成20次切换、13次前后台后background frame loop stopped。创建时贴图解码仍在owner；晚到worker及故障恢复设备步骤未全部到达。"
+    },
+    {
+      "stage": "R02",
+      "status": "PARTIAL",
+      "counts": {
+        "PARTIAL": 10,
+        "PASS": 1,
+        "NOT_RUN": 6
+      },
+      "gap": "数学矩阵不等于设备拾取；内部尺寸三档、UI边缘、运动单位/山后命中的完整安装矩阵未做。"
+    },
+    {
+      "stage": "R03",
+      "status": "PARTIAL",
+      "counts": {
+        "PARTIAL": 13,
+        "NOT_RUN": 5
+      },
+      "gap": "同源采样与局部失效有主机证据；跨块巡航/LOD物体贴地与地貌轮廓缺完整当前设备图组。"
+    },
+    {
+      "stage": "R04",
+      "status": "PARTIAL",
+      "counts": {
+        "PARTIAL": 13,
+        "NOT_RUN": 4
+      },
+      "gap": "四层材质真实装包；V1近中远两方向实拍与纹理质量对照未闭合，不能把混合算法当美术达标。"
+    },
+    {
+      "stage": "R05",
+      "status": "FAIL",
+      "counts": {
+        "PARTIAL": 10,
+        "FAIL": 2,
+        "NOT_RUN": 5
+      },
+      "gap": "正常游戏Surface实际确认逐格阶梯岸线；几何仍是格子矩形并集。弯道上下船、增删水后实际航行与PC水岸完整对照不足。"
+    },
+    {
+      "stage": "R06",
+      "status": "FAIL",
+      "counts": {
+        "PARTIAL": 13,
+        "FAIL": 1,
+        "NOT_RUN": 3
+      },
+      "gap": "异步网格存在，但构造器同步loadAtlas/decodeStream未满足全部解码后台化；三示范资产正式画面完整验收不足。"
+    },
+    {
+      "stage": "R07",
+      "status": "PARTIAL",
+      "counts": {
+        "PARTIAL": 13,
+        "NOT_RUN": 5
+      },
+      "gap": "正常据点映射存在；城港关地基/轮廓/比例/全LOD与六向玩法设备矩阵未完整闭合。"
+    },
+    {
+      "stage": "R08",
+      "status": "PARTIAL",
+      "counts": {
+        "PARTIAL": 12,
+        "NOT_RUN": 5
+      },
+      "gap": "确定性散布/硬排除源码可追；树林道路/山口/农田三组安装多视角、叶片过绘与闪烁缺验证。"
+    },
+    {
+      "stage": "R09",
+      "status": "PARTIAL",
+      "counts": {
+        "PARTIAL": 11,
+        "NOT_RUN": 6
+      },
+      "gap": "V2十项不能凭profile命名通过；当前完整地图尚未ready，原PC对照缺同区域相机组与完整操作。"
+    },
+    {
+      "stage": "R10",
+      "status": "PARTIAL",
+      "counts": {
+        "PARTIAL": 11,
+        "NOT_RUN": 6
+      },
+      "gap": "13资产族是映射覆盖而非美术通过；实际行军/攻击全类别、脚滑/水位/遮挡与大量单位设备压力未闭合。"
+    },
+    {
+      "stage": "R11",
+      "status": "PARTIAL",
+      "counts": {
+        "PARTIAL": 12,
+        "NOT_RUN": 5
+      },
+      "gap": "HOST fixture并未证明所有实际事件；CALM/EXTINGUISH等实际触发及全类别实拍缺失，播放取消/重建设备覆盖未闭合。"
+    },
+    {
+      "stage": "R12",
+      "status": "FAIL",
+      "counts": {
+        "FAIL": 3,
+        "PARTIAL": 7,
+        "NOT_REACHED": 2,
+        "NOT_RUN": 5
+      },
+      "gap": "两API冷启动全国预览失败；原R12初始ready失败，四组合/重建/日期/下一旬后续未到达，纯触控链未通过。"
+    },
+    {
+      "stage": "R13",
+      "status": "PARTIAL",
+      "counts": {
+        "PARTIAL": 11,
+        "NOT_RUN": 6
+      },
+      "gap": "内部AtomicFile不能替代外部SAF写入中断；完整CRUD→存储→重开→新剧本、头像/旧档设备矩阵不足。"
+    },
+    {
+      "stage": "R14",
+      "status": "PARTIAL",
+      "counts": {
+        "PARTIAL": 10,
+        "NOT_RUN": 6,
+        "NOT_REACHED": 1
+      },
+      "gap": "月份到季节已接入；本次正式月份探针被初始ready阻塞；API29/API35 fixture跨月跨年/重建画面已核对，但四季近中远/三画质/资源长稳仍缺。"
+    }
+  ],
+  "global_counts": {
+    "NOT_RUN": 150,
+    "PASS": 4,
+    "FAIL": 4,
+    "PARTIAL": 9
+  }
+}

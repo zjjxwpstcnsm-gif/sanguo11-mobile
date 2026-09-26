@@ -1,0 +1,524 @@
+{
+  "input_head": "fbd26d83fdacca89033c9d053babb25450e18b47",
+  "candidate_head": "33e49a3b915bd003dcc2c0cbe989adc638e27320",
+  "original_core_first_failure": "AI uses deployment commands / CoreTest.logistics:75",
+  "invocations": [
+    {
+      "id": "001",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.CoreTest",
+      "input_first_failure": "NONE",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: AI uses deployment commands",
+      "same_failure": false,
+      "input_log": "audit/host/core-isolated-input/001.log",
+      "candidate_log": "audit/host/core-isolated-candidate/001.log",
+      "followup_equal_bytes": true,
+      "followup_logs": [
+        "audit/host/core-followup/input-CoreTest.log",
+        "audit/host/core-followup/candidate-CoreTest.log"
+      ],
+      "classification": "inherited, same exit and exact follow-up failure output"
+    },
+    {
+      "id": "002",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ScenarioTest",
+      "input_first_failure": "Exception in thread \"main\" java.lang.AssertionError: combat deployment",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: combat deployment",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/002.log",
+      "candidate_log": "audit/host/core-isolated-candidate/002.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "003",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.DomesticTest",
+      "input_first_failure": "Exception in thread \"main\" java.lang.AssertionError: unfinished market gives no yield",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: unfinished market gives no yield",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/003.log",
+      "candidate_log": "audit/host/core-isolated-candidate/003.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "004",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.battle.TacticalBattleTest",
+      "input_first_failure": "NONE",
+      "candidate_first_failure": "NONE",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/004.log",
+      "candidate_log": "audit/host/core-isolated-candidate/004.log",
+      "classification": "PASS per exit matrix"
+    },
+    {
+      "id": "005",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.battle.BattlePerformanceTest",
+      "input_first_failure": "NONE",
+      "candidate_first_failure": "NONE",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/005.log",
+      "candidate_log": "audit/host/core-isolated-candidate/005.log",
+      "classification": "PASS per exit matrix"
+    },
+    {
+      "id": "006",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.StrategyTest",
+      "input_first_failure": "Exception in thread \"main\" java.lang.AssertionError: \u5c1a\u672a\u62b5\u8fbe\u5408\u6cd5\u636e\u70b9\u5165\u53e3\uff08\u4e0a\u4e0b\u6cb3\u987b\u7ecf\u6e2f\u53e3\uff09",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: \u5c1a\u672a\u62b5\u8fbe\u5408\u6cd5\u636e\u70b9\u5165\u53e3\uff08\u4e0a\u4e0b\u6cb3\u987b\u7ecf\u6e2f\u53e3\uff09",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/006.log",
+      "candidate_log": "audit/host/core-isolated-candidate/006.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "007",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.CampaignTest",
+      "input_first_failure": "Exception in thread \"main\" java.io.IOException: \u8bbe\u65bd\u4f4d\u7f6e\u51b2\u7a81\u6216\u65e0\u6548",
+      "candidate_first_failure": "Exception in thread \"main\" java.io.IOException: \u8bbe\u65bd\u4f4d\u7f6e\u51b2\u7a81\u6216\u65e0\u6548",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/007.log",
+      "candidate_log": "audit/host/core-isolated-candidate/007.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "008",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ArmyTest",
+      "input_first_failure": "Exception in thread \"main\" java.lang.AssertionError: \u5c1a\u672a\u62b5\u8fbe\u5408\u6cd5\u636e\u70b9\u5165\u53e3\uff08\u4e0a\u4e0b\u6cb3\u987b\u7ecf\u6e2f\u53e3\uff09",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: \u5c1a\u672a\u62b5\u8fbe\u5408\u6cd5\u636e\u70b9\u5165\u53e3\uff08\u4e0a\u4e0b\u6cb3\u987b\u7ecf\u6e2f\u53e3\uff09",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/008.log",
+      "candidate_log": "audit/host/core-isolated-candidate/008.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "009",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.RulesParityTest",
+      "input_first_failure": "Exception in thread \"main\" java.lang.AssertionError: \u8bf7\u9009\u62e9\u5f53\u524d\u52bf\u529b\u7684\u90e8\u961f",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: \u8bf7\u9009\u62e9\u5f53\u524d\u52bf\u529b\u7684\u90e8\u961f",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/009.log",
+      "candidate_log": "audit/host/core-isolated-candidate/009.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "010",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.GovernmentTest",
+      "input_first_failure": "Exception in thread \"main\" java.io.IOException: \u636e\u70b9\u5360\u5730\u8d8a\u754c\u3001\u91cd\u53e0\u6216\u5730\u5f62\u51b2\u7a81\uff1a\u4e19\u57ce @ 18,5\uff1b\u8bf7\u4f7f\u7528\u4e03\u683c\u5730\u56fe\u91cd\u65b0\u5f00\u5c40",
+      "candidate_first_failure": "Exception in thread \"main\" java.io.IOException: \u636e\u70b9\u5360\u5730\u8d8a\u754c\u3001\u91cd\u53e0\u6216\u5730\u5f62\u51b2\u7a81\uff1a\u4e19\u57ce @ 18,5\uff1b\u8bf7\u4f7f\u7528\u4e03\u683c\u5730\u56fe\u91cd\u65b0\u5f00\u5c40",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/010.log",
+      "candidate_log": "audit/host/core-isolated-candidate/010.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "011",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.SupplyTest",
+      "input_first_failure": "Exception in thread \"main\" java.io.IOException: \u636e\u70b9\u5360\u5730\u8d8a\u754c\u3001\u91cd\u53e0\u6216\u5730\u5f62\u51b2\u7a81\uff1a\u4e19\u57ce @ 18,5\uff1b\u8bf7\u4f7f\u7528\u4e03\u683c\u5730\u56fe\u91cd\u65b0\u5f00\u5c40",
+      "candidate_first_failure": "Exception in thread \"main\" java.io.IOException: \u636e\u70b9\u5360\u5730\u8d8a\u754c\u3001\u91cd\u53e0\u6216\u5730\u5f62\u51b2\u7a81\uff1a\u4e19\u57ce @ 18,5\uff1b\u8bf7\u4f7f\u7528\u4e03\u683c\u5730\u56fe\u91cd\u65b0\u5f00\u5c40",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/011.log",
+      "candidate_log": "audit/host/core-isolated-candidate/011.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "012",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ContestTest",
+      "input_first_failure": "NONE",
+      "candidate_first_failure": "Exception in thread \"main\" java.io.IOException: \u65e7\u7248\u672c\u5730\u56fe\u5b58\u6863\u65e0\u6cd5\u7ee7\u7eed\u4f7f\u7528\uff0c\u8bf7\u4fdd\u7559\u539f\u6863\u5e76\u91cd\u65b0\u5f00\u5c40\uff1b\u672a\u5220\u9664\u6216\u6539\u5199\u539f\u5b58\u6863",
+      "same_failure": false,
+      "input_log": "audit/host/core-isolated-input/012.log",
+      "candidate_log": "audit/host/core-isolated-candidate/012.log",
+      "followup_equal_bytes": true,
+      "followup_logs": [
+        "audit/host/core-followup/input-ContestTest.log",
+        "audit/host/core-followup/candidate-ContestTest.log"
+      ],
+      "classification": "inherited, same exit and exact follow-up failure output"
+    },
+    {
+      "id": "013",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.AbilityResearchTest",
+      "input_first_failure": "Exception in thread \"main\" java.io.IOException: \u592a\u5b88\u4f4d\u7f6e\u6216\u6240\u5c5e\u52bf\u529b\u65e0\u6548",
+      "candidate_first_failure": "Exception in thread \"main\" java.io.IOException: \u592a\u5b88\u4f4d\u7f6e\u6216\u6240\u5c5e\u52bf\u529b\u65e0\u6548",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/013.log",
+      "candidate_log": "audit/host/core-isolated-candidate/013.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "014",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.TechnologyFieldworksTest",
+      "input_first_failure": "Exception in thread \"main\" java.io.IOException: \u65e7\u7248\u672c\u5730\u56fe\u5b58\u6863\u65e0\u6cd5\u7ee7\u7eed\u4f7f\u7528\uff0c\u8bf7\u4fdd\u7559\u539f\u6863\u5e76\u91cd\u65b0\u5f00\u5c40\uff1b\u672a\u5220\u9664\u6216\u6539\u5199\u539f\u5b58\u6863",
+      "candidate_first_failure": "Exception in thread \"main\" java.io.IOException: \u65e7\u7248\u672c\u5730\u56fe\u5b58\u6863\u65e0\u6cd5\u7ee7\u7eed\u4f7f\u7528\uff0c\u8bf7\u4fdd\u7559\u539f\u6863\u5e76\u91cd\u65b0\u5f00\u5c40\uff1b\u672a\u5220\u9664\u6216\u6539\u5199\u539f\u5b58\u6863",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/014.log",
+      "candidate_log": "audit/host/core-isolated-candidate/014.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "015",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.EstatesTest",
+      "input_first_failure": "Exception in thread \"main\" java.io.IOException: \u65e7\u7248\u672c\u5730\u56fe\u5b58\u6863\u65e0\u6cd5\u7ee7\u7eed\u4f7f\u7528\uff0c\u8bf7\u4fdd\u7559\u539f\u6863\u5e76\u91cd\u65b0\u5f00\u5c40\uff1b\u672a\u5220\u9664\u6216\u6539\u5199\u539f\u5b58\u6863",
+      "candidate_first_failure": "Exception in thread \"main\" java.io.IOException: \u65e7\u7248\u672c\u5730\u56fe\u5b58\u6863\u65e0\u6cd5\u7ee7\u7eed\u4f7f\u7528\uff0c\u8bf7\u4fdd\u7559\u539f\u6863\u5e76\u91cd\u65b0\u5f00\u5c40\uff1b\u672a\u5220\u9664\u6216\u6539\u5199\u539f\u5b58\u6863",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/015.log",
+      "candidate_log": "audit/host/core-isolated-candidate/015.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "016",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.WorldSystemsTest",
+      "input_first_failure": "Exception in thread \"main\" java.lang.AssertionError: diplomatic per-card replay",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: diplomatic per-card replay",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/016.log",
+      "candidate_log": "audit/host/core-isolated-candidate/016.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "017",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.MarchOrdersTest",
+      "input_first_failure": "Exception in thread \"main\" java.lang.AssertionError: water route crosses river",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: water route crosses river",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/017.log",
+      "candidate_log": "audit/host/core-isolated-candidate/017.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "018",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.CampaignAiTest",
+      "input_first_failure": "Exception in thread \"main\" java.lang.AssertionError: adjacent resupply consumes actual stock and action points",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: adjacent resupply consumes actual stock and action points",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/018.log",
+      "candidate_log": "audit/host/core-isolated-candidate/018.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "019",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.LifecycleTest",
+      "input_first_failure": "Exception in thread \"main\" java.io.IOException: \u65e7\u7248\u672c\u5730\u56fe\u5b58\u6863\u65e0\u6cd5\u7ee7\u7eed\u4f7f\u7528\uff0c\u8bf7\u4fdd\u7559\u539f\u6863\u5e76\u91cd\u65b0\u5f00\u5c40\uff1b\u672a\u5220\u9664\u6216\u6539\u5199\u539f\u5b58\u6863",
+      "candidate_first_failure": "Exception in thread \"main\" java.io.IOException: \u65e7\u7248\u672c\u5730\u56fe\u5b58\u6863\u65e0\u6cd5\u7ee7\u7eed\u4f7f\u7528\uff0c\u8bf7\u4fdd\u7559\u539f\u6863\u5e76\u91cd\u65b0\u5f00\u5c40\uff1b\u672a\u5220\u9664\u6216\u6539\u5199\u539f\u5b58\u6863",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/019.log",
+      "candidate_log": "audit/host/core-isolated-candidate/019.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "020",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ContentProfilesTest",
+      "input_first_failure": "NONE",
+      "candidate_first_failure": "NONE",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/020.log",
+      "candidate_log": "audit/host/core-isolated-candidate/020.log",
+      "classification": "PASS per exit matrix"
+    },
+    {
+      "id": "021",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.BattleFeedbackTest",
+      "input_first_failure": "Exception in thread \"main\" java.io.IOException: \u636e\u70b9\u5360\u5730\u8d8a\u754c\u3001\u91cd\u53e0\u6216\u5730\u5f62\u51b2\u7a81\uff1a\u4e19\u57ce @ 18,5\uff1b\u8bf7\u4f7f\u7528\u4e03\u683c\u5730\u56fe\u91cd\u65b0\u5f00\u5c40",
+      "candidate_first_failure": "Exception in thread \"main\" java.io.IOException: \u636e\u70b9\u5360\u5730\u8d8a\u754c\u3001\u91cd\u53e0\u6216\u5730\u5f62\u51b2\u7a81\uff1a\u4e19\u57ce @ 18,5\uff1b\u8bf7\u4f7f\u7528\u4e03\u683c\u5730\u56fe\u91cd\u65b0\u5f00\u5c40",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/021.log",
+      "candidate_log": "audit/host/core-isolated-candidate/021.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "022",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.PrisonerEscortTest",
+      "input_first_failure": "Exception in thread \"main\" java.io.IOException: \u636e\u70b9\u5360\u5730\u8d8a\u754c\u3001\u91cd\u53e0\u6216\u5730\u5f62\u51b2\u7a81\uff1a\u4e19\u57ce @ 18,5\uff1b\u8bf7\u4f7f\u7528\u4e03\u683c\u5730\u56fe\u91cd\u65b0\u5f00\u5c40",
+      "candidate_first_failure": "Exception in thread \"main\" java.io.IOException: \u636e\u70b9\u5360\u5730\u8d8a\u754c\u3001\u91cd\u53e0\u6216\u5730\u5f62\u51b2\u7a81\uff1a\u4e19\u57ce @ 18,5\uff1b\u8bf7\u4f7f\u7528\u4e03\u683c\u5730\u56fe\u91cd\u65b0\u5f00\u5c40",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/022.log",
+      "candidate_log": "audit/host/core-isolated-candidate/022.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "023",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.DiplomacyTest",
+      "input_first_failure": "Exception in thread \"main\" java.io.IOException: \u8bbe\u65bd\u4f4d\u7f6e\u51b2\u7a81\u6216\u65e0\u6548",
+      "candidate_first_failure": "Exception in thread \"main\" java.io.IOException: \u8bbe\u65bd\u4f4d\u7f6e\u51b2\u7a81\u6216\u65e0\u6548",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/023.log",
+      "candidate_log": "audit/host/core-isolated-candidate/023.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "024",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.FacilityCombatTest",
+      "input_first_failure": "Exception in thread \"main\" java.io.IOException: \u636e\u70b9\u5360\u5730\u8d8a\u754c\u3001\u91cd\u53e0\u6216\u5730\u5f62\u51b2\u7a81\uff1a\u4e19\u57ce @ 18,5\uff1b\u8bf7\u4f7f\u7528\u4e03\u683c\u5730\u56fe\u91cd\u65b0\u5f00\u5c40",
+      "candidate_first_failure": "Exception in thread \"main\" java.io.IOException: \u636e\u70b9\u5360\u5730\u8d8a\u754c\u3001\u91cd\u53e0\u6216\u5730\u5f62\u51b2\u7a81\uff1a\u4e19\u57ce @ 18,5\uff1b\u8bf7\u4f7f\u7528\u4e03\u683c\u5730\u56fe\u91cd\u65b0\u5f00\u5c40",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/024.log",
+      "candidate_log": "audit/host/core-isolated-candidate/024.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "025",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.MobileShortcutsTest",
+      "input_first_failure": "NONE",
+      "candidate_first_failure": "NONE",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/025.log",
+      "candidate_log": "audit/host/core-isolated-candidate/025.log",
+      "classification": "PASS per exit matrix"
+    },
+    {
+      "id": "026",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.TerritoryAiTest",
+      "input_first_failure": "NONE",
+      "candidate_first_failure": "NONE",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/026.log",
+      "candidate_log": "audit/host/core-isolated-candidate/026.log",
+      "classification": "PASS per exit matrix"
+    },
+    {
+      "id": "027",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.StrategicManagementTest",
+      "input_first_failure": "Exception in thread \"main\" java.io.IOException: \u65e7\u7248\u672c\u5730\u56fe\u5b58\u6863\u65e0\u6cd5\u7ee7\u7eed\u4f7f\u7528\uff0c\u8bf7\u4fdd\u7559\u539f\u6863\u5e76\u91cd\u65b0\u5f00\u5c40\uff1b\u672a\u5220\u9664\u6216\u6539\u5199\u539f\u5b58\u6863",
+      "candidate_first_failure": "Exception in thread \"main\" java.io.IOException: \u65e7\u7248\u672c\u5730\u56fe\u5b58\u6863\u65e0\u6cd5\u7ee7\u7eed\u4f7f\u7528\uff0c\u8bf7\u4fdd\u7559\u539f\u6863\u5e76\u91cd\u65b0\u5f00\u5c40\uff1b\u672a\u5220\u9664\u6216\u6539\u5199\u539f\u5b58\u6863",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/027.log",
+      "candidate_log": "audit/host/core-isolated-candidate/027.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "028",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.StrategicRegressionProbe staff",
+      "input_first_failure": "NONE",
+      "candidate_first_failure": "NONE",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/028.log",
+      "candidate_log": "audit/host/core-isolated-candidate/028.log",
+      "classification": "PASS per exit matrix"
+    },
+    {
+      "id": "029",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.StrategicRegressionProbe objective",
+      "input_first_failure": "NONE",
+      "candidate_first_failure": "NONE",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/029.log",
+      "candidate_log": "audit/host/core-isolated-candidate/029.log",
+      "classification": "PASS per exit matrix"
+    },
+    {
+      "id": "030",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.LogisticsCampaignTest",
+      "input_first_failure": "Exception in thread \"main\" java.io.IOException: \u65e7\u7248\u672c\u5730\u56fe\u5b58\u6863\u65e0\u6cd5\u7ee7\u7eed\u4f7f\u7528\uff0c\u8bf7\u4fdd\u7559\u539f\u6863\u5e76\u91cd\u65b0\u5f00\u5c40\uff1b\u672a\u5220\u9664\u6216\u6539\u5199\u539f\u5b58\u6863",
+      "candidate_first_failure": "Exception in thread \"main\" java.io.IOException: \u65e7\u7248\u672c\u5730\u56fe\u5b58\u6863\u65e0\u6cd5\u7ee7\u7eed\u4f7f\u7528\uff0c\u8bf7\u4fdd\u7559\u539f\u6863\u5e76\u91cd\u65b0\u5f00\u5c40\uff1b\u672a\u5220\u9664\u6216\u6539\u5199\u539f\u5b58\u6863",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/030.log",
+      "candidate_log": "audit/host/core-isolated-candidate/030.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "031",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.LogisticsRegressionProbe fee",
+      "input_first_failure": "NONE",
+      "candidate_first_failure": "NONE",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/031.log",
+      "candidate_log": "audit/host/core-isolated-candidate/031.log",
+      "classification": "PASS per exit matrix"
+    },
+    {
+      "id": "032",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.LogisticsRegressionProbe food",
+      "input_first_failure": "NONE",
+      "candidate_first_failure": "NONE",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/032.log",
+      "candidate_log": "audit/host/core-isolated-candidate/032.log",
+      "classification": "PASS per exit matrix"
+    },
+    {
+      "id": "033",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.LogisticsRegressionProbe progress",
+      "input_first_failure": "NONE",
+      "candidate_first_failure": "NONE",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/033.log",
+      "candidate_log": "audit/host/core-isolated-candidate/033.log",
+      "classification": "PASS per exit matrix"
+    },
+    {
+      "id": "034",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.TacticalLogisticsTest",
+      "input_first_failure": "Exception in thread \"main\" java.lang.AssertionError: raid command uses identical normal combat RNG and consequences",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: raid command uses identical normal combat RNG and consequences",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/034.log",
+      "candidate_log": "audit/host/core-isolated-candidate/034.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "035",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.DisplacementTest",
+      "input_first_failure": "Exception in thread \"main\" java.lang.AssertionError: city deterministic replay",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: city deterministic replay",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/035.log",
+      "candidate_log": "audit/host/core-isolated-candidate/035.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "036",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.MapSkillsTest",
+      "input_first_failure": "Exception in thread \"main\" java.lang.AssertionError: restored v40 compact map uses 100 by 100 coordinates",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: restored v40 compact map uses 100 by 100 coordinates",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/036.log",
+      "candidate_log": "audit/host/core-isolated-candidate/036.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "037",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.NavigationDefenseTest",
+      "input_first_failure": "NONE",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: direct passable northern land route [20036, 20017] got -1",
+      "same_failure": false,
+      "input_log": "audit/host/core-isolated-input/037.log",
+      "candidate_log": "audit/host/core-isolated-candidate/037.log",
+      "followup_equal_bytes": true,
+      "followup_logs": [
+        "audit/host/core-followup/input-NavigationDefenseTest.log",
+        "audit/host/core-followup/candidate-NavigationDefenseTest.log"
+      ],
+      "classification": "inherited, same exit and exact follow-up failure output"
+    },
+    {
+      "id": "038",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ArchitectureRulesTest",
+      "input_first_failure": "Exception in thread \"main\" java.lang.AssertionError: source death and reload preserve fire power and continuation",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: source death and reload preserve fire power and continuation",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/038.log",
+      "candidate_log": "audit/host/core-isolated-candidate/038.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "039",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.BalanceTest",
+      "input_first_failure": "NONE",
+      "candidate_first_failure": "NONE",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/039.log",
+      "candidate_log": "audit/host/core-isolated-candidate/039.log",
+      "classification": "PASS per exit matrix"
+    },
+    {
+      "id": "040",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.Release42Test",
+      "input_first_failure": "Exception in thread \"main\" java.lang.AssertionError: hostile gate blocks adjacent bypass",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: hostile gate blocks adjacent bypass",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/040.log",
+      "candidate_log": "audit/host/core-isolated-candidate/040.log",
+      "classification": "inherited"
+    },
+    {
+      "id": "041",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.FacilityProductionTest",
+      "input_first_failure": "NONE",
+      "candidate_first_failure": "NONE",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/041.log",
+      "candidate_log": "audit/host/core-isolated-candidate/041.log",
+      "classification": "PASS per exit matrix"
+    },
+    {
+      "id": "042",
+      "command": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ObjectiveOrdersTest",
+      "input_first_failure": "Exception in thread \"main\" java.lang.AssertionError: QuA on the source northwestern Wu shore huangjin-184",
+      "candidate_first_failure": "Exception in thread \"main\" java.lang.AssertionError: QuA on the source northwestern Wu shore huangjin-184",
+      "same_failure": true,
+      "input_log": "audit/host/core-isolated-input/042.log",
+      "candidate_log": "audit/host/core-isolated-candidate/042.log",
+      "classification": "inherited"
+    }
+  ],
+  "same_exit_matrix": true,
+  "note": "42 original calls, identical exits; 3 empty input logs followed up without altering tests; exact repeated failure output matches candidate. Preliminary output retained; no missing output treated as success.",
+  "followup": [
+    {
+      "role": "input",
+      "test": "CoreTest",
+      "command": [
+        "java",
+        "-cp",
+        "core/build/check:core/src/main/resources:core/src/test/resources",
+        "game.sanguo.core.CoreTest"
+      ],
+      "exit": 1,
+      "bytes": 245,
+      "log": "audit/host/core-followup/input-CoreTest.log"
+    },
+    {
+      "role": "input",
+      "test": "ContestTest",
+      "command": [
+        "java",
+        "-cp",
+        "core/build/check:core/src/main/resources:core/src/test/resources",
+        "game.sanguo.core.ContestTest"
+      ],
+      "exit": 1,
+      "bytes": 341,
+      "log": "audit/host/core-followup/input-ContestTest.log"
+    },
+    {
+      "role": "input",
+      "test": "NavigationDefenseTest",
+      "command": [
+        "java",
+        "-cp",
+        "core/build/check:core/src/main/resources:core/src/test/resources",
+        "game.sanguo.core.NavigationDefenseTest"
+      ],
+      "exit": 1,
+      "bytes": 353,
+      "log": "audit/host/core-followup/input-NavigationDefenseTest.log"
+    },
+    {
+      "role": "candidate",
+      "test": "CoreTest",
+      "command": [
+        "java",
+        "-cp",
+        "core/build/check:core/src/main/resources:core/src/test/resources",
+        "game.sanguo.core.CoreTest"
+      ],
+      "exit": 1,
+      "bytes": 245,
+      "log": "audit/host/core-followup/candidate-CoreTest.log"
+    },
+    {
+      "role": "candidate",
+      "test": "ContestTest",
+      "command": [
+        "java",
+        "-cp",
+        "core/build/check:core/src/main/resources:core/src/test/resources",
+        "game.sanguo.core.ContestTest"
+      ],
+      "exit": 1,
+      "bytes": 341,
+      "log": "audit/host/core-followup/candidate-ContestTest.log"
+    },
+    {
+      "role": "candidate",
+      "test": "NavigationDefenseTest",
+      "command": [
+        "java",
+        "-cp",
+        "core/build/check:core/src/main/resources:core/src/test/resources",
+        "game.sanguo.core.NavigationDefenseTest"
+      ],
+      "exit": 1,
+      "bytes": 353,
+      "log": "audit/host/core-followup/candidate-NavigationDefenseTest.log"
+    }
+  ]
+}

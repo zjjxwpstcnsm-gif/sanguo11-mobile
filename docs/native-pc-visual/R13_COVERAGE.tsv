@@ -1,0 +1,13 @@
+requirement	host	installed	limitation
+terrain brush / undo redo	PASS failure injection	PASS rotated native touch and exact undo	full tool/gesture matrix open
+city port gate CRUD / playable	PASS retained136 + gameplay12	PASS production callback CRUD + imported additions GPU mapping	native add/all-touch dialog matrix open
+bounded halo / rebuild	PASS38/42 retained; exact attributes	PASS same swapchain, renderer pending0	arbitrary editing stress open
+old/custom saves and officers	PASS custom maps/officers/archive	PASS custom command/turn/save/load equality	manual portrait import open
+visual formats / corruption	PASS strict format2	PASS damaged optional sidecar recovery	missing-sidecar manual matrix open
+atomic write failure	PASS memory/history rollback	legacy backup recovery PASS	external provider atomicity not guaranteed
+coordinates / picking	PASS4yaw x3tilt	PASS rotated native touch	physical multitouch matrix open
+import/export and reopening	PASS codec/limits/revision	legacy editor roundtrip; close/disk draft PASS	native SAF/cold-process reopen NOT_RUN
+R12 full-map preview	NOT_APPLICABLE	NOT_RUN this stage	prior installed failure unresolved
+performance	NOT_APPLICABLE	NOT_ACCEPTED turn137728ms	software emulator, physical/thermal NOT_RUN
+turn date presentation	NOT_APPLICABLE	UNVERIFIED	after-turn image still upper period; widget advancement not asserted
+physical ARM64 / PC art	NOT_APPLICABLE	NOT_RUN	no device or matched PC acceptance

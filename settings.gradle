@@ -1,5 +1,8 @@
 pluginManagement { repositories { google(); mavenCentral(); gradlePluginPortal() } }
 def unityExport = providers.gradleProperty('unityExport').orNull
+if (providers.gradleProperty('nativePcVisual').map { it.toBoolean() }.getOrElse(false) && unityExport != null) {
+    throw new GradleException('nativePcVisual requires the native Filament/OpenGL build, without unityExport')
+}
 dependencyResolutionManagement {
     repositoriesMode.set(unityExport == null ? RepositoriesMode.FAIL_ON_PROJECT_REPOS : RepositoriesMode.PREFER_PROJECT)
     repositories { google(); mavenCentral() }

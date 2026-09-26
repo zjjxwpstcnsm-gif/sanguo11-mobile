@@ -1,0 +1,489 @@
+[
+  {
+    "path": "evidence/runtime/baseline-api29-raw/baseline/cold-start/remediation-1.mp4",
+    "exit": 1,
+    "metadata": {},
+    "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x55a1e78845c0] moov atom not found\nevidence/runtime/baseline-api29-raw/baseline/cold-start/remediation-1.mp4: Invalid data found when processing input\n"
+  },
+  {
+    "path": "evidence/runtime/baseline-api29-raw/baseline/focused-window/remediation-1.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "179.137733",
+        "size": "10097190"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/baseline-api29-raw/baseline/focused-window/remediation-2.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "34.048156",
+        "size": "534199"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/baseline-api29-raw/baseline/r12-full/remediation-1.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "179.912478",
+        "size": "10101045"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/baseline-api29-raw/baseline/r12-full/remediation-2.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "180.788489",
+        "size": "8121125"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/baseline-api29-raw/baseline/r12-full/remediation-3.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "178.072856",
+        "size": "9716279"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/baseline-api29-raw/baseline/r12-full/remediation-4.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "177.215122",
+        "size": "5356616"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/baseline-api29-raw/baseline/r12-full/remediation-5.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "22.480978",
+        "size": "1759950"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/baseline-api35-raw/baseline/cold-start/remediation-1.mp4",
+    "exit": 1,
+    "metadata": {},
+    "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x55d0213285c0] moov atom not found\nevidence/runtime/baseline-api35-raw/baseline/cold-start/remediation-1.mp4: Invalid data found when processing input\n"
+  },
+  {
+    "path": "evidence/runtime/baseline-api35-raw/baseline/focused-window/remediation-1.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "169.942167",
+        "size": "9285963"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/baseline-api35-raw/baseline/focused-window/remediation-2.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "20.962811",
+        "size": "739040"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/baseline-api35-raw/baseline/r12-full/remediation-1.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "177.888022",
+        "size": "8950583"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/baseline-api35-raw/baseline/r12-full/remediation-2.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "172.209011",
+        "size": "7792450"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/baseline-api35-raw/baseline/r12-full/remediation-3.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "177.530122",
+        "size": "9990874"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/baseline-api35-raw/baseline/r12-full/remediation-4.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "119.076900",
+        "size": "4298371"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/candidate-api29-raw/candidate/cold-start/remediation-1.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "134.517067",
+        "size": "6040321"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/candidate-api29-raw/candidate/focused-window/remediation-1.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "179.995211",
+        "size": "8701437"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/candidate-api29-raw/candidate/focused-window/remediation-2.mp4",
+    "exit": 1,
+    "metadata": {},
+    "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x56314fd6d5c0] moov atom not found\nevidence/runtime/candidate-api29-raw/candidate/focused-window/remediation-2.mp4: Invalid data found when processing input\n"
+  },
+  {
+    "path": "evidence/runtime/candidate-api29-raw/candidate/r12-full/remediation-1.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "179.472944",
+        "size": "9477125"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/candidate-api29-raw/candidate/r12-full/remediation-2.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "179.834433",
+        "size": "8254748"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/candidate-api29-raw/candidate/r12-full/remediation-3.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "176.836933",
+        "size": "8500449"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/candidate-api29-raw/candidate/r12-full/remediation-4.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "174.188744",
+        "size": "4932510"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/candidate-api35-raw/candidate/cold-start/remediation-1.mp4",
+    "exit": 1,
+    "metadata": {},
+    "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x55ebe6d185c0] moov atom not found\nevidence/runtime/candidate-api35-raw/candidate/cold-start/remediation-1.mp4: Invalid data found when processing input\n"
+  },
+  {
+    "path": "evidence/runtime/candidate-api35-raw/candidate/focused-window/remediation-1.mp4",
+    "exit": 1,
+    "metadata": {},
+    "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x5599c35115c0] moov atom not found\nevidence/runtime/candidate-api35-raw/candidate/focused-window/remediation-1.mp4: Invalid data found when processing input\n"
+  },
+  {
+    "path": "evidence/runtime/candidate-api35-raw/candidate/r12-full/remediation-1.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "179.770556",
+        "size": "10605701"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/candidate-api35-raw/candidate/r12-full/remediation-2.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "179.557500",
+        "size": "8194056"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/candidate-api35-raw/candidate/r12-full/remediation-3.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "178.204678",
+        "size": "10812577"
+      }
+    },
+    "error": ""
+  },
+  {
+    "path": "evidence/runtime/candidate-api35-raw/candidate/r12-full/remediation-4.mp4",
+    "exit": 0,
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "1.566867",
+        "size": "317308"
+      }
+    },
+    "error": ""
+  }
+]

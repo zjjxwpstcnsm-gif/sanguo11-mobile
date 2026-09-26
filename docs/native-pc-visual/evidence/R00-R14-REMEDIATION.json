@@ -1,0 +1,497 @@
+{
+  "schema": 3,
+  "status": "PARTIAL_P0_RUNTIME_OPEN",
+  "input_head": "8b42af2a70c0fc066620e2ce79951aa31d8b923e",
+  "main_at_start": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "source": "5f8997ebfef15f4680931d40532411a336506d0d",
+  "verification_commit": "5f8997ebfef15f4680931d40532411a336506d0d",
+  "final_remote_head_location": "sanguo11-R00-R14-full-acceptance-delivery.json and REMOTE_VERIFY.json, written after final push",
+  "branch": "agent/native-pc-visual",
+  "pr": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/67",
+  "apk": {
+    "source": "5f8997ebfef15f4680931d40532411a336506d0d",
+    "apk_sha256": "6ba2211d961567b2aa396ba19e3018c1dc44780fa4351a807db099fc643bd058",
+    "size_bytes": 37387038,
+    "assets_compared": 300,
+    "all_source_assets_equal": true,
+    "abi": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "unity_entries": [],
+    "versionCode": 112,
+    "versionName": "0.112.0-native-first-asset-lod",
+    "applicationId": "game.sanguo.mobile.dev",
+    "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "delivery": "sanguo11-mobile-v112.apk"
+  },
+  "ci": {
+    "candidate": 36213760665,
+    "original_v105": 36208888111,
+    "inherited_v111": 36212043685,
+    "original_window_causal": 36210927099,
+    "software_control": 36213832901,
+    "full_acceptance": 36222182595,
+    "compatible_parity": 36222424271
+  },
+  "acceptance": {
+    "as_of": "2026-09-26",
+    "all_original_requirements_satisfied": false,
+    "authoritative_matrix": "full-acceptance/matrix.json",
+    "runtime": "full-acceptance/runtime-summary.json",
+    "api29_cold": "FAIL original120s readiness",
+    "api35_cold": "FAIL original120s readiness",
+    "api29_r12_full": "FAIL initial readiness",
+    "api35_r12_full": "FAIL initial readiness",
+    "api29_lifecycle": "FAIL 17 switch / 0 background",
+    "api35_lifecycle": "FAIL 20 switch / 13 background",
+    "original_ci_lifecycle_final": "FAIL 20 switch / 18 background",
+    "api29_api35_fixture_parity": "PASS each12 combinations and50 full byte pairs; explicit fixture/API only",
+    "full_touch_new_game": "FAIL; downstream NOT_REACHED",
+    "core": "Both input/candidate original42 calls:12 exit0/30 exit1; inherited failures",
+    "calendar": "Formal scenario stale-date closure NOT_REACHED; fixture visible months scoped PASS",
+    "physical_arm64": "NOT_RUN",
+    "release_write": "Unavailable current connector; historical403 only"
+  },
+  "artifacts": [
+    {
+      "id": 10897330038,
+      "name": "p0-v112-api29-all-raw",
+      "size_in_bytes": 14358038,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10897330038",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10897330038/zip",
+      "expired": false,
+      "created_at": "2026-09-26T03:23:05Z",
+      "expires_at": "2026-10-10T03:23:04Z",
+      "updated_at": "2026-09-26T03:23:05Z",
+      "digest": "sha256:5cb009489724a0280c3b34e61f01a726c9db3dbdc273b9b33e279e50cd07c34e",
+      "workflow_run": {
+        "id": 36213760665,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "5f8997ebfef15f4680931d40532411a336506d0d"
+      }
+    },
+    {
+      "id": 10897305491,
+      "name": "p0-v112-api35-parity-video-validation",
+      "size_in_bytes": 12461,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10897305491",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10897305491/zip",
+      "expired": false,
+      "created_at": "2026-09-26T03:30:45Z",
+      "expires_at": "2026-10-10T03:30:44Z",
+      "updated_at": "2026-09-26T03:30:45Z",
+      "digest": "sha256:3076ef5b69d49a764075419dcb093d449b81726ca2b31886576357dd0b029925",
+      "workflow_run": {
+        "id": 36213760665,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "5f8997ebfef15f4680931d40532411a336506d0d"
+      }
+    },
+    {
+      "id": 10897115691,
+      "name": "p0-v112-api35-parity-raw",
+      "size_in_bytes": 94467885,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10897115691",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10897115691/zip",
+      "expired": false,
+      "created_at": "2026-09-26T03:30:23Z",
+      "expires_at": "2026-10-10T03:30:19Z",
+      "updated_at": "2026-09-26T03:30:23Z",
+      "digest": "sha256:d6d6905eb1faeb38c42883d9d9b09e276cfa70917311a3a7c01e3d2614be8ecf",
+      "workflow_run": {
+        "id": 36213760665,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "5f8997ebfef15f4680931d40532411a336506d0d"
+      }
+    },
+    {
+      "id": 10896948450,
+      "name": "p0-v112-api35-all-raw",
+      "size_in_bytes": 33579022,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896948450",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896948450/zip",
+      "expired": false,
+      "created_at": "2026-09-26T03:33:08Z",
+      "expires_at": "2026-10-10T03:33:07Z",
+      "updated_at": "2026-09-26T03:33:08Z",
+      "digest": "sha256:f06fb5fa0a9c22d9267af5f4d03a559e74af89e42721fce40029ebc20202fdec",
+      "workflow_run": {
+        "id": 36213760665,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "5f8997ebfef15f4680931d40532411a336506d0d"
+      }
+    },
+    {
+      "id": 10896713307,
+      "name": "p0-v112-api29-cold-only-raw",
+      "size_in_bytes": 1920041,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896713307",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896713307/zip",
+      "expired": false,
+      "created_at": "2026-09-26T03:22:25Z",
+      "expires_at": "2026-10-10T03:22:24Z",
+      "updated_at": "2026-09-26T03:22:25Z",
+      "digest": "sha256:df99bdf8f320e2b68be4829e28eec2434ad180215c165602308cf50521b829e7",
+      "workflow_run": {
+        "id": 36213760665,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "5f8997ebfef15f4680931d40532411a336506d0d"
+      }
+    },
+    {
+      "id": 10896619477,
+      "name": "p0-v112-api35-all-video-validation",
+      "size_in_bytes": 18218,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896619477",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896619477/zip",
+      "expired": false,
+      "created_at": "2026-09-26T03:33:30Z",
+      "expires_at": "2026-10-10T03:33:29Z",
+      "updated_at": "2026-09-26T03:33:30Z",
+      "digest": "sha256:90ddedf2ac4d710f5d9e94e7751231a09d4ac80e456711c5d51fa25dadc2e233",
+      "workflow_run": {
+        "id": 36213760665,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "5f8997ebfef15f4680931d40532411a336506d0d"
+      }
+    },
+    {
+      "id": 10896553854,
+      "name": "p0-v112-api29-all-video-validation",
+      "size_in_bytes": 7507,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896553854",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896553854/zip",
+      "expired": false,
+      "created_at": "2026-09-26T03:23:25Z",
+      "expires_at": "2026-10-10T03:23:25Z",
+      "updated_at": "2026-09-26T03:23:25Z",
+      "digest": "sha256:5d39b562d8ea03de4197f0c62cc52f7eaa3cc3f96a0088dce12b7a90b134eff8",
+      "workflow_run": {
+        "id": 36213760665,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "5f8997ebfef15f4680931d40532411a336506d0d"
+      }
+    },
+    {
+      "id": 10896553485,
+      "name": "p0-v112-host",
+      "size_in_bytes": 60462,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896553485",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896553485/zip",
+      "expired": false,
+      "created_at": "2026-09-26T03:19:09Z",
+      "expires_at": "2026-10-10T03:19:08Z",
+      "updated_at": "2026-09-26T03:19:09Z",
+      "digest": "sha256:b0aae530b6efc335a31666a0d55045082334e37a62bb9e9f60f4da29ffdedd82",
+      "workflow_run": {
+        "id": 36213760665,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "5f8997ebfef15f4680931d40532411a336506d0d"
+      }
+    },
+    {
+      "id": 10896523580,
+      "name": "p0-v112-api35-cold-only-video-validation",
+      "size_in_bytes": 3009,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896523580",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896523580/zip",
+      "expired": false,
+      "created_at": "2026-09-26T03:19:06Z",
+      "expires_at": "2026-10-10T03:19:05Z",
+      "updated_at": "2026-09-26T03:19:06Z",
+      "digest": "sha256:0fe8d3764653191e700669f4f4adb38386b422e0d42e98c0aaeb6c9751fc93da",
+      "workflow_run": {
+        "id": 36213760665,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "5f8997ebfef15f4680931d40532411a336506d0d"
+      }
+    },
+    {
+      "id": 10896507757,
+      "name": "p0-v112-build",
+      "size_in_bytes": 80914082,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896507757",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896507757/zip",
+      "expired": false,
+      "created_at": "2026-09-26T03:08:36Z",
+      "expires_at": "2026-10-10T03:08:33Z",
+      "updated_at": "2026-09-26T03:08:36Z",
+      "digest": "sha256:7579b5522542d723992a801055539406e31bd7f9c2fe5bd1d9e0c0d6fab8751c",
+      "workflow_run": {
+        "id": 36213760665,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "5f8997ebfef15f4680931d40532411a336506d0d"
+      }
+    },
+    {
+      "id": 10896184996,
+      "name": "p0-v112-api29-cold-only-video-validation",
+      "size_in_bytes": 2757,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896184996",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896184996/zip",
+      "expired": false,
+      "created_at": "2026-09-26T03:23:08Z",
+      "expires_at": "2026-10-10T03:23:07Z",
+      "updated_at": "2026-09-26T03:23:08Z",
+      "digest": "sha256:81560a4dffb6015f0c59ab6c46ce23741e274662433ed804de20ab0afa1f577a",
+      "workflow_run": {
+        "id": 36213760665,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "5f8997ebfef15f4680931d40532411a336506d0d"
+      }
+    },
+    {
+      "id": 10896104758,
+      "name": "p0-v112-api35-cold-only-raw",
+      "size_in_bytes": 2960516,
+      "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896104758",
+      "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10896104758/zip",
+      "expired": false,
+      "created_at": "2026-09-26T03:18:46Z",
+      "expires_at": "2026-10-10T03:18:45Z",
+      "updated_at": "2026-09-26T03:18:46Z",
+      "digest": "sha256:76142891ebf15b349df2cbc2618d2d08f38328ac4ccdf4a1b472017fc6560703",
+      "workflow_run": {
+        "id": 36213760665,
+        "repository_id": 1368277401,
+        "head_repository_id": 1368277401,
+        "head_branch": "agent/native-pc-visual",
+        "head_sha": "5f8997ebfef15f4680931d40532411a336506d0d"
+      }
+    }
+  ],
+  "open_fail": [
+    "National GPU/frame readiness on API29 and API35",
+    "Actual stale calendar/playback overlay remains unclosed",
+    "API29 original R12 initial readiness",
+    "Complete fresh-data touch chain blocked before faction confirmation",
+    "Original core inherited failures; no AI changes",
+    "V1/V2 and historical R10/R11/R13 visual/acceptance gaps retained"
+  ],
+  "not_run": [
+    "v112 API35 completed20-cycle lifecycle acceptance unavailable at final snapshot",
+    "Complete20 installed lifecycle cycles",
+    "ARM64 physical device / phone performance / thermal30min",
+    "v112 all calendar/playback crossmonth/crossyear/dialog/background/recreation visible acceptance",
+    "Touch deploy/move/attack/report/next-turn/manual save/load",
+    "Rapid scenario/save switching and stale-worker/release complete installed matrix"
+  ],
+  "new_closed_scoped": [
+    "Initial site/unit asset LOD synchronization order: actual production doFrame red/green HOST regression; national readiness is a separate open acceptance gate."
+  ],
+  "report": "reports/R00-R14-P0-v112.md",
+  "requirements": "R00-R14-remediation-checklist.json; all213 original requirements/statuses retained; v112 scope notes added",
+  "previous_manifest": "history/R00-R14-v107-manifest.json",
+  "inputs": [
+    {
+      "name": "sanguo11-R00-R14-remediation-handoff.zip",
+      "bytes": 33596963,
+      "sha256": "6a3e6ba271e8e84dec367d76bee49f23bbe1d68b782741d243f511b56ba66bb2",
+      "zip_crc": "PASS"
+    },
+    {
+      "name": "sanguo11-R00-R14-v105-evidence.zip",
+      "bytes": 316172494,
+      "sha256": "50b386f8aab9cb43ed1adbb399c72333a9fbda1d81e255c0fb1aa6cb2dd381ce",
+      "zip_crc": "PASS"
+    },
+    {
+      "name": "sanguo11-R00-R14-v102-v103-comparison.zip",
+      "bytes": 291288779,
+      "sha256": "ca40741e2a5e95e5f67645d4b8e5ee20b344cc127ff8f556b62213506fc697a1",
+      "zip_crc": "PASS"
+    }
+  ],
+  "release": {
+    "create_exit": 1,
+    "http": 403,
+    "lookup_exit": 1,
+    "exists": false,
+    "delivery": "Independent APK and Actions artifacts; no Release URL"
+  },
+  "video_review": {
+    "candidate_segments": 17,
+    "candidate_parse_and_full_decode": "PASS17/17",
+    "candidate_segment_content": "Each candidate segment inspected at beginning/middle/end. Cold/R12 remain FAIL; focused API35 and parity run through dates, command results and recreation. Not full pure-touch acceptance",
+    "reviewed_total_segments": 36,
+    "scope": [
+      "v112 API29 all3/cold1, API35 cold1/all7/parity5",
+      "fresh original v1051",
+      "v105 Window causal1",
+      "v111 API29 all8",
+      "v111 API35 parity5",
+      "software backend controls4"
+    ],
+    "historical_v105_damaged_segment": "Known damaged input remains recorded; current valid recordings do not repair it",
+    "missing_last_frame": "Contact sheet empty cells indicate no sample extracted, not evidence of actual black screen",
+    "whole_images": "Original focused API35 Jan/Jul/Apr full-screen PNGs and representative parity May/crossyear/recreated full-screen PNGs directly inspected; all50 complete save byte pairs independently compared; this does not accept all playback frames or API29 date behavior"
+  },
+  "device": {
+    "type": "GitHub Actions x86_64 Pixel2 AVD",
+    "apis": [
+      29,
+      35
+    ],
+    "gpu": "SwANGLE; separate software controls never replace acceptance results",
+    "physical_arm64": "NOT_RUN"
+  },
+  "scope": "No main merge, force push, other PR, R15, gameplay/map topology/AI/RNG/SaveCodec or production asset changes relative to input. Not all P0 defects closed.",
+  "full_acceptance_20260926": {
+    "all_original_requirements_satisfied": false,
+    "counts": {
+      "PARTIAL": 172,
+      "FAIL": 16,
+      "PASS": 9,
+      "NOT_REACHED": 5,
+      "NOT_RUN": 233
+    },
+    "total": 435,
+    "manifest": "full-acceptance/manifest.json",
+    "report": "reports/R00-R14-FULL-ACCEPTANCE.md",
+    "lifecycle_current": {
+      "api29": "FAIL：模式切换日志17/20，前后台0/20；下一次ready超时",
+      "api35": "FAIL：模式切换日志20/20，前后台13/20；background frame loop stopped"
+    },
+    "original_lifecycle_final": "FAIL 20 switch + 18 background, then background frame loop stopped"
+  },
+  "historical_v112_acceptance_before_full_audit": {
+    "first_asset_lod_order": "FIXED_SCOPED: input extracted production path FAIL, candidate PASS; installed national firstCPU and farLOD checks reached on both APIs; cache231704bytes",
+    "api29_cold": "FAIL: original120s readiness, pending322 GPU16 submitted2; FIRST_CPU_DELIVERY reached; faction confirmation NOT_REACHED",
+    "api35_cold": "FAIL: original120s readiness, pending307 GPU31 submitted5; FIRST_CPU_DELIVERY reached; faction confirmation NOT_REACHED",
+    "api29_r12_full": "FAIL at initial scene readiness before national preview",
+    "api29_calendar": "NOT_REACHED on v112; inherited v111 actual whole-image stale calendar remains FAIL",
+    "api35_r12_full": "FAIL at NativeR12Instrumentation.recreate:22/combinations:32/onStart:91: pending5 submitted9 beginAttempts609/skipped600; national preview NOT_REACHED",
+    "api35_parity": "PASS 12cases/310checks; 50 entire expected/observed SaveCodec byte pairs independently equal, including RNG, committed/finished attack, next-turn and2recreations; explicit fixtures/API commands, NOT full cold touch chain",
+    "api35_lifecycle20": "NOT_RUN_COMPLETE: job108325858061 still in_progress at latest snapshot; no completed20-cycle installed raw evidence",
+    "full_touch_new_game": "FAIL_BLOCKED_AT_NATIONAL_PREVIEW; selection/confirmation/deploy/move/attack/report/next-turn/manual-save-load NOT_REACHED",
+    "core": "FAIL inherited; input/candidate entry exit1 CoreTest.logistics:75; all42 invocation exit matrices identical (12pass30fail)",
+    "host": "PASS 20 suites; not installed acceptance",
+    "build_lint": "PASS exactsource assembleDebug assembleDebugAndroidTest lintDebug",
+    "arm64_physical": "NOT_RUN unavailable",
+    "release": "403; no Release created",
+    "api35_calendar": "SCOPED PASS: focused installed186checks and original whole-screen Jan/Jul/Apr correct; representative May/cross-year/recreation originals correct. Unmodified old APK API35 also correct, so not proof of fixing API29 stale UI"
+  },
+  "repeat_20260926": {
+    "schema": 1,
+    "audit": "repeat-20260926",
+    "all_requirements_satisfied": false,
+    "production_changed": false,
+    "apk_source_sha": "5f8997ebfef15f4680931d40532411a336506d0d",
+    "apk_sha256": "6ba2211d961567b2aa396ba19e3018c1dc44780fa4351a807db099fc643bd058",
+    "apk_bytes": 37387038,
+    "application_id": "game.sanguo.mobile.dev",
+    "version_code": 112,
+    "version_name": "0.112.0-native-first-asset-lod",
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "signer_cert_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "inspected_head": "efa51aa5c324be1bdae53e7ff447671f49101c54",
+    "remote_input_head": "702feccf5ba83d49ae9b6e95ef531f7df3df4f77",
+    "main": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+    "total": 463,
+    "counts": {
+      "PARTIAL": 174,
+      "FAIL": 20,
+      "PASS": 9,
+      "NOT_REACHED": 4,
+      "NOT_RUN": 256
+    },
+    "runtime_ci": {
+      "strict_run": 36222182595,
+      "strict_attempt": 2,
+      "original_run": 36213760665,
+      "host_attempt": 2,
+      "api35_cold_attempt": 3,
+      "parity_run": 36222424271,
+      "api29_parity_attempt": 2,
+      "api35_parity_attempt": 3
+    },
+    "artifacts": {
+      "api29_cold": 10902830047,
+      "api35_cold_infra_only": 10902695822,
+      "api35_cold_retry": 10901554856,
+      "api29_all": 10902399818,
+      "api35_all": 10901933906,
+      "api29_lifecycle": 10902656301,
+      "api35_lifecycle": 10903021642,
+      "api29_parity": 10902602820,
+      "api35_parity": 10903645682,
+      "host": 10901639309
+    },
+    "results": {
+      "api29_cold": "FAIL pending285 submitted8",
+      "api35_cold": "FAIL pending324 submitted2",
+      "r12": "Both original tests FAIL initial ready; original timeouts/assertions preserved",
+      "date_api29": "FAIL: full PNG January while authority/snapshot/widget July or April; UI95/Window89 frozen; Surface changes",
+      "lifecycle_api29": "FAIL 0 switch / 0 background",
+      "lifecycle_api35": "FAIL 20 switch / 1 background; next HOME queued assertion",
+      "original_lifecycle_108325858061": "Historical final FAIL 20 switch /18 background, not in_progress or PASS",
+      "api29_parity": "Fresh PASS12 cases/341checks;50 full byte pairs independently equal",
+      "api35_parity": "Fresh PASS12 cases/255checks;50 full byte pairs independently equal",
+      "parity_scope": "Explicit fixture/API commands, not full touch, all events, all ports or physical visual verification",
+      "full_touch": "FAIL preview; subsequent steps NOT_REACHED",
+      "core": "input and candidate original full core exit1 logistics:75;42 invocation matrices equal,12 zero/30 nonzero each",
+      "host": "20 actual gates exit0, not green core",
+      "arm64": "NOT_RUN",
+      "memory": "No process found is missing data, never zero",
+      "video": "Every fetched original segment parsed and fully decoded; sampled content review is not full frame-by-frame acceptance",
+      "release": "Use actual publication stdout/stderr, not historical403 or GET success as current write outcome"
+    },
+    "raw_evidence_paths": [
+      "audit/raw/input-integrity.json",
+      "audit/raw/nested-integrity.json",
+      "audit/raw/apk-independent-identity.json",
+      "audit/raw/reaudit-host-attempt2",
+      "audit/raw/core",
+      "audit/raw/authority-independent.json",
+      "audit/raw/media-review/video-validation.json",
+      "audit/raw/remote-snapshot-1",
+      "audit/raw/runtime/reaudit-api29-all-attempt2",
+      "audit/raw/runtime/reaudit-api35-all-attempt2",
+      "audit/raw/runtime/reaudit-api29-cold-attempt2",
+      "audit/raw/runtime/reaudit-api35-cold-attempt3",
+      "audit/raw/runtime/reaudit-api29-lifecycle-attempt2",
+      "audit/raw/runtime/reaudit-api35-lifecycle-attempt2",
+      "audit/raw/runtime/reaudit-api29-parity-attempt2",
+      "audit/raw/runtime/reaudit-api35-parity-attempt3"
+    ],
+    "missing_measurements": [
+      "physical ARM64 installation/rendering/GPU/PSS/thermal",
+      "full allocation/GC trace",
+      "all widget IDs/bounds for stale-date diagnosis",
+      "complete touch command/save/load chain",
+      "SAF provider faults",
+      "matched-camera V1/V2 and all unit/season visual matrices"
+    ]
+  },
+  "latest_acceptance_manifest": "repeat-20260926/manifest.json"
+}

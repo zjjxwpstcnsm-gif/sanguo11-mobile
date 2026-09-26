@@ -28,6 +28,7 @@ public final class MainActivity extends Activity {
     private GameSession boundSession;
     private boolean dispatchingCommand,replacingSession;
     private void bindSession(){
+        if(map!=null)map.cancelCommandEffects();
         GameSession current=gameHost.session();
         if(current!=boundSession){
             if(sessionSubscription!=null)sessionSubscription.close();
@@ -85,11 +86,12 @@ public final class MainActivity extends Activity {
     private final ClientState ui=new ClientState();
     private TurnWork turnWork;
     private TurnPlayback playback;
+    private WindowSurfaceRecovery windowSurfaceRecovery;
     private final Map<String,Button> navigation=new LinkedHashMap<>();
     final int ink=UiTheme.INK,paper=UiTheme.TEXT,gold=UiTheme.JADE,muted=UiTheme.MUTED;
 
     @Override public void onCreate(Bundle state) {
-        super.onCreate(state);gameHost=((GameApplication)getApplication()).host();boolean coldStart=state==null;ui.read(state);
+        super.onCreate(state);windowSurfaceRecovery=new WindowSurfaceRecovery(getWindow());gameHost=((GameApplication)getApplication()).host();boolean coldStart=state==null;ui.read(state);
         applyOrientationPreference();
         String restoreError=null;boolean restored=false;
         AtomicFile autosave=file("auto");
@@ -159,11 +161,20 @@ public final class MainActivity extends Activity {
         gridToggle=button("网格",v->{map.setGridShown(!map.gridShown());refreshGridToggle();});gridToggle.setTag("map.grid.toggle");gridToggle.setTextSize(11);
         header.addView(gridToggle,new LinearLayout.LayoutParams(dp(44),dp(52)));
         Button tools=button("视图",v->showMapTools());tools.setTextSize(11);tools.setContentDescription("地图工具 · 全图、定位、导航图和屏幕方向");
-        header.addView(tools,new LinearLayout.LayoutParams(dp(44),dp(52)));header.setBackground(UiTheme.surface(this,0xff1b2b33,0xff101b24,0));root.addView(header,new LinearLayout.LayoutParams(-1,dp(56)));
+        header.addView(tools,new LinearLayout.LayoutParams(dp(44),dp(52)));header.setBackground(UiTheme.surface(this,0xff1b2b33,0xff101b24,0));
+        // Reserve the whole first row for the always-visible date on narrow screens.
+        if(getResources().getConfiguration().screenWidthDp<480){
+            header.removeView(actionPointsBadge);header.removeView(headline);
+            LinearLayout dateRow=new LinearLayout(this);dateRow.setPadding(dp(8),0,dp(8),0);dateRow.setGravity(Gravity.CENTER_VERTICAL);
+            dateRow.addView(actionPointsBadge,apParams);dateRow.addView(headline,new LinearLayout.LayoutParams(0,dp(52),1));
+            root.addView(dateRow,new LinearLayout.LayoutParams(-1,dp(52)));
+            header.setGravity(Gravity.RIGHT|Gravity.CENTER_VERTICAL);
+            root.addView(header,new LinearLayout.LayoutParams(-1,dp(48)));
+        }else root.addView(header,new LinearLayout.LayoutParams(-1,dp(56)));
         mapRevisionNotice=text("",11,gold);mapRevisionNotice.setTag("map.revision.notice");mapRevisionNotice.setPadding(dp(12),dp(3),dp(12),dp(3));
         mapRevisionNotice.setOnClickListener(v->message("地图存档版本",NationalMap.compatibilityNotice(world)));root.addView(mapRevisionNotice);
-        body=new FrameLayout(this);if(map!=null)map.release();map=new MapHost(this,this::onTile);body.addView(map,new FrameLayout.LayoutParams(-1,-1));map.setUnitDrop(this::dropUnit);map.setTerritoryMode(getPreferences(MODE_PRIVATE).getInt("territoryMode",0));refreshTerritoryToggle();refreshGridToggle();
-        panelShell=new LinearLayout(this);panelShell.setOrientation(LinearLayout.VERTICAL);UiTheme.panel(panelShell);
+        body=new FrameLayout(this);if(map!=null)map.release();map=new MapHost(this,new MapView.TileListener(){public void tap(Hex h){onTile(h);}public void unit(int id,Hex h){onUnitTile(id,h);}});body.addView(map,new FrameLayout.LayoutParams(-1,-1));map.setUnitDrop(this::dropUnit);refreshTerritoryToggle();refreshGridToggle();
+        panelShell=new LinearLayout(this);panelShell.setOrientation(LinearLayout.VERTICAL);panelShell.setClickable(true);UiTheme.panel(panelShell);
         panelShell.setVisibility(View.GONE);body.addView(panelShell);
         LinearLayout panelHeader=new LinearLayout(this);panelHeader.setPadding(dp(12),0,dp(4),0);panelHeader.setGravity(Gravity.CENTER_VERTICAL);
         returnList=button("列表",v->returnToCities());returnList.setContentDescription("返回全国列表");panelHeader.addView(returnList,new LinearLayout.LayoutParams(dp(48),dp(48)));
@@ -181,6 +192,8 @@ public final class MainActivity extends Activity {
         battleBanner=text("",13,paper);battleBanner.setMaxLines(2);battleBanner.setEllipsize(android.text.TextUtils.TruncateAt.END);
         battleBanner.setPadding(dp(12),dp(6),dp(12),dp(6));battleBanner.setBackgroundColor(0xff30443b);battleBanner.setVisibility(View.GONE);
         battleBanner.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);
+        battleBanner.setOnLongClickListener(v->{showPlaybackControls();return true;});
+        battleBanner.setContentDescription("战斗结果，点击查看战报，长按控制演示");
         battleBanner.setOnClickListener(v->{
             AlertDialog.Builder report=new AlertDialog.Builder(this).setTitle(reportLocation==null?"操作结果":"战斗结果").setMessage(lastBattleReport)
                 .setPositiveButton("返回",null).setNeutralButton("收起战果",(d,n)->battleBanner.setVisibility(View.GONE));
@@ -190,7 +203,7 @@ public final class MainActivity extends Activity {
         root.addView(battleBanner,new LinearLayout.LayoutParams(-1,-2));
         turnBanner=text("",13,paper);turnBanner.setPadding(dp(12),dp(5),dp(12),dp(5));turnBanner.setMaxLines(2);turnBanner.setBackgroundColor(0xff243e4b);turnBanner.setVisibility(View.GONE);turnBanner.setContentDescription("查看本旬结算摘要");turnBanner.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);turnBanner.setOnClickListener(v->showTurnReport());root.addView(turnBanner,new LinearLayout.LayoutParams(-1,-2));
         body.addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->{if(r-l!=or-ol||b-t!=ob-ot)layoutPanels();});
-        commandDock=new LinearLayout(this);commandDock.setPadding(dp(8),dp(4),dp(8),dp(4));UiTheme.panel(commandDock);body.addView(commandDock,new FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM));
+        commandDock=new LinearLayout(this);commandDock.setClickable(true);commandDock.setPadding(dp(8),dp(4),dp(8),dp(4));UiTheme.panel(commandDock);body.addView(commandDock,new FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM));
         commandDock.addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->{if(b-t!=ob-ot)layoutPanels();});
         turnProgress=text("",12,gold);turnProgress.setPadding(dp(12),dp(3),dp(12),dp(3));turnProgress.setBackgroundColor(0xff1c3340);turnProgress.setVisibility(View.GONE);turnProgress.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);root.addView(turnProgress,new LinearLayout.LayoutParams(-1,-2));
         quickCityStrip=new LinearLayout(this);quickCityStrip.setOrientation(LinearLayout.HORIZONTAL);root.addView(quickNavigatorRow("城池",quickCityStrip),new LinearLayout.LayoutParams(-1,dp(42)));
@@ -257,6 +270,7 @@ public final class MainActivity extends Activity {
     }
     private void refreshTurnProgress(){
         if(turnProgress==null)return;
+        WindowSurfaceRecovery.changed(turnProgress);
         turnProgress.setOnClickListener(v->showPlaybackControls());
         if(aiRunning&&turnWork!=null){turnProgress.setText(turnWork.status());turnProgress.setVisibility(View.VISIBLE);turnProgress.removeCallbacks(turnProgressTicker);turnProgress.postDelayed(turnProgressTicker,120);}
         else {turnProgress.removeCallbacks(turnProgressTicker);turnProgress.setVisibility(View.GONE);}
@@ -387,6 +401,16 @@ public final class MainActivity extends Activity {
         World.Unit u=world.unit(ui.selectedUnit);if(u!=null&&selected.equals(u.hex))return u;
         return ui.selectedUnit>=0?null:world.unitAt(selected);
     }
+    private void onUnitTile(int id,Hex displayCell) {
+        if(aiRunning||world.commandsBlocked())return;
+        // Commands retain their existing cell target validation; object selection uses the stable ID.
+        if(mapPick!=null||(moving>=0&&!unitCommand.equals("select"))){onTile(displayCell);return;}
+        World.Unit target=world.unit(id);
+        if(target==null)for(Domestic.Mission mission:world.domestic.missions)if(mission.id==id&&mission.transport){target=mission;break;}
+        if(target==null)return;
+        if(ui.selectedUnit==id&&target.hex.equals(selected)){clearUnitSelection();return;}
+        selectObject(target.hex,id,false);
+    }
     private void onTile(Hex h) {
         if(aiRunning||world.commandsBlocked())return;
         if(mapPick!=null){
@@ -514,9 +538,19 @@ public final class MainActivity extends Activity {
         if(!currentWorld(expected)){World.Result rejected=World.Result.rejected("局面已变化，请重新选择");showResult(rejected);return rejected;}
         dispatchingCommand=true;
         World.Result result;
-        try{result=gameHost.session().legacy(expected,operation);bindSession();}
+        final MapSceneSnapshot before=map==null?null:map.captureCombatSnapshot();
+        final List<TurnJournal.Event> effects=new ArrayList<>();
+        try{result=gameHost.session().legacy(expected,()->{
+            // Executed once, inside the validated command ticket. Journal captures facts only.
+            TurnJournal journal=new TurnJournal(expected);
+            try{return operation.get();}
+            finally{journal.close();effects.addAll(journal.events());}
+        });bindSession();}
         finally{dispatchingCommand=false;}
-        showResult(result);return result;
+        showResult(result);
+        // showResult has already bound and autosaved committed authority. Effects cannot gate it.
+        if(result.ok&&map!=null){map.playCommandEffects(effects,before);map.commandEffectSpeed(getPreferences(MODE_PRIVATE).getInt("turnPlaybackSpeed",1));}
+        return result;
     }
     void executeCity(World expected,GameCommand.Operation operation,int city,int officer){
         if(!currentWorld(expected)){message("命令未执行","局面已变化，请重新选择");return;}
@@ -556,6 +590,7 @@ public final class MainActivity extends Activity {
         title.setText(world.faction(world.player)+" · "+world.scenarioName);
         dateBanner.setText(world.date().replace(" ",""));dateBanner.setVisibility(View.VISIBLE);
         dateBanner.setContentDescription("当前日期 "+world.date());
+        WindowSurfaceRecovery.changed(dateBanner);
         mapRevisionNotice.setText(NationalMap.compatibilityNotice(world));mapRevisionNotice.setVisibility(mapRevisionNotice.getText().length()==0?View.GONE:View.VISIBLE);
         actionPointsBadge.setText("行动力\n"+world.actionPoints[world.player]);actionPointsBadge.setContentDescription("玩家行动力 "+world.actionPoints[world.player]+" 点");
         UiTheme.title(title);title.setContentDescription("军情 · "+title.getText());
@@ -589,7 +624,7 @@ public final class MainActivity extends Activity {
         else if(ui.page.equals("tasks"))panelHost.addView(new OverviewUi(this,world,ui).tasks());
         else {panelHost.addView(panelScroll);if(ui.page.equals("menu"))showMenu();else showSelection();}
         map.setRoute(pendingMarch!=null?pendingMarch:world.unit(moving)!=null&&world.unit(moving).march!=null?world.marches.current(world.unit(moving)):null);
-        map.setPickTargets(mapPick==null?null:pickTargets);map.setTacticPreview(tacticPreview);
+        map.setCommandTargeting(mapPick!=null||!unitCommand.equals("select"));map.setPickTargets(mapPick==null?null:pickTargets);map.setTacticPreview(tacticPreview);
         // onTile/dropUnit guard commands; panning/zooming and closing panels remain available during AI.
         map.setEnabled(true);refreshCommandDock();layoutPanels();
         String identity=ui.page+"/"+selected+"/"+ui.selectedUnit+"/"+ui.group;
@@ -939,7 +974,7 @@ public final class MainActivity extends Activity {
     DomesticUi domesticUi(){return new DomesticUi(this,world,this::apply,this::selectAndFocus);}
     private void showMenu(){
         line("军政菜单",22,gold);
-        action("Unity 试用 · 全屏预览",v->launchUnityTrial());
+        if(BuildConfig.UNITY_ENABLED)action("Unity 试用 · 全屏预览",v->launchUnityTrial());
         action("屏幕方向 / 横竖屏",v->showOrientationPicker());
         action("地图视图与操作",v->showMapTools());
         action("生卒与继承",v->new LifecycleUi(this,world,this::apply).menu());
@@ -1062,7 +1097,7 @@ public final class MainActivity extends Activity {
         if(aiRunning||world.gameOver()||world.commandsBlocked())return;int idle=0;for(World.City c:world.cities)if(c.owner==world.player)idle+=world.idle(c).size();
         confirm("结束 "+world.date()+"？\n还有 "+idle+" 名闲置武将、"+world.actionPoints[world.player]+" 点行动力。\n将执行电脑行动，推进建设、调动、运输与自动行军，并自动保存。",this::advanceTurn);
     }
-    private void advanceTurn(){if(aiRunning||world.gameOver()||world.commandsBlocked())return;try{turnWork=gameHost.beginTurn(world);}catch(IOException|RuntimeException e){showError("无法开始结算，原局面保留");return;}long saving=android.os.SystemClock.elapsedRealtime();save("auto",false);turnWork.saveMillis=android.os.SystemClock.elapsedRealtime()-saving;aiRunning=true;turnWork.speed=getPreferences(MODE_PRIVATE).getInt("turnPlaybackSpeed",1);turnWork.observe(this::finishTurn);refresh();turnWork.start();}
+    private void advanceTurn(){if(aiRunning||world.gameOver()||world.commandsBlocked())return;if(map!=null)map.cancelCommandEffects();try{turnWork=gameHost.beginTurn(world);}catch(IOException|RuntimeException e){showError("无法开始结算，原局面保留");return;}long saving=android.os.SystemClock.elapsedRealtime();save("auto",false);turnWork.saveMillis=android.os.SystemClock.elapsedRealtime()-saving;aiRunning=true;turnWork.speed=getPreferences(MODE_PRIVATE).getInt("turnPlaybackSpeed",1);turnWork.observe(this::finishTurn);refresh();turnWork.start();}
     private void finishTurn(){
         if(turnWork==null||isFinishing()||isDestroyed())return;
         if(turnWork.error!=null){
@@ -1092,7 +1127,15 @@ public final class MainActivity extends Activity {
         turnBanner.setText("旬结算完成 · "+String.format(java.util.Locale.ROOT,"%.1f",completed.totalMillis/1000.0)+"秒 · 点此查看战报");turnBanner.setVisibility(View.VISIBLE);
     }
     private void showPlaybackControls(){
-        if(playback==null||turnWork==null)return;
+        if(playback==null||turnWork==null){
+            if(map==null||!map.commandEffectsActive())return;
+            new AlertDialog.Builder(this).setTitle("战斗演示 · 结果已提交并自动保存")
+                .setItems(new String[]{map.commandEffectsPaused()?"继续演示":"暂停演示","1× 正常速度","2× 加速","4× 快速","跳过剩余演示"},(d,index)->{
+                    if(index==0)map.pauseCommandEffects(!map.commandEffectsPaused());
+                    else if(index==4)map.cancelCommandEffects();
+                    else{int speed=1<<(index-1);map.commandEffectSpeed(speed);getPreferences(MODE_PRIVATE).edit().putInt("turnPlaybackSpeed",speed).apply();}
+                }).setNegativeButton("返回地图",null).show();return;
+        }
         new AlertDialog.Builder(this).setTitle("回合行动演示 · 默认总演示预算8秒")
             .setItems(new String[]{turnWork.paused?"继续演示":"暂停演示","1× 正常速度","2× 加速","4× 快速","跳过剩余演示","完整演示（本旬不限时）"},(d,index)->{
                 if(playback==null||turnWork==null)return;
@@ -1104,7 +1147,7 @@ public final class MainActivity extends Activity {
             }).setNegativeButton("返回地图",null).show();
     }
     @Override public Object onRetainNonConfigurationInstance(){if(playback!=null)playback.detach();if(turnWork!=null)turnWork.observe(null);return turnWork;}
-    @Override protected void onDestroy(){if(sessionSubscription!=null){sessionSubscription.close();sessionSubscription=null;}if(map!=null)map.release();if(playback!=null)playback.detach();if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null){turnWork.observe(null);}if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
+    @Override protected void onDestroy(){if(windowSurfaceRecovery!=null){windowSurfaceRecovery.close();windowSurfaceRecovery=null;}if(sessionSubscription!=null){sessionSubscription.close();sessionSubscription=null;}if(map!=null)map.release();if(playback!=null)playback.detach();if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null){turnWork.observe(null);}if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
     private void writeClientState(Bundle state){
         if(world==null||map==null)return;
         ui.write(state);state.putInt("selectedQ",selected==null?-1:selected.q);state.putInt("selectedR",selected==null?-1:selected.r);state.putInt("moving",moving);state.putString("unitCommand",unitCommand);
@@ -1125,7 +1168,8 @@ public final class MainActivity extends Activity {
     private AtomicFile file(String slot){return gameHost.store().file(slot);}
     private boolean save(String slot,boolean announce){
         if(world==null||unreadableAutosave)return false;
-        try{byte[] bytes=gameHost.capture();new MapLibrary(this).rememberVisual(world);gameHost.store().write(slot,bytes);if(announce)Toast.makeText(this,"局面已保存",Toast.LENGTH_SHORT).show();return true;}
+        try{byte[] bytes=gameHost.capture();gameHost.store().write(slot,bytes);
+            try{new MapLibrary(this).rememberVisual(world);}catch(IOException styleFailure){android.util.Log.w("MapRenderer","Campaign saved; optional visual sidecar unavailable",styleFailure);if(announce)Toast.makeText(this,"局面已保存；视觉设置未保存，将使用默认外观",Toast.LENGTH_LONG).show();return true;}if(announce)Toast.makeText(this,"局面已保存",Toast.LENGTH_SHORT).show();return true;}
         catch(IOException e){Toast.makeText(this,"保存失败，请检查设备存储空间后重试",Toast.LENGTH_LONG).show();return false;}
     }
     private World readSave(AtomicFile file)throws IOException {try(FileInputStream in=file.openRead()){return SessionSaves.readPrepared(in);}}
@@ -1185,7 +1229,7 @@ public final class MainActivity extends Activity {
         }catch(IOException|SecurityException e){showError(request==EXPORT_SAVE?"导出失败":"导入失败");}
     }
     private void loadSlot(String slot){try{World restored=readSave(file(slot));if(!activateWorld(restored))return;selectAndFocus(world.home().hex);save("auto",false);Toast.makeText(this,"已读取存档 · "+world.date(),Toast.LENGTH_SHORT).show();}catch(IOException e){showError("读取失败");}}
-    @Override protected void onResume(){super.onResume();if(map!=null)map.resume(true);}
+    @Override protected void onResume(){super.onResume();if(windowSurfaceRecovery!=null)windowSurfaceRecovery.request();if(map!=null)map.resume(true);}
     @Override protected void onPause(){if(map!=null)map.resume(false);super.onPause();if(world!=null){save("auto",false);persistClientState();}}
     @Override public void onBackPressed(){
         if(criticalFlash!=null){criticalFlash.dismiss();return;}

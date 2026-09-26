@@ -2,10 +2,10 @@
 """CC0 original Han-inspired field assets + rigid-joint animation library.
 No external service, licensed stock model, or Blender dependency. Shared S03 GLB subset.
 """
-import runpy, math, json, hashlib
+import runpy, math, json, hashlib, os
 from pathlib import Path
 from PIL import Image
-ROOT=Path(__file__).resolve().parents[2]
+ROOT=Path(os.environ.get('ASSET_OUTPUT_ROOT',Path(__file__).resolve().parents[2]))
 base=runpy.run_path(str(Path(__file__).with_name('build_sites.py')))
 Base=base['Mesh']; OUT=ROOT/'app/src/main/assets/3d/field';OUT.mkdir(parents=True,exist_ok=True)
 Base.write.__globals__['OUT']=OUT
@@ -16,13 +16,38 @@ for y in range(64):
  for x in range(512):
   k=x//64;u=x%64;c=palette[k];n=((x*37+y*71+x*y*3)%17)-8
   seam=(y%12<2 or (u+(8 if y//12%2 else 0))%24<2) if k==0 else (u%8<2 or y%13<2) if k==1 else u%13<1 if k==2 else (u%4==0 or y%4==0) if k==3 else (y%8==0 and u%8<3) if k==4 else False
+  if k==6:
+   # R06 authored opaque leaf clusters, veins and inter-leaf shadows in the shared atlas.
+   u0=(u+(y//16%2)*8)%16-8;v0=y%16-8
+   leaf=(u0*u0/49+v0*v0/30)<1
+   c=(78,107,51) if leaf else (39,65,35)
+   if leaf and abs(v0-u0*.35)<1:c=(103,121,65)
   im.putpixel((x,y),tuple(max(0,min(255,int(v*(.65 if seam else 1))+n)) for v in c))
 im.save(OUT/'atlas.png',optimize=True)
+# R10 unit-only lamellar, woven cloth, wood grain and restrained skin panels.
+# Environment's atlas and GLBs remain byte-identical to the prior cohort.
+unit_im=im.copy()
+for y in range(64):
+ for x in range(512):
+  k=x//64;u=x%64;n=(u*11+y*17)%7-3
+  if k==4:
+   edge=y%8==0 or (u+(4 if y//8%2 else 0))%8==0
+   rivet=y%8==2 and (u+(4 if y//8%2 else 0))%8==3
+   c=(45,55,61) if edge else (163,157,130) if rivet else (91,106,114)
+  elif k==3:c=(151,137,115) if u%3==0 or y%3==0 else (169,156,132)
+  elif k==2:c=(107+(u//3%4)*5,72+(u//3%4)*4,40+(u//3%4)*3)
+  elif k==5:c=(188,151,117)
+  else:continue
+  unit_im.putpixel((x,y),tuple(max(0,min(255,v+n)) for v in c))
+unit_im.save(OUT/'unit-atlas.png',optimize=True)
 class Mesh(Base):
  def face(self,points,mat=0,shade=1):
   n=len(self.p);self.p.extend(points);self.c.extend([(shade if shade<.5 else 1,)*3+(1,)]*len(points))
   self.uv.extend([((mat+u*.94+.03)/8,v*.94+.03) for u,v in [(0,0),(1,0),(1,1),(0,1)][:len(points)]])
   for i in range(1,len(points)-1):self.idx.extend([n,n+i+1,n+i])
+ def roof(self,x,z,w,d,y,h):
+  if hasattr(self,'facility_lod'):self.curved_roof(x,z,w,d,y,h,self.facility_lod)
+  else:super().roof(x,z,w,d,y,h)
  def hall(self,x,z,w,d,h,lod):
   super().hall(x,z,w,d,h,lod)
   self.box(x-w*.53,.01,z-d*.52,w*1.06,.055,d*1.04,0)
@@ -82,8 +107,9 @@ class Mesh(Base):
   else:self.box(-.11,.13,-.12,.22,.07,.24,2)
  def engine(self,kind,lod):
   self.box(-.15,.07,-.22,.3,.07,.44,2)
-  for x in [-.17,.17]:
-   for z in [-.16,.16]:self.wheel(x,.085,z,.085,lod=lod)
+  if not getattr(self,'unit_rig',False):
+   for x in [-.17,.17]:
+    for z in [-.16,.16]:self.wheel(x,.085,z,.085,lod=lod)
   if kind=='RAM':
    for x in [-.12,.12]:self.beam((x,.13,-.12),(x,.35,0),.035);self.beam((x,.13,.12),(x,.35,0),.035)
    pass # suspended ram supplied by articulated module
@@ -101,6 +127,7 @@ class Mesh(Base):
   else:
    for x in [-.07,.06]:self.frustum(x,.14,0,.065,.09,.18,.85,3)
  def facility(self,kind,level,lod):
+  self.facility_lod=lod
   if kind=='FARM':
    self.box(-.43,0,-.4,.86,.025,.8,7)
    for i in range(3+level):
@@ -184,10 +211,39 @@ class Mesh(Base):
    elif kind=='MINT':
     for x in [-.22,.1]:self.frustum(x,.02,.24,.09,.09,.06,1,4)
    elif kind=='WORKSHOP':self.engine('CATAPULT',lod)
+  # Structural joinery and type-specific working equipment; never changes collision.
+  if lod<2:
+   if kind in ['ARROW_TOWER','CROSSBOW_TOWER','CATAPULT_TOWER']:
+    for side in [-1,1]:
+     self.beam((side*.17,.10,-.16),(side*.17,.47,.16),.023)
+     self.beam((side*.17,.10,.16),(side*.17,.47,-.16),.023)
+    for y in [.12,.21,.30,.39,.48]:self.box(-.08,y,-.25,.16,.018,.024,2)
+   elif kind in ['CAMP','FORT','FORTRESS']:
+    self.beam((-.11,0,.30),(-.11,.32,.30),.027);self.beam((.11,0,.30),(.11,.32,.30),.027)
+    self.beam((-.13,.32,.30),(.13,.32,.30),.027)
+   elif kind in ['FARM','MARKET','BLACK_MARKET','BARRACKS','SMITH','MINT','GRANARY','STABLE','WORKSHOP','SHIPYARD','BRONZE_TERRACE']:
+    if kind=='FARM':
+     # Open ditch edges and a small irrigation wheel, leaving crop lanes legible.
+     for x in [-.43,.40]:self.box(x,.025,-.36,.025,.025,.70,0)
+     if lod==0:self.wheel(-.36,.10,.28,.085,2,lod)
+    elif kind in ['MARKET','BLACK_MARKET']:
+     self.frustum(.05,.01,-.30,.055,.055,.12,.75,2,8)
+    elif kind=='STABLE':
+     self.box(.12,.01,.34,.24,.075,.045,2)
+    elif kind=='SMITH':
+     self.beam((-.23,.12,.22),(-.05,.12,.22),.055,4)
+    else:
+     self.frustum(-.32,.005,.26,.052,.052,.10,.85,2,8)
+   elif kind in ['MUSIC','DRUM','STONE_MAZE','EARTH_WALL','STONE_WALL','DAM']:
+    for i in range(3):self.box(-.14,.005+i*.025,.24-i*.025,.28,.025,.05,0)
+   elif kind.endswith('SEED') or kind.endswith('BALL') or kind=='FIRE_SHIP':
+    # Lashings keep the explosive bundle readable at mid distance.
+    self.beam((-.13,.10,-.08),(.13,.10,.08),.014,3)
   return self
 
 report=[]
 def save(mesh,name):
+ if name.startswith('unit-'):mesh.atlas_file='unit-atlas.png'
  r=mesh.write(name);r['texture']=[512,64];report.append(r)
 
 # Names and upgradeability are checked against Java enums by the asset contract test.
@@ -210,15 +266,34 @@ for lod in range(2):
  # Broad, asymmetric opaque crown lobes: same silhouette and height at both LODs.
  for x,y,z,rx,ry,rz in [(-.085,.43,.01,.15,.17,.14),(.09,.48,.035,.16,.19,.14),(0,.60,-.04,.14,.16,.13)]:
   crown(m,x,y,z,rx,ry,rz,lod)
+ if lod==0:
+  for x,z in [(-.10,.02),(.10,.04),(0,-.08)]:m.beam((0,.20,0),(x,.45,z),.018)
  save(m,'tree-lod'+str(lod))
-# Tall open crown variant; smoothly mixed by canonical world region, not administrative borders.
+# R08 conifer: tapered whorls and exposed trunk, coherent at near/far LOD.
 for lod in range(2):
- m=Mesh();m.frustum(0,0,0,.023,.023,.52,.5,2,5)
- for a,y in [(0,.43),(2.1,.52),(4.2,.62)]:
-  x,z=.10*math.cos(a),.10*math.sin(a)
-  m.beam((0,.28,0),(x,y,z),.025)
-  crown(m,x,y,z,.11,.16,.10,lod)
+ m=Mesh();m.frustum(0,0,0,.024,.022,.71,.35,2,5)
+ for y,r in [(.20,.20),(.34,.175),(.47,.14),(.59,.10)]:
+  m.frustum(.015*math.sin(y*17),y,0,r,r*.87,.23,.035,6,7 if lod==0 else 4)
+ if lod==0:
+  for a in [0,2.1,4.2]:m.beam((0,.21,0),(.17*math.cos(a),.29,.17*math.sin(a)),.015)
  save(m,'tree-upland-lod'+str(lod))
+# Low opaque forest-edge family and embedded, tilted sedimentary rock shelves.
+for lod in range(2):
+ m=Mesh()
+ for x,z,r in [(-.07,0,.10),(.06,.05,.12),(0,-.07,.085)]:
+  crown(m,x,.12,z,r,.11,r*.8,lod)
+ save(m,'shrub-lod'+str(lod))
+ m=Mesh()
+ for layer in range(3 if lod==0 else 2):
+  y=layer*.09;r=.29-layer*.055;n=7 if lod==0 else 5
+  top=[];bottom=[]
+  for i in range(n):
+   a=i*math.tau/n;rr=r*(1+.12*math.sin(i*7+layer))
+   x,z=rr*math.cos(a)+layer*.025,rr*.65*math.sin(a)
+   bottom.append((x,y+x*.16,z));top.append((x*.86,y+.105+x*.16,z*.86))
+  for i in range(1,n-1):m.face([top[0],top[i],top[i+1]],0)
+  for i in range(n):m.face([bottom[i],bottom[(i+1)%n],top[(i+1)%n],top[i]],0,.75)
+ save(m,'rock-strata-lod'+str(lod))
 # Dedicated construction scaffold and opaque fire tongue modules (no alpha overdraw).
 m=Mesh()
 for x in [-.4,.4]:
@@ -244,7 +319,13 @@ def humanoid(m,bone,lod,cavalry=False,weapon='SWORD'):
   m.oval(0,.354+oy,0,.042,.05,.037,5,8,4)
   m.oval(0,.387+oy,-.003,.047,.026,.042,4,8,3)
   m.frustum(0,.403+oy,0,.012,.012,.045,0,3,5)
+  # Neck guard, shoulder plates and helmet nasal guard identify an armoured soldier.
+  for side in [-1,1]:
+   m.oval(side*.063,.283+oy,0,.030,.023,.046,4,6,3)
+   m.box(side*.031-.006,.345+oy,-.033,.012,.052,.010,4)
+  m.box(-.004,.350+oy,.037,.008,.041,.008,4)
   if lod==0:
+   m.box(-.037,.316+oy,-.040,.074,.045,.009,4)
    for yy in [.20,.23,.26]:
     for xx in [-.032,0,.032]:m.box(xx-.012,yy+oy,.033,.024,.021,.006,4)
    for xx in [-.015,.015]:m.box(xx-.005,.36+oy,.034,.008,.006,.006,2)
@@ -260,10 +341,14 @@ def humanoid(m,bone,lod,cavalry=False,weapon='SWORD'):
      m.frustum(x,.50+oy,.035,.018,.012,.065,0,4,5)
      if weapon=='HALBERD':m.face([(x,.48+oy,.035),(x+.045,.49+oy,.035),(x+.035,.55+oy,.035),(x,.53+oy,.035)],4)
     elif weapon=='CROSSBOW':
-     m.beam((x-.07,.16+oy,.03),(x+.07,.16+oy,.03),.013,2);m.beam((x,.16+oy,-.03),(x,.16+oy,.10),.015,2)
-    else:m.beam((x,.16+oy,.02),(x,.34+oy,.04),.016,4)
+     m.beam((x-.08,.16+oy,.03),(x,.16+oy,.055),.013,2);m.beam((x,.16+oy,.055),(x+.08,.16+oy,.03),.013,2);m.beam((x,.16+oy,-.05),(x,.16+oy,.13),.015,2);m.beam((x-.08,.16+oy,.03),(x+.08,.16+oy,.03),.004,3);m.beam((x,.173+oy,0),(x,.173+oy,.16),.005,4)
+    else:
+     m.beam((x,.16+oy,.02),(x,.36+oy,.04),.022,4);m.beam((x-.027,.18+oy,.024),(x+.027,.18+oy,.024),.01,4)
    elif weapon in ['SWORD','HALBERD']:
     m.box(x-.04,.15+oy,.02,.065,.11,.014,2)
+    if lod==0:
+     for xx in [x-.042,x+.019]:m.box(xx,.15+oy,.035,.007,.11,.005,4)
+     m.oval(x-.008,.205+oy,.038,.014,.016,.009,4,6,3)
   part('hand'+suffix,'arm'+suffix,(x,.21,0),hand)
   x=side*(.085 if cavalry else .029)
   part('leg'+suffix,'body',(x,.16,0),lambda x=x:m.frustum(x,.075+oy,0,.024,.026,.085,.9,3,6))
@@ -284,22 +369,52 @@ for kind in weapons:
     def horse():
      m.oval(0,.20,0,.067,.085,.16,2,8,4);m.oval(0,.28,.13,.045,.09,.055,2,8,4);m.oval(0,.33,.18,.04,.04,.065,2,8,3)
      m.box(-.05,.26,-.055,.1,.035,.11,3);m.beam((0,.21,-.15),(0,.12,-.23),.02)
+     m.oval(0,.23,.045,.073,.095,.095,2,8,4)
+     for side in [-1,1]:
+      m.frustum(side*.022,.36,.175,.012,.018,.048,0,2,5)
+      m.beam((side*.041,.335,.15),(side*.043,.32,.225),.006,4)
+      if lod==0:m.beam((side*.043,.32,.225),(side*.060,.36,.005),.005,2)
+     for zz in [.08,.11,.14]:m.frustum(0,.31,zz,.012,.015,.065,.4,4,5)
     bone('horse',-1,(0,0,0),horse)
     for i,(x,z) in enumerate([(-.04,-.1),(.04,-.1),(-.04,.1),(.04,.1)]):
-     def leg(x=x,z=z):m.frustum(x,.015,z,.017,.018,.16,.85,2,6);m.box(x-.02,0,z-.015,.04,.025,.055,4)
-     bone('horseLeg'+str(i),'horse',(x,.16,z),leg)
+     def leg(x=x,z=z):m.frustum(x,.082,z,.021,.020,.093,.75,2,6)
+     bone('horseLeg'+str(i),'horse',(x,.17,z),leg)
+     def shin(x=x,z=z):m.frustum(x,.02,z,.015,.018,.070,.9,2,6);m.box(x-.02,0,z-.015,.04,.025,.055,4)
+     bone('horseShin'+str(i),'horseLeg'+str(i),(x,.084,z),shin)
   elif kind in ['BOAT','TOWER_SHIP','WARSHIP']:
-   bone('hull',-1,(0,0,0),lambda:m.boat(tower=0 if kind=='BOAT' else 1 if kind=='TOWER_SHIP' else 2,lod=lod))
+   def hull():
+    m.boat(tower=0 if kind=='BOAT' else 1 if kind=='TOWER_SHIP' else 2,lod=lod)
+    for side in [-1,1]:
+     m.beam((side*.15,.15,-.28),(side*.15,.15,.23),.016,2)
+     if lod==0:
+      for zz in [-.25,-.12,.01,.14]:m.beam((side*.145,.12,zz),(side*.145,.21,zz),.009,2)
+    m.beam((0,.12,-.39),(0,.23,-.44),.018,2)
+   bone('hull',-1,(0,0,0),hull)
    for side in [-1,1]:
     def oars(side=side):
-     for z in [-.22,-.07,.08,.23]:m.beam((side*.13,.10,z),(side*.32,.03,z-.06),.014)
+     for z in [-.22,-.07,.08,.23]:
+      m.beam((side*.13,.10,z),(side*.33,.03,z-.06),.010)
+      m.beam((side*.28,.048,z-.045),(side*.36,.018,z-.07),.023)
     bone('oarsL' if side<0 else 'oarsR','hull',(side*.13,.1,0),oars)
   else:
    # Wheels and working arm are separate moving modules, chassis is shared.
-   bone('chassis',-1,(0,0,0),lambda:m.engine(kind,lod))
+   m.unit_rig=True
+   def chassis():
+    m.engine(kind,lod)
+    for side in [-1,1]:m.beam((side*.13,.13,-.2),(side*.13,.13,.2),.015,4)
+    if kind=='transport':
+     for side in [-1,1]:m.beam((side*.13,.12,.20),(side*.13,.10,.55),.024,2)
+     if lod==0:
+      for zz in [-.12,0,.12]:m.beam((-.13,.19,zz),(.13,.19,zz),.008,3)
+    if kind=='WOODEN_BEAST':
+     for side in [-1,1]:m.beam((side*.08,.33,.13),(side*.11,.43,.16),.018,4)
+    if kind=='SIEGE_TOWER' and lod==0:
+     for side in [-1,1]:m.beam((side*.13,.55,.13),(side*.13,.65,.13),.015,2)
+   bone('chassis',-1,(0,0,0),chassis)
    for side,x in enumerate([-.185,.185]):
     for axle,z in enumerate([-.16,.16]):
      def spokes(x=x,z=z):
+      m.wheel(x,.085,z,.085,lod=lod)
       m.beam((x,.015,z),(x,.155,z),.015,4);m.beam((x,.085,z-.07),(x,.085,z+.07),.015,4)
      bone('wheel'+str(side)+str(axle),'chassis',(x,.085,z),spokes)
    if kind=='RAM':
@@ -310,7 +425,13 @@ for kind in weapons:
    if kind=='SIEGE_TOWER':
     bone('launcher','chassis',(0,.6,.13),lambda:m.beam((-.14,.6,.15),(.14,.6,.15),.025,4))
    if kind=='CATAPULT':
-    def arm():m.beam((0,.16,-.2),(0,.52,.22),.035);m.oval(0,.52,.22,.065,.025,.07,2,6,3)
+    def arm():
+     m.beam((0,.16,-.2),(0,.52,.22),.045)
+     m.oval(0,.52,.22,.075,.035,.08,2,8,3)
+     # Counterweight moves with the actual lever rig, never gameplay root motion.
+     m.box(-.07,.13,-.23,.14,.08,.09,0)
+     if lod==0:
+      for x in [-.035,.035]:m.beam((x,.18,-.19),(x,.48,.19),.009,4)
     bone('lever','chassis',(0,.30,0),arm)
   name='unit-'+kind+'-lod'+str(lod);save(m,name)
   rigs[name]={'parts':parts,'formation':8 if infantry and kind!='CAVALRY' else 4 if kind=='CAVALRY' else 1,'frames':12}
@@ -326,7 +447,8 @@ for clip in ['idle','walk','turn','prepare','attack','hit','defeat','enter']:
   if clip=='walk':
    for i,s in enumerate(['L','R']):
     v=wave*(1 if i==0 else -1);rot('arm'+s,v*.55);rot('leg'+s,-v*.65);rot('shin'+s,max(0,v)*.8)
-   for i in range(4):rot('horseLeg'+str(i),math.sin(t*math.tau+(i%2)*math.pi)*.65)
+   for i in range(4):
+    v=math.sin(t*math.tau+(0 if i in [0,3] else math.pi));rot('horseLeg'+str(i),v*.48);rot('horseShin'+str(i),max(0,-v)*.9)
 
    for i in range(2):
     for j in range(2):rot('wheel'+str(i)+str(j),t*math.tau)
@@ -341,5 +463,5 @@ for clip in ['idle','walk','turn','prepare','attack','hit','defeat','enter']:
   frames.append(poses)
  clips[clip]=frames
 (OUT/'clips.json').write_text(json.dumps({'version':1,'fps':12,'clips':clips},separators=(',',':'))+'\n')
-(ROOT/'docs/3d/field-assets.json').write_text(json.dumps({'license':'CC0-1.0 original geometry, texture and animation keyframes','generator':'tools/3d/build_field_assets.py','axes':'+Y up, +Z forward; one tile = 1 world span','material':'shared opaque atlas, precompiled S03 material','rig':'rigid-jointed modules, GLB rest geometry + rigs.json pivot/ranges + clips.json keyframes; no skinning or root motion','version':1,'auxiliary':[{'file':name,'bytes':(OUT/name).stat().st_size,'sha256':hashlib.sha256((OUT/name).read_bytes()).hexdigest()} for name in ['atlas.png','rigs.json','clips.json']],'clips':list(clips),'assets':report},indent=2)+'\n')
+(ROOT/'docs/3d/field-assets.json').write_text(json.dumps({'license':'CC0-1.0 original geometry, texture and animation keyframes','generator':'tools/3d/build_field_assets.py','axes':'+Y up, +Z forward; one tile = 1 world span','material':'shared opaque atlas, precompiled S03 material','rig':'rigid-jointed modules, GLB rest geometry + rigs.json pivot/ranges + clips.json keyframes; no skinning or root motion','version':1,'auxiliary':[{'file':name,'bytes':(OUT/name).stat().st_size,'sha256':hashlib.sha256((OUT/name).read_bytes()).hexdigest()} for name in ['atlas.png','unit-atlas.png','rigs.json','clips.json']],'clips':list(clips),'assets':report},indent=2)+'\n')
 print('Generated',len(report),'field GLBs;',sum(a['bytes'] for a in report),'bytes')

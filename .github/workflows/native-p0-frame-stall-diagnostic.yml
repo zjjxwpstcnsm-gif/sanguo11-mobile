@@ -1,0 +1,101 @@
+name: Native P0 unchanged-v112 frame stall diagnostic
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-p0-frame-stall-diagnostic.yml]
+permissions: {contents: read, actions: read}
+concurrency: {group: native-p0-frame-stall-diagnostic, cancel-in-progress: false}
+jobs:
+  cold-stall:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [29, 35]
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - name: Acquire and verify the original production and instrumentation APKs
+        env: {GH_TOKEN: '${{ github.token }}', GH_REPO: '${{ github.repository }}'}
+        run: |
+          set -euo pipefail
+          mkdir -p out/build out/remediation/diagnostic
+          gh run download 36213760665 -n p0-v112-build -D out/build
+          test "$(cat out/build/SOURCE_COMMIT)" = 5f8997ebfef15f4680931d40532411a336506d0d
+          echo '6ba2211d961567b2aa396ba19e3018c1dc44780fa4351a807db099fc643bd058  out/build/sanguo11-mobile-v112.apk' | sha256sum -c -
+          echo 'cab724cc47d73e1a88cd71ab8bfb67e35216a1012fcbe8ea7ba75d50d1dc03a9  out/build/app-debug-androidTest.apk' | sha256sum -c -
+          mkdir -p app/build/outputs/apk/debug app/build/outputs/apk/androidTest/debug
+          cp out/build/sanguo11-mobile-v112.apk app/build/outputs/apk/debug/app-debug.apk
+          cp out/build/app-debug-androidTest.apk app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+          cp out/build/SOURCE_COMMIT out/build/APK_SHA256.txt out/remediation/
+          git rev-parse HEAD > out/remediation/HARNESS_COMMIT
+          printf '%s\n' 'DIAGNOSTIC ONLY. Unmodified v112 APK, normal cold-start touch probe, unchanged original 120-second readiness limit. Native debuggerd backtraces can perturb timing; this run is NOT acceptance and must not replace an independent uninstrumented cold start. No production fix or new APK is claimed.' > out/remediation/SCOPE.txt
+          git diff --exit-code 5f8997ebfef15f4680931d40532411a336506d0d HEAD -- app/src/main core game-api game-runtime data tools/3d scripts/verify-native-remediation.sh app/src/androidTest/java/game/sanguo/mobile/NativeColdStartInstrumentation.java app/src/androidTest/java/game/sanguo/mobile/SceneInstrumentation.java
+      - name: Prepare bounded external observation
+        run: |
+          cat > out/observe-stall.sh <<'SH'
+          #!/usr/bin/env bash
+          set -u
+          root=out/remediation/diagnostic
+          mkdir -p "$root"
+          echo "observer_start_host=$(date -Ins)" > "$root/timeline.txt"
+          deadline=$((SECONDS+300))
+          while (( SECONDS < deadline )); do
+            [ ! -e "$root/STOP" ] || exit 0
+            pid=$(adb shell pidof game.sanguo.mobile.dev 2>/dev/null | tr -d '\r' | awk '{print $1}')
+            if [ -n "$pid" ] && adb logcat -d -s Sanguo3D:I 2>/dev/null | grep -q 'First submission'; then break; fi
+            sleep 1
+          done
+          [ -n "${pid:-}" ] || { echo NO_TARGET_PROCESS >> "$root/timeline.txt"; exit 0; }
+          echo "first_submission_observed_host=$(date -Ins) pid=$pid" >> "$root/timeline.txt"
+          for slot in 1 2; do
+            for delay in $(seq 1 30); do [ ! -e "$root/STOP" ] || exit 0; sleep 1; done
+            folder="$root/sample-$slot"; mkdir -p "$folder"
+            echo "sample=$slot host=$(date -Ins)" >> "$root/timeline.txt"
+            timeout 8 adb shell cat /proc/uptime > "$folder/device-uptime.txt" 2>&1 || true
+            timeout 8 adb shell dumpsys window > "$folder/window.txt" 2>&1 || true
+            timeout 8 adb shell dumpsys activity activities > "$folder/activities.txt" 2>&1 || true
+            timeout 8 adb shell dumpsys gfxinfo game.sanguo.mobile.dev framestats > "$folder/window-framestats.txt" 2>&1 || true
+            timeout 8 adb shell dumpsys SurfaceFlinger > "$folder/surfaceflinger.txt" 2>&1 || true
+            timeout 8 adb shell dumpsys SurfaceFlinger --list > "$folder/surface-list.txt" 2>&1 || true
+            timeout 8 adb shell top -H -b -n 1 -p "$pid" > "$folder/threads-top.txt" 2>&1 || true
+            timeout 12 adb exec-out screencap -p > "$folder/whole-screen.png" 2> "$folder/screencap.stderr" || true
+            echo "debuggerd_start_host=$(date -Ins)" >> "$folder/timing.txt"
+            code=0; timeout 15 adb shell debuggerd -b "$pid" > "$folder/native-backtrace.txt" 2>&1 || code=$?
+            printf 'debuggerd_exit=%s\ndebuggerd_end_host=%s\n' "$code" "$(date -Ins)" >> "$folder/timing.txt"
+            timeout 8 adb logcat -d > "$folder/logcat.txt" 2>&1 || true
+          done
+          SH
+          chmod +x out/observe-stall.sh
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api }}
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: |
+            adb shell getprop > out/remediation/DEVICE_PROPERTIES.txt
+            bash out/observe-stall.sh > out/remediation/diagnostic/observer.log 2>&1 & observer=$!
+            result=0; bash scripts/verify-native-remediation.sh baseline cold-only || result=$?
+            printf '%s\n' "$result" > out/remediation/ORIGINAL_PROBE_EXIT.txt
+            touch out/remediation/diagnostic/STOP
+            wait "$observer" || true
+            adb shell dumpsys window > out/remediation/diagnostic/final-window.txt
+            adb shell dumpsys SurfaceFlinger > out/remediation/diagnostic/final-surfaceflinger.txt
+            exit "$result"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: 'native-p0-frame-stall-api${{ matrix.api }}-diagnostic'
+          path: out/remediation/
+          if-no-files-found: error
+          retention-days: 14

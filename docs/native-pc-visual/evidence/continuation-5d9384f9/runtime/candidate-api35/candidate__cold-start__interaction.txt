@@ -1,0 +1,2 @@
+PASS COLD_START scoped new-game UI checks=123
+

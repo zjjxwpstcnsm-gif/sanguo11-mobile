@@ -1,0 +1,54 @@
+{
+  "id": "luoyang-r09",
+  "status": "PARTIAL",
+  "visualGate": "V2_NOT_ACCEPTED",
+  "scenario": "coalition-190",
+  "player": 5,
+  "region": {
+    "minQ": 120,
+    "maxQ": 151,
+    "minR": 68,
+    "maxR": 99,
+    "cells": 1024
+  },
+  "sites": {
+    "luoyang": 20015,
+    "hulao": 20043,
+    "mengjin": 20063
+  },
+  "profile": "central-plains-r09-v1",
+  "productionSource": "app/src/main/java/game/sanguo/mobile/LandscapeProfile.java",
+  "productionConsumer": "FilamentMapView -> Vegetation.buildWindow -> Batch",
+  "assetFamilies": [
+    "city0/1/2",
+    "gate",
+    "port",
+    "tree",
+    "tree-upland",
+    "shrub",
+    "rock-strata"
+  ],
+  "materials": [
+    "ground.filamat",
+    "water.filamat",
+    "site.filamat"
+  ],
+  "camera": {
+    "siteZooms": [
+      5,
+      14,
+      22
+    ],
+    "yaw": [
+      0,
+      90
+    ],
+    "tilt": 48,
+    "areaCenter": [
+      134,
+      84
+    ]
+  },
+  "reference": "PC-LUOYANG-USER-02-R09: approximate city/river comparison; exact PC camera/season UNKNOWN; user01 retrieval missing",
+  "scope": "Existing normal map; profile used in regular streaming, no coordinate-gated beautification. No claim of national final art."
+}

@@ -1,0 +1,140 @@
+{
+  "stage": "R01",
+  "status": "PARTIAL",
+  "source_sha": "8744cb00ff90077dddff849874602957c8cf0295",
+  "baseline_sha": "bdc685679f81796cf8c19b0dd657ffcae44b7419",
+  "main_sha": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "pr": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/67",
+  "ci_run": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35855187043",
+  "backend": "Filament 1.56.0 / OpenGL",
+  "apk": {
+    "name": "sanguo11-native-r01-8744cb00ff90.apk",
+    "sha256": "0029d9dfc27b8f93a997dff6ac5380db56b2f4de07d476022b1c23a88cd5595d",
+    "bytes": 35388738,
+    "application_id": "game.sanguo.mobile.dev",
+    "version_name": "0.84.0-native-r01",
+    "version_code": 84,
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "source_sha_found_in_dex": true,
+    "unity_library_present": false
+  },
+  "validation": {
+    "host_queue": "PASS",
+    "architecture_session_projection": "PASS",
+    "scene_geometry_material_water": "PASS",
+    "interaction_editor": "PASS",
+    "assembleDebug": "PASS",
+    "assembleDebugAndroidTest": "PASS",
+    "lintDebug": "PASS",
+    "core": "FAIL inherited, independently reproduced on base and candidate: AI uses deployment commands",
+    "installed_lifecycle": {
+      "status": "PASS",
+      "run": 35855187043,
+      "installed_checks": 1225,
+      "switch_cycles": 20,
+      "background_cycles": 20,
+      "resource_counts": {
+        "mesh_live": [
+          48,
+          48
+        ],
+        "texture_live": [
+          10,
+          10
+        ],
+        "material_live": [
+          4,
+          4
+        ],
+        "entity_live": [
+          224,
+          224
+        ],
+        "material_instance_live": [
+          88,
+          88
+        ],
+        "worker_pending": [
+          0,
+          0
+        ],
+        "worker_waiting": [
+          0,
+          0
+        ],
+        "pose_cache": [
+          29,
+          29
+        ]
+      },
+      "pss": "NOT_AVAILABLE: post-instrumentation process already exited",
+      "fatal_crash_in_collected_logcat": false
+    },
+    "arm64_physical": "NOT_RUN",
+    "pc_visual_reference": "NOT_RUN / REFERENCE_MISSING",
+    "installed_startup": {
+      "status": "PASS",
+      "run": 35855186990,
+      "fresh_checks": 285,
+      "reload_checks": 192
+    }
+  },
+  "build_command": "./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true",
+  "asset_changes": [],
+  "prior_runtime_verification": {
+    "source_sha": "162bec5b2cdcdba40c18b9a6d84e4a0dc381289f",
+    "run": 35850964329,
+    "status": "PASS",
+    "installed_checks": 1243,
+    "switch_cycles": 20,
+    "background_cycles": 20,
+    "resource_counts": {
+      "mesh_live": [
+        46,
+        48
+      ],
+      "texture_live": [
+        10,
+        10
+      ],
+      "material_live": [
+        4,
+        4
+      ],
+      "entity_live": [
+        222,
+        224
+      ],
+      "material_instance_live": [
+        88,
+        88
+      ],
+      "worker_pending": [
+        0,
+        0
+      ],
+      "worker_waiting": [
+        0,
+        0
+      ]
+    },
+    "pss": "NOT_AVAILABLE: dumpsys after instrumentation completion found no process",
+    "performance": "Emulator CPU submission has >1s tail; no mobile performance pass",
+    "startup_run": 35850964491,
+    "fresh_checks": 296,
+    "reload_checks": 175
+  },
+  "test_probe_failure": {
+    "source_sha": "04521e8b1f3328af131fd8f5b467db4eca7b2e1e",
+    "run": 35853388195,
+    "result": "FAIL: paused renderer before waiting for six pending GPU uploads",
+    "fix": "Complete readiness and PixelCopy before pausing diagnostic reads; assertions unchanged",
+    "retest": "PASS run 35855186990 on 8744cb00ff90077dddff849874602957c8cf0295"
+  }
+}

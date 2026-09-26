@@ -1,0 +1,22 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+PASS S07 interaction/editor: 32 checks
+PASS 136 custom-map production integration assertions
+PASS R13 68 checks; retained=38/42
+Picked up JAVA_TOOL_OPTIONS:  -Dfile.encoding=UTF-8
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Picked up JAVA_TOOL_OPTIONS:  -Dfile.encoding=UTF-8
+PASS 4137372 brush geometry assertions
+Picked up JAVA_TOOL_OPTIONS:  -Dfile.encoding=UTF-8
+PASS 16 durable map revision checks
+Picked up JAVA_TOOL_OPTIONS:  -Dfile.encoding=UTF-8
+PASS 136 custom-map production integration assertions
+Picked up JAVA_TOOL_OPTIONS:  -Dfile.encoding=UTF-8
+PASS 12 added-site movement/conquest/AI replay checks
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+CUSTOM OFFICERS PASS: 461 assertions; domestic, formation, battle, skill, recruitment, AI, relations, historical isolation, dynamic sites, dates, IDs and self-contained saves.
+OFFICER PACK ARCHIVE PASS: 188 checks; truncation, directory integrity, paths, CRC and bounded decoding
+SKILL MANIFEST PASS: all enabled IDs have audited production rule references
+Architecture boundary PASS: reviewed legacy consumers, pure modules, JNI location, assembly DAG and preserved meta identities

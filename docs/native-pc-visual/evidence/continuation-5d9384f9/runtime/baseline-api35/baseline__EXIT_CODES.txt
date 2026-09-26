@@ -1,0 +1,3 @@
+focused-window=0
+r12-full=0
+cold-start=1

@@ -1,0 +1,51 @@
+SOURCE=96719e971d74aa2b3f18d66a7f23832148a6dc8b; package=0.102.0-native-remediation; API29 x86_64 software renderer; physical NOT_RUN
+modal=0 coveredCallbackStopped=true frames=4
+modal=1 coveredCallbackStopped=true frames=8
+modal=2 coveredCallbackStopped=true frames=12
+PASS actual modal windows: focus loss, background/resume ordering, resource identity, full save equality
+calendar_fixture=1 authority=190年 1月 上旬 widget=190年1月上旬 uiDraws=105 lastUiDrawNanos=96374204901 activity=120353467; pixels require separate review
+audit-calendar-m1 WINDOW attached=true shown=true focus=true visibility=0 token=android.view.ViewRootImpl$W@b14679b activityDestroyed=false finishing=false hardware=true layoutRequested=false
+audit-calendar-m1 windowPixelCopy=0 completed=true drawCount=134 lastDrawNanos=126089579231 windowFrames=129 intendedVsync=120842856616 frameDuration=3917884655
+audit-calendar-m1 captured shell screencap; drawCount=138 lastDrawNanos=128965510938 windowFrames=131 intendedVsync=123426189846 frameDuration=4024762195
+audit-calendar-m1
+landscape=central-plains-r09-v1
+source=96719e971d74aa2b3f18d66a7f23832148a6dc8b profile=native device=Android SDK built for x86_64 api=35 abi=[x86_64]
+snapshot=true surface=true viewport=918x1047 session=94577859-e26f-4735-87a9-dc1e5cf94b39:1:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=410680 terrain_all_coarse=false mapVisualKey=471842112:0 environmentCpuChunks=95 environmentMode=opaque-merged-not-instanced meshGeneration=3 cpuChunks=30 pending=0 submitted=58 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 overlayDraws=231 territoryBuilds=0 territoryBuildMs=0.0 output=CONTENT_DETECTED_NOT_ART_ACCEPTANCE
+camera=99.5,99.75 span=15.0 tilt=55.0 facing=1 yaw=0.0
+pick=none
+Filament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30
+内部 918 × 1047 / UI 1080 × 1232 · chunks 12 / GPU 12 · objects 7
+帧回调间隔 283.3 ms（非 GPU/FPS 实测）
+待装载 0 · S06 战斗特效 / 部队 · 林块 32 · LOD 1 · 资产回退 0 · 特效 0/64
+场景 primitives=69 triangles=110402 buffers_bytes=6740944 pose_cache=24 entity_live=245 material_instance_live=88 mesh_live=69 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=5 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=61.612473 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=false texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=0.634612 CPU提交ms P50/P95/P99=0.70/305.86/1222.54 samples=230（非驱动DrawCall/GPU帧时）
+calendar_fixture=7 authority=190年 7月 上旬 widget=190年7月上旬 uiDraws=212 lastUiDrawNanos=158426672531 activity=120353467; pixels require separate review
+audit-calendar-m7 WINDOW attached=true shown=true focus=true visibility=0 token=android.view.ViewRootImpl$W@b14679b activityDestroyed=false finishing=false hardware=true layoutRequested=false
+audit-calendar-m7 windowPixelCopy=0 completed=true drawCount=238 lastDrawNanos=181774202917 windowFrames=229 intendedVsync=177792854338 frameDuration=2674167827
+audit-calendar-m7 captured shell screencap; drawCount=244 lastDrawNanos=186241596098 windowFrames=236 intendedVsync=183576187440 frameDuration=2662940074
+audit-calendar-m7
+landscape=central-plains-r09-v1
+source=96719e971d74aa2b3f18d66a7f23832148a6dc8b profile=native device=Android SDK built for x86_64 api=35 abi=[x86_64]
+snapshot=true surface=true viewport=918x1047 session=3f35aa6e-a0d2-427f-8e78-07120bb70557:2:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=410680 terrain_all_coarse=false mapVisualKey=471842112:0 environmentCpuChunks=95 environmentMode=opaque-merged-not-instanced meshGeneration=5 cpuChunks=30 pending=0 submitted=103 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=autumn seasonUpdates=2 artProfile=ink-landscape-r14-v1 worldMonth=7 overlayDraws=337 territoryBuilds=0 territoryBuildMs=0.0 output=CONTENT_DETECTED_NOT_ART_ACCEPTANCE
+camera=99.5,99.75 span=15.0 tilt=55.0 facing=1 yaw=0.0
+pick=none
+Filament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30
+内部 918 × 1047 / UI 1080 × 1232 · chunks 12 / GPU 12 · objects 7
+帧回调间隔 200.0 ms（非 GPU/FPS 实测）
+待装载 0 · S06 战斗特效 / 部队 · 林块 32 · LOD 1 · 资产回退 0 · 特效 0/64
+场景 primitives=69 triangles=110402 buffers_bytes=6740944 pose_cache=24 entity_live=245 material_instance_live=88 mesh_live=69 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=5 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=61.612473 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=false texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=0.634612 CPU提交ms P50/P95/P99=3.82/1141.23/1299.81 samples=240（非驱动DrawCall/GPU帧时）
+calendar_fixture=4 authority=190年 4月 上旬 widget=190年4月上旬 uiDraws=312 lastUiDrawNanos=206835325744 activity=120353467; pixels require separate review
+audit-calendar-m4 WINDOW attached=true shown=true focus=true visibility=0 token=android.view.ViewRootImpl$W@b14679b activityDestroyed=false finishing=false hardware=true layoutRequested=false
+audit-calendar-m4 windowPixelCopy=0 completed=true drawCount=338 lastDrawNanos=235090064253 windowFrames=326 intendedVsync=230792852218 frameDuration=2978148778
+audit-calendar-m4 captured shell screencap; drawCount=347 lastDrawNanos=238788053707 windowFrames=334 intendedVsync=236859518642 frameDuration=1673085198
+audit-calendar-m4
+landscape=central-plains-r09-v1
+source=96719e971d74aa2b3f18d66a7f23832148a6dc8b profile=native device=Android SDK built for x86_64 api=35 abi=[x86_64]
+snapshot=true surface=true viewport=918x1047 session=6b98b474-75f5-418e-920e-a646e885f772:3:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=410680 terrain_all_coarse=false mapVisualKey=471842112:0 environmentCpuChunks=95 environmentMode=opaque-merged-not-instanced meshGeneration=7 cpuChunks=30 pending=0 submitted=146 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=summer seasonUpdates=3 artProfile=ink-landscape-r14-v1 worldMonth=4 overlayDraws=439 territoryBuilds=0 territoryBuildMs=0.0 output=CONTENT_DETECTED_NOT_ART_ACCEPTANCE
+camera=99.5,99.75 span=15.0 tilt=55.0 facing=1 yaw=0.0
+pick=none
+Filament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30
+内部 918 × 1047 / UI 1080 × 1232 · chunks 12 / GPU 12 · objects 7
+帧回调间隔 100.0 ms（非 GPU/FPS 实测）
+待装载 0 · S06 战斗特效 / 部队 · 林块 32 · LOD 1 · 资产回退 0 · 特效 0/64
+场景 primitives=69 triangles=110402 buffers_bytes=6740944 pose_cache=24 entity_live=245 material_instance_live=88 mesh_live=69 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=5 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=61.612473 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=0.634612 CPU提交ms P50/P95/P99=6.52/1158.99/1312.71 samples=240（非驱动DrawCall/GPU帧时）
+PASS AUDIT installed checks=90 (includes readiness polls; not independent user actions)

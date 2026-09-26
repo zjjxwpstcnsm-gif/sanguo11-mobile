@@ -11,7 +11,7 @@ import com.google.android.filament.*;
 import game.sanguo.core.*;
 import java.nio.*;
 import java.util.*;
-import java.util.concurrent.*;
+
 import java.util.function.Consumer;
 
 /** All Filament calls belong to the main Looper. Only CPU mesh building uses the worker.
@@ -29,40 +29,75 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private long textureBytes;
     private String textureFormat="ETC2_SRGB8";
     private long textureUploadCpuNanos;
+    private long groundLoadCpuNanos,groundTextureBytes;
     private final Set<SceneMesh> activeTerrain=new HashSet<>(),wantedWood=new HashSet<>();
     private final SurfaceView surface;
     private final Overlay overlay;
     private final Consumer<Throwable> failure;
     private final MapView.TileListener listener;
-    private final ExecutorService worker=Executors.newSingleThreadExecutor();
-    private Future<?> meshTask;
+    private final SceneAssetQueue assetWork=new SceneAssetQueue();
+    private final SceneWorkQueue<MeshResult> meshWork=new SceneWorkQueue<>();
+    private static final class MeshResult {
+        final SceneMesh scenery; final List<SceneMesh> ground,trees;
+        final long completedNanos=System.nanoTime();
+        MeshResult(SceneMesh scenery,List<SceneMesh> ground,List<SceneMesh> trees){this.scenery=scenery;this.ground=ground;this.trees=trees;}
+    }
+    private game.sanguo.api.StateToken sceneToken;
+    void sceneIdentity(game.sanguo.api.StateToken token){
+        meshWork.owner();
+        if(sceneToken!=null&&(!sceneToken.sessionId.equals(token.sessionId)||sceneToken.generation!=token.generation)){
+            meshWork.invalidate();assetWork.invalidate();generation++;pending=0;replay=null;animatedUnit=null;clearEffects();
+            for(Proxy p:objects.values())p.destroy();objects.clear();
+            for(GpuMesh m:shapes.values())m.destroy();shapes.clear();
+            for(GpuMesh m:terrain.values())m.destroy();terrain.clear();
+            for(GpuMesh m:vegetation.values())m.destroy();vegetation.clear();
+            if(backdrop!=null){backdrop.destroy();backdrop=null;}
+            chunks=Collections.emptyList();woods=Collections.emptyList();backdropSource=null;snapshot=null;
+            criticalHit=null;criticalPortrait=null;route=null;targets=Collections.emptySet();
+        }
+        sceneToken=token;
+    }
     private int generation;
     private Engine engine; private Renderer renderer; private Scene scene;
     private com.google.android.filament.android.DisplayHelper displayHelper;
     private Skybox skybox;
     private com.google.android.filament.View view; private Camera lens; private Material material;
     private Material waterMaterial;
+    private Material overviewGroundMaterial,overviewWaterMaterial;
+    private boolean overviewTerrain;
+    private int lastMaterialBinds;
     private double waterSeconds;private long waterLastTick;
     private Material groundMaterial; private final List<Texture> groundTextures=new ArrayList<>();
     private boolean environmentShadows;
     private IndirectLight skyLight;
-    private Material siteMaterial; private Texture siteAtlas,fieldAtlas;private FieldAssets fieldAssets;private MaterialInstance vegetationMaterial;
+    private SeasonStyle season;private int seasonUpdates;
+    private Material siteMaterial,unitMaterial; private Texture siteAtlas,fieldAtlas,unitAtlas;private FieldAssets fieldAssets;private MaterialInstance vegetationMaterial;
+    private boolean assetSyncPending;private int assetUploadBudget=2;
     private int siteLod=1; private final Set<String> missingAssets=new HashSet<>();
     private boolean srgbSwapChain;
     private boolean outputProbePending,outputVerified;
     private int uniformOutputCount;
     private long lastOutputProbe;
+    private String outputStatus="WAITING_SURFACE";
+    private long surfaceFrames;
+    private long frameCallbacks,beginAttempts,beginSkipped,outputCopies,lastWorkLog,gpuPreparationFrames;
+    private int lastMeshUploads;
+    private long lastMeshUploadNanos;
     private SwapChain swap; private int cameraEntity,light;
     private boolean released,resumed=true,queued,diagnostics;
     private final long[] cpuSamples=new long[240];private int cpuCount,cpuCursor;
     private long lastFrame; private long renderedFrames; private double callbackMillis;
     private MapSceneSnapshot snapshot;
+    private SceneMesh.TerrainWindow terrainWindow;
+    // Actual accepted-mesh summary retained for existing native acceptance probes.
     private boolean distantTerrain;
+    private boolean pendingFit;
+    private MapSceneSnapshot pendingLayoutSnapshot;
     private GpuMesh backdrop;private SceneMesh backdropSource;
     private List<SceneMesh> chunks=Collections.emptyList(),woods=Collections.emptyList();
     private Set<Hex> woodExcluded=Collections.emptySet();
     private final Map<SceneMesh,GpuMesh> vegetation=new HashMap<>();
-    private int visibleWood,unitLod=1;private long animationTick;
+    private int visibleWood,unitLod=1;private long animationTick;private boolean effectsPaused;private long pausedEffectTick;
     private final Map<SceneMesh,GpuMesh> terrain=new HashMap<>();
     private final Map<String,Proxy> objects=new HashMap<>();
     private final Map<String,GpuMesh> shapes=new LinkedHashMap<>(128,.75f,true);
@@ -71,8 +106,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private MarchOrders.Plan route;
     private final GestureDetector gestures; private final ScaleGestureDetector scaler;
     private boolean multi,panelGesture;private int panelRight,panelBottom;
-    void setPanelOcclusion(int right,int bottom){panelRight=Math.max(0,right);panelBottom=Math.max(0,bottom);}
-    private float multiX=Float.NaN,multiY;
+    void setPanelOcclusion(int right,int bottom){panelRight=Math.max(0,right);panelBottom=Math.max(0,bottom);overlay.invalidate();}
+    private float multiX=Float.NaN,multiY,multiAngle;
+    private String lastPick="none";
+    private long suppressedGesture=-1;
     private Set<Hex> editorCells=Collections.emptySet();
     private boolean editorValid=true,editorDrawing,showCommanders=true,showUnitBars=true;
     private MapView.EditorStroke editorStroke;
@@ -83,11 +120,15 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void setTacticPreview(Displacement.Preview value){tacticPreview=value;overlay.invalidate();}
     void labels(boolean commanders,boolean bars){showCommanders=commanders;showUnitBars=bars;overlay.invalidate();}
 
+    private boolean navigatorShown=true,miniGesture;
+    void navigator(boolean shown){navigatorShown=shown;overlay.invalidate();}
+    private boolean commandTargeting;
+    void commandTargeting(boolean active){commandTargeting=active;}
     private boolean gridShown;
     void setGridShown(boolean shown){gridShown=shown;overlay.invalidate();}
     private boolean editorGrid,editorCoords,editorFootprints;private Set<Long> impassable=Collections.emptySet();
     private int territoryMode,previewFaction=-1;private boolean openingPreview;
-    private int[] territoryColors;private final Map<String,String> factionLabels=new HashMap<>();
+    private int[] territoryColors,territoryBorders;private final Map<String,String> factionLabels=new HashMap<>();
     private final Map<String,Integer> siteOwners=new HashMap<>();
     void editorLayers(Set<Long> blocked,boolean grid,boolean coords,boolean footprints){
         editorGrid=grid;editorCoords=coords;editorFootprints=footprints;
@@ -97,10 +138,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void mapLayers(MapLayerData data,int mode,boolean preview,int side){
         territoryMode=mode;openingPreview=preview;previewFaction=side;
         factionLabels.clear();factionLabels.putAll(data.factionLabels);
-        siteOwners.clear();siteOwners.putAll(data.siteOwners);territoryColors=data.colors();
+        siteOwners.clear();siteOwners.putAll(data.siteOwners);territoryColors=data.colors();territoryBorders=data.boundaries();overlay.miniDirty=true;overlay.invalidate();
     }
     private final CombatVisual combat=new CombatVisual();
-    private final GpuMesh[] effectMeshes=new GpuMesh[6];
+    private final GpuMesh[] effectMeshes=new GpuMesh[CombatVisual.MESH_COUNT];
     private final int[] effectEntities=new int[CombatVisual.CAPACITY],effectKinds=new int[CombatVisual.CAPACITY];
     private final boolean[] effectShown=new boolean[CombatVisual.CAPACITY];
     private final float[] effectMatrix=new float[16];
@@ -116,12 +157,12 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             @Override public boolean onScroll(MotionEvent a,MotionEvent b,float dx,float dy){if(!multi&&!scaler.isInProgress()&&!editorDrawing){camera.pan(-dx,-dy);clampCamera();}return true;}
             @Override public boolean onSingleTapConfirmed(MotionEvent e){
                 if(criticalHit!=null&&criticalSkip!=null){criticalSkip.run();return true;}
-                if(!multi&&!editorDrawing&&snapshot!=null){Hex h=targets.isEmpty()&&snapshot.reachable.isEmpty()?pickObject(e.getX(),e.getY()):null;if(h==null)h=snapshot.ground.surface.pick(camera,e.getX(),e.getY());if(snapshot.ground.valid(h)){performClick();listener.tap(h);}}return true;
+                if(!multi&&e.getDownTime()!=suppressedGesture&&!blocked(e.getX(),e.getY())&&!editorDrawing&&snapshot!=null){Hex h=pick(e.getX(),e.getY(),!commandTargeting&&editorStroke==null);if(snapshot.ground.valid(h)){performClick();if(pickedUnitId>=0)listener.unit(pickedUnitId,h);else listener.tap(h);}}return true;
             }
-            @Override public void onLongPress(MotionEvent e){if(!multi&&!editorDrawing&&snapshot!=null){Hex h=snapshot.ground.surface.pick(camera,e.getX(),e.getY());if(snapshot.ground.valid(h))listener.tap(h);}}
-            @Override public boolean onDoubleTap(MotionEvent e){camera.zoom(1.7f,e.getX(),e.getY());clampCamera();return true;}
+            @Override public void onLongPress(MotionEvent e){if(!multi&&!editorDrawing&&!blocked(e.getX(),e.getY())&&snapshot!=null){suppressedGesture=e.getDownTime();Hex h=pick(e.getX(),e.getY(),false);if(h!=null){center(h);performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);}}}
+            @Override public boolean onDoubleTap(MotionEvent e){if(!multi&&!blocked(e.getX(),e.getY()))zoomAt(1.7f,e.getX(),e.getY());return true;}
         });
-        scaler=new ScaleGestureDetector(context,new ScaleGestureDetector.SimpleOnScaleGestureListener(){@Override public boolean onScale(ScaleGestureDetector d){camera.zoom(d.getScaleFactor(),d.getFocusX(),d.getFocusY());clampCamera();return true;}});
+        scaler=new ScaleGestureDetector(context,new ScaleGestureDetector.SimpleOnScaleGestureListener(){@Override public boolean onScale(ScaleGestureDetector d){zoomAt(d.getScaleFactor(),d.getFocusX(),d.getFocusY());return true;}});
         try{
             Filament.init();engine=Engine.create(Engine.Backend.OPENGL);
             renderer=engine.createRenderer();scene=engine.createScene();view=engine.createView();
@@ -143,22 +184,28 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();material=new Material.Builder().payload(payload,bytes.length).build(engine);
             byte[] siteBytes;try(java.io.InputStream in=context.getAssets().open("3d/sites/site.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);siteBytes=out.toByteArray();}
             ByteBuffer sb=ByteBuffer.allocateDirect(siteBytes.length).order(ByteOrder.nativeOrder());sb.put(siteBytes).flip();siteMaterial=new Material.Builder().payload(sb,siteBytes.length).build(engine);
+            byte[] unitBytes;try(java.io.InputStream in=context.getAssets().open("3d/field/unit.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);unitBytes=out.toByteArray();}
+            ByteBuffer ub=ByteBuffer.allocateDirect(unitBytes.length).order(ByteOrder.nativeOrder());ub.put(unitBytes).flip();unitMaterial=new Material.Builder().payload(ub,unitBytes.length).build(engine);
             loadGroundMaterials(context);
             loadWaterMaterial(context);
+            loadOverviewMaterials(context);
             siteAtlas=loadAtlas(context,"3d/sites/atlas.png");
             fieldAssets=new FieldAssets(name->context.getAssets().open("3d/field/"+name));
             fieldAtlas=loadAtlas(context,"3d/field/atlas.png");
+            unitAtlas=loadAtlas(context,"3d/field/unit-atlas.png");
             vegetationMaterial=siteMaterial.createInstance();vegetationMaterial.setParameter("atlas",fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));vegetationMaterial.setParameter("damage",0f);
             light=EntityManager.get().create();environmentShadows=quality!=SceneQuality.LOW&&manager!=null&&manager.getDeviceConfigurationInfo().reqGlEsVersion>=0x30001;EnvironmentProfile.sun(engine,light,quality,environmentShadows);scene.addEntity(light);
             skyLight=EnvironmentProfile.sky(engine);scene.setIndirectLight(skyLight);
+            applySeason(SeasonStyle.SPRING);
             surface.getHolder().addCallback(this);
             if(android.os.Build.VERSION.SDK_INT>=29){
                 thermalManager=context.getSystemService(android.os.PowerManager.class);
                 if(thermalManager!=null){thermalListener=this::thermalChanged;thermalManager.addThermalStatusListener(context.getMainExecutor(),thermalListener);thermalChanged(thermalManager.getCurrentThermalStatus());}
             }
-        }catch(Exception|LinkageError e){release();throw e;}
+        }catch(Exception|LinkageError|OutOfMemoryError e){release();throw e;}
     }
     private void loadGroundMaterials(Context context)throws java.io.IOException {
+        long groundStarted=System.nanoTime();
         byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain/ground.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);bytes=out.toByteArray();}
         ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();
         groundMaterial=new Material.Builder().payload(payload,bytes.length).build(engine);
@@ -172,17 +219,44 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             Texture texture=new Texture.Builder().width(w).height(h).levels(levels).sampler(Texture.Sampler.SAMPLER_2D).format(normal?Texture.InternalFormat.RGBA8:Texture.InternalFormat.SRGB8_A8).build(engine);
             groundTextures.add(texture); // Own immediately, so initialization failures release partial uploads.
             com.google.android.filament.android.TextureHelper.setBitmap(engine,texture,0,bitmap);
-            texture.generateMipmaps(engine);textureBytes+=(long)w*h*4*4/3;
+            texture.generateMipmaps(engine);long mipBytes=0;for(int level=0;level<levels;level++)mipBytes+=(long)Math.max(1,w>>level)*Math.max(1,h>>level)*4;
+            textureBytes+=mipBytes;groundTextureBytes+=mipBytes;
             groundMaterial.getDefaultInstance().setParameter(layer+(normal?"Normal":"Color"),texture,sampler);
         }
         groundMaterial.getDefaultInstance().setParameter("normalStrength",quality==SceneQuality.LOW?0f:.65f);
+        groundLoadCpuNanos=System.nanoTime()-groundStarted;
     }
     private void loadWaterMaterial(Context context)throws java.io.IOException {
         byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain/water.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);bytes=out.toByteArray();}
         ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();
         waterMaterial=new Material.Builder().payload(payload,bytes.length).build(engine);
+        // Borrow the four existing sRGB albedos; ownership stays with groundTextures.
+        // No duplicate uploads, normal maps, reflection targets or transparent water pass.
+        TextureSampler bankSampler=new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.REPEAT);
+        String[] layers={"grass","soil","sand","rock"};
+        for(int i=0;i<layers.length;i++)waterMaterial.getDefaultInstance().setParameter(layers[i]+"Color",groundTextures.get(i*2),bankSampler);
         waterMaterial.getDefaultInstance().setParameter("waveTime",0f);
         waterMaterial.getDefaultInstance().setParameter("waveStrength",quality==SceneQuality.LOW?.035f:.065f);
+    }
+    /** Camera-LOD programs use the same texture owners and unchanged world geometry.
+     * No normal/PBR shader variants at national scale; detailed programs remain intact. */
+    private void loadOverviewMaterials(Context context)throws java.io.IOException {
+        overviewGroundMaterial=loadOverviewMaterial(context,"ground-overview");
+        overviewWaterMaterial=loadOverviewMaterial(context,"water-overview");
+        TextureSampler sampler=new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.REPEAT);
+        String[] layers={"grass","soil","sand","rock"};
+        for(int i=0;i<layers.length;i++){
+            Texture texture=groundTextures.get(i*2); // Borrowed, never duplicated or destroyed here.
+            overviewGroundMaterial.getDefaultInstance().setParameter(layers[i]+"Color",texture,sampler);
+            overviewWaterMaterial.getDefaultInstance().setParameter(layers[i]+"Color",texture,sampler);
+        }
+        overviewWaterMaterial.getDefaultInstance().setParameter("waveTime",0f);
+    }
+    private Material loadOverviewMaterial(Context context,String name)throws java.io.IOException {
+        byte[] bytes;
+        try(java.io.InputStream in=context.getAssets().open("3d/terrain/"+name+".filamat");java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream()){byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);bytes=out.toByteArray();}
+        ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();
+        return new Material.Builder().payload(payload,bytes.length).build(engine);
     }
     private Texture loadAtlas(Context context,String path)throws java.io.IOException {
         long started=System.nanoTime();
@@ -222,8 +296,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         int levels=1,w=bitmap.getWidth(),h=bitmap.getHeight();
         for(int size=Math.max(w,h);size>1;size>>=1)levels++;
         Texture texture=new Texture.Builder().width(w).height(h).levels(levels).sampler(Texture.Sampler.SAMPLER_2D).format(Texture.InternalFormat.SRGB8_A8).build(engine);
-        com.google.android.filament.android.TextureHelper.setBitmap(engine,texture,0,bitmap);
-        texture.generateMipmaps(engine);
+        try{com.google.android.filament.android.TextureHelper.setBitmap(engine,texture,0,bitmap);
+        texture.generateMipmaps(engine);}catch(RuntimeException|OutOfMemoryError error){engine.destroyTexture(texture);throw error;}
         // TextureHelper's native upload retains the Bitmap until consumption; do not recycle early.
         for(int level=0;level<levels;level++)textureBytes+=(long)Math.max(1,w>>level)*Math.max(1,h>>level)*4;
         textureUploadCpuNanos+=System.nanoTime()-started;return texture;
@@ -239,106 +313,260 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     @Override protected void onSizeChanged(int w,int h,int oldw,int oldh){
         super.onSizeChanged(w,h,oldw,oldh);camera.width=Math.max(1,w);camera.height=Math.max(1,h);
         resizeSurface();
+        if(pendingLayoutSnapshot!=null&&w>0&&h>0){
+            MapSceneSnapshot next=pendingLayoutSnapshot;pendingLayoutSnapshot=null;snapshot(next);
+        }else if(pendingFit)fit();
     }
     @Override public boolean onTouchEvent(MotionEvent e){
         if(!isEnabled())return true;
         int action=e.getActionMasked();
-        if(action==MotionEvent.ACTION_DOWN){multi=false;multiX=Float.NaN;panelGesture=e.getX()>=getWidth()-panelRight||e.getY()>=getHeight()-panelBottom;}
-        if(panelGesture)return true;
-        if(e.getPointerCount()>1){if(!multi&&editorDrawing&&editorStroke!=null)editorStroke.event(MotionEvent.ACTION_CANCEL,null);multi=true;}
-        if(e.getPointerCount()>1){float cx=(e.getX(0)+e.getX(1))*.5f,cy=(e.getY(0)+e.getY(1))*.5f;if(action==MotionEvent.ACTION_MOVE&&Float.isFinite(multiX)){camera.pan(cx-multiX,cy-multiY);clampCamera();}multiX=cx;multiY=cy;}else multiX=Float.NaN;
-        scaler.onTouchEvent(e);
+        overlay.layoutMini();
+        if(action==MotionEvent.ACTION_DOWN)miniGesture=!openingPreview&&navigatorShown&&overlay.miniRect.contains(e.getX(),e.getY())&&!blocked(e.getX(),e.getY());
+        if(miniGesture){
+            suppressedGesture=e.getDownTime();
+            if(e.getPointerCount()==1&&(action==MotionEvent.ACTION_DOWN||action==MotionEvent.ACTION_MOVE)&&!blocked(e.getX(),e.getY()))overlay.navigate(e.getX(),e.getY());
+            if(action==MotionEvent.ACTION_UP||action==MotionEvent.ACTION_CANCEL)miniGesture=false;
+            return true;
+        }
+        if(action==MotionEvent.ACTION_DOWN){multi=false;multiX=Float.NaN;panelGesture=blocked(e.getX(),e.getY());}
+        for(int i=0;i<e.getPointerCount();i++)if(blocked(e.getX(i),e.getY(i)))panelGesture=true;
+        if(panelGesture||action==MotionEvent.ACTION_CANCEL){
+            suppressedGesture=e.getDownTime();MotionEvent cancel=MotionEvent.obtain(e);cancel.setAction(MotionEvent.ACTION_CANCEL);
+            gestures.onTouchEvent(cancel);scaler.onTouchEvent(cancel);cancel.recycle();
+            if(editorDrawing&&editorStroke!=null)editorStroke.event(MotionEvent.ACTION_CANCEL,null);multiX=Float.NaN;return true;
+        }
+        if(e.getPointerCount()>1){if(!multi&&editorDrawing&&editorStroke!=null)editorStroke.event(MotionEvent.ACTION_CANCEL,null);multi=true;suppressedGesture=e.getDownTime();}
+        if(e.getPointerCount()>1){
+            float cx=(e.getX(0)+e.getX(1))*.5f,cy=(e.getY(0)+e.getY(1))*.5f;
+            float angle=(float)Math.toDegrees(Math.atan2(e.getY(1)-e.getY(0),e.getX(1)-e.getX(0)));
+            if(action==MotionEvent.ACTION_MOVE&&Float.isFinite(multiX)){
+                if(e.getPointerCount()==2){camera.pan(cx-multiX,cy-multiY);camera.orbit(((angle-multiAngle+540)%360)-180,0,cx,cy,pickHeight(cx,cy));}
+                else camera.orbit(0,(cy-multiY)*.12f,cx,cy,pickHeight(cx,cy));
+                clampCamera();
+            }
+            multiX=cx;multiY=cy;multiAngle=angle;
+            if(action==MotionEvent.ACTION_POINTER_UP)multiX=Float.NaN;
+        }else multiX=Float.NaN;
+        if(e.getPointerCount()<=2)scaler.onTouchEvent(e);
+        else {MotionEvent cancel=MotionEvent.obtain(e);cancel.setAction(MotionEvent.ACTION_CANCEL);scaler.onTouchEvent(cancel);cancel.recycle();}
         if(editorDrawing&&editorStroke!=null&&!multi){
             Hex h=snapshot==null?null:snapshot.ground.surface.pick(camera,e.getX(),e.getY());
             editorStroke.event(action,h);return true;
         }
         gestures.onTouchEvent(e);return true;
     }
+    private boolean blocked(float x,float y){
+        if(x<0||y<0||x>=getWidth()-panelRight||y>=getHeight()-panelBottom)return true;
+        // Global visible bounds include clipping by the host; system UI lies outside this view.
+        android.graphics.Rect visible=new android.graphics.Rect();int[] location=new int[2];
+        getLocationOnScreen(location);
+        if(!getGlobalVisibleRect(visible)||!visible.contains((int)x+location[0],(int)y+location[1]))return true;
+        android.view.WindowInsets insets=getRootWindowInsets();
+        if(insets!=null){android.view.View root=getRootView();int[] rootAt=new int[2];root.getLocationOnScreen(rootAt);
+            float rx=x+location[0]-rootAt[0],ry=y+location[1]-rootAt[1];
+            if(rx<insets.getSystemWindowInsetLeft()||ry<insets.getSystemWindowInsetTop()||rx>=root.getWidth()-insets.getSystemWindowInsetRight()||ry>=root.getHeight()-insets.getSystemWindowInsetBottom())return true;
+        }
+        return false;
+    }
+    private float pickHeight(float x,float y){float h=snapshot==null?0:snapshot.ground.surface.rayHeight(camera,x,y);return Float.isFinite(h)?h:0;}
+    private void zoomAt(float factor,float x,float y){camera.zoom(factor,x,y,pickHeight(x,y));clampCamera();}
+    Hex pick(float sx,float sy,boolean objectsAllowed){
+        pickedUnitId=-1;
+        if(snapshot==null)return null;
+        float height=snapshot.ground.surface.rayHeight(camera,sx,sy);
+        Hex ground=snapshot.ground.surface.pick(camera,sx,sy);
+        lastPick=ground==null?"MISS":"cell="+ground+" world="+camera.worldX(sx,sy,height)+","+height+","+camera.worldZ(sx,sy,height)+" surface="+(snapshot.ground.surface.water(ground)?"water":"terrain");
+        Hex object=objectsAllowed?pickObject(sx,sy):null;return object==null?ground:object;
+    }
     @Override public boolean performClick(){super.performClick();return true;}
     void snapshot(MapSceneSnapshot next){
+        meshWork.owner();if(released)return;
+        // A national fit requested before layout must precede the first CPU job.
+        // Retain only the latest immutable display snapshot until dimensions exist.
+        if(pendingFit&&(getWidth()==0||getHeight()==0)){pendingLayoutSnapshot=next;return;}
         boolean groundChanged=snapshot==null||snapshot.ground!=next.ground;snapshot=next;
+        if(pendingFit)fit();
         Set<Hex> excluded=Vegetation.exclusions(next);boolean woodsChanged=groundChanged||!excluded.equals(woodExcluded);
         if(groundChanged||woodsChanged){
-            woodExcluded=excluded;int token=++generation;if(meshTask!=null)meshTask.cancel(true);
+            outputVerified=false;outputStatus="WAITING_MESH";uniformOutputCount=0;
+            woodExcluded=excluded;generation++;
             List<SceneMesh> previous=chunks,oldWoods=woods;pending=1;
-            final SceneMesh tree,farTree,upland,farUpland;
-            try{tree=fieldAssets.mesh("tree-lod0");farTree=fieldAssets.mesh("tree-lod1");upland=fieldAssets.mesh("tree-upland-lod0");farUpland=fieldAssets.mesh("tree-upland-lod1");}catch(Exception e){failure.accept(e);return;}
-            meshTask=worker.submit(()->{try{
-                long started=android.os.SystemClock.elapsedRealtime();
-                SceneMesh scenery=SceneMesh.backdrop(next.ground);
-                List<SceneMesh> built=SceneMesh.ground(next.ground,previous);
-                android.util.Log.i("Sanguo3D","Ground CPU ready chunks="+built.size()+" ms="+(android.os.SystemClock.elapsedRealtime()-started));
-                List<SceneMesh> trees=Vegetation.build(next.ground,excluded,oldWoods,tree,farTree,upland,farUpland);
-                android.util.Log.i("Sanguo3D","Field CPU ready forestChunks="+trees.size()+" totalMs="+(android.os.SystemClock.elapsedRealtime()-started));
-                post(()->{if(released||token!=generation)return;
-                    if(backdrop!=null){backdrop.destroy();backdrop=null;}backdropSource=scenery;
-                    for(SceneMesh old:new ArrayList<>(terrain.keySet()))if(!built.contains(old)&&built.stream().noneMatch(m->m.distant==old)){terrain.remove(old).destroy();}
-                    for(SceneMesh old:new ArrayList<>(vegetation.keySet()))if(!trees.contains(old)&&trees.stream().noneMatch(m->m.distant==old)){vegetation.remove(old).destroy();}
-                    chunks=built;woods=trees;pending=0;clampCamera();schedule();});
-                }catch(RuntimeException|OutOfMemoryError e){post(()->{if(!released&&token==generation)failure.accept(e);});}
-            });
+            final FieldAssets assets=fieldAssets;final SceneMesh oldScenery=backdropSource;
+            terrainWindow=new SceneMesh.TerrainWindow(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span);
+            SceneMesh.TerrainWindow requested=terrainWindow;
+            long queuedAt=System.nanoTime();
+            meshWork.submitPhased(publish->buildMeshes(next.ground,groundChanged,oldScenery,previous,oldWoods,assets,excluded,requested,queuedAt,publish));
         }
-        syncObjects();overlay.invalidate();schedule();
+        // The owner accepts immutable state now; GPU updates wait for frame admission.
+        assetSyncPending=true;refreshPendingMeshes();overlay.invalidate();schedule();
+    }
+    private static long runtimeCounter(String key){
+        try{String value=android.os.Debug.getRuntimeStat(key);return value==null?-1:Long.parseLong(value);}catch(RuntimeException e){return -1;}
+    }
+    private static MeshResult buildMeshes(MapSceneSnapshot.Ground ground,boolean changed,SceneMesh scenery,
+            List<SceneMesh> previous,List<SceneMesh> trees,FieldAssets assets,Set<Hex> excluded,
+            SceneMesh.TerrainWindow window,long queuedAt,Consumer<MeshResult> publish)throws Exception {
+        long started=System.nanoTime(),cpu=android.os.Debug.threadCpuTimeNanos();
+        long gc=runtimeCounter("art.gc.gc-time"),allocated=runtimeCounter("art.gc.bytes-allocated");
+        if(changed)scenery=SceneMesh.backdrop(ground);
+        long backgroundDone=System.nanoTime(),backgroundCpu=android.os.Debug.threadCpuTimeNanos();
+        SceneMesh.BuildStats stats=new SceneMesh.BuildStats();
+        final SceneMesh readyScenery=scenery;
+        // Only the first empty load can expose a growing list. LOD replacements
+        // still arrive as a complete covering set, preserving old GPU coverage.
+        if(previous.isEmpty())stats.firstLoadBatch=partial->publish.accept(new MeshResult(readyScenery,partial,null));
+        stats.progress=()->android.util.Log.i("Sanguo3D","Ground progress builtChunks="+stats.builtChunks+" elapsedWallMs="+(System.nanoTime()-started)/1e6+" threadCpuMs="+(android.os.Debug.threadCpuTimeNanos()-cpu)/1e6+" "+stats);
+        List<SceneMesh> built=SceneMesh.ground(ground,previous,window,stats);
+        long groundDone=System.nanoTime(),groundCpu=android.os.Debug.threadCpuTimeNanos();
+        android.util.Log.i("Sanguo3D","Ground CPU ready chunks="+built.size()+" ms="+(groundDone-started)/1e6
+            +" queueWaitWallMs="+(started-queuedAt)/1e6+" backdropWallMs="+(backgroundDone-started)/1e6
+            +" backdropCpuMs="+(backgroundCpu-cpu)/1e6+" groundWallMs="+(groundDone-backgroundDone)/1e6
+            +" groundCpuMs="+(groundCpu-backgroundCpu)/1e6+" "+stats);
+        if(Thread.currentThread().isInterrupted())throw new InterruptedException("Ground superseded");
+        // Existing worker/mailbox, same epoch: forest construction cannot hold
+        // completed ground CPU meshes hostage. NULL trees means unchanged trees.
+        publish.accept(new MeshResult(scenery,built,null));
+        long forestStarted=System.nanoTime(),forestCpu=android.os.Debug.threadCpuTimeNanos();
+        List<SceneMesh> forest=Vegetation.buildWindow(ground,excluded,trees,assets,window);
+        long done=System.nanoTime(),endGc=runtimeCounter("art.gc.gc-time"),endAllocated=runtimeCounter("art.gc.bytes-allocated");
+        android.util.Log.i("Sanguo3D","Field CPU ready forestChunks="+forest.size()+" totalMs="+(done-started)/1e6
+            +" sceneryWallMs="+(done-forestStarted)/1e6+" sceneryCpuMs="+(android.os.Debug.threadCpuTimeNanos()-forestCpu)/1e6+" groundDeliveryBackpressureWallMs="+(forestStarted-groundDone)/1e6
+            +" processGcMs="+(gc<0||endGc<0?-1:endGc-gc)+" processAllocatedBytes="+(allocated<0||endAllocated<0?-1:endAllocated-allocated)
+            +" interrupted="+Thread.currentThread().isInterrupted());
+        return new MeshResult(scenery,built,forest);
+    }
+    private void applySeason(SeasonStyle next){
+        if(season==next)return;
+        season=next;seasonUpdates++;
+        EnvironmentProfile.apply(engine,light,skyLight,next);
+        EnvironmentProfile.pigment(groundMaterial.getDefaultInstance(),next,true);
+        EnvironmentProfile.pigment(waterMaterial.getDefaultInstance(),next,true);
+        waterMaterial.getDefaultInstance().setParameter("waterTint",next.waterR,next.waterG,next.waterB);
+        EnvironmentProfile.pigment(overviewGroundMaterial.getDefaultInstance(),next,true);
+        EnvironmentProfile.pigment(overviewWaterMaterial.getDefaultInstance(),next,true);
+        overviewWaterMaterial.getDefaultInstance().setParameter("waterTint",next.waterR,next.waterG,next.waterB);
+        EnvironmentProfile.pigment(vegetationMaterial,next,true);
+        for(Proxy p:objects.values())p.updateSeason();
+    }
+    private void acceptMeshes(MeshResult result){
+        if(released)return;
+        android.util.Log.i("Sanguo3D","Mesh owner delivery waitWallMs="+(System.nanoTime()-result.completedNanos)/1e6+" generation="+generation+" cpuChunks="+result.ground.size()+" phase="+(result.trees==null?"GROUND":"COMPLETE")+" discarded="+meshWork.discarded()+" delivered="+meshWork.delivered()+" backpressureWallMs="+meshWork.backpressureNanos()/1e6);
+        // CPU mailbox delivery must not bypass renderer backpressure.
+        // Keep the old backdrop alive until an admitted frame uploads its replacement.
+        backdropSource=result.scenery;
+        // Keep a displayed old level until its replacement finishes the bounded upload.
+        // Environment meshes transfer in loadVisible only after replacement upload.
+        chunks=result.ground;distantTerrain=!chunks.isEmpty()&&chunks.stream().allMatch(m->m.terrainLod==2);
+        if(result.trees!=null)woods=result.trees;clampCamera();refreshPendingMeshes();
     }
     void setTargets(Set<Hex> value){targets=value==null?Collections.emptySet():new HashSet<>(value);overlay.invalidate();}
     void setRoute(MarchOrders.Plan value){route=value;overlay.invalidate();}
+    void pauseEffects(boolean value){if(value&&!effectsPaused)pausedEffectTick=animationTick;effectsPaused=value;}
     void replay(TurnJournal.Event e,float fraction){
-        replay=e;replayFraction=CombatVisual.fraction(fraction);if(e==null)clearEffects();animateReplay();overlay.invalidate();schedule();
+        replay=e;replayFraction=CombatVisual.fraction(fraction);if(e==null)clearEffects();overlay.invalidate();schedule();
     }
     boolean visible(TurnJournal.Event e){if(visible(e.start)||visible(e.target))return true;for(Hex h:e.path)if(visible(h))return true;for(TurnJournal.Impact i:e.impacts)if(visible(i.hex))return true;return false;}
-    private boolean visible(Hex h){if(h==null||snapshot==null)return false;GridWorldTransform g=snapshot.ground.grid;return Math.abs(camera.screenX(g.x(h))-camera.width/2f)<camera.width*.6&&Math.abs(camera.screenY(g.z(h),snapshot.ground.surface.at(h))-camera.height/2f)<camera.height*.6;}
+    private boolean visible(Hex h){if(h==null||snapshot==null)return false;GridWorldTransform g=snapshot.ground.grid;return Math.abs(camera.screenX(g.x(h),g.z(h))-camera.width/2f)<camera.width*.6&&Math.abs(camera.screenY(g.x(h),g.z(h),snapshot.ground.surface.at(h))-camera.height/2f)<camera.height*.6;}
     void diagnostics(boolean value){diagnostics=value;overlay.invalidate();}
-    String report(){return "Filament 1.56.0 / OpenGL ES · "+quality.label+" color="+(srgbSwapChain?"sRGB framebuffer":"post-process gamma")+" MSAA="+(msaaEnabled?"4x":"off / compatibility")+" thermal="+thermalStatus+" cap="+thermal.fps(quality)+"\n内部 "+bufferWidth+" × "+bufferHeight+" / UI "+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S06 战斗特效 / 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+" · 特效 "+combat.count+"/"+CombatVisual.CAPACITY+"\n"+resourceReport();}
+    String startupReport(){return "source="+BuildConfig.SOURCE_REVISION+" profile="+(BuildConfig.UNITY_ENABLED?"unity-opt-in":"native")
+        +" device="+android.os.Build.MODEL+" api="+android.os.Build.VERSION.SDK_INT+" abi="+java.util.Arrays.toString(android.os.Build.SUPPORTED_ABIS)
+        +"\nsnapshot="+(snapshot!=null)+" surface="+(swap!=null)+" viewport="+bufferWidth+"x"+bufferHeight
+        +" session="+(sceneToken==null?"editor":sceneToken.sessionId+":"+sceneToken.generation+":"+sceneToken.revision)+" assetRevision=1.56.0/R06"
+        +" asset_pending="+assetWork.pending()+" asset_cpu_bytes="+assetWork.bytes()+" terrain_all_coarse="+distantTerrain+" mapVisualKey="+(snapshot==null?"none":snapshot.ground.mapSeed+":"+snapshot.ground.surface.overrides.hashCode())
+        +" environmentCpuChunks="+woods.size()+" environmentMode=opaque-merged-not-instanced meshGeneration="+generation+" cpuChunks="+chunks.size()+" pending="+pending+" submitted="+surfaceFrames
+        +" terrainMaterialLod="+(overviewTerrain?"OVERVIEW":"DETAIL")+" lastAdmittedMaterialBinds="+lastMaterialBinds+" shadows="+environmentShadows+" shadowFar=380 hazeOpaqueCap=0.08"
+        +" season="+(season==null?"none":season.name)+" seasonUpdates="+seasonUpdates+" artProfile="+SeasonStyle.ID+" worldMonth="+(snapshot==null?0:snapshot.month)
+        +" overlayDraws="+overlay.draws+" territoryBuilds="+overlay.territoryBuilds+" territoryBuildMs="+overlay.territoryBuildNanos/1e6
+        +" meshUploads="+lastMeshUploads+" meshUploadCpuMs="+lastMeshUploadNanos/1e6+" meshUploadMax=8 meshUploadBudgetMs=4"
+        +" workerDeliveries="+meshWork.delivered()+" workerBackpressureWallMs="+meshWork.backpressureNanos()/1e6
+        +" frameCallbacks="+frameCallbacks+" beginAttempts="+beginAttempts+" beginSkipped="+beginSkipped+" gpuPreparationFrames="+gpuPreparationFrames+" lifetimeSubmissions="+renderedFrames+" surfaceCopies="+outputCopies
+        +" output="+outputStatus+"\ncamera="+camera.x+","+camera.z+" span="+camera.span+" tilt="+camera.tilt+" facing="+camera.facing+" yaw="+camera.yaw+"\npick="+lastPick;}
+    String report(){return WindowSurfaceRecovery.report(this)+" | landscape="+LandscapeProfile.ID+"\n"+startupReport()+"\nFilament 1.56.0 / OpenGL ES · "+quality.label+" color="+(srgbSwapChain?"sRGB framebuffer":"post-process gamma")+" MSAA="+(msaaEnabled?"4x":"off / compatibility")+" thermal="+thermalStatus+" cap="+thermal.fps(quality)+"\n内部 "+bufferWidth+" × "+bufferHeight+" / UI "+camera.width+" × "+camera.height+" · chunks "+visibleChunks+" / GPU "+terrain.size()+" · objects "+visibleObjects+"\n帧回调间隔 "+String.format(java.util.Locale.ROOT,"%.1f",callbackMillis)+" ms（非 GPU/FPS 实测）\n待装载 "+pending+" · S06 战斗特效 / 部队 · 林块 "+visibleWood+" · LOD "+siteLod+" · 资产回退 "+missingAssets.size()+" · 特效 "+combat.count+"/"+CombatVisual.CAPACITY+"\n"+resourceReport();}
     void resetMetrics(){cpuCount=cpuCursor=0;}
     private String resourceReport(){
         int primitives=0,triangles=0;long bufferBytes=0;
         Set<GpuMesh> resident=new HashSet<>(shapes.values());resident.addAll(terrain.values());if(backdrop!=null)resident.add(backdrop);resident.addAll(vegetation.values());for(GpuMesh effect:effectMeshes)if(effect!=null)resident.add(effect);
         for(GpuMesh m:resident){bufferBytes+=(long)m.source.vertices.length*4+(long)m.source.indices.length*4+(m.source.uv==null?0:(long)m.source.uv.length*4)+(m.source.surfaceData==null?0:(long)m.source.surfaceData.length*4)+(m.source.tangents==null?0:(long)m.source.tangents.length*4);if(m.shown){primitives+=m.source.landIndexCount>0&&m.source.landIndexCount<m.source.indices.length?2:1;triangles+=m.source.indices.length/3;}}
-        for(Proxy p:objects.values())if(p.shown){primitives++;triangles+=p.shape.source.indices.length/3;for(GpuMesh m:new GpuMesh[]{p.flagShape,p.baseShape,p.stateShape})if(m!=null){primitives++;triangles+=m.source.indices.length/3;}}
+        for(Proxy p:objects.values())if(p.shown){primitives++;triangles+=p.shape.source.indices.length/3*p.memberCount;for(GpuMesh m:new GpuMesh[]{p.flagShape,p.baseShape,p.stateShape})if(m!=null){primitives++;triangles+=m.source.indices.length/3;}}
         for(int i=0;i<effectEntities.length;i++)if(effectShown[i]){primitives++;triangles+=effectMeshes[effectKinds[i]].source.indices.length/3;}
+        int entities=resident.size()+(cameraEntity==0?0:1)+(light==0?0:1),instances=vegetationMaterial==null?0:1;
+        for(Proxy p:objects.values()){entities+=1+(p.flag==0?0:1)+(p.base==0?0:1)+(p.state==0?0:1);if(p.instance!=null)instances++;}
+        for(int entity:effectEntities)if(entity!=0)entities++;
         long[] times=Arrays.copyOf(cpuSamples,cpuCount);Arrays.sort(times);
         return "场景 primitives="+primitives+" triangles="+triangles+" buffers_bytes="+bufferBytes+" pose_cache="+shapes.size()+
-            " texture_estimate_bytes="+textureBytes+" "+textureFormat+" mip_upload_cpu_ms="+textureUploadCpuNanos/1e6+" CPU提交ms P50/P95/P99="+percentile(times,.50)+"/"+percentile(times,.95)+"/"+percentile(times,.99)+" samples="+cpuCount+"（非驱动DrawCall/GPU帧时）";
+            " entity_live="+entities+" material_instance_live="+instances+" mesh_live="+resident.size()+" texture_live="+(groundTextures.size()+(siteAtlas==null?0:1)+(fieldAtlas==null?0:1)+(unitAtlas==null?0:1))+
+            " unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod="+unitLod+" material_live="+((unitMaterial==null?0:1)+(material==null?0:1)+(groundMaterial==null?0:1)+(waterMaterial==null?0:1)+(siteMaterial==null?0:1)+(overviewGroundMaterial==null?0:1)+(overviewWaterMaterial==null?0:1))+
+            " worker_pending="+meshWork.pending()+" worker_waiting="+meshWork.waiting()+" discarded="+meshWork.discarded()+
+            " ground_load_cpu_ms="+groundLoadCpuNanos/1e6+" ground_texture_estimate_bytes="+groundTextureBytes+" ground_uploads="+groundTextures.size()+" ground_fragment_samples="+(overviewTerrain?8:quality==SceneQuality.LOW?8:12)+
+            " frame_queued="+queued+" texture_estimate_bytes="+textureBytes+" "+textureFormat+" mip_upload_cpu_ms="+textureUploadCpuNanos/1e6+" CPU提交ms P50/P95/P99="+percentile(times,.50)+"/"+percentile(times,.95)+"/"+percentile(times,.99)+" samples="+cpuCount+"（非驱动DrawCall/GPU帧时）";
     }
     private static String percentile(long[] times,double p){return times.length==0?"N/A":String.format(java.util.Locale.ROOT,"%.2f",times[Math.min(times.length-1,(int)Math.ceil(times.length*p)-1)]/1e6);}
-    void resume(boolean value){resumed=value;if(value)schedule();else {clearEffects();cancelFrame();}}
+    @Override protected void onDetachedFromWindow(){release();super.onDetachedFromWindow();}
+    void resume(boolean value){meshWork.owner();resumed=value;if(value)schedule();else {clearEffects();cancelFrame();}}
     private void cancelFrame(){Choreographer.getInstance().removeFrameCallback(this);queued=false;lastFrame=0;waterLastTick=0;pacer.reset();}
     private void schedule(){if(!released&&resumed&&swap!=null&&!queued){queued=true;Choreographer.getInstance().postFrameCallback(this);}}
-    @Override public void surfaceCreated(SurfaceHolder holder){if(released)return;try{outputVerified=false;uniformOutputCount=0;lastOutputProbe=0;swap=engine.createSwapChain(holder.getSurface(),srgbSwapChain?SwapChainFlags.CONFIG_SRGB_COLORSPACE:SwapChainFlags.CONFIG_DEFAULT);displayHelper.attach(renderer,surface.getDisplay());schedule();}catch(RuntimeException|LinkageError e){failure.accept(e);}}
+    @Override public void surfaceCreated(SurfaceHolder holder){if(released||swap!=null)return;try{outputVerified=false;outputStatus="WAITING_FRAME";surfaceFrames=0;uniformOutputCount=0;lastOutputProbe=0;swap=engine.createSwapChain(holder.getSurface(),srgbSwapChain?SwapChainFlags.CONFIG_SRGB_COLORSPACE:SwapChainFlags.CONFIG_DEFAULT);displayHelper.attach(renderer,surface.getDisplay());schedule();}catch(RuntimeException|LinkageError e){failure.accept(e);}}
     @Override public void surfaceChanged(SurfaceHolder h,int f,int w,int height){if(released)return;bufferWidth=w;bufferHeight=height;view.setViewport(new Viewport(0,0,w,height));com.google.android.filament.android.FilamentHelper.synchronizePendingFrames(engine);schedule();}
     @Override public void surfaceDestroyed(SurfaceHolder holder){cancelFrame();if(displayHelper!=null)displayHelper.detach();if(engine!=null&&swap!=null){engine.destroySwapChain(swap);swap=null;engine.flushAndWait();}}
     @Override public void doFrame(long time){
-        queued=false;if(released||!resumed||swap==null)return;
+        frameCallbacks++;queued=false;if(released||!resumed||swap==null)return;
         if(!pacer.due(time,thermal.fps(quality))){schedule();return;}
         long cpuStart=System.nanoTime();
+        lastMeshUploads=0;lastMeshUploadNanos=0;
         try{
+            // Bounded CPU delivery is independent of GPU admission. A rejected frame
+            // must not strand the producer on its one-slot result mailbox.
+            meshWork.drain(this::acceptMeshes,e->{pending=0;failure.accept(e);});
+            if(released)return;
+            if(assetWork.drain())assetSyncPending=true;
+            refreshPendingMeshes();
             if(lastFrame!=0)callbackMillis=(time-lastFrame)/1e6;lastFrame=time;
-            double aspect=camera.width/(double)camera.height;
-            lens.setProjection(Camera.Projection.ORTHO,-camera.span*aspect,camera.span*aspect,-camera.span,camera.span,.1,1000);
-            lens.lookAt(camera.x,300*camera.sin(),camera.z+camera.facing*300*camera.cos(),camera.x,0,camera.z,0,1,0);
-            if(waterLastTick!=0&&UiMotion.enabled())waterSeconds+=Math.min(.1,(time-waterLastTick)/1e9);
-            waterLastTick=time;waterMaterial.getDefaultInstance().setParameter("waveTime",(float)(waterSeconds%4096));
-            animationTick=time/1_000_000;animateReplay();loadVisible();animateUnits();animateEffects();
-            if(renderer.beginFrame(swap,time)){renderer.render(view);renderer.endFrame();renderedFrames++;checkSurfaceOutput();}
-            overlay.invalidate();schedule();
+            boolean begun=false;
+            if(bufferWidth>0&&bufferHeight>0){beginAttempts++;begun=renderer.beginFrame(swap,time);if(!begun)beginSkipped++;}
+            if(begun){
+                try{
+                    // Filament's beginFrame(false) is backpressure, not permission
+                    // to enqueue uploads/transforms and only skip render().
+                    gpuPreparationFrames++;assetUploadBudget=2;
+                    if(snapshot!=null)applySeason(SeasonStyle.forMonth(snapshot.month));
+                    selectObjectLods();
+                    if(assetSyncPending)syncObjects();
+                    double aspect=camera.width/(double)camera.height;
+                    lens.setProjection(Camera.Projection.ORTHO,-camera.span*aspect,camera.span*aspect,-camera.span,camera.span,.1,1000);
+                    lens.lookAt(camera.x+camera.backX()*300*camera.cos(),300*camera.sin(),camera.z+camera.rightX()*300*camera.cos(),camera.x,0,camera.z,0,1,0);
+                    if(waterLastTick!=0&&UiMotion.enabled())waterSeconds+=Math.min(.1,(time-waterLastTick)/1e9);
+                    waterLastTick=time;waterMaterial.getDefaultInstance().setParameter("waveTime",(float)(waterSeconds%4096));
+                    animationTick=time/1_000_000;animateReplay();loadVisible();animateUnits();animateEffects();
+                    renderer.render(view);
+                }finally{renderer.endFrame();}
+                renderedFrames++;surfaceFrames++;
+                if(surfaceFrames==1)android.util.Log.i("Sanguo3D","First submission (not visibility proof): "+startupReport());
+                checkSurfaceOutput();
+            }
+            long now=android.os.SystemClock.uptimeMillis();
+            if(!outputVerified&&now-lastWorkLog>=1000){lastWorkLog=now;android.util.Log.i("Sanguo3D","Load progress "+startupReport());}
+            // HWUI labels/progress and the next opportunity remain live even when
+            // the separate Filament Surface cannot accept another frame.
+            overlay.invalidate();WindowSurfaceRecovery.changed(this);schedule();
             cpuSamples[cpuCursor++%cpuSamples.length]=System.nanoTime()-cpuStart;cpuCount=Math.min(cpuSamples.length,cpuCount+1);
-        }catch(RuntimeException|LinkageError e){cancelFrame();failure.accept(e);}
+        }catch(RuntimeException|LinkageError|OutOfMemoryError e){cancelFrame();failure.accept(e);}
     }
     /** Check actual display output once uploads settle. Driver failures can return no Java error.
      * Only repeated, virtually identical extreme pixels trigger the existing safe 2D fallback. */
     private void checkSurfaceOutput(){
         long now=android.os.SystemClock.uptimeMillis();
-        if(outputVerified||outputProbePending||renderedFrames<20||pending!=0||visibleChunks==0
+        if(outputVerified||outputProbePending||surfaceFrames<20||pending!=0||visibleChunks==0
                 ||now-lastOutputProbe<1000||!surface.getHolder().getSurface().isValid())return;
         lastOutputProbe=now;outputProbePending=true;
-        SwapChain probedSwap=swap;
+        SwapChain probedSwap=swap;int probedGeneration=generation;
         android.graphics.Bitmap sample=android.graphics.Bitmap.createBitmap(32,32,android.graphics.Bitmap.Config.ARGB_8888);
         try{
             PixelCopy.request(surface,sample,result->{
                 outputProbePending=false;
                 try{
-                    if(released||!resumed||swap!=probedSwap||pending!=0)return;
-                    if(result!=PixelCopy.SUCCESS){uniformOutputCount=0;return;}
+                    if(released||!resumed||swap!=probedSwap||generation!=probedGeneration||pending!=0)return;
+                    if(result!=PixelCopy.SUCCESS){outputStatus="COPY_ERROR_"+result;uniformOutputCount=0;return;}
+                    outputCopies++;
                     int[] pixels=new int[1024];sample.getPixels(pixels,0,32,0,0,32,32);
                     int minR=255,minG=255,minB=255,maxR=0,maxG=0,maxB=0;
                     for(int pixel:pixels){int r=(pixel>>16)&255,g=(pixel>>8)&255,b=pixel&255;
@@ -346,61 +574,148 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                         maxR=Math.max(maxR,r);maxG=Math.max(maxG,g);maxB=Math.max(maxB,b);}
                     boolean extreme=maxR+maxG+maxB<=24||minR+minG+minB>=735;
                     boolean uniform=maxR-minR<=2&&maxG-minG<=2&&maxB-minB<=2;
-                    if(uniform&&extreme){
-                        if(++uniformOutputCount>=3)failure.accept(new IllegalStateException("Repeated blank 3D Surface output"));
-                    }else{uniformOutputCount=0;outputVerified=true;}
+                    if(uniform){
+                        outputStatus="UNIFORM_SURFACE";
+                        if(++uniformOutputCount==3)android.util.Log.w("Sanguo3D","Uniform output; visibility NOT verified: "+startupReport());
+                        if(extreme&&uniformOutputCount>=3)failure.accept(new IllegalStateException("Repeated blank 3D Surface output"));
+                    }else{uniformOutputCount=0;outputVerified=true;outputStatus="CONTENT_DETECTED_NOT_ART_ACCEPTANCE";android.util.Log.i("Sanguo3D",startupReport());}
                 }finally{sample.recycle();}
             },new android.os.Handler(android.os.Looper.getMainLooper()));
-        }catch(IllegalArgumentException e){outputProbePending=false;uniformOutputCount=0;sample.recycle();}
+        }catch(IllegalArgumentException e){outputProbePending=false;outputStatus="COPY_UNAVAILABLE";uniformOutputCount=0;sample.recycle();}
     }
-    private boolean inView(float x,float z,float radius){return Math.abs(x-camera.x)<camera.span*camera.width/camera.height+radius+2&&Math.abs(z-camera.z)<camera.span/camera.sin()+radius+2;}
+    private boolean inView(float x,float z,float radius){return Math.abs(x-camera.x)<camera.extentX()+radius+2&&Math.abs(z-camera.z)<camera.extentZ()+radius+2;}
+    /** Count real visible CPU results not resident on the GPU, even when frame
+     * admission is rejected. No GPU writes, synthetic READY or ignored mailbox. */
+    private void refreshPendingMeshes(){
+        int remaining=meshWork.pending();
+        if(snapshot!=null){
+            boolean wanted=TerrainMaterialLod.select(overviewTerrain,camera.span);
+            if(backdropSource!=null&&(backdrop==null||backdrop.source!=backdropSource||backdrop.overview!=wanted))remaining++;
+            for(SceneMesh chunk:chunks)if(inView(chunk.x,chunk.z,chunk.radius)){
+                GpuMesh gpu=terrain.get(chunk);if(gpu==null||gpu.overview!=wanted)remaining++;
+            }
+            for(SceneMesh source:woods){
+                SceneMesh chunk=quality!=SceneQuality.LOW&&camera.span<14?source:source.distant;
+                if(chunk.indices.length>0&&inView(chunk.x,chunk.z,chunk.radius)&&!vegetation.containsKey(chunk))remaining++;
+            }
+        }
+        pending=remaining;
+    }
+    /** Resolve the camera LOD before the first asset request, including after a
+     * view/quality change. Otherwise national previews decode the default middle
+     * LOD first and immediately enqueue its replacement on the same owner frame. */
+    private void selectObjectLods(){
+        int nextSite=Math.max(quality.minSiteLod,SiteVisual.lod(camera.span,siteLod));
+        int nextUnit=UnitLod.select(unitLod,camera.span,quality.minUnitLod);
+        if(nextSite!=siteLod||nextUnit!=unitLod){
+            siteLod=nextSite;unitLod=nextUnit;assetSyncPending=true;
+        }
+    }
     private void loadVisible(){
         if(snapshot==null)return;
-        if(backdrop==null&&backdropSource!=null){backdrop=new GpuMesh(backdropSource);backdrop.show(true);}
+        overviewTerrain=TerrainMaterialLod.select(overviewTerrain,camera.span);
+        overviewWaterMaterial.getDefaultInstance().setParameter("waveTime",(float)(waterSeconds%4096));
+        lastMaterialBinds=0;
+        // One shared bound for new GPU meshes and material switches. A single driver
+        // operation is non-preemptible; no meshes/textures are recreated on an LOD switch.
+        int budget=8;long uploadNanos=0;int uploads=0;
+        if(backdrop!=null&&backdrop.source==backdropSource&&backdrop.overview!=overviewTerrain){
+            long started=System.nanoTime();backdrop.bindTerrainMaterial();uploadNanos+=System.nanoTime()-started;budget--;lastMaterialBinds++;
+        }
+        if(backdropSource!=null&&(backdrop==null||backdrop.source!=backdropSource)){
+            GpuMesh replacement=new GpuMesh(backdropSource);replacement.show(true);
+            GpuMesh old=backdrop;backdrop=replacement;if(old!=null)old.destroy();
+        }
         engine.getLightManager().setShadowCaster(engine.getLightManager().getInstance(light),environmentShadows&&!thermal.constrained&&camera.span<22);
-        int nextLod=Math.max(quality.minSiteLod,SiteVisual.lod(camera.span,siteLod));if(nextLod!=siteLod){siteLod=nextLod;syncObjects();}int budget=2;visibleChunks=0;pending=meshTask!=null&&!meshTask.isDone()?1:0;
-        if(camera.span>48)distantTerrain=true;else if(camera.span<40)distantTerrain=false;
-        Set<SceneMesh> active=activeTerrain;active.clear();for(SceneMesh m:chunks)active.add(distantTerrain&&m.distant!=null?m.distant:m);
-        for(SceneMesh m:new ArrayList<>(terrain.keySet()))if(!active.contains(m)){terrain.remove(m).destroy();}
+        visibleChunks=0;pending=meshWork.pending();
+        if(meshWork.pending()==0&&(terrainWindow==null||!terrainWindow.covers(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span))){
+            terrainWindow=new SceneMesh.TerrainWindow(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span);
+            SceneMesh.TerrainWindow requested=terrainWindow;MapSceneSnapshot.Ground ground=snapshot.ground;
+            List<SceneMesh> previous=chunks,trees=woods;SceneMesh scenery=backdropSource;
+            Set<Hex> excluded=woodExcluded;FieldAssets assets=fieldAssets;
+            long queuedAt=System.nanoTime();
+            meshWork.submitPhased(publish->buildMeshes(ground,false,scenery,previous,trees,assets,excluded,requested,queuedAt,publish));pending=meshWork.pending();
+        }
+        // Bound upload work by measured owner CPU time and count. Charge only
+        // actual uploads, so scanning existing residents cannot starve the queue.
+        // A single non-preemptible upload may exceed the time budget.
+        Set<SceneMesh> active=activeTerrain;active.clear();for(SceneMesh m:chunks)active.add(m);
+
         for(SceneMesh source:chunks){
-            SceneMesh chunk=distantTerrain&&source.distant!=null?source.distant:source;
+            SceneMesh chunk=source;
             boolean shown=inView(chunk.x,chunk.z,chunk.radius);GpuMesh gpu=terrain.get(chunk);
-            if(shown){visibleChunks++;if(gpu==null){if(budget-->0){gpu=new GpuMesh(chunk);terrain.put(chunk,gpu);}else pending++;}}
+            if(shown){visibleChunks++;
+                if(gpu==null||gpu.overview!=overviewTerrain){
+                    if(budget>0&&uploadNanos<4_000_000L){
+                        long started=System.nanoTime();
+                        if(gpu==null){gpu=new GpuMesh(chunk);terrain.put(chunk,gpu);uploads++;}
+                        else {gpu.bindTerrainMaterial();lastMaterialBinds++;}
+                        uploadNanos+=System.nanoTime()-started;budget--;
+                    }else pending++;
+                }
+            }
             if(gpu!=null){gpu.show(shown);if(!shown&&!inView(chunk.x,chunk.z,chunk.radius+20)){gpu.destroy();terrain.remove(chunk);}}
         }
-        int nextUnitLod=Math.max(quality.minUnitLod,camera.span<8?0:camera.span<22?1:2);
-        unitLod=nextUnitLod;visibleWood=0;
+        for(SceneMesh old:new ArrayList<>(terrain.keySet()))if(!active.contains(old)){
+            SceneMesh replacement=null;for(SceneMesh m:chunks)if(m.chunkQ==old.chunkQ&&m.chunkR==old.chunkR){replacement=m;break;}
+            if(replacement==null||terrain.containsKey(replacement)){terrain.remove(old).destroy();}
+            else terrain.get(old).show(inView(old.x,old.z,old.radius));
+        }
+        visibleWood=0;
         wantedWood.clear();
-        if(camera.span<38)for(SceneMesh source:woods){
+        for(SceneMesh source:woods){
             SceneMesh chunk=quality!=SceneQuality.LOW&&camera.span<14?source:source.distant;if(chunk.indices.length==0)continue;
             if(inView(chunk.x,chunk.z,chunk.radius)){wantedWood.add(chunk);visibleWood++;GpuMesh gpu=vegetation.get(chunk);
-                if(gpu==null){if(budget-->0){gpu=new GpuMesh(chunk);gpu.build(gpu.entity,vegetationMaterial);vegetation.put(chunk,gpu);}else pending++;}
+                if(gpu==null){if(budget>0&&uploadNanos<4_000_000L){long started=System.nanoTime();gpu=new GpuMesh(chunk);gpu.build(gpu.entity,vegetationMaterial);vegetation.put(chunk,gpu);uploads++;uploadNanos+=System.nanoTime()-started;budget--;}else pending++;}
                 if(gpu!=null)gpu.show(true);
             }
         }
-        for(SceneMesh old:new ArrayList<>(vegetation.keySet()))if(!wantedWood.contains(old)){vegetation.remove(old).destroy();}
+        for(SceneMesh old:new ArrayList<>(vegetation.keySet()))if(!wantedWood.contains(old)){
+            // A national batch may overlap four old close batches (and vice versa).
+            // Retain it until every visible overlapping replacement has uploaded.
+            if(!Vegetation.replacementPending(old,wantedWood,vegetation.keySet()))vegetation.remove(old).destroy();
+            else vegetation.get(old).show(inView(old.x,old.z,old.radius));
+        }
+        lastMeshUploads=uploads;lastMeshUploadNanos=uploadNanos;
         visibleObjects=0;
         for(Proxy p:objects.values()){boolean shown=inView(p.motion.x,p.motion.z,2);if(shown)visibleObjects++;if(shown!=p.shown){p.show(shown);}}
     }
     private GpuMesh shape(MapSceneSnapshot.Item item){
         String field=item.facility!=null?FieldAssets.facility(item.facility,siteLod):item.unit!=null?FieldAssets.unit(item.unit,item.unit.naval,unitLod):null;
-        String key=field!=null?field+(item.unit==null?"":":idle:0:"+FieldAssets.count(item.unit,item.unit.naval,unitLod)):item.site==null?item.kind+":"+item.color:item.site.model+":"+siteLod;
+        final MapSceneSnapshot.Ground assetGround=snapshot.ground;
+        String key=field!=null?field+(FieldAssets.farm(item)?":"+item.hex+":"+FieldAssets.farmSurfaceKey(assetGround,item.hex):"")+(item.unit==null?"":":idle:0:1"):item.site==null?item.kind+":"+item.color:item.site.model+":"+siteLod;
         GpuMesh mesh=shapes.get(key);if(mesh!=null)return mesh;
-        SceneMesh source;
-        if(field!=null){
-            try{source=item.unit==null?fieldAssets.mesh(field):fieldAssets.pose(field,"idle",0,FieldAssets.count(item.unit,item.unit.naval,unitLod));}
-            catch(Exception e){throw new IllegalStateException("Missing field asset "+field,e);}
-        }else if(item.site!=null){
-            try(java.io.InputStream in=getContext().getAssets().open("3d/sites/"+item.site.model+"-lod"+siteLod+".glb")){source=SiteGlb.read(in);}
-            catch(Exception e){missingAssets.add(key);source=SiteVisual.fallback(item.kind);android.util.Log.w("Sanguo3D","Site fallback "+key,e);}
-        }else source=SceneMesh.proxy(item.kind,item.color);
+        final FieldAssets assets=fieldAssets;final int requestedLod=unitLod;final android.content.res.AssetManager manager=getContext().getAssets();
+        SceneMesh source=assetWork.request(key,()->{
+            if(field!=null){SceneMesh model=item.unit==null?assets.mesh(field):assets.pose(field,"idle",0,1);return FieldAssets.farm(item)?FieldAssets.conformFarm(model,assetGround,item.hex):model;}
+            if(item.site!=null)try(java.io.InputStream in=manager.open("3d/sites/"+item.site.model+"-lod"+key.substring(key.lastIndexOf(':')+1)+".glb")){return SiteGlb.read(in);}
+            return SceneMesh.proxy(item.kind,item.color);
+        });
+        if(source==null){
+            String error=assetWork.error(key);if(error==null){assetSyncPending=true;return null;}
+            if(missingAssets.add(key))android.util.Log.w("Sanguo3D","Asset fallback "+key+": "+error);
+            source=SceneMesh.proxy(item.kind,0xffff00ff);
+        }
+        if(assetUploadBudget<=0){assetSyncPending=true;return null;}assetUploadBudget--;
         mesh=new GpuMesh(source);shapes.put(key,mesh);return mesh;
     }
     private void syncObjects(){
-        if(engine==null||snapshot==null)return;Set<String> alive=new HashSet<>();
+        if(engine==null||snapshot==null)return;assetSyncPending=false;Set<String> alive=new HashSet<>();
         for(MapSceneSnapshot.Item item:snapshot.items){
             alive.add(item.key);Proxy p=objects.get(item.key);GpuMesh geometry=shape(item);
+            if(geometry==null)continue;
             if(p!=null&&((item.unit==null&&p.shape!=geometry)||p.item.color!=item.color||!p.stateKey().equals(item.facility==null?"":item.facility.burning?"fire":!item.facility.complete?"scaffold":""))){p.destroy();objects.remove(item.key);p=null;}
+            if(item.facility!=null&&(!item.facility.complete||item.facility.burning)){
+                String stateKey=item.facility.burning?"fire":"scaffold";
+                if(!shapes.containsKey(stateKey)){
+                    final FieldAssets assets=fieldAssets;
+                    SceneMesh decoded=assetWork.request(stateKey,()->assets.mesh(stateKey));
+                    if(decoded==null&&assetWork.error(stateKey)==null){assetSyncPending=true;continue;}
+                    if(assetUploadBudget<=0){assetSyncPending=true;continue;}assetUploadBudget--;
+                    if(decoded==null){missingAssets.add(stateKey);decoded=SceneMesh.proxy(item.kind,0xffff00ff);}
+                    shapes.put(stateKey,new GpuMesh(decoded));
+                }
+            }
             if(p==null){p=new Proxy(item,geometry);objects.put(item.key,p);}
             p.item=item;p.motion.settle(item.hex,snapshot.ground.grid);p.position(p.motion.x,p.motion.z);p.updateDamage();
         }
@@ -412,18 +727,25 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(shapes.size()<=quality.poseCache)return;
         Set<GpuMesh> used=new HashSet<>();for(Proxy p:objects.values()){used.add(p.shape);if(p.flagShape!=null)used.add(p.flagShape);if(p.baseShape!=null)used.add(p.baseShape);if(p.stateShape!=null)used.add(p.stateShape);}
         Iterator<Map.Entry<String,GpuMesh>> it=shapes.entrySet().iterator();
-        while(it.hasNext()&&shapes.size()>quality.poseCache){GpuMesh m=it.next().getValue();if(!used.contains(m)){m.destroy();it.remove();}}
+        while(it.hasNext()&&shapes.size()>quality.poseCache){GpuMesh m=it.next().getValue();if(!used.contains(m)&&m.references==0){m.destroy();it.remove();}}
     }
     private void animateUnits(){
         if(snapshot==null)return;
         for(Proxy p:objects.values())if(p.item.unit!=null&&p.shown){
             p.animation.sample(p.item,snapshot.ground,replay,replayFraction,animationTick,unitLod);
             String model=FieldAssets.unit(p.item.unit,p.animation.naval,unitLod);
-            int count=FieldAssets.count(p.item.unit,p.animation.naval,unitLod);
-            String key=model+":"+p.animation.clip+":"+p.animation.frame+":"+count;
+            // Root/contact/labels are current even while a new shared pose is being decoded.
+            p.position(p.motion.x,p.motion.z);
+            String key=model+":"+p.animation.clip+":"+p.animation.frame+":1";
             if(!key.equals(p.poseKey)){
                 GpuMesh mesh=shapes.get(key);
-                if(mesh==null){try{mesh=new GpuMesh(fieldAssets.pose(model,p.animation.clip,p.animation.frame,count));}catch(Exception e){throw new IllegalStateException("unit pose "+key,e);}shapes.put(key,mesh);}
+                if(mesh==null){
+                    final FieldAssets assets=fieldAssets;final String clip=p.animation.clip;final int frame=p.animation.frame;
+                    SceneMesh decoded=assetWork.request(key,()->assets.pose(model,clip,frame,1));
+                    if(decoded==null){String error=assetWork.error(key);if(error!=null&&missingAssets.add(key))android.util.Log.w("Sanguo3D","Pose fallback "+key+": "+error);continue;}
+                    if(assetUploadBudget<=0)continue;assetUploadBudget--;
+                    mesh=new GpuMesh(decoded);shapes.put(key,mesh);
+                }
                 p.replace(mesh);p.poseKey=key;
             }
             p.position(p.motion.x,p.motion.z);
@@ -457,10 +779,11 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private void animateEffects(){
         if(snapshot==null)return;
+        combat.detail(quality==SceneQuality.LOW||thermal.constrained?0:quality==SceneQuality.MEDIUM?1:2);
         combat.sample(UiMotion.enabled()?replay:null,replayFraction,snapshot.ground);
         int fires=0;for(MapSceneSnapshot.FireState fire:snapshot.fires)if(visible(fire.hex)){
             if(fires++==CombatVisual.FIRE_BUDGET)break;
-            combat.fire(fire,snapshot.ground,animationTick,UiMotion.enabled());
+            combat.fire(fire,snapshot.ground,effectsPaused?pausedEffectTick:animationTick,UiMotion.enabled());
         }
         for(int i=0;i<effectEntities.length;i++){
             if(i>=combat.count){if(effectShown[i]){scene.removeEntity(effectEntities[i]);effectShown[i]=false;}continue;}
@@ -470,44 +793,50 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(effectEntities[i]==0){effectEntities[i]=EntityManager.get().create();effectKinds[i]=-1;}
             if(effectKinds[i]!=p.mesh){engine.getRenderableManager().destroy(effectEntities[i]);effectMeshes[p.mesh].build(effectEntities[i]);effectKinds[i]=p.mesh;}
             float c=(float)Math.cos(p.yaw)*p.scale,s=(float)Math.sin(p.yaw)*p.scale;
-            Arrays.fill(effectMatrix,0);effectMatrix[0]=c;effectMatrix[2]=-s;effectMatrix[5]=p.scale;effectMatrix[8]=s;effectMatrix[10]=c;effectMatrix[12]=p.x;effectMatrix[13]=p.y;effectMatrix[14]=p.z;effectMatrix[15]=1;
+            float cp=(float)Math.cos(p.pitch),sp=(float)Math.sin(p.pitch);
+            Arrays.fill(effectMatrix,0);effectMatrix[0]=c;effectMatrix[2]=-s;effectMatrix[4]=-s*sp;effectMatrix[5]=p.scale*cp;effectMatrix[6]=-c*sp;effectMatrix[8]=s*cp;effectMatrix[9]=p.scale*sp;effectMatrix[10]=c*cp;effectMatrix[12]=p.x;effectMatrix[13]=p.y;effectMatrix[14]=p.z;effectMatrix[15]=1;
             TransformManager tm=engine.getTransformManager();tm.setTransform(tm.getInstance(effectEntities[i]),effectMatrix);
             if(!effectShown[i]){scene.addEntity(effectEntities[i]);effectShown[i]=true;}
         }
     }
 
+    private int pickedUnitId=-1;
     private Hex pickObject(float sx,float sy){
+        for(Map.Entry<String,android.graphics.RectF> label:overlay.labelHits.entrySet()){
+            Proxy p=objects.get(label.getKey());if(p!=null&&p.shown&&label.getValue().contains(sx,sy)&&labelVisible(p)){lastPick="label="+p.item.key+" cell="+p.item.hex;pickedUnitId=p.item.unit==null?-1:p.item.unit.id;return p.item.hex;}
+        }
         Proxy chosen=null;float best=Float.NEGATIVE_INFINITY;float foreground=snapshot.ground.surface.rayHeight(camera,sx,sy);
         for(Proxy p:objects.values())if(p.shown){
             MapSceneSnapshot.Item item=p.item;
             float yaw=item.site!=null?item.site.yaw:item.facility!=null?item.facility.direction*(float)Math.PI/3:p.motion.yaw;
-            float scale=item.site!=null?item.site.scale:1;
-            float hit=ScenePicking.hit(camera,p.shape.source,p.motion.x,p.y,p.motion.z,yaw,scale,sx,sy);
+            float scale=item.site!=null?item.site.scale:item.unit!=null?p.animation.scale:1;
+            float hit=item.unit!=null&&p.instance!=null?p.formation.hit(camera,p.shape.source,p.motion.x,p.motion.z,yaw,scale,sx,sy):ScenePicking.hit(camera,p.shape.source,p.motion.x,p.y,p.motion.z,yaw,scale,sx,sy);
             if(!Float.isFinite(hit))continue;
             if(Float.isFinite(foreground)&&foreground>hit+.03f)continue;
             if(hit>best||(hit==best&&chosen!=null&&item.key.compareTo(chosen.item.key)<0)){best=hit;chosen=p;}
         }
+        if(chosen!=null)pickedUnitId=chosen.item.unit==null?-1:chosen.item.unit.id;
+        if(chosen!=null)lastPick="entity="+chosen.item.key+" cell="+chosen.item.hex+" height="+best+" display="+chosen.motion.x+","+chosen.motion.z;
         return chosen==null?null:chosen.item.hex;
     }
     void focus(Hex h){if(snapshot==null||h==null)return;camera.x=snapshot.ground.grid.x(h);camera.z=snapshot.ground.grid.z(h);camera.span=10;}
     void center(Hex h){if(snapshot!=null&&h!=null){camera.x=snapshot.ground.grid.x(h);camera.z=snapshot.ground.grid.z(h);}}
-    void fit(){if(snapshot==null)return;MapSceneSnapshot.Ground g=snapshot.ground;float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;for(int r=0;r<g.height;r++)for(int q=0;q<g.width;q++){Hex h=new Hex(q,r);if(g.valid(h)){float x=g.grid.x(h),z=g.grid.z(h);minX=Math.min(minX,x);minZ=Math.min(minZ,z);maxX=Math.max(maxX,x);maxZ=Math.max(maxZ,z);}}if(minX==Float.MAX_VALUE)return;camera.x=(minX+maxX)/2;camera.z=(minZ+maxZ)/2;camera.span=(float)Math.max((maxX-minX+3)*camera.height/camera.width,(maxZ-minZ+3)*camera.sin())*.52f;}
-    void resetOrientation(){camera.facing=1;camera.tilt=55;clampCamera();overlay.invalidate();}
+    void fit(){pendingFit=true;if(snapshot==null||getWidth()==0||getHeight()==0)return;pendingFit=false;MapSceneSnapshot.Ground g=snapshot.ground;float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;for(int r=0;r<g.height;r++)for(int q=0;q<g.width;q++){Hex h=new Hex(q,r);if(g.valid(h)){float x=g.grid.x(h),z=g.grid.z(h);minX=Math.min(minX,x);minZ=Math.min(minZ,z);maxX=Math.max(maxX,x);maxZ=Math.max(maxZ,z);}}if(minX==Float.MAX_VALUE)return;camera.x=(minX+maxX)/2;camera.z=(minZ+maxZ)/2;float dx=maxX-minX+3,dz=maxZ-minZ+3;camera.span=(float)Math.max((dx*Math.abs(camera.rightX())+dz*Math.abs(camera.backX()))*camera.height/camera.width,(dx*Math.abs(camera.backX())+dz*Math.abs(camera.rightX()))*camera.sin())*.52f;camera.sanitize();}
+    void resetOrientation(){camera.facing=1;camera.yaw=0;camera.tilt=55;clampCamera();overlay.invalidate();}
     void reverseOrientation(){camera.facing=-camera.facing;overlay.invalidate();}
     private void clampCamera(){
-        camera.sanitize();
-        if(snapshot==null)return;float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
-        for(SceneMesh m:chunks){minX=Math.min(minX,m.x-m.radius);maxX=Math.max(maxX,m.x+m.radius);minZ=Math.min(minZ,m.z-m.radius);maxZ=Math.max(maxZ,m.z+m.radius);}
-        if(!chunks.isEmpty()){camera.x=Math.max(minX,Math.min(maxX,camera.x));camera.z=Math.max(minZ,Math.min(maxZ,camera.z));}
+        camera.sanitize();if(snapshot!=null)camera.clampTo(snapshot.ground);
     }
-    void saveCamera(Bundle b){b.putFloat("cameraX",camera.x*TileGeometry.DX);b.putFloat("cameraY",camera.z*TileGeometry.DY);b.putFloat("sceneSpan",camera.span);b.putFloat("sceneTilt",camera.tilt);b.putInt("sceneFacing",camera.facing);}
-    void restoreCamera(Bundle b){try{camera.x=b.getFloat("cameraX")/TileGeometry.DX;camera.z=b.getFloat("cameraY")/TileGeometry.DY;camera.span=b.getFloat("sceneSpan",15);camera.tilt=b.getFloat("sceneTilt",55);camera.facing=b.getInt("sceneFacing",1)<0?-1:1;camera.sanitize();clampCamera();}catch(RuntimeException bad){camera.x=0;camera.z=0;camera.span=15;camera.tilt=55;camera.facing=1;clampCamera();}}
+    void saveCamera(Bundle b){b.putBoolean("mapNavigator",navigatorShown);b.putFloat("cameraX",camera.x*TileGeometry.DX);b.putFloat("cameraY",camera.z*TileGeometry.DY);b.putFloat("sceneSpan",camera.span);b.putFloat("sceneTilt",camera.tilt);b.putInt("sceneFacing",camera.facing);b.putFloat("sceneYaw",camera.yaw);}
+    void restoreCamera(Bundle b){pendingFit=false;navigatorShown=b.getBoolean("mapNavigator",navigatorShown);try{camera.x=b.getFloat("cameraX")/TileGeometry.DX;camera.z=b.getFloat("cameraY")/TileGeometry.DY;camera.span=b.getFloat("sceneSpan",15);camera.tilt=b.getFloat("sceneTilt",55);camera.yaw=b.getFloat("sceneYaw",0);camera.facing=b.getInt("sceneFacing",1)<0?-1:1;camera.sanitize();clampCamera();}catch(RuntimeException bad){camera.x=0;camera.z=0;camera.span=15;camera.tilt=55;camera.yaw=0;camera.facing=1;clampCamera();}}
     void release(){
-        if(released)return;released=true;replay=null;animatedUnit=null;generation++;cancelFrame();if(meshTask!=null)meshTask.cancel(true);worker.shutdownNow();meshTask=null;surface.getHolder().removeCallback(this);
+        meshWork.owner();
+        if(released)return;released=true;pendingLayoutSnapshot=null;pendingFit=false;replay=null;animatedUnit=null;generation++;cancelFrame();meshWork.close();assetWork.close();pending=0;surface.getHolder().removeCallback(this);
         // A detached View may remain referenced by the framework or an outstanding probe.
         // Release heavyweight CPU ownership immediately, rather than waiting for View GC.
         chunks=Collections.emptyList();woods=Collections.emptyList();snapshot=null;fieldAssets=null;backdropSource=null;
         activeTerrain.clear();wantedWood.clear();woodExcluded=Collections.emptySet();
+        overlay.territoryBitmap=null;overlay.territoryGround=null;overlay.cachedColors=null;overlay.cachedBorders=null;
         territoryColors=null;targets=Collections.emptySet();editorCells=Collections.emptySet();impassable=Collections.emptySet();
         if(android.os.Build.VERSION.SDK_INT>=29&&thermalManager!=null&&thermalListener!=null){thermalManager.removeThermalStatusListener(thermalListener);thermalListener=null;}
         if(engine==null)return;
@@ -519,7 +848,9 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         for(GpuMesh mesh:effectMeshes)if(mesh!=null)mesh.destroy();criticalHit=null;criticalPortrait=null;criticalSkip=null;
         if(skyLight!=null){scene.setIndirectLight(null);engine.destroyIndirectLight(skyLight);skyLight=null;}
         if(light!=0){scene.removeEntity(light);engine.destroyEntity(light);EntityManager.get().destroy(light);}
-        if(vegetationMaterial!=null)engine.destroyMaterialInstance(vegetationMaterial);if(fieldAtlas!=null)engine.destroyTexture(fieldAtlas);if(siteMaterial!=null)engine.destroyMaterial(siteMaterial);if(siteAtlas!=null)engine.destroyTexture(siteAtlas);
+        if(vegetationMaterial!=null)engine.destroyMaterialInstance(vegetationMaterial);if(unitMaterial!=null)engine.destroyMaterial(unitMaterial);if(unitAtlas!=null)engine.destroyTexture(unitAtlas);if(fieldAtlas!=null)engine.destroyTexture(fieldAtlas);if(siteMaterial!=null)engine.destroyMaterial(siteMaterial);if(siteAtlas!=null)engine.destroyTexture(siteAtlas);
+        if(overviewWaterMaterial!=null)engine.destroyMaterial(overviewWaterMaterial);
+        if(overviewGroundMaterial!=null)engine.destroyMaterial(overviewGroundMaterial);
         if(waterMaterial!=null)engine.destroyMaterial(waterMaterial);
         if(groundMaterial!=null)engine.destroyMaterial(groundMaterial);
         for(Texture texture:groundTextures)engine.destroyTexture(texture);groundTextures.clear();
@@ -527,10 +858,14 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(skybox!=null){scene.setSkybox(null);engine.destroySkybox(skybox);}
         if(view!=null)engine.destroyView(view);if(scene!=null)engine.destroyScene(scene);if(renderer!=null)engine.destroyRenderer(renderer);
         if(cameraEntity!=0){engine.destroyCameraComponent(cameraEntity);EntityManager.get().destroy(cameraEntity);}engine.flushAndWait();engine.destroy();engine=null;
+        renderer=null;scene=null;view=null;lens=null;skybox=null;displayHelper=null;
+        material=null;waterMaterial=null;groundMaterial=null;overviewGroundMaterial=null;overviewWaterMaterial=null;siteMaterial=null;unitMaterial=null;vegetationMaterial=null;
+        siteAtlas=null;fieldAtlas=null;unitAtlas=null;textureBytes=0;cameraEntity=light=0;
+        Arrays.fill(effectMeshes,null);Arrays.fill(effectEntities,0);
     }
     private final class GpuMesh {
-        final VertexBuffer vb;final IndexBuffer ib;final int entity;final SceneMesh source;boolean shown;
-        GpuMesh(SceneMesh m){source=m;
+        VertexBuffer vb;IndexBuffer ib;int entity;int references;final SceneMesh source;boolean shown,overview;
+        GpuMesh(SceneMesh m){source=m;try{
             VertexBuffer.Builder builder=new VertexBuffer.Builder().vertexCount(m.vertices.length/7).bufferCount(m.tangents!=null?3:m.surfaceData!=null?2:m.uv==null?1:2).attribute(VertexBuffer.VertexAttribute.POSITION,0,VertexBuffer.AttributeType.FLOAT3,0,28).attribute(VertexBuffer.VertexAttribute.COLOR,0,VertexBuffer.AttributeType.FLOAT4,12,28);
             if(m.surfaceData!=null)builder.attribute(VertexBuffer.VertexAttribute.UV0,1,VertexBuffer.AttributeType.FLOAT2,0,32).attribute(VertexBuffer.VertexAttribute.TANGENTS,1,VertexBuffer.AttributeType.FLOAT4,8,32).attribute(VertexBuffer.VertexAttribute.UV1,1,VertexBuffer.AttributeType.FLOAT2,24,32);
             if(m.tangents!=null)builder.attribute(VertexBuffer.VertexAttribute.TANGENTS,2,VertexBuffer.AttributeType.FLOAT4,0,16);
@@ -541,42 +876,61 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             FloatBuffer v=ByteBuffer.allocateDirect(m.vertices.length*4).order(ByteOrder.nativeOrder()).asFloatBuffer();v.put(m.vertices).flip();vb.setBufferAt(engine,0,v);
             ib=new IndexBuffer.Builder().indexCount(m.indices.length).bufferType(IndexBuffer.Builder.IndexType.UINT).build(engine);IntBuffer i=ByteBuffer.allocateDirect(m.indices.length*4).order(ByteOrder.nativeOrder()).asIntBuffer();i.put(m.indices).flip();ib.setBuffer(engine,i);
             entity=EntityManager.get().create();if(m.uv==null)build(entity);
-        }
+        }catch(RuntimeException|LinkageError|OutOfMemoryError error){destroy();throw error;}}
         void build(int target){
             if(source.surfaceData==null||source.landIndexCount<0){build(target,material.getDefaultInstance());return;}
+            overview=overviewTerrain;
             int land=source.landIndexCount,water=source.indices.length-land;
             RenderableManager.Builder b=new RenderableManager.Builder(land>0&&water>0?2:1)
                 .boundingBox(new Box(source.x,1.3f,source.z,source.radius,2.7f,source.radius)).castShadows(false).receiveShadows(environmentShadows);
             int slot=0;
-            if(land>0)b.material(slot,groundMaterial.getDefaultInstance()).geometry(slot++,RenderableManager.PrimitiveType.TRIANGLES,vb,ib,0,land);
-            if(water>0)b.material(slot,waterMaterial.getDefaultInstance()).geometry(slot,RenderableManager.PrimitiveType.TRIANGLES,vb,ib,land,water);
+            if(land>0)b.material(slot,(overview?overviewGroundMaterial:groundMaterial).getDefaultInstance()).geometry(slot++,RenderableManager.PrimitiveType.TRIANGLES,vb,ib,0,land);
+            if(water>0)b.material(slot,(overview?overviewWaterMaterial:waterMaterial).getDefaultInstance()).geometry(slot,RenderableManager.PrimitiveType.TRIANGLES,vb,ib,land,water);
             b.build(engine,target);
         }
-        void build(int target,MaterialInstance instance){new RenderableManager.Builder(1).boundingBox(new Box(source.x,1.3f,source.z,source.radius,2.7f,source.radius)).material(0,instance).geometry(0,RenderableManager.PrimitiveType.TRIANGLES,vb,ib).castShadows(environmentShadows&&source.uv!=null&&(!source.vegetation||quality==SceneQuality.HIGH)).receiveShadows(environmentShadows&&source.uv!=null).build(engine,target);}
+        void bindTerrainMaterial(){
+            // Only called by loadVisible inside an admitted owner frame.
+            RenderableManager manager=engine.getRenderableManager();int instance=manager.getInstance(entity),slot=0;
+            if(source.landIndexCount>0)manager.setMaterialInstanceAt(instance,slot++,(overviewTerrain?overviewGroundMaterial:groundMaterial).getDefaultInstance());
+            if(source.landIndexCount<source.indices.length)manager.setMaterialInstanceAt(instance,slot,(overviewTerrain?overviewWaterMaterial:waterMaterial).getDefaultInstance());
+            overview=overviewTerrain;
+        }
+        void build(int target,MaterialInstance instance){build(target,instance,1);}
+        void build(int target,MaterialInstance instance,int count){float radius=source.radius+(count>1?.55f:0);new RenderableManager.Builder(1).instances(count).boundingBox(new Box(source.x,1.3f,source.z,radius,2.7f,radius)).material(0,instance).geometry(0,RenderableManager.PrimitiveType.TRIANGLES,vb,ib).castShadows(environmentShadows&&source.uv!=null&&(!source.vegetation||quality==SceneQuality.HIGH)).receiveShadows(environmentShadows&&source.uv!=null).build(engine,target);}
         void show(boolean value){if(shown==value)return;shown=value;if(value)scene.addEntity(entity);else scene.removeEntity(entity);}
-        void destroy(){scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);engine.destroyVertexBuffer(vb);engine.destroyIndexBuffer(ib);}
+        void destroy(){if(entity!=0){scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);entity=0;}if(vb!=null){engine.destroyVertexBuffer(vb);vb=null;}if(ib!=null){engine.destroyIndexBuffer(ib);ib=null;}}
     }
     private final class Proxy {
         final int entity; GpuMesh shape; int flag,base,state; GpuMesh flagShape,baseShape,stateShape; MaterialInstance instance;
-        MapSceneSnapshot.Item item;boolean shown;final UnitMotion motion=new UnitMotion();final UnitAnimation animation=new UnitAnimation();String poseKey;float y;
-        Proxy(MapSceneSnapshot.Item item,GpuMesh shape){this.item=item;motion.settle(item.hex,snapshot.ground.grid);this.shape=shape;entity=EntityManager.get().create();
-            if(shape.source.uv!=null){instance=siteMaterial.createInstance();instance.setParameter("atlas",item.site!=null?siteAtlas:fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));instance.setParameter("damage",0f);shape.build(entity,instance);}else shape.build(entity);
-            if(item.site!=null||item.unit!=null||item.facility!=null){String key="flag:"+item.color;flagShape=shapes.get(key);if(flagShape==null){flagShape=new GpuMesh(SceneMesh.proxy(3,item.color));shapes.put(key,flagShape);}flag=EntityManager.get().create();flagShape.build(flag);}
+        MapSceneSnapshot.Item item;boolean shown;final UnitMotion motion=new UnitMotion();final UnitAnimation animation=new UnitAnimation();String poseKey;float y;final UnitFormation formation=new UnitFormation();int memberCount=1;
+        Proxy(MapSceneSnapshot.Item item,GpuMesh shape){this.item=item;if(item.unit!=null)animation.naval=item.unit.naval;motion.settle(item.hex,snapshot.ground.grid);this.shape=shape;shape.references++;entity=EntityManager.get().create();try{
+            if(shape.source.uv!=null){instance=(item.unit==null?siteMaterial:unitMaterial).createInstance();instance.setParameter("atlas",item.site!=null?siteAtlas:item.unit!=null?unitAtlas:fieldAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));instance.setParameter("damage",0f);shape.build(entity,instance);}else shape.build(entity);
+            if(item.site!=null||item.unit!=null||item.facility!=null){String key="flag:"+item.color;flagShape=shapes.get(key);if(flagShape==null){flagShape=new GpuMesh(SceneMesh.proxy(3,item.color));shapes.put(key,flagShape);}flagShape.references++;flag=EntityManager.get().create();flagShape.build(flag);}
             // Seven-cell occupancy is shown by the selection overlay; ground blends in the terrain field.
             if(item.facility!=null&&(!item.facility.complete||item.facility.burning)){
                 String stateKey=item.facility.burning?"fire":"scaffold";stateShape=shapes.get(stateKey);
-                if(stateShape==null){try{stateShape=new GpuMesh(fieldAssets.mesh(stateKey));}catch(Exception e){throw new IllegalStateException(e);}shapes.put(stateKey,stateShape);}
-                state=EntityManager.get().create();stateShape.build(state,vegetationMaterial);
+                if(stateShape==null)throw new IllegalStateException("state decode not ready");
+                stateShape.references++;
+                state=EntityManager.get().create();if(stateShape.source.uv!=null)stateShape.build(state,vegetationMaterial);else stateShape.build(state);
             }
-            position(snapshot.ground.grid.x(item.hex),snapshot.ground.grid.z(item.hex));updateDamage();
-        }
+            updateSeason();position(snapshot.ground.grid.x(item.hex),snapshot.ground.grid.z(item.hex));updateDamage();
+        }catch(RuntimeException|LinkageError|OutOfMemoryError error){destroy();throw error;}}
         void replace(GpuMesh mesh){
-            engine.getRenderableManager().destroy(entity);shape=mesh;shape.build(entity,instance);if(shown)scene.addEntity(entity);
+            engine.getRenderableManager().destroy(entity);shape.references--;shape=mesh;shape.references++;if(instance==null)shape.build(entity);else shape.build(entity,instance,memberCount);if(shown)scene.addEntity(entity);
         }
+        void updateSeason(){if(instance!=null)EnvironmentProfile.pigment(instance,season,item.facility!=null&&item.facility.type.equals("domestic/FARM"));}
         void updateDamage(){if(instance!=null)instance.setParameter("damage",item.site!=null?item.site.damage*.5f:item.facility!=null?1-item.facility.hp/(float)Math.max(1,item.facility.maxHp):0);}
         String stateKey(){return item.facility==null?"":item.facility.burning?"fire":!item.facility.complete?"scaffold":"";}
         void position(float x,float z){
             y=item.unit!=null&&animation.naval?.02f:snapshot.ground.surface.meshHeight(x,z)+.02f;
+            if(item.unit!=null&&instance!=null){
+                boolean contactChanged=formation.sample(item.unit,UnitAnimation.shownTroops(item.unit,replay,replayFraction),animation.naval,unitLod,snapshot.ground,x,z,motion.yaw,animation.scale);y=formation.rootY;
+                if(memberCount!=formation.count){memberCount=formation.count;replace(shape);}
+                if(contactChanged)for(int i=0;i<UnitFormation.CAPACITY;i++){
+                    float[] m=formation.placement[i],g=formation.grade[i];
+                    instance.setParameter("member"+i,m[0],m[1],m[2],m[3]);instance.setParameter("grade"+i,g[0],g[1]);
+                }
+            }
             float angle=item.site==null?(item.facility!=null?item.facility.direction*(float)Math.PI/3:motion.yaw):item.site.yaw,scale=item.site==null?(item.unit==null?1:animation.scale):item.site.scale;
             float c=(float)Math.cos(angle)*scale,s=(float)Math.sin(angle)*scale;
             float[] matrix={c,0,-s,0,0,scale,0,0,s,0,c,0,x,y,z,1};TransformManager tm=engine.getTransformManager();tm.setTransform(tm.getInstance(entity),matrix);
@@ -585,21 +939,144 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(flag!=0){float[] f={.42f,0,0,0,0,.42f,0,0,0,0,.42f,0,x,y+(item.kind==0?.82f:item.unit!=null?.25f:.46f),z,1};tm.setTransform(tm.getInstance(flag),f);}
         }
         void show(boolean value){shown=value;if(value){scene.addEntity(entity);if(flag!=0)scene.addEntity(flag);if(base!=0)scene.addEntity(base);if(state!=0)scene.addEntity(state);}else{scene.removeEntity(entity);if(flag!=0)scene.removeEntity(flag);if(base!=0)scene.removeEntity(base);if(state!=0)scene.removeEntity(state);}}
-        void destroy(){scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);if(flag!=0){scene.removeEntity(flag);engine.destroyEntity(flag);EntityManager.get().destroy(flag);}if(base!=0){scene.removeEntity(base);engine.destroyEntity(base);EntityManager.get().destroy(base);}if(state!=0){scene.removeEntity(state);engine.destroyEntity(state);EntityManager.get().destroy(state);}if(instance!=null)engine.destroyMaterialInstance(instance);}
+        void destroy(){shape.references--;if(flagShape!=null)flagShape.references--;if(stateShape!=null)stateShape.references--;if(baseShape!=null)baseShape.references--;scene.removeEntity(entity);engine.destroyEntity(entity);EntityManager.get().destroy(entity);if(flag!=0){scene.removeEntity(flag);engine.destroyEntity(flag);EntityManager.get().destroy(flag);}if(base!=0){scene.removeEntity(base);engine.destroyEntity(base);EntityManager.get().destroy(base);}if(state!=0){scene.removeEntity(state);engine.destroyEntity(state);EntityManager.get().destroy(state);}if(instance!=null)engine.destroyMaterialInstance(instance);}
+    }
+    private boolean labelVisible(Proxy object){
+        float wx=object.motion.x,wz=object.motion.z,y=object.y+1;
+        float sx=camera.screenX(wx,wz),sy=camera.screenY(wx,wz,y);
+        float foreground=snapshot.ground.surface.rayHeight(camera,sx,sy);
+        return !Float.isFinite(foreground)||foreground<=y+.001f;
     }
     private boolean selected(MapSceneSnapshot.Item item){return item.hex.equals(snapshot.selected)||item.site!=null&&item.site.cells.contains(snapshot.selected);}
     private final class Overlay extends android.view.View {
         final Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);
+        final Map<String,android.graphics.RectF> labelHits=new LinkedHashMap<>();
         final android.graphics.Path cellPath=new android.graphics.Path();
         Overlay(Context c){super(c);setClickable(false);}
+        final android.graphics.RectF miniRect=new android.graphics.RectF();
+        private android.graphics.Bitmap miniBitmap;
+        private MapSceneSnapshot.Ground miniGround;
+        private NavigatorTransform miniTransform;
+        boolean miniDirty=true;
+        // Cache only the static territory layer, at exact UI pixel resolution. Labels,
+        // tactical ranges, playback and editor overlays remain live. Never cache the UI.
+        private android.graphics.Bitmap territoryBitmap;
+        private MapSceneSnapshot.Ground territoryGround;
+        private int[] cachedColors,cachedBorders;
+        private float[] territoryCamera;
+        private int cachedTerritoryMode;
+        long draws,territoryBuilds,territoryBuildNanos;
+        void drawTerritory(Canvas target){
+            if(territoryColors==null&&territoryBorders==null){territoryBitmap=null;territoryGround=null;return;}
+            int w=getWidth(),h=getHeight();
+            if(w<=0||h<=0)return;
+            // Oversized windows use the original path instead of an unbounded bitmap.
+            if((long)w*h>4194304){territoryBitmap=null;paintTerritory(target);return;}
+            float[] pose={camera.x,camera.z,camera.span,camera.yaw,camera.tilt,camera.facing,camera.width,camera.height,w,h};
+            if(territoryBitmap==null||territoryGround!=snapshot.ground||cachedColors!=territoryColors
+                    ||cachedBorders!=territoryBorders||cachedTerritoryMode!=territoryMode||!Arrays.equals(pose,territoryCamera)){
+                long started=System.nanoTime();
+                if(territoryBitmap==null||territoryBitmap.getWidth()!=w||territoryBitmap.getHeight()!=h)
+                    territoryBitmap=android.graphics.Bitmap.createBitmap(w,h,android.graphics.Bitmap.Config.ARGB_8888);
+                territoryBitmap.eraseColor(android.graphics.Color.TRANSPARENT);
+                paintTerritory(new Canvas(territoryBitmap));
+                territoryGround=snapshot.ground;cachedColors=territoryColors;cachedBorders=territoryBorders;
+                cachedTerritoryMode=territoryMode;territoryCamera=pose;territoryBuilds++;territoryBuildNanos=System.nanoTime()-started;
+            }
+            target.drawBitmap(territoryBitmap,0,0,null);
+        }
+        void paintTerritory(Canvas c){
+            GridWorldTransform grid=snapshot.ground.grid;
+            float rx=camera.extentX()+2,rz=camera.extentZ()+4;
+            Hex a=grid.cell(camera.x-rx,camera.z-rz),b=grid.cell(camera.x+rx,camera.z+rz),d=grid.cell(camera.x-rx,camera.z+rz),e=grid.cell(camera.x+rx,camera.z-rz);
+            int q0=Math.max(0,Math.min(Math.min(a.q,b.q),Math.min(d.q,e.q))-2),q1=Math.min(snapshot.ground.width-1,Math.max(Math.max(a.q,b.q),Math.max(d.q,e.q))+2);
+            int r0=Math.max(0,Math.min(Math.min(a.r,b.r),Math.min(d.r,e.r))-2),r1=Math.min(snapshot.ground.height-1,Math.max(Math.max(a.r,b.r),Math.max(d.r,e.r))+2);
+            for(int r=r0;r<=r1;r++)for(int q=q0;q<=q1;q++){
+                Hex cell=new Hex(q,r);if(!snapshot.ground.valid(cell))continue;
+                if(territoryColors!=null){int color=territoryColors[r*snapshot.ground.width+q];if(color!=0&&cellPath(cell)){p.setColor((color&0xffffff)|0x30000000);p.setStyle(Paint.Style.FILL);c.drawPath(cellPath,p);}}
+                if(territoryBorders!=null)border(c,cell,territoryBorders[r*snapshot.ground.width+q]);
+            }
+        }
+        private final android.graphics.DashPathEffect hiddenDash=new android.graphics.DashPathEffect(new float[]{5,5},0);
+        private final Map<Hex,Boolean> hiddenCells=new HashMap<>();
+        private MapSceneSnapshot.Ground hiddenGround;
+        private float hiddenX,hiddenZ,hiddenSpan,hiddenYaw,hiddenTilt;
+        private int hiddenWidth,hiddenHeight,hiddenFacing;
+        void updateOcclusionCache(){
+            if(hiddenGround!=snapshot.ground||hiddenX!=camera.x||hiddenZ!=camera.z||hiddenSpan!=camera.span||hiddenYaw!=camera.yaw||hiddenTilt!=camera.tilt||hiddenWidth!=camera.width||hiddenHeight!=camera.height||hiddenFacing!=camera.facing){
+                hiddenCells.clear();hiddenGround=snapshot.ground;hiddenX=camera.x;hiddenZ=camera.z;hiddenSpan=camera.span;hiddenYaw=camera.yaw;hiddenTilt=camera.tilt;hiddenWidth=camera.width;hiddenHeight=camera.height;hiddenFacing=camera.facing;
+            }
+        }
+        void layoutMini(){
+            float d=getResources().getDisplayMetrics().density;
+            float availableW=getWidth()-panelRight,availableH=getHeight()-panelBottom;
+            float width=Math.min(144*d,availableW*.32f),height=Math.min(118*d,availableH*.26f);
+            if(availableW<120*d||availableH<140*d){miniRect.setEmpty();return;}
+            miniRect.set(availableW-width-8*d,34*d,availableW-8*d,34*d+height);
+        }
+        void navigate(float sx,float sy){
+            if(miniTransform==null||snapshot==null||miniRect.isEmpty())return;
+            camera.x=miniTransform.x((sx-miniRect.left)/miniRect.width());camera.z=miniTransform.z((sy-miniRect.top)/miniRect.height());
+            clampCamera();invalidate(); // camera only: never select a unit or issue a command
+        }
+        float miniX(float x){return miniRect.left+miniTransform.u(x)*miniRect.width();}
+        float miniY(float z){return miniRect.top+miniTransform.v(z)*miniRect.height();}
+        void drawMini(Canvas c){
+            layoutMini();if(openingPreview||!navigatorShown||miniRect.isEmpty())return;
+            MapSceneSnapshot.Ground g=snapshot.ground;
+            if(miniGround!=g||miniDirty){
+                miniGround=g;miniDirty=false;miniTransform=new NavigatorTransform(g.minX,g.minZ,g.maxX,g.maxZ);
+                if(miniBitmap==null)miniBitmap=android.graphics.Bitmap.createBitmap(256,256,android.graphics.Bitmap.Config.ARGB_8888);
+                int[] pixels=new int[256*256];
+                for(int y=0;y<256;y++)for(int x=0;x<256;x++){
+                    Hex h=g.grid.cell(miniTransform.x((x+.5f)/256),miniTransform.z((y+.5f)/256));
+                    int color=0xff18282b;
+                    if(g.valid(h)){int index=h.r*g.width+h.q;color=SceneMesh.terrain(g.terrain[index]);
+                        if(territoryColors!=null&&territoryColors[index]!=0){int t=territoryColors[index];color=0xff000000|((((color>>16)&255)+((t>>16)&255))/2<<16)|((((color>>8)&255)+((t>>8)&255))/2<<8)|((color&255)+(t&255))/2;}}
+                    pixels[y*256+x]=color;
+                }
+                miniBitmap.setPixels(pixels,0,256,0,0,256,256);
+            }
+            p.setStyle(Paint.Style.FILL);p.setColor(0xff18282b);c.drawRect(miniRect.left-2,miniRect.top-2,miniRect.right+2,miniRect.bottom+2,p);
+            c.drawBitmap(miniBitmap,null,miniRect,p);c.save();c.clipRect(miniRect);
+            for(MapSceneSnapshot.Item item:snapshot.items)if(item.site!=null||item.unit!=null){p.setColor(item.color);c.drawCircle(miniX(g.grid.x(item.hex)),miniY(g.grid.z(item.hex)),item.site!=null?3:2,p);}
+            android.graphics.Path viewport=new android.graphics.Path();
+            float[][] corners={{0,0},{camera.width-panelRight,0},{camera.width-panelRight,camera.height-panelBottom},{0,camera.height-panelBottom}};
+            for(int i=0;i<4;i++){float sx=corners[i][0],sy=corners[i][1],h=g.surface.rayHeight(camera,sx,sy);if(!Float.isFinite(h))h=0;
+                float x=miniX(camera.worldX(sx,sy,h)),y=miniY(camera.worldZ(sx,sy,h));if(i==0)viewport.moveTo(x,y);else viewport.lineTo(x,y);}
+            viewport.close();p.setColor(0xffffd576);p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(2);c.drawPath(viewport,p);c.restore();
+            p.setStyle(Paint.Style.FILL);p.setTextSize(10*getResources().getDisplayMetrics().scaledDensity);p.setColor(0xfff0e5c8);c.drawText("北 ↑ · 点按/拖动定位",miniRect.left,miniRect.bottom+13*getResources().getDisplayMetrics().density,p);
+        }
         boolean cellPath(Hex h){
-            if(h==null||snapshot==null||!snapshot.ground.valid(h))return false;GridWorldTransform g=snapshot.ground.grid;float x=g.x(h),z=g.z(h);
-            android.graphics.Path path=cellPath;path.rewind();int i=0;
-            for(float[] edge:SceneMesh.EDGE){float wx=x+edge[0],wz=z+edge[1],sx=camera.screenX(wx),sy=camera.screenY(wz,snapshot.ground.surface.sample(wx,wz)+.015f);if(i++==0)path.moveTo(sx,sy);else path.lineTo(sx,sy);}
-            path.close();return true;
+            if(h==null||snapshot==null||!snapshot.ground.valid(h))return false;
+            GridWorldTransform g=snapshot.ground.grid;float x=g.x(h),z=g.z(h);cellPath.rewind();
+            // Sample every eighth cell along edges from the same terrain surface as picking.
+            int n=0;for(int edge=0;edge<SceneMesh.EDGE.length;edge++){
+                float[] a=SceneMesh.EDGE[edge],b=SceneMesh.EDGE[(edge+1)%SceneMesh.EDGE.length];
+                for(int step=0,steps=camera.span<24?4:1;step<steps;step++){float t=step/(float)steps,wx=x+a[0]+(b[0]-a[0])*t,wz=z+a[1]+(b[1]-a[1])*t;
+                    float sx=camera.screenX(wx,wz),sy=camera.screenY(wx,wz,snapshot.ground.surface.sample(wx,wz)+.015f);
+                    if(n++==0)cellPath.moveTo(sx,sy);else cellPath.lineTo(sx,sy);}}
+            cellPath.close();return true;
+        }
+        boolean hidden(Hex h){
+            return hiddenCells.computeIfAbsent(h,key->{GridWorldTransform g=snapshot.ground.grid;float x=g.x(key),z=g.z(key),y=snapshot.ground.surface.at(key);
+                float front=snapshot.ground.surface.rayHeight(camera,camera.screenX(x,z),camera.screenY(x,z,y));return Float.isFinite(front)&&front>y+.06f;});
         }
         void cell(Canvas c,Hex h,int color){
-            if(!cellPath(h))return;p.setColor(color);p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(2);c.drawPath(cellPath,p);
+            if(!visible(h)||!cellPath(h))return;p.setColor(color);p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(2);
+            // Tactical x-ray is deliberate: dashed means terrain-obscured, never extra reachability.
+            p.setPathEffect(hidden(h)?hiddenDash:null);c.drawPath(cellPath,p);p.setPathEffect(null);
+        }
+        void border(Canvas c,Hex h,int mask){
+            if(mask==0)return;GridWorldTransform g=snapshot.ground.grid;float x=g.x(h),z=g.z(h);
+            p.setColor(territoryMode==2?0x997fd1c7:0x88e4c88d);p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(1.5f);
+            for(int dir=0;dir<6;dir++)if((mask&(1<<dir))!=0){
+                int a=TileGeometry.start(dir),b=TileGeometry.end(dir);cellPath.rewind();
+                for(int i=0;i<=8;i++){float t=i/8f,ox=(TileGeometry.CORNER_X[a]*(1-t)+TileGeometry.CORNER_X[b]*t)/TileGeometry.SPAN,oz=(TileGeometry.CORNER_Y[a]*(1-t)+TileGeometry.CORNER_Y[b]*t)/TileGeometry.SPAN;
+                    float wx=x+(g.staggered?oz:ox),wz=z+(g.staggered?ox:oz),sx=camera.screenX(wx,wz),sy=camera.screenY(wx,wz,snapshot.ground.surface.sample(wx,wz)+.015f);
+                    if(i==0)cellPath.moveTo(sx,sy);else cellPath.lineTo(sx,sy);}
+                c.drawPath(cellPath,p);
+            }
         }
         void drawCombat(Canvas c){
             float d=getResources().getDisplayMetrics().density;
@@ -607,19 +1084,20 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             float phase=CombatVisual.phase(replay,replayFraction);
             if(strike!=null&&phase>=CombatVisual.FEEDBACK&&visible(strike.target)&&strike.beforeTroops>strike.afterTroops){
                 p.setStyle(Paint.Style.FILL);p.setTextAlign(Paint.Align.CENTER);p.setTextSize(15*d);p.setColor(0xffffbb90);
-                c.drawText("−"+(strike.beforeTroops-strike.afterTroops)+"兵",camera.screenX(snapshot.ground.grid.x(strike.target)),camera.screenY(snapshot.ground.grid.z(strike.target),snapshot.ground.surface.at(strike.target)+1)-(phase-CombatVisual.FEEDBACK)*50*d,p);
+                c.drawText("−"+(strike.beforeTroops-strike.afterTroops)+"兵",camera.screenX(snapshot.ground.grid.x(strike.target),snapshot.ground.grid.z(strike.target)),camera.screenY(snapshot.ground.grid.x(strike.target),snapshot.ground.grid.z(strike.target),snapshot.ground.surface.at(strike.target)+1)-(phase-CombatVisual.FEEDBACK)*50*d,p);
                 p.setTextAlign(Paint.Align.LEFT);
             }
-            if(replay!=null&&replayFraction>=CombatVisual.FEEDBACK&&(strike==null||strike==replay.strikes.get(replay.strikes.size()-1))){
-                int count=0;float progress=(replayFraction-CombatVisual.FEEDBACK)/(1-CombatVisual.FEEDBACK);
+            if(replay!=null&&phase>=CombatVisual.FEEDBACK&&(strike==null||strike==replay.strikes.get(replay.strikes.size()-1))){
+                int count=0;float progress=(phase-CombatVisual.FEEDBACK)/(1-CombatVisual.FEEDBACK);
                 p.setStyle(Paint.Style.FILL);p.setTextAlign(Paint.Align.CENTER);p.setTextSize(15*d);
                 for(TurnJournal.Impact hit:replay.impacts){
-                    if(!visible(hit.hex)||(strike!=null&&hit.text.endsWith("兵")))continue;if(count++>=CombatVisual.TEXT_BUDGET)break;
-                    float x=camera.screenX(snapshot.ground.grid.x(hit.hex));
-                    float y=camera.screenY(snapshot.ground.grid.z(hit.hex),snapshot.ground.surface.at(hit.hex)+.9f)-progress*28*d;
+                    String text=CombatVisual.feedback(replay,hit);
+                    if(!visible(hit.hex)||text.isEmpty())continue;if(count++>=CombatVisual.TEXT_BUDGET)break;
+                    float x=camera.screenX(snapshot.ground.grid.x(hit.hex),snapshot.ground.grid.z(hit.hex));
+                    float y=camera.screenY(snapshot.ground.grid.x(hit.hex),snapshot.ground.grid.z(hit.hex),snapshot.ground.surface.at(hit.hex)+.9f)-progress*28*d;
                     // Different lines at the same tile stay readable (troops, morale, status).
                     int line=0;for(int j=0;j<replay.impacts.indexOf(hit);j++)if(replay.impacts.get(j).hex.equals(hit.hex))line++;
-                    p.setColor(hit.loss?0xffffbb90:0xffa5eed0);c.drawText(hit.text,x,y-line*17*d,p);
+                    p.setColor(hit.loss?0xffffbb90:0xffa5eed0);c.drawText(text,x,y-line*17*d,p);
                 }
                 p.setTextAlign(Paint.Align.LEFT);
             }
@@ -634,18 +1112,19 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         }
         @Override protected void onDraw(Canvas c){
             if(snapshot==null)return;
-            if(territoryColors!=null||((gridShown||editorGrid)&&camera.span<48)||editorCoords||!impassable.isEmpty()){
+            draws++;updateOcclusionCache();layoutMini();c.save();c.clipRect(0,0,Math.max(0,camera.width-panelRight),Math.max(0,camera.height-panelBottom));
+            drawTerritory(c);
+            if(((gridShown||editorGrid)&&camera.span<48)||editorCoords||!impassable.isEmpty()){
                 GridWorldTransform grid=snapshot.ground.grid;
-                float rx=camera.span*camera.width/camera.height+2,rz=(float)(camera.span/camera.sin())+4;
+                float rx=camera.extentX()+2,rz=camera.extentZ()+4;
                 Hex a=grid.cell(camera.x-rx,camera.z-rz),b=grid.cell(camera.x+rx,camera.z+rz),d=grid.cell(camera.x-rx,camera.z+rz),e=grid.cell(camera.x+rx,camera.z-rz);
                 int q0=Math.max(0,Math.min(Math.min(a.q,b.q),Math.min(d.q,e.q))-2),q1=Math.min(snapshot.ground.width-1,Math.max(Math.max(a.q,b.q),Math.max(d.q,e.q))+2);
                 int r0=Math.max(0,Math.min(Math.min(a.r,b.r),Math.min(d.r,e.r))-2),r1=Math.min(snapshot.ground.height-1,Math.max(Math.max(a.r,b.r),Math.max(d.r,e.r))+2);
                 for(int r=r0;r<=r1;r++)for(int q=q0;q<=q1;q++){
                     Hex h=new Hex(q,r);if(!snapshot.ground.valid(h))continue;
-                    if(territoryColors!=null){int color=territoryColors[r*snapshot.ground.width+q];if(color!=0&&cellPath(h)){p.setColor((color&0xffffff)|0x55000000);p.setStyle(Paint.Style.FILL);c.drawPath(cellPath,p);}}
-                    if((gridShown||editorGrid)&&camera.span<48)cell(c,h,editorGrid?0x99ffffff:0x887d928a);
+                    if((gridShown||editorGrid)&&camera.span<48&&cellPath(h)){p.setColor(editorGrid?0x99ffffff:((((int)(104*Math.min(1,(48-camera.span)/24)))<<24)|0x7d928a));p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(1);c.drawPath(cellPath,p);}
                     if(impassable.contains(MapLayerData.cellKey(h.q,h.r)))cell(c,h,0x99ff6767);
-                    if(editorCoords&&camera.span<7){p.setStyle(Paint.Style.FILL);p.setColor(0xffffffff);p.setTextSize(10*getResources().getDisplayMetrics().scaledDensity);c.drawText((int)Math.floor(grid.x(h))+","+(int)Math.floor(grid.z(h)),camera.screenX(grid.x(h)),camera.screenY(grid.z(h),snapshot.ground.surface.at(h)),p);}
+                    if(editorCoords&&camera.span<7){p.setStyle(Paint.Style.FILL);p.setColor(0xffffffff);p.setTextSize(10*getResources().getDisplayMetrics().scaledDensity);c.drawText(snapshot.ground.source(h).toString(),camera.screenX(grid.x(h),grid.z(h)),camera.screenY(grid.x(h),grid.z(h),snapshot.ground.surface.at(h)),p);}
                 }
             }
             if(editorFootprints)for(MapSceneSnapshot.Item item:snapshot.items)if(item.site!=null)for(Hex h:item.site.cells)cell(c,h,0xff89e5ff);
@@ -657,11 +1136,11 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 cell(c,tacticPreview.blocked,0xffff3333);
             }
             if(route!=null)for(Hex h:route.path)cell(c,h,0xffffd576);
-            for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.coverage)cell(c,h,0xffcfad6e);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets)cell(c,h,0xffdd7661);cell(c,snapshot.selected,0xffffd576);
+            if(targets.isEmpty())for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.coverage)cell(c,h,0xffcfad6e);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets.isEmpty()?snapshot.attackTargets:targets)cell(c,h,0xffdd7661);cell(c,snapshot.selected,0xffffd576);
             for(MapSceneSnapshot.Item item:snapshot.items)if(item.site!=null&&item.site.cells.contains(snapshot.selected))for(Hex h:item.site.cells)cell(c,h,0xffffd576);
             // Ground rings remain visible through architecture; transit units cannot disappear behind walls.
             for(Proxy object:objects.values())if(object.item.unit!=null&&object.shown){
-                float x=camera.screenX(object.motion.x),y=camera.screenY(object.motion.z,object.y);
+                float x=camera.screenX(object.motion.x,object.motion.z),y=camera.screenY(object.motion.x,object.motion.z,object.y);
                 float radius=Math.max(3,camera.height/(2*camera.span)*.38f);
                 p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(2);
                 p.setColor(selected(object.item)?0xffffd576:(object.item.color&0xffffff)|0x88000000);
@@ -669,6 +1148,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             }
             p.setStyle(Paint.Style.FILL);p.setTextSize(12*getResources().getDisplayMetrics().scaledDensity);p.setShadowLayer(2,0,1,0xff000000);
             List<Proxy> labels=new ArrayList<>();
+            labelHits.clear();
             for(Proxy object:objects.values())if(object.shown&&(object.item.kind<3||camera.span<18||selected(object.item)))labels.add(object);
             labels.sort(Comparator.<Proxy>comparingInt(o->selected(o.item)?0:o.item.site!=null?1:2)
                 .thenComparingDouble(o->Math.abs(o.motion.x-camera.x)+Math.abs(o.motion.z-camera.z)).thenComparing(o->o.item.key));
@@ -680,25 +1160,24 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 if(openingPreview&&item.site!=null){int owner=siteOwners.getOrDefault(item.key,-1);if(owner<0||namedFactions.contains(owner))continue;first=factionLabels.getOrDefault(item.key,"");selected=owner==previewFaction;}
 
                 if(item.unit!=null){if(!selected&&!showCommanders&&!showUnitBars)continue;UnitVisual u=item.unit;
-                    int shownTroops=u.troops;
-                    if(replay!=null){int active=Math.min(replay.strikes.size()-1,(int)(CombatVisual.fraction(replayFraction)*replay.strikes.size()));
-                        for(int k=0;k<replay.strikes.size();k++){TurnJournal.Strike hit=replay.strikes.get(k);if(hit.targetId==u.id&&(k<active||k==active&&CombatVisual.phase(replay,replayFraction)>=CombatVisual.HIT))shownTroops=hit.afterTroops;}}
+                    int shownTroops=UnitAnimation.shownTroops(u,replay,replayFraction);
                     first=selected?u.commander+" · "+u.equipment:(showCommanders?u.commander:u.equipment)+(showUnitBars?" · "+shownTroops:"");
+                    first=u.identity()+" · "+first;
                     if(selected)second=shownTroops+"兵 · 气"+u.energy+(u.status==War.Status.NORMAL?"":" · "+u.status.label)+(u.burning>0?" · 起火":"");
                 }else if(item.facility!=null&&!selected){MapSceneSnapshot.FacilityState f=item.facility;first=item.label+(f.level>0?" Lv"+f.level:"")+(f.burning?" · 火":!f.complete?" · 建":"");}
                 float width=p.measureText(first);if(second!=null)width=Math.max(width,p.measureText(second));
-                float x=camera.screenX(object.motion.x)-width/2,y=camera.screenY(object.motion.z,object.y+1);
+                float x=camera.screenX(object.motion.x,object.motion.z)-width/2,y=camera.screenY(object.motion.x,object.motion.z,object.y+1);
                 x=Math.max(pad,Math.min(camera.width-width-pad,x));
                 android.graphics.RectF box=new android.graphics.RectF(x-pad,y-font-pad,x+width+pad,y+(second==null?pad:font*1.2f+pad));
                 if(box.bottom<font*2||box.top>camera.height||box.right<0||box.left>camera.width)continue;
                 boolean overlap=false;for(android.graphics.RectF used:occupied)if(android.graphics.RectF.intersects(used,box)){overlap=true;break;}
-                if(overlap&&!selected)continue;occupied.add(box);if(openingPreview&&item.site!=null)namedFactions.add(siteOwners.getOrDefault(item.key,-1));
+                if((overlap&&!selected)||!labelVisible(object)||box.right>camera.width-panelRight||box.bottom>camera.height-panelBottom||(!openingPreview&&navigatorShown&&android.graphics.RectF.intersects(box,miniRect)))continue;occupied.add(box);labelHits.put(item.key,box);if(openingPreview&&item.site!=null)namedFactions.add(siteOwners.getOrDefault(item.key,-1));
                 p.setColor(selected?0xe61b2f37:0xb3122027);c.drawRoundRect(box,pad,pad,p);
                 p.setColor(selected?0xffffd576:item.color);c.drawText(first,x,y,p);if(second!=null)c.drawText(second,x,y+font*1.2f,p);
             }
-            p.setColor(0xfff0e5c8);c.drawText((pending>0)?"3D 地形装载中… · 可在视图切回 2D":"3D 试验 · 设施植被 / 部队编队 · 长按选格",12,24*getResources().getDisplayMetrics().density,p);
+            p.setColor(0xfff0e5c8);c.drawText((pending>0)?"3D 地形装载中… · 可在视图切回 2D":(editorGrid?"编辑网格临时显示 · 不修改游戏网格设置":"双指缩放/旋转 · 范围虚线＝山体遮挡"),12,24*getResources().getDisplayMetrics().density,p);
             if(diagnostics){float y=48*getResources().getDisplayMetrics().density;for(String line:report().split("\n")){c.drawText(line,12,y,p);y+=22*getResources().getDisplayMetrics().density;}}
-            drawCombat(c);p.clearShadowLayer();
+            drawCombat(c);drawMini(c);p.clearShadowLayer();c.restore();
         }
     }
 }

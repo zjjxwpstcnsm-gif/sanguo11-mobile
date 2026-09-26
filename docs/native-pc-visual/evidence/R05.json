@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "stage": "R05",
+  "overall_status": "PARTIAL",
+  "source_sha": "b97e01c17e66f57193a704ee3218ed549fc66f8b",
+  "remote_head_sha": "b97e01c17e66f57193a704ee3218ed549fc66f8b",
+  "branch": "agent/native-pc-visual",
+  "pr_url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/67",
+  "backend": "Filament / OpenGL",
+  "backend_version": "1.56.0",
+  "application_id": "game.sanguo.mobile.dev",
+  "version_code": 88,
+  "version_name": "0.88.0-native-r05",
+  "apk_abi": "arm64-v8a,armeabi-v7a,x86,x86_64",
+  "signing_certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+  "build_command": "./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true",
+  "ci_run_url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/35943948593",
+  "evidence_only_followup": false,
+  "checks": {
+    "host": "PASS",
+    "build": "PASS",
+    "runtime": "PASS",
+    "visual": "FAIL",
+    "arm64": "NOT_RUN",
+    "performance": "NOT_RUN",
+    "legacy_port_ai": "FAIL"
+  },
+  "artifacts": [
+    {
+      "kind": "apk",
+      "path": "sanguo11-native-r05-b97e01c.apk",
+      "sha256": "0c67be3bab6a2b4ab3630adbd5a97e4b7e68bb4b604a6466e2885ad783c35377",
+      "bytes": 36680134
+    }
+  ],
+  "devices": [
+    {
+      "kind": "CI emulator",
+      "api": 29,
+      "abi": "x86_64",
+      "gpu": "SwANGLE software",
+      "runtime": "PASS automatic checks",
+      "profile": "pixel_2",
+      "capture_size": "1080x1348 official Surface; 1080x1160 later fixture Surface",
+      "physical_device": false
+    }
+  ],
+  "references": [
+    {
+      "source": "https://cdn.akamai.steamstatic.com/steam/apps/628070/manuals/32sangokushi11wpk_manual.pdf?t=1516151052",
+      "scope": "Inherited R04 official PC manual reference; NOT a matching R05 shore scene"
+    }
+  ],
+  "known_gaps": [
+    "Exact stepped coast geometry retained; full curved-coast acceptance incomplete",
+    "PC matched water-region/camera reference missing",
+    "ARM64 phone and GPU/thermal performance not run",
+    "Full national boat animation/manual editor travel not accepted",
+    "Inherited PortReplayTest AI failure on untouched R04 and candidate",
+    "Synthetic fixture raw shot metadata hardcodes coalition-190; corrected in shot-index.json without changing originals",
+    "Recording/synthetic replacement shows stale official UI labels over correct new Surface; not accepted as synchronized UI or interpolated boat animation",
+    "Post-instrumentation meminfo says no process; PSS unavailable, not zero",
+    "Seven recorded segments cover operations but full frame-by-frame motion/flicker review not done"
+  ],
+  "build_artifact_id": 10785873704,
+  "previous_cancelled_runs": [
+    35943577640,
+    35943741844
+  ],
+  "runtime_scope": "Automated same-source R05 542 checks, 32 PixelCopy passes; synthetic boat commands plus independent full-save replay. Not full manual acceptance.",
+  "evidence_artifact_id": 10786044875,
+  "independent_startup": {
+    "ci_run": 35943948581,
+    "same_source": true,
+    "fresh": 183,
+    "reload": 110
+  }
+}

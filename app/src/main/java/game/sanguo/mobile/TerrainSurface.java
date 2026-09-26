@@ -5,17 +5,32 @@ import java.util.*;
 
 /** Deterministic presentation-only field. Coordinates are projected world units, never axial indices. */
 final class TerrainSurface {
-    static final int METADATA_VERSION=2;
+    static final int METADATA_VERSION=3;
     private static final World.Terrain[] TYPES=World.Terrain.values();
     static final float MAX_HEIGHT=2.6f;
     static final float LANDFORM_RADIUS=3.4f;
     final MapSceneSnapshot.Ground ground;
     final Map<Hex,Float> overrides;
     private final float[] targets;private final byte[] constraints;
-    private final java.util.concurrent.ConcurrentHashMap<Long,Float> lattice=new java.util.concurrent.ConcurrentHashMap<>();
+    // One bounded, immutable-ground cache shared by CPU workers and the UI. The old
+    // 32768-entry map cleared itself during every national sweep, so both consumers
+    // continually recomputed the same surface. Zero is the empty slot; bits+1 stores
+    // all non-negative finite heights (including zero) without a second validity array.
+    private static final int MAX_LATTICE_SAMPLES=262144; // <= 1 MiB per Ground
+    private final java.util.concurrent.atomic.AtomicIntegerArray lattice;
+    // Fixed 512 KiB direct-mapped cache for the quarter-grid normal stencil.
+    // Key and value publish atomically; collisions replace one slot, never clear a map.
+    private final java.util.concurrent.atomic.AtomicLongArray normalLattice=new java.util.concurrent.atomic.AtomicLongArray(65536);
+    private final int latticeX,latticeZ,latticeWidth,latticeHeight;
     TerrainSurface(MapSceneSnapshot.Ground g){this(g,Collections.emptyMap());}
     TerrainSurface(MapSceneSnapshot.Ground g,Map<Hex,Float> values){
-        ground=g;Map<Hex,Float> copy=new HashMap<>();
+        ground=g;
+        latticeX=(int)Math.floor(g.minX*2)-2;latticeZ=(int)Math.floor(g.minZ*2)-2;
+        latticeWidth=(int)Math.ceil(g.maxX*2)-latticeX+3;
+        latticeHeight=(int)Math.ceil(g.maxZ*2)-latticeZ+3;
+        long samples=(long)latticeWidth*latticeHeight;
+        lattice=new java.util.concurrent.atomic.AtomicIntegerArray(samples>0&&samples<=MAX_LATTICE_SAMPLES?(int)samples:0);
+        Map<Hex,Float> copy=new HashMap<>();
         for(Map.Entry<Hex,Float> e:values.entrySet())if(g.valid(e.getKey())&&Float.isFinite(e.getValue()))copy.put(e.getKey(),Math.max(0,Math.min(MAX_HEIGHT,e.getValue())));
         overrides=Collections.unmodifiableMap(copy);
         targets=new float[g.width*g.height];constraints=new byte[targets.length];
@@ -45,9 +60,25 @@ final class TerrainSurface {
     }
     float sample(float x,float z){
         int ix=Math.round(x*2),iz=Math.round(z*2);
-        if(Math.abs(x*2-ix)>.00001f||Math.abs(z*2-iz)>.00001f)return compute(x,z);
-        long key=((long)ix<<32)^(iz&0xffffffffL);Float v=lattice.get(key);if(v!=null)return v;
-        float value=compute(x,z);lattice.putIfAbsent(key,value);return value;
+        if(Math.abs(x*2-ix)>.00001f||Math.abs(z*2-iz)>.00001f)return quarterSample(x,z);
+        int q=ix-latticeX,r=iz-latticeZ;
+        if(lattice.length()==0||q<0||r<0||q>=latticeWidth||r>=latticeHeight)return compute(x,z);
+        int key=r*latticeWidth+q,encoded=lattice.get(key);
+        if(encoded!=0)return Float.intBitsToFloat(encoded-1);
+        float value=compute(x,z);lattice.compareAndSet(key,0,Float.floatToIntBits(value)+1);return value;
+    }
+    private float quarterSample(float x,float z){
+        int ix=Math.round(x*4),iz=Math.round(z*4);
+        if(x*4!=ix||z*4!=iz)return compute(x,z);
+        long q=(long)ix-2L*latticeX,r=(long)iz-2L*latticeZ,width=2L*latticeWidth;
+        if(q<0||r<0||q>=width||r>=2L*latticeHeight)return compute(x,z);
+        long key=r*width+q+1;
+        if(key>0x7fffffffL)return compute(x,z);
+        int slot=(int)key&(normalLattice.length()-1);long encoded=normalLattice.get(slot);
+        if((encoded>>>32)==key)return Float.intBitsToFloat((int)encoded);
+        float value=compute(x,z);
+        normalLattice.set(slot,(key<<32)|(Float.floatToIntBits(value)&0xffffffffL));
+        return value;
     }
     private float compute(float x,float z){
         Hex cell=ground.grid.cell(x,z);float sum=0,weight=0,limit=MAX_HEIGHT;
@@ -56,9 +87,10 @@ final class TerrainSurface {
             float dx=Math.abs(x-ground.grid.x(q,r)),dz=Math.abs(z-ground.grid.z(q,r));
             float distance=(float)Math.sqrt(dx*dx+dz*dz);
             int at=q>=0&&r>=0&&q<ground.width&&r<ground.height?r*ground.width+q:-1;
-            if(distance<LANDFORM_RADIUS){float k=1-distance/LANDFORM_RADIUS;k=k*k*k;sum+=(at<0?0:targets[at])*k;weight+=k;}
+            if(distance<LANDFORM_RADIUS){float t=distance/LANDFORM_RADIUS,k=1-t;k=k*k*k*k*(1+4*t);sum+=(at<0?0:targets[at])*k;weight+=k;}
             int constraint=at<0?1:constraints[at];
-            if(constraint!=0){float edge=Math.max(Math.max(dx-.5f,dz-.5f),0);limit=Math.min(limit,(constraint==1?0:.08f)+edge*.6f);}
+            if(constraint!=0){float edge=Math.max(Math.max(dx-.5f,dz-.5f),0);float t=Math.min(1,edge/4.5f);
+                limit=Math.min(limit,(constraint==1?0:.08f)+MAX_HEIGHT*t*t*(3-2*t));}
         }
         float value=weight==0?0:sum/weight;
         // Explicit height paint wins at its center, smoothly joining the regional field.
@@ -82,18 +114,38 @@ final class TerrainSurface {
     }
     Hex pick(SceneCamera camera,float sx,float sy){
         float y=rayHeight(camera,sx,sy);if(!Float.isFinite(y))return null;
-        Hex h=ground.grid.cell(camera.worldX(sx),camera.worldZ(sy)+y*(float)(camera.cos()/camera.sin())*camera.facing);return ground.valid(h)?h:null;
+        Hex h=ground.grid.cell(camera.worldX(sx,sy,y),camera.worldZ(sx,sy,y));return ground.valid(h)?h:null;
     }
     float rayHeight(SceneCamera camera,float sx,float sy){
-        float x=camera.worldX(sx),base=camera.worldZ(sy),cot=(float)(camera.cos()/camera.sin())*camera.facing;
-        // Bounded ray march independent of national triangle count; select first visible surface.
-        float previous=MAX_HEIGHT,previousF=previous-meshHeight(x,base+previous*cot);
-        for(int n=1;n<=104;n++){
-            float y=MAX_HEIGHT*(1-n/104f),f=y-meshHeight(x,base+y*cot);
-            if(f<=0&&previousF>=0){float lo=y,hi=previous;for(int j=0;j<14;j++){float mid=(lo+hi)*.5f;if(mid>meshHeight(x,base+mid*cot))hi=mid;else lo=mid;}
-                return (lo+hi)*.5f;}
-            previous=y;previousF=f;
-        }return Float.NaN;
+        float x=camera.worldX(sx,sy,0),base=camera.worldZ(sx,sy,0);
+        float cotX=(float)(camera.cos()/camera.sin()*camera.backX()),cotZ=(float)(camera.cos()/camera.sin()*camera.rightX());
+        // Test the actual eight-triangle fan (both display LODs share its planes).
+        // The bounded height interval crosses only a small rectangle of source cells.
+        float endX=x+MAX_HEIGHT*cotX,endZ=base+MAX_HEIGHT*cotZ;
+        int minQ=Integer.MAX_VALUE,minR=minQ,maxQ=Integer.MIN_VALUE,maxR=maxQ;
+        for(float wx:new float[]{Math.min(x,endX)-1,Math.max(x,endX)+1})
+            for(float wz:new float[]{Math.min(base,endZ)-1,Math.max(base,endZ)+1}){
+                Hex h=ground.grid.cell(wx,wz);minQ=Math.min(minQ,h.q);maxQ=Math.max(maxQ,h.q);minR=Math.min(minR,h.r);maxR=Math.max(maxR,h.r);
+            }
+        float best=Float.NEGATIVE_INFINITY;
+        for(int r=minR;r<=maxR;r++)for(int q=minQ;q<=maxQ;q++){
+            Hex h=new Hex(q,r);if(!ground.valid(h))continue;
+            float hx=ground.grid.x(h),hz=ground.grid.z(h),hy=sample(hx,hz);
+            for(int i=0;i<8;i++){
+                float[] a=SceneMesh.EDGE[i],b=SceneMesh.EDGE[(i+1)%8];
+                float ay=sample(hx+a[0],hz+a[1])-hy,by=sample(hx+b[0],hz+b[1])-hy;
+                float det=a[0]*b[1]-b[0]*a[1];
+                float slopeX=(ay*b[1]-by*a[1])/det,slopeZ=(a[0]*by-b[0]*ay)/det;
+                float denominator=1-slopeX*cotX-slopeZ*cotZ;
+                if(Math.abs(denominator)<1e-7f)continue;
+                float y=(hy+slopeX*(x-hx)+slopeZ*(base-hz))/denominator;
+                if(y<-.0001f||y>MAX_HEIGHT+.0001f||y<best)continue;
+                float dx=x+y*cotX-hx,dz=base+y*cotZ-hz;
+                float u=(dx*b[1]-dz*b[0])/det,v=(a[0]*dz-a[1]*dx)/det;
+                if(u>=-.00001f&&v>=-.00001f&&u+v<=1.00001f)best=Math.max(best,y);
+            }
+        }
+        return Float.isFinite(best)?Math.max(0,best):Float.NaN;
     }
     int color(float x,float z,int base,boolean water){
         return water?SceneMesh.shade(base,.93f):base;

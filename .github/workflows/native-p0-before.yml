@@ -1,0 +1,88 @@
+name: Native P0 unchanged APK controls
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-p0-before.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  control:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {api: 29, version: 105, run: 36108363433, hash: 2b38ca4741b60650be58555ec118350f2aeff292765f6b3754adc138c1fdf55c, source: ef54951dbb7056beaa782f97a3486eefa3a88ef9}
+          - {api: 35, version: 105, run: 36108363433, hash: 2b38ca4741b60650be58555ec118350f2aeff292765f6b3754adc138c1fdf55c, source: ef54951dbb7056beaa782f97a3486eefa3a88ef9}
+          - {api: 29, version: 107, run: 36120063732, hash: 0ad4cc9b9e57a4535cddedf2939541a60433bc02c74d0703e6640696172da486, source: a4b09058c6b1ab8c80f57d96f1e22425673de94c}
+          - {api: 35, version: 107, run: 36120063732, hash: 0ad4cc9b9e57a4535cddedf2939541a60433bc02c74d0703e6640696172da486, source: a4b09058c6b1ab8c80f57d96f1e22425673de94c}
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: ''}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Build test APK only and install original production bytes
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebugAndroidTest -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true
+          mkdir -p app/build/outputs/apk/debug out/remediation /tmp/original-apk
+          gh run download ${{ matrix.run }} -n native-remediation-api29-apk-00 -D /tmp/original-apk
+          gh run download ${{ matrix.run }} -n native-remediation-api29-apk-01 -D /tmp/original-apk
+          cat /tmp/original-apk/remediation-apk-part-00 /tmp/original-apk/remediation-apk-part-01 > app/build/outputs/apk/debug/app-debug.apk
+          echo '${{ matrix.hash }}  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c - | tee out/remediation/original-apk-check.txt
+          echo ${{ matrix.source }} > out/remediation/SOURCE_COMMIT
+          echo "$GITHUB_SHA" > out/remediation/INSTRUMENTATION_COMMIT
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api }}
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-native-remediation.sh baseline
+      - name: Retain raw files and individual video validity
+        if: always()
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y ffmpeg
+          mkdir -p out/control-review
+          python3 - <<'PY'
+          from pathlib import Path
+          import subprocess,json,zipfile,shutil
+          root=Path('out/remediation'); result=[]
+          for p in root.rglob('*.mp4'):
+              probe=subprocess.run(['ffprobe','-v','error','-show_streams','-show_format','-of','json',str(p)],capture_output=True,text=True)
+              p.with_suffix('.mp4.ffprobe.json').write_text(probe.stdout)
+              dec=subprocess.run(['ffmpeg','-v','error','-i',str(p),'-f','null','-'],capture_output=True,text=True)
+              p.with_suffix('.mp4.decode.log').write_text(dec.stderr)
+              result.append({'path':str(p),'probe_exit':probe.returncode,'decode_exit':dec.returncode})
+          (root/'VIDEO_RESULTS.json').write_text(json.dumps(result,indent=2))
+          for p in root.rglob('*'):
+              if p.is_file() and (p.suffix in ('.png','.json','.txt','.tsv','.log') or p.name.endswith('COMMIT')):
+                  target=Path('out/control-review')/p.relative_to(root);target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,target)
+          with zipfile.ZipFile('out/raw-control.zip','w',zipfile.ZIP_DEFLATED) as z:
+              for p in root.rglob('*'):
+                  if p.is_file():z.write(p,p.relative_to(root))
+          PY
+          split -b 16M -d out/raw-control.zip out/control-part-
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'p0-before-v${{ matrix.version }}-api${{ matrix.api }}-review', path: out/control-review, retention-days: 14}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'p0-before-v${{ matrix.version }}-api${{ matrix.api }}-raw', path: 'out/control-part-*', retention-days: 14}

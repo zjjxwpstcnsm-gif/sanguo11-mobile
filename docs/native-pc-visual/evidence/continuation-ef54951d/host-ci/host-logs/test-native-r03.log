@@ -1,0 +1,11 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+WINDOW span=8.0 chunks=25 triangles=350208
+WINDOW span=24.0 chunks=49 triangles=279552
+WINDOW span=70.0 chunks=102 triangles=184992
+AUTHORITY SHA256=1092dd42e8ae7c6875853b5a097294694a7f5aba0986a8a58a255893360579e5
+PATCH staggered=false reused=32 changed=4
+PATCH staggered=true reused=32 changed=4
+PASS R03 12368259 assertions
+cache_bytes=657720
+PASS national cache saturation, concurrent exact samples, byte-identical authority; cold_ms=308.665272 warm_ms=39.014424 (host only)

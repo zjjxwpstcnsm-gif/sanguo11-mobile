@@ -1,0 +1,5 @@
+FAIL COLD_START java.lang.AssertionError: user switches actual full-map preview to 3D
+	at game.sanguo.mobile.SceneInstrumentation.check(SceneInstrumentation.java:17)
+	at game.sanguo.mobile.NativeColdStartInstrumentation.onStart(NativeColdStartInstrumentation.java:48)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+

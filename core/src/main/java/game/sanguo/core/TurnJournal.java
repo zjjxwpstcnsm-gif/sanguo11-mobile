@@ -1,17 +1,32 @@
 package game.sanguo.core;
 
 import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 /** Transient presentation journal. No rule is executed by playback, and nothing is saved from it.
  * Only dynamic map entities are copied; the national terrain and RNG are never copied per action. */
 public final class TurnJournal {
     public enum Kind { CHANGE, MOVE, ATTACK, TACTIC, PLOT, ENTER, DEPLOY, FACILITY_ATTACK, FACILITY_COUNTER, RECOVER }
+    /** Display facts only. IDs never enter SaveCodec or consume the rule RNG. */
+    private static final AtomicLong JOURNALS=new AtomicLong();
+    private final long journalId=JOURNALS.incrementAndGet();
+    private long sequence;
+    public enum Metric { TEXT, TROOPS, ENERGY, HP, STATUS, FIRE, REMOVED, OWNER }
     public static final class Impact {
         public final Hex hex; public final String text; public final boolean loss;
-        Impact(Hex h,String text,boolean loss){hex=h;this.text=text;this.loss=loss;}
+        public final Metric metric; public final int amount; public final String entityKey;
+        Impact(Hex h,String text,boolean loss){this(h,text,loss,Metric.TEXT,0);}
+        Impact(Hex h,String text,boolean loss,Metric metric,int amount){this(h,text,loss,metric,amount,"");}
+        Impact(Hex h,String text,boolean loss,Metric metric,int amount,String key){hex=h;this.text=text;this.loss=loss;this.metric=metric;this.amount=amount;entityKey=key;}
     }
     public static final class Event {
         public final Kind kind;
+        public final long journalId,sequence;
+        public final String id;
+        public final War.Plot plot;
+        public final War.Tactic infantryTactic;
+        public final Army.Tactic equipmentTactic;
+        public final boolean sourceNaval;
         /** Stable identity and equipment captured before the action; presentation only. */
         public final String sourceKey,sourceType;
         public final CriticalHit critical;
@@ -26,7 +41,9 @@ public final class TurnJournal {
         private final List<String> removed;
         private final World.Unit actor;
         Event(Kind kind,int id,int owner,Hex start,Hex target,String label,String message,List<Hex> path,
-              List<Impact> impacts,List<Node> changed,List<String> removed,World.Unit actor,CriticalHit critical,String sourceKey,String sourceType,List<StateChange> states,List<Strike> strikes){
+              List<Impact> impacts,List<Node> changed,List<String> removed,World.Unit actor,CriticalHit critical,String sourceKey,String sourceType,List<StateChange> states,List<Strike> strikes,long journalId,long sequence,War.Plot plot,War.Tactic infantryTactic,Army.Tactic equipmentTactic,boolean sourceNaval){
+            this.journalId=journalId;this.sequence=sequence;this.id=journalId+":"+sequence;
+            this.plot=plot;this.infantryTactic=infantryTactic;this.equipmentTactic=equipmentTactic;this.sourceNaval=sourceNaval;
             this.sourceKey=sourceKey;this.sourceType=sourceType;this.states=Collections.unmodifiableList(states);this.strikes=Collections.unmodifiableList(strikes);
             this.kind=kind;actorId=id;this.owner=owner;this.start=start;this.target=target;this.label=label;this.message=message;
             this.path=Collections.unmodifiableList(new ArrayList<>(path));this.impacts=Collections.unmodifiableList(impacts);
@@ -68,15 +85,22 @@ public final class TurnJournal {
     /** Ordered applied physical hits, including actual counters/support, never inferred from HP. */
     public static final class Strike {
         public final int actorId,targetId,owner,beforeTroops,afterTroops;
-        public final Hex start,target;public final String type;
-        Strike(World.Unit a,World.Unit b,int before,int after){actorId=a.id;targetId=b.id;owner=a.owner;start=a.hex;target=b.hex;type=a.weapon.name();beforeTroops=before;afterTroops=after;}
+        public final Hex start,target;public final String type;public final boolean naval;
+        Strike(World.Unit a,World.Unit b,int before,int after,boolean naval){this.naval=naval;actorId=a.id;targetId=b.id;owner=a.owner;start=a.hex;target=b.hex;type=a.weapon.name();beforeTroops=before;afterTroops=after;}
     }
     private List<Strike> strikes=new ArrayList<>();
-    void strike(World.Unit a,World.Unit b,int before,int after){strikes.add(new Strike(a,b,before,after));}
+    void strike(World.Unit a,World.Unit b,int before,int after){strikes.add(new Strike(a,b,before,after,w.army.water(a.hex)));}
     private final World w;
     private Map<String,Node> previous;
     private final List<Event> events=new ArrayList<>();
     private Kind kind=Kind.CHANGE;
+    private War.Plot plot;
+    private War.Tactic infantryTactic;
+    private Army.Tactic equipmentTactic;
+    // Called immediately after the existing rule action marker; no rules are executed here.
+    void plot(War.Plot value){plot=value;}
+    void tactic(War.Tactic value){infantryTactic=value;}
+    void tactic(Army.Tactic value){equipmentTactic=value;}
     private CriticalHit critical;
     void critical(CriticalHit hit){if(critical==null)critical=hit;}
     private int actorId=-1;
@@ -104,7 +128,7 @@ public final class TurnJournal {
         checkpoint("阶段结算");this.kind=kind;this.actorId=actor;this.target=target;this.label=label;
     }
     void movement(World.Unit u,List<Hex> route){mark(Kind.MOVE,u.id,route.get(route.size()-1),"行军");path=new ArrayList<>(route);}
-    void cancel(){critical=null;kind=Kind.CHANGE;actorId=-1;target=null;sourceHex=null;sourceOwner=-1;label="";sourceKey="";sourceType="";strikes=new ArrayList<>();path=Collections.emptyList();}
+    void cancel(){plot=null;infantryTactic=null;equipmentTactic=null;critical=null;kind=Kind.CHANGE;actorId=-1;target=null;sourceHex=null;sourceOwner=-1;label="";sourceKey="";sourceType="";strikes=new ArrayList<>();path=Collections.emptyList();}
     public void checkpoint(String message){
         Map<String,Node> next=snapshot(w,previous);List<Node> changed=new ArrayList<>();List<String> removed=new ArrayList<>();List<Impact> impacts=new ArrayList<>();
         for(Node n:next.values()){Node old=previous.get(n.key);if(old!=n){changed.add(n);impact(old,n,impacts);}}
@@ -118,7 +142,7 @@ public final class TurnJournal {
             }}
         }
         if(eventKind==Kind.ATTACK||eventKind==Kind.TACTIC||eventKind==Kind.PLOT||eventKind==Kind.ENTER||eventKind==Kind.FACILITY_ATTACK||eventKind==Kind.FACILITY_COUNTER){
-            for(int i=0;i<impacts.size();i++){Impact hit=impacts.get(i);if(hit.text.equals("离场"))impacts.set(i,new Impact(hit.hex,eventKind==Kind.ENTER?"进驻":"击破",eventKind!=Kind.ENTER));}
+            for(int i=0;i<impacts.size();i++){Impact hit=impacts.get(i);if(hit.metric==Metric.REMOVED&&hit.text.equals("离场"))impacts.set(i,new Impact(hit.hex,eventKind==Kind.ENTER?"进驻":"击破",eventKind!=Kind.ENTER,Metric.REMOVED,0));}
         }
         if(!changed.isEmpty()||!removed.isEmpty()||eventKind!=Kind.CHANGE){
             int id=actor==null?actorId:actor.id,owner=actor==null?(sourceOwner>=0?sourceOwner:w.active):actor.owner;
@@ -126,28 +150,28 @@ public final class TurnJournal {
             List<StateChange> states=new ArrayList<>();
             for(Node n:changed)states.add(new StateChange(previous.get(n.key),n));
             for(String key:removed)states.add(new StateChange(previous.get(key),null));
-            events.add(new Event(eventKind,id,owner,start,end,name,message,route,impacts,changed,removed,actor,critical,actor==null?sourceKey:"u"+actor.id,actor==null?sourceType:actor.weapon.name(),states,new ArrayList<>(strikes)));
+            events.add(new Event(eventKind,id,owner,start,end,name,message,route,impacts,changed,removed,actor,critical,actor==null?sourceKey:"u"+actor.id,actor==null?sourceType:actor.weapon.name(),states,new ArrayList<>(strikes),journalId,++sequence,plot,infantryTactic,equipmentTactic,actor!=null&&w.army.water(start)));
         }
         previous=next;cancel();
     }
     private static void impact(Node old,Node n,List<Impact> out){
         Object a=old==null?null:old.image,b=n==null?null:n.image;
         if(a instanceof World.Unit){World.Unit before=(World.Unit)a,after=b instanceof World.Unit?(World.Unit)b:null;
-            if(after==null){out.add(new Impact(before.hex,"离场",false));return;}
-            int loss=before.troops-after.troops;if(loss>0)out.add(new Impact(after.hex,"−"+loss+"兵",true));
-            if(before.status!=after.status)out.add(new Impact(after.hex,after.status.label,false));
-            int energy=after.energy-before.energy;if(energy!=0)out.add(new Impact(after.hex,"气力 "+(energy>0?"+":"−")+Math.abs(energy),energy<0));
+            if(after==null){out.add(new Impact(before.hex,"离场",false,Metric.REMOVED,0));return;}
+            int loss=before.troops-after.troops;if(loss>0)out.add(new Impact(after.hex,"−"+loss+"兵",true,Metric.TROOPS,-loss,n.key));
+            if(before.status!=after.status)out.add(new Impact(after.hex,after.status.label,false,Metric.STATUS,after.status.ordinal()));
+            int energy=after.energy-before.energy;if(energy!=0)out.add(new Impact(after.hex,"气力 "+(energy>0?"+":"−")+Math.abs(energy),energy<0,Metric.ENERGY,energy));
         }else if(a instanceof World.City&&b instanceof World.City){World.City before=(World.City)a,after=(World.City)b;
-            if(before.owner!=after.owner)out.add(new Impact(after.hex,"攻占",true));
-            else {int loss=before.defense-after.defense;if(loss>0)out.add(new Impact(after.hex,"城防 −"+loss,true));
-                loss=before.troops-after.troops;if(loss>0)out.add(new Impact(after.hex,"守军 −"+loss,true));}
+            if(before.owner!=after.owner)out.add(new Impact(after.hex,"攻占",true,Metric.OWNER,after.owner));
+            else {int loss=before.defense-after.defense;if(loss>0)out.add(new Impact(after.hex,"城防 −"+loss,true,Metric.HP,-loss));
+                loss=before.troops-after.troops;if(loss>0)out.add(new Impact(after.hex,"守军 −"+loss,true,Metric.TROOPS,-loss,n.key));}
         }else if(a instanceof Domestic.Facility){Domestic.Facility f=(Domestic.Facility)a;
-            if(b==null)out.add(new Impact(f.hex,f.kind.label+"损毁",true));
-            else if(f.hp>((Domestic.Facility)b).hp)out.add(new Impact(f.hex,"耐久 −"+(f.hp-((Domestic.Facility)b).hp),true));
+            if(b==null)out.add(new Impact(f.hex,f.kind.label+"损毁",true,Metric.REMOVED,0));
+            else if(f.hp>((Domestic.Facility)b).hp)out.add(new Impact(f.hex,"耐久 −"+(f.hp-((Domestic.Facility)b).hp),true,Metric.HP,((Domestic.Facility)b).hp-f.hp));
         }else if(a instanceof War.Structure){War.Structure s=(War.Structure)a;
-            if(b==null)out.add(new Impact(s.hex,s.kind.label+"摧毁",true));
-            else if(s.hp>((War.Structure)b).hp)out.add(new Impact(s.hex,"耐久 −"+(s.hp-((War.Structure)b).hp),true));
-        }else if(a==null&&b instanceof War.Fire)out.add(new Impact(n.hex,"起火",true));
+            if(b==null)out.add(new Impact(s.hex,s.kind.label+"摧毁",true,Metric.REMOVED,0));
+            else if(s.hp>((War.Structure)b).hp)out.add(new Impact(s.hex,"耐久 −"+(s.hp-((War.Structure)b).hp),true,Metric.HP,((War.Structure)b).hp-s.hp));
+        }else if(a==null&&b instanceof War.Fire)out.add(new Impact(n.hex,"起火",true,Metric.FIRE,((War.Fire)b).remaining));
     }
     private static final class Node {
         final String key;final Hex hex;final Object image;

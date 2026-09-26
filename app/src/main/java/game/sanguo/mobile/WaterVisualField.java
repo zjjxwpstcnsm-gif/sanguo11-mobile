@@ -7,7 +7,7 @@ import game.sanguo.core.Hex;
  * Smoothing is confined to material bands, not the gameplay mask or the pick surface.
  * Bounded support means local edits need no connected-component flood fill. */
 final class WaterVisualField {
-    static final int VERSION=1;
+    static final int VERSION=2;
     static final float BAND=1.5f;
     private final MapSceneSnapshot.Ground ground;
     WaterVisualField(MapSceneSnapshot.Ground ground){this.ground=ground;}

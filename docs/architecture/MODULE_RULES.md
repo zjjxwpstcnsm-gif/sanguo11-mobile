@@ -34,3 +34,10 @@ Do not extend the whitelist by a directory wildcard. Do not expose session.world
 - Filament editor/territory rule queries -> MapProjectionQuery -> detached MapLayerData.
 - TrialEntry protocol/JNI/state/sync/diagnostic logic -> Contracts, Transport, Client, Features/UI; TrialEntry stays Bootstrap composition.
 - Assets/Scripts.meta -> Sanguo/Bootstrap.meta; existing TrialEntry and ExportAndroid .meta files moved byte-for-byte, not regenerated.
+
+### R11 reviewed transient presentation boundary
+CombatSequence and CombatReplayLedger consume only immutable TurnJournal.Event
+facts (legacy projection payload) in app. Their additional allowlist entries are
+paired with a static import/authority-call guard in check-architecture.py. They
+never accept World, session, RNG or save APIs. Gameplay ownership remains
+GameSession; no game-api/game-runtime dependency or authority change is introduced.

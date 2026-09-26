@@ -1,0 +1,122 @@
+{
+  "stage": "R08",
+  "status": "PARTIAL",
+  "baseline": "107d07a416e1a3e7f04cfd7a7cb1fb482c710452",
+  "main": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "pr": 67,
+  "backend": "Filament 1.56.0 / OPENGL",
+  "batching": "CPU merged opaque chunk meshes; not GPU instancing",
+  "predecessorCI": 35961885126,
+  "predecessorResult": "SUCCESS",
+  "khronos": {
+    "models": 171,
+    "errors": 0,
+    "warnings": 0
+  },
+  "reproducibleOutputs": 180,
+  "android": "PASS exact-source build/lint and installed R08 matrix",
+  "physicalARM64": "NOT_RUN",
+  "pcReference": "REFERENCE_MISSING for matching forest/valley/farm",
+  "visual": "FAIL complete PC art acceptance; actual 18-view matrix reviewed, transitional art",
+  "sourceSHA": "284ee89042e28ecabd0685f426a6faf8066e1233",
+  "sourceTree": "79683a12c02d85fc286358037353f07c55b4846c",
+  "ciRun": 35982639814,
+  "ciJob": 107577964661,
+  "build": "PASS assembleDebug + assembleDebugAndroidTest + lintDebug",
+  "apk": {
+    "sha256": "e4360075b85cdec265c75ec1b456aa301b70b066b808767cbe54787c28276e26",
+    "bytes": 37213286,
+    "applicationId": "game.sanguo.mobile.dev",
+    "versionName": "0.91.0-native-r08",
+    "versionCode": 91,
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "signerSHA256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "exactSourceInDex": true,
+    "exactModelHashesVerified": 171
+  },
+  "host": {
+    "R08": 9870055,
+    "R07": 7194,
+    "R06": 199,
+    "fieldAssets": 9273920,
+    "architecture": "PASS",
+    "assets": "PASS 3116362 + facility snapshot133",
+    "editorInteraction": "PASS32 + custom map136"
+  },
+  "hostMeasurement": {
+    "scene": "synthetic96x96 forest; same current assets; no rule/performance claims",
+    "legacyCPUChunks": 144,
+    "legacyArrayBytes": 269758192,
+    "legacyColdMs": 2550.161674,
+    "windowCPUChunks": 44,
+    "windowUniqueArrayBytes": 51593512,
+    "windowColdMs": 477.530527,
+    "cachedRequestMs": 4.142198,
+    "farmConformingVertices": 918
+  },
+  "candidateStatus": "FINAL_SOURCE",
+  "supersededCandidates": [
+    {
+      "sourceSHA": "1a728e6ccaa4f76fae9e1ea39cbd547ac141ad4a",
+      "sourceTree": "13f609306ac8d8b05331d40c59b1b719bcf82a1e",
+      "ciRun": 35981094433,
+      "ciJob": 107572947125,
+      "apk": {
+        "sha256": "e4360075b85cdec265c75ec1b456aa301b70b066b808767cbe54787c28276e26",
+        "bytes": 37213286,
+        "applicationId": "game.sanguo.mobile.dev",
+        "versionName": "0.91.0-native-r08",
+        "versionCode": 91,
+        "abis": [
+          "arm64-v8a",
+          "armeabi-v7a",
+          "x86",
+          "x86_64"
+        ],
+        "signerSHA256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+        "exactSourceInDex": true,
+        "exactModelHashesVerified": 171
+      },
+      "candidateStatus": "SUPERSEDED: actual ROAD lattice and recreation readiness finding"
+    }
+  ],
+  "startup": {
+    "run": 35982640008,
+    "result": "PASS",
+    "freshChecks": 130,
+    "reloadChecks": 79,
+    "artifact": 10800944029,
+    "separateBuildAPK": true
+  },
+  "buildArtifact": 10800134254,
+  "ciResult": "SUCCESS",
+  "runtimeArtifact": 10801743551,
+  "runtimeArtifactSHA256": "99bebec049a53dc46621ce4a14894745df3f7e9a81ad4fb4aeb1353b6163a299",
+  "runtime": {
+    "result": "PASS",
+    "installedChecks": 1399,
+    "device": "API29 x86_64 Pixel2 / swangle software GPU",
+    "surfaceShots": 24,
+    "requiredMatrixShots": 18,
+    "videoSegments": 9,
+    "videoReview": "one sampled frame per segment; not full continuous motion certification",
+    "memoryDump": "NOT_RUN: final dumpsys says No process found",
+    "fullMotionAcceptance": "NOT_RUN",
+    "pcArtAcceptance": "FAIL"
+  },
+  "finalEvidenceCommit": "Containing documentation-only commit; final SHA also recorded in delivered REMOTE_DELIVERY.json",
+  "sameSourceRegressionPassRuns": [
+    35982640008,
+    35982639836,
+    35982639992,
+    35982639826,
+    35982639820,
+    35982640345,
+    35982640037
+  ]
+}

@@ -8,9 +8,10 @@ final class SceneMesh {
     private static final World.Terrain[] TERRAIN_TYPES=World.Terrain.values();
     SceneMesh distant;
     boolean vegetation;
+    int landscapeChunkSize=8;
     // Disjoint index ranges share the same surface and buffers, but never draw water as land.
     int landIndexCount=-1;
-    long fingerprint; int chunkQ,chunkR;
+    long fingerprint; int chunkQ,chunkR,terrainLod;
     float[] tangents; float[] surfaceData; float[] uv; final float[] vertices; final int[] indices; final float x,z,radius;
     SceneMesh(List<Float> v,List<Integer> i,float x,float z,float radius){
         vertices=new float[v.size()];for(int n=0;n<v.size();n++)vertices[n]=v.get(n);
@@ -66,6 +67,31 @@ final class SceneMesh {
         }
         SceneMesh mesh(float x,float z,float radius){return new SceneMesh(v,i,x,z,radius);}
     }
+    /** Fixed-capacity primitive scratch for one surface chunk (or the bounded backdrop).
+     * The fan, winding, vertex order, color arithmetic and land/water partition are unchanged.
+     * Avoid retaining millions of Float/Integer objects during a national first load. */
+    private static final class SurfaceBuilder {
+        final float[] vertices;
+        final int[] land;
+        int[] water;
+        int vertexCount,landCount,waterCount;
+        SurfaceBuilder(int maxVertices,int maxIndices){vertices=new float[maxVertices*7];land=new int[maxIndices];}
+        void vertex(float x,float y,float z,int color){
+            int n=vertexCount++*7;vertices[n]=x;vertices[n+1]=y;vertices[n+2]=z;
+            vertices[n+3]=((color>>16)&255)/255f;vertices[n+4]=((color>>8)&255)/255f;
+            vertices[n+5]=(color&255)/255f;vertices[n+6]=1f;
+        }
+        void triangle(boolean wet,int a,int b,int c){
+            if(wet){if(water==null)water=new int[land.length];water[waterCount++]=a;water[waterCount++]=b;water[waterCount++]=c;}
+            else{land[landCount++]=a;land[landCount++]=b;land[landCount++]=c;}
+        }
+        SceneMesh mesh(float x,float z,float radius){
+            int[] indices=Arrays.copyOf(land,landCount+waterCount);
+            if(waterCount!=0)System.arraycopy(water,0,indices,landCount,waterCount);
+            SceneMesh mesh=new SceneMesh(Arrays.copyOf(vertices,vertexCount*7),indices,x,z,radius);
+            mesh.landIndexCount=landCount;return mesh;
+        }
+    }
     static int shade(int c,float f){return 0xff000000|((int)(((c>>16)&255)*f)<<16)|((int)(((c>>8)&255)*f)<<8)|(int)((c&255)*f);}
     static int terrain(int ordinal){
         switch(TERRAIN_TYPES[ordinal]){
@@ -88,28 +114,61 @@ final class SceneMesh {
         }
         if(minX==Float.MAX_VALUE)return null;
         minX=(float)Math.floor((minX-16)/8)*8;minZ=(float)Math.floor((minZ-16)/8)*8;maxX+=16;maxZ+=16;
-        Builder b=new Builder();
-        for(float z=minZ;z<maxZ;z+=8)for(float x=minX;x<maxX;x+=8){
-            int n=b.v.size()/7;b.vertex(x,-.04f,z,0xffffffff);b.vertex(x,-.04f,z+8,0xffffffff);b.vertex(x+8,-.04f,z+8,0xffffffff);b.vertex(x+8,-.04f,z,0xffffffff);
-            Collections.addAll(b.i,n,n+1,n+2,n,n+2,n+3);
+        // Sample the shared field densely enough to avoid coarse background colour islands
+        // showing through authoritative VOID cells. This never adds playable cells.
+        final float step=2.25f;
+        int columns=(int)Math.ceil((maxX-minX)/step),rows=(int)Math.ceil((maxZ-minZ)/step);
+        SurfaceBuilder b=new SurfaceBuilder((columns+1)*(rows+1),columns*rows*6);
+        // The regular background has no split normals: adjacent quads share payloads.
+        for(int r=0;r<=rows;r++)for(int q=0;q<=columns;q++)
+            b.vertex(minX+q*step,-.04f,minZ+r*step,0xffffffff);
+        for(int r=0;r<rows;r++)for(int q=0;q<columns;q++){
+            int n=r*(columns+1)+q,next=n+columns+1;
+            b.triangle(false,n,next,next+1);b.triangle(false,n,next+1,n+1);
         }
         SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+8);m.landIndexCount=m.indices.length;
-        m.surfaceData=new float[m.vertices.length/7*8];TerrainMaterialField field=new TerrainMaterialField(g);
-        for(int i=0;i<m.vertices.length/7;i++){
-            float x=m.vertices[i*7],z=m.vertices[i*7+2];float[] w=field.sample(x,z);System.arraycopy(w,0,m.vertices,i*7+3,4);
-            int at=i*8;m.surfaceData[at]=x;m.surfaceData[at+1]=-z;m.surfaceData[at+2]=-.70710677f;m.surfaceData[at+5]=.70710677f;
-            m.surfaceData[at+6]=-8;m.surfaceData[at+7]=.86f;
-        }
+        // Identical weights, lighting frame, macro tone and shore data to the foreground.
+        new TerrainMaterialField(g).attach(m);
         return m;
+    }
+    /** A view request retains only visible chunks plus a prefetch margin. All levels
+     * preserve the canonical fan planes/edges, so arbitrary adjacent levels stitch exactly. */
+    static final class TerrainWindow {
+        final float x,z,ex,ez,span;
+        TerrainWindow(float x,float z,float ex,float ez,float span){this.x=x;this.z=z;this.ex=ex+16;this.ez=ez+16;this.span=span;}
+        boolean covers(float cx,float cz,float vx,float vz,float nextSpan){
+            return Math.abs(cx-x)+vx<=ex-4&&Math.abs(cz-z)+vz<=ez-4&&level(nextSpan)==level(span);
+        }
+        static int level(float span){return span<14?0:span<40?1:2;}
+        int lod(float cx,float cz){return Math.min(2,Math.max(level(span),(int)(Math.max(Math.abs(cx-x),Math.abs(cz-z))/32)));}
+        boolean contains(float cx,float cz,float radius){return Math.abs(cx-x)<=ex+radius&&Math.abs(cz-z)<=ez+radius;}
     }
     static List<SceneMesh> ground(MapSceneSnapshot.Ground g){return ground(g,Collections.emptyList());}
     static List<SceneMesh> ground(MapSceneSnapshot.Ground g,List<SceneMesh> previous){
+        return ground(g,previous,null);
+    }
+    static final class BuildStats {
+        long geometryNanos,heightNanos,blendNanos,shoreNanos;int sharedSamples,timedFieldSamples,builtChunks;Runnable progress;
+        java.util.function.Consumer<List<SceneMesh>> firstLoadBatch;
+        @Override public String toString(){return "geometryWallMs="+geometryNanos/1e6+" sampledNormalHeightWallMs="+heightNanos/1e6+" sampledBlendWallMs="+blendNanos/1e6+" sampledShoreWallMs="+shoreNanos/1e6+" reusedFieldSamples="+sharedSamples+" timedFieldSamples="+timedFieldSamples;}
+    }
+    static List<SceneMesh> ground(MapSceneSnapshot.Ground g,List<SceneMesh> previous,TerrainWindow window){
+        return ground(g,previous,window,null);
+    }
+    static List<SceneMesh> ground(MapSceneSnapshot.Ground g,List<SceneMesh> previous,TerrainWindow window,BuildStats stats){
         List<SceneMesh> out=new ArrayList<>();Map<String,SceneMesh> cached=new HashMap<>();
         for(SceneMesh m:previous)cached.put(m.chunkQ+":"+m.chunkR,m);
-        for(int r=0;r<g.height;r+=16)for(int q=0;q<g.width;q+=16){
+        List<int[]> requests=new ArrayList<>();
+        for(int r=0;r<g.height;r+=16)for(int q=0;q<g.width;q+=16)requests.add(new int[]{q,r});
+        if(window!=null)requests.sort(Comparator.comparingDouble(a->Math.hypot(g.grid.x(a[0]+8,a[1]+8)-window.x,g.grid.z(a[0]+8,a[1]+8)-window.z)));
+        for(int[] request:requests){
+            int q=request[0],r=request[1];float cx=g.grid.x(q+8,r+8),cz=g.grid.z(q+8,r+8);
+            if(window!=null&&!window.contains(cx,cz,13))continue;
+            int lod=window==null?1:window.lod(cx,cz);
             if(Thread.currentThread().isInterrupted())return Collections.emptyList();
             long fingerprint=1469598103934665603L ^ TerrainMaterialField.VERSION ^ TerrainSurface.METADATA_VERSION ^ WaterVisualField.VERSION;
-            fingerprint=(fingerprint^g.mapSeed)*1099511628211L;
+            fingerprint=(fingerprint^(window==null?g.mapSeed:g.mapIdentity))*1099511628211L;
+            fingerprint=(fingerprint^lod)*1099511628211L;
             fingerprint=(fingerprint^g.width)*1099511628211L;fingerprint=(fingerprint^g.height)*1099511628211L;
             fingerprint=(fingerprint^Float.floatToIntBits(g.grid.offset))*1099511628211L;fingerprint=(fingerprint^(g.grid.staggered?1:0))*1099511628211L;
             for(int rr=r-8;rr<Math.min(r+24,g.height);rr++)for(int qq=q-8;qq<Math.min(q+24,g.width);qq++){
@@ -118,23 +177,33 @@ final class SceneMesh {
                 fingerprint=(fingerprint^Float.floatToIntBits(g.surface.overrides.getOrDefault(h,-1f)))*1099511628211L;
             }
             SceneMesh retained=cached.get(q+":"+r);if(retained!=null&&retained.fingerprint==fingerprint){out.add(retained);continue;}
-            Builder b=new Builder();List<Integer> waterIndices=new ArrayList<>();float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
+            long geometryStarted=stats==null?0:System.nanoTime();
+            int cells=Math.min(16,g.width-q)*Math.min(16,g.height-r);
+            SurfaceBuilder b=new SurfaceBuilder(cells*9,cells*24);float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
             for(int rr=r;rr<Math.min(r+16,g.height);rr++)for(int qq=q;qq<Math.min(q+16,g.width);qq++){
                 Hex h=new Hex(qq,rr);if(!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);
                 minX=Math.min(minX,x);maxX=Math.max(maxX,x);minZ=Math.min(minZ,z);maxZ=Math.max(maxZ,z);
-                int color=terrain(g.terrain[rr*g.width+qq]),n=b.v.size()/7;boolean water=g.surface.water(h);
+                int color=terrain(g.terrain[rr*g.width+qq]),n=b.vertexCount;boolean water=g.surface.water(h);
                 b.vertex(x,g.surface.sample(x,z),z,g.surface.color(x,z,color,water));
                 for(float[] edge:EDGE){float vx=x+edge[0],vz=z+edge[1];b.vertex(vx,g.surface.sample(vx,vz),vz,g.surface.color(vx,vz,color,water));}
                 // +Y facing winding: lit double-sided shading otherwise flips the valid +Y tangent normal.
-                for(int j=0;j<8;j++)Collections.addAll(water?waterIndices:b.i,n,n+1+(j+1)%8,n+1+j);
+                for(int j=0;j<8;j++)b.triangle(water,n,n+1+(j+1)%8,n+1+j);
             }
-            int landCount=b.i.size();b.i.addAll(waterIndices);
-            if(!b.i.isEmpty()){
+            int landCount=b.landCount;
+            if(landCount+b.waterCount>0){
                 SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+1);
                 m.landIndexCount=landCount;
-                new TerrainMaterialField(g).attach(m);
-                SceneMesh fine=detail(m,g);
+                if(stats!=null)stats.geometryNanos+=System.nanoTime()-geometryStarted;
+                new TerrainMaterialField(g).attach(m,stats);
+                SceneMesh fine=lod==2?m:detail(m,g);
+                if(lod==0)fine=detail(fine,g);
+                fine.terrainLod=lod;
+                // Production holds only the requested precision, not a nationwide LOD pyramid.
+                if(window!=null)fine.distant=null;
                 fine.chunkQ=q;fine.chunkR=r;fine.fingerprint=fingerprint;out.add(fine);
+                if(stats!=null&&stats.firstLoadBatch!=null&&out.size()%8==0)
+                    stats.firstLoadBatch.accept(Collections.unmodifiableList(new ArrayList<>(out)));
+                if(stats!=null&&++stats.builtChunks%32==0&&stats.progress!=null)stats.progress.run();
             }
         }
         return Collections.unmodifiableList(out);
@@ -157,6 +226,18 @@ final class SceneMesh {
             int start=coarse.vertices.length/7;
             for(int t=0;t<coarse.indices.length;t+=3)for(int j=0;j<8;j++)
                 fine.surfaceData[(start+t/3)*8+j]=(coarse.surfaceData[coarse.indices[t]*8+j]+coarse.surfaceData[coarse.indices[t+1]*8+j]+coarse.surfaceData[coarse.indices[t+2]*8+j])/3;
+        }
+        // R05: resample only newly introduced interior vertices. Shared edge samples
+        // remain byte-identical across chunks/LODs; geometry and ray picking do not move.
+        // Interpolating the old field here added triangles but no shoreline detail.
+        if(fine.surfaceData!=null){
+            WaterVisualField field=new WaterVisualField(g);
+            int start=coarse.vertices.length/7;
+            for(int t=0;t<coarse.indices.length;t+=3){
+                int i=start+t/3;float x=fine.vertices[i*7],z=fine.vertices[i*7+2];
+                fine.surfaceData[i*8+6]=field.distance(x,z);
+                if(t>=coarse.landIndexCount)fine.surfaceData[i*8+7]=field.flowAngle(x,z);
+            }
         }
         return fine;
     }

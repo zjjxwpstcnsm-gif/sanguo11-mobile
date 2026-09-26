@@ -1,0 +1,32 @@
+{
+  "source": "8744cb00ff90077dddff849874602957c8cf0295",
+  "failures": [
+    {
+      "job": 107161919598,
+      "evidence": [
+        "3T11:36:56.1562865Z Success\\n2026-09-23T11:37:15.3577581Z SMOKE FAIL: java.lang.AssertionError: UI content not reachable by scrolling: 收起\\n2026-09-23T11:37:15.3579635Z \\tat game.sanguo.mobile.GameSmokeRunner.scrollToText(GameSmokeRunner.java:1517)\\n2026-09-23T11:37:15.3581625Z \\tat game.sanguo",
+        ".9587690Z   File \\\"<stdin>\\\", line 5, in <module>\\n2026-09-23T11:37:15.9589077Z AssertionError: SMOKE FAIL: java.lang.AssertionError: UI content not reachable by scrolling: 收起\\n2026-09-23T11:37:15.9590392Z \\tat game.sanguo.mobile.GameSmokeRunner.scrollToText(GameSmokeRunner.java:1517)\\n2026-09"
+      ]
+    },
+    {
+      "job": 107161892339,
+      "evidence": [
+        ".\\n2026-09-23T11:33:48.9193624Z ##[error]Exception in thread \\\"main\\\" java.lang.AssertionError: AI uses deployment commands\\n2026-09-23T11:33:48.9202207Z \\tat game.sanguo.core.CoreTest.check(CoreTest.java:9)\\n2026-09-23T11:33:48.9202696Z \\tat game.sanguo.core.CoreTest.logistics(CoreTest.java:7"
+      ]
+    },
+    {
+      "job": 107161892663,
+      "evidence": [
+        "3T11:35:55.5416910Z Success\\n2026-09-23T11:39:07.6174858Z SMOKE FAIL: java.lang.AssertionError: UI text not found: 190 讨伐董卓 · 重建  ·\\n2026-09-23T11:39:07.6176710Z \\tat game.sanguo.mobile.GameSmokeRunner.waitText(GameSmokeRunner.java:1484)\\n2026-09-23T11:39:07.6178667Z \\tat game.sanguo.mobile.Ga",
+        ".4443960Z   File \\\"<stdin>\\\", line 5, in <module>\\n2026-09-23T11:39:08.4445454Z AssertionError: SMOKE FAIL: java.lang.AssertionError: UI text not found: 190 讨伐董卓 · 重建  ·\\n2026-09-23T11:39:08.4446595Z \\tat game.sanguo.mobile.GameSmokeRunner.waitText(GameSmokeRunner.java:1484)\\n2026-09-23T11:39:"
+      ]
+    },
+    {
+      "job": 107161891508,
+      "evidence": [
+        "7702Z Success\\n2026-09-23T11:38:50.4501438Z SMOKE FAIL: java.io.IOException: 旧版本地图存档无法继续使用，请保留原档并重新开局；未删除或改写原存档\\n2026-09-23T11:38:50.4503028Z \\tat game.sanguo.core.SaveCodec.decode(Unknown Source:1020)\\n2026-09-23T11:38:50.4504869Z \\tat game.sanguo.mobile.GameSmokeRunner.upgrade28Flo",
+        "8297386Z   File \\\"<string>\\\", line 1, in <module>\\n2026-09-23T11:38:50.8298253Z AssertionError\\n2026-09-23T11:38:50.8487460Z ##[error]The process '/usr/bin/sh' failed with exit code 1\\n2026-09-23T11:38:50.8498853Z ##[group]Terminate Emulator\\n2026-09-23T11:38:50.8500144Z [command]/usr/local/li"
+      ]
+    }
+  ]
+}
