@@ -16,7 +16,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R00.I02",
@@ -30,7 +30,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R00.I03",
@@ -44,7 +44,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R00.I04",
@@ -58,7 +58,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R00.I05",
@@ -72,7 +72,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R00.I06",
@@ -86,7 +86,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R00.I07",
@@ -100,7 +100,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R00.I08",
@@ -114,7 +114,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R00.V01",
@@ -128,7 +128,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R00.V02",
@@ -142,7 +142,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R00.V03",
@@ -156,7 +156,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "精确ef54951源码CI assembleDebug/assembleDebugAndroidTest/lintDebug成功；完整core输入和候选原始exit1分别保留并分类，未修改断言。见continuation-ef5495131/build及host-ci。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R00.V04",
@@ -170,7 +170,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R00.V05",
@@ -184,7 +184,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R00.G01",
@@ -198,7 +198,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R00.D01",
@@ -212,7 +212,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R01.I01",
@@ -226,7 +226,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R01.I02",
@@ -240,7 +240,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R01.I03",
@@ -254,7 +254,7 @@
       "previous_remediation_status": "FAIL",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R01.I04",
@@ -268,7 +268,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R01.I05",
@@ -282,7 +282,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R01.I06",
@@ -296,7 +296,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R01.I07",
@@ -310,7 +310,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R01.V01",
@@ -324,7 +324,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R01.V02",
@@ -338,7 +338,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R01.V03",
@@ -352,7 +352,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R01.V04",
@@ -366,7 +366,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R01.V05",
@@ -380,7 +380,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R01.G01",
@@ -394,7 +394,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R01.D01",
@@ -408,7 +408,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R02.I01",
@@ -1220,7 +1220,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R06.I02",
@@ -1234,7 +1234,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R06.I03",
@@ -1248,7 +1248,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R06.I04",
@@ -1262,7 +1262,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R06.I05",
@@ -1276,7 +1276,7 @@
       "previous_remediation_status": "FAIL",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R06.I06",
@@ -1290,7 +1290,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R06.I07",
@@ -1304,7 +1304,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R06.V01",
@@ -1318,7 +1318,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R06.V02",
@@ -1332,7 +1332,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R06.V03",
@@ -1346,7 +1346,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R06.V04",
@@ -1360,7 +1360,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R06.V05",
@@ -1374,7 +1374,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R06.G01",
@@ -1388,7 +1388,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R06.D01",
@@ -1402,7 +1402,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R07.I01",
@@ -2410,7 +2410,7 @@
       "previous_remediation_status": "FAIL",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R12.I02",
@@ -2424,7 +2424,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R12.I03",
@@ -2438,7 +2438,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R12.I04",
@@ -2452,7 +2452,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R12.I05",
@@ -2466,7 +2466,7 @@
       "previous_remediation_status": "FAIL",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R12.I06",
@@ -2480,7 +2480,7 @@
       "previous_remediation_status": "FAIL",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R12.I07",
@@ -2494,7 +2494,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R12.V01",
@@ -2508,7 +2508,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R12.V02",
@@ -2522,7 +2522,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R12.V03",
@@ -2536,7 +2536,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R12.V04",
@@ -2550,7 +2550,7 @@
       "previous_remediation_status": "FAIL",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R12.V05",
@@ -2564,7 +2564,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R12.G01",
@@ -2578,7 +2578,7 @@
       "previous_remediation_status": "FAIL",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R12.D01",
@@ -2592,7 +2592,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R13.I01",
@@ -2802,7 +2802,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R14.I02",
@@ -2816,7 +2816,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R14.I03",
@@ -2830,7 +2830,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R14.I04",
@@ -2844,7 +2844,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R14.I05",
@@ -2858,7 +2858,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R14.I06",
@@ -2872,7 +2872,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R14.I07",
@@ -2886,7 +2886,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R14.V01",
@@ -2900,7 +2900,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R14.V02",
@@ -2914,7 +2914,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R14.V03",
@@ -2928,7 +2928,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R14.V04",
@@ -2942,7 +2942,7 @@
       "previous_remediation_status": "FAIL",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R14.V05",
@@ -2956,7 +2956,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R14.G01",
@@ -2970,7 +2970,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     },
     {
       "id": "R14.D01",
@@ -2984,7 +2984,7 @@
       "previous_remediation_status": "NOT_RUN",
       "continuation_note": "本次未闭合该条完整复合验收，保留既有失败或未执行状态；对应主机套件exit0只在日志列明的主机范围有效。",
       "v107_note": "保留该复合条目既有状态；v106针对全国预览工作量的精确内容/缓存回归和运行结果见P0报告，未执行的设备/UI/美术矩阵不升级。 最终v107结果见P0报告：API29 UI FAIL，API35 R12下一旬FAIL；不得自动升级。",
-      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。"
+      "v112_note": "保留该复合条目原状态。v112修复首个资产LOD同步顺序，严格安装结果及实际画面见R00-R14-P0-v112；主机通过不能提升设备/美术/完整触控验收。 API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。"
     }
   ],
   "note": "逐条保留全部213原文、原文件/行号及历史状态；本轮完整复合条款不因局部修复升级。具体关闭的小缺陷另见remediation report。",
@@ -3005,14 +3005,15 @@
     "api35_cold": "FAIL: original120s readiness, pending307 GPU31 submitted5; FIRST_CPU_DELIVERY reached; faction confirmation NOT_REACHED",
     "api29_r12_full": "FAIL at initial scene readiness before national preview",
     "api29_calendar": "NOT_REACHED on v112; inherited v111 actual whole-image stale calendar remains FAIL",
-    "api35_r12_full": "NOT_RUN_COMPLETE: CI job108325858070 in_progress at snapshot; no complete raw result collected",
-    "api35_parity": "NOT_RUN_COMPLETE: CI job108325858080 in_progress; v111 12-case PASS is not v112 acceptance",
-    "api35_lifecycle20": "NOT_RUN_COMPLETE: CI job108325858061 in_progress; no full20-cycle installed acceptance",
+    "api35_r12_full": "FAIL at NativeR12Instrumentation.recreate:22/combinations:32/onStart:91: pending5 submitted9 beginAttempts609/skipped600; national preview NOT_REACHED",
+    "api35_parity": "PASS 12cases/310checks; 50 entire expected/observed SaveCodec byte pairs independently equal, including RNG, committed/finished attack, next-turn and2recreations; explicit fixtures/API commands, NOT full cold touch chain",
+    "api35_lifecycle20": "NOT_RUN_COMPLETE: job108325858061 still in_progress at latest snapshot; no completed20-cycle installed raw evidence",
     "full_touch_new_game": "FAIL_BLOCKED_AT_NATIONAL_PREVIEW; selection/confirmation/deploy/move/attack/report/next-turn/manual-save-load NOT_REACHED",
     "core": "FAIL inherited; input/candidate entry exit1 CoreTest.logistics:75; all42 invocation exit matrices identical (12pass30fail)",
     "host": "PASS 20 suites; not installed acceptance",
     "build_lint": "PASS exactsource assembleDebug assembleDebugAndroidTest lintDebug",
     "arm64_physical": "NOT_RUN unavailable",
-    "release": "403; no Release created"
+    "release": "403; no Release created",
+    "api35_calendar": "SCOPED PASS: focused installed186checks and original whole-screen Jan/Jul/Apr correct; representative May/cross-year/recreation originals correct. Unmodified old APK API35 also correct, so not proof of fixing API29 stale UI"
   }
 }

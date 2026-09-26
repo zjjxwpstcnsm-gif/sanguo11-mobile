@@ -4,7 +4,7 @@
 
 正式修复首次资产同步前的 site/unit LOD 选择；输入真实方法回归失败、候选通过。继承 v108–v111 有界流水线与 Window 恢复；不把继承成果计作本次新修复。
 
-API29/API35 独立冷启动首CPU检查已实际到达，但全国3D readiness均FAIL；API29完整R12与日期探针均在初始ready失败，日期检查NOT_REACHED。完整新开局纯触控链未通过。API35 all/parity/20轮生命周期截至证据快照未完成，完整验收NOT_RUN；ARM64真机NOT_RUN。
+API29/API35 独立冷启动首CPU检查均到达，但全国3D readiness均FAIL。API29原R12初始ready失败，API35原R12在重建ready失败；完整纯触控新开局链未通过。API35完整权威一致性12组合PASS，50对完整存档字节复核一致；focused月份原整屏正确，但API29实际日期故障仍未关闭。20轮生命周期完整验收NOT_RUN；ARM64真机NOT_RUN。
 
 未闭合项继续 FAIL/NOT_RUN；213条原文与历史状态保留。以下全部为历史，不代表 v112：
 
