@@ -122,6 +122,27 @@ jobs:
           record({'event':'observer_detached'})
           PY
           cp out/trace-gl.js out/observe-gl.py out/remediation/gl-trace/
+      - name: Keep observer PID and probe exit in one shell
+        run: |
+          cat > out/run-program-trace.sh <<'SH'
+          #!/usr/bin/env bash
+          set -uo pipefail
+          adb root
+          adb wait-for-device
+          adb push out/frida-server /data/local/tmp/p0-frida-server
+          adb shell chmod 755 /data/local/tmp/p0-frida-server
+          timeout 15 adb shell 'nohup /data/local/tmp/p0-frida-server </dev/null >/data/local/tmp/p0-frida-server.log 2>&1 &'
+          timeout 25 out/frida-env/bin/python -c 'import frida; d=frida.get_usb_device(timeout=15); print("Observer transport ready:", d.id); print("Processes:", len(d.enumerate_processes()))'
+          adb shell getprop > out/remediation/DEVICE_PROPERTIES.txt
+          out/frida-env/bin/python out/observe-gl.py > out/remediation/gl-trace/observer.log 2>&1 & observer=$!
+          result=0; bash scripts/verify-native-remediation.sh baseline cold-only || result=$?
+          printf '%s\n' "$result" > out/remediation/ORIGINAL_PROBE_EXIT.txt
+          touch out/remediation/gl-trace/STOP
+          observation=0; wait "$observer" || observation=$?
+          printf '%s\n' "$observation" > out/remediation/gl-trace/OBSERVER_EXIT.txt
+          adb shell dumpsys SurfaceFlinger > out/remediation/gl-trace/final-surfaceflinger.txt
+          exit "$result"
+          SH
       - name: Enable KVM
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
@@ -136,22 +157,7 @@ jobs:
           heap-size: 512M
           disable-animations: false
           emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
-          script: |
-            adb root
-            adb wait-for-device
-            adb push out/frida-server /data/local/tmp/p0-frida-server
-            adb shell chmod 755 /data/local/tmp/p0-frida-server
-            timeout 15 adb shell 'nohup /data/local/tmp/p0-frida-server </dev/null >/data/local/tmp/p0-frida-server.log 2>&1 &'
-            timeout 25 out/frida-env/bin/python -c 'import frida; d=frida.get_usb_device(timeout=15); print("Observer transport ready:", d.id); print("Processes:", len(d.enumerate_processes()))'
-            adb shell getprop > out/remediation/DEVICE_PROPERTIES.txt
-            out/frida-env/bin/python out/observe-gl.py > out/remediation/gl-trace/observer.log 2>&1 & observer=$!
-            result=0; bash scripts/verify-native-remediation.sh baseline cold-only || result=$?
-            printf '%s\n' "$result" > out/remediation/ORIGINAL_PROBE_EXIT.txt
-            touch out/remediation/gl-trace/STOP
-            observation=0; wait "$observer" || observation=$?
-            printf '%s\n' "$observation" > out/remediation/gl-trace/OBSERVER_EXIT.txt
-            adb shell dumpsys SurfaceFlinger > out/remediation/gl-trace/final-surfaceflinger.txt
-            exit "$result"
+          script: bash out/run-program-trace.sh
       - uses: actions/upload-artifact@v4
         if: always()
         with:
