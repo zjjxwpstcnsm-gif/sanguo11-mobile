@@ -141,7 +141,8 @@ jobs:
             adb wait-for-device
             adb push out/frida-server /data/local/tmp/p0-frida-server
             adb shell chmod 755 /data/local/tmp/p0-frida-server
-            adb shell /data/local/tmp/p0-frida-server -D
+            timeout 15 adb shell 'nohup /data/local/tmp/p0-frida-server </dev/null >/data/local/tmp/p0-frida-server.log 2>&1 &'
+            timeout 25 out/frida-env/bin/python -c 'import frida; d=frida.get_usb_device(timeout=15); print("Observer transport ready:", d.id); print("Processes:", len(d.enumerate_processes()))'
             adb shell getprop > out/remediation/DEVICE_PROPERTIES.txt
             out/frida-env/bin/python out/observe-gl.py > out/remediation/gl-trace/observer.log 2>&1 & observer=$!
             result=0; bash scripts/verify-native-remediation.sh baseline cold-only || result=$?
