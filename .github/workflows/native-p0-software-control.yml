@@ -55,7 +55,11 @@ jobs:
             bash scripts/verify-native-remediation.sh baseline cold-only
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: p0-software-${{ matrix.input }}-api${{ matrix.api }}-raw, path: out/remediation/, if-no-files-found: error, retention-days: 14}
+        with:
+          name: p0-software-${{ matrix.input }}-api${{ matrix.api }}-raw
+          path: out/remediation/
+          if-no-files-found: error
+          retention-days: 14
       - name: Validate original video segments
         if: always()
         run: |
