@@ -2,7 +2,7 @@
   "schema": 1,
   "protected_baseline": "47e5db471e6dadb22d4c782522f97c113601461e",
   "asset_baseline": "0fdd96fe18a70a5617a250a4bb31650e7cae0705",
-  "note": "Registers the four already-delivered R14 material changes. New visual changes must update individual runtime/source hashes and evidence, never bypass all assets. No new art acceptance implied.",
+  "note": "Four inherited R14 programs plus two individually registered national overview programs. Every inherited runtime asset remains byte-identical; no directory-wide exemption or visual acceptance implied.",
   "permitted_changes": {
     "app/src/main/assets/3d/field/unit.filamat": {
       "runtime_sha256": "5e4330b35069f7e21a2bfad2c456d6af6b8dfced35440e7c56ccaf6bf497034a",
@@ -35,6 +35,22 @@
       "version": "R14 / matc 1.56.0",
       "source_license": "repository-authored material source; existing project license",
       "regression": "scripts/test-native-r14.sh; APK per-file verification; device art remains NOT_ACCEPTED"
+    },
+    "app/src/main/assets/3d/terrain/ground-overview.filamat": {
+      "runtime_sha256": "6a1c2b3aa616aa30778e5397ef25f3e919e3937e408e623c633d843ba374eb5e",
+      "source": "tools/3d/ground-overview.mat",
+      "source_sha256": "b0cf22d51a4d159ce56a057a9aace7e8cdcb9561e3207f3d47902a9f4e7a6911",
+      "version": "v110 / matc 1.56.0 / camera overview only",
+      "source_license": "repository-authored specialization of existing project material; existing project license",
+      "regression": "scripts/test-native-overview-material.py; original near programs and all inherited assets hash-identical; installed runtime and visual gates reported separately"
+    },
+    "app/src/main/assets/3d/terrain/water-overview.filamat": {
+      "runtime_sha256": "d05bd27fe805db7adf13c1fe74ec9305f18773258a98530dcb5e25283e110d79",
+      "source": "tools/3d/water-overview.mat",
+      "source_sha256": "f68b110770bf30470e2084d71e7e6044da60a7c6a5e1144682af9d38f832f188",
+      "version": "v110 / matc 1.56.0 / camera overview only",
+      "source_license": "repository-authored specialization of existing project material; existing project license",
+      "regression": "scripts/test-native-overview-material.py; original near programs and all inherited assets hash-identical; installed runtime and visual gates reported separately"
     }
   },
   "assets": {
@@ -335,6 +351,8 @@
     "app/src/main/assets/map/units-v040.png": "c0021a6c1be28ca656737f7d65a818d6424fda1bd64f6a7dbf67276eed7bee6c",
     "app/src/main/assets/map/units-v043.png": "8706a2095243fac24832b8bb736505b8d45687c7dcd42b39d5a4e1caa8e3f043",
     "app/src/main/assets/portraits/officers-v040.png": "3d68c887d97e6ed50d390899f9e4b03f86c38c8e45ee2dd34f25567f885857a4",
-    "app/src/main/assets/portraits/officers.png": "c39255112dce5d08ac5fb09d5653ca96328d140f5a3fdec92d79eca6f50c28ce"
+    "app/src/main/assets/portraits/officers.png": "c39255112dce5d08ac5fb09d5653ca96328d140f5a3fdec92d79eca6f50c28ce",
+    "app/src/main/assets/3d/terrain/ground-overview.filamat": "6a1c2b3aa616aa30778e5397ef25f3e919e3937e408e623c633d843ba374eb5e",
+    "app/src/main/assets/3d/terrain/water-overview.filamat": "d05bd27fe805db7adf13c1fe74ec9305f18773258a98530dcb5e25283e110d79"
   }
 }
