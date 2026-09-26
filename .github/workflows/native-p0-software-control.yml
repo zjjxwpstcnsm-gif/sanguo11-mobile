@@ -51,7 +51,7 @@ jobs:
           script: |
             adb shell getprop > out/remediation/DEVICE_PROPERTIES.txt
             adb shell dumpsys SurfaceFlinger > out/remediation/SURFACEFLINGER_START.txt
-            "$ANDROID_HOME/emulator/emulator" -version > out/remediation/EMULATOR_VERSION.txt 2>&1
+            "${ANDROID_SDK_ROOT:-/usr/local/lib/android/sdk}/emulator/emulator" -version > out/remediation/EMULATOR_VERSION.txt 2>&1
             bash scripts/verify-native-remediation.sh baseline cold-only
       - uses: actions/upload-artifact@v4
         if: always()
