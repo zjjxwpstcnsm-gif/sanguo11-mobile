@@ -23,7 +23,13 @@ public final class NativeP0ParityInstrumentation extends SceneInstrumentation {
         android.util.Log.i("P0Parity",s);
     }
     private String shell(String command)throws Exception{
-        try(InputStream in=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand(command))){return new String(in.readAllBytes(),StandardCharsets.UTF_8).trim();}
+        try(InputStream in=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand(command))){return new String(readBytes(in),StandardCharsets.UTF_8).trim();}
+    }
+    // InputStream.readAllBytes is unavailable on API29. Preserve exact bytes and assertions.
+    private static byte[] readBytes(InputStream in)throws IOException{
+        ByteArrayOutputStream out=new ByteArrayOutputStream();byte[] buffer=new byte[8192];int count;
+        while((count=in.read(buffer))!=-1)out.write(buffer,0,count);
+        return out.toByteArray();
     }
     private String digest(byte[] bytes)throws Exception{
         StringBuilder s=new StringBuilder();for(byte b:MessageDigest.getInstance("SHA-256").digest(bytes))s.append(String.format(java.util.Locale.ROOT,"%02x",b&255));return s.toString();
@@ -35,7 +41,7 @@ public final class NativeP0ParityInstrumentation extends SceneInstrumentation {
         byte[] actual=authority();Files.write(new File(dir,name+"-observed.sg11").toPath(),actual);
         Files.write(new File(dir,name+"-expected.sg11").toPath(),expected);
         check(Arrays.equals(expected,actual),"entire authority including rule RNG equals reference: "+name);
-        if(saved){try(InputStream in=getTargetContext().openFileInput("auto.sg11")){check(Arrays.equals(expected,in.readAllBytes()),"entire real autosave equals reference: "+name);}}
+        if(saved){try(InputStream in=getTargetContext().openFileInput("auto.sg11")){check(Arrays.equals(expected,readBytes(in)),"entire real autosave equals reference: "+name);}}
         note("EXACT "+name+" bytes="+actual.length+" SHA256="+digest(actual)+" autosave="+saved);
     }
     private void motion(boolean enabled)throws Exception{
