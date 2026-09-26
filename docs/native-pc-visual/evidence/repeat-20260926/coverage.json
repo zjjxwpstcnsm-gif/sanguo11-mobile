@@ -1,0 +1,5472 @@
+{
+  "lines": [
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 1,
+      "text": "# 全局规则｜原生 PC 风格 3D 路线",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 3,
+      "requirement_id": "X00.L003"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 5,
+      "text": "## 1. 这是正式开发，不是方案或演示任务",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 7,
+      "text": "仓库：`https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`。",
+      "classification": "context_or_table_header_not_requirement"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 8,
+      "requirement_id": "X00.L008"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 10,
+      "requirement_id": "X00.L010"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 12,
+      "text": "## 2. 基线、分支和旧成果",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 14,
+      "requirement_id": "X00.L014"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 16,
+      "requirement_id": "X00.L016"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 18,
+      "requirement_id": "X00.L018"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 20,
+      "requirement_id": "X00.L020"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 22,
+      "requirement_id": "X00.L022"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 24,
+      "text": "## 3. 锁定原生路线，不再做一次引擎迁移",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 26,
+      "requirement_id": "X00.L026"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 28,
+      "requirement_id": "X00.L028"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 30,
+      "requirement_id": "X00.L030"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 32,
+      "requirement_id": "X00.L032"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 34,
+      "requirement_id": "X00.L034"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 36,
+      "text": "## 4. 玩法唯一权威与不回退红线",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 38,
+      "requirement_id": "X00.L038"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 40,
+      "requirement_id": "X00.L040"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 42,
+      "requirement_id": "X00.L042"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 44,
+      "requirement_id": "X00.L044"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 46,
+      "text": "## 5. 连续世界的实质要求",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 48,
+      "requirement_id": "X00.L048"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 50,
+      "requirement_id": "X00.L050"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 52,
+      "requirement_id": "X00.L052"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 54,
+      "text": "## 6. 三条验收线分别记录",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 56,
+      "requirement_id": "X00.L056"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 57,
+      "requirement_id": "X00.L057"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 58,
+      "requirement_id": "X00.L058"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 60,
+      "requirement_id": "X00.L060"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 62,
+      "requirement_id": "X00.L062"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 64,
+      "text": "## 7. 不虚报测试、运行、构建和推送",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 66,
+      "requirement_id": "X00.L066"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 68,
+      "requirement_id": "X00.L068"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 70,
+      "requirement_id": "X00.L070"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 72,
+      "requirement_id": "X00.L072"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 74,
+      "text": "## 8. 最终回复和阶段交接",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 76,
+      "requirement_id": "X00.L076"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 78,
+      "requirement_id": "X00.L078"
+    },
+    {
+      "file": "00_GLOBAL_RULES.md",
+      "line": 80,
+      "requirement_id": "X00.L080"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 1,
+      "text": "# 串行阶段总表｜R00–R18",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 3,
+      "text": "默认顺序：`R00 → R01 → R02 → R03 → R04 → R05 → R06 → R07 → R08 → R09 → R10 → R11 → R12 → R13 → R14 → R15 → R16 → R17 → R18`。",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 4,
+      "text": "每次把完整 ZIP 交给 Agent，只点名本轮一个阶段。不要让多个 Agent 同时写这个串行分支。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "roadmap_context_or_R15_R18_out_of_scope",
+      "requirement_id": "Y01.L004"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 6,
+      "text": "| 阶段 | 任务 | 目标 |",
+      "classification": "roadmap_context_or_R15_R18_out_of_scope"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 7,
+      "text": "|---|---|---|",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 8,
+      "text": "| R00 | 原生恢复、基线审计与后端锁定 | 从最新正式源码恢复可见、可操作、可构建的原生 3D 游戏入口，锁定后端和证据链；不是再建立一个空渲染工程。 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 9,
+      "text": "| R01 | 渲染边界、资源所有权与生命周期补齐 | 在既有会话架构上收敛原生显示职责，建立后续连续地形可安全增量更新的运行基础。 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 10,
+      "text": "| R02 | 统一坐标、相机与地形拾取 | 让连续 3D 世界能够稳定浏览和操作，同时严格保持原有格子、七格城市和所有命令语义。 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 11,
+      "text": "| R03 | 受约束的连续地形与分块网格 | 把表现从格子拼接升级为共享高度/法线场的连续山脉与平原，但不改变全国逻辑地图。 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 12,
+      "text": "| R04 | 连续材质混合与地表实质美术 | 让关网格后的地面不再是一块绿、一块灰、一块蓝，并完成第一道实际视觉对照门槛。 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 13,
+      "text": "| R05 | 河流、水面与受约束岸线 | 将水域表现成连续河流/湖泊与可信岸边层次，同时严格保持现有港口与水陆通行拓扑。 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 14,
+      "text": "| R06 | 可复现资产流水线与受控模型格式 | 把模型/纹理/材质从临时文件变成可追踪、可导出、可校验、能在正式地图加载的生产流水线。 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 15,
+      "text": "| R07 | 城池、港口、关卡与设施美术 | 以实际模型、材质和正确地形结合改善据点与设施，而不是只把占位模型换成更多立方体。 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 16,
+      "text": "| R08 | 植被、道路、山石与区域景观 | 让城市之外的山河形成连续且有疏密的环境，保持道路、战场和可行动格清楚可读。 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 17,
+      "text": "| R09 | 局部完整样板与 PC 风格对照门槛 | 把前面系统在同一真实可玩区域中整合到合格，而不是各个截图看起来分别存在却组合仍然简陋。 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 18,
+      "text": "| R10 | 部队编队、动画与地形贴合 | 把现有正式部队表现升级成能识别兵种、方向和行动状态的 3D 编队，不改变规则与路径。 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 19,
+      "text": "| R11 | 战斗特效、反馈与播放一致性 | 让现有攻击、战法、火焰和反馈具有一致的 3D 时序与可读性，且无重复伤害或演示卡死。 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 20,
+      "text": "| R12 | 网格、势力着色与完整原生交互 | 在连续山河上完整恢复并打磨既有操作能力，让网格是可控覆盖层，而不是始终附着的地形外观。 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 21,
+      "text": "| R13 | 地图编辑、自定义内容与存档接入 | 让正式地图编辑和自定义内容在连续 3D 中可用，并且视觉参数变化不会破坏旧存档或权威地图。 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 22,
+      "text": "| R14 | 彩墨风格、光照、阴影与四季 | 统一地形、建筑、植被、部队和水体的美术语言，并让已有时间/季节驱动环境，而不是只套一层滤镜。 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 23,
+      "text": "| R15 | 全国覆盖、区域美术与缺陷清零 | 把已通过的局部体系扩展到当前全部正式地图与自定义内容，避免“只有样板漂亮，全国仍简陋”。 |",
+      "classification": "roadmap_context_or_R15_R18_out_of_scope"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 24,
+      "text": "| R16 | 移动端性能、内存、温控与长稳 | 在不删玩法对象、不牺牲基础美术可读性的前提下，将原生 3D 做到有实测证据的移动端可用。 |",
+      "classification": "roadmap_context_or_R15_R18_out_of_scope"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 25,
+      "text": "| R17 | 完整玩法回归、兼容与发布硬化 | 验证新原生视觉没有丢任何现有功能，并处理驱动、生命周期、构建和覆盖安装的正式交付风险。 |",
+      "classification": "roadmap_context_or_R15_R18_out_of_scope"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 26,
+      "text": "| R18 | 最终视觉验收与可追踪候选交付 | 关闭本路线最终关键缺陷，交付可玩、可审查、可下载且证据完整的 PC 风格原生 3D 候选版本；默认仍不合并 main。 |",
+      "classification": "roadmap_context_or_R15_R18_out_of_scope"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 28,
+      "text": "## 五道视觉门槛",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 30,
+      "text": "| 门槛 | 阶段 | 必须看到什么 |",
+      "classification": "roadmap_context_or_R15_R18_out_of_scope"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 31,
+      "text": "|---|---|---|",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 32,
+      "text": "| V0 | R00 | 正常游戏中确实显示并可操作的原生 3D 地图，不是纯背景 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 33,
+      "text": "| V1 | R04 | 实际跨块地形不再是纯色拼图；参考与 APK 可对照 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 34,
+      "text": "| V2 | R09 | 同一个真实可玩区域中，山水、建筑、树路、比例/照明协调 |",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 35,
+      "text": "| V3 | R15 | 合格体系扩展全图，多区域近中远巡检，无大量占位/风格突变 |",
+      "classification": "roadmap_context_or_R15_R18_out_of_scope"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 36,
+      "text": "| V4 | R18 | 最终 PC 风格对照、完整玩法和规定设备/性能证据 |",
+      "classification": "roadmap_context_or_R15_R18_out_of_scope"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 38,
+      "text": "前置门槛不是形式检查。R00 不能真实运行，不能把后续 GPU 画面任务当已验收；R09 美术不合格，不能先复制到全国宣布 R15 完成。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "roadmap_cross_reference_to_stage_requirements",
+      "requirement_id": "Y01.L038"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 40,
+      "text": "## 技术与设备缺口的处理",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 42,
+      "text": "缺真机不意味着必须停掉所有独立源码开发；可继续做不依赖真机结论的任务，并保留 ARM64/性能 NOT_RUN。缺 PC 参考时可以实现技术，但不能给 PC 视觉相似性 PASS。最终 R18 综合验收不允许缺关键证据。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "roadmap_context_or_R15_R18_out_of_scope",
+      "requirement_id": "Y01.L042"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 44,
+      "text": "阶段沿用旧能力时，必须在当前串行 HEAD 验证并修补差距；禁止因文件/类已存在就自动跳过，也禁止为了重新编号重做同样底层。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "roadmap_context_or_R15_R18_out_of_scope",
+      "requirement_id": "Y01.L044"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 46,
+      "text": "## 合并策略",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 48,
+      "text": "R00 创建一个指向 main 的 Draft PR，R01–R18 持续更新它。默认所有阶段都不合并 main、不处理其他 PR。只有用户明确允许时执行 `90_MERGE_AFTER_APPROVAL.md`；该文件不是 R18 的自动后续步骤。",
+      "classification": "roadmap_cross_reference_to_stage_requirements"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 50,
+      "text": "## 与旧阶段的关系",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "01_ROADMAP.md",
+      "line": 52,
+      "text": "旧 S01–S13 是已有实现来源；U00/U01/架构 PR 的 Java 会话是可复用基础。本包编号没有宣称它们已完成，也不要求重做。R00 会生成“旧能力 → 复用/修复 → 新验收”的对应表。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "roadmap_cross_reference_to_stage_requirements",
+      "requirement_id": "Y01.L052"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 1,
+      "text": "# 已核验基线｜2026-09-23",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 3,
+      "text": "本文件是**编包时只读核查**，不是一次新的构建/运行验收。执行 Agent 仍须拉取最新远端并复核。仓库读取得到的声明和实际源码验证在下面分开。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y02.L003"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 5,
+      "text": "## 1. 已读到的实时仓库状态",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 7,
+      "text": "- main HEAD：`ac29b458325b52d6e302ca44270d16552de4ed7f`。",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 8,
+      "text": "- PR #66 已 merged，合并消息为 architecture foundation into main。PR 源码/验证提交与证据补充提交不同，见 PR 原文。",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 9,
+      "text": "- 正式 Gradle 依赖包含 `:core`、`:game-api`、`:game-runtime`、`com.google.android.filament:filament-android:1.56.0`；Unity 库是条件依赖。",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 10,
+      "text": "- app 使用 Java 17；compile/target SDK 35，minSdk 26；应用 ID `game.sanguo.mobile.dev`。debug 构建默认也可能 R8/minify 且 non-debuggable，不能仅凭构建名推断是调试运行时。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y02.L010"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 11,
+      "text": "- 已读 `app/src/main/java/game/sanguo/mobile/FilamentMapView.java`：真实创建 `Engine.Backend.OPENGL`，已有 terrain/ground/water 材质加载、SurfaceView、相机、纹理、对象/植被和覆盖层，以及能力门控。",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 13,
+      "text": "## 2. 应保留的真实架构",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 15,
+      "text": "`docs/architecture/OVERVIEW.md` 描述并由 PR #66 对应改动支持：",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 17,
+      "text": "`GameApplication/NativeGameHost -> GameSession -> existing World rules`。",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 19,
+      "text": "`game-api` 是纯 Java 合约；`game-runtime` 持有权威会话；`MapProjectionQuery` 输出复制的 `MapLayerData` 给原生显示。核心状态和渲染状态不要重新合并。会话换代、旧请求拒绝、保存捕获、回合提交独立于动画均是需要保护的成果。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y02.L019"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 21,
+      "text": "`GridLayout` / `GridWorldTransform` 已处理源格到显示坐标的行列交错与原点，不能把常见 axial 公式直接套回去，不能再次加 source-origin 偏移。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y02.L021"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 23,
+      "text": "## 3. 旧原生路线并非空白",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 25,
+      "text": "`docs/3d/architecture.md` 包含 S01–S08 演进；`docs/3d/world-art/progress.md` 包含 S10、S11、S13 实现和未通过项。已存在的能力线索：",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 27,
+      "text": "| 能力 | 已有线索；须源码与运行确认 |",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 28,
+      "text": "|---|---|",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 29,
+      "text": "| 宿主与回退 | MapHost / MapView / FilamentMapView |",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 30,
+      "text": "| 坐标相机 | GridWorldTransform、SceneCamera、地形 ray picking |",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 31,
+      "text": "| 连续高度 | TerrainSurface、SceneMesh、共享场/分块/局部更新 |",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 32,
+      "text": "| 地表 | 4 层颜色与 normal/roughness、world UV、lit ground 材质 |",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 33,
+      "text": "| 水体 | 独立 water material、形状导出的流向、保留拓扑 |",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 34,
+      "text": "| 城港关 | SiteVisual、SiteGlb、图集、LOD、占地锚点 |",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 35,
+      "text": "| 部队设施 | FieldAssets、UnitMotion、UnitAnimation、刚性分部件动画 |",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 36,
+      "text": "| 环境/覆盖层 | 植被分块、SceneQuality、EnvironmentProfile、独立网格开关 |",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 38,
+      "text": "以上类名是定位线索，不要求都位于同一包；R00 用 `git ls-files` / 搜索确认当前路径，不为了吻合本包伪造类文件。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y02.L038"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 40,
+      "text": "## 4. 必须继承的缺陷，而不是清零",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 42,
+      "text": "PR #66 交付说明明确保留：最后单独启动的截图仅有背景，不能据此确认冷启动/画面成功；某些核心测试为基线旧失败；全手工玩法和持续性能未验收；Unity Player 和 ARM64 视觉对照未完成。",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 44,
+      "text": "S13 历史报告仍明确：台阶/材质边界、S12 美术债、物理手机和完整手工矩阵未完成。这说明“已有 S13”不等于“已经像 PC”。",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 46,
+      "text": "将这些记录转成 R00 的待复现项。它们来自报告，不意味着当前 HEAD 必然还能复现，更不能仅凭描述定位到某一代码 bug。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y02.L046"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 48,
+      "text": "## 5. 为什么本包不强行从零手写 GLES",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 50,
+      "text": "上一轮对话的“原生 OpenGL ES Renderer”在本仓库已经有底层落点：Filament/OpenGL。画面差不自动说明底层 API 错误，重写同样不能代替建筑和地形美术。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y02.L050"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 52,
+      "text": "因此本包固定目标与交付链，默认保留可运行 GPU 后端，在上层重做有问题的连续表现与资产；纯 GLES 只保留有证据的替换出口，不变成第二个长期项目。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y02.L052"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 54,
+      "text": "## 6. 本轮未做的事情",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 56,
+      "text": "编包会话没有修改远端源码、创建开发 PR、运行 APK 或验证美术。ZIP 是开发任务包，不是完成的游戏、模型素材包或已有验收证据包。",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "02_BASELINE_AUDIT.md",
+      "line": 58,
+      "text": "原始核查链接见 `08_SOURCES.md`。后续运行状态不能从本文件推断。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y02.L058"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 1,
+      "text": "# 渲染与资产契约",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 3,
+      "requirement_id": "X03.L003"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 5,
+      "text": "## 1. 所有权与线程",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 7,
+      "requirement_id": "X03.L007"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 9,
+      "requirement_id": "X03.L009"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 11,
+      "requirement_id": "X03.L011"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 13,
+      "requirement_id": "X03.L013"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 15,
+      "text": "## 2. 地图与坐标",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 17,
+      "requirement_id": "X03.L017"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 19,
+      "requirement_id": "X03.L019"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 21,
+      "requirement_id": "X03.L021"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 23,
+      "text": "## 3. 连续视觉场",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 25,
+      "text": "建议职责：`VisualTerrainField`、`SurfaceSampler`、`TerrainChunkBuilder`、`VisualConstraintMask`、`VisualRevision`，可映射现有 TerrainSurface/SceneMesh。",
+      "classification": "context_or_table_header_not_requirement"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 27,
+      "requirement_id": "X03.L027"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 29,
+      "requirement_id": "X03.L029"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 31,
+      "requirement_id": "X03.L031"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 33,
+      "requirement_id": "X03.L033"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 35,
+      "text": "## 4. 材质/色彩",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 37,
+      "requirement_id": "X03.L037"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 39,
+      "requirement_id": "X03.L039"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 41,
+      "requirement_id": "X03.L041"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 43,
+      "text": "## 5. 资源约定",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 45,
+      "requirement_id": "X03.L045"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 47,
+      "requirement_id": "X03.L047"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 49,
+      "requirement_id": "X03.L049"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 51,
+      "text": "## 6. 事件与交互",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 53,
+      "requirement_id": "X03.L053"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 55,
+      "requirement_id": "X03.L055"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 57,
+      "text": "## 7. 视觉编辑与存档",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 59,
+      "requirement_id": "X03.L059"
+    },
+    {
+      "file": "03_RENDER_CONTRACTS.md",
+      "line": 61,
+      "requirement_id": "X03.L061"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 1,
+      "text": "# PC 风格视觉验收｜不是编译验收",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 3,
+      "text": "## 1. 目标与边界",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 5,
+      "requirement_id": "X04.L005"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 7,
+      "requirement_id": "X04.L007"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 9,
+      "text": "## 2. 参考集与可比性",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 11,
+      "requirement_id": "X04.L011"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 13,
+      "requirement_id": "X04.L013"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 15,
+      "requirement_id": "X04.L015"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 17,
+      "requirement_id": "X04.L017"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 19,
+      "requirement_id": "X04.L019"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 21,
+      "text": "## 3. 分项合格标准",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 23,
+      "text": "| 项目 | 合格观察 | 不合格示例 |",
+      "classification": "context_or_table_header_not_requirement"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 24,
+      "text": "|---|---|---|",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 25,
+      "requirement_id": "X04.L025"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 26,
+      "requirement_id": "X04.L026"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 27,
+      "requirement_id": "X04.L027"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 28,
+      "requirement_id": "X04.L028"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 29,
+      "requirement_id": "X04.L029"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 30,
+      "requirement_id": "X04.L030"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 31,
+      "requirement_id": "X04.L031"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 32,
+      "requirement_id": "X04.L032"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 33,
+      "requirement_id": "X04.L033"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 34,
+      "requirement_id": "X04.L034"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 36,
+      "requirement_id": "X04.L036"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 38,
+      "text": "## 4. 视觉里程碑",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 40,
+      "requirement_id": "X04.L040"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 42,
+      "requirement_id": "X04.L042"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 44,
+      "requirement_id": "X04.L044"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 46,
+      "text": "**V3 / R15：全图风格覆盖。** 所有区域都采用同一合格体系；全图巡检加代表区实拍，不靠只拍最漂亮的一座城。",
+      "classification": "future_stage_out_of_scope"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 48,
+      "text": "**V4 / R18：最终 PC 风格对照与游戏体验。** 合格设备的正常画质下完成全流程，所有关键视觉失败关闭；参考不足/真机缺失仍明确标未完成。",
+      "classification": "future_stage_out_of_scope"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 50,
+      "requirement_id": "X04.L050"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 52,
+      "text": "## 5. 证据真实性",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 54,
+      "requirement_id": "X04.L054"
+    },
+    {
+      "file": "04_VISUAL_ACCEPTANCE.md",
+      "line": 56,
+      "requirement_id": "X04.L056"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 1,
+      "text": "# 正式资源生产与接入要求",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 3,
+      "text": "## 1. 资源不是提示词，也不是文件计数",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 5,
+      "requirement_id": "X05.L005"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 7,
+      "requirement_id": "X05.L007"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 9,
+      "requirement_id": "X05.L009"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 11,
+      "text": "## 2. 资产清单",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 13,
+      "requirement_id": "X05.L013"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 15,
+      "requirement_id": "X05.L015"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 17,
+      "requirement_id": "X05.L017"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 19,
+      "text": "## 3. 地表与环境",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 21,
+      "requirement_id": "X05.L021"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 23,
+      "requirement_id": "X05.L023"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 25,
+      "requirement_id": "X05.L025"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 27,
+      "text": "## 4. 建筑与设施",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 29,
+      "requirement_id": "X05.L029"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 31,
+      "requirement_id": "X05.L031"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 33,
+      "requirement_id": "X05.L033"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 35,
+      "requirement_id": "X05.L035"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 37,
+      "text": "## 5. 部队和动画",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 39,
+      "requirement_id": "X05.L039"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 41,
+      "requirement_id": "X05.L041"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 43,
+      "requirement_id": "X05.L043"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 45,
+      "text": "## 6. glTF / GLB 边界",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 47,
+      "requirement_id": "X05.L047"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 49,
+      "requirement_id": "X05.L049"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 51,
+      "requirement_id": "X05.L051"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 53,
+      "text": "## 7. 预算初值（项目目标，不是实测保证）",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 55,
+      "requirement_id": "X05.L055"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 57,
+      "requirement_id": "X05.L057"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 58,
+      "requirement_id": "X05.L058"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 59,
+      "requirement_id": "X05.L059"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 60,
+      "requirement_id": "X05.L060"
+    },
+    {
+      "file": "05_ASSET_PIPELINE.md",
+      "line": 62,
+      "requirement_id": "X05.L062"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 1,
+      "text": "# 测试、兼容与性能验收",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 3,
+      "text": "## 1. 最小测试层次",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 5,
+      "requirement_id": "X06.L005"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 6,
+      "requirement_id": "X06.L006"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 7,
+      "requirement_id": "X06.L007"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 8,
+      "requirement_id": "X06.L008"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 10,
+      "requirement_id": "X06.L010"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 12,
+      "text": "## 2. 玩法不变的回放矩阵",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 14,
+      "requirement_id": "X06.L014"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 16,
+      "requirement_id": "X06.L016"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 18,
+      "requirement_id": "X06.L018"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 20,
+      "text": "## 3. 自动化图形检查",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 22,
+      "requirement_id": "X06.L022"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 24,
+      "requirement_id": "X06.L024"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 26,
+      "requirement_id": "X06.L026"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 28,
+      "text": "## 4. 生命周期/故障",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 30,
+      "requirement_id": "X06.L030"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 32,
+      "requirement_id": "X06.L032"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 34,
+      "text": "## 5. 建议起始性能预算",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 36,
+      "requirement_id": "X06.L036"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 38,
+      "text": "| 指标 | 初始目标/口径 |",
+      "classification": "context_or_table_header_not_requirement"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 39,
+      "text": "|---|---|",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 40,
+      "requirement_id": "X06.L040"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 41,
+      "requirement_id": "X06.L041"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 42,
+      "requirement_id": "X06.L042"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 43,
+      "requirement_id": "X06.L043"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 44,
+      "requirement_id": "X06.L044"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 45,
+      "requirement_id": "X06.L045"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 46,
+      "requirement_id": "X06.L046"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 47,
+      "requirement_id": "X06.L047"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 48,
+      "requirement_id": "X06.L048"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 49,
+      "requirement_id": "X06.L049"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 51,
+      "requirement_id": "X06.L051"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 53,
+      "text": "## 6. 压力场景",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 55,
+      "requirement_id": "X06.L055"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 57,
+      "requirement_id": "X06.L057"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 59,
+      "text": "## 7. 构建及证据",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 61,
+      "requirement_id": "X06.L061"
+    },
+    {
+      "file": "06_TEST_AND_PERF.md",
+      "line": 63,
+      "requirement_id": "X06.L063"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 1,
+      "text": "# 串行 Git、PR 与 APK 交付",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 3,
+      "text": "## 1. 先读，再写",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 5,
+      "requirement_id": "X07.L005"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 7,
+      "requirement_id": "X07.L007"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 9,
+      "requirement_id": "X07.L009"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 11,
+      "text": "## 2. 首个 PR 与持续交付",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 13,
+      "requirement_id": "X07.L013"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 15,
+      "requirement_id": "X07.L015"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 17,
+      "requirement_id": "X07.L017"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 19,
+      "text": "## 3. 失败重试有幂等性",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 21,
+      "requirement_id": "X07.L021"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 23,
+      "requirement_id": "X07.L023"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 25,
+      "text": "## 4. 源码与 APK 身份",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 27,
+      "text": "推荐顺序：",
+      "classification": "context_or_table_header_not_requirement"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 29,
+      "requirement_id": "X07.L029"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 30,
+      "requirement_id": "X07.L030"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 31,
+      "requirement_id": "X07.L031"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 32,
+      "requirement_id": "X07.L032"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 33,
+      "requirement_id": "X07.L033"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 34,
+      "requirement_id": "X07.L034"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 36,
+      "requirement_id": "X07.L036"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 38,
+      "requirement_id": "X07.L038"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 40,
+      "text": "## 5. 下载与留存",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 42,
+      "requirement_id": "X07.L042"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 44,
+      "requirement_id": "X07.L044"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 46,
+      "text": "## 6. 最终回应模板",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 48,
+      "requirement_id": "X07.L048"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 49,
+      "requirement_id": "X07.L049"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 50,
+      "requirement_id": "X07.L050"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 51,
+      "requirement_id": "X07.L051"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 52,
+      "requirement_id": "X07.L052"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 53,
+      "requirement_id": "X07.L053"
+    },
+    {
+      "file": "07_GIT_DELIVERY.md",
+      "line": 55,
+      "requirement_id": "X07.L055"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 1,
+      "text": "# 一手资料与编包核查来源",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 3,
+      "text": "核查日期：2026-09-23。链接用于开发时复查；版本和仓库状态可能继续变化。本包没有复制/附带 PC 游戏资源。",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 5,
+      "text": "## 仓库原始资料",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 7,
+      "text": "以下链接固定到编包时 SHA，执行时另读远端最新版本。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y08.L007"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 9,
+      "text": "- main/合并历史：https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/commit/ac29b458325b52d6e302ca44270d16552de4ed7f",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 10,
+      "text": "- 架构 PR #66：https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/66",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 11,
+      "text": "- 架构说明：https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/blob/ac29b458325b52d6e302ca44270d16552de4ed7f/docs/architecture/OVERVIEW.md",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 12,
+      "text": "- 正式依赖/版本约束：https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/blob/ac29b458325b52d6e302ca44270d16552de4ed7f/app/build.gradle",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 13,
+      "text": "- 正式原生渲染源码：https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/blob/ac29b458325b52d6e302ca44270d16552de4ed7f/app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 14,
+      "text": "- 旧原生路线与线程/资产约束：https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/blob/ac29b458325b52d6e302ca44270d16552de4ed7f/docs/3d/architecture.md",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 15,
+      "text": "- 旧连续地图/美术进度和债务：https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/blob/ac29b458325b52d6e302ca44270d16552de4ed7f/docs/3d/world-art/progress.md",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 17,
+      "text": "这些报告包含历史状态；PR #66 已合并不等于报告中所有缺陷已经关闭。编包者没有重新跑其中测试。",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 19,
+      "text": "## Android / 渲染一手资料",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 21,
+      "text": "**A01 Android OpenGL ES**",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 22,
+      "text": "https://developer.android.com/develop/ui/views/graphics/opengl/about-opengl",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 24,
+      "text": "支持依据：Android 框架提供 GLES 与 GLSurfaceView；设备是否具备 GLES3 需要实现/运行时检测；GLES3 的 ETC2/EAC 与可选 ASTC 不能混同。本包对画面质量、包体和性能的目标是项目设计，不是文档保证。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y08.L024"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 26,
+      "text": "**A02 GLSurfaceView.Renderer**",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 27,
+      "text": "https://developer.android.com/reference/android/opengl/GLSurfaceView.Renderer",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 29,
+      "text": "用于纯 GLES 候选的线程与上下文恢复核对；不意味着 Filament 现有 Surface 必须改成 GLSurfaceView。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y08.L029"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 31,
+      "text": "**F01 Filament 官方仓库**",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 32,
+      "text": "https://github.com/google/filament",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 34,
+      "text": "支持依据：Android Java/JNI API、OpenGL ES 后端、Android Maven 库、自定义材质、gltfio 与离线工具；runtime 和 matc 需要匹配版本。官网最新示例不等于本项目应升级版本。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y08.L034"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 36,
+      "text": "**G01 glTF 2.0 规范**",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 37,
+      "text": "https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 39,
+      "text": "用于格式、坐标、accessor、材质与动画边界核查。项目可以支持受控子集，但应明确离线转换/拒绝策略。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y08.L039"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 41,
+      "text": "**G02 Khronos glTF Validator**",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 42,
+      "text": "https://github.com/KhronosGroup/glTF-Validator",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 44,
+      "text": "用于格式验证，不证明模型外观像 PC 版，也不证明符合项目自己的运行时子集。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y08.L044"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 46,
+      "text": "**P01 Android 游戏系统跟踪**",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 47,
+      "text": "https://developer.android.com/games/optimize",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 49,
+      "text": "用于区分 CPU/GPU/帧呈现并采集真实性能；工具版本/设备支持以实际环境为准。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y08.L049"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 51,
+      "text": "## PC 版参考",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 53,
+      "text": "**K01 开发者采访：三国志11制作人**",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 54,
+      "text": "https://www.4gamer.net/specials/0601_koei_int/0601_koei_int_03.shtml",
+      "classification": "baseline_fact/reference_source_read_not_new_requirement"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 56,
+      "text": "采访涉及 KOEI 程序持续演进、彩墨风格、Shader 与 Hex 逻辑。它不是完整渲染源代码，也不足以证明某种 terrain mesh、splat map、植被 billboard 或雾遮挡 LOD 的具体内部实现。本包选这些现代实现方法是工程设计，不写成已确认的原版内部事实。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y08.L056"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 58,
+      "text": "## 引用原则",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "08_SOURCES.md",
+      "line": 60,
+      "text": "参考图登记其具体原始页面，不只写“网上找的”。第三方博客可提供线索，关键 API/资源许可/版本要求回到官方说明核实。用实际 APK 截图来证明本项目效果，不用外部示意图代替。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "baseline_fact/reference_source_read_not_new_requirement",
+      "requirement_id": "Y08.L060"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 1,
+      "text": "# 范围与明确决策",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 3,
+      "text": "## 包含",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 5,
+      "requirement_id": "X09.L005"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 7,
+      "text": "## 不包含",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 9,
+      "requirement_id": "X09.L009"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 11,
+      "requirement_id": "X09.L011"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 13,
+      "text": "## 固定决策",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 15,
+      "requirement_id": "X09.L015"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 16,
+      "requirement_id": "X09.L016"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 17,
+      "requirement_id": "X09.L017"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 18,
+      "requirement_id": "X09.L018"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 19,
+      "requirement_id": "X09.L019"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 20,
+      "requirement_id": "X09.L020"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 22,
+      "text": "## 工程完成 vs 交付完成",
+      "classification": "heading/table_separator"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 24,
+      "requirement_id": "X09.L024"
+    },
+    {
+      "file": "09_SCOPE_AND_DECISIONS.md",
+      "line": 26,
+      "text": "最终路线完成需要 R18 的综合验收。R09 才是“局部样板”而不是“全国达到 PC 版”；R15 是全图覆盖而不自动代表性能过关。",
+      "classification": "future_stage_out_of_scope"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 1,
+      "text": "# sanguo11-mobile｜R00 原生恢复、基线审计与后端锁定",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 3,
+      "text": "你接手正式仓库 `https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`，本轮只执行 **R00**。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 4,
+      "requirement_id": "XR00.L004"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 6,
+      "text": "## 先执行的约束",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 8,
+      "requirement_id": "XR00.L008"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 10,
+      "requirement_id": "XR00.L010"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 12,
+      "requirement_id": "XR00.L012"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 14,
+      "requirement_id": "XR00.L014"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 16,
+      "requirement_id": "XR00.L016"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 18,
+      "text": "## 本阶段目标",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 20,
+      "text": "从最新正式源码恢复可见、可操作、可构建的原生 3D 游戏入口，锁定后端和证据链；不是再建立一个空渲染工程。",
+      "requirement_id": "R00.G01",
+      "classification": "stage_goal_covered_by_gate_and_implementation"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 22,
+      "text": "## 必读源码与输入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 24,
+      "requirement_id": "XR00.L024"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 26,
+      "text": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "scope_or_required_input_read",
+      "requirement_id": "YP.L026"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 28,
+      "text": "## 必须实际实施",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 30,
+      "requirement_id": "R00.I01"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 31,
+      "requirement_id": "R00.I02"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 32,
+      "requirement_id": "R00.I03"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 33,
+      "requirement_id": "R00.I04"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 34,
+      "requirement_id": "R00.I05"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 35,
+      "requirement_id": "R00.I06"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 36,
+      "requirement_id": "R00.I07"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 37,
+      "requirement_id": "R00.I08"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 39,
+      "text": "## 必须验证",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 41,
+      "requirement_id": "R00.V01"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 42,
+      "requirement_id": "R00.V02"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 43,
+      "requirement_id": "R00.V03"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 44,
+      "requirement_id": "R00.V04"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 45,
+      "requirement_id": "R00.V05"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 47,
+      "requirement_id": "XR00.L047"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 49,
+      "text": "## 通过门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 51,
+      "requirement_id": "R00.G01"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 53,
+      "requirement_id": "XR00.L053"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 55,
+      "text": "## 必须交付",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 57,
+      "requirement_id": "R00.D01"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 59,
+      "requirement_id": "XR00.L059"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 61,
+      "requirement_id": "XR00.L061"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 63,
+      "requirement_id": "XR00.L063"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 65,
+      "text": "## 本阶段特别禁止",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R00_PROMPT.md",
+      "line": 67,
+      "requirement_id": "XR00.L067"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 1,
+      "text": "# sanguo11-mobile｜R01 渲染边界、资源所有权与生命周期补齐",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 3,
+      "text": "你接手正式仓库 `https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`，本轮只执行 **R01**。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 4,
+      "requirement_id": "XR00.L004"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 6,
+      "text": "## 先执行的约束",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 8,
+      "requirement_id": "XR00.L008"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 10,
+      "requirement_id": "XR00.L010"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 12,
+      "requirement_id": "XR00.L012"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 14,
+      "requirement_id": "XR00.L014"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 16,
+      "requirement_id": "XR01.L016"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 18,
+      "text": "## 本阶段目标",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 20,
+      "text": "在既有会话架构上收敛原生显示职责，建立后续连续地形可安全增量更新的运行基础。",
+      "requirement_id": "R01.G01",
+      "classification": "stage_goal_covered_by_gate_and_implementation"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 22,
+      "text": "## 必读源码与输入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 24,
+      "text": "读取 R00 后端决定和缺陷、docs/architecture/OVERVIEW.md/MODULE_RULES.md（若存在）、MapHost、MapSceneSnapshot、MapLayerData、MapProjectionQuery、FilamentMapView 的正式调用链。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 26,
+      "text": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "scope_or_required_input_read",
+      "requirement_id": "YP.L026"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 28,
+      "text": "## 必须实际实施",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 30,
+      "requirement_id": "R01.I01"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 31,
+      "requirement_id": "R01.I02"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 32,
+      "requirement_id": "R01.I03"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 33,
+      "requirement_id": "R01.I04"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 34,
+      "requirement_id": "R01.I05"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 35,
+      "requirement_id": "R01.I06"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 36,
+      "requirement_id": "R01.I07"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 38,
+      "text": "## 必须验证",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 40,
+      "requirement_id": "R01.V01"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 41,
+      "requirement_id": "R01.V02"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 42,
+      "requirement_id": "R01.V03"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 43,
+      "requirement_id": "R01.V04"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 44,
+      "requirement_id": "R01.V05"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 46,
+      "requirement_id": "XR00.L047"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 48,
+      "text": "## 通过门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 50,
+      "requirement_id": "R01.G01"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 52,
+      "requirement_id": "XR00.L053"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 54,
+      "text": "## 必须交付",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 56,
+      "requirement_id": "R01.D01"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 58,
+      "requirement_id": "XR01.L058"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 60,
+      "requirement_id": "XR00.L061"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 62,
+      "requirement_id": "XR00.L063"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 64,
+      "text": "## 本阶段特别禁止",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R01_PROMPT.md",
+      "line": 66,
+      "requirement_id": "XR01.L066"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 1,
+      "text": "# sanguo11-mobile｜R02 统一坐标、相机与地形拾取",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 3,
+      "text": "你接手正式仓库 `https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`，本轮只执行 **R02**。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 4,
+      "requirement_id": "XR00.L004"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 6,
+      "text": "## 先执行的约束",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 8,
+      "requirement_id": "XR00.L008"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 10,
+      "requirement_id": "XR00.L010"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 12,
+      "requirement_id": "XR00.L012"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 14,
+      "requirement_id": "XR00.L014"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 16,
+      "requirement_id": "XR02.L016"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 18,
+      "text": "## 本阶段目标",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 20,
+      "text": "让连续 3D 世界能够稳定浏览和操作，同时严格保持原有格子、七格城市和所有命令语义。",
+      "requirement_id": "R02.G01",
+      "classification": "stage_goal_covered_by_gate_and_implementation"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 22,
+      "text": "## 必读源码与输入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 24,
+      "text": "读取 R01、GridLayout、GridWorldTransform、SceneCamera、TerrainSurface.pick、MapHost/触摸分发、UI 面板占区与现有编辑坐标链。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 26,
+      "text": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "scope_or_required_input_read",
+      "requirement_id": "YP.L026"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 28,
+      "text": "## 必须实际实施",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 30,
+      "requirement_id": "R02.I01"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 31,
+      "requirement_id": "R02.I02"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 32,
+      "requirement_id": "R02.I03"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 33,
+      "requirement_id": "R02.I04"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 34,
+      "requirement_id": "R02.I05"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 35,
+      "requirement_id": "R02.I06"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 36,
+      "requirement_id": "R02.I07"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 38,
+      "text": "## 必须验证",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 40,
+      "requirement_id": "R02.V01"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 41,
+      "requirement_id": "R02.V02"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 42,
+      "requirement_id": "R02.V03"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 43,
+      "requirement_id": "R02.V04"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 44,
+      "requirement_id": "R02.V05"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 46,
+      "requirement_id": "XR00.L047"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 48,
+      "text": "## 通过门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 50,
+      "requirement_id": "R02.G01"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 52,
+      "requirement_id": "XR00.L053"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 54,
+      "text": "## 必须交付",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 56,
+      "requirement_id": "R02.D01"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 58,
+      "requirement_id": "XR02.L058"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 60,
+      "requirement_id": "XR00.L061"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 62,
+      "requirement_id": "XR00.L063"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 64,
+      "text": "## 本阶段特别禁止",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R02_PROMPT.md",
+      "line": 66,
+      "requirement_id": "XR02.L066"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 1,
+      "text": "# sanguo11-mobile｜R03 受约束的连续地形与分块网格",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 3,
+      "text": "你接手正式仓库 `https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`，本轮只执行 **R03**。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 4,
+      "requirement_id": "XR00.L004"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 6,
+      "text": "## 先执行的约束",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 8,
+      "requirement_id": "XR00.L008"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 10,
+      "requirement_id": "XR00.L010"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 12,
+      "requirement_id": "XR00.L012"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 14,
+      "requirement_id": "XR00.L014"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 16,
+      "requirement_id": "XR03.L016"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 18,
+      "text": "## 本阶段目标",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 20,
+      "text": "把表现从格子拼接升级为共享高度/法线场的连续山脉与平原，但不改变全国逻辑地图。",
+      "requirement_id": "R03.G01",
+      "classification": "stage_goal_covered_by_gate_and_implementation"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 22,
+      "text": "## 必读源码与输入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 24,
+      "text": "读取 R02、已有 TerrainSurface/SceneMesh/Ground 生成、S10/S11 地形场、地图修订/编辑增量机制、现有 LOD 与缓存预算。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 26,
+      "text": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "scope_or_required_input_read",
+      "requirement_id": "YP.L026"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 28,
+      "text": "## 必须实际实施",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 30,
+      "requirement_id": "R03.I01"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 31,
+      "requirement_id": "R03.I02"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 32,
+      "requirement_id": "R03.I03"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 33,
+      "requirement_id": "R03.I04"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 34,
+      "requirement_id": "R03.I05"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 35,
+      "requirement_id": "R03.I06"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 36,
+      "requirement_id": "R03.I07"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 37,
+      "requirement_id": "R03.I08"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 39,
+      "text": "## 必须验证",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 41,
+      "requirement_id": "R03.V01"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 42,
+      "requirement_id": "R03.V02"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 43,
+      "requirement_id": "R03.V03"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 44,
+      "requirement_id": "R03.V04"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 45,
+      "requirement_id": "R03.V05"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 47,
+      "requirement_id": "XR00.L047"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 49,
+      "text": "## 通过门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 51,
+      "requirement_id": "R03.G01"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 53,
+      "requirement_id": "XR00.L053"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 55,
+      "text": "## 必须交付",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 57,
+      "requirement_id": "R03.D01"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 59,
+      "requirement_id": "XR03.L059"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 61,
+      "requirement_id": "XR00.L061"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 63,
+      "requirement_id": "XR00.L063"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 65,
+      "text": "## 本阶段特别禁止",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R03_PROMPT.md",
+      "line": 67,
+      "requirement_id": "XR03.L067"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 1,
+      "text": "# sanguo11-mobile｜R04 连续材质混合与地表实质美术",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 3,
+      "text": "你接手正式仓库 `https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`，本轮只执行 **R04**。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 4,
+      "requirement_id": "XR00.L004"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 6,
+      "text": "## 先执行的约束",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 8,
+      "requirement_id": "XR00.L008"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 10,
+      "requirement_id": "XR00.L010"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 12,
+      "requirement_id": "XR00.L012"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 14,
+      "requirement_id": "XR00.L014"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 16,
+      "requirement_id": "XR04.L016"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 18,
+      "text": "## 本阶段目标",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 20,
+      "text": "让关网格后的地面不再是一块绿、一块灰、一块蓝，并完成第一道实际视觉对照门槛。",
+      "requirement_id": "R04.G01",
+      "classification": "stage_goal_covered_by_gate_and_implementation"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 22,
+      "text": "## 必读源码与输入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 24,
+      "text": "读取 R03 与已有 ground material、4 层纹理、S10 颜色空间/法线/全局权重场、资产清单和参考索引。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 26,
+      "text": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "scope_or_required_input_read",
+      "requirement_id": "YP.L026"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 28,
+      "text": "## 必须实际实施",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 30,
+      "requirement_id": "R04.I01"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 31,
+      "requirement_id": "R04.I02"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 32,
+      "requirement_id": "R04.I03"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 33,
+      "requirement_id": "R04.I04"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 34,
+      "requirement_id": "R04.I05"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 35,
+      "requirement_id": "R04.I06"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 36,
+      "requirement_id": "R04.I07"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 38,
+      "text": "## 必须验证",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 40,
+      "requirement_id": "R04.V01"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 41,
+      "requirement_id": "R04.V02"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 42,
+      "requirement_id": "R04.V03"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 43,
+      "requirement_id": "R04.V04"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 44,
+      "requirement_id": "R04.V05"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 46,
+      "requirement_id": "XR00.L047"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 48,
+      "text": "## 通过门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 50,
+      "requirement_id": "R04.G01"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 52,
+      "requirement_id": "XR00.L053"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 54,
+      "text": "## 必须交付",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 56,
+      "requirement_id": "R04.D01"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 58,
+      "requirement_id": "XR04.L058"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 60,
+      "requirement_id": "XR00.L061"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 62,
+      "requirement_id": "XR00.L063"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 64,
+      "text": "## 本阶段特别禁止",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R04_PROMPT.md",
+      "line": 66,
+      "requirement_id": "XR04.L066"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 1,
+      "text": "# sanguo11-mobile｜R05 河流、水面与受约束岸线",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 3,
+      "text": "你接手正式仓库 `https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`，本轮只执行 **R05**。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 4,
+      "requirement_id": "XR00.L004"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 6,
+      "text": "## 先执行的约束",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 8,
+      "requirement_id": "XR00.L008"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 10,
+      "requirement_id": "XR00.L010"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 12,
+      "requirement_id": "XR00.L012"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 14,
+      "requirement_id": "XR00.L014"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 16,
+      "requirement_id": "XR05.L016"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 18,
+      "text": "## 本阶段目标",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 20,
+      "text": "将水域表现成连续河流/湖泊与可信岸边层次，同时严格保持现有港口与水陆通行拓扑。",
+      "requirement_id": "R05.G01",
+      "classification": "stage_goal_covered_by_gate_and_implementation"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 22,
+      "text": "## 必读源码与输入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 24,
+      "text": "读取 R04、S11 现有水体/岸线代码、实际 water mask、港口上下船规则与对应回归、城市/关隘约束。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 26,
+      "text": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "scope_or_required_input_read",
+      "requirement_id": "YP.L026"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 28,
+      "text": "## 必须实际实施",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 30,
+      "requirement_id": "R05.I01"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 31,
+      "requirement_id": "R05.I02"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 32,
+      "requirement_id": "R05.I03"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 33,
+      "requirement_id": "R05.I04"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 34,
+      "requirement_id": "R05.I05"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 35,
+      "requirement_id": "R05.I06"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 36,
+      "requirement_id": "R05.I07"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 38,
+      "text": "## 必须验证",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 40,
+      "requirement_id": "R05.V01"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 41,
+      "requirement_id": "R05.V02"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 42,
+      "requirement_id": "R05.V03"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 43,
+      "requirement_id": "R05.V04"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 44,
+      "requirement_id": "R05.V05"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 46,
+      "requirement_id": "XR00.L047"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 48,
+      "text": "## 通过门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 50,
+      "requirement_id": "R05.G01"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 52,
+      "requirement_id": "XR00.L053"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 54,
+      "text": "## 必须交付",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 56,
+      "requirement_id": "R05.D01"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 58,
+      "requirement_id": "XR05.L058"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 60,
+      "requirement_id": "XR00.L061"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 62,
+      "requirement_id": "XR00.L063"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 64,
+      "text": "## 本阶段特别禁止",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R05_PROMPT.md",
+      "line": 66,
+      "requirement_id": "XR05.L066"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 1,
+      "text": "# sanguo11-mobile｜R06 可复现资产流水线与受控模型格式",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 3,
+      "text": "你接手正式仓库 `https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`，本轮只执行 **R06**。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 4,
+      "requirement_id": "XR00.L004"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 6,
+      "text": "## 先执行的约束",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 8,
+      "requirement_id": "XR00.L008"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 10,
+      "requirement_id": "XR00.L010"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 12,
+      "requirement_id": "XR00.L012"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 14,
+      "requirement_id": "XR00.L014"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 16,
+      "requirement_id": "XR06.L016"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 18,
+      "text": "## 本阶段目标",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 20,
+      "text": "把模型/纹理/材质从临时文件变成可追踪、可导出、可校验、能在正式地图加载的生产流水线。",
+      "requirement_id": "R06.G01",
+      "classification": "stage_goal_covered_by_gate_and_implementation"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 22,
+      "text": "## 必读源码与输入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 24,
+      "text": "读取 R05、tools/3d、SiteGlb、FieldAssets、现有 assets/3d 与各资产 manifest；参照 05_ASSET_PIPELINE.md 与官方 glTF/Filament 文档。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 26,
+      "text": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "scope_or_required_input_read",
+      "requirement_id": "YP.L026"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 28,
+      "text": "## 必须实际实施",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 30,
+      "requirement_id": "R06.I01"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 31,
+      "requirement_id": "R06.I02"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 32,
+      "requirement_id": "R06.I03"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 33,
+      "requirement_id": "R06.I04"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 34,
+      "requirement_id": "R06.I05"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 35,
+      "requirement_id": "R06.I06"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 36,
+      "requirement_id": "R06.I07"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 38,
+      "text": "## 必须验证",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 40,
+      "requirement_id": "R06.V01"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 41,
+      "requirement_id": "R06.V02"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 42,
+      "requirement_id": "R06.V03"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 43,
+      "requirement_id": "R06.V04"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 44,
+      "requirement_id": "R06.V05"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 46,
+      "requirement_id": "XR00.L047"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 48,
+      "text": "## 通过门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 50,
+      "requirement_id": "R06.G01"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 52,
+      "requirement_id": "XR00.L053"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 54,
+      "text": "## 必须交付",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 56,
+      "requirement_id": "R06.D01"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 58,
+      "requirement_id": "XR06.L058"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 60,
+      "requirement_id": "XR00.L061"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 62,
+      "requirement_id": "XR00.L063"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 64,
+      "text": "## 本阶段特别禁止",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R06_PROMPT.md",
+      "line": 66,
+      "requirement_id": "XR06.L066"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 1,
+      "text": "# sanguo11-mobile｜R07 城池、港口、关卡与设施美术",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 3,
+      "text": "你接手正式仓库 `https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`，本轮只执行 **R07**。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 4,
+      "requirement_id": "XR00.L004"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 6,
+      "text": "## 先执行的约束",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 8,
+      "requirement_id": "XR00.L008"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 10,
+      "requirement_id": "XR00.L010"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 12,
+      "requirement_id": "XR00.L012"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 14,
+      "requirement_id": "XR00.L014"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 16,
+      "requirement_id": "XR07.L016"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 18,
+      "text": "## 本阶段目标",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 20,
+      "text": "以实际模型、材质和正确地形结合改善据点与设施，而不是只把占位模型换成更多立方体。",
+      "requirement_id": "R07.G01",
+      "classification": "stage_goal_covered_by_gate_and_implementation"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 22,
+      "text": "## 必读源码与输入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 24,
+      "text": "读取 R06 资产规范、当前 SiteVisual/SiteGlb、据点资产映射、真实七格城市与一格港关规则、设施类型/等级枚举和现有自定义据点接口。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 26,
+      "text": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "scope_or_required_input_read",
+      "requirement_id": "YP.L026"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 28,
+      "text": "## 必须实际实施",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 30,
+      "requirement_id": "R07.I01"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 31,
+      "requirement_id": "R07.I02"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 32,
+      "requirement_id": "R07.I03"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 33,
+      "requirement_id": "R07.I04"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 34,
+      "requirement_id": "R07.I05"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 35,
+      "requirement_id": "R07.I06"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 36,
+      "requirement_id": "R07.I07"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 37,
+      "requirement_id": "R07.I08"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 39,
+      "text": "## 必须验证",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 41,
+      "requirement_id": "R07.V01"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 42,
+      "requirement_id": "R07.V02"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 43,
+      "requirement_id": "R07.V03"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 44,
+      "requirement_id": "R07.V04"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 45,
+      "requirement_id": "R07.V05"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 47,
+      "requirement_id": "XR00.L047"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 49,
+      "text": "## 通过门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 51,
+      "requirement_id": "R07.G01"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 53,
+      "requirement_id": "XR00.L053"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 55,
+      "text": "## 必须交付",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 57,
+      "requirement_id": "R07.D01"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 59,
+      "requirement_id": "XR07.L059"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 61,
+      "requirement_id": "XR00.L061"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 63,
+      "requirement_id": "XR00.L063"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 65,
+      "text": "## 本阶段特别禁止",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R07_PROMPT.md",
+      "line": 67,
+      "requirement_id": "XR07.L067"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 1,
+      "text": "# sanguo11-mobile｜R08 植被、道路、山石与区域景观",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 3,
+      "text": "你接手正式仓库 `https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`，本轮只执行 **R08**。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 4,
+      "requirement_id": "XR00.L004"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 6,
+      "text": "## 先执行的约束",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 8,
+      "requirement_id": "XR00.L008"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 10,
+      "requirement_id": "XR00.L010"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 12,
+      "requirement_id": "XR00.L012"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 14,
+      "requirement_id": "XR00.L014"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 16,
+      "requirement_id": "XR08.L016"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 18,
+      "text": "## 本阶段目标",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 20,
+      "text": "让城市之外的山河形成连续且有疏密的环境，保持道路、战场和可行动格清楚可读。",
+      "requirement_id": "R08.G01",
+      "classification": "stage_goal_covered_by_gate_and_implementation"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 22,
+      "text": "## 必读源码与输入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 24,
+      "text": "读取 R07、现有植被 chunk/FieldAssets、道路/栈道/农田和区域 landform 数据、地形约束、预算与可视化随机种子。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 26,
+      "text": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "scope_or_required_input_read",
+      "requirement_id": "YP.L026"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 28,
+      "text": "## 必须实际实施",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 30,
+      "requirement_id": "R08.I01"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 31,
+      "requirement_id": "R08.I02"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 32,
+      "requirement_id": "R08.I03"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 33,
+      "requirement_id": "R08.I04"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 34,
+      "requirement_id": "R08.I05"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 35,
+      "requirement_id": "R08.I06"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 36,
+      "requirement_id": "R08.I07"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 38,
+      "text": "## 必须验证",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 40,
+      "requirement_id": "R08.V01"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 41,
+      "requirement_id": "R08.V02"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 42,
+      "requirement_id": "R08.V03"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 43,
+      "requirement_id": "R08.V04"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 44,
+      "requirement_id": "R08.V05"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 46,
+      "requirement_id": "XR00.L047"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 48,
+      "text": "## 通过门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 50,
+      "requirement_id": "R08.G01"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 52,
+      "requirement_id": "XR00.L053"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 54,
+      "text": "## 必须交付",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 56,
+      "requirement_id": "R08.D01"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 58,
+      "requirement_id": "XR08.L058"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 60,
+      "requirement_id": "XR00.L061"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 62,
+      "requirement_id": "XR00.L063"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 64,
+      "text": "## 本阶段特别禁止",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R08_PROMPT.md",
+      "line": 66,
+      "requirement_id": "XR08.L066"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 1,
+      "text": "# sanguo11-mobile｜R09 局部完整样板与 PC 风格对照门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 3,
+      "text": "你接手正式仓库 `https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`，本轮只执行 **R09**。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 4,
+      "requirement_id": "XR00.L004"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 6,
+      "text": "## 先执行的约束",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 8,
+      "requirement_id": "XR00.L008"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 10,
+      "requirement_id": "XR00.L010"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 12,
+      "requirement_id": "XR00.L012"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 14,
+      "requirement_id": "XR00.L014"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 16,
+      "requirement_id": "XR09.L016"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 18,
+      "text": "## 本阶段目标",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 20,
+      "text": "把前面系统在同一真实可玩区域中整合到合格，而不是各个截图看起来分别存在却组合仍然简陋。",
+      "requirement_id": "R09.G01",
+      "classification": "stage_goal_covered_by_gate_and_implementation"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 22,
+      "text": "## 必读源码与输入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 24,
+      "text": "读取 R00–R08 的实际状态、REFERENCE_INDEX、V1 结论和所有美术缺陷；选择含城市/山水/树林/通路的真实区域，优先洛阳—关隘—河港一带，实际内容不足时选等价区域并说明。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 26,
+      "text": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "scope_or_required_input_read",
+      "requirement_id": "YP.L026"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 28,
+      "text": "## 必须实际实施",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 30,
+      "requirement_id": "R09.I01"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 31,
+      "requirement_id": "R09.I02"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 32,
+      "requirement_id": "R09.I03"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 33,
+      "requirement_id": "R09.I04"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 34,
+      "requirement_id": "R09.I05"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 35,
+      "requirement_id": "R09.I06"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 36,
+      "requirement_id": "R09.I07"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 38,
+      "text": "## 必须验证",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 40,
+      "requirement_id": "R09.V01"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 41,
+      "requirement_id": "R09.V02"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 42,
+      "requirement_id": "R09.V03"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 43,
+      "requirement_id": "R09.V04"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 44,
+      "requirement_id": "R09.V05"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 46,
+      "requirement_id": "XR00.L047"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 48,
+      "text": "## 通过门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 50,
+      "requirement_id": "R09.G01"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 52,
+      "requirement_id": "XR00.L053"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 54,
+      "text": "## 必须交付",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 56,
+      "requirement_id": "R09.D01"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 58,
+      "requirement_id": "XR09.L058"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 60,
+      "requirement_id": "XR00.L061"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 62,
+      "requirement_id": "XR00.L063"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 64,
+      "text": "## 本阶段特别禁止",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R09_PROMPT.md",
+      "line": 66,
+      "requirement_id": "XR09.L066"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 1,
+      "text": "# sanguo11-mobile｜R10 部队编队、动画与地形贴合",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 3,
+      "text": "你接手正式仓库 `https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`，本轮只执行 **R10**。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 4,
+      "requirement_id": "XR00.L004"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 6,
+      "text": "## 先执行的约束",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 8,
+      "requirement_id": "XR00.L008"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 10,
+      "requirement_id": "XR00.L010"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 12,
+      "requirement_id": "XR00.L012"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 14,
+      "requirement_id": "XR00.L014"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 16,
+      "requirement_id": "XR10.L016"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 18,
+      "text": "## 本阶段目标",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 20,
+      "text": "把现有正式部队表现升级成能识别兵种、方向和行动状态的 3D 编队，不改变规则与路径。",
+      "requirement_id": "R10.G01",
+      "classification": "stage_goal_covered_by_gate_and_implementation"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 22,
+      "text": "## 必读源码与输入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 24,
+      "text": "读取 R09、FieldAssets/UnitVisual/UnitMotion/UnitAnimation、真实兵装/运输/水军类型、TurnJournal 路径与既有动画/LOD 约束。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 26,
+      "text": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "scope_or_required_input_read",
+      "requirement_id": "YP.L026"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 28,
+      "text": "## 必须实际实施",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 30,
+      "requirement_id": "R10.I01"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 31,
+      "requirement_id": "R10.I02"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 32,
+      "requirement_id": "R10.I03"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 33,
+      "requirement_id": "R10.I04"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 34,
+      "requirement_id": "R10.I05"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 35,
+      "requirement_id": "R10.I06"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 36,
+      "requirement_id": "R10.I07"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 38,
+      "text": "## 必须验证",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 40,
+      "requirement_id": "R10.V01"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 41,
+      "requirement_id": "R10.V02"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 42,
+      "requirement_id": "R10.V03"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 43,
+      "requirement_id": "R10.V04"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 44,
+      "requirement_id": "R10.V05"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 46,
+      "requirement_id": "XR00.L047"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 48,
+      "text": "## 通过门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 50,
+      "requirement_id": "R10.G01"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 52,
+      "requirement_id": "XR00.L053"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 54,
+      "text": "## 必须交付",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 56,
+      "requirement_id": "R10.D01"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 58,
+      "requirement_id": "XR10.L058"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 60,
+      "requirement_id": "XR00.L061"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 62,
+      "requirement_id": "XR00.L063"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 64,
+      "text": "## 本阶段特别禁止",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R10_PROMPT.md",
+      "line": 66,
+      "requirement_id": "XR10.L066"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 1,
+      "text": "# sanguo11-mobile｜R11 战斗特效、反馈与播放一致性",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 3,
+      "text": "你接手正式仓库 `https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`，本轮只执行 **R11**。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 4,
+      "requirement_id": "XR00.L004"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 6,
+      "text": "## 先执行的约束",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 8,
+      "requirement_id": "XR00.L008"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 10,
+      "requirement_id": "XR00.L010"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 12,
+      "requirement_id": "XR00.L012"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 14,
+      "requirement_id": "XR00.L014"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 16,
+      "requirement_id": "XR11.L016"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 18,
+      "text": "## 本阶段目标",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 20,
+      "text": "让现有攻击、战法、火焰和反馈具有一致的 3D 时序与可读性，且无重复伤害或演示卡死。",
+      "requirement_id": "R11.G01",
+      "classification": "stage_goal_covered_by_gate_and_implementation"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 22,
+      "text": "## 必读源码与输入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 24,
+      "text": "读取 R10、TurnJournal/CombatVisual、已有战法/受击/暴击/火场/据点反击/军乐恢复等正式事件和 UI 反馈。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 26,
+      "text": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "scope_or_required_input_read",
+      "requirement_id": "YP.L026"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 28,
+      "text": "## 必须实际实施",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 30,
+      "requirement_id": "R11.I01"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 31,
+      "requirement_id": "R11.I02"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 32,
+      "requirement_id": "R11.I03"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 33,
+      "requirement_id": "R11.I04"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 34,
+      "requirement_id": "R11.I05"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 35,
+      "requirement_id": "R11.I06"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 36,
+      "requirement_id": "R11.I07"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 38,
+      "text": "## 必须验证",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 40,
+      "requirement_id": "R11.V01"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 41,
+      "requirement_id": "R11.V02"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 42,
+      "requirement_id": "R11.V03"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 43,
+      "requirement_id": "R11.V04"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 44,
+      "requirement_id": "R11.V05"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 46,
+      "requirement_id": "XR00.L047"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 48,
+      "text": "## 通过门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 50,
+      "requirement_id": "R11.G01"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 52,
+      "requirement_id": "XR00.L053"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 54,
+      "text": "## 必须交付",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 56,
+      "requirement_id": "R11.D01"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 58,
+      "requirement_id": "XR11.L058"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 60,
+      "requirement_id": "XR00.L061"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 62,
+      "requirement_id": "XR00.L063"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 64,
+      "text": "## 本阶段特别禁止",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R11_PROMPT.md",
+      "line": 66,
+      "requirement_id": "XR11.L066"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 1,
+      "text": "# sanguo11-mobile｜R12 网格、势力着色与完整原生交互",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 3,
+      "text": "你接手正式仓库 `https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`，本轮只执行 **R12**。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 4,
+      "requirement_id": "XR00.L004"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 6,
+      "text": "## 先执行的约束",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 8,
+      "requirement_id": "XR00.L008"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 10,
+      "requirement_id": "XR00.L010"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 12,
+      "requirement_id": "XR00.L012"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 14,
+      "requirement_id": "XR00.L014"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 16,
+      "requirement_id": "XR12.L016"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 18,
+      "text": "## 本阶段目标",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 20,
+      "text": "在连续山河上完整恢复并打磨既有操作能力，让网格是可控覆盖层，而不是始终附着的地形外观。",
+      "requirement_id": "R12.G01",
+      "classification": "stage_goal_covered_by_gate_and_implementation"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 22,
+      "text": "## 必读源码与输入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 24,
+      "text": "读取 R11、S13 网格开关、MapHost/Overlay/MapLayerData、部队选择/移动/攻击预览、设施范围、城池围城、势力选择与原生导航。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 26,
+      "text": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "scope_or_required_input_read",
+      "requirement_id": "YP.L026"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 28,
+      "text": "## 必须实际实施",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 30,
+      "requirement_id": "R12.I01"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 31,
+      "requirement_id": "R12.I02"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 32,
+      "requirement_id": "R12.I03"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 33,
+      "requirement_id": "R12.I04"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 34,
+      "requirement_id": "R12.I05"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 35,
+      "requirement_id": "R12.I06"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 36,
+      "requirement_id": "R12.I07"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 38,
+      "text": "## 必须验证",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 40,
+      "requirement_id": "R12.V01"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 41,
+      "requirement_id": "R12.V02"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 42,
+      "requirement_id": "R12.V03"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 43,
+      "requirement_id": "R12.V04"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 44,
+      "requirement_id": "R12.V05"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 46,
+      "requirement_id": "XR00.L047"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 48,
+      "text": "## 通过门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 50,
+      "requirement_id": "R12.G01"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 52,
+      "requirement_id": "XR00.L053"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 54,
+      "text": "## 必须交付",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 56,
+      "requirement_id": "R12.D01"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 58,
+      "requirement_id": "XR12.L058"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 60,
+      "requirement_id": "XR00.L061"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 62,
+      "requirement_id": "XR00.L063"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 64,
+      "text": "## 本阶段特别禁止",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R12_PROMPT.md",
+      "line": 66,
+      "requirement_id": "XR12.L066"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 1,
+      "text": "# sanguo11-mobile｜R13 地图编辑、自定义内容与存档接入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 3,
+      "text": "你接手正式仓库 `https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`，本轮只执行 **R13**。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 4,
+      "requirement_id": "XR00.L004"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 6,
+      "text": "## 先执行的约束",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 8,
+      "requirement_id": "XR00.L008"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 10,
+      "requirement_id": "XR00.L010"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 12,
+      "requirement_id": "XR00.L012"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 14,
+      "requirement_id": "XR00.L014"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 16,
+      "requirement_id": "XR13.L016"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 18,
+      "text": "## 本阶段目标",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 20,
+      "text": "让正式地图编辑和自定义内容在连续 3D 中可用，并且视觉参数变化不会破坏旧存档或权威地图。",
+      "requirement_id": "R13.G01",
+      "classification": "stage_goal_covered_by_gate_and_implementation"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 22,
+      "text": "## 必读源码与输入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 24,
+      "text": "读取 R12、现有地图/武将编辑器、custom map/patch 导入导出、SaveCodec、SessionSaves、地图 revision/cache 机制，以及已有 S07 视觉属性支持。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 26,
+      "text": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "scope_or_required_input_read",
+      "requirement_id": "YP.L026"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 28,
+      "text": "## 必须实际实施",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 30,
+      "requirement_id": "R13.I01"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 31,
+      "requirement_id": "R13.I02"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 32,
+      "requirement_id": "R13.I03"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 33,
+      "requirement_id": "R13.I04"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 34,
+      "requirement_id": "R13.I05"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 35,
+      "requirement_id": "R13.I06"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 36,
+      "requirement_id": "R13.I07"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 38,
+      "text": "## 必须验证",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 40,
+      "requirement_id": "R13.V01"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 41,
+      "requirement_id": "R13.V02"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 42,
+      "requirement_id": "R13.V03"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 43,
+      "requirement_id": "R13.V04"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 44,
+      "requirement_id": "R13.V05"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 46,
+      "requirement_id": "XR00.L047"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 48,
+      "text": "## 通过门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 50,
+      "requirement_id": "R13.G01"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 52,
+      "requirement_id": "XR00.L053"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 54,
+      "text": "## 必须交付",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 56,
+      "requirement_id": "R13.D01"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 58,
+      "requirement_id": "XR13.L058"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 60,
+      "requirement_id": "XR00.L061"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 62,
+      "requirement_id": "XR00.L063"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 64,
+      "text": "## 本阶段特别禁止",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R13_PROMPT.md",
+      "line": 66,
+      "requirement_id": "XR13.L066"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 1,
+      "text": "# sanguo11-mobile｜R14 彩墨风格、光照、阴影与四季",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 3,
+      "text": "你接手正式仓库 `https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile.git`，本轮只执行 **R14**。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 4,
+      "requirement_id": "XR00.L004"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 6,
+      "text": "## 先执行的约束",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 8,
+      "requirement_id": "XR00.L008"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 10,
+      "requirement_id": "XR00.L010"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 12,
+      "requirement_id": "XR00.L012"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 14,
+      "requirement_id": "XR00.L014"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 16,
+      "requirement_id": "XR14.L016"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 18,
+      "text": "## 本阶段目标",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 20,
+      "text": "统一地形、建筑、植被、部队和水体的美术语言，并让已有时间/季节驱动环境，而不是只套一层滤镜。",
+      "requirement_id": "R14.G01",
+      "classification": "stage_goal_covered_by_gate_and_implementation"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 22,
+      "text": "## 必读源码与输入",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 24,
+      "text": "读取 R13、现有 EnvironmentProfile/SceneQuality、地形/水/城/部队材质、真实年月旬/季节数据、PC 参考中可确认的不同季节画面。",
+      "classification": "scope_or_required_input_read"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 26,
+      "text": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。",
+      "classification": "normative_paragraph_recovered",
+      "previous_classification": "scope_or_required_input_read",
+      "requirement_id": "YP.L026"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 28,
+      "text": "## 必须实际实施",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 30,
+      "requirement_id": "R14.I01"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 31,
+      "requirement_id": "R14.I02"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 32,
+      "requirement_id": "R14.I03"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 33,
+      "requirement_id": "R14.I04"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 34,
+      "requirement_id": "R14.I05"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 35,
+      "requirement_id": "R14.I06"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 36,
+      "requirement_id": "R14.I07"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 38,
+      "text": "## 必须验证",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 40,
+      "requirement_id": "R14.V01"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 41,
+      "requirement_id": "R14.V02"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 42,
+      "requirement_id": "R14.V03"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 43,
+      "requirement_id": "R14.V04"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 44,
+      "requirement_id": "R14.V05"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 46,
+      "requirement_id": "XR00.L047"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 48,
+      "text": "## 通过门槛",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 50,
+      "requirement_id": "R14.G01"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 52,
+      "requirement_id": "XR00.L053"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 54,
+      "text": "## 必须交付",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 56,
+      "requirement_id": "R14.D01"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 58,
+      "requirement_id": "XR14.L058"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 60,
+      "requirement_id": "XR00.L061"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 62,
+      "requirement_id": "XR00.L063"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 64,
+      "text": "## 本阶段特别禁止",
+      "classification": "heading"
+    },
+    {
+      "file": "prompts/R14_PROMPT.md",
+      "line": 66,
+      "requirement_id": "XR14.L066"
+    }
+  ],
+  "nonempty_source_lines": 929,
+  "unmapped_nonempty_lines": 0,
+  "note": "Coverage is traceability, not PASS; prior EXECUTE_PROMPT retained verbatim separately as remediation instructions.",
+  "original213_verbatim_preserved": true,
+  "prior_false_completeness_claim": "Zero-unmapped did not establish semantic completeness: normative paragraphs had been classified as context.",
+  "added_requirements": [
+    {
+      "id": "Y01.L004",
+      "source": {
+        "file": "01_ROADMAP.md",
+        "line": 4,
+        "sha256": "e446e596ad6b56b8d9699793c31cd490b7b2e93c416e9dd24c60b237be235891"
+      },
+      "aliases": [],
+      "requirement": "每次把完整 ZIP 交给 Agent，只点名本轮一个阶段。不要让多个 Agent 同时写这个串行分支。"
+    },
+    {
+      "id": "Y01.L038",
+      "source": {
+        "file": "01_ROADMAP.md",
+        "line": 38,
+        "sha256": "e446e596ad6b56b8d9699793c31cd490b7b2e93c416e9dd24c60b237be235891"
+      },
+      "aliases": [],
+      "requirement": "前置门槛不是形式检查。R00 不能真实运行，不能把后续 GPU 画面任务当已验收；R09 美术不合格，不能先复制到全国宣布 R15 完成。"
+    },
+    {
+      "id": "Y01.L042",
+      "source": {
+        "file": "01_ROADMAP.md",
+        "line": 42,
+        "sha256": "e446e596ad6b56b8d9699793c31cd490b7b2e93c416e9dd24c60b237be235891"
+      },
+      "aliases": [],
+      "requirement": "缺真机不意味着必须停掉所有独立源码开发；可继续做不依赖真机结论的任务，并保留 ARM64/性能 NOT_RUN。缺 PC 参考时可以实现技术，但不能给 PC 视觉相似性 PASS。最终 R18 综合验收不允许缺关键证据。"
+    },
+    {
+      "id": "Y01.L044",
+      "source": {
+        "file": "01_ROADMAP.md",
+        "line": 44,
+        "sha256": "e446e596ad6b56b8d9699793c31cd490b7b2e93c416e9dd24c60b237be235891"
+      },
+      "aliases": [],
+      "requirement": "阶段沿用旧能力时，必须在当前串行 HEAD 验证并修补差距；禁止因文件/类已存在就自动跳过，也禁止为了重新编号重做同样底层。"
+    },
+    {
+      "id": "Y01.L052",
+      "source": {
+        "file": "01_ROADMAP.md",
+        "line": 52,
+        "sha256": "e446e596ad6b56b8d9699793c31cd490b7b2e93c416e9dd24c60b237be235891"
+      },
+      "aliases": [],
+      "requirement": "旧 S01–S13 是已有实现来源；U00/U01/架构 PR 的 Java 会话是可复用基础。本包编号没有宣称它们已完成，也不要求重做。R00 会生成“旧能力 → 复用/修复 → 新验收”的对应表。"
+    },
+    {
+      "id": "Y02.L003",
+      "source": {
+        "file": "02_BASELINE_AUDIT.md",
+        "line": 3,
+        "sha256": "99b433019d9f8a00060e5cbfa2fafdcbf1a3fd5995ed05b9eab4080798c4f50a"
+      },
+      "aliases": [],
+      "requirement": "本文件是**编包时只读核查**，不是一次新的构建/运行验收。执行 Agent 仍须拉取最新远端并复核。仓库读取得到的声明和实际源码验证在下面分开。"
+    },
+    {
+      "id": "Y02.L010",
+      "source": {
+        "file": "02_BASELINE_AUDIT.md",
+        "line": 10,
+        "sha256": "99b433019d9f8a00060e5cbfa2fafdcbf1a3fd5995ed05b9eab4080798c4f50a"
+      },
+      "aliases": [],
+      "requirement": "- app 使用 Java 17；compile/target SDK 35，minSdk 26；应用 ID `game.sanguo.mobile.dev`。debug 构建默认也可能 R8/minify 且 non-debuggable，不能仅凭构建名推断是调试运行时。"
+    },
+    {
+      "id": "Y02.L019",
+      "source": {
+        "file": "02_BASELINE_AUDIT.md",
+        "line": 19,
+        "sha256": "99b433019d9f8a00060e5cbfa2fafdcbf1a3fd5995ed05b9eab4080798c4f50a"
+      },
+      "aliases": [],
+      "requirement": "`game-api` 是纯 Java 合约；`game-runtime` 持有权威会话；`MapProjectionQuery` 输出复制的 `MapLayerData` 给原生显示。核心状态和渲染状态不要重新合并。会话换代、旧请求拒绝、保存捕获、回合提交独立于动画均是需要保护的成果。"
+    },
+    {
+      "id": "Y02.L021",
+      "source": {
+        "file": "02_BASELINE_AUDIT.md",
+        "line": 21,
+        "sha256": "99b433019d9f8a00060e5cbfa2fafdcbf1a3fd5995ed05b9eab4080798c4f50a"
+      },
+      "aliases": [],
+      "requirement": "`GridLayout` / `GridWorldTransform` 已处理源格到显示坐标的行列交错与原点，不能把常见 axial 公式直接套回去，不能再次加 source-origin 偏移。"
+    },
+    {
+      "id": "Y02.L038",
+      "source": {
+        "file": "02_BASELINE_AUDIT.md",
+        "line": 38,
+        "sha256": "99b433019d9f8a00060e5cbfa2fafdcbf1a3fd5995ed05b9eab4080798c4f50a"
+      },
+      "aliases": [],
+      "requirement": "以上类名是定位线索，不要求都位于同一包；R00 用 `git ls-files` / 搜索确认当前路径，不为了吻合本包伪造类文件。"
+    },
+    {
+      "id": "Y02.L046",
+      "source": {
+        "file": "02_BASELINE_AUDIT.md",
+        "line": 46,
+        "sha256": "99b433019d9f8a00060e5cbfa2fafdcbf1a3fd5995ed05b9eab4080798c4f50a"
+      },
+      "aliases": [],
+      "requirement": "将这些记录转成 R00 的待复现项。它们来自报告，不意味着当前 HEAD 必然还能复现，更不能仅凭描述定位到某一代码 bug。"
+    },
+    {
+      "id": "Y02.L050",
+      "source": {
+        "file": "02_BASELINE_AUDIT.md",
+        "line": 50,
+        "sha256": "99b433019d9f8a00060e5cbfa2fafdcbf1a3fd5995ed05b9eab4080798c4f50a"
+      },
+      "aliases": [],
+      "requirement": "上一轮对话的“原生 OpenGL ES Renderer”在本仓库已经有底层落点：Filament/OpenGL。画面差不自动说明底层 API 错误，重写同样不能代替建筑和地形美术。"
+    },
+    {
+      "id": "Y02.L052",
+      "source": {
+        "file": "02_BASELINE_AUDIT.md",
+        "line": 52,
+        "sha256": "99b433019d9f8a00060e5cbfa2fafdcbf1a3fd5995ed05b9eab4080798c4f50a"
+      },
+      "aliases": [],
+      "requirement": "因此本包固定目标与交付链，默认保留可运行 GPU 后端，在上层重做有问题的连续表现与资产；纯 GLES 只保留有证据的替换出口，不变成第二个长期项目。"
+    },
+    {
+      "id": "Y02.L058",
+      "source": {
+        "file": "02_BASELINE_AUDIT.md",
+        "line": 58,
+        "sha256": "99b433019d9f8a00060e5cbfa2fafdcbf1a3fd5995ed05b9eab4080798c4f50a"
+      },
+      "aliases": [],
+      "requirement": "原始核查链接见 `08_SOURCES.md`。后续运行状态不能从本文件推断。"
+    },
+    {
+      "id": "Y08.L007",
+      "source": {
+        "file": "08_SOURCES.md",
+        "line": 7,
+        "sha256": "4cd9ba2049fce3cba941ef636b933366a5af83d90fdb29efcaf8033887119bcf"
+      },
+      "aliases": [],
+      "requirement": "以下链接固定到编包时 SHA，执行时另读远端最新版本。"
+    },
+    {
+      "id": "Y08.L024",
+      "source": {
+        "file": "08_SOURCES.md",
+        "line": 24,
+        "sha256": "4cd9ba2049fce3cba941ef636b933366a5af83d90fdb29efcaf8033887119bcf"
+      },
+      "aliases": [],
+      "requirement": "支持依据：Android 框架提供 GLES 与 GLSurfaceView；设备是否具备 GLES3 需要实现/运行时检测；GLES3 的 ETC2/EAC 与可选 ASTC 不能混同。本包对画面质量、包体和性能的目标是项目设计，不是文档保证。"
+    },
+    {
+      "id": "Y08.L029",
+      "source": {
+        "file": "08_SOURCES.md",
+        "line": 29,
+        "sha256": "4cd9ba2049fce3cba941ef636b933366a5af83d90fdb29efcaf8033887119bcf"
+      },
+      "aliases": [],
+      "requirement": "用于纯 GLES 候选的线程与上下文恢复核对；不意味着 Filament 现有 Surface 必须改成 GLSurfaceView。"
+    },
+    {
+      "id": "Y08.L034",
+      "source": {
+        "file": "08_SOURCES.md",
+        "line": 34,
+        "sha256": "4cd9ba2049fce3cba941ef636b933366a5af83d90fdb29efcaf8033887119bcf"
+      },
+      "aliases": [],
+      "requirement": "支持依据：Android Java/JNI API、OpenGL ES 后端、Android Maven 库、自定义材质、gltfio 与离线工具；runtime 和 matc 需要匹配版本。官网最新示例不等于本项目应升级版本。"
+    },
+    {
+      "id": "Y08.L039",
+      "source": {
+        "file": "08_SOURCES.md",
+        "line": 39,
+        "sha256": "4cd9ba2049fce3cba941ef636b933366a5af83d90fdb29efcaf8033887119bcf"
+      },
+      "aliases": [],
+      "requirement": "用于格式、坐标、accessor、材质与动画边界核查。项目可以支持受控子集，但应明确离线转换/拒绝策略。"
+    },
+    {
+      "id": "Y08.L044",
+      "source": {
+        "file": "08_SOURCES.md",
+        "line": 44,
+        "sha256": "4cd9ba2049fce3cba941ef636b933366a5af83d90fdb29efcaf8033887119bcf"
+      },
+      "aliases": [],
+      "requirement": "用于格式验证，不证明模型外观像 PC 版，也不证明符合项目自己的运行时子集。"
+    },
+    {
+      "id": "Y08.L049",
+      "source": {
+        "file": "08_SOURCES.md",
+        "line": 49,
+        "sha256": "4cd9ba2049fce3cba941ef636b933366a5af83d90fdb29efcaf8033887119bcf"
+      },
+      "aliases": [],
+      "requirement": "用于区分 CPU/GPU/帧呈现并采集真实性能；工具版本/设备支持以实际环境为准。"
+    },
+    {
+      "id": "Y08.L056",
+      "source": {
+        "file": "08_SOURCES.md",
+        "line": 56,
+        "sha256": "4cd9ba2049fce3cba941ef636b933366a5af83d90fdb29efcaf8033887119bcf"
+      },
+      "aliases": [],
+      "requirement": "采访涉及 KOEI 程序持续演进、彩墨风格、Shader 与 Hex 逻辑。它不是完整渲染源代码，也不足以证明某种 terrain mesh、splat map、植被 billboard 或雾遮挡 LOD 的具体内部实现。本包选这些现代实现方法是工程设计，不写成已确认的原版内部事实。"
+    },
+    {
+      "id": "Y08.L060",
+      "source": {
+        "file": "08_SOURCES.md",
+        "line": 60,
+        "sha256": "4cd9ba2049fce3cba941ef636b933366a5af83d90fdb29efcaf8033887119bcf"
+      },
+      "aliases": [],
+      "requirement": "参考图登记其具体原始页面，不只写“网上找的”。第三方博客可提供线索，关键 API/资源许可/版本要求回到官方说明核实。用实际 APK 截图来证明本项目效果，不用外部示意图代替。"
+    },
+    {
+      "id": "YP.L026",
+      "source": {
+        "file": "prompts/R00_PROMPT.md",
+        "line": 26,
+        "sha256": "b41154e03bbd85af2c233c4544cdb0a9704547de0e80bbca8d776c15bbbc1d4d"
+      },
+      "aliases": [
+        {
+          "file": "prompts/R00_PROMPT.md",
+          "line": 26,
+          "sha256": "b41154e03bbd85af2c233c4544cdb0a9704547de0e80bbca8d776c15bbbc1d4d"
+        },
+        {
+          "file": "prompts/R01_PROMPT.md",
+          "line": 26,
+          "sha256": "1103b04c6e9bf1440f10f5721738471c38ada5948e6b208db2a27b05137fe2de"
+        },
+        {
+          "file": "prompts/R02_PROMPT.md",
+          "line": 26,
+          "sha256": "3fde6201e0280b6ec1503571b58fcd8ec2294be27ab6b809981505fbacd3f462"
+        },
+        {
+          "file": "prompts/R03_PROMPT.md",
+          "line": 26,
+          "sha256": "13d33a01b9f558d179851c4c16f875984995345bd7137c3cea4d5ac5bb51b141"
+        },
+        {
+          "file": "prompts/R04_PROMPT.md",
+          "line": 26,
+          "sha256": "788a1c3665b2eb84c859b91b920a0d157fe56682f7485f146fcc3d2c9077f077"
+        },
+        {
+          "file": "prompts/R05_PROMPT.md",
+          "line": 26,
+          "sha256": "1523b0b4e881094697086f6ec50bb26d8c78ed5c82aff76ce944efbf819b63d7"
+        },
+        {
+          "file": "prompts/R06_PROMPT.md",
+          "line": 26,
+          "sha256": "fba78369b2c4f7e6145b08aa8b66a3dc46f2db29082e8783d73f1621d14524e3"
+        },
+        {
+          "file": "prompts/R07_PROMPT.md",
+          "line": 26,
+          "sha256": "5af6b68e4e44b0066940e33dda06cc9be77e082fd726074dc02633b741097079"
+        },
+        {
+          "file": "prompts/R08_PROMPT.md",
+          "line": 26,
+          "sha256": "bd093beeffe9a6c218b6b73b8e675efbdcdd9336b146a73202d7b7414104e028"
+        },
+        {
+          "file": "prompts/R09_PROMPT.md",
+          "line": 26,
+          "sha256": "c44462023a4f1e6c385c8aa0aa590bc6d57f297788899f25944dfbeb537459f7"
+        },
+        {
+          "file": "prompts/R10_PROMPT.md",
+          "line": 26,
+          "sha256": "391e9b0af6c08cfbadf1871b0ca7fa2f69ad4bf4317e6d69c3db8ad393e3c90c"
+        },
+        {
+          "file": "prompts/R11_PROMPT.md",
+          "line": 26,
+          "sha256": "729ecaf520dac91d68cea6e8cfd5b05eec6701804eef14daf42fcf837e3f66b6"
+        },
+        {
+          "file": "prompts/R12_PROMPT.md",
+          "line": 26,
+          "sha256": "7218583e57dbe495808767f528af93e593a3ff26a485c2f6653e21387ddc0111"
+        },
+        {
+          "file": "prompts/R13_PROMPT.md",
+          "line": 26,
+          "sha256": "1028314358e7019d79f3a5672d1870e41755ef14249e82539225619ce0a842ff"
+        },
+        {
+          "file": "prompts/R14_PROMPT.md",
+          "line": 26,
+          "sha256": "1bf931810a1050eb8f7b512ee8ba6fba8aef4cf98aa6c558897b1c2a34ca1edb"
+        }
+      ],
+      "requirement": "类名/目录仅作定位，必须查到真实文件与运行入口；不存在的路径说明并找对应职责，不能造空文件假装已有实现。"
+    },
+    {
+      "id": "H.L068",
+      "source": {
+        "file": "EXECUTE_PROMPT.txt",
+        "line": 68,
+        "sha256": "f1cb68fa8527bed1fdebdc31ab7629cc169a12ccf16f5d31f2056873ad25aaa7"
+      },
+      "aliases": [],
+      "requirement": "正常冷启动 → 新剧本 → 全图势力预览 → 切换/选择势力 → 确认开局 → 选城/出征 → 选军/移动/攻击 → 战报 → 下一旬 → 保存/读档。"
+    },
+    {
+      "id": "H.L078",
+      "source": {
+        "file": "EXECUTE_PROMPT.txt",
+        "line": 78,
+        "sha256": "f1cb68fa8527bed1fdebdc31ab7629cc169a12ccf16f5d31f2056873ad25aaa7"
+      },
+      "aliases": [],
+      "requirement": "用同一检查点的权威日期、控件内容、UI绘制/帧标识、3D Surface捕获、整屏原图和连续录屏交叉确认。不能仅凭 getText()、可访问性文本或 PixelCopy 的局部结果宣布屏幕正确。"
+    },
+    {
+      "id": "H.L139",
+      "source": {
+        "file": "EXECUTE_PROMPT.txt",
+        "line": 139,
+        "sha256": "f1cb68fa8527bed1fdebdc31ab7629cc169a12ccf16f5d31f2056873ad25aaa7"
+      },
+      "aliases": [],
+      "requirement": "检查实际事件枚举及映射，补全 CALM/EXTINGUISH 等真实已有类别，测试中未产生的事件不得算覆盖。效果和数字来自正式结果，播放/跳过/倍速/暂停/出视野/重建不得重发伤害或重复事件。"
+    },
+    {
+      "id": "H.L146",
+      "source": {
+        "file": "EXECUTE_PROMPT.txt",
+        "line": 146,
+        "sha256": "f1cb68fa8527bed1fdebdc31ab7629cc169a12ccf16f5d31f2056873ad25aaa7"
+      },
+      "aliases": [],
+      "requirement": "明确区分内部原子保存与外部SAF DocumentProvider能力。可采用本地staging、校验、优先新文件导出和读回确认；不要对不支持原子替换的provider无条件覆盖旧有效文件。验证取消、撤销URI权限、断写、进程终止和冷重启，失败必须保留原存档及可用恢复点，不能先报成功后静默丢数据。"
+    }
+  ],
+  "scope_note": "保留所有原始行和历史；重复共通段落用别名关联。原开发阶段必须修改生产源码的过程要求，不强迫当前审计制造生产diff，也不由当前审计追认旧阶段交付PASS。"
+}

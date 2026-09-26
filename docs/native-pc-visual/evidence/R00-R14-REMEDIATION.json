@@ -395,5 +395,103 @@
     "arm64_physical": "NOT_RUN unavailable",
     "release": "403; no Release created",
     "api35_calendar": "SCOPED PASS: focused installed186checks and original whole-screen Jan/Jul/Apr correct; representative May/cross-year/recreation originals correct. Unmodified old APK API35 also correct, so not proof of fixing API29 stale UI"
-  }
+  },
+  "repeat_20260926": {
+    "schema": 1,
+    "audit": "repeat-20260926",
+    "all_requirements_satisfied": false,
+    "production_changed": false,
+    "apk_source_sha": "5f8997ebfef15f4680931d40532411a336506d0d",
+    "apk_sha256": "6ba2211d961567b2aa396ba19e3018c1dc44780fa4351a807db099fc643bd058",
+    "apk_bytes": 37387038,
+    "application_id": "game.sanguo.mobile.dev",
+    "version_code": 112,
+    "version_name": "0.112.0-native-first-asset-lod",
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "signer_cert_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "inspected_head": "efa51aa5c324be1bdae53e7ff447671f49101c54",
+    "remote_input_head": "702feccf5ba83d49ae9b6e95ef531f7df3df4f77",
+    "main": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+    "total": 463,
+    "counts": {
+      "PARTIAL": 174,
+      "FAIL": 20,
+      "PASS": 9,
+      "NOT_REACHED": 4,
+      "NOT_RUN": 256
+    },
+    "runtime_ci": {
+      "strict_run": 36222182595,
+      "strict_attempt": 2,
+      "original_run": 36213760665,
+      "host_attempt": 2,
+      "api35_cold_attempt": 3,
+      "parity_run": 36222424271,
+      "api29_parity_attempt": 2,
+      "api35_parity_attempt": 3
+    },
+    "artifacts": {
+      "api29_cold": 10902830047,
+      "api35_cold_infra_only": 10902695822,
+      "api35_cold_retry": 10901554856,
+      "api29_all": 10902399818,
+      "api35_all": 10901933906,
+      "api29_lifecycle": 10902656301,
+      "api35_lifecycle": 10903021642,
+      "api29_parity": 10902602820,
+      "api35_parity": 10903645682,
+      "host": 10901639309
+    },
+    "results": {
+      "api29_cold": "FAIL pending285 submitted8",
+      "api35_cold": "FAIL pending324 submitted2",
+      "r12": "Both original tests FAIL initial ready; original timeouts/assertions preserved",
+      "date_api29": "FAIL: full PNG January while authority/snapshot/widget July or April; UI95/Window89 frozen; Surface changes",
+      "lifecycle_api29": "FAIL 0 switch / 0 background",
+      "lifecycle_api35": "FAIL 20 switch / 1 background; next HOME queued assertion",
+      "original_lifecycle_108325858061": "Historical final FAIL 20 switch /18 background, not in_progress or PASS",
+      "api29_parity": "Fresh PASS12 cases/341checks;50 full byte pairs independently equal",
+      "api35_parity": "Fresh PASS12 cases/255checks;50 full byte pairs independently equal",
+      "parity_scope": "Explicit fixture/API commands, not full touch, all events, all ports or physical visual verification",
+      "full_touch": "FAIL preview; subsequent steps NOT_REACHED",
+      "core": "input and candidate original full core exit1 logistics:75;42 invocation matrices equal,12 zero/30 nonzero each",
+      "host": "20 actual gates exit0, not green core",
+      "arm64": "NOT_RUN",
+      "memory": "No process found is missing data, never zero",
+      "video": "Every fetched original segment parsed and fully decoded; sampled content review is not full frame-by-frame acceptance",
+      "release": "Use actual publication stdout/stderr, not historical403 or GET success as current write outcome"
+    },
+    "raw_evidence_paths": [
+      "audit/raw/input-integrity.json",
+      "audit/raw/nested-integrity.json",
+      "audit/raw/apk-independent-identity.json",
+      "audit/raw/reaudit-host-attempt2",
+      "audit/raw/core",
+      "audit/raw/authority-independent.json",
+      "audit/raw/media-review/video-validation.json",
+      "audit/raw/remote-snapshot-1",
+      "audit/raw/runtime/reaudit-api29-all-attempt2",
+      "audit/raw/runtime/reaudit-api35-all-attempt2",
+      "audit/raw/runtime/reaudit-api29-cold-attempt2",
+      "audit/raw/runtime/reaudit-api35-cold-attempt3",
+      "audit/raw/runtime/reaudit-api29-lifecycle-attempt2",
+      "audit/raw/runtime/reaudit-api35-lifecycle-attempt2",
+      "audit/raw/runtime/reaudit-api29-parity-attempt2",
+      "audit/raw/runtime/reaudit-api35-parity-attempt3"
+    ],
+    "missing_measurements": [
+      "physical ARM64 installation/rendering/GPU/PSS/thermal",
+      "full allocation/GC trace",
+      "all widget IDs/bounds for stale-date diagnosis",
+      "complete touch command/save/load chain",
+      "SAF provider faults",
+      "matched-camera V1/V2 and all unit/season visual matrices"
+    ]
+  },
+  "latest_acceptance_manifest": "repeat-20260926/manifest.json"
 }
