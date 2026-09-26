@@ -51,6 +51,7 @@ public final class FrameAdmissionHarness {
   final class Lens {void setProjection(int p,double... a){gpu();}void lookAt(double... a){gpu();}}
   final class Water {Water getDefaultInstance(){return this;}void setParameter(String s,float f){gpu();}}
   static final class UiMotion {static boolean enabled(){return true;}}
+  static final class WindowSurfaceRecovery {static void changed(Object view){}}
   static void check(boolean c,String m){if(!c)throw new AssertionError(m);}
 '''
 tail = r'''

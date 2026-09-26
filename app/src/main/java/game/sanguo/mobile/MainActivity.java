@@ -86,11 +86,12 @@ public final class MainActivity extends Activity {
     private final ClientState ui=new ClientState();
     private TurnWork turnWork;
     private TurnPlayback playback;
+    private WindowSurfaceRecovery windowSurfaceRecovery;
     private final Map<String,Button> navigation=new LinkedHashMap<>();
     final int ink=UiTheme.INK,paper=UiTheme.TEXT,gold=UiTheme.JADE,muted=UiTheme.MUTED;
 
     @Override public void onCreate(Bundle state) {
-        super.onCreate(state);gameHost=((GameApplication)getApplication()).host();boolean coldStart=state==null;ui.read(state);
+        super.onCreate(state);windowSurfaceRecovery=new WindowSurfaceRecovery(getWindow());gameHost=((GameApplication)getApplication()).host();boolean coldStart=state==null;ui.read(state);
         applyOrientationPreference();
         String restoreError=null;boolean restored=false;
         AtomicFile autosave=file("auto");
@@ -269,6 +270,7 @@ public final class MainActivity extends Activity {
     }
     private void refreshTurnProgress(){
         if(turnProgress==null)return;
+        WindowSurfaceRecovery.changed(turnProgress);
         turnProgress.setOnClickListener(v->showPlaybackControls());
         if(aiRunning&&turnWork!=null){turnProgress.setText(turnWork.status());turnProgress.setVisibility(View.VISIBLE);turnProgress.removeCallbacks(turnProgressTicker);turnProgress.postDelayed(turnProgressTicker,120);}
         else {turnProgress.removeCallbacks(turnProgressTicker);turnProgress.setVisibility(View.GONE);}
@@ -588,6 +590,7 @@ public final class MainActivity extends Activity {
         title.setText(world.faction(world.player)+" · "+world.scenarioName);
         dateBanner.setText(world.date().replace(" ",""));dateBanner.setVisibility(View.VISIBLE);
         dateBanner.setContentDescription("当前日期 "+world.date());
+        WindowSurfaceRecovery.changed(dateBanner);
         mapRevisionNotice.setText(NationalMap.compatibilityNotice(world));mapRevisionNotice.setVisibility(mapRevisionNotice.getText().length()==0?View.GONE:View.VISIBLE);
         actionPointsBadge.setText("行动力\n"+world.actionPoints[world.player]);actionPointsBadge.setContentDescription("玩家行动力 "+world.actionPoints[world.player]+" 点");
         UiTheme.title(title);title.setContentDescription("军情 · "+title.getText());
@@ -1144,7 +1147,7 @@ public final class MainActivity extends Activity {
             }).setNegativeButton("返回地图",null).show();
     }
     @Override public Object onRetainNonConfigurationInstance(){if(playback!=null)playback.detach();if(turnWork!=null)turnWork.observe(null);return turnWork;}
-    @Override protected void onDestroy(){if(sessionSubscription!=null){sessionSubscription.close();sessionSubscription=null;}if(map!=null)map.release();if(playback!=null)playback.detach();if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null){turnWork.observe(null);}if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
+    @Override protected void onDestroy(){if(windowSurfaceRecovery!=null){windowSurfaceRecovery.close();windowSurfaceRecovery=null;}if(sessionSubscription!=null){sessionSubscription.close();sessionSubscription=null;}if(map!=null)map.release();if(playback!=null)playback.detach();if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null){turnWork.observe(null);}if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();}
     private void writeClientState(Bundle state){
         if(world==null||map==null)return;
         ui.write(state);state.putInt("selectedQ",selected==null?-1:selected.q);state.putInt("selectedR",selected==null?-1:selected.r);state.putInt("moving",moving);state.putString("unitCommand",unitCommand);
@@ -1226,7 +1229,7 @@ public final class MainActivity extends Activity {
         }catch(IOException|SecurityException e){showError(request==EXPORT_SAVE?"导出失败":"导入失败");}
     }
     private void loadSlot(String slot){try{World restored=readSave(file(slot));if(!activateWorld(restored))return;selectAndFocus(world.home().hex);save("auto",false);Toast.makeText(this,"已读取存档 · "+world.date(),Toast.LENGTH_SHORT).show();}catch(IOException e){showError("读取失败");}}
-    @Override protected void onResume(){super.onResume();if(map!=null)map.resume(true);}
+    @Override protected void onResume(){super.onResume();if(windowSurfaceRecovery!=null)windowSurfaceRecovery.request();if(map!=null)map.resume(true);}
     @Override protected void onPause(){if(map!=null)map.resume(false);super.onPause();if(world!=null){save("auto",false);persistClientState();}}
     @Override public void onBackPressed(){
         if(criticalFlash!=null){criticalFlash.dismiss();return;}
