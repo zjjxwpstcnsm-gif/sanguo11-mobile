@@ -1,0 +1,73 @@
+name: Native P0 unchanged APK graphics-backend A-B control
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-p0-software-control.yml]
+permissions: {contents: read, actions: read}
+jobs:
+  control:
+    strategy:
+      fail-fast: false
+      matrix: {api: [29, 35], input: [v105, v110]}
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env: {GH_TOKEN: '${{ github.token }}', GH_REPO: '${{ github.repository }}'}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: 39b8db2e26ebdd0303cf182bc74addf862ee3823, persist-credentials: false}
+      - name: Verify immutable application and exactly the same strict v110 test APK
+        run: |
+          set -euo pipefail
+          mkdir -p out/remediation /tmp/build /tmp/old app/build/outputs/apk/debug app/build/outputs/apk/androidTest/debug
+          gh run download 36210114580 -n p0-v110-build -D /tmp/build
+          (cd /tmp/build && sed 's@out/build/@@g' APK_SHA256.txt | sha256sum -c -)
+          cp /tmp/build/app-debug-androidTest.apk app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+          if [ '${{ matrix.input }}' = v105 ]; then
+            gh run download 36108363433 -n native-remediation-api29-apk-00 -D /tmp/old
+            gh run download 36108363433 -n native-remediation-api29-apk-01 -D /tmp/old
+            cat /tmp/old/remediation-apk-part-00 /tmp/old/remediation-apk-part-01 > app/build/outputs/apk/debug/app-debug.apk
+            echo '2b38ca4741b60650be58555ec118350f2aeff292765f6b3754adc138c1fdf55c  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
+            echo ef54951dbb7056beaa782f97a3486eefa3a88ef9 > out/remediation/SOURCE_COMMIT
+          else
+            cp /tmp/build/sanguo11-mobile-v110.apk app/build/outputs/apk/debug/app-debug.apk
+            cp /tmp/build/SOURCE_COMMIT out/remediation/SOURCE_COMMIT
+          fi
+          sha256sum app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk > out/remediation/APK_SHA256.txt
+          echo 'Explicit graphics environment A-B. Only -gpu software instead of swangle; APK/test/timeouts/map/resolution/heap/animations unchanged. Report separately, never overwrite SwANGLE failures or call emulator performance phone performance.' > out/remediation/CONTROL_SCOPE.txt
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api }}
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu software -noaudio -no-boot-anim -camera-back none
+          script: |
+            adb shell getprop > out/remediation/DEVICE_PROPERTIES.txt
+            adb shell dumpsys SurfaceFlinger > out/remediation/SURFACEFLINGER_START.txt
+            "$ANDROID_HOME/emulator/emulator" -version > out/remediation/EMULATOR_VERSION.txt 2>&1
+            bash scripts/verify-native-remediation.sh baseline cold-only
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: p0-software-${{ matrix.input }}-api${{ matrix.api }}-raw, path: out/remediation/, if-no-files-found: error, retention-days: 14}
+      - name: Validate original video segments
+        if: always()
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python3 scripts/verify-p0-videos.py out/remediation
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p0-software-${{ matrix.input }}-api${{ matrix.api }}-video-validation
+          path: |
+            out/remediation/**/*.ffprobe.json*
+            out/remediation/**/*.decode.log*
+            out/remediation/VIDEO_*
+          retention-days: 14
