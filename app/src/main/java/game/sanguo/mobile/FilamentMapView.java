@@ -529,6 +529,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                     // to enqueue uploads/transforms and only skip render().
                     gpuPreparationFrames++;assetUploadBudget=2;
                     if(snapshot!=null)applySeason(SeasonStyle.forMonth(snapshot.month));
+                    selectObjectLods();
                     if(assetSyncPending)syncObjects();
                     double aspect=camera.width/(double)camera.height;
                     lens.setProjection(Camera.Projection.ORTHO,-camera.span*aspect,camera.span*aspect,-camera.span,camera.span,.1,1000);
@@ -600,6 +601,16 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         }
         pending=remaining;
     }
+    /** Resolve the camera LOD before the first asset request, including after a
+     * view/quality change. Otherwise national previews decode the default middle
+     * LOD first and immediately enqueue its replacement on the same owner frame. */
+    private void selectObjectLods(){
+        int nextSite=Math.max(quality.minSiteLod,SiteVisual.lod(camera.span,siteLod));
+        int nextUnit=UnitLod.select(unitLod,camera.span,quality.minUnitLod);
+        if(nextSite!=siteLod||nextUnit!=unitLod){
+            siteLod=nextSite;unitLod=nextUnit;assetSyncPending=true;
+        }
+    }
     private void loadVisible(){
         if(snapshot==null)return;
         overviewTerrain=TerrainMaterialLod.select(overviewTerrain,camera.span);
@@ -616,7 +627,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             GpuMesh old=backdrop;backdrop=replacement;if(old!=null)old.destroy();
         }
         engine.getLightManager().setShadowCaster(engine.getLightManager().getInstance(light),environmentShadows&&!thermal.constrained&&camera.span<22);
-        int nextLod=Math.max(quality.minSiteLod,SiteVisual.lod(camera.span,siteLod));if(nextLod!=siteLod){siteLod=nextLod;syncObjects();}visibleChunks=0;pending=meshWork.pending();
+        visibleChunks=0;pending=meshWork.pending();
         if(meshWork.pending()==0&&(terrainWindow==null||!terrainWindow.covers(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span))){
             terrainWindow=new SceneMesh.TerrainWindow(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span);
             SceneMesh.TerrainWindow requested=terrainWindow;MapSceneSnapshot.Ground ground=snapshot.ground;
@@ -650,8 +661,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(replacement==null||terrain.containsKey(replacement)){terrain.remove(old).destroy();}
             else terrain.get(old).show(inView(old.x,old.z,old.radius));
         }
-        int nextUnitLod=UnitLod.select(unitLod,camera.span,quality.minUnitLod);
-        unitLod=nextUnitLod;visibleWood=0;
+        visibleWood=0;
         wantedWood.clear();
         for(SceneMesh source:woods){
             SceneMesh chunk=quality!=SceneQuality.LOW&&camera.span<14?source:source.distant;if(chunk.indices.length==0)continue;

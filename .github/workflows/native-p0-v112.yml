@@ -1,0 +1,190 @@
+name: Native P0 v112 exact-source first asset LOD regression
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-p0-v112.yml]
+permissions: {contents: write, actions: read}
+concurrency: {group: native-p0-v112-delivery, cancel-in-progress: false}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs: {source: '${{ steps.source.outputs.sha }}'}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - name: Require original APK failure and same-Window causal evidence before modifying production
+        env: {GH_TOKEN: '${{ github.token }}', GH_REPO: '${{ github.repository }}'}
+        run: |
+          set -euo pipefail
+          mkdir -p out/build /tmp/before
+          gh run download 36210927099 -n p0-v105-api29-window-loss-control-raw -D /tmp/before
+          test "$(cat /tmp/before/SOURCE_COMMIT)" = ef54951dbb7056beaa782f97a3486eefa3a88ef9
+          grep -q 2b38ca4741b60650be58555ec118350f2aeff292765f6b3754adc138c1fdf55c /tmp/before/APK_SHA256.txt
+          grep -q DIAGNOSTIC_BACKING_REACQUIRED /tmp/before/baseline/window-loss-control/interaction.txt
+          test -s /tmp/before/baseline/window-loss-control/images/after-april-shell.png
+          cp /tmp/before/baseline/window-loss-control/images/window-loss-control.txt out/build/ORIGINAL_CAUSAL_CONTROL.txt
+          echo 'Original v105 API29 loses Window backing; one diagnostic same-Window relayout restores copy and HWUI, later April load loses backing again with whole-screen July still visible. Diagnostic intervention is NOT candidate acceptance.' > out/build/CONTROL_SCOPE.txt
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Validate production source before exact-SHA build
+        id: source
+        run: |
+          set -euo pipefail
+          mkdir -p out/build
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+          git rev-parse HEAD > out/build/SOURCE_COMMIT
+          git diff 8b42af2a70c0fc066620e2ce79951aa31d8b923e HEAD > out/build/PRODUCTION.patch
+          python3 scripts/test-native-frame-admission.py > out/build/frame-admission.log 2>&1
+          python3 scripts/test-native-overview-material.py > out/build/overview.log 2>&1
+          python3 scripts/test-native-window-surface.py > out/build/window-recovery.log 2>&1
+          python3 scripts/check-native-protected-assets.py > out/build/protected-assets.log
+          git diff --exit-code 8b42af2a70c0fc066620e2ce79951aa31d8b923e HEAD -- core game-api game-runtime data unity app/src/main/assets tools/3d
+      - name: Build APK and unchanged strict installed probes from the committed source SHA
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/build/build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/build/sanguo11-mobile-v112.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/build/app-debug-androidTest.apk
+          sha256sum out/build/*.apk > out/build/APK_SHA256.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/build/sanguo11-mobile-v112.apk > out/build/APK_METADATA.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/build/sanguo11-mobile-v112.apk > out/build/APK_SIGNATURE.txt
+          grep -q '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' out/build/APK_SIGNATURE.txt
+          grep -q "name='game.sanguo.mobile.dev' versionCode='112'" out/build/APK_METADATA.txt
+          unzip -l out/build/sanguo11-mobile-v112.apk > out/build/APK_CONTENTS.txt
+          git diff --exit-code
+          git bundle create out/build/source.bundle HEAD refs/remotes/origin/main
+          echo './gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true' > out/build/BUILD_COMMAND.txt
+      - name: Attempt authorized prerelease and retain actual outcome
+        if: success()
+        env: {GH_TOKEN: '${{ github.token }}', GH_REPO: '${{ github.repository }}'}
+        run: |
+          set +e
+          source=$(cat out/build/SOURCE_COMMIT)
+          gh release create native-p0-v112-${source:0:12} out/build/sanguo11-mobile-v112.apk --target "$source" --prerelease --title 'v112 P0 first asset LOD candidate (PARTIAL)' --notes 'Exact-source PR67 candidate. Publication does not imply preview, full touch chain or visual acceptance; see the final report and raw installed results.' > out/build/RELEASE_STDOUT.txt 2> out/build/RELEASE_STDERR.txt
+          echo $? > out/build/RELEASE_EXIT.txt
+          gh api repos/$GH_REPO/releases/tags/native-p0-v112-${source:0:12} > out/build/RELEASE_LOOKUP.json 2> out/build/RELEASE_LOOKUP.stderr
+          echo $? > out/build/RELEASE_LOOKUP_EXIT.txt
+          exit 0
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: p0-v112-build, path: out/build/, if-no-files-found: error, retention-days: 14}
+  host:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ needs.build.outputs.source }}', fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - name: Source identity and unchanged authority/assets
+        run: |
+          mkdir -p out/host/logs
+          git rev-parse HEAD origin/main > out/host/REFS.txt
+          git diff --exit-code 8b42af2a70c0fc066620e2ce79951aa31d8b923e HEAD -- core game-api game-runtime data unity app/src/main/assets > out/host/protected.log
+          python3 scripts/check-native-protected-assets.py > out/host/protected-assets.log
+          curl -fSL --retry 3 https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/json.jar
+          echo JSON_TEST_JAR=/tmp/json.jar >> "$GITHUB_ENV"
+      - name: Original host suites and all new production-path regressions
+        run: |
+          failed=0
+          for suite in test-native-r00-r14-audit $(printf 'test-native-r%02d ' $(seq 1 14)) test-architecture test-native-ground-stream; do
+            code=0; bash scripts/$suite.sh > out/host/logs/$suite.log 2>&1 || code=$?
+            printf '%s\t%s\n' "$suite" "$code" >> out/host/HOST_EXIT_CODES.tsv
+            [ "$code" = 0 ] || failed=1
+          done
+          for suite in test-native-frame-admission test-native-overview-material test-native-window-surface; do
+            code=0; python3 scripts/$suite.py > out/host/logs/$suite.log 2>&1 || code=$?
+            printf '%s\t%s\n' "$suite" "$code" >> out/host/HOST_EXIT_CODES.tsv
+            [ "$code" = 0 ] || failed=1
+          done
+          exit "$failed"
+      - name: Full original core and every declared input/candidate invocation without assertion edits
+        if: always()
+        run: |
+          set -euo pipefail
+          git worktree add --detach /tmp/p0-input 8b42af2a70c0fc066620e2ce79951aa31d8b923e
+          root="$PWD/out/host"
+          a=0; (cd /tmp/p0-input && bash scripts/test-core.sh) > "$root/core-input.log" 2>&1 || a=$?
+          b=0; bash scripts/test-core.sh > "$root/core-candidate.log" 2>&1 || b=$?
+          printf 'input=%s\ncandidate=%s\n' "$a" "$b" > "$root/CORE_EXIT_CODES.txt"
+          test "$a" = "$b"
+          grep -q 'CoreTest.logistics(CoreTest.java:75)' "$root/core-input.log"
+          grep -q 'CoreTest.logistics(CoreTest.java:75)' "$root/core-candidate.log"
+          a=0; (cd /tmp/p0-input && bash scripts/collect-core-results.sh "$root/core-all-input") > "$root/core-all-input-driver.log" 2>&1 || a=$?
+          b=0; bash scripts/collect-core-results.sh "$root/core-all-candidate" > "$root/core-all-candidate-driver.log" 2>&1 || b=$?
+          printf 'input=%s\ncandidate=%s\n' "$a" "$b" > "$root/CORE_ALL_EXIT_CODES.txt"
+          diff -u "$root/core-all-input/EXIT_CODES.tsv" "$root/core-all-candidate/EXIT_CODES.tsv" > "$root/CORE_ALL_COMPARISON.diff"
+          test "$a" = "$b"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: p0-v112-host, path: out/host/, retention-days: 14}
+  runtime:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {api: 29, scope: all}
+          - {api: 29, scope: cold-only}
+          - {api: 35, scope: all}
+          - {api: 35, scope: cold-only}
+          - {api: 35, scope: lifecycle}
+          - {api: 35, scope: parity}
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ needs.build.outputs.source }}'}
+      - uses: actions/download-artifact@v4
+        with: {name: p0-v112-build, path: out/build}
+      - name: Exact same installed APK in every scope; no diagnostic forced reapply probe
+        run: |
+          set -euo pipefail
+          sha256sum -c out/build/APK_SHA256.txt
+          mkdir -p app/build/outputs/apk/debug app/build/outputs/apk/androidTest/debug out/remediation
+          cp out/build/sanguo11-mobile-v112.apk app/build/outputs/apk/debug/app-debug.apk
+          cp out/build/app-debug-androidTest.apk app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+          cp out/build/SOURCE_COMMIT out/build/APK_SHA256.txt out/remediation/
+          echo '${{ matrix.api }} x86_64 SwANGLE; scope=${{ matrix.scope }}; no ARM64 physical device. Original R12/cold/assertions plus first CPU observation inside unchanged 120s readiness deadline, not the intervention-only causal diagnostic.' > out/remediation/DEVICE_SCOPE.txt
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api }}
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: |
+            adb shell getprop > out/remediation/DEVICE_PROPERTIES.txt
+            adb shell dumpsys SurfaceFlinger > out/remediation/SURFACEFLINGER_START.txt
+            if [ '${{ matrix.scope }}' = lifecycle ] || [ '${{ matrix.scope }}' = parity ]; then python3 -c 'from pathlib import Path; import sys; scope=sys.argv[1]; cls,mark=("NativeR01Instrumentation","PASS R01") if scope=="lifecycle" else ("NativeP0ParityInstrumentation","PASS P0_PARITY"); s=Path("scripts/verify-native-remediation.sh").read_text(); marker="if [[ \"${2:-all}\" = cold-only ]]; then"; assert s.count(marker)==1; Path("out/selected-installed.sh").write_text(s.split(marker)[0]+"run_probe "+cls+" "+scope+"\ngrep -q \""+mark+"\" \"$root/"+scope+"/interaction.txt\"\n")' '${{ matrix.scope }}'; bash out/selected-installed.sh candidate; else bash scripts/verify-native-remediation.sh candidate '${{ matrix.scope }}'; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'p0-v112-api${{ matrix.api }}-${{ matrix.scope }}-raw', path: out/remediation/, if-no-files-found: error, retention-days: 14}
+      - name: Independent validation of each original video segment
+        if: always()
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python3 scripts/verify-p0-videos.py out/remediation
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p0-v112-api${{ matrix.api }}-${{ matrix.scope }}-video-validation
+          path: |
+            out/remediation/**/*.ffprobe.json*
+            out/remediation/**/*.decode.log*
+            out/remediation/VIDEO_*
+          retention-days: 14

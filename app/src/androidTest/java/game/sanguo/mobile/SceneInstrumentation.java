@@ -52,11 +52,13 @@ public class SceneInstrumentation extends Instrumentation {
     }
     // Continuous 3D animation need not make the Looper globally idle. Queue a UI barrier.
     void settle(){runOnMainSync(()->{});SystemClock.sleep(500);}
+    void observeLoading(FilamentMapView view)throws Exception {}
     void ready()throws Exception{
         long deadline=SystemClock.uptimeMillis()+120000;
         while(SystemClock.uptimeMillis()<deadline){
             check(host.is3D(),"renderer has not fallen back while loading");
             FilamentMapView view=(FilamentMapView)field(host,"spatial");
+            observeLoading(view);
             boolean[] presented={false};
             runOnMainSync(()->{try{
                 presented[0]=!((List<?>)field(view,"chunks")).isEmpty()&&(Integer)field(view,"pending")==0

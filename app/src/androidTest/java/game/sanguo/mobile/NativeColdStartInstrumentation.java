@@ -18,6 +18,19 @@ import java.util.function.Predicate;
 public final class NativeColdStartInstrumentation extends SceneInstrumentation {
  private File dir;
  private long touchDeadline;
+ private boolean firstCpuObserved;
+ @Override void observeLoading(FilamentMapView view)throws Exception{
+  if(firstCpuObserved)return;
+  runOnMainSync(()->{try{
+   if(((List<?>)field(view,"chunks")).isEmpty())return;
+   long epoch=(Long)field(field(view,"meshWork"),"epoch");
+   boolean coarse=(Boolean)field(view,"distantTerrain");
+   note("FIRST_CPU_DELIVERY epoch="+epoch+" allCoarse="+coarse+" span="+view.camera.span);
+   check(epoch==1L&&coarse,"first delivered CPU task is the national coarse request");
+   check((Integer)field(view,"siteLod")==2&&(Integer)field(view,"unitLod")==2,"first national asset requests use far LODs");
+   firstCpuObserved=true;
+  }catch(Exception e){throw new RuntimeException(e);}});
+ }
  private void note(String s)throws Exception{Files.write(new File(dir,"cold-runtime.txt").toPath(),(s+"\n").getBytes(java.nio.charset.StandardCharsets.UTF_8),StandardOpenOption.CREATE,StandardOpenOption.APPEND);}
  private View find(View v,Predicate<View> match){
   if(!v.isShown())return null;

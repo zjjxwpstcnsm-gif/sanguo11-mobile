@@ -13,6 +13,14 @@ s = source.read_text()
 start = s.index('    @Override public void doFrame(long time){')
 end = s.index('    /** Check actual display output', start)
 method = s[start:end].replace('@Override ', '')
+if '    private void selectObjectLods()' in s:
+    a=s.index('    private void selectObjectLods()'); b=s.index('    private void loadVisible()',a); method+=s[a:b]
+site=(repo/'app/src/main/java/game/sanguo/mobile/SiteVisual.java').read_text()
+a=site.index('    static int lod(');b=site.index('    static SceneMesh fallback',a)
+selectors='static final class SiteVisual {'+site[a:b]+'}\n'
+unit=(repo/'app/src/main/java/game/sanguo/mobile/UnitLod.java').read_text()
+a=unit.index('    static int select(');b=unit.index('    static int idleFrame',a)
+selectors+='static final class UnitLod {'+unit[a:b]+'}\n'
 # The real method is compiled verbatim except the inapplicable View override annotation.
 head = r'''
 import java.util.function.Consumer;
@@ -22,15 +30,16 @@ public final class FrameAdmissionHarness {
   int bufferWidth=100,bufferHeight=100,assetUploadBudget,pending=7,lastMeshUploads=8,cpuCursor,cpuCount;
   long lastMeshUploadNanos=50; long[] cpuSamples=new long[240]; double callbackMillis,waterSeconds;
   int gpuCalls,uploads,failures,scheduled,cancelled,copies;
+  int siteLod=1,unitLod=1,firstSite=-1,firstUnit=-1,syncs;
   boolean throwUpload;
-  Object swap=new Object(),quality=new Object(),view=new Object(); Snapshot snapshot=new Snapshot();
+  Object swap=new Object(),view=new Object(); Quality quality=new Quality(); Snapshot snapshot=new Snapshot();
   final Renderer renderer=new Renderer(); final MeshWork meshWork=new MeshWork(); final AssetWork assetWork=new AssetWork();
   final Overlay overlay=new Overlay(); final Pacer pacer=new Pacer(); final Thermal thermal=new Thermal();
   final Camera camera=new Camera(); final Lens lens=new Lens(); final Water waterMaterial=new Water();
   final Consumer<Throwable> failure=e->{failures++;};
   void gpu(){if(!renderer.begun)throw new IllegalStateException("GPU work before frame admission");gpuCalls++;}
   void acceptMeshes(Object r){} void schedule(){scheduled++;} void cancelFrame(){cancelled++;}
-  void syncObjects(){gpu();assetSyncPending=false;}
+  void syncObjects(){gpu();if(syncs++==0){firstSite=siteLod;firstUnit=unitLod;}assetSyncPending=false;}
   void loadVisible(){gpu();if(throwUpload)throw new IllegalStateException("upload failure");uploads++;lastMeshUploads=1;lastMeshUploadNanos=1;pending=0;}
   void animateReplay(){gpu();} void animateUnits(){gpu();} void animateEffects(){gpu();}
   void applySeason(SeasonStyle s){gpu();} void refreshPendingMeshes(){pending=7;}
@@ -41,13 +50,14 @@ public final class FrameAdmissionHarness {
     void endFrame(){if(!begun)throw new AssertionError("end without begin");ends++;begun=false;}
   }
   final class MeshWork {int drained;void drain(Consumer<Object> ready,Consumer<Throwable> error){drained++;}}
-  final class AssetWork {int drained;boolean drain(){drained++;return true;}}
+  final class AssetWork {int drained;boolean changed=true;boolean drain(){drained++;boolean result=changed;changed=false;return result;}}
   final class Overlay {int draws;void invalidate(){draws++;}}
   static final class Pacer {boolean due(long t,int fps){return true;}}
   static final class Thermal {int fps(Object q){return 30;}}
   static final class Snapshot {int month=7;}
   static final class SeasonStyle {static SeasonStyle forMonth(int m){return new SeasonStyle();}}
-  static final class Camera {double width=100,height=100,span=10,x,z;double backX(){return 0;}double cos(){return 1;}double sin(){return 1;}double rightX(){return 1;}static final class Projection {static final int ORTHO=0;}}
+  static final class Quality {int minSiteLod,minUnitLod;}
+  static final class Camera {float span=86.256714f;double width=100,height=100,x,z;double backX(){return 0;}double cos(){return 1;}double sin(){return 1;}double rightX(){return 1;}static final class Projection {static final int ORTHO=0;}}
   final class Lens {void setProjection(int p,double... a){gpu();}void lookAt(double... a){gpu();}}
   final class Water {Water getDefaultInstance(){return this;}void setParameter(String s,float f){gpu();}}
   static final class UiMotion {static boolean enabled(){return true;}}
@@ -66,6 +76,15 @@ tail = r'''
     h.renderer.admit=true;h.doFrame(2_000_000_000L);
     check(h.renderer.renders==1&&h.renderer.ends==1&&h.gpuPreparationFrames==1&&h.renderedFrames==1,"accepted frame prepares, renders and ends exactly once");
     check(h.uploads==1&&h.assetUploadBudget==2&&!h.assetSyncPending,"original asset budget and deferred synchronization retained");
+    check(h.firstSite==2&&h.firstUnit==2,"FIRST_ASSET_LOD: national first request must use far site and unit assets");
+    h.camera.span=45;h.doFrame(2_010_000_000L);
+    check(h.siteLod==2&&h.unitLod==2&&h.syncs==1,"national hysteresis does not requeue unchanged assets");
+    h.camera.span=18;h.doFrame(2_020_000_000L);
+    check(h.siteLod==1&&h.unitLod==1&&h.syncs==2,"zoom selects both LODs before one synchronization");
+    FrameAdmissionHarness near=new FrameAdmissionHarness();near.camera.span=6;near.renderer.admit=true;near.doFrame(1);
+    check(near.firstSite==0&&near.firstUnit==0,"fresh close view requests close assets on its first synchronization");
+    FrameAdmissionHarness low=new FrameAdmissionHarness();low.camera.span=6;low.quality.minSiteLod=2;low.quality.minUnitLod=2;low.renderer.admit=true;low.doFrame(1);
+    check(low.firstSite==2&&low.firstUnit==2,"quality minimums are retained before requests");
     int calls=h.gpuCalls;h.renderer.admit=false;h.doFrame(2_040_000_000L);
     check(h.gpuCalls==calls&&h.lastMeshUploads==0,"late rejection does not reuse or conceal prior upload work");
     FrameAdmissionHarness zero=new FrameAdmissionHarness();zero.bufferWidth=0;zero.doFrame(1);
@@ -84,10 +103,10 @@ tail = r'''
 '''
 with tempfile.TemporaryDirectory(prefix='native-frame-admission-') as folder:
     root=Path(folder)
-    (root/'FrameAdmissionHarness.java').write_text(head+method+tail)
+    (root/'FrameAdmissionHarness.java').write_text(head+selectors+method+tail)
     (root/'android/os').mkdir(parents=True)
     (root/'android/util').mkdir(parents=True)
     (root/'android/os/SystemClock.java').write_text('package android.os; public final class SystemClock {public static long uptimeMillis(){return 5000;}}')
     (root/'android/util/Log.java').write_text('package android.util; public final class Log {public static int i(String t,String s){return 0;}}')
-    subprocess.run(['javac','--release','17','-d',folder]+[str(p) for p in root.rglob('*.java')],check=True)
+    subprocess.run(['java','-m','jdk.compiler/com.sun.tools.javac.Main','--release','17','-d',folder]+[str(p) for p in root.rglob('*.java')],check=True)
     subprocess.run(['java','-cp',folder,'FrameAdmissionHarness'],check=True)
