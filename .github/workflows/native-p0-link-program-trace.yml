@@ -1,0 +1,160 @@
+name: Native P0 unchanged-v112 GL program trace
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-p0-link-program-trace.yml]
+permissions: {contents: read, actions: read}
+concurrency: {group: native-p0-link-program-trace, cancel-in-progress: false}
+jobs:
+  trace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - name: Acquire unchanged production and prepare observation-only tooling
+        env: {GH_TOKEN: '${{ github.token }}', GH_REPO: '${{ github.repository }}'}
+        run: |
+          set -euo pipefail
+          mkdir -p out/build out/remediation/gl-trace
+          gh run download 36213760665 -n p0-v112-build -D out/build
+          test "$(cat out/build/SOURCE_COMMIT)" = 5f8997ebfef15f4680931d40532411a336506d0d
+          echo '6ba2211d961567b2aa396ba19e3018c1dc44780fa4351a807db099fc643bd058  out/build/sanguo11-mobile-v112.apk' | sha256sum -c -
+          echo 'cab724cc47d73e1a88cd71ab8bfb67e35216a1012fcbe8ea7ba75d50d1dc03a9  out/build/app-debug-androidTest.apk' | sha256sum -c -
+          mkdir -p app/build/outputs/apk/debug app/build/outputs/apk/androidTest/debug
+          cp out/build/sanguo11-mobile-v112.apk app/build/outputs/apk/debug/app-debug.apk
+          cp out/build/app-debug-androidTest.apk app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+          cp out/build/SOURCE_COMMIT out/build/APK_SHA256.txt out/remediation/
+          git rev-parse HEAD > out/remediation/HARNESS_COMMIT
+          git diff --exit-code 5f8997ebfef15f4680931d40532411a336506d0d HEAD -- app/src/main core game-api game-runtime data scripts/verify-native-remediation.sh app/src/androidTest/java/game/sanguo/mobile/NativeColdStartInstrumentation.java app/src/androidTest/java/game/sanguo/mobile/SceneInstrumentation.java
+          printf '%s\n' 'DIAGNOSTIC ONLY: exact unchanged v112 APK and cold touch probe. Attach read-only native function observers only to our game process. No call is replaced, no return value/argument altered, no shader changed, no forced relayout and no timeout extension. Observation overhead is not acceptance or performance evidence.' > out/remediation/SCOPE.txt
+          python3 -m venv out/frida-env
+          out/frida-env/bin/pip install 'frida>=17,<18' --report out/remediation/gl-trace/pip-resolution.json > out/remediation/gl-trace/pip.log 2>&1
+          version=$(out/frida-env/bin/python -c 'import frida;print(frida.__version__)')
+          echo "$version" > out/remediation/gl-trace/FRIDA_VERSION
+          curl --fail --location --retry 2 "https://github.com/frida/frida/releases/download/$version/frida-server-$version-android-x86_64.xz" -o out/frida-server.xz
+          sha256sum out/frida-server.xz > out/remediation/gl-trace/server-download.sha256
+          xz -dc out/frida-server.xz > out/frida-server
+      - name: Prepare bounded program and metadata observation
+        run: |
+          cat > out/trace-gl.js <<'JS'
+          'use strict';
+          // Native observers only: no Java bridge, NativeFunction calls, replacement or GL writes.
+          const hooks = new Set();
+          const programs = new Map();
+          const shaders = new Map();
+          function emit(x) { x.device_ms = Date.now(); send(x); }
+          function stats(p) { if (!programs.has(p)) programs.set(p, {uniforms:0, uniform_ms:0, first:[], last:'', attached:[]}); return programs.get(p); }
+          function hook(address, kind, offset, label) {
+            const key=address.toString(); if(hooks.has(key)) return; hooks.add(key);
+            try {
+              if(kind==='source') Interceptor.attach(address, {
+                onEnter(args) {
+                  try {
+                    const shader=args[offset].toUInt32(), count=args[offset+1].toInt32(), strings=args[offset+2], lengths=args[offset+3];
+                    if(count<0 || count>32) return;
+                    let source='';
+                    for(let i=0;i<count;i++) { const p=strings.add(i*Process.pointerSize).readPointer(); const n=lengths.isNull()?-1:lengths.add(i*4).readS32(); source+=n<0?p.readUtf8String():p.readUtf8String(Math.min(n,524288)); }
+                    shaders.set(shader,source);
+                    emit({event:'shader_source', label:label, shader:shader, source:source, tid:Process.getCurrentThreadId()});
+                  } catch(e) { emit({event:'observer_error', label:label, error:String(e)}); }
+                }
+              });
+              else if(kind==='attach') Interceptor.attach(address, {
+                onEnter(args) { const p=args[offset].toUInt32(),s=args[offset+1].toUInt32(); stats(p).attached.push(s); emit({event:'attach_shader', label:label, program:p, shader:s, tid:Process.getCurrentThreadId()}); }
+              });
+              else if(kind==='link') Interceptor.attach(address, {
+                onEnter(args) { this.p=args[offset].toUInt32();this.t=Date.now();emit({event:'link_enter',label:label,program:this.p,tid:Process.getCurrentThreadId(),stats:stats(this.p)}); },
+                onLeave(retval) { emit({event:'link_return',label:label,program:this.p,elapsed_ms:Date.now()-this.t,tid:Process.getCurrentThreadId(),stats:stats(this.p)}); }
+              });
+              else if(kind==='uniform') Interceptor.attach(address, {
+                onEnter(args) { this.p=args[offset].toUInt32();this.t=Date.now();try{this.name=args[offset+1].readUtf8String(256);}catch(e){this.name='<unreadable>';} const s=stats(this.p);s.uniforms++;s.last=this.name;if(s.first.length<8)s.first.push(this.name);if(s.uniforms<=3||s.uniforms%256===0)emit({event:'uniform_query_enter',label:label,program:this.p,count:s.uniforms,name:this.name,tid:Process.getCurrentThreadId()}); },
+                onLeave(retval) { const dt=Date.now()-this.t;stats(this.p).uniform_ms+=dt;if(dt>=500)emit({event:'slow_uniform_return',program:this.p,name:this.name,elapsed_ms:dt,result:retval.toInt32()}); }
+              });
+              emit({event:'hook',label:label,kind:kind,address:key,offset:offset});
+            } catch(e) { emit({event:'hook_error',label:label,error:String(e)}); }
+          }
+          const observer=Process.attachModuleObserver({onAdded(module) {
+            if(module.name!=='libGLESv2.so' && module.name!=='libGLESv2_enc.so') return;
+            emit({event:'module',name:module.name,path:module.path});
+            module.enumerateExports().forEach(e=>{
+              if(e.type!=='function') return;
+              if(module.name==='libGLESv2.so') {
+                const kinds={glShaderSource:'source',glAttachShader:'attach',glLinkProgram:'link',glGetUniformLocation:'uniform'};
+                if(kinds[e.name])hook(e.address,kinds[e.name],0,module.name+'!'+e.name);
+              } else {
+                if(e.name.includes('s_glShaderSource'))hook(e.address,'source',1,module.name+'!'+e.name);
+                else if(e.name.includes('s_glAttachShader'))hook(e.address,'attach',1,module.name+'!'+e.name);
+                else if(e.name.includes('s_glLinkProgram'))hook(e.address,'link',1,module.name+'!'+e.name);
+                else if(e.name.includes('glGetUniformLocation_enc'))hook(e.address,'uniform',1,module.name+'!'+e.name);
+              }
+            });
+          }});
+          setInterval(()=>emit({event:'summary',programs:Array.from(programs.entries())}),2000);
+          emit({event:'observer_ready',pid:Process.id,version:Frida.version});
+          JS
+          cat > out/observe-gl.py <<'PY'
+          import datetime,json,pathlib,subprocess,time,frida
+          root=pathlib.Path('out/remediation/gl-trace');root.mkdir(parents=True,exist_ok=True)
+          log=(root/'events.jsonl').open('a',buffering=1)
+          def record(value):
+              value['host_utc']=datetime.datetime.now(datetime.timezone.utc).isoformat()
+              log.write(json.dumps(value,ensure_ascii=False)+'\n')
+          deadline=time.monotonic()+300
+          pid=None
+          while time.monotonic()<deadline and not (root/'STOP').exists():
+              p=subprocess.run(['adb','shell','pidof','game.sanguo.mobile.dev'],capture_output=True,text=True,timeout=8)
+              value=p.stdout.strip().split()
+              if value: pid=int(value[0]);break
+              time.sleep(.2)
+          if pid is None: raise RuntimeError('No game PID for observation')
+          record({'event':'attach_start','pid':pid})
+          device=frida.get_usb_device(timeout=20)
+          session=device.attach(pid)
+          script=session.create_script(pathlib.Path('out/trace-gl.js').read_text())
+          def message(message,data):
+              if message.get('type')=='send': record(message['payload'])
+              else: record({'event':'frida_message','message':message})
+          script.on('message',message)
+          script.load()
+          while time.monotonic()<deadline and not (root/'STOP').exists(): time.sleep(.2)
+          session.detach()
+          record({'event':'observer_detached'})
+          PY
+          cp out/trace-gl.js out/observe-gl.py out/remediation/gl-trace/
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: |
+            adb root
+            adb wait-for-device
+            adb push out/frida-server /data/local/tmp/p0-frida-server
+            adb shell chmod 755 /data/local/tmp/p0-frida-server
+            adb shell /data/local/tmp/p0-frida-server -D
+            adb shell getprop > out/remediation/DEVICE_PROPERTIES.txt
+            out/frida-env/bin/python out/observe-gl.py > out/remediation/gl-trace/observer.log 2>&1 & observer=$!
+            result=0; bash scripts/verify-native-remediation.sh baseline cold-only || result=$?
+            printf '%s\n' "$result" > out/remediation/ORIGINAL_PROBE_EXIT.txt
+            touch out/remediation/gl-trace/STOP
+            observation=0; wait "$observer" || observation=$?
+            printf '%s\n' "$observation" > out/remediation/gl-trace/OBSERVER_EXIT.txt
+            adb shell dumpsys SurfaceFlinger > out/remediation/gl-trace/final-surfaceflinger.txt
+            exit "$result"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-p0-v112-api35-program-link-trace
+          path: out/remediation/
+          if-no-files-found: error
+          retention-days: 14
