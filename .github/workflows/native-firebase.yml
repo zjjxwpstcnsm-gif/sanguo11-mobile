@@ -51,7 +51,7 @@ jobs:
           cp app/build/outputs/apk/debug/app-debug.apk out/firebase-build/
           cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/firebase-build/
           sha256sum out/firebase-build/*.apk > out/firebase-build/APK_SHA256.txt
-          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/firebase-build/app-debug-androidTest.apk > out/firebase-build/TEST_METADATA.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump xmltree out/firebase-build/app-debug-androidTest.apk AndroidManifest.xml > out/firebase-build/TEST_METADATA.txt
           grep -q game.sanguo.mobile.FirebaseColdStartInstrumentation out/firebase-build/TEST_METADATA.txt
           echo 'Cloud harness preparation only; no rendering fix or device acceptance claimed.' > out/firebase-build/SCOPE.txt
       - uses: actions/upload-artifact@v4
