@@ -13,8 +13,19 @@ public final class ForestDensityTest {
         for(int r=2;r<w.height-2;r++)for(int q=2;q<w.width-2;q++){
             Hex h=new Hex(q,r);List<Vegetation.Placement> list=Vegetation.placements(snap.ground,excluded,h);
             if(Vegetation.clear(snap.ground,excluded,h,snap.ground.grid.x(h),snap.ground.grid.z(h)))eligible++;
-            List<Vegetation117.Placement> old=Vegetation117.placements(snap.ground,excluded,h);
-            for(var a:old)if(list.stream().noneMatch(b->a.x==b.x&&a.z==b.z&&a.scale==b.scale&&a.angle==b.angle&&a.family==b.family))throw new AssertionError("old placement removed or changed");
+            // The script compiles the exact historical source separately. Reflection keeps
+            // this regression compilable by Gradle without packaging that control.
+            Class<?> legacy=Class.forName("game.sanguo.mobile.Vegetation117");
+            var placements=legacy.getDeclaredMethod("placements",MapSceneSnapshot.Ground.class,Set.class,Hex.class);placements.setAccessible(true);
+            for(Object a:(List<?>)placements.invoke(null,snap.ground,excluded,h)){
+                boolean retained=false;
+                for(var b:list){boolean same=true;for(String name:new String[]{"x","z","scale","angle","family"}){
+                    var oldField=a.getClass().getDeclaredField(name);oldField.setAccessible(true);
+                    var newField=b.getClass().getDeclaredField(name);newField.setAccessible(true);
+                    same&=oldField.get(a).equals(newField.get(b));
+                }retained|=same;}
+                if(!retained)throw new AssertionError("old placement removed or changed");
+            }
             if(list.size()>(baseline?3:6))throw new AssertionError("candidate bound");
             for(var p:list){
                 if(!h.equals(snap.ground.grid.cell(p.x,p.z))||!Vegetation.clear(snap.ground,excluded,h,p.x,p.z))throw new AssertionError("clearance / ownership");
