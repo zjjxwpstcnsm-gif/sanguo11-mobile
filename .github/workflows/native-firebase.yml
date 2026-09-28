@@ -34,7 +34,7 @@ concurrency: {group: native-firebase, cancel-in-progress: false}
 jobs:
   build:
     if: >-
-      inputs.mode != 'catalog' && github.event.head_commit.message != 'ci(firebase): verify catalog only' && github.event.head_commit.message != 'ci(firebase): recover first matrix and quota 20260928' && github.event.head_commit.message != 'ci(firebase): audit cold api29 once 20260928' && !startsWith(github.event.head_commit.message, 'ci(firebase): acceptance ')
+      inputs.mode != 'catalog' && github.event.head_commit.message != 'ci(firebase): verify catalog only' && github.event.head_commit.message != 'ci(firebase): recover first matrix and quota 20260928' && github.event.head_commit.message != 'ci(firebase): audit cold api29 once 20260928' && !startsWith(github.event.head_commit.message, 'ci(firebase): acceptance ') && github.event.head_commit.message != 'ci(firebase): recover audit evidence 20260928'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -194,13 +194,14 @@ jobs:
             out/firebase-results/
             out/firebase-preflight/
             !out/**/*.apk
+            !out/**/video.mp4
           retention-days: 30
 
   audit_acceptance:
     if: >-
       github.event_name == 'push' && (github.event.head_commit.message == 'ci(firebase): acceptance api35 second 20260928' || github.event.head_commit.message == 'ci(firebase): acceptance api29 second 20260928' || github.event.head_commit.message == 'ci(firebase): acceptance api35 third 20260928')
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 70
     permissions: {contents: read, actions: read, id-token: write}
     env:
       FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
@@ -246,6 +247,21 @@ jobs:
         run: |
           mkdir -p out/firebase-audit/raw
           gcloud storage cp --recursive "gs://test-lab-aa4a2056a57tx-i9q99na06ix40/native-audit/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}/" out/firebase-audit/raw > out/firebase-audit/collection.log 2>&1
+      - name: Preserve original video bytes in bounded download parts
+        if: always()
+        run: |
+          mkdir -p out/firebase-video
+          python3 - <<'PY2'
+          import pathlib,hashlib,json
+          rows=[]
+          for i,p in enumerate(pathlib.Path('out/firebase-audit/raw').rglob('video.mp4')):
+              rows.append({'path':str(p),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size})
+              with p.open('rb') as f:
+                  n=0
+                  while data:=f.read(20*1024*1024):
+                      pathlib.Path(f'out/firebase-video/video-{i}-part{n:02}').write_bytes(data);n+=1
+          pathlib.Path('out/firebase-audit/VIDEO_MANIFEST.json').write_text(json.dumps(rows,indent=2))
+          PY2
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -254,6 +270,7 @@ jobs:
             out/firebase-audit/
             out/firebase-preflight/
             !out/**/*.apk
+            !out/**/video.mp4
           if-no-files-found: error
           retention-days: 30
       - uses: actions/upload-artifact@v4
@@ -262,4 +279,174 @@ jobs:
           name: firebase-acceptance-probe
           path: out/firebase-audit/test-build/
           if-no-files-found: warn
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-video-part00
+          path: out/firebase-video/*-part00
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-video-part01
+          path: out/firebase-video/*-part01
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-video-part02
+          path: out/firebase-video/*-part02
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-video-part03
+          path: out/firebase-video/*-part03
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-video-part04
+          path: out/firebase-video/*-part04
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-video-part05
+          path: out/firebase-video/*-part05
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-video-part06
+          path: out/firebase-video/*-part06
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-video-part07
+          path: out/firebase-video/*-part07
+          if-no-files-found: ignore
+          retention-days: 30
+
+  recover_audit:
+    if: >-
+      github.event_name == 'push' && github.event.head_commit.message == 'ci(firebase): recover audit evidence 20260928'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions: {contents: read, actions: read}
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: firebase-acceptance-raw
+          run-id: 36365917134
+          github-token: ${{ github.token }}
+          path: recovered
+      - name: Split original video for bounded transfers, preserve all other evidence
+        run: |
+          mkdir -p videos
+          python3 - <<'PY'
+          import pathlib,hashlib,json
+          rows=[]
+          for i,p in enumerate(pathlib.Path('recovered').rglob('video.mp4')):
+              rows.append({'path':str(p),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size})
+              with p.open('rb') as f:
+                  n=0
+                  while data:=f.read(20*1024*1024):
+                      pathlib.Path(f'videos/video-{i}-part{n:02}').write_bytes(data);n+=1
+          pathlib.Path('recovered/VIDEO_MANIFEST.json').write_text(json.dumps(rows,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-metadata
+          path: |
+            recovered/
+            !recovered/**/*.png
+            !recovered/**/video.mp4
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-cold-images
+          path: recovered/**/cold*.png
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-touch-images
+          path: recovered/**/touch*.png
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-date-images
+          path: recovered/**/date*.png
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-lifecycle-images
+          path: recovered/**/lifecycle*.png
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-acceptance-images
+          path: recovered/**/acceptance*.png
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-video-part00
+          path: videos/*-part00
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-video-part01
+          path: videos/*-part01
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-video-part02
+          path: videos/*-part02
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-video-part03
+          path: videos/*-part03
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-video-part04
+          path: videos/*-part04
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-video-part05
+          path: videos/*-part05
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-video-part06
+          path: videos/*-part06
+          if-no-files-found: ignore
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audit-recovered-video-part07
+          path: videos/*-part07
+          if-no-files-found: ignore
           retention-days: 30
