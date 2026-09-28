@@ -1,3 +1,11 @@
+# R18 当前 — PARTIAL
+
+正式修复已接入：失败保护等待当前Surface内容检测、退休回调隔离；候选clean source门禁与安装字节校验。当前结果见[报告](reports/R18.md)及[制品/运行清单](evidence/R18/manifest.json)。R00–R18均未整体通过；不合main，不自动推进。
+
+API29/35当前v116：恢复及parity限定PASS，全国原120秒冷启动FAIL。真机WIF BLOCKED；V4未通过。
+
+---
+
 # R17 当前 — PARTIAL
 
 正式材质完整性校验与持久故障回退接入；v115精确源码构建完成；API26/35普通覆盖安装与限定故障重建通过，各12组权威fixture/50对存档字节相同。API29同源局部/全国120秒加载仍FAIL。全量玩法/真机/视觉/全国加载未通过，不允许发布或默认3D。详见 [R17报告](reports/R17.md) 和 [交接](handoffs/R17.md)。

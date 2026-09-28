@@ -1,0 +1,1 @@
+PASS candidate identity: clean / invalid / wrong SHA / unstaged / staged / untracked

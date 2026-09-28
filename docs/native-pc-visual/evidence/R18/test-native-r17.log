@@ -1,0 +1,2 @@
+PASS VerifiedMaterial 43 production/corrupt/truncated/oversized cases
+Architecture boundary PASS: reviewed legacy consumers, pure modules, JNI location, assembly DAG and preserved meta identities

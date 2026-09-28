@@ -1,3 +1,14 @@
+# R18 当前风险 — PARTIAL
+
+- R18-RECOVERY：解除保护从构造结束延后到当前Surface内容检测；专项范围见R18报告。并非native abort或全视觉通过。
+- R18-IDENTITY：候选preBuild核验clean完整SHA；交付/安装字节核验独立于玩法验收。
+- R18-RELEASE：全国冷启动、全触控、旧档/SAF、V1–V4、ARM64长稳等继续阻塞。原core logistics:75输入/候选本轮均失败。
+- 历史失败保留在下方，不因阶段推进清零。
+
+API29/35当前v116：恢复及parity限定PASS，全国原120秒冷启动FAIL。真机WIF BLOCKED；V4未通过。
+
+---
+
 # R17 当前风险 — PARTIAL
 
 - R17-MATERIAL：7份材质在native解析前固定hash与大小验证，host43例通过；不覆盖全部纹理/model或驱动故障。
