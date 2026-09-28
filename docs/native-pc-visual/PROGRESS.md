@@ -1,3 +1,22 @@
+# R15 全国覆盖与前置修复 — 2026-09-28 / PARTIAL
+
+当前报告：[R15](reports/R15.md)，交接：[R15 handoff](handoffs/R15.md)，区域/V3/要求矩阵见
+[evidence/R15](evidence/R15/)。source `769db307bdee8a607648ebec91922eae6dcbca19`，v113。
+同一agent/native-pc-visual / Draft PR67；main仍ac29b458；不合并，不自动开始R16。
+
+正式修改：DeployWizard列表/编队头统一滚动，修横屏选将可达性；普通ROAD与PLAIN共用地表权重，
+材质缓存版本5。未改玩法、地图、存档、资产二进制或原生后端，没有重启Unity。
+9正式剧本+2自定义夹具、683据点实例、161模型映射主机检查通过；5地图形状生成93代表区计划。
+最终独立APK构建/lint/300资源/签名/ABI核验通过，APK SHA256
+`1228e451e058f7ac0ee2d513abcfd207ad4da68e1d693384ccbfac90dd5dcb3f`。
+
+首轮API29模拟器出征专项横竖屏35检查PASS，完整存档/RNG与规则命令一致；首轮3D巡航ready FAIL。
+最终API29横竖屏layout再次35检查PASS；全图ready仍FAIL（pending330，beginSkipped692/696），完成代表区0。不能把主机计划当实拍。真机WIF认证被拒，未提交设备测试。
+V2 FAIL、V3未通过；水岸/建筑等美术缺口、完整触控尾链、旧档/编辑真机验证仍未关闭。
+原core logistics75失败保留；并行体验smoke“收起”不可达未定位。此前R00–R14结论保留为历史。
+
+---
+
 # Firebase 真机验证 — 2026-09-28 / NOT COMPLETE
 
 当前验收见 [逐条报告与证据索引](evidence/firebase-20260928/AUDIT.md) 和 [463行可追溯矩阵](evidence/firebase-20260928/matrix.csv)；459条来自原始要求包，4条为明确标注的历史补充。以下旧报告均为历史，不代表当前受测 APK 的结论。

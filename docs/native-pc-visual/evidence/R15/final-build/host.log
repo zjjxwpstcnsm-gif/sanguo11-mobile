@@ -1,0 +1,17 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+PASS S04/S05 assets: 9862760 checks; 120 facility LOD assets; 26 rigs; forest local reuse 16/25
+PASS S05 automatic departure/march/garrison/convoy in 8 turns, full SaveCodec equality
+PASS S04/S05 flow: real legal port move, water/land asset transitions, 50/100 stress identities, real facility lifecycle and exact core equality
+R15 huangjin-184 valid=38949 sites=87 geometry=c73820580e4806884c513fdf17e0b750edf48baa79280919453c7c0a142a9506:299:200:99.0:true
+R15 coalition-190 valid=38949 sites=87 geometry=c73820580e4806884c513fdf17e0b750edf48baa79280919453c7c0a142a9506:299:200:99.0:true
+R15 warlords-194 valid=38949 sites=87 geometry=c73820580e4806884c513fdf17e0b750edf48baa79280919453c7c0a142a9506:299:200:99.0:true
+R15 guandu-200 valid=38949 sites=87 geometry=c73820580e4806884c513fdf17e0b750edf48baa79280919453c7c0a142a9506:299:200:99.0:true
+R15 chibi-207 valid=38949 sites=87 geometry=c73820580e4806884c513fdf17e0b750edf48baa79280919453c7c0a142a9506:299:200:99.0:true
+R15 heroes-250 valid=38949 sites=87 geometry=c73820580e4806884c513fdf17e0b750edf48baa79280919453c7c0a142a9506:299:200:99.0:true
+R15 heroes-mobile-sandbox valid=38949 sites=87 geometry=c73820580e4806884c513fdf17e0b750edf48baa79280919453c7c0a142a9506:299:200:99.0:true
+R15 central-mobile-sandbox valid=14784 sites=42 geometry=baa0ddf642f1de4f36f290e4f5df0f3a8bd96008848a7d2e2c45e83694c418b0:172:154:76.0:true
+R15 jingxiang-mobile-sandbox valid=15544 sites=28 geometry=4949e5dee2b222563822c515fa007d604cefa2fb6b4f9f439730cc0ab7ac1fb5:182:134:66.0:true
+R15 custom-layout-false valid=493 sites=2 geometry=1abe8c5588108e718e293609490d4c9ec20aa39358aeee43f194a6614450fddc:31:19:0.0:false
+R15 custom-layout-true valid=493 sites=2 geometry=1abe8c5588108e718e293609490d4c9ec20aa39358aeee43f194a6614450fddc:31:19:0.0:true
+PASS R15 host 2193483 checks; inputs=11 mapShapes=5 siteInstances=683 assets=161 plannedRegions=93; ART NOT_ACCEPTED

@@ -1,0 +1,7 @@
+Final-source parallel workflow 36374442688 job 108777274502. Excerpt only; full log remains in Actions.
+2026-09-28T03:40:49.6196934Z Failure [DELETE_FAILED_INTERNAL_ERROR]
+2026-09-28T03:40:49.7946334Z Failure [DELETE_FAILED_INTERNAL_ERROR]
+2026-09-28T03:41:15.5379213Z SMOKE FAIL: java.lang.AssertionError: UI content not reachable by scrolling: 收起
+2026-09-28T03:41:16.0406531Z Traceback (most recent call last):
+2026-09-28T03:41:16.0408992Z AssertionError: SMOKE FAIL: java.lang.AssertionError: UI content not reachable by scrolling: 收起
+2026-09-28T03:41:16.0571445Z ##[error]The process '/usr/bin/sh' failed with exit code 1

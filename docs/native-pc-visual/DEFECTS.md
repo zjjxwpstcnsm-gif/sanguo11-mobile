@@ -1,3 +1,24 @@
+# R15 当前缺陷账本 — PARTIAL
+
+详见[本轮报告](reports/R15.md)；source769db307。仅布局专项的限定通过可据证据确认，
+不得据主机覆盖数量或构建成功关闭原美术/设备缺陷。
+
+| ID | 状态 | 本轮证据与剩余范围 |
+|---|---|---|
+| R15-UI-01 横屏出征无可见武将 | scoped PASS on API29 emulator | 正式单ListView滚动header；横竖屏触控选将/确认35检查、完整存档RNG一致。最终同源包重复PASS；真机、3D完整链仍未验收。 |
+| R15-MAT-01 普通道路地表配比 | host PASS / art PENDING | 正式v5 ROAD复用PLAIN权重；输入失败、候选1010检查；没有运行画面改善的充分对照。 |
+| R15-GOLDEN-01 旧完整材质哈希冲突 | corrected test contract | 保留旧golden/冻结v4独立控制，新增几何与surface流不可变控制；R08/R09/R10受影响host门禁通过，原失败留档。 |
+| R15-RUN-01 原生巡航ready | FAIL | 首轮120秒场景未ready，pending43、beginSkipped659/663；最终全图入口仍FAIL，pending330、beginSkipped692/696。不放宽门槛，不算12区实拍。 |
+| R15-PHY-01 真机执行 | BLOCKED | WIF unauthorized_client / attribute condition拒绝；尚未额度预检，零提交，未绕过。 |
+| R15-V3-01 全国视觉 | BLOCKED / NOT_ACCEPTED | V2 FAIL；岸线台阶、低浅山脊、粗糙/重复建筑、林缘/栈道等未实际补制。161映射不是161美术合格。 |
+| R15-COV-01 全量设备覆盖 | PARTIAL | host9剧本+2夹具通过；旧版本实档、编辑SAF、所有地图GPU加载与全部锚点近远画面尚缺。 |
+| R15-CORE-01 logistics75 | inherited FAIL | 输入399279b与候选原脚本均失败；原断言和权威规则未改。 |
+| R15-SMOKE-01 收起按钮 | unresolved FAIL | 并行最终源体验workflow36374442688无法滚动到达“收起”；根因未独立定位，不能用布局专项替代。 |
+
+所有历史未关闭条目继续有效；本轮不进入R16。
+
+---
+
 # Firebase 真机验证 — 2026-09-28 / NOT COMPLETE
 
 当前验收见 [逐条报告与证据索引](evidence/firebase-20260928/AUDIT.md) 和 [463行可追溯矩阵](evidence/firebase-20260928/matrix.csv)；459条来自原始要求包，4条为明确标注的历史补充。以下旧报告均为历史，不代表当前受测 APK 的结论。

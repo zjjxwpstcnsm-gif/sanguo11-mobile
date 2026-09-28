@@ -1,0 +1,8 @@
+id,status,completed,evidence,remaining
+R15-1,PARTIAL,9 official scenarios + 2 explicit custom fixtures traversed; facilities/13 units supplemented by fixtures,coverage.json; host.log,No actual user custom editor/import device flow
+R15-2,PARTIAL,Production material profile v5 ordinary ROAD uses PLAIN weights on all maps,TerrainMaterialField.java; road input/candidate controls,V2 fails; no approved water/building/art profile nationwide expansion
+R15-3,PARTIAL,Deterministic coarse overview + 4x3 strata/density regions + every site near/far tour implemented,R15TourPlan.java; NativeR15Instrumentation.java; tour-plan.json,First runtime scene timeout; 12 real region captures absent
+R15-4,PARTIAL,Landscape DeployWizard reachability fixed and tested; ordinary road palette corrected,runtime layout 35 checks; production diff,Shore/architecture/vegetation flaws retained; no defect-cleared claim
+R15-5,BLOCKED,"Existing assets inventoried, no binary art fabricated",R15-asset-manifest.json,No new or replaced art; V2 not accepted
+R15-6,PARTIAL,"Local maps and two custom projections, save roundtrip, all mapped object classes tested on host",coverage.json,Not a historical-version save or editor install end-to-end test
+R15-7,PARTIAL,"V3 matrix, complete sampling plan and failures retained",v3-acceptance.csv; regional-acceptance.csv,No V3 acceptance; R16 not started

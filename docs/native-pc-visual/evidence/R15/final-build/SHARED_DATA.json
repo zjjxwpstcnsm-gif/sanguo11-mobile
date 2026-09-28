@@ -1,0 +1,12 @@
+[
+  {
+    "file": "coverage.json",
+    "same_bytes_as": "../coverage.json",
+    "sha256": "e3614238cd7a38d8cf941b47e6aca5031fc31951c7008c8399f8cb9c0383fc98"
+  },
+  {
+    "file": "tour-plan.json",
+    "same_bytes_as": "../tour-plan.json",
+    "sha256": "5445deabb1241663f246ed33de7ce880a18ec2d508d764c965cbdc3a7133bf58"
+  }
+]
