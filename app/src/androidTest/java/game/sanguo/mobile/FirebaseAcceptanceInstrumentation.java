@@ -15,12 +15,12 @@ import java.util.function.Predicate;
 /** Physical audit: unchanged cold probe, real pointer command chain, separate date and
  * 20+20 lifecycle cases. Authority is read only here; no scenario/command/fixture calls. */
 public final class FirebaseAcceptanceInstrumentation extends NativeColdStartInstrumentation {
- private final String[] names={"normalColdStartToNativeGame","pureTouchCommandChain","dateStateAndPixelEvidence","lifecycleTwentyPlusTwenty"};
- private boolean listing,finishing; private File evidence; private int failures;
+ private String[] names={"normalColdStartToNativeGame","pureTouchLandscapeChain","pureTouchPortraitChain","dateStateAndPixelEvidence","lifecycleTwentyPlusTwenty"};
+ private boolean listing,finishing,longRun; private File evidence; private int failures;
  interface Work {void run()throws Exception;}
- @Override public void onCreate(Bundle args){listing=args!=null&&"true".equals(args.getString("log"));super.onCreate(args);}
+ @Override public void onCreate(Bundle args){listing=args!=null&&"true".equals(args.getString("log"));longRun=args!=null&&"true".equals(args.getString("auditLong"));if(longRun)names=new String[]{"normalColdStartToNativeGame","pureTouchLandscapeChain","pureTouchPortraitChain","dateStateAndPixelEvidence","lifecycleTwentyPlusTwenty","mixedGameThirtyMinutes"};super.onCreate(args);}
  private Bundle status(int i){Bundle b=new Bundle();b.putString("id","InstrumentationTestRunner");b.putString("class",getClass().getName());b.putString("test",names[i]);b.putInt("numtests",names.length);b.putInt("current",i+1);return b;}
- @Override public void onStart(){if(listing){for(int i=0;i<names.length;i++){sendStatus(1,status(i));sendStatus(0,status(i));}super.finish(Activity.RESULT_OK,new Bundle());return;}evidence=getTargetContext().getExternalFilesDir("s01");evidence.mkdirs();sendStatus(1,status(0));super.onStart();}
+ @Override public void onStart(){if(listing){for(int i=0;i<names.length;i++){sendStatus(1,status(i));sendStatus(0,status(i));}super.finish(Activity.RESULT_OK,new Bundle());return;}evidence=getTargetContext().getExternalFilesDir("s01");evidence.mkdirs();try{log("DEVICE model="+Build.MODEL+" device="+Build.DEVICE+" api="+Build.VERSION.SDK_INT+" supportedAbis="+Arrays.toString(Build.SUPPORTED_ABIS)+" process64="+android.os.Process.is64Bit()+" fingerprint="+Build.FINGERPRINT);}catch(Exception e){throw new RuntimeException(e);}sendStatus(1,status(0));super.onStart();}
  private void log(String s)throws Exception{Files.write(new File(evidence,"acceptance-runtime.txt").toPath(),(SystemClock.elapsedRealtime()+" "+s+"\n").getBytes("UTF-8"),StandardOpenOption.CREATE,StandardOpenOption.APPEND);}
  private void end(int i,Throwable e,String msg){Bundle b=status(i);b.putString("stream",msg+"\n");if(e!=null){failures++;b.putString("stack",android.util.Log.getStackTraceString(e));}sendStatus(e==null?0:-2,b);}
  private void execute(int i,Work work){sendStatus(1,status(i));try{log("BEGIN "+names[i]);work.run();log("PASS "+names[i]);end(i,null,"PASS "+names[i]);}catch(Throwable e){try{log("FAIL "+names[i]+" "+android.util.Log.getStackTraceString(e));capture("acceptance-failure-"+i);dumpViews();}catch(Throwable ignored){}end(i,e,"FAIL "+names[i]);}}
@@ -28,7 +28,7 @@ public final class FirebaseAcceptanceInstrumentation extends NativeColdStartInst
   if(finishing||listing){super.finish(code,results);return;}finishing=true;
   String msg=results==null?"":results.getString("stream","");boolean cold=code==Activity.RESULT_OK&&msg.startsWith("PASS COLD_START scoped new-game UI checks=");
   end(0,cold?null:new AssertionError(msg),msg);
-  if(cold){execute(1,()->touchChain());execute(2,()->dateEvidence());execute(3,()->lifecycle());}
+  if(cold){execute(1,()->touchChain());execute(2,()->{try{orientation("竖屏");touchChain();}finally{orientation("横屏");}});execute(3,()->dateEvidence());execute(4,()->lifecycle());if(longRun)execute(5,()->longStability());}
   else for(int i=1;i<names.length;i++){Bundle b=status(i);b.putString("stream","BLOCKED: cold-start prerequisite failed\n");sendStatus(-3,b);}
   Bundle done=new Bundle();done.putString("stream","AUDIT completed failures="+failures+"; inspect pixels and scoped cases, never all-R PASS\n");super.finish(Activity.RESULT_OK,done);
  }
@@ -54,6 +54,7 @@ public final class FirebaseAcceptanceInstrumentation extends NativeColdStartInst
  private void unit(int id)throws Exception{World.Unit u=world.unit(id);check(u!=null,"deployed unit still exists");String officer=world.officer(u.officerId).name;View b=now(v->v.getContentDescription()!=null&&v.getContentDescription().toString().contains(officer)&&v.getContentDescription().toString().startsWith("定位"));if(b!=null)tap(b);else cell(u.hex);}
  private void nextTurn()throws Exception{closeDialogs();readWorld();int before=world.turn;text("下一旬");text("执行");long deadline=SystemClock.uptimeMillis()+120000;do{settle();readWorld();}while((world.turn==before||(Boolean)field(activity,"aiRunning"))&&SystemClock.uptimeMillis()<deadline);check(world.turn==before+1&&!(Boolean)field(activity,"aiRunning"),"one touched turn completed");log("TURN authority="+world.date()+" turn="+world.turn);}
  private void saveLoad()throws Exception{describe("打开功能导航");describe("导航 · 菜单");text("保存局面（3个槽位）");text("槽位 1");View yes=now(v->v instanceof TextView&&"执行".contentEquals(((TextView)v).getText()));if(yes!=null)tap(yes);settle();File f=new File(getTargetContext().getFilesDir(),"manual.sg11");check(f.isFile(),"manual save created through slot UI");byte[] bytes=Files.readAllBytes(f.toPath());closeDialogs();text("读取存档");text("槽位 1");text("执行");settle();readWorld();check(Arrays.equals(bytes,SaveCodec.encode(world)),"touch load authority equals saved file");shot("touch-loaded");log("MANUAL_SAVE_LOAD bytes="+bytes.length);}
+ private void orientation(String name)throws Exception{closeDialogs();describe("地图工具 · ");text("屏幕方向");text(name);settle();host=(MapHost)field(activity,"map");ready();log("UI_ORIENTATION "+name);}
  private void touchChain()throws Exception{
   readWorld();World.City base=null,enemy=null;int distance=Integer.MAX_VALUE;for(World.City c:world.cities)if(c.owner==world.player&&!world.idle(c).isEmpty())for(World.City e:world.cities)if(e.owner>=0&&e.owner!=world.player&&c.hex.distance(e.hex)<distance){base=c;enemy=e;distance=c.hex.distance(e.hex);}check(base!=null,"natural deployment city exists");log("TOUCH_PLAN city="+base.name+" enemy="+enemy.name+" distance="+distance+"; read-only selection, no world mutations");city(base);text("出征");text("选用");tag("deploy.tab.1");text(World.Weapon.SWORD.label);tag("deploy.confirm");readWorld();World.Unit created=null;for(World.Unit u:world.units)if(u.owner==world.player&&(created==null||u.id>created.id))created=u;check(created!=null,"touch deployment created unit");int id=created.id;Hex initial=created.hex;shot("touch-deployed");boolean moved=false,attacked=false;
   for(int attempt=0;attempt<7;attempt++){readWorld();World.Unit u=world.unit(id);check(u!=null,"natural campaign unit survives");unit(id);Set<Hex> targets=MapSceneSnapshot.attackTargets(world,id);Hex hit=null;for(Hex h:targets)if(onMap(h)){hit=h;break;}if(hit!=null&&moved){text("攻击");cell(hit);text("执行");settle();readWorld();check(world.unit(id)==null||world.unit(id).acted,"actual attack committed through touch");attacked=true;shot("touch-attacked");break;}
@@ -69,4 +70,28 @@ public final class FirebaseAcceptanceInstrumentation extends NativeColdStartInst
   for(int i=0;i<20;i++){FilamentMapView f=(FilamentMapView)field(host,"spatial");shell("input keyevent KEYCODE_HOME");settle();settle();boolean[] focus={true},resumed={true},queued={true};long[] first={0},last={0};runOnMainSync(()->{try{focus[0]=activity.getWindow().getDecorView().hasWindowFocus();resumed[0]=(Boolean)field(f,"resumed");queued[0]=(Boolean)field(f,"queued");first[0]=(Long)field(f,"renderedFrames");}catch(Exception e){throw new RuntimeException(e);}});settle();settle();runOnMainSync(()->{try{last[0]=(Long)field(f,"renderedFrames");}catch(Exception e){throw new RuntimeException(e);}});boolean stopped=!focus[0]&&!resumed[0]&&!queued[0]&&first[0]==last[0];if(!stopped){errors++;log("HOME_DIAGNOSTIC "+shell("dumpsys activity activities"));capture("lifecycle-home-failure-"+(i+1));}log("BACKGROUND "+(i+1)+"/20 focus="+focus[0]+" resumed="+resumed[0]+" queued="+queued[0]+" frames="+first[0]+"->"+last[0]+" stopped="+stopped);shell("am start -W -f 0x10020000 -n game.sanguo.mobile.dev/game.sanguo.mobile.MainActivity");settle();ready();long resumedFrames=(Long)field(f,"renderedFrames");boolean recovered=resumedFrames>last[0]&&(Integer)field(host,"activeNativeHosts")==1&&Arrays.equals(before,authority());if(!recovered)errors++;log("FOREGROUND "+(i+1)+"/20 recovered="+recovered+" "+host.report());if(i==0||i==19)shot("lifecycle-resume-"+(i+1));}
   check(errors==0,"full 20 switches + 20 background/resume cycles failures="+errors);log("Scope excludes fault injection/delayed worker and long duration performance");
  }
+ private void sampleProcess(String label)throws Exception{
+  Files.write(new File(evidence,"memory-"+label+".txt").toPath(),shell("dumpsys meminfo game.sanguo.mobile.dev").getBytes("UTF-8"));
+  Files.write(new File(evidence,"thermal-"+label+".txt").toPath(),shell("dumpsys thermalservice").getBytes("UTF-8"));
+  Files.write(new File(evidence,"gfxinfo-"+label+".txt").toPath(),shell("dumpsys gfxinfo game.sanguo.mobile.dev framestats").getBytes("UTF-8"));
+  log("PROCESS_SAMPLE "+label+"; gfxinfo is Android Window data, not Filament presented FPS/GPU duration");
+ }
+ private void longStability()throws Exception{
+  closeDialogs();describe("打开功能导航");describe("导航 · 地图");host=(MapHost)field(activity,"map");ready();
+  long started=SystemClock.elapsedRealtime(),deadline=started+30L*60*1000,nextShot=started,nextTurnAt=started+120000;int sample=0,operations=0,turns=0,errors=0;
+  while(SystemClock.elapsedRealtime()<deadline){
+   readWorld();List<World.City> own=new ArrayList<>();for(World.City c:world.cities)if(c.owner==world.player)own.add(c);
+   check(!own.isEmpty(),"long game retains an owned site");World.City c=own.get(operations%Math.min(6,own.size()));city(c);
+   boolean panel=(Boolean)field(field(activity,"ui"),"panelVisible");if(panel)tap((View)field(activity,"selectionButton"));
+   // Physical screen drag across the actual Surface, no camera setter or world fixture.
+   FilamentMapView view=(FilamentMapView)field(host,"spatial");Rect[] b={null};runOnMainSync(()->b[0]=bounds(view));check(b[0]!=null,"long run Surface visible");Rect r=b[0];long t=SystemClock.uptimeMillis();float x=r.exactCenterX(),y=r.top+r.height()*.40f,dx=(operations%2==0?1:-1)*Math.min(120,r.width()*.1f);
+   pointer(x,y,0,t,t);for(int k=1;k<=10;k++)pointer(x+dx*k/10,y+15*k/10,2,t,t+35*k);pointer(x+dx,y+15,1,t,t+380);settle();operations++;
+   long now=SystemClock.elapsedRealtime();if(now>=nextTurnAt){try{nextTurn();turns++;}catch(Throwable e){errors++;log("LONG_TURN_FAILURE "+android.util.Log.getStackTraceString(e));closeDialogs();}nextTurnAt=now+120000;}
+   if(now>=nextShot){shot("long-"+sample);sampleProcess("long-"+sample);log("LONG_PROGRESS elapsedMs="+(now-started)+" touchOperations="+operations+" turns="+turns);sample++;nextShot=now+300000;}
+   check(host.is3D(),"long run keeps real native renderer");SystemClock.sleep(5000);
+  }
+  shot("long-final");sampleProcess("long-final");log("LONG_COMPLETE durationMs="+(SystemClock.elapsedRealtime()-started)+" operations="+operations+" turns="+turns+" failures="+errors);
+  check(turns>0&&errors==0,"30 minute mixed game has completed real turns and no caught operation failure");
+ }
+
 }

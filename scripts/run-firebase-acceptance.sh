@@ -3,8 +3,9 @@ set -euo pipefail
 : "${FIREBASE_PROJECT_ID:?}" "${AUDIT_MESSAGE:?}"
 [[ "$GITHUB_RUN_ATTEMPT" == 1 ]] || { echo 'BLOCKED: manual workflow rerun would spend another execution'; exit 3; }
 case "$AUDIT_MESSAGE" in
-  'ci(firebase): acceptance api35 second 20260928'|'ci(firebase): acceptance api35 third 20260928') MODEL=shiba; API=35 ;;
-  'ci(firebase): acceptance api29 second 20260928') MODEL=starlte; API=29 ;;
+  'ci(firebase): acceptance api35 second 20260928') MODEL=shiba; API=35; AUDIT_LONG=false; TEST_TIMEOUT=15m ;;
+  'ci(firebase): acceptance api35 third 20260928') MODEL=houji; API=35; AUDIT_LONG=true; TEST_TIMEOUT=43m ;;
+  'ci(firebase): acceptance api29 second 20260928') MODEL=starlte; API=29; AUDIT_LONG=false; TEST_TIMEOUT=15m ;;
   *) exit 2 ;;
 esac
 export MODEL API
@@ -25,7 +26,7 @@ gcloud firebase test android run --quiet --project="$FIREBASE_PROJECT_ID" \
  --test=out/firebase-audit/test-build/app-debug-androidTest.apk \
  --test-runner-class=game.sanguo.mobile.FirebaseAcceptanceInstrumentation \
  --device="model=$MODEL,version=$API,locale=zh_CN,orientation=landscape" \
- --timeout=15m --no-use-orchestrator --num-flaky-test-attempts=0 --no-auto-google-login \
+ --timeout="$TEST_TIMEOUT" --environment-variables="auditLong=$AUDIT_LONG" --no-use-orchestrator --num-flaky-test-attempts=0 --no-auto-google-login \
  --record-video --no-performance-metrics \
  --directories-to-pull=/sdcard/Android/data/game.sanguo.mobile.dev/files/s01 \
  --results-dir="native-audit/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}/" \

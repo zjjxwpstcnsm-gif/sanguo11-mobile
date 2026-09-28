@@ -247,94 +247,292 @@ jobs:
         run: |
           mkdir -p out/firebase-audit/raw
           gcloud storage cp --recursive "gs://test-lab-aa4a2056a57tx-i9q99na06ix40/native-audit/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}/" out/firebase-audit/raw > out/firebase-audit/collection.log 2>&1
-      - name: Preserve original video bytes in bounded download parts
+      - name: Package evidence in bounded lossless archive parts
         if: always()
         run: |
-          mkdir -p out/firebase-video
-          python3 - <<'PY2'
-          import pathlib,hashlib,json
+          mkdir -p out/audit-summary out/audit-parts
+          python3 - <<'PY'
+          import pathlib,shutil,json,hashlib
           rows=[]
-          for i,p in enumerate(pathlib.Path('out/firebase-audit/raw').rglob('video.mp4')):
-              rows.append({'path':str(p),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size})
-              with p.open('rb') as f:
-                  n=0
-                  while data:=f.read(20*1024*1024):
-                      pathlib.Path(f'out/firebase-video/video-{i}-part{n:02}').write_bytes(data);n+=1
-          pathlib.Path('out/firebase-audit/VIDEO_MANIFEST.json').write_text(json.dumps(rows,indent=2))
-          PY2
+          for p in pathlib.Path('out/firebase-audit').rglob('*'):
+              if not p.is_file():continue
+              rows.append({'path':str(p),'bytes':p.stat().st_size,'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
+              if p.name in ['PAIR.txt','acceptance-runtime.txt','cold-runtime.txt','instrumentation.results','gcloud.log','GCLOUD_EXIT','build.log'] or p.suffix=='.xml':
+                  d=pathlib.Path('out/audit-summary')/p.relative_to('out/firebase-audit');d.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,d)
+          pathlib.Path('out/audit-summary/RAW_FILES.json').write_text(json.dumps(rows,indent=2))
+          PY
+          # Full continuous video is included. Per-case clips are duplicate segments;
+          # their original GCS paths and byte hashes remain in RAW_FILES.json.
+          tar -czf out/audit-evidence.tar.gz --exclude='*.apk' --exclude='*/test_cases/*.mp4' out/firebase-audit out/firebase-preflight
+          sha256sum out/audit-evidence.tar.gz > out/audit-summary/ARCHIVE_SHA256.txt
+          split -b 20M -d -a 2 out/audit-evidence.tar.gz out/audit-parts/evidence.part
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: firebase-acceptance-raw
-          path: |
-            out/firebase-audit/
-            out/firebase-preflight/
-            !out/**/*.apk
-            !out/**/video.mp4
-          if-no-files-found: error
+          name: firebase-acceptance-summary
+          path: out/audit-summary/
           retention-days: 30
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: firebase-acceptance-probe
           path: out/firebase-audit/test-build/
-          if-no-files-found: warn
           retention-days: 30
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: firebase-video-part00
-          path: out/firebase-video/*-part00
+          name: firebase-audit-evidence-part00
+          path: out/audit-parts/evidence.part00
           if-no-files-found: ignore
+          compression-level: 0
           retention-days: 30
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: firebase-video-part01
-          path: out/firebase-video/*-part01
+          name: firebase-audit-evidence-part01
+          path: out/audit-parts/evidence.part01
           if-no-files-found: ignore
+          compression-level: 0
           retention-days: 30
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: firebase-video-part02
-          path: out/firebase-video/*-part02
+          name: firebase-audit-evidence-part02
+          path: out/audit-parts/evidence.part02
           if-no-files-found: ignore
+          compression-level: 0
           retention-days: 30
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: firebase-video-part03
-          path: out/firebase-video/*-part03
+          name: firebase-audit-evidence-part03
+          path: out/audit-parts/evidence.part03
           if-no-files-found: ignore
+          compression-level: 0
           retention-days: 30
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: firebase-video-part04
-          path: out/firebase-video/*-part04
+          name: firebase-audit-evidence-part04
+          path: out/audit-parts/evidence.part04
           if-no-files-found: ignore
+          compression-level: 0
           retention-days: 30
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: firebase-video-part05
-          path: out/firebase-video/*-part05
+          name: firebase-audit-evidence-part05
+          path: out/audit-parts/evidence.part05
           if-no-files-found: ignore
+          compression-level: 0
           retention-days: 30
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: firebase-video-part06
-          path: out/firebase-video/*-part06
+          name: firebase-audit-evidence-part06
+          path: out/audit-parts/evidence.part06
           if-no-files-found: ignore
+          compression-level: 0
           retention-days: 30
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: firebase-video-part07
-          path: out/firebase-video/*-part07
+          name: firebase-audit-evidence-part07
+          path: out/audit-parts/evidence.part07
           if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part08
+          path: out/audit-parts/evidence.part08
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part09
+          path: out/audit-parts/evidence.part09
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part10
+          path: out/audit-parts/evidence.part10
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part11
+          path: out/audit-parts/evidence.part11
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part12
+          path: out/audit-parts/evidence.part12
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part13
+          path: out/audit-parts/evidence.part13
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part14
+          path: out/audit-parts/evidence.part14
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part15
+          path: out/audit-parts/evidence.part15
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part16
+          path: out/audit-parts/evidence.part16
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part17
+          path: out/audit-parts/evidence.part17
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part18
+          path: out/audit-parts/evidence.part18
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part19
+          path: out/audit-parts/evidence.part19
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part20
+          path: out/audit-parts/evidence.part20
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part21
+          path: out/audit-parts/evidence.part21
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part22
+          path: out/audit-parts/evidence.part22
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part23
+          path: out/audit-parts/evidence.part23
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part24
+          path: out/audit-parts/evidence.part24
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part25
+          path: out/audit-parts/evidence.part25
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part26
+          path: out/audit-parts/evidence.part26
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part27
+          path: out/audit-parts/evidence.part27
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part28
+          path: out/audit-parts/evidence.part28
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part29
+          path: out/audit-parts/evidence.part29
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part30
+          path: out/audit-parts/evidence.part30
+          if-no-files-found: ignore
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-evidence-part31
+          path: out/audit-parts/evidence.part31
+          if-no-files-found: ignore
+          compression-level: 0
           retention-days: 30
 
   recover_audit:
