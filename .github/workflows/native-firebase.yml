@@ -60,9 +60,10 @@ jobs:
         with: {name: firebase-apks, path: out/firebase-build/, if-no-files-found: error, retention-days: 14}
   cloud:
     needs: build
-    # Connector-only bootstrap: this exact push message queries the catalog, never runs tests.
+    # Connector-only bootstrap: exact messages select catalog or the authorized single shiba/API35 trial.
+    # All other pushes remain build-only; no wildcard or automatic device retries.
     if: >-
-      always() && ((github.event_name == 'push' && github.event.head_commit.message == 'ci(firebase): verify catalog only') || (github.event_name == 'workflow_dispatch' && (inputs.mode == 'catalog' || (inputs.mode == 'test' && needs.build.result == 'success'))))
+      always() && ((github.event_name == 'push' && (github.event.head_commit.message == 'ci(firebase): verify catalog only' || (github.event.head_commit.message == 'ci(firebase): first cold start shiba API35' && needs.build.result == 'success'))) || (github.event_name == 'workflow_dispatch' && (inputs.mode == 'catalog' || (inputs.mode == 'test' && needs.build.result == 'success'))))
     runs-on: ubuntu-latest
     timeout-minutes: 55
     permissions: {contents: read, id-token: write}
@@ -88,14 +89,16 @@ jobs:
           mkdir -p out/firebase-results
           gcloud firebase test android models list --project="$FIREBASE_PROJECT_ID" --format=json > out/firebase-results/models.json
       - uses: actions/download-artifact@v4
-        if: inputs.mode == 'test'
+        if: >-
+          inputs.mode == 'test' || (github.event_name == 'push' && github.event.head_commit.message == 'ci(firebase): first cold start shiba API35')
         with: {name: firebase-apks, path: out/firebase-build}
       - name: Run original cold-start scope on physical hardware
-        if: inputs.mode == 'test'
+        if: >-
+          inputs.mode == 'test' || (github.event_name == 'push' && github.event.head_commit.message == 'ci(firebase): first cold start shiba API35')
         env:
-          MODEL: ${{ inputs.model }}
-          API: ${{ inputs.api }}
-          REPEATS: ${{ inputs.repeats }}
+          MODEL: ${{ inputs.model || 'shiba' }}
+          API: ${{ inputs.api || '35' }}
+          REPEATS: ${{ inputs.repeats || '1' }}
         run: bash scripts/run-firebase-cold.sh
       - uses: actions/upload-artifact@v4
         if: always()
