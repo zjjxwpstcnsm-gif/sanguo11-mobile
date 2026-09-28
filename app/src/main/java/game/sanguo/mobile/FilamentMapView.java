@@ -482,7 +482,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         +" terrainMaterialLod="+(overviewTerrain?"OVERVIEW":"DETAIL")+" lastAdmittedMaterialBinds="+lastMaterialBinds+" shadows="+environmentShadows+" shadowFar=380 hazeOpaqueCap=0.08"
         +" season="+(season==null?"none":season.name)+" seasonUpdates="+seasonUpdates+" artProfile="+SeasonStyle.ID+" worldMonth="+(snapshot==null?0:snapshot.month)
         +" overlayDraws="+overlay.draws+" territoryBuilds="+overlay.territoryBuilds+" territoryBuildMs="+overlay.territoryBuildNanos/1e6
-        +" meshUploads="+lastMeshUploads+" meshUploadCpuMs="+lastMeshUploadNanos/1e6+" meshUploadMax=8 meshUploadBudgetMs=4"
+        +" meshUploads="+lastMeshUploads+" meshUploadCpuMs="+lastMeshUploadNanos/1e6+" meshUploadMax=8 meshUploadBudgetMs="+(MESH_UPLOAD_BUDGET_NANOS/1e6)
         +" workerDeliveries="+meshWork.delivered()+" workerBackpressureWallMs="+meshWork.backpressureNanos()/1e6
         +" frameCallbacks="+frameCallbacks+" beginAttempts="+beginAttempts+" beginSkipped="+beginSkipped+" gpuPreparationFrames="+gpuPreparationFrames+" lifetimeSubmissions="+renderedFrames+" surfaceCopies="+outputCopies
         +" output="+outputStatus+"\ncamera="+camera.x+","+camera.z+" span="+camera.span+" tilt="+camera.tilt+" facing="+camera.facing+" yaw="+camera.yaw+"\npick="+lastPick;}
