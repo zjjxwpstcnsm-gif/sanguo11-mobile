@@ -32,7 +32,7 @@ concurrency: {group: native-firebase, cancel-in-progress: false}
 jobs:
   build:
     if: >-
-      inputs.mode != 'catalog' && github.event.head_commit.message != 'ci(firebase): verify catalog only' && github.event.head_commit.message != 'ci(firebase): recover first matrix and quota 20260928'
+      inputs.mode != 'catalog' && github.event.head_commit.message != 'ci(firebase): verify catalog only' && github.event.head_commit.message != 'ci(firebase): recover first matrix and quota 20260928' && github.event.head_commit.message != 'ci(firebase): audit cold api29 once 20260928'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -130,4 +130,66 @@ jobs:
             out/firebase-preflight/
             !out/firebase-preflight/**/*.apk
           if-no-files-found: error
+          retention-days: 30
+
+  audit_cold29:
+    if: >-
+      github.event_name == 'push' && github.event.head_commit.message == 'ci(firebase): audit cold api29 once 20260928'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions: {contents: read, actions: read, id-token: write}
+    env:
+      FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+      MODEL: starlte
+      API: '29'
+      REPEATS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ vars.FIREBASE_PROJECT_ID }}
+          workload_identity_provider: ${{ vars.FIREBASE_WIF_PROVIDER }}
+          service_account: ${{ vars.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v3
+      - run: python3 scripts/firebase-evidence-preflight.py --inventory-only
+      - name: Require unbilled project, conservative quota and current physical model
+        run: |
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('out/firebase-preflight')
+          billing=json.load(open(p/'billing.json'));monitor=json.load(open(p/'usage-allocation-usage.json'))
+          assert billing.get('billingEnabled') is False or 'requires billing to be enabled' in monitor.get('error',{}).get('message',''), 'No proof project remains unbilled'
+          usage=json.load(open(p/'execution-usage.json'))
+          assert usage['complete'] and usage['rolling24hDeviceExecutions'] < 5, 'Free quota cannot be established'
+          models=json.load(open(p/'models.json'));m=next(m for m in models if m['id']=='starlte')
+          assert m['form']=='PHYSICAL' and '29' in m['supportedVersionIds']
+          print('FREE_ONLY preflight:',usage)
+          PY
+          mkdir -p out/firebase-results
+          cp out/firebase-preflight/models.json out/firebase-results/
+      - uses: actions/download-artifact@v4
+        with:
+          name: firebase-apks
+          run-id: 36362991199
+          github-token: ${{ github.token }}
+          path: out/firebase-build
+      - name: Exact historical APK pair; one fresh matrix, no retries
+        run: |
+          test "$(cat out/firebase-build/SOURCE_COMMIT)" = 17bd3376508499f2681d3e296939452383506a1e
+          echo '98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4  out/firebase-build/app-debug.apk' | sha256sum --check
+          echo '3118b6b50d4677cadf787cb0d87323af375d479ac79e0dda74cd253597d83ed0  out/firebase-build/app-debug-androidTest.apk' | sha256sum --check
+          bash scripts/run-firebase-cold.sh
+      - name: Collect raw evidence even on test failure
+        if: always()
+        run: |
+          mkdir -p out/firebase-results/raw
+          gcloud storage cp --recursive "gs://test-lab-aa4a2056a57tx-i9q99na06ix40/native-cold/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}/api29-1/" out/firebase-results/raw > out/firebase-results/collection.log 2>&1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-audit-api29-once
+          path: |
+            out/firebase-results/
+            out/firebase-preflight/
+            !out/**/*.apk
           retention-days: 30

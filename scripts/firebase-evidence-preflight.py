@@ -2,7 +2,7 @@
 """Read-only Firebase evidence recovery and current capacity/quota inventory.
 No API enablement, billing mutations, quota changes, or test submissions.
 """
-import datetime, json, os, pathlib, subprocess, urllib.error, urllib.parse, urllib.request
+import datetime, json, os, pathlib, subprocess, sys, urllib.error, urllib.parse, urllib.request
 out = pathlib.Path('out/firebase-preflight'); out.mkdir(parents=True, exist_ok=True)
 project = os.environ['FIREBASE_PROJECT_ID']
 started = datetime.datetime.now(datetime.timezone.utc)
@@ -44,7 +44,7 @@ for kind in ['allocation/usage','rate/net_usage']:
     get('usage-'+kind.replace('/','-'),'https://monitoring.googleapis.com/v3/projects/'+project+'/timeSeries?'+urllib.parse.urlencode(query))
 # Save every history/execution page; project-wide test usage is not inferred from this repo alone.
 base='https://toolresults.googleapis.com/toolresults/v1beta3/projects/'+project
-histories=[]; page=''; i=0
+histories=[]; executions=[]; page=''; i=0
 while True:
     d=get('histories-'+str(i),base+'/histories?'+urllib.parse.urlencode({'pageSize':100,'pageToken':page}))
     histories.extend(d.get('histories',[]));page=d.get('nextPageToken','');i+=1
@@ -53,8 +53,18 @@ for h in histories:
     hid=h['historyId'];page='';i=0
     while True:
         d=get('executions-'+hid+'-'+str(i),base+'/histories/'+urllib.parse.quote(hid,safe='')+'/executions?'+urllib.parse.urlencode({'pageSize':100,'pageToken':page}))
-        page=d.get('nextPageToken','');i+=1
+        executions.extend(d.get('executions',[]));page=d.get('nextPageToken','');i+=1
         if not page:break
+# Conservative rolling-24h count; do not presume a quota reset timezone.
+recent=[]
+for e in executions:
+    if int(e.get('creationTime',{}).get('seconds',0)) >= started.timestamp()-86400:
+        mid=e.get('testExecutionMatrixId')
+        if mid:
+            m=get('usage-matrix-'+mid,'https://testing.googleapis.com/v1/projects/'+project+'/testMatrices/'+mid)
+            recent.extend(m.get('testExecutions',[]))
+(out/'execution-usage.json').write_text(json.dumps({'queriedAt':started.isoformat(),'rolling24hDeviceExecutions':len(recent),'allHistories':len(histories),'allExecutions':len(executions),'complete':all((out/(n+'.http')).read_text().strip()=='200' for n in ['histories-0','quota']) and all((out/(f'executions-{h["historyId"]}-0.http')).read_text().strip()=='200' for h in histories)},indent=2))
+if '--inventory-only' in sys.argv: raise SystemExit(0)
 # Recover exactly the authorized historical run. Never rerun it for missing evidence.
 prefix='gs://test-lab-aa4a2056a57tx-i9q99na06ix40/native-cold/36362991199-1/api35-1/'
 command('first-gcs-list.txt',['gcloud','storage','ls','--recursive',prefix])
