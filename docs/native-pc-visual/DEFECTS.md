@@ -1,9 +1,17 @@
 # 网格/岸线专项 — v117 / PARTIAL
 
-- GRID-READABILITY：正式双色线宽/密度修复；APK实际画面对照待回收。
-- GRID-BLOCKED：不可行动地形过滤与遮挡过滤；不改变选格、编辑、规则通行权限。
-- COAST-STEPS：共享顶点两次平滑，每轴位移≤0.1875，中心与所有原三角形保留；未承诺像素级抗锯齿或最终PC美术。
-- LEGACY-GATES：core logistics:75、全国120秒ready、完整触控、ARM64/Adreno/Mali长稳等历史问题保持开放。
+| 条目 | 状态 | 当前证据和剩余问题 |
+|---|---|---|
+| GRID-READABILITY | PASS（API29局部） | 双层线宽/对比度接入正常3D；旧/新同镜头UI实拍已复核；线宽审美待用户验收 |
+| GRID-BLOCKED | PASS（掩码/局部） | 永久禁行格和山体内部不画普通格线；山道/栈道/可航水、编辑网格保留；不变更规则权限 |
+| COAST-STEPS | PASS（有效水陆局部） | 共享顶点两次平滑，单轴位移≤0.1875；同源原APK实拍转角改善，拾取/LOD/面积host通过；VOID外缘与四路交叉仍固定，不代表完整PC美术/像素抗锯齿 |
+| GRID-API35-READY | FAIL（首轮） | 原版PASS/候选初始ready超时，submitted3/pending2；同APK复跑旧版同样submitted3/pending2失败，新版PASS874并取得12组原图，双方稳定性未关闭。不能据API29通过关闭API35稳定性或推定纯环境 |
+| NATIONAL-READY | FAIL | 同源原R05：120秒ready超时，pending29/submitted3，后续操作未到达；继承全国装载门槛保持开放 |
+| CORE-LEGACY | FAIL（inherited） | 输入/候选独立复现 logistics:75 与 PortReplay.aiDocks:52；不改规则/断言，原日志保留 |
+| PHYSICAL | NOT_RUN / access BLOCKED | WIF attribute condition拒绝，预检未到达、设备提交0，ARM64/Adreno/Mali/30分钟热稳未验收 |
+| ART/FULL-TOUCH | NOT_RUN（本专项） | PC REFERENCE_MISSING；V1–V4历史门槛、全国美术、完整触控与编辑/旧档/SAF继续开放 |
+
+详情见[本轮报告](reports/grid-coast-v117.md)。保持PARTIAL，不合并main，不开始下一阶段。
 
 ---
 
