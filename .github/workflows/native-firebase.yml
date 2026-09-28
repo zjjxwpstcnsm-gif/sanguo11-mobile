@@ -124,4 +124,10 @@ jobs:
         run: python3 scripts/firebase-evidence-preflight.py
       - uses: actions/upload-artifact@v4
         if: always()
-        with: {name: firebase-recovered-first-and-preflight, path: out/firebase-preflight/, if-no-files-found: error, retention-days: 30}
+        with:
+          name: firebase-recovered-first-and-preflight
+          path: |
+            out/firebase-preflight/
+            !out/firebase-preflight/**/*.apk
+          if-no-files-found: error
+          retention-days: 30
