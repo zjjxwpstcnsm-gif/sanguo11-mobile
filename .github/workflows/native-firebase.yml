@@ -350,103 +350,69 @@ jobs:
           run-id: 36365917134
           github-token: ${{ github.token }}
           path: recovered
-      - name: Split original video for bounded transfers, preserve all other evidence
+      - name: Lossless bounded archive and small test summary
         run: |
-          mkdir -p videos
+          mkdir -p small parts
           python3 - <<'PY'
-          import pathlib,hashlib,json
-          rows=[]
-          for i,p in enumerate(pathlib.Path('recovered').rglob('video.mp4')):
-              rows.append({'path':str(p),'sha256':hashlib.sha256(p.read_bytes()).hexdigest(),'bytes':p.stat().st_size})
-              with p.open('rb') as f:
-                  n=0
-                  while data:=f.read(20*1024*1024):
-                      pathlib.Path(f'videos/video-{i}-part{n:02}').write_bytes(data);n+=1
-          pathlib.Path('recovered/VIDEO_MANIFEST.json').write_text(json.dumps(rows,indent=2))
+          import pathlib,shutil
+          for p in pathlib.Path('recovered').rglob('*'):
+              if p.is_file() and (p.suffix=='.xml' or p.name in ['acceptance-runtime.txt','cold-runtime.txt','instrumentation.results','PAIR.txt','gcloud.log']):
+                  dest=pathlib.Path('small')/p.relative_to('recovered');dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,dest)
+                  if p.suffix=='.xml':print(p.read_text())
           PY
+          tar -czf recovered.tar.gz recovered
+          sha256sum recovered.tar.gz > small/ARCHIVE_SHA256.txt
+          split -b 20M -d -a 2 recovered.tar.gz parts/recovered.part
       - uses: actions/upload-artifact@v4
         with:
-          name: audit-recovered-metadata
-          path: |
-            recovered/
-            !recovered/**/*.png
-            !recovered/**/video.mp4
+          name: audit-recovered-summary
+          path: small/
           retention-days: 30
       - uses: actions/upload-artifact@v4
         with:
-          name: audit-recovered-cold-images
-          path: recovered/**/cold*.png
+          name: audit-recovered-archive-part00
+          path: parts/recovered.part00
           if-no-files-found: ignore
           retention-days: 30
       - uses: actions/upload-artifact@v4
         with:
-          name: audit-recovered-touch-images
-          path: recovered/**/touch*.png
+          name: audit-recovered-archive-part01
+          path: parts/recovered.part01
           if-no-files-found: ignore
           retention-days: 30
       - uses: actions/upload-artifact@v4
         with:
-          name: audit-recovered-date-images
-          path: recovered/**/date*.png
+          name: audit-recovered-archive-part02
+          path: parts/recovered.part02
           if-no-files-found: ignore
           retention-days: 30
       - uses: actions/upload-artifact@v4
         with:
-          name: audit-recovered-lifecycle-images
-          path: recovered/**/lifecycle*.png
+          name: audit-recovered-archive-part03
+          path: parts/recovered.part03
           if-no-files-found: ignore
           retention-days: 30
       - uses: actions/upload-artifact@v4
         with:
-          name: audit-recovered-acceptance-images
-          path: recovered/**/acceptance*.png
+          name: audit-recovered-archive-part04
+          path: parts/recovered.part04
           if-no-files-found: ignore
           retention-days: 30
       - uses: actions/upload-artifact@v4
         with:
-          name: audit-recovered-video-part00
-          path: videos/*-part00
+          name: audit-recovered-archive-part05
+          path: parts/recovered.part05
           if-no-files-found: ignore
           retention-days: 30
       - uses: actions/upload-artifact@v4
         with:
-          name: audit-recovered-video-part01
-          path: videos/*-part01
+          name: audit-recovered-archive-part06
+          path: parts/recovered.part06
           if-no-files-found: ignore
           retention-days: 30
       - uses: actions/upload-artifact@v4
         with:
-          name: audit-recovered-video-part02
-          path: videos/*-part02
-          if-no-files-found: ignore
-          retention-days: 30
-      - uses: actions/upload-artifact@v4
-        with:
-          name: audit-recovered-video-part03
-          path: videos/*-part03
-          if-no-files-found: ignore
-          retention-days: 30
-      - uses: actions/upload-artifact@v4
-        with:
-          name: audit-recovered-video-part04
-          path: videos/*-part04
-          if-no-files-found: ignore
-          retention-days: 30
-      - uses: actions/upload-artifact@v4
-        with:
-          name: audit-recovered-video-part05
-          path: videos/*-part05
-          if-no-files-found: ignore
-          retention-days: 30
-      - uses: actions/upload-artifact@v4
-        with:
-          name: audit-recovered-video-part06
-          path: videos/*-part06
-          if-no-files-found: ignore
-          retention-days: 30
-      - uses: actions/upload-artifact@v4
-        with:
-          name: audit-recovered-video-part07
-          path: videos/*-part07
+          name: audit-recovered-archive-part07
+          path: parts/recovered.part07
           if-no-files-found: ignore
           retention-days: 30
