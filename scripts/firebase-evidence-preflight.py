@@ -58,6 +58,7 @@ for h in histories:
 # Recover exactly the authorized historical run. Never rerun it for missing evidence.
 prefix='gs://test-lab-aa4a2056a57tx-i9q99na06ix40/native-cold/36362991199-1/api35-1/'
 command('first-gcs-list.txt',['gcloud','storage','ls','--recursive',prefix])
+(out/'raw-first').mkdir(parents=True, exist_ok=True)
 p=command('first-gcs-copy.txt',['gcloud','storage','cp','--recursive',prefix,str(out/'raw-first')])
 (out/'SCOPE.txt').write_text('Read-only inventory and historical evidence recovery. No test was submitted. HTTP/command failures remain evidence gaps.\n')
 if p.returncode: raise SystemExit(p.returncode)
