@@ -1,0 +1,7 @@
+Exception in thread "main" java.io.IOException: 据点占地越界、重叠或地形冲突：丙城 @ 18,5；请使用七格地图重新开局
+	at game.sanguo.core.SiteFootprint.validate(SiteFootprint.java:162)
+	at game.sanguo.core.SaveCodec.validate(SaveCodec.java:163)
+	at game.sanguo.core.SaveCodec.encode(SaveCodec.java:19)
+	at game.sanguo.core.BattleFeedbackTest.bytes(BattleFeedbackTest.java:12)
+	at game.sanguo.core.BattleFeedbackTest.lootCaptureAndVacancy(BattleFeedbackTest.java:20)
+	at game.sanguo.core.BattleFeedbackTest.main(BattleFeedbackTest.java:14)

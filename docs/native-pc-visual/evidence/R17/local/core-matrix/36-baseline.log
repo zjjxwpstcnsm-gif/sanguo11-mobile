@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: hostile gate blocks adjacent bypass
+	at game.sanguo.core.Release42Test.check(Release42Test.java:8)
+	at game.sanguo.core.Release42Test.damAndGate(Release42Test.java:31)
+	at game.sanguo.core.Release42Test.main(Release42Test.java:37)

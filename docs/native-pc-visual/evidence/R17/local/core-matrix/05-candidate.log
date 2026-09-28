@@ -1,0 +1,5 @@
+Exception in thread "main" java.lang.AssertionError: 尚未抵达合法据点入口（上下河须经港口）
+	at game.sanguo.core.StrategyTest.check(StrategyTest.java:14)
+	at game.sanguo.core.StrategyTest.ok(StrategyTest.java:15)
+	at game.sanguo.core.StrategyTest.actions(StrategyTest.java:71)
+	at game.sanguo.core.StrategyTest.main(StrategyTest.java:45)

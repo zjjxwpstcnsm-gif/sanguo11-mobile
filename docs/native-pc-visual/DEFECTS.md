@@ -1,3 +1,12 @@
+# R17 当前风险 — PARTIAL
+
+- R17-MATERIAL：7份材质在native解析前固定hash与大小验证，host43例通过；不覆盖全部纹理/model或驱动故障。
+- R17-RECOVERY：Java故障nativeFailure跨进程保留；安装证据见R17报告；不声称native abort测试完成。
+- R17-FULL：完整触控、旧/自定义/头像升级、SAF、ARM64/驱动/长稳仍未闭合。
+- R16-LOAD/V2/V3/core30失败继续有效并阻塞发布。
+
+---
+
 # R16 当前缺陷账本 — PARTIAL
 
 | ID | 状态 | 证据与边界 |

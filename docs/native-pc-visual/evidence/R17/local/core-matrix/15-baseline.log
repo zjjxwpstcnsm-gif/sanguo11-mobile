@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: diplomatic per-card replay
+	at game.sanguo.core.WorldSystemsTest.check(WorldSystemsTest.java:9)
+	at game.sanguo.core.WorldSystemsTest.diplomacy(WorldSystemsTest.java:87)
+	at game.sanguo.core.WorldSystemsTest.main(WorldSystemsTest.java:29)

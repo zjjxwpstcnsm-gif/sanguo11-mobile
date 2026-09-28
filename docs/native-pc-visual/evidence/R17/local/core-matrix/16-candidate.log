@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: water route crosses river
+	at game.sanguo.core.MarchOrdersTest.check(MarchOrdersTest.java:7)
+	at game.sanguo.core.MarchOrdersTest.terrain(MarchOrdersTest.java:47)
+	at game.sanguo.core.MarchOrdersTest.main(MarchOrdersTest.java:16)

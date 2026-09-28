@@ -1,0 +1,11 @@
+Picked up JAVA_TOOL_OPTIONS:  -Dfile.encoding=UTF-8
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+Picked up JAVA_TOOL_OPTIONS:  -Dfile.encoding=UTF-8
+PASS 4137372 brush geometry assertions
+Picked up JAVA_TOOL_OPTIONS:  -Dfile.encoding=UTF-8
+PASS 16 durable map revision checks
+Picked up JAVA_TOOL_OPTIONS:  -Dfile.encoding=UTF-8
+PASS 136 custom-map production integration assertions
+Picked up JAVA_TOOL_OPTIONS:  -Dfile.encoding=UTF-8
+PASS 12 added-site movement/conquest/AI replay checks
