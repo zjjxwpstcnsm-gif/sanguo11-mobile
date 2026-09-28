@@ -93,8 +93,8 @@ final class MapHost extends FrameLayout implements MapPresentation {
         super(context);this.listener=listener;prefs=context.getSharedPreferences("map-renderer",Context.MODE_PRIVATE);
         flat=new MapView(context,listener);flat.setTerritoryMode(prefs.contains("territoryMode")?prefs.getInt("territoryMode",0):context.getSharedPreferences("MainActivity",0).getInt("territoryMode",0));flat.setGridShown(Boolean.TRUE.equals(prefs.getAll().get("gridShown")));addView(flat,new LayoutParams(-1,-1));
         // Default stays 2D. An interrupted native session is never restarted automatically.
-        if(interruptedSession==null)interruptedSession=Boolean.TRUE.equals(prefs.getAll().get("nativeSession"));
-        safeMode=interruptedSession;if(safeMode){String reason=interruptedReason(context);prefs.edit().putString("lastExitReason",reason).apply();android.util.Log.w("MapRenderer","Previous native session: "+reason);Toast.makeText(context,"上次 3D 会话未正常结束（"+reason+"），已安全回到 2D；可手动重试",Toast.LENGTH_LONG).show();}
+        if(interruptedSession==null)interruptedSession=Boolean.TRUE.equals(prefs.getAll().get("nativeSession"))||Boolean.TRUE.equals(prefs.getAll().get("nativeFailure"));
+        safeMode=interruptedSession;if(safeMode){String reason=Boolean.TRUE.equals(prefs.getAll().get("nativeFailure"))?"上次初始化或渲染失败":interruptedReason(context);prefs.edit().putString("lastExitReason",reason).apply();android.util.Log.w("MapRenderer","Previous native session: "+reason);Toast.makeText(context,"上次 3D 会话未正常结束（"+reason+"），已安全回到 2D；可手动重试",Toast.LENGTH_LONG).show();}
     }
     private static String interruptedReason(Context context){
         if(android.os.Build.VERSION.SDK_INT>=30){
@@ -152,7 +152,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
             // process's interruption veto later Activity restoration in this process.
             // Keep nativeSession=true on disk until normal release so a new crash still
             // starts safely in 2D; fallback() also reinstates the in-process latch.
-            if(manual)interruptedSession=false;
+            // Clear the persistent failure only after all host setup below succeeds.
             removeView(flat);addView(spatial,new LayoutParams(-1,-1));
             Map<String,?> saved=prefs.getAll();if(!camera.containsKey("sceneYaw")&&saved.get("yaw") instanceof Float)camera.putFloat("sceneYaw",(Float)saved.get("yaw"));if(!camera.containsKey("sceneTilt")&&saved.get("tilt") instanceof Float)camera.putFloat("sceneTilt",(Float)saved.get("tilt"));if(!camera.containsKey("sceneFacing")&&saved.get("facing") instanceof Integer)camera.putInt("sceneFacing",(Integer)saved.get("facing"));
             // A Canvas camera has no native span. The opening preview must fit the
@@ -164,9 +164,10 @@ final class MapHost extends FrameLayout implements MapPresentation {
             // Publish after restoring/requesting the initial camera, so CPU work
             // is generated for the actual preview instead of a default local view.
             dirty=true;publish();
+            if(manual){prefs.edit().putBoolean("nativeFailure",false).commit();interruptedSession=false;}
         }catch(Exception|LinkageError|OutOfMemoryError e){fallback(e);}
     }
-    private void fallback(Throwable e){safeMode=true;interruptedSession=true;prefs.edit().putString("lastExitReason","Java initialization/render failure").putString("lastFailure",e.getClass().getSimpleName()).putLong("lastFailureTime",System.currentTimeMillis()).commit();android.util.Log.e("MapRenderer","Filament fallback to 2D",e);leave3D();if(world!=null)flat.setWorld(world,selected,moving);flat.restoreCamera(camera);Toast.makeText(getContext(),"3D 初始化或渲染失败，已返回 2D："+e.getClass().getSimpleName(),Toast.LENGTH_LONG).show();}
+    private void fallback(Throwable e){safeMode=true;interruptedSession=true;prefs.edit().putBoolean("nativeFailure",true).putString("lastExitReason","Java initialization/render failure").putString("lastFailure",e.getClass().getSimpleName()).putLong("lastFailureTime",System.currentTimeMillis()).commit();android.util.Log.e("MapRenderer","Filament fallback to 2D",e);leave3D();if(world!=null)flat.setWorld(world,selected,moving);flat.restoreCamera(camera);Toast.makeText(getContext(),"3D 初始化或渲染失败，已返回 2D："+(e.getMessage()==null?e.getClass().getSimpleName():e.getMessage()),Toast.LENGTH_LONG).show();}
     private void leave3D(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);}if(flat.getParent()==null)addView(flat,new LayoutParams(-1,-1));prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}
     void release(){renderGate.close();cancelCommandEffects();persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}}
     void resume(boolean value){if(!value){cancelCommandEffects();persistCamera();}resumed=value;renderGate.resumed(value);}

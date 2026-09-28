@@ -185,11 +185,11 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             msaaEnabled=manager!=null&&quality.msaaSupported(manager.getDeviceConfigurationInfo().reqGlEsVersion);
             com.google.android.filament.View.MultiSampleAntiAliasingOptions msaa=new com.google.android.filament.View.MultiSampleAntiAliasingOptions();msaa.enabled=msaaEnabled;msaa.sampleCount=4;view.setMultiSampleAntiAliasingOptions(msaa);
             Renderer.ClearOptions clear=new Renderer.ClearOptions();clear.clear=true;clear.clearColor=new float[]{.075f,.10f,.11f,1};renderer.setClearOptions(clear);
-            byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int count;while((count=in.read(block))!=-1)out.write(block,0,count);bytes=out.toByteArray();}
+            byte[] bytes=VerifiedMaterial.read("3d/terrain.filamat",context.getAssets().open("3d/terrain.filamat"));
             ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();material=new Material.Builder().payload(payload,bytes.length).build(engine);
-            byte[] siteBytes;try(java.io.InputStream in=context.getAssets().open("3d/sites/site.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);siteBytes=out.toByteArray();}
+            byte[] siteBytes=VerifiedMaterial.read("3d/sites/site.filamat",context.getAssets().open("3d/sites/site.filamat"));
             ByteBuffer sb=ByteBuffer.allocateDirect(siteBytes.length).order(ByteOrder.nativeOrder());sb.put(siteBytes).flip();siteMaterial=new Material.Builder().payload(sb,siteBytes.length).build(engine);
-            byte[] unitBytes;try(java.io.InputStream in=context.getAssets().open("3d/field/unit.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);unitBytes=out.toByteArray();}
+            byte[] unitBytes=VerifiedMaterial.read("3d/field/unit.filamat",context.getAssets().open("3d/field/unit.filamat"));
             ByteBuffer ub=ByteBuffer.allocateDirect(unitBytes.length).order(ByteOrder.nativeOrder());ub.put(unitBytes).flip();unitMaterial=new Material.Builder().payload(ub,unitBytes.length).build(engine);
             loadGroundMaterials(context);
             loadWaterMaterial(context);
@@ -211,7 +211,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private void loadGroundMaterials(Context context)throws java.io.IOException {
         long groundStarted=System.nanoTime();
-        byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain/ground.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);bytes=out.toByteArray();}
+        byte[] bytes=VerifiedMaterial.read("3d/terrain/ground.filamat",context.getAssets().open("3d/terrain/ground.filamat"));
         ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();
         groundMaterial=new Material.Builder().payload(payload,bytes.length).build(engine);
         TextureSampler sampler=new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.REPEAT);
@@ -232,7 +232,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         groundLoadCpuNanos=System.nanoTime()-groundStarted;
     }
     private void loadWaterMaterial(Context context)throws java.io.IOException {
-        byte[] bytes;try(java.io.InputStream in=context.getAssets().open("3d/terrain/water.filamat")){java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream();byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);bytes=out.toByteArray();}
+        byte[] bytes=VerifiedMaterial.read("3d/terrain/water.filamat",context.getAssets().open("3d/terrain/water.filamat"));
         ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();
         waterMaterial=new Material.Builder().payload(payload,bytes.length).build(engine);
         // Borrow the four existing sRGB albedos; ownership stays with groundTextures.
@@ -259,7 +259,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private Material loadOverviewMaterial(Context context,String name)throws java.io.IOException {
         byte[] bytes;
-        try(java.io.InputStream in=context.getAssets().open("3d/terrain/"+name+".filamat");java.io.ByteArrayOutputStream out=new java.io.ByteArrayOutputStream()){byte[] block=new byte[8192];int n;while((n=in.read(block))!=-1)out.write(block,0,n);bytes=out.toByteArray();}
+        bytes=VerifiedMaterial.read("3d/terrain/"+name+".filamat",context.getAssets().open("3d/terrain/"+name+".filamat"));
         ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();
         return new Material.Builder().payload(payload,bytes.length).build(engine);
     }
