@@ -6,6 +6,8 @@ on:
       - .github/workflows/native-firebase.yml
       - scripts/run-firebase-cold.sh
       - scripts/firebase-evidence-preflight.py
+      - scripts/run-firebase-acceptance.sh
+      - app/src/androidTest/java/game/sanguo/mobile/FirebaseAcceptanceInstrumentation.java
       - app/src/androidTest/java/game/sanguo/mobile/FirebaseColdStartInstrumentation.java
   workflow_dispatch:
     inputs:
@@ -32,7 +34,7 @@ concurrency: {group: native-firebase, cancel-in-progress: false}
 jobs:
   build:
     if: >-
-      inputs.mode != 'catalog' && github.event.head_commit.message != 'ci(firebase): verify catalog only' && github.event.head_commit.message != 'ci(firebase): recover first matrix and quota 20260928' && github.event.head_commit.message != 'ci(firebase): audit cold api29 once 20260928'
+      inputs.mode != 'catalog' && github.event.head_commit.message != 'ci(firebase): verify catalog only' && github.event.head_commit.message != 'ci(firebase): recover first matrix and quota 20260928' && github.event.head_commit.message != 'ci(firebase): audit cold api29 once 20260928' && !startsWith(github.event.head_commit.message, 'ci(firebase): acceptance ')
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -192,4 +194,72 @@ jobs:
             out/firebase-results/
             out/firebase-preflight/
             !out/**/*.apk
+          retention-days: 30
+
+  audit_acceptance:
+    if: >-
+      github.event_name == 'push' && (github.event.head_commit.message == 'ci(firebase): acceptance api35 second 20260928' || github.event.head_commit.message == 'ci(firebase): acceptance api29 second 20260928' || github.event.head_commit.message == 'ci(firebase): acceptance api35 third 20260928')
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions: {contents: read, actions: read, id-token: write}
+    env:
+      FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+      AUDIT_MESSAGE: ${{ github.event.head_commit.message }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Build expanded test APK only; production APK stays byte-identical
+        run: |
+          mkdir -p out/firebase-audit/test-build
+          git rev-parse HEAD > out/firebase-audit/test-build/TEST_SOURCE_COMMIT
+          git diff --exit-code 17bd3376508499f2681d3e296939452383506a1e -- app/src/main core game-api game-runtime app/build.gradle version.properties
+          ./gradlew --no-daemon :app:assembleDebugAndroidTest -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/firebase-audit/test-build/build.log 2>&1
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/firebase-audit/test-build/
+      - uses: actions/download-artifact@v4
+        with:
+          name: firebase-apks
+          run-id: 36362991199
+          github-token: ${{ github.token }}
+          path: out/firebase-original
+      - name: Pin original app and explicit new probe provenance
+        run: |
+          echo '98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4  out/firebase-original/app-debug.apk' | sha256sum --check
+          printf '%s\n' 'appSource=17bd3376508499f2681d3e296939452383506a1e' "testSource=$GITHUB_SHA" 'test BuildConfig source strings denote test compilation; app hash below is authoritative' > out/firebase-audit/PAIR.txt
+          sha256sum out/firebase-original/app-debug.apk out/firebase-audit/test-build/*.apk >> out/firebase-audit/PAIR.txt
+      - uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ vars.FIREBASE_PROJECT_ID }}
+          workload_identity_provider: ${{ vars.FIREBASE_WIF_PROVIDER }}
+          service_account: ${{ vars.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v3
+      - run: python3 scripts/firebase-evidence-preflight.py --inventory-only
+      - name: Free-only guard and one independent physical installation
+        run: bash scripts/run-firebase-acceptance.sh
+      - name: Recover raw evidence even on failure; no resubmission
+        if: always()
+        run: |
+          mkdir -p out/firebase-audit/raw
+          gcloud storage cp --recursive "gs://test-lab-aa4a2056a57tx-i9q99na06ix40/native-audit/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}/" out/firebase-audit/raw > out/firebase-audit/collection.log 2>&1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-acceptance-raw
+          path: |
+            out/firebase-audit/
+            out/firebase-preflight/
+            !out/**/*.apk
+          if-no-files-found: error
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: firebase-acceptance-probe
+          path: out/firebase-audit/test-build/
+          if-no-files-found: warn
           retention-days: 30
