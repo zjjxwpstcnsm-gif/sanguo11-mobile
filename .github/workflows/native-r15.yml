@@ -24,7 +24,7 @@ jobs:
           curl -fsSL --retry 2 https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/json.jar
           export JSON_TEST_JAR=/tmp/json.jar
           bash scripts/test-native-r15.sh > out/r15/host.log 2>&1
-          for suite in test-native-r04 test-native-r12 test-architecture; do bash scripts/$suite.sh > out/r15/$suite.log 2>&1; done
+          for suite in test-native-r04 test-native-r08 test-native-r12 test-architecture; do bash scripts/$suite.sh > out/r15/$suite.log 2>&1; done
           python3 scripts/verify-map-release.py > out/r15/map-release.log
       - name: Record inherited full core failure without hiding it
         continue-on-error: true

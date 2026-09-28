@@ -60,7 +60,7 @@ public final class NativeR15Instrumentation extends SceneInstrumentation {
     }
     private void tour()throws Exception{
         runOnMainSync(()->{world=SessionProbe.view(activity);host.switchMode(true);host.quality(SceneQuality.MEDIUM);host.setGridShown(false);host.setTerritoryMode(0);invoke("closePanel",new Class<?>[0]);});
-        byte[] before=SaveCodec.encode(world);ready();runOnMainSync(()->host.fit());settle();shot("r15-overview");
+        byte[] before=SaveCodec.encode(world);settle();runOnMainSync(()->host.fit());settle();shot("r15-overview");
         List<R15TourPlan.Stop> stops=R15TourPlan.regions(world);check(stops.size()>=12,"at least twelve data-driven regions");
         for(R15TourPlan.Stop stop:stops){log("REGION "+stop.id+" "+stop.hex+" "+stop.reason);
             for(float span:new float[]{5,14,30})for(float yaw:new float[]{0,90}){camera(stop.hex,span,yaw);shot("r15-"+stop.id+"-s"+(int)span+"-y"+(int)yaw);}

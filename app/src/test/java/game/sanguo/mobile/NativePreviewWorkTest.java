@@ -25,8 +25,20 @@ public final class NativePreviewWorkTest {
             for(float[] a:new float[][]{m.vertices,m.surfaceData})for(float f:a){number.clear();md.update(number.putFloat(f).array());}
             for(int i:m.indices){number.clear();md.update(number.putInt(i).array());}
         }
-        // Captured from unmodified ef54951 production classes, before optimization.
-        check(HexFormat.of().formatHex(md.digest()).equals("e716c21a20f7043eed4ef2acaf6d77bc8c56a522a7fa61db65b89f6ab0a70b48"),"every national terrain vertex/index/material byte matches v105");
+        String fullHash=HexFormat.of().formatHex(md.digest());
+        // R15 deliberately changes ROAD palette only. Keep the old full-byte golden
+        // in a separately compiled frozen v4 control; never bless a new full hash.
+        if(args.length>0&&args[0].equals("legacy-palette-control"))
+            check(fullHash.equals("e716c21a20f7043eed4ef2acaf6d77bc8c56a522a7fa61db65b89f6ab0a70b48"),"every legacy terrain vertex/index/material byte matches v105");
+        md.reset();
+        for(SceneMesh m:terrain){
+            for(int v=0;v<m.vertices.length;v+=7)for(int c=0;c<3;c++){number.clear();md.update(number.putFloat(m.vertices[v+c]).array());}
+            for(float f:m.surfaceData){number.clear();md.update(number.putFloat(f).array());}
+            for(int i:m.indices){number.clear();md.update(number.putInt(i).array());}
+        }
+        String geometryHash=HexFormat.of().formatHex(md.digest());
+        System.out.println("terrainGeometryAndSurface="+geometryHash+" paletteVersion="+TerrainMaterialField.VERSION);
+        check(geometryHash.equals("2c0db7e3290deede25c1e764baa1119ab192fa764144ec55cd4620c292cba8c4"),"every position/index/UV/normal/shore/flow/macro byte matches input baseline");
         FieldAssets assets=new FieldAssets(n->new FileInputStream("app/src/main/assets/3d/field/"+n));
         Set<Hex> excluded=Vegetation.exclusions(new MapSceneSnapshot(g,w,null,-1));
         started=System.nanoTime();List<SceneMesh> scenery=Vegetation.buildWindow(g,excluded,List.of(),assets,window);
