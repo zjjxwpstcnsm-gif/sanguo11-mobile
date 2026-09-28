@@ -4,7 +4,7 @@ import game.sanguo.core.*;
 
 /** Compact global material field; immutable snapshot input, no gameplay RNG or camera state. */
 final class TerrainMaterialField {
-    static final int VERSION=4;
+    static final int VERSION=5;
     static final float RADIUS=3.2f;
     private static final World.Terrain[] TYPES=World.Terrain.values();
     final MapSceneSnapshot.Ground ground;
@@ -25,7 +25,9 @@ final class TerrainMaterialField {
             switch(TYPES[ground.terrain[r*ground.width+q]]){
                 case SAND:w[2]+=k;break;
                 case MOUNTAIN:case DAM:w[3]+=.9f*k;w[1]+=.1f*k;break;
-                case ROAD:w[0]+=.82f*k;w[1]+=.18f*k;break;
+                // Ordinary roads keep their rule type, but share the exact plain ground
+                // palette everywhere. Explicit mountain/plank paths retain their treatment.
+                case ROAD:case PLAIN:w[0]+=.9f*k;w[1]+=.1f*k;break;
                 case MOUNTAIN_PATH:case PLANK_ROAD:w[1]+=.8f*k;w[3]+=.2f*k;break;
                 case FOREST:case SWAMP:case POISON:w[0]+=.65f*k;w[1]+=.35f*k;break;
                 default:w[0]+=.9f*k;w[1]+=.1f*k;

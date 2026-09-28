@@ -28,7 +28,8 @@ public final class NativeR04Test {
             float roadX=g.grid.x(56,32),roadZ=g.grid.z(56,32);
             float[] roadCentre=f.sample(roadX,roadZ),roadBetween=f.sample(roadX+.3f,roadZ+.2f);
             for(int k=0;k<4;k++)check(Math.abs(roadCentre[k]-roadBetween[k])<.0001,"dense ordinary road has no repeated centre stamp");
-            check(Math.abs(roadCentre[1]-.18f)<.0001,"ordinary road retains prior continuous biome identity");
+            // R15 corrects the old .18 soil expectation: ordinary roads use the plain palette.
+            for(int k=0;k<4;k++)check(Math.abs(roadCentre[k]-grass[k])<.0001,"ordinary road shares plain palette without centre stamps");
             check(grass[0]>.85,"grass region identity");check(sand[2]>.98,"sand not converted into generic mud by slope");
             check(rock[3]>.85,"rock identity");check(path[1]>.70,"hard path centre remains soil");
             SceneMesh scenery=SceneMesh.backdrop(g);

@@ -37,11 +37,11 @@ final class DeployWizard {
         for(String key:new String[]{"troops","food","gold"})if(draft.containsKey(key))(key.equals("troops")?troops:key.equals("food")?food:gold).restoreValue(draft.getString(key));
         troops.setTag("deploy.troops");food.setTag("deploy.food");gold.setTag("deploy.gold");
         pages[0]=crewPage();pages[1]=suppliesPage();pages[2]=detailsPage();for(View page:pages)body.addView(page,new FrameLayout.LayoutParams(-1,-1));
-        summary=a.text("",12,a.gold);summary.setTag("deploy.summary");summary.setPadding(a.dp(4),a.dp(6),a.dp(4),a.dp(3));summary.setOnClickListener(v->tab(leader()<0?0:1));root.addView(summary);
+        summary=a.text("",12,a.gold);summary.setTag("deploy.summary");summary.setMaxLines(2);summary.setEllipsize(android.text.TextUtils.TruncateAt.END);summary.setPadding(a.dp(4),a.dp(6),a.dp(4),a.dp(3));summary.setOnClickListener(v->tab(leader()<0?0:1));root.addView(summary);
         dialog=new AlertDialog.Builder(a).setTitle(city.name+" · 出征编队").setView(root).setNegativeButton("取消",(d,i)->a.closeForm()).setPositiveButton("确认出征",null).create();
         previousTroops=troops.value();troops.onChange(()->{if(updating)return;if(troops.valid()&&troops.value()!=previousTroops){previousTroops=troops.value();food.set(Logistics.defaultFood(troops.value(),city.food));}update();});food.onChange(this::update);gold.onChange(this::update);dialog.setOnCancelListener(d->a.closeForm());
         final boolean[] submitted={false};final long[] revision={w.commandRevision()};dialog.setOnShowListener(v->{
-            ViewGroup.LayoutParams p=root.getLayoutParams();p.height=a.dp(Math.max(240,Math.min(700,a.getResources().getConfiguration().screenHeightDp-150)));root.setLayoutParams(p);dialog.getWindow().setLayout(a.dp(Math.min(620,a.getResources().getConfiguration().screenWidthDp-16)),-2);
+            ViewGroup.LayoutParams p=root.getLayoutParams();p.height=a.dp(Math.max(120,Math.min(700,a.getResources().getConfiguration().screenHeightDp-150)));root.setLayoutParams(p);dialog.getWindow().setLayout(a.dp(Math.min(620,a.getResources().getConfiguration().screenWidthDp-16)),-2);
             tab(Math.max(0,Math.min(2,draft.getInt("tab",0))));update();dialog.getButton(AlertDialog.BUTTON_POSITIVE).setTag("deploy.confirm");dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(view->{
                 if(submitted[0]||!a.currentWorld(w)||error()!=null)return;
                 if(revision[0]!=w.commandRevision()){revision[0]=w.commandRevision();available=new ArrayList<>(w.idle(city));filter();update();Toast.makeText(a,"局面已更新，请核对后出征",Toast.LENGTH_SHORT).show();return;}
@@ -51,13 +51,16 @@ final class DeployWizard {
         });dialog.show();a.trackDialog(dialog);dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
     private View crewPage(){
+        // One scrolling surface owns the crew header and roster. Fixed header siblings
+        // used to consume the entire landscape viewport and give the roster zero height.
         LinearLayout page=column();crew=new LinearLayout(a);crew.setTag("deploy.crew");page.addView(crew);
         crewDetails=a.text("",12,a.paper);crewDetails.setPadding(a.dp(4),a.dp(3),a.dp(4),a.dp(3));ScrollView selected=new ScrollView(a);selected.addView(crewDetails);page.addView(selected,new LinearLayout.LayoutParams(-1,a.dp(76)));
         TextView tip=a.text("连续点击选主将、副将 · 再点取消 · 副将可一键设为主将",11,a.muted);page.addView(tip);
         LinearLayout tools=new LinearLayout(a);search=new EditText(a);search.setTextSize(13);search.setSingleLine(true);search.setTextColor(a.paper);search.setHintTextColor(a.muted);search.setHint("搜索姓名 / 特技");search.setTag("deploy.officer.search");tools.addView(search,new LinearLayout.LayoutParams(0,a.dp(42),1));
         Button order=a.button("统率 ↓",v->{sort=(sort+1)%5;((Button)v).setText(new String[]{"统率 ↓","武力 ↓","智力 ↓","政治 ↓","魅力 ↓"}[sort]);filter();});order.setTag("deploy.officer.sort");tools.addView(order,new LinearLayout.LayoutParams(a.dp(82),a.dp(42)));page.addView(tools);
-        ListView list=new ListView(a);list.setTag("deploy.officers");list.setDividerHeight(a.dp(1));roster=new Roster();list.setAdapter(roster);list.setOnItemClickListener((parent,view,p,id)->toggle(filtered.get(p)));page.addView(list,new LinearLayout.LayoutParams(-1,0,1));
-        search.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void afterTextChanged(Editable e){}public void onTextChanged(CharSequence s,int start,int before,int count){filter();}});filter();return page;
+        ListView list=new ListView(a);list.setTag("deploy.officers");list.setDividerHeight(a.dp(1));list.addHeaderView(page,null,false);roster=new Roster();list.setAdapter(roster);
+        list.setOnItemClickListener((parent,view,p,id)->{int row=p-list.getHeaderViewsCount();if(row>=0&&row<filtered.size())toggle(filtered.get(row));});
+        search.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void afterTextChanged(Editable e){}public void onTextChanged(CharSequence s,int start,int before,int count){filter();}});filter();return list;
     }
     private View suppliesPage(){
         LinearLayout form=column();form.setPadding(a.dp(3),a.dp(5),a.dp(3),a.dp(10));form.addView(a.text("兵种 · 同屏点选，库存不足的兵种不可选",13,a.gold));
