@@ -1,0 +1,35 @@
+[
+  {
+    "file": "app.apk",
+    "source": "2626153bbe54a44812280b52a00b18e8202076f8",
+    "bytes": 37387030,
+    "sha256": "7cd2bb3da12f66f959f93c1338dadb88cf9e3013c7d2a6257fe023e8ca1df753",
+    "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "source_assets_exact": 300
+  },
+  {
+    "file": "arm64.apk",
+    "source": "2626153bbe54a44812280b52a00b18e8202076f8",
+    "bytes": 30655539,
+    "sha256": "9c70017095fbab548fb9f9403327575e5fcf103a056c27375c42d06254dbe9ed",
+    "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "abis": [
+      "arm64-v8a"
+    ],
+    "source_assets_exact": 300
+  },
+  {
+    "file": "test.apk",
+    "source": "2626153bbe54a44812280b52a00b18e8202076f8",
+    "bytes": 450946,
+    "sha256": "43dd030c3e85177272439dbe7d472189ef5645383ceb7decf7d034394ab22f7f",
+    "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "abis": []
+  }
+]

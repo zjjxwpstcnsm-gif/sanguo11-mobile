@@ -1,0 +1,29 @@
+[
+  {
+    "variant": "baseline",
+    "file": "app.apk",
+    "source": "f355536d94d22f623fc44e33c91410f66938c7d0",
+    "bytes": 37387030,
+    "MiB": 35.65505027770996,
+    "sha256": "f296b2ad5239e868d2f6c11fa170928a79bf87363f6fbf7ecd4896ceda5b3b30",
+    "R16_apk_100MiB_budget": "PASS"
+  },
+  {
+    "variant": "candidate",
+    "file": "app.apk",
+    "source": "2626153bbe54a44812280b52a00b18e8202076f8",
+    "bytes": 37387030,
+    "MiB": 35.65505027770996,
+    "sha256": "7cd2bb3da12f66f959f93c1338dadb88cf9e3013c7d2a6257fe023e8ca1df753",
+    "R16_apk_100MiB_budget": "PASS"
+  },
+  {
+    "variant": "candidate",
+    "file": "arm64.apk",
+    "source": "2626153bbe54a44812280b52a00b18e8202076f8",
+    "bytes": 30655539,
+    "MiB": 29.235400199890137,
+    "sha256": "9c70017095fbab548fb9f9403327575e5fcf103a056c27375c42d06254dbe9ed",
+    "R16_apk_100MiB_budget": "PASS"
+  }
+]

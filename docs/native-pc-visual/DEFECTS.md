@@ -1,3 +1,23 @@
+# R16 当前缺陷账本 — PARTIAL
+
+| ID | 状态 | 证据与边界 |
+|---|---|---|
+| R16-IDX-01 索引上传字节 | scoped host PASS | 420正式mesh无损往返，减50%索引payload；不是总显存/帧率。 |
+| R16-CPU-01 静止地形重复扫描 | scoped host PASS | 提取正式方法、mock GPU前后可见结果相同；移动对象持续裁剪；实际稳态收益未验证。 |
+| R16-THERM-01 温控抖动 | scoped policy PASS / device NOT_RUN | 严重热立即降级、持续30秒低温恢复；原/候选模拟信号60→2切换。 |
+| R16-UPLOAD-01 owner上传超限 | FAIL budget | 2ms只控制是否开始下一项；初版最大244.31ms单帧mesh上传wall，未宣称全GPU硬上限。 |
+| R16-LOAD-01 运行前置 | FAIL | 最终局部PASS165、全国pending138/submitted39仍FAIL；全国压力NOT_REACHED。 |
+| R16-REG-01 局部加载差异 | OPEN / FAIL first comparison | 初轮输入PASS/候选FAIL；再轮输入FAIL/候选PASS165。双方不稳定，无新增回归尚未关闭。 |
+| R16-PHY-01 ARM64长稳 | BLOCKED | WIF attribute condition拒绝，零本轮物理提交；30分钟/Adreno/Mali/热稳/20次读档未验收。 |
+| R16-METRIC-01 真实呈现/GPU | NOT_AVAILABLE | CPU环、PSS和原trace可追踪；没有可靠FrameTimeline/GPU duration或完整投影trace分析。 |
+| R16-ART-01 视觉门槛 | FAIL/NOT_ACCEPTED | V2、V3未关闭，无美术资产改动或通过代表区实拍。 |
+| R16-CORE-01 规则基线 | inherited FAIL | 输入和候选同一logistics:75；不改规则/断言。 |
+| R16-DIAG-01 预算诊断旧值 | FIXED | 初版错误显示4ms；2626153从2ms常量导出并重建，同源最终APK另列。 |
+
+报告与制品：reports/R16.md、evidence/R16/delivery.json。所有未关闭历史缺陷继续有效，不自动R17。
+
+---
+
 # R15 当前缺陷账本 — PARTIAL
 
 详见[本轮报告](reports/R15.md)；source769db307。仅布局专项的限定通过可据证据确认，

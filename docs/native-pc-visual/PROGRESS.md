@@ -1,3 +1,14 @@
+# R16 当前交付 — PARTIAL
+
+当前正式source `2626153bbe54a44812280b52a00b18e8202076f8`，v114；详情见 [R16报告](reports/R16.md)、[交接](handoffs/R16.md) 和 [证据](evidence/R16/)。
+无损索引压缩、静止地形可见缓存、2ms上传软预算含backdrop、30秒温控恢复与有界分项CPU采样已接入正常Filament路径。
+主机420网格索引字节12,156,120→6,078,060、完整拓扑/Save/RNG不变；不代表手机帧率。
+最终同源API29局部PASS165、全国ready FAIL；两轮输入/候选各有一次局部通过与失败，稳定性/无新增回归未关闭。
+原core logistics:75仍失败；WIF认证被attribute condition拒绝，物理执行0。
+没有ARM64 30分钟/温控/真实呈现预算PASS，V2 FAIL/V3 NOT_ACCEPTED。未改main/玩法/地图/资产；不自动R17。
+
+---
+
 # R15 全国覆盖与前置修复 — 2026-09-28 / PARTIAL
 
 当前报告：[R15](reports/R15.md)，交接：[R15 handoff](handoffs/R15.md)，区域/V3/要求矩阵见

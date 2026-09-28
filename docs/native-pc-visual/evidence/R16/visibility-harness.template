@@ -1,0 +1,37 @@
+package game.sanguo.mobile;
+import java.util.*;
+import java.util.function.*;
+import game.sanguo.core.*;
+public final class VisibilityHarness {
+ SceneCamera camera=new SceneCamera(); SceneQuality quality=SceneQuality.MEDIUM; SceneQuality.Thermal thermal=new SceneQuality.Thermal();
+ SceneVisibilityStamp visibilityStamp=new SceneVisibilityStamp(); boolean terrainVisibilityDirty=true,overviewTerrain,environmentShadows=true;
+ long terrainVisibilityPasses,terrainVisibilitySkips,checks; final long MESH_UPLOAD_BUDGET_NANOS=2000000;
+ MapSceneSnapshot snapshot=new MapSceneSnapshot(new MapSceneSnapshot.Ground(new World(32,32)),new World(32,32),null,-1);
+ SceneMesh.TerrainWindow terrainWindow; SceneMesh backdropSource; GpuMesh backdrop; FieldAssets fieldAssets; Object vegetationMaterial;
+ List<SceneMesh> chunks=new ArrayList<>(),woods=Collections.emptyList(); Set<Hex> woodExcluded=Collections.emptySet();
+ Map<SceneMesh,GpuMesh> terrain=new HashMap<>(),vegetation=new HashMap<>(); Map<String,Proxy> objects=new HashMap<>();
+ Set<SceneMesh> activeTerrain=new HashSet<>(),wantedWood=new HashSet<>();
+ int lastMaterialBinds,light,visibleChunks,pending,visibleWood,lastMeshUploads,visibleObjects;long lastMeshUploadNanos;double waterSeconds;
+ Dummy engine=new Dummy(),overviewWaterMaterial=new Dummy(); Work meshWork=new Work();
+ static class Dummy {Dummy getLightManager(){return this;}int getInstance(int x){return 1;}void setShadowCaster(int x,boolean b){}Dummy getDefaultInstance(){return this;}void setParameter(String x,float y){}}
+ static class MeshResult{}
+ static class Work {int pending(){return 0;}void submitPhased(Function<Consumer<MeshResult>,MeshResult> f){throw new AssertionError("unexpected streaming in frozen loaded window");}}
+ MeshResult buildMeshes(MapSceneSnapshot.Ground g,boolean b,SceneMesh m,List<SceneMesh> a,List<SceneMesh> t,FieldAssets f,Set<Hex> e,SceneMesh.TerrainWindow w,long n,Consumer<MeshResult> c){return null;}
+ class GpuMesh {SceneMesh source;boolean overview,shown;int entity;GpuMesh(SceneMesh s){source=s;overview=overviewTerrain;}void bindTerrainMaterial(){overview=overviewTerrain;}void show(boolean b){shown=b;}void destroy(){}void build(int e,Object m){}}
+ static class Proxy {UnitMotion motion=new UnitMotion();boolean shown;void show(boolean b){shown=b;}}
+ /*PRODUCTION_METHODS*/
+ void freezeWindow(){terrainWindow=new SceneMesh.TerrainWindow(camera.x,camera.z,camera.extentX()+100,camera.extentZ()+100,camera.span);}
+ String visible(){StringBuilder s=new StringBuilder();for(SceneMesh m:chunks){GpuMesh g=terrain.get(m);s.append(g!=null&&g.shown?'1':'0');}return s+":"+visibleObjects;}
+ public static void main(String[] args){
+  VisibilityHarness h=new VisibilityHarness();h.camera.width=1920;h.camera.height=1080;h.camera.span=120;h.freezeWindow();
+  for(int i=0;i<177;i++){SceneMesh m=new SceneMesh(new float[21],new int[]{0,1,2},i%15*12-90,i/15*12-70,13);m.chunkQ=i%15;m.chunkR=i/15;h.chunks.add(m);h.terrain.put(m,h.new GpuMesh(m));}
+  Proxy p=new Proxy();h.objects.put("unit",p);h.loadVisible();
+  com.sun.management.ThreadMXBean bean=(com.sun.management.ThreadMXBean)java.lang.management.ManagementFactory.getThreadMXBean();bean.setThreadAllocatedMemoryEnabled(true);long id=Thread.currentThread().getId(),bytes=bean.getThreadAllocatedBytes(id),time=System.nanoTime();h.checks=0;
+  for(int i=0;i<10000;i++){p.motion.x=i%2==0?0:10000;h.refreshPendingMeshes();h.loadVisible();if(p.shown!=(i%2==0))throw new AssertionError("unit culling froze with terrain");}
+  System.out.println("BENCH "+args[0]+" checks="+h.checks+" allocated="+(bean.getThreadAllocatedBytes(id)-bytes)+" wall_ns="+(System.nanoTime()-time)+" HOST_MOCK_GPU_ONLY");
+  for(int i=0;i<20;i++){h.camera.x=i*2;h.camera.yaw=i*3;h.camera.span=20+i*4;h.freezeWindow();h.terrainVisibilityDirty=true;for(SceneMesh m:h.chunks)h.terrain.putIfAbsent(m,h.new GpuMesh(m));h.refreshPendingMeshes();h.loadVisible();System.out.println("STATE "+i+" "+h.visible());}
+  SceneMesh old=h.chunks.get(0),replacement=new SceneMesh(old.vertices,old.indices,old.x,old.z,old.radius);replacement.chunkQ=old.chunkQ;replacement.chunkR=old.chunkR;h.chunks.set(0,replacement);h.terrainVisibilityDirty=true;h.camera.x=old.x;h.camera.z=old.z;h.freezeWindow();for(int i=0;i<50&&h.pending!=0||i<2;i++){h.refreshPendingMeshes();h.loadVisible();}
+  if(h.terrain.containsKey(old)||!h.terrain.containsKey(replacement))throw new AssertionError("replacement ownership");
+  System.out.println("PASS replacement and moving-unit coverage");
+ }
+}

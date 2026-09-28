@@ -1,0 +1,44 @@
+[
+  {
+    "mode": "local",
+    "status": "FAIL_READY",
+    "pssSamples": 24,
+    "pssMiBMin": 154.8984375,
+    "pssMiBMax": 193.46875,
+    "uniqueOwnerSamples": 679,
+    "admittedSamples": 4,
+    "ownerWallP95Ms": 3.39055,
+    "ownerCpuP95Ms": 1.878988,
+    "uploadOver2ms": 2,
+    "largestMeshUploadWallMs": 78.10047,
+    "measurement": "loading attempts incl rejected, NOT presented FPS/steady performance",
+    "trace": {
+      "bytes": 33402071,
+      "ownerMarkerStringFound": false,
+      "mapProjectionMarkerStringFound": false,
+      "frameTimelineStringFound": false,
+      "scope": "raw scheduler/gfx trace; string scan not full semantic analysis"
+    }
+  },
+  {
+    "mode": "national",
+    "status": "FAIL_READY",
+    "pssSamples": 23,
+    "pssMiBMin": 165.0888671875,
+    "pssMiBMax": 250.4736328125,
+    "uniqueOwnerSamples": 623,
+    "admittedSamples": 13,
+    "ownerWallP95Ms": 4.89077,
+    "ownerCpuP95Ms": 1.85263,
+    "uploadOver2ms": 11,
+    "largestMeshUploadWallMs": 244.30678,
+    "measurement": "loading attempts incl rejected, NOT presented FPS/steady performance",
+    "trace": {
+      "bytes": 33407056,
+      "ownerMarkerStringFound": false,
+      "mapProjectionMarkerStringFound": false,
+      "frameTimelineStringFound": false,
+      "scope": "raw scheduler/gfx trace; string scan not full semantic analysis"
+    }
+  }
+]
