@@ -15,7 +15,7 @@ import java.util.function.Predicate;
 
 /** Isolated CI app data only. Real screen touches from an empty startup page;
  * never writes auto.sg11 or invokes scenarioPicker/startScenario directly. */
-public final class NativeColdStartInstrumentation extends SceneInstrumentation {
+public class NativeColdStartInstrumentation extends SceneInstrumentation {
  private File dir;
  private long touchDeadline;
  private boolean firstCpuObserved;

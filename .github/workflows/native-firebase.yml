@@ -1,0 +1,99 @@
+name: Native Firebase cold start
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths:
+      - .github/workflows/native-firebase.yml
+      - scripts/run-firebase-cold.sh
+      - app/src/androidTest/java/game/sanguo/mobile/FirebaseColdStartInstrumentation.java
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Build only, list devices, or consume Test Lab quota
+        type: choice
+        options: [build, catalog, test]
+        default: build
+      model:
+        description: Physical model ID from the current catalog (required for test)
+        type: string
+      api:
+        description: Original target API
+        type: choice
+        options: ['29', '35']
+        default: '29'
+      repeats:
+        description: Independent installations; each consumes one device execution
+        type: choice
+        options: ['1', '2', '3']
+        default: '1'
+permissions: {contents: read}
+concurrency: {group: native-firebase, cancel-in-progress: false}
+jobs:
+  build:
+    if: inputs.mode != 'catalog'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Build matched app and cloud probe
+        run: |
+          set -euo pipefail
+          mkdir -p out/firebase-build
+          git rev-parse HEAD > out/firebase-build/SOURCE_COMMIT
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/firebase-build/build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/firebase-build/
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/firebase-build/
+          sha256sum out/firebase-build/*.apk > out/firebase-build/APK_SHA256.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/firebase-build/app-debug-androidTest.apk > out/firebase-build/TEST_METADATA.txt
+          grep -q game.sanguo.mobile.FirebaseColdStartInstrumentation out/firebase-build/TEST_METADATA.txt
+          echo 'Cloud harness preparation only; no rendering fix or device acceptance claimed.' > out/firebase-build/SCOPE.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: firebase-apks, path: out/firebase-build/, if-no-files-found: error, retention-days: 14}
+  cloud:
+    needs: build
+    if: always() && github.event_name == 'workflow_dispatch' && (inputs.mode == 'catalog' || (inputs.mode == 'test' && needs.build.result == 'success'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    permissions: {contents: read, id-token: write}
+    env:
+      FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+      FIREBASE_WIF_PROVIDER: ${{ vars.FIREBASE_WIF_PROVIDER }}
+      FIREBASE_SERVICE_ACCOUNT: ${{ vars.FIREBASE_SERVICE_ACCOUNT }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Require first-time project authorization
+        run: |
+          : "${FIREBASE_PROJECT_ID:?Set repository variable FIREBASE_PROJECT_ID}"
+          : "${FIREBASE_WIF_PROVIDER:?Set repository variable FIREBASE_WIF_PROVIDER}"
+          : "${FIREBASE_SERVICE_ACCOUNT:?Set repository variable FIREBASE_SERVICE_ACCOUNT}"
+      - uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ vars.FIREBASE_PROJECT_ID }}
+          workload_identity_provider: ${{ vars.FIREBASE_WIF_PROVIDER }}
+          service_account: ${{ vars.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Save current device catalog
+        run: |
+          mkdir -p out/firebase-results
+          gcloud firebase test android models list --project="$FIREBASE_PROJECT_ID" --format=json > out/firebase-results/models.json
+      - uses: actions/download-artifact@v4
+        if: inputs.mode == 'test'
+        with: {name: firebase-apks, path: out/firebase-build}
+      - name: Run original cold-start scope on physical hardware
+        if: inputs.mode == 'test'
+        env:
+          MODEL: ${{ inputs.model }}
+          API: ${{ inputs.api }}
+          REPEATS: ${{ inputs.repeats }}
+        run: bash scripts/run-firebase-cold.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: firebase-results, path: out/firebase-results/, if-no-files-found: warn, retention-days: 14}
