@@ -179,10 +179,11 @@ final class MapHost extends FrameLayout implements MapPresentation {
         if(spatial==null)flat.setWorld(w,s,moving);else if(changed||dirty)publish();
     }
     private void publish(){if(spatial==null||world==null)return;
+        android.os.Trace.beginSection("R16.mapProjection");try{
         cancelCommandEffects();
         android.content.Context app=getContext().getApplicationContext();
         if(app instanceof GameApplication){var session=((GameApplication)app).host().session();if(session!=null)spatial.sceneIdentity(session.state());}
-if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){if(ground==null||!ground.matches(world))ground=new MapSceneSnapshot.Ground(world);groundWorld=world;terrainRevision=world.terrainRevision;}publishedSnapshot=new MapSceneSnapshot(ground,world,selected,moving);spatial.snapshot(publishedSnapshot);spatial.mapLayers(projection.layers(world,ground,flat.territoryMode()),flat.territoryMode(),openingPreview,previewFaction);dirty=false;}
+if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){if(ground==null||!ground.matches(world))ground=new MapSceneSnapshot.Ground(world);groundWorld=world;terrainRevision=world.terrainRevision;}publishedSnapshot=new MapSceneSnapshot(ground,world,selected,moving);spatial.snapshot(publishedSnapshot);spatial.mapLayers(projection.layers(world,ground,flat.territoryMode()),flat.territoryMode(),openingPreview,previewFaction);dirty=false;}finally{android.os.Trace.endSection();}}
     void invalidateScene(){dirty=true;flat.invalidateScene();}
     @Override public void fit(){if(spatial==null)flat.fit();else spatial.fit();}
     @Override public void focus(Hex h){if(spatial==null)flat.focus(h);else spatial.focus(h);}

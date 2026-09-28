@@ -10,10 +10,11 @@ public final class SceneQualityTest {
             p.reset();if(!p.due(0,q.fps))throw new AssertionError("reset");
         }
         if(SceneQuality.HIGH.msaaSupported(0x30000)||!SceneQuality.HIGH.msaaSupported(0x30001)||SceneQuality.MEDIUM.msaaSupported(0x30002))throw new AssertionError("GLES capability gate");
-        SceneQuality.Thermal thermal=new SceneQuality.Thermal();thermal.update(3);
+        SceneQuality.Thermal thermal=new SceneQuality.Thermal();thermal.update(3,0);
         if(thermal.fps(SceneQuality.HIGH)!=30||thermal.scale(SceneQuality.HIGH)!=.70f)throw new AssertionError("thermal cap");
-        thermal.update(2);if(!thermal.constrained)throw new AssertionError("thermal hysteresis");
-        thermal.update(1);if(thermal.fps(SceneQuality.HIGH)!=60)throw new AssertionError("thermal recovery");
+        thermal.update(2,1_000_000_000L);if(!thermal.constrained)throw new AssertionError("thermal hysteresis");
+        thermal.update(1,2_000_000_000L);if(!thermal.constrained)throw new AssertionError("no instant thermal recovery");
+        thermal.tick(32_000_000_000L);if(thermal.fps(SceneQuality.HIGH)!=60)throw new AssertionError("thermal recovery");
         System.out.println("PASS S08 pacing: 30/60fps on 60/90/120/144Hz; gap, reset and invalid preferences");
     }
 }
