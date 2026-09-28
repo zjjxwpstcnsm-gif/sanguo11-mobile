@@ -145,14 +145,15 @@ final class MapHost extends FrameLayout implements MapPresentation {
         }
         if(!manual&&(safeMode||interruptedSession))return;
         // Synchronous commit precedes native library load; catches native crashes next launch.
-        if(!prefs.edit().putBoolean("nativeSession",true).commit()){Toast.makeText(getContext(),"无法保存 3D 启动健康标记，保留 2D",Toast.LENGTH_LONG).show();return;}
+        SharedPreferences.Editor health=prefs.edit().putBoolean("nativeSession",true);
+        if(safeMode||Boolean.TRUE.equals(interruptedSession))health.putBoolean("nativeFailure",true);
+        if(!health.commit()){Toast.makeText(getContext(),"无法保存 3D 启动健康标记，保留 2D",Toast.LENGTH_LONG).show();return;}
         try{
-            spatial=new FilamentMapView(getContext(),listener,this::fallback);activeNativeHosts++;safeMode=false;
-            // The user explicitly retried the native renderer. Do not let the previous
-            // process's interruption veto later Activity restoration in this process.
-            // Keep nativeSession=true on disk until normal release so a new crash still
-            // starts safely in 2D; fallback() also reinstates the in-process latch.
-            // Clear the persistent failure only after all host setup below succeeds.
+            spatial=new FilamentMapView(getContext(),listener,this::fallback);activeNativeHosts++;
+            // A constructed renderer can still be blank or stalled. Keep recovery latched
+            // until this exact host receives a current, settled Surface-content observation.
+            FilamentMapView candidate=spatial;
+            if(manual)candidate.onVerifiedOutput(()->completeNativeRetry(candidate));
             removeView(flat);addView(spatial,new LayoutParams(-1,-1));
             Map<String,?> saved=prefs.getAll();if(!camera.containsKey("sceneYaw")&&saved.get("yaw") instanceof Float)camera.putFloat("sceneYaw",(Float)saved.get("yaw"));if(!camera.containsKey("sceneTilt")&&saved.get("tilt") instanceof Float)camera.putFloat("sceneTilt",(Float)saved.get("tilt"));if(!camera.containsKey("sceneFacing")&&saved.get("facing") instanceof Integer)camera.putInt("sceneFacing",(Integer)saved.get("facing"));
             // A Canvas camera has no native span. The opening preview must fit the
@@ -164,8 +165,15 @@ final class MapHost extends FrameLayout implements MapPresentation {
             // Publish after restoring/requesting the initial camera, so CPU work
             // is generated for the actual preview instead of a default local view.
             dirty=true;publish();
-            if(manual){prefs.edit().putBoolean("nativeFailure",false).commit();interruptedSession=false;}
         }catch(Exception|LinkageError|OutOfMemoryError e){fallback(e);}
+    }
+    private void completeNativeRetry(FilamentMapView candidate){
+        if(candidate==null||spatial!=candidate)return; // Ignore a retired host's asynchronous callback.
+        // Do not clear the process latch if the persistent update failed. nativeSession
+        // stays true until normal release, even after visible output is detected.
+        if(prefs.edit().putBoolean("nativeFailure",false).commit()){
+            safeMode=false;interruptedSession=false;
+        }else android.util.Log.w("MapRenderer","Could not persist verified native recovery; protection retained");
     }
     private void fallback(Throwable e){safeMode=true;interruptedSession=true;prefs.edit().putBoolean("nativeFailure",true).putString("lastExitReason","Java initialization/render failure").putString("lastFailure",e.getClass().getSimpleName()).putLong("lastFailureTime",System.currentTimeMillis()).commit();android.util.Log.e("MapRenderer","Filament fallback to 2D",e);leave3D();if(world!=null)flat.setWorld(world,selected,moving);flat.restoreCamera(camera);Toast.makeText(getContext(),"3D 初始化或渲染失败，已返回 2D："+(e.getMessage()==null?e.getClass().getSimpleName():e.getMessage()),Toast.LENGTH_LONG).show();}
     private void leave3D(){persistCamera();if(spatial!=null){spatial.release();removeView(spatial);spatial=null;activeNativeHosts=Math.max(0,activeNativeHosts-1);}if(flat.getParent()==null)addView(flat,new LayoutParams(-1,-1));prefs.edit().putBoolean("nativeSession",activeNativeHosts>0).commit();}

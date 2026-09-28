@@ -78,3 +78,12 @@ tasks.register('verifyMapRelease', Exec) {
     commandLine 'python3', 'scripts/verify-map-release.py'
 }
 tasks.named('preBuild').configure { dependsOn 'verifyMapRelease' }
+
+// Candidate delivery is opt-in for ordinary development, mandatory in R18 CI.
+// Verify both the claimed full revision and all non-ignored working-tree content.
+tasks.register('verifyCandidateSource', Exec) {
+    onlyIf { providers.gradleProperty('candidateSource').isPresent() }
+    workingDir rootProject.projectDir
+    commandLine 'python3', 'scripts/verify-candidate-source.py', providers.gradleProperty('candidateSource').getOrElse('')
+}
+tasks.named('preBuild').configure { dependsOn 'verifyCandidateSource' }

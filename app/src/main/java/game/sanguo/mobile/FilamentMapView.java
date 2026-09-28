@@ -81,6 +81,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private int siteLod=1; private final Set<String> missingAssets=new HashSet<>();
     private boolean srgbSwapChain;
     private boolean outputProbePending,outputVerified;
+    private Runnable verifiedOutputListener;
+    void onVerifiedOutput(Runnable listener){verifiedOutputListener=listener;}
     private int uniformOutputCount;
     private long lastOutputProbe;
     private String outputStatus="WAITING_SURFACE";
@@ -587,7 +589,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                         outputStatus="UNIFORM_SURFACE";
                         if(++uniformOutputCount==3)android.util.Log.w("Sanguo3D","Uniform output; visibility NOT verified: "+startupReport());
                         if(extreme&&uniformOutputCount>=3)failure.accept(new IllegalStateException("Repeated blank 3D Surface output"));
-                    }else{uniformOutputCount=0;outputVerified=true;outputStatus="CONTENT_DETECTED_NOT_ART_ACCEPTANCE";android.util.Log.i("Sanguo3D",startupReport());}
+                    }else{uniformOutputCount=0;outputVerified=true;outputStatus="CONTENT_DETECTED_NOT_ART_ACCEPTANCE";android.util.Log.i("Sanguo3D",startupReport());
+                        Runnable listener=verifiedOutputListener;verifiedOutputListener=null;if(listener!=null)listener.run();}
                 }finally{sample.recycle();}
             },new android.os.Handler(android.os.Looper.getMainLooper()));
         }catch(IllegalArgumentException e){outputProbePending=false;outputStatus="COPY_UNAVAILABLE";uniformOutputCount=0;sample.recycle();}
@@ -847,7 +850,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void restoreCamera(Bundle b){pendingFit=false;navigatorShown=b.getBoolean("mapNavigator",navigatorShown);try{camera.x=b.getFloat("cameraX")/TileGeometry.DX;camera.z=b.getFloat("cameraY")/TileGeometry.DY;camera.span=b.getFloat("sceneSpan",15);camera.tilt=b.getFloat("sceneTilt",55);camera.yaw=b.getFloat("sceneYaw",0);camera.facing=b.getInt("sceneFacing",1)<0?-1:1;camera.sanitize();clampCamera();}catch(RuntimeException bad){camera.x=0;camera.z=0;camera.span=15;camera.tilt=55;camera.yaw=0;camera.facing=1;clampCamera();}}
     void release(){
         meshWork.owner();
-        if(released)return;released=true;pendingLayoutSnapshot=null;pendingFit=false;replay=null;animatedUnit=null;generation++;cancelFrame();meshWork.close();assetWork.close();pending=0;surface.getHolder().removeCallback(this);
+        if(released)return;released=true;verifiedOutputListener=null;pendingLayoutSnapshot=null;pendingFit=false;replay=null;animatedUnit=null;generation++;cancelFrame();meshWork.close();assetWork.close();pending=0;surface.getHolder().removeCallback(this);
         // A detached View may remain referenced by the framework or an outstanding probe.
         // Release heavyweight CPU ownership immediately, rather than waiting for View GC.
         chunks=Collections.emptyList();woods=Collections.emptyList();snapshot=null;fieldAssets=null;backdropSource=null;
