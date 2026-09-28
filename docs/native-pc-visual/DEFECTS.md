@@ -1,3 +1,12 @@
+# 网格/岸线专项 — v117 / PARTIAL
+
+- GRID-READABILITY：正式双色线宽/密度修复；APK实际画面对照待回收。
+- GRID-BLOCKED：不可行动地形过滤与遮挡过滤；不改变选格、编辑、规则通行权限。
+- COAST-STEPS：共享顶点两次平滑，每轴位移≤0.1875，中心与所有原三角形保留；未承诺像素级抗锯齿或最终PC美术。
+- LEGACY-GATES：core logistics:75、全国120秒ready、完整触控、ARM64/Adreno/Mali长稳等历史问题保持开放。
+
+---
+
 # R18 当前风险 — PARTIAL
 
 - R18-RECOVERY：解除保护从构造结束延后到当前Surface内容检测；专项范围见R18报告。并非native abort或全视觉通过。

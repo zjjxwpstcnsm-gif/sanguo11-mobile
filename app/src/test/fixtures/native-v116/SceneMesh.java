@@ -197,9 +197,6 @@ final class SceneMesh {
                 new TerrainMaterialField(g).attach(m,stats);
                 SceneMesh fine=lod==2?m:detail(m,g);
                 if(lod==0)fine=detail(fine,g);
-                // Transport the entire LOD family only after canonical height/material
-                // sampling. Water/land and all shared attributes follow one rounded shore.
-                g.shoreline.transport(fine);
                 fine.terrainLod=lod;
                 // Production holds only the requested precision, not a nationwide LOD pyramid.
                 if(window!=null)fine.distant=null;
@@ -237,7 +234,7 @@ final class SceneMesh {
             WaterVisualField field=new WaterVisualField(g);
             int start=coarse.vertices.length/7;
             for(int t=0;t<coarse.indices.length;t+=3){
-                int i=start+t/3;float x=fine.surfaceData[i*8],z=-fine.surfaceData[i*8+1];
+                int i=start+t/3;float x=fine.vertices[i*7],z=fine.vertices[i*7+2];
                 fine.surfaceData[i*8+6]=field.distance(x,z);
                 if(t>=coarse.landIndexCount)fine.surfaceData[i*8+7]=field.flowAngle(x,z);
             }

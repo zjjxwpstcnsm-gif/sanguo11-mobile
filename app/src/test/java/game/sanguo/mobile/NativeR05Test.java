@@ -31,7 +31,9 @@ public final class NativeR05Test {
             }
             List<SceneMesh> meshes=SceneMesh.ground(g);int refined=0;
             for(SceneMesh fine:meshes){SceneMesh coarse=fine.distant;int start=coarse.vertices.length/7;
-                for(int t=0;t<coarse.indices.length;t+=3){int i=start+t/3;float x=fine.vertices[i*7],z=fine.vertices[i*7+2];
+                // The immutable canonical UVs travel with the rounded mesh; shore
+                // samples still use those exact original coordinates at every LOD.
+                for(int t=0;t<coarse.indices.length;t+=3){int i=start+t/3;float x=fine.surfaceData[i*8],z=-fine.surfaceData[i*8+1];
                     check(fine.surfaceData[i*8+6]==f.distance(x,z),"new interior vertex samples actual signed distance");
                     float old=0;for(int j=0;j<3;j++)old+=coarse.surfaceData[coarse.indices[t+j]*8+6]/3;
                     if(Math.abs(old-fine.surfaceData[i*8+6])>.001)refined++;

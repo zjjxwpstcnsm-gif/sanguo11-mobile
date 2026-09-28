@@ -8,16 +8,20 @@ import java.util.*;
 final class MapSceneSnapshot {
     static final class Ground {
         final Set<Hex> bases; final TerrainSurface surface;
-        private final BitSet baseCells;
+        private final BitSet baseCells, gridCells;
+        final WaterVisualField.Shoreline shoreline;
         final int width,height,mapSeed,mapIdentity,sourceMapWidth,sourceOriginX,sourceOriginY; final float minX,minZ,maxX,maxZ; final byte[] terrain; final GridWorldTransform grid;
         Ground(World w) {
             width=w.width;height=w.height;sourceMapWidth=w.sourceMapWidth;sourceOriginX=w.sourceOriginX;sourceOriginY=w.sourceOriginY;mapIdentity=w.mapId.hashCode();mapSeed=31*w.mapId.hashCode()+w.mapRevision;grid=new GridWorldTransform(w.sourceMapWidth>0?(w.height-1)/2:0,w.columnStaggered);
             Set<Hex> flat=new HashSet<>();for(World.City c:w.cities)flat.addAll(SiteFootprint.cells(c));bases=Collections.unmodifiableSet(flat);
             baseCells=new BitSet(width*height);for(Hex h:flat)if(h.q>=0&&h.r>=0&&h.q<width&&h.r<height)baseCells.set(h.r*width+h.q);
-            terrain=new byte[width*height];
+            terrain=new byte[width*height];gridCells=new BitSet(terrain.length);
             float loX=Float.MAX_VALUE,loZ=loX,hiX=-loX,hiZ=-loX;
             for(int r=0;r<height;r++)for(int q=0;q<width;q++){
                 terrain[r*width+q]=(byte)(w.inside(new Hex(q,r))?w.terrain[q][r].ordinal():World.Terrain.VOID.ordinal());
+                World.Terrain type=w.terrain[q][r];
+                if(terrain[r*width+q]!=World.Terrain.VOID.ordinal()&&type!=World.Terrain.MOUNTAIN
+                    &&type!=World.Terrain.NON_NAVIGABLE_WATER&&!NationalMap.restricted(w,new Hex(q,r)))gridCells.set(r*width+q);
                 if(terrain[r*width+q]!=World.Terrain.VOID.ordinal()){
                     float x=grid.x(q,r),z=grid.z(q,r);loX=Math.min(loX,x-.5f);loZ=Math.min(loZ,z-.5f);hiX=Math.max(hiX,x+.5f);hiZ=Math.max(hiZ,z+.5f);
                 }
@@ -26,6 +30,7 @@ final class MapSceneSnapshot {
             maxX=hiX==-Float.MAX_VALUE?0:hiX;maxZ=hiZ==-Float.MAX_VALUE?0:hiZ;
             Map<Hex,Float> heights=new HashMap<>();
             if(w.visualMap!=null)for(var e:w.visualMap.heights.entrySet())heights.put(MapCoordinates.fromNationalSource(w,new SourceGridCoord(e.getKey()/200,e.getKey()%200)),e.getValue()/1000f);
+            shoreline=new WaterVisualField.Shoreline(this);
             surface=new TerrainSurface(this,heights);
         }
         SourceGridCoord source(Hex h){
@@ -42,6 +47,9 @@ final class MapSceneSnapshot {
         }
         /** Exact immutable membership, without allocating a Hex in each material sample. */
         boolean isBase(int q,int r){return q>=0&&r>=0&&q<width&&r<height&&baseCells.get(r*width+q);}
+        /** Potential land OR naval movement, independent of current unit occupancy/weapon.
+         * Editing still exposes blocked terrain so it can be inspected and painted. */
+        boolean gridCell(Hex h,boolean editing){return valid(h)&&(editing||gridCells.get(h.r*width+h.q));}
         boolean valid(Hex h){return h!=null&&h.q>=0&&h.r>=0&&h.q<width&&h.r<height&&terrain[h.r*width+h.q]!=World.Terrain.VOID.ordinal();}
     }
     static final class Item {

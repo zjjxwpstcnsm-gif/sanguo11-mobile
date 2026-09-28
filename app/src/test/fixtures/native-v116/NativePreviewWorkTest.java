@@ -7,9 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.util.*;
 
-/** Preserve v105 canonical payloads; the separate grid/coast suite checks the
- * intentional, bounded X/Z transport requested after R18. Frozen controls retain
- * the original full terrain/scenery byte assertions without changing their hashes. */
+/** Exact v105 geometry controls: reducing work must not remove or move any content. */
 public final class NativePreviewWorkTest {
     private static void check(boolean ok,String why){if(!ok)throw new AssertionError(why);}
     public static void main(String[] args)throws Exception {
@@ -34,21 +32,18 @@ public final class NativePreviewWorkTest {
             check(fullHash.equals("e716c21a20f7043eed4ef2acaf6d77bc8c56a522a7fa61db65b89f6ab0a70b48"),"every legacy terrain vertex/index/material byte matches v105");
         md.reset();
         for(SceneMesh m:terrain){
-            for(int v=0;v<m.vertices.length;v+=7)for(int c=0;c<3;c++){
-                float value=c==0?m.surfaceData[v/7*8]:c==2?-m.surfaceData[v/7*8+1]:m.vertices[v+c];
-                number.clear();md.update(number.putFloat(value).array());
-            }
+            for(int v=0;v<m.vertices.length;v+=7)for(int c=0;c<3;c++){number.clear();md.update(number.putFloat(m.vertices[v+c]).array());}
             for(float f:m.surfaceData){number.clear();md.update(number.putFloat(f).array());}
             for(int i:m.indices){number.clear();md.update(number.putInt(i).array());}
         }
         String geometryHash=HexFormat.of().formatHex(md.digest());
         System.out.println("terrainGeometryAndSurface="+geometryHash+" paletteVersion="+TerrainMaterialField.VERSION);
-        check(geometryHash.equals("2c0db7e3290deede25c1e764baa1119ab192fa764144ec55cd4620c292cba8c4"),"every canonical position/index/UV/normal/shore/flow/macro byte matches input baseline");
+        check(geometryHash.equals("2c0db7e3290deede25c1e764baa1119ab192fa764144ec55cd4620c292cba8c4"),"every position/index/UV/normal/shore/flow/macro byte matches input baseline");
         FieldAssets assets=new FieldAssets(n->new FileInputStream("app/src/main/assets/3d/field/"+n));
         Set<Hex> excluded=Vegetation.exclusions(new MapSceneSnapshot(g,w,null,-1));
         started=System.nanoTime();List<SceneMesh> scenery=Vegetation.buildWindow(g,excluded,List.of(),assets,window);
         double sceneryMs=(System.nanoTime()-started)/1e6;
-        List<String> triangles=new ArrayList<>(),horizontal=new ArrayList<>();ByteBuffer triangle=ByteBuffer.allocate(3*13*4);
+        List<String> triangles=new ArrayList<>();ByteBuffer triangle=ByteBuffer.allocate(3*13*4);
         for(SceneMesh source:scenery){SceneMesh m=source.distant;
             for(int j=0;j<m.indices.length;j+=3){triangle.clear();
                 for(int k=0;k<3;k++){int v=m.indices[j+k];
@@ -57,21 +52,11 @@ public final class NativePreviewWorkTest {
                     for(int c=0;c<4;c++)triangle.putFloat(m.tangents[v*4+c]);
                 }
                 triangles.add(HexFormat.of().formatHex(md.digest(triangle.array())));
-                // Scenery may move vertically to contact the rounded ground; all
-                // other placement/material attributes and every primitive remain
-                // identical; contact normals follow the deliberately changed heights.
-                ByteBuffer flat=ByteBuffer.wrap(triangle.array().clone());for(int k=0;k<3;k++){
-                    flat.putFloat((k*13+1)*4,0);for(int c=9;c<13;c++)flat.putFloat((k*13+c)*4,0);
-                }
-                horizontal.add(HexFormat.of().formatHex(md.digest(flat.array())));
             }
         }
         Collections.sort(triangles);md.reset();for(String hash:triangles)md.update(hash.getBytes(StandardCharsets.UTF_8));
         check(triangles.size()==236375,"all original distant scenery triangles retained");
-        String sceneryHash=HexFormat.of().formatHex(md.digest());
-        Collections.sort(horizontal);for(String hash:horizontal)md.update(hash.getBytes(StandardCharsets.UTF_8));
-        String horizontalHash=HexFormat.of().formatHex(md.digest());System.out.println("sceneryHorizontal="+horizontalHash+" sceneryFull="+sceneryHash);
-        check(horizontalHash.equals("f224f067e01bd1b8e9eb3087754160e85de9546520a9b187229e3281d2621b4c"),"every scenery X/Z/color/UV and triangle matches independently frozen input");
+        check(HexFormat.of().formatHex(md.digest()).equals("6fd66849a26cc23b509b753745920f673f3f9dc2aa20313e4759f31c225a8275"),"every scenery triangle/UV/normal matches v105, independent of batching");
         check(Vegetation.buildWindow(g,excluded,scenery,assets,window).equals(scenery),"stable overview reuses all batches");
         check(Arrays.equals(authority,SaveCodec.encode(w)),"complete authority/RNG/save untouched");
         System.out.println("terrainChunks="+terrain.size()+" sceneryChunks="+scenery.size()+" sceneryTriangles="+triangles.size()+" terrain_ms="+terrainMs+" scenery_ms="+sceneryMs+" HOST_ONLY");

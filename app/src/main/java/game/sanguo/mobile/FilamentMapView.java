@@ -1074,7 +1074,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             int n=0;for(int edge=0;edge<SceneMesh.EDGE.length;edge++){
                 float[] a=SceneMesh.EDGE[edge],b=SceneMesh.EDGE[(edge+1)%SceneMesh.EDGE.length];
                 for(int step=0,steps=camera.span<24?4:1;step<steps;step++){float t=step/(float)steps,wx=x+a[0]+(b[0]-a[0])*t,wz=z+a[1]+(b[1]-a[1])*t;
-                    float sx=camera.screenX(wx,wz),sy=camera.screenY(wx,wz,snapshot.ground.surface.sample(wx,wz)+.015f);
+                    float y=snapshot.ground.surface.sample(wx,wz)+.015f;float[] shown=snapshot.ground.shoreline.project(wx,wz);
+                    float sx=camera.screenX(shown[0],shown[1]),sy=camera.screenY(shown[0],shown[1],y);
                     if(n++==0)cellPath.moveTo(sx,sy);else cellPath.lineTo(sx,sy);}}
             cellPath.close();return true;
         }
@@ -1093,7 +1094,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             for(int dir=0;dir<6;dir++)if((mask&(1<<dir))!=0){
                 int a=TileGeometry.start(dir),b=TileGeometry.end(dir);cellPath.rewind();
                 for(int i=0;i<=8;i++){float t=i/8f,ox=(TileGeometry.CORNER_X[a]*(1-t)+TileGeometry.CORNER_X[b]*t)/TileGeometry.SPAN,oz=(TileGeometry.CORNER_Y[a]*(1-t)+TileGeometry.CORNER_Y[b]*t)/TileGeometry.SPAN;
-                    float wx=x+(g.staggered?oz:ox),wz=z+(g.staggered?ox:oz),sx=camera.screenX(wx,wz),sy=camera.screenY(wx,wz,snapshot.ground.surface.sample(wx,wz)+.015f);
+                    float wx=x+(g.staggered?oz:ox),wz=z+(g.staggered?ox:oz),height=snapshot.ground.surface.sample(wx,wz)+.015f;
+                    float[] shown=snapshot.ground.shoreline.project(wx,wz);float sx=camera.screenX(shown[0],shown[1]),sy=camera.screenY(shown[0],shown[1],height);
                     if(i==0)cellPath.moveTo(sx,sy);else cellPath.lineTo(sx,sy);}
                 c.drawPath(cellPath,p);
             }
@@ -1142,7 +1144,14 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 int r0=Math.max(0,Math.min(Math.min(a.r,b.r),Math.min(d.r,e.r))-2),r1=Math.min(snapshot.ground.height-1,Math.max(Math.max(a.r,b.r),Math.max(d.r,e.r))+2);
                 for(int r=r0;r<=r1;r++)for(int q=q0;q<=q1;q++){
                     Hex h=new Hex(q,r);if(!snapshot.ground.valid(h))continue;
-                    if((gridShown||editorGrid)&&camera.span<48&&cellPath(h)){p.setColor(editorGrid?0x99ffffff:((((int)(104*Math.min(1,(48-camera.span)/24)))<<24)|0x7d928a));p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(1);c.drawPath(cellPath,p);}
+                    if((gridShown||editorGrid)&&camera.span<48&&snapshot.ground.gridCell(h,editorGrid)&&(editorGrid||!hidden(h))&&cellPath(h)){
+                        // Density-aware ink + light rim stays legible on grass, sand and water.
+                        // Fade only the far overview; tactical distances keep full contrast.
+                        float fade=Math.min(1,(48-camera.span)/12),density=getResources().getDisplayMetrics().density;
+                        p.setStyle(Paint.Style.STROKE);p.setPathEffect(null);
+                        p.setColor(((int)(170*fade)<<24)|0x132a29);p.setStrokeWidth(2.3f*density);c.drawPath(cellPath,p);
+                        p.setColor(((int)(215*fade)<<24)|(editorGrid?0xffffff:0xe1e5c5));p.setStrokeWidth(1.05f*density);c.drawPath(cellPath,p);
+                    }
                     if(impassable.contains(MapLayerData.cellKey(h.q,h.r)))cell(c,h,0x99ff6767);
                     if(editorCoords&&camera.span<7){p.setStyle(Paint.Style.FILL);p.setColor(0xffffffff);p.setTextSize(10*getResources().getDisplayMetrics().scaledDensity);c.drawText(snapshot.ground.source(h).toString(),camera.screenX(grid.x(h),grid.z(h)),camera.screenY(grid.x(h),grid.z(h),snapshot.ground.surface.at(h)),p);}
                 }

@@ -5,7 +5,7 @@ import java.util.*;
 
 /** Deterministic presentation-only field. Coordinates are projected world units, never axial indices. */
 final class TerrainSurface {
-    static final int METADATA_VERSION=4;
+    static final int METADATA_VERSION=3;
     private static final World.Terrain[] TYPES=World.Terrain.values();
     static final float MAX_HEIGHT=2.6f;
     static final float LANDFORM_RADIUS=3.4f;
@@ -102,10 +102,6 @@ final class TerrainSurface {
     float at(Hex h){return sample(ground.grid.x(h),ground.grid.z(h));}
     // Exact piecewise-linear height of the eight-triangle cell fan, shared with the mesh and ray picker.
     float meshHeight(float x,float z){
-        WaterVisualField.Shoreline.Point point=ground.shoreline.inverse(x,z);x=point.x;z=point.z;
-        return canonicalMeshHeight(x,z);
-    }
-    private float canonicalMeshHeight(float x,float z){
         Hex h=ground.grid.cell(x,z);float cx=ground.grid.x(h),cz=ground.grid.z(h),dx=x-cx,dz=z-cz;
         float scale=2*Math.max(Math.abs(dx),Math.abs(dz));if(scale<.00001f)return sample(cx,cz);
         float bx=dx/scale,bz=dz/scale;float[] a,b;
@@ -118,7 +114,7 @@ final class TerrainSurface {
     }
     Hex pick(SceneCamera camera,float sx,float sy){
         float y=rayHeight(camera,sx,sy);if(!Float.isFinite(y))return null;
-        Hex h=ground.shoreline.inverse(camera.worldX(sx,sy,y),camera.worldZ(sx,sy,y)).cell;return ground.valid(h)?h:null;
+        Hex h=ground.grid.cell(camera.worldX(sx,sy,y),camera.worldZ(sx,sy,y));return ground.valid(h)?h:null;
     }
     float rayHeight(SceneCamera camera,float sx,float sy){
         float x=camera.worldX(sx,sy,0),base=camera.worldZ(sx,sy,0);
@@ -138,16 +134,14 @@ final class TerrainSurface {
             for(int i=0;i<8;i++){
                 float[] a=SceneMesh.EDGE[i],b=SceneMesh.EDGE[(i+1)%8];
                 float ay=sample(hx+a[0],hz+a[1])-hy,by=sample(hx+b[0],hz+b[1])-hy;
-                float ax=a[0]+ground.shoreline.dx(hx+a[0],hz+a[1]),az=a[1]+ground.shoreline.dz(hx+a[0],hz+a[1]);
-                float bx=b[0]+ground.shoreline.dx(hx+b[0],hz+b[1]),bz=b[1]+ground.shoreline.dz(hx+b[0],hz+b[1]);
-                float det=ax*bz-bx*az;
-                float slopeX=(ay*bz-by*az)/det,slopeZ=(ax*by-bx*ay)/det;
+                float det=a[0]*b[1]-b[0]*a[1];
+                float slopeX=(ay*b[1]-by*a[1])/det,slopeZ=(a[0]*by-b[0]*ay)/det;
                 float denominator=1-slopeX*cotX-slopeZ*cotZ;
                 if(Math.abs(denominator)<1e-7f)continue;
                 float y=(hy+slopeX*(x-hx)+slopeZ*(base-hz))/denominator;
                 if(y<-.0001f||y>MAX_HEIGHT+.0001f||y<best)continue;
                 float dx=x+y*cotX-hx,dz=base+y*cotZ-hz;
-                float u=(dx*bz-dz*bx)/det,v=(ax*dz-az*dx)/det;
+                float u=(dx*b[1]-dz*b[0])/det,v=(a[0]*dz-a[1]*dx)/det;
                 if(u>=-.00001f&&v>=-.00001f&&u+v<=1.00001f)best=Math.max(best,y);
             }
         }
