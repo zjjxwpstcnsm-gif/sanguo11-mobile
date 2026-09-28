@@ -1,3 +1,18 @@
+# Firebase 真机验证 — 2026-09-28 / NOT COMPLETE
+
+当前验收见 [逐条报告与证据索引](evidence/firebase-20260928/AUDIT.md) 和 [463行可追溯矩阵](evidence/firebase-20260928/matrix.csv)；459条来自原始要求包，4条为明确标注的历史补充。以下旧报告均为历史，不代表当前受测 APK 的结论。
+
+受测 app 源码 `17bd3376508499f2681d3e296939452383506a1e`，SHA256 `98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4`。本轮只改测试/CI/证据，不改生产玩法、存档、地图或渲染，不合并 main。
+
+- API35：Pixel8两次独立冷启动通过；Xiaomi14第三次在Activity启动处被系统拒绝并超时，不能算预览执行。API29：GalaxyS9两次通过，第三次因五次免费物理额度已用完而BLOCKED。双API各三次稳定性未满足。
+- 两API各正常跨月四层日期证据，以及完整20次2D/3D切换、20次HOME/恢复通过；异常Window backing恢复、系统杀进程等完整条件未关闭。
+- 完整纯触控链FAIL：两API横屏出征武将列表不可见。API29竖屏实际出征/移动后探针未到攻击位置，不能判作攻击规则缺陷。最后一轮后续6例NOT_RUN，独立存读档/30分钟运行未完成。
+- owner同步纹理/rig解码与阶梯岸线是重证的实现缺口；logistics:75为输入、候选与实时main共同继承失败。SAF/编辑、全LOD动作和完整PC美术对照等按矩阵保留NOT_RUN/BLOCKED。
+
+首先最小修复DeployWizard横屏可达性，重建配对APK后重跑受影响链；本轮未擅自修生产源码。不得把真机首段PASS、主机计数或CI构建成功称为P0已修复/R00–R14完成。
+
+---
+
 # v112 P0 运行续作 / PARTIAL
 
 当前 APK source `5f8997ebfef15f4680931d40532411a336506d0d`；最终证据 HEAD 另见远端与独立交付 JSON。详情见 [v112 实测报告](reports/R00-R14-P0-v112.md)。

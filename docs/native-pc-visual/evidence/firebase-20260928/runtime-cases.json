@@ -1,0 +1,1784 @@
+{
+  "all_R00_R14_satisfied": false,
+  "app": {
+    "path": "deliverables/sanguo11-native-v112-17bd3376.apk",
+    "bytes": 37387038,
+    "sha256": "98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4",
+    "source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+    "version_code": 112,
+    "version_name": "0.112.0-native-first-asset-lod",
+    "application_id": "game.sanguo.mobile.dev",
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "kind": "universal debug APK with repository development signature",
+    "backend": "Filament 1.56.0 / OpenGL ES"
+  },
+  "production_source_modified_in_this_audit": false,
+  "runs": [
+    {
+      "id": "api35-1",
+      "run": 36362991199,
+      "api": 35,
+      "model": "shiba",
+      "source": "17bd3376508499f2681d3e296939452383506a1e",
+      "root": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape",
+      "gcloud": "evidence/first/first-firebase-results/cold-1/gcloud.log",
+      "probe": "evidence/first/first-firebase-apks/app-debug-androidTest.apk",
+      "actions_url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/36362991199",
+      "app_source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+      "app_sha256": "98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4",
+      "test_source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+      "test_apk": {
+        "path": "evidence/first/first-firebase-apks/app-debug-androidTest.apk",
+        "bytes": 430442,
+        "sha256": "3118b6b50d4677cadf787cb0d87323af375d479ac79e0dda74cd253597d83ed0"
+      },
+      "device_kind": "PHYSICAL",
+      "locale": "zh_CN",
+      "initial_orientation": "landscape",
+      "installation": "separate Firebase matrix, fresh app data checked by cold probe",
+      "prewarm": false,
+      "fixture": false,
+      "automatic_retries": 0,
+      "ready_timeout_ms": 120000,
+      "status": "PASS",
+      "junit_tests": 1,
+      "cases": [
+        {
+          "name": "normalColdStartToNativeGame",
+          "status": "PASS",
+          "seconds": 17.056,
+          "failure": null
+        }
+      ],
+      "cold_probe_explicit_pass": true,
+      "cold_assertions": [
+        "36",
+        "36"
+      ],
+      "junit_timestamps": [
+        "2026-09-27T17:46:50"
+      ],
+      "timestamp_note": "JUnit/logcat use handset local clock; gcloud and Actions UTC are the cross-run time reference.",
+      "matrix_id": "matrix-2qh8xls7v829b",
+      "firebase_url": "https://console.firebase.google.com/project/sanguo11/testlab/histories/bh.d4f7b6bca8c37254/matrices/7265490786724774232",
+      "gpu_driver_raw": "09-27 17:46:47.309 21782 21892 V Filament: [ARM], [Mali-G715], [OpenGL ES 3.2 v1.r51p0-00eac0.64d995cc8112bb70fce4e1266de69f44], [OpenGL ES GLSL ES 3.20]",
+      "device_runtime": "Device/API/supported ABI recorded in cold-runtime; process64 unavailable in first runner",
+      "cold_pipeline": {
+        "first_cpu": [
+          "FIRST_CPU_DELIVERY epoch=1 allCoarse=true span=86.256714"
+        ],
+        "national_frame_admission": [
+          "FRAME_ADMISSION preparations=99 lifetimeSubmissions=99 attempts=101 rejected=2"
+        ],
+        "all_cells_fit": [
+          "FIRST_NATIVE_PREVIEW total=38949 outside=0 span=86.256714 viewport=1533x325"
+        ],
+        "national_report": "windowRecovery=OBSERVING windowFrames=107 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1\nsource=17bd3376508499f2681d3e296939452383506a1e profile=native device=Pixel 8 api=35 abi=[arm64-v8a]\nsnapshot=true surface=true viewport=1303x276 session=editor assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=231704 terrain_all_coarse=true mapVisualKey=471842112:0 environmentCpuChunks=211 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=177 pending=0 submitted=99 terrainMaterialLod=OVERVIEW lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 overlayDraws=102 territoryBuilds=1 territoryBuildMs=313.112345 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=4 workerDeliveries=24 workerBackpressureWallMs=38.164103 frameCallbacks=201 beginAttempts=101 beginSkipped=2 gpuPreparationFrames=99 lifetimeSubmissions=99 surfaceCopies=1 output=CONTENT_DETECTED_NOT_ART_ACCEPTANCE\ncamera=99.5,99.75 span=86.256714 tilt=55.0 facing=1 yaw=0.0\npick=none\nFilament 1.56.0 / OpenGL ES · 中 · 30 帧 color=sRGB framebuffer MSAA=off / compatibility thermal=0 cap=30\n内部 1303 × 276 / UI 1533 × 325 · chunks 177 / GPU 177 · objects 87\n帧回调间隔 33.2 ms（非 GPU/FPS 实测）\n待装载 0 · S06 战斗特效 / 部队 · 林块 161 · LOD 2 · 资产回退 0 · 特效 0/64\n场景 primitives=647 triangles=598577 buffers_bytes=58921156 pose_cache=13 entity_live=528 material_instance_live=88 mesh_live=352 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=2 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=57.376384 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=8 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=0.647787 CPU提交ms P50/P95/P99=2.27/5.48/6.41 samples=101（非驱动DrawCall/GPU帧时）\n",
+        "scope": "Counters and PixelCopy from same uninterrupted matrix. Not a full GPU trace or art acceptance."
+      },
+      "date_samples": [],
+      "lifecycle": {
+        "switches": [],
+        "background": [],
+        "foreground": [],
+        "switch_report_counts": {},
+        "scope": "Presentation API switches are separate from pure touch case; HOME is a real system key. No claim of zero native/GPU leaks or fault recovery."
+      },
+      "raw_required": [
+        {
+          "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/test_result_1.xml",
+          "bytes": 365,
+          "sha256": "b752ef11ec3dabcf05b5de2ec698ac491dc348219ee1033e14afcb3f57bcfb63"
+        },
+        {
+          "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/instrumentation.results",
+          "bytes": 762,
+          "sha256": "f8458428c3eaa1b70840454062cba6350bc27eff34af2a4582cc8cb823ce1194"
+        },
+        {
+          "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/logcat",
+          "bytes": 4259055,
+          "sha256": "dffcecf884d511858eca7c078d21c70902b3aca438b45138c2583556d3ce931a"
+        },
+        {
+          "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/video.mp4",
+          "bytes": 2975543,
+          "sha256": "e54276c945446f7b428e29afe959bdf4fd31ebe6967615ccc4cce60fdb63b024"
+        },
+        {
+          "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-runtime.txt",
+          "bytes": 7549,
+          "sha256": "19e5ce3d714aaa9e14638e40950664b658e94412d3fe72bbf6754926a04b2251"
+        },
+        {
+          "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-screen.png",
+          "bytes": 418784,
+          "sha256": "b04159a31bf42ae0180c7420a1035f4f8e0de5245ed83e85ac9c02b9b2c6b8ef"
+        },
+        {
+          "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-surface.png",
+          "bytes": 193485,
+          "sha256": "3ca71c0025ea13941670fb5a32f4451756a9cb58a6fb233b2f70048bb6b7431b"
+        },
+        {
+          "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-screen.png",
+          "bytes": 418784,
+          "sha256": "b04159a31bf42ae0180c7420a1035f4f8e0de5245ed83e85ac9c02b9b2c6b8ef"
+        },
+        {
+          "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-surface.png",
+          "bytes": 193485,
+          "sha256": "3ca71c0025ea13941670fb5a32f4451756a9cb58a6fb233b2f70048bb6b7431b"
+        },
+        {
+          "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-start-page.png",
+          "bytes": 99131,
+          "sha256": "17bb50edb2aad8b39f221e85509f946c220f220249ae94ef3c383c41b0936d70"
+        },
+        {
+          "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-screen.png",
+          "bytes": 1121822,
+          "sha256": "5868ae02110b1b0dcaeddf9a0e750a4adba72ba49f767cf303b080563c89fea4"
+        },
+        {
+          "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-surface.png",
+          "bytes": 1059639,
+          "sha256": "a3cffb24e3106374f72ea7e2278880f8196ccd027d03bf50cd0a99a53085d50d"
+        }
+      ],
+      "expanded_evidence": [
+        {
+          "path": "evidence/first-raw/raw-first/api35-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/surface.png",
+          "bytes": 1059639,
+          "sha256": "a3cffb24e3106374f72ea7e2278880f8196ccd027d03bf50cd0a99a53085d50d"
+        }
+      ]
+    },
+    {
+      "id": "api29-1",
+      "run": 36365234180,
+      "api": 29,
+      "model": "starlte",
+      "source": "17bd3376508499f2681d3e296939452383506a1e",
+      "root": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape",
+      "gcloud": "evidence/api29-first/firebase-results/cold-1/gcloud.log",
+      "probe": "evidence/first/first-firebase-apks/app-debug-androidTest.apk",
+      "actions_url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/36365234180",
+      "app_source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+      "app_sha256": "98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4",
+      "test_source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+      "test_apk": {
+        "path": "evidence/first/first-firebase-apks/app-debug-androidTest.apk",
+        "bytes": 430442,
+        "sha256": "3118b6b50d4677cadf787cb0d87323af375d479ac79e0dda74cd253597d83ed0"
+      },
+      "device_kind": "PHYSICAL",
+      "locale": "zh_CN",
+      "initial_orientation": "landscape",
+      "installation": "separate Firebase matrix, fresh app data checked by cold probe",
+      "prewarm": false,
+      "fixture": false,
+      "automatic_retries": 0,
+      "ready_timeout_ms": 120000,
+      "status": "PASS",
+      "junit_tests": 1,
+      "cases": [
+        {
+          "name": "normalColdStartToNativeGame",
+          "status": "PASS",
+          "seconds": 28.566,
+          "failure": null
+        }
+      ],
+      "cold_probe_explicit_pass": true,
+      "cold_assertions": [
+        "46",
+        "46"
+      ],
+      "junit_timestamps": [
+        "2026-09-27T18:17:38"
+      ],
+      "timestamp_note": "JUnit/logcat use handset local clock; gcloud and Actions UTC are the cross-run time reference.",
+      "matrix_id": "matrix-xof82udfz39ha",
+      "firebase_url": "https://console.firebase.google.com/project/sanguo11/testlab/histories/bh.d4f7b6bca8c37254/matrices/5938681273172008030",
+      "gpu_driver_raw": "09-27 18:17:36.948  6876  7025 V Filament: [ARM], [Mali-G72], [OpenGL ES 3.2 v1.r19p0-01rel0.###other-sha0123456789ABCDEF0###], [OpenGL ES GLSL ES 3.20]",
+      "device_runtime": "Device/API/supported ABI recorded in cold-runtime; process64 unavailable in first runner",
+      "cold_pipeline": {
+        "first_cpu": [
+          "FIRST_CPU_DELIVERY epoch=1 allCoarse=true span=86.256714"
+        ],
+        "national_frame_admission": [
+          "FRAME_ADMISSION preparations=194 lifetimeSubmissions=194 attempts=198 rejected=4"
+        ],
+        "all_cells_fit": [
+          "FIRST_NATIVE_PREVIEW total=38949 outside=0 span=86.256714 viewport=1236x312"
+        ],
+        "national_report": "windowRecovery=OBSERVING windowFrames=203 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1\nsource=17bd3376508499f2681d3e296939452383506a1e profile=native device=SM-G960F api=29 abi=[arm64-v8a, armeabi-v7a, armeabi]\nsnapshot=true surface=true viewport=1051x265 session=editor assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=231704 terrain_all_coarse=true mapVisualKey=471842112:0 environmentCpuChunks=211 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=177 pending=0 submitted=194 terrainMaterialLod=OVERVIEW lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 overlayDraws=199 territoryBuilds=1 territoryBuildMs=889.800115 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=4 workerDeliveries=24 workerBackpressureWallMs=316.128499 frameCallbacks=390 beginAttempts=198 beginSkipped=4 gpuPreparationFrames=194 lifetimeSubmissions=194 surfaceCopies=1 output=CONTENT_DETECTED_NOT_ART_ACCEPTANCE\ncamera=99.5,99.75 span=86.256714 tilt=55.0 facing=1 yaw=0.0\npick=none\nFilament 1.56.0 / OpenGL ES · 中 · 30 帧 color=sRGB framebuffer MSAA=off / compatibility thermal=0 cap=30\n内部 1051 × 265 / UI 1236 × 312 · chunks 177 / GPU 177 · objects 87\n帧回调间隔 33.4 ms（非 GPU/FPS 实测）\n待装载 0 · S06 战斗特效 / 部队 · 林块 161 · LOD 2 · 资产回退 0 · 特效 0/64\n场景 primitives=647 triangles=598577 buffers_bytes=58921156 pose_cache=13 entity_live=528 material_instance_live=88 mesh_live=352 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=2 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=86.863039 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=8 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=1.862846 CPU提交ms P50/P95/P99=2.62/8.67/22.89 samples=198（非驱动DrawCall/GPU帧时）\n",
+        "scope": "Counters and PixelCopy from same uninterrupted matrix. Not a full GPU trace or art acceptance."
+      },
+      "date_samples": [],
+      "lifecycle": {
+        "switches": [],
+        "background": [],
+        "foreground": [],
+        "switch_report_counts": {},
+        "scope": "Presentation API switches are separate from pure touch case; HOME is a real system key. No claim of zero native/GPU leaks or fault recovery."
+      },
+      "raw_required": [
+        {
+          "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/test_result_1.xml",
+          "bytes": 365,
+          "sha256": "195b8795686390e4d640e9f4950f1112c20a59f7f5e418614ecf750391d8593c"
+        },
+        {
+          "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/instrumentation.results",
+          "bytes": 762,
+          "sha256": "da6d4b5fe618fb9b5816a4288c8ef61df285b3ab177cec408e46800a489ad839"
+        },
+        {
+          "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/logcat",
+          "bytes": 4150348,
+          "sha256": "ad981284ea049411d834b48e6a6cbad55b38ebca84f1c5270621779f0b0fc2e8"
+        },
+        {
+          "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/video.mp4",
+          "bytes": 952892,
+          "sha256": "4cc496b63356b6f613aeaf041fae0b50b07a37f5ee424e23f44df4a0e801345c"
+        },
+        {
+          "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-runtime.txt",
+          "bytes": 7626,
+          "sha256": "237da16be4936a8bc3b4ecaa745450d9f35f3ab155ec1275d29d62c572e0d465"
+        },
+        {
+          "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-screen.png",
+          "bytes": 398361,
+          "sha256": "26cc243f3abc51ce3304f4f744caf3606540d639ee8c8ac11733f64946f8ab87"
+        },
+        {
+          "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-surface.png",
+          "bytes": 178124,
+          "sha256": "fa26fc07155acd022b973534b75ceaaaf3d1d33172bab9d9b9c47905ebf78e6f"
+        },
+        {
+          "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-screen.png",
+          "bytes": 398361,
+          "sha256": "26cc243f3abc51ce3304f4f744caf3606540d639ee8c8ac11733f64946f8ab87"
+        },
+        {
+          "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-surface.png",
+          "bytes": 178124,
+          "sha256": "fa26fc07155acd022b973534b75ceaaaf3d1d33172bab9d9b9c47905ebf78e6f"
+        },
+        {
+          "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-start-page.png",
+          "bytes": 93527,
+          "sha256": "7d6487bc8c64c8ec6957f37624fb33fc9e811f391030516cedccbf39e4028956"
+        },
+        {
+          "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-screen.png",
+          "bytes": 1073693,
+          "sha256": "2cee4111f31ec3177ef052c5cd3d83291ef827df6727a0b7a838f2c06ed5500f"
+        },
+        {
+          "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-surface.png",
+          "bytes": 992337,
+          "sha256": "1ea8ce0907c65d8c4edfa53c3bda6dc6a3bd157e6368898d146181dc86c9091e"
+        }
+      ],
+      "expanded_evidence": [
+        {
+          "path": "evidence/api29-first/firebase-results/raw/api29-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/surface.png",
+          "bytes": 992337,
+          "sha256": "1ea8ce0907c65d8c4edfa53c3bda6dc6a3bd157e6368898d146181dc86c9091e"
+        }
+      ]
+    },
+    {
+      "id": "api35-2",
+      "run": 36365917134,
+      "api": 35,
+      "model": "shiba",
+      "source": "a1ee687b256b0fc22a03f1b950346db0273d4996",
+      "root": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape",
+      "gcloud": "evidence/api35-second/recovered/firebase-audit/gcloud.log",
+      "probe": "evidence/api35-second/probe/app-debug-androidTest.apk",
+      "actions_url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/36365917134",
+      "app_source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+      "app_sha256": "98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4",
+      "test_source_sha": "a1ee687b256b0fc22a03f1b950346db0273d4996",
+      "test_apk": {
+        "path": "evidence/api35-second/probe/app-debug-androidTest.apk",
+        "bytes": 437650,
+        "sha256": "eb5926874b9ba8f38acd5028cab574e346ba9c15d00d5daff7f15762d55f125e"
+      },
+      "device_kind": "PHYSICAL",
+      "locale": "zh_CN",
+      "initial_orientation": "landscape",
+      "installation": "separate Firebase matrix, fresh app data checked by cold probe",
+      "prewarm": false,
+      "fixture": false,
+      "automatic_retries": 0,
+      "ready_timeout_ms": 120000,
+      "status": "FAIL",
+      "junit_tests": 4,
+      "cases": [
+        {
+          "name": "normalColdStartToNativeGame",
+          "status": "PASS",
+          "seconds": 18.002,
+          "failure": null
+        },
+        {
+          "name": "pureTouchCommandChain",
+          "status": "FAIL",
+          "seconds": 15.355,
+          "failure": "java.lang.AssertionError: Visible touch control not found\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.seek(FirebaseAcceptanceInstrumentation.java:41)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.text(FirebaseAcceptanceInstrumentation.java:42)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.touchChain(FirebaseAcceptanceInstrumentation.java:58)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.lambda$finish$0(FirebaseAcceptanceInstrumentation.java:31)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.$r8$lambda$GCYNpGI4Y3UiP801F4gXrj9uk74(FirebaseAcceptanceInstrumentation.java:0)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation$$ExternalSyntheticLambda3.run(R8$$SyntheticClass:0)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.execute(FirebaseAcceptanceInstrumentation.java:26)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.finish(FirebaseAcceptanceInstrumentation.java:31)\n\tat game.sanguo.mobile.NativeColdStartInstrumentation.onStart(NativeColdStartInstrumentation.java:100)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.onStart(FirebaseAcceptanceInstrumentation.java:23)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2606)\n\n      "
+        },
+        {
+          "name": "dateStateAndPixelEvidence",
+          "status": "PASS",
+          "seconds": 17.002,
+          "failure": null
+        },
+        {
+          "name": "lifecycleTwentyPlusTwenty",
+          "status": "PASS",
+          "seconds": 108.97,
+          "failure": null
+        }
+      ],
+      "cold_probe_explicit_pass": true,
+      "cold_assertions": [
+        "37"
+      ],
+      "junit_timestamps": [
+        "2026-09-27T18:29:04"
+      ],
+      "timestamp_note": "JUnit/logcat use handset local clock; gcloud and Actions UTC are the cross-run time reference.",
+      "matrix_id": "matrix-30ogbk6397ncu",
+      "firebase_url": "https://console.firebase.google.com/project/sanguo11/testlab/histories/bh.d4f7b6bca8c37254/matrices/5574154775262444996",
+      "gpu_driver_raw": "09-27 18:29:01.463 21478 21554 V Filament: [ARM], [Mali-G715], [OpenGL ES 3.2 v1.r51p0-00eac0.64d995cc8112bb70fce4e1266de69f44], [OpenGL ES GLSL ES 3.20]",
+      "device_runtime": "Device/API/supported ABI recorded in cold-runtime; process64 unavailable in first runner",
+      "cold_pipeline": {
+        "first_cpu": [
+          "FIRST_CPU_DELIVERY epoch=1 allCoarse=true span=86.256714"
+        ],
+        "national_frame_admission": [
+          "FRAME_ADMISSION preparations=119 lifetimeSubmissions=119 attempts=121 rejected=2"
+        ],
+        "all_cells_fit": [
+          "FIRST_NATIVE_PREVIEW total=38949 outside=0 span=86.256714 viewport=1533x325"
+        ],
+        "national_report": "windowRecovery=OBSERVING windowFrames=129 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1\nsource=17bd3376508499f2681d3e296939452383506a1e profile=native device=Pixel 8 api=35 abi=[arm64-v8a]\nsnapshot=true surface=true viewport=1303x276 session=editor assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=231704 terrain_all_coarse=true mapVisualKey=471842112:0 environmentCpuChunks=211 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=177 pending=0 submitted=119 terrainMaterialLod=OVERVIEW lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 overlayDraws=122 territoryBuilds=1 territoryBuildMs=353.390747 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=4 workerDeliveries=24 workerBackpressureWallMs=40.832804 frameCallbacks=243 beginAttempts=121 beginSkipped=2 gpuPreparationFrames=119 lifetimeSubmissions=119 surfaceCopies=1 output=CONTENT_DETECTED_NOT_ART_ACCEPTANCE\ncamera=99.5,99.75 span=86.256714 tilt=55.0 facing=1 yaw=0.0\npick=none\nFilament 1.56.0 / OpenGL ES · 中 · 30 帧 color=sRGB framebuffer MSAA=off / compatibility thermal=0 cap=30\n内部 1303 × 276 / UI 1533 × 325 · chunks 177 / GPU 177 · objects 87\n帧回调间隔 33.2 ms（非 GPU/FPS 实测）\n待装载 0 · S06 战斗特效 / 部队 · 林块 161 · LOD 2 · 资产回退 0 · 特效 0/64\n场景 primitives=647 triangles=598577 buffers_bytes=58921156 pose_cache=13 entity_live=528 material_instance_live=88 mesh_live=352 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=2 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=56.342123 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=8 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=0.806844 CPU提交ms P50/P95/P99=1.71/4.89/7.25 samples=121（非驱动DrawCall/GPU帧时）\n",
+        "scope": "Counters and PixelCopy from same uninterrupted matrix. Not a full GPU trace or art acceptance."
+      },
+      "date_samples": [
+        "4250165 DATE date-before authority=184年 1月 上旬 turn=0 snapshot.month=1 visibleText=184年1月上旬 rect=Rect(295, 84 - 1915, 155) recovery=windowRecovery=OBSERVING windowFrames=209 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0",
+        "4254976 DATE date-after-1 authority=184年 1月 中旬 turn=1 snapshot.month=1 visibleText=184年1月中旬 rect=Rect(295, 84 - 1915, 155) recovery=windowRecovery=OBSERVING windowFrames=346 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0",
+        "4259767 DATE date-after-2 authority=184年 1月 下旬 turn=2 snapshot.month=1 visibleText=184年1月下旬 rect=Rect(295, 84 - 1915, 155) recovery=windowRecovery=OBSERVING windowFrames=480 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0",
+        "4264275 DATE date-after-3 authority=184年 2月 上旬 turn=3 snapshot.month=2 visibleText=184年2月上旬 rect=Rect(295, 84 - 1915, 155) recovery=windowRecovery=OBSERVING windowFrames=603 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0"
+      ],
+      "lifecycle": {
+        "switches": [
+          [
+            "1",
+            "true",
+            "true"
+          ],
+          [
+            "2",
+            "true",
+            "true"
+          ],
+          [
+            "3",
+            "true",
+            "true"
+          ],
+          [
+            "4",
+            "true",
+            "true"
+          ],
+          [
+            "5",
+            "true",
+            "true"
+          ],
+          [
+            "6",
+            "true",
+            "true"
+          ],
+          [
+            "7",
+            "true",
+            "true"
+          ],
+          [
+            "8",
+            "true",
+            "true"
+          ],
+          [
+            "9",
+            "true",
+            "true"
+          ],
+          [
+            "10",
+            "true",
+            "true"
+          ],
+          [
+            "11",
+            "true",
+            "true"
+          ],
+          [
+            "12",
+            "true",
+            "true"
+          ],
+          [
+            "13",
+            "true",
+            "true"
+          ],
+          [
+            "14",
+            "true",
+            "true"
+          ],
+          [
+            "15",
+            "true",
+            "true"
+          ],
+          [
+            "16",
+            "true",
+            "true"
+          ],
+          [
+            "17",
+            "true",
+            "true"
+          ],
+          [
+            "18",
+            "true",
+            "true"
+          ],
+          [
+            "19",
+            "true",
+            "true"
+          ],
+          [
+            "20",
+            "true",
+            "true"
+          ]
+        ],
+        "background": [
+          [
+            "1",
+            "false",
+            "false",
+            "false",
+            "110",
+            "110",
+            "true"
+          ],
+          [
+            "2",
+            "false",
+            "false",
+            "false",
+            "217",
+            "217",
+            "true"
+          ],
+          [
+            "3",
+            "false",
+            "false",
+            "false",
+            "250",
+            "250",
+            "true"
+          ],
+          [
+            "4",
+            "false",
+            "false",
+            "false",
+            "283",
+            "283",
+            "true"
+          ],
+          [
+            "5",
+            "false",
+            "false",
+            "false",
+            "315",
+            "315",
+            "true"
+          ],
+          [
+            "6",
+            "false",
+            "false",
+            "false",
+            "348",
+            "348",
+            "true"
+          ],
+          [
+            "7",
+            "false",
+            "false",
+            "false",
+            "381",
+            "381",
+            "true"
+          ],
+          [
+            "8",
+            "false",
+            "false",
+            "false",
+            "414",
+            "414",
+            "true"
+          ],
+          [
+            "9",
+            "false",
+            "false",
+            "false",
+            "447",
+            "447",
+            "true"
+          ],
+          [
+            "10",
+            "false",
+            "false",
+            "false",
+            "480",
+            "480",
+            "true"
+          ],
+          [
+            "11",
+            "false",
+            "false",
+            "false",
+            "514",
+            "514",
+            "true"
+          ],
+          [
+            "12",
+            "false",
+            "false",
+            "false",
+            "548",
+            "548",
+            "true"
+          ],
+          [
+            "13",
+            "false",
+            "false",
+            "false",
+            "580",
+            "580",
+            "true"
+          ],
+          [
+            "14",
+            "false",
+            "false",
+            "false",
+            "612",
+            "612",
+            "true"
+          ],
+          [
+            "15",
+            "false",
+            "false",
+            "false",
+            "644",
+            "644",
+            "true"
+          ],
+          [
+            "16",
+            "false",
+            "false",
+            "false",
+            "677",
+            "677",
+            "true"
+          ],
+          [
+            "17",
+            "false",
+            "false",
+            "false",
+            "710",
+            "710",
+            "true"
+          ],
+          [
+            "18",
+            "false",
+            "false",
+            "false",
+            "742",
+            "742",
+            "true"
+          ],
+          [
+            "19",
+            "false",
+            "false",
+            "false",
+            "775",
+            "775",
+            "true"
+          ],
+          [
+            "20",
+            "false",
+            "false",
+            "false",
+            "808",
+            "808",
+            "true"
+          ]
+        ],
+        "foreground": [
+          [
+            "1",
+            "true"
+          ],
+          [
+            "2",
+            "true"
+          ],
+          [
+            "3",
+            "true"
+          ],
+          [
+            "4",
+            "true"
+          ],
+          [
+            "5",
+            "true"
+          ],
+          [
+            "6",
+            "true"
+          ],
+          [
+            "7",
+            "true"
+          ],
+          [
+            "8",
+            "true"
+          ],
+          [
+            "9",
+            "true"
+          ],
+          [
+            "10",
+            "true"
+          ],
+          [
+            "11",
+            "true"
+          ],
+          [
+            "12",
+            "true"
+          ],
+          [
+            "13",
+            "true"
+          ],
+          [
+            "14",
+            "true"
+          ],
+          [
+            "15",
+            "true"
+          ],
+          [
+            "16",
+            "true"
+          ],
+          [
+            "17",
+            "true"
+          ],
+          [
+            "18",
+            "true"
+          ],
+          [
+            "19",
+            "true"
+          ],
+          [
+            "20",
+            "true"
+          ]
+        ],
+        "switch_report_counts": {
+          "entity_live": {
+            "samples": 20,
+            "min": 382,
+            "max": 382
+          },
+          "material_instance_live": {
+            "samples": 20,
+            "min": 124,
+            "max": 124
+          },
+          "mesh_live": {
+            "samples": 20,
+            "min": 129,
+            "max": 129
+          },
+          "texture_live": {
+            "samples": 20,
+            "min": 11,
+            "max": 11
+          },
+          "material_live": {
+            "samples": 20,
+            "min": 7,
+            "max": 7
+          },
+          "pose_cache": {
+            "samples": 20,
+            "min": 38,
+            "max": 38
+          }
+        },
+        "scope": "Presentation API switches are separate from pure touch case; HOME is a real system key. No claim of zero native/GPU leaks or fault recovery."
+      },
+      "raw_required": [
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/test_result_1.xml",
+          "bytes": 2050,
+          "sha256": "454f60da6c8916ca68c3ccce38a22e24cd4c298cc92551a1694fc057e163881e"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/instrumentation.results",
+          "bytes": 4006,
+          "sha256": "ba0809287c6948cae8cec96e591964275488650bd51289adc7861250e0684e79"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/logcat",
+          "bytes": 5801771,
+          "sha256": "16ee27ee7999fa58474b19d85d1aa082a6ab2b2d8f220b66c2ea83c4861c9b4c"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/video.mp4",
+          "bytes": 28795091,
+          "sha256": "b85830566824d0f5519146d642ae809346a05d0ad7b0d710c397b9e59ea37663"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-runtime.txt",
+          "bytes": 7555,
+          "sha256": "d3d22b7fdf81cb1ab2f6d4e489e6e2e81e4bdbde73a2d0c210b6a8a04201249a"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-screen.png",
+          "bytes": 418100,
+          "sha256": "7d73f6a5b9b21c6614805eb87658288b0eda48b4ebdf5e29dc5499a936724867"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-surface.png",
+          "bytes": 193485,
+          "sha256": "3ca71c0025ea13941670fb5a32f4451756a9cb58a6fb233b2f70048bb6b7431b"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-screen.png",
+          "bytes": 418100,
+          "sha256": "7d73f6a5b9b21c6614805eb87658288b0eda48b4ebdf5e29dc5499a936724867"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-surface.png",
+          "bytes": 193485,
+          "sha256": "3ca71c0025ea13941670fb5a32f4451756a9cb58a6fb233b2f70048bb6b7431b"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-start-page.png",
+          "bytes": 97701,
+          "sha256": "8f25f49dcee23da7ecb165b2415f5d504db33c22e88d2f8e85135c71cb44e6fa"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-screen.png",
+          "bytes": 1121430,
+          "sha256": "910f6fc46108affd4ddeb32803c7e4052ebec88a9dc0d497c521762a4d0aa9cf"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-surface.png",
+          "bytes": 1059639,
+          "sha256": "a3cffb24e3106374f72ea7e2278880f8196ccd027d03bf50cd0a99a53085d50d"
+        }
+      ],
+      "expanded_evidence": [
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/acceptance-failure-1.png",
+          "bytes": 338936,
+          "sha256": "ae30e5d17ef60971b192697e6739738ca066684964e1d812f2a3c30ba090c7eb"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/acceptance-runtime.txt",
+          "bytes": 122800,
+          "sha256": "0f08bf10102e5717900a1c8d424e59fc4acf00f899689070fa47be99cccaf635"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-1-screen.png",
+          "bytes": 1025336,
+          "sha256": "b3c1cdbb1b9b3df1264ae8803ee44d556c519070715f2c2cb94607c754fcce32"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-1-surface.png",
+          "bytes": 945541,
+          "sha256": "fac097fbd7b1cf6caa8aa623da7419d663ba2f1a6b1acc33c467849e9f397ff2"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-2-screen.png",
+          "bytes": 1026033,
+          "sha256": "82cd8f26bd98a82a88f40e772e50a705109f36a10dc9bf0a2869745d63adc06d"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-2-surface.png",
+          "bytes": 945541,
+          "sha256": "33069e6025337d59931cd7d1b12ee66466710943499f4362166470a7bed7422d"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-3-screen.png",
+          "bytes": 1025947,
+          "sha256": "52883c0dcd025f20b672715a8e6291745e5f940ce41d0c1d988165105514f6a4"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-3-surface.png",
+          "bytes": 945541,
+          "sha256": "fac097fbd7b1cf6caa8aa623da7419d663ba2f1a6b1acc33c467849e9f397ff2"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-before-screen.png",
+          "bytes": 1125289,
+          "sha256": "e14ddd39f5fd3b5c2201bb602acffbdc313c99f7cc95728753d45b2fe7c3eff8"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-before-surface.png",
+          "bytes": 1074513,
+          "sha256": "34013c2064b414ce62280312f2aafd0b850111c359d8b6e35517a49d4923f59a"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-1-screen.png",
+          "bytes": 1458293,
+          "sha256": "22ac42ec1fc7ac752b23945f014f023678be0fe1da41af511b5376bce3bad0ef"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-1-surface.png",
+          "bytes": 1416581,
+          "sha256": "8c77b72a490c77f909f8f9a9c66d3485c843c0832d6a243e2aba4dc4cffe8b40"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-20-screen.png",
+          "bytes": 1457114,
+          "sha256": "4db9cc446a8b8fe1eb3814c41146a8964608b91e5f0fe40a6a2295a58fc4149c"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-20-surface.png",
+          "bytes": 1416581,
+          "sha256": "8c77b72a490c77f909f8f9a9c66d3485c843c0832d6a243e2aba4dc4cffe8b40"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-1-screen.png",
+          "bytes": 1025947,
+          "sha256": "080b35729a58bee13ac524686cf88170065b16e115fddd39251dcc409c760971"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-1-surface.png",
+          "bytes": 945541,
+          "sha256": "fac097fbd7b1cf6caa8aa623da7419d663ba2f1a6b1acc33c467849e9f397ff2"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-20-screen.png",
+          "bytes": 1026148,
+          "sha256": "4cbd2a3df2030c6ceff11035860a1b7e5d74d4bf41a3d801f485a08b6c686f54"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-20-surface.png",
+          "bytes": 945541,
+          "sha256": "fac097fbd7b1cf6caa8aa623da7419d663ba2f1a6b1acc33c467849e9f397ff2"
+        },
+        {
+          "path": "evidence/api35-second/recovered/firebase-audit/raw/36365917134-1/shiba-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/surface.png",
+          "bytes": 1416581,
+          "sha256": "8c77b72a490c77f909f8f9a9c66d3485c843c0832d6a243e2aba4dc4cffe8b40"
+        }
+      ]
+    },
+    {
+      "id": "api29-2",
+      "run": 36366893750,
+      "api": 29,
+      "model": "starlte",
+      "source": "5f04b79d4576b88112652cda92fb53e66d3f4d0e",
+      "root": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape",
+      "gcloud": "evidence/api29-second/out/firebase-audit/gcloud.log",
+      "probe": "evidence/api29-second/probe/app-debug-androidTest.apk",
+      "actions_url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/36366893750",
+      "app_source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+      "app_sha256": "98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4",
+      "test_source_sha": "5f04b79d4576b88112652cda92fb53e66d3f4d0e",
+      "test_apk": {
+        "path": "evidence/api29-second/probe/app-debug-androidTest.apk",
+        "bytes": 440034,
+        "sha256": "4940f007880cf89b9b4dd08fe5b8ce900ffa341167b0184e569426e479c03db8"
+      },
+      "device_kind": "PHYSICAL",
+      "locale": "zh_CN",
+      "initial_orientation": "landscape",
+      "installation": "separate Firebase matrix, fresh app data checked by cold probe",
+      "prewarm": false,
+      "fixture": false,
+      "automatic_retries": 0,
+      "ready_timeout_ms": 120000,
+      "status": "FAIL",
+      "junit_tests": 5,
+      "cases": [
+        {
+          "name": "normalColdStartToNativeGame",
+          "status": "PASS",
+          "seconds": 29.004,
+          "failure": null
+        },
+        {
+          "name": "pureTouchLandscapeChain",
+          "status": "FAIL",
+          "seconds": 15.26,
+          "failure": "java.lang.AssertionError: Visible touch control not found\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.seek(FirebaseAcceptanceInstrumentation.java:41)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.text(FirebaseAcceptanceInstrumentation.java:42)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.touchChain(FirebaseAcceptanceInstrumentation.java:59)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.lambda$finish$0(FirebaseAcceptanceInstrumentation.java:31)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.$r8$lambda$GCYNpGI4Y3UiP801F4gXrj9uk74(FirebaseAcceptanceInstrumentation.java:0)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation$$ExternalSyntheticLambda3.run(R8$$SyntheticClass:0)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.execute(FirebaseAcceptanceInstrumentation.java:26)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.finish(FirebaseAcceptanceInstrumentation.java:31)\n\tat game.sanguo.mobile.NativeColdStartInstrumentation.onStart(NativeColdStartInstrumentation.java:100)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.onStart(FirebaseAcceptanceInstrumentation.java:23)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2214)\n\n      "
+        },
+        {
+          "name": "pureTouchPortraitChain",
+          "status": "FAIL",
+          "seconds": 76.283,
+          "failure": "java.lang.AssertionError: natural target attack reached through touch within seven turns\n\tat game.sanguo.mobile.SceneInstrumentation.check(SceneInstrumentation.java:17)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.touchChain(FirebaseAcceptanceInstrumentation.java:62)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.lambda$finish$1(FirebaseAcceptanceInstrumentation.java:31)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.$r8$lambda$kglKscRj9HHbRJEx1ytp3oY2BUc(FirebaseAcceptanceInstrumentation.java:0)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation$$ExternalSyntheticLambda4.run(R8$$SyntheticClass:0)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.execute(FirebaseAcceptanceInstrumentation.java:26)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.finish(FirebaseAcceptanceInstrumentation.java:31)\n\tat game.sanguo.mobile.NativeColdStartInstrumentation.onStart(NativeColdStartInstrumentation.java:100)\n\tat game.sanguo.mobile.FirebaseAcceptanceInstrumentation.onStart(FirebaseAcceptanceInstrumentation.java:23)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2214)\n\n      "
+        },
+        {
+          "name": "dateStateAndPixelEvidence",
+          "status": "PASS",
+          "seconds": 35.004,
+          "failure": null
+        },
+        {
+          "name": "lifecycleTwentyPlusTwenty",
+          "status": "PASS",
+          "seconds": 177.834,
+          "failure": null
+        }
+      ],
+      "cold_probe_explicit_pass": true,
+      "cold_assertions": [
+        "47"
+      ],
+      "junit_timestamps": [
+        "2026-09-27T18:43:55"
+      ],
+      "timestamp_note": "JUnit/logcat use handset local clock; gcloud and Actions UTC are the cross-run time reference.",
+      "matrix_id": "matrix-3qstawfpulggu",
+      "firebase_url": "https://console.firebase.google.com/project/sanguo11/testlab/histories/bh.d4f7b6bca8c37254/matrices/5945563873882345202",
+      "gpu_driver_raw": "09-27 18:43:54.621  6780  6990 V Filament: [ARM], [Mali-G72], [OpenGL ES 3.2 v1.r19p0-01rel0.###other-sha0123456789ABCDEF0###], [OpenGL ES GLSL ES 3.20]",
+      "device_runtime": "1501577 DEVICE model=SM-G960F device=starlte api=29 supportedAbis=[arm64-v8a, armeabi-v7a, armeabi] process64=true fingerprint=samsung/starltexx/starlte:10/QP1A.190711.020/G960FXXUHFVG4:user/release-keys",
+      "cold_pipeline": {
+        "first_cpu": [
+          "FIRST_CPU_DELIVERY epoch=1 allCoarse=true span=86.256714"
+        ],
+        "national_frame_admission": [
+          "FRAME_ADMISSION preparations=205 lifetimeSubmissions=205 attempts=209 rejected=4"
+        ],
+        "all_cells_fit": [
+          "FIRST_NATIVE_PREVIEW total=38949 outside=0 span=86.256714 viewport=1236x312"
+        ],
+        "national_report": "windowRecovery=OBSERVING windowFrames=214 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1\nsource=17bd3376508499f2681d3e296939452383506a1e profile=native device=SM-G960F api=29 abi=[arm64-v8a, armeabi-v7a, armeabi]\nsnapshot=true surface=true viewport=1051x265 session=editor assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=231704 terrain_all_coarse=true mapVisualKey=471842112:0 environmentCpuChunks=211 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=177 pending=0 submitted=205 terrainMaterialLod=OVERVIEW lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 overlayDraws=210 territoryBuilds=1 territoryBuildMs=926.591191 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=4 workerDeliveries=24 workerBackpressureWallMs=373.540269 frameCallbacks=414 beginAttempts=209 beginSkipped=4 gpuPreparationFrames=205 lifetimeSubmissions=205 surfaceCopies=1 output=CONTENT_DETECTED_NOT_ART_ACCEPTANCE\ncamera=99.5,99.75 span=86.256714 tilt=55.0 facing=1 yaw=0.0\npick=none\nFilament 1.56.0 / OpenGL ES · 中 · 30 帧 color=sRGB framebuffer MSAA=off / compatibility thermal=0 cap=30\n内部 1051 × 265 / UI 1236 × 312 · chunks 177 / GPU 177 · objects 87\n帧回调间隔 33.4 ms（非 GPU/FPS 实测）\n待装载 0 · S06 战斗特效 / 部队 · 林块 161 · LOD 2 · 资产回退 0 · 特效 0/64\n场景 primitives=647 triangles=598577 buffers_bytes=58921156 pose_cache=13 entity_live=528 material_instance_live=88 mesh_live=352 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=2 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=92.149077 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=8 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=1.868269 CPU提交ms P50/P95/P99=2.62/8.19/17.88 samples=209（非驱动DrawCall/GPU帧时）\n",
+        "scope": "Counters and PixelCopy from same uninterrupted matrix. Not a full GPU trace or art acceptance."
+      },
+      "date_samples": [
+        "1622794 DATE date-before authority=184年 3月 中旬 turn=7 snapshot.month=3 visibleText=184年3月中旬 rect=Rect(186, 84 - 1524, 165) recovery=windowRecovery=OBSERVING windowFrames=2246 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0",
+        "1633218 DATE date-after-1 authority=184年 3月 下旬 turn=8 snapshot.month=3 visibleText=184年3月下旬 rect=Rect(186, 84 - 1524, 165) recovery=windowRecovery=OBSERVING windowFrames=2529 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0",
+        "1643192 DATE date-after-2 authority=184年 4月 上旬 turn=9 snapshot.month=4 visibleText=184年4月上旬 rect=Rect(186, 84 - 1524, 165) recovery=windowRecovery=OBSERVING windowFrames=2796 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0",
+        "1653904 DATE date-after-3 authority=184年 4月 中旬 turn=10 snapshot.month=4 visibleText=184年4月中旬 rect=Rect(186, 84 - 1524, 165) recovery=windowRecovery=OBSERVING windowFrames=3093 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0"
+      ],
+      "lifecycle": {
+        "switches": [
+          [
+            "1",
+            "true",
+            "true"
+          ],
+          [
+            "2",
+            "true",
+            "true"
+          ],
+          [
+            "3",
+            "true",
+            "true"
+          ],
+          [
+            "4",
+            "true",
+            "true"
+          ],
+          [
+            "5",
+            "true",
+            "true"
+          ],
+          [
+            "6",
+            "true",
+            "true"
+          ],
+          [
+            "7",
+            "true",
+            "true"
+          ],
+          [
+            "8",
+            "true",
+            "true"
+          ],
+          [
+            "9",
+            "true",
+            "true"
+          ],
+          [
+            "10",
+            "true",
+            "true"
+          ],
+          [
+            "11",
+            "true",
+            "true"
+          ],
+          [
+            "12",
+            "true",
+            "true"
+          ],
+          [
+            "13",
+            "true",
+            "true"
+          ],
+          [
+            "14",
+            "true",
+            "true"
+          ],
+          [
+            "15",
+            "true",
+            "true"
+          ],
+          [
+            "16",
+            "true",
+            "true"
+          ],
+          [
+            "17",
+            "true",
+            "true"
+          ],
+          [
+            "18",
+            "true",
+            "true"
+          ],
+          [
+            "19",
+            "true",
+            "true"
+          ],
+          [
+            "20",
+            "true",
+            "true"
+          ]
+        ],
+        "background": [
+          [
+            "1",
+            "false",
+            "false",
+            "false",
+            "224",
+            "224",
+            "true"
+          ],
+          [
+            "2",
+            "false",
+            "false",
+            "false",
+            "340",
+            "340",
+            "true"
+          ],
+          [
+            "3",
+            "false",
+            "false",
+            "false",
+            "382",
+            "382",
+            "true"
+          ],
+          [
+            "4",
+            "false",
+            "false",
+            "false",
+            "428",
+            "428",
+            "true"
+          ],
+          [
+            "5",
+            "false",
+            "false",
+            "false",
+            "477",
+            "477",
+            "true"
+          ],
+          [
+            "6",
+            "false",
+            "false",
+            "false",
+            "523",
+            "523",
+            "true"
+          ],
+          [
+            "7",
+            "false",
+            "false",
+            "false",
+            "570",
+            "570",
+            "true"
+          ],
+          [
+            "8",
+            "false",
+            "false",
+            "false",
+            "615",
+            "615",
+            "true"
+          ],
+          [
+            "9",
+            "false",
+            "false",
+            "false",
+            "662",
+            "662",
+            "true"
+          ],
+          [
+            "10",
+            "false",
+            "false",
+            "false",
+            "706",
+            "706",
+            "true"
+          ],
+          [
+            "11",
+            "false",
+            "false",
+            "false",
+            "754",
+            "754",
+            "true"
+          ],
+          [
+            "12",
+            "false",
+            "false",
+            "false",
+            "800",
+            "800",
+            "true"
+          ],
+          [
+            "13",
+            "false",
+            "false",
+            "false",
+            "846",
+            "846",
+            "true"
+          ],
+          [
+            "14",
+            "false",
+            "false",
+            "false",
+            "892",
+            "892",
+            "true"
+          ],
+          [
+            "15",
+            "false",
+            "false",
+            "false",
+            "938",
+            "938",
+            "true"
+          ],
+          [
+            "16",
+            "false",
+            "false",
+            "false",
+            "985",
+            "985",
+            "true"
+          ],
+          [
+            "17",
+            "false",
+            "false",
+            "false",
+            "1031",
+            "1031",
+            "true"
+          ],
+          [
+            "18",
+            "false",
+            "false",
+            "false",
+            "1080",
+            "1080",
+            "true"
+          ],
+          [
+            "19",
+            "false",
+            "false",
+            "false",
+            "1128",
+            "1128",
+            "true"
+          ],
+          [
+            "20",
+            "false",
+            "false",
+            "false",
+            "1174",
+            "1174",
+            "true"
+          ]
+        ],
+        "foreground": [
+          [
+            "1",
+            "true"
+          ],
+          [
+            "2",
+            "true"
+          ],
+          [
+            "3",
+            "true"
+          ],
+          [
+            "4",
+            "true"
+          ],
+          [
+            "5",
+            "true"
+          ],
+          [
+            "6",
+            "true"
+          ],
+          [
+            "7",
+            "true"
+          ],
+          [
+            "8",
+            "true"
+          ],
+          [
+            "9",
+            "true"
+          ],
+          [
+            "10",
+            "true"
+          ],
+          [
+            "11",
+            "true"
+          ],
+          [
+            "12",
+            "true"
+          ],
+          [
+            "13",
+            "true"
+          ],
+          [
+            "14",
+            "true"
+          ],
+          [
+            "15",
+            "true"
+          ],
+          [
+            "16",
+            "true"
+          ],
+          [
+            "17",
+            "true"
+          ],
+          [
+            "18",
+            "true"
+          ],
+          [
+            "19",
+            "true"
+          ],
+          [
+            "20",
+            "true"
+          ]
+        ],
+        "switch_report_counts": {
+          "entity_live": {
+            "samples": 20,
+            "min": 432,
+            "max": 432
+          },
+          "material_instance_live": {
+            "samples": 20,
+            "min": 126,
+            "max": 126
+          },
+          "mesh_live": {
+            "samples": 20,
+            "min": 180,
+            "max": 180
+          },
+          "texture_live": {
+            "samples": 20,
+            "min": 11,
+            "max": 11
+          },
+          "material_live": {
+            "samples": 20,
+            "min": 7,
+            "max": 7
+          },
+          "pose_cache": {
+            "samples": 20,
+            "min": 57,
+            "max": 57
+          }
+        },
+        "scope": "Presentation API switches are separate from pure touch case; HOME is a real system key. No claim of zero native/GPU leaks or fault recovery."
+      },
+      "raw_required": [
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/test_result_1.xml",
+          "bytes": 3379,
+          "sha256": "04ec57a678fe114fe2045a4764907be2df43ca94f681d64b02e70ec4c4142bb6"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/instrumentation.results",
+          "bytes": 5834,
+          "sha256": "8677f0c8e269ed48d884b1102a67f52e4b5b336e8764a7a3170914fddd003653"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/logcat",
+          "bytes": 11519272,
+          "sha256": "c628523b496dcb741345dcd2312bb4a258dd091e2772311bee72f615088907ec"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/video.mp4",
+          "bytes": 30296189,
+          "sha256": "1976973753a1285900aadd4ef4fc2e8ee5ccd224c21570252685c27d3a993460"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-runtime.txt",
+          "bytes": 7625,
+          "sha256": "9f13cb9f4b71d0c0e90b19cfbcad3fca6d86ec79a042a7e20245d630d8f5c6d9"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-screen.png",
+          "bytes": 398463,
+          "sha256": "195f6e2be0a7425905c1c6295be757ac82c9402cc7450bcdbc54795f71f6ee89"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-faction-selected-surface.png",
+          "bytes": 178124,
+          "sha256": "fa26fc07155acd022b973534b75ceaaaf3d1d33172bab9d9b9c47905ebf78e6f"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-screen.png",
+          "bytes": 398463,
+          "sha256": "195f6e2be0a7425905c1c6295be757ac82c9402cc7450bcdbc54795f71f6ee89"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-national-preview-surface.png",
+          "bytes": 178124,
+          "sha256": "fa26fc07155acd022b973534b75ceaaaf3d1d33172bab9d9b9c47905ebf78e6f"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-start-page.png",
+          "bytes": 94533,
+          "sha256": "c056e3fd4583b0135c1a648617b6d50969338f1a6f769cad50b992b33f91a178"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-screen.png",
+          "bytes": 1073760,
+          "sha256": "6fd90b74db7dd23eaf4e550f3e9f74d0135314a824a591fe44553add0145d867"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-started-game-surface.png",
+          "bytes": 992337,
+          "sha256": "1ea8ce0907c65d8c4edfa53c3bda6dc6a3bd157e6368898d146181dc86c9091e"
+        }
+      ],
+      "expanded_evidence": [
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/acceptance-failure-1.png",
+          "bytes": 210975,
+          "sha256": "ff88c8143981523699a5ea998d222a4c4b38b5cab8f7f6c6e29ef93f9f54d4ed"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/acceptance-failure-2.png",
+          "bytes": 770032,
+          "sha256": "f22f703d7e7e1969fd87229c06679f83673937afb23c25508e0401d9ec63dc62"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/acceptance-runtime.txt",
+          "bytes": 137513,
+          "sha256": "abcffdd0a49e3556174874950b9b76312f2324a127b95d7d5ea8075a6833145d"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-1-screen.png",
+          "bytes": 765876,
+          "sha256": "ed7b022c3878ace6b433933c06a99243900fd8ff66a9d95ff1b6ee2cb642d081"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-1-surface.png",
+          "bytes": 681300,
+          "sha256": "a1182734f013a48c2b004126acbf175a31b15239549cbb7084158ba9ba72e9f6"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-2-screen.png",
+          "bytes": 768387,
+          "sha256": "9ab5790c530cefcd1265c4693941892e700f4a5ea1ef04669157d9497ba1faaa"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-2-surface.png",
+          "bytes": 688144,
+          "sha256": "f9ab953d1ad6ab7be97efde2d113fdc6f8bc13dbb9908013b3cdf80ec29479a3"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-3-screen.png",
+          "bytes": 761643,
+          "sha256": "e6bcc668707d5f16ee31a0a58fbaedae1a4e9c46563e40ba1a7661e98b3a32ac"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-after-3-surface.png",
+          "bytes": 687153,
+          "sha256": "2a60ef698dfc81f12569ada61ea6cebf9a09b555814e031d8c6c5e0fec8cd5bd"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-before-screen.png",
+          "bytes": 770027,
+          "sha256": "207da6e02c3cc0cd02e345638f0608d2a858b32ce60efcd65a6a2f957d7a79ed"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/date-before-surface.png",
+          "bytes": 681307,
+          "sha256": "4e49f688d942caf81ad7e23c6ba5f702d1fcaa5b801b0b2bb4224c4eb04ca5f5"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-1-screen.png",
+          "bytes": 761117,
+          "sha256": "801b28cfdcbbb75b6f6f3e75a701dd227b602cf01c067e3ef0b485a0cdabe082"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-1-surface.png",
+          "bytes": 687137,
+          "sha256": "240fb2205d38b3431c414f2c9e917ede189379247d8a886ee94511c3917af09d"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-20-screen.png",
+          "bytes": 761604,
+          "sha256": "fd17c5a5d6a796476cd5b5d24bef77297019716b1bb17aaac761dd6879a89648"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-resume-20-surface.png",
+          "bytes": 687151,
+          "sha256": "6e1c7e0900f2e853acb7cbf904ef6c0f580b1567b925da6d4ad75ef01b0b084a"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-1-screen.png",
+          "bytes": 761642,
+          "sha256": "c863203d12c5434b2d7929ab7d28bfa60023acb97c8fc764793e0c45c6040788"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-1-surface.png",
+          "bytes": 687149,
+          "sha256": "f72855b4915ef41068157a72ddc073bd865c8a278d5948344938393cf59b9770"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-20-screen.png",
+          "bytes": 761153,
+          "sha256": "a0ae07cadfa5f9a41bd6b1040a2fd91a6b78de0c42bb3e3ce577f351fdee7e78"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/lifecycle-switch-20-surface.png",
+          "bytes": 687148,
+          "sha256": "42bc3ccb72ea3f5a347d2d6977337a2d66ca3039bb82de6ddd722e21da8c343f"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/surface.png",
+          "bytes": 687151,
+          "sha256": "6e1c7e0900f2e853acb7cbf904ef6c0f580b1567b925da6d4ad75ef01b0b084a"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/touch-deployed-screen.png",
+          "bytes": 1007861,
+          "sha256": "8f5d55d69adfda99394fae1a9191c0acb4ff6b8d943827e63230a0f3fbd218e9"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/touch-deployed-surface.png",
+          "bytes": 1072352,
+          "sha256": "d646ac43bd1671c066b7bad1ed101ac77843c07955db7e9addfea74b3fa2f7db"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/touch-move-0-screen.png",
+          "bytes": 997228,
+          "sha256": "93a9f2c5d501a753acffa99b60fe3764ed2e98ad1a9691110d8ccfd3cd12fdd6"
+        },
+        {
+          "path": "evidence/api29-second/out/firebase-audit/raw/36366893750-1/starlte-29-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/touch-move-0-surface.png",
+          "bytes": 1072303,
+          "sha256": "4b3da49a876989d81c69b1b8babf5ad95544586ecafb04122a96708d8cbf67d9"
+        }
+      ]
+    },
+    {
+      "id": "api35-3",
+      "run": 36367763861,
+      "api": 35,
+      "model": "houji",
+      "source": "ed2a70bbb751301aeeb2ea5df734e0d77aece80f",
+      "root": "evidence/api35-third/out/firebase-audit/raw/36367763861-1/houji-35-zh_CN-landscape",
+      "gcloud": "evidence/api35-third/out/firebase-audit/gcloud.log",
+      "probe": "evidence/api35-third/probe/app-debug-androidTest.apk",
+      "actions_url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/36367763861",
+      "app_source_sha": "17bd3376508499f2681d3e296939452383506a1e",
+      "app_sha256": "98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4",
+      "test_source_sha": "ed2a70bbb751301aeeb2ea5df734e0d77aece80f",
+      "test_apk": {
+        "path": "evidence/api35-third/probe/app-debug-androidTest.apk",
+        "bytes": 440642,
+        "sha256": "ec1354ff442001129ce544f36c9ecffaa180630c464f9e54a4bd0a764590918f"
+      },
+      "device_kind": "PHYSICAL",
+      "locale": "zh_CN",
+      "initial_orientation": "landscape",
+      "installation": "Separate Firebase matrix installed the pinned APK; Activity launch denied before probe could verify empty World/auto-save absence.",
+      "prewarm": false,
+      "fixture": false,
+      "automatic_retries": 0,
+      "ready_timeout_ms": 120000,
+      "status": "FAIL",
+      "junit_tests": 1,
+      "cases": [
+        {
+          "name": "normalColdStartToNativeGame",
+          "status": "FAIL",
+          "seconds": 2579.001,
+          "failure": "FAILED\n      "
+        }
+      ],
+      "cold_probe_explicit_pass": false,
+      "cold_assertions": [],
+      "junit_timestamps": [
+        "2026-09-27T18:57:43"
+      ],
+      "timestamp_note": "JUnit/logcat use handset local clock; gcloud and Actions UTC are the cross-run time reference.",
+      "matrix_id": "matrix-3q2x556thgk7g",
+      "firebase_url": "https://console.firebase.google.com/project/sanguo11/testlab/histories/bh.d4f7b6bca8c37254/matrices/9035989326237500151",
+      "gpu_driver_raw": "NOT_AVAILABLE",
+      "device_runtime": "284708968 DEVICE model=23127PN0CG device=houji api=35 supportedAbis=[arm64-v8a] process64=true fingerprint=Xiaomi/houji_eea/houji:15/AQ3A.240627.003/OS2.0.109.4.VNCEUXM:user/release-keys",
+      "acceptance_status": "BLOCKED",
+      "failure_kind": "ENVIRONMENT_ACTIVITY_LAUNCH",
+      "launch_evidence": [
+        "09-27 18:57:44.418  2334  9074 D ActivityStarterImpl: MIUILOG- Permission Denied Activity : Intent { flg=0x10000000 cmp=game.sanguo.mobile.dev/game.sanguo.mobile.MainActivity } pkg : game.sanguo.mobile.dev uid : 10346 tuid : 10345",
+        "09-27 18:57:44.423  2334  9074 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=game.sanguo.mobile.dev/game.sanguo.mobile.MainActivity} with LAUNCH_MULTIPLE from uid 10346 from pid 20772 callingPackage game.sanguo.mobile.dev (BAL_ALLOW_PERMISSION) result code=102"
+      ],
+      "last_normal_step": "Instrumentation started and recorded physical device/API/ABI.",
+      "first_stopped_step": "MainActivity startActivitySync: MIUI Permission Denied Activity / result code=102. No cold capture or renderer initialization reached.",
+      "long_test_executed": false,
+      "unexecuted_cases": [
+        {
+          "name": "pureTouchLandscapeChain",
+          "status": "NOT_RUN",
+          "blocked_by": "normalColdStartToNativeGame never returned before outer instrumentation timeout"
+        },
+        {
+          "name": "pureTouchPortraitChain",
+          "status": "NOT_RUN",
+          "blocked_by": "normalColdStartToNativeGame never returned before outer instrumentation timeout"
+        },
+        {
+          "name": "dateStateAndPixelEvidence",
+          "status": "NOT_RUN",
+          "blocked_by": "normalColdStartToNativeGame never returned before outer instrumentation timeout"
+        },
+        {
+          "name": "manualSaveLoadViaTouch",
+          "status": "NOT_RUN",
+          "blocked_by": "normalColdStartToNativeGame never returned before outer instrumentation timeout"
+        },
+        {
+          "name": "lifecycleTwentyPlusTwenty",
+          "status": "NOT_RUN",
+          "blocked_by": "normalColdStartToNativeGame never returned before outer instrumentation timeout"
+        },
+        {
+          "name": "mixedGameThirtyMinutes",
+          "status": "NOT_RUN",
+          "blocked_by": "normalColdStartToNativeGame never returned before outer instrumentation timeout"
+        }
+      ],
+      "missing_evidence_reason": "Recovered GCS output contains no video, cold-runtime or screenshots. Only device runtime, JUnit, instrumentation timeout and logcat; do not infer rendered output, app GPU driver or 30-minute gameplay.",
+      "cold_pipeline": {
+        "first_cpu": [],
+        "national_frame_admission": [],
+        "all_cells_fit": [],
+        "national_report": "",
+        "scope": "Counters and PixelCopy from same uninterrupted matrix. Not a full GPU trace or art acceptance."
+      },
+      "date_samples": [],
+      "lifecycle": {
+        "switches": [],
+        "background": [],
+        "foreground": [],
+        "switch_report_counts": {},
+        "scope": "Presentation API switches are separate from pure touch case; HOME is a real system key. No claim of zero native/GPU leaks or fault recovery."
+      },
+      "raw_required": [
+        {
+          "path": "evidence/api35-third/out/firebase-audit/raw/36367763861-1/houji-35-zh_CN-landscape/test_result_1.xml",
+          "bytes": 423,
+          "sha256": "7c94764a3574e6eb44f6d81a3b5023f99f4062025e48ebca571f9d47582e42b8"
+        },
+        {
+          "path": "evidence/api35-third/out/firebase-audit/raw/36367763861-1/houji-35-zh_CN-landscape/instrumentation.results",
+          "bytes": 233,
+          "sha256": "165306bbdbfbce34375f246e637dac2634f1143f61038f974a7dc7d36fe1edd1"
+        },
+        {
+          "path": "evidence/api35-third/out/firebase-audit/raw/36367763861-1/houji-35-zh_CN-landscape/logcat",
+          "bytes": 28923413,
+          "sha256": "4c1bb47ff7f2985c6dc6167f3c48d03f43559ffd42b0fc7c12348af18213897b"
+        },
+        {
+          "path": "evidence/api35-third/out/firebase-audit/raw/36367763861-1/houji-35-zh_CN-landscape/video.mp4",
+          "missing": true
+        },
+        {
+          "path": "evidence/api35-third/out/firebase-audit/raw/36367763861-1/houji-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/cold-runtime.txt",
+          "missing": true
+        }
+      ],
+      "expanded_evidence": [
+        {
+          "path": "evidence/api35-third/out/firebase-audit/raw/36367763861-1/houji-35-zh_CN-landscape/artifacts/sdcard/Android/data/game.sanguo.mobile.dev/files/s01/acceptance-runtime.txt",
+          "bytes": 187,
+          "sha256": "183f21ff46e69c238b504343962a11736ee1304a405f149ccc632f6cead35f28"
+        }
+      ]
+    }
+  ],
+  "pending": [
+    {
+      "id": "api29-3",
+      "status": "BLOCKED",
+      "reason": "Five unbilled physical executions allocated/used in rolling 24h; no paid tests authorized. Re-query project quota and exact API29 capacity on a later day. No sixth test submitted."
+    },
+    {
+      "id": "window-loss-recovery",
+      "status": "NOT_RUN",
+      "reason": "Normal date redraw observed; no backing loss occurred, recovery relayout branch not exercised."
+    },
+    {
+      "id": "R13-SAF-editor-full",
+      "status": "NOT_RUN",
+      "reason": "Host editor/import/security tests executed; real document provider, interruption and full edit flows not exercised within the physical budget."
+    },
+    {
+      "id": "full-assets-lod-actions-scenes",
+      "status": "NOT_RUN",
+      "reason": "Formal assets and host mappings validated; full required physical visual scenes not executed."
+    }
+  ]
+}

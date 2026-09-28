@@ -1,6 +1,8 @@
 # 全国 3D 冷启动：Firebase Test Lab 接入
 
-状态：CI 和测试适配；不是渲染修复，也不是已接通或已通过真机验收。
+状态：OIDC 已接通，已执行真实设备审计；没有生产渲染修复，R00–R14 未全部通过。
+
+2026-09-28 的当前结论、逐轮结果、原始证据和剩余额度边界见 [Firebase 验收报告](native-pc-visual/evidence/firebase-20260928/AUDIT.md) 与 [runtime-cases.json](native-pc-visual/evidence/firebase-20260928/runtime-cases.json)。以下首次配置步骤作为历史安装说明保留；本仓库无需重新提供密码、PAT、私钥或浏览器登录。
 工作流：`.github/workflows/native-firebase.yml`。生产源码、规则、资源和版本号不变。
 
 ## 首次账号配置（项目所有者执行）
@@ -46,7 +48,7 @@ printf 'FIREBASE_PROJECT_ID=%s\nFIREBASE_WIF_PROVIDER=projects/%s/locations/glob
 
 ## 执行
 
-- Push 只构建；不会调用真机、不会消耗 Test Lab 设备额度。
+- 普通 Push 只构建；精确消息控制的入口例外，见下表。没有普通提交自动提交真机的通配触发。
 - `workflow_dispatch` 选择 `catalog`：认证并保存当前设备目录，不提交测试。
 - 从目录选择 `form=PHYSICAL`、支持 API29 或 API35 的设备 ID。
   没有某 API 真机就记录覆盖阻塞，不替换成模拟器或其他 API。
@@ -80,8 +82,8 @@ API29+ 的 scoped storage 可能限制拉取，首次真机必须实测确认文
 首次连接必须确认 JUnit 记录正好有 1 个测试，不能以零测试的绿色矩阵验收。
 还须检查视频、整屏与 Surface 图像；CI 绿色不能独立证明画面完整。
 
-当前范围只有：冷启动 → 剧本 → 全国预览 → 势力 → 确认开局。
-日期、生命周期和开局后的完整触控链仍是后续任务；不跑 R00–R14 全量审计。
+原 FirebaseColdStartInstrumentation 的范围只有：冷启动 → 剧本 → 全国预览 → 势力 → 确认开局。
+新增 FirebaseAcceptanceInstrumentation 才执行后半段触点、日期与20+20生命周期专项；最后一轮另有独立存读档和30分钟混合操作。实际失败/未运行保留，不能把新入口存在当通过。
 真机成功也不抹掉原 API29/API35 模拟器失败，需要区分驱动/环境差异。
 
 官方依据：
@@ -89,3 +91,22 @@ API29+ 的 scoped storage 可能限制拉取，首次真机必须实测确认文
 - https://firebase.google.com/docs/test-lab/usage-quotas-pricing
 - https://docs.cloud.google.com/sdk/gcloud/reference/firebase/test/android/run
 - https://github.com/google-github-actions/auth
+
+## 本轮受控入口与配对边界
+
+| 精确提交消息 | 实际范围 | 额度 |
+|---|---|---|
+| `ci(firebase): recover first matrix and quota 20260928` | 只读目录/额度/全项目执行记录及首轮GCS回收 | 0次测试 |
+| `ci(firebase): recover audit evidence 20260928` | 历史API35第二轮原始产物回收、拆分无损压缩包 | 0次测试 |
+| `ci(firebase): audit cold api29 once 20260928` | 当前目录确认后starlte/API29，原冷启动探针一次 | 1次独立安装 |
+| `ci(firebase): acceptance api35 second 20260928` | shiba/API35，一次安装，4个独立专项case | 1次独立安装 |
+| `ci(firebase): acceptance api29 second 20260928` | starlte/API29，一次安装，横/竖屏及日期/生命周期 | 1次独立安装 |
+| `ci(firebase): acceptance api35 third 20260928` | houji/API35，一次安装，计划7个case；实际首例启动被MIUI拒绝，1失败、余6例未运行 | 1次独立安装 |
+
+设备/次数在每个入口明确限定。使用前保存实时physical目录和容量，守卫检查当前API支持、无结算证据、完整滚动24h执行记录小于5、GITHUB_RUN_ATTEMPT=1。没有自动flaky重试。后续新增任务必须另定范围并复查额度，不盲用这次设备/次数。
+
+所有审计真机任务下载首轮36362991199的app并校验SHA256 `98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4`。只重编测试APK；PAIR.txt同时记录appSource、testSource和两份hash。外层43分钟只供30分钟专项使用，原场景ready120秒没有放宽。
+
+失败也尝试回收JUnit、instrumentation、logcat、视频、s01整屏/Surface与记录。前四轮原始连续视频已保留；第三轮API35仅返回JUnit/超时输出/logcat/DEVICE记录，无视频、截图或cold-runtime，按缺失记录，不能重建为PASS。重复per-case片段在RAW_FILES.json中保留原路径/大小/hash。大证据压缩包以20MiB无损分片上传，重组后核对ARCHIVE_SHA256.txt；summary或绿色Actions本身不能代替完整原始包。
+
+本轮最终结论及459条原始要求、4条历史补充定位见 [实际验收报告](native-pc-visual/evidence/firebase-20260928/AUDIT.md)。API35两次冷启动PASS、第三次启动FAIL；API29两次PASS、第三次额度BLOCKED。完整触控链FAIL；30分钟/独立手动存读档NOT_RUN。没有将本轮写成P0修复或全R通过。

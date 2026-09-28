@@ -177,6 +177,7 @@ jobs:
           path: out/firebase-build
       - name: Exact historical APK pair; one fresh matrix, no retries
         run: |
+          test "$GITHUB_RUN_ATTEMPT" = 1 || { echo 'BLOCKED: a workflow rerun would spend another physical execution'; exit 3; }
           test "$(cat out/firebase-build/SOURCE_COMMIT)" = 17bd3376508499f2681d3e296939452383506a1e
           echo '98edd7f758d41b89826d03e6fd1be3366bbea173d679a58bdd5f157b8e9479f4  out/firebase-build/app-debug.apk' | sha256sum --check
           echo '3118b6b50d4677cadf787cb0d87323af375d479ac79e0dda74cd253597d83ed0  out/firebase-build/app-debug-androidTest.apk' | sha256sum --check
