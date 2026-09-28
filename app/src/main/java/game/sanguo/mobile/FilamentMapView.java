@@ -161,12 +161,21 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         surface=new SurfaceView(context);addView(surface,new LayoutParams(-1,-1));overlay=new Overlay(context);addView(overlay,new LayoutParams(-1,-1));
         gestures=new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
             @Override public boolean onDown(MotionEvent e){return true;}
-            @Override public boolean onScroll(MotionEvent a,MotionEvent b,float dx,float dy){if(!multi&&!scaler.isInProgress()&&!editorDrawing){camera.pan(-dx,-dy);clampCamera();}return true;}
+            @Override public boolean onScroll(MotionEvent a,MotionEvent b,float dx,float dy){if(!draggingUnit&&!multi&&!scaler.isInProgress()&&!editorDrawing){camera.pan(-dx,-dy);clampCamera();}return true;}
             @Override public boolean onSingleTapConfirmed(MotionEvent e){
                 if(criticalHit!=null&&criticalSkip!=null){criticalSkip.run();return true;}
                 if(!multi&&e.getDownTime()!=suppressedGesture&&!blocked(e.getX(),e.getY())&&!editorDrawing&&snapshot!=null){Hex h=pick(e.getX(),e.getY(),!commandTargeting&&editorStroke==null);if(snapshot.ground.valid(h)){performClick();if(pickedUnitId>=0)listener.unit(pickedUnitId,h);else listener.tap(h);}}return true;
             }
-            @Override public void onLongPress(MotionEvent e){if(!multi&&!editorDrawing&&!blocked(e.getX(),e.getY())&&snapshot!=null){suppressedGesture=e.getDownTime();Hex h=pick(e.getX(),e.getY(),false);if(h!=null){center(h);performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);}}}
+            @Override public void onLongPress(MotionEvent e){
+                if(e.getDownTime()==activeDragGesture&&!multi&&isEnabled()&&!editorDrawing&&!blocked(e.getX(),e.getY())&&snapshot!=null){
+                    suppressedGesture=e.getDownTime();Hex h=pick(e.getX(),e.getY(),!commandTargeting&&editorStroke==null);
+                    if(h!=null){
+                        if(unitDrag!=null&&unitDrag.begin(h)){draggingUnit=true;dragTarget=h;dragPlan=null;overlay.invalidate();}
+                        else center(h);
+                        performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
+                    }
+                }
+            }
             @Override public boolean onDoubleTap(MotionEvent e){if(!multi&&!blocked(e.getX(),e.getY()))zoomAt(1.7f,e.getX(),e.getY());return true;}
         });
         scaler=new ScaleGestureDetector(context,new ScaleGestureDetector.SimpleOnScaleGestureListener(){@Override public boolean onScale(ScaleGestureDetector d){zoomAt(d.getScaleFactor(),d.getFocusX(),d.getFocusY());return true;}});
@@ -324,9 +333,24 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             MapSceneSnapshot next=pendingLayoutSnapshot;pendingLayoutSnapshot=null;snapshot(next);
         }else if(pendingFit)fit();
     }
+    /** The host owns rule previews and the existing MainActivity drop command. */
+    interface UnitDrag {
+        boolean begin(Hex h);
+        MarchOrders.Plan preview(Hex h);
+        void drop(MarchOrders.Plan plan);
+    }
+    private UnitDrag unitDrag;
+    private long activeDragGesture=-1;
+    private boolean draggingUnit;
+    private Hex dragTarget;
+    private MarchOrders.Plan dragPlan;
+    void setUnitDrag(UnitDrag handler){cancelUnitDrag();unitDrag=handler;}
+    private void cancelUnitDrag(){activeDragGesture=-1;draggingUnit=false;dragTarget=null;dragPlan=null;if(overlay!=null)overlay.invalidate();}
+    @Override public void setEnabled(boolean enabled){if(!enabled)cancelUnitDrag();super.setEnabled(enabled);}
     @Override public boolean onTouchEvent(MotionEvent e){
         if(!isEnabled())return true;
         int action=e.getActionMasked();
+        if(action==MotionEvent.ACTION_DOWN){cancelUnitDrag();activeDragGesture=e.getDownTime();}
         overlay.layoutMini();
         if(action==MotionEvent.ACTION_DOWN)miniGesture=!openingPreview&&navigatorShown&&overlay.miniRect.contains(e.getX(),e.getY())&&!blocked(e.getX(),e.getY());
         if(miniGesture){
@@ -338,11 +362,25 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(action==MotionEvent.ACTION_DOWN){multi=false;multiX=Float.NaN;panelGesture=blocked(e.getX(),e.getY());}
         for(int i=0;i<e.getPointerCount();i++)if(blocked(e.getX(i),e.getY(i)))panelGesture=true;
         if(panelGesture||action==MotionEvent.ACTION_CANCEL){
+            cancelUnitDrag();
             suppressedGesture=e.getDownTime();MotionEvent cancel=MotionEvent.obtain(e);cancel.setAction(MotionEvent.ACTION_CANCEL);
             gestures.onTouchEvent(cancel);scaler.onTouchEvent(cancel);cancel.recycle();
             if(editorDrawing&&editorStroke!=null)editorStroke.event(MotionEvent.ACTION_CANCEL,null);multiX=Float.NaN;return true;
         }
-        if(e.getPointerCount()>1){if(!multi&&editorDrawing&&editorStroke!=null)editorStroke.event(MotionEvent.ACTION_CANCEL,null);multi=true;suppressedGesture=e.getDownTime();}
+        if(e.getPointerCount()>1){cancelUnitDrag();if(!multi&&editorDrawing&&editorStroke!=null)editorStroke.event(MotionEvent.ACTION_CANCEL,null);multi=true;suppressedGesture=e.getDownTime();}
+        if(draggingUnit){
+            Hex h=!blocked(e.getX(),e.getY())&&(!navigatorShown||!overlay.miniRect.contains(e.getX(),e.getY()))
+                ?pick(e.getX(),e.getY(),false):null;
+            if(!Objects.equals(h,dragTarget)){dragTarget=h;dragPlan=unitDrag.preview(h);}
+            if(action==MotionEvent.ACTION_UP){
+                // Resolve once more against the current host state; never execute a stale preview.
+                MarchOrders.Plan plan=unitDrag.preview(h);cancelUnitDrag();
+                MotionEvent cancel=MotionEvent.obtain(e);cancel.setAction(MotionEvent.ACTION_CANCEL);
+                gestures.onTouchEvent(cancel);scaler.onTouchEvent(cancel);cancel.recycle();
+                if(plan!=null)unitDrag.drop(plan);else announceForAccessibility("移动已取消，请放到本旬可达的空格");
+            }
+            overlay.invalidate();return true;
+        }
         if(e.getPointerCount()>1){
             float cx=(e.getX(0)+e.getX(1))*.5f,cy=(e.getY(0)+e.getY(1))*.5f;
             float angle=(float)Math.toDegrees(Math.atan2(e.getY(1)-e.getY(0),e.getX(1)-e.getX(0)));
@@ -387,7 +425,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     @Override public boolean performClick(){super.performClick();return true;}
     void snapshot(MapSceneSnapshot next){
-        meshWork.owner();if(released)return;
+        meshWork.owner();if(released)return;cancelUnitDrag();
         // A national fit requested before layout must precede the first CPU job.
         // Retain only the latest immutable display snapshot until dimensions exist.
         if(pendingFit&&(getWidth()==0||getHeight()==0)){pendingLayoutSnapshot=next;return;}
@@ -509,7 +547,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private static String percentile(long[] times,double p){return times.length==0?"N/A":String.format(java.util.Locale.ROOT,"%.2f",times[Math.min(times.length-1,(int)Math.ceil(times.length*p)-1)]/1e6);}
     @Override protected void onDetachedFromWindow(){release();super.onDetachedFromWindow();}
-    void resume(boolean value){meshWork.owner();resumed=value;if(value)schedule();else {clearEffects();cancelFrame();}}
+    void resume(boolean value){meshWork.owner();resumed=value;if(value)schedule();else {cancelUnitDrag();clearEffects();cancelFrame();}}
     private void cancelFrame(){Choreographer.getInstance().removeFrameCallback(this);queued=false;lastFrame=0;waterLastTick=0;pacer.reset();}
     private void schedule(){if(!released&&resumed&&swap!=null&&!queued){queued=true;Choreographer.getInstance().postFrameCallback(this);}}
     @Override public void surfaceCreated(SurfaceHolder holder){if(released||swap!=null)return;try{outputVerified=false;outputStatus="WAITING_FRAME";surfaceFrames=0;uniformOutputCount=0;lastOutputProbe=0;swap=engine.createSwapChain(holder.getSurface(),srgbSwapChain?SwapChainFlags.CONFIG_SRGB_COLORSPACE:SwapChainFlags.CONFIG_DEFAULT);displayHelper.attach(renderer,surface.getDisplay());schedule();}catch(RuntimeException|LinkageError e){failure.accept(e);}}
@@ -849,6 +887,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void saveCamera(Bundle b){b.putBoolean("mapNavigator",navigatorShown);b.putFloat("cameraX",camera.x*TileGeometry.DX);b.putFloat("cameraY",camera.z*TileGeometry.DY);b.putFloat("sceneSpan",camera.span);b.putFloat("sceneTilt",camera.tilt);b.putInt("sceneFacing",camera.facing);b.putFloat("sceneYaw",camera.yaw);}
     void restoreCamera(Bundle b){pendingFit=false;navigatorShown=b.getBoolean("mapNavigator",navigatorShown);try{camera.x=b.getFloat("cameraX")/TileGeometry.DX;camera.z=b.getFloat("cameraY")/TileGeometry.DY;camera.span=b.getFloat("sceneSpan",15);camera.tilt=b.getFloat("sceneTilt",55);camera.yaw=b.getFloat("sceneYaw",0);camera.facing=b.getInt("sceneFacing",1)<0?-1:1;camera.sanitize();clampCamera();}catch(RuntimeException bad){camera.x=0;camera.z=0;camera.span=15;camera.tilt=55;camera.yaw=0;camera.facing=1;clampCamera();}}
     void release(){
+        cancelUnitDrag();unitDrag=null;
         meshWork.owner();
         if(released)return;released=true;verifiedOutputListener=null;pendingLayoutSnapshot=null;pendingFit=false;replay=null;animatedUnit=null;generation++;cancelFrame();meshWork.close();assetWork.close();pending=0;surface.getHolder().removeCallback(this);
         // A detached View may remain referenced by the framework or an outstanding probe.
@@ -1165,6 +1204,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 cell(c,tacticPreview.blocked,0xffff3333);
             }
             if(route!=null)for(Hex h:route.path)cell(c,h,0xffffd576);
+            if(draggingUnit){
+                if(dragPlan!=null)for(Hex h:dragPlan.path)cell(c,h,0xff6ddcc5);
+                cell(c,dragTarget,dragPlan==null?0xffff7979:0xff6ddcc5);
+            }
             if(targets.isEmpty())for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.coverage)cell(c,h,0xffcfad6e);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets.isEmpty()?snapshot.attackTargets:targets)cell(c,h,0xffdd7661);cell(c,snapshot.selected,0xffffd576);
             for(MapSceneSnapshot.Item item:snapshot.items)if(item.site!=null&&item.site.cells.contains(snapshot.selected))for(Hex h:item.site.cells)cell(c,h,0xffffd576);
             // Ground rings remain visible through architecture; transit units cannot disappear behind walls.
@@ -1204,7 +1247,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 p.setColor(selected?0xe61b2f37:0xb3122027);c.drawRoundRect(box,pad,pad,p);
                 p.setColor(selected?0xffffd576:item.color);c.drawText(first,x,y,p);if(second!=null)c.drawText(second,x,y+font*1.2f,p);
             }
-            p.setColor(0xfff0e5c8);c.drawText((pending>0)?"3D 地形装载中… · 可在视图切回 2D":(editorGrid?"编辑网格临时显示 · 不修改游戏网格设置":"双指缩放/旋转 · 范围虚线＝山体遮挡"),12,24*getResources().getDisplayMetrics().density,p);
+            p.setColor(0xfff0e5c8);c.drawText((pending>0)?"3D 地形装载中… · 可在视图切回 2D":(draggingUnit?(dragPlan==null?"移出范围 · 松手取消":"松手移动 · 消耗"+dragPlan.cost):editorGrid?"编辑网格临时显示 · 不修改游戏网格设置":"长按己方选中部队拖动 · 双指缩放/旋转"),12,24*getResources().getDisplayMetrics().density,p);
             if(diagnostics){float y=48*getResources().getDisplayMetrics().density;for(String line:report().split("\n")){c.drawText(line,12,y,p);y+=22*getResources().getDisplayMetrics().density;}}
             drawCombat(c);drawMini(c);p.clearShadowLayer();c.restore();
         }

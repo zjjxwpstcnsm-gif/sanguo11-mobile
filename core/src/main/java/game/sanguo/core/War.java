@@ -176,7 +176,7 @@ public final class War {
         String heading=tactic==null?"未选择战法":tactic.label+" · 消耗气力"+tactic.energy+" / 当前"+(a==null?0:a.energy)+"\n命中率"+tacticChance(actor,target,tactic)+"%；命中或失败均结束本旬行动，失败同样扣气力。";
         if(a!=null&&tactic==Tactic.FIRE_ARROW)heading+="\n"+w.combat.firePreview(a,b,CombatRules.DIRECT_FIRE_BASE,false);
         if(b!=null)heading+="\n实际目标："+w.officer(b.officerId).name+" · "+b.hex;
-        if(a!=null&&b!=null&&tactic==Tactic.SPIRAL)heading+="\n命中后混乱概率："+w.combat.spiralConfusionChance(a,b)+"%";
+        if(a!=null&&b!=null&&tactic==Tactic.SPIRAL)heading+="\n命中后混乱概率："+w.combat.spiralConfusionChance(a,b)+"% · 每次施放造成混乱约 "+String.format(java.util.Locale.ROOT,"%.1f",tacticChance(actor,target,tactic)*w.combat.spiralConfusionChance(a,b)/100.0)+"%";
         if(tactic!=null)heading+="\n射程："+tactic.minRange+"–"+(tactic.maxRange+(a!=null&&a.weapon==World.Weapon.CROSSBOW?range(a)-a.weapon.range:0))+"格；效果："+tactic.effect;
         Displacement.Preview p=displacement.preview(a,b,Displacement.kind(tactic),error,heading);
         if(error!=null)return p;
@@ -214,7 +214,11 @@ public final class War {
         if(w.advancedBattle.magic(plot))return w.advancedBattle.magicChance(a,b,plot);
         if(plot==Plot.CALM||plot==Plot.EXTINGUISH)return 100;
         int defense=b==null?50:w.army.intelligence(b);
-        return w.skills.plotChance(a,b,plot,Math.max(10,Math.min(95,65+(w.army.intelligence(a)-defense)/2)));
+        // User-requested control balance only. Other plots and skill precedence stay unchanged.
+        int difference=w.army.intelligence(a)-defense;
+        int base=plot==Plot.CONFUSE?Math.max(5,Math.min(85,45+difference/2))
+            :Math.max(10,Math.min(95,65+difference/2));
+        return w.skills.plotChance(a,b,plot,base);
     }
     public String plotError(int actor,Hex target,Plot plot){
         World.Unit a=w.unit(actor);String error=actorError(a);if(error!=null)return error;

@@ -38,4 +38,5 @@
     <instrumentation android:name="game.sanguo.mobile.NativeR17Instrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
     <instrumentation android:name="game.sanguo.mobile.NativeR18Instrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
     <instrumentation android:name="game.sanguo.mobile.NativeGridCoastInstrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
+    <instrumentation android:name="game.sanguo.mobile.NativeFeedback118Instrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
 </manifest>

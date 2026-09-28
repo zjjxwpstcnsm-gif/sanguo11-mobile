@@ -50,6 +50,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
     private Bundle camera=new Bundle();
     private Set<Hex> targets=Collections.emptySet();
     private MarchOrders.Plan route;
+    private Consumer<MarchOrders.Plan> unitDrop;
     private Runnable criticalSkip;
     private CombatSequence commandEffects;
     private MapSceneSnapshot publishedSnapshot,commandFinalSnapshot;
@@ -150,6 +151,21 @@ final class MapHost extends FrameLayout implements MapPresentation {
         if(!health.commit()){Toast.makeText(getContext(),"无法保存 3D 启动健康标记，保留 2D",Toast.LENGTH_LONG).show();return;}
         try{
             spatial=new FilamentMapView(getContext(),listener,this::fallback);activeNativeHosts++;
+            spatial.setUnitDrag(new FilamentMapView.UnitDrag(){
+                public boolean begin(Hex h){
+                    World.Unit u=world.unit(moving);
+                    return unitDrop!=null&&isEnabled()&&!openingPreview&&editorStroke==null&&!commandTargeting
+                        &&targets.isEmpty()&&!commandEffectsActive()&&!world.commandsBlocked()
+                        &&u!=null&&u.hex.equals(h)&&world.orders.error(u)==null;
+                }
+                public MarchOrders.Plan preview(Hex h){
+                    World.Unit u=world.unit(moving);
+                    if(u==null||h==null||h.equals(u.hex)||!begin(u.hex)||(publishedSnapshot==null||!publishedSnapshot.reachable.contains(h)))return null;
+                    MarchOrders.Plan plan=world.marches.previewMove(u.id,h);
+                    return plan.valid()&&plan.stepsNow==plan.path.size()-1?plan:null;
+                }
+                public void drop(MarchOrders.Plan plan){if(unitDrop!=null)unitDrop.accept(plan);}
+            });
             // A constructed renderer can still be blank or stalled. Keep recovery latched
             // until this exact host receives a current, settled Surface-content observation.
             FilamentMapView candidate=spatial;
@@ -200,7 +216,7 @@ if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){if(
     @Override public void saveCamera(Bundle b){b.putBoolean("sceneEnabled",is3D());if(spatial==null){for(String key:new String[]{"sceneSpan","sceneTilt","sceneYaw"})if(camera.containsKey(key))b.putFloat(key,camera.getFloat(key));if(camera.containsKey("sceneFacing"))b.putInt("sceneFacing",camera.getInt("sceneFacing"));flat.saveCamera(b);}else spatial.saveCamera(b);}
     @Override public void restoreCamera(Bundle b){camera=new Bundle(b);if(!safeMode&&Boolean.TRUE.equals(b.get("sceneEnabled"))&&spatial==null)switchMode(true,false);if(spatial==null)flat.restoreCamera(b);else spatial.restoreCamera(b);}
     @Override public void setEnabled(boolean enabled){super.setEnabled(enabled);if(flat!=null)flat.setEnabled(enabled);if(spatial!=null)spatial.setEnabled(enabled);}
-    void setUnitDrop(Consumer<MarchOrders.Plan> drop){flat.setUnitDrop(drop);}
+    void setUnitDrop(Consumer<MarchOrders.Plan> drop){unitDrop=drop;flat.setUnitDrop(drop);}
     void setRoute(MarchOrders.Plan value){route=value;flat.setRoute(value);if(spatial!=null)spatial.setRoute(value);}
     void setPickTargets(Set<Hex> value){targets=value==null?Collections.emptySet():Set.copyOf(value);flat.setPickTargets(value==null?null:targets);if(spatial!=null)spatial.setTargets(value);}
     void setTacticPreview(Displacement.Preview value){tacticPreview=value;flat.setTacticPreview(value);if(spatial!=null)spatial.setTacticPreview(value);}

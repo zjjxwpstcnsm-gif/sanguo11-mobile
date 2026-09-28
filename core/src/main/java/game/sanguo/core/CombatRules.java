@@ -171,6 +171,6 @@ public final class CombatRules {
             +"\n"+w.cityDefense.preview(c,u);
     }
     public int spiralConfusionChance(World.Unit a,World.Unit b){
-        return critical(a,b,true)?100:Math.max(10,Math.min(40,25+(w.army.war(a)-w.army.war(b))/2));
+        return critical(a,b,true)?100:Math.max(5,Math.min(25,15+(w.army.war(a)-w.army.war(b))/4));
     }
 }

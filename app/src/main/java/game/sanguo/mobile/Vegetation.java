@@ -5,7 +5,7 @@ import java.util.*;
 
 /** Opaque merged vegetation: one renderable per visible 8x8 chunk, never one per tree. */
 final class Vegetation {
-    static final int CHUNK=8,SEED=0x3111203;
+    static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=2;
     static Set<Hex> exclusions(MapSceneSnapshot snapshot){
         Set<Hex> result=new HashSet<>(snapshot.ground.bases);
         for(MapSceneSnapshot.Item item:snapshot.items)if(item.facility!=null||item.unit!=null)result.add(item.hex);
@@ -54,7 +54,7 @@ final class Vegetation {
             float cx=g.grid.x(q+chunk/2,r+chunk/2),cz=g.grid.z(q+chunk/2,r+chunk/2);
             if(!window.contains(cx,cz,radius))continue;
             boolean detailed=window.span<14&&Math.hypot(cx-window.x,cz-window.z)<20;
-            long hash=SEED^LandscapeProfile.VERSION^g.mapIdentity^g.width*31L^g.height^(detailed?0x808:0)^((long)chunk<<48);
+            long hash=SEED^PLACEMENT_VERSION^LandscapeProfile.VERSION^g.mapIdentity^g.width*31L^g.height^(detailed?0x808:0)^((long)chunk<<48);
             hash=(hash^Float.floatToIntBits(g.grid.offset))*1099511628211L;hash^=g.grid.staggered?1:0;
             for(int rr=r-8;rr<r+chunk+8;rr++)for(int qq=q-8;qq<q+chunk+8;qq++){
                 Hex h=new Hex(qq,rr);int t=g.valid(h)?g.terrain[rr*g.width+qq]:-1;
@@ -72,7 +72,7 @@ final class Vegetation {
                 }
                 if(path(g,h)){if(detailed)near.junction(h);far.junction(h);}
                 for(Placement a:placements(g,excluded,h)){
-                    if(detailed)near.append(models[a.family][0],a);far.append(models[a.family][1],a);
+                    if(detailed)near.append(models[a.family][a.detail?0:1],a);far.append(models[a.family][1],a);
                 }
             }
             SceneMesh distant=far.mesh(cx,cz,radius);distant.chunkQ=q;distant.chunkR=r;distant.landscapeChunkSize=chunk;SceneMesh m=detailed?near.mesh(cx,cz,radius):distant;m.distant=distant;m.chunkQ=q;m.chunkR=r;m.landscapeChunkSize=chunk;m.fingerprint=hash;result.add(m);
@@ -93,8 +93,8 @@ final class Vegetation {
         return t==World.Terrain.ROAD.ordinal()||t==World.Terrain.PLANK_ROAD.ordinal()||t==World.Terrain.MOUNTAIN_PATH.ordinal();
     }
     static final class Placement {
-        final float x,z,scale,angle;final int family;
-        Placement(float x,float z,float scale,float angle,int family){this.x=x;this.z=z;this.scale=scale;this.angle=angle;this.family=family;}
+        final float x,z,scale,angle;final int family;final boolean detail;
+        Placement(float x,float z,float scale,float angle,int family,boolean detail){this.x=x;this.z=z;this.scale=scale;this.angle=angle;this.family=family;this.detail=detail;}
     }
     /** Opaque silhouettes keep alpha-test/mip overdraw out of the foliage path. */
     static List<Placement> placements(MapSceneSnapshot.Ground g,Set<Hex> excluded,Hex h){
@@ -102,17 +102,20 @@ final class Vegetation {
         int type=g.terrain[h.r*g.width+h.q];boolean rock=type==World.Terrain.MOUNTAIN.ordinal();
         if(!rock&&type!=World.Terrain.FOREST.ordinal()&&type!=World.Terrain.PLAIN.ordinal())return out;
         float hx=g.grid.x(h),hz=g.grid.z(h);
-        for(int i=0;i<(rock?1:3);i++){
+        boolean forest=type==World.Terrain.FOREST.ordinal();
+        for(int i=0;i<(rock?1:forest?6:3);i++){
             int hash=mix(Float.floatToIntBits(hx)*73856093^Float.floatToIntBits(hz)*19349663^SEED^g.mapIdentity^i*83492791);
             float x=hx+(((hash>>>2)&1023)/1023f-.5f)*.70f,z=hz+(((hash>>>12)&1023)/1023f-.5f)*.70f;
             // Candidate must belong to this cell: no duplicate ownership at block/hex seams.
             if(!h.equals(g.grid.cell(x,z))||!clear(g,excluded,h,x,z))continue;
             float cluster=.58f+.24f*(float)(Math.sin(x*.71+1.7)*Math.cos(z*.57-2));
-            float chance=rock?.24f:density(g,x,z)*cluster;
+            // Preserve every previous tree/shrub. Extra forest understory uses reduced
+            // meshes even up close, increasing canopy coverage without multiplying LOD0 cost.
+            float chance=rock?.24f:i>=3?.76f+.18f*cluster:density(g,x,z)*cluster;
             if((mix(hash^0x55ab)&65535)/65535f>chance)continue;
             float regional=.5f+.35f*(float)(Math.sin(x*.055)*Math.cos(z*.047));
             int family=rock?3:i==2?2:((hash>>>22)&255)/255f<regional?0:1;
-            out.add(new Placement(x,z,LandscapeProfile.sceneryScale(family,.65f+((hash>>>4)&255)/255f*.30f),(hash&65535)/65535f*6.283185f,family));
+            out.add(new Placement(x,z,LandscapeProfile.sceneryScale(family,.65f+((hash>>>4)&255)/255f*.30f),(hash&65535)/65535f*6.283185f,family,i<3));
         }
         return out;
     }
