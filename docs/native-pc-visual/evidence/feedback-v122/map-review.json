@@ -1,0 +1,53 @@
+{
+  "source": "447fc34c8db5759a5a762adb67ca97f31fa86fca",
+  "mapSha256": "75bcd0e68187acc1832cf70f046879d6e5cdc5fb60a8ab2dab598fb18162d95d",
+  "national_counts": {
+    "V": 1051,
+    "M": 9331,
+    "A": 1169,
+    "R": 7282,
+    "F": 6929,
+    "P": 6989,
+    "Q": 1347,
+    "W": 5397,
+    "B": 158,
+    "D": 161,
+    "Z": 5,
+    "X": 179,
+    "S": 2
+  },
+  "shouchun_review_bounds": {
+    "q": [
+      125,
+      155
+    ],
+    "r": [
+      85,
+      110
+    ]
+  },
+  "shouchun_counts": {
+    "P": 159,
+    "F": 262,
+    "M": 77,
+    "R": 130,
+    "W": 127,
+    "Q": 45,
+    "D": 4,
+    "A": 2
+  },
+  "reference": {
+    "file": "MAP_SAN11.jpg",
+    "sha256": "a5a4e8c7f9785b6fbadc8487508ff6c937dcef2d782b099f2e876e48d167d4e0",
+    "review_crop_pixels": [
+      4050,
+      2750,
+      5350,
+      3850
+    ],
+    "redistributed": false
+  },
+  "finding": "Reference shows broad wetland-like surface around Shouchun; current region has zero SWAMP. Existing classification is incomplete. Exact type corrections are not established from this image alone.",
+  "status": "OPEN / DATA_NOT_CHANGED",
+  "boundary": "User prohibits gameplay/map logic changes; no blanket regional PLANK_ROAD conversion, no fake visual water over plain/forest."
+}

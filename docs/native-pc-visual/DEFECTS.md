@@ -30,3 +30,7 @@ CI：36222182595（原v112严格复验）、36222424271（仅测试API29兼容�
 API29/API35全国预览与原NativeR12失败；API29月7/月4整屏仍1月，UI draw95/Window89冻结而3D变化。生命周期本轮为API29 0/0、API35 20/1后后台停帧断言失败；历史20/18不是20+20通过。两API新parity各12组合、50对完整存档字节一致，但只是fixture。纯触控尾链NOT_REACHED，ARM64 NOT_RUN。原core两边同一logistics:75失败且42调用矩阵相同；20HOST门禁不能替代core/设备/美术。
 
 APK source `5f8997ebfef15f4680931d40532411a336506d0d` / SHA256 `6ba2211d961567b2aa396ba19e3018c1dc44780fa4351a807db099fc643bd058`。生产、规则、资产不变，保留原APK与开发签名；未开始R15或合main。
+
+## 2026-09-29 用户反馈 v122 — PARTIAL
+
+见 [本轮报告](reports/feedback-v122.md)。正式修复栈道材质跨界，改善现有SWAMP材质，41个实际Blender模型接入城港关和13类部队正常加载路径。寿春湿地权威地图缺失仍OPEN；core基线同点失败；正常3D、参考美术和ARM64不得提前记PASS。

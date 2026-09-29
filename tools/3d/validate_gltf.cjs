@@ -1,7 +1,8 @@
 const fs=require('fs'),path=require('path'),validator=require('gltf-validator');
+function files(dir){return fs.readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()?files(path.join(dir,e.name)):e.name.endsWith('.glb')?[path.join(dir,e.name)]:[]);}
 (async()=>{let errors=0,warnings=0,count=0;const details=[];
-for(const family of ['sites','field'])for(const file of fs.readdirSync(path.join(__dirname,'../../app/src/main/assets/3d',family)).filter(x=>x.endsWith('.glb')).sort()){
- const p=path.join(__dirname,'../../app/src/main/assets/3d',family,file);
+for(const family of ['sites','field'])for(const p of files(path.join(__dirname,'../../app/src/main/assets/3d',family)).sort()){
+ const file=path.relative(path.join(__dirname,'../../app/src/main/assets/3d',family),p);
  const r=await validator.validateBytes(new Uint8Array(fs.readFileSync(p)),{uri:file,maxIssues:100,externalResourceFunction:()=>Promise.reject(new Error('external resources forbidden'))});
  errors+=r.issues.numErrors;warnings+=r.issues.numWarnings;count++;
  details.push({asset:family+'/'+file,issues:r.issues});

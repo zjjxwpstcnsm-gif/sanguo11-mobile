@@ -151,7 +151,8 @@ for a in report:
 path=OUT/'docs/native-pc-visual/feedback-v122-blender-assets.json';path.parent.mkdir(parents=True,exist_ok=True)
 path.write_text(json.dumps({'blender':bpy.app.version_string,'assets':report},indent=2)+'\n')
 # Offline contact sheets: explicit modelling evidence, never represented as APK.
-for obj,kind,lod,family in objects:obj.hide_render=True
+for obj,kind,lod,family in objects:
+ obj.hide_render=True;obj.rotation_euler.x=math.pi/2 # runtime Y-up -> Blender Z-up, preview only
 scene=bpy.context.scene;scene.render.engine='CYCLES';scene.cycles.device='CPU';scene.cycles.samples=16;scene.render.resolution_x=480;scene.render.resolution_y=400;scene.render.resolution_percentage=100
 scene.world.color=(.25,.25,.25);scene.view_settings.view_transform='Standard'
 for family in ['sites','field']:
@@ -160,12 +161,12 @@ for family in ['sites','field']:
  for obj,kind,lod,fam in objects:
   if fam==family:obj.data.materials.append(mat)
 from mathutils import Vector
-bpy.ops.object.light_add(type='AREA',location=(2,4,3));bpy.context.object.data.energy=400;bpy.context.object.data.shape='DISK';bpy.context.object.data.size=5
+bpy.ops.object.light_add(type='AREA',location=(2,-3,4));bpy.context.object.data.energy=400;bpy.context.object.data.shape='DISK';bpy.context.object.data.size=5
 bpy.ops.object.camera_add();cam=bpy.context.object;scene.camera=cam;cam.data.type='ORTHO'
 for obj,kind,lod,family in objects:
  if lod:continue
  obj.hide_render=False
- target=Vector((0,.20 if family=='sites' else .24,0));cam.location=target+Vector((2,2.4,3));cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler();cam.data.ortho_scale=2.8 if kind.startswith('city') else 1.6 if family=='sites' else 1.1
+ target=Vector((0,0,.20 if family=='sites' else .24));cam.location=target+Vector((2,-3,2.4));cam.rotation_euler=(target-cam.location).to_track_quat('-Z','Y').to_euler();cam.data.ortho_scale=2.8 if kind.startswith('city') else 1.6 if family=='sites' else 1.1
  p=OUT/f'out/feedback122/blender/{kind}.png';p.parent.mkdir(parents=True,exist_ok=True);scene.render.filepath=str(p);bpy.ops.render.render(write_still=True);obj.hide_render=True
 bpy.ops.wm.save_as_mainfile(filepath=str(OUT/'out/feedback122/blender/models-v122.blend'))
 print(json.dumps({'status':'EXPORTED','models':len(report),'triangles':sum(a['triangles'] for a in report)}))

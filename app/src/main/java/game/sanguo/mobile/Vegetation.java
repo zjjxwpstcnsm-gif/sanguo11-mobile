@@ -5,7 +5,7 @@ import java.util.*;
 
 /** Opaque merged vegetation: one renderable per visible 8x8 chunk, never one per tree. */
 final class Vegetation {
-    static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=2;
+    static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=3;
     static boolean forest(MapSceneSnapshot.Ground ground,Hex h){
         return ground.valid(h)&&ground.terrain[h.r*ground.width+h.q]==World.Terrain.FOREST.ordinal();
     }
@@ -97,6 +97,11 @@ final class Vegetation {
         if(!g.valid(h))return false;int t=g.terrain[h.r*g.width+h.q];
         return t==World.Terrain.ROAD.ordinal()||t==World.Terrain.PLANK_ROAD.ordinal()||t==World.Terrain.MOUNTAIN_PATH.ordinal();
     }
+    /** A movement requirement is not a timber material. Classify each endpoint
+     * from its actual terrain; never propagate plank surfacing into a rough path. */
+    static boolean timber(MapSceneSnapshot.Ground g,Hex h){
+        return g.valid(h)&&g.terrain[h.r*g.width+h.q]==World.Terrain.PLANK_ROAD.ordinal();
+    }
     static final class Placement {
         final float x,z,scale,angle;final int family;final boolean detail;
         Placement(float x,float z,float scale,float angle,int family,boolean detail){this.x=x;this.z=z;this.scale=scale;this.angle=angle;this.family=family;this.detail=detail;}
@@ -154,7 +159,6 @@ final class Vegetation {
             return path(g,n)&&!(g.terrain[h.r*g.width+h.q]==World.Terrain.ROAD.ordinal()
                 &&g.terrain[n.r*g.width+n.q]==World.Terrain.ROAD.ordinal());
         }
-        boolean plank(Hex h,Hex n){return g.terrain[h.r*g.width+h.q]==World.Terrain.PLANK_ROAD.ordinal()||g.terrain[n.r*g.width+n.q]==World.Terrain.PLANK_ROAD.ordinal();}
         void pathVertex(float x,float z,boolean timber,float u,float t){
             vertex(x,g.surface.meshHeight(x,z)+LandscapeProfile.SURFACE_LIFT,z,timber?2:7,u,t);
             // Temper orange timber/soil to the shared earth palette, without another light source.
@@ -163,24 +167,29 @@ final class Vegetation {
         void road(Hex h,Hex n){
             if(!connection(h,n))return;
             float x=g.grid.x(h),z=g.grid.z(h),dx=g.grid.x(n)-x,dz=g.grid.z(n)-z;
-            float len=(float)Math.hypot(dx,dz);boolean timber=plank(h,n);
-            float width=LandscapeProfile.pathWidth(timber),nx=-dz/len*width,nz=dx/len*width;
+            float len=(float)Math.hypot(dx,dz);
+            float widthH=LandscapeProfile.pathWidth(timber(g,h)),widthN=LandscapeProfile.pathWidth(timber(g,n));
             float trim=Math.min(.30f,LandscapeProfile.JUNCTION_TRIM/len);
             // Trim each edge at its node. The single node patch below fills every socket;
             // edge ribbons no longer overlap and z-fight at Y/T/cross intersections.
             for(int k=0;k<12;k++){
                 float t=trim+(1-2*trim)*k/12f,T=trim+(1-2*trim)*(k+1)/12f;int o=v.size()/7;
-                float[][] points={{x+dx*t-nx,z+dz*t-nz},{x+dx*T-nx,z+dz*T-nz},{x+dx*T+nx,z+dz*T+nz},{x+dx*t+nx,z+dz*t+nz}};
+                // The middle seam is shared by both halves. Width interpolates between
+                // the node sockets; material changes exactly at the cell boundary.
+                float w=widthH+(widthN-widthH)*(t-trim)/(1-2*trim),W=widthH+(widthN-widthH)*(T-trim)/(1-2*trim);
+                float nx=-dz/len*w,nz=dx/len*w,NX=-dz/len*W,NZ=dx/len*W;
+                boolean timber=timber(g,k<6?h:n);
+                float[][] points={{x+dx*t-nx,z+dz*t-nz},{x+dx*T-NX,z+dz*T-NZ},{x+dx*T+NX,z+dz*T+NZ},{x+dx*t+nx,z+dz*t+nz}};
                 for(int j=0;j<4;j++)pathVertex(points[j][0],points[j][1],timber,j<2?0:1,j==0||j==3?t:T);
                 Collections.addAll(indices,o,o+2,o+1,o,o+3,o+2);
             }
         }
         void junction(Hex h){
-            List<float[]> boundary=new ArrayList<>();float x=g.grid.x(h),z=g.grid.z(h);boolean timber=false;
+            List<float[]> boundary=new ArrayList<>();float x=g.grid.x(h),z=g.grid.z(h);boolean timber=timber(g,h);
             List<float[]> sockets=new ArrayList<>();
             for(Hex n:h.neighbors())if(g.valid(n)&&connection(h,n)){
                 float dx=g.grid.x(n)-x,dz=g.grid.z(n)-z,len=(float)Math.hypot(dx,dz);
-                boolean wood=plank(h,n);timber|=wood;float w=LandscapeProfile.pathWidth(wood);
+                float w=LandscapeProfile.pathWidth(timber);
                 float trim=Math.min(len*.30f,LandscapeProfile.JUNCTION_TRIM),ux=dx/len,uz=dz/len;
                 sockets.add(new float[]{ux,uz,trim,w});
                 boundary.add(new float[]{x+ux*trim-uz*w,z+uz*trim+ux*w});
@@ -188,7 +197,7 @@ final class Vegetation {
             }
             if(sockets.isEmpty())return;
             // Rounded exposed ends/gaps, omitting arc samples inside a socket's mouth.
-            float radius=LandscapeProfile.PATH_HALF_WIDTH;
+            float radius=LandscapeProfile.pathWidth(timber);
             for(int i=0;i<24;i++){
                 double angle=i*Math.PI/12;float dx=radius*(float)Math.cos(angle),dz=radius*(float)Math.sin(angle);boolean mouth=false;
                 for(float[] a:sockets)if(dx*a[0]+dz*a[1]>0&&Math.abs(-dx*a[1]+dz*a[0])<a[3]){mouth=true;break;}

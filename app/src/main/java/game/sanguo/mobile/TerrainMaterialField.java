@@ -4,7 +4,7 @@ import game.sanguo.core.*;
 
 /** Compact global material field; immutable snapshot input, no gameplay RNG or camera state. */
 final class TerrainMaterialField {
-    static final int VERSION=5;
+    static final int VERSION=6;
     static final float RADIUS=3.2f;
     private static final World.Terrain[] TYPES=World.Terrain.values();
     final MapSceneSnapshot.Ground ground;
@@ -29,7 +29,8 @@ final class TerrainMaterialField {
                 // palette everywhere. Explicit mountain/plank paths retain their treatment.
                 case ROAD:case PLAIN:w[0]+=.9f*k;w[1]+=.1f*k;break;
                 case MOUNTAIN_PATH:case PLANK_ROAD:w[1]+=.8f*k;w[3]+=.2f*k;break;
-                case FOREST:case SWAMP:case POISON:w[0]+=.65f*k;w[1]+=.35f*k;break;
+                case SWAMP:w[0]+=.22f*k;w[1]+=.78f*k;break;
+                case FOREST:case POISON:w[0]+=.65f*k;w[1]+=.35f*k;break;
                 default:w[0]+=.9f*k;w[1]+=.1f*k;
             }
         }
@@ -57,6 +58,16 @@ final class TerrainMaterialField {
         normalize(w);
         return w;
     }
+    float groundTone(float x,float z){
+        float tone=.96f+.04f*(float)(Math.sin(x*.19)*Math.cos(z*.17));
+        Hex h=ground.grid.cell(x,z);float wet=0;
+        for(int r=h.r-1;r<=h.r+1;r++)for(int q=h.q-1;q<=h.q+1;q++){
+            Hex n=new Hex(q,r);if(!ground.valid(n)||ground.isBase(q,r)||ground.terrain[r*ground.width+q]!=World.Terrain.SWAMP.ordinal())continue;
+            float dx=x-ground.grid.x(n),dz=z-ground.grid.z(n),t=Math.max(0,1-(dx*dx+dz*dz)/.64f);
+            wet=Math.max(wet,t*t*(3-2*t));
+        }
+        return tone*(1-.22f*wet);
+    }
     static void normalize(float[] w){
         float sum=0;for(int i=0;i<4;i++){w[i]=Float.isFinite(w[i])?Math.max(0,w[i]):0;sum+=w[i];}
         if(!Float.isFinite(sum)||sum<1e-8f){w[0]=w[2]=w[3]=0;w[1]=1;return;}
@@ -83,7 +94,7 @@ final class TerrainMaterialField {
                 if(stats!=null)stats.sharedSamples++;
                 System.arraycopy(mesh.vertices,prior*7+3,mesh.vertices,v+3,4);
                 System.arraycopy(mesh.surfaceData,prior*8,mesh.surfaceData,s,8);
-                if(wet[prior]!=water)mesh.surfaceData[s+7]=water?waterField.flowAngle(x,z):.96f+.04f*(float)(Math.sin(x*.19)*Math.cos(z*.17));
+                if(wet[prior]!=water)mesh.surfaceData[s+7]=water?waterField.flowAngle(x,z):groundTone(x,z);
                 continue;
             }
             sampleKeys[slot]=key;sampleVertices[slot]=i+1;
@@ -107,7 +118,7 @@ final class TerrainMaterialField {
             // Signed visual shore distance, NOT gameplay water depth. Shared by both batches.
             sectionStarted=timed?System.nanoTime():0;
             mesh.surfaceData[s+6]=waterField.distance(x,z);
-            mesh.surfaceData[s+7]=water?waterField.flowAngle(x,z):.96f+.04f*(float)(Math.sin(x*.19)*Math.cos(z*.17));
+            mesh.surfaceData[s+7]=water?waterField.flowAngle(x,z):groundTone(x,z);
             if(timed)stats.shoreNanos+=System.nanoTime()-sectionStarted;
         }
     }

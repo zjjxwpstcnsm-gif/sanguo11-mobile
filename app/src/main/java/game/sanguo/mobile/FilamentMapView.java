@@ -768,7 +768,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         final FieldAssets assets=fieldAssets;final int requestedLod=unitLod;final android.content.res.AssetManager manager=getContext().getAssets();
         SceneMesh source=assetWork.request(key,()->{
             if(field!=null){SceneMesh model=item.unit==null?assets.mesh(field):assets.pose(field,"idle",0,1);return FieldAssets.farm(item)?FieldAssets.conformFarm(model,assetGround,item.hex):model;}
-            if(item.site!=null)try(java.io.InputStream in=manager.open("3d/sites/"+item.site.model+(item.site.model.equals("gate")?"-v121":"")+"-lod"+siteLodFor(key)+".glb")){SceneMesh model=SiteGlb.read(in);return item.site.model.equals("gate")?SiteVisual.joinGate(model,assetGround,item.hex,item.site.yaw):model;}
+            if(item.site!=null)try(java.io.InputStream in=manager.open("3d/sites/v122/"+item.site.model+"-lod"+siteLodFor(key)+".glb")){SceneMesh model=SiteGlb.read(in);return item.site.model.equals("gate")?SiteVisual.joinGate(model,assetGround,item.hex,item.site.yaw):model;}
             return SceneMesh.proxy(item.kind,item.color);
         });
         if(source==null){
