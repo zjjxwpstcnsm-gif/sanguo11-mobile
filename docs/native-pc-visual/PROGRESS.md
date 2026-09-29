@@ -1,6 +1,8 @@
-## v124 Blender 地形装饰/城港关/部队与性能续作 — PARTIAL
+## v124 Blender模型/原生3D性能续作 — PARTIAL
 
-49个新GLB和rig接入正常原生3D；植被primitive缓冲、制作法线的关节旋转、解码重试位置缓存优化。旧资源与规则/地图保持，主机几何/存档/动画检查通过。精确源码构建及API29/35原120秒ready、Surface/触控验收正在执行，不能先记PASS。PC参考缺失，ARM64/30分钟及历史加载/生命周期缺口未关闭。见reports/feedback-v124.md、handoffs/feedback-v124.md及evidence/feedback-v124/manifest.json。不合main，不开始下一阶段。
+49个城港关/13兵种/地形装饰GLB已接入正常路径；primitive植被、制作法线与rig/clip一次性解析、解码重试位置缓存优化。最终APK源码`6f6ee9772279c87c4e3ff1228ff7eda726793b18`，SHA256`edf9f85b94095ee887b07eb6260a2f0f76ba15b722aaf54b6a883e7aee20c3bc`，41,109,988B。构建/签名/441资产/309GLB零错误警告/四ABI16KB PASS；最终CI36639733339 FAIL。
+
+API29候选港口120检查/四Surface/183,198B完整存档一致PASS；局部四视角已渲染但旧新滚动FAIL、缩放NOT_RUN；寿春及API35三场景旧新原120s ready FAIL。12次安装字节核验PASS。主机植被/姿态分配-53.0%/-25.7%，不是手机FPS。参考缺失/高精美术/ARM64/30分钟和历史触控/SAF/生命周期继续OPEN；WIF授权拒绝、物理提交0。原core/R09继承失败保留，不改规则/地图/旧资源。详见reports/feedback-v124.md、handoffs/feedback-v124.md及evidence/feedback-v124/manifest.json。不合main、不启Unity、不开始下一阶段。
 
 ## v123 模型与性能续作 — PARTIAL
 
