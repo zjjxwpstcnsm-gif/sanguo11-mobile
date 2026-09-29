@@ -214,9 +214,10 @@ public final class War {
         if(w.advancedBattle.magic(plot))return w.advancedBattle.magicChance(a,b,plot);
         if(plot==Plot.CALM||plot==Plot.EXTINGUISH)return 100;
         int defense=b==null?50:w.army.intelligence(b);
-        // User-requested control balance only. Other plots and skill precedence stay unchanged.
+        // Both control plots compare each formation's highest leader/deputy intelligence.
+        // Equal intelligence has a 20% ordinary chance; skill overrides remain in Skills.
         int difference=w.army.intelligence(a)-defense;
-        int base=plot==Plot.CONFUSE?Math.max(5,Math.min(85,45+difference/2))
+        int base=plot==Plot.CONFUSE||plot==Plot.MISLEAD?Math.max(5,Math.min(85,20+difference/2))
             :Math.max(10,Math.min(95,65+difference/2));
         return w.skills.plotChance(a,b,plot,base);
     }

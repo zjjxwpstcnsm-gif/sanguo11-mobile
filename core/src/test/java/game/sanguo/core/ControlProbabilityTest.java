@@ -11,9 +11,10 @@ public final class ControlProbabilityTest {
         boolean baseline=args.length>0&&args[0].equals("baseline");
         World w=fixture();World.Unit a=w.unit(1),b=w.unit(2);
         int plot=w.war.plotChance(1,b.hex,War.Plot.CONFUSE),hit=w.war.tacticChance(1,2,War.Tactic.SPIRAL),confuse=w.combat.spiralConfusionChance(a,b);
-        check(plot==(baseline?65:45),"equal-intelligence ordinary confusion");
+        check(plot==(baseline?65:20),"equal-intelligence ordinary confusion");
         check(confuse==(baseline?25:15),"equal-war ordinary spiral conditional confusion");
-        check(w.war.plotChance(1,b.hex,War.Plot.MISLEAD)==65,"other plot base unchanged");
+        check(w.war.plotChance(1,b.hex,War.Plot.MISLEAD)==(baseline?65:20),"equal-intelligence ordinary false report");
+        check(w.war.plotChance(1,b.hex,War.Plot.FIRE)==65,"non-control plot base unchanged");
         byte[] before=SaveCodec.encode(w);
         for(int i=0;i<30;i++){w.war.tacticPreview(1,2,War.Tactic.SPIRAL);w.war.plotChance(1,b.hex,War.Plot.CONFUSE);}
         check(Arrays.equals(before,SaveCodec.encode(w)),"preview never consumes authority/RNG");
