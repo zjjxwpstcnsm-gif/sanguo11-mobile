@@ -1,0 +1,1112 @@
+{
+  "blender": "4.2.3 LTS",
+  "assets": [
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city0-lod0.glb",
+      "sha256": "4615e9fb6b01b16fc71891beab2e234a102383db384192755b486c89ab28b2b8",
+      "bytes": 734156,
+      "triangles": 6392,
+      "vertices": 13608,
+      "primitives": 1,
+      "bounds": [
+        -1.1542999744415283,
+        -0.03500000014901161,
+        -0.8942999839782715,
+        1.1542999744415283,
+        0.7860000133514404,
+        0.8942999839782715
+      ],
+      "source": "authored brackets, layered roof seams, quarters, mooring details and gate watch chambers",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 19176,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city0-lod1.glb",
+      "sha256": "e5703ad895b3192c4e80503c8469631887ab5ec90a4a5568105d49eef29259ed",
+      "bytes": 341964,
+      "triangles": 3014,
+      "vertices": 6282,
+      "primitives": 1,
+      "bounds": [
+        -1.1542999744415283,
+        -0.03500000014901161,
+        -0.8942999839782715,
+        1.1542999744415283,
+        0.7860000133514404,
+        0.8942999839782715
+      ],
+      "source": "authored brackets, layered roof seams, quarters, mooring details and gate watch chambers",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 9042,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city0-lod2.glb",
+      "sha256": "eb64f3a9894a35a960fd6baa63f3b319dc2fa1baa6947a64e37e9b42b4f53321",
+      "bytes": 74284,
+      "triangles": 604,
+      "vertices": 1308,
+      "primitives": 1,
+      "bounds": [
+        -1.1542999744415283,
+        -0.03500000014901161,
+        -0.8942999839782715,
+        1.1542999744415283,
+        0.7860000133514404,
+        0.8942999839782715
+      ],
+      "source": "authored brackets, layered roof seams, quarters, mooring details and gate watch chambers",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1812,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city1-lod0.glb",
+      "sha256": "62a60c6e38b448baab14e96196b3969c0db4edefca201b598ebdd336ab4b931c",
+      "bytes": 757820,
+      "triangles": 6596,
+      "vertices": 14050,
+      "primitives": 1,
+      "bounds": [
+        -1.0743000507354736,
+        -0.03500000014901161,
+        -0.8942999839782715,
+        1.0743000507354736,
+        0.5260000228881836,
+        0.8942999839782715
+      ],
+      "source": "authored brackets, layered roof seams, quarters, mooring details and gate watch chambers",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 19788,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city1-lod1.glb",
+      "sha256": "f125551376cb0d06967d18040cd3a4280aefb273720a64c65811e6b99643cc5c",
+      "bytes": 355380,
+      "triangles": 3140,
+      "vertices": 6530,
+      "primitives": 1,
+      "bounds": [
+        -1.0743000507354736,
+        -0.03500000014901161,
+        -0.8942999839782715,
+        1.0743000507354736,
+        0.5260000228881836,
+        0.8942999839782715
+      ],
+      "source": "authored brackets, layered roof seams, quarters, mooring details and gate watch chambers",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 9420,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city1-lod2.glb",
+      "sha256": "abcbabb15327780de476836b02ea6b24e00d432ce1606064b68343edcce672f5",
+      "bytes": 76924,
+      "triangles": 624,
+      "vertices": 1358,
+      "primitives": 1,
+      "bounds": [
+        -1.0743000507354736,
+        -0.03500000014901161,
+        -0.8942999839782715,
+        1.0743000507354736,
+        0.5260000228881836,
+        0.8942999839782715
+      ],
+      "source": "authored brackets, layered roof seams, quarters, mooring details and gate watch chambers",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1872,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city2-lod0.glb",
+      "sha256": "39609af9ecb08a548b65e232828d0bda5a04db81e8ef4bf4b2b70a987f078502",
+      "bytes": 722080,
+      "triangles": 6282,
+      "vertices": 13384,
+      "primitives": 1,
+      "bounds": [
+        -1.014299988746643,
+        -0.03500000014901161,
+        -0.8242999911308289,
+        1.014299988746643,
+        0.8659999966621399,
+        0.8242999911308289
+      ],
+      "source": "authored brackets, layered roof seams, quarters, mooring details and gate watch chambers",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 18846,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city2-lod1.glb",
+      "sha256": "0b1247d0bb61b72a76f00591930207dc012a584fc3c371537528e042e47a4831",
+      "bytes": 343040,
+      "triangles": 3024,
+      "vertices": 6302,
+      "primitives": 1,
+      "bounds": [
+        -1.014299988746643,
+        -0.03500000014901161,
+        -0.8242999911308289,
+        1.014299988746643,
+        0.8659999966621399,
+        0.8242999911308289
+      ],
+      "source": "authored brackets, layered roof seams, quarters, mooring details and gate watch chambers",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 9072,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/city2-lod2.glb",
+      "sha256": "fbb9fc1ddf8838fa4f0d116069feb75e0c08c6076366615ceffd1a5372ab7c8d",
+      "bytes": 75744,
+      "triangles": 614,
+      "vertices": 1336,
+      "primitives": 1,
+      "bounds": [
+        -1.014299988746643,
+        -0.03500000014901161,
+        -0.8242999911308289,
+        1.014299988746643,
+        0.8659999966621399,
+        0.8242999911308289
+      ],
+      "source": "authored brackets, layered roof seams, quarters, mooring details and gate watch chambers",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1842,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/port-lod0.glb",
+      "sha256": "129836564e310c41a4bc7b6e299e40d26c81054c917ccc8f2f49613672771212",
+      "bytes": 483664,
+      "triangles": 3322,
+      "vertices": 9157,
+      "primitives": 1,
+      "bounds": [
+        -0.3700000047683716,
+        -0.12999999523162842,
+        -0.3799999952316284,
+        0.3700000047683716,
+        0.42100000381469727,
+        0.8200000524520874
+      ],
+      "source": "authored brackets, layered roof seams, quarters, mooring details and gate watch chambers",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 9966,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/port-lod1.glb",
+      "sha256": "e21dfa575f1cbdcbcc928c00e7b643b5617dc18067410c5684aa9208798658dc",
+      "bytes": 46388,
+      "triangles": 384,
+      "vertices": 782,
+      "primitives": 1,
+      "bounds": [
+        -0.3700000047683716,
+        -0.12999999523162842,
+        -0.3799999952316284,
+        0.3700000047683716,
+        0.42100000381469727,
+        0.8199999928474426
+      ],
+      "source": "authored brackets, layered roof seams, quarters, mooring details and gate watch chambers",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1152,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/port-lod2.glb",
+      "sha256": "f2fb26c2d217a8fccd2334ec3227425457db8fdc36683d14f1abc5734c38e97e",
+      "bytes": 11656,
+      "triangles": 66,
+      "vertices": 138,
+      "primitives": 1,
+      "bounds": [
+        -0.3700000047683716,
+        -0.054999999701976776,
+        -0.3799999952316284,
+        0.3700000047683716,
+        0.42100000381469727,
+        0.8199999928474426
+      ],
+      "source": "authored brackets, layered roof seams, quarters, mooring details and gate watch chambers",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 198,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/gate-lod0.glb",
+      "sha256": "4e6e8c2abb02cbe6bc2733031bb4b2c541ce021e7f8439ae83e00b644749a808",
+      "bytes": 241728,
+      "triangles": 2033,
+      "vertices": 4439,
+      "primitives": 1,
+      "bounds": [
+        -0.47999998927116394,
+        -0.03999999910593033,
+        -0.23000000417232513,
+        0.47999998927116394,
+        0.7560000419616699,
+        0.23000000417232513
+      ],
+      "source": "authored brackets, layered roof seams, quarters, mooring details and gate watch chambers",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 6099,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/gate-lod1.glb",
+      "sha256": "79495172931c8c6f4cd5485b7ef03b256ceb3b6b1055fd2d25252f5829f491b7",
+      "bytes": 56116,
+      "triangles": 450,
+      "vertices": 968,
+      "primitives": 1,
+      "bounds": [
+        -0.47999998927116394,
+        -0.03999999910593033,
+        -0.23000000417232513,
+        0.47999998927116394,
+        0.7559999823570251,
+        0.23000000417232513
+      ],
+      "source": "authored brackets, layered roof seams, quarters, mooring details and gate watch chambers",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1350,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v123/gate-lod2.glb",
+      "sha256": "dab26968126ef093fba5bad746e4ed664415f0a6b53dfa9b1e863dfc55afec43",
+      "bytes": 10120,
+      "triangles": 50,
+      "vertices": 110,
+      "primitives": 1,
+      "bounds": [
+        -0.47999998927116394,
+        -0.03999999910593033,
+        -0.23000000417232513,
+        0.47999998927116394,
+        0.6460000276565552,
+        0.23000000417232513
+      ],
+      "source": "authored brackets, layered roof seams, quarters, mooring details and gate watch chambers",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 150,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-BOAT-lod0.glb",
+      "sha256": "9f8f90c413a5b371ff430b368ee1874601ed3f3515d3c5f73fa55fe2fe11e246",
+      "bytes": 174192,
+      "triangles": 1106,
+      "vertices": 3146,
+      "primitives": 1,
+      "bounds": [
+        -0.36657124757766724,
+        0.0,
+        -0.4477764666080475,
+        0.36657124757766724,
+        0.23335181176662445,
+        0.45074358582496643
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 3318,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-BOAT-lod1.glb",
+      "sha256": "9a5f1f1ea0f5e17f77c020ea89dbff55ff0ef450e80b449cfa9325d2928f31c1",
+      "bytes": 40672,
+      "triangles": 217,
+      "vertices": 587,
+      "primitives": 1,
+      "bounds": [
+        -0.3671291768550873,
+        0.0,
+        -0.4481933116912842,
+        0.3671291768550873,
+        0.2337242215871811,
+        0.44999998807907104
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 651,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-CATAPULT-lod0.glb",
+      "sha256": "65248380b6dc7ed436f7a3185ec52a4a653c02ffcad3139346955125e0160cdd",
+      "bytes": 177428,
+      "triangles": 1170,
+      "vertices": 3197,
+      "primitives": 1,
+      "bounds": [
+        -0.19700001180171967,
+        -0.0009317479562014341,
+        -0.24593175947666168,
+        0.19700001180171967,
+        0.5549998879432678,
+        0.28928202390670776
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 3510,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-CATAPULT-lod1.glb",
+      "sha256": "ef873cf85d89e2ec08f2ccc79d3aa74bf89f9259980d41815a285c1e3a406d46",
+      "bytes": 46688,
+      "triangles": 330,
+      "vertices": 684,
+      "primitives": 1,
+      "bounds": [
+        -0.19699999690055847,
+        0.0,
+        -0.24500000476837158,
+        0.19699999690055847,
+        0.5550000071525574,
+        0.28928202390670776
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 990,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-CAVALRY-lod0.glb",
+      "sha256": "2a16079b3c6ba2c93e05fd72827e7f43b6e58da38723766265fce5b6680709df",
+      "bytes": 167916,
+      "triangles": 1223,
+      "vertices": 2986,
+      "primitives": 1,
+      "bounds": [
+        -0.10899999737739563,
+        0.0,
+        -0.23747409880161285,
+        0.10899999737739563,
+        0.7049999833106995,
+        0.23629164695739746
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 3669,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-CAVALRY-lod1.glb",
+      "sha256": "a697d8853b82a08c39a883e38fb9bcfab648c17c2280cff960397652a73e32fa",
+      "bytes": 133476,
+      "triangles": 913,
+      "vertices": 2346,
+      "primitives": 1,
+      "bounds": [
+        -0.10899999737739563,
+        0.0,
+        -0.23747409880161285,
+        0.10899999737739563,
+        0.7049999833106995,
+        0.23629164695739746
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 2739,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-CROSSBOW-lod0.glb",
+      "sha256": "e0ca636e923d900af872b6108d62f2065659d70352bc15ac09441682230d9fe4",
+      "bytes": 98668,
+      "triangles": 733,
+      "vertices": 1666,
+      "primitives": 1,
+      "bounds": [
+        -0.09799999743700027,
+        0.0,
+        -0.0560000017285347,
+        0.1519387811422348,
+        0.4480000138282776,
+        0.1599999964237213
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 2199,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-CROSSBOW-lod1.glb",
+      "sha256": "2e7bcc36904907f6b7f9a5eddcdc815f17bb592fecbc1f536515e233a3916e80",
+      "bytes": 72748,
+      "triangles": 493,
+      "vertices": 1186,
+      "primitives": 1,
+      "bounds": [
+        -0.09799999743700027,
+        0.0,
+        -0.05000000074505806,
+        0.1519387811422348,
+        0.4480000138282776,
+        0.1599999964237213
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1479,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-HALBERD-lod0.glb",
+      "sha256": "2ba6dd731db3c169c74ae6625ace83958a2f1bdf7bbf3f1358e32c0fbd43f1f2",
+      "bytes": 101752,
+      "triangles": 754,
+      "vertices": 1725,
+      "primitives": 1,
+      "bounds": [
+        -0.1120000034570694,
+        0.0,
+        -0.0560000017285347,
+        0.11500000208616257,
+        0.5649999976158142,
+        0.05400000140070915
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 2262,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-HALBERD-lod1.glb",
+      "sha256": "8f58793e01ce7e3c47a792363b08390cc76615935962f46d22872d72f21975de",
+      "bytes": 70504,
+      "triangles": 470,
+      "vertices": 1145,
+      "primitives": 1,
+      "bounds": [
+        -0.10999999940395355,
+        0.0,
+        -0.04399999976158142,
+        0.11500000208616257,
+        0.5649999976158142,
+        0.05400000140070915
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1410,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-RAM-lod0.glb",
+      "sha256": "691424b5b0290a9d86a83891cd38b8e831dd3b79cece7cfe339dc40b5b126102",
+      "bytes": 158276,
+      "triangles": 1042,
+      "vertices": 2830,
+      "primitives": 1,
+      "bounds": [
+        -0.19700001180171967,
+        -0.0009317479562014341,
+        -0.27000001072883606,
+        0.19700001180171967,
+        0.3579489290714264,
+        0.36500003933906555
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 3126,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-RAM-lod1.glb",
+      "sha256": "cbd80db44d31eff18e804e0180db118f02b4a9b8603f973af45ed71dc9ea724c",
+      "bytes": 44028,
+      "triangles": 312,
+      "vertices": 633,
+      "primitives": 1,
+      "bounds": [
+        -0.19699999690055847,
+        0.0,
+        -0.27000001072883606,
+        0.19699999690055847,
+        0.35837990045547485,
+        0.36500000953674316
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 936,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-SIEGE_TOWER-lod0.glb",
+      "sha256": "46143da155a7738521a687b130592730bd9a7782164d1aa5b0c8fae5d5e55bd5",
+      "bytes": 254300,
+      "triangles": 1720,
+      "vertices": 4661,
+      "primitives": 1,
+      "bounds": [
+        -0.20000001788139343,
+        -0.0009317479562014341,
+        -0.24593175947666168,
+        0.20000001788139343,
+        0.8299999833106995,
+        0.24593175947666168
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 5160,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-SIEGE_TOWER-lod1.glb",
+      "sha256": "005a5e63628f442ef55944659d9be79fe3cb604a2bcfad95162b9a85560adc41",
+      "bytes": 55284,
+      "triangles": 414,
+      "vertices": 842,
+      "primitives": 1,
+      "bounds": [
+        -0.20000000298023224,
+        0.0,
+        -0.24500000476837158,
+        0.20000000298023224,
+        0.8299999833106995,
+        0.24500000476837158
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1242,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-SPEAR-lod0.glb",
+      "sha256": "f3c24583bad94e772b17012d80d1777682ee69d487e25c4817f543b8a811f0ea",
+      "bytes": 95128,
+      "triangles": 698,
+      "vertices": 1601,
+      "primitives": 1,
+      "bounds": [
+        -0.09799999743700027,
+        0.0,
+        -0.0560000017285347,
+        0.0889807641506195,
+        0.5649999976158142,
+        0.05400000140070915
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 2094,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-SPEAR-lod1.glb",
+      "sha256": "8e01c706d89f611c81d0a92386de95f81b8d609af0fd22adef36e73ca5ea612e",
+      "bytes": 69208,
+      "triangles": 458,
+      "vertices": 1121,
+      "primitives": 1,
+      "bounds": [
+        -0.09799999743700027,
+        0.0,
+        -0.04399999976158142,
+        0.0889807641506195,
+        0.5649999976158142,
+        0.05400000140070915
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1374,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-SWORD-lod0.glb",
+      "sha256": "5714544b731ea9e5ad3f01d27bd40422f600418be3ebdafb6ada38020fa7e4ad",
+      "bytes": 101836,
+      "triangles": 757,
+      "vertices": 1726,
+      "primitives": 1,
+      "bounds": [
+        -0.1120000034570694,
+        0.0,
+        -0.0560000017285347,
+        0.09700000286102295,
+        0.4480000138282776,
+        0.05400000140070915
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 2271,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-SWORD-lod1.glb",
+      "sha256": "3f3a2eb5b664e572b0e367ffaa7ec1c92fdcff077af8c0e0da24aae6b52b968b",
+      "bytes": 70588,
+      "triangles": 473,
+      "vertices": 1146,
+      "primitives": 1,
+      "bounds": [
+        -0.10999999940395355,
+        0.0,
+        -0.04399999976158142,
+        0.09700000286102295,
+        0.4480000138282776,
+        0.05400000140070915
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1419,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-TOWER_SHIP-lod0.glb",
+      "sha256": "c8d459d8b719229b3eccbfba66c05596a409a066c9c09a61db408a9b67dd2edf",
+      "bytes": 255888,
+      "triangles": 1666,
+      "vertices": 4708,
+      "primitives": 1,
+      "bounds": [
+        -0.36657124757766724,
+        0.0,
+        -0.4477764666080475,
+        0.36657124757766724,
+        0.492000013589859,
+        0.45074358582496643
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 4998,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-TOWER_SHIP-lod1.glb",
+      "sha256": "5ad3fc0d677d617e8865e1031751d96c248e2d9af7b62a40fe012f7f6cb6339f",
+      "bytes": 53056,
+      "triangles": 329,
+      "vertices": 817,
+      "primitives": 1,
+      "bounds": [
+        -0.3671291768550873,
+        0.0,
+        -0.4481933116912842,
+        0.3671291768550873,
+        0.492000013589859,
+        0.44999998807907104
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 987,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-WARSHIP-lod0.glb",
+      "sha256": "aceb2f72e37afcf7654856f09eb5757f2476702c3d378185858630154cb42dea",
+      "bytes": 253560,
+      "triangles": 1668,
+      "vertices": 4659,
+      "primitives": 1,
+      "bounds": [
+        -0.36657124757766724,
+        0.0,
+        -0.4477764666080475,
+        0.36657124757766724,
+        0.6499999761581421,
+        0.45074358582496643
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 5004,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-WARSHIP-lod1.glb",
+      "sha256": "4bbaf5412d4ce1086ffe1c88d26fad4195f6f910c5dea2ddadfdee4063d39db8",
+      "bytes": 53276,
+      "triangles": 331,
+      "vertices": 821,
+      "primitives": 1,
+      "bounds": [
+        -0.3671291768550873,
+        0.0,
+        -0.4481933116912842,
+        0.3671291768550873,
+        0.6499999761581421,
+        0.44999998807907104
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 993,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-WOODEN_BEAST-lod0.glb",
+      "sha256": "de4cd69fd7a6a72aaf084eee432dc20e733754ba7b72c27afa0a678b58869828",
+      "bytes": 158900,
+      "triangles": 1038,
+      "vertices": 2844,
+      "primitives": 1,
+      "bounds": [
+        -0.19700001180171967,
+        -0.0009317479562014341,
+        -0.24593175947666168,
+        0.19700001180171967,
+        0.43447017669677734,
+        0.3100000023841858
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 3114,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-WOODEN_BEAST-lod1.glb",
+      "sha256": "c91241d2695245a3f383961c49d22d7b50f2fc15ae0ce8c1e0d395a69b521ec4",
+      "bytes": 47624,
+      "triangles": 324,
+      "vertices": 705,
+      "primitives": 1,
+      "bounds": [
+        -0.19699999690055847,
+        0.0,
+        -0.24500000476837158,
+        0.19699999690055847,
+        0.4349668622016907,
+        0.3100000023841858
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 972,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-transport-lod0.glb",
+      "sha256": "308f290c52bde04db243f8b75cf92f30d7ed33235b2265b8f5f5e192d4b55f33",
+      "bytes": 165832,
+      "triangles": 1092,
+      "vertices": 2975,
+      "primitives": 1,
+      "bounds": [
+        -0.19700001180171967,
+        -0.0009317479562014341,
+        -0.24593175947666168,
+        0.19700001180171967,
+        0.320000022649765,
+        0.5506332516670227
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 3276,
+      "generator": "tools/3d/refine_blender122.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v123/unit-transport-lod1.glb",
+      "sha256": "4106a1ddbfa2a86d1b1e2643eb0c0611653fa21652d4bf53225c0de2e18f241e",
+      "bytes": 44960,
+      "triangles": 306,
+      "vertices": 654,
+      "primitives": 1,
+      "bounds": [
+        -0.19699999690055847,
+        0.0,
+        -0.24500000476837158,
+        0.19699999690055847,
+        0.3199999928474426,
+        0.5506845712661743
+      ],
+      "source": "per-joint Blender geometry bake with fitted armour, harness and crafted chassis",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 918,
+      "generator": "tools/3d/refine_blender122.py"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+PASS S04/S05 assets: 12048470 checks; 120 facility LOD assets; 26 rigs; forest local reuse 16/25
+PASS S05 automatic departure/march/garrison/convoy in 8 turns, full SaveCodec equality
+PASS S04/S05 flow: real legal port move, water/land asset transitions, 50/100 stress identities, real facility lifecycle and exact core equality
+PASS FEEDBACK123 checks=40323990 vertices=131163 expanded=169896 glbBytes=7296852

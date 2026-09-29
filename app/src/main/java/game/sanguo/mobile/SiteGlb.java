@@ -33,12 +33,12 @@ final class SiteGlb {
         float[] colors=floats(doc,b,start,bl,a.getInt("COLOR_0"),4,"VEC4");
         float[] uv=floats(doc,b,start,bl,a.getInt("TEXCOORD_0"),2,"VEC2");
         int count=positions.length/3;if(colors.length!=count*4||uv.length!=count*2||count==0||count>30000)throw new IOException("attribute counts");
-        List<Float> v=new ArrayList<>(count*7);for(int i=0;i<count;i++){for(int k=0;k<3;k++)v.add(positions[i*3+k]);for(int k=0;k<4;k++)v.add(colors[i*4+k]);}
+        float[] v=new float[count*7];for(int i=0;i<count;i++){System.arraycopy(positions,i*3,v,i*7,3);System.arraycopy(colors,i*4,v,i*7+3,4);}
         JSONObject index=doc.getJSONArray("accessors").getJSONObject(p.getInt("indices"));
         if(index.getInt("componentType")!=5125||!index.getString("type").equals("SCALAR"))throw new IOException("uint32 indices required");
         int ni=index.getInt("count");if(ni<3||ni%3!=0)throw new IOException("triangle index count");
-        ByteBuffer ib=access(doc,b,start,bl,index,ni,4);List<Integer> indices=new ArrayList<>();
-        for(int i=0;i<ni;i++){int value=ib.getInt();if(value<0||value>=count)throw new IOException("index range");indices.add(value);}
+        ByteBuffer ib=access(doc,b,start,bl,index,ni,4);int[] indices=new int[ni];
+        for(int i=0;i<ni;i++){int value=ib.getInt();if(value<0||value>=count)throw new IOException("index range");indices[i]=value;}
         SceneMesh mesh=new SceneMesh(v,indices,0,0,2);mesh.uv=uv;
         if(a.has("NORMAL")){float[] normals=floats(doc,b,start,bl,a.getInt("NORMAL"),3,"VEC3");if(normals.length!=count*3)throw new IOException("normal count");for(int i=0;i<normals.length;i+=3){float norm=normals[i]*normals[i]+normals[i+1]*normals[i+1]+normals[i+2]*normals[i+2];if(norm<.98f||norm>1.02f)throw new IOException("normal length");}mesh.setNormals(normals);}
         else mesh.generateTangents(); // Legal missing NORMAL; authored split edges stay hard.

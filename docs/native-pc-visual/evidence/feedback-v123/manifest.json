@@ -1,0 +1,14 @@
+{
+  "status": "PARTIAL",
+  "input": "94ab81f06c6ea24afbd491bf7d3cb3201e7e20f7",
+  "backend": "Filament 1.56 OPENGL",
+  "host": "PASS",
+  "gltf": {
+    "count": 260,
+    "errors": 0,
+    "warnings": 0
+  },
+  "apk": "NOT_RUN_YET",
+  "installed": "NOT_RUN_YET",
+  "physical": "NOT_RUN"
+}

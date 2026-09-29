@@ -1,3 +1,7 @@
+## v123 模型与性能续作 — PARTIAL
+
+实际Blender版本化41模型、无损数值索引、primitive解码与静止部队变换缓存已接入正常路径。构建/安装结果待本轮验证；全国ready、PC美术、ARM64/30分钟仍未通过。不改玩法/地图，不合并main。见 reports/feedback-v123.md。
+
 ## 2026-09-29 v121 用户反馈续作 — PARTIAL
 
 最终APK源码 b2352ed199fddada917ea224295773c4f9250506；APK SHA256 06ebe774afffb7f3022ec9ae6a6d2f191fdb6dbff814935e2e001aa5fbbaf4d1。连续山地/6关贴山、GPU网格、Blender7模型已接入；原300资源/规则/地图不改。新增手绘高度被压低的回归已修复并保留复现。

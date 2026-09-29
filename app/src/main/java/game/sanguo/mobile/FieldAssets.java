@@ -14,7 +14,7 @@ final class FieldAssets {
     private long restBytes;
     private static long bytes(SceneMesh m){return 4L*(m.vertices.length+m.indices.length+(m.uv==null?0:m.uv.length)+(m.tangents==null?0:m.tangents.length));}
     FieldAssets(Source source)throws Exception {
-        this.source=source;JSONObject r=json(source,"rigs-v122.json"),c=json(source,"clips.json");
+        this.source=source;JSONObject r=json(source,"rigs-v123.json"),c=json(source,"clips.json");
         if(r.getInt("version")!=1||c.getInt("version")!=1||c.getInt("fps")!=12)throw new IOException("unsupported rigid animation version");
         rigs=r.getJSONObject("rigs");clips=c.getJSONObject("clips");
     }
@@ -26,7 +26,7 @@ final class FieldAssets {
     }
     synchronized SceneMesh mesh(String name)throws Exception{
         if(!name.matches("[A-Za-z0-9_-]{1,100}"))throw new IOException("asset ID rejected");
-        SceneMesh value=rest.get(name);if(value==null){try(InputStream in=source.open((name.startsWith("unit-")?"v122/":"")+name+".glb")){value=SiteGlb.read(in);}rest.put(name,value);restBytes+=bytes(value);
+        SceneMesh value=rest.get(name);if(value==null){try(InputStream in=source.open((name.startsWith("unit-")?"v123/":"")+name+".glb")){value=SiteGlb.read(in);}rest.put(name,value);restBytes+=bytes(value);
             Iterator<SceneMesh> entries=rest.values().iterator();while(restBytes>24L*1024*1024&&rest.size()>1){restBytes-=bytes(entries.next());entries.remove();}}return value;
     }
     static boolean farm(MapSceneSnapshot.Item item){return item.facility!=null&&item.facility.type.equals("domestic/FARM");}
@@ -85,6 +85,9 @@ final class FieldAssets {
             }
             if(Float.isFinite(contact))for(int v=1;v<posed.length;v+=7)posed[v]-=contact;
         }
+        // Production renders one shared member through GPU instances. Reuse
+        // immutable topology/UV and the already-private posed vertices.
+        if(count==1){SceneMesh mesh=new SceneMesh(posed,source.indices,0,0,1);mesh.uv=source.uv;mesh.generateTangents();return mesh;}
         // Legacy CPU merged API is retained for compatibility tests; R10 runtime requests count=1.
         // One merged draw per formation. No entity for each soldier; no troop-count expansion.
         float[] vertices=new float[posed.length*count];int[] indices=new int[source.indices.length*count];

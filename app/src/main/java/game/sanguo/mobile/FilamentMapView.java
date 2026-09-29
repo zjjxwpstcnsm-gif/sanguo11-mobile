@@ -768,7 +768,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         final FieldAssets assets=fieldAssets;final int requestedLod=unitLod;final android.content.res.AssetManager manager=getContext().getAssets();
         SceneMesh source=assetWork.request(key,()->{
             if(field!=null){SceneMesh model=item.unit==null?assets.mesh(field):assets.pose(field,"idle",0,1);return FieldAssets.farm(item)?FieldAssets.conformFarm(model,assetGround,item.hex):model;}
-            if(item.site!=null)try(java.io.InputStream in=manager.open("3d/sites/v122/"+item.site.model+"-lod"+siteLodFor(key)+".glb")){SceneMesh model=SiteGlb.read(in);return item.site.model.equals("gate")?SiteVisual.joinGate(model,assetGround,item.hex,item.site.yaw):model;}
+            if(item.site!=null)try(java.io.InputStream in=manager.open("3d/sites/v123/"+item.site.model+"-lod"+siteLodFor(key)+".glb")){SceneMesh model=SiteGlb.read(in);return item.site.model.equals("gate")?SiteVisual.joinGate(model,assetGround,item.hex,item.site.yaw):model;}
             return SceneMesh.proxy(item.kind,item.color);
         });
         if(source==null){
@@ -797,7 +797,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 }
             }
             if(p==null){p=new Proxy(item,geometry);objects.put(item.key,p);}
-            p.item=item;p.motion.settle(item.hex,snapshot.ground.grid);p.position(p.motion.x,p.motion.z);p.updateDamage();
+            p.positionedGround=null;p.item=item;p.motion.settle(item.hex,snapshot.ground.grid);p.position(p.motion.x,p.motion.z);p.updateDamage();
         }
         Iterator<Map.Entry<String,Proxy>> it=objects.entrySet().iterator();while(it.hasNext()){Map.Entry<String,Proxy> e=it.next();if(!alive.contains(e.getKey())){e.getValue().destroy();it.remove();}}
         trimShapes();
@@ -828,7 +828,6 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 }
                 p.replace(mesh);p.poseKey=key;
             }
-            p.position(p.motion.x,p.motion.z);
         }
         trimShapes();
     }
@@ -1022,17 +1021,29 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         void updateSeason(){if(instance!=null)EnvironmentProfile.pigment(instance,season,item.facility!=null&&item.facility.type.equals("domestic/FARM"));}
         void updateDamage(){if(instance!=null)instance.setParameter("damage",item.site!=null?item.site.damage*.5f:item.facility!=null?1-item.facility.hp/(float)Math.max(1,item.facility.maxHp):0);}
         String stateKey(){return item.facility==null?"":item.facility.burning?"fire":!item.facility.complete?"scaffold":"";}
+        private MapSceneSnapshot.Ground positionedGround;
+        private float positionedX,positionedZ,positionedYaw,positionedScale;
+        private int positionedTroops,positionedLod;
+        private boolean positionedNaval;
+        long positionUploads,positionSkips;
         void position(float x,float z){
+            float angle=item.site==null?(item.facility!=null?item.facility.direction*(float)Math.PI/3:motion.yaw):item.site.yaw;
+            float scale=item.site==null?(item.unit==null?1:animation.scale):item.site.scale;
+            int troops=item.unit==null?0:UnitAnimation.shownTroops(item.unit,replay,replayFraction);
+            // A pose swap keeps the entity transform and material instance. Only
+            // contact inputs can invalidate placement; a camera move cannot.
+            if(positionedGround==snapshot.ground&&positionedX==x&&positionedZ==z&&positionedYaw==angle&&positionedScale==scale&&positionedTroops==troops&&positionedLod==unitLod&&positionedNaval==animation.naval){positionSkips++;return;}
+            positionedGround=snapshot.ground;positionedX=x;positionedZ=z;positionedYaw=angle;positionedScale=scale;positionedTroops=troops;positionedLod=unitLod;positionedNaval=animation.naval;
+            positionUploads++;
             y=item.unit!=null&&animation.naval?.02f:snapshot.ground.surface.meshHeight(x,z)+.02f;
             if(item.unit!=null&&instance!=null){
-                boolean contactChanged=formation.sample(item.unit,UnitAnimation.shownTroops(item.unit,replay,replayFraction),animation.naval,unitLod,snapshot.ground,x,z,motion.yaw,animation.scale);y=formation.rootY;
+                boolean contactChanged=formation.sample(item.unit,troops,animation.naval,unitLod,snapshot.ground,x,z,motion.yaw,animation.scale);y=formation.rootY;
                 if(memberCount!=formation.count){memberCount=formation.count;replace(shape);}
                 if(contactChanged)for(int i=0;i<UnitFormation.CAPACITY;i++){
                     float[] m=formation.placement[i],g=formation.grade[i];
                     instance.setParameter("member"+i,m[0],m[1],m[2],m[3]);instance.setParameter("grade"+i,g[0],g[1]);
                 }
             }
-            float angle=item.site==null?(item.facility!=null?item.facility.direction*(float)Math.PI/3:motion.yaw):item.site.yaw,scale=item.site==null?(item.unit==null?1:animation.scale):item.site.scale;
             float c=(float)Math.cos(angle)*scale,s=(float)Math.sin(angle)*scale;
             float[] matrix={c,0,-s,0,0,scale,0,0,s,0,c,0,x,y,z,1};TransformManager tm=engine.getTransformManager();tm.setTransform(tm.getInstance(entity),matrix);
             if(state!=0)tm.setTransform(tm.getInstance(state),matrix);
