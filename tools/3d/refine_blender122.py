@@ -152,7 +152,7 @@ path=OUT/'docs/native-pc-visual/feedback-v122-blender-assets.json';path.parent.m
 path.write_text(json.dumps({'blender':bpy.app.version_string,'assets':report},indent=2)+'\n')
 # Offline contact sheets: explicit modelling evidence, never represented as APK.
 for obj,kind,lod,family in objects:obj.hide_render=True
-scene=bpy.context.scene;scene.render.engine='BLENDER_EEVEE_NEXT';scene.render.resolution_x=480;scene.render.resolution_y=400;scene.render.resolution_percentage=100
+scene=bpy.context.scene;scene.render.engine='CYCLES';scene.cycles.device='CPU';scene.cycles.samples=16;scene.render.resolution_x=480;scene.render.resolution_y=400;scene.render.resolution_percentage=100
 scene.world.color=(.25,.25,.25);scene.view_settings.view_transform='Standard'
 for family in ['sites','field']:
  atlas=bpy.data.images.load(str(ROOT/'app/src/main/assets/3d'/family/('atlas.png' if family=='sites' else 'unit-atlas.png')))
