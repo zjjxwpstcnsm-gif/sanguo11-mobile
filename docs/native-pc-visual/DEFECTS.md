@@ -1,3 +1,20 @@
+# 用户反馈专项 — v118 / PARTIAL
+
+| 条目 | 状态 | 证据与边界 |
+|---|---|---|
+| FEEDBACK-DRAG | IMPLEMENTED / runtime NOT_REACHED | 正式MapHost回调和Filament手势接入原dropUnit；两轮API29输入确认旧版不移动，候选均初始ready超时，取消/单次提交/完整存档对等尚未运行通过 |
+| FEEDBACK-FOREST | host PASS / visual NOT_REACHED | 同fixture树211→703，旧放置和留白全保留，新增LOD1；没有候选森林已就绪截图，不能宣称美术通过 |
+| FEEDBACK-CONTROL | scoped host PASS | 同属性普通扰乱45%，普通螺旋命中后混乱15%；10000实命令分布符合；特殊必定/免疫保留，非原版数值校准宣称 |
+| FEEDBACK-READY | FAIL / regression OPEN | 两轮API29旧PASS/新FAIL；API35新旧均FAIL。原120秒未放宽；新森林增量影响未排除 |
+| FEEDBACK-MEMORY | OPEN | 96×96/44块CPU mesh估算51,306,808→121,352,376字节，不等于PSS/GPU/FPS，ARM64长稳未运行 |
+| FEEDBACK-BUILD | PASS identity only | exact23103d9、lint、四ABI、签名、300资源及设备拉回APK相同；不等于整体CI/运行PASS |
+| FEEDBACK-PHYSICAL | BLOCKED / NOT_RUN | WIF attribute condition拒绝、预检未达、物理提交0 |
+| FEEDBACK-INHERITED | OPEN / FAIL | core logistics:75输入与候选独立失败；全国/PC参考/V1–V4/全触控/SAF/长稳历史门槛不关闭 |
+
+详见[报告](reports/feedback-v118.md)及[manifest](evidence/feedback-v118/manifest.json)。未合main，未自动下一阶段。
+
+---
+
 # 网格/岸线专项 — v117 / PARTIAL
 
 | 条目 | 状态 | 当前证据和剩余问题 |

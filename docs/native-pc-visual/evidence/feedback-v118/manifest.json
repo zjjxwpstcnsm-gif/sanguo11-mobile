@@ -1,0 +1,316 @@
+{
+  "task": "Post-R18 user feedback: native unit drag, forest density and two named control chances",
+  "status": "PARTIAL",
+  "source_sha": "23103d9278d9898316ec212113a68abeb94c73fc",
+  "source_tree": "272d27dcf79578d6f11ca70502fc02d98655c383",
+  "input_head": "856d18c17c5f9295b0e1e4f828fa7dd4cd65a635",
+  "main": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "branch": "agent/native-pc-visual",
+  "pr": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/67",
+  "merged": false,
+  "rules_zip_sha256": "74e794192d71311b84fed6dfbfd8f25c54a1aa334fbd8234d9e36d145640d03c",
+  "apk": {
+    "source_sha": "23103d9278d9898316ec212113a68abeb94c73fc",
+    "apk_sha256": "d0bdbcb1b2acb68a809a62ad3ec4961c75f7fb89ba00bbf35a0b50d923f6d5a0",
+    "bytes": 37403426,
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "matched_assets": 300,
+    "backend": "Filament 1.56.0 OPENGL",
+    "acceptance": "PARTIAL; archive identity is not runtime or art acceptance"
+  },
+  "app_id": "game.sanguo.mobile.dev",
+  "version_code": 118,
+  "version_name": "0.118.0-native-drag-forest-control",
+  "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+  "build_lint": "PASS",
+  "build_command": "./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PcandidateSource=23103d9278d9898316ec212113a68abeb94c73fc -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true",
+  "ci_run": 36499443015,
+  "build_job": 109190487256,
+  "build_artifact": 11005441831,
+  "protected_trees": [
+    "game-api",
+    "game-runtime",
+    "data",
+    "unity",
+    "app/src/main/assets"
+  ],
+  "gameplay_exception": "Only ordinary CONFUSE and ordinary SPIRAL conditional confusion probabilities changed by explicit user request; no claim of RNG bug or original-PC numerical parity. Special guaranteed skills, immunities, tactic hit chance, damage, costs and map logic retained.",
+  "host": {
+    "control": "PASS 40036 checks, 10000 actual casts per group",
+    "balance": "PASS 54",
+    "landscape": "PASS R08/R09; old fixed goldens retained against exact frozen original generator",
+    "architecture": "PASS",
+    "r01": "PASS",
+    "r12": "PASS",
+    "core": "inherited FAIL CoreTest.logistics:75 independently reproduced on input and candidate; not green"
+  },
+  "probability_samples": {
+    "count": 10000,
+    "baseline": {
+      "plot_success": 6553,
+      "spiral_hit": 8479,
+      "spiral_confusion": 2111
+    },
+    "candidate": {
+      "plot_success": 4522,
+      "spiral_hit": 8479,
+      "spiral_confusion": 1250
+    }
+  },
+  "forest": {
+    "baseline_trees": 211,
+    "candidate_trees": 703,
+    "shrubs_unchanged": 105,
+    "clear_cells": 188,
+    "old_placements_retained": true,
+    "new_assets": 0,
+    "placement_version": 2,
+    "cpu_mesh_estimate_96x96_44chunks_bytes": {
+      "baseline": 51306808,
+      "candidate": 121352376
+    },
+    "performance": "OPEN; estimates are not PSS, GPU memory or device FPS"
+  },
+  "initial_run": 36499165873,
+  "physical": {
+    "status": "NOT_RUN",
+    "access": "BLOCKED",
+    "job": 109191573168,
+    "error": "unauthorized_client: The given credential is rejected by the attribute condition.",
+    "preflight": "NOT_REACHED",
+    "device_submissions": 0
+  },
+  "remaining": [
+    "Original nationwide 120-second scene readiness",
+    "No complete new-game direct-touch chain",
+    "PC reference missing / overall art not accepted",
+    "ARM64 Adreno/Mali performance, memory and 30-minute thermal soak",
+    "Save upgrade/SAF/full regression acceptance",
+    "Inherited full core logistics failure"
+  ],
+  "next_stage_started": false,
+  "final_remote_head": "See delivery remote-confirmation.json; documentation-only evidence HEAD differs from source APK",
+  "runtime": {
+    "initial": {
+      "api29": {
+        "baseline": {
+          "result": "PASS baseline reproduction",
+          "message": "PASS FEEDBACK118 phase=baseline checks=128",
+          "installed_sha256": "48ec6ad14cf9f2eefaf020566471dac5292bf3850c33b411262ce89b47f6f185",
+          "checks_reached": "baseline missing-drag and forest screenshots",
+          "pending": null,
+          "submitted": null,
+          "video": {
+            "ffprobe_exit": 0,
+            "metadata": {
+              "format": {
+                "duration": "177.165600",
+                "size": "8948597"
+              }
+            },
+            "error": ""
+          },
+          "candidate_drag_acceptance": "not applicable",
+          "candidate_forest_visual": "not applicable"
+        },
+        "candidate": {
+          "result": "FAIL readiness",
+          "message": "FAIL FEEDBACK118 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=563 backingCopies=1 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+          "installed_sha256": "ed37a56696365f0b39063ee9ce96369940f07c1616d7da93c3741d5561910845",
+          "checks_reached": "none: before gesture loop",
+          "pending": 2,
+          "submitted": 3,
+          "video": {
+            "ffprobe_exit": 0,
+            "metadata": {
+              "format": {
+                "duration": "145.774122",
+                "size": "8747809"
+              }
+            },
+            "error": ""
+          },
+          "candidate_drag_acceptance": "NOT_REACHED",
+          "candidate_forest_visual": "NOT_REACHED"
+        }
+      },
+      "api35": {
+        "baseline": {
+          "result": "FAIL readiness",
+          "message": "FAIL FEEDBACK118 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=329 backingCopies=3 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+          "installed_sha256": "48ec6ad14cf9f2eefaf020566471dac5292bf3850c33b411262ce89b47f6f185",
+          "checks_reached": "none: before gesture loop",
+          "pending": 4,
+          "submitted": 3,
+          "video": {
+            "ffprobe_exit": 0,
+            "metadata": {
+              "format": {
+                "duration": "130.979789",
+                "size": "2729870"
+              }
+            },
+            "error": ""
+          },
+          "candidate_drag_acceptance": "not applicable",
+          "candidate_forest_visual": "not applicable"
+        },
+        "candidate": {
+          "result": "FAIL readiness",
+          "message": "FAIL FEEDBACK118 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=334 backingCopies=3 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+          "installed_sha256": "ed37a56696365f0b39063ee9ce96369940f07c1616d7da93c3741d5561910845",
+          "checks_reached": "none: before gesture loop",
+          "pending": 5,
+          "submitted": 3,
+          "video": {
+            "ffprobe_exit": 0,
+            "metadata": {
+              "format": {
+                "duration": "131.058500",
+                "size": "2729016"
+              }
+            },
+            "error": ""
+          },
+          "candidate_drag_acceptance": "NOT_REACHED",
+          "candidate_forest_visual": "NOT_REACHED"
+        }
+      }
+    },
+    "final": {
+      "api29": {
+        "baseline": {
+          "result": "PASS baseline reproduction",
+          "message": "PASS FEEDBACK118 phase=baseline checks=61",
+          "installed_sha256": "48ec6ad14cf9f2eefaf020566471dac5292bf3850c33b411262ce89b47f6f185",
+          "checks_reached": "baseline missing-drag and forest screenshots",
+          "pending": null,
+          "submitted": null,
+          "video": {
+            "ffprobe_exit": 0,
+            "metadata": {
+              "format": {
+                "duration": "173.845189",
+                "size": "5692939"
+              }
+            },
+            "error": ""
+          },
+          "candidate_drag_acceptance": "not applicable",
+          "candidate_forest_visual": "not applicable"
+        },
+        "candidate": {
+          "result": "FAIL readiness",
+          "message": "FAIL FEEDBACK118 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=562 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+          "installed_sha256": "d0bdbcb1b2acb68a809a62ad3ec4961c75f7fb89ba00bbf35a0b50d923f6d5a0",
+          "checks_reached": "none: before gesture loop",
+          "pending": 4,
+          "submitted": 3,
+          "video": {
+            "ffprobe_exit": 0,
+            "metadata": {
+              "format": {
+                "duration": "147.723244",
+                "size": "8637811"
+              }
+            },
+            "error": ""
+          },
+          "candidate_drag_acceptance": "NOT_REACHED",
+          "candidate_forest_visual": "NOT_REACHED"
+        }
+      },
+      "api35": {
+        "baseline": {
+          "result": "FAIL readiness",
+          "message": "FAIL FEEDBACK118 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=269 backingCopies=5 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+          "installed_sha256": "48ec6ad14cf9f2eefaf020566471dac5292bf3850c33b411262ce89b47f6f185",
+          "checks_reached": "none: before gesture loop",
+          "pending": 5,
+          "submitted": 2,
+          "video": {
+            "ffprobe_exit": 0,
+            "metadata": {
+              "format": {
+                "duration": "133.120433",
+                "size": "1839674"
+              }
+            },
+            "error": ""
+          },
+          "candidate_drag_acceptance": "not applicable",
+          "candidate_forest_visual": "not applicable"
+        },
+        "candidate": {
+          "result": "FAIL readiness",
+          "message": "FAIL FEEDBACK118 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=277 backingCopies=5 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+          "installed_sha256": "d0bdbcb1b2acb68a809a62ad3ec4961c75f7fb89ba00bbf35a0b50d923f6d5a0",
+          "checks_reached": "none: before gesture loop",
+          "pending": 5,
+          "submitted": 2,
+          "video": {
+            "ffprobe_exit": 0,
+            "metadata": {
+              "format": {
+                "duration": "130.239778",
+                "size": "1668080"
+              }
+            },
+            "error": ""
+          },
+          "candidate_drag_acceptance": "NOT_REACHED",
+          "candidate_forest_visual": "NOT_REACHED"
+        }
+      }
+    },
+    "stability": "FAIL / OPEN: API29 baseline passed twice and candidate failed twice; API35 both failed twice. No no-regression claim; no evidence proving purely environmental."
+  },
+  "visual": {
+    "candidate": "NOT_REACHED; failed screenshots show loading/fallback appearance, no candidate forest capture",
+    "input_api29": "inspected sparse forest UI screenshot; not candidate evidence",
+    "overall_art": "NOT_ACCEPTED; REFERENCE_MISSING"
+  },
+  "artifacts": [
+    {
+      "run": 36499165873,
+      "id": 11004767639,
+      "name": "initial-build",
+      "sha256": "6228c954e9720e4d3f760c78cffa639faa07f24c864eeda73c04fe1ccff0e5a1"
+    },
+    {
+      "run": 36499165873,
+      "id": 11005356519,
+      "name": "initial-api29",
+      "sha256": "30a750945addb887619a18a46b27670a14068a46969aa47582ca4525ce1a8d53"
+    },
+    {
+      "run": 36499165873,
+      "id": 11004921156,
+      "name": "initial-api35",
+      "sha256": "b29872b01818737208c5e9b1ed2874bda9c51e50d7f01da4938d45b403e7f03c"
+    },
+    {
+      "run": 36499443015,
+      "id": 11005441831,
+      "name": "final-build",
+      "sha256": "1a0bf20d0b175c784f236e48e2c0486211ebd6f804b81ba3fb6e92e278acefab"
+    },
+    {
+      "run": 36499443015,
+      "id": 11005537830,
+      "name": "final-api29",
+      "sha256": "8f08f7650e08c8bddfb1094558d10f5874e5d5ccc94af3de7d02e36ae88198af"
+    },
+    {
+      "run": 36499443015,
+      "id": 11005607532,
+      "name": "final-api35",
+      "sha256": "f281dc1404a8e3f809e35fa2df03529e6d569c932e3b990efa1fdabbe672c5b2"
+    }
+  ]
+}
