@@ -2,7 +2,7 @@ name: Native v124 landscape models and performance
 on:
   push:
     branches: [agent/native-pc-visual]
-    paths: ['.github/workflows/native-feedback124.yml', 'tools/3d/refine_blender124.py', 'scripts/*feedback124*', 'app/src/main/**', 'app/src/test/java/game/sanguo/mobile/NativeFeedback124Test.java', 'app/src/androidTest/java/game/sanguo/mobile/NativeFeedback124Instrumentation.java']
+    paths: ['.github/workflows/native-feedback124.yml', 'tools/3d/refine_blender124.py', 'scripts/*feedback124*', 'app/src/main/**', 'app/src/test/java/game/sanguo/mobile/NativeFeedback124Test.java', 'app/src/androidTest/java/game/sanguo/mobile/NativeFeedback124Instrumentation.java', 'app/src/androidTest/AndroidManifest.xml']
 permissions: {contents: read, actions: read}
 concurrency: {group: 'native-feedback124-${{ github.sha }}', cancel-in-progress: false}
 jobs:
@@ -106,6 +106,8 @@ jobs:
           cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/feedback124/test.apk
           git rev-parse HEAD > out/feedback124/SOURCE_COMMIT
           "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/feedback124/sanguo11-mobile-v124.apk > out/feedback124/metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump xmltree out/feedback124/test.apk AndroidManifest.xml > out/feedback124/test-manifest.txt
+          grep -q 'game.sanguo.mobile.NativeFeedback124Instrumentation' out/feedback124/test-manifest.txt
           "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/feedback124/sanguo11-mobile-v124.apk > out/feedback124/signature.txt
           python3 scripts/audit-3d-apk.py out/feedback124/sanguo11-mobile-v124.apk --require-16k > out/feedback124/apk-audit.txt
           python3 scripts/verify-r18-apk.py out/feedback124/sanguo11-mobile-v124.apk "$CANDIDATE_SOURCE" > out/feedback124/apk-identity.json

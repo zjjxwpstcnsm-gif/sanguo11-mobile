@@ -11,6 +11,8 @@ for phase in baseline candidate; do
   if [ "$phase" = baseline ]; then apk="$root/baseline/sanguo11-mobile-v123.apk"; else apk="$root/sanguo11-mobile-v124.apk"; fi
   adb install -r "$apk" > "$root/runtime/$phase-install.txt"
   adb install -r "$root/test.apk" >> "$root/runtime/$phase-install.txt"
+  adb shell pm list instrumentation > "$root/runtime/$phase-instrumentations.txt"
+  grep -q 'game.sanguo.mobile.NativeFeedback124Instrumentation' "$root/runtime/$phase-instrumentations.txt"
   remote=$(adb shell pm path game.sanguo.mobile.dev | tr -d '\r' | sed -n 's/^package://p' | head -1)
   adb pull "$remote" "$root/runtime/$phase-installed.apk"
   cmp "$apk" "$root/runtime/$phase-installed.apk"
