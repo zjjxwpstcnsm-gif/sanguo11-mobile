@@ -3,6 +3,9 @@ package game.sanguo.mobile;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.*;
+import android.accessibilityservice.AccessibilityServiceInfo;
+import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import game.sanguo.core.*;
 import java.io.*;
@@ -11,7 +14,7 @@ import java.util.*;
 import java.util.function.Consumer;
 
 /** Installed normal MainActivity/WarUi/session. Explicit fixture and programmatic target
- * selection; accessibility confirms the actual dialog. Not full-touch or 3D acceptance. */
+ * selection; accessibility locates real pointer targets. Not full-touch or 3D acceptance. */
 public final class ControlIntelligence119Instrumentation extends SceneInstrumentation {
     private byte[] authority(){byte[][] b={null};runOnMainSync(()->{try{b[0]=((GameApplication)activity.getApplication()).host().capture();}catch(IOException e){throw new RuntimeException(e);}});return b[0];}
     private void click(String text)throws Exception{
@@ -19,9 +22,16 @@ public final class ControlIntelligence119Instrumentation extends SceneInstrument
         while(SystemClock.uptimeMillis()<deadline){
             AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();
             if(root!=null)for(AccessibilityNodeInfo found:root.findAccessibilityNodeInfosByText(text)){
-                AccessibilityNodeInfo node=found;
-                while(node!=null&&!node.isClickable())node=node.getParent();
-                if(node!=null&&node.performAction(AccessibilityNodeInfo.ACTION_CLICK)){settle();return;}
+                if(!text.contentEquals(found.getText()==null?"":found.getText())||!found.isVisibleToUser())continue;
+                Rect bounds=new Rect();found.getBoundsInScreen(bounds);if(bounds.isEmpty())continue;
+                // AlertDialog ListView rows need pointer dispatch; their TextView need not
+                // expose ACTION_CLICK even though the parent handles onItemClick.
+                long down=SystemClock.uptimeMillis();
+                for(int action:new int[]{MotionEvent.ACTION_DOWN,MotionEvent.ACTION_UP}){
+                    MotionEvent event=MotionEvent.obtain(down,SystemClock.uptimeMillis(),action,bounds.centerX(),bounds.centerY(),0);
+                    event.setSource(android.view.InputDevice.SOURCE_TOUCHSCREEN);sendPointerSync(event);event.recycle();
+                }
+                settle();return;
             }
             settle();
         }
@@ -37,6 +47,7 @@ public final class ControlIntelligence119Instrumentation extends SceneInstrument
         throw new AssertionError("no seeded outcome");
     }
     @Override public void onStart(){Bundle result=new Bundle();StringBuilder log=new StringBuilder();try{
+        AccessibilityServiceInfo info=getUiAutomation().getServiceInfo();info.flags|=AccessibilityServiceInfo.FLAG_INCLUDE_NOT_IMPORTANT_VIEWS;getUiAutomation().setServiceInfo(info);
         World start=ControlIntelligenceFixture.world(40,80,40,80,119);
         try(OutputStream out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(start));}
         getTargetContext().getSharedPreferences("map-renderer",0).edit().putBoolean("enabled",false).commit();
