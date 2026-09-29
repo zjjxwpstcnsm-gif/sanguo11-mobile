@@ -1,0 +1,32 @@
+[
+  {
+    "path": "feedback-v121-api29.zip",
+    "bytes": 147925250,
+    "sha256": "950cb086924463c35422aa2085f17f397935634587398114d7a82fce5677b4cb"
+  },
+  {
+    "path": "feedback-v121-api35.zip",
+    "bytes": 74213018,
+    "sha256": "ca35d8ec044762f646f20d332cf530629cdffdee25fe8c65749c5779e733b5a9"
+  },
+  {
+    "path": "feedback-v121-build.zip",
+    "bytes": 32260189,
+    "sha256": "85acb8c2f441f016d92eef38bc520c0addec6c2b469e659a0b2d69c5d469adc5"
+  },
+  {
+    "path": "feedback-v121-final-api29.zip",
+    "bytes": 86748842,
+    "sha256": "811cd6265f84f1cb1e18e7b7f0b428ddfe01d3d51610c1b15831c2727890202e"
+  },
+  {
+    "path": "feedback-v121-final-api35.zip",
+    "bytes": 64421888,
+    "sha256": "83532e6d54b5dea787bb1fa12eeee2180f1a7522bb820a952abdf7674505dfd8"
+  },
+  {
+    "path": "feedback-v121-final-build.zip",
+    "bytes": 32260165,
+    "sha256": "dbc8faeda7571404a57dc23d80a59d8c243146d6f7425928a2126fba4fda4e2c"
+  }
+]

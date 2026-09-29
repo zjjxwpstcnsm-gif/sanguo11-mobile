@@ -1,0 +1,17 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+PASS S04/S05 assets: 9862760 checks; 120 facility LOD assets; 26 rigs; forest local reuse 16/25
+PASS S05 automatic departure/march/garrison/convoy in 8 turns, full SaveCodec equality
+PASS S04/S05 flow: real legal port move, water/land asset transitions, 50/100 stress identities, real facility lifecycle and exact core equality
+PASS R06 199 checks: actual bundled subset, hostile input, rigid parts, shared/cancelled CPU decode
+PASS R07 7194 checks; 679 catalog site instances, families=[city0, city1, city2, gate, port], facility LOD mappings=120
+PASS R08 24333965 checks; mergedChunks=44 CPU_mesh_bytes_estimate=121352376 build_ms=738.108761 reusedAfterEdit=35 (host, not GPU/device performance)
+PASS FOREST phase=candidate tree=740 shrub=112 clearCells=197 (same terrain/entities, no road/entry/unit apron relaxation)
+terrainGeometryAndSurface=2c0db7e3290deede25c1e764baa1119ab192fa764144ec55cd4620c292cba8c4 paletteVersion=5
+sceneryHorizontal=f224f067e01bd1b8e9eb3087754160e85de9546520a9b187229e3281d2621b4c sceneryFull=b9fceeccf9e8f8aae2a3e489aa48612b62f0f5c98cda83716642a511b0ff8802
+terrainChunks=177 sceneryChunks=247 sceneryTriangles=236375 terrain_ms=2012.841791 scenery_ms=221.303142 HOST_ONLY
+PASS preview work: full geometry, bounded uploads, cache identity, concurrent samples, full authority equality
+terrainGeometryAndSurface=2c0db7e3290deede25c1e764baa1119ab192fa764144ec55cd4620c292cba8c4 paletteVersion=4
+terrainChunks=177 sceneryChunks=247 sceneryTriangles=236375 terrain_ms=1775.257788 scenery_ms=254.491716 HOST_ONLY
+PASS preview work: full geometry, bounded uploads, cache identity, concurrent samples, full authority equality
+PASS R09 1602 checks; official region q120..151/r68..99 {PLAIN=298, FOREST=162, MOUNTAIN=169, WATER=149, MOUNTAIN_PATH=2, PLANK_ROAD=1, SAND=6, ROAD=235, NON_NAVIGABLE_WATER=2} sites=[20013, 20015, 20043, 20045, 20046, 20063] path triangles=317
