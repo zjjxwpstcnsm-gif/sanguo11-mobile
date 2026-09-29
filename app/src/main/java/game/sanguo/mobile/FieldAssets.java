@@ -118,6 +118,11 @@ final class FieldAssets {
     /** Compose a rigid joint rotation with each authored normal frame. No
      * per-triangle reconstruction, normal scratch or per-vertex square roots. */
     private static void rotateFrames(float[] source,float[] out,int first,int count,float[] m){
+        // Walking animates limbs, but most indexed body/horse vertices keep the
+        // exact identity rotation. Preserve their authored frames with one copy.
+        if(m[0]==1&&m[5]==1&&m[10]==1&&m[1]==0&&m[2]==0&&m[4]==0&&m[6]==0&&m[8]==0&&m[9]==0){
+            System.arraycopy(source,first*4,out,first*4,count*4);return;
+        }
         float x,y,z,w,trace=m[0]+m[5]+m[10];
         if(trace>0){float s=(float)Math.sqrt(trace+1)*2;w=s*.25f;x=(m[6]-m[9])/s;y=(m[8]-m[2])/s;z=(m[1]-m[4])/s;}
         else if(m[0]>m[5]&&m[0]>m[10]){float s=(float)Math.sqrt(1+m[0]-m[5]-m[10])*2;x=s*.25f;y=(m[4]+m[1])/s;z=(m[8]+m[2])/s;w=(m[6]-m[9])/s;}

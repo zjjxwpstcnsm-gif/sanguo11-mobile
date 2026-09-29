@@ -2,7 +2,7 @@ name: Native v124 landscape models and performance
 on:
   push:
     branches: [agent/native-pc-visual]
-    paths: ['.github/workflows/native-feedback124.yml', 'tools/3d/refine_blender124.py', 'scripts/*feedback124*']
+    paths: ['.github/workflows/native-feedback124.yml', 'tools/3d/refine_blender124.py', 'scripts/*feedback124*', 'app/src/main/**', 'app/src/test/java/game/sanguo/mobile/NativeFeedback124Test.java', 'app/src/androidTest/java/game/sanguo/mobile/NativeFeedback124Instrumentation.java']
 permissions: {contents: read, actions: read}
 concurrency: {group: 'native-feedback124-${{ github.sha }}', cancel-in-progress: false}
 jobs:

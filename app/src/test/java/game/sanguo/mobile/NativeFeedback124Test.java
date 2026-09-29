@@ -44,6 +44,7 @@ public final class NativeFeedback124Test {
             double X=xx*Math.cos(a[2])-y*Math.sin(a[2]),Y=xx*Math.sin(a[2])+y*Math.cos(a[2]);
             float[] got=normal(assets.pose("unit-SPEAR-lod0","idle",i,1),0);
             check(Math.abs(got[0]-X)+Math.abs(got[1]-Y)+Math.abs(got[2]-zz)<.0002,"normal direction preserved through arbitrary rigid rotation "+i);
+            if(i==angles.length-1)check(Arrays.equals(originalFrame,assets.pose("unit-SPEAR-lod0","idle",i,1).tangents),"identity joints copy authored frames exactly");
         }
     }
     interface Operation {void run()throws Exception;}
