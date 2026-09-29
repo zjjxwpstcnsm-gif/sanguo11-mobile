@@ -1,14 +1,336 @@
 {
   "status": "PARTIAL",
   "input": "94ab81f06c6ea24afbd491bf7d3cb3201e7e20f7",
-  "backend": "Filament 1.56 OPENGL",
-  "host": "PASS",
+  "main": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "apkSource": "7658a8bcae83e215186d6c89d114760f8d982944",
+  "productionCommit": "56ddddfa680f13807989855be0532a1259574c1b",
+  "apkSha256": "200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46",
+  "apkBytes": 39852561,
+  "backend": "Filament1.56 OPENGL",
+  "ciRun": 36604231165,
+  "ciStatus": "FAIL",
+  "build": "PASS",
+  "runtime": [
+    {
+      "api": 29,
+      "mode": "fixture",
+      "status": "PASS",
+      "wholeAuthority": "PASS",
+      "surfaceCaptures": 4,
+      "installedSha": "200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46"
+    },
+    {
+      "api": 29,
+      "mode": "national",
+      "status": "PASS",
+      "wholeAuthority": "PASS",
+      "surfaceCaptures": 4,
+      "installedSha": "200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46"
+    },
+    {
+      "api": 29,
+      "mode": "port",
+      "status": "FAIL",
+      "wholeAuthority": "NOT_RUN (not reached)",
+      "surfaceCaptures": 0,
+      "installedSha": "200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46"
+    },
+    {
+      "api": 35,
+      "mode": "fixture",
+      "status": "FAIL",
+      "wholeAuthority": "NOT_RUN (not reached)",
+      "surfaceCaptures": 0,
+      "installedSha": "200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46"
+    },
+    {
+      "api": 35,
+      "mode": "national",
+      "status": "PASS",
+      "wholeAuthority": "PASS",
+      "surfaceCaptures": 4,
+      "installedSha": "200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46"
+    },
+    {
+      "api": 35,
+      "mode": "port",
+      "status": "PASS",
+      "wholeAuthority": "PASS",
+      "surfaceCaptures": 4,
+      "installedSha": "200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46"
+    }
+  ],
+  "hostAffected": "PASS",
+  "originalCore": "FAIL inherited logistics:75 both",
+  "originalR09": "FAIL inherited canonical snapshot both",
   "gltf": {
     "count": 260,
     "errors": 0,
     "warnings": 0
   },
-  "apk": "NOT_RUN_YET",
-  "installed": "NOT_RUN_YET",
-  "physical": "NOT_RUN"
+  "physical": "NOT_RUN: WIF attribute condition authorization rejected; zero submissions",
+  "visual": "PARTIAL; PC REFERENCE_MISSING, full troops/device art NOT_RUN",
+  "assets": {
+    "originalPreserved": 349,
+    "newGlb": 41,
+    "newRig": 1,
+    "total": 391
+  },
+  "scope": {
+    "core_gameApi_gameRuntime_data_unity": "UNCHANGED",
+    "mainMerged": false,
+    "nextStageStarted": false
+  },
+  "files": [
+    {
+      "path": "ModelBenchmark.java.txt",
+      "bytes": 1287,
+      "sha256": "421c2ecece6b8915d994b9406bbbaec14e208cfa80ff4f0199b1b9c5d9a60a4b"
+    },
+    {
+      "path": "api35-videos.json",
+      "bytes": 1190,
+      "sha256": "89032fedc8a58ca95fea6a64ba68414d11904c969fbd9a5cb2bc7d02397f6f2f"
+    },
+    {
+      "path": "architecture.log",
+      "bytes": 995,
+      "sha256": "eb9ae8bf1b4aa661299193a504df16673bc138e16709c4b3c30458e9aeba99d1"
+    },
+    {
+      "path": "asset-preservation.json",
+      "bytes": 78,
+      "sha256": "24a564a4a675189866faa07042ecf7616b9303b6f9274bd636ac6092295faff7"
+    },
+    {
+      "path": "baseline-benchmark-c1.csv",
+      "bytes": 424,
+      "sha256": "5add8706b7629a2d627b962ffc385485c3ce130c9f0de61bbfe6a603a76dd53a"
+    },
+    {
+      "path": "baseline-benchmark-warm.csv",
+      "bytes": 424,
+      "sha256": "25f66833ce723e41b37438a8f6e9ffba0075315719b24ea69835699ebdef346f"
+    },
+    {
+      "path": "baseline-benchmark.csv",
+      "bytes": 424,
+      "sha256": "ed98a4140c2702fe8e5f239924de408991a8669d499314ab91caf93267bd08f4"
+    },
+    {
+      "path": "candidate-benchmark-c1.csv",
+      "bytes": 424,
+      "sha256": "7fb2229876dacee6c481399a4ec4ac71877b438eecb666c0ec8cf24da1385e01"
+    },
+    {
+      "path": "candidate-benchmark-warm.csv",
+      "bytes": 426,
+      "sha256": "da778a49ad0a0f2528fb79e465d8ea878f261e278ce2a3eae133d0981b2fa70c"
+    },
+    {
+      "path": "candidate-benchmark.csv",
+      "bytes": 430,
+      "sha256": "d8bb60c2e387cbbc155209b8889e4a51947b7b216adffa23abdfb51fe232c20c"
+    },
+    {
+      "path": "core-input.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "core-input.log",
+      "bytes": 465,
+      "sha256": "4b484a605fff485eed15b3391d76a6b7d3ec9f5872a594e60e3fcd9615c75e56"
+    },
+    {
+      "path": "core.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "core.log",
+      "bytes": 465,
+      "sha256": "4b484a605fff485eed15b3391d76a6b7d3ec9f5872a594e60e3fcd9615c75e56"
+    },
+    {
+      "path": "final-build/SHA256SUMS",
+      "bytes": 198,
+      "sha256": "952b6d13d4410519a819b8e7f4d0fa244621dd5f84fad5a8c33db22b37779667"
+    },
+    {
+      "path": "final-build/SOURCE_COMMIT",
+      "bytes": 41,
+      "sha256": "bf4214a9a6f535e86dd99ba76f76d77022adcbba864098831c93185914e448de"
+    },
+    {
+      "path": "final-build/apk-audit.txt",
+      "bytes": 1868,
+      "sha256": "3a39bf6fdbdfe2b3cb3baeeb15c73d33e94fecac9d274228afa4bc595b244f02"
+    },
+    {
+      "path": "final-build/apk-identity.json",
+      "bytes": 387,
+      "sha256": "3017ced504391a0d319c65d5e5e726ebf0287808b477760dd5972a3c52bce735"
+    },
+    {
+      "path": "final-build/build.log",
+      "bytes": 6683,
+      "sha256": "e036559429dd9490abec4845a8fb45ecce213e26258699a5a7c834e85f29144d"
+    },
+    {
+      "path": "final-build/metadata.txt",
+      "bytes": 825,
+      "sha256": "ce7d17fc772511f40b5e1d3c6766cd25b8fc7b33e4c0ce9fc2ee6824c2ad39ca"
+    },
+    {
+      "path": "final-build/production-unchanged.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "final-build/signature.txt",
+      "bytes": 327,
+      "sha256": "f212453b3b955f213464fb666b7fd496619dc95a64a888b3ef79e1d95f925479"
+    },
+    {
+      "path": "final-build/source-check.txt",
+      "bytes": 68,
+      "sha256": "52c7138cf3720e15fe3b442535fa60f1d9fce3303ca58f46bf052a33ae9fb911"
+    },
+    {
+      "path": "final-ci-artifacts.json",
+      "bytes": 1719,
+      "sha256": "414d996b53c88b89d3a2d8e12a3e1ae6a09092df4e2feeba59fa6547dcd7f6a7"
+    },
+    {
+      "path": "final-video-metadata.json",
+      "bytes": 2581,
+      "sha256": "adec055b3fa31cdd6eb4b3cd65e591977bf28195036f42a15a7f2b0bf53453ac"
+    },
+    {
+      "path": "first-build/SHA256SUMS",
+      "bytes": 198,
+      "sha256": "5139db414b24db800543c45536203636ee65a2d1a1a4b04f4875240f93d8fe19"
+    },
+    {
+      "path": "first-build/SOURCE_COMMIT",
+      "bytes": 41,
+      "sha256": "f468e8c809f9f7a80ffb27d0bf3d3c07f653f4088a5445a0bdceb25239017750"
+    },
+    {
+      "path": "first-build/apk-audit.txt",
+      "bytes": 1868,
+      "sha256": "0eb1e0a6a740ecd44a2ca71c28bb7c77bb89e133382297b026059fb74494fe82"
+    },
+    {
+      "path": "first-build/apk-identity.json",
+      "bytes": 387,
+      "sha256": "5f846ddb4d0bb683576dcc16ca7bd55b115ec66141173d9a4df6f6d4ef65aca1"
+    },
+    {
+      "path": "first-build/metadata.txt",
+      "bytes": 825,
+      "sha256": "ce7d17fc772511f40b5e1d3c6766cd25b8fc7b33e4c0ce9fc2ee6824c2ad39ca"
+    },
+    {
+      "path": "first-build/signature.txt",
+      "bytes": 327,
+      "sha256": "f212453b3b955f213464fb666b7fd496619dc95a64a888b3ef79e1d95f925479"
+    },
+    {
+      "path": "first-compaction-failure.log",
+      "bytes": 703,
+      "sha256": "2de8749f6abf2795746ecddbf798049f74c0418d6ba65cdb43f9b70eb14695c3"
+    },
+    {
+      "path": "gltf-validator.log",
+      "bytes": 205,
+      "sha256": "ad28faaf03a1093386d067ed468ad3fb34744a7d66e3ac830f83a562e1132b8b"
+    },
+    {
+      "path": "host-benchmark-c1-summary.json",
+      "bytes": 765,
+      "sha256": "927364a898ab29c9f453c456725196b0f129229f1fc526e80d94ecfccbaa10fd"
+    },
+    {
+      "path": "host-benchmark-summary.json",
+      "bytes": 735,
+      "sha256": "34f6b5d0a161683c009cb217cf900b4cc9d5a1d12fd34ae45a299c48f62d194a"
+    },
+    {
+      "path": "offline-review.md",
+      "bytes": 1092,
+      "sha256": "8877f7f08368241e8ee2f7f5f3f7f08433cae5e512be5e153e15a49cabbbf8d4"
+    },
+    {
+      "path": "physical-access.log",
+      "bytes": 14927,
+      "sha256": "fcaf4ea1702ea88e372ad6ae5bb522ec25550dfb1ddcc5b045279c1eace2b27b"
+    },
+    {
+      "path": "runtime-api29-first.json",
+      "bytes": 1674,
+      "sha256": "6d67be828968225d7cb237fe56a7cba926331936b66ad0659e8bc210c25a63f9"
+    },
+    {
+      "path": "runtime-api35.json",
+      "bytes": 1621,
+      "sha256": "91148e0291345bcff57c2bcd33919387d94e5abca6edf0deaa64514725b94baf"
+    },
+    {
+      "path": "runtime-final.json",
+      "bytes": 13024,
+      "sha256": "124f50e82f232bc8c2d3aa71904762e570581285cfce1621254cc1cdbc1909e9"
+    },
+    {
+      "path": "runtime-first-owner-samples.json",
+      "bytes": 1638,
+      "sha256": "f5a4efc7a8455638459a7e0f16317b5470761711da9a67f8ce7dbe7b5b64b969"
+    },
+    {
+      "path": "test-feedback123.log",
+      "bytes": 521,
+      "sha256": "28fb472f432e8e667d0800838144142dabb8c8a20d64965388232d21abeb8089"
+    },
+    {
+      "path": "test-native-r09-candidate.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "test-native-r09-candidate.log",
+      "bytes": 1342,
+      "sha256": "85b26b0f0254fbddaeb63d74958a17ccdc85ee50cdf7a55e7137cd68d4e90340"
+    },
+    {
+      "path": "test-native-r09-input.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "test-native-r09-input.log",
+      "bytes": 1342,
+      "sha256": "9ffedf84fa9bdf16c653cd16f28ce3f8ae7585e9aa2c843928fc31ff1dc22cad"
+    },
+    {
+      "path": "test-native-r10-candidate.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "test-native-r10-candidate.log",
+      "bytes": 688,
+      "sha256": "07256fbcd1e0955e5972515ba683a7af132241370e43aeada19ea4744f7aebd4"
+    },
+    {
+      "path": "test-native-r10-input.exit",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "test-native-r10-input.log",
+      "bytes": 688,
+      "sha256": "ce7a9f9d824c0f30e507731d9e75037fb02894996b861ac34a7f160c8089b207"
+    }
+  ]
 }

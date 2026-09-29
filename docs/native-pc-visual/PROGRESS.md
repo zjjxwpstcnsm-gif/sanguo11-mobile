@@ -1,6 +1,8 @@
 ## v123 模型与性能续作 — PARTIAL
 
-实际Blender版本化41模型、无损数值索引、primitive解码与静止部队变换缓存已接入正常路径。构建/安装结果待本轮验证；全国ready、PC美术、ARM64/30分钟仍未通过。不改玩法/地图，不合并main。见 reports/feedback-v123.md。
+Blender41模型（城港关/13兵种LOD）与primitive解码、姿态拓扑共享、静止部队变换缓存已接入正式路径。新模型顶点-17.5%、文件-15.1%；主机城池解码/骑兵姿态分配-45.0%/-47.7%，不等于手机FPS。
+
+最终APK source7658a8bcae83e215186d6c89d114760f8d982944，SHA256200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46。构建/签名/391资产/四ABI16KB通过。最终API29 fixture/寿春PASS，港口ready FAIL；API35寿春/港口PASS，fixture ready FAIL。4场景全存档一致；首轮失败及测试适用范围修正保留。整体CI FAIL，加载稳定性/PC高精美术/ARM64/30分钟未通过，物理授权被WIF条件拒绝、提交0。原core/R09继承失败保留。不改玩法/地图/旧349资源，不合并main、不启Unity、不开始下一阶段。详见reports/feedback-v123.md及evidence/feedback-v123/manifest.json。
 
 ## 2026-09-29 v121 用户反馈续作 — PARTIAL
 

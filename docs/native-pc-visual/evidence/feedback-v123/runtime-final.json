@@ -1,0 +1,211 @@
+[
+  {
+    "api": 29,
+    "mode": "fixture",
+    "status": "PASS",
+    "instrumentation": "PASS FEEDBACK123 candidate fixture checks=129\n\n",
+    "cache": [
+      "POSITION_CACHE uploads=33 skips=226 visibleUnits=2"
+    ],
+    "actualGpu": [
+      "ACTUAL_GPU_SHAPE city0:0 triangles=6392",
+      "ACTUAL_GPU_SHAPE gate:0/12,5/-2.6779451/g1 triangles=2109"
+    ],
+    "installedSha": "200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46",
+    "surfaceCaptures": 4,
+    "wholeAuthority": "PASS",
+    "ownerSamples": {
+      "count": 300,
+      "admitted": 89,
+      "presentedIntervals": "NOT_AVAILABLE",
+      "gpuDuration": "NOT_AVAILABLE",
+      "owner_wall_ms": {
+        "0.5": 0.2957,
+        "0.95": 880.33784,
+        "0.99": 1133.35622
+      },
+      "owner_cpu_ms": {
+        "0.5": 0.235471,
+        "0.95": 272.017526,
+        "0.99": 715.065278
+      },
+      "begin_wall_ms": {
+        "0.5": 0.04671,
+        "0.95": 879.59642,
+        "0.99": 1128.92132
+      }
+    }
+  },
+  {
+    "api": 29,
+    "mode": "national",
+    "status": "PASS",
+    "instrumentation": "PASS FEEDBACK123 candidate national checks=138\n\n",
+    "cache": [
+      "POSITION_CACHE uploads=444 skips=0 visibleUnits=0",
+      "POSITION_CACHE NOT_APPLICABLE: this official city/port view has no visible unit; all scene, asset and authority assertions remain active"
+    ],
+    "actualGpu": [
+      "ACTUAL_GPU_SHAPE city1:0 triangles=6596",
+      "ACTUAL_GPU_SHAPE city0:0 triangles=6392",
+      "ACTUAL_GPU_SHAPE city2:0 triangles=6282",
+      "ACTUAL_GPU_SHAPE gate:0/110,92/-1.1071488/g1 triangles=2071",
+      "ACTUAL_GPU_SHAPE gate:0/131,90/-1.1071488/g1 triangles=2109",
+      "ACTUAL_GPU_SHAPE gate:0/146,61/-1.1071488/g1 triangles=2109",
+      "ACTUAL_GPU_SHAPE gate:0/143,68/-1.1071488/g1 triangles=2109",
+      "ACTUAL_GPU_SHAPE gate:0/151,68/0.0/g1 triangles=2033",
+      "ACTUAL_GPU_SHAPE gate:0/170,26/0.0/g1 triangles=2071",
+      "ACTUAL_GPU_SHAPE gate:0/189,14/0.0/g1 triangles=2033",
+      "ACTUAL_GPU_SHAPE gate:0/190,23/0.0/g1 triangles=2033",
+      "ACTUAL_GPU_SHAPE gate:0/213,11/-1.1071488/g1 triangles=2071",
+      "ACTUAL_GPU_SHAPE gate:0/220,8/0.0/g1 triangles=2033",
+      "ACTUAL_GPU_SHAPE port:0 triangles=3322"
+    ],
+    "installedSha": "200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46",
+    "surfaceCaptures": 4,
+    "wholeAuthority": "PASS",
+    "ownerSamples": {
+      "count": 300,
+      "admitted": 87,
+      "presentedIntervals": "NOT_AVAILABLE",
+      "gpuDuration": "NOT_AVAILABLE",
+      "owner_wall_ms": {
+        "0.5": 0.21292,
+        "0.95": 1266.68157,
+        "0.99": 1445.66965
+      },
+      "owner_cpu_ms": {
+        "0.5": 0.203006,
+        "0.95": 212.130849,
+        "0.99": 600.687393
+      },
+      "begin_wall_ms": {
+        "0.5": 0.04265,
+        "0.95": 1266.08674,
+        "0.99": 1431.86293
+      }
+    }
+  },
+  {
+    "api": 29,
+    "mode": "port",
+    "status": "FAIL",
+    "instrumentation": "FAIL FEEDBACK123 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=693 backingCopies=1 confirmedLosses=1 relayouts=1 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1\nsource=7658a8bcae83e215186d6c89d114760f8d982944 profile=native device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]\nsnapshot=true surface=true viewport=918x1047 session=0d63cc7d-f7dc-49a2-9908-a3f63f096f74:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=5473364 terrain_all_coarse=false mapVisualKey=471842112:0 environmentCpuChunks=64 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=24 pending=0 submitted=9 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=692 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=8 workerBackpressureWallMs=0.0 frameCallbacks=763 beginAttempts=721 beginSkipped=712 gpuPreparationFrames=9 lifetimeSubmissions=9 surfaceCopies=0 output=WAITING_FRAME\ncamera=168.0,28.0 span=6.0 tilt=55.0 facing=1 yaw=0.0\npick=none\nFilament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30\n内部 918 × 1047 / UI 1080 × 1232 · chunks 9 / GPU 9 · objects 2\n帧回调间隔 166.7 ms（非 GPU/FPS 实测）\n待装载 0 · S06 战斗特效 / 部队 · 林块 9 · LOD 0 · 资产回退 0 · 特效 0/64\n场景 primitives=32 triangles=221248 buffers_bytes=16050304 pose_cache=22 entity_live=217 material_instance_live=88 mesh_live=41 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=49.473383 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=4.573056 CPU提交ms P50/P95/P99=0.12/2.77/54.76 samples=240（非驱动DrawCall/GPU帧时）\nR16 attempts=721 submitted=9 rejected=712 window=300 owner_wall_ms_p50_p95_p99=0.123/2.648/42.922/ owner_cpu_ms_p50_p95_p99=0.116/0.280/9.796/ begin_wall_ms_p50_p95_p99=0.018/0.039/16.076/ mesh_upload_wall_ms_p50_p95_p99=0.000/0.000/10.075/ render_submit_wall_ms_p50_p95_p99=0.000/0.000/0.736/ presented_interval=NOT_AVAILABLE gpu_duration=NOT_AVAILABLE visibility_passes=9 visibility_skips=0 thermal_transitions=0\n\tat game.sanguo.mobile.SceneInstrumentation.ready(SceneInstrumentation.java:75)\n\tat game.sanguo.mobile.NativeFeedback123Instrumentation.onStart(NativeFeedback123Instrumentation.java:72)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\n\n",
+    "cache": [],
+    "actualGpu": [],
+    "installedSha": "200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46",
+    "surfaceCaptures": 0,
+    "wholeAuthority": "NOT_RUN (not reached)"
+  },
+  {
+    "api": 35,
+    "mode": "fixture",
+    "status": "FAIL",
+    "instrumentation": "FAIL FEEDBACK123 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=582 backingCopies=1 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1\nsource=7658a8bcae83e215186d6c89d114760f8d982944 profile=native device=Android SDK built for x86_64 api=35 abi=[x86_64]\nsnapshot=true surface=true viewport=918x954 session=8b00a455-9a8a-4c07-8925-bdada665433a:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=1303512 terrain_all_coarse=false mapVisualKey=1127932591:0 environmentCpuChunks=6 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=2 pending=1 submitted=4 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=586 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=4 workerBackpressureWallMs=0.0 frameCallbacks=624 beginAttempts=585 beginSkipped=581 gpuPreparationFrames=4 lifetimeSubmissions=4 surfaceCopies=0 output=WAITING_FRAME\ncamera=15.0,8.0 span=6.0 tilt=55.0 facing=1 yaw=0.0\npick=none\nFilament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30\n内部 918 × 954 / UI 1080 × 1122 · chunks 2 / GPU 2 · objects 3\n帧回调间隔 50.0 ms（非 GPU/FPS 实测）\n待装载 1 · S06 战斗特效 / 部队 · 林块 1 · LOD 0 · 资产回退 0 · 特效 0/64\n场景 primitives=9 triangles=32287 buffers_bytes=2121630 pose_cache=5 entity_live=20 material_instance_live=6 mesh_live=8 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=367.507033 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=0.865818 CPU提交ms P50/P95/P99=0.16/7.24/45.53 samples=240（非驱动DrawCall/GPU帧时）\nR16 attempts=585 submitted=4 rejected=581 window=300 owner_wall_ms_p50_p95_p99=0.162/8.122/35.447/ owner_cpu_ms_p50_p95_p99=0.079/0.192/0.223/ begin_wall_ms_p50_p95_p99=0.010/0.033/2.228/ mesh_upload_wall_ms_p50_p95_p99=0.000/0.000/0.000/ render_submit_wall_ms_p50_p95_p99=0.000/0.000/0.000/ presented_interval=NOT_AVAILABLE gpu_duration=NOT_AVAILABLE visibility_passes=4 visibility_skips=0 thermal_transitions=0\n\tat game.sanguo.mobile.SceneInstrumentation.ready(SceneInstrumentation.java:75)\n\tat game.sanguo.mobile.NativeFeedback123Instrumentation.onStart(NativeFeedback123Instrumentation.java:72)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)\n\n",
+    "cache": [],
+    "actualGpu": [],
+    "installedSha": "200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46",
+    "surfaceCaptures": 0,
+    "wholeAuthority": "NOT_RUN (not reached)"
+  },
+  {
+    "api": 35,
+    "mode": "national",
+    "status": "PASS",
+    "instrumentation": "PASS FEEDBACK123 candidate national checks=105\n\n",
+    "cache": [
+      "POSITION_CACHE uploads=444 skips=0 visibleUnits=0",
+      "POSITION_CACHE NOT_APPLICABLE: this official city/port view has no visible unit; all scene, asset and authority assertions remain active"
+    ],
+    "actualGpu": [
+      "ACTUAL_GPU_SHAPE city1:0 triangles=6596",
+      "ACTUAL_GPU_SHAPE city0:0 triangles=6392",
+      "ACTUAL_GPU_SHAPE city2:0 triangles=6282",
+      "ACTUAL_GPU_SHAPE gate:0/110,92/-1.1071488/g1 triangles=2071",
+      "ACTUAL_GPU_SHAPE gate:0/131,90/-1.1071488/g1 triangles=2109",
+      "ACTUAL_GPU_SHAPE gate:0/146,61/-1.1071488/g1 triangles=2109",
+      "ACTUAL_GPU_SHAPE gate:0/143,68/-1.1071488/g1 triangles=2109",
+      "ACTUAL_GPU_SHAPE gate:0/151,68/0.0/g1 triangles=2033",
+      "ACTUAL_GPU_SHAPE gate:0/170,26/0.0/g1 triangles=2071",
+      "ACTUAL_GPU_SHAPE gate:0/189,14/0.0/g1 triangles=2033",
+      "ACTUAL_GPU_SHAPE gate:0/190,23/0.0/g1 triangles=2033",
+      "ACTUAL_GPU_SHAPE gate:0/213,11/-1.1071488/g1 triangles=2071",
+      "ACTUAL_GPU_SHAPE gate:0/220,8/0.0/g1 triangles=2033",
+      "ACTUAL_GPU_SHAPE port:0 triangles=3322"
+    ],
+    "installedSha": "200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46",
+    "surfaceCaptures": 4,
+    "wholeAuthority": "PASS",
+    "ownerSamples": {
+      "count": 300,
+      "admitted": 138,
+      "presentedIntervals": "NOT_AVAILABLE",
+      "gpuDuration": "NOT_AVAILABLE",
+      "owner_wall_ms": {
+        "0.5": 0.749268,
+        "0.95": 1165.694874,
+        "0.99": 1372.736449
+      },
+      "owner_cpu_ms": {
+        "0.5": 0.130014,
+        "0.95": 110.150909,
+        "0.99": 411.641887
+      },
+      "begin_wall_ms": {
+        "0.5": 0.017065,
+        "0.95": 1161.814276,
+        "0.99": 1372.43506
+      }
+    }
+  },
+  {
+    "api": 35,
+    "mode": "port",
+    "status": "PASS",
+    "instrumentation": "PASS FEEDBACK123 candidate port checks=104\n\n",
+    "cache": [
+      "POSITION_CACHE uploads=444 skips=0 visibleUnits=0",
+      "POSITION_CACHE NOT_APPLICABLE: this official city/port view has no visible unit; all scene, asset and authority assertions remain active"
+    ],
+    "actualGpu": [
+      "ACTUAL_GPU_SHAPE city1:0 triangles=6596",
+      "ACTUAL_GPU_SHAPE city0:0 triangles=6392",
+      "ACTUAL_GPU_SHAPE city2:0 triangles=6282",
+      "ACTUAL_GPU_SHAPE gate:0/110,92/-1.1071488/g1 triangles=2071",
+      "ACTUAL_GPU_SHAPE gate:0/131,90/-1.1071488/g1 triangles=2109",
+      "ACTUAL_GPU_SHAPE gate:0/146,61/-1.1071488/g1 triangles=2109",
+      "ACTUAL_GPU_SHAPE gate:0/143,68/-1.1071488/g1 triangles=2109",
+      "ACTUAL_GPU_SHAPE gate:0/151,68/0.0/g1 triangles=2033",
+      "ACTUAL_GPU_SHAPE gate:0/170,26/0.0/g1 triangles=2071",
+      "ACTUAL_GPU_SHAPE gate:0/189,14/0.0/g1 triangles=2033",
+      "ACTUAL_GPU_SHAPE gate:0/190,23/0.0/g1 triangles=2033",
+      "ACTUAL_GPU_SHAPE gate:0/213,11/-1.1071488/g1 triangles=2071",
+      "ACTUAL_GPU_SHAPE gate:0/220,8/0.0/g1 triangles=2033",
+      "ACTUAL_GPU_SHAPE port:0 triangles=3322"
+    ],
+    "installedSha": "200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46",
+    "surfaceCaptures": 4,
+    "wholeAuthority": "PASS",
+    "ownerSamples": {
+      "count": 300,
+      "admitted": 138,
+      "presentedIntervals": "NOT_AVAILABLE",
+      "gpuDuration": "NOT_AVAILABLE",
+      "owner_wall_ms": {
+        "0.5": 1.303549,
+        "0.95": 1868.985368,
+        "0.99": 2093.157724
+      },
+      "owner_cpu_ms": {
+        "0.5": 0.21652,
+        "0.95": 306.318427,
+        "0.99": 599.294419
+      },
+      "begin_wall_ms": {
+        "0.5": 0.017466,
+        "0.95": 1855.943266,
+        "0.99": 2078.850628
+      }
+    }
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "source_sha": "7658a8bcae83e215186d6c89d114760f8d982944",
+  "apk_sha256": "200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46",
+  "bytes": 39852561,
+  "abis": [
+    "arm64-v8a",
+    "armeabi-v7a",
+    "x86",
+    "x86_64"
+  ],
+  "matched_assets": 391,
+  "backend": "Filament 1.56.0 OPENGL",
+  "acceptance": "PARTIAL; archive identity is not runtime or art acceptance"
+}
