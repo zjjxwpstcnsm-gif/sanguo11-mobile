@@ -34,3 +34,5 @@ APK source `5f8997ebfef15f4680931d40532411a336506d0d` / SHA256 `6ba2211d961567b2
 ## 2026-09-29 用户反馈 v122 — PARTIAL
 
 见 [本轮报告](reports/feedback-v122.md)。正式修复栈道材质跨界，改善现有SWAMP材质，41个实际Blender模型接入城港关和13类部队正常加载路径。寿春湿地权威地图缺失仍OPEN；core基线同点失败；正常3D、参考美术和ARM64不得提前记PASS。
+
+本轮最终验证：v122源a8a4eca79164a03f9e58ef379991c839be44968a构建PASS，219GLB零错误/警告。API29小场景四组实际Surface/网格/完整存档对比PASS；两版全国寿春/港口及API35全部就绪FAIL，ARM64授权拒绝/NOT_RUN。报告、资产清单和runtime-summary已更新，整体PARTIAL。
