@@ -1,0 +1,28 @@
+name: Native v122 Blender authoring
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['tools/3d/refine_blender122.py', '.github/workflows/native-model122-generation.yml']
+permissions: {contents: read}
+jobs:
+  author:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - name: Install pinned Blender, generate actual runtime meshes
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/blender122 out/feedback122
+          curl --retry 3 -fsSL https://download.blender.org/release/Blender4.2/blender-4.2.3-linux-x64.tar.xz -o /tmp/blender122.tar.xz
+          tar -xf /tmp/blender122.tar.xz -C /tmp/blender122 --strip-components=1
+          /tmp/blender122/blender --version > out/feedback122/blender-version.txt
+          /tmp/blender122/blender --background --python tools/3d/refine_blender122.py -- "$PWD" > out/feedback122/blender.log 2>&1
+          curl --retry 3 -fsSL https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o out/feedback122/json.jar
+          tar -czf out/feedback122/generated.tar.gz app/src/main/assets/3d/sites/v122 app/src/main/assets/3d/field/v122 app/src/main/assets/3d/field/rigs-v122.json docs/native-pc-visual/feedback-v122-blender-assets.json
+          sha256sum out/feedback122/generated.tar.gz > out/feedback122/SHA256SUMS
+          git rev-parse HEAD > out/feedback122/GENERATOR_COMMIT
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-v122-blender, path: out/feedback122/, retention-days: 30, if-no-files-found: error}
