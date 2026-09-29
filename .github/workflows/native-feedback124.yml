@@ -14,14 +14,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with: {ref: '${{ github.sha }}', fetch-depth: 0}
-      - name: Reproduce the locally reviewed Blender assets and source project
+      - name: Reproduce all locally reviewed Blender production assets
         run: |
           set -euo pipefail
           mkdir -p out/feedback124
           curl -fsSL --retry 2 https://download.blender.org/release/Blender4.2/blender-4.2.3-linux-x64.tar.xz -o /tmp/blender124.tar.xz
           tar -xJf /tmp/blender124.tar.xz -C /tmp
           /tmp/blender-4.2.3-linux-x64/blender --version > out/feedback124/blender-version.txt
-          /tmp/blender-4.2.3-linux-x64/blender --background --threads 2 --python-exit-code 1 --python tools/3d/refine_blender124.py -- out/feedback124/reproduced > out/feedback124/blender.log 2>&1
+          # Full packed .blend / offline previews are preserved in the first run
+          # artifact11064172889. Repeat the exact exporter and every byte check.
+          /tmp/blender-4.2.3-linux-x64/blender --background --threads 2 --python-exit-code 1 --python tools/3d/refine_blender124.py -- out/feedback124/reproduced --no-preview > out/feedback124/blender.log 2>&1
           python3 - <<'PY'
           import json, hashlib, pathlib, shutil
           expected=json.loads(pathlib.Path('docs/native-pc-visual/feedback-v124-blender-assets.json').read_text())

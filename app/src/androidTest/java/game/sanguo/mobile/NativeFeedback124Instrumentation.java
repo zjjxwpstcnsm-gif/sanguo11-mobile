@@ -57,11 +57,15 @@ public final class NativeFeedback124Instrumentation extends SceneInstrumentation
         event(down,MotionEvent.ACTION_UP,new float[]{x+dimensions[0]*.09f,y});settle();
         float[] after={0,0};runOnMainSync(()->{after[0]=view.camera.x;after[1]=view.camera.z;});
         check(Math.abs(after[0]-state[0])+Math.abs(after[1]-state[1])>.01,"real pointer scroll moves normal camera");
-        down=SystemClock.uptimeMillis();event(down,MotionEvent.ACTION_DOWN,new float[]{x-40,y});
-        pinch(down,MotionEvent.ACTION_POINTER_DOWN|(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT),x,y,40);
-        for(int i=1;i<=6;i++){SystemClock.sleep(30);pinch(down,MotionEvent.ACTION_MOVE,x,y,40+i*9);}
-        pinch(down,MotionEvent.ACTION_POINTER_UP|(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT),x,y,94);
-        event(down,MotionEvent.ACTION_UP,new float[]{x-94,y});settle();
+        int minimum=Build.VERSION.SDK_INT>=29?android.view.ViewConfiguration.get(getTargetContext()).getScaledMinimumScalingSpan():0;
+        float radius=Math.max(40,minimum*.55f),end=Math.min(dimensions[0]*.35f,radius*1.65f);
+        check(end>radius+16,"unobstructed viewport supports a platform-sized pinch");
+        log("GESTURE minimumScalingSpan="+minimum+" actualSpan="+(radius*2)+"->"+(end*2)+"; original camera assertion retained");
+        down=SystemClock.uptimeMillis();event(down,MotionEvent.ACTION_DOWN,new float[]{x-radius,y});
+        pinch(down,MotionEvent.ACTION_POINTER_DOWN|(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT),x,y,radius);
+        for(int i=1;i<=6;i++){SystemClock.sleep(30);pinch(down,MotionEvent.ACTION_MOVE,x,y,radius+(end-radius)*i/6);}
+        pinch(down,MotionEvent.ACTION_POINTER_UP|(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT),x,y,end);
+        event(down,MotionEvent.ACTION_UP,new float[]{x-end,y});settle();
         float[] span={0};runOnMainSync(()->span[0]=view.camera.span);check(Math.abs(span[0]-state[2])>.01,"real two-finger pinch changes normal zoom");
         ready();shot(phase+"-fixture-real-scroll-pinch");log("Actual pointer scroll and pinch; remaining fixed views API driven; not complete new-game touch chain");
     }
