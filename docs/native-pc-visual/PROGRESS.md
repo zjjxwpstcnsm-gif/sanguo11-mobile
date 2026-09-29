@@ -1,3 +1,7 @@
+## 2026-09-29 v121 用户反馈续作 — PARTIAL
+
+山体/贴山关隘、静态GPU网格和实际Blender制作资源已接入正式代码。四处关隘缺邻山、全模型美术、历史运行/真机缺口仍开放；新旧安装结果待精确CI。见 [本轮报告](reports/feedback-v121.md) 与 [交接](handoffs/feedback-v121.md)。不自动进入下一阶段，main不合并。
+
 # 用户反馈专项 — v120 / PARTIAL（2026-09-29）
 
 继续agent/native-pc-visual / Draft PR67，已复读main ac29b458（架构PR66已合）、原生实现与历史缺口。本轮只处理用户三项视觉反馈，不合main、不启Unity、不自动新阶段。

@@ -8,7 +8,7 @@ final class CombatVisual {
     static final int CAPACITY=64, FIRE_BUDGET=16, TEXT_BUDGET=8, MESH_COUNT=8;
     enum Style { NONE, MELEE, CHARGE, ARROW, STONE, FIRE, LIGHTNING, RECOVER, STATUS }
     static final class Particle {
-        int mesh; float x,y,z,scale,yaw,pitch;
+        int mesh; float x,y,z,scale,yaw,pitch,stretch;
     }
     final Particle[] particles=new Particle[CAPACITY];
     int count;
@@ -108,10 +108,17 @@ final class CombatVisual {
         }
     }
     void fire(MapSceneSnapshot.FireState fire,MapSceneSnapshot.Ground g,long millis,boolean motion){
-        float pulse=motion?(float)Math.sin(millis*.006+fire.hex.q*3+fire.hex.r)*.12f:0;
-        add(2,g.grid.x(fire.hex),g.surface.at(fire.hex)+.25f,g.grid.z(fire.hex),.5f+pulse,0);
-        if(detail>0)add(6,g.grid.x(fire.hex)+.09f,g.surface.at(fire.hex)+.85f+pulse,g.grid.z(fire.hex),.50f,0);
+        float phase=fire.hex.q*3.17f+fire.hex.r*1.73f;
+        float pulse=motion?(float)Math.sin(millis*.009+phase):0;
+        float x=g.grid.x(fire.hex),z=g.grid.z(fire.hex),y=g.surface.at(fire.hex);
+        int first=count;add(2,x,y+.025f,z,.70f,phase);
+        if(count>first)particles[count-1].stretch=1+pulse*.14f;
+        if(detail>0){
+            float drift=motion?(float)Math.sin(millis*.002+phase)*.045f:0;
+            add(6,x+.08f+drift,y+.67f+pulse*.02f,z,.65f,phase*.37f);
+        }
     }
+
     private static float flightHeight(MapSceneSnapshot.Ground g,float ax,float ay,float az,float bx,float by,float bz,float t,float offset,float arc){
         return Math.max(ay+(by-ay)*t+4*t*(1-t)*arc,g.surface.sample(ax+(bx-ax)*t+offset,az+(bz-az)*t+offset)+.36f);
     }
@@ -120,7 +127,7 @@ final class CombatVisual {
             add(mesh,px,g.surface.sample(px,pz)+.22f+(float)Math.sin(t*Math.PI)*.45f,pz,(1-t)*.35f,0);}
     }
     private void add(int mesh,float x,float y,float z,float scale,float yaw){
-        if(count==CAPACITY)return;Particle p=particles[count++];p.mesh=mesh;p.x=x;p.y=y;p.z=z;p.scale=Math.max(.001f,scale);p.yaw=yaw;p.pitch=0;
+        if(count==CAPACITY)return;Particle p=particles[count++];p.mesh=mesh;p.x=x;p.y=y;p.z=z;p.scale=Math.max(.001f,scale);p.yaw=yaw;p.pitch=0;p.stretch=1;
     }
     /** Original CC0 opaque effect geometry; eight shared meshes, no runtime shader compiler. */
     static SceneMesh mesh(int kind){

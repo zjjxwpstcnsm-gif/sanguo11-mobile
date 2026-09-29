@@ -6,7 +6,7 @@ import java.util.*;
 /** CPU-only mesh preparation; no Android or renderer references. */
 final class SceneMesh {
     private static final World.Terrain[] TERRAIN_TYPES=World.Terrain.values();
-    SceneMesh distant;
+    SceneMesh distant,grid;
     boolean vegetation;
     int landscapeChunkSize=8;
     // Disjoint index ranges share the same surface and buffers, but never draw water as land.
@@ -137,7 +137,7 @@ final class SceneMesh {
         final float x,z,ex,ez,span;
         TerrainWindow(float x,float z,float ex,float ez,float span){this.x=x;this.z=z;this.ex=ex+16;this.ez=ez+16;this.span=span;}
         boolean covers(float cx,float cz,float vx,float vz,float nextSpan){
-            return Math.abs(cx-x)+vx<=ex-4&&Math.abs(cz-z)+vz<=ez-4&&level(nextSpan)==level(span);
+            return Math.abs(cx-x)+vx<=ex-4&&Math.abs(cz-z)+vz<=ez-4&&level(nextSpan)==level(span)&&(nextSpan<48)==(span<48);
         }
         static int level(float span){return span<14?0:span<40?1:2;}
         int lod(float cx,float cz){return Math.min(2,Math.max(level(span),(int)(Math.max(Math.abs(cx-x),Math.abs(cz-z))/32)));}
@@ -168,7 +168,7 @@ final class SceneMesh {
             if(Thread.currentThread().isInterrupted())return Collections.emptyList();
             long fingerprint=1469598103934665603L ^ TerrainMaterialField.VERSION ^ TerrainSurface.METADATA_VERSION ^ WaterVisualField.VERSION;
             fingerprint=(fingerprint^(window==null?g.mapSeed:g.mapIdentity))*1099511628211L;
-            fingerprint=(fingerprint^lod)*1099511628211L;
+            fingerprint=(fingerprint^lod^(window!=null&&window.span<48?0x12100:0))*1099511628211L;
             fingerprint=(fingerprint^g.width)*1099511628211L;fingerprint=(fingerprint^g.height)*1099511628211L;
             fingerprint=(fingerprint^Float.floatToIntBits(g.grid.offset))*1099511628211L;fingerprint=(fingerprint^(g.grid.staggered?1:0))*1099511628211L;
             for(int rr=r-8;rr<Math.min(r+24,g.height);rr++)for(int qq=q-8;qq<Math.min(q+24,g.width);qq++){
@@ -203,13 +203,45 @@ final class SceneMesh {
                 fine.terrainLod=lod;
                 // Production holds only the requested precision, not a nationwide LOD pyramid.
                 if(window!=null)fine.distant=null;
-                fine.chunkQ=q;fine.chunkR=r;fine.fingerprint=fingerprint;out.add(fine);
+                fine.chunkQ=q;fine.chunkR=r;fine.fingerprint=fingerprint;
+                // One immutable GPU batch per streamed ground chunk. No UI-thread
+                // terrain sampling/raycast per grid cell during camera gestures.
+                if(window!=null&&window.span<48)fine.grid=grid(g,q,r,fine,lod);
+                out.add(fine);
                 if(stats!=null&&stats.firstLoadBatch!=null&&out.size()%8==0)
                     stats.firstLoadBatch.accept(Collections.unmodifiableList(new ArrayList<>(out)));
                 if(stats!=null&&++stats.builtChunks%32==0&&stats.progress!=null)stats.progress.run();
             }
         }
         return Collections.unmodifiableList(out);
+    }
+    static SceneMesh grid(MapSceneSnapshot.Ground g,int q,int r,SceneMesh bounds,int lod){
+        Builder b=new Builder();
+        float width=lod==0?.012f:lod==1?.023f:.038f;
+        for(int rr=r;rr<Math.min(r+16,g.height);rr++)for(int qq=q;qq<Math.min(q+16,g.width);qq++){
+            Hex h=new Hex(qq,rr);if(!g.gridCell(h,false))continue;
+            float x=g.grid.x(h),z=g.grid.z(h),cy=g.surface.at(h);
+            for(int e=0;e<8;e++){
+                float[] a=EDGE[e],d=EDGE[(e+1)%8];
+                float ax=x+a[0],az=z+a[1],dx=x+d[0],dz=z+d[1];
+                float ay=g.surface.sample(ax,az),dy=g.surface.sample(dx,dz);
+                // Each half-stroke stays inside its eligible cell. Shared edges
+                // join without drawing over a mountain/restricted cell interior.
+                gridRibbon(b,g,x,z,cy,ax,az,ay,dx,dz,dy,width,.018f,0xff243b38);
+                gridRibbon(b,g,x,z,cy,ax,az,ay,dx,dz,dy,width*.42f,.022f,0xffd9dfbe);
+            }
+        }
+        return b.mesh(bounds.x,bounds.z,bounds.radius);
+    }
+    private static void gridRibbon(Builder b,MapSceneSnapshot.Ground g,float x,float z,float y,
+            float ax,float az,float ay,float dx,float dz,float dy,float inset,float lift,int color){
+        // Exact barycentric inset within the same visible fan planes, including
+        // rounded shoreline transport. Width is an offline LOD choice, not a rule.
+        float[] a=g.shoreline.project(ax,az),d=g.shoreline.project(dx,dz);
+        float t=inset*2;
+        b.face(new float[]{a[0],ay+lift,a[1],d[0],dy+lift,d[1],
+            d[0]+(x-d[0])*t,dy+(y-dy)*t+lift,d[1]+(z-d[1])*t,
+            a[0]+(x-a[0])*t,ay+(y-ay)*t+lift,a[1]+(z-a[1])*t},color);
     }
     /** Interior subdivision adds close-range material detail; boundary geometry is identical at both LODs. */
     static SceneMesh detail(SceneMesh coarse,MapSceneSnapshot.Ground g){

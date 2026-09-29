@@ -57,4 +57,46 @@ final class SiteVisual {
         return span<15?0:span>48?2:1;
     }
     static SceneMesh fallback(int kind){return SceneMesh.proxy(kind,0xff918a75);}
+    /** Short retaining wings terminate in real adjacent mountain cells. Nothing is
+     * added across a legal approach, and there is no new collision/terrain rule. */
+    static SceneMesh joinGate(SceneMesh source,MapSceneSnapshot.Ground g,Hex gate,float yaw){
+        List<Float> v=new ArrayList<>(),uv=new ArrayList<>();List<Integer> indices=new ArrayList<>();
+        for(float a:source.vertices)v.add(a);for(float a:source.uv)uv.add(a);for(int a:source.indices)indices.add(a);
+        float cs=(float)Math.cos(yaw),sn=(float)Math.sin(yaw),gx=g.grid.x(gate),gz=g.grid.z(gate);
+        for(int side:new int[]{-1,1}){
+            Hex target=null;float best=0,tx=0,tz=0;
+            for(Hex h:gate.neighbors())if(g.valid(h)&&g.terrain[h.r*g.width+h.q]==World.Terrain.MOUNTAIN.ordinal()){
+                float dx=g.grid.x(h)-gx,dz=g.grid.z(h)-gz,lx=cs*dx-sn*dz,lz=sn*dx+cs*dz;
+                float score=side*lx-Math.abs(lz)*.5f;
+                if(score>best&&side*lx>.45f){best=score;target=h;tx=lx;tz=lz;}
+            }
+            if(target==null)continue;
+            float ax=side*.40f,az=0,dx=tx-ax,dz=tz-az,length=(float)Math.hypot(dx,dz),nx=-dz/length*.065f,nz=dx/length*.065f;
+            boolean safe=true;
+            for(int i=0;i<=8;i++)for(int sign:new int[]{-1,1}){
+                float t=i/8f,x=ax+dx*t+nx*sign,z=az+dz*t+nz*sign;
+                Hex h=g.grid.cell(gx+cs*x+sn*z,gz-sn*x+cs*z);
+                if(!h.equals(gate)&&(!g.valid(h)||g.terrain[h.r*g.width+h.q]!=World.Terrain.MOUNTAIN.ordinal()))safe=false;
+            }
+            if(!safe)continue;
+            for(int i=0;i<6;i++){
+                float[][] p=new float[8][3];
+                for(int end=0;end<2;end++)for(int edge=0;edge<2;edge++){
+                    float t=(i+end)/6f,x=ax+dx*t+nx*(edge==0?-1:1),z=az+dz*t+nz*(edge==0?-1:1);
+                    float y=g.surface.meshHeight(gx+cs*x+sn*z,gz-sn*x+cs*z)-.045f;
+                    int n=end*2+edge;p[n]=new float[]{x,y,z};p[n+4]=new float[]{x,y+.32f*(1-t*.82f),z};
+                }
+                gateFace(v,uv,indices,p,0,2,6,4);gateFace(v,uv,indices,p,3,1,5,7);gateFace(v,uv,indices,p,4,6,7,5);
+                if(i==0)gateFace(v,uv,indices,p,1,0,4,5);
+            }
+        }
+        SceneMesh mesh=new SceneMesh(v,indices,source.x,source.z,source.radius);
+        mesh.uv=new float[uv.size()];for(int i=0;i<uv.size();i++)mesh.uv[i]=uv.get(i);mesh.generateTangents();return mesh;
+    }
+    private static void gateFace(List<Float> v,List<Float> uv,List<Integer> indices,float[][] points,int... corners){
+        int start=v.size()/7;
+        for(int i=0;i<4;i++){float[] p=points[corners[i]];Collections.addAll(v,p[0],p[1],p[2],.9f,.9f,.87f,1f);
+            Collections.addAll(uv,(i==0||i==3?.03f:.31f),i<2?.08f:.92f);}
+        Collections.addAll(indices,start,start+1,start+2,start,start+2,start+3);
+    }
 }

@@ -50,7 +50,7 @@ final class Vegetation {
         // Near/mid streaming retains its existing 8x8 granularity and edit halo.
         int chunk=window.span>=40?16:CHUNK;float radius=chunk*.75f+1;
         SceneMesh[][] models=new SceneMesh[4][2];
-        String[] names={"tree","tree-upland","shrub","rock-strata"};
+        String[] names={"tree","tree-upland","shrub","rock-strata-v121"};
         for(int i=0;i<names.length;i++)for(int lod=window.span<14?0:1;lod<2;lod++)models[i][lod]=assets.mesh(names[i]+"-lod"+lod);
         Map<Long,SceneMesh> cache=new HashMap<>();for(SceneMesh m:previous)cache.put(key(m.chunkQ,m.chunkR),m);
         List<SceneMesh> result=new ArrayList<>();

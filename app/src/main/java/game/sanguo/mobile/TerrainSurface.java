@@ -5,7 +5,7 @@ import java.util.*;
 
 /** Deterministic presentation-only field. Coordinates are projected world units, never axial indices. */
 final class TerrainSurface {
-    static final int METADATA_VERSION=4;
+    static final int METADATA_VERSION=5;
     private static final World.Terrain[] TYPES=World.Terrain.values();
     static final float MAX_HEIGHT=2.6f;
     static final float LANDFORM_RADIUS=3.4f;
@@ -36,8 +36,12 @@ final class TerrainSurface {
         targets=new float[g.width*g.height];constraints=new byte[targets.length];
         for(int r=0;r<g.height;r++)for(int q=0;q<g.width;q++){
             Hex h=new Hex(q,r);int at=r*g.width+q;targets[at]=target(h);
-            if(!g.valid(h)||water(h)||g.bases.contains(h))constraints[at]=1;
-            else {World.Terrain t=TYPES[g.terrain[at]];if(t==World.Terrain.ROAD||t==World.Terrain.MOUNTAIN_PATH||t==World.Terrain.PLANK_ROAD)constraints[at]=2;}
+            if(!g.valid(h)||water(h))constraints[at]=1;
+            else if(g.bases.contains(h))constraints[at]=3;
+            else {World.Terrain t=TYPES[g.terrain[at]];
+                if(t==World.Terrain.ROAD||t==World.Terrain.MOUNTAIN_PATH||t==World.Terrain.PLANK_ROAD)constraints[at]=2;
+                else if(t!=World.Terrain.MOUNTAIN)constraints[at]=4;
+            }
         }
     }
     boolean water(Hex h){return h!=null&&water(h.q,h.r);}
@@ -51,7 +55,7 @@ final class TerrainSurface {
                 float x=ground.grid.x(h),z=ground.grid.z(h);
                 // Broad, world-anchored ridges; the existing mountain mask supplies the region.
                 float ridge=1-Math.abs((float)Math.sin(x*.16+z*.11+.7*Math.sin(z*.08)));
-                return 1.6f+ridge*.9f;
+                return 1.85f+ridge*.75f;
             case FOREST:return .22f;
             case SAND:return .12f;
             case MOUNTAIN_PATH:case PLANK_ROAD:case ROAD:return .03f;
@@ -89,8 +93,16 @@ final class TerrainSurface {
             int at=q>=0&&r>=0&&q<ground.width&&r<ground.height?r*ground.width+q:-1;
             if(distance<LANDFORM_RADIUS){float t=distance/LANDFORM_RADIUS,k=1-t;k=k*k*k*k*(1+4*t);sum+=(at<0?0:targets[at])*k;weight+=k;}
             int constraint=at<0?1:constraints[at];
-            if(constraint!=0){float edge=Math.max(Math.max(dx-.5f,dz-.5f),0);float t=Math.min(1,edge/4.5f);
-                limit=Math.min(limit,(constraint==1?0:.08f)+MAX_HEIGHT*t*t*(3-2*t));}
+            if(constraint!=0){
+                // Keep the complete authoritative cell flat/low, but do not turn
+                // every gate and narrow road into a nine-cell-wide mountain clearing.
+                // All chunks still sample this one smooth global field; no per-cell peaks.
+                float edge=Math.max(Math.max(dx-.5f,dz-.5f),0);
+                float floor=constraint==2?.08f:constraint==4?.30f:0;
+                // Smooth toe, then a bounded 1.35 rise/run: below tan(55deg),
+                // so default-camera ground centers remain visible at the pass.
+                limit=Math.min(limit,floor+1.35f*edge*edge/(edge+.05f));
+            }
         }
         float value=weight==0?0:sum/weight;
         // Explicit height paint wins at its center, smoothly joining the regional field.
