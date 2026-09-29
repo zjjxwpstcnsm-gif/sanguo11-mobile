@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 2cabdc369418a3e6a34f71dde1d700bc5565ad03
+          ref: 447fc34c8db5759a5a762adb67ca97f31fa86fca
           fetch-depth: 1
           persist-credentials: false
       - name: Capture tracked source and exact identity (no production mutation)
@@ -26,7 +26,7 @@ jobs:
           sha256sum /tmp/native-p0-source/source.tar.gz > /tmp/native-p0-source/SHA256SUMS
       - uses: actions/upload-artifact@v4
         with:
-          name: native-p0-source-2cabdc369418
+          name: native-p0-source-447fc34c8db5
           path: /tmp/native-p0-source/
           compression-level: 0
           retention-days: 7
