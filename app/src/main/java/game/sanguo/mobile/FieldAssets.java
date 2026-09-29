@@ -22,7 +22,7 @@ final class FieldAssets {
         // These bundled descriptions never change. Validate once and retain
         // primitive values, rather than reading JSON for every joint/pose.
         JSONObject models=r.getJSONObject("rigs"),motions=c.getJSONObject("clips");
-        for(String model:models.keySet()){
+        for(Iterator<String> names=models.keys();names.hasNext();){String model=names.next();
             JSONArray parts=models.getJSONObject(model).getJSONArray("parts");
             if(parts.length()<1||parts.length()>128)throw new IOException("rig/clip budget");
             Joint[] joints=new Joint[parts.length()];int covered=0;
@@ -35,12 +35,12 @@ final class FieldAssets {
             }
             rigs.put(model,new Rig(joints,covered));
         }
-        for(String clip:motions.keySet()){
+        for(Iterator<String> names=motions.keys();names.hasNext();){String clip=names.next();
             JSONArray frames=motions.getJSONArray(clip);if(frames.length()!=12)throw new IOException("rig/clip budget");
             List<Map<String,float[]>> decoded=new ArrayList<>(12);
             for(int i=0;i<12;i++){
                 JSONObject keys=frames.getJSONObject(i);Map<String,float[]> angles=new HashMap<>();
-                for(String name:keys.keySet())angles.put(name,vector(keys.getJSONArray(name),Math.PI*4));
+                for(Iterator<String> namesOfJoints=keys.keys();namesOfJoints.hasNext();){String name=namesOfJoints.next();angles.put(name,vector(keys.getJSONArray(name),Math.PI*4));}
                 decoded.add(angles);
             }
             clips.put(clip,decoded);
