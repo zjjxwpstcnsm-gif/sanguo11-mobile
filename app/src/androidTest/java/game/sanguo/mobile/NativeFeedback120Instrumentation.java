@@ -13,9 +13,32 @@ import java.util.*;
  * Does not claim a full nationwide opening or physical-device acceptance. */
 public final class NativeFeedback120Instrumentation extends SceneInstrumentation {
     private String phase="candidate";private File dir;private FilamentMapView view;
+    private int launcherDialogs;
     @Override public void onCreate(Bundle b){if(b!=null)phase=b.getString("phase",phase);super.onCreate(b);}
     private byte[] authority(){byte[][] out={null};runOnMainSync(()->{try{out[0]=((GameApplication)activity.getApplication()).host().capture();}catch(IOException e){throw new RuntimeException(e);}});return out[0];}
     private void log(String s)throws Exception{Files.write(new File(dir,"feedback120.txt").toPath(),(s+"\n").getBytes("UTF-8"),StandardOpenOption.CREATE,StandardOpenOption.APPEND);}
+    @Override void observeLoading(FilamentMapView renderer)throws Exception {
+        // Initial API35 captures show a Quickstep ANR stealing focus before any
+        // game frame. Preserve that evidence and close only this exact external
+        // dialog through real input; never bypass the game's window/render gate.
+        android.view.accessibility.AccessibilityNodeInfo root=getUiAutomation().getRootInActiveWindow();
+        if(root==null)return;
+        try {
+            List<android.view.accessibility.AccessibilityNodeInfo> titles=root.findAccessibilityNodeInfosByText("Quickstep isn't responding");
+            boolean launcher=titles.stream().anyMatch(n->"android".contentEquals(n.getPackageName()==null?"":n.getPackageName())&&"Quickstep isn't responding".contentEquals(n.getText()==null?"":n.getText()));
+            if(!launcher)return;
+            check(launcherDialogs<2,"bounded Quickstep environment recovery");
+            capture(phase+"-quickstep-anr-"+launcherDialogs);
+            for(android.view.accessibility.AccessibilityNodeInfo button:root.findAccessibilityNodeInfosByText("Close app")) {
+                if(!"Close app".contentEquals(button.getText()==null?"":button.getText())||!button.isVisibleToUser())continue;
+                android.graphics.Rect bounds=new android.graphics.Rect();button.getBoundsInScreen(bounds);
+                float[] point={bounds.exactCenterX(),bounds.exactCenterY()};long time=SystemClock.uptimeMillis();
+                log("ENVIRONMENT: observed Quickstep ANR; close launcher via actual pointer, original readiness deadline unchanged");
+                event(time,MotionEvent.ACTION_DOWN,point);event(time,MotionEvent.ACTION_UP,point);launcherDialogs++;return;
+            }
+            throw new AssertionError("Quickstep ANR visible but Close app control unavailable");
+        }finally{root.recycle();}
+    }
     private float[] point(Hex h)throws Exception{
         float[][] out={null};runOnMainSync(()->{try{MapSceneSnapshot snap=(MapSceneSnapshot)field(view,"snapshot");int[] at=new int[2];view.getLocationOnScreen(at);float x=snap.ground.grid.x(h),z=snap.ground.grid.z(h);out[0]=new float[]{at[0]+view.camera.screenX(x,z),at[1]+view.camera.screenY(x,z,snap.ground.surface.at(h))};}catch(Exception e){throw new RuntimeException(e);}});return out[0];
     }
@@ -33,6 +56,7 @@ public final class NativeFeedback120Instrumentation extends SceneInstrumentation
     private void shot(String name)throws Exception{ready();surfaceCapture();Files.copy(new File(dir,"surface.png").toPath(),new File(dir,name+"-surface.png").toPath(),StandardCopyOption.REPLACE_EXISTING);capture(name+"-ui");log(name+"\n"+host.report());}
     @Override public void onStart(){Bundle result=new Bundle();try{
         dir=getTargetContext().getExternalFilesDir("s01");dir.mkdirs();
+        getUiAutomation(); // Connect before launching the measured game, not at failure capture.
         World seed=CombatSceneFixture.world("counter");seed.scenarioName="v120 explicit forest occupancy and drag fixture";
         for(int q=5;q<=12;q++)for(int r=4;r<=11;r++)seed.terrain[q][r]=World.Terrain.FOREST;
         seed.terrain[13][6]=World.Terrain.ROAD;
