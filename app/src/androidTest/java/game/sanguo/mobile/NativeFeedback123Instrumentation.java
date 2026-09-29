@@ -83,12 +83,16 @@ public final class NativeFeedback123Instrumentation extends SceneInstrumentation
         String[] samples={null};runOnMainSync(()->samples[0]=view.frameSamples());
         Files.write(new File(dir,"frame-samples.csv").toPath(),samples[0].getBytes("UTF-8"));
         if(phase.equals("candidate")){
-            long uploads=0,skips=0;
+            long uploads=0,skips=0;int visibleUnits=0;
             for(Object proxy:((Map<?,?>)field(view,"objects")).values()){
                 uploads+=(Long)field(proxy,"positionUploads");skips+=(Long)field(proxy,"positionSkips");
+                MapSceneSnapshot.Item item=(MapSceneSnapshot.Item)field(proxy,"item");
+                if(item.unit!=null&&(Boolean)field(proxy,"shown"))visibleUnits++;
             }
-            log("POSITION_CACHE uploads="+uploads+" skips="+skips);
-            check(skips>0,"normal visible-unit path actually reuses contact/transform");
+            log("POSITION_CACHE uploads="+uploads+" skips="+skips+" visibleUnits="+visibleUnits);
+            check(!mode.equals("fixture")||visibleUnits>0,"army fixture has visible troops");
+            if(visibleUnits>0)check(skips>0,"normal visible-unit path actually reuses contact/transform");
+            else log("POSITION_CACHE NOT_APPLICABLE: this official city/port view has no visible unit; all scene, asset and authority assertions remain active");
         }
         check(Arrays.equals(before,authority()),"all views/grid/animations preserve entire authority and RNG");
         Files.write(new File(dir,"expected.sg11").toPath(),before);Files.write(new File(dir,"observed.sg11").toPath(),authority());
