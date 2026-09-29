@@ -1,0 +1,36 @@
+{
+  "status": "PARTIAL",
+  "input": "13fa313e39a9bc9ff157701b721d79c62144ce1e",
+  "main": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "pr": 67,
+  "backend": "Filament 1.56.0 OPENGL",
+  "source": "PENDING_FULL_RESOURCE_COMMIT",
+  "apk": "NOT_RUN",
+  "runtime": "NOT_RUN",
+  "pcReference": "REFERENCE_MISSING",
+  "arm64": "NOT_RUN",
+  "physical30Minutes": "NOT_RUN",
+  "hostSampleScope": "same v124 asset cohort and input13fa algorithms; host allocation/CPU only, not mobile FPS",
+  "host": {
+    "input-vegetation": {
+      "allocated_bytes": 16335832.0,
+      "thread_cpu_ns": 20095094.0,
+      "wall_ns": 20265521.0
+    },
+    "candidate-vegetation": {
+      "allocated_bytes": 7818840.0,
+      "thread_cpu_ns": 7767652.0,
+      "wall_ns": 7761922.0
+    },
+    "input-pose": {
+      "allocated_bytes": 18962672.0,
+      "thread_cpu_ns": 12581115.0,
+      "wall_ns": 12573920.0
+    },
+    "candidate-pose": {
+      "allocated_bytes": 15233872.0,
+      "thread_cpu_ns": 15214162.0,
+      "wall_ns": 15509943.0
+    }
+  }
+}

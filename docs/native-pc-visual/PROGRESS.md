@@ -1,3 +1,7 @@
+## v124 Blender 地形装饰/城港关/部队与性能续作 — PARTIAL
+
+49个新GLB和rig接入正常原生3D；植被primitive缓冲、制作法线的关节旋转、解码重试位置缓存优化。旧资源与规则/地图保持，主机几何/存档/动画检查通过。精确源码构建及API29/35原120秒ready、Surface/触控验收正在执行，不能先记PASS。PC参考缺失，ARM64/30分钟及历史加载/生命周期缺口未关闭。见reports/feedback-v124.md、handoffs/feedback-v124.md及evidence/feedback-v124/manifest.json。不合main，不开始下一阶段。
+
 ## v123 模型与性能续作 — PARTIAL
 
 Blender41模型（城港关/13兵种LOD）与primitive解码、姿态拓扑共享、静止部队变换缓存已接入正式路径。新模型顶点-17.5%、文件-15.1%；主机城池解码/骑兵姿态分配-45.0%/-47.7%，不等于手机FPS。

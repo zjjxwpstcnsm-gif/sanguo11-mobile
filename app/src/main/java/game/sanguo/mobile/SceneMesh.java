@@ -12,6 +12,9 @@ final class SceneMesh {
     // Disjoint index ranges share the same surface and buffers, but never draw water as land.
     int landIndexCount=-1;
     long fingerprint; int chunkQ,chunkR,terrainLod;
+    // The existing tangent quaternion already encodes authored normals. Rigid
+    // animation can rotate that frame without retaining a second normal stream.
+    boolean authoredTangentFrame;
     float[] tangents; float[] surfaceData; float[] uv; final float[] vertices; final int[] indices; final float x,z,radius;
     SceneMesh(List<Float> v,List<Integer> i,float x,float z,float radius){
         vertices=new float[v.size()];for(int n=0;n<v.size();n++)vertices[n]=v.get(n);

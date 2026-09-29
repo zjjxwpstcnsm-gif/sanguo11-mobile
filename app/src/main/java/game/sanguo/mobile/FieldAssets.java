@@ -14,7 +14,7 @@ final class FieldAssets {
     private long restBytes;
     private static long bytes(SceneMesh m){return 4L*(m.vertices.length+m.indices.length+(m.uv==null?0:m.uv.length)+(m.tangents==null?0:m.tangents.length));}
     FieldAssets(Source source)throws Exception {
-        this.source=source;JSONObject r=json(source,"rigs-v123.json"),c=json(source,"clips.json");
+        this.source=source;JSONObject r=json(source,"rigs-v124.json"),c=json(source,"clips.json");
         if(r.getInt("version")!=1||c.getInt("version")!=1||c.getInt("fps")!=12)throw new IOException("unsupported rigid animation version");
         rigs=r.getJSONObject("rigs");clips=c.getJSONObject("clips");
     }
@@ -26,7 +26,7 @@ final class FieldAssets {
     }
     synchronized SceneMesh mesh(String name)throws Exception{
         if(!name.matches("[A-Za-z0-9_-]{1,100}"))throw new IOException("asset ID rejected");
-        SceneMesh value=rest.get(name);if(value==null){try(InputStream in=source.open((name.startsWith("unit-")?"v123/":"")+name+".glb")){value=SiteGlb.read(in);}rest.put(name,value);restBytes+=bytes(value);
+        SceneMesh value=rest.get(name);if(value==null){try(InputStream in=source.open((name.startsWith("unit-")||name.startsWith("tree")||name.startsWith("shrub")||name.startsWith("rock-strata-v121")?"v124/":"")+name+".glb")){value=SiteGlb.read(in);}rest.put(name,value);restBytes+=bytes(value);
             Iterator<SceneMesh> entries=rest.values().iterator();while(restBytes>24L*1024*1024&&rest.size()>1){restBytes-=bytes(entries.next());entries.remove();}}return value;
     }
     static boolean farm(MapSceneSnapshot.Item item){return item.facility!=null&&item.facility.type.equals("domestic/FARM");}
@@ -57,7 +57,8 @@ final class FieldAssets {
         JSONArray frames=clips.getJSONArray(clip);JSONObject keys=frames.getJSONObject(Math.floorMod(frame,frames.length()));
         float[][] matrices=new float[parts.length()][];
         if(parts.length()<1||parts.length()>128||frames.length()!=12)throw new IOException("rig/clip budget");
-        float[] posed=source.vertices.clone();int covered=0;
+        float[] posed=source.vertices.clone();
+        float[] tangents=source.authoredTangentFrame?new float[source.tangents.length]:null;int covered=0;
         for(int i=0;i<parts.length();i++){
             JSONObject part=parts.getJSONObject(i);int parent=part.getInt("parent"),first=part.getInt("first"),length=part.getInt("count");
             if(first!=covered)throw new IOException("overlapping or missing rigid range");covered+=length;
@@ -69,6 +70,7 @@ final class FieldAssets {
             float[] local=rotation(rx,ry,rz,(float)pivot.getDouble(0),(float)pivot.getDouble(1),(float)pivot.getDouble(2));
             matrices[i]=parent<0?local:multiply(matrices[parent],local);
             float[] m=matrices[i];
+            if(tangents!=null)rotateFrames(source.tangents,tangents,first,length,m);
             for(int v=first;v<first+length;v++){
                 float x=source.vertices[v*7],y=source.vertices[v*7+1],z=source.vertices[v*7+2];
                 posed[v*7]=m[0]*x+m[4]*y+m[8]*z+m[12];
@@ -87,7 +89,7 @@ final class FieldAssets {
         }
         // Production renders one shared member through GPU instances. Reuse
         // immutable topology/UV and the already-private posed vertices.
-        if(count==1){SceneMesh mesh=new SceneMesh(posed,source.indices,0,0,1);mesh.uv=source.uv;mesh.generateTangents();return mesh;}
+        if(count==1){SceneMesh mesh=new SceneMesh(posed,source.indices,0,0,1);mesh.uv=source.uv;if(tangents==null)mesh.generateTangents();else mesh.tangents=tangents;return mesh;}
         // Legacy CPU merged API is retained for compatibility tests; R10 runtime requests count=1.
         // One merged draw per formation. No entity for each soldier; no troop-count expansion.
         float[] vertices=new float[posed.length*count];int[] indices=new int[source.indices.length*count];
@@ -100,7 +102,12 @@ final class FieldAssets {
             for(int i=0;i<source.indices.length;i++)indices[member*source.indices.length+i]=source.indices[i]+member*(posed.length/7);
             System.arraycopy(source.uv,0,uv,member*source.uv.length,source.uv.length);
         }
-        SceneMesh mesh=new SceneMesh(vertices,indices,0,0,1);mesh.uv=uv;mesh.generateTangents();return mesh;
+        SceneMesh mesh=new SceneMesh(vertices,indices,0,0,1);mesh.uv=uv;
+        if(tangents==null)mesh.generateTangents();else{
+            mesh.tangents=new float[tangents.length*count];
+            for(int member=0;member<count;member++)System.arraycopy(tangents,0,mesh.tangents,member*tangents.length,tangents.length);
+        }
+        return mesh;
     }
     private static float[] rotation(float x,float y,float z,float px,float py,float pz){
         float cx=(float)Math.cos(x),sx=(float)Math.sin(x),cy=(float)Math.cos(y),sy=(float)Math.sin(y),cz=(float)Math.cos(z),sz=(float)Math.sin(z);
@@ -108,4 +115,21 @@ final class FieldAssets {
         m[12]=px-m[0]*px-m[4]*py-m[8]*pz;m[13]=py-m[1]*px-m[5]*py-m[9]*pz;m[14]=pz-m[2]*px-m[6]*py-m[10]*pz;return m;
     }
     private static float[] multiply(float[] a,float[] b){float[] c=new float[16];for(int col=0;col<4;col++)for(int row=0;row<4;row++)for(int k=0;k<4;k++)c[col*4+row]+=a[k*4+row]*b[col*4+k];return c;}
+    /** Compose a rigid joint rotation with each authored normal frame. No
+     * per-triangle reconstruction, normal scratch or per-vertex square roots. */
+    private static void rotateFrames(float[] source,float[] out,int first,int count,float[] m){
+        float x,y,z,w,trace=m[0]+m[5]+m[10];
+        if(trace>0){float s=(float)Math.sqrt(trace+1)*2;w=s*.25f;x=(m[6]-m[9])/s;y=(m[8]-m[2])/s;z=(m[1]-m[4])/s;}
+        else if(m[0]>m[5]&&m[0]>m[10]){float s=(float)Math.sqrt(1+m[0]-m[5]-m[10])*2;x=s*.25f;y=(m[4]+m[1])/s;z=(m[8]+m[2])/s;w=(m[6]-m[9])/s;}
+        else if(m[5]>m[10]){float s=(float)Math.sqrt(1+m[5]-m[0]-m[10])*2;y=s*.25f;x=(m[4]+m[1])/s;z=(m[9]+m[6])/s;w=(m[8]-m[2])/s;}
+        else{float s=(float)Math.sqrt(1+m[10]-m[0]-m[5])*2;z=s*.25f;x=(m[8]+m[2])/s;y=(m[9]+m[6])/s;w=(m[1]-m[4])/s;}
+        float inv=1/(float)Math.sqrt(x*x+y*y+z*z+w*w);x*=inv;y*=inv;z*=inv;w*=inv;
+        for(int v=first*4,end=(first+count)*4;v<end;v+=4){
+            float a=source[v],b=source[v+1],c=source[v+2],d=source[v+3];
+            float X=w*a+x*d+y*c-z*b,Y=w*b-x*c+y*d+z*a,Z=w*c+x*b-y*a+z*d,W=w*d-x*a-y*b-z*c;
+            // Filament reserves quaternion.w's sign for handedness. q and -q
+            // represent the same rotation; bundled frames use positive handedness.
+            float sign=W<0?-1:1;out[v]=X*sign;out[v+1]=Y*sign;out[v+2]=Z*sign;out[v+3]=Math.max(.00001f,Math.abs(W));
+        }
+    }
 }

@@ -1,0 +1,256 @@
+{
+  "input": "13fa313e39a9bc9ff157701b721d79c62144ce1e",
+  "retainedByteIdentical": 286,
+  "new": [
+    {
+      "path": "app/src/main/assets/3d/field/rigs-v124.json",
+      "bytes": 15598,
+      "sha256": "e3dcaa01e7290df3c833e4d1d80d5cf6bfa63b158858828bac1bd19a871879de"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city0-lod1.glb",
+      "bytes": 362892,
+      "sha256": "55f34e95f75bb151bfae5267db069542a0a88503b450f1c17aa88e932b581ad3"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city1-lod2.glb",
+      "bytes": 76924,
+      "sha256": "984008692b9a6ea5ecdf6bdc0008783753eca1e132394f394ca3479ce8397ab0"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city1-lod0.glb",
+      "bytes": 796028,
+      "sha256": "721200cae64841c7a3877c26ce0c462d946157a777309e7f57c3857b709a9fe5"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/gate-lod1.glb",
+      "bytes": 59360,
+      "sha256": "a11f77267c39617ac883fdcd0e8859bbd4ac3623b8d0429b4be4f81188cd6b9c"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city1-lod1.glb",
+      "bytes": 376308,
+      "sha256": "d0663b0f6cad6fa171efa3c8527464510b73aa62b540ccf7892eb35454d30db3"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/gate-lod2.glb",
+      "bytes": 10120,
+      "sha256": "0f9de1da4a320685d0a8bf0f55313a44abd4ff339be2b64349876d88cc841073"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city2-lod2.glb",
+      "bytes": 75744,
+      "sha256": "641fbd671e4318d8a90c79ba643469db0628dabeb7c6c9ca985a5c4312ad4cbb"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city0-lod2.glb",
+      "bytes": 74284,
+      "sha256": "95cc400b6d9377d033a613f24f1d7ceb7509208b244879e344b13efb7a5765d3"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/gate-lod0.glb",
+      "bytes": 249288,
+      "sha256": "7ed0498cd07c2909a1aebc3bccc0a428e9b6f70762298531908187212fdc5590"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city2-lod0.glb",
+      "bytes": 760288,
+      "sha256": "63b1f3473c6802eda7747890efb4a581002cde8392e32de6a7665ed3fa912e63"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city0-lod0.glb",
+      "bytes": 772364,
+      "sha256": "aeb6e55b4ee7ad9ada1144396f323054e2dd77e5cd9cb994e3755da26f27f5b5"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/port-lod1.glb",
+      "bytes": 48548,
+      "sha256": "c0e765b1d36ad96a3eb5ae98b51d795966788a78880a291c3f799b5244865c3b"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/port-lod0.glb",
+      "bytes": 531116,
+      "sha256": "b0fbec7632143d3c1532af0763f8a33227f6b5b4503e16e652f1a13647cce6f9"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city2-lod1.glb",
+      "bytes": 363968,
+      "sha256": "9fd043078979c18ade2f57ea314e71bf7e2c83e5ca61f9cfb03661972fdfb085"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/port-lod2.glb",
+      "bytes": 11656,
+      "sha256": "0f1c00eb0f8f998d31dc517d68c591476e36320a9f11abf5b428c0da0defa3eb"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/tree-upland-lod0.glb",
+      "bytes": 16940,
+      "sha256": "a17002631ee066234e493d626efdb65ca39dfae704c4945c14f79846a0555c65"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-RAM-lod1.glb",
+      "bytes": 44028,
+      "sha256": "435b34a75f0803ad4b04198e59e131d2e6a08069c7e6f27b593436456339e822"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-RAM-lod0.glb",
+      "bytes": 158276,
+      "sha256": "bfb4a1a4f1378e5e75777261710f1dfffdbce803aa158d84141640ba176e459f"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CROSSBOW-lod1.glb",
+      "bytes": 75988,
+      "sha256": "282c9d0d2d612a1f32f3872dcdd1fe6cf6bb91d4b78c77b3be7d02a826cdf02f"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-HALBERD-lod0.glb",
+      "bytes": 107152,
+      "sha256": "77f495feada00a7bfeb9f8cc02c3712fd2fd494da002b19a1534391d3a47691e"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SWORD-lod1.glb",
+      "bytes": 73828,
+      "sha256": "5432747a0edc3e7d901e58b18c121677b621113ac259d6608cfbdc4c52a25da1"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-WARSHIP-lod1.glb",
+      "bytes": 53276,
+      "sha256": "b9ef8051c08bfeadee2ec76c5de667ec33614caf554f573e1cb5103c8c099c4a"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CAVALRY-lod0.glb",
+      "bytes": 174396,
+      "sha256": "893cf895ec26ac6ce7fa94a9567bd0dbecfe538556aa0d0685e9358babb83867"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/rock-strata-v121-lod1.glb",
+      "bytes": 20232,
+      "sha256": "68569a748d9bc974caa17dcd8eb5ac4ce4290b7e901988d385a2168021eafc9e"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-WOODEN_BEAST-lod0.glb",
+      "bytes": 158900,
+      "sha256": "59a305180d9c9338778392dc6972b5d5e1abcee4830a86a3081e455941a7d2c3"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-WOODEN_BEAST-lod1.glb",
+      "bytes": 47624,
+      "sha256": "60756c268088a3b086495d95325d6906fb8e604c562a3a048b43a4434f873e2a"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SIEGE_TOWER-lod0.glb",
+      "bytes": 254300,
+      "sha256": "42f956e191deb3d72e324e4177bf4c00af4dcbaf28ff501074c4b70bb24222bd"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-transport-lod0.glb",
+      "bytes": 165832,
+      "sha256": "70b2f40cbea809c2f9f5188946afb40b50aeaac64a6d8790b80bafd3fa3c1d3b"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-WARSHIP-lod0.glb",
+      "bytes": 257880,
+      "sha256": "50874412f2786227129e2c3ba676e55da2f493cb12b5cafffda86d3b3321eb5b"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SPEAR-lod0.glb",
+      "bytes": 100528,
+      "sha256": "564b2080fe0186f980d0cd014ed437343d1c7fc18f2b0be43496e4163dca1498"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-TOWER_SHIP-lod1.glb",
+      "bytes": 53056,
+      "sha256": "36a10a50689e56b3b3f975703b0ac47a8cd369aeee10d88a5da4d71bd817dd79"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/shrub-lod0.glb",
+      "bytes": 14396,
+      "sha256": "efedf292c288b1569f67fe46e647c7c6a499dd33517e6f5fd3783d4483b94283"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-TOWER_SHIP-lod0.glb",
+      "bytes": 260208,
+      "sha256": "18218cb9d6c46d4505443473d5773a9269228a74c83cc807eddccc44c66ce4c7"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SIEGE_TOWER-lod1.glb",
+      "bytes": 55284,
+      "sha256": "c04e7f57135285653e99af0afa1aee38a1dbb42cbc59209e1e964780ce73f657"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-BOAT-lod1.glb",
+      "bytes": 40672,
+      "sha256": "08a6fdea406d7c5c379211312f09c2647c523e5634f56f0ef94d161fd7c8c7ca"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SWORD-lod0.glb",
+      "bytes": 107236,
+      "sha256": "4158a56febd02a55c15357051e5b9d468c01f0542a17c09d712445e162d96291"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/tree-lod1.glb",
+      "bytes": 13288,
+      "sha256": "ca99168741a966e7ae2f266a7c923274caeece25bf70ee1e6839cfa4161c97ad"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/rock-strata-v121-lod0.glb",
+      "bytes": 24604,
+      "sha256": "595b91822a3d140a97c5dcb964d92df52f5f46cfb1d988b35cc0043978f44749"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-transport-lod1.glb",
+      "bytes": 44960,
+      "sha256": "cdcd21a1afd97297600c0d8960f5cc305a274ff118a350cdf72ccf69a8fc1f14"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CATAPULT-lod1.glb",
+      "bytes": 46688,
+      "sha256": "03d35b0ee5b481f15e203b35ca94fb65327721db7cab8a8f239362cd822d417c"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/tree-upland-lod1.glb",
+      "bytes": 14916,
+      "sha256": "c321fa24b330198667b85f6a4f7405064a0edbdd9511df091f54ba5fbbfc8599"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/tree-lod0.glb",
+      "bytes": 15208,
+      "sha256": "d94d188edf3611fce2196d492e26de50fc6bf10772850920a3f7f9ac173486d2"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CROSSBOW-lod0.glb",
+      "bytes": 102988,
+      "sha256": "52301cc9ff3f72806cb710a14d721f3c310696485b36006fe9df22a5bdf0f14c"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-BOAT-lod0.glb",
+      "bytes": 178512,
+      "sha256": "2144ec36c31a5dfdc144cbfffa61e4c3ccd1048dfb93cd74fb0f04d1f4d308e2"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/shrub-lod1.glb",
+      "bytes": 13288,
+      "sha256": "f09165149ed39284b1db039cc312c6eee597cb777cc79039b7a15f9b5a8eb919"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SPEAR-lod1.glb",
+      "bytes": 72448,
+      "sha256": "fc1fa43d0ecc1bed98fa9667019d9febbae8080ed32002c847aa6e24775ceb38"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CATAPULT-lod0.glb",
+      "bytes": 177428,
+      "sha256": "a49b470c81604d0f0150f4df8859b346f95d937f670e0c3fbc3d0a89f2cf2397"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CAVALRY-lod1.glb",
+      "bytes": 136716,
+      "sha256": "0579bdbfe5a562272aa0022ec32888c456573975d5e01030b456abbeae13e9cd"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-HALBERD-lod1.glb",
+      "bytes": 73744,
+      "sha256": "2904fbf928954e2b7eac8c9b9c4864f744737e7e1981efa66eace5ac3fb11d44"
+    }
+  ]
+}

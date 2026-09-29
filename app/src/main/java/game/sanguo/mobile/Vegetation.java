@@ -5,7 +5,7 @@ import java.util.*;
 
 /** Opaque merged vegetation: one renderable per visible 8x8 chunk, never one per tree. */
 final class Vegetation {
-    static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=3;
+    static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=3, ASSET_VERSION=124;
     static boolean forest(MapSceneSnapshot.Ground ground,Hex h){
         return ground.valid(h)&&ground.terrain[h.r*ground.width+h.q]==World.Terrain.FOREST.ordinal();
     }
@@ -59,7 +59,7 @@ final class Vegetation {
             float cx=g.grid.x(q+chunk/2,r+chunk/2),cz=g.grid.z(q+chunk/2,r+chunk/2);
             if(!window.contains(cx,cz,radius))continue;
             boolean detailed=window.span<14&&Math.hypot(cx-window.x,cz-window.z)<20;
-            long hash=SEED^PLACEMENT_VERSION^LandscapeProfile.VERSION^g.mapIdentity^g.width*31L^g.height^(detailed?0x808:0)^((long)chunk<<48);
+            long hash=SEED^PLACEMENT_VERSION^LandscapeProfile.VERSION^g.mapIdentity^g.width*31L^g.height^(detailed?0x808:0)^((long)chunk<<48)^((long)ASSET_VERSION<<32);
             hash=(hash^Float.floatToIntBits(g.grid.offset))*1099511628211L;hash^=g.grid.staggered?1:0;
             for(int rr=r-8;rr<r+chunk+8;rr++)for(int qq=q-8;qq<q+chunk+8;qq++){
                 Hex h=new Hex(qq,rr);int t=g.valid(h)?g.terrain[rr*g.width+qq]:-1;
@@ -139,21 +139,37 @@ final class Vegetation {
         return true;
     }
     private static final class Batch {
-        final MapSceneSnapshot.Ground g;final List<Float> v=new ArrayList<>(),uv=new ArrayList<>();final List<Integer> indices=new ArrayList<>();
+        final MapSceneSnapshot.Ground g;
+        float[] v=new float[4096],uv=new float[1024];int[] indices=new int[2048];
+        int floats,texels,indexCount;
+        // Primitive growing buffers retain the exact vertex/triangle order. Only
+        // one bounded chunk is built at a time; no Float/Integer per mesh element.
+        void reserve(int vertices,int texture,int triangles){
+            if(floats+vertices>v.length)v=Arrays.copyOf(v,Math.max(floats+vertices,v.length*2));
+            if(texels+texture>uv.length)uv=Arrays.copyOf(uv,Math.max(texels+texture,uv.length*2));
+            if(indexCount+triangles>indices.length)indices=Arrays.copyOf(indices,Math.max(indexCount+triangles,indices.length*2));
+        }
+        void triangle(int a,int b,int c){reserve(0,0,3);indices[indexCount++]=a;indices[indexCount++]=b;indices[indexCount++]=c;}
+        void quad(int o){triangle(o,o+2,o+1);triangle(o,o+3,o+2);}
         Batch(MapSceneSnapshot.Ground g){this.g=g;}
-        void vertex(float x,float y,float z,int mat,float u,float t){Collections.addAll(v,x,y,z,1f,1f,1f,1f);Collections.addAll(uv,(mat+.03f+.94f*u)/8,.03f+.94f*t);}
+        void vertex(float x,float y,float z,int mat,float u,float t){
+            reserve(7,2,0);v[floats++]=x;v[floats++]=y;v[floats++]=z;
+            for(int i=0;i<4;i++)v[floats++]=1f;
+            uv[texels++]=(mat+.03f+.94f*u)/8;uv[texels++]=.03f+.94f*t;
+        }
         void append(SceneMesh model,Placement a){
-            int offset=v.size()/7;float cs=(float)Math.cos(a.angle),sn=(float)Math.sin(a.angle);
+            int offset=floats/7;float cs=(float)Math.cos(a.angle),sn=(float)Math.sin(a.angle);
             float base=g.surface.meshHeight(a.x,a.z);
+            reserve(model.vertices.length,model.uv.length,model.indices.length);
             for(int i=0;i<model.vertices.length;i+=7){
                 float x=(model.vertices[i]*cs+model.vertices[i+2]*sn)*a.scale+a.x;
                 float z=(-model.vertices[i]*sn+model.vertices[i+2]*cs)*a.scale+a.z;
                 // Rock foot conforms per vertex, embedding the bottom below the canonical surface.
                 float y=a.family==3?g.surface.meshHeight(x,z)-.035f:base-.015f;
-                Collections.addAll(v,x,model.vertices[i+1]*a.scale+y,z);
-                for(int k=3;k<7;k++)v.add(model.vertices[i+k]);
+                v[floats++]=x;v[floats++]=model.vertices[i+1]*a.scale+y;v[floats++]=z;
+                for(int k=3;k<7;k++)v[floats++]=model.vertices[i+k];
             }
-            for(int i:model.indices)indices.add(offset+i);for(float f:model.uv)uv.add(f);
+            for(int i:model.indices)indices[indexCount++]=offset+i;System.arraycopy(model.uv,0,uv,texels,model.uv.length);texels+=model.uv.length;
         }
         boolean connection(Hex h,Hex n){
             return path(g,n)&&!(g.terrain[h.r*g.width+h.q]==World.Terrain.ROAD.ordinal()
@@ -162,7 +178,7 @@ final class Vegetation {
         void pathVertex(float x,float z,boolean timber,float u,float t){
             vertex(x,g.surface.meshHeight(x,z)+LandscapeProfile.SURFACE_LIFT,z,timber?2:7,u,t);
             // Temper orange timber/soil to the shared earth palette, without another light source.
-            int o=v.size()-7;v.set(o+3,.76f);v.set(o+4,.82f);v.set(o+5,.74f);
+            int o=floats-7;v[o+3]=.76f;v[o+4]=.82f;v[o+5]=.74f;
         }
         void road(Hex h,Hex n){
             if(!connection(h,n))return;
@@ -173,7 +189,7 @@ final class Vegetation {
             // Trim each edge at its node. The single node patch below fills every socket;
             // edge ribbons no longer overlap and z-fight at Y/T/cross intersections.
             for(int k=0;k<12;k++){
-                float t=trim+(1-2*trim)*k/12f,T=trim+(1-2*trim)*(k+1)/12f;int o=v.size()/7;
+                float t=trim+(1-2*trim)*k/12f,T=trim+(1-2*trim)*(k+1)/12f;int o=floats/7;
                 // The middle seam is shared by both halves. Width interpolates between
                 // the node sockets; material changes exactly at the cell boundary.
                 float w=widthH+(widthN-widthH)*(t-trim)/(1-2*trim),W=widthH+(widthN-widthH)*(T-trim)/(1-2*trim);
@@ -181,7 +197,7 @@ final class Vegetation {
                 boolean timber=timber(g,k<6?h:n);
                 float[][] points={{x+dx*t-nx,z+dz*t-nz},{x+dx*T-NX,z+dz*T-NZ},{x+dx*T+NX,z+dz*T+NZ},{x+dx*t+nx,z+dz*t+nz}};
                 for(int j=0;j<4;j++)pathVertex(points[j][0],points[j][1],timber,j<2?0:1,j==0||j==3?t:T);
-                Collections.addAll(indices,o,o+2,o+1,o,o+3,o+2);
+                quad(o);
             }
         }
         void junction(Hex h){
@@ -209,16 +225,16 @@ final class Vegetation {
             for(int i=0;i<boundary.size();i++){
                 float[] a=boundary.get(i),b=boundary.get((i+1)%boundary.size());
                 for(int ring=0;ring<3;ring++){
-                    float t=ring/3f,T=(ring+1)/3f;int o=v.size()/7;
+                    float t=ring/3f,T=(ring+1)/3f;int o=floats/7;
                     pathVertex(x+(a[0]-x)*t,z+(a[1]-z)*t,timber,.5f,.5f);
                     pathVertex(x+(a[0]-x)*T,z+(a[1]-z)*T,timber,0,1);
                     pathVertex(x+(b[0]-x)*T,z+(b[1]-z)*T,timber,1,1);
-                    if(ring==0)Collections.addAll(indices,o,o+2,o+1);
-                    else {pathVertex(x+(b[0]-x)*t,z+(b[1]-z)*t,timber,.5f,0);Collections.addAll(indices,o,o+2,o+1,o,o+3,o+2);}
+                    if(ring==0)triangle(o,o+2,o+1);
+                    else {pathVertex(x+(b[0]-x)*t,z+(b[1]-z)*t,timber,.5f,0);quad(o);}
                 }
             }
         }
-        SceneMesh mesh(float x,float z,float radius){SceneMesh m=new SceneMesh(v,indices,x,z,radius);m.vegetation=true;m.uv=new float[uv.size()];for(int i=0;i<uv.size();i++)m.uv[i]=uv.get(i);m.generateTangents();return m;}
+        SceneMesh mesh(float x,float z,float radius){SceneMesh m=new SceneMesh(Arrays.copyOf(v,floats),Arrays.copyOf(indices,indexCount),x,z,radius);m.vegetation=true;m.uv=Arrays.copyOf(uv,texels);m.generateTangents();return m;}
     }
     static boolean eligible(MapSceneSnapshot.Ground g,Set<Hex> excluded,Hex h){
         if(!g.valid(h)||excluded.contains(h))return false;

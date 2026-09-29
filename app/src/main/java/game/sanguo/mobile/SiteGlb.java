@@ -40,7 +40,7 @@ final class SiteGlb {
         ByteBuffer ib=access(doc,b,start,bl,index,ni,4);int[] indices=new int[ni];
         for(int i=0;i<ni;i++){int value=ib.getInt();if(value<0||value>=count)throw new IOException("index range");indices[i]=value;}
         SceneMesh mesh=new SceneMesh(v,indices,0,0,2);mesh.uv=uv;
-        if(a.has("NORMAL")){float[] normals=floats(doc,b,start,bl,a.getInt("NORMAL"),3,"VEC3");if(normals.length!=count*3)throw new IOException("normal count");for(int i=0;i<normals.length;i+=3){float norm=normals[i]*normals[i]+normals[i+1]*normals[i+1]+normals[i+2]*normals[i+2];if(norm<.98f||norm>1.02f)throw new IOException("normal length");}mesh.setNormals(normals);}
+        if(a.has("NORMAL")){float[] normals=floats(doc,b,start,bl,a.getInt("NORMAL"),3,"VEC3");if(normals.length!=count*3)throw new IOException("normal count");for(int i=0;i<normals.length;i+=3){float norm=normals[i]*normals[i]+normals[i+1]*normals[i+1]+normals[i+2]*normals[i+2];if(norm<.98f||norm>1.02f)throw new IOException("normal length");}mesh.setNormals(normals);mesh.authoredTangentFrame=true;}
         else mesh.generateTangents(); // Legal missing NORMAL; authored split edges stay hard.
         return mesh;
     }

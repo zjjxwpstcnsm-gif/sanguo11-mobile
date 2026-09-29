@@ -768,7 +768,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         final FieldAssets assets=fieldAssets;final int requestedLod=unitLod;final android.content.res.AssetManager manager=getContext().getAssets();
         SceneMesh source=assetWork.request(key,()->{
             if(field!=null){SceneMesh model=item.unit==null?assets.mesh(field):assets.pose(field,"idle",0,1);return FieldAssets.farm(item)?FieldAssets.conformFarm(model,assetGround,item.hex):model;}
-            if(item.site!=null)try(java.io.InputStream in=manager.open("3d/sites/v123/"+item.site.model+"-lod"+siteLodFor(key)+".glb")){SceneMesh model=SiteGlb.read(in);return item.site.model.equals("gate")?SiteVisual.joinGate(model,assetGround,item.hex,item.site.yaw):model;}
+            if(item.site!=null)try(java.io.InputStream in=manager.open("3d/sites/v124/"+item.site.model+"-lod"+siteLodFor(key)+".glb")){SceneMesh model=SiteGlb.read(in);return item.site.model.equals("gate")?SiteVisual.joinGate(model,assetGround,item.hex,item.site.yaw):model;}
             return SceneMesh.proxy(item.kind,item.color);
         });
         if(source==null){
@@ -797,7 +797,9 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 }
             }
             if(p==null){p=new Proxy(item,geometry);objects.put(item.key,p);}
-            p.positionedGround=null;p.item=item;p.motion.settle(item.hex,snapshot.ground.grid);p.position(p.motion.x,p.motion.z);p.updateDamage();
+            // A decode arriving is not a new snapshot. Do not repeatedly settle
+            // every existing unit or invalidate its terrain-contact cache on retries.
+            if(p.item!=item||p.positionedGround!=snapshot.ground){p.positionedGround=null;p.item=item;p.motion.settle(item.hex,snapshot.ground.grid);p.position(p.motion.x,p.motion.z);p.updateDamage();}
         }
         Iterator<Map.Entry<String,Proxy>> it=objects.entrySet().iterator();while(it.hasNext()){Map.Entry<String,Proxy> e=it.next();if(!alive.contains(e.getKey())){e.getValue().destroy();it.remove();}}
         trimShapes();

@@ -1,0 +1,174 @@
+name: Native v124 landscape models and performance
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-feedback124.yml', 'tools/3d/refine_blender124.py', 'scripts/*feedback124*']
+permissions: {contents: read, actions: read}
+concurrency: {group: 'native-feedback124-${{ github.sha }}', cancel-in-progress: false}
+jobs:
+  assets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions: {contents: write}
+    outputs: {source: '${{ steps.source.outputs.source }}'}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - name: Reproduce the locally reviewed Blender assets and source project
+        run: |
+          set -euo pipefail
+          mkdir -p out/feedback124
+          curl -fsSL --retry 2 https://download.blender.org/release/Blender4.2/blender-4.2.3-linux-x64.tar.xz -o /tmp/blender124.tar.xz
+          tar -xJf /tmp/blender124.tar.xz -C /tmp
+          /tmp/blender-4.2.3-linux-x64/blender --version > out/feedback124/blender-version.txt
+          /tmp/blender-4.2.3-linux-x64/blender --background --threads 2 --python-exit-code 1 --python tools/3d/refine_blender124.py -- out/feedback124/reproduced > out/feedback124/blender.log 2>&1
+          python3 - <<'PY'
+          import json, hashlib, pathlib, shutil
+          expected=json.loads(pathlib.Path('docs/native-pc-visual/feedback-v124-blender-assets.json').read_text())
+          root=pathlib.Path('out/feedback124/reproduced')
+          actual=json.loads((root/'docs/native-pc-visual/feedback-v124-blender-assets.json').read_text())
+          assert actual==expected, 'Blender output differs from locally verified model manifest'
+          for a in actual['assets']:
+              p=root/a['path'];assert hashlib.sha256(p.read_bytes()).hexdigest()==a['sha256']
+              target=pathlib.Path(a['path']);target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(p,target)
+          rig='app/src/main/assets/3d/field/rigs-v124.json'
+          assert (root/rig).read_bytes()==pathlib.Path(rig).read_bytes(), 'Rigid joints differ'
+          print('PASS 49 Blender models exactly reproduce locally reviewed bytes')
+          PY
+      - name: Commit only the generated production model resources, without force
+        id: source
+        env: {BRANCH: agent/native-pc-visual}
+        run: |
+          set -euo pipefail
+          git add app/src/main/assets/3d/sites/v124 app/src/main/assets/3d/field/v124
+          if ! git diff --cached --quiet; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git commit -m 'native-pc/v124: add 49 verified Blender landscape, site and army LOD resources'
+            remote=$(git ls-remote origin "refs/heads/$BRANCH" | cut -f1)
+            test "$remote" = "$GITHUB_SHA"
+            git push origin "HEAD:refs/heads/$BRANCH"
+          fi
+          git rev-parse HEAD > out/feedback124/SOURCE_COMMIT
+          echo "source=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-feedback124-blender, path: out/feedback124/, retention-days: 30, if-no-files-found: error}
+  build:
+    needs: assets
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    env: {CANDIDATE_SOURCE: '${{ needs.assets.outputs.source }}'}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ needs.assets.outputs.source }}', fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Exact source, protected authority, host parity and geometry checks
+        run: |
+          set -euo pipefail
+          mkdir -p out/feedback124
+          python3 scripts/verify-candidate-source.py "$CANDIDATE_SOURCE" > out/feedback124/source-check.txt
+          git diff --exit-code 13fa313e39a9bc9ff157701b721d79c62144ce1e HEAD -- core game-api game-runtime data unity > out/feedback124/protected.log
+          git merge-base --is-ancestor ac29b458325b52d6e302ca44270d16552de4ed7f HEAD
+          curl -fsSL https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/feedback124-json.jar
+          export JSON_TEST_JAR=/tmp/feedback124-json.jar
+          for suite in test-feedback124 test-feedback123 test-grid-coast test-native-r02 test-3d-combat test-native-r01 test-native-r12 test-architecture; do bash scripts/$suite.sh > out/feedback124/$suite.log 2>&1; done
+          git worktree add --detach /tmp/feedback124-input 13fa313e39a9bc9ff157701b721d79c62144ce1e
+      - name: Retain original core and geometry assertion results independently
+        continue-on-error: true
+        run: |
+          set +e
+          export JSON_TEST_JAR=/tmp/feedback124-json.jar
+          failure=0
+          for suite in test-core test-native-r09 test-native-r10; do
+            bash scripts/$suite.sh > out/feedback124/$suite-candidate.log 2>&1
+            code=$?; echo "$code" > out/feedback124/$suite-candidate.exit
+            (cd /tmp/feedback124-input && bash scripts/$suite.sh) > out/feedback124/$suite-input.log 2>&1
+            input=$?; echo "$input" > out/feedback124/$suite-input.exit
+            if [ "$code" != 0 ]; then failure=1; fi
+          done
+          exit "$failure"
+      - name: Khronos validation of every retained and new GLB
+        run: |
+          npm ci --prefix tools/3d
+          npm --prefix tools/3d run validate > out/feedback124/gltf-validator.log 2>&1
+          cp out/r06/khronos.json out/feedback124/khronos.json
+      - name: Build exact source APK and validate install identity
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PcandidateSource="$CANDIDATE_SOURCE" -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/feedback124/build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/feedback124/sanguo11-mobile-v124.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/feedback124/test.apk
+          git rev-parse HEAD > out/feedback124/SOURCE_COMMIT
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/feedback124/sanguo11-mobile-v124.apk > out/feedback124/metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/feedback124/sanguo11-mobile-v124.apk > out/feedback124/signature.txt
+          python3 scripts/audit-3d-apk.py out/feedback124/sanguo11-mobile-v124.apk --require-16k > out/feedback124/apk-audit.txt
+          python3 scripts/verify-r18-apk.py out/feedback124/sanguo11-mobile-v124.apk "$CANDIDATE_SOURCE" > out/feedback124/apk-identity.json
+          sha256sum out/feedback124/*.apk > out/feedback124/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-feedback124-build, path: out/feedback124/, retention-days: 30, if-no-files-found: error}
+  installed:
+    needs: [assets, build]
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    strategy:
+      fail-fast: false
+      matrix: {api: [29, 35], mode: [fixture, national, port]}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ needs.assets.outputs.source }}'}
+      - uses: actions/download-artifact@v4
+        with: {name: native-feedback124-build, path: out/feedback124/}
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+          run-id: 36604231165
+          name: native-feedback123-final-build
+          path: out/feedback124/baseline/
+      - run: sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: '${{ matrix.api }}'
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: |
+            sed 's/for mode in fixture national port; do/for mode in ${{ matrix.mode }}; do/' scripts/verify-feedback124.sh > /tmp/verify-feedback124-mode.sh
+            FEEDBACK124_FOCUSED=true bash /tmp/verify-feedback124-mode.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-feedback124-api${{ matrix.api }}-${{ matrix.mode }}
+          path: |
+            out/feedback124/runtime/
+            !out/feedback124/runtime/*-installed.apk
+          retention-days: 30
+  physical_access:
+    needs: [assets, build]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions: {contents: read, id-token: write}
+    env: {FIREBASE_PROJECT_ID: '${{ vars.FIREBASE_PROJECT_ID }}'}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ needs.assets.outputs.source }}'}
+      - uses: google-github-actions/auth@v3
+        with:
+          project_id: '${{ vars.FIREBASE_PROJECT_ID }}'
+          workload_identity_provider: '${{ vars.FIREBASE_WIF_PROVIDER }}'
+          service_account: '${{ vars.FIREBASE_SERVICE_ACCOUNT }}'
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Read-only device availability, no IAM changes
+        run: python3 scripts/firebase-evidence-preflight.py --inventory-only
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-feedback124-physical-access, path: out/firebase-preflight/, retention-days: 30, if-no-files-found: warn}
