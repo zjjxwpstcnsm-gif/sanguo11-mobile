@@ -9,14 +9,47 @@ import java.util.*;
 final class FieldAssets {
     interface Source { InputStream open(String name)throws IOException; }
     private final Source source;
-    private final JSONObject rigs,clips;
+    private record Joint(String name,int parent,int first,int count,float x,float y,float z) {}
+    private record Rig(Joint[] parts,int vertices) {}
+    private final Map<String,Rig> rigs=new HashMap<>();
+    private final Map<String,List<Map<String,float[]>>> clips=new HashMap<>();
     private final Map<String,SceneMesh> rest=new LinkedHashMap<>(32,.75f,true);
     private long restBytes;
     private static long bytes(SceneMesh m){return 4L*(m.vertices.length+m.indices.length+(m.uv==null?0:m.uv.length)+(m.tangents==null?0:m.tangents.length));}
     FieldAssets(Source source)throws Exception {
         this.source=source;JSONObject r=json(source,"rigs-v124.json"),c=json(source,"clips.json");
         if(r.getInt("version")!=1||c.getInt("version")!=1||c.getInt("fps")!=12)throw new IOException("unsupported rigid animation version");
-        rigs=r.getJSONObject("rigs");clips=c.getJSONObject("clips");
+        // These bundled descriptions never change. Validate once and retain
+        // primitive values, rather than reading JSON for every joint/pose.
+        JSONObject models=r.getJSONObject("rigs"),motions=c.getJSONObject("clips");
+        for(String model:models.keySet()){
+            JSONArray parts=models.getJSONObject(model).getJSONArray("parts");
+            if(parts.length()<1||parts.length()>128)throw new IOException("rig/clip budget");
+            Joint[] joints=new Joint[parts.length()];int covered=0;
+            for(int i=0;i<joints.length;i++){
+                JSONObject part=parts.getJSONObject(i);int parent=part.getInt("parent"),first=part.getInt("first"),count=part.getInt("count");
+                if(first!=covered)throw new IOException("overlapping or missing rigid range");
+                if(parent>=i||parent< -1||first<0||count<0||(long)first+count>30000)throw new IOException("rig range/parent");
+                float[] p=vector(part.getJSONArray("pivot"),64);covered+=count;
+                joints[i]=new Joint(part.getString("name"),parent,first,count,p[0],p[1],p[2]);
+            }
+            rigs.put(model,new Rig(joints,covered));
+        }
+        for(String clip:motions.keySet()){
+            JSONArray frames=motions.getJSONArray(clip);if(frames.length()!=12)throw new IOException("rig/clip budget");
+            List<Map<String,float[]>> decoded=new ArrayList<>(12);
+            for(int i=0;i<12;i++){
+                JSONObject keys=frames.getJSONObject(i);Map<String,float[]> angles=new HashMap<>();
+                for(String name:keys.keySet())angles.put(name,vector(keys.getJSONArray(name),Math.PI*4));
+                decoded.add(angles);
+            }
+            clips.put(clip,decoded);
+        }
+    }
+    private static float[] vector(JSONArray values,double limit)throws Exception{
+        if(values.length()!=3)throw new IOException("rig vector width");float[] result=new float[3];
+        for(int k=0;k<3;k++){double value=values.getDouble(k);if(!Double.isFinite(value)||Math.abs(value)>limit)throw new IOException("rig numeric bounds");result[k]=(float)value;}
+        return result;
     }
     private static JSONObject json(Source source,String name)throws Exception{
         try(InputStream in=source.open(name);ByteArrayOutputStream out=new ByteArrayOutputStream()){
@@ -53,21 +86,17 @@ final class FieldAssets {
     }
     synchronized SceneMesh pose(String model,String clip,int frame,int count)throws Exception{
         if(count<1||count>8)throw new IOException("formation budget");
-        SceneMesh source=mesh(model);JSONObject rig=rigs.getJSONObject(model);JSONArray parts=rig.getJSONArray("parts");
-        JSONArray frames=clips.getJSONArray(clip);JSONObject keys=frames.getJSONObject(Math.floorMod(frame,frames.length()));
-        float[][] matrices=new float[parts.length()][];
-        if(parts.length()<1||parts.length()>128||frames.length()!=12)throw new IOException("rig/clip budget");
+        SceneMesh source=mesh(model);Rig rig=rigs.get(model);List<Map<String,float[]>> frames=clips.get(clip);
+        if(rig==null||frames==null)throw new IOException("unknown rig/clip");
+        Joint[] parts=rig.parts;Map<String,float[]> keys=frames.get(Math.floorMod(frame,frames.size()));
+        if(rig.vertices!=source.vertices.length/7)throw new IOException("incomplete rigid coverage");
+        float[][] matrices=new float[parts.length][];
         float[] posed=source.vertices.clone();
-        float[] tangents=source.authoredTangentFrame?new float[source.tangents.length]:null;int covered=0;
-        for(int i=0;i<parts.length();i++){
-            JSONObject part=parts.getJSONObject(i);int parent=part.getInt("parent"),first=part.getInt("first"),length=part.getInt("count");
-            if(first!=covered)throw new IOException("overlapping or missing rigid range");covered+=length;
-            if(parent>=i||parent< -1||first<0||length<0||((long)first+length)*7>posed.length)throw new IOException("rig range/parent");
-            JSONArray pivot=part.getJSONArray("pivot"),angles=keys.optJSONArray(part.getString("name"));
-            if(pivot.length()!=3||angles!=null&&angles.length()!=3)throw new IOException("rig vector width");
-            for(int k=0;k<3;k++)if(!Double.isFinite(pivot.getDouble(k))||Math.abs(pivot.getDouble(k))>64||angles!=null&&(!Double.isFinite(angles.getDouble(k))||Math.abs(angles.getDouble(k))>Math.PI*4))throw new IOException("rig numeric bounds");
-            float rx=angles==null?0:(float)angles.getDouble(0),ry=angles==null?0:(float)angles.getDouble(1),rz=angles==null?0:(float)angles.getDouble(2);
-            float[] local=rotation(rx,ry,rz,(float)pivot.getDouble(0),(float)pivot.getDouble(1),(float)pivot.getDouble(2));
+        float[] tangents=source.authoredTangentFrame?new float[source.tangents.length]:null;
+        for(int i=0;i<parts.length;i++){
+            Joint part=parts[i];int parent=part.parent,first=part.first,length=part.count;float[] angles=keys.get(part.name);
+            float rx=angles==null?0:angles[0],ry=angles==null?0:angles[1],rz=angles==null?0:angles[2];
+            float[] local=rotation(rx,ry,rz,part.x,part.y,part.z);
             matrices[i]=parent<0?local:multiply(matrices[parent],local);
             float[] m=matrices[i];
             if(tangents!=null)rotateFrames(source.tangents,tangents,first,length,m);
@@ -78,12 +107,11 @@ final class FieldAssets {
                 posed[v*7+2]=m[2]*x+m[6]*y+m[10]*z+m[14];
             }
         }
-        if(covered!=posed.length/7)throw new IOException("incomplete rigid coverage");
         if(!clip.equals("defeat")&&!clip.equals("hit")){
             float contact=Float.POSITIVE_INFINITY;boolean mounted=model.contains("CAVALRY");
-            for(int i=0;i<parts.length();i++){JSONObject part=parts.getJSONObject(i);String name=part.getString("name");
-                if(mounted?name.startsWith("horseShin"):name.startsWith("shin"))
-                    for(int v=part.getInt("first"),end=v+part.getInt("count");v<end;v++)contact=Math.min(contact,posed[v*7+1]);
+            for(Joint part:parts){
+                if(mounted?part.name.startsWith("horseShin"):part.name.startsWith("shin"))
+                    for(int v=part.first,end=v+part.count;v<end;v++)contact=Math.min(contact,posed[v*7+1]);
             }
             if(Float.isFinite(contact))for(int v=1;v<posed.length;v+=7)posed[v]-=contact;
         }

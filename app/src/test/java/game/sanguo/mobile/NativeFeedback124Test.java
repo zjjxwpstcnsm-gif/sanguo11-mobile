@@ -48,11 +48,22 @@ public final class NativeFeedback124Test {
         }
     }
     interface Operation {void run()throws Exception;}
+    static void schema()throws Exception{
+        String rig="{\"version\":1,\"rigs\":{\"unit-SPEAR-lod0\":{\"parts\":[{\"name\":\"body\",\"parent\":-1,\"pivot\":[0,0,0],\"first\":0,\"count\":3}]}}}";
+        for(int defect=0;defect<5;defect++){
+            JSONObject r=new JSONObject(rig),c=new JSONObject().put("version",1).put("fps",12);JSONArray frames=new JSONArray();
+            for(int i=0;i<(defect==3?11:12);i++)frames.put(new JSONObject().put("body",new JSONArray(new float[]{defect==4?14:0,0,0})));
+            c.put("clips",new JSONObject().put("idle",frames));JSONObject part=r.getJSONObject("rigs").getJSONObject("unit-SPEAR-lod0").getJSONArray("parts").getJSONObject(0);
+            if(defect==0)part.put("parent",0);if(defect==1)part.put("first",1);if(defect==2)part.put("pivot",new JSONArray(new float[]{65,0,0}));
+            try{new FieldAssets(name->new java.io.ByteArrayInputStream((name.startsWith("rigs")?r:c).toString().getBytes(java.nio.charset.StandardCharsets.UTF_8)));throw new AssertionError("malformed immutable rig accepted "+defect);}
+            catch(java.io.IOException expected){check(true,"malformed immutable rig rejected before pose "+defect);}
+        }
+    }
     static void measure(String name,Operation op)throws Exception{
         com.sun.management.ThreadMXBean bean=(com.sun.management.ThreadMXBean)ManagementFactory.getThreadMXBean();
         check(bean.isThreadAllocatedMemorySupported(),"JDK allocation instrumentation available");bean.setThreadAllocatedMemoryEnabled(true);
-        long id=Thread.currentThread().getId();for(int i=0;i<3;i++)op.run();
-        for(int round=0;round<5;round++){
+        long id=Thread.currentThread().getId();for(int i=0;i<10;i++)op.run();
+        for(int round=0;round<7;round++){
             long bytes=bean.getThreadAllocatedBytes(id),cpu=bean.getCurrentThreadCpuTime(),wall=System.nanoTime();
             op.run();long elapsed=System.nanoTime()-wall,used=bean.getCurrentThreadCpuTime()-cpu,allocated=bean.getThreadAllocatedBytes(id)-bytes;
             Files.writeString(Path.of("out/feedback124/host-samples.csv"),name+","+round+","+allocated+","+used+","+elapsed+"\n",StandardOpenOption.CREATE,StandardOpenOption.APPEND);
@@ -61,7 +72,7 @@ public final class NativeFeedback124Test {
     public static void main(String[] args)throws Exception{
         FieldAssets assets=new FieldAssets(n->Files.newInputStream(Path.of("app/src/main/assets/3d/field",n)));
         FieldAssetsBaseline124 old=new FieldAssetsBaseline124(n->Files.newInputStream(Path.of("app/src/main/assets/3d/field",n)));
-        rotation();
+        rotation();schema();
         JSONObject report=new JSONObject(Files.readString(Path.of("docs/native-pc-visual/feedback-v124-blender-assets.json")));
         check(report.getJSONArray("assets").length()==49,"49 actual versioned GLBs");
         for(Object object:report.getJSONArray("assets")){
