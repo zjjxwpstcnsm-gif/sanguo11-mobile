@@ -6,9 +6,14 @@ import java.util.*;
 /** Opaque merged vegetation: one renderable per visible 8x8 chunk, never one per tree. */
 final class Vegetation {
     static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=2;
+    static boolean forest(MapSceneSnapshot.Ground ground,Hex h){
+        return ground.valid(h)&&ground.terrain[h.r*ground.width+h.q]==World.Terrain.FOREST.ordinal();
+    }
     static Set<Hex> exclusions(MapSceneSnapshot snapshot){
         Set<Hex> result=new HashSet<>(snapshot.ground.bases);
-        for(MapSceneSnapshot.Item item:snapshot.items)if(item.facility!=null||item.unit!=null)result.add(item.hex);
+        // Armies move through the existing forest. Only permanent footprints clear
+        // vegetation; a unit revision must not erase/rebuild its cell and neighbours.
+        for(MapSceneSnapshot.Item item:snapshot.items)if(item.facility!=null)result.add(item.hex);
         return result;
     }
     static List<SceneMesh> build(MapSceneSnapshot.Ground ground,Set<Hex> excluded,List<SceneMesh> previous,SceneMesh tree,SceneMesh farTree){
@@ -120,7 +125,7 @@ final class Vegetation {
         return out;
     }
     static boolean clear(MapSceneSnapshot.Ground g,Set<Hex> excluded,Hex h,float x,float z){
-        // One-cell safety apron includes the full opaque crown, port approaches and unit anchors.
+        // One-cell safety apron protects fixed structures, roads and port approaches.
         for(int r=h.r-2;r<=h.r+2;r++)for(int q=h.q-2;q<=h.q+2;q++){
             Hex n=new Hex(q,r);float dx=g.grid.x(n)-x,dz=g.grid.z(n)-z;
             if(dx*dx+dz*dz>2.1f)continue;

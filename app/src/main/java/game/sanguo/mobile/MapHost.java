@@ -152,6 +152,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
         try{
             spatial=new FilamentMapView(getContext(),listener,this::fallback);activeNativeHosts++;
             spatial.setUnitDrag(new FilamentMapView.UnitDrag(){
+                public int actorId(){return moving;}
                 public boolean begin(Hex h){
                     World.Unit u=world.unit(moving);
                     return unitDrop!=null&&isEnabled()&&!openingPreview&&editorStroke==null&&!commandTargeting

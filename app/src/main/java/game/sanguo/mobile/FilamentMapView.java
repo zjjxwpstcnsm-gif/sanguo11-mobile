@@ -51,6 +51,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void sceneIdentity(game.sanguo.api.StateToken token){
         meshWork.owner();
         if(sceneToken!=null&&(!sceneToken.sessionId.equals(token.sessionId)||sceneToken.generation!=token.generation)){
+            cancelUnitDrag();
             visibilityStamp.invalidate();terrainVisibilityDirty=true;meshWork.invalidate();assetWork.invalidate();generation++;pending=0;replay=null;animatedUnit=null;clearEffects();
             for(Proxy p:objects.values())p.destroy();objects.clear();
             for(GpuMesh m:shapes.values())m.destroy();shapes.clear();
@@ -170,7 +171,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 if(e.getDownTime()==activeDragGesture&&!multi&&isEnabled()&&!editorDrawing&&!blocked(e.getX(),e.getY())&&snapshot!=null){
                     suppressedGesture=e.getDownTime();Hex h=pick(e.getX(),e.getY(),!commandTargeting&&editorStroke==null);
                     if(h!=null){
-                        if(unitDrag!=null&&unitDrag.begin(h)){draggingUnit=true;dragTarget=h;dragPlan=null;overlay.invalidate();}
+                        if(unitDrag!=null&&unitDrag.begin(h)){draggingUnit=true;dragTarget=h;dragPlan=null;dragActorKey="unit:"+unitDrag.actorId();overlay.invalidate();}
                         else center(h);
                         performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
                     }
@@ -335,6 +336,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     /** The host owns rule previews and the existing MainActivity drop command. */
     interface UnitDrag {
+        int actorId();
         boolean begin(Hex h);
         MarchOrders.Plan preview(Hex h);
         void drop(MarchOrders.Plan plan);
@@ -344,8 +346,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private boolean draggingUnit;
     private Hex dragTarget;
     private MarchOrders.Plan dragPlan;
+    private String dragActorKey;
+    private SceneMesh dragMesh;
     void setUnitDrag(UnitDrag handler){cancelUnitDrag();unitDrag=handler;}
-    private void cancelUnitDrag(){activeDragGesture=-1;draggingUnit=false;dragTarget=null;dragPlan=null;if(overlay!=null)overlay.invalidate();}
+    private void cancelUnitDrag(){activeDragGesture=-1;draggingUnit=false;dragTarget=null;dragPlan=null;dragActorKey=null;dragMesh=null;if(overlay!=null){overlay.ghost.clear();overlay.invalidate();}}
     @Override public void setEnabled(boolean enabled){if(!enabled)cancelUnitDrag();super.setEnabled(enabled);}
     @Override public boolean onTouchEvent(MotionEvent e){
         if(!isEnabled())return true;
@@ -1011,6 +1015,30 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         final Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);
         final Map<String,android.graphics.RectF> labelHits=new LinkedHashMap<>();
         final android.graphics.Path cellPath=new android.graphics.Path();
+        final Silhouette ghost=new Silhouette(),forestUnit=new Silhouette();
+        final UnitFormation ghostFormation=new UnitFormation();
+        long ghostDraws,forestSilhouetteDraws,selectionDraws;
+        /** One cached path per preview/selected forest unit. All triangles wind the
+         * same way, so a single translucent fill has no double-dark overlap seams. */
+        final class Silhouette {
+            final android.graphics.Path path=new android.graphics.Path();
+            SceneMesh mesh;float[] stamp;long contact=-1,builds;
+            void clear(){path.rewind();mesh=null;stamp=null;contact=-1;}
+            void update(SceneMesh source,UnitFormation formation,float x,float z,float yaw,float scale){
+                float[] next={x,z,yaw,scale,camera.x,camera.z,camera.span,camera.tilt,camera.yaw,camera.facing,camera.width,camera.height};
+                if(mesh==source&&contact==formation.updates&&Arrays.equals(stamp,next))return;
+                mesh=source;stamp=next;contact=formation.updates;path.rewind();builds++;
+                float[] points=UnitSilhouette.project(source,camera,formation,x,z,yaw,scale);
+                int vertices=source.vertices.length/7;
+                for(int member=0;member<formation.count;member++)for(int i=0;i<source.indices.length;i+=3){
+                    int a=(member*vertices+source.indices[i])*2,b=(member*vertices+source.indices[i+1])*2,d=(member*vertices+source.indices[i+2])*2;
+                    float area=(points[b]-points[a])*(points[d+1]-points[a+1])-(points[b+1]-points[a+1])*(points[d]-points[a]);
+                    if(Math.abs(area)<.001f)continue;
+                    if(area<0){int swap=b;b=d;d=swap;}
+                    path.moveTo(points[a],points[a+1]);path.lineTo(points[b],points[b+1]);path.lineTo(points[d],points[d+1]);path.close();
+                }
+            }
+        }
         Overlay(Context c){super(c);setClickable(false);}
         final android.graphics.RectF miniRect=new android.graphics.RectF();
         private android.graphics.Bitmap miniBitmap;
@@ -1127,6 +1155,42 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             // Tactical x-ray is deliberate: dashed means terrain-obscured, never extra reachability.
             p.setPathEffect(hidden(h)?hiddenDash:null);c.drawPath(cellPath,p);p.setPathEffect(null);
         }
+        void selectedCell(Canvas c,Hex h,int color){
+            if(!visible(h)||!cellPath(h))return;selectionDraws++;
+            float density=getResources().getDisplayMetrics().density;
+            p.clearShadowLayer();p.setPathEffect(null);p.setStyle(Paint.Style.FILL);
+            p.setColor((color&0xffffff)|0x22000000);c.drawPath(cellPath,p);
+            p.setStyle(Paint.Style.STROKE);p.setStrokeJoin(Paint.Join.ROUND);
+            p.setPathEffect(hidden(h)?hiddenDash:null);
+            p.setColor(0xe0122027);p.setStrokeWidth(6*density);c.drawPath(cellPath,p);
+            p.setColor(color);p.setStrokeWidth(3.5f*density);c.drawPath(cellPath,p);
+            p.setColor(0xfffff2cc);p.setStrokeWidth(1.05f*density);c.drawPath(cellPath,p);
+            p.setPathEffect(null);p.setStrokeJoin(Paint.Join.MITER);
+        }
+        void drawDragGhost(Canvas c){
+            if(!draggingUnit||dragTarget==null||!visible(dragTarget)||!snapshot.ground.valid(dragTarget))return;
+            Proxy actor=objects.get(dragActorKey);if(actor==null||actor.item.unit==null)return;
+            // Freeze the already-loaded CPU pose for this gesture. No asset decoding,
+            // GPU ownership or army movement is driven by this preview.
+            if(dragMesh==null)dragMesh=actor.shape.source;
+            GridWorldTransform grid=snapshot.ground.grid;float x=grid.x(dragTarget),z=grid.z(dragTarget),yaw=actor.motion.yaw;
+            if(dragPlan!=null&&dragPlan.path.size()>1){Hex from=dragPlan.path.get(dragPlan.path.size()-2);yaw=(float)Math.atan2(x-grid.x(from),z-grid.z(from));}
+            ghostFormation.sample(actor.item.unit,actor.item.unit.troops,actor.animation.naval,unitLod,snapshot.ground,x,z,yaw,1);
+            ghost.update(dragMesh,ghostFormation,x,z,yaw,1);
+            float sx=camera.screenX(x,z),sy=camera.screenY(x,z,ghostFormation.rootY),r=camera.pixels()*.40f;
+            p.clearShadowLayer();p.setPathEffect(null);p.setStyle(Paint.Style.FILL);p.setColor(0x78121e25);
+            c.drawOval(sx-r,sy-r*(float)camera.sin(),sx+r,sy+r*(float)camera.sin(),p);
+            p.setColor(dragPlan==null?0xc9ff7979:0xc26dffe0);c.drawPath(ghost.path,p);ghostDraws++;
+        }
+        void drawForestUnit(Canvas c,Proxy object){
+            // A faint tactical silhouette keeps the selected formation readable
+            // through opaque crowns without removing a tree or changing its mesh.
+            Hex at=snapshot.ground.grid.cell(object.motion.x,object.motion.z);
+            if(object.instance==null||!Vegetation.forest(snapshot.ground,at))return;
+            forestUnit.update(object.shape.source,object.formation,object.motion.x,object.motion.z,object.motion.yaw,object.animation.scale);
+            p.clearShadowLayer();p.setPathEffect(null);p.setStyle(Paint.Style.FILL);p.setColor(0x60ffe4a0);
+            c.drawPath(forestUnit.path,p);forestSilhouetteDraws++;
+        }
         void border(Canvas c,Hex h,int mask){
             if(mask==0)return;GridWorldTransform g=snapshot.ground.grid;float x=g.x(h),z=g.z(h);
             p.setColor(territoryMode==2?0x997fd1c7:0x88e4c88d);p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(1.5f);
@@ -1206,12 +1270,15 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(route!=null)for(Hex h:route.path)cell(c,h,0xffffd576);
             if(draggingUnit){
                 if(dragPlan!=null)for(Hex h:dragPlan.path)cell(c,h,0xff6ddcc5);
-                cell(c,dragTarget,dragPlan==null?0xffff7979:0xff6ddcc5);
             }
-            if(targets.isEmpty())for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.coverage)cell(c,h,0xffcfad6e);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets.isEmpty()?snapshot.attackTargets:targets)cell(c,h,0xffdd7661);cell(c,snapshot.selected,0xffffd576);
-            for(MapSceneSnapshot.Item item:snapshot.items)if(item.site!=null&&item.site.cells.contains(snapshot.selected))for(Hex h:item.site.cells)cell(c,h,0xffffd576);
+            if(targets.isEmpty())for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.coverage)cell(c,h,0xffcfad6e);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets.isEmpty()?snapshot.attackTargets:targets)cell(c,h,0xffdd7661);
+            Set<Hex> selectedCells=new LinkedHashSet<>();if(snapshot.selected!=null)selectedCells.add(snapshot.selected);
+            for(MapSceneSnapshot.Item item:snapshot.items)if(item.site!=null&&item.site.cells.contains(snapshot.selected))selectedCells.addAll(item.site.cells);
+            for(Hex h:selectedCells)selectedCell(c,h,0xffffd576);
+            if(draggingUnit){selectedCell(c,dragTarget,dragPlan==null?0xffff7979:0xff6ddcc5);drawDragGhost(c);}
             // Ground rings remain visible through architecture; transit units cannot disappear behind walls.
             for(Proxy object:objects.values())if(object.item.unit!=null&&object.shown){
+                if(selected(object.item)&&!draggingUnit)drawForestUnit(c,object);
                 float x=camera.screenX(object.motion.x,object.motion.z),y=camera.screenY(object.motion.x,object.motion.z,object.y);
                 float radius=Math.max(3,camera.height/(2*camera.span)*.38f);
                 p.setStyle(Paint.Style.STROKE);p.setStrokeWidth(2);
