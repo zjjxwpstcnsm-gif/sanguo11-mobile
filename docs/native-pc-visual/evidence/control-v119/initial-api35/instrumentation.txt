@@ -1,0 +1,5 @@
+FAIL CONTROL119 java.lang.AssertionError: visible clickable text missing: 扰乱 · 气力15
+	at game.sanguo.mobile.ControlIntelligence119Instrumentation.click(ControlIntelligence119Instrumentation.java:28)
+	at game.sanguo.mobile.ControlIntelligence119Instrumentation.onStart(ControlIntelligence119Instrumentation.java:53)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+

@@ -1,3 +1,19 @@
+# 用户智力规则纠正 — v119 / PARTIAL
+
+| 条目 | 状态 | 证据与范围 |
+|---|---|---|
+| CONTROL119-INT | PASS | 双方主将/副将最高INT、同智力普通扰乱/伪报20%，技能/免疫保留；覆盖40106检查与每项10000实际命令 |
+| CONTROL119-UI | PASS（2D专项） | API29/35各37检查，实际20%确认、成功/失败、完整Save/RNG/自动存档一致；程序选择fixture与目标，不是全触控 |
+| CONTROL119-BUILD | PASS | exact53a31e7、lint、300资源/四ABI/签名核验及两设备安装APK哈希一致 |
+| CONTROL119-FIRST-DRIVER | FAIL（首轮） | 两API初始ACTION_CLICK驱动未找到可点列表；修为可见节点真实触点后通过，原失败保留，未放宽等待/断言 |
+| CONTROL119-CORE | FAIL（inherited） | Core.logistics、RulesParity.actions、MapSkills.geography、Campaign.merge、CampaignAi.supply、WorldSystems.diplomacy输入/候选独立同样失败；原断言保留 |
+| CONTROL119-3D | NOT_RUN（本专项） | v118候选3D ready失败、拖放/森林实操与性能缺口继续开放 |
+| CONTROL119-PHYSICAL | NOT_RUN | 先前WIF访问拒绝未解除；ARM64/温控/全国/PC美术/全触控/SAF等未验收 |
+
+[报告](reports/control-v119.md)与[manifest](evidence/control-v119/manifest.json)。整体PARTIAL，以下旧结果不清零；v118普通扰乱45%已由本轮20%替代。
+
+---
+
 # 用户反馈专项 — v118 / PARTIAL
 
 | 条目 | 状态 | 证据与边界 |

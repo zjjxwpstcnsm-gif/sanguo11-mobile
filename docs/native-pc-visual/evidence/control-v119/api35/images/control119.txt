@@ -1,0 +1,5 @@
+CONFUSE-failure PASS preview=20 highestInt=80/80 full-save/RNG/autosave equal
+CONFUSE-success PASS preview=20 highestInt=80/80 full-save/RNG/autosave equal
+MISLEAD-failure PASS preview=20 highestInt=80/80 full-save/RNG/autosave equal
+MISLEAD-success PASS preview=20 highestInt=80/80 full-save/RNG/autosave equal
+PASS CONTROL119 checks=37 source=53a31e751de7dc403f88a292a9da01d016c39565
