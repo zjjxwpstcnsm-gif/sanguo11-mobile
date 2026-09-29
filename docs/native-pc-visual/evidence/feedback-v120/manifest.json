@@ -1,0 +1,117 @@
+{
+  "status": "PARTIAL",
+  "input": "252aeea39e4b7bdfb0cbdf4cc6884c5b400a45a7",
+  "main": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "source": "931a298e5c06b5fd56ccfcf067defa8dd840d17e",
+  "production_commit": "8198ed9cbf9f558d67f17e6fca9494ce68134370",
+  "second_commit_scope": "test-only exact Quickstep environment popup recovery",
+  "source_tree": "a2376d58f2ea7d991f0b85296f90a553d0294975",
+  "apk": {
+    "source_sha": "931a298e5c06b5fd56ccfcf067defa8dd840d17e",
+    "apk_sha256": "172a482f76d4dc7300403d692a9085c0545b82784076ae8ca17f479d6a78b30c",
+    "bytes": 37403422,
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "matched_assets": 300,
+    "backend": "Filament 1.56.0 OPENGL",
+    "acceptance": "PARTIAL; archive identity is not runtime or art acceptance"
+  },
+  "first_apk": {
+    "source_sha": "8198ed9cbf9f558d67f17e6fca9494ce68134370",
+    "apk_sha256": "48be49bf3cbed1c29cf3b411673f143539fed354303318e54ee27f694a5388f0",
+    "bytes": 37403422,
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "matched_assets": 300,
+    "backend": "Filament 1.56.0 OPENGL",
+    "acceptance": "PARTIAL; archive identity is not runtime or art acceptance"
+  },
+  "app_id": "game.sanguo.mobile.dev",
+  "version_code": 120,
+  "version_name": "0.120.0-native-selection-forest",
+  "signer_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+  "protected_trees_unchanged": true,
+  "main_ancestor": true,
+  "new_stage_started": false,
+  "unity_started": false,
+  "ci_run": 36548264657,
+  "first_ci_run": 36546440805,
+  "build_artifact": 11024050760,
+  "build_artifact_sha256": "ee217543df28ddb3442e3d0754a78a6c0c83e56437278057c3569b49abcc3e92",
+  "core": "inherited FAIL logistics:75; both exit1 and logs byte-identical",
+  "first_api29": {
+    "baseline": "PASS99 forest clear bug reproduced; full expected/actual saves byte-identical",
+    "candidate": "FAIL120s readiness; submitted3/pending5/rejected572; ghost/forest movement NOT_REACHED; regression risk OPEN"
+  },
+  "first_api35": {
+    "baseline": "FAIL120s readiness; submitted0",
+    "candidate": "FAIL120s readiness; submitted0",
+    "observed": "Exact system Quickstep ANR modal covering both; no initial game frame"
+  },
+  "physical": "WIF attribute-condition rejection; no inventory; zero device submissions",
+  "reference": "REFERENCE_MISSING",
+  "unclosed": [
+    "first-render/stability regression risk, API35 old/new ready failure",
+    "drag preview displayed-frame synchronization and label occlusion",
+    "nationwide first render stability",
+    "ARM64/Adreno/Mali long stability and thermal performance",
+    "full all-touch opening/save/load/SAF",
+    "PC same-region art comparison and V1\u2013V4"
+  ],
+  "final_api35": {
+    "job": 109341431430,
+    "artifact": 11023464556,
+    "artifact_sha256": "b26b2931733803d3b93e14476846947023f458cf45bf3f8bc4e58b4434ad5143",
+    "baseline": "FAIL120s readiness submitted3/pending6/rejected274",
+    "candidate": "FAIL120s readiness submitted3/pending6/rejected268",
+    "installed_hashes_match": true,
+    "quickstep_dialog_observed": false,
+    "candidate_downstream": "NOT_REACHED",
+    "actual_image_review": "Strong new selection border visible; selected unit xray silhouette visible over unready background; no completed forest/ghost test or art acceptance"
+  },
+  "final_api29": {
+    "job": 109341431505,
+    "artifact": 11024380977,
+    "artifact_sha256": "51815302cab8fc09446f38717916357e65d83e18027e5c01c1d9c4f7b03b61b7",
+    "baseline": "PASS106",
+    "candidate": "PASS134 scoped functional assertions",
+    "installed_hashes_match": true,
+    "full_save_pairs_equal": 2,
+    "cancel_paths": [
+      "cancel",
+      "enemy occupied",
+      "two-finger",
+      "snapshot",
+      "disabled",
+      "panel occlusion"
+    ],
+    "forest_same_native_mesh_objects_after_move": true,
+    "actual_ui_surface_sets_per_phase": 6,
+    "visual_sync": "FAIL acceptance: screenshot state lags labels; both valid/invalid model silhouettes exist in raw UI, but capture names do not prove target-synchronized display. Selected label partly occludes ghost. No pixel edits or renaming.",
+    "memory": "NOT_AVAILABLE: dumpsys No process found after instrumentation, not zero memory",
+    "performance": "NOT_ACCEPTED: x86_64 SwANGLE, late owner begin wall p95 1983.891ms; no presented/GPU timings; not ARM64 performance"
+  },
+  "ci_conclusion": "failure: build/API29 pass; API35/physical access fail",
+  "evidence_head": "Commit containing this manifest; exact post-push SHA in PR body and delivered FINAL_READBACK.json",
+  "host": {
+    "new_feedback": "PASS559653",
+    "baseline_bug": "PASS559644",
+    "r10": "PASS2221136",
+    "r02": "PASS399124",
+    "r09": "PASS1602",
+    "r08": "PASS24333965",
+    "r12": "PASS395124",
+    "architecture": "PASS",
+    "GameSession": "PASS1673",
+    "MapProjection": "PASS119600"
+  },
+  "build_command": "./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PcandidateSource=931a298e5c06b5fd56ccfcf067defa8dd840d17e -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true"
+}

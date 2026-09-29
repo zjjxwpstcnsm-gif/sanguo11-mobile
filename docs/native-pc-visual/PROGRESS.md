@@ -1,3 +1,18 @@
+# 用户反馈专项 — v120 / PARTIAL（2026-09-29）
+
+继续agent/native-pc-visual / Draft PR67，已复读main ac29b458（架构PR66已合）、原生实现与历史缺口。本轮只处理用户三项视觉反馈，不合main、不启Unity、不自动新阶段。
+
+正常MapHost/FilamentMapView路径已加入实际部队模型的落点轮廓/脚下阴影、有效青绿/无效红色；森林排除集不再随部队移动清空，林中选中部队以淡金轮廓保持可辨；选格加深色外沿、金色中线和浅色内线。原规则预览/单次drop与300资源保留，core/game-api/game-runtime/data/Unity未动，v119智力纠正不回退。
+
+正式修改8198ed9；最终APK精确源码931a298e5c06b5fd56ccfcf067defa8dd840d17e（追加测试驱动识别外部Quickstep ANR，无生产差异）。主机专项559653/旧缺陷复现559644及受影响套件、架构、构建/lint/四ABI/签名/300资源/安装哈希通过。最终APK SHA256 172a482f76d4dc7300403d692a9085c0545b82784076ae8ca17f479d6a78b30c。
+
+最终API29旧PASS106/新PASS134：真实拖动、取消/双指/快照/禁用/遮挡、单次命令及完整Save/RNG一致，林块同对象保留；首轮旧PASS99/新ready FAIL保留。原图存在预览状态帧滞后和标签遮挡，流畅跟手视觉未验收。
+首轮API35双边被Quickstep弹窗挡住；最终API35没有弹窗，但旧/新均原120秒ready FAIL（submitted3/pending6）。新版选中边框在真实失败截图可见，不能当完整3D、美术或拖动通过。首轮失败保留，未放宽断言。
+
+core logistics:75输入/候选独立同败；WIF认证拒绝、物理提交0。全国ready/稳定性、PC参考/V1–V4、全触控/旧档SAF、ARM64/温控长稳继续开放。完整结果与最终远端见[报告](reports/feedback-v120.md)、[交接](handoffs/feedback-v120.md)、[manifest](evidence/feedback-v120/manifest.json)及PR正文。历史原样保留。
+
+---
+
 # 用户智力规则纠正 — v119 / PARTIAL（2026-09-29）
 
 普通扰乱、伪报均接入双方部队主将/副将最高智力比较，同智力20%；原特技持有者条件和免疫优先保留。正式源码53a31e751de7dc403f88a292a9da01d016c39565，继续串行分支/Draft PR67，不合main、不启Unity、不自动新阶段。

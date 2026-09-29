@@ -1,3 +1,23 @@
+# 用户反馈专项 — v120 / PARTIAL
+
+| 条目 | 状态 | 实证与剩余范围 |
+|---|---|---|
+| FEEDBACK120-GHOST-HOST | PASS | 正式模型/编队/贴地/相机投影有限值和确定性通过；不等于实际拖动影子画面验收 |
+| FEEDBACK120-FOREST-HOST | PASS | 旧生成器占用0/0、mask改变复现；候选4/3放置、6块同对象复用、完整Save/RNG不变 |
+| FEEDBACK120-SELECTION | PASS（有限画面） | 最终API29完整林地实拍可见三层高对比边框；不代表最终美术/所有遮挡通过 |
+| FEEDBACK120-RUNTIME | PASS（API29限定功能） | 最终API29旧PASS106/新PASS134：真实拖动、取消/双指/快照/禁用/遮挡、单次命令及完整Save/RNG一致，林块同对象保留；首轮旧PASS99/新ready FAIL保留。原图存在预览状态帧滞后和标签遮挡，流畅跟手视觉未验收。 |
+| FEEDBACK120-PREVIEW-VISUAL | FAIL（同步验收） | candidate-drag-preview原图仍为红色起点，candidate-invalid-ghost原图却为青绿有效落点，说明截图状态滞后；标签覆盖部分模型。保留原文件名，不能把内部计数PASS当屏幕及时跟手PASS |
+| FEEDBACK120-READY | FAIL | 最终API35旧/新均120秒ready FAIL；首轮API29旧PASS99/新FAIL，候选新增回归风险未排除 |
+| FEEDBACK120-ENV | FAIL（首轮环境） | API35首轮精确Quickstep ANR截图；测试连接提前/匹配该外部弹窗后复测仍ready失败，不归因全部为环境 |
+| FEEDBACK120-BUILD | PASS | exact931a298，assemble/lint、签名/四ABI/300资源/16KB、DEX与安装字节通过 |
+| FEEDBACK120-CORE | FAIL（inherited） | 原Core.logistics:75输入与候选各exit1、原始日志相同；没有删断言 |
+| FEEDBACK120-PHYSICAL | NOT_RUN（访问被拒） | 两轮WIF attribute condition拒绝，预检未达、设备提交0 |
+| FEEDBACK120-ART/PERF | NOT_RUN | PC REFERENCE_MISSING、ARM64/Adreno/Mali/长稳未完成；CPU数值不等于手机FPS，历史V1–V4/全国/SAF缺口保留 |
+
+[报告](reports/feedback-v120.md)与[manifest](evidence/feedback-v120/manifest.json)。整体PARTIAL；不合main，不启动下一阶段。
+
+---
+
 # 用户智力规则纠正 — v119 / PARTIAL
 
 | 条目 | 状态 | 证据与范围 |
