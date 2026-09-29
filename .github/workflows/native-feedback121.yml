@@ -4,7 +4,7 @@ on:
     branches: [agent/native-pc-visual]
     paths: ['.github/workflows/native-feedback121.yml', 'scripts/*feedback121*', 'app/src/**', 'tools/3d/refine_blender121.py', 'version.properties']
 permissions: {contents: read, actions: read}
-concurrency: {group: native-feedback121, cancel-in-progress: false}
+concurrency: {group: 'native-feedback121-${{ github.sha }}', cancel-in-progress: false}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -103,7 +103,7 @@ jobs:
           heap-size: 512M
           disable-animations: false
           emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
-          script: bash scripts/verify-feedback121.sh
+          script: FEEDBACK121_FOCUSED=true bash scripts/verify-feedback121.sh
       - uses: actions/upload-artifact@v4
         if: always()
         with: {name: 'native-feedback121-api${{ matrix.api }}', path: out/feedback121/runtime/, retention-days: 30}

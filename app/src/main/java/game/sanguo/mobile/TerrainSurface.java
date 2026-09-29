@@ -85,7 +85,7 @@ final class TerrainSurface {
         return value;
     }
     private float compute(float x,float z){
-        Hex cell=ground.grid.cell(x,z);float sum=0,weight=0,limit=MAX_HEIGHT;
+        Hex cell=ground.grid.cell(x,z);float sum=0,weight=0,limit=MAX_HEIGHT,footLimit=MAX_HEIGHT;
         // Compact support includes all staggered neighbors, including both sides of chunk edges.
         for(int r=cell.r-5;r<=cell.r+5;r++)for(int q=cell.q-7;q<=cell.q+7;q++){
             float dx=Math.abs(x-ground.grid.x(q,r)),dz=Math.abs(z-ground.grid.z(q,r));
@@ -101,10 +101,13 @@ final class TerrainSurface {
                 float floor=constraint==2?.08f:constraint==4?.30f:0;
                 // Smooth toe, then a bounded 1.35 rise/run: below tan(55deg),
                 // so default-camera ground centers remain visible at the pass.
-                limit=Math.min(limit,floor+1.35f*edge*edge/(edge+.05f));
+                float cap=floor+1.35f*edge*edge/(edge+.05f);
+                if(constraint==4)footLimit=Math.min(footLimit,cap);else limit=Math.min(limit,cap);
             }
         }
-        float value=weight==0?0:sum/weight;
+        float value=Math.min(footLimit,weight==0?0:sum/weight);
+        // Hand-painted height overrides the automatic foothill styling, while
+        // authoritative water, roads and full site foundations remain protected.
         // Explicit height paint wins at its center, smoothly joining the regional field.
         Float painted=overrides.get(cell);
         if(painted!=null){float dx=x-ground.grid.x(cell),dz=z-ground.grid.z(cell);

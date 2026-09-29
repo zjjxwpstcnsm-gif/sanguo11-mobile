@@ -11,8 +11,8 @@ import java.util.*;
 /** Normal MainActivity, fixed small input + real national gate. Camera operations
  * are API driven. Original 120s readiness is preserved; no phone-FPS claim. */
 public final class NativeFeedback121Instrumentation extends SceneInstrumentation {
-    private String phase="candidate",mode="fixture";private File dir;private FilamentMapView view;private int launcherDialogs;
-    @Override public void onCreate(Bundle b){if(b!=null){phase=b.getString("phase",phase);mode=b.getString("mode",mode);}super.onCreate(b);}
+    private String phase="candidate",mode="fixture";private File dir;private FilamentMapView view;private int launcherDialogs;private boolean focused;
+    @Override public void onCreate(Bundle b){if(b!=null){phase=b.getString("phase",phase);mode=b.getString("mode",mode);focused="true".equals(b.getString("focused","false"));}super.onCreate(b);}
     private void log(String s)throws Exception{Files.write(new File(dir,"feedback121.txt").toPath(),(s+"\n").getBytes("UTF-8"),StandardOpenOption.CREATE,StandardOpenOption.APPEND);}
     private byte[] authority(){byte[][] out={null};runOnMainSync(()->{try{out[0]=((GameApplication)activity.getApplication()).host().capture();}catch(IOException e){throw new RuntimeException(e);}});return out[0];}
     @Override void observeLoading(FilamentMapView renderer)throws Exception {
@@ -67,8 +67,8 @@ public final class NativeFeedback121Instrumentation extends SceneInstrumentation
         host=(MapHost)field(activity,"map");check(host!=null,"normal save restore");byte[] before=authority();
         runOnMainSync(()->{invoke("closePanel",new Class<?>[0]);host.setGridShown(false);host.setTerritoryMode(0);activity.selectAndFocus(focus);host.switchMode(true);});settle();
         view=(FilamentMapView)field(host,"spatial");runOnMainSync(()->{view.center(focus);view.camera.span=6;view.camera.tilt=55;view.camera.yaw=0;});ready();
-        log("phase="+phase+" mode="+mode+" original120sReady; MEDIUM; fixed camera API; not full touch flow or phone performance");
-        for(float span:new float[]{4,8,16})for(float yaw:new float[]{0,90}){
+        log("phase="+phase+" mode="+mode+" original120sReady; MEDIUM; fixed camera API; not full touch flow or phone performance; focused="+focused+"");
+        for(float span:(focused?new float[]{6}:new float[]{4,8,16}))for(float yaw:(focused?new float[]{0}:new float[]{0,90})){
             runOnMainSync(()->{view.center(focus);view.camera.span=span;view.camera.yaw=yaw;});settle();ready();
             for(boolean grid:new boolean[]{false,true}){
                 runOnMainSync(()->host.setGridShown(grid));settle();ready();

@@ -22,7 +22,7 @@ for phase in baseline candidate; do
     adb shell screenrecord --time-limit 180 /sdcard/feedback121.mp4 > "$dest/record.txt" 2>&1 &
     recording=$!
     code=0
-    timeout 900 adb shell am instrument -w -e phase "$phase" -e mode "$mode" game.sanguo.mobile.dev.test/game.sanguo.mobile.NativeFeedback121Instrumentation > "$dest/instrumentation.txt" 2>&1 || code=$?
+    timeout 900 adb shell am instrument -w -e phase "$phase" -e mode "$mode" -e focused "${FEEDBACK121_FOCUSED:-false}" game.sanguo.mobile.dev.test/game.sanguo.mobile.NativeFeedback121Instrumentation > "$dest/instrumentation.txt" 2>&1 || code=$?
     echo "$code" > "$dest/process.exit"
     adb shell pkill -INT screenrecord || true
     wait "$recording" || true

@@ -36,6 +36,16 @@ public final class NativeFeedback121Test {
             for(int i=0;i<chunks.size();i++)check(chunks.get(i)==reused.get(i)&&chunks.get(i).grid==reused.get(i).grid,"unchanged worker batch reused");
             System.out.println("grid chunks="+chunks.size()+" triangles="+triangles+" CPU_bytes="+bytes+" (not GPU allocation)");
         }
+        if(!baseline){
+            World custom=new World(24,24);for(int q=0;q<24;q++)for(int r=0;r<24;r++)custom.terrain[q][r]=World.Terrain.PLAIN;
+            MapSceneSnapshot.Ground plain=new MapSceneSnapshot.Ground(custom);Hex painted=new Hex(12,12);
+            TerrainSurface authored=new TerrainSurface(plain,Map.of(painted,2.4f));
+            check(Math.abs(authored.at(painted)-2.4f)<.00001f,"existing plain height paint overrides automatic foothill cap");
+            custom.terrain[12][12]=World.Terrain.MOUNTAIN_PATH;
+            check(new TerrainSurface(new MapSceneSnapshot.Ground(custom),Map.of(painted,2.4f)).at(painted)<=.080001f,"paint still protects authoritative road");
+            custom.terrain[12][12]=World.Terrain.WATER;
+            check(new TerrainSurface(new MapSceneSnapshot.Ground(custom),Map.of(painted,2.4f)).at(painted)==0,"paint still protects water");
+        }
         World national=ScenarioCatalog.all().get(0);byte[] before=SaveCodec.encode(national);MapSceneSnapshot.Ground g=new MapSceneSnapshot.Ground(national);
         int gates=0,joined=0;double mountainHeight=0;int mountains=0;
         for(int r=0;r<g.height;r++)for(int q=0;q<g.width;q++)if(g.terrain[r*g.width+q]==World.Terrain.MOUNTAIN.ordinal()){mountainHeight+=g.surface.at(new Hex(q,r));mountains++;}
