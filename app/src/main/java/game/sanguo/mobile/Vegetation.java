@@ -5,7 +5,7 @@ import java.util.*;
 
 /** Opaque merged vegetation: one renderable per visible 8x8 chunk, never one per tree. */
 final class Vegetation {
-    static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=3, ASSET_VERSION=129;
+    static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=3, ASSET_VERSION=130;
     static boolean forest(MapSceneSnapshot.Ground ground,Hex h){
         return ground.valid(h)&&ground.terrain[h.r*ground.width+h.q]==World.Terrain.FOREST.ordinal();
     }
@@ -315,7 +315,11 @@ final class Vegetation {
                 float z=tz+dz*model.vertices[i+2]+sz*model.vertices[i]*across;
                 bedHigh=Math.max(bedHigh,g.surface.meshHeight(x,z));
             }
-            float rise=Math.max(.78f,bedHigh-base+.45f);
+            // Hukou is a compact river-bank ledge, not a raised alpine pillar.
+            // Follow the existing blocked bank's crest with only a small cap;
+            // neither the terrain surface nor the authoritative water mask moves.
+            boolean hukou=cascadeRegion(g,water)==3;
+            float rise=Math.max(hukou?.38f:.78f,bedHigh-base+(hukou?.06f:.45f));
             int offset=floats/7;reserve(model.vertices.length,model.uv.length,model.indices.length);
             for(int i=0;i<model.vertices.length;i+=7){
                 float x=tx+dx*model.vertices[i+2]+sx*model.vertices[i]*across;
@@ -328,10 +332,11 @@ final class Vegetation {
             // terrain fan ridge between its corners. Lift shared vertices by
             // each face's sampled deficit before emitting the existing mesh.
             float[] lift=new float[model.vertices.length/7];
+            int groundSamples=hukou?12:6; // Broad low shoulders need denser ridge/contact sampling.
             for(int i=0;i<model.indices.length;i+=3){
                 int a=offset+model.indices[i],b=offset+model.indices[i+1],c=offset+model.indices[i+2];float needed=0;
-                for(int p=0;p<=6;p++)for(int q=0;q<=6-p;q++){
-                    float u=p/6f,t=q/6f,w=1-u-t;
+                for(int p=0;p<=groundSamples;p++)for(int q=0;q<=groundSamples-p;q++){
+                    float u=(float)p/groundSamples,t=(float)q/groundSamples,w=1-u-t;
                     float x=v[a*7]*u+v[b*7]*t+v[c*7]*w,z=v[a*7+2]*u+v[b*7+2]*t+v[c*7+2]*w;
                     float y=v[a*7+1]*u+v[b*7+1]*t+v[c*7+1]*w;
                     needed=Math.max(needed,g.surface.meshHeight(x,z)+.03f-y);

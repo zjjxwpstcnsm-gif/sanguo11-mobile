@@ -1,3 +1,7 @@
+## 2026-09-30 v130 actual-Hukou corrective iteration — PARTIAL
+
+v129 APK is verified; API29 actual grid/research/force switching PASS249. Actual lavapipe Hukou revealed a narrow raised ornament, so only Hukou source/fit is corrected:0.913-wide ledge at bank-relative crest, new near/far GLBs, and strictly observed real pinch events. Other v129 art, poison and authorized plank rule remain. New exact APK/runtime validation pending; see reports/feedback-v130.md.
+
 ## 2026-09-30 v129 combined terrain / difficult-march / poison — PARTIAL
 
 Twenty higher-detail Blender GLBs, corrected landscape UV orientation, distinct poison material, authoritative technology-gated grid and explicitly authorized plank entry rule are integrated. Host suites pass; exact-source APK and device/visual evidence are pending at this checkpoint. See reports/feedback-v129.md. No merge or next phase.

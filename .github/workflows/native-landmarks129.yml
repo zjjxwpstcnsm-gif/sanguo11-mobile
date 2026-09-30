@@ -1,8 +1,5 @@
 name: Native sculpted landmarks v129 combined acceptance
-on:
-  push:
-    branches: [agent/native-pc-visual]
-    paths: ['.github/workflows/native-landmarks129.yml', 'tools/3d/refine_blender129.py', 'tools/3d/scenery128.mat', 'version.properties', 'app/src/main/**', 'app/src/androidTest/**', 'app/src/test/java/game/sanguo/mobile/NativeLandmarks128Test.java', 'scripts/test-landmarks129*.sh', 'scripts/test-grid129*.sh', 'scripts/test-poison129.sh', 'core/src/main/**']
+on: workflow_dispatch
 permissions: {contents: read, actions: read}
 concurrency: {group: 'native-landmarks129-${{ github.sha }}', cancel-in-progress: false}
 jobs:

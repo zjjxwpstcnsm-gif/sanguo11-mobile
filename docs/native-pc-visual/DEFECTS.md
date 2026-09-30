@@ -1,3 +1,7 @@
+## v130 follow-through on actual v129 Surface
+
+Hukou integration FAIL visually in v129: old cap raised the narrow model0.45 above bank. Corrective width/fit is host-verified but not yet accepted in a v130 APK. v129 lavapipe candidate/input reached real shadowed GLES3.1 scenes; strict gesture tests still failed and now gain delivery telemetry. API29 research-grid PASS249, API35 fixture readyFAIL; national poison readyFAIL29. Other matrix results and final ARM64/art gates remain open.
+
 ## v129 open acceptance
 
 Actual v128 Taishan Surface exposed inverted landscape atlas UVs; new material fixes the host-reproduced cause, pending v129 device confirmation. Shared emulator graphics waits have native-stack evidence, not a proven production fix. High-detail memory/CPU costs increased and ARM64 performance is NOT_RUN. Same-camera PC fidelity is REFERENCE_MISSING. New poison and technology-grid actual Surface acceptance is pending. Historical failures below remain open.

@@ -18,7 +18,7 @@ public final class NativeLandmarks128Test {
             check(near.indices.length>far.indices.length,"real reduced LOD "+id);
             check(near.indices.length<9000,"mobile triangle budget "+id);
             check(near.authoredTangentFrame&&far.authoredTangentFrame,"Blender normals imported "+id);
-            check(requested.contains("v129/"+id+"-lod0.glb")&&requested.contains("v129/"+id+"-lod1.glb"),"runtime routes to new production asset "+id);
+            check(requested.contains((id.equals("fall-hukou")?"v130/":"v129/")+id+"-lod0.glb")&&requested.contains((id.equals("fall-hukou")?"v130/":"v129/")+id+"-lod1.glb"),"runtime routes to new production asset "+id);
         }
         var atlas=javax.imageio.ImageIO.read(Path.of("app/src/main/assets/3d/field/v128/scenery-atlas.png").toFile());
         var old=javax.imageio.ImageIO.read(Path.of("app/src/main/assets/3d/field/v127/scenery-atlas.png").toFile());

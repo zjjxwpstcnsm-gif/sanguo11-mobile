@@ -39,28 +39,60 @@ public final class NativeLandmarks128Instrumentation extends SceneInstrumentatio
         throw new AssertionError("normal UI target unavailable: "+label);
     }
     private void pointerTap(float x,float y){long down=SystemClock.uptimeMillis();for(int action:new int[]{MotionEvent.ACTION_DOWN,MotionEvent.ACTION_UP}){var event=MotionEvent.obtain(down,SystemClock.uptimeMillis(),action,x,y,0);event.setSource(InputDevice.SOURCE_TOUCHSCREEN);sendPointerSync(event);event.recycle();}}
-    private void touch(long down,int action,float x0,float x1,float y,int count){
+    private long touch(long down,int action,float x0,float x1,float y,int count){
         MotionEvent.PointerProperties[] props=new MotionEvent.PointerProperties[count];MotionEvent.PointerCoords[] coords=new MotionEvent.PointerCoords[count];
         for(int i=0;i<count;i++){props[i]=new MotionEvent.PointerProperties();props[i].id=i;props[i].toolType=MotionEvent.TOOL_TYPE_FINGER;coords[i]=new MotionEvent.PointerCoords();coords[i].x=i==0?x0:x1;coords[i].y=y;coords[i].pressure=1;coords[i].size=1;}
-        var e=MotionEvent.obtain(down,SystemClock.uptimeMillis(),action,count,props,coords,0,0,1,1,0,0,InputDevice.SOURCE_TOUCHSCREEN,0);if(!getUiAutomation().injectInputEvent(e,(action&MotionEvent.ACTION_MASK)==MotionEvent.ACTION_UP))throw new AssertionError("touch injection rejected");e.recycle();SystemClock.sleep(20);
+        long time=SystemClock.uptimeMillis();
+        var e=MotionEvent.obtain(down,time,action,count,props,coords,0,0,1,1,0,0,InputDevice.SOURCE_TOUCHSCREEN,0);
+        // Wait for EACH real input event to finish dispatch. A 20ms producer is
+        // faster than the software-rendered UI; async MOVE events can be batched
+        // past the detector's scale-begin threshold before it sees another move.
+        try{if(!getUiAutomation().injectInputEvent(e,true))throw new AssertionError("touch injection rejected action="+action);}
+        finally{e.recycle();}
+        SystemClock.sleep(20);return time;
     }
     private Rect viewport(FilamentMapView renderer){Rect rect=new Rect();runOnMainSync(()->renderer.getGlobalVisibleRect(rect));return rect;}
-    private void pinch(FilamentMapView renderer,float target){
-        // Android's minimum scaling span is density-dependent; the original
-        // 300px span entered scaling only at the last moves (10 ->9, not6).
-        // Use larger real pointer spans and bounded feedback, retaining the
-        // same strict final near/far assertions instead of assigning camera state.
+    private float span(FilamentMapView renderer){float[] value={0};runOnMainSync(()->value[0]=renderer.camera.span);return value[0];}
+    private float pinchSample(FilamentMapView renderer,long eventTime,int attempt,int step,float separation)throws Exception{
+        long[] received={-1};float[] value={0,0};boolean[] flags={false,false,false};
+        runOnMainSync(()->{try{
+            ScaleGestureDetector detector=(ScaleGestureDetector)field(renderer,"scaler");
+            received[0]=detector.getEventTime();value[0]=renderer.camera.span;value[1]=detector.getCurrentSpan();
+            flags[0]=detector.isInProgress();flags[1]=(Boolean)field(renderer,"miniGesture");flags[2]=(Boolean)field(renderer,"panelGesture");
+        }catch(Exception e){throw new RuntimeException(e);}});
+        log("pinch attempt="+attempt+" step="+step+" injectedTime="+eventTime+" receivedTime="+received[0]+" pointerSpan="+separation+" detectorSpan="+value[1]+" scaling="+flags[0]+" mini="+flags[1]+" panel="+flags[2]+" cameraSpan="+value[0]);
+        check(received[0]==eventTime&&!flags[1]&&!flags[2],"actual pinch MOVE reaches production scale detector without UI interception");
+        return value[0];
+    }
+    private void pinch(FilamentMapView renderer,float target)throws Exception{
+        // Observe state on its owning thread and stop moving fingers when the
+        // requested scale is reached. All camera changes still come exclusively
+        // from injected touchscreen events through the production input path.
         for(int attempt=0;attempt<4;attempt++){
-            float current=renderer.camera.span;
+            float current=span(renderer);
             if(target<10?current>4&&current<8:current>12&&current<20)return;
             Rect r=viewport(renderer);float x=r.exactCenterX(),y=r.top+r.height()*.45f;
             boolean in=current>target;float start=r.width()*(in?.19f:.34f),end=r.width()*(in?.34f:.18f);
+            check(r.contains((int)(x-Math.max(start,end)),(int)y)&&r.contains((int)(x+Math.max(start,end)),(int)y),"entire real pinch stays inside visible map");
+            ViewConfiguration config=ViewConfiguration.get(renderer.getContext());
+            int minimumSpan=Build.VERSION.SDK_INT>=29?config.getScaledMinimumScalingSpan():-1;
+            log("pinch target="+target+" attempt="+attempt+" viewport="+r+" y="+y+" startSpan="+(2*start)+" endSpan="+(2*end)+" minimumSpan="+minimumSpan+" touchSlop="+config.getScaledTouchSlop()+" cameraBefore="+current);
             long down=SystemClock.uptimeMillis();
             touch(down,MotionEvent.ACTION_DOWN,x-start,x+start,y,1);
             touch(down,MotionEvent.ACTION_POINTER_DOWN|(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT),x-start,x+start,y,2);
-            for(int i=0;i<=20;i++){float d=start+(end-start)*i/20;touch(down,MotionEvent.ACTION_MOVE,x-d,x+d,y,2);}
-            touch(down,MotionEvent.ACTION_POINTER_UP|(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT),x-end,x+end,y,2);
-            touch(down,MotionEvent.ACTION_UP,x-end,x+end,y,1);settle();
+            float d=start;
+            try{
+                for(int i=0;i<=20;i++){
+                    d=start+(end-start)*i/20;
+                    long time=touch(down,MotionEvent.ACTION_MOVE,x-d,x+d,y,2);
+                    current=pinchSample(renderer,time,attempt,i,2*d);
+                    if(in?current<=target:current>=target)break;
+                }
+            }finally{
+                touch(down,MotionEvent.ACTION_POINTER_UP|(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT),x-d,x+d,y,2);
+                touch(down,MotionEvent.ACTION_UP,x-d,x+d,y,1);
+            }
+            settle();log("pinch target="+target+" attempt="+attempt+" cameraAfter="+span(renderer));
         }
     }
     private void pan(FilamentMapView renderer){Rect r=viewport(renderer);float x=r.exactCenterX(),y=r.top+r.height()*.45f;long down=SystemClock.uptimeMillis();touch(down,MotionEvent.ACTION_DOWN,x,0,y,1);for(int i=1;i<=8;i++)touch(down,MotionEvent.ACTION_MOVE,x+i*6,0,y,1);touch(down,MotionEvent.ACTION_UP,x+48,0,y,1);}
