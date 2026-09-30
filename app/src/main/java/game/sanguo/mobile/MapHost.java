@@ -136,7 +136,14 @@ final class MapHost extends FrameLayout implements MapPresentation {
     }
     boolean is3D(){return spatial!=null;}
     void switchMode(boolean use3D){switchMode(use3D,true);}
-    private void switchMode(boolean use3D,boolean manual){
+    /** Resolve the requested camera before the first native CPU stream starts. */
+    void focusNative(Hex target){
+        if(target==null||world==null)return;
+        if(spatial!=null){spatial.focus(target);return;}
+        switchMode(true,true,target);
+    }
+    private void switchMode(boolean use3D,boolean manual){switchMode(use3D,manual,null);}
+    private void switchMode(boolean use3D,boolean manual,Hex initialTarget){
         if(use3D==is3D()||world==null)return;
         cancelCommandEffects();replayFrame(null,0);criticalFrame(null,0);saveCamera(camera);
         if(!use3D){leave3D();flat.setWorld(world,selected,moving);flat.restoreCamera(camera);return;}
@@ -179,6 +186,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
             boolean firstNativePreview=openingPreview&&!camera.containsKey("sceneSpan");
             spatial.commandTargeting(commandTargeting);spatial.setGridShown(gridShown());spatial.navigator(flat.navigatorShown());spatial.restoreCamera(camera);spatial.setTargets(targets);spatial.setRoute(route);spatial.resume(renderGate.active());spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(projection.blocked(world,editorPassability),editorGrid,editorCoords,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);
             if(firstNativePreview)spatial.fit();
+            if(initialTarget!=null)spatial.initialFocus(initialTarget);
             // Publish after restoring/requesting the initial camera, so CPU work
             // is generated for the actual preview instead of a default local view.
             dirty=true;publish();

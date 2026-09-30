@@ -16,7 +16,7 @@ public final class NativeWaterfall127Test {
         World world=ScenarioCatalog.all().get(0);byte[] before=SaveCodec.encode(world);
         var snapshot=new MapSceneSnapshot(new MapSceneSnapshot.Ground(world),world,null,-1);
         var excluded=Vegetation.exclusions(snapshot);var assets=new FieldAssets(n->Files.newInputStream(Path.of("app/src/main/assets/3d/field",n)));
-        check(LandscapeLandmarks.ALL.size()==5,"shared discovery targets include all national landmarks");
+        check(LandscapeLandmarks.ALL.size()==6,"shared discovery targets include all national landmarks");
         for(var entry:LandscapeLandmarks.ALL){
             if(entry.cascade()<0)continue;Hex at=at(world,entry);var g=snapshot.ground;
             check(Vegetation.cascadeRegion(g,at)==entry.cascade(),"UI target is the actual production fall");

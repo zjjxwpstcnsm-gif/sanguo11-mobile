@@ -5,7 +5,7 @@ import java.util.*;
 
 /** Opaque merged vegetation: one renderable per visible 8x8 chunk, never one per tree. */
 final class Vegetation {
-    static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=3, ASSET_VERSION=127;
+    static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=3, ASSET_VERSION=128;
     static boolean forest(MapSceneSnapshot.Ground ground,Hex h){
         return ground.valid(h)&&ground.terrain[h.r*ground.width+h.q]==World.Terrain.FOREST.ordinal();
     }
@@ -89,6 +89,11 @@ final class Vegetation {
                         far.landmark(h,excluded,assets.mesh("beacon-han-lod1"));
                     }
                 }
+                if(taihuShore(g,h)&&!excluded.contains(h)){
+                    String shore=(mix(h.q*73856093^h.r*19349663^SEED)&3)==0?"shore-rock":"shore-reeds";
+                    if(detailed)near.shore(h,excluded,assets.mesh(shore+"-lod0"));
+                    far.shore(h,excluded,assets.mesh(shore+"-lod1"));
+                }
                 // Only existing adjacent logical road cells connect. Each undirected edge
                 // belongs to its lower cell ID, including edges that cross a chunk boundary.
                 if(path(g,h))for(Hex n:h.neighbors())if(g.valid(n)&&path(g,n)&&key(h.q,h.r)<key(n.q,n.r)){
@@ -136,6 +141,17 @@ final class Vegetation {
         if(s.x>=136&&s.x<=158&&s.y>=48&&s.y<=78)return "cliff-granite";
         if(s.x>=12&&s.x<=52&&s.y>=155&&s.y<=195)return "cliff-karst";
         return null;
+    }
+    /** The compact existing blocked lake west of Wu; no new water/shore cells.
+     * The exact PC-game lake label/anchor remains a documented interpretation. */
+    static boolean taihuRegion(MapSceneSnapshot.Ground g,Hex h){
+        if(!national(g)||!g.valid(h))return false;
+        var s=g.source(h);return s.x>=171&&s.x<=179&&s.y>=103&&s.y<=111;
+    }
+    static boolean taihuShore(MapSceneSnapshot.Ground g,Hex h){
+        if(!taihuRegion(g,h)||g.terrain[h.r*g.width+h.q]!=World.Terrain.NON_NAVIGABLE_WATER.ordinal())return false;
+        for(Hex n:h.neighbors())if(g.valid(n)&&!g.surface.water(n)&&!path(g,n))return true;
+        return false;
     }
     static boolean path(MapSceneSnapshot.Ground g,Hex h){
         if(!g.valid(h))return false;int t=g.terrain[h.r*g.width+h.q];
@@ -205,6 +221,28 @@ final class Vegetation {
             if(!safeLandmark(x,z,excluded))return;
             for(int i=0;i<model.vertices.length;i+=7)if(!safeLandmark(x+model.vertices[i],z+model.vertices[i+2],excluded))return;
             append(model,new Placement(x,z,1,0,3,true));
+        }
+        void shore(Hex h,Set<Hex> excluded,SceneMesh model){
+            float x=g.grid.x(h),z=g.grid.z(h);Hex bank=null;
+            for(Hex n:h.neighbors())if(g.valid(n)&&!g.surface.water(n)&&!path(g,n)&&!excluded.contains(n)&&!g.bases.contains(n)){bank=n;break;}
+            if(bank==null)return;
+            // A low fringe on the blocked wet side, with open central water retained.
+            float dx=g.grid.x(bank)-x,dz=g.grid.z(bank)-z,len=(float)Math.hypot(dx,dz);
+            x+=dx/len*.20f;z+=dz/len*.20f;
+            for(int rr=h.r-2;rr<=h.r+2;rr++)for(int qq=h.q-2;qq<=h.q+2;qq++){
+                Hex n=new Hex(qq,rr);float X=g.grid.x(n)-x,Z=g.grid.z(n)-z;
+                if(X*X+Z*Z<2.1f&&(excluded.contains(n)||g.bases.contains(n)||path(g,n)))return;
+            }
+            float angle=(mix(h.q*73856093^h.r*19349663^SEED)&65535)/65535f*6.283185f,cs=(float)Math.cos(angle),sn=(float)Math.sin(angle);
+            // Sample each full triangle so a reed/stone never covers a navigable
+            // channel, land-cell centre, port or facility, even at a bank corner.
+            for(int i=0;i<model.indices.length;i+=3)for(int a=0;a<=4;a++)for(int b=0;b<=4-a;b++){
+                float u=a/4f,t=b/4f,w=1-u-t;int A=model.indices[i]*7,B=model.indices[i+1]*7,C=model.indices[i+2]*7;
+                float X=model.vertices[A]*u+model.vertices[B]*t+model.vertices[C]*w,Z=model.vertices[A+2]*u+model.vertices[B+2]*t+model.vertices[C+2]*w;
+                Hex at=g.grid.cell(x+(X*cs+Z*sn)*.70f,z+(-X*sn+Z*cs)*.70f);
+                if(!taihuRegion(g,at)||g.terrain[at.r*g.width+at.q]!=World.Terrain.NON_NAVIGABLE_WATER.ordinal()||excluded.contains(at)||g.bases.contains(at))return;
+            }
+            append(model,new Placement(x,z,.70f,angle,3,true));
         }
         void wall(Hex h,Hex n,Set<Hex> excluded,SceneMesh model){
             float x=g.grid.x(h),z=g.grid.z(h),dx=g.grid.x(n)-x,dz=g.grid.z(n)-z,len=(float)Math.hypot(dx,dz);
@@ -300,7 +338,20 @@ final class Vegetation {
                 }
                 for(int k=0;k<3;k++){int vertex=model.indices[i+k];lift[vertex]=Math.max(lift[vertex],needed);}
             }
-            for(int i=0;i<lift.length;i++)v[(offset+i)*7+1]+=lift[i];
+            // Strict GLB baking expands each triangle corner. Equal source
+            // positions therefore have different indices: weld the *correction*
+            // across those corners before applying it, or neighbouring faces
+            // lift by different amounts and tear apart above a terrain ridge.
+            record Corner(int x,int y,int z) {}
+            Map<Corner,Float> sharedLift=new HashMap<>();
+            for(int i=0;i<lift.length;i++){
+                int k=(offset+i)*7;Corner key=new Corner(Float.floatToIntBits(v[k]),Float.floatToIntBits(v[k+1]),Float.floatToIntBits(v[k+2]));
+                sharedLift.merge(key,lift[i],Math::max);
+            }
+            for(int i=0;i<lift.length;i++){
+                int k=(offset+i)*7;Corner key=new Corner(Float.floatToIntBits(v[k]),Float.floatToIntBits(v[k+1]),Float.floatToIntBits(v[k+2]));
+                v[k+1]+=sharedLift.get(key);
+            }
             for(int i:model.indices)indices[indexCount++]=offset+i;
             System.arraycopy(model.uv,0,uv,texels,model.uv.length);texels+=model.uv.length;
         }

@@ -1,3 +1,7 @@
+## v128 landscape refinement — PARTIAL / current-source CI pending
+
+20 actual Blender models and Taihu shore dressing integrated; welded waterfall-corner correction and atomic camera/CPU startup covered by host tests. Old rule failures retained; GPU readiness/PC reference/ARM64 gates remain open. See reports/feedback-v128.md and handoffs/feedback-v128.md.
+
 ## 2026-09-30 v127 瀑布可见性反馈续作 — PARTIAL
 
 真实Blender重新制作6个近远LOD瀑布：立体岩台、连续陡落水幕、落水泡沫；普通远LOD保留落差。正常“视图 → 山河地标”入口定位泰山、西南、庐山、壶口及长城。保留原地图/高度/通行与已有467资产，未启Unity或改玩法。

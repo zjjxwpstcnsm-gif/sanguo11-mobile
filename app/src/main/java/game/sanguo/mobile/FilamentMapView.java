@@ -100,6 +100,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     // Actual accepted-mesh summary retained for existing native acceptance probes.
     private boolean distantTerrain;
     private boolean pendingFit;
+    private Hex pendingInitialFocus;
     private MapSceneSnapshot pendingLayoutSnapshot;
     private GpuMesh backdrop;private SceneMesh backdropSource;
     private List<SceneMesh> chunks=Collections.emptyList(),woods=Collections.emptyList();
@@ -214,7 +215,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             unitAtlas=loadAtlas(context,"3d/field/unit-atlas.png");
             byte[] scenery=VerifiedMaterial.read("3d/field/v127/scenery.filamat",context.getAssets().open("3d/field/v127/scenery.filamat"));
             sceneryMaterial=new Material.Builder().payload(java.nio.ByteBuffer.wrap(scenery),scenery.length).build(engine);
-            sceneryAtlas=loadAtlas(context,"3d/field/v127/scenery-atlas.png");
+            sceneryAtlas=loadAtlas(context,"3d/field/v128/scenery-atlas.png");
             vegetationMaterial=sceneryMaterial.createInstance();vegetationMaterial.setParameter("atlas",sceneryAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));vegetationMaterial.setParameter("damage",0f);
             vegetationMaterial.setParameter("flowTime",0f);
             light=EntityManager.get().create();environmentShadows=quality!=SceneQuality.LOW&&manager!=null&&manager.getDeviceConfigurationInfo().reqGlEsVersion>=0x30001;EnvironmentProfile.sun(engine,light,quality,environmentShadows);scene.addEntity(light);
@@ -436,9 +437,13 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     @Override public boolean performClick(){super.performClick();return true;}
     void snapshot(MapSceneSnapshot next){
         meshWork.owner();if(released)return;cancelUnitDrag();
-        // A national fit requested before layout must precede the first CPU job.
-        // Retain only the latest immutable display snapshot until dimensions exist.
-        if(pendingFit&&(getWidth()==0||getHeight()==0)){pendingLayoutSnapshot=next;return;}
+        // A requested national fit or landmark focus waits for real dimensions:
+        // the default 1x1 camera must never launch a redundant square CPU window.
+        if((pendingFit||pendingInitialFocus!=null)&&(getWidth()==0||getHeight()==0)){pendingLayoutSnapshot=next;return;}
+        if(pendingInitialFocus!=null){
+            Hex target=pendingInitialFocus;pendingInitialFocus=null;pendingFit=false;
+            camera.x=next.ground.grid.x(target);camera.z=next.ground.grid.z(target);camera.span=10;
+        }
         boolean groundChanged=snapshot==null||snapshot.ground!=next.ground;snapshot=next;terrainVisibilityDirty=true;
         if(pendingFit)fit();
         Set<Hex> excluded=Vegetation.exclusions(next);boolean woodsChanged=groundChanged||!excluded.equals(woodExcluded);
@@ -578,6 +583,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(released)return;
             if(assetWork.drain())assetSyncPending=true;
             refreshPendingMeshes();
+            requestCameraWindow();
             if(lastFrame!=0)callbackMillis=(time-lastFrame)/1e6;lastFrame=time;
             boolean begun=false;
             if(bufferWidth>0&&bufferHeight>0){beginAttempts++;long start=System.nanoTime();begun=renderer.beginFrame(swap,time);beginWall=System.nanoTime()-start;admitted=begun;if(!begun)beginSkipped++;}
@@ -675,6 +681,19 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             siteLod=nextSite;unitLod=nextUnit;assetSyncPending=true;
         }
     }
+    /** CPU requests keep up with input even while Filament rejects GPU frames.
+     * Results still use the same one-slot mailbox/generation and bounded worker. */
+    private void requestCameraWindow(){
+        if(snapshot==null||released)return;
+        if(meshWork.pending()==0&&(terrainWindow==null||!terrainWindow.covers(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span))){
+            terrainWindow=new SceneMesh.TerrainWindow(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span);
+            SceneMesh.TerrainWindow requested=terrainWindow;MapSceneSnapshot.Ground ground=snapshot.ground;
+            List<SceneMesh> previous=chunks,trees=woods;SceneMesh scenery=backdropSource;
+            Set<Hex> excluded=woodExcluded;FieldAssets assets=fieldAssets;
+            long queuedAt=System.nanoTime();
+            meshWork.submitPhased(publish->buildMeshes(ground,false,scenery,previous,trees,assets,excluded,requested,queuedAt,publish));pending=meshWork.pending();
+        }
+    }
     private void loadVisible(){
         if(snapshot==null)return;
         overviewTerrain=TerrainMaterialLod.select(overviewTerrain,camera.span);
@@ -695,14 +714,6 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         }
         engine.getLightManager().setShadowCaster(engine.getLightManager().getInstance(light),environmentShadows&&!thermal.constrained&&camera.span<22);
         visibleChunks=0;pending=meshWork.pending();
-        if(meshWork.pending()==0&&(terrainWindow==null||!terrainWindow.covers(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span))){
-            terrainWindow=new SceneMesh.TerrainWindow(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span);
-            SceneMesh.TerrainWindow requested=terrainWindow;MapSceneSnapshot.Ground ground=snapshot.ground;
-            List<SceneMesh> previous=chunks,trees=woods;SceneMesh scenery=backdropSource;
-            Set<Hex> excluded=woodExcluded;FieldAssets assets=fieldAssets;
-            long queuedAt=System.nanoTime();
-            meshWork.submitPhased(publish->buildMeshes(ground,false,scenery,previous,trees,assets,excluded,requested,queuedAt,publish));pending=meshWork.pending();
-        }
         // Bound upload work by measured owner CPU time and count. Charge only
         // actual uploads, so scanning existing residents cannot starve the queue.
         // A single non-preemptible upload may exceed the time budget.
@@ -924,7 +935,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(chosen!=null)lastPick="entity="+chosen.item.key+" cell="+chosen.item.hex+" height="+best+" display="+chosen.motion.x+","+chosen.motion.z;
         return chosen==null?null:chosen.item.hex;
     }
-    void focus(Hex h){if(snapshot==null||h==null)return;camera.x=snapshot.ground.grid.x(h);camera.z=snapshot.ground.grid.z(h);camera.span=10;}
+    void initialFocus(Hex h){pendingInitialFocus=h;}
+    void focus(Hex h){if(h==null)return;if(snapshot==null){pendingInitialFocus=h;pendingFit=false;return;}camera.x=snapshot.ground.grid.x(h);camera.z=snapshot.ground.grid.z(h);camera.span=10;}
     void center(Hex h){if(snapshot!=null&&h!=null){camera.x=snapshot.ground.grid.x(h);camera.z=snapshot.ground.grid.z(h);}}
     void fit(){pendingFit=true;if(snapshot==null||getWidth()==0||getHeight()==0)return;pendingFit=false;MapSceneSnapshot.Ground g=snapshot.ground;float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;for(int r=0;r<g.height;r++)for(int q=0;q<g.width;q++){Hex h=new Hex(q,r);if(g.valid(h)){float x=g.grid.x(h),z=g.grid.z(h);minX=Math.min(minX,x);minZ=Math.min(minZ,z);maxX=Math.max(maxX,x);maxZ=Math.max(maxZ,z);}}if(minX==Float.MAX_VALUE)return;camera.x=(minX+maxX)/2;camera.z=(minZ+maxZ)/2;float dx=maxX-minX+3,dz=maxZ-minZ+3;camera.span=(float)Math.max((dx*Math.abs(camera.rightX())+dz*Math.abs(camera.backX()))*camera.height/camera.width,(dx*Math.abs(camera.backX())+dz*Math.abs(camera.rightX()))*camera.sin())*.52f;camera.sanitize();}
     void resetOrientation(){camera.facing=1;camera.yaw=0;camera.tilt=55;clampCamera();overlay.invalidate();}
@@ -937,7 +949,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void release(){
         cancelUnitDrag();unitDrag=null;
         meshWork.owner();
-        if(released)return;released=true;verifiedOutputListener=null;pendingLayoutSnapshot=null;pendingFit=false;replay=null;animatedUnit=null;generation++;cancelFrame();meshWork.close();assetWork.close();pending=0;surface.getHolder().removeCallback(this);
+        if(released)return;released=true;verifiedOutputListener=null;pendingLayoutSnapshot=null;pendingInitialFocus=null;pendingFit=false;replay=null;animatedUnit=null;generation++;cancelFrame();meshWork.close();assetWork.close();pending=0;surface.getHolder().removeCallback(this);
         // A detached View may remain referenced by the framework or an outstanding probe.
         // Release heavyweight CPU ownership immediately, rather than waiting for View GC.
         chunks=Collections.emptyList();woods=Collections.emptyList();snapshot=null;fieldAssets=null;backdropSource=null;

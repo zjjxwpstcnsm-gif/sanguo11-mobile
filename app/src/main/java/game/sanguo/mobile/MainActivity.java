@@ -322,12 +322,12 @@ public final class MainActivity extends Activity {
     private void showLandmarkPicker(){
         List<LandscapeLandmarks.Entry> entries=new ArrayList<>();
         if(NationalMap.ID.equals(world.mapId)&&world.sourceMapWidth==200&&world.customMapId.isEmpty())
-            for(var entry:LandscapeLandmarks.ALL){Hex h=landmarkHex(entry);if(world.inside(h)&&world.terrain[h.q][h.r]==(entry.cascade()<0?World.Terrain.MOUNTAIN:World.Terrain.NON_NAVIGABLE_WATER))entries.add(entry);}
+            for(var entry:LandscapeLandmarks.ALL){Hex h=landmarkHex(entry);if(world.inside(h)&&world.terrain[h.q][h.r]==(entry.cascade()==-1?World.Terrain.MOUNTAIN:World.Terrain.NON_NAVIGABLE_WATER))entries.add(entry);}
         if(entries.isEmpty()){message("山河地标","当前地图范围内没有这些山河地标。");return;}
         new AlertDialog.Builder(this).setTitle("山河地标 · 3D定位")
             .setItems(entries.stream().map(LandscapeLandmarks.Entry::label).toArray(String[]::new),(d,index)->{
                 if(aiRunning){message("山河地标","请等待本旬演示结束后查看。");return;}
-                closePanel();map.switchMode(true);map.focus(landmarkHex(entries.get(index)));
+                closePanel();map.focusNative(landmarkHex(entries.get(index)));
             }).setNegativeButton("返回",null).show();
     }
     private Hex landmarkHex(LandscapeLandmarks.Entry entry){return MapCoordinates.fromNationalSource(world,new game.sanguo.core.map.SourceGridCoord(entry.x(),entry.y()));}
