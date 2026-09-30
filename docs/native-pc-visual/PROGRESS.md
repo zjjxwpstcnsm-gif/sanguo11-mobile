@@ -1,3 +1,9 @@
+## 2026-09-30 v127 瀑布可见性反馈续作 — PARTIAL
+
+真实Blender重新制作6个近远LOD瀑布：立体岩台、连续陡落水幕、落水泡沫；普通远LOD保留落差。正常“视图 → 山河地标”入口定位泰山、西南、庐山、壶口及长城。保留原地图/高度/通行与已有467资产，未启Unity或改玩法。
+
+主机218,661项新检查、保留原专项与架构/Khronos335GLB PASS；core.logistics:75和displacement.boundaries:27输入/候选同点FAIL继承保留。构建及API29/35正常菜单、双指缩放、拖动、反向视角实机截图验证待CI，不能提前记PASS。PC同镜头REFERENCE_MISSING，ARM64/30分钟/纯触控开局SAF生命周期NOT_RUN。详见reports/feedback-v127.md和handoffs/feedback-v127.md。不合main、不开始下一阶段。
+
 ## 2026-09-30 v126 地标与地形 — PARTIAL
 
 Blender12个近远LOD接入正式地形景物合批：壶口泥沙色收束短瀑、北方墙/烽燧、三类区域岩壁。原452资产、规则、地图、地形高度与架构保留。APK source `25e6c121cba1ae36947c520dfccc48e13e0e2171`，SHA256 `fe048dee1734a23d156fd56bd3ea2cbf65280daf29c5660e3ced0dc5311bc383`，v126/41,987,766B；CI36659459089 build与467资产/四ABI16KB PASS，总体FAIL。

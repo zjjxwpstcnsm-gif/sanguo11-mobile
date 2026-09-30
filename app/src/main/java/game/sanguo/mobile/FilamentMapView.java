@@ -212,10 +212,11 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             fieldAssets=new FieldAssets(name->context.getAssets().open("3d/field/"+name));
             fieldAtlas=loadAtlas(context,"3d/field/atlas.png");
             unitAtlas=loadAtlas(context,"3d/field/unit-atlas.png");
-            byte[] scenery=VerifiedMaterial.read("3d/field/v126/scenery.filamat",context.getAssets().open("3d/field/v126/scenery.filamat"));
+            byte[] scenery=VerifiedMaterial.read("3d/field/v127/scenery.filamat",context.getAssets().open("3d/field/v127/scenery.filamat"));
             sceneryMaterial=new Material.Builder().payload(java.nio.ByteBuffer.wrap(scenery),scenery.length).build(engine);
-            sceneryAtlas=loadAtlas(context,"3d/field/v126/scenery-atlas.png");
+            sceneryAtlas=loadAtlas(context,"3d/field/v127/scenery-atlas.png");
             vegetationMaterial=sceneryMaterial.createInstance();vegetationMaterial.setParameter("atlas",sceneryAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));vegetationMaterial.setParameter("damage",0f);
+            vegetationMaterial.setParameter("flowTime",0f);
             light=EntityManager.get().create();environmentShadows=quality!=SceneQuality.LOW&&manager!=null&&manager.getDeviceConfigurationInfo().reqGlEsVersion>=0x30001;EnvironmentProfile.sun(engine,light,quality,environmentShadows);scene.addEntity(light);
             skyLight=EnvironmentProfile.sky(engine);scene.setIndirectLight(skyLight);
             applySeason(SeasonStyle.SPRING);

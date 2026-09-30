@@ -10,8 +10,10 @@ final class MapSceneSnapshot {
         final Set<Hex> bases; final TerrainSurface surface;
         private final BitSet baseCells, gridCells;
         final WaterVisualField.Shoreline shoreline;
+        final boolean originalNational;
         final int width,height,mapSeed,mapIdentity,sourceMapWidth,sourceOriginX,sourceOriginY; final float minX,minZ,maxX,maxZ; final byte[] terrain; final GridWorldTransform grid;
         Ground(World w) {
+            originalNational=NationalMap.ID.equals(w.mapId)&&w.sourceMapWidth==200&&w.customMapId.isEmpty();
             width=w.width;height=w.height;sourceMapWidth=w.sourceMapWidth;sourceOriginX=w.sourceOriginX;sourceOriginY=w.sourceOriginY;mapIdentity=w.mapId.hashCode();mapSeed=31*w.mapId.hashCode()+w.mapRevision;grid=new GridWorldTransform(w.sourceMapWidth>0?(w.height-1)/2:0,w.columnStaggered);
             Set<Hex> flat=new HashSet<>();for(World.City c:w.cities)flat.addAll(SiteFootprint.cells(c));bases=Collections.unmodifiableSet(flat);
             baseCells=new BitSet(width*height);for(Hex h:flat)if(h.q>=0&&h.r>=0&&h.q<width&&h.r<height)baseCells.set(h.r*width+h.q);
@@ -38,6 +40,7 @@ final class MapSceneSnapshot {
             return new SourceGridCoord(local.x+sourceOriginX,local.y+sourceOriginY);
         }
         boolean matches(World w){
+            if(originalNational!=(NationalMap.ID.equals(w.mapId)&&w.sourceMapWidth==200&&w.customMapId.isEmpty()))return false;
             if(sourceMapWidth!=w.sourceMapWidth||sourceOriginX!=w.sourceOriginX||sourceOriginY!=w.sourceOriginY)return false;
             Map<Hex,Float> expected=new HashMap<>();if(w.visualMap!=null)for(var e:w.visualMap.heights.entrySet())expected.put(MapCoordinates.fromNationalSource(w,new SourceGridCoord(e.getKey()/200,e.getKey()%200)),e.getValue()/1000f);if(!surface.overrides.equals(expected))return false;
             Set<Hex> flat=new HashSet<>();for(World.City c:w.cities)flat.addAll(SiteFootprint.cells(c));if(!flat.equals(bases))return false;

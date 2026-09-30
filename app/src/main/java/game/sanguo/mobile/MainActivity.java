@@ -293,7 +293,7 @@ public final class MainActivity extends Activity {
     }
     private void showMapTools(){
         if(mapPick!=null)cancelMapPick();
-        String[] labels={"全图","定位","导航图","屏幕方向","战报","操作说明","战斗震动","兵种与建筑图例","领地着色 / 前线","势力领地图例","军团托管","全国城池总览","部队标注 / 双条","2D / 3D 试验模式","渲染诊断","3D 镜头回正","3D 反向查看","3D 画质",map.gridShown()?"棋盘网格 · 已开启":"棋盘网格 · 已关闭"};
+        String[] labels={"全图","定位","导航图","屏幕方向","战报","操作说明","战斗震动","兵种与建筑图例","领地着色 / 前线","势力领地图例","军团托管","全国城池总览","部队标注 / 双条","2D / 3D 试验模式","渲染诊断","3D 镜头回正","3D 反向查看","3D 画质",map.gridShown()?"棋盘网格 · 已开启":"棋盘网格 · 已关闭","山河地标"};
         new AlertDialog.Builder(this).setTitle("地图视图").setItems(labels,(d,index)->{
             if(aiRunning&&index!=0&&index!=1&&index!=2&&index!=3&&index!=12&&index!=18){if(index==13)message("渲染模式","请等待本旬演示结束后切换，避免中断当前事件游标。");return;}
             if(index==0){closePanel();map.post(map::fit);}
@@ -302,6 +302,7 @@ public final class MainActivity extends Activity {
             else if(index==3)showOrientationPicker();
             else if(index==13){new AlertDialog.Builder(this).setTitle("地图渲染模式").setSingleChoiceItems(new String[]{"2D · 兼容模式","3D · 战略地图（试验）"},map.is3D()?1:0,(dialog,which)->{map.switchMode(which==1);dialog.dismiss();}).setNegativeButton("返回",null).show();}
             else if(index==18){map.setGridShown(!map.gridShown());refreshGridToggle();}
+            else if(index==19)showLandmarkPicker();
             else if(index==17){new AlertDialog.Builder(this).setTitle("3D 画质（切换时重载场景）").setSingleChoiceItems(new String[]{SceneQuality.LOW.label,SceneQuality.MEDIUM.label,SceneQuality.HIGH.label},map.quality().ordinal(),(dialog,which)->{map.quality(SceneQuality.values()[which]);dialog.dismiss();}).setNegativeButton("返回",null).show();}
             else if(index==15){map.resetOrientation();}
             else if(index==16){map.reverseOrientation();}
@@ -318,6 +319,18 @@ public final class MainActivity extends Activity {
             else message("地图操作","单指拖动地图 · 双指缩放 · 双击城池定位\n点城池或部队打开指令，点空地或「收起」返回大地图。\n「功能」打开城市、武将、任务和存档菜单。\n竖屏使用底部面板，横屏使用右侧面板；「展开」可查看更多内容。\n选中部队即显示青色行动范围和红色攻击目标。长按选中的部队，再拖到高亮空格，松手立即移动；拖出范围或双指触摸会取消。\n点击空地查看状态，金色＋开发地的「开发此地」按钮固定在面板顶部，再选择设施和执行人。先点「行军」再点目标预览路线；「攻击」「战法」「计略」在固定底栏。普通点空地、再点本队或「取消选中」可解除选择。返回键依次取消路线、指令、选中。");
         }).setNegativeButton("返回",null).show();
     }
+    private void showLandmarkPicker(){
+        List<LandscapeLandmarks.Entry> entries=new ArrayList<>();
+        if(NationalMap.ID.equals(world.mapId)&&world.sourceMapWidth==200&&world.customMapId.isEmpty())
+            for(var entry:LandscapeLandmarks.ALL){Hex h=landmarkHex(entry);if(world.inside(h)&&world.terrain[h.q][h.r]==(entry.cascade()<0?World.Terrain.MOUNTAIN:World.Terrain.NON_NAVIGABLE_WATER))entries.add(entry);}
+        if(entries.isEmpty()){message("山河地标","当前地图范围内没有这些山河地标。");return;}
+        new AlertDialog.Builder(this).setTitle("山河地标 · 3D定位")
+            .setItems(entries.stream().map(LandscapeLandmarks.Entry::label).toArray(String[]::new),(d,index)->{
+                if(aiRunning){message("山河地标","请等待本旬演示结束后查看。");return;}
+                closePanel();map.switchMode(true);map.focus(landmarkHex(entries.get(index)));
+            }).setNegativeButton("返回",null).show();
+    }
+    private Hex landmarkHex(LandscapeLandmarks.Entry entry){return MapCoordinates.fromNationalSource(world,new game.sanguo.core.map.SourceGridCoord(entry.x(),entry.y()));}
     private void refreshGridToggle(){
         if(gridToggle==null||map==null)return;boolean shown=map.gridShown();
         gridToggle.setSelected(shown);gridToggle.setTextColor(shown?gold:muted);

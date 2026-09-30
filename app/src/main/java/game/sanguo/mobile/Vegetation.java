@@ -5,7 +5,7 @@ import java.util.*;
 
 /** Opaque merged vegetation: one renderable per visible 8x8 chunk, never one per tree. */
 final class Vegetation {
-    static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=3, ASSET_VERSION=126;
+    static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=3, ASSET_VERSION=127;
     static boolean forest(MapSceneSnapshot.Ground ground,Hex h){
         return ground.valid(h)&&ground.terrain[h.r*ground.width+h.q]==World.Terrain.FOREST.ordinal();
     }
@@ -62,6 +62,7 @@ final class Vegetation {
             long hash=SEED^PLACEMENT_VERSION^LandscapeProfile.VERSION^g.mapIdentity^g.width*31L^g.height^(detailed?0x808:0)^((long)chunk<<48)^((long)ASSET_VERSION<<32);
             hash=(hash^Float.floatToIntBits(g.grid.offset))*1099511628211L;hash^=g.grid.staggered?1:0;
             hash=(hash^g.sourceMapWidth)*1099511628211L;
+            hash=(hash^(g.originalNational?1:0))*1099511628211L;
             hash=(hash^g.sourceOriginX)*1099511628211L;hash=(hash^g.sourceOriginY)*1099511628211L;
             for(int rr=r-8;rr<r+chunk+8;rr++)for(int qq=q-8;qq<q+chunk+8;qq++){
                 Hex h=new Hex(qq,rr);int t=g.valid(h)?g.terrain[rr*g.width+qq]:-1;
@@ -74,7 +75,7 @@ final class Vegetation {
                 Hex h=new Hex(qq,rr);if(!g.valid(h))continue;
                 int cascade=cascadeRegion(g,h);
                 if(cascade>=0){
-                    String id=cascade==3?"cascade-hukou":cascade==1?"cascade-wide":"cascade-narrow";
+                    String id=cascade==3?"fall-hukou":cascade==1?"fall-wide":"fall-narrow";
                     if(detailed)near.cascade(h,excluded,assets.mesh(id+"-lod0"),cascade==3?1.15f:2.1f);
                     far.cascade(h,excluded,assets.mesh(id+"-lod1"),cascade==3?1.15f:2.1f);
                 }
@@ -117,16 +118,13 @@ final class Vegetation {
     // Historical PC waterfall exact cells are still REFERENCE_MISSING. Crops
     // use the same source mapping; unrelated/custom maps never inherit them.
     static int cascadeRegion(MapSceneSnapshot.Ground g,Hex h){
-        if(g.sourceMapWidth!=200||g.mapIdentity!="san11-national".hashCode()
+        if(!g.originalNational
             ||!g.valid(h)||g.terrain[h.r*g.width+h.q]!=World.Terrain.NON_NAVIGABLE_WATER.ordinal())return -1;
         game.sanguo.core.map.SourceGridCoord s=g.source(h);
-        if(s.x==147&&s.y==59)return 0; // Taishan region, northwest of Xiapi.
-        if(s.x==31&&s.y==183)return 1; // Southwest mountain waterway.
-        if(s.x==119&&s.y==146)return 2; // Lushan/Jiangnan mountain region.
-        if(s.x==66&&s.y==58)return 3; // Yellow River corridor; inferred Hukou region, not a verified PC cell.
+        for(var entry:LandscapeLandmarks.ALL)if(entry.cascade()>=0&&s.x==entry.x()&&s.y==entry.y())return entry.cascade();
         return -1;
     }
-    static boolean national(MapSceneSnapshot.Ground g){return g.sourceMapWidth==200&&g.mapIdentity=="san11-national".hashCode();}
+    static boolean national(MapSceneSnapshot.Ground g){return g.originalNational;}
     /** Bounded northern ridge interpretation; no new logical wall or collision. */
     static boolean wallRegion(MapSceneSnapshot.Ground g,Hex h){
         if(!national(g)||!g.valid(h)||g.terrain[h.r*g.width+h.q]!=World.Terrain.MOUNTAIN.ordinal())return false;
@@ -248,28 +246,43 @@ final class Vegetation {
         }
         void cascade(Hex water,Set<Hex> excluded,SceneMesh model,float reach){
             if(excluded.contains(water)||g.bases.contains(water))return;
-            float bx=g.grid.x(water),bz=g.grid.z(water),tx=0,tz=0,top=0;
+            float bx=g.grid.x(water),bz=g.grid.z(water),tx=0,tz=0,top=0,across=1;
             // Find an entirely non-enterable uphill corridor. No river, height
             // override, road, unit or site cell is added or changed.
+            for(int attempt=0;attempt<3&&top==0;attempt++){
+            float corridor=reach*(attempt==0?1:attempt==1?.75f:.5f);
             for(Hex n:water.neighbors())if(g.valid(n)&&g.terrain[n.r*g.width+n.q]==World.Terrain.MOUNTAIN.ordinal()){
                 float dx=g.grid.x(n)-bx,dz=g.grid.z(n)-bz;
-                float x=bx+dx*reach,z=bz+dz*reach;
+                float x=bx+dx*corridor,z=bz+dz*corridor;
                 boolean safe=true;
                 for(int k=1;k<=8;k++){
-                    Hex h=g.grid.cell(bx+dx*reach*k/8,bz+dz*reach*k/8);
+                    Hex h=g.grid.cell(bx+dx*corridor*k/8,bz+dz*corridor*k/8);
                     if(!g.valid(h)||excluded.contains(h)||g.bases.contains(h)
                         ||!h.equals(water)&&g.terrain[h.r*g.width+h.q]!=World.Terrain.MOUNTAIN.ordinal()){safe=false;break;}
                 }
-                if(!safe||!cascadeFits(model,water,excluded,x,z,bx,bz))continue;float y=g.surface.meshHeight(x,z);
-                if(y>top){top=y;tx=x;tz=z;}
+                if(!safe)continue;float width=1;
+                while(width>=.69f&&!cascadeFits(model,water,excluded,x,z,bx,bz,width))width-=.15f;
+                if(width<.69f)continue;float y=g.surface.meshHeight(x,z);
+                if(y>=.22f&&y>top){top=y;tx=x;tz=z;across=width;}
+            }
             }
             if(top<.22f)return;
             float dx=bx-tx,dz=bz-tz,len=(float)Math.hypot(dx,dz),sx=-dz/len,sz=dx/len;
+            // The authored rock shelf supports a raised headwater and steep drop.
+            // Do not flatten the normalized fall against a gradual mountain slope.
+            float base=g.surface.meshHeight(bx,bz)+.03f;
+            float bedHigh=top;
+            for(int i=0;i<model.vertices.length;i+=7){
+                float x=tx+dx*model.vertices[i+2]+sx*model.vertices[i]*across;
+                float z=tz+dz*model.vertices[i+2]+sz*model.vertices[i]*across;
+                bedHigh=Math.max(bedHigh,g.surface.meshHeight(x,z));
+            }
+            float rise=Math.max(.78f,bedHigh-base+.45f);
             int offset=floats/7;reserve(model.vertices.length,model.uv.length,model.indices.length);
             for(int i=0;i<model.vertices.length;i+=7){
-                float x=tx+dx*model.vertices[i+2]+sx*model.vertices[i];
-                float z=tz+dz*model.vertices[i+2]+sz*model.vertices[i];
-                float y=Math.max(g.surface.meshHeight(x,z),top*model.vertices[i+1])+.03f;
+                float x=tx+dx*model.vertices[i+2]+sx*model.vertices[i]*across;
+                float z=tz+dz*model.vertices[i+2]+sz*model.vertices[i]*across;
+                float y=Math.max(g.surface.meshHeight(x,z)+.03f,base+rise*model.vertices[i+1]);
                 v[floats++]=x;v[floats++]=y;v[floats++]=z;
                 for(int k=3;k<7;k++)v[floats++]=model.vertices[i+k];
             }
@@ -291,14 +304,14 @@ final class Vegetation {
             for(int i:model.indices)indices[indexCount++]=offset+i;
             System.arraycopy(model.uv,0,uv,texels,model.uv.length);texels+=model.uv.length;
         }
-        boolean cascadeFits(SceneMesh model,Hex water,Set<Hex> excluded,float tx,float tz,float bx,float bz){
+        boolean cascadeFits(SceneMesh model,Hex water,Set<Hex> excluded,float tx,float tz,float bx,float bz,float across){
             float dx=bx-tx,dz=bz-tz,len=(float)Math.hypot(dx,dz),sx=-dz/len,sz=dx/len;
             // The full ribbon, not just its centerline, must fit the blocked corridor.
             for(int i=0;i<model.indices.length;i+=3)for(int a=0;a<=6;a++)for(int b=0;b<=6-a;b++){
                 float u=a/6f,t=b/6f,w=1-u-t;int A=model.indices[i]*7,B=model.indices[i+1]*7,C=model.indices[i+2]*7;
                 float vx=model.vertices[A]*u+model.vertices[B]*t+model.vertices[C]*w;
                 float vz=model.vertices[A+2]*u+model.vertices[B+2]*t+model.vertices[C+2]*w;
-                Hex h=g.grid.cell(tx+dx*vz+sx*vx,tz+dz*vz+sz*vx);
+                Hex h=g.grid.cell(tx+dx*vz+sx*vx*across,tz+dz*vz+sz*vx*across);
                 if(!g.valid(h)||excluded.contains(h)||g.bases.contains(h)
                     ||!h.equals(water)&&g.terrain[h.r*g.width+h.q]!=World.Terrain.MOUNTAIN.ordinal())return false;
             }
