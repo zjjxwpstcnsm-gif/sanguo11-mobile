@@ -1,3 +1,7 @@
+## 2026-09-30 v129 combined terrain / difficult-march / poison — PARTIAL
+
+Twenty higher-detail Blender GLBs, corrected landscape UV orientation, distinct poison material, authoritative technology-gated grid and explicitly authorized plank entry rule are integrated. Host suites pass; exact-source APK and device/visual evidence are pending at this checkpoint. See reports/feedback-v129.md. No merge or next phase.
+
 ## v128 landscape refinement — PARTIAL / current-source CI pending
 
 20 actual Blender models and Taihu shore dressing integrated; welded waterfall-corner correction and atomic camera/CPU startup covered by host tests. Old rule failures retained; GPU readiness/PC reference/ARM64 gates remain open. See reports/feedback-v128.md and handoffs/feedback-v128.md.

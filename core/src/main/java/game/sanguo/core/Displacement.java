@@ -40,6 +40,7 @@ public final class Displacement {
                 case MOUNTAIN:return "山地不可通行";
                 case MOUNTAIN_PATH:return "该部队未满足险径通行条件（难所行军）";
                 case SHALLOWS:return "该部队未满足浅滩通行条件（难所行军）";
+                case PLANK_ROAD:return "该部队未满足栈道通行条件（难所行军）";
                 default:return "该部队不具备此地形的通行能力";
             }
         }

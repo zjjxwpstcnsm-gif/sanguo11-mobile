@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: QuA on the source northwestern Wu shore huangjin-184
+	at game.sanguo.core.ObjectiveOrdersTest.check(ObjectiveOrdersTest.java:8)
+	at game.sanguo.core.ObjectiveOrdersTest.packagedMaps(ObjectiveOrdersTest.java:83)
+	at game.sanguo.core.ObjectiveOrdersTest.main(ObjectiveOrdersTest.java:22)

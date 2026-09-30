@@ -59,7 +59,7 @@ final class FieldAssets {
     }
     synchronized SceneMesh mesh(String name)throws Exception{
         if(!name.matches("[A-Za-z0-9_-]{1,100}"))throw new IOException("asset ID rejected");
-        SceneMesh value=rest.get(name);if(value==null){try(InputStream in=source.open((name.startsWith("fall-")||name.startsWith("wall-earth")||name.startsWith("beacon-han")||name.startsWith("cliff-")||name.startsWith("shore-")?"v128/":name.startsWith("cascade-hukou")?"v126/":name.startsWith("cascade-")||name.startsWith("rock-ledge")||name.startsWith("rock-talus")?"v125/":name.startsWith("unit-")||name.startsWith("tree")||name.startsWith("shrub")||name.startsWith("rock-strata-v121")?"v124/":"")+name+".glb")){value=SiteGlb.read(in);}rest.put(name,value);restBytes+=bytes(value);
+        SceneMesh value=rest.get(name);if(value==null){try(InputStream in=source.open((name.startsWith("fall-")||name.startsWith("wall-earth")||name.startsWith("beacon-han")||name.startsWith("cliff-")||name.startsWith("shore-")?"v129/":name.startsWith("cascade-hukou")?"v126/":name.startsWith("cascade-")||name.startsWith("rock-ledge")||name.startsWith("rock-talus")?"v125/":name.startsWith("unit-")||name.startsWith("tree")||name.startsWith("shrub")||name.startsWith("rock-strata-v121")?"v124/":"")+name+".glb")){value=SiteGlb.read(in);}rest.put(name,value);restBytes+=bytes(value);
             Iterator<SceneMesh> entries=rest.values().iterator();while(restBytes>24L*1024*1024&&rest.size()>1){restBytes-=bytes(entries.next());entries.remove();}}return value;
     }
     static boolean farm(MapSceneSnapshot.Item item){return item.facility!=null&&item.facility.type.equals("domestic/FARM");}

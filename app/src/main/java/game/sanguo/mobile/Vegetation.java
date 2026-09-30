@@ -5,7 +5,7 @@ import java.util.*;
 
 /** Opaque merged vegetation: one renderable per visible 8x8 chunk, never one per tree. */
 final class Vegetation {
-    static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=3, ASSET_VERSION=128;
+    static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=3, ASSET_VERSION=129;
     static boolean forest(MapSceneSnapshot.Ground ground,Hex h){
         return ground.valid(h)&&ground.terrain[h.r*ground.width+h.q]==World.Terrain.FOREST.ordinal();
     }

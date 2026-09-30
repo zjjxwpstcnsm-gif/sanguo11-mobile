@@ -69,6 +69,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private Skybox skybox;
     private com.google.android.filament.View view; private Camera lens; private Material material;
     private Material waterMaterial;
+    private MapSceneSnapshot.Ground poisonMaterialGround;
     private Material overviewGroundMaterial,overviewWaterMaterial;
     private boolean overviewTerrain;
     private int lastMaterialBinds;
@@ -213,9 +214,9 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             fieldAssets=new FieldAssets(name->context.getAssets().open("3d/field/"+name));
             fieldAtlas=loadAtlas(context,"3d/field/atlas.png");
             unitAtlas=loadAtlas(context,"3d/field/unit-atlas.png");
-            byte[] scenery=VerifiedMaterial.read("3d/field/v127/scenery.filamat",context.getAssets().open("3d/field/v127/scenery.filamat"));
+            byte[] scenery=VerifiedMaterial.read("3d/field/v128/scenery.filamat",context.getAssets().open("3d/field/v128/scenery.filamat"));
             sceneryMaterial=new Material.Builder().payload(java.nio.ByteBuffer.wrap(scenery),scenery.length).build(engine);
-            sceneryAtlas=loadAtlas(context,"3d/field/v128/scenery-atlas.png");
+            sceneryAtlas=loadAtlas(context,"3d/field/v129/scenery-atlas.png");
             vegetationMaterial=sceneryMaterial.createInstance();vegetationMaterial.setParameter("atlas",sceneryAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));vegetationMaterial.setParameter("damage",0f);
             vegetationMaterial.setParameter("flowTime",0f);
             light=EntityManager.get().create();environmentShadows=quality!=SceneQuality.LOW&&manager!=null&&manager.getDeviceConfigurationInfo().reqGlEsVersion>=0x30001;EnvironmentProfile.sun(engine,light,quality,environmentShadows);scene.addEntity(light);
@@ -230,9 +231,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private void loadGroundMaterials(Context context)throws java.io.IOException {
         long groundStarted=System.nanoTime();
-        byte[] bytes=VerifiedMaterial.read("3d/terrain/ground.filamat",context.getAssets().open("3d/terrain/ground.filamat"));
+        byte[] bytes=VerifiedMaterial.read("3d/terrain/v129/ground.filamat",context.getAssets().open("3d/terrain/v129/ground.filamat"));
         ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();
         groundMaterial=new Material.Builder().payload(payload,bytes.length).build(engine);
+        groundMaterial.getDefaultInstance().setParameter("poisonGrid",0f,0f);
         TextureSampler sampler=new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.REPEAT);
         for(String layer:new String[]{"grass","soil","sand","rock"})for(boolean normal:new boolean[]{false,true}){
             android.graphics.Bitmap bitmap;
@@ -266,6 +268,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
      * No normal/PBR shader variants at national scale; detailed programs remain intact. */
     private void loadOverviewMaterials(Context context)throws java.io.IOException {
         overviewGroundMaterial=loadOverviewMaterial(context,"ground-overview");
+        overviewGroundMaterial.getDefaultInstance().setParameter("poisonGrid",0f,0f);
         overviewWaterMaterial=loadOverviewMaterial(context,"water-overview");
         TextureSampler sampler=new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.REPEAT);
         String[] layers={"grass","soil","sand","rock"};
@@ -278,7 +281,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     }
     private Material loadOverviewMaterial(Context context,String name)throws java.io.IOException {
         byte[] bytes;
-        bytes=VerifiedMaterial.read("3d/terrain/"+name+".filamat",context.getAssets().open("3d/terrain/"+name+".filamat"));
+        String path="3d/terrain/"+(name.equals("ground-overview")?"v129/":"")+name+".filamat";
+        bytes=VerifiedMaterial.read(path,context.getAssets().open(path));
         ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();
         return new Material.Builder().payload(payload,bytes.length).build(engine);
     }
@@ -444,9 +448,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             Hex target=pendingInitialFocus;pendingInitialFocus=null;pendingFit=false;
             camera.x=next.ground.grid.x(target);camera.z=next.ground.grid.z(target);camera.span=10;
         }
-        boolean groundChanged=snapshot==null||snapshot.ground!=next.ground;snapshot=next;terrainVisibilityDirty=true;
+        boolean groundChanged=snapshot==null||snapshot.ground!=next.ground;
+        boolean terrainChanged=snapshot==null||snapshot.ground.surface!=next.ground.surface;snapshot=next;terrainVisibilityDirty=true;
         if(pendingFit)fit();
-        Set<Hex> excluded=Vegetation.exclusions(next);boolean woodsChanged=groundChanged||!excluded.equals(woodExcluded);
+        Set<Hex> excluded=Vegetation.exclusions(next);boolean woodsChanged=terrainChanged||!excluded.equals(woodExcluded);
         if(groundChanged||woodsChanged){
             outputVerified=false;outputStatus="WAITING_MESH";uniformOutputCount=0;
             woodExcluded=excluded;generation++;
@@ -455,7 +460,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             terrainWindow=new SceneMesh.TerrainWindow(camera.x,camera.z,camera.extentX(),camera.extentZ(),camera.span);
             SceneMesh.TerrainWindow requested=terrainWindow;
             long queuedAt=System.nanoTime();
-            meshWork.submitPhased(publish->buildMeshes(next.ground,groundChanged,oldScenery,previous,oldWoods,assets,excluded,requested,queuedAt,publish));
+            meshWork.submitPhased(publish->buildMeshes(next.ground,terrainChanged,oldScenery,previous,oldWoods,assets,excluded,requested,queuedAt,publish));
         }
         // The owner accepts immutable state now; GPU updates wait for frame admission.
         assetSyncPending=true;refreshPendingMeshes();overlay.invalidate();schedule();
@@ -496,6 +501,14 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         return new MeshResult(scenery,built,forest);
     }
     private void applySeason(SeasonStyle next){
+        // Ground layout is immutable; upload its pure display context only in
+        // this admitted-frame path. Research/force ground wrappers reuse layout.
+        if(snapshot!=null&&poisonMaterialGround!=snapshot.ground){
+            var grid=snapshot.ground.grid;
+            groundMaterial.getDefaultInstance().setParameter("poisonGrid",grid.staggered?1f:0f,grid.offset);
+            overviewGroundMaterial.getDefaultInstance().setParameter("poisonGrid",grid.staggered?1f:0f,grid.offset);
+            poisonMaterialGround=snapshot.ground;
+        }
         if(season==next)return;
         season=next;seasonUpdates++;
         EnvironmentProfile.apply(engine,light,skyLight,next);
@@ -536,6 +549,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         +" environmentCpuChunks="+woods.size()+" environmentMode=opaque-merged-not-instanced meshGeneration="+generation+" cpuChunks="+chunks.size()+" pending="+pending+" submitted="+surfaceFrames
         +" terrainMaterialLod="+(overviewTerrain?"OVERVIEW":"DETAIL")+" lastAdmittedMaterialBinds="+lastMaterialBinds+" shadows="+environmentShadows+" shadowFar=380 hazeOpaqueCap=0.08"
         +" season="+(season==null?"none":season.name)+" seasonUpdates="+seasonUpdates+" artProfile="+SeasonStyle.ID+" worldMonth="+(snapshot==null?0:snapshot.month)
+        +" gridForce="+(snapshot==null?-1:snapshot.ground.gridForce)+" gridDifficultMarch="+(snapshot!=null&&snapshot.ground.gridDifficultMarch)
         +" gridGpuChunks="+gridMeshes.size()+" gridUploads="+gridUploads+" gridMode=depth-tested-batches"
         +" overlayDraws="+overlay.draws+" territoryBuilds="+overlay.territoryBuilds+" territoryBuildMs="+overlay.territoryBuildNanos/1e6
         +" meshUploads="+lastMeshUploads+" meshUploadCpuMs="+lastMeshUploadNanos/1e6+" meshUploadMax=8 meshUploadBudgetMs="+(MESH_UPLOAD_BUDGET_NANOS/1e6)
@@ -662,7 +676,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(backdropSource!=null&&(backdrop==null||backdrop.source!=backdropSource||backdrop.overview!=wanted))remaining++;
             for(SceneMesh chunk:chunks)if(inView(chunk.x,chunk.z,chunk.radius)){
                 GpuMesh gpu=terrain.get(chunk);if(gpu==null||gpu.overview!=wanted)remaining++;
-                if(gridShown&&!editorGrid&&camera.span<48&&chunk.grid!=null&&chunk.grid.indices.length>0&&!gridMeshes.containsKey(chunk))remaining++;
+                if(gridShown&&!editorGrid&&camera.span<48&&chunk.gridMatches(snapshot.ground)&&chunk.grid.indices.length>0&&!gridMeshes.containsKey(chunk))remaining++;
             }
             for(SceneMesh source:woods){
                 SceneMesh chunk=quality!=SceneQuality.LOW&&camera.span<14?source:source.distant;
@@ -755,10 +769,12 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             else vegetation.get(old).show(inView(old.x,old.z,old.radius));
         }
         // Depth-tested static lines follow the same resident terrain lifetime and
-        // upload budget. Grid changes never regenerate terrain or scan/raycast the map on UI.
+        // upload budget. A visibility toggle never rebuilds terrain or scans/raycasts the map on UI.
         for(var entry:terrain.entrySet()){
             SceneMesh source=entry.getKey();GpuMesh grid=gridMeshes.get(source);
-            boolean shown=gridShown&&!editorGrid&&camera.span<48&&entry.getValue().shown;
+            // Old terrain can remain while a replacement uploads; its obsolete grid
+            // must disappear on this admitted frame, before CPU/GPU replacement finishes.
+            boolean shown=gridShown&&!editorGrid&&camera.span<48&&entry.getValue().shown&&source.gridMatches(snapshot.ground);
             if(shown&&source.grid!=null&&source.grid.indices.length>0&&grid==null){
                 if(budget>0&&uploadNanos<MESH_UPLOAD_BUDGET_NANOS){
                     long started=System.nanoTime();grid=new GpuMesh(source.grid);gridMeshes.put(source,grid);
@@ -952,7 +968,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         if(released)return;released=true;verifiedOutputListener=null;pendingLayoutSnapshot=null;pendingInitialFocus=null;pendingFit=false;replay=null;animatedUnit=null;generation++;cancelFrame();meshWork.close();assetWork.close();pending=0;surface.getHolder().removeCallback(this);
         // A detached View may remain referenced by the framework or an outstanding probe.
         // Release heavyweight CPU ownership immediately, rather than waiting for View GC.
-        chunks=Collections.emptyList();woods=Collections.emptyList();snapshot=null;fieldAssets=null;backdropSource=null;
+        chunks=Collections.emptyList();woods=Collections.emptyList();snapshot=null;poisonMaterialGround=null;fieldAssets=null;backdropSource=null;
         activeTerrain.clear();wantedWood.clear();woodExcluded=Collections.emptySet();
         overlay.territoryBitmap=null;overlay.territoryGround=null;overlay.cachedColors=null;overlay.cachedBorders=null;
         territoryColors=null;targets=Collections.emptySet();editorCells=Collections.emptySet();impassable=Collections.emptySet();

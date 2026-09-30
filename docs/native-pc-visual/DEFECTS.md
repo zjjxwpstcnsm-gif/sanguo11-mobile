@@ -1,3 +1,7 @@
+## v129 open acceptance
+
+Actual v128 Taishan Surface exposed inverted landscape atlas UVs; new material fixes the host-reproduced cause, pending v129 device confirmation. Shared emulator graphics waits have native-stack evidence, not a proven production fix. High-detail memory/CPU costs increased and ARM64 performance is NOT_RUN. Same-camera PC fidelity is REFERENCE_MISSING. New poison and technology-grid actual Surface acceptance is pending. Historical failures below remain open.
+
 ## v128 landscape refinement — PARTIAL / current-source CI pending
 
 20 actual Blender models and Taihu shore dressing integrated; welded waterfall-corner correction and atomic camera/CPU startup covered by host tests. Old rule failures retained; GPU readiness/PC reference/ARM64 gates remain open. See reports/feedback-v128.md and handoffs/feedback-v128.md.

@@ -32,7 +32,7 @@ public final class Campaign {
         ELITE_CROSSBOW("精锐弩兵",2,4,"弩兵攻防、移动与伤害提高"),
         MOUNTED_ARCHERY("骑射",3,3,"骑兵可进行2格弓攻击"),
         ELITE_CAVALRY("精锐骑兵",3,4,"骑兵攻防、移动与伤害提高"),
-        DIFFICULT_MARCH("难所行军",4,2,"允许通过间道、浅滩；免疫栈道行军损失"),
+        DIFFICULT_MARCH("难所行军",4,2,"允许通过间道、浅滩、栈道；免疫栈道行军损失"),
         MILITARY_REFORM("军制改革",4,3,"主将统兵上限增加3000"),
         SIEGE_LADDERS("云梯",4,4,"普通陆军对据点伤害增加40%；兵器舰船增加20%"),
         AXLE("车轴强化",5,1,"陆上攻城兵器移动力提高"),

@@ -49,4 +49,5 @@
     <instrumentation android:name="game.sanguo.mobile.NativeLandmarks126Instrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
     <instrumentation android:name="game.sanguo.mobile.NativeWaterfall127Instrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
     <instrumentation android:name="game.sanguo.mobile.NativeLandmarks128Instrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
+    <instrumentation android:name="game.sanguo.mobile.NativeGrid129Instrumentation" android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
 </manifest>

@@ -1,0 +1,22 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+PASS R04 87689 material identity/normalization/constraints checks
+MAP huangjin-184 / san11-national poison=179 valid-identity-audit=PASS
+MAP coalition-190 / san11-national poison=179 valid-identity-audit=PASS
+MAP warlords-194 / san11-national poison=179 valid-identity-audit=PASS
+MAP guandu-200 / san11-national poison=179 valid-identity-audit=PASS
+MAP chibi-207 / san11-national poison=179 valid-identity-audit=PASS
+MAP heroes-250 / san11-national poison=179 valid-identity-audit=PASS
+MAP heroes-mobile-sandbox / san11-national poison=179 valid-identity-audit=PASS
+MAP central-mobile-sandbox / san11-national poison=0 valid-identity-audit=PASS
+MAP jingxiang-mobile-sandbox / san11-national poison=74 valid-identity-audit=PASS
+LOD span=8.0 chunks=20 centres=179 strong-vertices=5639
+LOD span=20.0 chunks=20 centres=179 strong-vertices=1611
+LOD span=55.0 chunks=20 centres=179 strong-vertices=179
+MAP m0-skirmish / poison-edited-map poison=1 valid-identity-audit=PASS
+MAP m0-skirmish / poison-edited-map poison=1 valid-identity-audit=PASS
+CUSTOM staggered=false changed=4 reused=20
+MAP m0-skirmish / poison-edited-map poison=1 valid-identity-audit=PASS
+MAP m0-skirmish / poison-edited-map poison=1 valid-identity-audit=PASS
+CUSTOM staggered=true changed=4 reused=20
+PASS POISON129 checks=1494147 all real terrain, custom edits, bounded cache, complete saves/RNG, near/mid/overview payloads

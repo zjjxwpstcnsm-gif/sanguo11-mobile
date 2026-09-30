@@ -1,0 +1,2 @@
+PASS HOST extracted material binds: exact same geometry/entity, land/water slots, thresholds, invalid-span stability, 20 mode cycles (NOT installed lifecycle)
+PASS source invariants: original near assets unchanged, all eight albedo reads/shore/season retained; new programs omit PBR; bounded rebinds counted pending and borrowed textures released once.

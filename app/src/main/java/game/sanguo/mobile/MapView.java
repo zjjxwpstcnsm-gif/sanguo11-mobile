@@ -455,6 +455,8 @@ public final class MapView extends View implements MapPresentation {
         long drawStart=System.nanoTime();lastTilesVisited=0;lastObjectsVisited=0;super.onDraw(canvas);canvas.drawColor(MapOverview.BACKGROUND);if(world==null)return;
         float scale=camera.scale,offsetX=camera.x,offsetY=camera.y;
         boolean detail=scale*RADIUS>=12*density;collectVisible();
+        int gridForce=openingPreview&&previewFaction>=0&&previewFaction<world.factions.length?previewFaction:world.player;
+        boolean difficultMarch=world.campaign.has(gridForce,Campaign.Tech.DIFFICULT_MARCH);
         canvas.save();canvas.translate(offsetX,offsetY);canvas.scale(scale,scale);
         int r0=camera.firstRow(world.height,RADIUS*2),r1=camera.lastRow(world.height,RADIUS*2);
         if(!detail&&overview!=null)overview.draw(canvas,territoryMode);
@@ -466,7 +468,7 @@ public final class MapView extends View implements MapPresentation {
             boolean exterior=world.terrain[q][r]==World.Terrain.VOID;
             if(detail)terrainTiles.draw(canvas,world,q,r,cx,cy);
             else {polygon(cx,cy,RADIUS-.3f);fill(canvas,TerrainTiles.color(t));}
-            if(gridShown&&!exterior){polygon(cx,cy,RADIUS);stroke(canvas,0x887d928a,Math.max(.7f,density/scale));}
+            if(gridShown&&!exterior&&MapSceneSnapshot.gridTerrain(world.terrain[q][r],difficultMarch)&&!NationalMap.restricted(world,h)){polygon(cx,cy,RADIUS);stroke(canvas,0x887d928a,Math.max(.7f,density/scale));}
             if(!exterior)drawTerritory(canvas,q,r,cx,cy,scale);
         }
         if(detail&&territoryMode>0){

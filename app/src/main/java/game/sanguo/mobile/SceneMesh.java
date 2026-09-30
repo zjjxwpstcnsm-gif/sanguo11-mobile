@@ -8,6 +8,8 @@ final class SceneMesh {
     private static final World.Terrain[] TERRAIN_TYPES=World.Terrain.values();
     SceneMesh distant,grid;
     boolean vegetation;
+    boolean gridDifficultMarch;
+    boolean gridMatches(MapSceneSnapshot.Ground ground){return grid!=null&&gridDifficultMarch==ground.gridDifficultMarch;}
     int landscapeChunkSize=8;
     // Disjoint index ranges share the same surface and buffers, but never draw water as land.
     int landIndexCount=-1;
@@ -131,7 +133,7 @@ final class SceneMesh {
         }
         SceneMesh m=b.mesh((minX+maxX)/2,(minZ+maxZ)/2,Math.max(maxX-minX,maxZ-minZ)/2+8);m.landIndexCount=m.indices.length;
         // Identical weights, lighting frame, macro tone and shore data to the foreground.
-        new TerrainMaterialField(g).attach(m);
+        new TerrainMaterialField(g).attachBackdrop(m);
         return m;
     }
     /** A view request retains only visible chunks plus a prefetch margin. All levels
@@ -172,6 +174,9 @@ final class SceneMesh {
             long fingerprint=1469598103934665603L ^ TerrainMaterialField.VERSION ^ TerrainSurface.METADATA_VERSION ^ WaterVisualField.VERSION;
             fingerprint=(fingerprint^(window==null?g.mapSeed:g.mapIdentity))*1099511628211L;
             fingerprint=(fingerprint^lod^(window!=null&&window.span<48?0x12100:0))*1099511628211L;
+            // Grid-bearing chunks may not retain another force/research state's lines.
+            // Overview/no-grid geometry stays reusable across research and force changes.
+            if(window!=null&&window.span<48)fingerprint=(fingerprint^(g.gridDifficultMarch?1:0))*1099511628211L;
             fingerprint=(fingerprint^g.width)*1099511628211L;fingerprint=(fingerprint^g.height)*1099511628211L;
             fingerprint=(fingerprint^Float.floatToIntBits(g.grid.offset))*1099511628211L;fingerprint=(fingerprint^(g.grid.staggered?1:0))*1099511628211L;
             for(int rr=r-8;rr<Math.min(r+24,g.height);rr++)for(int qq=q-8;qq<Math.min(q+24,g.width);qq++){
@@ -209,7 +214,7 @@ final class SceneMesh {
                 fine.chunkQ=q;fine.chunkR=r;fine.fingerprint=fingerprint;
                 // One immutable GPU batch per streamed ground chunk. No UI-thread
                 // terrain sampling/raycast per grid cell during camera gestures.
-                if(window!=null&&window.span<48)fine.grid=grid(g,q,r,fine,lod);
+                if(window!=null&&window.span<48){fine.grid=grid(g,q,r,fine,lod);fine.gridDifficultMarch=g.gridDifficultMarch;}
                 out.add(fine);
                 if(stats!=null&&stats.firstLoadBatch!=null&&out.size()%8==0)
                     stats.firstLoadBatch.accept(Collections.unmodifiableList(new ArrayList<>(out)));

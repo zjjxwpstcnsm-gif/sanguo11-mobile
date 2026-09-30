@@ -6,13 +6,22 @@ import java.util.*;
 
 /** Immutable presentation values. Never publishes a World to mesh workers or Filament. */
 final class MapSceneSnapshot {
+    private static final World.Terrain[] TERRAIN_TYPES=World.Terrain.values();
+    /** Shared 2D/3D presentation filter, using the authoritative technology family. */
+    static boolean gridTerrain(World.Terrain type,boolean difficultMarch){
+        return type!=World.Terrain.VOID&&type!=World.Terrain.MOUNTAIN&&type!=World.Terrain.NON_NAVIGABLE_WATER
+            &&(difficultMarch||!Fieldworks.requiresDifficultMarch(type));
+    }
     static final class Ground {
         final Set<Hex> bases; final TerrainSurface surface;
         private final BitSet baseCells, gridCells;
         final WaterVisualField.Shoreline shoreline;
         final boolean originalNational;
+        final int gridForce; final boolean gridDifficultMarch;
         final int width,height,mapSeed,mapIdentity,sourceMapWidth,sourceOriginX,sourceOriginY; final float minX,minZ,maxX,maxZ; final byte[] terrain; final GridWorldTransform grid;
-        Ground(World w) {
+        Ground(World w) {this(w,w.player);}
+        Ground(World w,int force) {
+            gridForce=force;gridDifficultMarch=w.campaign.has(force,Campaign.Tech.DIFFICULT_MARCH);
             originalNational=NationalMap.ID.equals(w.mapId)&&w.sourceMapWidth==200&&w.customMapId.isEmpty();
             width=w.width;height=w.height;sourceMapWidth=w.sourceMapWidth;sourceOriginX=w.sourceOriginX;sourceOriginY=w.sourceOriginY;mapIdentity=w.mapId.hashCode();mapSeed=31*w.mapId.hashCode()+w.mapRevision;grid=new GridWorldTransform(w.sourceMapWidth>0?(w.height-1)/2:0,w.columnStaggered);
             Set<Hex> flat=new HashSet<>();for(World.City c:w.cities)flat.addAll(SiteFootprint.cells(c));bases=Collections.unmodifiableSet(flat);
@@ -22,8 +31,7 @@ final class MapSceneSnapshot {
             for(int r=0;r<height;r++)for(int q=0;q<width;q++){
                 terrain[r*width+q]=(byte)(w.inside(new Hex(q,r))?w.terrain[q][r].ordinal():World.Terrain.VOID.ordinal());
                 World.Terrain type=w.terrain[q][r];
-                if(terrain[r*width+q]!=World.Terrain.VOID.ordinal()&&type!=World.Terrain.MOUNTAIN
-                    &&type!=World.Terrain.NON_NAVIGABLE_WATER&&!NationalMap.restricted(w,new Hex(q,r)))gridCells.set(r*width+q);
+                if(terrain[r*width+q]!=World.Terrain.VOID.ordinal()&&gridTerrain(type,true)&&!NationalMap.restricted(w,new Hex(q,r)))gridCells.set(r*width+q);
                 if(terrain[r*width+q]!=World.Terrain.VOID.ordinal()){
                     float x=grid.x(q,r),z=grid.z(q,r);loX=Math.min(loX,x-.5f);loZ=Math.min(loZ,z-.5f);hiX=Math.max(hiX,x+.5f);hiZ=Math.max(hiZ,z+.5f);
                 }
@@ -39,7 +47,20 @@ final class MapSceneSnapshot {
             SourceGridCoord local=grid.staggered?MapCoordinates.sourceColumn(h,sourceMapWidth):sourceMapWidth>0?MapCoordinates.sourceCoord(h,height):new SourceGridCoord(h.q,h.r);
             return new SourceGridCoord(local.x+sourceOriginX,local.y+sourceOriginY);
         }
-        boolean matches(World w){
+        /** A research/force change reuses immutable geometry, never mutates an older snapshot. */
+        private Ground(Ground old,int force,boolean difficultMarch){
+            gridForce=force;gridDifficultMarch=difficultMarch;
+            originalNational=old.originalNational;width=old.width;height=old.height;
+            sourceMapWidth=old.sourceMapWidth;sourceOriginX=old.sourceOriginX;sourceOriginY=old.sourceOriginY;
+            mapIdentity=old.mapIdentity;mapSeed=old.mapSeed;grid=old.grid;
+            bases=old.bases;baseCells=old.baseCells;terrain=old.terrain;gridCells=old.gridCells;
+            minX=old.minX;minZ=old.minZ;maxX=old.maxX;maxZ=old.maxZ;
+            shoreline=old.shoreline;surface=old.surface;
+        }
+        boolean matchesGridContext(World w,int force){return gridForce==force&&gridDifficultMarch==w.campaign.has(force,Campaign.Tech.DIFFICULT_MARCH);}
+        Ground withGridContext(World w,int force){return matchesGridContext(w,force)?this:new Ground(this,force,w.campaign.has(force,Campaign.Tech.DIFFICULT_MARCH));}
+        boolean matches(World w){return matchesGridContext(w,w.player)&&matchesTerrain(w);}
+        boolean matchesTerrain(World w){
             if(originalNational!=(NationalMap.ID.equals(w.mapId)&&w.sourceMapWidth==200&&w.customMapId.isEmpty()))return false;
             if(sourceMapWidth!=w.sourceMapWidth||sourceOriginX!=w.sourceOriginX||sourceOriginY!=w.sourceOriginY)return false;
             Map<Hex,Float> expected=new HashMap<>();if(w.visualMap!=null)for(var e:w.visualMap.heights.entrySet())expected.put(MapCoordinates.fromNationalSource(w,new SourceGridCoord(e.getKey()/200,e.getKey()%200)),e.getValue()/1000f);if(!surface.overrides.equals(expected))return false;
@@ -50,9 +71,14 @@ final class MapSceneSnapshot {
         }
         /** Exact immutable membership, without allocating a Hex in each material sample. */
         boolean isBase(int q,int r){return q>=0&&r>=0&&q<width&&r<height&&baseCells.get(r*width+q);}
-        /** Potential land OR naval movement, independent of current unit occupancy/weapon.
+        /** Ordinary grid follows the viewing force's authoritative difficult-march
+         * terrain family, not the active AI side, selected unit, occupancy or weapon.
          * Editing still exposes blocked terrain so it can be inspected and painted. */
-        boolean gridCell(Hex h,boolean editing){return valid(h)&&(editing||gridCells.get(h.r*width+h.q));}
+        boolean gridCell(Hex h,boolean editing){
+            if(!valid(h))return false;
+            int cell=h.r*width+h.q;
+            return editing||gridCells.get(cell)&&gridTerrain(TERRAIN_TYPES[terrain[cell]],gridDifficultMarch);
+        }
         boolean valid(Hex h){return h!=null&&h.q>=0&&h.r>=0&&h.q<width&&h.r<height&&terrain[h.r*width+h.q]!=World.Terrain.VOID.ordinal();}
     }
     static final class Item {

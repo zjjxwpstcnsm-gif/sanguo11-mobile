@@ -19,8 +19,8 @@ public final class NativeGridCoastTest {
             float x=g.grid.x(h),z=g.grid.z(h);float[] p=g.shoreline.project(x,z);
             check(p[0]==x&&p[1]==z,"every gameplay centre stays fixed");
             check(h.equals(g.shoreline.inverse(x,z).cell),"land/water/island/port centre picks original cell");
-            boolean expected=w.terrain[q][r]!=World.Terrain.MOUNTAIN&&w.terrain[q][r]!=World.Terrain.NON_NAVIGABLE_WATER&&!NationalMap.restricted(w,h);
-            check(g.gridCell(h,false)==expected,"ordinary grid excludes only permanently blocked terrain");
+            boolean expected=w.terrain[q][r]!=World.Terrain.MOUNTAIN&&w.terrain[q][r]!=World.Terrain.NON_NAVIGABLE_WATER&&!NationalMap.restricted(w,h)&&(w.campaign.has(w.player,Campaign.Tech.DIFFICULT_MARCH)||!Fieldworks.requiresDifficultMarch(w.terrain[q][r]));
+            check(g.gridCell(h,false)==expected,"ordinary grid excludes permanent and current-force technology restrictions");
             check(g.gridCell(h,true),"editor can inspect/paint all valid terrain");
             if(g.surface.water(h))water++;else land++;
         }

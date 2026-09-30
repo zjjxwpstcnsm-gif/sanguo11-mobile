@@ -1,0 +1,700 @@
+{
+  "version": 129,
+  "blender": "4.3.2",
+  "generator": "tools/3d/refine_blender129.py",
+  "generator_sha256": "3136d23cf0f3cd03f262b8ce95c7ad93c52bdeb191ee7c263217a25780248aa1",
+  "license": "CC0-1.0 original geometry; byte-identical existing v128 atlas",
+  "assets": [
+    {
+      "path": "app/src/main/assets/3d/field/v129/fall-narrow-lod0.glb",
+      "id": "fall-narrow-lod0",
+      "sha256": "f4e7513cbab2ff618df0570259db16f8b79d7b0783d36d86706941aa33e7b849",
+      "bytes": 259236,
+      "triangles": 2332,
+      "vertices": 4084,
+      "primitives": 1,
+      "bounds": [
+        -0.21357376873493195,
+        0.0,
+        -0.017999999225139618,
+        0.214467853307724,
+        1.0017999410629272,
+        0.9749998450279236
+      ],
+      "source": "18-column continuous folded water; battered nine-band bedrock; inset fractures; four foot boulders plus two side splinters; five shallow volumetric foam lobes",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.05115127499999983,
+      "unindexed_vertex_bytes": 335808,
+      "indexed_vertex_bytes": 196032,
+      "index_bytes": 27984
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/fall-narrow-lod1.glb",
+      "id": "fall-narrow-lod1",
+      "sha256": "ef373d670e91a6abbbd23040c10ed799d6d99cba9cf6265846f05149dc1ee317",
+      "bytes": 102152,
+      "triangles": 650,
+      "vertices": 1232,
+      "primitives": 1,
+      "bounds": [
+        -0.21053647994995117,
+        0.0,
+        -0.017999999225139618,
+        0.2196453958749771,
+        1.001799464225769,
+        0.9741371870040894
+      ],
+      "source": "18-column continuous folded water; battered nine-band bedrock; inset fractures; four foot boulders plus two side splinters; five shallow volumetric foam lobes",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.019750844999999906,
+      "unindexed_vertex_bytes": 93600,
+      "indexed_vertex_bytes": 59136,
+      "index_bytes": 7800
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/fall-wide-lod0.glb",
+      "id": "fall-wide-lod0",
+      "sha256": "86f52107fdfb373265200ba5e67155916b50768d26c2835302d4cb7179020449",
+      "bytes": 259140,
+      "triangles": 2332,
+      "vertices": 4082,
+      "primitives": 1,
+      "bounds": [
+        -0.2889527380466461,
+        0.0,
+        -0.017999999225139618,
+        0.2901623845100403,
+        1.0017999410629272,
+        0.9749998450279236
+      ],
+      "source": "18-column continuous folded water; battered nine-band bedrock; inset fractures; four foot boulders plus two side splinters; five shallow volumetric foam lobes",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.0502440019999999,
+      "unindexed_vertex_bytes": 335808,
+      "indexed_vertex_bytes": 195936,
+      "index_bytes": 27984
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/fall-wide-lod1.glb",
+      "id": "fall-wide-lod1",
+      "sha256": "2d34fa37e4fb3a5549186b9e40992c5a033331fc17c697c13e945b718c5d2266",
+      "bytes": 102056,
+      "triangles": 650,
+      "vertices": 1230,
+      "primitives": 1,
+      "bounds": [
+        -0.28484347462654114,
+        0.0,
+        -0.017999999225139618,
+        0.2971673011779785,
+        1.001799464225769,
+        0.9741371870040894
+      ],
+      "source": "18-column continuous folded water; battered nine-band bedrock; inset fractures; four foot boulders plus two side splinters; five shallow volumetric foam lobes",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.020356099000000016,
+      "unindexed_vertex_bytes": 93600,
+      "indexed_vertex_bytes": 59040,
+      "index_bytes": 7800
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/fall-hukou-lod0.glb",
+      "id": "fall-hukou-lod0",
+      "sha256": "f54deeda01a0e057b11febfbb1fce443dfd6554d3802dc0133de7c8cd13b01fb",
+      "bytes": 259140,
+      "triangles": 2332,
+      "vertices": 4082,
+      "primitives": 1,
+      "bounds": [
+        -0.2889527380466461,
+        0.0,
+        -0.017999999225139618,
+        0.2901623845100403,
+        1.0017999410629272,
+        0.9749998450279236
+      ],
+      "source": "pinched sediment-laden channel; 18-column folded curtain; nine-band stratified eroded bedrock; shallow opaque froth relief",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.05485739099999987,
+      "unindexed_vertex_bytes": 335808,
+      "indexed_vertex_bytes": 195936,
+      "index_bytes": 27984
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/fall-hukou-lod1.glb",
+      "id": "fall-hukou-lod1",
+      "sha256": "c9063648b981314505aed3f550680698fc657aaf65a85a6f59321939aaae87d4",
+      "bytes": 102056,
+      "triangles": 650,
+      "vertices": 1230,
+      "primitives": 1,
+      "bounds": [
+        -0.28484347462654114,
+        0.0,
+        -0.017999999225139618,
+        0.2971673011779785,
+        1.001799464225769,
+        0.9741371870040894
+      ],
+      "source": "pinched sediment-laden channel; 18-column folded curtain; nine-band stratified eroded bedrock; shallow opaque froth relief",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.024046188000000024,
+      "unindexed_vertex_bytes": 93600,
+      "indexed_vertex_bytes": 59040,
+      "index_bytes": 7800
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/wall-earth-lod0.glb",
+      "id": "wall-earth-lod0",
+      "sha256": "ce80e8f90d8b7d2738e080968160e3233b1b8601661d2889a1df6a80172ddb4a",
+      "bytes": 111220,
+      "triangles": 1248,
+      "vertices": 1272,
+      "primitives": 1,
+      "bounds": [
+        -0.05990028381347656,
+        0.0,
+        0.0,
+        0.06197104975581169,
+        0.2167467474937439,
+        1.0
+      ],
+      "source": "26 longitudinal samples, nine compressed-earth courses, raincut gullies and broken crest; four grounded spalls",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.03318010100000013,
+      "unindexed_vertex_bytes": 179712,
+      "indexed_vertex_bytes": 61056,
+      "index_bytes": 14976
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/wall-earth-lod1.glb",
+      "id": "wall-earth-lod1",
+      "sha256": "a700c04832893ceca587b923217c01304ea3ce7a2c7c72f10400021202f5dcd5",
+      "bytes": 59848,
+      "triangles": 264,
+      "vertices": 448,
+      "primitives": 1,
+      "bounds": [
+        -0.05853017419576645,
+        0.0,
+        0.0,
+        0.06197104975581169,
+        0.21640686690807343,
+        1.0
+      ],
+      "source": "26 longitudinal samples, nine compressed-earth courses, raincut gullies and broken crest; four grounded spalls",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.014933338000000074,
+      "unindexed_vertex_bytes": 38016,
+      "indexed_vertex_bytes": 21504,
+      "index_bytes": 3168
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/beacon-han-lod0.glb",
+      "id": "beacon-han-lod0",
+      "sha256": "330f4b7cc610c4d60bb8a19c9bff7c7e056c16ffeea8e35d3d5d6a7a3bfc4795",
+      "bytes": 188024,
+      "triangles": 1506,
+      "vertices": 2807,
+      "primitives": 1,
+      "bounds": [
+        -0.1080000028014183,
+        0.0,
+        -0.1080000028014183,
+        0.1080000028014183,
+        0.383760005235672,
+        0.1080000028014183
+      ],
+      "source": "28-sided squared battered body with twelve eroded earth bands; inset hearth basin; broken uneven rim and fuel bed",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.037518345000000064,
+      "unindexed_vertex_bytes": 216864,
+      "indexed_vertex_bytes": 134736,
+      "index_bytes": 18072
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/beacon-han-lod1.glb",
+      "id": "beacon-han-lod1",
+      "sha256": "d9e62e668f84f3750361eb6708d836c50876a63c25a46274cc0a9ba577dc4cea",
+      "bytes": 82608,
+      "triangles": 378,
+      "vertices": 893,
+      "primitives": 1,
+      "bounds": [
+        -0.1080000028014183,
+        0.0,
+        -0.1080000028014183,
+        0.1080000028014183,
+        0.383760005235672,
+        0.1080000028014183
+      ],
+      "source": "28-sided squared battered body with twelve eroded earth bands; inset hearth basin; broken uneven rim and fuel bed",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.01671652899999998,
+      "unindexed_vertex_bytes": 54432,
+      "indexed_vertex_bytes": 42864,
+      "index_bytes": 4536
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/cliff-sandstone-lod0.glb",
+      "id": "cliff-sandstone-lod0",
+      "sha256": "0c71b799b4a071076b1c961568f81553230fed4988cdb61239572ec913bbba93",
+      "bytes": 244360,
+      "triangles": 1488,
+      "vertices": 3985,
+      "primitives": 1,
+      "bounds": [
+        -0.2519889771938324,
+        0.0,
+        -0.17687353491783142,
+        0.26636239886283875,
+        0.2969699501991272,
+        0.18365122377872467
+      ],
+      "source": "forty-point irregular plan; fourteen undercut sedimentary courses; recessed vertical fissures; terrace cap; detached talus",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.04961706500000007,
+      "unindexed_vertex_bytes": 214272,
+      "indexed_vertex_bytes": 191280,
+      "index_bytes": 17856
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/cliff-sandstone-lod1.glb",
+      "id": "cliff-sandstone-lod1",
+      "sha256": "f86222722eb524e5ff4ef4447968be42cc3f12b490e4619c9034daea0eb8ee28",
+      "bytes": 78888,
+      "triangles": 324,
+      "vertices": 829,
+      "primitives": 1,
+      "bounds": [
+        -0.25749456882476807,
+        0.0,
+        -0.1755891740322113,
+        0.2524487376213074,
+        0.29699742794036865,
+        0.1786394715309143
+      ],
+      "source": "forty-point irregular plan; fourteen undercut sedimentary courses; recessed vertical fissures; terrace cap; detached talus",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.01574963100000004,
+      "unindexed_vertex_bytes": 46656,
+      "indexed_vertex_bytes": 39792,
+      "index_bytes": 3888
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/cliff-granite-lod0.glb",
+      "id": "cliff-granite-lod0",
+      "sha256": "9e19662a8c539be803a1e05b76211691d8ca9466f716d2837e29ee41eaf13e1d",
+      "bytes": 190884,
+      "triangles": 1576,
+      "vertices": 2849,
+      "primitives": 1,
+      "bounds": [
+        -0.2529999911785126,
+        0.0,
+        -0.17874999344348907,
+        0.2529999911785126,
+        0.33775585889816284,
+        0.17874999344348907
+      ],
+      "source": "24x16 continuous unequal ridge surface with deep crossing gullies; four battered perimeter courses and broken foot blocks",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.03786270000000003,
+      "unindexed_vertex_bytes": 226944,
+      "indexed_vertex_bytes": 136752,
+      "index_bytes": 18912
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/cliff-granite-lod1.glb",
+      "id": "cliff-granite-lod1",
+      "sha256": "b59d2bcd921d7a949283584f6f556f584e3c844fbe1573dc58ad069e30b780b4",
+      "bytes": 81196,
+      "triangles": 352,
+      "vertices": 870,
+      "primitives": 1,
+      "bounds": [
+        -0.25257495045661926,
+        0.0,
+        -0.17874999344348907,
+        0.25257495045661926,
+        0.333842396736145,
+        0.17874999344348907
+      ],
+      "source": "24x16 continuous unequal ridge surface with deep crossing gullies; four battered perimeter courses and broken foot blocks",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.015653462000000173,
+      "unindexed_vertex_bytes": 50688,
+      "indexed_vertex_bytes": 41760,
+      "index_bytes": 4224
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/cliff-karst-lod0.glb",
+      "id": "cliff-karst-lod0",
+      "sha256": "f0e85082a9a28e94e5f3ddb7adb5079781300d160352758e56bffe212f39269a",
+      "bytes": 164940,
+      "triangles": 1462,
+      "vertices": 2337,
+      "primitives": 1,
+      "bounds": [
+        -0.2224999964237213,
+        0.0,
+        -0.15789835155010223,
+        0.2547857165336609,
+        0.44999998807907104,
+        0.19396717846393585
+      ],
+      "source": "three unequal limestone shoulders with twelve authored flute bands and rounded eroded summits; moss ledges and talus",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.0370859830000001,
+      "unindexed_vertex_bytes": 210528,
+      "indexed_vertex_bytes": 112176,
+      "index_bytes": 17544
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/cliff-karst-lod1.glb",
+      "id": "cliff-karst-lod1",
+      "sha256": "f3b65b637198b2c2de41c393a26a97c8af2e4910dcf19b956d9249b9298b3470",
+      "bytes": 71544,
+      "triangles": 328,
+      "vertices": 675,
+      "primitives": 1,
+      "bounds": [
+        -0.2224999964237213,
+        0.0,
+        -0.16062499582767487,
+        0.2547857165336609,
+        0.44999998807907104,
+        0.19376030564308167
+      ],
+      "source": "three unequal limestone shoulders with twelve authored flute bands and rounded eroded summits; moss ledges and talus",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.016046627000000147,
+      "unindexed_vertex_bytes": 47232,
+      "indexed_vertex_bytes": 32400,
+      "index_bytes": 3936
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/shore-reeds-lod0.glb",
+      "id": "shore-reeds-lod0",
+      "sha256": "97369dc75d4998df8d287c7739e97286ea3402f9d245630761f22c44b1294dd9",
+      "bytes": 112164,
+      "triangles": 1648,
+      "vertices": 1191,
+      "primitives": 1,
+      "bounds": [
+        -0.06784702092409134,
+        0.0,
+        -0.07888859510421753,
+        0.08857142925262451,
+        0.12109669297933578,
+        0.04268297925591469
+      ],
+      "source": "19 bent tapered stems; thirty-eight curved ridged leaves; five seed heads; opaque one-primitive mesh",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.036700348999999965,
+      "unindexed_vertex_bytes": 237312,
+      "indexed_vertex_bytes": 57168,
+      "index_bytes": 19776
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/shore-reeds-lod1.glb",
+      "id": "shore-reeds-lod1",
+      "sha256": "df7dd266ab708b90dca1fe3f2a575ea6ef6a25a4e1629cce27172e1717080239",
+      "bytes": 52780,
+      "triangles": 336,
+      "vertices": 282,
+      "primitives": 1,
+      "bounds": [
+        -0.08274764567613602,
+        0.0,
+        -0.052211564034223557,
+        0.07009520381689072,
+        0.12109669297933578,
+        0.057126279920339584
+      ],
+      "source": "19 bent tapered stems; thirty-eight curved ridged leaves; five seed heads; opaque one-primitive mesh",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.016226874000000002,
+      "unindexed_vertex_bytes": 48384,
+      "indexed_vertex_bytes": 13536,
+      "index_bytes": 4032
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/shore-rock-lod0.glb",
+      "id": "shore-rock-lod0",
+      "sha256": "32f081836301f53e4429ff9140302bf8ee2e2c84a81342b1858ff7d0054d321d",
+      "bytes": 69048,
+      "triangles": 880,
+      "vertices": 485,
+      "primitives": 1,
+      "bounds": [
+        -0.196039617061615,
+        0.0,
+        -0.09438737481832504,
+        0.20126019418239594,
+        0.07462324947118759,
+        0.13026726245880127
+      ],
+      "source": "five asymmetric water-rounded rocks with inset joints, bevel shoulders and buried contact bands",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.023643648999999822,
+      "unindexed_vertex_bytes": 126720,
+      "indexed_vertex_bytes": 23280,
+      "index_bytes": 10560
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v129/shore-rock-lod1.glb",
+      "id": "shore-rock-lod1",
+      "sha256": "07c3cc9229b2eeaa0b7879be81c33eb223f8b0cac797c67d61ae077a965d0d57",
+      "bytes": 46484,
+      "triangles": 280,
+      "vertices": 165,
+      "primitives": 1,
+      "bounds": [
+        -0.19285127520561218,
+        0.0,
+        -0.09567566961050034,
+        0.20123620331287384,
+        0.0744602307677269,
+        0.12968246638774872
+      ],
+      "source": "five asymmetric water-rounded rocks with inset joints, bevel shoulders and buried contact bands",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v128 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "export_cpu_seconds": 0.015531826000000137,
+      "unindexed_vertex_bytes": 40320,
+      "indexed_vertex_bytes": 7920,
+      "index_bytes": 3360
+    }
+  ],
+  "source_anchor_preserving_envelope_scale": {
+    "fall-narrow": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "fall-wide": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "fall-hukou": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "wall-earth": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "beacon-han": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "cliff-sandstone": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "cliff-granite": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "cliff-karst": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "shore-reeds": [
+      0.7145231892775296,
+      1.0,
+      1.0
+    ],
+    "shore-rock": [
+      0.9916237094643939,
+      1.0,
+      0.9568527374979314
+    ]
+  },
+  "atlas": {
+    "path": "app/src/main/assets/3d/field/v129/scenery-atlas.png",
+    "sha256": "a48b7d34d9e98bfd7f8be88c9b2b84addfdc22b08f07f28b44cf696f9e34cf34",
+    "bytes": 33886,
+    "dimensions": [
+      512,
+      64
+    ],
+    "color_space": "sRGB",
+    "runtime_uv": "PNG row zero = UV.v zero; Blender preview explicitly flips V",
+    "byte_identical_to_v128": true
+  },
+  "budgets_lod0": {
+    "fall-narrow": 2500,
+    "fall-wide": 2500,
+    "fall-hukou": 2500,
+    "wall-earth": 1300,
+    "beacon-han": 1600,
+    "cliff-sandstone": 1800,
+    "cliff-granite": 1600,
+    "cliff-karst": 1600,
+    "shore-reeds": 1700,
+    "shore-rock": 1100
+  },
+  "budget_reason": "User explicitly requested substantive higher-detail geometry; near landmarks generally 1400-2500 triangles, shoreline stones lower, far LOD kept <=850 and less than 45% near. Actual per-family counts below. No arbitrary subdivision modifier. Indexed full-attribute dedup limits CPU/GPU bytes without dissolving normal/UV seams. Device performance remains unmeasured.",
+  "editable_source": "out/feedback129/blender/landmarks-v129.blend",
+  "reference_links": [
+    "https://photo.china.com.cn/2024-08/21/content_117378600.shtml",
+    "https://whc.unesco.org/en/list/438",
+    "https://english.igsnrr.cas.cn/ecg/naturalscenery/lakes/202011/t20201119_251411.html",
+    "https://whc.unesco.org/en/list/437",
+    "https://whc.unesco.org/en/tentativelists/6380/",
+    "https://www.gamecity.ne.jp/sangokushi/11/playreport/image04/img06.htm",
+    "https://www.gamecity.ne.jp/sangokushi/11/playreport/image04/06.jpg",
+    "https://store.steampowered.com/app/628070/_/?l=schinese"
+  ],
+  "reference_status": "Inspected official KOEI original PC San11 play-report screenshot (480x360): strongly broken gray-brown mountain cliffs, recessed vertical joints, irregular feet. Region/camera UNKNOWN; stylistic/detail-scale reference only. Exact same-camera comparison REFERENCE_MISSING. Commercial screenshot is research only, not included in runtime or redistributable deliverables; no extracted game assets.",
+  "verification": "OFFLINE Blender mesh/source evidence; real APK and ARM64 performance require separate validation",
+  "generation_export_cpu_seconds": 0.9803531909999998
+}

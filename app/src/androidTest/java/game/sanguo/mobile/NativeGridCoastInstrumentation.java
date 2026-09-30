@@ -53,8 +53,8 @@ public final class NativeGridCoastInstrumentation extends SceneInstrumentation {
         if(phase.equals("candidate")){
             for(int r=0;r<seed.height;r++)for(int q=0;q<seed.width;q++){
                 Hex h=new Hex(q,r);if(!snap.ground.valid(h))continue;
-                boolean expected=seed.terrain[q][r]!=World.Terrain.MOUNTAIN&&seed.terrain[q][r]!=World.Terrain.NON_NAVIGABLE_WATER&&!NationalMap.restricted(seed,h);
-                check(snap.ground.gridCell(h,false)==expected,"installed grid membership follows permanent restrictions");
+                boolean expected=seed.terrain[q][r]!=World.Terrain.MOUNTAIN&&seed.terrain[q][r]!=World.Terrain.NON_NAVIGABLE_WATER&&!NationalMap.restricted(seed,h)&&(seed.campaign.has(seed.player,Campaign.Tech.DIFFICULT_MARCH)||!Fieldworks.requiresDifficultMarch(seed.terrain[q][r]));
+                check(snap.ground.gridCell(h,false)==expected,"installed grid membership follows permanent and current-force technology restrictions");
                 check(snap.ground.gridCell(h,true),"editor still sees blocked valid cells");
             }
         }

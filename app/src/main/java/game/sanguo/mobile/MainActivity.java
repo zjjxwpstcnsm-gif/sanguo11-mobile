@@ -322,7 +322,7 @@ public final class MainActivity extends Activity {
     private void showLandmarkPicker(){
         List<LandscapeLandmarks.Entry> entries=new ArrayList<>();
         if(NationalMap.ID.equals(world.mapId)&&world.sourceMapWidth==200&&world.customMapId.isEmpty())
-            for(var entry:LandscapeLandmarks.ALL){Hex h=landmarkHex(entry);if(world.inside(h)&&world.terrain[h.q][h.r]==(entry.cascade()==-1?World.Terrain.MOUNTAIN:World.Terrain.NON_NAVIGABLE_WATER))entries.add(entry);}
+            for(var entry:LandscapeLandmarks.ALL){Hex h=landmarkHex(entry);if(world.inside(h)&&world.terrain[h.q][h.r]==(entry.cascade()==-1?World.Terrain.MOUNTAIN:entry.cascade()==-3?World.Terrain.POISON:World.Terrain.NON_NAVIGABLE_WATER))entries.add(entry);}
         if(entries.isEmpty()){message("山河地标","当前地图范围内没有这些山河地标。");return;}
         new AlertDialog.Builder(this).setTitle("山河地标 · 3D定位")
             .setItems(entries.stream().map(LandscapeLandmarks.Entry::label).toArray(String[]::new),(d,index)->{

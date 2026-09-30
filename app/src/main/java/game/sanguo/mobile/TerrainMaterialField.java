@@ -4,7 +4,7 @@ import game.sanguo.core.*;
 
 /** Compact global material field; immutable snapshot input, no gameplay RNG or camera state. */
 final class TerrainMaterialField {
-    static final int VERSION=6;
+    static final int VERSION=7;
     static final float RADIUS=3.2f;
     private static final World.Terrain[] TYPES=World.Terrain.values();
     final MapSceneSnapshot.Ground ground;
@@ -58,7 +58,8 @@ final class TerrainMaterialField {
         normalize(w);
         return w;
     }
-    float groundTone(float x,float z){
+    float groundTone(float x,float z){return ordinaryTone(x,z)+2.4f*poisonMask(x,z);}
+    private float ordinaryTone(float x,float z){
         float tone=.96f+.04f*(float)(Math.sin(x*.19)*Math.cos(z*.17));
         Hex h=ground.grid.cell(x,z);float wet=0;
         for(int r=h.r-1;r<=h.r+1;r++)for(int q=h.q-1;q<=h.q+1;q++){
@@ -68,6 +69,25 @@ final class TerrainMaterialField {
         }
         return tone*(1-.22f*wet);
     }
+    /** Presentation-only mineral spring mask, bounded to the existing POISON cells.
+     * UV1.y normally carries a positive macro tone (.7176..1); values above that
+     * range encode the spring. Both ground programs decode it, without another
+     * vertex stream, sampler, transparent pass, clock, or gameplay RNG call.
+     * The coarse canonical fan already includes every cell centre. Interior LOD
+     * vertices interpolate the same signal, so the far view cannot drop hazards.
+     */
+    float poisonMask(float x,float z){
+        if(!Float.isFinite(x)||!Float.isFinite(z))return 0;
+        Hex h=ground.grid.cell(x,z);
+        if(!ground.valid(h)||ground.terrain[h.r*ground.width+h.q]!=World.Terrain.POISON.ordinal())return 0;
+        float dx=Math.abs(x-ground.grid.x(h)),dz=Math.abs(z-ground.grid.z(h));
+        // A calm central basin and irregular mineral rim fit inside the exact
+        // projected tile. Shared boundaries are zero, keeping ordinary paths and
+        // grid strokes clean; no decoration extends onto a safe cell centre.
+        float radius=Math.max(dx,dz)*2;
+        float t=Math.max(0,Math.min(1,(1-radius)/.44f));
+        return t*t*(3-2*t);
+    }
     static void normalize(float[] w){
         float sum=0;for(int i=0;i<4;i++){w[i]=Float.isFinite(w[i])?Math.max(0,w[i]):0;sum+=w[i];}
         if(!Float.isFinite(sum)||sum<1e-8f){w[0]=w[2]=w[3]=0;w[1]=1;return;}
@@ -75,7 +95,10 @@ final class TerrainMaterialField {
     }
     /** Separate terrain-only stream: canonical UV, tangent quaternion, water mask and macro tone. */
     void attach(SceneMesh mesh){attach(mesh,null);}
-    void attach(SceneMesh mesh,SceneMesh.BuildStats stats){
+    void attach(SceneMesh mesh,SceneMesh.BuildStats stats){attach(mesh,stats,true);}
+    /** Coarse exterior scenery must not interpolate cell-owned hazard carriers. */
+    void attachBackdrop(SceneMesh mesh){attach(mesh,null,false);}
+    private void attach(SceneMesh mesh,SceneMesh.BuildStats stats,boolean springs){
         int count=mesh.vertices.length/7;mesh.surfaceData=new float[count*8];
         // Chunk-local memo only: shared fan vertices have identical field inputs.
         // Preserve separate wet/dry flow channels at the same shore coordinate.
@@ -94,7 +117,7 @@ final class TerrainMaterialField {
                 if(stats!=null)stats.sharedSamples++;
                 System.arraycopy(mesh.vertices,prior*7+3,mesh.vertices,v+3,4);
                 System.arraycopy(mesh.surfaceData,prior*8,mesh.surfaceData,s,8);
-                if(wet[prior]!=water)mesh.surfaceData[s+7]=water?waterField.flowAngle(x,z):groundTone(x,z);
+                if(wet[prior]!=water)mesh.surfaceData[s+7]=water?waterField.flowAngle(x,z):(springs?groundTone(x,z):ordinaryTone(x,z));
                 continue;
             }
             sampleKeys[slot]=key;sampleVertices[slot]=i+1;
@@ -118,7 +141,7 @@ final class TerrainMaterialField {
             // Signed visual shore distance, NOT gameplay water depth. Shared by both batches.
             sectionStarted=timed?System.nanoTime():0;
             mesh.surfaceData[s+6]=waterField.distance(x,z);
-            mesh.surfaceData[s+7]=water?waterField.flowAngle(x,z):groundTone(x,z);
+            mesh.surfaceData[s+7]=water?waterField.flowAngle(x,z):(springs?groundTone(x,z):ordinaryTone(x,z));
             if(timed)stats.shoreNanos+=System.nanoTime()-sectionStarted;
         }
     }

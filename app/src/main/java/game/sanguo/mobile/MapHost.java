@@ -125,7 +125,9 @@ final class MapHost extends FrameLayout implements MapPresentation {
     void resetOrientation(){if(spatial!=null)spatial.resetOrientation();}
     void reverseOrientation(){if(spatial!=null)spatial.reverseOrientation();}
     void previewMode(){openingPreview=true;flat.previewMode();}
-    void setPreviewFaction(int side){previewFaction=side;flat.setPreviewFaction(side);if(spatial!=null)spatial.previewFaction(side);}
+    void setPreviewFaction(int side){previewFaction=side;flat.setPreviewFaction(side);if(spatial!=null){spatial.previewFaction(side);if(world!=null&&(ground==null||!ground.matchesGridContext(world,gridForce())))publish();}}
+    private int gridForce(){return gridForce(world);}
+    private int gridForce(World w){return openingPreview&&previewFaction>=0&&previewFaction<w.factions.length?previewFaction:w.player;}
     private void persistCamera(){if(spatial==null)return;Bundle b=new Bundle();spatial.saveCamera(b);prefs.edit().putInt("version",2).putFloat("tilt",b.getFloat("sceneTilt",55)).putInt("facing",b.getInt("sceneFacing",1)).putFloat("yaw",b.getFloat("sceneYaw",0)).apply();}
     SceneQuality quality(){return SceneQuality.from(prefs.getAll().get("quality"));}
     void quality(SceneQuality next){
@@ -207,7 +209,8 @@ final class MapHost extends FrameLayout implements MapPresentation {
     void toggleDiagnostics(){diagnostics=!diagnostics;if(spatial!=null){spatial.diagnostics(diagnostics);spatial.labels(flat.commandersShown(),flat.unitBarsShown());spatial.editorMode(editorStroke);spatial.editorDrawing(editorDrawing);spatial.editorLayers(projection.blocked(world,editorPassability),editorGrid,editorCoords,editorFootprints);spatial.editorPreview(editorCells,editorValid);spatial.setTacticPreview(tacticPreview);spatial.setPanelOcclusion(panelRight,panelBottom);spatial.criticalSkip(criticalSkip);}android.util.Log.i("MapRenderer",report());}
     String report(){return spatial==null?"2D · "+getWidth()+" × "+getHeight():spatial.report();}
     @Override public void setWorld(World w,Hex s,int moving){
-        boolean changed=world!=w||revision!=w.commandRevision()||turn!=w.turn||player!=w.player||terrainRevision!=w.terrainRevision||!Objects.equals(selected,s)||this.moving!=moving;
+        boolean gridChanged=ground!=null&&!ground.matchesGridContext(w,gridForce(w));
+        boolean changed=world!=w||gridChanged||revision!=w.commandRevision()||turn!=w.turn||player!=w.player||terrainRevision!=w.terrainRevision||!Objects.equals(selected,s)||this.moving!=moving;
         if(visualResolved!=w){visualResolved=w;if(w.visualMap==null&&!w.customMapId.isEmpty())try{MapPatch p=new MapLibrary(getContext()).visual(w);if(p!=null)w.visualMap=p;}catch(java.io.IOException e){android.util.Log.w("MapRenderer","Visual map unavailable; deterministic defaults",e);}}
         world=w;selected=s;this.moving=moving;revision=w.commandRevision();turn=w.turn;player=w.player;
         if(spatial==null)flat.setWorld(w,s,moving);else if(changed||dirty)publish();
@@ -217,7 +220,15 @@ final class MapHost extends FrameLayout implements MapPresentation {
         cancelCommandEffects();
         android.content.Context app=getContext().getApplicationContext();
         if(app instanceof GameApplication){var session=((GameApplication)app).host().session();if(session!=null)spatial.sceneIdentity(session.state());}
-if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){if(ground==null||!ground.matches(world))ground=new MapSceneSnapshot.Ground(world);groundWorld=world;terrainRevision=world.terrainRevision;}publishedSnapshot=new MapSceneSnapshot(ground,world,selected,moving);spatial.snapshot(publishedSnapshot);spatial.mapLayers(projection.layers(world,ground,flat.territoryMode()),flat.territoryMode(),openingPreview,previewFaction);dirty=false;}finally{android.os.Trace.endSection();}}
+        if(ground==null||groundWorld!=world||terrainRevision!=world.terrainRevision){
+            if(ground==null||!ground.matchesTerrain(world))ground=new MapSceneSnapshot.Ground(world,gridForce());
+            groundWorld=world;terrainRevision=world.terrainRevision;
+        }
+        ground=ground.withGridContext(world,gridForce());
+        publishedSnapshot=new MapSceneSnapshot(ground,world,selected,moving);spatial.snapshot(publishedSnapshot);
+        spatial.mapLayers(projection.layers(world,ground,flat.territoryMode()),flat.territoryMode(),openingPreview,previewFaction);dirty=false;
+        }finally{android.os.Trace.endSection();}
+    }
     void invalidateScene(){dirty=true;flat.invalidateScene();}
     @Override public void fit(){if(spatial==null)flat.fit();else spatial.fit();}
     @Override public void focus(Hex h){if(spatial==null)flat.focus(h);else spatial.focus(h);}

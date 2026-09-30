@@ -42,15 +42,26 @@ public final class NativeLandmarks128Instrumentation extends SceneInstrumentatio
     private void touch(long down,int action,float x0,float x1,float y,int count){
         MotionEvent.PointerProperties[] props=new MotionEvent.PointerProperties[count];MotionEvent.PointerCoords[] coords=new MotionEvent.PointerCoords[count];
         for(int i=0;i<count;i++){props[i]=new MotionEvent.PointerProperties();props[i].id=i;props[i].toolType=MotionEvent.TOOL_TYPE_FINGER;coords[i]=new MotionEvent.PointerCoords();coords[i].x=i==0?x0:x1;coords[i].y=y;coords[i].pressure=1;coords[i].size=1;}
-        var e=MotionEvent.obtain(down,SystemClock.uptimeMillis(),action,count,props,coords,0,0,1,1,0,0,InputDevice.SOURCE_TOUCHSCREEN,0);sendPointerSync(e);e.recycle();SystemClock.sleep(20);
+        var e=MotionEvent.obtain(down,SystemClock.uptimeMillis(),action,count,props,coords,0,0,1,1,0,0,InputDevice.SOURCE_TOUCHSCREEN,0);if(!getUiAutomation().injectInputEvent(e,(action&MotionEvent.ACTION_MASK)==MotionEvent.ACTION_UP))throw new AssertionError("touch injection rejected");e.recycle();SystemClock.sleep(20);
     }
     private Rect viewport(FilamentMapView renderer){Rect rect=new Rect();runOnMainSync(()->renderer.getGlobalVisibleRect(rect));return rect;}
     private void pinch(FilamentMapView renderer,float target){
-        Rect r=viewport(renderer);float x=r.exactCenterX(),y=r.top+r.height()*.45f;long down=SystemClock.uptimeMillis();
-        touch(down,MotionEvent.ACTION_DOWN,x-150,x+150,y,1);
-        touch(down,MotionEvent.ACTION_POINTER_DOWN|(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT),x-150,x+150,y,2);
-        float end=150*renderer.camera.span/target;for(int i=0;i<=8;i++){float d=150+(end-150)*i/8;touch(down,MotionEvent.ACTION_MOVE,x-d,x+d,y,2);}
-        touch(down,MotionEvent.ACTION_POINTER_UP|(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT),x-end,x+end,y,2);touch(down,MotionEvent.ACTION_UP,x-end,x+end,y,1);
+        // Android's minimum scaling span is density-dependent; the original
+        // 300px span entered scaling only at the last moves (10 ->9, not6).
+        // Use larger real pointer spans and bounded feedback, retaining the
+        // same strict final near/far assertions instead of assigning camera state.
+        for(int attempt=0;attempt<4;attempt++){
+            float current=renderer.camera.span;
+            if(target<10?current>4&&current<8:current>12&&current<20)return;
+            Rect r=viewport(renderer);float x=r.exactCenterX(),y=r.top+r.height()*.45f;
+            boolean in=current>target;float start=r.width()*(in?.19f:.34f),end=r.width()*(in?.34f:.18f);
+            long down=SystemClock.uptimeMillis();
+            touch(down,MotionEvent.ACTION_DOWN,x-start,x+start,y,1);
+            touch(down,MotionEvent.ACTION_POINTER_DOWN|(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT),x-start,x+start,y,2);
+            for(int i=0;i<=20;i++){float d=start+(end-start)*i/20;touch(down,MotionEvent.ACTION_MOVE,x-d,x+d,y,2);}
+            touch(down,MotionEvent.ACTION_POINTER_UP|(1<<MotionEvent.ACTION_POINTER_INDEX_SHIFT),x-end,x+end,y,2);
+            touch(down,MotionEvent.ACTION_UP,x-end,x+end,y,1);settle();
+        }
     }
     private void pan(FilamentMapView renderer){Rect r=viewport(renderer);float x=r.exactCenterX(),y=r.top+r.height()*.45f;long down=SystemClock.uptimeMillis();touch(down,MotionEvent.ACTION_DOWN,x,0,y,1);for(int i=1;i<=8;i++)touch(down,MotionEvent.ACTION_MOVE,x+i*6,0,y,1);touch(down,MotionEvent.ACTION_UP,x+48,0,y,1);}
     private void pair(String name)throws Exception{surfaceCapture();Files.copy(new File(dir,"surface.png").toPath(),new File(dir,name+"-surface.png").toPath(),StandardCopyOption.REPLACE_EXISTING);capture(name+"-ui");log(name+"\n"+host.report());}
@@ -61,7 +72,7 @@ public final class NativeLandmarks128Instrumentation extends SceneInstrumentatio
         getTargetContext().getSharedPreferences("map-renderer",0).edit().putBoolean("enabled",false).putString("quality","MEDIUM").commit();
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();host=(MapHost)field(activity,"map");world=SessionProbe.view(activity);byte[] before=authority();
         runOnMainSync(()->{invoke("closePanel",new Class<?>[0]);host.setGridShown(false);});
-        String label=mode.equals("hukou")?"黄河壶口瀑布":mode.equals("southwest")?"西南山涧瀑布":mode.equals("lushan")?"庐山区域瀑布":mode.equals("greatwall")?"北方长城":mode.equals("taihu")?"太湖烟波":"泰山区域瀑布";
+        String label=mode.equals("hukou")?"黄河壶口瀑布":mode.equals("southwest")?"西南山涧瀑布":mode.equals("lushan")?"庐山区域瀑布":mode.equals("greatwall")?"北方长城":mode.equals("taihu")?"太湖烟波":mode.equals("poison")?"西南毒泉":"泰山区域瀑布";
         tapText("视图");tapText("山河地标");capture(mode+"-landmark-menu-ui");tapText(label);
         check(host.is3D(),"normal landmark menu initializes native 3D");FilamentMapView renderer=(FilamentMapView)field(host,"spatial");ready();
         var entry=LandscapeLandmarks.ALL.stream().filter(e->e.label().equals(label)).findFirst().orElseThrow();Hex at=MapCoordinates.fromNationalSource(world,new game.sanguo.core.map.SourceGridCoord(entry.x(),entry.y()));
@@ -77,7 +88,19 @@ public final class NativeLandmarks128Instrumentation extends SceneInstrumentatio
         int water=0,foam=0,wall=0,shore=0;for(Object gpu:((Map<?,?>)field(renderer,"vegetation")).values()){
             SceneMesh m=(SceneMesh)field(gpu,"source");for(int i=0;i<m.uv.length;i+=2){float u=m.uv[i],v=m.uv[i+1];if(mode.equals("hukou")?u>.375f&&u<.5f:u>.625f&&u<.75f)water++;if(u>.5f&&u<.625f&&v>.65f)foam++;int k=i/2*7;if(m.vertices[k+3]==.98f&&m.vertices[k+4]==.87f&&m.vertices[k+5]==.69f)wall++;Hex cell=ground.grid.cell(m.vertices[k],m.vertices[k+2]);if(ground.valid(cell)&&ground.terrain[cell.r*ground.width+cell.q]==World.Terrain.NON_NAVIGABLE_WATER.ordinal()&&((int)(u*8)==0||(int)(u*8)==6))shore++;}
         }
-        if(mode.equals("greatwall"))check(wall>0,"actual resident GPU earth wall survives normal zoom and pan");
+        if(mode.equals("poison")){
+            int hazard=0;
+            for(Object gpu:((Map<?,?>)field(renderer,"terrain")).values())if((Boolean)field(gpu,"shown")){
+                SceneMesh m=(SceneMesh)field(gpu,"source");if(m.surfaceData==null)continue;
+                for(int k=0;k<m.vertices.length/7;k++)if(m.surfaceData[k*8+7]>1.05f){
+                    Hex cell=ground.grid.cell(m.vertices[k*7],m.vertices[k*7+2]);
+                    if(ground.valid(cell)&&ground.terrain[cell.r*ground.width+cell.q]==World.Terrain.POISON.ordinal())hazard++;
+                }
+            }
+            check(hazard>0,"real visible GPU terrain carries poison-spring material signal");
+            check(field(renderer,"poisonMaterialGround")==ground,"admitted material layout matches actual Ground");
+        }
+        else if(mode.equals("greatwall"))check(wall>0,"actual resident GPU earth wall survives normal zoom and pan");
         else if(mode.equals("taihu"))check(shore>0,"actual resident GPU shore dressing survives normal zoom and pan");
         else check(water>0&&foam>0,"actual resident GPU fall and foam survive normal zoom and pan");
         runOnMainSync(()->host.setGridShown(true));settle();ready();pair(mode+"-grid-on");

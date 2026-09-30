@@ -1,0 +1,3 @@
+Exception in thread "main" java.lang.AssertionError: current map61; reconstruct actual map59 ledger, unchanged CityAtlas56
+	at game.sanguo.core.Reference59Test.check(Reference59Test.java:11)
+	at game.sanguo.core.Reference59Test.main(Reference59Test.java:30)
