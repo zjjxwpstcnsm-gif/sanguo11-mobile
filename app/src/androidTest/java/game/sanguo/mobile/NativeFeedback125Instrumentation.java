@@ -19,6 +19,7 @@ public final class NativeFeedback125Instrumentation extends SceneInstrumentation
     private byte[] authority(){byte[][] b={null};runOnMainSync(()->{try{b[0]=((GameApplication)activity.getApplication()).host().capture();}catch(IOException e){throw new RuntimeException(e);}});return b[0];}
     private Button button(View root,String tag){if(tag.equals(root.getTag())&&root instanceof Button)return (Button)root;if(root instanceof ViewGroup){ViewGroup group=(ViewGroup)root;for(int i=0;i<group.getChildCount();i++){Button b=button(group.getChildAt(i),tag);if(b!=null)return b;}}return null;}
     private boolean hasText(View root,String text){if(root instanceof android.widget.TextView&&((android.widget.TextView)root).getText().toString().startsWith(text))return true;if(root instanceof ViewGroup)for(int i=0;i<((ViewGroup)root).getChildCount();i++)if(hasText(((ViewGroup)root).getChildAt(i),text))return true;return false;}
+    private Button textButton(View root,String text){if(root instanceof Button&&((Button)root).getText().toString().startsWith(text))return (Button)root;if(root instanceof ViewGroup)for(int i=0;i<((ViewGroup)root).getChildCount();i++){Button b=textButton(((ViewGroup)root).getChildAt(i),text);if(b!=null)return b;}return null;}
     private void installedForce()throws Exception{
         World force=DisplacementFixture.create("mountain",World.Weapon.CAVALRY);force.unit(2).status=War.Status.NORMAL;force.unit(2).statusTurns=0;
         force.contests.configure(1,new Contests.Profile(Debate.Temper.RASH,0,0));force.strategy.setSeed(29016L+55L*982451653L);
@@ -28,8 +29,11 @@ public final class NativeFeedback125Instrumentation extends SceneInstrumentation
         check(Arrays.equals(SaveCodec.encode(expected),authority()),"installed force session full save/RNG equals headless");
         check(SaveCodec.decode(authority()).contests.busy(),"installed forced session survives reload");
         View panel=(View)field(activity,"panelHost");boolean[] shown={false};runOnMainSync(()->shown[0]=hasText(panel,"单挑 · 第"));check(shown[0],"existing normal ContestUi visibly opened");capture("battle-forced-duel-ui-2d");
+        Contests.Session step=expected.contests.current();check(expected.contests.duelMove(step.id(),step.revision(),Duel.Stance.SPIRIT,Duel.Move.EXCHANGE,-1).ok,"headless UI exchange");
+        runOnMainSync(()->{Button exchange=textButton(panel,"交锋");check(exchange!=null&&exchange.isEnabled()&&exchange.performClick(),"existing real ContestUi exchange callback");});settle();
+        check(Arrays.equals(SaveCodec.encode(expected),authority()),"normal UI exchange command full save and RNG match");capture("battle-forced-duel-exchange-2d");
         Contests.Session cs=expected.contests.current();check(expected.contests.concede(cs.id(),cs.revision()).ok,"headless settlement");
-        runOnMainSync(()->{check(SessionProbe.command(activity,w->{Contests.Session c=w.contests.current();return w.contests.concede(c.id(),c.revision());}).ok,"installed existing concede settles");activity.refresh();});settle();
+        runOnMainSync(()->{World view=SessionProbe.view(activity);Contests.Session c=view.contests.current();check(activity.executeContest(view,state->game.sanguo.api.ContestCommand.concede(state,c.id(),c.revision())).ok(),"installed typed existing concede settles");activity.refresh();});settle();
         check(Arrays.equals(SaveCodec.encode(expected),authority()),"installed force settlement entire save/RNG matches");log("PASS INSTALLED_FORCE 2D actual GameSession, existing ContestUi, complete save/load and settlement");
     }
     private void installedBattle()throws Exception{

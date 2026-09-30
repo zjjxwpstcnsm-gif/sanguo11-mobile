@@ -552,6 +552,20 @@ public final class MainActivity extends Activity {
         if(result.ok&&map!=null){map.playCommandEffects(effects,before);map.commandEffectSpeed(getPreferences(MODE_PRIVATE).getInt("turnPlaybackSpeed",1));}
         return result;
     }
+    CommandResult executeContest(World expected,java.util.function.Function<StateToken,ContestCommand> command){
+        if(!currentWorld(expected)){message("命令未执行","局面已变化，请重新选择");return new CommandResult(CommandResult.Error.STALE_REVISION,"局面已变化",gameHost.session().state(),null);}
+        dispatchingCommand=true;CommandResult result;
+        try{result=gameHost.session().execute(command.apply(legacyView.state));bindSession();}
+        finally{dispatchingCommand=false;}
+        if(!result.ok()){message("命令未执行",result.detail);refresh();return result;}
+        map.invalidateScene();navigatorRevision=Long.MIN_VALUE;clearTacticPreview();pendingMarch=null;
+        unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();pickTitle="";
+        lastBattleReport=result.detail;battleReportWorld=world;reportLocation=null;
+        battleBanner.setText("对局结果 · 点此展开\n"+result.detail);battleBanner.setVisibility(View.VISIBLE);
+        refresh();save("auto",false);
+        if(world.gameOver())message(world.winner==world.player?"战场胜利":"战场战败","本局结束，可从菜单重新选择剧本。");
+        return result;
+    }
     void executeCity(World expected,GameCommand.Operation operation,int city,int officer){
         if(!currentWorld(expected)){message("命令未执行","局面已变化，请重新选择");return;}
         dispatchingCommand=true;CommandResult result;

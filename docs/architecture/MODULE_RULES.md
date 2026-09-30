@@ -41,3 +41,7 @@ facts (legacy projection payload) in app. Their additional allowlist entries are
 paired with a static import/authority-call guard in check-architecture.py. They
 never accept World, session, RNG or save APIs. Gameplay ownership remains
 GameSession; no game-api/game-runtime dependency or authority change is introduced.
+
+### v125 current-contest command boundary
+
+`ContestCommand` contains only the five operations already called by ContestUi: duel move, debate card/rethink/finish and concede. GameSession validates the normal state token plus current contest ID/revision, copies authority, runs the existing core operation and installs only a valid success. Ordinary typed/legacy commands and turn tickets remain blocked during contests. No World or callback enters game-api, no save schema changes, and no whitelist entry is widened. `scripts/test-feedback125.sh` additionally runs full-save/RNG comparisons and stale/type/turn rejection checks through this real boundary.
