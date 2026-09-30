@@ -212,10 +212,25 @@ final class Vegetation {
             for(int i=0;i<model.vertices.length;i+=7){
                 float x=tx+dx*model.vertices[i+2]+sx*model.vertices[i];
                 float z=tz+dz*model.vertices[i+2]+sz*model.vertices[i];
-                float y=Math.max(g.surface.meshHeight(x,z),top*model.vertices[i+1])+.018f;
+                float y=Math.max(g.surface.meshHeight(x,z),top*model.vertices[i+1])+.03f;
                 v[floats++]=x;v[floats++]=y;v[floats++]=z;
                 for(int k=3;k<7;k++)v[floats++]=model.vertices[i+k];
             }
+            // Vertex grounding alone can leave a ribbon triangle crossing a
+            // terrain fan ridge between its corners. Lift shared vertices by
+            // each face's sampled deficit before emitting the existing mesh.
+            float[] lift=new float[model.vertices.length/7];
+            for(int i=0;i<model.indices.length;i+=3){
+                int a=offset+model.indices[i],b=offset+model.indices[i+1],c=offset+model.indices[i+2];float needed=0;
+                for(int p=0;p<=6;p++)for(int q=0;q<=6-p;q++){
+                    float u=p/6f,t=q/6f,w=1-u-t;
+                    float x=v[a*7]*u+v[b*7]*t+v[c*7]*w,z=v[a*7+2]*u+v[b*7+2]*t+v[c*7+2]*w;
+                    float y=v[a*7+1]*u+v[b*7+1]*t+v[c*7+1]*w;
+                    needed=Math.max(needed,g.surface.meshHeight(x,z)+.03f-y);
+                }
+                for(int k=0;k<3;k++){int vertex=model.indices[i+k];lift[vertex]=Math.max(lift[vertex],needed);}
+            }
+            for(int i=0;i<lift.length;i++)v[(offset+i)*7+1]+=lift[i];
             for(int i:model.indices)indices[indexCount++]=offset+i;
             System.arraycopy(model.uv,0,uv,texels,model.uv.length);texels+=model.uv.length;
         }

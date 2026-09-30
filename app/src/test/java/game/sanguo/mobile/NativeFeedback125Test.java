@@ -33,6 +33,17 @@ public final class NativeFeedback125Test {
                     check(m.vertices[i/2*7+1]>=s.ground.surface.meshHeight(m.vertices[i/2*7],m.vertices[i/2*7+2]),"water does not disappear below canonical surface");
                 }
                 for(int i=0;i<m.distant.uv.length;i+=2)if(m.distant.uv[i]>.625f&&m.distant.uv[i]<.75f)far++;
+                for(SceneMesh waterMesh:new SceneMesh[]{m,m.distant})for(int i=0;i<waterMesh.indices.length;i+=3){
+                    int a0=waterMesh.indices[i],a1=waterMesh.indices[i+1],a2=waterMesh.indices[i+2];
+                    if(waterMesh.uv[a0*2]<=.625f||waterMesh.uv[a0*2]>=.75f)continue;
+                    for(int p=0;p<=6;p++)for(int q=0;q<=6-p;q++){
+                        float u=p/6f,t=q/6f,v=1-u-t;
+                        float px=waterMesh.vertices[a0*7]*u+waterMesh.vertices[a1*7]*t+waterMesh.vertices[a2*7]*v;
+                        float pz=waterMesh.vertices[a0*7+2]*u+waterMesh.vertices[a1*7+2]*t+waterMesh.vertices[a2*7+2]*v;
+                        float py=waterMesh.vertices[a0*7+1]*u+waterMesh.vertices[a1*7+1]*t+waterMesh.vertices[a2*7+1]*v;
+                        check(py>=s.ground.surface.meshHeight(px,pz)+.029f,"ribbon face stays above terrain ridge between corners");
+                    }
+                }
             }
             check(foam>0&&far>0&&far<foam,"near/far cascade both present with bounded lower detail");
             check(Arrays.equals(before,SaveCodec.encode(w)),"landscape build preserves full authority/RNG");

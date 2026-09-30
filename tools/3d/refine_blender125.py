@@ -18,9 +18,11 @@ width,height=image.size;pixels=list(image.pixels[:])
 for y in range(height):
     for x in range(width*5//8,width*6//8):
         u=(x-width*5//8)/(width/8);v=y/height
-        foam=.5+.5*math.sin(u*50+math.sin(v*18)*.6)
+        foam=(.5+.5*math.sin(u*50+math.sin(v*18)*.6))**12
         noise=.5+.5*math.sin(u*81+v*73)
-        c=(.66+.26*foam,.82+.15*foam,.83+.14*foam)
+        # Blender pixels are linear, then saved as sRGB. Restrained blue-green
+        # water with thin foam streaks avoids the previous overexposed white band.
+        c=(.08+.35*foam,.24+.35*foam,.29+.35*foam)
         i=(y*width+x)*4;pixels[i:i+4]=[min(1,k+.018*noise) for k in c]+[1]
 image.pixels=pixels;image.filepath_raw=str(atlas_path);image.file_format='PNG';image.save()
 objects=[]
@@ -50,7 +52,7 @@ for kind in ['rock-ledge','rock-talus','cascade-narrow','cascade-wide']:
             # Width X, height Y and downstream Z are normalized independently.
             # Water ribbons have irregular lips and a shallow fan of foam at foot.
             columns=8 if lod==0 else 4;rows=20 if lod==0 else 10
-            breadth=.27 if kind=='cascade-narrow' else .49
+            breadth=.18 if kind=='cascade-narrow' else .32
             for r in range(rows+1):
                 t=r/rows;drop=1-t+.022*math.sin(t*math.pi*8)*(1-t)
                 for k in range(columns+1):

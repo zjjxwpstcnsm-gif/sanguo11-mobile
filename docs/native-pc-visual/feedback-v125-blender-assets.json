@@ -5,8 +5,8 @@
   "assets": [
     {
       "path": "app/src/main/assets/3d/field/v125/rock-ledge-lod0.glb",
-      "sha256": "4f2b902431517f2d04e377836b7f995dac457f85c6c04260a88672db89c26502",
-      "bytes": 49728,
+      "sha256": "f5b596cb9fce2c7edec2925b017f54ee7d8c41c4cc55179c36e1cefa7aae93a4",
+      "bytes": 49928,
       "triangles": 176,
       "vertices": 528,
       "primitives": 1,
@@ -30,8 +30,8 @@
     },
     {
       "path": "app/src/main/assets/3d/field/v125/rock-ledge-lod1.glb",
-      "sha256": "ccfa9fd0082201759196ae2a6089a5c96e6d75f44f28c0037798f1f794d12b19",
-      "bytes": 31004,
+      "sha256": "edf8f61d996399f3509c5b3c008faf6e626d43d804981a9af1bafa7396d308fd",
+      "bytes": 31204,
       "triangles": 56,
       "vertices": 168,
       "primitives": 1,
@@ -55,8 +55,8 @@
     },
     {
       "path": "app/src/main/assets/3d/field/v125/rock-talus-lod0.glb",
-      "sha256": "22997d9d4fdeeade35974b7441f2be3f0429cf6e2c2a02621006e3afbeaa2613",
-      "bytes": 104656,
+      "sha256": "0710de02b02a6536d9960b7797ca638623d095fd2df44f105dd7067c55eba700",
+      "bytes": 104856,
       "triangles": 528,
       "vertices": 1584,
       "primitives": 1,
@@ -80,8 +80,8 @@
     },
     {
       "path": "app/src/main/assets/3d/field/v125/rock-talus-lod1.glb",
-      "sha256": "3ff18b71df304eb7ab9db16a74532966dda546696ece2c9726763cde1641c62c",
-      "bytes": 35376,
+      "sha256": "21a890ada949975e1874b637cd69452f06d4f7d1d40231cddc66304c9a5f7891",
+      "bytes": 35576,
       "triangles": 84,
       "vertices": 252,
       "primitives": 1,
@@ -105,16 +105,16 @@
     },
     {
       "path": "app/src/main/assets/3d/field/v125/cascade-narrow-lod0.glb",
-      "sha256": "98f3a857e73a3b37c5e8ad8f9529dbd947c4fdb15c704e725e3861faa6bafe68",
-      "bytes": 73740,
+      "sha256": "29bce6157a2093b51d79538fb6684d9feac563a8e0c5779c8627ef3c6f9d7526",
+      "bytes": 73940,
       "triangles": 330,
       "vertices": 990,
       "primitives": 1,
       "bounds": [
-        -0.17820000648498535,
+        -0.12031397223472595,
         0.0,
         0.0,
-        0.17820000648498535,
+        0.11879999935626984,
         1.0075039863586426,
         1.100000023841858
       ],
@@ -130,16 +130,16 @@
     },
     {
       "path": "app/src/main/assets/3d/field/v125/cascade-narrow-lod1.glb",
-      "sha256": "f7b7e4b69372a68925ba7f3ae660e371ad8cf94fc61914e7e723ddf88a6fbe3c",
-      "bytes": 35672,
+      "sha256": "6092b87fdcde38a1cf4bacf65c69f26bd84a3a78db06c6e266a96cecd4a7d3dd",
+      "bytes": 35872,
       "triangles": 86,
       "vertices": 258,
       "primitives": 1,
       "bounds": [
-        -0.17820000648498535,
+        -0.12031397223472595,
         0.0,
         0.0,
-        0.17820000648498535,
+        0.11879999935626984,
         1.0075039863586426,
         1.100000023841858
       ],
@@ -155,16 +155,16 @@
     },
     {
       "path": "app/src/main/assets/3d/field/v125/cascade-wide-lod0.glb",
-      "sha256": "c701d4b55a3fa2ccbb0ab69f8492de8277b8c1e95535628abf5f77e3b7fc93ca",
-      "bytes": 73740,
+      "sha256": "235f913b21673a931c556d6b9990c2dc1c900e2c29958f75b9bc81966b554902",
+      "bytes": 73940,
       "triangles": 330,
       "vertices": 990,
       "primitives": 1,
       "bounds": [
-        -0.32339999079704285,
+        -0.21119999885559082,
         0.0,
         0.0,
-        0.32339999079704285,
+        0.21119999885559082,
         1.0075039863586426,
         1.100000023841858
       ],
@@ -180,16 +180,16 @@
     },
     {
       "path": "app/src/main/assets/3d/field/v125/cascade-wide-lod1.glb",
-      "sha256": "3bcd2d72e8cce46a08ded2e000c3aa5b92362198e2bbabb648e2c26305c3830b",
-      "bytes": 35672,
+      "sha256": "a9d8461d60dc223e3a44c8fd6b9d6efe0c0e1cebb9b2f2c23a03817ad7f649c4",
+      "bytes": 35872,
       "triangles": 86,
       "vertices": 258,
       "primitives": 1,
       "bounds": [
-        -0.32339999079704285,
+        -0.21119999885559082,
         0.0,
         0.0,
-        0.32339999079704285,
+        0.21119999885559082,
         1.0075039863586426,
         1.100000023841858
       ],
@@ -206,7 +206,7 @@
   ],
   "atlas": {
     "path": "app/src/main/assets/3d/field/v125/scenery-atlas.png",
-    "sha256": "56e3d903d680b069354d192a34fcbf5676e2e1c4c6c9609b0c4766228a817b39",
-    "bytes": 20958
+    "sha256": "1f6f08e4103bacbb95cebc00b396b033025c9dc5a2eaea7f45a062f0dd89ae6a",
+    "bytes": 21158
   }
 }
