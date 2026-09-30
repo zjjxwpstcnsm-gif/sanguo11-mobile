@@ -39,7 +39,11 @@ public final class DisplacementTest {
             World w=DisplacementFixture.create("mountain",t.weapon);check(w.war.tacticError(1,2,t)==null,t+" blockage is an effect, not cast rejection");ok(w.war.tactic(1,2,t));check(w.unit(1).hex.equals(new Hex(5,6))&&w.unit(2).hex.equals(new Hex(6,6)),t+" no ghost motion");
         }
         World blocked=DisplacementFixture.create("mountain",World.Weapon.CAVALRY);byte[] before=bytes(blocked);
-        check(blocked.war.tacticError(1,2,War.Tactic.BREAKTHROUGH).contains("身后落点"),"breakthrough names required landing");check(!blocked.war.tactic(1,2,War.Tactic.BREAKTHROUGH).ok&&Arrays.equals(before,bytes(blocked)),"blocked breakthrough is atomic");
+        check(blocked.war.tacticError(1,2,War.Tactic.BREAKTHROUGH)==null,"breakthrough landing is optional");
+        Displacement.Preview preview=blocked.war.tacticPreview(1,2,War.Tactic.BREAKTHROUGH);
+        check(preview.valid()&&preview.blocked.equals(new Hex(7,6))&&preview.actorPath.size()==1,"blocked breakthrough preview has no ghost motion");
+        ok(blocked.war.tactic(1,2,War.Tactic.BREAKTHROUGH));
+        check(blocked.unit(1).hex.equals(new Hex(5,6))&&blocked.unit(2).troops<8000,"blocked breakthrough damages without moving");
         World protectedWorld=DisplacementFixture.create("ally");before=bytes(protectedWorld);check(!protectedWorld.war.tactic(1,3,War.Tactic.THRUST).ok&&Arrays.equals(before,bytes(protectedWorld)),"cannot directly target protected unit");
     }
     private static void learn(World w,int owner,Campaign.Tech t){if(t.prerequisite!=null)learn(w,owner,t.prerequisite);w.campaign.finishTech(owner,t);}

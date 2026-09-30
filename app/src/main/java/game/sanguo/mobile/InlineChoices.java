@@ -20,6 +20,7 @@ final class InlineChoices<T> extends LinearLayout {
             T item=options.get(i);Button button=CompactButtons.create(a);button.setText(label.apply(item));
             button.setGravity(Gravity.CENTER);button.setMaxLines(2);button.setTextSize(11);
             button.setPadding(UiTheme.dp(a,2),UiTheme.dp(a,7),UiTheme.dp(a,2),UiTheme.dp(a,7));button.setEnabled(enabled.test(item));
+            if(!button.isEnabled()){button.setTextColor(0xff888888);button.setAlpha(.55f);}
             if(GameIcon.supports(item)){
                 android.graphics.drawable.Drawable icon=GameIcon.drawable(a,w,item);int size=UiTheme.dp(a,28);
                 icon.setBounds(0,0,size,size);button.setCompoundDrawables(null,icon,null,null);button.setCompoundDrawablePadding(UiTheme.dp(a,2));
@@ -33,6 +34,6 @@ final class InlineChoices<T> extends LinearLayout {
     }
     void select(T selected){for(Map.Entry<T,Button> e:buttons.entrySet()){
         boolean active=Objects.equals(selected,e.getKey());Button b=e.getValue();b.setSelected(active);
-        b.setContentDescription(label.apply(e.getKey()).replace('\n',' ')+(active?"，已选择":b.isEnabled()?"，点选":"，库存不足"));
+        b.setContentDescription(label.apply(e.getKey()).replace('\n',' ')+(active?"，已选择":b.isEnabled()?"，点选":"，不可选"));
     }}
 }

@@ -1,0 +1,212 @@
+{
+  "blender": "4.2.3 LTS",
+  "generator": "tools/3d/refine_blender125.py",
+  "license": "CC0-1.0 original geometry and authored cascade texture; retained project CC0 atlas",
+  "assets": [
+    {
+      "path": "app/src/main/assets/3d/field/v125/rock-ledge-lod0.glb",
+      "sha256": "4f2b902431517f2d04e377836b7f995dac457f85c6c04260a88672db89c26502",
+      "bytes": 49728,
+      "triangles": 176,
+      "vertices": 528,
+      "primitives": 1,
+      "bounds": [
+        -0.3789844810962677,
+        0.0,
+        -0.19568058848381042,
+        0.4467570185661316,
+        0.3199999928474426,
+        0.20801524817943573
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/rock-ledge-lod1.glb",
+      "sha256": "ccfa9fd0082201759196ae2a6089a5c96e6d75f44f28c0037798f1f794d12b19",
+      "bytes": 31004,
+      "triangles": 56,
+      "vertices": 168,
+      "primitives": 1,
+      "bounds": [
+        -0.42118099331855774,
+        0.0,
+        -0.16249921917915344,
+        0.4467570185661316,
+        0.3199999928474426,
+        0.19478164613246918
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/rock-talus-lod0.glb",
+      "sha256": "22997d9d4fdeeade35974b7441f2be3f0429cf6e2c2a02621006e3afbeaa2613",
+      "bytes": 104656,
+      "triangles": 528,
+      "vertices": 1584,
+      "primitives": 1,
+      "bounds": [
+        -0.31178170442581177,
+        0.0,
+        -0.24382320046424866,
+        0.2990536093711853,
+        0.14000000059604645,
+        0.23311777412891388
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/rock-talus-lod1.glb",
+      "sha256": "3ff18b71df304eb7ab9db16a74532966dda546696ece2c9726763cde1641c62c",
+      "bytes": 35376,
+      "triangles": 84,
+      "vertices": 252,
+      "primitives": 1,
+      "bounds": [
+        -0.21202914416790009,
+        0.0,
+        -0.23215174674987793,
+        0.1891999989748001,
+        0.14000000059604645,
+        0.15166404843330383
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/cascade-narrow-lod0.glb",
+      "sha256": "98f3a857e73a3b37c5e8ad8f9529dbd947c4fdb15c704e725e3861faa6bafe68",
+      "bytes": 73740,
+      "triangles": 330,
+      "vertices": 990,
+      "primitives": 1,
+      "bounds": [
+        -0.17820000648498535,
+        0.0,
+        0.0,
+        0.17820000648498535,
+        1.0075039863586426,
+        1.100000023841858
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/cascade-narrow-lod1.glb",
+      "sha256": "f7b7e4b69372a68925ba7f3ae660e371ad8cf94fc61914e7e723ddf88a6fbe3c",
+      "bytes": 35672,
+      "triangles": 86,
+      "vertices": 258,
+      "primitives": 1,
+      "bounds": [
+        -0.17820000648498535,
+        0.0,
+        0.0,
+        0.17820000648498535,
+        1.0075039863586426,
+        1.100000023841858
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/cascade-wide-lod0.glb",
+      "sha256": "c701d4b55a3fa2ccbb0ab69f8492de8277b8c1e95535628abf5f77e3b7fc93ca",
+      "bytes": 73740,
+      "triangles": 330,
+      "vertices": 990,
+      "primitives": 1,
+      "bounds": [
+        -0.32339999079704285,
+        0.0,
+        0.0,
+        0.32339999079704285,
+        1.0075039863586426,
+        1.100000023841858
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/cascade-wide-lod1.glb",
+      "sha256": "3bcd2d72e8cce46a08ded2e000c3aa5b92362198e2bbabb648e2c26305c3830b",
+      "bytes": 35672,
+      "triangles": 86,
+      "vertices": 258,
+      "primitives": 1,
+      "bounds": [
+        -0.32339999079704285,
+        0.0,
+        0.0,
+        0.32339999079704285,
+        1.0075039863586426,
+        1.100000023841858
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "atlas": {
+    "path": "app/src/main/assets/3d/field/v125/scenery-atlas.png",
+    "sha256": "56e3d903d680b069354d192a34fcbf5676e2e1c4c6c9609b0c4766228a817b39",
+    "bytes": 20958
+  }
+}

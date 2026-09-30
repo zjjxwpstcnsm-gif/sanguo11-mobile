@@ -5,7 +5,7 @@ import java.util.*;
 
 /** Opaque merged vegetation: one renderable per visible 8x8 chunk, never one per tree. */
 final class Vegetation {
-    static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=3, ASSET_VERSION=124;
+    static final int CHUNK=8,SEED=0x3111203, PLACEMENT_VERSION=3, ASSET_VERSION=125;
     static boolean forest(MapSceneSnapshot.Ground ground,Hex h){
         return ground.valid(h)&&ground.terrain[h.r*ground.width+h.q]==World.Terrain.FOREST.ordinal();
     }
@@ -49,8 +49,8 @@ final class Vegetation {
         // At national scale retain every far triangle, but batch 16x16 cells.
         // Near/mid streaming retains its existing 8x8 granularity and edit halo.
         int chunk=window.span>=40?16:CHUNK;float radius=chunk*.75f+1;
-        SceneMesh[][] models=new SceneMesh[4][2];
-        String[] names={"tree","tree-upland","shrub","rock-strata-v121"};
+        SceneMesh[][] models=new SceneMesh[5][2];
+        String[] names={"tree","tree-upland","shrub","rock-ledge","rock-talus"};
         for(int i=0;i<names.length;i++)for(int lod=window.span<14?0:1;lod<2;lod++)models[i][lod]=assets.mesh(names[i]+"-lod"+lod);
         Map<Long,SceneMesh> cache=new HashMap<>();for(SceneMesh m:previous)cache.put(key(m.chunkQ,m.chunkR),m);
         List<SceneMesh> result=new ArrayList<>();
@@ -70,6 +70,12 @@ final class Vegetation {
             Batch near=new Batch(g),far=new Batch(g);
             for(int rr=r;rr<Math.min(r+chunk,g.height);rr++)for(int qq=q;qq<Math.min(q+chunk,g.width);qq++){
                 Hex h=new Hex(qq,rr);if(!g.valid(h))continue;
+                int cascade=cascadeRegion(g,h);
+                if(cascade>=0){
+                    String id=cascade==1?"cascade-wide":"cascade-narrow";
+                    if(detailed)near.cascade(h,excluded,assets.mesh(id+"-lod0"));
+                    far.cascade(h,excluded,assets.mesh(id+"-lod1"));
+                }
                 // Only existing adjacent logical road cells connect. Each undirected edge
                 // belongs to its lower cell ID, including edges that cross a chunk boundary.
                 if(path(g,h))for(Hex n:h.neighbors())if(g.valid(n)&&path(g,n)&&key(h.q,h.r)<key(n.q,n.r)){
@@ -93,6 +99,18 @@ final class Vegetation {
         return false;
     }
     private static long key(int q,int r){return ((long)r<<32)|(q&0xffffffffL);}
+    // Presentation anchors selected on this project's recovered source map.
+    // Historical PC waterfall exact cells are still REFERENCE_MISSING. Crops
+    // use the same source mapping; unrelated/custom maps never inherit them.
+    static int cascadeRegion(MapSceneSnapshot.Ground g,Hex h){
+        if(g.sourceMapWidth!=200||g.mapIdentity!="san11-national".hashCode()
+            ||!g.valid(h)||g.terrain[h.r*g.width+h.q]!=World.Terrain.NON_NAVIGABLE_WATER.ordinal())return -1;
+        game.sanguo.core.map.SourceGridCoord s=g.source(h);
+        if(s.x==147&&s.y==59)return 0; // Taishan region, northwest of Xiapi.
+        if(s.x==31&&s.y==183)return 1; // Southwest mountain waterway.
+        if(s.x==119&&s.y==146)return 2; // Lushan/Jiangnan mountain region.
+        return -1;
+    }
     static boolean path(MapSceneSnapshot.Ground g,Hex h){
         if(!g.valid(h))return false;int t=g.terrain[h.r*g.width+h.q];
         return t==World.Terrain.ROAD.ordinal()||t==World.Terrain.PLANK_ROAD.ordinal()||t==World.Terrain.MOUNTAIN_PATH.ordinal();
@@ -124,7 +142,7 @@ final class Vegetation {
             float chance=rock?.24f:i>=3?.76f+.18f*cluster:density(g,x,z)*cluster;
             if((mix(hash^0x55ab)&65535)/65535f>chance)continue;
             float regional=.5f+.35f*(float)(Math.sin(x*.055)*Math.cos(z*.047));
-            int family=rock?3:i==2?2:((hash>>>22)&255)/255f<regional?0:1;
+            int family=rock?3+((hash>>>21)&1):i==2?2:((hash>>>22)&255)/255f<regional?0:1;
             out.add(new Placement(x,z,LandscapeProfile.sceneryScale(family,.65f+((hash>>>4)&255)/255f*.30f),(hash&65535)/65535f*6.283185f,family,i<3));
         }
         return out;
@@ -165,11 +183,41 @@ final class Vegetation {
                 float x=(model.vertices[i]*cs+model.vertices[i+2]*sn)*a.scale+a.x;
                 float z=(-model.vertices[i]*sn+model.vertices[i+2]*cs)*a.scale+a.z;
                 // Rock foot conforms per vertex, embedding the bottom below the canonical surface.
-                float y=a.family==3?g.surface.meshHeight(x,z)-.035f:base-.015f;
+                float y=a.family>=3?g.surface.meshHeight(x,z)-.035f:base-.015f;
                 v[floats++]=x;v[floats++]=model.vertices[i+1]*a.scale+y;v[floats++]=z;
                 for(int k=3;k<7;k++)v[floats++]=model.vertices[i+k];
             }
             for(int i:model.indices)indices[indexCount++]=offset+i;System.arraycopy(model.uv,0,uv,texels,model.uv.length);texels+=model.uv.length;
+        }
+        void cascade(Hex water,Set<Hex> excluded,SceneMesh model){
+            if(excluded.contains(water)||g.bases.contains(water))return;
+            float bx=g.grid.x(water),bz=g.grid.z(water),tx=0,tz=0,top=0;
+            // Find an entirely non-enterable uphill corridor. No river, height
+            // override, road, unit or site cell is added or changed.
+            for(Hex n:water.neighbors())if(g.valid(n)&&g.terrain[n.r*g.width+n.q]==World.Terrain.MOUNTAIN.ordinal()){
+                float dx=g.grid.x(n)-bx,dz=g.grid.z(n)-bz;
+                float x=bx+dx*2.1f,z=bz+dz*2.1f;
+                boolean safe=true;
+                for(int k=1;k<=8;k++){
+                    Hex h=g.grid.cell(bx+dx*2.1f*k/8,bz+dz*2.1f*k/8);
+                    if(!g.valid(h)||excluded.contains(h)||g.bases.contains(h)
+                        ||!h.equals(water)&&g.terrain[h.r*g.width+h.q]!=World.Terrain.MOUNTAIN.ordinal()){safe=false;break;}
+                }
+                if(!safe)continue;float y=g.surface.meshHeight(x,z);
+                if(y>top){top=y;tx=x;tz=z;}
+            }
+            if(top<.22f)return;
+            float dx=bx-tx,dz=bz-tz,len=(float)Math.hypot(dx,dz),sx=-dz/len,sz=dx/len;
+            int offset=floats/7;reserve(model.vertices.length,model.uv.length,model.indices.length);
+            for(int i=0;i<model.vertices.length;i+=7){
+                float x=tx+dx*model.vertices[i+2]+sx*model.vertices[i];
+                float z=tz+dz*model.vertices[i+2]+sz*model.vertices[i];
+                float y=Math.max(g.surface.meshHeight(x,z),top*model.vertices[i+1])+.018f;
+                v[floats++]=x;v[floats++]=y;v[floats++]=z;
+                for(int k=3;k<7;k++)v[floats++]=model.vertices[i+k];
+            }
+            for(int i:model.indices)indices[indexCount++]=offset+i;
+            System.arraycopy(model.uv,0,uv,texels,model.uv.length);texels+=model.uv.length;
         }
         boolean connection(Hex h,Hex n){
             return path(g,n)&&!(g.terrain[h.r*g.width+h.q]==World.Terrain.ROAD.ordinal()

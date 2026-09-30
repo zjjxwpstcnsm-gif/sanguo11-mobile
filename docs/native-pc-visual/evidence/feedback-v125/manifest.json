@@ -1,0 +1,15 @@
+{
+  "status": "PARTIAL",
+  "input_source": "42230940e267b985b6bcd2d0cefec0fae49cca88",
+  "main": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "apk_source": "PENDING_POST_COMMIT_BUILD",
+  "host": "PASS",
+  "installed": "NOT_RUN",
+  "visual": "REFERENCE_MISSING",
+  "arm64_physical": "NOT_RUN",
+  "inherited_failures": [
+    "CoreTest.logistics:75",
+    "DisplacementTest city deterministic replay"
+  ],
+  "next_phase_started": false
+}

@@ -66,6 +66,49 @@ public final class Contests {
         World.Unit a=w.unit(actor),b=w.unit(target);if(a==null||b==null)return 0;
         return Math.max(15,Math.min(90,60+(war(w.officer(b.officerId))-war(w.officer(a.officerId)))/2));
     }
+    private World.Officer cavalryOfficer(World.Unit unit){
+        return w.army.crew(unit).stream().filter(o->profile(o.id).temper!=Debate.Temper.TIMID)
+            .max(Comparator.comparingInt((World.Officer o)->war(o)).thenComparingInt(o->-o.id)).orElse(null);
+    }
+    private double cavalryScore(World.Officer officer){
+        int health=Math.max(40,100-injury(officer.id)*20),strength=war(officer);
+        // Community-documented base. Persistent out-of-duel stamina and exact
+        // individual treasure modifiers are unavailable: use existing injury HP
+        // and no speculative treasure bonus. See feedback-v125 rule research.
+        return (health+200)*strength*strength*.0000025
+            -(officer.role==Strategy.Role.RULER||strength>95?0:1);
+    }
+    public int cavalryChance(World.Unit a,World.Unit b){
+        if(busy()||w.gameOver()||a==null||b==null||w.unit(a.id)!=a||w.unit(b.id)!=b
+            ||a.weapon!=World.Weapon.CAVALRY||b instanceof Domestic.Mission||Army.siegeWeapon(b.weapon)
+            ||a.status!=War.Status.NORMAL||b.status!=War.Status.NORMAL||a.hex.distance(b.hex)!=1
+            ||w.army.water(a.hex)||w.army.water(b.hex)||!w.campaign.hostile(a.owner,b.owner)
+            ||nextId>=10000000||(long)a.troops>2L*b.troops||a.troops-b.troops>2500)return 0;
+        World.Officer officer=cavalryOfficer(a);if(officer==null)return 0;
+        Debate.Temper temper=profile(officer.id).temper;int hp=Math.max(40,100-injury(officer.id)*20);
+        if(hp<=(temper==Debate.Temper.CALM?70:temper==Debate.Temper.BOLD?60:50))return 0;
+        double left=0,right=0;for(World.Officer o:w.army.crew(a))left+=cavalryScore(o)*20;
+        for(World.Officer o:w.army.crew(b))right+=cavalryScore(o)*20;
+        if(left-right>30)return 0;
+        return Math.max(0,Math.min(100,(int)Math.floor(cavalryScore(officer)+(temper==Debate.Temper.BOLD?1:temper==Debate.Temper.RASH?3:0))));
+    }
+    boolean cavalry(World.Unit a,World.Unit b){
+        int chance=cavalryChance(a,b);if(chance==0||w.strategy.nextInt(100)>=chance)return false;
+        World.Officer opener=cavalryOfficer(a);
+        b.acted=true;session=new Session(nextId++,w.active,w.turn,a.id,b.id,-1);session.duel=new Duel(w,a,b);
+        for(int i=0;i<session.duel.left.size();i++)if(session.duel.left.get(i).officer==opener.id){
+            session.duel.leftIndex=i;session.duel.left.get(i).joined=true;break;
+        }
+        w.battleOutcome(opener.name+"发动强制单挑，伤害已结算，不额外消耗气力");
+        // AI turns cannot leave an interactive session blocking the turn worker.
+        // Resolve with the existing finite duel and settlement, never another combat rule.
+        if(a.owner!=w.player){
+            Duel duel=session.duel;
+            while(duel.winner==-2){duel.step(w,Duel.Stance.ATTACK,Duel.Move.EXCHANGE,-1);session.revision++;}
+            finishDuel();
+        }
+        return true;
+    }
     public World.Result challenge(int actor,int target){w.reports.prepare();
         String error=duelError(actor,target);if(error!=null)return w.fail(error);
         World.Unit a=w.unit(actor),b=w.unit(target);int chance=acceptance(actor,target);

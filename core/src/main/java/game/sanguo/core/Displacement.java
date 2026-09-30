@@ -56,7 +56,8 @@ public final class Displacement {
     String requiredError(World.Unit a,World.Unit b,Kind kind){
         int dq=b.hex.q-a.hex.q,dr=b.hex.r-a.hex.r;
         if(kind==Kind.HOOK){String error=stepError(a,a.hex,step(a.hex,-dq,-dr),-1,false,a);return error==null?null:"熊手：己方退路"+error;}
-        if(kind==Kind.BREAKTHROUGH){String error=stepError(a,b.hex,step(b.hex,dq,dr),-1,false,a);return error==null?null:"突破：敌军身后落点"+error;}
+        // Cavalry landing is an optional effect. Damage and the contest roll do
+        // not require a free cell behind the defender.
         return null;
     }
     Preview preview(World.Unit a,World.Unit b,Kind kind,String error,String heading){
@@ -70,7 +71,10 @@ public final class Displacement {
         if(kind==Kind.HOOK){
             ap.add(step(ah,-dq,-dr));String stop=stepError(b,bh,ah,a.id,false,a);
             if(stop==null)bp.add(ah);else{blocked=ah;text.append("\n目标拉动停止：").append(stop);}
-        }else if(kind==Kind.BREAKTHROUGH)ap.add(step(bh,dq,dr));
+        }else if(kind==Kind.BREAKTHROUGH){
+            Hex behind=step(bh,dq,dr);String stop=stepError(a,bh,behind,-1,false,a);
+            if(stop==null)ap.add(behind);else{blocked=behind;text.append("\n敌军身后受阻：").append(stop).append("；主伤害及强制单挑判定保留，己方不位移");}
+        }
         else for(int n=0;n<kind.steps;n++){
             Hex next=step(bh,dq,dr);String stop=stepError(b,bh,next,a.id,true,a);
             if(stop!=null){

@@ -29,9 +29,10 @@ final class WarUi {
     void tactics(World.Unit u){
         List<War.Tactic> list=new ArrayList<>();for(War.Tactic t:War.Tactic.values())if(t.weapon==u.weapon)list.add(t);
         if(list.isEmpty()){info("剑兵没有专属战法，可普攻或使用部队计略。");return;}
-        String[] labels=new String[list.size()];for(int i=0;i<labels.length;i++){War.Tactic t=list.get(i);labels[i]=t.label+" · 气力"+t.energy+" · "+War.rankLabel(t.rank)+"级";}
-        new AlertDialog.Builder(a).setTitle("战法 · 适性"+War.rankLabel(w.army.aptitude(u))).setItems(labels,(d,i)->{
-            War.Tactic tactic=list.get(i);List<World.Unit> targets=new ArrayList<>();for(World.Unit t:w.fieldUnits())if(w.war.tacticError(u.id,t.id,tactic)==null)targets.add(t);
+        int aptitude=w.army.aptitude(u);
+        ChoiceDialog.enabledChoices(a,w,"战法 · 适性"+War.rankLabel(aptitude),list,
+            t->t.label+" · 气力"+t.energy+" · "+War.rankLabel(t.rank)+"级"+(aptitude<t.rank?"\n适性不足":""),t->aptitude>=t.rank,tactic->{
+            List<World.Unit> targets=new ArrayList<>();for(World.Unit t:w.fieldUnits())if(w.war.tacticError(u.id,t.id,tactic)==null)targets.add(t);
             if(targets.isEmpty()){
                 List<World.Unit> nearby=new ArrayList<>();for(World.Unit t:w.fieldUnits())if(w.campaign.hostile(u.owner,t.owner))nearby.add(t);
                 nearby.sort(Comparator.comparingInt((World.Unit t)->u.hex.distance(t.hex)).thenComparingInt(t->t.id));
@@ -41,7 +42,7 @@ final class WarUi {
                 info(reasons.toString());return;
             }
             a.pickOnMap(tactic.label+" · 选择目标",u.hex,targets.stream().map(t->t.hex).collect(java.util.stream.Collectors.toList()),h->{World.Unit t=w.unitAt(h);if(t==null)return;a.showTacticPreview(w,w.war.tacticPreview(u.id,t.id,tactic),()->apply.execute(w,()->w.war.tactic(u.id,t.id,tactic)));},h->h==null?"目标在地图范围外":w.war.tacticError(u.id,w.unitAt(h)==null?-1:w.unitAt(h).id,tactic));
-        }).setNegativeButton("取消",null).show();
+        });
     }
     void joint(World.Unit u){
         List<World.Unit> targets=new ArrayList<>();for(World.Unit t:w.fieldUnits())if(w.advancedBattle.jointError(u.id,t.id)==null)targets.add(t);

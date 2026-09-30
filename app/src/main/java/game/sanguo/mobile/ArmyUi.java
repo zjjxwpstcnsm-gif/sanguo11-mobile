@@ -41,7 +41,9 @@ final class ArmyUi {
         });}).setNegativeButton("取消",null).show();
     }
     void production(Army.Production p){confirm(p.label(),w.city(p.cityId).name+" · "+w.officer(p.officerId).name+" · 剩余"+w.officer(p.officerId).otherTaskTurns+"旬\n是否中止？已付费用不退还。",()->apply.execute(w,()->w.army.cancelProduction(p.officerId)));}
-    void tactics(World.Unit u){choose("兵器 / 水军战法",w.army.tactics(u),t->t.label+" · 气力"+t.energy,t->{
+    void tactics(World.Unit u){ChoiceDialog.enabledChoices(a,w,"兵器 / 水军战法",w.army.tactics(u),
+        t->t.label+" · 气力"+t.energy+(w.army.water(u.hex)&&w.army.aptitude(u)<t.rank?"\n适性不足":""),
+        t->!w.army.water(u.hex)||w.army.aptitude(u)>=t.rank,t->{
         List<Hex> targets=new ArrayList<>();for(World.Unit enemy:w.fieldUnits())if(w.army.tacticError(u.id,enemy.hex,t)==null)targets.add(enemy.hex);for(World.City city:w.cities)if(w.army.tacticCityError(u.id,city.id,t)==null)for(Hex h:SiteFootprint.cells(city))if(h.equals(w.army.cityTacticHit(u,city,t,h)))targets.add(h);for(War.Structure structure:w.war.structures())if(w.army.tacticError(u.id,structure.hex,t)==null)targets.add(structure.hex);for(Domestic.Facility f:w.domestic.facilities)if(w.army.tacticError(u.id,f.hex,t)==null)targets.add(f.hex);
         if(targets.isEmpty()){World.Unit nearest=w.fieldUnits().stream().filter(x->w.campaign.hostile(u.owner,x.owner)).min(Comparator.comparingInt(x->u.hex.distance(x.hex))).orElse(null);info("不能发动"+t.label,w.army.tacticError(u.id,nearest==null?u.hex:nearest.hex,t));return;}
         a.pickOnMap(t.label+" · 选择目标",u.hex,targets,h->{World.City c=w.cityAt(h);World.Unit b=w.unitAt(h);

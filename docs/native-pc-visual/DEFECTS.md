@@ -1,3 +1,9 @@
+## 2026-09-29 v125 地形瀑布/骑兵反馈 — PARTIAL
+
+实际Blender8个岩台/碎石坡/瀑布LOD接入原Vegetation流式合批和正式Filament景物材质；泰山/西南仅既有不可航行水格安全贴山。骑兵障碍不再否决BREAKTHROUGH，伤害后独立接入原单挑；适性不足菜单灰色禁用。主机专项51,711+5,947检查及原地形/战斗/架构通过，317GLB零错误警告。
+
+APK/运行证据待提交后构建补入。PC原图REFERENCE_MISSING、ARM64/30分钟/历史触控SAF生命周期及全国ready问题OPEN；强制单挑原版精确体力/宝物项忠实度PARTIAL。CoreTest.logistics:75与Displacement city replay输入/候选同点FAIL inherited。不覆盖旧成果/不合main/不启Unity/不开始下一阶段。见reports/feedback-v125.md与handoffs/feedback-v125.md。
+
 ## v124 Blender模型/原生3D性能续作 — PARTIAL
 
 49个城港关/13兵种/地形装饰GLB已接入正常路径；primitive植被、制作法线与rig/clip一次性解析、解码重试位置缓存优化。最终APK源码`6f6ee9772279c87c4e3ff1228ff7eda726793b18`，SHA256`edf9f85b94095ee887b07eb6260a2f0f76ba15b722aaf54b6a883e7aee20c3bc`，41,109,988B。构建/签名/441资产/309GLB零错误警告/四ABI16KB PASS；最终CI36639733339 FAIL。
