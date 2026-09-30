@@ -1,0 +1,28 @@
+name: Native R10 exact source transport
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-r10-source.yml]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Package tracked source and ancestry only
+        run: |
+          mkdir -p /tmp/native-r10-source
+          git bundle create /tmp/native-r10-source/source.bundle HEAD refs/remotes/origin/main refs/remotes/origin/agent/native-pc-visual
+          git rev-parse HEAD > /tmp/native-r10-source/SOURCE_COMMIT
+          git rev-parse refs/remotes/origin/main > /tmp/native-r10-source/MAIN_COMMIT
+          sha256sum /tmp/native-r10-source/source.bundle > /tmp/native-r10-source/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r10-source
+          path: /tmp/native-r10-source/
+          retention-days: 3

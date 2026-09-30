@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: direct passable northern land route [20036, 20017] got -1
+	at game.sanguo.core.NavigationDefenseTest.check(NavigationDefenseTest.java:8)
+	at game.sanguo.core.NavigationDefenseTest.geography(NavigationDefenseTest.java:56)
+	at game.sanguo.core.NavigationDefenseTest.main(NavigationDefenseTest.java:94)

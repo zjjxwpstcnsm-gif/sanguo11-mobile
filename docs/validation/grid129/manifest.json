@@ -1,0 +1,126 @@
+{
+  "status": "PARTIAL",
+  "input_source": "f11ad0bff299dca21d10d1209d14779905fe1978",
+  "host_focused": {
+    "status": "PASS",
+    "core_assertions": 131,
+    "projection_mesh_session_assertions": 75162
+  },
+  "android_compile": "NOT_RUN",
+  "installed_probe": "NOT_RUN",
+  "arm64_device": "NOT_RUN",
+  "logs": {
+    "grid129-architecture.log": {
+      "bytes": 995,
+      "sha256": "eb9ae8bf1b4aa661299193a504df16673bc138e16709c4b3c30458e9aeba99d1"
+    },
+    "grid129-candidate-ArmyTest.log": {
+      "bytes": 328,
+      "sha256": "43acd66e1b9d34ce384a71e2e8bec4bc88006e615f6f4d628e39258abf814d4b"
+    },
+    "grid129-candidate-CampaignAiTest.log": {
+      "bytes": 308,
+      "sha256": "597871ddb4d15d81cf3ad5ce4e43f721146ef1f2357cc75bea9d286e71213520"
+    },
+    "grid129-candidate-CoreTest.log": {
+      "bytes": 245,
+      "sha256": "67469f15532a4c2f1381d1cf3dc3d6c8bc1a1f276ba3bd4077cba53a866d1a71"
+    },
+    "grid129-candidate-DisplacementTest.log": {
+      "bytes": 292,
+      "sha256": "e9e03df7c084f211eaeee6a4dde10f6389dc9d1cdc07aa7a5c53ec4255e7ff6e"
+    },
+    "grid129-candidate-MapSkillsTest.log": {
+      "bytes": 300,
+      "sha256": "893f28baf0d16e69966ecdb59ae5417e973a2bb841bc6591851650f6e2c39b2e"
+    },
+    "grid129-candidate-MarchOrdersTest.log": {
+      "bytes": 283,
+      "sha256": "6f51f43a3eda86c010fcf6dd8826c53226c2ff72dbd01fc521326f397df3d2f3"
+    },
+    "grid129-candidate-NavigationDefenseTest.log": {
+      "bytes": 353,
+      "sha256": "2576d515f55eff9f9b0d0e419ef7d6b0a30bc6055e363f34ee96872ba5e7776a"
+    },
+    "grid129-candidate-ObjectiveOrdersTest.log": {
+      "bytes": 339,
+      "sha256": "7dc3166b3a988034b7a19b5e5d3eab9638250a36603e09bb9e22088787689cd7"
+    },
+    "grid129-candidate-Reference59Test.log": {
+      "bytes": 258,
+      "sha256": "b7488e367f52245ea301b78522985bfd5a9365b244f2b91d44ad32c8682db5e2"
+    },
+    "grid129-candidate-TacticalLogisticsTest.log": {
+      "bytes": 356,
+      "sha256": "2f4b7bda61294a225f4a66418261b57f6ff8716084f652e61796d2472540b46c"
+    },
+    "grid129-candidate-TechnologyFieldworksTest.log": {
+      "bytes": 383,
+      "sha256": "37332774ff95686abc464218a939acbe58d15c4427cf955252c115ebfa8af8f3"
+    },
+    "grid129-coast.log": {
+      "bytes": 1635,
+      "sha256": "f04f2d4fc4e2757fa75b0b541f8c213707a4fff636669a0daa250357d141eaac"
+    },
+    "grid129-focused.log": {
+      "bytes": 258,
+      "sha256": "673ffe7546080ba8da185c3fce69478c60935f2fa21098ee1a714a04d3894725"
+    },
+    "grid129-input-ArmyTest.log": {
+      "bytes": 328,
+      "sha256": "43acd66e1b9d34ce384a71e2e8bec4bc88006e615f6f4d628e39258abf814d4b"
+    },
+    "grid129-input-CampaignAiTest.log": {
+      "bytes": 308,
+      "sha256": "597871ddb4d15d81cf3ad5ce4e43f721146ef1f2357cc75bea9d286e71213520"
+    },
+    "grid129-input-CoreTest.log": {
+      "bytes": 245,
+      "sha256": "67469f15532a4c2f1381d1cf3dc3d6c8bc1a1f276ba3bd4077cba53a866d1a71"
+    },
+    "grid129-input-DisplacementTest.log": {
+      "bytes": 292,
+      "sha256": "e9e03df7c084f211eaeee6a4dde10f6389dc9d1cdc07aa7a5c53ec4255e7ff6e"
+    },
+    "grid129-input-MapSkillsTest.log": {
+      "bytes": 300,
+      "sha256": "893f28baf0d16e69966ecdb59ae5417e973a2bb841bc6591851650f6e2c39b2e"
+    },
+    "grid129-input-MarchOrdersTest.log": {
+      "bytes": 283,
+      "sha256": "6f51f43a3eda86c010fcf6dd8826c53226c2ff72dbd01fc521326f397df3d2f3"
+    },
+    "grid129-input-NavigationDefenseTest.log": {
+      "bytes": 353,
+      "sha256": "2576d515f55eff9f9b0d0e419ef7d6b0a30bc6055e363f34ee96872ba5e7776a"
+    },
+    "grid129-input-ObjectiveOrdersTest.log": {
+      "bytes": 339,
+      "sha256": "7dc3166b3a988034b7a19b5e5d3eab9638250a36603e09bb9e22088787689cd7"
+    },
+    "grid129-input-Reference59Test.log": {
+      "bytes": 258,
+      "sha256": "b7488e367f52245ea301b78522985bfd5a9365b244f2b91d44ad32c8682db5e2"
+    },
+    "grid129-input-TacticalLogisticsTest.log": {
+      "bytes": 356,
+      "sha256": "2f4b7bda61294a225f4a66418261b57f6ff8716084f652e61796d2472540b46c"
+    },
+    "grid129-input-TechnologyFieldworksTest.log": {
+      "bytes": 383,
+      "sha256": "37332774ff95686abc464218a939acbe58d15c4427cf955252c115ebfa8af8f3"
+    },
+    "grid129-input-stream.log": {
+      "bytes": 1049,
+      "sha256": "0053b52c0813561350e7975c7b7034a6195bfee42c4e07bcd3b7375cf7881623"
+    },
+    "grid129-stream.log": {
+      "bytes": 1049,
+      "sha256": "83a729e3879999485fcd394481abbb76d7c85f70290b2b0f680c29ca0f874c94"
+    },
+    "grid129-ui.log": {
+      "bytes": 771,
+      "sha256": "81a8d27819ce545d66edf90bcc25fa768f13c4e5aa8d2209d8fa0d79016a108a"
+    }
+  }
+}

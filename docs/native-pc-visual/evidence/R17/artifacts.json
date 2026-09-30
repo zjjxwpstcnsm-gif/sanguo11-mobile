@@ -1,0 +1,59 @@
+[
+  {
+    "id": 10958650218,
+    "name": "native-r17-api26",
+    "size_in_bytes": 87142753,
+    "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10958650218",
+    "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10958650218/zip",
+    "expired": false,
+    "created_at": "2026-09-28T08:17:10Z",
+    "expires_at": "2026-10-28T08:17:07Z",
+    "updated_at": "2026-09-28T08:17:10Z",
+    "digest": "sha256:93ff9b7331d311aaae3f349419f2c7326a1f1de1b8eeb5a5796be314aa9de9fb",
+    "workflow_run": {
+      "id": 36394674245,
+      "repository_id": 1368277401,
+      "head_repository_id": 1368277401,
+      "head_branch": "agent/native-pc-visual",
+      "head_sha": "67dc97672b9e5ce868c64c31d59505f8a45c326e"
+    }
+  },
+  {
+    "id": 10957408029,
+    "name": "native-r17-build",
+    "size_in_bytes": 63741210,
+    "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10957408029",
+    "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10957408029/zip",
+    "expired": false,
+    "created_at": "2026-09-28T08:02:10Z",
+    "expires_at": "2026-10-28T08:02:07Z",
+    "updated_at": "2026-09-28T08:02:10Z",
+    "digest": "sha256:f93cdf1c51c28b6bcca2bb45df3a4cb0893113967322beb718b6d819b52b9d61",
+    "workflow_run": {
+      "id": 36394674245,
+      "repository_id": 1368277401,
+      "head_repository_id": 1368277401,
+      "head_branch": "agent/native-pc-visual",
+      "head_sha": "67dc97672b9e5ce868c64c31d59505f8a45c326e"
+    }
+  },
+  {
+    "id": 10957294933,
+    "name": "native-r17-api35",
+    "size_in_bytes": 76797190,
+    "url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10957294933",
+    "archive_download_url": "https://api.github.com/repos/zjjxwpstcnsm-gif/sanguo11-mobile/actions/artifacts/10957294933/zip",
+    "expired": false,
+    "created_at": "2026-09-28T08:16:43Z",
+    "expires_at": "2026-10-28T08:16:41Z",
+    "updated_at": "2026-09-28T08:16:43Z",
+    "digest": "sha256:f6493856fad15bf57b6bc9ca3ccca9a5c9533eb189e22dfcb2b8a9e1c0db52f3",
+    "workflow_run": {
+      "id": 36394674245,
+      "repository_id": 1368277401,
+      "head_repository_id": 1368277401,
+      "head_branch": "agent/native-pc-visual",
+      "head_sha": "67dc97672b9e5ce868c64c31d59505f8a45c326e"
+    }
+  }
+]

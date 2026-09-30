@@ -22,7 +22,7 @@ public final class TerrainPresentation {
             case WATER -> new Definition("河流", "使用舰船与水军战法；水陆转换须经过港口");
             case MOUNTAIN_PATH -> new Definition("山径", "山地通路，受难所行军与兵种限制");
             case SHALLOWS -> new Definition("浅滩", "浅水通路，受难所行军与兵种限制");
-            case PLANK_ROAD -> new Definition("栈道", "山地架设通路；未解锁相应技巧可能损兵");
+            case PLANK_ROAD -> new Definition("栈道", "山地架设通路，须研究难所行军才能进入");
             case POISON -> new Definition("毒泉", "经过可能损兵，解毒特技可免疫");
             case SEA -> new Definition("海域", "舰船通行，不划入陆地势力范围");
             case VOID -> new Definition("未定义／界外", "未定义地形或界外区域，不可选择、通行或建设；不等同于已确认的原版地图边界");

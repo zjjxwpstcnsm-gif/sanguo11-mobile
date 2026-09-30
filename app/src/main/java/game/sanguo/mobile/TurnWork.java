@@ -23,6 +23,7 @@ final class TurnWork {
     boolean paused,savedFinal,batchReady,fullReplay;
     volatile boolean skipAnimations;
     int visibleCount,criticalsShown;
+    String announcedEvent="",announcedCritical="";
     long pauseStarted,pausedMillis,saveMillis,totalMillis;
     final StringBuilder actionReport=new StringBuilder();
     String summary,timings="";

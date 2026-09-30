@@ -6,6 +6,8 @@
   "app/src/main/java/game/sanguo/mobile/CampaignUi.java",
   "app/src/main/java/game/sanguo/mobile/ChoiceDialog.java",
   "app/src/main/java/game/sanguo/mobile/CityAtlas.java",
+  "app/src/main/java/game/sanguo/mobile/CombatReplayLedger.java",
+  "app/src/main/java/game/sanguo/mobile/CombatSequence.java",
   "app/src/main/java/game/sanguo/mobile/CombatVisual.java",
   "app/src/main/java/game/sanguo/mobile/CommandStats.java",
   "app/src/main/java/game/sanguo/mobile/ContentUi.java",

@@ -1,0 +1,32 @@
+{
+  "status": "HOST_DIAGNOSTIC_ONLY",
+  "baseline_field_version": 6,
+  "candidate_field_version": 7,
+  "changed_tone_vertices": 1611,
+  "geometry_weights_normals_uvs_shore_indices": "byte-identical",
+  "views": [
+    {
+      "view": "ordinary",
+      "world_center": [
+        17,
+        164
+      ],
+      "width": 18,
+      "poison_pixels": 36403,
+      "pixels": 422500,
+      "unchanged_fragment_pixels": 293751
+    },
+    {
+      "view": "near",
+      "world_center": [
+        17,
+        165
+      ],
+      "width": 5,
+      "poison_pixels": 78960,
+      "pixels": 422500,
+      "unchanged_fragment_pixels": 184904
+    }
+  ],
+  "notes": "Production mesh data with shader-baseColor emulation. Not rendered by Filament; not APK, device, performance, or PC-reference evidence."
+}

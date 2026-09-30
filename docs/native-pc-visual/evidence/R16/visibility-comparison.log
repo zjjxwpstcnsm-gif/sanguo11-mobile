@@ -1,0 +1,3 @@
+BENCH baseline checks=3550000 allocated=72803736 wall_ns=355270324 HOST_MOCK_GPU_ONLY
+BENCH candidate checks=17788 allocated=562000 wall_ns=10527621 HOST_MOCK_GPU_ONLY
+PASS exact source control flow: same 20 camera-state outputs, replacement retirement, dynamic unit culling; GPU mocked

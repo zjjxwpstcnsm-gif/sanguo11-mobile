@@ -11,6 +11,16 @@ import java.util.function.*;
 /** Searchable object picker used by command flows, with the chosen object resolved after filtering. */
 final class ChoiceDialog {
     private ChoiceDialog(){}
+    static <T> void enabledChoices(Activity a,World w,String title,List<T> options,Function<T,String> label,Predicate<T> enabled,Consumer<T> next){
+        if(options.isEmpty()){new AlertDialog.Builder(a).setTitle(title).setMessage("当前没有可用战法").setPositiveButton("返回",null).show();return;}
+        final AlertDialog[] holder={null};
+        InlineChoices<T> choices=new InlineChoices<>(a,w,options,Math.min(3,options.size()),label,enabled,null,item->{
+            if(a instanceof MainActivity&&!((MainActivity)a).currentWorld(w))return;
+            holder[0].dismiss();next.accept(item);
+        });
+        AlertDialog dialog=new AlertDialog.Builder(a).setTitle(title).setView(choices).setNegativeButton("取消",null).create();
+        holder[0]=dialog;dialog.show();if(a instanceof MainActivity)((MainActivity)a).trackDialog(dialog);
+    }
     @SuppressWarnings("unchecked")
     static <T> void show(Activity a,World w,String title,List<T> options,Function<T,String> label,Consumer<T> next){
         if(!options.isEmpty()&&options.get(0) instanceof World.Officer){DataTable.choose(a,w,title,(List<World.Officer>)(List<?>)options,o->label.apply((T)o),o->next.accept((T)o),null);return;}

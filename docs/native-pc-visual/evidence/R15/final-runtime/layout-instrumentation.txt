@@ -1,0 +1,9 @@
+INSTRUMENTATION_STATUS: class=game.sanguo.mobile.NativeR15Instrumentation
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: test=layout
+INSTRUMENTATION_STATUS_CODE: 1
+PASS R15 layout checks=35; art and physical performance separate
+PASS R15 layout checks=35; art and physical performance separate
+

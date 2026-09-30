@@ -1,0 +1,76 @@
+[
+  {
+    "mode": "local",
+    "status": "PASS_SCOPED",
+    "firstReadyElapsedMs": [
+      "124216"
+    ],
+    "failureCounters": null,
+    "failureCounterOrder": [
+      "cpuChunks",
+      "pending",
+      "submitted",
+      "beginAttempts",
+      "beginSkipped"
+    ],
+    "pssSamples": 41,
+    "pssMiBMin": 166.3837890625,
+    "pssMiBMax": 197.462890625,
+    "uniqueOwnerSamples": 0,
+    "admittedSamples": 0,
+    "ownerWallP95Ms": null,
+    "ownerCpuP95Ms": null,
+    "uploadOver2ms": 0,
+    "largestMeshUploadWallMs": null,
+    "measurement": "loading/route attempts incl rejected, NOT presented FPS/steady phone performance",
+    "presentIntervalP95Ms": null,
+    "gpuDurationMs": null,
+    "trace": {
+      "bytes": 33400059,
+      "sha256": "d8521f121afb7612ad647aa794090f7dbe82c95ac9421d5a098cc1f27095ea19",
+      "ownerMarkerStringFound": false,
+      "mapProjectionMarkerStringFound": false,
+      "frameTimelineStringFound": false,
+      "scope": "raw scheduler/gfx trace; string scan not semantic analysis"
+    }
+  },
+  {
+    "mode": "national",
+    "status": "FAIL",
+    "firstReadyElapsedMs": [],
+    "failureCounters": [
+      177,
+      26,
+      52,
+      1579,
+      1527
+    ],
+    "failureCounterOrder": [
+      "cpuChunks",
+      "pending",
+      "submitted",
+      "beginAttempts",
+      "beginSkipped"
+    ],
+    "pssSamples": 24,
+    "pssMiBMin": 160.337890625,
+    "pssMiBMax": 276.4892578125,
+    "uniqueOwnerSamples": 0,
+    "admittedSamples": 0,
+    "ownerWallP95Ms": null,
+    "ownerCpuP95Ms": null,
+    "uploadOver2ms": 0,
+    "largestMeshUploadWallMs": null,
+    "measurement": "loading/route attempts incl rejected, NOT presented FPS/steady phone performance",
+    "presentIntervalP95Ms": null,
+    "gpuDurationMs": null,
+    "trace": {
+      "bytes": 33399915,
+      "sha256": "e1be93457c212a11ac4c4b7a5ec5ddb3a6ecf1b0194ba1972182c78ef5ee112d",
+      "ownerMarkerStringFound": false,
+      "mapProjectionMarkerStringFound": false,
+      "frameTimelineStringFound": false,
+      "scope": "raw scheduler/gfx trace; string scan not semantic analysis"
+    }
+  }
+]

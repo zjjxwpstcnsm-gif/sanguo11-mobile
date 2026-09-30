@@ -1,0 +1,11 @@
+TOUCH text=新建游戏 · 选择剧本
+TOUCH screenRect=Rect(63, 785 - 1017, 911) control=Button
+TOUCH description=选择剧本 
+TOUCH screenRect=Rect(91, 527 - 989, 653) control=Button
+TOUCH text=2D/3D
+TOUCH screenRect=Rect(854, 84 - 1054, 210) control=Button
+FAIL java.lang.AssertionError: user switches actual full-map preview to 3D
+	at game.sanguo.mobile.SceneInstrumentation.check(SceneInstrumentation.java:17)
+	at game.sanguo.mobile.NativeColdStartInstrumentation.onStart(NativeColdStartInstrumentation.java:48)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)
+

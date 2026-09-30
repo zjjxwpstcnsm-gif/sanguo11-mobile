@@ -1,0 +1,181 @@
+{
+  "generator": "tools/3d/refine_blender121.py",
+  "blender": "4.2.3 LTS",
+  "assets": [
+    {
+      "path": "app/src/main/assets/3d/field/fire-v121.glb",
+      "sha256": "aec61b8d17c414e21930775ce67222eaaa0fccea604289c84507aea4f26ff224",
+      "bytes": 224284,
+      "triangles": 1362,
+      "vertices": 4086,
+      "primitives": 1,
+      "bounds": [
+        -0.3048465847969055,
+        0.0,
+        -0.2883028984069824,
+        0.3422434329986572,
+        1.0800000429153442,
+        0.2869139015674591
+      ],
+      "source": "swept tapered volumes with ten curved tongues",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/smoke-v121.glb",
+      "sha256": "b9108a58c21b911a8fa6665ece66b6630039b63614f2873e765f92047f0a1e39",
+      "bytes": 61740,
+      "triangles": 320,
+      "vertices": 960,
+      "primitives": 1,
+      "bounds": [
+        -0.18933871388435364,
+        0.01119999960064888,
+        -0.2886432409286499,
+        0.33468037843704224,
+        0.7501999735832214,
+        0.29149508476257324
+      ],
+      "source": "four irregular smoke lobes; opaque baseline",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/rock-strata-v121-lod0.glb",
+      "sha256": "257940b81b8dbf069551bca1776c3731ea727879469740356c1a7685c39cfa89",
+      "bytes": 39584,
+      "triangles": 178,
+      "vertices": 534,
+      "primitives": 1,
+      "bounds": [
+        -0.48588499426841736,
+        -0.017999999225139618,
+        -0.2949497699737549,
+        0.44511887431144714,
+        0.47357022762298584,
+        0.3295792043209076
+      ],
+      "source": "asymmetric layered sedimentary outcrop",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/rock-strata-v121-lod1.glb",
+      "sha256": "31171da19bdfac26e1c199a4008cead63e7f1fb0115508c1983405d2664966c8",
+      "bytes": 22732,
+      "triangles": 70,
+      "vertices": 210,
+      "primitives": 1,
+      "bounds": [
+        -0.3351568877696991,
+        -0.017999999225139618,
+        -0.3181360065937042,
+        0.43414387106895447,
+        0.4779520630836487,
+        0.2231525480747223
+      ],
+      "source": "asymmetric layered sedimentary outcrop",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/gate-v121-lod0.glb",
+      "sha256": "dc02d425df3d1aade8d7bf3818ae03ac66b810bc425ed2866657d4bf92cc4380",
+      "bytes": 145752,
+      "triangles": 907,
+      "vertices": 2721,
+      "primitives": 1,
+      "bounds": [
+        -0.47999998927116394,
+        -0.03999999910593033,
+        -0.23000000417232513,
+        0.47999998927116394,
+        0.7560000419616699,
+        0.23000000417232513
+      ],
+      "source": "existing CC0 gate, Blender welded/beveled masonry; opening retained",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/gate-v121-lod1.glb",
+      "sha256": "ffc752a1efeb1e6519d299153290e77df37c7cfab035e92a9c6af8e987da784c",
+      "bytes": 45120,
+      "triangles": 262,
+      "vertices": 786,
+      "primitives": 1,
+      "bounds": [
+        -0.47999998927116394,
+        -0.03999999910593033,
+        -0.23000000417232513,
+        0.47999998927116394,
+        0.7560000419616699,
+        0.23000000417232513
+      ],
+      "source": "existing CC0 gate, Blender welded/beveled masonry; opening retained",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/gate-v121-lod2.glb",
+      "sha256": "5db2045bf8ade09e4583e01caa069c518920368e13bd3b89e00066fd83aceb38",
+      "bytes": 32016,
+      "triangles": 178,
+      "vertices": 534,
+      "primitives": 1,
+      "bounds": [
+        -0.47999998927116394,
+        -0.03999999910593033,
+        -0.23000000417232513,
+        0.47999998927116394,
+        0.6460000276565552,
+        0.23000000417232513
+      ],
+      "source": "existing CC0 gate, Blender welded/beveled masonry; opening retained",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    }
+  ]
+}

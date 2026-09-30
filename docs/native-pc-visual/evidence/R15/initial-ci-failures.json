@@ -1,0 +1,43 @@
+[
+  {
+    "job": 108775074179,
+    "excerpt": [
+      "2026-09-28T03:26:29.5852811Z PASS R06 199 checks: actual bundled subset, hostile input, rigid parts, shared/cancelled CPU decode",
+      "2026-09-28T03:26:31.7338252Z PASS R07 7194 checks; 679 catalog site instances, families=[city0, city1, city2, gate, port], facility LOD mappings=120",
+      "2026-09-28T03:26:32.9943841Z PASS R08 9942677 checks; mergedChunks=44 CPU_mesh_bytes_estimate=51306808 build_ms=232.916285 reusedAfterEdit=35 (host, not GPU/device performance)",
+      "2026-09-28T03:26:35.0010329Z ##[error]Exception in thread \"main\" java.lang.AssertionError: every national terrain vertex/index/material byte matches v105",
+      "2026-09-28T03:26:35.0019862Z \tat game.sanguo.mobile.NativePreviewWorkTest.check(NativePreviewWorkTest.java:12)",
+      "2026-09-28T03:26:35.0020873Z \tat game.sanguo.mobile.NativePreviewWorkTest.main(NativePreviewWorkTest.java:29)"
+    ]
+  },
+  {
+    "job": 108775073945,
+    "excerpt": [
+      "2026-09-28T03:26:44.6507679Z PASS R06 199 checks: actual bundled subset, hostile input, rigid parts, shared/cancelled CPU decode",
+      "2026-09-28T03:26:47.7576271Z PASS R07 7194 checks; 679 catalog site instances, families=[city0, city1, city2, gate, port], facility LOD mappings=120",
+      "2026-09-28T03:26:49.3045501Z PASS R08 9942677 checks; mergedChunks=44 CPU_mesh_bytes_estimate=51306808 build_ms=269.62504 reusedAfterEdit=35 (host, not GPU/device performance)",
+      "2026-09-28T03:26:51.8266781Z ##[error]Exception in thread \"main\" java.lang.AssertionError: every national terrain vertex/index/material byte matches v105",
+      "2026-09-28T03:26:51.8276566Z \tat game.sanguo.mobile.NativePreviewWorkTest.check(NativePreviewWorkTest.java:12)",
+      "2026-09-28T03:26:51.8277704Z \tat game.sanguo.mobile.NativePreviewWorkTest.main(NativePreviewWorkTest.java:29)"
+    ]
+  },
+  {
+    "job": 108775061228,
+    "excerpt": [
+      "2026-09-28T03:26:22.9252601Z PASS R06 199 checks: actual bundled subset, hostile input, rigid parts, shared/cancelled CPU decode",
+      "2026-09-28T03:26:25.8618713Z PASS R10 2221136 assertions; 13 categories / 8 clips / 2 meshes; contact, hysteresis, exact command parity. CPU checks, not physical-device art/FPS.",
+      "2026-09-28T03:26:35.4300367Z PASS R06 199 checks: actual bundled subset, hostile input, rigid parts, shared/cancelled CPU decode",
+      "2026-09-28T03:26:39.1241635Z PASS R07 7194 checks; 679 catalog site instances, families=[city0, city1, city2, gate, port], facility LOD mappings=120",
+      "2026-09-28T03:26:41.0650195Z PASS R08 9942677 checks; mergedChunks=44 CPU_mesh_bytes_estimate=51306808 build_ms=351.04961 reusedAfterEdit=35 (host, not GPU/device performance)",
+      "2026-09-28T03:26:44.2733858Z ##[error]Exception in thread \"main\" java.lang.AssertionError: every national terrain vertex/index/material byte matches v105",
+      "2026-09-28T03:26:44.2744724Z \tat game.sanguo.mobile.NativePreviewWorkTest.check(NativePreviewWorkTest.java:12)",
+      "2026-09-28T03:26:44.2745511Z \tat game.sanguo.mobile.NativePreviewWorkTest.main(NativePreviewWorkTest.java:29)"
+    ]
+  },
+  {
+    "job": 108775719334,
+    "excerpt": [
+      "2026-09-28T03:31:26.0324158Z ##[error]google-github-actions/auth failed with: failed to generate Google Cloud federated token for //iam.googleapis.com/projects/322962089013/locations/global/workloadIdentityPools/github-test-lab/providers/sanguo: {\"error\":\"unauthorized_client\",\"error_description\":\"The given credential is rejected by the attribute condition.\"}"
+    ]
+  }
+]

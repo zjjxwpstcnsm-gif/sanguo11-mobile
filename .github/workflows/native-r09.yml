@@ -1,0 +1,94 @@
+name: Native R09 official Luoyang integrated sample
+on:
+  pull_request:
+    branches: [main]
+    paths: ['app/**', 'version.properties', 'scripts/*r09*', 'tools/3d/**', '.github/workflows/native-r09.yml']
+permissions:
+  contents: read
+concurrency:
+  group: native-r09
+  cancel-in-progress: true
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 80
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 0
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: ''
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Asset toolchain and clean reproducibility
+        run: |
+          mkdir -p out/r09
+          git rev-parse HEAD > out/r09/SOURCE_SHA
+          python3 -m pip install -r tools/3d/texture-requirements.txt
+          npm ci --prefix tools/3d --ignore-scripts
+          npm run validate --prefix tools/3d
+          cp out/r06/khronos.json out/r09/khronos.json
+          python3 tools/3d/asset_pipeline.py --check | tee out/r09/export.log
+          curl -fsSL --retry 3 https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/json.jar
+      - name: Host boundaries and regression
+        env:
+          JSON_TEST_JAR: /tmp/json.jar
+        run: |
+          set -o pipefail
+          for suite in test-native-r09 test-native-r01 test-architecture test-3d-assets test-3d-interaction; do
+            bash scripts/$suite.sh 2>&1 | tee out/r09/$suite.log
+          done
+      - name: Verify textures and exact material compiler
+        run: |
+          python3 -m pip install numpy==2.3.5 Pillow==12.3.0
+          python3 scripts/verify-terrain-materials.py | tee out/r09/assets.log
+          curl -fsSL --retry 3 https://github.com/google/filament/releases/download/v1.56.0/filament-v1.56.0-linux.tgz -o /tmp/filament.tgz
+          tar -xzf /tmp/filament.tgz -C /tmp
+          test "$(/tmp/filament/bin/matc --version)" = 56
+          /tmp/filament/bin/matc -p mobile -a opengl -o /tmp/ground.filamat tools/3d/ground.mat
+          cmp /tmp/ground.filamat app/src/main/assets/3d/terrain/ground.filamat
+          /tmp/filament/bin/matc -p mobile -a opengl -o /tmp/water.filamat tools/3d/water.mat
+          cmp /tmp/water.filamat app/src/main/assets/3d/terrain/water.filamat
+      - name: Build exact source
+        run: |
+          set -o pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true 2>&1 | tee out/r09/build.log
+          cp app/build/outputs/apk/debug/app-debug.apk out/r09/sanguo11-native-r09.apk
+          sha256sum out/r09/sanguo11-native-r09.apk > out/r09/APK_SHA256
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/r09/sanguo11-native-r09.apk > out/r09/apk-metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/r09/sanguo11-native-r09.apk > out/r09/signature.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r09-apk
+          path: out/r09/
+          retention-days: 14
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: true
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-native-r09.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-r09-evidence
+          path: out/r09/
+          retention-days: 14

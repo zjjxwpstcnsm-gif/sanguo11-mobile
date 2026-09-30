@@ -17,8 +17,8 @@
   },
   {
     "asset": "app/src/main/assets/3d/field/atlas.etc2",
-    "source_sha256": "4e779ada834d32000cd805f199f8c33183b30deeeeb05af4dce156f3fc83eaf2",
-    "sha256": "0df2ba520c7d123ee1a654defe9c3f431179f0eb535cbebd8d8cd0178e653a70",
+    "source_sha256": "89b21a3564359170b41e58c9f907c52c5d9d5a37339bd1a47de2aca309f870ea",
+    "sha256": "22f6fd2112be817a73a913af0fa421e2aad1815a5b0d5b4f74a4409cead90ea5",
     "width": 512,
     "height": 64,
     "levels": 10,
@@ -28,7 +28,23 @@
     "alpha": "opaque",
     "mip_filter": "linear-light BOX",
     "encoder": "etcpak 0.9.15",
-    "level0_psnr_db": 36.53715372113224,
+    "level0_psnr_db": 35.8871331763145,
+    "gpu_upload_verified": false
+  },
+  {
+    "asset": "app/src/main/assets/3d/field/unit-atlas.etc2",
+    "source_sha256": "a47a03a989dd8ea1a1d8337b7593421c07e32baaa10a5d2c8b25b1c28a5f7bb3",
+    "sha256": "9b3a2908efe89a4a35c94a452c1511309021b6c7da85c48c903845a0f43ee5e6",
+    "width": 512,
+    "height": 64,
+    "levels": 10,
+    "format": "ETC2_SRGB8",
+    "gpu_payload_bytes": 21896,
+    "rgba_mip_bytes": 174780,
+    "alpha": "opaque",
+    "mip_filter": "linear-light BOX",
+    "encoder": "etcpak 0.9.15",
+    "level0_psnr_db": 36.975024174093306,
     "gpu_upload_verified": false
   }
 ]

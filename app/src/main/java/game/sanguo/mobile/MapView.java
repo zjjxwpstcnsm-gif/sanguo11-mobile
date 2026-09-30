@@ -10,7 +10,7 @@ import game.sanguo.core.*;
 
 /** Cached national renderer with independent scene, selection and camera updates. */
 public final class MapView extends View implements MapPresentation {
-    public interface TileListener {void tap(Hex tile);}
+    public interface TileListener {void tap(Hex tile);default void unit(int unitId,Hex displayCell){tap(displayCell);}}
     private final TileListener listener;
     /** Editor-only gesture stream. Existing campaign gestures and hit rules remain unchanged. */
     interface EditorStroke {void event(int action,Hex tile);}
@@ -189,10 +189,6 @@ public final class MapView extends View implements MapPresentation {
     private Map<Hex,Integer> reachable=Collections.emptyMap();
     private final Set<Hex> attackTargets=new HashSet<>();
     int reachableCount(){return reachable.size();}
-    private void addAttackTarget(World.Unit u,Hex h,boolean normal){
-        if(normal){attackTargets.add(h);return;}
-
-    }
     private final MapCamera camera=new MapCamera();
     private final android.widget.OverScroller fling;
     private android.animation.ValueAnimator cameraMotion;
@@ -347,13 +343,7 @@ public final class MapView extends View implements MapPresentation {
         developmentSites=development!=null&&development.owner==world.player?new ArrayList<>(world.domestic.buildSites(development.id)):Collections.emptyList();
         if(!actorChanged)return;selectionBuilds++;
         World.Unit actor=world.unit(moving);reachable=world.orders.marchReachable(actor);attackTargets.clear();
-        if(world.orders.error(actor)==null){
-            for(World.Unit target:world.fieldUnits())if(target.id!=actor.id)addAttackTarget(actor,target.hex,world.war.attackError(actor.id,target.id)==null);
-            for(World.City city:world.cities)if(world.siegeError(actor.id,city.id)==null)
-                for(Hex h:SiteFootprint.cells(city))addAttackTarget(actor,h,h.equals(world.siegeHit(actor,city,h)));
-            for(Domestic.Facility f:world.domestic.facilities)addAttackTarget(actor,f.hex,world.war.facilityAttackError(actor.id,f.hex)==null);
-            for(War.Structure s:world.war.structures())addAttackTarget(actor,s.hex,world.war.structureAttackError(actor.id,s.hex)==null);
-        }
+        attackTargets.addAll(MapSceneSnapshot.attackTargets(world,moving));
     }
     @Override public boolean isOpaque(){return true;}
     @Override protected void onAttachedToWindow(){super.onAttachedToWindow();if(overview!=null)overview.start(this);}
@@ -465,6 +455,8 @@ public final class MapView extends View implements MapPresentation {
         long drawStart=System.nanoTime();lastTilesVisited=0;lastObjectsVisited=0;super.onDraw(canvas);canvas.drawColor(MapOverview.BACKGROUND);if(world==null)return;
         float scale=camera.scale,offsetX=camera.x,offsetY=camera.y;
         boolean detail=scale*RADIUS>=12*density;collectVisible();
+        int gridForce=openingPreview&&previewFaction>=0&&previewFaction<world.factions.length?previewFaction:world.player;
+        boolean difficultMarch=world.campaign.has(gridForce,Campaign.Tech.DIFFICULT_MARCH);
         canvas.save();canvas.translate(offsetX,offsetY);canvas.scale(scale,scale);
         int r0=camera.firstRow(world.height,RADIUS*2),r1=camera.lastRow(world.height,RADIUS*2);
         if(!detail&&overview!=null)overview.draw(canvas,territoryMode);
@@ -476,7 +468,7 @@ public final class MapView extends View implements MapPresentation {
             boolean exterior=world.terrain[q][r]==World.Terrain.VOID;
             if(detail)terrainTiles.draw(canvas,world,q,r,cx,cy);
             else {polygon(cx,cy,RADIUS-.3f);fill(canvas,TerrainTiles.color(t));}
-            if(gridShown&&!exterior){polygon(cx,cy,RADIUS);stroke(canvas,0x887d928a,Math.max(.7f,density/scale));}
+            if(gridShown&&!exterior&&MapSceneSnapshot.gridTerrain(world.terrain[q][r],difficultMarch)&&!NationalMap.restricted(world,h)){polygon(cx,cy,RADIUS);stroke(canvas,0x887d928a,Math.max(.7f,density/scale));}
             if(!exterior)drawTerritory(canvas,q,r,cx,cy,scale);
         }
         if(detail&&territoryMode>0){

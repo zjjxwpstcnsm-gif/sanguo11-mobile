@@ -12,10 +12,12 @@ final class NativeGameHost {
     private final AndroidSaveStore store;
     private GameSession session;
     TurnWork turn;
+    final CombatReplayLedger combatLedger=new CombatReplayLedger();
     NativeGameHost(Context context){store=new AndroidSaveStore(context);}
     GameSession session(){return session;}
     AndroidSaveStore store(){return store;}
     void install(World prepared)throws IOException{
+        combatLedger.clear();
         if(session==null){session=new GameSession(prepared,e->android.util.Log.e("GameSession","Observer failed",e));UnityBridge.bind(session);}
         else session.replace(prepared);
         if(turn!=null){turn.cancel();turn=null;}
@@ -30,6 +32,7 @@ final class NativeGameHost {
     }
     void playbackFinished(TurnWork completed){if(turn==completed)turn=null;}
     void exit(){
+        combatLedger.clear();
         if(turn!=null){turn.cancel();turn=null;}
         if(session!=null){session.close();session=null;}UnityBridge.bind(null);
     }

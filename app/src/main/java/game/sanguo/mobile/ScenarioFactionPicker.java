@@ -15,6 +15,7 @@ final class ScenarioFactionPicker {
     private final MapHost map;private final TextView summary;private final ImageView portrait;
     private final Button start,details;private final List<Button> chips=new ArrayList<>();
     private int selected;
+    private WindowSurfaceRecovery windowSurfaceRecovery;
     ScenarioFactionPicker(MainActivity a,World w,IntConsumer choose){
         this.a=a;this.w=w;this.choose=choose;overview=new RealmOverview(w);dialog=new Dialog(a);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -39,7 +40,7 @@ final class ScenarioFactionPicker {
         for(int i=0;i<w.factions.length;i++){final int side=i;Button b=a.button(w.governance.label(i),v->select(side));b.setContentDescription("选择势力 · "+w.faction(i));b.setEnabled(w.alive(i));chips.add(b);factions.addView(b,new LinearLayout.LayoutParams(a.dp(88),a.dp(46)));}
         root.addView(a.button("自定义武将 · 启用 / 投放 / 校验预览",v->new CustomOfficerPlacementUi(a,w).show()),new LinearLayout.LayoutParams(-1,a.dp(44)));
         start=a.button("",v->accept(selected));start.setSelected(true);root.addView(start,new LinearLayout.LayoutParams(-1,a.dp(50)));
-        dialog.setContentView(root);dialog.setOnDismissListener(d->{map.criticalFrame(null,0);map.release();});
+        dialog.setContentView(root);dialog.setOnDismissListener(d->{if(windowSurfaceRecovery!=null){windowSurfaceRecovery.close();windowSurfaceRecovery=null;}map.criticalFrame(null,0);map.release();});
         selected=w.player;for(int i=0;!w.alive(selected)&&i<w.factions.length;i++)selected=i;select(selected);
     }
     private void accept(int side){boolean spatial=map.is3D();dialog.dismiss();a.setNextScenario3D(spatial);choose.accept(side);}
@@ -58,5 +59,5 @@ final class ScenarioFactionPicker {
         start.setText("以「"+w.governance.label(side)+"」开始新局  →");start.setContentDescription("确认开局势力 · "+f.name);start.setEnabled(f.alive);
         for(int i=0;i<chips.size();i++)chips.get(i).setSelected(i==side);map.setPreviewFaction(side);
     }
-    void show(){dialog.show();if(a.current3D())map.switchMode(true);if(dialog.getWindow()!=null){dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);dialog.getWindow().setLayout(-1,-1);}mapFit();}
+    void show(){dialog.show();if(dialog.getWindow()!=null)windowSurfaceRecovery=new WindowSurfaceRecovery(dialog.getWindow());if(a.current3D())map.switchMode(true);if(dialog.getWindow()!=null){dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);dialog.getWindow().setLayout(-1,-1);}mapFit();}
 }

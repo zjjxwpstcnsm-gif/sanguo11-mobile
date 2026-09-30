@@ -1,0 +1,38 @@
+material {
+    name : AuthoredLandscapeUV128,
+    flipUV : false,
+    shadingModel : lit,
+    doubleSided : true,
+    requires : [ color, uv0 ],
+    parameters : [
+        { type : float3, name : artTint },
+        { type : float3, name : plantTint }, { type : sampler2d, name : atlas },
+        { type : float, name : damage }, { type : float, name : flowTime } ]
+}
+fragment {
+    void material(inout MaterialInputs material) {
+        prepareMaterial(material);
+        float2 uv=getUV0();
+        // Refined panels0/3/4/5 use the authored PNG row-zero convention.
+        // Keep historical tree/trunk/path panels1/2/6/7 exactly as the old
+        // default-flipped material sampled them; only refined panels opt out.
+        if ((uv.x >= 0.125 && uv.x < 0.375) || uv.x >= 0.75) uv.y=1.0-uv.y;
+        float cascade=step(0.625,uv.x)*(1.0-step(0.75,uv.x))+step(0.375,uv.x)*(1.0-step(0.5,uv.x));
+        float shelf=step(0.5,uv.x)*(1.0-step(0.625,uv.x));
+        float foam=shelf*step(0.65,uv.y);
+        float3 base=texture(materialParams_atlas,uv).rgb*getColor().rgb;
+        // Move broken foam highlights without fract-wrapping the atlas V coordinate:
+        // the old texture seam must never sweep horizontally across the whole fall.
+        float flow=sin(uv.x*490.0+sin(uv.y*27.0-materialParams.flowTime*3.8))
+            *sin(uv.y*79.0-materialParams.flowTime*5.1+uv.x*63.0);
+        base=mix(base,base+float3(0.045,0.05,0.048)*smoothstep(0.45,0.95,flow),cascade);
+        float leaf=(1.0-cascade)*(1.0-shelf)*smoothstep(0.0,0.055,base.g-max(base.r,base.b));
+        base*=mix(materialParams.artTint,float3(1.0),min(1.0,cascade+foam)*0.45)*mix(float3(1.0),materialParams.plantTint,leaf);
+        material.roughness=mix(0.88,0.48,cascade);
+        material.metallic=0.0;
+        material.reflectance=mix(0.25,0.36,cascade);
+        material.baseColor=float4(base*(1.0-materialParams.damage*0.32),1.0);
+        float haze=smoothstep(320.0,410.0,length(getWorldPosition()-getWorldCameraPosition()))*0.08;
+        material.baseColor.rgb=mix(material.baseColor.rgb,float3(0.22,0.25,0.24),haze);
+    }
+}

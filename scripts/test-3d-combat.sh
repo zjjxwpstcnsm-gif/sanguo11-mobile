@@ -4,7 +4,7 @@ cd "$(dirname "$0")/.."
 : "${JSON_TEST_JAR:?Set JSON_TEST_JAR to org.json host test jar}"
 mkdir -p app/build/combat-check
 find core/src/main/java game-api/src/main/java -name '*.java' > app/build/combat-sources.txt
-for name in TileGeometry GridWorldTransform SceneCamera SceneMesh SiteVisual TerrainSurface WaterVisualField TerrainMaterialField MapSceneSnapshot FactionColors SiegeOverlay UnitVisual UnitMotion UnitAnimation CombatVisual; do
+for name in TileGeometry GridWorldTransform SceneCamera SceneMesh SiteVisual TerrainSurface WaterVisualField TerrainMaterialField MapSceneSnapshot FactionColors SiegeOverlay UnitVisual UnitMotion UnitAnimation UnitLod UnitFormation ScenePicking CombatVisual; do
   echo "app/src/main/java/game/sanguo/mobile/$name.java" >> app/build/combat-sources.txt
 done
 for name in Turn48Fixture Realm52Fixture CombatSceneFixture; do

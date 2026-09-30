@@ -1,0 +1,13 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+PASS S04/S05 assets: 9862760 checks; 120 facility LOD assets; 26 rigs; forest local reuse 16/25
+PASS S05 automatic departure/march/garrison/convoy in 8 turns, full SaveCodec equality
+PASS S04/S05 flow: real legal port move, water/land asset transitions, 50/100 stress identities, real facility lifecycle and exact core equality
+PASS R06 206 checks: actual bundled subset, hostile input, rigid parts, shared/cancelled CPU decode
+PASS R07 7194 checks; 679 catalog site instances, families=[city0, city1, city2, gate, port], facility LOD mappings=120
+PASS R08 24333965 checks; mergedChunks=44 CPU_mesh_bytes_estimate=121352376 build_ms=756.07757 reusedAfterEdit=35 (host, not GPU/device performance)
+PASS FOREST phase=candidate tree=740 shrub=112 clearCells=197 (same terrain/entities, no road/entry/unit apron relaxation)
+terrainGeometryAndSurface=5d399ea4054e4e3792103fc73b4d709a7e40037c0d3a72d1f196c4777e56c433 paletteVersion=5
+Exception in thread "main" java.lang.AssertionError: every canonical position/index/UV/normal/shore/flow/macro byte matches input baseline
+	at game.sanguo.mobile.NativePreviewWorkTest.check(NativePreviewWorkTest.java:14)
+	at game.sanguo.mobile.NativePreviewWorkTest.main(NativePreviewWorkTest.java:46)

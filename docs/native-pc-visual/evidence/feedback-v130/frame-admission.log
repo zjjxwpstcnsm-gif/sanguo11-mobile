@@ -1,0 +1,4 @@
+PASS: extracted production doFrame admission, 43 fake-driver rejections, changed-camera CPU window demand, mailbox/UI progress, zero-size, pacing, thermal, pause, release, Surface absence, exception closure (HOST ONLY; fake worker tests call ordering, not real queue/driver throughput)
+PASS: extracted focus methods: latest target before layout, null preservation and normal loaded focus (HOST ONLY)
+PASS: extracted requestCameraWindow and production TerrainWindow coverage: initial focus, in-flight bound, immutable capture, changed camera, LOD replacement, covered reuse, absent/released snapshot (HOST ONLY)
+PASS: initial-focus source contracts: real-layout deferral, one-shot clear, grid projection/span before first request, release, deferred snapshot drain and normal menu/host ordering (SOURCE CONTRACT ONLY)

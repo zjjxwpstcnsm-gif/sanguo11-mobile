@@ -1,0 +1,9 @@
+requirement,status,actual_scope
+R18-1,PARTIAL,"Failure-latch safety repaired; national loading, complete gameplay and art blockers remain."
+R18-2,PARTIAL,Normal renderer recovery and candidate source/installed identity hardened; no final colour/shore/model pass.
+R18-3,NOT_RUN,Full national cold-to-editor pure-touch chain has not completed; cold and parity probes reported separately.
+R18-4,NOT_RUN,V4 full landform/asset/event/season/grid paired PC coverage missing; original candidate images reviewed separately.
+R18-5,NOT_RUN,R16 budgets unchanged; exact-source physical 30-minute/performance evidence missing.
+R18-6,PARTIAL,Clean SHA build completed; manifest/archive identity and asset provenance linked; API29/35 evidence collected; physical blocked.
+R18-7,PARTIAL,All R00-R18 overall PARTIAL retained; user visual acceptance not obtained.
+R18-8,PARTIAL,Source committed/pushed/refetched; final docs and PR remote confirmation recorded in delivery remote-confirmation.json. No main merge/tag.

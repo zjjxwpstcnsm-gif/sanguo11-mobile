@@ -1,0 +1,1328 @@
+{
+  "blender": "4.2.3 LTS",
+  "assets": [
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city0-lod0.glb",
+      "sha256": "aeb6e55b4ee7ad9ada1144396f323054e2dd77e5cd9cb994e3755da26f27f5b5",
+      "bytes": 772364,
+      "triangles": 6728,
+      "vertices": 14320,
+      "primitives": 1,
+      "bounds": [
+        -1.1542999744415283,
+        -0.03500000014901161,
+        -0.8942999839782715,
+        1.1542999744415283,
+        0.7860000133514404,
+        0.8942999839782715
+      ],
+      "source": "original covered courtyard galleries, open stone arch and fitted wharf details",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 20184,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city0-lod1.glb",
+      "sha256": "55f34e95f75bb151bfae5267db069542a0a88503b450f1c17aa88e932b581ad3",
+      "bytes": 362892,
+      "triangles": 3190,
+      "vertices": 6674,
+      "primitives": 1,
+      "bounds": [
+        -1.1542999744415283,
+        -0.03500000014901161,
+        -0.8942999839782715,
+        1.1542999744415283,
+        0.7860000133514404,
+        0.8942999839782715
+      ],
+      "source": "original covered courtyard galleries, open stone arch and fitted wharf details",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 9570,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city0-lod2.glb",
+      "sha256": "95cc400b6d9377d033a613f24f1d7ceb7509208b244879e344b13efb7a5765d3",
+      "bytes": 74284,
+      "triangles": 604,
+      "vertices": 1308,
+      "primitives": 1,
+      "bounds": [
+        -1.1542999744415283,
+        -0.03500000014901161,
+        -0.8942999839782715,
+        1.1542999744415283,
+        0.7860000133514404,
+        0.8942999839782715
+      ],
+      "source": "original covered courtyard galleries, open stone arch and fitted wharf details",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1812,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city1-lod0.glb",
+      "sha256": "721200cae64841c7a3877c26ce0c462d946157a777309e7f57c3857b709a9fe5",
+      "bytes": 796028,
+      "triangles": 6932,
+      "vertices": 14762,
+      "primitives": 1,
+      "bounds": [
+        -1.0743000507354736,
+        -0.03500000014901161,
+        -0.8942999839782715,
+        1.0743000507354736,
+        0.5260000228881836,
+        0.8942999839782715
+      ],
+      "source": "original covered courtyard galleries, open stone arch and fitted wharf details",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 20796,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city1-lod1.glb",
+      "sha256": "d0663b0f6cad6fa171efa3c8527464510b73aa62b540ccf7892eb35454d30db3",
+      "bytes": 376308,
+      "triangles": 3316,
+      "vertices": 6922,
+      "primitives": 1,
+      "bounds": [
+        -1.0743000507354736,
+        -0.03500000014901161,
+        -0.8942999839782715,
+        1.0743000507354736,
+        0.5260000228881836,
+        0.8942999839782715
+      ],
+      "source": "original covered courtyard galleries, open stone arch and fitted wharf details",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 9948,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city1-lod2.glb",
+      "sha256": "984008692b9a6ea5ecdf6bdc0008783753eca1e132394f394ca3479ce8397ab0",
+      "bytes": 76924,
+      "triangles": 624,
+      "vertices": 1358,
+      "primitives": 1,
+      "bounds": [
+        -1.0743000507354736,
+        -0.03500000014901161,
+        -0.8942999839782715,
+        1.0743000507354736,
+        0.5260000228881836,
+        0.8942999839782715
+      ],
+      "source": "original covered courtyard galleries, open stone arch and fitted wharf details",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1872,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city2-lod0.glb",
+      "sha256": "63b1f3473c6802eda7747890efb4a581002cde8392e32de6a7665ed3fa912e63",
+      "bytes": 760288,
+      "triangles": 6618,
+      "vertices": 14096,
+      "primitives": 1,
+      "bounds": [
+        -1.014299988746643,
+        -0.03500000014901161,
+        -0.8242999911308289,
+        1.014299988746643,
+        0.8659999966621399,
+        0.8242999911308289
+      ],
+      "source": "original covered courtyard galleries, open stone arch and fitted wharf details",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 19854,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city2-lod1.glb",
+      "sha256": "9fd043078979c18ade2f57ea314e71bf7e2c83e5ca61f9cfb03661972fdfb085",
+      "bytes": 363968,
+      "triangles": 3200,
+      "vertices": 6694,
+      "primitives": 1,
+      "bounds": [
+        -1.014299988746643,
+        -0.03500000014901161,
+        -0.8242999911308289,
+        1.014299988746643,
+        0.8659999966621399,
+        0.8242999911308289
+      ],
+      "source": "original covered courtyard galleries, open stone arch and fitted wharf details",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 9600,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/city2-lod2.glb",
+      "sha256": "641fbd671e4318d8a90c79ba643469db0628dabeb7c6c9ca985a5c4312ad4cbb",
+      "bytes": 75744,
+      "triangles": 614,
+      "vertices": 1336,
+      "primitives": 1,
+      "bounds": [
+        -1.014299988746643,
+        -0.03500000014901161,
+        -0.8242999911308289,
+        1.014299988746643,
+        0.8659999966621399,
+        0.8242999911308289
+      ],
+      "source": "original covered courtyard galleries, open stone arch and fitted wharf details",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1842,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/port-lod0.glb",
+      "sha256": "b0fbec7632143d3c1532af0763f8a33227f6b5b4503e16e652f1a13647cce6f9",
+      "bytes": 531116,
+      "triangles": 3664,
+      "vertices": 10060,
+      "primitives": 1,
+      "bounds": [
+        -0.3700000047683716,
+        -0.12999999523162842,
+        -0.3799999952316284,
+        0.3700000047683716,
+        0.42100000381469727,
+        0.8200000524520874
+      ],
+      "source": "original covered courtyard galleries, open stone arch and fitted wharf details",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 10992,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/port-lod1.glb",
+      "sha256": "c0e765b1d36ad96a3eb5ae98b51d795966788a78880a291c3f799b5244865c3b",
+      "bytes": 48548,
+      "triangles": 404,
+      "vertices": 822,
+      "primitives": 1,
+      "bounds": [
+        -0.3700000047683716,
+        -0.12999999523162842,
+        -0.3799999952316284,
+        0.3700000047683716,
+        0.42100000381469727,
+        0.8199999928474426
+      ],
+      "source": "original covered courtyard galleries, open stone arch and fitted wharf details",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1212,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/port-lod2.glb",
+      "sha256": "0f1c00eb0f8f998d31dc517d68c591476e36320a9f11abf5b428c0da0defa3eb",
+      "bytes": 11656,
+      "triangles": 66,
+      "vertices": 138,
+      "primitives": 1,
+      "bounds": [
+        -0.3700000047683716,
+        -0.054999999701976776,
+        -0.3799999952316284,
+        0.3700000047683716,
+        0.42100000381469727,
+        0.8199999928474426
+      ],
+      "source": "original covered courtyard galleries, open stone arch and fitted wharf details",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 198,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/gate-lod0.glb",
+      "sha256": "7ed0498cd07c2909a1aebc3bccc0a428e9b6f70762298531908187212fdc5590",
+      "bytes": 249288,
+      "triangles": 2111,
+      "vertices": 4577,
+      "primitives": 1,
+      "bounds": [
+        -0.47999998927116394,
+        -0.03999999910593033,
+        -0.23000000417232513,
+        0.47999998927116394,
+        0.7560000419616699,
+        0.23000000417232513
+      ],
+      "source": "original covered courtyard galleries, open stone arch and fitted wharf details",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 6333,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/gate-lod1.glb",
+      "sha256": "a11f77267c39617ac883fdcd0e8859bbd4ac3623b8d0429b4be4f81188cd6b9c",
+      "bytes": 59360,
+      "triangles": 480,
+      "vertices": 1028,
+      "primitives": 1,
+      "bounds": [
+        -0.47999998927116394,
+        -0.03999999910593033,
+        -0.23000000417232513,
+        0.47999998927116394,
+        0.7559999823570251,
+        0.23000000417232513
+      ],
+      "source": "original covered courtyard galleries, open stone arch and fitted wharf details",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1440,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/sites/v124/gate-lod2.glb",
+      "sha256": "0f9de1da4a320685d0a8bf0f55313a44abd4ff339be2b64349876d88cc841073",
+      "bytes": 10120,
+      "triangles": 50,
+      "vertices": 110,
+      "primitives": 1,
+      "bounds": [
+        -0.47999998927116394,
+        -0.03999999910593033,
+        -0.23000000417232513,
+        0.47999998927116394,
+        0.6460000276565552,
+        0.23000000417232513
+      ],
+      "source": "original covered courtyard galleries, open stone arch and fitted wharf details",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 150,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-BOAT-lod0.glb",
+      "sha256": "2144ec36c31a5dfdc144cbfffa61e4c3ccd1048dfb93cd74fb0f04d1f4d308e2",
+      "bytes": 178512,
+      "triangles": 1146,
+      "vertices": 3226,
+      "primitives": 1,
+      "bounds": [
+        -0.36657124757766724,
+        0.0,
+        -0.4477764666080475,
+        0.36657124757766724,
+        0.23335181176662445,
+        0.45074358582496643
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 3438,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-BOAT-lod1.glb",
+      "sha256": "08a6fdea406d7c5c379211312f09c2647c523e5634f56f0ef94d161fd7c8c7ca",
+      "bytes": 40672,
+      "triangles": 217,
+      "vertices": 587,
+      "primitives": 1,
+      "bounds": [
+        -0.3671291768550873,
+        0.0,
+        -0.4481933116912842,
+        0.3671291768550873,
+        0.2337242215871811,
+        0.44999998807907104
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 651,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CATAPULT-lod0.glb",
+      "sha256": "a49b470c81604d0f0150f4df8859b346f95d937f670e0c3fbc3d0a89f2cf2397",
+      "bytes": 177428,
+      "triangles": 1170,
+      "vertices": 3197,
+      "primitives": 1,
+      "bounds": [
+        -0.19700001180171967,
+        -0.0009317479562014341,
+        -0.24593175947666168,
+        0.19700001180171967,
+        0.5549998879432678,
+        0.28928202390670776
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 3510,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CATAPULT-lod1.glb",
+      "sha256": "03d35b0ee5b481f15e203b35ca94fb65327721db7cab8a8f239362cd822d417c",
+      "bytes": 46688,
+      "triangles": 330,
+      "vertices": 684,
+      "primitives": 1,
+      "bounds": [
+        -0.19699999690055847,
+        0.0,
+        -0.24500000476837158,
+        0.19699999690055847,
+        0.5550000071525574,
+        0.28928202390670776
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 990,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CAVALRY-lod0.glb",
+      "sha256": "893cf895ec26ac6ce7fa94a9567bd0dbecfe538556aa0d0685e9358babb83867",
+      "bytes": 174396,
+      "triangles": 1283,
+      "vertices": 3106,
+      "primitives": 1,
+      "bounds": [
+        -0.10899999737739563,
+        0.0,
+        -0.23747409880161285,
+        0.10899999737739563,
+        0.7049999833106995,
+        0.23629164695739746
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 3849,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CAVALRY-lod1.glb",
+      "sha256": "0579bdbfe5a562272aa0022ec32888c456573975d5e01030b456abbeae13e9cd",
+      "bytes": 136716,
+      "triangles": 943,
+      "vertices": 2406,
+      "primitives": 1,
+      "bounds": [
+        -0.10899999737739563,
+        0.0,
+        -0.23747409880161285,
+        0.10899999737739563,
+        0.7049999833106995,
+        0.23629164695739746
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 2829,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CROSSBOW-lod0.glb",
+      "sha256": "52301cc9ff3f72806cb710a14d721f3c310696485b36006fe9df22a5bdf0f14c",
+      "bytes": 102988,
+      "triangles": 773,
+      "vertices": 1746,
+      "primitives": 1,
+      "bounds": [
+        -0.09799999743700027,
+        0.0,
+        -0.0560000017285347,
+        0.1519387811422348,
+        0.4480000138282776,
+        0.1599999964237213
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 2319,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-CROSSBOW-lod1.glb",
+      "sha256": "282c9d0d2d612a1f32f3872dcdd1fe6cf6bb91d4b78c77b3be7d02a826cdf02f",
+      "bytes": 75988,
+      "triangles": 523,
+      "vertices": 1246,
+      "primitives": 1,
+      "bounds": [
+        -0.09799999743700027,
+        0.0,
+        -0.05000000074505806,
+        0.1519387811422348,
+        0.4480000138282776,
+        0.1599999964237213
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1569,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-HALBERD-lod0.glb",
+      "sha256": "77f495feada00a7bfeb9f8cc02c3712fd2fd494da002b19a1534391d3a47691e",
+      "bytes": 107152,
+      "triangles": 804,
+      "vertices": 1825,
+      "primitives": 1,
+      "bounds": [
+        -0.1120000034570694,
+        0.0,
+        -0.0560000017285347,
+        0.11500000208616257,
+        0.5649999976158142,
+        0.05900000035762787
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 2412,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-HALBERD-lod1.glb",
+      "sha256": "2904fbf928954e2b7eac8c9b9c4864f744737e7e1981efa66eace5ac3fb11d44",
+      "bytes": 73744,
+      "triangles": 500,
+      "vertices": 1205,
+      "primitives": 1,
+      "bounds": [
+        -0.10999999940395355,
+        0.0,
+        -0.04399999976158142,
+        0.11500000208616257,
+        0.5649999976158142,
+        0.05400000140070915
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1500,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-RAM-lod0.glb",
+      "sha256": "bfb4a1a4f1378e5e75777261710f1dfffdbce803aa158d84141640ba176e459f",
+      "bytes": 158276,
+      "triangles": 1042,
+      "vertices": 2830,
+      "primitives": 1,
+      "bounds": [
+        -0.19700001180171967,
+        -0.0009317479562014341,
+        -0.27000001072883606,
+        0.19700001180171967,
+        0.3579489290714264,
+        0.36500003933906555
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 3126,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-RAM-lod1.glb",
+      "sha256": "435b34a75f0803ad4b04198e59e131d2e6a08069c7e6f27b593436456339e822",
+      "bytes": 44028,
+      "triangles": 312,
+      "vertices": 633,
+      "primitives": 1,
+      "bounds": [
+        -0.19699999690055847,
+        0.0,
+        -0.27000001072883606,
+        0.19699999690055847,
+        0.35837990045547485,
+        0.36500000953674316
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 936,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SIEGE_TOWER-lod0.glb",
+      "sha256": "42f956e191deb3d72e324e4177bf4c00af4dcbaf28ff501074c4b70bb24222bd",
+      "bytes": 254300,
+      "triangles": 1720,
+      "vertices": 4661,
+      "primitives": 1,
+      "bounds": [
+        -0.20000001788139343,
+        -0.0009317479562014341,
+        -0.24593175947666168,
+        0.20000001788139343,
+        0.8299999833106995,
+        0.24593175947666168
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 5160,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SIEGE_TOWER-lod1.glb",
+      "sha256": "c04e7f57135285653e99af0afa1aee38a1dbb42cbc59209e1e964780ce73f657",
+      "bytes": 55284,
+      "triangles": 414,
+      "vertices": 842,
+      "primitives": 1,
+      "bounds": [
+        -0.20000000298023224,
+        0.0,
+        -0.24500000476837158,
+        0.20000000298023224,
+        0.8299999833106995,
+        0.24500000476837158
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1242,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SPEAR-lod0.glb",
+      "sha256": "564b2080fe0186f980d0cd014ed437343d1c7fc18f2b0be43496e4163dca1498",
+      "bytes": 100528,
+      "triangles": 748,
+      "vertices": 1701,
+      "primitives": 1,
+      "bounds": [
+        -0.09799999743700027,
+        0.0,
+        -0.0560000017285347,
+        0.0889807641506195,
+        0.5649999976158142,
+        0.05900000035762787
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 2244,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SPEAR-lod1.glb",
+      "sha256": "fc1fa43d0ecc1bed98fa9667019d9febbae8080ed32002c847aa6e24775ceb38",
+      "bytes": 72448,
+      "triangles": 488,
+      "vertices": 1181,
+      "primitives": 1,
+      "bounds": [
+        -0.09799999743700027,
+        0.0,
+        -0.04399999976158142,
+        0.0889807641506195,
+        0.5649999976158142,
+        0.05400000140070915
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1464,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SWORD-lod0.glb",
+      "sha256": "4158a56febd02a55c15357051e5b9d468c01f0542a17c09d712445e162d96291",
+      "bytes": 107236,
+      "triangles": 807,
+      "vertices": 1826,
+      "primitives": 1,
+      "bounds": [
+        -0.1120000034570694,
+        0.0,
+        -0.0560000017285347,
+        0.09700000286102295,
+        0.4480000138282776,
+        0.05900000035762787
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 2421,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-SWORD-lod1.glb",
+      "sha256": "5432747a0edc3e7d901e58b18c121677b621113ac259d6608cfbdc4c52a25da1",
+      "bytes": 73828,
+      "triangles": 503,
+      "vertices": 1206,
+      "primitives": 1,
+      "bounds": [
+        -0.10999999940395355,
+        0.0,
+        -0.04399999976158142,
+        0.09700000286102295,
+        0.4480000138282776,
+        0.05400000140070915
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 1509,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-TOWER_SHIP-lod0.glb",
+      "sha256": "18218cb9d6c46d4505443473d5773a9269228a74c83cc807eddccc44c66ce4c7",
+      "bytes": 260208,
+      "triangles": 1706,
+      "vertices": 4788,
+      "primitives": 1,
+      "bounds": [
+        -0.36657124757766724,
+        0.0,
+        -0.4477764666080475,
+        0.36657124757766724,
+        0.492000013589859,
+        0.45074358582496643
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 5118,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-TOWER_SHIP-lod1.glb",
+      "sha256": "36a10a50689e56b3b3f975703b0ac47a8cd369aeee10d88a5da4d71bd817dd79",
+      "bytes": 53056,
+      "triangles": 329,
+      "vertices": 817,
+      "primitives": 1,
+      "bounds": [
+        -0.3671291768550873,
+        0.0,
+        -0.4481933116912842,
+        0.3671291768550873,
+        0.492000013589859,
+        0.44999998807907104
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 987,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-WARSHIP-lod0.glb",
+      "sha256": "50874412f2786227129e2c3ba676e55da2f493cb12b5cafffda86d3b3321eb5b",
+      "bytes": 257880,
+      "triangles": 1708,
+      "vertices": 4739,
+      "primitives": 1,
+      "bounds": [
+        -0.36657124757766724,
+        0.0,
+        -0.4477764666080475,
+        0.36657124757766724,
+        0.6499999761581421,
+        0.45074358582496643
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 5124,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-WARSHIP-lod1.glb",
+      "sha256": "b9ef8051c08bfeadee2ec76c5de667ec33614caf554f573e1cb5103c8c099c4a",
+      "bytes": 53276,
+      "triangles": 331,
+      "vertices": 821,
+      "primitives": 1,
+      "bounds": [
+        -0.3671291768550873,
+        0.0,
+        -0.4481933116912842,
+        0.3671291768550873,
+        0.6499999761581421,
+        0.44999998807907104
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 993,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-WOODEN_BEAST-lod0.glb",
+      "sha256": "59a305180d9c9338778392dc6972b5d5e1abcee4830a86a3081e455941a7d2c3",
+      "bytes": 158900,
+      "triangles": 1038,
+      "vertices": 2844,
+      "primitives": 1,
+      "bounds": [
+        -0.19700001180171967,
+        -0.0009317479562014341,
+        -0.24593175947666168,
+        0.19700001180171967,
+        0.43447017669677734,
+        0.3100000023841858
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 3114,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-WOODEN_BEAST-lod1.glb",
+      "sha256": "60756c268088a3b086495d95325d6906fb8e604c562a3a048b43a4434f873e2a",
+      "bytes": 47624,
+      "triangles": 324,
+      "vertices": 705,
+      "primitives": 1,
+      "bounds": [
+        -0.19699999690055847,
+        0.0,
+        -0.24500000476837158,
+        0.19699999690055847,
+        0.4349668622016907,
+        0.3100000023841858
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 972,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-transport-lod0.glb",
+      "sha256": "70b2f40cbea809c2f9f5188946afb40b50aeaac64a6d8790b80bafd3fa3c1d3b",
+      "bytes": 165832,
+      "triangles": 1092,
+      "vertices": 2975,
+      "primitives": 1,
+      "bounds": [
+        -0.19700001180171967,
+        -0.0009317479562014341,
+        -0.24593175947666168,
+        0.19700001180171967,
+        0.320000022649765,
+        0.5506332516670227
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 3276,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/unit-transport-lod1.glb",
+      "sha256": "cdcd21a1afd97297600c0d8960f5cc305a274ff118a350cdf72ccf69a8fc1f14",
+      "bytes": 44960,
+      "triangles": 306,
+      "vertices": 654,
+      "primitives": 1,
+      "bounds": [
+        -0.19699999690055847,
+        0.0,
+        -0.24500000476837158,
+        0.19699999690055847,
+        0.3199999928474426,
+        0.5506845712661743
+      ],
+      "source": "original fitted armour, shield bosses, saddle blanket, deck planks and chassis straps; original rigid joints",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 918,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/tree-lod0.glb",
+      "sha256": "d94d188edf3611fce2196d492e26de50fc6bf10772850920a3f7f9ac173486d2",
+      "bytes": 15208,
+      "triangles": 84,
+      "vertices": 50,
+      "primitives": 1,
+      "bounds": [
+        -0.4065077304840088,
+        -1.792166970382425e-09,
+        -0.3351464867591858,
+        0.37791043519973755,
+        0.9689092040061951,
+        0.37380465865135193
+      ],
+      "source": "original irregular broadleaf clusters, tapered upland canopy, understory and leaning rock strata; no terrain-height replacement",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 252,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/tree-lod1.glb",
+      "sha256": "ca99168741a966e7ae2f266a7c923274caeece25bf70ee1e6839cfa4161c97ad",
+      "bytes": 13288,
+      "triangles": 36,
+      "vertices": 22,
+      "primitives": 1,
+      "bounds": [
+        -0.30201032757759094,
+        -1.792166970382425e-09,
+        -0.3199999928474426,
+        0.2649540305137634,
+        0.9535552263259888,
+        0.33934253454208374
+      ],
+      "source": "original irregular broadleaf clusters, tapered upland canopy, understory and leaning rock strata; no terrain-height replacement",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 108,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/tree-upland-lod0.glb",
+      "sha256": "a17002631ee066234e493d626efdb65ca39dfae704c4945c14f79846a0555c65",
+      "bytes": 16940,
+      "triangles": 132,
+      "vertices": 74,
+      "primitives": 1,
+      "bounds": [
+        -0.30433809757232666,
+        -1.792166970382425e-09,
+        -0.3199999928474426,
+        0.30433809757232666,
+        1.0600000619888306,
+        0.3199999928474426
+      ],
+      "source": "original irregular broadleaf clusters, tapered upland canopy, understory and leaning rock strata; no terrain-height replacement",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 396,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/tree-upland-lod1.glb",
+      "sha256": "c321fa24b330198667b85f6a4f7405064a0edbdd9511df091f54ba5fbbfc8599",
+      "bytes": 14916,
+      "triangles": 76,
+      "vertices": 46,
+      "primitives": 1,
+      "bounds": [
+        -0.277128130197525,
+        -1.792166970382425e-09,
+        -0.3199999928474426,
+        0.277128130197525,
+        1.0600000619888306,
+        0.3199999928474426
+      ],
+      "source": "original irregular broadleaf clusters, tapered upland canopy, understory and leaning rock strata; no terrain-height replacement",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 228,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/shrub-lod0.glb",
+      "sha256": "efedf292c288b1569f67fe46e647c7c6a499dd33517e6f5fd3783d4483b94283",
+      "bytes": 14396,
+      "triangles": 64,
+      "vertices": 38,
+      "primitives": 1,
+      "bounds": [
+        -0.2698808014392853,
+        -1.0053619048377982e-09,
+        -0.18000000715255737,
+        0.23860695958137512,
+        0.3295319974422455,
+        0.23120321333408356
+      ],
+      "source": "original irregular broadleaf clusters, tapered upland canopy, understory and leaning rock strata; no terrain-height replacement",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 192,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/shrub-lod1.glb",
+      "sha256": "f09165149ed39284b1db039cc312c6eee597cb777cc79039b7a15f9b5a8eb919",
+      "bytes": 13288,
+      "triangles": 36,
+      "vertices": 22,
+      "primitives": 1,
+      "bounds": [
+        -0.19819428026676178,
+        -1.0053619048377982e-09,
+        -0.20999999344348907,
+        0.1738760769367218,
+        0.3501456379890442,
+        0.222693532705307
+      ],
+      "source": "original irregular broadleaf clusters, tapered upland canopy, understory and leaning rock strata; no terrain-height replacement",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 108,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/rock-strata-v121-lod0.glb",
+      "sha256": "595b91822a3d140a97c5dcb964d92df52f5f46cfb1d988b35cc0043978f44749",
+      "bytes": 24604,
+      "triangles": 82,
+      "vertices": 246,
+      "primitives": 1,
+      "bounds": [
+        -0.31990307569503784,
+        -0.024000000208616257,
+        -0.2207660973072052,
+        0.37125587463378906,
+        0.34375983476638794,
+        0.22985105216503143
+      ],
+      "source": "original irregular broadleaf clusters, tapered upland canopy, understory and leaning rock strata; no terrain-height replacement",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 246,
+      "generator": "tools/3d/refine_blender124.py"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v124/rock-strata-v121-lod1.glb",
+      "sha256": "68569a748d9bc974caa17dcd8eb5ac4ce4290b7e901988d385a2168021eafc9e",
+      "bytes": 20232,
+      "triangles": 54,
+      "vertices": 162,
+      "primitives": 1,
+      "bounds": [
+        -0.2686927020549774,
+        -0.024000000208616257,
+        -0.2306870073080063,
+        0.37125587463378906,
+        0.34375983476638794,
+        0.17479757964611053
+      ],
+      "source": "original irregular broadleaf clusters, tapered upland canopy, understory and leaning rock strata; no terrain-height replacement",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "expandedVertices": 162,
+      "generator": "tools/3d/refine_blender124.py"
+    }
+  ]
+}

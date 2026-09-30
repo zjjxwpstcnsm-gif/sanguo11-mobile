@@ -8,6 +8,7 @@ public interface GameApi {
     StateToken state();
     boolean busy();
     CommandResult execute(GameCommand command);
+    CommandResult execute(ContestCommand command);
     GameSnapshot snapshot();
     Subscription subscribe(Consumer<GameEvent> listener);
 }

@@ -1,0 +1,65 @@
+// Camera overview specialization: original albedo/shore/season and geometry retained.
+// No new texture uploads; near PBR source and binary are deliberately unchanged.
+material {
+    name : NationalWaterV110,
+    flipUV : false,
+    shadingModel : unlit,
+    doubleSided : true,
+    requires : [ color, uv0, uv1 ],
+    parameters : [
+        { type : float3, name : artTint },
+        { type : float3, name : plantTint },
+        { type : float3, name : waterTint },
+        { type : sampler2d, name : grassColor },
+        { type : sampler2d, name : soilColor },
+        { type : sampler2d, name : sandColor },
+        { type : sampler2d, name : rockColor },
+        { type : float, name : waveTime }
+    ]
+}
+fragment {
+    void material(inout MaterialInputs material) {
+        float2 world = getUV0();
+        float visualDepth = max(0.0,getUV1().x);
+        float deep = smoothstep(0.0,1.5,visualDepth);
+        // A coherent world-space visual current; not a hydrological or navigation model.
+        // The phase closes at 4096s; pause/reduced motion never touches core game time.
+        float phase = materialParams.waveTime * (6.28318530718 / 4096.0);
+        float angle=getUV1().y;
+        float2 direction=float2(cos(angle),sin(angle));
+        float2 current=float2(dot(world,direction),dot(world,float2(-direction.y,direction.x)));
+        float bend = 0.7*sin(world.x*0.19+world.y*0.13);
+        float wave1 = sin(current.x*8.0+current.y*4.0+bend-phase*128.0);
+        // No moving normal at the bank: stable opaque contact without z-fighting.
+        float contact = smoothstep(0.0,0.32,visualDepth);
+        prepareMaterial(material);
+        float4 shore = max(getColor(),float4(0.0));
+        shore /= max(dot(shore,float4(1.0)),0.0001);
+        // Match R04 ground exactly at the contact: same sRGB textures, weights,
+        // UV scales, macro tone and wet multiplier. The visible shallow contour is
+        // an inset distance band; even a one-cell channel retains a wet centre.
+        float2 uv=world*0.35;
+        float2 uvB=float2(uv.x*0.8-uv.y*0.6,uv.x*0.6+uv.y*0.8)*0.731+float2(0.317,0.619);
+        float3 bank=texture(materialParams_grassColor,uv).rgb*shore.x
+            +texture(materialParams_soilColor,uv).rgb*shore.y
+            +texture(materialParams_sandColor,uv).rgb*shore.z
+            +texture(materialParams_rockColor,uv).rgb*shore.w;
+        float3 broad=texture(materialParams_grassColor,uvB).rgb*shore.x
+            +texture(materialParams_soilColor,uvB).rgb*shore.y
+            +texture(materialParams_sandColor,uvB).rgb*shore.z
+            +texture(materialParams_rockColor,uvB).rgb*shore.w;
+        float macro=0.97+0.025*sin(world.x*0.113+sin(world.y*0.071))
+            +0.015*cos(world.y*0.139-world.x*0.047);
+        float tone=0.96+0.04*sin(world.x*0.19)*cos(world.y*0.17);
+        bank=mix(bank,broad,0.38)*mix(float3(1.0),materialParams.plantTint,shore.x)*materialParams.artTint*macro*tone*0.64;
+        float3 shallow=mix(float3(0.065,0.115,0.105),float3(0.12,0.14,0.095),shore.z);
+        shallow=mix(shallow,float3(0.075,0.115,0.12),shore.w);
+        float3 water=mix(shallow,float3(0.035,0.082,0.09),deep);
+        // Subtle subsurface sediment/ripples, never bright foam outlining every cell.
+        water*=materialParams.waterTint*materialParams.artTint;
+        water*=1.0+0.018*wave1*contact*(1.0-deep);
+        material.baseColor=float4(mix(bank,water,contact),1.0);
+        float haze=smoothstep(320.0,410.0,length(getWorldPosition()-getWorldCameraPosition()))*0.08;
+        material.baseColor.rgb=mix(material.baseColor.rgb,float3(0.22,0.25,0.24),haze);
+    }
+}

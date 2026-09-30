@@ -1,0 +1,200 @@
+{
+  "stage": "R02",
+  "status": "PARTIAL",
+  "base_sha": "fa78324e1be08da54a3ec808bd0ec06188c57ba9",
+  "main_sha": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "source_sha": "2965bcddd50564f80cb194aa71127767d822dd10",
+  "backend": "Filament 1.56.0 / Engine.Backend.OPENGL",
+  "pr": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/67",
+  "merged": false,
+  "ci_run": 35865854066,
+  "build": "PASS",
+  "lint": "PASS",
+  "emulator": "PASS",
+  "device": {
+    "emulator": "API29 x86_64 / SwANGLE",
+    "physical_arm64": "NOT_RUN"
+  },
+  "host": {
+    "r02_assertions": 399124,
+    "valid_centres": 38949,
+    "matrix_ray_samples": 1548,
+    "synthetic_occlusion_samples": 282,
+    "baseline_golden": "15475946728566902866",
+    "architecture": "PASS",
+    "geometry_material_water": "PASS",
+    "interaction_editor": "PASS",
+    "r01_queue": "PASS",
+    "synthetic_occlusion": "New World(30,30) plain test-only map, explicit peak at (15,15), 282 occluded points. Diagnostic source included; no production map alteration.",
+    "baseline_failure_log": "out/r02/core-baseline-direct.log (compiled isolated fa78324 CoreTest)",
+    "arbitrary_camera_and_object_transform_samples": 5400,
+    "arbitrary_object_test": "R02ObjectRay.java: proxy triangle centroids at arbitrary camera yaw/tilt and animated scales; host only, not production GLB/manual entity acceptance"
+  },
+  "inherited_failures": [
+    "CoreTest.logistics: AI uses deployment commands; candidate and independent fa78324"
+  ],
+  "missing": [
+    "PC reference (REFERENCE_MISSING)",
+    "ARM64 Adreno/Mali and mobile performance/thermal",
+    "complete manual command/touch/cutout/landscape/animated-entity acceptance",
+    "R01 async decode/native fault matrix"
+  ],
+  "commands": {
+    "build": "./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true",
+    "install": "adb install -r app/build/outputs/apk/debug/app-debug.apk",
+    "instrument": "adb shell am instrument -w game.sanguo.mobile.dev.test/game.sanguo.mobile.NativeR02Instrumentation"
+  },
+  "local_log_sha256": {
+    "out/r02/interaction.log": "6c12cbe9f982f351a662a77731c70766621867199f4c504cbb97ad328268dfb0",
+    "out/r02/core-current.log": "4b484a605fff485eed15b3391d76a6b7d3ec9f5872a594e60e3fcd9615c75e56",
+    "out/r02/coordinates.log": "56aec86250cbfbdc89a44a74e8af4852110feaff3942368004c7c9b182223e59",
+    "out/r02/occlusion.log": "d3174039ca68d8dee7bd71f56f589ae01a6fb774dd861f1bb8c1f0232c0ef692",
+    "out/r02/core-baseline.log": "026608506dd3be326bd8dc47d72ea9acf6d9405f700007102157db26750c97ca",
+    "out/r02/local-build.log": "d5af751200205722f45a5f6ac7bff1a4f5e99da69e65d81b6edcab65e6e9930e",
+    "out/r02/foundation.log": "7b69ef0d8df01e9ef0fc36ec3b87b2176e3f9cc33081be0c99582cb732436d02",
+    "out/r02/architecture.log": "eb9ae8bf1b4aa661299193a504df16673bc138e16709c4b3c30458e9aeba99d1",
+    "out/r02/core-baseline-direct.log": "67469f15532a4c2f1381d1cf3dc3d6c8bc1a1f276ba3bd4077cba53a866d1a71",
+    "out/r02/ownership.log": "0fc1bf0ecf24e1c9dcdc585105a68f17d3599eb1df9bdd67af773b2106201fb6"
+  },
+  "previous_attempt": {
+    "source": "f4fe2b70ccc27bb90dc00fe719e70cc297059123",
+    "run": 35864250919,
+    "result": "FAIL",
+    "reason": "PixelCopy Surface capture failed at HIGH after LOW and MEDIUM captures succeeded; dequeueBuffer -110 in logcat. No fatal Java/native crash observed. Exact PixelCopy status was absent in old probe.",
+    "completed_before_failure": [
+      "3x4x3 city-cell matrix",
+      "two-finger twist and drag authority unchanged",
+      "panel no camera/selection change",
+      "LOW/MEDIUM/HIGH view-pixel pick invariance (HIGH capture failed after pick check)"
+    ],
+    "visual_inspection": [
+      "r02-view-90-surface: terrain, city, port visible",
+      "r02-resolution-MEDIUM-ui: 30-degree city and grid align after settling",
+      "r02-02-gestures-ui: overlay lags composed Surface immediately after gesture on software emulator; settled capture aligns"
+    ],
+    "recording_seconds": 177.899267
+  },
+  "apk_previous_attempt": {
+    "filename": "sanguo11-native-r02-f4fe2b7.apk",
+    "application_id": "game.sanguo.mobile.dev",
+    "version_name": "0.85.0-native-r02",
+    "version_code": 85,
+    "sha256": "3aaa3f4da2cd67b2a7d742c5c6c7b6bc8f28510a05a7891836942ef537c9a161",
+    "size_bytes": 35388738,
+    "abi": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "signer_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "source_in_dex": true,
+    "contains_unity": false
+  },
+  "apk": {
+    "filename": "sanguo11-native-r02-2965bcd.apk",
+    "application_id": "game.sanguo.mobile.dev",
+    "version_name": "0.85.0-native-r02",
+    "version_code": 85,
+    "sha256": "515aeb1782a4c1ad03b35de808236cba15d97d9550286dc043a05351e6037d9e",
+    "size_bytes": 35388738,
+    "abi": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "signer_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "source_in_dex": true,
+    "contains_unity": false
+  },
+  "startup_regression": {
+    "run": 35865854274,
+    "job": 107197166221,
+    "source": "2965bcddd50564f80cb194aa71127767d822dd10",
+    "status": "PASS",
+    "scope": "fresh official scenario, 3D entry, gestures, deployment parity, save/load, recreation, background and cold reload"
+  },
+  "installed_checks": 1043,
+  "ci_result": "success",
+  "runtime_artifact": 10752778375,
+  "build_artifact": 10752528845,
+  "emulator_capture": {
+    "pixelcopy_all_first_attempt": true,
+    "pixelcopy_status": 0,
+    "all_quality_surface_captures": "PASS",
+    "no_fatal_java_or_native_in_collected_logcat": true,
+    "visual_inspection": "HIGH and command-result UI/Surface are actual terrain/cities/ports/units; rotated overlay aligned in settled view. Coarse assets and stepped shores remain."
+  },
+  "runtime_scope": [
+    "36 camera combinations with seven-cell picks",
+    "two-finger twist/drag authority unchanged",
+    "panel drag/selection blocked",
+    "0.70/0.85/1.00 view-pixel picking and real Surface captures",
+    "2D/3D camera and full-authority restore",
+    "deployment and movement against independent unchanged rules",
+    "next-turn playback and autosave full-state equivalence"
+  ],
+  "recording": {
+    "raw_segments": 5,
+    "duration_seconds": [
+      181.567722,
+      177.443344,
+      178.891356,
+      180.347667,
+      176.293722
+    ],
+    "limits": "Real screenrecord segments, no frame interpolation/editing. Covers browsing and mode/unit operations; complete manual attack-preview touch flow NOT_RUN; final turn completion is evidenced by screenshot/log, not claimed fully recorded."
+  },
+  "current_lifecycle_regression": {
+    "run": 35865854367,
+    "source": "2965bcddd50564f80cb194aa71127767d822dd10",
+    "status": "IN_PROGRESS_AT_COLLECTION",
+    "note": "Not counted as PASS; baseline R01 run is historical. Current R02 mode/session/command tests passed."
+  },
+  "runtime_file_hashes": {
+    "build.log": "d55a49494bf79c51597ac14b66c4f85d7fa02d3bc25277d61f6ce5714e3d6e62",
+    "test-native-r01.log": "0fc1bf0ecf24e1c9dcdc585105a68f17d3599eb1df9bdd67af773b2106201fb6",
+    "test-architecture.log": "eb9ae8bf1b4aa661299193a504df16673bc138e16709c4b3c30458e9aeba99d1",
+    "test-3d-foundation.log": "7b69ef0d8df01e9ef0fc36ec3b87b2176e3f9cc33081be0c99582cb732436d02",
+    "r02-operation-5.mp4": "6f18c91b9b8d27604da8bf39b513eaf71c3c05a5ee8bf34f5496f5393bced408",
+    "signature.txt": "f212453b3b955f213464fb666b7fd496619dc95a64a888b3ef79e1d95f925479",
+    "interaction.txt": "4599cfa940cfab9942c1f5de7e33a918efdf486befcab06667c23c73accdca89",
+    "apk-metadata.txt": "b48e7df8cf65f846f00d00dfe6671245267bc0db4831947770dfd5177b755178",
+    "test-native-r02.log": "56aec86250cbfbdc89a44a74e8af4852110feaff3942368004c7c9b182223e59",
+    "test-3d-interaction.log": "6c12cbe9f982f351a662a77731c70766621867199f4c504cbb97ad328268dfb0",
+    "SOURCE_SHA": "4963804a9c0058752b1f365c252676a5f3004604777c823fa4963e92d2cef2ab",
+    "meminfo.txt": "bde8423813cf550fbcdd67b8cd6f7c9a9ee165e5f873dbc1eaf5a425e5c9b2ca",
+    "logcat.txt": "351394493d5311bbe2ffa65754ed85aa26302dcb9c2835ab3bc30228c285f353",
+    "recording.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "r02-operation-3.mp4": "09282ac21f583e93cd2a50cf14295c9bb28244ce5b53b4506f5d11cb8bc76ad0",
+    "APK_SHA256": "52839271766bd10fc0a461b86d7c91ddf4dcdfc626f55b5801d9bbbafa55ec8c",
+    "r02-operation-2.mp4": "fac83fcaf3f4e2535d42e39d100614c1cb194d4bc2250f2305117f9cbd76b87c",
+    "r02-operation-1.mp4": "e9dd6a6a759b94c428ddd513a59369b4cc394bb8402b5db95e49e9d2ac4ef258",
+    "r02-operation-4.mp4": "802472847022394f25be894a82a1c71fff4bc2cd9315c070ab34b8509ba84a17",
+    "images/r02-view-0-surface.png": "3bc80fb7d450dbded332097a6eb7e571b44f5c619defc20d871f9c241b2d9314",
+    "images/r02-view-270-surface.png": "1a4fa5e6682ab3e59c9674cca29ff1866401f5b7fa06e9ef59dccd70bca0c7b5",
+    "images/r02-02-gestures-surface.png": "15ed186f0b55eee513d1c6d4cf40bf64e968f50b2f83c94659531bbbec62663c",
+    "images/r02-01-entry-ui.png": "b8543a0321b71bf1f619d6f49b4aee11a2e66cba17f73b8063b9e7895195ab5d",
+    "images/04-3d-after-turn-load.png": "ca6c97f923029adc833329aee2aff17f9f65ef351a82ac2c6742ba0bb6bac42e",
+    "images/r02-04-command-result-surface.png": "1a28f76b519d0e3743384b19e97847e3e2d6bcc04cb93269d23f3df18ac2f98d",
+    "images/r02-02-gestures-ui.png": "811edf2d93deac4f5a18b0bdcc12f993d7f7d082af37c843533eb4cc95ebe0e5",
+    "images/r02-03-2d.png": "e38743f4b05ddb2621470424470527736da385782bf158ba40cf761a1f34c671",
+    "images/r02-resolution-HIGH-ui.png": "b778e41ae9d67a40fc9c156ee4207066f81bae64fa7396ab2aebea4e338eaaf8",
+    "images/r02-resolution-MEDIUM-surface.png": "81f92eabaeddba2b84066d74b78f1d70f62cf5fedc4d99e7fe273ee19469ffa7",
+    "images/r02-resolution-LOW-surface.png": "1aac3d837fc3ab14f26a07b7c5222cfd6abb5ca7e26a78ca246dd8aecdd9fcff",
+    "images/r02-resolution-MEDIUM-ui.png": "e5ddec00faca065c5cb4dcf7ed13f4afe247c8147a9c0a16dbad2df0c40a79b4",
+    "images/r02-resolution-LOW-ui.png": "d9ec4c6143cb0ab48801dc86e78d423bb23e4f44003cb6a59259b518432cef46",
+    "images/r02-view-270-ui.png": "9599f1dc50c840bf3513e2f99fb592292f62803915bc574dff0ca241fc5bf8a6",
+    "images/r02.txt": "20a5c86058bc39a3bbbb254346fddbcf252b633694d3c4c3d90cb82279fe4a2d",
+    "images/r02-view-180-surface.png": "8ae26a73a7fc77c83c481cd5db6b66f98b0ae3a5221d0076bc68915cf0f038db",
+    "images/r02-view-90-surface.png": "1cb9f450ca0f4eb54ebf23f18bf11235a4a5b6c44092f6478910959c91c90f02",
+    "images/r02-04-command-result-ui.png": "e55b877c2fff2ea1f2372624ab100d3f66dfbd469713101fa2c8b40712707419",
+    "images/r02-view-90-ui.png": "3b915185b94326b48a1a9f9717bfabc62df85cd6cedfa82d2bf986e5374e7487",
+    "images/r02-view-180-ui.png": "eb6ecf0e7337a34c50a0278b9198f0e9eedf009cea413e70df0911c1d9775e1b",
+    "images/r02-01-entry-surface.png": "4b6992ef48d868ecc6b908a46b7ea54ce3c731e2bab69ecd206e615eacb8ec2a",
+    "images/r02-view-0-ui.png": "c5138227858030d8492d8ea1c4d09fb70030a48d65dfd0d36b37e35b07441a11",
+    "images/surface.png": "1a28f76b519d0e3743384b19e97847e3e2d6bcc04cb93269d23f3df18ac2f98d",
+    "images/r02-resolution-HIGH-surface.png": "70c84fb2bb9a69f1b277816f6cde3c10e4b289fb0bdebf045234d5d618f3039a"
+  }
+}

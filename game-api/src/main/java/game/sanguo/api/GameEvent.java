@@ -2,7 +2,7 @@ package game.sanguo.api;
 
 /** Committed facts; presentation must not parse the human-readable detail as a rule. */
 public final class GameEvent {
-    public enum Kind { RECRUITED, PATROLLED, LEGACY_COMMITTED, WORLD_REPLACED, TURN_COMMITTED, CLOSED }
+    public enum Kind { RECRUITED, PATROLLED, LEGACY_COMMITTED, WORLD_REPLACED, TURN_COMMITTED, CLOSED, CONTEST_ADVANCED }
     public final Kind kind;
     public final StateToken state;
     public final int cityId, officerId, troopsDelta, orderDelta;

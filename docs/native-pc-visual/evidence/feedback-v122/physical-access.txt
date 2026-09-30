@@ -1,0 +1,5 @@
+CI job 109486115707 / run 36590994238
+FAIL at google-github-actions/auth@v3
+unauthorized_client: The given credential is rejected by the attribute condition.
+Inventory and device submission NOT_RUN. No IAM changes, no secret lookup, no paid test submission.
+https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/36590994238/job/109486115707

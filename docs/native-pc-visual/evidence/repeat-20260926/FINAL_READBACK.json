@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "audit": "repeat-20260926",
+  "all_requirements_satisfied": false,
+  "total": 463,
+  "counts": {"PASS": 9, "FAIL": 20, "PARTIAL": 174, "NOT_RUN": 256, "NOT_REACHED": 4},
+  "report_commit": "af0aea35a2bcb476d2752e52655bed7d6518d2ce",
+  "main": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "apk_source_sha": "5f8997ebfef15f4680931d40532411a336506d0d",
+  "apk_sha256": "6ba2211d961567b2aa396ba19e3018c1dc44780fa4351a807db099fc643bd058",
+  "production_changed": false,
+  "collection_ci": 36233561523,
+  "collection_job": 108381122891,
+  "collection_ci_conclusion": "failure",
+  "collection_failure_scope": "Only post-push PR HEAD assertion failed: immediate PR response still contained efa51aa5c324be1bdae53e7ff447671f49101c54, whereas branch API and git ls-remote already contained af0aea35a2bcb476d2752e52655bed7d6518d2ce. Do not re-run the publishing mutation or relabel the original CI success.",
+  "push": "Actual normal fast-forward efa51aa..af0aea3 succeeded; 20 audit documentation files committed. Subsequent independent GitHub.get_pr_info returned af0aea35a2bcb476d2752e52655bed7d6518d2ce, PR67 open, draft, not merged, main unchanged.",
+  "collected_artifact": {
+    "id": 10903800567,
+    "name": "native-repeat-acceptance-final",
+    "bytes": 440162032,
+    "sha256": "b18f2e885908c6c49c2ecbaac70fc04003bf65a358c861669fd33a09d76a9129",
+    "entries": 454,
+    "download_size_hash_crc_verified": true
+  },
+  "release": {"attempted": true, "create_exit": 1, "http_status": 403, "error": "Resource not accessible by integration", "final_tag_lookup": 404, "published": false, "evidence": "RELEASE_RESULT.json"},
+  "local_media": {"original_segments": 30, "container_parse_pass": 30, "full_decode_pass": 30, "sampled_content_reviewed": 30, "full_frame_by_frame_review": false, "scope": "The additional original API29 parity-harness failure recording only shows the launcher. New compatible API35 parity clips show explicit command fixtures, including a black-world transition. Playable video does not imply gameplay, visual or performance PASS."},
+  "original_api29_parity_harness": {"artifact_id": 10902209606, "status": "FAIL", "cases": 0, "error": "NoSuchMethodError InputStream.readAllBytes at NativeP0ParityInstrumentation.java:26/98", "compatible_harness_result": "Fresh separate API29 attempt2: 12 cases, 50 complete serialized byte pairs equal. Original failure is preserved, not erased."},
+  "runtime_scope": "API29/API35 cold national preview and original NativeR12 FAIL. API29 month7/month4 fullscreen remains January despite correct authority/snapshot/widget. Current lifecycle API29 0/0; API35 20 switches/1 foreground-background cycle then assertion FAIL. Full-touch remainder NOT_REACHED. ARM64 physical/performance NOT_RUN.",
+  "evidence_scope": "All three requested runtime runs, all final attempts, jobs and complete log archives are preserved. Forty-nine job-attempt records include cloned inherited jobs; timestamps distinguish fresh execution. Independent local core results, input integrity, original PNG/Surface/MP4, per-segment decode logs and complete saves are delivered in the conversation evidence package. Repository matrix shared evidence is explicitly limited and does not certify unexecuted individual device or art conditions."
+}

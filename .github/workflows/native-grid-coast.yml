@@ -1,0 +1,106 @@
+name: Native grid and coastline feedback
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-grid-coast.yml', 'scripts/*grid-coast*', 'app/src/**', 'version.properties']
+permissions: {contents: read, actions: read}
+concurrency: {group: native-grid-coast, cancel-in-progress: false}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Exact source, protected trees and affected host checks
+        run: |
+          set -euo pipefail
+          mkdir -p out/grid-coast
+          python3 scripts/verify-candidate-source.py "$GITHUB_SHA" > out/grid-coast/source-check.txt
+          git diff --exit-code ebef624899c25f381101dfaa095cf4057b7f3d1f HEAD -- core game-api game-runtime data unity app/src/main/assets > out/grid-coast/protected.log
+          git merge-base --is-ancestor ac29b458325b52d6e302ca44270d16552de4ed7f HEAD
+          curl -fsSL https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/grid-coast-json.jar
+          export JSON_TEST_JAR=/tmp/grid-coast-json.jar
+          for suite in test-grid-coast test-native-r08 test-native-r01 test-native-r12 test-architecture; do bash scripts/$suite.sh > out/grid-coast/$suite.log 2>&1; done
+      - name: Original core failure retained
+        continue-on-error: true
+        run: |
+          set +e
+          bash scripts/test-core.sh > out/grid-coast/core.log 2>&1
+          code=$?
+          echo "$code" > out/grid-coast/core.exit
+          exit "$code"
+      - name: Build clean exact candidate
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PcandidateSource="$GITHUB_SHA" -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/grid-coast/build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/grid-coast/sanguo11-mobile-v117.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/grid-coast/test.apk
+          git rev-parse HEAD > out/grid-coast/SOURCE_COMMIT
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/grid-coast/sanguo11-mobile-v117.apk > out/grid-coast/metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/grid-coast/sanguo11-mobile-v117.apk > out/grid-coast/signature.txt
+          python3 scripts/audit-3d-apk.py out/grid-coast/sanguo11-mobile-v117.apk --require-16k > out/grid-coast/apk-audit.txt
+          python3 scripts/verify-r18-apk.py out/grid-coast/sanguo11-mobile-v117.apk "$GITHUB_SHA" > out/grid-coast/apk-identity.json
+          sha256sum out/grid-coast/*.apk > out/grid-coast/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-grid-coast-build, path: out/grid-coast/, retention-days: 30, if-no-files-found: error}
+  installed:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix: {api: [29, 35]}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: actions/download-artifact@v4
+        with: {name: native-grid-coast-build, path: out/grid-coast/}
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+          run-id: 36398907396
+          name: native-r18-build
+          path: out/grid-coast/baseline/
+      - run: sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: '${{ matrix.api }}'
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-grid-coast.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'native-grid-coast-api${{ matrix.api }}', path: out/grid-coast/runtime/, retention-days: 30}
+  physical_access:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions: {contents: read, id-token: write}
+    env:
+      FIREBASE_PROJECT_ID: '${{ vars.FIREBASE_PROJECT_ID }}'
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: google-github-actions/auth@v3
+        with:
+          project_id: '${{ vars.FIREBASE_PROJECT_ID }}'
+          workload_identity_provider: '${{ vars.FIREBASE_WIF_PROVIDER }}'
+          service_account: '${{ vars.FIREBASE_SERVICE_ACCOUNT }}'
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Read-only free device capacity; no submission or IAM changes
+        run: python3 scripts/firebase-evidence-preflight.py --inventory-only
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-grid-coast-physical-access, path: out/firebase-preflight/, retention-days: 30, if-no-files-found: warn}

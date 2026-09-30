@@ -1,0 +1,5 @@
+# Offline model review — not APK acceptance
+
+Inspected all 18 LOD0 variants across two Blender contact sheets. Three city silhouettes retain four axial gates, internal pavilions and added drum/bell towers. Port has dock, warehouse and gantry; gate retains clear central passage and twin watch rooms. Soldiers remain visibly stylised, with sharp facial/limb geometry and limited textile detail. Cavalry, siege engines and three naval silhouettes are distinct; this does not certify historical fidelity or PC art parity. Initial ship and siege-tower previews cropped some extremities. The final 18 previews were reframed and the packed Blender project saved; this was an offline-camera correction and made no runtime asset changes. No inference about game camera framing.
+
+The geometry is authored/evaluated with Blender4.2.3, exported as 41 runtime GLBs and loaded through the production site/FieldAssets paths. Original 349 assets remain byte-identical. Asset authoring and numerical indexing do not prove installed visual quality. See installed screenshots and runtime results separately.

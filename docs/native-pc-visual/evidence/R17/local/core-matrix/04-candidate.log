@@ -1,0 +1,1 @@
+PASS: 50x50 benchmark, 100 A* queries: p50=1.682ms p95=2.369ms max=8.537ms total=183.725ms maxExpanded=2125/2500; 100 reachable queries=10.292ms

@@ -1,0 +1,64 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        73efa50 game.sanguo.mobile.dev/game.sanguo.mobile.MainActivity filter f221f39
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+
+Key Set Manager:
+  [game.sanguo.mobile.dev]
+      Signing KeySets: 5
+
+Packages:
+  Package [game.sanguo.mobile.dev] (ff52449):
+    userId=10065
+    pkg=Package{5e4e14e game.sanguo.mobile.dev}
+    codePath=/data/app/game.sanguo.mobile.dev--JEouCwWfjeZEinU5nnetQ==
+    resourcePath=/data/app/game.sanguo.mobile.dev--JEouCwWfjeZEinU5nnetQ==
+    legacyNativeLibraryDir=/data/app/game.sanguo.mobile.dev--JEouCwWfjeZEinU5nnetQ==/lib
+    primaryCpuAbi=x86_64
+    secondaryCpuAbi=null
+    versionCode=115 minSdk=26 targetSdk=35
+    versionName=0.115.0-native-r17-hardening
+    splits=[base]
+    apkSigningVersion=2
+    applicationInfo=ApplicationInfo{f6de26f game.sanguo.mobile.dev}
+    flags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ]
+    dataDir=/data/user/0/game.sanguo.mobile.dev
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2026-09-28 08:07:36
+    firstInstallTime=2026-09-28 08:07:29
+    lastUpdateTime=2026-09-28 08:07:36
+    signatures=PackageSignatures{da16b7c [71271c33]}
+    installPermissionsFixed=true installStatus=1
+    pkgFlags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    User 0: ceDataInode=98987 installed=true hidden=false suspended=false stopped=false notLaunched=false enabled=0 instant=false
+      runtime permissions:
+
+Package Changes:
+  Sequence number=26
+  User 0:
+    seq=1, package=com.android.sdksetup
+    seq=2, package=com.android.settings
+    seq=3, package=com.android.calendar
+    seq=5, package=com.android.camera2
+    seq=14, package=com.android.email
+    seq=16, package=com.android.gallery3d
+    seq=17, package=com.android.inputmethod.latin
+    seq=22, package=com.android.messaging
+    seq=24, package=game.sanguo.mobile.dev.test
+    seq=25, package=game.sanguo.mobile.dev
+
+
+Dexopt state:
+  [game.sanguo.mobile.dev]
+    Instruction Set: x86_64
+      path: /data/app/game.sanguo.mobile.dev--JEouCwWfjeZEinU5nnetQ==/base.apk
+      status: /data/app/game.sanguo.mobile.dev--JEouCwWfjeZEinU5nnetQ==/oat/x86_64/base.odex[status=kOatUpToDate, compil
+      ation_filter=quicken]
+
+
+Compiler stats:
+  [game.sanguo.mobile.dev]
+     base.apk - 441

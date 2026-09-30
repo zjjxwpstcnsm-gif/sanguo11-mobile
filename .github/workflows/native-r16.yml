@@ -1,0 +1,97 @@
+name: Native R16 measured resource budgets
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-r16.yml', 'scripts/*r16*', 'app/src/**', 'version.properties']
+permissions: {contents: read}
+concurrency: {group: native-r16, cancel-in-progress: false}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Protected baseline and host contracts
+        run: |
+          set -euo pipefail
+          mkdir -p out/r16/{candidate,baseline}
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git merge-base --is-ancestor ac29b458325b52d6e302ca44270d16552de4ed7f HEAD
+          git diff --exit-code f355536d94d22f623fc44e33c91410f66938c7d0 HEAD -- core game-api game-runtime data unity app/src/main/assets > out/r16/protected.log
+          curl -fsSL --retry 2 https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/json.jar
+          export JSON_TEST_JAR=/tmp/json.jar
+          bash scripts/test-native-r16.sh > out/r16/host.log 2>&1
+          for suite in test-native-r01 test-native-r02 test-native-r08 test-native-r12 test-architecture; do bash scripts/$suite.sh > out/r16/$suite.log 2>&1; done
+      - name: Record unmodified complete core result
+        continue-on-error: true
+        run: |
+          set +e
+          bash scripts/test-core.sh > out/r16/core.log 2>&1
+          code=$?
+          echo "$code" > out/r16/core.exit
+          exit "$code"
+      - name: Build exact candidate universal and instrumentation
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/r16/candidate/build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/r16/candidate/app.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/r16/candidate/test.apk
+          git rev-parse HEAD > out/r16/candidate/SOURCE_COMMIT
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/r16/candidate/app.apk > out/r16/candidate/metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/r16/candidate/app.apk > out/r16/candidate/signature.txt
+          ./gradlew --no-daemon :app:assembleDebug -PnativePcVisual=true -PunityBridgeProbe=false -PtargetAbi=arm64-v8a > out/r16/candidate/arm64-build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/r16/candidate/arm64.apk
+          python3 scripts/audit-3d-apk.py out/r16/candidate/arm64.apk --abi arm64-v8a --require-16k > out/r16/candidate/arm64-audit.txt
+      - name: Same profiling harness with unchanged input production
+        run: |
+          set -euo pipefail
+          git worktree add --detach /tmp/r16-before f355536d94d22f623fc44e33c91410f66938c7d0
+          cp app/src/androidTest/java/game/sanguo/mobile/NativeR16Instrumentation.java /tmp/r16-before/app/src/androidTest/java/game/sanguo/mobile/
+          cp app/src/androidTest/AndroidManifest.xml /tmp/r16-before/app/src/androidTest/AndroidManifest.xml
+          git -C /tmp/r16-before diff --exit-code -- app/src/main core game-api game-runtime data version.properties
+          git -C /tmp/r16-before diff > out/r16/baseline/test-harness.patch
+          (cd /tmp/r16-before && ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true) > out/r16/baseline/build.log 2>&1
+          cp /tmp/r16-before/app/build/outputs/apk/debug/app-debug.apk out/r16/baseline/app.apk
+          cp /tmp/r16-before/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/r16/baseline/test.apk
+          git -C /tmp/r16-before rev-parse HEAD > out/r16/baseline/SOURCE_COMMIT
+          sha256sum out/r16/{candidate,baseline}/*.apk > out/r16/APK_SHA256
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-r16-build, path: out/r16/, retention-days: 30, if-no-files-found: error}
+  emulator:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix: {variant: [baseline, candidate]}
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: actions/download-artifact@v4
+        with: {name: native-r16-build, path: out/r16/}
+      - run: |
+          test "$(cat out/r16/candidate/SOURCE_COMMIT)" = "$GITHUB_SHA"
+          sha256sum --check out/r16/APK_SHA256
+          sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-native-r16.sh ${{ matrix.variant }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'native-r16-${{ matrix.variant }}-runtime', path: 'out/r16/runtime/${{ matrix.variant }}/', retention-days: 30}

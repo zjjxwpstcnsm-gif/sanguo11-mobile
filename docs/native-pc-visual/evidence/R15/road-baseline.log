@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: ordinary ROAD must match PLAIN palette at identical world coordinates/slope
+	at game.sanguo.mobile.NativeR15Test.check(NativeR15Test.java:13)
+	at game.sanguo.mobile.NativeR15Test.roadPalette(NativeR15Test.java:65)
+	at game.sanguo.mobile.NativeR15Test.main(NativeR15Test.java:73)

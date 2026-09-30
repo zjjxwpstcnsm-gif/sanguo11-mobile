@@ -1,0 +1,33 @@
+name: Native R11 pinned audit toolchain
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-r11-audit.yml']
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Capture exact inherited identity and pinned test dependency
+        run: |
+          set -euo pipefail
+          mkdir -p out/r11-audit
+          git rev-parse HEAD > out/r11-audit/AUDIT_COMMIT
+          git rev-parse origin/main > out/r11-audit/MAIN_COMMIT
+          git merge-base --is-ancestor origin/main HEAD
+          for origin in https://repo.maven.apache.org/maven2 https://repo1.maven.org/maven2 https://maven-central.storage-download.googleapis.com/maven2; do
+            if curl -fSL --max-time 35 "$origin/org/json/json/20240303/json-20240303.jar" -o out/r11-audit/json.jar; then break; fi
+          done
+          test -s out/r11-audit/json.jar
+          sha256sum out/r11-audit/json.jar > out/r11-audit/TOOLCHAIN_SHA256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-r11-audit
+          path: out/r11-audit/
+          retention-days: 7

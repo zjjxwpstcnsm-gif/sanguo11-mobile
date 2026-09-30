@@ -1,0 +1,5 @@
+Exception in thread "main" java.lang.AssertionError: 请选择当前势力的部队
+	at game.sanguo.core.RulesParityTest.check(RulesParityTest.java:11)
+	at game.sanguo.core.RulesParityTest.ok(RulesParityTest.java:12)
+	at game.sanguo.core.RulesParityTest.actions(RulesParityTest.java:54)
+	at game.sanguo.core.RulesParityTest.main(RulesParityTest.java:36)

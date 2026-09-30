@@ -1,0 +1,210 @@
+[
+  {
+    "path": "api29/baseline-fixture/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "179.277244",
+        "size": "7402347"
+      }
+    },
+    "null_muxer_dts_warning_lines": 135,
+    "other_error_lines": []
+  },
+  {
+    "path": "api29/baseline-national/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "173.710711",
+        "size": "8296304"
+      }
+    },
+    "null_muxer_dts_warning_lines": 51,
+    "other_error_lines": []
+  },
+  {
+    "path": "api29/candidate-fixture/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "180.037044",
+        "size": "6572255"
+      }
+    },
+    "null_muxer_dts_warning_lines": 115,
+    "other_error_lines": []
+  },
+  {
+    "path": "api29/candidate-national/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "144.889900",
+        "size": "9477882"
+      }
+    },
+    "null_muxer_dts_warning_lines": 109,
+    "other_error_lines": []
+  },
+  {
+    "path": "api35/baseline-fixture/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "130.913189",
+        "size": "2840080"
+      }
+    },
+    "null_muxer_dts_warning_lines": 111,
+    "other_error_lines": []
+  },
+  {
+    "path": "api35/baseline-national/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "135.075400",
+        "size": "5046570"
+      }
+    },
+    "null_muxer_dts_warning_lines": 113,
+    "other_error_lines": []
+  },
+  {
+    "path": "api35/candidate-fixture/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "132.497767",
+        "size": "3407338"
+      }
+    },
+    "null_muxer_dts_warning_lines": 114,
+    "other_error_lines": []
+  },
+  {
+    "path": "api35/candidate-national/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "132.920544",
+        "size": "5903798"
+      }
+    },
+    "null_muxer_dts_warning_lines": 118,
+    "other_error_lines": []
+  },
+  {
+    "path": "final-api29/baseline-fixture/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "175.590322",
+        "size": "6470430"
+      }
+    },
+    "null_muxer_dts_warning_lines": 119,
+    "other_error_lines": []
+  },
+  {
+    "path": "final-api29/baseline-national/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "136.423244",
+        "size": "10754709"
+      }
+    },
+    "null_muxer_dts_warning_lines": 84,
+    "other_error_lines": []
+  },
+  {
+    "path": "final-api29/candidate-fixture/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "138.576878",
+        "size": "7694032"
+      }
+    },
+    "null_muxer_dts_warning_lines": 88,
+    "other_error_lines": []
+  },
+  {
+    "path": "final-api29/candidate-national/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "138.267811",
+        "size": "10232917"
+      }
+    },
+    "null_muxer_dts_warning_lines": 94,
+    "other_error_lines": []
+  },
+  {
+    "path": "final-api35/baseline-fixture/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "132.305356",
+        "size": "3493888"
+      }
+    },
+    "null_muxer_dts_warning_lines": 110,
+    "other_error_lines": []
+  },
+  {
+    "path": "final-api35/baseline-national/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "131.905600",
+        "size": "5867934"
+      }
+    },
+    "null_muxer_dts_warning_lines": 117,
+    "other_error_lines": []
+  },
+  {
+    "path": "final-api35/candidate-fixture/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "130.464533",
+        "size": "3485370"
+      }
+    },
+    "null_muxer_dts_warning_lines": 125,
+    "other_error_lines": []
+  },
+  {
+    "path": "final-api35/candidate-national/feedback121.mp4",
+    "decode_exit": 0,
+    "probe_exit": 0,
+    "probe": {
+      "format": {
+        "duration": "133.509156",
+        "size": "5566005"
+      }
+    },
+    "null_muxer_dts_warning_lines": 113,
+    "other_error_lines": []
+  }
+]

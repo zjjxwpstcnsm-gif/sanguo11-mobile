@@ -1,0 +1,42 @@
+[
+  {
+    "path": "artifacts/r17-api26/api26/upgrade-files/r17-2d-after-failure.png",
+    "sha256": "bfc5ee593be645b3d49ab16ab752d6f3bed6dedb01762153683b7c83b8cf6634",
+    "original": true
+  },
+  {
+    "path": "artifacts/r17-api26/api26/parity-files/month12-3d-skip-recreated-screencap.png",
+    "sha256": "4c39c8157bce1df5cb50926196acaa3d11ac3bb9ef0b588c1343048bdc880382",
+    "original": true
+  },
+  {
+    "path": "artifacts/r17-api26/api26/parity-files/month4-3d-normal-after-surface.png",
+    "sha256": "f188e37f788ea4023a4f26360990226ac26fa47fde16ffed0ec94ef164838fa8",
+    "original": true
+  },
+  {
+    "path": "artifacts/r17-api35/api35/upgrade-files/r17-2d-after-failure.png",
+    "sha256": "660978c9df358d43fdc559330c22bac39cc023335b7f3a47f3dc69008394ea86",
+    "original": true
+  },
+  {
+    "path": "artifacts/r17-api35/api35/parity-files/month12-3d-skip-recreated-screencap.png",
+    "sha256": "15e9e79cf26a835b1786206b0670c44386a519cb8631da18092073292658e667",
+    "original": true
+  },
+  {
+    "path": "artifacts/r17-api35/api35/parity-files/month4-3d-normal-after-surface.png",
+    "sha256": "05b684505810933a3255a147311724ef4012710b0dc5829491de066bc28edfb9",
+    "original": true
+  },
+  {
+    "path": "artifacts/r17-api29/national/images/r16-national-failed.png",
+    "sha256": "67338f9abfeb1a32cb04c09ee83e2fc661f974b37ce13d20a8ffe07f213cfd7b",
+    "original": true
+  },
+  {
+    "path": "artifacts/r17-api29/local/images/r16-local-failed.png",
+    "sha256": "121e59a167757b00a6b0351d17ca91806e702585570ecf19afbe4bc087f32e9d",
+    "original": true
+  }
+]

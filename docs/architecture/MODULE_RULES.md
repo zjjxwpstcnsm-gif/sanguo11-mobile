@@ -34,3 +34,14 @@ Do not extend the whitelist by a directory wildcard. Do not expose session.world
 - Filament editor/territory rule queries -> MapProjectionQuery -> detached MapLayerData.
 - TrialEntry protocol/JNI/state/sync/diagnostic logic -> Contracts, Transport, Client, Features/UI; TrialEntry stays Bootstrap composition.
 - Assets/Scripts.meta -> Sanguo/Bootstrap.meta; existing TrialEntry and ExportAndroid .meta files moved byte-for-byte, not regenerated.
+
+### R11 reviewed transient presentation boundary
+CombatSequence and CombatReplayLedger consume only immutable TurnJournal.Event
+facts (legacy projection payload) in app. Their additional allowlist entries are
+paired with a static import/authority-call guard in check-architecture.py. They
+never accept World, session, RNG or save APIs. Gameplay ownership remains
+GameSession; no game-api/game-runtime dependency or authority change is introduced.
+
+### v125 current-contest command boundary
+
+`ContestCommand` contains only the five operations already called by ContestUi: duel move, debate card/rethink/finish and concede. GameSession validates the normal state token plus current contest ID/revision, copies authority, runs the existing core operation and installs only a valid success. Ordinary typed/legacy commands and turn tickets remain blocked during contests. No World or callback enters game-api, no save schema changes, and no whitelist entry is widened. `scripts/test-feedback125.sh` additionally runs full-save/RNG comparisons and stale/type/turn rejection checks through this real boundary.

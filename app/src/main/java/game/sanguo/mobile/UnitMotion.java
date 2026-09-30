@@ -7,6 +7,8 @@ final class UnitMotion {
     float x,z,yaw;
     private Hex authoritative;
 
+    private static float smooth(float t){return t*t*(3-2*t);}
+    private static float blend(float from,float to,float f){return from+(float)Math.atan2(Math.sin(to-from),Math.cos(to-from))*f;}
     void settle(Hex hex, GridWorldTransform grid) {
         authoritative=hex;x=grid.x(hex);z=grid.z(hex);
     }
@@ -31,12 +33,23 @@ final class UnitMotion {
             Hex from=event.path.get(index),to=event.path.get(Math.min(index+1,event.path.size()-1));
             if(from==null||to==null)return;
             float t=cursor-index;
+            if(index==event.path.size()-1&&index>0){Hex previous=event.path.get(index-1);
+                if(previous!=null&&previous.distance(from)==1)yaw=(float)Math.atan2(grid.x(from)-grid.x(previous),grid.z(from)-grid.z(previous));
+            }
             // Legacy forced displacement may only record endpoints: never draw a shortcut
             // through intervening cells whose legal route was not recorded by core.
             if(from.distance(to)>1){x=grid.x(from);z=grid.z(from);return;}
             float dx=grid.x(to)-grid.x(from),dz=grid.z(to)-grid.z(from);
             x=grid.x(from)+dx*t;z=grid.z(from)+dz*t;
-            if(dx!=0||dz!=0)yaw=(float)Math.atan2(dx,dz);
+            if(dx!=0||dz!=0){
+                float heading=(float)Math.atan2(dx,dz);
+                if(index>0&&t<.22f){Hex previous=event.path.get(index-1);
+                    if(previous!=null&&previous.distance(from)==1)heading=blend((float)Math.atan2(grid.x(from)-grid.x(previous),grid.z(from)-grid.z(previous)),heading,.5f+.5f*smooth(t/.22f));
+                }else if(index+2<event.path.size()&&t>.78f){Hex next=event.path.get(index+2);
+                    if(next!=null&&to.distance(next)==1)heading=blend(heading,(float)Math.atan2(grid.x(next)-grid.x(to),grid.z(next)-grid.z(to)),.5f*smooth((t-.78f)/.22f));
+                }
+                yaw=heading;
+            }
         } else if((event.kind==TurnJournal.Kind.ATTACK||event.kind==TurnJournal.Kind.TACTIC||event.kind==TurnJournal.Kind.FACILITY_ATTACK||event.kind==TurnJournal.Kind.FACILITY_COUNTER)&&event.target!=null) {
             float dx=grid.x(event.target)-x,dz=grid.z(event.target)-z;
             if(dx!=0||dz!=0)yaw=(float)Math.atan2(dx,dz);

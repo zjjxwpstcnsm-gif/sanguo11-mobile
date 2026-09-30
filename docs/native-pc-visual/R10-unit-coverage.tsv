@@ -1,0 +1,14 @@
+kind	runtime models	R09 inventory	R10 source improvement	clip coverage	acceptance
+SPEAR	unit-SPEAR-lod0/lod1	present; not final art	spear blade/helmet/shoulder/lamellar textile; unit-only atlas	idle/walk/turn/prepare/attack/hit/defeat/enter; rigid-parts-v1	HOST_PASS; GPU/ART_PENDING
+HALBERD	unit-HALBERD-lod0/lod1	present; not final art	halberd silhouette/armor/helmet; unit-only atlas	idle/walk/turn/prepare/attack/hit/defeat/enter; rigid-parts-v1	HOST_PASS; GPU/ART_PENDING
+CROSSBOW	unit-CROSSBOW-lod0/lod1	present; not final art	crossbow string/bolt/wide prod; unit-only atlas	idle/walk/turn/prepare/attack/hit/defeat/enter; rigid-parts-v1	HOST_PASS; GPU/ART_PENDING
+CAVALRY	unit-CAVALRY-lod0/lod1	present; not final art	horse chest/mane/reins/knee/shin/hoof; unit-only atlas	idle/walk/turn/prepare/attack/hit/defeat/enter; rigid-parts-v1	HOST_PASS; GPU/ART_PENDING
+SWORD	unit-SWORD-lod0/lod1	present; not final art	sword guard/shield rim and boss; unit-only atlas	idle/walk/turn/prepare/attack/hit/defeat/enter; rigid-parts-v1	HOST_PASS; GPU/ART_PENDING
+RAM	unit-RAM-lod0/lod1	present; not final art	whole rotating wheels/chassis reinforcement; unit-only atlas	idle/walk/turn/prepare/attack/hit/defeat/enter; rigid-parts-v1	HOST_PASS; GPU/ART_PENDING
+SIEGE_TOWER	unit-SIEGE_TOWER-lod0/lod1	present; not final art	whole wheels/upper posts; unit-only atlas	idle/walk/turn/prepare/attack/hit/defeat/enter; rigid-parts-v1	HOST_PASS; GPU/ART_PENDING
+WOODEN_BEAST	unit-WOODEN_BEAST-lod0/lod1	present; not final art	whole wheels/beast head horns; unit-only atlas	idle/walk/turn/prepare/attack/hit/defeat/enter; rigid-parts-v1	HOST_PASS; GPU/ART_PENDING
+CATAPULT	unit-CATAPULT-lod0/lod1	present; not final art	whole wheels/braced chassis; existing lever/counterweight retained; unit-only atlas	idle/walk/turn/prepare/attack/hit/defeat/enter; rigid-parts-v1	HOST_PASS; GPU/ART_PENDING
+transport	unit-transport-lod0/lod1	present; not final art	draw shafts/cargo bands/whole wheels; unit-only atlas	idle/walk/turn/prepare/attack/hit/defeat/enter; rigid-parts-v1	HOST_PASS; GPU/ART_PENDING; transport offense not applicable
+BOAT	unit-BOAT-lod0/lod1	present; not final art	gunwale/tiller/oar blades; unit-only atlas	idle/walk/turn/prepare/attack/hit/defeat/enter; rigid-parts-v1	HOST_PASS; GPU/ART_PENDING
+TOWER_SHIP	unit-TOWER_SHIP-lod0/lod1	present; not final art	gunwale/posts/tiller/oar blades; unit-only atlas	idle/walk/turn/prepare/attack/hit/defeat/enter; rigid-parts-v1	HOST_PASS; GPU/ART_PENDING
+WARSHIP	unit-WARSHIP-lod0/lod1	present; not final art	gunwale/posts/tiller/oar blades; unit-only atlas	idle/walk/turn/prepare/attack/hit/defeat/enter; rigid-parts-v1	HOST_PASS; GPU/ART_PENDING

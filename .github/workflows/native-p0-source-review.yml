@@ -1,0 +1,31 @@
+name: Native P0 exact source review
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-p0-source-review.yml']
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Export exact tracked source and provenance
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git merge-base --is-ancestor 76c51ece009b6ebeff58b5a05adce4d769a41f30 HEAD
+          mkdir -p out/p0-source-review
+          git archive --format=tar.gz "$GITHUB_SHA" > out/p0-source-review/source.tar.gz
+          git bundle create out/p0-source-review/source.bundle HEAD refs/remotes/origin/main
+          git rev-parse HEAD origin/main > out/p0-source-review/REFS.txt
+          sha256sum out/p0-source-review/source.tar.gz out/p0-source-review/source.bundle > out/p0-source-review/SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: native-p0-exact-source
+          path: out/p0-source-review/
+          retention-days: 14

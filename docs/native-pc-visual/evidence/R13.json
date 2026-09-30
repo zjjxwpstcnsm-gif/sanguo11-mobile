@@ -1,0 +1,51 @@
+{
+  "stage": "R13",
+  "status": "PARTIAL",
+  "source": "a9d444e13332c6f0103c664d89db56070c27a273",
+  "apk_sha256": "ac99b7513d93ce3029e9c08090fba3037331016df15c69fcc1f18eb42ee17df9",
+  "apk_bytes": 37346041,
+  "app": "game.sanguo.mobile.dev",
+  "version": "0.96.0-native-r13 (96)",
+  "abi": [
+    "arm64-v8a",
+    "armeabi-v7a",
+    "x86",
+    "x86_64"
+  ],
+  "backend": "Filament1.56/OpenGL",
+  "signature_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+  "run": 36059464649,
+  "build": "PASS",
+  "installed": "PASS 348 scoped checks; legacy MAP_EDITOR67 ANDROID PASS",
+  "physical": "NOT_RUN",
+  "visual": "PARTIAL",
+  "source_in_dex": true,
+  "inherited_core_failure": "CoreTest.logistics:75 AI uses deployment commands",
+  "first_build_failure": {
+    "run": 36055781244,
+    "source": "458b3bd886863cb3282093edb2ddba66689bea3d",
+    "reason": "Files.writeString unavailable in Android SDK; test writes fixed, assertions retained"
+  },
+  "job": 107834597744,
+  "artifact_retention": "14 days, expires 2026-10-08",
+  "release": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/releases/tag/native-r13-a9d444e13332",
+  "evidence_artifact": 10834980022,
+  "device": "API29 x86_64 Pixel2 emulator / swangle",
+  "performance": "NOT_ACCEPTED: TURN_END totalMs=137728 computeMs=132585 saveMs=425 factions=28",
+  "recordings": {
+    "count": 5,
+    "ffprobe": "PASS all 5",
+    "durations_seconds": [
+      176.645578,
+      181.961456,
+      176.296644,
+      176.545333,
+      7.359211
+    ]
+  },
+  "visual_observations": [
+    "stepped water/coast, sparse trees, crowded portrait controls",
+    "after-turn composed date remains upper period; no date-widget advancement assertion, UI freshness needs manual investigation"
+  ],
+  "inherited_preview": "R12 full-map readiness failure unresolved; direct custom scenario start is not preview acceptance"
+}

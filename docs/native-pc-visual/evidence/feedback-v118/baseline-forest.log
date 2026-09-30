@@ -1,0 +1,1 @@
+PASS FOREST phase=baseline tree=211 shrub=105 clearCells=188 (same terrain/entities, no road/entry/unit apron relaxation)

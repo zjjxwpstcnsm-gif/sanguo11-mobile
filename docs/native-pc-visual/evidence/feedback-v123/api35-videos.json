@@ -1,0 +1,62 @@
+[
+  {
+    "path": "downloads/api35/candidate-port/feedback123.mp4",
+    "exit": 0,
+    "metadata": {
+      "format": {
+        "duration": "135.010922",
+        "size": "4831341"
+      }
+    }
+  },
+  {
+    "path": "downloads/api35/candidate-national/feedback123.mp4",
+    "exit": 0,
+    "metadata": {
+      "format": {
+        "duration": "134.055422",
+        "size": "4424954"
+      }
+    }
+  },
+  {
+    "path": "downloads/api35/baseline-port/feedback123.mp4",
+    "exit": 0,
+    "metadata": {
+      "format": {
+        "duration": "133.467178",
+        "size": "4748337"
+      }
+    }
+  },
+  {
+    "path": "downloads/api35/baseline-fixture/feedback123.mp4",
+    "exit": 0,
+    "metadata": {
+      "format": {
+        "duration": "130.280089",
+        "size": "2903835"
+      }
+    }
+  },
+  {
+    "path": "downloads/api35/baseline-national/feedback123.mp4",
+    "exit": 0,
+    "metadata": {
+      "format": {
+        "duration": "137.358189",
+        "size": "4607711"
+      }
+    }
+  },
+  {
+    "path": "downloads/api35/candidate-fixture/feedback123.mp4",
+    "exit": 0,
+    "metadata": {
+      "format": {
+        "duration": "128.972911",
+        "size": "2889508"
+      }
+    }
+  }
+]

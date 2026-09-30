@@ -34,7 +34,16 @@ public class SceneInstrumentation extends Instrumentation {
         runOnMainSync(()->invoke("advanceTurn",new Class<?>[0]));
         check(reference.nextTurn().ok,"reference next turn");long deadline=SystemClock.uptimeMillis()+120000;
         while((Boolean)field(activity,"aiRunning")&&SystemClock.uptimeMillis()<deadline)settle();
-        check(!(Boolean)field(activity,"aiRunning"),"installed next turn finished");world=(World)field(activity,"world");check(host.is3D(),"next turn remains in 3D");
+        check(!(Boolean)field(activity,"aiRunning"),"installed next turn finished");
+        // completeTurnPlayback clears aiRunning before bindSession on the same main-thread callback.
+        // A background reflective read in that interval can observe the old draft. Keep the
+        // full equality assertion, but capture after the owner has completed that callback.
+        runOnMainSync(()->world=SessionProbe.view(activity));check(host.is3D(),"next turn remains in 3D");
+        if(!Arrays.equals(SaveCodec.encode(world),SaveCodec.encode(reference))){
+            File evidence=getTargetContext().getExternalFilesDir("s01");
+            try(OutputStream out=new FileOutputStream(new File(evidence,"turn-observed.sg11"))){out.write(SaveCodec.encode(world));}
+            try(OutputStream out=new FileOutputStream(new File(evidence,"turn-expected.sg11"))){out.write(SaveCodec.encode(reference));}
+        }
         check(Arrays.equals(SaveCodec.encode(world),SaveCodec.encode(reference)),"3D full playback and headless next-turn state equivalent");
         World loaded;try(InputStream in=getTargetContext().openFileInput("auto.sg11")){loaded=SaveCodec.read(in);}
         check(Arrays.equals(SaveCodec.encode(world),SaveCodec.encode(loaded)),"actual autosave reload equal");
@@ -43,12 +52,21 @@ public class SceneInstrumentation extends Instrumentation {
     }
     // Continuous 3D animation need not make the Looper globally idle. Queue a UI barrier.
     void settle(){runOnMainSync(()->{});SystemClock.sleep(500);}
+    void observeLoading(FilamentMapView view)throws Exception {}
     void ready()throws Exception{
         long deadline=SystemClock.uptimeMillis()+120000;
         while(SystemClock.uptimeMillis()<deadline){
             check(host.is3D(),"renderer has not fallen back while loading");
             FilamentMapView view=(FilamentMapView)field(host,"spatial");
-            if(!((List<?>)field(view,"chunks")).isEmpty()&&(Integer)field(view,"pending")==0){
+            observeLoading(view);
+            boolean[] presented={false};
+            runOnMainSync(()->{try{
+                presented[0]=!((List<?>)field(view,"chunks")).isEmpty()&&(Integer)field(view,"pending")==0
+                    &&(Integer)field(view,"visibleChunks")>0&&(Long)field(view,"surfaceFrames")>0;
+            }catch(Exception e){throw new RuntimeException(e);}});
+            // CPU acceptance sets pending=0 before the following frame uploads visible GPU
+            // chunks. Preserve all original assertions; wait for their actual prerequisite.
+            if(presented[0]){
                 runOnMainSync(()->{try{((com.google.android.filament.Engine)field(view,"engine")).flushAndWait();}catch(Exception e){throw new RuntimeException(e);}});
                 settle();return;
             }
@@ -61,9 +79,24 @@ public class SceneInstrumentation extends Instrumentation {
         FilamentMapView spatial=(FilamentMapView)field(host,"spatial");
         android.view.SurfaceView surface=(android.view.SurfaceView)field(spatial,"surface");
         android.graphics.Bitmap b=android.graphics.Bitmap.createBitmap(surface.getWidth(),surface.getHeight(),android.graphics.Bitmap.Config.ARGB_8888);
-        java.util.concurrent.CountDownLatch ready=new java.util.concurrent.CountDownLatch(1);int[] status={-1};
-        runOnMainSync(()->android.view.PixelCopy.request(surface,b,r->{status[0]=r;ready.countDown();},new Handler(Looper.getMainLooper())));
-        check(ready.await(20,java.util.concurrent.TimeUnit.SECONDS)&&status[0]==android.view.PixelCopy.SUCCESS,"read actual rendered Surface");
+        int[] status={-1};boolean completed=false;
+        for(int attempt=1;attempt<=3;attempt++){
+            java.util.concurrent.CountDownLatch copied=new java.util.concurrent.CountDownLatch(1);status[0]=-1;
+            runOnMainSync(()->android.view.PixelCopy.request(surface,b,r->{status[0]=r;copied.countDown();},new Handler(Looper.getMainLooper())));
+            completed=copied.await(20,java.util.concurrent.TimeUnit.SECONDS);
+            android.util.Log.i("SceneAcceptance","PixelCopy attempt="+attempt+" completed="+completed+" status="+status[0]);
+            if(!completed||status[0]==android.view.PixelCopy.SUCCESS)break;
+            // A submitted frame can still be in flight on the software emulator after a resize.
+            // Retry only explicit transient copy states, with the same surface/size/quality.
+            if(status[0]!=android.view.PixelCopy.ERROR_TIMEOUT&&status[0]!=android.view.PixelCopy.ERROR_SOURCE_NO_DATA)break;
+            settle();
+        }
+        if(!completed||status[0]!=android.view.PixelCopy.SUCCESS){
+            // A timed-out callback may still own the destination; do not recycle it early.
+            if(completed)b.recycle();
+            check(false,"read actual rendered Surface completed="+completed+" PixelCopy status="+status[0]);
+        }
+        check(completed&&status[0]==android.view.PixelCopy.SUCCESS,"read actual rendered Surface");
         File dir=getTargetContext().getExternalFilesDir("s01");dir.mkdirs();try(OutputStream out=new FileOutputStream(new File(dir,"surface.png"))){b.compress(android.graphics.Bitmap.CompressFormat.PNG,100,out);}
         int bright=0,total=0;for(int y=0;y<b.getHeight();y+=8)for(int x=0;x<b.getWidth();x+=8){int color=b.getPixel(x,y);total++;if(((color>>8)&255)>65)bright++;}
         android.util.Log.i("SceneAcceptance",host.report()+" surface bright="+bright+"/"+total);

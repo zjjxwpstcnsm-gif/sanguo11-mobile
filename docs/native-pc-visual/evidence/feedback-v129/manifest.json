@@ -1,0 +1,24 @@
+{
+  "status": "PARTIAL",
+  "production_version": 129,
+  "source_commit": "commit containing this manifest; exact build records SOURCE_COMMIT and embeds candidateSource",
+  "apk": "NOT_RUN at source checkpoint",
+  "visual": "REFERENCE_MISSING same-camera PC; final APK at-scale pending",
+  "device": "ARM64 NOT_RUN",
+  "workflow": ".github/workflows/native-landmarks129.yml",
+  "host_only_images": [
+    "poison/poison129-near-host-review.png",
+    "poison/poison129-ordinary-host-review.png"
+  ],
+  "runtime_baseline": {
+    "source": "97bab9db5a603cb3ae9c11b1d526da66dc73e5ff",
+    "apk_sha256": "ae6c7f66997ba5338263343a424cc268393df527a5d94cd47603c03478fe111c",
+    "run": 36711026636
+  },
+  "root_stack_diagnostic_run": 36714124998,
+  "limitations": [
+    "Host images are not APK evidence",
+    "No device performance claim",
+    "Historical rendering failures and rule failures preserved"
+  ]
+}

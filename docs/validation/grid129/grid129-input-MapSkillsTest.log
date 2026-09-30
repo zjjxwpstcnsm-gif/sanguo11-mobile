@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: restored v40 compact map uses 100 by 100 coordinates
+	at game.sanguo.core.MapSkillsTest.check(MapSkillsTest.java:9)
+	at game.sanguo.core.MapSkillsTest.geography(MapSkillsTest.java:29)
+	at game.sanguo.core.MapSkillsTest.main(MapSkillsTest.java:87)

@@ -1,0 +1,78 @@
+name: Native R18 candidate identity and recovery
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-r18.yml', 'scripts/*candidate*', 'scripts/*r18*', 'app/src/**', 'app/build.gradle', 'version.properties']
+permissions: {contents: read, actions: read}
+concurrency: {group: native-r18, cancel-in-progress: false}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Exact clean source and affected contracts
+        run: |
+          set -euo pipefail
+          mkdir -p out/r18
+          python3 scripts/verify-candidate-source.py "$GITHUB_SHA" > out/r18/source-check.txt
+          python3 scripts/test-candidate-source.py > out/r18/identity-negative-tests.txt
+          git merge-base --is-ancestor ac29b458325b52d6e302ca44270d16552de4ed7f HEAD
+          git diff --exit-code 29261e7077b87ad93ffa71647f873e60e53eca0c HEAD -- core game-api game-runtime data unity app/src/main/assets > out/r18/protected.log
+          for suite in test-native-r17 test-native-r01 test-native-r12 test-architecture; do bash scripts/$suite.sh > out/r18/$suite.log 2>&1; done
+      - name: Original core failure retained
+        continue-on-error: true
+        run: |
+          set +e
+          bash scripts/test-core.sh > out/r18/core.log 2>&1
+          code=$?
+          echo "$code" > out/r18/core.exit
+          exit "$code"
+      - name: Build clean exact candidate and verify bytes
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PcandidateSource="$GITHUB_SHA" -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/r18/build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/r18/sanguo11-r18-v116.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/r18/test.apk
+          git rev-parse HEAD > out/r18/SOURCE_COMMIT
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/r18/sanguo11-r18-v116.apk > out/r18/metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/r18/sanguo11-r18-v116.apk > out/r18/signature.txt
+          python3 scripts/audit-3d-apk.py out/r18/sanguo11-r18-v116.apk --require-16k > out/r18/apk-audit.txt
+          python3 scripts/verify-r18-apk.py out/r18/sanguo11-r18-v116.apk "$GITHUB_SHA" > out/r18/apk-identity.json
+          sha256sum out/r18/*.apk > out/r18/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-r18-build, path: out/r18/, retention-days: 30, if-no-files-found: error}
+  installed:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix: {api: [29, 35]}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: actions/download-artifact@v4
+        with: {name: native-r18-build, path: out/r18/}
+      - run: sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: '${{ matrix.api }}'
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-native-r18.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'native-r18-api${{ matrix.api }}', path: out/r18/runtime/, retention-days: 30}

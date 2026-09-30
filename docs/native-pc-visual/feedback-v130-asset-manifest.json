@@ -1,0 +1,196 @@
+{
+  "version": 130,
+  "family": "fall-hukou",
+  "blender": "4.3.2",
+  "generator": "tools/3d/refine_hukou130.py",
+  "generator_sha256": "7602e8e8f1bbecc7b1d38515ebe7af3ccbb481370f45fefc22d4cbb97e92f046",
+  "source_dependencies": {
+    "tools/3d/refine_blender121.py": "1645a8949f2a646cf909e4c15b16084fcd1dfaa5c86c8021c48ee326cad6ca20",
+    "tools/3d/refine_blender129.py": "3136d23cf0f3cd03f262b8ce95c7ad93c52bdeb191ee7c263217a25780248aa1"
+  },
+  "assets": [
+    {
+      "path": "app/src/main/assets/3d/field/v130/fall-hukou-lod0.glb",
+      "id": "fall-hukou-lod0",
+      "sha256": "a25c6db3505882c0df838b4612e05b2b326e5400022cb2d2137be95874f91d77",
+      "bytes": 258100,
+      "triangles": 2606,
+      "vertices": 3992,
+      "primitives": 1,
+      "bounds": [
+        -0.44661974906921387,
+        0.0010000000474974513,
+        0.0,
+        0.4666060209274292,
+        1.0,
+        0.9916297793388367
+      ],
+      "source": "Original low terraced Hukou gorge: unequal horizontal shoulder ledges, tightly folded ochre throat, continuous pale impact, low widening blue-green river contact",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v129 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "unindexed_vertex_bytes": 375264,
+      "indexed_vertex_bytes": 191616,
+      "index_bytes": 31272
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v130/fall-hukou-lod1.glb",
+      "id": "fall-hukou-lod1",
+      "sha256": "397a8da0034ecda6ac0cc4e63fe5b7fbd817c3c730feeccffe173e91c2120cac",
+      "bytes": 96288,
+      "triangles": 678,
+      "vertices": 1103,
+      "primitives": 1,
+      "bounds": [
+        -0.44661974906921387,
+        0.0010000000474974513,
+        0.0,
+        0.4666060209274292,
+        1.0,
+        0.9917415976524353
+      ],
+      "source": "Original low terraced Hukou gorge: unequal horizontal shoulder ledges, tightly folded ochre throat, continuous pale impact, low widening blue-green river contact",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v129 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "unindexed_vertex_bytes": 97632,
+      "indexed_vertex_bytes": 52944,
+      "index_bytes": 8136
+    }
+  ],
+  "editable_source": "out/landmarks130/hukou/hukou-v130-editable.blend",
+  "atlas": {
+    "path": "app/src/main/assets/3d/field/v129/scenery-atlas.png",
+    "sha256": "a48b7d34d9e98bfd7f8be88c9b2b84addfdc22b08f07f28b44cf696f9e34cf34",
+    "dimensions": [
+      512,
+      64
+    ],
+    "runtime_uv": "PNG row0 = UV.v0, preview flips V",
+    "new_texture_count": 0
+  },
+  "contract": {
+    "up_axis": "+Y",
+    "downstream_axis": "+Z",
+    "lip_z": 0.34,
+    "lip_y": 1,
+    "foot_z": 0.5,
+    "foot_y": 0.015,
+    "normalized_height": true,
+    "terrain_map_river_modifications": false
+  },
+  "budget_reason": "Near vertices describe unequal terraced shoulders, real recessed strata and sampled turbulent water curvature. Far keeps the silhouette, short throat, connected apron and river tail. No generic subdivision.",
+  "input_visual": "out/landmarks129/runtime/lavapipe-candidate/images/hukou-menu-span10-surface.png",
+  "reference_status": "Exact v129 APK composition inspected. No exact same-region PC screenshot available: REFERENCE_MISSING.",
+  "placement_caveat": "Source geometry is not sufficient by itself: integration must remove the existing minimum .78 / bedHigh+.45 vertical extrusion and seat the contact tail on unchanged TerrainSurface. Proposed runtime physical rise is controlled by caller.",
+  "previews": [
+    {
+      "path": "out/landmarks130/hukou/v129-same-low-rise-OFFLINE.png",
+      "kind": "OFFLINE_BLENDER_SOURCE_NOT_APK",
+      "camera": [
+        1.399999976158142,
+        -2.4099998474121094,
+        1.630000114440918
+      ],
+      "orthographic_scale": 1.6799999475479126,
+      "presentation_scale": [
+        1,
+        0.44,
+        1.15
+      ]
+    },
+    {
+      "path": "out/landmarks130/hukou/v130-near-OFFLINE.png",
+      "kind": "OFFLINE_BLENDER_SOURCE_NOT_APK",
+      "camera": [
+        1.399999976158142,
+        -2.4099998474121094,
+        1.630000114440918
+      ],
+      "orthographic_scale": 1.6799999475479126,
+      "presentation_scale": [
+        1,
+        0.44,
+        1.15
+      ]
+    },
+    {
+      "path": "out/landmarks130/hukou/v130-far-OFFLINE.png",
+      "kind": "OFFLINE_BLENDER_SOURCE_NOT_APK",
+      "camera": [
+        1.399999976158142,
+        -2.4099998474121094,
+        1.630000114440918
+      ],
+      "orthographic_scale": 1.6799999475479126,
+      "presentation_scale": [
+        1,
+        0.44,
+        1.15
+      ]
+    },
+    {
+      "path": "out/landmarks130/hukou/v129-map-scale-OFFLINE.png",
+      "kind": "OFFLINE_SOURCE_AT_APK_PIXEL_DENSITY_NOT_APK",
+      "camera": [
+        0.0,
+        -3.377882242202759,
+        4.275760173797607
+      ],
+      "orthographic_scale": 4,
+      "pixels_per_world_unit": 61.5,
+      "presentation_scale": [
+        1,
+        0.44,
+        1.15
+      ]
+    },
+    {
+      "path": "out/landmarks130/hukou/v130-map-scale-OFFLINE.png",
+      "kind": "OFFLINE_SOURCE_AT_APK_PIXEL_DENSITY_NOT_APK",
+      "camera": [
+        0.0,
+        -3.377882242202759,
+        4.275760173797607
+      ],
+      "orthographic_scale": 4,
+      "pixels_per_world_unit": 61.5,
+      "presentation_scale": [
+        1,
+        0.44,
+        1.15
+      ]
+    },
+    {
+      "path": "out/landmarks130/hukou/v130-far-map-scale-OFFLINE.png",
+      "kind": "OFFLINE_SOURCE_AT_APK_PIXEL_DENSITY_NOT_APK",
+      "camera": [
+        0.0,
+        -3.377882242202759,
+        4.275760173797607
+      ],
+      "orthographic_scale": 4,
+      "pixels_per_world_unit": 61.5,
+      "presentation_scale": [
+        1,
+        0.44,
+        1.15
+      ]
+    }
+  ],
+  "verification": "OFFLINE_BLENDER_SOURCE_NOT_APK. Real source-matched APK visual review and ARM64 performance remain separate requirements.",
+  "asset_delta_only": true,
+  "preexisting_v129_assets_preserved": 523,
+  "total_runtime_asset_files": 525,
+  "integration": "FieldAssets Hukou-only v130; Vegetation bank-relative cap and denser contact sampling; all other v129 families/materials retained"
+}

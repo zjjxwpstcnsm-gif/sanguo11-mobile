@@ -1,0 +1,2 @@
+PASS bounded latest-wins, uncooperative stale worker, failure delivery, invalidation, owner thread, close
+Architecture boundary PASS: reviewed legacy consumers, pure modules, JNI location, assembly DAG and preserved meta identities

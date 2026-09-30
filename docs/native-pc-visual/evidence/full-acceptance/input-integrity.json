@@ -1,0 +1,42 @@
+[
+  {
+    "file": "sanguo11-native-pc-visual-agent-prompts.zip",
+    "bytes": 136443,
+    "sha256": "74e794192d71311b84fed6dfbfd8f25c54a1aa334fbd8234d9e36d145640d03c",
+    "crc_error": null,
+    "entries": 65
+  },
+  {
+    "file": "sanguo11-R00-R14-remediation-handoff.zip",
+    "bytes": 33596963,
+    "sha256": "6a3e6ba271e8e84dec367d76bee49f23bbe1d68b782741d243f511b56ba66bb2",
+    "crc_error": null,
+    "entries": 5
+  },
+  {
+    "file": "sanguo11-R00-R14-v105-evidence.zip",
+    "bytes": 316172494,
+    "sha256": "50b386f8aab9cb43ed1adbb399c72333a9fbda1d81e255c0fb1aa6cb2dd381ce",
+    "crc_error": null,
+    "entries": 369
+  },
+  {
+    "file": "sanguo11-v112-delivery.json",
+    "bytes": 3590,
+    "sha256": "dfc7df40afb17a9ddbab10097104c752a4bc2b0e18a575d1c0bc59242df78511"
+  },
+  {
+    "file": "sanguo11-R00-R14-v102-v103-comparison.zip",
+    "bytes": 291288779,
+    "sha256": "ca40741e2a5e95e5f67645d4b8e5ee20b344cc127ff8f556b62213506fc697a1",
+    "crc_error": null,
+    "entries": 8
+  },
+  {
+    "file": "sanguo11-v112-P0-evidence.zip",
+    "bytes": 450483100,
+    "sha256": "6acb30290b13c3e70c844904789609ab34dd07039a06c9b2a4f684fff18e93f0",
+    "crc_error": null,
+    "entries": 1164
+  }
+]

@@ -1,0 +1,101 @@
+name: Native v125 cascades and cavalry acceptance
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-feedback125.yml', 'tools/3d/refine_blender125.py', 'tools/3d/compress_scenery125.py', 'tools/3d/scenery125.mat', 'scripts/test-feedback125.sh', 'scripts/test-feedback125-installed.sh', 'app/src/main/**', 'game-api/src/main/**', 'game-runtime/src/main/**', 'core/src/main/java/game/sanguo/core/War.java', 'core/src/main/java/game/sanguo/core/Contests.java', 'core/src/main/java/game/sanguo/core/Displacement.java', 'app/src/androidTest/java/game/sanguo/mobile/NativeFeedback125Instrumentation.java']
+permissions: {contents: read, actions: read}
+concurrency: {group: 'native-feedback125-${{ github.sha }}', cancel-in-progress: false}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Reproduce actual Blender resources
+        run: |
+          set -euo pipefail
+          mkdir -p out/feedback125
+          curl -fsSL --retry 2 https://download.blender.org/release/Blender4.2/blender-4.2.3-linux-x64.tar.xz -o /tmp/blender125.tar.xz
+          tar -xJf /tmp/blender125.tar.xz -C /tmp
+          /tmp/blender-4.2.3-linux-x64/blender --background --threads 2 --python-exit-code 1 --python tools/3d/refine_blender125.py -- out/feedback125/reproduced > out/feedback125/blender.log 2>&1
+          python3 -m pip install etcpak==0.9.15 Pillow==12.3.0 numpy==2.3.5 texture2ddecoder==1.0.6
+          ASSET_OUTPUT_ROOT=out/feedback125/reproduced python3 tools/3d/compress_scenery125.py
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          root=Path('out/feedback125/reproduced')
+          manifest='docs/native-pc-visual/feedback-v125-blender-assets.json'
+          assert json.loads((root/manifest).read_text())==json.loads(Path(manifest).read_text())
+          for file in (root/'app/src/main/assets/3d/field/v125').iterdir():
+              assert file.read_bytes()==Path(file.relative_to(root)).read_bytes(),file
+          report='docs/native-pc-visual/feedback-v125-texture-compression.json'
+          assert json.loads((root/report).read_text())==json.loads(Path(report).read_text())
+          print('PASS Blender models, PNG and ETC2 mips exact reproduction')
+          PY
+      - name: Host rules, authority and landscape safety
+        run: |
+          curl -fsSL https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/json125.jar
+          export JSON_TEST_JAR=/tmp/json125.jar
+          bash scripts/test-feedback125.sh > out/feedback125/host.log 2>&1
+          bash scripts/test-architecture.sh > out/feedback125/architecture.log 2>&1
+          npm ci --prefix tools/3d
+          npm --prefix tools/3d run validate > out/feedback125/khronos.log 2>&1
+      - name: Preserve inherited core and displacement failures independently
+        continue-on-error: true
+        run: |
+          set +e
+          git worktree add --detach /tmp/input125 42230940e267b985b6bcd2d0cefec0fae49cca88
+          (cd /tmp/input125 && bash scripts/test-core.sh) > out/feedback125/core-input.log 2>&1
+          echo $? > out/feedback125/core-input.exit
+          bash scripts/test-core.sh > out/feedback125/core-candidate.log 2>&1
+          code=$?; echo "$code" > out/feedback125/core-candidate.exit
+          (cd /tmp/input125 && java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.DisplacementTest) > out/feedback125/displacement-input.log 2>&1
+          echo $? > out/feedback125/displacement-input.exit
+          java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.DisplacementTest > out/feedback125/displacement-candidate.log 2>&1
+          echo $? > out/feedback125/displacement-candidate.exit
+          exit "$code"
+      - name: Build and audit exact source
+        run: |
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PcandidateSource="$GITHUB_SHA" -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/feedback125/build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/feedback125/sanguo11-mobile-v125.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/feedback125/test.apk
+          echo "$GITHUB_SHA" > out/feedback125/SOURCE_COMMIT
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/feedback125/sanguo11-mobile-v125.apk > out/feedback125/metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/feedback125/sanguo11-mobile-v125.apk > out/feedback125/signature.txt
+          python3 scripts/audit-3d-apk.py out/feedback125/sanguo11-mobile-v125.apk --require-16k > out/feedback125/apk-audit.json
+          python3 scripts/verify-r18-apk.py out/feedback125/sanguo11-mobile-v125.apk "$GITHUB_SHA" > out/feedback125/apk-identity.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-feedback125-build, path: out/feedback125/, retention-days: 30, if-no-files-found: error}
+  installed:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix: {api: [29, 35], mode: [battle, taishan, southwest]}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: {name: native-feedback125-build, path: out/feedback125/}
+      - run: sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: '${{ matrix.api }}'
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/test-feedback125-installed.sh '${{ matrix.mode }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'native-feedback125-api${{ matrix.api }}-${{ matrix.mode }}', path: out/feedback125/runtime/, retention-days: 30, if-no-files-found: warn}

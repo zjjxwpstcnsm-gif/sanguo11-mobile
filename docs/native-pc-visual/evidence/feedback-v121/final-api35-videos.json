@@ -1,0 +1,22 @@
+[
+  {
+    "case": "baseline-fixture",
+    "exit": 0,
+    "probe": "{\n    \"format\": {\n        \"duration\": \"132.305356\"\n    }\n}\n"
+  },
+  {
+    "case": "baseline-national",
+    "exit": 0,
+    "probe": "{\n    \"format\": {\n        \"duration\": \"131.905600\"\n    }\n}\n"
+  },
+  {
+    "case": "candidate-fixture",
+    "exit": 0,
+    "probe": "{\n    \"format\": {\n        \"duration\": \"130.464533\"\n    }\n}\n"
+  },
+  {
+    "case": "candidate-national",
+    "exit": 0,
+    "probe": "{\n    \"format\": {\n        \"duration\": \"133.509156\"\n    }\n}\n"
+  }
+]

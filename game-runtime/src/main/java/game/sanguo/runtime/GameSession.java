@@ -72,6 +72,34 @@ public final class GameSession implements GameApi, AutoCloseable {
             return new CommandResult(CommandResult.Error.NONE,result.message,state(),event);
         }catch(IOException|RuntimeException failure){return failed(CommandResult.Error.HOST_ERROR,"HOST_ERROR");}
     }
+    /** Ordinary commands stay blocked during a contest; only these validated progress commands enter. */
+    @Override public CommandResult execute(ContestCommand command){
+        write();Objects.requireNonNull(command);CommandResult.Error error=invalid(command.expected,false);
+        if(error!=CommandResult.Error.NONE)return failed(error,error.name());
+        Contests.Session current=authority.contests.current();
+        if(current==null||current.id()!=command.contestId||current.revision()!=command.contestRevision)
+            return failed(CommandResult.Error.RULE_REJECTED,"对局已变化，请使用当前指令");
+        if(authority.life.pending())return failed(CommandResult.Error.HOST_BUSY,"HOST_BUSY");
+        try{
+            World candidate=WorldCopies.copy(authority);Contests contests=candidate.contests;World.Result result;
+            switch(command.operation){
+                case DUEL_MOVE:
+                    Duel.Stance stance;Duel.Move move;
+                    try{stance=Duel.Stance.valueOf(command.stance);move=Duel.Move.valueOf(command.move);}
+                    catch(IllegalArgumentException|NullPointerException invalid){return failed(CommandResult.Error.RULE_REJECTED,"单挑指令无效");}
+                    result=contests.duelMove(command.contestId,command.contestRevision,stance,move,command.choice);break;
+                case DEBATE_CARD:result=contests.debateCard(command.contestId,command.contestRevision,command.choice);break;
+                case RETHINK:result=contests.rethink(command.contestId,command.contestRevision);break;
+                case FINISH_DEBATE:result=contests.finishDebate(command.contestId,command.contestRevision,command.mercy);break;
+                case CONCEDE:result=contests.concede(command.contestId,command.contestRevision);break;
+                default:throw new IllegalArgumentException("Contest operation");
+            }
+            if(!result.ok)return failed(CommandResult.Error.RULE_REJECTED,result.message);
+            World installed=WorldCopies.copy(candidate);long next=Math.addExact(revision,1);
+            authority=installed;revision=next;views.clear();GameEvent event=emit(GameEvent.Kind.CONTEST_ADVANCED,-1,-1,0,0,result.message);
+            return new CommandResult(CommandResult.Error.NONE,result.message,state(),event);
+        }catch(IOException|RuntimeException failure){return failed(CommandResult.Error.HOST_ERROR,"HOST_ERROR");}
+    }
     /** Only the enumerated legacy adapters may obtain a detached draft. */
     public LegacyView legacyView(){
         thread();if(closed)throw new IllegalStateException("Session closed");

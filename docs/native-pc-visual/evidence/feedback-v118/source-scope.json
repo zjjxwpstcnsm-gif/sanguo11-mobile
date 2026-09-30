@@ -1,0 +1,15 @@
+{
+  "source_sha": "23103d9278d9898316ec212113a68abeb94c73fc",
+  "protected_paths": [
+    "game-api",
+    "game-runtime",
+    "data",
+    "unity",
+    "app/src/main/assets",
+    "core/src/main/java/game/sanguo/core/SaveCodec.java",
+    "core/src/main/java/game/sanguo/core/Strategy.java"
+  ],
+  "protected_exit": 0,
+  "main_ancestor_exit": 0,
+  "apk_sha256": "d0bdbcb1b2acb68a809a62ad3ec4961c75f7fb89ba00bbf35a0b50d923f6d5a0"
+}

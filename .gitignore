@@ -31,3 +31,5 @@ __pycache__/
 # Platform-free C# protocol verification outputs
 tools/architecture-client/bin/
 tools/architecture-client/obj/
+
+/tools/3d/node_modules/

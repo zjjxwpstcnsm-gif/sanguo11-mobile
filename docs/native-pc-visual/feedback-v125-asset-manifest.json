@@ -1,0 +1,278 @@
+{
+  "blender": "4.2.3 LTS",
+  "generator": "tools/3d/refine_blender125.py",
+  "license": "CC0-1.0 original geometry and authored cascade texture; retained project CC0 atlas",
+  "assets": [
+    {
+      "path": "app/src/main/assets/3d/field/v125/rock-ledge-lod0.glb",
+      "sha256": "f5b596cb9fce2c7edec2925b017f54ee7d8c41c4cc55179c36e1cefa7aae93a4",
+      "bytes": 49928,
+      "triangles": 176,
+      "vertices": 528,
+      "primitives": 1,
+      "bounds": [
+        -0.3789844810962677,
+        0.0,
+        -0.19568058848381042,
+        0.4467570185661316,
+        0.3199999928474426,
+        0.20801524817943573
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/rock-ledge-lod1.glb",
+      "sha256": "edf8f61d996399f3509c5b3c008faf6e626d43d804981a9af1bafa7396d308fd",
+      "bytes": 31204,
+      "triangles": 56,
+      "vertices": 168,
+      "primitives": 1,
+      "bounds": [
+        -0.42118099331855774,
+        0.0,
+        -0.16249921917915344,
+        0.4467570185661316,
+        0.3199999928474426,
+        0.19478164613246918
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/rock-talus-lod0.glb",
+      "sha256": "0710de02b02a6536d9960b7797ca638623d095fd2df44f105dd7067c55eba700",
+      "bytes": 104856,
+      "triangles": 528,
+      "vertices": 1584,
+      "primitives": 1,
+      "bounds": [
+        -0.31178170442581177,
+        0.0,
+        -0.24382320046424866,
+        0.2990536093711853,
+        0.14000000059604645,
+        0.23311777412891388
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/rock-talus-lod1.glb",
+      "sha256": "21a890ada949975e1874b637cd69452f06d4f7d1d40231cddc66304c9a5f7891",
+      "bytes": 35576,
+      "triangles": 84,
+      "vertices": 252,
+      "primitives": 1,
+      "bounds": [
+        -0.21202914416790009,
+        0.0,
+        -0.23215174674987793,
+        0.1891999989748001,
+        0.14000000059604645,
+        0.15166404843330383
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/cascade-narrow-lod0.glb",
+      "sha256": "29bce6157a2093b51d79538fb6684d9feac563a8e0c5779c8627ef3c6f9d7526",
+      "bytes": 73940,
+      "triangles": 330,
+      "vertices": 990,
+      "primitives": 1,
+      "bounds": [
+        -0.12031397223472595,
+        0.0,
+        0.0,
+        0.11879999935626984,
+        1.0075039863586426,
+        1.100000023841858
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/cascade-narrow-lod1.glb",
+      "sha256": "6092b87fdcde38a1cf4bacf65c69f26bd84a3a78db06c6e266a96cecd4a7d3dd",
+      "bytes": 35872,
+      "triangles": 86,
+      "vertices": 258,
+      "primitives": 1,
+      "bounds": [
+        -0.12031397223472595,
+        0.0,
+        0.0,
+        0.11879999935626984,
+        1.0075039863586426,
+        1.100000023841858
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/cascade-wide-lod0.glb",
+      "sha256": "235f913b21673a931c556d6b9990c2dc1c900e2c29958f75b9bc81966b554902",
+      "bytes": 73940,
+      "triangles": 330,
+      "vertices": 990,
+      "primitives": 1,
+      "bounds": [
+        -0.21119999885559082,
+        0.0,
+        0.0,
+        0.21119999885559082,
+        1.0075039863586426,
+        1.100000023841858
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/cascade-wide-lod1.glb",
+      "sha256": "a9d8461d60dc223e3a44c8fd6b9d6efe0c0e1cebb9b2f2c23a03817ad7f649c4",
+      "bytes": 35872,
+      "triangles": 86,
+      "vertices": 258,
+      "primitives": 1,
+      "bounds": [
+        -0.21119999885559082,
+        0.0,
+        0.0,
+        0.21119999885559082,
+        1.0075039863586426,
+        1.100000023841858
+      ],
+      "source": "original layered ledge, broken talus or stepped ribbon cascade; no PC resource extraction",
+      "tool": "Blender 4.2.3 LTS",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "atlas": {
+    "path": "app/src/main/assets/3d/field/v125/scenery-atlas.png",
+    "sha256": "1f6f08e4103bacbb95cebc00b396b033025c9dc5a2eaea7f45a062f0dd89ae6a",
+    "bytes": 21158
+  },
+  "consumer": "MainActivity -> MapHost -> FilamentMapView -> Vegetation.buildWindow; existing continuous TerrainSurface and one merged draw per chunk",
+  "reference_status": "REFERENCE_MISSING exact PC cells and comparable camera screenshots; community geography clues only",
+  "regions": [
+    {
+      "label": "Taishan / northwest of Xiapi",
+      "source": [
+        147,
+        59
+      ],
+      "status": "project-selected existing non-navigable water + mountain corridor; not verified PC waterfall cell"
+    },
+    {
+      "label": "Southwest",
+      "source": [
+        31,
+        183
+      ],
+      "status": "project-selected existing non-navigable water + mountain corridor; not verified PC waterfall cell"
+    },
+    {
+      "label": "Lushan candidate",
+      "source": [
+        119,
+        146
+      ],
+      "status": "NO_GEOMETRY: safe mountain corridor test fails, no placement forced"
+    }
+  ],
+  "additional_assets": [
+    {
+      "path": "tools/3d/refine_blender125.py",
+      "bytes": 5436,
+      "sha256": "f63c90da9e1e2276fd88136446f6a7b915b8ed4415455e923f9618905187d661",
+      "license": "CC0-1.0 original authored geometry/shader; Filament matc 1.56.0 Apache-2.0",
+      "consumer": "MainActivity -> MapHost -> FilamentMapView -> Vegetation.buildWindow; existing continuous TerrainSurface and one merged draw per chunk"
+    },
+    {
+      "path": "tools/3d/scenery125.mat",
+      "bytes": 1419,
+      "sha256": "3f79b2212a993022eb3af2dd7b147c76dac9a2a629770b890f0dafaca0055dad",
+      "license": "CC0-1.0 original authored geometry/shader; Filament matc 1.56.0 Apache-2.0",
+      "consumer": "MainActivity -> MapHost -> FilamentMapView -> Vegetation.buildWindow; existing continuous TerrainSurface and one merged draw per chunk"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/scenery.filamat",
+      "bytes": 481171,
+      "sha256": "3c04cfc1161d41878ead57c499d2df76a9b1eb0cd72b082b5eadd4f6eefc6ce1",
+      "license": "CC0-1.0 original authored geometry/shader; Filament matc 1.56.0 Apache-2.0",
+      "consumer": "MainActivity -> MapHost -> FilamentMapView -> Vegetation.buildWindow; existing continuous TerrainSurface and one merged draw per chunk"
+    },
+    {
+      "path": "tools/3d/compress_scenery125.py",
+      "license": "CC0-1.0 original project asset; unchanged project ETC2 encoder",
+      "consumer": "FilamentMapView.loadAtlas ETC2_SRGB8 production path",
+      "bytes": 508,
+      "sha256": "6337c58871ff3a3f226bf69ad7027835d7b3f1d72db095c35eb04198c8277742"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/scenery-atlas.etc2",
+      "license": "CC0-1.0 original project asset; unchanged project ETC2 encoder",
+      "consumer": "FilamentMapView.loadAtlas ETC2_SRGB8 production path",
+      "bytes": 21952,
+      "sha256": "4e4e2d49daee7a35ab1a4e1afb827bf501c7194e684cccac6e1f349d419c0b2d"
+    }
+  ],
+  "texture_compression": "feedback-v125-texture-compression.json"
+}

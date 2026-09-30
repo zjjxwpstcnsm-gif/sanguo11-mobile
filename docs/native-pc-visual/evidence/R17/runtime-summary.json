@@ -1,0 +1,622 @@
+{
+  "26": {
+    "upgrade": "PASS",
+    "failure_recreation": "PASS_SCOPED_INJECTION_AND_LATCH_RESET",
+    "parity_cases": 12,
+    "full_byte_pairs": 50,
+    "checks": 264,
+    "device": "x86_64 emulator; see device/driver",
+    "pair_evidence": [
+      {
+        "expected": "month12-2d-normal-attack-committed-expected.sg11",
+        "observed": "month12-2d-normal-attack-committed-observed.sg11",
+        "sha256": "c44ec342d987cb2110e41ccdbd2218756ca8d343d17ecabcdc089313cef7c475",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-2d-normal-attack-finished-expected.sg11",
+        "observed": "month12-2d-normal-attack-finished-observed.sg11",
+        "sha256": "c44ec342d987cb2110e41ccdbd2218756ca8d343d17ecabcdc089313cef7c475",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-2d-normal-initial-expected.sg11",
+        "observed": "month12-2d-normal-initial-observed.sg11",
+        "sha256": "ec74e73f0d285df78f4c480e24cb4148daf7b03348255fb29b454d34a7952f92",
+        "bytes": 2074
+      },
+      {
+        "expected": "month12-2d-normal-turn-expected.sg11",
+        "observed": "month12-2d-normal-turn-observed.sg11",
+        "sha256": "14f3443b9b3fe593f1a03ae7d9bd3d32ea53c89ce51cbec207c7a866825bc06b",
+        "bytes": 3887
+      },
+      {
+        "expected": "month12-2d-off-attack-committed-expected.sg11",
+        "observed": "month12-2d-off-attack-committed-observed.sg11",
+        "sha256": "c44ec342d987cb2110e41ccdbd2218756ca8d343d17ecabcdc089313cef7c475",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-2d-off-attack-finished-expected.sg11",
+        "observed": "month12-2d-off-attack-finished-observed.sg11",
+        "sha256": "c44ec342d987cb2110e41ccdbd2218756ca8d343d17ecabcdc089313cef7c475",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-2d-off-initial-expected.sg11",
+        "observed": "month12-2d-off-initial-observed.sg11",
+        "sha256": "ec74e73f0d285df78f4c480e24cb4148daf7b03348255fb29b454d34a7952f92",
+        "bytes": 2074
+      },
+      {
+        "expected": "month12-2d-off-turn-expected.sg11",
+        "observed": "month12-2d-off-turn-observed.sg11",
+        "sha256": "14f3443b9b3fe593f1a03ae7d9bd3d32ea53c89ce51cbec207c7a866825bc06b",
+        "bytes": 3887
+      },
+      {
+        "expected": "month12-2d-skip-attack-committed-expected.sg11",
+        "observed": "month12-2d-skip-attack-committed-observed.sg11",
+        "sha256": "c44ec342d987cb2110e41ccdbd2218756ca8d343d17ecabcdc089313cef7c475",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-2d-skip-attack-finished-expected.sg11",
+        "observed": "month12-2d-skip-attack-finished-observed.sg11",
+        "sha256": "c44ec342d987cb2110e41ccdbd2218756ca8d343d17ecabcdc089313cef7c475",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-2d-skip-initial-expected.sg11",
+        "observed": "month12-2d-skip-initial-observed.sg11",
+        "sha256": "ec74e73f0d285df78f4c480e24cb4148daf7b03348255fb29b454d34a7952f92",
+        "bytes": 2074
+      },
+      {
+        "expected": "month12-2d-skip-recreated-expected.sg11",
+        "observed": "month12-2d-skip-recreated-observed.sg11",
+        "sha256": "14f3443b9b3fe593f1a03ae7d9bd3d32ea53c89ce51cbec207c7a866825bc06b",
+        "bytes": 3887
+      },
+      {
+        "expected": "month12-2d-skip-turn-expected.sg11",
+        "observed": "month12-2d-skip-turn-observed.sg11",
+        "sha256": "14f3443b9b3fe593f1a03ae7d9bd3d32ea53c89ce51cbec207c7a866825bc06b",
+        "bytes": 3887
+      },
+      {
+        "expected": "month12-3d-normal-attack-committed-expected.sg11",
+        "observed": "month12-3d-normal-attack-committed-observed.sg11",
+        "sha256": "c44ec342d987cb2110e41ccdbd2218756ca8d343d17ecabcdc089313cef7c475",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-3d-normal-attack-finished-expected.sg11",
+        "observed": "month12-3d-normal-attack-finished-observed.sg11",
+        "sha256": "c44ec342d987cb2110e41ccdbd2218756ca8d343d17ecabcdc089313cef7c475",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-3d-normal-initial-expected.sg11",
+        "observed": "month12-3d-normal-initial-observed.sg11",
+        "sha256": "ec74e73f0d285df78f4c480e24cb4148daf7b03348255fb29b454d34a7952f92",
+        "bytes": 2074
+      },
+      {
+        "expected": "month12-3d-normal-turn-expected.sg11",
+        "observed": "month12-3d-normal-turn-observed.sg11",
+        "sha256": "14f3443b9b3fe593f1a03ae7d9bd3d32ea53c89ce51cbec207c7a866825bc06b",
+        "bytes": 3887
+      },
+      {
+        "expected": "month12-3d-off-attack-committed-expected.sg11",
+        "observed": "month12-3d-off-attack-committed-observed.sg11",
+        "sha256": "c44ec342d987cb2110e41ccdbd2218756ca8d343d17ecabcdc089313cef7c475",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-3d-off-attack-finished-expected.sg11",
+        "observed": "month12-3d-off-attack-finished-observed.sg11",
+        "sha256": "c44ec342d987cb2110e41ccdbd2218756ca8d343d17ecabcdc089313cef7c475",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-3d-off-initial-expected.sg11",
+        "observed": "month12-3d-off-initial-observed.sg11",
+        "sha256": "ec74e73f0d285df78f4c480e24cb4148daf7b03348255fb29b454d34a7952f92",
+        "bytes": 2074
+      },
+      {
+        "expected": "month12-3d-off-turn-expected.sg11",
+        "observed": "month12-3d-off-turn-observed.sg11",
+        "sha256": "14f3443b9b3fe593f1a03ae7d9bd3d32ea53c89ce51cbec207c7a866825bc06b",
+        "bytes": 3887
+      },
+      {
+        "expected": "month12-3d-skip-attack-committed-expected.sg11",
+        "observed": "month12-3d-skip-attack-committed-observed.sg11",
+        "sha256": "c44ec342d987cb2110e41ccdbd2218756ca8d343d17ecabcdc089313cef7c475",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-3d-skip-attack-finished-expected.sg11",
+        "observed": "month12-3d-skip-attack-finished-observed.sg11",
+        "sha256": "c44ec342d987cb2110e41ccdbd2218756ca8d343d17ecabcdc089313cef7c475",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-3d-skip-initial-expected.sg11",
+        "observed": "month12-3d-skip-initial-observed.sg11",
+        "sha256": "ec74e73f0d285df78f4c480e24cb4148daf7b03348255fb29b454d34a7952f92",
+        "bytes": 2074
+      },
+      {
+        "expected": "month12-3d-skip-recreated-expected.sg11",
+        "observed": "month12-3d-skip-recreated-observed.sg11",
+        "sha256": "14f3443b9b3fe593f1a03ae7d9bd3d32ea53c89ce51cbec207c7a866825bc06b",
+        "bytes": 3887
+      },
+      {
+        "expected": "month12-3d-skip-turn-expected.sg11",
+        "observed": "month12-3d-skip-turn-observed.sg11",
+        "sha256": "14f3443b9b3fe593f1a03ae7d9bd3d32ea53c89ce51cbec207c7a866825bc06b",
+        "bytes": 3887
+      },
+      {
+        "expected": "month4-2d-normal-attack-committed-expected.sg11",
+        "observed": "month4-2d-normal-attack-committed-observed.sg11",
+        "sha256": "dafabd399685666e1ed19c217439a031d288cd2cf044ed42b04f90c57acc1acd",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-2d-normal-attack-finished-expected.sg11",
+        "observed": "month4-2d-normal-attack-finished-observed.sg11",
+        "sha256": "dafabd399685666e1ed19c217439a031d288cd2cf044ed42b04f90c57acc1acd",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-2d-normal-initial-expected.sg11",
+        "observed": "month4-2d-normal-initial-observed.sg11",
+        "sha256": "ddbef67606b06c0347507eb2621a9f11b7769cecfcfab4786d34059857acff25",
+        "bytes": 2074
+      },
+      {
+        "expected": "month4-2d-normal-turn-expected.sg11",
+        "observed": "month4-2d-normal-turn-observed.sg11",
+        "sha256": "81dfbca56ffeb2878e497c5c9fe605f55e0deef9d5804e66cfdd0a182175506e",
+        "bytes": 3636
+      },
+      {
+        "expected": "month4-2d-off-attack-committed-expected.sg11",
+        "observed": "month4-2d-off-attack-committed-observed.sg11",
+        "sha256": "dafabd399685666e1ed19c217439a031d288cd2cf044ed42b04f90c57acc1acd",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-2d-off-attack-finished-expected.sg11",
+        "observed": "month4-2d-off-attack-finished-observed.sg11",
+        "sha256": "dafabd399685666e1ed19c217439a031d288cd2cf044ed42b04f90c57acc1acd",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-2d-off-initial-expected.sg11",
+        "observed": "month4-2d-off-initial-observed.sg11",
+        "sha256": "ddbef67606b06c0347507eb2621a9f11b7769cecfcfab4786d34059857acff25",
+        "bytes": 2074
+      },
+      {
+        "expected": "month4-2d-off-turn-expected.sg11",
+        "observed": "month4-2d-off-turn-observed.sg11",
+        "sha256": "81dfbca56ffeb2878e497c5c9fe605f55e0deef9d5804e66cfdd0a182175506e",
+        "bytes": 3636
+      },
+      {
+        "expected": "month4-2d-skip-attack-committed-expected.sg11",
+        "observed": "month4-2d-skip-attack-committed-observed.sg11",
+        "sha256": "dafabd399685666e1ed19c217439a031d288cd2cf044ed42b04f90c57acc1acd",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-2d-skip-attack-finished-expected.sg11",
+        "observed": "month4-2d-skip-attack-finished-observed.sg11",
+        "sha256": "dafabd399685666e1ed19c217439a031d288cd2cf044ed42b04f90c57acc1acd",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-2d-skip-initial-expected.sg11",
+        "observed": "month4-2d-skip-initial-observed.sg11",
+        "sha256": "ddbef67606b06c0347507eb2621a9f11b7769cecfcfab4786d34059857acff25",
+        "bytes": 2074
+      },
+      {
+        "expected": "month4-2d-skip-turn-expected.sg11",
+        "observed": "month4-2d-skip-turn-observed.sg11",
+        "sha256": "81dfbca56ffeb2878e497c5c9fe605f55e0deef9d5804e66cfdd0a182175506e",
+        "bytes": 3636
+      },
+      {
+        "expected": "month4-3d-normal-attack-committed-expected.sg11",
+        "observed": "month4-3d-normal-attack-committed-observed.sg11",
+        "sha256": "dafabd399685666e1ed19c217439a031d288cd2cf044ed42b04f90c57acc1acd",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-3d-normal-attack-finished-expected.sg11",
+        "observed": "month4-3d-normal-attack-finished-observed.sg11",
+        "sha256": "dafabd399685666e1ed19c217439a031d288cd2cf044ed42b04f90c57acc1acd",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-3d-normal-initial-expected.sg11",
+        "observed": "month4-3d-normal-initial-observed.sg11",
+        "sha256": "ddbef67606b06c0347507eb2621a9f11b7769cecfcfab4786d34059857acff25",
+        "bytes": 2074
+      },
+      {
+        "expected": "month4-3d-normal-turn-expected.sg11",
+        "observed": "month4-3d-normal-turn-observed.sg11",
+        "sha256": "81dfbca56ffeb2878e497c5c9fe605f55e0deef9d5804e66cfdd0a182175506e",
+        "bytes": 3636
+      },
+      {
+        "expected": "month4-3d-off-attack-committed-expected.sg11",
+        "observed": "month4-3d-off-attack-committed-observed.sg11",
+        "sha256": "dafabd399685666e1ed19c217439a031d288cd2cf044ed42b04f90c57acc1acd",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-3d-off-attack-finished-expected.sg11",
+        "observed": "month4-3d-off-attack-finished-observed.sg11",
+        "sha256": "dafabd399685666e1ed19c217439a031d288cd2cf044ed42b04f90c57acc1acd",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-3d-off-initial-expected.sg11",
+        "observed": "month4-3d-off-initial-observed.sg11",
+        "sha256": "ddbef67606b06c0347507eb2621a9f11b7769cecfcfab4786d34059857acff25",
+        "bytes": 2074
+      },
+      {
+        "expected": "month4-3d-off-turn-expected.sg11",
+        "observed": "month4-3d-off-turn-observed.sg11",
+        "sha256": "81dfbca56ffeb2878e497c5c9fe605f55e0deef9d5804e66cfdd0a182175506e",
+        "bytes": 3636
+      },
+      {
+        "expected": "month4-3d-skip-attack-committed-expected.sg11",
+        "observed": "month4-3d-skip-attack-committed-observed.sg11",
+        "sha256": "dafabd399685666e1ed19c217439a031d288cd2cf044ed42b04f90c57acc1acd",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-3d-skip-attack-finished-expected.sg11",
+        "observed": "month4-3d-skip-attack-finished-observed.sg11",
+        "sha256": "dafabd399685666e1ed19c217439a031d288cd2cf044ed42b04f90c57acc1acd",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-3d-skip-initial-expected.sg11",
+        "observed": "month4-3d-skip-initial-observed.sg11",
+        "sha256": "ddbef67606b06c0347507eb2621a9f11b7769cecfcfab4786d34059857acff25",
+        "bytes": 2074
+      },
+      {
+        "expected": "month4-3d-skip-turn-expected.sg11",
+        "observed": "month4-3d-skip-turn-observed.sg11",
+        "sha256": "81dfbca56ffeb2878e497c5c9fe605f55e0deef9d5804e66cfdd0a182175506e",
+        "bytes": 3636
+      }
+    ]
+  },
+  "35": {
+    "upgrade": "PASS",
+    "failure_recreation": "PASS_SCOPED_INJECTION_AND_LATCH_RESET",
+    "parity_cases": 12,
+    "full_byte_pairs": 50,
+    "checks": 319,
+    "device": "x86_64 emulator; see device/driver",
+    "pair_evidence": [
+      {
+        "expected": "month12-2d-normal-attack-committed-expected.sg11",
+        "observed": "month12-2d-normal-attack-committed-observed.sg11",
+        "sha256": "a299d21c3c5d6f481fd6383f894b48d690715eb039309fa55ccf32f52bae26c6",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-2d-normal-attack-finished-expected.sg11",
+        "observed": "month12-2d-normal-attack-finished-observed.sg11",
+        "sha256": "a299d21c3c5d6f481fd6383f894b48d690715eb039309fa55ccf32f52bae26c6",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-2d-normal-initial-expected.sg11",
+        "observed": "month12-2d-normal-initial-observed.sg11",
+        "sha256": "c4f26b280233aa2bf382a8c740090e22e30b42f737a34bad08d308098bdb14a7",
+        "bytes": 2074
+      },
+      {
+        "expected": "month12-2d-normal-turn-expected.sg11",
+        "observed": "month12-2d-normal-turn-observed.sg11",
+        "sha256": "6580ead69a5c2afafc4a170e7d19afbabdf2fd845e913bfa40f58417449e8643",
+        "bytes": 3887
+      },
+      {
+        "expected": "month12-2d-off-attack-committed-expected.sg11",
+        "observed": "month12-2d-off-attack-committed-observed.sg11",
+        "sha256": "a299d21c3c5d6f481fd6383f894b48d690715eb039309fa55ccf32f52bae26c6",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-2d-off-attack-finished-expected.sg11",
+        "observed": "month12-2d-off-attack-finished-observed.sg11",
+        "sha256": "a299d21c3c5d6f481fd6383f894b48d690715eb039309fa55ccf32f52bae26c6",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-2d-off-initial-expected.sg11",
+        "observed": "month12-2d-off-initial-observed.sg11",
+        "sha256": "c4f26b280233aa2bf382a8c740090e22e30b42f737a34bad08d308098bdb14a7",
+        "bytes": 2074
+      },
+      {
+        "expected": "month12-2d-off-turn-expected.sg11",
+        "observed": "month12-2d-off-turn-observed.sg11",
+        "sha256": "6580ead69a5c2afafc4a170e7d19afbabdf2fd845e913bfa40f58417449e8643",
+        "bytes": 3887
+      },
+      {
+        "expected": "month12-2d-skip-attack-committed-expected.sg11",
+        "observed": "month12-2d-skip-attack-committed-observed.sg11",
+        "sha256": "a299d21c3c5d6f481fd6383f894b48d690715eb039309fa55ccf32f52bae26c6",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-2d-skip-attack-finished-expected.sg11",
+        "observed": "month12-2d-skip-attack-finished-observed.sg11",
+        "sha256": "a299d21c3c5d6f481fd6383f894b48d690715eb039309fa55ccf32f52bae26c6",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-2d-skip-initial-expected.sg11",
+        "observed": "month12-2d-skip-initial-observed.sg11",
+        "sha256": "c4f26b280233aa2bf382a8c740090e22e30b42f737a34bad08d308098bdb14a7",
+        "bytes": 2074
+      },
+      {
+        "expected": "month12-2d-skip-recreated-expected.sg11",
+        "observed": "month12-2d-skip-recreated-observed.sg11",
+        "sha256": "6580ead69a5c2afafc4a170e7d19afbabdf2fd845e913bfa40f58417449e8643",
+        "bytes": 3887
+      },
+      {
+        "expected": "month12-2d-skip-turn-expected.sg11",
+        "observed": "month12-2d-skip-turn-observed.sg11",
+        "sha256": "6580ead69a5c2afafc4a170e7d19afbabdf2fd845e913bfa40f58417449e8643",
+        "bytes": 3887
+      },
+      {
+        "expected": "month12-3d-normal-attack-committed-expected.sg11",
+        "observed": "month12-3d-normal-attack-committed-observed.sg11",
+        "sha256": "a299d21c3c5d6f481fd6383f894b48d690715eb039309fa55ccf32f52bae26c6",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-3d-normal-attack-finished-expected.sg11",
+        "observed": "month12-3d-normal-attack-finished-observed.sg11",
+        "sha256": "a299d21c3c5d6f481fd6383f894b48d690715eb039309fa55ccf32f52bae26c6",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-3d-normal-initial-expected.sg11",
+        "observed": "month12-3d-normal-initial-observed.sg11",
+        "sha256": "c4f26b280233aa2bf382a8c740090e22e30b42f737a34bad08d308098bdb14a7",
+        "bytes": 2074
+      },
+      {
+        "expected": "month12-3d-normal-turn-expected.sg11",
+        "observed": "month12-3d-normal-turn-observed.sg11",
+        "sha256": "6580ead69a5c2afafc4a170e7d19afbabdf2fd845e913bfa40f58417449e8643",
+        "bytes": 3887
+      },
+      {
+        "expected": "month12-3d-off-attack-committed-expected.sg11",
+        "observed": "month12-3d-off-attack-committed-observed.sg11",
+        "sha256": "a299d21c3c5d6f481fd6383f894b48d690715eb039309fa55ccf32f52bae26c6",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-3d-off-attack-finished-expected.sg11",
+        "observed": "month12-3d-off-attack-finished-observed.sg11",
+        "sha256": "a299d21c3c5d6f481fd6383f894b48d690715eb039309fa55ccf32f52bae26c6",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-3d-off-initial-expected.sg11",
+        "observed": "month12-3d-off-initial-observed.sg11",
+        "sha256": "c4f26b280233aa2bf382a8c740090e22e30b42f737a34bad08d308098bdb14a7",
+        "bytes": 2074
+      },
+      {
+        "expected": "month12-3d-off-turn-expected.sg11",
+        "observed": "month12-3d-off-turn-observed.sg11",
+        "sha256": "6580ead69a5c2afafc4a170e7d19afbabdf2fd845e913bfa40f58417449e8643",
+        "bytes": 3887
+      },
+      {
+        "expected": "month12-3d-skip-attack-committed-expected.sg11",
+        "observed": "month12-3d-skip-attack-committed-observed.sg11",
+        "sha256": "a299d21c3c5d6f481fd6383f894b48d690715eb039309fa55ccf32f52bae26c6",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-3d-skip-attack-finished-expected.sg11",
+        "observed": "month12-3d-skip-attack-finished-observed.sg11",
+        "sha256": "a299d21c3c5d6f481fd6383f894b48d690715eb039309fa55ccf32f52bae26c6",
+        "bytes": 2324
+      },
+      {
+        "expected": "month12-3d-skip-initial-expected.sg11",
+        "observed": "month12-3d-skip-initial-observed.sg11",
+        "sha256": "c4f26b280233aa2bf382a8c740090e22e30b42f737a34bad08d308098bdb14a7",
+        "bytes": 2074
+      },
+      {
+        "expected": "month12-3d-skip-recreated-expected.sg11",
+        "observed": "month12-3d-skip-recreated-observed.sg11",
+        "sha256": "6580ead69a5c2afafc4a170e7d19afbabdf2fd845e913bfa40f58417449e8643",
+        "bytes": 3887
+      },
+      {
+        "expected": "month12-3d-skip-turn-expected.sg11",
+        "observed": "month12-3d-skip-turn-observed.sg11",
+        "sha256": "6580ead69a5c2afafc4a170e7d19afbabdf2fd845e913bfa40f58417449e8643",
+        "bytes": 3887
+      },
+      {
+        "expected": "month4-2d-normal-attack-committed-expected.sg11",
+        "observed": "month4-2d-normal-attack-committed-observed.sg11",
+        "sha256": "c905511adf2e677477f28936d340d9f7a8d94dee5124149b89bdf9dc549bfff9",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-2d-normal-attack-finished-expected.sg11",
+        "observed": "month4-2d-normal-attack-finished-observed.sg11",
+        "sha256": "c905511adf2e677477f28936d340d9f7a8d94dee5124149b89bdf9dc549bfff9",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-2d-normal-initial-expected.sg11",
+        "observed": "month4-2d-normal-initial-observed.sg11",
+        "sha256": "750b50e1c2d750b9b45f3f8dc4dd4a242c423d788df718e029a239a3cb75b1da",
+        "bytes": 2074
+      },
+      {
+        "expected": "month4-2d-normal-turn-expected.sg11",
+        "observed": "month4-2d-normal-turn-observed.sg11",
+        "sha256": "39f71ea3ea277b9c99cea358927b753808faf7a614361efc338055a82d28522a",
+        "bytes": 3636
+      },
+      {
+        "expected": "month4-2d-off-attack-committed-expected.sg11",
+        "observed": "month4-2d-off-attack-committed-observed.sg11",
+        "sha256": "c905511adf2e677477f28936d340d9f7a8d94dee5124149b89bdf9dc549bfff9",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-2d-off-attack-finished-expected.sg11",
+        "observed": "month4-2d-off-attack-finished-observed.sg11",
+        "sha256": "c905511adf2e677477f28936d340d9f7a8d94dee5124149b89bdf9dc549bfff9",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-2d-off-initial-expected.sg11",
+        "observed": "month4-2d-off-initial-observed.sg11",
+        "sha256": "750b50e1c2d750b9b45f3f8dc4dd4a242c423d788df718e029a239a3cb75b1da",
+        "bytes": 2074
+      },
+      {
+        "expected": "month4-2d-off-turn-expected.sg11",
+        "observed": "month4-2d-off-turn-observed.sg11",
+        "sha256": "39f71ea3ea277b9c99cea358927b753808faf7a614361efc338055a82d28522a",
+        "bytes": 3636
+      },
+      {
+        "expected": "month4-2d-skip-attack-committed-expected.sg11",
+        "observed": "month4-2d-skip-attack-committed-observed.sg11",
+        "sha256": "c905511adf2e677477f28936d340d9f7a8d94dee5124149b89bdf9dc549bfff9",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-2d-skip-attack-finished-expected.sg11",
+        "observed": "month4-2d-skip-attack-finished-observed.sg11",
+        "sha256": "c905511adf2e677477f28936d340d9f7a8d94dee5124149b89bdf9dc549bfff9",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-2d-skip-initial-expected.sg11",
+        "observed": "month4-2d-skip-initial-observed.sg11",
+        "sha256": "750b50e1c2d750b9b45f3f8dc4dd4a242c423d788df718e029a239a3cb75b1da",
+        "bytes": 2074
+      },
+      {
+        "expected": "month4-2d-skip-turn-expected.sg11",
+        "observed": "month4-2d-skip-turn-observed.sg11",
+        "sha256": "39f71ea3ea277b9c99cea358927b753808faf7a614361efc338055a82d28522a",
+        "bytes": 3636
+      },
+      {
+        "expected": "month4-3d-normal-attack-committed-expected.sg11",
+        "observed": "month4-3d-normal-attack-committed-observed.sg11",
+        "sha256": "c905511adf2e677477f28936d340d9f7a8d94dee5124149b89bdf9dc549bfff9",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-3d-normal-attack-finished-expected.sg11",
+        "observed": "month4-3d-normal-attack-finished-observed.sg11",
+        "sha256": "c905511adf2e677477f28936d340d9f7a8d94dee5124149b89bdf9dc549bfff9",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-3d-normal-initial-expected.sg11",
+        "observed": "month4-3d-normal-initial-observed.sg11",
+        "sha256": "750b50e1c2d750b9b45f3f8dc4dd4a242c423d788df718e029a239a3cb75b1da",
+        "bytes": 2074
+      },
+      {
+        "expected": "month4-3d-normal-turn-expected.sg11",
+        "observed": "month4-3d-normal-turn-observed.sg11",
+        "sha256": "39f71ea3ea277b9c99cea358927b753808faf7a614361efc338055a82d28522a",
+        "bytes": 3636
+      },
+      {
+        "expected": "month4-3d-off-attack-committed-expected.sg11",
+        "observed": "month4-3d-off-attack-committed-observed.sg11",
+        "sha256": "c905511adf2e677477f28936d340d9f7a8d94dee5124149b89bdf9dc549bfff9",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-3d-off-attack-finished-expected.sg11",
+        "observed": "month4-3d-off-attack-finished-observed.sg11",
+        "sha256": "c905511adf2e677477f28936d340d9f7a8d94dee5124149b89bdf9dc549bfff9",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-3d-off-initial-expected.sg11",
+        "observed": "month4-3d-off-initial-observed.sg11",
+        "sha256": "750b50e1c2d750b9b45f3f8dc4dd4a242c423d788df718e029a239a3cb75b1da",
+        "bytes": 2074
+      },
+      {
+        "expected": "month4-3d-off-turn-expected.sg11",
+        "observed": "month4-3d-off-turn-observed.sg11",
+        "sha256": "39f71ea3ea277b9c99cea358927b753808faf7a614361efc338055a82d28522a",
+        "bytes": 3636
+      },
+      {
+        "expected": "month4-3d-skip-attack-committed-expected.sg11",
+        "observed": "month4-3d-skip-attack-committed-observed.sg11",
+        "sha256": "c905511adf2e677477f28936d340d9f7a8d94dee5124149b89bdf9dc549bfff9",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-3d-skip-attack-finished-expected.sg11",
+        "observed": "month4-3d-skip-attack-finished-observed.sg11",
+        "sha256": "c905511adf2e677477f28936d340d9f7a8d94dee5124149b89bdf9dc549bfff9",
+        "bytes": 2324
+      },
+      {
+        "expected": "month4-3d-skip-initial-expected.sg11",
+        "observed": "month4-3d-skip-initial-observed.sg11",
+        "sha256": "750b50e1c2d750b9b45f3f8dc4dd4a242c423d788df718e029a239a3cb75b1da",
+        "bytes": 2074
+      },
+      {
+        "expected": "month4-3d-skip-turn-expected.sg11",
+        "observed": "month4-3d-skip-turn-observed.sg11",
+        "sha256": "39f71ea3ea277b9c99cea358927b753808faf7a614361efc338055a82d28522a",
+        "bytes": 3636
+      }
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+Activity Resolver Table:
+  Non-Data Actions:
+      android.intent.action.MAIN:
+        ba98bc4 game.sanguo.mobile.dev/game.sanguo.mobile.MainActivity filter d5e6aad
+          Action: "android.intent.action.MAIN"
+          Category: "android.intent.category.LAUNCHER"
+
+Domain verification status:
+
+Key Set Manager:
+  [game.sanguo.mobile.dev]
+      Signing KeySets: 20
+
+Packages:
+  Package [game.sanguo.mobile.dev] (ee219e9):
+    appId=10148
+    pkg=Package{d60366e game.sanguo.mobile.dev}
+    codePath=/data/app/~~94PeJfu9BEnIdzQdoUuKdA==/game.sanguo.mobile.dev-ZU799FPuD-1Vgj3hb8NGuQ==
+    resourcePath=/data/app/~~94PeJfu9BEnIdzQdoUuKdA==/game.sanguo.mobile.dev-ZU799FPuD-1Vgj3hb8NGuQ==
+    legacyNativeLibraryDir=/data/app/~~94PeJfu9BEnIdzQdoUuKdA==/game.sanguo.mobile.dev-ZU799FPuD-1Vgj3hb8NGuQ==/lib
+    extractNativeLibs=false
+    primaryCpuAbi=x86_64
+    secondaryCpuAbi=null
+    cpuAbiOverride=null
+    versionCode=115 minSdk=26 targetSdk=35
+    minExtensionVersions=[]
+    versionName=0.115.0-native-r17-hardening
+    hiddenApiEnforcementPolicy=2
+    usesNonSdkApi=false
+    splits=[base]
+    apkSigningVersion=2
+    flags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    privateFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    forceQueryable=false
+    scannedAsStoppedSystemApp=false
+    supportsScreens=[small, medium, large, xlarge, resizeable, anyDensity]
+    timeStamp=2026-09-28 08:08:30
+    lastUpdateTime=2026-09-28 08:08:30
+    installerPackageName=null
+    installerPackageUid=-1
+    initiatingPackageName=com.android.shell
+    originatingPackageName=null
+    packageSource=1
+    appMetadataFilePath=null
+    appMetadataSource=0
+    signatures=PackageSignatures{9a0e10f version:2, signatures:[71271c33], past signatures:[]}
+    installPermissionsFixed=false
+    pkgFlags=[ HAS_CODE ALLOW_CLEAR_USER_DATA ]
+    privatePkgFlags=[ PRIVATE_FLAG_ACTIVITIES_RESIZE_MODE_RESIZEABLE_VIA_SDK_VERSION ALLOW_AUDIO_PLAYBACK_CAPTURE PRIVATE_FLAG_ALLOW_NATIVE_HEAP_POINTER_TAGGING ]
+    apexModuleName=null
+    User 0: ceDataInode=344648 deDataInode=49243 installed=true hidden=false suspended=false distractionFlags=0 stopped=false notLaunched=false enabled=0 instant=false virtual=false quarantined=false
+      installReason=0
+      dataDir=/data/user/0/game.sanguo.mobile.dev
+      firstInstallTime=2026-09-28 08:08:23
+      uninstallReason=0
+      overlay paths:
+        /data/resource-cache/com.android.systemui-neutral-CPRa.frro
+        /data/resource-cache/com.android.systemui-accent-EhRi.frro
+        /data/resource-cache/com.android.systemui-dynamic-z9W9.frro
+      runtime permissions:
+
+Queries:
+  system apps queryable: false
+  queries via forceQueryable:
+  queries via package name:
+    game.sanguo.mobile.dev:
+      game.sanguo.mobile.dev.test
+    game.sanguo.mobile.dev.test:
+      game.sanguo.mobile.dev
+  queries via component:
+    com.android.settings.intelligence:
+      game.sanguo.mobile.dev
+  queryable via interaction:
+    User 0:
+      [android,com.android.emulator.multidisplay,com.android.keychain,com.android.location.fused,com.android.DeviceAsWebcam,com.android.inputdevices,com.android.server.telecom,com.android.settings,com.android.dynsystem,com.android.localtransport,com.android.providers.settings]:
+        game.sanguo.mobile.dev
+      com.android.inputmethod.latin:
+        game.sanguo.mobile.dev
+  queryable via uses-library:
+
+Dexopt state:
+  [game.sanguo.mobile.dev]
+    path: /data/app/~~94PeJfu9BEnIdzQdoUuKdA==/game.sanguo.mobile.dev-ZU799FPuD-1Vgj3hb8NGuQ==/base.apk
+      x86_64: [status=verify] [reason=install] [primary-abi]
+        [location is /data/app/~~94PeJfu9BEnIdzQdoUuKdA==/game.sanguo.mobile.dev-ZU799FPuD-1Vgj3hb8NGuQ==/oat/x86_64/base.odex]
+
+Compiler stats:
+  [game.sanguo.mobile.dev]
+     base.apk - 264
