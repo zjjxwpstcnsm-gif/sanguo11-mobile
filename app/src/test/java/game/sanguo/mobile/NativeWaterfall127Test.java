@@ -8,6 +8,11 @@ public final class NativeWaterfall127Test {
     static int checks;
     static void check(boolean b,String message){checks++;if(!b)throw new AssertionError(message);}
     public static void main(String[] args)throws Exception{
+        // PNG row zero is runtime UV.v zero in the unchanged ETC2 upload path.
+        var atlas=javax.imageio.ImageIO.read(Path.of("app/src/main/assets/3d/field/v127/scenery-atlas.png").toFile());
+        int stone=atlas.getRGB(288,12)&255,foamPixel=atlas.getRGB(288,52)&255;
+        check(stone<110,"rock shelf samples dark stone, not inverted foam panel");
+        check(foamPixel>120,"impact ring samples pale foam, not inverted stone panel");
         World world=ScenarioCatalog.all().get(0);byte[] before=SaveCodec.encode(world);
         var snapshot=new MapSceneSnapshot(new MapSceneSnapshot.Ground(world),world,null,-1);
         var excluded=Vegetation.exclusions(snapshot);var assets=new FieldAssets(n->Files.newInputStream(Path.of("app/src/main/assets/3d/field",n)));

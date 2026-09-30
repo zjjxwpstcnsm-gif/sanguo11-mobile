@@ -28,7 +28,9 @@ public final class NativeWaterfall127Instrumentation extends SceneInstrumentatio
             if(root!=null){
                 for(var node:root.findAccessibilityNodeInfosByText(label)){
                     Rect bounds=new Rect();node.getBoundsInScreen(bounds);boolean target=label.contentEquals(node.getText()==null?"":node.getText())&&node.isVisibleToUser()&&!bounds.isEmpty();node.recycle();
-                    if(target){root.recycle();pointerTap(bounds.centerX(),bounds.centerY());settle();return;}
+                    // ACTION_UP can post the click callback after the first UI
+                    // barrier; engine initialization then takes more than 500ms.
+                    if(target){root.recycle();pointerTap(bounds.centerX(),bounds.centerY());settle();runOnMainSync(()->{});return;}
                 }
                 boolean moved=scroll(root);root.recycle();if(!moved)break;
             }

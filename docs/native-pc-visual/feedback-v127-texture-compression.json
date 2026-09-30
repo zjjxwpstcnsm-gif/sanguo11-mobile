@@ -1,8 +1,8 @@
 [
   {
     "asset": "app/src/main/assets/3d/field/v127/scenery-atlas.etc2",
-    "source_sha256": "774a80ed2a1b89893563bc9913f3746ef5def209e5e690a581b91465814584bb",
-    "sha256": "cd601ecb84cda3aed451c0c8e09e00f06a0f5d5f0a4f6181f75b83c289260246",
+    "source_sha256": "bd58d888e3d4d6da4c1340e405da3f94b4673f23106cb1c0d21732bfb3bc6eec",
+    "sha256": "ee7a1bc6cd45e4f2027e602f869b7572e6df02b55667f2d2aae4cf89f46b01e0",
     "width": 512,
     "height": 64,
     "levels": 10,
@@ -12,7 +12,7 @@
     "alpha": "opaque",
     "mip_filter": "linear-light BOX",
     "encoder": "etcpak 0.9.15",
-    "level0_psnr_db": 36.63934070873386,
+    "level0_psnr_db": 36.64070097701976,
     "gpu_upload_verified": false
   }
 ]

@@ -16,7 +16,10 @@ width,height=image.size;pixels=list(image.pixels[:])
 for y in range(height):
     for panel in [3,4,5]:
         for k in range(width//8):
-            u=k/(width//8);t=y/height
+            # Blender pixels begin at the bottom; the unchanged runtime ETC2
+            # upload samples PNG row zero at UV.v zero. Author the shelf/foam
+            # split in that runtime direction rather than Blender image order.
+            u=k/(width//8);t=(height-1-y)/height if panel==4 else y/height
             grain=math.sin(u*53+t*67)*math.sin(u*97-t*31)
             if panel==4:
                 if t<.65:

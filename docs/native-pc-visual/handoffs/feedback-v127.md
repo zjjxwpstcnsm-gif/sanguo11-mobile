@@ -2,7 +2,7 @@
 
 真实Blender重新制作6个近远LOD瀑布：立体岩台、连续陡落水幕、落水泡沫；普通远LOD保留落差。正常“视图 → 山河地标”入口定位泰山、西南、庐山、壶口及长城。保留原地图/高度/通行与已有467资产，未启Unity或改玩法。
 
-主机218,661项新检查、保留原专项与架构/Khronos335GLB PASS；core.logistics:75和displacement.boundaries:27输入/候选同点FAIL继承保留。构建及API29/35正常菜单、双指缩放、拖动、反向视角实机截图验证待CI，不能提前记PASS。PC同镜头REFERENCE_MISSING，ARM64/30分钟/纯触控开局SAF生命周期NOT_RUN。详见reports/feedback-v127.md和handoffs/feedback-v127.md。不合main、不开始下一阶段。
+主机218,663项新检查、保留原专项与架构/Khronos335GLB PASS；core.logistics:75和displacement.boundaries:27输入/候选同点FAIL继承保留。首轮构建通过，但多个候选/输入120秒ready失败；西南API29正常点击回调未完成即判断的探针竞态已修复（增加主线程完成屏障，不放宽120秒ready断言）。首轮岩台/泡沫PNG方向取反由像素检查独立复现FAIL并修正，重编最终候选进行中，不能提前记PASS。PC同镜头REFERENCE_MISSING，ARM64/30分钟/纯触控开局SAF生命周期NOT_RUN。详见reports/feedback-v127.md和handoffs/feedback-v127.md。不合main、不开始下一阶段。
 
 原因：旧瀑布沿缓坡贴地，远景仅有细水纹；固定源坐标难以找到。新模型有陡落截面和承托岩台，变换按整个模型覆盖的床面抬高上游，保持6点三角形安全脚印；走廊不足时缩短长度和宽度，不把山改成水。全水幕/岩台/泡沫仍限制于原非通行水格和山格，城港关/单位/设施排除保持。精确原PC锚点仍未核实。
 
