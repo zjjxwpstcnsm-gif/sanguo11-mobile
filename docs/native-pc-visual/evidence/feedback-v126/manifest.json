@@ -2,10 +2,66 @@
   "status": "PARTIAL",
   "input_source": "58d7eb1cba2a45365d7fbee1beef61cc53ce8fc0",
   "main": "ac29b458325b52d6e302ca44270d16552de4ed7f",
-  "source_sha": "POST_COMMIT",
-  "host": "PASS focused; inherited core FAIL",
-  "installed": "PENDING",
-  "pc_reference": "REFERENCE_MISSING",
-  "arm64": "NOT_RUN",
-  "no_next_phase": true
+  "architecture_pr66": "merged; preserved",
+  "source_sha": "25e6c121cba1ae36947c520dfccc48e13e0e2171",
+  "remote_final_head": "See verification/remote-confirmation.json in final evidence archive and PR67; subsequent commit is documentation/evidence only",
+  "branch": "agent/native-pc-visual",
+  "pr": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/67",
+  "merged": false,
+  "apk": {
+    "file": "sanguo11-mobile-v126.apk",
+    "sha256": "fe048dee1734a23d156fd56bd3ea2cbf65280daf29c5660e3ced0dc5311bc383",
+    "bytes": 41987766,
+    "application_id": "game.sanguo.mobile.dev",
+    "version_code": 126,
+    "version_name": "0.126.0-native-landmarks",
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+    "matched_assets": 467,
+    "backend": "Filament1.56.0 OPENGL",
+    "build": "PASS",
+    "lint": "0 errors / 83 warnings",
+    "source_identical_inner_files_local_vs_ci": true,
+    "delivery": "exact CI-installed archive, not local differently signed container"
+  },
+  "ci": {
+    "run": 36659459089,
+    "url": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/actions/runs/36659459089",
+    "build": "PASS",
+    "overall": "FAIL",
+    "failed_job_reruns": 1,
+    "successful_jobs_not_rerun": true,
+    "apk_verified_installs": 14,
+    "emulator": "API29/35 x86_64, -gpu swangle; Filament logs ANGLE SwiftShader"
+  },
+  "host": "PASS focused; complete core FAIL inherited",
+  "latest_installed": {
+    "api29": {
+      "hukou": "FAIL",
+      "wall": "FAIL",
+      "taishan": "FAIL",
+      "southwest": "PASS after first FAIL"
+    },
+    "api35": {
+      "hukou": "FAIL",
+      "wall": "FAIL screenshot unavailable after 10 Surface / 9 UI captures",
+      "taishan": "PASS first attempt",
+      "southwest": "PASS first attempt"
+    }
+  },
+  "runtime_failure_attribution": "UNKNOWN; not independently classified inherited or environment",
+  "authority": "3 successful scene runs complete 183198-byte SaveCodec independently identical; failed scenes did not reach final comparison",
+  "visual": "FAIL: stripe waterfall seams, wall gaps/angles and masonry-like atlas/cliffs; models not final high precision",
+  "pc_reference": "REFERENCE_MISSING exact game camera, anchors, wall route",
+  "arm64": "NOT_RUN no physical device connected",
+  "thirty_minute_performance": "NOT_RUN",
+  "pure_touch_full_flow_SAF_lifecycle": "NOT_RUN this round, prior gaps remain OPEN",
+  "no_rule_map_unity_changes": true,
+  "no_next_phase": true,
+  "evidence_archive": "sanguo11-mobile-v126-evidence.zip; raw runtime-attempt1/2 PNG/MP4/logcat/save and separately marked OFFLINE-assets-not-APK"
 }

@@ -1,6 +1,10 @@
 ## 2026-09-30 v126 地标与地形 — PARTIAL
 
-Blender12个近远LOD接入正式地形景物合批：壶口泥沙色收束短瀑、北方夯土墙/烽燧、三类区域岩壁。原地图/规则/高度/旧资源保留；主机556,693+29,266、329GLB零错误警告通过。APK/安装证据待同源构建汇总；PC精确锚点/同镜头、ARM64/30分钟及旧全国ready/触控SAF生命周期仍OPEN，不能称原版美术已达标。见reports/feedback-v126.md。
+Blender12个近远LOD接入正式地形景物合批：壶口泥沙色收束短瀑、北方墙/烽燧、三类区域岩壁。原452资产、规则、地图、地形高度与架构保留。APK source `25e6c121cba1ae36947c520dfccc48e13e0e2171`，SHA256 `fe048dee1734a23d156fd56bd3ea2cbf65280daf29c5660e3ced0dc5311bc383`，v126/41,987,766B；CI36659459089 build与467资产/四ABI16KB PASS，总体FAIL。
+
+地标556,693/旧瀑布29,266/S04-S05与架构专项、329GLB零错误警告及Blender/ETC2/material逐字节复现PASS；完整core的logistics:75与displacement:27输入/候选同点FAIL继承保留。14次实际安装字节核验PASS；API35泰山169/西南142首轮PASS，API29西南首轮FAIL/同包仅一次复验173 PASS；壶口两API/API29墙及泰山两轮ready FAIL，API35墙复验10 Surface/9 UI后截图不可用FAIL。回归归因UNKNOWN/风险OPEN。
+
+美术线FAIL：条纹瀑布与接缝、墙段缝隙/硬转折、岩壁砌块感尚未达标；PC精确锚点/同镜头REFERENCE_MISSING，ARM64/30分钟/历史纯触控SAF生命周期NOT_RUN/OPEN。不合main、不启Unity、不开始下一阶段。见reports/feedback-v126.md、handoffs/feedback-v126.md、evidence/feedback-v126/manifest.json。
 
 ## 2026-09-30 v125 地形瀑布/骑兵反馈 — PARTIAL
 
