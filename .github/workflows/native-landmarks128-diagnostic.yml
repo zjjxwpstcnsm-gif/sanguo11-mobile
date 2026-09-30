@@ -1,0 +1,48 @@
+name: Native v128 matched frame-stall diagnosis
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-landmarks128-diagnostic.yml]
+permissions: {contents: read, actions: read}
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix: {variant: [candidate, input]}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: 97bab9db5a603cb3ae9c11b1d526da66dc73e5ff, persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with:
+          name: native-landmarks128-build
+          path: out/landmarks128/
+          run-id: 36711026636
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+      - uses: actions/download-artifact@v4
+        if: matrix.variant == 'input'
+        with:
+          name: native-waterfall127-build
+          path: out/landmarks128/input/
+          run-id: 36686142975
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+      - run: sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: |
+            bash -c 'mkdir -p out/landmarks128/runtime/observer; (for sample in 1 2 3; do sleep 25; date -u --iso-8601=seconds > out/landmarks128/runtime/observer/time-$sample.txt; adb exec-out screencap -p > out/landmarks128/runtime/observer/screen-$sample.png; timeout 15 adb shell dumpsys SurfaceFlinger > out/landmarks128/runtime/observer/surface-$sample.txt 2>&1; timeout 15 adb shell dumpsys gfxinfo game.sanguo.mobile.dev framestats > out/landmarks128/runtime/observer/gfx-$sample.txt 2>&1; pid=$(adb shell pidof game.sanguo.mobile.dev | tr -d "\r"); if [[ "$pid" =~ ^[0-9]+$ ]]; then timeout 15 adb shell debuggerd -b "$pid" > out/landmarks128/runtime/observer/threads-$sample.txt 2>&1; adb shell top -H -b -n 1 -p "$pid" > out/landmarks128/runtime/observer/cpu-$sample.txt 2>&1; else echo "No process observed" > out/landmarks128/runtime/observer/threads-$sample.txt; fi; done) & observer=$!; bash scripts/test-landmarks128-installed.sh hukou "${{ matrix.variant }}"; rc=$?; echo "$rc" > out/landmarks128/runtime/observer/probe-exit.txt; wait "$observer"; exit "$rc"'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: 'native-landmarks128-diagnostic-api29-hukou-${{ matrix.variant }}'
+          path: out/landmarks128/runtime/
+          retention-days: 30
+          if-no-files-found: error
