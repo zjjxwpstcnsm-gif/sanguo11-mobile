@@ -2,7 +2,7 @@ name: Native v125 cascades and cavalry acceptance
 on:
   push:
     branches: [agent/native-pc-visual]
-    paths: ['.github/workflows/native-feedback125.yml', 'tools/3d/refine_blender125.py', 'tools/3d/scenery125.mat', 'scripts/test-feedback125.sh', 'scripts/test-feedback125-installed.sh', 'app/src/main/**', 'core/src/main/java/game/sanguo/core/War.java', 'core/src/main/java/game/sanguo/core/Contests.java', 'core/src/main/java/game/sanguo/core/Displacement.java', 'app/src/androidTest/java/game/sanguo/mobile/NativeFeedback125Instrumentation.java']
+    paths: ['.github/workflows/native-feedback125.yml', 'tools/3d/refine_blender125.py', 'tools/3d/compress_scenery125.py', 'tools/3d/scenery125.mat', 'scripts/test-feedback125.sh', 'scripts/test-feedback125-installed.sh', 'app/src/main/**', 'core/src/main/java/game/sanguo/core/War.java', 'core/src/main/java/game/sanguo/core/Contests.java', 'core/src/main/java/game/sanguo/core/Displacement.java', 'app/src/androidTest/java/game/sanguo/mobile/NativeFeedback125Instrumentation.java']
 permissions: {contents: read, actions: read}
 concurrency: {group: 'native-feedback125-${{ github.sha }}', cancel-in-progress: false}
 jobs:
@@ -25,6 +25,8 @@ jobs:
           curl -fsSL --retry 2 https://download.blender.org/release/Blender4.2/blender-4.2.3-linux-x64.tar.xz -o /tmp/blender125.tar.xz
           tar -xJf /tmp/blender125.tar.xz -C /tmp
           /tmp/blender-4.2.3-linux-x64/blender --background --threads 2 --python-exit-code 1 --python tools/3d/refine_blender125.py -- out/feedback125/reproduced > out/feedback125/blender.log 2>&1
+          python3 -m pip install etcpak==0.9.15 Pillow==12.3.0 numpy==2.3.5 texture2ddecoder==1.0.6
+          ASSET_OUTPUT_ROOT=out/feedback125/reproduced python3 tools/3d/compress_scenery125.py
           python3 - <<'PY'
           from pathlib import Path
           import json
@@ -33,7 +35,9 @@ jobs:
           assert json.loads((root/manifest).read_text())==json.loads(Path(manifest).read_text())
           for file in (root/'app/src/main/assets/3d/field/v125').iterdir():
               assert file.read_bytes()==Path(file.relative_to(root)).read_bytes(),file
-          print('PASS Blender model and atlas exact reproduction')
+          report='docs/native-pc-visual/feedback-v125-texture-compression.json'
+          assert json.loads((root/report).read_text())==json.loads(Path(report).read_text())
+          print('PASS Blender models, PNG and ETC2 mips exact reproduction')
           PY
       - name: Host rules, authority and landscape safety
         run: |

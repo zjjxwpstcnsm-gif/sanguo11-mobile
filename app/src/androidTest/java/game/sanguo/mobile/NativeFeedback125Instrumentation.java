@@ -18,6 +18,20 @@ public final class NativeFeedback125Instrumentation extends SceneInstrumentation
     private void log(String text)throws Exception{Files.write(new File(dir,"feedback125.txt").toPath(),(text+"\n").getBytes("UTF-8"),StandardOpenOption.CREATE,StandardOpenOption.APPEND);}
     private byte[] authority(){byte[][] b={null};runOnMainSync(()->{try{b[0]=((GameApplication)activity.getApplication()).host().capture();}catch(IOException e){throw new RuntimeException(e);}});return b[0];}
     private Button button(View root,String tag){if(tag.equals(root.getTag())&&root instanceof Button)return (Button)root;if(root instanceof ViewGroup){ViewGroup group=(ViewGroup)root;for(int i=0;i<group.getChildCount();i++){Button b=button(group.getChildAt(i),tag);if(b!=null)return b;}}return null;}
+    private boolean hasText(View root,String text){if(root instanceof android.widget.TextView&&((android.widget.TextView)root).getText().toString().startsWith(text))return true;if(root instanceof ViewGroup)for(int i=0;i<((ViewGroup)root).getChildCount();i++)if(hasText(((ViewGroup)root).getChildAt(i),text))return true;return false;}
+    private void installedForce()throws Exception{
+        World force=DisplacementFixture.create("mountain",World.Weapon.CAVALRY);force.unit(2).status=War.Status.NORMAL;force.unit(2).statusTurns=0;
+        force.contests.configure(1,new Contests.Profile(Debate.Temper.RASH,0,0));force.strategy.setSeed(29016L+55L*982451653L);
+        World expected=SaveCodec.decode(SaveCodec.encode(force));check(expected.war.tactic(1,2,War.Tactic.BREAKTHROUGH).ok&&expected.contests.busy(),"fixed actual command reaches forced duel");
+        runOnMainSync(()->{invoke("closePanel",new Class<?>[0]);invoke("activateWorld",new Class<?>[]{World.class},force);activity.refresh();
+            check(SessionProbe.command(activity,w->w.war.tactic(1,2,War.Tactic.BREAKTHROUGH)).ok,"installed blocked breakthrough triggers force session");activity.refresh();});settle();
+        check(Arrays.equals(SaveCodec.encode(expected),authority()),"installed force session full save/RNG equals headless");
+        check(SaveCodec.decode(authority()).contests.busy(),"installed forced session survives reload");
+        View panel=(View)field(activity,"panelHost");boolean[] shown={false};runOnMainSync(()->shown[0]=hasText(panel,"单挑 · 第"));check(shown[0],"existing normal ContestUi visibly opened");capture("battle-forced-duel-ui-2d");
+        Contests.Session cs=expected.contests.current();check(expected.contests.concede(cs.id(),cs.revision()).ok,"headless settlement");
+        runOnMainSync(()->{check(SessionProbe.command(activity,w->{Contests.Session c=w.contests.current();return w.contests.concede(c.id(),c.revision());}).ok,"installed existing concede settles");activity.refresh();});settle();
+        check(Arrays.equals(SaveCodec.encode(expected),authority()),"installed force settlement entire save/RNG matches");log("PASS INSTALLED_FORCE 2D actual GameSession, existing ContestUi, complete save/load and settlement");
+    }
     private void installedBattle()throws Exception{
         final Button[] buttons=new Button[3];
         runOnMainSync(()->{
@@ -41,6 +55,7 @@ public final class NativeFeedback125Instrumentation extends SceneInstrumentation
             World.Result r=SessionProbe.command(activity,w->w.war.tactic(1,2,War.Tactic.BREAKTHROUGH));check(r.ok,"actual GameSession blocked breakthrough");activity.refresh();});settle();
         check(Arrays.equals(SaveCodec.encode(expected),authority()),"installed command equals exact headless full save/RNG");
         capture("battle-blocked-result-2d");log("PASS INSTALLED_BATTLE 2D UI disabled tap and GameSession damage/optional landing/save RNG checks="+checks);
+        installedForce();
         // Separate the actual 3D rendering gate: a loading failure cannot become
         // an installed gameplay PASS or hide the earlier completed UI checks.
         runOnMainSync(()->{invoke("activateWorld",new Class<?>[]{World.class},SaveUnchecked.decode(before));activity.refresh();invoke("closePanel",new Class<?>[0]);host.switchMode(true);});settle();ready();
@@ -66,7 +81,7 @@ public final class NativeFeedback125Instrumentation extends SceneInstrumentation
             int[] p=mode.equals("southwest")?new int[]{31,183}:new int[]{147,59};
             Hex focus=MapCoordinates.fromNationalSource(world,new SourceGridCoord(p[0],p[1]));byte[] before=authority();
             runOnMainSync(()->{invoke("closePanel",new Class<?>[0]);host.setGridShown(false);host.setTerritoryMode(0);activity.selectAndFocus(focus);host.switchMode(true);});settle();
-            FilamentMapView renderer=(FilamentMapView)field(host,"spatial");runOnMainSync(()->{renderer.center(focus);renderer.camera.span=6;renderer.camera.tilt=55;});ready();
+            check(host.is3D(),"requested native renderer initialized without fallback");FilamentMapView renderer=(FilamentMapView)field(host,"spatial");check(renderer!=null,"native renderer exists");runOnMainSync(()->{renderer.center(focus);renderer.camera.span=6;renderer.camera.tilt=55;});ready();
             for(int span:new int[]{3,6,10})for(int yaw:new int[]{0,180}){
                 runOnMainSync(()->{renderer.camera.span=span;renderer.camera.yaw=yaw;});settle();ready();
                 for(boolean grid:new boolean[]{false,true}){

@@ -16,7 +16,7 @@ fragment {
         // panels/LOD borders fixed; bounded scrolling gives downhill foam flow.
         uv.y=mix(uv.y,0.06+fract((uv.y-0.06)/0.88+materialParams.flowTime*0.28)*0.88,cascade);
         float3 base = texture(materialParams_atlas, uv).rgb * getColor().rgb;
-        float leaf=smoothstep(0.0,0.055,base.g-max(base.r,base.b));
+        float leaf=(1.0-cascade)*smoothstep(0.0,0.055,base.g-max(base.r,base.b));
         base*=materialParams.artTint*mix(float3(1.0),materialParams.plantTint,leaf);
         material.roughness = 0.88;
         material.metallic = 0.0;

@@ -247,17 +247,32 @@
     },
     {
       "path": "tools/3d/scenery125.mat",
-      "bytes": 1405,
-      "sha256": "f93e132900d5ea97d39d5ec4e248be8e9820eb0b9d9586ca7caca66f51b935d5",
+      "bytes": 1419,
+      "sha256": "3f79b2212a993022eb3af2dd7b147c76dac9a2a629770b890f0dafaca0055dad",
       "license": "CC0-1.0 original authored geometry/shader; Filament matc 1.56.0 Apache-2.0",
       "consumer": "MainActivity -> MapHost -> FilamentMapView -> Vegetation.buildWindow; existing continuous TerrainSurface and one merged draw per chunk"
     },
     {
       "path": "app/src/main/assets/3d/field/v125/scenery.filamat",
-      "bytes": 480489,
-      "sha256": "b6ebca9dcb8570f2b5616c77f970a45f0061928bd3d0d577ea4e059a33e615d7",
+      "bytes": 481171,
+      "sha256": "3c04cfc1161d41878ead57c499d2df76a9b1eb0cd72b082b5eadd4f6eefc6ce1",
       "license": "CC0-1.0 original authored geometry/shader; Filament matc 1.56.0 Apache-2.0",
       "consumer": "MainActivity -> MapHost -> FilamentMapView -> Vegetation.buildWindow; existing continuous TerrainSurface and one merged draw per chunk"
+    },
+    {
+      "path": "tools/3d/compress_scenery125.py",
+      "license": "CC0-1.0 original project asset; unchanged project ETC2 encoder",
+      "consumer": "FilamentMapView.loadAtlas ETC2_SRGB8 production path",
+      "bytes": 508,
+      "sha256": "6337c58871ff3a3f226bf69ad7027835d7b3f1d72db095c35eb04198c8277742"
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v125/scenery-atlas.etc2",
+      "license": "CC0-1.0 original project asset; unchanged project ETC2 encoder",
+      "consumer": "FilamentMapView.loadAtlas ETC2_SRGB8 production path",
+      "bytes": 21952,
+      "sha256": "195a5351f2952df4d27b38d54568471f97cedf5f83f1755e78979d9730fda7c5"
     }
-  ]
+  ],
+  "texture_compression": "feedback-v125-texture-compression.json"
 }

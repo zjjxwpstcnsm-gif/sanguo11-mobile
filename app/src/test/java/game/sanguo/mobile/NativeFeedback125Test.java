@@ -10,6 +10,12 @@ public final class NativeFeedback125Test {
     static int checks;
     static void check(boolean b,String why){checks++;if(!b)throw new AssertionError(why);}
     public static void main(String[] args)throws Exception{
+        try(java.io.DataInputStream in=new java.io.DataInputStream(Files.newInputStream(Path.of("app/src/main/assets/3d/field/v125/scenery-atlas.etc2")))){
+            check(in.readInt()==0x45544332,"production ETC2 counterpart exists with proper header");int width=in.readInt(),height=in.readInt(),levels=in.readInt();
+            check(width>0&&height>0&&levels==32-Integer.numberOfLeadingZeros(Math.max(width,height)),"scenery mip dimensions");
+            for(int level=0;level<levels;level++){int bytes=in.readInt();check(bytes==((Math.max(1,width>>level)+3)/4)*((Math.max(1,height>>level)+3)/4)*8,"real compressed mip payload length");check(in.readNBytes(bytes).length==bytes,"all compressed levels present");}
+            check(in.read()==-1,"compressed atlas has no trailing payload");
+        }
         World w=ScenarioCatalog.all().get(0);byte[] before=SaveCodec.encode(w);
         MapSceneSnapshot s=new MapSceneSnapshot(new MapSceneSnapshot.Ground(w),w,null,-1);
         FieldAssets a=new FieldAssets(n->Files.newInputStream(Path.of("app/src/main/assets/3d/field",n)));
