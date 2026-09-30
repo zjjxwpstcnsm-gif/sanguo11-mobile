@@ -2,7 +2,7 @@ name: Native v125 cascades and cavalry acceptance
 on:
   push:
     branches: [agent/native-pc-visual]
-    paths: ['.github/workflows/native-feedback125.yml', 'tools/3d/refine_blender125.py', 'tools/3d/scenery125.mat', 'scripts/test-feedback125.sh', 'app/src/main/**', 'core/src/main/java/game/sanguo/core/War.java', 'core/src/main/java/game/sanguo/core/Contests.java', 'core/src/main/java/game/sanguo/core/Displacement.java', 'app/src/androidTest/java/game/sanguo/mobile/NativeFeedback125Instrumentation.java']
+    paths: ['.github/workflows/native-feedback125.yml', 'tools/3d/refine_blender125.py', 'tools/3d/scenery125.mat', 'scripts/test-feedback125.sh', 'scripts/test-feedback125-installed.sh', 'app/src/main/**', 'core/src/main/java/game/sanguo/core/War.java', 'core/src/main/java/game/sanguo/core/Contests.java', 'core/src/main/java/game/sanguo/core/Displacement.java', 'app/src/androidTest/java/game/sanguo/mobile/NativeFeedback125Instrumentation.java']
 permissions: {contents: read, actions: read}
 concurrency: {group: 'native-feedback125-${{ github.sha }}', cancel-in-progress: false}
 jobs:
@@ -91,30 +91,7 @@ jobs:
           heap-size: 512M
           disable-animations: false
           emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
-          script: |
-            set -e
-            mkdir -p out/feedback125/runtime
-            adb install -r out/feedback125/sanguo11-mobile-v125.apk
-            adb install -r out/feedback125/test.apk
-            path=$(adb shell pm path game.sanguo.mobile.dev | tr -d '\r' | sed -n 's/^package://p' | head -1)
-            adb pull "$path" /tmp/installed125.apk
-            cmp /tmp/installed125.apk out/feedback125/sanguo11-mobile-v125.apk
-            adb shell pm clear game.sanguo.mobile.dev
-            adb logcat -c
-            adb shell screenrecord --time-limit 180 /sdcard/feedback125.mp4 > out/feedback125/runtime/record.log 2>&1 &
-            recording=$!
-            code=0
-            timeout 900 adb shell am instrument -w -e mode '${{ matrix.mode }}' game.sanguo.mobile.dev.test/game.sanguo.mobile.NativeFeedback125Instrumentation > out/feedback125/runtime/instrumentation.txt 2>&1 || code=$?
-            adb shell pkill -INT screenrecord || true
-            wait "$recording" || true
-            adb logcat -d > out/feedback125/runtime/logcat.txt
-            adb shell getprop > out/feedback125/runtime/device.txt
-            adb shell dumpsys meminfo game.sanguo.mobile.dev > out/feedback125/runtime/meminfo.txt
-            adb pull /sdcard/Android/data/game.sanguo.mobile.dev/files/s01 out/feedback125/runtime/images || true
-            adb pull /sdcard/feedback125.mp4 out/feedback125/runtime/ || true
-            test "$code" = 0
-            grep -q 'PASS FEEDBACK125' out/feedback125/runtime/instrumentation.txt
-            ! grep -Eq 'FAIL|INSTRUMENTATION_FAILED' out/feedback125/runtime/instrumentation.txt
+          script: bash scripts/test-feedback125-installed.sh '${{ matrix.mode }}'
       - uses: actions/upload-artifact@v4
         if: always()
         with: {name: 'native-feedback125-api${{ matrix.api }}-${{ matrix.mode }}', path: out/feedback125/runtime/, retention-days: 30, if-no-files-found: warn}
