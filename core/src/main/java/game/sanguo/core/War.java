@@ -177,7 +177,7 @@ public final class War {
         if(a!=null&&tactic==Tactic.FIRE_ARROW)heading+="\n"+w.combat.firePreview(a,b,CombatRules.DIRECT_FIRE_BASE,false);
         if(b!=null)heading+="\n实际目标："+w.officer(b.officerId).name+" · "+b.hex;
         if(a!=null&&b!=null&&tactic==Tactic.SPIRAL)heading+="\n命中后混乱概率："+w.combat.spiralConfusionChance(a,b)+"% · 每次施放造成混乱约 "+String.format(java.util.Locale.ROOT,"%.1f",tacticChance(actor,target,tactic)*w.combat.spiralConfusionChance(a,b)/100.0)+"%";
-        if(a!=null&&b!=null&&tactic!=null&&tactic.weapon==World.Weapon.CAVALRY)heading+="\n命中且双方存活时强制单挑概率："+w.contests.cavalryChance(a,b)+"%（不受位移是否成功影响）";
+        if(a!=null&&b!=null&&tactic!=null&&tactic.weapon==World.Weapon.CAVALRY)heading+="\n骑兵命中后独立判定强制单挑；阻挡位移不会取消判定（仍须满足单挑条件）";
         if(tactic!=null)heading+="\n射程："+tactic.minRange+"–"+(tactic.maxRange+(a!=null&&a.weapon==World.Weapon.CROSSBOW?range(a)-a.weapon.range:0))+"格；效果："+tactic.effect;
         Displacement.Preview p=displacement.preview(a,b,Displacement.kind(tactic),error,heading);
         if(error!=null)return p;

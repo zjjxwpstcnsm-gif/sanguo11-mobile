@@ -2,7 +2,7 @@ name: Native v125 cascades and cavalry acceptance
 on:
   push:
     branches: [agent/native-pc-visual]
-    paths: ['.github/workflows/native-feedback125.yml', 'tools/3d/refine_blender125.py', 'tools/3d/scenery125.mat', 'scripts/test-feedback125.sh', 'app/src/main/**', 'core/src/main/java/game/sanguo/core/{War,Contests,Displacement}.java', 'app/src/androidTest/java/game/sanguo/mobile/NativeFeedback125Instrumentation.java']
+    paths: ['.github/workflows/native-feedback125.yml', 'tools/3d/refine_blender125.py', 'tools/3d/scenery125.mat', 'scripts/test-feedback125.sh', 'app/src/main/**', 'core/src/main/java/game/sanguo/core/War.java', 'core/src/main/java/game/sanguo/core/Contests.java', 'core/src/main/java/game/sanguo/core/Displacement.java', 'app/src/androidTest/java/game/sanguo/mobile/NativeFeedback125Instrumentation.java']
 permissions: {contents: read, actions: read}
 concurrency: {group: 'native-feedback125-${{ github.sha }}', cancel-in-progress: false}
 jobs:
