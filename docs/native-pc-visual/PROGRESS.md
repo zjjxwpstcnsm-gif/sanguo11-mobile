@@ -1,8 +1,10 @@
-## 2026-09-29 v125 地形瀑布/骑兵反馈 — PARTIAL
+## 2026-09-30 v125 地形瀑布/骑兵反馈 — PARTIAL
 
-实际Blender8个岩台/碎石坡/瀑布LOD接入原Vegetation流式合批和正式Filament景物材质；泰山/西南仅既有不可航行水格安全贴山。骑兵障碍不再否决BREAKTHROUGH，伤害后独立接入原单挑；适性不足菜单灰色禁用。主机专项51,711+5,947检查及原地形/战斗/架构通过，317GLB零错误警告。
+实际Blender8个岩台/碎石坡/瀑布LOD、完整ETC2及1.56景物材质接入原Vegetation/Filament正式路径；不改原地图/高度/通行，旧441资源逐字节保留。骑兵障碍取消强制位移仍可释放/伤害/独立单挑；适性不足灰色禁用。真实单挑UI推进曾被busy拒绝，现用窄ContestCommand经唯一GameSession修复，普通busy/版本/回合保护及SaveCodec保留。
 
-APK/运行证据待提交后构建补入。PC原图REFERENCE_MISSING、ARM64/30分钟/历史触控SAF生命周期及全国ready问题OPEN；强制单挑原版精确体力/宝物项忠实度PARTIAL。CoreTest.logistics:75与Displacement city replay输入/候选同点FAIL inherited。不覆盖旧成果/不合main/不启Unity/不开始下一阶段。见reports/feedback-v125.md与handoffs/feedback-v125.md。
+APK source `46361762ccf868c4fce8d55e603639d9e4f23905`，SHA256 `2be377ca7a4b25b1ccfcd13ed93001d18e0fa724a089e221e49ba94f5573d2c2`。CI36653575757 build PASS；API29 battle首轮PASS、API35 battle首轮3D ready FAIL/同包复验PASS（各API最新76/113、灰色真实tap、单挑交锋callback/存读/结算、2D/3D完整SaveCodec/RNG一致）。全国泰山/西南结果见报告及runtime-summary，不是美术PASS。主机51,711+29,266+33及原相关专项通过；317GLB零错误警告，lint0错误/84警告。原规则失败独立双边复现和旧R18零差异FAIL均保留。
+
+PC同镜头REFERENCE_MISSING、ARM64/30分钟、历史触控SAF生命周期及全国ready缺口OPEN；最终泰山/西南四组首轮及复验均ready FAIL，全国回归归因UNKNOWN/风险OPEN，单挑原版精确体力/宝物忠实度PARTIAL。不合main/不启Unity/不开始下一阶段。详见reports/feedback-v125.md、handoffs/feedback-v125.md及evidence/feedback-v125/manifest.json。
 
 ## v124 Blender模型/原生3D性能续作 — PARTIAL
 
