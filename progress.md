@@ -965,3 +965,7 @@ R32新a31独立UI默认856／551.05、来源城市62／131.54PASS，原7恢复ex
 新a31编辑器61／66.89PASS，内部7／外部13exact恢复；sourcefixture原错误文本没删除。marketART现在独占5554，下一步独立PcPresentations全case，不借旧包GPU/时间通过。
 
 新a31 marketART13429／40.14与session76／.74PASS，原7exact。PcPresentations全部case严格GPU/实际战法/保存RNG/时间范围/释放，现在独占5554运行，主和test exact复用；500–1000原断言保持，旧包视觉通过不借用。
+
+新a31全部独立PcPresentations1888／404.54PASS（controlled ticks/strictcache/GPU/lifecycle/真实命令完整保存RNG），原7exact，SourceLens/MOD/Blend仍待。ap_source原20费用debit18＋STAT实际准入7成功；第一次部分入口未执行原validity/TEST，JE沿用旧flags失败，改为执行原47a630和TEST后通过，没有伪造flags或validator；失败保留。
+
+培养AP扣除18/准入7（原真实validity/TEST/AP分支，不伪flags）与骑兵特殊建筑谓词67/9positive两份原观察JSON重复全等，压缩数据1835B/1ef3747e…5040及4670B/ca17e309…be64已跟踪随源码，工具输出gzip逐字节复现。487ab0排除city0/gate1/port2及堤防24，不据输出flag猜主/碰撞/失败伤害；当前规则未改。独立1888战法实装PASS；占格地块当前实装复验中。

@@ -26,3 +26,15 @@ PC安装只读，未启动Wine；EXE SHA256 30d33b44876b84a8e87570873a86de88c65d
 原城市全部七格如何填入原占格数组、活动筛选器的真实对象构造／调用、完整战法命中与主伤害、无法位移时碰撞／单挑／失败、反击和连锁及权威坐标提交边界仍未验证。Android城市七格阻断、普通通行／进驻及旧异常位置保留已通过真实命令和新包实装；受阻损伤仍继承工程实现，不以本1024测试改数值或宣称PC全等。继续推进其他已明确的原来源奖励与数据。
 
 依赖路径仍使用项目既有pc-emulate及pc-inspect PYTHONPATH，不安装新运行时。所有源编号、字节、SHA、跳转目标和测试输入都由工具再导出；不使用网络表或记忆补映射。
+
+## 特殊受阻建筑分支的原类型核实
+
+新增`inspect_pc_cavalry_building_predicate.py`：原595746→5957d1在落点被拒绝后检查占格kind2并调用487ab0。该谓词通过原64模板79c54／strideD0的+b4字段判断3，同时明确排除native24。实际64模板及-1／64／999边界共67用例，9个正例为16火種、17火焰種、18火球、19火焰球、20火船、21業火球、22業火種、23落石、25淺灘。native24堤防+b4=3但原谓词返回0；native0都市、1關所、2港均+b4=0、返回0。逐行原编号、名称、offset／recordSHA、函数原字节与实际返回均保留，完整3MiB世界及RNG不变。
+
+因此不能把这个特殊分支视为“撞城”分支，也不能把它设置某输出flag为0直接解释为伤害归零。名字仅采用原读取目录，未用网上设施表。原主要伤害提交路径5b1870以及碰撞／单挑／反击等完整调用尚未实际闭合，Android受阻损伤没有据此修改。
+
+```sh
+python3 tools/content/inspect_pc_cavalry_building_predicate.py --output out/parity/cavalry-special-buildings-new
+```
+
+两次正式67例JSON17453B全等，SHA302f0f63d73cc73cdf6dea8b2973a0e6f6602f726280ee97a0b2f0c8297c6265。`docs/pc-data/cavalry-special-building-native.json.gz`4670B，SHAca17e309ddcb96e1a04bb2788c66084e7bf2ed28bdd0e66fc8b73a7bb052be64随源码保存；工具同时输出固定gzip供逐字节复现。没有用此谓词的输出flag改城市或伤害实现。

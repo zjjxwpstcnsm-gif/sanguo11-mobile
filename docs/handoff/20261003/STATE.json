@@ -554,11 +554,16 @@
     ],
     "officer_stride": 400,
     "officer_native_district_field": "0x94",
-    "native_countdown_gzip_sha256": "bb5ddfe7ec7f72ef633bf93ae0c5d3c5fe6775c12a46cfcc2723df2f3e9e3a42"
+    "native_countdown_gzip_sha256": "bb5ddfe7ec7f72ef633bf93ae0c5d3c5fe6775c12a46cfcc2723df2f3e9e3a42",
+    "training_ap_debit_cases": 18,
+    "stat_ap_admission_cases": 7,
+    "training_ap_native_cost": 20,
+    "full_start_gold_and_registration_verified": false,
+    "ap_observation_sha256": "e0e3ea92a957f7068f273a73000b67ee1e2f5a068e5fa8470a439cf51a988969"
   },
   "r32_canonical_rebuild": {
     "date": "2026-10-04",
-    "status": "required normal flows/audio/editor/production-city-officer-market ART passed; strict all-case presentations running",
+    "status": "normal required flows/art/audio/editor and strict presentations passed; residual UI matrix/data alignment continues",
     "complete_dirty_source_snapshot": "out/parity/checkpoint-20261004-r32-cultivation-a143644/source",
     "full_source_files": 4255,
     "full_source_bytes": 336018236,
@@ -629,6 +634,28 @@
     "market_art_checks": 13429,
     "market_art_seconds": 40.14,
     "market_session_art_checks": 76,
-    "market_session_art_seconds": 0.74
+    "market_session_art_seconds": 0.74,
+    "strict_presentations_checks": 1888,
+    "strict_presentations_seconds": 404.54,
+    "strict_presentations_original_files_exact": true,
+    "strict_presentations_scope": "controlled paused host ticks, strict cache color/GPU/lifecycle; complete original lens/MOD/blend still pending"
+  },
+  "cavalry_special_building_source": {
+    "predicate": "0x487ab0",
+    "cases": 67,
+    "positive_ids": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      25
+    ],
+    "city_gate_port_predicate": false,
+    "source_json_sha256": "302f0f63d73cc73cdf6dea8b2973a0e6f6602f726280ee97a0b2f0c8297c6265",
+    "main_collision_damage_or_failed_tactic_verified": false
   }
 }

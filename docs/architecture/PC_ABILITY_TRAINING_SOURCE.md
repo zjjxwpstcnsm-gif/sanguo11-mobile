@@ -59,3 +59,17 @@ python3 tools/content/verify_pc_ability_countdown_dispatch_native.py --output ou
 ```
 
 输出JSON及固定mtime／空filename的gzip可与跟踪文件逐字节核对；原PC目录仅只读。
+
+## 开始命令AP扣除与准入补充
+
+`verify_pc_ability_training_ap_native.py`读取原PE成本变量84ce0c=20，并执行5b9352→5b9387内原军团扣除调用：task41／42／43各覆盖AP0／19／20／21／60／255，共18例，完整3MiB世界仅军团AP字节变为max(0,AP−20)，RNG不变。低AP扣除输入只证明夹限，不能称开始命令获准。
+
+另实际执行STAT开始验证中的原receiver47a630／TEST和AP分支5d9678→5d969a：AP0／9／19落到原拒绝入口5d9843，20／21／60／255继续，7例全部只读世界／RNG。停止hook只观察原拒绝入口，不替换函数返回。第一次从5d9683进入遗漏了原有效性TEST，后面的JE读到旧VM flags而失败；保留该探针边界错误，修为执行原验证调用和TEST后通过，未直接设置flags或伪造validator。
+
+两次最终JSON7799B精确，SHAe0e3ea92a957f7068f273a73000b67ee1e2f5a068e5fa8470a439cf51a988969。整个开始命令的其余条件、费用、任务列表登记分配及UI回调仍未执行；当前Android培养AP20维持原策略，没有改变base／XP或旧保存。
+
+```sh
+python3 tools/content/verify_pc_ability_training_ap_native.py --output out/parity/ability-ap-new
+```
+
+`docs/pc-data/ability-training-ap-native.json.gz`1835B／1ef3747e7259ebaa17c2cb1de626ac0ff42109d1af02b9eea0980f984a365040已随源码固定。工具同时输出固定mtime gzip，可逐字节复现；当前已核实的是扣除与AP准入片段，不能替代正常完整开始命令。
