@@ -87,7 +87,23 @@ public final class PcMerchantMarketTest {
     private static void openings()throws Exception{
         for(ScenarioCatalog.Summary summary:ScenarioCatalog.summaries()){
             World w=ScenarioCatalog.load(summary.id,0,23);byte[] before=SaveCodec.encode(w);
-            check(version(before)==35&&w.officerAbilities.enabled()&&w.merchantMarket.enabled(),"new normal opening includes all ability and market state");
+            check(version(before)==36&&w.officerAbilities.enabled()&&w.merchantMarket.enabled()&&w.pcProduction.enabled(),"new v36 normal opening includes all ability, market and production state");
+            check(SaveCodec.decode(before).pcProduction.enabled(),"source production mode survives complete new opening");
+            // Keep the former v35 expectation against actual frozen-engine saves.
+            String vm=System.getProperty("java.vm.name","").toLowerCase(Locale.ROOT).contains("dalvik")?"art":"host";
+            String resource="/legacy-market-v35/"+vm+"/"+summary.id+".sg11";
+            byte[] old;
+            try(InputStream in=PcMerchantMarketTest.class.getResourceAsStream(resource)){
+                check(in!=null,"genuine frozen v35 opening exists");ByteArrayOutputStream bytes=new ByteArrayOutputStream();byte[] chunk=new byte[8192];int n;while((n=in.read(chunk))!=-1)bytes.write(chunk,0,n);old=bytes.toByteArray();
+            }
+            String expected=null;
+            try(BufferedReader reader=new BufferedReader(new InputStreamReader(PcMerchantMarketTest.class.getResourceAsStream("/legacy-market-v35/manifest.tsv"),java.nio.charset.StandardCharsets.UTF_8))){
+                for(String row;(row=reader.readLine())!=null;){String[] c=row.split("\t");if(c.length==3&&c[0].equals(vm)&&c[1].equals(summary.id))expected=c[2];}
+            }
+            StringBuilder digest=new StringBuilder();for(byte value:java.security.MessageDigest.getInstance("SHA-256").digest(old))digest.append(String.format(Locale.ROOT,"%02x",value&255));check(digest.toString().equals(expected),"genuine v35 source SHA exact");
+            World legacy=SaveCodec.decode(old);
+            check(version(old)==35&&legacy.officerAbilities.enabled()&&legacy.merchantMarket.enabled(),"new normal opening includes all ability and market state");
+            check(!legacy.pcProduction.enabled()&&Arrays.equals(old,SaveCodec.encode(legacy)),"v35 mode and complete values preserved without guessed production migration");
             for(World.City c:w.cities)if(c.kind==World.SiteKind.CITY)check(c.merchantRate>=30&&c.merchantRate<=70,"real initialized city price");
             check(Arrays.equals(before,SaveCodec.encode(SaveCodec.decode(before))),"new opening price/ability state exact round trip");
         }

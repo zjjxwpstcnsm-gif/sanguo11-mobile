@@ -73,6 +73,9 @@ def run(args):
         with zipfile.ZipFile(probe,'a') as archive:
             for name in ('pre-merchant-r25-v34.sg11','pre-merchant-r25-v34-art.sg11'):
                 archive.write(ROOT/'core/src/test/resources'/name,name)
+        with zipfile.ZipFile(probe,'a') as archive:
+            for file in sorted((ROOT/'core/src/test/resources/legacy-market-v35').rglob('*')):
+                if file.is_file():archive.write(file,file.relative_to(ROOT/'core/src/test/resources').as_posix())
         report['probe_sha256'] = sha(probe.read_bytes())
         remote = '/data/local/tmp/merchant-market-' + report['probe_sha256'][:20] + '.zip'
         command('push', str(probe), remote)
