@@ -662,7 +662,7 @@
     "main_collision_damage_or_failed_tactic_verified": false
   },
   "r33_ordered_technique_facts": {
-    "status": "canonical exact package source-city UI62 and ART passed; normal nine-turn production UI in progress",
+    "status": "canonical independent exact package city UI62, normal nine-turn production UI209, production ART13382 and city/save ART all passed; remaining matrix/rules/data continues",
     "ordered_facts_jvm_checks": 59,
     "net_interface_preserved": true,
     "save_schema_changed": false,
@@ -706,7 +706,12 @@
     "canonical_city_session_art_checks": 19,
     "canonical_report_compression_art_checks": 75,
     "canonical_snapshot_readonly_art_checks": 180,
-    "canonical_art_original_files_exact": true
+    "canonical_art_original_files_exact": true,
+    "canonical_normal_production_ui_checks": 209,
+    "canonical_normal_production_ui_seconds": 427.87,
+    "canonical_normal_production_ui_original_files_exact": true,
+    "normal_production_complete_save_rng_comparison": true,
+    "current_live_device_job": false
   },
   "cavalry_bounded_landing_loop_source": {
     "cases": 168,
@@ -722,5 +727,17 @@
     "building_registry_input_is_fixture": true,
     "full_seven_cell_registration_verified": false,
     "full_damage_authority_commit_verified": false
+  },
+  "latest_verified_combined_package": {
+    "apk": "out/parity/ordered-facts-canonical-ddae889/apks/app-debug.apk",
+    "sha256": "d31840b01112935491b6e86eb222d32560eb641307c016b0bac445eb533b1427",
+    "full_source_implementation_commit": "ddae88989c55c90acb21efa6b3f51f083b73e4b6",
+    "canonical_head_is_metadata_not_source_baseline": true,
+    "actual_serial": "emulator-5554",
+    "architecture": "x86_64",
+    "all_original_private_files_restored": true,
+    "full_matrix_complete": false,
+    "arm_actual_device_verified": false,
+    "goal_complete": false
   }
 }
