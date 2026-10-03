@@ -220,7 +220,7 @@ public final class Army {
             World.City c=w.city(p.cityId);int count=p.weapon!=null?c.equipment[p.weapon.ordinal()]:c.ships[p.ship.ordinal()-1];
             if(count>=100&&!p.nativePolicy){w.officer(p.officerId).otherTaskTurns=2;continue;}
             if(p.weapon!=null)c.equipment[p.weapon.ordinal()]=Math.min(100,count+1);else c.ships[p.ship.ordinal()-1]=Math.min(100,count+1);
-            if(p.nativePolicy){for(int id:p.officers()){w.officerAbilities.gainExperience(id,2,4);int merit=w.government.merit(id);w.government.earn(id,Math.min(100,Math.max(0,60000-merit)));}w.pcTechniquePoints.completion(p.owner);clear(p);}
+            if(p.nativePolicy){for(int id:p.officers()){w.officerAbilities.gainExperience(id,2,4);int merit=w.government.merit(id);w.government.earn(id,Math.min(100,Math.max(0,60000-merit)));}w.pcTechniquePoints.completion(p.owner,p.cityId,p.officerId);clear(p);}
             productions.remove(p);w.note(c.name+p.label()+"完成，1件入库");
         }
     }
@@ -326,7 +326,7 @@ public final class Army {
             if(amount>0&&w.combat.critical(u,null,true))w.tacticCritical(u);
             amount=w.domestic.damage(facility,amount);w.battleImpact(target,facility.hp==0);
             if(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)w.war.ignite(target,u);if(tactic==Tactic.STONE)w.fieldworks.stoneSplash(u,target);
-            w.campaign.earn(u.owner,20);return w.success(tactic.label+"命中"+facility.kind.label+"，耐久减少"+amount+"，剩余"+facility.hp);
+            w.campaign.earn(u.owner,20,TechniquePointsJournal.Cause.TACTIC,-1,u.officerId);return w.success(tactic.label+"命中"+facility.kind.label+"，耐久减少"+amount+"，剩余"+facility.hp);
         }
         War.Structure structure=w.war.at(target);
         if(structure!=null){
@@ -335,7 +335,7 @@ public final class Army {
             if(amount>0&&w.combat.critical(u,null,true))w.tacticCritical(u);
             amount=Math.min(structure.hp,amount);structure.hp-=amount;if(structure.hp==0){w.fieldworks.destroy(structure);w.battleImpact(target,true);w.battleOutcome(structure.kind.label+"已摧毁，地块已释放");}
             if(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)w.war.ignite(target,u);if(tactic==Tactic.STONE)w.fieldworks.stoneSplash(u,target);
-            w.campaign.earn(u.owner,20);return w.success(tactic.label+"命中"+structure.kind.label+"，耐久减少"+amount);
+            w.campaign.earn(u.owner,20,TechniquePointsJournal.Cause.TACTIC,-1,u.officerId);return w.success(tactic.label+"命中"+structure.kind.label+"，耐久减少"+amount);
         }
         int amount=w.combatEffects.physical(u,enemy,tactic==Tactic.STONE?1.5:1.3,true);
         if(enemy.troops>0&&(tactic==Tactic.FIRE_ARROW||tactic==Tactic.FLAME)){
@@ -344,7 +344,7 @@ public final class Army {
         }
         if(tactic==Tactic.RAM&&water(u.hex))w.war.displacement.execute(u,enemy,u.hex,target,Displacement.Kind.NAVAL);
         if(tactic==Tactic.STONE)w.fieldworks.stoneSplash(u,target);
-        w.campaign.earn(u.owner,enemy.troops==0&&w.skills.has(u,Skill.JINGMIAO)?80:40);w.checkVictory();return w.success(tactic.label+"命中，主伤害"+amount+"，消耗气力"+tacticCost(u,tactic)+"，本旬行动结束");
+        w.campaign.earn(u.owner,enemy.troops==0&&w.skills.has(u,Skill.JINGMIAO)?80:40,TechniquePointsJournal.Cause.TACTIC,-1,u.officerId);w.checkVictory();return w.success(tactic.label+"命中，主伤害"+amount+"，消耗气力"+tacticCost(u,tactic)+"，本旬行动结束");
     }
     public World.Result extinguish(int unit){w.reports.prepare();World.Unit u=w.unit(unit);
         if(w.commandsBlocked()||w.gameOver()||u==null||u.owner!=w.active||u.acted||u.status!=War.Status.NORMAL||u.burning==0||u.energy<5)return w.fail("需要可行动且正在燃烧的己方部队，消耗5气力");

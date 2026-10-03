@@ -191,7 +191,7 @@ public final class Contests {
             w.strategy.releaseGovernor(target.id);w.government.allegianceChanged(target.id);
             target.owner=session.owner;target.cityId=session.city;target.role=Strategy.Role.OFFICER;
             target.loyalty=70;target.lastRewardTurn=-1;target.acted=true;
-            w.government.earn(actor.id,200);w.campaign.earn(session.owner,mercy?50:20);
+            w.government.earn(actor.id,200);w.campaign.earn(session.owner,mercy?50:20,TechniquePointsJournal.Cause.DEBATE,-1,actor.id);
             boolean grew=!mercy&&OfficerAbilities.base(actor,2)<100&&w.strategy.nextInt(100)<20;if(grew)OfficerAbilities.setBase(actor,2,OfficerAbilities.base(actor,2)+1);
             text=actor.name+"舌战获胜，"+target.name+"加入"+w.faction(session.owner)+(mercy?"；留情，技巧+50":grew?"；智力+1，技巧+20":"；继续追问，技巧+20，智力未增长");
         }else text=d.winner==1?actor.name+"舌战落败，登用未成功":"舌战平手，登用未成功";
@@ -218,7 +218,7 @@ public final class Contests {
         if(d.winner>=0){
             int side=d.winner;World.Unit victor=w.unit(side==0?session.leftRef:session.rightRef),loser=w.unit(side==0?session.rightRef:session.leftRef);
             World.Officer beaten=w.officer(d.active(1-side).officer);
-            w.government.earn(d.active(side).officer,200);w.campaign.earn(victor.owner,20);w.energy.change(victor,10,EnergyRules.Reason.DUEL);
+            w.government.earn(d.active(side).officer,200);w.campaign.earn(victor.owner,20,TechniquePointsJournal.Cause.DUEL,-1,victor.officerId);w.energy.change(victor,10,EnergyRules.Reason.DUEL);
             w.energy.change(loser,-20,EnergyRules.Reason.DUEL);
             if(d.escaped<0){
                 boolean immune=w.skills.has(beaten,Skill.QIANGYUN)||w.skills.has(loser,Skill.XUELU)||profile(beaten.id).has(Gear.HORSE);

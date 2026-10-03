@@ -1,4 +1,4 @@
-# 技巧点规则事实与表现契约（2026-10-03）
+# 技巧点规则事实与表现契约（更新2026-10-04）
 
 ## 已实现候选接口
 
@@ -35,3 +35,15 @@ PC EXE SHA256 `30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb`
 CustomMaps.resolve 的新开局在地理应用结束后重建生产来源配置，避免新增／禁用据点使配置长度失配。修复仅影响显式新地图，旧存档读取和单位位置不迁移；MapEditorRuntimeTest 12 与 Continuation 131 项通过，v36 修复包 `35f096...149a` 的真实编辑器发布 69.41 秒通过。该结果仅对应其 APK，v37 最终组合仍须重新验证。
 
 完整官方开局、有效来源身份、其他奖励和 ARM 真机验证仍未完成。PC 目录保持只读，未启动 Wine。
+
+## R33逐次事实候选（未实装，当前APK仍a31）
+
+`GameEvent.techniquePointsFacts`新增每次真实数值写入的不可变事实：owner／before／after／delta，producer cause，cityId／officerId，sequence，phase，完整提交StateToken，父GameEvent ID与可选presentationParentId。factId为父提交ID+":technique:"+sequence，不使用规则RNG、不写入存档。原techniquePointsChanges仍是净变化，保持现有UI兼容；同一次提交先+20再−20的两个事实保留，净列表为空。饱和后数值未变化不制造事实。原公式、数量、上限和旧31—36含义均不改。
+
+现有生产／完成、研究／关系扣费、编辑、战斗／计略／设施、外交、回合领地、铜雀台／玉玺等所有规则点数写入已核对并标注实际生产者。未标注的显式Map.put写入按RAW_WRITE报告，不猜成原PC奖励。SAVE与ScenarioData初始化默认不捕获；查询复制不捕获，事务复制独立捕获，最终验证的复制只转移不可变观察值。before／after等事实有效性在安装authority前验证，失败候选不发布或漏进下一提交。
+
+World.nextTurn按实际委任／AI／全局／玩家恢复阶段标记事实；TurnJournal.checkpoint保留逐次列表，零净变化也保留事件。写入时的pending journal ID成为原checkpoint父ID，提交API绑定最终StateToken。可以按提交列表或对应journal线路消费，不能把两条线路重复播放。CLOSED／WORLD_REPLACED清基线而不制造奖励；取消回合／过期票据／预览／规则失败没有已提交事实。
+
+新TechniquePointsOrderedFactsTest59项真实生产／编辑净零／失败部分候选／非法临时事实／完整回合／原checkpoint／取消／制造完成与饱和通过；旧Facts26、typed原技巧137、当前会话1666、只读投影180、战报原字节75、原技巧2717、城市6648及bridge通过。新59中的一次journal测试曾误把两条Editor命令当作同checkpoint，实际reports.prepare分段；保留失败后改用明确同checkpoint原Map写入检验观察边界，真实Editor双命令的整提交净零检查仍保留。
+
+这批目前只在本会话core／game-api／game-runtime候选工作区；没有修改app或另一会话文件，没有把a31实装报告当作新代码证据。HUD／声音当前仍消费原提交净变化／最终权威值；逐条事实演示、bridge schema1传输、回放去重消费及新组合构建实装继续推进。原PC奖励数值尚未闭合的条目也不因cause标签而变成已对齐。

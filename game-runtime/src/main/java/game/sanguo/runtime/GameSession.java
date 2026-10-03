@@ -51,7 +51,14 @@ public final class GameSession implements GameApi, AutoCloseable {
                 changes.add(new TechniquePointsChange(owner,committedPoints[owner],current[owner]));
         }
         committedPoints=current;
-        GameEvent event=new GameEvent(kind,state(),city,officer,troops,order,detail,changes);
+        StateToken committed=state();String parent=committed.sessionId+":"+committed.generation+":"+committed.revision+":"+kind.name();
+        List<TechniquePointsFact> facts=new ArrayList<>();
+        if(kind!=GameEvent.Kind.WORLD_REPLACED&&kind!=GameEvent.Kind.CLOSED)
+            for(TechniquePointsJournal.Fact fact:authority.techniquePointsJournal.facts())
+                facts.add(new TechniquePointsFact(parent,committed,fact.sequence,fact.owner,fact.before,fact.after,
+                    fact.cause.name(),fact.phase.name(),fact.cityId,fact.officerId,fact.presentationParentId));
+        authority.techniquePointsJournal.clear();
+        GameEvent event=new GameEvent(kind,committed,city,officer,troops,order,detail,changes,facts);
         publishing=true;
         try{for(Consumer<GameEvent> listener:new ArrayList<>(listeners)){
             if(!listeners.contains(listener))continue;
@@ -88,12 +95,12 @@ public final class GameSession implements GameApi, AutoCloseable {
         if(error!=CommandResult.Error.NONE)return failed(error,error.name());
         if(authority.commandsBlocked())return failed(CommandResult.Error.HOST_BUSY,"HOST_BUSY");
         try{
-            World candidate=WorldCopies.copy(authority);World.City before=candidate.city(command.cityId);
+            World candidate=WorldCopies.transactionCopy(authority);World.City before=candidate.city(command.cityId);
             int troops=before==null?0:before.troops,order=before==null?0:before.order;
             World.Result result=command.operation==GameCommand.Operation.RECRUIT?
                 candidate.recruit(command.cityId,command.officerId):candidate.patrol(command.cityId,command.officerId);
             if(!result.ok)return failed(CommandResult.Error.RULE_REJECTED,result.message);
-            World installed=WorldCopies.copy(candidate); // may throw; nothing committed yet
+            World installed=WorldCopies.committedCopy(candidate); // may throw; nothing committed yet
             long next=Math.addExact(revision,1);
             authority=installed;revision=next;invalidateQueries();
             World.City after=installed.city(command.cityId);
@@ -114,11 +121,11 @@ public final class GameSession implements GameApi, AutoCloseable {
         if(error!=CommandResult.Error.NONE)return failed(error,error.name());
         if(authority.commandsBlocked())return failed(CommandResult.Error.HOST_BUSY,"HOST_BUSY");
         try{
-            World candidate=WorldCopies.copy(authority);DeploymentPreview checked=DeploymentQuery.capture(candidate,state(),command);
+            World candidate=WorldCopies.transactionCopy(authority);DeploymentPreview checked=DeploymentQuery.capture(candidate,state(),command);
             if(!checked.allowed())return new CommandResult(checked.error,checked.detail,state(),null,checked.reasonCode,checked.field);
             World.Result result=candidate.army.deploy(command.cityId,command.leaderId,command.deputies(),DeploymentQuery.weapon(command.weapon),DeploymentQuery.ship(command.ship),command.troops,command.food,command.gold);
             if(!result.ok)return failed(CommandResult.Error.HOST_ERROR,"DEPLOYMENT_VALIDATION_DIVERGED");
-            World installed=WorldCopies.copy(candidate);long next=Math.addExact(revision,1);
+            World installed=WorldCopies.committedCopy(candidate);long next=Math.addExact(revision,1);
             authority=installed;revision=next;invalidateQueries();
             GameEvent event=emit(GameEvent.Kind.DEPLOYED,command.cityId,command.leaderId,-command.troops,0,result.message);
             return new CommandResult(CommandResult.Error.NONE,result.message,state(),event);
@@ -136,12 +143,12 @@ public final class GameSession implements GameApi, AutoCloseable {
         if(error!=CommandResult.Error.NONE)return failed(error,error.name());
         if(authority.commandsBlocked())return failed(CommandResult.Error.HOST_BUSY,"HOST_BUSY");
         try{
-            World candidate=WorldCopies.copy(authority);DiplomacyPreview checked=DiplomacyQuery.capture(candidate,state(),command);
+            World candidate=WorldCopies.transactionCopy(authority);DiplomacyPreview checked=DiplomacyQuery.capture(candidate,state(),command);
             if(!checked.allowed())return new CommandResult(checked.error,checked.detail,state(),null,checked.reasonCode,checked.field);
             DiplomacyPlan.Operation operation=DiplomacyQuery.operation(command.operation);
             World.Result result=candidate.campaign.diplomaticAction(command.cityId,command.officerId,command.targetSide,operation,command.turns);
             if(!result.ok)return failed(CommandResult.Error.HOST_ERROR,"DIPLOMACY_VALIDATION_DIVERGED");
-            World installed=WorldCopies.copy(candidate);long next=Math.addExact(revision,1);
+            World installed=WorldCopies.committedCopy(candidate);long next=Math.addExact(revision,1);
             authority=installed;revision=next;invalidateQueries();
             GameEvent event=emit(operation==DiplomacyPlan.Operation.BREAK_TREATY?GameEvent.Kind.TREATY_BROKEN:GameEvent.Kind.DIPLOMACY_DISPATCHED,
                 command.cityId,command.officerId,0,0,result.message);
@@ -160,11 +167,11 @@ public final class GameSession implements GameApi, AutoCloseable {
         if(error!=CommandResult.Error.NONE)return failed(error,error.name());
         if(authority.commandsBlocked())return failed(CommandResult.Error.HOST_BUSY,"HOST_BUSY");
         try{
-            World candidate=WorldCopies.copy(authority);ConstructionPreview checked=ConstructionQuery.capture(candidate,state(),command);
+            World candidate=WorldCopies.transactionCopy(authority);ConstructionPreview checked=ConstructionQuery.capture(candidate,state(),command);
             if(!checked.allowed())return new CommandResult(checked.error,checked.detail,state(),null,checked.reasonCode,checked.field);
             World.Result result=candidate.domestic.build(command.cityId,command.officerId,ConstructionQuery.kind(command.kind),new Hex(command.q,command.r));
             if(!result.ok)return failed(CommandResult.Error.HOST_ERROR,"CONSTRUCTION_VALIDATION_DIVERGED");
-            World installed=WorldCopies.copy(candidate);long next=Math.addExact(revision,1);
+            World installed=WorldCopies.committedCopy(candidate);long next=Math.addExact(revision,1);
             authority=installed;revision=next;invalidateQueries();
             GameEvent event=emit(GameEvent.Kind.CONSTRUCTION_STARTED,command.cityId,command.officerId,0,0,result.message);
             return new CommandResult(CommandResult.Error.NONE,result.message,state(),event);
@@ -182,11 +189,11 @@ public final class GameSession implements GameApi, AutoCloseable {
         if(error!=CommandResult.Error.NONE)return failed(error,error.name());
         if(authority.commandsBlocked())return failed(CommandResult.Error.HOST_BUSY,"HOST_BUSY");
         try{
-            World candidate=WorldCopies.copy(authority);CityActionPreview checked=CityActionQuery.capture(candidate,state(),command);
+            World candidate=WorldCopies.transactionCopy(authority);CityActionPreview checked=CityActionQuery.capture(candidate,state(),command);
             if(!checked.allowed())return new CommandResult(checked.error,checked.detail,state(),null,checked.reasonCode,checked.field);
             World.Result result=candidate.strategy.executeCityAction(CityActionQuery.operation(command.operation),command.cityId,command.officerId,command.targets());
             if(!result.ok)return failed(CommandResult.Error.HOST_ERROR,"CITY_ACTION_VALIDATION_DIVERGED");
-            World installed=WorldCopies.copy(candidate);long next=Math.addExact(revision,1);
+            World installed=WorldCopies.committedCopy(candidate);long next=Math.addExact(revision,1);
             authority=installed;revision=next;invalidateQueries();
             GameEvent event=emit(GameEvent.Kind.CITY_ACTION_COMMITTED,command.cityId,command.officerId,checked.effects.troopsAfter-checked.effects.troopsBefore,checked.effects.orderAfter-checked.effects.orderBefore,result.message);
             return new CommandResult(CommandResult.Error.NONE,result.message,state(),event);
@@ -204,11 +211,11 @@ public final class GameSession implements GameApi, AutoCloseable {
         if(error!=CommandResult.Error.NONE)return failed(error,error.name());
         if(authority.commandsBlocked())return failed(CommandResult.Error.HOST_BUSY,"HOST_BUSY");
         try{
-            World candidate=WorldCopies.copy(authority);ProductionPreview checked=ProductionQuery.capture(candidate,state(),command);
+            World candidate=WorldCopies.transactionCopy(authority);ProductionPreview checked=ProductionQuery.capture(candidate,state(),command);
             if(!checked.allowed())return new CommandResult(checked.error,checked.detail,state(),null,checked.reasonCode,checked.field);
             World.Result result=ProductionQuery.operation(command.operation)==ProductionPlan.Operation.SHIP?candidate.army.produce(command.cityId,command.officers(),null,ProductionQuery.ship(command)):candidate.produce(command.cityId,command.officers(),ProductionQuery.weapon(command));
             if(!result.ok)return failed(CommandResult.Error.HOST_ERROR,"PRODUCTION_VALIDATION_DIVERGED");
-            World installed=WorldCopies.copy(candidate);long next=Math.addExact(revision,1);
+            World installed=WorldCopies.committedCopy(candidate);long next=Math.addExact(revision,1);
             authority=installed;revision=next;invalidateQueries();
             GameEvent event=emit(GameEvent.Kind.PRODUCTION_COMMITTED,command.cityId,command.officerId,0,0,result.message);
             return new CommandResult(CommandResult.Error.NONE,result.message,state(),event);
@@ -226,11 +233,11 @@ public final class GameSession implements GameApi, AutoCloseable {
         if(error!=CommandResult.Error.NONE)return failed(error,error.name());
         if(authority.commandsBlocked())return failed(CommandResult.Error.HOST_BUSY,"HOST_BUSY");
         try{
-            World candidate=WorldCopies.copy(authority);TradePreview checked=TradeQuery.capture(candidate,state(),command);
+            World candidate=WorldCopies.transactionCopy(authority);TradePreview checked=TradeQuery.capture(candidate,state(),command);
             if(!checked.allowed())return new CommandResult(checked.error,checked.detail,state(),null,checked.reasonCode,checked.field);
             World.Result result=candidate.campaign.trade(command.cityId,command.officerId,TradeQuery.operation(command.operation)==TradePlan.Operation.BUY,command.food);
             if(!result.ok)return failed(CommandResult.Error.HOST_ERROR,"TRADE_VALIDATION_DIVERGED");
-            World installed=WorldCopies.copy(candidate);long next=Math.addExact(revision,1);
+            World installed=WorldCopies.committedCopy(candidate);long next=Math.addExact(revision,1);
             authority=installed;revision=next;invalidateQueries();
             GameEvent event=emit(GameEvent.Kind.TRADE_COMMITTED,command.cityId,command.officerId,0,0,result.message);
             return new CommandResult(CommandResult.Error.NONE,result.message,state(),event);
@@ -248,11 +255,11 @@ public final class GameSession implements GameApi, AutoCloseable {
         if(error!=CommandResult.Error.NONE)return failed(error,error.name());
         if(authority.commandsBlocked())return failed(CommandResult.Error.HOST_BUSY,"HOST_BUSY");
         try{
-            World candidate=WorldCopies.copy(authority);TransportPreview checked=TransportQuery.capture(candidate,state(),command);
+            World candidate=WorldCopies.transactionCopy(authority);TransportPreview checked=TransportQuery.capture(candidate,state(),command);
             if(!checked.allowed())return new CommandResult(checked.error,checked.detail,state(),null,checked.reasonCode,checked.field);
             World.Result result=candidate.domestic.transport(command.sourceCityId,command.targetCityId,command.officerId,command.deputies(),command.gold,command.food,command.troops,command.equipment(),command.sea,command.returnOfficers,command.ships());
             if(!result.ok)return failed(CommandResult.Error.HOST_ERROR,"TRANSPORT_VALIDATION_DIVERGED");
-            World installed=WorldCopies.copy(candidate);long next=Math.addExact(revision,1);
+            World installed=WorldCopies.committedCopy(candidate);long next=Math.addExact(revision,1);
             authority=installed;revision=next;invalidateQueries();
             GameEvent event=emit(GameEvent.Kind.TRANSPORT_DISPATCHED,command.sourceCityId,command.officerId,-command.troops,0,result.message);
             return new CommandResult(CommandResult.Error.NONE,result.message,state(),event);
@@ -267,7 +274,7 @@ public final class GameSession implements GameApi, AutoCloseable {
             return failed(CommandResult.Error.RULE_REJECTED,"对局已变化，请使用当前指令");
         if(authority.life.pending())return failed(CommandResult.Error.HOST_BUSY,"HOST_BUSY");
         try{
-            World candidate=WorldCopies.copy(authority);Contests contests=candidate.contests;World.Result result;
+            World candidate=WorldCopies.transactionCopy(authority);Contests contests=candidate.contests;World.Result result;
             switch(command.operation){
                 case DUEL_MOVE:
                     Duel.Stance stance;Duel.Move move;
@@ -281,7 +288,7 @@ public final class GameSession implements GameApi, AutoCloseable {
                 default:throw new IllegalArgumentException("Contest operation");
             }
             if(!result.ok)return failed(CommandResult.Error.RULE_REJECTED,result.message);
-            World installed=WorldCopies.copy(candidate);long next=Math.addExact(revision,1);
+            World installed=WorldCopies.committedCopy(candidate);long next=Math.addExact(revision,1);
             authority=installed;revision=next;invalidateQueries();GameEvent event=emit(GameEvent.Kind.CONTEST_ADVANCED,-1,-1,0,0,result.message);
             return new CommandResult(CommandResult.Error.NONE,result.message,state(),event);
         }catch(IOException|RuntimeException failure){return failed(CommandResult.Error.HOST_ERROR,"HOST_ERROR");}
@@ -289,7 +296,7 @@ public final class GameSession implements GameApi, AutoCloseable {
     /** Only the enumerated legacy adapters may obtain a detached draft. */
     public LegacyView legacyView(){
         thread();if(closed)throw new IllegalStateException("Session closed");
-        try{World draft=WorldCopies.copy(authority);StateToken token=state();views.put(draft,token);return new LegacyView(token,draft);}
+        try{World draft=WorldCopies.transactionCopy(authority);StateToken token=state();views.put(draft,token);return new LegacyView(token,draft);}
         catch(IOException e){throw new IllegalStateException("Cannot capture valid world",e);}
     }
     /** Compatibility transaction. The supplier is evaluated ONLY after stale/busy checks.
@@ -301,7 +308,7 @@ public final class GameSession implements GameApi, AutoCloseable {
         try{
             World.Result result=Objects.requireNonNull(operation.get());
             if(!result.ok)return result;
-            World installed=WorldCopies.copy(draft);long next=Math.addExact(revision,1);
+            World installed=WorldCopies.committedCopy(draft);long next=Math.addExact(revision,1);
             authority=installed;revision=next;invalidateQueries();
             emit(GameEvent.Kind.LEGACY_COMMITTED,-1,-1,0,0,result.message);return result;
         }catch(IOException|RuntimeException failure){return World.Result.rejected("HOST_ERROR");}
@@ -326,7 +333,7 @@ public final class GameSession implements GameApi, AutoCloseable {
     }
     public boolean commitTurn(TurnTicket ticket,World computed)throws IOException{
         write();if(ticket==null||ticket!=turn||invalid(ticket.expected,true)!=CommandResult.Error.NONE)return false;
-        World installed=WorldCopies.copy(computed);long next=Math.addExact(revision,1);
+        World installed=WorldCopies.committedCopy(computed);long next=Math.addExact(revision,1);
         authority=installed;revision=next;turn=null;invalidateQueries();emit(GameEvent.Kind.TURN_COMMITTED,-1,-1,0,0,"Turn committed");return true;
     }
     public void cancelTurn(TurnTicket ticket){write();if(ticket==turn)turn=null;}

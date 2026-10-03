@@ -119,7 +119,7 @@ public final class War {
                 counter+=strike(b,a,.5,false);
         }
         int support=supportAttack(a,b);
-        w.campaign.earn(a.owner,w.unit(b.id)==null&&w.skills.has(a,Skill.JINGMIAO)?40:20);w.checkVictory();
+        w.campaign.earn(a.owner,w.unit(b.id)==null&&w.skills.has(a,Skill.JINGMIAO)?40:20,TechniquePointsJournal.Cause.ATTACK,-1,a.officerId);w.checkVictory();
         return w.success(w.officer(a.officerId).name+"攻击：敌损"+dealt+"，反击损失"+counter+(support>0?"，支援伤害"+support:""));
     }
     boolean canCounter(World.Unit a,World.Unit b){
@@ -208,7 +208,7 @@ public final class War {
         }
         if(w.unit(a.id)==a&&w.unit(b.id)==b&&(!a.hex.equals(origin)||!b.hex.equals(targetHex)))w.skills.woundAfterDisplacement(a,b);
         if(w.unit(a.id)==a&&w.unit(b.id)==b&&a.weapon==World.Weapon.CAVALRY&&w.skills.swiftConfusion(a,b)){b.status=Status.CONFUSED;b.statusTurns=1;}
-        w.campaign.earn(a.owner,w.unit(b.id)==null&&w.skills.has(a,Skill.JINGMIAO)?80:40);w.checkVictory();
+        w.campaign.earn(a.owner,w.unit(b.id)==null&&w.skills.has(a,Skill.JINGMIAO)?80:40,TechniquePointsJournal.Cause.TACTIC,-1,a.officerId);w.checkVictory();
         boolean contest=tactic.weapon==World.Weapon.CAVALRY&&w.contests.cavalry(a,b);
         return w.success(w.officer(a.officerId).name+"施展"+tactic.label+"，命中"+victims.size()+"队，主伤害"+dealt+"，消耗气力"+tactic.energy+"，本旬行动结束"+(contest?"；触发强制单挑":""));
     }
@@ -269,7 +269,7 @@ public final class War {
             adjacent.sort(Comparator.comparingInt(u->u.id));
             if(!adjacent.isEmpty()){World.Unit chained=adjacent.get(0);resolvePlot(a,chained,chained.hex,plot,false,TurnJournal.PlotCause.CHAIN);}
         }
-        w.campaign.earn(a.owner,success?25:0);w.checkVictory();
+        w.campaign.earn(a.owner,success?25:0,TechniquePointsJournal.Cause.PLOT,-1,a.officerId);w.checkVictory();
         return w.success(w.officer(a.officerId).name+"施展"+plot.label+(success?"":"被识破，气力已消耗"));
     }
     /** A reflected/chained plot pays no second cost and cannot recurse into another reflection/chain. */
@@ -330,7 +330,7 @@ public final class War {
     public World.Result attackFacility(int unit,Hex h){w.reports.prepare();
         String error=facilityAttackError(unit,h);if(error!=null)return w.fail(error);
         World.Unit u=w.unit(unit);Domestic.Facility f=w.domestic.at(h);w.visualAction(TurnJournal.Kind.ATTACK,unit,h,"攻击设施");w.marches.supersede(u);u.acted=true;
-        int amount=w.domestic.damage(f,facilityDamage(unit));w.battleImpact(h,f.hp==0);w.campaign.earn(u.owner,20);
+        int amount=w.domestic.damage(f,facilityDamage(unit));w.battleImpact(h,f.hp==0);w.campaign.earn(u.owner,20,TechniquePointsJournal.Cause.FACILITY_ATTACK,-1,u.officerId);
         return w.success("攻击"+f.kind.label+"，耐久减少"+amount+"，剩余"+f.hp+"/"+f.maxHp());
     }
     public String structureAttackError(int unit,Hex h){
@@ -352,7 +352,7 @@ public final class War {
         String error=structureAttackError(unit,h);if(error!=null)return w.fail(error);World.Unit u=w.unit(unit);Structure s=at(h);w.visualAction(TurnJournal.Kind.ATTACK,unit,h,"攻击工事");
         if(!w.army.canAttackUnit(u))return w.army.tactic(unit,h,w.army.tactics(u).get(0));
         w.marches.supersede(u);int damage=Math.min(s.hp,w.combat.structureDamage(u,false));u.acted=true;s.hp-=damage;
-        w.battleImpact(h,s.hp<=0);if(s.hp<=0){w.fieldworks.destroy(s);w.battleOutcome(s.kind.label+"已摧毁，地块已释放");}else w.fieldworks.counter(s,u);w.campaign.earn(u.owner,20);return w.success("攻击"+s.kind.label+"，耐久减少"+damage);
+        w.battleImpact(h,s.hp<=0);if(s.hp<=0){w.fieldworks.destroy(s);w.battleOutcome(s.kind.label+"已摧毁，地块已释放");}else w.fieldworks.counter(s,u);w.campaign.earn(u.owner,20,TechniquePointsJournal.Cause.FIELD_ATTACK,-1,u.officerId);return w.success("攻击"+s.kind.label+"，耐久减少"+damage);
     }
     public World.Result removeStructure(int city,int officer,int id){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);

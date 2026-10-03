@@ -76,8 +76,8 @@ public final class Treasures {
     }
     void captured(int officer,int captor){for(Item i:new ArrayList<>(held(officer)))place(i.definition,Place.TREASURY,captor);}
     void fallenTreasury(int former,int victor){if(former>=0&&!w.alive(former))for(Item i:new ArrayList<>(items.values()))if(i.place==Place.TREASURY&&i.holder==former)place(i.definition,Place.TREASURY,victor);}
-    void tick(){if(w.turn%3==0)for(Domestic.Facility f:w.domestic.facilities)if(f.kind==Domestic.Kind.BRONZE_TERRACE&&f.remaining==0)w.campaign.earn(w.city(f.cityId).owner,100);
-        if(w.turn%3==0)for(int side=0;side<w.factions.length;side++)if(w.alive(side)&&factionHas(side,Kind.SEAL)){w.campaign.earn(side,100);w.note(w.faction(side)+"持有玉玺，技巧+100");}}
+    void tick(){if(w.turn%3==0)for(Domestic.Facility f:w.domestic.facilities)if(f.kind==Domestic.Kind.BRONZE_TERRACE&&f.remaining==0)w.campaign.earn(w.city(f.cityId).owner,100,TechniquePointsJournal.Cause.BRONZE_TERRACE,f.cityId,-1);
+        if(w.turn%3==0)for(int side=0;side<w.factions.length;side++)if(w.alive(side)&&factionHas(side,Kind.SEAL)){w.campaign.earn(side,100,TechniquePointsJournal.Cause.SEAL,-1,-1);w.note(w.faction(side)+"持有玉玺，技巧+100");}}
     void validate()throws IOException{
         require(items.size()<=43,"宝物数量超限");
         for(Map.Entry<String,Item> e:items.entrySet()){

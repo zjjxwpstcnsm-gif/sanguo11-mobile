@@ -133,6 +133,7 @@ public final class World {
     public final Recruitment recruitment=new Recruitment(this);
     public final Envoys envoys=new Envoys(this);
     public int terrainRevision;
+    public final TechniquePointsJournal techniquePointsJournal=new TechniquePointsJournal();
     public final Campaign campaign=new Campaign(this);
     public final Diplomacy diplomacy=new Diplomacy(this);
     public final War war=new War(this);
@@ -292,14 +293,14 @@ public final class World {
         for(int id:plan.officerIds)OfficerExperiencePlan.award(this,officer(id),2);
         spend(c,leader,plan.goldCost,PcCityActionCosts.PRODUCTION,OfficerExperiencePlan.merit(leader,2,government));
         for(int id:plan.officerIds)if(id!=leader.id){Officer o=officer(id);o.acted=true;government.earn(id,OfficerExperiencePlan.merit(o,2,government));}
-        domestic.use(cityId,Domestic.productionFacility(weapon));c.equipment[weapon.ordinal()]+=plan.effects.outputQuantity;pcTechniquePoints.production(c.owner,plan.effects.outputQuantity);
+        domestic.use(cityId,Domestic.productionFacility(weapon));c.equipment[weapon.ordinal()]+=plan.effects.outputQuantity;pcTechniquePoints.production(c.owner,plan.effects.outputQuantity,cityId,leader.id);
         return success(c.name+"生产"+plan.effects.outputQuantity+"份"+weapon.label+"兵装，金−"+plan.goldCost);
     }
     public Result produce(int cityId,int officerId,Weapon weapon) {reports.prepare();
         RuleFailure failure=productionFailure(cityId,officerId,weapon);if(failure!=null)return fail(failure.detail);
         if(Army.siegeWeapon(weapon))return army.produce(cityId,officerId,weapon,null);
         City c=city(cityId);Officer o=officer(officerId);int gold=skills.productionGold(cityId,officerId,weapon),amount=skills.produceAmount(cityId,officerId,weapon);Domestic.Kind facility=Domestic.productionFacility(weapon);
-        OfficerExperiencePlan.award(this,o,2);spend(c,o,gold,PcCityActionCosts.PRODUCTION,OfficerExperiencePlan.merit(o,2,government));domestic.use(cityId,facility);if(pcProduction.enabled())amount=Math.min(amount,campaign.equipmentCap(c,weapon)-c.equipment[weapon.ordinal()]);c.equipment[weapon.ordinal()]+=amount;pcTechniquePoints.production(c.owner,amount);return success(c.name+"生产"+amount+"份"+weapon.label+"兵装，金−"+gold);
+        OfficerExperiencePlan.award(this,o,2);spend(c,o,gold,PcCityActionCosts.PRODUCTION,OfficerExperiencePlan.merit(o,2,government));domestic.use(cityId,facility);if(pcProduction.enabled())amount=Math.min(amount,campaign.equipmentCap(c,weapon)-c.equipment[weapon.ordinal()]);c.equipment[weapon.ordinal()]+=amount;pcTechniquePoints.production(c.owner,amount,cityId,officerId);return success(c.name+"生产"+amount+"份"+weapon.label+"兵装，金−"+gold);
     }
     public Result deploy(int cityId,int officerId,Weapon weapon,int troops) {reports.prepare();
         return army.deploy(cityId,officerId,new int[0],weapon,Army.Ship.BOAT,troops,troops*2);
@@ -364,7 +365,7 @@ public final class World {
         if(c.defense==0||c.troops==0) {
             int old=c.owner;c.owner=u.owner;SiteFootprint.ownershipChanged(this,c);domestic.captured(c.id);strategy.cityCaptured(c.id);c.defense=Math.max(1,campaign.defenseCap(c)/4);c.troops=0;c.morale=50;c.order=60;
             government.cityCaptured(c,old,u);treasures.fallenTreasury(old,u.owner);districts.captured(c,u);
-            campaign.cleanupProjects();army.cleanup();campaign.earn(u.owner,100);
+            campaign.cleanupProjects();army.cleanup();campaign.earn(u.owner,100,TechniquePointsJournal.Cause.CITY_CAPTURE,c.id,u.officerId);
             List<String> ruined=domestic.sack(c.id);
             message=c.name+"被"+faction(u.owner)+"攻占"+(ruined.isEmpty()?"":"；战乱损毁内政设施"+ruined.size()+"座（"+String.join("、",ruined)+"）");
         }
@@ -441,12 +442,13 @@ public final class World {
         if(commandsBlocked())return fail("请先完成当前对局或君主继承");
         if(gameOver())return fail("本局已结束，请重开");
         if(active!=player)return fail("等待电脑行动");
+        techniquePointsJournal.ensureCapture();techniquePointsJournal.phase(TechniquePointsJournal.Phase.DELEGATED);
         reports.beginTurn();try {
         List<Integer> sides=new ArrayList<>();for(int offset=1;offset<factions.length;offset++){int side=(player+offset)%factions.length;if(alive(side))sides.add(side);}
         int total=sides.size()+3;progress.accept(new TurnProgress(player,0,total,"委任军团与太守"));
         districts.run();government.runDelegated();int completed=1;
         progress.accept(new TurnProgress(player,completed,total,"委任军团行动完成",true));
-        for(int side:sides){active=side;final int done=completed;
+        for(int side:sides){active=side;techniquePointsJournal.phase(TechniquePointsJournal.Phase.AI);final int done=completed;
             if(alive(side)){progress.accept(new TurnProgress(side,done,total,"准备行动"));reset(side);runAi(phase->progress.accept(new TurnProgress(side,done,total,phase)));checkVictory();
                 progress.accept(new TurnProgress(side,done+1,total,"势力行动完成",true));
                 if(gameOver()){active=player;progress.accept(new TurnProgress(player,total,total,"战局结束"));return success(winner==player?"战场胜利":"我方势力已覆灭");}}
@@ -454,12 +456,13 @@ public final class World {
         }
         final int global=completed;settleGlobalTurn(phase->progress.accept(new TurnProgress(-1,global,total,phase)));
         progress.accept(new TurnProgress(-1,completed+1,total,"设施与全局后勤完成",true));
-        reports.nextPlayer();active=player;progress.accept(new TurnProgress(player,completed+1,total,"恢复行动与自动行军"));reset(player);checkVictory();if(!commandsBlocked())marches.advanceAll();
+        reports.nextPlayer();active=player;techniquePointsJournal.phase(TechniquePointsJournal.Phase.PLAYER_RESUME);progress.accept(new TurnProgress(player,completed+1,total,"恢复行动与自动行军"));reset(player);checkVictory();if(!commandsBlocked())marches.advanceAll();
         progress.accept(new TurnProgress(player,total,total,"结算完成",true));return success(date()+" · 行动力恢复");
-        } finally { reports.endTurn(); }
+        } finally { reports.endTurn();techniquePointsJournal.phase(TechniquePointsJournal.Phase.COMMAND); }
     }
     /** Exactly once after all factions have acted. Keep this order stable across save replay. */
     private void settleGlobalTurn(Consumer<String> progress){
+        techniquePointsJournal.phase(TechniquePointsJournal.Phase.GLOBAL);
         progress.accept("运输、建设与生产");
         reports.globalPhase();governance.reconcile(true);turn++;contests.tick();reports.checkpoint("对局结算");domestic.tick();reports.checkpoint("建设运输结算");campaign.tick();reports.checkpoint("技巧研究结算");army.tick();reports.checkpoint("军备与持续伤害结算");abilities.tick();reports.checkpoint("能力研究结算");recruitment.tick();reports.checkpoint("登用结果结算");envoys.tick();reports.checkpoint("外交任务结算");strategy.tick();reports.checkpoint("人员内政结算");
         progress.accept("火场、守备与武将");war.tick();reports.checkpoint("火场设施结算");

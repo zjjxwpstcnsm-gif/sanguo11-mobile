@@ -37,6 +37,10 @@ def run(args):
     if getattr(args,'native_technique_policy',False):
         core_names.append('PcTechniquePointsTest');runtime_names.append('PcTechniquePointsSessionTest')
     if getattr(args,'technique_facts',False):runtime_names.append('TechniquePointsFactsTest')
+    if getattr(args,'ordered_technique_facts',False):
+        if not getattr(args,'native_technique_policy',False):
+            raise ValueError('Ordered facts require the native technique policy fixtures')
+        runtime_names.append('TechniquePointsOrderedFactsTest')
     suites={ 'game.sanguo.core.'+name: ROOT/module/'build/classes/java/test/game/sanguo/core'/ (name+'.class') for module,names in [('core',core_names),('game-runtime',runtime_names)] for name in names }
     if getattr(args,'suites',None):
         wanted={'game.sanguo.core.'+name for name in args.suites}
@@ -44,6 +48,8 @@ def run(args):
         suites={name:path for name,path in suites.items() if name in wanted}
     fixtures=[('core','CityCommandRewardsTest'),('core','CityActionPlanTest'),('core','ProductionPlanTest'),('game-runtime','CityActionSessionTest'),('game-runtime','ProductionSessionTest')]
     if getattr(args,'native_technique_policy',False):fixtures.extend([('core','PcDelayedProductionFlowTest'),('game-runtime','PcProductionCrewSessionTest')])
+    if getattr(args,'ordered_technique_facts',False):
+        fixtures.extend([('game-runtime','PcTechniquePointsSessionTest'),('game-runtime','PcDelayedProductionSessionTest')])
     inputs=list(suites.values())+[ROOT/module/'build/classes/java/test/game/sanguo/core'/ (name+'.class') for module,name in fixtures]
     inputs=list(dict.fromkeys(inputs))
     # Java17 enum switches/nested helpers are nest mates, not production rules.
@@ -152,4 +158,5 @@ if __name__ == '__main__':
     parser.add_argument('--suites',nargs='+',help='Run only named existing suites, retaining all their assertions; prior independent evidence remains separate')
     parser.add_argument('--native-technique-policy',action='store_true',help='Require v37 source rewards and genuine old v36 preservation on ART')
     parser.add_argument('--technique-facts',action='store_true',help='Also verify immutable commit/journal point facts from the installed candidate')
+    parser.add_argument('--ordered-technique-facts',action='store_true',help='Verify ordered writes, zero-net commits, failure isolation, full tokens and delayed completion from the installed candidate')
     run(parser.parse_args())

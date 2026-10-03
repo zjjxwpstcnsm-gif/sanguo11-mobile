@@ -22,8 +22,10 @@ public final class PcTechniquePoints {
         return Math.min(10,credited/300+1);
     }
     public int productionAfter(int owner,int credited){return enabled?after(w.campaign.points(owner),productionRequest(credited)):w.campaign.points(owner);}
-    void production(int owner,int credited){if(enabled)w.campaign.points.put(owner,productionAfter(owner,credited));}
-    void completion(int owner){if(enabled)w.campaign.points.put(owner,after(w.campaign.points(owner),20));}
+    void production(int owner,int credited){production(owner,credited,-1,-1);}
+    void production(int owner,int credited,int city,int officer){if(enabled)w.campaign.setPoints(owner,productionAfter(owner,credited),TechniquePointsJournal.Cause.NATIVE_PRODUCTION,city,officer);}
+    void completion(int owner){completion(owner,-1,-1);}
+    void completion(int owner,int city,int officer){if(enabled)w.campaign.setPoints(owner,after(w.campaign.points(owner),20),TechniquePointsJournal.Cause.NATIVE_MANUFACTURE,city,officer);}
     void write(DataOutputStream out)throws IOException{validate();out.writeInt(MAGIC);out.writeUTF(PcProduction.SOURCE);}
     void read(DataInputStream in)throws IOException{if(in.readInt()!=MAGIC||!PcProduction.SOURCE.equals(in.readUTF()))throw new IOException("未知技巧来源策略");enabled=true;}
     void validate()throws IOException{

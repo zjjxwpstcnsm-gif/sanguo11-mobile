@@ -52,6 +52,7 @@ public final class TurnJournal {
         public final CriticalHit critical;
         public final List<PlotOutcome> plotOutcomes;
         public final List<TechniquePointsChange> techniquePointsChanges;
+        public final List<TechniquePointsJournal.Fact> techniquePointsFacts;
         public final int actorId,owner;
         public final Hex start,target;
         public final String label,message;
@@ -68,7 +69,12 @@ public final class TurnJournal {
         }
         Event(Kind kind,int id,int owner,Hex start,Hex target,String label,String message,List<Hex> path,
               List<Impact> impacts,List<Node> changed,List<String> removed,World.Unit actor,CriticalHit critical,String sourceKey,String sourceType,List<StateChange> states,List<Strike> strikes,long journalId,long sequence,War.Plot plot,War.Tactic infantryTactic,Army.Tactic equipmentTactic,boolean sourceNaval,List<PlotOutcome> plotOutcomes,List<TechniquePointsChange> techniquePointsChanges){
+            this(kind,id,owner,start,target,label,message,path,impacts,changed,removed,actor,critical,sourceKey,sourceType,states,strikes,journalId,sequence,plot,infantryTactic,equipmentTactic,sourceNaval,plotOutcomes,techniquePointsChanges,Collections.emptyList());
+        }
+        Event(Kind kind,int id,int owner,Hex start,Hex target,String label,String message,List<Hex> path,
+              List<Impact> impacts,List<Node> changed,List<String> removed,World.Unit actor,CriticalHit critical,String sourceKey,String sourceType,List<StateChange> states,List<Strike> strikes,long journalId,long sequence,War.Plot plot,War.Tactic infantryTactic,Army.Tactic equipmentTactic,boolean sourceNaval,List<PlotOutcome> plotOutcomes,List<TechniquePointsChange> techniquePointsChanges,List<TechniquePointsJournal.Fact> techniquePointsFacts){
             this.techniquePointsChanges=Collections.unmodifiableList(new ArrayList<>(techniquePointsChanges));
+            this.techniquePointsFacts=Collections.unmodifiableList(new ArrayList<>(techniquePointsFacts));
             this.journalId=journalId;this.sequence=sequence;this.id=journalId+":"+sequence;
             this.plot=plot;this.infantryTactic=infantryTactic;this.equipmentTactic=equipmentTactic;this.sourceNaval=sourceNaval;
             this.sourceKey=sourceKey;this.sourceType=sourceType;this.states=Collections.unmodifiableList(states);this.strikes=Collections.unmodifiableList(strikes);
@@ -79,7 +85,7 @@ public final class TurnJournal {
         }
         public boolean removesUnit(int id){return removed.contains("u"+id);}
         public World.Unit actorCopy(){return actor==null?null:copyUnit(actor);}
-        public boolean visibleAction(){return kind!=Kind.CHANGE||!impacts.isEmpty()||!techniquePointsChanges.isEmpty();}
+        public boolean visibleAction(){return kind!=Kind.CHANGE||!impacts.isEmpty()||!techniquePointsChanges.isEmpty()||!techniquePointsFacts.isEmpty();}
         /** Apply to a dedicated render World ONLY. Never call command APIs, validate or save it. */
         public void applyVisual(World visual){
             for(String key:removed)remove(visual,key);
@@ -125,6 +131,7 @@ public final class TurnJournal {
     private final World w;
     private Map<String,Node> previous;
     private int[] previousPoints;
+    private int pointFactCursor;
     private final List<Event> events=new ArrayList<>();
     private Kind kind=Kind.CHANGE;
     private War.Plot plot;
@@ -141,8 +148,9 @@ public final class TurnJournal {
     private int sourceOwner=-1;
     private String label="",sourceKey="",sourceType="";
     private List<Hex> path=Collections.emptyList();
-    public TurnJournal(World world){w=world;previous=snapshot(world,Collections.emptyMap());previousPoints=points(world);world.turnJournal=this;}
+    public TurnJournal(World world){w=world;previous=snapshot(world,Collections.emptyMap());previousPoints=points(world);world.techniquePointsJournal.ensureCapture();pointFactCursor=world.techniquePointsJournal.size();world.turnJournal=this;}
     public List<Event> events(){return Collections.unmodifiableList(events);}
+    String pendingEventId(){return journalId+":"+(sequence+1);}
     /** Ownership transfer at a rule boundary: immutable events no longer retained by the producer. */
     public List<Event> drainEvents(){List<Event> batch=Collections.unmodifiableList(new ArrayList<>(events));events.clear();return batch;}
     void facility(War.Structure source,Hex target,Kind kind,String label){
@@ -163,6 +171,7 @@ public final class TurnJournal {
     void movement(World.Unit u,List<Hex> route){mark(Kind.MOVE,u.id,route.get(route.size()-1),"行军");path=new ArrayList<>(route);}
     void cancel(){plot=null;infantryTactic=null;equipmentTactic=null;critical=null;kind=Kind.CHANGE;actorId=-1;target=null;sourceHex=null;sourceOwner=-1;label="";sourceKey="";sourceType="";strikes=new ArrayList<>();plotOutcomes=new ArrayList<>();path=Collections.emptyList();}
     public void checkpoint(String message){
+        List<TechniquePointsJournal.Fact> pointFacts=w.techniquePointsJournal.since(pointFactCursor);
         int[] nextPoints=points(w);List<TechniquePointsChange> pointChanges=new ArrayList<>();
         if(nextPoints.length!=previousPoints.length)throw new IllegalStateException("Faction set changed inside journal");
         for(int owner=0;owner<nextPoints.length;owner++)if(nextPoints[owner]!=previousPoints[owner])
@@ -181,15 +190,15 @@ public final class TurnJournal {
         if(eventKind==Kind.ATTACK||eventKind==Kind.TACTIC||eventKind==Kind.PLOT||eventKind==Kind.ENTER||eventKind==Kind.FACILITY_ATTACK||eventKind==Kind.FACILITY_COUNTER){
             for(int i=0;i<impacts.size();i++){Impact hit=impacts.get(i);if(hit.metric==Metric.REMOVED&&hit.text.equals("离场"))impacts.set(i,new Impact(hit.hex,eventKind==Kind.ENTER?"进驻":"击破",eventKind!=Kind.ENTER,Metric.REMOVED,0));}
         }
-        if(!changed.isEmpty()||!removed.isEmpty()||eventKind!=Kind.CHANGE||!pointChanges.isEmpty()){
+        if(!changed.isEmpty()||!removed.isEmpty()||eventKind!=Kind.CHANGE||!pointChanges.isEmpty()||!pointFacts.isEmpty()){
             int id=actor==null?actorId:actor.id,owner=actor==null?(sourceOwner>=0?sourceOwner:w.active):actor.owner;
             if(name.isEmpty())name=impacts.isEmpty()?"结算":impacts.get(0).text;
             List<StateChange> states=new ArrayList<>();
             for(Node n:changed)states.add(new StateChange(previous.get(n.key),n));
             for(String key:removed)states.add(new StateChange(previous.get(key),null));
-            events.add(new Event(eventKind,id,owner,start,end,name,message,route,impacts,changed,removed,actor,critical,actor==null?sourceKey:"u"+actor.id,actor==null?sourceType:actor.weapon.name(),states,new ArrayList<>(strikes),journalId,++sequence,plot,infantryTactic,equipmentTactic,actor!=null&&w.army.water(start),plotOutcomes,pointChanges));
+            events.add(new Event(eventKind,id,owner,start,end,name,message,route,impacts,changed,removed,actor,critical,actor==null?sourceKey:"u"+actor.id,actor==null?sourceType:actor.weapon.name(),states,new ArrayList<>(strikes),journalId,++sequence,plot,infantryTactic,equipmentTactic,actor!=null&&w.army.water(start),plotOutcomes,pointChanges,pointFacts));
         }
-        previous=next;previousPoints=nextPoints;cancel();
+        previous=next;previousPoints=nextPoints;pointFactCursor=w.techniquePointsJournal.size();cancel();
     }
     private static int[] points(World w){
         int[] values=new int[w.factions.length];

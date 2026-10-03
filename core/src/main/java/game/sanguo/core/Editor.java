@@ -95,7 +95,7 @@ public final class Editor {
         });
     }
     public Draft faction(int owner,int actionPoints,int techniquePoints){return preview("势力 · 行动力"+actionPoints+" / 技巧点"+techniquePoints,v->{
-        range(owner,0,v.factions.length-1);range(actionPoints,0,60);range(techniquePoints,0,100000);v.actionPoints[owner]=actionPoints;v.campaign.points.put(owner,techniquePoints);
+        range(owner,0,v.factions.length-1);range(actionPoints,0,60);range(techniquePoints,0,100000);v.actionPoints[owner]=actionPoints;v.campaign.setPoints(owner,techniquePoints,TechniquePointsJournal.Cause.EDITOR_SET,-1,-1);
     });}
     public Draft learnTechnology(int owner,Campaign.Tech tech){return preview("势力技巧 · "+(tech==null?"?":tech.label)+"（含前置）",v->{
         range(owner,0,v.factions.length-1);if(tech==null||tech.level==0)throw new IllegalArgumentException("请选择36项技巧之一");

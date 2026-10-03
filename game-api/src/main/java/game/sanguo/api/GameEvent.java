@@ -13,11 +13,17 @@ public final class GameEvent {
     public final String detail;
     /** Net per-faction changes in this commit; empty for world restore/close. */
     public final List<TechniquePointsChange> techniquePointsChanges;
+    /** Ordered actual writes, including changes which cancel within this commit. */
+    public final List<TechniquePointsFact> techniquePointsFacts;
     public GameEvent(Kind kind,StateToken state,int cityId,int officerId,int troopsDelta,int orderDelta,String detail){
         this(kind,state,cityId,officerId,troopsDelta,orderDelta,detail,Collections.emptyList());
     }
     public GameEvent(Kind kind,StateToken state,int cityId,int officerId,int troopsDelta,int orderDelta,String detail,List<TechniquePointsChange> changes){
+        this(kind,state,cityId,officerId,troopsDelta,orderDelta,detail,changes,Collections.emptyList());
+    }
+    public GameEvent(Kind kind,StateToken state,int cityId,int officerId,int troopsDelta,int orderDelta,String detail,List<TechniquePointsChange> changes,List<TechniquePointsFact> facts){
         this.techniquePointsChanges=Collections.unmodifiableList(new ArrayList<>(changes));
+        this.techniquePointsFacts=Collections.unmodifiableList(new ArrayList<>(facts));
         this.id=state.sessionId+":"+state.generation+":"+state.revision+":"+kind.name();
         this.kind=kind;this.state=state;this.cityId=cityId;this.officerId=officerId;
         this.troopsDelta=troopsDelta;this.orderDelta=orderDelta;this.detail=detail;

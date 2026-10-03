@@ -147,3 +147,11 @@ tasks.register('verifyPcTechniquePointsSession', JavaExec) {
     maxHeapSize = '768m'
 }
 tasks.named('check') { dependsOn 'verifyPcTechniquePointsSession' }
+
+tasks.register('verifyTechniquePointsOrderedFacts', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.TechniquePointsOrderedFactsTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyTechniquePointsOrderedFacts' }

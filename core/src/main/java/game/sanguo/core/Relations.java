@@ -119,7 +119,7 @@ public final class Relations {
     }
     public World.Result mediate(int city,int first,int second,Kind kind){w.reports.prepare();
         String error=mediateError(city,first,second,kind);if(error!=null)return w.fail(error);
-        w.campaign.points.put(w.active,w.campaign.points(w.active)-500);link(first,second,kind);
+        w.campaign.setPoints(w.active,w.campaign.points(w.active)-500,TechniquePointsJournal.Cause.RELATION_COST,city,first);link(first,second,kind);
         if(!w.officerAbilities.enabled()&&kind==Kind.SPOUSE&&(w.skills.has(w.officer(first),Skill.NEIZHU)||w.skills.has(w.officer(second),Skill.NEIZHU)))for(int id:new int[]{first,second}){
             World.Officer o=w.officer(id);o.leadership=Math.min(100,o.leadership+1);o.war=Math.min(100,o.war+1);o.intelligence=Math.min(100,o.intelligence+1);o.politics=Math.min(100,o.politics+1);o.charm=Math.min(100,o.charm+1);}
         return w.success(w.officer(first).name+"与"+w.officer(second).name+"结为"+kind.label+"，技巧−500");

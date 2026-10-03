@@ -585,7 +585,7 @@
       "META-INF/version-control-info.textproto"
     ],
     "previous_apk_results_transferred": false,
-    "user_file_restoration_pending_current_live_run": true,
+    "user_file_restoration_pending_current_live_run": false,
     "arm_actual_device_verified": false,
     "git_bundle_sha256": "73c4d22adaed1aa509aefb1cf872fc4f044a338e74577e4616d43e36dbd1608f",
     "git_bundle_includes_ignored_native_inputs": false,
@@ -638,7 +638,10 @@
     "strict_presentations_checks": 1888,
     "strict_presentations_seconds": 404.54,
     "strict_presentations_original_files_exact": true,
-    "strict_presentations_scope": "controlled paused host ticks, strict cache color/GPU/lifecycle; complete original lens/MOD/blend still pending"
+    "strict_presentations_scope": "controlled paused host ticks, strict cache color/GPU/lifecycle; complete original lens/MOD/blend still pending",
+    "terrain_ui_checks": 51,
+    "terrain_ui_seconds": 414.26,
+    "terrain_original_files_exact": true
   },
   "cavalry_special_building_source": {
     "predicate": "0x487ab0",
@@ -657,5 +660,16 @@
     "city_gate_port_predicate": false,
     "source_json_sha256": "302f0f63d73cc73cdf6dea8b2973a0e6f6602f726280ee97a0b2f0c8297c6265",
     "main_collision_damage_or_failed_tactic_verified": false
+  },
+  "r33_ordered_technique_facts": {
+    "status": "candidate JVM verified; Android build/install and ART pending",
+    "ordered_facts_jvm_checks": 59,
+    "net_interface_preserved": true,
+    "save_schema_changed": false,
+    "reward_formulas_changed": false,
+    "rng_consumed_by_observation": false,
+    "app_owner_files_changed": false,
+    "bridge_and_per_fact_audio_consumption_verified": false,
+    "installed_package_still_r32_a31": true
   }
 }

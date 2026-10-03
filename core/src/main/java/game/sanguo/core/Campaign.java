@@ -78,12 +78,28 @@ public final class Campaign {
     final List<Project> projects=new ArrayList<>();
     final Map<Integer,EnumSet<Tech>> learned=new TreeMap<>();
     final Map<Integer,EnumSet<Tech>> legacyTechs=new TreeMap<>();
-    final Map<Integer,Integer> points=new TreeMap<>(),traded=new TreeMap<>();
+    private final class PointValues extends TreeMap<Integer,Integer> {
+        @Override public Integer put(Integer owner,Integer value){
+            int before=getOrDefault(owner,0);Integer previous=super.put(owner,value);
+            if(owner>=0&&w.factions!=null&&owner<w.factions.length)
+                w.techniquePointsJournal.record(owner,before,value,pointCause,pointCity,pointOfficer,w.turnJournal==null?"":w.turnJournal.pendingEventId());
+            return previous;
+        }
+    }
+    private TechniquePointsJournal.Cause pointCause=TechniquePointsJournal.Cause.RAW_WRITE;
+    private int pointCity=-1,pointOfficer=-1;
+    final Map<Integer,Integer> points=new PointValues(),traded=new TreeMap<>();
     Campaign(World w){this.w=w;}
     public List<Project> projects(){return Collections.unmodifiableList(projects);}
     public int energyCap(int side){return has(side,Tech.LOGISTICS)?120:100;}
     public int points(int side){return points.getOrDefault(side,0);}
-    void earn(int side,int amount){if(side>=0&&side<w.factions.length&&amount>0)points.put(side,Math.min(w.pcTechniquePoints.enabled()?10000:100000,points(side)+amount));}
+    void setPoints(int side,int value,TechniquePointsJournal.Cause cause,int city,int officer){
+        TechniquePointsJournal.Cause oldCause=pointCause;int oldCity=pointCity,oldOfficer=pointOfficer;
+        pointCause=cause;pointCity=city;pointOfficer=officer;
+        try{points.put(side,value);}finally{pointCause=oldCause;pointCity=oldCity;pointOfficer=oldOfficer;}
+    }
+    void earn(int side,int amount){earn(side,amount,TechniquePointsJournal.Cause.CAMPAIGN_REWARD,-1,-1);}
+    void earn(int side,int amount,TechniquePointsJournal.Cause cause,int city,int officer){if(side>=0&&side<w.factions.length&&amount>0)setPoints(side,Math.min(w.pcTechniquePoints.enabled()?10000:100000,points(side)+amount),cause,city,officer);}
     public boolean has(int side,Tech tech){EnumSet<Tech> set=learned.get(side);return set!=null&&(set.contains(tech)||tech==Tech.WARSHIP&&set.contains(Tech.CATAPULT));}
     boolean grandfathered(int side,Tech tech){return legacyTechs.getOrDefault(side,EnumSet.noneOf(Tech.class)).contains(tech);}
     public int defenseCap(World.City c){return Math.min(100000,c.baseDefense+(has(c.owner,Tech.WALLS)?3000:0));}
@@ -161,7 +177,7 @@ public final class Campaign {
         }
         this.w.spend(c, o, 500);
         relation(c.owner, side, goodwillGain(o));
-        earn(c.owner, 20);
+        earn(c.owner,20,TechniquePointsJournal.Cause.GOODWILL,city,officer);
         return this.w.success(o.name + "出使" + this.w.faction(side) + "，双方关系改善");
     }
     public int treatyChance(int officer,int side,TreatyKind kind){
@@ -199,7 +215,7 @@ public final class Campaign {
         return world.success(strFaction + sbAppend.toString());
     }
     void concludeTreaty(int owner,int side,TreatyKind kind,int turns){
-        treaties.removeIf(t->t.a==Math.min(owner,side)&&t.b==Math.max(owner,side));treaties.add(new Treaty(owner,side,kind,w.turn+turns));relation(owner,side,10);earn(owner,50);w.districts.cleanup();
+        treaties.removeIf(t->t.a==Math.min(owner,side)&&t.b==Math.max(owner,side));treaties.add(new Treaty(owner,side,kind,w.turn+turns));relation(owner,side,10);earn(owner,50,TechniquePointsJournal.Cause.TREATY,-1,-1);w.districts.cleanup();
     }
     public World.Result breakTreaty(int city,int officer,int side){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(officer);RuleFailure failure=breakFailure(c,o,side);if(failure!=null)return w.fail(failure.detail);
@@ -238,7 +254,7 @@ public final class Campaign {
                     w.loyalty.lose(t,loyaltyLoss(t.owner,5));
                 }
             }
-            earn(c.owner, 30);
+            earn(c.owner,30,TechniquePointsJournal.Cause.RUMOR,city,officer);
         }
         return this.w.success(o.name + "在" + target.name + "散布流言" + (success ? "，治安与武将忠诚下降" : "，被识破"));
     }
@@ -273,7 +289,7 @@ public final class Campaign {
     }
     public World.Result research(int city,int officer,Tech tech){w.reports.prepare();
         String error=researchError(city,officer,tech);if(error!=null)return w.fail(error);
-        World.City c=w.city(city);World.Officer o=w.officer(officer);w.spend(c,o,w.skills.researchGold(officer,tech));points.put(c.owner,points(c.owner)-tech.points);
+        World.City c=w.city(city);World.Officer o=w.officer(officer);w.spend(c,o,w.skills.researchGold(officer,tech));setPoints(c.owner,points(c.owner)-tech.points,TechniquePointsJournal.Cause.RESEARCH_COST,city,officer);
         Project project=new Project(c.owner,city,officer,tech,null);projects.add(project);o.otherTask=project.label();o.otherTaskTurns=tech.turns;
         return w.success(o.name+"开始"+project.label()+"，需要"+tech.turns+"旬");
     }
@@ -300,7 +316,7 @@ public final class Campaign {
         World.City c=w.city(city);World.Officer o=w.officer(officer);String error=w.cityError(c,o,300);if(error!=null)return w.fail(error);
         if(c.defense>=defenseCap(c))return w.fail("城防已达到修复上限"+defenseCap(c));
         int amount=w.cityDefense.repairAmount(c,o);
-        w.spend(c,o,300);c.defense+=amount;earn(c.owner,20);return w.success(c.name+"修复城防"+amount);
+        w.spend(c,o,300);c.defense+=amount;earn(c.owner,20,TechniquePointsJournal.Cause.CITY_REPAIR,city,officer);return w.success(c.name+"修复城防"+amount);
     }
     public World.Result dismiss(int city,int officer,int target){w.reports.prepare();
         World.City c=w.city(city);World.Officer o=w.officer(officer),t=w.officer(target);String error=w.cityError(c,o,0);if(error!=null)return w.fail(error);
@@ -330,7 +346,7 @@ public final class Campaign {
             else o.aptitude[p.study.index-5]=Math.min(3,o.aptitude[p.study.index-5]+1);
             projects.remove(p);w.note(o.name+"完成"+p.label());
         }
-        for(int side=0;side<w.factions.length;side++)if(w.alive(side)){int count=0;for(World.City c:w.cities)if(c.owner==side)count++;earn(side,Math.min(100,count*10));}
+        for(int side=0;side<w.factions.length;side++)if(w.alive(side)){int count=0;for(World.City c:w.cities)if(c.owner==side)count++;earn(side,Math.min(100,count*10),TechniquePointsJournal.Cause.TERRITORY_TURN,-1,-1);}
     }
     void runAi(){
         if(w.turn<6)return;

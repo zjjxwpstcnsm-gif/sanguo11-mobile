@@ -51,7 +51,7 @@ public final class AdvancedBattle {
             if(flank&&w.strategy.nextInt(100)<50){b.status=War.Status.CONFUSED;b.statusTurns=1;}
             if(b.status==War.Status.NORMAL&&w.army.counter(b)&&!w.skills.avoidCounter(a,new Random(w.strategy.nextInt(Integer.MAX_VALUE))))counter=w.war.strike(b,a,.5,false);
         }
-        w.campaign.earn(a.owner,30);w.checkVictory();
+        w.campaign.earn(a.owner,30,TechniquePointsJournal.Cause.ADVANCED_BATTLE,-1,a.officerId);w.checkVictory();
         return w.success(group.size()+"队齐攻：敌损"+dealt+"，主攻反击损失"+counter);
     }
     public boolean magic(War.Plot p){return p==War.Plot.SORCERY||p==War.Plot.LIGHTNING;}

@@ -148,7 +148,7 @@ public final class Fieldworks {
     public War.Structure byId(int id){for(War.Structure s:w.war.structures)if(s.id==id)return s;return null;}
     private void advance(War.Structure s,World.Unit u){
         s.hp=Math.min(s.kind.hp,s.hp+constructionRate(u));
-        if(s.hp==s.kind.hp){s.complete=true;s.builder=-1;w.campaign.earn(u.owner,30);w.note(s.kind.label+"完成补修");}
+        if(s.hp==s.kind.hp){s.complete=true;s.builder=-1;w.campaign.earn(u.owner,30,TechniquePointsJournal.Cause.FIELD_REPAIR,-1,u.officerId);w.note(s.kind.label+"完成补修");}
     }
     void cleanup(){for(War.Structure s:w.war.structures)if(s.builder>=0){World.Unit u=w.unit(s.builder);if(u==null||u.owner!=s.owner||u.hex.distance(s.hex)!=1)s.builder=-1;}}
     void continueOwner(int owner){cleanup();for(War.Structure s:new ArrayList<>(w.war.structures))if(s.owner==owner&&s.builder>=0){World.Unit u=w.unit(s.builder);if(u.status==War.Status.NORMAL&&!u.acted){u.acted=true;advance(s,u);}}}
