@@ -408,5 +408,42 @@
   "latest_ui_source_commits": [
     "3a1ddd5",
     "d9d495b"
-  ]
+  ],
+  "r32_candidate_integration": {
+    "status": "integrated_candidate_not_full_acceptance",
+    "date": "2026-10-04",
+    "complete_integrated_source_commit": "f35fd0cc0230651349bbf2a2d8cd8f99a6e13e98",
+    "documentation_delta_commit": "3f7c6aa",
+    "completed_ui_commit": "09b36a5d48590c82277cc9db75ed1af6252d504b",
+    "ui_paths": 21,
+    "canonical_paths": 134,
+    "other_existing_paths_unchanged": 4109,
+    "canonical_branch_preserved": "agent/native-pc-visual",
+    "preflight": "out/parity/canonical-current-20261004-preflight/applied.json",
+    "canonical_candidate_snapshot": "out/parity/checkpoint-20261004-r32-canonical-candidate/source",
+    "snapshot_manifest": "out/parity/checkpoint-20261004-r32-canonical-candidate/manifest.json",
+    "snapshot_file_count": 4243,
+    "snapshot_bytes": 335944295,
+    "original_tracked_deletions_preserved": [
+      "app/src/main/java/game/sanguo/mobile/MapOverview.java",
+      "app/src/main/java/game/sanguo/mobile/MapView.java"
+    ],
+    "save_policy": "explicit new v37 native production technique policy; old31-36 not inferred or truncated",
+    "installed_candidate_apk_sha256": "f9c140ae2b7417ec96544f69411b118518135a7ab20ef19a259b0be9428ea6df",
+    "art_execution_checks": 13323,
+    "hud_checks": 27,
+    "city_displacement_art_checks": 6648,
+    "city_displacement_session_art_checks": 19,
+    "normal_production_full_flow_passed": false,
+    "normal_production_failures_seconds": [
+      317.08,
+      285.71
+    ],
+    "normal_production_failure": "10 second main queue barrier; actual SIGQUIT trace retained, cause not closed",
+    "all_completed_runs_original_files_exact": true,
+    "last_complete_combination_remains": "R29 f1741671001dbcd37404ab098fc8529957806ffb4a3b96c6e6c592082293fb75",
+    "independent_canonical_build_pending": true,
+    "arm_device_verified": false,
+    "official_openings_verified": false
+  }
 }

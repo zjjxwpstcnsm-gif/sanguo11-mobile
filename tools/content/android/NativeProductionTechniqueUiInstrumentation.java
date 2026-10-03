@@ -89,7 +89,28 @@ public final class NativeProductionTechniqueUiInstrumentation extends Instrument
     private void enter(EditText input,String value)throws Exception{tap(input);long now=SystemClock.uptimeMillis();sendKeySync(new KeyEvent(now,now,KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_A,0,KeyEvent.META_CTRL_ON));sendKeySync(new KeyEvent(now,now+30,KeyEvent.ACTION_UP,KeyEvent.KEYCODE_A,0,KeyEvent.META_CTRL_ON));ui(()->((android.content.ClipboardManager)activity.getSystemService(Context.CLIPBOARD_SERVICE)).setPrimaryClip(ClipData.newPlainText("test-owned input",value)));now=SystemClock.uptimeMillis();sendKeySync(new KeyEvent(now,now,KeyEvent.ACTION_DOWN,KeyEvent.KEYCODE_V,0,KeyEvent.META_CTRL_ON));sendKeySync(new KeyEvent(now,now+30,KeyEvent.ACTION_UP,KeyEvent.KEYCODE_V,0,KeyEvent.META_CTRL_ON));settle();check(input.getText().toString().equals(value),"real paste supplies complete Chinese input");}
     private void tap(View view)throws Exception{tap(view,1);}
     private void tap(View view,int count)throws Exception{settle();Rect rect=new Rect();boolean[] visible={false};ui(()->{int[] screen=new int[2];visible[0]=view.isAttachedToWindow()&&view.hasWindowFocus()&&view.getGlobalVisibleRect(rect);view.getRootView().getLocationOnScreen(screen);rect.offset(screen[0],screen[1]);});check(visible[0]&&rect.width()>0&&rect.height()>0,"real visible touch target "+view.getClass().getSimpleName());for(int n=0;n<count;n++){long down=SystemClock.uptimeMillis();MotionEvent event=MotionEvent.obtain(down,down,MotionEvent.ACTION_DOWN,rect.exactCenterX(),rect.exactCenterY(),0);event.setSource(InputDevice.SOURCE_TOUCHSCREEN);getUiAutomation().injectInputEvent(event,true);event.recycle();SystemClock.sleep(80);event=MotionEvent.obtain(down,SystemClock.uptimeMillis(),MotionEvent.ACTION_UP,rect.exactCenterX(),rect.exactCenterY(),0);event.setSource(InputDevice.SOURCE_TOUCHSCREEN);getUiAutomation().injectInputEvent(event,true);event.recycle();SystemClock.sleep(80);}settle();}
-    private void settle(){SystemClock.sleep(350);java.util.concurrent.CountDownLatch barrier=new java.util.concurrent.CountDownLatch(1);new Handler(Looper.getMainLooper()).post(barrier::countDown);try{if(!barrier.await(10,java.util.concurrent.TimeUnit.SECONDS)){android.os.Process.sendSignal(android.os.Process.myPid(),3);throw new AssertionError("main queue barrier timeout; SIGQUIT diagnostic requested");}}catch(InterruptedException e){Thread.currentThread().interrupt();throw new AssertionError(e);}}
+    private void settle(){
+        SystemClock.sleep(350);java.util.concurrent.CountDownLatch barrier=new java.util.concurrent.CountDownLatch(1);
+        new Handler(Looper.getMainLooper()).post(barrier::countDown);
+        long deadline=SystemClock.uptimeMillis()+10000;StringBuilder samples=new StringBuilder();
+        try{
+            while(barrier.getCount()!=0){
+                long remaining=deadline-SystemClock.uptimeMillis();
+                if(remaining<=0){
+                    try{write("main-queue-timeout-samples.txt",samples.toString());}catch(Exception ignored){}
+                    android.os.Process.sendSignal(android.os.Process.myPid(),3);
+                    throw new AssertionError("main queue barrier timeout; sampled stack and SIGQUIT diagnostic requested");
+                }
+                if(barrier.await(Math.min(1000,remaining),java.util.concurrent.TimeUnit.MILLISECONDS))break;
+                if(remaining<=8000){
+                    Thread main=Looper.getMainLooper().getThread();
+                    samples.append("remainingMs=").append(deadline-SystemClock.uptimeMillis()).append(" state=").append(main.getState()).append(" heapUsed=").append(Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory()).append('\n');
+                    for(StackTraceElement frame:main.getStackTrace())samples.append(frame).append('\n');
+                    samples.append('\n');
+                }
+            }
+        }catch(InterruptedException e){Thread.currentThread().interrupt();throw new AssertionError(e);}
+    }
     private void checkHud(int points)throws Exception{SystemClock.sleep(700);int[] actual={-1};ui(()->{try{Object hud=field(activity,"techniqueHud");actual[0]=(Integer)field(hud,"target");TextView badge=(TextView)field(hud,"badge");if(!badge.getText().toString().equals("技巧\n"+points))throw new AssertionError("visible committed technique badge mismatch");}catch(Exception e){throw new RuntimeException(e);}});check(actual[0]==points,"visible HUD consumes actual committed technique value "+points);}
 
     private void scrollTo(String text)throws Exception{for(int n=0;n<15;n++){View[] hit={null};ui(()->hit[0]=find(activity.getWindow().getDecorView(),v->v instanceof TextView&&((TextView)v).getText().toString().startsWith(text)));if(hit[0]!=null){boolean[] full={false};ui(()->{Rect r=new Rect();full[0]=hit[0].getGlobalVisibleRect(r)&&r.height()>=hit[0].getHeight();});if(full[0])return;}View scroll=await(v->v instanceof ScrollView);Rect r=new Rect();ui(()->{int[] screen=new int[2];scroll.getGlobalVisibleRect(r);scroll.getRootView().getLocationOnScreen(screen);r.offset(screen[0],screen[1]);});long start=SystemClock.uptimeMillis();for(int step=0;step<=12;step++){MotionEvent e=MotionEvent.obtain(start,start+step*25,step==0?MotionEvent.ACTION_DOWN:step==12?MotionEvent.ACTION_UP:MotionEvent.ACTION_MOVE,r.centerX(),r.top+r.height()*(.8f-.55f*step/12),0);sendPointerSync(e);e.recycle();}settle();}throw new AssertionError("cannot scroll to "+text);}
