@@ -971,3 +971,5 @@ R32新a31独立UI默认856／551.05、来源城市62／131.54PASS，原7恢复ex
 培养AP扣除18/准入7（原真实validity/TEST/AP分支，不伪flags）与骑兵特殊建筑谓词67/9positive两份原观察JSON重复全等，压缩数据1835B/1ef3747e…5040及4670B/ca17e309…be64已跟踪随源码，工具输出gzip逐字节复现。487ab0排除city0/gate1/port2及堤防24，不据输出flag猜主/碰撞/失败伤害；当前规则未改。独立1888战法实装PASS；占格地块当前实装复验中。
 
 R33新增core/API/runtime逐次技巧点facts候选：所有现有规则写入生产者标注，保留旧净接口；独立事务capture／安装前validity／完整StateToken／父提交与原checkpoint／阶段／sequence；zeroNet不丢、preview/fail/cancel/load无奖励，SAVE不记facts，公式RNG没改。新59及旧26/137/1666/180/75/2717/6648/BridgePASS；第一次单checkpoint输入假设错误保留修正，未删Editor双命令完整SG检查。app没改，HUD/声音仍旧净消费，ART/APK/bridge新字段待，不声称实装。a31原占格地块51／414.26PASS原7exact，当前已装APK不受候选编辑影响。
+
+2026-10-04 R33：ddae889逐次技巧点规则事实已提交，候选7685556a…17cbb实际安装后11组ART13382／新59、HUD25、城市6648／宿主19通过，7原文件exact。4269完整源码SHA预检集成原目录，4243其他路径unchanged；独立组合构建正在进行。新事实bridge／逐条声音和ARM仍未验证，目标active。

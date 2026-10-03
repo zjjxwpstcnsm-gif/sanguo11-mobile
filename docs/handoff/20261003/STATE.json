@@ -662,7 +662,7 @@
     "main_collision_damage_or_failed_tactic_verified": false
   },
   "r33_ordered_technique_facts": {
-    "status": "candidate JVM verified; Android build/install and ART pending",
+    "status": "candidate installed ART/HUD passed; exact full source integrated canonical; independent canonical build pending",
     "ordered_facts_jvm_checks": 59,
     "net_interface_preserved": true,
     "save_schema_changed": false,
@@ -670,6 +670,21 @@
     "rng_consumed_by_observation": false,
     "app_owner_files_changed": false,
     "bridge_and_per_fact_audio_consumption_verified": false,
-    "installed_package_still_r32_a31": true
+    "installed_package_still_r32_a31": false,
+    "candidate_source_commit": "ddae88989c55c90acb21efa6b3f51f083b73e4b6",
+    "candidate_apk_sha256": "7685556a675f867e51145c744624ba5054ffd9f9c4b025233e76cc8118317cbb",
+    "ordered_facts_art_checks": 59,
+    "production_art_total_checks": 13382,
+    "production_art_suites": 11,
+    "city_displacement_art_checks": 6648,
+    "city_session_art_checks": 19,
+    "real_hud_feedback_ui_checks": 25,
+    "all_original_files_exact": true,
+    "canonical_full_source_integrated": true,
+    "canonical_other_paths_unchanged": 4243,
+    "source_snapshot_files": 4269,
+    "source_snapshot_bytes": 336183864,
+    "official_opening_identity_verified": false,
+    "arm_actual_device_verified": false
   }
 }
