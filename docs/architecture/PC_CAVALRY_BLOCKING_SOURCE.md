@@ -38,3 +38,15 @@ python3 tools/content/inspect_pc_cavalry_building_predicate.py --output out/pari
 ```
 
 两次正式67例JSON17453B全等，SHA302f0f63d73cc73cdf6dea8b2973a0e6f6602f726280ee97a0b2f0c8297c6265。`docs/pc-data/cavalry-special-building-native.json.gz`4670B，SHAca17e309ddcb96e1a04bb2788c66084e7bf2ed28bdd0e66fc8b73a7bb052be64随源码保存；工具同时输出固定gzip供逐字节复现。没有用此谓词的输出flag改城市或伤害实现。
+
+## 原有界落点循环，而非完整战法提交
+
+`verify_pc_cavalry_landing_loop_native.py`执行5956d6→5957e2原指令，实际调用483e10求方向、483a50邻格、594650准入、城市受阻时483b20／487ab0、483aa0退回前一格。168例覆盖x坐标奇偶两种×六原方向×原请求1／2步×无障碍／单位／都市／不合法地形在第一或第二步受阻。源两次JSON全部相同，SHAc67379eb89d3db76defa805517816987cfabe45d5cb1345a99afcbc8a201a2ff；随源码固定gzip SHA259790951f56ea605567a7a4ed3952d47c6f5314b6a9843491d71454a5edd9cc。每例完整3MiB世界、1MiB地格和RNG不变，非栈写入0，原请求结构未提交修改。正常都市不会进入特殊建筑输出flag清零分支。
+
+输入边界明确：采用原4880a0构造的native0都市对象及共享64建筑模板，显式设置483b20的46483b4注册表指针；只构造测试占格，尚未执行正常城市七格注册。73f550c仍明确为-1。进入该块所需5956d2保存的可见性局部值是显式输入1，在停止边界前不消费；前面的5a06d0可见性检查没有执行。未替换原指令／回调／规则返回；这段输出是权威提交前的落点规划，不是完整595630、命中／主伤害／碰撞／失败或最终位置提交证明，Android损伤与RNG公式未改。
+
+```sh
+PYTHONPATH=out/toolchain/pc-emulate:out/toolchain/pc-inspect python3 tools/content/verify_pc_cavalry_landing_loop_native.py --output out/parity/cavalry-loop-new
+```
+
+在本worktree可使用原目录对应两个工具依赖路径。工具输出可复现JSON和mtime0／空filename的gzip；每份都保存原EXE／Shared SHA、指令块SHA、输入、坐标与具体未完成项。

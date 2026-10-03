@@ -662,7 +662,7 @@
     "main_collision_damage_or_failed_tactic_verified": false
   },
   "r33_ordered_technique_facts": {
-    "status": "candidate installed ART/HUD passed; exact full source integrated canonical; independent canonical build pending",
+    "status": "canonical exact package source-city UI62 and ART passed; normal nine-turn production UI in progress",
     "ordered_facts_jvm_checks": 59,
     "net_interface_preserved": true,
     "save_schema_changed": false,
@@ -685,6 +685,42 @@
     "source_snapshot_files": 4269,
     "source_snapshot_bytes": 336183864,
     "official_opening_identity_verified": false,
-    "arm_actual_device_verified": false
+    "arm_actual_device_verified": false,
+    "canonical_apk_sha256": "d31840b01112935491b6e86eb222d32560eb641307c016b0bac445eb533b1427",
+    "canonical_apk_bytes": 87540742,
+    "canonical_build_seconds": 81,
+    "canonical_build_tasks": 76,
+    "canonical_core_api_runtime_classes_byte_equal": true,
+    "canonical_app_class_differences_only_revision_metadata": true,
+    "canonical_source_city_ui_checks": 62,
+    "canonical_source_city_ui_seconds": 215.07,
+    "canonical_source_city_original_files_exact": true,
+    "candidate_art_evidence_transferred": false,
+    "latest_full_source_snapshot": "out/parity/checkpoint-20261004-r33-installed-463dedb/source",
+    "latest_full_source_files": 4269,
+    "latest_full_source_bytes": 336186491,
+    "canonical_art_execution_checks": 13382,
+    "canonical_art_suites": 11,
+    "canonical_ordered_facts_art_checks": 59,
+    "canonical_city_displacement_art_checks": 6648,
+    "canonical_city_session_art_checks": 19,
+    "canonical_report_compression_art_checks": 75,
+    "canonical_snapshot_readonly_art_checks": 180,
+    "canonical_art_original_files_exact": true
+  },
+  "cavalry_bounded_landing_loop_source": {
+    "cases": 168,
+    "entry": "5956d6",
+    "stop_before": "5957e2",
+    "actual_geometry_and_backstep_executed": true,
+    "both_coordinate_parities_six_directions": true,
+    "json_sha256": "c67379eb89d3db76defa805517816987cfabe45d5cb1345a99afcbc8a201a2ff",
+    "packed_sha256": "259790951f56ea605567a7a4ed3952d47c6f5314b6a9843491d71454a5edd9cc",
+    "same_twice": true,
+    "explicit_visibility_local_input": 1,
+    "preceding_visibility_predicate_executed": false,
+    "building_registry_input_is_fixture": true,
+    "full_seven_cell_registration_verified": false,
+    "full_damage_authority_commit_verified": false
   }
 }
