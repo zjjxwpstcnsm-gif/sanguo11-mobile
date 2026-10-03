@@ -21,3 +21,23 @@ python3 tools/content/verify_pc_ability_training_admission_native.py --output ou
 ```
 
 最终观察保存在`out/parity/ability-research-source-20261004`，包括逐行映射、函数字节SHA、世界变更检查、最初准入观察与后续奖励观察。参数名称／描述用于来源核对，不作为完整奖励执行证据。没有修改Android规则、存档、UI或PC资源。
+
+## 完整三类完成函数的受控执行补充
+
+`verify_pc_ability_completion_native.py`已执行完整原非玩家控制势力的STAT5d91a0（480成功／4拒绝）、APTITUDE5da0c0（准入48／完成24）、SKILL5da9e0（准入213／完成276）。每例均从原函数入口返回，并核对完整3MiB世界精确变化及RNG；没有替换游戏函数或注入奖励实现。原构造器、登记序号、势力controller+60=-1及完成类型selector41／42／43是显式受控输入，不声称原启动状态已成立。继承的OS导入按VM内存权限模拟指针探测，临界区在单线程VM中处理；源字节读取用于初始原serializer解码。不能写成“完全无任何hook”。
+
+STAT仅增加XP／两处能力缓存；三类都通过原4819e0／481750更新有限培养已用次数，清除六项任务载荷为[-1,0,0,0,0,0]并清除officer+158。APTITUDE设置原兵种索引对应等级；SKILL写原skill整数ID，已拥有目标不准入，其他特技可在本受控非玩家完成路径覆盖。隐藏native ID≥48的每例显式选择slot0，验证了隐藏计数器地址force+114；没有验证随机隐藏选择或默认10槽内容。每行original record SHA、函数字节、原ID、前后值均保留。最终两次完整报告245798B全等，SHA `fdc8fc19d13fa8d424b57f32d1b30bbd5a9863bcaef95f4311139d3dedcdeb46`。
+
+开始函数5d98d0／5da6e0／5daf10的对齐完整反汇编显示三类都设置officer+158=3，PE变量84ce0c为20；这是静态开始写入证据，不作为完整命令费用、三个正常旬倒计时、取消／失守或整个回合派发已验证。`start-source-inspection.json`保留原字节SHA和指令。当前Android三个旬训练及培养写base保持原交接策略；完整STAT原奖励已闭合，但尚未以新版本策略接入。
+
+历史试验`stat-apt-first`失败由探针把APT行混入STAT循环引起，已修正类别范围，原失败完整保留；没有降低完整世界断言。初次报告关于hook范围的措辞已在最终报告更正为实际OS导入模拟边界，最初观察仍保留。当前证据只覆盖三类完整非玩家完成函数，不等于完整培养系统／官方有效资源身份已经对齐。
+
+来源参数及完整完成观察已随源码固定在`docs/pc-data/ability-training-native.json.gz`（60974B，SHA24d1b979ebb3968291b0a68e3c7ab504453a089e21ef620b2b99039b4cc55f1b），含98行源ID／record SHA／读取字段／函数字节和全部分组观察。两份独立原执行报告再打包与该跟踪文件逐字节相等。打包器强制98行连续ID、三个完成分组完整ID覆盖、490getter及480／4／48／24／213／276检查数，固定gzip头与mtime，不降断言、不生成导入值。
+
+```sh
+python3 tools/content/verify_pc_ability_completion_native.py --output out/parity/ability-completion-new
+python3 tools/content/pack_pc_ability_training_evidence.py \
+  --parameters out/parity/ability-parameters-new/native-parameters.json \
+  --completion out/parity/ability-completion-new/native-completion.json \
+  --output out/parity/ability-training-reproduced.json.gz
+```

@@ -527,11 +527,21 @@
     "old_save_changed": false,
     "full_native_completion_dispatch_verified": false,
     "official_effective_source_verified": false,
-    "final_award_observation_sha256": "9e516fd8222e889d02cddbea092cd3d64a8d9bbbe608a016092217f373bc9fcf"
+    "final_award_observation_sha256": "9e516fd8222e889d02cddbea092cd3d64a8d9bbbe608a016092217f373bc9fcf",
+    "controlled_original_stat_completion_cases": 480,
+    "controlled_stat_completion_rejected": 4,
+    "controlled_aptitude_admission_cases": 48,
+    "controlled_aptitude_completion_cases": 24,
+    "controlled_skill_admission_cases": 213,
+    "controlled_skill_completion_cases": 276,
+    "complete_nonhuman_functions_verified": true,
+    "final_complete_function_observation_sha256": "fdc8fc19d13fa8d424b57f32d1b30bbd5a9863bcaef95f4311139d3dedcdeb46",
+    "hidden_counter_slot0_explicitly_selected": true,
+    "hidden_selection_rng_verified": false
   },
   "r32_canonical_rebuild": {
     "date": "2026-10-04",
-    "status": "independently built and installed; default3D acceptance running; not yet passed",
+    "status": "independently installed default3D856 and source-city62 passed; normal production running",
     "complete_dirty_source_snapshot": "out/parity/checkpoint-20261004-r32-cultivation-a143644/source",
     "full_source_files": 4255,
     "full_source_bytes": 336018236,
@@ -556,6 +566,13 @@
     "user_file_restoration_pending_current_live_run": true,
     "arm_actual_device_verified": false,
     "git_bundle_sha256": "73c4d22adaed1aa509aefb1cf872fc4f044a338e74577e4616d43e36dbd1608f",
-    "git_bundle_includes_ignored_native_inputs": false
+    "git_bundle_includes_ignored_native_inputs": false,
+    "default3d_checks": 856,
+    "default3d_seconds": 551.05,
+    "default3d_user_files_exact": true,
+    "source_city_ui_checks": 62,
+    "source_city_ui_seconds": 131.54,
+    "source_city_fixture_schema": 35,
+    "source_city_user_files_exact": true
   }
 }
