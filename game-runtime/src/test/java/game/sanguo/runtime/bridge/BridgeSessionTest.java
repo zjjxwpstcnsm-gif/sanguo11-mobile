@@ -51,6 +51,23 @@ public final class BridgeSessionTest {
         for(int i=0;i<BridgeSession.MAX_PENDING+1;i++)session.reject("flood:"+i,"TEST");
         check(session.drain().stream().anyMatch(m->m.type.equals("resync")),"bounded queue requires resync after overflow");
         check(session.droppedCount()>0,"overflow counted");
-        System.out.println("BridgeSessionTest passed; actual scenario, rule parity, dedup, reorder and stale revision");
+        session.drain();var oldToken=game.state();
+        game.replace(bridged);var restoredToken=game.state();
+        check(!oldToken.sessionId.equals(restoredToken.sessionId)&&restoredToken.generation==oldToken.generation+1,
+            "actual restore rotates identity and generation together");
+        byte[] restored=game.captureSave();
+        check("STALE_SESSION".equals(session.command("old-after-restore",1,restoredToken.revision,"patrol",c.id,officer.id).error),
+            "old bridge cannot execute against restored revision zero");
+        check("STALE_SESSION".equals(session.command("one",2,0,"patrol",c.id,officer.id).error),
+            "old successful receipt cannot bypass restored session fence");
+        check(Arrays.equals(restored,game.captureSave()),"restore fence preserves complete saved state and RNG");
+        try(BridgeSession current=new BridgeSession(game)){
+            current.snapshot();var batch=current.drain();
+            check(!current.sessionId.equals(session.sessionId)&&batch.size()==1&&batch.get(0).sessionId.equals(restoredToken.sessionId),
+                "new bridge publishes only restored identity");
+            check(Arrays.equals(restored,game.captureSave()),"rebind is read only");
+        }
+        session.close();game.close();other.close();
+        System.out.println("BridgeSessionTest passed; actual scenario, rule parity, dedup, reorder, stale revision and restored identity fence");
     }
 }

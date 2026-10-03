@@ -738,10 +738,13 @@
     "all_original_private_files_restored": true,
     "full_matrix_complete": false,
     "arm_actual_device_verified": false,
-    "goal_complete": false
+    "goal_complete": false,
+    "default3d_checks": 856,
+    "opening_checks": 64,
+    "occupied_terrain_checks": 51
   },
   "r34_continuation": {
-    "status": "exact d318 default3D856 and pinned normal opening64 passed; terrain live",
+    "status": "exact d318 default3D856, normal opening64 and occupied terrain51 all passed; native start107 reproduced; real bridge restore regression passed",
     "apk_sha256": "d31840b01112935491b6e86eb222d32560eb641307c016b0bac445eb533b1427",
     "default3d_checks": 856,
     "default3d_seconds": 509.47,
@@ -758,7 +761,14 @@
     "ability_start_full_function_return_verified": false,
     "android_cultivation_base_policy_changed": false,
     "bridge_restore_generation_issue_reproduced": false,
-    "current_live_device_job": "terrain-ui emulator-5554",
-    "arm_actual_device_verified": false
+    "current_live_device_job": false,
+    "arm_actual_device_verified": false,
+    "terrain_checks": 51,
+    "terrain_seconds": 178.35,
+    "terrain_original_files_exact": true,
+    "bridge_restore_rotates_uuid_verified_from_source": true,
+    "bridge_restore_initial_assumption_failure_preserved": true,
+    "bridge_restore_registered_regression_passed": true,
+    "bridge_restore_runtime_changed": false
   }
 }
