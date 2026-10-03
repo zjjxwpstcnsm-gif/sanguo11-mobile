@@ -15,7 +15,8 @@ PACKAGE='game.sanguo.mobile.marketprobe'
 def build(output,runner='NativeMerchantUiInstrumentation'):
     package={'NativeMerchantUiInstrumentation':PACKAGE,
              'NativeCityRewardsUiInstrumentation':'game.sanguo.mobile.cityrewardsprobe',
-             'NativeCityDisplacementUiInstrumentation':'game.sanguo.mobile.citydisplacementprobe'}[runner]
+             'NativeCityDisplacementUiInstrumentation':'game.sanguo.mobile.citydisplacementprobe',
+             'NativeProductionSourceUiInstrumentation':'game.sanguo.mobile.sourceproductionprobe'}[runner]
     output=output.resolve()
     if ROOT/'out' not in output.parents:raise ValueError('Fresh output must be inside project out/')
     output.mkdir(parents=True,exist_ok=False)
@@ -54,4 +55,4 @@ def build(output,runner='NativeMerchantUiInstrumentation'):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path,required=True);parser.add_argument('--runner',choices=['NativeMerchantUiInstrumentation','NativeCityRewardsUiInstrumentation','NativeCityDisplacementUiInstrumentation'],default='NativeMerchantUiInstrumentation');args=parser.parse_args();build(args.output,args.runner)
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path,required=True);parser.add_argument('--runner',choices=['NativeMerchantUiInstrumentation','NativeCityRewardsUiInstrumentation','NativeCityDisplacementUiInstrumentation','NativeProductionSourceUiInstrumentation'],default='NativeMerchantUiInstrumentation');args=parser.parse_args();build(args.output,args.runner)

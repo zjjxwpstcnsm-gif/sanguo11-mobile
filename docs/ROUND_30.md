@@ -11,3 +11,7 @@
 广泛检查保留历史失败：候选与冻结a934/2ef5的45旧套件退出状态一致，15通过/30失败。旧CoreTest“AI uses deployment commands”、旧版本迁移等历史失败原日志保留 out/parity/production-next-implementation/broad-core-{candidate,frozen}，未删断言或降低标准。新core测试引用runtime夹具的编译错误已修复为core内夹具，失败日志保留。
 
 未闭合：原完整势力回合设施刷新与制造取消/失守原语义；物理设施45实际24调用已验证但项目映射未定；原势力+a2奖励42调用已验证但本地化属性绑定未定，因此不写技巧；更多经验/培养、完整官方剧本身份、原全局RNG天气、ARM真机及完整P01—P10差异仍推进。当前仅记录源/主机证据，不声称APK通过。
+
+## 首次组合包 ART 失败与修复
+
+41cd组合 cff599 已安装并完成纯3D开局64检查/95.38秒，7原文件逐字节恢复；随后新生产探针退出137。完整 crash buffer 定位为 ProductionPlan 新引入 Stream.toList 在API29不存在，AndroidRuntime异常处理发送SIG9。不是内存不足，不改测试绕过。production-art-first原DEX、日志、全buffer与失败结果保留，未算通过。将新增流收集改为API26可用Collectors.toList，公开列表仍显式不可变；新包须重新构建、安装和复验，不移用cff开局证据。

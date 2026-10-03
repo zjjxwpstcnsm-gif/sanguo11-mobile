@@ -31,7 +31,7 @@ public final class PcProduction {
     private static List<String> rows(String file)throws IOException{
         InputStream in=PcProduction.class.getResourceAsStream("/rules/"+file);if(in==null)throw new IOException("缺少原生产数据");
         byte[] raw;try(in){ByteArrayOutputStream bytes=new ByteArrayOutputStream();byte[] buffer=new byte[8192];for(int count;(count=in.read(buffer))!=-1;)bytes.write(buffer,0,count);raw=bytes.toByteArray();}try{StringBuilder value=new StringBuilder();for(byte b:MessageDigest.getInstance("SHA-256").digest(raw)){int n=b&255;value.append("0123456789abcdef".charAt(n>>>4)).append("0123456789abcdef".charAt(n&15));}String digest=value.toString();if(!digest.equals(file.equals("pc-production-prices.tsv")?PRICE_SHA:FLAGS_SHA))throw new IOException("原生产数据SHA不符");}catch(NoSuchAlgorithmException e){throw new IOException(e);}
-        try(BufferedReader reader=new BufferedReader(new InputStreamReader(new ByteArrayInputStream(raw),StandardCharsets.UTF_8))){List<String> out=new ArrayList<>();reader.readLine();for(String line;(line=reader.readLine())!=null;)if(!line.isBlank())out.add(line);return out;}
+        try(BufferedReader reader=new BufferedReader(new InputStreamReader(new ByteArrayInputStream(raw),StandardCharsets.UTF_8))){List<String> out=new ArrayList<>();reader.readLine();for(String line;(line=reader.readLine())!=null;)if(!line.trim().isEmpty())out.add(line);return out;}
     }
     public static int nativeItem(World.Weapon weapon){
         if(weapon==null)return -1;

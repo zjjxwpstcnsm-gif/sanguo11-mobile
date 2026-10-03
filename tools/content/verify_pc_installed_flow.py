@@ -137,7 +137,7 @@ if __name__=='__main__':
     parser.add_argument('--apk',type=Path,required=True)
     parser.add_argument('--test-apk',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
-    parser.add_argument('--runner',choices=['SceneInstrumentation','GameSmokeRunner','UiUxInstrumentation','PcPresentationsInstrumentation','NativeMerchantUiInstrumentation','NativeCityRewardsUiInstrumentation','NativeCityDisplacementUiInstrumentation'],required=True)
+    parser.add_argument('--runner',choices=['SceneInstrumentation','GameSmokeRunner','UiUxInstrumentation','PcPresentationsInstrumentation','NativeMerchantUiInstrumentation','NativeCityRewardsUiInstrumentation','NativeCityDisplacementUiInstrumentation','NativeProductionSourceUiInstrumentation'],required=True)
     parser.add_argument('--test-package',default=PACKAGE+'.test',help='Standalone instrumentation package; main target remains fixed')
     parser.add_argument('--argument',action='append',default=[])
     parser.add_argument('--pass-marker',required=True)

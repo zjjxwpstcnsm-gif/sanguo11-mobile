@@ -1,5 +1,6 @@
 package game.sanguo.core;
 import java.util.*;
+import java.util.stream.Collectors;
 /** Current-engine manufacturing forecast; formulas/durations still require PC calibration. */
 public final class ProductionPlan {
  public enum Operation { EQUIPMENT, SHIP }
@@ -15,14 +16,14 @@ public final class ProductionPlan {
   public final OfficerExperiencePlan experience;
   public final List<Actor> actors;
   Effects(World w,int city,World.Officer o,ProductionPlan p,World.Weapon weapon,Army.Ship ship){
-   delayed=ship!=null||Army.siegeWeapon(weapon);busyTurns=delayed?w.pcProduction.enabled()?w.pcProduction.taskCounter(p.officerIds.stream().map(w::officer).toList(),weapon,ship):w.skills.productionTurns(o.id,weapon):0;
-   int requested=delayed?1:w.pcProduction.enabled()?w.pcProduction.amount(city,p.officerIds.stream().map(w::officer).toList(),weapon,true):w.skills.produceAmount(city,o.id,weapon);
+   delayed=ship!=null||Army.siegeWeapon(weapon);busyTurns=delayed?w.pcProduction.enabled()?w.pcProduction.taskCounter(p.officerIds.stream().map(w::officer).collect(Collectors.toList()),weapon,ship):w.skills.productionTurns(o.id,weapon):0;
+   int requested=delayed?1:w.pcProduction.enabled()?w.pcProduction.amount(city,p.officerIds.stream().map(w::officer).collect(Collectors.toList()),weapon,true):w.skills.produceAmount(city,o.id,weapon);
    outputQuantity=w.pcProduction.enabled()&&!delayed?Math.min(requested,p.stockCapacity-p.stockBefore):requested;stockAfterImmediate=p.stockBefore+(delayed?0:outputQuantity);pendingAfter=p.pendingBefore+(delayed?1:0);
    goldAfter=p.goldAvailable-p.goldCost;actionPointsAfter=p.actionPointsAvailable-p.actionPointsCost;facilityUsesAfter=p.facilityUsesBefore-1;
    taskLabel=delayed?"制造"+(ship!=null?ship.label:weapon.label):"";
    int stat=OfficerExperiencePlan.productionStat(weapon,ship);experience=new OfficerExperiencePlan(w,o,stat,2);
    actedBefore=o.acted;actedAfter=o.acted||p.actionPointsCost>0;meritBefore=w.government.merit(o.id);meritAfter=p.actionPointsCost==0?meritBefore:Math.min(1000000,meritBefore+(w.pcProduction.enabled()&&delayed?0:OfficerExperiencePlan.merit(o,stat,w.government)));
-   actors=p.officerIds.stream().map(id->new Actor(w,w.officer(id),stat,p.actionPointsCost,w.pcProduction.enabled()&&delayed)).toList();
+   actors=Collections.unmodifiableList(p.officerIds.stream().map(id->new Actor(w,w.officer(id),stat,p.actionPointsCost,w.pcProduction.enabled()&&delayed)).collect(Collectors.toList()));
   }
  }
  public static final class Actor {
@@ -33,7 +34,7 @@ public final class ProductionPlan {
   this(w,city,new int[]{officer},op,weapon,ship);
  }
  ProductionPlan(World w,int city,int[] selected,Operation op,World.Weapon weapon,Army.Ship ship){
-  int[] ids=selected==null?new int[0]:selected.clone();int officer=ids.length==0?-1:ids[0];officerIds=Arrays.stream(ids).boxed().toList();
+  int[] ids=selected==null?new int[0]:selected.clone();int officer=ids.length==0?-1:ids[0];officerIds=Collections.unmodifiableList(Arrays.stream(ids).boxed().collect(Collectors.toList()));
   World.City c=w.city(city);World.Officer o=w.officer(officer);
   boolean malformed=op==null||op==Operation.EQUIPMENT&&ship!=null||op==Operation.SHIP&&weapon!=null;
   boolean naval=op==Operation.SHIP;Domestic.Kind kind=naval?Domestic.Kind.SHIPYARD:Domestic.productionFacility(weapon);
