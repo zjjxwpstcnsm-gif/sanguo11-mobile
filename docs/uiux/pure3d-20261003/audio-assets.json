@@ -1,0 +1,79 @@
+{
+  "source": "Original deterministic mobile compositions; not a claimed PC sound restoration",
+  "rate": 44100,
+  "format": "PCM16 mono",
+  "assets": [
+    {
+      "cue": "ui",
+      "path": "app/src/main/assets/audio/ui.wav",
+      "seconds": 0.09,
+      "rms": 0.13024741980152596,
+      "peak": 0.658721923828125,
+      "sha256": "0e76b1ad4dbade966707a014ac68235d060373b87e7ec391c5e3ae3b3c094000"
+    },
+    {
+      "cue": "march",
+      "path": "app/src/main/assets/audio/march.wav",
+      "seconds": 0.36,
+      "rms": 0.05835664830591314,
+      "peak": 0.511871337890625,
+      "sha256": "924fb9142d17f25d1a26f84a4394e370ffac5a026980983baff9e373e55c2d18"
+    },
+    {
+      "cue": "attack",
+      "path": "app/src/main/assets/audio/attack.wav",
+      "seconds": 0.42,
+      "rms": 0.09911395734998107,
+      "peak": 0.673736572265625,
+      "sha256": "7c7135de467b4b5323dbc728909196442704c28bbbc6ba40fc35fe8a3eb60495"
+    },
+    {
+      "cue": "tactic",
+      "path": "app/src/main/assets/audio/tactic.wav",
+      "seconds": 0.6,
+      "rms": 0.10956411139737954,
+      "peak": 0.316375732421875,
+      "sha256": "639f74c14e67f9098ff1fcd1745aafdb95e1e6a4ca076b157868fab3b3b10264"
+    },
+    {
+      "cue": "critical",
+      "path": "app/src/main/assets/audio/critical.wav",
+      "seconds": 0.72,
+      "rms": 0.1539818251844529,
+      "peak": 0.907257080078125,
+      "sha256": "0eb0f7dbf2fa9ff46da38c4e5b5fe74a5494160c5e2c1151f91d8c5cb5a938fa"
+    },
+    {
+      "cue": "plot",
+      "path": "app/src/main/assets/audio/plot.wav",
+      "seconds": 0.64,
+      "rms": 0.1382135757677054,
+      "peak": 0.475250244140625,
+      "sha256": "b34b65f4f29c173f5942a5a00763c5bc29a42121569b7c8cdd88eeef4b9f0fc6"
+    },
+    {
+      "cue": "construction",
+      "path": "app/src/main/assets/audio/construction.wav",
+      "seconds": 0.45,
+      "rms": 0.09657286721623481,
+      "peak": 0.698760986328125,
+      "sha256": "3a6e4b74831b26000e0cccb9be73a86815fb71b13fca36f794d81d1ef0e12f31"
+    },
+    {
+      "cue": "complete",
+      "path": "app/src/main/assets/audio/complete.wav",
+      "seconds": 0.67,
+      "rms": 0.11988311072327607,
+      "peak": 0.561859130859375,
+      "sha256": "ca6489873cdbe7d6eaaf185a6f724e5b3ae7d08739bcc61399dffc9027fce9ae"
+    },
+    {
+      "cue": "turn",
+      "path": "app/src/main/assets/audio/turn.wav",
+      "seconds": 0.82,
+      "rms": 0.12018393840580133,
+      "peak": 0.536346435546875,
+      "sha256": "1efdf33d5612436ac8972e834f996f66934d49e05a3937f76a6d7c8efdf24b32"
+    }
+  ]
+}

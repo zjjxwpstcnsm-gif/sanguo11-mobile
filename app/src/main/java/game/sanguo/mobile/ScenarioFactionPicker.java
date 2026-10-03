@@ -34,7 +34,6 @@ final class ScenarioFactionPicker {
         boolean landscape=a.getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE;
         LinearLayout middle=new LinearLayout(a);middle.setOrientation(landscape?LinearLayout.HORIZONTAL:LinearLayout.VERTICAL);root.addView(middle,new LinearLayout.LayoutParams(-1,0,1));
         map=new MapHost(a,this::tap);map.setContentDescription("开局势力地图 · 点城池或着色领地选择势力");map.previewMode();map.setWorld(w,null,-1);map.setTerritoryMode(1);
-        heading.addView(a.button("2D/3D",v->{modeChosen=true;map.switchMode(!map.is3D());}),new LinearLayout.LayoutParams(a.dp(76),-1));
         middle.addView(map,landscape?new LinearLayout.LayoutParams(0,-1,1):new LinearLayout.LayoutParams(-1,0,1));
         LinearLayout card=new LinearLayout(a);card.setOrientation(LinearLayout.VERTICAL);card.setPadding(a.dp(12),a.dp(10),a.dp(12),a.dp(8));card.setBackground(UiTheme.surface(a,0xff253d3b,0xff172c34,16));
         LinearLayout lead=new LinearLayout(a);lead.setGravity(Gravity.CENTER_VERTICAL);card.addView(lead);
@@ -72,7 +71,7 @@ final class ScenarioFactionPicker {
     }
     private void commit(int side){
         if(accepted)return;accepted=true;start.setEnabled(false);
-        boolean spatial=map.is3D()||(!modeChosen&&pcOpening());dialog.dismiss();a.setNextScenario3D(spatial);choose.accept(side);
+        boolean spatial=true;dialog.dismiss();a.setNextScenario3D(spatial);choose.accept(side);
     }
     private void mapFit(){map.post(map::fit);}
     private void tap(Hex h){

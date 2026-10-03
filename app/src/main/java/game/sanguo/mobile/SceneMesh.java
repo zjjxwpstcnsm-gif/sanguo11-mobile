@@ -125,6 +125,7 @@ final class SceneMesh {
     /** Coarse non-playable scenery beneath the authoritative surface; never a picking input.
      * Fills VOID perforations and the exterior margin without manufacturing playable tiles. */
     static SceneMesh backdrop(MapSceneSnapshot.Ground g){
+        if(g.pcMap!=null)return null; // Source scenery is streamed with the same quarter-grid as playable terrain.
         float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
         for(int r=0;r<g.height;r++)for(int q=0;q<g.width;q++)if(g.valid(new Hex(q,r))){
             float x=g.grid.x(q,r),z=g.grid.z(q,r);minX=Math.min(minX,x);maxX=Math.max(maxX,x);minZ=Math.min(minZ,z);maxZ=Math.max(maxZ,z);
@@ -185,7 +186,8 @@ final class SceneMesh {
         List<SceneMesh> out=new ArrayList<>();Map<String,SceneMesh> cached=new HashMap<>();
         for(SceneMesh m:previous)cached.put(m.chunkQ+":"+m.chunkR,m);
         List<int[]> requests=new ArrayList<>();
-        for(int r=0;r<g.height;r+=16)for(int q=0;q<g.width;q+=16)requests.add(new int[]{q,r});
+        int margin=g.pcMap==null?0:32,qLimit=g.width+margin,rLimit=g.height+margin;
+        for(int r=-margin;r<rLimit;r+=16)for(int q=-margin;q<qLimit;q+=16)requests.add(new int[]{q,r});
         if(window!=null)requests.sort(Comparator.comparingDouble(a->Math.hypot(g.grid.x(a[0]+8,a[1]+8)-window.x,g.grid.z(a[0]+8,a[1]+8)-window.z)));
         SurfaceBuilder scratch=null;
         for(int[] request:requests){
@@ -193,7 +195,7 @@ final class SceneMesh {
             if(window!=null&&!window.contains(cx,cz,13))continue;
             int lod=window==null?1:window.lod(cx,cz);
             if(Thread.currentThread().isInterrupted())return Collections.emptyList();
-            long fingerprint=1469598103934665603L ^ TerrainMaterialField.VERSION ^ TerrainSurface.METADATA_VERSION ^ WaterVisualField.VERSION;
+            long fingerprint=1469598103934665603L ^ 0x3D20261003L ^ TerrainMaterialField.VERSION ^ TerrainSurface.METADATA_VERSION ^ WaterVisualField.VERSION;
             fingerprint=(fingerprint^(window==null?g.mapSeed:g.mapIdentity))*1099511628211L;
             fingerprint=(fingerprint^(g.pcMap==null?0:64))*1099511628211L;
             fingerprint=(fingerprint^lod^(window!=null&&window.span<48?0x12100:0))*1099511628211L;
@@ -215,10 +217,10 @@ final class SceneMesh {
             if(scratch==null){int cells=Math.min(16,g.width)*Math.min(16,g.height);scratch=new SurfaceBuilder(cells*(g.pcMap==null?9:153),cells*(g.pcMap==null?24:192));}
             else scratch.reset();
             SurfaceBuilder b=scratch;float minX=Float.MAX_VALUE,minZ=minX,maxX=-minX,maxZ=-minX;
-            for(int rr=r;rr<Math.min(r+16,g.height);rr++)for(int qq=q;qq<Math.min(q+16,g.width);qq++){
-                Hex h=new Hex(qq,rr);if(!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);
+            for(int rr=r;rr<Math.min(r+16,rLimit);rr++)for(int qq=q;qq<Math.min(q+16,qLimit);qq++){
+                Hex h=new Hex(qq,rr);if(g.pcMap==null&&!g.valid(h))continue;float x=g.grid.x(h),z=g.grid.z(h);
                 minX=Math.min(minX,x);maxX=Math.max(maxX,x);minZ=Math.min(minZ,z);maxZ=Math.max(maxZ,z);
-                int color=terrain(g.terrain[rr*g.width+qq]),n=b.vertexCount;boolean water=g.surface.water(h);
+                int color=g.pcMap==null?terrain(g.terrain[rr*g.width+qq]):0xff999999,n=b.vertexCount;boolean water=g.surface.water(h);
                 if(g.pcMap!=null){
                     for(int iz=0;iz<=4;iz++)for(int ix=0;ix<=4;ix++){
                         float vx=x-.5f+ix*.25f,vz=z-.5f+iz*.25f;
@@ -274,7 +276,7 @@ final class SceneMesh {
             if(g.pcMap.coarseWaterByte(x,y)==0)continue;
             float wx=x-originX,wz=y-originZ;Hex cell=g.grid.cell(wx+.5f,wz+.5f);
             if(q<0){if(g.valid(cell))continue;}
-            else if(!g.valid(cell)||cell.q<q||cell.q>=Math.min(q+16,g.width)||cell.r<r||cell.r>=Math.min(r+16,g.height))continue;
+            else if(cell.q<q||cell.q>=q+16||cell.r<r||cell.r>=r+16)continue;
             int first=vertices.size()/7,mask=g.pcMap.coarseWaterMask(x,y),sheet=g.pcMap.coarseWaterSheet(x,y);
             float level=g.pcMap.coarseWaterPlane(x,y);
             for(int corner=0;corner<4;corner++){
@@ -327,7 +329,7 @@ final class SceneMesh {
     static SceneMesh grid(MapSceneSnapshot.Ground g,int q,int r,SceneMesh bounds,int lod){
         Builder b=new Builder();
         float width=lod==0?.012f:lod==1?.023f:.038f;
-        for(int rr=r;rr<Math.min(r+16,g.height);rr++)for(int qq=q;qq<Math.min(q+16,g.width);qq++){
+        for(int rr=Math.max(0,r);rr<Math.min(r+16,g.height);rr++)for(int qq=Math.max(0,q);qq<Math.min(q+16,g.width);qq++){
             Hex h=new Hex(qq,rr);if(!g.gridCell(h,false))continue;
             float x=g.grid.x(h),z=g.grid.z(h),cy=g.surface.at(h);
             for(int e=0;e<8;e++){

@@ -1,0 +1,46 @@
+{
+  "goal_status": "active",
+  "goal_complete": false,
+  "workdir": "/Users/paopao/.codex/worktrees/3005/sanguo11-mobile",
+  "branch": "codex/pure3d-20261003",
+  "baseline_commit": "c19de2957127767e222776ee9dbdefb73e57673f",
+  "baseline_files": 4078,
+  "serial": "emulator-5582",
+  "scope": "AP rules preserved, app/render/audio/resources/tools/Android only",
+  "phase": "UI increment built and installed; same APK 13 suites916 plus coast97/editor61/isolated audio47 passed; delivery index being finalized",
+  "verified": [
+    "source heights and seams 2045912 host checks",
+    "12 coast captures 104 installed checks",
+    "owned/enemy/convoy/site-neighbor terrain 51 installed checks",
+    "audio focus/mute/lifecycle 45 installed checks plus 9 actual mixer waveform matches",
+    "full 3D march/turn/report/load 74 installed checks",
+    "opening save/new/load passed",
+    "legacy camera/error retry/engine reload/Home passed",
+    "3D gestures and preview cancellation passed",
+    "editor and custom opening: 61 checks on APK29",
+    "real reduced-motion attack/tactic/plot: 75 checks on APK35; wrong PASS-marker caused harness false and is corrected for final rerun",
+    "510 authority/data/Unity source files exact to AP",
+    "APK e009581 ten suites 517 checks passed, 24 rule/Home cycles all state checks passed but suite FAIL on off-owner renderer report; original failure retained",
+    "source PC map real nonportrait critical15 checks, exact reference damage/RNG and one actual CRITICAL stream",
+    "editor61 checks on critical-audio candidate; user task foreground six samples 1127-1203ms, 1000ms target false"
+  ],
+  "performance_not_passed": [
+    "system task foreground 1142-3245ms; 1000ms target false",
+    "PSS/Java memory increased during24 turns; not leak-free acceptance",
+    "ARM physical device not available"
+  ],
+  "authority_modules_modified": false,
+  "active_install_tests": false,
+  "current_test": "Android acceptance finished; packaged evidence and integration handoff",
+  "delivery_note": "Use completed increment after c19de29; do not import this baseline over newer rule files. No cross-chat messages authorized.",
+  "ui_program_commit": "9d5170699be51771e61c08df0e48519476f7f3ba",
+  "installed_main_sha256": "fb98b5e1765ac405c0dc8efe81080b4c96451e88a2b70a6a30ccf448177c214b",
+  "same_apk_checks": 1121,
+  "long_run_rounds": 24,
+  "long_run_seconds": 938.09,
+  "remaining": [
+    "final rule owner integration and latest cavalry-city authority placement acceptance",
+    "historical version-specific 2D Android helper migration",
+    "startup/foreground/memory performance refinement"
+  ]
+}

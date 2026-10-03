@@ -13,11 +13,12 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.*;
 
-/** Production MapView + production map resolver; never receives the live campaign World. */
+/** Production 3D map host + production map resolver; never receives the live campaign World. */
 public final class MapEditorActivity extends Activity {
     private static final int EXPORT=6701,IMPORT=6702;
     private final ExecutorService worker=Executors.newSingleThreadExecutor();
     private MapLibrary library;
+    private SoundEffects sounds;
     private MapEditSession session;
     private MapHost map;
     private LinearLayout tools;
@@ -34,7 +35,7 @@ public final class MapEditorActivity extends Activity {
     private byte[] exporting;
     private final List<CustomMaps.Issue> issues=new ArrayList<>();
     private Bundle pendingCamera;
-    @Override public void onCreate(Bundle state){super.onCreate(state);library=new MapLibrary(this);pendingCamera=state;build();work("读取独立草稿",()->new MapEditSession(library.draft()),s->{session=s;refresh("独立草稿，与当前战局隔离");if(pendingCamera!=null)map.restoreCamera(pendingCamera);else map.post(map::fit);});}
+    @Override public void onCreate(Bundle state){super.onCreate(state);sounds=((GameApplication)getApplication()).sounds();sounds.attach(this);library=new MapLibrary(this);pendingCamera=state;build();work("读取独立草稿",()->new MapEditSession(library.draft()),s->{session=s;if(pendingCamera!=null)map.restoreCamera(pendingCamera);refresh("独立草稿，与当前战局隔离");});}
     private int dp(int value){return Math.round(value*getResources().getDisplayMetrics().density);}
     private TextView text(String value,int size){TextView v=new TextView(this);v.setText(value);v.setTextSize(size);v.setTextColor(0xffe8e0c7);v.setPadding(dp(8),dp(4),dp(8),dp(4));return v;}
     private Button button(String label,Runnable run){Button b=CompactButtons.create(this);b.setText(label);b.setTextSize(11);b.setOnClickListener(v->{if(!busy&&session!=null)run.run();});return b;}
@@ -44,7 +45,7 @@ public final class MapEditorActivity extends Activity {
         LinearLayout tabs=new LinearLayout(this);root.addView(tabs);String[] names={"地形","据点","检查"};for(int i=0;i<names.length;i++){final int index=i;tabs.addView(button(names[i],()->{cancelPlacement();tab=index;toolbar();}),new LinearLayout.LayoutParams(0,dp(44),1));}
         HorizontalScrollView scrolling=new HorizontalScrollView(this);scrolling.setHorizontalScrollBarEnabled(false);tools=new LinearLayout(this);scrolling.addView(tools);root.addView(scrolling,new LinearLayout.LayoutParams(-1,dp(48)));
         LinearLayout common=new LinearLayout(this);root.addView(common);common.addView(button("撤销",()->change("撤销",()->{session.undo();return null;})),new LinearLayout.LayoutParams(0,dp(44),1));common.addView(button("重做",()->change("重做",()->{session.redo();return null;})),new LinearLayout.LayoutParams(0,dp(44),1));common.addView(button("定位",this::locate),new LinearLayout.LayoutParams(0,dp(44),1));common.addView(button("地图",this::libraryMenu),new LinearLayout.LayoutParams(0,dp(44),1));setContentView(root);toolbar();}
-    private void toolbar(){tools.removeAllViews();add(map.is3D()?"切换2D":"切换3D",()->{map.switchMode(!map.is3D());toolbar();});add("回正",map::resetOrientation);add("视觉属性",this::visualProperties);if(tab==0){add(drawing?"绘制中":"浏览",()->{drawing=!drawing;rectangleStart=null;map.editorDrawing(drawing&&"连续画笔".equals(tool));toolbar();refresh(drawing?"绘制：单指操作；双指只平移/缩放":"浏览：单指平移，点击选格");});add(TerrainPresentation.of(brush).name(),this::chooseTerrain);add(tool,this::chooseTool);add("范围 "+(radius==0?"1格":radius==1?"7格":"19格"),()->{radius=(radius+1)%3;toolbar();});add("辅助层",this::layers);}
+    private void toolbar(){tools.removeAllViews();add("回正",map::resetOrientation);add("视觉属性",this::visualProperties);if(tab==0){add(drawing?"绘制中":"浏览",()->{drawing=!drawing;rectangleStart=null;map.editorDrawing(drawing&&"连续画笔".equals(tool));toolbar();refresh(drawing?"绘制：单指操作；双指只平移/缩放":"浏览：单指平移，点击选格");});add(TerrainPresentation.of(brush).name(),this::chooseTerrain);add(tool,this::chooseTool);add("范围 "+(radius==0?"1格":radius==1?"7格":"19格"),()->{radius=(radius+1)%3;toolbar();});add("辅助层",this::layers);}
         else if(tab==1){add("新增",this::addSite);add("据点列表",this::siteList);add("属性",this::selectedProperties);add("移动",()->selectedSite(s->place(s,"移动")));add("复制",()->selectedSite(s->{try{place(s.copy(session.newId()),"复制");}catch(Exception e){error(e);}}));add("删除",()->selectedSite(this::deleteSite));add("取消放置",this::cancelPlacement);}
         else{add("检查地图",this::validateMap);add("诊断列表 "+issues.size(),this::showIssues);add("预览剧本",this::chooseScenario);add("主水系",this::waterInfo);add("辅助层",this::layers);add("全图",map::fit);}
         map.editorDrawing(tab==0&&drawing&&"连续画笔".equals(tool));}
@@ -126,7 +127,7 @@ public final class MapEditorActivity extends Activity {
     private void error(Exception e){map.setVisibility(View.VISIBLE);status.setText("操作未完成："+e.getMessage());AlertDialog.Builder dialog=new AlertDialog.Builder(this).setTitle("操作失败，请检查草稿保存状态").setMessage(e.getMessage()==null?e.toString():e.getMessage()).setPositiveButton("返回",null);if(session==null)dialog.setNeutralButton("保留旧文件并新建",(d,n)->work("保留恢复副本并建立新草稿",()->{library.archiveDraft();MapPatch fresh=CustomMaps.base().fresh();library.saveDraft(fresh);return new MapEditSession(fresh);},s->{session=s;refresh("旧草稿文件保留为恢复副本；已创建新的原版副本");map.post(map::fit);}));dialog.show();}
     @Override public void onBackPressed(){if(busy){status.setText("当前事务尚未结束，返回未执行");return;}if(session==null){finish();return;}if(!session.dirty()){finish();return;}new AlertDialog.Builder(this).setTitle("保存修改后退出？").setNegativeButton("取消",null).setNeutralButton("不保存退出",(d,n)->{discardOnExit=true;finish();}).setPositiveButton("保存并退出",(d,n)->{MapPatch p=session.patch();work("保存草稿",()->{library.saveDraft(p);return true;},done->finish());}).show();}
     @Override protected void onSaveInstanceState(Bundle out){if(map!=null)map.saveCamera(out);super.onSaveInstanceState(out);}
-    @Override protected void onResume(){super.onResume();if(map!=null)map.resume(true);}
-    @Override protected void onPause(){super.onPause();if(map!=null)map.resume(false);if(session!=null&&!discardOnExit){MapPatch snapshot;long expected;synchronized(session){snapshot=session.patch();expected=session.generation();}worker.execute(()->{try{if(session.generation()==expected)library.saveDraft(snapshot);}catch(IOException ignored){/* Every edit already saves atomically; foreground save surfaces errors. */}});}}
-    @Override protected void onDestroy(){destroyed=true;if(map!=null)map.release();worker.shutdown();super.onDestroy();}
+    @Override protected void onResume(){super.onResume();if(sounds!=null)sounds.foreground(this,true);if(map!=null)map.resume(true);}
+    @Override protected void onPause(){super.onPause();if(sounds!=null)sounds.foreground(this,false);if(map!=null)map.resume(false);if(session!=null&&!discardOnExit){MapPatch snapshot;long expected;synchronized(session){snapshot=session.patch();expected=session.generation();}worker.execute(()->{try{if(session.generation()==expected)library.saveDraft(snapshot);}catch(IOException ignored){/* Every edit already saves atomically; foreground save surfaces errors. */}});}}
+    @Override protected void onDestroy(){destroyed=true;if(sounds!=null)sounds.detach(this);if(map!=null)map.release();worker.shutdown();super.onDestroy();}
 }

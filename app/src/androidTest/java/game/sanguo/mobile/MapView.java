@@ -10,10 +10,10 @@ import game.sanguo.core.*;
 
 /** Cached national renderer with independent scene, selection and camera updates. */
 public final class MapView extends View implements MapPresentation {
-    public interface TileListener {void tap(Hex tile);default void unit(int unitId,Hex displayCell){tap(displayCell);}}
+    public interface TileListener extends MapHost.TileListener {}
     private final TileListener listener;
     /** Editor-only gesture stream. Existing campaign gestures and hit rules remain unchanged. */
-    interface EditorStroke {void event(int action,Hex tile);}
+    interface EditorStroke extends MapHost.EditorStroke {}
     private EditorStroke editorStroke;
     private boolean editorMode,editorDrawing,editorCapturing;
     private float editorFocusX,editorFocusY;

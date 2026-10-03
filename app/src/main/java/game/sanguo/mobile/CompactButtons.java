@@ -15,7 +15,10 @@ final class CompactButtons {
     private CompactButtons() {}
     static Button create(Context context) {
         float density=context.getResources().getDisplayMetrics().density;
-        Button b=new Button(context);
+        Button b=new Button(context);b.setSoundEffectsEnabled(false);
+        b.setOnTouchListener((view,event)->{if(event.getActionMasked()==android.view.MotionEvent.ACTION_UP&&view.isEnabled()&&view.isPressed()&&view.hasWindowFocus()){
+            Context app=context.getApplicationContext();if(app instanceof GameApplication)((GameApplication)app).sounds().ui();
+        }return false;});
         b.setAllCaps(false);b.setTextSize(12);b.setTypeface(Typeface.create("sans-serif-medium",Typeface.NORMAL));
         b.setIncludeFontPadding(false);b.setGravity(Gravity.CENTER);b.setMaxLines(2);b.setEllipsize(TextUtils.TruncateAt.END);
         b.setMinWidth(0);b.setMinimumWidth(0);b.setMinHeight(Math.round(48*density));b.setMinimumHeight(Math.round(48*density));

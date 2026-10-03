@@ -10,12 +10,12 @@ import re
 import subprocess
 import time
 from pathlib import Path
+import sys
+sys.path.insert(0,str(Path(__file__).resolve().parents[1]/"content"))
 from verify_pc_age_install import ROOT, PACKAGE, sha, members
 
 
 def run(args):
-    test_package=getattr(args,'test_package',PACKAGE+'.test')
-    if not re.fullmatch(r'[A-Za-z][A-Za-z0-9_.]*',test_package):raise ValueError('Invalid instrumentation package')
     # Reject missing candidates before touching any device or creating a backup.
     apks = {str(p.resolve()):sha(p.read_bytes()) for p in (args.apk,args.test_apk)}
     campaign=None
@@ -56,7 +56,7 @@ def run(args):
                     log.write(command('install','-r',str(apk.resolve()),timeout=180))
                     log.flush()
         report['reused_installed'] = args.reuse_installed
-        test_path = command('shell','pm','path',test_package).decode().strip().removeprefix('package:')
+        test_path = command('shell','pm','path',PACKAGE+'.test').decode().strip().removeprefix('package:')
         report['installed_test_sha256'] = sha(command('exec-out','cat',test_path,timeout=180))
         if report['installed_test_sha256'] != sha(args.test_apk.read_bytes()):
             raise ValueError('Installed test APK differs from frozen candidate')
@@ -92,7 +92,7 @@ def run(args):
         save()
         try:
             with (output / 'instrumentation.txt').open('wb') as log:
-                process=subprocess.run(adb+['shell','am','instrument','-w']+values+[test_package+'/game.sanguo.mobile.'+args.runner],stdout=log,stderr=subprocess.STDOUT,timeout=args.timeout)
+                process=subprocess.run(adb+['shell','am','instrument','-w']+values+[PACKAGE+'.test/game.sanguo.mobile.'+args.runner],stdout=log,stderr=subprocess.STDOUT,timeout=args.timeout)
             text=(output / 'instrumentation.txt').read_text()
             report.update(exit_code=process.returncode,passed=process.returncode==0 and args.pass_marker in text and 'FAIL' not in text)
         except subprocess.TimeoutExpired:
@@ -106,13 +106,9 @@ def run(args):
     finally:
         command('shell','am','force-stop',PACKAGE)
         command('shell','tar','-C','/data/data/'+PACKAGE,'-xf',remote)
-        current_tar=command('exec-out','tar','-C','/data/data/'+PACKAGE,'-cf','-','files','shared_prefs')
-        (output / 'user-before-generated-file-removal.tar').write_bytes(current_tar)
-        current=members(current_tar)
-        generated=sorted(current.keys()-original.keys())
-        for name in generated:
-            # This serial is exclusive: remove only files created by this run,
-            # after preserving their bytes in the evidence archive.
+        current=members(command('exec-out','tar','-C','/data/data/'+PACKAGE,'-cf','-','files','shared_prefs'))
+        for name in current.keys()-original.keys():
+            # Only files created by this exclusive test run; preserve all original bytes.
             if not name.startswith(('files/','shared_prefs/')) or '..' in Path(name).parts:
                 raise ValueError('Unexpected restore path '+name)
             command('shell','rm','--','/data/data/'+PACKAGE+'/'+name)
@@ -121,7 +117,6 @@ def run(args):
         files=members(restored)
         mismatches=[key for key,value in original.items() if files.get(key)!=value]
         report['restoration']=dict(all_original_files_byte_equal=not mismatches,mismatches=mismatches,
-            test_generated_files_removed=generated,
             added_files=sorted(files.keys()-original.keys()),auto_sha256=sha(files['files/auto.sg11']) if 'files/auto.sg11' in files else None)
         save()
         if mismatches:
@@ -137,8 +132,7 @@ if __name__=='__main__':
     parser.add_argument('--apk',type=Path,required=True)
     parser.add_argument('--test-apk',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
-    parser.add_argument('--runner',choices=['SceneInstrumentation','GameSmokeRunner','UiUxInstrumentation','PcPresentationsInstrumentation','NativeMerchantUiInstrumentation','NativeCityRewardsUiInstrumentation','NativeCityDisplacementUiInstrumentation'],required=True)
-    parser.add_argument('--test-package',default=PACKAGE+'.test',help='Standalone instrumentation package; main target remains fixed')
+    parser.add_argument('--runner',choices=['SceneInstrumentation','GameSmokeRunner','UiUxInstrumentation','PcPresentationsInstrumentation','Pure3dInstrumentation','MapEditor67Instrumentation'],required=True)
     parser.add_argument('--argument',action='append',default=[])
     parser.add_argument('--pass-marker',required=True)
     parser.add_argument('--timeout',type=int,default=1200)

@@ -1,6 +1,7 @@
 <resources>
     <style name="AppTheme" parent="android:style/Theme.Material.NoActionBar">
         <item name="android:fontFamily">sans</item>
+        <item name="android:soundEffectsEnabled">false</item>
         <item name="android:colorAccent">#6DDCC5</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowActionModeOverlay">true</item>
@@ -12,6 +13,7 @@
     </style>
     <style name="GameDialog" parent="android:style/Theme.Material.Dialog.Alert">
         <item name="android:fontFamily">sans</item>
+        <item name="android:soundEffectsEnabled">false</item>
         <item name="android:colorAccent">#81E2C4</item>
         <item name="android:textColorPrimary">#EDF3F3</item>
         <item name="android:textColorSecondary">#A4B6BF</item>

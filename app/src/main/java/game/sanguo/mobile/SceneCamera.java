@@ -48,6 +48,10 @@ final class SceneCamera {
         if(!perspective){x-=(dx*rightX()+dy/sin()*backX())/pixels();z-=(-dx*backX()+dy/sin()*rightX())/pixels();return;}
         float wx=worldX(sx-dx,sy-dy,y),wz=worldZ(sx-dx,sy-dy,y);anchor(wx,wz,y,sx,sy);
     }
+    static float legacySpan(float viewportHeight,float density,float scaleDp){
+        if(!Float.isFinite(viewportHeight)||!Float.isFinite(density)||!Float.isFinite(scaleDp)||viewportHeight<=0||density<=0||scaleDp<=0)return 15;
+        return Math.max(3,Math.min(160,viewportHeight/(2*TileGeometry.DY*density*scaleDp)));
+    }
     void sanitize(){x=Float.isFinite(x)?x:0;z=Float.isFinite(z)?z:0;span=Float.isFinite(span)?Math.max(3,Math.min(160,span)):15;tilt=Float.isFinite(tilt)?Math.max(40,Math.min(70,tilt)):55;yaw=Float.isFinite(yaw)?((yaw%360)+360)%360:0;facing=facing<0?-1:1;}
     /** Camera bounds belong to the complete immutable map, never the transient chunk cache. */
     void clampTo(MapSceneSnapshot.Ground ground){

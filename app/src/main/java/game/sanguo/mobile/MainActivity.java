@@ -23,6 +23,8 @@ public final class MainActivity extends Activity {
     // Detached compatibility view only; authoritative ownership is in GameSession.
     private World world;
     private NativeGameHost gameHost;
+    private SoundEffects sounds;
+    private final UiLatencyMonitor latency=new UiLatencyMonitor();
     private LegacyView legacyView;
     private GameApi.Subscription sessionSubscription;
     private GameSession boundSession;
@@ -42,6 +44,9 @@ public final class MainActivity extends Activity {
         legacyView=current.legacyView();world=legacyView.draft;
     }
     private void sessionChanged(GameEvent event){
+        SoundEffects.Cue cue=switch(event.kind){case DEPLOYED,TRANSPORT_DISPATCHED->SoundEffects.Cue.MARCH;case CONSTRUCTION_STARTED->SoundEffects.Cue.CONSTRUCTION;case PRODUCTION_COMMITTED,CITY_ACTION_COMMITTED,RECRUITED,PATROLLED,TRADE_COMMITTED->SoundEffects.Cue.COMPLETE;case TURN_COMMITTED->SoundEffects.Cue.TURN;default->null;};
+        if(cue!=null&&sounds!=null)sounds.event("receipt:"+event.state.sessionId+":"+event.state.generation+":"+event.state.revision+":"+event.kind,cue);
+
         if(event.kind==GameEvent.Kind.CLOSED||dispatchingCommand||replacingSession||aiRunning)return;
         bindSession();if(map!=null){map.invalidateScene();navigatorRevision=Long.MIN_VALUE;refresh();save("auto",false);}
     }
@@ -51,7 +56,7 @@ public final class MainActivity extends Activity {
     private MapHost map;
     private boolean nextScenario3D=true;
     boolean current3D(){return map!=null&&map.is3D();}
-    void setNextScenario3D(boolean value){nextScenario3D=value;}
+    void setNextScenario3D(boolean value){nextScenario3D=true;}
     private LinearLayout panel,root,commandDock,panelShell,primaryActions;
     private FrameLayout body;
     private World navigatorWorld;
@@ -107,7 +112,7 @@ public final class MainActivity extends Activity {
     final int ink=UiTheme.INK,paper=UiTheme.TEXT,gold=UiTheme.JADE,muted=UiTheme.MUTED;
 
     @Override public void onCreate(Bundle state) {
-        super.onCreate(state);uiReads=new UiReadTask(this);windowSurfaceRecovery=new WindowSurfaceRecovery(getWindow());gameHost=((GameApplication)getApplication()).host();boolean coldStart=state==null;ui.read(state);
+        super.onCreate(state);latency.start();sounds=((GameApplication)getApplication()).sounds();sounds.attach(this);uiReads=new UiReadTask(this);windowSurfaceRecovery=new WindowSurfaceRecovery(getWindow());gameHost=((GameApplication)getApplication()).host();boolean coldStart=state==null;ui.read(state);
         applyOrientationPreference();
         String restoreError=null;boolean restored=false;
         AtomicFile autosave=file("auto");
@@ -197,7 +202,7 @@ public final class MainActivity extends Activity {
         arrangeHud.run();hud.addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->{if(r-l!=or-ol)arrangeHud.run();});
         mapRevisionNotice=text("",11,gold);mapRevisionNotice.setTag("map.revision.notice");mapRevisionNotice.setPadding(dp(12),dp(3),dp(12),dp(3));
         mapRevisionNotice.setOnClickListener(v->message("地图存档版本",NationalMap.compatibilityNotice(world)));root.addView(mapRevisionNotice);
-        body=new FrameLayout(this);if(map!=null)map.release();map=new MapHost(this,new MapView.TileListener(){public void tap(Hex h){onTile(h);}public void unit(int id,Hex h){onUnitTile(id,h);}});body.addView(map,new FrameLayout.LayoutParams(-1,-1));map.setUnitDrop(this::dropUnit);refreshTerritoryToggle();refreshGridToggle();
+        body=new FrameLayout(this);if(map!=null)map.release();map=new MapHost(this,new MapHost.TileListener(){public void tap(Hex h){onTile(h);}public void unit(int id,Hex h){onUnitTile(id,h);}});body.addView(map,new FrameLayout.LayoutParams(-1,-1));map.setUnitDrop(this::dropUnit);refreshTerritoryToggle();refreshGridToggle();
         panelShell=new LinearLayout(this);panelShell.setOrientation(LinearLayout.VERTICAL);panelShell.setClickable(true);UiTheme.panel(panelShell);
         panelShell.setVisibility(View.GONE);body.addView(panelShell);
         LinearLayout panelHeader=new LinearLayout(this);panelHeader.setPadding(dp(12),0,dp(4),0);panelHeader.setGravity(Gravity.CENTER_VERTICAL);
@@ -246,7 +251,9 @@ public final class MainActivity extends Activity {
         if(state!=null){Hex h=new Hex(state.getInt("selectedQ",-1),state.getInt("selectedR",-1));selected=world.inside(h)?h:null;moving=state.getInt("moving",-1);}
         if(state!=null)unitCommand=state.getString("unitCommand","select");
         if(state!=null&&state.containsKey("routeQ")&&world.unit(moving)!=null)pendingMarch=state.getBoolean("routeMove")?world.marches.previewMove(moving,new Hex(state.getInt("routeQ"),state.getInt("routeR"))):state.getInt("routeCity",-1)>=0?world.marches.previewCity(moving,state.getInt("routeCity")):world.marches.preview(moving,new Hex(state.getInt("routeQ"),state.getInt("routeR")));
-        refresh();if(state!=null){map.restoreCamera(state);if(!aiRunning&&!ui.summary.isEmpty()){turnBanner.setText("旬结算完成 · 点此查看重要变化与待处理");turnBanner.setVisibility(View.VISIBLE);}}
+        // Restore the viewport before setWorld starts its first CPU mesh request.
+        if(state!=null)map.restoreCamera(state);
+        refresh();if(state!=null){if(!aiRunning&&!ui.summary.isEmpty()){turnBanner.setText("旬结算完成 · 点此查看重要变化与待处理");turnBanner.setVisibility(View.VISIBLE);}}
         if(turnWork!=null)turnWork.observe(this::finishTurn);
         if(state!=null&&!aiRunning&&ui.formDraft.getBoolean("open"))root.post(this::restoreFormDraft);
         if(restored&&coldStart)Toast.makeText(this,"已恢复自动存档 · "+world.date(),Toast.LENGTH_SHORT).show();
@@ -316,16 +323,23 @@ public final class MainActivity extends Activity {
         }
         navigationDialog.show();UiTheme.dialog(navigationDialog);
     }
+    private void showSoundSettings(){
+        LinearLayout panel=new LinearLayout(this);panel.setOrientation(LinearLayout.VERTICAL);panel.setPadding(dp(18),dp(8),dp(18),dp(8));
+        CheckBox mute=new CheckBox(this);mute.setText("静音");mute.setTextColor(paper);mute.setChecked(sounds.muted());mute.setOnCheckedChangeListener((v,checked)->sounds.muted(checked));panel.addView(mute);
+        TextView label=text("音效音量 "+sounds.volume()+"%",15,paper);panel.addView(label);
+        SeekBar volume=new SeekBar(this);volume.setMax(100);volume.setProgress(sounds.volume());volume.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){public void onProgressChanged(SeekBar b,int value,boolean user){if(user){sounds.volume(value);label.setText("音效音量 "+value+"%");}}public void onStartTrackingTouch(SeekBar b){}public void onStopTrackingTouch(SeekBar b){sounds.ui();}});panel.addView(volume);
+        panel.addView(button("试听音效",v->sounds.ui()));AlertDialog dialog=new AlertDialog.Builder(this).setTitle("音效与音量").setView(panel).setPositiveButton("完成",null).create();trackDialog(dialog);dialog.show();UiTheme.dialog(dialog);
+    }
     private void showMapTools(){
         if(mapPick!=null)cancelMapPick();
-        String[] labels={"全图","定位","导航图","屏幕方向","战报","操作说明","战斗震动","兵种与建筑图例","领地着色 / 前线","势力领地图例","军团托管","全国城池总览","部队标注 / 双条","2D / 3D 试验模式","渲染诊断","3D 镜头回正","3D 反向查看","3D 画质",map.gridShown()?"棋盘网格 · 已开启":"棋盘网格 · 已关闭","山河地标"};
+        String[] labels={"全图","定位","导航图","屏幕方向","战报","操作说明","战斗震动","兵种与建筑图例","领地着色 / 前线","势力领地图例","军团托管","全国城池总览","部队标注 / 双条","音效与音量","渲染诊断","3D 镜头回正","3D 反向查看","3D 画质",map.gridShown()?"棋盘网格 · 已开启":"棋盘网格 · 已关闭","山河地标"};
         new AlertDialog.Builder(this).setTitle("地图视图").setItems(labels,(d,index)->{
             if(aiRunning&&index!=0&&index!=1&&index!=2&&index!=3&&index!=12&&index!=18){if(index==13)message("渲染模式","请等待本旬演示结束后切换，避免中断当前事件游标。");return;}
             if(index==0){closePanel();map.post(map::fit);}
             else if(index==1){closePanel();if(selected!=null)map.post(()->map.focus(selected));}
             else if(index==2){closePanel();map.toggleNavigator();}
             else if(index==3)showOrientationPicker();
-            else if(index==13){new AlertDialog.Builder(this).setTitle("地图渲染模式").setSingleChoiceItems(new String[]{"2D · 兼容模式","3D · 战略地图（试验）"},map.is3D()?1:0,(dialog,which)->{map.switchMode(which==1);dialog.dismiss();}).setNegativeButton("返回",null).show();}
+            else if(index==13){showSoundSettings();}
             else if(index==18){map.setGridShown(!map.gridShown());refreshGridToggle();}
             else if(index==19)showLandmarkPicker();
             else if(index==17){new AlertDialog.Builder(this).setTitle("3D 画质（切换时重载场景）").setSingleChoiceItems(new String[]{SceneQuality.LOW.label,SceneQuality.MEDIUM.label,SceneQuality.HIGH.label},map.quality().ordinal(),(dialog,which)->{map.quality(SceneQuality.values()[which]);dialog.dismiss();}).setNegativeButton("返回",null).show();}
@@ -420,8 +434,8 @@ public final class MainActivity extends Activity {
     int dp(float n){return Math.round(n*getResources().getDisplayMetrics().density);}
     TextView text(String value,int size,int color){TextView t=new TextView(this);t.setText(value);t.setTextSize(size);t.setTextColor(color);t.setGravity(Gravity.CENTER_VERTICAL);UiTheme.text(t);return t;}
     Button button(String value,View.OnClickListener action){
-        Button b=CompactButtons.create(this);b.setText(value);
-        b.setOnClickListener(v->{if(!aiRunning||value.equals("收起")||value.equals("展开")||value.equals("全图")||value.equals("视图"))action.onClick(v);});return b;
+        Button b=CompactButtons.create(this);b.setText(value);b.setSoundEffectsEnabled(false);
+        b.setOnClickListener(v->{if(!aiRunning||value.equals("地块信息")||value.equals("收起")||value.equals("展开")||value.equals("全图")||value.equals("视图")){if(sounds!=null)sounds.ui();action.onClick(v);}});return b;
     }
     private void line(String value,int size,int color){TextView t=text(value,size,color);t.setPadding(0,dp(4),0,dp(4));panel.addView(t);}
     private void action(String label,View.OnClickListener click){Button b=button(label,click);b.setEnabled(!aiRunning);panel.addView(b,new LinearLayout.LayoutParams(-1,dp(48)));}
@@ -449,6 +463,7 @@ public final class MainActivity extends Activity {
         selectObject(target.hex,id,false);
     }
     private void onTile(Hex h) {
+        if(!aiRunning&&h!=null&&sounds!=null)sounds.ui();
         if(aiRunning||world.commandsBlocked())return;
         if(mapPick!=null){
             if(h!=null&&pickTargets.contains(h))mapPick.accept(h);
@@ -511,7 +526,7 @@ public final class MainActivity extends Activity {
     private void selectObject(Hex h,int unitId,boolean focus){
         pendingMarch=null;unitCommand="select";mapPick=null;pickTargets=Collections.emptySet();
         selected=h;ui.selectedUnit=unitId;World.Unit unit=selectedUnit();moving=unit!=null&&unit.owner==world.player?unit.id:-1;
-        ui.page="map";ui.panelVisible=unit==null;ui.panelExpanded=false;ui.group="概览";refresh();
+        ui.page="map";ui.panelVisible=unit==null||unit.owner!=world.player;ui.panelExpanded=false;ui.group="概览";refresh();
         if(focus)map.post(()->map.focus(h));if(ui.panelVisible)revealPanel();
     }
     private void clearUnitSelection(){pendingMarch=null;unitCommand="select";moving=-1;ui.selectedUnit=-1;selected=null;closePanel();}
@@ -788,6 +803,7 @@ public final class MainActivity extends Activity {
             summary.addView(state,new LinearLayout.LayoutParams(0,-2,1));
             Button details=button("详情",v->{ui.panelVisible=true;refresh();revealPanel();});details.setTag("unit.details");
             details.setContentDescription("主动查看部队详情");summary.addView(details,new LinearLayout.LayoutParams(dp(56),dp(48)));
+            Button terrain=button("地块信息",v->inspectTerrain(u.hex));terrain.setTag("unit.terrain");summary.addView(terrain,new LinearLayout.LayoutParams(dp(88),dp(48)));
             commandDock.addView(summary,new LinearLayout.LayoutParams(portrait()?-1:0,-2,portrait()?0:1));
             LinearLayout actions=new LinearLayout(this);
             Button march=button("行军",v->{unitCommand="march";ui.panelVisible=false;refresh();});march.setSelected(unitCommand.equals("march"));
@@ -830,7 +846,21 @@ public final class MainActivity extends Activity {
         Button b=button(label,v->{if(!aiRunning&&!world.commandsBlocked())run.run();});b.setSelected(true);b.setEnabled(!aiRunning);
         primaryActions.addView(b,new LinearLayout.LayoutParams(0,dp(48),1));primaryActions.setVisibility(View.VISIBLE);
     }
+    private void inspectTerrain(Hex h){
+        if(h==null||!world.sourceInside(h))return;
+        TerrainPresentation.Detail detail=TerrainPresentation.detail(world,h);
+        StringBuilder body=new StringBuilder(detail.presentation().name()).append(" · ").append(MapCoordinates.display(world,h))
+            .append("\n").append(detail.presentation().description()).append("\n轴坐标 ").append(detail.axial())
+            .append("\n源坐标 ").append(detail.local()).append(" · 全国 ").append(detail.national())
+            .append(detail.infantryCost()>0?"\n步兵基础移动消耗 "+detail.infantryCost():"\n普通步兵不可通行");
+        World.City site=world.cityAt(h);if(site!=null)body.append("\n据点占地：").append(site.name).append(" · ").append(site.kind);
+        for(World.Unit u:world.fieldUnits())if(h.equals(u.hex))body.append("\n占格部队：").append(world.officer(u.officerId).name).append(" · ").append(world.faction(u.owner));
+        if(world.war.fireAt(h)!=null)body.append("\n火场剩余 ").append(world.war.fireAt(h).remaining).append("旬");
+        AlertDialog dialog=new AlertDialog.Builder(this).setTitle("地块信息").setMessage(body.toString()).setPositiveButton("返回部队 / 地图",null).create();trackDialog(dialog);dialog.show();UiTheme.dialog(dialog);
+    }
     private void showSelection(){
+        if(selected!=null&&world.sourceInside(selected)){Button terrain=button("地块信息",v->inspectTerrain(selected));terrain.setTag("map.terrain");primaryActions.addView(terrain,new LinearLayout.LayoutParams(0,dp(48),1));primaryActions.setVisibility(View.VISIBLE);}
+
         World.Unit unit=selectedUnit();World.City city=selected==null?null:world.cityAt(selected);
         if(unit!=null)showUnit(unit);else if(city!=null)showCity(city);else if(selected!=null&&world.domestic.at(selected)!=null){
             Domestic.Facility f=world.domestic.at(selected);panel.addView(visualHeader(f,f.kind.label,world.city(f.cityId).name,64));line("耐久 "+f.hp+"/"+f.maxHp(),14,gold);line(f.remaining==0?f.kind.effect:"建设中 · 剩"+f.remaining+"旬",14,paper);
@@ -1097,6 +1127,7 @@ public final class MainActivity extends Activity {
         action("读取存档",v->saveSlots(true));
         action("设置",v->showSettings());
         action("新游戏 / 选择势力",v->scenarioPicker());
+        action("地图编辑器 · 自定义地图",v->new MapEditorUi(this).show());
         line("天下与管理",16,gold);
         action("地图视图与操作",v->showMapTools());
         action("生卒与继承",v->new LifecycleUi(this,world,this::apply).menu());
@@ -1287,6 +1318,12 @@ public final class MainActivity extends Activity {
         if(turnWork==null)return;TurnWork completed=turnWork;
         if(playback!=null){playback.detach();playback=null;}map.replayFrame(null,0);
         completed.observe(null);gameHost.playbackFinished(completed);turnWork=null;aiRunning=false;bindSession();
+        if(sounds!=null&&completed.before!=null){
+            StateToken token=gameHost.session().state();Map<Integer,Boolean> built=new HashMap<>();for(War.Structure old:completed.before.war.structures())built.put(old.id,old.complete);
+            for(War.Structure structure:world.war.structures())if(structure.owner==world.player&&structure.complete&&Boolean.FALSE.equals(built.get(structure.id)))sounds.committed(token,"completion:s"+structure.id,SoundEffects.Cue.COMPLETE);
+            Map<Integer,Integer> remaining=new HashMap<>();for(Domestic.Facility old:completed.before.domestic.facilities)remaining.put(old.id,old.remaining);
+            for(Domestic.Facility facility:world.domestic.facilities)if(facility.remaining==0&&remaining.getOrDefault(facility.id,0)>0&&world.city(facility.cityId).owner==world.player)sounds.committed(token,"completion:d"+facility.id,SoundEffects.Cue.COMPLETE);
+        }
         if(world.life.pending()){ui.page="map";ui.panelVisible=true;}
         ui.summary=completed.summary+"\n\n视野内已演示行动（"+completed.visibleCount+"项）\n"+completed.actionReport;
         pendingMarch=null;if(world.unit(moving)!=null)selected=world.unit(moving).hex;else moving=-1;
@@ -1324,13 +1361,13 @@ public final class MainActivity extends Activity {
     @Override protected void onDestroy(){
         long started=android.os.SystemClock.uptimeMillis();
         android.util.Log.i("SceneLifecycle","destroy begin");
-        if(uiReads!=null)uiReads.close();
+        latency.stop();if(uiReads!=null)uiReads.close();
         if(saveSlotDialog!=null)saveSlotDialog.dismiss();
         if(scenarioDialog!=null)scenarioDialog.dismiss();
         if(factionPicker!=null)factionPicker.dismiss();
         if(windowSurfaceRecovery!=null){windowSurfaceRecovery.close();windowSurfaceRecovery=null;}
         if(sessionSubscription!=null){sessionSubscription.close();sessionSubscription=null;}
-        if(map!=null)map.release();
+        if(map!=null)map.release();if(sounds!=null)sounds.detach(this);
         android.util.Log.i("SceneLifecycle","destroy renderer released elapsedMs="+(android.os.SystemClock.uptimeMillis()-started));
         if(playback!=null)playback.detach();if(turnProgress!=null)turnProgress.removeCallbacks(turnProgressTicker);if(turnWork!=null){turnWork.observe(null);}if(confirmationDialog!=null)confirmationDialog.dismiss();super.onDestroy();
         android.util.Log.i("SceneLifecycle","destroy complete elapsedMs="+(android.os.SystemClock.uptimeMillis()-started));
@@ -1427,11 +1464,11 @@ public final class MainActivity extends Activity {
             selectAndFocus(world.home().hex);save("auto",false);Toast.makeText(this,"已读取存档 · "+world.date(),Toast.LENGTH_SHORT).show();
         },error->showError("读取失败："+error.getMessage()));
     }
-    @Override protected void onResume(){super.onResume();if(windowSurfaceRecovery!=null)windowSurfaceRecovery.request();if(map!=null)map.resume(true);}
+    @Override protected void onResume(){super.onResume();latency.start();if(sounds!=null)sounds.foreground(this,true);if(windowSurfaceRecovery!=null)windowSurfaceRecovery.request();if(map!=null)map.resume(true);}
     @Override protected void onPause(){
-        long started=android.os.SystemClock.uptimeMillis();
+        long started=android.os.SystemClock.uptimeMillis();latency.stop();
         android.util.Log.i("SceneLifecycle","pause begin");
-        if(map!=null)map.resume(false);
+        if(map!=null)map.resume(false);if(sounds!=null)sounds.foreground(this,false);
         android.util.Log.i("SceneLifecycle","pause frame gate closed elapsedMs="+(android.os.SystemClock.uptimeMillis()-started));
         super.onPause();
         if(world!=null){
