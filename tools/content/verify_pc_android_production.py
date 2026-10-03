@@ -34,6 +34,7 @@ def run(args):
 
     core_names=['PcProductionFlowTest','PcProductionCrewTest','PcDelayedCounterTest','PcDelayedProductionFlowTest','PcProductionSavePolicyTest']
     runtime_names=['PcProductionCrewSessionTest','PcDelayedProductionSessionTest']
+    if getattr(args,'technique_facts',False):runtime_names.append('TechniquePointsFactsTest')
     suites={ 'game.sanguo.core.'+name: ROOT/module/'build/classes/java/test/game/sanguo/core'/ (name+'.class') for module,names in [('core',core_names),('game-runtime',runtime_names)] for name in names }
     fixtures=[('core','CityCommandRewardsTest'),('core','CityActionPlanTest'),('core','ProductionPlanTest'),('game-runtime','CityActionSessionTest'),('game-runtime','ProductionSessionTest')]
     inputs=list(suites.values())+[ROOT/module/'build/classes/java/test/game/sanguo/core'/ (name+'.class') for module,name in fixtures]
@@ -136,4 +137,5 @@ if __name__ == '__main__':
     parser.add_argument('--serial', required=True)
     parser.add_argument('--apk', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--technique-facts',action='store_true',help='Also verify immutable commit/journal point facts from the installed candidate')
     run(parser.parse_args())
