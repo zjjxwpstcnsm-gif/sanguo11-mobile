@@ -26,6 +26,8 @@ public final class World {
         transient List<Hex> footprint=Collections.emptyList();
         public int baseDefense=3000;
         public int recruitReserve=Conscription.RESERVE_CAP, governorId=-1;
+        public int merchantRate;
+        public boolean merchantHarvest;
         public final int[] equipment={12000,12000,12000,12000,0,0,0,0,0};
         public final int[] ships={0,0};
         public City(int id,String name,Hex hex,int owner) { this.id=id;this.name=name;this.hex=hex;this.owner=owner; }
@@ -119,6 +121,7 @@ public final class World {
     public final List<String> log=new ArrayList<>();
     public final SaveExtensions extensions=new SaveExtensions();
     public final OfficerAbilities officerAbilities=new OfficerAbilities(this);
+    public final MerchantMarket merchantMarket=new MerchantMarket(this);
     public final BattleReports reports=new BattleReports(this);
     public final Lifecycle life=new Lifecycle(this);
     public final Domestic domestic=new Domestic(this);
@@ -467,7 +470,7 @@ public final class World {
             c.defense+=cityDefense.recovery(c,SiegeRules.blocked(siege,c));
             reports.note(c.name+"本旬收支：金收入+"+goldIncome+"，粮收入+"+foodIncome+"，驻军实际粮耗"+reportFoodUse+(SiegeRules.blocked(siege,c)?"（围城：本次钱粮收入已减25%）":""));
         }
-        progress.accept("事件、寿命与外交");events.tick();reports.checkpoint("世界事件结算");life.tick();reports.checkpoint("武将生涯结算");diplomacy.tick();reports.checkpoint("外交变化结算");
+        progress.accept("事件、寿命与外交");merchantMarket.beforeWeather();events.tick();merchantMarket.tick();reports.checkpoint("世界事件结算");life.tick();reports.checkpoint("武将生涯结算");diplomacy.tick();reports.checkpoint("外交变化结算");
     }
     private void reset(int owner) {
         this.actionPoints[owner] = 60;

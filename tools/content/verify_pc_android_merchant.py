@@ -69,7 +69,7 @@ def run(args):
    (output/'managed-opening.log').write_bytes(result)
    if b'PASS PcOfficerStateTest opening=' not in result:raise ValueError('Managed opening generation failed')
    opening=cmd('exec-out','cat',opening_remote);(output/'managed190.sg11').write_bytes(opening)
-   report['managed_opening']=dict(path=str(output/'managed190.sg11'),sha256=sha(opening),bytes=len(opening),scenario='coalition-190',player=1,seed=23,save_version=34,source='Exact installed APK ordinary ScenarioCatalog.load on ART')
+   report['managed_opening']=dict(path=str(output/'managed190.sg11'),sha256=sha(opening),bytes=len(opening),scenario='coalition-190',player=1,seed=23,save_version=int.from_bytes(opening[4:8],'big'),source='Exact installed APK ordinary ScenarioCatalog.load on ART')
   report['rules_passed']=True
  finally:
   try:

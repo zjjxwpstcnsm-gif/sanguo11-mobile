@@ -230,7 +230,7 @@ public final class TurnJournal {
             if(a instanceof Domestic.Mission){Domestic.Mission m=(Domestic.Mission)a,n=(Domestic.Mission)b;return Objects.equals(m.waiting,n.waiting)&&m.stopped==n.stopped&&m.transport==n.transport&&m.targetCity==n.targetCity;}
             return true;
         }
-        if(left instanceof World.City){World.City a=(World.City)left,b=(World.City)right;return a.owner==b.owner&&a.gold==b.gold&&a.food==b.food&&a.troops==b.troops&&a.order==b.order&&a.morale==b.morale&&a.defense==b.defense&&a.kind==b.kind&&Arrays.equals(a.equipment,b.equipment)&&Arrays.equals(a.ships,b.ships);}
+        if(left instanceof World.City){World.City a=(World.City)left,b=(World.City)right;return a.owner==b.owner&&a.gold==b.gold&&a.food==b.food&&a.troops==b.troops&&a.order==b.order&&a.morale==b.morale&&a.defense==b.defense&&a.kind==b.kind&&a.merchantRate==b.merchantRate&&a.merchantHarvest==b.merchantHarvest&&Arrays.equals(a.equipment,b.equipment)&&Arrays.equals(a.ships,b.ships);}
         if(left instanceof Domestic.Facility){Domestic.Facility a=(Domestic.Facility)left,b=(Domestic.Facility)right;return a.hp==b.hp&&a.builderId==b.builderId&&a.remaining==b.remaining&&a.level==b.level&&a.upgradeTo==b.upgradeTo;}
         if(left instanceof War.Structure){War.Structure a=(War.Structure)left,b=(War.Structure)right;return a.owner==b.owner&&a.kind==b.kind&&a.hp==b.hp&&a.builder==b.builder&&a.complete==b.complete&&a.direction==b.direction;}
         War.Fire a=(War.Fire)left,b=(War.Fire)right;return a.owner==b.owner&&a.remaining==b.remaining&&a.power==b.power&&a.trap==b.trap;
@@ -253,7 +253,7 @@ public final class TurnJournal {
         n.wounded=u.wounded;n.woundRemainder=u.woundRemainder;n.gold=u.gold;n.energy=u.energy;n.acted=u.acted;n.status=u.status;n.statusTurns=u.statusTurns;n.burning=u.burning;n.burningOwner=u.burningOwner;n.burningPower=u.burningPower;
         n.deputies=u.deputies.clone();n.ship=u.ship;n.movementBudget=u.movementBudget;n.movementSpent=u.movementSpent;return n;
     }
-    private static World.City copyCity(World.City c){World.City n=new World.City(c.id,c.name,c.hex,c.owner);n.gold=c.gold;n.food=c.food;n.troops=c.troops;n.order=c.order;n.morale=c.morale;n.defense=c.defense;n.kind=c.kind;n.baseDefense=c.baseDefense;n.recruitReserve=c.recruitReserve;n.governorId=c.governorId;System.arraycopy(c.equipment,0,n.equipment,0,c.equipment.length);System.arraycopy(c.ships,0,n.ships,0,c.ships.length);return n;}
+    private static World.City copyCity(World.City c){World.City n=new World.City(c.id,c.name,c.hex,c.owner);n.gold=c.gold;n.food=c.food;n.troops=c.troops;n.order=c.order;n.morale=c.morale;n.defense=c.defense;n.kind=c.kind;n.baseDefense=c.baseDefense;n.recruitReserve=c.recruitReserve;n.governorId=c.governorId;n.merchantRate=c.merchantRate;n.merchantHarvest=c.merchantHarvest;System.arraycopy(c.equipment,0,n.equipment,0,c.equipment.length);System.arraycopy(c.ships,0,n.ships,0,c.ships.length);return n;}
     private static Domestic.Facility copyFacility(Domestic.Facility f){Domestic.Facility n=new Domestic.Facility(f.id,f.cityId,f.kind,f.hex,f.builderId,f.remaining);n.level=f.level;n.upgradeTo=f.upgradeTo;n.hp=f.hp;n.lastUseTurn=f.lastUseTurn;return n;}
     private static War.Structure copyStructure(War.Structure s){War.Structure n=new War.Structure(s.id,s.owner,s.kind,s.hex,s.hp);n.builder=s.builder;n.direction=s.direction;n.complete=s.complete;return n;}
     private static War.Fire copyFire(War.Fire f){War.Fire n=new War.Fire(f.hex,f.owner,f.remaining);n.power=f.power;n.trap=f.trap;return n;}

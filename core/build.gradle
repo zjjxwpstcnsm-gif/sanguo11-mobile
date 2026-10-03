@@ -1,4 +1,12 @@
 plugins { id 'java-library' }
+tasks.register('verifyPcMerchantMarket', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcMerchantMarketTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyPcMerchantMarket' }
+tasks.named('test') { dependsOn 'verifyPcMerchantMarket' }
 tasks.register('verifyPcOfficerRanks', JavaExec) {
     dependsOn testClasses
     classpath = sourceSets.test.runtimeClasspath

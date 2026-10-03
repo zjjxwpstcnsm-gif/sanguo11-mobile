@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=34, MAX_BYTES=32*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=35, MAX_BYTES=32*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -66,12 +66,12 @@ public final class SaveCodec {
         w.marches.writeIntents(d);
         w.loyalty.write(d);w.recruitment.writeField(d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
-        w.reports.write(d);w.governance.write(d);CustomMapSave.write(w,d);if(w.officerAbilities.enabled())w.officerAbilities.write(d);w.extensions.write(d);
+        w.reports.write(d);w.governance.write(d);CustomMapSave.write(w,d);if(w.officerAbilities.enabled())w.officerAbilities.write(d);if(w.merchantMarket.enabled())w.merchantMarket.write(d);w.extensions.write(d);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
         CRC32 crc=new CRC32();crc.update(payload);
         bytes=new ByteArrayOutputStream();d=new DataOutputStream(bytes);
-        d.writeInt(MAGIC);d.writeInt(w.officerAbilities.enabled()?VERSION:33);d.writeInt(payload.length);d.writeLong(crc.getValue());d.write(payload);d.flush();
+        d.writeInt(MAGIC);d.writeInt(w.merchantMarket.enabled()?VERSION:w.officerAbilities.enabled()?34:33);d.writeInt(payload.length);d.writeLong(crc.getValue());d.write(payload);d.flush();
         return bytes.toByteArray();
     }
     public static World decode(byte[] data) throws IOException {
@@ -150,6 +150,7 @@ public final class SaveCodec {
         if(version>=32)w.governance.read(d);
         if(version>=33)CustomMapSave.read(w,d);
         if(version>=34)w.officerAbilities.read(d);
+        if(version>=35)w.merchantMarket.read(d);
         w.extensions.read(d);
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         w.districts.migrateLegacySites();
@@ -160,6 +161,7 @@ public final class SaveCodec {
     private static int bounded(int n,int min,int max)throws IOException { if(n<min||n>max)throw new IOException("存档字段越界");return n; }
     private static void require(boolean ok,String message)throws IOException { if(!ok)throw new IOException(message); }
     public static void validate(World w)throws IOException {
+        w.merchantMarket.validate();
         CustomOfficers.validateSnapshot(w);
         w.invalidateSiteIndex();SiteFootprint.validate(w);CustomMapSave.validate(w);
         w.aiOrders.validate();

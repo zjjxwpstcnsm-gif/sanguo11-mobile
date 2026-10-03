@@ -1,7 +1,7 @@
 package game.sanguo.core;
 
-/** Pinned original merchant arithmetic. Only merit is wired into gameplay yet;
- * price state, current-ability modifiers and quantity/save integration are pending. */
+/** Pinned original merchant arithmetic and price branches. The native RNG oracle
+ * and the existing engine's saved RNG implement the same explicit draw interface. */
 final class PcMerchantRules {
     private PcMerchantRules() {}
     static final int MERIT_AWARD=50, MERIT_CAP=60000;
@@ -35,14 +35,18 @@ final class PcMerchantRules {
     }
     private static final int[][] MONTHS={{50,10,2},{40,10,3},{40,10,3},{40,10,2},{40,10,2},{30,10,3},
             {60,10,2},{50,10,3},{50,10,3},{50,10,3},{50,10,2},{50,10,2}};
+    interface Draws { int uniform(int bound); boolean percent(int chance); }
+    static int initialRate(int month,int priorRate,Draws random) {
+        if(month<1||month>12)return priorRate;
+        int[] row=MONTHS[month-1];return row[0]+row[1]*random.uniform(row[2]);
+    }
     static Price initial(int month,int priorRate,int seed) {
         Random random=new Random(seed);
-        if(month<1||month>12)return new Price(priorRate,random);
-        int[] row=MONTHS[month-1];return new Price(row[0]+row[1]*random.uniform(row[2]),random);
+        return new Price(initialRate(month,priorRate,random),random);
     }
-    static Price monthly(int rate,int conditionBits,int seed) {
+    static int monthlyRate(int rate,int conditionBits,Draws random) {
         if(rate<0||rate>255)throw new IllegalArgumentException("Native rate byte domain required");
-        Random random=new Random(seed);int next;
+        int next;
         if((conditionBits&3)!=0)next=30+10*random.uniform(2); // Plague or locust, before harvest.
         else if((conditionBits&4)!=0)next=60+10*random.uniform(2);
         else if(rate==30)next=random.percent(50)?30:40;
@@ -51,13 +55,16 @@ final class PcMerchantRules {
             int direction=rate<=40?10:-10;
             next=random.percent(40)?rate+direction:random.percent(40)?rate-direction:rate;
         } else next=rate+10*random.uniform(3)-10;
-        return new Price(Math.max(30,Math.min(70,next)),random);
+        return Math.max(30,Math.min(70,next));
     }
-    static final class Random {
+    static Price monthly(int rate,int conditionBits,int seed) {
+        Random random=new Random(seed);return new Price(monthlyRate(rate,conditionBits,random),random);
+    }
+    static final class Random implements Draws {
         int state,draws;
         Random(int seed){state=seed;}
         private int next(){state=state*0x6c078965+0x3039;draws++;return state>>>16;}
-        int uniform(int bound){return bound<2||(bound&0xffff)==0?0:next()%(bound&0xffff);}
-        boolean percent(int chance){return chance>0&&next()%100<chance;}
+        public int uniform(int bound){return bound<2||(bound&0xffff)==0?0:next()%(bound&0xffff);}
+        public boolean percent(int chance){return chance>0&&next()%100<chance;}
     }
 }

@@ -63,7 +63,7 @@ final class CampaignSave {
             if(p.tech!=null){require(researching.add(p.owner)&&!w.campaign.has(p.owner,p.tech),"重复技巧研究");require(w.campaign.grandfathered(p.owner,p.tech)||p.tech.prerequisite==null||w.campaign.has(p.owner,p.tech.prerequisite),"研究前置缺失");require(o.otherTaskTurns<=p.tech.turns,"研究工期越界");}
             else require(o.otherTaskTurns<=3,"培养工期越界");
         }
-        bound(w.campaign.traded.size(),0,1000);for(Map.Entry<Integer,Integer> e:w.campaign.traded.entrySet()){require(w.city(e.getKey())!=null,"商人城池引用错误");bound(e.getValue(),1000,20000);require(e.getValue()%1000==0,"交易数量错误");}
+        bound(w.campaign.traded.size(),0,1000);for(Map.Entry<Integer,Integer> e:w.campaign.traded.entrySet()){require(w.city(e.getKey())!=null,"商人城池引用错误");bound(e.getValue(),w.merchantMarket.enabled()?1:1000,w.merchantMarket.enabled()?1000000:20000);require(w.merchantMarket.enabled()||e.getValue()%1000==0,"交易数量错误");}
         Set<Integer> ids=new HashSet<>();Set<Hex> occupied=new HashSet<>();bound(w.war.nextStructureId,1,10000000);bound(w.war.structures.size(),0,1000);
         for(War.Structure s:w.war.structures){bound(s.id,1,w.war.nextStructureId-1);bound(s.owner,s.kind==War.StructureKind.DAM?-1:0,w.factions.length-1);require(s.kind!=null&&ids.add(s.id)&&occupied.add(s.hex)&&(s.kind==War.StructureKind.FIRE_SHIP?w.army.water(s.hex):w.cost(s.hex,World.Weapon.SPEAR)>0)&&w.cityAt(s.hex)==null&&w.unitAt(s.hex)==null&&w.domestic.at(s.hex)==null,"军事设施重叠或位置错误");bound(s.hp,1,s.kind.hp);}
         occupied.clear();bound(w.war.fires.size(),0,w.width*w.height);

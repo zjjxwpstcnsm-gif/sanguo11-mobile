@@ -14,10 +14,15 @@ public final class TradePreview {
    * quotaRemaining is zero for non-city sites or after any trade, otherwise maximum,
    * not maximum minus volume. Neither quantityValid nor availableMaximum replaces allowed(). */
   public final int requestedFood,minimum,maximum,step,pricePerThousand,tradedBefore,quotaRemaining,availableMaximum,goldBefore,foodBefore,goldCapacity,foodCapacity,actionPointsBefore,actionPointsCost;
-  public final boolean quantityValid;
+  public final boolean quantityValid,nativePricing;
+  /** Native byte rate and politics before/after this command's XP; -1 for legacy pricing. */
+  public final int marketRate,pricingPoliticsBefore,pricingPoliticsAfter;
+  /** Native integer quote after XP before the final credit-cap clamp. quotedGold is the actual settlement amount. */
+  public final long rawGoldQuote;
   /** Arithmetic quote; only payable if quantityValid and the whole preview is allowed. */
   public final long quotedGold;
-  public Quote(int requestedFood,int minimum,int maximum,int step,int pricePerThousand,int tradedBefore,int quotaRemaining,int availableMaximum,int goldBefore,int foodBefore,int goldCapacity,int foodCapacity,int actionPointsBefore,int actionPointsCost,boolean quantityValid,long quotedGold){this.requestedFood=requestedFood;this.minimum=minimum;this.maximum=maximum;this.step=step;this.pricePerThousand=pricePerThousand;this.tradedBefore=tradedBefore;this.quotaRemaining=quotaRemaining;this.availableMaximum=availableMaximum;this.goldBefore=goldBefore;this.foodBefore=foodBefore;this.goldCapacity=goldCapacity;this.foodCapacity=foodCapacity;this.actionPointsBefore=actionPointsBefore;this.actionPointsCost=actionPointsCost;this.quantityValid=quantityValid;this.quotedGold=quotedGold;}
+  public Quote(int requestedFood,int minimum,int maximum,int step,int pricePerThousand,int tradedBefore,int quotaRemaining,int availableMaximum,int goldBefore,int foodBefore,int goldCapacity,int foodCapacity,int actionPointsBefore,int actionPointsCost,boolean quantityValid,long quotedGold){this(requestedFood,minimum,maximum,step,pricePerThousand,tradedBefore,quotaRemaining,availableMaximum,goldBefore,foodBefore,goldCapacity,foodCapacity,actionPointsBefore,actionPointsCost,quantityValid,quotedGold,false,-1,-1,-1,quotedGold);}
+  public Quote(int requestedFood,int minimum,int maximum,int step,int pricePerThousand,int tradedBefore,int quotaRemaining,int availableMaximum,int goldBefore,int foodBefore,int goldCapacity,int foodCapacity,int actionPointsBefore,int actionPointsCost,boolean quantityValid,long quotedGold,boolean nativePricing,int marketRate,int pricingPoliticsBefore,int pricingPoliticsAfter,long rawGoldQuote){this.requestedFood=requestedFood;this.minimum=minimum;this.maximum=maximum;this.step=step;this.pricePerThousand=pricePerThousand;this.tradedBefore=tradedBefore;this.quotaRemaining=quotaRemaining;this.availableMaximum=availableMaximum;this.goldBefore=goldBefore;this.foodBefore=foodBefore;this.goldCapacity=goldCapacity;this.foodCapacity=foodCapacity;this.actionPointsBefore=actionPointsBefore;this.actionPointsCost=actionPointsCost;this.quantityValid=quantityValid;this.quotedGold=quotedGold;this.nativePricing=nativePricing;this.marketRate=marketRate;this.pricingPoliticsBefore=pricingPoliticsBefore;this.pricingPoliticsAfter=pricingPoliticsAfter;this.rawGoldQuote=rawGoldQuote;}
  }
  public static final class Effects {
   public final int goldAfter,foodAfter,actionPointsAfter,tradedAfter,meritBefore,meritAfter;

@@ -209,8 +209,13 @@ public final class Districts {
         List<World.Officer> idle=w.idle(c);if(idle.isEmpty())return;
         World.Officer admin=idle.stream().max(Comparator.comparingInt(o->o.politics)).get();
         if(c.kind==World.SiteKind.CITY&&w.campaign.traded(c.id)==0&&new DistrictManagement(w).famineTurn(c)<=3){
-            int amount=Math.min(20000,Math.min(w.campaign.foodCap(c)-c.food,Math.max(0,c.gold-1000)/w.campaign.foodPrice(c.id,true)*1000))/1000*1000;
-            if(amount>=1000&&w.actionPoints[w.active]>=PcCityActionCosts.TRADE&&w.campaign.trade(c.id,admin.id,true,amount).ok)return;
+            int amount;
+            if(w.merchantMarket.enabled()){
+                TradePlan quote=w.campaign.previewTrade(c.id,admin.id,TradePlan.Operation.BUY,20000);amount=Math.min(20000,quote.availableMaximum);
+                // Retain the delegated reserve and use integer source quotes, not a unit-price inverse.
+                int low=0,high=amount;while(low<high){int mid=low+(high-low+1)/2;TradePlan p=w.campaign.previewTrade(c.id,admin.id,TradePlan.Operation.BUY,mid);if(p.quotedGold<=Math.max(0,c.gold-1000))low=mid;else high=mid-1;}amount=low;
+            }else amount=Math.min(20000,Math.min(w.campaign.foodCap(c)-c.food,Math.max(0,c.gold-1000)/w.campaign.foodPrice(c.id,true)*1000))/1000*1000;
+            if(amount>=(w.merchantMarket.enabled()?1:1000)&&w.actionPoints[w.active]>=PcCityActionCosts.TRADE&&w.campaign.trade(c.id,admin.id,true,amount).ok)return;
         }
         StrategicAi civil=new StrategicAi(w);StrategicAi.Decision urgent=civil.plan(c.id,true);
         if(urgent!=null&&civil.execute(urgent).ok)return;

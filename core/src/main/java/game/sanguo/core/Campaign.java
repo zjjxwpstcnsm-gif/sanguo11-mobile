@@ -242,8 +242,9 @@ public final class Campaign {
         }
         return this.w.success(o.name + "在" + target.name + "散布流言" + (success ? "，治安与武将忠诚下降" : "，被识破"));
     }
-    /** Same-turn ask/bid spread and per-city volume prevent profitable round-trip trading. */
+    /** Legacy price query. Native pricing requires an actor and the complete TradePlan. */
     public int foodPrice(int city,boolean buy){
+        if(w.merchantMarket.enabled())throw new IllegalStateException("新行情须由执行武将的交易预览报价");
         World.City c=w.city(city);if(c==null)return 0;
         int month=(w.startMonth-1+w.turn/3)%12;
         int ask=100+((month/3+c.id%3)%4)*20;return buy?ask:ask*4/5;
@@ -336,7 +337,10 @@ public final class Campaign {
         for(World.City c:w.cities)if(c.owner==w.active){
             List<World.Officer> idle=w.idle(c);if(idle.isEmpty())continue;World.Officer o=idle.get(0);
             if(c.defense<2000&&c.gold>=1000){repair(c.id,o.id);continue;}
-            if(c.kind==World.SiteKind.CITY&&traded(c.id)==0&&c.food<6000&&c.gold>=2000&&trade(c.id,o.id,true,5000).ok)continue;
+            if(c.kind==World.SiteKind.CITY&&traded(c.id)==0&&c.food<6000&&c.gold>=2000){
+                int amount=w.merchantMarket.enabled()?Math.min(5000,previewTrade(c.id,o.id,TradePlan.Operation.BUY,5000).availableMaximum):5000;
+                if(amount>0&&trade(c.id,o.id,true,amount).ok)continue;
+            }
             if(c.gold>=5000)for(Tech tech:Tech.researchable())if(researchError(c.id,o.id,tech)==null){research(c.id,o.id,tech);break;}
         }
     }

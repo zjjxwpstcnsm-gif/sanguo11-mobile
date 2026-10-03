@@ -94,7 +94,7 @@ public final class WorldEvents {
             if((month-1)%3==0){
                 if(nextInt(100)<4)beginDisaster(c.id,Disaster.PLAGUE);
                 if(month!=10&&nextInt(100)<4)beginDisaster(c.id,Disaster.LOCUST);
-                if(month==7&&nextInt(100)<harvestChance(c.id)){int food=w.domestic.foodIncome(c.id,w.turn);c.food=Math.min(w.campaign.foodCap(c),c.food+food);w.note(c.name+"丰收，增加"+food+"粮（受容量限制）");}
+                if(month==7&&nextInt(100)<harvestChance(c.id)){int food=w.domestic.foodIncome(c.id,w.turn);c.food=Math.min(w.campaign.foodCap(c),c.food+food);w.merchantMarket.harvest(c);w.note(c.name+"丰收，增加"+food+"粮（受容量限制）");}
             }
         }
     }
