@@ -445,5 +445,25 @@
     "independent_canonical_build_pending": true,
     "arm_device_verified": false,
     "official_openings_verified": false
+  },
+  "r32_report_projection_candidate": {
+    "date": "2026-10-04",
+    "production_source_commit": "1fa9491",
+    "source_snapshot": "out/parity/checkpoint-20261004-r32-performance-1fa9491/source",
+    "source_file_count": 4247,
+    "source_bytes": 335967526,
+    "integration_paths": 9,
+    "other_paths_sha_unchanged": 4238,
+    "apk_sha256": "aeaf1263f903773d55889d88682c0935a4172f7b77f9526200c1b166cd96d98d",
+    "apk_bytes": 87536286,
+    "save_schema_unchanged": 37,
+    "rules_and_rng_unchanged": true,
+    "art_report_compression_checks": 75,
+    "art_snapshot_readonly_checks": 180,
+    "hud_checks": 27,
+    "all_completed_user_files_exact": true,
+    "normal_nine_turn_production_flow": "running_not_passed",
+    "last_complete_combination": "R29 f1741671",
+    "final_new_package_acceptance_complete": false
   }
 }
