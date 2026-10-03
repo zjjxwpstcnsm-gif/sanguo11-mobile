@@ -41,3 +41,5 @@ python3 tools/content/pack_pc_ability_training_evidence.py \
   --completion out/parity/ability-completion-new/native-completion.json \
   --output out/parity/ability-training-reproduced.json.gz
 ```
+
+倒计时补充：受控初始化1100个原officer构造器后，实际59a862→59a89d尾循环观察到目标158字段3→2→1→0，RNG保持。随后599ff7→59a00c的准备派发探针三次均未改变XP或task41；未验证其准备输入／派发边界，所以不能把三个计数下降称为正常培养完成。`ability-countdown-source-20261004/{first.log,observation.json}`保留结果，后续需指令追踪解释；与完整完成函数480／24／276的直接入口证据明确分开。没有改Android任务或保存。

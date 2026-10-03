@@ -949,3 +949,5 @@ R32默认3D同aeaf856／523.55秒PASS，用户7文件exact；追加培养原参�
 R32原目录独立重建：a1438路径SHA回写／4247其他不变，完整4255文件336018236B及4JNI快照；完整Gitbundle206660322B/73c4d22a…1608f验证通过，ignoredJNI在snapshot不在bundle。原目录76任务1m18s构建成功，静态架构PASS，新APK a31dac15fc04c8b6112d8b186f6f2b3846b8cb791ebbd2a87265f432061aa02f，test e3b2badc…40da。265app类仅revision字串差异，资源/native全等；旧GitHEAD元数据保留并明确不作为源基线。已实际安装readbackexact，5554默认3D独立运行，不提前标PASS／恢复。
 
 R32新a31独立UI默认856／551.05、来源城市62／131.54PASS，原7恢复exact。首次city错误测试包名被身份预检拒绝，finally恢复后按真实清单包名成功；失败保留。正常九旬生产UI独占5554运行。新增verify_pc_ability_completion_native原完整非玩家STAT480／4拒绝、APT48准入24完成、SKILL213准入276完成，full3MiB/XP/base/count/task/RNG精确；最终重复JSON fdc8fc19…eb46。原 hidden nativeIDs≥48每例显式slot0计数，仅验证地址，不冒称随机默认已闭合。初次APT类别循环组装错误及hook措辞原记录保留，最终更正。原开始三类静态158=3和PE20，完整费时取消失守全派发未验证，不改继承base培养和旧保存。
+
+原1100officer倒计时尾循环实际3→2→1→0；其后准备派发探针零计数仍无XP／任务变化，明确未通过正常完成验证，保留first.log/observation，不凭3ticks声称正常原培养已闭合。完整完成函数与这个未闭合派发证据分开，无安卓改动。完整source95d1d4f Gitbundle206712774B/192822ba…635eb2验证通过，ignoredJNI仍在完整快照。

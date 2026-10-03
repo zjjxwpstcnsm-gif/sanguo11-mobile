@@ -537,7 +537,14 @@
     "complete_nonhuman_functions_verified": true,
     "final_complete_function_observation_sha256": "fdc8fc19d13fa8d424b57f32d1b30bbd5a9863bcaef95f4311139d3dedcdeb46",
     "hidden_counter_slot0_explicitly_selected": true,
-    "hidden_selection_rng_verified": false
+    "hidden_selection_rng_verified": false,
+    "original1100_officer_countdown_observed": [
+      2,
+      1,
+      0
+    ],
+    "readiness_dispatch_probe_award_verified": false,
+    "readiness_dispatch_probe_status": "counter reaches0 but XP/task unchanged; prepared input or dispatch boundary pending trace"
   },
   "r32_canonical_rebuild": {
     "date": "2026-10-04",
