@@ -28,11 +28,12 @@ public final class GameSession implements GameApi, AutoCloseable {
     private boolean closed,publishing;
     private TurnTicket turn;
     private final Map<World,StateToken> views=new WeakHashMap<>();
+    private int[] committedPoints;
     private final List<Consumer<GameEvent>> listeners=new ArrayList<>();
     private final Consumer<RuntimeException> observerFailure;
     public GameSession(World initial)throws IOException{this(initial,e->System.err.println("Session observer failed: "+e));}
     public GameSession(World initial,Consumer<RuntimeException> observerFailure)throws IOException{
-        this.observerFailure=Objects.requireNonNull(observerFailure);authority=WorldCopies.copy(Objects.requireNonNull(initial));
+        this.observerFailure=Objects.requireNonNull(observerFailure);authority=WorldCopies.copy(Objects.requireNonNull(initial));committedPoints=points(authority);
     }
     private void thread(){if(Thread.currentThread()!=logicThread)throw new IllegalStateException("Serial logic thread required");}
     private void write(){thread();if(publishing)throw new IllegalStateException("Commands cannot reenter commit notifications");}
@@ -43,7 +44,14 @@ public final class GameSession implements GameApi, AutoCloseable {
         return ()->{thread();listeners.remove(listener);};
     }
     private GameEvent emit(GameEvent.Kind kind,int city,int officer,int troops,int order,String detail){
-        GameEvent event=new GameEvent(kind,state(),city,officer,troops,order,detail);
+        int[] current=points(authority);List<TechniquePointsChange> changes=new ArrayList<>();
+        if(kind!=GameEvent.Kind.WORLD_REPLACED&&kind!=GameEvent.Kind.CLOSED){
+            if(current.length!=committedPoints.length)throw new IllegalStateException("Faction set changed outside restore");
+            for(int owner=0;owner<current.length;owner++)if(current[owner]!=committedPoints[owner])
+                changes.add(new TechniquePointsChange(owner,committedPoints[owner],current[owner]));
+        }
+        committedPoints=current;
+        GameEvent event=new GameEvent(kind,state(),city,officer,troops,order,detail,changes);
         publishing=true;
         try{for(Consumer<GameEvent> listener:new ArrayList<>(listeners)){
             if(!listeners.contains(listener))continue;
@@ -52,6 +60,11 @@ public final class GameSession implements GameApi, AutoCloseable {
             }
         }}finally{publishing=false;}
         return event;
+    }
+    private static int[] points(World world){
+        int[] values=new int[world.factions.length];
+        for(int owner=0;owner<values.length;owner++)values[owner]=world.campaign.points(owner);
+        return values;
     }
     private CommandResult.Error invalid(StateToken expected,boolean allowTurn){
         if(closed)return CommandResult.Error.CLOSED;

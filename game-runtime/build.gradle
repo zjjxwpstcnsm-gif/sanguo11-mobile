@@ -115,3 +115,11 @@ tasks.named('test') { dependsOn 'verifyCityActionSession' }
     }
     tasks.named('check') { dependsOn "verify${suite}" }
 }
+
+tasks.register('verifyTechniquePointsFacts', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.TechniquePointsFactsTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyTechniquePointsFacts' }

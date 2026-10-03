@@ -12,11 +12,12 @@ ROOT=Path(__file__).resolve().parents[2]
 PACKAGE='game.sanguo.mobile.marketprobe'
 
 
-def build(output,runner='NativeMerchantUiInstrumentation'):
+def build(output,runner='NativeMerchantUiInstrumentation',sources=None):
     package={'NativeMerchantUiInstrumentation':PACKAGE,
              'NativeCityRewardsUiInstrumentation':'game.sanguo.mobile.cityrewardsprobe',
              'NativeCityDisplacementUiInstrumentation':'game.sanguo.mobile.citydisplacementprobe',
-             'NativeProductionSourceUiInstrumentation':'game.sanguo.mobile.sourceproductionprobe'}[runner]
+             'NativeProductionSourceUiInstrumentation':'game.sanguo.mobile.sourceproductionprobe',
+             'BoundedRuleFlowInstrumentation':'game.sanguo.mobile.boundedruleflowprobe'}[runner]
     output=output.resolve()
     if ROOT/'out' not in output.parents:raise ValueError('Fresh output must be inside project out/')
     output.mkdir(parents=True,exist_ok=False)
@@ -29,9 +30,12 @@ def build(output,runner='NativeMerchantUiInstrumentation'):
         for p in sorted(app.rglob('*.class')):archive.write(p,str(p.relative_to(app)))
     modules=[ROOT/module/'build/libs'/(module+'.jar') for module in ('core','game-api','game-runtime')]
     classes=output/'classes';classes.mkdir();source=ROOT/'tools/content/android'/(runner+'.java')
+    sources=[source] if sources is None else list(sources)
+    if not sources or any(not path.is_file() for path in sources):raise ValueError('Acceptance sources missing')
+    source=sources[0]
     def run(name,command):
         with (output/(name+'.log')).open('w') as log:subprocess.run(list(map(str,command)),check=True,stdout=log,stderr=log)
-    run('javac',[javac,'-encoding','UTF-8','--release','17','-cp',os.pathsep.join(map(str,[android,classpath]+modules)),'-d',classes,source])
+    run('javac',[javac,'-encoding','UTF-8','--release','17','-cp',os.pathsep.join(map(str,[android,classpath]+modules)),'-d',classes]+sources)
     dex=output/'dex.zip';command=[java,'-cp',tools/'lib/d8.jar','com.android.tools.r8.D8','--min-api','29','--lib',android,'--output',dex]
     for jar in [classpath]+modules:command+=['--classpath',jar]
     command+=sorted(classes.rglob('*.class'));run('d8',command)
