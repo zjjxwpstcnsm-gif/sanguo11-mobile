@@ -444,3 +444,17 @@ tasks.named('check') { dependsOn 'verifyPcOfficerState' }
     }
     tasks.named('check') { dependsOn "verify${suite}" }
 }
+
+tasks.register('verifyMapEditorRuntime', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.MapEditorRuntimeTest'
+    maxHeapSize = '768m'
+}
+tasks.register('verifyMapEditorContinuation', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.MapEditorContinuationTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyMapEditorRuntime', 'verifyMapEditorContinuation' }

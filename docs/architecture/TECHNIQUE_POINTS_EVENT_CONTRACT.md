@@ -29,3 +29,5 @@ PC EXE SHA256 `30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb`
 JVM 已执行：`TechniquePointsFactsTest` 26 项、普通生产会话 33 项、延迟生产会话 40 项通过。增减原代码 84 例及 HUD 标量 18+35 例各重复执行两次，JSON 字节完全一致。实际 ART／安装与 HUD 联合验证仍待新包。测试构造曾因已掌握研究、缺失技巧前置、空世界不可存档失败，随后使用合法完整夹具修复；保留所有失败日志，没有改动历史断言。
 
 接口兼容复验：原计略 journal 150 项、城市位移会话 19 项、普通生产会话 216 项及 native／bridge 同规则、去重、乱序和过期提交验证通过。保留旧 `TurnJournal.Event` 构造签名；新构造只附加空或不可变点数事实。未修改 app 或它的 androidTest 源码。
+
+2026-10-04 联合验证补充：冻结 R30 的编辑器发布被正式 SaveCodec 校验拒绝，原因是新局初始化生产配置后，自定义地理又增加／禁用了据点。修复仅在 CustomMaps.resolve 的显式新地图开局中，于地理应用完成后重新初始化 SHA 固定的生产配置；旧存档读取路径不变。现有 MapEditorRuntimeTest 12 项真实行军／攻占／AI／存档重放、MapEditorContinuationTest 131 项通过。原失败 ART 日志保留，修复后的 APK 仍须重新安装和发布流程复验。

@@ -45,6 +45,9 @@ public final class CustomMaps {
     private static World resolve(MapPatch p,String scenario,int player,long seed,boolean strict)throws IOException {
         MapPatch.decode(p.encode());verifyBase(p);World w=ScenarioCatalog.load(scenario,player,seed);if(!compatible(w))throw new IOException("此自定义地图仅适用于200×200全国剧本；裁区剧本请选原版地图");
         applyGeography(p,w);
+        // This is an explicitly fresh custom opening, never a save-load migration.
+        // Geography can add/disable sites after ScenarioCatalog initialized native policy.
+        if(w.pcProduction.enabled())w.pcProduction.initializeOpening();
         if(strict){List<Issue> issues=diagnose(w,p,scenario);for(Issue i:issues)if(i.blocking)throw new IOException(i.message);SaveCodec.validate(w);if(!w.alive(player))throw new IOException("所选势力没有启用的城池，不能开局");}
         return w;
     }
