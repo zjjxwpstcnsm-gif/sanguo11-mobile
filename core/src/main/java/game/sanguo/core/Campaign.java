@@ -92,7 +92,7 @@ public final class Campaign {
     boolean fitsGold(World.City c,int incoming){return incoming>=0&&(incoming==0||c.gold<=goldCap(c)-incoming);}
     public int foodCap(World.City c){return c.kind==World.SiteKind.CITY?PcCityCapacities.FOOD:has(c.owner,Tech.PORT_EXPANSION)?400000:100000;}
     public int troopCap(World.City c){return c.kind==World.SiteKind.CITY?100000:has(c.owner,Tech.PORT_EXPANSION)?60000:30000;}
-    public int equipmentCap(World.City c,World.Weapon weapon){return Army.siegeWeapon(weapon)?100:troopCap(c);}
+    public int equipmentCap(World.City c,World.Weapon weapon){return Army.siegeWeapon(weapon)?100:w.pcProduction.enabled()?100000:troopCap(c);}
     public int orderLoss(int owner,int base){return has(owner,Tech.ADMINISTRATION)?(base+1)/2:base;}
     public int loyaltyLoss(int owner,int base){return has(owner,Tech.POPULAR_SUPPORT)?(base+1)/2:base;}
     public Tech elite(World.Unit u){return eliteAt(u,u.hex);}

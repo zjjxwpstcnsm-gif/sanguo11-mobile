@@ -18,7 +18,9 @@ public final class Army {
     }
     public static final class Production {
         public final int cityId,officerId,owner; public final World.Weapon weapon; public final Ship ship;
+        boolean nativePolicy;int facilityId=-1;int[] crew;
         Production(int city,int officer,int owner,World.Weapon weapon,Ship ship){cityId=city;officerId=officer;this.owner=owner;this.weapon=weapon;this.ship=ship;}
+        public int[] officers(){return crew==null?new int[]{officerId}:crew.clone();}
         public String label(){return "制造"+(weapon==null?ship.label:weapon.label);}
     }
     final World w;
@@ -165,7 +167,7 @@ public final class Army {
     }
     RuleFailure productionFailure(int city,int officer,World.Weapon weapon,Ship ship){
         if((weapon==null)==(ship==null)||weapon!=null&&!siegeWeapon(weapon)||ship==Ship.BOAT)return new RuleFailure("PRODUCTION_ITEM","item","请选择攻城器械或高级舰船");
-        World.City c=w.city(city);World.Officer o=w.officer(officer);RuleFailure failure=w.cityFailure(c,o,weapon!=null?productionGold(weapon):ship.gold,PcCityActionCosts.PRODUCTION);if(failure!=null)return failure;
+        World.City c=w.city(city);World.Officer o=w.officer(officer);RuleFailure failure=w.cityFailure(c,o,c==null?0:w.pcProduction.enabled()?w.pcProduction.gold(city,weapon!=null?PcProduction.nativeItem(weapon):PcProduction.nativeItem(ship)):weapon!=null?productionGold(weapon):ship.gold,PcCityActionCosts.PRODUCTION);if(failure!=null)return failure;
         if(c.kind!=World.SiteKind.CITY)return new RuleFailure("PRODUCTION_SITE","city","港口和关卡不能生产军备");
         String error=w.districts.productionError(city);if(error!=null)return new RuleFailure("DISTRICT_PRODUCTION","city",error);
         Domestic.Kind facility=weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD;
@@ -177,14 +179,38 @@ public final class Army {
         if(amount+pending>=100)return new RuleFailure("PRODUCTION_CAPACITY","item","该类器械或舰船库存与在制品合计已达100");return null;
     }
     public World.Result produce(int city,int officer,World.Weapon weapon,Ship ship){w.reports.prepare();
+        if(w.pcProduction.enabled())return produceNative(city,new int[]{officer},weapon,ship);
         String error=productionError(city,officer,weapon,ship);if(error!=null)return w.fail(error);
         World.City c=w.city(city);World.Officer o=w.officer(officer);Production p=new Production(city,officer,c.owner,weapon,ship);
         w.spend(c,o,weapon!=null?productionGold(weapon):ship.gold,PcCityActionCosts.PRODUCTION);o.otherTask=p.label();o.otherTaskTurns=w.skills.productionTurns(officer,weapon);productions.add(p);
         w.domestic.use(city,weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD);
         return w.success(o.name+"开始"+p.label()+"，"+o.otherTaskTurns+"旬后完成1件");
     }
-    private boolean valid(Production p){World.City c=w.city(p.cityId);World.Officer o=w.officer(p.officerId);return c!=null&&o!=null&&c.owner==p.owner&&o.owner==p.owner&&o.cityId==c.id&&o.otherTask.equals(p.label())&&completed(c.id,p.weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD);}
-    void cleanup(){for(Production p:new ArrayList<>(productions))if(!valid(p)){productions.remove(p);World.Officer o=w.officer(p.officerId);if(o!=null&&o.otherTask.equals(p.label())){o.otherTask="";o.otherTaskTurns=0;}w.note(p.label()+"因城池或工场失守/拆除而中止");}}
+    public World.Result produce(int city,int[] officers,World.Weapon weapon,Ship ship){
+        if(officers!=null&&officers.length==1)return produce(city,officers[0],weapon,ship);
+        w.reports.prepare();return produceNative(city,officers,weapon,ship);
+    }
+    private World.Result produceNative(int city,int[] selected,World.Weapon weapon,Ship ship){
+        ProductionPlan plan=w.previewProduction(city,selected,ship==null?ProductionPlan.Operation.EQUIPMENT:ProductionPlan.Operation.SHIP,weapon,ship);
+        if(!plan.allowed())return w.fail(plan.failure.detail);
+        if(!w.pcProduction.enabled())return w.fail("旧存档制造模式未补填新任务数据");
+        World.City c=w.city(city);int[] ids=plan.officerIds.stream().mapToInt(Integer::intValue).toArray();Production p=new Production(city,ids[0],c.owner,weapon,ship);p.nativePolicy=true;p.crew=ids;
+        Domestic.Kind kind=weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD;
+        p.facilityId=w.domestic.facilities.stream().filter(f->f.cityId==city&&f.kind==kind&&f.remaining==0&&f.hp>0&&!reserved(f.id)).findFirst().orElseThrow().id;
+        w.spend(c,w.officer(ids[0]),plan.goldCost,PcCityActionCosts.PRODUCTION,0);
+        for(int id:ids){World.Officer o=w.officer(id);o.acted=true;o.otherTask=p.label();o.otherTaskTurns=plan.effects.busyTurns;}
+        w.domestic.use(city,kind);productions.add(p);
+        return w.success(c.name+"开始"+p.label()+"，"+plan.effects.busyTurns+"旬后完成1件");
+    }
+    boolean reserved(int facility){return productions.stream().anyMatch(p->p.nativePolicy&&p.facilityId==facility);}
+    private boolean valid(Production p){
+        World.City c=w.city(p.cityId);if(c==null||c.owner!=p.owner)return false;
+        if(p.nativePolicy){Domestic.Facility f=w.domestic.facility(p.facilityId);if(f==null||f.cityId!=c.id||f.kind!=(p.weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD)||f.hp<=0||f.remaining!=0)return false;}
+        else if(!completed(c.id,p.weapon!=null?Domestic.Kind.WORKSHOP:Domestic.Kind.SHIPYARD))return false;
+        for(int id:p.officers()){World.Officer o=w.officer(id);if(o==null||o.owner!=p.owner||o.cityId!=c.id||!o.otherTask.equals(p.label()))return false;}return true;
+    }
+    private void clear(Production p){for(int id:p.officers()){World.Officer o=w.officer(id);if(o!=null&&o.otherTask.equals(p.label())){o.otherTask="";o.otherTaskTurns=0;if(p.nativePolicy)o.acted=true;}}}
+    void cleanup(){for(Production p:new ArrayList<>(productions))if(!valid(p)){productions.remove(p);clear(p);w.note(p.label()+"因城池或工场失守/拆除而中止");}}
     void tick(){
         for(World.Unit u:new ArrayList<>(w.fieldUnits()))if(u.burning>0){
             u.burning--;if(u.burningOwner==u.owner||w.campaign.hostile(u.burningOwner,u.owner)){int hit=w.combat.ongoingFireDamage(u,200,u.burningOwner,u.burningPower,false);w.combatEffects.hit(null,u,hit,false,false);w.note(w.officer(u.officerId).name+"的部队持续燃烧，损失"+hit+"兵");}
@@ -192,13 +218,14 @@ public final class Army {
         }
         cleanup();for(Production p:new ArrayList<>(productions))if(w.officer(p.officerId).otherTaskTurns==1){
             World.City c=w.city(p.cityId);int count=p.weapon!=null?c.equipment[p.weapon.ordinal()]:c.ships[p.ship.ordinal()-1];
-            if(count>=100){w.officer(p.officerId).otherTaskTurns=2;continue;}
-            if(p.weapon!=null)c.equipment[p.weapon.ordinal()]++;else c.ships[p.ship.ordinal()-1]++;
+            if(count>=100&&!p.nativePolicy){w.officer(p.officerId).otherTaskTurns=2;continue;}
+            if(p.weapon!=null)c.equipment[p.weapon.ordinal()]=Math.min(100,count+1);else c.ships[p.ship.ordinal()-1]=Math.min(100,count+1);
+            if(p.nativePolicy){for(int id:p.officers()){w.officerAbilities.gainExperience(id,2,4);int merit=w.government.merit(id);w.government.earn(id,Math.min(100,Math.max(0,60000-merit)));}clear(p);}
             productions.remove(p);w.note(c.name+p.label()+"完成，1件入库");
         }
     }
-    public World.Result cancelProduction(int officer){w.reports.prepare();Production p=productions.stream().filter(x->x.officerId==officer).findFirst().orElse(null);
-        if(w.commandsBlocked()||w.gameOver()||p==null||p.owner!=w.active)return w.fail("请选择本势力制造任务");productions.remove(p);World.Officer o=w.officer(officer);o.otherTask="";o.otherTaskTurns=0;o.acted=true;return w.success("制造中止，费用不退还");}
+    public World.Result cancelProduction(int officer){w.reports.prepare();Production p=productions.stream().filter(x->Arrays.stream(x.officers()).anyMatch(id->id==officer)).findFirst().orElse(null);
+        if(w.commandsBlocked()||w.gameOver()||p==null||p.owner!=w.active)return w.fail("请选择本势力制造任务");productions.remove(p);clear(p);w.officer(officer).acted=true;return w.success("制造中止，费用不退还");}
     /** Current modeled unit attack; base attribute formula still awaits original executable calibration. */
     public double attackPower(World.Unit u){return (80+leadership(u)+war(u)/2.0)*(water(u.hex)?u.ship.power:u.weapon.power)/100.0;}
     public int siegeRange(World.Unit u){return w.war.range(u);}

@@ -84,7 +84,8 @@ public final class Domestic {
     public int count(int city){int n=0;for(Facility f:facilities)if(f.cityId==city)n++;return n;}
     /** Each completed facility supplies one order per turn, shared by all products of its kind. */
     public int capacity(int city,Kind kind){int n=0;for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&operational(f))n++;return n;}
-    public int remainingUses(int city,Kind kind){int n=0;for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&operational(f)&&f.lastUseTurn!=w.turn)n++;return n;}
+    public int remainingUses(int city,Kind kind){int n=0;for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&operational(f)&&unused(f)&&!w.army.reserved(f.id))n++;return n;}
+    private boolean unused(Facility f){return w.pcProduction.enabled()&&(f.kind==Kind.WORKSHOP||f.kind==Kind.SHIPYARD)||f.lastUseTurn!=w.turn;}
     private boolean operational(Facility f){return f.hp>0&&(f.remaining==0||f.upgradeTo>0);}
     public String operationError(int city,Kind kind){
         World.City c=w.city(city);if(c==null||c.kind!=World.SiteKind.CITY)return "只有城市可以征兵和生产军备";
@@ -94,7 +95,7 @@ public final class Domestic {
     }
     public String usage(int city,Kind kind){return kind.label+" · 本旬剩余 "+remainingUses(city,kind)+" / "+capacity(city,kind)+" 次";}
     void use(int city,Kind kind){
-        for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&operational(f)&&f.lastUseTurn!=w.turn){f.lastUseTurn=w.turn;return;}
+        for(Facility f:facilities)if(f.cityId==city&&f.kind==kind&&operational(f)&&unused(f)&&!w.army.reserved(f.id)){f.lastUseTurn=w.turn;return;}
         throw new IllegalStateException("Facility order must be validated before spending");
     }
     public static Kind productionFacility(World.Weapon weapon){

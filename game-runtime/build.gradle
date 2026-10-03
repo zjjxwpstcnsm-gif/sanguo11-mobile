@@ -104,3 +104,14 @@ tasks.register('verifyCityCommandRewardsSession', JavaExec) {
 tasks.named('check') { dependsOn 'verifyCityCommandRewardsSession' }
 tasks.named('check') { dependsOn 'verifyCityActionSession' }
 tasks.named('test') { dependsOn 'verifyCityActionSession' }
+
+// Source production rules and save policy run in the ordinary module checks.
+['PcProductionCrewSession', 'PcDelayedProductionSession'].each { suite ->
+    tasks.register("verify${suite}", JavaExec) {
+        dependsOn testClasses
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = "game.sanguo.core.${suite}Test"
+        maxHeapSize = '768m'
+    }
+    tasks.named('check') { dependsOn "verify${suite}" }
+}

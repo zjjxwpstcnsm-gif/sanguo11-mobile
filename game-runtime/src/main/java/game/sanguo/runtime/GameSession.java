@@ -193,7 +193,7 @@ public final class GameSession implements GameApi, AutoCloseable {
         try{
             World candidate=WorldCopies.copy(authority);ProductionPreview checked=ProductionQuery.capture(candidate,state(),command);
             if(!checked.allowed())return new CommandResult(checked.error,checked.detail,state(),null,checked.reasonCode,checked.field);
-            World.Result result=ProductionQuery.operation(command.operation)==ProductionPlan.Operation.SHIP?candidate.army.produce(command.cityId,command.officerId,null,ProductionQuery.ship(command)):candidate.produce(command.cityId,command.officerId,ProductionQuery.weapon(command));
+            World.Result result=ProductionQuery.operation(command.operation)==ProductionPlan.Operation.SHIP?candidate.army.produce(command.cityId,command.officers(),null,ProductionQuery.ship(command)):candidate.produce(command.cityId,command.officers(),ProductionQuery.weapon(command));
             if(!result.ok)return failed(CommandResult.Error.HOST_ERROR,"PRODUCTION_VALIDATION_DIVERGED");
             World installed=WorldCopies.copy(candidate);long next=Math.addExact(revision,1);
             authority=installed;revision=next;invalidateQueries();

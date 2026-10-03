@@ -162,6 +162,7 @@ public final class ScenarioData {
             w.abilities.initialize(Objects.hash(w.scenarioId,w.startYear,w.startMonth));
             w.officerAbilities.initializeOpening(reference==null?null:ContentCatalog.get(),fixedAbilityAge,abilityGrowthDisabled);
             w.merchantMarket.initializeOpening();
+            w.pcProduction.initializeOpening();
             SaveCodec.validate(w);validateOpening(w);
             w.note(name+(source.equals("user-supplied")?"：导入数据，原版一致性未核验":reference==null?"：原创测试布局与数值，非原版历史剧本":"：公开资料能力/适性，原创区域地图与开局；非官方历史剧本"));
             w.note("当前执掌"+w.faction(player)+" · 点选己方城池开始经营");

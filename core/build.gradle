@@ -433,3 +433,14 @@ tasks.register('verifyPcOfficerState', JavaExec) {
     maxHeapSize = '768m'
 }
 tasks.named('check') { dependsOn 'verifyPcOfficerState' }
+
+// Source production rules and save policy run in the ordinary module checks.
+['PcProductionFlow', 'PcProductionCrew', 'PcDelayedCounter', 'PcDelayedProductionFlow', 'PcProductionSavePolicy'].each { suite ->
+    tasks.register("verify${suite}", JavaExec) {
+        dependsOn testClasses
+        classpath = sourceSets.test.runtimeClasspath
+        mainClass = "game.sanguo.core.${suite}Test"
+        maxHeapSize = '768m'
+    }
+    tasks.named('check') { dependsOn "verify${suite}" }
+}

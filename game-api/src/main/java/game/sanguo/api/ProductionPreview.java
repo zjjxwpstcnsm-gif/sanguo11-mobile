@@ -1,4 +1,5 @@
 package game.sanguo.api;
+import java.util.*;
 /** Immediate stock changes are separate from conditional future production output. */
 public final class ProductionPreview {
  public final StateToken state;
@@ -19,7 +20,13 @@ public final class ProductionPreview {
   public final int goldAfter,actionPointsAfter,outputQuantity,stockAfterImmediate,pendingAfter,busyTurns,facilityUsesAfter,meritBefore,meritAfter;
   public final String taskLabel;
   public final OfficerExperienceChange experience;
+  public final List<ActorEffect> actors;
   public Effects(boolean delayed,boolean actedBefore,boolean actedAfter,int goldAfter,int actionPointsAfter,int outputQuantity,int stockAfterImmediate,int pendingAfter,int busyTurns,int facilityUsesAfter,int meritBefore,int meritAfter,String taskLabel){this(delayed,actedBefore,actedAfter,goldAfter,actionPointsAfter,outputQuantity,stockAfterImmediate,pendingAfter,busyTurns,facilityUsesAfter,meritBefore,meritAfter,taskLabel,null);}
-  public Effects(boolean delayed,boolean actedBefore,boolean actedAfter,int goldAfter,int actionPointsAfter,int outputQuantity,int stockAfterImmediate,int pendingAfter,int busyTurns,int facilityUsesAfter,int meritBefore,int meritAfter,String taskLabel,OfficerExperienceChange experience){this.delayed=delayed;this.actedBefore=actedBefore;this.actedAfter=actedAfter;this.goldAfter=goldAfter;this.actionPointsAfter=actionPointsAfter;this.outputQuantity=outputQuantity;this.stockAfterImmediate=stockAfterImmediate;this.pendingAfter=pendingAfter;this.busyTurns=busyTurns;this.facilityUsesAfter=facilityUsesAfter;this.meritBefore=meritBefore;this.meritAfter=meritAfter;this.taskLabel=taskLabel;this.experience=experience;}
+  public Effects(boolean delayed,boolean actedBefore,boolean actedAfter,int goldAfter,int actionPointsAfter,int outputQuantity,int stockAfterImmediate,int pendingAfter,int busyTurns,int facilityUsesAfter,int meritBefore,int meritAfter,String taskLabel,OfficerExperienceChange experience){this(delayed,actedBefore,actedAfter,goldAfter,actionPointsAfter,outputQuantity,stockAfterImmediate,pendingAfter,busyTurns,facilityUsesAfter,meritBefore,meritAfter,taskLabel,experience,List.of());}
+  public Effects(boolean delayed,boolean actedBefore,boolean actedAfter,int goldAfter,int actionPointsAfter,int outputQuantity,int stockAfterImmediate,int pendingAfter,int busyTurns,int facilityUsesAfter,int meritBefore,int meritAfter,String taskLabel,OfficerExperienceChange experience,List<ActorEffect> actors){this.delayed=delayed;this.actedBefore=actedBefore;this.actedAfter=actedAfter;this.goldAfter=goldAfter;this.actionPointsAfter=actionPointsAfter;this.outputQuantity=outputQuantity;this.stockAfterImmediate=stockAfterImmediate;this.pendingAfter=pendingAfter;this.busyTurns=busyTurns;this.facilityUsesAfter=facilityUsesAfter;this.meritBefore=meritBefore;this.meritAfter=meritAfter;this.taskLabel=taskLabel;this.experience=experience;this.actors=List.copyOf(actors);}
+ }
+ public static final class ActorEffect {
+  public final int officerId,meritBefore,meritAfter;public final boolean actedBefore,actedAfter;public final OfficerExperienceChange experience;
+  public ActorEffect(int id,int before,int after,boolean actedBefore,boolean actedAfter,OfficerExperienceChange experience){officerId=id;meritBefore=before;meritAfter=after;this.actedBefore=actedBefore;this.actedAfter=actedAfter;this.experience=experience;}
  }
 }

@@ -120,6 +120,7 @@ public final class World {
     public final List<Unit> units=new ArrayList<>();
     public final List<String> log=new ArrayList<>();
     public final SaveExtensions extensions=new SaveExtensions();
+    public final PcProduction pcProduction=new PcProduction(this);
     public final OfficerAbilities officerAbilities=new OfficerAbilities(this);
     public final MerchantMarket merchantMarket=new MerchantMarket(this);
     public final BattleReports reports=new BattleReports(this);
@@ -270,7 +271,7 @@ public final class World {
     public Result patrol(int cityId,int officerId) {reports.prepare(); return strategy.patrol(cityId,officerId); }
     public int getArmyReadiness(int cityId) { return strategy.getArmyReadiness(cityId); }
     RuleFailure productionFailure(int cityId,int officerId,Weapon weapon){
-        City c=city(cityId);Officer o=officer(officerId);RuleFailure failure=cityFailure(c,o,skills.productionGold(officerId,weapon),PcCityActionCosts.PRODUCTION);if(failure!=null)return failure;
+        City c=city(cityId);Officer o=officer(officerId);RuleFailure failure=cityFailure(c,o,c==null?0:skills.productionGold(cityId,officerId,weapon),PcCityActionCosts.PRODUCTION);if(failure!=null)return failure;
         if(c.kind!=SiteKind.CITY)return new RuleFailure("PRODUCTION_SITE","city","港口和关卡不能生产军备");
         String error=districts.productionError(cityId);if(error!=null)return new RuleFailure("DISTRICT_PRODUCTION","city",error);
         if(weapon==null||weapon==Weapon.SWORD)return new RuleFailure("PRODUCTION_ITEM","item","剑兵无需生产兵装，请选择其他兵装");
@@ -278,14 +279,26 @@ public final class World {
         Domestic.Kind facility=Domestic.productionFacility(weapon);
         error=domestic.operationError(cityId,facility);if(error!=null)return new RuleFailure(domestic.capacity(cityId,facility)==0?"FACILITY_REQUIRED":"FACILITY_EXHAUSTED","facility",error);
         int amount=skills.produceAmount(c.id,o.id,weapon);
-        if(c.equipment[weapon.ordinal()]>campaign.equipmentCap(c,weapon)-amount)return new RuleFailure("PRODUCTION_CAPACITY","item","兵装已接近上限");return null;
+        if(pcProduction.enabled()?c.equipment[weapon.ordinal()]>=campaign.equipmentCap(c,weapon):c.equipment[weapon.ordinal()]>campaign.equipmentCap(c,weapon)-amount)return new RuleFailure("PRODUCTION_CAPACITY","item","兵装已接近上限");return null;
     }
     public ProductionPlan previewProduction(int cityId,int officerId,ProductionPlan.Operation operation,Weapon weapon,Army.Ship ship){return new ProductionPlan(this,cityId,officerId,operation,weapon,ship);}
+    public ProductionPlan previewProduction(int cityId,int[] officers,ProductionPlan.Operation operation,Weapon weapon,Army.Ship ship){return new ProductionPlan(this,cityId,officers,operation,weapon,ship);}
+    public Result produce(int cityId,int[] officers,Weapon weapon){
+        if(officers!=null&&officers.length==1)return produce(cityId,officers[0],weapon);
+        reports.prepare();if(Army.siegeWeapon(weapon))return army.produce(cityId,officers,weapon,null);ProductionPlan plan=previewProduction(cityId,officers,ProductionPlan.Operation.EQUIPMENT,weapon,null);
+        if(!plan.allowed())return fail(plan.failure.detail);
+        City c=city(cityId);Officer leader=officer(plan.officerIds.get(0));
+        for(int id:plan.officerIds)OfficerExperiencePlan.award(this,officer(id),2);
+        spend(c,leader,plan.goldCost,PcCityActionCosts.PRODUCTION,OfficerExperiencePlan.merit(leader,2,government));
+        for(int id:plan.officerIds)if(id!=leader.id){Officer o=officer(id);o.acted=true;government.earn(id,OfficerExperiencePlan.merit(o,2,government));}
+        domestic.use(cityId,Domestic.productionFacility(weapon));c.equipment[weapon.ordinal()]+=plan.effects.outputQuantity;
+        return success(c.name+"生产"+plan.effects.outputQuantity+"份"+weapon.label+"兵装，金−"+plan.goldCost);
+    }
     public Result produce(int cityId,int officerId,Weapon weapon) {reports.prepare();
         RuleFailure failure=productionFailure(cityId,officerId,weapon);if(failure!=null)return fail(failure.detail);
         if(Army.siegeWeapon(weapon))return army.produce(cityId,officerId,weapon,null);
-        City c=city(cityId);Officer o=officer(officerId);int gold=skills.productionGold(officerId,weapon),amount=skills.produceAmount(cityId,officerId,weapon);Domestic.Kind facility=Domestic.productionFacility(weapon);
-        OfficerExperiencePlan.award(this,o,2);spend(c,o,gold,PcCityActionCosts.PRODUCTION,OfficerExperiencePlan.merit(o,2,government));domestic.use(cityId,facility);c.equipment[weapon.ordinal()]+=amount;return success(c.name+"生产"+amount+"份"+weapon.label+"兵装，金−"+gold);
+        City c=city(cityId);Officer o=officer(officerId);int gold=skills.productionGold(cityId,officerId,weapon),amount=skills.produceAmount(cityId,officerId,weapon);Domestic.Kind facility=Domestic.productionFacility(weapon);
+        OfficerExperiencePlan.award(this,o,2);spend(c,o,gold,PcCityActionCosts.PRODUCTION,OfficerExperiencePlan.merit(o,2,government));domestic.use(cityId,facility);if(pcProduction.enabled())amount=Math.min(amount,campaign.equipmentCap(c,weapon)-c.equipment[weapon.ordinal()]);c.equipment[weapon.ordinal()]+=amount;return success(c.name+"生产"+amount+"份"+weapon.label+"兵装，金−"+gold);
     }
     public Result deploy(int cityId,int officerId,Weapon weapon,int troops) {reports.prepare();
         return army.deploy(cityId,officerId,new int[0],weapon,Army.Ship.BOAT,troops,troops*2);
