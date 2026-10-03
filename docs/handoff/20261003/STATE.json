@@ -548,7 +548,7 @@
   },
   "r32_canonical_rebuild": {
     "date": "2026-10-04",
-    "status": "independently installed default3D856 and source-city62 passed; normal production running",
+    "status": "default3D856/sourcecity62/normalproduction209 passed; full24 continuation running",
     "complete_dirty_source_snapshot": "out/parity/checkpoint-20261004-r32-cultivation-a143644/source",
     "full_source_files": 4255,
     "full_source_bytes": 336018236,
@@ -580,6 +580,9 @@
     "source_city_ui_checks": 62,
     "source_city_ui_seconds": 131.54,
     "source_city_fixture_schema": 35,
-    "source_city_user_files_exact": true
+    "source_city_user_files_exact": true,
+    "normal_production_ui_checks": 209,
+    "normal_production_ui_seconds": 459.7,
+    "normal_production_original_files_exact": true
   }
 }

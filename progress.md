@@ -951,3 +951,5 @@ R32原目录独立重建：a1438路径SHA回写／4247其他不变，完整4255�
 R32新a31独立UI默认856／551.05、来源城市62／131.54PASS，原7恢复exact。首次city错误测试包名被身份预检拒绝，finally恢复后按真实清单包名成功；失败保留。正常九旬生产UI独占5554运行。新增verify_pc_ability_completion_native原完整非玩家STAT480／4拒绝、APT48准入24完成、SKILL213准入276完成，full3MiB/XP/base/count/task/RNG精确；最终重复JSON fdc8fc19…eb46。原 hidden nativeIDs≥48每例显式slot0计数，仅验证地址，不冒称随机默认已闭合。初次APT类别循环组装错误及hook措辞原记录保留，最终更正。原开始三类静态158=3和PE20，完整费时取消失守全派发未验证，不改继承base培养和旧保存。
 
 原1100officer倒计时尾循环实际3→2→1→0；其后准备派发探针零计数仍无XP／任务变化，明确未通过正常完成验证，保留first.log/observation，不凭3ticks声称正常原培养已闭合。完整完成函数与这个未闭合派发证据分开，无安卓改动。完整source95d1d4f Gitbundle206712774B/192822ba…635eb2验证通过，ignoredJNI仍在完整快照。
+
+新a31原目录包正常生产联合209／459.70秒PASS，原7exact；3D856、来源城市62均同包独立通过。现在24旬追加正常读档退出重开独占5554运行（standalone boundedruleflowprobe，正确包名），保持原342+31断言和原期限，不清数据、不预记恢复。
