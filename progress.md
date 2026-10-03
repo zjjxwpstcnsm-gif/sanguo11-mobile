@@ -961,3 +961,5 @@ R32新a31独立UI默认856／551.05、来源城市62／131.54PASS，原7恢复ex
 新a31 ART生产十组13323、新37导出两次840be0c3…89e72、城市6648/19、人物57330／8.63和官职2244／2.34、原功绩421/商人算术11595/能力4813date3120通过，原7和安装主包均exact。生产ART第一次JAVA_HOME遗漏在触设备前报错，失败log保留后Java17 freshoutput通过；统计解析original588与checks=格式分开解析，不改测试。当前audio11实际新时间窗运行，另一会话5582未操作。
 
 新a31 audioUI51／32.91和实际11新PCM全PASS，mincorr0.9590349，waveSHAba2fa9f1…a8b，原7exact。仅模拟器数字后端，不声称ARM或PC音色。新包编辑器61范围复验正在运行，原外部13及内部7备份，不提前记恢复。
+
+新a31编辑器61／66.89PASS，内部7／外部13exact恢复；sourcefixture原错误文本没删除。marketART现在独占5554，下一步独立PcPresentations全case，不借旧包GPU/时间通过。
