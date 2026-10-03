@@ -1,4 +1,11 @@
 plugins { id 'java-library' }
+tasks.register('verifyCityDisplacementSession', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.runtime.CityDisplacementSessionTest'
+}
+tasks.named('check') { dependsOn 'verifyCityDisplacementSession' }
+tasks.named('test') { dependsOn 'verifyCityDisplacementSession' }
 tasks.register('verifyTradeSession', JavaExec) {
     dependsOn testClasses
     classpath = sourceSets.test.runtimeClasspath

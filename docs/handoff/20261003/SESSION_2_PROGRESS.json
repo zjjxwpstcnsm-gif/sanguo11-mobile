@@ -1,0 +1,26 @@
+{
+  "goal_status": "active",
+  "goal_complete": false,
+  "phase": "R25 city forced displacement verified; merchant and final UI integration continuing",
+  "workdir": "/Users/paopao/.codex/worktrees/f1b8/sanguo11-mobile",
+  "branch": "codex/parity-rules-integration-20261003",
+  "inherited_baseline_commit": "a6b87bd",
+  "inherited_files": 4078,
+  "inherited_bytes": 329563797,
+  "source_handoff": "out/parity/checkpoint-20261003-ap-handoff-final/source",
+  "core_apk_sha256": "335c37431b4ffccbbaa766950b2ecf34cb44a59d9002a511c0fdc55cf95f6e40",
+  "jvm_and_art_city_checks": 6648,
+  "jvm_and_art_session_checks": 19,
+  "installed_ui_checks": 301,
+  "user_files_restored": true,
+  "active_install_tests": false,
+  "serial": "emulator-5554",
+  "scope": "API29 x86_64 only",
+  "pending": [
+    "merchant price/quantity/month state",
+    "non-merchant XP and cultivation",
+    "official/MOD active identity and full scenario data",
+    "completed other-session increment integration",
+    "final pure3D/city-tactic/terrain/sound/exit APK verification"
+  ]
+}
