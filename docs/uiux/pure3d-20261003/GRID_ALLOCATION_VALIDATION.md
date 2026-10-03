@@ -51,3 +51,5 @@ ARM64构建c91200f3ef26c43c948ae8bf1db5fbc94f324e5ea8a099b934a4413fd003fdc7，�
 同期进程GC503/809ms、进程分配2458256/65334032B。这些进程计量包含并发分配/GC和缓存影响。
 分配改善的直接证据是上述同进程旧/新方法AB/BA比较及逐位等值，不用最快冷帧代替完整性能验收。
 新包冷地图、暴击音效、开局已完成并原文件恢复，完整后续仍在执行。
+
+Completed f081 queue: 19 regular flows (1478), 24 turns (342), 15 source presentations (1946), editor (61), actual PCM/audio (47), coast (91), city (70): 4035 UI checks including repeated waits, all original files restored. ART 2376247 is counted separately. Full architecture remains FAIL on unchanged old-scenario baseline; see CONTRACT. Earlier running statements above are historical.

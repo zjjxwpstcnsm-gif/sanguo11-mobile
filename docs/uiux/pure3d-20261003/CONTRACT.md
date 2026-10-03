@@ -1,5 +1,20 @@
 # 本批 UI 边界与继承
 
+## 技巧点逐事件契约请求（20261003追加反馈）
+
+用户要求左上角本势力技巧点、短暂数字滚动和音效，覆盖击破部队/设施、生产兵装、城池失守等。
+现有GameEvent无技巧点字段，TurnJournal只复制地图实体，BattleReports技巧差分只有人读文本。
+本侧不解析报告文字、不按击破猜奖励、不自行补生产奖励或城破扣点，也不改Campaign.points。
+现阶段UI读取已提交StateToken对应的campaign.points(player)，本地战斗在已提交动作35%后释放提示；
+非战斗提交立即提示，回合以完整提交且演示完成后的权威合计提示。初始/读档/切势力/替换静态同步，
+预览、失败、取消、同revision刷新不提示；后台静态追齐不补播。净额为零的多事件不能伪造逐事件反馈。
+
+请规则/runtime所有者提供不可变TechniquePointDelta：factId、owner、before、after、cause、
+parentJournalEventId或阶段序号，并附完整StateToken。记录已实际应用的每次增减，包括封顶后的真实差值；
+生产收益及城破损失须按原版独立证据实现。候选未提交/失败不得发布，不能额外执行规则或消耗RNG，
+不能进入SaveCodec演出字段。UI消费事实序列并按演示阶段滚动，不改变权威。
+当前专用增减音色是原创移动端提示音；尚无原PC样本/事件编号绑定证据，不宣称PC音色完全还原。
+
 工作目录 /Users/paopao/.codex/worktrees/3005/sanguo11-mobile，分支 codex/pure3d-20261003。
 完整 AP 4078 文件和四份 native 输入逐 SHA 核验后提交 c19de29。
 原目录、旧 UI 副本和 core/game-api/game-runtime/data/unity 保持只读。
@@ -89,3 +104,15 @@ https://android.googlesource.com/platform/frameworks/base/+/refs/heads/android10
 独立userResume01使用系统任务启动(am start -W)并把shell等待、主线程等待、新PixelCopy全部计入墙钟；
 六轮为1174/1203/1127/1131/1135/1181ms，完整authority/RNG不变。1000ms目标全部false，不能宣称流畅。
 该测试为root模拟器系统启动对照，不等同ARM真机用户点击或GPU性能。
+
+## 组合输入的历史起始状态基线失败（规则/运行时所有权）
+
+20261003已在未含格线改造的4a8bbdd2组合基线和b6f01621改造候选分别执行原始test-architecture.sh。
+静态边界均PASS，GameSessionTest均在exact old-scenario starting state原断言停止，未运行后续步骤。
+原始golden初态b27c526efeb53c443e921a24aedc34ab78b9f645c199154710d292ed0b08340b，
+当前同输入初态4c5605a31ffb42c4af3d5375946ed9c27fa208206de6507291cf22d58be01db5。
+原golden文件SHA687eacf3232cd11f89116716ec50af7dede6cecec40be40eb18f560a95204a37。
+这不是本侧UI数组改造造成的差异：core/API/runtime/data/unity输入和golden字节未改变，基线已复现。
+本侧只记录完整证据在out/pure3d/architecture-baseline-diagnostic、两组合architecture-full日志，
+不改规则、prepared夹具或golden，不把静态PASS标成整套架构/会话检查通过。
+需规则/运行时最终集成方判断已交接数据变化是否预期，并依原规范修复或重新独立取证；本侧无权限改其文件。

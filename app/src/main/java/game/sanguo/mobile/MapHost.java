@@ -59,6 +59,8 @@ final class MapHost extends FrameLayout implements MapPresentation {
     private MarchOrders.Plan route;
     private Consumer<MarchOrders.Plan> unitDrop;
     private Runnable criticalSkip;
+    private Runnable techniqueFeedback;
+    void setTechniqueFeedback(Runnable feedback){techniqueFeedback=feedback;}
     private CombatSequence commandEffects;
     private MapSceneSnapshot publishedSnapshot,commandFinalSnapshot;
     MapSceneSnapshot captureCombatSnapshot(){return spatial==null?null:publishedSnapshot;}
@@ -101,6 +103,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
                 if(resumed){eventSound(event,1,false);if(event.critical!=null&&sounds()!=null)sounds().event("journal:"+event.id+":critical",SoundEffects.Cue.CRITICAL);}
                 finishReplay(event);
             }
+            if(techniqueFeedback!=null)techniqueFeedback.run();
             return;
         }
         commandEffects=new CombatSequence(events,combatLedger(),e->presentationDuration(e)+(sourceVisuals()?PcPresentationPlan.duration(e):0),e->sourceVisuals()?PcPresentationPlan.duration(e):0);
@@ -127,6 +130,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
         spatial.presentation(cues.get(index),scaled-index);
     }
     void cancelCommandEffects(){
+        if(commandEffects!=null&&techniqueFeedback!=null)techniqueFeedback.run();
         removeCallbacks(commandEffectTick);
         commandPreparedEvent=null;
         if(commandEffects!=null){commandEffects.skip();commandEffects=null;replayFrame(null,0);criticalEvent(null,0);setCriticalSkip(null);}
@@ -373,6 +377,6 @@ final class MapHost extends FrameLayout implements MapPresentation {
     void setUnitBarsShown(boolean value){unitBarsShown=value;getContext().getSharedPreferences("map-display",0).edit().putBoolean("unitBars",value).apply();if(spatial!=null)spatial.labels(commandersShown,value);}
     void setCriticalSkip(Runnable skip){criticalSkip=skip;if(spatial!=null)spatial.criticalSkip(skip);}
     void criticalFrame(CriticalHit hit,float phase){if(spatial!=null){if(sourceVisuals()){hit=null;if(hit==null)spatial.presentation(null,0);}if(projectedCritical!=hit){projectedCritical=hit;projectedPortrait=hit==null?null:new OfficerPortrait(getContext(),world,hit.officerCopy());}spatial.critical(hit,phase,projectedPortrait);}}
-    void replayFrame(TurnJournal.Event e,float fraction){if(combatLedger().completed(e))e=null;if(e!=null)eventSound(e,fraction);if(spatial!=null)spatial.replay(e,fraction);}
+    void replayFrame(TurnJournal.Event e,float fraction){if(combatLedger().completed(e))e=null;if(e!=null&&fraction>=.35f&&replayCommitted&&resumed&&techniqueFeedback!=null)techniqueFeedback.run();if(e!=null)eventSound(e,fraction);if(spatial!=null)spatial.replay(e,fraction);}
     boolean replayVisible(TurnJournal.Event e){return spatial!=null&&spatial.visible(e);}
 }

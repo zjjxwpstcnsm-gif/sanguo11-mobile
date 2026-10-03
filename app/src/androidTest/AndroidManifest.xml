@@ -3,6 +3,8 @@
          default entry first so the named editor runner remains discoverable. -->
     <instrumentation android:name="game.sanguo.mobile.GameSmokeRunner"
         android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
+    <instrumentation android:name="game.sanguo.mobile.TechniquePointsInstrumentation"
+        android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
     <instrumentation android:name="game.sanguo.mobile.MapEditor67Instrumentation"
         android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
     <instrumentation android:name="game.sanguo.mobile.PcEffectWorkerInstrumentation"

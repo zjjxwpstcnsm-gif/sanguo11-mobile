@@ -22,16 +22,24 @@ public final class Pure3dInstrumentation extends SceneInstrumentation {
         runOnMainSync(()->{invoke("closePanel",new Class<?>[0]);host.switchMode(true);host.setGridShown(false);});
         ready();FilamentMapView view=(FilamentMapView)field(host,"spatial");
         File dir=getTargetContext().getExternalFilesDir("s01");String prefix=args.getString("run","coast");
-        for(String name:new String[]{"下邳","海陵港","小沛"}){
+        boolean nationalSweep=Boolean.parseBoolean(args.getString("nationalSweep","false"));
+        String[] sites=nationalSweep
+            ?new String[]{"下邳","海陵港","小沛","襄平","北平","北海","建業","吳","會稽","柴桑","江夏","永安","成都","建寧","雲南"}
+            :new String[]{"下邳","海陵港","小沛"};
+        for(String name:sites){
             World.City city=null;for(World.City c:world.cities)if(c.name.equals(name))city=c;
             check(city!=null,"real source site "+name);final Hex h=city.hex;
             for(int orientation=0;orientation<4;orientation++){
                 final int facing=(orientation&1)==0?1:-1;final float span=orientation<2?5:15;
-                runOnMainSync(()->{host.focus(h);view.camera.span=span;view.camera.facing=facing;view.camera.yaw=0;view.camera.tilt=55;});settle();ready();
+                runOnMainSync(()->{if(nationalSweep){activity.selectAndFocus(h);invoke("closePanel",new Class<?>[0]);}else host.focus(h);view.camera.span=span;view.camera.facing=facing;view.camera.yaw=0;view.camera.tilt=55;});settle();ready();
                 surfaceCapture();Files.copy(new File(dir,"surface.png").toPath(),new File(dir,prefix+"-"+name+"-"+span+"-"+facing+"-surface.png").toPath(),StandardCopyOption.REPLACE_EXISTING);capture(prefix+"-"+name+"-"+span+"-"+facing+"-ui");
                 Files.write(new File(dir,prefix+"-report.txt").toPath(),(name+" span="+span+" facing="+facing+"\n"+sceneReport()+"\n").getBytes(java.nio.charset.StandardCharsets.UTF_8),StandardOpenOption.CREATE,StandardOpenOption.APPEND);
                 check(((MapSceneSnapshot)field(view,"snapshot")).ground.pcMap!=null,"original PC geometry retained");
                 check(((Set<?>)field(view,"missingAssets")).isEmpty(),"no missing source assets");
+                if(nationalSweep){Object overlay=field(view,"overlay");
+                    check(!((android.graphics.Path)field(overlay,"siteSelectionPath")).isEmpty(),"selected source site has a merged cell outline");
+                    check((Long)field(overlay,"siteSelectionFailures")==0,"source selected cell union succeeds without internal shared edges");
+                }
             }
         }
         byte[][] captured={null};runOnMainSync(()->{try{captured[0]=((GameApplication)activity.getApplication()).host().capture();}catch(IOException e){throw new RuntimeException(e);}});

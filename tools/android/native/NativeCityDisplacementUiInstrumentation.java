@@ -24,7 +24,7 @@ public final class NativeCityDisplacementUiInstrumentation extends Instrumentati
         output=new File(getTargetContext().getExternalFilesDir("rule-ui"),run);output.mkdirs();
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         await(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("打开功能导航"));
-        byte[] original=capture();Files.write(new File(output,"initial-capture.sg11").toPath(),original);Files.copy(new File(activity.getFilesDir(),"manual3.sg11").toPath(),new File(output,"fixture-slot3.sg11").toPath(),StandardCopyOption.REPLACE_EXISTING);check((original[7]&255)==35&&Arrays.equals(original,Files.readAllBytes(new File(activity.getFilesDir(),"manual3.sg11").toPath())),"named source-map v35 fixture loaded by normal app save path");
+        byte[] original=capture();Files.write(new File(output,"initial-capture.sg11").toPath(),original);Files.copy(new File(activity.getFilesDir(),"manual3.sg11").toPath(),new File(output,"fixture-slot3.sg11").toPath(),StandardCopyOption.REPLACE_EXISTING);byte[] fixture=Files.readAllBytes(new File(activity.getFilesDir(),"manual3.sg11").toPath());check((fixture[7]&255)==35&&Arrays.equals(original,SaveCodec.encode(SaveCodec.decode(fixture))),"named source-map v35 fixture migrates through the normal app save path to exact current authority/RNG");
         World initial=world();World.Unit actor=initial.unit(1),target=initial.unit(2);check(actor!=null&&target!=null&&actor.weapon==World.Weapon.CAVALRY,"actual cavalry and defender authority exists");
         Displacement.Preview expectedPreview=initial.war.tacticPreview(1,2,War.Tactic.ADVANCE);Hex blocked=expectedPreview.blocked,stop=expectedPreview.targetPath.get(expectedPreview.targetPath.size()-1);World.City city=initial.cityAt(blocked);
         check(expectedPreview.valid()&&city!=null&&city.owner==target.owner&&SiteFootprint.cells(city).size()==7&&initial.cityAt(target.hex)==null&&initial.cityAt(stop)==null,"actual enemy-owned seven-cell city blocks second push step");
@@ -47,18 +47,37 @@ public final class NativeCityDisplacementUiInstrumentation extends Instrumentati
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));await(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("打开功能导航"));check(Arrays.equals(committed,capture()),"actual reopen restores complete post-battle save");host=(MapHost)field(activity,"map");waitNative(host);check(host.sourceVisuals(),"actual reopen remains source-map pure 3D");deadline=SystemClock.uptimeMillis()+30000;while(!sounds.loaded()&&SystemClock.uptimeMillis()<deadline)SystemClock.sleep(100);check(sounds.loaded()&&sounds.active(),"actual reopen reloads active sound resources");int plays=sounds.playedCount();nav("地图");check(sounds.playedCount()>plays,"real UI input after reopen is audible through SoundPool");shot("05-actual-exit-reopen");
         result.putString("stream","NATIVE CITY DISPLACEMENT UI PASS "+checks+" checks\n"+log);write("result.txt",result.getString("stream"));finish(Activity.RESULT_OK,result);
     }catch(Throwable failure){try{shot("FAIL");write("failure.txt",log+"\n"+failure);}catch(Throwable ignored){}StringWriter trace=new StringWriter();failure.printStackTrace(new PrintWriter(trace));result.putString("stream","NATIVE CITY DISPLACEMENT UI FAIL "+trace);finish(Activity.RESULT_CANCELED,result);}}
-    /** Capture normal seven-cell selection with existing display controls, then restore them. */
+    /** Capture model selection and retain the distinct authoritative seven-cell test. */
     private void captureBoundary(MapHost host,World.City city,byte[] expected)throws Exception{
         boolean[] prior=new boolean[4];ui(()->{try{prior[0]=host.commandersShown();prior[1]=host.unitBarsShown();prior[2]=host.gridShown();prior[3]=(Boolean)field(host,"navigatorShown");}catch(Exception e){throw new RuntimeException(e);}});
         try{
             ui(()->{host.setCommandersShown(false);host.setUnitBarsShown(false);host.setGridShown(true);if(prior[3])host.toggleNavigator();activity.selectAndFocus(city.hex);});
             settle();text("收起");waitNative(host);settle();shot("02a-source-city-seven-unobscured");
+            verifyCellOutline(host,city);
             check(Arrays.equals(expected,capture()),"normal city selection/grid/labels preserve full committed save/RNG");
         }finally{
             Hex actor=SaveCodec.decode(expected).unit(1).hex;
             ui(()->{host.setCommandersShown(prior[0]);host.setUnitBarsShown(prior[1]);host.setGridShown(prior[2]);if(prior[3])host.toggleNavigator();activity.selectAndFocus(actor);});settle();
         }
         check(Arrays.equals(expected,capture()),"restored display options and actor selection preserve full committed save/RNG");
+    }
+    private void verifyCellOutline(MapHost host,World.City city)throws Exception{
+        boolean[] valid={false,false,false,false};StringBuilder report=new StringBuilder();
+        ui(()->{try{
+            FilamentMapView renderer=(FilamentMapView)field(host,"spatial");Object overlay=field(renderer,"overlay");
+            android.graphics.Path path=(android.graphics.Path)field(overlay,"siteSelectionPath");
+            valid[0]=!path.isEmpty();valid[1]=(Long)field(overlay,"siteSelectionFailures")==0;
+            Set<?> cells=(Set<?>)field(overlay,"siteSelectionCells");valid[2]=cells.equals(new HashSet<>(SiteFootprint.cells(city)))&&cells.size()==7;
+            RectF bounds=new RectF();path.computeBounds(bounds,true);PathMeasure measure=new PathMeasure(path,true);int contours=0;float length=0;
+            do{if(measure.getLength()>0){contours++;length+=measure.getLength();}}while(measure.nextContour());
+            valid[3]=contours==1;
+            report.append("authority_selected_cells=").append(cells).append(" normalized_outline_contours=").append(contours).append(" perimeter_screen_px=").append(length).append(" bounds=").append(bounds).append('\n');
+        }catch(Exception e){throw new RuntimeException(e);}});
+        write("city-cell-outline.txt",report.toString());
+        check(valid[0],"selected city has one merged cell outline instead of individual rule-cell strokes");
+        check(valid[1],"real Android Path union succeeds");
+        check(valid[2],"outline uses the exact seven authoritative city cells");
+        check(valid[3],"the connected seven-cell selection has one exterior outline without internal shared edges");
     }
     /** Read actual source snapshot and live GPU transforms against the committed save. */
     private void verifyVisibleAuthority(MapHost host,World.City city,byte[] expected)throws Exception{

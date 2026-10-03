@@ -1354,6 +1354,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         chunks=Collections.emptyList();woods=Collections.emptyList();snapshot=null;poisonMaterialGround=null;fieldAssets=null;backdropSource=null;backdropSurface=null;
         activeTerrain.clear();wantedWood.clear();woodExcluded=Collections.emptySet();
         overlay.territoryBitmap=null;overlay.territoryGround=null;overlay.cachedColors=null;overlay.cachedBorders=null;
+        overlay.siteSelectionGround=null;overlay.siteSelectionCells=Collections.emptySet();overlay.siteSelectionStamp=null;overlay.siteSelectionPath.rewind();
         territoryColors=null;targets=Collections.emptySet();editorCells=Collections.emptySet();impassable=Collections.emptySet();
         if(android.os.Build.VERSION.SDK_INT>=29&&thermalManager!=null&&thermalListener!=null){thermalManager.removeThermalStatusListener(thermalListener);thermalListener=null;}
         if(engine==null)return;
@@ -1542,6 +1543,9 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         final Paint p=new Paint(Paint.ANTI_ALIAS_FLAG);
         final Map<String,android.graphics.RectF> labelHits=new LinkedHashMap<>();
         final android.graphics.Path cellPath=new android.graphics.Path();
+        final android.graphics.Path siteSelectionPath=new android.graphics.Path();
+        Set<Hex> siteSelectionCells=Collections.emptySet();MapSceneSnapshot.Ground siteSelectionGround;float[] siteSelectionStamp;
+        long siteSelectionBuilds,siteSelectionFailures;
         final Silhouette ghost=new Silhouette(),forestUnit=new Silhouette();
         final UnitFormation ghostFormation=new UnitFormation();
         PcUnitFormation ghostPcFormation;
@@ -1708,6 +1712,24 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             p.setColor(0xfffff2cc);p.setStrokeWidth(1.05f*density);c.drawPath(cellPath,p);
             p.setPathEffect(null);p.setStrokeJoin(Paint.Join.MITER);
         }
+        /** One outline around the selected site's authoritative cells; no internal shared edges. */
+        void selectedSite(Canvas canvas,Collection<Hex> cells,int color){
+            float[] stamp={camera.x,camera.z,camera.span,camera.tilt,camera.yaw,camera.facing,camera.width,camera.height};
+            if(siteSelectionGround!=snapshot.ground||siteSelectionCells.size()!=cells.size()||!siteSelectionCells.containsAll(cells)||!Arrays.equals(siteSelectionStamp,stamp)){
+                siteSelectionGround=snapshot.ground;siteSelectionCells=new LinkedHashSet<>(cells);siteSelectionStamp=stamp;siteSelectionBuilds++;
+                siteSelectionPath.rewind();
+                for(Hex h:cells)if(cellPath(h)&&!siteSelectionPath.op(cellPath,android.graphics.Path.Op.UNION)){
+                    siteSelectionFailures++;siteSelectionPath.rewind();break;
+                }
+            }
+            if(siteSelectionPath.isEmpty())return;
+            selectionDraws++;float density=getResources().getDisplayMetrics().density;
+            p.clearShadowLayer();p.setPathEffect(null);p.setStyle(Paint.Style.STROKE);p.setStrokeJoin(Paint.Join.ROUND);
+            p.setColor(0xe0122027);p.setStrokeWidth(6*density);canvas.drawPath(siteSelectionPath,p);
+            p.setColor(color);p.setStrokeWidth(3.5f*density);canvas.drawPath(siteSelectionPath,p);
+            p.setColor(0xfffff2cc);p.setStrokeWidth(1.05f*density);canvas.drawPath(siteSelectionPath,p);
+            p.setStrokeJoin(Paint.Join.MITER);
+        }
         void drawDragGhost(Canvas c){
             if(!draggingUnit||dragTarget==null||!visible(dragTarget)||!snapshot.ground.valid(dragTarget))return;
             Proxy actor=objects.get(dragActorKey);if(actor==null||actor.item.unit==null)return;
@@ -1827,9 +1849,11 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                 if(dragPlan!=null)for(Hex h:dragPlan.path)cell(c,h,0xff6ddcc5);
             }
             if(targets.isEmpty())for(Hex h:snapshot.reachable)cell(c,h,0x884ed7c2);for(Hex h:snapshot.coverage)cell(c,h,0xffcfad6e);for(Hex h:snapshot.siege)cell(c,h,0x9975a8fa);for(Hex h:targets.isEmpty()?snapshot.attackTargets:targets)cell(c,h,0xffdd7661);
-            Set<Hex> selectedCells=new LinkedHashSet<>();if(snapshot.selected!=null)selectedCells.add(snapshot.selected);
-            for(MapSceneSnapshot.Item item:snapshot.items)if(item.site!=null&&item.site.cells.contains(snapshot.selected))selectedCells.addAll(item.site.cells);
-            for(Hex h:selectedCells)selectedCell(c,h,0xffffd576);
+            boolean selectedSite=false;
+            for(MapSceneSnapshot.Item item:snapshot.items)if(item.site!=null&&selected(item)){
+                selectedSite=true;selectedSite(c,item.site.cells,0xffffd576);
+            }
+            if(!selectedSite&&snapshot.selected!=null)selectedCell(c,snapshot.selected,0xffffd576);
             if(draggingUnit){selectedCell(c,dragTarget,dragPlan==null?0xffff7979:0xff6ddcc5);drawDragGhost(c);}
             // Ground rings remain visible through architecture; transit units cannot disappear behind walls.
             for(Proxy object:objects.values())if(object.item.unit!=null&&object.shown){

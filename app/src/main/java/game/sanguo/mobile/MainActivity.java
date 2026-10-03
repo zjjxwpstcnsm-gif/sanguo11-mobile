@@ -24,14 +24,17 @@ public final class MainActivity extends Activity {
     private World world;
     private NativeGameHost gameHost;
     private SoundEffects sounds;
+    private TechniquePointsHud techniqueHud;
+    private boolean techniqueDeferred;
     private final UiLatencyMonitor latency=new UiLatencyMonitor();
     private LegacyView legacyView;
     private GameApi.Subscription sessionSubscription;
     private GameSession boundSession;
     private boolean dispatchingCommand,replacingSession;
     private void bindSession(){
-        if(map!=null)map.cancelCommandEffects();
         GameSession current=gameHost.session();
+        if(techniqueHud!=null&&(replacingSession||current!=boundSession))techniqueHud.discardPending();
+        if(map!=null)map.cancelCommandEffects();
         if(current!=boundSession){
             if(sessionSubscription!=null)sessionSubscription.close();
             boundSession=current;
@@ -168,7 +171,8 @@ public final class MainActivity extends Activity {
         header.setMinimumHeight(dp(56));header.setTag("hud.compact");
         actionPointsBadge=text("",12,paper);actionPointsBadge.setGravity(Gravity.CENTER);actionPointsBadge.setMaxLines(2);
         actionPointsBadge.setBackground(UiTheme.surface(this,0xff2a5146,0xff17352e,10));
-        actionPointsBadge.setOnClickListener(v->message("行动力",world.faction(world.player)+" · 当前行动力 "+world.actionPoints[world.player]+" 点"));
+        techniqueHud=new TechniquePointsHud(actionPointsBadge,(identity,gain)->{if(sounds!=null)sounds.event(identity,gain?SoundEffects.Cue.TECHNIQUE_GAIN:SoundEffects.Cue.TECHNIQUE_LOSS);});
+        actionPointsBadge.setOnClickListener(v->message("技巧点与行动力",world.faction(world.player)+" · 技巧点 "+world.campaign.points(world.player)+"\n行动力 "+world.actionPoints[world.player]+" 点"));
         LinearLayout.LayoutParams apParams=new LinearLayout.LayoutParams(dp(48),dp(48));apParams.setMargins(0,dp(4),dp(6),dp(4));header.addView(actionPointsBadge,apParams);
         LinearLayout headline=new LinearLayout(this);headline.setOrientation(LinearLayout.VERTICAL);headline.setGravity(Gravity.CENTER_VERTICAL);
         dateBanner=text("",16,gold);dateBanner.setTag("hud.date");dateBanner.setSingleLine(true);dateBanner.setEllipsize(null);dateBanner.setMinHeight(dp(24));
@@ -602,7 +606,8 @@ public final class MainActivity extends Activity {
             finally{journal.close();effects.addAll(journal.events());}
         });bindSession();}
         finally{dispatchingCommand=false;}
-        showResult(result);
+        techniqueDeferred=result.ok&&effects.stream().anyMatch(e->e.kind==TurnJournal.Kind.ATTACK||e.kind==TurnJournal.Kind.TACTIC||e.kind==TurnJournal.Kind.PLOT||e.kind==TurnJournal.Kind.FACILITY_ATTACK);
+        try{showResult(result);}finally{techniqueDeferred=false;}
         // showResult has already bound and autosaved committed authority. Effects cannot gate it.
         if(result.ok&&map!=null){map.playCommandEffects(effects,before);map.commandEffectSpeed(getPreferences(MODE_PRIVATE).getInt("turnPlaybackSpeed",1));}
         if(result.ok)guardCommandTransition();
@@ -718,12 +723,14 @@ public final class MainActivity extends Activity {
         if(ui.cityDistrict>0&&world.districts.get(ui.cityDistrict)==null)ui.cityDistrict=-1;
         if(ui.owner>=world.factions.length)ui.owner=-1;
         if(ui.cityOwner>=world.factions.length)ui.cityOwner=-1;
-        title.setText(world.faction(world.player)+" · "+world.scenarioName);
+        title.setText(world.faction(world.player)+" · "+world.scenarioName+" · 行动 "+world.actionPoints[world.player]);
         dateBanner.setText(world.date().replace(" ",""));dateBanner.setVisibility(View.VISIBLE);
         dateBanner.setContentDescription("当前日期 "+world.date());
         WindowSurfaceRecovery.changed(dateBanner);
         mapRevisionNotice.setText(NationalMap.compatibilityNotice(world));mapRevisionNotice.setVisibility(mapRevisionNotice.getText().length()==0?View.GONE:View.VISIBLE);
-        actionPointsBadge.setText("行动力\n"+world.actionPoints[world.player]);actionPointsBadge.setContentDescription("玩家行动力 "+world.actionPoints[world.player]+" 点");
+        techniqueHud.update(legacyView.state,world.player,world.campaign.points(world.player),techniqueDeferred);
+        actionPointsBadge.setContentDescription("本势力技巧点 "+world.campaign.points(world.player)+" 点");
+        map.setTechniqueFeedback(techniqueHud::releasePending);
         UiTheme.title(title);title.setContentDescription("军情 · "+title.getText());
         nextTurn.setEnabled(playback!=null||mapPick==null&&!aiRunning&&!world.gameOver()&&!world.commandsBlocked());nextTurn.setText(playback!=null?"演示控制":aiRunning?"结算中…":"下一旬  →");
         for(Map.Entry<String,Button> e:navigation.entrySet()){e.getValue().setEnabled(!aiRunning);e.getValue().setSelected(e.getKey().equals(ui.page));e.getValue().setTextColor(e.getKey().equals(ui.page)?gold:paper);}
@@ -1362,6 +1369,7 @@ public final class MainActivity extends Activity {
         long started=android.os.SystemClock.uptimeMillis();
         android.util.Log.i("SceneLifecycle","destroy begin");
         latency.stop();if(uiReads!=null)uiReads.close();
+        if(techniqueHud!=null)techniqueHud.close();
         if(saveSlotDialog!=null)saveSlotDialog.dismiss();
         if(scenarioDialog!=null)scenarioDialog.dismiss();
         if(factionPicker!=null)factionPicker.dismiss();
@@ -1464,9 +1472,10 @@ public final class MainActivity extends Activity {
             selectAndFocus(world.home().hex);save("auto",false);Toast.makeText(this,"已读取存档 · "+world.date(),Toast.LENGTH_SHORT).show();
         },error->showError("读取失败："+error.getMessage()));
     }
-    @Override protected void onResume(){super.onResume();latency.start();if(sounds!=null)sounds.foreground(this,true);if(windowSurfaceRecovery!=null)windowSurfaceRecovery.request();if(map!=null)map.resume(true);}
+    @Override protected void onResume(){super.onResume();latency.start();if(sounds!=null)sounds.foreground(this,true);if(techniqueHud!=null)techniqueHud.foreground(true);if(windowSurfaceRecovery!=null)windowSurfaceRecovery.request();if(map!=null)map.resume(true);}
     @Override protected void onPause(){
         long started=android.os.SystemClock.uptimeMillis();latency.stop();
+        if(techniqueHud!=null)techniqueHud.foreground(false);
         android.util.Log.i("SceneLifecycle","pause begin");
         if(map!=null)map.resume(false);if(sounds!=null)sounds.foreground(this,false);
         android.util.Log.i("SceneLifecycle","pause frame gate closed elapsedMs="+(android.os.SystemClock.uptimeMillis()-started));

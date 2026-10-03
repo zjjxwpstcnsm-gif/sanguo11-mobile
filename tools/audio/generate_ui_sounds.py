@@ -6,7 +6,7 @@ Run from repository root. Outputs PCM16 mono WAV and hashes/level evidence.
 from pathlib import Path
 import math, struct, wave, json, hashlib
 ROOT=Path(__file__).resolve().parents[2];RATE=44100
-DURATIONS={'ui':.09,'march':.36,'attack':.42,'tactic':.60,'critical':.72,'plot':.64,'construction':.45,'complete':.67,'turn':.82}
+DURATIONS={'ui':.09,'march':.36,'attack':.42,'tactic':.60,'critical':.72,'plot':.64,'construction':.45,'complete':.67,'turn':.82,'technique_gain':.40,'technique_loss':.40}
 def noise(n):
     # Stateless integer visual/audio hash: independent of authority and RNG state.
     v=(n*1664525+1013904223)&0xffffffff;v^=v>>13;v=(v*2246822519)&0xffffffff
@@ -24,6 +24,9 @@ for name,duration in DURATIONS.items():
   elif name=='tactic':value=noise(n)*.45*math.sin(math.pi*t/duration)+math.sin(2*math.pi*(260*t+720*t*t))*.45
   elif name=='critical':value=(math.sin(2*math.pi*135*t)+.4*math.sin(2*math.pi*207*t)+noise(n)*.22)*math.exp(-t*4)
   elif name=='plot':value=(math.sin(2*math.pi*540*t)+.35*math.sin(2*math.pi*810*t))*.6
+  elif name.startswith('technique_'):
+   notes=(660,880,1100) if name=='technique_gain' else (880,660,440)
+   step=min(2,int(t/.13));value=(math.sin(2*math.pi*notes[step]*t)+.25*math.sin(4*math.pi*notes[step]*t))*.7
   else:
    freqs=(392,494,587) if name=='complete' else (196,294,392)
    value=sum(math.sin(2*math.pi*f*t) for f in freqs)*.32

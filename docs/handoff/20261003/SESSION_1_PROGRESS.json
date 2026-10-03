@@ -7,7 +7,7 @@
   "baseline_files": 4078,
   "serial": "emulator-5582",
   "scope": "AP rules preserved, app/render/audio/resources/tools/Android only",
-  "phase": "latest combined source-city66 checks passed and restored; same package complete acceptance continuing",
+  "phase": "Complete UI increment and evidence exported and SHA verified; protected full architecture baseline requires final rule owner",
   "verified": [
     "source heights and seams 2045912 host checks",
     "12 coast captures 104 installed checks",
@@ -38,19 +38,19 @@
     "ARM physical device not available"
   ],
   "authority_modules_modified": false,
-  "active_install_tests": true,
-  "current_test": "new primitive-grid combined f081 full regression; baseline3ed all steps finished/restored",
+  "active_install_tests": false,
+  "current_test": "all processes ended; no active device tests",
   "delivery_note": "Use completed increment after c19de29; do not import this baseline over newer rule files. No cross-chat messages authorized.",
-  "ui_program_commit": "6a00e8e57de34de5719ae507a698b9d98b7648c9",
-  "installed_main_sha256": "e63fffb91f4a96aaaa9d19b8098591da2795d0f713af476fdb7f08c99361245a",
-  "same_apk_checks": 3089,
+  "ui_program_commit": "a98e85ab0e91b81d239c9b4fd9f1c8441f03d182",
+  "installed_main_sha256": "3e8f33ea11bc97124aaf1d2de5a1f732b4f5703058ea4bc11a697915911b2fc4",
+  "same_apk_checks": 784,
   "long_run_rounds": 24,
   "long_run_seconds": 802.08,
   "remaining": [
-    "final rule-owner integration and latest cavalry-city authority placement acceptance",
-    "ARM physical device acceptance",
-    "complete latency and sustained memory refinement; existing shared DTO contract consumption",
-    "historical version-specific rawv57-60 saves unavailable; old pixel/version assertions archived"
+    "full rule/runtime architecture baseline failure requires final rule owner",
+    "latest v36 full rule integration acceptance belongs to final owner",
+    "ARM physical scope unavailable; build only",
+    "true timing and memory limits retained; no fluent or leak-free claim"
   ],
   "candidate_main_sha256": "a3e8d9c0e6ac9c39b14a457ff8e396e4837ef9d6638bb05599e3aa8b2ef770ea",
   "candidate_test_sha256": "f696875e3e92625a43d43f584c9c7b260f8f4a618d64724b0ebc8fab4e5a9ccb",
@@ -80,7 +80,7 @@
     "same_apk_checks": 1121,
     "long_run_seconds": 938.09
   },
-  "delivery_path": "/Users/paopao/workspace/sanguo11-mobile/out/pure3d-ui-20261003-lazy-final",
+  "delivery_path": "/Users/paopao/workspace/sanguo11-mobile/out/pure3d-ui-20261003-combined-final",
   "lazy_candidate_main_sha256": "e63fffb91f4a96aaaa9d19b8098591da2795d0f713af476fdb7f08c99361245a",
   "lazy_candidate_arm64_sha256": "c32d4ff72d46673ef543604a56a6e53af9bb3f77c31f6feec60f237c55558c59",
   "lazy_candidate_test_sha256": "03dd77d646d2c823d18e042f02528b0a7ae132b58feeabf7bc397d1a3175dedd",
@@ -136,13 +136,44 @@
   "pending_grid_candidate": {
     "source_commit": "83a4a1030ef41e82085e46298d4353644b8eede9",
     "host_bit_checks": 4869930,
-    "android_verified": false,
+    "android_verified": true,
     "android_art_verified": true,
     "android_art_checks": 2376247,
     "art_production_bytes": 36052992,
     "art_reference_bytes": 134116720,
     "main_sha256": "f081dee4eb224e41f418bb58926eb6406a4d9706215802ec449f11c24d6b0216",
     "source_revision": "b6f016214ec03b13ab02e456b0967cd5d4536b98",
-    "full_installed_validation": "running session77075"
+    "full_installed_validation": "all selected4035 UI checks passed and restored",
+    "art_checks_separate": 2376247,
+    "long24_seconds": 599.09,
+    "source15_seconds": 358.79,
+    "goal_complete": false
+  },
+  "latest_rule_owner_revision": "26546df4d584dff99be49aa31a39302168dc6683",
+  "latest_combined_revision": "f52181bf79f841cf5ee522ecb2e12dfb7156298a",
+  "latest_protected_files_equal": 533,
+  "latest_native_inputs_equal": 4,
+  "latest_city_checks": 74,
+  "national_sweep_sites": 15,
+  "national_sweep_views": 60,
+  "national_sweep_checks": 520,
+  "latest_all_original_files_byte_restored": true,
+  "architecture_full": "FAIL unchanged exact old-scenario starting state",
+  "previous_full_regression": {
+    "main_sha256": "f081dee4eb224e41f418bb58926eb6406a4d9706215802ec449f11c24d6b0216",
+    "selected_ui_checks": 4035,
+    "art_checks_separate": 2376247,
+    "long24_checks": 342,
+    "long24_seconds": 599.09,
+    "source15_checks": 1946,
+    "all_original_files_restored": true
+  },
+  "long_run_main_sha256": "f081dee4eb224e41f418bb58926eb6406a4d9706215802ec449f11c24d6b0216",
+  "delivery_verification": {
+    "source_files": 63,
+    "indexed_files": 1254,
+    "bytes": 1154031553,
+    "all_sha256_equal": true,
+    "source_commit": "b826cf42b9bb5cfdda672fffdffc633e94cb6d97"
   }
 }

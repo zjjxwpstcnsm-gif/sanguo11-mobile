@@ -74,6 +74,22 @@
       "rms": 0.12018393840580133,
       "peak": 0.536346435546875,
       "sha256": "1efdf33d5612436ac8972e834f996f66934d49e05a3937f76a6d7c8efdf24b32"
+    },
+    {
+      "cue": "technique_gain",
+      "path": "app/src/main/assets/audio/technique_gain.wav",
+      "seconds": 0.4,
+      "rms": 0.155992935690573,
+      "peak": 0.469940185546875,
+      "sha256": "1469c9f8115716be09a31328ab0164bbaa9f59531f8469df80fc205ed6fefc49"
+    },
+    {
+      "cue": "technique_loss",
+      "path": "app/src/main/assets/audio/technique_loss.wav",
+      "seconds": 0.4,
+      "rms": 0.1560778622184122,
+      "peak": 0.470001220703125,
+      "sha256": "76708f828cdf211252c6d0ff2b564b70244ce66f7e04ca2c2a9316208e3a0291"
     }
   ]
 }

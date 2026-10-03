@@ -17,6 +17,12 @@ from verify_pc_age_install import ROOT, PACKAGE, sha, members
 
 def run(args):
     # Reject missing candidates before touching any device or creating a backup.
+    values=[]
+    for value in args.argument:
+        key,sep,text=value.partition('=')
+        if not sep or not re.fullmatch(r'[A-Za-z0-9_]+',key) or not re.fullmatch(r'[A-Za-z0-9_.-]+',text):
+            raise ValueError('Only simple instrumentation key=value arguments supported; device untouched')
+        values += ['-e',key,text]
     expected_test_package='game.sanguo.mobile.gridallocationprobe' if args.runner=='GridAllocationInstrumentation' else PACKAGE+'.test'
     if args.test_package!=expected_test_package:
         raise ValueError('Acceptance package does not match the selected runner; device untouched')
@@ -84,12 +90,6 @@ def run(args):
             report['temporary_campaign']=dict(path=str(args.campaign_save.resolve()),
                                               sha256=args.campaign_sha256,bytes=len(campaign),slots=slots)
         save()
-        values=[]
-        for value in args.argument:
-            key,sep,text=value.partition('=')
-            if not sep or not re.fullmatch(r'[A-Za-z0-9_]+',key) or not re.fullmatch(r'[A-Za-z0-9_.-]+',text):
-                raise ValueError('Only simple instrumentation key=value arguments supported')
-            values += ['-e',key,text]
         started=time.monotonic()
         report['stage']='instrumentation'
         save()
@@ -135,7 +135,7 @@ if __name__=='__main__':
     parser.add_argument('--apk',type=Path,required=True)
     parser.add_argument('--test-apk',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
-    parser.add_argument('--runner',choices=['SceneInstrumentation','GameSmokeRunner','UiUxInstrumentation','PcPresentationsInstrumentation','Pure3dInstrumentation','MapEditor67Instrumentation','GridAllocationInstrumentation'],required=True)
+    parser.add_argument('--runner',choices=['SceneInstrumentation','GameSmokeRunner','UiUxInstrumentation','PcPresentationsInstrumentation','Pure3dInstrumentation','MapEditor67Instrumentation','GridAllocationInstrumentation','TechniquePointsInstrumentation'],required=True)
     parser.add_argument('--test-package',default=PACKAGE+'.test',help='Standalone acceptance package; main target remains fixed')
     parser.add_argument('--argument',action='append',default=[])
     parser.add_argument('--pass-marker',required=True)

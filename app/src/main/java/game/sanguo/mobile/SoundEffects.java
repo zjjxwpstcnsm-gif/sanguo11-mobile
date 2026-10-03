@@ -10,7 +10,7 @@ import java.util.*;
 
 /** Process presentation audio. Call only on the UI thread; no gameplay or rule RNG. */
 final class SoundEffects {
-    enum Cue { UI, MARCH, ATTACK, TACTIC, CRITICAL, PLOT, CONSTRUCTION, COMPLETE, TURN }
+    enum Cue { UI, MARCH, ATTACK, TACTIC, CRITICAL, PLOT, CONSTRUCTION, COMPLETE, TURN, TECHNIQUE_GAIN, TECHNIQUE_LOSS }
     private final Context context;
     private final SharedPreferences prefs;
     private final AudioManager manager;
