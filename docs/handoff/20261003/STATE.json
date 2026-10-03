@@ -558,7 +558,7 @@
   },
   "r32_canonical_rebuild": {
     "date": "2026-10-04",
-    "status": "normal required flows and production/city/officer ART passed; current audio actual mix running",
+    "status": "normal required flows and ART passed; audio11 actual mix passed; editor acceptance running",
     "complete_dirty_source_snapshot": "out/parity/checkpoint-20261004-r32-cultivation-a143644/source",
     "full_source_files": 4255,
     "full_source_bytes": 336018236,
@@ -615,6 +615,12 @@
     "merchant_arithmetic_checks": 11595,
     "officer_arithmetic_rows": 4813,
     "date_arithmetic_checks": 3120,
-    "all_completed_original_files_exact": true
+    "all_completed_original_files_exact": true,
+    "audio_ui_checks": 51,
+    "audio_ui_seconds": 32.91,
+    "actual_new_mixed_cues": 11,
+    "actual_new_mix_min_correlation": 0.9590349079561974,
+    "actual_new_mix_scope": "emulator digital mix; no microphone/ARM speaker/original PC tone claim",
+    "audio_original_files_exact": true
   }
 }
