@@ -4,7 +4,8 @@
 只合入该基线之后的 UI 增量，禁止把 c19de29 的 core/game-api/game-runtime/data/unity 覆盖到最终规则会话。
 修改范围为 app、专用 scripts/tools、音频资源、本批 docs；510受保护文件逐字节保持 AP。
 
-当前地图验收/驻留候选状态见RESIDENCY_VALIDATION.md，9d51706的冻结包证据单列在VALIDATION.md。
+最新按需演出资源增量见LAZY_VALIDATION.md及COMPLETION_AUDIT.md；
+地图验收/驻留批状态见RESIDENCY_VALIDATION.md，9d51706的冻结包证据单列在VALIDATION.md。
 
 海岸修复统一原生四分之一格的几何与材质采样，废除不兼容的粗补底。真实地形、通行、RNG不变。
 MapView 与 Canvas MapOverview 仅保留在 androidTest 历史夹具，生产 APK 无这两个类描述符。

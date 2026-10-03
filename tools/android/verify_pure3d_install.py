@@ -17,6 +17,9 @@ from verify_pc_age_install import ROOT, PACKAGE, sha, members
 
 def run(args):
     # Reject missing candidates before touching any device or creating a backup.
+    expected_test_package='game.sanguo.mobile.gridallocationprobe' if args.runner=='GridAllocationInstrumentation' else PACKAGE+'.test'
+    if args.test_package!=expected_test_package:
+        raise ValueError('Acceptance package does not match the selected runner; device untouched')
     apks = {str(p.resolve()):sha(p.read_bytes()) for p in (args.apk,args.test_apk)}
     campaign=None
     if bool(args.campaign_save)!=bool(args.campaign_sha256):
@@ -38,7 +41,7 @@ def run(args):
     original = members(before)
     remote = '/data/local/tmp/pc-flow-backup-' + str(time.time_ns()) + '.tar'
     command('push', str(output / 'user-before.tar'), remote)
-    report = dict(serial=args.serial, runner=args.runner, arguments=args.argument,
+    report = dict(serial=args.serial, runner=args.runner, test_package=args.test_package, arguments=args.argument,
                   device=command('shell', 'getprop').decode(),
                   apks=apks,
                   backup={k:dict(bytes=len(v),sha256=sha(v)) for k,v in original.items()}, passed=False)
@@ -56,7 +59,7 @@ def run(args):
                     log.write(command('install','-r',str(apk.resolve()),timeout=180))
                     log.flush()
         report['reused_installed'] = args.reuse_installed
-        test_path = command('shell','pm','path',PACKAGE+'.test').decode().strip().removeprefix('package:')
+        test_path = command('shell','pm','path',args.test_package).decode().strip().removeprefix('package:')
         report['installed_test_sha256'] = sha(command('exec-out','cat',test_path,timeout=180))
         if report['installed_test_sha256'] != sha(args.test_apk.read_bytes()):
             raise ValueError('Installed test APK differs from frozen candidate')
@@ -92,7 +95,7 @@ def run(args):
         save()
         try:
             with (output / 'instrumentation.txt').open('wb') as log:
-                process=subprocess.run(adb+['shell','am','instrument','-w']+values+[PACKAGE+'.test/game.sanguo.mobile.'+args.runner],stdout=log,stderr=subprocess.STDOUT,timeout=args.timeout)
+                process=subprocess.run(adb+['shell','am','instrument','-w']+values+[args.test_package+'/game.sanguo.mobile.'+args.runner],stdout=log,stderr=subprocess.STDOUT,timeout=args.timeout)
             text=(output / 'instrumentation.txt').read_text()
             report.update(exit_code=process.returncode,passed=process.returncode==0 and args.pass_marker in text and 'FAIL' not in text)
         except subprocess.TimeoutExpired:
@@ -132,7 +135,8 @@ if __name__=='__main__':
     parser.add_argument('--apk',type=Path,required=True)
     parser.add_argument('--test-apk',type=Path,required=True)
     parser.add_argument('--output',type=Path,required=True)
-    parser.add_argument('--runner',choices=['SceneInstrumentation','GameSmokeRunner','UiUxInstrumentation','PcPresentationsInstrumentation','Pure3dInstrumentation','MapEditor67Instrumentation'],required=True)
+    parser.add_argument('--runner',choices=['SceneInstrumentation','GameSmokeRunner','UiUxInstrumentation','PcPresentationsInstrumentation','Pure3dInstrumentation','MapEditor67Instrumentation','GridAllocationInstrumentation'],required=True)
+    parser.add_argument('--test-package',default=PACKAGE+'.test',help='Standalone acceptance package; main target remains fixed')
     parser.add_argument('--argument',action='append',default=[])
     parser.add_argument('--pass-marker',required=True)
     parser.add_argument('--timeout',type=int,default=1200)

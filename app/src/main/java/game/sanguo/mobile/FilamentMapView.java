@@ -53,7 +53,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void sceneIdentity(game.sanguo.api.StateToken token){
         meshWork.owner();
         if(sceneToken!=null&&(!sceneToken.sessionId.equals(token.sessionId)||sceneToken.generation!=token.generation)){
-            closePcMapEffects();
+            closePcMapEffects();closePcPresentations();
             cancelUnitDrag();
             visibilityStamp.invalidate();terrainVisibilityDirty=true;meshWork.invalidate();assetWork.invalidate();generation++;pending=0;replay=null;animatedUnit=null;clearEffects();
             for(Proxy p:objects.values())p.destroy();objects.clear();
@@ -84,6 +84,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private final Set<String> pcWaterAdvanced=new HashSet<>();
     private PcMapEffects pcMapEffects;
     private PcPresentations pcPresentations;private PcPresentationStage presentationStage;
+    java.util.function.Consumer<PcPresentationStage> presentationStageObserver; // Installed diagnostic, null in normal play.
     private PcPresentationPlan.Cue presentationCue;private float presentationPhase;
     private PcPresentationPlan.Cue submittedPresentationCue;private float submittedPresentationPhase=Float.NaN;
     private Fence presentationFence;private boolean presentationDriverReady;private long presentationFenceWaits;
@@ -104,6 +105,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private boolean outputProbePending,outputVerified;
     private float pendingLegacyScaleDp=Float.NaN;
     private final long createdWallMillis=android.os.SystemClock.elapsedRealtime();
+    private final StringBuilder startupPhaseRows=new StringBuilder("phase,wall_ms,thread_cpu_ms\n");
+    private long startupPhaseWall,startupPhaseCpu;
+    private void startupPhase(String name){long wall=System.nanoTime(),cpu=android.os.Debug.threadCpuTimeNanos();if(startupPhaseWall!=0){String row=name+","+((wall-startupPhaseWall)/1e6)+","+((cpu-startupPhaseCpu)/1e6)+"\n";startupPhaseRows.append(row);android.util.Log.i("SceneTiming","renderer_init_phase "+row.trim());}startupPhaseWall=wall;startupPhaseCpu=cpu;}
+    String startupPhases(){return startupPhaseRows.toString();}
     private long firstSubmittedMillis=-1,firstVerifiedMillis=-1,resumeWallMillis=-1,resumeVerifiedMillis=-1;
     private Runnable verifiedOutputListener;
     void onVerifiedOutput(Runnable listener){verifiedOutputListener=listener;}
@@ -209,7 +214,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         });
         scaler=new ScaleGestureDetector(context,new ScaleGestureDetector.SimpleOnScaleGestureListener(){@Override public boolean onScale(ScaleGestureDetector d){zoomAt(d.getScaleFactor(),d.getFocusX(),d.getFocusY());return true;}});
         try{
-            Filament.init();engine=Engine.create(Engine.Backend.OPENGL);
+            startupPhase("begin");Filament.init();engine=Engine.create(Engine.Backend.OPENGL);
             renderer=engine.createRenderer();scene=engine.createScene();view=engine.createView();
             displayHelper=new com.google.android.filament.android.DisplayHelper(context);
             skybox=new Skybox.Builder().color(.075f,.10f,.11f,1).build(engine);scene.setSkybox(skybox);
@@ -224,7 +229,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             // cannot be recovered by Java try/catch. Keep full 3D but gate this optional resolve.
             msaaEnabled=manager!=null&&quality.msaaSupported(manager.getDeviceConfigurationInfo().reqGlEsVersion);
             com.google.android.filament.View.MultiSampleAntiAliasingOptions msaa=new com.google.android.filament.View.MultiSampleAntiAliasingOptions();msaa.enabled=msaaEnabled;msaa.sampleCount=4;view.setMultiSampleAntiAliasingOptions(msaa);
-            Renderer.ClearOptions clear=new Renderer.ClearOptions();clear.clear=true;clear.clearColor=new float[]{.075f,.10f,.11f,1};renderer.setClearOptions(clear);
+            Renderer.ClearOptions clear=new Renderer.ClearOptions();clear.clear=true;clear.clearColor=new float[]{.075f,.10f,.11f,1};renderer.setClearOptions(clear);startupPhase("engine_and_view");
             byte[] bytes=VerifiedMaterial.read("3d/terrain.filamat",context.getAssets().open("3d/terrain.filamat"));
             ByteBuffer payload=ByteBuffer.allocateDirect(bytes.length).order(ByteOrder.nativeOrder());payload.put(bytes).flip();material=new Material.Builder().payload(payload,bytes.length).build(engine);
             byte[] siteBytes=VerifiedMaterial.read("3d/sites/site.filamat",context.getAssets().open("3d/sites/site.filamat"));
@@ -233,40 +238,40 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             ByteBuffer ub=ByteBuffer.allocateDirect(unitBytes.length).order(ByteOrder.nativeOrder());ub.put(unitBytes).flip();unitMaterial=new Material.Builder().payload(ub,unitBytes.length).build(engine);
             loadGroundMaterials(context);
             loadWaterMaterial(context);
-            loadOverviewMaterials(context);
-            siteAtlas=loadAtlas(context,"3d/sites/atlas.png");
+            loadOverviewMaterials(context);startupPhase("common_ground_water_materials");
+            siteAtlas=loadAtlas(context,"3d/sites/atlas.png");startupPhase("compat_site_atlas");
             fieldAssets=new FieldAssets(name->context.getAssets().open("3d/field/"+name));
-            pcUnits=new PcUnits(context.getAssets().open("3d/pc-units/units.pcz"));
+            pcUnits=new PcUnits(context.getAssets().open("3d/pc-units/units.pcz"));startupPhase("source_unit_data");
             byte[] pcUnitBytes=VerifiedMaterial.read("3d/pc-units/unit.filamat",context.getAssets().open("3d/pc-units/unit.filamat"));
             pcUnitMaterial=new Material.Builder().payload(ByteBuffer.wrap(pcUnitBytes),pcUnitBytes.length).build(engine);
             byte[] pcUnitAlphaBytes=VerifiedMaterial.read("3d/pc-units/unit-alpha.filamat",context.getAssets().open("3d/pc-units/unit-alpha.filamat"));
             pcUnitAlphaMaterial=new Material.Builder().payload(ByteBuffer.wrap(pcUnitAlphaBytes),pcUnitAlphaBytes.length).build(engine);
-            for(int i=0;i<14;i++)pcUnitSheets[i]=sourceTexture(String.format(java.util.Locale.ROOT,"3d/pc-units/unit-%02d.png",i),false);
+            for(int i=0;i<14;i++)pcUnitSheets[i]=sourceTexture(String.format(java.util.Locale.ROOT,"3d/pc-units/unit-%02d.png",i),false);startupPhase("source_unit_materials_and_sheets");
             pcSites=new PcSites(context.getAssets().open("3d/pc-sites/sites.pcz"));
-            pcSitesAtlas=sourceTexture("3d/pc-sites/atlas.png",false,true);
+            pcSitesAtlas=sourceTexture("3d/pc-sites/atlas.png",false,true);startupPhase("source_sites");
             pcFacilities=new PcFacilities(context.getAssets().open("3d/pc-facilities/facilities.pcz"));
             pcFacilityRigs=new PcFacilityRigs(context.getAssets().open("3d/pc-facilities/rigs.pcz"));
             pcCliffWalls=new PcCliffWalls(context.getAssets().open("3d/pc-facilities/cliff-walls.pcz"),pcFacilities);
             pcDams=new PcDams(context.getAssets().open("3d/pc-facilities/dams.pcz"));
-            pcFacilitiesAtlas=sourceTexture("3d/pc-facilities/atlas.png",false,true);
+            pcFacilitiesAtlas=sourceTexture("3d/pc-facilities/atlas.png",false,true);startupPhase("source_facilities");
             pcScenery=new PcScenery(context.getAssets().open("3d/pc-scenery/scenery.pcz"));
             byte[] nativeScenery=VerifiedMaterial.read("3d/pc-scenery/scenery.filamat",context.getAssets().open("3d/pc-scenery/scenery.filamat"));
             pcSceneryMaterial=new Material.Builder().payload(ByteBuffer.wrap(nativeScenery),nativeScenery.length).build(engine);
-            pcSceneryAtlas=sourceTexture("3d/pc-scenery/atlas.png",false,true);
+            pcSceneryAtlas=sourceTexture("3d/pc-scenery/atlas.png",false,true);startupPhase("source_scenery");
             pcEnvironment=new PcEnvironment(context.getAssets().open("3d/pc-environment/environment.bin"));
             pcPaint=sourceTexture("3d/pc-environment/paint.png",true,true);
             pcSceneryInstance=pcSceneryMaterial.createInstance();
             pcSceneryInstance.setParameter("atlas",pcSceneryAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));
             pcFacilitiesInstance=pcSceneryMaterial.createInstance();
             pcFacilitiesInstance.setParameter("atlas",pcFacilitiesAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));
-            bindPcPainting(pcSceneryInstance,1);bindPcPainting(pcFacilitiesInstance,1);
+            bindPcPainting(pcSceneryInstance,1);bindPcPainting(pcFacilitiesInstance,1);startupPhase("source_environment");
             fieldAtlas=loadAtlas(context,"3d/field/atlas.png");
             unitAtlas=loadAtlas(context,"3d/field/unit-atlas.png");
             byte[] scenery=VerifiedMaterial.read("3d/field/v128/scenery.filamat",context.getAssets().open("3d/field/v128/scenery.filamat"));
             sceneryMaterial=new Material.Builder().payload(java.nio.ByteBuffer.wrap(scenery),scenery.length).build(engine);
             sceneryAtlas=loadAtlas(context,"3d/field/v129/scenery-atlas.png");
             vegetationMaterial=sceneryMaterial.createInstance();vegetationMaterial.setParameter("atlas",sceneryAtlas,new TextureSampler(TextureSampler.MinFilter.LINEAR_MIPMAP_LINEAR,TextureSampler.MagFilter.LINEAR,TextureSampler.WrapMode.CLAMP_TO_EDGE));vegetationMaterial.setParameter("damage",0f);
-            vegetationMaterial.setParameter("flowTime",0f);
+            vegetationMaterial.setParameter("flowTime",0f);startupPhase("compat_field_and_scenery");
             light=EntityManager.get().create();environmentShadows=quality!=SceneQuality.LOW&&manager!=null&&manager.getDeviceConfigurationInfo().reqGlEsVersion>=0x30001;EnvironmentProfile.sun(engine,light,quality,environmentShadows);scene.addEntity(light);
             skyLight=EnvironmentProfile.sky(engine);scene.setIndirectLight(skyLight);
             applySeason(SeasonStyle.SPRING);
@@ -830,9 +835,12 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                     if(presentationCue==null)animatePcMapEffects(UiMotion.enabled()&&!effectsPaused?waterDelta:0);
                     }
                     if(snapshot!=null&&snapshot.ground.pcMap!=null){
-                        if(pcPresentations==null){try{presentationStage=new PcPresentationStage(getContext(),engine,srgbSwapChain);}catch(java.io.IOException error){throw new IllegalStateException(error);}pcPresentations=new PcPresentations(getContext(),engine,presentationStage.scene);}
-                        presentationStage.camera(lens,camera.perspective);
-                        pcPresentations.set(presentationCue,presentationPhase);pcPresentations.frame(presentationStage.camera);
+                        // A normal map has no screen presentation to prepare. The
+                        // committed cue owns its first decode/upload; playback still
+                        // waits for the original assets, capture and driver barriers.
+                        if(presentationCue!=null&&pcPresentations==null){try{presentationStage=new PcPresentationStage(getContext(),engine,srgbSwapChain);}catch(java.io.IOException error){throw new IllegalStateException(error);}pcPresentations=new PcPresentations(getContext(),engine,presentationStage.scene);if(presentationStageObserver!=null)presentationStageObserver.accept(presentationStage);}
+                        if(pcPresentations!=null){presentationStage.camera(lens,camera.perspective);
+                            pcPresentations.set(presentationCue,presentationPhase);pcPresentations.frame(presentationStage.camera);}
                     }else closePcPresentations();
                     long renderStart=System.nanoTime();
                     if(screenStage){
@@ -889,8 +897,8 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private void closePcPresentations(){clearPresentationFence();if(pcPresentations!=null){pcPresentations.close();pcPresentations=null;}if(presentationStage!=null){presentationStage.close();presentationStage=null;}presentationCue=null;presentationPhase=0;submittedPresentationCue=null;submittedPresentationPhase=Float.NaN;}
     boolean presentationSubmitted(){return presentationCue!=null&&submittedPresentationCue==presentationCue&&Math.abs(submittedPresentationPhase-presentationPhase)<.0001f;}
     boolean presentationReady(){
+        if(presentationCue==null)return pending==0&&!assetSyncPending&&assetWork.pending()==0;
         if(pcPresentations==null||!pcPresentations.ready()||pending!=0||assetSyncPending||assetWork.pending()!=0)return false;
-        if(presentationCue==null)return true;
         if(presentationStage==null||!presentationStage.ready())return false;
         if(presentationDriverReady)return true;
         if(presentationFence==null){presentationFence=engine.createFence();engine.flush();return false;}
@@ -1340,7 +1348,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         meshWork.owner();
         if(released)return;released=true;verifiedOutputListener=null;pendingLayoutSnapshot=null;pendingInitialFocus=null;pendingFit=false;replay=null;animatedUnit=null;generation++;cancelFrame();meshWork.close();assetWork.close();pending=0;surface.getHolder().removeCallback(this);
         closePcMapEffects();
-        closePcPresentations();
+        closePcPresentations();presentationStageObserver=null;
         // A detached View may remain referenced by the framework or an outstanding probe.
         // Release heavyweight CPU ownership immediately, rather than waiting for View GC.
         chunks=Collections.emptyList();woods=Collections.emptyList();snapshot=null;poisonMaterialGround=null;fieldAssets=null;backdropSource=null;backdropSurface=null;

@@ -7,7 +7,7 @@
   "baseline_files": 4078,
   "serial": "emulator-5582",
   "scope": "AP rules preserved, app/render/audio/resources/tools/Android only",
-  "phase": "UI increment committed and all selected installed acceptance complete; verified source/APKs/evidence delivery; final rule-owner integration pending",
+  "phase": "latest combined source-city66 checks passed and restored; same package complete acceptance continuing",
   "verified": [
     "source heights and seams 2045912 host checks",
     "12 coast captures 104 installed checks",
@@ -28,7 +28,9 @@
     "real historical v32 normal UI load/store/3D query/background32 checks; original manual raw equal",
     "actual Back exit/cancel/relaunch15 checks; engine/pool release, autosave/RNG and manual bytes exact",
     "camera residency17 nation sites113 checks; PC geometry/source placement/authority anchors valid;3-19 live objects of91 snapshot entities",
-    "candidate coast95/editor61/isolated audio47;9 actual mixer cues minimum correlation0.9590349"
+    "candidate coast95/editor61/isolated audio47;9 actual mixer cues minimum correlation0.9590349",
+    "lazy candidate cold map/Home/reload absent unrequested PC stage; real Guanyu command strict130 incl source layers/cache color/pause4x/skip/release and exact damage/RNG",
+    "lazy candidate march video all1639 frames decoded135.5618s; system foreground six samples1156-1242ms, target1000 not met"
   ],
   "performance_not_passed": [
     "system task foreground 1142-3245ms; 1000ms target false",
@@ -36,14 +38,14 @@
     "ARM physical device not available"
   ],
   "authority_modules_modified": false,
-  "active_install_tests": false,
-  "current_test": "All candidate acceptance finished; every original file byte-restored",
+  "active_install_tests": true,
+  "current_test": "new primitive-grid combined f081 full regression; baseline3ed all steps finished/restored",
   "delivery_note": "Use completed increment after c19de29; do not import this baseline over newer rule files. No cross-chat messages authorized.",
-  "ui_program_commit": "3a1ddd58c2cd2defe86f7584697b2ceef3c69936",
-  "installed_main_sha256": "a3e8d9c0e6ac9c39b14a457ff8e396e4837ef9d6638bb05599e3aa8b2ef770ea",
-  "same_apk_checks": 2868,
+  "ui_program_commit": "6a00e8e57de34de5719ae507a698b9d98b7648c9",
+  "installed_main_sha256": "e63fffb91f4a96aaaa9d19b8098591da2795d0f713af476fdb7f08c99361245a",
+  "same_apk_checks": 3089,
   "long_run_rounds": 24,
-  "long_run_seconds": 775.38,
+  "long_run_seconds": 802.08,
   "remaining": [
     "final rule-owner integration and latest cavalry-city authority placement acceptance",
     "ARM physical device acceptance",
@@ -78,5 +80,69 @@
     "same_apk_checks": 1121,
     "long_run_seconds": 938.09
   },
-  "delivery_path": "/Users/paopao/workspace/sanguo11-mobile/out/pure3d-ui-20261003-map-final"
+  "delivery_path": "/Users/paopao/workspace/sanguo11-mobile/out/pure3d-ui-20261003-lazy-final",
+  "lazy_candidate_main_sha256": "e63fffb91f4a96aaaa9d19b8098591da2795d0f713af476fdb7f08c99361245a",
+  "lazy_candidate_arm64_sha256": "c32d4ff72d46673ef543604a56a6e53af9bb3f77c31f6feec60f237c55558c59",
+  "lazy_candidate_test_sha256": "03dd77d646d2c823d18e042f02528b0a7ae132b58feeabf7bc397d1a3175dedd",
+  "lazy_routine_checks": 911,
+  "lazy_long_run_seconds": 802.08,
+  "lazy_long_run_pss_range_kb": [
+    172548,
+    210608
+  ],
+  "lazy_same_main_checks": 3089,
+  "lazy_source_cases_checks": 1972,
+  "lazy_source_cases_seconds": 490.67,
+  "initializer_diagnostic": {
+    "main_sha256": "ef08864bacb724e81bd9ff95ca51d8a7b77f8f8de119327795bc8e629b19f9e8",
+    "test_sha256": "763730d93076ba913e9bb524e4404b1a8c193a44977e7e86aea3a1c260b977bd",
+    "cold_checks": 14,
+    "cold_seconds": 26.25,
+    "initial_verified_ms": 4150,
+    "reload_verified_ms": 6490,
+    "weak_cache_trial_retained": false,
+    "functional_validation_running": false,
+    "checks": 201,
+    "all_ended_original_files_byte_equal": true,
+    "functional_suite_seconds": {
+      "terrain": 169.47,
+      "audio": 77.74,
+      "march": 551.02,
+      "exit3D": 131.08
+    }
+  },
+  "combined_candidate": {
+    "rule_owner_revision": "a934c23",
+    "source_revision": "4a8bbdd298dad1911f4ad46786933b1711f0b7a8",
+    "main_sha256": "3ed13e921ba7cc75daf3f00ad48de75f25d519ce15b3dc8608daaae4b251412b",
+    "test_sha256": "93d4de12741ffd979dc4750735f298d613a6f09e73735a94ea6b07e260bd6031",
+    "arm64_sha256": "cdb81dde9c15afefbb7a97e99dd681120285d66f0cdf06107dca8be1bd513bbd",
+    "protected_input_files": 521,
+    "stage": "all15 original presentations running; editor/PCM queued",
+    "passed": false,
+    "city_visual_checks": 66,
+    "city_visual_seconds": 403.88,
+    "city_visual_passed": true,
+    "city_user_files_byte_restored": true,
+    "regular_flows": 19,
+    "regular_checks": 1478,
+    "regular_all_passed": true,
+    "regular_all_user_files_byte_equal": true,
+    "long24_passed": true,
+    "long24_checks": 342,
+    "long24_seconds": 726.58,
+    "long24_user_files_byte_equal": true
+  },
+  "pending_grid_candidate": {
+    "source_commit": "83a4a1030ef41e82085e46298d4353644b8eede9",
+    "host_bit_checks": 4869930,
+    "android_verified": false,
+    "android_art_verified": true,
+    "android_art_checks": 2376247,
+    "art_production_bytes": 36052992,
+    "art_reference_bytes": 134116720,
+    "main_sha256": "f081dee4eb224e41f418bb58926eb6406a4d9706215802ec449f11c24d6b0216",
+    "source_revision": "b6f016214ec03b13ab02e456b0967cd5d4536b98",
+    "full_installed_validation": "running session77075"
+  }
 }

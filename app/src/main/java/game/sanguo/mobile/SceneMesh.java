@@ -102,6 +102,12 @@ final class SceneMesh {
             if(wet){if(water==null)water=new int[land.length];water[waterCount++]=a;water[waterCount++]=b;water[waterCount++]=c;}
             else{land[landCount++]=a;land[landCount++]=b;land[landCount++]=c;}
         }
+        void face(float ax,float ay,float az,float bx,float by,float bz,
+                float cx,float cy,float cz,float dx,float dy,float dz,int color){
+            int n=vertexCount;vertex(ax,ay,az,color);vertex(bx,by,bz,color);
+            vertex(cx,cy,cz,color);vertex(dx,dy,dz,color);
+            triangle(false,n,n+1,n+2);triangle(false,n,n+2,n+3);
+        }
         SceneMesh mesh(float x,float z,float radius){
             int[] indices=Arrays.copyOf(land,landCount+waterCount);
             if(waterCount!=0)System.arraycopy(water,0,indices,landCount,waterCount);
@@ -189,7 +195,7 @@ final class SceneMesh {
         int margin=g.pcMap==null?0:32,qLimit=g.width+margin,rLimit=g.height+margin;
         for(int r=-margin;r<rLimit;r+=16)for(int q=-margin;q<qLimit;q+=16)requests.add(new int[]{q,r});
         if(window!=null)requests.sort(Comparator.comparingDouble(a->Math.hypot(g.grid.x(a[0]+8,a[1]+8)-window.x,g.grid.z(a[0]+8,a[1]+8)-window.z)));
-        SurfaceBuilder scratch=null;
+        SurfaceBuilder scratch=null,gridScratch=null;
         for(int[] request:requests){
             int q=request[0],r=request[1];float cx=g.grid.x(q+8,r+8),cz=g.grid.z(q+8,r+8);
             if(window!=null&&!window.contains(cx,cz,13))continue;
@@ -255,7 +261,7 @@ final class SceneMesh {
                 if(g.pcMap!=null)fine.sourceWater=sourceWater(g,q,r,fine);
                 // One immutable GPU batch per streamed ground chunk. No UI-thread
                 // terrain sampling/raycast per grid cell during camera gestures.
-                if(window!=null&&window.span<48){fine.grid=grid(g,q,r,fine,lod);fine.gridDifficultMarch=g.gridDifficultMarch;}
+                if(window!=null&&window.span<48){if(gridScratch==null)gridScratch=gridScratch(g);fine.grid=grid(g,q,r,fine,lod,gridScratch);fine.gridDifficultMarch=g.gridDifficultMarch;}
                 out.add(fine);
                 if(stats!=null&&stats.firstLoadBatch!=null&&out.size()%8==0)
                     stats.firstLoadBatch.accept(Collections.unmodifiableList(new ArrayList<>(out)));
@@ -326,8 +332,16 @@ final class SceneMesh {
         for(int i=0;i<count;i++)b.vertex(polygon[i*3],level,polygon[i*3+2],0xff496d78);
         for(int i=1;i<count-1;i++)b.triangle(true,start,start+i,start+i+1);
     }
+    private static SurfaceBuilder gridScratch(MapSceneSnapshot.Ground g){
+        int faces=16*16*8*(g.pcMap==null?1:2)*2;
+        return new SurfaceBuilder(faces*4,faces*6);
+    }
     static SceneMesh grid(MapSceneSnapshot.Ground g,int q,int r,SceneMesh bounds,int lod){
-        Builder b=new Builder();
+        return grid(g,q,r,bounds,lod,gridScratch(g));
+    }
+    /** Same ordered ribbons; task-local scratch owns no published arrays. */
+    private static SceneMesh grid(MapSceneSnapshot.Ground g,int q,int r,SceneMesh bounds,int lod,SurfaceBuilder b){
+        b.reset();
         float width=lod==0?.012f:lod==1?.023f:.038f;
         for(int rr=Math.max(0,r);rr<Math.min(r+16,g.height);rr++)for(int qq=Math.max(0,q);qq<Math.min(q+16,g.width);qq++){
             Hex h=new Hex(qq,rr);if(!g.gridCell(h,false))continue;
@@ -348,17 +362,18 @@ final class SceneMesh {
                 }
             }
         }
-        return b.mesh(bounds.x,bounds.z,bounds.radius);
+        SceneMesh result=b.mesh(bounds.x,bounds.z,bounds.radius);result.landIndexCount=-1;
+        return result;
     }
-    private static void gridRibbon(Builder b,MapSceneSnapshot.Ground g,float x,float z,float y,
+    private static void gridRibbon(SurfaceBuilder b,MapSceneSnapshot.Ground g,float x,float z,float y,
             float ax,float az,float ay,float dx,float dz,float dy,float inset,float lift,int color){
         // Exact barycentric inset within the same visible fan planes, including
         // rounded shoreline transport. Width is an offline LOD choice, not a rule.
         float[] a=g.shoreline.project(ax,az),d=g.shoreline.project(dx,dz);
         float t=inset*2;
-        b.face(new float[]{a[0],ay+lift,a[1],d[0],dy+lift,d[1],
+        b.face(a[0],ay+lift,a[1],d[0],dy+lift,d[1],
             d[0]+(x-d[0])*t,dy+(y-dy)*t+lift,d[1]+(z-d[1])*t,
-            a[0]+(x-a[0])*t,ay+(y-ay)*t+lift,a[1]+(z-a[1])*t},color);
+            a[0]+(x-a[0])*t,ay+(y-ay)*t+lift,a[1]+(z-a[1])*t,color);
     }
     /** Interior subdivision adds close-range material detail; boundary geometry is identical at both LODs. */
     static SceneMesh detail(SceneMesh coarse,MapSceneSnapshot.Ground g){

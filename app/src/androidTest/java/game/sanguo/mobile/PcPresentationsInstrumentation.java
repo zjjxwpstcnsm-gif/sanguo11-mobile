@@ -14,15 +14,17 @@ public final class PcPresentationsInstrumentation extends SceneInstrumentation {
     @Override public void onCreate(Bundle args){continuous=args!=null&&"true".equals(args.getString("continuous"));rasterDiagnostic=args!=null&&"true".equals(args.getString("raster"));lifecycleOnly=args!=null&&"true".equals(args.getString("lifecycleOnly"));if(args!=null)selectedCase=args.getString("case","all");if(!Arrays.asList("all","tactic-guanyu","plot-sorcery","plot-lightning","tactic-liubei-young","tactic-liubei-old","tactic-guanyu-young","tactic-guanyu-old","tactic-zhangfei-young","tactic-zhangfei-old","tactic-zhaoyun-young","tactic-zhaoyun-old","tactic-zhugeliang-young","tactic-zhugeliang-old","tactic-caocao-young","tactic-caocao-old").contains(selectedCase))throw new IllegalArgumentException("Unknown normal-command fixture "+selectedCase);super.onCreate(args);}
     @Override public void onStart(){
         Bundle result=new Bundle();dir=getTargetContext().getExternalFilesDir("s01");dir.mkdirs();File report=new File(dir,continuous?"pc-presentations-continuous-report.txt":lifecycleOnly?"pc-presentations-lifecycle-report.txt":"pc-presentations-report.txt");
+        String animationBefore=null;boolean motionBefore=true;
         File auto=new File(getTargetContext().getFilesDir(),"auto.sg11");boolean existed=auto.isFile(),backed=false;byte[] backup=null;
         var prefs=getTargetContext().getSharedPreferences("map-renderer",0);Map<String,?> old=new HashMap<>(prefs.getAll());
         var client=getTargetContext().getSharedPreferences("MainActivity",0);Map<String,?> oldClient=new HashMap<>(client.getAll());
         try{
+            animationBefore=shell("settings get global animator_duration_scale");
             if(existed)backup=Files.readAllBytes(auto.toPath());backed=true;
             prefs.edit().clear().putInt("version",2).putBoolean("3d",false).putBoolean("nativeSession",false).putBoolean("nativeFailure",false).putString("quality","LOW").commit();client.edit().putBoolean("viewOnly",false).commit();
-            activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();host=(MapHost)field(activity,"map");
+            activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();motionBefore=UiMotion.enabled();shell("settings put global animator_duration_scale 1");long motionDeadline=SystemClock.uptimeMillis()+5000;while(!UiMotion.enabled()&&SystemClock.uptimeMillis()<motionDeadline)SystemClock.sleep(50);check(UiMotion.enabled(),"real system motion enabled for source animation acceptance");host=(MapHost)field(activity,"map");
             checkedMain(()->invoke("closePanel",new Class<?>[0]));
-            for(var fixture:PcCriticalsFixture.presentations()){
+            for(var fixture:UiPcCriticalsFixture.presentations()){
                 boolean tactic=fixture.tactic;String label=fixture.label;
                 if(!selectedCase.equals("all")&&!selectedCase.equals(label))continue;
                 World expected=SaveCodec.decode(SaveCodec.encode(fixture.world));TurnJournal journal=new TurnJournal(expected);World.Result reference=fixture.command(expected);journal.close();
@@ -31,12 +33,15 @@ public final class PcPresentationsInstrumentation extends SceneInstrumentation {
                 check(count==1,"normal command records one original cue "+label);
                 checkedMain(()->{host.switchMode(false);SessionProbe.install(activity,fixture.world);activity.refresh();host.focusNative(fixture.world.unit(fixture.actor).hex);});
                 renderer=(FilamentMapView)field(host,"spatial");checkedMain(()->{renderer.camera.span=2;renderer.camera.yaw=0;renderer.camera.tilt=55;host.setGridShown(false);});settle();ready();presentationReady();
+                check(field(renderer,"pcPresentations")==null&&field(renderer,"presentationStage")==null,"ordinary source map defers unused fullscreen resources");
                 check(host.sourceVisuals(),"original map presentation mode");
                 if(continuous){continuousCommand(fixture,expected,label,report);continue;}
                 if(rasterDiagnostic)for(String kind:new String[]{"source","stage-first","stage"})Files.deleteIfExists(new File(dir,"pc-presentation-"+label+"-gpu-"+kind+".png").toPath());
-                checkedMain(()->{try{PcPresentationStage stage=(PcPresentationStage)field(renderer,"presentationStage");if(rasterDiagnostic)stage.rasterObserver=(kind,bitmap)->{try(OutputStream file=new FileOutputStream(new File(dir,"pc-presentation-"+label+"-gpu-"+kind+".png"))){bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,file);}catch(IOException e){throw new RuntimeException(e);}};stage.captureObserver=bitmap->{try(OutputStream file=new FileOutputStream(new File(dir,"pc-presentation-"+label+"-captured-map.png"))){bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,file);}catch(IOException e){throw new RuntimeException(e);}};}catch(Exception e){throw new RuntimeException(e);}});
+                checkedMain(()->{renderer.presentationStageObserver=stage->{if(rasterDiagnostic)stage.rasterObserver=(kind,bitmap)->{try(OutputStream file=new FileOutputStream(new File(dir,"pc-presentation-"+label+"-gpu-"+kind+".png"))){bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,file);}catch(IOException e){throw new RuntimeException(e);}};stage.captureObserver=bitmap->{try(OutputStream file=new FileOutputStream(new File(dir,"pc-presentation-"+label+"-captured-map.png"))){bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,file);}catch(IOException e){throw new RuntimeException(e);}};};});
                 World.Result[] command={null};checkedMain(()->{command[0]=SessionProbe.command(activity,fixture::command);host.pauseCommandEffects(true);});
-                check(command[0].ok&&host.commandEffectsActive()&&host.commandEffectsPaused(),"real session starts pausable presentation "+label);
+                check(command[0].ok,"real committed command succeeds "+label+": "+command[0].message);
+                check(host.commandEffectsActive(),"real command has active presentation "+label+" resumed="+field(host,"resumed")+" motion="+UiMotion.enabled());
+                check(host.commandEffectsPaused(),"real command presentation is paused "+label);
                 Object sequence=field(host,"commandEffects");TurnJournal.Event event=((CombatSequence)sequence).current();
                 check(PcPresentationPlan.duration(event)==PcPresentationPlan.CUE_MILLIS&&PcPresentationPlan.CUE_MILLIS>=500&&PcPresentationPlan.CUE_MILLIS<=1000,"single critical duration within user-approved500–1000ms range");
                 if(lifecycleOnly){pausedStageReady();Files.write(report.toPath(),(label+" lifecycle-only scope: cache color NOT RUN; separate strict phasezero max<=3 acceptance remains required.\n").getBytes("UTF-8"),StandardOpenOption.CREATE,StandardOpenOption.APPEND);}
@@ -56,19 +61,24 @@ public final class PcPresentationsInstrumentation extends SceneInstrumentation {
                 settle();
                 settledAuthority(expected,label);shot(label+"-after");
                 Object owner=field(renderer,"pcPresentations");check((Integer)field(owner,"shown")==0&&field(renderer,"presentationCue")==null,"finished source presentation removed");
-                checkedMain(()->host.switchMode(false));check(field(renderer,"pcPresentations")==null&&field(renderer,"presentationStage")==null,"scene exit releases source presentation owner and captured map stage");
+                checkedMain(()->host.quality(host.quality()==SceneQuality.MEDIUM?SceneQuality.HIGH:SceneQuality.MEDIUM));check(field(renderer,"pcPresentations")==null&&field(renderer,"presentationStage")==null&&(Boolean)field(renderer,"released")&&field(renderer,"engine")==null,"real3D renderer reload releases source presentation owner and captured map stage");
                 check(((Map<?,?>)field(owner,"textures")).isEmpty()&&((Map<?,?>)field(owner,"instances")).isEmpty()&&field(owner,"prepared")==null,"scene exit releases textures/material instances/CPU packets");
             }
             result.putString("stream","PASS PC PRESENTATIONS installed checks="+checks+"; case="+selectedCase+"; mode="+(continuous?"continuous normal commands":lifecycleOnly?"lifecycle only; strict cache color acceptance excluded and still required":"controlled paused host ticks/pause/resume/4x/skip/exit with strict cache color")+"; original source GPU layers, exact authority/RNG/save; emulator only; source fullscreen lens/MOD/encoded blend/other bindings pending\n");
         }catch(Throwable e){result.putString("stream","FAIL PC PRESENTATIONS "+android.util.Log.getStackTraceString(e));try{capture("pc-presentations-failed");}catch(Exception ignored){}}
         finally{
+            if(animationBefore!=null&&activity!=null)try{
+                shell("settings put global animator_duration_scale "+("null".equals(animationBefore)?(motionBefore?"1":"0"):animationBefore));long deadline=SystemClock.uptimeMillis()+5000;while(UiMotion.enabled()!=motionBefore&&SystemClock.uptimeMillis()<deadline)SystemClock.sleep(50);
+                if("null".equals(animationBefore))shell("settings delete global animator_duration_scale");settle();check(animationBefore.equals(shell("settings get global animator_duration_scale"))&&UiMotion.enabled()==motionBefore,"original system setting and actual animator enabled state restored");
+            }catch(Exception e){result.putString("stream",result.getString("stream")+"FAIL animation preference restoration "+e);}
             try{finishActivityForRestore();}catch(Throwable e){result.putString("stream",result.getString("stream")+"FAIL lifecycle restoration barrier "+e);}
             try{if(backed){if(existed){Files.write(auto.toPath(),backup);if(!Arrays.equals(backup,Files.readAllBytes(auto.toPath())))throw new IOException("restored autosave differs");}else Files.deleteIfExists(auto.toPath());}}catch(IOException e){result.putString("stream",result.getString("stream")+"FAIL autosave restoration "+e);}
             restore(prefs,old);restore(client,oldClient);
+
         }
         try{Files.write(report.toPath(),result.getString("stream").getBytes("UTF-8"),StandardOpenOption.CREATE,StandardOpenOption.APPEND);}catch(IOException ignored){}finish(Activity.RESULT_OK,result);
     }
-    private void continuousCommand(PcCriticalsFixture.Case fixture,World expected,String label,File report)throws Exception{
+    private void continuousCommand(UiPcCriticalsFixture.Case fixture,World expected,String label,File report)throws Exception{
         // Start the owned short recording only after real scene/asset readiness.
         // Loading videos cannot substitute for continuous command evidence.
         ParcelFileDescriptor recording=getUiAutomation().executeShellCommand("screenrecord --bit-rate 4000000 --time-limit 30 /sdcard/pc-presentation-"+label+"-continuous.mp4");
@@ -207,6 +217,7 @@ public final class PcPresentationsInstrumentation extends SceneInstrumentation {
         check(Arrays.equals(SaveCodec.encode(expected),actual[0]),"complete authority/RNG/save matches independent normal "+label);
         check(Arrays.equals(actual[0],SaveCodec.encode(SaveCodec.decode(actual[0]))),"critical command save roundtrip");
     }
+    private String shell(String command)throws IOException{try(InputStream in=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand(command));ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] buffer=new byte[1024];for(int n;(n=in.read(buffer))!=-1;)out.write(buffer,0,n);return out.toString("UTF-8").trim();}}
     private Object uncheckedField(Object object,String name){try{return field(object,name);}catch(Exception e){throw new RuntimeException(e);}}
     private void checkedMain(Runnable action){Throwable[] error={null};super.runOnMainSync(()->{try{action.run();}catch(Throwable e){error[0]=e;}});if(error[0]!=null)throw new IllegalStateException("Main-thread presentation verification",error[0]);}
     private void shot(String name)throws Exception{surfaceCapture();Files.copy(new File(dir,"surface.png").toPath(),new File(dir,"pc-presentation-"+name+".png").toPath(),StandardCopyOption.REPLACE_EXISTING);capture("pc-presentation-"+name+"-ui");}
