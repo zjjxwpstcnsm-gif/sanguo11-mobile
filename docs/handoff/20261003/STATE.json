@@ -558,7 +558,7 @@
   },
   "r32_canonical_rebuild": {
     "date": "2026-10-04",
-    "status": "default3D856/sourcecity62/production209/full24continuation373/native37merchant66 passed; ART matrix running",
+    "status": "normal required flows and production/city/officer ART passed; current audio actual mix running",
     "complete_dirty_source_snapshot": "out/parity/checkpoint-20261004-r32-cultivation-a143644/source",
     "full_source_files": 4255,
     "full_source_bytes": 336018236,
@@ -602,6 +602,19 @@
     "native37_merchant_ui_checks": 66,
     "native37_merchant_ui_seconds": 54.88,
     "native37_merchant_complete_save_comparison": true,
-    "native37_merchant_original_files_exact": true
+    "native37_merchant_original_files_exact": true,
+    "production_art_execution_checks": 13323,
+    "production_art_suites": 10,
+    "production_art_original_files_exact": true,
+    "city_displacement_art_checks": 6648,
+    "city_session_art_checks": 19,
+    "officer_state_art_checks": 57330,
+    "officer_state_art_seconds": 8.63,
+    "rank_art_checks": 2244,
+    "merit_art_checks": 421,
+    "merchant_arithmetic_checks": 11595,
+    "officer_arithmetic_rows": 4813,
+    "date_arithmetic_checks": 3120,
+    "all_completed_original_files_exact": true
   }
 }
