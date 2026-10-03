@@ -38,8 +38,14 @@ def run(args):
         core_names.append('PcTechniquePointsTest');runtime_names.append('PcTechniquePointsSessionTest')
     if getattr(args,'technique_facts',False):runtime_names.append('TechniquePointsFactsTest')
     suites={ 'game.sanguo.core.'+name: ROOT/module/'build/classes/java/test/game/sanguo/core'/ (name+'.class') for module,names in [('core',core_names),('game-runtime',runtime_names)] for name in names }
+    if getattr(args,'suites',None):
+        wanted={'game.sanguo.core.'+name for name in args.suites}
+        if not wanted.issubset(suites):raise ValueError('Requested suite is not in this exact probe configuration')
+        suites={name:path for name,path in suites.items() if name in wanted}
     fixtures=[('core','CityCommandRewardsTest'),('core','CityActionPlanTest'),('core','ProductionPlanTest'),('game-runtime','CityActionSessionTest'),('game-runtime','ProductionSessionTest')]
+    if getattr(args,'native_technique_policy',False):fixtures.extend([('core','PcDelayedProductionFlowTest'),('game-runtime','PcProductionCrewSessionTest')])
     inputs=list(suites.values())+[ROOT/module/'build/classes/java/test/game/sanguo/core'/ (name+'.class') for module,name in fixtures]
+    inputs=list(dict.fromkeys(inputs))
     # Java17 enum switches/nested helpers are nest mates, not production rules.
     for test_class in list(inputs):
         inputs.extend(sorted(test_class.parent.glob(test_class.stem+'$*.class')))
@@ -143,6 +149,7 @@ if __name__ == '__main__':
     parser.add_argument('--serial', required=True)
     parser.add_argument('--apk', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--suites',nargs='+',help='Run only named existing suites, retaining all their assertions; prior independent evidence remains separate')
     parser.add_argument('--native-technique-policy',action='store_true',help='Require v37 source rewards and genuine old v36 preservation on ART')
     parser.add_argument('--technique-facts',action='store_true',help='Also verify immutable commit/journal point facts from the installed candidate')
     run(parser.parse_args())

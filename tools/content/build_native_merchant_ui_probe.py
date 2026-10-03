@@ -17,6 +17,7 @@ def build(output,runner='NativeMerchantUiInstrumentation',sources=None,assets=No
              'NativeCityRewardsUiInstrumentation':'game.sanguo.mobile.cityrewardsprobe',
              'NativeCityDisplacementUiInstrumentation':'game.sanguo.mobile.citydisplacementprobe',
              'NativeProductionSourceUiInstrumentation':'game.sanguo.mobile.sourceproductionprobe',
+             'NativeProductionTechniqueUiInstrumentation':'game.sanguo.mobile.sourceproductiontechniqueprobe',
              'BoundedRuleFlowInstrumentation':'game.sanguo.mobile.boundedruleflowprobe'}[runner]
     output=output.resolve()
     if ROOT/'out' not in output.parents:raise ValueError('Fresh output must be inside project out/')
@@ -62,4 +63,4 @@ def build(output,runner='NativeMerchantUiInstrumentation',sources=None,assets=No
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path,required=True);parser.add_argument('--runner',choices=['NativeMerchantUiInstrumentation','NativeCityRewardsUiInstrumentation','NativeCityDisplacementUiInstrumentation','NativeProductionSourceUiInstrumentation'],default='NativeMerchantUiInstrumentation');args=parser.parse_args();build(args.output,args.runner)
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path,required=True);parser.add_argument('--runner',choices=['NativeMerchantUiInstrumentation','NativeCityRewardsUiInstrumentation','NativeCityDisplacementUiInstrumentation','NativeProductionSourceUiInstrumentation','NativeProductionTechniqueUiInstrumentation'],default='NativeMerchantUiInstrumentation');args=parser.parse_args();build(args.output,args.runner)
