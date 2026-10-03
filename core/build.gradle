@@ -466,3 +466,11 @@ tasks.register('verifyPcTechniquePoints', JavaExec) {
     maxHeapSize = '768m'
 }
 tasks.named('check') { dependsOn 'verifyPcTechniquePoints' }
+
+tasks.register('verifyBattleReportCompression', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.BattleReportCompressionTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyBattleReportCompression' }

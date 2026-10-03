@@ -31,11 +31,19 @@ def run(args):
         return subprocess.run(adb + list(parts), check=True, stdout=subprocess.PIPE,
                               stderr=subprocess.PIPE, timeout=timeout).stdout
 
-    suites = {
+    available = {
         'game.sanguo.core.CityDisplacementTest': ROOT / 'core/build/classes/java/test/game/sanguo/core/CityDisplacementTest.class',
         'game.sanguo.runtime.CityDisplacementSessionTest': ROOT / 'game-runtime/build/classes/java/test/game/sanguo/runtime/CityDisplacementSessionTest.class',
+        'game.sanguo.core.BattleReportCompressionTest': ROOT / 'core/build/classes/java/test/game/sanguo/core/BattleReportCompressionTest.class',
+        'game.sanguo.runtime.SnapshotReadOnlyTest': ROOT / 'game-runtime/build/classes/java/test/game/sanguo/runtime/SnapshotReadOnlyTest.class',
     }
-    inputs = list(suites.values()) + [ROOT / 'core/build/classes/java/test/game/sanguo/core/DisplacementFixture.class']
+    requested = getattr(args, 'suite', None) or ['game.sanguo.core.CityDisplacementTest', 'game.sanguo.runtime.CityDisplacementSessionTest']
+    if len(set(requested)) != len(requested) or any(name not in available for name in requested):
+        raise ValueError('Only registered named acceptance suites are allowed')
+    suites = {name: available[name] for name in requested}
+    inputs = list(suites.values())
+    if any('CityDisplacement' in name for name in suites):
+        inputs.append(ROOT / 'core/build/classes/java/test/game/sanguo/core/DisplacementFixture.class')
     if not all(p.is_file() for p in inputs):
         raise ValueError('Compile both registered test suites before using the device')
     expected = sha(args.apk.read_bytes())
@@ -78,7 +86,7 @@ def run(args):
         for suite in suites:
             started = time.monotonic()
             result = command('shell', 'env', 'CLASSPATH=' + installed + ':' + remote,
-                             'app_process', '/system/bin', suite, timeout=180)
+                             'app_process', '/system/bin', suite, timeout=180 if 'CityDisplacement' in suite else 360)
             (output / (suite.rsplit('.', 1)[1] + '.log')).write_bytes(result)
             if b'PASS' not in result:
                 raise ValueError('Missing suite pass marker: ' + suite)
@@ -108,4 +116,5 @@ if __name__ == '__main__':
     parser.add_argument('--serial', required=True)
     parser.add_argument('--apk', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--suite', action='append', choices=['game.sanguo.core.CityDisplacementTest', 'game.sanguo.runtime.CityDisplacementSessionTest', 'game.sanguo.core.BattleReportCompressionTest', 'game.sanguo.runtime.SnapshotReadOnlyTest'], help='Run named installed-APK report/projection acceptance; defaults preserve both city suites')
     run(parser.parse_args())

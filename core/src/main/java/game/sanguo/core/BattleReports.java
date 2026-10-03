@@ -165,7 +165,7 @@ public final class BattleReports {
     /** Length-prefixed UTF-8 and bounded gzip, not writeUTF's 64KB per-string limit. */
     public synchronized void write(DataOutputStream out)throws IOException{
         prune();ByteArrayOutputStream bytes=new ByteArrayOutputStream();
-        try(DataOutputStream d=new DataOutputStream(new GZIPOutputStream(bytes))){d.writeLong(nextId);d.writeInt(entries.size());for(Entry e:entries){d.writeLong(e.id);d.writeInt(e.turn);d.writeInt(e.actor);d.writeLong(e.related);d.writeByte(e.kind.ordinal());string(d,e.title);string(d,e.detail);d.writeBoolean(e.location!=null);if(e.location!=null){d.writeInt(e.location.q);d.writeInt(e.location.r);}}}
+        try(DataOutputStream d=new DataOutputStream(new BufferedOutputStream(new GZIPOutputStream(bytes),8192))){d.writeLong(nextId);d.writeInt(entries.size());for(Entry e:entries){d.writeLong(e.id);d.writeInt(e.turn);d.writeInt(e.actor);d.writeLong(e.related);d.writeByte(e.kind.ordinal());string(d,e.title);string(d,e.detail);d.writeBoolean(e.location!=null);if(e.location!=null){d.writeInt(e.location.q);d.writeInt(e.location.r);}}}
         byte[] payload=bytes.toByteArray();if(payload.length>16*1024*1024)throw new IOException("三个月战报超过存档安全上限；未丢弃任何记录");out.writeInt(payload.length);out.write(payload);
     }
     public synchronized void read(DataInputStream in)throws IOException{

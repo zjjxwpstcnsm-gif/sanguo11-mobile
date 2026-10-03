@@ -132,6 +132,14 @@ tasks.register('verifyCurrentSession', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyCurrentSession' }
 
+tasks.register('verifySnapshotReadOnly', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.runtime.SnapshotReadOnlyTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifySnapshotReadOnly' }
+
 tasks.register('verifyPcTechniquePointsSession', JavaExec) {
     dependsOn testClasses
     classpath = sourceSets.test.runtimeClasspath

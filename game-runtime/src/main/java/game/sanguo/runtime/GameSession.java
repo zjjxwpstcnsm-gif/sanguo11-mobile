@@ -316,8 +316,9 @@ public final class GameSession implements GameApi, AutoCloseable {
     public byte[] captureSave()throws IOException{thread();if(closed)throw new IOException("Session closed");return SaveCodec.encode(authority);}
     @Override public GameSnapshot snapshot(){
         thread();if(closed)throw new IllegalStateException("Session closed");
-        try{return SnapshotQuery.capture(WorldCopies.copy(authority),state());}
-        catch(IOException e){throw new IllegalStateException("Snapshot capture",e);}
+        // Serial projection copies only immutable DTO values. It neither retains
+        // rule entities nor serializes reports merely to read bridge/map facts.
+        return SnapshotQuery.capture(authority,state());
     }
     public TurnTicket beginTurn()throws IOException{
         write();if(busy())throw new IllegalStateException("HOST_BUSY");

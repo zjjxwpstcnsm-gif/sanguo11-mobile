@@ -5,7 +5,8 @@ import game.sanguo.api.bridge.BridgeEntity;
 import game.sanguo.core.*;
 import java.util.*;
 
-/** Projects a detached, consistently captured rule world into immutable game facts. */
+/** Serial read-only projection into detached immutable DTOs; retains no rule entity.
+ * The caller owns the logic thread and prevents writes during capture. */
 public final class SnapshotQuery {
     private SnapshotQuery(){}
     public static GameSnapshot capture(World world,StateToken state){
