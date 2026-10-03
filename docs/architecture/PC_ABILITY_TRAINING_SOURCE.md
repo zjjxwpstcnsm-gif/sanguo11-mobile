@@ -73,3 +73,17 @@ python3 tools/content/verify_pc_ability_training_ap_native.py --output out/parit
 ```
 
 `docs/pc-data/ability-training-ap-native.json.gz`1835B／1ef3747e7259ebaa17c2cb1de626ac0ff42109d1af02b9eea0980f984a365040已随源码固定。工具同时输出固定mtime gzip，可逐字节复现；当前已核实的是扣除与AP准入片段，不能替代正常完整开始命令。
+
+## 完整原入口至前端刷新前的开始规则登记
+
+`verify_pc_ability_start_core_native.py`实际从STAT5d98d0、APT5da6e0、SKILL5daf10入口执行，包括原开始准入、候选列表、请求检查、4a7410任务登记、482f80名册登记、行动位及3旬计数、原20AP扣除；停在5b9387的前端刷新前。98个原ID均在明确的已研究／隐藏slot0输入下获准，另三类各覆盖AP20／金0、AP20／金1、AP19／金5000：合计107例、104获准／3拒绝。获准时原金币、base、XP、适性、特技不变，名册仅一个成员；不足20全部世界不变，RNG每例保持。此边界前培养登记不扣金币，不据此声明前端／历史登记后的完整行为或函数返回。
+
+完整3MiB核对限制非名册字段只能按精确任务6字段、行动bit0、计数3和AP−20变化。原名册／缓存root+184..1b8、1cc..1d0作为明确的簿记区，原始前后字节逐例保存，但未独立预测每个指针字节；原查询482af0和计数1另行核验。不能把这个核对写成所有字节均独立预测。原构造器1100武将、军团0、城市0、非玩家controller=-1及正确的+94归属／+98／+9c位置是受控准备，不是官方开局。源码／规则回调／validator返回均未替换；继承的OS指针权限探测、单线程临界区及初次源字节读取明确披露。
+
+初次沿用10000指令预算在候选扫描途中停止；扩大观察预算而不改原指令后完整准入正确返回0。轨迹找到准备的+98为-1而+9c为0，原4896c0要求位置匹配，正确设置为0后准入返回1。随后真正尝试整个开始函数：任务与AP已登记，但前端刷新中的未初始化虚表使执行中止，保留全部失败和最后原指令；没有伪造GUI回调来制造完整通过。正式工具只观察停止于真实刷新边界之前，未宣称完整开始命令返回。
+
+两次正式JSON115344B完全相同，SHA7086a48032e6c02cedf12f2dec886210bda30bc07d179df2ac90d908af7a06a0；随源码`ability-start-core-native.json.gz`9120B／afba09078ad87db4a9861848656d01c7b66bd7dbed54ee87fa1d47a990a7dc27。工具同时产生可重复gzip。继续保留安卓培养写base及旧31—33语义；完整XP策略、研究树／随机隐藏、前端／历史及取消失守仍待。
+
+```sh
+PYTHONPATH=/Users/paopao/workspace/sanguo11-mobile/out/toolchain/pc-emulate:/Users/paopao/workspace/sanguo11-mobile/out/toolchain/pc-inspect python3 tools/content/verify_pc_ability_start_core_native.py --output out/parity/ability-start-core-new
+```
