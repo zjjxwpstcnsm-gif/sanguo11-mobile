@@ -963,3 +963,5 @@ R32新a31独立UI默认856／551.05、来源城市62／131.54PASS，原7恢复ex
 新a31 audioUI51／32.91和实际11新PCM全PASS，mincorr0.9590349，waveSHAba2fa9f1…a8b，原7exact。仅模拟器数字后端，不声称ARM或PC音色。新包编辑器61范围复验正在运行，原外部13及内部7备份，不提前记恢复。
 
 新a31编辑器61／66.89PASS，内部7／外部13exact恢复；sourcefixture原错误文本没删除。marketART现在独占5554，下一步独立PcPresentations全case，不借旧包GPU/时间通过。
+
+新a31 marketART13429／40.14与session76／.74PASS，原7exact。PcPresentations全部case严格GPU/实际战法/保存RNG/时间范围/释放，现在独占5554运行，主和test exact复用；500–1000原断言保持，旧包视觉通过不借用。

@@ -558,7 +558,7 @@
   },
   "r32_canonical_rebuild": {
     "date": "2026-10-04",
-    "status": "required normal flows/audio/editor/production-city-officer ART passed; market/presentation acceptance pending",
+    "status": "required normal flows/audio/editor/production-city-officer-market ART passed; strict all-case presentations running",
     "complete_dirty_source_snapshot": "out/parity/checkpoint-20261004-r32-cultivation-a143644/source",
     "full_source_files": 4255,
     "full_source_bytes": 336018236,
@@ -625,6 +625,10 @@
     "editor_ui_checks": 61,
     "editor_ui_seconds": 66.89,
     "editor_internal_original_files_exact": true,
-    "editor_external_original_files_exact": 13
+    "editor_external_original_files_exact": 13,
+    "market_art_checks": 13429,
+    "market_art_seconds": 40.14,
+    "market_session_art_checks": 76,
+    "market_session_art_seconds": 0.74
   }
 }
