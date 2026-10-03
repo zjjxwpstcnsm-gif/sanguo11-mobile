@@ -20,7 +20,7 @@
 - actual pure3D固定奖励UI最终259检查/395.44秒全通过，使用工具目录独立probe fb381422…d1f4de，正常v35开局来源锁556f3159…d64fc。实际巡察/训练/兵舍两旬竣工→征兵/锻冶所→枪戟弩/厩舍→军马、真实多旬、逐次取消与双击唯一提交、XP2/功绩50/当前值/资源/base/growth/RNG、正常完整读取slot3均通过；原7文件恢复全等且无新增。第三次失败为“跳过剩余演示”行内文字的clickable定位，原记录保留；第四次通过，产品与全部规则断言未修改。
 - 同APK生产ART固定奖25669/14.70秒、会话64/1.18秒重新通过，user/APK全等，未移用R27单侧ART。
 - owned5554原-no-audio，本批外部备份7文件、guest sync后退出命令及SIGTERM均未停止已确认PID73164。只终止该PID，再以同AVD/serial/host GPU/2048MB/4核、不wipe、不snapshot启动-audio wav，boot18.711秒；原文件与APK回读全等，其他serial未动。首次实际WAV没有产生：当前只设置QEMU_WAV_PATH，后经只读取特定公开QEMU键确认已验证WAV设备还需要QEMU_AUDIO_DRV=wav。本批音效API/焦点流程通过不当作混音输出通过；待24旬批次结束后按完整备份再启动正确环境并重验音频专属PCM。
-- 同包批次已通过audio47/29.36s、terrain51/63.43s、march74/165.99s、criticalAudio15/35.63s、reducedMotion75/66.31s、mapEdges34/53.85s、mapNative22/34.60s、pure3dLifecycle28/48.60s。各套实际新结果与独立恢复7文件全等；计数以instrumentation原日志为准。同包24正常回合/Home/自动档与authority/RNG字节校验已整体通过342检查/723.86秒，包含每轮真实3D输出与诊断采集；九套新结果合计788检查，原7文件每套恢复全等。主线程恢复仍有数秒，未宣称性能或ARM通过。
+- 同包批次已通过audio47/29.36s、terrain51/63.43s、march74/165.99s、criticalAudio15/35.63s、reducedMotion75/66.31s、mapEdges34/53.85s、mapNative22/34.60s、pure3dLifecycle28/48.60s。各套实际新结果与独立恢复7文件全等；计数以instrumentation原日志为准。同包24正常回合/Home/自动档与authority/RNG字节校验已整体通过342检查/723.86秒，包含每轮真实3D输出与诊断采集；九套新结果合计688检查，原7文件每套恢复全等。主线程恢复仍有数秒，未宣称性能或ARM通过。
 
 - 只导入另一会话已完成451492b的4条交付文档/音频工具增量；生产app与authority不变，其后正在进行的模型驻留与旧验收迁移WIP尚未导入。
 - 正确WAV环境在完整备份后重新启动原5554；boot18.402秒，7原文件和当前APK回读全等。actual audio47/30.25秒再次通过；独占该音频运行的live WAV prefix3244032B仅修RIFF/data长度，PCM字节精确保留，snapshot676a1bf8…4050c。九种实际混音识别全部通过，最低相关度0.9611998613，44.1k双声道signed16；不代表麦克风、ARM扬声器或原PC音色。首次环境缺失与后续精确修复的独立记录保留。声音流程创建的sound-effects.xml已保留在tar证据并单独移除，最终原7路径/字节精确等值；外部通用harness也已按独占测试原则恢复测试新增文件，原有文件绝不删除。
@@ -38,4 +38,12 @@
 
 - 退出重验及来源地图战法完整62检查72.52秒通过。正常Back取消不改authority、再次确认退出、自动档精确保存；主线程回调队列完成后实测[session null, engine released, engine null, SoundPool null]=[true,true,true,true]；实际重开完整save/RNG全等、source-map纯3D和真实UI声音再播放。首轮释放综合断言失败未提供逐项字段，不能断言具体失败字段或用本次通过抹除；未修改产品或放宽释放条件。
 - 独立第二次ART作者生成的许昌fixture SHA577cbcd2…9664f与第一次逐字节全等；明确是测试摆位，不是官方开局，生产类/资源均来自a56e866c…4e163 APK，全部用户文件/APK不变。
-- 本组合包标准9套788，加opening64、固定奖励259、商人62、城市位移/退出62、海岸95和编辑61，共1391已安装检查（单独音频重跑47及较早城市45不重复计入）；另9种真实混音匹配与规则ART。各原7个用户文件最终恢复，auto SHA82554269…99f0a9。含arm64/x86_64 worker/unicorn及四ABI Filament，实际执行证据仅API29 x86_64；ARM真机/性能目标未通过。
+- 本组合包标准9套688，加opening64、固定奖励259、商人62、城市位移/退出62、海岸95和编辑61，共1291已安装检查（单独音频重跑47及较早城市45不重复计入）；另9种真实混音匹配与规则ART。各原7个用户文件最终恢复，auto SHA82554269…99f0a9。含arm64/x86_64 worker/unicorn及四ABI Filament，实际执行证据仅API29 x86_64；ARM真机/性能目标未通过。
+
+## 提交版独立安装验收与累计更正
+
+f3ba4f78537674064b7cdb94c47e5ed29b843a77提交后SOURCE_REVISION改变，因此重新构建主APK87453048B SHA20001c7f53037d9249c3486f5175e75f411a62718ba56bc9e5dca58b33182c5c、标准test914648B SHA384ff30c5f7fa5a2cf58d0e1ad87467d999f9eb10961e47459c2adb8d42d61f8。ZIP逐条内容仅DEX变化；未沿用a56的安装结果。本包已新实装opening64/74.48s、城市突进/退出62/70.55s、商人62/55.47s、正常固定奖励259/425.30s、coast104/65.11s、editor61/72.66s、8套terrain/march/criticalAudio/reducedMotion/mapEdges/mapNative/pure3dLifecycle/24turn共641检查及专属audio47/30.68s，按原PASS自动累加1300。24完整回合342/727.26s；独占单次声音运行PCM9匹配最低.9611998613，44.1k双声道，非ARM物理声学证据。
+
+同APK七格6648/19、固定奖励25669/64、行情13384/76、人物29361及官职/原算术等ART重新通过；全部probe只含测试类，生产来自该APK。最终设备全部原7个路径/文件与本轮起点全等、无新增，auto82554269…99f0a9；最后整APK回读仍20001c7f…82c5c。完整新证据和安装包已归档原目录out/parity/r28-f3ba4f7-committed-validation，verified-summary.json带逐套原始计数。
+
+此前a56汇总存在算术错误：九套47+51+74+15+75+34+22+28+342=688，而非788；a56总数1291，而非1391。本文件/台账/进度已更正，历史提交/封存manifest/消息不重写；count-correction.json附于原rules-r28-integration/evidence与checkpoint-r28，保留错误历史和原PASS。计数错误未影响测试断言或结果，后续必须从日志自动累加。

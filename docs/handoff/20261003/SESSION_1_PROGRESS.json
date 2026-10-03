@@ -7,7 +7,7 @@
   "baseline_files": 4078,
   "serial": "emulator-5582",
   "scope": "AP rules preserved, app/render/audio/resources/tools/Android only",
-  "phase": "UI increment built and installed; same APK 13 suites916 plus coast97/editor61/isolated audio47 passed; delivery index being finalized",
+  "phase": "UI increment committed and all selected installed acceptance complete; verified source/APKs/evidence delivery; final rule-owner integration pending",
   "verified": [
     "source heights and seams 2045912 host checks",
     "12 coast captures 104 installed checks",
@@ -22,7 +22,13 @@
     "510 authority/data/Unity source files exact to AP",
     "APK e009581 ten suites 517 checks passed, 24 rule/Home cycles all state checks passed but suite FAIL on off-owner renderer report; original failure retained",
     "source PC map real nonportrait critical15 checks, exact reference damage/RNG and one actual CRITICAL stream",
-    "editor61 checks on critical-audio candidate; user task foreground six samples 1127-1203ms, 1000ms target false"
+    "editor61 checks on critical-audio candidate; user task foreground six samples 1127-1203ms, 1000ms target false",
+    "candidate APK: all4 scenario/crop region matrices, navigator VOID rejection, mapNative gestures/recovery, actual battle report locate/return passed; same-APK full regression still running",
+    "candidate default GameSmoke migrated and installed856 checks/491.90s",
+    "real historical v32 normal UI load/store/3D query/background32 checks; original manual raw equal",
+    "actual Back exit/cancel/relaunch15 checks; engine/pool release, autosave/RNG and manual bytes exact",
+    "camera residency17 nation sites113 checks; PC geometry/source placement/authority anchors valid;3-19 live objects of91 snapshot entities",
+    "candidate coast95/editor61/isolated audio47;9 actual mixer cues minimum correlation0.9590349"
   ],
   "performance_not_passed": [
     "system task foreground 1142-3245ms; 1000ms target false",
@@ -31,16 +37,46 @@
   ],
   "authority_modules_modified": false,
   "active_install_tests": false,
-  "current_test": "Android acceptance finished; packaged evidence and integration handoff",
+  "current_test": "All candidate acceptance finished; every original file byte-restored",
   "delivery_note": "Use completed increment after c19de29; do not import this baseline over newer rule files. No cross-chat messages authorized.",
-  "ui_program_commit": "9d5170699be51771e61c08df0e48519476f7f3ba",
-  "installed_main_sha256": "fb98b5e1765ac405c0dc8efe81080b4c96451e88a2b70a6a30ccf448177c214b",
-  "same_apk_checks": 1121,
+  "ui_program_commit": "3a1ddd58c2cd2defe86f7584697b2ceef3c69936",
+  "installed_main_sha256": "a3e8d9c0e6ac9c39b14a457ff8e396e4837ef9d6638bb05599e3aa8b2ef770ea",
+  "same_apk_checks": 2868,
   "long_run_rounds": 24,
-  "long_run_seconds": 938.09,
+  "long_run_seconds": 775.38,
   "remaining": [
-    "final rule owner integration and latest cavalry-city authority placement acceptance",
-    "historical version-specific 2D Android helper migration",
-    "startup/foreground/memory performance refinement"
-  ]
+    "final rule-owner integration and latest cavalry-city authority placement acceptance",
+    "ARM physical device acceptance",
+    "complete latency and sustained memory refinement; existing shared DTO contract consumption",
+    "historical version-specific rawv57-60 saves unavailable; old pixel/version assertions archived"
+  ],
+  "candidate_main_sha256": "a3e8d9c0e6ac9c39b14a457ff8e396e4837ef9d6638bb05599e3aa8b2ef770ea",
+  "candidate_test_sha256": "f696875e3e92625a43d43f584c9c7b260f8f4a618d64724b0ebc8fab4e5a9ccb",
+  "candidate_arm64_sha256": "f362969584d7940878d74853eccd7698cb3bdae503d26b64d60da47fb17920e1",
+  "performance_observation": {
+    "round7_entity_live_before": 331,
+    "round7_entity_live_after": 177,
+    "round7_material_instances_before": 275,
+    "round7_material_instances_after": 67,
+    "candidate_initial_verified_wall_ms": 5629,
+    "candidate_user_foreground_wall_ms": [
+      1186,
+      1168,
+      1218,
+      1189,
+      1138,
+      1290
+    ],
+    "fluent_acceptance": false
+  },
+  "candidate_same_main_checks": 2868,
+  "candidate_long_run_rounds": 24,
+  "candidate_long_run_seconds": 775.38,
+  "previous_delivery": {
+    "ui_program_commit": "9d5170699be51771e61c08df0e48519476f7f3ba",
+    "installed_main_sha256": "fb98b5e1765ac405c0dc8efe81080b4c96451e88a2b70a6a30ccf448177c214b",
+    "same_apk_checks": 1121,
+    "long_run_seconds": 938.09
+  },
+  "delivery_path": "/Users/paopao/workspace/sanguo11-mobile/out/pure3d-ui-20261003-map-final"
 }

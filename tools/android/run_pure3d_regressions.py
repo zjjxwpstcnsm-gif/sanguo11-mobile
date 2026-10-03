@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Sequential same-APK tests on one exclusive emulator, with bytes-preserving restores."""
-import argparse, json, subprocess, sys, time
+import argparse, json, subprocess, sys, time, zipfile
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[2]
@@ -11,11 +11,27 @@ def main():
     p.add_argument('--apk',type=Path,required=True)
     p.add_argument('--test-apk',type=Path,required=True)
     p.add_argument('--output',type=Path,required=True)
-    p.add_argument('--suites',nargs='+',default=['terrain','audio','opening','march','combat','mapEdges','mapNative','pure3dLifecycle','longRun'])
+    p.add_argument('--suites',nargs='+',default=['criticalAudio','terrain','audio','opening','march','combat','reducedMotion','build','mapEdges','mapNative','pure3dLifecycle','userResume','legacyNavigation','legacyRegions','reportLocate3D','legacySave3D','residentAssets','exit3D','longRun'])
     p.add_argument('--reuse-slot-sha',required=True)
     p.add_argument('--long-turns',type=int,default=24)
     p.add_argument('--record',nargs='*',default=['march'])
     a=p.parse_args()
+    # Reject an old playable map before any backup, installation or device action.
+    with zipfile.ZipFile(a.apk) as apk:
+        for name in apk.namelist():
+            if name.startswith('classes') and name.endswith('.dex'):
+                dex=apk.read(name)
+                for descriptor in (b'Lgame/sanguo/mobile/MapView;',b'Lgame/sanguo/mobile/MapOverview;'):
+                    if descriptor in dex:
+                        raise ValueError('Pure3D acceptance rejects a playable 2D class: '+descriptor.decode())
+    with zipfile.ZipFile(a.test_apk) as test:
+        try:
+            supported=json.loads(test.read('assets/pure3d-acceptance.json'))['suites']
+        except KeyError:
+            raise ValueError('Test APK has no current 3D acceptance catalog')
+        missing=set(a.suites)-set(supported)
+        if missing:
+            raise ValueError('Test APK cannot run requested suites: '+', '.join(sorted(missing)))
     a.output.mkdir(parents=True,exist_ok=False)
     adb=[str(ROOT/'out/toolchain/android-sdk/platform-tools/adb'),'-s',a.serial]
     def device(*parts):return subprocess.run(adb+list(parts),check=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,timeout=30).stdout

@@ -22,6 +22,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private final SceneQuality.Pacer pacer=new SceneQuality.Pacer();
     private final SceneFrameMetrics frameMetrics=new SceneFrameMetrics();
     private final SceneVisibilityStamp visibilityStamp=new SceneVisibilityStamp();
+    private final SceneVisibilityStamp objectVisibilityStamp=new SceneVisibilityStamp();
     private boolean terrainVisibilityDirty=true;
     private long terrainVisibilityPasses,terrainVisibilitySkips;
     private static final long MESH_UPLOAD_BUDGET_NANOS=2_000_000L;
@@ -711,6 +712,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     void setRoute(MarchOrders.Plan value){route=value;overlay.invalidate();}
     void pauseEffects(boolean value){if(value&&!effectsPaused)pausedEffectTick=animationTick;effectsPaused=value;}
     void replay(TurnJournal.Event e,float fraction){
+        if(replay!=e)assetSyncPending=true;
         replay=e;replayFraction=CombatVisual.fraction(fraction);if(e==null)clearEffects();overlay.invalidate();schedule();
     }
     boolean visible(TurnJournal.Event e){if(visible(e.start)||visible(e.target))return true;for(Hex h:e.path)if(visible(h))return true;for(TurnJournal.Impact i:e.impacts)if(visible(i.hex))return true;return false;}
@@ -806,7 +808,7 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
                     // to enqueue uploads/transforms and only skip render().
                     gpuPreparationFrames++;assetUploadBudget=2;
                     boolean screenStage=presentationCue!=null&&presentationStage!=null&&presentationStage.ready()&&pcPresentations!=null&&pcPresentations.ready();
-                    if(!screenStage){if(snapshot!=null)applySeason(SeasonStyle.forMonth(snapshot.month));selectObjectLods();if(assetSyncPending)syncObjects();}
+                    if(!screenStage){if(snapshot!=null)applySeason(SeasonStyle.forMonth(snapshot.month));selectObjectLods();if(assetSyncPending||!objectVisibilityStamp.matches(camera))syncObjects();}
                     double aspect=camera.width/(double)camera.height;
                     if(camera.perspective)lens.setCustomProjection(camera.projection(camera.nearPlane(),camera.farPlane()),camera.nearPlane(),camera.farPlane());
                     else lens.setProjection(Camera.Projection.ORTHO,-camera.span*aspect,camera.span*aspect,-camera.span,camera.span,.1,1000);
@@ -1130,6 +1132,10 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
     private void syncObjects(){
         if(engine==null||snapshot==null)return;assetSyncPending=false;Set<String> alive=new HashSet<>();
         for(MapSceneSnapshot.Item item:snapshot.items){
+            // Keep a conservative camera margin for pan/zoom. The immutable snapshot
+            // still contains every entity for navigation and authoritative picking.
+            // An active replay additionally retains its participants and path cells.
+            if(!residentObject(item))continue;
             alive.add(item.key);Proxy p=objects.get(item.key);GpuMesh geometry=shape(item);
             if(geometry==null)continue;
             if(p!=null&&((item.unit==null&&p.shape!=geometry&&(!geometry.source.pcFacilityRig||!PcFacilityRigs.key(item,snapshot.month,0).equals(p.rigRestKey)))||p.shape.source.pcUnit!=geometry.source.pcUnit||p.item.color!=item.color||!p.stateKey().equals(facilityOverlay(item,geometry.source.pcFacility)))){p.destroy();objects.remove(item.key);p=null;}
@@ -1150,8 +1156,18 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
             if(p.item!=item||p.positionedGround!=snapshot.ground){p.positionedGround=null;p.item=item;p.motion.settle(item.hex,snapshot.ground.grid);p.position(p.motion.x,p.motion.z);p.updateDamage();}
         }
         Iterator<Map.Entry<String,Proxy>> it=objects.entrySet().iterator();while(it.hasNext()){Map.Entry<String,Proxy> e=it.next();if(!alive.contains(e.getKey())){e.getValue().destroy();it.remove();}}
+        objectVisibilityStamp.set(camera);
         trimShapes();
         animateReplay();
+    }
+    private boolean residentObject(MapSceneSnapshot.Item item){
+        GridWorldTransform grid=snapshot.ground.grid;
+        if(inView(grid.x(item.hex),grid.z(item.hex),18))return true;
+        if(replay==null)return false;
+        if(item.unit!=null&&item.unit.id==replay.actorId)return true;
+        if(item.hex.equals(replay.start)||item.hex.equals(replay.target)||replay.path.contains(item.hex))return true;
+        for(TurnJournal.Impact impact:replay.impacts)if(item.hex.equals(impact.hex))return true;
+        return false;
     }
     private void trimShapes(){
         if(shapes.size()<=quality.poseCache)return;
@@ -1616,7 +1632,11 @@ final class FilamentMapView extends FrameLayout implements SurfaceHolder.Callbac
         }
         void navigate(float sx,float sy){
             if(miniTransform==null||snapshot==null||miniRect.isEmpty())return;
-            camera.x=miniTransform.x((sx-miniRect.left)/miniRect.width());camera.z=miniTransform.z((sy-miniRect.top)/miniRect.height());
+            float x=miniTransform.x((sx-miniRect.left)/miniRect.width()),z=miniTransform.z((sy-miniRect.top)/miniRect.height());
+            // Navigation uses the same authoritative validity mask as ground picking.
+            // Displayed exterior scenery is not a selectable tile or a navigation target.
+            if(!snapshot.ground.valid(snapshot.ground.grid.cell(x,z)))return;
+            camera.x=x;camera.z=z;
             clampCamera();invalidate(); // camera only: never select a unit or issue a command
         }
         float miniX(float x){return miniRect.left+miniTransform.u(x)*miniRect.width();}
