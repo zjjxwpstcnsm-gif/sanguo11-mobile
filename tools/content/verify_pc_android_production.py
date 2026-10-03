@@ -34,6 +34,8 @@ def run(args):
 
     core_names=['PcProductionFlowTest','PcProductionCrewTest','PcDelayedCounterTest','PcDelayedProductionFlowTest','PcProductionSavePolicyTest']
     runtime_names=['PcProductionCrewSessionTest','PcDelayedProductionSessionTest']
+    if getattr(args,'native_technique_policy',False):
+        core_names.append('PcTechniquePointsTest');runtime_names.append('PcTechniquePointsSessionTest')
     if getattr(args,'technique_facts',False):runtime_names.append('TechniquePointsFactsTest')
     suites={ 'game.sanguo.core.'+name: ROOT/module/'build/classes/java/test/game/sanguo/core'/ (name+'.class') for module,names in [('core',core_names),('game-runtime',runtime_names)] for name in names }
     fixtures=[('core','CityCommandRewardsTest'),('core','CityActionPlanTest'),('core','ProductionPlanTest'),('game-runtime','CityActionSessionTest'),('game-runtime','ProductionSessionTest')]
@@ -44,9 +46,10 @@ def run(args):
     if not all(p.is_file() for p in inputs):
         raise ValueError('Compile both registered test suites before using the device')
     fixture_classes=output/'fixture-classes';fixture_classes.mkdir()
-    fixture_source=ROOT/'tools/content/PcProductionOpeningFixture.java'
+    fixture_name='PcTechniqueOpeningFixture' if getattr(args,'native_technique_policy',False) else 'PcProductionOpeningFixture'
+    fixture_source=ROOT/'tools/content'/(fixture_name+'.java')
     subprocess.run([str(Path(os.environ['JAVA_HOME'])/'bin/javac'),'--release','17','-encoding','UTF-8','-cp',str(ROOT/'core/build/libs/core.jar'),'-d',str(fixture_classes),str(fixture_source)],check=True)
-    inputs.append(fixture_classes/'game/sanguo/core/PcProductionOpeningFixture.class')
+    inputs.append(fixture_classes/'game/sanguo/core'/(fixture_name+'.class'))
     expected = sha(args.apk.read_bytes())
     installed = command('shell', 'pm', 'path', PACKAGE).decode().strip().removeprefix('package:')
     if not installed.startswith('/data/app/') or '\n' in installed:
@@ -82,6 +85,9 @@ def run(args):
         with zipfile.ZipFile(probe,'a') as archive:
             for name in ['pc-production-native.tsv','pc-delayed-counter-native.tsv']:
                 raw=(ROOT/'core/src/test/resources'/name).read_bytes();archive.writestr(name,raw);report['test_resources'][name]=sha(raw)
+            if getattr(args,'native_technique_policy',False):
+                for name in ['pc-technique-gain-native.tsv','legacy-production-v36/coalition-190-art.sg11']:
+                    raw=(ROOT/'core/src/test/resources'/name).read_bytes();archive.writestr(name,raw);report['test_resources'][name]=sha(raw)
         report['probe_sha256'] = sha(probe.read_bytes())
         remote = '/data/local/tmp/source-production-' + report['probe_sha256'][:20] + '.zip'
         command('push', str(probe), remote)
@@ -104,11 +110,11 @@ def run(args):
         fixture_data=[]
         for n in range(2):
             remote_save='/data/local/tmp/source-production-opening-'+report['probe_sha256'][:20]+'-'+str(n)+'.sg11'
-            process=subprocess.run(adb+['shell','env','CLASSPATH='+installed+':'+remote,'app_process','/system/bin','game.sanguo.core.PcProductionOpeningFixture',remote_save],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=300)
+            process=subprocess.run(adb+['shell','env','CLASSPATH='+installed+':'+remote,'app_process','/system/bin','game.sanguo.core.'+fixture_name,remote_save],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=300)
             result=process.stdout
             (output/('new-opening-'+str(n)+'.log')).write_bytes(result)
             if process.returncode!=0:
-                report['probe_error']=dict(suite='PcProductionOpeningFixture',exit_code=process.returncode,output=result.decode(errors='replace'));save();raise ValueError('New opening probe failed')
+                report['probe_error']=dict(suite=fixture_name,exit_code=process.returncode,output=result.decode(errors='replace'));save();raise ValueError('New opening probe failed')
             if b'PASS' not in result:raise ValueError('Missing new opening pass')
             raw=command('exec-out','cat',remote_save);(output/('new-opening-'+str(n)+'.sg11')).write_bytes(raw);fixture_data.append(raw)
         if fixture_data[0]!=fixture_data[1]:raise ValueError('New ART openings must be reproducible')
@@ -137,5 +143,6 @@ if __name__ == '__main__':
     parser.add_argument('--serial', required=True)
     parser.add_argument('--apk', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
+    parser.add_argument('--native-technique-policy',action='store_true',help='Require v37 source rewards and genuine old v36 preservation on ART')
     parser.add_argument('--technique-facts',action='store_true',help='Also verify immutable commit/journal point facts from the installed candidate')
     run(parser.parse_args())
