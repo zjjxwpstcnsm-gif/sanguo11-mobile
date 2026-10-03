@@ -27,5 +27,8 @@
   "jvm_and_art_market_session_checks": 76,
   "legacy_v34_complete_saves_byte_equal": 8,
   "new_opening_save_version": 35,
-  "legacy_save_modes": "31-33 retain numbers/old price and write33;34 retains managed ability/old price and writes34"
+  "legacy_save_modes": "31-33 retain numbers/old price and write33;34 retains managed ability/old price and writes34",
+  "nonmerchant_city_xp_source_observations": 700,
+  "nonmerchant_city_xp_runtime_integrated": false,
+  "native_city_experience_audit": "docs/pc-data/city-experience-native.json"
 }
