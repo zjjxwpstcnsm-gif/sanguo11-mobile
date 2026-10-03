@@ -528,5 +528,34 @@
     "full_native_completion_dispatch_verified": false,
     "official_effective_source_verified": false,
     "final_award_observation_sha256": "9e516fd8222e889d02cddbea092cd3d64a8d9bbbe608a016092217f373bc9fcf"
+  },
+  "r32_canonical_rebuild": {
+    "date": "2026-10-04",
+    "status": "independently built and installed; default3D acceptance running; not yet passed",
+    "complete_dirty_source_snapshot": "out/parity/checkpoint-20261004-r32-cultivation-a143644/source",
+    "full_source_files": 4255,
+    "full_source_bytes": 336018236,
+    "manifest_sha256": "ff1a83aa51066f96441b521a79e8908087477852c7794b322fafa2a65bc5de6a",
+    "integrated_own_commit": "a14364446bd8c159e8f18bc8f418b5fabcf97e52",
+    "canonical_head_preserved": "52315bf070e5d29acb8f509230c5228e47c8d6ef",
+    "complete_source_is_dirty_workspace_not_old_head": true,
+    "apk_sha256": "a31dac15fc04c8b6112d8b186f6f2b3846b8cb791ebbd2a87265f432061aa02f",
+    "apk_bytes": 87536370,
+    "test_apk_sha256": "e3b2badc36a7dafb84f5084377e69b501478641bbf141f756653d07b25ef40da",
+    "actual_installed_readback_equal": true,
+    "build_seconds": 78,
+    "build_actionable_tasks": 76,
+    "architecture_passed": true,
+    "compiled_app_classes": 265,
+    "app_class_differences_only_known_revision_string": true,
+    "apk_zip_entry_differences": [
+      "classes.dex",
+      "META-INF/version-control-info.textproto"
+    ],
+    "previous_apk_results_transferred": false,
+    "user_file_restoration_pending_current_live_run": true,
+    "arm_actual_device_verified": false,
+    "git_bundle_sha256": "73c4d22adaed1aa509aefb1cf872fc4f044a338e74577e4616d43e36dbd1608f",
+    "git_bundle_includes_ignored_native_inputs": false
   }
 }

@@ -945,3 +945,5 @@ UI15基于冻结V在独立目录接Production/Trade，尚无完成提交，不�
 2026-10-04 R32续行补充：同aeaf主包24完整旬追加373检查／642.03秒PASS，正常菜单槽3保存读档、退出重开，两个v37完整SG均368272B/dcb80be0475bdfc12130c4e33d8b381c959c009f0391e1d3eed4dbb1ca7bcd0f。开局64／62.11与编辑器61／58.90通过，原7内部与13外部编辑器文件exact。默认3D整套仍运行，不借旧包通过。原培养98参数490／STAT准入1080／完成XP块300核实；原按年龄成长+XP上限并奖励XP，不写base；用户交接的培养写base与旧31—33含义保持，原完整完成消费者及费用时间隐藏RNG未闭合，无规则修改。
 
 R32默认3D同aeaf856／523.55秒PASS，用户7文件exact；追加培养原参数与准入奖励最终两次JSON全等9e516fd8…bc9fcf。不修改培养写base或旧保存。准备按0e8769b增量SHA守卫回写原目录并独立重建，原HEAD及dirty保存。
+
+R32原目录独立重建：a1438路径SHA回写／4247其他不变，完整4255文件336018236B及4JNI快照；完整Gitbundle206660322B/73c4d22a…1608f验证通过，ignoredJNI在snapshot不在bundle。原目录76任务1m18s构建成功，静态架构PASS，新APK a31dac15fc04c8b6112d8b186f6f2b3846b8cb791ebbd2a87265f432061aa02f，test e3b2badc…40da。265app类仅revision字串差异，资源/native全等；旧GitHEAD元数据保留并明确不作为源基线。已实际安装readbackexact，5554默认3D独立运行，不提前标PASS／恢复。

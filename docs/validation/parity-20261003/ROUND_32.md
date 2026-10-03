@@ -75,3 +75,11 @@ JVM压缩75／投影180／原技巧2717／当前会话1666及桥接通过，静�
 实际原49dc60 STAT准入1080用例、5d9268→5d92ca完成奖励块300用例通过。准入检查XP<2000和年龄成长+XP基础合成值<70／80／95；完成经4a55a0→48a810将XP增加100×min(5,上限−合成值)，总XP限3000，不写base。逐用例检查完整3MiB世界仅XP及当前缓存变化、RNG不变。现有培养写base与独立gains20上限保留，因为交接明确要求继承该策略；本轮只登记来源差异，不覆盖v34语义、不将原奖励直接套入旧档。原完整完成派发、次数扣减／任务释放、费用／时间／隐藏选择RNG和有效MOD身份仍未闭合。详见PC_ABILITY_TRAINING_SOURCE.md。
 
 默认完整3D验收同aeaf包856项／523.55秒PASS：实际地图手势、导航、多个来源地区与原格坐标地块、前后台／旋转、保存读档及退出等原断言通过；不包含未运行的独立战法演示全套。`default3d-smoke/results.json`完成且原7文件exact，主／测试APK读回同SHA，实际外部画面与报告已归档。前文“正在运行”为历史状态，不作为当前未完成。培养最终1080准入／300XP块两次JSON全等，SHA9e516fd8222e889d02cddbea092cd3d64a8d9bbbe608a016092217f373bc9fcf。
+
+## 原目录独立重建与源码恢复材料
+
+本次a143644的8个工具／文档路径按0e8769b原内容SHA回写原目录，4247其他文件SHA保持；原分支／旧HEAD和两处tracked删除未改。完整snapshot `checkpoint-20261004-r32-cultivation-a143644/source` 为4255文件336018236B，四个ignored JNI输入也在原相对路径；manifest SHA ff1a83aa51066f96441b521a79e8908087477852c7794b322fafa2a65bc5de6a。全部文件和独立目录逐个SHA相等。恢复Git历史可使用206660322B bundle，SHA73c4d22adaed1aa509aefb1cf872fc4f044a338e74577e4616d43e36dbd1608f；bundle不含ignored JNI，应结合完整snapshot使用，不能只从旧HEAD构建。
+
+原目录使用本会话隔离Gradle缓存、Java17、offline/no-daemon/max-workers2独立构建：76任务，1m18s成功，静态架构通过。主APK87536370B SHA `a31dac15fc04c8b6112d8b186f6f2b3846b8cb791ebbd2a87265f432061aa02f`；测试APK2018931B SHA e3b2badc36a7dafb84f5084377e69b501478641bbf141f756653d07b25ef40da，位于原目录 `out/parity/canonical-rebuild-20261004/apks/`。265个app编译类精确比较，只有BuildConfig／MainActivity／FilamentMapView内相同长度的已知revision字符串不同；规范化该字符串后全部字节相等。APK资源／原生库内容全等，classes.dex与VCS metadata不同，因此不声称APK字节可复现或移用aeaf实装结果。BuildConfig保留的523旧Git HEAD仅为元数据，完整源以本次dirty manifest为准。
+
+新a31主／测试包已实际安装5554，读回SHA一致；默认完整3D独立验收仍在执行，当前运行的finally恢复与最终结论待完成。最终组合仍需该新包的正常生产／商人／奖励、城市位移、音频、多旬续行和独立演示等验收，旧失败和原断言保持。未触碰另一会话serial5582；ARM只含构建库，没有真机运行证据。
