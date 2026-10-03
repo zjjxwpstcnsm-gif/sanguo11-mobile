@@ -103,8 +103,11 @@ def run(args):
         fixture_data=[]
         for n in range(2):
             remote_save='/data/local/tmp/source-production-opening-'+report['probe_sha256'][:20]+'-'+str(n)+'.sg11'
-            result=command('shell','env','CLASSPATH='+installed+':'+remote,'app_process','/system/bin','game.sanguo.core.PcProductionOpeningFixture',remote_save,timeout=300)
+            process=subprocess.run(adb+['shell','env','CLASSPATH='+installed+':'+remote,'app_process','/system/bin','game.sanguo.core.PcProductionOpeningFixture',remote_save],stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=300)
+            result=process.stdout
             (output/('new-opening-'+str(n)+'.log')).write_bytes(result)
+            if process.returncode!=0:
+                report['probe_error']=dict(suite='PcProductionOpeningFixture',exit_code=process.returncode,output=result.decode(errors='replace'));save();raise ValueError('New opening probe failed')
             if b'PASS' not in result:raise ValueError('Missing new opening pass')
             raw=command('exec-out','cat',remote_save);(output/('new-opening-'+str(n)+'.sg11')).write_bytes(raw);fixture_data.append(raw)
         if fixture_data[0]!=fixture_data[1]:raise ValueError('New ART openings must be reproducible')
