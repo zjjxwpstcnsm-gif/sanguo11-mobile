@@ -15,10 +15,10 @@ public final class PcOfficerStateTest {
  public static void main(String[] args)throws Exception{
   if(args.length==2&&args[0].equals("--write-opening")){
    World opening=ScenarioCatalog.load("coalition-190",1,23L);byte[] bytes=save(opening);
-   check(opening.officerAbilities.enabled()&&opening.merchantMarket.enabled()&&version(bytes)==35,"normal new opening managed");
+   check(opening.officerAbilities.enabled()&&opening.merchantMarket.enabled()&&opening.pcProduction.enabled()&&version(bytes)==36,"normal new opening managed");
    check(Arrays.equals(bytes,save(SaveCodec.decode(bytes))),"opening writer same-runtime full roundtrip");
    java.nio.file.Files.write(java.nio.file.Paths.get(args[1]),bytes);
-   System.out.println("PASS PcOfficerStateTest opening=coalition-190 player=1 seed=23 version=35 bytes="+bytes.length);return;
+   System.out.println("PASS PcOfficerStateTest opening=coalition-190 player=1 seed=23 version=36 bytes="+bytes.length);return;
   }
   for(boolean buy:new boolean[]{true,false})for(int xp:new int[]{0,94,95,99,100,2994,2995,2999,3000}){
    World w=world();w.officerAbilities.gainExperience(2,3,xp);byte[] before=save(w);long rng=w.strategy.getRandomState();
@@ -85,9 +85,13 @@ public final class PcOfficerStateTest {
   // New catalog openings are managed; all proven growth mappings and relocation identities are retained.
   int openings=0;
   for(ScenarioCatalog.Summary summary:ScenarioCatalog.summaries()){
-   w=ScenarioCatalog.load(summary.id,0);check(w.officerAbilities.enabled()&&w.merchantMarket.enabled()&&version(save(w))==35,"all nine normal new openings enable ability and market state");
+   World current=ScenarioCatalog.load(summary.id,0);check(current.officerAbilities.enabled()&&current.merchantMarket.enabled()&&current.pcProduction.enabled()&&version(save(current))==36,"all nine new v36 openings enable ability, market and production state");
+   String vm=System.getProperty("java.vm.name","").toLowerCase(Locale.ROOT).contains("dalvik")?"art":"host";byte[] legacyOpeningBytes;
+   try(InputStream in=PcOfficerStateTest.class.getResourceAsStream("/legacy-market-v35/"+vm+"/"+summary.id+".sg11")){check(in!=null,"genuine v35 source opening exists");legacyOpeningBytes=read(in);}
+   World legacy=SaveCodec.decode(legacyOpeningBytes);check(legacy.officerAbilities.enabled()&&legacy.merchantMarket.enabled()&&version(save(legacy))==35,"all nine normal new openings enable ability and market state");check(!legacy.pcProduction.enabled()&&Arrays.equals(legacyOpeningBytes,save(legacy)),"genuine v35 full state and old production mode preserved");
+   for(World profile:new World[]{current,legacy}){w=profile;
    int imported=0;for(World.Officer o:w.officers){PcOfficerGrowth.Definition d=PcOfficerGrowth.get(o.id);if(o.abilityProfile.sourceId>=0){imported++;check(d!=null&&o.abilityProfile.nativeIds.equals(d.nativeIds),"only verified source identity");for(int s=0;s<5;s++)check(w.officerAbilities.growthCode(o.id,s)==d.curves[s]&&w.officerAbilities.experience(o.id,s)==0,"source growth with proven zero initial experience");}}
-   check(imported>0,"opening source profiles");check(Arrays.equals(save(w),save(copy(w))),"opening round trip");openings++;
+   check(imported>0,"opening source profiles");check(Arrays.equals(save(w),save(copy(w))),"opening round trip");}openings++;
   }
   check(openings==9,"entire project scenario catalog");
   check(PcOfficerGrowth.get(10279).nativeIds.equals("279,333")&&PcOfficerGrowth.get(10333).nativeIds.equals("279,333"),"relocated identities do not invent canonical native slot");

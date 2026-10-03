@@ -55,6 +55,8 @@ def run(args):
    if getattr(args,'officer_state',False):
     archive.write(ROOT/'core/src/test/resources/pc-officer-legacy-am.sg11','pc-officer-legacy-am.sg11')
     archive.write(ROOT/'core/src/test/resources/pc-officer-legacy-am-art.sg11','pc-officer-legacy-am-art.sg11')
+    for file in sorted((ROOT/'core/src/test/resources/legacy-market-v35').rglob('*')):
+     if file.is_file():archive.write(file,file.relative_to(ROOT/'core/src/test/resources').as_posix())
   report['probe_sha256']=sha(probe.read_bytes());remote='/data/local/tmp/pc-merchant-'+report['probe_sha256'][:20]+'.zip'
   cmd('push',str(probe),remote);cmd('shell','chmod','644',remote)
   if sha(cmd('exec-out','cat',remote))!=report['probe_sha256']:raise ValueError('Probe dex readback mismatch')
