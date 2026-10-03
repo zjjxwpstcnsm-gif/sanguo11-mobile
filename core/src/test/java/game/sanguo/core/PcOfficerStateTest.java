@@ -15,7 +15,7 @@ public final class PcOfficerStateTest {
  public static void main(String[] args)throws Exception{
   if(args.length==2&&args[0].equals("--write-opening")){
    World opening=ScenarioCatalog.load("coalition-190",1,23L);byte[] bytes=save(opening);
-   check(opening.officerAbilities.enabled()&&opening.merchantMarket.enabled()&&opening.pcProduction.enabled()&&version(bytes)==36,"normal new opening managed");
+   check(opening.officerAbilities.enabled()&&opening.merchantMarket.enabled()&&opening.pcProduction.enabled()&&opening.pcTechniquePoints.enabled()&&version(bytes)==37,"normal new opening managed");
    check(Arrays.equals(bytes,save(SaveCodec.decode(bytes))),"opening writer same-runtime full roundtrip");
    java.nio.file.Files.write(java.nio.file.Paths.get(args[1]),bytes);
    System.out.println("PASS PcOfficerStateTest opening=coalition-190 player=1 seed=23 version=36 bytes="+bytes.length);return;
@@ -85,7 +85,7 @@ public final class PcOfficerStateTest {
   // New catalog openings are managed; all proven growth mappings and relocation identities are retained.
   int openings=0;
   for(ScenarioCatalog.Summary summary:ScenarioCatalog.summaries()){
-   World current=ScenarioCatalog.load(summary.id,0);check(current.officerAbilities.enabled()&&current.merchantMarket.enabled()&&current.pcProduction.enabled()&&version(save(current))==36,"all nine new v36 openings enable ability, market and production state");
+   World current=ScenarioCatalog.load(summary.id,0);check(current.officerAbilities.enabled()&&current.merchantMarket.enabled()&&current.pcProduction.enabled()&&current.pcTechniquePoints.enabled()&&version(save(current))==37,"all nine new v37 openings enable ability, market, production and explicit technique policy");
    String vm=System.getProperty("java.vm.name","").toLowerCase(Locale.ROOT).contains("dalvik")?"art":"host";byte[] legacyOpeningBytes;
    try(InputStream in=PcOfficerStateTest.class.getResourceAsStream("/legacy-market-v35/"+vm+"/"+summary.id+".sg11")){check(in!=null,"genuine v35 source opening exists");legacyOpeningBytes=read(in);}
    World legacy=SaveCodec.decode(legacyOpeningBytes);check(legacy.officerAbilities.enabled()&&legacy.merchantMarket.enabled()&&version(save(legacy))==35,"all nine normal new openings enable ability and market state");check(!legacy.pcProduction.enabled()&&Arrays.equals(legacyOpeningBytes,save(legacy)),"genuine v35 full state and old production mode preserved");

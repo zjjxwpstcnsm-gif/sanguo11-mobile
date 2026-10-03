@@ -121,6 +121,7 @@ public final class World {
     public final List<String> log=new ArrayList<>();
     public final SaveExtensions extensions=new SaveExtensions();
     public final PcProduction pcProduction=new PcProduction(this);
+    public final PcTechniquePoints pcTechniquePoints=new PcTechniquePoints(this);
     public final OfficerAbilities officerAbilities=new OfficerAbilities(this);
     public final MerchantMarket merchantMarket=new MerchantMarket(this);
     public final BattleReports reports=new BattleReports(this);
@@ -291,14 +292,14 @@ public final class World {
         for(int id:plan.officerIds)OfficerExperiencePlan.award(this,officer(id),2);
         spend(c,leader,plan.goldCost,PcCityActionCosts.PRODUCTION,OfficerExperiencePlan.merit(leader,2,government));
         for(int id:plan.officerIds)if(id!=leader.id){Officer o=officer(id);o.acted=true;government.earn(id,OfficerExperiencePlan.merit(o,2,government));}
-        domestic.use(cityId,Domestic.productionFacility(weapon));c.equipment[weapon.ordinal()]+=plan.effects.outputQuantity;
+        domestic.use(cityId,Domestic.productionFacility(weapon));c.equipment[weapon.ordinal()]+=plan.effects.outputQuantity;pcTechniquePoints.production(c.owner,plan.effects.outputQuantity);
         return success(c.name+"生产"+plan.effects.outputQuantity+"份"+weapon.label+"兵装，金−"+plan.goldCost);
     }
     public Result produce(int cityId,int officerId,Weapon weapon) {reports.prepare();
         RuleFailure failure=productionFailure(cityId,officerId,weapon);if(failure!=null)return fail(failure.detail);
         if(Army.siegeWeapon(weapon))return army.produce(cityId,officerId,weapon,null);
         City c=city(cityId);Officer o=officer(officerId);int gold=skills.productionGold(cityId,officerId,weapon),amount=skills.produceAmount(cityId,officerId,weapon);Domestic.Kind facility=Domestic.productionFacility(weapon);
-        OfficerExperiencePlan.award(this,o,2);spend(c,o,gold,PcCityActionCosts.PRODUCTION,OfficerExperiencePlan.merit(o,2,government));domestic.use(cityId,facility);if(pcProduction.enabled())amount=Math.min(amount,campaign.equipmentCap(c,weapon)-c.equipment[weapon.ordinal()]);c.equipment[weapon.ordinal()]+=amount;return success(c.name+"生产"+amount+"份"+weapon.label+"兵装，金−"+gold);
+        OfficerExperiencePlan.award(this,o,2);spend(c,o,gold,PcCityActionCosts.PRODUCTION,OfficerExperiencePlan.merit(o,2,government));domestic.use(cityId,facility);if(pcProduction.enabled())amount=Math.min(amount,campaign.equipmentCap(c,weapon)-c.equipment[weapon.ordinal()]);c.equipment[weapon.ordinal()]+=amount;pcTechniquePoints.production(c.owner,amount);return success(c.name+"生产"+amount+"份"+weapon.label+"兵装，金−"+gold);
     }
     public Result deploy(int cityId,int officerId,Weapon weapon,int troops) {reports.prepare();
         return army.deploy(cityId,officerId,new int[0],weapon,Army.Ship.BOAT,troops,troops*2);

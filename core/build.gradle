@@ -458,3 +458,11 @@ tasks.register('verifyMapEditorContinuation', JavaExec) {
     maxHeapSize = '768m'
 }
 tasks.named('check') { dependsOn 'verifyMapEditorRuntime', 'verifyMapEditorContinuation' }
+
+tasks.register('verifyPcTechniquePoints', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcTechniquePointsTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyPcTechniquePoints' }

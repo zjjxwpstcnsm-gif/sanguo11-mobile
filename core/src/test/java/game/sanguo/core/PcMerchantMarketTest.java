@@ -87,7 +87,7 @@ public final class PcMerchantMarketTest {
     private static void openings()throws Exception{
         for(ScenarioCatalog.Summary summary:ScenarioCatalog.summaries()){
             World w=ScenarioCatalog.load(summary.id,0,23);byte[] before=SaveCodec.encode(w);
-            check(version(before)==36&&w.officerAbilities.enabled()&&w.merchantMarket.enabled()&&w.pcProduction.enabled(),"new v36 normal opening includes all ability, market and production state");
+            check(version(before)==37&&w.officerAbilities.enabled()&&w.merchantMarket.enabled()&&w.pcProduction.enabled()&&w.pcTechniquePoints.enabled(),"new v37 normal opening includes ability, market, production and technique policy");
             check(SaveCodec.decode(before).pcProduction.enabled(),"source production mode survives complete new opening");
             // Keep the former v35 expectation against actual frozen-engine saves.
             String vm=System.getProperty("java.vm.name","").toLowerCase(Locale.ROOT).contains("dalvik")?"art":"host";

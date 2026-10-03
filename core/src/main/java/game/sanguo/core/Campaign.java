@@ -83,7 +83,7 @@ public final class Campaign {
     public List<Project> projects(){return Collections.unmodifiableList(projects);}
     public int energyCap(int side){return has(side,Tech.LOGISTICS)?120:100;}
     public int points(int side){return points.getOrDefault(side,0);}
-    void earn(int side,int amount){if(side>=0&&side<w.factions.length&&amount>0)points.put(side,Math.min(100000,points(side)+amount));}
+    void earn(int side,int amount){if(side>=0&&side<w.factions.length&&amount>0)points.put(side,Math.min(w.pcTechniquePoints.enabled()?10000:100000,points(side)+amount));}
     public boolean has(int side,Tech tech){EnumSet<Tech> set=learned.get(side);return set!=null&&(set.contains(tech)||tech==Tech.WARSHIP&&set.contains(Tech.CATAPULT));}
     boolean grandfathered(int side,Tech tech){return legacyTechs.getOrDefault(side,EnumSet.noneOf(Tech.class)).contains(tech);}
     public int defenseCap(World.City c){return Math.min(100000,c.baseDefense+(has(c.owner,Tech.WALLS)?3000:0));}

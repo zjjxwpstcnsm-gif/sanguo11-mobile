@@ -13,6 +13,8 @@ public final class ProductionPlan {
   public final boolean delayed,actedBefore,actedAfter;
   public final int goldAfter,actionPointsAfter,outputQuantity,stockAfterImmediate,pendingAfter,busyTurns,facilityUsesAfter,meritBefore,meritAfter;
   public final String taskLabel;
+  public final int techniquePointsOwner,techniquePointsBefore,techniquePointsAfter;
+  public final boolean nativeTechniquePoints;
   public final OfficerExperiencePlan experience;
   public final List<Actor> actors;
   Effects(World w,int city,World.Officer o,ProductionPlan p,World.Weapon weapon,Army.Ship ship){
@@ -20,6 +22,7 @@ public final class ProductionPlan {
    int requested=delayed?1:w.pcProduction.enabled()?w.pcProduction.amount(city,p.officerIds.stream().map(w::officer).collect(Collectors.toList()),weapon,true):w.skills.produceAmount(city,o.id,weapon);
    outputQuantity=w.pcProduction.enabled()&&!delayed?Math.min(requested,p.stockCapacity-p.stockBefore):requested;stockAfterImmediate=p.stockBefore+(delayed?0:outputQuantity);pendingAfter=p.pendingBefore+(delayed?1:0);
    goldAfter=p.goldAvailable-p.goldCost;actionPointsAfter=p.actionPointsAvailable-p.actionPointsCost;facilityUsesAfter=p.facilityUsesBefore-1;
+   techniquePointsOwner=w.city(city).owner;techniquePointsBefore=w.campaign.points(techniquePointsOwner);nativeTechniquePoints=w.pcTechniquePoints.enabled();techniquePointsAfter=delayed?techniquePointsBefore:w.pcTechniquePoints.productionAfter(techniquePointsOwner,outputQuantity);
    taskLabel=delayed?"制造"+(ship!=null?ship.label:weapon.label):"";
    int stat=OfficerExperiencePlan.productionStat(weapon,ship);experience=new OfficerExperiencePlan(w,o,stat,2);
    actedBefore=o.acted;actedAfter=o.acted||p.actionPointsCost>0;meritBefore=w.government.merit(o.id);meritAfter=p.actionPointsCost==0?meritBefore:Math.min(1000000,meritBefore+(w.pcProduction.enabled()&&delayed?0:OfficerExperiencePlan.merit(o,stat,w.government)));

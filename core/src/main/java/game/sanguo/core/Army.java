@@ -220,7 +220,7 @@ public final class Army {
             World.City c=w.city(p.cityId);int count=p.weapon!=null?c.equipment[p.weapon.ordinal()]:c.ships[p.ship.ordinal()-1];
             if(count>=100&&!p.nativePolicy){w.officer(p.officerId).otherTaskTurns=2;continue;}
             if(p.weapon!=null)c.equipment[p.weapon.ordinal()]=Math.min(100,count+1);else c.ships[p.ship.ordinal()-1]=Math.min(100,count+1);
-            if(p.nativePolicy){for(int id:p.officers()){w.officerAbilities.gainExperience(id,2,4);int merit=w.government.merit(id);w.government.earn(id,Math.min(100,Math.max(0,60000-merit)));}clear(p);}
+            if(p.nativePolicy){for(int id:p.officers()){w.officerAbilities.gainExperience(id,2,4);int merit=w.government.merit(id);w.government.earn(id,Math.min(100,Math.max(0,60000-merit)));}w.pcTechniquePoints.completion(p.owner);clear(p);}
             productions.remove(p);w.note(c.name+p.label()+"完成，1件入库");
         }
     }

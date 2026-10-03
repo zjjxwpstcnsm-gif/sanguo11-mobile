@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=36, MAX_BYTES=32*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=37, MAX_BYTES=32*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -66,12 +66,12 @@ public final class SaveCodec {
         w.marches.writeIntents(d);
         w.loyalty.write(d);w.recruitment.writeField(d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
-        w.reports.write(d);w.governance.write(d);CustomMapSave.write(w,d);if(w.officerAbilities.enabled())w.officerAbilities.write(d);if(w.merchantMarket.enabled())w.merchantMarket.write(d);if(w.pcProduction.enabled())w.pcProduction.write(d);w.extensions.write(d);
+        w.reports.write(d);w.governance.write(d);CustomMapSave.write(w,d);if(w.officerAbilities.enabled())w.officerAbilities.write(d);if(w.merchantMarket.enabled())w.merchantMarket.write(d);if(w.pcProduction.enabled())w.pcProduction.write(d);if(w.pcTechniquePoints.enabled())w.pcTechniquePoints.write(d);w.extensions.write(d);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
         CRC32 crc=new CRC32();crc.update(payload);
         bytes=new ByteArrayOutputStream();d=new DataOutputStream(bytes);
-        d.writeInt(MAGIC);d.writeInt(w.pcProduction.enabled()?36:w.merchantMarket.enabled()?35:w.officerAbilities.enabled()?34:33);d.writeInt(payload.length);d.writeLong(crc.getValue());d.write(payload);d.flush();
+        d.writeInt(MAGIC);d.writeInt(w.pcTechniquePoints.enabled()?37:w.pcProduction.enabled()?36:w.merchantMarket.enabled()?35:w.officerAbilities.enabled()?34:33);d.writeInt(payload.length);d.writeLong(crc.getValue());d.write(payload);d.flush();
         return bytes.toByteArray();
     }
     public static World decode(byte[] data) throws IOException {
@@ -152,6 +152,7 @@ public final class SaveCodec {
         if(version>=34)w.officerAbilities.read(d);
         if(version>=35)w.merchantMarket.read(d);
         if(version>=36)w.pcProduction.read(d);
+        if(version>=37)w.pcTechniquePoints.read(d);
         w.extensions.read(d);
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         w.districts.migrateLegacySites();
@@ -215,7 +216,7 @@ public final class SaveCodec {
             require(w.height==axisRows&&w.width==axisCols+(axisRows-1)/2,"源地图与axial存储尺寸不匹配");
             for(int q=0;q<w.width;q++)for(int r=0;r<w.height;r++)if(!w.sourceInside(new Hex(q,r)))require(w.terrain[q][r]==World.Terrain.VOID,"地图填充区必须为VOID");
         }
-        w.life.validate();w.officerAbilities.validate();w.pcProduction.validate();
+        w.life.validate();w.officerAbilities.validate();w.pcProduction.validate();w.pcTechniquePoints.validate();
         w.diplomacy.validate();
         w.domestic.validate();
         w.strategy.validate();
