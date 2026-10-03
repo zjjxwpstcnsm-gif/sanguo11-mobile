@@ -24,5 +24,6 @@ source=out/'BoundedRuleFlowInstrumentation.java';source.write_text(changed,encod
 helpers=[helper]
 for path,raw in zip(paths[2:],originals[2:]):
  copy=out/Path(path).name;copy.write_bytes(raw);helpers.append(copy)
-build(out/'probe','BoundedRuleFlowInstrumentation',[source]+helpers)
-(out/'source-audit.json').write_text(json.dumps(dict(revision=revision,originals=[dict(path=path,sha256=hashlib.sha256(raw).hexdigest()) for path,raw in zip(paths,originals)],changed_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),all_original_assertions_and_flow_byte_preserved=True,scope='Only separate acceptance runner; original historical timeout retained; bounded main queue acknowledgement does not assert renderer globally idle'),indent=2)+'\n')
+catalog=subprocess.check_output(['git','show',revision+':app/src/androidTest/assets/pure3d-acceptance.json'],cwd=ROOT)
+build(out/'probe','BoundedRuleFlowInstrumentation',[source]+helpers,{'assets/pure3d-acceptance.json':catalog})
+(out/'source-audit.json').write_text(json.dumps(dict(revision=revision,originals=[dict(path=path,sha256=hashlib.sha256(raw).hexdigest()) for path,raw in zip(paths,originals)],changed_sha256=hashlib.sha256(source.read_bytes()).hexdigest(),acceptance_catalog_sha256=hashlib.sha256(catalog).hexdigest(),all_original_assertions_and_flow_byte_preserved=True,scope='Only separate acceptance runner; original historical timeout retained; bounded main queue acknowledgement does not assert renderer globally idle'),indent=2)+'\n')

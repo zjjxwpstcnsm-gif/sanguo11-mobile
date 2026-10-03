@@ -123,3 +123,11 @@ tasks.register('verifyTechniquePointsFacts', JavaExec) {
     maxHeapSize = '768m'
 }
 tasks.named('check') { dependsOn 'verifyTechniquePointsFacts' }
+
+tasks.register('verifyCurrentSession', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.runtime.CurrentScenarioSessionTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyCurrentSession' }

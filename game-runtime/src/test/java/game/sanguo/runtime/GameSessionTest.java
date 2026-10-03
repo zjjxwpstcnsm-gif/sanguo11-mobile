@@ -16,8 +16,42 @@ public final class GameSessionTest {
     private static String hash(GameSession s)throws Exception{return BaselineSequence.hash(s.captureSave());}
     public static void main(String[] args)throws Exception{
         World initial=BaselineSequence.prepared();
-        baselineParity(initial);atomicityAndLifecycle(initial);protocol(initial);coordinates();
+        baselineParity(historicalPrepared());currentScenarioParity(initial);atomicityAndLifecycle(initial);protocol(initial);coordinates();
         System.out.println("GameSessionTest PASS: "+checks+" assertions; old-source full-save parity, native/bridge commands, isolation, lifecycle, turns and protocol.");
+    }
+    public static void verifyCurrent()throws Exception{
+        checks=0;World initial=BaselineSequence.prepared();
+        currentScenarioParity(initial);atomicityAndLifecycle(initial);protocol(initial);coordinates();
+        System.out.println("CurrentScenarioSessionTest PASS: "+checks+" current real native/direct/bridge commands, full saves/RNG, atomicity, lifecycle and protocol; historical fixed baseline remains separate and enforced");
+    }
+    static World historicalPrepared()throws Exception{
+        byte[] raw;
+        try(InputStream in=GameSessionTest.class.getResourceAsStream("/architecture/prepared-9548bb35-v33.sg11")){
+            if(in==null)throw new AssertionError("Missing genuine historical full-save fixture");raw=in.readAllBytes();
+        }
+        check(BaselineSequence.hash(raw).equals("b27c526efeb53c443e921a24aedc34ab78b9f645c199154710d292ed0b08340b"),"genuine v33 fixture source SHA unchanged");
+        World historical=SaveCodec.decode(raw);
+        check(Arrays.equals(raw,SaveCodec.encode(historical)),"historical full-save decode/encode exact; no ability/market/production reinterpretation");
+        return historical;
+    }
+    private static void currentScenarioParity(World initial)throws Exception{
+        World direct=SaveCodec.decode(SaveCodec.encode(initial));
+        try(GameSession nativeGame=new GameSession(initial);GameSession bridgeGame=new GameSession(initial)){
+            BridgeSession bridge=new BridgeSession(bridgeGame);bridge.snapshot();bridge.drain();
+            check(Arrays.equals(nativeGame.captureSave(),SaveCodec.encode(direct)),"current project opening exact native/direct state");
+            int index=0;Set<String> ids=new HashSet<>();
+            for(int[] op:BaselineSequence.operations(initial)){
+                World.Result expected=BaselineSequence.direct(direct,op,true);
+                GameCommand.Operation kind=op[0]==1?GameCommand.Operation.RECRUIT:GameCommand.Operation.PATROL;
+                CommandResult result=nativeGame.execute(new GameCommand(kind,nativeGame.state(),op[1],op[2]));
+                BridgeMessage message=bridge.command("current:"+index,index+1,bridge.revision(),op[0]==1?"recruit":"patrol",op[1],op[2]);
+                check(result.ok()==expected.ok&&(message.error==null)==expected.ok,"current real command acceptance matches native/direct/bridge step "+index);
+                check(Arrays.equals(nativeGame.captureSave(),SaveCodec.encode(direct))&&Arrays.equals(nativeGame.captureSave(),bridgeGame.captureSave()),"current native/direct/bridge entire save and RNG match step "+index);
+                if(result.ok())check(result.event.state.equals(nativeGame.state())&&ids.add(result.event.id),"current successful facts carry one unique commit identity");
+                bridge.drain();index++;
+            }
+            bridge.close();
+        }
     }
     private static void baselineParity(World initial)throws Exception{
         List<String> golden;

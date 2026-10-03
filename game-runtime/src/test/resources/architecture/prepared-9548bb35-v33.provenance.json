@@ -1,0 +1,10 @@
+{
+  "scope": "genuine v33 historical TEST fixture; never copied to app content, user slots or game baseline",
+  "source_commit": "9548bb350051150b21a61213f9068ffb1b7506c0",
+  "old_seven_states_byte_equal": true,
+  "fixture_sha256": "b27c526efeb53c443e921a24aedc34ab78b9f645c199154710d292ed0b08340b",
+  "fixture_bytes": 227372,
+  "historical_golden_sha256": "687eacf3232cd11f89116716ec50af7dede6cecec40be40eb18f560a95204a37",
+  "helper_sha256": "649ef40805606a47390f35f6b4c9ed67957f0cd917bd1f81c6ffca08f3e330b3",
+  "source_archive_sha256": "f5e345547a265f413f29d78d405d5560921f459e038593f747c1d687cd8b29c9"
+}

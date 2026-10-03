@@ -12,7 +12,7 @@ ROOT=Path(__file__).resolve().parents[2]
 PACKAGE='game.sanguo.mobile.marketprobe'
 
 
-def build(output,runner='NativeMerchantUiInstrumentation',sources=None):
+def build(output,runner='NativeMerchantUiInstrumentation',sources=None,assets=None):
     package={'NativeMerchantUiInstrumentation':PACKAGE,
              'NativeCityRewardsUiInstrumentation':'game.sanguo.mobile.cityrewardsprobe',
              'NativeCityDisplacementUiInstrumentation':'game.sanguo.mobile.citydisplacementprobe',
@@ -50,6 +50,9 @@ def build(output,runner='NativeMerchantUiInstrumentation',sources=None):
         for archive in (resources,dex):
             with zipfile.ZipFile(archive) as source_zip:
                 for name in source_zip.namelist():target.writestr(name,source_zip.read(name))
+        for name,data in (assets or {}).items():
+            if not name.startswith('assets/') or '..' in Path(name).parts:raise ValueError('Invalid acceptance asset name')
+            target.writestr(name,data)
     aligned=output/'aligned.apk';run('zipalign',[tools/'zipalign','-f','4',unsigned,aligned])
     apk=output/'native-market-ui.apk'
     run('sign',[tools/'apksigner','sign','--ks',ROOT/'tools/android/dev-debug.keystore','--ks-pass','pass:android','--key-pass','pass:android','--out',apk,aligned])
