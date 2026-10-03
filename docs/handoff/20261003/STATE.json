@@ -543,12 +543,22 @@
       1,
       0
     ],
-    "readiness_dispatch_probe_award_verified": false,
-    "readiness_dispatch_probe_status": "counter reaches0 but XP/task unchanged; prepared input or dispatch boundary pending trace"
+    "readiness_dispatch_probe_award_verified": true,
+    "readiness_dispatch_probe_status": "98 IDs,294 original countdown/gate/dispatcher cycles plus98 no-replay passed; full preceding global turn not executed",
+    "native_countdown_world_ticks": 294,
+    "native_no_replay_cases": 98,
+    "source_dispatch_table_tasks": [
+      41,
+      42,
+      43
+    ],
+    "officer_stride": 400,
+    "officer_native_district_field": "0x94",
+    "native_countdown_gzip_sha256": "bb5ddfe7ec7f72ef633bf93ae0c5d3c5fe6775c12a46cfcc2723df2f3e9e3a42"
   },
   "r32_canonical_rebuild": {
     "date": "2026-10-04",
-    "status": "default3D856/sourcecity62/normalproduction209 passed; full24 continuation running",
+    "status": "default3D856/sourcecity62/production209/full24continuation373/native37merchant66 passed; ART matrix running",
     "complete_dirty_source_snapshot": "out/parity/checkpoint-20261004-r32-cultivation-a143644/source",
     "full_source_files": 4255,
     "full_source_bytes": 336018236,
@@ -583,6 +593,15 @@
     "source_city_user_files_exact": true,
     "normal_production_ui_checks": 209,
     "normal_production_ui_seconds": 459.7,
-    "normal_production_original_files_exact": true
+    "normal_production_original_files_exact": true,
+    "post24_extension_checks": 373,
+    "post24_extension_seconds": 625.08,
+    "post24_original_files_exact": true,
+    "post24_final_and_reopened_byte_equal": true,
+    "post24_save_sha256": "dcb80be0475bdfc12130c4e33d8b381c959c009f0391e1d3eed4dbb1ca7bcd0f",
+    "native37_merchant_ui_checks": 66,
+    "native37_merchant_ui_seconds": 54.88,
+    "native37_merchant_complete_save_comparison": true,
+    "native37_merchant_original_files_exact": true
   }
 }

@@ -42,4 +42,20 @@ python3 tools/content/pack_pc_ability_training_evidence.py \
   --output out/parity/ability-training-reproduced.json.gz
 ```
 
-倒计时补充：受控初始化1100个原officer构造器后，实际59a862→59a89d尾循环观察到目标158字段3→2→1→0，RNG保持。随后599ff7→59a00c的准备派发探针三次均未改变XP或task41；未验证其准备输入／派发边界，所以不能把三个计数下降称为正常培养完成。`ability-countdown-source-20261004/{first.log,observation.json}`保留结果，后续需指令追踪解释；与完整完成函数480／24／276的直接入口证据明确分开。没有改Android任务或保存。
+历史倒计时初探（当前已由下述受控派发证明补齐，失败保留）：受控初始化1100个原officer构造器后，实际59a862→59a89d尾循环观察到目标158字段3→2→1→0，RNG保持。随后599ff7→59a00c的准备派发探针三次均未改变XP或task41；未验证其准备输入／派发边界，所以不能把三个计数下降称为正常培养完成。`ability-countdown-source-20261004/{first.log,observation.json}`保留结果，后续需指令追踪解释；与完整完成函数480／24／276的直接入口证据明确分开。没有改Android任务或保存。
+
+## 原倒计时、门禁和派发的当前证据
+
+`verify_pc_ability_countdown_dispatch_native.py`实际执行原59a862→59a89d全1100officer尾循环、599ff7→59a00c准备条件、原5b9e10任务派发及三类完整完成函数。98个原研究ID各3次全局计数下降，共294次；前两次没有奖励或次数消耗，第三次原派发准确完成；任务释放后再扫描98次均不重复发奖。逐步完整3MiB世界精确对照，包含XP／适性／特技、有限次数、任务载荷与能力缓存，RNG保持。隐含的前置全局回合逻辑和人类UI没有执行，不把尾循环串接称作整个PC回合实测。
+
+原5b9e10静态分发表独立证明task41／42／43落到对应STAT／APTITUDE／SKILL分支。原officer虚表+44指向4883b0，实际读取+94军团ID；此准备字段未赋值时为-1，导致490aa0所得势力无效，原完成正确拒绝。最初探针还错误重复构造了stride180的对象；原共享解码和查表为stride190。修正步长仍未完成，指令轨迹随后找到+94归属缺失。仅将该确切字段设为已准备的军团0也能在第三次成功，排除“原正常计数不完成”的误判。+98候选修改无效，相关失败仍保留。以上均是探针准备问题，未改游戏指令、安卓规则或旧保存。
+
+正式工具使用明确的完整190字节受控actor载荷、原构造器、军团0／城市0及非玩家controller=-1；初始计数3和隐藏slot0仍为显式输入。整个原开始命令、取消／失守／死亡、费用扣除、随机隐藏及真正全局回合未闭合。继承的Android培养writebase与旧31—33含义继续保持。
+
+两次最终JSON全等SHA302e8960b73ae353cee82729f0f6f0b6b0a3dfcc5d377b0b37ddc0d6ea580505；随源码固定的`docs/pc-data/ability-countdown-native.json.gz`6785B，SHAbb5ddfe7ec7f72ef633bf93ae0c5d3c5fe6775c12a46cfcc2723df2f3e9e3a42，包含全部ID／record SHA、函数原字节、分发表、实际计数及再扫描结果。用现有PYTHONPATH运行：
+
+```sh
+python3 tools/content/verify_pc_ability_countdown_dispatch_native.py --output out/parity/ability-countdown-new
+```
+
+输出JSON及固定mtime／空filename的gzip可与跟踪文件逐字节核对；原PC目录仅只读。
