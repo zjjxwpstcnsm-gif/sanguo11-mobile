@@ -469,8 +469,8 @@
     "normal_production_ui_seconds": 400.41,
     "normal_production_report": "out/parity/report-compression-20261004/production-ui/results.json",
     "remaining_same_package_acceptance": [
-      "post24 actual menu save/load/exit/reopen",
-      "pure3D new opening/editor/remaining regression matrix"
+      "remaining presentation and normal merchant/reward flow matrix",
+      "independent canonical build and installation"
     ],
     "production_art_checks": 13323,
     "city_displacement_art_checks": 6648,
@@ -490,6 +490,43 @@
     "native37_consecutive_turns_passed": 24,
     "longrun_checks": 342,
     "longrun_seconds": 553.01,
-    "post24_actual_menu_load_and_exit_reopen": "additional full24 extension running, not yet passed"
+    "post24_actual_menu_load_and_exit_reopen": "passed",
+    "post24_extension_checks": 373,
+    "post24_extension_seconds": 642.03,
+    "post24_final_and_reopened_save_byte_equal": true,
+    "post24_save_sha256": "dcb80be0475bdfc12130c4e33d8b381c959c009f0391e1d3eed4dbb1ca7bcd0f",
+    "post24_save_bytes": 368272,
+    "opening_ui_checks": 64,
+    "opening_ui_seconds": 62.11,
+    "editor_ui_checks": 61,
+    "editor_ui_seconds": 58.9,
+    "editor_original_external_files_exact": 13,
+    "default3d_smoke_checks": 856,
+    "default3d_smoke_seconds": 523.55,
+    "default3d_smoke_passed": true
+  },
+  "ability_research_native_source": {
+    "status": "parameters/admission/stat award block verified; full dispatch and policy not integrated",
+    "rows": 98,
+    "getter_calls": 490,
+    "stat_admission_cases": 1080,
+    "stat_completion_award_cases": 300,
+    "raw_counts_decoded": [
+      5,
+      5,
+      3
+    ],
+    "caps": [
+      70,
+      80,
+      95
+    ],
+    "admission": "XP<2000 and age-growth-plus-XP foundation<cap",
+    "stat_award": "XP+=100*min(5,cap-foundation), capped3000; base unchanged",
+    "user_inherited_cultivation_base_write_preserved": true,
+    "old_save_changed": false,
+    "full_native_completion_dispatch_verified": false,
+    "official_effective_source_verified": false,
+    "final_award_observation_sha256": "9e516fd8222e889d02cddbea092cd3d64a8d9bbbe608a016092217f373bc9fcf"
   }
 }
