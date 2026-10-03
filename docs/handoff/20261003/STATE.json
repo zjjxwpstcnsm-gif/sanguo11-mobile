@@ -1,99 +1,412 @@
 {
-  "goal_status": "paused_at_user_request",
+  "goal_status": "active_rules_data_final_integration",
   "goal_complete": false,
   "branch": "agent/native-pc-visual",
   "all_worktree_changes_must_be_preserved": true,
-  "latest_ui_commit": "0ddedf6fd379b3a87df206bc1d09f0e1662155ab",
+  "latest_ui_commit": "d9d495bc6dc6fb2150522c15a428a32e7e7162e1",
   "full_ui_merge_audit": "out/uiux-merge-all-0ddedf6/audit.json",
   "core_baseline": "out/parity/checkpoint-20261003-an/source",
   "latest_pre_ui18_full_baseline": "out/parity/checkpoint-20261003-ao/source",
   "handoff_snapshot": "out/parity/checkpoint-20261003-ap-handoff-final/source",
   "apks": {
-    "apks": [
+    "source_commit": "a934c2365425bec0b9ae14b9643ac1f9753dec71",
+    "ui_completed_target": "d9d495b",
+    "authority_rules_unchanged": true,
+    "production_assets_native_inputs_exact_to_verified_r28": true,
+    "build_success": true,
+    "installed_validation_pending": true,
+    "artifacts": [
       {
-        "path": "out/parity/ui-integration-0ddedf6/apks/app-debug.apk",
-        "bytes": 87040546,
-        "sha256": "005c24e904c028a2bf8c328e1fb08eb907955b5010d33682e673eeb911779389"
+        "path": "/Users/paopao/.codex/worktrees/f1b8/sanguo11-mobile/out/parity/ui-residency-integration-d9d495b/apks/app-debug.apk",
+        "bytes": 87453408,
+        "sha256": "f1741671001dbcd37404ab098fc8529957806ffb4a3b96c6e6c592082293fb75"
       },
       {
-        "path": "out/parity/ui-integration-0ddedf6/apks/app-debug-androidTest.apk",
-        "bytes": 752283,
-        "sha256": "bd626f73b0338dca4b6e633b58c8f85355b0d5c415d40cc8fee262abee5c91ba"
+        "path": "/Users/paopao/.codex/worktrees/f1b8/sanguo11-mobile/out/parity/ui-residency-integration-d9d495b/apks/app-debug-androidTest.apk",
+        "bytes": 943478,
+        "sha256": "34e8fefe2030d57d49fc8bcba0f26ad8896dc12106606b1731f725a7e9014a3d"
       }
-    ],
-    "pinned_resources": 168,
-    "native_inputs": 4,
-    "rank_resource_exact": true,
-    "growth_resource_exact": true,
-    "all_exact": true
+    ]
   },
   "latest_apk_ui_flows": [
     {
-      "name": "installed-native-march",
-      "checks": 77,
-      "seconds": 115.76,
-      "results": "out/parity/ui-integration-0ddedf6/installed-native-march/results.json",
-      "restoration": {
-        "all_original_files_byte_equal": true,
-        "mismatches": [],
-        "added_files": [],
-        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
-      }
-    },
-    {
-      "name": "installed-flat-march",
-      "checks": 73,
-      "seconds": 62.61,
-      "results": "out/parity/ui-integration-0ddedf6/installed-flat-march/results.json",
-      "restoration": {
-        "all_original_files_byte_equal": true,
-        "mismatches": [],
-        "added_files": [],
-        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
-      }
-    },
-    {
-      "name": "installed-opening",
+      "suite": "opening",
       "checks": 64,
-      "seconds": 58.31,
-      "results": "out/parity/ui-integration-0ddedf6/installed-opening/results.json",
-      "restoration": {
-        "all_original_files_byte_equal": true,
-        "mismatches": [],
-        "added_files": [],
-        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
-      }
+      "seconds": 59.14
+    },
+    {
+      "suite": "city-ui",
+      "checks": 62,
+      "seconds": 106.03
+    },
+    {
+      "suite": "merchant-ui",
+      "checks": 62,
+      "seconds": 121.42
+    },
+    {
+      "suite": "rewards-ui",
+      "checks": 259,
+      "seconds": 590.66
+    },
+    {
+      "suite": "legacySave3D",
+      "checks": 32,
+      "seconds": 332.13
+    },
+    {
+      "suite": "exit3D",
+      "checks": 15,
+      "seconds": 44.71
+    },
+    {
+      "suite": "residentAssets",
+      "checks": 113,
+      "seconds": 319.38
+    },
+    {
+      "suite": "legacyNavigation",
+      "checks": 37,
+      "seconds": 232.74
+    },
+    {
+      "suite": "legacyRegions",
+      "checks": 679,
+      "seconds": 736.81
+    },
+    {
+      "suite": "reportLocate3D",
+      "checks": 14,
+      "seconds": 22.0
+    },
+    {
+      "suite": "terrain",
+      "checks": 51,
+      "seconds": 70.31
+    },
+    {
+      "suite": "march",
+      "checks": 74,
+      "seconds": 251.25
+    },
+    {
+      "suite": "criticalAudio",
+      "checks": 15,
+      "seconds": 39.88
+    },
+    {
+      "suite": "reducedMotion",
+      "checks": 75,
+      "seconds": 93.87
+    },
+    {
+      "suite": "mapEdges",
+      "checks": 34,
+      "seconds": 72.05
+    },
+    {
+      "suite": "mapNative",
+      "checks": 22,
+      "seconds": 35.63
+    },
+    {
+      "suite": "pure3dLifecycle",
+      "checks": 28,
+      "seconds": 46.52
+    },
+    {
+      "suite": "longRun",
+      "checks": 342,
+      "seconds": 702.64
+    },
+    {
+      "suite": "default3d-smoke",
+      "checks": 856,
+      "seconds": 779.19
+    },
+    {
+      "suite": "audio-window",
+      "checks": 47,
+      "seconds": 30.36
+    },
+    {
+      "suite": "coast",
+      "checks": 100,
+      "seconds": 62.15
+    },
+    {
+      "suite": "editor",
+      "checks": 61,
+      "seconds": 66.77
     }
   ],
-  "latest_apk_ui_checks": 214,
-  "not_yet_run_on_latest_apk": [
-    "production ART rule probes",
-    "trade",
-    "governanceArmy",
-    "standalone mapEdges/mapNative gesture suites"
-  ],
+  "latest_apk_ui_checks": 3042,
+  "not_yet_run_on_latest_apk": [],
   "previous_apk_validation": "docs/validation/parity-20261003/round24-installed.json",
   "pending_user_requests": [
-    "Coast/city square-shaped visual discontinuities",
-    "Inspect terrain under occupied unit cell",
-    "Cavalry forced displacement must not enter city seven-cell footprint",
-    "Implement sound effects",
-    "Remove playable 2D mode completely"
+    "P01-P10/D01-D03 full parity",
+    "official/MOD effective source and full openings",
+    "global PC RNG/weather",
+    "other XP/cultivation/delayed production",
+    "next UI6a00e8e/8e25cad integration",
+    "ARM physical/performance"
   ],
   "user_screenshot": {
     "path": "docs/handoff/20261003/coast-city-rectangles.jpg",
     "sha256": "7961d90e955b4af1cd6a4950828710dbac98d23f2d51cbbc00a409746e3abc50"
   },
-  "evidence_scope": "Only API29 x86_64 emulator; user phone feedback is separate and APK/ABI identity is not verified",
+  "evidence_scope": "Independent exactf174 APK on emulator5554 API29x86_64; ARM physical and full PC/MOD startup not proved",
   "active_install_tests": false,
   "user_files_restored": true,
   "original_auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
   "notes": [
-    "R23 state29361 and original arithmetic passed on R23/R24 APKs; not copied as latest APK pass",
-    "Three historical baseline failures retained; whole test suite is not green",
-    "Original merchant price/quantity/monthly state and non-merchant XP remain pending",
-    "Official/MOD active resources and full scenario content not established",
-    "Old <31 map save migration remains unsupported",
-    "No feature fixes or new testing were started after user stop; only handoff documentation/read-only source archive"
+    "Original AP stop snapshot preserved verbatim under previous_handoff_state; legacy visual goal remains paused",
+    "Current parity/final integration goal active andR29 exact APK3042verified independently",
+    "Original7user paths/bytes andeditor externalinput exact restored",
+    "No old APK results transferred, no old AP core copied",
+    "Source new-production evidence exists but R29 APK keeps existing production implementation",
+    "Independent v36 staging not shipped; multiplayer/techpoints/delayed/normalART UI still pending"
+  ],
+  "legacy_visual_goal_status": "paused_at_user_request",
+  "previous_handoff_state": {
+    "goal_status": "paused_at_user_request",
+    "goal_complete": false,
+    "branch": "agent/native-pc-visual",
+    "all_worktree_changes_must_be_preserved": true,
+    "latest_ui_commit": "0ddedf6fd379b3a87df206bc1d09f0e1662155ab",
+    "full_ui_merge_audit": "out/uiux-merge-all-0ddedf6/audit.json",
+    "core_baseline": "out/parity/checkpoint-20261003-an/source",
+    "latest_pre_ui18_full_baseline": "out/parity/checkpoint-20261003-ao/source",
+    "handoff_snapshot": "out/parity/checkpoint-20261003-ap-handoff-final/source",
+    "apks": {
+      "apks": [
+        {
+          "path": "out/parity/ui-integration-0ddedf6/apks/app-debug.apk",
+          "bytes": 87040546,
+          "sha256": "005c24e904c028a2bf8c328e1fb08eb907955b5010d33682e673eeb911779389"
+        },
+        {
+          "path": "out/parity/ui-integration-0ddedf6/apks/app-debug-androidTest.apk",
+          "bytes": 752283,
+          "sha256": "bd626f73b0338dca4b6e633b58c8f85355b0d5c415d40cc8fee262abee5c91ba"
+        }
+      ],
+      "pinned_resources": 168,
+      "native_inputs": 4,
+      "rank_resource_exact": true,
+      "growth_resource_exact": true,
+      "all_exact": true
+    },
+    "latest_apk_ui_flows": [
+      {
+        "name": "installed-native-march",
+        "checks": 77,
+        "seconds": 115.76,
+        "results": "out/parity/ui-integration-0ddedf6/installed-native-march/results.json",
+        "restoration": {
+          "all_original_files_byte_equal": true,
+          "mismatches": [],
+          "added_files": [],
+          "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+        }
+      },
+      {
+        "name": "installed-flat-march",
+        "checks": 73,
+        "seconds": 62.61,
+        "results": "out/parity/ui-integration-0ddedf6/installed-flat-march/results.json",
+        "restoration": {
+          "all_original_files_byte_equal": true,
+          "mismatches": [],
+          "added_files": [],
+          "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+        }
+      },
+      {
+        "name": "installed-opening",
+        "checks": 64,
+        "seconds": 58.31,
+        "results": "out/parity/ui-integration-0ddedf6/installed-opening/results.json",
+        "restoration": {
+          "all_original_files_byte_equal": true,
+          "mismatches": [],
+          "added_files": [],
+          "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+        }
+      }
+    ],
+    "latest_apk_ui_checks": 214,
+    "not_yet_run_on_latest_apk": [
+      "production ART rule probes",
+      "trade",
+      "governanceArmy",
+      "standalone mapEdges/mapNative gesture suites"
+    ],
+    "previous_apk_validation": "docs/validation/parity-20261003/round24-installed.json",
+    "pending_user_requests": [
+      "Coast/city square-shaped visual discontinuities",
+      "Inspect terrain under occupied unit cell",
+      "Cavalry forced displacement must not enter city seven-cell footprint",
+      "Implement sound effects",
+      "Remove playable 2D mode completely"
+    ],
+    "user_screenshot": {
+      "path": "docs/handoff/20261003/coast-city-rectangles.jpg",
+      "sha256": "7961d90e955b4af1cd6a4950828710dbac98d23f2d51cbbc00a409746e3abc50"
+    },
+    "evidence_scope": "Only API29 x86_64 emulator; user phone feedback is separate and APK/ABI identity is not verified",
+    "active_install_tests": false,
+    "user_files_restored": true,
+    "original_auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "notes": [
+      "R23 state29361 and original arithmetic passed on R23/R24 APKs; not copied as latest APK pass",
+      "Three historical baseline failures retained; whole test suite is not green",
+      "Original merchant price/quantity/monthly state and non-merchant XP remain pending",
+      "Official/MOD active resources and full scenario content not established",
+      "Old <31 map save migration remains unsupported",
+      "No feature fixes or new testing were started after user stop; only handoff documentation/read-only source archive"
+    ]
+  },
+  "current_source_commit": "a934c2365425bec0b9ae14b9643ac1f9753dec71",
+  "current_full_baseline": "out/parity/checkpoint-20261003-r29/source",
+  "current_integration_audit": "out/parity/rules-r29-integration/audit.json",
+  "current_installed_validation": {
+    "source_commit": "a934c2365425bec0b9ae14b9643ac1f9753dec71",
+    "apk_sha256": "f1741671001dbcd37404ab098fc8529957806ffb4a3b96c6e6c592082293fb75",
+    "test_sha256": "34e8fefe2030d57d49fc8bcba0f26ad8896dc12106606b1731f725a7e9014a3d",
+    "scope": "Independent exact R29 committed combo actualAPI29x86_64 flows; no other APK evidence transferred",
+    "installed_flow_checks": 3042,
+    "suites": [
+      {
+        "suite": "opening",
+        "checks": 64,
+        "seconds": 59.14
+      },
+      {
+        "suite": "city-ui",
+        "checks": 62,
+        "seconds": 106.03
+      },
+      {
+        "suite": "merchant-ui",
+        "checks": 62,
+        "seconds": 121.42
+      },
+      {
+        "suite": "rewards-ui",
+        "checks": 259,
+        "seconds": 590.66
+      },
+      {
+        "suite": "legacySave3D",
+        "checks": 32,
+        "seconds": 332.13
+      },
+      {
+        "suite": "exit3D",
+        "checks": 15,
+        "seconds": 44.71
+      },
+      {
+        "suite": "residentAssets",
+        "checks": 113,
+        "seconds": 319.38
+      },
+      {
+        "suite": "legacyNavigation",
+        "checks": 37,
+        "seconds": 232.74
+      },
+      {
+        "suite": "legacyRegions",
+        "checks": 679,
+        "seconds": 736.81
+      },
+      {
+        "suite": "reportLocate3D",
+        "checks": 14,
+        "seconds": 22.0
+      },
+      {
+        "suite": "terrain",
+        "checks": 51,
+        "seconds": 70.31
+      },
+      {
+        "suite": "march",
+        "checks": 74,
+        "seconds": 251.25
+      },
+      {
+        "suite": "criticalAudio",
+        "checks": 15,
+        "seconds": 39.88
+      },
+      {
+        "suite": "reducedMotion",
+        "checks": 75,
+        "seconds": 93.87
+      },
+      {
+        "suite": "mapEdges",
+        "checks": 34,
+        "seconds": 72.05
+      },
+      {
+        "suite": "mapNative",
+        "checks": 22,
+        "seconds": 35.63
+      },
+      {
+        "suite": "pure3dLifecycle",
+        "checks": 28,
+        "seconds": 46.52
+      },
+      {
+        "suite": "longRun",
+        "checks": 342,
+        "seconds": 702.64
+      },
+      {
+        "suite": "default3d-smoke",
+        "checks": 856,
+        "seconds": 779.19
+      },
+      {
+        "suite": "audio-window",
+        "checks": 47,
+        "seconds": 30.36
+      },
+      {
+        "suite": "coast",
+        "checks": 100,
+        "seconds": 62.15
+      },
+      {
+        "suite": "editor",
+        "checks": 61,
+        "seconds": 66.77
+      }
+    ],
+    "actual_mixed_cues": 9,
+    "min_waveform_correlation": 0.9611998612755281,
+    "all_original_user_files_and_paths_byte_equal": true,
+    "user_files": 7,
+    "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "installed_apk_readback_sha256": "f1741671001dbcd37404ab098fc8529957806ffb4a3b96c6e6c592082293fb75",
+    "goal_complete": false
+  },
+  "current_remaining": [
+    "P01-P10/D01-D03 full parity",
+    "official/MOD effective source and full openings",
+    "global PC RNG/weather",
+    "other XP/cultivation/delayed production",
+    "next UI6a00e8e/8e25cad integration",
+    "ARM physical/performance"
+  ],
+  "production_next_stage": "out/parity/production-next-implementation/source (not installed or integrated)",
+  "latest_ui_source_commits": [
+    "3a1ddd5",
+    "d9d495b"
   ]
 }

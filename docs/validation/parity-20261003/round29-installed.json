@@ -1,0 +1,126 @@
+{
+  "source_commit": "a934c2365425bec0b9ae14b9643ac1f9753dec71",
+  "apk_sha256": "f1741671001dbcd37404ab098fc8529957806ffb4a3b96c6e6c592082293fb75",
+  "test_sha256": "34e8fefe2030d57d49fc8bcba0f26ad8896dc12106606b1731f725a7e9014a3d",
+  "scope": "Independent exact R29 committed combo actualAPI29x86_64 flows; no other APK evidence transferred",
+  "installed_flow_checks": 3042,
+  "suites": [
+    {
+      "suite": "opening",
+      "checks": 64,
+      "seconds": 59.14
+    },
+    {
+      "suite": "city-ui",
+      "checks": 62,
+      "seconds": 106.03
+    },
+    {
+      "suite": "merchant-ui",
+      "checks": 62,
+      "seconds": 121.42
+    },
+    {
+      "suite": "rewards-ui",
+      "checks": 259,
+      "seconds": 590.66
+    },
+    {
+      "suite": "legacySave3D",
+      "checks": 32,
+      "seconds": 332.13
+    },
+    {
+      "suite": "exit3D",
+      "checks": 15,
+      "seconds": 44.71
+    },
+    {
+      "suite": "residentAssets",
+      "checks": 113,
+      "seconds": 319.38
+    },
+    {
+      "suite": "legacyNavigation",
+      "checks": 37,
+      "seconds": 232.74
+    },
+    {
+      "suite": "legacyRegions",
+      "checks": 679,
+      "seconds": 736.81
+    },
+    {
+      "suite": "reportLocate3D",
+      "checks": 14,
+      "seconds": 22.0
+    },
+    {
+      "suite": "terrain",
+      "checks": 51,
+      "seconds": 70.31
+    },
+    {
+      "suite": "march",
+      "checks": 74,
+      "seconds": 251.25
+    },
+    {
+      "suite": "criticalAudio",
+      "checks": 15,
+      "seconds": 39.88
+    },
+    {
+      "suite": "reducedMotion",
+      "checks": 75,
+      "seconds": 93.87
+    },
+    {
+      "suite": "mapEdges",
+      "checks": 34,
+      "seconds": 72.05
+    },
+    {
+      "suite": "mapNative",
+      "checks": 22,
+      "seconds": 35.63
+    },
+    {
+      "suite": "pure3dLifecycle",
+      "checks": 28,
+      "seconds": 46.52
+    },
+    {
+      "suite": "longRun",
+      "checks": 342,
+      "seconds": 702.64
+    },
+    {
+      "suite": "default3d-smoke",
+      "checks": 856,
+      "seconds": 779.19
+    },
+    {
+      "suite": "audio-window",
+      "checks": 47,
+      "seconds": 30.36
+    },
+    {
+      "suite": "coast",
+      "checks": 100,
+      "seconds": 62.15
+    },
+    {
+      "suite": "editor",
+      "checks": 61,
+      "seconds": 66.77
+    }
+  ],
+  "actual_mixed_cues": 9,
+  "min_waveform_correlation": 0.9611998612755281,
+  "all_original_user_files_and_paths_byte_equal": true,
+  "user_files": 7,
+  "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+  "installed_apk_readback_sha256": "f1741671001dbcd37404ab098fc8529957806ffb4a3b96c6e6c592082293fb75",
+  "goal_complete": false
+}
