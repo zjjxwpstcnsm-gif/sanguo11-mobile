@@ -469,9 +469,8 @@
     "normal_production_ui_seconds": 400.41,
     "normal_production_report": "out/parity/report-compression-20261004/production-ui/results.json",
     "remaining_same_package_acceptance": [
-      "officer/market ART",
-      "pure3D/occupied terrain/audio11",
-      "24turns/save/restart/editor"
+      "post24 actual menu save/load/exit/reopen",
+      "pure3D new opening/editor/remaining regression matrix"
     ],
     "production_art_checks": 13323,
     "city_displacement_art_checks": 6648,
@@ -479,6 +478,18 @@
     "source_city_ui_checks": 62,
     "source_city_ui_seconds": 126.11,
     "source_city_fixture_schema": 35,
-    "blocked_damage_and_failure_pc_semantics_verified": false
+    "blocked_damage_and_failure_pc_semantics_verified": false,
+    "market_art_checks": 13429,
+    "market_session_art_checks": 76,
+    "officer_state_art_checks": 57330,
+    "terrain_query_ui_checks": 51,
+    "terrain_query_initial_state": "original user legacy save, compatibility coverage",
+    "audio_ui_checks": 51,
+    "actual_mixed_cues": 11,
+    "actual_mix_min_correlation": 0.8887288125596825,
+    "native37_consecutive_turns_passed": 24,
+    "longrun_checks": 342,
+    "longrun_seconds": 553.01,
+    "post24_actual_menu_load_and_exit_reopen": "additional full24 extension running, not yet passed"
   }
 }
