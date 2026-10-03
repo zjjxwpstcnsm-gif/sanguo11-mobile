@@ -10,6 +10,6 @@ public final class ProductionQuery {
   ProductionPlan p=w.previewProduction(c.cityId,c.officerId,operation(c.operation),weapon(c),ship(c));var f=p.effects;
   return new ProductionPreview(state,p.allowed()?CommandResult.Error.NONE:CommandResult.Error.RULE_REJECTED,p.allowed()?"NONE":p.failure.code,p.allowed()?"global":p.failure.field,p.allowed()?"":p.failure.detail,
    new ProductionPreview.Resources(p.goldAvailable,p.goldCost,p.actionPointsAvailable,p.actionPointsCost,p.stockBefore,p.stockCapacity,p.pendingBefore,p.facilityUsesBefore,p.facilityCapacity,p.facility),
-   f==null?null:new ProductionPreview.Effects(f.delayed,f.actedBefore,f.actedAfter,f.goldAfter,f.actionPointsAfter,f.outputQuantity,f.stockAfterImmediate,f.pendingAfter,f.busyTurns,f.facilityUsesAfter,f.meritBefore,f.meritAfter,f.taskLabel));
+   f==null?null:new ProductionPreview.Effects(f.delayed,f.actedBefore,f.actedAfter,f.goldAfter,f.actionPointsAfter,f.outputQuantity,f.stockAfterImmediate,f.pendingAfter,f.busyTurns,f.facilityUsesAfter,f.meritBefore,f.meritAfter,f.taskLabel,new OfficerExperienceChange(f.experience.managed,f.experience.stat,f.experience.requestedAmount,f.experience.experienceBefore,f.experience.experienceAfter,f.experience.currentBefore,f.experience.currentAfter)));
  }
 }

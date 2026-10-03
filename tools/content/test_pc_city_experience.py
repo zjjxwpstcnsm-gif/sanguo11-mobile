@@ -96,6 +96,41 @@ class CityExperienceTest(unittest.TestCase):
         self.assertEqual(700, count)
         print('PASS original fixed city XP observations=', count, 'complete3MiB/RNG unchanged except XP/current caches')
 
+    def test_original_fixed_merit_calls_after_xp(self):
+        t, d = self.t, self.d
+        u = d.u
+        officer = d.root + 0xc0bc
+        u.reg_write(UC_X86_REG_ECX, officer)
+        t.call(0x489f10)
+        for offset, value in [(0x9c, 0), (0xa0, 0), (0xa4, -1), (0x60, -1), (0x15c, 0)]:
+            u.mem_write(officer + offset, struct.pack('<i', value))
+        u.mem_write(officer + 0xd0, struct.pack('<5i', *([-1]*5)))
+        for name, start, end, stat, _ in CALLS:
+            for merit in (0, 59949, 59950, 59999, 60000):
+                u.mem_write(officer + 0xc8, bytes([50]*5))
+                u.mem_write(officer + 0x12a, b'\0'*10)
+                u.mem_write(officer + 0xae, struct.pack('<H', merit))
+                u.reg_write(UC_X86_REG_ECX, officer)
+                t.call(0x48a2d0)
+                before = bytearray(u.mem_read(0x7200000, 0x300000))
+                rng = bytes(u.mem_read(0x8a5d44, 4))
+                u.reg_write(UC_X86_REG_ESI, officer)
+                u.reg_write(UC_X86_REG_ESP, d.stack)
+                u.emu_start(start, end, count=50000)
+                self.assertEqual(end, u.reg_read(UC_X86_REG_EIP))
+                merit_start = 0x5cbf25 if name == 'patrol' else end
+                merit_end = 0x5cbf32 if name == 'patrol' else end + 13
+                self.assertEqual('6a3256b95c899907e8', bytes(u.mem_read(merit_start, 9)).hex())
+                u.reg_write(UC_X86_REG_ESP, d.stack)
+                u.emu_start(merit_start, merit_end, count=10000)
+                self.assertEqual(merit_end, u.reg_read(UC_X86_REG_EIP))
+                offset = officer - 0x7200000
+                struct.pack_into('<H', before, offset + 0x12a + 2*stat, 2)
+                struct.pack_into('<H', before, offset + 0xae, min(60000, merit + 50))
+                self.assertEqual(bytes(before), bytes(u.mem_read(0x7200000, 0x300000)), (name, merit))
+                self.assertEqual(rng, bytes(u.mem_read(0x8a5d44, 4)))
+        print('PASS 20 actual original fixed XP then merit50/cap60000 world/RNG observations')
+
 
 if __name__ == '__main__':
     unittest.main()

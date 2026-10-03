@@ -296,7 +296,7 @@ public final class Strategy {
     public World.Result patrol(int cityId,int officerId) {w.reports.prepare();
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);RuleFailure failure=cityActionFailure(CityActionPlan.Operation.PATROL,cityId,officerId,new int[0]);
         if(failure!=null)return w.fail(failure.detail);int gain=patrolGain(c,o);
-        w.spend(c,o,PATROL_COST,cityActionBaseCost(CityActionPlan.Operation.PATROL));c.order+=gain;return w.success(c.name+"巡察，治安+"+gain);
+        OfficerExperiencePlan.award(w,o,0);w.spend(c,o,PATROL_COST,cityActionBaseCost(CityActionPlan.Operation.PATROL),OfficerExperiencePlan.merit(o,0,w.government));c.order+=gain;return w.success(c.name+"巡察，治安+"+gain);
     }
     public int recruitAmount(int cityId,int officerId) {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);
@@ -306,7 +306,7 @@ public final class Strategy {
     public World.Result recruitSoldiers(int cityId, int officerId) {w.reports.prepare();
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);RuleFailure failure=cityActionFailure(CityActionPlan.Operation.RECRUIT,cityId,officerId,new int[0]);
         if(failure!=null)return w.fail(failure.detail);int amount=recruitAmount(cityId,officerId);
-        this.w.spend(c,o,RECRUIT_COST,cityActionBaseCost(CityActionPlan.Operation.RECRUIT));
+        OfficerExperiencePlan.award(w,o,4);this.w.spend(c,o,RECRUIT_COST,cityActionBaseCost(CityActionPlan.Operation.RECRUIT),OfficerExperiencePlan.merit(o,4,w.government));
         w.domestic.use(cityId,Domestic.Kind.BARRACKS);
         int moraleBefore=c.morale,orderBefore=c.order;
         c.morale=Conscription.moraleAfter(c,amount);
@@ -321,7 +321,7 @@ public final class Strategy {
     public World.Result trainArmy(int cityId,int officerId) {w.reports.prepare();
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);RuleFailure failure=cityActionFailure(CityActionPlan.Operation.TRAIN,cityId,officerId,new int[0]);
         if(failure!=null)return w.fail(failure.detail);int gain=trainingGain(c,o);
-        w.spend(c,o,TRAIN_COST,cityActionBaseCost(CityActionPlan.Operation.TRAIN));c.morale+=gain;return w.success(c.name+"训练，气力+"+gain);
+        OfficerExperiencePlan.award(w,o,1);w.spend(c,o,TRAIN_COST,cityActionBaseCost(CityActionPlan.Operation.TRAIN),OfficerExperiencePlan.merit(o,1,w.government));c.morale+=gain;return w.success(c.name+"训练，气力+"+gain);
     }
     void tick() {
         w.loyalty.tick();

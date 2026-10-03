@@ -10,12 +10,14 @@ public final class ProductionPlan {
   public final boolean delayed,actedBefore,actedAfter;
   public final int goldAfter,actionPointsAfter,outputQuantity,stockAfterImmediate,pendingAfter,busyTurns,facilityUsesAfter,meritBefore,meritAfter;
   public final String taskLabel;
+  public final OfficerExperiencePlan experience;
   Effects(World w,int city,World.Officer o,ProductionPlan p,World.Weapon weapon,Army.Ship ship){
    delayed=ship!=null||Army.siegeWeapon(weapon);busyTurns=delayed?w.skills.productionTurns(o.id,weapon):0;
    outputQuantity=delayed?1:w.skills.produceAmount(city,o.id,weapon);stockAfterImmediate=p.stockBefore+(delayed?0:outputQuantity);pendingAfter=p.pendingBefore+(delayed?1:0);
    goldAfter=p.goldAvailable-p.goldCost;actionPointsAfter=p.actionPointsAvailable-p.actionPointsCost;facilityUsesAfter=p.facilityUsesBefore-1;
    taskLabel=delayed?"制造"+(ship!=null?ship.label:weapon.label):"";
-   actedBefore=o.acted;actedAfter=o.acted||p.actionPointsCost>0;meritBefore=w.government.merit(o.id);meritAfter=p.actionPointsCost==0?meritBefore:Math.min(1000000,meritBefore+100);
+   int stat=OfficerExperiencePlan.productionStat(weapon,ship);experience=new OfficerExperiencePlan(w,o,stat,2);
+   actedBefore=o.acted;actedAfter=o.acted||p.actionPointsCost>0;meritBefore=w.government.merit(o.id);meritAfter=p.actionPointsCost==0?meritBefore:Math.min(1000000,meritBefore+OfficerExperiencePlan.merit(o,stat,w.government));
   }
  }
  ProductionPlan(World w,int city,int officer,Operation op,World.Weapon weapon,Army.Ship ship){

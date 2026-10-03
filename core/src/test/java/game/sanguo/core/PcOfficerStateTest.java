@@ -99,7 +99,7 @@ public final class PcOfficerStateTest {
   }
   w=world();w.officer(2).politics++;boolean rejected=false;try{save(w);}catch(IOException e){rejected=e.getMessage().contains("当前能力");}check(rejected,"mismatched current cache rejected, never silently repaired by save");
   w=world();w.officer(2).abilityProfile.experience[3]=3001;rejected=false;try{save(w);}catch(IOException e){rejected=true;}check(rejected,"XP overflow rejected");
-  System.out.println("PASS PcOfficerStateTest checks="+checks+" openings="+openings+" (prices and non-merchant XP awards remain pending)");
+  System.out.println("PASS PcOfficerStateTest checks="+checks+" openings="+openings+" (city fixed rewards integrated; other XP/cultivation and full native RNG remain pending)");
  }
  static byte[] read(InputStream in)throws Exception{if(in==null)throw new IOException("fixture missing");ByteArrayOutputStream b=new ByteArrayOutputStream();byte[] data=new byte[4096];int n;while((n=in.read(data))!=-1)b.write(data,0,n);return b.toByteArray();}
 }

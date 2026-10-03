@@ -95,5 +95,12 @@ tasks.register('verifyCityActionSession', JavaExec) {
     mainClass = 'game.sanguo.core.CityActionSessionTest'
     maxHeapSize = '768m'
 }
+tasks.register('verifyCityCommandRewardsSession', JavaExec) {
+    group = 'verification'
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.CityCommandRewardsSessionTest'
+}
+tasks.named('check') { dependsOn 'verifyCityCommandRewardsSession' }
 tasks.named('check') { dependsOn 'verifyCityActionSession' }
 tasks.named('test') { dependsOn 'verifyCityActionSession' }

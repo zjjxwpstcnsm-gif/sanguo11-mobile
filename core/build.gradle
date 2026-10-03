@@ -402,6 +402,13 @@ tasks.register('verifyCityActionPlan', JavaExec) {
     mainClass = 'game.sanguo.core.CityActionPlanTest'
     maxHeapSize = '768m'
 }
+tasks.register('verifyCityCommandRewards', JavaExec) {
+    group = 'verification'
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.CityCommandRewardsTest'
+}
+tasks.named('check') { dependsOn 'verifyCityCommandRewards' }
 tasks.named('check') { dependsOn 'verifyCityActionPlan' }
 tasks.named('test') { dependsOn 'verifyCityActionPlan' }
 

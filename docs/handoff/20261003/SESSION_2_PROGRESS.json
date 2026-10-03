@@ -1,24 +1,25 @@
 {
   "goal_status": "active",
   "goal_complete": false,
-  "phase": "R26 native merchant command/month price v35 verified; final UI integration and other XP continuing",
+  "phase": "R27 normal fixed city rewards verified on JVM and installed ART; final pure3D increment integration proceeding",
   "workdir": "/Users/paopao/.codex/worktrees/f1b8/sanguo11-mobile",
   "branch": "codex/parity-rules-integration-20261003",
   "inherited_baseline_commit": "a6b87bd",
   "inherited_files": 4078,
   "inherited_bytes": 329563797,
   "source_handoff": "out/parity/checkpoint-20261003-ap-handoff-final/source",
-  "core_apk_sha256": "2e59e78dc3d3ce927fecbc89d1e2f07d54d46276a226ad0e099976d3f42c2ec6",
+  "core_apk_sha256": "18895c0ac63b72c93ae79b6903b2d0087b69247a3b0dca3b77f14710836b2632",
   "jvm_and_art_city_checks": 6648,
   "jvm_and_art_session_checks": 19,
-  "installed_ui_checks": 264,
+  "installed_ui_checks": 64,
   "user_files_restored": true,
   "active_install_tests": false,
   "serial": "emulator-5554",
   "scope": "API29 x86_64 only",
   "pending": [
+    "fixed city rewards actual UI and final joint APK validation",
+    "delayed manufacturing, unit mentoring and other XP/cultivation",
     "native whole global RNG/weather/monthly flow and official city initialization",
-    "non-merchant XP and cultivation",
     "official/MOD active identity and full scenario data",
     "completed other-session increment integration",
     "final pure3D/city-tactic/terrain/sound/exit APK verification"
@@ -29,6 +30,11 @@
   "new_opening_save_version": 35,
   "legacy_save_modes": "31-33 retain numbers/old price and write33;34 retains managed ability/old price and writes34",
   "nonmerchant_city_xp_source_observations": 700,
-  "nonmerchant_city_xp_runtime_integrated": false,
-  "native_city_experience_audit": "docs/pc-data/city-experience-native.json"
+  "nonmerchant_city_xp_runtime_integrated": true,
+  "native_city_experience_audit": "docs/pc-data/city-experience-native.json",
+  "jvm_and_art_fixed_reward_checks": 25669,
+  "jvm_and_art_fixed_reward_session_checks": 64,
+  "genuine_v33_command_turn_saves_byte_equal": 16,
+  "other_session_candidate_commit": "9d51706",
+  "normal_fixed_rewards_ui_verified": false
 }

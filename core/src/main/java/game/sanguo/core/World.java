@@ -285,7 +285,7 @@ public final class World {
         RuleFailure failure=productionFailure(cityId,officerId,weapon);if(failure!=null)return fail(failure.detail);
         if(Army.siegeWeapon(weapon))return army.produce(cityId,officerId,weapon,null);
         City c=city(cityId);Officer o=officer(officerId);int gold=skills.productionGold(officerId,weapon),amount=skills.produceAmount(cityId,officerId,weapon);Domestic.Kind facility=Domestic.productionFacility(weapon);
-        spend(c,o,gold,PcCityActionCosts.PRODUCTION);domestic.use(cityId,facility);c.equipment[weapon.ordinal()]+=amount;return success(c.name+"生产"+amount+"份"+weapon.label+"兵装，金−"+gold);
+        OfficerExperiencePlan.award(this,o,2);spend(c,o,gold,PcCityActionCosts.PRODUCTION,OfficerExperiencePlan.merit(o,2,government));domestic.use(cityId,facility);c.equipment[weapon.ordinal()]+=amount;return success(c.name+"生产"+amount+"份"+weapon.label+"兵装，金−"+gold);
     }
     public Result deploy(int cityId,int officerId,Weapon weapon,int troops) {reports.prepare();
         return army.deploy(cityId,officerId,new int[0],weapon,Army.Ship.BOAT,troops,troops*2);

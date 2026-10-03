@@ -62,6 +62,44 @@
       "sha256": "01950c266f503059327f00dec67d322318da525b73fcdc88f8f72b7ed2d4e543"
     }
   ],
+  "merit_calls": [
+    {
+      "name": "recruit",
+      "start": "0x5c3b47",
+      "end_exclusive": "0x5c3b54",
+      "amount": 50,
+      "cap": 60000,
+      "sha256": "090115d4c779d2cffe890e8e1d5e822739e9196eaee2b3544696303eafde6d3e",
+      "bytes_hex": "6a3256b95c899907e8fc31eeff"
+    },
+    {
+      "name": "production",
+      "start": "0x5c66bb",
+      "end_exclusive": "0x5c66c8",
+      "amount": 50,
+      "cap": 60000,
+      "sha256": "b223b365ee6a7a06d25cdab2a1a0c4c18de232f44106f8c8e547d8707676be45",
+      "bytes_hex": "6a3256b95c899907e88806eeff"
+    },
+    {
+      "name": "training",
+      "start": "0x5c4376",
+      "end_exclusive": "0x5c4383",
+      "amount": 50,
+      "cap": 60000,
+      "sha256": "e101f6b7cde3ba25f29cb46506436d385efbf9f130469068fcb77006d4a2060d",
+      "bytes_hex": "6a3256b95c899907e8cd29eeff"
+    },
+    {
+      "name": "patrol",
+      "start": "0x5cbf25",
+      "end_exclusive": "0x5cbf32",
+      "amount": 50,
+      "cap": 60000,
+      "sha256": "23db01283a18fe88d4de8883bb2f7b7ba6ebdb9e55f5cc7b62c94dc2d4d4d2bb",
+      "bytes_hex": "6a3256b95c899907e81eaeedff"
+    }
+  ],
   "functions": [
     {
       "name": "award_experience",
@@ -113,10 +151,11 @@
       41,
       86
     ],
-    "award_cap": 3000
+    "award_cap": 3000,
+    "original_xp_then_merit_world_observations": 20
   },
   "limits": [
-    "Source evidence only; production Android city commands do not yet award these XP values",
+    "Android normal fixed rewards were integrated in R27; source evidence and installed flow checks remain separate",
     "Full command admission, three-actor city formulas and production item/timing coverage remain unresolved",
     "The original multiplier searches a valid unit and its other officers for native skill84; nonunit fixture returns0. Unit/skill identity integration is not claimed",
     "Cultivation rewards are separate and not verified by these fixed city-call blocks",

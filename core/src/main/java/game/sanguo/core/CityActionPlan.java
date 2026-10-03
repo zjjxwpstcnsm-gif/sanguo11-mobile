@@ -26,11 +26,14 @@ public final class CityActionPlan {
   public final int id,loyaltyBefore,loyaltyAfter,meritBefore,meritAfter,lastRewardTurnBefore,lastRewardTurnAfter,remainingTurnsBefore,remainingTurnsAfter;
   public final boolean actedBefore,actedAfter;
   public final String roleBefore,roleAfter;
+  public final OfficerExperiencePlan experience;
   OfficerEffect(World w,Operation op,World.Officer actor,World.Officer o,int[] targets,int oldGovernor){
    id=o.id;boolean target=false;for(int t:targets)target|=t==id;
    boolean paidActor=id==actor.id&&w.cityActionCost(actor)>0;
    loyaltyBefore=o.loyalty;loyaltyAfter=op==Operation.REWARD&&target?o.loyalty+Strategy.rewardGain(o):o.loyalty;
-   meritBefore=w.government.merit(id);meritAfter=paidActor?Math.min(1000000,meritBefore+100):meritBefore;
+   int stat=id==actor.id?OfficerExperiencePlan.cityStat(op):-1;
+   experience=new OfficerExperiencePlan(w,o,stat,2);
+   meritBefore=w.government.merit(id);meritAfter=paidActor?Math.min(1000000,meritBefore+OfficerExperiencePlan.merit(o,stat,w.government)):meritBefore;
    actedBefore=o.acted;actedAfter=o.acted||paidActor||op==Operation.APPOINT_GOVERNOR&&target;
    lastRewardTurnBefore=o.lastRewardTurn;lastRewardTurnAfter=op==Operation.REWARD&&target?w.turn:o.lastRewardTurn;
    roleBefore=o.role.name();Strategy.Role next=o.role;if(op==Operation.APPOINT_GOVERNOR){if(id==oldGovernor&&next==Strategy.Role.GOVERNOR)next=Strategy.Role.OFFICER;if(target&&next!=Strategy.Role.RULER)next=Strategy.Role.GOVERNOR;}roleAfter=next.name();

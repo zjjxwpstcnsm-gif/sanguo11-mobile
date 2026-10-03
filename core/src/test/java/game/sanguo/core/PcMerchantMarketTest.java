@@ -15,7 +15,7 @@ public final class PcMerchantMarketTest {
     }
     public static void main(String[] args)throws Exception{
         orderedCommands();monthly();legacy();openings();
-        System.out.println("PASS PcMerchantMarketTest checks="+checks+" normal native quotes/quantities/XP/credit cap, v35 and exact v34 compatibility, monthly saved RNG (full PC global-stream/weather parity pending)");
+        System.out.println("PASS PcMerchantMarketTest checks="+checks+" normal native quotes/quantities/XP/credit cap, v35 and explicit v34 schema/price-mode continuation, monthly saved RNG (full PC global-stream/weather parity pending)");
     }
     private static void orderedCommands()throws Exception{
         for(int base:new int[]{1,50,80,99})for(int xp:new int[]{0,94,95,99,100,2995,3000})for(int rate:new int[]{30,50,70})for(boolean buy:new boolean[]{true,false}){
