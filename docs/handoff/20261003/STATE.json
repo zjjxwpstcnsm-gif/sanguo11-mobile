@@ -462,8 +462,23 @@
     "art_snapshot_readonly_checks": 180,
     "hud_checks": 27,
     "all_completed_user_files_exact": true,
-    "normal_nine_turn_production_flow": "running_not_passed",
+    "normal_nine_turn_production_flow": "passed",
     "last_complete_combination": "R29 f1741671",
-    "final_new_package_acceptance_complete": false
+    "final_new_package_acceptance_complete": false,
+    "normal_production_ui_checks": 209,
+    "normal_production_ui_seconds": 400.41,
+    "normal_production_report": "out/parity/report-compression-20261004/production-ui/results.json",
+    "remaining_same_package_acceptance": [
+      "officer/market ART",
+      "pure3D/occupied terrain/audio11",
+      "24turns/save/restart/editor"
+    ],
+    "production_art_checks": 13323,
+    "city_displacement_art_checks": 6648,
+    "city_session_art_checks": 19,
+    "source_city_ui_checks": 62,
+    "source_city_ui_seconds": 126.11,
+    "source_city_fixture_schema": 35,
+    "blocked_damage_and_failure_pc_semantics_verified": false
   }
 }
