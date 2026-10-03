@@ -38,6 +38,8 @@ public final class ScenarioData {
             boolean referenceDates=!p.containsKey("reference-dates")||number(p,"reference-dates",0,1)==1;
             if(!referenceDates&&!referenceDetails)throw new IOException("忽略生卒的资料沙盘需要完整人物资料");
             if(referenceDetails&&reference==null)throw new IOException("完整人物资料需要显式来源");
+            boolean fixedAbilityAge=p.containsKey("ability-fixed-age")?number(p,"ability-fixed-age",0,1)==1:!referenceDates;
+            boolean abilityGrowthDisabled=p.containsKey("ability-growth-disabled")&&number(p,"ability-growth-disabled",0,1)==1;
             int revision=number(p,"revision",1,1000000),year=number(p,"year",1,9999),month=number(p,"month",1,12);
             int width=number(p,"width",1,300),height=number(p,"height",1,200),sides=number(p,"factions",2,32);
             String[] factions=new String[sides];for(int i=0;i<sides;i++)factions[i]=take(p,"faction."+i);
@@ -158,6 +160,7 @@ public final class ScenarioData {
             w.invalidateSiteIndex();
             w.strategy.initializeOffices();
             w.abilities.initialize(Objects.hash(w.scenarioId,w.startYear,w.startMonth));
+            w.officerAbilities.initializeOpening(reference==null?null:ContentCatalog.get(),fixedAbilityAge,abilityGrowthDisabled);
             SaveCodec.validate(w);validateOpening(w);
             w.note(name+(source.equals("user-supplied")?"：导入数据，原版一致性未核验":reference==null?"：原创测试布局与数值，非原版历史剧本":"：公开资料能力/适性，原创区域地图与开局；非官方历史剧本"));
             w.note("当前执掌"+w.faction(player)+" · 点选己方城池开始经营");

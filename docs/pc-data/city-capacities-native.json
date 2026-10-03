@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "source_path": "san11pk.exe",
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "records": [
+    {
+      "resource": "GOLD",
+      "capacity": 100000,
+      "getter": "0x486d30",
+      "city_branch": "0x486ddc",
+      "instruction_hex": "b8a08601005ec3"
+    },
+    {
+      "resource": "FOOD",
+      "capacity": 1000000,
+      "getter": "0x486ea0",
+      "city_branch": "0x486f4c",
+      "instruction_hex": "b840420f005ec3"
+    }
+  ],
+  "evidence": [
+    "test_pc_merchant_quote executes original resource commit and capacity getters with 3MiB mutation comparisons"
+  ],
+  "limits": [
+    "City building branch only; gates, ports and expansion are separate unresolved rules",
+    "Legacy project saves retain up to1000000 gold without truncation; new credits obey the gameplay cap",
+    "Original command admission, merchant rate updates and enabled MODs are not inferred"
+  ]
+}

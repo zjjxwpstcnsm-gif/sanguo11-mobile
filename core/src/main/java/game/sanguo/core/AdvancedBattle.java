@@ -74,14 +74,18 @@ public final class AdvancedBattle {
         if(b!=null&&w.skills.plotImmune(a,b,p))return 0;
         return Math.max(5,Math.min(75,50+(w.army.intelligence(a)-(b==null?50:w.army.intelligence(b)))/2));
     }
-    boolean cast(World.Unit a,World.Unit primary,Hex center,War.Plot p,boolean reflection){
+    boolean cast(World.Unit a,World.Unit primary,Hex center,War.Plot p,boolean reflection,TurnJournal.PlotCause cause){
         int chance=magicChance(a,primary,p);
         if(chance==0||w.strategy.nextInt(100)>=chance){
-            if(reflection&&primary!=null&&w.skills.has(primary,Skill.FANJI))cast(primary,a,a.hex,p,false);
+            if(w.turnJournal!=null)w.turnJournal.plotOutcome(a,primary,center,p,cause,false,false);
+            if(reflection&&primary!=null&&w.skills.has(primary,Skill.FANJI))cast(primary,a,a.hex,p,false,TurnJournal.PlotCause.REFLECTION);
             return false;
         }
         List<World.Unit> victims=new ArrayList<>(w.fieldUnits());victims.sort(Comparator.comparingInt(u->u.id));
         int power=w.army.intelligence(a);boolean critical=w.skills.plotCritical(a,primary,p);
+        // Observe the already resolved result before area damage can remove an
+        // actor. This transient fact never rolls again or enters the save.
+        if(w.turnJournal!=null)w.turnJournal.plotOutcome(a,primary,center,p,cause,true,critical);
         for(World.Unit target:victims){
             if(target.hex.distance(center)>1||target.owner!=a.owner&&!w.campaign.hostile(a.owner,target.owner))continue;
             if(p==War.Plot.SORCERY){

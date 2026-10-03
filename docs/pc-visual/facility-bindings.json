@@ -1,0 +1,3377 @@
+{
+  "schema": 1,
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "definition_file": "Media/scenario/Scenario.s11",
+  "definition_sha256": "dfca0316e019454e77bab5805e3d725ae35e34408e1699e869e5419e2f5fad6f",
+  "definition_names": {
+    "offset": 2946,
+    "record_stride": 191,
+    "field_bytes": 12,
+    "encoding": "cp950"
+  },
+  "resolver_va": "0x59f7d0",
+  "resolver_sha256": "223fb8b949ec44cc214b4a7274f2e68f4bfe3b33e48afc1328bdaf941bbc4a0d",
+  "state_update_va": "0x5a03e0",
+  "state_update_sha256": "4b1d4909eb1a7c583f257b35c7e5db6b406ae6758681a259e324c8a1d3eaba4e",
+  "completed_variant": "HP < min(maxHP/2,500): 1; otherwise 0 (non-city)",
+  "construction_variant": "3 when incomplete, category !=3, ID !=24 and HP < maxHP*0.3; otherwise 2",
+  "construction_factor": 0.30000001192092896,
+  "facilities": [
+    {
+      "facility_id": 0,
+      "source_name": "都市",
+      "name_offset": 2946,
+      "switch_target": "0x59f7e6",
+      "object_kind": 0,
+      "resolver_scope": "dedicated site creation",
+      "model_variants": [],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 1,
+      "source_name": "關所",
+      "name_offset": 3137,
+      "switch_target": "0x59f7e6",
+      "object_kind": 0,
+      "resolver_scope": "dedicated site creation",
+      "model_variants": [],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 2,
+      "source_name": "港",
+      "name_offset": 3328,
+      "switch_target": "0x59f7e6",
+      "object_kind": 0,
+      "resolver_scope": "dedicated site creation",
+      "model_variants": [],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 3,
+      "source_name": "陣",
+      "name_offset": 3519,
+      "switch_target": "0x59f7e9",
+      "object_kind": 10,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 84,
+          "near": {
+            "id": 4304,
+            "sha256": "1c96d0d6a2018f3dc194b1edf99adae9848875ea8b524c60b65901cd246a34e6"
+          },
+          "far": {
+            "id": 4305,
+            "sha256": "82e6f149bfbca33a8c73626f7af41b23ab3de54c222c93663a369296e6ce55c7"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 86,
+          "near": {
+            "id": 4294,
+            "sha256": "95aada092cf5fdcbafadb527e3c35561c3e1a8610fbfaffb1e2447c667b620b0"
+          },
+          "far": {
+            "id": 4295,
+            "sha256": "c5b5db42d0ccc985951b9e91c6acc13b8a834907eb9b203a152f959a1a3009ad"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 88,
+          "near": {
+            "id": 4284,
+            "sha256": "3e75346f6d40e00ba73474c1cc709a5e2df7395924d9bf9bf6d8a80325cdec45"
+          },
+          "far": {
+            "id": 4285,
+            "sha256": "4dd6a7283bc4e60e2233c6a90ed9e49bd1e0f51fae271c0cc673ea296a659845"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 4,
+      "source_name": "砦",
+      "name_offset": 3710,
+      "switch_target": "0x59f7ef",
+      "object_kind": 11,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 90,
+          "near": {
+            "id": 4312,
+            "sha256": "3ea20186b92f065a231b9807c489f0fcba0e3af55b36a4807f32fb0af6700a5c"
+          },
+          "far": {
+            "id": 4313,
+            "sha256": "52d3f1f3a17623a907718daa70a107bd19a91d9a1b17138b2bb022beb685c15c"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 92,
+          "near": {
+            "id": 4302,
+            "sha256": "a0cc8d885b916c1c35efce473dbe8e8cf9904fd8483aa3ca06b803cf1cd6901c"
+          },
+          "far": {
+            "id": 4303,
+            "sha256": "d82ca27e45042dc3a6bba9c36f3899d3b112fa8b54f375e14b7e4cc8db56c095"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 94,
+          "near": {
+            "id": 4292,
+            "sha256": "ec5aab028cd6dbbd9a22aff70e11350c192b9e91d78890e80b8f6615a8c96c09"
+          },
+          "far": {
+            "id": 4293,
+            "sha256": "c034f02d08654e4f1e5f373e361a40fbec7242390917c116f53e23fea4174d22"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 74,
+          "near": {
+            "id": 4523,
+            "sha256": "05f928927b2a980cb0ff0d76ff3b7f4cc64d11c5d8ec8ea4fadd2e06f387b55b"
+          },
+          "far": {
+            "id": 4524,
+            "sha256": "8dc9f89ea96549cbd3b4edd99523d2b1bd9acce11f38de90bb94940be577473c"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 5,
+      "source_name": "城塞",
+      "name_offset": 3901,
+      "switch_target": "0x59f7f5",
+      "object_kind": 12,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 96,
+          "near": {
+            "id": 4306,
+            "sha256": "17a8f8f7b3b1913386efef17087c91e7937c0fc332a2a8efaf3ea1af3287a612"
+          },
+          "far": {
+            "id": 4307,
+            "sha256": "fb559e846738b7140b49014b9c24329368f3c48c4206916d66a9a3a1900e2c82"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 98,
+          "near": {
+            "id": 4296,
+            "sha256": "b336a8d72e99b4ecd59c1e05bb4e242eef8c41898bbe866b72e225b0db01dc1b"
+          },
+          "far": {
+            "id": 4297,
+            "sha256": "d1e042cf8f590ebc712f646145c04d70100196525af57ca7cd68281534e22b52"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 100,
+          "near": {
+            "id": 4286,
+            "sha256": "ca1593ff5f65118cab48a0e8f10fc4b093a4cfb422ab5d030790368f93ba598e"
+          },
+          "far": {
+            "id": 4287,
+            "sha256": "6aebae13583759ceace0197c248753d656485b46b4ec3c3b83cb02deb67f57de"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 74,
+          "near": {
+            "id": 4523,
+            "sha256": "05f928927b2a980cb0ff0d76ff3b7f4cc64d11c5d8ec8ea4fadd2e06f387b55b"
+          },
+          "far": {
+            "id": 4524,
+            "sha256": "8dc9f89ea96549cbd3b4edd99523d2b1bd9acce11f38de90bb94940be577473c"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 6,
+      "source_name": "箭樓",
+      "name_offset": 4092,
+      "switch_target": "0x59f807",
+      "object_kind": 43,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 274,
+          "near": {
+            "id": 4487,
+            "sha256": "fdbe68e03c0698b86d7d1cd0c95ba1e050059efbed99317620d73bf6ab6917bd"
+          },
+          "far": {
+            "id": 4488,
+            "sha256": "b468d44c937012982497219e793b1cbe1f58961fa1302ad00286cfbc97658ff0"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 276,
+          "near": {
+            "id": 4455,
+            "sha256": "133053f021195d4067baa47869f19991339314b51339565cc726700de70321ba"
+          },
+          "far": {
+            "id": 4456,
+            "sha256": "eba81ab4660587b17b6b25762fc0485229eb540541e87fe66d2d7892ecdedb19"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 278,
+          "near": {
+            "id": 4429,
+            "sha256": "f48ad23c28848d356ee849009c8719dc3a88fa5b5a608c56b3284628851acc88"
+          },
+          "far": {
+            "id": 4430,
+            "sha256": "51371b113c28236903af9635d68b6d40776c4c256e5ccbf3df6d126bf04a3d28"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 7,
+      "source_name": "連弩樓",
+      "name_offset": 4283,
+      "switch_target": "0x59f813",
+      "object_kind": 35,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 280,
+          "near": {
+            "id": 4479,
+            "sha256": "b76b242f0014f10ec1917c73359ea6e4c20fcc95d40e676d000ef6c297568f28"
+          },
+          "far": {
+            "id": 4480,
+            "sha256": "9a4587d84daaa296474a83de44706c6c72f729a4464272147a8a22a0a508baad"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 282,
+          "near": {
+            "id": 4447,
+            "sha256": "35b8ee1e7abae35a76de1d22945127a3ede92673c561d7606bb88ec7db1936fe"
+          },
+          "far": {
+            "id": 4448,
+            "sha256": "b33bcb2cff5c60cf6e3e385f6d1fc44e1187383eec823fa698947152b8b3cfcf"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 284,
+          "near": {
+            "id": 4421,
+            "sha256": "a06a33a65521223ae644fc929236f982658b637f65110922a2bc34218f787e4f"
+          },
+          "far": {
+            "id": 4422,
+            "sha256": "a425ebd91de49fd30b734e57d6c400b1e1c37af02782d652a036fee4b8570f84"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 8,
+      "source_name": "土壘",
+      "name_offset": 4474,
+      "switch_target": "0x59f81f",
+      "object_kind": 17,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 168,
+          "near": {
+            "id": 4530,
+            "sha256": "c868d8c744c14b0786467f430bbd3433ae8d39d6e285a6ffb67d9815762e9402"
+          },
+          "far": {
+            "id": 4531,
+            "sha256": "c868d8c744c14b0786467f430bbd3433ae8d39d6e285a6ffb67d9815762e9402"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 170,
+          "near": {
+            "id": 4536,
+            "sha256": "d2cbcbee85d70c0d6dfe7a32083ff5270b77d9dab55bfa44b9d918f2ef0ec1fa"
+          },
+          "far": {
+            "id": 4537,
+            "sha256": "d2cbcbee85d70c0d6dfe7a32083ff5270b77d9dab55bfa44b9d918f2ef0ec1fa"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 172,
+          "near": {
+            "id": 4532,
+            "sha256": "b309701d619510a4a0ff04850408df937661c67087bf7261a6d28b0a54f10f85"
+          },
+          "far": {
+            "id": 4533,
+            "sha256": "b309701d619510a4a0ff04850408df937661c67087bf7261a6d28b0a54f10f85"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 74,
+          "near": {
+            "id": 4523,
+            "sha256": "05f928927b2a980cb0ff0d76ff3b7f4cc64d11c5d8ec8ea4fadd2e06f387b55b"
+          },
+          "far": {
+            "id": 4524,
+            "sha256": "8dc9f89ea96549cbd3b4edd99523d2b1bd9acce11f38de90bb94940be577473c"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 9,
+      "source_name": "石牆",
+      "name_offset": 4665,
+      "switch_target": "0x59f819",
+      "object_kind": 28,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 202,
+          "near": {
+            "id": 4540,
+            "sha256": "3cce7f262ab1d92b5aab772b50b2007a7cec88034189c64a03c073b1ee2b3c58"
+          },
+          "far": {
+            "id": 4541,
+            "sha256": "3cce7f262ab1d92b5aab772b50b2007a7cec88034189c64a03c073b1ee2b3c58"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 204,
+          "near": {
+            "id": 4538,
+            "sha256": "cd62bab5de5dc97697a76c35d30c9fdc6b0f1be364ab48611f48c8fc5558d6cf"
+          },
+          "far": {
+            "id": 4539,
+            "sha256": "cd62bab5de5dc97697a76c35d30c9fdc6b0f1be364ab48611f48c8fc5558d6cf"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 206,
+          "near": {
+            "id": 4534,
+            "sha256": "e977fb95c3d671b79d62f25f9eb71368e7867d5f482e98fa5710741831b2b4c1"
+          },
+          "far": {
+            "id": 4535,
+            "sha256": "e977fb95c3d671b79d62f25f9eb71368e7867d5f482e98fa5710741831b2b4c1"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 74,
+          "near": {
+            "id": 4523,
+            "sha256": "05f928927b2a980cb0ff0d76ff3b7f4cc64d11c5d8ec8ea4fadd2e06f387b55b"
+          },
+          "far": {
+            "id": 4524,
+            "sha256": "8dc9f89ea96549cbd3b4edd99523d2b1bd9acce11f38de90bb94940be577473c"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 10,
+      "source_name": "投石台",
+      "name_offset": 4856,
+      "switch_target": "0x59f825",
+      "object_kind": 44,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 234,
+          "near": {
+            "id": 4485,
+            "sha256": "742ad29a96e67527d80381c50698ab42d523e8c3904161e78ac5f6c348dae65d"
+          },
+          "far": {
+            "id": 4486,
+            "sha256": "285d2b481fca992bb90353ea7be4a44840183c71c3610e962bfa2c69e99e4a3c"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 236,
+          "near": {
+            "id": 4453,
+            "sha256": "a36f08503d186be0523a6a2abeb8ed21619e9625a23b1affbab400d812690815"
+          },
+          "far": {
+            "id": 4454,
+            "sha256": "8b41001eda6802e21f7ff132a83a8cb5cf46d45e7054c8e285ba9e2f58991034"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 238,
+          "near": {
+            "id": 4427,
+            "sha256": "80108f078db170a55f1946a8e5c573389a477b37956c63bc48df4a87b1198fb5"
+          },
+          "far": {
+            "id": 4428,
+            "sha256": "13909aa7e83230c7ebb298f75035dd698c709ff9d7d903f74091cc8ee0991312"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 11,
+      "source_name": "太鼓台",
+      "name_offset": 5047,
+      "switch_target": "0x59f82b",
+      "object_kind": 37,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 244,
+          "near": {
+            "id": 4457,
+            "sha256": "9d8a0ac1c984bec3d600546d278b79448edbcb05db0c931068689236b74a1417"
+          },
+          "far": {
+            "id": 4458,
+            "sha256": "24ad14a5397b6ca62e988a0885f13a132820445b6596e35c6b1d021c1a894bd4"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 246,
+          "near": {
+            "id": 4435,
+            "sha256": "f400c19b95ea06d4de1c541bb4ee4dedb1de3d8c54b41d7b4d95e3aa022adece"
+          },
+          "far": {
+            "id": 4436,
+            "sha256": "57f9648b0bf25febfbae36c8883116926cca1470f9d7adcecbaa93b953c302c8"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 248,
+          "near": {
+            "id": 4413,
+            "sha256": "886dfac53d0ff031199be3fb1df92dcde10ac61dd4be7b8e6ed53833c87beb83"
+          },
+          "far": {
+            "id": 4414,
+            "sha256": "b6d28d91f8e0db3d7fbfdec8e92b0dd17eaa9501a6d30f650a38065c3264e415"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 12,
+      "source_name": "軍樂台",
+      "name_offset": 5238,
+      "switch_target": "0x59f831",
+      "object_kind": 38,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 250,
+          "near": {
+            "id": 4463,
+            "sha256": "07236c2067790cba213fd737bb0378764a244a3d90779a8877ae2c49fd6194a9"
+          },
+          "far": {
+            "id": 4464,
+            "sha256": "478370316a72171c47dc26f8abe86dba5b2f32b183235ea3fc30a93c3b5d43b3"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 252,
+          "near": {
+            "id": 4441,
+            "sha256": "9020e770205ef5371f5e24a2bca68af494b07529095ff223972001690647c24b"
+          },
+          "far": {
+            "id": 4442,
+            "sha256": "bf013ce94c13e0bcd5767206815f7dd8b583d8a3d13f7b9591a221d85492d00f"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 254,
+          "near": {
+            "id": 4417,
+            "sha256": "895021652ee773b0ccba51712ecfdd7b99075b41b2a42e405e92e8c939823b3a"
+          },
+          "far": {
+            "id": 4418,
+            "sha256": "11afbac2fcdf929f744416a342465f32380634dfec65e444070de0c00b5d2d37"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 13,
+      "source_name": "石兵八陣",
+      "name_offset": 5429,
+      "switch_target": "0x59f837",
+      "object_kind": 13,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 142,
+          "near": {
+            "id": 4483,
+            "sha256": "88b5dd52925f71391027d88ad43ca753049ccc65c0b9fa86112d916f5f61b0dd"
+          },
+          "far": {
+            "id": 4484,
+            "sha256": "88b5dd52925f71391027d88ad43ca753049ccc65c0b9fa86112d916f5f61b0dd"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 144,
+          "near": {
+            "id": 4451,
+            "sha256": "f077c8fff8ef9803b4fe13460a73bceda4ec14b34a47d46135b95a54792a34e8"
+          },
+          "far": {
+            "id": 4452,
+            "sha256": "f077c8fff8ef9803b4fe13460a73bceda4ec14b34a47d46135b95a54792a34e8"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 146,
+          "near": {
+            "id": 4425,
+            "sha256": "2f95b9347e90b03c1ce6d64e8cc6caef134b8384adfae289bd19a09b9897ff6b"
+          },
+          "far": {
+            "id": 4426,
+            "sha256": "2f95b9347e90b03c1ce6d64e8cc6caef134b8384adfae289bd19a09b9897ff6b"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 74,
+          "near": {
+            "id": 4523,
+            "sha256": "05f928927b2a980cb0ff0d76ff3b7f4cc64d11c5d8ec8ea4fadd2e06f387b55b"
+          },
+          "far": {
+            "id": 4524,
+            "sha256": "8dc9f89ea96549cbd3b4edd99523d2b1bd9acce11f38de90bb94940be577473c"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 14,
+      "source_name": "根據地",
+      "name_offset": 5620,
+      "switch_target": "0x59f83d",
+      "object_kind": 8,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 102,
+          "near": {
+            "id": 4308,
+            "sha256": "f74e4771212aeb9479c1ec10fd3548c1b0e30ab28a07baac8718ff3f97510443"
+          },
+          "far": {
+            "id": 4309,
+            "sha256": "be48001302f530e1589addf80885c36341781fed42281d44abda3d24ba058c8f"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 104,
+          "near": {
+            "id": 4298,
+            "sha256": "4a72c4b4b2bd354512a35e22698464bbc027220203e8c68471c563536cf8c054"
+          },
+          "far": {
+            "id": 4299,
+            "sha256": "15b4df7040ee8a9a41c5f2f7000b2239d256fcb579654f08e944d11169ea50bb"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 106,
+          "near": {
+            "id": 4288,
+            "sha256": "12c7ef0f95df49416ed17651e2c852046e4cd91d3d6d6b7be8e7cc03911d31f5"
+          },
+          "far": {
+            "id": 4289,
+            "sha256": "4565414634a104ae179373bc6fef8fdc01804555626e9887d1f21da4d42a76fb"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 74,
+          "near": {
+            "id": 4523,
+            "sha256": "05f928927b2a980cb0ff0d76ff3b7f4cc64d11c5d8ec8ea4fadd2e06f387b55b"
+          },
+          "far": {
+            "id": 4524,
+            "sha256": "8dc9f89ea96549cbd3b4edd99523d2b1bd9acce11f38de90bb94940be577473c"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 15,
+      "source_name": "根據地",
+      "name_offset": 5811,
+      "switch_target": "0x59f843",
+      "object_kind": 9,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 108,
+          "near": {
+            "id": 4310,
+            "sha256": "5606c384294d00bcebd4a03f1b2500c72203f2ac8cba5cbe400bd9a7bdf2dca7"
+          },
+          "far": {
+            "id": 4311,
+            "sha256": "4dccd0c6f4b3cf9fa37eae64f5d09300486b4cde3277505387aa4b3bf5993652"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 110,
+          "near": {
+            "id": 4300,
+            "sha256": "af62ec79046b6219536bf38692ade8a512806fc4f9773ca47467f519d5850f9d"
+          },
+          "far": {
+            "id": 4301,
+            "sha256": "4636e2f7db332ad81a2ef1df92416582660fdf66447f3639f65d0eddf5b3a448"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 112,
+          "near": {
+            "id": 4290,
+            "sha256": "f0c631d0bbf0d03132d8182cc2f9f01caad0002d73a099d175e3cc9dee06d74e"
+          },
+          "far": {
+            "id": 4291,
+            "sha256": "162f0232728a91e34d13073368d3de6a81e7c0202555c79c99793de9b6d8ae4d"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 16,
+      "source_name": "火種",
+      "name_offset": 6002,
+      "switch_target": "0x59f849",
+      "object_kind": 29,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 210,
+          "near": {
+            "id": 4576,
+            "sha256": "5513b60768be781bf6d3b1cca5fa28ff62a840e8563df901f76e2ce83e0c831c"
+          },
+          "far": {
+            "id": 4577,
+            "sha256": "7a4dee916a353960267ca13856796b01fb50f325a2afeb9449957126eede4476"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 210,
+          "near": {
+            "id": 4576,
+            "sha256": "5513b60768be781bf6d3b1cca5fa28ff62a840e8563df901f76e2ce83e0c831c"
+          },
+          "far": {
+            "id": 4577,
+            "sha256": "7a4dee916a353960267ca13856796b01fb50f325a2afeb9449957126eede4476"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 212,
+          "near": {
+            "id": 4556,
+            "sha256": "daf326ac4b36479f178ba2a87408a1ad0beb4f24a56e3c5f6e5dbbfddbd9596a"
+          },
+          "far": {
+            "id": 4557,
+            "sha256": "24530f436de22b75d88128661fd8108cf2338e5bb24a17da2e97e8c72ec48215"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 17,
+      "source_name": "火焰種",
+      "name_offset": 6193,
+      "switch_target": "0x59f84f",
+      "object_kind": 30,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 214,
+          "near": {
+            "id": 4574,
+            "sha256": "d6528bb23f78dbdb2155a13f3a1baacde8e1b3efd05ed91de907df44ca4d3599"
+          },
+          "far": {
+            "id": 4575,
+            "sha256": "0e8f9a6515affb910a9481c9e8d504d99e4aabc5f8207bda1a5cc857d202f339"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 214,
+          "near": {
+            "id": 4574,
+            "sha256": "d6528bb23f78dbdb2155a13f3a1baacde8e1b3efd05ed91de907df44ca4d3599"
+          },
+          "far": {
+            "id": 4575,
+            "sha256": "0e8f9a6515affb910a9481c9e8d504d99e4aabc5f8207bda1a5cc857d202f339"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 216,
+          "near": {
+            "id": 4554,
+            "sha256": "0dc8077790e19a5b739350f3f9288c5674476f18836b8fd8128e6c9dc1afb377"
+          },
+          "far": {
+            "id": 4555,
+            "sha256": "5feafaa876d3438ede44734175dd22e596e433d4056ca58f69f7d8bcea82282a"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 18,
+      "source_name": "火球",
+      "name_offset": 6384,
+      "switch_target": "0x59f85b",
+      "object_kind": 39,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 258,
+          "near": {
+            "id": 4582,
+            "sha256": "5aa682a7351632f4d5c17f9847968a7e3e4ce230959854343d79a398d82ad4fe"
+          },
+          "far": {
+            "id": 4583,
+            "sha256": "d2be0e6b62f05866de4198baa0c474ce5c87de5f47df11f8f1a80c4ecff4a525"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 258,
+          "near": {
+            "id": 4582,
+            "sha256": "5aa682a7351632f4d5c17f9847968a7e3e4ce230959854343d79a398d82ad4fe"
+          },
+          "far": {
+            "id": 4583,
+            "sha256": "d2be0e6b62f05866de4198baa0c474ce5c87de5f47df11f8f1a80c4ecff4a525"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 260,
+          "near": {
+            "id": 4562,
+            "sha256": "2822fd96d294d34b11dfca154ca395f3f81758fa2b409a40c98ffbc24ce2505e"
+          },
+          "far": {
+            "id": 4563,
+            "sha256": "3bf3688a04b9209900e524ba8a365cd081ce93875c87a238d845d2a4f7bf218c"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 19,
+      "source_name": "火焰球",
+      "name_offset": 6575,
+      "switch_target": "0x59f861",
+      "object_kind": 40,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 262,
+          "near": {
+            "id": 4580,
+            "sha256": "d4982c2237da981c71b3bba32199b7be162ef20647003d73ab2af464ba2d84ac"
+          },
+          "far": {
+            "id": 4581,
+            "sha256": "5e92586579947946fd068ed2527ff654bcbe9edfb49f9eb1f1ef0ed8a06afca3"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 262,
+          "near": {
+            "id": 4580,
+            "sha256": "d4982c2237da981c71b3bba32199b7be162ef20647003d73ab2af464ba2d84ac"
+          },
+          "far": {
+            "id": 4581,
+            "sha256": "5e92586579947946fd068ed2527ff654bcbe9edfb49f9eb1f1ef0ed8a06afca3"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 264,
+          "near": {
+            "id": 4560,
+            "sha256": "9e8ac3b348ecb28e5c3bdb3dbfd0614b3d3fe2fd19130abbd29f93c372db83b5"
+          },
+          "far": {
+            "id": 4561,
+            "sha256": "9512ad18b79e10c71e2cfd3d1380e8d4383e2e1bc7c71808657b2c2e54754ef8"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 20,
+      "source_name": "火船",
+      "name_offset": 6766,
+      "switch_target": "0x59f867",
+      "object_kind": 31,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 218,
+          "near": {
+            "id": 4578,
+            "sha256": "111ef7f59f37e4d06df71a3b77b5f5abee9ca885de91e20cf5c07874494278b2"
+          },
+          "far": {
+            "id": 4579,
+            "sha256": "111ef7f59f37e4d06df71a3b77b5f5abee9ca885de91e20cf5c07874494278b2"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 218,
+          "near": {
+            "id": 4578,
+            "sha256": "111ef7f59f37e4d06df71a3b77b5f5abee9ca885de91e20cf5c07874494278b2"
+          },
+          "far": {
+            "id": 4579,
+            "sha256": "111ef7f59f37e4d06df71a3b77b5f5abee9ca885de91e20cf5c07874494278b2"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 220,
+          "near": {
+            "id": 4558,
+            "sha256": "aef5b096e0055911d6aa8738df86a007fcd84f6b62ee20e2aae05e2f3971674d"
+          },
+          "far": {
+            "id": 4559,
+            "sha256": "aef5b096e0055911d6aa8738df86a007fcd84f6b62ee20e2aae05e2f3971674d"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 21,
+      "source_name": "業火球",
+      "name_offset": 6957,
+      "switch_target": "0x59f86d",
+      "object_kind": 41,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 266,
+          "near": {
+            "id": 4584,
+            "sha256": "3e78c90dc397a2b90cd8cb44a0f5cf7d36491d6a88342f8c3f5681acbeb0fe2e"
+          },
+          "far": {
+            "id": 4585,
+            "sha256": "8f21ab167c9694f9b404a4373562599d6ab9eebd6dc8fc1fcecbeaba2bbf182a"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 266,
+          "near": {
+            "id": 4584,
+            "sha256": "3e78c90dc397a2b90cd8cb44a0f5cf7d36491d6a88342f8c3f5681acbeb0fe2e"
+          },
+          "far": {
+            "id": 4585,
+            "sha256": "8f21ab167c9694f9b404a4373562599d6ab9eebd6dc8fc1fcecbeaba2bbf182a"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 268,
+          "near": {
+            "id": 4564,
+            "sha256": "0d4315ee646d7b163d6b4e556bfd0a1cb1e4d8f275f47b6eb584c14faae4466c"
+          },
+          "far": {
+            "id": 4565,
+            "sha256": "4150652545c858347558b17552ad9fd97642740e1e9abb45a46b6692c788d9e2"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 22,
+      "source_name": "業火種",
+      "name_offset": 7148,
+      "switch_target": "0x59f855",
+      "object_kind": 42,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 270,
+          "near": {
+            "id": 4572,
+            "sha256": "f0b4854d002041220d416cd5be6c67863da968fe56e491c3557051b6fcdb5c57"
+          },
+          "far": {
+            "id": 4573,
+            "sha256": "975d0fb8f6ac6c1755793babf8ed66b350932e39c273472c8b32d3a8be08c193"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 270,
+          "near": {
+            "id": 4572,
+            "sha256": "f0b4854d002041220d416cd5be6c67863da968fe56e491c3557051b6fcdb5c57"
+          },
+          "far": {
+            "id": 4573,
+            "sha256": "975d0fb8f6ac6c1755793babf8ed66b350932e39c273472c8b32d3a8be08c193"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 272,
+          "near": {
+            "id": 4552,
+            "sha256": "ac97921578b696d905b84c3e92d4977d3bc17a8c6caeb8c7aa965b4d64578356"
+          },
+          "far": {
+            "id": 4553,
+            "sha256": "f349201b5353f8389c3d2329d5bb13b13fa7e66dada992c551b8323abb2ca076"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 23,
+      "source_name": "落石",
+      "name_offset": 7339,
+      "switch_target": "0x59f873",
+      "object_kind": 21,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 160,
+          "near": {
+            "id": 4586,
+            "sha256": "f51c873dc68ef521b1d8f3391d1bcdaedad4f861677293d1afcbb36d18dbcd53"
+          },
+          "far": {
+            "id": 4587,
+            "sha256": "f51c873dc68ef521b1d8f3391d1bcdaedad4f861677293d1afcbb36d18dbcd53"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 160,
+          "near": {
+            "id": 4586,
+            "sha256": "f51c873dc68ef521b1d8f3391d1bcdaedad4f861677293d1afcbb36d18dbcd53"
+          },
+          "far": {
+            "id": 4587,
+            "sha256": "f51c873dc68ef521b1d8f3391d1bcdaedad4f861677293d1afcbb36d18dbcd53"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 162,
+          "near": {
+            "id": 4566,
+            "sha256": "2b2dc110ad1b312c1792ec062e7531340e1dc103c84adaf5a7ae3355b475841b"
+          },
+          "far": {
+            "id": 4567,
+            "sha256": "2b2dc110ad1b312c1792ec062e7531340e1dc103c84adaf5a7ae3355b475841b"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 160,
+          "near": {
+            "id": 4586,
+            "sha256": "f51c873dc68ef521b1d8f3391d1bcdaedad4f861677293d1afcbb36d18dbcd53"
+          },
+          "far": {
+            "id": 4587,
+            "sha256": "f51c873dc68ef521b1d8f3391d1bcdaedad4f861677293d1afcbb36d18dbcd53"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 24,
+      "source_name": "堤防",
+      "name_offset": 7530,
+      "switch_target": "0x59f879",
+      "object_kind": 20,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 154,
+          "near": {
+            "id": 4588,
+            "sha256": "d0f7901132a96adebf0b2e5a111ef8e45472d907059d8ab5d7719246b7be44cd"
+          },
+          "far": {
+            "id": 4589,
+            "sha256": "d0f7901132a96adebf0b2e5a111ef8e45472d907059d8ab5d7719246b7be44cd"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 156,
+          "near": {
+            "id": 4570,
+            "sha256": "7123ed9eb0369137fb06447c31dae9e10739d3ca39e46c1f7f895a6da719c271"
+          },
+          "far": {
+            "id": 4571,
+            "sha256": "7123ed9eb0369137fb06447c31dae9e10739d3ca39e46c1f7f895a6da719c271"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 158,
+          "near": {
+            "id": 4568,
+            "sha256": "788f07133dd76bedaff0e3d55219a3bb306354affd69115ec166e5e780411be3"
+          },
+          "far": {
+            "id": 4569,
+            "sha256": "788f07133dd76bedaff0e3d55219a3bb306354affd69115ec166e5e780411be3"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 74,
+          "near": {
+            "id": 4523,
+            "sha256": "05f928927b2a980cb0ff0d76ff3b7f4cc64d11c5d8ec8ea4fadd2e06f387b55b"
+          },
+          "far": {
+            "id": 4524,
+            "sha256": "8dc9f89ea96549cbd3b4edd99523d2b1bd9acce11f38de90bb94940be577473c"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 25,
+      "source_name": "淺灘",
+      "name_offset": 7721,
+      "switch_target": "0x59f92c",
+      "object_kind": null,
+      "resolver_scope": "no model mapping",
+      "model_variants": [],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 26,
+      "source_name": "山岳",
+      "name_offset": 7912,
+      "switch_target": "0x59f92c",
+      "object_kind": null,
+      "resolver_scope": "no model mapping",
+      "model_variants": [],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 27,
+      "source_name": "長城",
+      "name_offset": 8103,
+      "switch_target": "0x59f92c",
+      "object_kind": null,
+      "resolver_scope": "no model mapping",
+      "model_variants": [],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 28,
+      "source_name": "遺跡",
+      "name_offset": 8294,
+      "switch_target": "0x59f7fb",
+      "object_kind": 15,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 122,
+          "near": {
+            "id": 4465,
+            "sha256": "586c5f67e25bbe5837dd108437da6bb6b213dfdabe9ca3d20889d726e7e38dbe"
+          },
+          "far": {
+            "id": 4466,
+            "sha256": "dfdf3150eb206c85781a4cecac5e7a0dbfcf8438fe814da4fd03289793d2f1a3"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 124,
+          "near": {
+            "id": 4443,
+            "sha256": "8ad236da80eadc38fc07e5a20f69b2f4542b3cc261fbcdaab08754378f8b17bd"
+          },
+          "far": {
+            "id": 4444,
+            "sha256": "2de8e4a03c0af2a296e4743309faf1e701720fca4beea44e47b20f63a05d7786"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 122,
+          "near": {
+            "id": 4465,
+            "sha256": "586c5f67e25bbe5837dd108437da6bb6b213dfdabe9ca3d20889d726e7e38dbe"
+          },
+          "far": {
+            "id": 4466,
+            "sha256": "dfdf3150eb206c85781a4cecac5e7a0dbfcf8438fe814da4fd03289793d2f1a3"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 74,
+          "near": {
+            "id": 4523,
+            "sha256": "05f928927b2a980cb0ff0d76ff3b7f4cc64d11c5d8ec8ea4fadd2e06f387b55b"
+          },
+          "far": {
+            "id": 4524,
+            "sha256": "8dc9f89ea96549cbd3b4edd99523d2b1bd9acce11f38de90bb94940be577473c"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 29,
+      "source_name": "廟",
+      "name_offset": 8485,
+      "switch_target": "0x59f801",
+      "object_kind": 16,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 126,
+          "near": {
+            "id": 4409,
+            "sha256": "a266a7133bd5aa3d6e6c4d63cacf22f4137e60c824a171e01e5a172581da9c1f"
+          },
+          "far": {
+            "id": 4410,
+            "sha256": "57b2a8702f7dba857c67b00772fefec3c82bdd32bf32a6300a332b117859e7e0"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 128,
+          "near": {
+            "id": 4431,
+            "sha256": "0bd89f508b7c9cdee5249f50941fcc12987fddaf07a964cd7ef020415691dd34"
+          },
+          "far": {
+            "id": 4432,
+            "sha256": "64e3e7070a0751deef85bc34ae29d2c2cae13007062072e3ac26b7b1c5b23f11"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 126,
+          "near": {
+            "id": 4409,
+            "sha256": "a266a7133bd5aa3d6e6c4d63cacf22f4137e60c824a171e01e5a172581da9c1f"
+          },
+          "far": {
+            "id": 4410,
+            "sha256": "57b2a8702f7dba857c67b00772fefec3c82bdd32bf32a6300a332b117859e7e0"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 30,
+      "source_name": "銅雀台",
+      "name_offset": 8676,
+      "switch_target": "0x59f80d",
+      "object_kind": 19,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 148,
+          "near": {
+            "id": 4461,
+            "sha256": "4bf3cc7d175efdbf42eaae1969ec9642feac8b0d110e963e43a713c1376712ae"
+          },
+          "far": {
+            "id": 4462,
+            "sha256": "215f7fd0d163e3a068c56d55d3c25b7a95a2c3fbdb09a97858a908730b5c61e2"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 150,
+          "near": {
+            "id": 4439,
+            "sha256": "a1719dc2a8721df6632b83d76fda9fda2f6feea9040d182cd17d1e4c030ffa8f"
+          },
+          "far": {
+            "id": 4440,
+            "sha256": "568206990e890df0727c1ecc8fafdc50fd878e846bdf47d117512fe9d01b55e6"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 152,
+          "near": {
+            "id": 4415,
+            "sha256": "cf9c3f3cc68c55ca1e552a83ff022aa9b97c6066f4703566f5e6a19bee36f6a5"
+          },
+          "far": {
+            "id": 4416,
+            "sha256": "373d4d2594dcdae6b645407792a7e41fea840a846d1b9cc3e9f1e824a63e611f"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 31,
+      "source_name": "市場 Lv1",
+      "name_offset": 8867,
+      "switch_target": "0x59f87f",
+      "object_kind": 23,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 176,
+          "near": {
+            "id": 4610,
+            "sha256": "bdecbdf44c178f7a2e7eb807ff88211e1a4586d78b2f55f17066b12fbeab28ad"
+          },
+          "far": {
+            "id": 4611,
+            "sha256": "94bc68b302c7a728b264b5bef746bf0d8ddeaf634a93bb133909e03dd786d46c"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 178,
+          "near": {
+            "id": 4592,
+            "sha256": "2c5bc0302a016599e45bc2823e650c4b3fc5b400772e74e043b09654fba9e59f"
+          },
+          "far": {
+            "id": 4593,
+            "sha256": "5987ee39a452803251123722bc2c07137b3b93e8d0fe88481db7077a0cd8a058"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 32,
+      "source_name": "農場 Lv1",
+      "name_offset": 9058,
+      "switch_target": "0x59f885",
+      "object_kind": 24,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 180,
+          "near": {
+            "id": 4626,
+            "sha256": "a7fa2b61905da95df0e54cffee02e5994225679a047607c8f395a9d20c128109"
+          },
+          "far": {
+            "id": 4627,
+            "sha256": "fbb144f2c574f534a4f6febf6c1aecd919b11cedf0299df51296e314ac040302"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 182,
+          "near": {
+            "id": 4602,
+            "sha256": "9f441765e2db5c1f9f06893348b0a0495a59e0cb397ab268e595115eabbaeeee"
+          },
+          "far": {
+            "id": 4603,
+            "sha256": "c126b8dd9b53b1574788487a997bc61e0737c9918c04d80e207fbfffd490ca6a"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 33,
+      "source_name": "兵舍 Lv1",
+      "name_offset": 9249,
+      "switch_target": "0x59f88b",
+      "object_kind": 25,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 184,
+          "near": {
+            "id": 4608,
+            "sha256": "8d148f9093699b2bed82853475b1022eb1f7dcb6372dc54616d8b00217952263"
+          },
+          "far": {
+            "id": 4609,
+            "sha256": "9c1086d93660b45b0ae65d3948d3f046bbbeac1669fd30d15bd8aaa0c288d650"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 186,
+          "near": {
+            "id": 4590,
+            "sha256": "8f7c2ff196e8afaf0bebdc92eb81b5a772abffc7e1247b1850182d9501fb3255"
+          },
+          "far": {
+            "id": 4591,
+            "sha256": "d9589d234dd5d1e2c576160dfb05f2b2440959c0dbdb9ee054d105ab05038b96"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 34,
+      "source_name": "鍛冶廠 Lv1",
+      "name_offset": 9440,
+      "switch_target": "0x59f891",
+      "object_kind": 26,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 188,
+          "near": {
+            "id": 4612,
+            "sha256": "96c7fe7df25a52495c5fcc1f689bd8d52bb14a717deb8273baa49beb88671fc3"
+          },
+          "far": {
+            "id": 4613,
+            "sha256": "0d1d845f920f032ac85b271a96093c4c3171008e1a71b6f3f33975c025a648d4"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 190,
+          "near": {
+            "id": 4594,
+            "sha256": "dc2cb2b7603c68874d94c311ffd5d6118168ab86fe2405653f93c70df8989226"
+          },
+          "far": {
+            "id": 4595,
+            "sha256": "3a6a0ffec425b0c54dce6797a1b591e2a6c91d9315e6799f665b45935e36a242"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 74,
+          "near": {
+            "id": 4523,
+            "sha256": "05f928927b2a980cb0ff0d76ff3b7f4cc64d11c5d8ec8ea4fadd2e06f387b55b"
+          },
+          "far": {
+            "id": 4524,
+            "sha256": "8dc9f89ea96549cbd3b4edd99523d2b1bd9acce11f38de90bb94940be577473c"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 35,
+      "source_name": "廄舍 Lv1",
+      "name_offset": 9631,
+      "switch_target": "0x59f897",
+      "object_kind": 32,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 222,
+          "near": {
+            "id": 4618,
+            "sha256": "1c45a11484e93dee72727f201a7c86dad5792c22540415f71423f071e0d0de17"
+          },
+          "far": {
+            "id": 4619,
+            "sha256": "153fa47251740dd598d1c863295d5a34bb25bf1af467c9738bbe63e32ed2ff98"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 224,
+          "near": {
+            "id": 4600,
+            "sha256": "16b383b35eff4e074ab2f9ecad67011cb2f12c5ea7e1eec8f9db30e5645c7efa"
+          },
+          "far": {
+            "id": 4601,
+            "sha256": "4a6e88dd94557057a5d7e3e0d16ca0a19a5d8cf572fe13011bfe1d933db4db53"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 36,
+      "source_name": "工房",
+      "name_offset": 9822,
+      "switch_target": "0x59f89d",
+      "object_kind": 33,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 226,
+          "near": {
+            "id": 4616,
+            "sha256": "a09c434f29aaee142484c5fff13d67a4caf189db823f9d7289ab77370dddfa69"
+          },
+          "far": {
+            "id": 4617,
+            "sha256": "e0cfbb058bd490ee06743a60e6e7dd50f3bb3e17d08441673c33410b4b188954"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 228,
+          "near": {
+            "id": 4598,
+            "sha256": "b334f73a1c5d9f65e9946c3910315dfc430087c929e87dba7f0effdb8dad9361"
+          },
+          "far": {
+            "id": 4599,
+            "sha256": "29b89a56a3967efa090c39a5f4a2c1f348ecfe7a434b1520400053d5dc66e077"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 37,
+      "source_name": "造船廠",
+      "name_offset": 10013,
+      "switch_target": "0x59f8a3",
+      "object_kind": 34,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 230,
+          "near": {
+            "id": 4638,
+            "sha256": "a5717fa6e8e06f1e6f44ddd0887f2abde0681282fb66d01819a883ae062018fb"
+          },
+          "far": {
+            "id": 4639,
+            "sha256": "c5e00d955ddba906b2ab622d5b6a01c8657a64f1473dfbc43397210435ba0db2"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 232,
+          "near": {
+            "id": 4606,
+            "sha256": "3b7e3e22d9f6740825b630077fa101c867e385274dc0058571561311b4d388a0"
+          },
+          "far": {
+            "id": 4607,
+            "sha256": "6346908700c795e3750b0ac099683e58110f9d8ffccd150c17df518a9ee931b3"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 38,
+      "source_name": "造幣廠",
+      "name_offset": 10204,
+      "switch_target": "0x59f8a9",
+      "object_kind": 36,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 240,
+          "near": {
+            "id": 4636,
+            "sha256": "c01b7cb348e47d76476f5605488cef8454d3646a458dbd5603fa37ef6b56bb94"
+          },
+          "far": {
+            "id": 4637,
+            "sha256": "64a7f78397847f103fe0dc45ecd3995c2712923c366bd818593cd9c6ff2a6a9a"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 242,
+          "near": {
+            "id": 4604,
+            "sha256": "0d2be8c872aaebb273567dd5dcc008762e62604278162a527038567ccd4ef16c"
+          },
+          "far": {
+            "id": 4605,
+            "sha256": "afd494f64d9f9b63377f9f03152c0f9568ab4ad63b2f25b53f36c385add2881e"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 74,
+          "near": {
+            "id": 4523,
+            "sha256": "05f928927b2a980cb0ff0d76ff3b7f4cc64d11c5d8ec8ea4fadd2e06f387b55b"
+          },
+          "far": {
+            "id": 4524,
+            "sha256": "8dc9f89ea96549cbd3b4edd99523d2b1bd9acce11f38de90bb94940be577473c"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 39,
+      "source_name": "穀倉",
+      "name_offset": 10395,
+      "switch_target": "0x59f8af",
+      "object_kind": 27,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 192,
+          "near": {
+            "id": 4614,
+            "sha256": "400db6f788439eac80407486db6b315c1002fab9400b73b635a87b510d1c065f"
+          },
+          "far": {
+            "id": 4615,
+            "sha256": "1f858dc8c99dc0da2d38113c10775bab2252898f33d2a940db287547bb58ba12"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 194,
+          "near": {
+            "id": 4596,
+            "sha256": "7399523e4db5054b4da276dcfe87b18832615d5946bdc336b9bca97a074562e5"
+          },
+          "far": {
+            "id": 4597,
+            "sha256": "ed1a27f83fe20f441f81509bd5d438bc689e2341eff3ddc5cba21593250de71e"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 40,
+      "source_name": "符節台",
+      "name_offset": 10586,
+      "switch_target": "0x59f8b5",
+      "object_kind": 62,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 334,
+          "near": {
+            "id": 4665,
+            "sha256": "ffe8fa7e5b3a813a30b6a4c1078673d74f369bf8ff4e7673b0bcb1d63f4bbc62"
+          },
+          "far": {
+            "id": 4666,
+            "sha256": "ffe8fa7e5b3a813a30b6a4c1078673d74f369bf8ff4e7673b0bcb1d63f4bbc62"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 336,
+          "near": {
+            "id": 4640,
+            "sha256": "076018b53acb90400e3faaea874edd5c3aef560c0c901ecb009b3f3ef67f630c"
+          },
+          "far": {
+            "id": 4641,
+            "sha256": "076018b53acb90400e3faaea874edd5c3aef560c0c901ecb009b3f3ef67f630c"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 41,
+      "source_name": "軍事府",
+      "name_offset": 10777,
+      "switch_target": "0x59f8bb",
+      "object_kind": 63,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 338,
+          "near": {
+            "id": 4670,
+            "sha256": "3a2fba5ce8ef5ffd80f77ac297b04c066fdacdd01e046d4a8c29894dc60bc5ef"
+          },
+          "far": {
+            "id": 4671,
+            "sha256": "3a2fba5ce8ef5ffd80f77ac297b04c066fdacdd01e046d4a8c29894dc60bc5ef"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 340,
+          "near": {
+            "id": 4642,
+            "sha256": "c83c213a81f8be8559f0ac654081472e9f6f908f9d8e904594b3f4ffdf181f65"
+          },
+          "far": {
+            "id": 4643,
+            "sha256": "c83c213a81f8be8559f0ac654081472e9f6f908f9d8e904594b3f4ffdf181f65"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 42,
+      "source_name": "人材府",
+      "name_offset": 10968,
+      "switch_target": "0x59f8c1",
+      "object_kind": 64,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 342,
+          "near": {
+            "id": 4675,
+            "sha256": "a2705ee8e3cba1b1b450572b23731ec5ad181b5196b3103093c4680f5786e928"
+          },
+          "far": {
+            "id": 4676,
+            "sha256": "a2705ee8e3cba1b1b450572b23731ec5ad181b5196b3103093c4680f5786e928"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 344,
+          "near": {
+            "id": 4644,
+            "sha256": "8c23889dbe37acf2f85b88c0c08d8a36ea7b26372ba1e57e612faf7f7a1d7be2"
+          },
+          "far": {
+            "id": 4645,
+            "sha256": "8c23889dbe37acf2f85b88c0c08d8a36ea7b26372ba1e57e612faf7f7a1d7be2"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 43,
+      "source_name": "外交府",
+      "name_offset": 11159,
+      "switch_target": "0x59f8c7",
+      "object_kind": 65,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 346,
+          "near": {
+            "id": 4680,
+            "sha256": "23f358d741489b0c67ed3cafe78c29645dc864142501fa8bcf5904ebfe6cc06e"
+          },
+          "far": {
+            "id": 4681,
+            "sha256": "23f358d741489b0c67ed3cafe78c29645dc864142501fa8bcf5904ebfe6cc06e"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 348,
+          "near": {
+            "id": 4646,
+            "sha256": "141f6f1d780580a162e5c087d998529b322145e5e90c5a7707f9001f98fd168f"
+          },
+          "far": {
+            "id": 4647,
+            "sha256": "141f6f1d780580a162e5c087d998529b322145e5e90c5a7707f9001f98fd168f"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 44,
+      "source_name": "計略府",
+      "name_offset": 11350,
+      "switch_target": "0x59f8cd",
+      "object_kind": 66,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 350,
+          "near": {
+            "id": 4685,
+            "sha256": "5f26441f4c3591f8b9665d97c9c917c41b7974b20a4634ec9fe915ce46237334"
+          },
+          "far": {
+            "id": 4686,
+            "sha256": "5f26441f4c3591f8b9665d97c9c917c41b7974b20a4634ec9fe915ce46237334"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 352,
+          "near": {
+            "id": 4648,
+            "sha256": "7e4e740a8296f949fd819d0f65086c42ef3c313efe6e49f16f0add1da7e4341e"
+          },
+          "far": {
+            "id": 4649,
+            "sha256": "7e4e740a8296f949fd819d0f65086c42ef3c313efe6e49f16f0add1da7e4341e"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 45,
+      "source_name": "鍊兵所",
+      "name_offset": 11541,
+      "switch_target": "0x59f8d3",
+      "object_kind": 67,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 354,
+          "near": {
+            "id": 4690,
+            "sha256": "e78e48f8d33a0bb69c7684eb4c738c5fe91d6bd6d0bc324c7feab10fff365489"
+          },
+          "far": {
+            "id": 4691,
+            "sha256": "e78e48f8d33a0bb69c7684eb4c738c5fe91d6bd6d0bc324c7feab10fff365489"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 356,
+          "near": {
+            "id": 4650,
+            "sha256": "939b691dbeb18403c98b224f57a950581c9c10f93bbb3a5c3e4b1a569e8ffbff"
+          },
+          "far": {
+            "id": 4651,
+            "sha256": "939b691dbeb18403c98b224f57a950581c9c10f93bbb3a5c3e4b1a569e8ffbff"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 46,
+      "source_name": "大市場",
+      "name_offset": 11732,
+      "switch_target": "0x59f8d9",
+      "object_kind": 68,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 358,
+          "near": {
+            "id": 4695,
+            "sha256": "a93e64a5b120ac49575fa822cd1aaac26a8226534f45b079dfcb6abb4be6634e"
+          },
+          "far": {
+            "id": 4696,
+            "sha256": "a93e64a5b120ac49575fa822cd1aaac26a8226534f45b079dfcb6abb4be6634e"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 360,
+          "near": {
+            "id": 4652,
+            "sha256": "124b9d4292db7b5b31938ee01b9186b568f44e8d366e471270337970bc685e6d"
+          },
+          "far": {
+            "id": 4653,
+            "sha256": "124b9d4292db7b5b31938ee01b9186b568f44e8d366e471270337970bc685e6d"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 47,
+      "source_name": "魚市",
+      "name_offset": 11923,
+      "switch_target": "0x59f8df",
+      "object_kind": 69,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 362,
+          "near": {
+            "id": 4697,
+            "sha256": "ffde12b3a41a752a69f0f4959c55c2f89a54412e735047ee41964dfab955b11a"
+          },
+          "far": {
+            "id": 4698,
+            "sha256": "ffde12b3a41a752a69f0f4959c55c2f89a54412e735047ee41964dfab955b11a"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 364,
+          "near": {
+            "id": 4654,
+            "sha256": "40c6f84601cc7c7abe52e1195d6078d0f76fee22cb3b3c1675216d4ac60eab74"
+          },
+          "far": {
+            "id": 4655,
+            "sha256": "40c6f84601cc7c7abe52e1195d6078d0f76fee22cb3b3c1675216d4ac60eab74"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 48,
+      "source_name": "黑市",
+      "name_offset": 12114,
+      "switch_target": "0x59f8e5",
+      "object_kind": 70,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 366,
+          "near": {
+            "id": 4699,
+            "sha256": "f016da37ed26ab5f4088aacfc46df346ff2e6b33f7df24c3eabab2b4088712ca"
+          },
+          "far": {
+            "id": 4700,
+            "sha256": "f016da37ed26ab5f4088aacfc46df346ff2e6b33f7df24c3eabab2b4088712ca"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 368,
+          "near": {
+            "id": 4656,
+            "sha256": "26624d5d51f16c6978be7d6923ed633a090fbf8f8c66ee16ca0730123e4ce451"
+          },
+          "far": {
+            "id": 4657,
+            "sha256": "26624d5d51f16c6978be7d6923ed633a090fbf8f8c66ee16ca0730123e4ce451"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 49,
+      "source_name": "軍屯農",
+      "name_offset": 12305,
+      "switch_target": "0x59f8eb",
+      "object_kind": 71,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 370,
+          "near": {
+            "id": 4701,
+            "sha256": "71ca78a23a7f02dc19f91ddcddaebcacd8988194ee9e0a6e7ff243dcb28124d5"
+          },
+          "far": {
+            "id": 4702,
+            "sha256": "71ca78a23a7f02dc19f91ddcddaebcacd8988194ee9e0a6e7ff243dcb28124d5"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 372,
+          "near": {
+            "id": 4658,
+            "sha256": "8fa008fe10bf1ab25f9ac16fff460b08cd417ea81b8011ed202e3f0885b67a5c"
+          },
+          "far": {
+            "id": 4659,
+            "sha256": "8fa008fe10bf1ab25f9ac16fff460b08cd417ea81b8011ed202e3f0885b67a5c"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 50,
+      "source_name": "市場 Lv2",
+      "name_offset": 12496,
+      "switch_target": "0x59f8f1",
+      "object_kind": 72,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 374,
+          "near": {
+            "id": 4703,
+            "sha256": "4eda9956313e54c20b4dda069438ada5d11c2c27d2c4cd6fb502edea35c397da"
+          },
+          "far": {
+            "id": 4704,
+            "sha256": "4eda9956313e54c20b4dda069438ada5d11c2c27d2c4cd6fb502edea35c397da"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 384,
+          "near": {
+            "id": 4660,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          },
+          "far": {
+            "id": 4661,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 51,
+      "source_name": "市場 Lv3",
+      "name_offset": 12687,
+      "switch_target": "0x59f90f",
+      "object_kind": 77,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 374,
+          "near": {
+            "id": 4703,
+            "sha256": "4eda9956313e54c20b4dda069438ada5d11c2c27d2c4cd6fb502edea35c397da"
+          },
+          "far": {
+            "id": 4704,
+            "sha256": "4eda9956313e54c20b4dda069438ada5d11c2c27d2c4cd6fb502edea35c397da"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 384,
+          "near": {
+            "id": 4660,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          },
+          "far": {
+            "id": 4661,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 52,
+      "source_name": "農場 Lv2",
+      "name_offset": 12878,
+      "switch_target": "0x59f8f7",
+      "object_kind": 73,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 376,
+          "near": {
+            "id": 4705,
+            "sha256": "869bf391b0f26970dc204d95e02b328a0d64a270a96b84dbbf720e9c92d6ec53"
+          },
+          "far": {
+            "id": 4706,
+            "sha256": "869bf391b0f26970dc204d95e02b328a0d64a270a96b84dbbf720e9c92d6ec53"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 384,
+          "near": {
+            "id": 4660,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          },
+          "far": {
+            "id": 4661,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 53,
+      "source_name": "農場 Lv3",
+      "name_offset": 13069,
+      "switch_target": "0x59f915",
+      "object_kind": 78,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 376,
+          "near": {
+            "id": 4705,
+            "sha256": "869bf391b0f26970dc204d95e02b328a0d64a270a96b84dbbf720e9c92d6ec53"
+          },
+          "far": {
+            "id": 4706,
+            "sha256": "869bf391b0f26970dc204d95e02b328a0d64a270a96b84dbbf720e9c92d6ec53"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 384,
+          "near": {
+            "id": 4660,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          },
+          "far": {
+            "id": 4661,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 54,
+      "source_name": "兵舍 Lv2",
+      "name_offset": 13260,
+      "switch_target": "0x59f8fd",
+      "object_kind": 74,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 378,
+          "near": {
+            "id": 4707,
+            "sha256": "703c4a93ad9ee688baa53e49e2c682dfe7594c2e36192ec25f46340de9120edb"
+          },
+          "far": {
+            "id": 4708,
+            "sha256": "703c4a93ad9ee688baa53e49e2c682dfe7594c2e36192ec25f46340de9120edb"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 384,
+          "near": {
+            "id": 4660,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          },
+          "far": {
+            "id": 4661,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 55,
+      "source_name": "兵舍 Lv3",
+      "name_offset": 13451,
+      "switch_target": "0x59f91b",
+      "object_kind": 79,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 378,
+          "near": {
+            "id": 4707,
+            "sha256": "703c4a93ad9ee688baa53e49e2c682dfe7594c2e36192ec25f46340de9120edb"
+          },
+          "far": {
+            "id": 4708,
+            "sha256": "703c4a93ad9ee688baa53e49e2c682dfe7594c2e36192ec25f46340de9120edb"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 384,
+          "near": {
+            "id": 4660,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          },
+          "far": {
+            "id": 4661,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 56,
+      "source_name": "鍛冶廠 Lv2",
+      "name_offset": 13642,
+      "switch_target": "0x59f903",
+      "object_kind": 75,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 380,
+          "near": {
+            "id": 4709,
+            "sha256": "00fdac77762d9bc5a2f6fecbc7469f7e2d3a2b0cba8d867ac529c82ef2d543d1"
+          },
+          "far": {
+            "id": 4710,
+            "sha256": "00fdac77762d9bc5a2f6fecbc7469f7e2d3a2b0cba8d867ac529c82ef2d543d1"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 386,
+          "near": {
+            "id": 4662,
+            "sha256": "9b488ed849caac45cab1ebf3a25d3c21ccd4b6772dfac0482f63280dddae2b70"
+          },
+          "far": {
+            "id": 4663,
+            "sha256": "9b488ed849caac45cab1ebf3a25d3c21ccd4b6772dfac0482f63280dddae2b70"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 74,
+          "near": {
+            "id": 4523,
+            "sha256": "05f928927b2a980cb0ff0d76ff3b7f4cc64d11c5d8ec8ea4fadd2e06f387b55b"
+          },
+          "far": {
+            "id": 4524,
+            "sha256": "8dc9f89ea96549cbd3b4edd99523d2b1bd9acce11f38de90bb94940be577473c"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 57,
+      "source_name": "鍛冶廠 Lv3",
+      "name_offset": 13833,
+      "switch_target": "0x59f921",
+      "object_kind": 80,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 380,
+          "near": {
+            "id": 4709,
+            "sha256": "00fdac77762d9bc5a2f6fecbc7469f7e2d3a2b0cba8d867ac529c82ef2d543d1"
+          },
+          "far": {
+            "id": 4710,
+            "sha256": "00fdac77762d9bc5a2f6fecbc7469f7e2d3a2b0cba8d867ac529c82ef2d543d1"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 386,
+          "near": {
+            "id": 4662,
+            "sha256": "9b488ed849caac45cab1ebf3a25d3c21ccd4b6772dfac0482f63280dddae2b70"
+          },
+          "far": {
+            "id": 4663,
+            "sha256": "9b488ed849caac45cab1ebf3a25d3c21ccd4b6772dfac0482f63280dddae2b70"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 74,
+          "near": {
+            "id": 4523,
+            "sha256": "05f928927b2a980cb0ff0d76ff3b7f4cc64d11c5d8ec8ea4fadd2e06f387b55b"
+          },
+          "far": {
+            "id": 4524,
+            "sha256": "8dc9f89ea96549cbd3b4edd99523d2b1bd9acce11f38de90bb94940be577473c"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 58,
+      "source_name": "廄舍 Lv2",
+      "name_offset": 14024,
+      "switch_target": "0x59f909",
+      "object_kind": 76,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 382,
+          "near": {
+            "id": 4711,
+            "sha256": "b3ed101d6ae68ac3d42837a558294c0e4012f72af539fa915dee7e5fdb5be510"
+          },
+          "far": {
+            "id": 4712,
+            "sha256": "b3ed101d6ae68ac3d42837a558294c0e4012f72af539fa915dee7e5fdb5be510"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 384,
+          "near": {
+            "id": 4660,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          },
+          "far": {
+            "id": 4661,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 59,
+      "source_name": "廄舍 Lv3",
+      "name_offset": 14215,
+      "switch_target": "0x59f927",
+      "object_kind": 81,
+      "resolver_scope": "generic object",
+      "model_variants": [
+        {
+          "variant": 0,
+          "model_index": 382,
+          "near": {
+            "id": 4711,
+            "sha256": "b3ed101d6ae68ac3d42837a558294c0e4012f72af539fa915dee7e5fdb5be510"
+          },
+          "far": {
+            "id": 4712,
+            "sha256": "b3ed101d6ae68ac3d42837a558294c0e4012f72af539fa915dee7e5fdb5be510"
+          }
+        },
+        {
+          "variant": 1,
+          "model_index": 384,
+          "near": {
+            "id": 4660,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          },
+          "far": {
+            "id": 4661,
+            "sha256": "6ce24e1fb184cbf7ddd92a9f1bd669b3fe61784c1d0f291bdd6dab05a1003b1c"
+          }
+        },
+        {
+          "variant": 2,
+          "model_index": 256,
+          "near": {
+            "id": 4624,
+            "sha256": "288e1a1bd48cbcfaed3e08799763c2b02f91e9340ac7755328525b8c17cd600f"
+          },
+          "far": {
+            "id": 4625,
+            "sha256": "6509b0d9323f4d26c4696fe1cd41a0fe26c5164dc3f4c0963cb808fb7c362832"
+          }
+        },
+        {
+          "variant": 3,
+          "model_index": 72,
+          "near": {
+            "id": 4519,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          },
+          "far": {
+            "id": 4520,
+            "sha256": "64d942e8475f697b49ceb62c698e36656eafb48cc08d6ab0ca5a4f08879e44cb"
+          }
+        }
+      ],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 60,
+      "source_name": "－－－－",
+      "name_offset": 14406,
+      "switch_target": null,
+      "object_kind": null,
+      "resolver_scope": "no model mapping",
+      "model_variants": [],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 61,
+      "source_name": "－－－－",
+      "name_offset": 14597,
+      "switch_target": null,
+      "object_kind": null,
+      "resolver_scope": "no model mapping",
+      "model_variants": [],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 62,
+      "source_name": "－－－－",
+      "name_offset": 14788,
+      "switch_target": null,
+      "object_kind": null,
+      "resolver_scope": "no model mapping",
+      "model_variants": [],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    },
+    {
+      "facility_id": 63,
+      "source_name": "－－－－",
+      "name_offset": 14979,
+      "switch_target": null,
+      "object_kind": null,
+      "resolver_scope": "no model mapping",
+      "model_variants": [],
+      "runtime_binding": null,
+      "validation": "definition/table crosscheck; runtime and visual acceptance pending"
+    }
+  ],
+  "limits": [
+    "Names are from the supplied active Media definition, not assumed retail labels",
+    "IDs25..27 return default without assigning a drawable object",
+    "OBJS kind14 cliff walls are distinct from facility9 stone walls (kind28)",
+    "Runtime category field and animation/effect state remain unbound"
+  ]
+}

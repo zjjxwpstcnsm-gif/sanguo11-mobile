@@ -88,8 +88,8 @@ public final class StrategyTest {
         World nothing=fixture();nothing.strategy.addHiddenTalent(talent(1000,10,0));nothing.strategy.setSeed(4);
         r=nothing.strategy.searchTalent(10,0);check(r.outcome==Strategy.SearchOutcome.NOTHING&&nothing.strategy.hiddenTalents().size()==1,"seeded failure keeps undiscovered data");
         check(nothing.actionPoints[0]==50&&nothing.officer(0).acted,"unsuccessful search still consumes action");
-        World gold=fixture();gold.strategy.addHiddenTalent(talent(1000,10,0));gold.strategy.setSeed(6);gold.city(10).gold=999990;
-        r=gold.strategy.searchTalent(10,0);check(r.outcome==Strategy.SearchOutcome.GOLD&&r.goldFound==10&&gold.city(10).gold==1000000,"gold search respects storage cap and reports actual gain");
+        World gold=fixture();gold.strategy.addHiddenTalent(talent(1000,10,0));gold.strategy.setSeed(6);gold.city(10).gold=99990;
+        r=gold.strategy.searchTalent(10,0);check(r.outcome==Strategy.SearchOutcome.GOLD&&r.goldFound==10&&gold.city(10).gold==100000,"gold search respects native city storage cap and reports actual gain");
         World future=fixture();future.strategy.addHiddenTalent(talent(1000,10,2));future.strategy.addHiddenTalent(talent(1001,20,0));future.strategy.setSeed(1);
         check(future.strategy.searchTalent(10,0).outcome!=Strategy.SearchOutcome.OFFICER,"cannot reveal future or other-city talent");
         next(future);next(future);future.strategy.setSeed(1);check(future.strategy.searchTalent(10,0).officerId==1000,"available turn unlocks talent");
@@ -218,7 +218,7 @@ public final class StrategyTest {
         World empty=fixture();empty.city(10).troops=0;reject(empty,()->empty.train(10,0));
         World full=fixture();full.city(10).troops=99000;reject(full,()->full.recruit(10,0));
         check(StrategyRules.trainingGain(100,100)>StrategyRules.trainingGain(0,0),"training depends on commander abilities");
-        check(StrategyRules.patrolGain(100,100)>StrategyRules.patrolGain(0,0),"patrol depends on politics and charm");
+        check(PcPatrolRules.gain(100,0,false)==5&&PcPatrolRules.gain(0,0,false)==2,"native patrol leadership boundaries");
     }
     private static World calm(){
         World w=fixture();World.City c=w.city(10);c.order=100;c.morale=100;c.troops=20000;c.recruitReserve=0;c.governorId=0;return w;

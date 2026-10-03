@@ -1,0 +1,142 @@
+{
+  "goal_complete": false,
+  "officer_persistence_integrated": true,
+  "full_regression_green": false,
+  "ui_commit": "13ff5b9bfc44015e5f45a4a2cefa84fee4b1e4c4",
+  "ui17_completed_commit_pending_integration": "c03174e36597f0d445bcbd97c4aed2f3f3904b5d",
+  "apks": {
+    "apks": [
+      {
+        "path": "out/parity/officer-persistence-20261003/apks-final/app-debug.apk",
+        "bytes": 87039626,
+        "sha256": "238b50470780da6e2302908334688ea3244a9c0f4268bdcdb20daf9d03ae1f7c"
+      },
+      {
+        "path": "out/parity/officer-persistence-20261003/apks-final/app-debug-androidTest.apk",
+        "bytes": 741291,
+        "sha256": "82c6ac2ceb568a61e127785d467f36d7705234f6379cc5441cdc5bb159f6d014"
+      }
+    ],
+    "pinned_resources": 168,
+    "native_inputs": 4,
+    "rank_resource_exact": true,
+    "growth_resource_exact": true,
+    "all_exact": true
+  },
+  "ui_flows": [
+    {
+      "name": "installed-opening-final",
+      "passed": true,
+      "checks": 62,
+      "seconds": 94.31,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      },
+      "evidence_files": 12,
+      "results": "out/parity/officer-persistence-20261003/installed-opening-final/results.json"
+    },
+    {
+      "name": "installed-managed-trade",
+      "passed": false,
+      "checks": null,
+      "seconds": 27.08,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      },
+      "evidence_files": 6,
+      "results": "out/parity/officer-persistence-20261003/installed-managed-trade/results.json"
+    },
+    {
+      "name": "installed-managed-army",
+      "passed": true,
+      "checks": 61,
+      "seconds": 78.31,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      },
+      "evidence_files": 9,
+      "results": "out/parity/officer-persistence-20261003/installed-managed-army/results.json"
+    }
+  ],
+  "ui_pass_checks": 123,
+  "android_core": {
+    "passed": true,
+    "serial": "emulator-5554",
+    "apk_sha256": "238b50470780da6e2302908334688ea3244a9c0f4268bdcdb20daf9d03ae1f7c",
+    "class_sources": {
+      "core/build/classes/java/test/game/sanguo/core/CityActionPlanTest$1.class": "0b88e888325319f46279de98a46eb835408bf5779fb330dced084123745a3222",
+      "core/build/classes/java/test/game/sanguo/core/CityActionPlanTest.class": "deee925a1709c219aa4409350f8f529525923656613d9e8878aff4d1824798bf",
+      "core/build/classes/java/test/game/sanguo/core/PcMerchantArithmeticTest.class": "13a0b023491ef8f469d15becb8609d920ed3781c6746a5b1c327a1c3b44a96ba",
+      "core/build/classes/java/test/game/sanguo/core/PcMerchantMeritTest.class": "db632dfc4abd562cdfef1af3f6a46aaf52790790a8772418d35c8fece7d2c4e2",
+      "core/build/classes/java/test/game/sanguo/core/PcOfficerAbilityArithmeticTest.class": "ef4db29f91a528b6131760e892e8df53d0f5e1985c5ce2bc77dd83dc755218f0",
+      "core/build/classes/java/test/game/sanguo/core/PcOfficerRankTest.class": "e10eeff7c9058d13383f0722e28d3a96aefc8169b938b248658235a721e93863",
+      "core/build/classes/java/test/game/sanguo/core/PcOfficerStateTest.class": "4e0bf6d2886664a901e43e24c02989f6adf4b6f94a086aeec3f61a047d77d18e",
+      "core/build/classes/java/test/game/sanguo/core/TradePlanTest.class": "42a5eb2ddcb91ea4f50e5c261440b1e7d1ff86e62cda6e2c9ff49bcc276b9ad1"
+    },
+    "scope": "Installed APK production classes in ART; ordinary commands and generated worlds, not UI taps",
+    "results": [
+      {
+        "suite": "PcMerchantMeritTest",
+        "seconds": 2.34,
+        "output": "PASS PcMerchantMeritTest checks=421\n"
+      },
+      {
+        "suite": "PcMerchantArithmeticTest",
+        "seconds": 0.26,
+        "output": "PASS PcMerchantArithmeticTest rows=3865 checks=11595 (arithmetic only; gameplay price/quantity integration pending)\n"
+      },
+      {
+        "suite": "PcOfficerAbilityArithmeticTest",
+        "seconds": 0.34,
+        "output": "PASS PcOfficerAbilityArithmeticTest rows=4813 date_rows=1040 date_checks=3120 (pure arithmetic suite; gameplay separately verified by PcOfficerStateTest)\n"
+      },
+      {
+        "suite": "PcOfficerRankTest",
+        "seconds": 3.07,
+        "output": "PASS PcOfficerRankTest checks=2244 native=81 legacy=80 (title gate/unassigned payroll parity pending)\n"
+      },
+      {
+        "suite": "PcOfficerStateTest",
+        "seconds": 8.31,
+        "output": "PASS PcOfficerStateTest checks=29361 openings=9 (prices and non-merchant XP awards remain pending)\n"
+      }
+    ],
+    "probe_sha256": "6946fe320c2390f9f47548381c6b77bf13adf3a43755d90a1ce69e10dc0fbec7",
+    "managed_opening": {
+      "path": "/Users/paopao/workspace/sanguo11-mobile/out/parity/officer-persistence-20261003/android-core-final-02/managed190.sg11",
+      "sha256": "636854cc2b5878cbd70bf05b71993c0fe2dcdee77405b4db7862c9ed206eaaed",
+      "bytes": 236968,
+      "scenario": "coalition-190",
+      "player": 1,
+      "seed": 23,
+      "save_version": 34,
+      "source": "Exact installed APK ordinary ScenarioCatalog.load on ART"
+    },
+    "rules_passed": true,
+    "user_files_unchanged": true,
+    "post_apk_readback_bytes": 87039626,
+    "post_apk_readback_sha256": "238b50470780da6e2302908334688ea3244a9c0f4268bdcdb20daf9d03ae1f7c",
+    "installed_apk_unchanged": true
+  },
+  "source_growth_sha256": "ba89f918e9852ce5144e94441e132f8fdb87accc243bbec3bb0596b7e2307721",
+  "spouse_audit_sha256": "2efc5db2b95dbef64638f875ef14eaedda464346a050fe5cd3080031357a3b9a",
+  "legacy_baseline_comparison": "out/parity/officer-persistence-20261003/baseline-checks/comparison.json",
+  "native_spouse_cases": 72,
+  "native_spouse_ability_checks": 360,
+  "evidence_scope": "API29 x86_64 emulator only; no ARM physical-device evidence",
+  "remaining": [
+    "UI landscape trade assertion failed before actual commit; retest after UI17 sequential integration",
+    "Original merchant prices/quantity/monthly state and non-merchant XP not wired",
+    "Official/MOD activation and complete scenario data not established",
+    "Legacy <31 map save migration and retained baseline failures pending"
+  ]
+}

@@ -1,0 +1,134 @@
+name: Native R15 coverage and source-matched delivery
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-r15.yml', 'scripts/*r15*', 'app/src/**', 'version.properties']
+permissions: {contents: read}
+concurrency: {group: native-r15, cancel-in-progress: false}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - name: Protected rule trees and current coverage
+        run: |
+          set -euo pipefail
+          mkdir -p out/r15
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
+          git rev-parse HEAD > out/r15/SOURCE_COMMIT
+          git diff --exit-code 399279b5fd190f263b97046822767e44351b966a HEAD -- core game-api game-runtime data unity > out/r15/protected.log
+          curl -fsSL --retry 2 https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/json.jar
+          export JSON_TEST_JAR=/tmp/json.jar
+          bash scripts/test-native-r15.sh > out/r15/host.log 2>&1
+          for suite in test-native-r04 test-native-r08 test-native-r12 test-architecture; do bash scripts/$suite.sh > out/r15/$suite.log 2>&1; done
+          python3 scripts/verify-map-release.py > out/r15/map-release.log
+      - name: Record inherited full core failure without hiding it
+        continue-on-error: true
+        run: |
+          set +e
+          bash scripts/test-core.sh > out/r15/core.log 2>&1
+          code=$?
+          echo "$code" > out/r15/core.exit
+          exit "$code"
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Build exact-source APK, instrumentation and lint
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/r15/build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/r15/sanguo11-native-r15-v113.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/r15/test.apk
+          sha256sum out/r15/*.apk > out/r15/APK_SHA256
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/r15/sanguo11-native-r15-v113.apk > out/r15/apk-metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/r15/sanguo11-native-r15-v113.apk > out/r15/signature.txt
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-r15-build, path: out/r15/, retention-days: 30, if-no-files-found: error}
+  emulator:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: actions/download-artifact@v4
+        with: {name: native-r15-build, path: out/r15/}
+      - name: Install the exact already-built pair
+        run: |
+          test "$(cat out/r15/SOURCE_COMMIT)" = "$GITHUB_SHA"
+          sha256sum --check out/r15/APK_SHA256
+          mkdir -p app/build/outputs/apk/debug app/build/outputs/apk/androidTest/debug
+          cp out/r15/sanguo11-native-r15-v113.apk app/build/outputs/apk/debug/app-debug.apk
+          cp out/r15/test.apk app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+          sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/verify-native-r15.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-r15-emulator, path: out/r15/runtime/, retention-days: 30}
+  physical:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    permissions: {contents: read, id-token: write}
+    env:
+      FIREBASE_PROJECT_ID: ${{ vars.FIREBASE_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: actions/download-artifact@v4
+        with: {name: native-r15-build, path: out/r15/}
+      - uses: google-github-actions/auth@v3
+        with:
+          project_id: ${{ vars.FIREBASE_PROJECT_ID }}
+          workload_identity_provider: ${{ vars.FIREBASE_WIF_PROVIDER }}
+          service_account: ${{ vars.FIREBASE_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Current free-only capacity; fail closed without submitting if unavailable
+        run: |
+          python3 scripts/firebase-evidence-preflight.py --inventory-only
+          python3 - <<'PY'
+          import json,pathlib,os
+          p=pathlib.Path('out/firebase-preflight')
+          b=json.load(open(p/'billing.json'));m=json.load(open(p/'usage-allocation-usage.json'));u=json.load(open(p/'execution-usage.json'))
+          assert os.environ['GITHUB_RUN_ATTEMPT']=='1','No device resubmission on workflow retry'
+          assert b.get('billingEnabled') is False or 'requires billing to be enabled' in m.get('error',{}).get('message',''),'BLOCKED: free-only billing proof missing'
+          assert u['complete'] and u['rolling24hDeviceExecutions']<5,'BLOCKED: free device capacity exhausted or unproven; zero submissions'
+          d=next(x for x in json.load(open(p/'models.json')) if x['id']=='shiba')
+          assert d['form']=='PHYSICAL' and '35' in d['supportedVersionIds']
+          PY
+      - name: One exact-source physical run; no automatic retries
+        run: |
+          set -euo pipefail
+          test "$(cat out/r15/SOURCE_COMMIT)" = "$GITHUB_SHA"
+          sha256sum --check out/r15/APK_SHA256
+          mkdir -p out/r15-physical
+          gcloud firebase test android run --quiet --project="$FIREBASE_PROJECT_ID" --type=instrumentation --app=out/r15/sanguo11-native-r15-v113.apk --test=out/r15/test.apk --test-runner-class=game.sanguo.mobile.NativeR15Instrumentation --device=model=shiba,version=35,locale=zh_CN,orientation=landscape --timeout=43m --environment-variables=mode=combined --no-use-orchestrator --num-flaky-test-attempts=0 --no-auto-google-login --record-video --no-performance-metrics --directories-to-pull=/sdcard/Android/data/game.sanguo.mobile.dev/files/s01 --results-dir="native-r15/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}/" 2>&1 | tee out/r15-physical/gcloud.log
+      - name: Recover only this run's raw results
+        if: always()
+        run: |
+          mkdir -p out/r15-physical/raw
+          if test -f out/r15-physical/gcloud.log; then gcloud storage cp --recursive "gs://test-lab-aa4a2056a57tx-i9q99na06ix40/native-r15/${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}/" out/r15-physical/raw > out/r15-physical/collection.log 2>&1; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-r15-physical
+          path: |
+            out/firebase-preflight/
+            out/r15-physical/
+          retention-days: 30

@@ -1,0 +1,68 @@
+UIUX PASS 64 checks
+PASS normal launch restores existing save
+PASS transport starts from preserved campaign
+PASS campaign supports three-person cargo and authority capacity rejection
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 运输 at Rect(374, 1128 - 706, 1254)
+PASS transport destination comes from real own cities
+PASS touch visible 官渡港 · 陳留 · 单程1旬（相邻城市1旬） at Rect(74, 519 - 1005, 687)
+PASS cargo draft cannot preview without a leader
+PASS touch visible 主将 · 选择武将 at Rect(74, 473 - 858, 620)
+PASS touch visible  at Rect(47, 412 - 906, 538)
+PASS transport officer search and empty state fit keyboard
+PASS touch visible × at Rect(906, 249 - 1032, 375)
+PASS touch visible LinearLayout at Rect(42, 883 - 1037, 1020)
+PASS real officer row sets cargo leader
+PASS touch visible 副将1 · 选择武将 at Rect(74, 640 - 858, 787)
+PASS deputy list excludes selected leader
+PASS touch visible 取消 at Rect(837, 1436 - 1005, 1562)
+PASS cancel deputy chooser returns to intact cargo draft
+PASS touch visible 副将1 · 选择武将 at Rect(74, 640 - 858, 787)
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS touch visible 副将2 · 选择武将 at Rect(74, 787 - 858, 934)
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS three selected cargo officers are distinct
+PASS touch visible 卸货后武将返回出发城 at Rect(74, 934 - 1005, 1060)
+PASS touch visible 钱粮兵力 at Rect(384, 367 - 694, 493)
+PASS touch visible 1000 at Rect(74, 1220 - 711, 1346)
+PASS invalid cargo quantity remains visible with field error and disabled preview
+PASS touch visible 9999999 at Rect(74, 719 - 711, 845)
+PASS touch visible 预览运输 at Rect(795, 1278 - 1005, 1404)
+PASS core rejects above transport capacity without changing campaign or RNG
+PASS touch visible 查看运输条件 at Rect(74, 1443 - 1005, 1569)
+PASS expanded rejection conditions come from pure core preview
+PASS touch visible 返回修改 at Rect(795, 1296 - 1005, 1422)
+PASS touch visible 21000 at Rect(74, 1143 - 711, 1269)
+PASS touch visible 兵装舰船 at Rect(694, 602 - 1005, 728)
+PASS optional cargo defaults are explicit zero without hidden equipment
+PASS landscape keeps cargo preview and cancel reachable
+PASS touch visible 钱粮兵力 at Rect(384, 367 - 694, 493)
+PASS touch visible 预览运输 at Rect(795, 1513 - 1005, 1639)
+PASS complete core transport preview is read-only including RNG
+PASS touch visible 返回修改 at Rect(585, 1381 - 795, 1507)
+PASS return from confirmation retains crew, quantities and return preference
+PASS Home/resume preserves transport draft and full campaign
+PASS touch visible 预览运输 at Rect(795, 1513 - 1005, 1639)
+PASS touch visible 确认发送 at Rect(795, 1381 - 1005, 1507)
+PASS double final confirmation dispatches exactly one transport and revision
+PASS actual transport crew, cargo, inventory and action cost match submitted intent
+PASS successful transport clears UI-only draft
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 任务 1 at Rect(60, 1281 - 1020, 1407)
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 读取存档 at Rect(53, 788 - 1027, 914)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 2:11 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 读取存档 at Rect(795, 1079 - 1005, 1205)
+PASS actual load restores all pre-transport state and RNG
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 运输 at Rect(374, 1128 - 706, 1254)
+PASS touch visible 官渡港 · 陳留 · 单程1旬（相邻城市1旬） at Rect(74, 519 - 1005, 687)
+PASS new cargo form has no prior crew
+PASS touch visible 取消 at Rect(627, 1533 - 795, 1659)
+PASS whole-form cancellation clears only draft and preserves authority
+

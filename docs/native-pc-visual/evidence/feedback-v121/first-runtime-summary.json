@@ -1,0 +1,292 @@
+[
+  {
+    "api": 29,
+    "case": "baseline-fixture",
+    "status": "PASS",
+    "instrumentation": "PASS FEEDBACK121 baseline fixture checks=171\n\n",
+    "authority_equal": true,
+    "png_count": 25,
+    "metrics": [
+      {
+        "name": "baseline-fixture-gridfalse-owner-frames.csv",
+        "samples": 146,
+        "admitted": 15,
+        "owner_wall_ms": [
+          0.30653,
+          1902.42225,
+          2178.49836
+        ],
+        "owner_cpu_ms": [
+          0.229267,
+          1674.963801,
+          2099.833394
+        ],
+        "begin_wall_ms": [
+          0.04882,
+          1901.66025,
+          2172.77678
+        ],
+        "mesh_upload_wall_ms": [
+          0.0,
+          0.0,
+          1.65781
+        ],
+        "render_submit_wall_ms": [
+          0.0,
+          0.28483,
+          1.8506
+        ]
+      },
+      {
+        "name": "baseline-fixture-gridtrue-owner-frames.csv",
+        "samples": 156,
+        "admitted": 16,
+        "owner_wall_ms": [
+          0.31831,
+          1915.56843,
+          2124.80538
+        ],
+        "owner_cpu_ms": [
+          0.205713,
+          1813.011544,
+          2032.528585
+        ],
+        "begin_wall_ms": [
+          0.04574,
+          1910.91859,
+          2123.67435
+        ],
+        "mesh_upload_wall_ms": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "render_submit_wall_ms": [
+          0.0,
+          0.2983,
+          4.57187
+        ]
+      }
+    ],
+    "videos": [
+      {
+        "name": "feedback121.mp4",
+        "exit": 0,
+        "info": {
+          "format": {
+            "duration": "179.277244",
+            "size": "7402347"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "api": 29,
+    "case": "baseline-national",
+    "status": "FAIL",
+    "instrumentation": "",
+    "authority_equal": null,
+    "png_count": 23,
+    "metrics": [],
+    "videos": [
+      {
+        "name": "feedback121.mp4",
+        "exit": 0,
+        "info": {
+          "format": {
+            "duration": "173.710711",
+            "size": "8296304"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "api": 29,
+    "case": "candidate-fixture",
+    "status": "PASS",
+    "instrumentation": "PASS FEEDBACK121 candidate fixture checks=151\n\n",
+    "authority_equal": true,
+    "png_count": 25,
+    "metrics": [
+      {
+        "name": "candidate-fixture-gridfalse-owner-frames.csv",
+        "samples": 171,
+        "admitted": 13,
+        "owner_wall_ms": [
+          0.34623,
+          1859.66132,
+          2080.29496
+        ],
+        "owner_cpu_ms": [
+          0.199,
+          1808.010414,
+          2046.228273
+        ],
+        "begin_wall_ms": [
+          0.04539,
+          1858.9552,
+          2067.9538
+        ],
+        "mesh_upload_wall_ms": [
+          0.0,
+          0.0,
+          2.8738
+        ],
+        "render_submit_wall_ms": [
+          0.0,
+          0.25145,
+          14.65156
+        ]
+      },
+      {
+        "name": "candidate-fixture-gridtrue-owner-frames.csv",
+        "samples": 159,
+        "admitted": 16,
+        "owner_wall_ms": [
+          0.29477,
+          1912.55957,
+          2024.24982
+        ],
+        "owner_cpu_ms": [
+          0.200693,
+          1772.059282,
+          1952.902202
+        ],
+        "begin_wall_ms": [
+          0.0456,
+          1902.93874,
+          2015.06026
+        ],
+        "mesh_upload_wall_ms": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "render_submit_wall_ms": [
+          0.0,
+          0.29124,
+          1.2264
+        ]
+      }
+    ],
+    "videos": [
+      {
+        "name": "feedback121.mp4",
+        "exit": 0,
+        "info": {
+          "format": {
+            "duration": "180.037044",
+            "size": "6572255"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "api": 29,
+    "case": "candidate-national",
+    "status": "FAIL",
+    "instrumentation": "FAIL FEEDBACK121 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=551 backingCopies=3 confirmedLosses=2 relayouts=2 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1\nsource=db50c897fdbc698778c5c034a5616068fb22a3fb profile=native device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]\nsnapshot=true surface=true viewport=918x1047 session=7ab360e5-f442-41dc-963b-945fa4e71267:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=2322632 terrain_all_coarse=false mapVisualKey=471842112:0 environmentCpuChunks=56 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=25 pending=11 submitted=12 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=552 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=8 workerBackpressureWallMs=0.0 frameCallbacks=677 beginAttempts=611 beginSkipped=599 gpuPreparationFrames=12 lifetimeSubmissions=12 surfaceCopies=0 output=WAITING_FRAME\ncamera=90.0,77.0 span=6.0 tilt=55.0 facing=1 yaw=0.0\npick=none\nFilament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30\n内部 918 × 1047 / UI 1080 × 1232 · chunks 9 / GPU 9 · objects 1\n帧回调间隔 33.3 ms（非 GPU/FPS 实测）\n待装载 11 · S06 战斗特效 / 部队 · 林块 17 · LOD 0 · 资产回退 0 · 特效 0/64\n场景 primitives=24 triangles=194287 buffers_bytes=10559760 pose_cache=22 entity_live=214 material_instance_live=88 mesh_live=38 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=61.11494 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=5.99767 CPU提交ms P50/P95/P99=0.30/8.56/82.44 samples=240（非驱动DrawCall/GPU帧时）\nR16 attempts=611 submitted=12 rejected=599 window=300 owner_wall_ms_p50_p95_p99=0.319/7.865/77.881/ owner_cpu_ms_p50_p95_p99=0.299/2.113/13.403/ begin_wall_ms_p50_p95_p99=0.044/0.151/39.287/ mesh_upload_wall_ms_p50_p95_p99=0.000/0.000/9.689/ render_submit_wall_ms_p50_p95_p99=0.000/0.000/3.537/ presented_interval=NOT_AVAILABLE gpu_duration=NOT_AVAILABLE visibility_passes=12 visibility_skips=0 thermal_transitions=0\n\tat game.sanguo.mobile.SceneInstrumentation.ready(SceneInstrumentation.java:75)\n\tat game.sanguo.mobile.NativeFeedback121Instrumentation.onStart(NativeFeedback121Instrumentation.java:69)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)\n\n",
+    "authority_equal": null,
+    "png_count": 1,
+    "metrics": [],
+    "videos": [
+      {
+        "name": "feedback121.mp4",
+        "exit": 0,
+        "info": {
+          "format": {
+            "duration": "144.889900",
+            "size": "9477882"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "api": 35,
+    "case": "baseline-fixture",
+    "status": "FAIL",
+    "instrumentation": "FAIL FEEDBACK121 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=582 backingCopies=1 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1\nsource=931a298e5c06b5fd56ccfcf067defa8dd840d17e profile=native device=Android SDK built for x86_64 api=35 abi=[x86_64]\nsnapshot=true surface=true viewport=918x954 session=a026dca4-4f1b-4f11-a45a-0d5972c680c7:0:0 assetRevision=1.56.0/R06 asset_pending=1 asset_cpu_bytes=672808 terrain_all_coarse=false mapVisualKey=1127932591:0 environmentCpuChunks=6 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=2 pending=6 submitted=4 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 overlayDraws=584 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=1 meshUploadCpuMs=28.976976 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=4 workerBackpressureWallMs=137.805586 frameCallbacks=622 beginAttempts=583 beginSkipped=579 gpuPreparationFrames=4 lifetimeSubmissions=4 surfaceCopies=0 output=WAITING_FRAME\ncamera=14.5,7.0 span=6.0 tilt=55.0 facing=1 yaw=0.0\npick=none\nFilament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30\n内部 918 × 954 / UI 1080 × 1122 · chunks 2 / GPU 2 · objects 3\n帧回调间隔 366.7 ms（非 GPU/FPS 实测）\n待装载 6 · S06 战斗特效 / 部队 · 林块 5 · LOD 0 · 资产回退 0 · 特效 2/64\n场景 primitives=11 triangles=26034 buffers_bytes=1422872 pose_cache=6 entity_live=25 material_instance_live=6 mesh_live=11 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=133.397047 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=0.697981 CPU提交ms P50/P95/P99=0.16/9.39/46.00 samples=240（非驱动DrawCall/GPU帧时）\nR16 attempts=583 submitted=4 rejected=579 window=300 owner_wall_ms_p50_p95_p99=0.152/7.963/44.240/ owner_cpu_ms_p50_p95_p99=0.081/0.189/0.249/ begin_wall_ms_p50_p95_p99=0.010/0.014/0.054/ mesh_upload_wall_ms_p50_p95_p99=0.000/0.000/0.000/ render_submit_wall_ms_p50_p95_p99=0.000/0.000/0.000/ presented_interval=NOT_AVAILABLE gpu_duration=NOT_AVAILABLE visibility_passes=4 visibility_skips=0 thermal_transitions=0\n\tat game.sanguo.mobile.SceneInstrumentation.ready(SceneInstrumentation.java:75)\n\tat game.sanguo.mobile.NativeFeedback121Instrumentation.onStart(NativeFeedback121Instrumentation.java:69)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)\n\n",
+    "authority_equal": null,
+    "png_count": 1,
+    "metrics": [],
+    "videos": [
+      {
+        "name": "feedback121.mp4",
+        "exit": 0,
+        "info": {
+          "format": {
+            "duration": "130.913189",
+            "size": "2840080"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "api": 35,
+    "case": "baseline-national",
+    "status": "FAIL",
+    "instrumentation": "FAIL FEEDBACK121 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=525 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1\nsource=931a298e5c06b5fd56ccfcf067defa8dd840d17e profile=native device=Android SDK built for x86_64 api=35 abi=[x86_64]\nsnapshot=true surface=true viewport=918x1047 session=725c0081-3104-4add-931d-a38995800272:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=786320 terrain_all_coarse=false mapVisualKey=471842112:0 environmentCpuChunks=56 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=25 pending=23 submitted=6 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 overlayDraws=529 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=8 workerBackpressureWallMs=0.0 frameCallbacks=551 beginAttempts=528 beginSkipped=522 gpuPreparationFrames=6 lifetimeSubmissions=6 surfaceCopies=0 output=WAITING_FRAME\ncamera=90.0,77.0 span=6.0 tilt=55.0 facing=1 yaw=0.0\npick=none\nFilament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30\n内部 918 × 1047 / UI 1080 × 1232 · chunks 9 / GPU 3 · objects 1\n帧回调间隔 150.0 ms（非 GPU/FPS 实测）\n待装载 23 · S06 战斗特效 / 部队 · 林块 17 · LOD 0 · 资产回退 0 · 特效 0/64\n场景 primitives=8 triangles=76758 buffers_bytes=3749204 pose_cache=13 entity_live=193 material_instance_live=88 mesh_live=17 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=188.460903 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=0.935885 CPU提交ms P50/P95/P99=0.19/7.93/107.49 samples=240（非驱动DrawCall/GPU帧时）\nR16 attempts=528 submitted=6 rejected=522 window=300 owner_wall_ms_p50_p95_p99=0.184/6.903/107.495/ owner_cpu_ms_p50_p95_p99=0.103/0.228/17.217/ begin_wall_ms_p50_p95_p99=0.010/0.014/27.945/ mesh_upload_wall_ms_p50_p95_p99=0.000/0.000/15.886/ render_submit_wall_ms_p50_p95_p99=0.000/0.000/0.143/ presented_interval=NOT_AVAILABLE gpu_duration=NOT_AVAILABLE visibility_passes=6 visibility_skips=0 thermal_transitions=0\n\tat game.sanguo.mobile.SceneInstrumentation.ready(SceneInstrumentation.java:75)\n\tat game.sanguo.mobile.NativeFeedback121Instrumentation.onStart(NativeFeedback121Instrumentation.java:69)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)\n\n",
+    "authority_equal": null,
+    "png_count": 1,
+    "metrics": [],
+    "videos": [
+      {
+        "name": "feedback121.mp4",
+        "exit": 0,
+        "info": {
+          "format": {
+            "duration": "135.075400",
+            "size": "5046570"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "api": 35,
+    "case": "candidate-fixture",
+    "status": "FAIL",
+    "instrumentation": "FAIL FEEDBACK121 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=593 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1\nsource=db50c897fdbc698778c5c034a5616068fb22a3fb profile=native device=Android SDK built for x86_64 api=35 abi=[x86_64]\nsnapshot=true surface=true viewport=918x954 session=991a23fb-e8fe-4a6c-9fe5-f307a38f0634:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=968352 terrain_all_coarse=false mapVisualKey=1127932591:0 environmentCpuChunks=6 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=2 pending=6 submitted=3 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=592 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=4 workerBackpressureWallMs=0.0 frameCallbacks=629 beginAttempts=591 beginSkipped=588 gpuPreparationFrames=3 lifetimeSubmissions=3 surfaceCopies=0 output=WAITING_FRAME\ncamera=14.5,7.0 span=6.0 tilt=55.0 facing=1 yaw=0.0\npick=none\nFilament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30\n内部 918 × 954 / UI 1080 × 1122 · chunks 2 / GPU 1 · objects 3\n帧回调间隔 66.7 ms（非 GPU/FPS 实测）\n待装载 6 · S06 战斗特效 / 部队 · 林块 5 · LOD 0 · 资产回退 0 · 特效 2/64\n场景 primitives=8 triangles=24457 buffers_bytes=1439206 pose_cache=6 entity_live=20 material_instance_live=6 mesh_live=8 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=120.405074 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=0.808649 CPU提交ms P50/P95/P99=0.15/5.18/25.28 samples=240（非驱动DrawCall/GPU帧时）\nR16 attempts=591 submitted=3 rejected=588 window=300 owner_wall_ms_p50_p95_p99=0.154/5.520/17.719/ owner_cpu_ms_p50_p95_p99=0.077/0.191/0.214/ begin_wall_ms_p50_p95_p99=0.010/0.014/0.056/ mesh_upload_wall_ms_p50_p95_p99=0.000/0.000/0.000/ render_submit_wall_ms_p50_p95_p99=0.000/0.000/0.000/ presented_interval=NOT_AVAILABLE gpu_duration=NOT_AVAILABLE visibility_passes=3 visibility_skips=0 thermal_transitions=0\n\tat game.sanguo.mobile.SceneInstrumentation.ready(SceneInstrumentation.java:75)\n\tat game.sanguo.mobile.NativeFeedback121Instrumentation.onStart(NativeFeedback121Instrumentation.java:69)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)\n\n",
+    "authority_equal": null,
+    "png_count": 1,
+    "metrics": [],
+    "videos": [
+      {
+        "name": "feedback121.mp4",
+        "exit": 0,
+        "info": {
+          "format": {
+            "duration": "132.497767",
+            "size": "3407338"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "api": 35,
+    "case": "candidate-national",
+    "status": "FAIL",
+    "instrumentation": "FAIL FEEDBACK121 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=520 backingCopies=1 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1\nsource=db50c897fdbc698778c5c034a5616068fb22a3fb profile=native device=Android SDK built for x86_64 api=35 abi=[x86_64]\nsnapshot=true surface=true viewport=918x1047 session=88a38a6f-5fb1-44c7-b09b-3dc55c8a6a89:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=2322632 terrain_all_coarse=false mapVisualKey=471842112:0 environmentCpuChunks=56 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=25 pending=24 submitted=6 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=519 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=8 workerBackpressureWallMs=150.051269 frameCallbacks=540 beginAttempts=518 beginSkipped=512 gpuPreparationFrames=6 lifetimeSubmissions=6 surfaceCopies=0 output=WAITING_FRAME\ncamera=90.0,77.0 span=6.0 tilt=55.0 facing=1 yaw=0.0\npick=none\nFilament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30\n内部 918 × 1047 / UI 1080 × 1232 · chunks 9 / GPU 3 · objects 1\n帧回调间隔 100.0 ms（非 GPU/FPS 实测）\n待装载 24 · S06 战斗特效 / 部队 · 林块 17 · LOD 0 · 资产回退 0 · 特效 0/64\n场景 primitives=8 triangles=65221 buffers_bytes=3996210 pose_cache=16 entity_live=116 material_instance_live=48 mesh_live=20 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=56.976703 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=0.704555 CPU提交ms P50/P95/P99=0.20/7.76/33.29 samples=240（非驱动DrawCall/GPU帧时）\nR16 attempts=518 submitted=6 rejected=512 window=300 owner_wall_ms_p50_p95_p99=0.212/7.785/57.158/ owner_cpu_ms_p50_p95_p99=0.111/0.234/13.943/ begin_wall_ms_p50_p95_p99=0.010/0.014/11.623/ mesh_upload_wall_ms_p50_p95_p99=0.000/0.000/32.993/ render_submit_wall_ms_p50_p95_p99=0.000/0.000/0.172/ presented_interval=NOT_AVAILABLE gpu_duration=NOT_AVAILABLE visibility_passes=6 visibility_skips=0 thermal_transitions=0\n\tat game.sanguo.mobile.SceneInstrumentation.ready(SceneInstrumentation.java:75)\n\tat game.sanguo.mobile.NativeFeedback121Instrumentation.onStart(NativeFeedback121Instrumentation.java:69)\n\tat android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2594)\n\n",
+    "authority_equal": null,
+    "png_count": 1,
+    "metrics": [],
+    "videos": [
+      {
+        "name": "feedback121.mp4",
+        "exit": 0,
+        "info": {
+          "format": {
+            "duration": "132.920544",
+            "size": "5903798"
+          }
+        }
+      }
+    ]
+  }
+]

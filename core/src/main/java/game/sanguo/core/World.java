@@ -33,6 +33,7 @@ public final class World {
     public static final class Officer {
         public final int id;
         public final String name;
+        OfficerAbilities.Profile abilityProfile;
         public int owner, cityId, unitId=-1, leadership, war, intelligence, politics, charm;
         public boolean acted;
         public String skillId="none";
@@ -83,16 +84,16 @@ public final class World {
     public final int width,height;
     public final Terrain[][] terrain;
     /** Index follows every List mutation, including iterators/subLists; values remain authoritative. */
-    private static final class OfficerRoster extends AbstractList<Officer> implements RandomAccess {
+    private final class OfficerRoster extends AbstractList<Officer> implements RandomAccess {
         private final List<Officer> values=new ArrayList<>();
         private final Map<Integer,Officer> ids=new HashMap<>();
         private final Officer[] smallIds=new Officer[8192];
         private boolean dirty=true;
         @Override public Officer get(int i){return values.get(i);}
         @Override public int size(){return values.size();}
-        @Override public void add(int i,Officer o){values.add(i,o);dirty=true;modCount++;}
-        @Override public Officer set(int i,Officer o){Officer old=values.set(i,o);dirty=true;return old;}
-        @Override public Officer remove(int i){Officer old=values.remove(i);dirty=true;modCount++;return old;}
+        @Override public void add(int i,Officer o){values.add(i,o);dirty=true;modCount++;officerAbilities.register(o);officerAbilities.refresh();}
+        @Override public Officer set(int i,Officer o){Officer old=values.set(i,o);dirty=true;if(o.abilityProfile==null)officerAbilities.register(o);officerAbilities.refresh();return old;}
+        @Override public Officer remove(int i){Officer old=values.remove(i);dirty=true;modCount++;officerAbilities.refresh();return old;}
         Officer byId(int id){if(dirty){ids.clear();Arrays.fill(smallIds,null);for(Officer o:values){if(o.id>=0&&o.id<smallIds.length){if(smallIds[o.id]==null)smallIds[o.id]=o;}else ids.putIfAbsent(o.id,o);}dirty=false;}return id>=0&&id<smallIds.length?smallIds[id]:ids.get(id);}
     }
     private static final class CityRoster extends AbstractList<City> implements RandomAccess {
@@ -117,6 +118,7 @@ public final class World {
     public final List<Unit> units=new ArrayList<>();
     public final List<String> log=new ArrayList<>();
     public final SaveExtensions extensions=new SaveExtensions();
+    public final OfficerAbilities officerAbilities=new OfficerAbilities(this);
     public final BattleReports reports=new BattleReports(this);
     public final Lifecycle life=new Lifecycle(this);
     public final Domestic domestic=new Domestic(this);
@@ -211,7 +213,7 @@ public final class World {
     private CriticalHit critical;
     void tacticCritical(Unit source){
         if(critical!=null)return;Officer o=officer(source.officerId);if(o==null)return;
-        critical=new CriticalHit(o,source,actionLabel);
+        critical=new CriticalHit(o,source,actionLabel,startYear+(startMonth-1+turn/3)/12);
         if(turnJournal!=null)turnJournal.critical(critical);
     }
     private Feedback feedback=Feedback.NONE;
@@ -230,7 +232,7 @@ public final class World {
     private long commandRevision;
     /** Transient successful-command generation; identity plus generation guards open UI confirmations. */
     public long commandRevision(){return commandRevision;}
-    Result success(String text) {commandRevision++;governance.reconcile(true); fieldworks.cleanup();abilities.cleanup();districts.cleanup();diplomacy.cleanup();aiOrders.cleanup();note(text);Result r=result(true,text);if(turnJournal!=null)turnJournal.checkpoint(r.message);reports.clearAction();return r; }
+    Result success(String text) {officerAbilities.refresh();commandRevision++;governance.reconcile(true); fieldworks.cleanup();abilities.cleanup();districts.cleanup();diplomacy.cleanup();aiOrders.cleanup();note(text);Result r=result(true,text);if(turnJournal!=null)turnJournal.checkpoint(r.message);reports.clearAction();return r; }
     public void note(String text) { reports.note(text);log.add(text);while(log.size()>40)log.remove(0); }
     private boolean available(Officer o,City c) { return !commandsBlocked()&&o!=null&&o.owner==active&&o.cityId==c.id&&o.unitId<0&&!o.acted&&!domestic.busy(o.id)&&!strategy.busy(o.id)&&!government.captive(o.id); }
     public int cityFoodUse(City c){return c.kind!=SiteKind.CITY&&skills.city(c.id,Skill.TUNTIAN)?0:(c.troops+49)/50;}
@@ -240,34 +242,47 @@ public final class World {
         return found;
     }
     String cityError(City c,Officer o,int gold) {
-        if(commandsBlocked())return "请先完成当前对局或君主继承";
-        if(gameOver())return "本局已结束";
-        if(c==null||c.owner!=active)return "请选择己方城池";
-        if(envoys.resolving(o==null?-1:o.id))return o!=null&&o.owner==c.owner&&o.unitId<0&&!government.captive(o.id)?null:"使者状态变化";
-        if(!districts.directCity(c.id))return "该据点由委任军团管理，请先重编或撤销军团";
-        if(!available(o,c))return "需要一名本旬尚未行动的在城武将";
-        if(actionPoints[active]<10)return "行动力不足10";
-        if(c.gold<gold)return "金不足";
+        RuleFailure failure=cityFailure(c,o,gold);return failure==null?null:failure.detail;
+    }
+    RuleFailure cityFailure(City c,Officer o,int gold) { return cityFailure(c,o,gold,10); }
+    RuleFailure cityFailure(City c,Officer o,int gold,int actionCost) {
+        if(commandsBlocked())return new RuleFailure("COMMANDS_BLOCKED","global","请先完成当前对局或君主继承");
+        if(gameOver())return new RuleFailure("GAME_OVER","global","本局已结束");
+        if(c==null||c.owner!=active)return new RuleFailure("CITY_UNAVAILABLE","city","请选择己方城池");
+        if(envoys.resolving(o==null?-1:o.id))return o!=null&&o.owner==c.owner&&o.unitId<0&&!government.captive(o.id)?null:new RuleFailure("ENVOY_CHANGED","leader","使者状态变化");
+        if(!districts.directCity(c.id))return new RuleFailure("CITY_DELEGATED","city","该据点由委任军团管理，请先重编或撤销军团");
+        if(!available(o,c))return new RuleFailure("LEADER_UNAVAILABLE","leader","需要一名本旬尚未行动的在城武将");
+        if(actionPoints[active]<actionCost)return new RuleFailure("ACTION_POINTS","global","行动力不足"+actionCost);
+        if(c.gold<gold)return new RuleFailure("CITY_GOLD","gold","金不足");
         return null;
     }
-    void spend(City c,Officer o,int gold) { if(envoys.resolving(o.id))return; c.gold-=gold;actionPoints[active]-=10;o.acted=true;government.earn(o.id,100); }
+    int cityActionCost(Officer o){return cityActionCost(o,10);}
+    int cityActionCost(Officer o,int baseCost){return o!=null&&envoys.resolving(o.id)?0:baseCost;}
+    void spend(City c,Officer o,int gold) { spend(c,o,gold,10); }
+    void spend(City c,Officer o,int gold,int baseCost) { spend(c,o,gold,baseCost,100); }
+    void spend(City c,Officer o,int gold,int baseCost,int merit) { int cost=cityActionCost(o,baseCost);if(cost==0)return; c.gold-=gold;actionPoints[active]-=cost;o.acted=true;government.earn(o.id,merit); }
     /** Compatibility entry points: UI, AI and callers share the strategy rules. */
     public Result recruit(int cityId,int officerId) {reports.prepare(); return strategy.recruitSoldiers(cityId,officerId); }
     public Result train(int cityId,int officerId) {reports.prepare(); return strategy.trainArmy(cityId,officerId); }
     public Result patrol(int cityId,int officerId) {reports.prepare(); return strategy.patrol(cityId,officerId); }
     public int getArmyReadiness(int cityId) { return strategy.getArmyReadiness(cityId); }
-    public Result produce(int cityId,int officerId,Weapon weapon) {reports.prepare();
-        City c=city(cityId);Officer o=officer(officerId);int gold=skills.productionGold(officerId,weapon);String error=cityError(c,o,gold);
-        if(error!=null)return fail(error);
-        if(c.kind!=SiteKind.CITY)return fail("港口和关卡不能生产军备");
-        if(districts.productionError(cityId)!=null)return fail(districts.productionError(cityId));
-        if(weapon==null||weapon==Weapon.SWORD)return fail("剑兵无需生产兵装，请选择其他兵装");
-        if(Army.siegeWeapon(weapon))return army.produce(cityId,officerId,weapon,null);
+    RuleFailure productionFailure(int cityId,int officerId,Weapon weapon){
+        City c=city(cityId);Officer o=officer(officerId);RuleFailure failure=cityFailure(c,o,skills.productionGold(officerId,weapon),PcCityActionCosts.PRODUCTION);if(failure!=null)return failure;
+        if(c.kind!=SiteKind.CITY)return new RuleFailure("PRODUCTION_SITE","city","港口和关卡不能生产军备");
+        String error=districts.productionError(cityId);if(error!=null)return new RuleFailure("DISTRICT_PRODUCTION","city",error);
+        if(weapon==null||weapon==Weapon.SWORD)return new RuleFailure("PRODUCTION_ITEM","item","剑兵无需生产兵装，请选择其他兵装");
+        if(Army.siegeWeapon(weapon))return army.productionFailure(cityId,officerId,weapon,null);
         Domestic.Kind facility=Domestic.productionFacility(weapon);
-        error=domestic.operationError(cityId,facility);if(error!=null)return fail(error);
+        error=domestic.operationError(cityId,facility);if(error!=null)return new RuleFailure(domestic.capacity(cityId,facility)==0?"FACILITY_REQUIRED":"FACILITY_EXHAUSTED","facility",error);
         int amount=skills.produceAmount(c.id,o.id,weapon);
-        if(c.equipment[weapon.ordinal()]>campaign.equipmentCap(c,weapon)-amount)return fail("兵装已接近上限");
-        spend(c,o,gold);domestic.use(cityId,facility);c.equipment[weapon.ordinal()]+=amount;return success(c.name+"生产"+amount+"份"+weapon.label+"兵装，金−"+gold);
+        if(c.equipment[weapon.ordinal()]>campaign.equipmentCap(c,weapon)-amount)return new RuleFailure("PRODUCTION_CAPACITY","item","兵装已接近上限");return null;
+    }
+    public ProductionPlan previewProduction(int cityId,int officerId,ProductionPlan.Operation operation,Weapon weapon,Army.Ship ship){return new ProductionPlan(this,cityId,officerId,operation,weapon,ship);}
+    public Result produce(int cityId,int officerId,Weapon weapon) {reports.prepare();
+        RuleFailure failure=productionFailure(cityId,officerId,weapon);if(failure!=null)return fail(failure.detail);
+        if(Army.siegeWeapon(weapon))return army.produce(cityId,officerId,weapon,null);
+        City c=city(cityId);Officer o=officer(officerId);int gold=skills.productionGold(officerId,weapon),amount=skills.produceAmount(cityId,officerId,weapon);Domestic.Kind facility=Domestic.productionFacility(weapon);
+        spend(c,o,gold,PcCityActionCosts.PRODUCTION);domestic.use(cityId,facility);c.equipment[weapon.ordinal()]+=amount;return success(c.name+"生产"+amount+"份"+weapon.label+"兵装，金−"+gold);
     }
     public Result deploy(int cityId,int officerId,Weapon weapon,int troops) {reports.prepare();
         return army.deploy(cityId,officerId,new int[0],weapon,Army.Ship.BOAT,troops,troops*2);
@@ -364,7 +379,7 @@ public final class World {
         if(c==null||c.owner!=u.owner||point==null)return "尚未抵达合法据点入口（上下河须经港口）";
         if(u instanceof Domestic.Mission)return domestic.arrivalError((Domestic.Mission)u,c);
         int gear=Army.equipmentNeeded(u.weapon,u.troops),cap=campaign.equipmentCap(c,u.weapon);
-        if((long)c.troops+u.troops+u.wounded>campaign.troopCap(c)||c.equipment[u.weapon.ordinal()]+gear>cap||c.food+u.food>campaign.foodCap(c)||c.gold+u.gold>campaign.goldCap(c)||(u.ship!=Army.Ship.BOAT&&c.ships[u.ship.ordinal()-1]>=100))
+        if((long)c.troops+u.troops+u.wounded>campaign.troopCap(c)||c.equipment[u.weapon.ordinal()]+gear>cap||c.food+u.food>campaign.foodCap(c)||!campaign.fitsGold(c,u.gold)||(u.ship!=Army.Ship.BOAT&&c.ships[u.ship.ordinal()-1]>=100))
             return "据点容量不足，部队与伤兵、兵装、钱粮全部保留；腾出容量后再次行军入城";
         return null;
     }

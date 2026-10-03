@@ -1,0 +1,6 @@
+RulesParityTest: same_full_log=True; baseline=Exception in thread "main" java.lang.AssertionError: 请选择当前势力的部队; candidate=Exception in thread "main" java.lang.AssertionError: 请选择当前势力的部队
+MapSkillsTest: same_full_log=True; baseline=Exception in thread "main" java.lang.AssertionError: restored v40 compact map uses 100 by 100 coordinates; candidate=Exception in thread "main" java.lang.AssertionError: restored v40 compact map uses 100 by 100 coordinates
+CampaignTest: same_full_log=True; baseline=Exception in thread "main" java.io.IOException: 设施位置冲突或无效; candidate=Exception in thread "main" java.io.IOException: 设施位置冲突或无效
+CampaignAiTest: same_full_log=True; baseline=Exception in thread "main" java.lang.AssertionError: adjacent resupply consumes actual stock and action points; candidate=Exception in thread "main" java.lang.AssertionError: adjacent resupply consumes actual stock and action points
+WorldSystemsTest: same_full_log=True; baseline=Exception in thread "main" java.lang.AssertionError: diplomatic per-card replay; candidate=Exception in thread "main" java.lang.AssertionError: diplomatic per-card replay
+BalanceTest: same_full_log=True; baseline=BALANCE: 10k spear/2000 port=5 attacks; ram=2; spear wall damage port/city/gate=458/254/229; candidate=BALANCE: 10k spear/2000 port=5 attacks; ram=2; spear wall damage port/city/gate=458/254/229

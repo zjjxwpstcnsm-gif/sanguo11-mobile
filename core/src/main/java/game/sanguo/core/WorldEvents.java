@@ -77,7 +77,7 @@ public final class WorldEvents {
             World.City c=w.city(h.city);if(c.owner<0){hazards.remove(c.id);continue;}
             c.order=Math.max(0,c.order-3);
             if(h.kind==Disaster.LOCUST){c.food-=c.food/10;if(nextInt(100)<20)destroyFacility(c.id,Domestic.Kind.FARM);}
-            else {c.troops-=c.troops/10;List<World.Officer> people=new ArrayList<>();for(World.Officer o:w.officers)if(o.owner==c.owner&&o.cityId==c.id&&!w.government.captive(o.id)&&!w.skills.has(o,Skill.QIANGYUN))people.add(o);if(!people.isEmpty()&&nextInt(100)<20){World.Officer o=people.get(nextInt(people.size()));w.contests.injuries.put(o.id,new Contests.Injury(Math.min(3,w.contests.injury(o.id)+1),w.turn+3));}}
+            else {c.troops-=c.troops/10;List<World.Officer> people=new ArrayList<>();for(World.Officer o:w.officers)if(o.owner==c.owner&&o.cityId==c.id&&!w.government.captive(o.id)&&!w.skills.has(o,Skill.QIANGYUN))people.add(o);if(!people.isEmpty()&&nextInt(100)<20){World.Officer o=people.get(nextInt(people.size()));w.contests.injuries.put(o.id,new Contests.Injury(Math.min(3,w.contests.injury(o.id)+1),w.turn+3));w.officerAbilities.refresh(o);}}
         }
         for(Camp camp:new ArrayList<>(camps)){
             World.City c=w.city(camp.city);if(c.owner<0)continue;

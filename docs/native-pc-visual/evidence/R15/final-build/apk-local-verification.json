@@ -1,0 +1,15 @@
+{
+  "source": "769db307bdee8a607648ebec91922eae6dcbca19",
+  "apk_sha256": "1228e451e058f7ac0ee2d513abcfd207ad4da68e1d693384ccbfac90dd5dcb3f",
+  "bytes": 37387030,
+  "apk_assets_matched": 300,
+  "abis": [
+    "arm64-v8a",
+    "armeabi-v7a",
+    "x86",
+    "x86_64"
+  ],
+  "zip_crc": "PASS",
+  "source_in_dex": "PASS",
+  "unity": "ABSENT"
+}

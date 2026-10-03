@@ -1,0 +1,109 @@
+material {
+    name : AuthoredPcLandscape,
+    flipUV : false,
+    shadingModel : unlit,
+    blending : transparent,
+    depthWrite : true,
+    variantFilter : [ fog ],
+    culling : back,
+    requires : [ uv0, uv1 ],
+    variables : [ { name : pcDiffuse, precision : high }, { name : pcPaintFog, precision : high } ],
+    parameters : [
+        { type : sampler2d, name : pcColor },
+        { type : sampler2d, name : pcNearLow },
+        { type : sampler2d, name : pcNearHigh },
+        { type : sampler2d, name : pcPalette },
+        { type : sampler2d, name : pcPaletteSizes },
+        { type : float3, name : pcOrigin },
+        { type : sampler2d, name : pcNormal },
+        { type : sampler2d, name : pcPaint },
+        { type : float3, name : pcAmbient },
+        { type : float3, name : pcLight },
+        { type : float3, name : pcFog },
+        { type : float2, name : pcFade },
+        { type : float3, name : pcFogColor }
+    ]
+}
+vertex {
+    void materialVertex(inout MaterialVertexInputs material) {
+        highp float2 fine=(float2(material.uv0.x,-material.uv0.y)+materialParams.pcOrigin.xy)*4.0+114.0;
+        highp float2 uv=(fine+0.5)/1025.0;
+        highp float3 normal=textureLod(materialParams_pcNormal,uv,0.0).rgb*2.0-1.0;
+        // Source77ad28 uses the quantized vector without renormalization.
+        highp float paint=max(dot(normal,materialParams.pcLight),0.0);
+        highp float z=(getViewFromWorldMatrix()*getWorldPosition(material)).z/0.05;
+        highp float fog=max(z*materialParams.pcFog.x+materialParams.pcFog.y,materialParams.pcFog.z);
+        highp float fade=clamp(z*materialParams.pcFade.x+materialParams.pcFade.y,0.0,1.0);
+        material.pcDiffuse=float4(textureLod(materialParams_pcColor,uv,0.0).rgb+materialParams.pcAmbient,fade);
+        material.pcPaintFog=float4(paint,0.5,fog,fade);
+    }
+}
+fragment {
+    highp float3 sourceDisplayLinear(highp float3 color) {
+        return mix(color/12.92,pow((color+0.055)/1.055,float3(2.4)),step(float3(0.04045),color));
+    }
+    // Numeric 24-bit face words and 1024-square texel centres need highp.
+    // mediump truncates packed masks and rounds centres into adjacent faces.
+    highp float3 pigment(highp float index, highp float2 vertex, highp float2 gx, highp float2 gy) {
+        highp float2 dimensions=floor(texture(materialParams_pcPaletteSizes,float2((index+0.5)/36.0,(materialParams.pcOrigin.z+0.5)/4.0)).rg*255.0+0.5)*32.0;
+        highp float2 tile=float2(mod(index,6.0),floor(index/6.0));
+        // Original41dcb0: WRAP fine-grid coordinate*32/source image size.
+        // Preserve original64/128/256 texels rather than resizing every image.
+        highp float2 uv=(tile*260.0+2.0+fract(vertex*32.0/dimensions)*dimensions)/1560.0;
+        // Atlas tile changes and wrapped UV seams must not select blurred mips.
+        return textureGrad(materialParams_pcPalette,uv,gx,gy).rgb;
+    }
+    highp uint bytes(highp float3 value) {
+        highp uint3 b=uint3(floor(value*255.0+0.5));
+        return b.x|(b.y<<8u)|(b.z<<16u);
+    }
+    highp float cornerWeight(highp uint mask,highp float2 f) {
+        // Original mask bit order: BR, BL, TR, TL (cross-checked against
+        // 241362 mixed faces in the source vertex table).
+        highp float a=float((mask>>3u)&1u),c=float((mask>>1u)&1u);
+        highp float b=float((mask>>2u)&1u),d=float(mask&1u);
+        return f.y>=f.x?a*(1.0-f.y)+c*(f.y-f.x)+d*f.x:a*(1.0-f.x)+d*f.y+b*(f.x-f.y);
+    }
+    highp uint cornerId(highp uint lo,highp uint hi,highp uint bit) {
+        highp uint count=(lo>>2u)&3u;
+        highp uint id=(lo>>4u)&63u,n=(lo>>14u)&63u;
+        // Resolve authored overlays at each corner before interpolation.
+        // Sequential fractional alpha would give adjacent faces different
+        // edge colors when their base and overlay ordering differ.
+        // Bits 2..3 count active overlays. Unused layer bytes are NOT zero;
+        // reading them caused seams even on single-material faces.
+        if(count>=1u&&(((lo>>20u)&15u)&bit)!=0u&&n<36u)id=n;
+        n=hi&63u;if(count>=2u&&(((hi>>6u)&15u)&bit)!=0u&&n<36u)id=n;
+        n=(hi>>10u)&63u;if(count>=3u&&(((hi>>16u)&15u)&bit)!=0u&&n<36u)id=n;
+        return id; // ID 60 is an animated effect, not static palette data.
+    }
+    void material(inout MaterialInputs material) {
+        highp float2 world=float2(getUV0().x,-getUV0().y)+materialParams.pcOrigin.xy;
+        highp float2 vertex=world*4.0+114.0;
+        highp float2 base=floor(vertex),f=fract(vertex);
+        highp float2 uv=(vertex+0.5)/1025.0;
+        highp float2 faceUV=(base+0.5)/1024.0;
+        highp uint lo=bytes(texture(materialParams_pcNearLow,faceUV).rgb);
+        highp uint hi=bytes(texture(materialParams_pcNearHigh,faceUV).rgb);
+        highp float2 gx=dFdx(vertex)*32.0/1560.0,gy=dFdy(vertex)*32.0/1560.0;
+        highp float3 textureColor=pigment(float(cornerId(lo,hi,8u)),vertex,gx,gy)*cornerWeight(8u,f)
+            +pigment(float(cornerId(lo,hi,2u)),vertex,gx,gy)*cornerWeight(2u,f)
+            +pigment(float(cornerId(lo,hi,4u)),vertex,gx,gy)*cornerWeight(4u,f)
+            +pigment(float(cornerId(lo,hi,1u)),vertex,gx,gy)*cornerWeight(1u,f);
+        highp float fade=variable_pcDiffuse.a;
+        highp float fog=clamp(variable_pcPaintFog.z,0.0,1.0);
+        highp float3 basePigment=clamp(variable_pcDiffuse.rgb*textureColor*2.0,0.0,1.0);
+        highp float4 paint=texture(materialParams_pcPaint,variable_pcPaintFog.xy);
+        basePigment=mix(materialParams.pcFogColor,basePigment,fog);
+        highp float3 painted=mix(materialParams.pcFogColor,paint.rgb,fog);
+        highp float paintAlpha=paint.a*fade;
+        highp float alpha=fade+paintAlpha*(1.0-fade);
+        if(alpha<=0.0019607843)discard;
+        // Original D3D9 encoded-channel base+paint blend before the linear
+        // Filament boundary. Near opaque ground matches that two-pass blend.
+        // Far blending over other scene layers remains a separate comparison.
+        highp float3 encoded=(basePigment*fade*(1.0-paintAlpha)+painted*paintAlpha)/alpha;
+        prepareMaterial(material);
+        material.baseColor=float4(sourceDisplayLinear(encoded)*alpha,alpha);
+    }
+}

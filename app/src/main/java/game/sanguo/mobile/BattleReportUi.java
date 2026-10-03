@@ -26,18 +26,29 @@ final class BattleReportUi {
         time.setTag("reports.turn");scope.setTag("reports.scope");filters.addView(time,new LinearLayout.LayoutParams(0,a.dp(48),1.25f));filters.addView(scope,new LinearLayout.LayoutParams(0,a.dp(48),1));root.addView(filters);
         List<String> kinds=new ArrayList<>();kinds.add("全部类型");for(BattleReports.Kind k:BattleReports.Kind.values())kinds.add(k.label);
         LinearLayout second=new LinearLayout(a);kind=spinner(kinds);kind.setTag("reports.kind");second.addView(kind,new LinearLayout.LayoutParams(a.dp(120),a.dp(48)));
-        search=new EditText(a);search.setSingleLine(true);search.setTextColor(a.paper);search.setHintTextColor(a.muted);search.setTextSize(13);search.setHint("搜索武将 / 据点 / 结果");search.setTag("reports.search");second.addView(search,new LinearLayout.LayoutParams(0,a.dp(48),1));root.addView(second);
-        count=a.text("",12,a.gold);count.setPadding(0,a.dp(5),0,a.dp(5));count.setTag("reports.count");root.addView(count);
+        search=new EditText(a);search.setSingleLine(true);search.setTextColor(a.paper);search.setHintTextColor(a.muted);search.setTextSize(13);search.setHint("搜索武将 / 据点 / 结果");search.setTag("reports.search");search.setContentDescription("战报搜索");search.setImeOptions(android.view.inputmethod.EditorInfo.IME_ACTION_DONE);search.setInputType(android.text.InputType.TYPE_CLASS_TEXT);second.addView(search,new LinearLayout.LayoutParams(0,a.dp(48),1));
+        Button clear=a.button("清空",v->search.setText(""));clear.setContentDescription("清空战报搜索");second.addView(clear,new LinearLayout.LayoutParams(a.dp(48),a.dp(48)));root.addView(second);
+        count=a.text("",12,a.gold);count.setPadding(0,a.dp(5),0,a.dp(5));count.setTag("reports.count");count.setEllipsize(TextUtils.TruncateAt.END);root.addView(count);
         FrameLayout body=new FrameLayout(a);ListView list=new ListView(a);list.setTag("reports.list");list.setDividerHeight(a.dp(1));list.setCacheColorHint(android.graphics.Color.TRANSPARENT);body.addView(list,new FrameLayout.LayoutParams(-1,-1));
-        empty=a.text("",14,a.muted);empty.setGravity(Gravity.CENTER);empty.setPadding(a.dp(15),a.dp(20),a.dp(15),a.dp(20));body.addView(empty,new FrameLayout.LayoutParams(-1,-1));list.setEmptyView(empty);
-        more=a.button("再显示80条",v->{visible+=80;adapter.notifyDataSetChanged();updateCount();});list.addFooterView(more);adapter=new ReportAdapter();list.setAdapter(adapter);
-        list.setOnItemClickListener((parent,view,position,id)->{if(position<Math.min(visible,rows.size()))detail(rows.get(position));});root.addView(body,new LinearLayout.LayoutParams(-1,0,1));
+        empty=a.text("",14,a.muted);empty.setGravity(Gravity.CENTER);empty.setPadding(a.dp(8),a.dp(8),a.dp(8),a.dp(8));body.addView(empty,new FrameLayout.LayoutParams(-1,-1));list.setEmptyView(empty);
+        more=a.button("再显示80条",v->{visible+=80;adapter.notifyDataSetChanged();updateCount();});adapter=new ReportAdapter();list.setAdapter(adapter);
+        list.setOnItemClickListener((parent,view,position,id)->{if(position<Math.min(visible,rows.size()))detail(rows.get(position));});root.addView(body,new LinearLayout.LayoutParams(-1,0,1));root.addView(more,new LinearLayout.LayoutParams(-1,a.dp(48)));
         dialog=new AlertDialog.Builder(a).setTitle("战报中心").setView(root).setPositiveButton("返回地图",null).setNeutralButton("刷新",null).create();
         AdapterView.OnItemSelectedListener listener=new AdapterView.OnItemSelectedListener(){public void onNothingSelected(AdapterView<?> parent){}public void onItemSelected(AdapterView<?> p,View v,int pos,long id){refresh();}};
         time.setOnItemSelectedListener(listener);scope.setOnItemSelectedListener(listener);kind.setOnItemSelectedListener(listener);
         search.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void onTextChanged(CharSequence s,int start,int before,int count){refresh();}public void afterTextChanged(Editable e){}});
         int selected=turns.indexOf(preferredTurn);time.setSelection(selected<0?0:selected);
-        dialog.setOnShowListener(v->{int height=Math.max(260,Math.min(720,a.getResources().getConfiguration().screenHeightDp-145));ViewGroup.LayoutParams size=root.getLayoutParams();size.height=a.dp(height);root.setLayoutParams(size);dialog.getWindow().setLayout(a.dp(Math.min(640,a.getResources().getConfiguration().screenWidthDp-16)),-2);dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(view->refresh());refresh();});
+        // Use the actual visible window: rotation and the keyboard change the space for results.
+        ViewTreeObserver.OnGlobalLayoutListener fit=()->{
+            android.graphics.Rect frame=new android.graphics.Rect();root.getWindowVisibleDisplayFrame(frame);
+            boolean compact=frame.height()<a.dp(480);subtitle.setVisibility(compact?View.GONE:View.VISIBLE);
+            int lines=compact?1:2;if(count.getMaxLines()!=lines)count.setMaxLines(lines);
+            int height=Math.max(a.dp(180),Math.min(a.dp(720),frame.height()-a.dp(140)));
+            ViewGroup.LayoutParams size=root.getLayoutParams();if(size!=null&&size.height!=height){size.height=height;root.setLayoutParams(size);}
+        };
+        root.getViewTreeObserver().addOnGlobalLayoutListener(fit);
+        dialog.setOnDismissListener(v->root.getViewTreeObserver().removeOnGlobalLayoutListener(fit));
+        dialog.setOnShowListener(v->{dialog.getButton(AlertDialog.BUTTON_NEUTRAL).setOnClickListener(view->refresh());refresh();fit.onGlobalLayout();});
         dialog.show();a.trackDialog(dialog);dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
     }
     private Spinner spinner(List<String> values){Spinner result=new Spinner(a);ArrayAdapter<String> data=new ArrayAdapter<String>(a,android.R.layout.simple_spinner_item,values){
@@ -63,6 +74,6 @@ final class BattleReportUi {
     private void detail(BattleReports.Entry entry){
         TextView body=a.text(entry.detail,14,a.paper);body.setTextIsSelectable(true);body.setPadding(a.dp(16),a.dp(12),a.dp(16),a.dp(12));ScrollView scroll=new ScrollView(a);scroll.setBackgroundColor(a.ink);scroll.addView(body);
         AlertDialog.Builder builder=new AlertDialog.Builder(a).setTitle(w.reports.date(entry.turn)+" · "+entry.kind.label).setView(scroll).setPositiveButton("返回战报",null);
-        if(entry.location!=null&&w.inside(entry.location))builder.setNeutralButton("定位地图",(d,i)->{if(a.currentWorld(w)){dialog.dismiss();a.selectAndFocus(entry.location);}});builder.show();
+        if(entry.location!=null&&w.inside(entry.location))builder.setNeutralButton("定位地图",(d,i)->{if(a.currentWorld(w)){dialog.dismiss();a.selectAndFocus(entry.location);}});AlertDialog detail=builder.create();detail.setOnDismissListener(v->{if(dialog.isShowing())a.trackDialog(dialog);});detail.show();a.trackDialog(detail);
     }
 }

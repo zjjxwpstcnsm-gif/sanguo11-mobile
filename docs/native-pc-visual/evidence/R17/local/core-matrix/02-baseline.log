@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: unfinished market gives no yield
+	at game.sanguo.core.DomesticTest.check(DomesticTest.java:10)
+	at game.sanguo.core.DomesticTest.building(DomesticTest.java:42)
+	at game.sanguo.core.DomesticTest.main(DomesticTest.java:25)

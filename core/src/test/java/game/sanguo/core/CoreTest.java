@@ -24,7 +24,7 @@ public final class CoreTest {
         World w=DemoScenario.create();FacilityProductionTest.facility(w,0,Domestic.Kind.BARRACKS);byte[] before=SaveCodec.encode(w);
         check(!w.recruit(1,3).ok,"cannot command enemy city");check(Arrays.equals(before,SaveCodec.encode(w)),"invalid command is atomic");
         check(w.recruit(0,0).ok,"recruit");check(w.city(0).troops==14500&&w.city(0).gold==4700&&w.city(0).order==85,"recruit costs and troops");
-        check(!w.train(0,0).ok,"officer cannot act twice");check(w.actionPoints[0]==50,"spent AP exactly once");
+        check(!w.train(0,0).ok,"officer cannot act twice");check(w.actionPoints[0]==40,"native recruit spends20 AP exactly once");
         check(w.deploy(0,1,World.Weapon.CROSSBOW,3000).ok,"deploy second officer");
         check(w.city(0).troops==11500&&w.city(0).food==34000&&w.city(0).equipment[2]==9000,"deployment conserves stores");
         check(w.officer(1).cityId==-1&&w.officer(1).unitId==1,"officer has single location");

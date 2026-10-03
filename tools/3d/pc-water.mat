@@ -1,0 +1,47 @@
+// Supplied422980/422af0 geometry and4844 straight-alpha WFTX sheets.
+material {
+    name : PcSourceCoarseWater,
+    flipUV : false,
+    shadingModel : unlit,
+    blending : transparent,
+    // Caller41db10 disables ZWRITE before422c20 and restores it afterwards.
+    depthWrite : false,
+    doubleSided : true,
+    requires : [color, uv0, uv1],
+    variables : [waterUV],
+    parameters : [
+        { type : sampler2d, name : sheet0 },
+        { type : sampler2d, name : sheet1 },
+        { type : int2, name : clockMS }
+    ]
+}
+vertex {
+    void materialVertex(inout MaterialVertexInputs material) {
+        uint period=uint(material.uv1.y+0.5);
+        uint phase=uint(material.uv1.x+0.5);
+        // Exact integer clock even beyond float's4.6-hour millisecond limit.
+        // Two signed Java int words are interpreted as an unsigned64-bit sum.
+        uint2 clock=uint2(materialParams.clockMS);
+        uint high=(clock.y%period)*(65536u%period)%period;
+        high=high*(65536u%period)%period;
+        uint time=(phase+high+clock.x%period)%period;
+        uint frame=min(63u,(time*64u)/period);
+        float2 uv=material.uv0.xy;
+        float sheet=floor(uv.x*0.5);
+        material.waterUV=float4((float2(float(frame%8u),float(frame/8u))+float2(uv.x-2.0*sheet,uv.y))*0.125,sheet,0.0);
+    }
+}
+fragment {
+    float3 encodedToLinear(float3 color) {
+        return mix(color/12.92,pow((color+0.055)/1.055,float3(2.4)),step(float3(0.04045),color));
+    }
+    void material(inout MaterialInputs material) {
+        prepareMaterial(material);
+        float4 original=variable_waterUV.z<0.5?texture(materialParams_sheet0,variable_waterUV.xy):texture(materialParams_sheet1,variable_waterUV.xy);
+        float alpha=original.a*getColor().a;
+        // Source ALPHAFUNC GREATER0 and SRCALPHA/INVSRCALPHA. Retain fractional
+        // alpha; Filament consumes premultiplied linear display color.
+        if(alpha<=0.0)discard;
+        material.baseColor=float4(encodedToLinear(original.rgb*getColor().rgb)*alpha,alpha);
+    }
+}

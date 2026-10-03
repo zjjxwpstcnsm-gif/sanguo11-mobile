@@ -1,0 +1,12 @@
+{
+  "stage": "R03",
+  "status": "PARTIAL",
+  "inherited_source": "2965bcddd50564f80cb194aa71127767d822dd10",
+  "host_r03": "PASS 12368081",
+  "host_r02": "PASS 399124",
+  "runtime": "PENDING",
+  "ARM64": "NOT_RUN",
+  "PC": "REFERENCE_MISSING",
+  "generator": 3,
+  "assets": "Existing bundled S10-S13 assets retained; no new raster/model files."
+}

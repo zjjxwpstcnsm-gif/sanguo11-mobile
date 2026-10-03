@@ -1,0 +1,272 @@
+{
+  "task": "User feedback after R18: native 3D grid visibility, blocked-cell grid and stepped shoreline",
+  "status": "PARTIAL",
+  "source_sha": "7a6b2a354ad93db30602d59c2632777243d55801",
+  "input_head": "ebef624899c25f381101dfaa095cf4057b7f3d1f",
+  "main": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "branch": "agent/native-pc-visual",
+  "pr": "https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/pull/67",
+  "merged": false,
+  "ci_run": 36425723495,
+  "build_artifact": 10971587883,
+  "apk": {
+    "source_sha": "7a6b2a354ad93db30602d59c2632777243d55801",
+    "apk_sha256": "48ec6ad14cf9f2eefaf020566471dac5292bf3850c33b411262ce89b47f6f185",
+    "bytes": 37387030,
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "matched_assets": 300,
+    "backend": "Filament 1.56.0 OPENGL",
+    "acceptance": "PARTIAL; archive identity is not runtime or art acceptance"
+  },
+  "app_id": "game.sanguo.mobile.dev",
+  "version_code": 117,
+  "version_name": "0.117.0-native-grid-coast",
+  "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+  "build_command": "./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PcandidateSource=7a6b2a354ad93db30602d59c2632777243d55801 -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true",
+  "build_lint": "PASS",
+  "protected_trees": [
+    "core",
+    "game-api",
+    "game-runtime",
+    "data",
+    "unity",
+    "app/src/main/assets"
+  ],
+  "host": {
+    "grid_coast": "PASS 2158535 checks: centre/topology/winding/shared edges/editor mask/SaveCodec",
+    "terrain_surface": "PASS 902230",
+    "terrain_material": "PASS 4978894",
+    "r02": "PASS 399124 (1548 independent mesh/pick samples)",
+    "r05": "PASS 55818",
+    "water_landform": "PASS 803860",
+    "r08": "PASS; frozen v105 whole byte goldens retained",
+    "r01": "PASS",
+    "r12": "PASS 395124",
+    "architecture": "PASS",
+    "core": "inherited FAIL CoreTest.logistics:75 independently reproduced on input and candidate",
+    "legacy_port": "inherited FAIL PortReplayTest.aiDocks:52; independently reproduced from input and candidate, both exit1"
+  },
+  "runtime": {
+    "api29": {
+      "baseline": {
+        "result": "PASS",
+        "message": "PASS GRID_COAST phase=baseline mode=fixture checks=60",
+        "installed_sha256": "4ee59d43b91937bcda35bfc3b7b95ba504ba2bda4d54151d097fff4b5d3d37f7",
+        "save_pair": [
+          {
+            "file": "expected.sg11",
+            "bytes": 2071,
+            "sha256": "c05ceee4eb2712187d6afefb054717c375253aa54b31115f59470e28468f5eed"
+          },
+          {
+            "file": "observed.sg11",
+            "bytes": 2071,
+            "sha256": "c05ceee4eb2712187d6afefb054717c375253aa54b31115f59470e28468f5eed"
+          }
+        ],
+        "save_equal": true,
+        "complete_camera_screens": 12,
+        "frozen_capture": true,
+        "direct_touch_test": false
+      },
+      "candidate": {
+        "result": "PASS",
+        "message": "PASS GRID_COAST phase=candidate mode=fixture checks=763",
+        "installed_sha256": "48ec6ad14cf9f2eefaf020566471dac5292bf3850c33b411262ce89b47f6f185",
+        "save_pair": [
+          {
+            "file": "expected.sg11",
+            "bytes": 2071,
+            "sha256": "c05ceee4eb2712187d6afefb054717c375253aa54b31115f59470e28468f5eed"
+          },
+          {
+            "file": "observed.sg11",
+            "bytes": 2071,
+            "sha256": "c05ceee4eb2712187d6afefb054717c375253aa54b31115f59470e28468f5eed"
+          }
+        ],
+        "save_equal": true,
+        "complete_camera_screens": 12,
+        "frozen_capture": true,
+        "direct_touch_test": false
+      }
+    },
+    "api35": {
+      "baseline": {
+        "result": "PASS",
+        "message": "PASS GRID_COAST phase=baseline mode=fixture checks=163",
+        "installed_sha256": "4ee59d43b91937bcda35bfc3b7b95ba504ba2bda4d54151d097fff4b5d3d37f7",
+        "save_pair": [
+          {
+            "file": "expected.sg11",
+            "bytes": 2071,
+            "sha256": "61824abcf71db3cf36ccd4d51971e4923c8854d64a7f342948aa28b53af7459a"
+          },
+          {
+            "file": "observed.sg11",
+            "bytes": 2071,
+            "sha256": "61824abcf71db3cf36ccd4d51971e4923c8854d64a7f342948aa28b53af7459a"
+          }
+        ],
+        "save_equal": true,
+        "complete_camera_screens": 12,
+        "frozen_capture": true,
+        "direct_touch_test": false
+      },
+      "candidate": {
+        "result": "FAIL",
+        "message": "FAIL GRID_COAST java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=500 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+        "installed_sha256": "48ec6ad14cf9f2eefaf020566471dac5292bf3850c33b411262ce89b47f6f185",
+        "save_pair": [
+          null,
+          null
+        ],
+        "save_equal": null,
+        "complete_camera_screens": 0,
+        "frozen_capture": true,
+        "direct_touch_test": false
+      }
+    },
+    "api35_retry": {
+      "status": "FAIL overall because baseline failed; candidate PASS scoped",
+      "run": 36425723495,
+      "attempt": 2,
+      "job": 108947587742,
+      "artifact": 10971924768,
+      "same_apks": true,
+      "original_ready_seconds": 120,
+      "results": {
+        "baseline": {
+          "result": "FAIL",
+          "message": "FAIL GRID_COAST java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=506 backingCopies=1 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+          "installed_sha256": "4ee59d43b91937bcda35bfc3b7b95ba504ba2bda4d54151d097fff4b5d3d37f7",
+          "save_pair": [
+            null,
+            null
+          ],
+          "save_equal": null,
+          "complete_camera_screens": 0,
+          "direct_touch_test": false
+        },
+        "candidate": {
+          "result": "PASS",
+          "message": "PASS GRID_COAST phase=candidate mode=fixture checks=874",
+          "installed_sha256": "48ec6ad14cf9f2eefaf020566471dac5292bf3850c33b411262ce89b47f6f185",
+          "save_pair": [
+            {
+              "file": "expected.sg11",
+              "bytes": 2071,
+              "sha256": "61824abcf71db3cf36ccd4d51971e4923c8854d64a7f342948aa28b53af7459a"
+            },
+            {
+              "file": "observed.sg11",
+              "bytes": 2071,
+              "sha256": "61824abcf71db3cf36ccd4d51971e4923c8854d64a7f342948aa28b53af7459a"
+            }
+          ],
+          "save_equal": true,
+          "complete_camera_screens": 12,
+          "direct_touch_test": false
+        }
+      }
+    },
+    "national_r05": {
+      "status": "FAIL",
+      "run": 36425727830,
+      "job": 108939084328,
+      "artifact": 10972110417,
+      "source_sha": "7a6b2a354ad93db30602d59c2632777243d55801",
+      "original_ready_seconds": 120,
+      "pending": 29,
+      "submitted": 3,
+      "begin_skipped": 583,
+      "begin_attempts": 586,
+      "downstream": "NOT_RUN; readiness blocked",
+      "recording": "FAIL moov atom missing; not valid playback evidence"
+    },
+    "api35_stability": {
+      "status": "FAIL",
+      "reason": "baseline PASS/candidate FAIL in attempt1; baseline FAIL/candidate PASS in attempt2; both ready failures submitted3/pending2; no stable/no-regression conclusion"
+    }
+  },
+  "visual": {
+    "local_api29_comparison": "PASS scoped to readable grid, blocked mountain mask and valid land/water corner smoothing",
+    "overall_pc_art": "NOT_RUN",
+    "reference": "REFERENCE_MISSING",
+    "limitations": [
+      "VOID contacts and degree-4 junctions pinned; outer boundary staircase can remain",
+      "Finite rounded polygon is not pixel-level AA",
+      "No new material/model assets",
+      "No national matching-camera art pass",
+      "API35 first candidate not ready; retry candidate rendered, baseline then failed; both attempts retained"
+    ],
+    "local_api35_comparison": "PASS scoped screenshot inspection from retry candidate paired with first-attempt baseline; stability remains FAIL"
+  },
+  "notes": [
+    "Normal MainActivity -> MapHost -> FilamentMapView production path",
+    "No next stage initiated; main remains unmerged",
+    "Grid density-aware dual stroke, blocked mask and cached terrain occlusion",
+    "Editor grid deliberately retains all valid cells",
+    "Shared shoreline graph relaxed twice: max axis displacement 0.1875 cell; centres and triangle count fixed",
+    "Canonical attributes transported with geometry; triangle-based picking and scenery anchors updated",
+    "No new models/textures; all 300 assets byte-identical",
+    "Inherited national readiness/full-touch/V1-V4/long-soak/physical gates remain open"
+  ],
+  "baseline_apk": {
+    "source": "140ea58b2ae219960a62ab3ff05bd632a8b6b300",
+    "sha256": "4ee59d43b91937bcda35bfc3b7b95ba504ba2bda4d54151d097fff4b5d3d37f7",
+    "run": 36398907396,
+    "artifact": 10959900061
+  },
+  "source_tree": "754c4999277d3731d7d8462b09a10b2780629b9c",
+  "physical": {
+    "status": "NOT_RUN",
+    "access": "BLOCKED",
+    "job": 108940252059,
+    "error": "unauthorized_client: The given credential is rejected by the attribute condition.",
+    "device_submissions": 0,
+    "quota_preflight": "NOT_RUN",
+    "adreno": "NOT_RUN",
+    "mali": "NOT_RUN",
+    "mixed_30_min": "NOT_RUN"
+  },
+  "full_touch": "NOT_RUN in focused runner; original national R05 blocked before downstream actions",
+  "final_remote_head": "See standalone remote-confirmation.json and PR67 top entry; docs/evidence-only commit differs from APK source",
+  "artifacts": [
+    {
+      "id": 10971587883,
+      "name": "native-grid-coast-build",
+      "sha256": "6ec23d3791b848ad02cd0f8d240d72791f1a59efc9973447ccf031e40741dbd7",
+      "bytes": 32103200
+    },
+    {
+      "id": 10972321139,
+      "name": "native-grid-coast-api29",
+      "sha256": "03f93999b69eddfb06599fc02dcb2aaf7b9f07a31920cb981466c8158f00d573",
+      "bytes": 64261458
+    },
+    {
+      "id": 10972276456,
+      "name": "native-grid-coast-api35 attempt1",
+      "sha256": "97c02b81fd23bedc2d3b68a5b139de34fdd9b26d3eb2b19b722a388ca28e423e",
+      "bytes": 29192892
+    },
+    {
+      "id": 10972110417,
+      "name": "native-r05-evidence",
+      "sha256": "8f30de39bb26db4de940290816866f563e50a5ad06f1b9cb233217348176c5c8",
+      "bytes": 38751601
+    },
+    {
+      "id": 10971924768,
+      "name": "native-grid-coast-api35 attempt2",
+      "sha256": "c2a95886fd7f037c7c5358557c04740430a36adec0427fbe63cb729565482c6d",
+      "bytes": 29198365
+    }
+  ]
+}

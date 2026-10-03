@@ -1,0 +1,73 @@
+{
+  "status": "PARTIAL",
+  "scope": "POISON rendering only",
+  "baseline_commit": "f11ad0bff299dca21d10d1209d14779905fe1978",
+  "compiler": "Filament1.56.0/matc56; -p mobile -a opengl",
+  "authority": "All POISON IDs, map cells, costs/damage/immunity, SaveCodec and rules RNG unchanged",
+  "extra_gpu_cost": {
+    "textures": 0,
+    "samplers": 0,
+    "streams": 0,
+    "draw_calls": 0,
+    "uniform": "float2 poisonGrid"
+  },
+  "integration": "Integrated versioned material loader, VerifiedMaterial and admitted-frame poisonGrid updates; SceneMesh.backdrop uses attachBackdrop to avoid hazard bleed",
+  "evidence_type": "HOST_DIAGNOSTIC_ONLY, not APK or physical GPU proof",
+  "files": [
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/TerrainMaterialField.java",
+      "bytes": 9113,
+      "sha256": "af7c7606630c7b038419311e38bc0da5c0956d8414caa4d2602e650a5689fdd2"
+    },
+    {
+      "path": "tools/3d/ground129.mat",
+      "bytes": 5708,
+      "sha256": "46626cea49ce4c05df01b5a2538c10c00718c747352a57e4f5ab95a930599c95"
+    },
+    {
+      "path": "tools/3d/ground-overview129.mat",
+      "bytes": 5038,
+      "sha256": "af3e4f78357d588fb47ed53eba701f3e37da8713f7597022f81f6a32dec1cab8"
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/v129/ground.filamat",
+      "bytes": 580562,
+      "sha256": "3f78685dc70edc4fc9233136547156d51a53079bf18d1a3c974358dc1ee14f45"
+    },
+    {
+      "path": "app/src/main/assets/3d/terrain/v129/ground-overview.filamat",
+      "bytes": 34685,
+      "sha256": "6d25524f55f25f03ba5d0fc4869095f879efd7987042711a93f20240ac4bc875"
+    },
+    {
+      "path": "tools/3d/build_poison129_materials.sh",
+      "bytes": 530,
+      "sha256": "bc9ac2c9e1f6ae1bc79c0e966dba3321e80ecb39d8626d87c3caef9f301cbecb"
+    },
+    {
+      "path": "tools/3d/review_poison129.py",
+      "bytes": 8268,
+      "sha256": "da7bb947a1def5c01c0fc2346eff10bd46d9ee6949d2d233cd4c7f833fba27fd"
+    },
+    {
+      "path": "app/src/test/java/game/sanguo/mobile/PoisonSpring129Test.java",
+      "bytes": 11309,
+      "sha256": "30cb20861b4727dcf4216e8315ac64b2c0b3518a407de9e50de25f52a631b7a7"
+    },
+    {
+      "path": "app/src/test/java/game/sanguo/mobile/PoisonSpring129Export.java",
+      "bytes": 1640,
+      "sha256": "b396bc1967faca56b943dee79efe30111137304e34a45fc5b5cd8fa25be969ea"
+    }
+  ],
+  "checks": {
+    "PoisonSpring129Test": 1494147,
+    "NativeR04Test": 87689,
+    "NativeR03Test": 12187837,
+    "NativeR05Test": 55818,
+    "WaterLandformTest": 803860,
+    "NativeFeedback122Test": 22031762,
+    "material_recompile": "PASS byte-identical matc56",
+    "old_ground_source_binary": "PASS unchanged"
+  }
+}

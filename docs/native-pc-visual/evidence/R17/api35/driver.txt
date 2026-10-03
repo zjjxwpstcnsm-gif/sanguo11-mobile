@@ -1,0 +1,561 @@
+Build configuration: [sf PRESENT_TIME_OFFSET=0 FORCE_HWC_FOR_RBG_TO_YUV=0 MAX_VIRT_DISPLAY_DIM=0 RUNNING_WITHOUT_SYNC_FRAMEWORK=0 NUM_FRAMEBUFFER_SURFACE_BUFFERS=2]
+
+Display identification data:
+Display 4619827259835644672 (HWC display 0): port=0 pnpId=GGL displayName="EMU_display_0"
+
+Wide-Color information:
+Device supports wide color: 0
+DisplayColorSetting: Managed
+Display 4619827259835644672 color modes:
+    ColorMode::NATIVE (0)
+    Current color mode: ColorMode::NATIVE (0)
+
+Sync configuration: [using: EGL_ANDROID_native_fence_sync]
+
+Scheduler:
+Features
+    PresentFences=false
+    KernelIdleTimer=false
+    ContentDetection=true
+
+Policy
+    pacesetterDisplayId=4619827259835644672
+    layerHistory={size=81, active=3}
+	GameFrameRateOverrides=
+		(uid, gameModeOverride, gameDefaultOverride)=
+    touchTimer=200.000 ms
+    displayPowerTimer=nullopt
+
+FrameRateOverrides=none
+
+           app phase:      1000000 ns	         SF phase:      1000000 ns
+           app duration:  16666666 ns	         SF duration:  15666666 ns
+     early app phase:      1000000 ns	   early SF phase:      1000000 ns
+     early app duration:  16666666 ns	   early SF duration:  15666666 ns
+  GL early app phase:      1000000 ns	GL early SF phase:      1000000 ns
+  GL early app duration:  16666666 ns	GL early SF duration:  15666666 ns
+       HWC min duration:         0 ns
+
+ScreenOff: 0d00:00:00.009
+60.00 Hz: 0d00:00:12.178
+
+Frame Targeting
+    Pacesetter Display 4619827259835644672
+        Total missed frame count: 87
+        HWC missed frame count: 87
+        GPU missed frame count: 0
+
+
+
+debugDisplayModeSetByBackdoor=false
+
+         present offset:         0 ns	        VSYNC period:  16666666 ns
+
+app: state=Idle VSyncState={displayId=4619827259835644672, count=165}
+mWorkDuration=16.67 mReadyDuration=15.67 last vsync time -26.72ms relative to now
+  pending events (count=0):
+  connections (count=20):
+    Connection{0x7cd46a088f90, VSyncRequest::None}
+    Connection{0x7cd46a08af10, VSyncRequest::None}
+    Connection{0x7cd46a0921d0, VSyncRequest::None}
+    Connection{0x7cd46a090d90, VSyncRequest::None}
+    Connection{0x7cd46a087550, VSyncRequest::None}
+    Connection{0x7cd46a088b10, VSyncRequest::None}
+    Connection{0x7cd46a090850, VSyncRequest::None}
+    Connection{0x7cd46a08fb90, VSyncRequest::None}
+    Connection{0x7cd46a08e390, VSyncRequest::None}
+    Connection{0x7cd46a08de50, VSyncRequest::None}
+    Connection{0x7cd46a08ac10, VSyncRequest::None}
+    Connection{0x7cd46a092890, VSyncRequest::None}
+    Connection{0x7cd46a08c1d0, VSyncRequest::None}
+    Connection{0x7cd46a090190, VSyncRequest::None}
+    Connection{0x7cd46a0915d0, VSyncRequest::None}
+    Connection{0x7cd46a08dfd0, VSyncRequest::None}
+    Connection{0x7cd46a090c10, VSyncRequest::None}
+    Connection{0x7cd46a08fe90, VSyncRequest::None}
+    Connection{0x7cd46a08d3d0, VSyncRequest::None}
+    Connection{0x7cd46a08ec90, VSyncRequest::None}
+
+VsyncSchedule for pacesetter 4619827259835644672:
+hwVsyncState=Enabled
+pendingHwVsyncState=Enabled
+
+VsyncController:
+VsyncReactor in use
+Has 0 unfired fences
+mInternalIgnoreFences=0 mExternalIgnoreFences=1
+mMoreSamplesNeeded=1 mPeriodConfirmationInProgress=0
+mModePtrTransitioningTo=nullptr
+No Last HW vsync
+VSyncTracker:
+	mDisplayModePtr={id=0, hwcId=0, resolution=1080x1920, vsyncRate=60.00 Hz, dpi=420.00x420.00, group=0, vrrConfig=N/A}
+	Refresh Rate Map:
+		For ideal period 16.67ms: period = 16.67ms, intercept = 0
+	mTimelines.size()=1
+VsyncDispatch:
+	Timer:
+		DebugState: Waiting
+	mTimerSlack: 0.50ms mMinVsyncDistance: 3.00ms
+	mIntendedWakeupTime: 7.58ms from now
+	mLastTimerCallback: 6.30ms ago mLastTimerSchedule: 2.16ms ago
+	Callbacks:
+		sf:  [wake up in 7.58ms deadline in 23.25ms for vsync 23.25ms from now]
+			workDuration: 15.67ms readyDuration: 0.00ms lastVsync: 6.58ms relative to now
+			mLastDispatchTime: -6.58ms ago
+		app:  
+			workDuration: 16.67ms readyDuration: 15.67ms lastVsync: -43.42ms relative to now
+			mLastDispatchTime: 26.76ms ago
+		appSf:  
+			workDuration: 16.67ms readyDuration: 15.67ms lastVsync: -626.76ms relative to now
+			mLastDispatchTime: 610.09ms ago
+
+SurfaceFlinger New Frontend Enabled:true
+Active Layers - layers with client handles (count = 81)
+
+Composition list
+LayerStack=0
+  Layer [63] Wallpaper BBQ wrapper#63
+    visible reason= buffer=3693671874560 frame=1 color{< 0, 0, 0, 1 >}
+    bounds={-54,-96,2016,1847.9} toDisplayTransform={ scale x=2.0628 y=2.0625  tx=-54.0000 ty=-96.0000 }
+  Layer [92] com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#92
+    visible reason= buffer=4818953306123 frame=7 color{< 0, 0, 0, 1 >}
+    bounds={0,0,1920,1080}
+    input{(DUPLICATE_TOUCH_TO_WALLPAPER) touchableRegion={0,0,1920,1080}}
+  Layer [83] StatusBar#83
+    visible reason= buffer=3693671874564 frame=5 color{< 0, 0, 0, 1 >}
+    bounds={0,0,63,1080}
+    input{(NOT_FOCUSABLE | TRUSTED_OVERLAY) touchableRegion={0,0,63,1080}}
+  Layer [91] Taskbar#91
+    visible reason= buffer=4818953306122 frame=14 color{< 0, 0, 0, 1 >}
+    bounds={0,1794,1920,1080} toDisplayTransform={ tx=0.0000 ty=1794.0000 }
+    input{(NOT_FOCUSABLE | TRUSTED_OVERLAY | SLIPPERY) touchableRegion={0,1794,1920,1080}}
+
+Input list
+LayerStack=0
+  Layer [91] Taskbar#91
+    visible reason= buffer=4818953306122 frame=14 color{< 0, 0, 0, 1 >}
+    bounds={0,1794,1920,1080} toDisplayTransform={ tx=0.0000 ty=1794.0000 }
+    input{(NOT_FOCUSABLE | TRUSTED_OVERLAY | SLIPPERY) touchableRegion={0,1794,1920,1080}}
+  Layer [83] StatusBar#83
+    visible reason= buffer=3693671874564 frame=5 color{< 0, 0, 0, 1 >}
+    bounds={0,0,63,1080}
+    input{(NOT_FOCUSABLE | TRUSTED_OVERLAY) touchableRegion={0,0,63,1080}}
+  Layer [92] com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#92
+    visible reason= buffer=4818953306123 frame=7 color{< 0, 0, 0, 1 >}
+    bounds={0,0,1920,1080}
+    input{(DUPLICATE_TOUCH_TO_WALLPAPER) touchableRegion={0,0,1920,1080}}
+  Layer [97] d97ca7c ActivityRecordInputSink com.android.launcher3/.uioverrides.QuickstepLauncher#97
+    invisible reason=nothing to draw
+    bounds={-10800,-19200,19200,10800}
+    input{(NO_INPUT_CHANNEL | NOT_FOCUSABLE) replaceTouchableRegionWithCrop touchableRegion={-10799,-19199,19200,10800}}
+  Layer [62] com.android.systemui.wallpapers.ImageWallpaper#62
+    invisible reason=nothing to draw
+    bounds={-10800,-19200,19200,10800} toDisplayTransform={ scale x=2.0628 y=2.0625  tx=-54.0000 ty=-96.0000 }
+    input{(NOT_FOCUSABLE | NOT_TOUCHABLE | PREVENT_SPLITTING | IS_WALLPAPER) touchableRegion={-53,-95,-95,-53}}
+
+Layer Hierarchy
+ ROOT
+ ├─ Display 0 name="Built-in Screen"#41
+ │  ├─ WindowedMagnification:0:31#1
+ │  │  ├─ HideDisplayCutout:0:14#2
+ │  │  │  └─ OneHanded:0:14#3
+ │  │  │     ├─ FullscreenMagnification:0:12#4
+ │  │  │     │  ├─ Leaf:0:1#5
+ │  │  │     │  │  └─ WallpaperWindowToken{171f256 token=android.os.Binder@c073471}#60
+ │  │  │     │  │     └─ dfffcb com.android.systemui.wallpapers.ImageWallpaper#61
+ │  │  │     │  │        └─ com.android.systemui.wallpapers.ImageWallpaper#62
+ │  │  │     │  │           └─ Wallpaper BBQ wrapper#63
+ │  │  │     │  ├─ DefaultTaskDisplayArea#6
+ │  │  │     │  │  ├─ Task=1#45
+ │  │  │     │  │  │  ├─ Task=7#85
+ │  │  │     │  │  │  │  └─ ActivityRecord{13b2f05 u0 com.androi[...]r3/.uioverrides.QuickstepLauncher#86
+ │  │  │     │  │  │  │     ├─ d97ca7c ActivityRecordInputSink com.[...]r3/.uioverrides.QuickstepLauncher#97
+ │  │  │     │  │  │  │     ├─ f7fb193 com.android.launcher3/com.an[...]er3.uioverrides.QuickstepLauncher#89
+ │  │  │     │  │  │  │     │  ├─ com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#92
+ │  │  │     │  │  │  │     │  └─ (Relative) ImeContainer#9 parent=86
+ │  │  │     │  │  │  │     │     └─ WindowToken{bc1b28 type=2011 android.os.Binder@384154b}#77
+ │  │  │     │  │  │  │     │        └─ Surface(name=261e6ef InputMethod)/@0[...]imation-leash of insets_animation#99
+ │  │  │     │  │  │  │     │           └─ 261e6ef InputMethod#80
+ │  │  │     │  │  │  ├─ Task=5#54
+ │  │  │     │  │  │  └─ home_task_overlay_container#46
+ │  │  │     │  │  └─ Task=2#47
+ │  │  │     │  │     ├─ Task=3#48
+ │  │  │     │  │     │  └─ Dim layer#52
+ │  │  │     │  │     └─ Task=4#49
+ │  │  │     │  │        └─ Dim layer#53
+ │  │  │     │  └─ Leaf:3:12#7
+ │  │  │     │     └─ WindowToken{689e121 type=2038 android.os.BinderProxy@befaa17}#50
+ │  │  │     │        └─ 2442a6e ShellDropTarget#51
+ │  │  │     └─ ImePlaceholder:13:14#8
+ │  │  ├─ OneHanded:15:15#10
+ │  │  │  └─ FullscreenMagnification:15:15#11
+ │  │  │     └─ Leaf:15:15#12
+ │  │  │        └─ WindowToken{fd56f92 type=2000 android.os.BinderProxy@ba525f4}#70
+ │  │  │           └─ Surface(name=2cb2d63 StatusBar)/@0x9[...]imation-leash of insets_animation#93
+ │  │  │              └─ 2cb2d63 StatusBar#71
+ │  │  │                 └─ StatusBar#83
+ │  │  ├─ HideDisplayCutout:16:16#13
+ │  │  │  └─ OneHanded:16:16#14
+ │  │  │     └─ FullscreenMagnification:16:16#15
+ │  │  │        └─ Leaf:16:16#16
+ │  │  ├─ OneHanded:17:17#17
+ │  │  │  └─ FullscreenMagnification:17:17#18
+ │  │  │     └─ Leaf:17:17#19
+ │  │  │        └─ WindowToken{21f0173 type=2040 android.os.BinderProxy@4d5c2ad}#68
+ │  │  │           └─ ede41cf NotificationShade#69
+ │  │  ├─ HideDisplayCutout:18:23#20
+ │  │  │  └─ OneHanded:18:23#21
+ │  │  │     └─ FullscreenMagnification:18:23#22
+ │  │  │        └─ Leaf:18:23#23
+ │  │  ├─ Leaf:24:25#24
+ │  │  │  └─ WindowToken{82dda9b type=2019 android.os.BinderProxy@725d072}#87
+ │  │  │     └─ Surface(name=bc8194c Taskbar)/@0x129[...]imation-leash of insets_animation#94
+ │  │  │        └─ bc8194c Taskbar#88
+ │  │  │           └─ Taskbar#91
+ │  │  └─ HideDisplayCutout:26:31#25
+ │  │     └─ OneHanded:26:31#26
+ │  │        ├─ FullscreenMagnification:26:27#27
+ │  │        │  └─ Leaf:26:27#28
+ │  │        ├─ Leaf:28:28#29
+ │  │        └─ FullscreenMagnification:29:31#30
+ │  │           └─ Leaf:29:31#31
+ │  ├─ HideDisplayCutout:32:35#32
+ │  │  ├─ OneHanded:32:32#33
+ │  │  │  └─ Leaf:32:32#34
+ │  │  ├─ FullscreenMagnification:33:33#35
+ │  │  │  └─ Leaf:33:33#36
+ │  │  └─ OneHanded:34:35#37
+ │  │     └─ FullscreenMagnification:34:35#38
+ │  │        └─ Leaf:34:35#39
+ │  ├─ Leaf:36:36#40
+ │  ├─ Accessibility Overlays#44
+ │  ├─ Input Overlays#43
+ │  └─ Display Overlays#42
+ ├─ Input Consumer recents_animation_input_consumer#84
+ ├─ WindowToken{10e9d43 type=2024 android.os.BinderProxy@10332f2}#64
+ │  └─ bf58fc0 ScreenDecorOverlay#65
+ └─ WindowToken{5b06608 type=2024 android.os.BinderProxy@4813fab}#66
+    └─ d6211a1 ScreenDecorOverlayBottom#67
+Offscreen Hierarchy
+ ROOT
+
+Display 4619827259835644672 (active) HWC layers:
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Layer name
+           Z |  Window Type |  Comp Type |  Transform |   Disp Frame (LTRB) |          Source Crop (LTRB) |     Frame Rate (Explicit) (Seamlessness) [Focused]
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Wallpaper BBQ wrapper#63
+           1 |            0 |     DEVICE |          0 |    0    0 1080 1920 |   26.0   47.0  550.0  977.0 |                                              [ ]
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+ com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#92
+           3 |            1 |     DEVICE |          0 |    0    0 1080 1920 |    0.0    0.0 1080.0 1920.0 |                                              [*]
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+ StatusBar#83
+           4 |         2000 |     DEVICE |          0 |    0    0 1080   63 |    0.0    0.0 1080.0   63.0 |                                              [ ]
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Taskbar#91
+           5 |         2019 |     DEVICE |          0 |    0 1794 1080 1920 |    0.0    0.0 1080.0  126.0 |                                              [ ]
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Displays (1 entries)
+Display 4619827259835644672
+    connectionType=Internal
+    colorModes=
+        ColorMode::NATIVE
+    deviceProductInfo={name="EMU_display_0", manufacturerPnpId=GGL, productId=1, manufactureWeek=27, manufactureYear=2006, relativeAddress=[]}
+    name="EMU_display_0"
+    powerMode=On
+    renderRate=60.00 Hz
+    activeMode={id=0, hwcId=0, resolution=1080x1920, vsyncRate=60.00 Hz, dpi=420.00x420.00, group=0, vrrConfig=N/A}
+    displayModes=
+        {id=0, hwcId=0, resolution=1080x1920, vsyncRate=60.00 Hz, dpi=420.00x420.00, group=0, vrrConfig=N/A}
+    displayManagerPolicy={defaultModeId=0, allowGroupSwitching=false, primaryRanges={physical=[0.00 Hz, inf Hz], render=[0.00 Hz, 60.00 Hz]}, appRequestRanges={physical=[0.00 Hz, inf Hz], render=[0.00 Hz, inf Hz]} idleScreenConfig=nullptr}
+    frameRateOverrideConfig=Enabled
+    idleTimer=
+        interval=nullopt
+        controller=Platform
+
+Display 4619827259835644672 (physical, "EMU_display_0")
+   Composition Display State:
+   isEnabled=true isSecure=true usesDeviceComposition=true 
+   usesClientComposition=false flipClientTarget=false reusedClientComposition=false 
+   layerFilter={layerStack=0 toInternalDisplay=true }
+   transform (ROT_0) (IDENTITY)
+   layerStackSpace=ProjectionSpace{bounds=Rect(0, 0, 1080, 1920), content=Rect(0, 0, 1080, 1920), orientation=ROTATION_0} 
+   framebufferSpace=ProjectionSpace{bounds=Rect(0, 0, 1080, 1920), content=Rect(0, 0, 1080, 1920), orientation=ROTATION_0} 
+   orientedDisplaySpace=ProjectionSpace{bounds=Rect(0, 0, 1080, 1920), content=Rect(0, 0, 1080, 1920), orientation=ROTATION_0} 
+   displaySpace=ProjectionSpace{bounds=Rect(0, 0, 1080, 1920), content=Rect(0, 0, 1080, 1920), orientation=ROTATION_0} 
+   needsFiltering=false 
+   colorMode=NATIVE (0) renderIntent=COLORIMETRIC (0) dataspace=UNKNOWN (0) 
+   colorTransformMatrix=[[1.000,0.000,0.000,0.000][0.000,1.000,0.000,0.000][0.000,0.000,1.000,0.000][0.000,0.000,0.000,1.000]] 
+   displayBrightnessNits=-1.000000 sdrWhitePointNits=-1.000000 clientTargetBrightness=1.000000 displayBrightness=nullopt 
+   compositionStrategyPredictionState=DISABLED 
+   
+   treat170mAsSrgb=false 
+
+   Composition Display Color State:
+   HWC Support: wideColorGamut=false hdr10plus=false hdr10=false hlg=false dv=false metadata=0 
+   Hdr Luminance Info:desiredMinLuminance=0.000000 desiredMaxLuminance=500.000000 desiredMaxAverageLuminance=500.000000 
+
+   Composition RenderSurface State:
+   size=[1080 1920] ANativeWindow=0x7cd45a090440 (format 1) 
+   FramebufferSurface
+      mDataspace=Default (0)
+      mAbandoned=0
+      - BufferQueue mMaxAcquiredBufferCount=1 mMaxDequeuedBufferCount=1
+        mDequeueBufferCannotBlock=0 mAsyncMode=0
+        mQueueBufferCanDrop=0 mLegacyBufferDrop=1
+        default-size=[1080x1920] default-format=1         transform-hint=00 frame-counter=0
+        mTransformHintInUse=00 mAutoPrerotation=0
+      FIFO(0):
+      (mConsumerName=FramebufferSurface, mConnectedApi=1, mConsumerUsageBits=6656, mId=19b00000000, producer=[411:/system/bin/surfaceflinger], consumer=[411:/system/bin/surfaceflinger])
+      Slots:
+        [01:0x7cd56a088890] state=FREE     0x7cd55a08f4b0 frame=0 [1080x1920:   0,  1]
+        [00:0x7cd56a087210] state=FREE     0x7cd55a08fdb0 frame=0 [1080x1920:   0,  1]
+
+   4 Layers
+  - Output Layer 0x7cd5ca095a00(Wallpaper BBQ wrapper#63)
+        Region visibleRegion (this=0x7cd5ca095a18, count=1)
+    [-53, -95, 1848, 2016]
+        Region visibleNonTransparentRegion (this=0x7cd5ca095a80, count=1)
+    [-53, -95, 1848, 2016]
+        Region coveredRegion (this=0x7cd5ca095ae8, count=1)
+    [  0,   0, 1080, 1920]
+        Region output visibleRegion (this=0x7cd5ca095bc0, count=1)
+    [  0,   0, 1080, 1920]
+        Region shadowRegion (this=0x7cd5ca095c28, count=1)
+    [  0,   0,   0,   0]
+        Region outputSpaceBlockingRegionHint (this=0x7cd5ca095cc0, count=1)
+    [  0,   0,   0,   0]
+      forceClientComposition=false clearClientTarget=false displayFrame=[0 0 1080 1920] sourceCrop=[26.000000 47.000000 550.000000 977.000000] bufferTransform=0 (0) dataspace=V0_SRGB (142671872) whitePointNits=-1.000000 dimmingRatio=1.000000 override buffer=0x0 override acquire fence=0x0 override display frame=[0 0 -1 -1] override dataspace=UNKNOWN (0) override display space=ProjectionSpace{bounds=Rect(0, 0, -1, -1), content=Rect(0, 0, -1, -1), orientation=ROTATION_0} override damage region=  Region  (this=0x7cd5ca095d70, count=1)
+    [  0,   0,  -1,  -1]
+ override visible region=  Region  (this=0x7cd5ca095dd8, count=1)
+    [  0,   0,   0,   0]
+ override peekThroughLayer=0x0 override disableBackgroundBlur=false 
+      hwc: layer=0x088 composition=DEVICE (2) 
+  - Output Layer 0x7cd5ca0a2e70(com.android.launcher3/com.android.launcher3.uioverrides.QuickstepLauncher#92)
+        Region visibleRegion (this=0x7cd5ca0a2e88, count=1)
+    [  0,   0, 1080, 1920]
+        Region visibleNonTransparentRegion (this=0x7cd5ca0a2ef0, count=1)
+    [  0,   0, 1080, 1920]
+        Region coveredRegion (this=0x7cd5ca0a2f58, count=2)
+    [  0,   0, 1080,  63]
+    [  0, 1794, 1080, 1920]
+        Region output visibleRegion (this=0x7cd5ca0a3030, count=1)
+    [  0,   0, 1080, 1920]
+        Region shadowRegion (this=0x7cd5ca0a3098, count=1)
+    [  0,   0,   0,   0]
+        Region outputSpaceBlockingRegionHint (this=0x7cd5ca0a3130, count=1)
+    [  0,   0,   0,   0]
+      forceClientComposition=false clearClientTarget=false displayFrame=[0 0 1080 1920] sourceCrop=[0.000000 0.000000 1080.000000 1920.000000] bufferTransform=0 (0) dataspace=V0_SRGB (142671872) whitePointNits=-1.000000 dimmingRatio=1.000000 override buffer=0x0 override acquire fence=0x0 override display frame=[0 0 -1 -1] override dataspace=UNKNOWN (0) override display space=ProjectionSpace{bounds=Rect(0, 0, -1, -1), content=Rect(0, 0, -1, -1), orientation=ROTATION_0} override damage region=  Region  (this=0x7cd5ca0a31e0, count=1)
+    [  0,   0,  -1,  -1]
+ override visible region=  Region  (this=0x7cd5ca0a3248, count=1)
+    [  0,   0,   0,   0]
+ override peekThroughLayer=0x0 override disableBackgroundBlur=false 
+      hwc: layer=0x087 composition=DEVICE (2) 
+  - Output Layer 0x7cd5ca0a1b20(StatusBar#83)
+        Region visibleRegion (this=0x7cd5ca0a1b38, count=1)
+    [  0,   0, 1080,  63]
+        Region visibleNonTransparentRegion (this=0x7cd5ca0a1ba0, count=1)
+    [  0,   0, 1080,  63]
+        Region coveredRegion (this=0x7cd5ca0a1c08, count=1)
+    [  0,   0,   0,   0]
+        Region output visibleRegion (this=0x7cd5ca0a1ce0, count=1)
+    [  0,   0, 1080,  63]
+        Region shadowRegion (this=0x7cd5ca0a1d48, count=1)
+    [  0,   0,   0,   0]
+        Region outputSpaceBlockingRegionHint (this=0x7cd5ca0a1de0, count=1)
+    [  0,   0,   0,   0]
+      forceClientComposition=false clearClientTarget=false displayFrame=[0 0 1080 63] sourceCrop=[0.000000 0.000000 1080.000000 63.000000] bufferTransform=0 (0) dataspace=UNKNOWN (0) whitePointNits=-1.000000 dimmingRatio=1.000000 override buffer=0x0 override acquire fence=0x0 override display frame=[0 0 -1 -1] override dataspace=UNKNOWN (0) override display space=ProjectionSpace{bounds=Rect(0, 0, -1, -1), content=Rect(0, 0, -1, -1), orientation=ROTATION_0} override damage region=  Region  (this=0x7cd5ca0a1e90, count=1)
+    [  0,   0,  -1,  -1]
+ override visible region=  Region  (this=0x7cd5ca0a1ef8, count=1)
+    [  0,   0,   0,   0]
+ override peekThroughLayer=0x0 override disableBackgroundBlur=false 
+      hwc: layer=0x085 composition=DEVICE (2) 
+  - Output Layer 0x7cd5ca0946b0(Taskbar#91)
+        Region visibleRegion (this=0x7cd5ca0946c8, count=1)
+    [  0, 1794, 1080, 1920]
+        Region visibleNonTransparentRegion (this=0x7cd5ca094730, count=1)
+    [  0, 1794, 1080, 1920]
+        Region coveredRegion (this=0x7cd5ca094798, count=1)
+    [  0,   0,   0,   0]
+        Region output visibleRegion (this=0x7cd5ca094870, count=1)
+    [  0, 1794, 1080, 1920]
+        Region shadowRegion (this=0x7cd5ca0948d8, count=1)
+    [  0,   0,   0,   0]
+        Region outputSpaceBlockingRegionHint (this=0x7cd5ca094970, count=1)
+    [  0,   0,   0,   0]
+      forceClientComposition=false clearClientTarget=false displayFrame=[0 1794 1080 1920] sourceCrop=[0.000000 0.000000 1080.000000 126.000000] bufferTransform=0 (0) dataspace=V0_SRGB (142671872) whitePointNits=-1.000000 dimmingRatio=1.000000 override buffer=0x0 override acquire fence=0x0 override display frame=[0 0 -1 -1] override dataspace=UNKNOWN (0) override display space=ProjectionSpace{bounds=Rect(0, 0, -1, -1), content=Rect(0, 0, -1, -1), orientation=ROTATION_0} override damage region=  Region  (this=0x7cd5ca094a20, count=1)
+    [  0,   0,  -1,  -1]
+ override visible region=  Region  (this=0x7cd5ca094a88, count=1)
+    [  0,   0,   0,   0]
+ override peekThroughLayer=0x0 override disableBackgroundBlur=false 
+      hwc: layer=0x084 composition=DEVICE (2) 
+
+
+SurfaceFlinger global state:
+
+ ------------RE GLES------------
+EGL implementation : 1.4 Android META-EGL
+EGL_ANDROID_front_buffer_auto_refresh EGL_ANDROID_get_native_client_buffer EGL_ANDROID_presentation_time EGL_EXT_surface_CTA861_3_metadata EGL_EXT_surface_SMPTE2086_metadata EGL_KHR_get_all_proc_addresses EGL_KHR_swap_buffers_with_damage EGL_ANDROID_get_frame_timestamps EGL_ANDROID_image_native_buffer EGL_ANDROID_native_fence_sync EGL_ANDROID_recordable EGL_KHR_create_context EGL_KHR_fence_sync EGL_KHR_gl_texture_2D_image EGL_KHR_image EGL_KHR_image_base 
+GLES: Google (Google Inc. (Google)), Android Emulator OpenGL ES Translator (ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver-5.0.0)), OpenGL ES 3.1 (OpenGL ES 3.1.0 (ANGLE 2.1.17841 git hash: 5fa2e61da947))
+GL_EXT_debug_marker GL_EXT_robustness GL_OES_EGL_sync GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_depth24 GL_OES_depth32 GL_OES_element_index_uint GL_OES_texture_float GL_OES_texture_float_linear GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth_texture GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_packed_depth_stencil GL_OES_vertex_half_float GL_OES_standard_derivatives GL_OES_texture_npot GL_OES_rgb8_rgba8 GL_OVR_multiview2 GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_texture_format_BGRA8888 GL_APPLE_texture_format_BGRA8888 GL_EXT_draw_buffers_indexed GL_EXT_clip_cull_distance ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_has_shared_slots_host_memory_allocator ANDROID_EMU_vulkan_free_memory_sync ANDROID_EMU_vulkan_shader_float16_int8 ANDROID_EMU_vulkan_async_queue_submit ANDROID_EMU_vulkan_queue_submit_with_commands ANDROID_EMU_sync_buffer_data ANDROID_EMU_vulkan_async_qsri ANDROID_EMU_read_color_buffer_dma ANDROID_EMU_hwc_multi_configs ANDROID_EMU_hwc_color_transform GL_OES_EGL_image_external_essl3 GL_OES_vertex_array_object GL_KHR_texture_compression_astc_ldr ANDROID_EMU_host_side_tracing ANDROID_EMU_gles_max_version_3_1 
+RenderEngine supports protected context: 0
+RenderEngine is in protected context: 0
+RenderEngine shaders cached since last dump/primeCache: 122
+Skia CPU Caches:  0 bytes, 0.00 bytes (0.00 bytes is purgeable)
+Skia's GPU Caches:  1354436 bytes, 1.29 MB (810.57 KB is purgeable)
+  Texture/RenderBuffer: 712.00 KB (4 entries)
+    skia/gpu_resources/resource_159/texture_renderbuffer: size[640.00 KB] purgeable_size[640.00 KB] type[RenderTarget] label[TextureRenderTarget_FullyLazyProxy] category[Scratch]
+    skia/gpu_resources/resource_19/texture_renderbuffer: size[4.00 KB] purgeable_size[4.00 KB] type[RenderTarget] label[ResourceAllocatorRegister] category[Scratch]
+    skia/gpu_resources/resource_18/texture_renderbuffer: size[4.00 KB] purgeable_size[4.00 KB] type[RenderTarget] label[ResourceAllocatorRegister] category[Scratch]
+    skia/gpu_resources/resource_17/texture_renderbuffer: size[64.00 KB] purgeable_size[64.00 KB] type[RenderTarget] label[MakeDevice] category[Scratch]
+  Texture: 32.19 KB (3 entries)
+    skia/gpu_resources/resource_42/texture: size[64.00 bytes] purgeable_size[64.00 bytes] type[Texture] label[ProxyProvider_CreateNonMippedProxyFromBitmap] category[Image]
+    skia/gpu_resources/resource_3/texture: size[32.00 KB] purgeable_size[32.00 KB] type[Texture] label[] category[Scratch]
+    skia/gpu_resources/resource_11/texture: size[128.00 bytes] type[Texture] label[ProxyProvider_CreateNonMippedProxyFromBitmap] category[Scratch]
+  Other: 578.50 KB (7 entries)
+    skia/gpu_resources/resource_4: size[32.00 KB] purgeable_size[32.00 KB] type[Buffer Object] label[MakeGlBuffer] category[Scratch]
+    skia/gpu_resources/resource_6: size[1.88 KB] purgeable_size[1.88 KB] type[Buffer Object] label[MakeGlBuffer] category[Other]
+    skia/gpu_resources/resource_161: size[192.00 bytes] purgeable_size[192.00 bytes] type[Buffer Object] label[MakeGlBuffer] category[Other]
+    skia/gpu_resources/resource_5: size[180.00 bytes] purgeable_size[180.00 bytes] type[Buffer Object] label[MakeGlBuffer] category[Other]
+    skia/gpu_resources/resource_160: size[272.00 bytes] purgeable_size[272.00 bytes] type[Buffer Object] label[MakeGlBuffer] category[Other]
+    skia/gpu_resources/resource_162: size[512.00 KB] type[StencilAttachment] label[GLAttachmentMakeStencil] category[Other]
+    skia/gpu_resources/resource_12: size[32.00 KB] purgeable_size[32.00 KB] type[Buffer Object] label[MakeGlBuffer] category[Scratch]
+Skia's Wrapped Objects:
+RenderEngine tracked buffers: 10
+Dumping buffer ids...
+- 0x4620000000c - 1 refs 
+- 0x4620000000d - 1 refs 
+- 0x35c00000004 - 1 refs 
+- 0x4620000000b - 1 refs 
+- 0x4620000000a - 1 refs 
+- 0x35c00000003 - 1 refs 
+- 0x46200000009 - 1 refs 
+- 0x35c00000002 - 1 refs 
+- 0x35c00000000 - 1 refs 
+- 0x46200000008 - 1 refs 
+RenderEngine AHB/BackendTexture cache size: 10
+Dumping buffer ids...
+- 0x4620000000c
+- 0x4620000000d
+- 0x35c00000004
+- 0x4620000000b
+- 0x4620000000a
+- 0x35c00000003
+- 0x46200000009
+- 0x35c00000002
+- 0x35c00000000
+- 0x46200000008
+
+Skia's GPU Protected Caches:  0 bytes, 0.00 bytes (0.00 bytes is purgeable)
+Skia's Protected Wrapped Objects:
+
+RenderEngine runtime effects: 5
+- inputDataspace: (deprecated) sRGB sRGB Full range
+- outputDataspace: DCI-P3 sRGB Full range
+undoPremultipliedAlpha: true
+- inputDataspace: (deprecated) sRGB sRGB Full range
+- outputDataspace: (deprecated) sRGB sRGB Full range
+undoPremultipliedAlpha: true
+- inputDataspace: (deprecated) sRGB sRGB Full range
+- outputDataspace: (deprecated) sRGB sRGB Full range
+undoPremultipliedAlpha: false
+- inputDataspace: (deprecated) sRGB sRGB Full range
+- outputDataspace: DCI-P3 sRGB Full range
+undoPremultipliedAlpha: false
+- inputDataspace: Default
+- outputDataspace: (deprecated) sRGB sRGB Full range
+undoPremultipliedAlpha: false
+
+ClientCache state:
+ Cache owner: 0x7cd4ba0a52e0
+ Cache owner: 0x7cd4ba0a6570
+	ID: 3693671874563, size: 1080x63
+	ID: 3693671874564, size: 1080x63
+	ID: 3693671874562, size: 1080x63
+	ID: 3693671874560, size: 922x1024
+ Cache owner: 0x7cd4ba0aa4b0
+ Cache owner: 0x7cd4ba0ab110
+	ID: 4818953306124, size: 1080x1920
+	ID: 4818953306123, size: 1080x1920
+	ID: 4818953306121, size: 1080x126
+	ID: 4818953306122, size: 1080x126
+	ID: 4818953306125, size: 1080x1920
+	ID: 4818953306120, size: 1080x126
+  Region undefinedRegion (this=0x7cd4aa095518, count=1)
+    [  0,   0, 1080, 1920]
+  orientation=ROTATION_0, isPoweredOn=1
+  transaction-flags         : 00000010
+  peak-refresh-rate         : 60.00 Hz
+  x-dpi                     : 420.00
+  y-dpi                     : 420.00
+  transaction time: 0.000000 us
+
+Transaction tracing: enabled
+  queued transactions=0 created layers=0 states=0
+  number of entries: 89 (0.02MB / 0.50MB) duration: 8409ms
+
+Planner is disabled
+h/w composer state:
+  h/w composer enabled
+android.hardware.graphics.composer3.IComposer version:3 hash:d24fcd9648b8b2e7287f9238eee9180244612c10TODOOverlayProperties:
+supportMixedColorSpaces: 0
+SupportedBufferCombinations(0 entries)
+GraphicBufferAllocator buffers:
+        Handle |        Size |     W (Stride) x H | Layers |   Format |      Usage | Requestor
+0x7cd55a08f4b0 |     unknown | 1080 (   0) x 1920 |      1 |        1 | 0x    1b00 | FramebufferSurface
+0x7cd55a08fdb0 |     unknown | 1080 (   0) x 1920 |      1 |        1 | 0x    1b00 | FramebufferSurface
+Total allocated by GraphicBufferAllocator (estimate): 0.00 KB
+GoldfishAllocator::dumpDebugInfo is not implementedFlagManager values: 
+use_adpf_cpu_hint: false
+use_skia_tracing: false
+refresh_rate_overlay_on_external_display: false
+adpf_gpu_sf: true
+adpf_use_fmq_channel: true
+connected_display: true
+enable_small_area_detection: true
+frame_rate_category_mrr: false
+misc1: true
+vrr_config: true
+hotplug2: true
+hdcp_level_hal: false
+multithreaded_present: true
+add_sf_skipped_frames_to_trace: true
+use_known_refresh_rate_for_fps_consistency: false
+cache_when_source_crop_layer_only_moved: false
+enable_fro_dependent_features: true
+display_protected: true
+fp16_client_target: false
+game_default_frame_rate: true
+enable_layer_command_batching: true
+screenshot_fence_preservation: true
+vulkan_renderengine: false
+renderable_buffer_usage: false
+vrr_bugfix_24q4: false
+restore_blur_step: true
+dont_skip_on_early_ro: true
+protected_if_client: true
+ce_fence_promise: true
+idle_screen_refresh_rate_timeout: true
+graphite_renderengine: false
+latch_unsignaled_with_auto_refresh_changed: true
+deprecate_vsync_sf: false
+allow_n_vsyncs_in_targeter: false
+detached_mirror: true
+commit_not_composited: false
+local_tonemap_screenshots: false
+override_trusted_overlay: true
+flush_buffer_slots_to_uncache: true
+force_compile_graphite_renderengine: false
+single_hop_screenshot: true
+trace_frame_rate_override: false
+TimeStats miniDump:
+Number of layers currently being tracked is 0
+Number of layers in the stats pool is 0
+
+Window Infos:
+  max send vsync id: -1
+  max send delay (ns): 0 ns
+  unsent messages: 0
+

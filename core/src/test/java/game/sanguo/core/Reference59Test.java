@@ -116,7 +116,7 @@ public final class Reference59Test {
             }
         }
         w.cities.clear();w.cities.add(port);port.owner=0;w.campaign.learned.clear();w.terrain[to.q][to.r]=World.Terrain.WATER;
-        for(World.Terrain gated:new World.Terrain[]{World.Terrain.MOUNTAIN_PATH,World.Terrain.SHALLOWS}){
+        for(World.Terrain gated:new World.Terrain[]{World.Terrain.MOUNTAIN_PATH,World.Terrain.SHALLOWS,World.Terrain.PLANK_ROAD}){
             w.terrain[from.q][from.r]=gated;
             check(w.army.moveCost(u,to,from)<0,"owned dock does not bypass difficult-march research "+gated);
         }

@@ -1,0 +1,19 @@
+UIUX PASS 16 checks
+PASS normal launch restores existing save
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 新游戏 / 选择势力 at Rect(53, 1053 - 1027, 1179)
+PASS touch visible 190 讨伐董卓 · 重建
+87 据点 · 656 武将 · 18 势力 at Rect(49, 651 - 1031, 819)
+PASS touch visible 2D/3D at Rect(854, 84 - 1054, 210)
+PASS native renderer prepares behind visible original-map curtain
+PASS touch visible View at Rect(26, 279 - 1054, 994)
+PASS loading shield consumes map touch without choosing a target or changing authority
+PASS touch visible 取消加载 at Rect(760, 321 - 1012, 447)
+PASS cancel loading releases native renderer and retains 2D
+PASS touch visible 2D/3D at Rect(854, 84 - 1054, 210)
+PASS real native surface verification removes loading curtain after pause/resume
+PASS native output was measured, not assumed ready
+PASS touch visible 取消 at Rect(1279, 880 - 1447, 1006)
+PASS closing loaded preview releases resources and preserves campaign/RNG
+

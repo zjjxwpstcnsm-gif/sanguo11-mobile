@@ -1,0 +1,382 @@
+{
+  "schema": 1,
+  "source_executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "evidence": {
+    "loader": "43b9b5 ctor480830 ->480d50 then4937b0",
+    "metadata": "480ca0..480d49: actor4 id,8 year,c month,10 day,14 name17,25 description363",
+    "metadata_tail": "480d50 city metadata42 records retained without guessing field meanings",
+    "original_boundaries": [
+      90,
+      16183,
+      16194,
+      17760
+    ],
+    "grid": "4937ee..493812 executes16384 original receiver serializers, consumes1566 bytes",
+    "scalar_versions": "file24/28 -> stream58/5c; header90 derived from43b330"
+  },
+  "limits": [
+    "Installed metadata only; launcher/MOD activation unresolved",
+    "Grid1566-byte payload and city metadata fields retained; meanings not inferred",
+    "No gameplay resource overwritten, no Wine, no PC installation writes"
+  ],
+  "sources": [
+    {
+      "path": "Media/scenario/Scen000.s11",
+      "sha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 0,
+        "date": [
+          184,
+          1,
+          1
+        ],
+        "name": "黃巾之亂",
+        "description": "漢王朝因宦官的弄權與外戚的干政而日漸腐敗。在如此混亂的世局下，大賢良師•張角率領其信徒們揭竿而起，史稱黃巾之亂。朝廷皆獲此報後，任皇后之兄•何進為大將軍，並出兵討伐黃巾黨。而亂世，也自此揭開了序幕。",
+        "name_bytes": "b6c0a479a4a7b6c3",
+        "description_bytes": "ba7ea4fdb4c2a65dabc6a978aabaa7cbc576bb50a57eb1adaabaa47aac46a6d3a4e9baa5bb47b1d1a143a662a670a6b9b256b6c3aabaa540a7bda455a141a46abde5a87dae76a145b169a8a4b276bbe2a8e4ab48ae7badccb4a6acf1a6d3b05fa141a576bad9b6c0a479a4a7b6c3a143b4c2a7caacd2c0f2a6b9b3f8abe1a141a5f4acd3a65aa4a7a553a145a6f3b669acb0a46ab14ead78a141a8c3a558a74cb051a5efb6c0a479c4d2a143a6d3b6c3a540a141a45da6dba6b9b4a6b67da446a7c7b9f5a143"
+      }
+    },
+    {
+      "path": "Media/scenario/SCEN001.S11",
+      "sha256": "aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 1,
+        "date": [
+          190,
+          1,
+          1
+        ],
+        "name": "反董卓聯合軍",
+        "description": "黃巾之亂雖已弭平，但世局的混亂卻依舊。大將軍•何進與十常侍等曾權傾一時的有力者們都逐漸地消逝，年幼的皇帝落入了有暴君之稱的董卓手裡。董卓的殘暴跋扈招致諸侯們的諸多不滿。最後，諸侯們組成了以袁紹及曹操等為中心的反董卓聯合軍。",
+        "name_bytes": "a4cfb8b3a8f4c170a658ad78",
+        "description_bytes": "b6c0a479a4a7b6c3c1f6a477abdaa5ada141a6fda540a7bdaabab256b6c3ab6fa8ccc2c2a143a46ab14ead78a145a6f3b669bb50a451b160a8cdb5a5b4bfc576b6c9a440aec9aabaa6b3a44faaccadccb3a3b376baa5a661aef8b375a141a67ea5aeaabaacd3abd2b8a8a44aa446a6b3bcc9a767a4a7bad9aabab8b3a8f4a4e2b8cca143b8b3a8f4aabab4ddbcc9b65bb1afa9dbad50bdd1ab4aadccaababdd1a668a4a3baa1a143b3ccabe1a141bdd1ab4aadccb2d5a6a8a446a548b04bb2d0a4ceb1e4bedeb5a5acb0a4a4a4dfaabaa4cfb8b3a8f4c170a658ad78a143"
+      }
+    },
+    {
+      "path": "Media/scenario/SCEN002.S11",
+      "sha256": "ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 2,
+        "date": [
+          194,
+          6,
+          1
+        ],
+        "name": "群雄割據",
+        "description": "呂布弒義父•董卓後，遭到李傕、郭汜等人的追殺而離開了都城。之後，失去棲身之地的呂布趁曹操不在之際，奪下了兗州，使得亂世之狼與亂世奸雄的對決已無可避免。而在江東方面，孫策以玉璽向袁術借兵馬，隨後便出兵揚州。至此，世局已進入到群雄割據的時代了。",
+        "name_bytes": "b873b6afb3cebeda",
+        "description_bytes": "a766a5acb749b871a4f7a145b8b3a8f4abe1a141be44a8eca7f5d852a142b3a2c9fab5a5a448aabab06cb1fea6d3c2f7b67da446b3a3abb0a143a4a7abe1a141a5a2a568b4cfa8ada4a7a661aabaa766a5acb658b1e4bedea4a3a662a4a7bbdaa141b9dca455a446ab5ea67ba141a8cfb16fb6c3a540a4a7af54bb50b6c3a540a66cb6afaabab9efa84da477b54ca569c1d7a74ba143a6d3a662a6bfaa46a4e8adb1a141ae5db5a6a548a5c9c3a2a656b04bb34eadc9a74cb0a8a141c048abe1ab4ba558a74cb4ada67ba143a6dca6b9a141a540a7bda477b669a44aa8ecb873b6afb3cebedaaabaaec9a54ea446a143"
+      }
+    },
+    {
+      "path": "Media/scenario/SCEN003.S11",
+      "sha256": "efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 3,
+        "date": [
+          200,
+          1,
+          1
+        ],
+        "name": "官渡之戰",
+        "description": "曹操擁立獻帝後，打倒了呂布及袁術等強敵，並逐步支配中原一帶。另一方面，袁紹打倒了公孫瓚後，統一了河北一帶，並開始將矛頭指向了中原。而有小霸王之稱的孫策也壓制了江東一帶，對曹操形成了鋒芒在背之態勢。至此，天下之爭便以此三人為中心開始加速進行了。",
+        "name_bytes": "a978b4e7a4a7bed4",
+        "description_bytes": "b1e4bedebed6a5dfc46dabd2abe1a141a5b4adcba446a766a5aca4ceb04bb34eb5a5b16abcc4a141a8c3b376a842a4e4b074a4a4adeca440b161a143a574a440a4e8adb1a141b04bb2d0a5b4adcba446a4bdae5dc5d0abe1a141b2cea440a446aa65a55fa440b161a141a8c3b67da96cb14ea5d9c059abfca656a446a4a4adeca143a6d3a6b3a470c551a4fda4a7bad9aabaae5db5a6a45dc0a3a8eea446a6bfaa46a440b161a141b9efb1e4bedea7cea6a8a446be57a87ea662ad49a4a7ba41b6d5a143a6dca6b9a141a4d1a455a4a7aaa7ab4ba548a6b9a454a448acb0a4a4a4dfb67da96ca55bb374b669a6e6a446a143"
+      }
+    },
+    {
+      "path": "Media/scenario/SCEN004.S11",
+      "sha256": "6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 4,
+        "date": [
+          207,
+          9,
+          1
+        ],
+        "name": "三顧茅廬",
+        "description": "曹操擊敗袁紹後，將河北一帶納入了手中。畏懼曹操進犯的劉表便將劉備配置於新野，以防曹操軍之南下。此外，江東的孫權繼承了驟逝的孫策，和以周瑜為首的部下們一起拼命地將勢力穩住。而曹操軍的南征，正準備掀起一場驚濤駭浪。",
+        "name_bytes": "a454c555ad54c366",
+        "description_bytes": "b1e4bedec0bbb1d1b04bb2d0abe1a141b14eaa65a55fa440b161afc7a44aa446a4e2a4a4a143acc8c4dfb1e4bedeb669a5c7aababc42aaedab4bb14ebc42b3c6b074b86da9f3b773b3a5a141a548a8beb1e4bedead78a4a7ab6ea455a143a6b9a57ea141a6bfaa46aabaae5dc576c47ea9d3a446c64ab375aabaae5db5a6a141a94da548a950b7ecacb0adbaaabab3a1a455adcca440b05fabf7a952a661b14eb6d5a44fc3ada6eda143a6d3b1e4bedead78aabaab6ea9baa141a5bfb7c7b3c6b1c8b05fa440b3f5c5e5c0dcc062aef6a143"
+      }
+    },
+    {
+      "path": "Media/scenario/SCEN005.S11",
+      "sha256": "4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 5,
+        "date": [
+          211,
+          7,
+          1
+        ],
+        "name": "劉備入蜀",
+        "description": "赤壁一戰大勝後，孫權失去了最得力的部下•周瑜，而孫吳所日思夜盼的二分天下也隨之化為了泡影。劉備得名軍師•諸葛亮與龐統後，於荊南增強軍備。而於赤壁敗戰的曹操則再度南征，但卻被誓言為父報仇的馬超給奪下了長安。天下局勢依舊混沌不清。",
+        "name_bytes": "bc42b3c6a44ab8be",
+        "description_bytes": "a8aabec0a440bed4a46ab3d3abe1a141ae5dc576a5a2a568a446b3ccb16fa44faabab3a1a455a145a950b7eca141a6d3ae5da764a9d2a4e9abe4a95dacdfaabaa447a4c0a4d1a455a45dc048a4a7a4c6acb0a446aa77bc76a143bc42b3c6b16fa657ad78ae76a145bdd1b8afab47bb50c365b2ceabe1a141a9f3aff0ab6ebc57b16aad78b3c6a143a6d3a9f3a8aabec0b1d1bed4aabab1e4bedeab68a641abd7ab6ea9baa141a6fdab6fb351bb7da8a5acb0a4f7b3f8a4b3aabab0a8b657b5b9b9dca455a446aaf8a677a143a4d1a455a7bdb6d5a8ccc2c2b256a850a4a3b24da143"
+      }
+    },
+    {
+      "path": "Media/scenario/SCEN006.S11",
+      "sha256": "b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 6,
+        "date": [
+          225,
+          7,
+          1
+        ],
+        "name": "南蠻征伐",
+        "description": "天下已三分為魏、吳、蜀。魏國方面，繼承曹操的曹丕滅了漢王朝。吳國方面，因名將•呂蒙的活躍表現而擴大了其版圖。蜀國方面，則因荊州被奪，而使得劉備鬱鬱而終。隨著劉備之死，南蠻的孟獲等人揭竿而起。此後，蜀國的命運便由繼承劉備的諸葛亮一肩挑起。",
+        "name_bytes": "ab6ec65aa9baa5ef",
+        "description_bytes": "a4d1a455a477a454a4c0acb0c351a142a764a142b8bea143c351b0eaa4e8adb1a141c47ea9d3b1e4bedeaabab1e4a541b7c0a446ba7ea4fdb4c2a143a764b0eaa4e8adb1a141a65da657b14ea145a766bb58aabaaca1c544aaedb27ba6d3c258a46aa446a8e4aaa9b9cfa143b8beb0eaa4e8adb1a141ab68a65daff0a67bb351b9dca141a6d3a8cfb16fbc42b3c6c67bc67ba6d3b2d7a143c048b5dbbc42b3c6a4a7a6baa141ab6ec65aaabaa973c0f2b5a5a448b4a6acf1a6d3b05fa143a6b9abe1a141b8beb0eaaabaa952b942ab4ba5d1c47ea9d3bc42b3c6aababdd1b8afab47a440aad3ac44b05fa143"
+      }
+    },
+    {
+      "path": "Media/scenario/SCEN007.S11",
+      "sha256": "703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 7,
+        "date": [
+          251,
+          1,
+          1
+        ],
+        "name": "英雄集結",
+        "description": "從曹操、劉備、孫堅到張角、呂布、孟獲，全君主及全史實武將散落在大陸各地。司馬懿、毋丘儉等沒有在其他劇本中登場的君主也割據著某地。生歿年及壽命的設定皆為無效。只有逐一擊敗強敵並存活到最後的人，方可得天下。能稱霸如此超越世代的大亂世的英雄，究竟會是哪位？",
+        "name_bytes": "ad5eb6afb6b0b5b2",
+        "description_bytes": "b171b1e4bedea142bc42b3c6a142ae5db0eda8ecb169a8a4a142a766a5aca142a973c0f2a141a5fea767a544a4cea5fea576b9eaaa5ab14eb4b2b8a8a662a46ab3b0a655a661a143a571b0a8c574a142a4f0a543bbfcb5a5a853a6b3a662a8e4a54cbc40a5bba4a4b56eb3f5aabaa767a544a45db3cebedab5dbac59a661a143a5cdaa5ca67ea4ceb9d8a952aabab35da977acd2acb0b54caec4a143a575a6b3b376a440c0bbb1d1b16abcc4a8c3a673aca1a8ecb3ccabe1aabaa448a141a4e8a569b16fa4d1a455a143afe0bad9c551a670a6b9b657b656a540a54eaabaa46ab6c3a540aabaad5eb6afa141a873b3bab77cac4fadfea6eca148"
+      }
+    },
+    {
+      "path": "Media/scenario/Scen008.s11",
+      "sha256": "ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 8,
+        "date": [
+          198,
+          1,
+          1
+        ],
+        "name": "呂布討伐戰",
+        "description": "曹操在擁戴獻帝，擴大了其版圖後，終於決定發兵東征。此次與劉備聯手討伐呂布。對此，呂布轉而與僭稱皇帝的袁術聯手，擺出了徹底抗戰的態勢。而另一方面，袁紹與公孫瓚正即將在河北展開決戰。現在，賭上各自的命運之戰，正準備揭開序幕。",
+        "name_bytes": "a766a5acb051a5efbed4",
+        "description_bytes": "b1e4bedea662bed6c0b9c46dabd2a141c258a46aa446a8e4aaa9b9cfabe1a141b2d7a9f3a84da977b56fa74caa46a9baa143a6b9a6b8bb50bc42b3c6c170a4e2b051a5efa766a5aca143b9efa6b9a141a766a5acc2e0a6d3bb50b9b0bad9acd3abd2aabab04bb34ec170a4e2a141c25ca558a446b9fda9b3a7dcbed4aababa41b6d5a143a6d3a574a440a4e8adb1a141b04bb2d0bb50a4bdae5dc5d0a5bfa759b14ea662aa65a55fae69b67da84dbed4a143b27ba662a141bde4a457a655a6dbaabaa952b942a4a7bed4a141a5bfb7c7b3c6b4a6b67da7c7b9f5a143"
+      }
+    },
+    {
+      "path": "Media/scenario/Scen009.s11",
+      "sha256": "64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 9,
+        "date": [
+          203,
+          1,
+          1
+        ],
+        "name": "袁家之戰",
+        "description": "官渡之戰敗於曹操之袁紹病故，袁家即引起長男之袁譚派及三男之袁尚派後繼者紛爭。曹操亦藉此機正式出兵進攻河北。另一方，敗於曹操之劉備將劉表寄放，駐紮新野。英年早逝之孫策之繼者孫權，亦對曹操之舉兵南下一事做好防備。",
+        "name_bytes": "b04bae61a4a7bed4",
+        "description_bytes": "a978b4e7a4a7bed4b1d1a9f3b1e4bedea4a7b04bb2d0af66ac47a141b04bae61a759a4deb05faaf8a86ba4a7b04bc3d3aca3a4cea454a86ba4a7b04ba97caca3abe1c47eaaccafc9aaa7a143b1e4bedea5e7c2c7a6b9bef7a5bfa6a1a558a74cb669a7f0aa65a55fa143a574a440a4e8a141b1d1a9f3b1e4bedea4a7bc42b3c6b14ebc42aaedb148a9f1a141be6eb2cfb773b3a5a143ad5ea67ea6adb375a4a7ae5db5a6a4a7c47eaaccae5dc576a141a5e7b9efb1e4bedea4a7c17ca74cab6ea455a440a8c6b0b5a66ea8beb3c6a143"
+      }
+    },
+    {
+      "path": "Media/scenario/Scen010.s11",
+      "sha256": "4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 10,
+        "date": [
+          217,
+          7,
+          1
+        ],
+        "name": "漢中爭奪戰",
+        "description": "與劉璋之戰中得勢之劉備進軍益州，獲得能與曹操、孫權對抗之勢力。討伐馬超之曹操亦進軍漢中。於益州、漢中間兩軍之戰已無法避免。另一方，孫權自劉備處獲南荊州之東半部，一償稱霸荊州宿願之日已相去不遠。",
+        "name_bytes": "ba7ea4a4aaa7b9dcbed4",
+        "description_bytes": "bb50bc42bcfda4a7bed4a4a4b16fb6d5a4a7bc42b3c6b669ad78af71a67ba141c0f2b16fafe0bb50b1e4bedea142ae5dc576b9efa7dca4a7b6d5a44fa143b051a5efb0a8b657a4a7b1e4bedea5e7b669ad78ba7ea4a4a143a9f3af71a67ba142ba7ea4a4b6a1a8e2ad78a4a7bed4a477b54caa6bc1d7a74ba143a574a440a4e8a141ae5dc576a6dbbc42b3c6b342c0f2ab6eaff0a67ba4a7aa46a562b3a1a141a440c076bad9c551aff0a67bb14ac440a4a7a4e9a477acdba568a4a3bbb7a143"
+      }
+    },
+    {
+      "path": "Media/scenario/Scen011.s11",
+      "sha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 11,
+        "date": [
+          187,
+          4,
+          1
+        ],
+        "name": "何進包圍網",
+        "description": "平定黃巾之亂之何進手握絕大權力，繼而終以皇帝自稱。其蔑視朝廷權威之舉激怒眾諸侯，故於各自之故里家鄉興兵反亂。時代演變為群雄割據之局面。趁局勢混亂之便黃巾之殘黨捲土重來。新皇帝治世揭開亂世舞台之簾幕。",
+        "name_bytes": "a6f3b669a55db3f2baf4",
+        "description_bytes": "a5ada977b6c0a479a4a7b6c3a4a7a6f3b669a4e2b4a4b5b4a46ac576a44fa141c47ea6d3b2d7a548acd3abd2a6dbbad9a143a8e4bdb0b5f8b4c2a7cac576abc2a4a7c17cbf45abe3b2b3bdd1ab4aa141ac47a9f3a655a6dba4a7ac47a8bdae61b66dbfb3a74ca4cfb6c3a143aec9a54eba74c5dcacb0b873b6afb3cebedaa4a7a7bdadb1a143b658a7bdb6d5b256b6c3a4a7ab4bb6c0a479a4a7b4ddc4d2b1b2a467adaba8d3a143b773acd3abd2aa76a540b4a6b67db6c3a540bb52a578a4a7c3aeb9f5a143"
+      }
+    },
+    {
+      "path": "Media/scenario/Scen012.s11",
+      "sha256": "d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 12,
+        "date": [
+          191,
+          7,
+          1
+        ],
+        "name": "局勢掌控者",
+        "description": "為討伐佔朝廷為己物之董卓而發動群起之諸侯連合，於尚未達成目標前即告解散。諸侯中分別為聲名顯赫之袁紹、袁術、公孫瓚三派，開始互相進行爭鬥。企圖捲土重來之董卓。未加入諸侯連合之英雄豪傑。時代為群雄割據之舞台更添戲劇色彩。",
+        "name_bytes": "a7bdb6d5b478b1b1aacc",
+        "description_bytes": "acb0b051a5efa6fbb4c2a7caacb0a476aaaba4a7b8b3a8f4a6d3b56fb0cab873b05fa4a7bdd1ab4ab373a658a141a9f3a97ca5bcb946a6a8a5d8bcd0ab65a759a769b8d1b4b2a143bdd1ab4aa4a4a4c0a74facb0c16ea657c5e3bbaea4a7b04bb2d0a142b04bb34ea142a4bdae5dc5d0a454aca3a141b67da96ca4acacdbb669a6e6aaa7b0aba143a5f8b9cfb1b2a467adaba8d3a4a7b8b3a8f4a143a5bca55ba44abdd1ab4ab373a658a4a7ad5eb6afbba8b3c7a143aec9a54eacb0b873b6afb3cebedaa4a7bb52a578a7f3b24bc0b8bc40a6e2b16da143"
+      }
+    },
+    {
+      "path": "Media/scenario/Scen013.s11",
+      "sha256": "72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 13,
+        "date": [
+          251,
+          1,
+          1
+        ],
+        "name": "女流之戰",
+        "description": "貂蟬、二喬姐妹、孫尚香……。為三國志增添魅力色彩之女性陣容雲集一堂，為爭奪天下霸權之假想劇本。與英雄集結之劇本相同，生歿年及壽命之設定無效。男性志士們所無法達成之統一天下夢想、如今正託付於女性豪傑們身上。",
+        "name_bytes": "a46bac79a4a7bed4",
+        "description_bytes": "b649c2cda142a447b3eca96aa966a142ae5da97cadbba14ba14ba143acb0a454b0eaa7d3bc57b24bbe79a44fa6e2b16da4a7a46ba9cab07dae65b6b3b6b0a440b0f3a141acb0aaa7b9dca4d1a455c551c576a4a7b0b2b751bc40a5bba143bb50ad5eb6afb6b0b5b2a4a7bc40a5bbacdba650a141a5cdaa5ca67ea4ceb9d8a952a4a7b35da977b54caec4a143a86ba9caa7d3a468adcca9d2b54caa6bb946a6a8a4a7b2cea440a4d1a455b9dab751a142a670a4b5a5bfb055a549a9f3a46ba9cabba8b3c7adcca8ada457a143"
+      }
+    },
+    {
+      "path": "Media/scenario/Scen014.S11",
+      "sha256": "ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 14,
+        "date": [
+          251,
+          1,
+          1
+        ],
+        "name": "英雄集結PK新版",
+        "description": "從曹操、劉備、孫堅到張角、呂布、孟獲，全君主及全史實武將散落在大陸各地。司馬懿、毋丘儉等沒有在其他劇本中登場的君主也割据著某地。生歿年及壽命的設定皆為無效。只有逐一擊敗強敵並存活到最後的人，方可得天下。能稱霸如此超越世代的大亂世的英雄，究竟會是哪位？",
+        "name_bytes": "ad5eb6afb6b0b5b2504bb773aaa9",
+        "description_bytes": "b171b1e4bedea142bc42b3c6a142ae5db0eda8ecb169a8a4a142a766a5aca142a973c0f2a141a5fea767a544a4cea5fea576b9eaaa5ab14eb4b2b8a8a662a46ab3b0a655a661a143a571b0a8c574a142a4f0a543bbfcb5a5a853a6b3a662a8e4a54cbc40a5bba4a4b56eb3f5aabaa767a544a45db3ced575b5dbac59a661a143a5cdaa5ca67ea4ceb9d8a952aabab35da977acd2acb0b54caec4a143a575a6b3b376a440c0bbb1d1b16abcc4a8c3a673aca1a8ecb3ccabe1aabaa448a141a4e8a569b16fa4d1a455a143afe0bad9c551a670a6b9b657b656a540a54eaabaa46ab6c3a540aabaad5eb6afa141a873b3bab77cac4fadfea6eca148"
+      }
+    },
+    {
+      "path": "Media/scenario/Scen015.s11",
+      "sha256": "5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a",
+      "start": 90,
+      "end": 17760,
+      "versions": [
+        1,
+        2
+      ],
+      "decoded": {
+        "native_id": 6,
+        "date": [
+          279,
+          3,
+          1
+        ],
+        "name": "滾滾長江",
+        "description": "滾滾長江東逝水，浪花淘盡英雄。\r\n是非成敗轉頭空。青山依舊在，几度夕陽紅。 \r\n白發漁樵江渚上，慣看秋月春風。\r\n一壺濁酒喜相逢。古今多少事，都付笑談中。",
+        "name_bytes": "ba75ba75aaf8a6bf",
+        "description_bytes": "ba75ba75aaf8a6bfaa46b375a4f4a141aef6aae1b25ebac9ad5eb6afa1430d0aac4fab44a6a8b1d1c2e0c059aac5a143ab43a473a8ccc2c2a662a141a44cabd7a469b6a7acf5a143200d0aa5d5b56fbaaebef6a6bfb25aa457a141ba44acddaceea4ebac4badb7a1430d0aa440b3fdbf42b073b3dfacdbb37ba143a56aa4b5a668a4d6a8c6a141b3a3a549afbabdcda4a4a143"
+      }
+    }
+  ],
+  "records": 16,
+  "full_report": {
+    "path": "scenario-metadata-native.json.gz",
+    "sha256": "e1e1f57b5e1dbbc61b7565f2bdfc1c2fef80d551c7402af7223616d5f6a77089",
+    "decoded_sha256": "4da4666bc07555074295812975314347d5df48fe427206e1cbdd81beff8e1609"
+  }
+}

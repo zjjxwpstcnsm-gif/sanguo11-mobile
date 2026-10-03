@@ -32,7 +32,7 @@ public final class Campaign {
         ELITE_CROSSBOW("精锐弩兵",2,4,"弩兵攻防、移动与伤害提高"),
         MOUNTED_ARCHERY("骑射",3,3,"骑兵可进行2格弓攻击"),
         ELITE_CAVALRY("精锐骑兵",3,4,"骑兵攻防、移动与伤害提高"),
-        DIFFICULT_MARCH("难所行军",4,2,"允许通过间道、浅滩；免疫栈道行军损失"),
+        DIFFICULT_MARCH("难所行军",4,2,"允许通过间道、浅滩、栈道；免疫栈道行军损失"),
         MILITARY_REFORM("军制改革",4,3,"主将统兵上限增加3000"),
         SIEGE_LADDERS("云梯",4,4,"普通陆军对据点伤害增加40%；兵器舰船增加20%"),
         AXLE("车轴强化",5,1,"陆上攻城兵器移动力提高"),
@@ -87,8 +87,10 @@ public final class Campaign {
     public boolean has(int side,Tech tech){EnumSet<Tech> set=learned.get(side);return set!=null&&(set.contains(tech)||tech==Tech.WARSHIP&&set.contains(Tech.CATAPULT));}
     boolean grandfathered(int side,Tech tech){return legacyTechs.getOrDefault(side,EnumSet.noneOf(Tech.class)).contains(tech);}
     public int defenseCap(World.City c){return Math.min(100000,c.baseDefense+(has(c.owner,Tech.WALLS)?3000:0));}
-    public int goldCap(World.City c){return c.kind==World.SiteKind.CITY?1000000:has(c.owner,Tech.PORT_EXPANSION)?40000:10000;}
-    public int foodCap(World.City c){return c.kind==World.SiteKind.CITY?1000000:has(c.owner,Tech.PORT_EXPANSION)?400000:100000;}
+    public int goldCap(World.City c){return c.kind==World.SiteKind.CITY?PcCityCapacities.GOLD:has(c.owner,Tech.PORT_EXPANSION)?40000:10000;}
+    /** Legacy over-cap balances may receive zero gold without blocking unrelated cargo. */
+    boolean fitsGold(World.City c,int incoming){return incoming>=0&&(incoming==0||c.gold<=goldCap(c)-incoming);}
+    public int foodCap(World.City c){return c.kind==World.SiteKind.CITY?PcCityCapacities.FOOD:has(c.owner,Tech.PORT_EXPANSION)?400000:100000;}
     public int troopCap(World.City c){return c.kind==World.SiteKind.CITY?100000:has(c.owner,Tech.PORT_EXPANSION)?60000:30000;}
     public int equipmentCap(World.City c,World.Weapon weapon){return Army.siegeWeapon(weapon)?100:troopCap(c);}
     public int orderLoss(int owner,int base){return has(owner,Tech.ADMINISTRATION)?(base+1)/2:base;}
@@ -104,26 +106,61 @@ public final class Campaign {
     public Treaty treaty(int a,int b){for(Treaty t:treaties)if(t.a==Math.min(a,b)&&t.b==Math.max(a,b)&&t.expires>w.turn)return t;return null;}
     public boolean hostile(int a,int b){return a!=b&&(a<0||b<0||treaty(a,b)==null);}
     public String relationLabel(int a,int b){if(a==b)return "本势力";if(a<0||b<0)return "未占领";Treaty t=treaty(a,b);return (t==null?"交战":t.kind.label+" · 剩"+(t.expires-w.turn)+"旬")+" · 关系 "+w.strategy.factionRelation(a,b);}
-    private String foreignError(World.City c,World.Officer o,int side,int cost){
-        String error=w.cityError(c,o,cost);if(error!=null)return error;
-        return side<0||side>=w.factions.length||side==w.active||!w.alive(side)?"请选择另一个存活势力":null;
+    private RuleFailure foreignFailure(World.City c,World.Officer o,int side,int cost){
+        RuleFailure failure=w.cityFailure(c,o,cost);if(failure!=null)return failure;
+        return side<0||side>=w.factions.length||side==w.active||!w.alive(side)?
+            new RuleFailure("TARGET_SIDE_INVALID","targetSide","请选择另一个存活势力"):null;
+    }
+    private RuleFailure goodwillFailure(World.City c,World.Officer o,int side){
+        RuleFailure failure=foreignFailure(c,o,side,500);if(failure!=null)return failure;
+        return w.strategy.factionRelation(c.owner,side)>=100?new RuleFailure("RELATION_MAX","targetSide","双方关系已达上限"):null;
+    }
+    private static final List<Integer> TREATY_DURATIONS=Collections.unmodifiableList(Arrays.asList(3,6,12));
+    public List<Integer> treatyDurations(){return TREATY_DURATIONS;}
+    private RuleFailure treatyFailure(World.City c,World.Officer o,int side,TreatyKind kind,int turns){
+        RuleFailure failure=foreignFailure(c,o,side,1000);if(failure!=null)return failure;
+        if(kind==null||!treatyDurations().contains(turns))return new RuleFailure("TREATY_TERMS_INVALID",kind==null?"operation":"turns","协定类型或期限无效");
+        if(treaty(c.owner,side)!=null)return new RuleFailure("TREATY_EXISTS","targetSide","双方已有有效协定");
+        if(kind==TreatyKind.ALLIANCE&&w.strategy.factionRelation(c.owner,side)<20)return new RuleFailure("RELATION_TOO_LOW","targetSide","同盟需要双方关系至少20");
+        return null;
+    }
+    private RuleFailure breakFailure(World.City c,World.Officer o,int side){
+        RuleFailure failure=foreignFailure(c,o,side,0);if(failure!=null)return failure;
+        return treaty(c.owner,side)==null?new RuleFailure("TREATY_MISSING","targetSide","没有可解除的协定"):null;
+    }
+    int goodwillGain(World.Officer o){return o.politics/10+15;}
+    public DiplomacyPlan previewDiplomacy(int city,int officer,int side,DiplomacyPlan.Operation operation,int turns){
+        World.City c=w.city(city);World.Officer o=w.officer(officer);RuleFailure failure;
+        if(operation==null)failure=new RuleFailure("OPERATION_INVALID","operation","外交指令无效");
+        else switch(operation){
+            case GOODWILL:failure=goodwillFailure(c,o,side);break;
+            case BREAK_TREATY:failure=breakFailure(c,o,side);break;
+            default:failure=treatyFailure(c,o,side,operation==DiplomacyPlan.Operation.CEASEFIRE?TreatyKind.CEASEFIRE:TreatyKind.ALLIANCE,turns);break;
+        }
+        if(failure==null&&operation!=DiplomacyPlan.Operation.BREAK_TREATY&&!w.envoys.resolving(officer))
+            failure=w.envoys.dispatchFailure(operation==DiplomacyPlan.Operation.GOODWILL?Envoys.Kind.GOODWILL:Envoys.Kind.TREATY,city,w.personnel.destination(side),side);
+        return new DiplomacyPlan(w,city,officer,side,operation,turns,failure);
+    }
+    /** Dispatch through the same public commands used by AI and legacy UI. */
+    public World.Result diplomaticAction(int city,int officer,int side,DiplomacyPlan.Operation operation,int turns){
+        if(operation==null)return w.fail("外交指令无效");
+        switch(operation){
+            case GOODWILL:return goodwill(city,officer,side);
+            case BREAK_TREATY:return breakTreaty(city,officer,side);
+            default:return negotiate(city,officer,side,operation==DiplomacyPlan.Operation.CEASEFIRE?TreatyKind.CEASEFIRE:TreatyKind.ALLIANCE,turns);
+        }
     }
     private void relation(int a,int b,int change){w.strategy.setFactionRelation(a,b,Math.max(-100,Math.min(100,w.strategy.factionRelation(a,b)+change)));}
     public World.Result goodwill(int city, int officer, int side) {w.reports.prepare();
         World.City c = this.w.city(city);
         World.Officer o = this.w.officer(officer);
-        String error = foreignError(c, o, side, 500);
-        if (error != null) {
-            return this.w.fail(error);
-        }
-        if (this.w.strategy.factionRelation(c.owner, side) >= 100) {
-            return this.w.fail("双方关系已达上限");
-        }
+        RuleFailure failure=goodwillFailure(c,o,side);
+        if(failure!=null)return w.fail(failure.detail);
         if (!this.w.envoys.resolving(officer)) {
             return this.w.envoys.dispatch(Envoys.Kind.GOODWILL, city, officer, this.w.personnel.destination(side), side, 0, 0, 500, 0, 10);
         }
         this.w.spend(c, o, 500);
-        relation(c.owner, side, (o.politics / 10) + 15);
+        relation(c.owner, side, goodwillGain(o));
         earn(c.owner, 20);
         return this.w.success(o.name + "出使" + this.w.faction(side) + "，双方关系改善");
     }
@@ -136,48 +173,37 @@ public final class Campaign {
         StringBuilder sbAppend;
         World.City c = this.w.city(city);
         World.Officer o = this.w.officer(officer);
-        String error = foreignError(c, o, side, 1000);
-        if (error != null) {
-            return this.w.fail(error);
+        RuleFailure failure=treatyFailure(c,o,side,kind,turns);
+        if(failure!=null)return w.fail(failure.detail);
+        if (!this.w.envoys.resolving(officer)) {
+            return this.w.envoys.dispatch(Envoys.Kind.TREATY, city, officer, this.w.personnel.destination(side), side, kind.ordinal(), turns, 1000, 0, 10);
         }
-        if (kind != null && (turns == 3 || turns == 6 || turns == 12)) {
-            if (treaty(c.owner, side) != null) {
-                return this.w.fail("双方已有有效协定");
-            }
-            if (kind == TreatyKind.ALLIANCE && this.w.strategy.factionRelation(c.owner, side) < 20) {
-                return this.w.fail("同盟需要双方关系至少20");
-            }
-            if (!this.w.envoys.resolving(officer)) {
-                return this.w.envoys.dispatch(Envoys.Kind.TREATY, city, officer, this.w.personnel.destination(side), side, kind.ordinal(), turns, 1000, 0, 10);
-            }
-            int chance = treatyChance(officer, side, kind);
-            this.w.spend(c, o, 1000);
-            boolean accepted = this.w.strategy.nextInt(100) < chance;
-            if (accepted) {
-                concludeTreaty(c.owner, side, kind, turns);
-            } else if (this.w.active == this.w.player && this.w.skills.has(o, Skill.LUNKE)) {
-                return this.w.contests.diplomaticDebate(city, officer, side, kind, turns);
-            }
-            World world = this.w;
-            String strFaction = this.w.faction(side);
-            String str = kind.label;
-            if (accepted) {
-                sb = new StringBuilder();
-                sbAppend = sb.append("接受").append(turns).append("旬").append(str);
-            } else {
-                sb = new StringBuilder();
-                sbAppend = sb.append("拒绝").append(str).append("提议，出使费用已消耗");
-            }
-            return world.success(strFaction + sbAppend.toString());
+        int chance = treatyChance(officer, side, kind);
+        this.w.spend(c, o, 1000);
+        boolean accepted = this.w.strategy.nextInt(100) < chance;
+        if (accepted) {
+            concludeTreaty(c.owner, side, kind, turns);
+        } else if (this.w.active == this.w.player && this.w.skills.has(o, Skill.LUNKE)) {
+            return this.w.contests.diplomaticDebate(city, officer, side, kind, turns);
         }
-        return this.w.fail("协定类型或期限无效");
+        World world = this.w;
+        String strFaction = this.w.faction(side);
+        String str = kind.label;
+        if (accepted) {
+            sb = new StringBuilder();
+            sbAppend = sb.append("接受").append(turns).append("旬").append(str);
+        } else {
+            sb = new StringBuilder();
+            sbAppend = sb.append("拒绝").append(str).append("提议，出使费用已消耗");
+        }
+        return world.success(strFaction + sbAppend.toString());
     }
     void concludeTreaty(int owner,int side,TreatyKind kind,int turns){
         treaties.removeIf(t->t.a==Math.min(owner,side)&&t.b==Math.max(owner,side));treaties.add(new Treaty(owner,side,kind,w.turn+turns));relation(owner,side,10);earn(owner,50);w.districts.cleanup();
     }
     public World.Result breakTreaty(int city,int officer,int side){w.reports.prepare();
-        World.City c=w.city(city);World.Officer o=w.officer(officer);String error=foreignError(c,o,side,0);if(error!=null)return w.fail(error);
-        Treaty t=treaty(c.owner,side);if(t==null)return w.fail("没有可解除的协定");
+        World.City c=w.city(city);World.Officer o=w.officer(officer);RuleFailure failure=breakFailure(c,o,side);if(failure!=null)return w.fail(failure.detail);
+        Treaty t=treaty(c.owner,side);
         w.spend(c,o,0);treaties.remove(t);relation(c.owner,side,-50);
         for(int other=0;other<w.factions.length;other++)if(other!=c.owner&&other!=side&&w.alive(other))relation(c.owner,other,-10);
         return w.success("与"+w.faction(side)+"解除协定，关系和对外信任下降");
@@ -223,13 +249,14 @@ public final class Campaign {
         int ask=100+((month/3+c.id%3)%4)*20;return buy?ask:ask*4/5;
     }
     public int traded(int city){return traded.getOrDefault(city,0);}
+    public TradePlan previewTrade(int city,int officer,TradePlan.Operation operation,int food){return new TradePlan(w,city,officer,operation,food);}
     public World.Result trade(int city,int officer,boolean buy,int food){w.reports.prepare();
+        TradePlan plan=previewTrade(city,officer,buy?TradePlan.Operation.BUY:TradePlan.Operation.SELL,food);
+        if(!plan.allowed())return w.fail(plan.failure.detail);
         World.City c=w.city(city);World.Officer o=w.officer(officer);
-        if(food<1000||food>20000||food%1000!=0)return w.fail("交易量须为1000至20000的整千粮");
-        int price=food/1000*foodPrice(city,buy);String error=w.cityError(c,o,buy?price:0);if(error!=null)return w.fail(error);
-        if(traded(city)+food>20000)return w.fail("本城商人本旬交易量上限20000粮");
-        if(buy?c.food>w.campaign.foodCap(c)-food:c.food<food||c.gold>w.campaign.goldCap(c)-price)return w.fail("粮草不足或库存容量不足");
-        w.spend(c,o,buy?price:0);if(buy)c.food+=food;else{c.food-=food;c.gold+=price;}traded.put(city,traded(city)+food);
+        w.officerAbilities.gainExperience(o.id,3,5);
+        int price=(int)plan.quotedGold;
+        w.spend(c,o,buy?price:0,PcCityActionCosts.TRADE,PcMerchantRules.meritGain(w.government.merit(o.id)));if(buy)c.food+=food;else{c.food-=food;c.gold+=price;}traded.put(city,traded(city)+food);
         return w.success(c.name+(buy?"买入":"卖出")+food+"粮，"+(buy?"支出":"收入")+price+"金");
     }
     public String researchError(int city,int officer,Tech tech){
@@ -258,7 +285,7 @@ public final class Campaign {
     }
     public int studyValue(int officer,Study study){
         World.Officer o=w.officer(officer);if(o==null||study==null)return 0;
-        switch(study){case LEADERSHIP:return o.leadership;case WAR:return o.war;case INTELLIGENCE:return o.intelligence;case POLITICS:return o.politics;case CHARM:return o.charm;default:return o.aptitude[study.index-5];}
+        return study.index<5?OfficerAbilities.base(o,study.index):o.aptitude[study.index-5];
     }
     public World.Result study(int city,int officer,Study study){w.reports.prepare();
         if(study==null)return w.fail("培养项目无效");
@@ -298,11 +325,8 @@ public final class Campaign {
         for(Project p:new ArrayList<>(projects))if(w.officer(p.officerId).otherTaskTurns==1){
             World.Officer o=w.officer(p.officerId);
             if(p.tech!=null)finishTech(p.owner,p.tech);
-            else switch(p.study){
-                case LEADERSHIP:o.leadership=Math.min(100,o.leadership+3);break;case WAR:o.war=Math.min(100,o.war+3);break;
-                case INTELLIGENCE:o.intelligence=Math.min(100,o.intelligence+3);break;case POLITICS:o.politics=Math.min(100,o.politics+3);break;
-                case CHARM:o.charm=Math.min(100,o.charm+3);break;default:o.aptitude[p.study.index-5]=Math.min(3,o.aptitude[p.study.index-5]+1);
-            }
+            else if(p.study.index<5)OfficerAbilities.setBase(o,p.study.index,Math.min(100,OfficerAbilities.base(o,p.study.index)+3));
+            else o.aptitude[p.study.index-5]=Math.min(3,o.aptitude[p.study.index-5]+1);
             projects.remove(p);w.note(o.name+"完成"+p.label());
         }
         for(int side=0;side<w.factions.length;side++)if(w.alive(side)){int count=0;for(World.City c:w.cities)if(c.owner==side)count++;earn(side,Math.min(100,count*10));}
@@ -312,7 +336,7 @@ public final class Campaign {
         for(World.City c:w.cities)if(c.owner==w.active){
             List<World.Officer> idle=w.idle(c);if(idle.isEmpty())continue;World.Officer o=idle.get(0);
             if(c.defense<2000&&c.gold>=1000){repair(c.id,o.id);continue;}
-            if(c.food<6000&&c.gold>=2000){trade(c.id,o.id,true,5000);continue;}
+            if(c.kind==World.SiteKind.CITY&&traded(c.id)==0&&c.food<6000&&c.gold>=2000&&trade(c.id,o.id,true,5000).ok)continue;
             if(c.gold>=5000)for(Tech tech:Tech.researchable())if(researchError(c.id,o.id,tech)==null){research(c.id,o.id,tech);break;}
         }
     }

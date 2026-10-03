@@ -1,0 +1,6 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> validate
+> node validate_gltf.cjs
+
+{ validator: '2.0.0-dev.3.10', count: 377, errors: 0, warnings: 0 }

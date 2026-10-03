@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "status": "SOURCE_WORKER_STAGED_MAP_GPU_BINDING_SEPARATE_VALIDATION",
+  "source_executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "source_seff_resource": 4792,
+  "source_ksef_resources": [
+    133,
+    134,
+    141,
+    142,
+    143,
+    144,
+    145,
+    148
+  ],
+  "placements": 126,
+  "files": [
+    {
+      "source": "out/pc-visual/v148-native-probe-checked/source-kernel.bin",
+      "output": "app/src/main/assets/3d/pc-effects/source-kernel.bin",
+      "bytes": 5779520,
+      "sha256": "2668d82c3f835b4dc043a3d28f1902b472627570c1c25ba081425c950f4f8207"
+    },
+    {
+      "source": "out/pc-visual/v148-native-shared-scene/source-scene.bin",
+      "output": "app/src/main/assets/3d/pc-effects/source-scene.bin",
+      "bytes": 138072,
+      "sha256": "98d2626d2842f272474cc7a3c2437e29b946d3827c8b52089741155cbc79e4ae"
+    },
+    {
+      "source": "out/pc-visual/v150-native-x86-camera-build/artifacts/libpc_effect_worker.so",
+      "output": "out/pc-native-runtime/jniLibs/x86_64/libpc_effect_worker.so",
+      "abi": "x86_64",
+      "bytes": 108856,
+      "sha256": "661ad57e8c212b0255ba4eb610106da86bbde20c60d1388c1674294ae17f4880"
+    },
+    {
+      "source": "out/pc-visual/v150-native-x86-camera-build/artifacts/libunicorn.so",
+      "output": "out/pc-native-runtime/jniLibs/x86_64/libunicorn.so",
+      "abi": "x86_64",
+      "bytes": 7320976,
+      "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
+    },
+    {
+      "source": "out/pc-visual/v150-native-arm-camera-build/artifacts/libpc_effect_worker.so",
+      "output": "out/pc-native-runtime/jniLibs/arm64-v8a/libpc_effect_worker.so",
+      "abi": "arm64-v8a",
+      "bytes": 121016,
+      "sha256": "5ff2cc57f4d270de3718f7216c1cb04c645e46a6ed02d5324113e1745335ff53"
+    },
+    {
+      "source": "out/pc-visual/v150-native-arm-camera-build/artifacts/libunicorn.so",
+      "output": "out/pc-native-runtime/jniLibs/arm64-v8a/libunicorn.so",
+      "abi": "arm64-v8a",
+      "bytes": 7387104,
+      "sha256": "d613951861cf115d65ec1b593bd11a3f1e39932ad4c16601e17f20b335dac966"
+    }
+  ],
+  "native_source_snapshots": {
+    "pc_effect_vm_probe.c": "f92ec0d43a1e09480a580c07464a0951f9cfb3a57c786b4dce355cffc711cef9",
+    "pc_effect_scene_probe.c": "9262aaf3e5113fe7d1ba2e42e840764336851a692b84c4ad67e3fb4a1ad2a615",
+    "CMakeLists.txt": "615b5e9799c96a9d3ab6b1758afdc6cc354cdfd82806e70fadb57030402678d4"
+  },
+  "android_worker_evidence": "out/pc-visual/v151-native-perspective-block-checked/comparison.json",
+  "android_worker_evidence_sha256": "92e8da79fe9be0f8aece593c3d8c74cee9eed5c2c8b396f911483bbd6fdafb58",
+  "runtime_binding": "normal PC map -> PcEffectProcess private source VM -> PcMapEffects ordered quads",
+  "renderer_validation": "validation-v152-working.json; conversion does not itself establish GPU/PC acceptance",
+  "map_seff_templates_bound": 8,
+  "semantic_effect_acceptance_count": 0,
+  "runtime_effects_added": 0,
+  "limits": [
+    "This tool verifies/stages source transport; GPU evidence is separate",
+    "x86_64 emulator executed; ARM64 build only",
+    "Actual MOD resolver/PC images and sustained performance pending"
+  ]
+}

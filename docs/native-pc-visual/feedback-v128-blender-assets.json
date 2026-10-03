@@ -1,0 +1,764 @@
+{
+  "version": 128,
+  "blender": "4.3.2",
+  "generator": "tools/3d/refine_blender128.py",
+  "generator_sha256": "8b22f91dace5c0b825ef2cc32d3d45a3a3c709f898c0d4ca1b38941a7b1e9978",
+  "license": "CC0-1.0 original geometry and new atlas panels; preserved project atlas panels 1/2/6/7",
+  "assets": [
+    {
+      "path": "app/src/main/assets/3d/field/v128/fall-narrow-lod0.glb",
+      "sha256": "347d34fd9e1c517dcddca80ca94370c026a817e96ad7d0dfc2eb0937a9c83189",
+      "bytes": 135344,
+      "triangles": 642,
+      "vertices": 1926,
+      "primitives": 1,
+      "bounds": [
+        -0.2095455527305603,
+        0.0,
+        0.0,
+        0.20759893953800201,
+        1.0019795894622803,
+        0.9628928899765015
+      ],
+      "source": "original Blender-authored fall-narrow; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/fall-narrow-lod1.glb",
+      "sha256": "89bde5514b33b46e16c1bbce6fcc5def50db47803361f4765b89fb843e5e86c9",
+      "bytes": 73872,
+      "triangles": 248,
+      "vertices": 744,
+      "primitives": 1,
+      "bounds": [
+        -0.21146027743816376,
+        0.0,
+        0.0,
+        0.21146027743816376,
+        1.0019505023956299,
+        0.9697344303131104
+      ],
+      "source": "original Blender-authored fall-narrow; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/fall-wide-lod0.glb",
+      "sha256": "dcb51192f40baa665f7368c944046df2612731f6d081c1c229c4300316deb92f",
+      "bytes": 135344,
+      "triangles": 642,
+      "vertices": 1926,
+      "primitives": 1,
+      "bounds": [
+        -0.28350281715393066,
+        0.0,
+        0.0,
+        0.28086915612220764,
+        1.0019795894622803,
+        0.9628928899765015
+      ],
+      "source": "original Blender-authored fall-wide; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/fall-wide-lod1.glb",
+      "sha256": "0be4b478269c816e97a2ffe2716726670363e04f6883fade32f58717d9a194a0",
+      "bytes": 73868,
+      "triangles": 248,
+      "vertices": 744,
+      "primitives": 1,
+      "bounds": [
+        -0.2860933244228363,
+        0.0,
+        0.0,
+        0.2860933244228363,
+        1.0019505023956299,
+        0.9697344303131104
+      ],
+      "source": "original Blender-authored fall-wide; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/fall-hukou-lod0.glb",
+      "sha256": "c4fdc4228cdc6ef9cfe8282f4da98eb004a77c63a7bb0ddd233d7615a8bafd18",
+      "bytes": 135344,
+      "triangles": 642,
+      "vertices": 1926,
+      "primitives": 1,
+      "bounds": [
+        -0.28350281715393066,
+        0.0,
+        0.0,
+        0.28086915612220764,
+        1.0019795894622803,
+        0.9628928899765015
+      ],
+      "source": "original Blender-authored fall-hukou; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/fall-hukou-lod1.glb",
+      "sha256": "14548f1c75fd9b260577db90fcafe60eb30c100c6a058de8541f2f2b8933587e",
+      "bytes": 73868,
+      "triangles": 248,
+      "vertices": 744,
+      "primitives": 1,
+      "bounds": [
+        -0.2860933244228363,
+        0.0,
+        0.0,
+        0.2860933244228363,
+        1.0019505023956299,
+        0.9697344303131104
+      ],
+      "source": "original Blender-authored fall-hukou; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/wall-earth-lod0.glb",
+      "sha256": "fac9bc6fba705bbce18c3168323fa6b34185d82ef7ffceb36cda4b2a630edb3f",
+      "bytes": 123164,
+      "triangles": 564,
+      "vertices": 1692,
+      "primitives": 1,
+      "bounds": [
+        -0.056522440165281296,
+        0.0,
+        0.0,
+        0.06199999898672104,
+        0.21377672255039215,
+        1.0
+      ],
+      "source": "original Blender-authored wall-earth; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/wall-earth-lod1.glb",
+      "sha256": "00051195322c024a450af4ff34349feb1b7a1cd40755c0ee5d0bdf3b0dd09b64",
+      "bytes": 56696,
+      "triangles": 138,
+      "vertices": 414,
+      "primitives": 1,
+      "bounds": [
+        -0.056522440165281296,
+        0.0,
+        0.0,
+        0.0569094680249691,
+        0.21377672255039215,
+        1.0
+      ],
+      "source": "original Blender-authored wall-earth; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/beacon-han-lod0.glb",
+      "sha256": "ce4bd79615caaf524aaa22c2f100f519304467d0ff0dc0120035bd2377ca4a67",
+      "bytes": 79820,
+      "triangles": 286,
+      "vertices": 858,
+      "primitives": 1,
+      "bounds": [
+        -0.11100000143051147,
+        0.0,
+        -0.11100000143051147,
+        0.1111975684762001,
+        0.3891550898551941,
+        0.11100000143051147
+      ],
+      "source": "original Blender-authored beacon-han; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/beacon-han-lod1.glb",
+      "sha256": "f9d8524975cb542ec79e05b73dd6b530647b1497c55dc5958f30fa2e1ca17bf1",
+      "bytes": 61096,
+      "triangles": 166,
+      "vertices": 498,
+      "primitives": 1,
+      "bounds": [
+        -0.11100000143051147,
+        0.0,
+        -0.11100000143051147,
+        0.1111975684762001,
+        0.3891550898551941,
+        0.11100000143051147
+      ],
+      "source": "original Blender-authored beacon-han; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/cliff-sandstone-lod0.glb",
+      "sha256": "21990a8993c1be76f97acc3f1c3a421fe9f581603397ad41423bf26961f72087",
+      "bytes": 66088,
+      "triangles": 198,
+      "vertices": 594,
+      "primitives": 1,
+      "bounds": [
+        -0.25999999046325684,
+        0.0,
+        -0.17730000615119934,
+        0.27000001072883606,
+        0.29681694507598877,
+        0.1871500015258789
+      ],
+      "source": "original Blender-authored cliff-sandstone; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/cliff-sandstone-lod1.glb",
+      "sha256": "b75ead539206939acfcf2b4bf6a626189abadad273da11fc2aff7e0326814d63",
+      "bytes": 45024,
+      "triangles": 63,
+      "vertices": 189,
+      "primitives": 1,
+      "bounds": [
+        -0.2549999952316284,
+        0.0,
+        -0.17730000615119934,
+        0.27000001072883606,
+        0.29681694507598877,
+        0.14775000512599945
+      ],
+      "source": "original Blender-authored cliff-sandstone; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/cliff-granite-lod0.glb",
+      "sha256": "0d13e64af9e62d9496e9aaa170f70ad3bf02e62f13d900b21654d0ade08044f0",
+      "bytes": 71548,
+      "triangles": 233,
+      "vertices": 699,
+      "primitives": 1,
+      "bounds": [
+        -0.2575500011444092,
+        0.0,
+        -0.17816400527954102,
+        0.2575500011444092,
+        0.33239901065826416,
+        0.17816400527954102
+      ],
+      "source": "original Blender-authored cliff-granite; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/cliff-granite-lod1.glb",
+      "sha256": "fa0de88c55e36d8d724de0474c4388801380b648fc57b24f36064bbc718d12dd",
+      "bytes": 58284,
+      "triangles": 148,
+      "vertices": 444,
+      "primitives": 1,
+      "bounds": [
+        -0.2575500011444092,
+        0.0,
+        -0.1779502034187317,
+        0.2575500011444092,
+        0.3382031321525574,
+        0.1779502034187317
+      ],
+      "source": "original Blender-authored cliff-granite; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/cliff-karst-lod0.glb",
+      "sha256": "23699359152cd66f831d2cef314cae51a6d23a42a70ad18c3d15a1e3d816519f",
+      "bytes": 83248,
+      "triangles": 308,
+      "vertices": 924,
+      "primitives": 1,
+      "bounds": [
+        -0.227890282869339,
+        0.0,
+        -0.1625249981880188,
+        0.25109612941741943,
+        0.45500001311302185,
+        0.20485766232013702
+      ],
+      "source": "original Blender-authored cliff-karst; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/cliff-karst-lod1.glb",
+      "sha256": "c83f310ed723fcabaca0605c41c8c77d21e48f2914ca591128665628543ecaf1",
+      "bytes": 52044,
+      "triangles": 108,
+      "vertices": 324,
+      "primitives": 1,
+      "bounds": [
+        -0.22499999403953552,
+        0.0,
+        -0.1625249981880188,
+        0.2366289496421814,
+        0.45500001311302185,
+        0.1914488971233368
+      ],
+      "source": "original Blender-authored cliff-karst; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/shore-reeds-lod0.glb",
+      "sha256": "4c786c89ecc0c686d3730be594c211aa0e26fd1ea8e380ff837ace09321df6e5",
+      "bytes": 98544,
+      "triangles": 406,
+      "vertices": 1218,
+      "primitives": 1,
+      "bounds": [
+        -0.11455746740102768,
+        0.0,
+        -0.07780599594116211,
+        0.07680307328701019,
+        0.12457386404275894,
+        0.05510041117668152
+      ],
+      "source": "original Blender-authored shore-reeds; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/shore-reeds-lod1.glb",
+      "sha256": "ad692dd1fa110bb20fadc4d0d1b7bc3ed5bc4d519d19aaddffad1940c6ae5f6f",
+      "bytes": 52672,
+      "triangles": 112,
+      "vertices": 336,
+      "primitives": 1,
+      "bounds": [
+        -0.07170610129833221,
+        0.0,
+        -0.08064039051532745,
+        0.08857142925262451,
+        0.12317197024822235,
+        0.06503353267908096
+      ],
+      "source": "original Blender-authored shore-reeds; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/shore-rock-lod0.glb",
+      "sha256": "8b8f9ea07446c0721660d801201c7d4fd7803ada0f08a878ab2a1bd8e7b7992b",
+      "bytes": 72640,
+      "triangles": 240,
+      "vertices": 720,
+      "primitives": 1,
+      "bounds": [
+        -0.20529603958129883,
+        0.0,
+        -0.09567566961050034,
+        0.20126019418239594,
+        0.07500000298023224,
+        0.1363053023815155
+      ],
+      "source": "original Blender-authored shore-rock; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v128/shore-rock-lod1.glb",
+      "sha256": "e65e59d5cba85928dddd8c4781029f42c2142246f6b3328ee1c866b1abf3c918",
+      "bytes": 44556,
+      "triangles": 60,
+      "vertices": 180,
+      "primitives": 1,
+      "bounds": [
+        -0.1951686143875122,
+        0.0,
+        -0.09308084100484848,
+        0.18354688584804535,
+        0.07500000298023224,
+        0.12686653435230255
+      ],
+      "source": "original Blender-authored shore-rock; irregular supported natural landform; geographic interpretation, exact PC reference unavailable",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; existing project CC0 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "atlas": {
+    "path": "app/src/main/assets/3d/field/v128/scenery-atlas.png",
+    "sha256": "a48b7d34d9e98bfd7f8be88c9b2b84addfdc22b08f07f28b44cf696f9e34cf34",
+    "bytes": 33886,
+    "dimensions": [
+      512,
+      64
+    ],
+    "color_space": "sRGB",
+    "runtime_uv": "PNG row zero = UV.v zero; Blender preview explicitly flips V",
+    "retained_panels": [
+      1,
+      2,
+      6,
+      7
+    ],
+    "changed_panels": [
+      0,
+      3,
+      4,
+      5
+    ]
+  },
+  "previews": [
+    {
+      "family": "fall-narrow",
+      "lod": 0,
+      "path": "out/feedback128/blender/fall-narrow-lod0.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        2.299999952316284,
+        0.7599999904632568,
+        1.2999999523162842
+      ]
+    },
+    {
+      "family": "fall-narrow",
+      "lod": 1,
+      "path": "out/feedback128/blender/fall-narrow-lod1.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        2.299999952316284,
+        0.7599999904632568,
+        1.2999999523162842
+      ]
+    },
+    {
+      "family": "fall-wide",
+      "lod": 0,
+      "path": "out/feedback128/blender/fall-wide-lod0.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        2.299999952316284,
+        0.7599999904632568,
+        1.2999999523162842
+      ]
+    },
+    {
+      "family": "fall-wide",
+      "lod": 1,
+      "path": "out/feedback128/blender/fall-wide-lod1.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        2.299999952316284,
+        0.7599999904632568,
+        1.2999999523162842
+      ]
+    },
+    {
+      "family": "fall-hukou",
+      "lod": 0,
+      "path": "out/feedback128/blender/fall-hukou-lod0.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        2.299999952316284,
+        0.5299999713897705,
+        1.2999999523162842
+      ]
+    },
+    {
+      "family": "fall-hukou",
+      "lod": 1,
+      "path": "out/feedback128/blender/fall-hukou-lod1.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        2.299999952316284,
+        0.5299999713897705,
+        1.2999999523162842
+      ]
+    },
+    {
+      "family": "wall-earth",
+      "lod": 0,
+      "path": "out/feedback128/blender/wall-earth-lod0.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "family": "wall-earth",
+      "lod": 1,
+      "path": "out/feedback128/blender/wall-earth-lod1.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "family": "beacon-han",
+      "lod": 0,
+      "path": "out/feedback128/blender/beacon-han-lod0.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "family": "beacon-han",
+      "lod": 1,
+      "path": "out/feedback128/blender/beacon-han-lod1.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "family": "cliff-sandstone",
+      "lod": 0,
+      "path": "out/feedback128/blender/cliff-sandstone-lod0.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "family": "cliff-sandstone",
+      "lod": 1,
+      "path": "out/feedback128/blender/cliff-sandstone-lod1.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "family": "cliff-granite",
+      "lod": 0,
+      "path": "out/feedback128/blender/cliff-granite-lod0.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "family": "cliff-granite",
+      "lod": 1,
+      "path": "out/feedback128/blender/cliff-granite-lod1.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "family": "cliff-karst",
+      "lod": 0,
+      "path": "out/feedback128/blender/cliff-karst-lod0.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "family": "cliff-karst",
+      "lod": 1,
+      "path": "out/feedback128/blender/cliff-karst-lod1.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "family": "shore-reeds",
+      "lod": 0,
+      "path": "out/feedback128/blender/shore-reeds-lod0.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "family": "shore-reeds",
+      "lod": 1,
+      "path": "out/feedback128/blender/shore-reeds-lod1.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "family": "shore-rock",
+      "lod": 0,
+      "path": "out/feedback128/blender/shore-rock-lod0.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    },
+    {
+      "family": "shore-rock",
+      "lod": 1,
+      "path": "out/feedback128/blender/shore-rock-lod1.png",
+      "kind": "BLENDER_SOURCE_PREVIEW_NOT_APK",
+      "presentation_scale": [
+        1.0,
+        1.0,
+        1.0
+      ]
+    }
+  ],
+  "editable_source": "out/feedback128/blender/landmarks-v128.blend",
+  "reference_links": [
+    "https://photo.china.com.cn/2024-08/21/content_117378600.shtml",
+    "https://whc.unesco.org/en/list/438",
+    "https://english.igsnrr.cas.cn/ecg/naturalscenery/lakes/202011/t20201119_251411.html",
+    "https://whc.unesco.org/en/list/437",
+    "https://whc.unesco.org/en/tentativelists/6380/"
+  ],
+  "reference_status": "Geographic form/color references; no downloaded assets used; exact licensed PC reference unavailable",
+  "verification": "Original source renders only; APK and physical-device visual review are separate parent work"
+}

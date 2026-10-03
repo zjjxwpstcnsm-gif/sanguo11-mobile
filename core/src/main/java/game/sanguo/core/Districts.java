@@ -180,11 +180,14 @@ public final class Districts {
             d.actedTurn=w.turn;int mainPoints=w.actionPoints[owner];executing=d.id;w.actionPoints[owner]=d.points;
             try{
                 List<Integer> ordered=new ArrayList<>(sites(d));
-                // Rotate equal-priority cities so a large district never starves high-ID holdings.
+                // Restore the lowest order first within the same threat/urgency tier.
+                // Rotation breaks remaining ties; higher-cost patrols must not
+                // revisit partly restored cities while others receive no service.
                 Collections.rotate(ordered,-(w.turn%ordered.size()));
                 CampaignAi planner=new CampaignAi(w);
                 ordered.sort(Comparator.comparingInt((Integer id)->{
-                    World.City c=w.city(id);return c==null?0:-(planner.incoming(c)+(c.order<65?100000:0));}));
+                    World.City c=w.city(id);return c==null?0:-(planner.incoming(c)+(c.order<65?100000:0));
+                }).thenComparingInt(id->{World.City c=w.city(id);return c!=null&&c.order<65?c.order:0;}));
                 int startPoints=w.actionPoints[owner];d.report="";d.reportTurn=w.turn;
                 if(d.transfer)new DistrictManagement(w).balance(d);
                 for(int pass=0;pass<4&&w.actionPoints[owner]>=10;pass++)for(int city:ordered){
@@ -205,9 +208,9 @@ public final class Districts {
     private void order(District d,World.City c,int pass){
         List<World.Officer> idle=w.idle(c);if(idle.isEmpty())return;
         World.Officer admin=idle.stream().max(Comparator.comparingInt(o->o.politics)).get();
-        if(new DistrictManagement(w).famineTurn(c)<=3){
-            int amount=Math.min(20000-w.campaign.traded(c.id),Math.min(w.campaign.foodCap(c)-c.food,Math.max(0,c.gold-1000)/w.campaign.foodPrice(c.id,true)*1000))/1000*1000;
-            if(amount>=1000&&w.campaign.trade(c.id,admin.id,true,amount).ok)return;
+        if(c.kind==World.SiteKind.CITY&&w.campaign.traded(c.id)==0&&new DistrictManagement(w).famineTurn(c)<=3){
+            int amount=Math.min(20000,Math.min(w.campaign.foodCap(c)-c.food,Math.max(0,c.gold-1000)/w.campaign.foodPrice(c.id,true)*1000))/1000*1000;
+            if(amount>=1000&&w.actionPoints[w.active]>=PcCityActionCosts.TRADE&&w.campaign.trade(c.id,admin.id,true,amount).ok)return;
         }
         StrategicAi civil=new StrategicAi(w);StrategicAi.Decision urgent=civil.plan(c.id,true);
         if(urgent!=null&&civil.execute(urgent).ok)return;
@@ -230,7 +233,7 @@ public final class Districts {
             Domestic.Kind kind=expectedFood<w.cityFoodUse(c)*9+(d.supply>=0&&d.supply!=c.id?20000:0)||new DistrictManagement(w).famineTurn(c)<12?Domestic.Kind.FARM:Domestic.Kind.MARKET;
             List<Hex> sites=w.domestic.buildSites(c.id);if(c.gold>=2500&&!sites.isEmpty()&&w.domestic.build(c.id,admin.id,kind,sites.get(0)).ok)return;
         }
-        if(d.produce&&c.gold>=d.reserveGold+1500){
+        if(d.produce&&c.gold>=d.reserveGold+1500&&w.actionPoints[w.active]>=PcCityActionCosts.PRODUCTION){
             if(d.attack&&d.policy!=Policy.ECONOMY&&d.policy!=Policy.DEFENSE&&c.equipment[World.Weapon.RAM.ordinal()]==0&&
                 w.army.productionError(c.id,admin.id,World.Weapon.RAM,null)==null&&w.army.produce(c.id,admin.id,World.Weapon.RAM,null).ok)return;
             World.Weapon preferred=World.Weapon.SPEAR;int best=Integer.MIN_VALUE;

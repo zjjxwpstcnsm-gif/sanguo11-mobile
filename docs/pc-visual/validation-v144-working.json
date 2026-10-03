@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "goal_status": "active",
+  "phase": "v144 installed: all12 seasonal near completed, final far FAIL pending43",
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v144/app-debug-terrain-scratch.apk",
+      "bytes": 80956879,
+      "sha256": "744d65ed4870e0b0cb4f378783bf97fcf115fcdc5685efedd4696c3e5b92caca"
+    },
+    {
+      "path": "out/pc-visual/v144/androidTest-terrain-scratch.apk",
+      "bytes": 596585,
+      "sha256": "d47ad32bf3ab57e41119cf10160ea49a4ecb9b5c638171f1e386f757d18c264f"
+    }
+  ],
+  "changes": [
+    "One task-local primitive scratch reused between terrain chunks; all published arrays still owned copies",
+    "Original meshes/materials/LOD/deadlines unchanged"
+  ],
+  "checks": [
+    {
+      "name": "real-terrain-buffer-allocation-comparison",
+      "status": "pass",
+      "windows": 16,
+      "report": "out/pc-visual/v144-terrain-scratch-host.json",
+      "log": "out/pc-visual/v144-terrain-scratch-host.txt",
+      "scope": "Desktop CPU output/allocation, not Android performance"
+    },
+    {
+      "name": "source-map-picking-save-isolation",
+      "status": "pass",
+      "checks": 635299,
+      "log": "out/pc-visual/v144-map-host.txt"
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "log": "out/pc-visual/v144-terrain-scratch-build.txt"
+    },
+    {
+      "name": "installed-scenery-all12",
+      "status": "fail",
+      "log": "out/pc-visual/v144-scenery-all12-installed.txt",
+      "evidence": "out/pc-visual/v144/evidence-all12-failed/manifest.json",
+      "seasonal_near_captures": 12,
+      "pending_at120s": 43,
+      "visible_ground": 125,
+      "resident_ground": 125,
+      "scope": "Emulator integration, not PC/ARM acceptance"
+    }
+  ],
+  "install": {
+    "status": "pass",
+    "main_log": "out/pc-visual/v144-install-main.txt",
+    "test_log": "out/pc-visual/v144-install-test.txt",
+    "byte_check": "out/pc-visual/v144-installed-apk-byte-check.json",
+    "user_save_before_exact": true,
+    "after_all12_user_save_byte_exact": true
+  },
+  "inherited": "docs/pc-visual/validation-v143-working.json",
+  "hardware": {
+    "PC_reference": "NOT_AVAILABLE",
+    "ARM": "NOT_RUN",
+    "emulator": "API29 x86_64 host OpenGL"
+  },
+  "remaining": [
+    "Complete far readiness and normal command installed verification",
+    "Original source height/UV/water/lighting calibration",
+    "Original effects/fullscreen, PC video and ARM performance"
+  ]
+}

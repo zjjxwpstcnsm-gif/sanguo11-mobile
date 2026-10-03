@@ -56,7 +56,7 @@ final class UiTheme {
         d.getWindow().setBackgroundDrawable(surface(d.getContext(),0xff1c2d37,0xff111e28,20));
         d.getWindow().setDimAmount(.42f);
         for(int which:new int[]{AlertDialog.BUTTON_POSITIVE,AlertDialog.BUTTON_NEGATIVE,AlertDialog.BUTTON_NEUTRAL}){
-            Button b=d.getButton(which);if(b!=null){b.setTextColor(which==AlertDialog.BUTTON_POSITIVE?JADE:MUTED);b.setAllCaps(false);}
+            Button b=d.getButton(which);if(b!=null){b.setTextColor(new ColorStateList(new int[][]{new int[]{-android.R.attr.state_enabled},new int[]{}},new int[]{0xff526670,which==AlertDialog.BUTTON_POSITIVE?JADE:MUTED}));b.setAllCaps(false);}
         }
     }
     static void search(EditText edit){

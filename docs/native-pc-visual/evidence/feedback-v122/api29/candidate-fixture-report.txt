@@ -1,0 +1,52 @@
+phase=candidate mode=fixture original120sReady; MEDIUM; fixed camera API; not full touch flow or phone performance; focused=true
+candidate-fixture-span5-gridfalse
+windowRecovery=OBSERVING windowFrames=467 backingCopies=7 confirmedLosses=6 relayouts=6 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1
+source=a8a4eca79164a03f9e58ef379991c839be44968a profile=native device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]
+snapshot=true surface=true viewport=918x954 session=136adba4-716c-4196-b8c7-fb2171d5a7b6:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=1738712 terrain_all_coarse=false mapVisualKey=1127932591:0 environmentCpuChunks=6 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=2 pending=0 submitted=33 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 gridGpuChunks=0 gridUploads=0 gridMode=depth-tested-batches overlayDraws=472 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=4 workerBackpressureWallMs=3253.64904 frameCallbacks=585 beginAttempts=528 beginSkipped=495 gpuPreparationFrames=33 lifetimeSubmissions=33 surfaceCopies=1 output=CONTENT_DETECTED_NOT_ART_ACCEPTANCE
+camera=15.0,8.0 span=5.0 tilt=55.0 facing=1 yaw=0.0
+pick=none
+Filament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30
+内部 918 × 954 / UI 1080 × 1122 · chunks 2 / GPU 2 · objects 3
+帧回调间隔 1533.0 ms（非 GPU/FPS 实测）
+待装载 0 · S06 战斗特效 / 部队 · 林块 1 · LOD 0 · 资产回退 0 · 特效 0/64
+场景 primitives=10 triangles=32837 buffers_bytes=2848138 pose_cache=10 entity_live=26 material_instance_live=6 mesh_live=14 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=41.78332 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=3.69213 CPU提交ms P50/P95/P99=0.24/71.54/1582.81 samples=240（非驱动DrawCall/GPU帧时）
+R16 attempts=528 submitted=33 rejected=495 window=300 owner_wall_ms_p50_p95_p99=0.258/59.705/1540.792/ owner_cpu_ms_p50_p95_p99=0.247/5.010/219.244/ begin_wall_ms_p50_p95_p99=0.042/22.874/1515.839/ mesh_upload_wall_ms_p50_p95_p99=0.000/0.000/0.000/ render_submit_wall_ms_p50_p95_p99=0.000/0.218/6.000/ presented_interval=NOT_AVAILABLE gpu_duration=NOT_AVAILABLE visibility_passes=5 visibility_skips=28 thermal_transitions=0
+candidate-fixture-span5-gridtrue
+windowRecovery=OBSERVING windowFrames=495 backingCopies=11 confirmedLosses=10 relayouts=10 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1
+source=a8a4eca79164a03f9e58ef379991c839be44968a profile=native device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]
+snapshot=true surface=true viewport=918x954 session=136adba4-716c-4196-b8c7-fb2171d5a7b6:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=1738712 terrain_all_coarse=false mapVisualKey=1127932591:0 environmentCpuChunks=6 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=2 pending=0 submitted=57 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 gridGpuChunks=2 gridUploads=2 gridMode=depth-tested-batches overlayDraws=503 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=4 workerBackpressureWallMs=3253.64904 frameCallbacks=694 beginAttempts=600 beginSkipped=542 gpuPreparationFrames=57 lifetimeSubmissions=57 surfaceCopies=1 output=CONTENT_DETECTED_NOT_ART_ACCEPTANCE
+camera=15.0,8.0 span=5.0 tilt=55.0 facing=1 yaw=0.0
+pick=none
+Filament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30
+内部 918 × 954 / UI 1080 × 1122 · chunks 2 / GPU 2 · objects 3
+帧回调间隔 333.3 ms（非 GPU/FPS 实测）
+待装载 0 · S06 战斗特效 / 部队 · 林块 1 · LOD 0 · 资产回退 0 · 特效 0/64
+场景 primitives=12 triangles=43525 buffers_bytes=3510794 pose_cache=10 entity_live=28 material_instance_live=6 mesh_live=16 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=41.78332 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=false texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=3.69213 CPU提交ms P50/P95/P99=0.24/101.00/1591.83 samples=240（非驱动DrawCall/GPU帧时）
+R16 attempts=599 submitted=57 rejected=542 window=300 owner_wall_ms_p50_p95_p99=0.253/98.163/1591.842/ owner_cpu_ms_p50_p95_p99=0.242/19.684/636.815/ begin_wall_ms_p50_p95_p99=0.042/78.917/1576.081/ mesh_upload_wall_ms_p50_p95_p99=0.000/0.000/0.000/ render_submit_wall_ms_p50_p95_p99=0.000/0.503/18.638/ presented_interval=NOT_AVAILABLE gpu_duration=NOT_AVAILABLE visibility_passes=6 visibility_skips=51 thermal_transitions=0
+candidate-fixture-span10-gridfalse
+windowRecovery=OBSERVING windowFrames=521 backingCopies=14 confirmedLosses=13 relayouts=13 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1
+source=a8a4eca79164a03f9e58ef379991c839be44968a profile=native device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]
+snapshot=true surface=true viewport=918x954 session=136adba4-716c-4196-b8c7-fb2171d5a7b6:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=1738712 terrain_all_coarse=false mapVisualKey=1127932591:0 environmentCpuChunks=6 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=2 pending=0 submitted=82 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 gridGpuChunks=2 gridUploads=2 gridMode=depth-tested-batches overlayDraws=532 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=4 workerBackpressureWallMs=3253.64904 frameCallbacks=729 beginAttempts=635 beginSkipped=552 gpuPreparationFrames=82 lifetimeSubmissions=82 surfaceCopies=1 output=CONTENT_DETECTED_NOT_ART_ACCEPTANCE
+camera=15.0,8.0 span=10.0 tilt=55.0 facing=1 yaw=0.0
+pick=none
+Filament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30
+内部 918 × 954 / UI 1080 × 1122 · chunks 2 / GPU 2 · objects 5
+帧回调间隔 133.5 ms（非 GPU/FPS 实测）
+待装载 0 · S06 战斗特效 / 部队 · 林块 1 · LOD 0 · 资产回退 0 · 特效 0/64
+场景 primitives=14 triangles=44333 buffers_bytes=3510794 pose_cache=10 entity_live=28 material_instance_live=6 mesh_live=16 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=41.78332 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=false texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=3.69213 CPU提交ms P50/P95/P99=0.25/1419.89/1591.83 samples=240（非驱动DrawCall/GPU帧时）
+R16 attempts=634 submitted=82 rejected=552 window=300 owner_wall_ms_p50_p95_p99=0.264/1384.301/1591.842/ owner_cpu_ms_p50_p95_p99=0.250/199.177/663.729/ begin_wall_ms_p50_p95_p99=0.044/1324.718/1576.081/ mesh_upload_wall_ms_p50_p95_p99=0.000/0.000/0.000/ render_submit_wall_ms_p50_p95_p99=0.000/1.383/18.723/ presented_interval=NOT_AVAILABLE gpu_duration=NOT_AVAILABLE visibility_passes=8 visibility_skips=74 thermal_transitions=0
+candidate-fixture-span10-gridtrue
+windowRecovery=AWAITING_BACKING windowFrames=532 backingCopies=16 confirmedLosses=16 relayouts=16 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1
+source=a8a4eca79164a03f9e58ef379991c839be44968a profile=native device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]
+snapshot=true surface=true viewport=918x954 session=136adba4-716c-4196-b8c7-fb2171d5a7b6:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=1738712 terrain_all_coarse=false mapVisualKey=1127932591:0 environmentCpuChunks=6 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=2 pending=0 submitted=100 terrainMaterialLod=DETAIL lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 gridGpuChunks=2 gridUploads=2 gridMode=depth-tested-batches overlayDraws=547 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=4 workerBackpressureWallMs=3253.64904 frameCallbacks=760 beginAttempts=661 beginSkipped=561 gpuPreparationFrames=100 lifetimeSubmissions=100 surfaceCopies=1 output=CONTENT_DETECTED_NOT_ART_ACCEPTANCE
+camera=15.0,8.0 span=10.0 tilt=55.0 facing=1 yaw=0.0
+pick=none
+Filament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30
+内部 918 × 954 / UI 1080 × 1122 · chunks 2 / GPU 2 · objects 5
+帧回调间隔 83.4 ms（非 GPU/FPS 实测）
+待装载 0 · S06 战斗特效 / 部队 · 林块 1 · LOD 0 · 资产回退 0 · 特效 0/64
+场景 primitives=16 triangles=55021 buffers_bytes=3510794 pose_cache=10 entity_live=28 material_instance_live=6 mesh_live=16 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=1 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=41.78332 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=12 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=3.69213 CPU提交ms P50/P95/P99=0.28/1429.45/1591.83 samples=240（非驱动DrawCall/GPU帧时）
+R16 attempts=661 submitted=100 rejected=561 window=300 owner_wall_ms_p50_p95_p99=0.280/1399.712/1591.842/ owner_cpu_ms_p50_p95_p99=0.255/288.805/663.729/ begin_wall_ms_p50_p95_p99=0.044/1395.470/1576.081/ mesh_upload_wall_ms_p50_p95_p99=0.000/0.000/0.000/ render_submit_wall_ms_p50_p95_p99=0.000/1.383/18.723/ presented_interval=NOT_AVAILABLE gpu_duration=NOT_AVAILABLE visibility_passes=9 visibility_skips=91 thermal_transitions=0
+ACTUAL_GPU_SHAPE city0:0 triangles=5736
+ACTUAL_GPU_SHAPE gate:0/12,5/-2.6779451/g1 triangles=1949
+PASS FEEDBACK122 checks=84

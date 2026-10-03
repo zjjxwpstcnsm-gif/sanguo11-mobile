@@ -1,0 +1,13 @@
+{
+  "schema": 1,
+  "fixture": "core/src/test/resources/pc-officer-legacy-am.sg11",
+  "sha256": "a5ae1bfb12543d533fcfe73a30966cf3333b7147dce811b474793e4f38c1812a",
+  "bytes": 1657,
+  "writer_jar": "out/parity/officer-persistence-20261003/legacy/core-am.jar",
+  "writer_jar_sha256": "a4a9d20e51c066ef94c47937ba02fb9e401ca88afe5b1db10cf5bd42e7e9fc09",
+  "writer_source": "tools/content/fixtures/WriteOfficerLegacyAm.java.txt",
+  "writer_source_sha256": "e8d47fc5f8abfe4f1739f5ee93a969f42c39342f0e0e8e67b4b14c5ade8bb84c",
+  "version": 33,
+  "scope": "Generated engineering world by frozen compiled AM production SaveCodec; not user data",
+  "test_fixture": "PcOfficerRankTest.world() unchanged from AM"
+}

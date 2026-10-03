@@ -1,0 +1,22 @@
+[
+  {
+    "path": "app-uiux-run03.apk",
+    "bytes": 82244112,
+    "sha256": "bc436c9a7ad73ecd76471a0f7b05fbc3f32b7ee18f684b8982f9655944718c98",
+    "abis": [
+      "x86_64"
+    ],
+    "native_inputs": "exact inherited bytes",
+    "installed": true
+  },
+  {
+    "path": "app-uiux-arm64.apk",
+    "bytes": 82186953,
+    "sha256": "98faac17d4c00c56b7c9dc52fa231853ef5dbcbbfa88a927eaae878baec861db",
+    "abis": [
+      "arm64-v8a"
+    ],
+    "native_inputs": "exact inherited bytes",
+    "installed": false
+  }
+]

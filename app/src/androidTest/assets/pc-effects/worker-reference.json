@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "status": "INDEPENDENT_SOURCE_MEMORY_FIXTURE_NOT_PC_IMAGE",
+  "frames": 5,
+  "updates": 3,
+  "paused_redraws": 2,
+  "source_heap_sha256": "97695804a21bd4e543f6f59fc99308550ae658128f697823ebc8347082418480",
+  "source_visual_rng_sha256": "570e4b56c41ca0fb35a48e03660fc056c391045a1e3a15d07f161a475c7cc460",
+  "output_sha256": "c9418e47ae459da11ae8627e377931b614d6505c1015d12ea6af7b40e47b66f0",
+  "source_calls": "45a820/45a620/457dd0/457880/45a530/45a590/458650/442c00/442ad0",
+  "camera": "Explicit diagnostic source51-float camera; not captured PC camera",
+  "runtime_effects_added": 0
+}

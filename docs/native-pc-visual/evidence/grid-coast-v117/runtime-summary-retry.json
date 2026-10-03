@@ -1,0 +1,34 @@
+{
+  "baseline": {
+    "result": "FAIL",
+    "message": "FAIL GRID_COAST java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=506 backingCopies=1 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+    "installed_sha256": "4ee59d43b91937bcda35bfc3b7b95ba504ba2bda4d54151d097fff4b5d3d37f7",
+    "save_pair": [
+      null,
+      null
+    ],
+    "save_equal": null,
+    "complete_camera_screens": 0,
+    "direct_touch_test": false
+  },
+  "candidate": {
+    "result": "PASS",
+    "message": "PASS GRID_COAST phase=candidate mode=fixture checks=874",
+    "installed_sha256": "48ec6ad14cf9f2eefaf020566471dac5292bf3850c33b411262ce89b47f6f185",
+    "save_pair": [
+      {
+        "file": "expected.sg11",
+        "bytes": 2071,
+        "sha256": "61824abcf71db3cf36ccd4d51971e4923c8854d64a7f342948aa28b53af7459a"
+      },
+      {
+        "file": "observed.sg11",
+        "bytes": 2071,
+        "sha256": "61824abcf71db3cf36ccd4d51971e4923c8854d64a7f342948aa28b53af7459a"
+      }
+    ],
+    "save_equal": true,
+    "complete_camera_screens": 12,
+    "direct_touch_test": false
+  }
+}

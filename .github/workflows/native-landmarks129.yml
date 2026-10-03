@@ -1,0 +1,184 @@
+name: Native sculpted landmarks v129 combined acceptance
+on: workflow_dispatch
+permissions: {contents: read, actions: read}
+concurrency: {group: 'native-landmarks129-${{ github.sha }}', cancel-in-progress: false}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Reproduce actual Blender, ETC2 and pinned material
+        run: |
+          set -euo pipefail
+          mkdir -p out/landmarks129
+          curl -fsSL --retry 2 https://download.blender.org/release/Blender4.3/blender-4.3.2-linux-x64.tar.xz -o /tmp/blender127.tar.xz
+          tar -xJf /tmp/blender127.tar.xz -C /tmp
+          /tmp/blender-4.3.2-linux-x64/blender --background --threads 2 --python-exit-code 1 --python tools/3d/refine_blender129.py -- out/landmarks129/reproduced > out/landmarks129/blender.log 2>&1
+          python3 -m pip install etcpak==0.9.15 Pillow==12.3.0 numpy==2.3.5 texture2ddecoder==1.0.6
+          ASSET_OUTPUT_ROOT=out/landmarks129/reproduced python3 tools/3d/compress_scenery129.py
+          curl -fsSL --retry 2 https://github.com/google/filament/releases/download/v1.56.0/filament-v1.56.0-linux.tgz -o /tmp/filament127.tgz
+          tar -xzf /tmp/filament127.tgz -C /tmp
+          /tmp/filament/bin/matc -p mobile -a opengl -o /tmp/scenery128.filamat tools/3d/scenery128.mat
+          cmp /tmp/scenery128.filamat app/src/main/assets/3d/field/v128/scenery.filamat
+          /tmp/filament/bin/matc -p mobile -a opengl -o /tmp/ground129.filamat tools/3d/ground129.mat
+          /tmp/filament/bin/matc -p mobile -a opengl -o /tmp/ground-overview129.filamat tools/3d/ground-overview129.mat
+          cmp /tmp/ground129.filamat app/src/main/assets/3d/terrain/v129/ground.filamat
+          cmp /tmp/ground-overview129.filamat app/src/main/assets/3d/terrain/v129/ground-overview.filamat
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          root=Path('out/landmarks129/reproduced')
+          for p in (root/'app/src/main/assets/3d/field/v129').iterdir():
+              assert p.read_bytes()==Path(p.relative_to(root)).read_bytes(),p
+          def stable(value):
+              if isinstance(value,dict): return {k:stable(v) for k,v in value.items() if not k.endswith('_cpu_seconds')}
+              if isinstance(value,list): return [stable(v) for v in value]
+              return value
+          for p in ['feedback-v129-blender-assets.json','feedback-v129-texture-compression.json']:
+              assert stable(json.loads((root/'docs/native-pc-visual'/p).read_text()))==stable(json.loads((Path('docs/native-pc-visual')/p).read_text()))
+          print('PASS exact Blender/PNG/ETC2/material reproduction')
+          PY
+      - name: Authority, geometric visibility and format checks
+        run: |
+          curl -fsSL https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/json127.jar
+          export JSON_TEST_JAR=/tmp/json127.jar
+          python3 tools/3d/check_landmarks129.py > out/landmarks129/asset-contracts.log 2>&1
+          bash scripts/test-landmarks128.sh > out/landmarks129/host.log 2>&1
+          bash scripts/test-grid129.sh > out/landmarks129/grid.log 2>&1
+          bash scripts/test-poison129.sh > out/landmarks129/poison.log 2>&1
+          python3 tools/3d/test_scenery129_uv.py > out/landmarks129/uv.log 2>&1
+          python3 scripts/test-native-frame-admission.py > out/landmarks129/frame-admission.log 2>&1
+          bash scripts/test-architecture.sh > out/landmarks129/architecture.log 2>&1
+          npm ci --prefix tools/3d
+          npm --prefix tools/3d run validate > out/landmarks129/khronos.log 2>&1
+      - name: Preserve independent input and candidate rule failures
+        continue-on-error: true
+        run: |
+          set +e
+          git worktree add --detach /tmp/input128 beb9ae3584b36dd8689ae5aa3b242274b4104bf2
+          (cd /tmp/input128 && bash scripts/test-core.sh) > out/landmarks129/core-input.log 2>&1
+          echo $? > out/landmarks129/core-input.exit
+          bash scripts/test-core.sh > out/landmarks129/core-candidate.log 2>&1
+          code=$?; echo "$code" > out/landmarks129/core-candidate.exit
+          (cd /tmp/input128 && java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.DisplacementTest) > out/landmarks129/displacement-input.log 2>&1
+          echo $? > out/landmarks129/displacement-input.exit
+          java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.DisplacementTest > out/landmarks129/displacement-candidate.log 2>&1
+          echo $? > out/landmarks129/displacement-candidate.exit
+          exit "$code"
+      - name: Build and audit exact production source
+        run: |
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PcandidateSource="$GITHUB_SHA" -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/landmarks129/build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/landmarks129/sanguo11-mobile-v129.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/landmarks129/test.apk
+          echo "$GITHUB_SHA" > out/landmarks129/SOURCE_COMMIT
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/landmarks129/sanguo11-mobile-v129.apk > out/landmarks129/metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/landmarks129/sanguo11-mobile-v129.apk > out/landmarks129/signature.txt
+          python3 scripts/audit-3d-apk.py out/landmarks129/sanguo11-mobile-v129.apk --require-16k > out/landmarks129/apk-audit.json
+          python3 scripts/verify-r18-apk.py out/landmarks129/sanguo11-mobile-v129.apk "$GITHUB_SHA" > out/landmarks129/apk-identity.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-landmarks129-build, path: out/landmarks129/, retention-days: 30, if-no-files-found: error}
+  installed:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [29, 35]
+        mode: [hukou, taishan, southwest, greatwall, taihu, lushan, poison]
+        variant: [candidate]
+        include:
+          - {api: 29, mode: hukou, variant: input}
+          - {api: 35, mode: taishan, variant: input}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: {name: native-landmarks129-build, path: out/landmarks129/}
+      - uses: actions/download-artifact@v4
+        if: matrix.variant == 'input'
+        with:
+          name: native-landmarks128-build
+          path: out/landmarks129/input/
+          run-id: 36711026636
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+      - run: sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: '${{ matrix.api }}'
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/test-landmarks129-installed.sh '${{ matrix.mode }}' '${{ matrix.variant }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'native-landmarks129-api${{ matrix.api }}-${{ matrix.mode }}-${{ matrix.variant }}', path: out/landmarks129/runtime/, retention-days: 30, if-no-files-found: warn}
+
+  grid:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix: {api: [29, 35]}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: {name: native-landmarks129-build, path: out/landmarks129/}
+      - run: sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: '${{ matrix.api }}'
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/test-grid129-installed.sh out/landmarks129/sanguo11-mobile-v129.apk out/landmarks129/test.apk out/grid129/runtime
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'native-grid129-api${{ matrix.api }}', path: out/grid129/runtime/, retention-days: 30, if-no-files-found: warn}
+  alternative-driver:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    strategy:
+      fail-fast: false
+      matrix: {variant: [candidate, input]}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with: {name: native-landmarks129-build, path: out/landmarks129/}
+      - uses: actions/download-artifact@v4
+        if: matrix.variant == 'input'
+        with:
+          name: native-landmarks128-build
+          path: out/landmarks129/input/
+          run-id: 36711026636
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+      - run: sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu lavapipe -noaudio -no-boot-anim -camera-back none
+          script: bash scripts/test-landmarks129-installed.sh hukou '${{ matrix.variant }}'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'native-landmarks129-lavapipe-api35-hukou-${{ matrix.variant }}', path: out/landmarks129/runtime/, retention-days: 30, if-no-files-found: warn}

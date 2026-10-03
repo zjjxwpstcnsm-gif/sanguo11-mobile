@@ -1,0 +1,71 @@
+[
+  {
+    "api": 29,
+    "phase": "baseline",
+    "mode": "fixture",
+    "status": "PASS",
+    "reason": "PASS FEEDBACK123 baseline fixture checks=70\n\n",
+    "allFourViewsCaptured": true,
+    "cache": [],
+    "actualGpu": []
+  },
+  {
+    "api": 29,
+    "phase": "candidate",
+    "mode": "fixture",
+    "status": "PASS",
+    "reason": "PASS FEEDBACK123 candidate fixture checks=91\n\n",
+    "allFourViewsCaptured": true,
+    "cache": [
+      "POSITION_CACHE uploads=33 skips=224"
+    ],
+    "actualGpu": [
+      "ACTUAL_GPU_SHAPE city0:0 triangles=6392",
+      "ACTUAL_GPU_SHAPE gate:0/12,5/-2.6779451/g1 triangles=2109"
+    ]
+  },
+  {
+    "api": 29,
+    "phase": "baseline",
+    "mode": "national",
+    "status": "PASS",
+    "reason": "PASS FEEDBACK123 baseline national checks=117\n\n",
+    "allFourViewsCaptured": true,
+    "cache": [],
+    "actualGpu": []
+  },
+  {
+    "api": 29,
+    "phase": "candidate",
+    "mode": "national",
+    "status": "FAIL",
+    "reason": "cache applicability assertion on view without visible troops",
+    "allFourViewsCaptured": true,
+    "cache": [
+      "POSITION_CACHE uploads=444 skips=0"
+    ],
+    "actualGpu": []
+  },
+  {
+    "api": 29,
+    "phase": "baseline",
+    "mode": "port",
+    "status": "PASS",
+    "reason": "PASS FEEDBACK123 baseline port checks=112\n\n",
+    "allFourViewsCaptured": true,
+    "cache": [],
+    "actualGpu": []
+  },
+  {
+    "api": 29,
+    "phase": "candidate",
+    "mode": "port",
+    "status": "FAIL",
+    "reason": "cache applicability assertion on view without visible troops",
+    "allFourViewsCaptured": true,
+    "cache": [
+      "POSITION_CACHE uploads=444 skips=0"
+    ],
+    "actualGpu": []
+  }
+]

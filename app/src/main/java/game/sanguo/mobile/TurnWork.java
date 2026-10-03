@@ -15,7 +15,7 @@ final class TurnWork {
     static final long PRESENTATION_BUDGET_MS=8000;
     private static final int MAX_QUEUED_EVENTS=1600;
     final World before;
-    final long startedAt=SystemClock.elapsedRealtime();
+    final long startedAt=SystemClock.elapsedRealtime(),wallStartedAt;
     World after,visual;
     List<TurnJournal.Event> events=Collections.emptyList();
     int cursor,speed=1,playedEvents,publishedBatches,batchOwner=-1;
@@ -23,6 +23,7 @@ final class TurnWork {
     boolean paused,savedFinal,batchReady,fullReplay;
     volatile boolean skipAnimations;
     int visibleCount,criticalsShown;
+    String announcedEvent="",announcedCritical="";
     long pauseStarted,pausedMillis,saveMillis,totalMillis;
     final StringBuilder actionReport=new StringBuilder();
     String summary,timings="";
@@ -43,11 +44,12 @@ final class TurnWork {
     private final GameSession session;
     private final TurnTicket ticket;
     private final Runnable committed;
-    TurnWork(World before,GameSession session,TurnTicket ticket,Runnable committed){
-        this.before=before;this.session=session;this.ticket=ticket;this.committed=committed;
+    TurnWork(World before,GameSession session,TurnTicket ticket,Runnable committed,long wallStartedAt){
+        this.before=before;this.session=session;this.ticket=ticket;this.committed=committed;this.wallStartedAt=wallStartedAt;
     }
     void observe(Runnable observer){this.observer=observer;if(observer!=null&&(visual!=null||done))observer.run();}
     private void notifyObserver(){if(!cancelled&&observer!=null)observer.run();}
+    long elapsedMillis(){return Math.max(0,SystemClock.elapsedRealtime()-wallStartedAt);}
     long activeMillis(){return Math.max(0,SystemClock.elapsedRealtime()-startedAt-pausedMillis-(paused?SystemClock.elapsedRealtime()-pauseStarted:0));}
     boolean budgetExpired(){return !fullReplay&&activeMillis()>=PRESENTATION_BUDGET_MS;}
     boolean fastForward(){return skipAnimations||compacted||budgetExpired();}

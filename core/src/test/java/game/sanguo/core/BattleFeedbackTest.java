@@ -7,7 +7,13 @@ public final class BattleFeedbackTest {
     private static int checks;
     private static void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
     private static void ok(World.Result r){check(r.ok,r.message);}
-    private static World fixture(){return GovernmentTest.world();}
+    private static World fixture(){
+        World w=GovernmentTest.world();
+        // ScenarioLoader initializes earned titles/governors before normal
+        // commands. Otherwise the new fixture and its loaded copy differ in
+        // stored title history, producing extra promotion log entries on kill.
+        w.governance.reconcile(false);return w;
+    }
     private static World.Unit unit(World w,int officer,int owner,int q,int troops,int... deputies){return GovernmentTest.unit(w,officer,owner,new Hex(q,4),troops,deputies);}
     private static byte[] bytes(World w)throws Exception{return SaveCodec.encode(w);}
     public static void main(String[] args)throws Exception{
@@ -66,9 +72,16 @@ public final class BattleFeedbackTest {
         byte[] before=bytes(w);check(!w.marches.execute(blocked).ok&&Arrays.equals(before,bytes(w)),"fire rejection consumes nothing");
         w.orders.reset(a);check(!w.orders.marchReachable(a).containsKey(b.hex),"map highlight does not advertise a fire tile that automatic routing refuses");
         w.war.fires.clear();w.orders.reset(a);MarchOrders.Plan clear=w.marches.preview(a.id,b.hex);check(clear.valid()&&clear.stepsNow==1,"extinguished target reachable immediately");ok(w.marches.execute(clear));check(a.hex.equals(b.hex),"actual automatic route executes onto empty former enemy tile");
-        Hex next=new Hex(6,4);w.domestic.facilities.add(new Domestic.Facility(1,0,Domestic.Kind.MARKET,next,-1,0));
-        check(w.marches.preview(a.id,next).error.contains("市场"),"occupied target names facility");
-        w.domestic.facilities.clear();w.terrain[6][4]=World.Terrain.MOUNTAIN;check(w.marches.preview(a.id,next).error.contains("山地"),"impassable mountain explained");
+        Hex next=new Hex(6,4);
+        // March previews validate the complete save. Allocate a real facility
+        // ID and development parcel before checking its occupied-tile error.
+        w.development.configure(0,List.of(next));
+        w.domestic.facilities.add(new Domestic.Facility(w.domestic.nextFacilityId++,0,Domestic.Kind.MARKET,next,-1,0));
+        SaveCodec.validate(w);
+        // The map drag uses explicit MOVE; selecting a facility instead
+        // legitimately previews an APPROACH objective to an adjacent tile.
+        check(w.marches.previewMove(a.id,next).error.contains("市场"),"occupied target names facility");
+        w.domestic.facilities.clear();w.development.remove(0);w.terrain[6][4]=World.Terrain.MOUNTAIN;check(w.marches.preview(a.id,next).error.contains("山地"),"impassable mountain explained");
     }
     private static void feedbackBoundaries()throws Exception{
         World w=fixture();World.Unit a=unit(w,1,0,4,8000),b=unit(w,7,1,5,8000);World.Result hit=w.attack(a.id,b.id);ok(hit);

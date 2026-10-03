@@ -1,0 +1,190 @@
+{
+  "schema": 2,
+  "source_path": "san11pk.exe",
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "table_sha256": "db300a34f7cbd091ffd707d9f49ac65c230dd8d6e742ce8fd30b2d00f72e38b8",
+  "months": [
+    {
+      "month": 1,
+      "source_address": "0x7e84b8",
+      "base": 50,
+      "step": 10,
+      "random_bound": 2,
+      "record_sha256": "240019e360f70b621cac6b533785e07b668e0b454607051c9a32e7f7fa38c29b"
+    },
+    {
+      "month": 2,
+      "source_address": "0x7e84c4",
+      "base": 40,
+      "step": 10,
+      "random_bound": 3,
+      "record_sha256": "21369b3ec3ef4a4924b4b81d1eba55c9ecc7ad5e6e6803c20e073271d7692fb9"
+    },
+    {
+      "month": 3,
+      "source_address": "0x7e84d0",
+      "base": 40,
+      "step": 10,
+      "random_bound": 3,
+      "record_sha256": "21369b3ec3ef4a4924b4b81d1eba55c9ecc7ad5e6e6803c20e073271d7692fb9"
+    },
+    {
+      "month": 4,
+      "source_address": "0x7e84dc",
+      "base": 40,
+      "step": 10,
+      "random_bound": 2,
+      "record_sha256": "5ba760149ff3fa5df5bfaa9cb52e9ed667c42d1cf9abc52bb2950e2ba1b96690"
+    },
+    {
+      "month": 5,
+      "source_address": "0x7e84e8",
+      "base": 40,
+      "step": 10,
+      "random_bound": 2,
+      "record_sha256": "5ba760149ff3fa5df5bfaa9cb52e9ed667c42d1cf9abc52bb2950e2ba1b96690"
+    },
+    {
+      "month": 6,
+      "source_address": "0x7e84f4",
+      "base": 30,
+      "step": 10,
+      "random_bound": 3,
+      "record_sha256": "6ce176d3e86e6de3b618817ea70d6dd8480c3bfb66b1b60e113dd162d5ad0684"
+    },
+    {
+      "month": 7,
+      "source_address": "0x7e8500",
+      "base": 60,
+      "step": 10,
+      "random_bound": 2,
+      "record_sha256": "c2ce1253b2a801e92fc91367fd369b83b44fafc48238a0c8e35a3a70df758d56"
+    },
+    {
+      "month": 8,
+      "source_address": "0x7e850c",
+      "base": 50,
+      "step": 10,
+      "random_bound": 3,
+      "record_sha256": "2cce31afe7733c4dc9f0158cec7a31fbb370d6ef7159e493d18784d320d32bdb"
+    },
+    {
+      "month": 9,
+      "source_address": "0x7e8518",
+      "base": 50,
+      "step": 10,
+      "random_bound": 3,
+      "record_sha256": "2cce31afe7733c4dc9f0158cec7a31fbb370d6ef7159e493d18784d320d32bdb"
+    },
+    {
+      "month": 10,
+      "source_address": "0x7e8524",
+      "base": 50,
+      "step": 10,
+      "random_bound": 3,
+      "record_sha256": "2cce31afe7733c4dc9f0158cec7a31fbb370d6ef7159e493d18784d320d32bdb"
+    },
+    {
+      "month": 11,
+      "source_address": "0x7e8530",
+      "base": 50,
+      "step": 10,
+      "random_bound": 2,
+      "record_sha256": "240019e360f70b621cac6b533785e07b668e0b454607051c9a32e7f7fa38c29b"
+    },
+    {
+      "month": 12,
+      "source_address": "0x7e853c",
+      "base": 50,
+      "step": 10,
+      "random_bound": 2,
+      "record_sha256": "240019e360f70b621cac6b533785e07b668e0b454607051c9a32e7f7fa38c29b"
+    }
+  ],
+  "functions": [
+    {
+      "name": "price_update",
+      "address": "0x4b3c60",
+      "end_exclusive": "0x4b3dff",
+      "sha256": "0fb190c1161d8e4e294b0043ee86b48795c26eb97f625c181115dbbe106ffe81"
+    },
+    {
+      "name": "uniform_rng",
+      "address": "0x472150",
+      "end_exclusive": "0x472184",
+      "sha256": "82bef9b78dc532adc5b0405a42da040048639dfee9ff2be22ed8d043c21140d0"
+    },
+    {
+      "name": "percent_rng",
+      "address": "0x4721d0",
+      "end_exclusive": "0x472208",
+      "sha256": "be8a4d5444306c561c32054e4b4b1d399135324bc03c7dbe4e131b7f1079500b"
+    },
+    {
+      "name": "city_condition_mask",
+      "address": "0x47b420",
+      "end_exclusive": "0x47b42d",
+      "sha256": "ac7587a336481c2fa6ed3bb9334471b663f7643b0a49aff799ac06ede90bfff6"
+    }
+  ],
+  "conditions": [
+    {
+      "bit": 0,
+      "property_id": "0x9a",
+      "name": "\u761f\u75ab",
+      "label_table_entry": "0x8af890",
+      "label_address": "0x7ebac0",
+      "label_sha256": "a3cb053fb68e387d0fcba9f9b3331796ee7a69d703e0900e1287da7cd4c4f7d9",
+      "name_branch": "4c09ef..4c0a1f",
+      "set_branch": "4a3abd..4a3add -> 47b550",
+      "get_branch": "4c0cd3..4c0cf0 -> 47b3c0"
+    },
+    {
+      "bit": 1,
+      "property_id": "0x9b",
+      "name": "\u8757\u707d",
+      "label_table_entry": "0x8af894",
+      "label_address": "0x7ebaf4",
+      "label_sha256": "2f146a25a3fda265a6d288957b76f4285849b82029584f8d30e1071897ac47c7",
+      "name_branch": "4c09ef..4c0a1f",
+      "set_branch": "4a3abd..4a3add -> 47b550",
+      "get_branch": "4c0cd3..4c0cf0 -> 47b3c0"
+    },
+    {
+      "bit": 2,
+      "property_id": "0x9c",
+      "name": "\u8c50\u6536",
+      "label_table_entry": "0x8af898",
+      "label_address": "0x7eb19c",
+      "label_sha256": "af173d18adf621caebe7c84b0fe88b1724adb31930137e1c2adb5396d4c4196d",
+      "name_branch": "4c09ef..4c0a1f",
+      "set_branch": "4a3abd..4a3add -> 47b550",
+      "get_branch": "4c0cd3..4c0cf0 -> 47b3c0"
+    }
+  ],
+  "state": {
+    "rate": "city+7c unsigned byte",
+    "conditions": "city+9c bit0 plague, bit1 locust, bit2 harvest; masks3 then4, disaster takes precedence",
+    "rng_address": "8a5d44",
+    "rng_update": "(state*0x6c078965+0x3039) modulo2^32"
+  },
+  "calls": {
+    "initial": "4a11f0 city initialization -> 4a1278 -> 4b3c60(initial=1)",
+    "monthly": "590c30 day-of-month1 guard; per-city58d6d0 -> 58d6ed -> 4b3c60(initial=0)"
+  },
+  "verification": {
+    "initial_valid_cases": 192,
+    "invalid_month_cases": 32,
+    "monthly_cases": 2816,
+    "rng_edge_cases": 85,
+    "named_properties": 3,
+    "property_set_get_cases": 48,
+    "method": "Unhooked original functions and RNG, exact final RNG and3MiB world mutation comparison; original property label/set/get branches"
+  },
+  "limits": [
+    "Not yet applied to project: requires saved price state, current politics modifiers and verified event timing",
+    "Monthly outer call chain statically inspected, not entire global settlement emulated",
+    "Raw scenario7c=50 is overwritten at initialization; cannot assume fixed starting price",
+    "Project RNG remains its existing saved64bit algorithm; no claim of identical native random stream"
+  ]
+}

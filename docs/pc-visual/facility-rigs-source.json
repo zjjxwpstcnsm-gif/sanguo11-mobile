@@ -1,0 +1,272 @@
+{
+  "schema": 1,
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "source_archive": "Media/san11pkres.bin",
+  "source_policy": "read-only active supplied Media bytes",
+  "object_kind": 44,
+  "facility_id": 10,
+  "models": [
+    {
+      "model_index": 286,
+      "resource": 2234,
+      "source_file": "media/model/unit/UNI15_catapulttower_normal.wkm",
+      "sha256": "8949e8e99895aeda20ae74ed7c682ae7af9b79bc55d138e563b9883c709e2cdc",
+      "format": "WKMD0010",
+      "bones": 6,
+      "vertices": 745,
+      "triangles": 416,
+      "draws": [
+        {
+          "flags": "0xc0000001",
+          "alpha_pass": true,
+          "source_offset": 180,
+          "first": 0,
+          "vertices": 30,
+          "source_index": 0,
+          "source_primitives": 46,
+          "triangles": 19,
+          "palette": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "flags": "0xc0000002",
+          "alpha_pass": true,
+          "source_offset": 224,
+          "first": 30,
+          "vertices": 263,
+          "source_index": 48,
+          "source_primitives": 395,
+          "triangles": 138,
+          "palette": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "flags": "0xc0000003",
+          "alpha_pass": true,
+          "source_offset": 268,
+          "first": 293,
+          "vertices": 364,
+          "source_index": 445,
+          "source_primitives": 556,
+          "triangles": 199,
+          "palette": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "flags": "0xc0000004",
+          "alpha_pass": true,
+          "source_offset": 312,
+          "first": 657,
+          "vertices": 14,
+          "source_index": 1003,
+          "source_primitives": 26,
+          "triangles": 16,
+          "palette": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "flags": "0xc0000005",
+          "alpha_pass": true,
+          "source_offset": 356,
+          "first": 671,
+          "vertices": 74,
+          "source_index": 1031,
+          "source_primitives": 127,
+          "triangles": 44,
+          "palette": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "texture_base": 37,
+      "texture_resources": [
+        {
+          "index": 37,
+          "resource": 4492,
+          "sha256": "e705a035c6ec633bf4bb879b95150fde4c8a0a663eaa5284c607784bff7c7229"
+        },
+        {
+          "index": 38,
+          "resource": 4493,
+          "sha256": "a064c0cb9cc6fe071cdb1d9c71c754c511d43d72afa473bff62b319a0f97d8bd"
+        },
+        {
+          "index": 39,
+          "resource": 4494,
+          "sha256": "f18454e9fe0e325e9bebfd0bbb179f58f2a89d494524027761a5567d0d1f4c21"
+        }
+      ]
+    },
+    {
+      "model_index": 287,
+      "resource": 2235,
+      "source_file": "media/model/unit/UNI16_catapulttower_break.wkm",
+      "sha256": "e303433d1c3fa7cb4d4cb4dba4ee677cfb72092d366f099abba007934397d67a",
+      "format": "WKMD0010",
+      "bones": 6,
+      "vertices": 751,
+      "triangles": 430,
+      "draws": [
+        {
+          "flags": "0xc0000001",
+          "alpha_pass": true,
+          "source_offset": 180,
+          "first": 0,
+          "vertices": 157,
+          "source_index": 0,
+          "source_primitives": 245,
+          "triangles": 87,
+          "palette": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "flags": "0xc0000002",
+          "alpha_pass": true,
+          "source_offset": 224,
+          "first": 157,
+          "vertices": 294,
+          "source_index": 247,
+          "source_primitives": 467,
+          "triangles": 164,
+          "palette": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "flags": "0xc0000003",
+          "alpha_pass": true,
+          "source_offset": 268,
+          "first": 451,
+          "vertices": 216,
+          "source_index": 716,
+          "source_primitives": 345,
+          "triangles": 119,
+          "palette": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "flags": "0xc0000004",
+          "alpha_pass": true,
+          "source_offset": 312,
+          "first": 667,
+          "vertices": 10,
+          "source_index": 1063,
+          "source_primitives": 28,
+          "triangles": 16,
+          "palette": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "flags": "0xc0000005",
+          "alpha_pass": true,
+          "source_offset": 356,
+          "first": 677,
+          "vertices": 74,
+          "source_index": 1093,
+          "source_primitives": 127,
+          "triangles": 44,
+          "palette": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "texture_base": 37,
+      "texture_resources": [
+        {
+          "index": 37,
+          "resource": 4492,
+          "sha256": "e705a035c6ec633bf4bb879b95150fde4c8a0a663eaa5284c607784bff7c7229"
+        },
+        {
+          "index": 38,
+          "resource": 4493,
+          "sha256": "a064c0cb9cc6fe071cdb1d9c71c754c511d43d72afa473bff62b319a0f97d8bd"
+        },
+        {
+          "index": 39,
+          "resource": 4494,
+          "sha256": "f18454e9fe0e325e9bebfd0bbb179f58f2a89d494524027761a5567d0d1f4c21"
+        }
+      ]
+    }
+  ],
+  "clips": [
+    {
+      "pack_resource": 2236,
+      "nested_id": 73,
+      "sha256": "e963120280ddef35df7b32b78d648973dd9302962fb8417563febe69ed955357",
+      "format": "FCVD0022",
+      "frames": 81,
+      "bones": 6
+    },
+    {
+      "pack_resource": 2236,
+      "nested_id": 74,
+      "sha256": "308cb88e683dfea5bfaf525226a8f3ad8f6ecafc7dc51d449473da3ac31de1e8",
+      "format": "FCVD0022",
+      "frames": 81,
+      "bones": 6
+    }
+  ],
+  "motion_pack": {
+    "resource": 2236,
+    "sha256": "762c3cae49625f35c63d35570670db9bc80e9bdc3d160f809cddbed6d7756832"
+  },
+  "source_binding": {
+    "model_selection_va": "0x570f39..0x570f61",
+    "motion_table_offset": "0x44926c",
+    "motion_table_sha256": "06c1858f571ba487bf2c2ad5517a2080bd60ac4c89793a99a13f1bb33c46358d",
+    "motion_draw_va": "0x56f61d..0x56f6ba",
+    "source_fps": 60,
+    "source_delay_seconds": 1,
+    "source_end_guard_frames": 2
+  },
+  "conversion": "retain original hierarchy, palettes, weights, float UV/BGRA, opaque/alpha groups and polynomial coefficients; reuse PcUnits strict source math",
+  "android_output": "app/src/main/assets/3d/pc-facilities/rigs.pcz",
+  "output_sha256": "c005139c78e3625e7035f8403240ecc98706ffbed70f02a22a09c7f209b51999",
+  "decoded_bytes": 123296,
+  "runtime_binding": "PcFacilityRigs / actual FACILITY_ATTACK journal / FilamentMapView; construction remains static source variants",
+  "limits": [
+    "Source firing body and curve binding confirmed by EXE; original PC rendered timing and projectile synchronization not accepted",
+    "Source delay=1 second and end guard retained by presentation-only duration override; core event duration remains unchanged",
+    "Source atlas sampling, climate selection, source camera/contact and alpha order still need PC comparison",
+    "Source construction state2+ has no proven six-bone curve; keep original construction mesh"
+  ]
+}

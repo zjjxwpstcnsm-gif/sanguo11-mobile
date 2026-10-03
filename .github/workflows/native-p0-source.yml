@@ -1,0 +1,37 @@
+name: Native P0 source capture
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-p0-source.yml]
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 1}
+      - name: Export tracked source only
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/native-p0-source
+          git rev-parse HEAD > /tmp/native-p0-source/SOURCE_COMMIT
+          git archive --format=tar HEAD | gzip -1 > /tmp/source.tar.gz
+          sha256sum /tmp/source.tar.gz > /tmp/native-p0-source/SHA256SUMS
+          split -b 16M -d /tmp/source.tar.gz /tmp/native-p0-source/source.tar.gz.part-
+          ls -lh /tmp/native-p0-source
+      - uses: actions/upload-artifact@v4
+        with: {name: native-p0-source-index, path: '/tmp/native-p0-source/*COMMIT', retention-days: 14}
+      - uses: actions/upload-artifact@v4
+        with: {name: native-p0-source-00, path: '/tmp/native-p0-source/source.tar.gz.part-00', retention-days: 14}
+      - uses: actions/upload-artifact@v4
+        with: {name: native-p0-source-01, path: '/tmp/native-p0-source/source.tar.gz.part-01', retention-days: 14}
+      - uses: actions/upload-artifact@v4
+        with: {name: native-p0-source-02, path: '/tmp/native-p0-source/source.tar.gz.part-02', retention-days: 14}
+      - uses: actions/upload-artifact@v4
+        with: {name: native-p0-source-03, path: '/tmp/native-p0-source/source.tar.gz.part-03', retention-days: 14}
+      - uses: actions/upload-artifact@v4
+        with: {name: native-p0-source-04, path: '/tmp/native-p0-source/source.tar.gz.part-04', retention-days: 14}
+      - uses: actions/upload-artifact@v4
+        with: {name: native-p0-source-05, path: '/tmp/native-p0-source/source.tar.gz.part-05', retention-days: 14}

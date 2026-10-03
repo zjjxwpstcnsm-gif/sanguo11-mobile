@@ -1,0 +1,15 @@
+typed_event	effect	feedback	camera_audio	formal_entry	host_evidence	installed_evidence
+ATTACK/SPEAR,HALBERD,SWORD	impact ring/debris	ordered Strike loss + residual Impact	no forced camera; existing haptic only	MainActivity.apply / TurnPlayback	NativeR11Test melee,counter,enemy,defeat	PENDING
+ATTACK/CAVALRY	charge dust + impact	actual Strike loss	no forced camera; existing haptic only	MainActivity.apply	NativeR11Test charge	PENDING
+ATTACK/CROSSBOW	terrain-clearing tangent-oriented volley	actual Strike loss	no forced camera; existing haptic only	MainActivity.apply	NativeR11Test arrow	PENDING
+TACTIC/War.FIRE_ARROW	fire projectile/smoke; not overwritten by Strike	physical hit + actual residual casualties	no forced camera; existing critical/haptic retained	MainActivity.apply	NativeR11Test fire-arrow	PENDING
+TACTIC/Army.STONE	ballistic stone/debris	actual casualties/HP	no forced camera; existing haptic only	MainActivity.apply	NativeR11Test stone	PENDING
+TACTIC/Army.RAM,FLAME	contact ring or flame/smoke	actual HP/owner/ENTER; no invented troop death	MainActivity.apply; pre-command immutable snapshot	NativeR11Test equipment-RAM,WOODEN_BEAST	PENDING
+ATTACK/naval	volley/water splash	actual ordered hit/counter loss	no forced camera; existing haptic only	MainActivity.apply	NativeR11Test equipment-TOWER_SHIP	PENDING
+PLOT/FIRE; fire traps	fire projectile/bursts; snapshot fire/smoke	actual before/after; ship trap has no persistent water fire	no forced camera; existing critical/haptic retained	MainActivity.apply	NativeR11Test fire,critical-fire,trap-seed,trap-ball,trap-ship	PENDING
+PLOT/LIGHTNING	lightning segments + actual affected targets	actual typed impacts only	no forced camera; no new audio	MainActivity.apply	NativeR11Test lightning	PENDING
+PLOT/CONFUSE,CALM,EXTINGUISH,etc	status pulse	actual status/fire/energy feedback	no forced camera; no new audio	MainActivity.apply	CONFUSE sampled; CALM/EXTINGUISH complete matrix NOT_RUN	PENDING
+FACILITY_ATTACK/COUNTER	captured facility weapon + impact	actual losses and facility HP	no forced camera; no new audio	TurnPlayback / normal attackStructure command	NativeR11Test facilities,facility-counter	PENDING
+RECOVER	teal recovery ring	actual positive energy delta	no forced camera; no new audio	TurnPlayback	NativeR11Test facilities	PENDING
+CHANGE/ENTER	state/ownership removal; no fabricated damage	typed actual deltas and existing report	no forced camera; no new audio	TurnJournal / TurnPlayback	NativeR11Test site; R10 probe disappearance repaired	PENDING
+MOVE/DEPLOY	retained R10 route/unit animation	retained exact final identity	no changes to legal route or map	normal existing move/turn path	retained foundation/interaction/R10 suites	R11 installed complete movement matrix NOT_RUN

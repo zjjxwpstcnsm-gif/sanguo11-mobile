@@ -1,0 +1,11 @@
+{
+  "writer": "genuine pre-fix full dirty workspace classes in out/parity/transport-20261003/before-classes",
+  "source_snapshot": "checkpoint-20261003-k",
+  "domestic_source_sha256": "2277c06e8e4c787c114bbff44e8ae13c53c63f4ad8b38616995560565ff10e47",
+  "generator": "tools/content/PcTransportSaveProbe.java",
+  "bytes": 4815,
+  "sha256": "c23d7aaf0be1dc0637b62ebfa39ed27562ff8d635d771bc032992ed5799e617b",
+  "save_version": 33,
+  "normal_command": "transport source11 target12 officer4 deputies5,6 gold700 food10000 troops2000 spear1000 land returning true ships2,1",
+  "writer_guard": "original direct nextTurn differs from original saved+loaded nextTurn; fixed writer refuses generation"
+}

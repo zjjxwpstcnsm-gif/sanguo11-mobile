@@ -2,10 +2,14 @@ package game.sanguo.core;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.Pattern;
 
 /** v7 runtime extension. Unknown stable skill IDs survive content pack removal and updates. */
 final class RulesSave {
     private static final int MARKER=0x52554C37;
+    // Validation runs for every officer on both sides of each transaction copy.
+    // Pattern is immutable/thread safe; each validation retains its own matcher.
+    private static final Pattern SKILL_ID=Pattern.compile("[a-z0-9][a-z0-9._-]{0,79}");
     static void write(World w,DataOutputStream d)throws IOException {
         d.writeInt(MARKER);d.writeInt(w.units.size());
         for(World.Unit u:w.units){d.writeInt(u.id);d.writeInt(u.movementBudget);d.writeInt(u.movementSpent);d.writeByte(u.burningPower);}
@@ -33,7 +37,7 @@ final class RulesSave {
             (u.movementBudget==-1?u.movementSpent==0:u.movementSpent<=u.movementBudget),"部队移动预算无效");
         for(World.Unit u:w.units)require(u.burningPower>=1&&u.burningPower<=2&&(u.burning>0||u.burningPower==1),"着火来源无效");
         for(War.Fire f:w.war.fires)require(f.power>=1&&f.power<=2,"火场来源无效");
-        for(World.Officer o:w.officers)require(o.skillId!=null&&o.skillId.matches("[a-z0-9][a-z0-9._-]{0,79}")&&o.sex!=null,"特技标识或性别无效");
+        for(World.Officer o:w.officers)require(o.skillId!=null&&SKILL_ID.matcher(o.skillId).matches()&&o.sex!=null,"特技标识或性别无效");
     }
     private static void require(boolean value,String message)throws IOException{if(!value)throw new IOException(message);}
 }

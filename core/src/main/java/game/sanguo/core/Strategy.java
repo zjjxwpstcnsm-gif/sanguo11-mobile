@@ -124,6 +124,62 @@ public final class Strategy {
         World.Officer o=w.officer(officerId);
         return o==null?0:w.skills.has(o,Skill.YANLI)?100:StrategyRules.searchChance(o.politics,o.intelligence);
     }
+    static int cityActionBaseCost(CityActionPlan.Operation op){
+        if(op==null)return 10;
+        return switch(op){case PATROL->PcCityActionCosts.PATROL;case TRAIN->PcCityActionCosts.TRAIN;case RECRUIT->PcCityActionCosts.RECRUIT;default->10;};
+    }
+    static long cityActionGold(CityActionPlan.Operation op,int[] targets){
+        if(op==null)return 0;
+        return switch(op){case PATROL->PATROL_COST;case TRAIN->TRAIN_COST;case RECRUIT->RECRUIT_COST;case SEARCH->SEARCH_COST;case REWARD->(long)REWARD_COST*(targets==null?0:targets.length);case APPOINT_GOVERNOR->0;};
+    }
+    RuleFailure cityActionFailure(CityActionPlan.Operation op,int cityId,int officerId,int[] targets){
+        if(op==null)return new RuleFailure("CITY_ACTION_INVALID","operation","城市指令无效");
+        if(op==CityActionPlan.Operation.REWARD){
+            if(targets==null||targets.length==0||targets.length>w.officers.size())return new RuleFailure("REWARD_SELECTION","targets","请选择至少一名可褒奖武将");
+            if(cityActionGold(op,targets)>Integer.MAX_VALUE)return new RuleFailure("REWARD_COUNT","targets","褒奖人数过多");
+        }else if(targets==null||targets.length!=(op==CityActionPlan.Operation.APPOINT_GOVERNOR?1:0))return new RuleFailure("CITY_ACTION_TARGETS","targets","城市指令目标数量无效");
+        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);RuleFailure common=w.cityFailure(c,o,(int)cityActionGold(op,targets),cityActionBaseCost(op));if(common!=null)return common;
+        switch(op){
+            case PATROL:if(c.order>=100)return new RuleFailure("ORDER_FULL","city","治安已满");break;
+            case TRAIN:
+                if(c.troops<=0)return new RuleFailure("NO_TROOPS","city","本城没有可训练的军队");
+                if(c.morale>=w.campaign.energyCap(c.owner))return new RuleFailure("MORALE_FULL","city","气力已满");break;
+            case RECRUIT:
+                if(c.kind!=World.SiteKind.CITY)return new RuleFailure("CITY_TYPE","city","港口和关卡不能征兵，请从城市运输兵员");
+                String error=w.domestic.operationError(cityId,Domestic.Kind.BARRACKS);if(error!=null)return new RuleFailure("BARRACKS_UNAVAILABLE","facility",error);
+                if(c.order<30)return new RuleFailure("ORDER_LOW","city","治安低于30，先执行巡察");
+                if(c.recruitReserve<=0)return new RuleFailure("RECRUIT_RESERVE_EMPTY","city","本城兵源已耗尽");
+                int amount=recruitAmount(cityId,officerId);if(amount<=0||c.troops>w.campaign.troopCap(c)-amount)return new RuleFailure("TROOP_CAPACITY","city","城池兵力已接近上限");break;
+            case REWARD:
+                Set<Integer> seen=new HashSet<>();for(int id:targets)if(!seen.add(id)||!rewardable(c,w.officer(id)))return new RuleFailure("REWARD_TARGET","targets","选择中有重复、已褒奖、忠诚已满或不在城的武将；未扣款");break;
+            case APPOINT_GOVERNOR:
+                World.Officer target=w.officer(targets[0]);if(target==null||!w.idle(c).contains(target))return new RuleFailure("GOVERNOR_TARGET","targets","太守须为本城本旬可行动的己方武将");
+                if(c.governorId==target.id)return new RuleFailure("GOVERNOR_UNCHANGED","targets","该武将已经是本城太守");break;
+            default:break;
+        }
+        return null;
+    }
+    public CityActionPlan previewCityAction(CityActionPlan.Operation op,int cityId,int officerId,int[] targets){
+        int[] selected=targets==null?null:targets.clone();RuleFailure failure=cityActionFailure(op,cityId,officerId,selected);
+        return new CityActionPlan(w,op,w.city(cityId),w.officer(officerId),selected,failure);
+    }
+    public World.Result executeCityAction(CityActionPlan.Operation op,int cityId,int officerId,int[] targets){
+        RuleFailure failure=cityActionFailure(op,cityId,officerId,targets);if(failure!=null)return w.fail(failure.detail);
+        return switch(op){case PATROL->patrol(cityId,officerId);case TRAIN->trainArmy(cityId,officerId);case RECRUIT->recruitSoldiers(cityId,officerId);case SEARCH->search(cityId,officerId);case REWARD->rewardOfficers(cityId,officerId,targets);case APPOINT_GOVERNOR->appointGovernor(cityId,officerId,targets[0]);};
+    }
+    int patrolGain(World.City c,World.Officer o){
+        boolean nearbyEnemy=false;
+        // Original4843a0 visits rings1..3 around a city, excluding its center.
+        // Use the existing authoritative treaty state; native relation-storage
+        // parity and runtime age/item modifiers remain separately tracked.
+        int radius=c.kind==World.SiteKind.CITY?3:2;
+        for(World.Unit u:w.units){int distance=c.hex.distance(u.hex);
+            if(u.owner>=0&&u.owner<w.factions.length&&distance>=1&&distance<=radius&&w.campaign.hostile(u.owner,c.owner)){nearbyEnemy=true;break;}}
+        return PcPatrolRules.gain(o.leadership,c.order,nearbyEnemy);
+    }
+    int trainingGain(World.City c,World.Officer o){return Math.min(w.campaign.energyCap(c.owner)-c.morale,StrategyRules.trainingGain(o.leadership,o.war));}
+    int recruitOrderLoss(World.City c,World.Officer o){return Math.min(c.order,w.campaign.orderLoss(c.owner,w.skills.has(o,Skill.MINGSHENG)?7:5));}
+    static int rewardGain(World.Officer o){return Math.min(100-o.loyalty,StrategyRules.rewardGain(o.politics,o.charm));}
     List<Talent> discoverable(int cityId) {
         List<Talent> list=new ArrayList<>();
         for(Talent t:talents)if(t.cityId==cityId&&t.availableTurn<=w.turn)list.add(t);
@@ -131,8 +187,8 @@ public final class Strategy {
     }
     public World.Result search(int cityId,int officerId) {w.reports.prepare(); return searchTalent(cityId,officerId).result; }
     public SearchResult searchTalent(int cityId,int officerId) {
-        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,SEARCH_COST);
-        if(error!=null)return new SearchResult(w.fail(error),SearchOutcome.REJECTED,-1,0);
+        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);RuleFailure failure=cityActionFailure(CityActionPlan.Operation.SEARCH,cityId,officerId,new int[0]);
+        if(failure!=null)return new SearchResult(w.fail(failure.detail),SearchOutcome.REJECTED,-1,0);
         List<Talent> candidates=discoverable(cityId);
         w.spend(c,o,SEARCH_COST);int roll=nextInt(100);
         if(!candidates.isEmpty()&&StrategyRules.succeeds(searchChance(o.id),roll)) {
@@ -200,19 +256,14 @@ public final class Strategy {
     public World.Result rewardOfficer(int cityId,int officerId,int targetId){return rewardOfficers(cityId,officerId,new int[]{targetId});}
     /** Validate the entire selection before spending: one action, 200 gold per unique recipient. */
     public World.Result rewardOfficers(int cityId,int officerId,int[] targets){w.reports.prepare();
-        if(targets==null||targets.length==0||targets.length>w.officers.size())return w.fail("请选择至少一名可褒奖武将");
-        long price=(long)REWARD_COST*targets.length;if(price>Integer.MAX_VALUE)return w.fail("褒奖人数过多");
-        World.City c=w.city(cityId);World.Officer actor=w.officer(officerId);String error=w.cityError(c,actor,(int)price);if(error!=null)return w.fail(error);
-        Set<Integer> seen=new HashSet<>();for(int id:targets)if(!seen.add(id)||!rewardable(c,w.officer(id)))return w.fail("选择中有重复、已褒奖、忠诚已满或不在城的武将；未扣款");
-        w.spend(c,actor,(int)price);for(int id:targets){World.Officer t=w.officer(id);int gain=Math.min(100-t.loyalty,StrategyRules.rewardGain(t.politics,t.charm));t.loyalty+=gain;t.lastRewardTurn=w.turn;w.note("褒奖"+t.name+"，忠诚+"+gain);}
+        RuleFailure failure=cityActionFailure(CityActionPlan.Operation.REWARD,cityId,officerId,targets);if(failure!=null)return w.fail(failure.detail);
+        long price=cityActionGold(CityActionPlan.Operation.REWARD,targets);World.City c=w.city(cityId);World.Officer actor=w.officer(officerId);
+        w.spend(c,actor,(int)price);for(int id:targets){World.Officer t=w.officer(id);int gain=rewardGain(t);t.loyalty+=gain;t.lastRewardTurn=w.turn;w.note("褒奖"+t.name+"，忠诚+"+gain);}
         return w.success("批量褒奖"+targets.length+"人，金−"+price+"、行动力−10");
     }
     public World.Result appointGovernor(int cityId,int officerId,int targetId) {w.reports.prepare();
-        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,0);
-        if(error!=null)return w.fail(error);
-        World.Officer target=w.officer(targetId);
-        if(target==null||!w.idle(c).contains(target))return w.fail("太守须为本城本旬可行动的己方武将");
-        if(c.governorId==target.id)return w.fail("该武将已经是本城太守");
+        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);RuleFailure failure=cityActionFailure(CityActionPlan.Operation.APPOINT_GOVERNOR,cityId,officerId,new int[]{targetId});
+        if(failure!=null)return w.fail(failure.detail);World.Officer target=w.officer(targetId);
         if(c.governorId>=0)releaseGovernor(c.governorId);
         releaseGovernor(target.id);w.spend(c,o,0);c.governorId=target.id;target.acted=true;
         if(target.role!=Role.RULER)target.role=Role.GOVERNOR;
@@ -243,11 +294,9 @@ public final class Strategy {
         w.governance.reconcile(false);
     }
     public World.Result patrol(int cityId,int officerId) {w.reports.prepare();
-        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,PATROL_COST);
-        if(error!=null)return w.fail(error);
-        if(c.order>=100)return w.fail("治安已满");
-        int gain=Math.min(100-c.order,StrategyRules.patrolGain(o.politics,o.charm));
-        w.spend(c,o,PATROL_COST);c.order+=gain;return w.success(c.name+"巡察，治安+"+gain);
+        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);RuleFailure failure=cityActionFailure(CityActionPlan.Operation.PATROL,cityId,officerId,new int[0]);
+        if(failure!=null)return w.fail(failure.detail);int gain=patrolGain(c,o);
+        w.spend(c,o,PATROL_COST,cityActionBaseCost(CityActionPlan.Operation.PATROL));c.order+=gain;return w.success(c.name+"巡察，治安+"+gain);
     }
     public int recruitAmount(int cityId,int officerId) {
         World.City c=w.city(cityId);World.Officer o=w.officer(officerId);
@@ -255,46 +304,24 @@ public final class Strategy {
             StrategyRules.enlistment(w.domestic.recruitAmount(cityId),c.order,o.charm,1000000)*(w.skills.has(o,Skill.MINGSHENG)?150:100)/100));
     }
     public World.Result recruitSoldiers(int cityId, int officerId) {w.reports.prepare();
-        World.City c = this.w.city(cityId);
-        World.Officer o = this.w.officer(officerId);
-        String error = this.w.cityError(c, o, RECRUIT_COST);
-        if (error != null) {
-            return this.w.fail(error);
-        }
-        if (c.kind != World.SiteKind.CITY) {
-            return this.w.fail("港口和关卡不能征兵，请从城市运输兵员");
-        }
-        error=w.domestic.operationError(cityId,Domestic.Kind.BARRACKS);
-        if(error!=null)return w.fail(error);
-        if (c.order < 30) {
-            return this.w.fail("治安低于30，先执行巡察");
-        }
-        if (c.recruitReserve <= 0) {
-            return this.w.fail("本城兵源已耗尽");
-        }
-        int amount = recruitAmount(cityId, officerId);
-        if (amount <= 0 || c.troops > this.w.campaign.troopCap(c) - amount) {
-            return this.w.fail("城池兵力已接近上限");
-        }
-        this.w.spend(c, o, RECRUIT_COST);
+        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);RuleFailure failure=cityActionFailure(CityActionPlan.Operation.RECRUIT,cityId,officerId,new int[0]);
+        if(failure!=null)return w.fail(failure.detail);int amount=recruitAmount(cityId,officerId);
+        this.w.spend(c,o,RECRUIT_COST,cityActionBaseCost(CityActionPlan.Operation.RECRUIT));
         w.domestic.use(cityId,Domestic.Kind.BARRACKS);
         int moraleBefore=c.morale,orderBefore=c.order;
         c.morale=Conscription.moraleAfter(c,amount);
         c.recruitReserve -= amount;
         c.troops += amount;
-        c.order = Math.max(0, c.order - this.w.campaign.orderLoss(c.owner, this.w.skills.has(o, Skill.MINGSHENG) ? 7 : 5));
+        c.order -= recruitOrderLoss(c,o);
         return this.w.success(c.name+"征得"+amount+"兵，治安−"+(orderBefore-c.order)+"；气力 "+moraleBefore+"→"+c.morale+"（新兵尚未训练）；兵源剩余"+c.recruitReserve);
     }
     public int getArmyReadiness(int cityId) {
         World.City c=w.city(cityId);if(c==null)throw new IllegalArgumentException("城池不存在");return c.morale;
     }
     public World.Result trainArmy(int cityId,int officerId) {w.reports.prepare();
-        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);String error=w.cityError(c,o,TRAIN_COST);
-        if(error!=null)return w.fail(error);
-        if(c.troops<=0)return w.fail("本城没有可训练的军队");
-        if(c.morale>=w.campaign.energyCap(c.owner))return w.fail("气力已满");
-        int gain=Math.min(w.campaign.energyCap(c.owner)-c.morale,StrategyRules.trainingGain(o.leadership,o.war));
-        w.spend(c,o,TRAIN_COST);c.morale+=gain;return w.success(c.name+"训练，气力+"+gain);
+        World.City c=w.city(cityId);World.Officer o=w.officer(officerId);RuleFailure failure=cityActionFailure(CityActionPlan.Operation.TRAIN,cityId,officerId,new int[0]);
+        if(failure!=null)return w.fail(failure.detail);int gain=trainingGain(c,o);
+        w.spend(c,o,TRAIN_COST,cityActionBaseCost(CityActionPlan.Operation.TRAIN));c.morale+=gain;return w.success(c.name+"训练，气力+"+gain);
     }
     void tick() {
         w.loyalty.tick();

@@ -1,0 +1,100 @@
+{
+  "status": "READ_ONLY_ACTUAL_PC_CAMERA_SNAPSHOTS",
+  "source_exe_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "camera_accessor": "original414fd0: lea eax,[ecx+40]; ret",
+  "records": [
+    {
+      "file": "xinye-briefing-4-536a8c07e412.bin",
+      "sha256": "a7d71f6c5d188daf5f247291a3ff6b4153c87effd59f4c827635fac445a2c36e",
+      "image": "out/pc-visual/v152/pc-reference/xinye-briefing-4-536a8c07e412.png",
+      "stable_before_after": true,
+      "eye": [
+        2515.0,
+        305.9139099121094,
+        2965.0
+      ],
+      "target": [
+        2310.0,
+        16.0,
+        2760.0
+      ],
+      "fov_radians": 0.5235987901687622,
+      "near": 16.0,
+      "far": 697.0001831054688,
+      "aspect": 1.5714285373687744,
+      "distance": 410.0000916591686,
+      "far_distance_ratio": 1.700000066548478
+    },
+    {
+      "file": "xinye-map-zoom-in-dd21e528e900.bin",
+      "sha256": "31d5cb6e7a6d82af0a946ddaba6e0a736d604f7193987a5db04a1879f4c57083",
+      "image": "out/pc-visual/v152/pc-reference/xinye-map-zoom-in-dd21e528e900.png",
+      "stable_before_after": true,
+      "eye": [
+        2502.699951171875,
+        288.5190734863281,
+        2952.699951171875
+      ],
+      "target": [
+        2310.0,
+        16.0,
+        2760.0
+      ],
+      "fov_radians": 0.5235987901687622,
+      "near": 16.0,
+      "far": 655.1800537109375,
+      "aspect": 1.5714285373687744,
+      "distance": 385.40003603675586,
+      "far_distance_ratio": 1.6999999804059502
+    },
+    {
+      "file": "xinye-map-zoom-out-7ee7fd4da40a.bin",
+      "sha256": "5c7de9354d9e915a64590f5e0ddef8d88567014282b14c001019a39ff988ef77",
+      "image": "out/pc-visual/v152/pc-reference/xinye-map-zoom-out-7ee7fd4da40a.png",
+      "stable_before_after": true,
+      "eye": [
+        2514.261962890625,
+        304.8702087402344,
+        2964.261962890625
+      ],
+      "target": [
+        2310.0,
+        16.0,
+        2760.0
+      ],
+      "fov_radians": 0.5235987901687622,
+      "near": 16.0,
+      "far": 694.4909057617188,
+      "aspect": 1.5714285373687744,
+      "distance": 408.52404637363605,
+      "far_distance_ratio": 1.7000000659117565
+    },
+    {
+      "file": "xinye-map-zoom-out2-572aac07310d.bin",
+      "sha256": "fa19f06017d544d564b30339e65579075769af62bbf643640454eb1670ed42c6",
+      "image": "out/pc-visual/v152/pc-reference/xinye-map-zoom-out2-572aac07310d.png",
+      "stable_before_after": true,
+      "eye": [
+        2526.517578125,
+        322.202392578125,
+        2976.517578125
+      ],
+      "target": [
+        2310.0,
+        16.0,
+        2760.0
+      ],
+      "fov_radians": 0.5235987901687622,
+      "near": 16.0,
+      "far": 736.16015625,
+      "aspect": 1.5714285373687744,
+      "distance": 433.03536633258847,
+      "far_distance_ratio": 1.700000077325323
+    }
+  ],
+  "goal_complete": false,
+  "limits": [
+    "207 September1 Xinye, default PC45degree view and normal wheel zoom; other views still need comparisons",
+    "Shader/fog/pixel match is separate from camera numerical contract"
+  ]
+}

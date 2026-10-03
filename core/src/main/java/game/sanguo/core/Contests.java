@@ -49,9 +49,9 @@ public final class Contests {
         profiles.put(officer,profile);
     }
     public int injury(int officer){Injury injury=injuries.get(officer);return injury==null||injury.until<=w.turn?0:injury.severity;}
-    public int war(World.Officer o){return o==null?0:Math.max(0,o.war-injury(o.id)*10);}
+    public int war(World.Officer o){return o==null?0:o.abilityProfile!=null?o.war:Math.max(0,o.war-injury(o.id)*10);}
     public int injuryTurns(int officer){Injury injury=injuries.get(officer);return injury==null?0:Math.max(0,injury.until-w.turn);}
-    void tick(){injuries.entrySet().removeIf(e->e.getValue().until<=w.turn);}
+    void tick(){injuries.entrySet().removeIf(e->e.getValue().until<=w.turn);w.officerAbilities.refresh();}
     public String duelError(int actor,int target){
         World.Unit a=w.unit(actor),b=w.unit(target);String error=w.orders.combatError(a);if(error!=null)return error;
         if(w.active!=w.player)return "仅当前玩家可发起交互单挑";
@@ -65,6 +65,49 @@ public final class Contests {
     public int acceptance(int actor,int target){
         World.Unit a=w.unit(actor),b=w.unit(target);if(a==null||b==null)return 0;
         return Math.max(15,Math.min(90,60+(war(w.officer(b.officerId))-war(w.officer(a.officerId)))/2));
+    }
+    private World.Officer cavalryOfficer(World.Unit unit){
+        return w.army.crew(unit).stream().filter(o->profile(o.id).temper!=Debate.Temper.TIMID)
+            .max(Comparator.comparingInt((World.Officer o)->war(o)).thenComparingInt(o->-o.id)).orElse(null);
+    }
+    private double cavalryScore(World.Officer officer){
+        int health=Math.max(40,100-injury(officer.id)*20),strength=war(officer);
+        // Community-documented base. Persistent out-of-duel stamina and exact
+        // individual treasure modifiers are unavailable: use existing injury HP
+        // and no speculative treasure bonus. See feedback-v125 rule research.
+        return (health+200)*strength*strength*.0000025
+            -(officer.role==Strategy.Role.RULER||strength>95?0:1);
+    }
+    public int cavalryChance(World.Unit a,World.Unit b){
+        if(busy()||w.gameOver()||a==null||b==null||w.unit(a.id)!=a||w.unit(b.id)!=b
+            ||a.weapon!=World.Weapon.CAVALRY||b instanceof Domestic.Mission||Army.siegeWeapon(b.weapon)
+            ||a.status!=War.Status.NORMAL||b.status!=War.Status.NORMAL||a.hex.distance(b.hex)!=1
+            ||w.army.water(a.hex)||w.army.water(b.hex)||!w.campaign.hostile(a.owner,b.owner)
+            ||nextId>=10000000||(long)a.troops>2L*b.troops||a.troops-b.troops>2500)return 0;
+        World.Officer officer=cavalryOfficer(a);if(officer==null)return 0;
+        Debate.Temper temper=profile(officer.id).temper;int hp=Math.max(40,100-injury(officer.id)*20);
+        if(hp<=(temper==Debate.Temper.CALM?70:temper==Debate.Temper.BOLD?60:50))return 0;
+        double left=0,right=0;for(World.Officer o:w.army.crew(a))left+=cavalryScore(o)*20;
+        for(World.Officer o:w.army.crew(b))right+=cavalryScore(o)*20;
+        if(left-right>30)return 0;
+        return Math.max(0,Math.min(100,(int)Math.floor(cavalryScore(officer)+(temper==Debate.Temper.BOLD?1:temper==Debate.Temper.RASH?3:0))));
+    }
+    boolean cavalry(World.Unit a,World.Unit b){
+        int chance=cavalryChance(a,b);if(chance==0||w.strategy.nextInt(100)>=chance)return false;
+        World.Officer opener=cavalryOfficer(a);
+        b.acted=true;session=new Session(nextId++,w.active,w.turn,a.id,b.id,-1);session.duel=new Duel(w,a,b);
+        for(int i=0;i<session.duel.left.size();i++)if(session.duel.left.get(i).officer==opener.id){
+            session.duel.leftIndex=i;session.duel.left.get(i).joined=true;break;
+        }
+        w.battleOutcome(opener.name+"发动强制单挑，伤害已结算，不额外消耗气力");
+        // AI turns cannot leave an interactive session blocking the turn worker.
+        // Resolve with the existing finite duel and settlement, never another combat rule.
+        if(a.owner!=w.player){
+            Duel duel=session.duel;
+            while(duel.winner==-2){duel.step(w,Duel.Stance.ATTACK,Duel.Move.EXCHANGE,-1);session.revision++;}
+            finishDuel();
+        }
+        return true;
     }
     public World.Result challenge(int actor,int target){w.reports.prepare();
         String error=duelError(actor,target);if(error!=null)return w.fail(error);
@@ -149,7 +192,7 @@ public final class Contests {
             target.owner=session.owner;target.cityId=session.city;target.role=Strategy.Role.OFFICER;
             target.loyalty=70;target.lastRewardTurn=-1;target.acted=true;
             w.government.earn(actor.id,200);w.campaign.earn(session.owner,mercy?50:20);
-            boolean grew=!mercy&&actor.intelligence<100&&w.strategy.nextInt(100)<20;if(grew)actor.intelligence++;
+            boolean grew=!mercy&&OfficerAbilities.base(actor,2)<100&&w.strategy.nextInt(100)<20;if(grew)OfficerAbilities.setBase(actor,2,OfficerAbilities.base(actor,2)+1);
             text=actor.name+"舌战获胜，"+target.name+"加入"+w.faction(session.owner)+(mercy?"；留情，技巧+50":grew?"；智力+1，技巧+20":"；继续追问，技巧+20，智力未增长");
         }else text=d.winner==1?actor.name+"舌战落败，登用未成功":"舌战平手，登用未成功";
         session=null;lastResult=text;return w.success(text);
@@ -170,6 +213,7 @@ public final class Contests {
         Duel d=session.duel;
         for(int side=0;side<2;side++)for(Duel.Fighter f:d.team(side))if(f.wounds>0)
             injuries.put(f.officer,new Injury(Math.min(3,Math.max(injury(f.officer),f.wounds)),w.turn+3));
+        w.officerAbilities.refresh();
         String text=d.report;
         if(d.winner>=0){
             int side=d.winner;World.Unit victor=w.unit(side==0?session.leftRef:session.rightRef),loser=w.unit(side==0?session.rightRef:session.leftRef);

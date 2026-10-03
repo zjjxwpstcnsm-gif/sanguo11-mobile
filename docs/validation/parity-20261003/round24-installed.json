@@ -1,0 +1,228 @@
+{
+  "goal_complete": false,
+  "core_baseline": "out/parity/checkpoint-20261003-an/source",
+  "integration": {
+    "source_repo": "/Users/paopao/workspace/sanguo11-mobile-uiux",
+    "base": "13ff5b9bfc44015e5f45a4a2cefa84fee4b1e4c4",
+    "completed_ui_commit": "c03174e36597f0d445bcbd97c4aed2f3f3904b5d",
+    "paths": [
+      {
+        "path": "app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java",
+        "bytes": 130134,
+        "sha256": "a41b30bc9a62d02bbfebe039c9b1af221ab16e096614103f07d9f48a5ea2cd8d"
+      },
+      {
+        "path": "app/src/main/java/game/sanguo/mobile/FilamentMapView.java",
+        "bytes": 165679,
+        "sha256": "bcd9031d339e4e60038f66712bcfdd3c417bd7acdd22761d3a4e79fddd6e59ba"
+      },
+      {
+        "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+        "bytes": 139940,
+        "sha256": "2f16668b7fd1c2676e91551c50b275c5e5e12a22bf67b3d8fe3220f4c6becf1a"
+      },
+      {
+        "path": "app/src/main/java/game/sanguo/mobile/MapHost.java",
+        "bytes": 29705,
+        "sha256": "9fbb4919a683916b7f4e8b6468550a74e3f10863b15274f3c1e6648f241b62fc"
+      },
+      {
+        "path": "app/src/main/java/game/sanguo/mobile/MapView.java",
+        "bytes": 62174,
+        "sha256": "6b48e930934bcec2d69063e06cabdfc615889bbb452c937667495b544c182e0b"
+      },
+      {
+        "path": "docs/uiux/PLAN.md",
+        "bytes": 8784,
+        "sha256": "a08376f4a0eaab7d81aed15e7dab5ed4885dcaac12311a1bcfc3ebeba269ed05"
+      },
+      {
+        "path": "docs/uiux/VALIDATION-17.md",
+        "bytes": 13070,
+        "sha256": "649a0ae5f823a1c51cda1626335d547573e747b9cb6b5cca4151e5ea8704c07a"
+      },
+      {
+        "path": "docs/uiux/evidence-17/flat-landscape.png",
+        "bytes": 1899741,
+        "sha256": "c6d4df56fa21bdb5b6fa280e633fd0e92d2d91668e78058b54b0498ac9dc1b41"
+      },
+      {
+        "path": "docs/uiux/evidence-17/flat-portrait-return.png",
+        "bytes": 2102003,
+        "sha256": "c9eb0d5466c44e1d697e5ab3a62251dc3991674bd1aefa4cde936c218a23f0dd"
+      },
+      {
+        "path": "docs/uiux/evidence-17/flat-resumed.png",
+        "bytes": 2088553,
+        "sha256": "82dd0d4258f691467dc591aebafb307b882e9b8680632dab2fee1370aaf79301"
+      },
+      {
+        "path": "docs/uiux/evidence-17/march-restored.png",
+        "bytes": 1284112,
+        "sha256": "3c4d22d208636447efbadb9e17485d39fb22014547aeef020d7975610cf0acfb"
+      },
+      {
+        "path": "docs/uiux/evidence-17/mini-before.png",
+        "bytes": 1738860,
+        "sha256": "c0cc35332116b01cf87ae9d22bef621cc86feb08075b32b147d46b8334601b58"
+      },
+      {
+        "path": "docs/uiux/evidence-17/mini-cancelled.png",
+        "bytes": 1565165,
+        "sha256": "cc517ef1cba4f396760d2433fa8764f7ae43dac64a827a0090ea48f1c3645656"
+      },
+      {
+        "path": "docs/uiux/evidence-17/native-released.png",
+        "bytes": 2132368,
+        "sha256": "58c5a0a8d6f5828ce6e3d329dd1f2a36289fc7a06a93c85ffc791dfce72b103f"
+      },
+      {
+        "path": "docs/uiux/evidence-17/native-resumed.png",
+        "bytes": 1571700,
+        "sha256": "7a76202aa88fc0ddd9b10cc2f7f90cada7db4fc82ba84574a6dbe3f2cb94178c"
+      },
+      {
+        "path": "docs/uiux/evidence-17/panel-before.png",
+        "bytes": 1331569,
+        "sha256": "2140db010655e9073ce86dbc421b584137aea17cc12ca82923a85e461f4c9eb1"
+      },
+      {
+        "path": "docs/uiux/evidence-17/panel-cancelled.png",
+        "bytes": 1271323,
+        "sha256": "8bde11b411cf99d8685c127151ca707bad28af39b1cbff3b0909cb7f3ea42a9e"
+      },
+      {
+        "path": "docs/uiux/evidence-17/report-landscape.png",
+        "bytes": 292898,
+        "sha256": "59c3de5eba210c6f16fa2427aca438af9c9ab4cd5640220204ee1558d76ff25f"
+      },
+      {
+        "path": "progress.md",
+        "bytes": 185022,
+        "sha256": "c2cf0fbfa8c5c652114028e5982a8500c04f293821cf161f6434e38872170606"
+      }
+    ],
+    "protected_files": 666,
+    "protected_all_exact": true,
+    "core_baseline": "out/parity/checkpoint-20261003-an/source",
+    "source_worktree_wip_imported": false,
+    "branch_changed": false,
+    "validation_pending": true
+  },
+  "apks": {
+    "apks": [
+      {
+        "path": "out/parity/ui-integration-c03174e/apks/app-debug.apk",
+        "bytes": 87040486,
+        "sha256": "bb6d8d1ceaa758d13a8ed087531950d6fbe340fdf7723dbf01b3315252db07d8"
+      },
+      {
+        "path": "out/parity/ui-integration-c03174e/apks/app-debug-androidTest.apk",
+        "bytes": 751443,
+        "sha256": "0baf442df7a51a0d3692cacfe9e549a7e7e0ba767cd4d3e5fc86fbc5bd6cecc3"
+      }
+    ],
+    "pinned_resources": 168,
+    "native_inputs": 4,
+    "rank_resource_exact": true,
+    "growth_resource_exact": true,
+    "all_exact": true
+  },
+  "ui_flows": [
+    {
+      "suite": "installed-managed-trade",
+      "checks": 99,
+      "seconds": 85.94,
+      "results": "out/parity/ui-integration-c03174e/installed-managed-trade/results.json",
+      "evidence_files": 11,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      }
+    },
+    {
+      "suite": "installed-map-edges",
+      "checks": 32,
+      "seconds": 31.75,
+      "results": "out/parity/ui-integration-c03174e/installed-map-edges/results.json",
+      "evidence_files": 12,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      }
+    }
+  ],
+  "ui_pass_checks": 131,
+  "android_core": {
+    "passed": true,
+    "serial": "emulator-5554",
+    "apk_sha256": "bb6d8d1ceaa758d13a8ed087531950d6fbe340fdf7723dbf01b3315252db07d8",
+    "class_sources": {
+      "core/build/classes/java/test/game/sanguo/core/CityActionPlanTest$1.class": "0b88e888325319f46279de98a46eb835408bf5779fb330dced084123745a3222",
+      "core/build/classes/java/test/game/sanguo/core/CityActionPlanTest.class": "deee925a1709c219aa4409350f8f529525923656613d9e8878aff4d1824798bf",
+      "core/build/classes/java/test/game/sanguo/core/PcMerchantArithmeticTest.class": "13a0b023491ef8f469d15becb8609d920ed3781c6746a5b1c327a1c3b44a96ba",
+      "core/build/classes/java/test/game/sanguo/core/PcMerchantMeritTest.class": "db632dfc4abd562cdfef1af3f6a46aaf52790790a8772418d35c8fece7d2c4e2",
+      "core/build/classes/java/test/game/sanguo/core/PcOfficerAbilityArithmeticTest.class": "ef4db29f91a528b6131760e892e8df53d0f5e1985c5ce2bc77dd83dc755218f0",
+      "core/build/classes/java/test/game/sanguo/core/PcOfficerRankTest.class": "e10eeff7c9058d13383f0722e28d3a96aefc8169b938b248658235a721e93863",
+      "core/build/classes/java/test/game/sanguo/core/PcOfficerStateTest.class": "4e0bf6d2886664a901e43e24c02989f6adf4b6f94a086aeec3f61a047d77d18e",
+      "core/build/classes/java/test/game/sanguo/core/TradePlanTest.class": "42a5eb2ddcb91ea4f50e5c261440b1e7d1ff86e62cda6e2c9ff49bcc276b9ad1"
+    },
+    "scope": "Installed APK production classes in ART; ordinary commands and generated worlds, not UI taps",
+    "results": [
+      {
+        "suite": "PcMerchantMeritTest",
+        "seconds": 3.28,
+        "output": "PASS PcMerchantMeritTest checks=421\n"
+      },
+      {
+        "suite": "PcMerchantArithmeticTest",
+        "seconds": 0.21,
+        "output": "PASS PcMerchantArithmeticTest rows=3865 checks=11595 (arithmetic only; gameplay price/quantity integration pending)\n"
+      },
+      {
+        "suite": "PcOfficerAbilityArithmeticTest",
+        "seconds": 0.21,
+        "output": "PASS PcOfficerAbilityArithmeticTest rows=4813 date_rows=1040 date_checks=3120 (pure arithmetic suite; gameplay separately verified by PcOfficerStateTest)\n"
+      },
+      {
+        "suite": "PcOfficerRankTest",
+        "seconds": 11.11,
+        "output": "PASS PcOfficerRankTest checks=2244 native=81 legacy=80 (title gate/unassigned payroll parity pending)\n"
+      },
+      {
+        "suite": "PcOfficerStateTest",
+        "seconds": 12.64,
+        "output": "PASS PcOfficerStateTest checks=29361 openings=9 (prices and non-merchant XP awards remain pending)\n"
+      }
+    ],
+    "probe_sha256": "6946fe320c2390f9f47548381c6b77bf13adf3a43755d90a1ce69e10dc0fbec7",
+    "managed_opening": {
+      "path": "/Users/paopao/workspace/sanguo11-mobile/out/parity/ui-integration-c03174e/android-core/managed190.sg11",
+      "sha256": "636854cc2b5878cbd70bf05b71993c0fe2dcdee77405b4db7862c9ed206eaaed",
+      "bytes": 236968,
+      "scenario": "coalition-190",
+      "player": 1,
+      "seed": 23,
+      "save_version": 34,
+      "source": "Exact installed APK ordinary ScenarioCatalog.load on ART"
+    },
+    "rules_passed": true,
+    "user_files_unchanged": true,
+    "post_apk_readback_bytes": 87040486,
+    "post_apk_readback_sha256": "bb6d8d1ceaa758d13a8ed087531950d6fbe340fdf7723dbf01b3315252db07d8",
+    "installed_apk_unchanged": true
+  },
+  "full_ui17_matrix_revalidated": false,
+  "not_yet_verified_on_this_apk": [
+    "opening",
+    "mapNative",
+    "march",
+    "governanceArmy"
+  ],
+  "next_completed_ui_increment": "c03174e..0ddedf6fd379b3a87df206bc1d09f0e1662155ab",
+  "scope": "API29 x86_64; no ARM physical-device evidence; final current flows continue on next sequential UI18 integration"
+}

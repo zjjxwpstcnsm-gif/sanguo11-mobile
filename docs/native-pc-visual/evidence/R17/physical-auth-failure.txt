@@ -1,0 +1,1 @@
+2026-09-28T08:06:18.8809995Z ##[error]google-github-actions/auth failed with: failed to generate Google Cloud federated token for //iam.googleapis.com/projects/322962089013/locations/global/workloadIdentityPools/github-test-lab/providers/sanguo: {"error":"unauthorized_client","error_description":"The given credential is rejected by the attribute condition."}

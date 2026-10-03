@@ -1,0 +1,101 @@
+material {
+    name : MineralSpringGroundV129,
+    flipUV : false,
+    shadingModel : lit,
+    doubleSided : true,
+    requires : [ color, uv0, uv1 ],
+    parameters : [
+        { type : float3, name : artTint },
+        { type : float3, name : plantTint },
+        { type : float2, name : poisonGrid },
+        { type : sampler2d, name : grassColor },
+        { type : sampler2d, name : soilColor },
+        { type : sampler2d, name : sandColor },
+        { type : sampler2d, name : rockColor },
+        { type : sampler2d, name : grassNormal },
+        { type : sampler2d, name : soilNormal },
+        { type : sampler2d, name : sandNormal },
+        { type : sampler2d, name : rockNormal },
+        { type : float, name : normalStrength }
+    ]
+}
+fragment {
+    void material(inout MaterialInputs material) {
+        // UV remains absolute world X/-Z, including chunks and outer scenery.
+        float2 worldUV = getUV0();
+        float2 uv = worldUV * 0.35;
+        float2 uvB = float2(uv.x*0.8-uv.y*0.6,uv.x*0.6+uv.y*0.8)*0.731+float2(0.317,0.619);
+        float4 w = max(getColor(), float4(0.0));
+        float total = dot(w,float4(1.0));
+        w = total > 0.00001 ? w/total : float4(0.0,1.0,0.0,0.0);
+        float3 color = texture(materialParams_grassColor,uv).rgb*w.x
+            + texture(materialParams_soilColor,uv).rgb*w.y
+            + texture(materialParams_sandColor,uv).rgb*w.z
+            + texture(materialParams_rockColor,uv).rgb*w.w;
+        // Second incommensurate scale breaks tiling with no new textures/samplers.
+        // Same albedo in LOW; quality only removes normal reads.
+        float3 broad = texture(materialParams_grassColor,uvB).rgb*w.x
+            + texture(materialParams_soilColor,uvB).rgb*w.y
+            + texture(materialParams_sandColor,uvB).rgb*w.z
+            + texture(materialParams_rockColor,uvB).rgb*w.w;
+        color = mix(color,broad,0.38);
+        color *= mix(float3(1.0),materialParams.plantTint,w.x);
+        float macro = 0.97 + 0.025*sin(worldUV.x*0.113+sin(worldUV.y*0.071))
+            + 0.015*cos(worldUV.y*0.139-worldUV.x*0.047);
+        float4 nr = float4(0.5,0.5,1.0,0.9);
+        if(materialParams.normalStrength > 0.0) {
+            nr = texture(materialParams_grassNormal,uv)*w.x
+                + texture(materialParams_soilNormal,uv)*w.y
+                + texture(materialParams_sandNormal,uv)*w.z
+                + texture(materialParams_rockNormal,uv)*w.w;
+        }
+        float wet = 1.0-smoothstep(0.0,0.38,abs(getUV1().x));
+        material.normal = normalize(mix(float3(0.0,0.0,1.0),nr.xyz*2.0-1.0,materialParams.normalStrength*0.55));
+        // POISON is carried in the existing macro-tone lane. Ordinary positive
+        // tones <= 1, shore distance, and all texture budgets are unchanged.
+        // Restore the ordinary macro pigment before adding a local spring. The
+        // encoded signal must never darken the entire square canonical fan.
+        float fieldTone = getUV1().y;
+        float poison = smoothstep(1.02,1.22,fieldTone);
+        float normalTone = 0.96+0.04*sin(worldUV.x*0.19)*cos(worldUV.y*0.17);
+        float terrainTone = mix(min(fieldTone,1.0),normalTone,smoothstep(1.0,1.04,fieldTone));
+        float3 groundColor = color*materialParams.artTint*macro*terrainTone*mix(1.0,0.64,wet);
+        float microDetail=1.0-smoothstep(0.5,2.0,length(fwidth(worldUV*3.1)));
+        if(poison>0.001) {
+            // Exact owning-cell centre in both supported grids. Grid metadata is
+            // presentation-only and changes with the immutable Ground snapshot.
+            float2 at=float2(worldUV.x,-worldUV.y);
+            float row=floor((materialParams.poisonGrid.x>0.5?at.x:at.y)+0.5);
+            float column=floor((materialParams.poisonGrid.x>0.5?at.y:at.x)-row*0.5+materialParams.poisonGrid.y+0.5);
+            float2 centre=materialParams.poisonGrid.x>0.5
+                ?float2(row,column+row*0.5-materialParams.poisonGrid.y)
+                :float2(column+row*0.5-materialParams.poisonGrid.y,row);
+            float2 local=at-centre;
+            float angle=dot(local,local)<0.00000001?0.0:atan(local.y,local.x);
+            float seed=centre.x*0.77+centre.y*0.55;
+            float radius=0.32+0.045*sin(angle*3.0+seed)+0.025*sin(angle*5.0-seed*1.7);
+            float distance=length(local);
+            // Rounded, gently irregular rims stay within 0.445 of the cell
+            // centre. Narrow dry gaps preserve safe-cell and grid readability.
+            float footprint=1.0-smoothstep(radius-0.025,radius+0.045,distance);
+            poison*=footprint;
+            float2 p=worldUV*3.1;
+            float drift=sin(p.x*1.7+p.y*0.83)+sin(p.y*2.3-p.x*0.69);
+            float mineral=0.5+0.25*sin(p.x*3.7+drift)+0.25*sin(p.y*4.1-drift);
+            float basin=1.0-smoothstep(radius*0.43,radius*0.73,distance+(mineral-0.5)*0.055);
+            float sulfur=1.0-smoothstep(0.018,0.052,abs(distance-radius*0.83));
+            sulfur*=smoothstep(0.48,0.80,mineral)*microDetail;
+            float3 spring=mix(float3(0.075,0.095,0.078),float3(0.10,0.21,0.185),basin);
+            spring=mix(spring,float3(0.30,0.285,0.115),sulfur*0.58);
+            spring*=0.88+0.24*mineral;
+            groundColor=mix(groundColor,spring*materialParams.artTint*macro,poison);
+        }
+        prepareMaterial(material);
+        material.baseColor = float4(groundColor,1.0);
+        material.roughness = mix(mix(nr.a,0.48,wet),0.56,poison);
+        material.metallic = 0.0;
+        material.reflectance = 0.25;
+        float haze=smoothstep(320.0,410.0,length(getWorldPosition()-getWorldCameraPosition()))*0.08;
+        material.baseColor.rgb=mix(material.baseColor.rgb,float3(0.22,0.25,0.24),haze);
+    }
+}

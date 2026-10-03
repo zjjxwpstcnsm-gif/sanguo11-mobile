@@ -1,0 +1,617 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "v138 source four live dams and lossless ground allocation optimization",
+  "apk": "out/pc-visual/sanguo11-mobile-v138-pc-live-dams.apk",
+  "apk_sha256": "71e6332711ad99764e42c45bd3342da1ea8df5f11ebf177ad0b7728c1b1023da",
+  "checks": [
+    {
+      "name": "source-dams-and-eight-normal-commands-cpu",
+      "status": "pass",
+      "checks": 3235900,
+      "log": "out/pc-visual/v138-dams-cpu-optimized.txt"
+    },
+    {
+      "name": "PC-map-current-and-legacy",
+      "status": "pass",
+      "checks": 635299,
+      "log": "out/pc-visual/v138-map-cpu-optimized.txt"
+    },
+    {
+      "name": "constructible-walls-regression",
+      "status": "pass",
+      "checks": 1398264,
+      "log": "out/pc-visual/v138-walls-cpu.txt"
+    },
+    {
+      "name": "sites-regression",
+      "status": "pass",
+      "checks": 2882104,
+      "log": "out/pc-visual/v138-sites-cpu.txt"
+    },
+    {
+      "name": "facility-state-regression",
+      "status": "pass",
+      "checks": 4755020,
+      "log": "out/pc-visual/v138-facilities-cpu.txt"
+    },
+    {
+      "name": "cliff-connections-regression",
+      "status": "pass",
+      "checks": 1831366,
+      "log": "out/pc-visual/v138-cliff-cpu.txt"
+    },
+    {
+      "name": "R04-materials",
+      "status": "pass",
+      "checks": 87689,
+      "log": "out/pc-visual/v138-native-r04.txt"
+    },
+    {
+      "name": "installed-eight-dam-normal-commands-GPU-authority-lifecycle",
+      "status": "pass",
+      "checks": 1970,
+      "log": "out/pc-visual/v138-dams-all-installed.txt"
+    },
+    {
+      "name": "installed-single-dam-destruction",
+      "status": "pass",
+      "checks": 319,
+      "log": "out/pc-visual/v138-dam-destroy-installed-optimized.txt"
+    },
+    {
+      "name": "APK-pinned-assets",
+      "status": "pass",
+      "checks": 75,
+      "log": "out/pc-visual/v138-apk-integrity.txt"
+    },
+    {
+      "name": "lossless-GPU-inputs",
+      "evidence": "out/pc-visual/v138-ground-lossless.json",
+      "status": "pass",
+      "detail": {
+        "all_gpu_inputs_bit_exact": true,
+        "scope": "All float raw bits, vertices, indices, UVs, tangents, terrain streams, bounds, land/water partition, grids and backdrop;4 source windows and1 legacy window",
+        "probe": "tools/content/PcGroundSnapshotProbe.java",
+        "before_classpath": "out/pc-visual/v138-ground-before/classes",
+        "after_classpath": "app/build/pc-map-check",
+        "results": [
+          "GROUND_INPUT view=0 pc=true chunks=18 attributes=5959380 sha256=9579a6e36e31a373f1335f31d041ad02da04f6cb7f557a9ad4618e1a80e5ed83",
+          "GROUND_INPUT view=1 pc=true chunks=107 attributes=24353604 sha256=bc87b579bdad92508c8d2f216acf71a8188a10736b77e51e8a4d4dc8cf00e3bd",
+          "GROUND_INPUT view=2 pc=true chunks=18 attributes=3085062 sha256=fd99c67732733d93f9ebc1be6aa1922e0140d991ab821c321f50739b56c32810",
+          "GROUND_INPUT view=3 pc=true chunks=162 attributes=31476408 sha256=ed5d0d05d3eb5f7191e98faea74e952f136b40d57194dcc8a4ccc85789eed381",
+          "GROUND_INPUT view=4 pc=false chunks=18 attributes=3571200 sha256=45343623ef269c5c6fdb0f7d7c056705c7468b7e000c62ac4125535e781fac6d"
+        ]
+      }
+    },
+    {
+      "name": "real-old64-three-turn-equivalence",
+      "evidence": "out/pc-visual/v138-legacy-continuation-comparison.json",
+      "status": "pass",
+      "detail": {
+        "input": "out/pc-visual/v138-autosave-before.sg11",
+        "baseline": "out/pc-visual/v138-inherited-r64-baseline/recipe.json",
+        "scope": "Actual inherited source64 save; three normal complete nextTurn calls followed by decode/encode; no seeding or migration",
+        "results": [
+          {
+            "step": 0,
+            "bytes": 168846,
+            "sha256": "4b868b40b64d4b73927f460bcf87b378c5947e8e1eaa053e58adce0585136443",
+            "exact_authority_rng_reports_save_match": true
+          },
+          {
+            "step": 1,
+            "bytes": 189282,
+            "sha256": "8c7a3fde80da7178e021d42f65eeaf58da2d45941b9b82e08e21d3be0ef4d0d4",
+            "exact_authority_rng_reports_save_match": true
+          },
+          {
+            "step": 2,
+            "bytes": 210150,
+            "sha256": "97a9c33a5dc5ef9c41ca13a08038dc837c4be67b55f97933d937829e0a60a2e9",
+            "exact_authority_rng_reports_save_match": true
+          },
+          {
+            "step": 3,
+            "bytes": 233615,
+            "sha256": "21b4c790b552c02f76f632617d8b0ba6e2cd2d33751a825c862f30376658e7dc",
+            "exact_authority_rng_reports_save_match": true
+          }
+        ]
+      }
+    },
+    {
+      "name": "source-files-read-only",
+      "evidence": "out/pc-visual/v138-source-readonly-check.json",
+      "status": "pass",
+      "detail": {
+        "files_checked": 1805,
+        "sha256_and_size_unchanged": true,
+        "differences": [],
+        "additional_files": [
+          ".DS_Store"
+        ],
+        "missing_files": [],
+        "source_policy": "read-only",
+        "checked_utc": "2026-10-01T10:40:20Z",
+        "additional_file_details": [
+          {
+            "path": ".DS_Store",
+            "bytes": 6148,
+            "sha256": "ec42d5025cf94e791d1cc7bb84be58a89273e781ee8501ad4e1fe62afb46579a",
+            "mtime_unix": 1790819232.7618618,
+            "role": "macOS Finder metadata; not in initial inventory; creation source unknown; preserved read-only"
+          }
+        ],
+        "all_inventoried_game_files_unchanged": true
+      }
+    },
+    {
+      "name": "reproducible-source-map-dams",
+      "evidence": "out/pc-visual/v138-map-reproducibility.json",
+      "status": "pass",
+      "detail": {
+        "all_output_bytes_identical": true,
+        "files": 16,
+        "differences": {}
+      }
+    }
+  ],
+  "resource_consumers": {
+    "resources": 421,
+    "bindings": 446,
+    "log": "out/pc-visual/v138-resource-consumers.txt"
+  },
+  "evidence": "out/pc-visual/v138/evidence/manifest.json",
+  "videos": [
+    {
+      "path": "out/pc-visual/v138-dam-destroy-normal-command.mp4",
+      "bytes": 18489196,
+      "sha256": "93e5367a43ecbe12b8770cd8a6b1fe393b85f7ead22b9be47049474bcf6a86d0",
+      "purpose": "Android dam0 normal attack destroys live original dam body, enemy and friendly units lose600, source object disappears; PC flooding/collapse animation and matched PC runtime remain pending.",
+      "boxes": [
+        {
+          "type": "/ftyp",
+          "bytes": 24
+        },
+        {
+          "type": "/free",
+          "bytes": 3192
+        },
+        {
+          "type": "/mdat",
+          "bytes": 18472981
+        },
+        {
+          "type": "/moov",
+          "bytes": 12999
+        },
+        {
+          "type": "/moov/mvhd",
+          "bytes": 108,
+          "duration_seconds": 155.938,
+          "timescale": 1000
+        },
+        {
+          "type": "/moov/meta",
+          "bytes": 118
+        },
+        {
+          "type": "/moov/trak",
+          "bytes": 12765
+        },
+        {
+          "type": "/moov/trak/tkhd",
+          "bytes": 92,
+          "width": 1080.0,
+          "height": 1920.0
+        },
+        {
+          "type": "/moov/trak/mdia",
+          "bytes": 12665
+        },
+        {
+          "type": "/moov/trak/mdia/mdhd",
+          "bytes": 32,
+          "duration_seconds": 155.93825555555554,
+          "timescale": 90000
+        },
+        {
+          "type": "/moov/trak/mdia/hdlr",
+          "bytes": 44
+        },
+        {
+          "type": "/moov/trak/mdia/minf",
+          "bytes": 12581
+        },
+        {
+          "type": "/moov/trak/mdia/minf/vmhd",
+          "bytes": 20
+        },
+        {
+          "type": "/moov/trak/mdia/minf/dinf",
+          "bytes": 36
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl",
+          "bytes": 12517
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsd",
+          "bytes": 177
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stts",
+          "bytes": 8136
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stss",
+          "bytes": 24
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsz",
+          "bytes": 4124,
+          "samples": 1026
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsc",
+          "bytes": 28
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stco",
+          "bytes": 20
+        }
+      ]
+    },
+    {
+      "path": "out/pc-visual/v138-dams-all-normal-commands-part1.mp4",
+      "bytes": 10208077,
+      "sha256": "d87baa6b40a647017737a7d79203fee46fb4fdd433fe375cc4fbcabd7ee8434a",
+      "purpose": "Installed v138 dam stress first segment; eight-command overall probe spans segments with gaps; original flood FX and PC match pending",
+      "boxes": [
+        {
+          "type": "/ftyp",
+          "bytes": 24
+        },
+        {
+          "type": "/free",
+          "bytes": 3192
+        },
+        {
+          "type": "/mdat",
+          "bytes": 10198994
+        },
+        {
+          "type": "/moov",
+          "bytes": 5867
+        },
+        {
+          "type": "/moov/mvhd",
+          "bytes": 108,
+          "duration_seconds": 178.953,
+          "timescale": 1000
+        },
+        {
+          "type": "/moov/meta",
+          "bytes": 118
+        },
+        {
+          "type": "/moov/trak",
+          "bytes": 5633
+        },
+        {
+          "type": "/moov/trak/tkhd",
+          "bytes": 92,
+          "width": 1080.0,
+          "height": 1920.0
+        },
+        {
+          "type": "/moov/trak/mdia",
+          "bytes": 5533
+        },
+        {
+          "type": "/moov/trak/mdia/mdhd",
+          "bytes": 32,
+          "duration_seconds": 178.95305555555555,
+          "timescale": 90000
+        },
+        {
+          "type": "/moov/trak/mdia/hdlr",
+          "bytes": 44
+        },
+        {
+          "type": "/moov/trak/mdia/minf",
+          "bytes": 5449
+        },
+        {
+          "type": "/moov/trak/mdia/minf/vmhd",
+          "bytes": 20
+        },
+        {
+          "type": "/moov/trak/mdia/minf/dinf",
+          "bytes": 36
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl",
+          "bytes": 5385
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsd",
+          "bytes": 177
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stts",
+          "bytes": 3408
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stss",
+          "bytes": 20
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsz",
+          "bytes": 1724,
+          "samples": 426
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsc",
+          "bytes": 28
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stco",
+          "bytes": 20
+        }
+      ]
+    },
+    {
+      "path": "out/pc-visual/v138-dams-all-normal-commands-part2.mp4",
+      "bytes": 5367754,
+      "sha256": "94618b230f2e5c07d74b0725528aded2ba63a805cab0e682d62fdeb65b6ef6fc",
+      "purpose": "Installed v138 dam stress middle segment; sampling and recording gaps prevent full command coverage claim; original flood FX and PC match pending",
+      "boxes": [
+        {
+          "type": "/ftyp",
+          "bytes": 24
+        },
+        {
+          "type": "/free",
+          "bytes": 3192
+        },
+        {
+          "type": "/mdat",
+          "bytes": 5360523
+        },
+        {
+          "type": "/moov",
+          "bytes": 4015
+        },
+        {
+          "type": "/moov/mvhd",
+          "bytes": 108,
+          "duration_seconds": 179.196,
+          "timescale": 1000
+        },
+        {
+          "type": "/moov/meta",
+          "bytes": 118
+        },
+        {
+          "type": "/moov/trak",
+          "bytes": 3781
+        },
+        {
+          "type": "/moov/trak/tkhd",
+          "bytes": 92,
+          "width": 1080.0,
+          "height": 1920.0
+        },
+        {
+          "type": "/moov/trak/mdia",
+          "bytes": 3681
+        },
+        {
+          "type": "/moov/trak/mdia/mdhd",
+          "bytes": 32,
+          "duration_seconds": 179.1957111111111,
+          "timescale": 90000
+        },
+        {
+          "type": "/moov/trak/mdia/hdlr",
+          "bytes": 44
+        },
+        {
+          "type": "/moov/trak/mdia/minf",
+          "bytes": 3597
+        },
+        {
+          "type": "/moov/trak/mdia/minf/vmhd",
+          "bytes": 20
+        },
+        {
+          "type": "/moov/trak/mdia/minf/dinf",
+          "bytes": 36
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl",
+          "bytes": 3533
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsd",
+          "bytes": 177
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stts",
+          "bytes": 2176
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stss",
+          "bytes": 20
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsz",
+          "bytes": 1104,
+          "samples": 271
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsc",
+          "bytes": 28
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stco",
+          "bytes": 20
+        }
+      ]
+    },
+    {
+      "path": "out/pc-visual/v138-dams-all-normal-commands-part3.mp4",
+      "bytes": 5512174,
+      "sha256": "6489968514a2bc3dbca3d77a6d358bcc974f1e106a899263dedf11d037dd4835",
+      "purpose": "Installed v138 dam stress final segment; normal command transitions, original flood FX and PC match pending",
+      "boxes": [
+        {
+          "type": "/ftyp",
+          "bytes": 24
+        },
+        {
+          "type": "/free",
+          "bytes": 3192
+        },
+        {
+          "type": "/mdat",
+          "bytes": 5505063
+        },
+        {
+          "type": "/moov",
+          "bytes": 3895
+        },
+        {
+          "type": "/moov/mvhd",
+          "bytes": 108,
+          "duration_seconds": 178.478,
+          "timescale": 1000
+        },
+        {
+          "type": "/moov/meta",
+          "bytes": 118
+        },
+        {
+          "type": "/moov/trak",
+          "bytes": 3661
+        },
+        {
+          "type": "/moov/trak/tkhd",
+          "bytes": 92,
+          "width": 1080.0,
+          "height": 1920.0
+        },
+        {
+          "type": "/moov/trak/mdia",
+          "bytes": 3561
+        },
+        {
+          "type": "/moov/trak/mdia/mdhd",
+          "bytes": 32,
+          "duration_seconds": 178.47802222222222,
+          "timescale": 90000
+        },
+        {
+          "type": "/moov/trak/mdia/hdlr",
+          "bytes": 44
+        },
+        {
+          "type": "/moov/trak/mdia/minf",
+          "bytes": 3477
+        },
+        {
+          "type": "/moov/trak/mdia/minf/vmhd",
+          "bytes": 20
+        },
+        {
+          "type": "/moov/trak/mdia/minf/dinf",
+          "bytes": 36
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl",
+          "bytes": 3413
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsd",
+          "bytes": 177
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stts",
+          "bytes": 2096
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stss",
+          "bytes": 20
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsz",
+          "bytes": 1064,
+          "samples": 261
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsc",
+          "bytes": 28
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stco",
+          "bytes": 20
+        }
+      ]
+    }
+  ],
+  "decoded_video_acceptance": {
+    "PC_match_accepted": false,
+    "single_destroy_before": "out/pc-visual/v138/video-destroy-command-frames/video-frame-45.png",
+    "single_destroy_after": "out/pc-visual/v138/video-destroy-command-frames/video-frame-48.png",
+    "source3_destroy_before": "out/pc-visual/v138/video-all-part3-frames/video-frame-100.png",
+    "source3_destroy_after": "out/pc-visual/v138/video-all-part3-frames/video-frame-140.png",
+    "scope": "Actual source body removal and normal flood rule losses; source flood/collapse animation pending; three stress recordings have gaps and low temporal sampling; no all-eight continuous video claim"
+  },
+  "save_preservation": {
+    "bytes": 168846,
+    "before": {
+      "path": "out/pc-visual/v138-autosave-before.sg11",
+      "bytes": 168846,
+      "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+    },
+    "after": {
+      "path": "out/pc-visual/v138-autosave-after-all.sg11",
+      "bytes": 168846,
+      "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+    },
+    "byte_exact": true
+  },
+  "failures_preserved": [
+    {
+      "log": "out/pc-visual/v138-dam0-installed.txt",
+      "reason": "External test Filament getTransformManager removed by R8; three minimal APIs kept; failed APK pair retained",
+      "corrected": true
+    },
+    {
+      "log": "out/pc-visual/v138-dam0-installed-fixed.txt",
+      "reason": "Far view source loading missed original120s limit; lossless allocation fix; pre-fix package and screenshots retained",
+      "corrected": true
+    }
+  ],
+  "historical_tests": {
+    "complete_core_suite_pass": false,
+    "comparison": "out/pc-visual/v138-baseline-comparison.json",
+    "navigation": "Different first error from originalHEAD; same BaiMaPort failure reproduced on isolated inheritedPC64 source",
+    "reports": "Reports53Core1434 pass; Nationalgolden fails on HEAD and inheritedPC64; newopening65 intentionally includes four source dams; assertions unchanged"
+  },
+  "device": {
+    "kind": "API29 x86_64 emulator with host OpenGL",
+    "ARM_validated": false
+  },
+  "limitations": [
+    "PC runtime screenshots/video still unavailable; no source visual matching acceptance",
+    "Original units, rigs, clips, faction flags, environment and battle effects, full-screen tactics/critical text still pending",
+    "Dams no respawn and normal flood rules accepted; original collapse/flood animation absent",
+    "Source transparency/lighting, UV density, map height calibration, regional winter materials and source cliff initialization ground patch remain pending",
+    "Continuous scene changes show substantial load and GC stalls; peak observed appRSSabout512MB; no ARMperformance claim",
+    "Startup blank/loading and window recovery events retained; cannot claim all-scope zero blackscreens or smoothness"
+  ],
+  "goal_status": "active"
+}

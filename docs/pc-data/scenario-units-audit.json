@@ -1,0 +1,402 @@
+{
+  "schema": 1,
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "limits": [
+    "Load-time unit registry only; later scenario-start events and MOD overlays are not executed",
+    "No assumption that source file presence establishes active scenario or official identity",
+    "No runtime data imported; unknown fields remain original bytes"
+  ],
+  "sources": [
+    {
+      "path": "Media/scenario/Scen000.s11",
+      "sha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "4cf95a545944aad768b645f74650ab71c52ba4752fdb6276f8baa6df6c68d2d2"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    },
+    {
+      "path": "Media/scenario/SCEN001.S11",
+      "sha256": "aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "513433b510c2a99da0d7b85865b35d41c477b6051dbe27ebbf6d206c1bc6eba3"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    },
+    {
+      "path": "Media/scenario/SCEN002.S11",
+      "sha256": "ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "a7310403bef2944bfa2016ad62c7de779d96603b49b81392570920d794f3cfc3"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    },
+    {
+      "path": "Media/scenario/SCEN003.S11",
+      "sha256": "efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "f80ff8a9260276a80d55b6373f4ea3d3beb2286289aaf92dab56a949125b5243"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    },
+    {
+      "path": "Media/scenario/SCEN004.S11",
+      "sha256": "6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "d1e44e451fc7547de8338fa8b3c18b80b4e6985c635d19c4afb58589e537cf4a"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    },
+    {
+      "path": "Media/scenario/SCEN005.S11",
+      "sha256": "4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "a8593eaf835682aa3245cf67100d3466f2fdc704b4ba6556072b76cd3240d1a0"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    },
+    {
+      "path": "Media/scenario/SCEN006.S11",
+      "sha256": "b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "7ce5a36908edc05a980f03d2a19c254bee0833133fc55117370334eaa63e9032"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    },
+    {
+      "path": "Media/scenario/SCEN007.S11",
+      "sha256": "703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "bf53e4e386cf88645f1758ff72c9f470369dc91e1c5141097f6fcb42dd9dfba3"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    },
+    {
+      "path": "Media/scenario/Scen008.s11",
+      "sha256": "ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "026d4b229794db896f208631f30963a0a2c902fef79f82623c4e9307578d5078"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    },
+    {
+      "path": "Media/scenario/Scen009.s11",
+      "sha256": "64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "232fb463aec9a81a92ca7e5484d96b386e052e11871f07f3b91cc3ed82e376ae"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    },
+    {
+      "path": "Media/scenario/Scen010.s11",
+      "sha256": "4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "208410bea49c570b4a27e3b460aa2a0344a953f9f931d94ce5d63fd7e8f477af"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    },
+    {
+      "path": "Media/scenario/Scen011.s11",
+      "sha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "61b29b2fcf99df6c2feeeb5fb6f5b99889a1172b84fa1ee81d8dcbcd163ac5fc"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    },
+    {
+      "path": "Media/scenario/Scen012.s11",
+      "sha256": "d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "966e6f89ef2dd76d6b42c163dc90f2dd7d4598b67ee1c66db9d85618e202fd57"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    },
+    {
+      "path": "Media/scenario/Scen013.s11",
+      "sha256": "72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "73c97db03a6618e8f24d196c0a2aadd0e2513d6df8da56bea11575d49dc63ea9"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    },
+    {
+      "path": "Media/scenario/Scen014.S11",
+      "sha256": "ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "9d1de3a4f5e1e1cd5dfde898a7526a78c9fc537f81c8ff258c5a7d4470ab09a3"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    },
+    {
+      "path": "Media/scenario/Scen015.s11",
+      "sha256": "5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a",
+      "officers": {
+        "loop": [
+          "0x493812",
+          "0x49383f"
+        ],
+        "count": 1100,
+        "serialized_count": 850,
+        "source_start": 17760,
+        "source_end": 146960,
+        "registry_sha256": "39e66708e19c616254d2a42260f15a955064e3d975d8cd91634f8f87314196f3"
+      },
+      "fixup": {
+        "loop": [
+          "0x493b06",
+          "0x493b48"
+        ],
+        "changed_byte_addresses": []
+      },
+      "unit_count": 1000,
+      "valid_unit_count": 0
+    }
+  ],
+  "records": 16000,
+  "valid_unit_count": 0,
+  "full_report": {
+    "path": "scenario-units-native.json.gz",
+    "sha256": "f2d2b82b4570b5d054ddee242676d3f26128974acd8557eb2cdcbb57c09502ef",
+    "decoded_sha256": "e8f04b6fdde21209839a738c5874122d5f2c27e705084a646cf3a35340d70dda"
+  }
+}

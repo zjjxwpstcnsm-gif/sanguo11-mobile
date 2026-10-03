@@ -1,0 +1,4 @@
+Exception in thread "main" java.io.IOException: 旧版本地图存档无法继续使用，请保留原档并重新开局；未删除或改写原存档
+	at game.sanguo.core.SaveCodec.decode(SaveCodec.java:81)
+	at game.sanguo.core.EstatesTest.migration(EstatesTest.java:85)
+	at game.sanguo.core.EstatesTest.main(EstatesTest.java:20)

@@ -1,0 +1,18 @@
+[
+  {
+    "asset": "app/src/main/assets/3d/field/v129/scenery-atlas.etc2",
+    "source_sha256": "a48b7d34d9e98bfd7f8be88c9b2b84addfdc22b08f07f28b44cf696f9e34cf34",
+    "sha256": "66b92db95e7f683956245fe49333611aed4e426fbcf2dc847e56bb53a528a5cd",
+    "width": 512,
+    "height": 64,
+    "levels": 10,
+    "format": "ETC2_SRGB8",
+    "gpu_payload_bytes": 21896,
+    "rgba_mip_bytes": 174780,
+    "alpha": "opaque",
+    "mip_filter": "linear-light BOX",
+    "encoder": "etcpak 0.9.15",
+    "level0_psnr_db": 36.6825470822119,
+    "gpu_upload_verified": false
+  }
+]

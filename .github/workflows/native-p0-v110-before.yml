@@ -1,0 +1,81 @@
+name: Native P0 v110 immutable original controls
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-p0-v110-before.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  before:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {api: 29, suite: cold-only}
+          - {api: 29, suite: all}
+          - {api: 35, suite: all}
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 2cabdc369418a3e6a34f71dde1d700bc5565ad03
+          persist-credentials: false
+      - name: Verify untouched original v105 and archived unchanged probe
+        run: |
+          set -euo pipefail
+          mkdir -p out/remediation /tmp/old /tmp/probe app/build/outputs/apk/debug app/build/outputs/apk/androidTest/debug
+          gh run download 36108363433 -n native-remediation-api29-apk-00 -D /tmp/old
+          gh run download 36108363433 -n native-remediation-api29-apk-01 -D /tmp/old
+          cat /tmp/old/remediation-apk-part-00 /tmp/old/remediation-apk-part-01 > app/build/outputs/apk/debug/app-debug.apk
+          echo '2b38ca4741b60650be58555ec118350f2aeff292765f6b3754adc138c1fdf55c  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
+          gh run download 36140301821 -n p0-v108-build -D /tmp/probe
+          (cd /tmp/probe && sed 's@out/build/@@g' APK_SHA256.txt | sha256sum -c -)
+          cp /tmp/probe/app-debug-androidTest.apk app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+          echo ef54951dbb7056beaa782f97a3486eefa3a88ef9 > out/remediation/SOURCE_COMMIT
+          echo 76c51ece009b6ebeff58b5a05adce4d769a41f30 > out/remediation/INSTRUMENTATION_COMMIT
+          sha256sum app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk > out/remediation/APK_SHA256.txt
+          date -u --iso-8601=seconds > out/remediation/STARTED_UTC.txt
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api }}
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: |
+            adb shell getprop > out/remediation/DEVICE_PROPERTIES.txt
+            bash scripts/verify-native-remediation.sh baseline ${{ matrix.suite }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p0-v110-before-v105-api${{ matrix.api }}-${{ matrix.suite }}-raw
+          path: out/remediation/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Validate every original video without changing raw evidence
+        if: always()
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python3 scripts/verify-p0-videos.py out/remediation
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p0-v110-before-v105-api${{ matrix.api }}-${{ matrix.suite }}-video-validation
+          path: |
+            out/remediation/**/*.ffprobe.json*
+            out/remediation/**/*.decode.log*
+            out/remediation/VIDEO_*
+          retention-days: 14

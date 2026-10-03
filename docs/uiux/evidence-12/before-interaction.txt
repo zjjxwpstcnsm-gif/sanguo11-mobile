@@ -1,0 +1,12 @@
+PASS normal launch restores existing save
+PASS governance starts from intact campaign
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+FAIL java.lang.AssertionError: visible control timeout
+	at game.sanguo.mobile.UiUxInstrumentation.await(UiUxInstrumentation.java:349)
+	at game.sanguo.mobile.UiUxInstrumentation.text(UiUxInstrumentation.java:362)
+	at game.sanguo.mobile.UiUxInstrumentation.governance(UiUxInstrumentation.java:74)
+	at game.sanguo.mobile.UiUxInstrumentation.onStart(UiUxInstrumentation.java:38)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)
+

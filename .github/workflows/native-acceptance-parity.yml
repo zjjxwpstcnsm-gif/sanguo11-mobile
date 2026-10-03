@@ -1,0 +1,97 @@
+name: R00-R14 API29 compatible strict parity harness
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-acceptance-parity.yml]
+permissions: {contents: read, actions: read}
+jobs:
+  harness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Build only compatible test harness; original app bytes are installed separately
+        run: |
+          set -euo pipefail
+          mkdir -p out/harness
+          git diff --exit-code 5f8997ebfef15f4680931d40532411a336506d0d HEAD -- app/src/main core game-api game-runtime data version.properties app/build.gradle
+          git rev-parse HEAD > out/harness/TEST_SOURCE
+          git diff 5f8997ebfef15f4680931d40532411a336506d0d HEAD -- app/src/androidTest > out/harness/HARNESS.patch
+          ./gradlew --no-daemon :app:assembleDebugAndroidTest -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/harness/build.log 2>&1
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/harness/
+          sha256sum out/harness/app-debug-androidTest.apk > out/harness/TEST_SHA256.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: acceptance-parity-harness, path: out/harness, retention-days: 14}
+  runtime:
+    needs: harness
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {api: 29, scope: parity}
+          - {api: 35, scope: parity}
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: 5f8997ebfef15f4680931d40532411a336506d0d}
+      - uses: actions/download-artifact@v4
+        with: {name: p0-v112-build, path: out/build, run-id: 36213760665, github-token: '${{ github.token }}'}
+      - uses: actions/download-artifact@v4
+        with: {name: acceptance-parity-harness, path: out/harness}
+      - name: Exact same installed APK in every scope; no diagnostic forced reapply probe
+        run: |
+          set -euo pipefail
+          test "$(cat out/build/SOURCE_COMMIT)" = 5f8997ebfef15f4680931d40532411a336506d0d
+          echo '6ba2211d961567b2aa396ba19e3018c1dc44780fa4351a807db099fc643bd058  out/build/sanguo11-mobile-v112.apk' | sha256sum -c
+          sha256sum -c out/build/APK_SHA256.txt
+          mkdir -p app/build/outputs/apk/debug app/build/outputs/apk/androidTest/debug out/remediation
+          cp out/build/sanguo11-mobile-v112.apk app/build/outputs/apk/debug/app-debug.apk
+          cp out/harness/app-debug-androidTest.apk app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+          cp out/harness/TEST_SOURCE out/harness/TEST_SHA256.txt out/remediation/
+          cp out/build/SOURCE_COMMIT out/build/APK_SHA256.txt out/remediation/
+          echo '${{ matrix.api }} x86_64 SwANGLE; scope=${{ matrix.scope }}; no ARM64 physical device. Original R12/cold/assertions plus first CPU observation inside unchanged 120s readiness deadline, not the intervention-only causal diagnostic.' > out/remediation/DEVICE_SCOPE.txt
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api }}
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: |
+            adb shell getprop > out/remediation/DEVICE_PROPERTIES.txt
+            adb shell dumpsys SurfaceFlinger > out/remediation/SURFACEFLINGER_START.txt
+            if [ '${{ matrix.scope }}' = lifecycle ] || [ '${{ matrix.scope }}' = parity ]; then python3 -c 'from pathlib import Path; import sys; scope=sys.argv[1]; cls,mark=("NativeR01Instrumentation","PASS R01") if scope=="lifecycle" else ("NativeP0ParityInstrumentation","PASS P0_PARITY"); s=Path("scripts/verify-native-remediation.sh").read_text(); marker="if [[ \"${2:-all}\" = cold-only ]]; then"; assert s.count(marker)==1; Path("out/selected-installed.sh").write_text(s.split(marker)[0]+"run_probe "+cls+" "+scope+"\ngrep -q \""+mark+"\" \"$root/"+scope+"/interaction.txt\"\n")' '${{ matrix.scope }}'; bash out/selected-installed.sh candidate; else bash scripts/verify-native-remediation.sh candidate '${{ matrix.scope }}'; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'acceptance-parity-fixed-api${{ matrix.api }}-${{ matrix.scope }}-raw', path: out/remediation/, if-no-files-found: error, retention-days: 14}
+      - name: Independent validation of each original video segment
+        if: always()
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python3 scripts/verify-p0-videos.py out/remediation
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: acceptance-parity-fixed-api${{ matrix.api }}-${{ matrix.scope }}-video-validation
+          path: |
+            out/remediation/**/*.ffprobe.json*
+            out/remediation/**/*.decode.log*
+            out/remediation/VIDEO_*
+          retention-days: 14

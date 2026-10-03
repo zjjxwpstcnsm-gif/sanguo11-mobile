@@ -1,0 +1,99 @@
+{
+  "goal_status": "paused_at_user_request",
+  "goal_complete": false,
+  "branch": "agent/native-pc-visual",
+  "all_worktree_changes_must_be_preserved": true,
+  "latest_ui_commit": "0ddedf6fd379b3a87df206bc1d09f0e1662155ab",
+  "full_ui_merge_audit": "out/uiux-merge-all-0ddedf6/audit.json",
+  "core_baseline": "out/parity/checkpoint-20261003-an/source",
+  "latest_pre_ui18_full_baseline": "out/parity/checkpoint-20261003-ao/source",
+  "handoff_snapshot": "out/parity/checkpoint-20261003-ap-handoff-final/source",
+  "apks": {
+    "apks": [
+      {
+        "path": "out/parity/ui-integration-0ddedf6/apks/app-debug.apk",
+        "bytes": 87040546,
+        "sha256": "005c24e904c028a2bf8c328e1fb08eb907955b5010d33682e673eeb911779389"
+      },
+      {
+        "path": "out/parity/ui-integration-0ddedf6/apks/app-debug-androidTest.apk",
+        "bytes": 752283,
+        "sha256": "bd626f73b0338dca4b6e633b58c8f85355b0d5c415d40cc8fee262abee5c91ba"
+      }
+    ],
+    "pinned_resources": 168,
+    "native_inputs": 4,
+    "rank_resource_exact": true,
+    "growth_resource_exact": true,
+    "all_exact": true
+  },
+  "latest_apk_ui_flows": [
+    {
+      "name": "installed-native-march",
+      "checks": 77,
+      "seconds": 115.76,
+      "results": "out/parity/ui-integration-0ddedf6/installed-native-march/results.json",
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      }
+    },
+    {
+      "name": "installed-flat-march",
+      "checks": 73,
+      "seconds": 62.61,
+      "results": "out/parity/ui-integration-0ddedf6/installed-flat-march/results.json",
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      }
+    },
+    {
+      "name": "installed-opening",
+      "checks": 64,
+      "seconds": 58.31,
+      "results": "out/parity/ui-integration-0ddedf6/installed-opening/results.json",
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      }
+    }
+  ],
+  "latest_apk_ui_checks": 214,
+  "not_yet_run_on_latest_apk": [
+    "production ART rule probes",
+    "trade",
+    "governanceArmy",
+    "standalone mapEdges/mapNative gesture suites"
+  ],
+  "previous_apk_validation": "docs/validation/parity-20261003/round24-installed.json",
+  "pending_user_requests": [
+    "Coast/city square-shaped visual discontinuities",
+    "Inspect terrain under occupied unit cell",
+    "Cavalry forced displacement must not enter city seven-cell footprint",
+    "Implement sound effects",
+    "Remove playable 2D mode completely"
+  ],
+  "user_screenshot": {
+    "path": "docs/handoff/20261003/coast-city-rectangles.jpg",
+    "sha256": "7961d90e955b4af1cd6a4950828710dbac98d23f2d51cbbc00a409746e3abc50"
+  },
+  "evidence_scope": "Only API29 x86_64 emulator; user phone feedback is separate and APK/ABI identity is not verified",
+  "active_install_tests": false,
+  "user_files_restored": true,
+  "original_auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+  "notes": [
+    "R23 state29361 and original arithmetic passed on R23/R24 APKs; not copied as latest APK pass",
+    "Three historical baseline failures retained; whole test suite is not green",
+    "Original merchant price/quantity/monthly state and non-merchant XP remain pending",
+    "Official/MOD active resources and full scenario content not established",
+    "Old <31 map save migration remains unsupported",
+    "No feature fixes or new testing were started after user stop; only handoff documentation/read-only source archive"
+  ]
+}

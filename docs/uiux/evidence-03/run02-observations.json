@@ -1,0 +1,477 @@
+{
+  "run": "run02",
+  "samples": [
+    {
+      "time": "10-03 00:36:38.903",
+      "pending": "56",
+      "submitted": "0",
+      "beginAttempts": "1",
+      "beginSkipped": "0",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:36:40.556",
+      "pending": "63",
+      "submitted": "0",
+      "beginAttempts": "19",
+      "beginSkipped": "17",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:36:41.581",
+      "pending": "71",
+      "submitted": "0",
+      "beginAttempts": "50",
+      "beginSkipped": "48",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:36:42.596",
+      "pending": "79",
+      "submitted": "0",
+      "beginAttempts": "78",
+      "beginSkipped": "76",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:36:47.775",
+      "pending": "56",
+      "submitted": "0",
+      "beginAttempts": "1",
+      "beginSkipped": "0",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:36:51.820",
+      "pending": "67",
+      "submitted": "0",
+      "beginAttempts": "6",
+      "beginSkipped": "3",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:36:52.832",
+      "pending": "39",
+      "submitted": "0",
+      "beginAttempts": "34",
+      "beginSkipped": "15",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:36:53.834",
+      "pending": "1",
+      "submitted": "0",
+      "beginAttempts": "64",
+      "beginSkipped": "26",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:36:54.865",
+      "pending": "1",
+      "submitted": "0",
+      "beginAttempts": "95",
+      "beginSkipped": "31",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:36:55.909",
+      "pending": "6",
+      "submitted": "0",
+      "beginAttempts": "126",
+      "beginSkipped": "35",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:36:56.944",
+      "pending": "1",
+      "submitted": "0",
+      "beginAttempts": "157",
+      "beginSkipped": "37",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:36:57.984",
+      "pending": "1",
+      "submitted": "0",
+      "beginAttempts": "188",
+      "beginSkipped": "39",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:36:59.001",
+      "pending": "2",
+      "submitted": "0",
+      "beginAttempts": "219",
+      "beginSkipped": "47",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:00.029",
+      "pending": "1",
+      "submitted": "0",
+      "beginAttempts": "250",
+      "beginSkipped": "57",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:01.038",
+      "pending": "1",
+      "submitted": "0",
+      "beginAttempts": "280",
+      "beginSkipped": "67",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:02.064",
+      "pending": "1",
+      "submitted": "0",
+      "beginAttempts": "311",
+      "beginSkipped": "74",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:03.064",
+      "pending": "1",
+      "submitted": "0",
+      "beginAttempts": "341",
+      "beginSkipped": "84",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:04.099",
+      "pending": "1",
+      "submitted": "0",
+      "beginAttempts": "372",
+      "beginSkipped": "97",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:05.121",
+      "pending": "1",
+      "submitted": "0",
+      "beginAttempts": "400",
+      "beginSkipped": "116",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:06.160",
+      "pending": "6",
+      "submitted": "0",
+      "beginAttempts": "431",
+      "beginSkipped": "134",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:07.219",
+      "pending": "5",
+      "submitted": "0",
+      "beginAttempts": "462",
+      "beginSkipped": "158",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:08.220",
+      "pending": "1",
+      "submitted": "0",
+      "beginAttempts": "493",
+      "beginSkipped": "174",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:08.987",
+      "pending": "0",
+      "submitted": "1",
+      "beginAttempts": "510",
+      "beginSkipped": "184",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:09.246",
+      "pending": "0",
+      "submitted": "2",
+      "beginAttempts": "519",
+      "beginSkipped": "192",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:10.263",
+      "pending": "0",
+      "submitted": "2",
+      "beginAttempts": "547",
+      "beginSkipped": "220",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:11.402",
+      "pending": "0",
+      "submitted": "2",
+      "beginAttempts": "573",
+      "beginSkipped": "246",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:12.430",
+      "pending": "0",
+      "submitted": "2",
+      "beginAttempts": "604",
+      "beginSkipped": "277",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:13.446",
+      "pending": "0",
+      "submitted": "2",
+      "beginAttempts": "629",
+      "beginSkipped": "302",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:14.464",
+      "pending": "0",
+      "submitted": "2",
+      "beginAttempts": "656",
+      "beginSkipped": "329",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:15.479",
+      "pending": "0",
+      "submitted": "2",
+      "beginAttempts": "684",
+      "beginSkipped": "357",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:16.495",
+      "pending": "0",
+      "submitted": "2",
+      "beginAttempts": "711",
+      "beginSkipped": "384",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:17.512",
+      "pending": "0",
+      "submitted": "2",
+      "beginAttempts": "737",
+      "beginSkipped": "410",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:18.514",
+      "pending": "0",
+      "submitted": "3",
+      "beginAttempts": "767",
+      "beginSkipped": "439",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:19.549",
+      "pending": "0",
+      "submitted": "4",
+      "beginAttempts": "798",
+      "beginSkipped": "469",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:20.592",
+      "pending": "0",
+      "submitted": "4",
+      "beginAttempts": "829",
+      "beginSkipped": "500",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:21.612",
+      "pending": "0",
+      "submitted": "5",
+      "beginAttempts": "860",
+      "beginSkipped": "530",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:22.612",
+      "pending": "0",
+      "submitted": "6",
+      "beginAttempts": "890",
+      "beginSkipped": "559",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:23.613",
+      "pending": "0",
+      "submitted": "6",
+      "beginAttempts": "920",
+      "beginSkipped": "589",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:24.649",
+      "pending": "0",
+      "submitted": "7",
+      "beginAttempts": "951",
+      "beginSkipped": "619",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:25.681",
+      "pending": "0",
+      "submitted": "8",
+      "beginAttempts": "982",
+      "beginSkipped": "649",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:26.681",
+      "pending": "0",
+      "submitted": "9",
+      "beginAttempts": "1012",
+      "beginSkipped": "678",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:27.683",
+      "pending": "0",
+      "submitted": "9",
+      "beginAttempts": "1042",
+      "beginSkipped": "708",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:28.681",
+      "pending": "0",
+      "submitted": "10",
+      "beginAttempts": "1072",
+      "beginSkipped": "737",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:29.712",
+      "pending": "0",
+      "submitted": "11",
+      "beginAttempts": "1103",
+      "beginSkipped": "767",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:30.715",
+      "pending": "0",
+      "submitted": "12",
+      "beginAttempts": "1133",
+      "beginSkipped": "796",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:31.748",
+      "pending": "0",
+      "submitted": "12",
+      "beginAttempts": "1164",
+      "beginSkipped": "827",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:32.747",
+      "pending": "0",
+      "submitted": "13",
+      "beginAttempts": "1194",
+      "beginSkipped": "856",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:33.748",
+      "pending": "0",
+      "submitted": "14",
+      "beginAttempts": "1224",
+      "beginSkipped": "885",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:34.749",
+      "pending": "0",
+      "submitted": "14",
+      "beginAttempts": "1254",
+      "beginSkipped": "915",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:35.779",
+      "pending": "0",
+      "submitted": "15",
+      "beginAttempts": "1285",
+      "beginSkipped": "945",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:36.812",
+      "pending": "0",
+      "submitted": "15",
+      "beginAttempts": "1316",
+      "beginSkipped": "976",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:37.812",
+      "pending": "0",
+      "submitted": "16",
+      "beginAttempts": "1346",
+      "beginSkipped": "1005",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:38.812",
+      "pending": "0",
+      "submitted": "16",
+      "beginAttempts": "1376",
+      "beginSkipped": "1035",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:39.813",
+      "pending": "0",
+      "submitted": "17",
+      "beginAttempts": "1406",
+      "beginSkipped": "1064",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:40.847",
+      "pending": "0",
+      "submitted": "17",
+      "beginAttempts": "1437",
+      "beginSkipped": "1095",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:41.879",
+      "pending": "0",
+      "submitted": "18",
+      "beginAttempts": "1468",
+      "beginSkipped": "1125",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:42.879",
+      "pending": "0",
+      "submitted": "19",
+      "beginAttempts": "1498",
+      "beginSkipped": "1154",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:43.879",
+      "pending": "0",
+      "submitted": "19",
+      "beginAttempts": "1528",
+      "beginSkipped": "1184",
+      "output": "WAITING_FRAME"
+    },
+    {
+      "time": "10-03 00:37:44.697",
+      "pending": "0",
+      "submitted": "20",
+      "beginAttempts": "1551",
+      "beginSkipped": "1206",
+      "output": "CONTENT_DETECTED_NOT_ART_ACCEPTANCE"
+    }
+  ]
+}

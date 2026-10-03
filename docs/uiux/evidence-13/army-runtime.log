@@ -1,0 +1,49 @@
+10-03 04:15:00.284 15952 15952 I AuthorityPreview: construction elapsedMs=251
+10-03 04:15:08.097 15952 16399 D Turn52  : PHASE side=1 ms=488 委任军团行动完成
+10-03 04:15:10.092 15952 16399 D Turn52  : PHASE side=2 ms=1995 势力行动完成
+10-03 04:15:13.322 15952 16399 D Turn52  : PHASE side=3 ms=3230 势力行动完成
+10-03 04:15:16.043 15952 16399 D Turn52  : PHASE side=4 ms=2720 势力行动完成
+10-03 04:15:28.654 15952 16399 D Turn52  : PHASE side=5 ms=12610 势力行动完成
+10-03 04:15:30.247 15952 16399 D Turn52  : PHASE side=6 ms=1593 势力行动完成
+10-03 04:15:31.205 15952 16399 D Turn52  : PHASE side=7 ms=957 势力行动完成
+10-03 04:15:33.366 15952 16399 D Turn52  : PHASE side=8 ms=2161 势力行动完成
+10-03 04:15:34.258 15952 16399 D Turn52  : PHASE side=9 ms=892 势力行动完成
+10-03 04:15:35.925 15952 16399 D Turn52  : PHASE side=10 ms=1666 势力行动完成
+10-03 04:15:38.177 15952 16399 D Turn52  : PHASE side=11 ms=2251 势力行动完成
+10-03 04:15:40.689 15952 16399 D Turn52  : PHASE side=12 ms=2512 势力行动完成
+10-03 04:15:42.425 15952 16399 D Turn52  : PHASE side=13 ms=1736 势力行动完成
+10-03 04:15:43.803 15952 16399 D Turn52  : PHASE side=14 ms=1378 势力行动完成
+10-03 04:15:52.898 15952 16399 D Turn52  : PHASE side=15 ms=9094 势力行动完成
+10-03 04:15:57.870 15952 16399 D Turn52  : PHASE side=16 ms=4971 势力行动完成
+10-03 04:15:59.309 15952 16399 D Turn52  : PHASE side=17 ms=1439 势力行动完成
+10-03 04:16:00.925 15952 16399 D Turn52  : PHASE side=0 ms=1616 势力行动完成
+10-03 04:16:02.120 15952 16399 D Turn52  : PHASE side=-1 ms=1194 设施与全局后勤完成
+10-03 04:16:02.124 15952 16399 D Turn52  : PHASE side=1 ms=4 结算完成
+10-03 04:16:07.304 15952 15952 I Turn52  : TURN_END totalMs=59828 computeMs=54760 saveMs=730 factions=18
+10-03 04:16:18.701 15952 18074 D Turn52  : PHASE side=1 ms=1236 委任军团行动完成
+10-03 04:16:22.237 15952 18074 D Turn52  : PHASE side=2 ms=3535 势力行动完成
+10-03 04:16:33.035 15952 18074 D Turn52  : PHASE side=3 ms=10797 势力行动完成
+10-03 04:16:36.059 15952 18074 D Turn52  : PHASE side=4 ms=3024 势力行动完成
+10-03 04:16:51.218 15952 18074 D Turn52  : PHASE side=5 ms=15158 势力行动完成
+10-03 04:16:54.488 15952 18074 D Turn52  : PHASE side=6 ms=3269 势力行动完成
+10-03 04:16:58.195 15952 18074 D Turn52  : PHASE side=7 ms=3706 势力行动完成
+10-03 04:17:03.430 15952 18074 D Turn52  : PHASE side=8 ms=5235 势力行动完成
+10-03 04:17:05.020 15952 18074 D Turn52  : PHASE side=9 ms=1589 势力行动完成
+10-03 04:17:08.276 15952 18074 D Turn52  : PHASE side=10 ms=3256 势力行动完成
+10-03 04:17:15.553 15952 18074 D Turn52  : PHASE side=11 ms=7277 势力行动完成
+10-03 04:17:25.910 15952 18074 D Turn52  : PHASE side=12 ms=10357 势力行动完成
+10-03 04:17:33.997 15952 18074 D Turn52  : PHASE side=13 ms=8086 势力行动完成
+10-03 04:17:37.105 15952 18074 D Turn52  : PHASE side=14 ms=3108 势力行动完成
+10-03 04:18:19.788 15952 18074 D Turn52  : PHASE side=15 ms=42682 势力行动完成
+10-03 04:18:29.788 15952 18074 D Turn52  : PHASE side=16 ms=10000 势力行动完成
+10-03 04:18:37.042 15952 18074 D Turn52  : PHASE side=17 ms=7253 势力行动完成
+10-03 04:18:42.772 15952 18074 D Turn52  : PHASE side=0 ms=5730 势力行动完成
+10-03 04:18:47.016 15952 18074 D Turn52  : PHASE side=-1 ms=4244 设施与全局后勤完成
+10-03 04:18:47.176 15952 18074 D Turn52  : PHASE side=1 ms=160 结算完成
+10-03 04:18:50.387 15952 15952 I Turn52  : TURN_END totalMs=153132 computeMs=150258 saveMs=397 factions=18
+10-03 04:18:58.746 15952 15952 I AuthorityPreview: city elapsedMs=495
+10-03 04:18:59.293 15952 15952 I AuthorityPreview: city elapsedMs=3
+10-03 04:19:01.964 15952 15952 I AuthorityPreview: city elapsedMs=6
+10-03 04:19:16.420 15952 15952 I AuthorityPreview: city elapsedMs=556
+10-03 04:19:17.020 15952 15952 I AuthorityPreview: city elapsedMs=0
+10-03 04:19:19.237 15952 15952 I AuthorityPreview: city elapsedMs=0

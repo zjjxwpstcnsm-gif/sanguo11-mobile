@@ -1,0 +1,171 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "v133 original site bodies/walls and corrected seasonal model order",
+  "apk": "out/pc-visual/sanguo11-mobile-v133-pc-sites.apk",
+  "apk_sha256": "015ca30d7182ce2b8ea7e51f913c381b44f854661c6877bb3e3beaee165b50c5",
+  "checks": [
+    {
+      "name": "source-sites",
+      "status": "pass",
+      "log": "out/pc-visual/v133-sites-check.txt",
+      "result": [
+        "NORMAL_SIEGE kind=0 defense=924 刘备攻城，城防−86，守军−86，据点反击−44",
+        "NORMAL_SIEGE kind=2 defense=433 刘备攻城，城防−77，守军−86，据点反击−22",
+        "NORMAL_SIEGE kind=1 defense=356 刘备攻城，城防−154，守军−86，据点反击−25",
+        "PASS PC sites 2882104 checks; matched=87"
+      ]
+    },
+    {
+      "name": "source-scenery",
+      "status": "pass",
+      "log": "out/pc-visual/v133-scenery-check.txt",
+      "result": [
+        "PASS PC scenery 7179793 checks; source placements=943"
+      ]
+    },
+    {
+      "name": "map-mesh-picking-save",
+      "status": "pass",
+      "log": "out/pc-visual/v133-map-check.txt",
+      "result": [
+        "PASS PC map restoration 635299 source/mesh/picking/save checks; chunks=16"
+      ]
+    },
+    {
+      "name": "interaction-and-custom-map",
+      "status": "pass",
+      "log": "out/pc-visual/v133-interaction-check.txt",
+      "result": [
+        "PASS S07 interaction/editor: 32 checks",
+        "PASS 131 custom-map production integration assertions"
+      ]
+    },
+    {
+      "name": "native-r04",
+      "status": "pass",
+      "log": "out/pc-visual/v133-r04-check.txt",
+      "result": [
+        "PASS R04 87689 material identity/normalization/constraints checks"
+      ]
+    },
+    {
+      "name": "installed-sites",
+      "status": "pass",
+      "log": "out/pc-visual/v133-sites-installed.txt",
+      "result": [
+        "PASS PC SITES installed checks=1677; emulator renderer evidence only"
+      ]
+    },
+    {
+      "name": "installed-site-normal-commands",
+      "status": "pass",
+      "log": "out/pc-visual/v133-sites-commands-installed.txt",
+      "result": [
+        "PASS PC SITES installed checks=211; emulator renderer evidence only"
+      ]
+    },
+    {
+      "name": "installed-scenery",
+      "status": "pass",
+      "log": "out/pc-visual/v133-scenery-installed.txt",
+      "result": [
+        "PASS PC SCENERY installed checks=735; emulator renderer evidence only"
+      ]
+    },
+    {
+      "name": "apk-integrity",
+      "status": "pass",
+      "log": "out/pc-visual/v133-apk-integrity.txt",
+      "result": [
+        "PASS: 70 pinned map/art resources in out/pc-visual/sanguo11-mobile-v133-pc-sites.apk"
+      ]
+    }
+  ],
+  "source_corner_crosscheck": {
+    "mixed_faces": 241362,
+    "matching_corners": 4194304,
+    "total_corners": 4194304,
+    "note": "All face corners match source vertex IDs exactly after ignoring inactive layers."
+  },
+  "source_readonly_check": {
+    "source_files": 1805,
+    "all_file_hashes_unchanged": true,
+    "source_policy": "read-only",
+    "baseline": "docs/pc-visual/inventory.json",
+    "audit": "out/pc-visual/v133-source-readonly-check.json"
+  },
+  "device": {
+    "id": "emulator-5554",
+    "api": 29,
+    "abi": "x86_64",
+    "kind": "Android emulator",
+    "launch_gpu": "host",
+    "arm_device_validated": false
+  },
+  "installed_probes": [
+    "87 original site bodies uploaded; 6 source city styles plus gate/port",
+    "source city two-component model, all source near/far geometries and cropped anchor bindings",
+    "spring/winter source site textures and 3 forest locations ×4 corrected seasonal models",
+    "normal siege via MainActivity validated session transaction changes actual original city/gate/port geometry after normal playback",
+    "exact authoritative save/RNG equal to independent siege reference",
+    "activity pause/resume; source site and scenery texture release on 2D exit; autosave/preferences restored"
+  ],
+  "evidence_manifest": "out/pc-visual/v133/evidence/manifest.json",
+  "renderer_report": "out/pc-visual/v133/evidence/pc-sites-report.txt",
+  "video_status": "Android normal siege→source damaged site models recorded; battle particles/units remain legacy; PC run comparison pending",
+  "pc_runtime": {
+    "available": false,
+    "reason": "No preinstalled Wine; portable Wine setup now under investigation; no PC screenshots yet",
+    "screenshots": [],
+    "videos": []
+  },
+  "visual_acceptance": {
+    "complete": false,
+    "terrain_seams": "inactive-layer block seams fixed and inspected on actual emulator image",
+    "pending": [
+      "some source trees look dark",
+      "vertical aspect and original UV scale",
+      "source PC lighting/normals/water/far view",
+      "native cities/facilities/units/animations",
+      "native environmental/combat effects and normal-command videos",
+      "fullscreen strategy/critical original text and timing",
+      "long-duration pressure/memory-growth checks",
+      "ARM device performance"
+    ]
+  },
+  "historical_core": "See docs/pc-map/README.md for reproduced baseline failures; assertions not weakened",
+  "reproducibility": {
+    "same_toolchain_bit_reproducible": true,
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "Pillow": "12.3.0",
+    "Filament_matc_version": 56,
+    "platform": "x86_64",
+    "asset_hashes": {
+      "app/src/main/assets/3d/pc-scenery/scenery.pcz": "e0a11cb4cbba38772c651ae24f4c19f2e678e4a3f2f76fc6ff3fc42707b1d3bf",
+      "app/src/main/assets/3d/pc-scenery/atlas.png": "a0ee1b0d8fec07119b56a1e7dc91763fba47c1a6f85d01d67c9fe33d4fc2ffdd",
+      "app/src/main/assets/3d/pc-scenery/scenery.filamat": "3ac074275770a0d87fe76cb3e4a971ba4c8540dbaefdb7475536a64be9564b0d"
+    }
+  },
+  "source_reference_limits": "Scenery source positions are clipped to playable bounds and current permanent footprints; native site footprint restoration remains pending",
+  "previous_phase": "validation-v132.json",
+  "initial_failed_probes": [
+    {
+      "log": "out/pc-visual/v133-command-first.txt",
+      "cause": "New test-fixture record desugaring helper shadowed application R8 helper; reproduced with matched APK pair; fixed by ordinary immutable Case class"
+    },
+    {
+      "log": "out/pc-visual/v133-sites-commands-failed-threshold.txt",
+      "cause": "Probe inspected immutable pre-action snapshot before normal command replay finished; now waits for normal replay completion, retains geometry/state/authority assertions"
+    }
+  ],
+  "remaining": [
+    "Source ownership flags and regional winter branch",
+    "Other structures/facilities and their construction/burning/destruction states",
+    "All source units/rigs/animation, battle effects and fullscreen tactic/critical typography",
+    "PC runtime/corresponding image and video acceptance; ARM device performance",
+    "Source light/color/opacity, vertical scale, water/UV/far-view calibration",
+    "Long-run memory/performance and all dynamic event stacking/skip/lifecycle acceptance"
+  ]
+}

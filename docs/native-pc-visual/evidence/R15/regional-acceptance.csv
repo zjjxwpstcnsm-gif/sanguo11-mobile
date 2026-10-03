@@ -1,0 +1,94 @@
+input_or_shape_representative,region,q,r,selection,planned_spans,planned_yaws,host_plan,runtime,art,blocker
+huangjin-184,region-0-0,120,25,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,region-0-1,95,75,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,region-0-2,70,124,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,region-0-3,45,174,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,region-1-0,186,25,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,region-1-1,161,75,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,region-1-2,137,124,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,region-1-3,112,174,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,region-2-0,253,25,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,region-2-1,228,75,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,region-2-2,203,124,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,region-2-3,178,174,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,dense-FOREST,130,167,maximum same-terrain count in 9x9 storage neighborhood=61,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,dense-MOUNTAIN,227,46,maximum same-terrain count in 9x9 storage neighborhood=79,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,dense-SAND,91,27,maximum same-terrain count in 9x9 storage neighborhood=69,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,dense-WATER,173,108,maximum same-terrain count in 9x9 storage neighborhood=81,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,dense-PORT,140,64,most sites within 12 logical steps=5; id=20065,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,dense-GATE,146,61,most sites within 12 logical steps=5; id=20044,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+huangjin-184,dense-CITY,136,79,most sites within 12 logical steps=4; id=20015,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,region-0-0,82,19,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,region-0-1,63,57,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,region-0-2,44,96,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,region-0-3,25,134,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,region-1-0,114,19,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,region-1-1,95,57,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,region-1-2,76,96,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,region-1-3,57,134,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,region-2-0,146,19,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,region-2-1,127,57,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,region-2-2,108,96,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,region-2-3,89,134,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,dense-FOREST,75,129,maximum same-terrain count in 9x9 storage neighborhood=61,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,dense-MOUNTAIN,160,13,maximum same-terrain count in 9x9 storage neighborhood=63,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,dense-SAND,92,12,maximum same-terrain count in 9x9 storage neighborhood=52,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,dense-WATER,118,70,maximum same-terrain count in 9x9 storage neighborhood=81,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,dense-PORT,85,26,most sites within 12 logical steps=5; id=20065,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,dense-GATE,91,23,most sites within 12 logical steps=5; id=20044,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+central-mobile-sandbox,dense-CITY,81,41,most sites within 12 logical steps=4; id=20015,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,region-0-0,77,17,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,region-0-1,60,50,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,region-0-2,44,83,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,region-0-3,27,116,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,region-1-0,115,17,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,region-1-1,99,50,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,region-1-2,82,83,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,region-1-3,66,116,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,region-2-0,154,17,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,region-2-1,137,50,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,region-2-2,121,83,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,region-2-3,104,116,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,dense-FOREST,28,121,maximum same-terrain count in 9x9 storage neighborhood=60,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,dense-MOUNTAIN,124,26,maximum same-terrain count in 9x9 storage neighborhood=79,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,dense-SAND,42,124,maximum same-terrain count in 9x9 storage neighborhood=21,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,dense-WATER,70,88,maximum same-terrain count in 9x9 storage neighborhood=81,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,dense-PORT,65,61,most sites within 12 logical steps=4; id=20078,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,dense-GATE,67,6,most sites within 12 logical steps=2; id=20047,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+jingxiang-mobile-sandbox,dense-CITY,66,106,most sites within 12 logical steps=3; id=20026,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,region-0-0,5,5,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,region-0-1,14,5,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,region-0-2,23,5,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,region-0-3,30,6,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,region-1-0,2,10,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,region-1-1,11,10,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,region-1-2,20,10,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,region-1-3,29,10,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,region-2-0,2,14,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,region-2-1,9,15,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,region-2-2,18,15,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,region-2-3,27,15,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,dense-FOREST,11,2,maximum same-terrain count in 9x9 storage neighborhood=36,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,dense-MOUNTAIN,11,15,maximum same-terrain count in 9x9 storage neighborhood=36,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,dense-SAND,2,6,maximum same-terrain count in 9x9 storage neighborhood=45,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,dense-WATER,26,6,maximum same-terrain count in 9x9 storage neighborhood=63,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,dense-PORT,23,9,most sites within 12 logical steps=2; id=90002,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-false,dense-CITY,15,9,most sites within 12 logical steps=2; id=90001,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,region-0-0,7,4,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,region-0-1,5,8,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,region-0-2,3,12,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,region-0-3,2,16,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,region-1-0,19,4,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,region-1-1,17,8,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,region-1-2,15,12,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,region-1-3,13,16,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,region-2-0,30,4,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,region-2-1,29,8,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,region-2-2,27,12,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,region-2-3,25,16,4x3 projected bounds strata; nearest distinct valid center,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,dense-FOREST,11,2,maximum same-terrain count in 9x9 storage neighborhood=36,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,dense-MOUNTAIN,11,15,maximum same-terrain count in 9x9 storage neighborhood=36,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,dense-SAND,2,6,maximum same-terrain count in 9x9 storage neighborhood=45,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,dense-WATER,26,6,maximum same-terrain count in 9x9 storage neighborhood=63,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,dense-PORT,23,9,most sites within 12 logical steps=2; id=90002,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure
+custom-layout-true,dense-CITY,15,9,most sites within 12 logical steps=2; id=90001,5/14/30,0/90,PASS,NOT_RUN,PENDING,V2_FAIL; initial_3D_readiness_failure; final_overview_readiness_failure

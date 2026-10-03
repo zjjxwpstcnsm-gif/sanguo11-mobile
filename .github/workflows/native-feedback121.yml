@@ -1,0 +1,130 @@
+name: Native terrain grid and Blender feedback v121
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: ['.github/workflows/native-feedback121.yml', 'scripts/*feedback121*', 'app/src/**', 'tools/3d/refine_blender121.py', 'version.properties']
+permissions: {contents: read, actions: read}
+concurrency: {group: 'native-feedback121-${{ github.sha }}', cancel-in-progress: false}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Exact source, protected trees and affected host checks
+        run: |
+          set -euo pipefail
+          mkdir -p out/feedback121
+          python3 scripts/verify-candidate-source.py "$GITHUB_SHA" > out/feedback121/source-check.txt
+          git diff --exit-code afac21886f8b092ed3099aa1bf88eba966955285 HEAD -- core game-api game-runtime data unity > out/feedback121/protected.log
+          git merge-base --is-ancestor ac29b458325b52d6e302ca44270d16552de4ed7f HEAD
+          curl -fsSL https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar -o /tmp/feedback121-json.jar
+          export JSON_TEST_JAR=/tmp/feedback121-json.jar
+          for suite in test-feedback121 test-grid-coast test-native-r02 test-3d-combat test-native-r01 test-native-r12 test-architecture; do bash scripts/$suite.sh > out/feedback121/$suite.log 2>&1; done
+      - name: Original core failure retained
+        continue-on-error: true
+        run: |
+          set +e
+          bash scripts/test-core.sh > out/feedback121/core.log 2>&1
+          code=$?
+          echo "$code" > out/feedback121/core.exit
+          git worktree add --detach /tmp/feedback121-input afac21886f8b092ed3099aa1bf88eba966955285
+          (cd /tmp/feedback121-input && bash scripts/test-core.sh) > out/feedback121/core-input.log 2>&1
+          input=$?
+          echo "$input" > out/feedback121/core-input.exit
+          exit "$code"
+      - name: Preserve original geometry assertions on both revisions
+        continue-on-error: true
+        run: |
+          set +e
+          export JSON_TEST_JAR=/tmp/feedback121-json.jar
+          for suite in test-native-r09 test-native-r10; do
+            bash scripts/$suite.sh > out/feedback121/$suite-candidate.log 2>&1
+            echo "$?" > out/feedback121/$suite-candidate.exit
+            (cd /tmp/feedback121-input && bash scripts/$suite.sh) > out/feedback121/$suite-input.log 2>&1
+            echo "$?" > out/feedback121/$suite-input.exit
+          done
+          npm ci --prefix tools/3d
+          npm --prefix tools/3d run validate > out/feedback121/gltf-validator.log 2>&1
+          cp out/r06/khronos.json out/feedback121/khronos.json
+          python3 - <<'PYTHON'
+          from pathlib import Path
+          bad=[p for p in Path('out/feedback121').glob('*-candidate.exit') if p.read_text().strip()!='0']
+          print('Original geometry assertions with nonzero exit:',[p.name for p in bad])
+          raise SystemExit(bool(bad))
+          PYTHON
+      - name: Build clean exact candidate
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PcandidateSource="$GITHUB_SHA" -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/feedback121/build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/feedback121/sanguo11-mobile-v121.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/feedback121/test.apk
+          git rev-parse HEAD > out/feedback121/SOURCE_COMMIT
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/feedback121/sanguo11-mobile-v121.apk > out/feedback121/metadata.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/feedback121/sanguo11-mobile-v121.apk > out/feedback121/signature.txt
+          python3 scripts/audit-3d-apk.py out/feedback121/sanguo11-mobile-v121.apk --require-16k > out/feedback121/apk-audit.txt
+          python3 scripts/verify-r18-apk.py out/feedback121/sanguo11-mobile-v121.apk "$GITHUB_SHA" > out/feedback121/apk-identity.json
+          sha256sum out/feedback121/*.apk > out/feedback121/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-feedback121-build, path: out/feedback121/, retention-days: 30, if-no-files-found: error}
+  installed:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    strategy:
+      fail-fast: false
+      matrix: {api: [29, 35]}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: actions/download-artifact@v4
+        with: {name: native-feedback121-build, path: out/feedback121/}
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: '${{ secrets.GITHUB_TOKEN }}'
+          run-id: 36548264657
+          name: native-feedback120-build
+          path: out/feedback121/baseline/
+      - run: sudo chmod 666 /dev/kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: '${{ matrix.api }}'
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: FEEDBACK121_FOCUSED=true bash scripts/verify-feedback121.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: 'native-feedback121-api${{ matrix.api }}', path: out/feedback121/runtime/, retention-days: 30}
+  physical_access:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions: {contents: read, id-token: write}
+    env:
+      FIREBASE_PROJECT_ID: '${{ vars.FIREBASE_PROJECT_ID }}'
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: google-github-actions/auth@v3
+        with:
+          project_id: '${{ vars.FIREBASE_PROJECT_ID }}'
+          workload_identity_provider: '${{ vars.FIREBASE_WIF_PROVIDER }}'
+          service_account: '${{ vars.FIREBASE_SERVICE_ACCOUNT }}'
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Read-only free device capacity; no submission or IAM changes
+        run: python3 scripts/firebase-evidence-preflight.py --inventory-only
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-feedback121-physical-access, path: out/firebase-preflight/, retention-days: 30, if-no-files-found: warn}

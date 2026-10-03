@@ -6,7 +6,7 @@ import java.util.zip.CRC32;
 
 /** Versioned, bounded save fields; CRC detects accidental damage, not hostile tampering. */
 public final class SaveCodec {
-    private static final int MAGIC=0x53473131, VERSION=33, MAX_BYTES=32*1024*1024;
+    private static final int MAGIC=0x53473131, VERSION=34, MAX_BYTES=32*1024*1024;
     private SaveCodec() {}
     /** Shared bounded import path for app-private slots and Android document providers. */
     public static World read(InputStream input)throws IOException {
@@ -66,12 +66,12 @@ public final class SaveCodec {
         w.marches.writeIntents(d);
         w.loyalty.write(d);w.recruitment.writeField(d);
         d.writeInt(w.log.size());for(String line:w.log)d.writeUTF(line);
-        w.reports.write(d);w.governance.write(d);CustomMapSave.write(w,d);w.extensions.write(d);
+        w.reports.write(d);w.governance.write(d);CustomMapSave.write(w,d);if(w.officerAbilities.enabled())w.officerAbilities.write(d);w.extensions.write(d);
         d.flush();byte[] payload=bytes.toByteArray();
         if(payload.length>MAX_BYTES)throw new IOException("存档过大");
         CRC32 crc=new CRC32();crc.update(payload);
         bytes=new ByteArrayOutputStream();d=new DataOutputStream(bytes);
-        d.writeInt(MAGIC);d.writeInt(VERSION);d.writeInt(payload.length);d.writeLong(crc.getValue());d.write(payload);d.flush();
+        d.writeInt(MAGIC);d.writeInt(w.officerAbilities.enabled()?VERSION:33);d.writeInt(payload.length);d.writeLong(crc.getValue());d.write(payload);d.flush();
         return bytes.toByteArray();
     }
     public static World decode(byte[] data) throws IOException {
@@ -149,6 +149,7 @@ public final class SaveCodec {
         if(version>=29)w.reports.read(d);else w.reports.rebase();
         if(version>=32)w.governance.read(d);
         if(version>=33)CustomMapSave.read(w,d);
+        if(version>=34)w.officerAbilities.read(d);
         w.extensions.read(d);
         if(d.available()!=0)throw new IOException("存档存在未知尾部数据");
         w.districts.migrateLegacySites();
@@ -177,6 +178,8 @@ public final class SaveCodec {
         for(World.City c:w.cities) {
             require(ids.add(c.id)&&c.id>=0,"城池ID重复或无效");require(c.name!=null&&!c.name.isEmpty()&&c.name.length()<=100,"城池名无效");
             require(w.inside(c.hex)&&occupied.add(c.hex)&&w.cost(c.hex,World.Weapon.SPEAR)>0,"城池位置冲突或不可通行");bounded(c.owner,-1,w.factions.length-1);
+            // Preserve legacy/custom gold above the native gameplay credit cap.
+            // Loading must never truncate resources; normal credits use Campaign.goldCap.
             bounded(c.gold,0,1000000);bounded(c.food,0,1000000);bounded(c.troops,0,100000);bounded(c.order,0,100);bounded(c.morale,0,w.campaign.energyCap(c.owner));bounded(c.defense,1,100000);
             for(int amount:c.equipment)bounded(amount,0,100000);
         }
@@ -209,7 +212,7 @@ public final class SaveCodec {
             require(w.height==axisRows&&w.width==axisCols+(axisRows-1)/2,"源地图与axial存储尺寸不匹配");
             for(int q=0;q<w.width;q++)for(int r=0;r<w.height;r++)if(!w.sourceInside(new Hex(q,r)))require(w.terrain[q][r]==World.Terrain.VOID,"地图填充区必须为VOID");
         }
-        w.life.validate();
+        w.life.validate();w.officerAbilities.validate();
         w.diplomacy.validate();
         w.domestic.validate();
         w.strategy.validate();

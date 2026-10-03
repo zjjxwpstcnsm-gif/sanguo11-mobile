@@ -100,7 +100,7 @@ public final class MarchOrders {
         War.Fire fire=w.war.fireAt(tile);if(fire!=null)return "目标格有火场（剩"+fire.remaining+"旬），自动行军避火";
         // This is a destination check, not an edge: a remote river tile may be reachable via a port.
         if(w.army.water(tile))return u instanceof Domestic.Mission&&!((Domestic.Mission)u).sea?"陆路运输队不能下水，请使用水陆运输":null;
-        if(w.fieldworks.landCost(tile,u.weapon,u.owner)<1)return "当前兵种无法进入该地形，可能需要难所行军技巧";
+        if(w.fieldworks.landCost(tile,u.weapon,u.owner)<1)return "当前兵种无法进入"+TerrainPresentation.of(w.terrain[tile.q][tile.r]).name()+"，可能需要难所行军技巧";
         return null;
     }
     private Order normalized(World.Unit u,Order o){

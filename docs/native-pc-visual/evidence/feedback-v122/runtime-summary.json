@@ -1,0 +1,390 @@
+{
+  "status": "PARTIAL",
+  "backend": "Filament 1.56.0 OPENGL",
+  "environment": "x86_64 emulator, swangle; not ARM64 phone",
+  "device_jobs": [
+    {
+      "api": 29,
+      "jobId": 109486115702,
+      "artifactId": 11044709217,
+      "archiveSha256": "57169bf1c3a4b5ade87f1deb0bf9e13cb68e732c6cc89324fe9e1a0d224a2387",
+      "installed": {
+        "baseline": "06ebe774afffb7f3022ec9ae6a6d2f191fdb6dbff814935e2e001aa5fbbaf4d1",
+        "candidate": "8493e728a2fafe30cc9d6361548dad35a5c91ea3b4c171fb47b7a2a4e31fd9e6"
+      }
+    },
+    {
+      "api": 35,
+      "jobId": 109486115926,
+      "artifactId": 11044064087,
+      "archiveSha256": "9bd58a5a3c3dc7c2f49022776e4e836588241fb0b3cf94828049a46e9145a914",
+      "installed": {
+        "baseline": "06ebe774afffb7f3022ec9ae6a6d2f191fdb6dbff814935e2e001aa5fbbaf4d1",
+        "candidate": "8493e728a2fafe30cc9d6361548dad35a5c91ea3b4c171fb47b7a2a4e31fd9e6"
+      }
+    }
+  ],
+  "tests": [
+    {
+      "api": 29,
+      "phase": "baseline",
+      "mode": "fixture",
+      "status": "PASS",
+      "reason": "PASS FEEDBACK122 baseline fixture checks=85",
+      "metrics": {
+        "beginAttempts": 617,
+        "beginSkipped": 514,
+        "lifetimeSubmissions": 102,
+        "surfaceCopies": 1,
+        "pending": 0,
+        "asset_cpu_bytes": 761784,
+        "buffers_bytes": 2559916
+      },
+      "uiScreenshots": [
+        {
+          "path": "baseline-fixture/images/baseline-fixture-span10-gridfalse-surface.png",
+          "sha256": "5f3ecd07a2133cb62a7115a7e1ee97ba915dd5c131bb52f72e72b65c3efa287b"
+        },
+        {
+          "path": "baseline-fixture/images/baseline-fixture-span10-gridfalse-ui.png",
+          "sha256": "fe6a96fd23909f6fff9555db8a4ce3aa563467f17ff8ac93ea2decd9727cf868"
+        },
+        {
+          "path": "baseline-fixture/images/baseline-fixture-span10-gridtrue-surface.png",
+          "sha256": "af559c12078966cd6c38a974a802c8a823a849e0c093ce2d313cc33657f634a1"
+        },
+        {
+          "path": "baseline-fixture/images/baseline-fixture-span10-gridtrue-ui.png",
+          "sha256": "bea90c3661fd12b7449cfd85d14a748c55ae7d57f0bcece48ebe2e013eb90ccb"
+        },
+        {
+          "path": "baseline-fixture/images/baseline-fixture-span5-gridfalse-surface.png",
+          "sha256": "1714e52453d199a40eefefd220d5f5f58791ed054d58ce35d6a7c1b95659ceed"
+        },
+        {
+          "path": "baseline-fixture/images/baseline-fixture-span5-gridfalse-ui.png",
+          "sha256": "31b992f36129b0cdfd96e564da089582efee84d1996ca99bd2afac14d9ed84f1"
+        },
+        {
+          "path": "baseline-fixture/images/baseline-fixture-span5-gridtrue-surface.png",
+          "sha256": "a965b7e8ec0c233b353db2407805e23766a2ab1c44221cf6c893cdaef2579fac"
+        },
+        {
+          "path": "baseline-fixture/images/baseline-fixture-span5-gridtrue-ui.png",
+          "sha256": "f7b4cd56e3484ff586227e98ef77813bfcbe314c7aa0511c162a049437835bfa"
+        },
+        {
+          "path": "baseline-fixture/images/surface.png",
+          "sha256": "af559c12078966cd6c38a974a802c8a823a849e0c093ce2d313cc33657f634a1"
+        }
+      ],
+      "surfaceCaptureCount": 4,
+      "subsequentCameraGridGpuAndAuthorityChecks": "PASS for fixture only, camera API driven; full touch NOT_RUN",
+      "completeSaveEquality": "PASS",
+      "saveSha256": "533f636d0e2d5fd3fb41ac4ab071bfd3b67a9807ea34e08ddc4340fb82c0a423",
+      "actualGpuShapes": []
+    },
+    {
+      "api": 29,
+      "phase": "baseline",
+      "mode": "national",
+      "status": "FAIL",
+      "reason": "FAIL FEEDBACK122 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=700 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "metrics": {
+        "beginAttempts": 698,
+        "beginSkipped": 691,
+        "lifetimeSubmissions": 7,
+        "surfaceCopies": 0,
+        "pending": 5,
+        "asset_cpu_bytes": 2322632,
+        "buffers_bytes": 10513318
+      },
+      "uiScreenshots": [
+        {
+          "path": "baseline-national/images/baseline-national-failed.png",
+          "sha256": "ec0634617aa34f1b7e0e9eee403cc1310466fb76e1722e30a892d4553caf4df6"
+        }
+      ],
+      "surfaceCaptureCount": 0,
+      "subsequentCameraGridGpuAndAuthorityChecks": "NOT_REACHED"
+    },
+    {
+      "api": 29,
+      "phase": "baseline",
+      "mode": "port",
+      "status": "FAIL",
+      "reason": "FAIL FEEDBACK122 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=752 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "metrics": {
+        "beginAttempts": 749,
+        "beginSkipped": 746,
+        "lifetimeSubmissions": 3,
+        "surfaceCopies": 0,
+        "pending": 18,
+        "asset_cpu_bytes": 2322632,
+        "buffers_bytes": 1604706
+      },
+      "uiScreenshots": [
+        {
+          "path": "baseline-port/images/baseline-port-failed.png",
+          "sha256": "57dda0c82733d99a8af88ec50ffdd29be42028e8bb63b637a47b4b77279ae517"
+        }
+      ],
+      "surfaceCaptureCount": 0,
+      "subsequentCameraGridGpuAndAuthorityChecks": "NOT_REACHED"
+    },
+    {
+      "api": 29,
+      "phase": "candidate",
+      "mode": "fixture",
+      "status": "PASS",
+      "reason": "PASS FEEDBACK122 candidate fixture checks=84",
+      "metrics": {
+        "beginAttempts": 661,
+        "beginSkipped": 561,
+        "lifetimeSubmissions": 100,
+        "surfaceCopies": 1,
+        "pending": 0,
+        "asset_cpu_bytes": 1738712,
+        "buffers_bytes": 3510794
+      },
+      "uiScreenshots": [
+        {
+          "path": "candidate-fixture/images/candidate-fixture-span10-gridfalse-surface.png",
+          "sha256": "c6f75fcaad31ff109d931d093bda2968cf3f4966ac93f78f08e3b857020b813c"
+        },
+        {
+          "path": "candidate-fixture/images/candidate-fixture-span10-gridfalse-ui.png",
+          "sha256": "6b16e68ce735fd9248c201efa68f4f4753e6c914843d3ccd68c0544fdbba9068"
+        },
+        {
+          "path": "candidate-fixture/images/candidate-fixture-span10-gridtrue-surface.png",
+          "sha256": "e751b5ae2fd57ae632cce25da28b2f03bc987d84e3e7aca76b86b4e841ae209f"
+        },
+        {
+          "path": "candidate-fixture/images/candidate-fixture-span10-gridtrue-ui.png",
+          "sha256": "55e3420c8d22e1bfc9b5b517d375e68cde7ddd4b8a7ea3973174356ab10de56b"
+        },
+        {
+          "path": "candidate-fixture/images/candidate-fixture-span5-gridfalse-surface.png",
+          "sha256": "fc932670a17d3ef554f6a712e2505a4f43070aef33b8b103a35005f9d2d11fac"
+        },
+        {
+          "path": "candidate-fixture/images/candidate-fixture-span5-gridfalse-ui.png",
+          "sha256": "fd56ed4af593b007f524f131aa64677c9e96907d63ccd48c68dfe3fd901bf315"
+        },
+        {
+          "path": "candidate-fixture/images/candidate-fixture-span5-gridtrue-surface.png",
+          "sha256": "721fcf48a4b5d65dd865677b95cf43c7b97e18ec9a62d0449db5755624a462fe"
+        },
+        {
+          "path": "candidate-fixture/images/candidate-fixture-span5-gridtrue-ui.png",
+          "sha256": "b3b92d62cf12572acd1cba46087d5d57879fcc8483c9fb52d60fb1dddeca7123"
+        },
+        {
+          "path": "candidate-fixture/images/surface.png",
+          "sha256": "e751b5ae2fd57ae632cce25da28b2f03bc987d84e3e7aca76b86b4e841ae209f"
+        }
+      ],
+      "surfaceCaptureCount": 4,
+      "subsequentCameraGridGpuAndAuthorityChecks": "PASS for fixture only, camera API driven; full touch NOT_RUN",
+      "completeSaveEquality": "PASS",
+      "saveSha256": "533f636d0e2d5fd3fb41ac4ab071bfd3b67a9807ea34e08ddc4340fb82c0a423",
+      "actualGpuShapes": [
+        "city0:0 triangles=5736",
+        "gate:0/12,5/-2.6779451/g1 triangles=1949"
+      ]
+    },
+    {
+      "api": 29,
+      "phase": "candidate",
+      "mode": "national",
+      "status": "FAIL",
+      "reason": "FAIL FEEDBACK122 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=736 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "metrics": {
+        "beginAttempts": 733,
+        "beginSkipped": 728,
+        "lifetimeSubmissions": 5,
+        "surfaceCopies": 0,
+        "pending": 15,
+        "asset_cpu_bytes": 6631320,
+        "buffers_bytes": 7352590
+      },
+      "uiScreenshots": [
+        {
+          "path": "candidate-national/images/candidate-national-failed.png",
+          "sha256": "acc62edc800cff6bc0046a3218f6de36751a4bba7424bfb0c5485167388d53fb"
+        }
+      ],
+      "surfaceCaptureCount": 0,
+      "subsequentCameraGridGpuAndAuthorityChecks": "NOT_REACHED"
+    },
+    {
+      "api": 29,
+      "phase": "candidate",
+      "mode": "port",
+      "status": "FAIL",
+      "reason": "FAIL FEEDBACK122 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=737 backingCopies=2 confirmedLosses=1 relayouts=1 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "metrics": {
+        "beginAttempts": 766,
+        "beginSkipped": 760,
+        "lifetimeSubmissions": 6,
+        "surfaceCopies": 0,
+        "pending": 13,
+        "asset_cpu_bytes": 6631320,
+        "buffers_bytes": 8798590
+      },
+      "uiScreenshots": [
+        {
+          "path": "candidate-port/images/candidate-port-failed.png",
+          "sha256": "19f3ae7b956d88ed0b1a5bcbeb6b535b7629b4f26fcd98c825ae3b9b372887c6"
+        }
+      ],
+      "surfaceCaptureCount": 0,
+      "subsequentCameraGridGpuAndAuthorityChecks": "NOT_REACHED"
+    },
+    {
+      "api": 35,
+      "phase": "baseline",
+      "mode": "fixture",
+      "status": "FAIL",
+      "reason": "FAIL FEEDBACK122 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=573 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "metrics": {
+        "beginAttempts": 575,
+        "beginSkipped": 571,
+        "lifetimeSubmissions": 4,
+        "surfaceCopies": 0,
+        "pending": 2,
+        "asset_cpu_bytes": 580872,
+        "buffers_bytes": 1393946
+      },
+      "uiScreenshots": [
+        {
+          "path": "baseline-fixture/images/baseline-fixture-failed.png",
+          "sha256": "37c21ccc44498aad04a75dfa0a1ba4f7cc619aaf726f51f6b5c72a157c823991"
+        }
+      ],
+      "surfaceCaptureCount": 0,
+      "subsequentCameraGridGpuAndAuthorityChecks": "NOT_REACHED"
+    },
+    {
+      "api": 35,
+      "phase": "baseline",
+      "mode": "national",
+      "status": "FAIL",
+      "reason": "FAIL FEEDBACK122 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=476 backingCopies=1 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "metrics": {
+        "beginAttempts": 475,
+        "beginSkipped": 470,
+        "lifetimeSubmissions": 5,
+        "surfaceCopies": 0,
+        "pending": 16,
+        "asset_cpu_bytes": 2322632,
+        "buffers_bytes": 3551292
+      },
+      "uiScreenshots": [
+        {
+          "path": "baseline-national/images/baseline-national-failed.png",
+          "sha256": "444ffa64fee3c19fc880544be52752a0936188459d7bfc79ad7c954f1d36a589"
+        }
+      ],
+      "surfaceCaptureCount": 0,
+      "subsequentCameraGridGpuAndAuthorityChecks": "NOT_REACHED"
+    },
+    {
+      "api": 35,
+      "phase": "baseline",
+      "mode": "port",
+      "status": "FAIL",
+      "reason": "FAIL FEEDBACK122 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=505 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=true probeErrors=0 | landscape=central-plains-r09-v1",
+      "metrics": {
+        "beginAttempts": 506,
+        "beginSkipped": 500,
+        "lifetimeSubmissions": 6,
+        "surfaceCopies": 0,
+        "pending": 15,
+        "asset_cpu_bytes": 2322632,
+        "buffers_bytes": 4736626
+      },
+      "uiScreenshots": [
+        {
+          "path": "baseline-port/images/baseline-port-failed.png",
+          "sha256": "621c80a306024df73a25e23c9d7a82310b5734635a7bac7e3b1aea799dd6fa36"
+        }
+      ],
+      "surfaceCaptureCount": 0,
+      "subsequentCameraGridGpuAndAuthorityChecks": "NOT_REACHED"
+    },
+    {
+      "api": 35,
+      "phase": "candidate",
+      "mode": "fixture",
+      "status": "FAIL",
+      "reason": "FAIL FEEDBACK122 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=578 backingCopies=2 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "metrics": {
+        "beginAttempts": 577,
+        "beginSkipped": 572,
+        "lifetimeSubmissions": 5,
+        "surfaceCopies": 0,
+        "pending": 2,
+        "asset_cpu_bytes": 1663448,
+        "buffers_bytes": 2210942
+      },
+      "uiScreenshots": [
+        {
+          "path": "candidate-fixture/images/candidate-fixture-failed.png",
+          "sha256": "11219c407723034716928a45a380286367562e1bfd28eb7c07a872a877efd4ec"
+        }
+      ],
+      "surfaceCaptureCount": 0,
+      "subsequentCameraGridGpuAndAuthorityChecks": "NOT_REACHED"
+    },
+    {
+      "api": 35,
+      "phase": "candidate",
+      "mode": "national",
+      "status": "FAIL",
+      "reason": "FAIL FEEDBACK122 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=489 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "metrics": {
+        "beginAttempts": 491,
+        "beginSkipped": 486,
+        "lifetimeSubmissions": 5,
+        "surfaceCopies": 0,
+        "pending": 17,
+        "asset_cpu_bytes": 6631320,
+        "buffers_bytes": 5554658
+      },
+      "uiScreenshots": [
+        {
+          "path": "candidate-national/images/candidate-national-failed.png",
+          "sha256": "e300614a867ef5aa9fb34fad80e3f59794cf4fab08a9716b66812e8a358edbb9"
+        }
+      ],
+      "surfaceCaptureCount": 0,
+      "subsequentCameraGridGpuAndAuthorityChecks": "NOT_REACHED"
+    },
+    {
+      "api": 35,
+      "phase": "candidate",
+      "mode": "port",
+      "status": "FAIL",
+      "reason": "FAIL FEEDBACK122 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=481 backingCopies=2 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "metrics": {
+        "beginAttempts": 480,
+        "beginSkipped": 470,
+        "lifetimeSubmissions": 10,
+        "surfaceCopies": 0,
+        "pending": 12,
+        "asset_cpu_bytes": 6631320,
+        "buffers_bytes": 11583480
+      },
+      "uiScreenshots": [
+        {
+          "path": "candidate-port/images/candidate-port-failed.png",
+          "sha256": "3f88cbbadd079a1080c79d4ae43d4f777f921d2fb5546321cd59f28725099bda"
+        }
+      ],
+      "surfaceCaptureCount": 0,
+      "subsequentCameraGridGpuAndAuthorityChecks": "NOT_REACHED"
+    }
+  ]
+}

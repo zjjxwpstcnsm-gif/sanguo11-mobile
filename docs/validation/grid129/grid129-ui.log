@@ -1,0 +1,13 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+PASS: 49018 UI projection/camera assertions.
+PASS: 451 terrain connection contracts.
+PASS: 1136811 rectangular six-neighbor geometry assertions.
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+LegacyMapCoordinateCheckpointTest PASS: 1168801 assertions; 40000 source slots; odd-r six-direction topology. Terrain/map revision NOT certified.
+MapCoordinateTest PASS cumulative=898305
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+PASS: 11371 siege geometry/economy/recruitment/defense/settlement contracts
+PASS: 14 siege overlay contracts

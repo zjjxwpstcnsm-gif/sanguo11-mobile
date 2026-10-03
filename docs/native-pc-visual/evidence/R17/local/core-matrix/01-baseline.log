@@ -1,0 +1,5 @@
+PASS: 143 content/runtime integration assertions.
+Exception in thread "main" java.lang.AssertionError: combat deployment
+	at game.sanguo.core.ContentTest.check(ContentTest.java:10)
+	at game.sanguo.core.ContentTest.main(ContentTest.java:48)
+	at game.sanguo.core.ScenarioTest.main(ScenarioTest.java:25)

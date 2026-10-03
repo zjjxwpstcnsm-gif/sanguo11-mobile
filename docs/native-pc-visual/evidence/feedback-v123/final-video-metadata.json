@@ -1,0 +1,116 @@
+[
+  {
+    "file": "final123-api29-fixture/candidate-fixture/feedback123.mp4",
+    "status": "PASS",
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "177.180422"
+      }
+    },
+    "scope": "container/stream metadata only, not full video or art acceptance"
+  },
+  {
+    "file": "final123-api29-national/candidate-national/feedback123.mp4",
+    "status": "PASS",
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "180.063211"
+      }
+    },
+    "scope": "container/stream metadata only, not full video or art acceptance"
+  },
+  {
+    "file": "final123-api29-port/candidate-port/feedback123.mp4",
+    "status": "PASS",
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        }
+      ],
+      "format": {
+        "duration": "135.989111"
+      }
+    },
+    "scope": "container/stream metadata only, not full video or art acceptance"
+  },
+  {
+    "file": "final123-api35-fixture/candidate-fixture/feedback123.mp4",
+    "status": "PASS",
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "132.426444"
+      }
+    },
+    "scope": "container/stream metadata only, not full video or art acceptance"
+  },
+  {
+    "file": "final123-api35-national/candidate-national/feedback123.mp4",
+    "status": "PASS",
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "172.858189"
+      }
+    },
+    "scope": "container/stream metadata only, not full video or art acceptance"
+  },
+  {
+    "file": "final123-api35-port/candidate-port/feedback123.mp4",
+    "status": "PASS",
+    "metadata": {
+      "programs": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1080,
+          "height": 1920
+        },
+        {},
+        {}
+      ],
+      "format": {
+        "duration": "167.712544"
+      }
+    },
+    "scope": "container/stream metadata only, not full video or art acceptance"
+  }
+]

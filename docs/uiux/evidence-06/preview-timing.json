@@ -1,0 +1,19 @@
+{
+  "process_id": "29087",
+  "samples_ms": [
+    276,
+    134,
+    118,
+    144,
+    150,
+    155,
+    206,
+    144,
+    154,
+    108,
+    118,
+    155,
+    136
+  ],
+  "scope": "actual API29 x86_64 input; not ARM or isolated benchmark"
+}

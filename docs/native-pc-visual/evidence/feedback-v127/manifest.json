@@ -1,0 +1,12 @@
+{
+  "status": "PARTIAL",
+  "input_source": "3208cf3b78fcba4583e6e6e443535cfb42426990",
+  "build": "NOT_RUN",
+  "installed": "NOT_RUN",
+  "host": "PASS",
+  "old_assets": "PASS",
+  "art": "REFERENCE_MISSING",
+  "arm64": "NOT_RUN",
+  "full_touch_saf_lifecycle": "NOT_RUN",
+  "next_phase": "NOT_STARTED"
+}

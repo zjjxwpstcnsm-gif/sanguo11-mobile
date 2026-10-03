@@ -1,0 +1,7 @@
+Exception in thread "main" java.io.IOException: 太守位置或所属势力无效
+	at game.sanguo.core.StrategySave.require(StrategySave.java:80)
+	at game.sanguo.core.StrategySave.validate(StrategySave.java:56)
+	at game.sanguo.core.Strategy.validate(Strategy.java:313)
+	at game.sanguo.core.SaveCodec.validate(SaveCodec.java:215)
+	at game.sanguo.core.AbilityResearchTest.lossAndLegacy(AbilityResearchTest.java:56)
+	at game.sanguo.core.AbilityResearchTest.main(AbilityResearchTest.java:91)

@@ -1,0 +1,391 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "status": "SOURCE_CONVERTED_RUNTIME_ACCEPTANCE_SEPARATE",
+  "source_executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "source_archive": "/Users/paopao/Downloads/San11pk整合版/San11pk 超级整合版/Media/san11pkres.bin",
+  "android_duration_millis": 750,
+  "android_duration_range_millis": [
+    500,
+    1000
+  ],
+  "duration_basis": "User accepts 0.5–1 second per critical; Android default 0.75 second",
+  "records": [
+    {
+      "effect_index": 115,
+      "resource_id": 240,
+      "source_sha256": "aef5c2421103bdd6121dd89bbf353fcca89e2c9604ff55edc2d5cca996482275",
+      "output": "template-115.pcps",
+      "output_sha256": "aadc7f15a89b23649e58f5ef0bfa97509552ab640936b3c37180161cf268526a",
+      "decoded_sha256": "eca654b041c74b7da1a617c9ff6b1e6b55e8f460ed5714985c2f7b0b85ff2325",
+      "frames": 125,
+      "maximum_quads": 90,
+      "original_sample_rate": 60,
+      "native_queue_rejected_packets": 0,
+      "source_factory": "413d20: original4133d0/413420 branches;457790/457800/457880;413770 callback",
+      "source_update": "original45a2b0 reserves244 slots;45a530 updates registered children and source camera provider",
+      "draw_order": "original458650 depth insertion;4096 buckets descending, original linked order",
+      "geometry": "original442c00 final96-byte XYZ/BGRA/UV and64-byte matrix per quad"
+    },
+    {
+      "effect_index": 121,
+      "resource_id": 246,
+      "source_sha256": "4cc2528fefa02ea3d644cd9c3187557e1cd8a7b9ced8ad403d32a5866b149b5b",
+      "output": "template-121.pcps",
+      "output_sha256": "5ce2a2cf8757ea56f83744f46009b5b8f8279e8c7ea946c0cadd76a41802d564",
+      "decoded_sha256": "1ccefad2a80aa83592cb2d10a17940bf5cfadd4b651dc5918eb3b5b63c14da03",
+      "frames": 125,
+      "maximum_quads": 80,
+      "original_sample_rate": 60,
+      "native_queue_rejected_packets": 0,
+      "source_factory": "413d20: original4133d0/413420 branches;457790/457800/457880;413770 callback",
+      "draw_order": "original458650 depth insertion;4096 buckets descending, original linked order",
+      "geometry": "original442c00 final96-byte XYZ/BGRA/UV and64-byte matrix per quad",
+      "source_update": "original45a2b0 reserves244 slots;45a530 updates registered children and source camera provider"
+    },
+    {
+      "effect_index": 122,
+      "resource_id": 247,
+      "source_sha256": "811d344b3c206b3c7b57aa8663939bb5f9943a2ff6b8f57b88a63d3af9fc6ae9",
+      "output": "template-122.pcps",
+      "output_sha256": "f500fe03e055b0b2541f74c8dd8975e2911ca8e9fcfff603dd919ee8c22f1181",
+      "decoded_sha256": "02721308898ed3dc4a594bcb66667a0bda1da804dbb2577139d1bf2fb41497c1",
+      "frames": 125,
+      "maximum_quads": 54,
+      "original_sample_rate": 60,
+      "native_queue_rejected_packets": 0,
+      "source_factory": "413d20: original4133d0/413420 branches;457790/457800/457880;413770 callback",
+      "source_update": "original45a2b0 reserves244 slots;45a530 updates registered children and source camera provider",
+      "draw_order": "original458650 depth insertion;4096 buckets descending, original linked order",
+      "geometry": "original442c00 final96-byte XYZ/BGRA/UV and64-byte matrix per quad"
+    },
+    {
+      "selector": 126,
+      "template": 121,
+      "resource_id": 495,
+      "source_sha256": "5e1fcb394a5c3aac66a3cc7f089cfec22bbdb65b11b1e011c24ec2d74dac338d",
+      "source_rgba_sha256": "d179a26a979b0926b129c00f3409dce2b3c7977a0bb5a290aebba29aa204dab9",
+      "destination": [
+        0,
+        0,
+        256,
+        256
+      ],
+      "output": "selector-126.png",
+      "rgba_sha256": "2f35d6908a6ea953a1e8206eceea889e7eb04d1935ccd827acbaeab7ff9bf902",
+      "output_sha256": "9cd7ff98a0a98660f398163bfe0e652095c928112be64e4fd7cfd686a7f588e9"
+    },
+    {
+      "selector": 127,
+      "template": 122,
+      "resource_id": 496,
+      "source_sha256": "3bbbf243686b2c3ea46597c7be8adcfc61b7b1c32eadf256bcf2424aa009d612",
+      "source_rgba_sha256": "70b37dabd1ffe66e26bb525b508d9e6599e28470c914e208456bd3c32642a463",
+      "destination": [
+        0,
+        0,
+        256,
+        256
+      ],
+      "output": "selector-127.png",
+      "rgba_sha256": "549323cf7abc6220f370c89df8f4f076d1cb6e10a1c5c9fd9026638c43e64db4",
+      "output_sha256": "10adfa15c4ed7200276d6f9fcd793ef64558b2b006694553b3f2fd03772af40d"
+    },
+    {
+      "selector": 131,
+      "template": 115,
+      "resource_id": 500,
+      "source_sha256": "8afee0296ed1b4323602c4868f40463af05f5755fc537d90c347876e9d428f59",
+      "source_rgba_sha256": "e7dedd935ce4d586b82fa7a1d69b56fdd9d14908217c6a758d9257631d52107c",
+      "destination": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "output": "selector-131.png",
+      "rgba_sha256": "e7dedd935ce4d586b82fa7a1d69b56fdd9d14908217c6a758d9257631d52107c",
+      "output_sha256": "fbc2b1cab494bdf9102fda04c78ec0cee1801c55733257164afc4e4ff5cf54e4"
+    },
+    {
+      "selector": 132,
+      "template": 115,
+      "resource_id": 501,
+      "source_sha256": "c15aebfc901a4c1b5f57b0810a39cb34e1c430f4fc5427116c6e87eb2112b21a",
+      "source_rgba_sha256": "ad15343ebb2929793d2cf1189b3a3c8dcbe82a8dd5b2ba46a7bc43fde226e953",
+      "destination": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "output": "selector-132.png",
+      "rgba_sha256": "ad15343ebb2929793d2cf1189b3a3c8dcbe82a8dd5b2ba46a7bc43fde226e953",
+      "output_sha256": "8bd7cfcfda345cd97f7a15e6913295f9b51ba9f977210556158275e7958e06c0"
+    },
+    {
+      "selector": 133,
+      "template": 115,
+      "resource_id": 502,
+      "source_sha256": "4b0d6d7c3ba07b165075d5fe6a9972e6bb46675c6a8de62bce8f96897b1b9f88",
+      "source_rgba_sha256": "ccc6feaebd094ccbb1237c8c9d052b8075db45cd8507be536b63328cee3f8028",
+      "destination": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "output": "selector-133.png",
+      "rgba_sha256": "ccc6feaebd094ccbb1237c8c9d052b8075db45cd8507be536b63328cee3f8028",
+      "output_sha256": "9df735339ef0696497ccd350946665c84b6cc877103495724058553cdf148e1d"
+    },
+    {
+      "selector": 134,
+      "template": 115,
+      "resource_id": 503,
+      "source_sha256": "da3556e88faa3114b8ccbf455a1ff6c53e7fcb29295a0cac124c625a39bdb79d",
+      "source_rgba_sha256": "0c94833dcacb49ca74b74f41ba6f4423a067e82128c6396d84f59e1824982d2a",
+      "destination": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "output": "selector-134.png",
+      "rgba_sha256": "0c94833dcacb49ca74b74f41ba6f4423a067e82128c6396d84f59e1824982d2a",
+      "output_sha256": "1aa73cfa6ea6456af6cf339eb6ee6ac10abedb48c4083e10b10c19de8129739b"
+    },
+    {
+      "selector": 136,
+      "template": 115,
+      "resource_id": 505,
+      "source_sha256": "d2228227db678cfbc523f49c66b9be08b3c8b62c0011adff63eca2e5748d558c",
+      "source_rgba_sha256": "9ae4bd2670ac4b289c8303d27993e04e5331b713eeab0a08c278bc95b4c05fa3",
+      "destination": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "output": "selector-136.png",
+      "rgba_sha256": "9ae4bd2670ac4b289c8303d27993e04e5331b713eeab0a08c278bc95b4c05fa3",
+      "output_sha256": "6312939cae34e23dd2808f1c3bb22c2f7692fe6f43172aa35675af5208bf3d2a"
+    },
+    {
+      "selector": 143,
+      "template": 115,
+      "resource_id": 512,
+      "source_sha256": "7b49ef69a8c7623a4755e0e287fd99ab4f417789eacc3c648d9d9c18dc91045c",
+      "source_rgba_sha256": "189568224d6b57b9137e74bee4f600e3738fb7505c958d83de6aac6b78b77d65",
+      "destination": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "output": "selector-143.png",
+      "rgba_sha256": "189568224d6b57b9137e74bee4f600e3738fb7505c958d83de6aac6b78b77d65",
+      "output_sha256": "b868269206dfe37c93d442b0a88041445ec6685c69a988f84d77f9f79dfa2fee"
+    },
+    {
+      "selector": 151,
+      "template": 115,
+      "resource_id": 520,
+      "source_sha256": "8fa5daa00092abba92f2c724fbda339fbdf5f2d0cfd6711c262f4af0b047e389",
+      "source_rgba_sha256": "2ea484beb92a3c419abecf2f57c6066e3c433081267a29f4ee84f8dce562f1bf",
+      "destination": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "output": "selector-151.png",
+      "rgba_sha256": "2ea484beb92a3c419abecf2f57c6066e3c433081267a29f4ee84f8dce562f1bf",
+      "output_sha256": "3d08b211f4ba8db2fbb95ebbe8918a31e4933bd479bdda370190983054876708"
+    },
+    {
+      "selector": 152,
+      "template": 115,
+      "resource_id": 521,
+      "source_sha256": "45adebdf1f78d44ca79d0a53994d2b9fa0feef80b301225f62a83aacf1346cb1",
+      "source_rgba_sha256": "b0fbf8d82847d5bb01f94a870edf8e76485dd072c7d0ac427d8d053ccde5619f",
+      "destination": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "output": "selector-152.png",
+      "rgba_sha256": "b0fbf8d82847d5bb01f94a870edf8e76485dd072c7d0ac427d8d053ccde5619f",
+      "output_sha256": "2c97d4c458ce6fc08936ae5261d34b63d62cca9df45030a1d3aa863037c22ccd"
+    },
+    {
+      "selector": 153,
+      "template": 115,
+      "resource_id": 522,
+      "source_sha256": "c162c45d99e846bd4e5e9b4ae8030bd68ec62fb3a6e3f21ae1ba4c5b71752304",
+      "source_rgba_sha256": "276ee277653cd272cc1b7b4799d607345ab9e87c15bd848cf8798e2f59d113f2",
+      "destination": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "output": "selector-153.png",
+      "rgba_sha256": "276ee277653cd272cc1b7b4799d607345ab9e87c15bd848cf8798e2f59d113f2",
+      "output_sha256": "5b1ffc0770879109248f5ca1afab2cd8dd56e65bf031e8a04e30c90a330991b1"
+    },
+    {
+      "selector": 154,
+      "template": 115,
+      "resource_id": 523,
+      "source_sha256": "9894511d5d5749c66c5970f4e0de7493e34133b5c4f9e6442e3d444f784f1bed",
+      "source_rgba_sha256": "ea63fd40bd181c4e9728248a812f1dbfb5eaeeb25b424b96f45e1610f7d17669",
+      "destination": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "output": "selector-154.png",
+      "rgba_sha256": "ea63fd40bd181c4e9728248a812f1dbfb5eaeeb25b424b96f45e1610f7d17669",
+      "output_sha256": "f0b06e23d951966d48832ac268233fbc51ad194534a7483d94a2bf66abfc3876"
+    },
+    {
+      "selector": 156,
+      "template": 115,
+      "resource_id": 525,
+      "source_sha256": "9e98d48447c10f7b78802baff1d020c8abfcfeaeb07274413c095a235d45ac4d",
+      "source_rgba_sha256": "5837d31bd002124a17fcb5e3fb66e471ce8078b45b199c86f95119949182ce55",
+      "destination": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "output": "selector-156.png",
+      "rgba_sha256": "5837d31bd002124a17fcb5e3fb66e471ce8078b45b199c86f95119949182ce55",
+      "output_sha256": "9e7a05c9059e22465e02463731c54391143239eae9c7fd45ec995b33dd675a45"
+    },
+    {
+      "selector": 163,
+      "template": 115,
+      "resource_id": 532,
+      "source_sha256": "7c2522f87da92019243f6c914259e97cb1259c8cc317d912015387bb2672cb67",
+      "source_rgba_sha256": "7c9292fc04e2b4dc62a54532a539cbb0376a096fe91959c272ad0b75e7c1fe0c",
+      "destination": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "output": "selector-163.png",
+      "rgba_sha256": "7c9292fc04e2b4dc62a54532a539cbb0376a096fe91959c272ad0b75e7c1fe0c",
+      "output_sha256": "ba19d1a83a68d2f37d6341e631292c8f51faa6a165f171bccc564bc28068fed7"
+    }
+  ],
+  "pins": [
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/template-115.pcps",
+      "apk_path": "assets/3d/pc-presentations/template-115.pcps",
+      "sha256": "aadc7f15a89b23649e58f5ef0bfa97509552ab640936b3c37180161cf268526a"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-126.png",
+      "apk_path": "assets/3d/pc-presentations/selector-126.png",
+      "sha256": "9cd7ff98a0a98660f398163bfe0e652095c928112be64e4fd7cfd686a7f588e9"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-127.png",
+      "apk_path": "assets/3d/pc-presentations/selector-127.png",
+      "sha256": "10adfa15c4ed7200276d6f9fcd793ef64558b2b006694553b3f2fd03772af40d"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-131.png",
+      "apk_path": "assets/3d/pc-presentations/selector-131.png",
+      "sha256": "fbc2b1cab494bdf9102fda04c78ec0cee1801c55733257164afc4e4ff5cf54e4"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-132.png",
+      "apk_path": "assets/3d/pc-presentations/selector-132.png",
+      "sha256": "8bd7cfcfda345cd97f7a15e6913295f9b51ba9f977210556158275e7958e06c0"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-133.png",
+      "apk_path": "assets/3d/pc-presentations/selector-133.png",
+      "sha256": "9df735339ef0696497ccd350946665c84b6cc877103495724058553cdf148e1d"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-134.png",
+      "apk_path": "assets/3d/pc-presentations/selector-134.png",
+      "sha256": "1aa73cfa6ea6456af6cf339eb6ee6ac10abedb48c4083e10b10c19de8129739b"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-136.png",
+      "apk_path": "assets/3d/pc-presentations/selector-136.png",
+      "sha256": "6312939cae34e23dd2808f1c3bb22c2f7692fe6f43172aa35675af5208bf3d2a"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-143.png",
+      "apk_path": "assets/3d/pc-presentations/selector-143.png",
+      "sha256": "b868269206dfe37c93d442b0a88041445ec6685c69a988f84d77f9f79dfa2fee"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-151.png",
+      "apk_path": "assets/3d/pc-presentations/selector-151.png",
+      "sha256": "3d08b211f4ba8db2fbb95ebbe8918a31e4933bd479bdda370190983054876708"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-152.png",
+      "apk_path": "assets/3d/pc-presentations/selector-152.png",
+      "sha256": "2c97d4c458ce6fc08936ae5261d34b63d62cca9df45030a1d3aa863037c22ccd"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-153.png",
+      "apk_path": "assets/3d/pc-presentations/selector-153.png",
+      "sha256": "5b1ffc0770879109248f5ca1afab2cd8dd56e65bf031e8a04e30c90a330991b1"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-154.png",
+      "apk_path": "assets/3d/pc-presentations/selector-154.png",
+      "sha256": "f0b06e23d951966d48832ac268233fbc51ad194534a7483d94a2bf66abfc3876"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-156.png",
+      "apk_path": "assets/3d/pc-presentations/selector-156.png",
+      "sha256": "9e7a05c9059e22465e02463731c54391143239eae9c7fd45ec995b33dd675a45"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/selector-163.png",
+      "apk_path": "assets/3d/pc-presentations/selector-163.png",
+      "sha256": "ba19d1a83a68d2f37d6341e631292c8f51faa6a165f171bccc564bc28068fed7"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/template-121.pcps",
+      "apk_path": "assets/3d/pc-presentations/template-121.pcps",
+      "sha256": "5ce2a2cf8757ea56f83744f46009b5b8f8279e8c7ea946c0cadd76a41802d564"
+    },
+    {
+      "source_path": "app/src/main/assets/3d/pc-presentations/template-122.pcps",
+      "apk_path": "assets/3d/pc-presentations/template-122.pcps",
+      "sha256": "f500fe03e055b0b2541f74c8dd8975e2911ca8e9fcfff603dd919ee8c22f1181"
+    }
+  ],
+  "runtime_binding": "PcPresentationPlan immutable journal cues → MapHost/TurnPlayback → PcPresentations original GPU packets",
+  "binding_scope": [
+    "Six canonical tactic critical actors: installed scenario identity/FCE/age lookup; scenario-portraits-source-working.json; template115",
+    "Successful critical SORCERY:selector126/template121; original5933a0 plot7/name8aecb4 ->592050/592153",
+    "Successful critical LIGHTNING:selector127/template122; original5933a0 plot8/name8aecb4 ->592ed0/592fb8",
+    "Previous CONFUSE126 binding was incorrect and removed; other ordinary plot fullscreen calls remain unresolved"
+  ],
+  "common_texture_resource": 124,
+  "common_dynamic_slot": 32,
+  "camera": "Original441ab0/441b80: identity RH view,30deg perspective,near1/far1000/aspect4:3, normalized by far; fullscreen PC lens parity remains pending",
+  "limits": [
+    "No Wine launched; supplied installation remains read-only",
+    "Lens/fullscreen pixel/MOD parity remain unaccepted; external clips are visual reference only",
+    "Fixed source visual RNG initialization during conversion, never gameplay RNG",
+    "Only templates115/121/122 and the explicitly converted selectors; remaining officers and plot calls pending",
+    "Successful noncritical magic presentation policy remains pending original caller argument semantics"
+  ]
+}

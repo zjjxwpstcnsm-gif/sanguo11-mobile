@@ -1,0 +1,9 @@
+{
+  "candidate": "5d9384f9cba7810ebe9158d531a1c0ec4d6b9659",
+  "mode": "candidate",
+  "run": "36104156087",
+  "device": "API35 x86_64 SwANGLE",
+  "physical": "NOT_RUN",
+  "art": "NOT_ACCEPTED",
+  "note": "Baseline instrumentation failure is retained, not a gameplay PASS."
+}

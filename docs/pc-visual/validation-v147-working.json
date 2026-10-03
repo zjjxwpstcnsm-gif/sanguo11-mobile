@@ -1,0 +1,171 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "goal_status": "active",
+  "phase": "v147 installed WARSHIP normal commands and original coarse-water integration passed; full scope and PC visual acceptance remain outstanding",
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v147/app-debug-source-water.apk",
+      "bytes": 81184421,
+      "sha256": "813c4aae26fa148f8d7696b181418b3d8fb70649a6717b12bd86c78f8f490ac1"
+    },
+    {
+      "path": "out/pc-visual/v147/androidTest-source-water.apk",
+      "bytes": 598169,
+      "sha256": "6ec451453d90a7888a06623688f606121d0abe3618f948209915d4182cc5152e"
+    }
+  ],
+  "changes": [
+    "Native415e20 coarse grid and422980 full alpha32/255 quads; source4844 two sheets,64frames each",
+    "Source per-cell initial phase/period, integer64bit visual clock, pause/resume/owner release; gameplay RNG isolated",
+    "Native41db10 disables water depth writes; source transparency retained; previous fine clipping preserved as historical test fixture"
+  ],
+  "checks": [
+    {
+      "name": "source-coarse65536-records-and2048-exact-quads",
+      "status": "pass",
+      "evidence": "out/pc-visual/v146-water-mesh-source.json"
+    },
+    {
+      "name": "map-source-million-fields-picking-save",
+      "status": "pass",
+      "checks": 1602564,
+      "log": "out/pc-visual/v147-water-map-host.txt"
+    },
+    {
+      "name": "coarse-water-native-records-national-upload-coverage",
+      "status": "pass",
+      "checks": 741120,
+      "uploadedQuads": 19496,
+      "nationalRequired": 13017,
+      "formerFineHoles": 38027,
+      "log": "out/pc-visual/v147-water-map-host.txt"
+    },
+    {
+      "name": "native-clock-and64bit-shader-integers",
+      "status": "pass",
+      "nativeUpdates": 120,
+      "integerCases": 2168,
+      "evidence": "out/pc-visual/v147-water-clock-source.json"
+    },
+    {
+      "name": "interaction-editor",
+      "status": "pass",
+      "checks": 163,
+      "log": "out/pc-visual/v147-interaction-host.txt"
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "log": "out/pc-visual/v147-water-build.txt"
+    },
+    {
+      "name": "244-source-effect-start-emission-update",
+      "status": "pass-source-only",
+      "runtimeEffectsAdded": 0,
+      "evidence": "out/pc-visual/v146-effect-runtime-all-FPU-source.json"
+    },
+    {
+      "name": "APK-pins",
+      "status": "pass",
+      "pins": 101,
+      "log": "out/pc-visual/v147/apk-pins.txt"
+    },
+    {
+      "name": "installed-main-and-test-byte-exact",
+      "status": "pass",
+      "evidence": "out/pc-visual/v147/installed-apk-byte-check.json"
+    },
+    {
+      "name": "authoritative-map-fields-and-actual-v63-save",
+      "status": "pass",
+      "evidence": "out/pc-visual/v147/map-authority-byte-check.json"
+    },
+    {
+      "name": "installed-water-surface-change",
+      "status": "pass-pixel-change-only",
+      "evidence": "out/pc-visual/v147/water-surface-delta.json",
+      "PC_art_acceptance": false
+    },
+    {
+      "name": "installed-WARSHIP-normal-move-attack-water-lifecycle",
+      "status": "pass",
+      "checks": 3269,
+      "log": "out/pc-visual/v147-warship-water-installed.txt",
+      "evidence": "out/pc-visual/v147/evidence-warship-water/manifest.json",
+      "autosave_restored_byte_exact": true,
+      "PC_art_acceptance": false
+    },
+    {
+      "name": "actual-user-autosave-after-process-exit",
+      "status": "pass",
+      "evidence": "out/pc-visual/v147/autosave-byte-check.json"
+    },
+    {
+      "name": "three-current-event-videos-reviewed-sparse-subset",
+      "status": "evidence-only-no-timing-acceptance",
+      "evidence": "out/pc-visual/v147/water-video-manifest.json"
+    },
+    {
+      "name": "installed-winter-jingzhou-far-only",
+      "status": "fail-original120s-readiness",
+      "pending_at_timeout": 33,
+      "log": "out/pc-visual/v147-scenery-far-installed.txt",
+      "evidence": "out/pc-visual/v147/evidence-far-failed/manifest.json",
+      "native_stack": "out/pc-visual/v147-far-native-stack.txt",
+      "autosave_restored_byte_exact": true
+    }
+  ],
+  "limits": [
+    "No matching PC rasterization/video; MOD registry overrides remain unverified",
+    "Original water record geometry/sheets integrated; mobile clock currently advances visible owner chunks, not original per-cell draw-list membership; admitted delta capped100ms",
+    "Outer backdrop keeps inherited bounds;19496 of20076 source wet records are uploaded nationally, all13017 playable-center records included; full original nonplayable terrain remains outstanding",
+    "No ARM device validation; WARSHIP normal MOVE/ATTACK and source-water pause/exit tests passed; other source scope remains unverified",
+    "Full environment/combat/fullscreen effects and source flags are still incomplete",
+    "Priorv145 lifecycle and winter full12 far failures retained; no broad performance acceptance",
+    "v147 farOnly readiness failed; stage package cannot be treated as nationwide/performance acceptance"
+  ],
+  "video_working": {
+    "schema": 1,
+    "status": "REVIEWED_SPARSE_ANDROID_EVENT_SUBSET",
+    "goal_complete": false,
+    "videos": [
+      {
+        "path": "out/pc-visual/v147/warship-source-water-part1.mp4",
+        "bytes": 945430,
+        "sha256": "725f389c42954053020de62588ebf43ab521ee136180720e71e973d90bca0a62",
+        "frames": 51,
+        "duration_seconds": 182.16
+      },
+      {
+        "path": "out/pc-visual/v147/warship-source-water-part2.mp4",
+        "bytes": 1367223,
+        "sha256": "e0abdd9184e4fe17800d0a47a63461257ab1db1776c562bac89c9800ff8c184a",
+        "frames": 99,
+        "duration_seconds": 168.339
+      },
+      {
+        "path": "out/pc-visual/v147/warship-source-water-part3.mp4",
+        "bytes": 2208733,
+        "sha256": "8570fc511ed7166b54c7abd6410caf5c6ee5b15a5b13f46b36fcf8d7ad948b6c",
+        "frames": 99,
+        "duration_seconds": 152.308
+      }
+    ],
+    "reviewed_pixels": [
+      "part1 PTS150.066: original boat plus original water visible",
+      "part2 PTS36.143: normal MOVE result and changed boat pose/position",
+      "part2 PTS161.849: next fixture loading, water not uploaded yet; retained without visual acceptance",
+      "part3 PTS60.295: normal ATTACK result1020, source boats approach/overlap",
+      "part3 PTS122.946: source boat rotates/retracts after actual ATTACK; source water visible"
+    ],
+    "source_art_acceptance": false,
+    "continuous_timing_acceptance": false,
+    "PC_reference_match": false,
+    "limits": [
+      "Sparse encoded frames and scheduler/driver stalls remain",
+      "Water ROI changes in current Surface copies, matching PC appearance/time still unavailable",
+      "Actual normal commands shown; original battle/environment KSEF/flags/fullscreen remain unrecovered"
+    ]
+  }
+}

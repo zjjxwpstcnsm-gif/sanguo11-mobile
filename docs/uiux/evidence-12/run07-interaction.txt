@@ -1,0 +1,31 @@
+PASS normal launch restores existing save
+PASS military governance starts from preserved campaign
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 设施开发 at Rect(706, 1128 - 1038, 1254)
+PASS normal campaign has a visible legal development parcel
+PASS touch visible 兵舍 · Lv3 · 金1200
+每座每旬可征兵1次；每次征兵 +750 at Rect(74, 1043 - 1005, 1211)
+PASS touch visible 曹操 · 政治94 · 2旬 at Rect(74, 764 - 1005, 932)
+PASS touch visible 开工 at Rect(837, 1055 - 1005, 1181)
+PASS real build command starts the required barracks
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 下一旬  → at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 执行 at Rect(837, 1009 - 1005, 1135)
+PASS touch visible 演示控制 at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 跳过剩余演示 at Rect(28, 1046 - 1052, 1172)
+PASS actual next turn advances construction exactly once
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 下一旬  → at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 执行 at Rect(837, 1009 - 1005, 1135)
+PASS touch visible 演示控制 at Rect(791, 1668 - 1064, 1794)
+PASS touch visible 跳过剩余演示 at Rect(28, 1046 - 1052, 1172)
+FAIL java.lang.AssertionError: actual next turn advances construction exactly once
+	at game.sanguo.mobile.UiUxInstrumentation.check(UiUxInstrumentation.java:371)
+	at game.sanguo.mobile.UiUxInstrumentation.governanceArmy(UiUxInstrumentation.java:78)
+	at game.sanguo.mobile.UiUxInstrumentation.onStart(UiUxInstrumentation.java:38)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)
+

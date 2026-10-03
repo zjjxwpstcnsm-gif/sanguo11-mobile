@@ -1,0 +1,107 @@
+[
+  {
+    "archive": "native-remediation-candidate-api29-evidence",
+    "path": "candidate/cold-start/remediation-1.mp4",
+    "exit": 0,
+    "duration": "134.865689",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api29-evidence",
+    "path": "candidate/focused-window/remediation-1.mp4",
+    "exit": 0,
+    "duration": "182.799878",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api29-evidence",
+    "path": "candidate/focused-window/remediation-2.mp4",
+    "exit": 0,
+    "duration": "38.248789",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api29-evidence",
+    "path": "candidate/r12-full/remediation-1.mp4",
+    "exit": 0,
+    "duration": "178.520767",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api29-evidence",
+    "path": "candidate/r12-full/remediation-2.mp4",
+    "exit": 0,
+    "duration": "177.760589",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api29-evidence",
+    "path": "candidate/r12-full/remediation-3.mp4",
+    "exit": 0,
+    "duration": "178.480000",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api29-evidence",
+    "path": "candidate/r12-full/remediation-4.mp4",
+    "exit": 0,
+    "duration": "111.444122",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api35-evidence",
+    "path": "candidate/cold-start/remediation-1.mp4",
+    "exit": 0,
+    "duration": "13.148200",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api35-evidence",
+    "path": "candidate/focused-window/remediation-1.mp4",
+    "exit": 0,
+    "duration": "160.366433",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api35-evidence",
+    "path": "candidate/focused-window/remediation-2.mp4",
+    "exit": 0,
+    "duration": "40.963911",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api35-evidence",
+    "path": "candidate/r12-full/remediation-1.mp4",
+    "exit": 0,
+    "duration": "179.469489",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api35-evidence",
+    "path": "candidate/r12-full/remediation-2.mp4",
+    "exit": 0,
+    "duration": "171.699289",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api35-evidence",
+    "path": "candidate/r12-full/remediation-3.mp4",
+    "exit": 0,
+    "duration": "179.541789",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api35-evidence",
+    "path": "candidate/r12-full/remediation-4.mp4",
+    "exit": 0,
+    "duration": "174.241144",
+    "error": ""
+  },
+  {
+    "archive": "native-remediation-candidate-api35-evidence",
+    "path": "candidate/r12-full/remediation-5.mp4",
+    "exit": 1,
+    "duration": null,
+    "error": "[mov,mp4,m4a,3gp,3g2,mj2 @ 0x562f395ab3c0] moov atom not found\n/workspace/scratch/ffd774293b86/evidence/v105/runtime/native-remediation-candidate-api35-evidence/candidate/r12-full/remediation-5.mp4: Invalid data found when processing input\n"
+  }
+]

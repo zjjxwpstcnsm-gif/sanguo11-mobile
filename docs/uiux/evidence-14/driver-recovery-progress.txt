@@ -1,0 +1,10 @@
+PASS normal launch restores existing save
+PASS recovery slot matches authorized test baseline
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 读取存档 at Rect(53, 801 - 1027, 927)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 2:11 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 读取存档 at Rect(795, 1079 - 1005, 1205)
+PASS game UI recovers exact campaign and RNG after interrupted test

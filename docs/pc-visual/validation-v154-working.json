@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "v154 installed original regional scenery resolver; remaining restoration incomplete",
+  "artifacts": {
+    "app-debug-region-climate.apk": {
+      "bytes": 83454370,
+      "sha256": "4292bc470d2899231873ee53ca36092d089693bde1da07d60d38c0f20f2d1356"
+    },
+    "androidTest-region-climate.apk": {
+      "bytes": 616875,
+      "sha256": "4918e07c06bd41873b507dedb5ab7b83dc473012cb8d6670d53926c60bab5819"
+    },
+    "asset_binding": "APK PCSCN003 exactly matches current converted original scenery",
+    "pc_normal_save": {
+      "path": "out/pc-visual/v154/source-207-xinye-Save001.s11",
+      "bytes": 48936,
+      "sha256": "8c616064603a6e46c0203d8d723662aeb32587b6f05d2d636d4cead1eebe8f86",
+      "action": "original normal menu empty slot1 save",
+      "purpose": "own private PC reference campaign, not an Android save"
+    }
+  },
+  "checks": [
+    {
+      "name": "independent-original-climate",
+      "status": "PASS",
+      "placements": 943,
+      "resolver_cases": 144,
+      "source_gpu_trees": 33,
+      "evidence": "out/pc-visual/v154/source-climate-reproduced.json"
+    },
+    {
+      "name": "scenery-cpu",
+      "status": "PASS7098305",
+      "evidence": "out/pc-visual/v154/scenery-cpu.txt"
+    },
+    {
+      "name": "all348staticmodels",
+      "status": "PASS",
+      "evidence": "out/pc-visual/v154/static-coordinate-source.json"
+    },
+    {
+      "name": "offline-build-apk-assets",
+      "status": "PASS",
+      "evidence": "out/pc-visual/v154/build.txt"
+    },
+    {
+      "name": "installed-normal207autumn-same-canvas",
+      "status": "PASS38",
+      "canvas": [
+        1650,
+        1050
+      ],
+      "evidence": "out/pc-visual/v154/reference-final-report.txt",
+      "video": "out/pc-visual/v154/reference-video.mp4",
+      "pixel_parity": false
+    },
+    {
+      "name": "user-save-restored",
+      "status": "PASS_BYTE_IDENTICAL",
+      "evidence": "out/pc-visual/v154/reference-save-restoration.json"
+    },
+    {
+      "name": "installed-three-regions-four-seasons-and-far",
+      "status": "PASS1045",
+      "evidence": "out/pc-visual/v154/scenery-final-report.txt",
+      "video": "out/pc-visual/v154/scenery-video.mp4"
+    },
+    {
+      "name": "normal-SWORD-move-attack",
+      "status": "PASS3228",
+      "evidence": "out/pc-visual/v154/sword-final-report.txt",
+      "PC_timing_reference": false
+    },
+    {
+      "name": "scenery-user-save-restoration",
+      "status": "PASS_BYTE_IDENTICAL",
+      "evidence": "out/pc-visual/v154/scenery-save-restoration.json"
+    },
+    {
+      "name": "sword-user-save-restoration",
+      "status": "PASS_BYTE_IDENTICAL",
+      "evidence": "out/pc-visual/v154/sword-save-restoration.json"
+    }
+  ],
+  "limits": [
+    "Source vegetation material/fog/per-object LOD/ordering and full PC pixels not accepted",
+    "Ground detail/shoreline/mountain shading differ in actual same-camera captures",
+    "Other MOD launch climate state not proven",
+    "Full battle effects and fullscreen presentation still unintegrated",
+    "No ARM physical device performance evidence",
+    "National far-load historical timeouts remain investigated separately"
+  ]
+}

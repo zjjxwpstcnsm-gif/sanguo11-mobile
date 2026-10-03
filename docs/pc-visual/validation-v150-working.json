@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "goal_status": "active",
+  "phase": "Normal scaled-eye map failed original5s source update deadline; actual visual commands bounded trace added for independent replay; APK retest pending",
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v150/app-debug-source-map-effects.apk",
+      "bytes": 83435390,
+      "sha256": "a0d5a20557ef9d7316eeb62c197d886aee35fa07d896fd017ecaa9dcedccefa9"
+    },
+    {
+      "path": "out/pc-visual/v150/androidTest-source-map-effects.apk",
+      "bytes": 613343,
+      "sha256": "580becc9cb30bd8baa467c961b3020b374cdd643d27260a913426a27f1c22432"
+    },
+    {
+      "path": "out/pc-visual/v150/app-debug-initial-zero-quads.apk",
+      "bytes": 83434482,
+      "sha256": "628377192b37bbfccc96dbb23b013c9de349cc3fa83d13e1f986d5f70e28aad4"
+    },
+    {
+      "path": "out/pc-visual/v150/app-debug-camera-repaired-interrupted.apk",
+      "bytes": 83434474,
+      "sha256": "a9e21f7ea1982e3dfbb30cc04dda6439d422bee2b8d9d6dd9e125b961ef98cdd"
+    },
+    {
+      "path": "out/pc-visual/v150/app-debug-startup-repaired-zero-quads.apk",
+      "bytes": 83434902,
+      "sha256": "65670aaf04789d0898dfb756bf565273c381f74f8eadd0199b74c7daf55c7e74",
+      "status": "retained-failed-zero-quads-candidate"
+    },
+    {
+      "path": "out/pc-visual/v150/androidTest-startup-repaired-zero-quads.apk",
+      "bytes": 613123,
+      "sha256": "8a59d5b7b17717dee363de33220dce4b55e21d35016179937daf9c990fa57886",
+      "status": "retained-failed-zero-quads-candidate"
+    }
+  ],
+  "checks": [
+    {
+      "name": "original-D3DX-camera-and-vertex-boundary",
+      "status": "pass",
+      "checks": 80966,
+      "evidence": "out/pc-visual/v150-effect-source-camera-checked/comparison.json"
+    },
+    {
+      "name": "original-worker-installed-transport",
+      "status": "pass",
+      "version": 149,
+      "packets": 296,
+      "evidence": "docs/pc-visual/validation-v149-working.json"
+    },
+    {
+      "name": "normal-map-SEFF-GPU30s-initial",
+      "status": "fail-zero-quads",
+      "evidence": "out/pc-visual/v150/zero-quad-failure.json"
+    },
+    {
+      "name": "normal-map-after-camera-repair",
+      "status": "fail-interrupted-pipe",
+      "evidence": "out/pc-visual/v150/camera-repaired-interrupted-read-failure.json"
+    },
+    {
+      "name": "normal-map-after-startup-repair",
+      "status": "fail-zero-quads-after27-frames"
+    },
+    {
+      "name": "original-source GPU frame-admission",
+      "status": "pass",
+      "evidence": "out/pc-visual/v150/frame-admission-final.txt"
+    },
+    {
+      "name": "camera-window/source-delivery",
+      "status": "pass",
+      "evidence": [
+        "out/pc-visual/v150/camera-window-final.txt",
+        "out/pc-visual/v150/source-delivery-final.txt"
+      ]
+    },
+    {
+      "name": "APK-resource-pins",
+      "status": "pass",
+      "pins": 137,
+      "evidence": "out/pc-visual/v150/apk-pins-final.txt"
+    },
+    {
+      "name": "normal-map-after-startup-repair",
+      "status": "fail30s-zero-quads",
+      "frames": 27,
+      "source_elapsed": 5.548748,
+      "source_error": "none",
+      "evidence": "out/pc-visual/v150/map-effects-startup-repaired-report.txt"
+    },
+    {
+      "name": "startup-repaired-normal-map-test",
+      "status": "fail-original30s-zero-quads",
+      "evidence": "out/pc-visual/v150/startup-repaired-zero-quad-failure.json"
+    },
+    {
+      "name": "actual-user-save-restoration-all-v150-failures",
+      "status": "pass",
+      "evidence": "out/pc-visual/v150/save-restoration-checked.json"
+    },
+    {
+      "name": "original-648-source-camera-and1184-vertices",
+      "status": "pass108506",
+      "evidence": "out/pc-visual/v150-effect-scaled-eye-checked/comparison.json"
+    },
+    {
+      "name": "actual-SceneCamera-visible-prism",
+      "status": "pass11520",
+      "evidence": "out/pc-visual/v150/camera-eye-prism.txt"
+    },
+    {
+      "name": "android-original-RH-camera-source-worker",
+      "status": "pass626-76packets",
+      "evidence": "out/pc-visual/v150-native-x86-source-rh-camera-final/comparison.json"
+    },
+    {
+      "name": "scaled-eye-APK-source-pins-and-four-ABI-files",
+      "status": "pass137",
+      "evidence": "out/pc-visual/v150/apk-pins-scaled-eye.txt"
+    },
+    {
+      "name": "scaled-eye-normal-map-source-update",
+      "status": "fail-original-native5s",
+      "evidence": "out/pc-visual/v150/scaled-eye-watchdog-failure.json"
+    }
+  ],
+  "limits": [
+    "No accepted original environment pixels or PC matching video yet",
+    "Only eight source SEFF templates/126 placements; all combat/fullscreen source event mappings pending",
+    "Source shader/gamma/addressing/PC camera/MOD override calibration pending",
+    "API29 x86_64 emulator only; ARM64 cross build, no device performance",
+    "v148 national far120s pending81 failure remains unresolved"
+  ],
+  "approximate_fallbacks_in_pc_mode": false
+}

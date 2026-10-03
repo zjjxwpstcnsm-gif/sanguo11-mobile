@@ -1,0 +1,80 @@
+name: Native P0 unchanged-APK Window loss causal diagnostic
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-p0-window-loss-control.yml]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  window-control:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', persist-credentials: false}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Compile labelled diagnostic only and install untouched original v109
+        run: |
+          set -euo pipefail
+          mkdir -p out/remediation /tmp/original
+          python3 .ci/window-loss-control.py
+          sha256sum .ci/window-loss-control.py app/src/androidTest/java/game/sanguo/mobile/NativeWindowLossControl.java > out/remediation/DIAGNOSTIC_SOURCE_SHA256.txt
+          ./gradlew --no-daemon :app:assembleDebugAndroidTest -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/remediation/DIAGNOSTIC_BUILD.log 2>&1
+          gh run download 36204723427 -n p0-v109-build -D /tmp/original
+          mkdir -p app/build/outputs/apk/debug
+          cp /tmp/original/sanguo11-mobile-v109.apk app/build/outputs/apk/debug/app-debug.apk
+          echo '21fe418283e8eb58020997ebb9c1b99e40daa4540bf916c16d55d6a2401686a0  app/build/outputs/apk/debug/app-debug.apk' | sha256sum -c -
+          cp /tmp/original/SOURCE_COMMIT out/remediation/SOURCE_COMMIT
+          echo "$GITHUB_SHA" > out/remediation/INSTRUMENTATION_RECIPE_COMMIT
+          sha256sum app/build/outputs/apk/debug/app-debug.apk app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk > out/remediation/APK_SHA256.txt
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/remediation/diagnostic-androidTest.apk
+          echo 'CAUSAL DIAGNOSTIC ONLY. Original APK unchanged. One explicitly logged Window attribute reapply only after original raw missing-backing evidence. Never candidate/visual acceptance, never normal cold-start coverage.' > out/remediation/SCOPE.txt
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: |
+            adb shell getprop > out/remediation/DEVICE_PROPERTIES.txt
+            python3 -c 'from pathlib import Path; s=Path("scripts/verify-native-remediation.sh").read_text(); marker="if [[ \"${2:-all}\" = cold-only ]]; then"; assert s.count(marker)==1; Path("out/window-loss-control.sh").write_text(s.split(marker)[0]+"run_probe NativeWindowLossControl window-loss-control\ngrep -q \"DIAGNOSTIC_BACKING_REACQUIRED\" \"$root/window-loss-control/interaction.txt\"\n")'
+            bash out/window-loss-control.sh baseline
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p0-v109-api29-window-loss-control-raw
+          path: out/remediation/
+          if-no-files-found: error
+          retention-days: 14
+      - name: Validate original diagnostic videos without changing evidence
+        if: always()
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ffmpeg
+          python3 scripts/verify-p0-videos.py out/remediation
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p0-v109-api29-window-loss-control-video-validation
+          path: |
+            out/remediation/**/*.ffprobe.json*
+            out/remediation/**/*.decode.log*
+            out/remediation/VIDEO_*
+          retention-days: 14

@@ -1,0 +1,296 @@
+[
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.CoreTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ScenarioTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.DomesticTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.battle.TacticalBattleTest",
+    "results": {
+      "baseline": 0,
+      "candidate": 0
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.battle.BattlePerformanceTest",
+    "results": {
+      "baseline": 0,
+      "candidate": 0
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.StrategyTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.CampaignTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ArmyTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.RulesParityTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.GovernmentTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.SupplyTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ContestTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.AbilityResearchTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.TechnologyFieldworksTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.EstatesTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.WorldSystemsTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.MarchOrdersTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.CampaignAiTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.LifecycleTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ContentProfilesTest",
+    "results": {
+      "baseline": 0,
+      "candidate": 0
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.BattleFeedbackTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.PrisonerEscortTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.DiplomacyTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.FacilityCombatTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.MobileShortcutsTest",
+    "results": {
+      "baseline": 0,
+      "candidate": 0
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.TerritoryAiTest",
+    "results": {
+      "baseline": 0,
+      "candidate": 0
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.StrategicManagementTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.StrategicRegressionProbe staff",
+    "results": {
+      "baseline": 0,
+      "candidate": 0
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.StrategicRegressionProbe objective",
+    "results": {
+      "baseline": 0,
+      "candidate": 0
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.LogisticsCampaignTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.TacticalLogisticsTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.DisplacementTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.MapSkillsTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.NavigationDefenseTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ArchitectureRulesTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.BalanceTest",
+    "results": {
+      "baseline": 0,
+      "candidate": 0
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.Release42Test",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.FacilityProductionTest",
+    "results": {
+      "baseline": 0,
+      "candidate": 0
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.ObjectiveOrdersTest",
+    "results": {
+      "baseline": 1,
+      "candidate": 1
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.LogisticsRegressionProbe fee",
+    "results": {
+      "baseline": 0,
+      "candidate": 0
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.LogisticsRegressionProbe food",
+    "results": {
+      "baseline": 0,
+      "candidate": 0
+    }
+  },
+  {
+    "invocation": "java -cp core/build/check:core/src/main/resources:core/src/test/resources game.sanguo.core.LogisticsRegressionProbe progress",
+    "results": {
+      "baseline": 0,
+      "candidate": 0
+    }
+  }
+]

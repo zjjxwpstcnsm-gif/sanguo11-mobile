@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: adjacent resupply consumes actual stock and action points
+	at game.sanguo.core.CampaignAiTest.check(CampaignAiTest.java:8)
+	at game.sanguo.core.CampaignAiTest.supply(CampaignAiTest.java:85)
+	at game.sanguo.core.CampaignAiTest.main(CampaignAiTest.java:25)

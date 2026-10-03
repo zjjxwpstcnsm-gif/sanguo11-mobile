@@ -1,0 +1,44 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+S06 case=melee events=1 sha256=60ec85bf9ae3151d5ec4789264b073c2cb365cd446f767adb51afb3a44f4804a
+S06 case=arrow events=1 sha256=65cd63269079dea68a2c886732d47d2cadc4a735de725b7691e17b4dcbaf6ee8
+S06 case=stone events=1 sha256=2cf001ee8cb890cd8d93ef24a94d12b11424d8125709557eb6780a15a70832e5
+S06 case=charge events=1 sha256=0497a1166b696ab3d8bd710d6e5595aeb26e081439b7d1b64780fbdc5f25204c
+S06 case=fire events=1 sha256=7e74cf8158ef96923ab89a42eda36ade314f3dbf131cae1d3f3f0ffd59a30e2f
+S06 case=critical-fire events=1 sha256=d19023bc6f19dbb2ffda3c503a5bccb213775527b3f780fc117f4e937c0f24e8
+S06 case=trap-seed events=1 sha256=49d45acce05f01954f9b3c03a9b7505b975cc2c6ea4722d306fb64534e085ff9
+S06 case=trap-ball events=1 sha256=39364e5556d36241c19517976b8b0dd64138226a8300bb2a370c1257ae2242fd
+S06 case=trap-ship events=1 sha256=9f85147a8a90409d16d02de1a07d456e39746a897e3ffdb2d19f666494f9dfd9
+S06 case=lightning events=1 sha256=2c58904233bb6da42cd2523c7fc8b3abe7b462ed87ec03a7aa0f11b38494e4d0
+S06 case=critical events=1 sha256=bd903da9a78ffc7991b58d7ed56a62861175b5faa3533f6da4652ecaabc83b2e
+S06 case=counter events=1 sha256=deb9c59f1fb22f8cde0a99718469d5abbf4edb24e102f810a247e129cdb614a0
+S06 case=defeat events=1 sha256=3e5efa3c75f370b5c7ad736dbc54b0e911a499446ef6ebfc3bb15c29b22e8f0c
+S06 case=enemy events=1 sha256=159d38678d4ed7a373ee652fefa702d8f129c083b4ee8b8f6b37d38ef91b9822
+S06 case=facilities events=4 sha256=3bf1e18e66e79ac8f6392101f855a1f84f699790d3d7e5b468c89f808330ee9b
+S06 case=site events=3 sha256=0ff9b04d18945a964740503cd5687e45ce273d41fd0313e439e135c5b71e4c29
+PASS S06 25470 combat timeline, read-only deltas, pools, real commands and state-hash checks
+R11 case=melee events=1 kinds=[ATTACK] sha256=60ec85bf9ae3151d5ec4789264b073c2cb365cd446f767adb51afb3a44f4804a
+R11 case=arrow events=1 kinds=[ATTACK] sha256=65cd63269079dea68a2c886732d47d2cadc4a735de725b7691e17b4dcbaf6ee8
+R11 case=stone events=1 kinds=[TACTIC] sha256=2cf001ee8cb890cd8d93ef24a94d12b11424d8125709557eb6780a15a70832e5
+R11 case=charge events=1 kinds=[ATTACK] sha256=0497a1166b696ab3d8bd710d6e5595aeb26e081439b7d1b64780fbdc5f25204c
+R11 case=fire events=1 kinds=[PLOT] sha256=7e74cf8158ef96923ab89a42eda36ade314f3dbf131cae1d3f3f0ffd59a30e2f
+R11 case=critical-fire events=1 kinds=[PLOT] sha256=d19023bc6f19dbb2ffda3c503a5bccb213775527b3f780fc117f4e937c0f24e8
+R11 case=trap-seed events=1 kinds=[PLOT] sha256=49d45acce05f01954f9b3c03a9b7505b975cc2c6ea4722d306fb64534e085ff9
+R11 case=trap-ball events=1 kinds=[PLOT] sha256=39364e5556d36241c19517976b8b0dd64138226a8300bb2a370c1257ae2242fd
+R11 case=trap-ship events=1 kinds=[PLOT] sha256=9f85147a8a90409d16d02de1a07d456e39746a897e3ffdb2d19f666494f9dfd9
+R11 case=lightning events=1 kinds=[PLOT] sha256=2c58904233bb6da42cd2523c7fc8b3abe7b462ed87ec03a7aa0f11b38494e4d0
+R11 case=critical events=1 kinds=[TACTIC] sha256=bd903da9a78ffc7991b58d7ed56a62861175b5faa3533f6da4652ecaabc83b2e
+R11 case=counter events=1 kinds=[ATTACK] sha256=deb9c59f1fb22f8cde0a99718469d5abbf4edb24e102f810a247e129cdb614a0
+R11 case=defeat events=1 kinds=[ATTACK] sha256=3e5efa3c75f370b5c7ad736dbc54b0e911a499446ef6ebfc3bb15c29b22e8f0c
+R11 case=enemy events=1 kinds=[ATTACK] sha256=159d38678d4ed7a373ee652fefa702d8f129c083b4ee8b8f6b37d38ef91b9822
+R11 case=facilities events=4 kinds=[FACILITY_ATTACK, ATTACK, FACILITY_COUNTER, RECOVER] sha256=3bf1e18e66e79ac8f6392101f855a1f84f699790d3d7e5b468c89f808330ee9b
+R11 case=site events=3 kinds=[CHANGE, ATTACK, ENTER] sha256=0ff9b04d18945a964740503cd5687e45ce273d41fd0313e439e135c5b71e4c29
+R11 extended=status events=1
+R11 extended=fire-arrow events=1
+R11 extended=equipment-RAM events=2
+R11 extended=equipment-WOODEN_BEAST events=2
+R11 extended=equipment-TOWER_SHIP events=1
+R11 extended=facility-counter events=2
+R11 observed kinds=[CHANGE, ATTACK, TACTIC, PLOT, ENTER, FACILITY_ATTACK, FACILITY_COUNTER, RECOVER] styles=[NONE, MELEE, CHARGE, ARROW, STONE, FIRE, LIGHTNING, RECOVER, STATUS]
+PASS R11 99443 assertions; actual command journals, typed effects, terrain, bounded pools and seven presentation modes
+Architecture boundary PASS: reviewed legacy consumers, pure modules, JNI location, assembly DAG and preserved meta identities

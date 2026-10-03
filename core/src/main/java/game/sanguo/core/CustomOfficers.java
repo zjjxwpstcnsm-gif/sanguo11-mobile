@@ -92,15 +92,15 @@ public final class CustomOfficers {
             if(w.officers.size()+w.strategy.talents.size()>10000)throw new IllegalArgumentException("武将数量超过引擎上限10000");
             for(Definition d:chosen)if(d.targetId>=0&&d.replaceRelations)for(Relations.Kind kind:Relations.Kind.values())for(int target:new ArrayList<>(w.relations.links(d.effectiveId(),kind)))w.relations.unlink(d.effectiveId(),target,kind);
             for(Relations.Kind kind:Relations.Kind.values())for(Definition d:chosen)for(Link l:d.links)if(l.kind==kind){Integer target=l.target.startsWith("h:")?Integer.valueOf(l.target.substring(2)):active.get(l.target);if(target==null||w.officer(target)==null)throw new IllegalArgumentException(d.template.name+"：关系对象未投放/不在本剧本，不能丢弃引用");if(!w.relations.links(d.effectiveId(),kind).contains(target))link(w,d.effectiveId(),target,kind);}
-            w.extensions.put(NAMESPACE,encodeSnapshot(chosen,config));SaveCodec.validate(w);return w;
+            w.officerAbilities.refresh();w.extensions.put(NAMESPACE,encodeSnapshot(chosen,config));SaveCodec.validate(w);return w;
         }catch(IllegalArgumentException|ArithmeticException e){throw new IOException("自定义武将校验失败："+e.getMessage(),e);}
     }
     private static void link(World w,int a,int b,Relations.Kind kind){
         if((kind==Relations.Kind.FATHER||kind==Relations.Kind.MOTHER)&&w.relations.parent(a,kind==Relations.Kind.MOTHER)>=0)throw new IllegalArgumentException("已有父母关系冲突，不能静默替换");
         String error=w.relations.linkError(a,b,kind);if(error!=null)throw new IllegalArgumentException(w.officer(a).name+" / "+(w.officer(b)==null?b:w.officer(b).name)+"："+error);w.relations.link(a,b,kind);
     }
-    private static void set(World.Officer o,Definition d){Editor.Template t=d.template;o.leadership=t.stat(0);o.war=t.stat(1);o.intelligence=t.stat(2);o.politics=t.stat(3);o.charm=t.stat(4);for(int i=0;i<6;i++)o.aptitude[i]=t.aptitude(i);o.sex=t.sex;o.skillId=t.skill;o.affinity=d.affinity;o.honor=d.honor;}
-    private static World.Officer renamed(World.Officer old,String name){World.Officer o=new World.Officer(old.id,name,old.owner,old.cityId,0,0,0,0,0);o.unitId=old.unitId;o.acted=old.acted;o.loyalty=old.loyalty;o.role=old.role;o.otherTask=old.otherTask;o.otherTaskTurns=old.otherTaskTurns;o.lastRewardTurn=old.lastRewardTurn;return o;}
+    private static void set(World.Officer o,Definition d){Editor.Template t=d.template;for(int i=0;i<5;i++)OfficerAbilities.setBase(o,i,t.stat(i));for(int i=0;i<6;i++)o.aptitude[i]=t.aptitude(i);o.sex=t.sex;o.skillId=t.skill;o.affinity=d.affinity;o.honor=d.honor;}
+    private static World.Officer renamed(World.Officer old,String name){World.Officer o=new World.Officer(old.id,name,old.owner,old.cityId,0,0,0,0,0);o.abilityProfile=old.abilityProfile;o.unitId=old.unitId;o.acted=old.acted;o.loyalty=old.loyalty;o.role=old.role;o.otherTask=old.otherTask;o.otherTaskTurns=old.otherTaskTurns;o.lastRewardTurn=old.lastRewardTurn;return o;}
     private static byte[] encodeSnapshot(List<Definition> defs,byte[] config)throws IOException{
         if(config==null||config.length>MAX_SNAPSHOT)throw new IOException("人物配置快照过大");ByteArrayOutputStream bytes=new ByteArrayOutputStream();DataOutputStream out=new DataOutputStream(bytes);out.writeInt(VERSION);out.writeInt(config.length);out.write(config);out.writeInt(defs.size());
         for(Definition d:defs){out.writeInt(d.effectiveId());out.writeUTF(d.id);out.writeInt(d.revision);out.writeUTF(d.portrait);out.writeInt(d.portraitPng.length);out.write(d.portraitPng);}out.flush();if(bytes.size()>MAX_SNAPSHOT)throw new IOException("人物与头像快照超过8MiB，请减少启用头像数量");return bytes.toByteArray();

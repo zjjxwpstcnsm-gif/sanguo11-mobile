@@ -1,0 +1,74 @@
+[
+  {
+    "api": 35,
+    "phase": "baseline",
+    "mode": "fixture",
+    "status": "FAIL",
+    "reason": "original 120s scene readiness timeout",
+    "asset_cpu_bytes": 1588184,
+    "pending": 2,
+    "submitted": 5,
+    "beginAttempts": 587,
+    "beginSkipped": 582
+  },
+  {
+    "api": 35,
+    "phase": "candidate",
+    "mode": "fixture",
+    "status": "FAIL",
+    "reason": "original 120s scene readiness timeout",
+    "asset_cpu_bytes": 1239724,
+    "pending": 2,
+    "submitted": 5,
+    "beginAttempts": 592,
+    "beginSkipped": 587
+  },
+  {
+    "api": 35,
+    "phase": "baseline",
+    "mode": "national",
+    "status": "FAIL",
+    "reason": "original 120s scene readiness timeout",
+    "asset_cpu_bytes": 6631320,
+    "pending": 15,
+    "submitted": 6,
+    "beginAttempts": 477,
+    "beginSkipped": 471
+  },
+  {
+    "api": 35,
+    "phase": "candidate",
+    "mode": "national",
+    "status": "FAIL",
+    "reason": "original 120s scene readiness timeout",
+    "asset_cpu_bytes": 5473364,
+    "pending": 17,
+    "submitted": 5,
+    "beginAttempts": 496,
+    "beginSkipped": 491
+  },
+  {
+    "api": 35,
+    "phase": "baseline",
+    "mode": "port",
+    "status": "FAIL",
+    "reason": "original 120s scene readiness timeout",
+    "asset_cpu_bytes": 6631320,
+    "pending": 12,
+    "submitted": 10,
+    "beginAttempts": 483,
+    "beginSkipped": 473
+  },
+  {
+    "api": 35,
+    "phase": "candidate",
+    "mode": "port",
+    "status": "FAIL",
+    "reason": "original 120s scene readiness timeout",
+    "asset_cpu_bytes": 5473364,
+    "pending": 16,
+    "submitted": 5,
+    "beginAttempts": 536,
+    "beginSkipped": 531
+  }
+]

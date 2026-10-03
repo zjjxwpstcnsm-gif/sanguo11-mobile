@@ -57,8 +57,15 @@ final class MapLibrary {
     MapPatch visual(World w)throws IOException {synchronized(MapLibrary.class){
         if(!w.customMapFingerprint.matches("[0-9a-f]{64}"))return null;
         String name="visual-"+w.customMapFingerprint+".json";
-        MapPatch p=present(path(name))?MapPatch.decode(read(name)):load(new Entry(w.customMapId,w.customMapRevision,w.customMapName));
-        return p.id.equals(w.customMapId)&&p.logicalFingerprint().equals(w.customMapFingerprint)?p:null;
+        // A damaged optional style must not block an otherwise valid embedded campaign.
+        if(present(path(name)))try{
+            MapPatch p=MapPatch.decode(read(name));CustomMaps.verifyBase(p);
+            if(p.id.equals(w.customMapId)&&p.logicalFingerprint().equals(w.customMapFingerprint))return p;
+        }catch(IOException invalid){android.util.Log.w("MapRenderer","Invalid visual sidecar; trying pinned map style",invalid);}
+        try{
+            MapPatch p=load(new Entry(w.customMapId,w.customMapRevision,w.customMapName));
+            return p.logicalFingerprint().equals(w.customMapFingerprint)?p:null;
+        }catch(IOException unavailable){return null;}
     }}
     MapPatch draft()throws IOException {synchronized(MapLibrary.class){if(present(path("draft.json"))){MapPatch p=MapPatch.decode(read("draft.json"));CustomMaps.verifyBase(p);return p;}if(present(legacy))return migrateLegacy();return CustomMaps.base().fresh();}}
     private MapPatch migrateLegacy()throws IOException {

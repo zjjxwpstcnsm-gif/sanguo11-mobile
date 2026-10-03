@@ -1,0 +1,5 @@
+
+> validate
+> node validate_gltf.cjs
+
+{ validator: '2.0.0-dev.3.10', count: 219, errors: 0, warnings: 0 }

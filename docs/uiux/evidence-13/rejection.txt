@@ -1,0 +1,38 @@
+UIUX PASS 34 checks
+PASS normal launch restores existing save
+PASS patrol error starts from preserved campaign
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 展开 at Rect(754, 1002 - 901, 1128)
+PASS touch visible 内政 at Rect(205, 830 - 357, 956)
+PASS touch visible 巡察 · 金100 at Rect(53, 1442 - 1027, 1521)
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS touch visible 返回修改 at Rect(627, 1110 - 837, 1236)
+PASS touch visible 取消 at Rect(837, 1436 - 1005, 1562)
+PASS cancel retained patrol picker after review leaves full campaign unchanged
+PASS touch visible 巡察 · 金100 at Rect(53, 1442 - 1027, 1521)
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS touch visible 执行 at Rect(837, 1110 - 1005, 1236)
+PASS real patrol raises order before testing capacity rejection
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 展开 at Rect(754, 925 - 901, 1051)
+PASS touch visible 内政 at Rect(205, 803 - 357, 929)
+PASS touch visible 巡察 · 金100 at Rect(53, 1234 - 1027, 1360)
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS full-order preview disables submission
+PASS authoritative full-order rejection preserves resources actors revision and RNG
+PASS touch visible 返回修改 at Rect(627, 1104 - 837, 1230)
+PASS touch visible 取消 at Rect(837, 1436 - 1005, 1562)
+PASS core rejection returns to city commands without stale picker
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 读取存档 at Rect(53, 788 - 1027, 914)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 2:11 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 读取存档 at Rect(795, 1079 - 1005, 1205)
+PASS actual load restores campaign between city command paths
+

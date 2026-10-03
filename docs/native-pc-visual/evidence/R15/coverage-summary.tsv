@@ -1,0 +1,12 @@
+input	width	height	validCells	sites	units	status
+huangjin-184	299	200	38949	87	0	HOST_ONLY
+coalition-190	299	200	38949	87	0	HOST_ONLY
+warlords-194	299	200	38949	87	0	HOST_ONLY
+guandu-200	299	200	38949	87	0	HOST_ONLY
+chibi-207	299	200	38949	87	0	HOST_ONLY
+heroes-250	299	200	38949	87	0	HOST_ONLY
+heroes-mobile-sandbox	299	200	38949	87	0	HOST_ONLY
+central-mobile-sandbox	172	154	14784	42	0	HOST_ONLY
+jingxiang-mobile-sandbox	182	134	15544	28	0	HOST_ONLY
+custom-layout-false	31	19	493	2	0	HOST_ONLY
+custom-layout-true	31	19	493	2	0	HOST_ONLY

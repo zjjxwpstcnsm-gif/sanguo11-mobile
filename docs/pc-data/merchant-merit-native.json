@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "source_path": "san11pk.exe",
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "award": 50,
+  "cap": 60000,
+  "property": {
+    "id": 24,
+    "name": "功績",
+    "label_pointer": "0x7eb820",
+    "label_table": "8ae57c",
+    "descriptor": "8ab758 +24*16 =8ab8d8",
+    "field": "officer+ae uint16",
+    "dispatch": "4a41f4 ->4a412c ->4a3c9c ->48a7a0"
+  },
+  "functions": [
+    {
+      "name": "trade_merit_call",
+      "address": "0x5cacc8",
+      "end_exclusive": "0x5cacd5",
+      "sha256": "5643e5c1deded5b613d4cbbc98d688728baddfb2f6c0196e588470659d3e14fa"
+    },
+    {
+      "name": "merit_add",
+      "address": "0x4a6d50",
+      "end_exclusive": "0x4a6dad",
+      "sha256": "da5d705270e006f3c53f02839c8980cea58e480ad742c49cf0b47ff88665fd45"
+    },
+    {
+      "name": "merit_set",
+      "address": "0x48a7a0",
+      "end_exclusive": "0x48a7c8",
+      "sha256": "5cee6afcd988de4b9136e811a43ff45f4093f0c88c260567550140df4ddb62b2"
+    },
+    {
+      "name": "officer_name_init",
+      "address": "0x73cb40",
+      "end_exclusive": "0x73cb62",
+      "sha256": "f965c09d6c202c54ed6a7995e2844efb9e4c17d1d2d0a713afc85a99ccbfaf74"
+    },
+    {
+      "name": "officer_property_set",
+      "address": "0x4a3c9c",
+      "end_exclusive": "0x4a3cab",
+      "sha256": "3fed3319ce4f2c34d454b935cff7e2e9cbab6d82a9dfbe17be6c1fcccf50ace5"
+    }
+  ],
+  "verification": "test_pc_merchant_merit.py: original officer name initializer/lookup and12 complete3MiB/RNG award boundaries",
+  "integration": "Campaign.trade and TradePlan effects share PcMerchantRules.meritGain; other modeled city awards unchanged",
+  "compatibility": "Project legacy60001..1000000 remains unchanged and earns no further merchant merit; native raw65535 instead clamps down to60000, an explicit non-destructive compatibility exception",
+  "limits": [
+    "Political experience+5 call also observed but modifiers/level changes not yet integrated",
+    "Price/quantity pure arithmetic exists but is not yet gameplay-connected",
+    "No claim of full officer ability or rank-rule parity"
+  ]
+}

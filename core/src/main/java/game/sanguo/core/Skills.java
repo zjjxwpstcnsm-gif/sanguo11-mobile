@@ -72,7 +72,7 @@ public final class Skills {
         if(has(victim,QIANGYUN))return;
         for(World.Officer guard:crew)if(guard.id!=victim.id&&has(guard,HUWEI))return;
         w.contests.injuries.put(victim.id,new Contests.Injury(Math.min(3,w.contests.injury(victim.id)+1),w.turn+3));
-        w.note(victim.name+"受到猛者战法影响而负伤");
+        w.officerAbilities.refresh(victim);w.note(victim.name+"受到猛者战法影响而负伤");
     }
 
 }

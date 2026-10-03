@@ -1,0 +1,138 @@
+{
+  "source": "e96e9f5404eee836f7bdd744f10fe1e63c46d1cb",
+  "run": 36373686838,
+  "artifact": 10949653499,
+  "zip_sha256": "6601a221738f6f616930652970dfbd98d59bb096d9dd63a93bd34ef864e008b4",
+  "files": [
+    {
+      "path": "device.txt",
+      "bytes": 12058,
+      "sha256": "06f82ed412792247747c011b5dc7edafbe129c1df33102747988fc0ad90f0b6b"
+    },
+    {
+      "path": "layout/images/r15-layout-0-deployed.png",
+      "bytes": 435358,
+      "sha256": "7736c0b3f202d7490fee39e4eca1ca9f0340e2f1b1591cb83eaa9445bd237ec8"
+    },
+    {
+      "path": "layout/images/r15-layout-0-details.png",
+      "bytes": 299234,
+      "sha256": "925b0df63dfae0c311227f2b8987bb2b6503f85f97fc2ec01e7fdc691d8092e6"
+    },
+    {
+      "path": "layout/images/r15-layout-0-initial.png",
+      "bytes": 288067,
+      "sha256": "b91499c7114f0165fb64a61cb85a315ffaac152938f158c234bad1fa66820634"
+    },
+    {
+      "path": "layout/images/r15-layout-0-selected.png",
+      "bytes": 341769,
+      "sha256": "f8dc6e421ed20d6d534ead95de249f3fc511646c283b7efe32eed920c8deb0dc"
+    },
+    {
+      "path": "layout/images/r15-layout-1-deployed.png",
+      "bytes": 1083446,
+      "sha256": "59cc04c6217e72402ab7651e639312403b1422e00c2c45437f9976b7948ec60f"
+    },
+    {
+      "path": "layout/images/r15-layout-1-details.png",
+      "bytes": 324411,
+      "sha256": "eef438c18164fa988cca102a6dc6d884f9f92ee14305cc763612f7a21457477c"
+    },
+    {
+      "path": "layout/images/r15-layout-1-initial.png",
+      "bytes": 370355,
+      "sha256": "5bac51bc887b438d6466cd5a5cac335e79211a164a4bb8724585d2a46d99bf4a"
+    },
+    {
+      "path": "layout/images/r15-layout-1-selected.png",
+      "bytes": 370355,
+      "sha256": "5bac51bc887b438d6466cd5a5cac335e79211a164a4bb8724585d2a46d99bf4a"
+    },
+    {
+      "path": "layout/images/r15-layout.txt",
+      "bytes": 1228,
+      "sha256": "e2ac599b93adcea61274a1b6fc2c645930dafdf920dd59d932b2dd3e8593f587"
+    },
+    {
+      "path": "layout/instrumentation.txt",
+      "bytes": 394,
+      "sha256": "dead03bd52eaa7175f82f5cd8e6ea32d1c74bfd761d24502948aaa9e04735b42"
+    },
+    {
+      "path": "layout/logcat.txt",
+      "bytes": 157843,
+      "sha256": "f89857c7c2fafec7d59f5825f38f0694f1cfae1083bf04f90234791f4ed585e7"
+    },
+    {
+      "path": "layout/meminfo.txt",
+      "bytes": 45,
+      "sha256": "bde8423813cf550fbcdd67b8cd6f7c9a9ee165e5f873dbc1eaf5a425e5c9b2ca"
+    },
+    {
+      "path": "layout/process-exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "layout/r15-layout-1.mp4",
+      "bytes": 6510179,
+      "sha256": "948ae88396b4fc23d5c28cf326678190869dead8250bc8d2313a3e3c77549553"
+    },
+    {
+      "path": "layout/record.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "layout/stop",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tour/images/r15-tour-failed.png",
+      "bytes": 985244,
+      "sha256": "20c8f8c4056b06f5ec2ee2e3375f4d17c9ea240dd6d4518c3940ad1d06924072"
+    },
+    {
+      "path": "tour/images/r15-tour.txt",
+      "bytes": 2463,
+      "sha256": "d0b52daef4d6abf70acfbf11265972ddcf008cf10c40b61e82571e0fc4a1ee8c"
+    },
+    {
+      "path": "tour/instrumentation.txt",
+      "bytes": 5214,
+      "sha256": "90797c04dcdb11cd2e800e01c5e2d5c01bf1b6a63ceb2435621ab8a3127b9f72"
+    },
+    {
+      "path": "tour/logcat.txt",
+      "bytes": 249097,
+      "sha256": "104fb23b7f086ce165fb0c30b6cc585da066ad84b20da0e5cb65431df6a0055e"
+    },
+    {
+      "path": "tour/meminfo.txt",
+      "bytes": 45,
+      "sha256": "bde8423813cf550fbcdd67b8cd6f7c9a9ee165e5f873dbc1eaf5a425e5c9b2ca"
+    },
+    {
+      "path": "tour/process-exit.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "tour/r15-tour-1.mp4",
+      "bytes": 11530511,
+      "sha256": "4ee134c2c21b3fd4ee762d5b3a3d4c1525dfdc1aaa3150bf47b5f16dabdc8eed"
+    },
+    {
+      "path": "tour/record.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tour/stop",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

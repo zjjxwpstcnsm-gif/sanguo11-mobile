@@ -94,6 +94,7 @@ public final class Relations {
             case SWORN:Set<Integer> group=swornGroup(a,b);for(int x:group){person(x).sworn.addAll(group);person(x).sworn.remove(x);}break;
             case LIKE:p.likes.add(b);break;case DISLIKE:p.dislikes.add(b);break;
         }
+        if(kind==Kind.SPOUSE)w.officerAbilities.refresh();
     }
     void unlink(int a,int b,Kind kind){
         Person p=people.get(a);if(p==null)return;
@@ -101,6 +102,7 @@ public final class Relations {
             case SPOUSE:p.spouse=-1;person(b).spouse=-1;break;
             case SWORN:for(int member:new ArrayList<>(p.sworn))person(member).sworn.remove(a);p.sworn.clear();break;
             case LIKE:p.likes.remove(b);break;case DISLIKE:p.dislikes.remove(b);break;}
+        if(kind==Kind.SPOUSE)w.officerAbilities.refresh();
     }
     public String mediateError(int city,int first,int second,Kind kind){
         if(w.commandsBlocked()||w.gameOver()||w.active!=w.player)return "当前不能仲介";
@@ -118,7 +120,7 @@ public final class Relations {
     public World.Result mediate(int city,int first,int second,Kind kind){w.reports.prepare();
         String error=mediateError(city,first,second,kind);if(error!=null)return w.fail(error);
         w.campaign.points.put(w.active,w.campaign.points(w.active)-500);link(first,second,kind);
-        if(kind==Kind.SPOUSE&&(w.skills.has(w.officer(first),Skill.NEIZHU)||w.skills.has(w.officer(second),Skill.NEIZHU)))for(int id:new int[]{first,second}){
+        if(!w.officerAbilities.enabled()&&kind==Kind.SPOUSE&&(w.skills.has(w.officer(first),Skill.NEIZHU)||w.skills.has(w.officer(second),Skill.NEIZHU)))for(int id:new int[]{first,second}){
             World.Officer o=w.officer(id);o.leadership=Math.min(100,o.leadership+1);o.war=Math.min(100,o.war+1);o.intelligence=Math.min(100,o.intelligence+1);o.politics=Math.min(100,o.politics+1);o.charm=Math.min(100,o.charm+1);}
         return w.success(w.officer(first).name+"与"+w.officer(second).name+"结为"+kind.label+"，技巧−500");
     }

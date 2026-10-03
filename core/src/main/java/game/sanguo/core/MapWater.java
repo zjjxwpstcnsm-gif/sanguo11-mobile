@@ -22,6 +22,13 @@ public final class MapWater {
     public Hex representative(int id){for(var e:component.entrySet())if(e.getValue()==id)return e.getKey();return null;}
     public static Hex landDock(World w,World.City port,Hex water){
         World.Unit probe=new World.Unit(-1,port.owner,-1,World.Weapon.SWORD,port.hex,1,1);
+        // The PC map's authored port tile is itself the shore lane. It does not
+        // require a third free land/water triangle beside a one-cell port.
+        // Verify the exact edges used by production movement, in both directions.
+        if(NationalMap.pcRevision(w.mapRevision)&&NationalMap.ID.equals(w.mapId)&&water!=null&&port.hex.distance(water)==1
+            &&w.army.entryCost(probe,port.hex,water)>0&&w.army.entryCost(probe,water,port.hex)>0){
+            for(Hex land:port.hex.neighbors())if(!w.army.water(land)&&w.cityAt(land)==null&&w.army.moveCost(probe,port.hex,land)>0)return port.hex;
+        }
         for(Hex land:port.hex.neighbors())if(w.inside(land)&&!w.army.water(land)&&w.cityAt(land)==null&&w.domestic.at(land)==null&&w.war.at(land)==null&&land.distance(water)==1&&w.army.moveCost(probe,land,water)>0&&w.army.moveCost(probe,water,land)>0){
             for(Hex further:land.neighbors())if(!further.equals(port.hex)&&!w.army.water(further)&&w.army.moveCost(probe,land,further)>0)return land;
         }return null;

@@ -1,0 +1,10 @@
+{
+  "save_version": 33,
+  "sha256": "fc68e7c06c4952b21633b41240b3f76863f077f298925dca69318fd9a48af92f",
+  "bytes": 3726,
+  "writer_snapshot": "out/parity/checkpoint-20261003-i/manifest.json",
+  "writer_domestic_sha256": "aeb6b0d736072ebece6991154f85532e1205d5f9ef68b3b2d8ce7609e01a3ce0",
+  "generator": "tools/content/PcConstructionSaveProbe.java",
+  "method": "Actual pre-change classes, normal market build, two complete turns, normal farm build. No header edits.",
+  "expected": "Completed Lv3 market id1; pending Lv3 farm id2; subsequent code must preserve existing levels."
+}

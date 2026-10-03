@@ -1,0 +1,191 @@
+name: Native P0 single-variable depth program control
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-p0-depth-program-control.yml]
+permissions: {contents: read, actions: read}
+concurrency: {group: native-p0-depth-program-control, cancel-in-progress: false}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}', fetch-depth: 0}
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: gradle/actions/setup-gradle@v4
+      - uses: android-actions/setup-android@v4
+        with: {packages: '', log-accepted-android-sdk-licenses: false}
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - name: Pin compiler and preserve input identity
+        run: |
+          set -euo pipefail
+          mkdir -p out/build out/compiler
+          git rev-parse HEAD > out/build/INPUT_COMMIT
+          git diff --exit-code 5f8997ebfef15f4680931d40532411a336506d0d HEAD -- app/src/main core game-api game-runtime data tools/3d scripts/verify-native-remediation.sh app/src/androidTest/java/game/sanguo/mobile/NativeColdStartInstrumentation.java app/src/androidTest/java/game/sanguo/mobile/SceneInstrumentation.java
+          curl --fail --location --retry 2 https://github.com/google/filament/releases/download/v1.56.0/filament-v1.56.0-linux.tgz -o out/compiler/filament.tgz
+          sha256sum out/compiler/filament.tgz > out/build/COMPILER_ARCHIVE_SHA256.txt
+          tar -xzf out/compiler/filament.tgz -C out/compiler
+          compiler=$(find "$PWD/out/compiler" -type f -name matc -print -quit)
+          test -n "$compiler"
+          test "$("$compiler" --version)" = 56
+          echo "MATC=$compiler" >> "$GITHUB_ENV"
+          printf '%s\n' 'CONTROL CANDIDATE, not a delivered fix. The candidate is committed locally for exact-SHA APK identity but is NOT pushed. One variable only: a no-op vertex entry point owns lazily requested depth programs instead of eagerly preparing every shared default-depth variant. All original material declarations and fragment equations remain byte-identical. No engine, shader quality, LOD, geometry, texture, budget, window, lifecycle, game rule, timeout or readiness changes.' > out/build/SCOPE.txt
+      - name: Reproduce original material builds and prepare one-variable candidate
+        run: |
+          set -euo pipefail
+          cat > out/prepare-control.py <<'PY'
+          import hashlib,json,os,pathlib,struct,subprocess
+          P=pathlib.Path
+          pairs={'terrain':'terrain','ground':'terrain/ground','water':'terrain/water','site':'sites/site','ground-overview':'terrain/ground-overview','water-overview':'terrain/water-overview'}
+          block='\n// P0 equivalent owned depth program: keep every vertex field unchanged.\n// Filament 1.56 otherwise eagerly prepares all shared default-depth variants.\nvertex {\n    void materialVertex(inout MaterialVertexInputs material) {\n        // Deliberately no deformation, attribute write, or additional operation.\n    }\n}\n'
+          def sha(b):return hashlib.sha256(b).hexdigest()
+          def chunks(b):
+              out={};i=0
+              while i<len(b):
+                  assert i+12<=len(b)
+                  tag,n=struct.unpack_from('<8sI',b,i);i+=12
+                  assert i+n<=len(b)
+                  key=tag[::-1].decode('ascii');assert key not in out
+                  out[key]=b[i:i+n];i+=n
+              return out
+          records=[]
+          for name,target in pairs.items():
+              src=P(f'tools/3d/{name}.mat');asset=P(f'app/src/main/assets/3d/{target}.filamat')
+              before=src.read_bytes();old=asset.read_bytes();base=chunks(old)
+              assert b'\nvertex {' not in before and base['MAT_CSDP']==b'\0'
+              check=P('out/build')/(name+'-baseline.filamat')
+              subprocess.run([os.environ['MATC'],'-p','mobile','-a','opengl','-o',str(check),str(src)],check=True)
+              assert check.read_bytes()==old, 'Original material rebuild differs: '+name
+              src.write_bytes(before+block.encode())
+              subprocess.run([os.environ['MATC'],'-p','mobile','-a','opengl','-o',str(asset),str(src)],check=True)
+              after=asset.read_bytes();compiled=chunks(after)
+              assert compiled['MAT_VERS']==struct.pack('<I',56) and compiled['MAT_CSDP']==b'\1'
+              # Only shader code/cache identity and owned-depth flag may change.
+              changed={k for k in base.keys()|compiled.keys() if base.get(k)!=compiled.get(k)}
+              assert changed <= {'MAT_CSDP','MAT_UUID','DIC_TEXT','MAT_GLSL'},(name,changed)
+              assert src.read_bytes().removesuffix(block.encode())==before
+              records.append({'name':name,'source':str(src),'asset':str(asset),'source_before':sha(before),'source_after':sha(src.read_bytes()),'asset_before':sha(old),'asset_after':sha(after),'changed_chunks':sorted(changed),'baseline_rebuild':'BYTE_IDENTICAL','vertex':'IDENTITY','fragment_and_declarations':'BYTE_IDENTICAL'})
+          P('out/build/MATERIAL_CONTROL.json').write_text(json.dumps(records,indent=2)+'\n')
+          P('out/build/IDENTITY_VERTEX_BLOCK.txt').write_text(block)
+          # Preserve existing provenance and explicitly register only these six new binaries.
+          manifest=P('docs/native-pc-visual/remediation-assets.json');m=json.loads(manifest.read_text())
+          for r in records:
+              prior=m['permitted_changes'].get(r['asset'])
+              m['assets'][r['asset']]=r['asset_after']
+              m['permitted_changes'][r['asset']]={'runtime_sha256':r['asset_after'],'source':r['source'],'source_sha256':r['source_after'],'version':'P0 owned-depth control / matc 1.56.0','source_license':'repository-authored material source; existing project license','regression':'Exact original material rebuild; original declarations/fragment hash preserved; owned-depth metadata; original installed cold probe without timeout change. CONTROL, not acceptance.','prior_entry':prior}
+          m['note']='Single-variable P0 depth-ownership control. Original six material declarations and fragment formulas retained exactly; unit program, geometry, textures, rules and renderer Java unchanged. Control is not visual or device acceptance.'
+          manifest.write_text(json.dumps(m,indent=2)+'\n')
+          # Keep runtime manifest consumers accurate, without regenerating historical audit records.
+          def refresh(node):
+              if isinstance(node,dict):
+                  path=node.get('path')
+                  if path and P(path).is_file() and path in {r['asset'] for r in records}|{r['source'] for r in records}:
+                      if 'sha256' in node:node['sha256']=sha(P(path).read_bytes())
+                      if 'bytes' in node:node['bytes']=P(path).stat().st_size
+                  for value in node.values():refresh(value)
+              elif isinstance(node,list):
+                  for value in node:refresh(value)
+          for path in ['docs/3d/world-art/assets-manifest.json','docs/native-pc-visual/assets.json']:
+              p=P(path);obj=json.loads(p.read_text());refresh(obj);p.write_text(json.dumps(obj,indent=2)+'\n')
+          # Existing near-source protection keeps its original expected hashes; strip ONLY the
+          # exact, validated identity entry point rather than replacing any expected hash.
+          p=P('scripts/test-native-overview-material.py');text=p.read_text()
+          old="assert hashlib.sha256(near.read_bytes()).hexdigest()==expected, 'near source changed'"
+          assert text.count(old)==1
+          new="assert hashlib.sha256(near.read_bytes().removesuffix("+repr(block.encode())+")).hexdigest()==expected, 'near declarations/fragment source changed'"
+          p.write_text(text.replace(old,new))
+          # A control identity, explicitly NOT an accepted production version.
+          p=P('version.properties');assert p.read_text()=='versionCode=112\nversionName=0.112.0-native-first-asset-lod\n'
+          p.write_text('versionCode=113\nversionName=0.113.0-depth-control\n')
+          P('docs/native-pc-visual/depth-program-control.json').write_text(json.dumps({'input_source':'5f8997ebfef15f4680931d40532411a336506d0d','status':'CONTROL_NOT_ACCEPTED','identity_vertex_block':block,'materials':records},indent=2)+'\n')
+          PY
+          python3 out/prepare-control.py > out/build/material-control.log 2>&1
+          cp out/prepare-control.py out/build/PREPARE_CONTROL.py
+          git diff --exit-code -- app/src/main/java core game-api game-runtime data unity app/src/androidTest
+          git diff --binary > out/build/CANDIDATE.patch
+          git config user.name 'native-p0-control'
+          git config user.email 'native-p0-control@users.noreply.github.com'
+          git add tools/3d/*.mat app/src/main/assets/3d/terrain.filamat app/src/main/assets/3d/terrain/*.filamat app/src/main/assets/3d/sites/site.filamat docs/native-pc-visual/remediation-assets.json docs/native-pc-visual/assets.json docs/3d/world-art/assets-manifest.json scripts/test-native-overview-material.py version.properties docs/native-pc-visual/depth-program-control.json
+          git commit -m 'test(native-p0): equivalent owned-depth material control (not yet accepted)'
+          git rev-parse HEAD > out/build/SOURCE_COMMIT
+          git bundle create out/build/control-source.bundle HEAD refs/remotes/origin/main
+      - name: Run focused production-path protections
+        run: |
+          set -euo pipefail
+          python3 scripts/check-native-protected-assets.py > out/build/protected-assets.log
+          python3 scripts/test-native-frame-admission.py > out/build/frame-admission.log
+          python3 scripts/test-native-overview-material.py > out/build/overview.log
+          python3 scripts/test-native-window-surface.py > out/build/window-recovery.log
+          git diff --exit-code 5f8997ebfef15f4680931d40532411a336506d0d HEAD -- app/src/main/java core game-api game-runtime data unity app/src/androidTest/java/game/sanguo/mobile/NativeColdStartInstrumentation.java app/src/androidTest/java/game/sanguo/mobile/SceneInstrumentation.java scripts/verify-native-remediation.sh
+      - name: Build exact committed candidate and original strict probe
+        run: |
+          set -euo pipefail
+          ./gradlew --no-daemon :app:assembleDebug :app:assembleDebugAndroidTest :app:lintDebug -PnativePcVisual=true -PunityBridgeProbe=false -PmapEditorProbe=true > out/build/build.log 2>&1
+          cp app/build/outputs/apk/debug/app-debug.apk out/build/depth-control-v113.apk
+          cp app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk out/build/app-debug-androidTest.apk
+          sha256sum out/build/*.apk > out/build/APK_SHA256.txt
+          "$ANDROID_HOME/build-tools/35.0.0/aapt" dump badging out/build/depth-control-v113.apk > out/build/APK_METADATA.txt
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --print-certs out/build/depth-control-v113.apk > out/build/APK_SIGNATURE.txt
+          grep -q '8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24' out/build/APK_SIGNATURE.txt
+          grep -q "name='game.sanguo.mobile.dev' versionCode='113'" out/build/APK_METADATA.txt
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: {name: native-p0-depth-control-build, path: out/build/, if-no-files-found: error, retention-days: 14}
+  cold:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix: {api: [29, 35]}
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with: {ref: '${{ github.sha }}'}
+      - uses: actions/download-artifact@v4
+        with: {name: native-p0-depth-control-build, path: out/build}
+      - name: Verify exact candidate, keep original readiness and touch path
+        run: |
+          set -euo pipefail
+          sha256sum -c out/build/APK_SHA256.txt
+          git fetch out/build/control-source.bundle HEAD
+          git checkout --detach "$(cat out/build/SOURCE_COMMIT)"
+          mkdir -p app/build/outputs/apk/debug app/build/outputs/apk/androidTest/debug out/remediation
+          cp out/build/depth-control-v113.apk app/build/outputs/apk/debug/app-debug.apk
+          cp out/build/app-debug-androidTest.apk app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+          cp out/build/SOURCE_COMMIT out/build/APK_SHA256.txt out/build/SCOPE.txt out/remediation/
+          cat > out/run-cold.sh <<'SH'
+          #!/usr/bin/env bash
+          set -uo pipefail
+          adb shell getprop > out/remediation/DEVICE_PROPERTIES.txt
+          result=0
+          timeout 900 bash scripts/verify-native-remediation.sh candidate cold-only || result=$?
+          printf '%s\n' "$result" > out/remediation/ORIGINAL_PROBE_EXIT.txt
+          adb shell dumpsys SurfaceFlinger > out/remediation/FINAL_SURFACEFLINGER.txt || true
+          adb shell dumpsys window > out/remediation/FINAL_WINDOW.txt || true
+          exit "$result"
+          SH
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: ${{ matrix.api }}
+          arch: x86_64
+          profile: pixel_2
+          ram-size: 4096M
+          heap-size: 512M
+          disable-animations: false
+          emulator-options: -no-window -gpu swangle -noaudio -no-boot-anim -camera-back none
+          script: bash out/run-cold.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-p0-depth-control-api${{ matrix.api }}-cold
+          path: out/remediation/
+          if-no-files-found: error
+          retention-days: 14

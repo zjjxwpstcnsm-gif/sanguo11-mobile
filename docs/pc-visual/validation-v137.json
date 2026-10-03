@@ -1,0 +1,415 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "v137 source constructible earth/stone wall connections and normal command transitions",
+  "apk": "out/pc-visual/sanguo11-mobile-v137-pc-live-walls.apk",
+  "apk_sha256": "307d324796ca63a4f54a5cf1a5af313c879dd8accd76bad70a1b1628ebe59839",
+  "checks": [
+    {
+      "name": "16-normal-wall-command-source-coordinate-mesh-RNG",
+      "status": "pass",
+      "checks": 1398264,
+      "log": "out/pc-visual/v137-wall-commands-cpu-final.txt"
+    },
+    {
+      "name": "30-core-facility-state-regression",
+      "status": "pass",
+      "checks": 4755020,
+      "log": "out/pc-visual/v137-facilities-cpu.txt"
+    },
+    {
+      "name": "installed-earth-four-normal-commands-lifecycle",
+      "status": "pass",
+      "checks": 303,
+      "log": "out/pc-visual/v137-earth-installed.txt"
+    },
+    {
+      "name": "installed-stone-four-normal-commands-lifecycle",
+      "status": "pass",
+      "checks": 321,
+      "log": "out/pc-visual/v137-stone-installed.txt"
+    },
+    {
+      "name": "installed-stone-destruction-video-supplement",
+      "status": "pass",
+      "checks": 59,
+      "log": "out/pc-visual/v137-stone-destroy-installed.txt"
+    },
+    {
+      "name": "interaction-and-custom-map",
+      "status": "pass",
+      "log": "out/pc-visual/v137-interaction.txt",
+      "checks": [
+        32,
+        131
+      ]
+    },
+    {
+      "name": "camera-and-frame-admission",
+      "status": "pass",
+      "logs": [
+        "out/pc-visual/v137-camera-window.txt",
+        "out/pc-visual/v137-frame-admission.txt"
+      ]
+    },
+    {
+      "name": "APK-pinned-assets",
+      "status": "pass",
+      "checks": 73,
+      "log": "out/pc-visual/v137-apk-integrity.txt"
+    },
+    {
+      "name": "shared-resource-provenance",
+      "status": "pass",
+      "resources": 421,
+      "bindings": 435,
+      "log": "out/pc-visual/v137-resource-consumers.txt"
+    }
+  ],
+  "evidence": "out/pc-visual/v137/evidence/manifest.json",
+  "videos": [
+    {
+      "path": "out/pc-visual/v137-earth-normal-commands.mp4",
+      "bytes": 16349745,
+      "sha256": "b3332761ea5eda8899d708924d68f0dd6e9d24c7420bb6202cfeff9958b582c5",
+      "purpose": "Android normal earth-wall build/completion/damage/destruction, source connected bodies; PC matching and collapse effects not accepted",
+      "boxes": [
+        {
+          "type": "/ftyp",
+          "bytes": 24
+        },
+        {
+          "type": "/free",
+          "bytes": 3192
+        },
+        {
+          "type": "/mdat",
+          "bytes": 16336970
+        },
+        {
+          "type": "/moov",
+          "bytes": 9559
+        },
+        {
+          "type": "/moov/mvhd",
+          "bytes": 108,
+          "duration_seconds": 179.522,
+          "timescale": 1000
+        },
+        {
+          "type": "/moov/meta",
+          "bytes": 118
+        },
+        {
+          "type": "/moov/trak",
+          "bytes": 9325
+        },
+        {
+          "type": "/moov/trak/tkhd",
+          "bytes": 92,
+          "width": 1080.0,
+          "height": 1920.0
+        },
+        {
+          "type": "/moov/trak/mdia",
+          "bytes": 9225
+        },
+        {
+          "type": "/moov/trak/mdia/mdhd",
+          "bytes": 32,
+          "duration_seconds": 179.52182222222223,
+          "timescale": 90000
+        },
+        {
+          "type": "/moov/trak/mdia/hdlr",
+          "bytes": 44
+        },
+        {
+          "type": "/moov/trak/mdia/minf",
+          "bytes": 9141
+        },
+        {
+          "type": "/moov/trak/mdia/minf/vmhd",
+          "bytes": 20
+        },
+        {
+          "type": "/moov/trak/mdia/minf/dinf",
+          "bytes": 36
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl",
+          "bytes": 9077
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsd",
+          "bytes": 177
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stts",
+          "bytes": 5872
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stss",
+          "bytes": 20
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsz",
+          "bytes": 2952,
+          "samples": 733
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsc",
+          "bytes": 28
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stco",
+          "bytes": 20
+        }
+      ],
+      "coverage": "build/completion/damage/destruction (last 178-second decoded frame confirms destruction)",
+      "accepted_as_PC_match": false
+    },
+    {
+      "path": "out/pc-visual/v137-stone-normal-commands.mp4",
+      "bytes": 13520016,
+      "sha256": "40157f6cdc9c1fde7bf4314e3d69fc43a599b54012b9f8c4ee1dfc90b437e8c5",
+      "purpose": "Android source stone-wall normal build/completion/damage; verify recording coverage of destruction separately; PC matching not accepted",
+      "boxes": [
+        {
+          "type": "/ftyp",
+          "bytes": 24
+        },
+        {
+          "type": "/free",
+          "bytes": 3192
+        },
+        {
+          "type": "/mdat",
+          "bytes": 13508813
+        },
+        {
+          "type": "/moov",
+          "bytes": 7987
+        },
+        {
+          "type": "/moov/mvhd",
+          "bytes": 108,
+          "duration_seconds": 179.267,
+          "timescale": 1000
+        },
+        {
+          "type": "/moov/meta",
+          "bytes": 118
+        },
+        {
+          "type": "/moov/trak",
+          "bytes": 7753
+        },
+        {
+          "type": "/moov/trak/tkhd",
+          "bytes": 92,
+          "width": 1080.0,
+          "height": 1920.0
+        },
+        {
+          "type": "/moov/trak/mdia",
+          "bytes": 7653
+        },
+        {
+          "type": "/moov/trak/mdia/mdhd",
+          "bytes": 32,
+          "duration_seconds": 179.26696666666666,
+          "timescale": 90000
+        },
+        {
+          "type": "/moov/trak/mdia/hdlr",
+          "bytes": 44
+        },
+        {
+          "type": "/moov/trak/mdia/minf",
+          "bytes": 7569
+        },
+        {
+          "type": "/moov/trak/mdia/minf/vmhd",
+          "bytes": 20
+        },
+        {
+          "type": "/moov/trak/mdia/minf/dinf",
+          "bytes": 36
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl",
+          "bytes": 7505
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsd",
+          "bytes": 177
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stts",
+          "bytes": 4824
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stss",
+          "bytes": 20
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsz",
+          "bytes": 2428,
+          "samples": 602
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsc",
+          "bytes": 28
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stco",
+          "bytes": 20
+        }
+      ],
+      "coverage": "build/completion/damage; destruction truncated at recorder time limit, separate recording required",
+      "accepted_as_PC_match": false
+    },
+    {
+      "path": "out/pc-visual/v137-stone-destroy-normal-command.mp4",
+      "bytes": 16047463,
+      "sha256": "38c9ef1d817f6e10d8a76aac382e867313b0b74df65c7e2e3b5f396bed7721f1",
+      "purpose": "Android normal stone-wall attack destroys healthy connected center, source connected GPU endpoints update; PC collapse animation still pending",
+      "boxes": [
+        {
+          "type": "/ftyp",
+          "bytes": 24
+        },
+        {
+          "type": "/free",
+          "bytes": 3192
+        },
+        {
+          "type": "/mdat",
+          "bytes": 16034404
+        },
+        {
+          "type": "/moov",
+          "bytes": 9843
+        },
+        {
+          "type": "/moov/mvhd",
+          "bytes": 108,
+          "duration_seconds": 63.195,
+          "timescale": 1000
+        },
+        {
+          "type": "/moov/meta",
+          "bytes": 118
+        },
+        {
+          "type": "/moov/trak",
+          "bytes": 9609
+        },
+        {
+          "type": "/moov/trak/tkhd",
+          "bytes": 92,
+          "width": 1080.0,
+          "height": 1920.0
+        },
+        {
+          "type": "/moov/trak/mdia",
+          "bytes": 9509
+        },
+        {
+          "type": "/moov/trak/mdia/mdhd",
+          "bytes": 32,
+          "duration_seconds": 63.19526666666667,
+          "timescale": 90000
+        },
+        {
+          "type": "/moov/trak/mdia/hdlr",
+          "bytes": 44
+        },
+        {
+          "type": "/moov/trak/mdia/minf",
+          "bytes": 9425
+        },
+        {
+          "type": "/moov/trak/mdia/minf/vmhd",
+          "bytes": 20
+        },
+        {
+          "type": "/moov/trak/mdia/minf/dinf",
+          "bytes": 36
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl",
+          "bytes": 9361
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsd",
+          "bytes": 177
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stts",
+          "bytes": 6008
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stss",
+          "bytes": 20
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsz",
+          "bytes": 3100,
+          "samples": 770
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsc",
+          "bytes": 28
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stco",
+          "bytes": 20
+        }
+      ]
+    }
+  ],
+  "autosave_restoration": {
+    "valid_SG11": true,
+    "byte_equal": true,
+    "bytes": 168846
+  },
+  "visual_acceptance": {
+    "complete": false,
+    "observed": [
+      "Original source earth/stone pillars and sheared segments connect when healthy/complete; both endpoints rebuild on normal completion/damage/destruction",
+      "Stone destruction supplement decoded16s healthy connected center and20s destroyed center/disconnected endpoints",
+      "Legacy units, flags and combat particles remain visible and labeled pending",
+      "First two full recordings have low sampling rate; stone destruction lies beyond180-second limit, supplement required and preserved",
+      "Startup includes a temporary black loading view; interrupted-session warning follows restoration of preexisting nativeSession=true preferences. Crash buffer contains no app crash evidence; startup delay still needs profiling",
+      "Terrain wall initialization height patch, climate/lighting/blending and matched PC camera remain unverified"
+    ]
+  },
+  "pc_runtime": {
+    "valid_captures": false,
+    "investigation": "docs/pc-visual/PC_RUNTIME.md",
+    "arm_device_validated": false
+  },
+  "remaining": [
+    "Original four dam placements and normal flood entity integration",
+    "Original unit meshes/hierarchy/rigs/animations, ownership flags, environment and combat effects",
+    "Original fullscreen tactics/critical glyph layers/timing and playback queues",
+    "PC terrain-height patches, regional climate, coordinate/normal/UV/water/lighting calibration",
+    "Matched PC screenshots/videos, all source facility state coverage, ARM and prolonged camera/memory/stacking tests"
+  ],
+  "initial_failed_probes": [
+    {
+      "log": "out/pc-visual/v137-wall-commands-cpu-first.txt",
+      "cause": "New stone fixture lacked required source technology; legal fixture setup corrected"
+    },
+    {
+      "log": "out/pc-visual/v137-wall-commands-cpu-invalid-tech.txt",
+      "cause": "Save validation correctly rejected missing prerequisite tech; fixture adds complete prerequisite chain without changing validation"
+    },
+    {
+      "video": "out/pc-visual/v137-stone-normal-commands.mp4",
+      "cause": "Recorder180-second limit precedes last destruction; retained limited-scope recording and separately captured real destruction with same assertions"
+    }
+  ]
+}

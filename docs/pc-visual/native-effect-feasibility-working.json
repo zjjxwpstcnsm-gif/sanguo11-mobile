@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "status": "PASS_HOST_NATIVE_FULL_HEAP_VISUAL_RNG_EXACT",
+  "resources": [
+    {
+      "resource_id": 125,
+      "source_sha256": "5be73c977882f3da5a16ab7a8fe6b118350284f0dfee37a9c5c1216728c01f20",
+      "heap_bytes": 16777216,
+      "heap_sha256": "055cf9a859a5ca97a3ddfe0fd5b05fa1754c0a3ab20b3d1fde6245c7bc9f1a02",
+      "visual_rng_sha256": "8696e9a22459b6c82bd655d0548b933c2f2c67458442230adca55f79fa83edea",
+      "initialization_ms": 53.282,
+      "updates_ms": [
+        4.992,
+        6.401,
+        8.607
+      ]
+    },
+    {
+      "resource_id": 194,
+      "source_sha256": "2f17a153804aea3fa3158601bcefe528126cf3dff8a4f2911655a98b7a8b23da",
+      "heap_bytes": 16777216,
+      "heap_sha256": "c9cc7c096c26435cb14f98e95f2128cfda315f67ad762e34c5480cfa717a0fdb",
+      "visual_rng_sha256": "9b660c5ec418f2d36dc2f26f577215d119bdc03055b5a95c1c886add8ecbccac",
+      "initialization_ms": 40.804,
+      "updates_ms": [
+        2.419,
+        11.855,
+        15.812
+      ]
+    },
+    {
+      "resource_id": 219,
+      "source_sha256": "c9033869dffde56e8f112c759a3ac6a203676378bc178622f3f21ec0449afa44",
+      "heap_bytes": 16777216,
+      "heap_sha256": "78b6c58c9ba3ff27fd5938ed7f5ae81d32ac0d3dbb13cd67c7a8659848a8a1b1",
+      "visual_rng_sha256": "6a2c0b6c671dd33f62a20d3acbb0808a8bd170d76ffd57e0737323576206a123",
+      "initialization_ms": 37.965,
+      "updates_ms": [
+        5.737,
+        16.331,
+        36.232
+      ]
+    },
+    {
+      "resource_id": 148,
+      "source_sha256": "60d6dfcb3e64688694d1633cdfc5daffcb2b3c5c58b3428ef6cc60546c39ef5a",
+      "heap_bytes": 16777216,
+      "heap_sha256": "199658278623a292b208d00d4050261528ccf6f1d10a3e206b72ce874ca26c23",
+      "visual_rng_sha256": "3d087f1a30d3c1627f2a1bd5b2462b2d85edcb1e6918522bc27d8860ea1f484f",
+      "initialization_ms": 40.381,
+      "updates_ms": [
+        2.603,
+        8.671,
+        4.94
+      ]
+    }
+  ],
+  "checks": 68,
+  "source_executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "probe_source_sha256": "c0812f7fbfb20dc8426e8cefcd1d08bd6efabccee38759d453593ac518157163",
+  "unicorn_library_sha256": "51c4a6f3ce22628ecd3acd1c49b921a818ffb989ca2c473134cc7eb06094f256",
+  "source_time_inputs": [
+    0.0333333333,
+    0.5,
+    1.0
+  ],
+  "runtime_effects_added": 0,
+  "limits": [
+    "Standalone source evaluator only; no JNI/APK/event/GPU image acceptance",
+    "Origin/identity diagnostic camera and three time inputs; no actual PC reference or frame rate acceptance",
+    "ARM64 cross build is not ARM device performance validation",
+    "Original4096-bin queue and original442c00/442ad0 texture/blend/quad functions verified at bounded memory GPU boundaries; no pixel output acceptance",
+    "New PcEffectProcess Java transport and v149 worker packaging are in progress; v148 archived APK does not contain these changes",
+    "Persistent worker pause/redraw/rebuild evidence does not establish normal game event or renderer bindings"
+  ],
+  "evidence": "out/pc-visual/v148-native-probe-checked/comparison.json",
+  "android_execution_status": "standalone-probe-pass-not-APK-or-event-integration",
+  "android_executed_checks": [
+    {
+      "name": "source-state68",
+      "status": "PASS_ANDROID_STANDALONE_HEAP_VISUAL_RNG_EXACT",
+      "checks": 68,
+      "abi": "x86_64",
+      "sdk": 29,
+      "evidence": "out/pc-visual/v148-native-android-condition-watchdog-executed/comparison.json",
+      "sha256": "914ee71112238b2e682a82f6fad5800e259ac3d00ae74a7780a716eb25321355"
+    },
+    {
+      "name": "camera-packets3002",
+      "status": "PASS_ANDROID_CAMERA_BOUND_PACKETS_HEAP_VISUAL_RNG_EXACT",
+      "checks": 3002,
+      "abi": "x86_64",
+      "sdk": 29,
+      "evidence": "out/pc-visual/v148-native-android-camera-condition-watchdog-executed/comparison.json",
+      "sha256": "3390f3eb26a785c4cdf498925cfa3f7868a43d7448ef8c689ee60a3c3632f50d"
+    },
+    {
+      "name": "final-quads",
+      "status": "PASS_ANDROID_CAMERA_BOUND_PACKETS_HEAP_VISUAL_RNG_EXACT",
+      "checks": 3980,
+      "abi": "x86_64",
+      "sdk": 29,
+      "evidence": "out/pc-visual/v148-native-android-final-quads-executed/comparison.json",
+      "sha256": "da8524113d88ea72cced026f547706160d0e3127698e9f73ea014e27bf1771f3"
+    },
+    {
+      "name": "actual-seff-final-quads",
+      "status": "PASS_ANDROID_CAMERA_BOUND_PACKETS_HEAP_VISUAL_RNG_EXACT",
+      "checks": 1046,
+      "evidence": "out/pc-visual/v148-native-android-seff-final-quads-executed/comparison.json",
+      "sha256": "dd125d3126493cdcbb904b105c38980a864aa5b13159ecca763c3149afb59889"
+    },
+    {
+      "name": "shared126-original-manager",
+      "status": "PASS_ANDROID_ORIGINAL_SHARED_MANAGER_FULL_STATE",
+      "checks": 1191,
+      "evidence": "out/pc-visual/v148-native-android-shared-scene-executed/comparison.json",
+      "sha256": "37abfe9b22ddfd38c423bbd1b793e8ce07f6645a44145d0194cbc4d6f58eb05d"
+    },
+    {
+      "name": "source4096-queue",
+      "status": "PASS_ANDROID_ORIGINAL_SHARED_MANAGER_FULL_STATE",
+      "checks": 1194,
+      "evidence": "out/pc-visual/v148-native-android-source-queue-executed/comparison.json",
+      "sha256": "8cd623c7f02b8dab68d8dd992dff9e0bae205b7577d73185d3b2d8c7aaf62e15"
+    },
+    {
+      "name": "source-materials",
+      "status": "PASS_ANDROID_ORIGINAL_SHARED_MANAGER_FULL_STATE",
+      "checks": 1840,
+      "evidence": "out/pc-visual/v148-native-android-material-executed/comparison.json",
+      "sha256": "2c4067f96cacefef97afbb0bb494b3464f683ed10255a1adb31a3b15ee6841ff"
+    },
+    {
+      "name": "source-batch-ring",
+      "status": "PASS_ANDROID_ORIGINAL_SHARED_MANAGER_FULL_STATE",
+      "checks": 2236,
+      "evidence": "out/pc-visual/v148-native-android-batch-v3-executed/comparison.json",
+      "sha256": "4433b0d90f088f6b76920a61a0aebf328a5a25c8307381e5023f6997d84183a8"
+    },
+    {
+      "name": "persistent-worker",
+      "status": "PASS_ANDROID_PERSISTENT_SOURCE_WORKER",
+      "checks": 2386,
+      "evidence": "out/pc-visual/v148-native-android-worker-camera-preload-executed/comparison.json",
+      "sha256": "dfe832c39fedec57b1dc557bd288f1f9233c50679b59d7124e64af005e8b3ad8"
+    }
+  ],
+  "retained_android_failures": [
+    {
+      "evidence": "out/pc-visual/v148-native-android-executed/comparison-failed.json",
+      "failure": "Per-instruction probe219 exceeds45s;125/194 state matches retained; requested internal5s timer exceeded in one call"
+    },
+    {
+      "evidence": "out/pc-visual/v148-native-android-block-budget-executed/comparison-failed.json",
+      "failure": "Block accounting125 exceeds45s; not the current default"
+    }
+  ],
+  "current_execution_budget": "Unmodified Unicorn instruction-count5M with separate5s condition-wait watchdog; block-byte counter experiment explicit opt-in only",
+  "host_final_quad_check": "out/pc-visual/v148-native-final-quads-checked/comparison.json",
+  "arm64_status": "cross-build-only; no ARM device execution",
+  "arm64_build": "out/pc-visual/v148-native-arm64-worker-camera-preload-build/build.json"
+}

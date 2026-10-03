@@ -1,0 +1,360 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "v135 original immutable wall bodies/placements; source-preserving far batching",
+  "apk": "out/pc-visual/sanguo11-mobile-v135-pc-cliff-walls.apk",
+  "apk_sha256": "eda171c203359d8aa72f781bd109685f714fe8dbf0cbc7d6d994a5a751fe816c",
+  "checks": [
+    {
+      "name": "original-wall-transforms",
+      "status": "pass",
+      "log": "out/pc-visual/v135-cliff-walls-cpu.txt",
+      "result": [
+        "PASS PC cliff walls 906389 checks; source=161 playable=161"
+      ]
+    },
+    {
+      "name": "lossless-far-scenery-batching",
+      "status": "pass",
+      "log": "out/pc-visual/v135-scenery-cpu.txt",
+      "result": [
+        "SOURCE_FAR_BATCH month=1 chunks=238→113",
+        "SOURCE_FAR_BATCH month=10 chunks=238→113",
+        "PASS PC scenery 7180220 checks; source placements=943"
+      ]
+    },
+    {
+      "name": "all-core-facility-state-regression",
+      "status": "pass",
+      "log": "out/pc-visual/v135-facilities-cpu.txt",
+      "result": [
+        "PASS PC facilities 4755020 checks; core types=30"
+      ]
+    },
+    {
+      "name": "camera-cancellation",
+      "status": "pass",
+      "log": "out/pc-visual/v135-camera-window.txt",
+      "result": [
+        "PASS production camera request: active cancellation, latest focus, bounded queue, backdrop ownership and no covered-window churn"
+      ]
+    },
+    {
+      "name": "native-frame-admission",
+      "status": "pass",
+      "log": "out/pc-visual/v135-frame-admission.txt",
+      "result": [
+        "PASS: extracted production doFrame admission, 43 fake-driver rejections, changed-camera CPU window demand, mailbox/UI progress, zero-size, pacing, thermal, pause, release, Surface absence, exception closure (HOST ONLY; fake worker tests call ordering, not real queue/driver throughput)",
+        "PASS: extracted focus methods: latest target before layout, null preservation and normal loaded focus (HOST ONLY)",
+        "PASS: extracted requestCameraWindow and production TerrainWindow coverage: initial focus, in-flight bound, immutable capture, changed camera, LOD replacement, covered reuse, absent/released snapshot (HOST ONLY)",
+        "PASS: initial-focus source contracts: real-layout deferral, one-shot clear, grid projection/span before first request, release, deferred snapshot drain and normal menu/host ordering (SOURCE CONTRACT ONLY)"
+      ]
+    },
+    {
+      "name": "installed-static-walls-national-lifecycle",
+      "status": "pass",
+      "log": "out/pc-visual/v135-cliff-walls-installed-registered.txt",
+      "result": [
+        "PASS PC CLIFF WALLS installed checks=254; original static placement integration; emulator evidence only"
+      ]
+    },
+    {
+      "name": "installed-three-normal-sieges",
+      "status": "pass",
+      "log": "out/pc-visual/v135-sites-commands-installed.txt",
+      "result": [
+        "PASS PC SITES installed checks=198; emulator renderer evidence only"
+      ]
+    },
+    {
+      "name": "installed-six-facility-normal-commands",
+      "status": "pass",
+      "log": "out/pc-visual/v135-facilities-installed.txt",
+      "result": [
+        "PASS PC FACILITIES installed checks=142; six normal commands; emulator evidence only"
+      ]
+    },
+    {
+      "name": "installed-six-facility-video-run",
+      "status": "pass",
+      "log": "out/pc-visual/v135-facilities-video-installed.txt",
+      "result": [
+        "PASS PC FACILITIES installed checks=176; six normal commands; emulator evidence only"
+      ]
+    },
+    {
+      "name": "apk-integrity",
+      "status": "pass",
+      "log": "out/pc-visual/v135-apk-integrity.txt",
+      "result": [
+        "PASS: 73 pinned map/art resources in out/pc-visual/sanguo11-mobile-v135-pc-cliff-walls.apk"
+      ]
+    }
+  ],
+  "previous_phase": "validation-v134.json",
+  "device": {
+    "id": "emulator-5554",
+    "api": 29,
+    "abi": "x86_64",
+    "kind": "Android emulator",
+    "launch_gpu": "host",
+    "arm_device_validated": false
+  },
+  "source_readonly_check": {
+    "source_files": 1805,
+    "all_file_hashes_unchanged": true,
+    "mismatches": [],
+    "source_policy": "read-only"
+  },
+  "reproducibility": {
+    "source_cliff_walls_byte_identical": true,
+    "sha256": "bd9d0173913ccb8f1924ae456d0cad1b0f1b3901526a4ef4beeefebacf8320ec"
+  },
+  "autosave_restoration": {
+    "external_before_after_byte_identical": true,
+    "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+  },
+  "evidence_manifest": "out/pc-visual/v135/evidence/manifest.json",
+  "installed_probes": [
+    "source wall bodies in three camera locations × spring/winter; original near/far data and source material uploaded",
+    "full central national far view completes at unchanged120s readiness assertion after lossless source batching",
+    "pause/resume and exit release library/material instance/all tracked source textures",
+    "three normal city/gate/port sieges and six Farm/Camp construction/damage/destruction commands match independent authoritative state/RNG/save bytes"
+  ],
+  "videos": [
+    {
+      "path": "out/pc-visual/v135-sites-normal-commands.mp4",
+      "bytes": 15655032,
+      "sha256": "01ab80d75ae038c0b10bc7867c4cb894c6b28f1f364d2a3f7c519a9b9138866b",
+      "purpose": "Android original site normal siege playback; source wall base/terrain present; native battle effect/timing and PC comparison remain pending",
+      "boxes": [
+        {
+          "type": "/ftyp",
+          "bytes": 24
+        },
+        {
+          "type": "/free",
+          "bytes": 3192
+        },
+        {
+          "type": "/mdat",
+          "bytes": 15626757
+        },
+        {
+          "type": "/moov",
+          "bytes": 25059
+        },
+        {
+          "type": "/moov/mvhd",
+          "bytes": 108,
+          "duration_seconds": 162.325,
+          "timescale": 1000
+        },
+        {
+          "type": "/moov/meta",
+          "bytes": 118
+        },
+        {
+          "type": "/moov/trak",
+          "bytes": 24825
+        },
+        {
+          "type": "/moov/trak/tkhd",
+          "bytes": 92,
+          "width": 1080.0,
+          "height": 1920.0
+        },
+        {
+          "type": "/moov/trak/mdia",
+          "bytes": 24725
+        },
+        {
+          "type": "/moov/trak/mdia/mdhd",
+          "bytes": 32,
+          "duration_seconds": 162.32496666666665,
+          "timescale": 90000
+        },
+        {
+          "type": "/moov/trak/mdia/hdlr",
+          "bytes": 44
+        },
+        {
+          "type": "/moov/trak/mdia/minf",
+          "bytes": 24641
+        },
+        {
+          "type": "/moov/trak/mdia/minf/vmhd",
+          "bytes": 20
+        },
+        {
+          "type": "/moov/trak/mdia/minf/dinf",
+          "bytes": 36
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl",
+          "bytes": 24577
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsd",
+          "bytes": 177
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stts",
+          "bytes": 16120
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stss",
+          "bytes": 28
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsz",
+          "bytes": 8196,
+          "samples": 2044
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsc",
+          "bytes": 28
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stco",
+          "bytes": 20
+        }
+      ]
+    },
+    {
+      "path": "out/pc-visual/v135-facilities-normal-commands.mp4",
+      "bytes": 17085131,
+      "sha256": "66e1f9fde17cfafb790ef64529d01be0a1c46de20f9d8c9abd21a5f971190f11",
+      "purpose": "Android six normal Farm/Camp construction, damage and destruction commands; original GPU body/state/removal, old battle effects and flags remain unaccepted; no PC video match",
+      "boxes": [
+        {
+          "type": "/ftyp",
+          "bytes": 24
+        },
+        {
+          "type": "/free",
+          "bytes": 3192
+        },
+        {
+          "type": "/mdat",
+          "bytes": 17053900
+        },
+        {
+          "type": "/moov",
+          "bytes": 28015
+        },
+        {
+          "type": "/moov/mvhd",
+          "bytes": 108,
+          "duration_seconds": 132.909,
+          "timescale": 1000
+        },
+        {
+          "type": "/moov/meta",
+          "bytes": 118
+        },
+        {
+          "type": "/moov/trak",
+          "bytes": 27781
+        },
+        {
+          "type": "/moov/trak/tkhd",
+          "bytes": 92,
+          "width": 1080.0,
+          "height": 1920.0
+        },
+        {
+          "type": "/moov/trak/mdia",
+          "bytes": 27681
+        },
+        {
+          "type": "/moov/trak/mdia/mdhd",
+          "bytes": 32,
+          "duration_seconds": 132.90926666666667,
+          "timescale": 90000
+        },
+        {
+          "type": "/moov/trak/mdia/hdlr",
+          "bytes": 44
+        },
+        {
+          "type": "/moov/trak/mdia/minf",
+          "bytes": 27597
+        },
+        {
+          "type": "/moov/trak/mdia/minf/vmhd",
+          "bytes": 20
+        },
+        {
+          "type": "/moov/trak/mdia/minf/dinf",
+          "bytes": 36
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl",
+          "bytes": 27533
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsd",
+          "bytes": 177
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stts",
+          "bytes": 18096
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stss",
+          "bytes": 28
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsz",
+          "bytes": 9176,
+          "samples": 2289
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stsc",
+          "bytes": 28
+        },
+        {
+          "type": "/moov/trak/mdia/minf/stbl/stco",
+          "bytes": 20
+        }
+      ]
+    }
+  ],
+  "visual_acceptance": {
+    "complete": false,
+    "observed": [
+      "Original wall segments appear parallel/disconnected: source runtime connection mask/alternate pillar/sheared segments are missing; next source-code restoration underway",
+      "Dark source tree silhouettes and stepped/polygon water/shore remain",
+      "Units, ownership flags and combat particles still legacy"
+    ]
+  },
+  "pc_runtime": {
+    "valid_captures": false,
+    "investigation": "docs/pc-visual/PC_RUNTIME.md",
+    "arm_device_validated": false
+  },
+  "remaining": [
+    "Source wall connection topology and height shear confirmed in wall-connections-investigation.json; not implemented yet",
+    "Original dam entity/state/save handling and flood triggers",
+    "Regional winter climate, source lighting/normals/blending, vertical/UV scale, water/far-view calibration",
+    "All source unit/rigs/animations and environment/combat effects",
+    "Original fullscreen tactic/critical text layers/timing and event queues",
+    "All source facilities installed evidence; PC matching screenshots/videos and ARM performance",
+    "Long-duration movement/memory-growth and dynamic effect stacking/skip/lifecycle coverage"
+  ],
+  "initial_failed_probes": [
+    {
+      "log": "out/pc-visual/v135-build.txt",
+      "cause": "New instrument referenced private helper from another class; corrected own SharedPreferences lookup"
+    },
+    {
+      "log": "out/pc-visual/v135-cliff-walls-installed.txt",
+      "cause": "Generated test manifest replaced first new instrumentation entry with default runner; moved registration after existing entries, rebuilt matching app/test pair. Android am shell aborted after component lookup failed; application was not launched."
+    },
+    {
+      "video": "out/pc-visual/v135-facilities-before-recorder-flush.mp4",
+      "cause": "First pull occurred before recorder completed MP4 finalization; rejected by container parser. Waited recorder termination, pulled full closed file, validated and decoded."
+    }
+  ]
+}

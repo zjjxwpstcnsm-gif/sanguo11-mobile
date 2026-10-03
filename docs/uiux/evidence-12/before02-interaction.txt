@@ -1,0 +1,13 @@
+UIUX PASS 11 checks
+PASS normal launch restores existing save
+PASS governance starts from intact campaign
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 展开 at Rect(754, 1002 - 901, 1128)
+PASS touch visible 武将 at Rect(357, 1247 - 509, 1373)
+PASS touch visible 搜索人才 at Rect(53, 1071 - 1027, 1197)
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS touch visible 取消 at Rect(684, 1024 - 852, 1150)
+PASS old governance preview and cancel preserve campaign
+

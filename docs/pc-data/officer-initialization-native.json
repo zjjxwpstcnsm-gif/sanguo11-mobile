@@ -1,0 +1,226 @@
+{
+  "schema": 1,
+  "source_executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "prior_sha256": "6187bc46f59e2b20e1bbdb45cd394151a145be8d13060629f0120d2323e71ca4",
+  "functions": [
+    {
+      "name": "serializer_read_entry",
+      "address": "0x48b760",
+      "end_exclusive": "0x48b775",
+      "sha256": "0e5dff8a4448378721f6a363bd2560463d1954e7e3384232cb9cab2faab603a9"
+    },
+    {
+      "name": "officer_initializer",
+      "address": "0x488470",
+      "end_exclusive": "0x4886d9",
+      "sha256": "829bccd177ff921661ed313c667edd1e9ba00acfe1d2d682f7be96134f076bba"
+    },
+    {
+      "name": "officer_load_loop",
+      "address": "0x493812",
+      "end_exclusive": "0x49383f",
+      "sha256": "8d5a443e137645df11a79e7d899d6a22039a905bd09f18399ac2133bf0984448"
+    }
+  ],
+  "sources": [
+    {
+      "path": "Media/scenario/Scen000.s11",
+      "source_sha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "5d63802aeee4a5d465919ba8e8b8fab08fff49fd3226ef4c5fcf1fca41ae6f11",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/SCEN001.S11",
+      "source_sha256": "aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "4e9c658177236d5f1851cc851d128b3970546f59ffbb92b014b508ddaf82742b",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/SCEN002.S11",
+      "source_sha256": "ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "03b1a1040e25f3ab4ec5f3bbea98a1be95287206a179feec742d76f59d347289",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/SCEN003.S11",
+      "source_sha256": "efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "cfa9b3a2824c8c764ddfd03eaa092fce006d62a4d75a845847a64bf8b719f197",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/SCEN004.S11",
+      "source_sha256": "6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "0cb15827a6412f8f2ccae1e0f5cb19d769ef2357f281ae8791e5d39a34a0d5da",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/SCEN005.S11",
+      "source_sha256": "4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "6d885579e78fe6f350556f8a98889a19500cdf3aadc1091eaeeee59f8f183e0b",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/SCEN006.S11",
+      "source_sha256": "b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "20c2adafd0c09f0c045064784621516174da405cce65cc426e7689a0b33da75a",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/SCEN007.S11",
+      "source_sha256": "703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "2d1a63ebf1fde1451d74aec15d92211196ab077af69a51a3ac00f40e4ee39dfb",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/Scen008.s11",
+      "source_sha256": "ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "894e3d5b03bc972654b96b2b83a279656a6af2ac7a1d7b2395ce13ae33f83694",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/Scen009.s11",
+      "source_sha256": "64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "68fef2c74fe9ee13c0e195dc1e761bd56498902cd5aa6462c97409c25a3eb4ab",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/Scen010.s11",
+      "source_sha256": "4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "3895cd6a98d934bdbcc8b4e6dad2a17e9182d211091df5ee486cba2a1bb1d13b",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/Scen011.s11",
+      "source_sha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "7a6b6bcd23cd9d7c56bd94f9f1d76bb3658c1b668fad962a0ecc769428271466",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/Scen012.s11",
+      "source_sha256": "d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "b7b6822b915a561770d775ced6507ad04132f8a8eeab3acbdef2a03781374ef0",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/Scen013.s11",
+      "source_sha256": "72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "cf2f3a6639acba3864e88f7f87575b67f1ba628d903e59226ccc8b805339209d",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/Scen014.S11",
+      "source_sha256": "ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "d8f855a983bc7fe99e6563fba0b4ffeb426c2c4ab202e1704fbf30eae8898240",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/Scen015.s11",
+      "source_sha256": "5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a",
+      "fill": 165,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "e71347f86873d4d5f50e4df5470a450895a74fe29dcb76fc7b3d2ca8076f1ca5",
+      "rng_unchanged": true
+    }
+  ],
+  "sentinel_control_runs": [
+    {
+      "path": "Media/scenario/Scen000.s11",
+      "source_sha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+      "fill": 0,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "4cf95a545944aad768b645f74650ab71c52ba4752fdb6276f8baa6df6c68d2d2",
+      "rng_unchanged": true
+    },
+    {
+      "path": "Media/scenario/Scen000.s11",
+      "source_sha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+      "fill": 255,
+      "initialized_count": 1100,
+      "serialized_count": 850,
+      "vectors_sha256": "6a741a93d0c6de3e99dddad9a1d63c9fc82fedadf43673f7ce9072534fd6f1c9",
+      "registry_sha256": "d5673d1daab0cb1decd43aab729fc9902d6d10597dfecb19986abc0507769db3",
+      "rng_unchanged": true
+    }
+  ],
+  "initialized_source_slots": 17600,
+  "serialized_source_slots": 13600,
+  "experience_default": [
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "injury_default": 0,
+  "evidence": "493812 loop ->48b760 reading flag+8=1 ->vtable+20 ->488470 before source fields",
+  "limits": [
+    "Defaults belong to original loading boundary, not explicit source record fields",
+    "Later scenario events, MOD hooks and full new-game application flow not executed",
+    "Actor padding may retain sentinel bytes; no claim of whole-object zero initialization",
+    "Runtime content and user saves are unchanged"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "source_commit": "9f496f6b362321491aecc5dce18ed0a3f88af9dc",
+  "generation_tool": "tools/content/LegacySaveFixtureWriter.java",
+  "scenario": "central-mobile-sandbox",
+  "turn": 0,
+  "bytes": 61343,
+  "sha256": "1a325063d00e82947d9ab4e1771aa66ba8d10aa75b8f06856fbf3b37790d8202",
+  "validation": "Historical writer exact self-roundtrip; current inherited baseline reproduces continuation divergence; corrected Governance.read regression keeps complete bytes/logs/RNG assertions"
+}

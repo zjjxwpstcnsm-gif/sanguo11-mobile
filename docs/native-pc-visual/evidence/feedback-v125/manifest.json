@@ -1,0 +1,697 @@
+{
+  "status": "PARTIAL",
+  "input_source": "42230940e267b985b6bcd2d0cefec0fae49cca88",
+  "main": "ac29b458325b52d6e302ca44270d16552de4ed7f",
+  "apk": {
+    "source_sha": "46361762ccf868c4fce8d55e603639d9e4f23905",
+    "apk_sha256": "2be377ca7a4b25b1ccfcd13ed93001d18e0fa724a089e221e49ba94f5573d2c2",
+    "bytes": 41484163,
+    "abis": [
+      "arm64-v8a",
+      "armeabi-v7a",
+      "x86",
+      "x86_64"
+    ],
+    "matched_assets": 452,
+    "backend": "Filament 1.56.0 OPENGL",
+    "acceptance": "PARTIAL; archive identity is not runtime or art acceptance"
+  },
+  "package": "game.sanguo.mobile.dev",
+  "version_code": 125,
+  "version_name": "0.125.0-native-cascades-tactics",
+  "certificate_sha256": "8f64ee37f8ff58de8f5a199aac2ae745a5bc927d0d0eabac7540083a5e551f24",
+  "ci_run": 36653575757,
+  "host": "PASS",
+  "installed_scenes": [
+    {
+      "first_attempt_status": "PASS",
+      "api": 29,
+      "mode": "battle",
+      "installed_identity": "PASS",
+      "status": "PASS",
+      "first_result": "PASS FEEDBACK125 battle checks=76",
+      "battle_2d": "PASS",
+      "forced_contest": "PASS",
+      "raw_directory": "current-runtime/native-feedback125-api29-battle",
+      "pngs": 9
+    },
+    {
+      "first_attempt_status": "FAIL",
+      "api": 29,
+      "mode": "taishan",
+      "installed_identity": "PASS",
+      "status": "FAIL",
+      "first_result": "FAIL FEEDBACK125 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=632 backingCopies=1 confirmedLosses=1 relayouts=1 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "battle_2d": "NOT_APPLICABLE",
+      "forced_contest": "NOT_APPLICABLE",
+      "raw_directory": "current-runtime/native-feedback125-api29-taishan",
+      "pngs": 1
+    },
+    {
+      "first_attempt_status": "FAIL",
+      "api": 29,
+      "mode": "southwest",
+      "installed_identity": "PASS",
+      "status": "FAIL",
+      "first_result": "FAIL FEEDBACK125 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=639 backingCopies=1 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "battle_2d": "NOT_APPLICABLE",
+      "forced_contest": "NOT_APPLICABLE",
+      "raw_directory": "current-runtime/native-feedback125-api29-southwest",
+      "pngs": 1
+    },
+    {
+      "first_attempt_status": "FAIL",
+      "api": 35,
+      "mode": "battle",
+      "installed_identity": "PASS",
+      "status": "PASS",
+      "first_result": "PASS FEEDBACK125 battle checks=113",
+      "battle_2d": "PASS",
+      "forced_contest": "PASS",
+      "raw_directory": "current-runtime/native-feedback125-api35-battle",
+      "pngs": 9
+    },
+    {
+      "first_attempt_status": "FAIL",
+      "api": 35,
+      "mode": "taishan",
+      "installed_identity": "PASS",
+      "status": "FAIL",
+      "first_result": "FAIL FEEDBACK125 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=617 backingCopies=2 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "battle_2d": "NOT_APPLICABLE",
+      "forced_contest": "NOT_APPLICABLE",
+      "raw_directory": "current-runtime/native-feedback125-api35-taishan",
+      "pngs": 1
+    },
+    {
+      "first_attempt_status": "FAIL",
+      "api": 35,
+      "mode": "southwest",
+      "installed_identity": "PASS",
+      "status": "FAIL",
+      "first_result": "FAIL FEEDBACK125 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=542 backingCopies=3 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "battle_2d": "NOT_APPLICABLE",
+      "forced_contest": "NOT_APPLICABLE",
+      "raw_directory": "current-runtime/native-feedback125-api35-southwest",
+      "pngs": 1
+    }
+  ],
+  "first_final_attempt": [
+    {
+      "scene": "native-feedback125-api29-battle",
+      "status": "PASS",
+      "first_result": "PASS FEEDBACK125 battle checks=76",
+      "directory": "out/feedback125/attempt6-runtime/native-feedback125-api29-battle"
+    },
+    {
+      "scene": "native-feedback125-api29-southwest",
+      "status": "FAIL",
+      "first_result": "FAIL FEEDBACK125 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=634 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "directory": "out/feedback125/attempt6-runtime/native-feedback125-api29-southwest"
+    },
+    {
+      "scene": "native-feedback125-api29-taishan",
+      "status": "FAIL",
+      "first_result": "FAIL FEEDBACK125 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=600 backingCopies=2 confirmedLosses=1 relayouts=1 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "directory": "out/feedback125/attempt6-runtime/native-feedback125-api29-taishan"
+    },
+    {
+      "scene": "native-feedback125-api35-battle",
+      "status": "FAIL",
+      "first_result": "FAIL FEEDBACK125 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=598 backingCopies=0 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "directory": "out/feedback125/attempt6-runtime/native-feedback125-api35-battle"
+    },
+    {
+      "scene": "native-feedback125-api35-southwest",
+      "status": "FAIL",
+      "first_result": "FAIL FEEDBACK125 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=560 backingCopies=1 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "directory": "out/feedback125/attempt6-runtime/native-feedback125-api35-southwest"
+    },
+    {
+      "scene": "native-feedback125-api35-taishan",
+      "status": "FAIL",
+      "first_result": "FAIL FEEDBACK125 java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=513 backingCopies=1 confirmedLosses=0 relayouts=0 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1",
+      "directory": "out/feedback125/attempt6-runtime/native-feedback125-api35-taishan"
+    }
+  ],
+  "rerun_policy": "One retry of failed jobs, identical source/APK, original 120s ready, first failures retained; retry PASS is not stable readiness acceptance",
+  "visual": "REFERENCE_MISSING; waterfall beauty NOT_RUN",
+  "arm64_physical": "NOT_RUN",
+  "national_regression_attribution": "UNKNOWN; prior b3a935 Taishan PASS vs final first/retry FAIL; regression risk OPEN, no unchanged input same-anchor installed comparison",
+  "exact_pc_duel_accuracy": "PARTIAL",
+  "old_asset_preservation": {
+    "input_source": "42230940e267b985b6bcd2d0cefec0fae49cca88",
+    "candidate_source": "46361762ccf868c4fce8d55e603639d9e4f23905",
+    "old_assets": 441,
+    "changed_old_assets": [],
+    "protected_paths": [
+      "data",
+      "core/src/main/resources",
+      "unity"
+    ],
+    "protected_changed": [],
+    "protected_unchanged": true,
+    "intentional_api_runtime_change": "Narrow ContestCommand through authoritative GameSession to allow existing duel/debate progress while ordinary commands retain busy guard; no World or platform API added.",
+    "old_3d_directory_files": 336
+  },
+  "inherited_failures": [
+    "CoreTest.logistics:75",
+    "DisplacementTest city deterministic replay:27",
+    "ArmyTest formations:43",
+    "RulesParityTest actions:54",
+    "ContestTest saveAndCorruption:135",
+    "BattleFeedbackTest lootCaptureAndVacancy:20",
+    "TechnologyFieldworksTest migration:58"
+  ],
+  "historical_r18_zero_diff_guard": "FAIL; baseline predates 146 input protected differences; guard not relaxed",
+  "next_phase_started": false,
+  "final_remote_head": "Resolved after this documentation-only commit in delivered remote-confirmation.json",
+  "evidence_files": [
+    {
+      "path": "ArmyTest-candidate.log",
+      "bytes": 328,
+      "sha256": "43acd66e1b9d34ce384a71e2e8bec4bc88006e615f6f4d628e39258abf814d4b"
+    },
+    {
+      "path": "ArmyTest-input.log",
+      "bytes": 328,
+      "sha256": "43acd66e1b9d34ce384a71e2e8bec4bc88006e615f6f4d628e39258abf814d4b"
+    },
+    {
+      "path": "BattleFeedbackTest-candidate.log",
+      "bytes": 565,
+      "sha256": "49a8ee328e5c96226dcfe4a8768fba9319f8c7eb398057213db7bff86a93143a"
+    },
+    {
+      "path": "BattleFeedbackTest-input.log",
+      "bytes": 565,
+      "sha256": "49a8ee328e5c96226dcfe4a8768fba9319f8c7eb398057213db7bff86a93143a"
+    },
+    {
+      "path": "ContestTest-candidate.log",
+      "bytes": 341,
+      "sha256": "5d258cb37a7b9f32eb22b8b48b067180f4e9b65b63b1dc14cf01c735e01b2d6c"
+    },
+    {
+      "path": "ContestTest-input.log",
+      "bytes": 341,
+      "sha256": "5d258cb37a7b9f32eb22b8b48b067180f4e9b65b63b1dc14cf01c735e01b2d6c"
+    },
+    {
+      "path": "RulesParityTest-candidate.log",
+      "bytes": 354,
+      "sha256": "9433559f78dd728f198ef64cba955932af7c57c45742b5d80a996ee96be5490a"
+    },
+    {
+      "path": "RulesParityTest-input.log",
+      "bytes": 354,
+      "sha256": "9433559f78dd728f198ef64cba955932af7c57c45742b5d80a996ee96be5490a"
+    },
+    {
+      "path": "TechnologyFieldworksTest-candidate.log",
+      "bytes": 383,
+      "sha256": "37332774ff95686abc464218a939acbe58d15c4427cf955252c115ebfa8af8f3"
+    },
+    {
+      "path": "TechnologyFieldworksTest-input.log",
+      "bytes": 383,
+      "sha256": "37332774ff95686abc464218a939acbe58d15c4427cf955252c115ebfa8af8f3"
+    },
+    {
+      "path": "affected-suite-comparison.json",
+      "bytes": 509,
+      "sha256": "53e31bf07c233a44079cb03df303f1ca05d5107ceaecea5231aa8d75de61a7ca"
+    },
+    {
+      "path": "apk-audit-delivery-local.json",
+      "bytes": 1857,
+      "sha256": "05df5ce84145c7d33873b7d20961da3f37d2f5350eb5fee4a6f762516495b79a"
+    },
+    {
+      "path": "apk-audit-etcfixed-local.json",
+      "bytes": 1857,
+      "sha256": "dc751191e8e065f6e11dd765f0ac356202e43213b40712d0aa3accaadd52b99f"
+    },
+    {
+      "path": "apk-audit-final-delivery.json",
+      "bytes": 1868,
+      "sha256": "910e67ade2d834ae5d2fcca8bb36e9156400bab88917d33bc617b83316b64a18"
+    },
+    {
+      "path": "apk-audit-local.json",
+      "bytes": 1857,
+      "sha256": "eecffa9734986ece74f97be0f791a7d41c26c70347d25ba9fbb3801ae3000fc9"
+    },
+    {
+      "path": "apk-identity-delivery-local.json",
+      "bytes": 387,
+      "sha256": "ce2e78859abd7cb1f741d63c7a016cf14cbebfd909f48a8a77c237af70ede6ad"
+    },
+    {
+      "path": "apk-identity-etcfixed-local.json",
+      "bytes": 387,
+      "sha256": "539c474fd492ca3e600dc1cdc5f8ad1329fda4267976102af37d22dd0dd89447"
+    },
+    {
+      "path": "apk-identity-final-delivery.json",
+      "bytes": 387,
+      "sha256": "57b79287433537a6ad257c3b30a24d4942a9ed3d93e045db8dd78532b49da3d9"
+    },
+    {
+      "path": "apk-identity-local.json",
+      "bytes": 387,
+      "sha256": "534b6b202e835fde8c9c423fd2ef1f0303e02b6cba818ab5aa874755d2d7d687"
+    },
+    {
+      "path": "architecture-contest.log",
+      "bytes": 995,
+      "sha256": "eb9ae8bf1b4aa661299193a504df16673bc138e16709c4b3c30458e9aeba99d1"
+    },
+    {
+      "path": "architecture-visual-fixed.log",
+      "bytes": 995,
+      "sha256": "eb9ae8bf1b4aa661299193a504df16673bc138e16709c4b3c30458e9aeba99d1"
+    },
+    {
+      "path": "architecture.log",
+      "bytes": 995,
+      "sha256": "eb9ae8bf1b4aa661299193a504df16673bc138e16709c4b3c30458e9aeba99d1"
+    },
+    {
+      "path": "attempt1-job-109679209189.log",
+      "bytes": 38849,
+      "sha256": "e97fca6838547cbbefc436aa6c51cd24b9a19a56546c1fb553f9cae9f60b5900"
+    },
+    {
+      "path": "attempt1-job-109679209192.log",
+      "bytes": 35460,
+      "sha256": "606658c67123d6892a468a7f0aa5202e4e348fb33e9ccf9d4917e4493635099f"
+    },
+    {
+      "path": "attempt1-job-109679209209.log",
+      "bytes": 35357,
+      "sha256": "e62314a91d0fc9261e6640d60284ffc84d2e6ee73778b2b281b309110a72682b"
+    },
+    {
+      "path": "attempt1-job-109679209219.log",
+      "bytes": 38921,
+      "sha256": "4270f25d831b143dad8b419ffb0ea7828dec089997a8075455d42e2d61dcd738"
+    },
+    {
+      "path": "attempt1-job-109679209222.log",
+      "bytes": 38384,
+      "sha256": "45b60891ff630fd7d3f11f15843e20a2a22a491550d72663b6f9cb062a11e9ed"
+    },
+    {
+      "path": "attempt1-job-109679209338.log",
+      "bytes": 35445,
+      "sha256": "c5653318e89fd50fc9e9d17d800fa10de085b5fed0f4a584dfb177cc653d1e3a"
+    },
+    {
+      "path": "blender-visual-fixed.log",
+      "bytes": 232,
+      "sha256": "fe98d9e6443120ce130402d3017fb800fbc3c85a6286ae03b948cb7a895decad"
+    },
+    {
+      "path": "build-download.json",
+      "bytes": 279,
+      "sha256": "31b8c57ebadab0493649236fe41b31bef463f2d1e4b64a883c0f5b7a13343bf0"
+    },
+    {
+      "path": "combat-visual.log",
+      "bytes": 1773,
+      "sha256": "313fb6f0a2d46d899dfc334d94603f9e5b92171a2dded90fbf329f7fe702a4e0"
+    },
+    {
+      "path": "compression-visual-fixed.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "contest-final-instrument-compile.log",
+      "bytes": 3000,
+      "sha256": "7de06c98c8b28d3c9293bb47225aeb5d8e7622e0f85290b6858920f82abd4cd2"
+    },
+    {
+      "path": "contest-instrument-compile.log",
+      "bytes": 3440,
+      "sha256": "9984e1395d1403e3781d8dc6188691cdd857dc34a1cb88f936dcb4c7771a302d"
+    },
+    {
+      "path": "core-candidate.log",
+      "bytes": 465,
+      "sha256": "4b484a605fff485eed15b3391d76a6b7d3ec9f5872a594e60e3fcd9615c75e56"
+    },
+    {
+      "path": "current-ci-build/SOURCE_COMMIT",
+      "bytes": 41,
+      "sha256": "4b40f2f6b25ef63f763ff694ced8fea9613672443acff755a161f05b4e333f14"
+    },
+    {
+      "path": "current-ci-build/apk-audit.json",
+      "bytes": 1868,
+      "sha256": "910e67ade2d834ae5d2fcca8bb36e9156400bab88917d33bc617b83316b64a18"
+    },
+    {
+      "path": "current-ci-build/apk-identity.json",
+      "bytes": 387,
+      "sha256": "57b79287433537a6ad257c3b30a24d4942a9ed3d93e045db8dd78532b49da3d9"
+    },
+    {
+      "path": "current-ci-build/architecture.log",
+      "bytes": 995,
+      "sha256": "eb9ae8bf1b4aa661299193a504df16673bc138e16709c4b3c30458e9aeba99d1"
+    },
+    {
+      "path": "current-ci-build/blender.log",
+      "bytes": 232,
+      "sha256": "fe98d9e6443120ce130402d3017fb800fbc3c85a6286ae03b948cb7a895decad"
+    },
+    {
+      "path": "current-ci-build/build.log",
+      "bytes": 6683,
+      "sha256": "cd59279dfeb9ea4d061bc76bfb82034038c9b7ef36b7c95954cfe1b2fae3f10c"
+    },
+    {
+      "path": "current-ci-build/core-candidate.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "current-ci-build/core-candidate.log",
+      "bytes": 465,
+      "sha256": "4b484a605fff485eed15b3391d76a6b7d3ec9f5872a594e60e3fcd9615c75e56"
+    },
+    {
+      "path": "current-ci-build/core-input.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "current-ci-build/core-input.log",
+      "bytes": 465,
+      "sha256": "4b484a605fff485eed15b3391d76a6b7d3ec9f5872a594e60e3fcd9615c75e56"
+    },
+    {
+      "path": "current-ci-build/displacement-candidate.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "current-ci-build/displacement-candidate.log",
+      "bytes": 292,
+      "sha256": "e9e03df7c084f211eaeee6a4dde10f6389dc9d1cdc07aa7a5c53ec4255e7ff6e"
+    },
+    {
+      "path": "current-ci-build/displacement-input.exit",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "current-ci-build/displacement-input.log",
+      "bytes": 292,
+      "sha256": "e9e03df7c084f211eaeee6a4dde10f6389dc9d1cdc07aa7a5c53ec4255e7ff6e"
+    },
+    {
+      "path": "current-ci-build/host.log",
+      "bytes": 1112,
+      "sha256": "c140b19415716837492709c1b63b814a6459108a23dc47191d26ec6b224f9eb9"
+    },
+    {
+      "path": "current-ci-build/khronos.log",
+      "bytes": 106,
+      "sha256": "c7ae9f7d59aebafc240b1c67ebbb55fbaf4db0c20b7cd9378a6c64cf3a459c8d"
+    },
+    {
+      "path": "current-ci-build/metadata.txt",
+      "bytes": 823,
+      "sha256": "d9fbdcb7b82d7dfb8daeb752352add1990cbc99a62e3d7ef49cb203c0ad9f187"
+    },
+    {
+      "path": "current-ci-build/signature.txt",
+      "bytes": 327,
+      "sha256": "f212453b3b955f213464fb666b7fd496619dc95a64a888b3ef79e1d95f925479"
+    },
+    {
+      "path": "current-job-109688408527.log",
+      "bytes": 48413,
+      "sha256": "2286ed4e1679508ce3b66b7dd895d420afd492429387423c92cf39e3452f2920"
+    },
+    {
+      "path": "current-job-109689305205.log",
+      "bytes": 33307,
+      "sha256": "dc98302341ef213e83fc85aff8524cf7bfe2701e083aad5f79ee52b742a98186"
+    },
+    {
+      "path": "current-job-109689305217.log",
+      "bytes": 33260,
+      "sha256": "84c537809153e977d5d877a2b60797afaf473e1f930f65ff1968847dd6acd8bf"
+    },
+    {
+      "path": "current-job-109689305255.log",
+      "bytes": 36675,
+      "sha256": "ad3203153ec8d7fe5c5ceb582023b0f515f140e2623c20c35a86d065dccf01cf"
+    },
+    {
+      "path": "current-job-109689305324.log",
+      "bytes": 36889,
+      "sha256": "457938b32f9a3202e2a8b2f9951fe55ec832ab55a57dc8d007439b2018cd1828"
+    },
+    {
+      "path": "displacement-candidate.log",
+      "bytes": 292,
+      "sha256": "e9e03df7c084f211eaeee6a4dde10f6389dc9d1cdc07aa7a5c53ec4255e7ff6e"
+    },
+    {
+      "path": "etcfixed-instrument-compile.log",
+      "bytes": 3399,
+      "sha256": "757b459f5629ce37691fa0a3b4f04ae3f659ed04299349937908f108c88a47ea"
+    },
+    {
+      "path": "exact-delivery-source-build.log",
+      "bytes": 7864,
+      "sha256": "2ff47961165dd1cc9c3fab1bf76efdea64b5501073abb8d36c90fe96a6d2b78f"
+    },
+    {
+      "path": "exact-etcfixed-source-build.log",
+      "bytes": 7845,
+      "sha256": "6fb333af517225845962c009a9fe2307e9721e3e5ca12140ef5053f19964eae1"
+    },
+    {
+      "path": "exact-final-contest-source-build.log",
+      "bytes": 7998,
+      "sha256": "630ae416fffc299786dd5827cd91d9434a1a873ad93240875968858b4d19066f"
+    },
+    {
+      "path": "exact-final-source-build.log",
+      "bytes": 2983,
+      "sha256": "11ae95097ba2695f5f8f66f8ac3b4ca12479673558d9e536de0aa3cc81d02905"
+    },
+    {
+      "path": "exact-source-build.log",
+      "bytes": 7900,
+      "sha256": "1050c2e49d9379cdcdae7e2d5d4d1971b35c7ce46ececddb5a244896f08b4771"
+    },
+    {
+      "path": "exact-visual-source-build.log",
+      "bytes": 7878,
+      "sha256": "e803fc5e9277b0200de20b509e13a7f8e14f8eb47c15088753461394b36e9391"
+    },
+    {
+      "path": "field.log",
+      "bytes": 438,
+      "sha256": "256677cc1c02624d51bc1d37f679c787f8b96c6aeea6870f31ae1c9d44aa35d6"
+    },
+    {
+      "path": "final-ci-metadata.json",
+      "bytes": 22016,
+      "sha256": "13b224f9aecfa4abc30b6afc298fa01398f1181587ac20a87a2da0077ad68635"
+    },
+    {
+      "path": "final-instrument-compile.log",
+      "bytes": 3000,
+      "sha256": "fe5b9134a89d43ad705596c72b2b132be70a8ed7063d27bf90d2afbdb11ef24c"
+    },
+    {
+      "path": "final-job-109692922965.log",
+      "bytes": 48632,
+      "sha256": "3135920f5e944af581e84c4ab620b328c395855dda12a9e0fa76764f861372aa"
+    },
+    {
+      "path": "final-job-109693915124.log",
+      "bytes": 33093,
+      "sha256": "2ce08cdd577440d5556d3a4f1d4ec12d848ea75447fd990aec52c2a81f256f26"
+    },
+    {
+      "path": "first-final-attempt.json",
+      "bytes": 2279,
+      "sha256": "bdba591d6e71ed1256b8bd5c87ba7297e0451b372794f2e695fc55599213b1ef"
+    },
+    {
+      "path": "first-final-job-109693915093.log",
+      "bytes": 36707,
+      "sha256": "1d7123e1d77efc8ac8383e5d337ff780071764233edbf15790bdb95d49b5ee4f"
+    },
+    {
+      "path": "first-final-job-109693915103.log",
+      "bytes": 33289,
+      "sha256": "2c7c848b6f0878c7927b72950f48837ca1364a95e14d15b424ff088670bc55d8"
+    },
+    {
+      "path": "first-final-job-109693915131.log",
+      "bytes": 36712,
+      "sha256": "bebbe074b53216d3065b0339c98de9569760a4b57a29fd3b84886c47330744d4"
+    },
+    {
+      "path": "first-final-job-109693915145.log",
+      "bytes": 33305,
+      "sha256": "0bea153f5299f8fc4fcab6cc4293c776cef0612ec5410a0eaaecd68d82d40675"
+    },
+    {
+      "path": "first-final-job-109693915239.log",
+      "bytes": 36730,
+      "sha256": "3a19f5c7233fe7102fa4770a7e29f8ebd95994bc3daf450ae4fdbde08744ac0d"
+    },
+    {
+      "path": "grid.log",
+      "bytes": 1635,
+      "sha256": "f04f2d4fc4e2757fa75b0b541f8c213707a4fff636669a0daa250357d141eaac"
+    },
+    {
+      "path": "historical-protected-input-paths.txt",
+      "bytes": 7785,
+      "sha256": "cd10e8af2bbd7bba611207e9704f0ba9ce9dc870c068ade82959c4a493ef1f70"
+    },
+    {
+      "path": "host-contest-final.log",
+      "bytes": 1111,
+      "sha256": "c9fb355f82eda416867240c4a51ceb47191cfc1975cb8c8bff648af7ebc318dd"
+    },
+    {
+      "path": "host-contest-fixed.log",
+      "bytes": 1838,
+      "sha256": "1b68db39b2234bf1132d1497644cf5d38d9bb18ccc1e08328007f330fdc8e9be"
+    },
+    {
+      "path": "host-etcfixed.log",
+      "bytes": 978,
+      "sha256": "56e4dffd9f2cfb93d70d397ed1880d1f95f25e3d87879689aff1fe5172a0adef"
+    },
+    {
+      "path": "host-final.log",
+      "bytes": 978,
+      "sha256": "2f53d807101b80354f57aaf32e56570bfbab08f7c374b4926b1db41256084668"
+    },
+    {
+      "path": "host-visual-fixed.log",
+      "bytes": 1112,
+      "sha256": "c140b19415716837492709c1b63b814a6459108a23dc47191d26ec6b224f9eb9"
+    },
+    {
+      "path": "host.log",
+      "bytes": 978,
+      "sha256": "2f53d807101b80354f57aaf32e56570bfbab08f7c374b4926b1db41256084668"
+    },
+    {
+      "path": "khronos-visual-fixed.log",
+      "bytes": 205,
+      "sha256": "7cea7a33fdbf85047b8a95cc29f7591467b747dd87f189380964ebb4fa3fbdf4"
+    },
+    {
+      "path": "khronos.log",
+      "bytes": 205,
+      "sha256": "7cea7a33fdbf85047b8a95cc29f7591467b747dd87f189380964ebb4fa3fbdf4"
+    },
+    {
+      "path": "lint-counts.json",
+      "bytes": 96,
+      "sha256": "f3e0bff8060d177a7add74b6cba5d8989722da60492c883146835ca87e55d1dd"
+    },
+    {
+      "path": "metadata-local.txt",
+      "bytes": 823,
+      "sha256": "d9fbdcb7b82d7dfb8daeb752352add1990cbc99a62e3d7ef49cb203c0ad9f187"
+    },
+    {
+      "path": "preclip-regression.json",
+      "bytes": 276,
+      "sha256": "8943fd26a12f2ea4fba09345bb5dbc1c4260c4bb32f3e6acbc9b94d0476d3399"
+    },
+    {
+      "path": "preclip-regression.log",
+      "bytes": 270,
+      "sha256": "5d33c1adbfcde4b28a9a4002deee4939953ed8a22d2385915fbe703f0e217749"
+    },
+    {
+      "path": "preservation.json",
+      "bytes": 563,
+      "sha256": "03d0eb12c2b1a48b06053db993b1bdda6daa294d42a3965dc427eb1282c87a92"
+    },
+    {
+      "path": "retry-job-109695583083.log",
+      "bytes": 36898,
+      "sha256": "a87ce1bed5fb1bdcdf591b34a5cd1d3897d96ff68779d145c4182e9fb11e9796"
+    },
+    {
+      "path": "retry-job-109695583128.log",
+      "bytes": 36417,
+      "sha256": "112a09215693ce2b4fa2fe42490c9264ca34bb8a33381495e90cad069368d363"
+    },
+    {
+      "path": "retry-job-109695583142.log",
+      "bytes": 33129,
+      "sha256": "80b5ff5b8bcd92bd53d83155b8746a7a78df2e1da6996e0136e7aab7e3e8ba52"
+    },
+    {
+      "path": "retry-job-109695583154.log",
+      "bytes": 36217,
+      "sha256": "857130f4dab6b3e55f23a71c87d1822947cca0d46eae8b5ef46cc007812d9707"
+    },
+    {
+      "path": "retry-job-109695583297.log",
+      "bytes": 48632,
+      "sha256": "3135920f5e944af581e84c4ab620b328c395855dda12a9e0fa76764f861372aa"
+    },
+    {
+      "path": "retry-job-109695583356.log",
+      "bytes": 33305,
+      "sha256": "69b4c25c7a777af18a8927006fd333d3bcd8e34e4f333a529010074305d12459"
+    },
+    {
+      "path": "retry-job-109695584472.log",
+      "bytes": 33093,
+      "sha256": "2ce08cdd577440d5556d3a4f1d4ec12d848ea75447fd990aec52c2a81f256f26"
+    },
+    {
+      "path": "runtime-summary.json",
+      "bytes": 2868,
+      "sha256": "dc121097a8f533adefd971fc55db2ea04b027a62b01a61bc52d72da8323f0868"
+    },
+    {
+      "path": "session-contest-fixed.log",
+      "bytes": 133,
+      "sha256": "b3b213b1ca6eced677ba72807cff72f8efdb3b56791545d7f7b92ec634f70405"
+    },
+    {
+      "path": "signature-delivery-local.txt",
+      "bytes": 327,
+      "sha256": "f212453b3b955f213464fb666b7fd496619dc95a64a888b3ef79e1d95f925479"
+    },
+    {
+      "path": "signature-etcfixed-local.txt",
+      "bytes": 327,
+      "sha256": "f212453b3b955f213464fb666b7fd496619dc95a64a888b3ef79e1d95f925479"
+    },
+    {
+      "path": "signature-local.txt",
+      "bytes": 327,
+      "sha256": "f212453b3b955f213464fb666b7fd496619dc95a64a888b3ef79e1d95f925479"
+    }
+  ],
+  "evidence_index_file": "evidence/evidence-index.json inside deliverable ZIP; complete per-file hashes also in ARCHIVE_MANIFEST.json",
+  "final_apk_installations_verified": 11,
+  "attempts": [
+    1,
+    2
+  ]
+}

@@ -1,0 +1,5 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+CONFUSE phase=candidate119 leader40/deputy80 both sides: preview=20% actual=2042/10000 20.42%
+MISLEAD phase=candidate119 leader40/deputy80 both sides: preview=20% actual=2042/10000 20.42%
+PASS CONTROL_INTELLIGENCE checks=40106

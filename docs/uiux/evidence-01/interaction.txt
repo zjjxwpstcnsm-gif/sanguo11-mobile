@@ -1,0 +1,48 @@
+UIUX PASS 47 checks
+PASS normal launch restores existing save
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 武将 at Rect(60, 1029 - 1020, 1155)
+PASS touch visible 清除 at Rect(886, 574 - 1033, 700)
+PASS long officer list contains 656 rows
+PASS touch visible  at Rect(52, 711 - 902, 837)
+PASS actual key input filters to empty
+PASS empty result text fully visible above keyboard
+PASS touch visible 清空搜索 at Rect(89, 1330 - 991, 1456)
+PASS empty-state clear restores rows
+PASS touch visible 能力 at Rect(293, 848 - 539, 974)
+PASS touch visible 统 at Rect(262, 1030 - 388, 1156)
+PASS touching numeric header sorts descending
+PASS touch visible 统↓ at Rect(262, 1030 - 388, 1156)
+PASS second header touch reverses sorting
+PASS long list scroll changes visible rows
+PASS landscape preserves filtered list
+PASS landscape retains visible rows
+PASS landscape has a fully visible 48dp row
+PASS touch visible 筛选 at Rect(1616, 357 - 1742, 483)
+PASS touch visible 取消 at Rect(1279, 767 - 1447, 893)
+PASS browse/search/sort/scroll/rotation preserve authority and RNG
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 城市 at Rect(60, 651 - 1020, 777)
+PASS touch visible  at Rect(47, 574 - 540, 700)
+PASS external city query empties table
+PASS touch visible 清空搜索 at Rect(89, 1319 - 991, 1445)
+PASS city empty clear clears external query
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 任务 at Rect(60, 1281 - 1020, 1407)
+PASS touch visible 1/1 · 0项 at Rect(173, 1510 - 739, 1647)
+PASS touch visible  at Rect(68, 850 - 1011, 976)
+PASS touch visible 跳转 at Rect(837, 675 - 1005, 801)
+PASS invalid page stays open with inline field error
+PASS touch visible 取消 at Rect(669, 711 - 837, 837)
+PASS one cancel closes invalid page input
+PASS background read started
+PASS touch visible 取消 at Rect(852, 960 - 1020, 1086)
+PASS cancel and repeated submit publish no stale result
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 读取存档 at Rect(53, 882 - 1027, 1008)
+PASS touch visible 返回 at Rect(837, 1187 - 1005, 1313)
+PASS read-only slot and cancel flows preserve authority
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS pause/resume retains full authority and RNG

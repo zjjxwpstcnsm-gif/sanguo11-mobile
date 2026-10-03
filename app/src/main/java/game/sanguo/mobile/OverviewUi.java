@@ -71,9 +71,19 @@ final class OverviewUi {
         Rows<T> adapter=new Rows<>(rows,key,title,detail);adapter.emptyView=blank;adapter.nativeList=list;list.setAdapter(adapter);
         LinearLayout pager=new LinearLayout(a);pager.setGravity(Gravity.CENTER_VERTICAL);host.addView(pager,new LinearLayout.LayoutParams(-1,a.dp(52)));
         Button previous=a.button("‹",v->adapter.changePage(adapter.page-1)),next=a.button("›",v->adapter.changePage(adapter.page+1));previous.setContentDescription("上一页");next.setContentDescription("下一页");
-        Button number=a.button("",v->{EditText input=new EditText(a);input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);input.setHint("1–"+adapter.pages());input.setContentDescription("跳转页码");new AlertDialog.Builder(a).setTitle("跳转到页").setView(input).setPositiveButton("跳转",(d,n)->{try{adapter.changePage(Integer.parseInt(input.getText().toString())-1);}catch(NumberFormatException ignored){input.setError("请输入页码");}}).setNegativeButton("取消",null).show();});
+        Button number=a.button("",v->{
+            EditText input=new EditText(a);input.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);input.setSingleLine();UiTheme.search(input);input.setHint("1–"+adapter.pages());input.setContentDescription("跳转页码");
+            LinearLayout form=column();form.addView(input,new LinearLayout.LayoutParams(-1,a.dp(48)));
+            TextView error=a.text("",13,0xffffb4a8);error.setPadding(a.dp(12),a.dp(6),a.dp(12),a.dp(6));error.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);error.setVisibility(View.GONE);form.addView(error);
+            AlertDialog dialog=new AlertDialog.Builder(a).setTitle("跳转到页").setView(form).setPositiveButton("跳转",null).setNegativeButton("取消",null).create();
+            dialog.show();a.trackDialog(dialog);
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(button->{
+                try{int page=Integer.parseInt(input.getText().toString().trim());if(page<1||page>adapter.pages())throw new NumberFormatException();adapter.changePage(page-1);dialog.dismiss();}
+                catch(NumberFormatException ignored){error.setText("请输入 1–"+adapter.pages()+" 的页码");error.setVisibility(View.VISIBLE);input.requestFocus();}
+            });
+        });
         Button size=a.button(adapter.size()+"条",v->new AlertDialog.Builder(a).setTitle("每页条数").setItems(new String[]{"20条","50条","100条"},(d,n)->{state.listPageSize=new int[]{20,50,100}[n];adapter.changePage(0);}).setNegativeButton("取消",null).show());
-        pager.addView(previous,new LinearLayout.LayoutParams(a.dp(40),-1));pager.addView(number,new LinearLayout.LayoutParams(0,-1,1));pager.addView(next,new LinearLayout.LayoutParams(a.dp(40),-1));pager.addView(size,new LinearLayout.LayoutParams(a.dp(64),-1));
+        pager.addView(previous,new LinearLayout.LayoutParams(a.dp(48),-1));pager.addView(number,new LinearLayout.LayoutParams(0,-1,1));pager.addView(next,new LinearLayout.LayoutParams(a.dp(48),-1));pager.addView(size,new LinearLayout.LayoutParams(a.dp(64),-1));
         adapter.updatePager=()->{previous.setEnabled(adapter.page>0);next.setEnabled(adapter.page+1<adapter.pages());number.setText((adapter.page+1)+"/"+adapter.pages()+" · "+adapter.rows.size()+"项");number.setContentDescription("第"+(adapter.page+1)+"页，共"+adapter.pages()+"页，"+adapter.rows.size()+"项，点击跳转");size.setText(adapter.size()+"条");};adapter.updatePager.run();
         if(cityPage){
             list.setSelectionFromTop(position,top);
@@ -86,7 +96,7 @@ final class OverviewUi {
         if(state.page.equals("cities"))list.setOnItemLongClickListener((p,v,index,id)->{Object row=adapter.getItem(index);if(row instanceof World.City){World.City city=(World.City)row;new AlertDialog.Builder(a).setTitle(city.name+" · 物流预测").setMessage(new DistrictManagement(w).forecast(city)).setPositiveButton("查看相关任务",(d,n)->{state.taskQuery=city.name;state.taskType=0;state.page="tasks";a.refresh();}).setNegativeButton("返回",null).show();return true;}return false;});return adapter;
     }
     private EditText search(LinearLayout host,String hint,String value,Consumer<String> change){
-        EditText field=new EditText(a);field.setSingleLine();field.setTextColor(a.paper);field.setHintTextColor(a.muted);field.setHint(hint);field.setContentDescription(hint);field.setText(value);host.addView(field,new LinearLayout.LayoutParams(-1,a.dp(48)));
+        EditText field=new EditText(a);field.setSingleLine();UiTheme.search(field);field.setTextColor(a.paper);field.setHintTextColor(a.muted);field.setHint(hint);field.setContentDescription(hint);field.setText(value);host.addView(field,new LinearLayout.LayoutParams(-1,a.dp(48)));
         field.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int st,int c,int af){}public void afterTextChanged(Editable e){}public void onTextChanged(CharSequence s,int st,int b,int c){change.accept(s.toString());}});return field;
     }
     View factions(){
@@ -124,15 +134,21 @@ final class OverviewUi {
             new DataTable.Column<>("城防",66,c->""+c.defense,Comparator.comparingInt(c->c.defense),true),
             new DataTable.Column<>("武将",50,c->""+UiModels.officerCount(w,c.id),Comparator.comparingInt(c->UiModels.officerCount(w,c.id)),true));
         holder[0]=new DataTable<>(a,overview.cities(state.cityFilter,state.cityDistrict,state.citySort,state.cityQuery,state.cityOwner),columns,new int[]{0,1,2,3,4,5,6},c->c.name+" "+overview.detail(c),c->c.id,c->a.selectAndFocus(c.hex),c->new AlertDialog.Builder(a).setTitle(c.name).setMessage(new DistrictManagement(w).forecast(c)).setPositiveButton("返回",null).show());
-        DataTable<World.City> table=holder[0];table.columnGroups(new String[]{"军备 / 城防","财赋 / 人员"},new int[][]{{0,1,2,5},{0,3,4,6}});table.searchBar.setVisibility(View.GONE);table.order(state.listPages.getInt("cityColumnSort",-1),state.listPages.getBoolean("cityColumnDescending"));table.onSort=(i,reverse)->{state.listPages.putInt("cityColumnSort",i);state.listPages.putBoolean("cityColumnDescending",reverse);};
+        DataTable<World.City> table=holder[0];table.onClear=()->query.setText("");table.columnGroups(new String[]{"军备 / 城防","财赋 / 人员"},new int[][]{{0,1,2,5},{0,3,4,6}});table.searchBar.setVisibility(View.GONE);table.order(state.listPages.getInt("cityColumnSort",-1),state.listPages.getBoolean("cityColumnDescending"));table.onSort=(i,reverse)->{state.listPages.putInt("cityColumnSort",i);state.listPages.putBoolean("cityColumnDescending",reverse);};
         table.list.setSelectionFromTop(state.cityPosition,state.cityTop);table.list.setOnScrollListener(new AbsListView.OnScrollListener(){public void onScrollStateChanged(AbsListView v,int n){}public void onScroll(AbsListView v,int first,int visible,int total){if(v.getChildCount()>0){state.cityPosition=first;state.cityTop=v.getChildAt(0).getTop();}}});host.addView(table,new LinearLayout.LayoutParams(-1,0,1));return host;
     }
     View officers(){
         LinearLayout host=column();LinearLayout filters=new LinearLayout(a);host.addView(filters);
         Button faction=a.button(state.owner==-2?"在野武将":state.owner<0?"全部势力":w.faction(state.owner),v->{String[] labels=new String[w.factions.length+2];labels[0]="全部势力";System.arraycopy(w.factions,0,labels,1,w.factions.length);labels[labels.length-1]="在野武将";new AlertDialog.Builder(a).setTitle("按势力筛选").setItems(labels,(d,i)->{state.owner=i==w.factions.length+1?-2:i-1;a.refresh();}).show();});
         Button city=a.button(state.city<0?"全部据点":w.city(state.city).name,v->{List<World.City> all=new ArrayList<>(w.cities);ChoiceDialog.show(a,w,"按据点筛选",all,c->c.name,c->{state.city=c.id;a.refresh();});});
-        filters.addView(faction,new LinearLayout.LayoutParams(0,a.dp(40),1));filters.addView(city,new LinearLayout.LayoutParams(0,a.dp(40),1));filters.addView(a.button("清除",v->{state.city=-1;state.owner=-1;state.query="";a.refresh();}),new LinearLayout.LayoutParams(a.dp(56),a.dp(40)));
+        filters.addView(faction,new LinearLayout.LayoutParams(0,a.dp(48),1));filters.addView(city,new LinearLayout.LayoutParams(0,a.dp(48),1));filters.addView(a.button("清除",v->{state.city=-1;state.owner=-1;state.query="";a.refresh();}),new LinearLayout.LayoutParams(a.dp(56),a.dp(48)));
         DataTable<World.Officer> table=DataTable.officers(a,w,UiModels.officers(w,"",state.owner,state.city,0),o->"",a::officerDetail);
+        Button compactFilters=a.button("筛选",v->new AlertDialog.Builder(a).setTitle("武将筛选").setItems(new String[]{"势力 · "+faction.getText(),"据点 · "+city.getText(),"清除全部筛选"},(d,i)->{if(i==0)faction.performClick();else if(i==1)city.performClick();else{state.city=-1;state.owner=-1;state.query="";a.refresh();}}).setNegativeButton("取消",null).show());
+        compactFilters.setContentDescription("武将筛选 · "+faction.getText()+" · "+city.getText());compactFilters.setSelected(state.owner!=-1||state.city!=-1);compactFilters.setVisibility(View.GONE);
+        table.searchBar.addView(compactFilters,new LinearLayout.LayoutParams(a.dp(48),a.dp(48)));
+        host.addOnLayoutChangeListener((v,l,t,r,b,ol,ot,or,ob)->{
+            boolean shortSpace=b-t<a.dp(350);filters.setVisibility(shortSpace?View.GONE:View.VISIBLE);compactFilters.setVisibility(shortSpace?View.VISIBLE:View.GONE);
+        });
         table.search.setContentDescription("搜索武将姓名");table.search.setText(state.query);table.onQuery=q->state.query=q;table.order(state.officerSort,state.listPages.getBoolean("officerDescending",state.officerSort>0));table.onSort=(i,descending)->{state.officerSort=i;state.listPages.putBoolean("officerDescending",descending);};host.addView(table,new LinearLayout.LayoutParams(-1,0,1));return host;
     }
     private String taskEmpty(){return !state.taskQuery.isEmpty()?"没有符合检索条件的任务":state.taskType==1?"当前没有建设中的设施":"当前没有在途任务\n可从城池下达命令";}

@@ -1,0 +1,184 @@
+﻿2026-09-29T16:50:27.5121373Z Current runner version: '2.337.0'
+2026-09-29T16:50:27.5155228Z ##[group]Runner Image Provisioner
+2026-09-29T16:50:27.5156086Z Hosted Compute Agent
+2026-09-29T16:50:27.5157129Z Version: 20260828.587
+2026-09-29T16:50:27.5157860Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-29T16:50:27.5158598Z Build Date: 2026-08-28T16:44:25Z
+2026-09-29T16:50:27.5159364Z Worker ID: {b543b2a4-3838-44e6-9c1a-2c88cc5d5ea6}
+2026-09-29T16:50:27.5160076Z Azure Region: westus
+2026-09-29T16:50:27.5160712Z ##[endgroup]
+2026-09-29T16:50:27.5162837Z ##[group]Operating System
+2026-09-29T16:50:27.5164100Z Ubuntu
+2026-09-29T16:50:27.5165102Z 24.04.5
+2026-09-29T16:50:27.5165933Z LTS
+2026-09-29T16:50:27.5166721Z ##[endgroup]
+2026-09-29T16:50:27.5167708Z ##[group]Runner Image
+2026-09-29T16:50:27.5168660Z Image: ubuntu-24.04
+2026-09-29T16:50:27.5170141Z Version: 20260920.314.1
+2026-09-29T16:50:27.5172207Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260920.314/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-29T16:50:27.5175156Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260920.314
+2026-09-29T16:50:27.5176786Z ##[endgroup]
+2026-09-29T16:50:27.5178744Z ##[group]GITHUB_TOKEN Permissions
+2026-09-29T16:50:27.5181766Z Contents: read
+2026-09-29T16:50:27.5182854Z Metadata: read
+2026-09-29T16:50:27.5184271Z ##[endgroup]
+2026-09-29T16:50:27.5187470Z Secret source: Actions
+2026-09-29T16:50:27.5189026Z Cache mode: write
+2026-09-29T16:50:27.5190119Z Prepare workflow directory
+2026-09-29T16:50:27.5808977Z Prepare all required actions
+2026-09-29T16:50:27.5858330Z Getting action download info
+2026-09-29T16:50:27.9662807Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-09-29T16:50:28.1331609Z Download action repository 'google-github-actions/auth@v3' (SHA:7c6bc770dae815cd3e89ee6cdf493a5fab2cc093)
+2026-09-29T16:50:28.4831848Z Download action repository 'google-github-actions/setup-gcloud@v3' (SHA:aa5489c8933f4cc7a4f7d45035b3b1440c9c10db)
+2026-09-29T16:50:28.7947336Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-09-29T16:50:29.0297604Z Complete job name: physical_access
+2026-09-29T16:50:29.1178361Z ##[group]Run actions/checkout@v4
+2026-09-29T16:50:29.1179782Z with:
+2026-09-29T16:50:29.1180693Z   ref: 56ddddfa680f13807989855be0532a1259574c1b
+2026-09-29T16:50:29.1182008Z   repository: zjjxwpstcnsm-gif/sanguo11-mobile
+2026-09-29T16:50:29.1192334Z   token: ***
+2026-09-29T16:50:29.1193379Z   ssh-strict: true
+2026-09-29T16:50:29.1194271Z   ssh-user: git
+2026-09-29T16:50:29.1195159Z   persist-credentials: true
+2026-09-29T16:50:29.1196152Z   clean: true
+2026-09-29T16:50:29.1197053Z   sparse-checkout-cone-mode: true
+2026-09-29T16:50:29.1198112Z   fetch-depth: 1
+2026-09-29T16:50:29.1199006Z   fetch-tags: false
+2026-09-29T16:50:29.1199914Z   show-progress: true
+2026-09-29T16:50:29.1200818Z   lfs: false
+2026-09-29T16:50:29.1201664Z   submodules: false
+2026-09-29T16:50:29.1202577Z   set-safe-directory: true
+2026-09-29T16:50:29.1203788Z   allow-unsafe-pr-checkout: false
+2026-09-29T16:50:29.1205132Z env:
+2026-09-29T16:50:29.1205989Z   FIREBASE_PROJECT_ID: sanguo11
+2026-09-29T16:50:29.1207046Z ##[endgroup]
+2026-09-29T16:50:29.2240537Z Syncing repository: zjjxwpstcnsm-gif/sanguo11-mobile
+2026-09-29T16:50:29.2245138Z ##[group]Getting Git version info
+2026-09-29T16:50:29.2247546Z Working directory is '/home/runner/work/sanguo11-mobile/sanguo11-mobile'
+2026-09-29T16:50:29.2251280Z [command]/usr/bin/git version
+2026-09-29T16:50:29.2334336Z git version 2.55.0
+2026-09-29T16:50:29.2367581Z ##[endgroup]
+2026-09-29T16:50:29.2383364Z Temporarily overriding HOME='/home/runner/work/_temp/4c21d17b-f1d0-462f-bbd2-76972c4d3136' before making global git config changes
+2026-09-29T16:50:29.2389179Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-29T16:50:29.2406711Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/sanguo11-mobile/sanguo11-mobile
+2026-09-29T16:50:29.2459015Z Deleting the contents of '/home/runner/work/sanguo11-mobile/sanguo11-mobile'
+2026-09-29T16:50:29.2463387Z ##[group]Initializing the repository
+2026-09-29T16:50:29.2467921Z [command]/usr/bin/git init /home/runner/work/sanguo11-mobile/sanguo11-mobile
+2026-09-29T16:50:29.2621500Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-29T16:50:29.2624175Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-29T16:50:29.2626101Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-29T16:50:29.2627596Z hint: call:
+2026-09-29T16:50:29.2628389Z hint:
+2026-09-29T16:50:29.2629385Z hint: 	git config --global init.defaultBranch <name>
+2026-09-29T16:50:29.2630599Z hint:
+2026-09-29T16:50:29.2631753Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-29T16:50:29.2633855Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-29T16:50:29.2635411Z hint:
+2026-09-29T16:50:29.2636226Z hint: 	git branch -m <name>
+2026-09-29T16:50:29.2637141Z hint:
+2026-09-29T16:50:29.2638387Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-29T16:50:29.2646348Z Initialized empty Git repository in /home/runner/work/sanguo11-mobile/sanguo11-mobile/.git/
+2026-09-29T16:50:29.2661717Z [command]/usr/bin/git remote add origin https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile
+2026-09-29T16:50:29.2731394Z ##[endgroup]
+2026-09-29T16:50:29.2734304Z ##[group]Disabling automatic garbage collection
+2026-09-29T16:50:29.2736771Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-29T16:50:29.2781706Z ##[endgroup]
+2026-09-29T16:50:29.2784154Z ##[group]Setting up auth
+2026-09-29T16:50:29.2786460Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-29T16:50:29.2826544Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-29T16:50:29.3235104Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-29T16:50:29.3273475Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-29T16:50:29.3501172Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-29T16:50:29.3538990Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-29T16:50:29.3770922Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-29T16:50:29.3815040Z ##[endgroup]
+2026-09-29T16:50:29.3816573Z ##[group]Fetching the repository
+2026-09-29T16:50:29.3826111Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin 56ddddfa680f13807989855be0532a1259574c1b
+2026-09-29T16:50:32.3192726Z From https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile
+2026-09-29T16:50:32.3193889Z  * branch            56ddddfa680f13807989855be0532a1259574c1b -> FETCH_HEAD
+2026-09-29T16:50:32.3227509Z ##[endgroup]
+2026-09-29T16:50:32.3228479Z ##[group]Determining the checkout info
+2026-09-29T16:50:32.3229341Z ##[endgroup]
+2026-09-29T16:50:32.3229844Z [command]/usr/bin/git sparse-checkout disable
+2026-09-29T16:50:32.3300475Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-29T16:50:32.3335669Z ##[group]Checking out the ref
+2026-09-29T16:50:32.3344443Z [command]/usr/bin/git checkout --progress --force 56ddddfa680f13807989855be0532a1259574c1b
+2026-09-29T16:50:32.6308694Z Note: switching to '56ddddfa680f13807989855be0532a1259574c1b'.
+2026-09-29T16:50:32.6309318Z 
+2026-09-29T16:50:32.6309720Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-09-29T16:50:32.6311160Z changes and commit them, and you can discard any commits you make in this
+2026-09-29T16:50:32.6312013Z state without impacting any branches by switching back to a branch.
+2026-09-29T16:50:32.6312621Z 
+2026-09-29T16:50:32.6312979Z If you want to create a new branch to retain commits you create, you may
+2026-09-29T16:50:32.6314026Z do so (now or later) by using -c with the switch command. Example:
+2026-09-29T16:50:32.6314497Z 
+2026-09-29T16:50:32.6314748Z   git switch -c <new-branch-name>
+2026-09-29T16:50:32.6315055Z 
+2026-09-29T16:50:32.6315242Z Or undo this operation with:
+2026-09-29T16:50:32.6315563Z 
+2026-09-29T16:50:32.6315709Z   git switch -
+2026-09-29T16:50:32.6315945Z 
+2026-09-29T16:50:32.6316308Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-09-29T16:50:32.6316852Z 
+2026-09-29T16:50:32.6317348Z HEAD is now at 56ddddf perf(native): refine Blender models and avoid redundant mesh and transform work
+2026-09-29T16:50:32.6344776Z ##[endgroup]
+2026-09-29T16:50:32.6390640Z [command]/usr/bin/git log -1 --format=%H
+2026-09-29T16:50:32.6418606Z 56ddddfa680f13807989855be0532a1259574c1b
+2026-09-29T16:50:32.6749202Z ##[group]Run google-github-actions/auth@v3
+2026-09-29T16:50:32.6749552Z with:
+2026-09-29T16:50:32.6749764Z   project_id: sanguo11
+2026-09-29T16:50:32.6750331Z   workload_identity_provider: projects/322962089013/locations/global/workloadIdentityPools/github-test-lab/providers/sanguo
+2026-09-29T16:50:32.6751032Z   service_account: github-test-lab@sanguo11.iam.gserviceaccount.com
+2026-09-29T16:50:32.6751415Z   create_credentials_file: true
+2026-09-29T16:50:32.6751675Z   export_environment_variables: true
+2026-09-29T16:50:32.6751977Z   universe: googleapis.com
+2026-09-29T16:50:32.6752213Z   cleanup_credentials: true
+2026-09-29T16:50:32.6752453Z   access_token_lifetime: 3600s
+2026-09-29T16:50:32.6752833Z   access_token_scopes: https://www.googleapis.com/auth/cloud-platform
+2026-09-29T16:50:32.6753625Z   id_token_include_email: false
+2026-09-29T16:50:32.6753883Z env:
+2026-09-29T16:50:32.6754108Z   FIREBASE_PROJECT_ID: sanguo11
+2026-09-29T16:50:32.6754352Z ##[endgroup]
+2026-09-29T16:50:33.0224476Z Created credentials file at "/home/runner/work/sanguo11-mobile/sanguo11-mobile/gha-creds-1ed0e2d357ccae92.json"
+2026-09-29T16:50:33.1225111Z ##[error]google-github-actions/auth failed with: failed to generate Google Cloud federated token for //iam.googleapis.com/projects/322962089013/locations/global/workloadIdentityPools/github-test-lab/providers/sanguo: {"error":"unauthorized_client","error_description":"The given credential is rejected by the attribute condition."}
+2026-09-29T16:50:33.1349742Z ##[group]Run actions/upload-artifact@v4
+2026-09-29T16:50:33.1350051Z with:
+2026-09-29T16:50:33.1350285Z   name: native-feedback123-physical-access
+2026-09-29T16:50:33.1350595Z   path: out/firebase-preflight/
+2026-09-29T16:50:33.1350852Z   retention-days: 30
+2026-09-29T16:50:33.1351073Z   if-no-files-found: warn
+2026-09-29T16:50:33.1351307Z   compression-level: 6
+2026-09-29T16:50:33.1351533Z   overwrite: false
+2026-09-29T16:50:33.1351753Z   include-hidden-files: false
+2026-09-29T16:50:33.1351983Z env:
+2026-09-29T16:50:33.1352172Z   FIREBASE_PROJECT_ID: sanguo11
+2026-09-29T16:50:33.1352730Z   CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE: /home/runner/work/sanguo11-mobile/sanguo11-mobile/gha-creds-1ed0e2d357ccae92.json
+2026-09-29T16:50:33.1353936Z   GOOGLE_APPLICATION_CREDENTIALS: /home/runner/work/sanguo11-mobile/sanguo11-mobile/gha-creds-1ed0e2d357ccae92.json
+2026-09-29T16:50:33.1354773Z   GOOGLE_GHA_CREDS_PATH: /home/runner/work/sanguo11-mobile/sanguo11-mobile/gha-creds-1ed0e2d357ccae92.json
+2026-09-29T16:50:33.1355284Z   CLOUDSDK_CORE_PROJECT: sanguo11
+2026-09-29T16:50:33.1355541Z   CLOUDSDK_PROJECT: sanguo11
+2026-09-29T16:50:33.1355782Z   GCLOUD_PROJECT: sanguo11
+2026-09-29T16:50:33.1356016Z   GCP_PROJECT: sanguo11
+2026-09-29T16:50:33.1356239Z   GOOGLE_CLOUD_PROJECT: sanguo11
+2026-09-29T16:50:33.1356474Z ##[endgroup]
+2026-09-29T16:50:33.3037555Z (node:2307) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-29T16:50:33.3039279Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-29T16:50:33.3059075Z ##[warning]No files were found with the provided path: out/firebase-preflight/. No artifacts will be uploaded.
+2026-09-29T16:50:33.3295811Z Post job cleanup.
+2026-09-29T16:50:33.4269106Z Removed exported credentials at "/home/runner/work/sanguo11-mobile/sanguo11-mobile/gha-creds-1ed0e2d357ccae92.json".
+2026-09-29T16:50:33.4427424Z Post job cleanup.
+2026-09-29T16:50:33.5348904Z [command]/usr/bin/git version
+2026-09-29T16:50:33.5372501Z git version 2.55.0
+2026-09-29T16:50:33.5413581Z Temporarily overriding HOME='/home/runner/work/_temp/dfc68eaa-5b18-4172-a91d-283cecf08b11' before making global git config changes
+2026-09-29T16:50:33.5414874Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-29T16:50:33.5420228Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/sanguo11-mobile/sanguo11-mobile
+2026-09-29T16:50:33.5460193Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-29T16:50:33.5498211Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-29T16:50:33.5753620Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-29T16:50:33.5785416Z http.https://github.com/.extraheader
+2026-09-29T16:50:33.5804138Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-09-29T16:50:33.5869825Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-29T16:50:33.6165789Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-29T16:50:33.6254607Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-29T16:50:33.6726590Z Cleaning up orphan processes
+2026-09-29T16:50:33.7010890Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

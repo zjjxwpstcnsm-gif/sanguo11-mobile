@@ -28,6 +28,19 @@ public final class StrategicAi {
         return idle.stream().min(Comparator.<World.Officer>comparingInt(o->-skill.applyAsInt(o)).thenComparingInt(o->o.id)).orElseThrow(()->new IllegalStateException("No idle officer"));
     }
     private void add(List<Decision> list,World.City c,World.Officer o,int target,Command command,int score,String reason){
+        CityActionPlan.Operation operation=switch(command){
+            case PATROL->CityActionPlan.Operation.PATROL;case RECRUIT->CityActionPlan.Operation.RECRUIT;
+            case TRAIN->CityActionPlan.Operation.TRAIN;case SEARCH->CityActionPlan.Operation.SEARCH;
+            case REWARD->CityActionPlan.Operation.REWARD;case APPOINT->CityActionPlan.Operation.APPOINT_GOVERNOR;
+            default->null;
+        };
+        if(operation!=null){
+            int[] targets=command==Command.REWARD||command==Command.APPOINT?new int[]{target}:new int[0];
+            if(w.strategy.cityActionFailure(operation,c.id,o.id,targets)!=null)return;
+        }else if(command==Command.BUILD){
+            List<Hex> sites=w.domestic.buildSites(c.id);
+            if(sites.isEmpty()||!w.domestic.previewBuild(c.id,o.id,Domestic.Kind.values()[target],sites.get(0)).allowed())return;
+        }
         list.add(new Decision(c,o,target,command,score,reason));
     }
     public Decision plan(int cityId,boolean emergency){return w.loyalty.readRulers(()->planReadOnly(cityId,emergency));}

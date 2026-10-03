@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "source_executable": "san11pk.exe",
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "source_policy": "read-only",
+  "shaders": [
+    {
+      "name": "static-model",
+      "va": "0x77ae68",
+      "bytes": 411,
+      "sha256": "476806c4d5fb2af7d4999df567148ab54eb3fabc7e01236df72aee71eaf58942",
+      "text": "vs.1.1\ndcl_position v0\ndcl_normal v2\ndcl_color v3\ndcl_texcoord v4\nm4x4 r3, v0, c30\nm3x3 r7.xyz, v2.xyz, c30\nm4x4 r0, r3, c6\nm4x4 oPos, r3, c10\nmad r4.z, r0.z, c26.x, c26.y\nmax oFog, r4.z, c26.z\nmad r5.w, r0.z, c27.x, c27.y\nmax r5.w, r5.w, c0.w\nmin r5.w, r5.w, c1.w\nmul oD0.xyz, v3, c4\nmul r8.w, v3.w, c4.w\nmul oD0.w, r8.w, r5.w\nmov oT0, v4\ndp3 r6.x, r7, c18\nmax r6.x, r6.x, c0.x\nmov oT1.x, r6.x\nmov oT1.y, c2.y\n",
+      "runtime": "tools/3d/pc-scenery.mat candidate subset"
+    },
+    {
+      "name": "static-outline",
+      "va": "0x77b008",
+      "bytes": 349,
+      "sha256": "7548fdd3e247eaf15ee485901c031ee6c0cd4c8c038b0452f34e82e1378a1404",
+      "text": "vs.1.1\ndcl_position v0\ndcl_normal v2\ndcl_color v3\ndcl_texcoord v4\nm4x4 r3, v0, c30\nm3x3 r7.xyz, v2.xyz, c30\nm4x4 r0, r3, c6\nmov r7.w, c0.w\nmad r2, r7, c3, r3\nm4x4 oPos, r2, c10\nmad r4.z, r0.z, c26.x, c26.y\nmax oFog, r4.z, c26.z\nmad r5.w, r0.z, c27.x, c27.y\nmax r5.w, r5.w, c0.w\nmin r5.w, r5.w, c1.w\nmov oD0.xyz, c5\nmul oD0.w, r5.w, c5.w\nmov oT0, v4\n",
+      "runtime": null
+    }
+  ],
+  "constants": [
+    {
+      "name": "half",
+      "va": "0x794884",
+      "register": "c2",
+      "values": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "sha256": "1dc5c8e021c663cd8f7ecf1fb0c6d4112bc8d7f3c9e0095cd26bd7af7b8d7f13",
+      "upload": "44c7d4/44c7dc"
+    },
+    {
+      "name": "one",
+      "va": "0x794894",
+      "register": "c4",
+      "values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "sha256": "f6bb1294da2f78cd935b01c7656280df5eaa0439e9d97bc03775825a41a508e4",
+      "upload": "41b624/41b62c"
+    }
+  ],
+  "functions": [
+    {
+      "name": "model shader creation",
+      "start": "0x41b110",
+      "end_exclusive": "0x41b1c0",
+      "bytes": 176,
+      "sha256": "788b3cb60cda9a1a9976f29defa39231f3963f30725e0f55842b34f98a25988e"
+    },
+    {
+      "name": "static material render states",
+      "start": "0x41b420",
+      "end_exclusive": "0x41b637",
+      "bytes": 535,
+      "sha256": "90dab5b9e85c9c63e18062e8481638389f24e2af3ead2696b6fa738b614b116e"
+    },
+    {
+      "name": "static model and outline draw",
+      "start": "0x41b7b0",
+      "end_exclusive": "0x41b95a",
+      "bytes": 426,
+      "sha256": "519cbf5cf4bfc5a32e8edea7939cc92fae11f70217ba5dc6ecef8b93b556490e"
+    },
+    {
+      "name": "global vertex constants",
+      "start": "0x44c7ac",
+      "end_exclusive": "0x44c88e",
+      "bytes": 226,
+      "sha256": "fe6c053829ef05dd6cb5fa5e175171f23445a6d21a632411289b5e46955edb66"
+    },
+    {
+      "name": "direction and ambient uploads",
+      "start": "0x44caf6",
+      "end_exclusive": "0x44cb9a",
+      "bytes": 164,
+      "sha256": "d8b30c6bd4192fb06c9d477af8d384a52c4ad2ebc26735ad6fa1951f24f6bbae"
+    },
+    {
+      "name": "paint and silhouette loader",
+      "start": "0x401fb0",
+      "end_exclusive": "0x402160",
+      "bytes": 432,
+      "sha256": "873fc0fab61a7c76f15ca888e70be5682b348b4f68c9cbb3982322312145b774"
+    }
+  ],
+  "static_pipeline": {
+    "color": "saturate(2*atlas*vertexColor*c4), then saturate(2*previous*paint)",
+    "paint_uv": "per-vertex max(dot(source world normal,c18),0),c2.y",
+    "light": "44cb44: register18+lightIndex receives matrix column at +0/+10/+20",
+    "alpha": "atlasAlpha*vertexAlpha*c4.w*distanceFade; GREATER0 alpha test; SRCALPHA/INVSRCALPHA blend",
+    "depth_write": true,
+    "source_cull_mode": 2,
+    "lookups": {
+      "4806": "media/stage/paint.wft",
+      "4807": "media/stage/silhouette.wft"
+    }
+  },
+  "android_limits": [
+    "Distance fade and fog not yet ported",
+    "Outline draw not yet ported",
+    "Double-sided Android candidate; source culling/winding not yet accepted",
+    "Encoded source blending versus linear Filament composition still needs PC reference",
+    "Original per-model draw ordering versus streamed chunks still needs comparison",
+    "Terrain and skinned-unit shader variants not included",
+    "No source-game screenshot/video acceptance"
+  ]
+}

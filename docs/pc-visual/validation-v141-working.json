@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "goal_status": "active",
+  "phase": "v141 source static painting candidate",
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v141/app-debug-source-paint.apk",
+      "bytes": 80956879,
+      "sha256": "6779f2e2210ad30edf98a71522bd9979b3124cd0e1eef2e4a3198fd196310f4c"
+    },
+    {
+      "path": "out/pc-visual/v141/androidTest-source-paint.apk",
+      "bytes": 596601,
+      "sha256": "3ae0433e0d300b2fea69456ac07d0be680c003cf5d2c117405bdcc075889b7b0"
+    }
+  ],
+  "source": "docs/pc-visual/environment-source-working.json",
+  "shading": "docs/pc-visual/shading-source-working.json",
+  "checks": [
+    {
+      "name": "source-SENV-machine-arithmetic",
+      "status": "pass",
+      "states": 24,
+      "samples": 72,
+      "report": "out/pc-visual/v141-environment-machine-check.json"
+    },
+    {
+      "name": "source-static-D3D-state-machine",
+      "status": "pass",
+      "report": "out/pc-visual/v141-shading-machine-check.json"
+    },
+    {
+      "name": "source-scenery-host",
+      "status": "pass",
+      "checks": 7180220,
+      "log": "out/pc-visual/v141-scenery-host.txt"
+    },
+    {
+      "name": "APK-resource-pins",
+      "status": "pass",
+      "pins": 97,
+      "log": "out/pc-visual/v141-apk-pins.txt"
+    },
+    {
+      "name": "installed-scenery-four-seasons-LOD-lifecycle",
+      "status": "fail",
+      "log": "out/pc-visual/v141-source-paint-scenery-installed.txt",
+      "near_views_completed": 12,
+      "failure": "Far span50 pending168 after120s; lifecycle acceptance not reached",
+      "evidence": "out/pc-visual/v141/evidence-scenery-failed/manifest.json"
+    },
+    {
+      "name": "installed-far-diagnostic",
+      "status": "fail",
+      "pending_after120s": 173,
+      "log": "out/pc-visual/v141-scenery-far-diagnostic-installed.txt"
+    },
+    {
+      "name": "source-coordinate-machine-code",
+      "status": "pass",
+      "height_values": 256,
+      "objects": 1195,
+      "report": "out/pc-visual/v141-coordinate-machine-check.json"
+    }
+  ],
+  "hardware": {
+    "PC_reference": "NOT_AVAILABLE",
+    "ARM": "NOT_RUN",
+    "emulator": "API29 x86_64 host OpenGL"
+  },
+  "remaining": [
+    "Static outline and distance fade",
+    "Source fog and ambient application",
+    "Unit and terrain source shader variants",
+    "Source transparency color space/filter/order/culling comparison",
+    "Source environment/battle/fullscreen effects and flags",
+    "PC visual/timing reference and ARM performance"
+  ],
+  "source_effect_investigation": {
+    "primitive2_records": 887,
+    "primitive2_machine_samples": 1774,
+    "report": "out/pc-visual/v141-effect-quad-machine-check.json",
+    "runtime_effects_added": 0,
+    "matrix_literals": 360,
+    "matrix_machine_samples": 720,
+    "matrix_report": "out/pc-visual/v141-effect-matrix-machine-check.json",
+    "matrix_rotation_expression_bounds": 84,
+    "unresolved_matrix_layouts": 0,
+    "unvalidated_rotation_evaluators": 84,
+    "limits": "All inspected motion expression layouts decoded; scalar/harmonic/rotation clocks and emission/runtime remain unaccepted"
+  },
+  "inherited_installed_validation": "docs/pc-visual/validation-v140-working.json",
+  "install": {
+    "status": "pass",
+    "main_log": "out/pc-visual/v141-install-main.txt",
+    "test_log": "out/pc-visual/v141-install-test.txt",
+    "installed_package": "out/pc-visual/v141-installed-package.txt",
+    "autosave_preserved_before_test": true,
+    "autosave_after_failed_scenery_byte_exact": true,
+    "autosave_after_far_diagnostic_byte_exact": true
+  }
+}

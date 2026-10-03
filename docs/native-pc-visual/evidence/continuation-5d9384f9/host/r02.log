@@ -1,0 +1,4 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+NATIONAL_GOLDEN valid=38949 hash=15475946728566902866
+PASS R02 399124 checks; matrix samples=1548 front occlusions=0

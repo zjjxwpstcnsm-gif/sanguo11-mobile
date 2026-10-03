@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "shared_source_path": "Media/scenario/Scenario.s11",
+  "shared_source_sha256": "dfca0316e019454e77bab5805e3d725ae35e34408e1699e869e5419e2f5fad6f",
+  "military_office_record_sha256": "d2c49dad8acb27e8db40c39a7cf477d411b659d1b5a2093b51fb909257e1bbaf",
+  "commands": [
+    {
+      "operation": "RECRUIT",
+      "native_id": 1,
+      "native_name": "徵兵",
+      "action_points": 20,
+      "instruction_address": "0x5c3c9c",
+      "instruction_hex": "6a146a01"
+    },
+    {
+      "operation": "PATROL",
+      "native_id": 3,
+      "native_name": "巡察",
+      "action_points": 20,
+      "instruction_address": "0x5cbf8b",
+      "instruction_hex": "6a146a03"
+    },
+    {
+      "operation": "PRODUCTION",
+      "native_id": 2,
+      "native_name": "生產",
+      "action_points": 20,
+      "instruction_address": "0x5c67a9",
+      "instruction_hex": "6a146a02"
+    },
+    {
+      "operation": "PRODUCTION_ALTERNATE",
+      "native_id": 2,
+      "native_name": "生產",
+      "action_points": 20,
+      "instruction_address": "0x5c711b",
+      "instruction_hex": "6a146a02"
+    },
+    {
+      "operation": "TRADE",
+      "native_id": 4,
+      "native_name": "商人",
+      "action_points": 20,
+      "instruction_address": "0x5cad11",
+      "instruction_hex": "6a146a04"
+    }
+  ],
+  "training": {
+    "native_id": 6,
+    "native_name": "訓練",
+    "base": 20,
+    "discounted": 10,
+    "facility_native_id": 41,
+    "facility_name": "軍事府",
+    "condition": "Original49dab0 finds city+f4 registry object with +8=41 and nonzero +14",
+    "arithmetic_address": "0x5c440f",
+    "arithmetic_hex": "f7d81bc083e0f683c014"
+  },
+  "evidence": [
+    "48f1a0..48f1b0 original command label lookup",
+    "巡察 dialog60ad60/60a7b0 calls5cba10, same calculation in execution5cbd90",
+    "徵兵 dialog604f50/604850 calls5c3610, same calculation in execution5c3a50",
+    "訓練 dialog605860 calls5c4080; execution5c43ca checks native facility41 before debit",
+    "test_pc_city_action_costs.py: original5b9340 ->4a1820 ->47e3e0, 60 AP boundary cases compare all3MiB; both production debit entries and merchant included"
+  ],
+  "limits": [
+    "City formulas, costs other than AP, crew count, facility construction and district scope not fully aligned",
+    "Project currently has no military-office facility, so training uses base20",
+    "Nonzero field14 tested as original predicate; broader field semantics not asserted",
+    "No evidence optional MOD runtime patches are enabled"
+  ]
+}

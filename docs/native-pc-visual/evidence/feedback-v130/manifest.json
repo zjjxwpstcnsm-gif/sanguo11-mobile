@@ -1,0 +1,74 @@
+{
+  "status": "PARTIAL",
+  "version": 130,
+  "apk": "NOT_RUN at source checkpoint",
+  "source": "commit containing this manifest; CI records/embeds exact SOURCE_COMMIT",
+  "runtime_workflow": ".github/workflows/native-landmarks130.yml",
+  "v129_apk_sha256": "72774472d68af756074711274a2c7858cad2ba20b3ea82a92fa48a6c1172ed5f",
+  "v129_grid_api29": "PASS249; real fixture, six Surface/UI pairs",
+  "v129_grid_api35": "FAIL ready",
+  "v129_hukou_lavapipe": "actual scene ready; visual FAIL; strict pinch FAIL",
+  "v130_device": "NOT_RUN",
+  "physical_device": "NOT_RUN",
+  "PC_same_view": "REFERENCE_MISSING",
+  "assets": [
+    {
+      "path": "app/src/main/assets/3d/field/v130/fall-hukou-lod0.glb",
+      "id": "fall-hukou-lod0",
+      "sha256": "a25c6db3505882c0df838b4612e05b2b326e5400022cb2d2137be95874f91d77",
+      "bytes": 258100,
+      "triangles": 2606,
+      "vertices": 3992,
+      "primitives": 1,
+      "bounds": [
+        -0.44661974906921387,
+        0.0010000000474974513,
+        0.0,
+        0.4666060209274292,
+        1.0,
+        0.9916297793388367
+      ],
+      "source": "Original low terraced Hukou gorge: unequal horizontal shoulder ledges, tightly folded ochre throat, continuous pale impact, low widening blue-green river contact",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v129 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "unindexed_vertex_bytes": 375264,
+      "indexed_vertex_bytes": 191616,
+      "index_bytes": 31272
+    },
+    {
+      "path": "app/src/main/assets/3d/field/v130/fall-hukou-lod1.glb",
+      "id": "fall-hukou-lod1",
+      "sha256": "397a8da0034ecda6ac0cc4e63fe5b7fbd817c3c730feeccffe173e91c2120cac",
+      "bytes": 96288,
+      "triangles": 678,
+      "vertices": 1103,
+      "primitives": 1,
+      "bounds": [
+        -0.44661974906921387,
+        0.0010000000474974513,
+        0.0,
+        0.4666060209274292,
+        1.0,
+        0.9917415976524353
+      ],
+      "source": "Original low terraced Hukou gorge: unequal horizontal shoulder ledges, tightly folded ochre throat, continuous pale impact, low widening blue-green river contact",
+      "tool": "Blender 4.3.2",
+      "license": "CC0-1.0 original project geometry; unchanged v129 atlas",
+      "axes": "+Y up / +Z forward",
+      "pivot": [
+        0,
+        0,
+        0
+      ],
+      "unindexed_vertex_bytes": 97632,
+      "indexed_vertex_bytes": 52944,
+      "index_bytes": 8136
+    }
+  ]
+}

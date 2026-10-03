@@ -1,0 +1,43 @@
+material {
+    name : PcSourceScenery,
+    flipUV : false,
+    shadingModel : unlit,
+    blending : transparent,
+    depthWrite : true,
+    doubleSided : true,
+    requires : [ color, uv0, tangents ],
+    variables : [ pcPaintUV ],
+    parameters : [
+        { type : sampler2d, name : atlas },
+        { type : sampler2d, name : paint },
+        { type : float3, name : sourceLight }
+    ]
+}
+vertex {
+    void materialVertex(inout MaterialVertexInputs material) {
+        // Uniform source XYZ preserves normal/yaw. Source77ae68 computes
+        // this UV per vertex; source shear-normal magnitude remains unverified.
+        float3 sourceNormal=normalize(material.worldNormal);
+        material.pcPaintUV=float4(max(dot(sourceNormal,materialParams.sourceLight),0.0),0.5,0.0,0.0);
+    }
+}
+fragment {
+    float3 sourceDisplayLinear(float3 color) {
+        return mix(color/12.92,pow((color+0.055)/1.055,float3(2.4)),step(float3(0.04045),color));
+    }
+    void material(inout MaterialInputs material) {
+        prepareMaterial(material);
+        float4 original=texture(materialParams_atlas,getUV0());
+        // Source MODULATE2X at stages0 and1 saturates separately. Original
+        // painting pixels are encoded byte values, not PBR reflectance.
+        float3 stage0=clamp(2.0*original.rgb*getColor().rgb,0.0,1.0);
+        float3 paint=texture(materialParams_paint,variable_pcPaintUV.xy).rgb;
+        float3 color=clamp(2.0*stage0*paint,0.0,1.0);
+        float alpha=original.a*getColor().a;
+        // 41b420 enables both GREATER 0 alpha testing and SRCALPHA /
+        // INVSRCALPHA blending, with depth writes enabled. Preserve fractional
+        // alpha, converting to Filament's premultiplied linear boundary.
+        if(alpha<=0.0019607843)discard;
+        material.baseColor=float4(sourceDisplayLinear(color)*alpha,alpha);
+    }
+}

@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "source_archive": "Media/san11pkres.bin",
+  "source_id": 4805,
+  "source_sha256": "766ccdd0e4a8ec9b4334130518cabeda6bbf16354352ec6b05712bce0a7106a8",
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "source_coordinate_function": {
+    "va": "0x5a0160",
+    "bytes": 380,
+    "sha256": "b8f711b26975022ccec12e98dc87e00c879d0ad3e4475c764a1115d632312f2a"
+  },
+  "source_model_binding": {
+    "kind": 20,
+    "models": [
+      154,
+      156,
+      158,
+      74
+    ]
+  },
+  "models": [
+    {
+      "model_index": 74,
+      "id": 4523,
+      "sha256": "05f928927b2a980cb0ff0d76ff3b7f4cc64d11c5d8ec8ea4fadd2e06f387b55b",
+      "texture_base_index": 21,
+      "vertices": 557,
+      "triangles": 324,
+      "draw_flags": "0xc0000000",
+      "source_draw_pass": "alpha"
+    },
+    {
+      "model_index": 75,
+      "id": 4524,
+      "sha256": "8dc9f89ea96549cbd3b4edd99523d2b1bd9acce11f38de90bb94940be577473c",
+      "texture_base_index": 21,
+      "vertices": 387,
+      "triangles": 213,
+      "draw_flags": "0xc0000000",
+      "source_draw_pass": "alpha"
+    },
+    {
+      "model_index": 154,
+      "id": 4588,
+      "sha256": "d0f7901132a96adebf0b2e5a111ef8e45472d907059d8ab5d7719246b7be44cd",
+      "texture_base_index": 30,
+      "vertices": 409,
+      "triangles": 230,
+      "draw_flags": "0x40000000",
+      "source_draw_pass": "opaque"
+    },
+    {
+      "model_index": 155,
+      "id": 4589,
+      "sha256": "d0f7901132a96adebf0b2e5a111ef8e45472d907059d8ab5d7719246b7be44cd",
+      "texture_base_index": 30,
+      "vertices": 409,
+      "triangles": 230,
+      "draw_flags": "0x40000000",
+      "source_draw_pass": "opaque"
+    },
+    {
+      "model_index": 156,
+      "id": 4570,
+      "sha256": "7123ed9eb0369137fb06447c31dae9e10739d3ca39e46c1f7f895a6da719c271",
+      "texture_base_index": 30,
+      "vertices": 435,
+      "triangles": 241,
+      "draw_flags": "0x40000000",
+      "source_draw_pass": "opaque"
+    },
+    {
+      "model_index": 157,
+      "id": 4571,
+      "sha256": "7123ed9eb0369137fb06447c31dae9e10739d3ca39e46c1f7f895a6da719c271",
+      "texture_base_index": 30,
+      "vertices": 435,
+      "triangles": 241,
+      "draw_flags": "0x40000000",
+      "source_draw_pass": "opaque"
+    },
+    {
+      "model_index": 158,
+      "id": 4568,
+      "sha256": "788f07133dd76bedaff0e3d55219a3bb306354affd69115ec166e5e780411be3",
+      "texture_base_index": 30,
+      "vertices": 373,
+      "triangles": 218,
+      "draw_flags": "0x40000000",
+      "source_draw_pass": "opaque"
+    },
+    {
+      "model_index": 159,
+      "id": 4569,
+      "sha256": "788f07133dd76bedaff0e3d55219a3bb306354affd69115ec166e5e780411be3",
+      "texture_base_index": 30,
+      "vertices": 373,
+      "triangles": 218,
+      "draw_flags": "0x40000000",
+      "source_draw_pass": "opaque"
+    }
+  ],
+  "textures": [
+    {
+      "texture_index": 21,
+      "id": 4549,
+      "sha256": "0bdcbd3afeba327f0a8f2bdf246503317ab9b223ba917b00620353af7f1911c8",
+      "cell": 9,
+      "source_size": [
+        256,
+        256
+      ]
+    },
+    {
+      "texture_index": 30,
+      "id": 4527,
+      "sha256": "b3f4bfb2915775bb833e8ccd370acf90971e3a13c5d5c01942d1da1b383b7762",
+      "cell": 18,
+      "source_size": [
+        256,
+        256
+      ]
+    }
+  ],
+  "placements": [
+    {
+      "slot": 678,
+      "model": 20,
+      "x": 367,
+      "z": 200,
+      "height": 0,
+      "yaw": 4.71238899230957,
+      "tail": 0,
+      "source_cell": [
+        155,
+        71
+      ]
+    },
+    {
+      "slot": 680,
+      "model": 20,
+      "x": 285,
+      "z": 173,
+      "height": 0,
+      "yaw": 0.0,
+      "tail": 0,
+      "source_cell": [
+        114,
+        58
+      ]
+    },
+    {
+      "slot": 682,
+      "model": 20,
+      "x": 347,
+      "z": 238,
+      "height": 0,
+      "yaw": 3.1415927410125732,
+      "tail": 0,
+      "source_cell": [
+        145,
+        90
+      ]
+    },
+    {
+      "slot": 1182,
+      "model": 20,
+      "x": 421,
+      "z": 89,
+      "height": 0,
+      "yaw": 1.5707963705062866,
+      "tail": 0,
+      "source_cell": [
+        182,
+        16
+      ]
+    }
+  ],
+  "conversion": "Exact half-grid placement, yaw, authored height; native facility-cell inverse from EXE5a0160",
+  "runtime_binding": "PcDamCatalog opening-only → saved War.Structure DAM; PcDams / PcFacilities / FilamentMapView",
+  "outputs": [
+    {
+      "path": "app/src/main/assets/3d/pc-facilities/dams.pcz",
+      "bytes": 72,
+      "sha256": "a662a1da667cde433b611c336c14c3302389350766f08c352d002dba14e8d284"
+    },
+    {
+      "path": "core/src/main/resources/maps/pc-dams-v065.properties",
+      "bytes": 241,
+      "sha256": "2c73957fcfb5873185fe72231e2f4b1b980f960e9962a063ecef4304b58f408a"
+    }
+  ],
+  "validation": "conversion only; source body, opening/save behavior and normal attack/flood installation pending",
+  "limits": [
+    "Source ground remains wetland; never change source terrain to make an entity visible",
+    "Existing save entities are authoritative; no automatic dam respawn/migration",
+    "PC flood/collapse effects, timing and matched runtime captures pending"
+  ]
+}

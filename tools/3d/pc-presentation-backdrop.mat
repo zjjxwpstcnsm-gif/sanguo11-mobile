@@ -1,0 +1,34 @@
+// The existing map framebuffer is captured once; no substitute map geometry.
+material {
+    name : PcPresentationCapturedMap,
+    vertexDomain : device,
+    shadingModel : unlit,
+    depthWrite : false,
+    depthCulling : false,
+    culling : none,
+    variables : [imageUV],
+    parameters : [{type : sampler2d, name : image},{type : bool, name : decode},{type : bool, name : renderTarget},{type : float2, name : viewport}]
+}
+vertex {
+    void materialVertex(inout MaterialVertexInputs material) {
+        material.imageUV.st = float2(getPosition().x * 0.5 + 0.5, 0.5 - getPosition().y * 0.5);
+    }
+}
+fragment {
+    float3 encodedToLinear(float3 color) {
+        return mix(color/12.92,pow((color+0.055)/1.055,float3(2.4)),step(float3(0.04045),color));
+    }
+    void material(inout MaterialInputs material) {
+        prepareMaterial(material);
+        // A captured framebuffer is already a raster. Reading by the actual
+        // high-precision fragment center avoids interpolated UV precision and
+        // a second filtering pass. Android bitmaps start at their top row;
+        // the intermediate OpenGL render target starts at its bottom row.
+        int2 size=textureSize(materialParams_image,0);
+        highp float2 position=gl_FragCoord.xy*float2(size)/materialParams.viewport;
+        int2 pixel=clamp(int2(position),int2(0),size-int2(1));
+        if(!materialParams.renderTarget)pixel.y=size.y-1-pixel.y;
+        float3 color=texelFetch(materialParams_image,pixel,0).rgb;
+        material.baseColor = float4(materialParams.decode?encodedToLinear(color):color,1.0);
+    }
+}

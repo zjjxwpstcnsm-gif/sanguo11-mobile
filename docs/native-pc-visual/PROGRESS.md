@@ -1,0 +1,84 @@
+## 2026-09-30 v130 actual-Hukou corrective iteration — PARTIAL
+
+v129 APK is verified; API29 actual grid/research/force switching PASS249. Actual lavapipe Hukou revealed a narrow raised ornament, so only Hukou source/fit is corrected:0.913-wide ledge at bank-relative crest, new near/far GLBs, and strictly observed real pinch events. Other v129 art, poison and authorized plank rule remain. New exact APK/runtime validation pending; see reports/feedback-v130.md.
+
+## 2026-09-30 v129 combined terrain / difficult-march / poison — PARTIAL
+
+Twenty higher-detail Blender GLBs, corrected landscape UV orientation, distinct poison material, authoritative technology-gated grid and explicitly authorized plank entry rule are integrated. Host suites pass; exact-source APK and device/visual evidence are pending at this checkpoint. See reports/feedback-v129.md. No merge or next phase.
+
+## v128 landscape refinement — PARTIAL / current-source CI pending
+
+20 actual Blender models and Taihu shore dressing integrated; welded waterfall-corner correction and atomic camera/CPU startup covered by host tests. Old rule failures retained; GPU readiness/PC reference/ARM64 gates remain open. See reports/feedback-v128.md and handoffs/feedback-v128.md.
+
+## 2026-09-30 v127 瀑布可见性反馈续作 — PARTIAL
+
+真实Blender重新制作6个近远LOD瀑布：立体岩台、连续陡落水幕、落水泡沫；普通远LOD保留落差。正常“视图 → 山河地标”入口定位泰山、西南、庐山、壶口及长城。保留原地图/高度/通行与已有467资产，未启Unity或改玩法。
+
+主机218,663项新检查、保留原专项与架构/Khronos335GLB PASS；core.logistics:75和displacement.boundaries:27输入/候选同点FAIL继承保留。首轮构建通过，但多个候选/输入120秒ready失败；西南API29正常点击回调未完成即判断的探针竞态已修复（增加主线程完成屏障，不放宽120秒ready断言）。首轮岩台/泡沫PNG方向取反由像素检查独立复现FAIL并修正，重编最终候选进行中，不能提前记PASS。PC同镜头REFERENCE_MISSING，ARM64/30分钟/纯触控开局SAF生命周期NOT_RUN。详见reports/feedback-v127.md和handoffs/feedback-v127.md。不合main、不开始下一阶段。
+
+## 2026-09-30 v126 地标与地形 — PARTIAL
+
+Blender12个近远LOD接入正式地形景物合批：壶口泥沙色收束短瀑、北方墙/烽燧、三类区域岩壁。原452资产、规则、地图、地形高度与架构保留。APK source `25e6c121cba1ae36947c520dfccc48e13e0e2171`，SHA256 `fe048dee1734a23d156fd56bd3ea2cbf65280daf29c5660e3ced0dc5311bc383`，v126/41,987,766B；CI36659459089 build与467资产/四ABI16KB PASS，总体FAIL。
+
+地标556,693/旧瀑布29,266/S04-S05与架构专项、329GLB零错误警告及Blender/ETC2/material逐字节复现PASS；完整core的logistics:75与displacement:27输入/候选同点FAIL继承保留。14次实际安装字节核验PASS；API35泰山169/西南142首轮PASS，API29西南首轮FAIL/同包仅一次复验173 PASS；壶口两API/API29墙及泰山两轮ready FAIL，API35墙复验10 Surface/9 UI后截图不可用FAIL。回归归因UNKNOWN/风险OPEN。
+
+美术线FAIL：条纹瀑布与接缝、墙段缝隙/硬转折、岩壁砌块感尚未达标；PC精确锚点/同镜头REFERENCE_MISSING，ARM64/30分钟/历史纯触控SAF生命周期NOT_RUN/OPEN。不合main、不启Unity、不开始下一阶段。见reports/feedback-v126.md、handoffs/feedback-v126.md、evidence/feedback-v126/manifest.json。
+
+## 2026-09-30 v125 地形瀑布/骑兵反馈 — PARTIAL
+
+实际Blender8个岩台/碎石坡/瀑布LOD、完整ETC2及1.56景物材质接入原Vegetation/Filament正式路径；不改原地图/高度/通行，旧441资源逐字节保留。骑兵障碍取消强制位移仍可释放/伤害/独立单挑；适性不足灰色禁用。真实单挑UI推进曾被busy拒绝，现用窄ContestCommand经唯一GameSession修复，普通busy/版本/回合保护及SaveCodec保留。
+
+APK source `46361762ccf868c4fce8d55e603639d9e4f23905`，SHA256 `2be377ca7a4b25b1ccfcd13ed93001d18e0fa724a089e221e49ba94f5573d2c2`。CI36653575757 build PASS；API29 battle首轮PASS、API35 battle首轮3D ready FAIL/同包复验PASS（各API最新76/113、灰色真实tap、单挑交锋callback/存读/结算、2D/3D完整SaveCodec/RNG一致）。全国泰山/西南结果见报告及runtime-summary，不是美术PASS。主机51,711+29,266+33及原相关专项通过；317GLB零错误警告，lint0错误/84警告。原规则失败独立双边复现和旧R18零差异FAIL均保留。
+
+PC同镜头REFERENCE_MISSING、ARM64/30分钟、历史触控SAF生命周期及全国ready缺口OPEN；最终泰山/西南四组首轮及复验均ready FAIL，全国回归归因UNKNOWN/风险OPEN，单挑原版精确体力/宝物忠实度PARTIAL。不合main/不启Unity/不开始下一阶段。详见reports/feedback-v125.md、handoffs/feedback-v125.md及evidence/feedback-v125/manifest.json。
+
+## v124 Blender模型/原生3D性能续作 — PARTIAL
+
+49个城港关/13兵种/地形装饰GLB已接入正常路径；primitive植被、制作法线与rig/clip一次性解析、解码重试位置缓存优化。最终APK源码`6f6ee9772279c87c4e3ff1228ff7eda726793b18`，SHA256`edf9f85b94095ee887b07eb6260a2f0f76ba15b722aaf54b6a883e7aee20c3bc`，41,109,988B。构建/签名/441资产/309GLB零错误警告/四ABI16KB PASS；最终CI36639733339 FAIL。
+
+API29候选港口120检查/四Surface/183,198B完整存档一致PASS；局部四视角已渲染但旧新滚动FAIL、缩放NOT_RUN；寿春及API35三场景旧新原120s ready FAIL。12次安装字节核验PASS。主机植被/姿态分配-53.0%/-25.7%，不是手机FPS。参考缺失/高精美术/ARM64/30分钟和历史触控/SAF/生命周期继续OPEN；WIF授权拒绝、物理提交0。原core/R09继承失败保留，不改规则/地图/旧资源。详见reports/feedback-v124.md、handoffs/feedback-v124.md及evidence/feedback-v124/manifest.json。不合main、不启Unity、不开始下一阶段。
+
+## v123 模型与性能续作 — PARTIAL
+
+Blender41模型（城港关/13兵种LOD）与primitive解码、姿态拓扑共享、静止部队变换缓存已接入正式路径。新模型顶点-17.5%、文件-15.1%；主机城池解码/骑兵姿态分配-45.0%/-47.7%，不等于手机FPS。
+
+最终APK source7658a8bcae83e215186d6c89d114760f8d982944，SHA256200bd574e176000bf072412e550d9e0bf0a355a648e35cad7597c037ff9aaa46。构建/签名/391资产/四ABI16KB通过。最终API29 fixture/寿春PASS，港口ready FAIL；API35寿春/港口PASS，fixture ready FAIL。4场景全存档一致；首轮失败及测试适用范围修正保留。整体CI FAIL，加载稳定性/PC高精美术/ARM64/30分钟未通过，物理授权被WIF条件拒绝、提交0。原core/R09继承失败保留。不改玩法/地图/旧349资源，不合并main、不启Unity、不开始下一阶段。详见reports/feedback-v123.md及evidence/feedback-v123/manifest.json。
+
+## 2026-09-29 v121 用户反馈续作 — PARTIAL
+
+最终APK源码 b2352ed199fddada917ea224295773c4f9250506；APK SHA256 06ebe774afffb7f3022ec9ae6a6d2f191fdb6dbff814935e2e001aa5fbbaf4d1。连续山地/6关贴山、GPU网格、Blender7模型已接入；原300资源/规则/地图不改。新增手绘高度被压低的回归已修复并保留复现。
+
+首轮API29局部旧171/候选151通过，12组画面显示山地/墙翼/火/网格；全国旧外部900秒超时、新120秒ready失败。最终API29旧局部106通过、最终候选局部/全国ready失败；最终API35四例ready失败。最终安装字节核验通过，不代表3D验收。回归风险OPEN，普通网格手机流畅度仍NOT_ACCEPTED。core.logistics:75双边继承失败，旧几何hash候选有意变化但原失败不抹去。
+
+视觉仍有不透明烟火/尖锐岩石、装载中黑色关隘、全模型写实与PC差距；武关/剑阁/葭萌/绵竹邻域无山且不伪造封路。WIF身份条件拒绝，两轮物理提交0；完整触控/旧档SAF/ARM64/30分钟及历史缺口继续开放。没有合并main或启动下一阶段。
+
+见 [本轮报告](reports/feedback-v121.md)、[交接](handoffs/feedback-v121.md)、[manifest](evidence/feedback-v121/manifest.json)、[307资产清单](feedback-v121-asset-manifest.json)。
+
+## 2026-09-26 原始要求全量验收（本次结论，保留以下历史记录）
+
+**R00–R14是否全部满足原始开发要求：否。** 正式APK source `5f8997ebfef15f4680931d40532411a336506d0d`，APK SHA256 `6ba2211d961567b2aa396ba19e3018c1dc44780fa4351a807db099fc643bd058`，v112原包复验，未改生产源码/资产/规则。
+
+原213 + 补充222 = 435复合来源条款：PARTIAL=172；FAIL=16；PASS=9；NOT_REACHED=5；NOT_RUN=233。原文、历史、调用链和逐条证据见 [完整报告](https://github.com/zjjxwpstcnsm-gif/sanguo11-mobile/blob/agent/native-pc-visual/docs/native-pc-visual/reports/R00-R14-FULL-ACCEPTANCE.md) 与 `evidence/full-acceptance/matrix.json`。
+
+当前API29生命周期：FAIL：模式切换日志17/20，前后台0/20；下一次ready超时；API35：FAIL：模式切换日志20/20，前后台13/20；background frame loop stopped。原CI108325858061最终是20次切换/18次前后台后FAIL，不再保持未出结果状态。两API独立全国冷启动及原完整R12初始ready均FAIL；完整纯触控新开局未通过，下游NOT_REACHED。兼容测试探针的API29/35权威fixture各12组合、50对完整字节一致；不是纯触控、PC美术或真机验收。ARM64真机NOT_RUN。
+
+V1/V2、R10/R11/R13缺口未关闭；本次正常平原Surface确认R05阶梯岸线缺陷。core原42调用双方12退出0/30退出1，继承失败保留，无规则修改。最优先修复正常全国预览CPU→上传→beginFrame→Surface链，再修生命周期/日期实际合成。保留MapHost/SceneRenderGate/有界队列与缓存，不开始R15。
+
+CI：36222182595（原v112严格复验）、36222424271（仅测试API29兼容修正，全部成功）。唯一测试改动为完整流读取替代API29无readAllBytes；不降断言/超时。完整证据包含原始PNG/MP4、logcat、全存档字节及哈希；详见交付manifest。
+
+
+## 2026-09-26 本轮独立复验：原v112，不是新生产版本
+
+**R00–R14是否全部满足原始开发要求：否。**
+
+463条：PASS9 / FAIL20 / PARTIAL174 / NOT_RUN256 / NOT_REACHED4。原213原文和历史不动，补24漏联规范段与4精确验收澄清。以 `evidence/repeat-20260926/` 为本轮结论；旧full-acceptance是702feccf历史。
+
+API29/API35全国预览与原NativeR12失败；API29月7/月4整屏仍1月，UI draw95/Window89冻结而3D变化。生命周期本轮为API29 0/0、API35 20/1后后台停帧断言失败；历史20/18不是20+20通过。两API新parity各12组合、50对完整存档字节一致，但只是fixture。纯触控尾链NOT_REACHED，ARM64 NOT_RUN。原core两边同一logistics:75失败且42调用矩阵相同；20HOST门禁不能替代core/设备/美术。
+
+APK source `5f8997ebfef15f4680931d40532411a336506d0d` / SHA256 `6ba2211d961567b2aa396ba19e3018c1dc44780fa4351a807db099fc643bd058`。生产、规则、资产不变，保留原APK与开发签名；未开始R15或合main。
+
+## 2026-09-29 用户反馈 v122 — PARTIAL
+
+见 [本轮报告](reports/feedback-v122.md)。正式修复栈道材质跨界，改善现有SWAMP材质，41个实际Blender模型接入城港关和13类部队正常加载路径。寿春湿地权威地图缺失仍OPEN；core基线同点失败；正常3D、参考美术和ARM64不得提前记PASS。
+
+本轮最终验证：v122源a8a4eca79164a03f9e58ef379991c839be44968a构建PASS，219GLB零错误/警告。API29小场景四组实际Surface/网格/完整存档对比PASS；两版全国寿春/港口及API35全部就绪FAIL，ARM64授权拒绝/NOT_RUN。报告、资产清单和runtime-summary已更新，整体PARTIAL。

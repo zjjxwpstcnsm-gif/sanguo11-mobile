@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "goal_status": "active",
+  "phase": "v145 WARSHIP normal MOVE/ATTACK3259 completed but exit FAIL; scenery far readiness120s FAIL pending37",
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v145/app-debug-uniform-source.apk",
+      "bytes": 80972591,
+      "sha256": "0ff210740152f29203beda5cd5110fa5101bd6254e6331ac36d536d808549b97"
+    },
+    {
+      "path": "out/pc-visual/v145/androidTest-uniform-source.apk",
+      "bytes": 596601,
+      "sha256": "386a352e4a36362738d528676db9dd516b415006708ef3e982ba1bdb3ee61cbe"
+    }
+  ],
+  "changes": [
+    "Uniform source XYZ*.05; raw terrain heightByte*.025",
+    "Versioned static packs, raw ship water contact and scene bounds/picking maximum updated",
+    "Double terrain lookup and at-most-two-ULP shared-edge water clipping; water level/1e-5 assertion unchanged"
+  ],
+  "checks": [
+    {
+      "name": "source-coordinate-machine",
+      "status": "pass",
+      "log": "out/pc-visual/v145-coordinate-machine-check.txt",
+      "scope": "Host/source arithmetic or build; installed artwork acceptance tracked separately"
+    },
+    {
+      "name": "static348-source-crosscheck",
+      "status": "pass",
+      "log": "out/pc-visual/v145-static-coordinate-versioned-source.txt",
+      "scope": "Host/source arithmetic or build; installed artwork acceptance tracked separately"
+    },
+    {
+      "name": "map-635302",
+      "status": "pass",
+      "log": "out/pc-visual/v145-map-uniform-host-origin-repair.txt",
+      "scope": "Host/source arithmetic or build; installed artwork acceptance tracked separately"
+    },
+    {
+      "name": "units462-pose-and29-core-commands",
+      "status": "pass",
+      "log": "out/pc-visual/v145-units-uniform-host-repair.txt",
+      "scope": "Host/source arithmetic or build; installed artwork acceptance tracked separately"
+    },
+    {
+      "name": "rigs12-source-poses",
+      "status": "pass",
+      "log": "out/pc-visual/v145-facility-rigs-uniform-host.txt",
+      "scope": "Host/source arithmetic or build; installed artwork acceptance tracked separately"
+    },
+    {
+      "name": "scenery943-source",
+      "status": "pass",
+      "log": "out/pc-visual/v145-scenery-uniform-host.txt",
+      "scope": "Host/source arithmetic or build; installed artwork acceptance tracked separately"
+    },
+    {
+      "name": "sites87-source",
+      "status": "pass",
+      "log": "out/pc-visual/v145-sites-uniform-host.txt",
+      "scope": "Host/source arithmetic or build; installed artwork acceptance tracked separately"
+    },
+    {
+      "name": "facilities-source",
+      "status": "pass",
+      "log": "out/pc-visual/v145-facilities-uniform-host.txt",
+      "scope": "Host/source arithmetic or build; installed artwork acceptance tracked separately"
+    },
+    {
+      "name": "build",
+      "status": "pass",
+      "log": "out/pc-visual/v145-uniform-source-build.txt",
+      "scope": "Host/source arithmetic or build; installed artwork acceptance tracked separately"
+    },
+    {
+      "name": "final-cliff-walls",
+      "status": "pass",
+      "checks": 1831366,
+      "log": "out/pc-visual/v145-cliff-walls-final-host.txt"
+    },
+    {
+      "name": "final-constructible-walls16-normal-commands",
+      "status": "pass",
+      "checks": 1398264,
+      "log": "out/pc-visual/v145-constructible-walls-final-host.txt"
+    },
+    {
+      "name": "APK-resource-pins",
+      "status": "pass",
+      "pins": 97,
+      "log": "out/pc-visual/v145/apk-pins.txt"
+    },
+    {
+      "name": "installed-warship-normal-command-and-exit",
+      "status": "fail",
+      "completed_checks": 3259,
+      "normal_commands": "MOVE and ATTACK",
+      "failure": "Activitydestroy10s restoration barrier",
+      "evidence": "out/pc-visual/v145/evidence-warship/manifest.json",
+      "log": "out/pc-visual/v145-warship-normal-installed.txt",
+      "video": "out/pc-visual/v145-warship-normal.mp4",
+      "video_scope": "175.655s/98 decodedframes; inspected MOVE results and position/heading changes; ATTACK absent; driver stalls prevent PC timing acceptance"
+    },
+    {
+      "name": "installed-scenery-far-diagnostic",
+      "status": "fail",
+      "failure": "Original120s scene readiness timeout, pending37",
+      "log": "out/pc-visual/v145-scenery-far-diagnostic-installed.txt",
+      "evidence": "out/pc-visual/v145/evidence-far-failed/manifest.json",
+      "near": "Jingzhou winter near completed",
+      "far": "No accepted far capture"
+    }
+  ],
+  "install": {
+    "status": "pass",
+    "main_log": "out/pc-visual/v145-install-main.txt",
+    "test_log": "out/pc-visual/v145-install-test.txt",
+    "byte_check": "out/pc-visual/v145-installed-apk-byte-check.json",
+    "user_save_before_exact": true,
+    "after_warship_process_user_save_byte_exact": true,
+    "after_far_process_user_save_byte_exact": true
+  },
+  "inherited": "docs/pc-visual/validation-v144-working.json",
+  "hardware": {
+    "PC_reference": "NOT_AVAILABLE",
+    "ARM": "NOT_RUN",
+    "emulator": "API29 x86_64 host OpenGL"
+  },
+  "remaining": [
+    "Installed normal commands/source scenery and bounding boxes",
+    "Far readiness120s regression",
+    "Original effects/fullscreen, PC comparison and ARM verification"
+  ],
+  "observations": [
+    "Water rectangular seams and hull visibility require investigation; resource correctness alone is not art acceptance",
+    "SurfaceFlinger driver stalls during recording; Android FPS not measured"
+  ]
+}

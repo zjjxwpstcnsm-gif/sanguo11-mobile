@@ -1,0 +1,59 @@
+PASS normal launch restores existing save
+PASS transport starts from preserved campaign
+PASS campaign supports three-person cargo and authority capacity rejection
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 运输 at Rect(374, 1128 - 706, 1254)
+PASS transport destination comes from real own cities
+PASS touch visible 官渡港 · 陳留 · 单程1旬（相邻城市1旬） at Rect(74, 519 - 1005, 687)
+PASS cargo draft cannot preview without a leader
+PASS touch visible 主将 · 选择武将 at Rect(74, 473 - 858, 620)
+PASS touch visible  at Rect(47, 412 - 906, 538)
+PASS transport officer search and empty state fit keyboard
+PASS touch visible × at Rect(685, 238 - 811, 364)
+PASS touch visible LinearLayout at Rect(42, 861 - 1037, 998)
+PASS real officer row sets cargo leader
+PASS touch visible 副将1 · 选择武将 at Rect(74, 640 - 858, 787)
+PASS deputy list excludes selected leader
+PASS touch visible 取消 at Rect(837, 1436 - 1005, 1562)
+PASS cancel deputy chooser returns to intact cargo draft
+PASS touch visible 副将1 · 选择武将 at Rect(74, 640 - 858, 787)
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS touch visible 副将2 · 选择武将 at Rect(74, 787 - 858, 934)
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS three selected cargo officers are distinct
+PASS touch visible 卸货后武将返回出发城 at Rect(74, 934 - 1005, 1060)
+PASS touch visible 钱粮兵力 at Rect(384, 367 - 694, 493)
+PASS touch visible 1000 at Rect(74, 1220 - 711, 1346)
+FAIL java.lang.AssertionError: UI test action failed
+	at game.sanguo.mobile.UiUxInstrumentation.ui(UiUxInstrumentation.java:318)
+	at game.sanguo.mobile.UiUxInstrumentation.await(UiUxInstrumentation.java:323)
+	at game.sanguo.mobile.UiUxInstrumentation.transport(UiUxInstrumentation.java:78)
+	at game.sanguo.mobile.UiUxInstrumentation.onStart(UiUxInstrumentation.java:38)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)
+Caused by: java.lang.NullPointerException: Attempt to invoke interface method 'int java.lang.CharSequence.length()' on a null object reference
+	at java.lang.String.contentEquals(String.java:1082)
+	at game.sanguo.mobile.UiUxInstrumentation.$r8$lambda$M0dwwfUchoBv1bEyngJeyKwnaRA(UiUxInstrumentation.java:78)
+	at game.sanguo.mobile.UiUxInstrumentation$$ExternalSyntheticLambda65.test(R8$$SyntheticClass:0)
+	at game.sanguo.mobile.UiUxInstrumentation.find(UiUxInstrumentation.java:322)
+	at game.sanguo.mobile.UiUxInstrumentation.find(UiUxInstrumentation.java:322)
+	at game.sanguo.mobile.UiUxInstrumentation.find(UiUxInstrumentation.java:322)
+	at game.sanguo.mobile.UiUxInstrumentation.find(UiUxInstrumentation.java:322)
+	at game.sanguo.mobile.UiUxInstrumentation.find(UiUxInstrumentation.java:322)
+	at game.sanguo.mobile.UiUxInstrumentation.find(UiUxInstrumentation.java:322)
+	at game.sanguo.mobile.UiUxInstrumentation.find(UiUxInstrumentation.java:322)
+	at game.sanguo.mobile.UiUxInstrumentation.lambda$await$61(UiUxInstrumentation.java:323)
+	at game.sanguo.mobile.UiUxInstrumentation.$r8$lambda$ufNNSEpYJB7hukC55c9tNE7Mya0(UiUxInstrumentation.java:0)
+	at game.sanguo.mobile.UiUxInstrumentation$$ExternalSyntheticLambda68.run(R8$$SyntheticClass:0)
+	at game.sanguo.mobile.UiUxInstrumentation.$r8$lambda$CBWBeJm6dkemzwb51BYKv8lpzxo(UiUxInstrumentation.java:318)
+	at game.sanguo.mobile.UiUxInstrumentation$$ExternalSyntheticLambda1.run(R8$$SyntheticClass:0)
+	at android.app.Instrumentation$SyncRunnable.run(Instrumentation.java:2207)
+	at android.os.Handler.handleCallback(Handler.java:883)
+	at android.os.Handler.dispatchMessage(Handler.java:100)
+	at android.os.Looper.loop(Looper.java:214)
+	at android.app.ActivityThread.main(ActivityThread.java:7356)
+	at java.lang.reflect.Method.invoke(Native Method)
+	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:492)
+	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:930)
+

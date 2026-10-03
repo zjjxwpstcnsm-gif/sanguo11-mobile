@@ -10,36 +10,24 @@ public final class Government {
     }
     public static final class Rank {
         public final String id; public final int merit,troops,salary;
+        public final int nativeId,abilityStat,abilityBonus;
         public final RulerTitles.Title requiredTitle;
         public final boolean civilian;
-        Rank(String id,int merit,int troops,int salary){this(id,merit,troops,salary,false);}
-        Rank(String id,int merit,int troops,int salary,boolean civilian){
-            this.id=id;this.merit=merit;this.troops=troops;this.salary=salary;
-            this.requiredTitle=RulerTitles.at(merit/4000);this.civilian=civilian;
+        Rank(PcOfficerRanks.Definition definition){
+            id=definition.projectId;merit=definition.merit;troops=definition.command;salary=definition.salary;
+            nativeId=definition.nativeId;abilityStat=definition.abilityStat;abilityBonus=definition.abilityBonus;
+            // Retain the separately modeled title gate until its own native admission audit.
+            requiredTitle=RulerTitles.at(merit/4000);civilian=definition.civilian;
         }
     }
     private static final List<Rank> RANKS;
     static {
         List<Rank> ranks=new ArrayList<>();
-        String[] names={"奋威校尉,长水校尉,破贼校尉,武卫校尉","忠义校尉,昭信校尉,儒林校尉,建议校尉",
-            "牙门将军,护军,偏将军,裨将军","平东将军,平西将军,平南将军,平北将军",
-            "军师将军,安国将军,破虏将军,讨逆将军","左将军,右将军,前将军,后将军",
-            "安东将军,安西将军,安南将军,安北将军","镇东将军,镇西将军,镇南将军,镇北将军",
-            "征东将军,征西将军,征南将军,征北将军","大都督,卫将军,骠骑将军,车骑将军"};
-        for(int i=0;i<names.length;i++)for(String name:names[i].split(","))ranks.add(new Rank(name,i*4000,6000+i*1000,10+i*5));
-        // Keep the existing forty military IDs/order stable; add the forty civil offices.
-        String[] civil={"左仆射,右仆射,典农校尉,议郎","主簿,谏议大夫,侍郎,中郎",
-            "太乐令,大仓令,武库令,卫士令","郎中,从事中郎,长史,司马",
-            "谒者仆射,都尉,黄门侍郎,太史令","秘书令,侍中,留府长史,太学博士",
-            "中书令,御史中丞,执金吾,少府","尚书令,太仆,太常,大鸿胪",
-            "光禄勋,大司农,廷尉,卫尉","丞相,司空,太尉,司徒"};
-        int[] civilCommand={5000,6000,6000,7000,7000,8000,8000,9000,9000,15000};
-        for(int i=0;i<civil.length;i++)for(String name:civil[i].split(","))
-            ranks.add(new Rank(name,i*4000,civilCommand[i],i==9?60:10+i*5,true));
+        for(PcOfficerRanks.Definition definition:PcOfficerRanks.legacyOrder())ranks.add(new Rank(definition));
         RANKS=Collections.unmodifiableList(ranks);
     }
     public static List<Rank> ranks(){return RANKS;}
-    public static Rank rank(String id){for(Rank r:RANKS)if(r.id.equals(id))return r;return null;}
+    public static Rank rank(String id){if(id==null)return null;for(Rank r:RANKS)if(r.id.equals(id))return r;return null;}
     public static final class Prisoner {
         public final int officerId,capturedTurn; public int captor,cityId,unitId=-1,lastAttempt=-1;
         Prisoner(int officer,int captor,int city,int turn){officerId=officer;this.captor=captor;cityId=city;capturedTurn=turn;}
@@ -63,7 +51,7 @@ public final class Government {
     }
     public int baseCommandLimit(int officer){
         World.Officer o=w.officer(officer);if(o==null)return 0;Rank r=office(officer);
-        return o.role==Strategy.Role.RULER?w.governance.rulerCommand(o.owner):r==null?5000:r.troops;
+        return o.role==Strategy.Role.RULER?w.governance.rulerCommand(o.owner):r==null?PcOfficerRanks.unassigned().command:r.troops;
     }
     public String commandDescription(int officer){
         World.Officer o=w.officer(officer);if(o==null)return "武将不存在";Rank r=office(officer);
@@ -152,14 +140,17 @@ public final class Government {
             World.Officer o=w.idle(c).stream().max(Comparator.comparingInt(x->x.politics)).get();
             if(e.getValue()==Policy.ECONOMY){
                 List<Hex> sites=w.domestic.buildSites(c.id);
-                if(c.gold>=1500&&!sites.isEmpty()){w.domestic.build(c.id,o.id,c.food<20000?Domestic.Kind.FARM:Domestic.Kind.MARKET,sites.get(0));continue;}
+                Domestic.Kind kind=c.food<20000?Domestic.Kind.FARM:Domestic.Kind.MARKET;
+                if(!sites.isEmpty()&&w.domestic.previewBuild(c.id,o.id,kind,sites.get(0)).allowed()){
+                    w.domestic.build(c.id,o.id,kind,sites.get(0));continue;
+                }
             }
             if(c.defense<2000&&c.gold>=300){w.campaign.repair(c.id,o.id);continue;}
             StrategicAi ai=new StrategicAi(w);StrategicAi.Decision decision=ai.plan(c.id,false);if(decision!=null)ai.execute(decision);
         }
     }
     void allegianceChanged(int officer){
-        ranks.remove(officer);advisors.values().removeIf(id->id==officer);
+        ranks.remove(officer);advisors.values().removeIf(id->id==officer);World.Officer o=w.officer(officer);if(o!=null)w.officerAbilities.refresh(o);
     }
     World.City refuge(int owner,Hex from){return w.cities.stream().filter(c->c.owner==owner)
         .min(Comparator.comparingInt((World.City c)->c.hex.distance(from)).thenComparingInt(c->c.id)).orElse(null);}

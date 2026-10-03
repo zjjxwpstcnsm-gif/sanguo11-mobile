@@ -1,0 +1,428 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "ui_commit": "13ff5b9bfc44015e5f45a4a2cefa84fee4b1e4c4",
+  "build_snapshot": "out/parity/checkpoint-20261003-ah/manifest.json",
+  "snapshot_sha256": "ff9d96d069c1d2529b19dbf009e7f2aea7a1a0c67b7bfee8a3ca13819105c789",
+  "apk_manifest": {
+    "apks": [
+      {
+        "path": "out/parity/ui-integration-13ff5b9/apks/app-debug.apk",
+        "bytes": 87024333,
+        "sha256": "9f3622838c95313cd3f38b5dc76f9254ec367cadd9c38632b4da515e5eea2085"
+      },
+      {
+        "path": "out/parity/ui-integration-13ff5b9/apks/app-debug-androidTest.apk",
+        "bytes": 719653,
+        "sha256": "c38c6993bb0859c5c01c592921a84d0885db6cf22c16bb8bd4fb79af6911c7c0"
+      }
+    ],
+    "pinned_resources": 168,
+    "native_inputs": 4,
+    "all_exact": true
+  },
+  "serial": "emulator-5554",
+  "device_scope": "API29 x86_64 emulator; no ARM hardware verification",
+  "ui_checks": 337,
+  "ui_runs": [
+    {
+      "suite": "trade",
+      "checks": 97,
+      "seconds": 98.94,
+      "result_path": "out/parity/ui-integration-13ff5b9/installed-trade/results.json",
+      "result_sha256": "a390f4d4dbc7fc2126a0ec462ac691fb844315523dfd5d1cee600eb6c70f2a86",
+      "log_sha256": "23efbe375162e40d1d8bc904dd6b7248e3ccaef8b734e097fb14dcbb0a95ad81",
+      "backup_file_count": 7,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      },
+      "arguments": [
+        "suite=trade",
+        "run=ah18-trade-01"
+      ],
+      "evidence": [
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-trade/evidence/01-invalid-keyboard.png",
+          "bytes": 222204,
+          "sha256": "c3b9512981bcfb30350fc12adbc35c583b02cd9c187d346af7d30bbf3b52c3a4"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-trade/evidence/02-buy-form.png",
+          "bytes": 318085,
+          "sha256": "534ca1e66b77750701cf28393469594654dab5f931e0f49591b32abf42cf9ec4"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-trade/evidence/03-buy-review.png",
+          "bytes": 336374,
+          "sha256": "49ba8accdc8db531776ac244913fb04c0110a167b7412f5f287394eeac67bcfc"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-trade/evidence/04-landscape-keyboard.png",
+          "bytes": 183211,
+          "sha256": "9e6f1b54d66281f4445e8288a0290ad971b9997588cd0d9ce77d6885d45d1dd2"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-trade/evidence/05-buy-result.png",
+          "bytes": 573328,
+          "sha256": "3773b8b14ef65f0fd8fa41872e97e7cdf32acf2946cf8567a1a15e2b6ec5dab7"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-trade/evidence/06-used-city-rejection.png",
+          "bytes": 446074,
+          "sha256": "cba3c9aee8aa9d261063e16c9d49f554b6e476c66b5ef9bba66914c9b8657653"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-trade/evidence/07-next-turn-sell-result.png",
+          "bytes": 560698,
+          "sha256": "af85b03c0e7efe7517e87d4421ce5b44b32daa60f978fe1d594c150f2269e67f"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-trade/evidence/progress.txt",
+          "bytes": 5874,
+          "sha256": "c067dc7032796692bdecc00b33e538b0c550ca89ec7cec2af755f3361ddba0ff"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-trade/evidence/result.txt",
+          "bytes": 5894,
+          "sha256": "a0c28f63baa4f8714789c62eec89099035d8a9360ca660969de8b3ab8817ce8a"
+        }
+      ]
+    },
+    {
+      "suite": "tradeSite",
+      "checks": 43,
+      "seconds": 42.45,
+      "result_path": "out/parity/ui-integration-13ff5b9/installed-tradeSite/results.json",
+      "result_sha256": "ff582a62646ee0c80b9e053319a9082c889cc521df5d6ae80faf75459c770f54",
+      "log_sha256": "1342720e9f6f504a6a4c363b1176dabef18749f24cb354dfd81e379046be6dba",
+      "backup_file_count": 7,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      },
+      "arguments": [
+        "suite=tradeSite",
+        "run=ah18-tradeSite-01"
+      ],
+      "evidence": [
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-tradeSite/evidence/01-port-buy-rejection.png",
+          "bytes": 301587,
+          "sha256": "8140075fcb1fd2584dd3618f51b730996dfc71ff859123cda652919ca33dc239"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-tradeSite/evidence/02-port-sell-rejection.png",
+          "bytes": 304097,
+          "sha256": "b8edc72b8138da3b7ffae41eac49cf595459e675f2bf87a8e2ad83ceb20e83ed"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-tradeSite/evidence/progress.txt",
+          "bytes": 2707,
+          "sha256": "1f3255e276e0666bd956662b79d8143132caacb47a9be5fea23dc16dd560e8a4"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-tradeSite/evidence/result.txt",
+          "bytes": 2727,
+          "sha256": "391c3b340a40009476c1a7dc1d9b0ab66b77d4200a149453d8bfa68ec6c93ddd"
+        }
+      ]
+    },
+    {
+      "suite": "deploy",
+      "checks": 65,
+      "seconds": 47.49,
+      "result_path": "out/parity/ui-integration-13ff5b9/installed-deploy/results.json",
+      "result_sha256": "c6de5542abeaefef99da435e0e067f2710d5ab7045125b7b252a16dbf92bf7a3",
+      "log_sha256": "951257881ab5ad24fba45051750ce4e02e9618fa1191db53902543fdf8ddc01b",
+      "backup_file_count": 7,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      },
+      "arguments": [
+        "suite=deploy",
+        "run=ah18-deploy-01"
+      ],
+      "evidence": [
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-deploy/evidence/01-crew.png",
+          "bytes": 370329,
+          "sha256": "91370fb7cfffc99cb3583d5533eef71135d08092044f476913912cf3a052ece3"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-deploy/evidence/02-crew-empty-keyboard.png",
+          "bytes": 199567,
+          "sha256": "ad1464f3f7bba6059d7f09ae0882b05a262da451e577597c9a6c2b1ebd41a58d"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-deploy/evidence/02b-stock-error.png",
+          "bytes": 341785,
+          "sha256": "8e4fa406bd782f754361db08b484897a37078b5a9341e932f7e1c0d8da3476de"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-deploy/evidence/03-quantity-error-keyboard.png",
+          "bytes": 212773,
+          "sha256": "c4e3c1ffd4adcced75fe065c11193b7ec1665bb0c4367370052f5fc83da5bfae"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-deploy/evidence/04-details.png",
+          "bytes": 338579,
+          "sha256": "7bc81d5d44b9aa36dc5201578c2edfae84f134da00ae7eddd4237abf6aeaaa16"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-deploy/evidence/05-crew-landscape.png",
+          "bytes": 409886,
+          "sha256": "e6cbe081d0fb9bd635594fecd5d4fa03b7c708a277156e73b84e5be5b3bade15"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-deploy/evidence/05b-deploy-landscape-keyboard.png",
+          "bytes": 163494,
+          "sha256": "63b5762f29f11138237d879c34125b257ce14ec913561d72b6bfb1a19475947b"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-deploy/evidence/06-deployed-map.png",
+          "bytes": 1137070,
+          "sha256": "5442e307c480f199b0107afcf382c62c5c671f434881ed208da42ec4e752d759"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-deploy/evidence/07-restored.png",
+          "bytes": 1284523,
+          "sha256": "ded08f078b8ad4d994819dd868ae95bb05feac288a56084c7291b106b957d392"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-deploy/evidence/progress.txt",
+          "bytes": 4005,
+          "sha256": "51cd80d80043c60eee03349aa867207d9215407a9b2f949798468693358fcc8b"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-deploy/evidence/result.txt",
+          "bytes": 4025,
+          "sha256": "63f16bee993437f22f94f10b188c0fa07e26325070e5fc772c3249994f8e5d0a"
+        }
+      ]
+    },
+    {
+      "suite": "transport",
+      "checks": 70,
+      "seconds": 56.37,
+      "result_path": "out/parity/ui-integration-13ff5b9/installed-transport/results.json",
+      "result_sha256": "160c2ca9f71b0d3d44386a235f1155f87c36e441cabe75e7a9ba212cf73d7ae0",
+      "log_sha256": "f8df70a522da97766ab646e5580af7b31a884d5139844dcfa43c7161a0a01488",
+      "backup_file_count": 7,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      },
+      "arguments": [
+        "suite=transport",
+        "run=ah18-transport-01"
+      ],
+      "evidence": [
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-transport/evidence/01-cargo-crew.png",
+          "bytes": 324802,
+          "sha256": "3e21e64218021151368725500acb990d86b6662b0d4e7c5e76d463fff79e55c8"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-transport/evidence/02-crew-empty.png",
+          "bytes": 213452,
+          "sha256": "b346ce15e0fd5d3c603ecede36316adf2daf78f5a4a8c0994c175654ba642502"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-transport/evidence/03-invalid-keyboard.png",
+          "bytes": 231436,
+          "sha256": "f85a0b4fa04deaaa7657d50115db1acbcda7294958a426394bc0f66c26edb471"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-transport/evidence/04-capacity-error.png",
+          "bytes": 315800,
+          "sha256": "7421b437530f490adaf29266275887a42545ead443a72429c40029523982508c"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-transport/evidence/04b-core-conditions.png",
+          "bytes": 445453,
+          "sha256": "9c037e9a47596d892efd2bf7febbc24257b06b7051f32771ce67ce1e655d5c14"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-transport/evidence/05-cargo-landscape.png",
+          "bytes": 376927,
+          "sha256": "368f1ec7188f9b59d671311e6e24f684f501e8eedeadae38279bf2c679cfce3e"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-transport/evidence/05b-cargo-landscape-keyboard.png",
+          "bytes": 185193,
+          "sha256": "faed339d6a684cc7f34a17f9234cf748e87a256ce4d8300fa6761b957ef431bb"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-transport/evidence/06-cargo-confirm.png",
+          "bytes": 405693,
+          "sha256": "593d31839c27108f7dfaf2dd9dcfa0a7bfd868baf21c1d9da03bc759bf7218ec"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-transport/evidence/07-transport-task.png",
+          "bytes": 429923,
+          "sha256": "cfb743f7f8f759a518a711d4bb2bebbd6878b3459089aaabe9fa252314bc5c5b"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-transport/evidence/08-restored.png",
+          "bytes": 1273533,
+          "sha256": "809ac51f9cda861c31f5625d6622c543a0f9c9164cd9c7600464cc6031437199"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-transport/evidence/progress.txt",
+          "bytes": 4485,
+          "sha256": "0c39ff64f4254f8540cdf76e235c18f0312b5b7de745e8db6858329a18ec46c9"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-transport/evidence/result.txt",
+          "bytes": 4505,
+          "sha256": "feb8549f8b7b1d2f49c3fe1cfcc2c04064af75327fdacc9b0169b8d3de560a86"
+        }
+      ]
+    },
+    {
+      "suite": "opening",
+      "checks": 62,
+      "seconds": 72.69,
+      "result_path": "out/parity/ui-integration-13ff5b9/installed-opening/results.json",
+      "result_sha256": "0af6715bc6ccc7ee3cbbd6ac4ed74322014fd13b14b3484bebf8ed527294419a",
+      "log_sha256": "aa4b90e7300435d57e8b95f2ce0b2a9ee6ceca133fa1ef05851e3d7986d5ab83",
+      "backup_file_count": 7,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "added_files": [],
+        "auto_sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      },
+      "arguments": [
+        "suite=opening",
+        "run=ah18-opening-01",
+        "reuseSlotSha=82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+      ],
+      "evidence": [
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-opening/evidence/01-menu.png",
+          "bytes": 198834,
+          "sha256": "443e254a7deb05c4448bad6567b3df7d7c47b81958974265c4c3a5bda53605a5"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-opening/evidence/02-overwrite-confirm.png",
+          "bytes": 224417,
+          "sha256": "878aa42e2030f84be926242308d8552ac926fb30b636d1e64c99228a5bb17e4f"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-opening/evidence/03-settings.png",
+          "bytes": 174789,
+          "sha256": "e62b738d40f6c7897e25520e656c407224f70b1337d0d37fd77ca630ac27d569"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-opening/evidence/04-scenarios.png",
+          "bytes": 183370,
+          "sha256": "88eacd28fe3ce1582e678e984a8c73d0469407fad6e0fe50ba4b7d5e7ed71c15"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-opening/evidence/05-factions-portrait.png",
+          "bytes": 939462,
+          "sha256": "877c5b03dde1fed082700f1774643b31a7ecc2c7bc5a581634e1f35b4333d8b9"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-opening/evidence/06-factions-landscape.png",
+          "bytes": 646960,
+          "sha256": "0e78f625df98125bf3b3fee569935315fa57ac9a00085d916fae171cfb6715af"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-opening/evidence/07-new-confirm.png",
+          "bytes": 431365,
+          "sha256": "91d9e8fe5f71a5b3ff59f185ef688c6ea1defad46ac1ba09712b5d27cb8f4f64"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-opening/evidence/08-new-map.png",
+          "bytes": 1672483,
+          "sha256": "49139df48c935bfa1b60cc546c124dcb0cbada55b8be23d0be91e881b339d849"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-opening/evidence/08b-native-preview.png",
+          "bytes": 797573,
+          "sha256": "c4ee7cf8a01d3d1a531fa485214a45147e4e0e0008a93fcdbf3c57f59e01dcb8"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-opening/evidence/09-loaded-map.png",
+          "bytes": 1110066,
+          "sha256": "b3feb6530da293a856cff8f5e31983efced108b086de5424afabb4a0cb1614c2"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-opening/evidence/progress.txt",
+          "bytes": 4349,
+          "sha256": "ab36817d5d5a684e45a326673266c157d706a80a9d5be5457db84d410175bd74"
+        },
+        {
+          "path": "out/parity/ui-integration-13ff5b9/installed-opening/evidence/result.txt",
+          "bytes": 4369,
+          "sha256": "f7f2a10a3fbdf73f4d0c78a00316584e9884b9cdfa8d5c4e21a59c0eea4917e9"
+        }
+      ]
+    }
+  ],
+  "art": {
+    "result_path": "out/parity/ui-integration-13ff5b9/android-core-probe/results.json",
+    "result_sha256": "d3e6a16e95473dd080de53c8c0425f855dcd376e3d10c5d13b409f51704b62d6",
+    "passed": true,
+    "serial": "emulator-5554",
+    "apk_sha256": "9f3622838c95313cd3f38b5dc76f9254ec367cadd9c38632b4da515e5eea2085",
+    "class_sources": {
+      "core/build/classes/java/test/game/sanguo/core/CityActionPlanTest$1.class": "0b88e888325319f46279de98a46eb835408bf5779fb330dced084123745a3222",
+      "core/build/classes/java/test/game/sanguo/core/CityActionPlanTest.class": "deee925a1709c219aa4409350f8f529525923656613d9e8878aff4d1824798bf",
+      "core/build/classes/java/test/game/sanguo/core/PcMerchantArithmeticTest.class": "13a0b023491ef8f469d15becb8609d920ed3781c6746a5b1c327a1c3b44a96ba",
+      "core/build/classes/java/test/game/sanguo/core/PcMerchantMeritTest.class": "db632dfc4abd562cdfef1af3f6a46aaf52790790a8772418d35c8fece7d2c4e2",
+      "core/build/classes/java/test/game/sanguo/core/TradePlanTest.class": "42a5eb2ddcb91ea4f50e5c261440b1e7d1ff86e62cda6e2c9ff49bcc276b9ad1"
+    },
+    "scope": "Installed APK production classes in ART; ordinary commands and generated worlds, not UI taps",
+    "results": [
+      {
+        "suite": "PcMerchantMeritTest",
+        "seconds": 19.1,
+        "output": "PASS PcMerchantMeritTest checks=421\n"
+      },
+      {
+        "suite": "PcMerchantArithmeticTest",
+        "seconds": 2.51,
+        "output": "PASS PcMerchantArithmeticTest rows=3865 checks=11595 (arithmetic only; gameplay price/quantity integration pending)\n"
+      }
+    ],
+    "probe_sha256": "10ffb815e54a7abe99dfbff9ca8daaa1b0cd99f0851714b5b210103258c7136a",
+    "user_files_unchanged": true,
+    "installed_apk_unchanged": true
+  },
+  "visual_review": {
+    "inspected": [
+      "installed-trade/evidence/04-landscape-keyboard.png",
+      "installed-tradeSite/evidence/01-port-buy-rejection.png",
+      "installed-deploy/evidence/05b-deploy-landscape-keyboard.png",
+      "installed-deploy/evidence/06-deployed-map.png",
+      "installed-transport/evidence/05b-cargo-landscape-keyboard.png",
+      "installed-transport/evidence/07-transport-task.png",
+      "installed-opening/evidence/08b-native-preview.png"
+    ],
+    "findings": [
+      "Quantity names, editable inputs and action footers visible with landscape keyboard",
+      "Port rejection visible and submit disabled",
+      "Real deployed unit and transport task visible",
+      "Opening native preview still shows loading overlay on 2D fallback; no native first-frame/performance pass"
+    ]
+  },
+  "limits": [
+    "Transport suite covers dispatch and readback, not delivery and return",
+    "Trade and port paths advance separate restored campaigns, not one continuous multi-turn game",
+    "Gate merchant UI path not executed",
+    "Historical test failures and other gameplay differences remain open"
+  ]
+}

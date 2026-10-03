@@ -1,0 +1,30 @@
+UIUX PASS 25 checks
+PASS normal launch restores existing save
+PASS 250 scenario regression starts from preserved baseline
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 新游戏 / 选择势力 at Rect(53, 1053 - 1027, 1179)
+PASS touch visible 250 幻想群雄争霸 · 定制
+87 据点 · 670 武将 · 28 势力 at Rect(49, 1323 - 1031, 1354)
+PASS touch visible 刘备 at Rect(26, 1390 - 257, 1516)
+PASS touch visible 以「刘备」开始新局  → at Rect(26, 1642 - 1054, 1773)
+PASS touch visible 开始新局 at Rect(795, 1171 - 1005, 1297)
+PASS real opening selects 250 reconstruction and Chengdu faction
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 成都 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 出征 at Rect(42, 1128 - 374, 1254)
+PASS touch visible  at Rect(47, 821 - 691, 947)
+PASS Chengdu crew search and empty state are fully visible above keyboard
+PASS touch visible × at Rect(691, 384 - 817, 508)
+PASS touch visible 取消 at Rect(627, 1593 - 795, 1719)
+PASS Chengdu search, clear, rotation and cancel preserve full authority/RNG
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 读取存档 at Rect(53, 801 - 1027, 927)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 12:39 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 读取存档 at Rect(795, 1079 - 1005, 1205)
+PASS game load restores original scenario after Chengdu regression
+

@@ -146,14 +146,21 @@ public final class War {
         if(b.status!=Status.NORMAL)return 100;
         return Math.max(30,Math.min(95,70+w.army.aptitude(a)*5+(w.army.war(a)-w.army.war(b))/5));
     }
-    public String tacticError(int actor,int target,Tactic tactic){
-        World.Unit a=w.unit(actor),b=w.unit(target);String error=actorError(a);if(error!=null)return error;
+    /** Target-independent formation gate, also used by detached deployment queries. */
+    public String tacticFormationError(World.Unit a,Tactic tactic){
+        if(a==null)return "请选择部队";
         if(w.army.water(a.hex))return "水上需使用水军战法";
         if(tactic==null||a.weapon!=tactic.weapon)return "兵种不能使用该战法";
         if(a.weapon==World.Weapon.SPEAR&&w.terrain[a.hex.q][a.hex.r]==World.Terrain.SAND)return "枪兵位于沙地，不能施放战法；可普通攻击或移至其他地形";
         if(w.army.aptitude(a)<tactic.rank)return "需要"+rankLabel(tactic.rank)+"级兵科适性";
         if(a.energy<tactic.energy)return "气力不足";
-        error=targetError(a,b,tactic.minRange,tactic.maxRange+(a.weapon==World.Weapon.CROSSBOW?range(a)-a.weapon.range:0));if(error!=null)return error;
+        return null;
+    }
+    public int tacticMaxRange(World.Unit a,Tactic tactic){return tactic.maxRange+(a.weapon==World.Weapon.CROSSBOW?range(a)-a.weapon.range:0);}
+    public String tacticError(int actor,int target,Tactic tactic){
+        World.Unit a=w.unit(actor),b=w.unit(target);String error=actorError(a);if(error!=null)return error;
+        error=tacticFormationError(a,tactic);if(error!=null)return error;
+        error=targetError(a,b,tactic.minRange,tacticMaxRange(a,tactic));if(error!=null)return error;
         if(a.weapon==World.Weapon.CAVALRY&&(w.terrain[a.hex.q][a.hex.r]==World.Terrain.FOREST||w.terrain[b.hex.q][b.hex.r]==World.Terrain.FOREST))return "骑兵战法不能在森林使用";
         if(a.weapon==World.Weapon.CROSSBOW&&w.terrain[b.hex.q][b.hex.r]==World.Terrain.FOREST&&!w.skills.has(a,Skill.SHESHOU))return "射向森林需要射手特技";
         if(tactic==Tactic.PIERCE&&direction(a.hex,b.hex)==null)return "贯射需要直线目标";
@@ -176,7 +183,8 @@ public final class War {
         String heading=tactic==null?"未选择战法":tactic.label+" · 消耗气力"+tactic.energy+" / 当前"+(a==null?0:a.energy)+"\n命中率"+tacticChance(actor,target,tactic)+"%；命中或失败均结束本旬行动，失败同样扣气力。";
         if(a!=null&&tactic==Tactic.FIRE_ARROW)heading+="\n"+w.combat.firePreview(a,b,CombatRules.DIRECT_FIRE_BASE,false);
         if(b!=null)heading+="\n实际目标："+w.officer(b.officerId).name+" · "+b.hex;
-        if(a!=null&&b!=null&&tactic==Tactic.SPIRAL)heading+="\n命中后混乱概率："+w.combat.spiralConfusionChance(a,b)+"%";
+        if(a!=null&&b!=null&&tactic==Tactic.SPIRAL)heading+="\n命中后混乱概率："+w.combat.spiralConfusionChance(a,b)+"% · 每次施放造成混乱约 "+String.format(java.util.Locale.ROOT,"%.1f",tacticChance(actor,target,tactic)*w.combat.spiralConfusionChance(a,b)/100.0)+"%";
+        if(a!=null&&b!=null&&tactic!=null&&tactic.weapon==World.Weapon.CAVALRY)heading+="\n骑兵命中后独立判定强制单挑；阻挡位移不会取消判定（仍须满足单挑条件）";
         if(tactic!=null)heading+="\n射程："+tactic.minRange+"–"+(tactic.maxRange+(a!=null&&a.weapon==World.Weapon.CROSSBOW?range(a)-a.weapon.range:0))+"格；效果："+tactic.effect;
         Displacement.Preview p=displacement.preview(a,b,Displacement.kind(tactic),error,heading);
         if(error!=null)return p;
@@ -188,7 +196,7 @@ public final class War {
     }
     public World.Result tactic(int actor,int target,Tactic tactic){w.reports.prepare();
         String error=tacticError(actor,target,tactic);if(error!=null)return w.fail(error);
-        World.Unit a=w.unit(actor),b=w.unit(target);w.visualAction(TurnJournal.Kind.TACTIC,actor,b.hex,tactic.label);int chance=tacticChance(actor,target,tactic);w.marches.supersede(a);a.acted=true;w.energy.change(a,-tactic.energy,EnergyRules.Reason.COMMAND);w.battleImpact(b.hex,false);
+        World.Unit a=w.unit(actor),b=w.unit(target);w.visualAction(TurnJournal.Kind.TACTIC,actor,b.hex,tactic.label);if(w.turnJournal!=null)w.turnJournal.tactic(tactic);int chance=tacticChance(actor,target,tactic);w.marches.supersede(a);a.acted=true;w.energy.change(a,-tactic.energy,EnergyRules.Reason.COMMAND);w.battleImpact(b.hex,false);
         if(w.strategy.nextInt(100)>=chance)return w.success(w.officer(a.officerId).name+"的"+tactic.label+"未命中，消耗气力"+tactic.energy+"，本旬行动结束");
         Hex origin=a.hex,targetHex=b.hex;List<World.Unit> victims=tacticVictims(a,b,tactic);
         double multiplier=tactic.multiplier;
@@ -200,7 +208,9 @@ public final class War {
         }
         if(w.unit(a.id)==a&&w.unit(b.id)==b&&(!a.hex.equals(origin)||!b.hex.equals(targetHex)))w.skills.woundAfterDisplacement(a,b);
         if(w.unit(a.id)==a&&w.unit(b.id)==b&&a.weapon==World.Weapon.CAVALRY&&w.skills.swiftConfusion(a,b)){b.status=Status.CONFUSED;b.statusTurns=1;}
-        w.campaign.earn(a.owner,w.unit(b.id)==null&&w.skills.has(a,Skill.JINGMIAO)?80:40);w.checkVictory();return w.success(w.officer(a.officerId).name+"施展"+tactic.label+"，命中"+victims.size()+"队，主伤害"+dealt+"，消耗气力"+tactic.energy+"，本旬行动结束");
+        w.campaign.earn(a.owner,w.unit(b.id)==null&&w.skills.has(a,Skill.JINGMIAO)?80:40);w.checkVictory();
+        boolean contest=tactic.weapon==World.Weapon.CAVALRY&&w.contests.cavalry(a,b);
+        return w.success(w.officer(a.officerId).name+"施展"+tactic.label+"，命中"+victims.size()+"队，主伤害"+dealt+"，消耗气力"+tactic.energy+"，本旬行动结束"+(contest?"；触发强制单挑":""));
     }
     private static Hex add(Hex h,int q,int r){return new Hex(h.q+q,h.r+r);}
     private static int[] direction(Hex a,Hex b){
@@ -214,7 +224,12 @@ public final class War {
         if(w.advancedBattle.magic(plot))return w.advancedBattle.magicChance(a,b,plot);
         if(plot==Plot.CALM||plot==Plot.EXTINGUISH)return 100;
         int defense=b==null?50:w.army.intelligence(b);
-        return w.skills.plotChance(a,b,plot,Math.max(10,Math.min(95,65+(w.army.intelligence(a)-defense)/2)));
+        // Both control plots compare each formation's highest leader/deputy intelligence.
+        // Equal intelligence has a 20% ordinary chance; skill overrides remain in Skills.
+        int difference=w.army.intelligence(a)-defense;
+        int base=plot==Plot.CONFUSE||plot==Plot.MISLEAD?Math.max(5,Math.min(85,20+difference/2))
+            :Math.max(10,Math.min(95,65+difference/2));
+        return w.skills.plotChance(a,b,plot,base);
     }
     public String plotError(int actor,Hex target,Plot plot){
         World.Unit a=w.unit(actor);String error=actorError(a);if(error!=null)return error;
@@ -245,26 +260,27 @@ public final class War {
     public int plotRange(int actor,Plot plot){World.Unit a=w.unit(actor);return a==null||plot==null?0:w.skills.plotRange(a,plot);}
     public World.Result plot(int actor,Hex target,Plot plot){w.reports.prepare();
         String error=plotError(actor,target,plot);if(error!=null)return w.fail(error);
-        World.Unit a=w.unit(actor),b=w.unitAt(target);w.visualAction(TurnJournal.Kind.PLOT,actor,target,plot.label);a.acted=true;w.energy.change(a,-plotCost(actor,plot),EnergyRules.Reason.COMMAND);
-        boolean success=resolvePlot(a,b,target,plot,true);
+        World.Unit a=w.unit(actor),b=w.unitAt(target);w.visualAction(TurnJournal.Kind.PLOT,actor,target,plot.label);if(w.turnJournal!=null)w.turnJournal.plot(plot);a.acted=true;w.energy.change(a,-plotCost(actor,plot),EnergyRules.Reason.COMMAND);
+        boolean success=resolvePlot(a,b,target,plot,true,TurnJournal.PlotCause.COMMAND);
         if(success&&b!=null&&w.skills.has(a,Skill.LIANHUAN)&&(plot==Plot.CONFUSE||plot==Plot.MISLEAD||plot==Plot.FIRE)){
             List<World.Unit> adjacent=new ArrayList<>();
             for(World.Unit u:w.fieldUnits())if(u.id!=b.id&&w.campaign.hostile(a.owner,u.owner)&&u.hex.distance(target)==1&&
                 (plot==Plot.FIRE?fireAt(u.hex)==null&&!w.army.water(u.hex):u.status==Status.NORMAL))adjacent.add(u);
             adjacent.sort(Comparator.comparingInt(u->u.id));
-            if(!adjacent.isEmpty()){World.Unit chained=adjacent.get(0);resolvePlot(a,chained,chained.hex,plot,false);}
+            if(!adjacent.isEmpty()){World.Unit chained=adjacent.get(0);resolvePlot(a,chained,chained.hex,plot,false,TurnJournal.PlotCause.CHAIN);}
         }
         w.campaign.earn(a.owner,success?25:0);w.checkVictory();
         return w.success(w.officer(a.officerId).name+"施展"+plot.label+(success?"":"被识破，气力已消耗"));
     }
     /** A reflected/chained plot pays no second cost and cannot recurse into another reflection/chain. */
-    private boolean resolvePlot(World.Unit a,World.Unit b,Hex target,Plot plot,boolean reflection){
-        if(w.advancedBattle.magic(plot))return w.advancedBattle.cast(a,b,target,plot,reflection);
+    private boolean resolvePlot(World.Unit a,World.Unit b,Hex target,Plot plot,boolean reflection,TurnJournal.PlotCause cause){
+        if(w.advancedBattle.magic(plot))return w.advancedBattle.cast(a,b,target,plot,reflection,cause);
         int chance=plotChance(a.id,target,plot);
         boolean success=chance==100||chance>0&&w.strategy.nextInt(100)<chance;
         if(!success){
+            if(w.turnJournal!=null)w.turnJournal.plotOutcome(a,b,target,plot,cause,false,false);
             if(reflection&&b!=null&&w.skills.has(b,Skill.FANJI)&&(plot==Plot.CONFUSE||plot==Plot.MISLEAD)&&a.status==Status.NORMAL)
-                resolvePlot(b,a,a.hex,plot,false);
+                resolvePlot(b,a,a.hex,plot,false,TurnJournal.PlotCause.REFLECTION);
             return false;
         }
         boolean critical=w.skills.plotCritical(a,b,plot);
@@ -281,6 +297,7 @@ public final class War {
                 int hit=Math.min(b.troops,w.combat.rawDamage(a,b,critical?1.35*1.15:1.35,random()));hurt(b,hit);
                 if(w.unit(b.id)!=null){w.energy.change(b,-15,EnergyRules.Reason.AMBUSH);if(critical){b.status=Status.CONFUSED;b.statusTurns=1;}}break;
         }
+        if(w.turnJournal!=null)w.turnJournal.plotOutcome(a,b,target,plot,cause,true,critical);
         return true;
     }
     void ignite(Hex target,World.Unit source){w.fieldworks.ignite(target,source);}

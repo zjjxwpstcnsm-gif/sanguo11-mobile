@@ -1,0 +1,134 @@
+{
+  "app/src/main/java/game/sanguo/mobile/MainActivity.java": {
+    "sha256": "736b2a969802eaa3f394fd97dc745feed85830123639fac7d1698d84f3c032c1",
+    "lines": 1248
+  },
+  "app/src/main/java/game/sanguo/mobile/ScenarioFactionPicker.java": {
+    "sha256": "12506dbfe4b0bd685ba335a52f3b0a38c0ac4e7619d6ed1885029ac9470c8b62",
+    "lines": 63
+  },
+  "app/src/main/java/game/sanguo/mobile/MapHost.java": {
+    "sha256": "ef8b9c711e0b7808f106e15c90e392990f53c493d676a38bdeea0702bb03b731",
+    "lines": 213
+  },
+  "app/src/main/java/game/sanguo/mobile/FilamentMapView.java": {
+    "sha256": "5411d501779123b1c8c479e0fc3ce65f3c9134ea82f6473ee8acbfae14ddc1e0",
+    "lines": 1183
+  },
+  "app/src/main/java/game/sanguo/mobile/SceneRenderGate.java": {
+    "sha256": "18622d8c42f59e816c3e0502e6e66dfa4f2853209471b44d2d6fcafcbf1567b1",
+    "lines": 35
+  },
+  "app/src/main/java/game/sanguo/mobile/SceneWorkQueue.java": {
+    "sha256": "6feecbea4207c80efc97ad6f88d04e47ecf80abe0effb8ba029a1164cfaf6590",
+    "lines": 66
+  },
+  "app/src/main/java/game/sanguo/mobile/SceneAssetQueue.java": {
+    "sha256": "8ffd8217dc17663bb8e4eff9992e5563f8ebfc5e22b79d1336f9175a62884f0b",
+    "lines": 40
+  },
+  "app/src/main/java/game/sanguo/mobile/SceneCamera.java": {
+    "sha256": "3eab6f8d48f99170f519b64028b85cc3c26038f0069d565fa366c1c066ad3844",
+    "lines": 39
+  },
+  "app/src/main/java/game/sanguo/mobile/ScenePicking.java": {
+    "sha256": "909ed04ab3e61546a58136d6637685124c0a05a176a697a3ecf04e23a0af2b87",
+    "lines": 26
+  },
+  "app/src/main/java/game/sanguo/mobile/GridWorldTransform.java": {
+    "sha256": "721fc68a564a4d22d562a5de87c20ab50a070795b66a1c48137db25046842f00",
+    "lines": 22
+  },
+  "app/src/main/java/game/sanguo/mobile/TerrainSurface.java": {
+    "sha256": "da5b45426937cb3662b218374a2588ae895825da963aaec744a3b622cc112735",
+    "lines": 153
+  },
+  "app/src/main/java/game/sanguo/mobile/SceneMesh.java": {
+    "sha256": "de04d291fb96b4ed2fa82798489e298da91f2ba5974eda50901bbc057d7ffa2b",
+    "lines": 267
+  },
+  "app/src/main/java/game/sanguo/mobile/TerrainMaterialField.java": {
+    "sha256": "929f47eda06ec9485a79031a5b397644a296d1e5b43c16fd2b34e27e862d9569",
+    "lines": 112
+  },
+  "app/src/main/java/game/sanguo/mobile/TerrainMaterialLod.java": {
+    "sha256": "24112c77cdd58fa655e4ad1a45702de29808b3c482c4928eb691edaff1588be3",
+    "lines": 11
+  },
+  "app/src/main/java/game/sanguo/mobile/WaterVisualField.java": {
+    "sha256": "a0a49b9f0bde76db36c9b2cf95b21bfb02863b0d637eb5b1abd33759115b9108",
+    "lines": 38
+  },
+  "app/src/main/java/game/sanguo/mobile/SiteGlb.java": {
+    "sha256": "00be29c6fe20a665b429b720759d518f0efd551fbefd066c9f716a427f79866a",
+    "lines": 87
+  },
+  "app/src/main/java/game/sanguo/mobile/FieldAssets.java": {
+    "sha256": "ea907f5c9e22a35c3829286bb2c031c8ad446177d955b8dec7ee7e874b350a78",
+    "lines": 108
+  },
+  "app/src/main/java/game/sanguo/mobile/SiteVisual.java": {
+    "sha256": "93937567deca904814fb66a088db0ce47c0b8f3e30cc2b7470f4d8c87d96f265",
+    "lines": 60
+  },
+  "core/src/main/java/game/sanguo/core/SiteFootprint.java": {
+    "sha256": "a226009f5f1ef89ab82695f37ae769b25c8c98d113a6b097eb44b263b6bb87a7",
+    "lines": 165
+  },
+  "app/src/main/java/game/sanguo/mobile/Vegetation.java": {
+    "sha256": "623d03e8b5c3a3495045c250389525ac04dd2a7268f8c8140d8a0f30e36d89e0",
+    "lines": 254
+  },
+  "app/src/main/java/game/sanguo/mobile/LandscapeProfile.java": {
+    "sha256": "ae6e52f29ec5be73a97703e7b1a2d1c608f72345921d91a5876b366bc20e6a5c",
+    "lines": 13
+  },
+  "app/src/main/java/game/sanguo/mobile/UnitVisual.java": {
+    "sha256": "76278a9ead08a38fe49f893220a624413280af56c7a5a69aa2ad47a5614727d1",
+    "lines": 41
+  },
+  "app/src/main/java/game/sanguo/mobile/UnitMotion.java": {
+    "sha256": "1af29ac1d2772f2751f76cdeba47289118615709e496afd73b94f28cf0e4f2f5",
+    "lines": 62
+  },
+  "app/src/main/java/game/sanguo/mobile/UnitAnimation.java": {
+    "sha256": "391dd058b816b81b0d91fbe4785f57d59c3f0f6004ec6ff5f9574a46b4077272",
+    "lines": 54
+  },
+  "app/src/main/java/game/sanguo/mobile/UnitLod.java": {
+    "sha256": "b238e1f30e63dd926210cfcd959f294e3b2f3513ad74123cf1e788469ffcaaea",
+    "lines": 21
+  },
+  "app/src/main/java/game/sanguo/mobile/CombatVisual.java": {
+    "sha256": "8f9bede8473a8f3c385baeb3fd9240eb324e7498458aa83abfda1d354da1f349",
+    "lines": 142
+  },
+  "app/src/main/java/game/sanguo/mobile/TurnPlayback.java": {
+    "sha256": "95c7c34937354413482bcb666319c652a7b0ecb078280942df07f115a8192891",
+    "lines": 61
+  },
+  "app/src/main/java/game/sanguo/mobile/presentation/MapLayerData.java": {
+    "sha256": "3e41eceb952c2be2f32171cb080c48467be89deec2e0aa925e6c361a9cccb818",
+    "lines": 22
+  },
+  "app/src/main/java/game/sanguo/mobile/MapEditorActivity.java": {
+    "sha256": "25294cfa0edc118b5022be6b5e84fd09c9128348d44183ce0fbf80c86f7ad2ee",
+    "lines": 132
+  },
+  "app/src/main/java/game/sanguo/mobile/MapLibrary.java": {
+    "sha256": "1524e3d4bc738afd047dbcf1e8fa19b58b6a34a3676ea74f8a65403224dea94a",
+    "lines": 118
+  },
+  "core/src/main/java/game/sanguo/core/MapPatch.java": {
+    "sha256": "dd73b9b5d9588844e9b9049f6d4b1af3a6ebaf86cd6b045f08febd8459ba5c48",
+    "lines": 93
+  },
+  "app/src/main/java/game/sanguo/mobile/SeasonStyle.java": {
+    "sha256": "cfd341ccf745d2d45044532c62ddebb20c7edd3ae6eabf9a914aa7afff93b9c9",
+    "lines": 27
+  },
+  "app/src/main/java/game/sanguo/mobile/EnvironmentProfile.java": {
+    "sha256": "2a6645b4ea27d0e571ce109030580734a752922ddfdacdb9f35e1ad421fd9cf6",
+    "lines": 29
+  }
+}

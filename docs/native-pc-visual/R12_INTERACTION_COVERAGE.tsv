@@ -1,0 +1,15 @@
+feature	production_path	verification	acceptance
+opening faction/start	ScenarioFactionPicker -> MapHost -> startScenario	96719e9 original R12 preview/confirmation PASS; real cold UI reaches preview then live-overlay assertion FAIL, first 3D span15 local view	PARTIAL / cold confirmation NOT_REACHED
+unit selection	Filament picking -> stable ID -> onUnitTile	original R12 installed fixture/API selection reached; complete fresh touch chain blocked	PARTIAL
+deployment/movement	MainActivity.apply -> GameSession	original R12 commandFlow full SaveCodec equality reached, API-driven actions	SCOPED_PASS / full touch NOT_RUN
+move range	MapSceneSnapshot <- orders.marchReachable	host fixture + installed original R12	HOST_AND_SCOPED_INSTALLED_PASS
+attack/war displacement	WarUi -> pickOnMap/setTacticPreview -> MapHost	original R12 attack fixture reached; all real touch tactics matrix missing	PARTIAL
+facility/siege	MapSceneSnapshot <- fieldworks/SiegeOverlay	host direct set equality; complete screen/range matrix missing	HOST_PASS
+independent grid/territory	MapHost preferences	original R12 four combinations + recreate + 2D; whole lifecycle/read-load/device matrix not certified	SCOPED_PASS
+jurisdiction boundary	MapProjectionQuery <- Territory.boundary	host all official cells	HOST_PASS
+minimap	Filament Overlay -> same SceneCamera	original R12 installed tap/yaw/no command	SCOPED_PASS
+list/overview location	MainActivity.selectAndFocus -> MapHost.focus	existing flow retained; every list not separately exercised	PARTIAL
+pan/zoom/rotation/scale	SceneCamera/view-pixel input	host retained; complete device gestures and resolution matrix missing	PARTIAL
+panels/date	MainActivity + native label exclusion	v102 actual m7/m4 whole screen still January, UI draw/window frames frozen; old original APK no-recording control also fails	FAIL
+reports/next turn/save/load	MainActivity -> GameSession/TurnWork	original R12 API next turn/full-save comparison/autosave load reached; real cold report/dialog/manual save-load touch chain not reached	PARTIAL
+editor override	MapHost.editorLayers -> Filament Overlay	original R12 temporary override; full editor UI R13 missing	PARTIAL

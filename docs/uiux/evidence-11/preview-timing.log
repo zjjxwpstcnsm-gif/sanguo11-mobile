@@ -1,0 +1,8 @@
+--------- beginning of system
+--------- beginning of crash
+--------- beginning of main
+10-03 02:42:13.180  3328  3328 I TransportPreview: elapsedMs=0
+10-03 02:42:24.000  3328  3328 I TransportPreview: elapsedMs=3
+10-03 02:42:27.233  3328  3328 I TransportPreview: elapsedMs=3
+10-03 02:45:39.898  6360  6360 I TransportPreview: elapsedMs=13
+10-03 02:50:17.802 10831 10831 I TransportPreview: elapsedMs=6

@@ -1,0 +1,1 @@
+PASS CONTROL 40036 checks; phase=baseline samples=10000 plot=6553/10000 (65.53%), spiral hits=8479/10000 (84.79%), confusion=2111/10000 (21.11% of casts, 24.90% of hits)

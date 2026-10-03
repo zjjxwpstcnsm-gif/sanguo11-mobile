@@ -1,0 +1,1 @@
+PASS controlled subprocess simulation: primary failure + recovery timeout still stops expired device instrumentation and re-reads both save files; returns failure. No ADB/device accessed.

@@ -10,7 +10,7 @@ import game.sanguo.core.*;
 
 /** Cached national renderer with independent scene, selection and camera updates. */
 public final class MapView extends View implements MapPresentation {
-    public interface TileListener {void tap(Hex tile);}
+    public interface TileListener {void tap(Hex tile);default void unit(int unitId,Hex displayCell){tap(displayCell);}}
     private final TileListener listener;
     /** Editor-only gesture stream. Existing campaign gestures and hit rules remain unchanged. */
     interface EditorStroke {void event(int action,Hex tile);}
@@ -189,15 +189,11 @@ public final class MapView extends View implements MapPresentation {
     private Map<Hex,Integer> reachable=Collections.emptyMap();
     private final Set<Hex> attackTargets=new HashSet<>();
     int reachableCount(){return reachable.size();}
-    private void addAttackTarget(World.Unit u,Hex h,boolean normal){
-        if(normal){attackTargets.add(h);return;}
-
-    }
     private final MapCamera camera=new MapCamera();
     private final android.widget.OverScroller fling;
     private android.animation.ValueAnimator cameraMotion;
     private int flingX,flingY,occludedRight,occludedBottom;
-    private boolean caughtMotion;
+    private boolean caughtMotion,panelGesture;
     private long renderedRevision=Long.MIN_VALUE;
     private int renderedTurn=-1,renderedPlayer=-1,sceneBuilds,selectionBuilds;
     private Hex touchHex;
@@ -211,6 +207,16 @@ public final class MapView extends View implements MapPresentation {
         if(occludedRight==right&&occludedBottom==bottom)return;
         occludedRight=right;occludedBottom=bottom;postInvalidateOnAnimation();
     }
+    /** End presentation input at occlusion, focus loss and background transitions. */
+    void cancelInteraction(){
+        stopCamera();multiTouch=true;miniGesture=false;miniButtonGesture=false;
+        draggingUnit=false;dragTarget=null;dragPlan=null;
+        if(editorCapturing&&editorStroke!=null)editorStroke.event(MotionEvent.ACTION_CANCEL,null);
+        editorCapturing=false;editorTwoFingers=false;
+        long now=android.os.SystemClock.uptimeMillis();MotionEvent cancel=MotionEvent.obtain(now,now,MotionEvent.ACTION_CANCEL,0,0,0);
+        gestures.onTouchEvent(cancel);scaler.onTouchEvent(cancel);cancel.recycle();invalidate();
+    }
+    @Override public void setEnabled(boolean enabled){if(!enabled&&gestures!=null)cancelInteraction();super.setEnabled(enabled);}
     private void stopCamera(){
         if(cameraMotion!=null){cameraMotion.cancel();cameraMotion=null;}
         fling.abortAnimation();
@@ -347,17 +353,11 @@ public final class MapView extends View implements MapPresentation {
         developmentSites=development!=null&&development.owner==world.player?new ArrayList<>(world.domestic.buildSites(development.id)):Collections.emptyList();
         if(!actorChanged)return;selectionBuilds++;
         World.Unit actor=world.unit(moving);reachable=world.orders.marchReachable(actor);attackTargets.clear();
-        if(world.orders.error(actor)==null){
-            for(World.Unit target:world.fieldUnits())if(target.id!=actor.id)addAttackTarget(actor,target.hex,world.war.attackError(actor.id,target.id)==null);
-            for(World.City city:world.cities)if(world.siegeError(actor.id,city.id)==null)
-                for(Hex h:SiteFootprint.cells(city))addAttackTarget(actor,h,h.equals(world.siegeHit(actor,city,h)));
-            for(Domestic.Facility f:world.domestic.facilities)addAttackTarget(actor,f.hex,world.war.facilityAttackError(actor.id,f.hex)==null);
-            for(War.Structure s:world.war.structures())addAttackTarget(actor,s.hex,world.war.structureAttackError(actor.id,s.hex)==null);
-        }
+        attackTargets.addAll(MapSceneSnapshot.attackTargets(world,moving));
     }
     @Override public boolean isOpaque(){return true;}
     @Override protected void onAttachedToWindow(){super.onAttachedToWindow();if(overview!=null)overview.start(this);}
-    @Override protected void onDetachedFromWindow(){stopCamera();if(overview!=null)overview.cancel();super.onDetachedFromWindow();}
+    @Override protected void onDetachedFromWindow(){cancelInteraction();if(overview!=null)overview.cancel();super.onDetachedFromWindow();}
     private GridWorldTransform grid;
     private float mapOffset(){return world!=null&&world.sourceMapWidth>0?(world.height-1)/2:0;}
     private float x(Hex h){return grid.x(h)*TileGeometry.DX;}
@@ -375,6 +375,12 @@ public final class MapView extends View implements MapPresentation {
     private void applyPendingCamera(){if(pendingCamera!=null&&getWidth()>0&&getHeight()>0){if(pendingCamera.containsKey("cameraScaleDp"))camera.restoreScale(pendingCamera.getFloat("cameraScaleDp")*density,pendingCamera.getFloat("cameraX"),pendingCamera.getFloat("cameraY"));else camera.restore(pendingCamera.getFloat("cameraRatio",1),pendingCamera.getFloat("cameraX"),pendingCamera.getFloat("cameraY"));pendingCamera=null;invalidate();}}
     @Override public boolean onTouchEvent(MotionEvent e){
         if(!isEnabled())return true;
+        if(e.getActionMasked()==MotionEvent.ACTION_DOWN)panelGesture=false;
+        if(e.getActionMasked()==MotionEvent.ACTION_CANCEL){cancelInteraction();return true;}
+        if(panelGesture)return true;
+        for(int i=0;i<e.getPointerCount();i++)if(e.getX(i)<0||e.getY(i)<0||e.getX(i)>=getWidth()-occludedRight||e.getY(i)>=getHeight()-occludedBottom){
+            panelGesture=true;cancelInteraction();return true;
+        }
         if(criticalHit!=null&&criticalSkip!=null){if(e.getActionMasked()==MotionEvent.ACTION_UP){criticalSkip.run();performClick();}return true;}
         if(e.getActionMasked()==MotionEvent.ACTION_DOWN){caughtMotion=cameraMoving();stopCamera();multiTouch=false;layoutNavigator();miniButtonGesture=miniButton.contains(e.getX(),e.getY());miniGesture=!miniButtonGesture&&showMini&&miniRect.contains(e.getX(),e.getY());}
         if(miniButtonGesture){
@@ -465,6 +471,8 @@ public final class MapView extends View implements MapPresentation {
         long drawStart=System.nanoTime();lastTilesVisited=0;lastObjectsVisited=0;super.onDraw(canvas);canvas.drawColor(MapOverview.BACKGROUND);if(world==null)return;
         float scale=camera.scale,offsetX=camera.x,offsetY=camera.y;
         boolean detail=scale*RADIUS>=12*density;collectVisible();
+        int gridForce=openingPreview&&previewFaction>=0&&previewFaction<world.factions.length?previewFaction:world.player;
+        boolean difficultMarch=world.campaign.has(gridForce,Campaign.Tech.DIFFICULT_MARCH);
         canvas.save();canvas.translate(offsetX,offsetY);canvas.scale(scale,scale);
         int r0=camera.firstRow(world.height,RADIUS*2),r1=camera.lastRow(world.height,RADIUS*2);
         if(!detail&&overview!=null)overview.draw(canvas,territoryMode);
@@ -476,7 +484,7 @@ public final class MapView extends View implements MapPresentation {
             boolean exterior=world.terrain[q][r]==World.Terrain.VOID;
             if(detail)terrainTiles.draw(canvas,world,q,r,cx,cy);
             else {polygon(cx,cy,RADIUS-.3f);fill(canvas,TerrainTiles.color(t));}
-            if(gridShown&&!exterior){polygon(cx,cy,RADIUS);stroke(canvas,0x887d928a,Math.max(.7f,density/scale));}
+            if(gridShown&&!exterior&&MapSceneSnapshot.gridTerrain(world.terrain[q][r],difficultMarch)&&!NationalMap.restricted(world,h)){polygon(cx,cy,RADIUS);stroke(canvas,0x887d928a,Math.max(.7f,density/scale));}
             if(!exterior)drawTerritory(canvas,q,r,cx,cy,scale);
         }
         if(detail&&territoryMode>0){

@@ -1,0 +1,23 @@
+package game.sanguo.mobile;
+import java.nio.file.*;
+public class ModelBenchmark {
+ static volatile int sink;
+ interface Work{void run()throws Exception;}
+ static void bench(String name,Work work)throws Exception{
+  for(int i=0;i<500;i++)work.run();
+  com.sun.management.ThreadMXBean mx=(com.sun.management.ThreadMXBean)java.lang.management.ManagementFactory.getThreadMXBean();
+  long id=Thread.currentThread().getId();
+  for(int round=0;round<5;round++){
+   long a=mx.getThreadAllocatedBytes(id),c=mx.getCurrentThreadCpuTime(),t=System.nanoTime();
+   for(int i=0;i<500;i++)work.run();
+   System.out.println(name+","+round+","+(mx.getThreadAllocatedBytes(id)-a)/500+","+(mx.getCurrentThreadCpuTime()-c)/500+","+(System.nanoTime()-t)/500);
+  }
+ }
+ public static void main(String[] args)throws Exception{
+  byte[] data=Files.readAllBytes(Path.of("app/src/main/assets/3d/sites/v"+args[0]+"/city0-lod0.glb"));
+  FieldAssets f=new FieldAssets(name->Files.newInputStream(Path.of("app/src/main/assets/3d/field",name)));
+  System.out.println("operation,round,allocated_bytes,thread_cpu_ns,wall_ns");
+  bench("site_decode",()->sink=SiteGlb.read(new java.io.ByteArrayInputStream(data)).vertices.length);
+  bench("cavalry_pose",()->sink=f.pose("unit-CAVALRY-lod0","walk",5,1).vertices.length);
+ }
+}

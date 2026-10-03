@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "phase": "Normal installed original source-quad candidate FAILED progression/deadline; PC pixel/timing parity unaccepted",
+  "artifacts": [
+    {
+      "path": "out/pc-visual/v151/app-debug-source-perspective.apk",
+      "bytes": 83436386,
+      "sha256": "b3375232def1ff6e40c0adb35b8324f6ea0dfc886869b339a409ddfef9338c7a"
+    },
+    {
+      "path": "out/pc-visual/v151/androidTest-source-perspective.apk",
+      "bytes": 613343,
+      "sha256": "848130a897334ff52813a07319db5a7961055ff5ce0f1c28626b675103cd44ec"
+    }
+  ],
+  "checks": [
+    {
+      "name": "original1188-camera-and1184-vertices",
+      "status": "pass136046",
+      "evidence": "out/pc-visual/v151-camera-source-checked/comparison.json"
+    },
+    {
+      "name": "android-source-normalized-perspective112-packets",
+      "status": "pass914",
+      "evidence": "out/pc-visual/v151-native-perspective-checked/comparison.json"
+    },
+    {
+      "name": "source-asset-and-ABI-pins",
+      "status": "pass137-assets4libs",
+      "evidence": "out/pc-visual/v151/apk-pins.txt"
+    },
+    {
+      "name": "host-map-mesh-pick-save",
+      "status": "pass553985",
+      "evidence": "out/pc-visual/v151/map-interaction.txt"
+    },
+    {
+      "name": "host-legacy-label-occlusion-regression",
+      "status": "pass10441",
+      "evidence": "out/pc-visual/v151/label-visibility.txt"
+    },
+    {
+      "name": "host-eye-round-trip-and-clipping",
+      "status": "pass20160",
+      "evidence": "out/pc-visual/v151/camera-eye.txt"
+    },
+    {
+      "name": "host-frame-admission",
+      "status": "pass",
+      "evidence": "out/pc-visual/v151/frame-admission.txt"
+    },
+    {
+      "name": "normal-installed-map-source-effects",
+      "status": "FAIL source native updates reach normal GPU map frame at third target; Java6000ms read deadline",
+      "evidence": "out/pc-visual/v151/map-effects-installed.txt",
+      "report": "out/pc-visual/v151/map-effects-failed-report.txt",
+      "first_two_submitted_quad_counts": [
+        96,
+        48
+      ],
+      "pixel_contribution_verified": false
+    },
+    {
+      "name": "actual-user-save-restoration",
+      "status": "PASS exact168846bytes",
+      "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9"
+    },
+    {
+      "name": "late-failed-video-container",
+      "status": "43samples68.509seconds; sparse and failed acceptance",
+      "evidence": "out/pc-visual/v151/map-effects-video-container.json"
+    },
+    {
+      "name": "independent-block-budget-whole-source-state",
+      "status": "PASS914checks112packets; same complete heap/RNG/ordered packets",
+      "evidence": "out/pc-visual/v151-native-perspective-block-checked/comparison.json"
+    },
+    {
+      "name": "host-perspective-interaction-after-installed151-build",
+      "status": "PASS1152 reference uses actual float32 query ray, original tolerances unchanged",
+      "evidence": "out/pc-visual/v151/perspective-interaction-float-query-reference.txt",
+      "installed151_contains_latest_precision_fix": false
+    }
+  ],
+  "limits": [
+    "Normal map lifecycle/pixel proof not accepted; failure retained, no relaxed deadline",
+    "PC matching references and active MOD resolution pending",
+    "ARM crossbuild only, no hardware/performance validation",
+    "Combat/fullscreen dynamic events remain incomplete",
+    "v148 nationalfar pending81 failure retained"
+  ]
+}

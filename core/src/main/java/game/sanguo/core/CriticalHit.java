@@ -2,11 +2,12 @@ package game.sanguo.core;
 
 /** Immutable presentation evidence emitted only by an applied, damaging tactic critical hit. */
 public final class CriticalHit {
-    public final int officerId,owner,unitId;
+    public final int officerId,owner,unitId,year;
     public final String name,tactic;
     private final int leadership,war,intelligence,politics,charm;
     private final World.Sex sex;
-    CriticalHit(World.Officer o,World.Unit u,String tactic){
+    CriticalHit(World.Officer o,World.Unit u,String tactic,int year){
+        this.year=year; // Applied calendar fact for visual age variants; never serialized.
         officerId=o.id;owner=u.owner;unitId=u.id;name=o.name;this.tactic=tactic;
         leadership=o.leadership;war=o.war;intelligence=o.intelligence;politics=o.politics;charm=o.charm;sex=o.sex;
     }

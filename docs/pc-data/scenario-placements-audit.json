@@ -1,0 +1,389 @@
+{
+  "schema": 2,
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "identity_audit_sha256": "6187bc46f59e2b20e1bbdb45cd394151a145be8d13060629f0120d2323e71ca4",
+  "labels": {
+    "status": {
+      "lookup": [
+        "0x48ea20",
+        "0x48ea30"
+      ],
+      "entries": [
+        {
+          "native_index": 0,
+          "name": "君主",
+          "pointer": "0x7eb8c8",
+          "raw_hex": "a767a544"
+        },
+        {
+          "native_index": 1,
+          "name": "都督",
+          "pointer": "0x7eb354",
+          "raw_hex": "b3a3b7fe"
+        },
+        {
+          "native_index": 2,
+          "name": "太守",
+          "pointer": "0x7e9e20",
+          "raw_hex": "a4d3a675"
+        },
+        {
+          "native_index": 3,
+          "name": "一般",
+          "pointer": "0x7ed584",
+          "raw_hex": "a440afeb"
+        },
+        {
+          "native_index": 4,
+          "name": "在野",
+          "pointer": "0x7e9e28",
+          "raw_hex": "a662b3a5"
+        },
+        {
+          "native_index": 5,
+          "name": "俘虜",
+          "pointer": "0x7e9e30",
+          "raw_hex": "ab52b8b8"
+        },
+        {
+          "native_index": 6,
+          "name": "未登",
+          "pointer": "0x7ed57c",
+          "raw_hex": "a5bcb56e"
+        },
+        {
+          "native_index": 7,
+          "name": "未發",
+          "pointer": "0x7ed574",
+          "raw_hex": "a5bcb56f"
+        },
+        {
+          "native_index": 8,
+          "name": "死亡",
+          "pointer": "0x7ed56c",
+          "raw_hex": "a6baa460"
+        }
+      ]
+    },
+    "ability": {
+      "lookup": [
+        "0x48ea80",
+        "0x48ea90"
+      ],
+      "entries": [
+        {
+          "native_index": 0,
+          "name": "統率",
+          "pointer": "0x7eb3b4",
+          "raw_hex": "b2ceb276"
+        },
+        {
+          "native_index": 1,
+          "name": "武力",
+          "pointer": "0x7eb1e8",
+          "raw_hex": "aa5aa44f"
+        },
+        {
+          "native_index": 2,
+          "name": "智力",
+          "pointer": "0x7eb478",
+          "raw_hex": "b4bca44f"
+        },
+        {
+          "native_index": 3,
+          "name": "政治",
+          "pointer": "0x7eb580",
+          "raw_hex": "ac46aa76"
+        },
+        {
+          "native_index": 4,
+          "name": "魅力",
+          "pointer": "0x7eb134",
+          "raw_hex": "be79a44f"
+        }
+      ]
+    }
+  },
+  "evidence": [
+    "Original1100-object officer loop493812..49383f reads850 records; no identity replacement hook",
+    "4883b0 reads actor94; original47b2b0 resolves district490ad0 then native force getter",
+    "Each source record SHA matches the previous name/birth/sex mapping; unresolved project identities remain null",
+    "4c9c11 loads officer+a0 before48ea10; original48ea20 label lookup preserves exact abbreviations",
+    "All ownership getters preserve complete3MiB world state"
+  ],
+  "limits": [
+    "Raw9c location has no inferred site label; native status abbreviations are retained without expanded appearance semantics",
+    "Registry ownership is not proof an officer is active, selectable or already appeared",
+    "MOD activation and full scenario-start processing remain unresolved; no existing project data overwritten"
+  ],
+  "sources": [
+    {
+      "path": "Media/scenario/Scen000.s11",
+      "sha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 109,
+      "raw_status_counts": {
+        "-1": 171,
+        "0": 8,
+        "1": 7,
+        "3": 94,
+        "4": 7,
+        "6": 466,
+        "7": 97
+      }
+    },
+    {
+      "path": "Media/scenario/SCEN001.S11",
+      "sha256": "aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 199,
+      "raw_status_counts": {
+        "-1": 167,
+        "0": 19,
+        "1": 6,
+        "3": 174,
+        "4": 16,
+        "6": 384,
+        "7": 65,
+        "8": 19
+      }
+    },
+    {
+      "path": "Media/scenario/SCEN002.S11",
+      "sha256": "ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 223,
+      "raw_status_counts": {
+        "-1": 167,
+        "0": 19,
+        "1": 5,
+        "3": 199,
+        "4": 14,
+        "6": 342,
+        "7": 51,
+        "8": 53
+      }
+    },
+    {
+      "path": "Media/scenario/SCEN003.S11",
+      "sha256": "efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 232,
+      "raw_status_counts": {
+        "-1": 165,
+        "0": 10,
+        "1": 9,
+        "3": 213,
+        "4": 13,
+        "6": 298,
+        "7": 33,
+        "8": 109
+      }
+    },
+    {
+      "path": "Media/scenario/SCEN004.S11",
+      "sha256": "6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 257,
+      "raw_status_counts": {
+        "-1": 164,
+        "0": 12,
+        "1": 9,
+        "3": 236,
+        "4": 3,
+        "6": 242,
+        "7": 28,
+        "8": 156
+      }
+    },
+    {
+      "path": "Media/scenario/SCEN005.S11",
+      "sha256": "4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 241,
+      "raw_status_counts": {
+        "-1": 163,
+        "0": 7,
+        "1": 10,
+        "3": 224,
+        "4": 2,
+        "6": 219,
+        "7": 25,
+        "8": 200
+      }
+    },
+    {
+      "path": "Media/scenario/SCEN006.S11",
+      "sha256": "b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 244,
+      "raw_status_counts": {
+        "-1": 162,
+        "0": 5,
+        "1": 12,
+        "3": 227,
+        "6": 115,
+        "7": 9,
+        "8": 320
+      }
+    },
+    {
+      "path": "Media/scenario/SCEN007.S11",
+      "sha256": "703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 448,
+      "raw_status_counts": {
+        "-1": 167,
+        "0": 37,
+        "1": 5,
+        "3": 406,
+        "7": 231,
+        "8": 4
+      }
+    },
+    {
+      "path": "Media/scenario/Scen008.s11",
+      "sha256": "ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 237,
+      "raw_status_counts": {
+        "-1": 166,
+        "0": 14,
+        "1": 7,
+        "3": 216,
+        "4": 11,
+        "6": 306,
+        "7": 44,
+        "8": 86
+      }
+    },
+    {
+      "path": "Media/scenario/Scen009.s11",
+      "sha256": "64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 236,
+      "raw_status_counts": {
+        "-1": 164,
+        "0": 10,
+        "1": 9,
+        "3": 217,
+        "4": 7,
+        "6": 277,
+        "7": 33,
+        "8": 133
+      }
+    },
+    {
+      "path": "Media/scenario/Scen010.s11",
+      "sha256": "4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 245,
+      "raw_status_counts": {
+        "-1": 163,
+        "0": 5,
+        "1": 13,
+        "3": 227,
+        "4": 1,
+        "6": 172,
+        "7": 22,
+        "8": 247
+      }
+    },
+    {
+      "path": "Media/scenario/Scen011.s11",
+      "sha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 148,
+      "raw_status_counts": {
+        "-1": 168,
+        "0": 22,
+        "1": 5,
+        "3": 121,
+        "4": 4,
+        "6": 437,
+        "7": 79,
+        "8": 14
+      }
+    },
+    {
+      "path": "Media/scenario/Scen012.s11",
+      "sha256": "d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 213,
+      "raw_status_counts": {
+        "-1": 167,
+        "0": 15,
+        "1": 6,
+        "3": 192,
+        "4": 5,
+        "6": 371,
+        "7": 62,
+        "8": 32
+      }
+    },
+    {
+      "path": "Media/scenario/Scen013.s11",
+      "sha256": "72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 97,
+      "raw_status_counts": {
+        "-1": 167,
+        "0": 22,
+        "1": 5,
+        "3": 70,
+        "7": 582,
+        "8": 4
+      }
+    },
+    {
+      "path": "Media/scenario/Scen014.S11",
+      "sha256": "ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 438,
+      "raw_status_counts": {
+        "-1": 167,
+        "0": 37,
+        "1": 5,
+        "3": 396,
+        "7": 241,
+        "8": 4
+      }
+    },
+    {
+      "path": "Media/scenario/Scen015.s11",
+      "sha256": "5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a",
+      "records": 850,
+      "project_id_mapped": 666,
+      "assigned_force": 51,
+      "raw_status_counts": {
+        "-1": 162,
+        "0": 2,
+        "1": 8,
+        "3": 41,
+        "7": 1,
+        "8": 636
+      }
+    }
+  ],
+  "records": 13600,
+  "full_report": {
+    "path": "scenario-placements-native.json.gz",
+    "sha256": "6fedb98329346666f891209c592e6d2fd8d3305f4b46695e8cf970e988f66cbf",
+    "decoded_sha256": "94fd55be934d64339bcbc011b3ed7faabc98dbdddef619f9b843545cd59690be"
+  }
+}

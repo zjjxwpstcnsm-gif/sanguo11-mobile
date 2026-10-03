@@ -1,0 +1,89 @@
+{
+  "pid": "18138",
+  "first_query_ms": 92,
+  "subsequent_query_ms": [
+    0,
+    0,
+    1,
+    0,
+    4,
+    0,
+    1,
+    0,
+    2,
+    0,
+    0,
+    1
+  ],
+  "subsequent_median_ms": 0.0,
+  "subsequent_max_ms": 4,
+  "count": 13,
+  "scope": "API29 x86_64 real touch, not isolated benchmark or ARM result",
+  "samples": [
+    {
+      "pid": "18138",
+      "milliseconds": 92,
+      "line": "10-03 02:09:14.042 18138 18138 D DeploymentPreview: queryMs=92 reason=LEADER_UNAVAILABLE"
+    },
+    {
+      "pid": "18138",
+      "milliseconds": 0,
+      "line": "10-03 02:09:18.569 18138 18138 D DeploymentPreview: queryMs=0 reason=FORMATION_INVALID"
+    },
+    {
+      "pid": "18138",
+      "milliseconds": 0,
+      "line": "10-03 02:09:19.422 18138 18138 D DeploymentPreview: queryMs=0 reason=FORMATION_INVALID"
+    },
+    {
+      "pid": "18138",
+      "milliseconds": 1,
+      "line": "10-03 02:09:20.272 18138 18138 D DeploymentPreview: queryMs=1 reason=FORMATION_INVALID"
+    },
+    {
+      "pid": "18138",
+      "milliseconds": 0,
+      "line": "10-03 02:09:21.989 18138 18138 D DeploymentPreview: queryMs=0 reason=STOCK_INSUFFICIENT"
+    },
+    {
+      "pid": "18138",
+      "milliseconds": 4,
+      "line": "10-03 02:09:23.661 18138 18138 D DeploymentPreview: queryMs=4 reason=NONE"
+    },
+    {
+      "pid": "18138",
+      "milliseconds": 0,
+      "line": "10-03 02:09:24.501 18138 18138 D DeploymentPreview: queryMs=0 reason=STOCK_INSUFFICIENT"
+    },
+    {
+      "pid": "18138",
+      "milliseconds": 1,
+      "line": "10-03 02:09:25.353 18138 18138 D DeploymentPreview: queryMs=1 reason=NONE"
+    },
+    {
+      "pid": "18138",
+      "milliseconds": 0,
+      "line": "10-03 02:09:26.595 18138 18138 D DeploymentPreview: queryMs=0 reason=LOAD_RANGE"
+    },
+    {
+      "pid": "18138",
+      "milliseconds": 2,
+      "line": "10-03 02:09:29.012 18138 18138 D DeploymentPreview: queryMs=2 reason=NONE"
+    },
+    {
+      "pid": "18138",
+      "milliseconds": 0,
+      "line": "10-03 02:09:37.056 18138 18138 D DeploymentPreview: queryMs=0 reason=LEADER_UNAVAILABLE"
+    },
+    {
+      "pid": "18138",
+      "milliseconds": 0,
+      "line": "10-03 02:09:37.769 18138 18138 D DeploymentPreview: queryMs=0 reason=FORMATION_INVALID"
+    },
+    {
+      "pid": "18138",
+      "milliseconds": 1,
+      "line": "10-03 02:09:39.467 18138 18138 D DeploymentPreview: queryMs=1 reason=NONE"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+UIUX PASS 59 checks
+PASS normal launch restores existing save
+PASS personnel starts from preserved campaign
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 展开 at Rect(754, 1002 - 901, 1128)
+PASS touch visible 武将 at Rect(357, 830 - 509, 956)
+PASS touch visible 任命太守 at Rect(53, 1101 - 1027, 1227)
+PASS touch visible  at Rect(47, 412 - 906, 538)
+PASS actual paste enters Chinese search
+PASS touch visible LinearLayout at Rect(42, 861 - 1037, 998)
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS governor review is pure
+PASS touch visible 返回修改 at Rect(627, 1110 - 837, 1236)
+PASS governor return retains actor table
+PASS touch visible 返回目标 at Rect(795, 1436 - 1005, 1562)
+PASS governor returns to selected target and Chinese query
+PASS touch visible LinearLayout at Rect(42, 835 - 1037, 972)
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS touch visible 执行 at Rect(837, 1110 - 1005, 1236)
+PASS governor commits once with exact authority effect and cost
+PASS governor target and actor spend action and all selectors close
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 读取存档 at Rect(53, 788 - 1027, 914)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 2:11 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 读取存档 at Rect(795, 1079 - 1005, 1205)
+PASS actual load restores campaign between city command paths
+PASS normal campaign has at least two rewardable officers
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 展开 at Rect(754, 1002 - 901, 1128)
+PASS touch visible 武将 at Rect(357, 830 - 509, 956)
+PASS touch visible 褒奖武将 at Rect(53, 1444 - 1027, 1521)
+PASS touch visible  at Rect(47, 459 - 906, 585)
+PASS reward empty search fits above keyboard
+PASS touch visible × at Rect(685, 338 - 811, 464)
+PASS touch visible LinearLayout at Rect(42, 960 - 1037, 1097)
+PASS touch visible LinearLayout at Rect(42, 1022 - 1037, 1159)
+PASS touch visible 确认选择 at Rect(795, 1457 - 1005, 1583)
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS batch reward preview leaves campaign and RNG intact
+PASS touch visible 返回修改 at Rect(627, 1140 - 837, 1266)
+PASS touch visible 返回目标 at Rect(795, 1436 - 1005, 1562)
+PASS batch reward returns with both selected targets
+PASS reward target list and confirmation remain reachable in landscape
+PASS touch visible 确认选择 at Rect(795, 1457 - 1005, 1583)
+PASS touch visible LinearLayout at Rect(42, 857 - 1037, 994)
+PASS touch visible 执行 at Rect(837, 1140 - 1005, 1266)
+PASS batch reward pays once using authority total
+PASS reward loyalty matches preview for 2000
+PASS reward loyalty matches preview for 2001
+PASS reward loyalty matches preview for 2003
+PASS reward command closes both target and actor lists
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 读取存档 at Rect(53, 788 - 1027, 914)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 2:11 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 读取存档 at Rect(795, 1079 - 1005, 1205)
+PASS actual load restores campaign between city command paths
+

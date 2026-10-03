@@ -1,0 +1,34 @@
+name: Native R10 pinned toolchain
+on:
+  push:
+    branches: [agent/native-pc-visual]
+    paths: [.github/workflows/native-r10-toolchain.yml]
+permissions:
+  contents: read
+jobs:
+  tools:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Fetch exact public validation dependencies
+        run: |
+          mkdir -p /tmp/r10-tools/wheels
+          python -m pip download --only-binary=:all: --no-deps etcpak==0.9.15 texture2ddecoder==1.0.6 -d /tmp/r10-tools/wheels
+          curl -fsSL --retry 2 --retry-all-errors https://github.com/google/filament/releases/download/v1.56.0/filament-v1.56.0-linux.tgz -o /tmp/r10-tools/filament.tgz
+          for origin in https://repo.maven.apache.org/maven2 https://repo1.maven.org/maven2 https://maven-central.storage-download.googleapis.com/maven2; do
+            if curl -fSL --max-time 30 "$origin/org/json/json/20240303/json-20240303.jar" -o /tmp/r10-tools/json.jar; then
+              echo "$origin" > /tmp/r10-tools/JSON_ORIGIN
+              break
+            fi
+          done
+          test -s /tmp/r10-tools/json.jar
+          cd /tmp/r10-tools && sha256sum json.jar filament.tgz wheels/* > SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: native-r10-toolchain
+          path: /tmp/r10-tools/
+          retention-days: 3

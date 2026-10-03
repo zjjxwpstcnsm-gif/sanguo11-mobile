@@ -1,0 +1,10 @@
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+PASS S04/S05 assets: 12692966 checks; 120 facility LOD assets; 26 rigs; forest local reuse 16/25
+PASS S05 automatic departure/march/garrison/convoy in 8 turns, full SaveCodec equality
+PASS S04/S05 flow: real legal port move, water/land asset transitions, 50/100 stress identities, real facility lifecycle and exact core equality
+Exception in thread "main" java.io.IOException: 记录数量无效
+	at game.sanguo.core.SaveCodec.require(SaveCodec.java:160)
+	at game.sanguo.core.SaveCodec.validate(SaveCodec.java:174)
+	at game.sanguo.core.SaveCodec.encode(SaveCodec.java:19)
+	at game.sanguo.mobile.NativeFeedback122Test.main(NativeFeedback122Test.java:20)

@@ -1,0 +1,37 @@
+INSTRUMENTATION_STATUS: class=game.sanguo.mobile.NativeR16Instrumentation
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=InstrumentationTestRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: test=national
+INSTRUMENTATION_STATUS_CODE: 1
+FAIL R16 national java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=596 backingCopies=2 confirmedLosses=2 relayouts=2 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1
+source=67dc97672b9e5ce868c64c31d59505f8a45c326e profile=native device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]
+snapshot=true surface=true viewport=918x1047 session=b7276d9f-1efe-4e1b-9b1d-8cb88bf1800c:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=231704 terrain_all_coarse=true mapVisualKey=471842112:0 environmentCpuChunks=241 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=177 pending=310 submitted=15 terrainMaterialLod=OVERVIEW lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 overlayDraws=591 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=8 workerBackpressureWallMs=0.0 frameCallbacks=648 beginAttempts=619 beginSkipped=604 gpuPreparationFrames=15 lifetimeSubmissions=15 surfaceCopies=0 output=WAITING_FRAME
+camera=99.5,99.75 span=119.8234 tilt=55.0 facing=1 yaw=0.0
+pick=none
+Filament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30
+内部 918 × 1047 / UI 1080 × 1232 · chunks 177 / GPU 28 · objects 87
+帧回调间隔 163.3 ms（非 GPU/FPS 实测）
+待装载 310 · S06 战斗特效 / 部队 · 林块 99 · LOD 2 · 资产回退 0 · 特效 0/64
+场景 primitives=228 triangles=107954 buffers_bytes=5225144 pose_cache=24 entity_live=229 material_instance_live=88 mesh_live=53 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=2 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=56.61208 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=8 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=7.41112 CPU提交ms P50/P95/P99=0.39/11.88/612.16 samples=240（非驱动DrawCall/GPU帧时）
+R16 attempts=619 submitted=15 rejected=604 window=300 owner_wall_ms_p50_p95_p99=0.403/5.688/237.943/ owner_cpu_ms_p50_p95_p99=0.394/3.389/27.339/ begin_wall_ms_p50_p95_p99=0.043/0.289/146.429/ mesh_upload_wall_ms_p50_p95_p99=0.000/0.000/16.534/ render_submit_wall_ms_p50_p95_p99=0.000/0.000/7.226/ presented_interval=NOT_AVAILABLE gpu_duration=NOT_AVAILABLE visibility_passes=15 visibility_skips=0 thermal_transitions=0
+	at game.sanguo.mobile.SceneInstrumentation.ready(SceneInstrumentation.java:75)
+	at game.sanguo.mobile.NativeR16Instrumentation.profile(NativeR16Instrumentation.java:31)
+	at game.sanguo.mobile.NativeR16Instrumentation.onStart(NativeR16Instrumentation.java:62)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)
+FAIL R16 national java.lang.AssertionError: scene readiness timeout: windowRecovery=OBSERVING windowFrames=596 backingCopies=2 confirmedLosses=2 relayouts=2 copyPending=false probeErrors=0 | landscape=central-plains-r09-v1
+source=67dc97672b9e5ce868c64c31d59505f8a45c326e profile=native device=Android SDK built for x86_64 api=29 abi=[x86_64, x86]
+snapshot=true surface=true viewport=918x1047 session=b7276d9f-1efe-4e1b-9b1d-8cb88bf1800c:0:0 assetRevision=1.56.0/R06 asset_pending=0 asset_cpu_bytes=231704 terrain_all_coarse=true mapVisualKey=471842112:0 environmentCpuChunks=241 environmentMode=opaque-merged-not-instanced meshGeneration=1 cpuChunks=177 pending=310 submitted=15 terrainMaterialLod=OVERVIEW lastAdmittedMaterialBinds=0 shadows=true shadowFar=380 hazeOpaqueCap=0.08 season=spring seasonUpdates=1 artProfile=ink-landscape-r14-v1 worldMonth=1 overlayDraws=591 territoryBuilds=0 territoryBuildMs=0.0 meshUploads=0 meshUploadCpuMs=0.0 meshUploadMax=8 meshUploadBudgetMs=2.0 workerDeliveries=8 workerBackpressureWallMs=0.0 frameCallbacks=648 beginAttempts=619 beginSkipped=604 gpuPreparationFrames=15 lifetimeSubmissions=15 surfaceCopies=0 output=WAITING_FRAME
+camera=99.5,99.75 span=119.8234 tilt=55.0 facing=1 yaw=0.0
+pick=none
+Filament 1.56.0 / OpenGL ES · 中 · 30 帧 color=post-process gamma MSAA=off / compatibility thermal=0 cap=30
+内部 918 × 1047 / UI 1080 × 1232 · chunks 177 / GPU 28 · objects 87
+帧回调间隔 163.3 ms（非 GPU/FPS 实测）
+待装载 310 · S06 战斗特效 / 部队 · 林块 99 · LOD 2 · 资产回退 0 · 特效 0/64
+场景 primitives=228 triangles=107954 buffers_bytes=5225144 pose_cache=24 entity_live=229 material_instance_live=88 mesh_live=53 texture_live=11 unit_geometry=shared-single-member unit_draw=GPU-instanced rigid_pose=CPU-cached unit_lod=2 material_live=7 worker_pending=0 worker_waiting=0 discarded=0 ground_load_cpu_ms=56.61208 ground_texture_estimate_bytes=11184800 ground_uploads=8 ground_fragment_samples=8 frame_queued=true texture_estimate_bytes=11236808 ETC2_SRGB8 mip_upload_cpu_ms=7.41112 CPU提交ms P50/P95/P99=0.39/11.88/612.16 samples=240（非驱动DrawCall/GPU帧时）
+R16 attempts=619 submitted=15 rejected=604 window=300 owner_wall_ms_p50_p95_p99=0.403/5.688/237.943/ owner_cpu_ms_p50_p95_p99=0.394/3.389/27.339/ begin_wall_ms_p50_p95_p99=0.043/0.289/146.429/ mesh_upload_wall_ms_p50_p95_p99=0.000/0.000/16.534/ render_submit_wall_ms_p50_p95_p99=0.000/0.000/7.226/ presented_interval=NOT_AVAILABLE gpu_duration=NOT_AVAILABLE visibility_passes=15 visibility_skips=0 thermal_transitions=0
+	at game.sanguo.mobile.SceneInstrumentation.ready(SceneInstrumentation.java:75)
+	at game.sanguo.mobile.NativeR16Instrumentation.profile(NativeR16Instrumentation.java:31)
+	at game.sanguo.mobile.NativeR16Instrumentation.onStart(NativeR16Instrumentation.java:62)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)
+

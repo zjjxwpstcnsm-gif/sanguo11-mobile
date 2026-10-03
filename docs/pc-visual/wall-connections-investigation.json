@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "status": "static-v136-and-constructible-v137-source-connections-installed; PC-match-pending",
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "functions": [
+    {
+      "va": "0x417040",
+      "bytes": 276,
+      "sha256": "bcb6bb36b47b50384f2757bdf1637c1b1bc329461150e76135aebf3482bd72f3"
+    },
+    {
+      "va": "0x416fb0",
+      "bytes": 131,
+      "sha256": "961c7d855b0c98092b9ce0d1f1f20f2d569d396d682ad3d2f87a29ad81779eb0"
+    },
+    {
+      "va": "0x41c020",
+      "bytes": 71,
+      "sha256": "27428a9b1ed086a47ebb353a8ef9f1d42c427dfc684763cfe9c610bd1b61d1c6"
+    },
+    {
+      "va": "0x41cf70",
+      "bytes": 446,
+      "sha256": "ddb767437ab3e4c0245855d1aa8b57adffb28fff923ca9df836e04d71d38b5a6"
+    },
+    {
+      "va": "0x41c630",
+      "bytes": 206,
+      "sha256": "f31fb5fa810285fbe7e0cf0c7659e483b745d85efcb3cda7e493bc5938d082d9"
+    },
+    {
+      "va": "0x41c510",
+      "bytes": 284,
+      "sha256": "c8a8d81d132d1edef246b9e0e84b88d01d84664bd4397387a546d0b61567c744"
+    },
+    {
+      "va": "0x4178a0",
+      "bytes": 116,
+      "sha256": "368fbc4336b9473f96e1708f7b0f6f19aa3ce1d47670001a7644e38ff976103c"
+    },
+    {
+      "va": "0x483a50",
+      "bytes": 72,
+      "sha256": "9169f44c7bf1b06af3cfa0de9fad39557a6a797e96e99dc8fd0fb82b86c3363c"
+    },
+    {
+      "va": "0x5a0160",
+      "bytes": 380,
+      "sha256": "b8f711b26975022ccec12e98dc87e00c879d0ad3e4475c764a1115d632312f2a"
+    }
+  ],
+  "object_kinds": [
+    14,
+    17,
+    28
+  ],
+  "connection_field": "runtime byte at object+0x76, computed from six same-kind active/state0 neighbor objects; not stored in OBJS yaw",
+  "native_odd_q_neighbors": [
+    [
+      -1,
+      -1
+    ],
+    [
+      0,
+      -1
+    ],
+    [
+      1,
+      -1
+    ],
+    [
+      -1,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      -1,
+      0
+    ],
+    [
+      0,
+      -1
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      -1,
+      1
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "quarter_vertex_steps": [
+    [
+      -4,
+      -2
+    ],
+    [
+      0,
+      -4
+    ],
+    [
+      4,
+      -2
+    ],
+    [
+      -4,
+      2
+    ],
+    [
+      0,
+      4
+    ],
+    [
+      4,
+      2
+    ]
+  ],
+  "opposite_directions": [
+    5,
+    4,
+    3,
+    2,
+    1,
+    0
+  ],
+  "map_wall_connected_base_models": [
+    118,
+    120
+  ],
+  "connection_segment_models": {
+    "map_wall": 114,
+    "earth_wall": 130,
+    "stone_wall": 196
+  },
+  "other_connected_base_models": {
+    "earth_wall": 136,
+    "stone_wall": 208
+  },
+  "segment_emission": "Only directions3..5 are drawn from each endpoint; symmetric6-bit mask prevents duplicate edges",
+  "segment_matrix": "EXE41c510 samples original terrain vertices at endpoints, scales segment length, rotates in XZ and writes height shear into matrix[0,1]",
+  "length_scale_constant": 0.04330126941204071,
+  "source_height_factor": 0.5,
+  "limits": [
+    "Source topology, model selection, creation transform and endpoint matrix integrated and installed-verified",
+    "Source terrain initialization height patch, lighting, projection and matched PC pixels remain pending"
+  ],
+  "constructible_creation": {
+    "function": "0x5a0160",
+    "rawX": "2*sourceX+57",
+    "rawZ": "2*sourceY+(sourceX&1)+57",
+    "quarter_vertex": "(rawX*2,rawZ*2)",
+    "height": "Original quarter-grid height byte",
+    "native_direction_yaw": [
+      -1.5707963705062866,
+      3.1415927410125732,
+      1.5707963705062866,
+      -1.5707963705062866,
+      0,
+      1.5707963705062866
+    ],
+    "axial_to_native_direction": [
+      4,
+      3,
+      0,
+      1,
+      2,
+      5
+    ],
+    "source_yaw_table_offset": "0x44b2b0"
+  }
+}

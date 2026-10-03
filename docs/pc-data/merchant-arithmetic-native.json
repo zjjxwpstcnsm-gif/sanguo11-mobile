@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "source_path": "san11pk.exe",
+  "executable_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "shared_path": "Media/scenario/Scenario.s11",
+  "shared_sha256": "dfca0316e019454e77bab5805e3d725ae35e34408e1699e869e5419e2f5fad6f",
+  "output_sha256": "bfe9b289aeb4e1c9e691a1399dba0d1696d10fe4d4d74595a86c137a78a952e5",
+  "rows": 3865,
+  "counts": {
+    "buymax": 160,
+    "initial": 224,
+    "monthly": 2816,
+    "percent": 35,
+    "quote": 420,
+    "sellmax": 160,
+    "uniform": 50
+  },
+  "functions": {
+    "quote": "5ca620",
+    "quantity": "5ca770",
+    "price": "4b3c60",
+    "uniform": "472150",
+    "percent": "4721d0"
+  },
+  "method": "Original instructions without replaced arithmetic/RNG; exact3MiB mutation and actual RNG write-count checks",
+  "limits": [
+    "Price and quantity not yet wired into project gameplay",
+    "Full command admission and global settlement not executed by this fixture"
+  ]
+}

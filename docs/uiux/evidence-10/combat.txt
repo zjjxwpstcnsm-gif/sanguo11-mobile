@@ -1,0 +1,73 @@
+UIUX PASS 66 checks
+PASS normal launch restores existing save
+PASS combat starts with intact recovery campaign
+PASS existing core plain fixture installed through real session host
+PASS touch visible 攻击 at Rect(241, 1268 - 440, 1394)
+PASS map touch 5,5 at [474.375, 756.46875]
+PASS invalid attack target preserves authority and RNG
+PASS touch visible 返回 at Rect(852, 998 - 1020, 1124)
+PASS map touch 6,6 at [671.25, 887.71875]
+PASS touch visible 取消 at Rect(669, 1177 - 837, 1303)
+PASS cancel attack confirmation preserves authority and RNG
+PASS system back exits attack targeting while retaining selection
+PASS touch visible 攻击 at Rect(241, 1268 - 440, 1394)
+PASS map touch 6,6 at [671.25, 887.71875]
+PASS touch visible 执行 at Rect(837, 1177 - 1005, 1303)
+PASS double attack confirmation commits once and publishes actual damage
+PASS existing core mountain fixture installed through real session host
+PASS touch visible 战法 at Rect(440, 1268 - 639, 1394)
+PASS touch visible 突刺 · 气力15 · B级 at Rect(42, 693 - 1037, 840)
+PASS map touch 5,5 at [474.375, 756.46875]
+PASS invalid tactic target preserves authority and RNG
+PASS touch visible 返回 at Rect(852, 998 - 1020, 1124)
+PASS map touch 6,6 at [671.25, 887.71875]
+PASS real map touch presents authoritative blocked displacement preview
+PASS tactic preview leaves complete state and RNG unchanged
+PASS target preview frees map space from city and unit navigation rows
+PASS landscape tactic confirmation retains fully visible actions
+PASS touch visible 取消 at Rect(42, 1520 - 540, 1646)
+PASS cancel preview returns to target selection without command
+PASS map touch 6,6 at [671.25, 950.71875]
+PASS system back dismisses tactic preview without command
+PASS touch visible 取消选取 at Rect(786, 1520 - 1038, 1646)
+PASS visible cancel leaves tactic target mode and restores map navigation
+PASS touch visible 战法 at Rect(440, 1268 - 639, 1394)
+PASS touch visible 突刺 · 气力15 · B级 at Rect(42, 693 - 1037, 840)
+PASS map touch 6,6 at [671.25, 950.71875]
+PASS touch visible 执行 at Rect(540, 1520 - 1038, 1646)
+PASS double tactic confirmation consumes authoritative cost once
+PASS mountain collision retains actual target position
+PASS committed tactic clears target and preview state
+PASS second tap does not open result dialog after dock replacement
+PASS touch visible 战斗 · 点此展开
+战将1施展突刺，命中1队，主伤害805，消耗气力15，本旬行动结束
+战将2碰撞损失100（工程参数）
+实际位移：目标0格、己方0格；山地不可通行 at Rect(0, 1281 - 1080, 1416)
+PASS touch visible 返回 at Rect(852, 1055 - 1020, 1181)
+PASS explicit battle result detail returns to map
+PASS touch visible 战法 at Rect(440, 1268 - 639, 1394)
+PASS disabled tactic shows complete authority reason in visible multiline row
+PASS touch visible 取消 at Rect(837, 1236 - 1005, 1362)
+PASS unavailable tactic browsing preserves full authority
+PASS existing core plain fixture installed through real session host
+PASS touch visible 计略 at Rect(639, 1268 - 838, 1394)
+PASS touch visible 火计 · 气力10 at Rect(28, 483 - 1052, 609)
+PASS map touch 6,6 at [671.25, 887.71875]
+PASS touch visible 取消 at Rect(669, 1207 - 837, 1333)
+PASS cancel plot confirmation preserves complete state and RNG
+PASS touch visible 取消选取 at Rect(786, 1520 - 1038, 1646)
+PASS touch visible 计略 at Rect(639, 1268 - 838, 1394)
+PASS touch visible 火计 · 气力10 at Rect(28, 483 - 1052, 609)
+PASS map touch 6,6 at [671.25, 887.71875]
+PASS touch visible 执行 at Rect(837, 1207 - 1005, 1333)
+PASS double plot confirmation consumes authority-provided cost and one action once
+PASS plot result leaves no stale target callback
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 读取存档 at Rect(53, 788 - 1027, 914)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 2:11 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 读取存档 at Rect(795, 1079 - 1005, 1205)
+PASS actual load restores original campaign and RNG after fixture combat
+

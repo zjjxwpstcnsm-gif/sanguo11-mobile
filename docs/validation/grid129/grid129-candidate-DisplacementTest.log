@@ -1,0 +1,4 @@
+Exception in thread "main" java.lang.AssertionError: city deterministic replay
+	at game.sanguo.core.DisplacementTest.check(DisplacementTest.java:8)
+	at game.sanguo.core.DisplacementTest.boundaries(DisplacementTest.java:27)
+	at game.sanguo.core.DisplacementTest.main(DisplacementTest.java:12)

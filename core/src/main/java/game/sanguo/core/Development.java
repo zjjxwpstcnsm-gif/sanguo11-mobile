@@ -45,8 +45,8 @@ public final class Development {
         Set<Hex> all=new HashSet<>();for(Map.Entry<Integer,List<Hex>> e:parcels.entrySet()){
             World.City c=w.city(e.getKey());if(c==null||c.kind!=World.SiteKind.CITY)throw new IOException("开发地所属城池无效");
             bounded(e.getValue().size(),1,36);
-            for(Hex h:e.getValue())if(!w.inside(h)||w.terrain[h.q][h.r]!=World.Terrain.PLAIN||w.cityAt(h)!=null||!all.add(h)||h.distance(c.hex)>12)
-                throw new IOException("开发地越界、重叠或地形无效");
+            for(Hex h:e.getValue())if(!w.inside(h)||w.terrain[h.q][h.r]!=World.Terrain.PLAIN||w.cityAt(h)!=null||!all.add(h)||h.distance(c.hex)>(NationalMap.ID.equals(w.mapId)&&NationalMap.pcRevision(w.mapRevision)?24:12))
+                throw new IOException("开发地越界、重叠或地形无效："+c.name+" "+h+" 距离"+h.distance(c.hex));
         }
     }
 }

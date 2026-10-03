@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "goal_complete": false,
+  "status": "INSTALLED_WORKER_TRANSPORT_PASS_NOT_RENDERER",
+  "apk": {
+    "path": "out/pc-visual/v149/app-debug-source-effect-worker.apk",
+    "bytes": 82144320,
+    "sha256": "8d6191f261e74ebc62f1ec1c72b3302e1faa4402fb7a85c9e7a8d33c0861bd55",
+    "installed_byte_exact": true
+  },
+  "test_apk": {
+    "bytes": 609987,
+    "sha256": "2129148c1998dc73ef01b46e753acf293ff209834635bf9330b667aa0caf5136"
+  },
+  "native_libraries": [
+    {
+      "file": "libpc_effect_worker.so",
+      "bytes": 108744,
+      "sha256": "c6f543a5e48a0f5077bd449ed4cca4488176e0be0dd679b686d1e1a784418b23"
+    },
+    {
+      "file": "libunicorn.so",
+      "bytes": 7320992,
+      "sha256": "1755e17b4adad6cf22c31668dca20a2115f090d3d9fa6f2dc22a456178f5e5be"
+    }
+  ],
+  "save": {
+    "bytes": 168846,
+    "sha256": "82554269b1920b5d67b8945d22a55f0253cab7ed2ea55bf520ef5b9b3b99f0a9",
+    "byte_exact_unchanged": true
+  },
+  "worker_evidence": "out/pc-visual/v149/worker-installed-asset-repaired.txt",
+  "packets": 296,
+  "assertions_reported": 31,
+  "additional_final_save_assertion": 1,
+  "runtime_effects_added": 0,
+  "device": "API29 x86_64 emulator only",
+  "limits": [
+    "Transport memory proof; no GPU pixels/normal events/PC or ARM acceptance"
+  ]
+}

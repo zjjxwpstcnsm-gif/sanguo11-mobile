@@ -1,0 +1,50 @@
+[
+  {
+    "case": "baseline-fixture",
+    "attemptsRetained": 300,
+    "admitted": 28,
+    "ownerWallP50Ms": 0.20221,
+    "ownerWallP95Ms": 54.33473,
+    "scope": "last bounded attempts, not exact 10s interval; no present timestamp or GPU duration; cannot derive FPS"
+  },
+  {
+    "case": "baseline-national",
+    "attemptsRetained": 300,
+    "admitted": 120,
+    "ownerWallP50Ms": 0.37846,
+    "ownerWallP95Ms": 1389.19217,
+    "scope": "last bounded attempts, not exact 10s interval; no present timestamp or GPU duration; cannot derive FPS"
+  },
+  {
+    "case": "baseline-port",
+    "attemptsRetained": 300,
+    "admitted": 110,
+    "ownerWallP50Ms": 0.31815,
+    "ownerWallP95Ms": 1278.90669,
+    "scope": "last bounded attempts, not exact 10s interval; no present timestamp or GPU duration; cannot derive FPS"
+  },
+  {
+    "case": "candidate-fixture",
+    "attemptsRetained": 300,
+    "admitted": 103,
+    "ownerWallP50Ms": 0.24451,
+    "ownerWallP95Ms": 915.39455,
+    "scope": "last bounded attempts, not exact 10s interval; no present timestamp or GPU duration; cannot derive FPS"
+  },
+  {
+    "case": "candidate-national",
+    "attemptsRetained": 300,
+    "admitted": 32,
+    "ownerWallP50Ms": 0.23497,
+    "ownerWallP95Ms": 1293.29756,
+    "scope": "last bounded attempts, not exact 10s interval; no present timestamp or GPU duration; cannot derive FPS"
+  },
+  {
+    "case": "candidate-port",
+    "attemptsRetained": 300,
+    "admitted": 23,
+    "ownerWallP50Ms": 0.16993,
+    "ownerWallP95Ms": 22.30025,
+    "scope": "last bounded attempts, not exact 10s interval; no present timestamp or GPU duration; cannot derive FPS"
+  }
+]

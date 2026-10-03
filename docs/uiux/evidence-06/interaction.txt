@@ -1,0 +1,66 @@
+UIUX PASS 57 checks
+PASS normal launch restores existing save
+PASS test save matches current campaign before issuing deployment
+PASS fixture has at least three idle officers
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 地图 at Rect(60, 273 - 1020, 399)
+PASS touch visible 陳留 · 24k at Rect(142, 1542 - 415, 1668)
+PASS touch visible 出征 at Rect(42, 1128 - 374, 1254)
+PASS incomplete deployment cannot submit
+PASS touch visible  at Rect(47, 821 - 691, 947)
+PASS search leaves only explanatory header, no officer rows
+PASS touch visible × at Rect(691, 568 - 817, 692)
+PASS clear restores roster
+PASS touch visible 选用 at Rect(856, 926 - 1024, 1052)
+PASS touch visible 选用 at Rect(856, 707 - 1024, 833)
+PASS touch visible 选用 at Rect(856, 858 - 1024, 984)
+PASS crew alone cannot submit without selected weapon
+PASS touch visible 兵种钱粮 at Rect(375, 256 - 703, 382)
+PASS campaign has a zero-stock weapon to exercise a genuine rejection
+PASS touch visible 木兽
+库存 0 at Rect(442, 645 - 636, 855)
+PASS zero-stock selection displays authoritative reason and cannot submit
+PASS empty authoritative quantity range is not expanded to a fake minimum
+PASS touch visible 枪兵
+库存 20000 at Rect(55, 435 - 248, 645)
+PASS campaign has no warship for the naval-stock rejection
+PASS touch visible 斗舰
+库存 0 at Rect(701, 892 - 1024, 1102)
+PASS missing ship displays authoritative field without inventing a troop limit
+PASS touch visible 走舸
+免费携带 at Rect(55, 892 - 378, 1102)
+PASS disabled confirmation has a distinct visual state
+PASS touch visible 3000 at Rect(55, 1142 - 730, 1268)
+PASS out-of-range input disables submit
+PASS invalid troop input displays core reason code and field
+PASS quantity and inline error are fully visible above keyboard
+PASS one back hides keyboard while retaining draft
+PASS touch visible 0 at Rect(55, 1007 - 730, 1133)
+PASS correcting quantity restores valid submit
+PASS touch visible 部队详情 at Rect(703, 568 - 1032, 694)
+PASS details show core-provided preview ratings
+PASS displayed attack equals immutable authoritative preview
+PASS displayed action-point cost comes from authority
+PASS touch visible 武将编队 at Rect(188, 256 - 660, 382)
+PASS landscape roster exposes a full 48dp officer action
+PASS selection, preview, invalid input and rotation leave authority and RNG unchanged
+PASS touch visible 取消 at Rect(627, 1593 - 795, 1719)
+PASS cancel complete draft closes form and issues no command
+PASS touch visible 出征 at Rect(42, 1128 - 374, 1254)
+PASS new form starts without stale crew or weapon
+PASS touch visible 选用 at Rect(856, 1033 - 1024, 1159)
+PASS touch visible 兵种钱粮 at Rect(375, 256 - 703, 382)
+PASS touch visible 枪兵
+库存 20000 at Rect(55, 435 - 248, 645)
+PASS touch visible 确认出征 at Rect(816, 1593 - 1026, 1719)
+PASS rapid double confirmation deploys exactly one unit through authoritative session
+PASS typed double-submit commits exactly one authority revision
+PASS touch visible 功能 at Rect(16, 1668 - 205, 1794)
+PASS touch visible 菜单 at Rect(60, 1407 - 1020, 1533)
+PASS touch visible 读取存档 at Rect(53, 788 - 1027, 914)
+PASS touch visible 槽位 3 · 190 讨伐董卓 · 重建 · 曹操军
+190年 1月 上旬 · 第 1 旬
+最后保存 10/3/26 12:39 AM at Rect(42, 977 - 1037, 1207)
+PASS touch visible 读取存档 at Rect(795, 1079 - 1005, 1205)
+PASS actual load restores pre-deployment campaign and RNG
+

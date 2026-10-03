@@ -1,0 +1,5 @@
+package game.sanguo.core;
+import java.nio.file.*;
+public final class WriteLegacy {
+ public static void main(String[] args)throws Exception {World w=PcOfficerRankTest.world();w.officer(2).politics=99;w.officer(2).skillId=Skill.NEIZHU.id;w.government.merits.put(2,59999);Files.write(Paths.get(args[0]),SaveCodec.encode(w));}
+}

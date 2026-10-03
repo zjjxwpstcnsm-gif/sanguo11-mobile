@@ -1,0 +1,14 @@
+{
+  "source_exe_sha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "source_climate_sha256": "950e1e6b49110b4293146467441d0c4ea0b91b9bdf677bbfdd34f283d210dfc1",
+  "oracle": "original41bae0/41bbb0 executable results",
+  "source_report": "out/pc-visual/v155/source-sites-climate-checked.json",
+  "source_report_sha256": "eeb662fe239dc4cf5608642e87e972c85fce48c49d669709ec78e61e377bf8d9",
+  "fixture_sha256": "2a77d0c2d283e6b5a015f2cfd9d2bb21c69f073eb010fd7c7f2db6dc54c84c00",
+  "cases": 1056,
+  "limits": [
+    "Independent original code and raw placement binding; complete pixel/material/LOD/timing acceptance remains pending",
+    "Actual source33 tree GPU matching applies to scenery mode only",
+    "Other openings/MOD initialization not decoded"
+  ]
+}

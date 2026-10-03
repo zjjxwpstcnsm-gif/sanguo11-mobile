@@ -1,0 +1,5 @@
+Exception in thread "main" java.lang.AssertionError: 尚未抵达合法据点入口（上下河须经港口）
+	at game.sanguo.core.ArmyTest.check(ArmyTest.java:10)
+	at game.sanguo.core.ArmyTest.ok(ArmyTest.java:11)
+	at game.sanguo.core.ArmyTest.formations(ArmyTest.java:43)
+	at game.sanguo.core.ArmyTest.main(ArmyTest.java:26)

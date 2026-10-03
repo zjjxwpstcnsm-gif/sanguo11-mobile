@@ -1,0 +1,20 @@
+{
+  "source_sha": "25e6c121cba1ae36947c520dfccc48e13e0e2171",
+  "landmarks": {"result": "PASS", "checks": 556693},
+  "v125_waterfalls": {"result": "PASS", "checks": 29266},
+  "s04_s05_authority_and_save": {"result": "PASS", "checks": 7462388},
+  "projection": {"result": "PASS", "checks": 119600},
+  "grid_layout": {"result": "PASS", "checks": 32},
+  "khronos": {"result": "PASS", "glbs": 329, "errors": 0, "warnings": 0},
+  "blender_png_etc2_material_reproduction": "PASS",
+  "preserved_old_assets": {"result": "PASS", "files": 452},
+  "protected_authority_map_unity_directories": "PASS unchanged",
+  "full_core": "FAIL",
+  "inherited_failures": [
+    {"test": "CoreTest.logistics:75 AI uses deployment commands", "input_exit": 1, "candidate_exit": 1, "classification": "inherited"},
+    {"test": "DisplacementTest.boundaries:27 city deterministic replay", "input_exit": 1, "candidate_exit": 1, "classification": "inherited"}
+  ],
+  "android_build": "PASS",
+  "lint": {"result": "PASS", "errors": 0, "warnings": 83},
+  "performance_claim": "No host measurements are ARM64/FPS evidence"
+}

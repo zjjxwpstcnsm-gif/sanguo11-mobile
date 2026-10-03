@@ -1,4 +1,42 @@
 plugins { id 'java-library' }
+tasks.register('verifyTradeSession', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.TradeSessionTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyTradeSession' }
+tasks.register('verifyProductionSession', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.ProductionSessionTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyProductionSession' }
+tasks.register('verifyTransportSession', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.TransportSessionTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyTransportSession' }
+tasks.named('test') { dependsOn 'verifyTransportSession' }
+tasks.register('verifyConstructionSession', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.ConstructionSessionTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyConstructionSession' }
+tasks.named('test') { dependsOn 'verifyConstructionSession' }
+tasks.register('verifyDiplomacySession', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.DiplomacySessionTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyDiplomacySession' }
+tasks.named('test') { dependsOn 'verifyDiplomacySession' }
 java { sourceCompatibility = JavaVersion.VERSION_17; targetCompatibility = JavaVersion.VERSION_17 }
 tasks.withType(JavaCompile).configureEach { options.encoding = 'UTF-8' }
 dependencies {
@@ -28,3 +66,20 @@ tasks.register('verifyGridLayout', JavaExec) {
 }
 tasks.named('check') { dependsOn 'verifyGridLayout' }
 tasks.named('test') { dependsOn 'verifyGridLayout' }
+
+tasks.register('verifyDeploymentSession', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.runtime.DeploymentSessionTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyDeploymentSession' }
+
+tasks.register('verifyCityActionSession', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.CityActionSessionTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyCityActionSession' }
+tasks.named('test') { dependsOn 'verifyCityActionSession' }
