@@ -18,17 +18,28 @@ internal static class Program
     {
         // Records requests only. It NEVER computes rules or acknowledges command success.
         public readonly List<BridgeRequest> Requests=new List<BridgeRequest>();
-        public string SessionId=>"test";public string Scenario=>"protocol-test";public bool ReadOnly=>false;
+        public string SessionId { get; }
+        public RecordingTransport(string session="test"){SessionId=session;}
+        public string Scenario=>"protocol-test";public bool ReadOnly=>false;
         public string Send(BridgeRequest r){Requests.Add(r);return "QUEUED";}
         public BridgeBatch Poll()=>null;
         public void Dispose(){}
     }
     static void Main(string[] args)
     {
-        string root=args.Length==1?args[0]:Directory.GetCurrentDirectory();
+        string root=args.Length>=1?args[0]:Directory.GetCurrentDirectory();
         var json=JsonSerializer.Deserialize<BridgeMessage>("{\"sequence\":9007199254740993,\"revision\":9007199254740994,\"error\":\"\"}",Json);
         Require(json.sequence==9007199254740993L&&json.revision==9007199254740994L,"Int64 exact JSON parse");
         Require(JsonSerializer.Serialize(json,Json).Contains("9007199254740993"),"Int64 exact JSON output");
+        MediaFacts();
+        if(args.Length>=2){
+            var actual=JsonSerializer.Deserialize<BridgeBatch>(File.ReadAllText(args[1]),Json);
+            var actualTransport=new RecordingTransport(actual.messages[0].sessionId);var actualSync=new BridgeSync(actualTransport);
+            actualSync.Start();actualSync.Receive(actual);var facts=actualSync.DrainTechniquePoints();
+            Require(facts.Length==2&&facts[0].Delta==20&&facts[1].Delta==-20,"actual Java JSON consumed by real C# client");
+            Require(facts[0].ParentId==facts[1].ParentId&&facts[0].Id!=facts[1].Id,"actual parent and unique IDs survive");
+            Require(actualSync.Status.StartsWith("COMMAND_REJECTED")&&actualSync.DrainTechniquePoints().Length==0,"actual rejected receipt adds no sound");
+        }
         var transport=new RecordingTransport();var sync=new BridgeSync(transport);sync.Start();
         Require(transport.Requests.Count==1&&transport.Requests[0].type=="snapshot","startup requests snapshot");
         var city=new BridgeEntity {entityId="site:7",kind="CITY",name="城",officerId=21,troops=2000};
@@ -75,5 +86,43 @@ internal static class Program
             Require(grid.Column(n[6],n[7])==n[4]&&grid.Row(n[6],n[7])==n[5],"shared Java/C# inverse coordinate");
         }
         Console.WriteLine($"Client protocol PASS: {checks} assertions; real Contracts/Client/Fixture sources; NOT Unity Player validation.");
+    }
+    static TechniquePointsFact Fact(long revision,long sequence,int before,int after,string parent="p")
+    {return new TechniquePointsFact {id=parent+":technique:"+sequence,parentId=parent,presentationParentId="journal:1",
+        cause="EDITOR",phase="COMMIT",sequence=sequence,owner=0,before=before,after=after,delta=after-before,
+        state=new StateToken {sessionId="test",generation=9007199254740993L,revision=revision}};}
+    static BridgeMessage MediaMessage(string type,long sequence,long revision,params TechniquePointsFact[] facts)
+    {var m=Message(type,sequence,revision);m.state=new StateToken {sessionId="test",generation=9007199254740993L,revision=revision};m.techniquePointsFacts=facts;return m;}
+    static void MediaFacts()
+    {
+        var t=new RecordingTransport();var s=new BridgeSync(t);s.Start();
+        s.Receive(Batch(MediaMessage("snapshot",1,1)));
+        var gain=Fact(2,1,100,120);var loss=Fact(2,2,120,100);
+        var wire=JsonSerializer.Deserialize<BridgeMessage>(JsonSerializer.Serialize(MediaMessage("delta",2,2,gain,loss),Json),Json);
+        Require(wire.state.generation==9007199254740993L,"nested token exact beyond 2^53");
+        s.Receive(Batch(wire));gain.after=999;wire.techniquePointsFacts[0].cause="mutated";
+        var heard=s.DrainTechniquePoints();Require(heard.Length==2&&heard[0].Delta==20&&heard[1].Delta==-20,"zero-net actual sequence survives");
+        Require(heard[0].Cause=="EDITOR"&&heard[0].After==120&&heard[0].PresentationParentId=="journal:1","immutable detached facts and parent");
+        Require(s.DrainTechniquePoints().Length==0,"drain once");
+        s.Receive(Batch(MediaMessage("snapshot",3,2,Fact(2,1,100,120),loss)));
+        Require(s.DrainTechniquePoints().Length==0,"fact ID dedup at same revision");
+        var corrupt=MediaMessage("delta",4,3,Fact(3,1,100,101));corrupt.techniquePointsFacts[0].state.generation++;
+        s.Receive(Batch(corrupt));Require(s.State.Revision==2&&s.DrainTechniquePoints().Length==0&&s.Status=="INVALID_MEDIA_FACTS","foreign generation atomic rejection");
+        s.Receive(Batch(MediaMessage("snapshot",5,3,Fact(3,1,100,101))));
+        Require(s.DrainTechniquePoints().Length==0,"resync snapshot suppresses transient replay");
+        s.Receive(Batch(MediaMessage("delta",6,4,Fact(4,1,101,102))));
+        s.Receive(Batch(MediaMessage("resync",7,4)));
+        Require(s.DrainTechniquePoints().Length==0&&s.Status=="QUEUE_OVERFLOW","overflow clears pending media");
+        s.Receive(Batch(MediaMessage("snapshot",8,4)));
+        var receipt=MediaMessage("receipt",9,4,Fact(4,2,102,103));receipt.error="DENIED";
+        s.Receive(Batch(receipt));Require(s.DrainTechniquePoints().Length==0&&s.Status=="INVALID_MEDIA_FACTS","receipt cannot inject facts");
+        s.Receive(Batch(MediaMessage("snapshot",10,4)));
+        var bad=MediaMessage("delta",11,5,Fact(5,1,100,101));bad.techniquePointsFacts[0].delta=2;
+        s.Receive(Batch(bad));Require(s.State.Revision==4&&s.DrainTechniquePoints().Length==0,"bad delta no partial application");
+        s.Receive(Batch(MediaMessage("snapshot",12,5)));
+        var invalidState=MediaMessage("snapshot",13,6,Fact(6,1,100,101));invalidState.terrain="X";
+        s.Receive(Batch(invalidState));Require(s.State.Revision==5&&s.DrainTechniquePoints().Length==0,"invalid display state no media");
+        s.Receive(Batch(MediaMessage("snapshot",14,5)));
+        s.Receive(Batch(Message("delta",15,6)));Require(s.State.Revision==5,"token downgrade rejected after extension");
     }
 }

@@ -4,6 +4,18 @@ using System.Collections.ObjectModel;
 using Sanguo.Contracts;
 namespace Sanguo.Client
 {
+    // Detached immutable media input, preserving authority and presentation identities.
+    public sealed class TechniquePointsView
+    {
+        public readonly string Id, ParentId, PresentationParentId, Cause, Phase, SessionId;
+        public readonly long Generation, Revision, Sequence;
+        public readonly int Owner, Before, After, Delta, CityId, OfficerId;
+        public TechniquePointsView(TechniquePointsFact f) {
+            Id=f.id;ParentId=f.parentId;PresentationParentId=f.presentationParentId;Cause=f.cause;Phase=f.phase;
+            SessionId=f.state.sessionId;Generation=f.state.generation;Revision=f.state.revision;Sequence=f.sequence;
+            Owner=f.owner;Before=f.before;After=f.after;Delta=f.delta;CityId=f.cityId;OfficerId=f.officerId;
+        }
+    }
     // Immutable display facts. No C# game rules, mutable Java entities, or scene objects.
     public sealed class EntityView
     {
@@ -23,6 +35,8 @@ namespace Sanguo.Client
         public int Turn { get; private set; }
         public int Player { get; private set; }
         public long Revision { get; private set; }
+        public long Generation { get; private set; }
+        private bool hasToken;
         public long SnapshotSerial { get; private set; }
         public bool HasSnapshot { get; private set; }
         public ClientState(string sessionId) { SessionId=sessionId;Entities=new ReadOnlyDictionary<string,EntityView>(entities); }
@@ -31,6 +45,10 @@ namespace Sanguo.Client
             bool snapshot=message.type=="snapshot";
             if(!snapshot&&!HasSnapshot)return false;
             if(message.revision<0||(HasSnapshot&&message.revision<Revision))return false;
+            if(message.state!=null){
+                if(message.state.sessionId!=SessionId||message.state.revision!=message.revision||message.state.generation<0)return false;
+                if(hasToken&&(message.state.generation<Generation||(!snapshot&&message.state.generation!=Generation)))return false;
+            }else if(hasToken)return false;
             if(snapshot&&(message.width<=0||message.height<=0||(long)message.width*message.height>60000||
                 message.terrain==null||message.terrain.Length!=(long)message.width*message.height))return false;
             var next=snapshot?new Dictionary<string,EntityView>():new Dictionary<string,EntityView>(entities);
@@ -43,6 +61,7 @@ namespace Sanguo.Client
             // Swap only after full message validation; malformed input never half-applies.
             entities=next;Entities=new ReadOnlyDictionary<string,EntityView>(entities);
             if(snapshot){Terrain=message.terrain;Width=message.width;Height=message.height;HasSnapshot=true;SnapshotSerial++;}
+            if(message.state!=null){Generation=message.state.generation;hasToken=true;}
             Revision=message.revision;Turn=message.turn;Player=message.player;return true;
         }
     }

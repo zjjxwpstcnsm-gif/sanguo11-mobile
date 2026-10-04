@@ -69,19 +69,7 @@ public final class AndroidGameBridge {
             if(channel==null||id==null||!channel.sessionId.equals(id))return "{\"status\":\"STALE_SESSION\",\"messages\":[]}";
             JSONArray list=new JSONArray();List<BridgeMessage> items=channel.drain();
             try{for(BridgeMessage message:items){
-                JSONObject item=new JSONObject().put("type",message.type).put("sessionId",message.sessionId)
-                    .put("schemaVersion",BridgeSession.SCHEMA).put("sequence",message.sequence).put("revision",message.revision)
-                    .put("mapRevision",message.mapRevision).put("width",message.width).put("height",message.height)
-                    .put("turn",message.turn).put("player",message.player);
-                if(message.commandId!=null)item.put("commandId",message.commandId);
-                if(message.error!=null)item.put("error",message.error);
-                if(message.detail!=null)item.put("detail",message.detail);
-                if(message.terrain!=null)item.put("terrain",message.terrain);
-                JSONArray entities=new JSONArray();for(BridgeEntity e:message.entities)entities.put(new JSONObject()
-                    .put("entityId",e.entityId).put("kind",e.kind).put("name",e.name).put("q",e.q).put("r",e.r)
-                    .put("owner",e.owner).put("troops",e.troops).put("energy",e.energy).put("officerId",e.officerId)
-                    .put("gold",e.gold).put("food",e.food).put("order",e.order));
-                item.put("entities",entities).put("removed",new JSONArray(message.removed));list.put(item);
+                list.put(BridgeJson.message(message));
             }
             return new JSONObject().put("status","OK").put("messages",list).put("pending",channel.pendingCount())
                 .put("dropped",channel.droppedCount()).put("commandCount",commandCount)
