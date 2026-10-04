@@ -28,6 +28,10 @@ MusicSourceContext {
 
 sourceForceNativeId/sourceCityNativeId由会话一批准的来源身份映射决定，sourceCityOwnership只计实际原城市0..41，关港与自定义城市不得悄悄混入原42城阈值。calendar必须取实际已提交时钟，不由媒体从turn重新计算规则日期。calendarOffsetRaw或scene未知保持null；sourceSceneBinding须对应真实原调用场景，不能填“菜单”来套用未证明的12/16分支。predicate字段是精确契约位置，三者尚未在移动端规则投影闭合；null不是false，不默认选择季节音乐。
 
+批十六补充原分支所需下层只读事实（不是已接入DTO）：每个原城市地域的`selfSumRaw`、`relationBitSumRaw`、`otherRelationSumRaw`，各来源与587a00的原分类/地域判定一致；不要直接把屏幕可见部队或当前选中部队作为全地域汇总。587f00的城市分支要求有效己方原城、selfSumRaw<10000且3×(selfSumRaw+relationBitSumRaw)<otherRelationSumRaw；587d70允许己方或按`4b5cc0(cityOwner,queriedForce)`方向许可的原城，要求selfSumRaw>10000且3×(selfSumRaw+relationBitSumRaw)>otherRelationSumRaw。10000和比例等号均不成立。字段名称暂保留原关系位分类，不将所有非己方静默当敌方。
+
+建筑优先分支需要原地点的`currentHpRaw`（原signed short）、`maxHpRaw`、`troopsRaw`、`energyRaw`、实际来源owner及`nearby587b50Raw/nearby587c00Raw`。原条件是耐久严格低于maxHpRaw/5（原整数除法）、troopsRaw<3000、energyRaw<30，再按归属/原方向关系及nearby条件决定；不是“本次战斗失败”或“当前按钮取消”。这些下层事实/587a00汇总与附近地域判定尚未全部闭合；本批只验证原条件及边界，未知继续null，不用媒体重算规则战斗/外交/RNG来补造。
+
 媒体按原5880e0顺序消费已证明谓词：587f00为真→9；否则587d70为真→城市数>=10选10、其余8；否则587fb0为真→城市数>=10选11、其余7；全部已知为假时seasonRaw0..3→3..6，其它原值→7。更早的未知分支必须等待/resync，不越过未知选后面的曲目。不要求core产生音频编号、不调用规则命令/RNG/earn/save。原repeat1、fade500ms、gain sentinel-1属于媒体来源策略，保留用户实际音量。
 
 当前GameSnapshot只含turn/player及BridgeEntity的项目owner等普通字段，缺少calendar和来源势力/城市身份，不能据此证明上述原音乐上下文。新增JSON应为app-owned加法字段，保持schema1和long精确整数；快照用于基线/resync而非重播音乐/语音事实。同一已建立scene/track不重开，restore或新局取消旧scene；最终需正常新局/多回合/读档实测，解码和adapter通过不能代替普通绑定。

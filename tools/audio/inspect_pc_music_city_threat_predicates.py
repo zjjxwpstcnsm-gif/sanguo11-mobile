@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Execute original music city-ratio branches with explicit readonly boundaries.
 
-Not full threat reconstruction: building overrides and aggregation are named
-inputs; source thresholds, city ownership gates and branch instructions run.
+Not full threat reconstruction: aggregation/nearby/readonly getters are named
+inputs; source city and building threshold/gate instructions run.
 """
 import argparse,hashlib,itertools,json,struct
 from pathlib import Path
 from unicorn import Uc,UC_ARCH_X86,UC_MODE_32,UC_HOOK_CODE
-from unicorn.x86_const import UC_X86_REG_EAX,UC_X86_REG_ECX,UC_X86_REG_ESP,UC_X86_REG_EIP
+from unicorn.x86_const import UC_X86_REG_EAX,UC_X86_REG_EBX,UC_X86_REG_ECX,UC_X86_REG_ESP,UC_X86_REG_EIP
 
 EXE_SHA='30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb'
 
@@ -21,9 +21,22 @@ def inspect(installation,output):
     faction=data+0x8000;table=data+0x9000;owner_method=stop+0x1000;u.mem_write(table+0x40,struct.pack('<I',owner_method))
     for i in range(42):u.mem_write(data+i*0x100,struct.pack('<I',table))
     state={};visited=[];aggregated=[]
+    buildings=data+0xb000;building_table=data+0xa000
+    for off,method in [(0x40,stop+0x1100),(0x50,stop+0x1200),(0x54,stop+0x1300)]:u.mem_write(building_table+off,struct.pack('<I',method))
+    for i in range(87):u.mem_write(buildings+i*0x38,struct.pack('<I',building_table))
     def boundary(m,address,size,user):
         sp=m.reg_read(UC_X86_REG_ESP);ret=struct.unpack('<I',m.mem_read(sp,4))[0];consumed=0
         if address in [0x587e40,0x587ca0]:result=state['override']
+        elif address==0x490d00:
+            consumed=4;index=struct.unpack('<I',m.mem_read(sp+4,4))[0]
+            if not 0<=index<87:raise ValueError('Original site range differs')
+            result=buildings+index*0x38
+        elif address==0x487150:result=state['maxHp'] if m.reg_read(UC_X86_REG_ECX)==buildings else 0
+        elif address==stop+0x1100:result=state['siteOwner']
+        elif address==stop+0x1200:result=state['troops']
+        elif address==stop+0x1300:result=state['energy']
+        elif address==0x487920:result=0
+        elif address in [0x587b50,0x587c00]:result=state['nearbyRaw']
         elif address==0x490a10:
             consumed=4;index=struct.unpack('<I',m.mem_read(sp+4,4))[0]
             if not 0<=index<42:raise ValueError('Original registry range differs')
@@ -39,7 +52,7 @@ def inspect(installation,output):
             result=0 # Original caller does not use EAX; cdecl caller pops16.
         else:raise ValueError('Unexamined readonly boundary')
         m.reg_write(UC_X86_REG_EAX,result);m.reg_write(UC_X86_REG_ESP,sp+4+consumed);m.reg_write(UC_X86_REG_EIP,ret)
-    for a in [0x587e40,0x587ca0,0x490a10,0x47a630,0x491270,owner_method,0x4b5cc0,0x587a00]:u.hook_add(UC_HOOK_CODE,boundary,begin=a,end=a)
+    hooks={a:u.hook_add(UC_HOOK_CODE,boundary,begin=a,end=a) for a in [0x587e40,0x587ca0,0x490a10,0x47a630,0x491270,owner_method,0x4b5cc0,0x587a00]}
     cases=[]
     for valid,owner,relation,self_sum,bit_sum in itertools.product([0,1],[0,1],[0,1],[0,1,9999,10000,10001,20000],[0,1,3000]):
         pivot=3*(self_sum+bit_sum)
@@ -57,11 +70,26 @@ def inspect(installation,output):
                     if override and visited:raise ValueError('Original override did not short circuit')
                     results.append(dict(address=hex(address),result=value,visitedCities=list(visited),aggregateCalls=len(aggregated)))
                 cases.append(dict(state,results=results))
-    report=dict(sourceExecutableSha256=EXE_SHA,nativeChecks=len(cases)*2,cases=cases,
-        codeSha256={hex(a):hashlib.sha256(raw[a-0x400000:a-0x400000+n]).hexdigest() for a,n in [(0x587f00,163),(0x587d70,192)]},
-        evidence=['587f00 own valid city: selfSum<10000 and3*(selfSum+bitSum)<otherSum','587d70 own or directional4b5cc0 city: selfSum>10000 and3*(selfSum+bitSum)>otherSum','Both ratios are strict; selfSum10000 never satisfies either city-ratio branch','Building override takes priority and short-circuits city iteration'],
-        limits=['587a00 sums and587e40/587ca0 building predicates are explicit readonly boundaries, not full normal context proof.','Relation inputs retain native direction; no inferred ally/enemy names or Android rule computation.','No normal BGM binding or playback claim; PC installation remains readonly.'])
-    output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(report,indent=2)+'\n');print('PASS original music city-ratio predicate checks=',len(cases)*2)
+    # Remove the two building-result shims and execute those original routines.
+    # Site fields/getters and nearby presence are explicit readonly inputs.
+    for address in [0x587e40,0x587ca0]:u.hook_del(hooks[address])
+    for a in [0x490d00,0x487150,stop+0x1100,stop+0x1200,stop+0x1300,0x487920,0x587b50,0x587c00]:u.hook_add(UC_HOOK_CODE,boundary,begin=a,end=a)
+    building_cases=[]
+    for site_owner,relation,nearby,hp,troops,energy in itertools.product([0,1],[0,1],[0,1],[999,1000,1001],[2999,3000],[29,30]):
+        state.update(siteOwner=site_owner,owner=0,relationRaw=relation,nearbyRaw=nearby,maxHp=5000,troops=troops,energy=energy)
+        u.mem_write(buildings+0x10,struct.pack('<h',hp));results=[]
+        for address in [0x587e40,0x587ca0]:
+            before=bytes(u.mem_read(data,0x10000));rng=bytes(u.mem_read(0x8a5d44,4));u.reg_write(UC_X86_REG_EBX,faction);u.reg_write(UC_X86_REG_ESP,stack+0x2000);u.mem_write(stack+0x2000,struct.pack('<I',stop))
+            u.emu_start(address,stop,count=10000)
+            value=u.reg_read(UC_X86_REG_EAX);expected=int((site_owner==0 if address==0x587e40 else bool(relation)) and nearby and hp<5000//5 and troops<3000 and energy<30)
+            if u.reg_read(UC_X86_REG_EIP)!=stop or value!=expected or before!=bytes(u.mem_read(data,0x10000)) or rng!=bytes(u.mem_read(0x8a5d44,4)):raise ValueError(('Original music building threshold differs',hex(address),dict(state),hp,value,expected))
+            results.append(dict(address=hex(address),result=value))
+        building_cases.append(dict(currentHpRaw=hp,maxHpRaw=5000,troopsRaw=troops,energyRaw=energy,siteOwnerRaw=site_owner,relationRaw=relation,nearbyRaw=nearby,results=results))
+    report=dict(sourceExecutableSha256=EXE_SHA,nativeChecks=len(cases)*2+len(building_cases)*2,cases=cases,buildingCases=building_cases,
+        codeSha256={hex(a):hashlib.sha256(raw[a-0x400000:a-0x400000+n]).hexdigest() for a,n in [(0x587f00,163),(0x587d70,192),(0x587e40,192),(0x587ca0,208)]},
+        evidence=['587f00 own valid city: selfSum<10000 and3*(selfSum+bitSum)<otherSum','587d70 own or directional4b5cc0 city: selfSum>10000 and3*(selfSum+bitSum)>otherSum','Both ratios are strict; selfSum10000 never satisfies either city-ratio branch','Building override takes priority and short-circuits city iteration','Original587e40/587ca0 building tests require currentHp<maxHp/5, troops<3000, energy<30, ownership/relation and nearby predicate'],
+        limits=['587a00 aggregation, readonly site getters and nearby587b50/587c00 are explicit boundaries, not full normal context proof.','587e40/587ca0 are shims only during city-ratio isolation, then their complete original bodies execute in the building cases.','Relation inputs retain native direction; no inferred ally/enemy names or Android rule computation.','No normal BGM binding or playback claim; PC installation remains readonly.'])
+    output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(report,indent=2)+'\n');print('PASS original music city/building predicate checks=',report['nativeChecks'])
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('installation',type=Path);p.add_argument('--output',type=Path,required=True);a=p.parse_args();inspect(a.installation,a.output)
