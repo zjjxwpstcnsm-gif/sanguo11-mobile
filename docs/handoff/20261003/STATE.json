@@ -843,5 +843,16 @@
     "gzip_sha256": "6a45138546ce860ec49d04f3f7d1f1babb80b544675c6d5e349069330a7270c5",
     "normal_frontend_allocator_executed": false,
     "full_tactic_damage_authority_verified": false
+  },
+  "r38_cavalry_result_boundaries": {
+    "blocked_survival_cases": 38,
+    "unit_troop_apply_cases": 40,
+    "same_twice": true,
+    "damage_generation_verified": false,
+    "full_authority_commit_verified": false,
+    "android_rule_changed": false,
+    "survival_gzip_sha256": "829454f1b0c682df0a9bdc08e2d3d4640c58d8c81bda021f787ca7c4269f24cf",
+    "troop_apply_gzip_sha256": "7020720c77e9b4ce9064d1e4eee4b5978f6322dcfa489c424225fe2d6691aaee",
+    "full_world_grid_rng_guards": true
   }
 }

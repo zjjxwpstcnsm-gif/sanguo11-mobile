@@ -54,3 +54,7 @@ PYTHONPATH=out/toolchain/pc-emulate:out/toolchain/pc-inspect python3 tools/conte
 ## 原城市形状注册与实际骑兵拒绝
 
 R37的verify_pc_city_footprint_native.py执行原半坐标／anchor转换、完整416690注册、原28子格与4848f0写入，6中心精确生成中心加六邻格。每格原483b20返回同一城市，42注册占格被实际594650拒绝，6占地外合法正例通过；完整世界／RNG不变，地图七个占格及index精确，图形scratch另披露。二次JSON7c03c608…07f8a、gzip6a451385…270c5全等。record/index0、selector0与receiver是控制输入，正常前端分配417590未执行；filter=-1和合法地形仍明确输入。不能扩大为完整战法伤害／权威提交／官方启动。
+
+## 受阻目标存活与主兵力结果应用
+
+R38两个原块已二次复现：5957e2..59584a实际受阻存活规划38例，目标兵力<=主伤害时选择目标原格跟进；5b1c60..5b1c71结果+c→4ae4a0→4961f0主兵力40例。完整世界／格数组／RNG守卫，真实构造及validity，无原返回值替换。主伤害和受阻local是输入，尚未串完整前置命中生成、死亡／单挑／反击／权威位置提交，不改Android伤害。详见ROUND_38及两个固定gzip。
