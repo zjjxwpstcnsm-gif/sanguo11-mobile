@@ -26,7 +26,7 @@ def main():
         if row['officerId'] is None:continue
         key=(row['officerId'],row['nativeId'],row['sourceVariant'])
         if key in keys:raise ValueError('Duplicate approved media join')
-        keys.add(key);identities.append({k:row[k] for k in ['officerId','nativeId','sourceVariant','sourcePath','sourceSha256','recordSha256','identityStatus','faceId','sexRaw','birth','ageThreshold','dynamicSelector','voiceTypeRaw']})
+        keys.add(key);identities.append({k:row[k] for k in ['officerId','nativeId','sourceVariant','sourcePath','sourceSha256','recordSha256','identityStatus','faceId','sexRaw','birth','ageThreshold','dynamicSelector','voiceTypeRaw','ageBoundaries']})
     report=dict(schema=1,sourceFaceSha256=pixels['sourceSha256'],sourceFaceFile=pixels['sourceFile'],metadataCommit=join['metadataCommit'],metadataRequestSha256=join['metadataRequestSha256'],
         registryLayout=pixels['indexLayout'],flagStartFace=start,faceFlags=flags,images=images,identities=identities,decodedImages=len(images),identityJoins=len(identities),pngBytes=total,
         limits=['SourceInfo missing remains unknown; no name or roster-ID inference.', 'Native flags/age selection retained; role-specific imageGroup callers require independent proof.', 'Only supplied primary FCE present; external active override priority is unresolved.'])
