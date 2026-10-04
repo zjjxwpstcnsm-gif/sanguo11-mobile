@@ -1,5 +1,9 @@
 # Session 1 计划与文件所有权
 
+Batch22当前所有权：前提交aee5d4ac，checkpoint21完整4786文件/4JNI。新增tools/content/build_pc_officer_campaign_facts.py、core/PcOfficerCampaignFacts.java、core/resources/pc-officer-campaign/、game-runtime/.../PcOfficerCampaignFactsTest.java。修改PcScenarioOpening仅明确新局附加原记录快照；API/OfficerSnapshot.SourceInfo增加原始内部忠诚nullable事实及旧构造兼容，runtime/query/OfficerQuery只从同一保存读取和输出原文字。app已有普通详情消费SourceInfo，不改头像/媒体/Bridge。旧38/39及31–37没有namespace时不追填；本字段是原文件快照，不冒充当前游戏隐藏状态。原serializer逐13600记录、姓名/生年/性别/记录SHA及来源SHA核实。严格666+4未知身份，不能以670称完整身份覆盖。新APK独立实际流程另验证。
+
+Batch22验收增量：tools/content/android/PcScenarioOpeningInstrumentation.java增加实际新局/武将文字/旧档nullable校验；verify_pc_source_opening_ui.py只在外部完整恢复前读回保存真实新局产物，防止证据被原文件恢复覆盖；新增PcOfficerCampaignBaseline.java复用当前与精确checkpoint21类路径比较完整正常操作/多旬输出。BATCH_21.md仅纠正误把native222官职80当原raw的示例（原raw0、韓當raw120/显示100），原报告不修改。设备5554已核实无app进程、launcher前台、无其它验收进程，原子取得本会话锁；5582不使用。
+
 目标 active；任何批次不代表全部剧本、全武将、正常流程和 ARM 已完成。
 
 实现基点：`840030195e39cec3c0d352e010a3c3e614893ca2`。继承 checkpoint 的 4299 文件、336374894 字节逐 SHA 全等，168 固定资源通过，4 份 JNI 按原相对路径保留。基线提交 `0a6fb12`；仅封存继承差异，不含人物/剧本新实现。checkpoint 的脚本权限缺少 executable，随后按实现基点的 Git mode 恢复，文件内容不变。

@@ -1,0 +1,19 @@
+# Batch22 正常新局/存档/武将详情接入原内部忠诚快照
+
+前提交aee5d4ac10b0644e3d24792b8b1258bf9058640f，完整checkpoint21保留4786文件/416061206字节、4份忽略JNI，manifest SHA56201dd94090232fecf9267663adfe01b74560ac5dd40fa84668d5e4342da3d7。本分支完整继承，PC及原目录只读，媒体/Bridge/公共台账不修改。
+
+build_pc_officer_campaign_facts复用原NativeOfficerDecoder，对16来源×850人物共13600条完整执行原152字节serializer，核对原姓名字节/生年/性别/record SHA、source SHA和native+ac对应record[104]。两次独立转换全部输出字节一致，解压数据SHA9bf8af78871b0fe313470ea00f6dc2350fbf1611783b3a910de9c7299ff96557。记录全部850槽，额外180槽只保存元信息，严格历史身份仍666、另外4个字形身份未闭合。
+
+PcScenarioOpening在明确正常来源新局附加pc-officer-campaign-record-v1快照；按已核实officerId/nativeId/sourceVariant/recordSHA连接，不用native编号算项目ID。PcOfficerCampaignFacts.saved只读存档中的记录、来源和已存身份，恢复和查询不访问当前资源catalog。SourceInfo新增nullable initialRawLoyalty，OfficerQuery读取同一保存事实并生成“原记录内部忠诚”；现有正常详情直接消费SourceInfo，不改MainActivity或任何头像/音频文件。它是原文件快照，当前游戏忠诚继续用现有规则/字段，不能冒充已接入原隐藏忠诚变化或完整结算。
+
+纠正上一批文字误例：native222原raw为0，80是官职。原Source0韩当native116 record[104]=120，原显示忠诚100。错误期望在主机验证中被拒绝，first-example-failure完整保留，BATCH_21只纠正文字，原报告未改；生产数据始终来自原serializer，未为了通过测试改值。
+
+主机：16份实际新局、全部正常人物DTO、普通typed巡察、重复token拒绝、四个完整换旬与保存/RNG控制对照75364检查；独立新JVM恢复16份真实第三旬保存、继续第四旬、完整保存与活控制逐字节相同64448检查。旧来源删除新快照的保存保持完整数据/query/RNG不变、明确显示缺口；未知namespace格式保留原字节，不猜值。精确checkpoint21父与当前相同probe比较16源新局/巡察/三完整旬共80份完整保存，除唯一新快照外逐字节完全相同。架构静态边界检查通过；继承U01 fixture总脚本差异不冒称已通过。
+
+独立离线APK实际构建：out/session1/apks-batch22/app-debug.apk，SHA8dbeb77a3619015380758eb3c17656bae62d22a205b84e5499110e6aa290f967，94695802字节，1043输入SHA守卫。打包ARM64/armeabi-v7a/x86/x86_64 Filament及原ARM64/x86_64 worker/unicorn；实际设备证据只有emulator-5554 x86_64，ARM未实机。
+
+实际新APK Source0：正常菜单新局→全部670保存DTO逐身份/recordSHA/raw比较→三个势力真实搜索/行/详情→普通巡察→槽位3保存→三旬实际UI推进→正常读取完整保存/RNG恢复，117.61秒PASS；读回实际APK SHA一致。真实ART结果2204279字节，SHA29659efc29ce5337104890e18d49f105b6880476a64aec716af28816dd084c5d，已在恢复原外部文件前独立取回。新进程冷启动此实际保存→相同正常详情/全部DTO与完整保存/RNG，22.53秒PASS。两轮全部3202个当前原外部文件及7个原内部保存/偏好均读回恢复，无清数据、无用户库丢失。
+
+旧实际v38来源保存、新包安装下不追填验证20.4秒PASS：670人物没有原内部忠诚快照时仍为null，正常详情不生成原值，实际启动/查询后完整保存和RNG与原槽位逐字节一致。最后独立读回全部3202当前原外部文件SHA及7个原内部文件字节完全相同，额外7个新证据文件保留；5554已force-stop并释放本会话锁，5582没有使用。新验收支持独立证据目录避免覆盖历史证据；两种探针APK各有独立SHA，不混用旧包证明。Source1–15本批新APK尚未跑设备流程，不能移用前批48条旧包证据。完整目标保持active。
+
+原舌战一次性战役结算、原当前隐藏状态变化、伤病恢复、外交RNG/临时怨恨、原宝物有效话术/先手/高能力以及单挑完整引擎尚未闭合。完整剧本生效/开局事件和全部武将其余字段仍未完成。下一批须继续实际规则/保存/正常对局，不以本快照或主机数字代替最终目标。

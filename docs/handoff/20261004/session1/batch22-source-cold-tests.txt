@@ -1,0 +1,1 @@
+PASS PcOfficerCampaignFactsCold 64448 all16 actual saves and complete World/RNG continuation

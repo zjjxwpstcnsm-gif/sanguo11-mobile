@@ -35,3 +35,7 @@ Batch19：原48流程handle33877已经正常终止全部48 PASS；原批次和�
 原16×24完整51dd10结算报告414b5fb1590e389980fb370114bab4df39fe2308a939c92b9020c38c5af77811，fixture d9ca9cb05bddf36facf45d637f174e280dc0ba6163e496f44dff4f3b4dc6df06，384输出逐原XP/功绩/伤病/47forces匹配PcDebateSettlement；552 rewardEligible/216 not eligible必须保留原47a630，不只47a600。所属虚表+40与状态+a0分开；请求TP50实际25（原已存half策略）。同行指导原4a54a0读取但本组全false，true原执行、招聘/外交原结果回调、伤病恢复未闭合。该独立新rule未正式调用，优先把真实原结果链闭合后接一次性campaign结算及真正新局菜单，不以数字奖励模拟未证归属。持续完整武将/剧本事件/单挑目标，勿只重复通过已测查询。
 
 Batch21新增2366原忠诚/128完整51dd10→5d3d40结果链。新原报告7b78cd2e及410158ec；完整回调24次uniform(旧君主野心)必须保留，额外politXP3/charm5或3/功绩200或100/TP请求20+目标currentCharm÷3。原48bb70是相同有效父亲native+54，不是血缘组/native+68或共同祖先；原隐藏忠诚来自152字节record[104]，不从显示0逆推。优先仅新局保存真实hidden/raw/temporaryresentment/nativeitems、绑定正式一次性结算及原恢复；不要继续把更多独立表格当运行时接入。当前原39实验保存没有hidden数据，保持旧策略、不静默追填。5554空闲但须重新核实设备/锁；无新APK。本批记录BATCH_21.md。
+
+Batch22更正此前文字误读：Source0 native222原raw忠诚为0，80是官职。Source0韩当native116真实record[104]=120而原显示100，13600原serializer直接校验已证；不能把早先误例0/80带回生产或报告。
+
+Batch22主分支已实际接PcOfficerCampaignFacts原记录快照到正常新局/保存/同一OfficerSnapshot/正常详情。两次原13600 serializer导入相同9bf8af78。16来源普通命令四旬75364、独立JVM冷续行64448、精确父80完整正常流程保存除新快照外全字节一致；新APK8dbeb77a实际安装Source0菜单/670 DTO/3势力详情/巡察/三旬保存读取117.61秒、新实际ART冷重开22.53秒、原有真实v38不追填20.4秒都PASS。最后3202原外部+7内部已独立读回恢复，5554锁已释放。新guard1043冻结不改，可用完整源码/工具复现；Source1–15当前新包尚无设备流程证据。此字段只是原文件初值快照，不能当已接原当前隐藏状态或原舌战结束。优先继续正式一次性结算/伤病恢复/动态隐值/RNG及完整单挑，不继续止步于新静态表。

@@ -1,0 +1,2067 @@
+PC SOURCE OPENING PASS 2065 checks
+PASS actual scenario picker exposes distinct source Media/scenario/Scen000.s11
+PASS source choice in real new-game configuration preserves old authority and RNG
+PASS normal menu confirms a fresh source-text opening
+PASS actual menu creates original sourced roster/sites/capacity
+PASS normal new-game UI installs source world and saved PC text facts
+PASS actual menu installs original historical/source-only contest facts
+PASS actual menu saves identity-checked original internal loyalty records
+PASS actual menu binds per-source contest traits 635
+PASS actual menu binds per-source contest traits 98
+PASS actual menu binds per-source contest traits 432
+PASS actual menu binds per-source contest traits 395
+PASS actual menu binds per-source contest traits 289
+PASS actual menu binds per-source contest traits 185
+PASS actual menu binds per-source contest traits 343
+PASS actual menu binds per-source contest traits 85
+PASS actual menu binds per-source contest traits 254
+PASS actual menu binds per-source contest traits 78
+PASS actual menu binds per-source contest traits 439
+PASS actual menu binds per-source contest traits 63
+PASS actual menu binds per-source contest traits 367
+PASS actual menu binds per-source contest traits 245
+PASS actual menu binds per-source contest traits 667
+PASS actual menu binds per-source contest traits 118
+PASS actual menu binds per-source contest traits 389
+PASS actual menu binds per-source contest traits 661
+PASS actual menu binds per-source contest traits 0
+PASS actual menu binds per-source contest traits 1
+PASS actual menu binds per-source contest traits 2
+PASS actual menu binds per-source contest traits 3
+PASS actual menu binds per-source contest traits 4
+PASS actual menu binds per-source contest traits 5
+PASS actual menu binds per-source contest traits 6
+PASS actual menu binds per-source contest traits 7
+PASS actual menu binds per-source contest traits 8
+PASS actual menu binds per-source contest traits 9
+PASS actual menu binds per-source contest traits 10
+PASS actual menu binds per-source contest traits 11
+PASS actual menu binds per-source contest traits 12
+PASS actual menu binds per-source contest traits 13
+PASS actual menu binds per-source contest traits 14
+PASS actual menu binds per-source contest traits 15
+PASS actual menu binds per-source contest traits 16
+PASS actual menu binds per-source contest traits 17
+PASS actual menu binds per-source contest traits 18
+PASS actual menu binds per-source contest traits 19
+PASS actual menu binds per-source contest traits 20
+PASS actual menu binds per-source contest traits 21
+PASS actual menu binds per-source contest traits 22
+PASS actual menu binds per-source contest traits 23
+PASS actual menu binds per-source contest traits 24
+PASS actual menu binds per-source contest traits 25
+PASS actual menu binds per-source contest traits 26
+PASS actual menu binds per-source contest traits 27
+PASS actual menu binds per-source contest traits 28
+PASS actual menu binds per-source contest traits 29
+PASS actual menu binds per-source contest traits 30
+PASS actual menu binds per-source contest traits 31
+PASS actual menu binds per-source contest traits 32
+PASS actual menu binds per-source contest traits 33
+PASS actual menu binds per-source contest traits 34
+PASS actual menu binds per-source contest traits 35
+PASS actual menu binds per-source contest traits 36
+PASS actual menu binds per-source contest traits 37
+PASS actual menu binds per-source contest traits 38
+PASS actual menu binds per-source contest traits 39
+PASS actual menu binds per-source contest traits 40
+PASS actual menu binds per-source contest traits 41
+PASS actual menu binds per-source contest traits 42
+PASS actual menu binds per-source contest traits 43
+PASS actual menu binds per-source contest traits 44
+PASS actual menu binds per-source contest traits 45
+PASS actual menu binds per-source contest traits 46
+PASS actual menu binds per-source contest traits 47
+PASS actual menu binds per-source contest traits 48
+PASS actual menu binds per-source contest traits 49
+PASS actual menu binds per-source contest traits 50
+PASS actual menu binds per-source contest traits 51
+PASS actual menu binds per-source contest traits 52
+PASS actual menu binds per-source contest traits 53
+PASS actual menu binds per-source contest traits 54
+PASS actual menu binds per-source contest traits 55
+PASS actual menu binds per-source contest traits 56
+PASS actual menu binds per-source contest traits 57
+PASS actual menu binds per-source contest traits 58
+PASS actual menu binds per-source contest traits 59
+PASS actual menu binds per-source contest traits 60
+PASS actual menu binds per-source contest traits 61
+PASS actual menu binds per-source contest traits 62
+PASS actual menu binds per-source contest traits 64
+PASS actual menu binds per-source contest traits 65
+PASS actual menu binds per-source contest traits 66
+PASS actual menu binds per-source contest traits 67
+PASS actual menu binds per-source contest traits 68
+PASS actual menu binds per-source contest traits 69
+PASS actual menu binds per-source contest traits 70
+PASS actual menu binds per-source contest traits 71
+PASS actual menu binds per-source contest traits 72
+PASS actual menu binds per-source contest traits 73
+PASS actual menu binds per-source contest traits 74
+PASS actual menu binds per-source contest traits 75
+PASS actual menu binds per-source contest traits 76
+PASS actual menu binds per-source contest traits 77
+PASS actual menu binds per-source contest traits 79
+PASS actual menu binds per-source contest traits 80
+PASS actual menu binds per-source contest traits 81
+PASS actual menu binds per-source contest traits 82
+PASS actual menu binds per-source contest traits 83
+PASS actual menu binds per-source contest traits 84
+PASS actual menu binds per-source contest traits 86
+PASS actual menu binds per-source contest traits 87
+PASS actual menu binds per-source contest traits 88
+PASS actual menu binds per-source contest traits 89
+PASS actual menu binds per-source contest traits 90
+PASS actual menu binds per-source contest traits 91
+PASS actual menu binds per-source contest traits 92
+PASS actual menu binds per-source contest traits 93
+PASS actual menu binds per-source contest traits 94
+PASS actual menu binds per-source contest traits 95
+PASS actual menu binds per-source contest traits 96
+PASS actual menu binds per-source contest traits 97
+PASS actual menu binds per-source contest traits 99
+PASS actual menu binds per-source contest traits 100
+PASS actual menu binds per-source contest traits 101
+PASS actual menu binds per-source contest traits 102
+PASS actual menu binds per-source contest traits 103
+PASS actual menu binds per-source contest traits 104
+PASS actual menu binds per-source contest traits 105
+PASS actual menu binds per-source contest traits 106
+PASS actual menu binds per-source contest traits 107
+PASS actual menu binds per-source contest traits 108
+PASS actual menu binds per-source contest traits 109
+PASS actual menu binds per-source contest traits 110
+PASS actual menu binds per-source contest traits 111
+PASS actual menu binds per-source contest traits 112
+PASS actual menu binds per-source contest traits 113
+PASS actual menu binds per-source contest traits 114
+PASS actual menu binds per-source contest traits 115
+PASS actual menu binds per-source contest traits 116
+PASS actual menu binds per-source contest traits 117
+PASS actual menu binds per-source contest traits 119
+PASS actual menu binds per-source contest traits 120
+PASS actual menu binds per-source contest traits 121
+PASS actual menu binds per-source contest traits 122
+PASS actual menu binds per-source contest traits 123
+PASS actual menu binds per-source contest traits 124
+PASS actual menu binds per-source contest traits 125
+PASS actual menu binds per-source contest traits 126
+PASS actual menu binds per-source contest traits 127
+PASS actual menu binds per-source contest traits 128
+PASS actual menu binds per-source contest traits 129
+PASS actual menu binds per-source contest traits 130
+PASS actual menu binds per-source contest traits 131
+PASS actual menu binds per-source contest traits 132
+PASS actual menu binds per-source contest traits 133
+PASS actual menu binds per-source contest traits 134
+PASS actual menu binds per-source contest traits 135
+PASS actual menu binds per-source contest traits 136
+PASS actual menu binds per-source contest traits 137
+PASS actual menu binds per-source contest traits 138
+PASS actual menu binds per-source contest traits 139
+PASS actual menu binds per-source contest traits 140
+PASS actual menu binds per-source contest traits 141
+PASS actual menu binds per-source contest traits 142
+PASS actual menu binds per-source contest traits 143
+PASS actual menu binds per-source contest traits 144
+PASS actual menu binds per-source contest traits 145
+PASS actual menu binds per-source contest traits 146
+PASS actual menu binds per-source contest traits 147
+PASS actual menu binds per-source contest traits 148
+PASS actual menu binds per-source contest traits 149
+PASS actual menu binds per-source contest traits 150
+PASS actual menu binds per-source contest traits 151
+PASS actual menu binds per-source contest traits 152
+PASS actual menu binds per-source contest traits 153
+PASS actual menu binds per-source contest traits 154
+PASS actual menu binds per-source contest traits 155
+PASS actual menu binds per-source contest traits 156
+PASS actual menu binds per-source contest traits 157
+PASS actual menu binds per-source contest traits 158
+PASS actual menu binds per-source contest traits 159
+PASS actual menu binds per-source contest traits 160
+PASS actual menu binds per-source contest traits 161
+PASS actual menu binds per-source contest traits 162
+PASS actual menu binds per-source contest traits 163
+PASS actual menu binds per-source contest traits 164
+PASS actual menu binds per-source contest traits 165
+PASS actual menu binds per-source contest traits 166
+PASS actual menu binds per-source contest traits 167
+PASS actual menu binds per-source contest traits 168
+PASS actual menu binds per-source contest traits 169
+PASS actual menu binds per-source contest traits 170
+PASS actual menu binds per-source contest traits 171
+PASS actual menu binds per-source contest traits 172
+PASS actual menu binds per-source contest traits 173
+PASS actual menu binds per-source contest traits 174
+PASS actual menu binds per-source contest traits 175
+PASS actual menu binds per-source contest traits 176
+PASS actual menu binds per-source contest traits 177
+PASS actual menu binds per-source contest traits 178
+PASS actual menu binds per-source contest traits 179
+PASS actual menu binds per-source contest traits 180
+PASS actual menu binds per-source contest traits 181
+PASS actual menu binds per-source contest traits 182
+PASS actual menu binds per-source contest traits 183
+PASS actual menu binds per-source contest traits 186
+PASS actual menu binds per-source contest traits 187
+PASS actual menu binds per-source contest traits 188
+PASS actual menu binds per-source contest traits 189
+PASS actual menu binds per-source contest traits 190
+PASS actual menu binds per-source contest traits 191
+PASS actual menu binds per-source contest traits 192
+PASS actual menu binds per-source contest traits 193
+PASS actual menu binds per-source contest traits 194
+PASS actual menu binds per-source contest traits 195
+PASS actual menu binds per-source contest traits 196
+PASS actual menu binds per-source contest traits 197
+PASS actual menu binds per-source contest traits 198
+PASS actual menu binds per-source contest traits 199
+PASS actual menu binds per-source contest traits 200
+PASS actual menu binds per-source contest traits 201
+PASS actual menu binds per-source contest traits 202
+PASS actual menu binds per-source contest traits 203
+PASS actual menu binds per-source contest traits 204
+PASS actual menu binds per-source contest traits 205
+PASS actual menu binds per-source contest traits 206
+PASS actual menu binds per-source contest traits 207
+PASS actual menu binds per-source contest traits 208
+PASS actual menu binds per-source contest traits 209
+PASS actual menu binds per-source contest traits 210
+PASS actual menu binds per-source contest traits 211
+PASS actual menu binds per-source contest traits 212
+PASS actual menu binds per-source contest traits 213
+PASS actual menu binds per-source contest traits 214
+PASS actual menu binds per-source contest traits 215
+PASS actual menu binds per-source contest traits 216
+PASS actual menu binds per-source contest traits 217
+PASS actual menu binds per-source contest traits 218
+PASS actual menu binds per-source contest traits 219
+PASS actual menu binds per-source contest traits 220
+PASS actual menu binds per-source contest traits 221
+PASS actual menu binds per-source contest traits 222
+PASS actual menu binds per-source contest traits 223
+PASS actual menu binds per-source contest traits 224
+PASS actual menu binds per-source contest traits 225
+PASS actual menu binds per-source contest traits 226
+PASS actual menu binds per-source contest traits 227
+PASS actual menu binds per-source contest traits 228
+PASS actual menu binds per-source contest traits 230
+PASS actual menu binds per-source contest traits 231
+PASS actual menu binds per-source contest traits 232
+PASS actual menu binds per-source contest traits 233
+PASS actual menu binds per-source contest traits 234
+PASS actual menu binds per-source contest traits 235
+PASS actual menu binds per-source contest traits 236
+PASS actual menu binds per-source contest traits 237
+PASS actual menu binds per-source contest traits 238
+PASS actual menu binds per-source contest traits 239
+PASS actual menu binds per-source contest traits 240
+PASS actual menu binds per-source contest traits 241
+PASS actual menu binds per-source contest traits 242
+PASS actual menu binds per-source contest traits 243
+PASS actual menu binds per-source contest traits 244
+PASS actual menu binds per-source contest traits 246
+PASS actual menu binds per-source contest traits 247
+PASS actual menu binds per-source contest traits 248
+PASS actual menu binds per-source contest traits 250
+PASS actual menu binds per-source contest traits 251
+PASS actual menu binds per-source contest traits 252
+PASS actual menu binds per-source contest traits 253
+PASS actual menu binds per-source contest traits 255
+PASS actual menu binds per-source contest traits 256
+PASS actual menu binds per-source contest traits 257
+PASS actual menu binds per-source contest traits 258
+PASS actual menu binds per-source contest traits 259
+PASS actual menu binds per-source contest traits 260
+PASS actual menu binds per-source contest traits 261
+PASS actual menu binds per-source contest traits 262
+PASS actual menu binds per-source contest traits 263
+PASS actual menu binds per-source contest traits 264
+PASS actual menu binds per-source contest traits 265
+PASS actual menu binds per-source contest traits 266
+PASS actual menu binds per-source contest traits 267
+PASS actual menu binds per-source contest traits 268
+PASS actual menu binds per-source contest traits 269
+PASS actual menu binds per-source contest traits 270
+PASS actual menu binds per-source contest traits 271
+PASS actual menu binds per-source contest traits 272
+PASS actual menu binds per-source contest traits 273
+PASS actual menu binds per-source contest traits 274
+PASS actual menu binds per-source contest traits 275
+PASS actual menu binds per-source contest traits 276
+PASS actual menu binds per-source contest traits 277
+PASS actual menu binds per-source contest traits 278
+PASS actual menu binds per-source contest traits 279
+PASS actual menu binds per-source contest traits 280
+PASS actual menu binds per-source contest traits 281
+PASS actual menu binds per-source contest traits 282
+PASS actual menu binds per-source contest traits 283
+PASS actual menu binds per-source contest traits 284
+PASS actual menu binds per-source contest traits 285
+PASS actual menu binds per-source contest traits 286
+PASS actual menu binds per-source contest traits 287
+PASS actual menu binds per-source contest traits 288
+PASS actual menu binds per-source contest traits 290
+PASS actual menu binds per-source contest traits 291
+PASS actual menu binds per-source contest traits 292
+PASS actual menu binds per-source contest traits 293
+PASS actual menu binds per-source contest traits 294
+PASS actual menu binds per-source contest traits 295
+PASS actual menu binds per-source contest traits 296
+PASS actual menu binds per-source contest traits 297
+PASS actual menu binds per-source contest traits 298
+PASS actual menu binds per-source contest traits 299
+PASS actual menu binds per-source contest traits 300
+PASS actual menu binds per-source contest traits 301
+PASS actual menu binds per-source contest traits 302
+PASS actual menu binds per-source contest traits 303
+PASS actual menu binds per-source contest traits 304
+PASS actual menu binds per-source contest traits 305
+PASS actual menu binds per-source contest traits 306
+PASS actual menu binds per-source contest traits 307
+PASS actual menu binds per-source contest traits 308
+PASS actual menu binds per-source contest traits 309
+PASS actual menu binds per-source contest traits 310
+PASS actual menu binds per-source contest traits 311
+PASS actual menu binds per-source contest traits 312
+PASS actual menu binds per-source contest traits 313
+PASS actual menu binds per-source contest traits 314
+PASS actual menu binds per-source contest traits 315
+PASS actual menu binds per-source contest traits 316
+PASS actual menu binds per-source contest traits 317
+PASS actual menu binds per-source contest traits 318
+PASS actual menu binds per-source contest traits 319
+PASS actual menu binds per-source contest traits 320
+PASS actual menu binds per-source contest traits 321
+PASS actual menu binds per-source contest traits 322
+PASS actual menu binds per-source contest traits 323
+PASS actual menu binds per-source contest traits 324
+PASS actual menu binds per-source contest traits 325
+PASS actual menu binds per-source contest traits 326
+PASS actual menu binds per-source contest traits 327
+PASS actual menu binds per-source contest traits 328
+PASS actual menu binds per-source contest traits 329
+PASS actual menu binds per-source contest traits 330
+PASS actual menu binds per-source contest traits 331
+PASS actual menu binds per-source contest traits 332
+PASS actual menu binds per-source contest traits 333
+PASS actual menu binds per-source contest traits 334
+PASS actual menu binds per-source contest traits 335
+PASS actual menu binds per-source contest traits 336
+PASS actual menu binds per-source contest traits 337
+PASS actual menu binds per-source contest traits 338
+PASS actual menu binds per-source contest traits 339
+PASS actual menu binds per-source contest traits 340
+PASS actual menu binds per-source contest traits 341
+PASS actual menu binds per-source contest traits 342
+PASS actual menu binds per-source contest traits 344
+PASS actual menu binds per-source contest traits 345
+PASS actual menu binds per-source contest traits 346
+PASS actual menu binds per-source contest traits 347
+PASS actual menu binds per-source contest traits 348
+PASS actual menu binds per-source contest traits 349
+PASS actual menu binds per-source contest traits 350
+PASS actual menu binds per-source contest traits 351
+PASS actual menu binds per-source contest traits 352
+PASS actual menu binds per-source contest traits 353
+PASS actual menu binds per-source contest traits 354
+PASS actual menu binds per-source contest traits 355
+PASS actual menu binds per-source contest traits 356
+PASS actual menu binds per-source contest traits 357
+PASS actual menu binds per-source contest traits 358
+PASS actual menu binds per-source contest traits 359
+PASS actual menu binds per-source contest traits 360
+PASS actual menu binds per-source contest traits 361
+PASS actual menu binds per-source contest traits 362
+PASS actual menu binds per-source contest traits 363
+PASS actual menu binds per-source contest traits 364
+PASS actual menu binds per-source contest traits 365
+PASS actual menu binds per-source contest traits 366
+PASS actual menu binds per-source contest traits 368
+PASS actual menu binds per-source contest traits 369
+PASS actual menu binds per-source contest traits 370
+PASS actual menu binds per-source contest traits 371
+PASS actual menu binds per-source contest traits 372
+PASS actual menu binds per-source contest traits 373
+PASS actual menu binds per-source contest traits 374
+PASS actual menu binds per-source contest traits 375
+PASS actual menu binds per-source contest traits 376
+PASS actual menu binds per-source contest traits 377
+PASS actual menu binds per-source contest traits 378
+PASS actual menu binds per-source contest traits 379
+PASS actual menu binds per-source contest traits 380
+PASS actual menu binds per-source contest traits 381
+PASS actual menu binds per-source contest traits 382
+PASS actual menu binds per-source contest traits 383
+PASS actual menu binds per-source contest traits 384
+PASS actual menu binds per-source contest traits 385
+PASS actual menu binds per-source contest traits 386
+PASS actual menu binds per-source contest traits 387
+PASS actual menu binds per-source contest traits 388
+PASS actual menu binds per-source contest traits 390
+PASS actual menu binds per-source contest traits 391
+PASS actual menu binds per-source contest traits 392
+PASS actual menu binds per-source contest traits 393
+PASS actual menu binds per-source contest traits 394
+PASS actual menu binds per-source contest traits 396
+PASS actual menu binds per-source contest traits 397
+PASS actual menu binds per-source contest traits 398
+PASS actual menu binds per-source contest traits 399
+PASS actual menu binds per-source contest traits 400
+PASS actual menu binds per-source contest traits 401
+PASS actual menu binds per-source contest traits 402
+PASS actual menu binds per-source contest traits 403
+PASS actual menu binds per-source contest traits 404
+PASS actual menu binds per-source contest traits 405
+PASS actual menu binds per-source contest traits 406
+PASS actual menu binds per-source contest traits 407
+PASS actual menu binds per-source contest traits 408
+PASS actual menu binds per-source contest traits 409
+PASS actual menu binds per-source contest traits 410
+PASS actual menu binds per-source contest traits 411
+PASS actual menu binds per-source contest traits 412
+PASS actual menu binds per-source contest traits 413
+PASS actual menu binds per-source contest traits 414
+PASS actual menu binds per-source contest traits 415
+PASS actual menu binds per-source contest traits 416
+PASS actual menu binds per-source contest traits 417
+PASS actual menu binds per-source contest traits 418
+PASS actual menu binds per-source contest traits 419
+PASS actual menu binds per-source contest traits 420
+PASS actual menu binds per-source contest traits 421
+PASS actual menu binds per-source contest traits 422
+PASS actual menu binds per-source contest traits 423
+PASS actual menu binds per-source contest traits 424
+PASS actual menu binds per-source contest traits 425
+PASS actual menu binds per-source contest traits 426
+PASS actual menu binds per-source contest traits 427
+PASS actual menu binds per-source contest traits 428
+PASS actual menu binds per-source contest traits 429
+PASS actual menu binds per-source contest traits 430
+PASS actual menu binds per-source contest traits 431
+PASS actual menu binds per-source contest traits 433
+PASS actual menu binds per-source contest traits 434
+PASS actual menu binds per-source contest traits 435
+PASS actual menu binds per-source contest traits 436
+PASS actual menu binds per-source contest traits 437
+PASS actual menu binds per-source contest traits 438
+PASS actual menu binds per-source contest traits 440
+PASS actual menu binds per-source contest traits 441
+PASS actual menu binds per-source contest traits 442
+PASS actual menu binds per-source contest traits 443
+PASS actual menu binds per-source contest traits 444
+PASS actual menu binds per-source contest traits 445
+PASS actual menu binds per-source contest traits 446
+PASS actual menu binds per-source contest traits 447
+PASS actual menu binds per-source contest traits 448
+PASS actual menu binds per-source contest traits 449
+PASS actual menu binds per-source contest traits 450
+PASS actual menu binds per-source contest traits 451
+PASS actual menu binds per-source contest traits 452
+PASS actual menu binds per-source contest traits 453
+PASS actual menu binds per-source contest traits 454
+PASS actual menu binds per-source contest traits 455
+PASS actual menu binds per-source contest traits 456
+PASS actual menu binds per-source contest traits 457
+PASS actual menu binds per-source contest traits 458
+PASS actual menu binds per-source contest traits 459
+PASS actual menu binds per-source contest traits 460
+PASS actual menu binds per-source contest traits 461
+PASS actual menu binds per-source contest traits 462
+PASS actual menu binds per-source contest traits 463
+PASS actual menu binds per-source contest traits 464
+PASS actual menu binds per-source contest traits 465
+PASS actual menu binds per-source contest traits 466
+PASS actual menu binds per-source contest traits 467
+PASS actual menu binds per-source contest traits 468
+PASS actual menu binds per-source contest traits 469
+PASS actual menu binds per-source contest traits 470
+PASS actual menu binds per-source contest traits 471
+PASS actual menu binds per-source contest traits 472
+PASS actual menu binds per-source contest traits 473
+PASS actual menu binds per-source contest traits 474
+PASS actual menu binds per-source contest traits 475
+PASS actual menu binds per-source contest traits 476
+PASS actual menu binds per-source contest traits 477
+PASS actual menu binds per-source contest traits 478
+PASS actual menu binds per-source contest traits 479
+PASS actual menu binds per-source contest traits 480
+PASS actual menu binds per-source contest traits 481
+PASS actual menu binds per-source contest traits 482
+PASS actual menu binds per-source contest traits 483
+PASS actual menu binds per-source contest traits 484
+PASS actual menu binds per-source contest traits 485
+PASS actual menu binds per-source contest traits 486
+PASS actual menu binds per-source contest traits 487
+PASS actual menu binds per-source contest traits 488
+PASS actual menu binds per-source contest traits 489
+PASS actual menu binds per-source contest traits 490
+PASS actual menu binds per-source contest traits 491
+PASS actual menu binds per-source contest traits 492
+PASS actual menu binds per-source contest traits 493
+PASS actual menu binds per-source contest traits 494
+PASS actual menu binds per-source contest traits 495
+PASS actual menu binds per-source contest traits 496
+PASS actual menu binds per-source contest traits 497
+PASS actual menu binds per-source contest traits 498
+PASS actual menu binds per-source contest traits 499
+PASS actual menu binds per-source contest traits 500
+PASS actual menu binds per-source contest traits 501
+PASS actual menu binds per-source contest traits 502
+PASS actual menu binds per-source contest traits 503
+PASS actual menu binds per-source contest traits 504
+PASS actual menu binds per-source contest traits 505
+PASS actual menu binds per-source contest traits 506
+PASS actual menu binds per-source contest traits 507
+PASS actual menu binds per-source contest traits 508
+PASS actual menu binds per-source contest traits 509
+PASS actual menu binds per-source contest traits 510
+PASS actual menu binds per-source contest traits 511
+PASS actual menu binds per-source contest traits 512
+PASS actual menu binds per-source contest traits 513
+PASS actual menu binds per-source contest traits 514
+PASS actual menu binds per-source contest traits 515
+PASS actual menu binds per-source contest traits 516
+PASS actual menu binds per-source contest traits 517
+PASS actual menu binds per-source contest traits 518
+PASS actual menu binds per-source contest traits 519
+PASS actual menu binds per-source contest traits 520
+PASS actual menu binds per-source contest traits 521
+PASS actual menu binds per-source contest traits 522
+PASS actual menu binds per-source contest traits 523
+PASS actual menu binds per-source contest traits 524
+PASS actual menu binds per-source contest traits 525
+PASS actual menu binds per-source contest traits 526
+PASS actual menu binds per-source contest traits 527
+PASS actual menu binds per-source contest traits 528
+PASS actual menu binds per-source contest traits 529
+PASS actual menu binds per-source contest traits 530
+PASS actual menu binds per-source contest traits 531
+PASS actual menu binds per-source contest traits 532
+PASS actual menu binds per-source contest traits 533
+PASS actual menu binds per-source contest traits 534
+PASS actual menu binds per-source contest traits 535
+PASS actual menu binds per-source contest traits 536
+PASS actual menu binds per-source contest traits 537
+PASS actual menu binds per-source contest traits 538
+PASS actual menu binds per-source contest traits 539
+PASS actual menu binds per-source contest traits 540
+PASS actual menu binds per-source contest traits 541
+PASS actual menu binds per-source contest traits 542
+PASS actual menu binds per-source contest traits 543
+PASS actual menu binds per-source contest traits 544
+PASS actual menu binds per-source contest traits 545
+PASS actual menu binds per-source contest traits 546
+PASS actual menu binds per-source contest traits 547
+PASS actual menu binds per-source contest traits 548
+PASS actual menu binds per-source contest traits 549
+PASS actual menu binds per-source contest traits 550
+PASS actual menu binds per-source contest traits 551
+PASS actual menu binds per-source contest traits 552
+PASS actual menu binds per-source contest traits 553
+PASS actual menu binds per-source contest traits 554
+PASS actual menu binds per-source contest traits 555
+PASS actual menu binds per-source contest traits 556
+PASS actual menu binds per-source contest traits 557
+PASS actual menu binds per-source contest traits 558
+PASS actual menu binds per-source contest traits 559
+PASS actual menu binds per-source contest traits 560
+PASS actual menu binds per-source contest traits 561
+PASS actual menu binds per-source contest traits 562
+PASS actual menu binds per-source contest traits 563
+PASS actual menu binds per-source contest traits 564
+PASS actual menu binds per-source contest traits 565
+PASS actual menu binds per-source contest traits 566
+PASS actual menu binds per-source contest traits 567
+PASS actual menu binds per-source contest traits 568
+PASS actual menu binds per-source contest traits 569
+PASS actual menu binds per-source contest traits 570
+PASS actual menu binds per-source contest traits 571
+PASS actual menu binds per-source contest traits 572
+PASS actual menu binds per-source contest traits 573
+PASS actual menu binds per-source contest traits 574
+PASS actual menu binds per-source contest traits 575
+PASS actual menu binds per-source contest traits 576
+PASS actual menu binds per-source contest traits 577
+PASS actual menu binds per-source contest traits 578
+PASS actual menu binds per-source contest traits 579
+PASS actual menu binds per-source contest traits 580
+PASS actual menu binds per-source contest traits 581
+PASS actual menu binds per-source contest traits 582
+PASS actual menu binds per-source contest traits 583
+PASS actual menu binds per-source contest traits 584
+PASS actual menu binds per-source contest traits 585
+PASS actual menu binds per-source contest traits 586
+PASS actual menu binds per-source contest traits 587
+PASS actual menu binds per-source contest traits 588
+PASS actual menu binds per-source contest traits 589
+PASS actual menu binds per-source contest traits 590
+PASS actual menu binds per-source contest traits 591
+PASS actual menu binds per-source contest traits 592
+PASS actual menu binds per-source contest traits 593
+PASS actual menu binds per-source contest traits 594
+PASS actual menu binds per-source contest traits 595
+PASS actual menu binds per-source contest traits 596
+PASS actual menu binds per-source contest traits 597
+PASS actual menu binds per-source contest traits 598
+PASS actual menu binds per-source contest traits 599
+PASS actual menu binds per-source contest traits 600
+PASS actual menu binds per-source contest traits 601
+PASS actual menu binds per-source contest traits 602
+PASS actual menu binds per-source contest traits 603
+PASS actual menu binds per-source contest traits 604
+PASS actual menu binds per-source contest traits 605
+PASS actual menu binds per-source contest traits 606
+PASS actual menu binds per-source contest traits 607
+PASS actual menu binds per-source contest traits 608
+PASS actual menu binds per-source contest traits 609
+PASS actual menu binds per-source contest traits 610
+PASS actual menu binds per-source contest traits 611
+PASS actual menu binds per-source contest traits 612
+PASS actual menu binds per-source contest traits 613
+PASS actual menu binds per-source contest traits 614
+PASS actual menu binds per-source contest traits 615
+PASS actual menu binds per-source contest traits 617
+PASS actual menu binds per-source contest traits 618
+PASS actual menu binds per-source contest traits 619
+PASS actual menu binds per-source contest traits 620
+PASS actual menu binds per-source contest traits 621
+PASS actual menu binds per-source contest traits 622
+PASS actual menu binds per-source contest traits 623
+PASS actual menu binds per-source contest traits 624
+PASS actual menu binds per-source contest traits 625
+PASS actual menu binds per-source contest traits 626
+PASS actual menu binds per-source contest traits 627
+PASS actual menu binds per-source contest traits 628
+PASS actual menu binds per-source contest traits 629
+PASS actual menu binds per-source contest traits 630
+PASS actual menu binds per-source contest traits 631
+PASS actual menu binds per-source contest traits 632
+PASS actual menu binds per-source contest traits 633
+PASS actual menu binds per-source contest traits 634
+PASS actual menu binds per-source contest traits 636
+PASS actual menu binds per-source contest traits 637
+PASS actual menu binds per-source contest traits 638
+PASS actual menu binds per-source contest traits 639
+PASS actual menu binds per-source contest traits 640
+PASS actual menu binds per-source contest traits 641
+PASS actual menu binds per-source contest traits 642
+PASS actual menu binds per-source contest traits 643
+PASS actual menu binds per-source contest traits 644
+PASS actual menu binds per-source contest traits 645
+PASS actual menu binds per-source contest traits 646
+PASS actual menu binds per-source contest traits 647
+PASS actual menu binds per-source contest traits 648
+PASS actual menu binds per-source contest traits 649
+PASS actual menu binds per-source contest traits 650
+PASS actual menu binds per-source contest traits 651
+PASS actual menu binds per-source contest traits 652
+PASS actual menu binds per-source contest traits 653
+PASS actual menu binds per-source contest traits 654
+PASS actual menu binds per-source contest traits 655
+PASS actual menu binds per-source contest traits 656
+PASS actual menu binds per-source contest traits 657
+PASS actual menu binds per-source contest traits 658
+PASS actual menu binds per-source contest traits 659
+PASS actual menu binds per-source contest traits 660
+PASS actual menu binds per-source contest traits 662
+PASS actual menu binds per-source contest traits 663
+PASS actual menu binds per-source contest traits 664
+PASS actual menu binds per-source contest traits 665
+PASS actual menu binds per-source contest traits 666
+PASS actual menu binds per-source contest traits 668
+PASS actual menu binds per-source contest traits 669
+PASS actual menu binds per-source contest traits 184
+PASS actual menu binds per-source contest traits 249
+PASS actual menu binds per-source contest traits 229
+PASS actual menu binds per-source contest traits 616
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS selected source remains explicit in new authority
+PASS installed DTO includes complete saved roster
+PASS installed saved raw loyalty identity and DTO 10000
+PASS installed saved raw loyalty identity and DTO 10001
+PASS installed saved raw loyalty identity and DTO 10002
+PASS installed saved raw loyalty identity and DTO 10003
+PASS installed saved raw loyalty identity and DTO 10004
+PASS installed saved raw loyalty identity and DTO 10005
+PASS installed saved raw loyalty identity and DTO 10006
+PASS installed saved raw loyalty identity and DTO 10007
+PASS installed saved raw loyalty identity and DTO 10008
+PASS installed saved raw loyalty identity and DTO 10009
+PASS installed saved raw loyalty identity and DTO 10010
+PASS installed saved raw loyalty identity and DTO 10011
+PASS installed saved raw loyalty identity and DTO 10012
+PASS installed saved raw loyalty identity and DTO 10013
+PASS installed saved raw loyalty identity and DTO 10014
+PASS installed saved raw loyalty identity and DTO 10015
+PASS installed saved raw loyalty identity and DTO 10016
+PASS installed saved raw loyalty identity and DTO 10017
+PASS installed saved raw loyalty identity and DTO 10018
+PASS installed saved raw loyalty identity and DTO 10019
+PASS installed saved raw loyalty identity and DTO 10020
+PASS installed saved raw loyalty identity and DTO 10021
+PASS installed saved raw loyalty identity and DTO 10022
+PASS installed saved raw loyalty identity and DTO 10023
+PASS installed saved raw loyalty identity and DTO 10024
+PASS installed saved raw loyalty identity and DTO 10025
+PASS installed saved raw loyalty identity and DTO 10026
+PASS installed saved raw loyalty identity and DTO 10027
+PASS installed saved raw loyalty identity and DTO 10028
+PASS installed saved raw loyalty identity and DTO 10029
+PASS installed saved raw loyalty identity and DTO 10030
+PASS installed saved raw loyalty identity and DTO 10031
+PASS installed saved raw loyalty identity and DTO 10032
+PASS installed saved raw loyalty identity and DTO 10033
+PASS installed saved raw loyalty identity and DTO 10034
+PASS installed saved raw loyalty identity and DTO 10035
+PASS installed saved raw loyalty identity and DTO 10036
+PASS installed saved raw loyalty identity and DTO 10037
+PASS installed saved raw loyalty identity and DTO 10038
+PASS installed saved raw loyalty identity and DTO 10039
+PASS installed saved raw loyalty identity and DTO 10040
+PASS installed saved raw loyalty identity and DTO 10041
+PASS installed saved raw loyalty identity and DTO 10042
+PASS installed saved raw loyalty identity and DTO 10043
+PASS installed saved raw loyalty identity and DTO 10044
+PASS installed saved raw loyalty identity and DTO 10045
+PASS installed saved raw loyalty identity and DTO 10046
+PASS installed saved raw loyalty identity and DTO 10047
+PASS installed saved raw loyalty identity and DTO 10048
+PASS installed saved raw loyalty identity and DTO 10049
+PASS installed saved raw loyalty identity and DTO 10050
+PASS installed saved raw loyalty identity and DTO 10051
+PASS installed saved raw loyalty identity and DTO 10052
+PASS installed saved raw loyalty identity and DTO 10053
+PASS installed saved raw loyalty identity and DTO 10054
+PASS installed saved raw loyalty identity and DTO 10055
+PASS installed saved raw loyalty identity and DTO 10056
+PASS installed saved raw loyalty identity and DTO 10057
+PASS installed saved raw loyalty identity and DTO 10058
+PASS installed saved raw loyalty identity and DTO 10059
+PASS installed saved raw loyalty identity and DTO 10060
+PASS installed saved raw loyalty identity and DTO 10061
+PASS installed saved raw loyalty identity and DTO 10062
+PASS installed saved raw loyalty identity and DTO 2005
+PASS installed saved raw loyalty identity and DTO 10064
+PASS installed saved raw loyalty identity and DTO 10065
+PASS installed saved raw loyalty identity and DTO 10066
+PASS installed saved raw loyalty identity and DTO 10067
+PASS installed saved raw loyalty identity and DTO 10068
+PASS installed saved raw loyalty identity and DTO 10069
+PASS installed saved raw loyalty identity and DTO 10070
+PASS installed saved raw loyalty identity and DTO 10071
+PASS installed saved raw loyalty identity and DTO 10072
+PASS installed saved raw loyalty identity and DTO 10073
+PASS installed saved raw loyalty identity and DTO 10074
+PASS installed saved raw loyalty identity and DTO 10075
+PASS installed saved raw loyalty identity and DTO 10076
+PASS installed saved raw loyalty identity and DTO 10077
+PASS installed saved raw loyalty identity and DTO 2003
+PASS installed saved raw loyalty identity and DTO 10079
+PASS installed saved raw loyalty identity and DTO 10080
+PASS installed saved raw loyalty identity and DTO 10081
+PASS installed saved raw loyalty identity and DTO 10082
+PASS installed saved raw loyalty identity and DTO 10083
+PASS installed saved raw loyalty identity and DTO 10084
+PASS installed saved raw loyalty identity and DTO 2001
+PASS installed saved raw loyalty identity and DTO 10086
+PASS installed saved raw loyalty identity and DTO 10087
+PASS installed saved raw loyalty identity and DTO 10088
+PASS installed saved raw loyalty identity and DTO 10089
+PASS installed saved raw loyalty identity and DTO 10090
+PASS installed saved raw loyalty identity and DTO 10091
+PASS installed saved raw loyalty identity and DTO 10092
+PASS installed saved raw loyalty identity and DTO 10093
+PASS installed saved raw loyalty identity and DTO 10094
+PASS installed saved raw loyalty identity and DTO 10095
+PASS installed saved raw loyalty identity and DTO 10096
+PASS installed saved raw loyalty identity and DTO 10097
+PASS installed saved raw loyalty identity and DTO 1001
+PASS installed saved raw loyalty identity and DTO 10099
+PASS installed saved raw loyalty identity and DTO 10100
+PASS installed saved raw loyalty identity and DTO 10101
+PASS installed saved raw loyalty identity and DTO 10102
+PASS installed saved raw loyalty identity and DTO 10103
+PASS installed saved raw loyalty identity and DTO 10104
+PASS installed saved raw loyalty identity and DTO 10105
+PASS installed saved raw loyalty identity and DTO 10106
+PASS installed saved raw loyalty identity and DTO 10107
+PASS installed saved raw loyalty identity and DTO 10108
+PASS installed saved raw loyalty identity and DTO 10109
+PASS installed saved raw loyalty identity and DTO 10110
+PASS installed saved raw loyalty identity and DTO 10111
+PASS installed saved raw loyalty identity and DTO 10112
+PASS installed saved raw loyalty identity and DTO 10113
+PASS installed saved raw loyalty identity and DTO 10114
+PASS installed saved raw loyalty identity and DTO 10115
+PASS installed saved raw loyalty identity and DTO 10116
+PASS installed saved raw loyalty identity and DTO 10117
+PASS installed saved raw loyalty identity and DTO 3003
+PASS installed saved raw loyalty identity and DTO 10119
+PASS installed saved raw loyalty identity and DTO 10120
+PASS installed saved raw loyalty identity and DTO 10121
+PASS installed saved raw loyalty identity and DTO 10122
+PASS installed saved raw loyalty identity and DTO 10123
+PASS installed saved raw loyalty identity and DTO 10124
+PASS installed saved raw loyalty identity and DTO 10125
+PASS installed saved raw loyalty identity and DTO 10126
+PASS installed saved raw loyalty identity and DTO 10127
+PASS installed saved raw loyalty identity and DTO 10128
+PASS installed saved raw loyalty identity and DTO 10129
+PASS installed saved raw loyalty identity and DTO 10130
+PASS installed saved raw loyalty identity and DTO 10131
+PASS installed saved raw loyalty identity and DTO 10132
+PASS installed saved raw loyalty identity and DTO 10133
+PASS installed saved raw loyalty identity and DTO 10134
+PASS installed saved raw loyalty identity and DTO 10135
+PASS installed saved raw loyalty identity and DTO 10136
+PASS installed saved raw loyalty identity and DTO 10137
+PASS installed saved raw loyalty identity and DTO 10138
+PASS installed saved raw loyalty identity and DTO 10139
+PASS installed saved raw loyalty identity and DTO 10140
+PASS installed saved raw loyalty identity and DTO 10141
+PASS installed saved raw loyalty identity and DTO 10142
+PASS installed saved raw loyalty identity and DTO 10143
+PASS installed saved raw loyalty identity and DTO 10144
+PASS installed saved raw loyalty identity and DTO 10145
+PASS installed saved raw loyalty identity and DTO 10146
+PASS installed saved raw loyalty identity and DTO 10147
+PASS installed saved raw loyalty identity and DTO 10148
+PASS installed saved raw loyalty identity and DTO 10149
+PASS installed saved raw loyalty identity and DTO 10150
+PASS installed saved raw loyalty identity and DTO 10151
+PASS installed saved raw loyalty identity and DTO 10152
+PASS installed saved raw loyalty identity and DTO 10153
+PASS installed saved raw loyalty identity and DTO 10154
+PASS installed saved raw loyalty identity and DTO 10155
+PASS installed saved raw loyalty identity and DTO 10156
+PASS installed saved raw loyalty identity and DTO 10157
+PASS installed saved raw loyalty identity and DTO 10158
+PASS installed saved raw loyalty identity and DTO 10159
+PASS installed saved raw loyalty identity and DTO 10160
+PASS installed saved raw loyalty identity and DTO 10161
+PASS installed saved raw loyalty identity and DTO 10162
+PASS installed saved raw loyalty identity and DTO 10163
+PASS installed saved raw loyalty identity and DTO 10164
+PASS installed saved raw loyalty identity and DTO 10165
+PASS installed saved raw loyalty identity and DTO 10166
+PASS installed saved raw loyalty identity and DTO 10167
+PASS installed saved raw loyalty identity and DTO 10168
+PASS installed saved raw loyalty identity and DTO 10169
+PASS installed saved raw loyalty identity and DTO 10170
+PASS installed saved raw loyalty identity and DTO 10171
+PASS installed saved raw loyalty identity and DTO 10172
+PASS installed saved raw loyalty identity and DTO 10173
+PASS installed saved raw loyalty identity and DTO 10174
+PASS installed saved raw loyalty identity and DTO 10175
+PASS installed saved raw loyalty identity and DTO 10176
+PASS installed saved raw loyalty identity and DTO 10177
+PASS installed saved raw loyalty identity and DTO 10178
+PASS installed saved raw loyalty identity and DTO 10179
+PASS installed saved raw loyalty identity and DTO 10180
+PASS installed saved raw loyalty identity and DTO 10181
+PASS installed saved raw loyalty identity and DTO 10182
+PASS installed saved raw loyalty identity and DTO 10183
+PASS installed saved raw loyalty identity and DTO 156234
+PASS installed saved raw loyalty identity and DTO 1005
+PASS installed saved raw loyalty identity and DTO 10186
+PASS installed saved raw loyalty identity and DTO 10187
+PASS installed saved raw loyalty identity and DTO 10188
+PASS installed saved raw loyalty identity and DTO 10189
+PASS installed saved raw loyalty identity and DTO 10190
+PASS installed saved raw loyalty identity and DTO 10191
+PASS installed saved raw loyalty identity and DTO 10192
+PASS installed saved raw loyalty identity and DTO 10193
+PASS installed saved raw loyalty identity and DTO 10194
+PASS installed saved raw loyalty identity and DTO 10195
+PASS installed saved raw loyalty identity and DTO 10196
+PASS installed saved raw loyalty identity and DTO 10197
+PASS installed saved raw loyalty identity and DTO 10198
+PASS installed saved raw loyalty identity and DTO 10199
+PASS installed saved raw loyalty identity and DTO 10200
+PASS installed saved raw loyalty identity and DTO 10201
+PASS installed saved raw loyalty identity and DTO 10202
+PASS installed saved raw loyalty identity and DTO 10203
+PASS installed saved raw loyalty identity and DTO 10204
+PASS installed saved raw loyalty identity and DTO 10205
+PASS installed saved raw loyalty identity and DTO 10206
+PASS installed saved raw loyalty identity and DTO 10207
+PASS installed saved raw loyalty identity and DTO 10208
+PASS installed saved raw loyalty identity and DTO 10209
+PASS installed saved raw loyalty identity and DTO 10210
+PASS installed saved raw loyalty identity and DTO 10211
+PASS installed saved raw loyalty identity and DTO 10212
+PASS installed saved raw loyalty identity and DTO 10213
+PASS installed saved raw loyalty identity and DTO 10214
+PASS installed saved raw loyalty identity and DTO 10215
+PASS installed saved raw loyalty identity and DTO 10216
+PASS installed saved raw loyalty identity and DTO 10217
+PASS installed saved raw loyalty identity and DTO 10218
+PASS installed saved raw loyalty identity and DTO 10219
+PASS installed saved raw loyalty identity and DTO 10220
+PASS installed saved raw loyalty identity and DTO 10221
+PASS installed saved raw loyalty identity and DTO 10222
+PASS installed saved raw loyalty identity and DTO 10223
+PASS installed saved raw loyalty identity and DTO 10224
+PASS installed saved raw loyalty identity and DTO 10225
+PASS installed saved raw loyalty identity and DTO 10226
+PASS installed saved raw loyalty identity and DTO 10227
+PASS installed saved raw loyalty identity and DTO 10228
+PASS installed saved raw loyalty identity and DTO 844857
+PASS installed saved raw loyalty identity and DTO 10230
+PASS installed saved raw loyalty identity and DTO 10231
+PASS installed saved raw loyalty identity and DTO 10232
+PASS installed saved raw loyalty identity and DTO 10233
+PASS installed saved raw loyalty identity and DTO 10234
+PASS installed saved raw loyalty identity and DTO 10235
+PASS installed saved raw loyalty identity and DTO 10236
+PASS installed saved raw loyalty identity and DTO 10237
+PASS installed saved raw loyalty identity and DTO 10238
+PASS installed saved raw loyalty identity and DTO 10239
+PASS installed saved raw loyalty identity and DTO 10240
+PASS installed saved raw loyalty identity and DTO 10241
+PASS installed saved raw loyalty identity and DTO 10242
+PASS installed saved raw loyalty identity and DTO 10243
+PASS installed saved raw loyalty identity and DTO 10244
+PASS installed saved raw loyalty identity and DTO 3001
+PASS installed saved raw loyalty identity and DTO 10246
+PASS installed saved raw loyalty identity and DTO 10247
+PASS installed saved raw loyalty identity and DTO 10248
+PASS installed saved raw loyalty identity and DTO 598828
+PASS installed saved raw loyalty identity and DTO 10250
+PASS installed saved raw loyalty identity and DTO 10251
+PASS installed saved raw loyalty identity and DTO 10252
+PASS installed saved raw loyalty identity and DTO 10253
+PASS installed saved raw loyalty identity and DTO 2002
+PASS installed saved raw loyalty identity and DTO 10255
+PASS installed saved raw loyalty identity and DTO 10256
+PASS installed saved raw loyalty identity and DTO 10257
+PASS installed saved raw loyalty identity and DTO 10258
+PASS installed saved raw loyalty identity and DTO 10259
+PASS installed saved raw loyalty identity and DTO 10260
+PASS installed saved raw loyalty identity and DTO 10261
+PASS installed saved raw loyalty identity and DTO 10262
+PASS installed saved raw loyalty identity and DTO 10263
+PASS installed saved raw loyalty identity and DTO 10264
+PASS installed saved raw loyalty identity and DTO 10265
+PASS installed saved raw loyalty identity and DTO 10266
+PASS installed saved raw loyalty identity and DTO 10267
+PASS installed saved raw loyalty identity and DTO 10268
+PASS installed saved raw loyalty identity and DTO 10269
+PASS installed saved raw loyalty identity and DTO 10270
+PASS installed saved raw loyalty identity and DTO 10271
+PASS installed saved raw loyalty identity and DTO 10272
+PASS installed saved raw loyalty identity and DTO 10273
+PASS installed saved raw loyalty identity and DTO 10274
+PASS installed saved raw loyalty identity and DTO 10275
+PASS installed saved raw loyalty identity and DTO 10276
+PASS installed saved raw loyalty identity and DTO 10277
+PASS installed saved raw loyalty identity and DTO 10278
+PASS installed saved raw loyalty identity and DTO 10279
+PASS installed saved raw loyalty identity and DTO 10280
+PASS installed saved raw loyalty identity and DTO 10281
+PASS installed saved raw loyalty identity and DTO 10282
+PASS installed saved raw loyalty identity and DTO 10283
+PASS installed saved raw loyalty identity and DTO 10284
+PASS installed saved raw loyalty identity and DTO 10285
+PASS installed saved raw loyalty identity and DTO 10286
+PASS installed saved raw loyalty identity and DTO 10287
+PASS installed saved raw loyalty identity and DTO 10288
+PASS installed saved raw loyalty identity and DTO 1004
+PASS installed saved raw loyalty identity and DTO 10290
+PASS installed saved raw loyalty identity and DTO 10291
+PASS installed saved raw loyalty identity and DTO 10292
+PASS installed saved raw loyalty identity and DTO 10293
+PASS installed saved raw loyalty identity and DTO 10294
+PASS installed saved raw loyalty identity and DTO 10295
+PASS installed saved raw loyalty identity and DTO 10296
+PASS installed saved raw loyalty identity and DTO 10297
+PASS installed saved raw loyalty identity and DTO 10298
+PASS installed saved raw loyalty identity and DTO 10299
+PASS installed saved raw loyalty identity and DTO 10300
+PASS installed saved raw loyalty identity and DTO 10301
+PASS installed saved raw loyalty identity and DTO 10302
+PASS installed saved raw loyalty identity and DTO 10303
+PASS installed saved raw loyalty identity and DTO 10304
+PASS installed saved raw loyalty identity and DTO 10305
+PASS installed saved raw loyalty identity and DTO 10306
+PASS installed saved raw loyalty identity and DTO 10307
+PASS installed saved raw loyalty identity and DTO 10308
+PASS installed saved raw loyalty identity and DTO 10309
+PASS installed saved raw loyalty identity and DTO 10310
+PASS installed saved raw loyalty identity and DTO 10311
+PASS installed saved raw loyalty identity and DTO 10312
+PASS installed saved raw loyalty identity and DTO 10313
+PASS installed saved raw loyalty identity and DTO 10314
+PASS installed saved raw loyalty identity and DTO 10315
+PASS installed saved raw loyalty identity and DTO 10316
+PASS installed saved raw loyalty identity and DTO 10317
+PASS installed saved raw loyalty identity and DTO 10318
+PASS installed saved raw loyalty identity and DTO 10319
+PASS installed saved raw loyalty identity and DTO 10320
+PASS installed saved raw loyalty identity and DTO 10321
+PASS installed saved raw loyalty identity and DTO 10322
+PASS installed saved raw loyalty identity and DTO 10323
+PASS installed saved raw loyalty identity and DTO 10324
+PASS installed saved raw loyalty identity and DTO 10325
+PASS installed saved raw loyalty identity and DTO 10326
+PASS installed saved raw loyalty identity and DTO 10327
+PASS installed saved raw loyalty identity and DTO 10328
+PASS installed saved raw loyalty identity and DTO 10329
+PASS installed saved raw loyalty identity and DTO 10330
+PASS installed saved raw loyalty identity and DTO 10331
+PASS installed saved raw loyalty identity and DTO 10332
+PASS installed saved raw loyalty identity and DTO 10333
+PASS installed saved raw loyalty identity and DTO 10334
+PASS installed saved raw loyalty identity and DTO 10335
+PASS installed saved raw loyalty identity and DTO 10336
+PASS installed saved raw loyalty identity and DTO 10337
+PASS installed saved raw loyalty identity and DTO 10338
+PASS installed saved raw loyalty identity and DTO 10339
+PASS installed saved raw loyalty identity and DTO 10340
+PASS installed saved raw loyalty identity and DTO 10341
+PASS installed saved raw loyalty identity and DTO 10342
+PASS installed saved raw loyalty identity and DTO 2000
+PASS installed saved raw loyalty identity and DTO 10344
+PASS installed saved raw loyalty identity and DTO 10345
+PASS installed saved raw loyalty identity and DTO 10346
+PASS installed saved raw loyalty identity and DTO 10347
+PASS installed saved raw loyalty identity and DTO 10348
+PASS installed saved raw loyalty identity and DTO 10349
+PASS installed saved raw loyalty identity and DTO 10350
+PASS installed saved raw loyalty identity and DTO 10351
+PASS installed saved raw loyalty identity and DTO 10352
+PASS installed saved raw loyalty identity and DTO 10353
+PASS installed saved raw loyalty identity and DTO 10354
+PASS installed saved raw loyalty identity and DTO 10355
+PASS installed saved raw loyalty identity and DTO 10356
+PASS installed saved raw loyalty identity and DTO 10357
+PASS installed saved raw loyalty identity and DTO 10358
+PASS installed saved raw loyalty identity and DTO 10359
+PASS installed saved raw loyalty identity and DTO 10360
+PASS installed saved raw loyalty identity and DTO 10361
+PASS installed saved raw loyalty identity and DTO 10362
+PASS installed saved raw loyalty identity and DTO 10363
+PASS installed saved raw loyalty identity and DTO 10364
+PASS installed saved raw loyalty identity and DTO 10365
+PASS installed saved raw loyalty identity and DTO 10366
+PASS installed saved raw loyalty identity and DTO 3000
+PASS installed saved raw loyalty identity and DTO 10368
+PASS installed saved raw loyalty identity and DTO 10369
+PASS installed saved raw loyalty identity and DTO 10370
+PASS installed saved raw loyalty identity and DTO 10371
+PASS installed saved raw loyalty identity and DTO 10372
+PASS installed saved raw loyalty identity and DTO 10373
+PASS installed saved raw loyalty identity and DTO 10374
+PASS installed saved raw loyalty identity and DTO 10375
+PASS installed saved raw loyalty identity and DTO 10376
+PASS installed saved raw loyalty identity and DTO 10377
+PASS installed saved raw loyalty identity and DTO 10378
+PASS installed saved raw loyalty identity and DTO 10379
+PASS installed saved raw loyalty identity and DTO 10380
+PASS installed saved raw loyalty identity and DTO 10381
+PASS installed saved raw loyalty identity and DTO 10382
+PASS installed saved raw loyalty identity and DTO 10383
+PASS installed saved raw loyalty identity and DTO 10384
+PASS installed saved raw loyalty identity and DTO 10385
+PASS installed saved raw loyalty identity and DTO 10386
+PASS installed saved raw loyalty identity and DTO 10387
+PASS installed saved raw loyalty identity and DTO 10388
+PASS installed saved raw loyalty identity and DTO 3004
+PASS installed saved raw loyalty identity and DTO 10390
+PASS installed saved raw loyalty identity and DTO 10391
+PASS installed saved raw loyalty identity and DTO 10392
+PASS installed saved raw loyalty identity and DTO 10393
+PASS installed saved raw loyalty identity and DTO 10394
+PASS installed saved raw loyalty identity and DTO 1003
+PASS installed saved raw loyalty identity and DTO 10396
+PASS installed saved raw loyalty identity and DTO 10397
+PASS installed saved raw loyalty identity and DTO 10398
+PASS installed saved raw loyalty identity and DTO 10399
+PASS installed saved raw loyalty identity and DTO 10400
+PASS installed saved raw loyalty identity and DTO 10401
+PASS installed saved raw loyalty identity and DTO 10402
+PASS installed saved raw loyalty identity and DTO 10403
+PASS installed saved raw loyalty identity and DTO 10404
+PASS installed saved raw loyalty identity and DTO 10405
+PASS installed saved raw loyalty identity and DTO 10406
+PASS installed saved raw loyalty identity and DTO 10407
+PASS installed saved raw loyalty identity and DTO 10408
+PASS installed saved raw loyalty identity and DTO 10409
+PASS installed saved raw loyalty identity and DTO 10410
+PASS installed saved raw loyalty identity and DTO 10411
+PASS installed saved raw loyalty identity and DTO 10412
+PASS installed saved raw loyalty identity and DTO 10413
+PASS installed saved raw loyalty identity and DTO 10414
+PASS installed saved raw loyalty identity and DTO 10415
+PASS installed saved raw loyalty identity and DTO 10416
+PASS installed saved raw loyalty identity and DTO 10417
+PASS installed saved raw loyalty identity and DTO 10418
+PASS installed saved raw loyalty identity and DTO 10419
+PASS installed saved raw loyalty identity and DTO 10420
+PASS installed saved raw loyalty identity and DTO 10421
+PASS installed saved raw loyalty identity and DTO 10422
+PASS installed saved raw loyalty identity and DTO 10423
+PASS installed saved raw loyalty identity and DTO 10424
+PASS installed saved raw loyalty identity and DTO 10425
+PASS installed saved raw loyalty identity and DTO 10426
+PASS installed saved raw loyalty identity and DTO 10427
+PASS installed saved raw loyalty identity and DTO 10428
+PASS installed saved raw loyalty identity and DTO 10429
+PASS installed saved raw loyalty identity and DTO 10430
+PASS installed saved raw loyalty identity and DTO 10431
+PASS installed saved raw loyalty identity and DTO 1002
+PASS installed saved raw loyalty identity and DTO 10433
+PASS installed saved raw loyalty identity and DTO 10434
+PASS installed saved raw loyalty identity and DTO 10435
+PASS installed saved raw loyalty identity and DTO 10436
+PASS installed saved raw loyalty identity and DTO 10437
+PASS installed saved raw loyalty identity and DTO 10438
+PASS installed saved raw loyalty identity and DTO 2004
+PASS installed saved raw loyalty identity and DTO 10440
+PASS installed saved raw loyalty identity and DTO 10441
+PASS installed saved raw loyalty identity and DTO 10442
+PASS installed saved raw loyalty identity and DTO 10443
+PASS installed saved raw loyalty identity and DTO 10444
+PASS installed saved raw loyalty identity and DTO 10445
+PASS installed saved raw loyalty identity and DTO 10446
+PASS installed saved raw loyalty identity and DTO 10447
+PASS installed saved raw loyalty identity and DTO 10448
+PASS installed saved raw loyalty identity and DTO 10449
+PASS installed saved raw loyalty identity and DTO 10450
+PASS installed saved raw loyalty identity and DTO 10451
+PASS installed saved raw loyalty identity and DTO 10452
+PASS installed saved raw loyalty identity and DTO 10453
+PASS installed saved raw loyalty identity and DTO 10454
+PASS installed saved raw loyalty identity and DTO 10455
+PASS installed saved raw loyalty identity and DTO 10456
+PASS installed saved raw loyalty identity and DTO 10457
+PASS installed saved raw loyalty identity and DTO 10458
+PASS installed saved raw loyalty identity and DTO 10459
+PASS installed saved raw loyalty identity and DTO 10460
+PASS installed saved raw loyalty identity and DTO 10461
+PASS installed saved raw loyalty identity and DTO 10462
+PASS installed saved raw loyalty identity and DTO 10463
+PASS installed saved raw loyalty identity and DTO 10464
+PASS installed saved raw loyalty identity and DTO 10465
+PASS installed saved raw loyalty identity and DTO 10466
+PASS installed saved raw loyalty identity and DTO 10467
+PASS installed saved raw loyalty identity and DTO 10468
+PASS installed saved raw loyalty identity and DTO 10469
+PASS installed saved raw loyalty identity and DTO 10470
+PASS installed saved raw loyalty identity and DTO 10471
+PASS installed saved raw loyalty identity and DTO 10472
+PASS installed saved raw loyalty identity and DTO 10473
+PASS installed saved raw loyalty identity and DTO 10474
+PASS installed saved raw loyalty identity and DTO 10475
+PASS installed saved raw loyalty identity and DTO 10476
+PASS installed saved raw loyalty identity and DTO 10477
+PASS installed saved raw loyalty identity and DTO 10478
+PASS installed saved raw loyalty identity and DTO 10479
+PASS installed saved raw loyalty identity and DTO 10480
+PASS installed saved raw loyalty identity and DTO 10481
+PASS installed saved raw loyalty identity and DTO 10482
+PASS installed saved raw loyalty identity and DTO 10483
+PASS installed saved raw loyalty identity and DTO 10484
+PASS installed saved raw loyalty identity and DTO 10485
+PASS installed saved raw loyalty identity and DTO 10486
+PASS installed saved raw loyalty identity and DTO 10487
+PASS installed saved raw loyalty identity and DTO 10488
+PASS installed saved raw loyalty identity and DTO 10489
+PASS installed saved raw loyalty identity and DTO 10490
+PASS installed saved raw loyalty identity and DTO 10491
+PASS installed saved raw loyalty identity and DTO 10492
+PASS installed saved raw loyalty identity and DTO 10493
+PASS installed saved raw loyalty identity and DTO 10494
+PASS installed saved raw loyalty identity and DTO 10495
+PASS installed saved raw loyalty identity and DTO 10496
+PASS installed saved raw loyalty identity and DTO 10497
+PASS installed saved raw loyalty identity and DTO 10498
+PASS installed saved raw loyalty identity and DTO 10499
+PASS installed saved raw loyalty identity and DTO 10500
+PASS installed saved raw loyalty identity and DTO 10501
+PASS installed saved raw loyalty identity and DTO 10502
+PASS installed saved raw loyalty identity and DTO 10503
+PASS installed saved raw loyalty identity and DTO 10504
+PASS installed saved raw loyalty identity and DTO 10505
+PASS installed saved raw loyalty identity and DTO 10506
+PASS installed saved raw loyalty identity and DTO 10507
+PASS installed saved raw loyalty identity and DTO 10508
+PASS installed saved raw loyalty identity and DTO 10509
+PASS installed saved raw loyalty identity and DTO 10510
+PASS installed saved raw loyalty identity and DTO 10511
+PASS installed saved raw loyalty identity and DTO 10512
+PASS installed saved raw loyalty identity and DTO 10513
+PASS installed saved raw loyalty identity and DTO 10514
+PASS installed saved raw loyalty identity and DTO 10515
+PASS installed saved raw loyalty identity and DTO 10516
+PASS installed saved raw loyalty identity and DTO 10517
+PASS installed saved raw loyalty identity and DTO 10518
+PASS installed saved raw loyalty identity and DTO 10519
+PASS installed saved raw loyalty identity and DTO 10520
+PASS installed saved raw loyalty identity and DTO 10521
+PASS installed saved raw loyalty identity and DTO 10522
+PASS installed saved raw loyalty identity and DTO 10523
+PASS installed saved raw loyalty identity and DTO 10524
+PASS installed saved raw loyalty identity and DTO 10525
+PASS installed saved raw loyalty identity and DTO 10526
+PASS installed saved raw loyalty identity and DTO 10527
+PASS installed saved raw loyalty identity and DTO 10528
+PASS installed saved raw loyalty identity and DTO 10529
+PASS installed saved raw loyalty identity and DTO 10530
+PASS installed saved raw loyalty identity and DTO 10531
+PASS installed saved raw loyalty identity and DTO 10532
+PASS installed saved raw loyalty identity and DTO 10533
+PASS installed saved raw loyalty identity and DTO 10534
+PASS installed saved raw loyalty identity and DTO 10535
+PASS installed saved raw loyalty identity and DTO 10536
+PASS installed saved raw loyalty identity and DTO 10537
+PASS installed saved raw loyalty identity and DTO 10538
+PASS installed saved raw loyalty identity and DTO 10539
+PASS installed saved raw loyalty identity and DTO 10540
+PASS installed saved raw loyalty identity and DTO 10541
+PASS installed saved raw loyalty identity and DTO 10542
+PASS installed saved raw loyalty identity and DTO 10543
+PASS installed saved raw loyalty identity and DTO 10544
+PASS installed saved raw loyalty identity and DTO 10545
+PASS installed saved raw loyalty identity and DTO 10546
+PASS installed saved raw loyalty identity and DTO 10547
+PASS installed saved raw loyalty identity and DTO 10548
+PASS installed saved raw loyalty identity and DTO 10549
+PASS installed saved raw loyalty identity and DTO 10550
+PASS installed saved raw loyalty identity and DTO 10551
+PASS installed saved raw loyalty identity and DTO 10552
+PASS installed saved raw loyalty identity and DTO 10553
+PASS installed saved raw loyalty identity and DTO 10554
+PASS installed saved raw loyalty identity and DTO 10555
+PASS installed saved raw loyalty identity and DTO 10556
+PASS installed saved raw loyalty identity and DTO 10557
+PASS installed saved raw loyalty identity and DTO 10558
+PASS installed saved raw loyalty identity and DTO 10559
+PASS installed saved raw loyalty identity and DTO 10560
+PASS installed saved raw loyalty identity and DTO 10561
+PASS installed saved raw loyalty identity and DTO 10562
+PASS installed saved raw loyalty identity and DTO 10563
+PASS installed saved raw loyalty identity and DTO 10564
+PASS installed saved raw loyalty identity and DTO 10565
+PASS installed saved raw loyalty identity and DTO 10566
+PASS installed saved raw loyalty identity and DTO 10567
+PASS installed saved raw loyalty identity and DTO 10568
+PASS installed saved raw loyalty identity and DTO 10569
+PASS installed saved raw loyalty identity and DTO 10570
+PASS installed saved raw loyalty identity and DTO 10571
+PASS installed saved raw loyalty identity and DTO 10572
+PASS installed saved raw loyalty identity and DTO 10573
+PASS installed saved raw loyalty identity and DTO 10574
+PASS installed saved raw loyalty identity and DTO 10575
+PASS installed saved raw loyalty identity and DTO 10576
+PASS installed saved raw loyalty identity and DTO 10577
+PASS installed saved raw loyalty identity and DTO 10578
+PASS installed saved raw loyalty identity and DTO 10579
+PASS installed saved raw loyalty identity and DTO 10580
+PASS installed saved raw loyalty identity and DTO 10581
+PASS installed saved raw loyalty identity and DTO 10582
+PASS installed saved raw loyalty identity and DTO 10583
+PASS installed saved raw loyalty identity and DTO 10584
+PASS installed saved raw loyalty identity and DTO 10585
+PASS installed saved raw loyalty identity and DTO 10586
+PASS installed saved raw loyalty identity and DTO 10587
+PASS installed saved raw loyalty identity and DTO 10588
+PASS installed saved raw loyalty identity and DTO 10589
+PASS installed saved raw loyalty identity and DTO 10590
+PASS installed saved raw loyalty identity and DTO 10591
+PASS installed saved raw loyalty identity and DTO 10592
+PASS installed saved raw loyalty identity and DTO 10593
+PASS installed saved raw loyalty identity and DTO 10594
+PASS installed saved raw loyalty identity and DTO 10595
+PASS installed saved raw loyalty identity and DTO 10596
+PASS installed saved raw loyalty identity and DTO 10597
+PASS installed saved raw loyalty identity and DTO 10598
+PASS installed saved raw loyalty identity and DTO 10599
+PASS installed saved raw loyalty identity and DTO 10600
+PASS installed saved raw loyalty identity and DTO 10601
+PASS installed saved raw loyalty identity and DTO 10602
+PASS installed saved raw loyalty identity and DTO 10603
+PASS installed saved raw loyalty identity and DTO 10604
+PASS installed saved raw loyalty identity and DTO 10605
+PASS installed saved raw loyalty identity and DTO 10606
+PASS installed saved raw loyalty identity and DTO 10607
+PASS installed saved raw loyalty identity and DTO 10608
+PASS installed saved raw loyalty identity and DTO 10609
+PASS installed saved raw loyalty identity and DTO 10610
+PASS installed saved raw loyalty identity and DTO 10611
+PASS installed saved raw loyalty identity and DTO 10612
+PASS installed saved raw loyalty identity and DTO 10613
+PASS installed saved raw loyalty identity and DTO 10614
+PASS installed saved raw loyalty identity and DTO 10615
+PASS installed saved raw loyalty identity and DTO 850922
+PASS installed saved raw loyalty identity and DTO 10617
+PASS installed saved raw loyalty identity and DTO 10618
+PASS installed saved raw loyalty identity and DTO 10619
+PASS installed saved raw loyalty identity and DTO 10620
+PASS installed saved raw loyalty identity and DTO 10621
+PASS installed saved raw loyalty identity and DTO 10622
+PASS installed saved raw loyalty identity and DTO 10623
+PASS installed saved raw loyalty identity and DTO 10624
+PASS installed saved raw loyalty identity and DTO 10625
+PASS installed saved raw loyalty identity and DTO 10626
+PASS installed saved raw loyalty identity and DTO 10627
+PASS installed saved raw loyalty identity and DTO 10628
+PASS installed saved raw loyalty identity and DTO 10629
+PASS installed saved raw loyalty identity and DTO 10630
+PASS installed saved raw loyalty identity and DTO 10631
+PASS installed saved raw loyalty identity and DTO 10632
+PASS installed saved raw loyalty identity and DTO 10633
+PASS installed saved raw loyalty identity and DTO 10634
+PASS installed saved raw loyalty identity and DTO 1000
+PASS installed saved raw loyalty identity and DTO 10636
+PASS installed saved raw loyalty identity and DTO 10637
+PASS installed saved raw loyalty identity and DTO 10638
+PASS installed saved raw loyalty identity and DTO 10639
+PASS installed saved raw loyalty identity and DTO 10640
+PASS installed saved raw loyalty identity and DTO 10641
+PASS installed saved raw loyalty identity and DTO 10642
+PASS installed saved raw loyalty identity and DTO 10643
+PASS installed saved raw loyalty identity and DTO 10644
+PASS installed saved raw loyalty identity and DTO 10645
+PASS installed saved raw loyalty identity and DTO 10646
+PASS installed saved raw loyalty identity and DTO 10647
+PASS installed saved raw loyalty identity and DTO 10648
+PASS installed saved raw loyalty identity and DTO 10649
+PASS installed saved raw loyalty identity and DTO 10650
+PASS installed saved raw loyalty identity and DTO 10651
+PASS installed saved raw loyalty identity and DTO 10652
+PASS installed saved raw loyalty identity and DTO 10653
+PASS installed saved raw loyalty identity and DTO 10654
+PASS installed saved raw loyalty identity and DTO 10655
+PASS installed saved raw loyalty identity and DTO 10656
+PASS installed saved raw loyalty identity and DTO 10657
+PASS installed saved raw loyalty identity and DTO 10658
+PASS installed saved raw loyalty identity and DTO 10659
+PASS installed saved raw loyalty identity and DTO 10660
+PASS installed saved raw loyalty identity and DTO 3005
+PASS installed saved raw loyalty identity and DTO 10662
+PASS installed saved raw loyalty identity and DTO 10663
+PASS installed saved raw loyalty identity and DTO 10664
+PASS installed saved raw loyalty identity and DTO 10665
+PASS installed saved raw loyalty identity and DTO 10666
+PASS installed saved raw loyalty identity and DTO 3002
+PASS installed saved raw loyalty identity and DTO 10668
+PASS installed saved raw loyalty identity and DTO 10669
+PASS three actual factions available
+PASS normal saved officer DTO exposes original contest facts 10009
+PASS native accessibility text input accepted 袁遺
+PASS actual search includes saved name 袁遺
+PASS search preserves stable target ID 10009
+PASS actual officer row visible
+PASS all five current values match independent saved world 10009
+PASS base and XP retain separate saved values 10009
+PASS merit loyalty and location use same DTO
+PASS real normal officer detail renders saved original internal loyalty 10009
+PASS normal details show exact saved original courtesy/biography/source ID
+PASS gaiji gaps remain visible instead of invented original text
+PASS original biography belongs to normal detail scroll
+PASS search/details preserve every saved byte and RNG 10009
+PASS normal saved officer DTO exposes original contest facts 10014
+PASS native accessibility text input accepted 閻行
+PASS actual search includes saved name 閻行
+PASS search preserves stable target ID 10014
+PASS actual officer row visible
+PASS all five current values match independent saved world 10014
+PASS base and XP retain separate saved values 10014
+PASS merit loyalty and location use same DTO
+PASS real normal officer detail renders saved original internal loyalty 10014
+PASS normal details show exact saved original courtesy/biography/source ID
+PASS gaiji gaps remain visible instead of invented original text
+PASS original biography belongs to normal detail scroll
+PASS search/details preserve every saved byte and RNG 10014
+PASS normal saved officer DTO exposes original contest facts 10058
+PASS native accessibility text input accepted 何儀
+PASS actual search includes saved name 何儀
+PASS search preserves stable target ID 10058
+PASS actual officer row visible
+PASS all five current values match independent saved world 10058
+PASS base and XP retain separate saved values 10058
+PASS merit loyalty and location use same DTO
+PASS real normal officer detail renders saved original internal loyalty 10058
+PASS normal details show exact saved original courtesy/biography/source ID
+PASS gaiji gaps remain visible instead of invented original text
+PASS original biography belongs to normal detail scroll
+PASS search/details preserve every saved byte and RNG 10058
+PASS three factions inspected through real rows and dialogs
+PASS normal patrol offers an actual idle actor
+PASS normal patrol UI commits actual cost and saved state
+PASS normal save UI persists complete source metadata and RNG
+PASS normal next-turn UI advances exactly once
+PASS original text survives actual multi-turn flow
+PASS normal next-turn UI advances exactly once
+PASS original text survives actual multi-turn flow
+PASS normal next-turn UI advances exactly once
+PASS original text survives actual multi-turn flow
+PASS normal load restores every source-text/save/RNG byte after multi-turn play
+

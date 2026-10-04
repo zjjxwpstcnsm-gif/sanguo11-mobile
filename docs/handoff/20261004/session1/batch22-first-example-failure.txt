@@ -1,0 +1,19 @@
+PASS original campaign facts Media/scenario/Scen000.s11 saved/normal DTO/patrol/four turns/legacy no backfill
+PASS original campaign facts Media/scenario/SCEN001.S11 saved/normal DTO/patrol/four turns/legacy no backfill
+PASS original campaign facts Media/scenario/SCEN002.S11 saved/normal DTO/patrol/four turns/legacy no backfill
+PASS original campaign facts Media/scenario/SCEN003.S11 saved/normal DTO/patrol/four turns/legacy no backfill
+PASS original campaign facts Media/scenario/SCEN004.S11 saved/normal DTO/patrol/four turns/legacy no backfill
+PASS original campaign facts Media/scenario/SCEN005.S11 saved/normal DTO/patrol/four turns/legacy no backfill
+PASS original campaign facts Media/scenario/SCEN006.S11 saved/normal DTO/patrol/four turns/legacy no backfill
+PASS original campaign facts Media/scenario/SCEN007.S11 saved/normal DTO/patrol/four turns/legacy no backfill
+PASS original campaign facts Media/scenario/Scen008.s11 saved/normal DTO/patrol/four turns/legacy no backfill
+PASS original campaign facts Media/scenario/Scen009.s11 saved/normal DTO/patrol/four turns/legacy no backfill
+PASS original campaign facts Media/scenario/Scen010.s11 saved/normal DTO/patrol/four turns/legacy no backfill
+PASS original campaign facts Media/scenario/Scen011.s11 saved/normal DTO/patrol/four turns/legacy no backfill
+PASS original campaign facts Media/scenario/Scen012.s11 saved/normal DTO/patrol/four turns/legacy no backfill
+PASS original campaign facts Media/scenario/Scen013.s11 saved/normal DTO/patrol/four turns/legacy no backfill
+PASS original campaign facts Media/scenario/Scen014.S11 saved/normal DTO/patrol/four turns/legacy no backfill
+PASS original campaign facts Media/scenario/Scen015.s11 saved/normal DTO/patrol/four turns/legacy no backfill
+Exception in thread "main" java.lang.AssertionError: source0 displayed0 versus actual saved raw80
+	at game.sanguo.core.PcOfficerCampaignFactsTest.require(PcOfficerCampaignFactsTest.java:8)
+	at game.sanguo.core.PcOfficerCampaignFactsTest.main(PcOfficerCampaignFactsTest.java:62)

@@ -1,0 +1,18 @@
+{
+  "serial": "emulator-5554",
+  "externalOriginalFileCount": 3202,
+  "currentExternalFiles": 3209,
+  "allOriginalExternalShaEqual": true,
+  "internalOriginalFileCount": 7,
+  "allInternalBytesEqual": true,
+  "newEvidenceFiles": [
+    "files/session1-pc-opening-0-installed-batch22-old38/detail-10009.png",
+    "files/session1-pc-opening-0-installed-batch22-old38/detail-10014.png",
+    "files/session1-pc-opening-0-installed-batch22-old38/detail-10058.png",
+    "files/session1-pc-opening-0-installed-batch22-old38/original-biography-10009.png",
+    "files/session1-pc-opening-0-installed-batch22-old38/original-biography-10014.png",
+    "files/session1-pc-opening-0-installed-batch22-old38/original-biography-10058.png",
+    "files/session1-pc-opening-0-installed-batch22-old38/progress.txt"
+  ],
+  "apkSha256": "8dbeb77a3619015380758eb3c17656bae62d22a205b84e5499110e6aa290f967"
+}

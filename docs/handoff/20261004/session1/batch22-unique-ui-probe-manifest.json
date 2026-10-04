@@ -1,0 +1,7 @@
+{
+  "package": "game.sanguo.mobile.pcopeningprobe",
+  "runner": "PcScenarioOpeningInstrumentation",
+  "sha256": "b69532c7073f241f6505f045d8d33786482e303b4878930ba9f3c8bde9136a64",
+  "sourceSha256": "39e4e37c7bec5d3b8e2e868912baf866d5cb62070813572b7b11388fa01309c0",
+  "onlyAcceptanceClasses": true
+}

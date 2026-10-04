@@ -14,6 +14,7 @@ public final class OfficerQuery {
         Map<Integer,PcScenarioPeople.Person> nativePeople=new HashMap<>(),byNative=new HashMap<>();
         try{for(PcScenarioPeople.Person p:PcScenarioPeople.saved(w)){byNative.put(p.nativeId,p);if(p.officerId>=0)nativePeople.put(p.officerId,p);}}catch(java.io.IOException e){invalidSource=true;}
         Map<Integer,PcContestProfiles.Fact> contestFacts;try{contestFacts=PcContestProfiles.saved(w);}catch(java.io.IOException e){contestFacts=Collections.emptyMap();invalidSource=true;}
+        Map<Integer,PcOfficerCampaignFacts.Fact> campaignFacts;try{campaignFacts=PcOfficerCampaignFacts.saved(w);}catch(java.io.IOException e){campaignFacts=Collections.emptyMap();invalidSource=true;}
         for(World.Officer o:w.officers){
             List<Integer> base=new ArrayList<>(),growth=new ArrayList<>(),xp=new ArrayList<>();
             if(w.officerAbilities.enabled())for(int i=0;i<5;i++){
@@ -36,10 +37,13 @@ public final class OfficerQuery {
                     PcScenarioIdentity.Source scenario=PcScenarioIdentity.saved(w);
                     String identity=nativePerson.strictIdentity?"canonical-identity-verified":"source-only-gaiji";
                     String facts=originalInformation(nativePerson,byNative);
+                    PcOfficerCampaignFacts.Fact campaign=campaignFacts.get(o.id);Integer rawLoyalty=null;
+                    if(campaign!=null&&campaign.nativeId==nativePerson.nativeId&&campaign.recordSha.equals(nativePerson.recordSha)){rawLoyalty=campaign.initialRawLoyalty;facts+="\n原记录内部忠诚："+rawLoyalty;}
+                    else unknown.add("originalHiddenLoyaltyMissingFromSave");
                     PcContestProfiles.Fact contest=contestFacts.get(o.id);
                     if(contest!=null&&contest.nativeId==nativePerson.nativeId&&contest.recordSha.equals(nativePerson.recordSha))facts+="\n原性格："+contest.personality()+"\n原话术标记："+contest.talks();
-                    if(source!=null)source=new OfficerSnapshot.SourceInfo(source.nativeId,source.sourceVariant,source.sourcePath,source.sourceSha,source.recordSha,source.courtesy,source.courtesyRaw,source.biography,source.biographyResourceSha,source.biographyRenderedSha,unknown,identity,facts);
-                    else if(scenario!=null)source=new OfficerSnapshot.SourceInfo(nativePerson.nativeId,scenario.sourceVariant,scenario.path,scenario.sha,nativePerson.recordSha,nativePerson.courtesy,nativePerson.courtesyRaw,"","","",unknown,identity,facts);
+                    if(source!=null)source=new OfficerSnapshot.SourceInfo(source.nativeId,source.sourceVariant,source.sourcePath,source.sourceSha,source.recordSha,source.courtesy,source.courtesyRaw,source.biography,source.biographyResourceSha,source.biographyRenderedSha,unknown,identity,facts,rawLoyalty);
+                    else if(scenario!=null)source=new OfficerSnapshot.SourceInfo(nativePerson.nativeId,scenario.sourceVariant,scenario.path,scenario.sha,nativePerson.recordSha,nativePerson.courtesy,nativePerson.courtesyRaw,"","","",unknown,identity,facts,rawLoyalty);
                 }catch(java.io.IOException e){unknown.add("sourceOpeningMetadataUnreadable");}
             }
             if(invalidSource)unknown.add("sourceMetadataUnreadable");

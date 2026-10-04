@@ -18,8 +18,8 @@ import java.util.function.Predicate;
 public final class PcScenarioOpeningInstrumentation extends Instrumentation {
     private MainActivity activity;private int checks;private File output;
     private final StringBuilder log=new StringBuilder();
-    private boolean sourceOpening,sourceResume;private int sourceIndex;
-    @Override public void onCreate(Bundle args){super.onCreate(args);sourceIndex=args==null?0:Integer.parseInt(args.getString("sourceIndex","0"));sourceOpening=args!=null&&"1".equals(args.getString("sourceOpening"));sourceResume=args!=null&&"1".equals(args.getString("sourceResume"));start();}
+    private boolean sourceOpening,sourceResume;private int sourceIndex;private String evidenceId="";
+    @Override public void onCreate(Bundle args){super.onCreate(args);sourceIndex=args==null?0:Integer.parseInt(args.getString("sourceIndex","0"));sourceOpening=args!=null&&"1".equals(args.getString("sourceOpening"));sourceResume=args!=null&&"1".equals(args.getString("sourceResume"));evidenceId=args==null?"":args.getString("evidenceId","");if(!evidenceId.matches("[A-Za-z0-9_.-]*"))throw new IllegalArgumentException("Invalid evidence directory");start();}
     private void settle(){runOnMainSync(()->{});SystemClock.sleep(200);}
     private void check(boolean ok,String text)throws Exception{
         if(!ok)throw new AssertionError(text);checks++;log.append("PASS ").append(text).append('\n');
@@ -64,7 +64,7 @@ public final class PcScenarioOpeningInstrumentation extends Instrumentation {
     @Override public void onStart(){
         Bundle result=new Bundle();
         try{
-            output=getTargetContext().getExternalFilesDir("session1-pc-opening-"+sourceIndex);output.mkdirs();
+            output=getTargetContext().getExternalFilesDir("session1-pc-opening-"+sourceIndex+(evidenceId.isEmpty()?"":"-"+evidenceId));output.mkdirs();
             activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             await(v->v.getContentDescription()!=null&&v.getContentDescription().toString().startsWith("打开功能导航"));
             if(sourceOpening){
@@ -87,6 +87,7 @@ public final class PcScenarioOpeningInstrumentation extends Instrumentation {
                 check(fresh.scenarioId.equals(source.identity.scenarioId)&&fresh.officers.size()==670&&fresh.cities.size()==87&&fresh.factions.length==47,"actual menu creates original sourced roster/sites/capacity");
                 check(!PcOfficerInfo.saved(fresh).isEmpty(),"normal new-game UI installs source world and saved PC text facts");
                 check(PcContestProfiles.saved(fresh).size()==670,"actual menu installs original historical/source-only contest facts");
+                check(PcOfficerCampaignFacts.saved(fresh).size()==670,"actual menu saves identity-checked original internal loyalty records");
                 for(PcContestProfiles.Fact f:PcContestProfiles.saved(fresh).values()){Contests.Profile actual=fresh.contests.profile(f.officerId),expected=f.profile();check(actual.temper==expected.temper&&actual.talkMask==expected.talkMask,"actual menu binds per-source contest traits "+f.nativeId);}
                 for(PcOfficerInfo.Person p:PcOfficerInfo.saved(fresh).values())check(p.sourcePath.equals(source.identity.path),"selected source remains explicit in new authority");
                 screenshot("source-new-game");
@@ -101,6 +102,11 @@ public final class PcScenarioOpeningInstrumentation extends Instrumentation {
             DataTable<?> table=(DataTable<?>)await(v->v instanceof DataTable);
             OfficerSnapshot[] snapshots={null};runOnMainSync(()->snapshots[0]=activity.officerSnapshot());OfficerSnapshot snapshot=snapshots[0];
             check(snapshot.officers.size()==control.officers.size(),"installed DTO includes complete saved roster");
+            java.util.Map<Integer,PcOfficerCampaignFacts.Fact> campaignFacts=PcOfficerCampaignFacts.saved(control);
+            for(OfficerSnapshot.Officer row:snapshot.officers){PcOfficerCampaignFacts.Fact original=campaignFacts.get(row.id);
+                if(original!=null)check(row.source!=null&&row.source.initialRawLoyalty!=null&&row.source.initialRawLoyalty==original.initialRawLoyalty&&row.source.nativeId==original.nativeId&&row.source.recordSha.equals(original.recordSha),"installed saved raw loyalty identity and DTO "+row.id);
+                else if(row.source!=null)check(row.source.initialRawLoyalty==null,"old save does not acquire raw loyalty "+row.id);
+            }
             LinkedHashMap<Integer,OfficerSnapshot.Officer> owners=new LinkedHashMap<>();
             for(OfficerSnapshot.Officer row:snapshot.officers)if(row.owner>=0&&row.present)owners.putIfAbsent(row.owner,row);
             check(owners.size()>=2,"three actual factions available");int count=0;
@@ -124,6 +130,7 @@ public final class PcScenarioOpeningInstrumentation extends Instrumentation {
                 List<Integer> base=new ArrayList<>(),xp=new ArrayList<>();for(int i=0;i<5;i++){base.add(control.officerAbilities.base(row.id,i));xp.add(control.officerAbilities.experience(row.id,i));}
                 check(text.contains("基础（统武智政魅）："+base)&&text.contains("经验（统武智政魅）："+xp),"base and XP retain separate saved values "+row.id);
                 check(text.contains("功绩 "+control.government.merit(row.id))&&text.contains("忠诚 "+saved.loyalty)&&text.contains("所在地："+row.location),"merit loyalty and location use same DTO");
+                if(row.source!=null&&row.source.initialRawLoyalty!=null)check(text.contains("原记录内部忠诚："+row.source.initialRawLoyalty),"real normal officer detail renders saved original internal loyalty "+row.id);
                 if(row.source==null)check(text.contains("字 / 原传记：此局未记录来源资料"),"missing source fields stay explicit");
                 else{
                     PcOfficerInfo.Person p=PcOfficerInfo.saved(control).get(row.id);
