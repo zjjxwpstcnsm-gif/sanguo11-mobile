@@ -24,7 +24,6 @@ final class SoundEffects {
     private final Set<Integer> ready=new HashSet<>(),streams=new HashSet<>(),battleStreams=new HashSet<>();
     private final LinkedHashSet<String> heard=new LinkedHashSet<>();
     private SoundPool pool;
-    private java.io.File diagnosticWave;
     private AudioFocusRequest focusRequest;
     private boolean focused,ducked,focusLost,effectsPaused;
     private boolean voiceDucking,noisyRegistered;
@@ -61,12 +60,14 @@ final class SoundEffects {
         if(pool!=null)return;
         SoundPool candidate=new SoundPool.Builder().setMaxStreams(6).setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build()).build();pool=candidate;
         candidate.setOnLoadCompleteListener((source,id,status)->{if(pool==source&&status==0)ready.add(id);else if(status!=0)Log.e("GameAudio","load failed sample="+id+" status="+status);});
-        for(Cue cue:Cue.values())try{
-            if(cue==Cue.TECHNIQUE_GAIN||cue==Cue.TECHNIQUE_LOSS){
-                if(diagnosticWave==null){diagnosticWave=java.io.File.createTempFile("pc33-path-diagnostic-",".wav",context.getCacheDir());try(var in=context.getAssets().open(asset(cue));var out=new java.io.FileOutputStream(diagnosticWave)){byte[] bytes=new byte[8192];int n;while((n=in.read(bytes))!=-1)out.write(bytes,0,n);}}
-                samples.put(cue,candidate.load(diagnosticWave.getAbsolutePath(),1));
-            }else try(var file=context.getAssets().openFd(asset(cue))){samples.put(cue,candidate.load(file,1));}
-        }catch(java.io.IOException e){Log.e("GameAudio","Missing audio "+cue,e);}
+        for(Cue cue:Cue.values())if(cue!=Cue.TECHNIQUE_GAIN&&cue!=Cue.TECHNIQUE_LOSS)
+            try(var file=context.getAssets().openFd(asset(cue))){samples.put(cue,candidate.load(file,1));}catch(java.io.IOException e){Log.e("GameAudio","Missing audio "+cue,e);}
+        // Exact original bytes, prepared and hashed off UI. Measured APK-FD loading
+        // distorted PC33 on5582; standalone WAV loading preserves the original PCM.
+        new Thread(()->{try{java.io.File source=PcEffectSourceFile.prepare(context);handler.post(()->{
+            if(pool!=candidate)return;String path=source.getAbsolutePath();
+            samples.put(Cue.TECHNIQUE_GAIN,candidate.load(path,1));samples.put(Cue.TECHNIQUE_LOSS,candidate.load(path,1));
+        });}catch(Exception failure){Log.e("GameAudio","Original PC33 preparation failed",failure);}},"pc-effect-source").start();
     }
     // Native HUD33 has one proved sample for changed values in either direction.
     // Other cues retain their explicitly labelled mobile compositions until source bindings close.
@@ -111,7 +112,7 @@ final class SoundEffects {
     private void updateStreams(){if(pool!=null){float gain=volume()/100f*(ducked?.2f:1f);if(voiceDucking)gain*=.7f;for(int id:streams)pool.setVolume(id,gain,gain);}}
     private void stopStreams(){if(pool!=null)for(int id:streams)pool.stop(id);streams.clear();battleStreams.clear();}
     private void stop(){stopStreams();focusEpoch++;if(manager!=null&&focusRequest!=null)manager.abandonAudioFocusRequest(focusRequest);focusRequest=null;focused=false;ducked=false;if(sourceMedia!=null)sourceMedia.focus(false,false);}
-    private void release(){stop();if(sourceMedia!=null){sourceMedia.close();sourceMedia=null;}if(noisyRegistered){context.unregisterReceiver(noisy);noisyRegistered=false;}handler.removeCallbacksAndMessages(null);if(pool!=null){pool.release();pool=null;}if(diagnosticWave!=null){diagnosticWave.delete();diagnosticWave=null;}ready.clear();samples.clear();Log.i("GameAudio","RELEASE");}
+    private void release(){stop();if(sourceMedia!=null){sourceMedia.close();sourceMedia=null;}if(noisyRegistered){context.unregisterReceiver(noisy);noisyRegistered=false;}handler.removeCallbacksAndMessages(null);if(pool!=null){pool.release();pool=null;}ready.clear();samples.clear();Log.i("GameAudio","RELEASE");}
     int playedCount(){return played;}
     boolean loaded(){return ready.size()==Cue.values().length;}
     boolean active(){return !foreground.isEmpty()&&pool!=null;}
