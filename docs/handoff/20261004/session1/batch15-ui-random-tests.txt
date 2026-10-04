@@ -1,0 +1,1 @@
+PASS PcDebateUiRandomTest 8960 original callbacks, 8960 actual original queued choices and full RNG, 7 invalid input rejects; production and headed scheduling pending

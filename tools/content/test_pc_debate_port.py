@@ -13,12 +13,12 @@ def run(java_home,output):
     if not output.is_relative_to(ROOT/'out/session1'):raise ValueError('Use the session1 independent cache')
     output.mkdir(parents=True,exist_ok=False);classes=output/'classes';classes.mkdir()
     sources=sorted((ROOT/'core/src/main/java').rglob('*.java'))
-    sources += [ROOT/'core/src/test/java/game/sanguo/core'/name for name in ('PcDebateRulesTest.java','PcDebateStateTest.java','PcDebateAiTest.java','PcDebateProgressTest.java','PcDebateModelTest.java','PcDebateModelSaveTest.java','PcDebateModelColdTest.java')]
+    sources += [ROOT/'core/src/test/java/game/sanguo/core'/name for name in ('PcDebateRulesTest.java','PcDebateStateTest.java','PcDebateAiTest.java','PcDebateProgressTest.java','PcDebateModelTest.java','PcDebateModelSaveTest.java','PcDebateModelColdTest.java','PcDebateUiRandomTest.java')]
     with (output/'compile.txt').open('wb')as log:
         subprocess.run([str(java_home/'bin/javac'),'-encoding','UTF-8','-d',str(classes),*map(str,sources)],check=True,stdout=log,stderr=subprocess.STDOUT)
     classpath=':'.join(map(str,[classes,ROOT/'core/src/main/resources',ROOT/'core/src/test/resources']))
     tests=[]
-    for name in ('PcDebateRulesTest','PcDebateStateTest','PcDebateAiTest','PcDebateProgressTest','PcDebateModelTest','PcDebateModelSaveTest'):
+    for name in ('PcDebateRulesTest','PcDebateStateTest','PcDebateAiTest','PcDebateProgressTest','PcDebateModelTest','PcDebateModelSaveTest','PcDebateUiRandomTest'):
         result=subprocess.run([str(java_home/'bin/java'),'-cp',classpath,'game.sanguo.core.'+name],check=False,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
         (output/(name+'.txt')).write_bytes(result.stdout);tests.append(dict(name=name,output=result.stdout.decode().strip()));print(result.stdout.decode().strip())
         result.check_returncode()

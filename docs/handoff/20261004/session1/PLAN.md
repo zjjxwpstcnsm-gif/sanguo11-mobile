@@ -105,3 +105,7 @@ Batch12确切新增工具inspect_pc_contest_equipment.py、inspect_pc_debate_pro
 ## Batch14：人控输入边界和完整模型持久化
 
 前提交74c8c033，checkpoint-batch13/source为4635文件/408936558字节，manifest SHA530796feaf3d74af1ca3e04fbfdf20294de988b25c2a48dbd883e6fa6c457d2c。新增tools/content/inspect_pc_debate_human.py、PcDebateModelSave.java及模型存取/人控对照测试，继续PcDebateState/Model和测试工具。只执行原getter→原选择分支的有界指令，明确不称完整PC GUI；完整保存全部模型/RNG，不直接修改World旧保存/AndroidGameBridge。正式策略/对局页面仍待原界面回调和战役结算闭合。冻结Batch09输入、媒体和共同台账不改。
+
+## Batch15：原界面回调随机协议
+
+前镜像28c87906，完整checkpoint14为4650文件，manifest SHA cbbabc657e4b41343176096c5877b876cb67e985450cdd3cd8c17f007b926ed8。确切新增tools/content/inspect_pc_debate_ui_callbacks.py、build_pc_debate_ui_callback_fixtures.py、core/src/main/java/game/sanguo/core/PcDebateUiRandom.java、core/src/test/java/game/sanguo/core/PcDebateUiRandomTest.java及core/src/test/resources/pc-debate/ui-callback-*。修改tools/content/test_pc_debate_port.py仅独立编译测试输入；本目录记录前镜像/差异/原执行报告/测试。原12回调完整执行只写合成队列，记录原RNG抽取和原type8手牌消耗；明确不执行3D/音频/完整GUI调度。新core协议不在未闭合时启用正式World/旧保存。不改Batch09冻结既有输入或媒体文件。
