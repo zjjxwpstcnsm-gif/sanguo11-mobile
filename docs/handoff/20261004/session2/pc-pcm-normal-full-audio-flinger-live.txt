@@ -1,0 +1,324 @@
+Libraries NOT loaded:
+Libraries loaded:
+ Library dynamics_processing
+  path: /vendor/lib/soundfx/libdynproc.so
+  Dynamics Processing / The Android Open Source Project
+    UUID: e0e6539b-1781-7261-676f-6d7573696340
+    TYPE: 7261676f-6d75-7369-6364-28e2fd3ac39e
+    apiVersion: 00020000
+    flags: 00000050
+ Library loudness_enhancer
+  path: /vendor/lib/soundfx/libldnhncr.so
+  Loudness Enhancer / The Android Open Source Project
+    UUID: fa415329-2034-4bea-b5dc-5b381c8d1e2c
+    TYPE: fe3199be-aed0-413f-87bb-11260eb63cf1
+    apiVersion: 00020000
+    flags: 00000008
+ Library downmix
+  path: /vendor/lib/soundfx/libdownmix.so
+  Multichannel Downmix To Stereo / The Android Open Source Project
+    UUID: 93f04452-e4fe-41cc-91f9-e475b6d1d69f
+    TYPE: 381e49cc-a858-4aa2-87f6-e8388e7601b2
+    apiVersion: 00020000
+    flags: 00000008
+ Library visualizer
+  path: /vendor/lib/soundfx/libvisualizer.so
+  Visualizer / The Android Open Source Project
+    UUID: d069d9e0-8329-11df-9168-0002a5d5c51b
+    TYPE: e46b26a0-dddd-11db-8afd-0002a5d5c51b
+    apiVersion: 00020000
+    flags: 00000008
+ Library reverb
+  path: /vendor/lib/soundfx/libreverbwrapper.so
+  Insert Preset Reverb / NXP Software Ltd.
+    UUID: 172cdf00-a3bc-11df-a72f-0002a5d5c51b
+    TYPE: 47382d60-ddd8-11db-bf3a-0002a5d5c51b
+    apiVersion: 00020000
+    flags: 00000048
+  Auxiliary Preset Reverb / NXP Software Ltd.
+    UUID: f29a1400-a3bb-11df-8ddc-0002a5d5c51b
+    TYPE: 47382d60-ddd8-11db-bf3a-0002a5d5c51b
+    apiVersion: 00020000
+    flags: 00000001
+  Insert Environmental Reverb / NXP Software Ltd.
+    UUID: c7a511a0-a3bb-11df-860e-0002a5d5c51b
+    TYPE: c2e5d5f0-94bd-4763-9cac-4e234d06839e
+    apiVersion: 00020000
+    flags: 00000048
+  Auxiliary Environmental Reverb / NXP Software Ltd.
+    UUID: 4a387fc0-8ab3-11df-8bad-0002a5d5c51b
+    TYPE: c2e5d5f0-94bd-4763-9cac-4e234d06839e
+    apiVersion: 00020000
+    flags: 00000001
+ Library bundle
+  path: /vendor/lib/soundfx/libbundlewrapper.so
+  Volume / NXP Software Ltd.
+    UUID: 119341a0-8469-11df-81f9-0002a5d5c51b
+    TYPE: 09e8ede0-ddde-11db-b4f6-0002a5d5c51b
+    apiVersion: 00020000
+    flags: 00000050
+  Equalizer / NXP Software Ltd.
+    UUID: ce772f20-847d-11df-bb17-0002a5d5c51b
+    TYPE: 0bed4300-ddd6-11db-8f34-0002a5d5c51b
+    apiVersion: 00020000
+    flags: 00000048
+  Virtualizer / NXP Software Ltd.
+    UUID: 1d4033c0-8557-11df-9f2d-0002a5d5c51b
+    TYPE: 37cc2c00-dddd-11db-8577-0002a5d5c51b
+    apiVersion: 00020000
+    flags: 00000250
+  Dynamic Bass Boost / NXP Software Ltd.
+    UUID: 8631f300-72e2-11df-b57e-0002a5d5c51b
+    TYPE: 0634f220-ddd4-11db-a0fc-0002a5d5c51b
+    apiVersion: 00020000
+    flags: 00000248
+XML effect configuration loaded successfully.
+Clients:
+  pid: 5203
+Notification Clients:
+  pid: 1722
+  pid: 1920
+  pid: 2818
+  pid: 3428
+  pid: 5203
+Global session refs:
+  session   pid count
+     1433  5203     1
+     1441  5203     1
+     1449  5203     1
+     1457  5203     1
+     1465  5203     1
+     1473  5203     1
+     1481  5203     1
+     1489  5203     1
+Hardware status: 0
+Standby Time mSec: 3000
+
+Output thread 0x7176352e0b40, name AudioOut_D, tid 1897, type 0 (MIXER):
+  I/O handle: 13
+  Standby: yes
+  Sample rate: 44100 Hz
+  HAL frame count: 661
+  HAL format: 0x1 (AUDIO_FORMAT_PCM_16_BIT)
+  HAL buffer size: 2644 bytes
+  Channel count: 2
+  Channel mask: 0x00000003 (front-left, front-right)
+  Processing format: 0x5 (AUDIO_FORMAT_PCM_FLOAT)
+  Processing frame size: 8 bytes
+  Pending config events: none
+  Output device: 0x2 (AUDIO_DEVICE_OUT_SPEAKER)
+  Input device: 0 (AUDIO_DEVICE_NONE)
+  Audio source: 0 (AUDIO_SOURCE_DEFAULT)
+  Timestamp stats: n=23448 disc=306 cold=3 nRdy=2 err=5317 rate=0.999429 jitterMs(ave=0.0969534 std=1.7201 min=-0.0233357 max=294.925) localSR(44097.4, 4.85856e-08) correctedJitterMs(ave=0.110108 std=0.879129 min=-37.016 max=294.925)
+  Timestamp corrected: no
+  Last write occurred (msecs): 426581
+  Process time ms stats: ave=0.365343 std=0.593753 min=0.037 max=1.411
+  Hal write jitter ms stats: ave=0.937525 std=1.86033 min=-0.528578 max=4.11442
+  Threadloop write latency stats: ave=94.189 std=2.23988 min=70.8482 max=107.053
+  Master mute: off
+  Normal frame count: 1056
+  Total writes: 16886
+  Delayed writes: 0
+  Blocked in write: no
+  Suspend count: 0
+  Sink buffer : 0x717635279000
+  Mixer buffer: 0x717635274000
+  Effect buffer: 0x717635276800
+  Fast track availMask=0xf8
+  Standby delay ns=3000000000
+  AudioStreamOut: 0x717635211400 flags 0x2 (AUDIO_OUTPUT_FLAG_PRIMARY)
+  Frames written: 17831616
+  Suspended frames: 0
+  PipeSink frames written: 17831616
+  Hal stream dump:
+	out_dump:
+		sample rate: 44100
+		buffer size: 2644
+		channel mask: 00000003
+		format: 1
+		device: 00000002
+		audio dev: 0xeb001000
+
+      Signal power history:
+       10-04 23:50:10.808:    -53.9  -52.3  -51.5  -50.9  -55.2  -60.7  -63.6  -59.7  -56.6  -79.7 ] sum(-8.4)
+       10-04 23:50:11.707: [  -49.2  -50.1  -50.1  -48.7  -46.4  -44.4  -44.5  -46.7  -53.7 ] sum(-1.4)
+       10-04 23:50:12.202: [  -61.9  -52.9 ] sum(-16.0)
+       10-04 23:51:38.233: [  -50.5  -58.9 -100.0 ] sum(-13.4)
+       10-04 23:51:39.777: [  -50.3  -64.8 -100.0 ] sum(-13.7)
+       10-04 23:51:40.481: [  -50.2  -69.5 ] sum(-13.7)
+       10-04 23:51:41.231: [  -50.2  -70.9 ] sum(-13.7)
+       10-04 23:51:41.935: [  -50.2  -66.4 -106.1 ] sum(-13.7)
+       10-04 23:51:42.475: [  -46.6  -42.9  -45.1  -45.9  -44.5  -47.2  -48.8  -48.5  -46.7  -46.2
+       10-04 23:51:42.983:    -46.8  -49.9  -49.5  -50.8  -54.3  -52.4  -51.9  -50.7  -53.2  -58.7
+       10-04 23:51:43.479:    -64.2  -80.2 ] sum(1.8)
+       10-04 23:52:59.395: [  -51.1  -48.3  -49.6  -51.0  -51.8  -53.2  -55.1  -57.0  -59.3  -61.9
+       10-04 23:52:59.890:    -65.3  -70.2  -76.8  -88.5 ] sum(-5.8)
+       10-04 23:53:00.295: [  -77.5  -63.2  -53.3  -49.7  -50.1  -52.0  -53.8  -55.7  -58.0  -60.3
+       10-04 23:53:00.789:    -62.7  -65.7  -68.1  -69.5  -67.6  -59.4  -55.7  -55.1  -56.6  -59.6
+       10-04 23:53:01.299:    -61.6  -63.8  -68.2  -69.2  -71.6  -73.6  -74.9  -70.0  -53.4  -50.0
+       10-04 23:53:01.794:    -51.3  -51.7  -51.0  -51.1  -52.5  -50.8  -48.7  -50.5  -53.7  -57.2
+       10-04 23:53:02.289:    -57.6  -57.5  -53.9  -53.8  -56.2  -52.7  -53.0  -55.4  -52.1  -49.0
+       10-04 23:53:02.798:    -49.7  -51.7  -55.1  -59.2  -62.0  -54.7  -53.8  -54.7  -53.8  -52.7
+       10-04 23:53:03.293:    -52.0  -53.8  -58.8  -55.8  -52.2  -53.4  -54.3  -55.8  -61.0  -59.9
+       10-04 23:53:03.802:    -62.2  -67.1  -69.7  -72.8  -68.5  -58.6  -57.7  -60.0  -63.0  -65.3
+       10-04 23:53:04.297:    -61.2  -51.6  -47.0  -46.9  -48.1  -49.4  -52.3  -52.2  -53.7  -56.0
+       10-04 23:53:04.792:    -59.8  -67.0  -69.5  -74.6  -79.9  -82.1  -78.0  -74.8  -78.7  -81.2
+       10-04 23:53:05.301:    -82.6  -83.2  -84.2  -84.9  -85.3  -88.0  -84.6  -89.4  -86.8  -90.3
+       10-04 23:53:05.796:    -93.7  -91.5  -92.1  -93.4  -86.2  -86.9  -89.2  -93.3  -94.7  -91.3
+       10-04 23:53:06.291:    -93.7  -93.5  -96.0 -105.0 -114.4 -116.0 ] sum(2.1)
+       10-04 23:53:06.650: [  -74.7  -93.2  -67.5  -56.2  -50.6  -49.6  -51.4  -53.2  -54.8  -59.6
+       10-04 23:53:07.145:    -65.6 ] sum(-7.7)
+       10-04 23:53:08.493: [  -66.7  -63.7  -66.8  -69.1  -85.3 ] sum(-23.7)
+       10-04 23:53:09.303: [  -72.5  -67.3  -77.0 ] sum(-29.4)
+       10-04 23:53:09.992: [  -58.9  -55.0  -63.1 ] sum(-16.6)
+       10-04 23:54:01.316: [  -51.8  -56.0  -84.8 ] sum(-14.0)
+       10-04 23:54:01.961: [  -50.2  -73.6 ] sum(-13.7)
+       10-04 23:54:03.115: [  -50.2  -71.9 ] sum(-13.7)
+       10-04 23:54:03.459: [  -50.3  -65.1 -100.7 ] sum(-13.7)
+       10-04 23:54:09.653: [  -51.9  -55.2  -84.7 ] sum(-13.8)
+       10-04 23:54:24.519: [  -50.3  -65.1  -50.2  -72.2 ] sum(-10.7)
+       10-04 23:54:29.817: [  -50.2  -65.7 -102.1 ] sum(-13.7)
+       10-04 23:54:30.161: [  -50.2  -68.2 ] sum(-13.7)
+
+    -35.5 -| |              |                                                                                                                              |           |     |   |   |   |  |  |   |   |    |   |
+    -42.9 -| |              |                                                                                                                              |           |     |   |   |   |  |  |   |   |    |   |
+    -50.2 -| |******        |  *****                     ***********    * ** ****       ***  **               ********                                     |    ****   |     |   |   |*  |* |* |*  |*  |* * |*  |*
+    -57.5 -| |      ***     |       ***     *****                   **** *  *    ** ****   **  ****     ***           **                                   |   *    ** |     |   |** | * |  |  |   | * |    |   |
+    -64.8 -| |         **   | *        *** *     ***                               *               **      ***          *                                  |  *       *|***  | * |  *|   |  |  | * |   | *  | * | *
+    -72.1 -| |           *  |             *         *****                                            ***                 **   *                            |*          |   * |*  |   |   | *| *|   |   |   *|   |
+    -79.4 -|*|            * |*                                                                                             *** ***                         |           |     |  *|   |   |  |  |   |   |    |   |
+    -86.7 -| |             *|                                                                                                     *********    ***         |           |    *|   |   |  *|  |  |   |  *|    |   |
+    -94.0 -| |              |                                                                                                              ****   ******   | *         |     |   |   |   |  |  |   |   |    |   |
+   -101.3 -| |              |                                                                                                                           *  |           |     |   |   |   |  |  |  *|   |    |  *|
+   -108.7 -| |              |                                                                                                                              |           |     |   |   |   |  |  |   |   |    |   |
+   -116.0 -| |              |                                                                                                                            **|           |     |   |   |   |  |  |   |   |    |   |
+   -123.3 -| |              |                                                                                                                              |           |     |   |   |   |  |  |   |   |    |   |
+   -130.6 -| |              |                                                                                                                              |           |     |   |   |   |  |  |   |   |    |   |
+           |________________________________________________________________________________________________________________________________________________________________________________________________________
+
+
+  Thread throttle time (msecs): 38
+  AudioMixer tracks: 
+  Master mono: off
+  Master balance: 0.000000 (0.000000)
+  FastMixer thread 0x717635351c40 tid=1896  FastMixer command=COLD_IDLE writeSequence=54620 framesWritten=18051910
+            numTracks=1 writeErrors=0 underruns=101 overruns=78
+            sampleRate=44100 frameCount=661 measuredWarmup=36 ms, warmupCycles=5
+            mixPeriod=14.99 ms latency=42.04 ms
+  FastMixer Timestamp stats: n=27040 disc=53 cold=0 nRdy=0 err=0 rate=1 jitterMs(ave=0.0165975 std=0.907482 min=-0.0233357 max=149.167) localSR(44100, 5.84299e-11) correctedJitterMs(ave=0.016889 std=0.392349 min=-1.36406 max=54.4094)
+  Simple moving statistics over last 3.5 seconds:
+    wall clock time in ms per mix cycle:
+      mean=14.99 min=10.34 max=20.17 stddev=0.92
+    raw CPU load in us per mix cycle:
+      mean=613 min=0 max=1363 stddev=230
+  Fast tracks: sMaxFastTracks=8 activeMask=0x1
+  Index Active Full Partial Empty  Recent Ready    Written
+      0    yes  285      99    32    full  1388   17830228
+      1     no  222     170   567   empty     0      23814
+      2     no  363      52   191   empty     0      11907
+      3     no    7      16    51   empty     0      31752
+      4     no    0       0     0    full     0          0
+      5     no    0       0     0    full     0          0
+      6     no    0       0     0    full     0          0
+      7     no    0       0     0    full     0          0
+  Stream volumes in dB: 0:nan, 1:nan, 2:nan, 3:-33, 4:nan, 5:nan, 6:-inf, 7:nan, 8:nan, 9:0, 10:nan, 11:0, 12:0
+  Normal mixer raw underrun counters: partial=99 empty=32
+  8 Tracks of which 0 are active
+    Type     Id Active Client Session Port Id S  Flags   Format Chn mask  SRate ST Usg CT  G db  L dB  R dB  VS dB   Server FrmCnt  FrmRdy F Underruns  Flushed   Latency
+       S    233     no   5203    1433     186 I  0x000 00000001 00000001  44100  3   e  4  -inf     0     0     0  00000000  45203   45203 I         0        0       new
+       S    234     no   5203    1441     187 I  0x000 00000001 00000001  44100  3   e  4  -inf     0     0     0  00000000  45203   45203 I         0        0       new
+    F1 S    239     no   5203    1481     192 S  0x601 00000001 00000001  44100  3   e  4  -inf  -inf  -inf     0  00005D06   3969       0 f         0        0   42.11 t
+    F2 S    240     no   5203    1489     193 S  0x601 00000001 00000001  44100  3   e  4  -inf  -inf  -inf     0  00002E83   3969       0 f         0        0   41.84 t
+       S    235     no   5203    1449     188 I  0x000 00000001 00000001  44100  3   e  4  -inf     0     0     0  00000000  45203   45203 I         0        0       new
+       S    236     no   5203    1457     189 I  0x000 00000001 00000001  44100  3   e  4  -inf     0     0     0  00000000  45203   45203 I         0        0       new
+       S    237     no   5203    1465     190 I  0x000 00000001 00000001  44100  3   e  4  -inf     0     0     0  00000000  45203   45203 I         0        0       new
+       S    238     no   5203    1473     191 I  0x000 00000001 00000001  44100  3   e  4  -inf     0     0     0  00000000  45203   45203 I         0        0       new
+  0 Effect Chains
+  Local log:
+   10-04 23:53:09.245 AT::add       (0x717630a48e00)         229     no   3324    1401     182 r  0x201 00000001 00000003  44100  3   e  2  -inf  -2.5  -2.5     0  0004C920   4096    3040 f      8448        0  163.08 k
+   10-04 23:53:09.459 AT::remove    (0x717630a48e00)         229     no   3324    1401     182 P  0x601 00000001 00000003  44100  3   e  2  -inf  -2.5  -2.5     0  0004D9A0   4096    3040 A     12672        0  165.15 k
+   10-04 23:53:09.936 AT::add       (0x717630a48e00)         229     no   3324    1401     182 r  0x201 00000001 00000003  44100  3   e  2  -inf  -2.5  -2.5     0  0004D9A0   4096    3040 f     12672        0  165.15 k
+   10-04 23:53:10.145 AT::remove    (0x717630a48e00)         229     no   3324    1401     182 T  0x601 00000001 00000003  44100  3   e  2   -35  -2.5  -2.5     0  0004EA20   4096    4096 f     16896        0  185.43 k
+   10-04 23:53:10.145 removeTrack_l (0x717630a48e00)         229     no   3324    1401     182 T  0x601 00000001 00000003  44100  3   e  2   -35  -2.5  -2.5     0  0004EA20   4096    4096 f     16896        0  185.43 k
+   10-04 23:53:10.797 removeTrack_l (0x717630a4aa00)    S    222     no   3324    1345     175 T  0x200 00000001 00000001  44100  3   e  4  -inf     0     0     0  00000000  45203   45203 I         0        0       new
+   10-04 23:53:10.804 removeTrack_l (0x717630a4a680)    S    223     no   3324    1353     176 T  0x200 00000001 00000001  44100  3   e  4  -inf     0     0     0  00000000  45203   45203 I         0        0       new
+   10-04 23:53:10.808 removeTrack_l (0x717630a4a300)    S    224     no   3324    1361     177 T  0x200 00000001 00000001  44100  3   e  4  -inf     0     0     0  00000000  45203   45203 I         0        0       new
+   10-04 23:53:10.812 removeTrack_l (0x717630a49f80)    S    225     no   3324    1369     178 T  0x200 00000001 00000001  44100  3   e  4  -inf     0     0     0  00000000  45203   45203 I         0        0       new
+   10-04 23:53:10.815 removeTrack_l (0x717630a49c00)    S    226     no   3324    1377     179 T  0x200 00000001 00000001  44100  3   e  4  -inf     0     0     0  00000000  45203   45203 I         0        0       new
+   10-04 23:53:10.821 removeTrack_l (0x717630a48700)    S    227     no   3324    1385     180 T  0x200 00000001 00000001  44100  3   e  4  -inf     0     0     0  00000000  45203   45203 I         0        0       new
+   10-04 23:53:10.827 removeTrack_l (0x717630a48380) F1 S    228     no   3324    1393     181 T  0x601 00000001 00000001  44100  3   e  4  -inf  -inf  -inf     0  0000736B  29547       0 f         0        0   42.99 t
+   10-04 23:53:13.037 threadLoop_standby: framesWritten:17171616  suspendedFrames:0  monoPipeWritten:17171616  monoPipeLeft:1385
+   10-04 23:53:13.037 threadLoop_standby: BOOTTIME offset 0
+ExtendedTimestamp[0]  position: 0  time: -1
+ExtendedTimestamp[1]  position: 17171616  time: 28317433987067
+ExtendedTimestamp[2]  position: 17167674  time: 28317444296067
+ExtendedTimestamp[3]  position: 17170560  time: 28317409791067
+ExtendedTimestamp[4]  position: 17166985  time: 28317428686067
+   10-04 23:54:01.312 AT::add       (0x717630a4a300) F1 S    239     no   5203    1481     192 A  0x000 00000001 00000001  44100  3   e  4  -inf  -2.5  -2.5     0  00000000   3969    3969 F         0*       0       new
+   10-04 23:54:01.513 AT::remove    (0x717630a4a300) F1 S    239     no   5203    1481     192 S  0x601 00000001 00000001  44100  3   e  4  -inf  -inf  -inf     0  00000F81   3969       0 f         0        0   43.20 t
+   10-04 23:54:01.956 AT::add       (0x717630a4a300) F1 S    239     no   5203    1481     192 A  0x201 00000001 00000001  44100  3   e  4  -inf  -2.5  -2.5     0  00000F81   3969       0 F         0*       0   43.20 t
+   10-04 23:54:02.114 AT::remove    (0x717630a4a300) F1 S    239     no   5203    1481     192 S  0x600 00000001 00000001  44100  3   e  4  -inf  -inf  -inf     0  00001F02   3969       0 f         0        0   43.29 t
+   10-04 23:54:03.107 AT::add       (0x717630a4a300) F1 S    239     no   5203    1481     192 A  0x200 00000001 00000001  44100  3   e  4  -inf  -2.5  -2.5     0  00001F02   3969       0 F         0*       0   43.29 t
+   10-04 23:54:03.284 AT::remove    (0x717630a4a300) F1 S    239     no   5203    1481     192 S  0x601 00000001 00000001  44100  3   e  4  -inf  -inf  -inf     0  00002E83   3969       0 f         0        0   43.58 t
+   10-04 23:54:03.455 AT::add       (0x717630a4a300) F1 S    239     no   5203    1481     192 A  0x201 00000001 00000001  44100  3   e  4  -inf  -2.5  -2.5     0  00002E83   3969       0 F         0*       0   43.58 t
+   10-04 23:54:03.641 AT::remove    (0x717630a4a300) F1 S    239     no   5203    1481     192 S  0x601 00000001 00000001  44100  3   e  4  -inf  -inf  -inf     0  00003E04   3969       0 f         0        0   43.70 t
+   10-04 23:54:06.620 threadLoop_standby: framesWritten:17403936  suspendedFrames:0  monoPipeWritten:17403936  monoPipeLeft:1759
+   10-04 23:54:06.620 threadLoop_standby: BOOTTIME offset 0
+ExtendedTimestamp[0]  position: 0  time: -1
+ExtendedTimestamp[1]  position: 17403936  time: 28371017089067
+ExtendedTimestamp[2]  position: 17399596  time: 28371016090067
+ExtendedTimestamp[3]  position: 17402880  time: 28370993345067
+ExtendedTimestamp[4]  position: 17398963  time: 28371001731067
+   10-04 23:54:09.648 AT::add       (0x717630a4a300) F1 S    239     no   5203    1481     192 A  0x201 00000001 00000001  44100  3   e  4  -inf  -2.5  -2.5     0  00003E04   3969       0 F         0*       0   43.70 t
+   10-04 23:54:09.808 AT::remove    (0x717630a4a300) F1 S    239     no   5203    1481     192 A  0x601 00000001 00000001  44100  3   e  4   -35  -inf  -inf     0  00004D85   3969       0 F         0        0   41.95 t
+   10-04 23:54:12.780 threadLoop_standby: framesWritten:17536992  suspendedFrames:0  monoPipeWritten:17536992  monoPipeLeft:1492
+   10-04 23:54:12.780 threadLoop_standby: BOOTTIME offset 0
+ExtendedTimestamp[0]  position: 0  time: -1
+ExtendedTimestamp[1]  position: 17536992  time: 28377177106067
+ExtendedTimestamp[2]  position: 17533004  time: 28377180855067
+ExtendedTimestamp[3]  position: 17535936  time: 28377152798067
+ExtendedTimestamp[4]  position: 17532329  time: 28377165566067
+   10-04 23:54:24.498 AT::add       (0x717630a4a300) F1 S    239     no   5203    1481     192 A  0x201 00000001 00000001  44100  3   e  4   -35  -2.5  -2.5     0  00004D85   3969       0 F         0*       0   41.95 t
+   10-04 23:54:24.606 AT::add       (0x717630a4a680) F2 S    240     no   5203    1489     193 A  0x000 00000001 00000001  44100  3   e  4  -inf  -2.5  -2.5     0  00000000   3969    3969 F         0*       0       new
+   10-04 23:54:24.705 AT::remove    (0x717630a4a300) F1 S    239     no   5203    1481     192 S  0x601 00000001 00000001  44100  3   e  4  -inf  -inf  -inf     0  00005D06   3969       0 f         0        0   42.11 t
+   10-04 23:54:24.775 AT::remove    (0x717630a4a680) F2 S    240     no   5203    1489     193 S  0x601 00000001 00000001  44100  3   e  4  -inf  -inf  -inf     0  00000F81   3969       0 f         0        0   43.11 t
+   10-04 23:54:27.744 threadLoop_standby: framesWritten:17678496  suspendedFrames:0  monoPipeWritten:17678496  monoPipeLeft:881
+   10-04 23:54:27.745 threadLoop_standby: BOOTTIME offset 0
+ExtendedTimestamp[0]  position: 0  time: -1
+ExtendedTimestamp[1]  position: 17678496  time: 28392128035067
+ExtendedTimestamp[2]  position: 17675049  time: 28392149929067
+ExtendedTimestamp[3]  position: 17678496  time: 28392128035067
+ExtendedTimestamp[4]  position: 17674450  time: 28392136352067
+   10-04 23:54:29.779 AT::add       (0x717630a4a680) F2 S    240     no   5203    1489     193 A  0x201 00000001 00000001  44100  3   e  4  -inf  -2.5  -2.5     0  00000F81   3969       0 F         0*       0   43.11 t
+   10-04 23:54:29.973 AT::remove    (0x717630a4a680) F2 S    240     no   5203    1489     193 S  0x600 00000001 00000001  44100  3   e  4  -inf  -inf  -inf     0  00001F02   3969       0 f         0        0   41.11 t
+   10-04 23:54:30.159 AT::add       (0x717630a4a680) F2 S    240     no   5203    1489     193 A  0x200 00000001 00000001  44100  3   e  4  -inf  -2.5  -2.5     0  00001F02   3969       0 F         0*       0   41.11 t
+   10-04 23:54:30.314 AT::remove    (0x717630a4a680) F2 S    240     no   5203    1489     193 S  0x601 00000001 00000001  44100  3   e  4  -inf  -inf  -inf     0  00002E83   3969       0 f         0        0   41.84 t
+   10-04 23:54:33.281 threadLoop_standby: framesWritten:17831616  suspendedFrames:0  monoPipeWritten:17831616  monoPipeLeft:727
+   10-04 23:54:33.282 threadLoop_standby: BOOTTIME offset 0
+ExtendedTimestamp[0]  position: 0  time: -1
+ExtendedTimestamp[1]  position: 17831616  time: 28397665976067
+ExtendedTimestamp[2]  position: 17828411  time: 28397688020067
+ExtendedTimestamp[3]  position: 17831616  time: 28397665976067
+ExtendedTimestamp[4]  position: 17827731  time: 28397672595067
+
+Reroute submix audio module:
+ route[0] rate in=0 out=0, addr=[]
+ route[1] rate in=0 out=0, addr=[]
+ route[2] rate in=0 out=0, addr=[]
+ route[3] rate in=0 out=0, addr=[]
+ route[4] rate in=0 out=0, addr=[]
+ route[5] rate in=0 out=0, addr=[]
+ route[6] rate in=0 out=0, addr=[]
+ route[7] rate in=0 out=0, addr=[]
+ route[8] rate in=0 out=0, addr=[]
+ route[9] rate in=48000 out=48000, addr=[]
+
+Rejected setParameters:
+
+App setParameters:
+
+System setParameters:
+    10-04 13:56:12.855 UID  1000, 1 KVP received: A2dpSuspended=false
+    10-04 13:56:12.856 UID  1000, 1 KVP received: BT_SCO=off
+    10-04 13:56:12.866 UID  1000, 1 KVP received: A2dpSuspended=false
+    10-04 13:56:12.866 UID  1000, 1 KVP received: BT_SCO=off

@@ -1,0 +1,18 @@
+{
+  "roster": 656,
+  "mapped": 652,
+  "sourceUnknown": 4,
+  "details": 656,
+  "decoded": 652,
+  "bitmapCacheBytes": 16588800,
+  "saveSha256": "c698d493d242070ff7aa6eb74a3fd6dfcde98ad000b17fd7603527e7659dec30",
+  "saveBytes": 939916,
+  "normalAutomaticSourceBinding": true,
+  "allCallerFormsProven": false,
+  "armEvidence": false,
+  "result": "PORTRAIT_FLOW PASS checks=646114",
+  "loadWaitMedianMs": 9.0,
+  "loadWaitP95Ms": 29.0,
+  "loadWaitMaximumMs": 3456,
+  "scope": "Actual normal new game Scen000; all656 list/detail entries; not all16 scenarios/all caller forms"
+}
