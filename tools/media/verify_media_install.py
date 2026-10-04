@@ -26,6 +26,7 @@ if __name__=='__main__':
     p.add_argument('--runner',choices=['MediaBridgeInstrumentation','MusicSourceInstrumentation','MusicPlaybackInstrumentation','TechniquePointsInstrumentation','TechniqueFactsInstrumentation','UiUxInstrumentation'],required=True)
     p.add_argument('--argument',action='append',default=[]);p.add_argument('--pass-marker',required=True);p.add_argument('--timeout',type=int,default=1200)
     p.add_argument('--reuse-installed',action='store_true');p.add_argument('--wave',type=Path);p.add_argument('--cue',action='append',default=[])
+    p.add_argument('--capture-only',action='store_true',help='Retain raw PCM window without short-cue recognition; separate media waveform proof required')
     a=p.parse_args()
     if a.output.exists():raise ValueError('Fresh output required')
     # Preflight before force-stop/installation. Reject another currently running instrumentation.
@@ -64,6 +65,6 @@ if __name__=='__main__':
                 scope='Actual5582 mixed PCM interval; recorder unmodified; no ARM speaker evidence'),indent=2)+'\n')
             command=[sys.executable,str(ROOT/'tools/audio/check_device_mix.py'),str(target),'--output',str(a.output/'waveform-verification.json')]
             for cue in a.cue:command.extend(['--cue',cue])
-            subprocess.run(command,check=True)
+            if not a.capture_only:subprocess.run(command,check=True)
     finally:
         lock.unlink()
