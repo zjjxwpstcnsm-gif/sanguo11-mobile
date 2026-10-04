@@ -1,0 +1,7 @@
+{
+  "path": "app/src/main/java/game/sanguo/mobile/DataTable.java",
+  "beforeSha256": "df14612632f983749f51c0a0fd16e8e9bd9b39124542c30bd3449b195dba47d3",
+  "afterSha256": "010a391f0a9871538651e371345b89f0bc74aca4c1892dbe45a72fa131fc84e5",
+  "patchSha256": "3e34f37ff4d4f51eea41cbbc55767e5c9897ac68a6cf4ce06aa2b0368f51f4b0",
+  "cause": "Actual screen showed no officer name after28dp image decoration; floor128dp for officer name cells only, no metadata/numeric values changed."
+}

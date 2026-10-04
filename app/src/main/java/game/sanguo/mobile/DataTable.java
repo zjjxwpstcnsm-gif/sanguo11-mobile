@@ -120,7 +120,8 @@ final class DataTable<T> extends LinearLayout {
         int natural=0;for(int index:visible)natural+=dp(columns.get(index).width);
         float ratio=available>0?available/(float)Math.max(1,natural):1f;
         widths=new int[visible.length];int total=0;
-        for(int j=0;j<visible.length;j++){Column<T> c=columns.get(visible[j]);widths[j]=Math.max(dp(c.numeric?(c.width>=75?70:48):(c.width>=100?72:56)),Math.round(dp(c.width)*ratio));total+=widths[j];}
+        for(int j=0;j<visible.length;j++){Column<T> c=columns.get(visible[j]);boolean officerName=visible[j]==0&&!source.isEmpty()&&source.get(0) instanceof World.Officer;
+            widths[j]=Math.max(dp(officerName?128:c.numeric?(c.width>=75?70:48):(c.width>=100?72:56)),Math.round(dp(c.width)*ratio));total+=widths[j];}
         if(available>0&&total>available&&total-available<=visible.length){widths[0]-=total-available;total=available;}
         if(available>total){widths[widths.length-1]+=available-total;total=available;}
         grid.setLayoutParams(new HorizontalScrollView.LayoutParams(total,-1));header.removeAllViews();headers.clear();
