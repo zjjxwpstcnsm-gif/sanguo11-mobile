@@ -101,3 +101,7 @@ Batch12确切新增工具inspect_pc_contest_equipment.py、inspect_pc_debate_pro
 ## Batch13：完整原对局模型协议
 
 前提交75b6abbd，完整checkpoint-batch12/source为4624文件/407519320字节，manifest SHA9a0bbf39a8d962109968dfd9807c1c24b86a3b2086cdaae3240a900de3790919。新增core/PcDebateModel.java、PcDebateModelTest.java及原逐帧/人控输入夹具；继续PcDebateState的原分支拆分与test_pc_debate_port.py。先闭合已执行原无界面16模型的完整状态/RNG，再核实原有界面回调，不把无界面模型直接部署为正式玩法。原突胜、劝降选择、终局/结算及仅新局保存策略仍须实际原代码证明。Batch09冻结输入/媒体/共享台账不改。
+
+## Batch14：人控输入边界和完整模型持久化
+
+前提交74c8c033，checkpoint-batch13/source为4635文件/408936558字节，manifest SHA530796feaf3d74af1ca3e04fbfdf20294de988b25c2a48dbd883e6fa6c457d2c。新增tools/content/inspect_pc_debate_human.py、PcDebateModelSave.java及模型存取/人控对照测试，继续PcDebateState/Model和测试工具。只执行原getter→原选择分支的有界指令，明确不称完整PC GUI；完整保存全部模型/RNG，不直接修改World旧保存/AndroidGameBridge。正式策略/对局页面仍待原界面回调和战役结算闭合。冻结Batch09输入、媒体和共同台账不改。

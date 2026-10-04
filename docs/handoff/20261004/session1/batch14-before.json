@@ -1,0 +1,22 @@
+{
+  "parentCommit": "74c8c0339759e000551f760f9b2a84dcd6e285d1",
+  "paths": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateState.java",
+      "sha256": "3bb31749d51be314fb4693be80cdfe2188af869bdeba1b7a291ce7c9c5b6a193"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/NEXT.md",
+      "sha256": "21359a42b33e459857ee22b373d8cb458ee0e4f6ba59193069ba9c745225b477"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "sha256": "30113a011e8f97aad87dbe6aa9b827ea563818201b3eb63c4eedafbb2d88dabf"
+    },
+    {
+      "path": "tools/content/test_pc_debate_port.py",
+      "sha256": "9b9b61ab7e4dff5f5d159620e7eb351b5f7d0f0917b3d83d06e145a82b680cb5"
+    }
+  ],
+  "completeGoal": false
+}

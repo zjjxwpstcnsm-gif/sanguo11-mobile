@@ -10,11 +10,12 @@ final class PcDebateState {
         int health=1000,anger,fury,deckCursor;
         final int[] deck=new int[18],hand=new int[7],specialPool=new int[5];
         final int specialCount;
-        Speaker(int intelligence,int war,int otherIntelligence,int temper,int talkMask,PcMerchantRules.Draws random){
+        Speaker(int intelligence,int war,int otherIntelligence,int temper,int talkMask,PcMerchantRules.Draws random){this(intelligence,war,otherIntelligence,temper,talkMask,random,true);}
+        Speaker(int intelligence,int war,int otherIntelligence,int temper,int talkMask,PcMerchantRules.Draws random,boolean initialize){
             if(intelligence<0||intelligence>100||war<0||war>100||temper<0||temper>3||talkMask<0||talkMask>31)throw new IllegalArgumentException("Unexamined native speaker input");
             this.intelligence=intelligence;this.war=war;this.temper=temper;this.talkMask=talkMask;modifier=PcDebateRules.intelligenceModifier(intelligence,otherIntelligence);slots=PcDebateRules.handSlots(intelligence);
             Arrays.fill(deck,-1);Arrays.fill(hand,-1);Arrays.fill(specialPool,-1);int count=0;for(int i=0;i<5;i++)if((talkMask&(1<<i))!=0)specialPool[count++]=10+i;specialCount=count;
-            shuffle(random);refill(random);
+            if(initialize){shuffle(random);refill(random);}
         }
         void shuffle(PcMerchantRules.Draws random){
             int[] weights={4,1,7,5,2,8,6,3,9};int index=0;
@@ -159,8 +160,11 @@ final class PcDebateState {
         this(leftIntelligence,rightIntelligence,leftTemper,rightTemper,leftTalks,rightTalks,seed,0,0);
     }
     PcDebateState(int leftIntelligence,int rightIntelligence,int leftTemper,int rightTemper,int leftTalks,int rightTalks,int seed,int leftWar,int rightWar){
-        random=new PcMerchantRules.Random(seed);topic=random.uniform(3);
-        left=new Speaker(leftIntelligence,leftWar,rightIntelligence,leftTemper,leftTalks,random);
-        right=new Speaker(rightIntelligence,rightWar,leftIntelligence,rightTemper,rightTalks,random);
+        this(leftIntelligence,rightIntelligence,leftTemper,rightTemper,leftTalks,rightTalks,seed,leftWar,rightWar,true);
+    }
+    PcDebateState(int leftIntelligence,int rightIntelligence,int leftTemper,int rightTemper,int leftTalks,int rightTalks,int seed,int leftWar,int rightWar,boolean initialize){
+        random=new PcMerchantRules.Random(seed);if(initialize)topic=random.uniform(3);
+        left=new Speaker(leftIntelligence,leftWar,rightIntelligence,leftTemper,leftTalks,random,initialize);
+        right=new Speaker(rightIntelligence,rightWar,leftIntelligence,rightTemper,rightTalks,random,initialize);
     }
 }
