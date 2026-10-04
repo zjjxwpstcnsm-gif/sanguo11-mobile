@@ -23,8 +23,9 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--serial',choices=['emulator-5582'],default='emulator-5582')
     p.add_argument('--apk',type=Path,required=True);p.add_argument('--test-apk',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
-    p.add_argument('--runner',choices=['MediaBridgeInstrumentation','PortraitPixelsInstrumentation','MusicSourceInstrumentation','MusicPlaybackInstrumentation','TechniquePointsInstrumentation','TechniqueFactsInstrumentation','UiUxInstrumentation'],required=True)
+    p.add_argument('--runner',choices=['MediaBridgeInstrumentation','PortraitPixelsInstrumentation','PortraitFlowInstrumentation','MusicSourceInstrumentation','MusicPlaybackInstrumentation','TechniquePointsInstrumentation','TechniqueFactsInstrumentation','UiUxInstrumentation'],required=True)
     p.add_argument('--argument',action='append',default=[]);p.add_argument('--pass-marker',required=True);p.add_argument('--timeout',type=int,default=1200)
+    p.add_argument('--campaign-save',type=Path);p.add_argument('--campaign-sha256')
     p.add_argument('--reuse-installed',action='store_true');p.add_argument('--wave',type=Path);p.add_argument('--cue',action='append',default=[])
     p.add_argument('--capture-only',action='store_true',help='Retain raw PCM window without short-cue recognition; separate media waveform proof required')
     a=p.parse_args()
@@ -51,7 +52,7 @@ if __name__=='__main__':
     fd=os.open(lock,os.O_WRONLY|os.O_CREAT|os.O_EXCL,0o600)
     try:
         os.write(fd,json.dumps(dict(pid=os.getpid(),workspace=str(ROOT),serial=a.serial)).encode());os.close(fd)
-        args=argparse.Namespace(**vars(a),test_package='game.sanguo.mobile.dev.test',campaign_save=None,campaign_sha256=None)
+        args=argparse.Namespace(**vars(a),test_package='game.sanguo.mobile.dev.test')
         installed.run(args)
         if begin is not None:
             time.sleep(.5);end=a.wave.stat().st_size;end-=(end-44)%alignment
