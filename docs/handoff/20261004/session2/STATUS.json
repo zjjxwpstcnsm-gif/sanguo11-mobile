@@ -401,6 +401,12 @@
     "twoRunsGeneratedJavaBytesEqual": true,
     "tacticSideIsNotProvenSuccessFlag": true,
     "speakerSideAndSlotNeeded": true,
-    "normalVoicePlaybackAccepted": false
-  }
+    "normalVoicePlaybackAccepted": false,
+    "newCombinedNormalPortraitFlowChecks": 324153,
+    "newCombinedPc33PcmCorrelation": 0.9999995511763713,
+    "newCombinedInstalledApkSha256": "c492fa9e2e1a729f6071f7705283bca9accce87b85caf523cbce068e94147cb2",
+    "newCombinedAllUserFilesRestored": true
+  },
+  "latestInstalledApkSha256": "c492fa9e2e1a729f6071f7705283bca9accce87b85caf523cbce068e94147cb2",
+  "latestInstalledSourceCommit": "11196a670ae7c84ab27eb49bf0418a0ed3ee4e3d"
 }

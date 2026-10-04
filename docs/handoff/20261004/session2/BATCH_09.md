@@ -1,6 +1,6 @@
 # 批九：原人物语音选择与实际发言侧调用链
 
-完整目标仍active。承接批八bc13ae3b，保持core/game-api/game-runtime及人物metadata与已完成9e171f2字节一致，未修改MainActivity、公共地图规则、人物文本数值或共享manifest。最新已安装且验证的生产包仍是批八1003574e...，本批原语音选择研究不得冒充正常语音/BGM播放验收。
+完整目标仍active。承接批八bc13ae3b，保持core/game-api/game-runtime及人物metadata与已完成9e171f2字节一致，未修改MainActivity、公共地图规则、人物文本数值或共享manifest。本批原语音选择研究不得冒充正常语音/BGM播放验收。
 
 inspect_pc_voice_policy.py加载校验过的PC EXE原PE节，在原0x4d1290、0x4d13b0、0x4d1490执行71组profile×8种actor voiceType；覆盖严格能力大小/相等/无符号字节极值、两种反馈及非法profile/type/actor/feedback边界，共8248项PASS。只有明确的actor validity和当前已计算能力getter为只读桩，所有原type/profile/variant表与选择指令保持不变。人物voiceType字段偏移为**十六进制0x100**。八种type并非人物共享一种声源；type6/7有原12/13 variant覆盖，且能力选择与反馈选择各自遵守不同原表。原机器码SHA和逐行结果保留于voice-native-policy.json.gz。
 
@@ -15,3 +15,7 @@ inspect_pc_voice_callers.py进一步实际执行两条原演示调用链，共18
 MEDIA_INPUT_CONTRACT.md给出具体已提交VoicePresentationFact输入需求：实际speakerOfficerId、原side/slot/native动作或profile、完整StateToken和id/parent/presentationParent。现有actorCopy与CriticalHit不能自动等价于该原四槽位发言侧，不自行改core产生新语音事件。未知继续未绑定，NET与逐次事实不会双播。
 
 本批没有新增正常语音触发，没有新的实际voice PCM、原BGM场景身份或共享音频focus验收。批八已安装APK及用户保存恢复证据仍按原范围保留；全部portrait战斗/对话/单挑形态、MOD优先级、其它15来源正常流程、原BGM/全部语音/其余9原SFX、完整多回合保存退出/ARM扬声器等仍未完成。下一步继续原演示记录生成与已提交事实的精确对应，并补齐真实播放器/正常流程。
+
+同源11196a670ae7c84ab27eb49bf0418a0ed3ee4e3d新组合包离线构建成功1m36s，生产257721722字节，SHAc492fa9e2e1a729f6071f7705283bca9accce87b85caf523cbce068e94147cb2；test2052915字节，SHAb8ecc58a0c18c6fe47d214d07b78823a9369cacbe7a070e4237702fc5efc6435。冻结两APK后独占5582实际安装/设备读回与全部portrait资产字节核对；正常656列表/3详情、实际存档读回、后台、退出重开324153项PASS108.72秒；正常3D战法事实、取消/双确认及完整Save/RNG对照再次通过14.48秒。当次原PC33实际混音去两个已声明合成干扰相关0.9999995511763713、联合0.9999997620093539。每轮两用户存档及全部库/偏好恢复字节一致，未清设备，5554录音不变。
+
+最初波形核对因尚未pull当次外部测试目录缺少facts而未执行；pull自己voicepolicycritical09输出后再核对通过，没有使用旧facts或旧录音。随后交付记录写入脚本遇到系统Python编码错误，未复制记录；9654c2c1及delivery09是该时点源码截点，记录修复后重新封存后继交付。构建/安装/恢复均已通过且不受该记录写入错误影响。其余语音/正常BGM仍未接入，ARM/扬声器未验证。
