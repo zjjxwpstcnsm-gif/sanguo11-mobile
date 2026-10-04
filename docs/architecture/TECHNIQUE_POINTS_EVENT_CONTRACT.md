@@ -47,3 +47,9 @@ World.nextTurn按实际委任／AI／全局／玩家恢复阶段标记事实；T
 新TechniquePointsOrderedFactsTest59项真实生产／编辑净零／失败部分候选／非法临时事实／完整回合／原checkpoint／取消／制造完成与饱和通过；旧Facts26、typed原技巧137、当前会话1666、只读投影180、战报原字节75、原技巧2717、城市6648及bridge通过。新59中的一次journal测试曾误把两条Editor命令当作同checkpoint，实际reports.prepare分段；保留失败后改用明确同checkpoint原Map写入检验观察边界，真实Editor双命令的整提交净零检查仍保留。
 
 这批目前只在本会话core／game-api／game-runtime候选工作区；没有修改app或另一会话文件，没有把a31实装报告当作新代码证据。HUD／声音当前仍消费原提交净变化／最终权威值；逐条事实演示、bridge schema1传输、回放去重消费及新组合构建实装继续推进。原PC奖励数值尚未闭合的条目也不因cause标签而变成已对齐。
+
+## R40 BridgeSession Java提交事实边界
+
+BridgeMessage.state使用完整提交token，techniquePointsFacts为防御复制只读列表；旧构造保留generation0，运行时使用实际token。BridgeSession只在提交delta或提交导致地图snapshot中携带一次实际GameEvent事实。主动snapshot、重复receipt、失败、restore／close和resync恢复不重播。队列预算含事实payload，超限明确resync且不回滚规则。
+
+app-owned AndroidGameBridge JSON、Unity契约和提示消费仍未接；schema1常量不改，禁止把Java字段存在当作wire验收通过。待序列化字段为state{sessionId,generation,revision}与techniquePointsFacts[{id,parentId,presentationParentId,state,sequence,owner,before,after,delta,cause,phase,cityId,officerId}]；所有long直接保留整数，不经过浮点。按fact.id去重，同一消费通道不得再播放NET奖励。同包实装需重新验证。

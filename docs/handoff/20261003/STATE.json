@@ -881,5 +881,30 @@
     "editor_private_original_files_exact": true,
     "editor_external_original_files_exact": true,
     "editor_external_original_files_count": 13
+  },
+  "r40_bridge_facts": {
+    "status": "Java API/runtime committed facts implemented; JVM and installed ART output passed; driver marker mismatch retained; new APK audio51 passed; wire/UI pending",
+    "java_api_runtime_implemented": true,
+    "wire_json_implemented": false,
+    "app_or_unity_modified": false,
+    "full_state_token": true,
+    "zero_net_ordered_facts": true,
+    "explicit_snapshot_replays_facts": false,
+    "byte_queue_accounts_facts": true,
+    "restore_discards_old_feedback": true,
+    "save_schema_changed": false,
+    "rules_rng_changed": false,
+    "new_apk_actual_install_verified": true,
+    "new_apk_sha256": "74574d7f393da0987fccd17debb1c84e3cc7038aa7a850149ccaca984e644af1",
+    "audio_ui_checks": 51,
+    "audio_ui_seconds": 33.6,
+    "audio_original_files_exact": true,
+    "new_package_full_matrix_complete": false,
+    "bridge_jvm_passed": true,
+    "bridge_art_terminal_output_passed": true,
+    "bridge_art_driver_marker_mismatch_preserved": true,
+    "bridge_art_user_files_unchanged": true,
+    "bridge_art_installed_apk_unchanged": true,
+    "current_live_device_job": false
   }
 }

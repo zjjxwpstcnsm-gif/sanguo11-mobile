@@ -25,8 +25,11 @@ public final class BridgeSession implements AutoCloseable {
     public BridgeSession(GameApi game){
         this.game=Objects.requireNonNull(game);facts=game.snapshot();sessionId=facts.state.sessionId;revision=facts.state.revision;
         subscription=game.subscribe(event->{
-            if(!sessionId.equals(event.state.sessionId)||event.kind==GameEvent.Kind.CLOSED){closed=true;return;}
-            changed();
+            if(!sessionId.equals(event.state.sessionId)||event.kind==GameEvent.Kind.CLOSED){
+                synchronized(this){closed=true;pending.clear();pendingBytes=0;receipts.clear();}
+                return;
+            }
+            changed(event);
         });
     }
     @Override public void close(){subscription.close();synchronized(this){closed=true;pending.clear();pendingBytes=0;receipts.clear();}}
@@ -38,17 +41,21 @@ public final class BridgeSession implements AutoCloseable {
         return message(type,commandId,error,null,terrain,changes,removed);
     }
     private BridgeMessage message(String type,String commandId,String error,String detail,String terrain,List<BridgeEntity> changes,List<String> removed){
+        return message(type,commandId,error,detail,terrain,changes,removed,List.of());
+    }
+    private BridgeMessage message(String type,String commandId,String error,String detail,String terrain,List<BridgeEntity> changes,List<String> removed,List<TechniquePointsFact> committedFacts){
         return new BridgeMessage(type,sessionId,++sequence,revision,facts.mapRevision,facts.width,facts.height,facts.turn,
-            facts.player,commandId,error,detail,terrain,changes,removed);
+            facts.player,commandId,error,detail,terrain,changes,removed,facts.state,committedFacts);
     }
     private void offer(BridgeMessage value){
-        int size=(value.terrain==null?0:value.terrain.length()*2)+value.entities.size()*240+256;
+        long size=(value.terrain==null?0L:value.terrain.length()*2L)+value.entities.size()*240L+256;
+        for(TechniquePointsFact fact:value.techniquePointsFacts)size+=192L+2L*(fact.id.length()+fact.parentId.length()+fact.presentationParentId.length()+fact.cause.length()+fact.phase.length());
         if(pending.size()==MAX_PENDING||pendingBytes+size>MAX_PENDING_BYTES){
             dropped+=pending.size()+1;pending.clear();
             pendingBytes=0;
             // The client must explicitly request a fresh full snapshot after a gap.
             pending.add(message("resync",null,"QUEUE_OVERFLOW",null,List.of(),List.of()));pendingBytes=256;
-        }else {pending.add(value);pendingBytes+=size;}
+        }else {pending.add(value);pendingBytes+=(int)size;}
     }
     private Map<String,BridgeEntity> entities(){
         Map<String,BridgeEntity> result=new LinkedHashMap<>();
@@ -57,23 +64,27 @@ public final class BridgeSession implements AutoCloseable {
     }
     /** Full facts are captured on the serial game thread, never by the polling/render thread. */
     public synchronized void snapshot(){
+        snapshot(List.of());
+    }
+    private void snapshot(List<TechniquePointsFact> committedFacts){
         if(closed)return;
         facts=game.snapshot();revision=facts.state.revision;
         last=entities();mapRevision=facts.mapRevision;terrainRevision=facts.terrainRevision;
         lastTurn=facts.turn;lastPlayer=facts.player;
         pending.clear();pendingBytes=0;
-        offer(message("snapshot",null,null,facts.terrain,new ArrayList<>(last.values()),List.of()));
+        offer(message("snapshot",null,null,null,facts.terrain,new ArrayList<>(last.values()),List.of(),committedFacts));
     }
     /** Invoked by authoritative commit notification only. Empty deltas still carry a new version. */
-    private synchronized void changed(){
+    private synchronized void changed(GameEvent event){
         if(closed)return;
         facts=game.snapshot();revision=facts.state.revision;
-        if(facts.mapRevision!=mapRevision||facts.terrainRevision!=terrainRevision){snapshot();return;}
+        if(!facts.state.equals(event.state))throw new IllegalStateException("Commit notification state mismatch");
+        if(facts.mapRevision!=mapRevision||facts.terrainRevision!=terrainRevision){snapshot(event.techniquePointsFacts);return;}
         Map<String,BridgeEntity> current=entities();List<BridgeEntity> updates=new ArrayList<>();List<String> removed=new ArrayList<>();
         for(BridgeEntity e:current.values())if(!e.equals(last.get(e.entityId)))updates.add(e);
         for(String key:last.keySet())if(!current.containsKey(key))removed.add(key);
         last=current;lastTurn=facts.turn;lastPlayer=facts.player;
-        offer(message("delta",null,null,null,updates,removed));
+        offer(message("delta",null,null,null,null,updates,removed,event.techniquePointsFacts));
     }
     public synchronized BridgeMessage command(String commandId,long clientSequence,long expectedRevision,String operation,int cityId,int officerId){
         if(closed||!sessionId.equals(game.state().sessionId)){

@@ -42,6 +42,8 @@ def run(args):
             raise ValueError('Ordered facts require the native technique policy fixtures')
         runtime_names.append('TechniquePointsOrderedFactsTest')
     suites={ 'game.sanguo.core.'+name: ROOT/module/'build/classes/java/test/game/sanguo/core'/ (name+'.class') for module,names in [('core',core_names),('game-runtime',runtime_names)] for name in names }
+    if getattr(args,'bridge_facts_only',False):
+        suites={'game.sanguo.runtime.bridge.BridgeSessionTest':ROOT/'game-runtime/build/classes/java/test/game/sanguo/runtime/bridge/BridgeSessionTest.class'}
     if getattr(args,'suites',None):
         wanted={'game.sanguo.core.'+name for name in args.suites}
         if not wanted.issubset(suites):raise ValueError('Requested suite is not in this exact probe configuration')
@@ -51,6 +53,7 @@ def run(args):
     if getattr(args,'ordered_technique_facts',False):
         fixtures.extend([('game-runtime','PcTechniquePointsSessionTest'),('game-runtime','PcDelayedProductionSessionTest')])
     inputs=list(suites.values())+[ROOT/module/'build/classes/java/test/game/sanguo/core'/ (name+'.class') for module,name in fixtures]
+    if getattr(args,'bridge_facts_only',False):inputs=list(suites.values())+[ROOT/'game-runtime/build/classes/java/test/game/sanguo/core/BridgeFactsFixture.class']
     inputs=list(dict.fromkeys(inputs))
     # Java17 enum switches/nested helpers are nest mates, not production rules.
     for test_class in list(inputs):
@@ -115,7 +118,8 @@ def run(args):
             if process.returncode!=0:
                 report['probe_error']=dict(suite=suite,exit_code=process.returncode,output=result.decode(errors='replace'))
                 save();raise RuntimeError('Probe exited '+str(process.returncode)+'; original log preserved')
-            if b'PASS' not in result:
+            marker=b'BridgeSessionTest passed;' if suite=='game.sanguo.runtime.bridge.BridgeSessionTest' else b'PASS'
+            if marker not in result:
                 raise ValueError('Missing suite pass marker: ' + suite)
             report['results'].append(dict(suite=suite, seconds=round(time.monotonic() - started, 2), output=result.decode()))
             save()
@@ -159,4 +163,5 @@ if __name__ == '__main__':
     parser.add_argument('--native-technique-policy',action='store_true',help='Require v37 source rewards and genuine old v36 preservation on ART')
     parser.add_argument('--technique-facts',action='store_true',help='Also verify immutable commit/journal point facts from the installed candidate')
     parser.add_argument('--ordered-technique-facts',action='store_true',help='Verify ordered writes, zero-net commits, failure isolation, full tokens and delayed completion from the installed candidate')
+    parser.add_argument('--bridge-facts-only',action='store_true',help='Run only actual bridge fact transport regression against installed runtime classes; preserves the same external user-file guards')
     run(parser.parse_args())

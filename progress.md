@@ -997,3 +997,7 @@ R33新增core/API/runtime逐次技巧点facts候选：所有现有规则写入�
 2026-10-04 R39：连续原5956d6..59588d落点／存活／规划字段336二次一致，无中间reset，request仅+74/+78变化，世界地图RNG守卫。明确visibility1绕表现／前置未执行，完整主伤害／权威仍待；未改Android规则。d318编辑器5554独占验收正在运行，原内外部数据备份恢复工具保持，目标active。
 
 2026-10-04 R39编辑器收尾：同d31861／44.97秒PASS，实际编辑发布／自定义新局／JSON回环，原7内部和13外部文件exact恢复，历史错误fixture保留。当前无设备任务，目标active。
+
+2026-10-04 R40：实际新增BridgeMessage完整token／只读逐次技巧事实，BridgeSession提交delta及地图snapshot一次携带，主动snapshot／重复／失败不重播；payload预算／overflow resync和restore旧队列清除。真实零净额／全SaveRNG／3000原Editor链溢出回归初轮PASS、原事实59PASS；最终新fence检查及APK构建正在运行。app JSON／Unity及声音消费未改，旧d318实装不移用，目标active。
+
+2026-10-04 R40用户要求当前先收尾并分两会话：Java bridge事实／完整token实现，JVM与实装ART原输出通过，通用大写marker失败保留和另审计；新74574d7f实装audio51／33.60秒原7文件恢复。wire/UI仍未接，新包完整矩阵待续。两份goal提示词按metadata／media职责隔离交付，当前无测试进程，将暂停原持续目标而非标记完成。
