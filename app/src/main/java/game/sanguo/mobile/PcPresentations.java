@@ -20,6 +20,11 @@ final class PcPresentations implements AutoCloseable {
     private final boolean[] compiled=new boolean[2];private int pendingTextures;
     private boolean warmSubmitted,warmDone;private Fence warmFence;
     private final Map<Integer,Texture> textures=new HashMap<>();
+    private final Map<Integer,Long> textureSizes=new HashMap<>();
+    private final LinkedHashMap<Integer,Boolean> dynamicOrder=new LinkedHashMap<>(4,.75f,true);
+    private final Set<Integer> requested=new HashSet<>();
+    private final ConcurrentLinkedQueue<Decoded> decoded=new ConcurrentLinkedQueue<>();
+    private static final class Decoded {final int key;final Bitmap bitmap;Decoded(int key,Bitmap bitmap){this.key=key;this.bitmap=bitmap;}}
     private final Map<Integer,MaterialInstance[]> instances=new HashMap<>();
     private final List<Integer> entities=new ArrayList<>();
     private VertexBuffer vertices;private IndexBuffer indices;private int shown,visibleBatches,capacity;
@@ -44,7 +49,6 @@ final class PcPresentations implements AutoCloseable {
                     for(ByteBuffer frame:timeline.frames)for(int at=0;at<frame.limit();at+=PcPresentationTimeline.RECORD_BYTES){int image=frame.getInt(at);if(image!=32)images.add(image);}
                 }
                 for(int image:images)result.images.put(image,bitmap(String.format(Locale.ROOT,"3d/pc-effects/image-%02d.png",image)));
-                for(int selector=131;selector<=192;selector++)result.images.put(1000+selector,bitmap("3d/pc-presentations/selector-"+selector+".png"));
                 for(int selector:new int[]{126,127})result.images.put(1000+selector,bitmap("3d/pc-presentations/selector-"+selector+".png"));
                 synchronized(this){if(closed)result.recycle();else prepared=result;}
             }catch(Exception failure){result.recycle();error=failure.toString();android.util.Log.e("Sanguo3D","Original presentation assets failed",failure);}
@@ -56,7 +60,27 @@ final class PcPresentations implements AutoCloseable {
     }
     void set(PcPresentationPlan.Cue value,float phase){if(value!=cue||phase<this.phase)submittedCue=null;cue=value;this.phase=Math.min(1,Math.max(0,phase));}
     boolean submitted(PcPresentationPlan.Cue value,float fraction){return rendered>0&&submittedCue==value&&Math.abs(submittedPhase-fraction)<.0001f;}
-    private boolean assetsReady(){Prepared p=prepared;return p!=null&&p.images.isEmpty()&&pendingTextures==0&&compiled[0]&&compiled[1]&&capacity>0;}
+    private boolean assetsReady(){Prepared p=prepared;int selector=cue==null?-1:cue.selector();return p!=null&&p.images.isEmpty()&&pendingTextures==0&&compiled[0]&&compiled[1]&&capacity>0&&(selector<0||textures.containsKey(1000+selector));}
+    /** Owner requests at most two detached decodes. The worker never touches Engine or a World. */
+    private void requestDynamic(){
+        int selector=cue==null?-1:cue.selector();if(selector<131||selector>192)return;int key=1000+selector;
+        if(textures.containsKey(key)){dynamicOrder.get(key);return;}
+        if(prepared!=null&&prepared.images.containsKey(key))return;
+        if(requested.contains(key)||requested.size()>=2)return;requested.add(key);
+        loader.execute(()->{try{
+            Bitmap pixels=bitmap("3d/pc-presentations/selector-"+selector+".png");
+            if(pixels.getWidth()!=512||pixels.getHeight()!=512){pixels.recycle();throw new IOException("Original dynamic atlas extent");}
+            synchronized(this){if(closed)pixels.recycle();else decoded.add(new Decoded(key,pixels));}
+        }catch(Exception failure){if(!closed){error=failure.toString();android.util.Log.e("Sanguo3D","Dynamic source decode failed",failure);}}});
+    }
+    private void retireDynamic(int key){
+        // Clear live Renderable references before destroying their old material instances.
+        hide();RenderableManager manager=engine.getRenderableManager();
+        for(int entity:entities)manager.setMaterialInstanceAt(manager.getInstance(entity),0,materials[0].getDefaultInstance());
+        MaterialInstance[] pair=instances.remove(key);if(pair!=null)for(MaterialInstance instance:pair)engine.destroyMaterialInstance(instance);
+        Texture texture=textures.remove(key);if(texture!=null){engine.destroyTexture(texture);textureBytes-=textureSizes.remove(key);}
+        dynamicOrder.remove(key);
+    }
     boolean ready(){
         if(warmFence!=null){Fence.FenceStatus status=warmFence.wait(Fence.Mode.DONT_FLUSH,0);
             if(status==Fence.FenceStatus.ERROR)throw new IllegalStateException("Source shader warmup driver fence");
@@ -82,10 +106,17 @@ final class PcPresentations implements AutoCloseable {
         if(closed)return;if(!error.isEmpty())throw new IllegalStateException(error);
         Prepared p=prepared;if(p==null)return;
         try{
+            requestDynamic();
+            for(Decoded image;(image=decoded.poll())!=null;){
+                requested.remove(image.key);int current=cue==null?-1:1000+cue.selector();
+                if(image.key!=current||textures.containsKey(image.key))image.bitmap.recycle();else p.images.put(image.key,image.bitmap);
+            }
             for(int i=0;i<2;i++)if(materials[i]==null){String path="3d/pc-presentations/"+(i==0?"over-encoded":"add-encoded")+".filamat";byte[] bytes=VerifiedMaterial.read(path,context.getAssets().open(path));materials[i]=new Material.Builder().payload(ByteBuffer.wrap(bytes),bytes.length).build(engine);final int slot=i;materials[i].compile(Material.CompilerPriorityQueue.HIGH,0,new android.os.Handler(android.os.Looper.getMainLooper()),()->{if(!closed)compiled[slot]=true;});engine.flush();}
             int uploads=0;
             for(Iterator<Map.Entry<Integer,Bitmap>> iterator=p.images.entrySet().iterator();iterator.hasNext()&&uploads<2;uploads++){
-                Map.Entry<Integer,Bitmap> image=iterator.next();int key=image.getKey();Bitmap pixels=image.getValue();iterator.remove();loadTexture(key,pixels);
+                Map.Entry<Integer,Bitmap> image=iterator.next();int key=image.getKey();Bitmap pixels=image.getValue();
+                if(key>=1131&&key<=1192&&dynamicOrder.size()>=4){if(pendingTextures!=0)break;retireDynamic(dynamicOrder.keySet().iterator().next());}
+                iterator.remove();loadTexture(key,pixels);
             }
             if(capacity==0){int quads=0,batches=0;for(PcPresentationTimeline t:p.timelines.values()){quads=Math.max(quads,t.maximum);batches=Math.max(batches,t.maximumBatches);}ensureCapacity(quads,batches);}
             if(!assetsReady())return;
@@ -115,7 +146,7 @@ final class PcPresentations implements AutoCloseable {
     }
     private void loadTexture(int key,Bitmap bitmap){
         Texture texture=new Texture.Builder().width(bitmap.getWidth()).height(bitmap.getHeight()).levels(1).sampler(Texture.Sampler.SAMPLER_2D).format(Texture.InternalFormat.RGBA8).build(engine);
-        textures.put(key,texture);textureBytes+=(long)bitmap.getWidth()*bitmap.getHeight()*4;
+        textures.put(key,texture);long size=(long)bitmap.getWidth()*bitmap.getHeight()*4;textureSizes.put(key,size);textureBytes+=size;if(key>=1131&&key<=1192)dynamicOrder.put(key,true);
         boolean queued=false;pendingTextures++;
         try{com.google.android.filament.android.TextureHelper.setBitmap(engine,texture,0,bitmap,new android.os.Handler(android.os.Looper.getMainLooper()),()->{bitmap.recycle();if(!closed)pendingTextures--;});queued=true;}
         finally{if(!queued){pendingTextures--;bitmap.recycle();}}
@@ -146,11 +177,11 @@ final class PcPresentations implements AutoCloseable {
     private void hide(){for(int i=0;i<visibleBatches;i++)scene.removeEntity(entities.get(i));visibleBatches=0;shown=0;}
     String report(){return " pc_presentation_ready="+ready()+" pc_presentation_selector="+(cue==null?-1:cue.selector())+" pc_presentation_source_rejected="+(cue!=null&&cue.selector()<0)+" pc_presentation_phase="+phase+" pc_presentation_frames="+rendered+" pc_presentation_quads="+shown+" pc_presentation_batches="+visibleBatches+" pc_presentation_texture_bytes="+textureBytes+" pc_presentation_error="+(error.isEmpty()?"none":error.replace(' ','_'));}
     @Override public void close(){
-        synchronized(this){if(closed)return;closed=true;if(prepared!=null)prepared.recycle();prepared=null;}loader.shutdownNow();cue=null;hide();if(warmFence!=null){engine.destroyFence(warmFence);warmFence=null;}
+        synchronized(this){if(closed)return;closed=true;if(prepared!=null)prepared.recycle();prepared=null;for(Decoded image;(image=decoded.poll())!=null;)image.bitmap.recycle();}loader.shutdownNow();requested.clear();cue=null;hide();if(warmFence!=null){engine.destroyFence(warmFence);warmFence=null;}
         for(int entity:entities){engine.destroyEntity(entity);EntityManager.get().destroy(entity);}entities.clear();
         if(vertices!=null)engine.destroyVertexBuffer(vertices);if(indices!=null)engine.destroyIndexBuffer(indices);vertices=null;indices=null;buffers.clear();output=null;
         for(MaterialInstance[] pair:instances.values())for(MaterialInstance instance:pair)if(instance!=null)engine.destroyMaterialInstance(instance);instances.clear();
-        for(Texture texture:textures.values())engine.destroyTexture(texture);textures.clear();
+        for(Texture texture:textures.values())engine.destroyTexture(texture);textures.clear();textureSizes.clear();dynamicOrder.clear();
         for(int i=0;i<2;i++){if(materials[i]!=null)engine.destroyMaterial(materials[i]);materials[i]=null;}capacity=0;textureBytes=0;
     }
 }

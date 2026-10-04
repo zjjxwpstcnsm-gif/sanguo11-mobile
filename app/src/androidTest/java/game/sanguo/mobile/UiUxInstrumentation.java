@@ -500,7 +500,7 @@ public class UiUxInstrumentation extends Instrumentation {
             boolean[] shown={false};ui(()->{try{
                 Object renderer=field(host,"spatial");PcPresentationPlan.Cue cue=(PcPresentationPlan.Cue)field(renderer,"presentationCue");
                 Object current=field(renderer,"pcPresentations");
-                if(cue!=null&&current!=null&&(Integer)field(current,"shown")>0&&(Float)field(current,"phase")>.15f&&host.criticalSubmitted()){
+                if(cue!=null&&current!=null&&(Integer)field(current,"shown")>0&&(Float)field(current,"phase")>.45f&&host.criticalSubmitted()){
                     check(cue.identity!=null&&cue.identity.officerId==actorId,"normal non-six cue uses exact source identity");
                     selector[0]=cue.selector();phase[0]=(Float)field(current,"phase");owner[0]=current;host.pauseCommandEffects(true);shown[0]=true;
                 }
@@ -515,10 +515,25 @@ public class UiUxInstrumentation extends Instrumentation {
         }
         check(owner[0]!=null,"real non-six committed event enters source GPU stage");check(selector[0]>=131&&selector[0]<=192,"native source dynamic selector resolved");
         byte[] frozen=capture();shot("dynamic-portrait-source-frame");long[] bytes={0};ui(()->{try{bytes[0]=(Long)field(owner[0],"textureBytes");check(((Map<?,?>)field(owner[0],"textures")).containsKey(1000+selector[0]),"matching original dynamic atlas uploaded");}catch(Exception error){throw new RuntimeException(error);}});
-        check(bytes[0]>=62L*512*512*4,"all original dynamic atlas memory accounted");SystemClock.sleep(200);ui(()->{try{check(phase[0]==(Float)field(owner[0],"phase"),"pause preserves recorded source pose");}catch(Exception error){throw new RuntimeException(error);}});check(Arrays.equals(frozen,capture()),"GPU preparation/pause/screenshot preserve complete Save and RNG");
+        check(bytes[0]<8L*1024*1024,"original dynamic atlases load on demand within bounded first-use GPU budget");
+        dynamicPortraitPixels(host);
+        SystemClock.sleep(200);ui(()->{try{check(phase[0]==(Float)field(owner[0],"phase"),"pause preserves recorded source pose");}catch(Exception error){throw new RuntimeException(error);}});check(Arrays.equals(frozen,capture()),"GPU preparation/pause/screenshot preserve complete Save and RNG");
         Files.write(new File(output,"dynamic-portrait.json").toPath(),new org.json.JSONObject().put("officerId",actorId).put("selector",selector[0]).put("sourceFramePhase",phase[0]).put("textureBytes",bytes[0]).put("prepareAndFirstFrameMillis",SystemClock.uptimeMillis()-start).put("normalUiCommand",true).put("controlledPausedHostTicks",true).put("sourceIdentityInjectedByTest",false).put("allDynamicSelectorsRendered",false).toString(2).getBytes("UTF-8"));
         ui(()->host.pauseCommandEffects(false));
     }
+    private void dynamicPortraitPixels(MapHost host)throws Exception{
+        Object renderer=field(host,"spatial"),stage=field(renderer,"presentationStage");int width=(Integer)field(stage,"width"),height=(Integer)field(stage,"height");int[] reference=((int[])field(stage,"referencePixels")).clone();
+        Bitmap bitmap=Bitmap.createBitmap(width,height,Bitmap.Config.ARGB_8888);CountDownLatch copied=new CountDownLatch(1);int[] status={-1};
+        ui(()->android.view.PixelCopy.request((android.view.SurfaceView)uncheckedField(renderer,"surface"),bitmap,value->{status[0]=value;copied.countDown();},new Handler(Looper.getMainLooper())));
+        check(copied.await(20,TimeUnit.SECONDS)&&status[0]==android.view.PixelCopy.SUCCESS,"actual source stage surface pixels copied");int changed=0,max=0;
+        try{
+            for(int y=0;y<8;y++)for(int x=0;x<8;x++){int pixel=bitmap.getPixel((2*x+1)*width/16,(2*y+1)*height/16),delta=0;for(int shift:new int[]{0,8,16})delta=Math.max(delta,Math.abs(((pixel>>shift)&255)-((reference[y*8+x]>>shift)&255)));max=Math.max(max,delta);if(delta>30)changed++;}
+            try(OutputStream out=new FileOutputStream(new File(output,"dynamic-portrait-surface.png"))){bitmap.compress(Bitmap.CompressFormat.PNG,100,out);}
+        }finally{bitmap.recycle();}
+        Files.write(new File(output,"dynamic-portrait-pixels.json").toPath(),new org.json.JSONObject().put("changedBackgroundSamples",changed).put("maxChannelDelta",max).put("width",width).put("height",height).put("sourceIdentityColorParityProven",false).toString(2).getBytes("UTF-8"));
+        check(changed>=8&&max>60,"mid-animation actual source pixels visibly change captured map; changed="+changed+" max="+max);
+    }
+    private static Object uncheckedField(Object object,String name){try{return field(object,name);}catch(Exception error){throw new RuntimeException(error);}}
     private String shellText(String command)throws Exception{try(InputStream in=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand(command));ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] bytes=new byte[1024];int n;while((n=in.read(bytes))>=0)out.write(bytes,0,n);return out.toString("UTF-8").trim();}}
     private int battlePhases()throws Exception{int[] count={0};ui(()->{try{for(Object value:(Set<?>)field(((GameApplication)activity.getApplication()).sounds(),"heard")){String key=value.toString();if(key.startsWith("journal:")&&(key.endsWith(":action")||key.endsWith(":critical")))count[0]++;}}catch(Exception e){throw new RuntimeException(e);}});return count[0];}
     private void reducedMotion()throws Exception{
