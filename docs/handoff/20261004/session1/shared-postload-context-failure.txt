@@ -1,0 +1,11 @@
+UcError Invalid memory fetch (UC_ERR_FETCH_UNMAPPED) 0xf1a [{'pc': '0xf1a', 'access': 21, 'address': '0x1000', 'bytes': 1}] [{'function': 'InitializeCriticalSectionAndSpinCount', 'returnPc': '0x71991e', 'result': 1}, {'function': 'InitializeCriticalSectionAndSpinCount', 'returnPc': '0x71991e', 'result': 1}, {'function': 'InitializeCriticalSectionAndSpinCount', 'returnPc': '0x71991e', 'result': 1}, {'function': 'InitializeCriticalSectionAndSpinCount', 'returnPc': '0x71991e', 'result': 1}, {'function': 'InitializeCriticalSectionAndSpinCount', 'returnPc': '0x71991e', 'result': 1}, {'function': 'InitializeCriticalSectionAndSpinCount', 'returnPc': '0x71991e', 'result': 1}, {'function': 'InitializeCriticalSectionAndSpinCount', 'returnPc': '0x71991e', 'result': 1}, {'function': 'InitializeCriticalSectionAndSpinCount', 'returnPc': '0x71991e', 'result': 1}, {'function': 'InitializeCriticalSectionAndSpinCount', 'returnPc': '0x71991e', 'result': 1}, {'function': 'GetLastError', 'returnPc': '0x70e3e1', 'result': 0}]
+Traceback (most recent call last):
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/startup/probe_shared_postload.py", line 7, in <module>
+    report=w.load((p/'Media/scenario/Scenario.s11').read_bytes(),True,shared_postload=True);print({k:v for k,v in report.items()if k!='records'});print('platformCalls',platform.calls)
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_layered_scenario.py", line 94, in load
+    self.call(0x4937b0,self.stream,receiver=self.root,count=40000000,
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_layered_scenario.py", line 65, in call
+    u.emu_start(function,self.stop if stop is None else stop,count=count)
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/out/session1/toolchain/pc-emulate/unicorn/unicorn_py3/unicorn.py", line 766, in emu_start
+    raise UcError(status)
+unicorn.unicorn_py3.unicorn.UcError: Invalid memory fetch (UC_ERR_FETCH_UNMAPPED)

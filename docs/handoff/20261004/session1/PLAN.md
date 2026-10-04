@@ -29,3 +29,11 @@
 路线：来源 manifest/实际加载链与字形/传记 → 逐字段原 serializer/getter/开局后处理 → 确定性剧本包、正常新局及统一人物 DTO → 旧 31–37 完整 Save/RNG 续行 → 独立 APK 构建、真实菜单多旬存取退出重开。全部来源差异独立保留；未知明确保留。
 
 每次安装前核实设备锁和无人使用，备份全部保存/库/偏好，结束后读回精确恢复。不移用旧包证据。批次提交、增量 SHA、验证与缺口放本目录；最终顺序集成，不复制媒体 WIP。
+
+## Batch 04 当前所有权
+
+新增tools/content/inspect_pc_layered_scenario.py、inspect_pc_scenario_fields.py、test_pc_layered_scenario.py及本目录分层载入/原属性/兼容调查报告。执行原492db0完整构造、Shared与剧本同一注册表载入、4937b0读取及明确边界的后处理；不能手工回填静态表冒充加载。沿用原工具作对照，原报告与公共台账不改。未知全局、菜单设置、MOD优先级或事件未闭合时不标完整开局。新增核心/保存策略修改须再登记准确路径和前镜像SHA；当前未改变旧v33行动力策略。
+
+追加tools/content/pc_readonly_platform.py：仅为原事件读取器提供已核实Win32文件/目录、单线程锁和内存分配平台边界。虚拟G盘映射到PC只读输入目录，写入/删除/截断接口必须拒绝；记录每个原函数要求的实际资源和SHA。不是Wine，不启动PC游戏，不替换事件/规则函数；模拟的进程路径和未执行的应用上下文明确列入边界。
+
+追加tools/content/inspect_pc_event_resources.py与event-resources-native报告：执行679cb0安装目录发现、678550头验证与原解码/标识校验，明确停在679d9f进入配置/Documents Expansion目录之前。平台仅支持已核实PE导入及受限CRT标准接口，未知主机上下文不得默认为真实生效优先级。

@@ -1,0 +1,18 @@
+test_city_troops_source_perturbation (__main__.LayeredScenarioTest) ... FAIL
+test_complete_layered_read_and_shared_name (__main__.LayeredScenarioTest) ... ok
+test_force_identity_and_diplomacy_source_perturbations (__main__.LayeredScenarioTest) ... ok
+test_inactive_force_does_not_claim_zero_truth (__main__.LayeredScenarioTest) ... ok
+test_platform_import_guards_and_mutation_refusal (__main__.LayeredScenarioTest) ... ok
+
+======================================================================
+FAIL: test_city_troops_source_perturbation (__main__.LayeredScenarioTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/test_pc_layered_scenario.py", line 59, in test_city_troops_source_perturbation
+    self.assertEqual(stored, before)
+AssertionError: 100000 != 20000
+
+----------------------------------------------------------------------
+Ran 5 tests in 90.232s
+
+FAILED (failures=1)
