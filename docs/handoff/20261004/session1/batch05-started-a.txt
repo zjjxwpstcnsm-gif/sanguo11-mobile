@@ -1,0 +1,16 @@
+{"source": "Media/scenario/Scen000.s11", "postloadReturn": 1, "officers": 850, "changedOfficers": 91, "nativeAbilityCachesChecked": 304}
+{"source": "Media/scenario/SCEN001.S11", "postloadReturn": 1, "officers": 850, "changedOfficers": 87, "nativeAbilityCachesChecked": 371}
+{"source": "Media/scenario/SCEN002.S11", "postloadReturn": 1, "officers": 850, "changedOfficers": 87, "nativeAbilityCachesChecked": 379}
+{"source": "Media/scenario/SCEN003.S11", "postloadReturn": 1, "officers": 850, "changedOfficers": 85, "nativeAbilityCachesChecked": 369}
+{"source": "Media/scenario/SCEN004.S11", "postloadReturn": 1, "officers": 850, "changedOfficers": 84, "nativeAbilityCachesChecked": 379}
+{"source": "Media/scenario/SCEN005.S11", "postloadReturn": 1, "officers": 850, "changedOfficers": 83, "nativeAbilityCachesChecked": 359}
+{"source": "Media/scenario/SCEN006.S11", "postloadReturn": 1, "officers": 850, "changedOfficers": 82, "nativeAbilityCachesChecked": 344}
+{"source": "Media/scenario/SCEN007.S11", "postloadReturn": 1, "officers": 850, "changedOfficers": 87, "nativeAbilityCachesChecked": 770}
+{"source": "Media/scenario/Scen008.s11", "postloadReturn": 1, "officers": 850, "changedOfficers": 86, "nativeAbilityCachesChecked": 383}
+{"source": "Media/scenario/Scen009.s11", "postloadReturn": 1, "officers": 850, "changedOfficers": 84, "nativeAbilityCachesChecked": 367}
+{"source": "Media/scenario/Scen010.s11", "postloadReturn": 1, "officers": 850, "changedOfficers": 83, "nativeAbilityCachesChecked": 359}
+{"source": "Media/scenario/Scen011.s11", "postloadReturn": 1, "officers": 850, "changedOfficers": 88, "nativeAbilityCachesChecked": 322}
+{"source": "Media/scenario/Scen012.s11", "postloadReturn": 1, "officers": 850, "changedOfficers": 87, "nativeAbilityCachesChecked": 371}
+{"source": "Media/scenario/Scen013.s11", "postloadReturn": 1, "officers": 850, "changedOfficers": 87, "nativeAbilityCachesChecked": 770}
+{"source": "Media/scenario/Scen014.S11", "postloadReturn": 1, "officers": 850, "changedOfficers": 87, "nativeAbilityCachesChecked": 770}
+{"source": "Media/scenario/Scen015.s11", "postloadReturn": 1, "officers": 850, "changedOfficers": 82, "nativeAbilityCachesChecked": 143}

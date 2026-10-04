@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "baselineCommit": "d3c6ab94eed0e4777d4933592145c4222a04822b",
+  "guardFile": "docs/handoff/20261004/session1/source-text-apk-source-guard.json",
+  "guardFileSha256": "efe0faa6106d47d962c97c7c5fa4f8729165fda203ccc0228d198592d1f2c5bf",
+  "files": 1000,
+  "mismatches": [],
+  "apkSourceTreeUnchanged": true,
+  "publicLedgersUnchanged": true,
+  "publicLedgerMismatches": [],
+  "newApkValidationClaim": false
+}

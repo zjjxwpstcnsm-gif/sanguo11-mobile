@@ -37,3 +37,9 @@
 追加tools/content/pc_readonly_platform.py：仅为原事件读取器提供已核实Win32文件/目录、单线程锁和内存分配平台边界。虚拟G盘映射到PC只读输入目录，写入/删除/截断接口必须拒绝；记录每个原函数要求的实际资源和SHA。不是Wine，不启动PC游戏，不替换事件/规则函数；模拟的进程路径和未执行的应用上下文明确列入边界。
 
 追加tools/content/inspect_pc_event_resources.py与event-resources-native报告：执行679cb0安装目录发现、678550头验证与原解码/标识校验，明确停在679d9f进入配置/Documents Expansion目录之前。平台仅支持已核实PE导入及受限CRT标准接口，未知主机上下文不得默认为真实生效优先级。
+
+## Batch 05 当前所有权
+
+前镜像d3c6ab94eed0e4777d4933592145c4222a04822b。本轮新增tools/content/pc_startup_platform.py、inspect_pc_started_scenario.py、test_pc_started_scenario.py及session1的启动链/覆盖/验证记录；必要时修改inspect_pc_layered_scenario.py的明确恢复接口，逐文件登记前镜像SHA。先以原CRT线程/字符表初始化与原排序、事件资源完整装配闭合已知断点；Win32文档路径等只能作为明确隔离夹具，不升级实际激活优先级。仍不改媒体、共同台账、AndroidGameBridge、Unity和3D。
+
+追加tools/content/inspect_pc_event_bytecode.py、test_pc_event_bytecode.py：复用已核实原事件文件/正文范围，执行原字节码容器构造、头绑定、指令/字符串getter；不执行事件条件、玩法或UI处理器。与人物数值后处理报告保持独立，任何原字形解码失败保留原字节。

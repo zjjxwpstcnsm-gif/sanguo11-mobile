@@ -1,0 +1,159 @@
+{
+  "baseGrowthExperiencePreserved": true,
+  "bytecodeConversionRepeatByteIdentical": true,
+  "bytecodeDecodedSha256": "0cf943422dd906ce259176c188cc2accc978eba50bc7ef5fb7a6d43f8c529d83",
+  "bytecodePackedSha256": "824a3a6f07ca51ba7a3290900accf5c6b37296f224ed6afa2a980026974d0037",
+  "completeGoal": false,
+  "completeStartup": false,
+  "conflictNotes": [
+    "New tools and session1 docs only; no media/shared ledger/core/API/runtime/app/save/bridge/Unity/3D changes",
+    "Original CRT byte comparison is not Windows Chinese NLS collation",
+    "Four historical identities and 2880 additional slots retain identity unknown; no numeric nativeId cast to projectId",
+    "No source truth import or old-save backfill",
+    "Menu/settings/Shared sorting/opening dispatch and legacy v33 AP policy remain unresolved"
+  ],
+  "counts": {
+    "named_getter_values": 516800,
+    "native_active_cache_checks": 6760,
+    "postload_valid_slots": 12320,
+    "read_slots": 13600,
+    "strict_identity_active_cache_checks": 5131,
+    "strict_identity_connections": 10656,
+    "unknown_identity_slots": 2944,
+    "valid_named_getter_values": 468160
+  },
+  "deviceTouched": false,
+  "eventBodiesRead": 326,
+  "eventBodyBytes": 1096968,
+  "eventBodyInstructions": 90110,
+  "eventConditionInstructions": 15033,
+  "eventMetadataRecords": 326,
+  "eventStrings": 652,
+  "eventStringsAllEmpty": true,
+  "externalUserCoverage": "unknown; user confirms no other local copy",
+  "implementationBase": "840030195e39cec3c0d352e010a3c3e614893ca2",
+  "nativePostloadFunction": "493400 (direct isolated call)",
+  "nativePostloadSources": 16,
+  "nativeRngPostloadAndQueriesUnchanged": true,
+  "nativeTests": {
+    "bytecodeCases": 3,
+    "bytecodeLogSha256": "fbd8a4161620f5d12ec4b9909fc99bc7110177bd9be88cc937cb225da742a115",
+    "startedCases": 8,
+    "startedLogSha256": "abec522562dd8a86ac85a363769a7f6f6cf0f41f6975dcb1b3d10e05e7f4f181",
+    "status": "PASS"
+  },
+  "newApkBuilt": false,
+  "newApkFlowClaim": false,
+  "openingEventConditionsExecuted": false,
+  "openingEventEffectsExecuted": false,
+  "parentCommit": "d3c6ab94eed0e4777d4933592145c4222a04822b",
+  "pcInstallationFileMismatches": [],
+  "pcInstallationPinnedFilesCompared": 1806,
+  "pcInstallationReadOnly": true,
+  "personCoveragePackedSha256": "a935d74bf7e9ece17449d9c82d75db261603f62eb61db891581e3d8bb68a3ec3",
+  "runtimeProductionFilesUnchanged": 1000,
+  "schema": 1,
+  "sourceIdentityJoins": [
+    {
+      "scenarioId": "pc-scen000-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+      "sourcePath": "Media/scenario/Scen000.s11",
+      "sourceSha256": "843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c",
+      "sourceVariant": "media-scenario-scen000-s11-80d30c5886d0-843abd9f9702618fc95223b0993454252645e926c2d2a10e9384c411551e643c"
+    },
+    {
+      "scenarioId": "pc-scen001-aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae",
+      "sourcePath": "Media/scenario/SCEN001.S11",
+      "sourceSha256": "aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae",
+      "sourceVariant": "media-scenario-scen001-s11-e7c6d9d8979a-aa3b9ef428ad2b2543bea62145ab6257ecbdf0dc8ff801253bcec3496c1158ae"
+    },
+    {
+      "scenarioId": "pc-scen002-ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c",
+      "sourcePath": "Media/scenario/SCEN002.S11",
+      "sourceSha256": "ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c",
+      "sourceVariant": "media-scenario-scen002-s11-f755e33c5193-ff8c08652f4bc20868855e3e15a0b90168a9eadf078ffd1a427e2cbacfad696c"
+    },
+    {
+      "scenarioId": "pc-scen003-efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e",
+      "sourcePath": "Media/scenario/SCEN003.S11",
+      "sourceSha256": "efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e",
+      "sourceVariant": "media-scenario-scen003-s11-3a7c1f24e98c-efdf2efd64ca7275caf13b6d38223d7d29833a6f50fefd45cc395141e3d4299e"
+    },
+    {
+      "scenarioId": "pc-scen004-6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae",
+      "sourcePath": "Media/scenario/SCEN004.S11",
+      "sourceSha256": "6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae",
+      "sourceVariant": "media-scenario-scen004-s11-5220b7b040b1-6451c22f04d2020bf43028728bf26eaede9937a76453c1dd87d9102d0e25ddae"
+    },
+    {
+      "scenarioId": "pc-scen005-4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01",
+      "sourcePath": "Media/scenario/SCEN005.S11",
+      "sourceSha256": "4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01",
+      "sourceVariant": "media-scenario-scen005-s11-44fa373941df-4ffc74a7ce91d926c8eb1394c8eeb12cc0e942d0abbcd3d10187779f8edbfe01"
+    },
+    {
+      "scenarioId": "pc-scen006-b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88",
+      "sourcePath": "Media/scenario/SCEN006.S11",
+      "sourceSha256": "b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88",
+      "sourceVariant": "media-scenario-scen006-s11-eacf362ae1b8-b4a9809071c817c1b6391b99b541f9161f233c401d0ce712b70b8d511075ad88"
+    },
+    {
+      "scenarioId": "pc-scen007-703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709",
+      "sourcePath": "Media/scenario/SCEN007.S11",
+      "sourceSha256": "703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709",
+      "sourceVariant": "media-scenario-scen007-s11-107674155956-703458345e24bec9c6a466252211c5594d25f6c6c10ab78f2c2ac51ab4f7c709"
+    },
+    {
+      "scenarioId": "pc-scen008-ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba",
+      "sourcePath": "Media/scenario/Scen008.s11",
+      "sourceSha256": "ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba",
+      "sourceVariant": "media-scenario-scen008-s11-ecd762837ff1-ad0b87d3f4376c5e1bc8c65d01a02741f7b93a9ba908fe4c77f221ec937a0cba"
+    },
+    {
+      "scenarioId": "pc-scen009-64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a",
+      "sourcePath": "Media/scenario/Scen009.s11",
+      "sourceSha256": "64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a",
+      "sourceVariant": "media-scenario-scen009-s11-1cc770c8bdaf-64d73700fb0159422c4b2f88901c53ffd414226431826e82138d63ebf1c25e9a"
+    },
+    {
+      "scenarioId": "pc-scen010-4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba",
+      "sourcePath": "Media/scenario/Scen010.s11",
+      "sourceSha256": "4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba",
+      "sourceVariant": "media-scenario-scen010-s11-a73dbe94b608-4b52422dfb2341a1e1e74df1ce62f9af1ec535d228d7ad317e0f1f29e9a2e9ba"
+    },
+    {
+      "scenarioId": "pc-scen011-48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+      "sourcePath": "Media/scenario/Scen011.s11",
+      "sourceSha256": "48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4",
+      "sourceVariant": "media-scenario-scen011-s11-3ee5409f8649-48401444389dda2b1662f3ec263fe8aedcad39faeb665722a8c500170b89c4d4"
+    },
+    {
+      "scenarioId": "pc-scen012-d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772",
+      "sourcePath": "Media/scenario/Scen012.s11",
+      "sourceSha256": "d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772",
+      "sourceVariant": "media-scenario-scen012-s11-89d5af807d70-d6e120895d53835c2cbd8279a3a2cf26aca82ef57f096f847be9ec91494e6772"
+    },
+    {
+      "scenarioId": "pc-scen013-72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f",
+      "sourcePath": "Media/scenario/Scen013.s11",
+      "sourceSha256": "72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f",
+      "sourceVariant": "media-scenario-scen013-s11-d5aed0fc93bb-72e15d98bfb49ab7bfbbf32f2bee01396e594424b23ff386df17c0f80920ec6f"
+    },
+    {
+      "scenarioId": "pc-scen014-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "sourcePath": "Media/scenario/Scen014.S11",
+      "sourceSha256": "ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b",
+      "sourceVariant": "media-scenario-scen014-s11-42f8c60769fa-ce08f8e934c040149efef07a6642ebb7c8912c5dcf62354be9a29e82543c0d6b"
+    },
+    {
+      "scenarioId": "pc-scen015-5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a",
+      "sourcePath": "Media/scenario/Scen015.s11",
+      "sourceSha256": "5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a",
+      "sourceVariant": "media-scenario-scen015-s11-1a92ff214a48-5808a13b48bbd2ef665af3a2757851a6dbe6b2bd05bf02a4383a1e530f24ee8a"
+    }
+  ],
+  "sourceManifestSha256": "c2e8bab45f37cb68f3f6768d41065779877447449a676bdeedd39bd7e1ad9767",
+  "startedConversionRepeatByteIdentical": true,
+  "startedDecodedSha256": "e6fdefe819e28162698877677b93ba1362b3d4b420dd4bdbec573e11416a64f9",
+  "startedPackedSha256": "a387d385c25c5cb28bb616d138166ebf5e23d0b4ed11016a5d2bf48f383b64f6",
+  "wineStarted": false
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_started_scenario.py", line 251, in <module>
+    inspect(args.installation, args.output, args.source)
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_started_scenario.py", line 206, in inspect
+    abilityBefore=before_abilities[native], abilityAfter=ability_state(world, actor, valid),
+  File "/Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/tools/content/inspect_pc_started_scenario.py", line 145, in ability_state
+    raise ValueError('Original postload cache differs from original current-ability calculation: actor=%x cached=%r/%r calculated=%r/%r' % (actor, state['cachedWithCondition'], state['cachedWithoutCondition'], with_condition, without))
+ValueError: Original postload cache differs from original current-ability calculation: actor=720da14 cached=[0, 0, 0, 0, 0]/[0, 0, 0, 0, 0] calculated=[65, 74, 26, 33, 44]/[65, 74, 26, 33, 44]

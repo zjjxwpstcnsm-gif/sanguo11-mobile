@@ -1,0 +1,11 @@
+{
+  "bodyInstructions": 90110,
+  "completeOpening": false,
+  "conditionInstructions": 15033,
+  "decodedSha256": "0cf943422dd906ce259176c188cc2accc978eba50bc7ef5fb7a6d43f8c529d83",
+  "packedSha256": "824a3a6f07ca51ba7a3290900accf5c6b37296f224ed6afa2a980026974d0037",
+  "programs": 326,
+  "schema": 1,
+  "strings": 652,
+  "undecodedStrings": 0
+}
