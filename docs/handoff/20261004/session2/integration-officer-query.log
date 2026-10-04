@@ -1,0 +1,10 @@
+PASS officer query scenario=huangjin-184
+PASS officer query scenario=coalition-190
+PASS officer query scenario=warlords-194
+PASS officer query scenario=guandu-200
+PASS officer query scenario=chibi-207
+PASS officer query scenario=heroes-250
+PASS officer query scenario=heroes-mobile-sandbox
+PASS officer query scenario=central-mobile-sandbox
+PASS officer query scenario=jingxiang-mobile-sandbox
+PASS OfficerQueryTest checks=515120 nine actual project scenarios, normal patrol, three turns/save/reopen/continuation, full-save/RNG, immutable and thread guards; PC opening fidelity still pending

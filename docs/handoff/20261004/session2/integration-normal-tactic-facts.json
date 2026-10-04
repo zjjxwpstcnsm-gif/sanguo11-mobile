@@ -1,0 +1,22 @@
+{
+  "productionHostOnly": true,
+  "facts": [
+    {
+      "id": "06f226d6-e929-479b-8765-219f6ca8d74f:1:1:LEGACY_COMMITTED:technique:1",
+      "parentId": "06f226d6-e929-479b-8765-219f6ca8d74f:1:1:LEGACY_COMMITTED",
+      "presentationParentId": "2:1",
+      "sequence": 1,
+      "owner": 0,
+      "before": 0,
+      "after": 40,
+      "delta": 40,
+      "cause": "TACTIC",
+      "phase": "COMMAND",
+      "state": {
+        "sessionId": "06f226d6-e929-479b-8765-219f6ca8d74f",
+        "generation": 1,
+        "revision": 1
+      }
+    }
+  ]
+}

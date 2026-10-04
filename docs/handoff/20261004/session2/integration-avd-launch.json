@@ -1,0 +1,25 @@
+{
+  "pid": 53152,
+  "command": [
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/toolchain/android-sdk/emulator/emulator",
+    "-avd",
+    "san11-media-integrated",
+    "-port",
+    "5582",
+    "-gpu",
+    "host",
+    "-no-window",
+    "-no-snapshot-load",
+    "-no-snapshot-save",
+    "-no-boot-anim",
+    "-memory",
+    "2048",
+    "-cores",
+    "2",
+    "-audio",
+    "wav"
+  ],
+  "wave": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/mixed-recovered.wav",
+  "allThreeLogicalDisksConsolidated": true,
+  "oldRecordingsAndAvdUntouched": true
+}

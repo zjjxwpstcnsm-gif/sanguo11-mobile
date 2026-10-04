@@ -1,0 +1,29 @@
+# 批七：顺序整合与正常全目录、详情和冷读回
+
+目标active，完整头像/音频还原未完成。原媒体目录与分支保留；新增独立整合目录/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile、codex/portrait-audio-restoration-integration。从媒体完成320ddda顺序合入人物完成9e171f2，87个完成增量路径逐文件与该commit一致；不读取/复制人物未提交的第四批研究。完整固定输入已跟踪者随Git继承，额外7个忽略输入（含4个JNI）按完整继承清单SHA复制；见integration-merge-guards.json。
+
+本整合目录依照已登记的公共入口契约应用snapshot portrait bind、逐事实HUD/演示回调；MainActivity/MapHost/TurnPlayback前后SHA、两个精确补丁见integration-public-guards.json。两补丁第一处上下文重叠，初次只成功应用portrait bind；随后重新生成Main hunk，保留portrait行，原Map/Turn补丁前像仍严格一致。没有复制旧MainActivity或旧AA核心。core/game-api/game-runtime与9e171f2无任何增量；只有人物会话已完成的只读来源/文本成果被顺序合入。
+
+原DataTable为纯文字列表。媒体装饰只在原姓名cell增加28dp头像，复用时清理旧drawable；只读view弱绑定见portrait-list-host.patch/guards。首轮实际截图发现旧最小56dp挤掉姓名，主动停止测试并恢复全部用户文件，保留失败包与截图证据。按预登记portrait-name-width.patch/guards只提高人物姓名列最小128dp，文字、数值、搜索、排序、stable IDs未改；新测试逐行要求整名不ellipsis。已知PC来源不再额外解码旧32人atlas。
+
+当前生产APK源cf5068bcc8bad30d2bf3ea6641249103acc95204，257718062字节，SHA9b39ad26018e353efb4724144a63bffcfc715145f4b9644c00cbdd386c776d8a；全新构建、冻结、安装、设备读回SHA通过。包内2892PNG、独立媒体JSON和30原音乐共2923项与源码逐字节一致。最初测试APK591edc718cfef1cca331e6388cb9acb71bac050747da350a0dbb0ccb9791466d；追加严格实际load-token/独立证据目录的测试源eed4c1d0，测试包cd4142519df5676950c961b9c8e6fbff192c0f863e698bd9974fa64d7b87a129。追加测试构建后生产APK全部ZIP条目及整包仍逐字节相同，生产路径无源码变化，见integration-current-test-apks.json。
+
+实际正常菜单选择190工程剧本与明确的Scen000 PC人物文字来源，完成真实新局：656个目录行全部滚动显示、全部656详情实际点击进入；652人原来源连接，4人SourceInfo为空保留unknown。646113项PASS，包括精确officerId/nativeId/sourceVariant/path/sourceSha/recordSha、原图片bitmap同像与drawable内部像素、整名可见、16MiB生产LRU边界、浏览不变完整Save/RNG、正常保存、读回、后台、退出重开。此处是当前工程新局与一个明确来源，不能将652运行时连接称全部16源/全部武将形态还原。
+
+实际新局产生的auto.sg11为939921字节，SHA83a444c35348515d6a75c444ff7864d8e22b0d586ba0d5faffd52e6c1572f8d3，与完整活跃capture一致。单独冷进程以这份实际保存重新安装/读回，正常656列表、3详情、保存/读取及退出重开再通过324153项；此次明确等待实际StateToken替换，排除异步读档尚未完成的假通过。两轮相同保存SHA且用户原两份保存/库/偏好路径恢复逐字节相同，无新增内部用户文件；原auto/manual3各185898字节、SHA02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69。外部截图只写本测试证据命名空间，原库在内部files已封存/恢复。
+
+实际生产cache为16588800字节（72幅240×240ARGB），独立worker解码652次；首次manifest/像素等待2727ms，中位6ms、95分位25ms。首张后台等待仍待优化；不是所有帧延迟/ARM性能声明。列表运行中整体进程PSS约316339KiB，含原3D引擎/测试缓冲，不能将其全归于头像缓存。每条asset/等待值在integration-normal-pixels.json，实际屏幕保存在out/media/integration-normal-02/screens。
+
+同一新组合包再次实际运行全原像素/来源专项51302项PASS，所有2892实际RGBA/10656连接年龄边界继续与原像素/原VM输出一致，完整Save/RNG和用户文件恢复通过（10.51秒）。这些边界的年龄切换为专项，不代表正常多年度游戏的年龄转换已验证。人物只读查询515120项、来源/文本110066项主机测试通过，包含实际当前工程巡察/三回合/存档继续及全Save/RNG；C#实际纯Contracts/Client/Fixture49项通过，不是Unity Player。
+
+架构边界检查通过；完整scripts/test-architecture.sh在交接已经记录的旧v33征兵行动力golden差异停止（当前20、旧10），原golden和规则均未修改。证据integration-architecture-known-failure.log与人物已提交inherited-v33-ap-baseline-difference.json对应，不能标整套架构测试通过。
+
+追加Bridge校验时旧5582进程82554消失，APK读回中断且当轮finally失去设备；该轮instrumentation未启动，主机backup仍为完全恢复后的原两文件。原旧AVD和录音受保护；11个磁盘/配置APFS克隆逐SHA相同。首次独立克隆启动忽略原QCOW层，缺应用，未继续安装；转换原完整userdata/encryption/cache层到自己的副本，qemu-img compare证明三个逻辑磁盘字节一致。恢复后设备/用户文件/Bridge的最终结果另在device-recovery与installed记录补齐；不把异常轮当通过。5554及其后台录音从未操作。安装工具新增每runner确切PASS marker预检，错误标记在设备操作前拒绝。
+
+待完成：其它15来源与全部实际PC/MOD Face覆盖优先级；正常年份/形态切换与原普通/对话/单挑/战法形态调用角色；TurnWork.visual等独立演示World的来源连接（当前正常session detached view已绑，不能扩大成全部战斗副本已绑）；首张等待/内存生命周期完整压力；公开逐事实HUD实际正常战法/计略/多回合音效与对应事实/PCM；正常BGM原场景及共享focus/noisy/voice、其余9原SFX及全部语音原事件绑定；最终完整组合矩阵与ARM手机扬声器。原BGM流、PC33及其它合成声音的历史专项不可移称此新包已经完整声音还原。
+
+恢复完成：原磁盘完整逻辑副本仍未复原安装列表，原因未确认；改在独立副本安装完全相同冻结APK，再恢复完整有效应用files/shared_prefs备份及实际应用UID。所有原文件/库/偏好路径和字节完全相同，原AVD/音频不变，见integration-user-recovery.json。当前独立5582 PID53152、AVD san11-media-integrated；音频文件out/media/device-recovery-01/mixed-recovered.wav，后续录音须重新核PID/FD，不再引用旧82554。重新实际Android wire18项PASS、完整Save/RNG及用户文件恢复通过；异常两轮未计通过。
+
+新组合包正常公开HUD声音线路现已取得本批实际证据：相同生产APK9b39ad...重新构建/安装只读观察测试包f32ce7567d8f7fa0bffeb5978f302063c4838bd216b507a7536fdcbb9b07c016，实际3D战法选择/取消/双击确认/暴击结束，真实权威fact ID、parentId、presentationParentId、完整state及before/after/delta/cause/phase输出integration-normal-tactic-facts.json。观察器只复制GameEvent，没有订阅HUD或手动释放演示阶段；声音heard以实际fact.id命中，取消没有committed事实，规则伤害/完整Save/RNG与独立控制一致。新混音区间仅从PID53152实际打开的5582文件复制；原PC33与两个已标移动端原创的战法/暴击声在相邻时刻重叠。旧单样本检查未达阈值保留失败，不降低门限；新check_pc33_tactic_mix.py只拟合这三个预声明样本，精确原采样率相位、正且可闻独立系数、Gram可识别性及>.999联合/PC33去已知干扰相关。实际联合0.9999997620093539、PC330.9999995511763713，排除PC33模型残差远大于完整模型；这证明当前正常事实原33实际混音出现，不是所有战斗音色已原版。实际wire18与该wire C#52亦通过，仍非Unity Player。
+
+本批全部测试结束后原用户保存/库/偏好逐字节恢复，无新增内部用户文件。原AVD及5554背景录音不变；当前独立5582可继续串行使用，须重新检查ActiveInstrumentation与锁。完整语音/BGM场景/其余9原SFX、其它15源/所有PC头像形态与演示副本、ARM和完整多回合组合矩阵仍未完成，目标继续active。

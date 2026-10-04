@@ -1,0 +1,23 @@
+{
+  "sourceBackupsAndOriginalAvdUnchanged": true,
+  "files": [
+    {
+      "source": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/avd-backup/userdata-qemu.img.qcow2",
+      "target": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/android-home/avd/san11-media-integrated.avd/userdata-qemu.img",
+      "logicalByteEqual": true,
+      "comparison": "Images are identical."
+    },
+    {
+      "source": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/avd-backup/encryptionkey.img.qcow2",
+      "target": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/android-home/avd/san11-media-integrated.avd/encryptionkey.img",
+      "logicalByteEqual": true,
+      "comparison": "Images are identical."
+    },
+    {
+      "source": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/avd-backup/cache.img.qcow2",
+      "target": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/device-recovery-01/android-home/avd/san11-media-integrated.avd/cache.img",
+      "logicalByteEqual": true,
+      "comparison": "Images are identical."
+    }
+  ]
+}

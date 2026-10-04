@@ -1,0 +1,31 @@
+{
+  "mainApkSha256": "9b39ad26018e353efb4724144a63bffcfc715145f4b9644c00cbdd386c776d8a",
+  "newOpening": {
+    "roster": 656,
+    "mapped": 652,
+    "sourceUnknown": 4,
+    "details": 656,
+    "decoded": 652
+  },
+  "coldResume": {
+    "roster": 656,
+    "mapped": 652,
+    "sourceUnknown": 4,
+    "details": 3
+  },
+  "productionBitmapCacheBytes": 16588800,
+  "productionBitmapLimitBytes": 16777216,
+  "waitMs": {
+    "p50": 6.0,
+    "p95": 25,
+    "maximum": 2727
+  },
+  "allSourceRuntimeCoverage": false,
+  "actualSourceVariantsUiTested": 1,
+  "ageRuntimeTransitionsTested": false,
+  "originalCallerFormsProven": false,
+  "sharedAudioFocusIntegrated": false,
+  "armEvidence": false,
+  "normalAndColdSaveSha256": "83a444c35348515d6a75c444ff7864d8e22b0d586ba0d5faffd52e6c1572f8d3",
+  "coreApiRuntimeDeltaAgainstCompletedMetadata": []
+}

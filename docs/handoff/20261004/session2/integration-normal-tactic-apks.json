@@ -1,0 +1,7 @@
+{
+  "mainSha256": "9b39ad26018e353efb4724144a63bffcfc715145f4b9644c00cbdd386c776d8a",
+  "testSha256": "f32ce7567d8f7fa0bffeb5978f302063c4838bd216b507a7536fdcbb9b07c016",
+  "mainSourceCommit": "cf5068bcc8bad30d2bf3ea6641249103acc95204",
+  "testSourceCommit": "f25a8a156c8f875b9b575c7108583e46f0ff536c",
+  "mainSameBytesAfterTestBuild": true
+}

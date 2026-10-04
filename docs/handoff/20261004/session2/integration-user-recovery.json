@@ -1,0 +1,18 @@
+{
+  "serial": "emulator-5582",
+  "installedLogs": [
+    "Performing Streamed Install\nSuccess\n",
+    "Performing Streamed Install\nSuccess\n"
+  ],
+  "allOriginalFilesByteEqual": true,
+  "paths": {
+    "files/auto.sg11": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69",
+    "files/manual3.sg11": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "restoredAppUid": "10146",
+  "installedMainSha256": "9b39ad26018e353efb4724144a63bffcfc715145f4b9644c00cbdd386c776d8a",
+  "originalAvdAndRecordingsUntouched": true,
+  "fullDiskCloneDidNotRestoreInstalledPackageList": true,
+  "fullDiskCloneFailureCauseUnknown": true,
+  "recoveryMethod": "Install exact frozen APKs into isolated copied AVD, then restore complete valid pre-exit app files/shared_prefs tar and current app ownership; originals untouched."
+}

@@ -1,0 +1,10 @@
+{
+  "mainApkSha256": "9b39ad26018e353efb4724144a63bffcfc715145f4b9644c00cbdd386c776d8a",
+  "testApkSha256": "cd4142519df5676950c961b9c8e6fbff192c0f863e698bd9974fa64d7b87a129",
+  "mainSourceCommit": "cf5068bcc8bad30d2bf3ea6641249103acc95204",
+  "testSourceCommit": "eed4c1d01561d2a2d3c6ebecd9dbf3c863113952",
+  "mainProductionDiffSinceBuilt": [],
+  "rebuiltMainSha256": "9b39ad26018e353efb4724144a63bffcfc715145f4b9644c00cbdd386c776d8a",
+  "rebuiltMainZipDifferences": [],
+  "mainApkIsExactAlreadyInstalledCurrentCombination": true
+}
