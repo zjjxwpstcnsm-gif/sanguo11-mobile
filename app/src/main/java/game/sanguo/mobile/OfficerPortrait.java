@@ -24,37 +24,58 @@ final class OfficerPortrait extends Drawable implements PcPortraitLoader.Target 
     private final World.Officer officer;private final int age,index,variant;
     private final Bitmap customImage;
     private final PcPortraitLoader original;
-    private final PortraitMediaIdentity sourceIdentity;
+    private PortraitMediaIdentity sourceIdentity;
+    private final WeakReference<World> sourceView;
+    private final boolean sourceEnabled;
     private final int sourceYear;
     private final Paint paint=new Paint(Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG);
     private final Path path=new Path();private final Rect source=new Rect();private final RectF area=new RectF();
     OfficerPortrait(Context context,World w,World.Officer officer){
         this(context,w,officer,CustomOfficers.portrait(w,officer.id));
     }
+    OfficerPortrait(Context context,World w,World.Officer officer,int appliedYear){
+        this(context,w,officer,CustomOfficers.portrait(w,officer.id),appliedYear);
+    }
     private OfficerPortrait(Context context,World w,World.Officer officer,CustomOfficers.Portrait portrait){
-        this(context,w,officer,portrait==null?"":portrait.ref,portrait==null?new byte[0]:portrait.png);
+        this(context,w,officer,portrait,w.life.year());
+    }
+    private OfficerPortrait(Context context,World w,World.Officer officer,CustomOfficers.Portrait portrait,int appliedYear){
+        this(context,w,officer,portrait==null?"":portrait.ref,portrait==null?new byte[0]:portrait.png,appliedYear);
     }
     OfficerPortrait(Context context,World w,World.Officer officer,String ref,byte[] png){
+        this(context,w,officer,ref,png,w.life.year());
+    }
+    private OfficerPortrait(Context context,World w,World.Officer officer,String ref,byte[] png,int appliedYear){
         this.officer=officer;age=w.life.age(officer.id);int selected=PortraitCatalog.index(officer.name);
         if(ref.startsWith("builtin:"))try{int n=Integer.parseInt(ref.substring(8));if(n>=0&&n<PortraitCatalog.NAMES.length)selected=n;}catch(NumberFormatException ignored){}
         index=selected;variant=PortraitCatalog.variant(officer.id,officer.name);customImage=ref.endsWith(".png")?CustomOfficerImages.bitmap(ref,png):null;
-        sourceYear=w.life.year();sourceIdentity=ref.isEmpty()?PortraitMediaSources.source(w,officer.id):null;original=sourceIdentity==null?null:PcPortraitLoader.shared(context);
-        if(sourceIdentity==null&&!loaded){loaded=true;String[] files={"portraits/officers.png","portraits/officers-v040.png"};
+        sourceYear=appliedYear;sourceEnabled=ref.isEmpty();sourceView=new WeakReference<>(w);
+        if(sourceEnabled)bindSavedView(w);sourceIdentity=sourceEnabled?PortraitMediaSources.source(w,officer.id):null;original=sourceEnabled?PcPortraitLoader.shared(context):null;
+        boolean pending=sourceEnabled&&PortraitMediaSources.pending(w,this);
+        if(sourceIdentity==null&&!pending&&!loaded){loaded=true;String[] files={"portraits/officers.png","portraits/officers-v040.png"};
             for(int i=0;i<files.length;i++)try(InputStream input=context.getAssets().open(files[i])){
                 atlases[i]=BitmapFactory.decodeStream(input);
             }catch(IOException ignored){/* Deterministic fallback for missing artwork. */}
         }
+    }
+    static void bindSavedView(World view){
+        if(PortraitMediaSources.bound(view))return;byte[] raw=view.extensions.get(PcOfficerInfo.NAMESPACE);
+        java.util.Map<Integer,String> names=new java.util.HashMap<>();if(raw!=null)for(World.Officer officer:view.officers)names.put(officer.id,officer.name);
+        PortraitMediaSources.saved(view,raw,java.util.Collections.unmodifiableMap(names));
     }
     private void fill(int color){paint.setColor(color);paint.setStyle(Paint.Style.FILL);}
     private void oval(Canvas c,float l,float t,float r,float b,int color){fill(color);c.drawOval(l,t,r,b,paint);}
     private void poly(Canvas c,int color,float... xy){path.reset();path.moveTo(xy[0],xy[1]);for(int i=2;i<xy.length;i+=2)path.lineTo(xy[i],xy[i+1]);path.close();fill(color);c.drawPath(path,paint);}
     @Override public void draw(Canvas c){
         area.set(getBounds());c.save();path.reset();path.addRoundRect(area,area.width()*.1f,area.width()*.1f,Path.Direction.CW);c.clipPath(path);
+        World view=sourceView.get();boolean waiting=sourceEnabled&&view!=null&&PortraitMediaSources.pending(view,this);
+        if(sourceIdentity==null&&sourceEnabled&&view!=null)sourceIdentity=PortraitMediaSources.source(view,officer.id);
+        boolean rejected=sourceEnabled&&view!=null&&!PortraitMediaSources.error(view).isEmpty();
         Bitmap atlas=index>=0?atlases[index/16]:null;
         Bitmap pixel=original==null?null:original.get(sourceIdentity,sourceYear,0,this);
         if(customImage!=null){fill(Color.WHITE);c.drawBitmap(customImage,null,area,paint);}
         else if(pixel!=null){fill(Color.WHITE);c.drawBitmap(pixel,null,area,paint);}
-        else if(sourceIdentity!=null){fill(0xff213c40);c.drawRect(area,paint);}
+        else if(sourceIdentity!=null||waiting||rejected){fill(0xff213c40);c.drawRect(area,paint);}
         else if(atlas!=null){int col=index%4,row=(index%16)/4;source.set(col*atlas.getWidth()/4,row*atlas.getHeight()/4,(col+1)*atlas.getWidth()/4,(row+1)*atlas.getHeight()/4);fill(Color.WHITE);c.drawBitmap(atlas,source,area,paint);}
         else {c.translate(area.left,area.top);c.scale(area.width()/100,area.height()/100);fallback(c);}
         c.restore();fill(0xffc9ae73);paint.setStyle(Paint.Style.STROKE);paint.setStrokeWidth(Math.max(1,area.width()/70));c.drawRoundRect(area,area.width()*.1f,area.width()*.1f,paint);paint.setStyle(Paint.Style.FILL);

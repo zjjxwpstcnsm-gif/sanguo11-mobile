@@ -392,7 +392,7 @@ final class MapHost extends FrameLayout implements MapPresentation {
     void setCommandersShown(boolean value){commandersShown=value;getContext().getSharedPreferences("map-display",0).edit().putBoolean("commanders",value).apply();if(spatial!=null)spatial.labels(value,unitBarsShown);}
     void setUnitBarsShown(boolean value){unitBarsShown=value;getContext().getSharedPreferences("map-display",0).edit().putBoolean("unitBars",value).apply();if(spatial!=null)spatial.labels(commandersShown,value);}
     void setCriticalSkip(Runnable skip){criticalSkip=skip;if(spatial!=null)spatial.criticalSkip(skip);}
-    void criticalFrame(CriticalHit hit,float phase){if(spatial!=null){if(sourceVisuals()){hit=null;if(hit==null)spatial.presentation(null,0);}if(projectedCritical!=hit){projectedCritical=hit;projectedPortrait=hit==null?null:new OfficerPortrait(getContext(),world,hit.officerCopy());}spatial.critical(hit,phase,projectedPortrait);}}
+    void criticalFrame(CriticalHit hit,float phase){if(spatial!=null){if(sourceVisuals()){hit=null;if(hit==null)spatial.presentation(null,0);}if(projectedCritical!=hit){projectedCritical=hit;projectedPortrait=hit==null?null:new OfficerPortrait(getContext(),world,hit.officerCopy(),hit.year);}spatial.critical(hit,phase,projectedPortrait);}}
     void replayFrame(TurnJournal.Event e,float fraction){if(combatLedger().completed(e))e=null;if(e!=null&&fraction>=.35f)techniquePhase(e);if(e!=null)eventSound(e,fraction);if(spatial!=null)spatial.replay(e,fraction);}
     boolean replayVisible(TurnJournal.Event e){return spatial!=null&&spatial.visible(e);}
 }

@@ -9,3 +9,7 @@
 普通DataTable原为纯文字列表。新增portrait-list-host.patch只在name column装饰28dp原头像，在每次复用清除旧drawable；MainActivity snapshot bind追加OfficerPortrait.bindView只读弱引用。人物名称/数值/排序/搜索不改，确切前后像见portrait-list-host-guards.json。
 
 实际截图发现姓名列最小56dp容纳28dp图后文字不可见。portrait-name-width.patch只将人物姓名列最小宽度提高128dp，其它表格/数值未改；前后像见portrait-name-width-guards.json。首轮实装因此主动终止且全部用户文件恢复；不作为通过证据。
+
+批八媒体加法：PortraitSavedSources仅在后台投影已完成pc-officer-source-v1格式，按完整字节副本及当前id/name拒绝身份已变更记录，和OfficerQuery一致；不按名称推断native ID。OfficerPortrait在不带用户custom ref且view尚未绑定时复制SaveExtensions.get返回的不可变数据及当前id/name表；后台不接受/保留World，不调用规则、保存或RNG。PortraitMediaSources弱view索引、单worker/8排队、原有DTO token绑定优先，pending/error灰占位，完成只invalidate。新的媒体解析器只产生三元组和来源SHA，不修改namespace/人物数据。公共入口尚未追加；普通GameIcon/Realm/演示Drawable构造均复用这条加法。
+
+已登记精确portrait-critical-year.patch/guards：MapHost和CriticalScene只将CriticalHit.year传入媒体drawable，避免用跨年份后当前view的年份替代已提交暴击年份。前/后SHA守卫后在独立整合目录顺序应用，无核心/事件生成/数值变化。
