@@ -210,6 +210,41 @@
         "added_files": [],
         "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
       }
+    },
+    "portraitSourceCurrent": {
+      "serial": "emulator-5582",
+      "runner": "PortraitPixelsInstrumentation",
+      "arguments": [],
+      "apks": {
+        "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/portrait-frozen-02/app-debug.apk": "b9a447c514aa6e97cf92b1851029773fa8093eaa5841af0111fa7093de846e95",
+        "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/portrait-frozen-02/app-debug-androidTest.apk": "14f43ca05558b1f1bc846d91125f020548289f14c43ca98a327557ed992b1512"
+      },
+      "backup": {
+        "files/auto.sg11": {
+          "bytes": 185898,
+          "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+        },
+        "files/manual3.sg11": {
+          "bytes": 185898,
+          "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+        }
+      },
+      "passed": true,
+      "stage": "finished",
+      "reused_installed": false,
+      "installed_test_sha256": "14f43ca05558b1f1bc846d91125f020548289f14c43ca98a327557ed992b1512",
+      "installed_sha256": "b9a447c514aa6e97cf92b1851029773fa8093eaa5841af0111fa7093de846e95",
+      "exit_code": 0,
+      "seconds": 16.76,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "files/portrait-pixels.json"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
     }
   },
   "checks": {
@@ -238,7 +273,8 @@
     "originalMusicSelectorPolicy": 318,
     "installedCurrentMusicSource": 185,
     "musicFrameHost": 12,
-    "installedMusicStream": 19
+    "installedMusicStream": 19,
+    "installedOriginalPortraitPixels": 51302
   },
   "originalRestoredAudioSamples": 1,
   "uniqueCurrentShortSamples": 10,
@@ -265,7 +301,8 @@
     "Fact runner initially required enabled system motion; guard stopped and all user files restored",
     "Fact probe incorrectly assumed equal parents and then blank editor parents; distinct original success checkpoints retained in corrected6 actual events",
     "Audio lifecycle acceptance caller misspelled existing UIUX PASS marker; original false wrapper report retained; rerun separate",
-    "PCM checker initial fixed0.02 gain floor rejected quiet real mixer; replaced with8 PCM quantization steps and strict full waveform fit"
+    "PCM checker initial fixed0.02 gain floor rejected quiet real mixer; replaced with8 PCM quantization steps and strict full waveform fit",
+    "Portrait gzip asset unpacked/renamed by Android asset merge; initial missing manifest test restored all user files; fixed explicit JSON path"
   ],
   "portraitIndexAccepted": true,
   "rejectedPortraitMappingNote": "REJECTED_PORTRAIT_INDEX.md",
@@ -285,8 +322,8 @@
   "factSharedHostPatchApplied": false,
   "factSharedHostPatchSourceCommit": "2910997516cec8aad4d0564688f6090e944eddc8",
   "factSharedHostPatchCompiled": true,
-  "latestIntermediateApkSha256": "0c03d8240155347097f36881228b13d27450cd79e6b3747a581d1ddfb1673f28",
-  "latestIntermediateSourceCommit": "23fa59d",
+  "latestIntermediateApkSha256": "b9a447c514aa6e97cf92b1851029773fa8093eaa5841af0111fa7093de846e95",
+  "latestIntermediateSourceCommit": "b238c361",
   "latestMediaToolCommit": "f11735db275b2cd519bc59f137fa44d4defafc3b",
   "stagedOriginalMusicTracks": 30,
   "stagedOriginalMusicBytes": 42745612,
@@ -302,5 +339,12 @@
   "musicSharedFocusIntegrated": false,
   "musicStreamFirstWriteMillis": 138,
   "musicStreamActualMixCorrelation": 0.9999978802621599,
-  "latestCommittedMetadataAvailable": "9e171f2"
+  "latestCommittedMetadataAvailable": "9e171f2",
+  "stagedOriginalPortraitImages": 2892,
+  "stagedOriginalPortraitBytes": 121901058,
+  "portraitBitmapCacheBytesLimit": 16777216,
+  "portraitDecoderWorkerQueueLimit": 32,
+  "portraitHostPatchSourceCommit": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "portraitHostPatchCompiled": true,
+  "portraitHostPatchApplied": false
 }

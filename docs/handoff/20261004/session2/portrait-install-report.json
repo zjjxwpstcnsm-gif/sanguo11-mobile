@@ -1,0 +1,35 @@
+{
+  "serial": "emulator-5582",
+  "runner": "PortraitPixelsInstrumentation",
+  "arguments": [],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/portrait-frozen-02/app-debug.apk": "b9a447c514aa6e97cf92b1851029773fa8093eaa5841af0111fa7093de846e95",
+    "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/portrait-frozen-02/app-debug-androidTest.apk": "14f43ca05558b1f1bc846d91125f020548289f14c43ca98a327557ed992b1512"
+  },
+  "backup": {
+    "files/auto.sg11": {
+      "bytes": 185898,
+      "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    },
+    "files/manual3.sg11": {
+      "bytes": 185898,
+      "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    }
+  },
+  "passed": true,
+  "stage": "finished",
+  "reused_installed": false,
+  "installed_test_sha256": "14f43ca05558b1f1bc846d91125f020548289f14c43ca98a327557ed992b1512",
+  "installed_sha256": "b9a447c514aa6e97cf92b1851029773fa8093eaa5841af0111fa7093de846e95",
+  "exit_code": 0,
+  "seconds": 16.76,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "files/portrait-pixels.json"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  }
+}

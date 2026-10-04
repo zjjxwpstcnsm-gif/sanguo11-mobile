@@ -1,0 +1,9 @@
+INSTRUMENTATION_RESULT: portraitPixels=FAIL java.io.FileNotFoundException: portraits/pc/media-manifest.json.gz
+	at android.content.res.AssetManager.nativeOpenAsset(Native Method)
+	at android.content.res.AssetManager.open(AssetManager.java:824)
+	at android.content.res.AssetManager.open(AssetManager.java:801)
+	at game.sanguo.mobile.PcPortraitCatalog.<init>(Unknown Source:35)
+	at game.sanguo.mobile.PortraitPixelsInstrumentation.onStart(PortraitPixelsInstrumentation.java:28)
+	at android.app.Instrumentation$InstrumentationThread.run(Instrumentation.java:2189)
+
+INSTRUMENTATION_CODE: 0
