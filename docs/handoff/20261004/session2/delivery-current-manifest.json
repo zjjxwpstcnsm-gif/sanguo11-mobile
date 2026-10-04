@@ -1,9 +1,9 @@
 {
-  "sourceCommit": "e4e192b766518f7c41b626e9e63af8ad30d7c499",
-  "archive": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/delivery-10/sanguo11-portrait-audio-source.tar.gz",
-  "archiveSha256": "3418e5f74847817d88bc944b0e4aabfee673ad5ae8444120c75c02cf47e8ab7e",
-  "archiveBytes": 423950515,
-  "sourceFiles": 7537,
+  "sourceCommit": "1a82ae631c2ab3585ca43cd4e26fb7067615b5db",
+  "archive": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/delivery-11/sanguo11-portrait-audio-source.tar.gz",
+  "archiveSha256": "894017c2995204f183a95561e74fdddb2eeb3ec54df32adbc41cfba8b16a713c",
+  "archiveBytes": 441092769,
+  "sourceFiles": 9572,
   "sourceEntriesByteEqual": true,
   "allTrackedFilesIncluded": true,
   "allFourIgnoredJniIncluded": true,
@@ -29,6 +29,6 @@
       "sha256": "666715939859210fc8ab39bcf73bf686a7c74199387d24feb10e7650d49f7434"
     }
   ],
-  "mainApkSha256": "c492fa9e2e1a729f6071f7705283bca9accce87b85caf523cbce068e94147cb2",
+  "mainApkSha256": "e0fa3eda0898ca0966bc8f9ac19ead453f731d8b42c5d3ccf3371b86470344b3",
   "goalComplete": false
 }
