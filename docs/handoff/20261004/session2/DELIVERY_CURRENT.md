@@ -20,6 +20,6 @@
 
 原取消UI sound1正常BACK证据属于旧批20，不能移用成新包该路径也完成PCM验收。旧批19明确track/profile共享音乐语音adapter、ducking及PCM属于旧包，仍不是普通音乐/语音绑定。批21–23完整原主将/能力/有效性、显示选择和记录初始化来源工具已保留；两种原随机源均未执行或接入规则，原动作/选择/有效性契约仍见MEDIA_INPUT_CONTRACT.md。
 
-普通BGM和人物voice正常绑定仍0；30原音乐/1997原voice及音效来源/转换/播放基础在源码中，但不是完整正常还原。原caller形态、MOD生效优先级、多回合头像/声音组合、完整原SFX、原连续表现/性能及ARM/手机扬声器证据继续未完成。不会静默标为移动端简化。
+普通菜单BGM正常绑定1，普通地图BGM和人物voice正常绑定仍0；30原音乐/1997原voice及音效来源/转换/播放基础在源码中，但不是完整正常还原。原caller形态、MOD生效优先级、多回合头像/声音组合、完整原SFX、原连续表现/性能及ARM/手机扬声器证据继续未完成。不会静默标为移动端简化。
 
 完整源码归档已在 `out/media/delivery-24/` 验证：截点b6180576e731c942d6d13808d0becdf8622281fe，9858文件及四JNI逐份一致，470353025字节，SHA `79378e4c6a48b6b00fefdd7945cea1724ae0b6860a32a72e184dc92b5ca733a5`。77路径增量SHA守卫在delta-guards.json；包含新QA的最终归档为 `out/media/delivery-24-final/sanguo11-portrait-audio-source.tar.gz`，截点7ca62580868d405fccd35579d3b8a0783e78d021，9866文件及四JNI逐份一致，471578059字节，SHA `fa7a3077a434ae1d00dfbb0fdfcfaeea233f4a57468b4bde6915f6028b568cc2`。本交付指针更新在归档截点之后；不影响归档内实现/新QA与当前APK的对应。旧包和旧归档全部保留。
