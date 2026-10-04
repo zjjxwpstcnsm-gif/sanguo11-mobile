@@ -802,5 +802,24 @@
     "strict_presentations_seconds": 650.26,
     "strict_presentations_original_files_exact": true,
     "host_wall_clock_jump_observed": true
+  },
+  "r36_source_facilities": {
+    "status": "source plot2136/category64 and completion242/setter122 reproduced twice; no Android rule change",
+    "development_plot_cases": 2136,
+    "development_categories": 64,
+    "completion_boundary_cases": 242,
+    "completion_setter_cases": 122,
+    "full_world_grid_rng_guards": true,
+    "same_twice": true,
+    "sha256": {
+      "development-plot-native.json": "a235897b6258d33092486ce94ffdd775c32e1300a6b4f0951cb94b4fac06d4cd",
+      "development-plot-native.json.gz": "9993e4432cb0bf169a5f9026a3f64f505a30d9f16ca443ff0357b0538b3c2a35",
+      "facility-completion-native.json": "e5fa00b85e65ae15ba450645bfb5bfc38413799b8146d164973c3ac903bdbb0e",
+      "facility-completion-native.json.gz": "92d752e8b6d280c7f5340b4b468215a6968e84edc3ed95be4a5ba64fa428a6c7"
+    },
+    "full_construction_flow_verified": false,
+    "android_rule_changed": false,
+    "failed_unsigned_and_greater_equal_probe_assumptions_preserved": true,
+    "current_live_device_job": "r35-native37-longrun24"
   }
 }
