@@ -405,8 +405,188 @@
     "newCombinedNormalPortraitFlowChecks": 324153,
     "newCombinedPc33PcmCorrelation": 0.9999995511763713,
     "newCombinedInstalledApkSha256": "c492fa9e2e1a729f6071f7705283bca9accce87b85caf523cbce068e94147cb2",
-    "newCombinedAllUserFilesRestored": true
+    "newCombinedAllUserFilesRestored": true,
+    "notEquivalentToTacticOrdinal": true,
+    "originalRecordFieldChecks": 6
   },
-  "latestInstalledApkSha256": "c492fa9e2e1a729f6071f7705283bca9accce87b85caf523cbce068e94147cb2",
-  "latestInstalledSourceCommit": "11196a670ae7c84ab27eb49bf0418a0ed3ee4e3d"
+  "latestInstalledApkSha256": "e0fa3eda0898ca0966bc8f9ac19ead453f731d8b42c5d3ccf3371b86470344b3",
+  "latestInstalledSourceCommit": "7bec08f87d728b15987708606100067cbfe0dc61",
+  "originalVoiceSources": {
+    "result": "PASS_CODEC_SOURCE_EVIDENCE",
+    "sourceVoices": 1997,
+    "approvedIdentityJoins": 10656,
+    "voiceOggBytes": 24291347,
+    "actualAndroidAllSourceEosEqual": true,
+    "actualAndroidAllTwoPassPcmHashesEqual": true,
+    "pcmCompared": 1997,
+    "currentChecks": 27317,
+    "sourcePcmNativeParityAccepted": false,
+    "normalVoicePlaybackAccepted": false,
+    "decodeMillis": {
+      "median": 64,
+      "p95": 130,
+      "max": 441
+    },
+    "resources": [
+      {
+        "index": 0,
+        "pssKb": 172120,
+        "fdCount": 47,
+        "nativeThreadCount": 16,
+        "javaUsedBytes": 54384848
+      },
+      {
+        "index": 100,
+        "pssKb": 54401,
+        "fdCount": 47,
+        "nativeThreadCount": 16,
+        "javaUsedBytes": 14657128
+      },
+      {
+        "index": 200,
+        "pssKb": 53963,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 14846672
+      },
+      {
+        "index": 300,
+        "pssKb": 53995,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 15455400
+      },
+      {
+        "index": 400,
+        "pssKb": 50369,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 11021456
+      },
+      {
+        "index": 500,
+        "pssKb": 51368,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 12705920
+      },
+      {
+        "index": 600,
+        "pssKb": 50988,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 15046328
+      },
+      {
+        "index": 700,
+        "pssKb": 51874,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 15905096
+      },
+      {
+        "index": 800,
+        "pssKb": 48918,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 11268472
+      },
+      {
+        "index": 900,
+        "pssKb": 49542,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 12144848
+      },
+      {
+        "index": 1000,
+        "pssKb": 50080,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 12916792
+      },
+      {
+        "index": 1100,
+        "pssKb": 50690,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 13775048
+      },
+      {
+        "index": 1200,
+        "pssKb": 50949,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 14093976
+      },
+      {
+        "index": 1300,
+        "pssKb": 51109,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 14256072
+      },
+      {
+        "index": 1400,
+        "pssKb": 51874,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 15443368
+      },
+      {
+        "index": 1500,
+        "pssKb": 52714,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 16632992
+      },
+      {
+        "index": 1600,
+        "pssKb": 50282,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 12814216
+      },
+      {
+        "index": 1700,
+        "pssKb": 51936,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 15398328
+      },
+      {
+        "index": 1800,
+        "pssKb": 52776,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 16540816
+      },
+      {
+        "index": 1900,
+        "pssKb": 52748,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 16769856
+      },
+      {
+        "index": 1997,
+        "pssKb": 52660,
+        "fdCount": 47,
+        "nativeThreadCount": 17,
+        "javaUsedBytes": 16305272
+      }
+    ],
+    "unresolvedPyavFrameDifferences": 172,
+    "noImplicitTrimOrPad": true,
+    "limitations": [
+      "Actual Android codec buffers, not actual mixer playback or normal event binding",
+      "PCM integer quantization vs PyAV differs; PC native decoder not measured",
+      "Stable47 FDs and16..17 native threads before exit; PSS samples include test catalog/JSON allocations"
+    ],
+    "sourceCommit": "7bec08f87d728b15987708606100067cbfe0dc61",
+    "apkSha256": "e0fa3eda0898ca0966bc8f9ac19ead453f731d8b42c5d3ccf3371b86470344b3",
+    "normalPortraitSaveExitChecks": 324153,
+    "normalPc33PcmCorrelation": 0.9999995446479859,
+    "allUserFilesRestoredByteEqual": true
+  }
 }

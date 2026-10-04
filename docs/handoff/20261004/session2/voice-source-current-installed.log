@@ -1,0 +1,3 @@
+INSTRUMENTATION_RESULT: maximumDecodeMillis=441
+INSTRUMENTATION_RESULT: voiceSource=VOICE_SOURCE PASS checks=27317 samples=1997; source/codec evidence, no normal playback/timeline parity claim
+INSTRUMENTATION_CODE: -1
