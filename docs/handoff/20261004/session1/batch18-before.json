@@ -1,0 +1,24 @@
+{
+  "parentCommit": "32ec3922cbd7bf4fbd831a2c43960317fb24d314",
+  "inheritedFilesPreserved": 4699,
+  "frozenInputsUnchanged": 1024,
+  "productionIntegrationDeferred": true,
+  "changes": [
+    {
+      "path": "docs/handoff/20261004/session1/NEXT.md",
+      "beforeSha256": "5f6259761dd702a9608f23e3c085c8eef6f26820eef787a0145e5bf255b7bd34",
+      "sha256": "1b043fe4c5a347c7a4eb613267793c9541d988fcf444a06287722ca2b1b0a2c9"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "beforeSha256": "fc3664716fd9edfefaccf03e473f1795ea94f740d9ebaabec73332749d8f0a26",
+      "sha256": "8ee8be8c1eb87a290019ed34e02e1bfa208b49cd2cad6cbceac789b1b6f895ca"
+    },
+    {
+      "path": "tools/content/export_pc_debate_verification.py",
+      "beforeSha256": "1eb23402c2299c813a9cf78dc04363f1ada932e06ec1a46980fbe7a45626d72b",
+      "sha256": "834fbe9a60b27e5addec0811c4979f5e4dfb5c4d5337e34a96488e6cacd39323"
+    }
+  ],
+  "completeGoal": false
+}

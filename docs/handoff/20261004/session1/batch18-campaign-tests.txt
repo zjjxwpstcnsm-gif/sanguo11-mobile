@@ -1,0 +1,2 @@
+Source actor/target 韓當/笮融 city=20008 targetCity=20008 owner=2/-1
+PASS PcDebateCampaignTest actual source authority trigger, 15 typed player inputs/full World dual-RNG matches/stale rejects/cold Session restores; original settlement, effective books and installed APK pending

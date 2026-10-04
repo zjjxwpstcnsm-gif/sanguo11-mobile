@@ -1,0 +1,95 @@
+{
+  "baseCommit": "08035edaa07437c3a7bc94122da824bc5a31bf8e",
+  "checkpointManifestSha256": "d360492be888ef1a53fd0d2c87ccc183a92dcd035a8474baf1f61e142729badf",
+  "inheritedFiles": 4685,
+  "patchSha256": "0840ed33c7d3b403f267391af81131f16af70e32f42330cee43c8227bbfdddda",
+  "changes": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/Contests.java",
+      "beforeSha256": "3b96f8b6fbbec69ea08a1de353a274a0a546b4a6040fb9ab0469e2b51e553134",
+      "sha256": "bd692e7626246be7205479802c8ed420781c05b59b7f19c6c7172915f4b9da27",
+      "new": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/ContestSave.java",
+      "beforeSha256": "6b9ef8e7b3e876bdc4ac8ddc0d6453a44ca4de80d98111d99d525f733375cda5",
+      "sha256": "8206afec3abe9302c86a3194b4b117941ceb35988fa0dbf9f92dfbafa0dbdbb6",
+      "new": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "beforeSha256": "d3cd6c0c5cc90ff33297d9d390ab1d5af57aaa6230227281745674bce103af61",
+      "sha256": "05af6dcb623707d69c713e521cc4bdc56687b9d012c8f63a5bfa730e03c63b31",
+      "new": false
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcNativeDebatePolicy.java",
+      "beforeSha256": null,
+      "sha256": "139ca589191078e9319e88f096ecafb64f95d7032096e23aa856717f34de03e7",
+      "new": true
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateCampaign.java",
+      "beforeSha256": null,
+      "sha256": "91048a9cefd85d387a0a3352f347c6946b0df4d10a7f4aa8c4ffa503118574c8",
+      "new": true
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcDebateCampaignTest.java",
+      "beforeSha256": null,
+      "sha256": "b26edb17a9ded779411173f1f15cf82a70de3f8082878b06c37f232e4973a5b8",
+      "new": true
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcDebateCampaignColdTest.java",
+      "beforeSha256": null,
+      "sha256": "52e5830170256f6cba8a6418a6ca7c7fcd2d1d9dc947c9c31024e5b94c3fecce",
+      "new": true
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/GameApi.java",
+      "beforeSha256": "b3b09de5e36dbce68c61a621125a0fc3702bf5630643fd57b4c74c68f66a2267",
+      "sha256": "cd53aa6168acd1ec0e492e4cdb70cc75d624650173bad103ad15c93da8195808",
+      "new": false
+    },
+    {
+      "path": "game-api/src/main/java/game/sanguo/api/ContestSnapshot.java",
+      "beforeSha256": null,
+      "sha256": "46b39c7e9b6e3b12df21333211a9601a1e1d7e782d4ca6650f92748e9bd2a126",
+      "new": true
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/GameSession.java",
+      "beforeSha256": "25e86250575a739f56c129a5ef4a67f16d3ebea5187a14676a2caf440c289f0d",
+      "sha256": "4ba5ad5cdabef347c9632a2d9a5fb50978d383e20f55e61c3267d4063862fb22",
+      "new": false
+    },
+    {
+      "path": "game-runtime/src/main/java/game/sanguo/runtime/query/ContestQuery.java",
+      "beforeSha256": null,
+      "sha256": "cbf210789ef81da381bcddc2939a0e81ed30c95adb5110b50aee9de95fada708",
+      "new": true
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcDebateQueryTest.java",
+      "beforeSha256": null,
+      "sha256": "c185b8b3c7cb94e2187ca6e5f5c42571431f5462b3ff8865c32c9f5f4130713a",
+      "new": true
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MainActivity.java",
+      "beforeSha256": "30f50ddf15634c140ef5a85de449fe3a3c0fc0c8bb8ec81a9f87f778f154425a",
+      "sha256": "d03b8f02155b5d7094891032f9c5b63ba94406bbc36dcedf2b7d61c79f78ce26",
+      "new": false
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/ContestUi.java",
+      "beforeSha256": "bb5498db5d864a2a349e033eb27259323c6ce9f1016440c01db899154a1ec121",
+      "sha256": "5616f8a05196903174029dd84d514f80280be57745bc25a99f4da87af8d436da",
+      "new": false
+    }
+  ],
+  "prototypeOnly": true,
+  "appliedToBranchProduction": false,
+  "completeGoal": false
+}

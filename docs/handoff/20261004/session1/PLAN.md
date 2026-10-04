@@ -123,3 +123,7 @@ Batch16追加原type4队列：执行51c2c0真实prologue至51c346，保留原51c
 确切验证副本范围：core/PcDebateCampaign.java、PcNativeDebatePolicy.java及Contests.java/ContestSave.java/SaveCodec.java；核心事实出口PcDebateCampaign的不可变Facts，后续game-api/ContestSnapshot.java、GameApi.java、runtime/GameSession.java/query/ContestQuery.java及app/ContestUi.java仅原文字/按钮接口。实际本轮先接core/Save/已有真实GameSession命令边界，用独立game-runtime/PcDebateCampaignTest.java执行完整保存与token/重复/查询不耗RNG验证。版本39只属于显式启用原数值模式的来源新局；已有31–38/v34–37保持原保存策略和原对局。旧工程Debate不改、不以proxy填充原模型。原战役结算和完整GUI分支未核实前，验证副本不得默认投放所有新局，不假装原登用/奖励已经实现。
 
 Batch17确切新增工具还有tools/content/export_pc_debate_verification.py、apply_pc_debate_verification_patch.py；确切新增独立进程完整世界测试game-runtime/src/test/java/game/sanguo/core/PcDebateCampaignColdTest.java，均随7路径delta封存。apply工具拒绝生产路径，5554原核验完毕前只应用out/session1的完整校验副本。
+
+## Batch18：统一对局DTO与正常页面
+
+前提交32ec3922；继续验证副本integration17/source的已核实World39接入，冻结设备输入暂不编辑生产。确切新增game-api/src/main/java/game/sanguo/api/ContestSnapshot.java、runtime/query/ContestQuery.java、runtime测试PcDebateQueryTest.java；修改GameApi.java、GameSession.java的纯query入口、PcDebateCampaign.java的不可变原输入事实，app/MainActivity.java仅新增contestSnapshot读取入口，app/ContestUi.java仅原文字/typed按钮分支。不改媒体、Bridge或新旧结算。API/UI同token/contestId/revision，由core产出合法性而非客户端重复原规则。后续增量与batch17合成可复现patch，完整原资源/168固定输入/4JNI及生产冻结1024项不变。原人控/关系/书籍/先手/当前>100/原结算仍待闭合，不默认启用未完整策略。
