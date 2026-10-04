@@ -6,6 +6,7 @@ import game.sanguo.api.TechniquePointsFact;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.LinkedHashSet;
 
 /** Serial presentation queue. Never reads World, runs commands, or reconstructs a missing fact. */
 final class TechniqueFactQueue {
@@ -17,6 +18,7 @@ final class TechniqueFactQueue {
     }
     private final int capacity;
     private final ArrayDeque<Pending> pending=new ArrayDeque<>();
+    private final LinkedHashSet<String> skippedParents=new LinkedHashSet<>();
     private StateToken state;
     private int owner=-1;
     private long watermark;
@@ -29,16 +31,16 @@ final class TechniqueFactQueue {
     /** A snapshot sets the barrier but cannot replay facts. Same-identity refresh preserves pending phases. */
     void baseline(StateToken next,int side){
         if(stale(next))return;
-        if(!identity(next,side)){pending.clear();watermark=next.revision;resync=false;}
+        if(!identity(next,side)){pending.clear();skippedParents.clear();watermark=next.revision;resync=false;paused=false;}
         else watermark=Math.max(watermark,next.revision);
         state=next;owner=side;
     }
     /** Explicit snapshot recovery after overflow; retains the watermark so the failed batch stays silent. */
-    void resynchronize(StateToken next,int side){if(stale(next))return;baseline(next,side);pending.clear();resync=false;}
+    void resynchronize(StateToken next,int side){if(stale(next))return;baseline(next,side);pending.clear();skippedParents.clear();resync=false;}
     void foreground(boolean value){foreground=value;if(!value)pending.clear();}
     void paused(boolean value){paused=value;}
     void discard(){pending.clear();}
-    void close(){pending.clear();state=null;owner=-1;foreground=false;resync=false;paused=false;}
+    void close(){pending.clear();skippedParents.clear();state=null;owner=-1;foreground=false;resync=false;paused=false;}
     boolean needsResync(){return resync;}
     int size(){return pending.size();}
     private Result invalid(){pending.clear();resync=true;return Result.RESYNC;}
@@ -59,7 +61,7 @@ final class TechniqueFactQueue {
                 ||!fact.id.equals(fact.parentId+":technique:"+fact.sequence)||fact.sequence<=sequence
                 ||fact.before<0||fact.after<0||fact.before==fact.after
                 ||(long)fact.after-fact.before!=fact.delta)return invalid();
-            sequence=fact.sequence;if(fact.owner==side)selected.add(fact);
+            sequence=fact.sequence;if(fact.owner==side&&!skippedParents.contains(fact.presentationParentId))selected.add(fact);
         }
         // Background commits are consumed silently; returning to foreground never replays them.
         if(!foreground)return Result.ACCEPTED;
@@ -73,7 +75,11 @@ final class TechniqueFactQueue {
         for(Pending item:pending)if(item.fact.presentationParentId.equals(parent))item.ready=true;
     }
     /** Skipping a phase discards transient media; it does not manufacture success or play deferred audio. */
-    void skipPresentation(String parent){if(parent!=null&&!parent.isEmpty())pending.removeIf(item->item.fact.presentationParentId.equals(parent));}
+    void skipPresentation(String parent){
+        if(parent==null||parent.isEmpty())return;
+        skippedParents.add(parent);pending.removeIf(item->item.fact.presentationParentId.equals(parent));
+        if(skippedParents.size()>capacity){skippedParents.clear();invalid();}
+    }
     TechniquePointsFact poll(){
         if(!foreground||paused||resync||pending.isEmpty()||!pending.peekFirst().ready)return null;
         return pending.removeFirst().fact;

@@ -74,6 +74,10 @@ public final class TechniqueFactsInstrumentation extends SceneInstrumentation {
         check(hud.rolls==initialRolls+4&&shown()==2000&&heard(third.techniquePointsFacts.get(0).id)&&heard(third.techniquePointsFacts.get(1).id),"resume consumes each retained fact once");
         runOnMainSync(()->{hud.pauseFacts(true);hud.pauseFacts(false);hud.releasePresentation(thirdPhase);});SystemClock.sleep(500);
         check(hud.rolls==initialRolls+4&&Arrays.equals(SaveCodec.encode(control),capture()),"repeated pause/resume never replays; full Save/RNG unchanged");
+        zeroNet();GameEvent fourth=observed.get(3);String fourthPhase=fourth.techniquePointsFacts.get(0).presentationParentId;
+        runOnMainSync(()->{hud.releasePresentation(fourthPhase);hud.skipPresentation(fourthPhase);});SystemClock.sleep(650);
+        check(hud.rolls==initialRolls+4&&!heard(fourth.techniquePointsFacts.get(0).id)&&!heard(fourth.techniquePointsFacts.get(1).id),"skip before scheduled frame cancels current and pending fact without sound");
+        check(Arrays.equals(SaveCodec.encode(control),capture()),"skip changes presentation only, entire Save/RNG unchanged");
         runOnMainSync(()->{SessionProbe.install(activity,control);activity.refresh();hud.releasePresentation(phase);});SystemClock.sleep(500);
         check(hud.rolls==initialRolls+4&&shown()==2000&&Arrays.equals(SaveCodec.encode(control),capture()),"real restore resets generation without replay");
         result.putString("stream","PASS TECHNIQUE FACTS "+checks+" checks; installed normal3D HUD with temporary readonly event/phase test adapter; shared host integration pending\n");

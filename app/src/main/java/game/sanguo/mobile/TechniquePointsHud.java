@@ -19,10 +19,11 @@ final class TechniquePointsHud {
     private final TechniqueFactQueue facts=new TechniqueFactQueue();
     private boolean factsMode,factsPaused;
     private int committedPoints;
+    private TechniquePointsFact activeFact;
     int rolls;
     TechniquePointsHud(TextView badge,java.util.function.BiConsumer<String,Boolean> sound){this.badge=badge;this.sound=sound;}
     private void show(int value){displayed=value;badge.setText("技巧\n"+value);}
-    private void cancelMotion(){if(startFrame!=null){badge.removeCallbacks(startFrame);startFrame=null;}if(animator!=null){ValueAnimator old=animator;animator=null;old.cancel();}}
+    private void cancelMotion(){activeFact=null;if(startFrame!=null){badge.removeCallbacks(startFrame);startFrame=null;}if(animator!=null){ValueAnimator old=animator;animator=null;old.cancel();}}
     private void settle(){cancelMotion();pending=false;show(target);}
     void foreground(boolean value){foreground=value;facts.foreground(value);if(!value)discardPending();}
     void discardPending(){facts.discard();if(factsMode)target=committedPoints;settle();}
@@ -61,7 +62,7 @@ final class TechniquePointsHud {
     void syncFactsBaseline(StateToken next,int side,int points){
         boolean changed=state==null||!state.sessionId.equals(next.sessionId)||state.generation!=next.generation||player!=side;
         if(staleBaseline(next))return;
-        if(!factsMode||changed){cancelMotion();pending=false;}
+        if(!factsMode||changed){cancelMotion();pending=false;factsPaused=false;facts.paused(false);}
         factsMode=true;facts.baseline(next,side);state=next;player=side;committedPoints=points;
         if(changed||animator==null&&startFrame==null&&facts.size()==0){target=points;show(points);}
         pumpFacts();
@@ -78,7 +79,11 @@ final class TechniquePointsHud {
         &&(next.generation<state.generation||next.generation==state.generation&&next.revision<state.revision);}
     void resynchronizeFacts(StateToken next,int side,int points){if(staleBaseline(next))return;discardPending();facts.resynchronize(next,side);syncFactsBaseline(next,side,points);}
     void releasePresentation(String parent){facts.releasePresentation(parent);pumpFacts();}
-    void skipPresentation(String parent){facts.skipPresentation(parent);pumpFacts();}
+    void skipPresentation(String parent){
+        facts.skipPresentation(parent);
+        if(activeFact!=null&&activeFact.presentationParentId.equals(parent)){cancelMotion();target=committedPoints;show(target);}
+        pumpFacts();
+    }
     void pauseFacts(boolean value){
         factsPaused=value;facts.paused(value);
         if(animator!=null){if(value)animator.pause();else animator.resume();}
@@ -87,18 +92,18 @@ final class TechniquePointsHud {
     private void pumpFacts(){
         if(!factsMode||!foreground||factsPaused||animator!=null||startFrame!=null)return;
         TechniquePointsFact fact=facts.poll();if(fact==null)return;
-        show(fact.before);target=fact.after;
+        activeFact=fact;show(fact.before);target=fact.after;
         startFrame=()->{
             if(factsPaused&&foreground){badge.postDelayed(startFrame,60);return;}
             startFrame=null;if(!foreground)return;
             sound.accept(fact.id,fact.delta>0);rolls++;
             badge.setContentDescription("本势力技巧点 "+fact.after+" 点，变化 "+(fact.delta>0?"+":"")+fact.delta);
-            if(!UiMotion.enabled()){show(fact.after);pumpFacts();return;}
+            if(!UiMotion.enabled()){activeFact=null;show(fact.after);pumpFacts();return;}
             ValueAnimator motion=ValueAnimator.ofInt(fact.before,fact.after);animator=motion;
             motion.setDuration(550);motion.setInterpolator(new android.view.animation.DecelerateInterpolator());
             motion.addUpdateListener(a->show((Integer)a.getAnimatedValue()));
             motion.addListener(new android.animation.AnimatorListenerAdapter(){
-                @Override public void onAnimationEnd(android.animation.Animator animation){if(animator==motion){animator=null;pumpFacts();}}
+                @Override public void onAnimationEnd(android.animation.Animator animation){if(animator==motion){activeFact=null;animator=null;pumpFacts();}}
             });motion.start();
         };
         badge.postOnAnimation(startFrame);

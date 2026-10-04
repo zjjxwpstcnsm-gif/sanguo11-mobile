@@ -59,6 +59,12 @@ public final class TechniqueFactQueueTest {
         pauseQueue.paused(true);check(pauseQueue.committed(batch(1,1,"paused-phase"),0)==TechniqueFactQueue.Result.ACCEPTED,"paused commit retained");
         pauseQueue.releasePresentation("paused-phase");check(pauseQueue.poll()==null,"paused phase silent");
         pauseQueue.paused(false);check(pauseQueue.poll()!=null&&pauseQueue.poll()==null,"resume once");
+        var lateQueue=new TechniqueFactQueue(2);lateQueue.baseline(token(1,0),0);lateQueue.foreground(true);
+        lateQueue.skipPresentation("finished-before-commit");lateQueue.committed(batch(1,1,"finished-before-commit",""),0);
+        check(lateQueue.poll().sequence==2&&lateQueue.poll()==null,"late committed fact at discarded phase neither blocks nor replays");
+        lateQueue.skipPresentation("a");lateQueue.skipPresentation("b");check(lateQueue.needsResync(),"phase history overflow explicit");
+        lateQueue.resynchronize(token(1,1),0);lateQueue.baseline(token(2,0),0);lateQueue.committed(batch(2,1,"finished-before-commit"),0);
+        lateQueue.releasePresentation("finished-before-commit");check(lateQueue.poll()!=null,"new generation clears old skipped phases");
         queue.committed(batch(1,2,"skipped",""),0);queue.skipPresentation("skipped");
         check(queue.poll().sequence==2&&queue.poll()==null,"skip suppresses only its transient sound");
         queue.committed(batch(1,3,"paused"),0);queue.foreground(false);queue.releasePresentation("paused");queue.foreground(true);
