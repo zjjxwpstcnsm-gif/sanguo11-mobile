@@ -98,11 +98,11 @@ final class SoundEffects {
     private void play(Cue cue){
         Integer sample=samples.get(cue);
         if((effectsPaused&&battleCue(cue))||pool==null||foreground.isEmpty()||muted()||volume()==0||sample==null||!ready.contains(sample)||!focus())return;
-        float gain=volume()/100f*(ducked?.2f:1f)*(voiceDucking?.7f:1f);int stream=pool.play(sample,gain,gain,cue==Cue.CRITICAL?2:1,0,1);
-        if(stream!=0){played++;streams.add(stream);if(battleCue(cue))battleStreams.add(stream);SoundPool owner=pool;handler.postDelayed(()->expireStream(stream,owner),1200);Log.i("GameAudio","PLAY cue="+cue+" stream="+stream+" count="+played);}
+        float gain=volume()/100f*(ducked?.2f:1f);if(voiceDucking)gain*=.7f;int stream=pool.play(sample,gain,gain,cue==Cue.CRITICAL?2:1,0,1);
+        if(stream!=0){played++;streams.add(stream);if(battleCue(cue))battleStreams.add(stream);SoundPool owner=pool;handler.postDelayed(()->expireStream(stream,owner),1200);Log.i("GameAudio","PLAY cue="+cue+" stream="+stream+" count="+played+" gain="+gain+" focused="+focused+" focusKind="+focusKind+" ducked="+ducked+" voiceDucking="+voiceDucking+" sourceMedia="+(sourceMedia!=null));}
         else Log.w("GameAudio","play rejected cue="+cue);
     }
-    private void updateStreams(){if(pool!=null){float gain=volume()/100f*(ducked?.2f:1f)*(voiceDucking?.7f:1f);for(int id:streams)pool.setVolume(id,gain,gain);}}
+    private void updateStreams(){if(pool!=null){float gain=volume()/100f*(ducked?.2f:1f);if(voiceDucking)gain*=.7f;for(int id:streams)pool.setVolume(id,gain,gain);}}
     private void stopStreams(){if(pool!=null)for(int id:streams)pool.stop(id);streams.clear();battleStreams.clear();}
     private void stop(){stopStreams();focusEpoch++;if(manager!=null&&focusRequest!=null)manager.abandonAudioFocusRequest(focusRequest);focusRequest=null;focused=false;ducked=false;if(sourceMedia!=null)sourceMedia.focus(false,false);}
     private void release(){stop();if(sourceMedia!=null){sourceMedia.close();sourceMedia=null;}if(noisyRegistered){context.unregisterReceiver(noisy);noisyRegistered=false;}handler.removeCallbacksAndMessages(null);if(pool!=null){pool.release();pool=null;}ready.clear();samples.clear();Log.i("GameAudio","RELEASE");}
