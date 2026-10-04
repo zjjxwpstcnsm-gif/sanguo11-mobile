@@ -11,6 +11,7 @@ import wave
 import numpy as np
 
 ROOT=Path(__file__).resolve().parents[2]
+PC33_SHA256='1cf7d3edbf967ac7f7123fdb2f91a54714827520abce2ced13c4a70610909f78'
 def read(path):
     with wave.open(str(path)) as stream:
         if stream.getsampwidth()!=2:raise ValueError('Expected original/native16-bit PCM')
@@ -19,6 +20,7 @@ def read(path):
         return rate,signal.reshape(-1,stream.getnchannels()).mean(axis=1)/32768
 def verify(capture,minimum):
     source=ROOT/'app/src/main/assets/audio/pc/technique-33.wav'
+    if hashlib.sha256(source.read_bytes()).hexdigest()!=PC33_SHA256:raise ValueError('Original native HUD33 sample changed; re-audit source binding')
     rate,signal=read(capture);source_rate,template=read(source)
     if rate!=source_rate:raise ValueError('Unexamined sample-rate conversion')
     tap=np.arange(-32,33);kernel=np.sinc(tap*.1)*np.hamming(len(tap));kernel/=kernel.sum()
