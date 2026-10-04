@@ -17,3 +17,5 @@ field14只是本次明确输入的零／非零分流，尚未证明其全部耐�
 严格演示运行中已采集只读线程诊断：Instr等待pausedStageReady／criticalBackdrop的主线程同步，主线程位于HardwareRenderer绘制，RenderThread等待工作；这不是已复现的core规则死锁。保留trace_09与live-thread-log，不改app文件、不降低背景颜色或时限断言；最终结果须等原runner恢复结束。
 
 最终版本另加512次原精确存在查询，覆盖64ID／两模式／四状态；修正存在函数字节采集终点到49db0e，保留先前两次查询输出历史。最终版二次完整输出全等。
+
+同d318严格全部演示最终1914项／报告650.26秒PASS，原7私有文件exact恢复，无新增文件；实际安装主包／测试包readback匹配固定SHA。保留完整s01原报告及画面（报告目录包含历史追加，结论以本次独立instrumentation.txt为准）。宿主墙钟出现跳变，不把耗时扩大为性能结论。原GPU层、严格背景颜色、提交后的完整状态／RNG／保存、暂停／4x／跳过／释放断言保留；原全屏lens／MOD／encodedblend仍未闭合。随后24旬native37正常UI及存档续行开始，未预记通过。
