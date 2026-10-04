@@ -80,7 +80,7 @@ def inspect(installation,output):
         limits=['Predicate return values are explicit shims, not reconstructed gameplay conditions.',
             'Season raw0..3 maps to music3..6; season labels/month derivation and normal map scene identity still require proof.',
             'Selector emits default volume sentinel-1, repeat1 and500ms fade; backend captured rather than played.',
-            'Menu calls6907a4 map unresolved source flag9c57074==1 to16 and other values to12; do not choose a mobile menu track from this alone.'])
+            'Unresolved scene call6907a4 maps source flag9c57074==1 to16 and other values to12; scene role not proven, do not label it menu or choose a mobile track from this alone.'])
     output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(report,indent=2)+'\n');print('PASS original music selector/switch checks=',checks)
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('installation',type=Path);p.add_argument('--output',type=Path,required=True)
