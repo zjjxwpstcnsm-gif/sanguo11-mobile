@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "vectors": 8240,
+  "nativeReportSha256": "ade70a620a30e752a6d7c903c5fa93f6d09a82432baffeb3b72ba4729b948052",
+  "paths": {
+    "app/src/main/java/game/sanguo/mobile/PcVoicePolicy.java": "569ebccfd683181f44df416d0ca353b7ef7cf444d8f6be31fda280f71f89cbdf",
+    "app/src/test/java/game/sanguo/mobile/PcVoicePolicyTest.java": "aab1b0ccb46947a8b2bea6f07bb8825ed50250a51c0f60be44443e47f8dc5595"
+  },
+  "testLogSha256": "8350e73a040f9a6aeb45cb3ab31989d1934cd368320919ee50d8c0262b29646c",
+  "limits": [
+    "Host Java execution, not installed voice playback or Android event binding."
+  ]
+}

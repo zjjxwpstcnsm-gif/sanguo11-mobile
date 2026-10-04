@@ -1,0 +1,29 @@
+{
+  "result": "PASS",
+  "policyRepeatByteEqual": true,
+  "callersRepeatByteEqual": true,
+  "nativePolicyChecks": 8248,
+  "nativeCallerChecks": 1850,
+  "javaNativeVectors": 8240,
+  "policySha256": "ade70a620a30e752a6d7c903c5fa93f6d09a82432baffeb3b72ba4729b948052",
+  "callersSha256": "4b895bbf597b01cac95cec0e03f68d7e9028c44a7a500de5eb6980583a2dbf43",
+  "nativePlaybackPerformed": false,
+  "androidNormalVoicePlaybackAccepted": false,
+  "limits": [
+    "Exact selector/caller execution with named validity/availability/dispatch shims; no rule generation/RNG",
+    "Raw side and slot require actual upstream committed speaker facts; no success/failure inference"
+  ],
+  "retainedFailures": [
+    {
+      "attempt": "Initial native policy mapping",
+      "result": "terminated own probe",
+      "reason": "sample showed uc_mem_map page-by-page topology expansion; replaced with identical coalesced original PE mappings, source untouched",
+      "sampleSha256": "ac91cc0af41c1d5ac9c854019a1eeee7850dbccb42a4efbd9530f27bf7786348"
+    },
+    {
+      "attempt": "Initial second caller probe",
+      "result": "dispatch absent as original availability guard required",
+      "reason": "Explicit media availability shim added and recorded; no selector instruction replacement"
+    }
+  ]
+}

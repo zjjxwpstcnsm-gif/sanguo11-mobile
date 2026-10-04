@@ -390,5 +390,17 @@
   "portraitHostReplacementAutomaticallyRetires": true,
   "portraitAppliedCriticalYearConsumed": true,
   "portraitAllNormalBattleCallerFormsProven": false,
-  "currentNormalSourceRegressionChecks": 324153
+  "currentNormalSourceRegressionChecks": 324153,
+  "originalVoicePolicy": {
+    "batch": "BATCH_09.md",
+    "nativeSelectorChecks": 8248,
+    "nativeCallerChecks": 1850,
+    "javaOriginalVectors": 8240,
+    "twoRunsNativePolicyBytesEqual": true,
+    "twoRunsNativeCallerBytesEqual": true,
+    "twoRunsGeneratedJavaBytesEqual": true,
+    "tacticSideIsNotProvenSuccessFlag": true,
+    "speakerSideAndSlotNeeded": true,
+    "normalVoicePlaybackAccepted": false
+  }
 }
