@@ -54,6 +54,10 @@ final class PcVoiceStreamPlayer implements AutoCloseable {
             if(catalog.voiceType(job.directive.speaker)!=job.directive.voiceTypeRaw)throw new IOException("Actual saved speaker identity/type does not match original source");
             PcVoiceCatalog.Voice source=catalog.voice(job.directive.nativeVoiceId,job.directive.alternateRaw);if(source==null)throw new IOException("Unknown original voice resource");
             check(job);directory=new File(context.getCacheDir(),"pc-voice-stream-"+job.began);if(!directory.mkdir())throw new IOException("Fresh own voice cache required");pcm=new File(directory,"original.pcm");
+            // Short original voices decode completely off UI before playback.
+            // Feeding MediaCodec through a backpressured AudioTrack sink can
+            // starve the track even when every submitted byte is correct.
+            PcVorbisDecoder.Result decoded=PcVorbisDecoder.decode(context,source,pcm,job.cancel);job.decodedSha256=decoded.pcmSha256;check(job);
             int mask=source.channels==1?AudioFormat.CHANNEL_OUT_MONO:AudioFormat.CHANNEL_OUT_STEREO;
             int minimum=AudioTrack.getMinBufferSize(source.sampleRate,mask,AudioFormat.ENCODING_PCM_16BIT);if(minimum<=0)throw new IOException("Unsupported original voice format");
             audio=new AudioTrack.Builder().setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
@@ -64,14 +68,14 @@ final class PcVoiceStreamPlayer implements AutoCloseable {
             try{submittedDigest=java.security.MessageDigest.getInstance("SHA-256");}catch(java.security.NoSuchAlgorithmException impossible){throw new IOException(impossible);}
             job.prebufferFrames=Math.min(2048,audio.getBufferCapacityInFrames());
             AudioTrack output=audio;synchronized(controls){check(job);job.audio=audio;audio.setVolume(gain*focusDuck);}
-            PcVorbisDecoder.Result decoded=PcVorbisDecoder.decode(context,source,pcm,job.cancel,(buffer,length)->{
-                for(int offset=0;offset<length;){ready(job,output);int accepted=output.write(buffer,offset,length-offset,AudioTrack.WRITE_NON_BLOCKING);
+            try(var input=new java.io.FileInputStream(pcm)){byte[] buffer=new byte[8192];int length;
+                while((length=input.read(buffer))!=-1)for(int offset=0;offset<length;){ready(job,output);int accepted=output.write(buffer,offset,length-offset,AudioTrack.WRITE_NON_BLOCKING);
                     if(accepted<0||accepted%(source.channels*2)!=0)throw new IOException("Voice AudioTrack output "+accepted);
                     if(accepted==0){SystemClock.sleep(5);continue;}submittedDigest.update(buffer,offset,accepted);offset+=accepted;job.submitted+=accepted/(source.channels*2);job.underruns=output.getUnderrunCount();
                     if(job.firstWriteMillis<0)job.firstWriteMillis=(SystemClock.elapsedRealtimeNanos()-job.began)/1000000;
                     job.played=Integer.toUnsignedLong(output.getPlaybackHeadPosition());}
-            });
-            job.decodedComplete=true;job.decodedSha256=decoded.pcmSha256;StringBuilder submittedHash=new StringBuilder(64);for(byte b:submittedDigest.digest())submittedHash.append(String.format(java.util.Locale.ROOT,"%02x",b&255));job.submittedSha256=submittedHash.toString();
+            }
+            job.decodedComplete=true;StringBuilder submittedHash=new StringBuilder(64);for(byte b:submittedDigest.digest())submittedHash.append(String.format(java.util.Locale.ROOT,"%02x",b&255));job.submittedSha256=submittedHash.toString();
             if(!job.decodedSha256.equals(job.submittedSha256))throw new IOException("Original decoded/submitted voice PCM differs");
             while(job.played<decoded.frames){ready(job,audio);job.played=Integer.toUnsignedLong(audio.getPlaybackHeadPosition());job.underruns=audio.getUnderrunCount();SystemClock.sleep(5);}
         }catch(IOException|RuntimeException error){if(!job.cancel.get()){job.error=error.toString();android.util.Log.e("PcVoice","Original voice stream failed",error);}}
