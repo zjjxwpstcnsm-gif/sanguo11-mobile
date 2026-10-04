@@ -1,0 +1,31 @@
+{
+  "scope": "Additional resource-only original-selector fixtures; not five normal battle actor bindings",
+  "rows": [
+    {
+      "selector": 131,
+      "retainedDynamicAtlases": 2,
+      "textureBytes": 5308416
+    },
+    {
+      "selector": 132,
+      "retainedDynamicAtlases": 3,
+      "textureBytes": 6356992
+    },
+    {
+      "selector": 133,
+      "retainedDynamicAtlases": 4,
+      "textureBytes": 7405568
+    },
+    {
+      "selector": 134,
+      "retainedDynamicAtlases": 4,
+      "textureBytes": 7405568
+    },
+    {
+      "selector": 135,
+      "retainedDynamicAtlases": 4,
+      "textureBytes": 7405568
+    }
+  ],
+  "actualRendererRelease": true
+}

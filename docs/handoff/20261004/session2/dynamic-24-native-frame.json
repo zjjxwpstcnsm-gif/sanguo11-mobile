@@ -1,0 +1,11 @@
+{
+  "officerId": 10122,
+  "selector": 190,
+  "sourceFramePhase": 0.4706666171550751,
+  "textureBytes": 4259840,
+  "prepareAndFirstFrameMillis": 5679,
+  "normalUiCommand": true,
+  "controlledPausedHostTicks": true,
+  "sourceIdentityInjectedByTest": false,
+  "allDynamicSelectorsRendered": false
+}
