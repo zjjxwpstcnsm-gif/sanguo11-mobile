@@ -1,0 +1,30 @@
+{
+  "parentCommit": "c184a76763ecd2d44ed61195d1e7f80628a01675",
+  "paths": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcDebateState.java",
+      "sha256": "cf604b864f6ad11aebb78e53f97636d97750425f4c2c601f06158feb1a8ff3f9"
+    },
+    {
+      "path": "core/src/test/java/game/sanguo/core/PcDebateStateTest.java",
+      "sha256": "c32658a2a778b12d70d37e741b76bf8197102b4e147fdfaf572b598e15fec368"
+    },
+    {
+      "path": "core/src/test/resources/pc-debate/provenance.json",
+      "sha256": "5ca045039cb88d1e828de58cd83bf10461be284cb76de7281bc2ed50bd6fbb19"
+    },
+    {
+      "path": "tools/content/build_pc_debate_oracle_fixtures.py",
+      "sha256": "ad9a93034af65daff2d12058f46b803ab447b413725c80e30b2adc8dfe9a024d"
+    },
+    {
+      "path": "tools/content/test_pc_debate_port.py",
+      "sha256": "599f072b24ab62c46615700c4ccdced68285e3e9e51df5bd1fa53c3190f14909"
+    },
+    {
+      "path": "docs/handoff/20261004/session1/PLAN.md",
+      "sha256": "066589fce0fdde457b9dc87b2a5b961c1bd68d36b7e67284675ec49648a7c090"
+    }
+  ],
+  "fullEngineIntegrated": false
+}

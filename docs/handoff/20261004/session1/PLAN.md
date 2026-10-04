@@ -87,3 +87,7 @@ Batch09追加确切测试工具tools/content/android/PcContestInstrumentation.ja
 ## Batch10：原舌战内核运行时移植
 
 前提交d3d82f05；Batch09设备序列正在运行，冻结其已构建生产输入。新增core/src/main/java/game/sanguo/core/PcDebateRules.java、PcDebateState.java（分阶段移植原状态/牌组/RNG，尚非完整引擎），core/src/test/java/game/sanguo/core/PcDebateRulesTest.java、PcDebateStateTest.java及core/src/test/resources/pc-debate/原函数固定夹具；新增tools/content/build_pc_debate_oracle_fixtures.py、inspect_pc_debate_effects.py、inspect_pc_debate_ui_counters.py、test_pc_debate_port.py。本阶段先使原程序逐状态与PC轨迹完全对照，完成前不接入旧/新对战入口或静默换公式。core/build.gradle测试入口曾使设备第4源前置SHA守卫拒绝，已恢复精确Batch09字节；测试改用独立输出目录完整编译core，不修改冻结APK输入。后续完整新保存策略/正常对战入口再登记前镜像SHA。媒体文件、共同台账、AndroidGameBridge、Unity和3D仍不改。
+
+## Batch11：继续原对局状态与携物证据
+
+前提交c184a767，完整checkpoint-batch10/source已封存4593文件/403531653字节，manifest SHA5e728435628a43bca9ad0598f05b5714371ebe2159a014008a5c0f0b1fac059f。新增tools/content/inspect_pc_duel_people.py、inspect_pc_debate_rounds.py、inspect_pc_debate_fury.py及其独立原输出/回归；继续PcDebateState、PcDebateStateTest和build_pc_debate_oracle_fixtures.py。单挑原50ab90构造和50ce00战员初始化已经返回，尚不称正常单挑通过。必须以逐源实际人物/携物原初始化取代临时合成人物的装备判断，并保留读取边界与完整开局差异；所有既有APK输入仍冻结，不改共享媒体/公共台账。

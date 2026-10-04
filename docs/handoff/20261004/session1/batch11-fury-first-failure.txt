@@ -1,0 +1,3 @@
+Exception in thread "main" java.lang.AssertionError: Native bounded model-only fury mismatch fury	0	3	0	0	99	100	0	0	2	-1	800	100	0	1000	0	1	1	0	0	0	23 actual=[-1, 710, 100, 0, 1000, 0, 1, 1, 0, 0, 0, 23]
+	at game.sanguo.core.PcDebateStateTest.require(PcDebateStateTest.java:16)
+	at game.sanguo.core.PcDebateStateTest.main(PcDebateStateTest.java:83)

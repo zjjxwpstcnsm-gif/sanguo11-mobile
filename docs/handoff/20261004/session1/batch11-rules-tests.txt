@@ -1,0 +1,1 @@
+PASS PcDebateRulesTest 5125 independent native capacity/card/temper/damage/RNG/clamp outputs; complete saved-state engine integration remains pending

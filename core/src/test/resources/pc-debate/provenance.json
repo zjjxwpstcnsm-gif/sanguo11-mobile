@@ -4,13 +4,21 @@
   "effectsRecords": 4593,
   "fixtureSha256": "ea8ddf41b6d4b53a8a1e3e29d863b5a2f7a304c95d295d0ee1fc5839b0a492b4",
   "fullContestEngineIntegrated": false,
+  "furyCases": 3072,
+  "furyFixtureSha256": "2691aedd4b9f011ef25a35d69904e56c7a1a0f72e63d321d26d6d1596baba71e",
+  "furyOraclePackedSha256": "096bae747645353e0744505f5e27632c44dec67496e89387af9ce2fa0ecb1ba1",
   "initialCases": 16,
   "initialFixtureSha256": "e0e20a686ed43e95ec7ffe415ab6ead7c1b0d7112c72be0946fc65f9e8f3fd90",
   "initialOraclePackedSha256": "193ca13a6bb92a3c1d389934166249611536150a50733ba4fd183fe786a5fca7",
   "oraclePackedSha256": "bf60b64a209a2c147b11ab2711760ebddea0a6d167ec3999e451518f2d6450e8",
   "records": 5125,
+  "selectedEffectCases": 19680,
+  "selectedEffectsFixtureSha256": "0ce10f814c867d2aba5052f9587cfc34ea935dedc2a19e39a7dea471fc4e8194",
+  "selectedEffectsOraclePackedSha256": "b7de906f06356e0f2ef348113644f35a1e6470c9364e32ce664f779a5284a25e",
   "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "stageCases": 4404,
   "uiCounterCases": 96,
   "uiCountersFixtureSha256": "c8ec9e71f332368c0a01c582ba8965240a2bdb92475096b2ec3ec9b2b8786bb7",
-  "uiCountersOraclePackedSha256": "bf1d77cfce20c2a857869e60177ab06384fc01e33d01653b1e5b2ef67da339b8"
+  "uiCountersOraclePackedSha256": "bf1d77cfce20c2a857869e60177ab06384fc01e33d01653b1e5b2ef67da339b8",
+  "warFuryCases": 6144
 }

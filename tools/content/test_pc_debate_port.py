@@ -19,8 +19,9 @@ def run(java_home,output):
     classpath=':'.join(map(str,[classes,ROOT/'core/src/main/resources',ROOT/'core/src/test/resources']))
     tests=[]
     for name in ('PcDebateRulesTest','PcDebateStateTest'):
-        result=subprocess.run([str(java_home/'bin/java'),'-cp',classpath,'game.sanguo.core.'+name],check=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+        result=subprocess.run([str(java_home/'bin/java'),'-cp',classpath,'game.sanguo.core.'+name],check=False,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
         (output/(name+'.txt')).write_bytes(result.stdout);tests.append(dict(name=name,output=result.stdout.decode().strip()));print(result.stdout.decode().strip())
+        result.check_returncode()
     digest=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
     report=dict(schema=1,compiledSourceFiles=len(sources),sourceSha256={p.relative_to(ROOT).as_posix():digest(p)for p in sources},
                 fixtureSha256={p.name:digest(p)for p in sorted((ROOT/'core/src/test/resources/pc-debate').iterdir())if p.is_file()},

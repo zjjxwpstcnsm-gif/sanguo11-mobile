@@ -61,6 +61,30 @@ public final class PcDebateStateTest {
             require(Arrays.equals(choices,Arrays.copyOfRange(n,20,22)),"Native counter animation record mismatch "+line);
             counters++;
         }
-        System.out.println("PASS PcDebateStateTest "+initial+" native initial model/deck/hand/RNG cases, "+effects+" original legality/immediate effect outputs, "+counters+" original bounded counter queue/hand/RNG cases; complete UI/fury/AI/campaign integration pending");
+        int selectedEffects=0;
+        for(String line:lines("original-selected-effects.tsv")){
+            int[] n=numbers(line.split("\t"),0);PcDebateState selected=new PcDebateState(90,82,n[0],n[1],31,31,n[7]);selected.topic=n[2];selected.leader=0;
+            selected.left.anger=50;selected.right.anger=80;selected.left.fury=n[5];selected.right.fury=n[6];selected.random.state=n[7];selected.random.draws=0;
+            selected.selectedCardEffects(n[3],n[4]);
+            int[] actual={selected.left.health,selected.left.anger,selected.left.fury,selected.right.health,selected.right.anger,selected.right.fury,selected.topic,selected.leader,selected.selectedWinner,selected.random.state};
+            require(Arrays.equals(actual,Arrays.copyOfRange(n,8,n.length)),"Native bounded selected-card sequence mismatch "+line+" actual="+Arrays.toString(actual));selectedEffects++;
+        }
+        int furyCases=0,warFuryCases=0,stageCases=0;int[][] hands={{0,1,2,3,10,13,14},{0,1,2,3,4,10,13},{0,1,2,3,4,10,14},{0,1,2,3,4,5,10}};
+        for(String line:lines("original-fury-model.tsv")){
+            String[] parts=line.split("\t");int[] n=numbers(parts,1);
+            if(parts[0].equals("stage")){
+                PcDebateState stageState=new PcDebateState(90,90,0,0,31,31,23);stageState.left.health=n[0];stageState.stage[0]=n[1];
+                boolean changed=stageState.updateStages();require(stageState.stage[0]==n[2]&&stageState.stageChanged[0]==(n[3]!=0)&&changed==(n[4]!=0),"Native stage restoration flag mismatch "+line);stageCases++;
+            }else if(parts[0].equals("fury")||parts[0].equals("war-fury")){
+                boolean variedWar=parts[0].equals("war-fury");int leftWar=variedWar?n[9]:0,rightWar=variedWar?n[10]:0;
+                PcDebateState furyState=new PcDebateState(90,90,n[0],n[1],31,31,23,leftWar,rightWar);furyState.leader=n[2];furyState.left.anger=n[4];furyState.right.anger=n[5];furyState.left.fury=n[6];furyState.right.fury=n[7];
+                System.arraycopy(hands[n[8]],0,furyState.left.hand,0,7);System.arraycopy(hands[n[8]],0,furyState.right.hand,0,7);furyState.random.state=23;furyState.random.draws=0;
+                int counter=furyState.resolveFuryModelOnly(n[3]!=0);
+                int[] actual={counter,furyState.left.health,furyState.left.anger,furyState.left.fury,furyState.right.health,furyState.right.anger,furyState.right.fury,furyState.furySide,furyState.burstSide,furyState.burstIndex,furyState.burstActive?1:0,furyState.random.state};
+                require(Arrays.equals(actual,Arrays.copyOfRange(n,variedWar?11:9,n.length))&&furyState.random.draws==0,"Native bounded model-only fury mismatch "+line+" actual="+Arrays.toString(actual));
+                require(Arrays.equals(furyState.left.hand,hands[n[8]])&&Arrays.equals(furyState.right.hand,hands[n[8]]),"Original model-only counter unexpectedly consumed actual hand");if(variedWar)warFuryCases++;else furyCases++;
+            }else throw new AssertionError("Unexpected native fury fixture "+line);
+        }
+        System.out.println("PASS PcDebateStateTest "+initial+" native initial model/deck/hand/RNG cases, "+effects+" original legality/immediate effect outputs, "+counters+" original bounded counter queue/hand/RNG cases, "+selectedEffects+" bounded native selected-card effect/topic/RNG sequences, "+furyCases+" model-only fury, "+warFuryCases+" current war fury and "+stageCases+" psychological stage cases; complete UI/fury/AI/campaign integration pending");
     }
 }

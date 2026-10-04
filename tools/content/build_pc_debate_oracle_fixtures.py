@@ -48,6 +48,14 @@ def build(output):
   row.extend(choices+([-1]if len(choices)==1 else []))
   ui_rows.append('\t'.join(map(str,row)))
  ui_data=('\n'.join(ui_rows)+'\n').encode();(output/'original-ui-counters.tsv').write_bytes(ui_data)
- (output/'provenance.json').write_bytes(json_bytes(dict(sourceExecutableSha256=EXE_SHA,oraclePackedSha256=sha(raw),fixtureSha256=sha(data),records=len(rows),initialOraclePackedSha256=sha(flow_raw),initialFixtureSha256=sha(initial_data),initialCases=len(initial),effectsOraclePackedSha256=sha(effects_raw),effectsFixtureSha256=sha(effects_data),effectsRecords=len(effect_rows),uiCountersOraclePackedSha256=sha(ui_raw),uiCountersFixtureSha256=sha(ui_data),uiCounterCases=len(ui_rows),fullContestEngineIntegrated=False)));print(json.dumps(dict(records=len(rows),sha256=sha(data),initialSha256=sha(initial_data),effectsSha256=sha(effects_data),uiCountersSha256=sha(ui_data))))
+ selected_raw=(ROOT/'docs/handoff/20261004/session1/debate-selected-effects-native.json.gz').read_bytes()
+ if sha(selected_raw)!='b7de906f06356e0f2ef348113644f35a1e6470c9364e32ce664f779a5284a25e':raise ValueError('Original selected-card effects oracle changed')
+ selected=json.loads(gzip.decompress(selected_raw));selected_data=('\n'.join('\t'.join(map(str,v))for v in selected['cases'])+'\n').encode()
+ (output/'original-selected-effects.tsv').write_bytes(selected_data)
+ fury_raw=(ROOT/'docs/handoff/20261004/session1/debate-fury-model-native.json.gz').read_bytes()
+ if sha(fury_raw)!='096bae747645353e0744505f5e27632c44dec67496e89387af9ce2fa0ecb1ba1':raise ValueError('Original fury oracle changed')
+ fury=json.loads(gzip.decompress(fury_raw));fury_rows=['fury\t'+'\t'.join(map(str,v))for v in fury['cases']]+['war-fury\t'+'\t'.join(map(str,v))for v in fury['warCases']]+['stage\t'+'\t'.join(map(str,v))for v in fury['stages']]
+ fury_data=('\n'.join(fury_rows)+'\n').encode();(output/'original-fury-model.tsv').write_bytes(fury_data)
+ (output/'provenance.json').write_bytes(json_bytes(dict(sourceExecutableSha256=EXE_SHA,oraclePackedSha256=sha(raw),fixtureSha256=sha(data),records=len(rows),initialOraclePackedSha256=sha(flow_raw),initialFixtureSha256=sha(initial_data),initialCases=len(initial),effectsOraclePackedSha256=sha(effects_raw),effectsFixtureSha256=sha(effects_data),effectsRecords=len(effect_rows),uiCountersOraclePackedSha256=sha(ui_raw),uiCountersFixtureSha256=sha(ui_data),uiCounterCases=len(ui_rows),selectedEffectsOraclePackedSha256=sha(selected_raw),selectedEffectsFixtureSha256=sha(selected_data),selectedEffectCases=len(selected['cases']),furyOraclePackedSha256=sha(fury_raw),furyFixtureSha256=sha(fury_data),furyCases=len(fury['cases']),warFuryCases=len(fury['warCases']),stageCases=len(fury['stages']),fullContestEngineIntegrated=False)));print(json.dumps(dict(records=len(rows),sha256=sha(data),initialSha256=sha(initial_data),effectsSha256=sha(effects_data),uiCountersSha256=sha(ui_data),selectedEffectsSha256=sha(selected_data),furySha256=sha(fury_data))))
 if __name__=='__main__':
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--output',required=True,type=Path);a=p.parse_args();build(a.output)
