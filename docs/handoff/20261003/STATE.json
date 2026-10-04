@@ -747,7 +747,9 @@
     "audio_mixed_cues": 11,
     "strict_presentations_checks": 1914,
     "native37_longrun_checks": 373,
-    "normal_save_load_exit_reopen_verified": true
+    "normal_save_load_exit_reopen_verified": true,
+    "editor_ui_checks": 61,
+    "editor_private_and_external_original_files_restored": true
   },
   "r34_continuation": {
     "status": "exact d318 default3D856, normal opening64 and occupied terrain51 all passed; native start107 reproduced; real bridge restore regression passed",
@@ -854,5 +856,30 @@
     "survival_gzip_sha256": "829454f1b0c682df0a9bdc08e2d3d4640c58d8c81bda021f787ca7c4269f24cf",
     "troop_apply_gzip_sha256": "7020720c77e9b4ce9064d1e4eee4b5978f6322dcfa489c424225fe2d6691aaee",
     "full_world_grid_rng_guards": true
+  },
+  "r39_continuous_cavalry_plan": {
+    "cases": 336,
+    "entry": "5956d6",
+    "stop_before": "59588d",
+    "continuous_no_intermediate_reset": true,
+    "actual_planned_result_fields_written": [
+      116,
+      120
+    ],
+    "world_grid_rng_unchanged": true,
+    "request_only_planned_fields_changed": true,
+    "same_twice": true,
+    "json_sha256": "2dafb787e78a664036f51a125203280d4f41665049b8fea837bc218cf95e226e",
+    "gzip_sha256": "e51e01d1474ac87c8e02551eb18c2acc167b604ea38c34e1caa6b23c99a26537",
+    "visibility_local1_explicit": true,
+    "preceding_visibility_predicate_executed": false,
+    "full_damage_authority_commit_verified": false,
+    "android_rule_changed": false,
+    "current_live_device_job": false,
+    "editor_ui_checks": 61,
+    "editor_ui_seconds": 44.97,
+    "editor_private_original_files_exact": true,
+    "editor_external_original_files_exact": true,
+    "editor_external_original_files_count": 13
   }
 }
