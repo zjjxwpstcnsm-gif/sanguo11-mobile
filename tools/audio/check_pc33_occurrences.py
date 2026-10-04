@@ -43,7 +43,8 @@ def verify(capture,minimum):
         basis=np.zeros((len(signal),len(positions)))
         for column,position in enumerate(positions):basis[position:position+length,column]=template
         amplitudes=np.linalg.lstsq(basis,signal,rcond=None)[0]
-        if np.any(amplitudes<.02):raise AssertionError(('Not audible positive original waveform gains',amplitudes))
+        if np.any(amplitudes<=0) or np.any(amplitudes*np.sqrt(energy/length)<8/32768):
+            raise AssertionError(('Nonpositive or below eight16-bit PCM steps RMS',amplitudes))
         residual=signal-basis@amplitudes
     # Overlap shifts the independent correlation peak slightly. Refine starts
     # against the simultaneous fit rather than relaxing the PCM acceptance threshold.
@@ -73,7 +74,8 @@ def verify(capture,minimum):
                 if loss<error:best=trial;error=loss
             positions=best
     _,amplitudes=fit(positions)
-    if np.any(amplitudes<.02):raise AssertionError(('Refined nonpositive/inaudible waveform gains',amplitudes))
+    if np.any(amplitudes<=0) or np.any(amplitudes*np.sqrt(autocorrelation[0]/length)<8/32768):
+        raise AssertionError(('Refined nonpositive or below eight16-bit PCM steps RMS',amplitudes))
     basis=np.zeros((len(signal),len(positions)))
     for column,position in enumerate(positions):basis[position:position+length,column]=template
     residual=signal-basis@amplitudes
