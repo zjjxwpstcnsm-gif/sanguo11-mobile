@@ -1,0 +1,18 @@
+{
+  "sourceCommit": "9fdd972fd63e90b31ccbfc841c7a639e2413443c",
+  "build": "PASS",
+  "apks": {
+    "main": {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/music-policy-build-19/frozen/app-debug.apk",
+      "bytes": 283156079,
+      "sha256": "b3369237883c9092e4e46cb022597b4e8a0b88c8e5483846e9c81623c9ff3538"
+    },
+    "test": {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/music-policy-build-19/frozen/app-debug-androidTest.apk",
+      "bytes": 2066587,
+      "sha256": "bd5e876ce83d4a4bce93292203b2734a4e409c0eda388b2d639be6b665691446"
+    }
+  },
+  "installed": false,
+  "ordinaryBgmVoiceBindings": 0
+}
