@@ -1,0 +1,317 @@
+{
+  "baseCommit": "10817b5044db4982e30780d735f25e4ff75c9156",
+  "commit": "510e34acddbc2e80afbed6a86094637b6bfbb766",
+  "paths": [
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/PortraitFlowInstrumentation.java",
+      "beforeSha256": "5657adcdf5fb66a1a7807293196dd09a69d86eb17300514838cba471165401ab",
+      "afterSha256": "856781530a9bad9af1ed5397fddb87745444dca1a1e9bc7d5478a134e9b012ed",
+      "bytes": 14378
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/UiUxInstrumentation.java",
+      "beforeSha256": "93b18bf816dbf16d26d1c0f9c3073ea3e772dc35471298347e999cf5a749b802",
+      "afterSha256": "54a38bea32aa74a64e78bcc72796491d8876596323ba149013bad2e774dd8dfd",
+      "bytes": 202573
+    },
+    {
+      "path": "docs/handoff/20261004/session2/DELIVERY_CURRENT.md",
+      "beforeSha256": "376e1f8db187313e026b37bff3f24171861e8fb5bee9ca64a1eb9ec835560ccc",
+      "afterSha256": "36a6df27a81b0818ffafb7a0b9b54afa96689714e11491c39f9df2338f960469",
+      "bytes": 7887
+    },
+    {
+      "path": "docs/handoff/20261004/session2/DYNAMIC_PORTRAIT_INSTALLED_26.json",
+      "beforeSha256": null,
+      "afterSha256": "910807ed6d0e3329abd4deec8e5c4d08529a11692ee2fa1f49a53d814de5cd10",
+      "bytes": 3212
+    },
+    {
+      "path": "docs/handoff/20261004/session2/INSTALLED_CLOSEOUT_26.md",
+      "beforeSha256": null,
+      "afterSha256": "7322b59e5351cac21dad4df1d143041ff381e6d740dc6b590afe48d4db188365",
+      "bytes": 3932
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MEDIA_BRIDGE_INSTALLED_26.json",
+      "beforeSha256": null,
+      "afterSha256": "57b014804fa8b5ad78934216ce2eb4fe7300d09e25afed9994ffaaad12b22bcb",
+      "bytes": 1114
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MENU_CLEAN_INSTALLED_26.json",
+      "beforeSha256": null,
+      "afterSha256": "51c2511c91649861d19b3bf10439166c92a88f40e2ee0a4f11658ac8504e8d09",
+      "bytes": 3664
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MENU_OBSERVED_INSTALLED_26.json",
+      "beforeSha256": null,
+      "afterSha256": "a0a734ed82c2a8e51eed0bf560760b473c743fa541c47a8c4deb88e320638b3e",
+      "bytes": 2153
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MIXER_OBSERVATION_26.json",
+      "beforeSha256": null,
+      "afterSha256": "dacab0a7e146ccdea4bfafab60c375934a705b2f420e52e46425926600a98224",
+      "bytes": 9536
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MIXER_OBSERVATION_LIMITS_26.md",
+      "beforeSha256": null,
+      "afterSha256": "b8ac7649858a5a6d056af74423e0951bf97fc0de1a77ffdf1bce03d8ad2224f3",
+      "bytes": 1553
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MUSIC_DIAGNOSTIC_26.json",
+      "beforeSha256": null,
+      "afterSha256": "7b0280363791e9875da9e27a244f9cb44bde064e4b5f9704f10884d652868cec",
+      "bytes": 2477
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MUSIC_DIAGNOSTIC_REPRO_26.json",
+      "beforeSha256": null,
+      "afterSha256": "8d745e02509953152f5bb893f7c0b289dd39ff481faff71e9d0756e82b688ea4",
+      "bytes": 254
+    },
+    {
+      "path": "docs/handoff/20261004/session2/MUSIC_TIMELINE_DIAGNOSTIC_26.md",
+      "beforeSha256": null,
+      "afterSha256": "5daf70840e4cf6894a833f6720e800b12ba6d88456195f12577b7569429789d8",
+      "bytes": 2179
+    },
+    {
+      "path": "docs/handoff/20261004/session2/PC33_NORMAL_INSTALLED_26.json",
+      "beforeSha256": null,
+      "afterSha256": "cc8c98fdadd462525a80446629dfc5f61110835c7a8c4456e3fcd8f5ea0ef358",
+      "bytes": 4005
+    },
+    {
+      "path": "docs/handoff/20261004/session2/PORTRAIT_CAPTURE_CORRECTION_26.md",
+      "beforeSha256": null,
+      "afterSha256": "1475b65b72defb3d26063827d39938fe0e63572a24b1e1dca503edc5f9a68cac",
+      "bytes": 1973
+    },
+    {
+      "path": "docs/handoff/20261004/session2/PORTRAIT_NORMAL_PIXELS_25.json",
+      "beforeSha256": null,
+      "afterSha256": "03376a0ff4f7c60d3cda970a1b06a7595dc486d5f54c50c60205d296497e3c15",
+      "bytes": 1754
+    },
+    {
+      "path": "docs/handoff/20261004/session2/PORTRAIT_SETTLED_INSTALLED_26.json",
+      "beforeSha256": null,
+      "afterSha256": "2b99ce5abe534a1bf1b7b18c01d1a9a830b1c79a4c1a60128fa20138bec3ab7f",
+      "bytes": 202615
+    },
+    {
+      "path": "docs/handoff/20261004/session2/SIX_TURN_AUTHORITY_INSTALLED_26.json",
+      "beforeSha256": null,
+      "afterSha256": "d161953c8a0d09bb346485652aea97515f02a2f899010750e99d07863049bc1f",
+      "bytes": 3188
+    },
+    {
+      "path": "docs/handoff/20261004/session2/dynamic-portrait-26-critical-facts.json",
+      "beforeSha256": null,
+      "afterSha256": "b2cc6db78f2acfe5d01e1c833a9df0dac1ae570fa0e7671a1628cf1b710525ad",
+      "bytes": 546
+    },
+    {
+      "path": "docs/handoff/20261004/session2/dynamic-portrait-26-dynamic-portrait-entry.json",
+      "beforeSha256": null,
+      "afterSha256": "83cea6d6a75ee5df469b5cd2556d178e0323dcbf9d7ecd88069489ec7b12b709",
+      "bytes": 4327
+    },
+    {
+      "path": "docs/handoff/20261004/session2/dynamic-portrait-26-dynamic-portrait-source-frame.png",
+      "beforeSha256": null,
+      "afterSha256": "65624117174366fd59ee5fb0cf6e07fbd3fa3e0415ebeedad034491ca1ad439e",
+      "bytes": 1216366
+    },
+    {
+      "path": "docs/handoff/20261004/session2/dynamic-portrait-26-dynamic-portrait-surface.png",
+      "beforeSha256": null,
+      "afterSha256": "4deecc167a6b7eba9b4ee4ab9a74ab2dcd5a1de4f856d8396b45dd89d59a09e2",
+      "bytes": 1343668
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-clean-26-full-mix-FAIL.txt",
+      "beforeSha256": null,
+      "afterSha256": "fb63a66d5351360bdaf3d1fd6265597a856dd419f414b41b6046c616aab51e1b",
+      "bytes": 920
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-clean-26-mix.wav",
+      "beforeSha256": null,
+      "afterSha256": "a04b1e6b68ce00d9340f9658d904622307d924a716590e965fdf0a114039231a",
+      "bytes": 19447852
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-clean-26-pcm-provenance.json",
+      "beforeSha256": null,
+      "afterSha256": "1926d7c15639b04dccbf8d2ae96bc1b9fe63c8500e9f23ceed009bf34e9eb521",
+      "bytes": 419
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-observed-26-full-mix-FAIL.txt",
+      "beforeSha256": null,
+      "afterSha256": "73baea344d1e86be6158dca395c85d7d8f1ea75bac18cc2efd9ed5ce59b8d50f",
+      "bytes": 920
+    },
+    {
+      "path": "docs/handoff/20261004/session2/menu-observed-26-timeline.json",
+      "beforeSha256": null,
+      "afterSha256": "0f259e9bc7d56e2130ccc1eace846f928719c7a7cdc1384ba6320b64aac5a0a4",
+      "bytes": 4343
+    },
+    {
+      "path": "docs/handoff/20261004/session2/music-diagnostic-26-actual-decode.json",
+      "beforeSha256": null,
+      "afterSha256": "3cf153644841ea7a7134086b73cdaf0ac1304c15aa57dfd8423d3751b7dc6a7b",
+      "bytes": 633
+    },
+    {
+      "path": "docs/handoff/20261004/session2/music-diagnostic-26-pcm-difference.json",
+      "beforeSha256": null,
+      "afterSha256": "1bd55545de34c2586bb620b8d92bac08abfa475a288c0a009179b4ce0d19fd84",
+      "bytes": 672
+    },
+    {
+      "path": "docs/handoff/20261004/session2/music-diagnostic-26-r6-timeline.json",
+      "beforeSha256": null,
+      "afterSha256": "a395d00b28b68156daed5d2f3bf63b5ef93aa31a869718957e6f1e389cdaacfc",
+      "bytes": 4340
+    },
+    {
+      "path": "docs/handoff/20261004/session2/music-diagnostic-26-r7-timeline.json",
+      "beforeSha256": null,
+      "afterSha256": "8dacf9fe57aef01f6614760825845e63eb70243a722cc659c9718d8a3aa9f3ae",
+      "bytes": 4345
+    },
+    {
+      "path": "docs/handoff/20261004/session2/pc33-normal-26-mix.wav",
+      "beforeSha256": null,
+      "afterSha256": "f3273148e3081505fa2d2f150789014f2c045796c72d4196863aa2db68c3df28",
+      "bytes": 1253420
+    },
+    {
+      "path": "docs/handoff/20261004/session2/pc33-normal-26-pcm-provenance.json",
+      "beforeSha256": null,
+      "afterSha256": "328596a2e7cf64e0cc9457a3edcec262851ad4b53789a53ae0452c6d0e095f12",
+      "bytes": 419
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-normal-25-transition-FAIL.png",
+      "beforeSha256": null,
+      "afterSha256": "17c4c3ec0b61149b3ac2f80707df6fbb52790d0f77f2f797c7b3e9f3c7a848ee",
+      "bytes": 614287
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-settled-26-detail-10463.png",
+      "beforeSha256": null,
+      "afterSha256": "e0da10744a129d870e8436f441a35bde9119e0e6af9777eae130568a558a4a2d",
+      "bytes": 343797
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-settled-26-list-0.png",
+      "beforeSha256": null,
+      "afterSha256": "ae228a65de4897596292f781c28f5bef115b89f963c8ea510a50f03fa7cb576e",
+      "bytes": 508125
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-settled-26-list-400.png",
+      "beforeSha256": null,
+      "afterSha256": "eef2a6bc5b2a596f97e9175825a3b99029bf6209647b92b059c071df8c9766e4",
+      "bytes": 510454
+    },
+    {
+      "path": "docs/handoff/20261004/session2/portrait-settled-26-reopen.png",
+      "beforeSha256": null,
+      "afterSha256": "39a4addf5c60e35e3bdaac2c159cc518a3013aed930c0a5a9e0c6c13c3bc2b6c",
+      "bytes": 375689
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/authority-before.sg11",
+      "beforeSha256": null,
+      "afterSha256": "4d4fe71117421e66bd271e7d105b460850fe7dbb82580642b148773525ad4359",
+      "bytes": 939917
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/authority-round-0.sg11",
+      "beforeSha256": null,
+      "afterSha256": "dd6b000ec6ffa7f95b98ee3edbb0039fda04ee0abdb7343cb5946294925a2cb2",
+      "bytes": 954073
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/authority-round-1.sg11",
+      "beforeSha256": null,
+      "afterSha256": "f3a4b7edda7a95c63f6abf64680ab0fb1b36bc3f84211a428d33f8c36c52c33b",
+      "bytes": 966267
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/authority-round-2.sg11",
+      "beforeSha256": null,
+      "afterSha256": "d6bcd3ea14e2ce3a7f3c58c4fd5c1895f7b276abbd87d94ff1ecf3cddaea0320",
+      "bytes": 979607
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/authority-round-3.sg11",
+      "beforeSha256": null,
+      "afterSha256": "1c81737c3cbaaf412c07dd43ed857c4fb0212f85786ee5d40f5cb744c97ae856",
+      "bytes": 991968
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/authority-round-4.sg11",
+      "beforeSha256": null,
+      "afterSha256": "c46dc9ef7a78e92babcef21a055249988fcae328386c471af155e5fca822ef97",
+      "bytes": 1002423
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/authority-round-5.sg11",
+      "beforeSha256": null,
+      "afterSha256": "76445f56f62a8a15dfb37116c6bdbed7572210244495be4c77de84290c0ce393",
+      "bytes": 1013681
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/authority.csv",
+      "beforeSha256": null,
+      "afterSha256": "2dd966f2a2b1af774e4605355970704710b666a58ae57d5874326657b78fb73d",
+      "bytes": 958
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/result.txt",
+      "beforeSha256": null,
+      "afterSha256": "57321806452a79fdf784cbf2e0cd997e830af06f78741d51ca57e3a0caa20a17",
+      "bytes": 5346
+    },
+    {
+      "path": "docs/handoff/20261004/session2/six-turn-authority-26/sustained.csv",
+      "beforeSha256": null,
+      "afterSha256": "93ce4ae86768c6fe9b8ad50515d4e50d7393543a2eee8fbd929fff10bf591a77",
+      "bytes": 276
+    },
+    {
+      "path": "tools/audio/diagnose_music_timeline.py",
+      "beforeSha256": null,
+      "afterSha256": "02991ededea0f3e07db1b1138499acb8bc9f6578463e4ced52e7c6ec8188421b",
+      "bytes": 3840
+    },
+    {
+      "path": "tools/audio/observe_android_music_mixer.py",
+      "beforeSha256": null,
+      "afterSha256": "b77d0fa6729a0badbf2af2a7d1ca2bb9439c648a887d1252f541a84b18e9cbda",
+      "bytes": 4102
+    },
+    {
+      "path": "tools/media/MediaSaveSummary.java",
+      "beforeSha256": null,
+      "afterSha256": "ea7cb3cbd1fbea7f507ebd179d02c473455eb52dca1b71b41871cb08b2caeec3",
+      "bytes": 1121
+    }
+  ],
+  "productionJavaAndPublicEntrypointsChanged": false,
+  "coreApiRuntimeByteEqualTo": "9e171f2a691cfd16c12e017cb7c386f82db94c00",
+  "mainApkSource": "06ef4bfd3d62369205d07324a01c9c6381f7391a",
+  "mainApkSha256": "51e6d838b6e6d8cf4409be69df1ab2e31bacdcfdd84332eff60689a3fda1415f",
+  "originalDirectoryAndOtherSessionUntouched": true
+}
