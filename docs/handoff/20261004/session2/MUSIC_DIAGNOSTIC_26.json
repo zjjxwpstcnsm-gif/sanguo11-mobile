@@ -1,0 +1,60 @@
+{
+  "serial": "emulator-5582",
+  "runner": "MusicSourceInstrumentation",
+  "arguments": [
+    "resource=2238",
+    "retainPcm=true"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/menu-music-build-25-r7/frozen/app-debug.apk": "8afbe618066681f8408ed2d49613e18523994281d6ade20a434f0afbed19341c",
+    "/Users/paopao/.codex/worktrees/portrait-audio-integration/sanguo11-mobile/out/media/menu-music-build-25-r7/frozen/app-debug-androidTest.apk": "aecdcb9cbec240813c16b16544b7ef1d598d1df00fbfc02e29217f145863caf9"
+  },
+  "installed_sha256": "8afbe618066681f8408ed2d49613e18523994281d6ade20a434f0afbed19341c",
+  "installed_test_sha256": "aecdcb9cbec240813c16b16544b7ef1d598d1df00fbfc02e29217f145863caf9",
+  "passed": true,
+  "seconds": 6.72,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "files/music-source-2238.pcm",
+      "files/music-source.json"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  },
+  "backup": {
+    "files/auto.sg11": {
+      "bytes": 185898,
+      "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    },
+    "files/manual3.sg11": {
+      "bytes": 185898,
+      "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    }
+  },
+  "sourceCommit": "81dd448ce7d263ae3fe29ddd6781151238f31635",
+  "scope": "Same actual installed APK25, full original2238 decoder timeline only, no new continuous mix pass",
+  "evidenceFiles": {
+    "out/media/menu-decoder-diagnostic-26/actual-2238.pcm": {
+      "bytes": 15618048,
+      "sha256": "c90b72f072a61abbaf910aa2403a596c58590930d2ae43650d105743efecd66e"
+    },
+    "out/media/menu-decoder-diagnostic-26/actual-decode.json": {
+      "bytes": 633,
+      "sha256": "3cf153644841ea7a7134086b73cdaf0ac1304c15aa57dfd8423d3751b7dc6a7b"
+    },
+    "out/media/menu-decoder-diagnostic-26/pcm-difference.json": {
+      "bytes": 672,
+      "sha256": "1bd55545de34c2586bb620b8d92bac08abfa475a288c0a009179b4ce0d19fd84"
+    },
+    "out/media/menu-decoder-diagnostic-26/r6-timeline.json": {
+      "bytes": 4340,
+      "sha256": "a395d00b28b68156daed5d2f3bf63b5ef93aa31a869718957e6f1e389cdaacfc"
+    },
+    "out/media/menu-decoder-diagnostic-26/r7-timeline.json": {
+      "bytes": 4345,
+      "sha256": "8dacf9fe57aef01f6614760825845e63eb70243a722cc659c9718d8a3aa9f3ae"
+    }
+  }
+}
