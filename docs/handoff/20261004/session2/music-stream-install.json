@@ -1,0 +1,37 @@
+{
+  "serial": "emulator-5582",
+  "runner": "MusicPlaybackInstrumentation",
+  "arguments": [],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/music-stream-frozen-01/app-debug.apk": "0c03d8240155347097f36881228b13d27450cd79e6b3747a581d1ddfb1673f28",
+    "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/music-stream-frozen-01/app-debug-androidTest.apk": "37600cd6f027b7843c234a7ecbc36c2c611fc0df4e647bc77b3cfa508af3e79e"
+  },
+  "backup": {
+    "files/auto.sg11": {
+      "bytes": 185898,
+      "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    },
+    "files/manual3.sg11": {
+      "bytes": 185898,
+      "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    }
+  },
+  "passed": true,
+  "stage": "finished",
+  "reused_installed": false,
+  "installed_test_sha256": "37600cd6f027b7843c234a7ecbc36c2c611fc0df4e647bc77b3cfa508af3e79e",
+  "installed_sha256": "0c03d8240155347097f36881228b13d27450cd79e6b3747a581d1ddfb1673f28",
+  "exit_code": 0,
+  "seconds": 30.43,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "files/music-playback.json",
+      "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+      "shared_prefs/map-renderer.xml"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  }
+}

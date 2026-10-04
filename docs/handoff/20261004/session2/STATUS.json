@@ -173,6 +173,43 @@
         "added_files": [],
         "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
       }
+    },
+    "musicStreamCurrent": {
+      "serial": "emulator-5582",
+      "runner": "MusicPlaybackInstrumentation",
+      "arguments": [],
+      "apks": {
+        "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/music-stream-frozen-01/app-debug.apk": "0c03d8240155347097f36881228b13d27450cd79e6b3747a581d1ddfb1673f28",
+        "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/music-stream-frozen-01/app-debug-androidTest.apk": "37600cd6f027b7843c234a7ecbc36c2c611fc0df4e647bc77b3cfa508af3e79e"
+      },
+      "backup": {
+        "files/auto.sg11": {
+          "bytes": 185898,
+          "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+        },
+        "files/manual3.sg11": {
+          "bytes": 185898,
+          "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+        }
+      },
+      "passed": true,
+      "stage": "finished",
+      "reused_installed": false,
+      "installed_test_sha256": "37600cd6f027b7843c234a7ecbc36c2c611fc0df4e647bc77b3cfa508af3e79e",
+      "installed_sha256": "0c03d8240155347097f36881228b13d27450cd79e6b3747a581d1ddfb1673f28",
+      "exit_code": 0,
+      "seconds": 30.43,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "files/music-playback.json",
+          "shared_prefs/game.sanguo.mobile.MainActivity.xml",
+          "shared_prefs/map-renderer.xml"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
     }
   },
   "checks": {
@@ -200,7 +237,8 @@
     "clientCurrentInstalledWire": 52,
     "originalMusicSelectorPolicy": 318,
     "installedCurrentMusicSource": 185,
-    "musicFrameHost": 12
+    "musicFrameHost": 12,
+    "installedMusicStream": 19
   },
   "originalRestoredAudioSamples": 1,
   "uniqueCurrentShortSamples": 10,
@@ -212,9 +250,9 @@
   "publicProtectedFilesAllExact": true,
   "latestPackageIsFullRestoration": false,
   "nextRequired": [
-    "Native full portrait form/caller lookup and bounded loader + sourceVariant metadata connection",
+    "Consume completed metadata9e171f2 saved sourceInfo via readonly interface; stage/bound-cache exact portraits and prove caller form selection",
     "Apply exact guarded committed-source host patch sequentially, then validate actual normal UI callback without probe adapter",
-    "Original normal menu/map scene caller identity and precise predicate/month inputs; streaming first PCM immediately, shared music/SFX/voice focus/lifecycle; no wait for whole-track cache",
+    "Integrate source-proved normal menu/map scene directives and shared focus/volume/noisy lifecycle, then real-source music/voice/SFX coexistence",
     "Actor/event/weapon/tactic/plot voice and original sound trigger proof + playback",
     "Complete new combination normal3D battle/plot/multiturn/save/exit/performance acceptance",
     "ARM hardware or explicit unavailable boundary"
@@ -247,17 +285,22 @@
   "factSharedHostPatchApplied": false,
   "factSharedHostPatchSourceCommit": "2910997516cec8aad4d0564688f6090e944eddc8",
   "factSharedHostPatchCompiled": true,
-  "latestIntermediateApkSha256": "00945eed35a061fb6f8f155b97e6d4acaf58f192ecfe693b8f4640f037464f6d",
-  "latestIntermediateSourceCommit": "ef0cc1c",
+  "latestIntermediateApkSha256": "0c03d8240155347097f36881228b13d27450cd79e6b3747a581d1ddfb1673f28",
+  "latestIntermediateSourceCommit": "23fa59d",
   "latestMediaToolCommit": "f11735db275b2cd519bc59f137fa44d4defafc3b",
   "stagedOriginalMusicTracks": 30,
   "stagedOriginalMusicBytes": 42745612,
   "activeOriginalMusicSceneBindings": 0,
-  "musicStreamPlayerImplemented": false,
+  "musicStreamPlayerImplemented": true,
   "musicAndroidDecoderRepeatedTracks": 30,
   "musicAndroidReferenceByteEqualTracks": 0,
   "musicAndroidSourceTimelineExact": true,
   "musicPcmDifferenceMeasuredTracks": [
     2261
-  ]
+  ],
+  "musicStreamNormalSceneIntegrated": false,
+  "musicSharedFocusIntegrated": false,
+  "musicStreamFirstWriteMillis": 138,
+  "musicStreamActualMixCorrelation": 0.9999978802621599,
+  "latestCommittedMetadataAvailable": "9e171f2"
 }
