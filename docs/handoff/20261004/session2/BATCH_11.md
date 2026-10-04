@@ -1,0 +1,23 @@
+# 批十一：统一音频焦点、原语音流与实际混音生命周期
+
+完整目标active，普通日常BGM/原人物动作绑定仍未完成。基点5086f490；实现ee16461b，预热/摘要校验复用、明确overflow resync与耳机断开处理ccd6d6bf。core/game-api/game-runtime和人物metadata仍与已完成9e171f2字节一致；MainActivity、通用地图/3D规则、共享metadata manifest未修改。现有Main attach/foreground/detach通过媒体所有者SoundEffects接统一生命周期。
+
+PcMediaPlayback只能订阅实际当前GameSession receipt，MediaCueLedger以完整StateToken/parentId确认来源，按voice id去重。snapshot/restore/close只建立屏障并清瞬态，不产生播放；后台、静音、焦点中断期间的receipt作为静默基线，不在恢复后补播。512个claimed ID满后明确resync，不用LRU忘掉旧id；待播voice最多4个，溢出清瞬态并要求实际snapshot resync。parentId/presentationParentId完整保留，不用detail文案推断动作，不生成规则事件/命令/earn/RNG/保存。声音NET与逐次技巧事实旧线路未改变。
+
+PcVoiceDirective只接已确定原selector参数、精确保存人物来源和实际父receipt；支持原feedbackA/feedbackB/四个已计算能力byte选择器，不重新计算人物能力。目录worker再核验speaker的officerId/nativeId/sourceVariant/path/sourceSha/recordSha/type；无来源或错来源不借别人的声音。PcVoiceStreamPlayer只持不可变directive，不读World；单worker/每次最多一声，待播按priority稳定选择，抢占先取消/flush/释放旧AudioTrack后才开新声。原Ogg hash/声道/采样率/EOS严格检查，PCM不补/裁，普通暂停保持同一播放头，跳过/后台/焦点丢失/退出取消瞬态并释放codec/track/自己的PCM缓存。
+
+SoundEffects统一拥有一个AudioFocusRequest：有正音量音乐时GAIN，否则保留原短效果TRANSIENT_MAY_DUCK。epoch忽略旧request回调；真实gain/duck/loss同时更新音乐、语音和SoundPool。原音量/静音字段保留；新music-volume/voice-volume默认继承旧音量，可独立设置，旧静音保持全体静音，音效音量0仍抑制音效，显式独立音乐/语音设置可以保留其它通道。voice期间音乐0.35、效果0.7是明确移动端混音策略，不宣称原PC音量自动化。动态NOISY receiver在首owner注册/末owner注销，断开事件取消短声、暂停长流并归还focus；必须显式继续已建立音乐或重新进入前台，不能自动向扬声器补播旧语音。音乐缓存名用elapsedRealtimeNanos避免同毫秒同曲切换冲突。
+
+主机MediaCueLedger16项通过：实际成员、重复receipt/phase、精确大于2^53的long、stale revision/generation、overflow/resync、restore与close。架构边界PASS。未运行/扩大完整架构旧v33 golden差异，规则/API/runtime零增量。
+
+首源ee16461b安装包实际35项通过，原music和voice播放头真实推进、共享焦点/暂停恢复/优先抢占/静音/后台/释放及完整Save/RNG对照通过；但冷voice首次提交2555ms。未将这项延迟包装为通过性能门槛。复用SHA格式预编译pattern避免每人物重编译、source graph构造时媒体worker预热原voice清单后，新包首PCM98ms，抢占后76ms。没有在UI解析/解码。
+
+当前组合包来自ccd6d6bf11a4987189dd260dab7cf99a229fc0d2，生产283153255字节，SHAefcee0ad773263a9d1fca6f84290222e659fd2362657fbe5a12a5bd83f0a1f8b；test2064399字节，SHAc1104cba91e79f2795404716074ababe60e81dbee00777d3459fb2bcf39d8575。独立构建/冻结/实际5582安装/读回。SharedMedia41项PASS21.27秒，包括系统UID真实AUDIO_BECOMING_NOISY广播到注册receiver与显式继续；这不是物理耳机/ARM证据。实际source campaign批准speaker1000、type2，测试明确选profile23（voice329/resource2616）和music24/resource2261，实际PATROL仅用于产生真实订阅receipt并做参考Save/RNG对照。**原PATROL对应哪个profile与日常场景该用哪个音乐仍未知，这两个参数是明确测试adapter，不是正常原绑定验收。**
+
+实际5582混音窗口已识别声明的两个原样本：音乐单独相关0.9999985587119028，联合相关0.9999994483106704，去音乐后原voice相关0.9999993621265048，实测ducking0.35000580286151595。check_shared_source_mix.py只用报告声明的原music2261/voice2616，核对原manifest参考PCM SHA；固定65tap滤波、原采样率相位细化与200..500ms重叠，归一化列条件防止幅度单位导致病态假象；要求正增益、可听RMS与>.999相关、duck ratio0.35±0.02，不编辑波形、不检索无关样本库。不能仅用play返回值/播放头冒充混音证据。
+
+旧音效UI/11cue重复、静音、volume0、真实焦点竞争、Home/恢复、退出释放及完整Save/RNG回归31.94秒通过；仍只有PC33是原还原，其余9是明确合成。所有run备份后恢复原两用户保存/全部库/偏好字节，SHA02ddb3d...无新增内部文件，5554录音与原AVD不变。
+
+待继续：原正常BGM场景/全谓词和13/58voice selector动作语义、源speaker side/slot与逐次已提交事实对应，普通列表/战斗/对话/单挑全部头像形态/MOD和其它15来源正常流程，其余原SFX绑定、真实read/load/newgame/多回合的全组合以及ARM/手机扬声器。实际graph代替了独立focus测试线路，但源选择仍未闭合；正常voice/BGM原绑定通过数量仍0。
+
+同本包正常656目录/3详情、真实保存读回/后台/退出重开324153项PASS104.03秒。正常3D战法原fact触发/取消/双确认/全部Save/RNG两轮通过18.94/17.76秒，用户文件恢复一致；**PC33混音三模板模型两轮未达到既定>.999门槛**：第一次joint0.9876768/去干扰PC330.9772211，第二次joint0.9880377/PC330.9773285。因此本包正常PC33 PCM回归判为FAIL，不借旧e0fa3eda包的通过。加入明确UI合成nuisance的诊断没有解决；原窗口保留，未改波形/降低门槛，具体原因尚未知，后续优先排查样本对齐/重采样或真实额外声音。共享原music+voice声明测试的PCM通过不替代这项失败；当前已完整通过正常PC33的旧组合检查点仍见批十，不将本包提升为全体验收通过。

@@ -409,8 +409,8 @@
     "notEquivalentToTacticOrdinal": true,
     "originalRecordFieldChecks": 6
   },
-  "latestInstalledApkSha256": "e0fa3eda0898ca0966bc8f9ac19ead453f731d8b42c5d3ccf3371b86470344b3",
-  "latestInstalledSourceCommit": "7bec08f87d728b15987708606100067cbfe0dc61",
+  "latestInstalledApkSha256": "efcee0ad773263a9d1fca6f84290222e659fd2362657fbe5a12a5bd83f0a1f8b",
+  "latestInstalledSourceCommit": "ccd6d6bf11a4987189dd260dab7cf99a229fc0d2",
   "originalVoiceSources": {
     "result": "PASS_CODEC_SOURCE_EVIDENCE",
     "sourceVoices": 1997,
@@ -588,5 +588,24 @@
     "normalPortraitSaveExitChecks": 324153,
     "normalPc33PcmCorrelation": 0.9999995446479859,
     "allUserFilesRestoredByteEqual": true
+  },
+  "sharedMediaPlayback": {
+    "sourceCommit": "ccd6d6bf11a4987189dd260dab7cf99a229fc0d2",
+    "installedApkSha256": "efcee0ad773263a9d1fca6f84290222e659fd2362657fbe5a12a5bd83f0a1f8b",
+    "actualInstalledChecks": 41,
+    "hostReceiptLedgerChecks": 16,
+    "firstVoicePcmMillis": 98,
+    "originalVoiceAfterMusicCorrelation": 0.9999993621265048,
+    "actualMusicDuckRatio": 0.35000580286151595,
+    "systemUidNoisyBroadcastPassed": true,
+    "hardwareHeadphoneOrArmAccepted": false,
+    "normalOriginalSceneOrActionBindingAccepted": false,
+    "actualMixIsExplicitProfileAndTrackTestAdapter": true,
+    "legacySoundEffectsRegressionPassed": true,
+    "userFilesRestoredByteEqual": true,
+    "normalPortraitSaveExitChecks": 324153,
+    "normalPc33PcmRegression": "FAILED_TWO_RUNS_UNRESOLVED",
+    "normalPc33PcmCorrelation": 0.9773284959337095,
+    "normalPc33PcmAccepted": false
   }
 }

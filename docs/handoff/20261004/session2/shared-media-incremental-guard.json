@@ -1,0 +1,249 @@
+{
+  "baseCommit": "5086f490",
+  "productionSourceCommit": "ccd6d6bf11a4987189dd260dab7cf99a229fc0d2",
+  "paths": [
+    {
+      "path": "app/src/androidTest/AndroidManifest.xml",
+      "beforeSha256": "065ae63274fbc6cc82ef2535a500400298e2e67f507a8b14dc4a67b6104c1c13",
+      "afterSha256": "54963c940283c0993006dc42c593d862432472d25f336388c2b2b3d6955586b8",
+      "afterBytes": 12722
+    },
+    {
+      "path": "app/src/androidTest/java/game/sanguo/mobile/SharedMediaInstrumentation.java",
+      "beforeSha256": null,
+      "afterSha256": "39e067151b852ecb0b31301d89ec80deb0795d096905419508f4a62a6059842c",
+      "afterBytes": 11819
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MediaCueLedger.java",
+      "beforeSha256": null,
+      "afterSha256": "43db8ec4caa93eb64f3ea13efb3957cabf9e985c27ab5d21f93dced263125054",
+      "afterBytes": 2805
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/MediaHashes.java",
+      "beforeSha256": null,
+      "afterSha256": "b3287d010a7e83226c2c5d8644b30a3da84e2d1ec34b05884a4b73c33e846a0e",
+      "afterBytes": 381
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcAudioSource.java",
+      "beforeSha256": "a03f408cb9ae2f342553837b13ca68072276769e1f7bec836da40599520d3148",
+      "afterSha256": "c9f8f5be24fc93ab3adef6dcb2bcc4f0dfefadcf868dd3ce369bbbc1c1ebc214",
+      "afterBytes": 906
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMediaPlayback.java",
+      "beforeSha256": null,
+      "afterSha256": "edb19a81f7e99d7d081d78f0c52b450babe0f8c496b3670ed8e622930ef1a0e8",
+      "afterBytes": 7756
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcMusicStreamPlayer.java",
+      "beforeSha256": "151722f2603244fe66ff3a9ecb955c2701ac8671d33977cdfef9ac7a901e0a2b",
+      "afterSha256": "dfd5853241809eb38c91d3c80bd57224f66bd2bfc0a4e8dc0bc5b4b856f494a7",
+      "afterBytes": 9131
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVoiceDirective.java",
+      "beforeSha256": null,
+      "afterSha256": "b8deb80dc6999ecb3e774d29cdfb58af6ea2e12aae7f59202e9c0991507f483a",
+      "afterBytes": 2510
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PcVoiceStreamPlayer.java",
+      "beforeSha256": null,
+      "afterSha256": "a531d6d0fdecca948799a78ff0cf32e545a6f4bcad4cad7a121dbc026dc08f75",
+      "afterBytes": 7879
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/PortraitMediaIdentity.java",
+      "beforeSha256": "724a84b6260a767918f9d5249e0b9ec0c7ded0990c4f277ed97df526e3e4cad3",
+      "afterSha256": "5376d19b2bdf9dd0954a27109fe8acc9edf78080374f63ec7bb9fd47c7e29126",
+      "afterBytes": 839
+    },
+    {
+      "path": "app/src/main/java/game/sanguo/mobile/SoundEffects.java",
+      "beforeSha256": "2cd97ee80da404b36eed7ccb0cb391649c8eb3a3188b1f8149169de3f6abadd7",
+      "afterSha256": "1e63e99a39b13c8edd0a61da4b287a9fb57e43da5a6b8b66516a392f960839c1",
+      "afterBytes": 10309
+    },
+    {
+      "path": "app/src/test/java/game/sanguo/mobile/MediaCueLedgerTest.java",
+      "beforeSha256": null,
+      "afterSha256": "13effaa3d5414798d00793465fe10767c64e288dd6ccbdc7683834348c2eb8b0",
+      "afterBytes": 2746
+    },
+    {
+      "path": "docs/handoff/20261004/session2/BATCH_11.md",
+      "beforeSha256": null,
+      "afterSha256": "d39e10c2a8706eab38623bc1c3f235b4a4f5d4e6590dc2084955f451f2725933",
+      "afterBytes": 6297
+    },
+    {
+      "path": "docs/handoff/20261004/session2/STATUS.json",
+      "beforeSha256": "22f75e390c3ef401a1c7588db4da30198383b0a23b6b625e1cb966fa1cb41191",
+      "afterSha256": "3107a9ad94685696aa4106c75694a531c182926cd8a53f541ccded54c494db56",
+      "afterBytes": 23882
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-build.log",
+      "beforeSha256": null,
+      "afterSha256": "7803203d6a0d9bd9f28a5e518d6c8b6a5a5c27cd595f120284407938e1111b4f",
+      "afterBytes": 5631
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-critical-first-facts.json",
+      "beforeSha256": null,
+      "afterSha256": "e40588ff8d4f4cc9dc5fc2802a9bdfb3f6e136b96301cc70f358c9f690b4944f",
+      "afterBytes": 543
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-critical-first-installed.json",
+      "beforeSha256": null,
+      "afterSha256": "97d4c196a745ebfec1682e9deac44d6d638f97fcf97bb7599ce8550ed3f79904",
+      "afterBytes": 20305
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-critical-first-pcm-failure.json",
+      "beforeSha256": null,
+      "afterSha256": "5c05138c123eec2bfc5d1746d2de3b1e959ff236aff848787f740801399bd764",
+      "afterBytes": 415
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-critical-first-pcm.json",
+      "beforeSha256": null,
+      "afterSha256": "1beab9a5970662df9355b9c076a9ee398a918441a61d6fc11e3879dec2bc5bb0",
+      "afterBytes": 417
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-critical-installed.json",
+      "beforeSha256": null,
+      "afterSha256": "97d4c196a745ebfec1682e9deac44d6d638f97fcf97bb7599ce8550ed3f79904",
+      "afterBytes": 20305
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-critical-installed.log",
+      "beforeSha256": null,
+      "afterSha256": "00a8fa7f705a2c7b6601eec68804395b45a96458bde5c4145fd064ac167cd868",
+      "afterBytes": 1276
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-critical-repeat-facts.json",
+      "beforeSha256": null,
+      "afterSha256": "8502a8fc54cdb9622d660de6cf03639a6a1bb2cb2e6f4178bd4bd0b825a57862",
+      "afterBytes": 543
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-critical-repeat-installed.json",
+      "beforeSha256": null,
+      "afterSha256": "acb1fa7fa9c7b1dce062f516b3303c69517fb6964cf0588335817c07b5f4789f",
+      "afterBytes": 20311
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-critical-repeat-pcm.json",
+      "beforeSha256": null,
+      "afterSha256": "32e3f22a1d4bad14c13d587c57bacbeac200a7e0335cf00cde42deb43325318f",
+      "afterBytes": 417
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-current-apks.json",
+      "beforeSha256": null,
+      "afterSha256": "f67c76c4af77e7711baf20ab770f4985009fa0f59f80bf66ec427b5e30f3dea9",
+      "afterBytes": 668
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-current-installed.json",
+      "beforeSha256": null,
+      "afterSha256": "593940b1e605677c2995f14a7ef7980646c4a92421397eddede61b9c45d15310",
+      "afterBytes": 20689
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-current-installed.log",
+      "beforeSha256": null,
+      "afterSha256": "7e52cd9169d0b3c3010e6dbe08cc88104ea3a4c8d97d47cdd3582f34485192af",
+      "afterBytes": 197
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-current-observations.json",
+      "beforeSha256": null,
+      "afterSha256": "e29442e32087448bde9228d5086e3885b1106b163ce527d3d7377edbd6c6c22e",
+      "afterBytes": 5349
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-current-pcm.json",
+      "beforeSha256": null,
+      "afterSha256": "fe01415595bfb29a3ed90990e49d1c5226bf8ae5c15b986976d08708935250d6",
+      "afterBytes": 417
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-current-waveform.json",
+      "beforeSha256": null,
+      "afterSha256": "7ee507ef82f6874d2e2c903c4b1ff6841aeb03a5d7e4edca293a7943455b956c",
+      "afterBytes": 1683
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-effects-installed.json",
+      "beforeSha256": null,
+      "afterSha256": "bc895d12311b82e83fe77fc24c35f069558969a67681aadc96000ad1fdf8a0f6",
+      "afterBytes": 20354
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-effects-installed.log",
+      "beforeSha256": null,
+      "afterSha256": "f2ac729cf24015989326b5ece872047d9bf0c370397fcf39fa00e593aba9a8cb",
+      "afterBytes": 2493
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-first-installed.json",
+      "beforeSha256": null,
+      "afterSha256": "1ec4834396b46e3f93dfbd3c210e6702501b153e5f01bf6398f253173e3bbead",
+      "afterBytes": 20689
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-first-observations.json",
+      "beforeSha256": null,
+      "afterSha256": "40c856068d21c3c5c34ad48e9435db103e48540dd5facf938eb5ff6525d2be7b",
+      "afterBytes": 4821
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-first-waveform.json",
+      "beforeSha256": null,
+      "afterSha256": "de7b7ffadf02bd3be6947757913a9108ef8eb97cd0094689b7b81d2c3b7f99da",
+      "afterBytes": 1683
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-ledger-host.log",
+      "beforeSha256": null,
+      "afterSha256": "d358e622d4cbb9b294e735225bbdc0da69d8088e77a2f8f734fcf550fe61015e",
+      "afterBytes": 104
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-normal-installed.json",
+      "beforeSha256": null,
+      "afterSha256": "2bdd9f1411e61befbfe02ec5dcd6cc47cabbd34c4d740d0d6018c6bb624a106d",
+      "afterBytes": 20666
+    },
+    {
+      "path": "docs/handoff/20261004/session2/shared-media-normal-installed.log",
+      "beforeSha256": null,
+      "afterSha256": "7914ce9e24442dae16b8f4a64a9618370417f3e03aba0452a98b5a102f303b27",
+      "afterBytes": 95
+    },
+    {
+      "path": "tools/audio/check_shared_source_mix.py",
+      "beforeSha256": null,
+      "afterSha256": "a0848898f950ff2f3dda83c436536a368c70100f8f9268cfc36b55c72bb96798",
+      "afterBytes": 7299
+    },
+    {
+      "path": "tools/media/verify_media_install.py",
+      "beforeSha256": "25292e8d646d98628c1b4b5f4e488b19b7eff1311a686a474e04554dc9a66e5f",
+      "afterSha256": "f00001e40337456d43d450eb89d6dc7441726768f3cea47d004c181234b7ef73",
+      "afterBytes": 5482
+    }
+  ],
+  "coreApiRuntimeUnchanged": true,
+  "normalSourceBindingsAccepted": false,
+  "normalPc33PcmRegressionPassed": false
+}
