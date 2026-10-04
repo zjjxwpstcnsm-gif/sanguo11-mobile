@@ -132,6 +132,7 @@ public class UiUxInstrumentation extends Instrumentation {
     }
     private void longRun()throws Exception{
         nav("地图");MapHost host=(MapHost)field(activity,"map");waitNative(host);World initial=SessionProbe.view(activity);int startTurn=initial.turn,rounds=Integer.parseInt(arguments.getString("rounds","6"));check(rounds>=6&&rounds<=60,"sustained acceptance requires at least six complete turns");long began=SystemClock.elapsedRealtime();StringBuilder samples=new StringBuilder("round,wall_ms,turn,java_used_bytes,java_total_bytes,pss_kb\n");
+        Files.write(new File(output,"authority-before.sg11").toPath(),capture());
         for(int round=0;round<rounds;round++){
             text("下一旬");awaitText("结束 ");tap(await(v->v instanceof Button&&"执行".contentEquals(((Button)v).getText())));text("演示控制");tap(awaitText("暂停演示"));
             long deadline=SystemClock.uptimeMillis()+180000;
@@ -139,6 +140,7 @@ public class UiUxInstrumentation extends Instrumentation {
             deadline=SystemClock.uptimeMillis()+30000;while(field(activity,"turnWork")!=null&&SystemClock.uptimeMillis()<deadline)SystemClock.sleep(100);
             check(field(activity,"turnWork")==null&&SessionProbe.view(activity).turn==startTurn+round+1,"normal UI commits exactly one full turn in sustained round "+round);waitNative(host);
             byte[] state=capture();World saved;try(InputStream in=new FileInputStream(new File(activity.getFilesDir(),"auto.sg11"))){saved=game.sanguo.core.SaveCodec.read(in);}check(Arrays.equals(state,game.sanguo.core.SaveCodec.encode(saved)),"real autosave equals full current state in round "+round);
+            Files.write(new File(output,"authority-round-"+round+".sg11").toPath(),state);
             backgroundMap(host);foregroundMap(host);check(host.is3D()&&Arrays.equals(state,capture()),"round "+round+" Home/resume preserves authority and 3D camera");
             FilamentMapView view=(FilamentMapView)field(host,"spatial");Files.write(new File(output,"frames-"+round+".csv").toPath(),frameCsv(view).getBytes("UTF-8"));Files.write(new File(output,"renderer-"+round+".txt").toPath(),rendererReport(host).getBytes("UTF-8"));
             android.os.Debug.MemoryInfo memory=new android.os.Debug.MemoryInfo();android.os.Debug.getMemoryInfo(memory);Runtime runtime=Runtime.getRuntime();samples.append(round).append(',').append(SystemClock.elapsedRealtime()-began).append(',').append(SessionProbe.view(activity).turn).append(',').append(runtime.totalMemory()-runtime.freeMemory()).append(',').append(runtime.totalMemory()).append(',').append(memory.getTotalPss()).append('\n');Files.write(new File(output,"sustained.csv").toPath(),samples.toString().getBytes("UTF-8"));shot("round-"+round);
