@@ -7,7 +7,7 @@
         android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
     <instrumentation android:name="game.sanguo.mobile.TechniquePointsInstrumentation"
         android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
-    <instrumentation android:name="game.sanguo.mobile.TechniquePointsInstrumentation"
+    <instrumentation android:name="game.sanguo.mobile.TechniqueFactsInstrumentation"
         android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
     <instrumentation android:name="game.sanguo.mobile.MapEditor67Instrumentation"
         android:targetPackage="game.sanguo.mobile.dev" android:functionalTest="true" />
