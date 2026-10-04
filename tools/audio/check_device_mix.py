@@ -18,13 +18,17 @@ rate,signal=read(a.wave);assert np.sqrt(np.mean(signal**2))>.001,'Silent device 
 t=np.arange(-32,33);kernel=np.sinc(t*.1)*np.hamming(len(t));kernel/=kernel.sum()
 def filtered(x):return np.convolve(x,kernel,mode='same')[::8]
 x=filtered(signal);rows=[]
+overridePath=ROOT/'app/src/main/assets/audio/pc-media-manifest.json'
+overrides=json.loads(overridePath.read_text())['cues'] if overridePath.exists() else {}
 for path in sorted((ROOT/'app/src/main/assets/audio').glob('*.wav')):
+ cue=path.stem
+ if cue in overrides:path=ROOT/'app/src/main/assets'/overrides[cue]
  sourceRate,source=read(path);assert sourceRate==rate;template=filtered(source)
  n=len(x)+len(template)-1;fftSize=1<<(n-1).bit_length()
  cross=np.fft.irfft(np.fft.rfft(x,fftSize)*np.fft.rfft(template[::-1],fftSize),fftSize)[len(template)-1:len(x)]
  squares=np.r_[0,np.cumsum(x*x)];energy=squares[len(template):]-squares[:-len(template)]
  scores=np.abs(cross)/np.sqrt(np.maximum(1e-20,energy*np.sum(template*template)));at=int(np.argmax(scores));score=float(scores[at])
  assert score>.80,(path.name,'cue not recognized in actual mixed output',score)
- rows.append(dict(cue=path.stem,correlation=score,seconds=at*8/rate,asset_sha256=hashlib.sha256(path.read_bytes()).hexdigest()))
-report=dict(status='PASS',scope='Actual Android playback mixed by emulator WAV backend; no microphone; not ARM hardware speaker quality',sample_rate=rate,seconds=len(signal)/rate,rms=float(np.sqrt(np.mean(signal**2))),device_wave_sha256=hashlib.sha256(a.wave.read_bytes()).hexdigest(),cues=rows)
+ rows.append(dict(cue=cue,correlation=score,seconds=at*8/rate,asset_sha256=hashlib.sha256(path.read_bytes()).hexdigest(),source='native PC HUD33' if cue in overrides else 'inherited mobile composition'))
+report=dict(status='PASS',scope='Actual Android playback mixed by emulator WAV backend; no microphone; not ARM hardware speaker quality',sample_rate=rate,seconds=len(signal)/rate,rms=float(np.sqrt(np.mean(signal**2))),device_wave_sha256=hashlib.sha256(a.wave.read_bytes()).hexdigest(),unique_sample_hashes=len({r['asset_sha256'] for r in rows}),cues=rows)
 a.output.write_text(json.dumps(report,indent=2)+'\n');print('PASS',len(rows),'actual mixed cues; minimum correlation',min(r['correlation'] for r in rows))

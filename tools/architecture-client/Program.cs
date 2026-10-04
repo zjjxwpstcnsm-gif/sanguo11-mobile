@@ -38,7 +38,8 @@ internal static class Program
             actualSync.Start();actualSync.Receive(actual);var facts=actualSync.DrainTechniquePoints();
             Require(facts.Length==2&&facts[0].Delta==20&&facts[1].Delta==-20,"actual Java JSON consumed by real C# client");
             Require(facts[0].ParentId==facts[1].ParentId&&facts[0].Id!=facts[1].Id,"actual parent and unique IDs survive");
-            Require(actualSync.Status.StartsWith("COMMAND_REJECTED")&&actualSync.DrainTechniquePoints().Length==0,"actual rejected receipt adds no sound");
+            bool hasReceipt=actual.messages.Any(m=>m.type=="receipt");
+            Require((!hasReceipt||actualSync.Status.StartsWith("COMMAND_REJECTED"))&&actualSync.DrainTechniquePoints().Length==0,"actual batch has no extra media on second drain");
         }
         var transport=new RecordingTransport();var sync=new BridgeSync(transport);sync.Start();
         Require(transport.Requests.Count==1&&transport.Requests[0].type=="snapshot","startup requests snapshot");

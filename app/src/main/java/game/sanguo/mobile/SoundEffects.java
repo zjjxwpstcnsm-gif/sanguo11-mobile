@@ -37,8 +37,12 @@ final class SoundEffects {
         if(pool!=null)return;
         SoundPool candidate=new SoundPool.Builder().setMaxStreams(6).setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build()).build();pool=candidate;
         candidate.setOnLoadCompleteListener((source,id,status)->{if(pool==source&&status==0)ready.add(id);else if(status!=0)Log.e("GameAudio","load failed sample="+id+" status="+status);});
-        for(Cue cue:Cue.values())try(var file=context.getAssets().openFd("audio/"+cue.name().toLowerCase(Locale.ROOT)+".wav")){samples.put(cue,candidate.load(file,1));}catch(java.io.IOException e){Log.e("GameAudio","Missing audio "+cue,e);}
+        for(Cue cue:Cue.values())try(var file=context.getAssets().openFd(asset(cue))){samples.put(cue,candidate.load(file,1));}catch(java.io.IOException e){Log.e("GameAudio","Missing audio "+cue,e);}
     }
+    // Native HUD33 has one proved sample for changed values in either direction.
+    // Other cues retain their explicitly labelled mobile compositions until source bindings close.
+    private static String asset(Cue cue){return cue==Cue.TECHNIQUE_GAIN||cue==Cue.TECHNIQUE_LOSS
+        ?"audio/pc/technique-33.wav":"audio/"+cue.name().toLowerCase(Locale.ROOT)+".wav";}
     void ui(){long now=android.os.SystemClock.uptimeMillis();if(now-uiAt<60)return;uiAt=now;play(Cue.UI);}
     /** A committed event phase is claimed once even when muted/backgrounded.
      * Loading/recreation never queues stale battle sounds for later replay. */

@@ -59,7 +59,7 @@ public final class MediaBridgeInstrumentation extends Instrumentation {
                 JSONObject encoded=new JSONObject(BridgeJson.message(huge).toString());
                 check(encoded.getLong("sequence")==exact&&encoded.getJSONObject("state").getLong("generation")==exact,"Android exact long beyond 2^53");
                 check(encoded.getJSONArray("techniquePointsFacts").getJSONObject(0).getLong("sequence")==exact,"Android exact fact long");
-                Files.writeString(getTargetContext().getFilesDir().toPath().resolve("media-wire.json"),new JSONObject().put("status","OK").put("messages",evidence).put("dropped",0).toString());
+                Files.write(getTargetContext().getFilesDir().toPath().resolve("media-wire.json"),new JSONObject().put("status","OK").put("messages",evidence).put("dropped",0).toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));
             }catch(Throwable error){failure.set(error);}
             finally{AndroidGameBridge.bind(null);}
         });

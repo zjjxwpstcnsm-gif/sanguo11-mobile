@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "sourceArchiveSha256": "e61c97fee43ee23b1248c46a2eb3e50adb0db620b8c0bff6e8fd67c30ca9c31a",
+  "nativeSoundId": 33,
+  "bank": 1,
+  "slot": 19,
+  "headerResource": 2268,
+  "waveResource": 2267,
+  "sampleRate": 44100,
+  "channels": 1,
+  "samples": 45203,
+  "durationSeconds": 1.0250113378684806,
+  "sourcePcmSha256": "997d6fabb64572fd345c2355f0da3261c5b95ed8e8d8c5004d44f66e0c69b197",
+  "wavSha256": "1cf7d3edbf967ac7f7123fdb2f91a54714827520abce2ced13c4a70610909f78",
+  "nativeFormatHex": "0100010044ac000088580100020010000000",
+  "cues": {
+    "technique_gain": "audio/pc/technique-33.wav",
+    "technique_loss": "audio/pc/technique-33.wav"
+  },
+  "sourceDispatch": "Original6318ab pushes33; original4d0570 capture; original6f2c30 PCM format",
+  "status": "ORIGINAL_SAMPLE_STAGED_INSTALLED_PLAYBACK_PENDING",
+  "limits": [
+    "One original sample serves the original changed-value HUD call regardless of sign.",
+    "Inherited other nine cues remain original mobile compositions, not PC restoration.",
+    "Native scalar HUD still consumes legacy commit values until ordered-fact entry patches are sequentially integrated.",
+    "No BGM, actor voice or full event matrix acceptance claimed."
+  ]
+}
