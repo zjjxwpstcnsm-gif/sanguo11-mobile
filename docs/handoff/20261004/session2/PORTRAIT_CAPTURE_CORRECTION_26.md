@@ -1,0 +1,7 @@
+# 头像视觉证据截图时机修正26
+
+APK25正常新局/全656目录及656详情646114断言、存读档/退出重开通过658.85秒，652批准映射与4来源未知保持区分，用户保存/库/偏好逐字节恢复。但实际list-400截图仍混有刚关闭详情的过渡图层。该图保留portrait-normal-25-transition-FAIL.png；本轮只记录像素/身份/规则守卫通过，不能称所有截图视觉通过。
+
+PortraitFlowInstrumentation仅将shot改为截图前等待600ms及waitForIdleSync，不改MainActivity、数据页面、metadata或规则。源06ef4bfd3d62369205d07324a01c9c6381f7391a离线构建新主包307736122字节，SHA `51e6d838b6e6d8cf4409be69df1ab2e31bacdcfdd84332eff60689a3fda1415f`；测试包2075799字节，SHA `676d9f60be914dd81008181a15f8b5e9b5a43584be5b1aca21bcd666e0bc8282`。冻结于out/media/portrait-settled-build-26/frozen；实际5582重新安装和读回这两个SHA，并从原用户保存开始重新正常来源选择/新局/全目录详情。不是沿用APK24/25结果。
+
+新list-0与detail-10463稳定截图经实际检查，过渡叠影消失、原像素头像可见，比例和圆角保持生产行为。全量结果与最终保存恢复仍以本轮results.json为准；此说明不预先宣称正在运行的测试完成。测试源属于媒体表现测试所有权，架构检查通过，规则/API/runtime仍与9e171f2字节一致。
