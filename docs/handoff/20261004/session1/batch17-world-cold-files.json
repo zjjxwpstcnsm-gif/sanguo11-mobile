@@ -1,0 +1,10 @@
+{
+  "mid.sg11": {
+    "bytes": 2139783,
+    "sha256": "c371c22c2d2609ab65b121aaa57a41132ba8bbe0c995c2e8c12619d1d2496577"
+  },
+  "control.sg11": {
+    "bytes": 2140001,
+    "sha256": "d7d1d735dfbd0c376ca4f35116e230feeaac06b5c3cb21d53d98a01072dc1f3a"
+  }
+}
