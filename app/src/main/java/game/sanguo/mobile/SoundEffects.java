@@ -77,6 +77,18 @@ final class SoundEffects {
     }
     private boolean focus(){
         if(focusLost)return false;
+        if(sourceMedia==null){
+            if(focused)return true;if(manager==null)return false;
+            if(focusRequest==null)focusRequest=new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
+                .setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
+                .setOnAudioFocusChangeListener(change->{Log.i("GameAudio","LEGACY FOCUS change="+change);
+                    if(change==AudioManager.AUDIOFOCUS_GAIN){focused=true;focusLost=false;ducked=false;updateStreams();}
+                    else if(change==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK){ducked=true;updateStreams();}
+                    else{focused=false;focusLost=true;stopStreams();}
+                },handler).build();
+            focusKind=AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK;
+            focused=manager.requestAudioFocus(focusRequest)==AudioManager.AUDIOFOCUS_REQUEST_GRANTED;return focused;
+        }
         int wanted=sourceMedia!=null&&sourceMedia.hasMusic()&&musicVolume()>0&&!muted()?AudioManager.AUDIOFOCUS_GAIN:AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK;
         if(focused&&focusKind==wanted)return true;
         if(manager==null)return false;
@@ -102,9 +114,9 @@ final class SoundEffects {
         if(stream!=0){played++;streams.add(stream);if(battleCue(cue))battleStreams.add(stream);SoundPool owner=pool;handler.postDelayed(()->expireStream(stream,owner),1200);Log.i("GameAudio","PLAY cue="+cue+" stream="+stream+" count="+played+" gain="+gain+" focused="+focused+" focusKind="+focusKind+" ducked="+ducked+" voiceDucking="+voiceDucking+" sourceMedia="+(sourceMedia!=null));}
         else Log.w("GameAudio","play rejected cue="+cue);
     }
-    private void updateStreams(){if(pool!=null){float gain=volume()/100f*(ducked?.2f:1f);if(voiceDucking)gain*=.7f;for(int id:streams)pool.setVolume(id,gain,gain);}}
+    private void updateStreams(){if(pool!=null){float gain=volume()/100f*(ducked?.2f:1f);if(voiceDucking)gain*=.7f;Log.i("GameAudio","VOLUME gain="+gain+" streams="+streams);for(int id:streams)pool.setVolume(id,gain,gain);}}
     private void stopStreams(){if(pool!=null)for(int id:streams)pool.stop(id);streams.clear();battleStreams.clear();}
-    private void stop(){stopStreams();focusEpoch++;if(manager!=null&&focusRequest!=null)manager.abandonAudioFocusRequest(focusRequest);focusRequest=null;focused=false;ducked=false;if(sourceMedia!=null)sourceMedia.focus(false,false);}
+    private void stop(){stopStreams();if(sourceMedia!=null)focusEpoch++;if(manager!=null&&focusRequest!=null)manager.abandonAudioFocusRequest(focusRequest);if(sourceMedia!=null)focusRequest=null;focused=false;ducked=false;if(sourceMedia!=null)sourceMedia.focus(false,false);}
     private void release(){stop();if(sourceMedia!=null){sourceMedia.close();sourceMedia=null;}if(noisyRegistered){context.unregisterReceiver(noisy);noisyRegistered=false;}handler.removeCallbacksAndMessages(null);if(pool!=null){pool.release();pool=null;}ready.clear();samples.clear();Log.i("GameAudio","RELEASE");}
     int playedCount(){return played;}
     boolean loaded(){return ready.size()==Cue.values().length;}
