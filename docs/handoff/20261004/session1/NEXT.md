@@ -6,6 +6,8 @@
 
 PcDebateRules/State/Ai仍是未生产调用的阶段移植；四测试由tools/content/test_pc_debate_port.py完整独立编译执行。原AI/progress报告两次字节一致；equipment报告第二次已结束，逐字节一致并封存contest-equipment-native.json.gz。原有有界面counter队列和无界面model行为不同，不能把null-UI完整16轨迹直接用于正式规则。
 
+Batch13新增PcDebateModel已逐帧匹配16原无界面AI对局5724记录帧/95个可移植字段/原RNG，五测试独立编译通过。PcDebateState原伤害/后置/减时与憤激选方/激活拆分，以匹配原帧。终局51f0e0在原合成模式73f550c=-1时：失败方心理<=-100进入phase8，否则phase9；option28与真实开局外部条件尚未闭合。保留外部抑制和亲爱/厌恶终局偏好显式输入，未部署正式世界。先前21次原直接选牌不能作为原完整人控UI证明，必须继续验证实际输入getter/有界面帧选择。
+
 下一步原完整帧/人控协议：原51e300通过vtable进入/退出/逐帧，51f350负责两侧出牌/熟虑循环，51fd30为原派生憤激/连击阶段，51f660递减/换话题后回phase3。原51f060心理终局已移植；51f0e0外部条件、51f140及51dd10结算尚待调查。原初始leader读取原输入manager+18（65b740仅getter），必须将实际输入与人控标志显式放入模型，不从IQ猜先手。原UI callbacks可能抽取原RNG，必须核算并记录到core，再让媒体只消费事件。
 
 原51d940确证item kind5书籍提供全部话术，Source0孙坚native365从标记25到实际31；source14有效宝物50、其他来源43。完整来源记录要先通过身份/记录SHA连接officerId/nativeId/sourceVariant，旧保存不追填，不按项目enum.ordinal映射原gear/talk/temper。

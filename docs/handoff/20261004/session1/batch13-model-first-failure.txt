@@ -1,0 +1,2 @@
+Exception in thread "main" java.lang.AssertionError: Native frame mismatch case=0 frame=304 field=1 expected=9 actual=8 phase=8 sub=3
+	at game.sanguo.core.PcDebateModelProbe.main(PcDebateModelProbe.java:12)

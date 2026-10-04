@@ -69,7 +69,11 @@ final class PcDebateState {
      * refill, fury activation, AI, terminal choice and UI callbacks are separate. */
     void selectedCardEffects(int leftCard,int rightCard){
         if(leftCard<1||leftCard>14||rightCard<1||rightCard>14)throw new IllegalArgumentException("Native rethink transition not yet ported");
-        int[] cards={leftCard,rightCard};selectedWinner=PcDebateRules.compare(topic,leftCard,rightCard,left.temper,left.fury,right.temper,right.fury);
+        selectedWinner=PcDebateRules.compare(topic,leftCard,rightCard,left.temper,left.fury,right.temper,right.fury);
+        winnerEffects(leftCard,rightCard);postSelectedEffects(leftCard,rightCard);endRoundEffects(leftCard,rightCard);
+    }
+    void winnerEffects(int leftCard,int rightCard){
+        int[] cards={leftCard,rightCard};
         if(selectedWinner<0)tie();
         else{
             int winningCard=cards[selectedWinner],otherCard=cards[1-selectedWinner];Speaker actor=speaker(selectedWinner);
@@ -77,9 +81,13 @@ final class PcDebateState {
             else if(winningCard==PcDebateRules.GUILE){
                 if(otherCard>=1&&otherCard<=9){int damage=PcDebateRules.damage(topic,otherCard,actor.temper,actor.fury,actor.modifier,random);if(damage>0)damageEffect(1-selectedWinner,damage,PcDebateRules.ordinaryAnger(otherCard),true);}
             }else damageEffect(selectedWinner,PcDebateRules.damage(topic,winningCard,actor.temper,actor.fury,actor.modifier,random),PcDebateRules.ordinaryAnger(winningCard),false);
-            postCard(selectedWinner,cards);
-            if(winningCard!=PcDebateRules.IGNORE)postCard(1-selectedWinner,cards);
         }
+    }
+    void postSelectedEffects(int leftCard,int rightCard){
+        if(selectedWinner>=0){int[] cards={leftCard,rightCard};postCard(selectedWinner,cards);if(cards[selectedWinner]!=PcDebateRules.IGNORE)postCard(1-selectedWinner,cards);}
+    }
+    void endRoundEffects(int leftCard,int rightCard){
+        int[] cards={leftCard,rightCard};
         if(left.fury>0)left.fury--;if(right.fury>0)right.fury--;
         if(selectedWinner>=0){
             leader=selectedWinner;int winningCard=cards[selectedWinner];
@@ -97,6 +105,9 @@ final class PcDebateState {
     /** Original51fb60/51ee50 model effects, excluding the optional UI branch.
      * Does not claim headed counter consumption or animation RNG. */
     int resolveFuryModelOnly(boolean allowRageCounter){
+        int counter=selectFuryModelOnly(allowRageCounter);activateFuryModelOnly();return counter;
+    }
+    int selectFuryModelOnly(boolean allowRageCounter){
         if(leader<0||leader>1)throw new IllegalStateException("Original initiative input is required");
         furySide=-1;
         for(int candidate:new int[]{leader,1-leader})if(speaker(candidate).fury<=0&&speaker(candidate).anger>=100){furySide=candidate;break;}
@@ -108,12 +119,14 @@ final class PcDebateState {
             speaker(furySide).anger=PcDebateRules.anger(speaker(furySide).anger-(counter>=0?50:100));
             if(counter==PcDebateRules.RAGE)furySide=other;else if(counter==PcDebateRules.CALM)furySide=-1;
         }
+        return counter;
+    }
+    void activateFuryModelOnly(){
         if(furySide>=0){
             Speaker self=speaker(furySide);self.fury=self.temper==PcDebateRules.STEADY||self.temper==PcDebateRules.BOLD?4:1;
             if(self.temper==PcDebateRules.RASH){int damage=self.war+200;damageEffect(furySide,damage,damage/15,false);}
             else if(self.temper==PcDebateRules.TIMID){burstSide=furySide;burstIndex=0;burstActive=true;}
         }
-        return counter;
     }
     boolean updateStages(){
         for(int side=0;side<2;side++){int next=Math.max(0,Math.min(3,(1000-speaker(side).health)/250));if(stage[side]!=next){stage[side]=next;stageChanged[side]=true;}}
