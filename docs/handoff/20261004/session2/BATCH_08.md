@@ -1,0 +1,21 @@
+# 批八：演示副本保存来源、原年龄阈值与退休生命周期
+
+目标active，完整全部头像/音频还原未完成。基点063434d7，媒体实现b93318aa，独立测试manifest806b3d5f、独占安装驱动e4c31755，退休拒绝及只读夹具修复4b9e2356，自动旧view退休/实际原年龄阈值b465f86b。Core/API/runtime和人物metadata继续与已完成9e171f2无任何增量，人物d3c6ab94仅只读检查，未合入其新研究或WIP。
+
+之前portrait来源只绑定Main的session detached view，另行SaveCodec复制的TurnWork/presentation World没有对应索引。现在OfficerPortrait普通生产构造函数在没有custom ref且该view未绑定时，仅在UI边界复制SaveExtensions.get返回的独立pc-officer-source-v1字节及当前id/name表。后台PortraitSavedSources只投影已保存officerId/nativeId/sourceVariant/path/sourceSha/recordSha并完整验证正式PcOfficerInfo格式/UTF/边界；对身份已变更的记录，沿用OfficerQuery原拒绝条件，不按名称推断native ID。后台从不保存或读取World，不生成规则/RNG/保存。PortraitMediaSources弱view索引、单worker/8任务上限、30秒线程空闲退出；DTO完整StateToken绑定优先，pending/error灰占位，完成只invalidate。
+
+取消/退休采用弱retired标记，旧worker结果不能覆盖新的绑定；Drawable每次绘制重新检查同view身份，退休后不能沿用强缓存身份显示旧像素。既有OfficerPortrait.bindView入口在当前view被替换时自动退休上一view。旧source-less场景保持unknown，custom ref继续优先；并未往用户保存写任何media字段。
+
+原已提交CriticalHit.year为不可变演示事实。MapHost/CriticalScene只将该year传给头像构造器，避免跨年份后用当前view日期替代原战法事实；确切公共补丁和前后SHA见portrait-critical-year.patch/guards。没有改变命令、声音时机、规则或core事件生成。
+
+16来源正式读取器对照主机10594项PASS（10432当前190工程人物连接），包括完整来源字段、重复/坏magic/尾部/UTF/边界拒绝、身份变更排除及完整Save/RNG不变。这里10432不是新增人物数，也不是全部PC人物运行时覆盖。最初Android测试夹具试图修改final name而编译失败，保留日志；修复只替换隔离夹具对象，没有扩大人物可变性/改core。
+
+新APK从b465f86bb2306c18c2f5e5cea1cf1553810ba311独立重新构建、冻结、实际安装、设备读回：257720834字节，SHA1003574e73e0d980946320a3e24c7404824848960479d1f1b2c2d70eed43c82b；test2052891字节，SHAe446e41355a05cfc7c6a0a209991bb3a283845b6d40be60f6f833d2adf5812e7。包内全部原portrait资产逐字节核对。
+
+实际安装演示副本1486项PASS（9.73秒）：由上批真实正常新局存档83a444c...生成独立展示副本，生产构造器自动取得保存来源，原bitmap/Drawable内部像素一致，无测试调用Source.bind；确切原阈值前一年与阈值年使用不同原Face；实际appliedYear在当前view年份不同时保持不变；错身份、无来源新scene不借用旧来源，退休后灰占位，host bindView替换自动退休。完整实际authority和展示副本Save/RNG均不变。具体officer/youngFace/oldFace/boundaryYear见presentation-source-runtime.json。该项为生产构造与副本测试，不是全部真实战斗/所有原形态角色完成。
+
+同一新包正常656目录/3详情、严格实际load-token、保存读取、后台、退出重开324153项PASS（90.77秒），652已记录来源、4保持unknown。正常3D战法取消/双确认/暴击完成、真实fact.id及父/演示父对应当前公开HUD、完整伤害/RNG对照再次PASS；当次真实PCM中原PC33与两个仍明确移动端合成的战法/暴击声叠加，严格>.999联合和去已知干扰相关通过，PC330.9999995446479858。不能将这两个合成声称原版，声音全系统仍未闭合。
+
+每轮独占5582，原两用户存档/全部库/偏好路径字节恢复一致，无新增内部用户文件，auto/manual3原SHA02ddb3d...；不操作5554录音，不清任何设备数据。原AVD和旧录音继续完整保护，当前PID/FD/锁须每次重新核查。架构边界检查通过，旧完整架构v33 golden差异仍记录未修。
+
+待完成：其它15来源正常全目录/人物/形态与MOD生效覆盖、实际TurnWork推进/真实保存的来源场景中的全战斗入口与normal年份变化（现已具备自动副本接口，不等于这些入口矩阵已验收）、原group1/group2普通/对话/单挑/战法具体调用、SourceLoader首张性能/全部长期压力；原BGM场景、全部原voice/其余9原SFX及共享音频focus/noisy/音量/背景生命周期；最终组合多回合/保存退出全矩阵和ARM实机/扬声器。继续完整原目标，不以本批副本测试缩小范围。
