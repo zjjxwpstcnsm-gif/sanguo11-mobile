@@ -239,7 +239,7 @@
     "pc33TailSeedSample": 193533,
     "filters": "Same fixed65-tap cutoff FIR; declared isolated HUD33 tail seeds harmonic phase; full original-rate reconstruction and unchanged acceptance thresholds"
   },
-  "completeNewApkRosterAcceptance": "PENDING",
+  "completeNewApkRosterAcceptance": "PASS646114 same APK; see DYNAMIC_PORTRAITS_NORMAL_QA_24.json",
   "ordinaryBgmBindings": 0,
   "ordinaryVoiceBindings": 0,
   "goalComplete": false,

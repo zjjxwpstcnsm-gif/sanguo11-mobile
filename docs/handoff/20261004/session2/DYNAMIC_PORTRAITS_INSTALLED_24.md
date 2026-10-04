@@ -12,4 +12,4 @@ Audio: R6 paused three-source model rejects (joint0.994277, PC33 residual0.98951
 
 Initial failed attempts are retained: source fixture governor invariant; unhostile alliance target; normal-time sampling failed to capture a submitted portrait pose. Detached fixture corrections and controlled paused frame inspection changed tests without modifying core. Every installed attempt restored all original files, no data clear. R1/R5 compiler failures were never installed.
 
-Full current APK656-row/detail/new-game/save/read/exit acceptance is running separately. Original PC caller forms, all normal dynamic identities/variants, MOD precedence, continuous color/timing and ARM remain incomplete. Goal remains active.
+Full current APK656-row/detail/new-game/save/read/exit acceptance now passes646114 checks; see DYNAMIC_PORTRAITS_NORMAL_QA_24.md. Original PC caller forms, all normal dynamic identities/variants, MOD precedence, continuous color/timing and ARM remain incomplete. Goal remains active.
