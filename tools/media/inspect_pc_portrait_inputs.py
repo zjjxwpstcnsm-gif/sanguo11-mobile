@@ -46,6 +46,9 @@ def inspect(installation, requests_path, pixels_path, output, metadata_commit):
     def call(address,this):
         u.reg_write(UC_X86_REG_ECX,this);u.mem_write(stack+4096,struct.pack('<I',stop));u.reg_write(UC_X86_REG_ESP,stack+4096)
         u.emu_start(address,stop,count=2000);return u.reg_read(UC_X86_REG_EAX)
+    def normal_lookup():
+        value=call(0x48a450,actor)
+        return value if value<0x80000000 else value-0x100000000
     def decode(raw):
         nonlocal current,cursor,reads
         current=raw;cursor=0;reads=[];u.mem_write(actor,bytes(4096));u.mem_write(stream,bytes(4096))
@@ -61,8 +64,9 @@ def inspect(installation, requests_path, pixels_path, output, metadata_commit):
         field_reads=[(at,size) for at,size,dst in reads if dst==0x120]
         if len(field_reads)!=1:raise ValueError('Unexamined age input serializer')
         slot=call(0x48a5b0,actor)
+        normal_face=normal_lookup()
         voice_type=struct.unpack('<i',u.mem_read(actor+0x100,4))[0]
-        return dict(faceId=face,sexRaw=sex,birth=birth,ageThreshold=threshold,ageFieldRead=field_reads[0],dynamicSelector=131+slot,
+        return dict(faceId=face,resolvedNormalFaceId=normal_face,sexRaw=sex,birth=birth,ageThreshold=threshold,ageFieldRead=field_reads[0],dynamicSelector=131+slot,
                     voiceTypeRaw=voice_type,voiceTypeBasis='Original serialized actor+100 consumed by4d0010; event/language mapping remains separate')
     sources={};cache={};age_cache={};rows=[];assets={(r['faceId'],r['imageGroup']):r for r in pixels['entries']}
     for req in requests:
@@ -89,10 +93,11 @@ def inspect(installation, requests_path, pixels_path, output, metadata_commit):
                 expected=face+1000 if 0<=face<1000 and age>=threshold else face
                 if selected!=expected:raise ValueError('Original age face transition differs')
                 selector=131+call(0x48a5b0,actor)
-                samples.append(dict(age=age,faceId=selected,dynamicSelector=selector,textureResource=369+selector))
+                normal_face=normal_lookup()
+                samples.append(dict(age=age,faceId=selected,resolvedNormalFaceId=normal_face,dynamicSelector=selector,textureResource=369+selector))
             age_cache[agekey]=samples
         forms=[]
-        needed={face}|{x['faceId'] for x in age_cache[agekey]}
+        needed={face,decoded['resolvedNormalFaceId']}|{x['resolvedNormalFaceId'] for x in age_cache[agekey]}
         for selected in sorted(needed):
             for group in range(3):
                 asset=assets.get((selected,group));form=dict(faceId=selected,imageGroup=group,status='FACE_OUTSIDE_SOURCE' if asset is None else asset['status'])

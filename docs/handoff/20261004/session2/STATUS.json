@@ -73,6 +73,22 @@
         "added_files": [],
         "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
       }
+    },
+    "exit": {
+      "passed": true,
+      "seconds": 15.03,
+      "apkSha256": "fbc998c9a4b96f8fb98a3838ed9b4f1e3b741ea9914207b1ca6d5380bd9643fc",
+      "testApkSha256": "92e30a915f0d09a8cbd0bad7ba10d9e50c8f7b367e94596cc03782bb0c928dc4",
+      "originalUserFiles": 2,
+      "restoration": {
+        "all_original_files_byte_equal": true,
+        "mismatches": [],
+        "test_generated_files_removed": [
+          "shared_prefs/map-renderer.xml"
+        ],
+        "added_files": [],
+        "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+      }
     }
   },
   "checks": {
@@ -89,7 +105,8 @@
     "decodedFacePixels": 2892,
     "decodedKovs": 2027,
     "decodedOriginalPcmBanks": 203,
-    "originalFaceRegistry": 6601
+    "originalFaceRegistry": 6601,
+    "installedExit": 15
   },
   "originalRestoredAudioSamples": 1,
   "uniqueCurrentShortSamples": 10,
@@ -114,7 +131,7 @@
     "Unfrozen install caught by exact test APK readback guard; no UI suite executed",
     "Opening suite missing required reuseSlotSha before correct rerun"
   ],
-  "portraitIndexAccepted": false,
+  "portraitIndexAccepted": true,
   "rejectedPortraitMappingNote": "REJECTED_PORTRAIT_INDEX.md",
   "correctedFaceSourceSummary": {
     "facesWithAllThreeImages": 964,
@@ -124,5 +141,9 @@
       964
     ],
     "threeEmptyFaces": 1236
-  }
+  },
+  "portraitIndexAcceptanceScope": "Original file->registry->face/form index and pixel conversion only; runtime caller roles still unverified",
+  "currentPortraitPixelManifest": "portrait-pixels-current.json.gz",
+  "currentPortraitSourceJoin": "portrait-source-join-current.json.gz",
+  "currentPortraitRepeatGuard": "3cc5f5b842479352f7f6f35da767ffe4c5560c647b128219582ba1b88b3565b8"
 }
