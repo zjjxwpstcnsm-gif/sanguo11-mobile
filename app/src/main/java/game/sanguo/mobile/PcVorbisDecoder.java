@@ -63,7 +63,7 @@ final class PcVorbisDecoder {
                 target.getFD().sync();
             }
             long frames=bytes/(track.channels*2);
-            if(track.strictFrameCount&&frames!=track.frames)throw new IOException("Source/Android frame count differs: "+track.frames+"/"+frames+"; no padding or trim guessed");
+            if(frames!=track.frames)throw new IOException("Source/Android frame count differs: "+track.frames+"/"+frames+"; no padding or trim guessed");
             cancelled(cancel);if(!partial.renameTo(output))throw new IOException("Cannot publish decoded cache");published=true;
             return new Result(hex(pcm.digest()),name,frames,bytes,SystemClock.elapsedRealtime()-started,track);
         }catch(IOException error){throw error;}catch(Exception error){throw new IOException("Original audio decoder",error);}

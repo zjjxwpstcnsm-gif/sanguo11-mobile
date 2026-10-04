@@ -18,8 +18,8 @@ final class PcVoiceCatalog {
         final long referenceFrames;
         final String timelineStatus;
         Voice(JSONObject row)throws Exception {
-            // Voice timeline differences are recorded. Every emitted PCM byte remains intact.
-            super(row.getString("asset"),row.getString("oggSha256"),row.getString("referencePcmSha256"),row.getInt("sampleRate"),row.getInt("channels"),row.getLong("frames"),false);
+            // All1997 measured Android sources exactly match original EOS. Reject differences; never trim/pad.
+            super(row.getString("asset"),row.getString("oggSha256"),row.getString("referencePcmSha256"),row.getInt("sampleRate"),row.getInt("channels"),row.getLong("frames"));
             resourceId=row.getInt("resourceId");candidateIndex=row.getInt("voiceCandidateIndex");referenceFrames=row.getLong("referenceDecodedFrames");timelineStatus=row.getString("timelineStatus");
             if(candidateIndex<0||candidateIndex>=1997||resourceId!=2287+candidateIndex||!asset.equals("audio/pc/voices/"+resourceId+".ogg")
                 ||referenceFrames<1||Math.abs(referenceFrames-frames)>2048||row.getLong("referenceFrameDifference")!=referenceFrames-frames)

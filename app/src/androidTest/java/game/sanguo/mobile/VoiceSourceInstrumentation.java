@@ -18,6 +18,7 @@ import game.sanguo.runtime.GameSession;
 public final class VoiceSourceInstrumentation extends Instrumentation {
     private int checks;
     private Bundle arguments;
+    private final JSONArray resources=new JSONArray();
     private void check(boolean value,String label){checks++;if(!value)throw new AssertionError(label);}
     @Override public void onCreate(Bundle args){super.onCreate(args);arguments=args==null?new Bundle():args;start();}
     private JSONObject asset(String name)throws Exception {
@@ -25,6 +26,14 @@ public final class VoiceSourceInstrumentation extends Instrumentation {
             ByteArrayOutputStream out=new ByteArrayOutputStream();byte[] block=new byte[8192];for(int n;(n=input.read(block))!=-1;)out.write(block,0,n);
             return new JSONObject(out.toString("UTF-8"));
         }
+    }
+    private int[] sampleResources(int index)throws Exception {
+        android.os.Debug.MemoryInfo memory=new android.os.Debug.MemoryInfo();android.os.Debug.getMemoryInfo(memory);
+        String[] fds=new File("/proc/self/fd").list(),tasks=new File("/proc/self/task").list();
+        if(fds==null||tasks==null)throw new IllegalStateException("Own process resource inventory unavailable");
+        resources.put(new JSONObject().put("index",index).put("pssKb",memory.getTotalPss()).put("fdCount",fds.length).put("nativeThreadCount",tasks.length)
+            .put("javaUsedBytes",Runtime.getRuntime().totalMemory()-Runtime.getRuntime().freeMemory()));
+        return new int[]{fds.length,tasks.length};
     }
     @Override public void onStart(){
         Bundle result=new Bundle();JSONArray decodedRows=new JSONArray(),errors=new JSONArray();AtomicReference<GameSession> session=new AtomicReference<>();byte[][] before={null};
@@ -49,7 +58,7 @@ public final class VoiceSourceInstrumentation extends Instrumentation {
             check(catalog.voice(-1,false)==null&&catalog.voice(1001,true)==null,"invalid source voice rejects");
             int start=Integer.parseInt(arguments.getString("start","0")),count=Integer.parseInt(arguments.getString("count","1997"));
             check(start>=0&&count>0&&start+count<=1997,"bounded explicit voice sample range");
-            long maximumDecodeMillis=0;
+            long maximumDecodeMillis=0;int[] initialResources=null;
             for(int index=start;index<start+count;index++) {
                 PcVoiceCatalog.Voice voice=catalog.voices().get(index);File pcm=new File(directory,voice.resourceId+".pcm");
                 try {
@@ -69,8 +78,10 @@ public final class VoiceSourceInstrumentation extends Instrumentation {
                     errors.put(new JSONObject().put("resourceId",voice.resourceId).put("error",error.toString()));
                     if(pcm.exists()&&!pcm.delete())throw new IllegalStateException("Own voice cache retained",error);
                 }
-                if(index%100==0)android.util.Log.i("PcVoiceSource","DECODED index="+index+" errors="+errors.length());
+                if(index==start||index%100==0){int[] sample=sampleResources(index);if(initialResources==null)initialResources=sample;android.util.Log.i("PcVoiceSource","DECODED index="+index+" errors="+errors.length());}
             }
+            int[] finalResources=sampleResources(start+count);
+            check(initialResources!=null&&finalResources[0]<=initialResources[0]+16&&finalResources[1]<=initialResources[1]+16,"no accumulated per-decoder FD/native-thread leak before process exits");
             runOnMainSync(()->{try{check(Arrays.equals(before[0],session.get().captureSave()),"entire voice catalog/decode preserves complete Save/RNG");}catch(Exception e){throw new IllegalStateException(e);}});
             check(directory.delete(),"no own voice cache directory remains");
             check(errors.length()==0&&decodedRows.length()==count,"all requested original samples decoded");
@@ -79,7 +90,7 @@ public final class VoiceSourceInstrumentation extends Instrumentation {
         }catch(Throwable error){result.putString("voiceSource","FAIL "+android.util.Log.getStackTraceString(error));}
         finally {
             try{Files.write(new File(getTargetContext().getFilesDir(),"voice-source.json").toPath(),new JSONObject().put("scope","Actual packaged voices/identity/PCM with unresolved native timeline; no normal voice playback")
-                .put("checks",checks).put("sourceFrameDifferences",sourceDifferences).put("referenceByteDifferences",referenceDifferences).put("decoded",decodedRows).put("errors",errors)
+                .put("checks",checks).put("sourceFrameDifferences",sourceDifferences).put("referenceByteDifferences",referenceDifferences).put("decoded",decodedRows).put("errors",errors).put("resources",resources)
                 .put("elapsedMillis",android.os.SystemClock.elapsedRealtime()-began).put("maximumDecodeMillis",result.getLong("maximumDecodeMillis",-1)).put("result",result.getString("voiceSource")).toString().getBytes(java.nio.charset.StandardCharsets.UTF_8));}
             catch(Exception e){result.putString("voiceSource","FAIL evidence "+e);}
             runOnMainSync(()->{if(session.get()!=null)session.get().close();});

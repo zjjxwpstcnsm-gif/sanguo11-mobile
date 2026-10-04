@@ -1,0 +1,157 @@
+{
+  "schema": 1,
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "nativeChecks": 6,
+  "rows": [
+    {
+      "upstreamCall4721d0ResultRaw": 0,
+      "recordConstructorArgs": [
+        0,
+        1610614399,
+        4294967295,
+        4294967295,
+        536876472,
+        0,
+        0,
+        1,
+        4294967295,
+        12,
+        1610613766,
+        4294967295,
+        0,
+        0,
+        0,
+        0,
+        536875348,
+        1,
+        536875076,
+        2,
+        1610613765,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1610613764,
+        0,
+        0,
+        0
+      ],
+      "field0SideRaw": 0,
+      "field4OfficerSlotRaw": 1610614399,
+      "field98VoiceSelectorRaw": 12,
+      "sourceConstructorArgumentPositions": {
+        "side": 1,
+        "officerSlot": 2,
+        "voiceSelector": 10
+      }
+    },
+    {
+      "upstreamCall4721d0ResultRaw": 1,
+      "recordConstructorArgs": [
+        0,
+        1610614399,
+        4294967295,
+        4294967295,
+        536876472,
+        0,
+        0,
+        1,
+        4294967295,
+        11,
+        1610613766,
+        4294967295,
+        0,
+        0,
+        0,
+        0,
+        536875348,
+        1,
+        536875076,
+        2,
+        1610613765,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1610613764,
+        0,
+        0,
+        0
+      ],
+      "field0SideRaw": 0,
+      "field4OfficerSlotRaw": 1610614399,
+      "field98VoiceSelectorRaw": 11,
+      "sourceConstructorArgumentPositions": {
+        "side": 1,
+        "officerSlot": 2,
+        "voiceSelector": 10
+      }
+    },
+    {
+      "upstreamCall4721d0ResultRaw": 2,
+      "recordConstructorArgs": [
+        0,
+        1610614399,
+        4294967295,
+        4294967295,
+        536876472,
+        0,
+        0,
+        1,
+        4294967295,
+        11,
+        1610613766,
+        4294967295,
+        0,
+        0,
+        0,
+        0,
+        536875348,
+        1,
+        536875076,
+        2,
+        1610613765,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1610613764,
+        0,
+        0,
+        0
+      ],
+      "field0SideRaw": 0,
+      "field4OfficerSlotRaw": 1610614399,
+      "field98VoiceSelectorRaw": 11,
+      "sourceConstructorArgumentPositions": {
+        "side": 1,
+        "officerSlot": 2,
+        "voiceSelector": 10
+      }
+    }
+  ],
+  "path": "5038e0..503940 ->4fe420 arguments ->4fe455..4fe4f7 ->record+0/+4/+0x98 ->503b19..503b32 ->4fd630",
+  "codeSha256": {
+    "0x5038d8": "ed7c6c81b7662d9eea09b75e00bddb0464aadafc5509287fe1cfc02b7dcafdb5",
+    "0x4fe455": "c505d51f9bf0d4a4ff29f486fca991911e101153de6ced18b9f406dc4464e97a",
+    "0x503b19": "3f64556c511754a39cb13d19973d2b0de39eb6c932d16158677d4f1fbe7dcd0a"
+  },
+  "established": [
+    "Constructor argument1/2/10 becomes raw speaker side/slot/voice-selector index.",
+    "Original5038e0 branch supplies voice-selector12 for raw0 and11 for rawnonzero, independently of a tactic enum ordinal.",
+    "Legacy table/probe label tacticIndexRaw means an unlabelled13-way speech selector, not proven War/Army tacticIndex."
+  ],
+  "shims": [
+    "Upstream4721d0 is not entered; explicit already-produced raw result0/1/2.",
+    "4fe420 first boundary captures its30 original arguments; allocation/list insertion not entered.",
+    "4719f0 unrelated vector copy zero-valued; all voice field stores execute unchanged."
+  ],
+  "limits": [
+    "Constructed stack and partial original presentation field writes, not a PC battle or upstream rule/RNG evaluation.",
+    "Semantic meaning of4721d0 result and13 speech-selector labels still pending; no critical/success/tactic inference.",
+    "Mobile maps require committed speaker/action/outcome facts, not ordinal mapping from this constructor."
+  ]
+}

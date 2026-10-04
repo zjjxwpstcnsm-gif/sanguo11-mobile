@@ -35,6 +35,8 @@ nativeId/sourceVariant 必须来自保存的实际来源绑定或明确的已提
 
 批九新增原调用执行证据：`503b32 ->4fd630 ->505f70 ->50c0d0 ->4d1a40 ->4d13b0 ->4cffd0 ->4d1000`。`4fd630(sideRaw,officerSlotRaw,tacticIndexRaw)` 对 side0/1、slot0..3、tactic0..12做原范围检查，从实际演示域 `+0x24+side*0xec+slot*0x40` 的记录取得人物，原表 `0x838c94` 在本 EXE 中将 tactic0..12映射到 profile0..12。**同一个 sideRaw 同时进入人物侧选择和 feedbackA；它不是已经证明的成功/失败布尔量。** 当前 `TurnJournal.Event.actorCopy()` 可提供实际行动部队，但不能凭主将代替原演示域指定的四槽位发言者。CriticalHit 的 officerCopy 则只证明暴击头像事实，也不足以补造每条原语音发言侧。
 
+批十进一步确认：上段旧探针名 `tacticIndexRaw` 实为未命名的十三路语音选择索引，**没有证明它等于工程War/Army战法枚举ordinal或原战法编号**。原`5038e0..503940`在已产生的上游raw结果为0时传12、非0时传11到record构造器；`4fe455..4fe4f7`执行原字段写入，参数1/2/10分别进入record+0/+4/+0x98，最后才由503b32传到4fd630。进入点位于4721d0调用之后，没有执行该调用/规则/RNG，raw含义仍未知。因此禁止按`SPIRAL.ordinal()`等选voice profile。voice-record-fields.json保留源指令/明确边界。
+
 需先核对原上游演示记录 `+0/+4/+0x98` 的生成，与现有已提交 tactic enum/strike/plotOutcome 的对应。如果现有事实不能表达，向规则所有者请求如下只读事实投影（此处为请求，不修改 core）：
 
 ```
@@ -43,7 +45,8 @@ VoicePresentationFact {
   state: {sessionId, generation: long, revision: long},
   selectorCall: "4fd630" | "517cd0" | "4d19d0",
   nativeProfile: int | null,
-  nativeTacticIndex: int | null,
+  selectorIndexRaw: int | null,
+  actualAction: existing committed enum,
   nativeEventIndex: int | null,
   speakerOfficerId: int,
   speakerSideRaw: int | null,
@@ -55,6 +58,8 @@ VoicePresentationFact {
 ```
 
 只投影已有已提交事实；若没有可证的原 side/slot 或上游 event 映射，保持 null/未绑定，不调用规则命令/RNG来决定。`517cd0` 的另一链按 side0/1从原域 `+0x10+side*0xa0` 读取实际人物，并把原 eventIndex+13作为profile传给feedbackB；其0..57动作语义仍未知，不先标为计略/单挑或按成功失败推断。
+
+上述nativeProfile/selectorIndexRaw只在媒体端已有原绑定证据时产生，不要求core保存/生成音频编号；规则所有者所需提供的是实际提交的动作、结果、发言者/角色、完整state与逐次id。既有事实足够则直接消费，不能为音频重复求值成功、暴击或人物槽选择。
 
 ## 场景音乐与生命周期
 
