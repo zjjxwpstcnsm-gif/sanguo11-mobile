@@ -1,0 +1,48 @@
+{
+  "status": "PASS",
+  "scope": "Actual normal menu original2238 audible sample identity at four predeclared windows; not whole-track continuity, Windows exact PCM or ARM speaker proof",
+  "captureSha256": "6c456529f78417f8116a536b878faa084985c0695cafe3e5564e4ee9f62a3c8c",
+  "referenceSha256": "5a9e5148cd453916c65e97d5bc08f97140ffa65514083841ccb014365bf67c4b",
+  "originalOggSha256": "df5a57c0aa36d63aa4f6f670d852bad6cde15f493fb72746ba489e32c1156462",
+  "rows": [
+    {
+      "referenceSeconds": 10,
+      "frames": 88200,
+      "captureSample": 508967,
+      "offsetSamples": 67967,
+      "correlation": 0.9999946050163961,
+      "gain": 0.015368823878641592,
+      "audibleRms": 0.0005619936413337885
+    },
+    {
+      "referenceSeconds": 20,
+      "frames": 88200,
+      "captureSample": 949967,
+      "offsetSamples": 67967,
+      "correlation": 0.9999978978047259,
+      "gain": 0.015369079802236696,
+      "audibleRms": 0.0009058396950299517
+    },
+    {
+      "referenceSeconds": 30,
+      "frames": 88200,
+      "captureSample": 1390967,
+      "offsetSamples": 67967,
+      "correlation": 0.9999963059275797,
+      "gain": 0.015369022788478333,
+      "audibleRms": 0.0006705864182255421
+    },
+    {
+      "referenceSeconds": 40,
+      "frames": 88200,
+      "captureSample": 1831967,
+      "offsetSamples": 67967,
+      "correlation": 0.9999989354294987,
+      "gain": 0.015369111342157992,
+      "audibleRms": 0.0012834343056627245
+    }
+  ],
+  "flowSha256": "4ae176797ac4a600293f239b1f89d26fd2c96c575ba05f0b2faf76192493cae0",
+  "sceneSha256": "38a869459a5318b402f13cefdb6f7a6b999dfaae0d7a34fc13a8a4e8a026541a",
+  "continuousFullTrackPassed": false
+}
