@@ -1,0 +1,341 @@
+{
+  "schema": 1,
+  "sourceExecutableSha256": "30d33b44876b84a8e87570873a86de88c65d2491c7e1cdeeb5883dc4b12feefb",
+  "nativeChecks": 32,
+  "rows": [
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 0,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 1051931443,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 1061158912,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 1065353216,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 0,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 1051931443,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 1061158912,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 1065353216,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 0,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 1051931443,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 1061158912,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 1065353216,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 0,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 1051931443,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 1061158912,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": false,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 1065353216,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 0,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 1051931443,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 1061158912,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 1065353216,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 0,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 1051931443,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 1061158912,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 0,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 1065353216,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 0,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 1051931443,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 1061158912,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 0,
+      "defaultVolumeRaw": 1065353216,
+      "dispatch": []
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 0,
+      "dispatch": [
+        [
+          1,
+          1,
+          0,
+          500,
+          0
+        ]
+      ]
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 1051931443,
+      "dispatch": [
+        [
+          1,
+          1,
+          1051931443,
+          500,
+          0
+        ]
+      ]
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 1061158912,
+      "dispatch": [
+        [
+          1,
+          1,
+          1061158912,
+          500,
+          0
+        ]
+      ]
+    },
+    {
+      "audioPointerPresent": true,
+      "availabilityRaw": 1,
+      "musicEnabledRaw": 1,
+      "defaultVolumeRaw": 1065353216,
+      "dispatch": [
+        [
+          1,
+          1,
+          1065353216,
+          500,
+          0
+        ]
+      ]
+    }
+  ],
+  "music": {
+    "musicId": 1,
+    "resourceId": 2238,
+    "repeat": 1,
+    "fadeMillis": 500,
+    "volume": "Original -1 sentinel resolves manager+64 user gain",
+    "caller": "559220 ->4d1900 ->4d04f0 ->4cfc20",
+    "stop": "55923f before GUI construction"
+  },
+  "menuEvidence": {
+    "windowInitializer": "558b20 ->55b0a0(0)",
+    "buttonTable": "8b93c0/8b93e8",
+    "labels": [
+      {
+        "widgetId": 1,
+        "pointer": "0x7f1070",
+        "rawHex": "b8fca44ab669abd7",
+        "text": "\u8f09\u5165\u9032\u5ea6"
+      },
+      {
+        "widgetId": 2,
+        "pointer": "0x7f107c",
+        "rawHex": "adabb773b67da96cb773b943c0b8",
+        "text": "\u91cd\u65b0\u958b\u59cb\u65b0\u904a\u6232"
+      },
+      {
+        "widgetId": 3,
+        "pointer": "0x7f108c",
+        "rawHex": "b943c0b8b1d0bec7",
+        "text": "\u904a\u6232\u6559\u5b78"
+      },
+      {
+        "widgetId": 4,
+        "pointer": "0x7f1098",
+        "rawHex": "b6b5a5d8",
+        "text": "\u9805\u76ee"
+      },
+      {
+        "widgetId": 5,
+        "pointer": "0x7f10a0",
+        "rawHex": "b5b2a7f4b943c0b8",
+        "text": "\u7d50\u675f\u904a\u6232"
+      }
+    ],
+    "captionId": 11684,
+    "captionRawHex": "bdd0bfefbedca5d8bffdbfefb3e6",
+    "captionSpans": [
+      {
+        "offset": 0,
+        "rawHex": "bdd0bfefbedca5d8bffdbfefb3e6",
+        "text": "\u8acb\u9078\u64c7\u76ee\u9304\u9078\u55ae",
+        "kind": "text"
+      }
+    ],
+    "messageResourceSha256": "7095a926830052372e74c6dfeb85e5e608c9f685f718fc9befd70895e9cb8cc3",
+    "messageDecode": {
+      "compressedBytes": 341171,
+      "decodedBytes": 511349,
+      "inputOffset": 288,
+      "originalInputConsumed": 341171,
+      "originalFunction": "4711c0",
+      "codeSha256": "5d504570fb915779c49f6ce46123893055ad5f5b3cb37c299572728fdee7dad5",
+      "outputGuards": true,
+      "sourceAndDictionaryReadOnly": true
+    }
+  },
+  "codeSha256": {
+    "0x559220": "233eb435b9733a8f97dfb65e70ebaeb1b29ebb2fe99278af8fb7049a4f3e941e",
+    "0x558b20": "692bf776fa107bb4d50c9f7d3d75cd7dfe3137f8d2005d53a94471105cd22058",
+    "0x4d1900": "9300345f385fd47f923c59dce6250037dc2b17b48bf4255704c9e47af3d04135",
+    "0x4d04f0": "728745ceac1771f1fc6fe94371d514998209bd5d42eef9d6e6169903b2c52d0f"
+  },
+  "limits": [
+    "Original established main menu role; not normal map/season music or12/16 scene naming.",
+    "Music prologue/wrappers execute; later GUI/scene commands are not executed.",
+    "Explicit backend availability and final capture; no actual Windows playback claim.",
+    "Android must bind after actual equivalent menu establishment, preserve mute/gain, stop when leaving for an unbound scene, and prove fresh installed PCM/lifecycle."
+  ]
+}
