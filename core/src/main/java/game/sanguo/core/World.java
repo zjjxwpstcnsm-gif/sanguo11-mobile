@@ -176,14 +176,24 @@ public final class World {
     public boolean sourceInside(Hex h){return h!=null&&h.q>=0&&h.r>=0&&h.q<width&&h.r<height&&(sourceMapWidth==0||MapCoordinates.source(this,h).isInside(sourceColumns(),sourceRows()));}
     public int dataRevision=1, startYear=190, startMonth=1, player=0;
     public int turn=0, active=0, nextUnitId=1, winner=-1;
+    /** Header38/fresh PC factory only; legacy opaque extensions cannot activate it. */
+    final boolean pcSourceFrame;
     public World(int width,int height) {
         this(width,height,"刘备军","曹操军");
     }
     public World(int width,int height,String... factions) {
-        if(width<1||width>300||height<1||height>200||factions.length<2||factions.length>32)throw new IllegalArgumentException("地图或势力数量无效");
+        this(width,height,factions,32,true);
+    }
+    /** Explicit PC source/new-frame factory; ordinary authored worlds keep32. */
+    static World pcOpening(int width,int height,String[] factions){return new World(width,height,factions,PcScenarioIdentity.MAX_FACTIONS,true);}
+    static World decoded(int width,int height,String[] factions,boolean sourceFrame){return new World(width,height,factions,sourceFrame?PcScenarioIdentity.MAX_FACTIONS:32,false);}
+    private World(int width,int height,String[] factions,int maximumFactions,boolean fresh) {
+        if(width<1||width>300||height<1||height>200||factions.length<2||factions.length>maximumFactions)throw new IllegalArgumentException("地图或势力数量无效");
+        pcSourceFrame=maximumFactions==PcScenarioIdentity.MAX_FACTIONS;
         this.factions=factions.clone();abilities=new AbilityResearch(this);actionPoints=new int[factions.length];Arrays.fill(actionPoints,60);
         this.width=width;this.height=height;terrain=new Terrain[width][height];
         for (Terrain[] row:terrain) Arrays.fill(row,Terrain.PLAIN);
+        if(fresh)BasicCityPolicy.fresh(this);
     }
     public String date() { int month=startMonth-1+turn/3;return (startYear+month/12)+"年 "+(month%12+1)+"月 "+new String[]{"上旬","中旬","下旬"}[turn%3]; }
     public String faction(int owner) { return owner>=0&&owner<factions.length?(governance.nation(owner).isEmpty()?factions[owner]:governance.nation(owner)):"空城"; }

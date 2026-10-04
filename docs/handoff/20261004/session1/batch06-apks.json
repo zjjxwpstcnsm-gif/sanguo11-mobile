@@ -1,0 +1,10 @@
+{
+  "app-debug-androidTest.apk": {
+    "bytes": 2018931,
+    "sha256": "a040349e193f06775d9f56b1d242a896db55ff854cc8161b1869d1abe62c0d65"
+  },
+  "app-debug.apk": {
+    "bytes": 91330629,
+    "sha256": "b1b4e68b62ed57ea1d451973ab05e2ebc6ec1eb4c686eb16ef026c7ae3111724"
+  }
+}

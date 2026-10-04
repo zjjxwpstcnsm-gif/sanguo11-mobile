@@ -24,7 +24,7 @@ public final class OfficerAbilities {
     public int growthCode(int officer,int stat){World.Officer o=w.officer(officer);if(o==null||stat<0||stat>4)throw new IllegalArgumentException("武将或能力无效");return o.abilityProfile==null?-1:o.abilityProfile.growth[stat];}
     /** New scenario setup only. Never called by save decoding or by a preview. */
     void initializeOpening(ContentCatalog catalog,boolean fixedAge,boolean requestedDisabled){
-        if(enabled)throw new IllegalStateException("能力状态已经初始化");this.fixedAge=fixedAge;requestedGrowthDisabled=requestedDisabled;enabled=true;
+        if(enabled)throw new IllegalStateException("能力状态已经初始化");this.fixedAge=fixedAge;requestedGrowthDisabled=requestedDisabled;enabled=true;BasicCityPolicy.managed(w);
         for(World.Officer o:w.officers){
             register(o);
             if(catalog!=null)bindSource(o,catalog,true);

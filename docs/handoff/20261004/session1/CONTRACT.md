@@ -33,3 +33,7 @@ Session 1 负责身份与文字/数值真值，Session 2 负责头像像素、�
 新局可显式选择本地 PC 文件的文字资料（字与原消息传记）；未选择保持原流程。此选项不称官方剧本还原、不写能力/身份/归属，不决定头像或音频。资料固定写入现有长度分隔 SaveExtensions 独立命名空间，无来源资料的旧档保持 unknown，不升级 v31–37 策略、不从新目录追填。字形缺口按原字节明确标注。实际开局事件和官方/MOD 生效性尚未闭合。
 
 已实装的稳定连接：OfficerSnapshot.Officer.source可为空，非空SourceInfo含nativeId/sourceVariant/sourcePath/sourceSha/recordSha/courtesy/biography及缺口；外层id就是经过身份校验的officerId。PcOfficerInfo.saved(World)也可读取保存中的只读连接。媒体可以消费已提交DTO/独立metadata清单，不能从source为空的旧档猜测来源，也不能用nativeId未经身份连接当项目ID。肖像像素/变体/年龄选择仍由媒体所有者实现，本批未修改头像调用或AndroidGameBridge线格式。
+
+## Batch 06 显式来源保存入口
+
+PcScenarioIdentity.Source 的 sourceVariant/path/SHA/SharedSHA/date/unknown 固定保存在新来源存档38；只有明确 PC 来源工厂与38头启用47势力容量。旧31–37同名opaque扩展不激活、不目录追填。普通新工程局仍原保存版本；媒体DTO读取原已存来源连接，头像接口与manifest不变。BasicCityPolicy仅记录新未管理作者局native20策略；旧31–33无标记按历史10AP/巡察规则续行，34–37保持原已存模型。此入口不是16来源开局完成。

@@ -180,3 +180,21 @@ tasks.register('verifyPcOfficerInfo', JavaExec) {
     maxHeapSize = '768m'
 }
 tasks.named('check') { dependsOn 'verifyPcOfficerInfo' }
+
+tasks.register('verifyPcScenarioFrame', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.PcScenarioFrameTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyPcScenarioFrame' }
+tasks.named('test') { dependsOn 'verifyPcScenarioFrame' }
+
+tasks.register('verifyBasicCityPolicy', JavaExec) {
+    dependsOn testClasses
+    classpath = sourceSets.test.runtimeClasspath
+    mainClass = 'game.sanguo.core.BasicCityPolicyTest'
+    maxHeapSize = '768m'
+}
+tasks.named('check') { dependsOn 'verifyBasicCityPolicy' }
+tasks.named('test') { dependsOn 'verifyBasicCityPolicy' }

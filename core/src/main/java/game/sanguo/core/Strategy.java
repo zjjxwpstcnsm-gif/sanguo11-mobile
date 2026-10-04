@@ -124,7 +124,8 @@ public final class Strategy {
         World.Officer o=w.officer(officerId);
         return o==null?0:w.skills.has(o,Skill.YANLI)?100:StrategyRules.searchChance(o.politics,o.intelligence);
     }
-    static int cityActionBaseCost(CityActionPlan.Operation op){
+    int cityActionBaseCost(CityActionPlan.Operation op){
+        if(!BasicCityPolicy.nativeRules(w))return 10;
         if(op==null)return 10;
         return switch(op){case PATROL->PcCityActionCosts.PATROL;case TRAIN->PcCityActionCosts.TRAIN;case RECRUIT->PcCityActionCosts.RECRUIT;default->10;};
     }
@@ -168,6 +169,7 @@ public final class Strategy {
         return switch(op){case PATROL->patrol(cityId,officerId);case TRAIN->trainArmy(cityId,officerId);case RECRUIT->recruitSoldiers(cityId,officerId);case SEARCH->search(cityId,officerId);case REWARD->rewardOfficers(cityId,officerId,targets);case APPOINT_GOVERNOR->appointGovernor(cityId,officerId,targets[0]);};
     }
     int patrolGain(World.City c,World.Officer o){
+        if(!BasicCityPolicy.nativeRules(w))return Math.min(100-c.order,BasicCityPolicy.legacyPatrol(o.politics,o.charm));
         boolean nearbyEnemy=false;
         // Original4843a0 visits rings1..3 around a city, excluding its center.
         // Use the existing authoritative treaty state; native relation-storage

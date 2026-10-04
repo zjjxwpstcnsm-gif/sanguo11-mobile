@@ -1,0 +1,100 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.13/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :core:compileJava UP-TO-DATE
+> Task :core:processResources UP-TO-DATE
+> Task :core:classes UP-TO-DATE
+> Task :core:jar UP-TO-DATE
+> Task :game-api:compileJava UP-TO-DATE
+> Task :game-api:processResources NO-SOURCE
+> Task :game-api:classes UP-TO-DATE
+> Task :game-api:jar UP-TO-DATE
+> Task :game-runtime:compileJava
+> Task :game-runtime:processResources NO-SOURCE
+> Task :game-runtime:classes
+> Task :game-runtime:compileTestJava
+> Task :game-runtime:processTestResources UP-TO-DATE
+> Task :game-runtime:testClasses
+
+> Task :game-runtime:verifyPcScenarioFrame
+PASS PC frame/session capacity 24 checks; fixture only, source opening/APK unverified
+
+> Task :game-runtime:verifyBasicCityPolicy
+PASS BasicCityPolicyTest 15 historical33/native37/full-save policy checks
+
+> Task :game-runtime:verifyPcOfficerInfo
+PASS PC text opening=coalition-190 source=Media/scenario/Scen000.s11 attached=652
+PASS PC text opening=coalition-190 source=Media/scenario/SCEN001.S11 attached=652
+PASS PC text opening=coalition-190 source=Media/scenario/SCEN002.S11 attached=652
+PASS PC text opening=coalition-190 source=Media/scenario/SCEN003.S11 attached=652
+PASS PC text opening=coalition-190 source=Media/scenario/SCEN004.S11 attached=652
+PASS PC text opening=coalition-190 source=Media/scenario/SCEN005.S11 attached=652
+PASS PC text opening=coalition-190 source=Media/scenario/SCEN006.S11 attached=652
+PASS PC text opening=coalition-190 source=Media/scenario/SCEN007.S11 attached=652
+PASS PC text opening=coalition-190 source=Media/scenario/Scen008.s11 attached=652
+PASS PC text opening=coalition-190 source=Media/scenario/Scen009.s11 attached=652
+PASS PC text opening=coalition-190 source=Media/scenario/Scen010.s11 attached=652
+PASS PC text opening=coalition-190 source=Media/scenario/Scen011.s11 attached=652
+PASS PC text opening=coalition-190 source=Media/scenario/Scen012.s11 attached=652
+PASS PC text opening=coalition-190 source=Media/scenario/Scen013.s11 attached=652
+PASS PC text opening=coalition-190 source=Media/scenario/Scen014.S11 attached=652
+PASS PC text opening=coalition-190 source=Media/scenario/Scen015.s11 attached=652
+PASS PC text opening=huangjin-184 source=Media/scenario/Scen000.s11 attached=666
+PASS PC text opening=warlords-194 source=Media/scenario/Scen000.s11 attached=619
+PASS PC text opening=guandu-200 source=Media/scenario/Scen000.s11 attached=565
+PASS PC text opening=chibi-207 source=Media/scenario/Scen000.s11 attached=520
+PASS PC text opening=heroes-250 source=Media/scenario/Scen000.s11 attached=666
+PASS PC text opening=heroes-mobile-sandbox source=Media/scenario/Scen000.s11 attached=666
+PASS PC text opening=central-mobile-sandbox source=Media/scenario/Scen000.s11 attached=180
+PASS PC text opening=jingxiang-mobile-sandbox source=Media/scenario/Scen000.s11 attached=120
+PASS PcOfficerInfoTest checks=110066 explicit sources, unchanged numerical state, actual patrol/three turns/save/reopen/full RNG, unknowns; complete PC scenario restoration remains pending
+
+> Task :game-runtime:verifyOfficers
+PASS officer query scenario=huangjin-184
+PASS officer query scenario=coalition-190
+PASS officer query scenario=warlords-194
+PASS officer query scenario=guandu-200
+PASS officer query scenario=chibi-207
+PASS officer query scenario=heroes-250
+PASS officer query scenario=heroes-mobile-sandbox
+PASS officer query scenario=central-mobile-sandbox
+PASS officer query scenario=jingxiang-mobile-sandbox
+PASS OfficerQueryTest checks=515120 nine actual project scenarios, normal patrol, three turns/save/reopen/continuation, full-save/RNG, immutable and thread guards; PC opening fidelity still pending
+
+> Task :core:compileTestJava UP-TO-DATE
+> Task :core:processTestResources UP-TO-DATE
+> Task :core:testClasses UP-TO-DATE
+
+> Task :core:verifyCityCommandRewards
+PASS CityCommandRewardsTest checks=25669 actual fixed commands, native rewards, legacy, failure, duplicate and continuation
+
+> Task :core:verifyCityActionPlan
+PASS CityActionPlanTest checks=1899 searchOutcomes=[GOLD, OFFICER, NOTHING]
+
+> Task :core:verifyCore FAILED
+Exception in thread "main" java.lang.AssertionError: AI uses deployment commands
+	at game.sanguo.core.CoreTest.check(CoreTest.java:9)
+	at game.sanguo.core.CoreTest.logistics(CoreTest.java:75)
+	at game.sanguo.core.CoreTest.main(CoreTest.java:15)
+
+[Incubating] Problems report is available at: file:///Users/paopao/.codex/worktrees/scenario-officer-restoration/sanguo11-mobile/build/reports/problems/problems-report.html
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':core:verifyCore'.
+> Process 'command '/Users/paopao/Library/Java/JavaVirtualMachines/temurin-17.0.17/Contents/Home/bin/java'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 9.0.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/8.13/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD FAILED in 3m 59s
+17 actionable tasks: 9 executed, 8 up-to-date

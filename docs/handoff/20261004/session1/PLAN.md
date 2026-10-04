@@ -43,3 +43,13 @@
 前镜像d3c6ab94eed0e4777d4933592145c4222a04822b。本轮新增tools/content/pc_startup_platform.py、inspect_pc_started_scenario.py、test_pc_started_scenario.py及session1的启动链/覆盖/验证记录；必要时修改inspect_pc_layered_scenario.py的明确恢复接口，逐文件登记前镜像SHA。先以原CRT线程/字符表初始化与原排序、事件资源完整装配闭合已知断点；Win32文档路径等只能作为明确隔离夹具，不升级实际激活优先级。仍不改媒体、共同台账、AndroidGameBridge、Unity和3D。
 
 追加tools/content/inspect_pc_event_bytecode.py、test_pc_event_bytecode.py：复用已核实原事件文件/正文范围，执行原字节码容器构造、头绑定、指令/字符串getter；不执行事件条件、玩法或UI处理器。与人物数值后处理报告保持独立，任何原字形解码失败保留原字节。
+
+## Batch 06 当前所有权
+
+前镜像471e970645b7073b32b6d18399f54dcb207d73f3。新增 core/PcScenarioIdentity.java、PcScenarioCatalog.java、PcScenarioOpening.java、core/resources/pc-scenarios/、tools/content/build_pc_scenario_catalog.py及对应测试；修改 World、SaveCodec、BattleReports、ScenarioCatalog、OfficerAbilities、Lifecycle、Strategy、StrategySave、Government、MerchantMarket、game-runtime/build.gradle；app仅 MainActivity 的剧本选择/新局方法及 ScenarioFactionPicker 的新局配置。实际修改前镜像在 batch06-before.json。新增来源新局字段扩展、47势力边界和明确的新存档38策略；旧31–37编码/载入/已存规则不得改变，不从新目录追填。源NPC与可派遣武将、未登与未发现必须区分；严格身份仍666，四个未知历史身份不得拿native编号冒充项目ID。所有数值输入来自原serializer/getter并保留逐源SHA，开局事件未闭合时明确标记，不把静态元数据声称成原官方开局。新局接入和APK正常流程仍是交付门槛。
+
+Batch06补充确切测试所有权：game-runtime/src/test/java/game/sanguo/core/PcScenarioFrameTest.java、tools/content/PcScenarioLegacyProbe.java及session1对应帧/兼容报告。容量夹具的typed命令/多回合只验证框架边界，不替代实际PC来源开局或设备流程。
+
+兼容闭合追加 core/BasicCityPolicy.java 和 CityActionPlan.java。显式规则：无新策略标记、且无已存v34基础/成长策略的旧31–33档保留旧巡察公式与10AP；已存v34–37仍为20AP。新建但未启用基础策略的作者世界使用独立保存标记以保留20AP；解码旧档不补标记。新游戏实际数据导入和旧档历史策略证据分别验收，不更改任何golden。
+
+验证脚本追加 scripts/test-unity-u01.sh，仅把已存在的 game-runtime/src/test/java/game/sanguo/core/BridgeFactsFixture.java 纳入实际Java编译输入；不改Unity文件、原fixture、bridge协议或生产序列化。新增 BasicCityPolicyTest.java 位于game-runtime/src/test/java/game/sanguo/core。

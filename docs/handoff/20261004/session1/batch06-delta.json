@@ -1,0 +1,76 @@
+{
+  "parentCommit": "471e970645b7073b32b6d18399f54dcb207d73f3",
+  "implementationBase": "840030195e39cec3c0d352e010a3c3e614893ca2",
+  "productionAndToolChanges": [
+    {
+      "path": "core/src/main/java/game/sanguo/core/BasicCityPolicy.java",
+      "beforeSha256": null,
+      "afterSha256": "1e94c3383a8a6660705b8a305bb8ac7b836e1e38ad31779689b189a4a7fcf366"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/BattleReports.java",
+      "beforeSha256": "fd728f2d244f93273ee3ce56c40d767ebb0da8f6569c6c1a214066f666862cba",
+      "afterSha256": "2cb70145765e6fde83859fef2a517a88bbf1322df91558eebf21f087165f7023"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/CityActionPlan.java",
+      "beforeSha256": "c7b36dfc7104c5792e4efa7679db42a00f4caa0317628e1c81570900c7070a61",
+      "afterSha256": "159a4adb4597ea04383c143355c3facbb801d38a48fe9f758c14200f2c42cb73"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/OfficerAbilities.java",
+      "beforeSha256": "07aa434421ed185b4bece42a55701c5fe4c010c76ce773e350e5e63427265de7",
+      "afterSha256": "dde0c762902df6e99c352d945d9fb8a27d7ecdbbe754455bddd31a16fbc33934"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/PcScenarioIdentity.java",
+      "beforeSha256": null,
+      "afterSha256": "b55e8465a9d08f5a17527cc484f7d199902c995d7589802c5e43522be2eaa5fb"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/SaveCodec.java",
+      "beforeSha256": "65cd9ddb7d78dddbcb9cfdde4f156d0dea9ce8f6dcc349a4d5b122f6d40d8cfd",
+      "afterSha256": "d3cd6c0c5cc90ff33297d9d390ab1d5af57aaa6230227281745674bce103af61"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/Strategy.java",
+      "beforeSha256": "8b146919a3b8f509378d55c1a21ac1d8288dc77a379b786cc812b1ea34026552",
+      "afterSha256": "498cf2f46f98766a62373819f4bc2862ed9ed6bc63f241244be8e80d0446199d"
+    },
+    {
+      "path": "core/src/main/java/game/sanguo/core/World.java",
+      "beforeSha256": "8e3fce152df3c6635e10410972cf3e7e4ae067282945d4b19a24328e2fe2f736",
+      "afterSha256": "cf4738ed3239b509cbd56e06068db874453d38ef20836ed6f1d9588c3b14417d"
+    },
+    {
+      "path": "game-runtime/build.gradle",
+      "beforeSha256": "a7e43af79cb5d10d29335fb07388876d0e42dcff783f7ba32ccd329e6c151fe7",
+      "afterSha256": "e3284e0bbbe831a6569b2719cfabd93d8f11cc38b77f3ea21837c96b77fa2b53"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/BasicCityPolicyTest.java",
+      "beforeSha256": null,
+      "afterSha256": "a913d9310ff8d12e27ed94e1f647254af79d457b1ea4d0a88271410deaf7b282"
+    },
+    {
+      "path": "game-runtime/src/test/java/game/sanguo/core/PcScenarioFrameTest.java",
+      "beforeSha256": null,
+      "afterSha256": "323ce9690b664db06771e265c037c021e8511aae1a4c39f674087a7362982753"
+    },
+    {
+      "path": "scripts/test-unity-u01.sh",
+      "beforeSha256": "b801c7e7da608fb4bcdeac6ce6186e4927ca659127ea635bb33d2ea052b67fd8",
+      "afterSha256": "958c694a9b99e7dd09f2af952754987c21741713109e351d1dc86f5661c4a88d"
+    },
+    {
+      "path": "tools/content/PcScenarioLegacyProbe.java",
+      "beforeSha256": null,
+      "afterSha256": "751d6206102fd4ebde9f9c981d68aa12fe6e07593d5409b0d6fd00b81d1a3cc5"
+    }
+  ],
+  "sourceAPK": "out/session1/apks-batch06/app-debug.apk",
+  "sourceAPKSha256": "b1b4e68b62ed57ea1d451973ab05e2ebc6ec1eb4c686eb16ef026c7ae3111724",
+  "newSourcesPresentBeforeBuild": true,
+  "mediaBridgeJniGuardUnchanged": true,
+  "goalComplete": false
+}
