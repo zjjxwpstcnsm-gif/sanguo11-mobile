@@ -48,6 +48,7 @@ public final class MainActivity extends Activity {
         PortraitMediaSources.bind(world,legacyView.state,current.officers());
     }
     private void sessionChanged(GameEvent event){
+        if(techniqueHud!=null)techniqueHud.committedFacts(event,world.player);
         SoundEffects.Cue cue=switch(event.kind){case DEPLOYED,TRANSPORT_DISPATCHED->SoundEffects.Cue.MARCH;case CONSTRUCTION_STARTED->SoundEffects.Cue.CONSTRUCTION;case PRODUCTION_COMMITTED,CITY_ACTION_COMMITTED,RECRUITED,PATROLLED,TRADE_COMMITTED->SoundEffects.Cue.COMPLETE;case TURN_COMMITTED->SoundEffects.Cue.TURN;default->null;};
         if(cue!=null&&sounds!=null)sounds.event("receipt:"+event.state.sessionId+":"+event.state.generation+":"+event.state.revision+":"+event.kind,cue);
 
@@ -729,9 +730,10 @@ public final class MainActivity extends Activity {
         dateBanner.setContentDescription("当前日期 "+world.date());
         WindowSurfaceRecovery.changed(dateBanner);
         mapRevisionNotice.setText(NationalMap.compatibilityNotice(world));mapRevisionNotice.setVisibility(mapRevisionNotice.getText().length()==0?View.GONE:View.VISIBLE);
-        techniqueHud.update(legacyView.state,world.player,world.campaign.points(world.player),techniqueDeferred);
+        if(techniqueHud.mediaNeedsResync())techniqueHud.resynchronizeFacts(legacyView.state,world.player,world.campaign.points(world.player));
+        else techniqueHud.syncFactsBaseline(legacyView.state,world.player,world.campaign.points(world.player));
         actionPointsBadge.setContentDescription("本势力技巧点 "+world.campaign.points(world.player)+" 点");
-        map.setTechniqueFeedback(techniqueHud::releasePending);
+        map.setTechniqueFeedback(techniqueHud::releasePresentation,techniqueHud::skipPresentation,techniqueHud::discardPending,techniqueHud::pauseFacts);
         UiTheme.title(title);title.setContentDescription("军情 · "+title.getText());
         nextTurn.setEnabled(playback!=null||mapPick==null&&!aiRunning&&!world.gameOver()&&!world.commandsBlocked());nextTurn.setText(playback!=null?"演示控制":aiRunning?"结算中…":"下一旬  →");
         for(Map.Entry<String,Button> e:navigation.entrySet()){e.getValue().setEnabled(!aiRunning);e.getValue().setSelected(e.getKey().equals(ui.page));e.getValue().setTextColor(e.getKey().equals(ui.page)?gold:paper);}

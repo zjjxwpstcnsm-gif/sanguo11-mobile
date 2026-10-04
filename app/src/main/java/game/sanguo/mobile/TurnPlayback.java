@@ -14,15 +14,16 @@ final class TurnPlayback {
     private TurnJournal.Event current;
     TurnPlayback(MapHost map,TurnWork work,Runnable changed,Runnable finished){this.map=map;this.work=work;this.changed=changed;this.finished=finished;}
     void start(){map.replayCommitted(work.done&&work.error==null);map.setCriticalSkip(()->{work.criticalElapsed=map.criticalDuration(current);map.criticalEvent(null,0);});last=SystemClock.uptimeMillis();map.invalidateScene();map.setWorld(work.visual,null,-1);map.postOnAnimation(tick);}
-    void detach(){detached=true;map.replayCommitted(true);map.removeCallbacks(tick);map.setCriticalSkip(null);map.criticalFrame(null,0);map.replayFrame(null,0);map.pauseEffects(false);}
+    void detach(){map.discardTechniqueMedia();detached=true;map.replayCommitted(true);map.removeCallbacks(tick);map.setCriticalSkip(null);map.criticalFrame(null,0);map.replayFrame(null,0);map.pauseEffects(false);}
     void pause(boolean paused){work.pause(paused);map.pauseEffects(paused);last=SystemClock.uptimeMillis();}
-    void skip(){work.skipAnimations=true;work.pause(false);map.pauseEffects(false);map.replayFrame(null,0);map.criticalFrame(null,0);map.removeCallbacks(tick);step();}
+    void skip(){map.discardTechniqueMedia();work.skipAnimations=true;work.pause(false);map.pauseEffects(false);map.replayFrame(null,0);map.criticalFrame(null,0);map.removeCallbacks(tick);step();}
     private final Runnable tick=this::step;
     private void step(){
         if(detached||finishedOnce)return;map.replayCommitted(work.done&&work.error==null);
         long now=SystemClock.uptimeMillis(),elapsed=Math.max(0,now-last);last=now;
         if(work.paused){map.postDelayed(tick,60);return;}
         if(work.fastForward()){
+            map.discardTechniqueMedia();
             map.criticalFrame(null,0);map.replayFrame(null,0);
             // Completed authoritative state replaces presentation directly, never replaying commands.
             if(work.done){work.clearPresentation();finish();return;}
