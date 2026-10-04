@@ -23,7 +23,7 @@ if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--serial',choices=['emulator-5582'],default='emulator-5582')
     p.add_argument('--apk',type=Path,required=True);p.add_argument('--test-apk',type=Path,required=True);p.add_argument('--output',type=Path,required=True)
-    p.add_argument('--runner',choices=['MediaBridgeInstrumentation','MusicSourceInstrumentation','MusicPlaybackInstrumentation','TechniquePointsInstrumentation','TechniqueFactsInstrumentation','UiUxInstrumentation'],required=True)
+    p.add_argument('--runner',choices=['MediaBridgeInstrumentation','PortraitPixelsInstrumentation','MusicSourceInstrumentation','MusicPlaybackInstrumentation','TechniquePointsInstrumentation','TechniqueFactsInstrumentation','UiUxInstrumentation'],required=True)
     p.add_argument('--argument',action='append',default=[]);p.add_argument('--pass-marker',required=True);p.add_argument('--timeout',type=int,default=1200)
     p.add_argument('--reuse-installed',action='store_true');p.add_argument('--wave',type=Path);p.add_argument('--cue',action='append',default=[])
     p.add_argument('--capture-only',action='store_true',help='Retain raw PCM window without short-cue recognition; separate media waveform proof required')
