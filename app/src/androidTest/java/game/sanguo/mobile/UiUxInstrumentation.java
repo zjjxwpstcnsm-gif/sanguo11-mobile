@@ -533,7 +533,7 @@ public class UiUxInstrumentation extends Instrumentation {
         Files.write(new File(output,"dynamic-portrait-pixels.json").toPath(),new org.json.JSONObject().put("changedBackgroundSamples",changed).put("maxChannelDelta",max).put("width",width).put("height",height).put("sourceIdentityColorParityProven",false).toString(2).getBytes("UTF-8"));
         check(changed>=8&&max>60,"mid-animation actual source pixels visibly change captured map; changed="+changed+" max="+max);
     }
-    private static Object uncheckedField(Object object,String name){try{return field(object,name);}catch(Exception error){throw new RuntimeException(error);}}
+    private Object uncheckedField(Object object,String name){try{return field(object,name);}catch(Exception error){throw new RuntimeException(error);}}
     private String shellText(String command)throws Exception{try(InputStream in=new ParcelFileDescriptor.AutoCloseInputStream(getUiAutomation().executeShellCommand(command));ByteArrayOutputStream out=new ByteArrayOutputStream()){byte[] bytes=new byte[1024];int n;while((n=in.read(bytes))>=0)out.write(bytes,0,n);return out.toString("UTF-8").trim();}}
     private int battlePhases()throws Exception{int[] count={0};ui(()->{try{for(Object value:(Set<?>)field(((GameApplication)activity.getApplication()).sounds(),"heard")){String key=value.toString();if(key.startsWith("journal:")&&(key.endsWith(":action")||key.endsWith(":critical")))count[0]++;}}catch(Exception e){throw new RuntimeException(e);}});return count[0];}
     private void reducedMotion()throws Exception{
