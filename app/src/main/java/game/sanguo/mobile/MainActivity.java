@@ -431,7 +431,7 @@ public final class MainActivity extends Activity {
         setRequestedOrientation(mode==1?android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT:mode==2?android.content.pm.ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE:android.content.pm.ActivityInfo.SCREEN_ORIENTATION_FULL_USER);
     }
     @Override public void onConfigurationChanged(Configuration config){super.onConfigurationChanged(config);if(map!=null&&world!=null){layoutPanels();refreshCommandDock();}if(root!=null)root.requestApplyInsets();fitConfirmation();}
-    void trackDialog(AlertDialog dialog){confirmationDialog=dialog;UiTheme.dialog(dialog);fitConfirmation();}
+    void trackDialog(AlertDialog dialog){confirmationDialog=dialog;dialog.setOnCancelListener(cancelled->{if(sounds!=null)sounds.cancelledDialog();});UiTheme.dialog(dialog);fitConfirmation();}
     private void fitConfirmation(){
         if(confirmationDialog==null||!confirmationDialog.isShowing())return;
         // A dialog opened during sensor rotation can retain the previous orientation's minimum width.

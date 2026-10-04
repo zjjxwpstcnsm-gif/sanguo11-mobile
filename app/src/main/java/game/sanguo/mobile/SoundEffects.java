@@ -35,7 +35,7 @@ final class SoundEffects {
     private game.sanguo.api.GameApi.Subscription effectSubscription;
     private final BroadcastReceiver noisy=new BroadcastReceiver(){@Override public void onReceive(Context c,Intent i){if(AudioManager.ACTION_AUDIO_BECOMING_NOISY.equals(i.getAction())){focusLost=true;if(sourceMedia!=null)sourceMedia.interrupted(true);stop();}}};
     private long uiAt;
-    private int played;
+    private int played,cancelledDialogs;
     SoundEffects(Context context){this.context=context.getApplicationContext();prefs=context.getSharedPreferences("sound-effects",0);manager=context.getSystemService(AudioManager.class);}
     void attach(Object owner){owners.add(owner);load();bindEffectSession();if(!noisyRegistered){context.registerReceiver(noisy,new IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY));noisyRegistered=true;}}
     private void bindEffectSession(){
@@ -115,7 +115,7 @@ final class SoundEffects {
         Integer sample=samples.get(cue);
         if((effectsPaused&&battleCue(cue))||pool==null||foreground.isEmpty()||muted()||volume()==0||sample==null||!ready.contains(sample)||!focus())return;
         float gain=volume()/100f*(ducked?.2f:1f);if(voiceDucking)gain*=.7f;int stream=pool.play(sample,gain,gain,cue==Cue.CRITICAL?2:1,0,1);
-        if(stream!=0){played++;streams.add(stream);if(battleCue(cue))battleStreams.add(stream);SoundPool owner=pool;handler.postDelayed(()->expireStream(stream,owner),1200);Log.i("GameAudio","PLAY cue="+cue+" stream="+stream+" count="+played+" gain="+gain+" focused="+focused+" focusKind="+focusKind+" ducked="+ducked+" voiceDucking="+voiceDucking+" sourceMedia="+(sourceMedia!=null));}
+        if(stream!=0){played++;if(cue==Cue.PC_DIALOG_CANCEL)cancelledDialogs++;streams.add(stream);if(battleCue(cue))battleStreams.add(stream);SoundPool owner=pool;handler.postDelayed(()->expireStream(stream,owner),1200);Log.i("GameAudio","PLAY cue="+cue+" stream="+stream+" count="+played+" gain="+gain+" focused="+focused+" focusKind="+focusKind+" ducked="+ducked+" voiceDucking="+voiceDucking+" sourceMedia="+(sourceMedia!=null));}
         else Log.w("GameAudio","play rejected cue="+cue);
     }
     private float effectGain(){return volume()/100f*(ducked?.2f:1f)*(voiceDucking?.7f:1f);}
@@ -124,6 +124,7 @@ final class SoundEffects {
     private void stop(){stopStreams();focusEpoch++;if(manager!=null&&focusRequest!=null)manager.abandonAudioFocusRequest(focusRequest);focusRequest=null;focused=false;ducked=false;if(sourceMedia!=null)sourceMedia.focus(false,false);}
     private void release(){stop();if(effectSubscription!=null){effectSubscription.close();effectSubscription=null;}effectSession=null;if(pcEffects!=null){pcEffects.close();pcEffects=null;}if(sourceMedia!=null){sourceMedia.close();sourceMedia=null;}if(noisyRegistered){context.unregisterReceiver(noisy);noisyRegistered=false;}handler.removeCallbacksAndMessages(null);if(pool!=null){pool.release();pool=null;}ready.clear();samples.clear();Log.i("GameAudio","RELEASE");}
     int playedCount(){return played;}
+    int cancelledDialogCount(){return cancelledDialogs;}
     boolean loaded(){return samples.size()==Cue.values().length-2&&ready.containsAll(samples.values())&&pcEffects!=null&&pcEffects.ready();}
     boolean active(){return !foreground.isEmpty()&&pool!=null;}
 }
