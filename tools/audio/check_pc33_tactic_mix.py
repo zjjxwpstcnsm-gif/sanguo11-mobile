@@ -35,6 +35,20 @@ def inspect(source,flow_path,facts_path,output):
         template=np.convolve(pixels,kernel,mode='same');templates.append(template);y=template[::8]
         fft=1<<(len(coarse)+len(y)-2).bit_length();cross=np.fft.irfft(np.fft.rfft(coarse,fft)*np.fft.rfft(y[::-1],fft),fft)[len(y)-1:len(coarse)]
         squares=np.r_[0,np.cumsum(coarse*coarse)];scores=cross/np.sqrt(np.maximum(1e-20,(squares[len(y):]-squares[:-len(y)])*np.dot(y,y)));at=int(np.argmax(scores));starts.append(at*8);candidate_scores.append(float(scores[at]))
+    # HUD33 is strongly periodic. A full-window candidate in an overlapping
+    # tactic mix can select an adjacent harmonic peak (~238 samples away).
+    # Seed phase from the declared source's isolated tail, then still require
+    # the original complete three-source reconstruction thresholds below.
+    tail_begin,tail_end=35280,44000;radius=1024
+    reference=templates[2][tail_begin:tail_end];begin=starts[2]+tail_begin-radius;end=starts[2]+tail_end+radius
+    if begin<0 or end>len(signal):raise ValueError('Incomplete original HUD33 tail search')
+    chunk=signal[begin:end];fft=1<<(len(chunk)+len(reference)-2).bit_length()
+    cross=np.fft.irfft(np.fft.rfft(chunk,fft)*np.fft.rfft(reference[::-1],fft),fft)[len(reference)-1:len(chunk)]
+    squares=np.r_[0,np.cumsum(chunk*chunk)]
+    scores=cross/np.sqrt(np.maximum(1e-20,(squares[len(reference):]-squares[:-len(reference)])*np.dot(reference,reference)))
+    at=int(np.argmax(scores));tail_score=float(scores[at]);coarse_pc33=starts[2];starts[2]=begin+at-tail_begin
+    if tail_score<.999 or starts[2]+tail_begin<max(starts[i]+len(templates[i])+32 for i in range(2)):
+        raise AssertionError('Original HUD33 isolated tail is not independently verified')
     lo=min(starts)-32;hi=max(starts[i]+len(templates[i]) for i in range(3))+32
     if lo<0 or hi>len(signal):raise ValueError('Incomplete declared cue interval')
     target=signal[lo:hi]
@@ -61,7 +75,8 @@ def inspect(source,flow_path,facts_path,output):
     result=dict(status='PASS',scope='Actual declared normal tactic mix: original PC33 plus two inherited mobile nuisance cues. Not full PC battle audio restoration, microphone or ARM speaker evidence.',
         serial=flow['serial'],apkSha256=flow['installed_sha256'],waveSha256=hashlib.sha256(source.read_bytes()).hexdigest(),sampleRate=rate,intervalSamples=[lo,hi],jointCorrelation=joint,pc33NuisanceRemovedCorrelation=pc33,gramCondition=condition,
         residualMseWithPc33=with_pc,residualMseWithoutPc33=without,facts=facts['facts'],cues=[dict(name=name,label=label,path=path,sha256=hashlib.sha256((ROOT/'app/src/main/assets'/path).read_bytes()).hexdigest(),startSample=starts[i],seconds=starts[i]/rate,gain=float(gains[i]),audibleRms=float(rms[i]),candidateCorrelation=candidate_scores[i]) for i,(name,path,label) in enumerate(entries)],
-        filters='Same fixed65-tap cutoff FIR as existing mixer check; original rate phase refinement; no acceptance threshold relaxation')
+        pc33TailSeedCorrelation=tail_score,pc33CoarseCandidateSample=coarse_pc33,pc33TailSeedSample=begin+at-tail_begin,
+        filters='Same fixed65-tap cutoff FIR; declared isolated HUD33 tail seeds harmonic phase; full original-rate reconstruction and unchanged acceptance thresholds')
     output.write_text(json.dumps(result,indent=2)+'\n');print('PASS normal authoritative fact PC33 mixed PCM; joint=',joint,'pc33=',pc33)
 
 if __name__=='__main__':
