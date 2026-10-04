@@ -24,6 +24,7 @@ final class SoundEffects {
     private final Set<Integer> ready=new HashSet<>(),streams=new HashSet<>(),battleStreams=new HashSet<>();
     private final LinkedHashSet<String> heard=new LinkedHashSet<>();
     private SoundPool pool;
+    private java.io.File diagnosticWave;
     private AudioFocusRequest focusRequest;
     private boolean focused,ducked,focusLost,effectsPaused;
     private boolean voiceDucking,noisyRegistered;
@@ -60,7 +61,12 @@ final class SoundEffects {
         if(pool!=null)return;
         SoundPool candidate=new SoundPool.Builder().setMaxStreams(6).setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build()).build();pool=candidate;
         candidate.setOnLoadCompleteListener((source,id,status)->{if(pool==source&&status==0)ready.add(id);else if(status!=0)Log.e("GameAudio","load failed sample="+id+" status="+status);});
-        for(Cue cue:Cue.values())try(var file=context.getAssets().openFd(asset(cue))){samples.put(cue,candidate.load(file,1));}catch(java.io.IOException e){Log.e("GameAudio","Missing audio "+cue,e);}
+        for(Cue cue:Cue.values())try{
+            if(cue==Cue.TECHNIQUE_GAIN||cue==Cue.TECHNIQUE_LOSS){
+                if(diagnosticWave==null){diagnosticWave=java.io.File.createTempFile("pc33-path-diagnostic-",".wav",context.getCacheDir());try(var in=context.getAssets().open(asset(cue));var out=new java.io.FileOutputStream(diagnosticWave)){byte[] bytes=new byte[8192];int n;while((n=in.read(bytes))!=-1)out.write(bytes,0,n);}}
+                samples.put(cue,candidate.load(diagnosticWave.getAbsolutePath(),1));
+            }else try(var file=context.getAssets().openFd(asset(cue))){samples.put(cue,candidate.load(file,1));}
+        }catch(java.io.IOException e){Log.e("GameAudio","Missing audio "+cue,e);}
     }
     // Native HUD33 has one proved sample for changed values in either direction.
     // Other cues retain their explicitly labelled mobile compositions until source bindings close.
@@ -77,18 +83,6 @@ final class SoundEffects {
     }
     private boolean focus(){
         if(focusLost)return false;
-        if(sourceMedia==null){
-            if(focused)return true;if(manager==null)return false;
-            if(focusRequest==null)focusRequest=new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
-                .setAudioAttributes(new AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_GAME).setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION).build())
-                .setOnAudioFocusChangeListener(change->{Log.i("GameAudio","LEGACY FOCUS change="+change);
-                    if(change==AudioManager.AUDIOFOCUS_GAIN){focused=true;focusLost=false;ducked=false;updateStreams();}
-                    else if(change==AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK){ducked=true;updateStreams();}
-                    else{focused=false;focusLost=true;stopStreams();}
-                },handler).build();
-            focusKind=AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK;
-            focused=manager.requestAudioFocus(focusRequest)==AudioManager.AUDIOFOCUS_REQUEST_GRANTED;return focused;
-        }
         int wanted=sourceMedia!=null&&sourceMedia.hasMusic()&&musicVolume()>0&&!muted()?AudioManager.AUDIOFOCUS_GAIN:AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK;
         if(focused&&focusKind==wanted)return true;
         if(manager==null)return false;
@@ -114,10 +108,10 @@ final class SoundEffects {
         if(stream!=0){played++;streams.add(stream);if(battleCue(cue))battleStreams.add(stream);SoundPool owner=pool;handler.postDelayed(()->expireStream(stream,owner),1200);Log.i("GameAudio","PLAY cue="+cue+" stream="+stream+" count="+played+" gain="+gain+" focused="+focused+" focusKind="+focusKind+" ducked="+ducked+" voiceDucking="+voiceDucking+" sourceMedia="+(sourceMedia!=null));}
         else Log.w("GameAudio","play rejected cue="+cue);
     }
-    private void updateStreams(){if(pool!=null){float gain=volume()/100f*(ducked?.2f:1f);if(voiceDucking)gain*=.7f;Log.i("GameAudio","VOLUME gain="+gain+" streams="+streams);for(int id:streams)pool.setVolume(id,gain,gain);}}
+    private void updateStreams(){if(pool!=null){float gain=volume()/100f*(ducked?.2f:1f);if(voiceDucking)gain*=.7f;for(int id:streams)pool.setVolume(id,gain,gain);}}
     private void stopStreams(){if(pool!=null)for(int id:streams)pool.stop(id);streams.clear();battleStreams.clear();}
-    private void stop(){stopStreams();if(sourceMedia!=null)focusEpoch++;if(manager!=null&&focusRequest!=null)manager.abandonAudioFocusRequest(focusRequest);if(sourceMedia!=null)focusRequest=null;focused=false;ducked=false;if(sourceMedia!=null)sourceMedia.focus(false,false);}
-    private void release(){stop();if(sourceMedia!=null){sourceMedia.close();sourceMedia=null;}if(noisyRegistered){context.unregisterReceiver(noisy);noisyRegistered=false;}handler.removeCallbacksAndMessages(null);if(pool!=null){pool.release();pool=null;}ready.clear();samples.clear();Log.i("GameAudio","RELEASE");}
+    private void stop(){stopStreams();focusEpoch++;if(manager!=null&&focusRequest!=null)manager.abandonAudioFocusRequest(focusRequest);focusRequest=null;focused=false;ducked=false;if(sourceMedia!=null)sourceMedia.focus(false,false);}
+    private void release(){stop();if(sourceMedia!=null){sourceMedia.close();sourceMedia=null;}if(noisyRegistered){context.unregisterReceiver(noisy);noisyRegistered=false;}handler.removeCallbacksAndMessages(null);if(pool!=null){pool.release();pool=null;}if(diagnosticWave!=null){diagnosticWave.delete();diagnosticWave=null;}ready.clear();samples.clear();Log.i("GameAudio","RELEASE");}
     int playedCount(){return played;}
     boolean loaded(){return ready.size()==Cue.values().length;}
     boolean active(){return !foreground.isEmpty()&&pool!=null;}
