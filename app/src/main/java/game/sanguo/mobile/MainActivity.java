@@ -45,6 +45,7 @@ public final class MainActivity extends Activity {
             });
         }
         legacyView=current.legacyView();world=legacyView.draft;
+        PortraitMediaSources.bind(world,legacyView.state,current.officers());
     }
     private void sessionChanged(GameEvent event){
         SoundEffects.Cue cue=switch(event.kind){case DEPLOYED,TRANSPORT_DISPATCHED->SoundEffects.Cue.MARCH;case CONSTRUCTION_STARTED->SoundEffects.Cue.CONSTRUCTION;case PRODUCTION_COMMITTED,CITY_ACTION_COMMITTED,RECRUITED,PATROLLED,TRADE_COMMITTED->SoundEffects.Cue.COMPLETE;case TURN_COMMITTED->SoundEffects.Cue.TURN;default->null;};
