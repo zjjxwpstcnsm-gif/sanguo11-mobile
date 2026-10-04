@@ -30,10 +30,18 @@ public final class TechniqueFactsInstrumentation extends SceneInstrumentation {
         int points=w.campaign.points(w.player);var gain=w.editor.apply(w.editor.faction(w.player,w.actionPoints[w.player],points+20));
         return gain.ok?w.editor.apply(w.editor.faction(w.player,w.actionPoints[w.player],points)):gain;
     }).ok,"actual normal Activity command commits two opposite writes"));}
+    private GameEvent repair(World control){
+        runOnMainSync(()->{
+            World current=SessionProbe.view(activity);int city=current.home().id,officer=current.idle(current.home()).get(0).id;
+            check(control.campaign.repair(city,officer).ok,"control normal repair");
+            check(SessionProbe.command(activity,w->w.campaign.repair(city,officer)).ok,"actual normal repair commit");
+        });return observed.get(observed.size()-1);
+    }
     @Override public void onStart(){Bundle result=new Bundle();String originalScale=null;try{
         originalScale=shell("settings get global animator_duration_scale");
         shell("settings put global animator_duration_scale 1");
         World seed=ScenarioCatalog.load("heroes-250",0);check(seed.editor.apply(seed.editor.faction(seed.player,60,2000)).ok,"known source fixture points");
+        seed.home().defense=seed.home().baseDefense-2000;
         try(var out=getTargetContext().openFileOutput("auto.sg11",0)){out.write(SaveCodec.encode(seed));}
         activity=(MainActivity)startActivitySync(new Intent(getTargetContext(),MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));settle();
         host=(MapHost)field(activity,"map");ready();hud=(TechniquePointsHud)field(activity,"techniqueHud");sounds=((GameApplication)activity.getApplication()).sounds();badge=(TextView)field(activity,"actionPointsBadge");
@@ -51,35 +59,40 @@ public final class TechniqueFactsInstrumentation extends SceneInstrumentation {
         check(control.editor.apply(control.editor.faction(control.player,control.actionPoints[control.player],2020)).ok,"reference gain");
         check(control.editor.apply(control.editor.faction(control.player,control.actionPoints[control.player],2000)).ok,"reference loss");
         zeroNet();check(observed.size()==1&&observed.get(0).techniquePointsFacts.size()==2&&observed.get(0).techniquePointsChanges.isEmpty(),"real zero-net commit retains two facts");
-        GameEvent event=observed.get(0);String phase=event.techniquePointsFacts.get(0).presentationParentId;
-        check(!phase.isEmpty()&&phase.equals(event.techniquePointsFacts.get(1).presentationParentId),"original journal phase retained");
-        SystemClock.sleep(250);check(hud.rolls==initialRolls,"pending exact phase has no premature sound");
-        runOnMainSync(()->hud.releasePresentation("unrelated"));SystemClock.sleep(120);check(hud.rolls==initialRolls,"unrelated renderer phase silent");
-        runOnMainSync(()->hud.releasePresentation(phase));SystemClock.sleep(1900);
+        GameEvent event=observed.get(0);
+        check(event.techniquePointsFacts.get(0).presentationParentId.isEmpty()&&event.techniquePointsFacts.get(1).presentationParentId.isEmpty(),"editor copy produces actual blank presentation parents; never fabricate a phase");
+        SystemClock.sleep(1900);
         check(hud.rolls==initialRolls+2&&shown()==2000,"two opposite actual facts animate despite unchanged NET");
         check(heard(event.techniquePointsFacts.get(0).id)&&heard(event.techniquePointsFacts.get(1).id),"each sound owns exact fact.id");
         check(Arrays.equals(SaveCodec.encode(control),capture()),"fact presentation preserves entire control Save/RNG");
-        runOnMainSync(()->{check(hud.committedFacts(event,0)==TechniqueFactQueue.Result.IGNORED,"duplicate committed event ignored");hud.releasePresentation(phase);activity.refresh();});
+        runOnMainSync(()->{check(hud.committedFacts(event,0)==TechniqueFactQueue.Result.IGNORED,"duplicate committed event ignored");activity.refresh();});
         SystemClock.sleep(700);check(hud.rolls==initialRolls+2&&shown()==2000,"duplicate phase and normal refresh never play NET or repeat");
         runOnMainSync(()->check(!SessionProbe.command(activity,w->w.patrol(-1,-1)).ok,"normal failed command"));
         check(observed.size()==1&&Arrays.equals(SaveCodec.encode(control),capture()),"failed command has no facts and no Save/RNG changes");
-        zeroNet();GameEvent second=observed.get(1);String secondPhase=second.techniquePointsFacts.get(0).presentationParentId;
+        GameEvent phased=repair(control);String phase=phased.techniquePointsFacts.get(0).presentationParentId;
+        check(phased.techniquePointsFacts.size()==1&&!phase.isEmpty(),"real repair original journal parent retained");
+        SystemClock.sleep(250);check(hud.rolls==initialRolls+2,"pending exact phase has no premature sound");
+        runOnMainSync(()->hud.releasePresentation("unrelated"));SystemClock.sleep(120);check(hud.rolls==initialRolls+2,"unrelated renderer phase silent");
+        runOnMainSync(()->hud.releasePresentation(phase));SystemClock.sleep(1500);
+        check(hud.rolls==initialRolls+3&&shown()==2020&&heard(phased.techniquePointsFacts.get(0).id),"exact committed repair phase produces one original cue");
+        check(Arrays.equals(SaveCodec.encode(control),capture()),"phase delivery complete control Save/RNG unchanged");
+        GameEvent second=repair(control);String secondPhase=second.techniquePointsFacts.get(0).presentationParentId;
         runOnMainSync(()->{hud.foreground(false);hud.foreground(true);hud.releasePresentation(secondPhase);activity.refresh();});
-        SystemClock.sleep(700);check(hud.rolls==initialRolls+2&&!heard(second.techniquePointsFacts.get(0).id),"background discards pending fact without later replay");
-        check(Arrays.equals(SaveCodec.encode(control),capture()),"second zero-net editor commit and background preserve full Save/RNG");
-        zeroNet();GameEvent third=observed.get(2);String thirdPhase=third.techniquePointsFacts.get(0).presentationParentId;
+        SystemClock.sleep(700);check(hud.rolls==initialRolls+3&&!heard(second.techniquePointsFacts.get(0).id),"background discards pending fact without later replay");
+        check(Arrays.equals(SaveCodec.encode(control),capture()),"background repair preserves full control Save/RNG");
+        GameEvent third=repair(control);String thirdPhase=third.techniquePointsFacts.get(0).presentationParentId;
         runOnMainSync(()->{hud.pauseFacts(true);sounds.pauseEffects(true);hud.releasePresentation(thirdPhase);});
-        SystemClock.sleep(650);check(hud.rolls==initialRolls+2&&!heard(third.techniquePointsFacts.get(0).id),"paused exact phase retains facts without sound");
+        SystemClock.sleep(650);check(hud.rolls==initialRolls+3&&!heard(third.techniquePointsFacts.get(0).id),"paused exact phase retains facts without sound");
         runOnMainSync(()->{sounds.pauseEffects(false);hud.pauseFacts(false);});SystemClock.sleep(1900);
-        check(hud.rolls==initialRolls+4&&shown()==2000&&heard(third.techniquePointsFacts.get(0).id)&&heard(third.techniquePointsFacts.get(1).id),"resume consumes each retained fact once");
+        check(hud.rolls==initialRolls+4&&shown()==2060&&heard(third.techniquePointsFacts.get(0).id),"resume consumes retained fact once");
         runOnMainSync(()->{hud.pauseFacts(true);hud.pauseFacts(false);hud.releasePresentation(thirdPhase);});SystemClock.sleep(500);
         check(hud.rolls==initialRolls+4&&Arrays.equals(SaveCodec.encode(control),capture()),"repeated pause/resume never replays; full Save/RNG unchanged");
-        zeroNet();GameEvent fourth=observed.get(3);String fourthPhase=fourth.techniquePointsFacts.get(0).presentationParentId;
+        GameEvent fourth=repair(control);String fourthPhase=fourth.techniquePointsFacts.get(0).presentationParentId;
         runOnMainSync(()->{hud.releasePresentation(fourthPhase);hud.skipPresentation(fourthPhase);});SystemClock.sleep(650);
-        check(hud.rolls==initialRolls+4&&!heard(fourth.techniquePointsFacts.get(0).id)&&!heard(fourth.techniquePointsFacts.get(1).id),"skip before scheduled frame cancels current and pending fact without sound");
+        check(hud.rolls==initialRolls+4&&!heard(fourth.techniquePointsFacts.get(0).id),"skip before scheduled frame cancels current fact without sound");
         check(Arrays.equals(SaveCodec.encode(control),capture()),"skip changes presentation only, entire Save/RNG unchanged");
         runOnMainSync(()->{SessionProbe.install(activity,control);activity.refresh();hud.releasePresentation(phase);});SystemClock.sleep(500);
-        check(hud.rolls==initialRolls+4&&shown()==2000&&Arrays.equals(SaveCodec.encode(control),capture()),"real restore resets generation without replay");
+        check(hud.rolls==initialRolls+4&&shown()==2080&&Arrays.equals(SaveCodec.encode(control),capture()),"real restore resets generation without replay");
         result.putString("stream","PASS TECHNIQUE FACTS "+checks+" checks; installed normal3D HUD with temporary readonly event/phase test adapter; shared host integration pending\n");
     }catch(Throwable e){result.putString("stream","FAIL TECHNIQUE FACTS "+android.util.Log.getStackTraceString(e));}
     finally{try{

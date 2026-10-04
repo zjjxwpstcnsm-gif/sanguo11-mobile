@@ -45,6 +45,13 @@ public final class TechniqueFactQueueTest {
                 check(Arrays.equals(saved,session.captureSave())&&Arrays.equals(saved,SaveCodec.encode(control)),"complete Save/RNG unchanged by media");
                 var bad=session.legacyView();check(!session.legacy(bad.draft,()->bad.draft.patrol(-1,-1)).ok&&events.size()==1,"failed command publishes no media");
                 check(Arrays.equals(saved,session.captureSave()),"failure full Save/RNG unchanged");
+                StateToken previous=session.state();session.replace(control);GameEvent restore=events.get(events.size()-1);
+                check(!previous.sessionId.equals(restore.state.sessionId)&&restore.state.generation>previous.generation&&restore.state.revision==0,"actual restore changes sessionId and resets revision");
+                check(queue.committed(restore,side)==TechniqueFactQueue.Result.RESET&&queue.size()==0,"actual changed-id restore queue reset");
+                check(queue.committed(event,side)==TechniqueFactQueue.Result.IGNORED,"actual old token after restore silent");
+                StateToken closing=session.state();session.close();GameEvent closed=events.get(events.size()-1);
+                check(closing.equals(closed.state)&&queue.committed(closed,side)==TechniqueFactQueue.Result.RESET,"actual close at same revision clears media");
+                check(queue.committed(closed,side)==TechniqueFactQueue.Result.IGNORED,"duplicate close ignored");
             }
         }
         var queue=new TechniqueFactQueue(3);queue.baseline(token(1,0),0);queue.foreground(true);

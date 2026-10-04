@@ -22,7 +22,7 @@ final class TechniqueFactQueue {
     private StateToken state;
     private int owner=-1;
     private long watermark;
-    private boolean foreground,resync,paused;
+    private boolean foreground,resync,paused,closed;
     TechniqueFactQueue(){this(4096);}
     TechniqueFactQueue(int capacity){if(capacity<1)throw new IllegalArgumentException("capacity");this.capacity=capacity;}
     private boolean identity(StateToken next,int side){return state!=null&&state.sessionId.equals(next.sessionId)&&state.generation==next.generation&&owner==side;}
@@ -31,7 +31,8 @@ final class TechniqueFactQueue {
     /** A snapshot sets the barrier but cannot replay facts. Same-identity refresh preserves pending phases. */
     void baseline(StateToken next,int side){
         if(stale(next))return;
-        if(!identity(next,side)){pending.clear();skippedParents.clear();watermark=next.revision;resync=false;paused=false;}
+        if(closed&&identity(next,side))return;
+        if(!identity(next,side)){pending.clear();skippedParents.clear();watermark=next.revision;resync=false;paused=false;closed=false;}
         else watermark=Math.max(watermark,next.revision);
         state=next;owner=side;
     }
@@ -40,16 +41,22 @@ final class TechniqueFactQueue {
     void foreground(boolean value){foreground=value;if(!value)pending.clear();}
     void paused(boolean value){paused=value;}
     void discard(){pending.clear();}
-    void close(){pending.clear();skippedParents.clear();state=null;owner=-1;foreground=false;resync=false;paused=false;}
+    void close(){pending.clear();skippedParents.clear();state=null;owner=-1;foreground=false;resync=false;paused=false;closed=true;}
     boolean needsResync(){return resync;}
     int size(){return pending.size();}
     private Result invalid(){pending.clear();resync=true;return Result.RESYNC;}
     /** Atomic batch admission: one malformed row rejects every row, including already pending media. */
     Result committed(GameEvent event,int side){
-        if(state==null||!state.sessionId.equals(event.state.sessionId)||event.state.generation<state.generation)return Result.IGNORED;
-        if(event.kind==GameEvent.Kind.WORLD_REPLACED||event.kind==GameEvent.Kind.CLOSED){
-            if(event.state.generation==state.generation&&event.state.revision<=watermark)return Result.IGNORED;
+        if(event.kind==GameEvent.Kind.WORLD_REPLACED){
+            // GameSession.replace changes BOTH sessionId and generation, and resets revision to zero.
+            if(state!=null&&event.state.generation<=state.generation)return Result.IGNORED;
             baseline(event.state,side);pending.clear();return Result.RESET;
+        }
+        if(closed||state==null||!state.sessionId.equals(event.state.sessionId)||event.state.generation<state.generation)return Result.IGNORED;
+        if(event.kind==GameEvent.Kind.CLOSED){
+            // close emits the current token without increasing revision.
+            if(!identity(event.state,side)||event.state.revision<watermark)return Result.IGNORED;
+            pending.clear();closed=true;return Result.RESET;
         }
         if(!identity(event.state,side))return Result.IGNORED;
         if(event.state.revision<=watermark)return Result.IGNORED;
