@@ -1,0 +1,39 @@
+{
+  "serial": "emulator-5582",
+  "runner": "MusicSourceInstrumentation",
+  "arguments": [
+    "resource=2261",
+    "retainPcm=true"
+  ],
+  "apks": {
+    "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/music-frozen-02/app-debug.apk": "00945eed35a061fb6f8f155b97e6d4acaf58f192ecfe693b8f4640f037464f6d",
+    "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/music-frozen-02/app-debug-androidTest.apk": "9439160b978d11846ceb0aead2559370274aa8cc851af65c9098cf68c7699201"
+  },
+  "backup": {
+    "files/auto.sg11": {
+      "bytes": 185898,
+      "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    },
+    "files/manual3.sg11": {
+      "bytes": 185898,
+      "sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+    }
+  },
+  "passed": true,
+  "stage": "finished",
+  "reused_installed": false,
+  "installed_test_sha256": "9439160b978d11846ceb0aead2559370274aa8cc851af65c9098cf68c7699201",
+  "installed_sha256": "00945eed35a061fb6f8f155b97e6d4acaf58f192ecfe693b8f4640f037464f6d",
+  "exit_code": 0,
+  "seconds": 1.9,
+  "restoration": {
+    "all_original_files_byte_equal": true,
+    "mismatches": [],
+    "test_generated_files_removed": [
+      "files/music-source-2261.pcm",
+      "files/music-source.json"
+    ],
+    "added_files": [],
+    "auto_sha256": "02ddb3d44d98fbebe763a82551b5cb5eb68da6e70b6087568c0a73943bde5d69"
+  }
+}

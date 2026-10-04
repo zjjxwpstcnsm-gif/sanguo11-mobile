@@ -1,0 +1,21 @@
+{
+  "scope": "Packaged codec/frame-loop proof, not scene playback",
+  "checks": 11,
+  "tracks": [
+    {
+      "resourceId": 2261,
+      "musicId": 24,
+      "oggSha256": "b52628bf46a1eae05dc3f652a34e42c1b6b6400be6d3ea07623c055ec8df6e52",
+      "referencePcmSha256": "b7e2b8e455f2352473250f75dd54630c9a11b7cace0b774087a1dc0de9e6bb67",
+      "actualPcmSha256": "0049b2213f9fa771f274623b5528b9c65ba737df9c65880d1749269b50e63fe1",
+      "referenceByteEqual": false,
+      "frames": 283136,
+      "bytes": 1132544,
+      "codec": "OMX.google.vorbis.decoder",
+      "decodeMillis": 510,
+      "loopStart": -1,
+      "loopEnd": -1
+    }
+  ],
+  "result": "MUSIC_SOURCE PASS checks=11; actual Android decoder and sample-loop reads; no scene/audio playback claim"
+}

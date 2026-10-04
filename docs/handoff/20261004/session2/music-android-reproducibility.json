@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "scope": "Actual Android original Ogg decode repeated on two fresh installed packages; not source scene playback",
+  "tracks": 30,
+  "allPcmByteEqualAcrossRuns": true,
+  "referencePcmByteEqualTracks": 0,
+  "sampleRate": 44100,
+  "channels": 2,
+  "totalDecodedBytes": 477662124,
+  "maximumSequentialTemporaryPcmBytes": 47162540,
+  "decodeMillisTotal": 188456,
+  "decodeMillisMaximum": 18638,
+  "codecs": [
+    "OMX.google.vorbis.decoder"
+  ]
+}

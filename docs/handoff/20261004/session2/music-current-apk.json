@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "ef0cc1ca31dcb4f85c59e3829f164f576b033a95",
+  "artifacts": [
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/music-frozen-02/app-debug.apk",
+      "bytes": 130397278,
+      "sha256": "00945eed35a061fb6f8f155b97e6d4acaf58f192ecfe693b8f4640f037464f6d"
+    },
+    {
+      "path": "/Users/paopao/.codex/worktrees/portrait-audio-restoration/sanguo11-mobile/out/media/music-frozen-02/app-debug-androidTest.apk",
+      "bytes": 2031287,
+      "sha256": "9439160b978d11846ceb0aead2559370274aa8cc851af65c9098cf68c7699201"
+    }
+  ]
+}

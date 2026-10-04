@@ -1,0 +1,20 @@
+{
+  "status": "MEASURED",
+  "resourceId": 2261,
+  "scope": "This one actual Android decoder output vs deterministic PyAV reference; no PC native decoder/speaker assertion",
+  "sampleRate": 44100,
+  "channels": 2,
+  "frames": 283136,
+  "actualSha256": "0049b2213f9fa771f274623b5528b9c65ba737df9c65880d1749269b50e63fe1",
+  "referenceSha256": "b7e2b8e455f2352473250f75dd54630c9a11b7cace0b774087a1dc0de9e6bb67",
+  "maxAbsolutePcmDifference": 1,
+  "differenceHistogram": {
+    "-1": 283070,
+    "0": 282982,
+    "1": 220
+  },
+  "changedSamples": 283290,
+  "meanDifference": -0.4994949423598553,
+  "rmsDifference": 0.7072990556433142,
+  "correlation": 0.9999999787537452
+}
