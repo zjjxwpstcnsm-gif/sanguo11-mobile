@@ -13,7 +13,7 @@ import java.util.*;
 
 /** Process presentation audio. Call only on the UI thread; no gameplay or rule RNG. */
 final class SoundEffects {
-    enum Cue { UI, MARCH, ATTACK, TACTIC, CRITICAL, PLOT, CONSTRUCTION, COMPLETE, TURN, TECHNIQUE_GAIN, TECHNIQUE_LOSS }
+    enum Cue { UI, MARCH, ATTACK, TACTIC, CRITICAL, PLOT, CONSTRUCTION, COMPLETE, TURN, TECHNIQUE_GAIN, TECHNIQUE_LOSS, PC_DIALOG_CANCEL }
     private final Context context;
     private final SharedPreferences prefs;
     private final AudioManager manager;
@@ -74,9 +74,11 @@ final class SoundEffects {
     }
     // Native HUD33 has one proved sample for changed values in either direction.
     // Other cues retain their explicitly labelled mobile compositions until source bindings close.
-    private static String asset(Cue cue){return cue==Cue.TECHNIQUE_GAIN||cue==Cue.TECHNIQUE_LOSS
+    private static String asset(Cue cue){if(cue==Cue.PC_DIALOG_CANCEL)return "audio/pc/ui-close-1.wav";return cue==Cue.TECHNIQUE_GAIN||cue==Cue.TECHNIQUE_LOSS
         ?"audio/pc/technique-33.wav":"audio/"+cue.name().toLowerCase(Locale.ROOT)+".wav";}
     void ui(){long now=android.os.SystemClock.uptimeMillis();if(now-uiAt<60)return;uiAt=now;play(Cue.UI);}
+    /** Actual cancelled dialog callback only. Never infer battle failure or play for ordinary dismissal. */
+    void cancelledDialog(){play(Cue.PC_DIALOG_CANCEL);}
     /** A committed event phase is claimed once even when muted/backgrounded.
      * Loading/recreation never queues stale battle sounds for later replay. */
     void committed(game.sanguo.api.StateToken state,String phase,Cue cue){event("receipt:"+state.sessionId+":"+state.generation+":"+state.revision+":"+phase,cue);}

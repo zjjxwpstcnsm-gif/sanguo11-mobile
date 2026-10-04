@@ -111,4 +111,8 @@ VoicePresentationFact {
 
 ## 公共入口与顺序集成
 
+批二十提出唯一公共补丁`ui-close-host-20/ui-close-host.patch`，基点4994350dd1f0ad661c97379f33997f8fca904e58，守卫见同目录guards.json：只在MainActivity.trackDialog注册真实AlertDialog.OnCancel回调，交给SoundEffects.cancelledDialog。不在普通dismiss、按钮文案、战斗失败或规则命令上触发；按钮确认关闭不走OnCancel。现有文件没有OnCancel listener，若新增监听或SHA变化则停止直接套补丁并顺序审计。
+
+原4dd8c0的flags8且flags2未设时发sound1、关闭返回值−2；63b270的child1237同样sound1/−2，而child1236发sound0/10000。69项完整原音效dispatch执行及原PCM已证明。Android的真实取消回调适配原负向关闭声音；这是明确的平台UI适配，不推导规则结果。原OS事件路由/完整子控件布局尚未执行，通用按钮仍保留移动端合成，不能宣称全部原UI矩阵已闭合。该补丁先记录并提交，再在自有integration工作目录按before/after SHA顺序应用；不触碰会话一MainActivity或原目录WIP。
+
 MainActivity/MapHost 等入口已经在独立 integration 工作目录依守卫顺序接入头像、逐次技巧事实及原 CriticalHit.year。对应 `.patch`、基点及每路径前/后 SHA 保留在本目录；人物 metadata 仍精确继承已完成9e171f2，未拷其后来WIP。任何新的 BGM/voice 公共入口仍先提供确切补丁，由顺序集成处理。批九只有媒体选择器/工具/证据，没有再修改这些公共入口，也没有增加任何正常语音触发。

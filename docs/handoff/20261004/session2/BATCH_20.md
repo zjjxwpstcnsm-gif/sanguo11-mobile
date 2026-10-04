@@ -1,0 +1,11 @@
+# 批二十：原负向关闭声音与实际取消入口
+
+基点4994350dd1f0ad661c97379f33997f8fca904e58。inspect_pc_ui_close_audio.py执行4dd860/4dd8c0/63b270原分支，并执行完整4d0570到6e98b0，捕获原bank0 slot1。平台音频可用性/critical-section、窗口关闭callback/fallback及child-ID lookup是显式fixture边界；不是原OS事件路由或完整子控件布局证明，无Wine、规则命令、存档或RNG调用。
+
+69项通过。4dd8c0在flags8且flags2未设时sound1/关闭结果−2；flags2优先为sound1/INT_MIN。63b270的child1237同为sound1/−2，child1236为sound0/10000，未知child不发这两种声音。保留原指令SHA、实际dispatch、关闭结果和fixture边界于ui-close-native.json.gz。不能把sound0/1混为所有按钮的同一点击音，也不把负向UI关闭当战斗失败。
+
+原sound1取header2282/wave2281、bank0 slot1，44100Hz单声道3042帧/0.06898秒，WAV SHA a0c2ee88acf2518afff960358e4c5054de54f1d58bcd2809afe70813ca6db3a6，PCM SHA 0781cc395a7e0f0f777508e4e8b0da95691e83d1ca33a40c98c2dab6ecca12c3。stage_pc_ui_close_sound.py从两次独立原bank转换结果重建，WAV/manifest逐字节相同；asset独立ui-close-manifest保留来源/条件/范围，不改人物metadata或公共数据manifest。
+
+SoundEffects只新增PC_DIALOG_CANCEL及cancelledDialog入口，经过既有静音/音量/焦点/前后台/释放线路。普通九种移动端合成提示声未标成PC还原。公共MainActivity唯一必要补丁已先列MEDIA_INPUT_CONTRACT，并保存ui-close-host-20的确切patch和前后SHA；待自有integration顺序应用真实AlertDialog.OnCancel，普通dismiss/确认不触发。Android取消是平台适配原负向关闭声音，原OS路由尚未证明，不扩大成全UI还原。
+
+本阶段尚未构建/实装新组合包，不借用批十九音频结果；下一步顺序应用公共补丁、正常声音设置页按BACK取消、确认关闭不误播、真实PCM与完整Save/RNG、用户文件恢复及新APK SHA验证。core/game-api/game-runtime仍保持已完成9e171f2，原目录和会话一WIP未改。普通BGM/人物voice自动绑定仍0，完整目标active。
